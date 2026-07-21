@@ -6,7 +6,7 @@
 
 *First public release: 21 July 2026, 14:42:57 UTC (21 July 2026, 07:42:57 PDT).*
 
-*Priority correction: 21 July 2026, 15:13:18 UTC (21 July 2026, 08:13:18 PDT).*
+*Priority correction: 21 July 2026, 15:20:23 UTC (21 July 2026, 08:20:23 PDT).*
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the

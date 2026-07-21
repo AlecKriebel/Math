@@ -8,7 +8,7 @@
 
 *Revised: 21 July 2026.*
 
-> **Superseded status (21 July 2026, 15:13:18 UTC).** Exploration 03 replaces
+> **Superseded status (21 July 2026, 15:20:23 UTC).** Exploration 03 replaces
 > the 27-variable cubic and 54-variable quartic dimension counts by 22 and 44.
 > Thompson had also posted a 24-variable cubic map before this note's first
 > release. This document is retained as a timestamped derivation of the

@@ -18,7 +18,7 @@ Exploration 03, now titled “An explicit 44-variable vanishing witness from a
 **21 July 2026, 14:42:57 UTC** (**21 July 2026, 07:42:57 PDT**). This is the
 author and committer timestamp of the release commit.
 
-A priority correction was posted at **21 July 2026, 15:13:18 UTC**. It records
+A priority correction was posted at **21 July 2026, 15:20:23 UTC**. It records
 that an equivalent six-variable symmetric transport was already public in
 Eliott Cassidy's repository and that William Thompson had priority for the
 rank-compression idea. The original release timestamp and Git history remain
