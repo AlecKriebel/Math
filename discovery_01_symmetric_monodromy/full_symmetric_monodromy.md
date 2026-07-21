@@ -4,7 +4,7 @@
 
 *Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.*
 
-*First public release: __PUBLICATION_UTC__ (__PUBLICATION_PDT__).*
+*First public release: 21 July 2026, 13:11:39 UTC (21 July 2026, 06:11:39 PDT).*
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the

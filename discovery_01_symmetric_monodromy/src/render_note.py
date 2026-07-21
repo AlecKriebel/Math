@@ -22,8 +22,8 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output" / "pdf" / "full_symmetric_monodromy.pdf"
-PUBLICATION_UTC = "__PUBLICATION_UTC__"
-PUBLICATION_PDT = "__PUBLICATION_PDT__"
+PUBLICATION_UTC = "21 July 2026, 13:11:39 UTC"
+PUBLICATION_PDT = "21 July 2026, 06:11:39 PDT"
 
 
 def footer(canvas, doc):
