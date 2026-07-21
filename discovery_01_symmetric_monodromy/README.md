@@ -1,10 +1,16 @@
-# Symmetric monodromy in an Alpoge-Gallagher subfamily
+# Archival Exploration 01: a weighted-lift specialization
 
 **Byline:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
 
 This workspace contains a provisional research note and an exact symbolic
 checker prompted by the polynomial counterexample to the Jacobian conjecture
 announced on 19 July 2026.
+
+> **Archived and subsumed.** Mikhail Szh published a stronger theorem for the
+> entire Gallagher weighted-lift family before this note appeared. The
+> monodromy and deck-group claims are therefore not novel. The particular seed
+> and uniform rational collision have been moved into Appendix A of the
+> repository's canonical 22/44-variable paper.
 
 **Verification disclaimer:** Alec Kriebel is a complete amateur and cannot
 independently verify these mathematical claims. The note is an experiment in
@@ -49,11 +55,8 @@ python3 verify_announced_stdlib.py
 
 ## Status
 
-This is a research draft, not a peer-reviewed publication. Its residual
-contribution is deliberately narrow: the elementary subfamily, its uniform
-rational collision, and the all-degree `S_n` statement with trivial rational
-deck group. Searches performed on 20 July 2026 found the newly posted
-every-degree construction and a separate analysis of `S_3` monodromy for the
-original cubic example, but did not find this uniform refinement. That is
-evidence of novelty, not a priority guarantee. An expert in affine algebraic
-geometry should review the monodromy argument before submission.
+This is an archival derivation, not a current paper. Its main theorem is
+subsumed by earlier, stronger work. The exact checker and full proof remain
+available for provenance. Only the explicit uniform rational collision is
+retained in the canonical paper, and even that narrow novelty claim remains
+provisional pending expert review.

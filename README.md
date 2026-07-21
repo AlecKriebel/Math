@@ -20,18 +20,22 @@ published so that others can audit the work. Passing the included checks is
 evidence about the encoded algebra; it is not peer review and does not prove
 that the interpretation or literature claims are correct.
 
-## Papers
+## Canonical paper
 
-1. **Full symmetric monodromy in a uniform subfamily of the
-   Alpoge-Gallagher Keller maps** — a structural follow-on note about explicit
-   Keller maps of every generic degree.
-2. **An explicit quartic counterexample to Zhao's Vanishing Conjecture** — the
-   first version of the reduction, retained for provenance but superseded in
-   its dimension counts by Exploration 03.
-3. **An explicit 44-variable vanishing witness from a 22-variable cubic Keller
-   map** — a rank-compressed cubic model and exact quartic certificate. It also
-   records a normalized six-variable gradient lift, now explicitly credited as
-   prior work rather than a novel result.
+**An explicit 44-variable vanishing witness from a 22-variable cubic Keller
+map** is the single current paper. It contains the factor-reusing 13-variable
+stable reduction, the rank-eight/22-variable cubic construction, the explicit
+44-variable quartic certificate, the corrected priority audit, and an appendix
+with the surviving uniform rational collision from Exploration 01.
 
-Each paper folder is self-contained and includes its note, verifier, rendered
-PDF, and status/novelty caveats.
+## Archival derivations
+
+- **Exploration 01** is retained as the full derivation of one weighted-lift
+  specialization. Its monodromy theorem was already available in stronger form
+  before release; only its uniform rational collision remains in the canonical
+  appendix.
+- **Exploration 02** is retained as the timestamped first 13-variable/54-variable
+  construction. It is superseded and absorbed into the canonical paper.
+
+The archive remains public to preserve provenance rather than rewrite history.
+It should not be read as three independent discoveries.

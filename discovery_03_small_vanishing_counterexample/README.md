@@ -1,4 +1,4 @@
-# Discovery 03: a compressed explicit Vanishing-Conjecture witness
+# Canonical paper: a compressed explicit Vanishing-Conjecture witness
 
 This package accompanies the provisional note:
 
@@ -6,6 +6,12 @@ This package accompanies the provisional note:
 > map**
 
 Author: **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol**.
+
+This is the repository's single canonical paper. Explorations 01 and 02 remain
+available only as timestamped archival derivations. The useful 13-variable
+reduction from Exploration 02 is incorporated into the main construction, and
+the surviving uniform rational collision from Exploration 01 is included as
+Appendix A.
 
 ## Verification status
 
@@ -29,6 +35,9 @@ proof, attribution, and novelty statement requires independent expert review.
 3. A 44-variable homogeneous quartic Hessian-nilpotent polynomial with 538
    expanded terms and an exact collision under `Z - gradient(P)`, explicitly
    witnessing failure of Zhao's Vanishing Conjecture.
+4. An appendix giving a uniform rational two-point collision in one explicit
+   weighted-lift specialization for every degree `n >= 3`. The broader
+   monodromy theorem is credited to earlier work and is not claimed as novel.
 
 William Thompson had priority for the rank-compression idea and published a
 sparser 24-variable cubic map before this note. The candidate residual
@@ -77,5 +86,7 @@ the structural reduction checked in `verify.py`.
 - `verify_exported_stdlib.py` — dependency-free Python certificate checker.
 - `verify_exported_node.mjs` — independent JavaScript BigInt certificate checker.
 - `PRIORITY_AUDIT.md` — corrected comparison with earlier public artifacts.
+- `../discovery_01_symmetric_monodromy/verify.py` — exact checker for the
+  appendix's weighted-lift collision.
 - `output/` — expanded sparse polynomials and exact collisions.
 - `search_*.py` — retained exploratory and negative-result scripts.

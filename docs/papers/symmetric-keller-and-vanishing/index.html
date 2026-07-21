@@ -38,10 +38,10 @@
   <header class="site-header">
     <nav class="nav" aria-label="Paper navigation">
       <a class="brand" href="../../">Alec's Math Explorations</a>
-      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_03_small_vanishing_counterexample">Source</a></div>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="#appendix">Appendix</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_03_small_vanishing_counterexample">Source</a></div>
     </nav>
     <div class="paper-hero"><div class="inner">
-      <p class="paper-status">Exploration 03 · Provisional research note · Priority corrected</p>
+      <p class="paper-status">Canonical consolidated paper · Provisional · Priority corrected</p>
       <h1>An explicit 44-variable vanishing witness from a 22-variable cubic Keller map</h1>
       <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
       <p class="release">First public release: <time datetime="2026-07-21T14:42:57Z">21 July 2026, 14:42:57 UTC</time> (21 July 2026, 07:42:57 PDT)</p>
@@ -67,7 +67,7 @@
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">Starting from the recently announced three-dimensional noninjective Keller map, a rank-compressed homogenization gives a 22-variable cubic homogeneous noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a homogeneous quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials and an exact collision. A normalized six-variable gradient lift is included for reuse but, following a post-release audit, is explicitly credited as prior work rather than a new discovery.</p>
+        <p class="lede" itemprop="abstract">Starting from the recently announced three-dimensional noninjective Keller map, a rank-compressed homogenization gives a 22-variable cubic homogeneous noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a homogeneous quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials and an exact collision. This is the single canonical paper: the useful 13-variable derivation from Exploration 02 is incorporated here, and Appendix A preserves Exploration 01's uniform rational collision while withdrawing its monodromy novelty claim.</p>
         <div class="fact-grid">
           <div class="fact"><strong>Normalized companion</strong><span>6 variables · earlier equivalent transport now credited</span></div>
           <div class="fact"><strong>Cubic model</strong><span>22 variables · 72 monomials · nilpotent \(Jh\)</span></div>
@@ -130,8 +130,20 @@
       <section id="scope">
         <h2>5. Scope and priority</h2>
         <p>The six-variable map was already public in equivalent form: Cassidy's commit <code>40e1e20…</code>, authored at 14:46:10 UTC on 20 July 2026, executes the de Bondt–van den Essen/Meng transport, checks symmetry, and gives the same lifted three-point fiber. Our determinant-one, identity-linear formula is a normalized presentation, not an independent discovery. The first version of this page missed that source.</p>
-        <p>William Thompson posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026 and has priority for the rank-compression idea. His map has 54 monomials across 23 active nonlinear coordinates; ours has 72 across 21. Both cubic maps are over \(\mathbb Q\) with rational collisions. Ours uses fewer ambient variables (22 versus 24), while Thompson's is sparser. The residual candidate contribution is the different \(13+8+1=22\) construction and its executed 44-variable quartic.</p>
+        <p>Exploration 02's 27/54-variable construction is now an archival derivation subsumed by this paper. William Thompson posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026 and has priority for the rank-compression idea. His map has 54 monomials across 23 active nonlinear coordinates; ours has 72 across 21. Both cubic maps are over \(\mathbb Q\) with rational collisions. Ours uses fewer ambient variables (22 versus 24), while Thompson's is sparser. The residual candidate contribution is the different \(13+8+1=22\) construction and its executed 44-variable quartic.</p>
         <p>Source-specific searches found no earlier public 22-variable cubic certificate or executed 44-variable quartic certificate. This is not an exhaustive worldwide-priority claim; all novelty statements are provisional. <a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/PRIORITY_AUDIT.md">Read the full correction and source comparison.</a></p>
+      </section>
+
+      <section id="appendix">
+        <h2>Appendix A. A uniform rational collision</h2>
+        <p>Exploration 01's full-\(S_n\) theorem was already available in stronger form for the entire Gallagher weighted-lift family in <a href="https://github.com/MikhailSzh/weighted-lift-galois/commit/f8a6d6794febb551050d73b8cf6ffab9da52d047">Mikhail Szh's earlier commit</a>. We therefore preserve only its explicit specialization and rational collision, without a monodromy or deck-group novelty claim.</p>
+        <p>For \(n\ge3\), let \(s_n=(4-2^n)/(n-2)\), \(g_1=(n+2-2^n)/(n-2)\), and \(g_2=2^{n-1}\). The appendix defines an explicit weighted-lift map \(F_n\) and points</p>
+        <div class="equation">\[
+          X_{n,r}=\left(\frac1{g_r},\ r-g_r,
+          g_r^2\left[g_r-1+\frac n{n-1}\left(\frac r{g_r}-1\right)\right]\right),
+          \qquad r\in\{1,2\},
+        \]</div>
+        <p>for which \(F_n(X_{n,1})=F_n(X_{n,2})=(s_n,s_n,1)\) exactly. At \(n=3\), this is \(F_3(-1/3,4,-54)=F_3(1/4,-2,36)=(-4,-4,1)\). The archived checker verifies the identities in exact rational arithmetic.</p>
       </section>
 
       <section id="disclosure">

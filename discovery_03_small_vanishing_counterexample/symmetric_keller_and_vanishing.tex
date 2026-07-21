@@ -15,7 +15,8 @@
 from a 22-variable cubic Keller map}
 \author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
 \date{First public release: 21 July 2026, 14:42:57 UTC\\
-Priority correction: 21 July 2026, 15:20:23 UTC}
+Priority correction: 21 July 2026, 15:20:23 UTC\\
+Canonical consolidated version: 21 July 2026}
 
 \begin{document}
 \maketitle
@@ -30,6 +31,9 @@ certificates. For reuse we also record a normalized six-variable gradient
 lift. A post-release priority audit found that Cassidy had already executed
 the equivalent six-dimensional symmetric transport; no novelty is claimed
 for that construction.
+An appendix preserves the uniform rational collision from the archived first
+exploration while crediting the earlier, stronger monodromy theorem for the
+full weighted-lift family.
 \end{abstract}
 
 \noindent\textbf{Verification disclaimer.}
@@ -273,6 +277,7 @@ artifact and overstated this part of its novelty claim.
 
 Zhang~\cite{zhang} left the Vanishing Conjecture consequence existential. Our
 earlier note~\cite{kriebel54} gave a 54-variable certificate.
+That note is now an archival derivation subsumed by the present paper.
 Thompson~\cite{thompson} posted a 24-variable cubic homogeneous reduction at
 03:29:42 UTC on 21 July 2026. His work contains the same rank-compression
 principle in executed form and has priority for that idea. Thompson's map has
@@ -287,6 +292,63 @@ no earlier public 22-variable cubic certificate or executed 44-variable
 quartic certificate. This is not an exhaustive claim of worldwide priority.
 The literature is changing by the hour and all novelty statements are
 provisional.
+
+\appendix
+\section{A uniform rational collision in a weighted-lift specialization}
+
+This appendix preserves the only potentially new explicit certificate from
+Exploration 01. It is not used in the 22- or 44-variable constructions above.
+Gallagher introduced the weighted-lift family~\cite{gallagher}, and Mikhail
+Szh and Fable~\cite{mikhail} publicly proved full $S_n$ monodromy for the
+entire family before Exploration 01 appeared. No monodromy or deck-group
+novelty is claimed here.
+
+For $n\ge3$, put
+\[
+u=1+xy,\qquad
+\gamma=1-\frac{n}{n-1}xy+x^2z,\qquad w=u\gamma,
+\]
+\[
+p_n(w)=\frac{2w-nw^{n-1}}{n-2},\qquad
+q_n(w)=\frac{w^2-(n-1)w^n}{n-2},
+\]
+and define
+\begin{equation}
+F_n=\left(
+\frac{u+q_n(w)/\gamma^2}{x^2},
+\frac{1+p_n(w)/\gamma}{x},
+x\gamma
+\right).
+\label{eq:weighted-specialization}
+\end{equation}
+The apparent denominators cancel and $\det JF_n=1$. Let
+\[
+s_n=\frac{4-2^n}{n-2},\qquad
+g_1=\frac{n+2-2^n}{n-2},\qquad g_2=2^{n-1}.
+\]
+For $r\in\{1,2\}$, let $g_r$ denote the corresponding displayed value and set
+\begin{equation}
+X_{n,r}=\left(
+\frac1{g_r},\ r-g_r,\
+g_r^2\left[g_r-1+\frac n{n-1}
+\left(\frac r{g_r}-1\right)\right]
+\right).
+\label{eq:weighted-points}
+\end{equation}
+Both $g_1$ and $g_2$ are nonzero for every $n\ge3$, and direct exact
+substitution gives
+\begin{equation}
+F_n(X_{n,1})=F_n(X_{n,2})=(s_n,s_n,1).
+\label{eq:weighted-collision}
+\end{equation}
+For example,
+\[
+F_3(-1/3,4,-54)=F_3(1/4,-2,36)=(-4,-4,1).
+\]
+The archived Exploration 01 checker verifies polynomiality, the determinant,
+and~\eqref{eq:weighted-collision} in exact rational arithmetic. This formula
+is a compact reusable certificate inside the broader Gallagher--Mikhail
+family, not an independent theorem.
 
 \section*{AI-assistance and verification disclosure}
 The constructions, searches, proofs, programs, website, and drafts were
@@ -335,12 +397,21 @@ $\C^6$, public GitHub repository, commit
 A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, An explicit
 Hessian-nilpotent quartic in 54 variables witnessing the failure of Zhao's
 Vanishing Conjecture, provisional note, 21 July 2026.
+\bibitem{gallagher}
+A. Gallagher, An infinite family of counterexamples to the Jacobian
+Conjecture in dimension three: every generic fiber degree $n\ge3$ occurs,
+weighted-lift construction, 20 July 2026;
+\url{https://jacobianfun.org/}.
+\bibitem{mikhail}
+Mikhail Szh and Claude Fable, The Antiderivative Resolvent of the Weighted-Lift
+Family of Keller Maps, initial public commit
+\texttt{f8a6d6794febb551050d73b8cf6ffab9da52d047}, 21 July 2026;
+\url{https://github.com/MikhailSzh/weighted-lift-galois}.
 \end{thebibliography}
 
 \section*{Suggested citation}
 \noindent Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol,
 An explicit 44-variable vanishing witness from a 22-variable cubic Keller map,
 provisional research note, first posted 21 July 2026, priority correction
-21 July 2026,
-\url{https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/}.
+21 July 2026; \href{https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/}{project page}.
 \end{document}

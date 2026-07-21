@@ -8,7 +8,8 @@ The paper contains a full AI-assistance and verification disclosure.
 > cubic and quartic dimensions from 27/54 to 22/44. William Thompson had also
 > posted a 24-variable cubic reduction before this note's release. This folder
 > is retained for provenance, its 13-variable stable-reduction derivation, and
-> its exact 54-variable certificate.
+> its exact 54-variable certificate. Both have been incorporated into the
+> canonical Exploration 03 paper; this folder should not be cited separately.
 
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the

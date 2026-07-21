@@ -5,6 +5,9 @@ Author: **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol**.
 All mathematical claims are provisional and unreviewed. Alec Kriebel is a
 complete amateur and cannot independently verify them.
 
+This is the canonical consolidated package. Explorations 01 and 02 are
+archival provenance, not separate current papers.
+
 ## Public artifacts
 
 | File | Purpose |
@@ -23,6 +26,7 @@ complete amateur and cannot independently verify them.
 | `output/symmetric_collision.json` | Exact three-point gradient fiber |
 | `output/potential_sparse.json` | Expanded 538-term 44-variable quartic |
 | `output/collision.json` | Exact two-point collision for `Z-gradient(P)` |
+| `../discovery_01_symmetric_monodromy/verify.py` | Exact checker for Appendix A's uniform rational collision |
 
 ## SHA-256
 

@@ -1,10 +1,15 @@
-# Full symmetric monodromy in a uniform subfamily of the Alpoge-Gallagher Keller maps
+# Archival note: symmetric monodromy in a weighted-lift subfamily
 
 *Provisional research note - 20 July 2026*
 
 *Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.*
 
 *First public release: 21 July 2026, 13:11:39 UTC (21 July 2026, 06:11:39 PDT).*
+
+> **Archival status.** This is no longer a current independent paper. Mikhail
+> Szh's earlier public commit proves the stronger full-\(S_n\) theorem for the
+> entire Gallagher weighted-lift family. The particular seed and uniform
+> rational collision are preserved in Appendix A of the canonical 22/44 paper.
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
@@ -22,8 +27,11 @@ symmetric group \(S_n\). Consequently these maps have no nonidentity rational
 deck transformations. We also give, uniformly in \(n\), two rational points
 with the same rational image. This is a structural refinement of the
 Alpoge-Gallagher examples, not an independent construction of the underlying
-counterexamples. The all-degree monodromy statement appears not to have been
-recorded in the public follow-on analyses available on 20 July 2026.
+counterexamples. A later priority audit found that Mikhail Szh had already
+published the stronger all-degree monodromy theorem for every member of the
+weighted-lift family before this note's public release. The proof is retained
+for provenance; only the particular specialization and uniform rational
+collision remain as potentially new explicit data.
 
 ## 1. The family
 
@@ -316,22 +324,22 @@ F_3(-1/3,4,-54)=F_3(1/4,-2,36)=(-4,-4,1),
 Thus every member comes with a short rational noninjectivity certificate, not
 only an abstract generic-degree argument.
 
-## 7. Scope and novelty audit
+## 7. Corrected scope and archival status
 
 Alpoge announced the first explicit three-dimensional counterexample on 19
-July 2026. Gallagher then posted a weighted-lift construction realizing every
-generic degree \(n\ge3\). A contemporaneous MathOverflow post computed the
-original cubic map's \(S_3\) Galois closure and trivial deck group. Another
-follow-on calculation determined exact images for a different every-degree
-family, including surjective noninjective examples.
+July 2026, and Gallagher then posted the weighted-lift construction realizing
+every generic degree \(n\ge3\). Mikhail Szh's initial public commit [6], at
+04:03:36 UTC on 21 July 2026, proves full \(S_n\) monodromy for every valid
+weighted-lift seed. It predates this note's 13:11:39 UTC release and strictly
+subsumes the monodromy theorem here; the trivial-deck conclusion is then an
+immediate group-theoretic corollary. Our original novelty assessment was
+therefore wrong.
 
-The residual contribution isolated here is the single elementary subfamily
-(1), its uniform rational collision (8), and especially the all-degree statement
-\(\operatorname{Gal}=S_n\) with trivial rational deck group. Targeted searches
-on 20 July 2026 did not locate that statement. Because this subject is moving
-hour by hour, this paragraph is not a priority claim. Before public submission,
-an expert should check the purity/monodromy paragraph and repeat a literature
-search.
+The only potentially new residue is the particular elementary seed (1) and
+the uniform rational collision (8)--(9). That formula is now Appendix A of the
+canonical paper, *An explicit 44-variable vanishing witness from a 22-variable
+cubic Keller map*. This document remains public only as a timestamped proof
+record and should not be cited as an independent discovery.
 
 ## References
 
@@ -346,3 +354,7 @@ search.
    research note, 20 July 2026.
 5. MathOverflow question 513387, *Galois structure of the new counterexample
    to the Jacobian conjecture*, 20 July 2026.
+6. Mikhail Szh and Claude Fable, *The Antiderivative Resolvent of the
+   Weighted-Lift Family of Keller Maps*, initial public commit
+   `f8a6d6794febb551050d73b8cf6ffab9da52d047`, 21 July 2026,
+   https://github.com/MikhailSzh/weighted-lift-galois.

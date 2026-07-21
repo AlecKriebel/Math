@@ -8,6 +8,9 @@
 
 *Priority correction: 21 July 2026, 15:20:23 UTC (21 July 2026, 08:20:23 PDT).*
 
+*Canonical consolidated version. Explorations 01 and 02 are retained only as
+archival derivations; their surviving material is incorporated here.*
+
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
 > limits of AI-assisted mathematics, not an established result. Every argument,
@@ -35,6 +38,9 @@ on 20 July 2026. We therefore claim no novelty for the six-variable
 construction. The narrower candidate contribution is the executed
 22-variable cubic and 44-variable quartic certificate. Nothing here is
 logically independent of the announced three-dimensional counterexample.
+An appendix records the uniform rational collision from Exploration 01 while
+crediting the earlier, stronger monodromy theorem for the full weighted-lift
+family.
 
 ## 1. Main statements
 
@@ -387,7 +393,8 @@ the novelty claim.
 
 Zhang's 20 July consequence note observes that Zhao's Vanishing Conjecture is
 false in some finite dimension and asks for a small explicit quartic. Our
-earlier Exploration 02 gave a 54-variable, 598-term certificate. William
+earlier Exploration 02 gave a 54-variable, 598-term certificate. That note is
+now an archival derivation subsumed by the present paper. William
 Thompson independently posted a 24-variable cubic homogeneous reduction at
 03:29:42 UTC on 21 July 2026; its degree-three part has a six-dimensional
 component span. That work contains the same rank-compression principle in
@@ -407,6 +414,71 @@ cubic-homogeneous/Drużkowski route but does not export the corresponding
 symmetric quartic. These are source-specific observations, not a claim of
 exhaustive worldwide priority. The literature is changing by the hour, the
 work is unreviewed, and all novelty statements are provisional.
+
+## Appendix A. A uniform rational collision in a weighted-lift specialization
+
+This appendix preserves the only potentially new explicit certificate from
+Exploration 01. It is not used in the 22- or 44-variable constructions above.
+Gallagher introduced the weighted-lift family, and Mikhail Szh publicly proved
+full \(S_n\) monodromy for the entire family before Exploration 01 appeared.
+Accordingly, no monodromy or deck-group novelty is claimed here.
+
+For \(n\ge3\), put
+
+\[
+u=1+xy,\qquad
+\gamma=1-\frac{n}{n-1}xy+x^2z,\qquad w=u\gamma,
+\]
+
+\[
+p_n(w)=\frac{2w-nw^{n-1}}{n-2},\qquad
+q_n(w)=\frac{w^2-(n-1)w^n}{n-2},
+\]
+
+and define the weighted-lift specialization
+
+\[
+F_n=\left(
+\frac{u+q_n(w)/\gamma^2}{x^2},
+\frac{1+p_n(w)/\gamma}{x},
+x\gamma
+\right).                                                     \tag{24}
+\]
+
+The apparent denominators cancel, and \(\det JF_n=1\). Let
+
+\[
+s_n=\frac{4-2^n}{n-2},\qquad
+g_1=\frac{n+2-2^n}{n-2},\qquad g_2=2^{n-1},
+\]
+
+and, for \(r\in\{1,2\}\), set \(g_r=g_1\) or \(g_2\) respectively and
+
+\[
+X_{n,r}=\left(
+\frac1{g_r},\ r-g_r,\
+g_r^2\left[g_r-1+\frac n{n-1}
+\left(\frac r{g_r}-1\right)\right]
+\right).                                                     \tag{25}
+\]
+
+Both \(g_1\) and \(g_2\) are nonzero for every \(n\ge3\), and direct exact
+substitution gives
+
+\[
+F_n(X_{n,1})=F_n(X_{n,2})=(s_n,s_n,1).                      \tag{26}
+\]
+
+For example,
+
+\[
+F_3(-1/3,4,-54)=F_3(1/4,-2,36)=(-4,-4,1).
+\]
+
+The archived Exploration 01 checker verifies polynomiality, the determinant,
+and (26) in exact rational arithmetic for any requested finite range of
+\(n\). The formula is best viewed as a compact reusable certificate inside the
+broader Gallagher--Mikhail family, not as an independent theorem.
 
 ## References
 
@@ -439,6 +511,13 @@ work is unreviewed, and all novelty statements are provisional.
 10. A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit
    Hessian-nilpotent quartic in 54 variables witnessing the failure of Zhao's
    Vanishing Conjecture,” provisional note, 21 July 2026.
+11. A. Gallagher, “An infinite family of counterexamples to the Jacobian
+    Conjecture in dimension three: every generic fiber degree n >= 3 occurs,”
+    weighted-lift construction, 20 July 2026, https://jacobianfun.org/.
+12. Mikhail Szh and Claude Fable, “The Antiderivative Resolvent of the
+    Weighted-Lift Family of Keller Maps,” initial public commit
+    `f8a6d6794febb551050d73b8cf6ffab9da52d047`, 21 July 2026,
+    https://github.com/MikhailSzh/weighted-lift-galois.
 
 ## AI-assistance and verification disclosure
 

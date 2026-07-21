@@ -1,4 +1,4 @@
-# Package manifest
+# Archival package manifest
 
 **Author:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
 
@@ -14,6 +14,8 @@
 - Python dependency: `requirements.txt`
 - PDF compiler: Tectonic (external executable)
 
-Claimed result: an explicit 598-monomial homogeneous quartic HNP in 54
-variables whose gradient Keller map is noninjective, hence a concrete witness
-to the failure of Zhao's Vanishing Conjecture.
+This package is retained for provenance and exact reproduction. Its
+13-variable stable reduction is incorporated into the canonical Exploration
+03 paper, and its 27/54-variable dimension claim is superseded by the canonical
+22/44-variable construction. Do not cite this archive as a separate current
+result.

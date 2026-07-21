@@ -1,4 +1,4 @@
-# Package manifest
+# Archival package manifest
 
 **Author:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
 
@@ -11,6 +11,7 @@
 - `requirements.txt`: Python dependency used by `verify.py`.
 - `README.md`: scope, novelty caveat, and reproduction instructions.
 
-The package was finalized on 20 July 2026. It presents a structural refinement
-of the Alpoge-Gallagher every-degree construction, not an independent discovery
-of the underlying Jacobian counterexamples.
+The package was finalized on 20 July 2026 and is now archival. Its monodromy
+theorem was already available in stronger form before public release. The
+uniform rational collision has been incorporated as Appendix A of the
+canonical 22/44-variable paper; these files remain for provenance.

@@ -13,7 +13,9 @@
 > Thompson had also posted a 24-variable cubic map before this note's first
 > release. This document is retained as a timestamped derivation of the
 > factor-reusing 13-variable stable model and its original 54-variable certificate;
-> its compactness claim is historical, not current.
+> its compactness claim is historical, not current. Its surviving construction
+> has been consolidated into the canonical 22/44-variable paper; this note
+> should not be cited separately.
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
@@ -305,7 +307,7 @@ expanded polynomial's degree and term count and the exact collision.  The
 latter is deliberately not advertised as a stand-alone proof of Hessian
 nilpotence.  All arithmetic in both checks is exact.
 
-## 7. Scope and novelty
+## 7. Historical scope and post-release correction
 
 Zhang's consequence note of 20 July 2026 observes, by Zhao's equivalence, that
 the announced three-dimensional counterexample makes the Vanishing Conjecture
@@ -316,15 +318,10 @@ to that map would produce a 158-variable quartic in principle, but the
 repository did not supply an expanded quartic witness or its transported
 collision at the time of our search.
 
-The narrower contribution here is an executed 54-variable, 598-term quartic
-Hessian-nilpotent polynomial, an exact collision for its gradient map, and a
-factor-reusing reduction that keeps the intermediate cubic homogeneous map in
-27 variables. This note does not supply a new proof of the underlying
-three-dimensional counterexample or a logically independent disproof of the
-Vanishing Conjecture. To our knowledge, after literature and public-code
-searches on 21 July 2026, no earlier source gives this compact explicit
-certificate. We do not claim minimality or unconditional worldwide priority;
-the literature surrounding the announced counterexample is evolving rapidly.
+At initial release, this note presented the executed 54-variable, 598-term
+quartic, its exact collision, and the 27-variable factor-reusing reduction as
+its narrower candidate contribution. That priority language is retained here
+only as historical context. It is not the current assessment.
 
 **Post-release correction.** Thompson's initial public commit [7], at
 03:29:42 UTC on 21 July 2026, already gave a 24-variable cubic homogeneous
@@ -332,8 +329,9 @@ reduction and therefore beat this note's 27-variable dimension headline before
 our 13:11:39 UTC release. We failed to find it in the first audit. Exploration
 03 subsequently compressed our 13-variable stable model to a 22-variable cubic
 and a 44-variable quartic. Accordingly, this note is superseded for dimension
-comparisons. Its surviving role is as the derivation of that stable model and
-as a reproducible earlier certificate.
+comparisons or as a separate current result. Its surviving role is as the
+derivation of that stable model and as a reproducible earlier certificate.
+Both have now been incorporated into the canonical Exploration 03 paper.
 
 ## References
 
@@ -368,9 +366,9 @@ complete source and exact certificates.  The algebraic checks are reproducible,
 but the note has not been peer reviewed and independent expert scrutiny is
 welcome.
 
-## Suggested citation
+## Archival citation status
 
-Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit Hessian-nilpotent quartic in 54 variables witnessing
-the failure of Zhao's Vanishing Conjecture,” provisional research note, first
-posted 21 July 2026,
-https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/.
+Do not cite this as a separate current result. Cite the canonical consolidated
+paper, “An explicit 44-variable vanishing witness from a 22-variable cubic
+Keller map,” instead. This page remains the timestamped provenance record for
+the 13-variable reduction and original 54-variable certificate.

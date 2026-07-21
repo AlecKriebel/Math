@@ -5,6 +5,14 @@ exhaustive literature review or a claim of worldwide priority.
 
 ## Bottom line
 
+- **Exploration 01's main theorem was already available in stronger form.**
+  Mikhail Szh's initial commit
+  [`f8a6d6794febb551050d73b8cf6ffab9da52d047`](https://github.com/MikhailSzh/weighted-lift-galois/commit/f8a6d6794febb551050d73b8cf6ffab9da52d047),
+  authored at **21 July 2026, 04:03:36 UTC**, proves full `S_n` monodromy for
+  every member of Gallagher's weighted-lift family. This predates Exploration
+  01's 13:11:39 UTC release and implies its deck-group conclusion. Only the
+  particular seed and uniform rational collision are retained, as Appendix A.
+
 - **The six-variable symmetric map was already public.** Eliott Cassidy's
   repository commit
   [`40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc`](https://github.com/eliottcassidy2000/math/commit/40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc),
@@ -61,6 +69,9 @@ notion of “smaller,” so the note now states the metric each time.
 4. Exploration 02 is marked superseded in its dimension claims.
 5. A separate Node.js BigInt checker was added so the exported collisions are
    no longer checked only by Python implementations.
+6. Explorations 01 and 02 were converted to archival derivations, and their
+   surviving material was consolidated into the canonical Exploration 03
+   paper.
 
 These corrections do not constitute independent mathematical validation. Alec
 Kriebel is a complete amateur and cannot verify the claims without expert

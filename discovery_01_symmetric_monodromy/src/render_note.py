@@ -89,8 +89,8 @@ def build_styles():
             fontSize=13,
             leading=16,
             textColor=colors.HexColor("#183153"),
-            spaceBefore=11,
-            spaceAfter=7,
+            spaceBefore=9,
+            spaceAfter=6,
             keepWithNext=True,
         ),
         "h2": ParagraphStyle(
@@ -108,11 +108,11 @@ def build_styles():
             "Body",
             parent=base["BodyText"],
             fontName="Times-Roman",
-            fontSize=10.25,
-            leading=14.3,
+            fontSize=10,
+            leading=13.7,
             alignment=TA_JUSTIFY,
             textColor=colors.HexColor("#1f2937"),
-            spaceAfter=7,
+            spaceAfter=6,
         ),
         "theorem": ParagraphStyle(
             "Theorem",
@@ -134,7 +134,7 @@ def build_styles():
             parent=base["BodyText"],
             fontName="Times-Roman",
             fontSize=10.2,
-            leading=15,
+            leading=14,
             alignment=TA_CENTER,
             textColor=colors.HexColor("#111827"),
             leftIndent=0.15 * inch,
@@ -147,7 +147,7 @@ def build_styles():
             parent=base["BodyText"],
             fontName="Times-Roman",
             fontSize=8.2,
-            leading=10.2,
+            leading=9.2,
             alignment=TA_LEFT,
             textColor=colors.HexColor("#475467"),
             spaceAfter=2,
@@ -169,7 +169,7 @@ def render():
         rightMargin=0.75 * inch,
         topMargin=0.68 * inch,
         bottomMargin=0.72 * inch,
-        title="Full symmetric monodromy in an Alpoge-Gallagher subfamily",
+        title="Archival note on a weighted-lift specialization",
         author="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol",
         subject="Provisional research note on explicit Keller maps",
     )
@@ -177,11 +177,12 @@ def render():
     doc.addPageTemplates([PageTemplate(id="paper", frames=[frame], onPage=footer)])
 
     S = []
-    S.append(p("Full symmetric monodromy in a uniform<br/>Alpoge-Gallagher subfamily", styles["title"]))
+    S.append(p("Archival note: symmetric monodromy<br/>in a weighted-lift subfamily", styles["title"]))
     S.append(p(
         "Provisional research note - 20 July 2026<br/>"
         "Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol<br/>"
-        f"First public release: {PUBLICATION_UTC} ({PUBLICATION_PDT})",
+        f"First public release: {PUBLICATION_UTC} ({PUBLICATION_PDT})<br/>"
+        "Archival status: main theorem subsumed by earlier, stronger work",
         styles["subtitle"],
     ))
     S.append(p("ABSTRACT", styles["abstract_head"]))
@@ -191,9 +192,10 @@ def render():
         "degree <i>n</i> >= 3. We isolate a simple uniform subfamily and prove that "
         "its function-field extension has full symmetric Galois closure "
         "<i>S</i><sub>n</sub>, hence no nonidentity rational deck transformations. "
-        "A uniform rational collision is also given. This is a structural "
-        "refinement of the Alpoge-Gallagher examples, not an independent "
-        "construction of the underlying counterexamples.",
+        "A uniform rational collision is also given. Mikhail Szh published the "
+        "stronger monodromy theorem for the entire weighted-lift family before "
+        "this note appeared. This archival version is retained for provenance; "
+        "only the explicit seed and uniform collision survive as potentially new data.",
         styles["abstract"],
     ))
 
@@ -377,13 +379,15 @@ def render():
         styles["body"],
     ))
 
-    S.append(p("6. Status and reproducibility", styles["h1"]))
+    S.append(p("6. Corrected status and reproducibility", styles["h1"]))
     S.append(p(
-        "The every-degree lift and cubic <i>S</i><sub>3</sub> analysis predate this "
-        "note. Its narrow residual claims are the subfamily (1), uniform collision, "
-        "all-degree <i>S</i><sub>n</sub> theorem, and trivial deck group. Searches on "
-        "20 July 2026 found no prior statement, but establish no priority. The exact "
-        "checker accompanies the note; expert review is required before submission.",
+        "Mikhail Szh's initial public commit at 04:03:36 UTC on 21 July 2026 "
+        "proves full <i>S</i><sub>n</sub> monodromy for every valid weighted-lift "
+        "seed. It predates this note's 13:11:39 UTC release and subsumes the "
+        "monodromy and deck-group claims. The explicit seed (1) and uniform "
+        "rational collision (4) are preserved as Appendix A of the canonical "
+        "22/44-variable paper. This note is archival and should not be cited as "
+        "an independent discovery.",
         styles["body"],
     ))
 
@@ -394,6 +398,7 @@ def render():
         "[3] L. Alpoge, announcement of an explicit counterexample, 19 July 2026.",
         "[4] A. Gallagher, <i>An infinite family of counterexamples to the Jacobian Conjecture in dimension three: every generic fiber degree n >= 3 occurs</i>, 20 July 2026.",
         "[5] MathOverflow 513387, <i>Galois structure of the new counterexample to the Jacobian conjecture</i>, 20 July 2026.",
+        "[6] Mikhail Szh and Claude Fable, <i>The Antiderivative Resolvent of the Weighted-Lift Family of Keller Maps</i>, initial public commit f8a6d6794febb551050d73b8cf6ffab9da52d047, 21 July 2026.",
     ]
     for ref in refs:
         S.append(p(ref, styles["small"]))
