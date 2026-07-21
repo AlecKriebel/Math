@@ -1,4 +1,4 @@
-# An explicit quartic counterexample to Zhao's Vanishing Conjecture
+# An explicit Hessian-nilpotent quartic in 54 variables witnessing the failure of Zhao's Vanishing Conjecture
 
 *Provisional research note — 20 July 2026*
 
@@ -18,13 +18,10 @@ at the end of the note.*
 
 ## Abstract
 
-Starting from the three-dimensional polynomial map posted by Levent Alpöge on
-20 July 2026, crediting Akhil Mathew for posing the question and Claude Fable
-for producing the example, we carry out the Bass–Connell–Wright degree
-reduction and the de Bondt–van den Essen symmetric reduction explicitly.  A factor-reusing
-version of the degree-reduction step gives a cubic homogeneous Keller map in
-27 variables, rather than the much larger map obtained by reducing expanded
-monomials independently.  Symmetrization then gives an explicit homogeneous
+We execute a factor-reusing Bass–Connell–Wright degree reduction of the
+recently announced three-dimensional noninjective Keller map, obtaining a
+cubic homogeneous noninjective Keller map in 27 variables. Applying the de
+Bondt–van den Essen symmetric reduction then gives an explicit homogeneous
 quartic Hessian-nilpotent polynomial
 
 \[
@@ -32,11 +29,13 @@ quartic Hessian-nilpotent polynomial
 \]
 
 with 598 monomials for which the gradient Keller map
-\(Z\mapsto Z-\nabla\mathcal P(Z)\) is noninjective.  Consequently Zhao's
-Vanishing Conjecture fails for this specific polynomial; in fact
-\(\Delta^m\mathcal P^{m+1}\ne0\) for infinitely many \(m\).  The expanded
+\(Z\mapsto Z-\nabla\mathcal P(Z)\) is noninjective. This is an explicit witness
+to the failure of Zhao's Vanishing Conjecture; in fact
+\(\Delta^m\mathcal P^{m+1}\ne0\) for infinitely many \(m\). The expanded
 polynomial and a two-point collision are supplied as machine-readable exact
-certificates.
+certificates. The underlying three-dimensional map was posted by Levent
+Alpöge on 20 July 2026, crediting Akhil Mathew for posing the question and
+Claude Fable for producing the example.
 
 ## 1. Statement of the result
 
@@ -284,6 +283,13 @@ inverse of \(\Gamma\), contradicting the explicit collision above.  Thus
 \(\Delta^m\mathcal P^{m+1}\ne0\) for infinitely many \(m\), proving
 Theorem 1.
 
+This argument does not exhibit a particular exponent \(m\) for which
+\(\Delta^m\mathcal P^{m+1}\ne0\); it deduces the existence of infinitely many
+such exponents indirectly from the collision and the inversion formula.
+Zhao's general finite bound for quartics in \(n\) variables reaches
+\(m>\frac32(3^{n-2}-1)\), or \(m>\frac32(3^{52}-1)\) here, so direct expansion
+at the general bound is impractical.
+
 ## 6. Reproducibility
 
 The repository contains two complementary exact checks.  `verify.py` rebuilds
@@ -309,10 +315,12 @@ collision at the time of our search.
 The narrower contribution here is an executed 54-variable, 598-term quartic
 Hessian-nilpotent polynomial, an exact collision for its gradient map, and a
 factor-reusing reduction that keeps the intermediate cubic homogeneous map in
-27 variables.  To our knowledge, after literature and public-code searches on
-21 July 2026, no earlier source gives this compact explicit certificate.  We do
-not claim minimality or unconditional worldwide priority; the literature
-surrounding the announced counterexample is evolving rapidly.
+27 variables. This note does not supply a new proof of the underlying
+three-dimensional counterexample or a logically independent disproof of the
+Vanishing Conjecture. To our knowledge, after literature and public-code
+searches on 21 July 2026, no earlier source gives this compact explicit
+certificate. We do not claim minimality or unconditional worldwide priority;
+the literature surrounding the announced counterexample is evolving rapidly.
 
 ## References
 
@@ -342,3 +350,10 @@ Alec Kriebel takes responsibility for the submission and for preserving the
 complete source and exact certificates.  The algebraic checks are reproducible,
 but the note has not been peer reviewed and independent expert scrutiny is
 welcome.
+
+## Suggested citation
+
+Alec Kriebel, “An explicit Hessian-nilpotent quartic in 54 variables witnessing
+the failure of Zhao's Vanishing Conjecture,” provisional research note, first
+posted 21 July 2026,
+https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/.

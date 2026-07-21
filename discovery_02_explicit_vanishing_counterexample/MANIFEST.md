@@ -13,5 +13,5 @@
 - PDF compiler: Tectonic (external executable)
 
 Claimed result: an explicit 598-monomial homogeneous quartic HNP in 54
-variables whose gradient Keller map is noninjective, hence a concrete
-counterexample to Zhao's Vanishing Conjecture.
+variables whose gradient Keller map is noninjective, hence a concrete witness
+to the failure of Zhao's Vanishing Conjecture.

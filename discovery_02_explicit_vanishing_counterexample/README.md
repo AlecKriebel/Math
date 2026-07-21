@@ -1,4 +1,4 @@
-# Explicit quartic counterexample to Zhao's Vanishing Conjecture
+# Explicit Hessian-nilpotent quartic witnessing the failure of Zhao's Vanishing Conjecture
 
 **Author:** Alec Kriebel.
 
@@ -7,7 +7,8 @@ paper contains a full AI-assistance and verification disclosure.
 
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the
-Keller map `Z - gradient(P)` is noninjective.
+Keller map `Z - gradient(P)` is noninjective, explicitly witnessing the failure
+of Zhao's Vanishing Conjecture.
 
 **Verification disclaimer:** Alec Kriebel is a complete amateur and cannot
 independently verify these mathematical claims. The note is an experiment in
