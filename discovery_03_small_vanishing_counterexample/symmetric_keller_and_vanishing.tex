@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tabularx,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\Hess}{\operatorname{Hess}}
+
+\title{An explicit symmetric Keller counterexample in six variables\\
+and a 44-variable vanishing witness}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{First public release: 21 July 2026, 14:42:57 UTC\\21 July 2026, 07:42:57 PDT}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Starting from the recently announced three-dimensional noninjective Keller
+map, we give two explicit consequences. Meng's classical gradient lift yields
+an identity-linear six-variable gradient Keller map with symmetric Jacobian
+and an exact three-point fiber. A rank-compressed homogenization of a
+13-variable stable model gives a 22-variable cubic homogeneous noninjective
+Keller map. The de Bondt--van den Essen symmetric reduction then gives a
+44-variable homogeneous quartic Hessian-nilpotent polynomial with 538
+monomials and an exact collision. Expanded potentials and collisions are
+supplied as machine-readable exact certificates.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The author is a complete amateur and cannot independently verify these
+claims. This is an experiment in the limits of AI-assisted mathematics, not
+an established result. Every argument, attribution, and novelty claim
+requires independent expert review. Exact checks are evidence, not peer review.
+
+\section{A six-variable symmetric Keller map}
+
+Let $\ii^2=-1$. The identity-linear normalization of the announced
+map~\cite{alpoge} is
+\begin{align}
+\Phi_1&=x-\frac32x^2y-\frac12x^3z,\nonumber\\
+\Phi_2&=y+3x(1+xy)^2z+3xy^2(4+3xy),\label{eq:phi}\\
+\Phi_3&=(1+xy)^3z+y^2(1+xy)(4+3xy).\nonumber
+\end{align}
+It satisfies $\det J\Phi=1$ and maps
+\begin{equation}
+p_0=(0,0,-\tfrac14),\quad
+p_1=(1,-\tfrac32,\tfrac{13}2),\quad
+p_2=(-1,\tfrac32,\tfrac{13}2)
+\label{eq:points}
+\end{equation}
+to $q=(0,0,-\tfrac14)$. For $A,B\in\C^3$, put
+\begin{equation}
+X=A+\ii B,\qquad \Lambda=\frac{A-\ii B}{2},\qquad
+\boxed{\cS(A,B)=\Lambda^T\Phi(X).}
+\label{eq:S}
+\end{equation}
+
+\begin{theorem}\label{thm:six}
+The gradient map $\nabla\cS:\C^6\to\C^6$ has symmetric Jacobian,
+identity linear part, and Jacobian determinant one. The three distinct points
+\begin{equation}
+z_j=(p_j/2,-\ii p_j/2)\in\Q(\ii)^6
+\label{eq:sixcollision}
+\end{equation}
+all map to $(q/2,-\ii q/2)=(0,0,-1/8,0,0,\ii/8)$. The potential
+$\cS$ has degree eight and 204 monomials when expanded.
+\end{theorem}
+
+\begin{proof}
+For $f(X,\Lambda)=\Lambda^T\Phi(X)$,
+\begin{equation}
+\Hess(f)=
+\begin{pmatrix}
+\sum_k\Lambda_k\Hess(\Phi_k)&J\Phi^T\\
+J\Phi&0
+\end{pmatrix}.
+\label{eq:block}
+\end{equation}
+Swapping the two blocks of three columns makes this matrix block upper
+triangular, so $\det\Hess(f)=(-1)^3(\det J\Phi)^2=-1$.
+Equation~\eqref{eq:S} is the pullback of $f$ by
+\begin{equation}
+C=\begin{pmatrix}I&\ii I\\ \frac12I&-\frac\ii2I\end{pmatrix},
+\qquad \det C=\ii.
+\end{equation}
+Hessians transform by congruence, giving
+$\det\Hess(\cS)=(\det C)^2(-1)=1$. Since $J\Phi(0)=I$,
+direct multiplication gives $\Hess(\cS)(0)=I_6$. Finally,
+$\nabla f(p_j,0)=(0,q)$; applying $C^T$ proves the collision.
+\end{proof}
+
+This is Meng's classical gradient lift~\cite{meng,debondt-symmetric},
+specialized to the new map and normalized over $\Q(\ii)$.
+
+\section{Rank-compressed homogenization}
+
+\begin{lemma}\label{lem:compress}
+Let
+\begin{equation}
+\Psi(X)=X+H_2(X)+H_3(X):\C^n\to\C^n,\qquad \det J\Psi=1,
+\end{equation}
+where $H_d$ is homogeneous of degree $d$. Suppose $H_3=BK$ for a constant
+$n\times r$ matrix $B$ and a cubic homogeneous
+$K:\C^n\to\C^r$. Define
+\begin{equation}
+h(X,U,t)=\bigl(tH_2(X)+t^2BU,-K(X),0\bigr).
+\label{eq:h}
+\end{equation}
+Then $h$ is cubic homogeneous and $Jh$ is nilpotent. If
+$p\ne q$ and $\Psi(p)=\Psi(q)$, then $(p,K(p),1)$ and $(q,K(q),1)$ collide
+under $W\mapsto W+h(W)$.
+\end{lemma}
+
+\begin{proof}
+For an indeterminate $s$, a Schur complement in $I+sJh$ gives
+\begin{align}
+\det(I+sJh)
+&=\det\bigl(I+stJH_2+s^2t^2BJK\bigr)\nonumber\\
+&=\det J\Psi(stX)=1.
+\label{eq:schur}
+\end{align}
+Thus the characteristic polynomial of $Jh$ is $T^{n+r+1}$. At $t=1$,
+\begin{equation}
+(X,K(X),1)+h(X,K(X),1)=(\Psi(X),0,1),
+\end{equation}
+which proves the collision statement.
+\end{proof}
+
+The standard homogenization~\cite{bcw} takes $r=n$.
+Lemma~\ref{lem:compress} retains only
+the constant coefficient span of the cubic components.
+
+\section{The 22-variable cubic map}
+
+The factor-reusing stable reduction in~\cite{kriebel54} produces
+\begin{equation}
+\Psi=X+H_2+H_3:\C^{13}\to\C^{13},\qquad \det J\Psi=1,
+\label{eq:psi13}
+\end{equation}
+in the variable order
+\begin{equation}
+X=(x,y,z,a_1,b_1,a_2,b_2,a_3,b_3,a_4,b_4,a_5,b_6).
+\end{equation}
+The six triangular degree-reduction operations and final output shear are
+reproduced in the human-readable source accompanying this PDF. They lift the
+collision~\eqref{eq:points} to
+\begin{align}
+\pi_0={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0),\nonumber\\
+\pi_1={}&(1,-\tfrac32,\tfrac{13}2,-1,-2,\tfrac92,-10,
+\tfrac32,\tfrac34,-\tfrac94,-6,-\tfrac{27}8,\tfrac92).
+\label{eq:stablepoints}
+\end{align}
+
+Exact coefficient row reduction shows that the thirteen components of $H_3$
+span an eight-dimensional space. Take $K=(K_1,\ldots,K_8)$ with
+\begin{align}
+K_1={}&\tfrac12x(a_1z+b_1x),\nonumber\\
+K_2={}&a_2a_3z-3a_2y^2+3b_2a_3x+b_3xy+12xy^2,\nonumber\\
+K_3={}&-b_1a_3a_4+a_3b_4y-3a_4xz+a_5xz-b_6xy+3xyz,\nonumber\\
+K_4={}&3x^2y,\nonumber\\
+K_5={}&2b_1a_3a_4-2a_3b_4y+6a_4xz-2a_5xz+2b_6xy-5xyz,
+\label{eq:K}\\
+K_6={}&xy^2,\nonumber\\
+K_7={}&-b_1xy-7a_2a_3z+21a_2y^2-21b_2a_3x-a_3xz
+-7b_3xy-84xy^2,\nonumber\\
+K_8={}&a_4xy.\nonumber
+\end{align}
+Then $H_3=BK$, where
+\begin{equation}
+B(U_1,\ldots,U_8)=
+(U_1,U_2,U_3,0,-3U_2,U_4,U_5,0,0,U_6,U_7,U_8,0).
+\label{eq:B}
+\end{equation}
+The verifier checks~\eqref{eq:B} coefficient by coefficient and checks
+$\operatorname{rank}B=8$. Lemma~\ref{lem:compress} therefore gives a
+22-variable map with 72 cubic monomials across 21 active nonlinear
+coordinates. Its collision points are $(\pi_j,K(\pi_j),1)$, where
+\begin{equation}
+K(\pi_0)=0,\quad
+K(\pi_1)=(-\tfrac{17}4,-\tfrac{45}8,\tfrac{99}{16},
+-\tfrac92,-\tfrac{177}8,\tfrac94,\tfrac{213}8,\tfrac{27}8).
+\end{equation}
+
+\section{The 44-variable quartic}
+
+For the 22-variable map $h$, define
+\begin{equation}
+\boxed{\cP(A,B)=\ii\sum_{j=1}^{22}h_j(A+\ii B)B_j.}
+\label{eq:P}
+\end{equation}
+The de Bondt--van den Essen characteristic-polynomial identity
+\cite{debondt-vandenessen} implies that $\Hess(\cP)$ is nilpotent exactly when
+$Jh$ is nilpotent. Hence
+\begin{equation}
+\Gamma(Z)=Z-\nabla\cP(Z):\C^{44}\to\C^{44}
+\end{equation}
+has Jacobian determinant one.
+
+The cubic collision transports explicitly. If $r_0,r_1$ collide under
+$x\mapsto x+h(x)$, let $M_j=I+Jh(r_j)^T$, set
+\begin{equation}
+y_1=0,\qquad y_0=M_0^{-1}\bigl(-\ii h(r_1)+\ii h(r_0)\bigr),
+\end{equation}
+and define $z_j=(r_j-\ii y_j,y_j)$. Direct differentiation gives
+$\Gamma(z_0)=\Gamma(z_1)$. The two 44-tuples are in
+\texttt{output/collision.json}. Their coordinates are in $\Q(\ii)$, with
+numerator at most 261 in absolute value and denominator at most 16.
+
+\begin{theorem}
+The polynomial $\cP$ is a homogeneous quartic in 44 variables with 538
+monomials and nilpotent Hessian. The map $Z-\nabla\cP(Z)$ is noninjective.
+Moreover,
+\begin{equation}
+\Delta^m\cP^m=0\quad(m\ge1),\qquad
+\Delta^m\cP^{m+1}\ne0
+\end{equation}
+for infinitely many $m$.
+\end{theorem}
+
+\begin{proof}
+Only the last assertion remains. Zhao~\cite{zhao} proved that Hessian
+nilpotence is equivalent to $\Delta^mP^m=0$ for all $m\ge1$, and that the
+formal inverse of $Z-t\nabla P$ is governed by
+\begin{equation}
+Q_t=\sum_{m\ge0}\frac{t^m}{2^m m!(m+1)!}\Delta^mP^{m+1}.
+\end{equation}
+Eventual vanishing would make the inverse polynomial, contradicting the
+explicit collision.
+\end{proof}
+
+\section{Certificates, scope, and priority}
+
+The expanded files and SHA-256 hashes are
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+file & SHA-256\\
+\midrule
+\texttt{symmetric\_potential\_sparse.json} &
+\texttt{1e0c97e1c4965c3e...498015c3c3f5fdd4}\\
+\texttt{symmetric\_collision.json} &
+\texttt{6b5b546f24e839a1...89936a711addd0}\\
+\texttt{potential\_sparse.json} &
+\texttt{2a91272816188884...2a65e0751789f4}\\
+\texttt{collision.json} &
+\texttt{aeab7adb021c07de...89936a711addd0}\\
+\bottomrule
+\end{tabular}
+\end{center}
+The full hashes are in \texttt{MANIFEST.md}. The symbolic verifier checks the
+Hessian congruence, the rank-eight factorization, identity~\eqref{eq:schur},
+exact nilpotence guards, and both collisions. A dependency-free checker reads
+only the JSON, differentiates both sparse potentials, and verifies the
+six-variable identity linear part and both finite fibers.
+
+The six-variable result is an explicit instance of Meng's known reduction,
+not a new reduction theorem. Zhang~\cite{zhang} left the Vanishing Conjecture
+consequence existential. Our earlier note~\cite{kriebel54} gave a
+54-variable certificate. Thompson~\cite{thompson} posted a 24-variable cubic
+homogeneous reduction at 03:29:42 UTC on 21 July 2026. His work contains the
+same rank-compression principle in executed form and has priority for that
+idea. The narrower quantitative contribution here is the different
+$13+8+1=22$ construction and its 44-variable quartic.
+
+Searches of arXiv, MathOverflow, and public GitHub code on 21 July 2026 found
+no earlier public 22-variable cubic certificate, 44-variable quartic
+certificate, or explicit six-variable instantiation of the newly announced
+map. This is not an exhaustive claim of worldwide priority. The literature
+is changing by the hour and all novelty statements are provisional.
+
+\section*{AI-assistance and verification disclosure}
+The constructions, searches, proofs, programs, website, and drafts were
+developed with heavy assistance from ChatGPT 5.6 Sol. Alec Kriebel is a
+complete amateur and cannot independently verify the claims. The note has not
+been peer reviewed; independent expert scrutiny is essential.
+
+\begin{thebibliography}{99}
+\bibitem{bcw}
+H. Bass, E. H. Connell, and D. Wright, The Jacobian conjecture: reduction of
+degree and formal expansion of the inverse, \emph{Bull. Amer. Math. Soc.} 7
+(1982), 287--330.
+\bibitem{alpoge}
+L. Alp\"oge, X post announcing the three-dimensional map, crediting Akhil
+Mathew for posing the question and Claude Fable for producing the example,
+20 July 2026;
+\url{https://x.com/__alpoge__/status/2079028340955197566}.
+\bibitem{debondt-vandenessen}
+M. de Bondt and A. van den Essen, A reduction of the Jacobian conjecture to
+the symmetric case, \emph{Proc. Amer. Math. Soc.} 133 (2005), 2201--2205.
+\bibitem{meng}
+G. Meng, Legendre transform, Hessian conjecture and tree formula,
+\emph{Appl. Math. Lett.} 19 (2006), 503--510.
+\bibitem{debondt-symmetric}
+M. de Bondt, Symmetric Jacobians, \emph{Open Math.} 11 (2013), 1621--1634;
+\url{https://arxiv.org/abs/1206.2865}.
+\bibitem{zhao}
+W. Zhao, Hessian nilpotent polynomials and the Jacobian conjecture,
+\emph{Trans. Amer. Math. Soc.} 359 (2007), 249--274;
+\url{https://arxiv.org/abs/math/0409534}.
+\bibitem{zhang}
+Z. Zhang, Direct consequences of the three-dimensional counterexample to the
+Jacobian conjecture, 20 July 2026;
+\url{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}.
+\bibitem{thompson}
+W. Thompson, An explicit 24-variable cubic-homogeneous reduction of the
+Alp\"oge--Fable Jacobian counterexample, public GitHub repository, commit
+\texttt{45a7616fdf5a20c065564f2676190093722696b9}, 21 July 2026;
+\url{https://github.com/wtho704/explicit-cubic-homogeneous-jacobian-counterexample}.
+\bibitem{kriebel54}
+A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, An explicit
+Hessian-nilpotent quartic in 54 variables witnessing the failure of Zhao's
+Vanishing Conjecture, provisional note, 21 July 2026.
+\end{thebibliography}
+
+\section*{Suggested citation}
+\noindent Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol,
+An explicit symmetric Keller counterexample in six variables and a
+44-variable vanishing witness, provisional research note, first posted
+21 July 2026,
+\url{https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/}.
+\end{document}

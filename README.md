@@ -28,6 +28,10 @@ that the interpretation or literature claims are correct.
 2. **An explicit quartic counterexample to Zhao's Vanishing Conjecture** — an
    explicit 54-variable quartic, exact collision, and machine-readable
    certificate derived from the announced three-dimensional Jacobian example.
+3. **An explicit symmetric Keller counterexample in six variables and a
+   44-variable vanishing witness** — a normalized gradient lift, a
+   rank-compressed 22-variable cubic model, and exact machine-readable
+   certificates for both the six- and 44-variable maps.
 
 Each paper folder is self-contained and includes its note, verifier, rendered
 PDF, and status/novelty caveats.

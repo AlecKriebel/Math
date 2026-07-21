@@ -1,9 +1,8 @@
 # Explicit Hessian-nilpotent quartic witnessing the failure of Zhao's Vanishing Conjecture
 
-**Author:** Alec Kriebel.
+**Author:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
 
-The work was developed with extensive assistance from ChatGPT 5.6 Sol; the
-paper contains a full AI-assistance and verification disclosure.
+The paper contains a full AI-assistance and verification disclosure.
 
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the

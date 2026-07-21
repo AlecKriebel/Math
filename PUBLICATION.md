@@ -13,6 +13,11 @@ placeholders. The immediately following publication-fix commit replaces them
 with the repository's immutable creation time. This history is intentionally
 preserved rather than rewritten.
 
+Exploration 03, “An explicit symmetric Keller counterexample in six variables
+and a 44-variable vanishing witness,” was first released at
+**21 July 2026, 14:42:57 UTC** (**21 July 2026, 07:42:57 PDT**). This is the
+author and committer timestamp of the release commit.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**

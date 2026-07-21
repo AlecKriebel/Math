@@ -1,5 +1,7 @@
 # Package manifest
 
+**Author:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
+
 - Research note: `explicit_vanishing_counterexample.md`
 - Canonical TeX source: `explicit_vanishing_counterexample.tex`
 - PDF: `output/pdf/explicit_vanishing_counterexample.pdf`

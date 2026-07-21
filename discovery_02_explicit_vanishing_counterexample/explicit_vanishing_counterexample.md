@@ -2,10 +2,7 @@
 
 *Provisional research note — 20 July 2026*
 
-*Alec Kriebel.*
-
-*Developed with extensive assistance from ChatGPT 5.6 Sol; see the disclosure
-at the end of the note.*
+*Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.*
 
 *First public release: 21 July 2026, 13:11:39 UTC (21 July 2026, 06:11:39 PDT).*
 
@@ -353,7 +350,7 @@ welcome.
 
 ## Suggested citation
 
-Alec Kriebel, “An explicit Hessian-nilpotent quartic in 54 variables witnessing
+Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit Hessian-nilpotent quartic in 54 variables witnessing
 the failure of Zhao's Vanishing Conjecture,” provisional research note, first
 posted 21 July 2026,
 https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/.

@@ -1,5 +1,7 @@
 # Package manifest
 
+**Author:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
+
 - `full_symmetric_monodromy.md`: complete proof source.
 - `output/pdf/full_symmetric_monodromy.pdf`: rendered two-page research note.
 - `verify.py`: exact checks for the uniform family through any requested degree.
