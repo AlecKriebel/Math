@@ -4,7 +4,7 @@ Provisional, AI-assisted mathematical experiments by **Alec Kriebel, with
 heavy assistance from ChatGPT 5.6 Sol**.
 
 This repository is the source for the public research notebook at
-<https://aleckriebel.github.io/math/>. It is separate from Alec's personal
+<https://aleckriebel.github.io/Math/>. It is separate from Alec's personal
 website, <https://aleckriebel.com/>.
 
 ## Important verification disclaimer
