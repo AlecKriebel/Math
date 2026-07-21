@@ -1,0 +1,400 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,tabularx,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Mon}{\operatorname{Mon}}
+\newcommand{\disc}{\operatorname{disc}}
+
+\title{Full wreath-product monodromy for the square\\
+of an explicit Keller map}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Research draft prepared 21 July 2026, 17:00:46 UTC\\
+Not peer reviewed or publicly released as a numbered exploration}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $F:\C^3\to\C^3$ be the newly announced noninjective polynomial map with
+constant Jacobian determinant $-2$ and geometric monodromy $S_3$. We determine
+the geometric monodromy of its canonical self-composition:
+\[
+  \Mon(F\circ F)=S_3\wr S_3
+\]
+in degree nine, of order $1296$. On the target line $(1,2,s)$, an exact
+degree-nine eliminant has a one-edge Newton polygon at infinity, giving a
+9-cycle; its discriminant has a squarefree factor of multiplicity one, giving
+a single within-block transposition; and the outer cubic gives a transposition
+of the three blocks. An elementary group lemma forces the full wreath product.
+Postcomposition by $\operatorname{diag}(1/4,1,1)$ gives a noninjective
+unit-Jacobian map realizing the pair $(9,S_3\wr S_3)$. We also prove that every
+iterate $F^{\circ m}$ has a full $3^m$-cycle in its geometric inertia at
+infinity. Exact SymPy, dependency-free finite-field, PARI/GP, and GAP checks
+accompany the argument.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The human author is a complete amateur exploring the limits of AI-assisted
+mathematics and cannot independently verify these claims. This is a research
+artifact for expert checking, not an established result. No guarantee of
+worldwide priority is made.
+
+\section{The map and the result}
+
+Put $u=1+xy$ and define $F=(F_1,F_2,F_3)$ by
+\begin{align}
+F_1&=u^3z+y^2u(4+3xy),\nonumber\\
+F_2&=y+3xu^2z+3xy^2(4+3xy),\label{eq:F}\\
+F_3&=2x-3x^2y-x^3z.\nonumber
+\end{align}
+Exact expansion gives $\det JF=-2$. Moreover,
+\begin{equation}
+p_0=(0,0,-\tfrac14),\quad
+p_1=(1,-\tfrac32,\tfrac{13}2),\quad
+p_2=(-1,\tfrac32,\tfrac{13}2)
+\label{eq:points}
+\end{equation}
+all map to $(-1/4,0,0)$.
+
+For a dominant polynomial map $H$, write $\Mon(H)$ for the Galois group of
+the normal closure of the induced function-field extension, in its natural
+action on a generic fiber.
+
+\begin{theorem}\label{thm:main}
+The self-composition $G=F\circ F$ has generic degree nine and
+\[
+\Mon(G)=S_3\wr S_3\leq S_9,
+\qquad |\Mon(G)|=6^3\cdot6=1296.
+\]
+The action has three blocks of size three, indexed by the intermediate points
+in a generic fiber of the outer copy of $F$.
+\end{theorem}
+
+\begin{proposition}\label{prop:iterates}
+For every $m\geq1$, the geometric monodromy of $F^{\circ m}$ contains a cycle
+of length $3^m$.
+\end{proposition}
+
+\begin{proposition}\label{prop:normalized}
+Let $\widehat G=(G_1/4,G_2,G_3)$. Then $\det J\widehat G=1$,
+$\Mon(\widehat G)=S_3\wr S_3$, and $\widehat G$ is noninjective. The three
+points in~\eqref{eq:points} all map under $\widehat G$ to $(0,0,-1/2)$.
+\end{proposition}
+
+The last proposition follows immediately from the theorem and
+$\det J(F\circ F)=4$.
+
+\section{The cubic inverse resolvent}
+
+For a target $(a,b,c)$, introduce
+\begin{equation}
+C_{a,b,c}(t)=2at^3-bt^2+2t-c.
+\label{eq:cubic}
+\end{equation}
+For a simple root $t$, the generic preimage is reconstructed by
+\begin{equation}
+y=-\frac{bt^2+3c-6t}{2t^2},\qquad
+x=\frac{t}{1-ty},\qquad
+z=\frac{2x-3x^2y-c}{x^3}.
+\label{eq:reconstruct}
+\end{equation}
+Substitution reduces every coordinate of $F(x,y,z)-(a,b,c)$ to zero modulo
+$C_{a,b,c}(t)$. The parameter is $t=x/(1+xy)$, reciprocal to the usual
+parameter $y+1/x$.
+
+The three roots of~\eqref{eq:cubic} parametrize the generic fiber. For
+$F\circ F$, each of three outer roots supports a second cubic of inner roots.
+Consequently the generic degree is nine and
+\begin{equation}
+\Mon(F\circ F)\leq S_3\wr S_3.
+\label{eq:upper}
+\end{equation}
+
+\section{A degree-nine slice}
+
+Restrict the target to $(a,b,c)=(1,2,s)$. Let $t$ satisfy
+\[
+2t^3-2t^2+2t-s=0
+\]
+and reconstruct $(x(t),y(t),z(t))$ using~\eqref{eq:reconstruct}. An inner
+resolvent root $r$ satisfies
+\[
+2x(t)r^3-y(t)r^2+2r-z(t)=0.
+\]
+Eliminating $t$ and removing the vertical content $256s^7$ gives the primitive
+polynomial $P(r,s)$ below.
+
+\begingroup\small
+\begin{align*}
+P={}&128r^9s-256r^8
++(2592s^2-3072s+1408)r^7\\
+&+(-7452s^3+1248s^2-1584s-576)r^6\\
+&+(-17496s^4+82944s^3-87936s^2+42240s-5760)r^5\\
+&+(52488s^4-142884s^3+135144s^2-60144s+8928)r^4\\
+&+(104976s^5+97200s^4-97056s^3-41472s^2+93824s-26880)r^3\\
+&+(236196s^6-380538s^5-147744s^4+772080s^3-754944s^2\\
+&\hspace{34mm}+333792s-62208)r^2\\
+&+(236196s^6-734832s^5+1916784s^4-2658432s^3+2128320s^2\\
+&\hspace{34mm}-919296s+186624)r\\
+&+531441s^8-2204496s^7+5436882s^6-11805534s^5+17996446s^4\\
+&\hspace{34mm}-17402304s^3+10364976s^2-3544992s+557280.
+\end{align*}
+\endgroup
+
+Its roots generically parametrize the nine points in the slice fiber.
+
+\section{Three inertia elements}
+
+\subsection{A 9-cycle at infinity}
+
+Write $v=1/s$ and consider $v^8P(r,v^{-1})$. For the coefficients of
+$r^0,\ldots,r^9$, their $v$-adic valuations are
+\[
+0,2,2,3,4,4,5,6,8,7.
+\]
+Every intermediate point lies strictly above the line from $(0,0)$ to $(9,7)$.
+The lower Newton polygon is therefore one edge of slope $7/9$.
+
+Set $v=w^9$ and $r=w^{-7}R$. The initial equation is
+\[
+128R^9+531441=0.
+\]
+Its roots are simple and lift uniquely to Puiseux branches. The local deck
+transformation $w\mapsto\zeta_9w$ multiplies the leading term by
+$\zeta_9^{-7}$. Since $\gcd(7,9)=1$, it permutes all nine branches in one
+orbit. Thus slice monodromy contains a 9-cycle $\alpha$.
+
+\subsection{A single transposition}
+
+Exact discriminant factorization gives
+\begin{equation}
+\disc_r(P)=2^{38}q(s)^8A(s)B(s)^2,
+\qquad q(s)=27s^2-28s+12,
+\label{eq:disc}
+\end{equation}
+where
+\begingroup\small
+\begin{align*}
+A(s)={}&1129718145924s^{12}-6474958632657s^{11}
++21955119111630s^{10}\\
+&-60661410535386s^9+123515279853390s^8-191093865073182s^7\\
+&+235490291194248s^6-188631015819696s^5+54561577345568s^4\\
+&+41882989175328s^3-44714997684096s^2+15094447332352s\\
+&-1434819245056.
+\end{align*}
+\endgroup
+The exact certificates verify that $A$ is squarefree and coprime to $q$, $B$,
+and the leading coefficient $128s$. At each root of $A$, the discriminant has
+valuation one while the degree remains nine. Local geometric inertia is thus a
+single transposition $\beta$. A permutation moving only two sheets cannot act
+nontrivially on the three blocks, so $\beta$ is supported in one block.
+
+The full degree-22 factor $B$ is recorded in Appendix~\ref{app:B} and checked
+independently in SymPy and PARI/GP.
+
+\subsection{A transposition of the blocks}
+
+The outer cubic has discriminant
+\[
+\disc_t(2t^3-2t^2+2t-s)=-4(27s^2-28s+12)=-4q(s).
+\]
+The quadratic $q$ is squarefree and coprime to $A$ and $B$. A small loop about
+either root of $q$ has outer monodromy a transposition. Total inertia contains
+an element $\gamma$ whose image on the three blocks is that transposition.
+
+\section{The group argument}
+
+\begin{lemma}\label{lem:group}
+Let $H\leq S_3\wr S_3$ in its natural action on three blocks of size three.
+Suppose $H$ contains a 9-cycle $\alpha$, a single transposition $\beta$, and
+an element $\gamma$ inducing a transposition on the blocks. Then
+$H=S_3\wr S_3$.
+\end{lemma}
+
+\begin{proof}
+The 9-cycle induces a 3-cycle on the blocks, and $\alpha^3$ acts as a 3-cycle
+inside each block. The transposition $\beta$ is supported in one block.
+Conjugating it by $\alpha^3$ gives a distinct transposition in that block, so
+these elements generate the full $S_3$ supported there. Conjugation by powers
+of $\alpha$ gives the full $S_3$ independently in all three blocks. Hence the
+base subgroup $S_3^3$ lies in $H$.
+
+On blocks, $\alpha$ supplies a 3-cycle and $\gamma$ a transposition, so the
+image of $H$ is the top $S_3$. A subgroup containing the full base and
+surjecting onto the top is the full semidirect product.
+\end{proof}
+
+The three inertia elements constructed above satisfy the lemma, so the slice
+monodromy is $S_3\wr S_3$. Slice monodromy is a subgroup of generic monodromy;
+combining this with~\eqref{eq:upper} proves Theorem~\ref{thm:main}.
+
+\section{Full-cycle inertia for all iterates}
+
+We prove Proposition~\ref{prop:iterates}. Put $v=1/s$, start from
+$X_0=(1,2,s)$, and choose a compatible inverse tower
+$F(X_k)=X_{k-1}$. Write
+\[
+x_k\sim c_xs^{-a_k},\qquad y_k\sim c_ys^{a_k},\qquad
+z_k\sim c_zs^{c_k},
+\]
+where the constants are nonzero. Initially $a_0=0$ and $c_0=1$.
+
+The next inverse parameter satisfies
+\[
+2x_kt^3-y_kt^2+2t-z_k=0.
+\]
+If $c_k>5a_k$, the lower Newton edge balances the first and last terms, so
+\[
+t_{k+1}\sim c_ts^{(a_k+c_k)/3}.
+\]
+The reconstruction formulas then yield
+\begin{equation}
+a_{k+1}=\frac{c_k-2a_k}{3},\qquad
+c_{k+1}=2(c_k-a_k).
+\label{eq:recurrence}
+\end{equation}
+The hypothesis persists: for $\rho_k=a_k/c_k$, the interval
+$0\leq\rho_k\leq1/6$ is invariant under
+\[
+\rho_{k+1}=\frac{1-2\rho_k}{6(1-\rho_k)},
+\]
+whose image on that interval is $[2/15,1/6]$ after the first step. Thus no
+omitted term lies on the lower edge and no leading coefficient cancels.
+
+Set $A_k=3^ka_k$ and $C_k=3^kc_k$. Equation~\eqref{eq:recurrence} becomes
+\[
+A_{k+1}=C_k-2A_k,\qquad C_{k+1}=6(C_k-A_k),
+\quad A_0=0,\ C_0=1.
+\]
+The exponent of $t_m$ is
+\[
+\frac{E_m}{3^m},\qquad E_m=A_{m-1}+C_{m-1}.
+\]
+For $m\geq2$, $C_{m-1}$ is divisible by three and $A_{m-1}\equiv1\pmod3$.
+Hence $3\nmid E_m$. The first exponents are
+\[
+\frac13,\quad\frac79,\quad\frac{34}{27},\quad\frac{178}{81},\ldots.
+\]
+At level $m$, the local inverse field has ramification index at least $3^m$;
+the global degree is at most $3^m$, so equality holds and the local extension
+is totally ramified. Finite extensions of $\C((v))$ are tame Puiseux
+extensions, so inertia acts as a single $3^m$-cycle. This proves the
+proposition.
+
+As an independent check, nested PARI resultants for $m=3$ give a degree-27
+eliminant with one lower Newton edge from $(0,0)$ to $(27,34)$.
+
+\section{Independent arithmetic cross-check}
+
+At $s=-3$, the primitive specialization is
+\begingroup\small
+\begin{align*}
+f(r)={}&-384r^9-256r^8+33952r^7+216612r^6-4580568r^5\\
+&+9515052r^4-15697056r^3+223986114r^2+599887620r\\
+&+17172300267.
+\end{align*}
+\endgroup
+Dependency-free modular arithmetic verifies squarefree factorizations with
+irreducible-degree patterns
+\[
+\begin{array}{c|c}
+p&\text{degrees}\\ \hline
+13&(9)\\
+61&(2,1,1,1,1,1,1,1)\\
+19&(2,2,2,2,1).
+\end{array}
+\]
+These give Frobenius cycle types $(9)$, $(2,1^7)$, and $(2^4,1)$. The same
+group lemma forces the arithmetic group to be the full wreath product. GAP
+independently enumerates all subgroups of the wreath product and finds no
+proper survivor. PARI/GP 2.17.4 identifies five unrelated rational fibers as
+transitive group $9T31$ of order $1296$.
+
+This is corroboration only; the geometric proof does not infer geometric
+monodromy from an arithmetic specialization.
+
+\section{Verification and priority scope}
+
+The artifact contains four independent checks:
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+File & Scope\\ \midrule
+\texttt{verify\_symbolic.py} & Jacobian, collision, inverse identities,
+resultant, Newton data, discriminant, squarefreeness, coprimality\\
+\texttt{verify\_modular.py} & dependency-free polynomial arithmetic and Rabin
+irreducibility certificates\\
+\texttt{verify\_pari.gp} & independent discriminant, coprimality, finite-field,
+and arithmetic Galois checks\\
+\texttt{verify\_group.g} & exhaustive subgroup check inside $S_3\wr S_3$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The optional \texttt{verify\_level3\_newton.py} checks the degree-27 edge with
+SymPy-generated equations and PARI resultants.
+
+The closest public monodromy study states only
+$\Mon(F_0\circ F_0)\leq S_3\wr S_3$ and calls its exact group a natural next
+computation~\cite{weighted}. A separate four-variable construction already
+claims a different imprimitive degree-eight group of order $192$~\cite{quartic}.
+We therefore do not claim the first imprimitive or first non-symmetric Keller
+monodromy. The claimed contribution is the exact canonical self-composition
+group, the realization $(9,S_3\wr S_3)$, and the all-iterate full-cycle
+statement. A timestamped 23-repository audit accompanies the artifact.
+
+The stronger arboreal assertion that every iterate has the full iterated
+wreath product remains open: the present argument does not yet produce a new
+single transposition at every level.
+
+\appendix
+\section{The degree-22 square factor}\label{app:B}
+\begingroup\scriptsize
+\begin{align*}
+B(s)={}&1423119505038213888s^{22}-155058052818404824443s^{21}
++1413754646027656083066s^{20}\\
+&-8145658955220494785812s^{19}+33677018812011807334224s^{18}
+-108385682498649366622416s^{17}\\
+&+280859820926917245978240s^{16}-598631883156564470992728s^{15}
++1062288637590844067815584s^{14}\\
+&-1579910926841521168581900s^{13}+1974730823883289142626824s^{12}
+-2073348574060015592229024s^{11}\\
+&+1822485349587628391880960s^{10}-1333523184375693801555072s^9
++806144943610022071172864s^8\\
+&-398941760796329492797440s^7+159756878618286560778240s^6
+-50952869532774134959104s^5\\
+&+12636860641575849510912s^4-2344566242453066735616s^3
++304677812001210531840s^2\\
+&-24551525690267664384s+926711257485017088.
+\end{align*}
+\endgroup
+
+\begin{thebibliography}{9}
+\bibitem{mo}
+\emph{Galois structure of the new counterexample to the Jacobian conjecture},
+MathOverflow 513387 (2026),
+\url{https://mathoverflow.net/questions/513387/}.
+
+\bibitem{weighted}
+MikhailSzh and Claude,
+\emph{The Antiderivative Resolvent of the Weighted-Lift Family of Keller Maps},
+audited Git commit \texttt{9193c66385ce390f61a4e25d3f5255435bfa056a} (2026),
+\url{https://github.com/MikhailSzh/weighted-lift-galois}.
+
+\bibitem{quartic}
+Juan M. G. H.,
+\emph{A quartic-resultant counterexample to the Jacobian Conjecture},
+audited Git commit \texttt{640322133fa4bbe172e0ac95f3c485f2c86d8cea} (2026),
+\url{https://github.com/juanmgh3/quartic-resultant-keller-map}.
+
+\bibitem{composition}
+J.~K\"onig, D.~Neftin, and S.~Rosenberg,
+\emph{Polynomial compositions with large monodromy groups and applications to
+arithmetic dynamics}, arXiv:2401.17872 (2024).
+\end{thebibliography}
+
+\end{document}
