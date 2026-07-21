@@ -16,7 +16,9 @@ complete amateur and cannot independently verify them.
 | `compressed_construction.py` | 22-variable rank-compressed cubic map |
 | `export_certificate.py` | Deterministic certificate exporter |
 | `verify.py` | Exact SymPy verifier |
-| `verify_exported_stdlib.py` | Independent standard-library collision checker |
+| `verify_exported_stdlib.py` | Python standard-library collision checker |
+| `verify_exported_node.mjs` | Independent Node.js BigInt collision checker |
+| `PRIORITY_AUDIT.md` | Source-specific priority correction and comparison |
 | `output/symmetric_potential_sparse.json` | Expanded 204-term six-variable potential |
 | `output/symmetric_collision.json` | Exact three-point gradient fiber |
 | `output/potential_sparse.json` | Expanded 538-term 44-variable quartic |

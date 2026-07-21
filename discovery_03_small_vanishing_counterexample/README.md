@@ -1,9 +1,9 @@
-# Discovery 03: symmetric and Hessian-nilpotent consequences
+# Discovery 03: a compressed explicit Vanishing-Conjecture witness
 
 This package accompanies the provisional note:
 
-> **An explicit symmetric Keller counterexample in six variables and a
-> 44-variable vanishing witness**
+> **An explicit 44-variable vanishing witness from a 22-variable cubic Keller
+> map**
 
 Author: **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol**.
 
@@ -14,12 +14,15 @@ an experiment in the limits of AI-assisted mathematics, not an established
 result. The package has passed exact automated checks, but every theorem,
 proof, attribution, and novelty statement requires independent expert review.
 
-## Claimed outputs
+## Claimed outputs and corrected priority
 
 1. A degree-eight potential in six variables over `Q(i)`, with 204 expanded
    terms, whose gradient is an identity-linear noninjective Keller map with
    symmetric Jacobian and determinant one. The three-point collision is
-   explicit over `Q(i)`.
+   explicit over `Q(i)`. This is a normalized presentation of the classical
+   Meng/de Bondt--van den Essen lift, not a new discovery. A post-release audit
+   found that Eliott Cassidy's repository had already executed the equivalent
+   six-dimensional transport on 20 July 2026.
 2. A 22-variable cubic homogeneous noninjective Keller map with nilpotent
    nonlinear Jacobian, obtained from a rank-compressed homogenization of the
    certified 13-variable stable model.
@@ -27,10 +30,13 @@ proof, attribution, and novelty statement requires independent expert review.
    expanded terms and an exact collision under `Z - gradient(P)`, explicitly
    witnessing failure of Zhao's Vanishing Conjecture.
 
-The six-variable construction is a direct explicit instance of Meng's
-classical gradient lift. The 22- and 44-variable constructions are quantitative
-compressions, not logically independent counterexamples to the original
-Jacobian Conjecture.
+William Thompson had priority for the rank-compression idea and published a
+sparser 24-variable cubic map before this note. The candidate residual
+contribution is narrower: a different construction with 22 ambient cubic
+variables, followed through to the explicit 44-variable quartic certificate.
+Nothing in this package is logically independent of the original
+three-dimensional counterexample. See `PRIORITY_AUDIT.md` for source-specific
+details and timestamps.
 
 ## Reproduce
 
@@ -45,6 +51,12 @@ With only the Python standard library:
 
 ```bash
 python3 verify_exported_stdlib.py
+```
+
+With Node.js, using an independent BigInt implementation:
+
+```bash
+node verify_exported_node.mjs
 ```
 
 The second checker reads only the four exported JSON files. It differentiates
@@ -62,6 +74,8 @@ the structural reduction checked in `verify.py`.
 - `compressed_construction.py` — rank-eight factorization and 22D cubic map.
 - `export_certificate.py` — deterministic JSON exporter.
 - `verify.py` — exact symbolic proof-side verifier.
-- `verify_exported_stdlib.py` — dependency-free certificate checker.
+- `verify_exported_stdlib.py` — dependency-free Python certificate checker.
+- `verify_exported_node.mjs` — independent JavaScript BigInt certificate checker.
+- `PRIORITY_AUDIT.md` — corrected comparison with earlier public artifacts.
 - `output/` — expanded sparse polynomials and exact collisions.
 - `search_*.py` — retained exploratory and negative-result scripts.

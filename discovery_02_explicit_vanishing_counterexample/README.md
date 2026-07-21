@@ -4,6 +4,12 @@
 
 The paper contains a full AI-assistance and verification disclosure.
 
+> **Superseded dimension claim.** Exploration 03 reduces the corresponding
+> cubic and quartic dimensions from 27/54 to 22/44. William Thompson had also
+> posted a 24-variable cubic reduction before this note's release. This folder
+> is retained for provenance, its 13-variable stable-reduction derivation, and
+> its exact 54-variable certificate.
+
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the
 Keller map `Z - gradient(P)` is noninjective, explicitly witnessing the failure
@@ -53,7 +59,6 @@ python3 src/render_note.py
 
 ## Status
 
-The algebraic construction has passed the included exact checks. The scoped
-novelty claim was searched again on 21 July 2026 and is stated cautiously in
-the note. The result remains unreviewed, and independent expert review is
-welcome.
+The algebraic construction has passed the included exact checks, but the
+27/54-variable compactness claim is superseded. The result remains unreviewed,
+and independent expert review is welcome.

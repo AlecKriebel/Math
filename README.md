@@ -25,13 +25,13 @@ that the interpretation or literature claims are correct.
 1. **Full symmetric monodromy in a uniform subfamily of the
    Alpoge-Gallagher Keller maps** — a structural follow-on note about explicit
    Keller maps of every generic degree.
-2. **An explicit quartic counterexample to Zhao's Vanishing Conjecture** — an
-   explicit 54-variable quartic, exact collision, and machine-readable
-   certificate derived from the announced three-dimensional Jacobian example.
-3. **An explicit symmetric Keller counterexample in six variables and a
-   44-variable vanishing witness** — a normalized gradient lift, a
-   rank-compressed 22-variable cubic model, and exact machine-readable
-   certificates for both the six- and 44-variable maps.
+2. **An explicit quartic counterexample to Zhao's Vanishing Conjecture** — the
+   first version of the reduction, retained for provenance but superseded in
+   its dimension counts by Exploration 03.
+3. **An explicit 44-variable vanishing witness from a 22-variable cubic Keller
+   map** — a rank-compressed cubic model and exact quartic certificate. It also
+   records a normalized six-variable gradient lift, now explicitly credited as
+   prior work rather than a novel result.
 
 Each paper folder is self-contained and includes its note, verifier, rendered
 PDF, and status/novelty caveats.

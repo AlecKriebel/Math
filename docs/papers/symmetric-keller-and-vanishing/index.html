@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A six-variable identity-linear gradient Keller counterexample and a 44-variable, 538-term Hessian-nilpotent quartic with exact certificates.">
+  <meta name="description" content="An explicit 44-variable, 538-term Hessian-nilpotent quartic from a 22-variable cubic Keller map, with exact certificates and corrected priority notes.">
   <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
-  <meta name="citation_title" content="An explicit symmetric Keller counterexample in six variables and a 44-variable vanishing witness">
+  <meta name="citation_title" content="An explicit 44-variable vanishing witness from a 22-variable cubic Keller map">
   <meta name="citation_author" content="Alec Kriebel">
   <meta name="citation_publication_date" content="2026-07-21">
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/paper.pdf">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="A six-variable symmetric Keller counterexample and a 44-variable vanishing witness">
-  <meta property="og:description" content="Exact gradient, cubic-homogeneous, and Hessian-nilpotent consequences of the new three-dimensional Keller map.">
+  <meta property="og:title" content="A 44-variable vanishing witness from a 22-variable cubic Keller map">
+  <meta property="og:description" content="An exact cubic-homogeneous and Hessian-nilpotent certificate, with a corrected audit of earlier six-variable and rank-compressed work.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">
   <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">
-  <title>A six-variable symmetric Keller counterexample and a 44-variable vanishing witness · Alec's Math Explorations</title>
+  <title>A 44-variable vanishing witness from a 22-variable cubic Keller map · Alec's Math Explorations</title>
   <link rel="stylesheet" href="../../assets/style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "An explicit symmetric Keller counterexample in six variables and a 44-variable vanishing witness",
+    "headline": "An explicit 44-variable vanishing witness from a 22-variable cubic Keller map",
     "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
     "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
     "datePublished": "2026-07-21T14:42:57Z",
-    "dateModified": "2026-07-21",
+    "dateModified": "2026-07-21T15:13:18Z",
     "url": "https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/",
     "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/paper.pdf", "encodingFormat": "application/pdf"}
   }
@@ -41,10 +41,11 @@
       <div class="nav-links"><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_03_small_vanishing_counterexample">Source</a></div>
     </nav>
     <div class="paper-hero"><div class="inner">
-      <p class="paper-status">Exploration 03 · Provisional research note · Exact checks passed</p>
-      <h1>An explicit symmetric Keller counterexample in six variables and a 44-variable vanishing witness</h1>
+      <p class="paper-status">Exploration 03 · Provisional research note · Priority corrected</p>
+      <h1>An explicit 44-variable vanishing witness from a 22-variable cubic Keller map</h1>
       <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
       <p class="release">First public release: <time datetime="2026-07-21T14:42:57Z">21 July 2026, 14:42:57 UTC</time> (21 July 2026, 07:42:57 PDT)</p>
+      <p class="release">Priority correction: <time datetime="2026-07-21T15:13:18Z">21 July 2026, 15:13:18 UTC</time> (21 July 2026, 08:13:18 PDT)</p>
     </div></div>
   </header>
 
@@ -59,14 +60,16 @@
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/symmetric_keller_and_vanishing.md">Full note</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify.py">Proof-side verifier</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify_exported_stdlib.py">Independent checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/verify_exported_node.mjs">Node.js BigInt checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/PRIORITY_AUDIT.md">Priority audit</a>
     </div>
 
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">Starting from the recently announced three-dimensional noninjective Keller map, we record two explicit consequences. Meng's classical gradient lift gives a six-variable degree-eight potential whose gradient has identity linear part, symmetric Jacobian, determinant one, and an exact three-point fiber. A rank-compressed homogenization gives a 22-variable cubic homogeneous noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a homogeneous quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials and an exact collision.</p>
+        <p class="lede" itemprop="abstract">Starting from the recently announced three-dimensional noninjective Keller map, a rank-compressed homogenization gives a 22-variable cubic homogeneous noninjective Keller map. The de Bondt–van den Essen symmetric reduction then gives a homogeneous quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials and an exact collision. A normalized six-variable gradient lift is included for reuse but, following a post-release audit, is explicitly credited as prior work rather than a new discovery.</p>
         <div class="fact-grid">
-          <div class="fact"><strong>Small symmetric map</strong><span>6 variables · identity linear part · exact 3-point fiber</span></div>
+          <div class="fact"><strong>Normalized companion</strong><span>6 variables · earlier equivalent transport now credited</span></div>
           <div class="fact"><strong>Cubic model</strong><span>22 variables · 72 monomials · nilpotent \(Jh\)</span></div>
           <div class="fact"><strong>Vanishing witness</strong><span>44 variables · 538 monomials · exact collision</span></div>
         </div>
@@ -87,7 +90,7 @@
           \]</div>
           <p>to \((0,0,-1/8,0,0,i/8)\). The potential has degree eight and 204 expanded monomials.</p>
         </div>
-        <p>This is an explicit instance of Meng's classical gradient lift. Its Hessian has constant determinant one by a two-block determinant formula followed by a complex linear congruence of determinant \(i\).</p>
+        <p>This is a normalized instance of Meng's classical gradient lift. Cassidy's repository had already executed the equivalent six-dimensional symmetric transport and the same lifted fiber on 20 July 2026, before this note. No novelty is claimed for Theorem A. Its Hessian has constant determinant one by a two-block determinant formula followed by a complex linear congruence of determinant \(i\).</p>
 
         <h2>2. Rank-compressed homogenization</h2>
         <div class="theorem-block">
@@ -115,7 +118,7 @@
 
       <section id="certificates">
         <h2>4. Exact certificates</h2>
-        <p>The proof-side verifier rebuilds both maps and checks the structural identities. The independent checker uses only Python's standard library and the four JSON files; it differentiates the sparse polynomials itself.</p>
+        <p>The proof-side verifier rebuilds both maps and checks the structural identities. A Python standard-library checker and a separate Node.js BigInt checker read only the four JSON files and differentiate the sparse polynomials independently.</p>
         <ul class="certificate-list">
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/symmetric_potential_sparse.json"><code>symmetric_potential_sparse.json</code></a> — 204-term potential.<br><small>SHA-256: <code class="hash">1e0c97e1c4965c3ef7d85cdfb115d468f79d8b5195a7f34f498015c3c3f5fdd4</code></small></li>
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/output/symmetric_collision.json"><code>symmetric_collision.json</code></a> — exact three-point fiber.<br><small>SHA-256: <code class="hash">6b5b546f24e839a10ab330ae9b05d1d03d23a6fbbbff8cfa6d1ce742768f7169</code></small></li>
@@ -126,8 +129,9 @@
 
       <section id="scope">
         <h2>5. Scope and priority</h2>
-        <p>The six-variable map is an explicit consequence of Meng's known reduction, not a new reduction theorem. Zihan Zhang left the Vanishing Conjecture consequence existential. Exploration 02 gave a 54-variable quartic. William Thompson posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026; that work contains the same rank-compression principle in executed form and has priority for the idea. The narrower quantitative contribution here is the different \(13+8+1=22\) construction and its 44-variable quartic.</p>
-        <p>Searches of arXiv, MathOverflow, and public GitHub code on 21 July 2026 found no earlier public 22-variable cubic certificate, 44-variable quartic certificate, or explicit six-variable instantiation of the newly announced map. This is not an exhaustive worldwide-priority claim; all novelty statements are provisional.</p>
+        <p>The six-variable map was already public in equivalent form: Cassidy's commit <code>40e1e20…</code>, authored at 14:46:10 UTC on 20 July 2026, executes the de Bondt–van den Essen/Meng transport, checks symmetry, and gives the same lifted three-point fiber. Our determinant-one, identity-linear formula is a normalized presentation, not an independent discovery. The first version of this page missed that source.</p>
+        <p>William Thompson posted a 24-variable cubic homogeneous reduction at 03:29:42 UTC on 21 July 2026 and has priority for the rank-compression idea. His map has 54 monomials across 23 active nonlinear coordinates; ours has 72 across 21. Both cubic maps are over \(\mathbb Q\) with rational collisions. Ours uses fewer ambient variables (22 versus 24), while Thompson's is sparser. The residual candidate contribution is the different \(13+8+1=22\) construction and its executed 44-variable quartic.</p>
+        <p>Source-specific searches found no earlier public 22-variable cubic certificate or executed 44-variable quartic certificate. This is not an exhaustive worldwide-priority claim; all novelty statements are provisional. <a href="https://github.com/AlecKriebel/Math/blob/main/discovery_03_small_vanishing_counterexample/PRIORITY_AUDIT.md">Read the full correction and source comparison.</a></p>
       </section>
 
       <section id="disclosure">
@@ -137,7 +141,7 @@
 
       <section id="suggested-citation">
         <h2>Suggested citation</h2>
-        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit symmetric Keller counterexample in six variables and a 44-variable vanishing witness,” provisional research note, first posted 21 July 2026. <a href="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">Permanent page</a>.</p>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit 44-variable vanishing witness from a 22-variable cubic Keller map,” provisional research note, first posted 21 July 2026; priority correction 21 July 2026. <a href="https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/">Permanent page</a>.</p>
       </section>
     </article>
 

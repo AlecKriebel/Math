@@ -1,10 +1,12 @@
-# An explicit symmetric Keller counterexample in six variables and a 44-variable vanishing witness
+# An explicit 44-variable vanishing witness from a 22-variable cubic Keller map
 
 *Provisional research note — 21 July 2026*
 
 *Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.*
 
 *First public release: 21 July 2026, 14:42:57 UTC (21 July 2026, 07:42:57 PDT).*
+
+*Priority correction: 21 July 2026, 15:13:18 UTC (21 July 2026, 08:13:18 PDT).*
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
@@ -15,11 +17,8 @@
 ## Abstract
 
 Starting from the recently announced three-dimensional noninjective Keller
-map, we record two explicit consequences. First, Meng's classical gradient
-lift, after an elementary complex linear congruence, gives a six-variable
-degree-eight potential whose gradient has identity linear part, symmetric
-Jacobian, constant Jacobian determinant one, and an explicit three-point fiber
-over \(\mathbb Q(i)\). Second, the cubic components of a certified
+map, we record a compressed route to an explicit vanishing witness. The cubic
+components of a certified
 13-variable degree-three stable model span only an eight-dimensional constant
 coefficient space. A rank-compressed homogenization therefore gives a
 22-variable cubic homogeneous noninjective Keller map. Applying the
@@ -28,10 +27,14 @@ quartic Hessian-nilpotent polynomial in 44 variables, with 538 monomials, whose
 gradient Keller map is noninjective. The expanded potentials and collisions
 are supplied as machine-readable exact certificates.
 
-The six-variable result is an explicit instantiation of a known reduction;
-the narrower quantitative contribution is the executed 22-variable cubic and
-44-variable quartic certificate. Neither result is logically independent of
-the announced three-dimensional counterexample.
+For reuse, we also give a normalized six-variable degree-eight potential from
+Meng's classical gradient lift. After the first release, a priority audit found
+that Eliott Cassidy's public repository had already executed the equivalent
+six-dimensional symmetric transport, with the same lifted three-point fiber,
+on 20 July 2026. We therefore claim no novelty for the six-variable
+construction. The narrower candidate contribution is the executed
+22-variable cubic and 44-variable quartic certificate. Nothing here is
+logically independent of the announced three-dimensional counterexample.
 
 ## 1. Main statements
 
@@ -360,22 +363,27 @@ aeab7adb021c07dea396d2c0eca0cc7880b93dc7b09b74f60289936a711addd0  collision.json
 
 `verify.py` reconstructs both maps symbolically, checks the Hessian block
 congruence, the 13-to-8 cubic factorization, the determinant identity (15),
-nilpotence at exact guard points, and both collisions. The independent
+nilpotence at exact guard points, and both collisions.
 `verify_exported_stdlib.py` uses only Python's standard library and the four
-JSON files. It differentiates the sparse polynomials itself and verifies the
-six-variable identity linear part, the exact three-point gradient fiber, and
-the 44-variable exact collision. The latter is deliberately not described as
-a stand-alone proof of Hessian nilpotence.
+JSON files. `verify_exported_node.mjs` independently implements exact rational
+complex arithmetic with JavaScript `BigInt` and reads the same JSON. Both
+differentiate the sparse polynomials themselves and verify the six-variable
+identity linear part and finite fibers plus the 44-variable exact collision.
+Neither exported-certificate checker is described as a stand-alone proof of
+Hessian nilpotence.
 
 ## 7. Scope and priority
 
 Theorem A is an explicit six-variable consequence of Meng's 2006 gradient
-lift, not a new reduction theorem. De Bondt's account explicitly records that
-the symmetric-Jacobian case in twice the dimension implies the ordinary
-Jacobian Conjecture. Once the three-dimensional counterexample is known, the
-existence of such a six-dimensional example is therefore classical and
-immediate. The contribution here is the compact normalized formula (3), its
-exact three-point fiber, and a machine-readable expansion.
+lift, not a new reduction theorem. More importantly, it is not a new executed
+instance. Cassidy's repository commit `40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc`,
+authored at 14:46:10 UTC on 20 July 2026, already applies the
+de Bondt--van den Essen/Meng transport directly to the announced map in
+\(\mathbb C^6\), checks symmetry, and transports the same three-point fiber.
+Our determinant-one, identity-linear formula (3) is a normalized presentation
+with a machine-readable potential, not an independent discovery. The original
+version of this note failed to find that artifact and overstated this part of
+the novelty claim.
 
 Zhang's 20 July consequence note observes that Zhao's Vanishing Conjecture is
 false in some finite dimension and asks for a small explicit quartic. Our
@@ -383,16 +391,22 @@ earlier Exploration 02 gave a 54-variable, 598-term certificate. William
 Thompson independently posted a 24-variable cubic homogeneous reduction at
 03:29:42 UTC on 21 July 2026; its degree-three part has a six-dimensional
 component span. That work contains the same rank-compression principle in
-executed form and has priority over this note for that idea. The narrower
-quantitative statement here uses a different 13-variable stable reduction:
-\(13+8+1=22\) cubic variables and hence 44 symmetric variables.
+executed form and has priority over this note for that idea. Thompson's map has
+24 variables, 54 cubic monomials, and 23 active nonlinear coordinates; ours
+has 22 variables, 72 cubic monomials, and 21 active nonlinear coordinates.
+Both cubic maps are defined over \(\mathbb Q\) and have rational collisions.
+Thus ours is smaller only in ambient dimension, while Thompson's is sparser.
+The narrower quantitative statement here uses a different 13-variable stable
+reduction: \(13+8+1=22\) cubic variables and hence 44 symmetric variables.
 
 Searches of arXiv, MathOverflow, and public GitHub code on 21 July 2026 found
-no earlier public 22-variable cubic certificate, 44-variable quartic
-certificate, or explicit six-variable instantiation of the newly announced
-map. This is not a claim of exhaustive worldwide priority. The literature is
-changing by the hour, the work is unreviewed, and all novelty statements are
-provisional.
+no earlier public 22-variable cubic certificate or executed 44-variable
+quartic certificate. Thompson's audited initial commit contains no symmetric
+quartic or Zhao witness; Harrison's earlier repository executes a 79-variable
+cubic-homogeneous/Drużkowski route but does not export the corresponding
+symmetric quartic. These are source-specific observations, not a claim of
+exhaustive worldwide priority. The literature is changing by the hour, the
+work is unreviewed, and all novelty statements are provisional.
 
 ## References
 
@@ -418,7 +432,11 @@ provisional.
    Alpöge–Fable Jacobian counterexample,” public GitHub repository, commit
    `45a7616fdf5a20c065564f2676190093722696b9`, 21 July 2026,
    https://github.com/wtho704/explicit-cubic-homogeneous-jacobian-counterexample.
-9. A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit
+9. E. Cassidy, `THM-1430: An explicit symmetric-case Keller counterexample on
+   C^6`, public GitHub repository, commit
+   `40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc`, 20 July 2026,
+   https://github.com/eliottcassidy2000/math/blob/40e1e20f9ee113245f8e4e4b22ecd798fa1ffbfc/01-canon/theorems/THM-1430-explicit-symmetric-keller-counterexample-on-C6.md.
+10. A. Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit
    Hessian-nilpotent quartic in 54 variables witnessing the failure of Zhao's
    Vanishing Conjecture,” provisional note, 21 July 2026.
 
@@ -434,6 +452,7 @@ not been peer reviewed. Independent expert scrutiny is essential.
 ## Suggested citation
 
 Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An explicit
-symmetric Keller counterexample in six variables and a 44-variable vanishing
-witness,” provisional research note, first posted 21 July 2026,
+44-variable vanishing witness from a 22-variable cubic Keller map,”
+provisional research note, first posted 21 July 2026, priority correction
+21 July 2026,
 https://aleckriebel.github.io/Math/papers/symmetric-keller-and-vanishing/.

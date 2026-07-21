@@ -13,10 +13,16 @@ placeholders. The immediately following publication-fix commit replaces them
 with the repository's immutable creation time. This history is intentionally
 preserved rather than rewritten.
 
-Exploration 03, “An explicit symmetric Keller counterexample in six variables
-and a 44-variable vanishing witness,” was first released at
+Exploration 03, now titled “An explicit 44-variable vanishing witness from a
+22-variable cubic Keller map,” was first released at
 **21 July 2026, 14:42:57 UTC** (**21 July 2026, 07:42:57 PDT**). This is the
 author and committer timestamp of the release commit.
+
+A priority correction was posted at **21 July 2026, 15:13:18 UTC**. It records
+that an equivalent six-variable symmetric transport was already public in
+Eliott Cassidy's repository and that William Thompson had priority for the
+rank-compression idea. The original release timestamp and Git history remain
+unchanged.
 
 ## Authorship and status
 

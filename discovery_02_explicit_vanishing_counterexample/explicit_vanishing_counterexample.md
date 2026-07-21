@@ -8,6 +8,13 @@
 
 *Revised: 21 July 2026.*
 
+> **Superseded status (21 July 2026, 15:13:18 UTC).** Exploration 03 replaces
+> the 27-variable cubic and 54-variable quartic dimension counts by 22 and 44.
+> Thompson had also posted a 24-variable cubic map before this note's first
+> release. This document is retained as a timestamped derivation of the
+> factor-reusing 13-variable stable model and its original 54-variable certificate;
+> its compactness claim is historical, not current.
+
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
 > limits of AI-assisted mathematics, not an established result. Every argument,
@@ -319,6 +326,15 @@ searches on 21 July 2026, no earlier source gives this compact explicit
 certificate. We do not claim minimality or unconditional worldwide priority;
 the literature surrounding the announced counterexample is evolving rapidly.
 
+**Post-release correction.** Thompson's initial public commit [7], at
+03:29:42 UTC on 21 July 2026, already gave a 24-variable cubic homogeneous
+reduction and therefore beat this note's 27-variable dimension headline before
+our 13:11:39 UTC release. We failed to find it in the first audit. Exploration
+03 subsequently compressed our 13-variable stable model to a 22-variable cubic
+and a 44-variable quartic. Accordingly, this note is superseded for dimension
+comparisons. Its surviving role is as the derivation of that stable model and
+as a reproducible earlier certificate.
+
 ## References
 
 1. H. Bass, E. H. Connell, and D. Wright, “The Jacobian conjecture: reduction
@@ -338,6 +354,10 @@ the literature surrounding the announced counterexample is evolving rapidly.
 6. A. Harrison, `jacobian-anatomy`, public GitHub repository, commit
    `74808fb2e1c1691b0007576ba0508e5e7cdcb1e3`, 20 July 2026,
    https://github.com/DrAlexHarrison/jacobian-anatomy/commit/74808fb2e1c1691b0007576ba0508e5e7cdcb1e3.
+7. W. Thompson, “An explicit 24-variable cubic-homogeneous reduction of the
+   Alpöge–Fable Jacobian counterexample,” public GitHub repository, commit
+   `45a7616fdf5a20c065564f2676190093722696b9`, 21 July 2026,
+   https://github.com/wtho704/explicit-cubic-homogeneous-jacobian-counterexample.
 
 ## AI-assistance and verification disclosure
 
