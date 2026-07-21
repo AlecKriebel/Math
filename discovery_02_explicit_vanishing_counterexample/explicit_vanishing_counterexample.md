@@ -2,9 +2,14 @@
 
 *Provisional research note — 20 July 2026*
 
-*Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.*
+*Alec Kriebel.*
+
+*Developed with extensive assistance from ChatGPT 5.6 Sol; see the disclosure
+at the end of the note.*
 
 *First public release: 21 July 2026, 13:11:39 UTC (21 July 2026, 06:11:39 PDT).*
+
+*Revised: 21 July 2026.*
 
 > **Verification disclaimer.** I am a complete amateur and cannot independently
 > verify the mathematical claims in this note. This is an experiment in the
@@ -13,9 +18,10 @@
 
 ## Abstract
 
-Starting from the recently announced three-dimensional counterexample to the
-Jacobian conjecture, we carry out the Bass–Connell–Wright degree reduction and
-the de Bondt–van den Essen symmetric reduction explicitly.  A factor-reusing
+Starting from the three-dimensional polynomial map posted by Levent Alpöge on
+20 July 2026, crediting Akhil Mathew for posing the question and Claude Fable
+for producing the example, we carry out the Bass–Connell–Wright degree
+reduction and the de Bondt–van den Essen symmetric reduction explicitly.  A factor-reusing
 version of the degree-reduction step gives a cubic homogeneous Keller map in
 27 variables, rather than the much larger map obtained by reducing expanded
 monomials independently.  Symmetrization then gives an explicit homogeneous
@@ -56,19 +62,25 @@ map
 has Jacobian determinant one and is noninjective.  Therefore
 
 \[
+  \Delta^m\mathcal P^m=0\quad\text{for every }m\ge1,
+  \qquad
   \Delta^m\mathcal P^{m+1}\ne0
 \]
 
-for infinitely many integers \(m\ge0\).
+for infinitely many integers \(m\ge0\) in the second assertion.  Thus
+\(\mathcal P\) is a counterexample to Zhao's Vanishing Conjecture.
 
 The description (1), the formulas below, and ordinary differentiation form a
 finite exact certificate.  The accompanying `potential_sparse.json` is the
 fully expanded polynomial over \(\mathbb Q(i)\), and `collision.json` contains
-two distinct points with the same image under (2).
+two distinct points with the same image under (2).  Their SHA-256 hashes are,
+respectively,
+`556683b30fd9e7b9ecfb4c4d5395ee3be6a8dc5f918da08ed60db8c125f0df28` and
+`cbea49f88cc59ba7955a4dbd710c68224590ae310a320369c49f8c63e1f78cae`.
 
 ## 2. A 13-variable cubic stable model
 
-Write \(u=1+xy\).  Postcomposing the announced map by the inverse of its
+Write \(u=1+xy\).  Postcomposing the map announced in [4] by the inverse of its
 linear part gives the identity-linear Keller map \(\Phi=(\Phi_1,\Phi_2,\Phi_3)\):
 
 \[
@@ -249,12 +261,21 @@ checks this equality exactly over \(\mathbb Q(i)\).
 
 ## 5. Failure of the Vanishing Conjecture
 
-Zhao's inversion formula for a Hessian-nilpotent polynomial \(P\) states that
+Zhao proved that Hessian nilpotence of a homogeneous polynomial \(P\) is
+equivalent to
+
+\[
+  \Delta^m P^m=0\qquad\text{for every }m\ge1.              \tag{20}
+\]
+
+Lemma 2 and the symmetric reduction therefore show that \(\mathcal P\)
+satisfies the hypothesis of the Vanishing Conjecture.  Zhao's inversion formula
+for a Hessian-nilpotent polynomial \(P\) states that
 the inverse of \(Z-t\nabla P\) is \(Z+t\nabla Q_t\), where
 
 \[
  Q_t=\sum_{m=0}^{\infty}
- \frac{t^m}{2^m m!(m+1)!}\,\Delta^m P^{m+1}.               \tag{20}
+ \frac{t^m}{2^m m!(m+1)!}\,\Delta^m P^{m+1}.               \tag{21}
 \]
 
 If \(\Delta^m\mathcal P^{m+1}=0\) for all sufficiently large \(m\), then
@@ -263,17 +284,35 @@ inverse of \(\Gamma\), contradicting the explicit collision above.  Thus
 \(\Delta^m\mathcal P^{m+1}\ne0\) for infinitely many \(m\), proving
 Theorem 1.
 
-## 6. Scope and novelty
+## 6. Reproducibility
+
+The repository contains two complementary exact checks.  `verify.py` rebuilds
+the construction symbolically and verifies the announced map, all six stable
+reduction gadgets, the cubic homogeneous map, Hessian nilpotence through the
+structural reduction, and the final collision.  `verify_exported_stdlib.py`
+uses only Python's standard library and the two JSON files to verify the
+expanded polynomial's degree and term count and the exact collision.  The
+latter is deliberately not advertised as a stand-alone proof of Hessian
+nilpotence.  All arithmetic in both checks is exact.
+
+## 7. Scope and novelty
 
 Zhang's consequence note of 20 July 2026 observes, by Zhao's equivalence, that
 the announced three-dimensional counterexample makes the Vanishing Conjecture
 false in some finite dimension; it explicitly leaves the consequence
-existential.  The contribution here is an explicit quartic Hessian-nilpotent
-polynomial, an exact collision for its gradient map, and a compact
-factor-reusing reduction that keeps the dimension at 54.  Because the
-literature surrounding the announced counterexample is changing by the hour,
-priority and the absence of a smaller simultaneous construction must be
-rechecked immediately before public posting.
+existential.  An earlier public repository [6] gives a 79-variable cubic
+homogeneous noninjective Keller map.  Applying the standard symmetric reduction
+to that map would produce a 158-variable quartic in principle, but the
+repository did not supply an expanded quartic witness or its transported
+collision at the time of our search.
+
+The narrower contribution here is an executed 54-variable, 598-term quartic
+Hessian-nilpotent polynomial, an exact collision for its gradient map, and a
+factor-reusing reduction that keeps the intermediate cubic homogeneous map in
+27 variables.  To our knowledge, after literature and public-code searches on
+21 July 2026, no earlier source gives this compact explicit certificate.  We do
+not claim minimality or unconditional worldwide priority; the literature
+surrounding the announced counterexample is evolving rapidly.
 
 ## References
 
@@ -285,6 +324,21 @@ rechecked immediately before public posting.
    DOI: 10.1090/S0002-9939-05-07570-2.
 3. W. Zhao, “Hessian nilpotent polynomials and the Jacobian conjecture,”
    *Trans. Amer. Math. Soc.* 359 (2007), 249–274. arXiv:math/0409534.
-4. Z. Zhang, “Direct consequences of the three-dimensional counterexample to
+4. L. Alpöge, X post announcing the three-dimensional map, crediting Akhil
+   Mathew for posing the question and Claude Fable for producing the example,
+   20 July 2026, https://x.com/__alpoge__/status/2079028340955197566.
+5. Z. Zhang, “Direct consequences of the three-dimensional counterexample to
    the Jacobian conjecture,” 20 July 2026,
    https://zzhang-iu.github.io/papers/direct-consequences-jacobian/.
+6. A. Harrison, `jacobian-anatomy`, public GitHub repository, commit
+   `74808fb2e1c1691b0007576ba0508e5e7cdcb1e3`, 20 July 2026,
+   https://github.com/DrAlexHarrison/jacobian-anatomy/commit/74808fb2e1c1691b0007576ba0508e5e7cdcb1e3.
+
+## AI-assistance and verification disclosure
+
+The construction, proof organization, verification programs, website, and
+typeset drafts were developed with extensive assistance from ChatGPT 5.6 Sol.
+Alec Kriebel takes responsibility for the submission and for preserving the
+complete source and exact certificates.  The algebraic checks are reproducible,
+but the note has not been peer reviewed and independent expert scrutiny is
+welcome.

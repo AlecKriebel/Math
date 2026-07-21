@@ -1,0 +1,346 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,tabularx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\Hess}{\operatorname{Hess}}
+
+\title{An explicit quartic counterexample to\\Zhao's Vanishing Conjecture}
+\author{Alec Kriebel}
+\date{First public release: 21 July 2026, 13:11:39 UTC\\Revised: 21 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Starting from the three-dimensional polynomial map posted by Levent Alpöge
+on 20 July 2026, crediting Akhil Mathew for posing the question and Claude
+Fable for producing the example, we explicitly carry out the
+Bass--Connell--Wright degree reduction and the de Bondt--van den Essen
+symmetric reduction.  A factor-reusing version of the degree-reduction step
+gives a cubic homogeneous Keller map in 27 variables, rather than the much
+larger map obtained by reducing expanded monomials independently.
+Symmetrization then gives an explicit homogeneous quartic Hessian-nilpotent
+polynomial in 54 variables, with 598 monomials, whose gradient Keller map is
+noninjective.  Consequently this polynomial is a counterexample to Zhao's
+Vanishing Conjecture.  The expanded polynomial and a two-point collision are
+supplied as machine-readable exact certificates.
+\end{abstract}
+
+\noindent\textbf{Verification status.}
+The algebra has passed the supplied exact symbolic checks, but this short note
+has not been peer reviewed. Independent expert scrutiny is welcome.
+
+\section{Statement of the result}
+
+Let $\ii^2=-1$.  The straight-line construction below defines a cubic
+homogeneous map $h:\C^{27}\to\C^{27}$.  For $A,B\in\C^{27}$, set
+\begin{equation}
+  \boxed{\cP(A,B)=\ii\sum_{j=1}^{27}h_j(A+\ii B)B_j.}
+  \label{eq:potential}
+\end{equation}
+
+\begin{theorem}\label{thm:main}
+The polynomial $\cP$ is homogeneous of degree four, has 598 monomials when
+expanded, and its Hessian is nilpotent.  The polynomial map
+\begin{equation}
+  \Gamma:\C^{54}\longrightarrow\C^{54},\qquad
+  \Gamma(Z)=Z-\nabla\cP(Z),
+  \label{eq:gamma}
+\end{equation}
+has Jacobian determinant one and is noninjective.  Moreover,
+\begin{equation}
+  \Delta^m\cP^m=0\quad\text{for every }m\geq1,
+  \qquad
+  \Delta^m\cP^{m+1}\neq0\quad\text{for infinitely many }m\geq0.
+  \label{eq:vc-counterexample}
+\end{equation}
+Thus $\cP$ is a counterexample to Zhao's Vanishing Conjecture.
+\end{theorem}
+
+The formulas below and ordinary differentiation form a finite exact
+certificate.  The accompanying \texttt{potential\_sparse.json} is the fully
+expanded polynomial over $\Q(\ii)$, and \texttt{collision.json} contains two
+distinct points with the same image under~\eqref{eq:gamma}.
+
+\section{A 13-variable cubic stable model}
+
+Write $u=1+xy$.  Postcomposing the map announced in~\cite{alpoge} by the
+inverse of its linear part gives the identity-linear Keller map
+$\Phi=(\Phi_1,\Phi_2,\Phi_3)$:
+\begin{align}
+\Phi_1&=x-\frac32x^2y-\frac12x^3z,\nonumber\\
+\Phi_2&=y+3xu^2z+3xy^2(4+3xy),\label{eq:phi}\\
+\Phi_3&=u^3z+y^2u(4+3xy).\nonumber
+\end{align}
+Thus $\det J\Phi=1$, and the three points
+\begin{equation}
+(0,0,-\tfrac14),\qquad(1,-\tfrac32,\tfrac{13}2),\qquad
+(-1,\tfrac32,\tfrac{13}2)
+\label{eq:three-points}
+\end{equation}
+have the same image $(0,0,-\tfrac14)$.
+
+We use the following stable degree-reduction gadget.  Suppose a term $cPQ$ is
+to be removed from the $k$th coordinate of a current map $M$.  With new
+variables $a,b$, replace
+\begin{equation}
+ M_k\longmapsto M_k-c(a+P)(b+Q),\qquad
+ (a,b)\longmapsto(a+P,b+Q).
+ \label{eq:two-gadget}
+\end{equation}
+This is a pre- and post-composition of $M\times\mathrm{id}_{\mathbb A^2}$ by
+triangular automorphisms.  A previously created output factor may be reused:
+with one new variable $a$, one may replace
+\begin{equation}
+ M_k\longmapsto M_k-c(a+P)M_\ell,\qquad a\longmapsto a+P.
+ \label{eq:one-gadget}
+\end{equation}
+Both operations preserve the Jacobian determinant and invertibility.  A
+collision $p\ne q$ lifts through~\eqref{eq:two-gadget} by appending
+$(-P(p),-Q(p))$ and $(-P(q),-Q(q))$, and similarly for
+\eqref{eq:one-gadget}.
+
+Starting from~\eqref{eq:phi}, perform the following operations in order.
+The symbols $a_j,b_j$ denote the input variables introduced at each step.
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}c c X c@{}}
+\toprule
+step & target & new or reused factors & $c$\\
+\midrule
+1 & $\Phi_1$ & $P=x^2$, $Q=xz+3y$; add $a_1,b_1$ & $-1/2$\\
+2 & $\Phi_2$ & $P=3x^2y$, $Q=2z+xyz+3y^2$; add $a_2,b_2$ & $1$\\
+3 & $\Phi_2$ & $P=xy$, $Q=a_2z+3xb_2$; add $a_3,b_3$ & $-1$\\
+4 & $\Phi_3$ & $P=xy^2$, $Q=7y+3xz+3xy^2+x^2yz$; add $a_4,b_4$ & $1$\\
+5 & $\Phi_3$ & add $a_5+a_4xy$; reuse output $b_1+xz+3y$ & $-1$\\
+6 & $\Phi_3$ & reuse output $a_3+xy$; add $b_6+a_4b_1-yb_4$ & $1$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+Finally postcompose by the shear
+\begin{equation}
+  M_{b_4}\longmapsto M_{b_4}-M_{a_3}M_{b_1}.
+  \label{eq:final-shear}
+\end{equation}
+The resulting map $M$ has 13 variables
+\begin{equation}
+ X=(x,y,z,a_1,b_1,a_2,b_2,a_3,b_3,a_4,b_4,a_5,b_6)
+ \label{eq:variables}
+\end{equation}
+and degree three.  Its linear part $L$ is the identity except for
+\begin{equation}
+ M_{b_1}^{(1)}=b_1+3y,\qquad
+ M_{b_2}^{(1)}=b_2+2z,\qquad
+ M_{b_4}^{(1)}=b_4+7y.
+\end{equation}
+In particular $\det L=1$.  Put
+\begin{equation}
+  \Psi=L^{-1}M=X+H_2(X)+H_3(X),
+  \label{eq:psi}
+\end{equation}
+where $H_d$ is homogeneous of degree $d$.  Then $\deg\Psi=3$,
+$\det J\Psi=1$, and $\Psi$ has the following two preimages of the same point:
+\begin{align}
+p_0={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0),\nonumber\\
+p_1={}&(1,-\tfrac32,\tfrac{13}2,-1,-2,\tfrac92,-10,
+\tfrac32,\tfrac34,-\tfrac94,-6,-\tfrac{27}8,\tfrac92),\label{eq:p-collision}\\
+\Psi(p_0)=\Psi(p_1)={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0).
+\nonumber
+\end{align}
+Equations~\eqref{eq:phi} and \eqref{eq:two-gadget}--\eqref{eq:psi} are a
+straight-line specification of all components of $\Psi$; no omitted choice is
+involved.
+
+\section{The 27-variable cubic homogeneous map}
+
+For $X,Y\in\C^{13}$ and $t\in\C$, define
+\begin{equation}
+ h(X,Y,t)=\bigl(tH_2(X)+t^2Y,-H_3(X),0\bigr).
+ \label{eq:h}
+\end{equation}
+Every component of $h$ is cubic homogeneous.  Let
+$\mathcal B(W)=W+h(W)$.  At $t=1$,
+\begin{equation}
+ \mathcal B(X,Y,1)=\bigl(X+H_2(X)+Y,Y-H_3(X),1\bigr).
+\end{equation}
+Consequently, if
+\begin{equation}
+ r_j=(p_j,H_3(p_j),1),
+ \label{eq:rj}
+\end{equation}
+then $\mathcal B(r_0)=\mathcal B(r_1)=(p_0,0,1)$.  Here $H_3(p_0)=0$, while
+\begin{multline}
+H_3(p_1)=(-\tfrac{17}4,-\tfrac{45}8,\tfrac{99}{16},0,
+\tfrac{135}8,-\tfrac92,-\tfrac{177}8,0,0,\tfrac94,\\
+\tfrac{213}8,\tfrac{27}8,0).
+\end{multline}
+
+\begin{lemma}\label{lem:nilpotent}
+The polynomial matrix $Jh$ is nilpotent.
+\end{lemma}
+\begin{proof}
+Homogeneity and~\eqref{eq:psi} give
+\begin{equation}
+ \det\bigl(I+tJH_2(X)+t^2JH_3(X)\bigr)
+   =\det J\Psi(tX)=1.
+ \label{eq:det-homogeneous}
+\end{equation}
+The Jacobian determinant of $W\mapsto W+h(W)$ is the same determinant by the
+block determinant formula.  Hence $\det(I+Jh(W))=1$.  Since $h$ is cubic
+homogeneous, $Jh(sW)=s^2Jh(W)$.  Therefore $\det(I+\lambda Jh)=1$
+identically in $\lambda$, which is equivalent to nilpotence of $Jh$.
+\end{proof}
+
+\section{Symmetrization and the collision}
+
+For a polynomial map $h:\C^r\to\C^r$, de Bondt and van den Essen
+\cite{debondt-vandenessen} associate
+\begin{equation}
+ f_h(A,B)=-\ii\sum_{j=1}^r h_j(A+\ii B)B_j.
+\end{equation}
+Their characteristic-polynomial identity implies that $\Hess(f_h)$ is
+nilpotent if and only if $Jh$ is nilpotent.  Our polynomial in
+\eqref{eq:potential} is $\cP=-f_h$, so Lemma~\ref{lem:nilpotent} proves that
+$\cP$ is Hessian nilpotent.  It follows immediately that $\det J\Gamma=1$.
+
+For completeness, the collision can be seen directly.  With the linear map
+$S(x,y)=(x-\ii y,y)$, differentiation gives
+\begin{equation}
+ S^{-1}\Gamma S(x,y)=
+ \left(x+h(x),(I+Jh(x)^T)y-\ii h(x)\right).
+ \label{eq:conjugacy}
+\end{equation}
+Take $r_0,r_1$ from~\eqref{eq:rj}, let $K_j=I+Jh(r_j)^T$, put
+\begin{equation}
+ y_1=0,\qquad y_0=K_0^{-1}\bigl(-\ii h(r_1)+\ii h(r_0)\bigr),
+\end{equation}
+and set $z_j=S(r_j,y_j)$.  Equation~\eqref{eq:conjugacy} and
+$r_0+h(r_0)=r_1+h(r_1)$ show $\Gamma(z_0)=\Gamma(z_1)$.  The two 54-tuples
+are recorded explicitly in \texttt{collision.json}; all coordinates have
+height at most 261.  Direct differentiation of the 598-term expansion checks
+this equality exactly over $\Q(\ii)$.
+
+\section{Failure of the Vanishing Conjecture}
+
+Let $\Delta=\sum_j\partial^2/\partial Z_j^2$.  Zhao proved
+\cite{zhao} that Hessian nilpotence of a homogeneous polynomial $P$ is
+equivalent to
+\begin{equation}
+  \Delta^mP^m=0\qquad\text{for every }m\geq1.
+  \label{eq:zhao-hypothesis}
+\end{equation}
+Lemma~\ref{lem:nilpotent} and the symmetric reduction therefore show that
+$\cP$ satisfies the hypothesis of the Vanishing Conjecture.  Zhao's inversion
+formula writes the formal inverse of $Z-t\nabla P$ as $Z+t\nabla Q_t$, where
+\begin{equation}
+ Q_t=\sum_{m=0}^{\infty}
+ \frac{t^m}{2^m m!(m+1)!}\,\Delta^mP^{m+1}.
+ \label{eq:zhao-series}
+\end{equation}
+If $\Delta^m\cP^{m+1}=0$ for all sufficiently large $m$, then $Q_t$ is a
+polynomial.  Specializing at $t=1$ would give a polynomial inverse of
+$\Gamma$, contradicting the explicit collision above.  Thus
+$\Delta^m\cP^{m+1}\ne0$ for infinitely many $m$, proving
+Theorem~\ref{thm:main}.
+
+\section{Reproducibility}
+
+The repository contains two complementary exact checks.  The script
+\texttt{verify.py} rebuilds the construction symbolically and verifies the
+original map, all six stable reduction gadgets, the cubic homogeneous map,
+Hessian nilpotence through the structural reduction, and the final collision.
+The dependency-free script \texttt{verify\_exported\_stdlib.py} uses only
+Python's standard library and the two JSON files to verify the expanded
+polynomial's degree and term count and the exact collision.  The latter is not
+a stand-alone proof of Hessian nilpotence.  All arithmetic in both checks is
+exact.  The certificate hashes are
+\begin{quote}\small
+\texttt{potential\_sparse.json:}\\
+\nolinkurl{556683b30fd9e7b9ecfb4c4d5395ee3be6a8dc5f918da08ed60db8c125f0df28}\\[3pt]
+\texttt{collision.json:}\\
+\nolinkurl{cbea49f88cc59ba7955a4dbd710c68224590ae310a320369c49f8c63e1f78cae}
+\end{quote}
+The full source and certificates are available in the
+\href{https://github.com/AlecKriebel/Math/tree/main/discovery_02_explicit_vanishing_counterexample}{public project repository}.
+
+\section{Scope and novelty}
+
+Zhang's consequence note of 20 July 2026 observes, by Zhao's equivalence, that
+the announced three-dimensional counterexample makes the Vanishing Conjecture
+false in some finite dimension; it explicitly leaves the consequence
+existential~\cite{zhang}.  An earlier public repository~\cite{harrison} gives
+a 79-variable cubic homogeneous noninjective Keller map.  Applying the
+standard symmetric reduction to that map would produce a 158-variable quartic
+in principle, but the repository did not supply an expanded quartic witness
+or its transported collision at the time of our search.
+
+The narrower contribution here is an executed 54-variable, 598-term quartic
+Hessian-nilpotent polynomial, an exact collision for its gradient map, and a
+factor-reusing reduction that keeps the intermediate cubic homogeneous map in
+27 variables.  To our knowledge, after literature and public-code searches on
+21 July 2026, no earlier source gives this compact explicit certificate.  We
+do not claim minimality or unconditional worldwide priority; the literature
+surrounding the announced counterexample is evolving rapidly.
+
+\section*{AI-assistance and verification disclosure}
+
+The construction, proof organization, verification programs, website, and
+typeset drafts were developed with extensive assistance from ChatGPT 5.6 Sol.
+Alec Kriebel takes responsibility for the submission and for preserving the
+complete source and exact certificates.  The algebraic checks are reproducible,
+but the note has not been peer reviewed and independent expert scrutiny is
+welcome.
+
+\begin{thebibliography}{9}
+
+\bibitem{bcw}
+H. Bass, E. H. Connell, and D. Wright,
+``The Jacobian conjecture: reduction of degree and formal expansion of the inverse,''
+\emph{Bull. Amer. Math. Soc.} 7 (1982), 287--330.
+\href{https://doi.org/10.1090/S0273-0979-1982-15032-7}{doi:10.1090/S0273-0979-1982-15032-7}.
+
+\bibitem{debondt-vandenessen}
+M. de Bondt and A. van den Essen,
+``A reduction of the Jacobian conjecture to the symmetric case,''
+\emph{Proc. Amer. Math. Soc.} 133 (2005), 2201--2205.
+\href{https://doi.org/10.1090/S0002-9939-05-07570-2}{doi:10.1090/S0002-9939-05-07570-2}.
+
+\bibitem{zhao}
+W. Zhao,
+``Hessian nilpotent polynomials and the Jacobian conjecture,''
+\emph{Trans. Amer. Math. Soc.} 359 (2007), 249--274.
+\href{https://arxiv.org/abs/math/0409534}{arXiv:math/0409534}.
+
+\bibitem{alpoge}
+L. Alpöge,
+X post announcing the three-dimensional map, crediting Akhil Mathew for posing
+the question and Claude Fable for producing the example, 20 July 2026.
+\href{https://x.com/__alpoge__/status/2079028340955197566}{Original post}.
+
+\bibitem{zhang}
+Z. Zhang,
+``Direct consequences of the three-dimensional counterexample to the Jacobian
+conjecture,'' 20 July 2026.
+\href{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}{Web note}.
+
+\bibitem{harrison}
+A. Harrison,
+\texttt{jacobian-anatomy}, public GitHub repository, commit
+\nolinkurl{74808fb2e1c1691b0007576ba0508e5e7cdcb1e3}, 20 July 2026.
+\href{https://github.com/DrAlexHarrison/jacobian-anatomy/commit/74808fb2e1c1691b0007576ba0508e5e7cdcb1e3}{Repository commit}.
+
+\end{thebibliography}
+
+\end{document}

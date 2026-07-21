@@ -1,6 +1,9 @@
 # Explicit quartic counterexample to Zhao's Vanishing Conjecture
 
-**Byline:** Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
+**Author:** Alec Kriebel.
+
+The work was developed with extensive assistance from ChatGPT 5.6 Sol; the
+paper contains a full AI-assistance and verification disclosure.
 
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the
@@ -24,9 +27,20 @@ The full verifier checks the original three-dimensional map, the six-gadget
 stable reduction, the 27-dimensional cubic homogeneous model, the quartic
 construction, and the 54-dimensional collision in exact arithmetic.
 
+The standard-library verifier checks the exported polynomial's degree and term
+count and the collision directly from the JSON files. It is not a stand-alone
+verification of Hessian nilpotence.
+
+Build the arXiv-ready PDF with [Tectonic](https://tectonic-typesetting.github.io/):
+
+```bash
+python3 src/render_note.py
+```
+
 ## Files
 
 - `explicit_vanishing_counterexample.md` — source research note.
+- `explicit_vanishing_counterexample.tex` — canonical arXiv-ready typeset source.
 - `construction.py` — exact straight-line construction.
 - `verify.py` — exact verifier.
 - `verify_exported_stdlib.py` — dependency-free verification of the expanded
@@ -39,7 +53,7 @@ construction, and the 54-dimensional collision in exact arithmetic.
 
 ## Status
 
-The algebraic construction has passed the included exact checks.  The novelty
-claim is provisional because this result was developed within a day of the
-announced Jacobian counterexample.  Obtain an expert algebraic-geometry review
-and rerun a same-day literature search before public posting.
+The algebraic construction has passed the included exact checks. The scoped
+novelty claim was searched again on 21 July 2026 and is stated cautiously in
+the note. The result remains unreviewed, and independent expert review is
+welcome.

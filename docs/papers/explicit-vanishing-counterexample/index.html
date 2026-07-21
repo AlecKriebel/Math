@@ -3,42 +3,294 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Provisional explicit quartic counterexample to Zhao's Vanishing Conjecture, with exact certificates.">
-  <title>Explicit vanishing counterexample · Alec's Math Explorations</title>
+  <meta name="description" content="A 54-variable, 598-term homogeneous quartic over Q(i) with nilpotent Hessian and an exact collision for its gradient Keller map: an explicit counterexample to Zhao's Vanishing Conjecture.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="An explicit quartic counterexample to Zhao's Vanishing Conjecture">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-21">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="An explicit quartic counterexample to Zhao's Vanishing Conjecture">
+  <meta property="og:description" content="An explicit 54-variable quartic Hessian-nilpotent polynomial with an exact noninjective gradient Keller map.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/">
+  <title>An explicit quartic counterexample to Zhao's Vanishing Conjecture · Alec Kriebel</title>
   <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "An explicit quartic counterexample to Zhao's Vanishing Conjecture",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "datePublished": "2026-07-21T13:11:39Z",
+    "dateModified": "2026-07-21",
+    "url": "https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/explicit-vanishing-counterexample/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "about": ["Zhao's Vanishing Conjecture", "Jacobian Conjecture", "Hessian nilpotent polynomials"]
+  }
+  </script>
+  <script>
+    window.MathJax = {
+      tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]},
+      options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav"><a class="brand" href="../../">Alec's Math Explorations</a><div class="nav-links"><a href="#abstract">Abstract</a><a href="#paper">Paper</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_02_explicit_vanishing_counterexample">Source</a></div></nav>
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#contents">Full note</a><a href="#references">References</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_02_explicit_vanishing_counterexample">Source</a></div>
+    </nav>
     <div class="paper-hero"><div class="inner">
-      <p class="paper-status">Exploration 02 · Provisional · Unverified</p>
+      <p class="paper-status">Exploration 02 · Provisional research note · Exact checks passed</p>
       <h1>An explicit quartic counterexample to Zhao's Vanishing Conjecture</h1>
-      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
-      <p class="release">First public release: <time datetime="2026-07-21T13:11:39Z">21 July 2026, 13:11:39 UTC</time> (21 July 2026, 06:11:39 PDT)</p>
+      <p class="byline">Alec Kriebel</p>
+      <p class="release">First public release: <time datetime="2026-07-21T13:11:39Z">21 July 2026, 13:11:39 UTC</time> (21 July 2026, 06:11:39 PDT) · Revised 21 July 2026</p>
     </div></div>
   </header>
+
   <main class="paper-main">
-    <div class="notice" role="note"><div class="notice-mark">!</div><div><h2>Independent verification required</h2><p>I am a complete amateur and cannot independently verify this paper. The algebra has passed the supplied exact checks, but the claimed theorem, its interpretation, and its novelty status require review by qualified mathematicians.</p></div></div>
-    <div class="button-row">
-      <a class="button" href="./paper.pdf">Open PDF</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/explicit_vanishing_counterexample.md">Read source</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify_exported_stdlib.py">Run independent verifier</a>
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div><h2>Independent expert review welcome</h2><p>The algebraic construction has passed the supplied exact symbolic checks, but this note has not been peer reviewed. The construction, verification programs, website, and typeset drafts were developed with extensive assistance from ChatGPT 5.6 Sol; the complete disclosure appears below.</p></div>
     </div>
-    <section id="abstract">
-      <h2>Abstract</h2>
-      <p class="lede">Starting from the announced three-dimensional counterexample to the Jacobian conjecture, this note explicitly carries out degree reduction and symmetrization. It claims an explicit homogeneous quartic in 54 variables whose Hessian is nilpotent and whose gradient Keller map is noninjective, giving a concrete claimed counterexample to Zhao's Vanishing Conjecture.</p>
-      <div class="fact-grid"><div class="fact"><strong>Polynomial</strong><span>Homogeneous quartic in 54 variables</span></div><div class="fact"><strong>Expansion</strong><span>598 monomials over Q(i)</span></div><div class="fact"><strong>Certificate</strong><span>Exact two-point gradient-map collision</span></div></div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/explicit_vanishing_counterexample.tex">TeX source</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify.py">Full verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify_exported_stdlib.py">Certificate verifier</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Starting from the three-dimensional polynomial map posted by Levent Alpöge on 20 July 2026, crediting Akhil Mathew for posing the question and Claude Fable for producing the example, we explicitly carry out the Bass–Connell–Wright degree reduction and the de Bondt–van den Essen symmetric reduction. A factor-reusing version of the degree-reduction step gives a cubic homogeneous Keller map in 27 variables, rather than the much larger map obtained by reducing expanded monomials independently. Symmetrization then gives an explicit homogeneous quartic Hessian-nilpotent polynomial in 54 variables, with 598 monomials, whose gradient Keller map is noninjective. Consequently this polynomial is a counterexample to Zhao's Vanishing Conjecture. The expanded polynomial and a two-point collision are supplied as machine-readable exact certificates.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Polynomial</strong><span>Homogeneous quartic in 54 variables</span></div>
+          <div class="fact"><strong>Expansion</strong><span>598 monomials over \(\mathbb Q(i)\)</span></div>
+          <div class="fact"><strong>Certificate</strong><span>Exact two-point gradient-map collision</span></div>
+        </div>
+      </section>
+
+      <nav class="paper-toc" id="contents" aria-label="Table of contents">
+        <h2>Full note</h2>
+        <ol>
+          <li><a href="#statement">Statement of the result</a></li>
+          <li><a href="#stable-model">A 13-variable cubic stable model</a></li>
+          <li><a href="#homogeneous-map">The 27-variable cubic homogeneous map</a></li>
+          <li><a href="#symmetrization">Symmetrization and the collision</a></li>
+          <li><a href="#vanishing-conjecture">Failure of the Vanishing Conjecture</a></li>
+          <li><a href="#reproducibility">Reproducibility</a></li>
+          <li><a href="#novelty">Scope and novelty</a></li>
+        </ol>
+      </nav>
+
+      <section id="statement">
+        <h2>1. Statement of the result</h2>
+        <p>Let \(i^2=-1\). The straight-line construction below defines a cubic homogeneous map \(h:\mathbb C^{27}\to\mathbb C^{27}\). For \(A,B\in\mathbb C^{27}\), set</p>
+        <div class="equation">\[
+          \boxed{\mathcal P(A,B)=i\sum_{j=1}^{27}h_j(A+iB)B_j.} \tag{1}
+        \]</div>
+        <div class="theorem-block">
+          <p><strong>Theorem 1.</strong> The polynomial \(\mathcal P\) is homogeneous of degree four, has 598 monomials when expanded, and its Hessian is nilpotent. The polynomial map</p>
+          <div class="equation">\[
+            \Gamma:\mathbb C^{54}\longrightarrow\mathbb C^{54},\qquad
+            \Gamma(Z)=Z-\nabla\mathcal P(Z) \tag{2}
+          \]</div>
+          <p>has Jacobian determinant one and is noninjective. Moreover,</p>
+          <div class="equation">\[
+            \Delta^m\mathcal P^m=0\quad\text{for every }m\ge1,
+            \qquad
+            \Delta^m\mathcal P^{m+1}\ne0\quad\text{for infinitely many }m\ge0. \tag{3}
+          \]</div>
+          <p>Thus \(\mathcal P\) is a counterexample to Zhao's Vanishing Conjecture.</p>
+        </div>
+        <p>The formulas below and ordinary differentiation form a finite exact certificate. The accompanying <code>potential_sparse.json</code> is the fully expanded polynomial over \(\mathbb Q(i)\), and <code>collision.json</code> contains two distinct points with the same image under (2).</p>
+      </section>
+
+      <section id="stable-model">
+        <h2>2. A 13-variable cubic stable model</h2>
+        <p>Write \(u=1+xy\). Postcomposing the map announced in Reference 4 by the inverse of its linear part gives the identity-linear Keller map \(\Phi=(\Phi_1,\Phi_2,\Phi_3)\):</p>
+        <div class="equation">\[
+        \begin{aligned}
+        \Phi_1&=x-\frac32x^2y-\frac12x^3z,\\
+        \Phi_2&=y+3xu^2z+3xy^2(4+3xy),\\
+        \Phi_3&=u^3z+y^2u(4+3xy).
+        \end{aligned} \tag{4}
+        \]</div>
+        <p>Thus \(\det J\Phi=1\), and the three points</p>
+        <div class="equation">\[
+          (0,0,-\tfrac14),\qquad(1,-\tfrac32,\tfrac{13}2),\qquad
+          (-1,\tfrac32,\tfrac{13}2) \tag{5}
+        \]</div>
+        <p>have the same image \((0,0,-\tfrac14)\).</p>
+
+        <p>We use the following stable degree-reduction gadget. Suppose a term \(cPQ\) is to be removed from the \(k\)th coordinate of a current map \(M\). With new variables \(a,b\), replace</p>
+        <div class="equation">\[
+          M_k\longmapsto M_k-c(a+P)(b+Q),\qquad
+          (a,b)\longmapsto(a+P,b+Q). \tag{6}
+        \]</div>
+        <p>This is a pre- and post-composition of \(M\times\mathrm{id}_{\mathbb A^2}\) by triangular automorphisms. A previously created output factor may be reused: with one new variable \(a\), one may replace</p>
+        <div class="equation">\[
+          M_k\longmapsto M_k-c(a+P)M_\ell,\qquad a\longmapsto a+P. \tag{7}
+        \]</div>
+        <p>Both operations preserve the Jacobian determinant and invertibility. A collision \(p\ne q\) lifts through (6) by appending \((-P(p),-Q(p))\) and \((-P(q),-Q(q))\), and similarly for (7).</p>
+
+        <p>Starting from (4), perform the following operations in order. The symbols \(a_j,b_j\) denote the input variables introduced at each step.</p>
+        <div class="table-wrap"><table class="paper-table">
+          <thead><tr><th>step</th><th>target</th><th>new or reused factors</th><th>\(c\)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>\(\Phi_1\)</td><td>\(P=x^2\), \(Q=xz+3y\); add \(a_1,b_1\)</td><td>\(-1/2\)</td></tr>
+            <tr><td>2</td><td>\(\Phi_2\)</td><td>\(P=3x^2y\), \(Q=2z+xyz+3y^2\); add \(a_2,b_2\)</td><td>\(1\)</td></tr>
+            <tr><td>3</td><td>\(\Phi_2\)</td><td>\(P=xy\), \(Q=a_2z+3xb_2\); add \(a_3,b_3\)</td><td>\(-1\)</td></tr>
+            <tr><td>4</td><td>\(\Phi_3\)</td><td>\(P=xy^2\), \(Q=7y+3xz+3xy^2+x^2yz\); add \(a_4,b_4\)</td><td>\(1\)</td></tr>
+            <tr><td>5</td><td>\(\Phi_3\)</td><td>add \(a_5+a_4xy\); reuse output \(b_1+xz+3y\)</td><td>\(-1\)</td></tr>
+            <tr><td>6</td><td>\(\Phi_3\)</td><td>reuse output \(a_3+xy\); add \(b_6+a_4b_1-yb_4\)</td><td>\(1\)</td></tr>
+          </tbody>
+        </table></div>
+
+        <p>Finally postcompose by the shear</p>
+        <div class="equation">\[
+          M_{b_4}\longmapsto M_{b_4}-M_{a_3}M_{b_1}. \tag{8}
+        \]</div>
+        <p>The resulting map \(M\) has 13 variables</p>
+        <div class="equation">\[
+          X=(x,y,z,a_1,b_1,a_2,b_2,a_3,b_3,a_4,b_4,a_5,b_6) \tag{9}
+        \]</div>
+        <p>and degree three. Its linear part \(L\) is the identity except for</p>
+        <div class="equation">\[
+          M_{b_1}^{(1)}=b_1+3y,\qquad
+          M_{b_2}^{(1)}=b_2+2z,\qquad
+          M_{b_4}^{(1)}=b_4+7y. \tag{10}
+        \]</div>
+        <p>In particular \(\det L=1\). Put</p>
+        <div class="equation">\[
+          \Psi=L^{-1}M=X+H_2(X)+H_3(X), \tag{11}
+        \]</div>
+        <p>where \(H_d\) is homogeneous of degree \(d\). Then \(\deg\Psi=3\), \(\det J\Psi=1\), and \(\Psi\) has the following two preimages of the same point:</p>
+        <div class="equation equation-wide">\[
+        \begin{aligned}
+        p_0={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0),\\
+        p_1={}&(1,-\tfrac32,\tfrac{13}2,-1,-2,\tfrac92,-10,
+        \tfrac32,\tfrac34,-\tfrac94,-6,-\tfrac{27}8,\tfrac92),\\
+        \Psi(p_0)=\Psi(p_1)={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0).
+        \end{aligned} \tag{12}
+        \]</div>
+        <p>Equations (4) and (6)–(11) are a straight-line specification of all components of \(\Psi\); no omitted choice is involved.</p>
+      </section>
+
+      <section id="homogeneous-map">
+        <h2>3. The 27-variable cubic homogeneous map</h2>
+        <p>For \(X,Y\in\mathbb C^{13}\) and \(t\in\mathbb C\), define</p>
+        <div class="equation">\[
+          h(X,Y,t)=\bigl(tH_2(X)+t^2Y,-H_3(X),0\bigr). \tag{13}
+        \]</div>
+        <p>Every component of \(h\) is cubic homogeneous. Let \(\mathcal B(W)=W+h(W)\). At \(t=1\),</p>
+        <div class="equation">\[
+          \mathcal B(X,Y,1)=\bigl(X+H_2(X)+Y,Y-H_3(X),1\bigr). \tag{14}
+        \]</div>
+        <p>Consequently, if \(r_j=(p_j,H_3(p_j),1)\), then \(\mathcal B(r_0)=\mathcal B(r_1)=(p_0,0,1)\). Here \(H_3(p_0)=0\), while</p>
+        <div class="equation equation-wide">\[
+        \begin{aligned}
+        H_3(p_1)=(&-\tfrac{17}4,-\tfrac{45}8,\tfrac{99}{16},0,
+        \tfrac{135}8,-\tfrac92,-\tfrac{177}8,0,0,\tfrac94,\\
+        &\tfrac{213}8,\tfrac{27}8,0).
+        \end{aligned} \tag{15}
+        \]</div>
+
+        <div class="theorem-block">
+          <p><strong>Lemma 2.</strong> The polynomial matrix \(Jh\) is nilpotent.</p>
+          <p><em>Proof.</em> Homogeneity and (11) give</p>
+          <div class="equation">\[
+            \det\bigl(I+tJH_2(X)+t^2JH_3(X)\bigr)=\det J\Psi(tX)=1. \tag{16}
+          \]</div>
+          <p>The Jacobian determinant of \(W\mapsto W+h(W)\) is the same determinant by the block determinant formula. Hence \(\det(I+Jh(W))=1\). Since \(h\) is cubic homogeneous, \(Jh(sW)=s^2Jh(W)\). Therefore \(\det(I+\lambda Jh)=1\) identically in \(\lambda\), which is equivalent to nilpotence of \(Jh\). ∎</p>
+        </div>
+      </section>
+
+      <section id="symmetrization">
+        <h2>4. Symmetrization and the collision</h2>
+        <p>For a polynomial map \(h:\mathbb C^r\to\mathbb C^r\), de Bondt and van den Essen associate</p>
+        <div class="equation">\[
+          f_h(A,B)=-i\sum_{j=1}^r h_j(A+iB)B_j. \tag{17}
+        \]</div>
+        <p>Their characteristic-polynomial identity implies that \(\operatorname{Hess}(f_h)\) is nilpotent if and only if \(Jh\) is nilpotent. Our polynomial in (1) is \(\mathcal P=-f_h\), so Lemma 2 proves that \(\mathcal P\) is Hessian nilpotent. It follows immediately that \(\det J\Gamma=1\).</p>
+
+        <p>For completeness, the collision can be seen directly. With the linear map \(S(x,y)=(x-iy,y)\), differentiation gives</p>
+        <div class="equation">\[
+          S^{-1}\Gamma S(x,y)=
+          \left(x+h(x),(I+Jh(x)^T)y-i h(x)\right). \tag{18}
+        \]</div>
+        <p>Take \(r_0,r_1\) as above, let \(K_j=I+Jh(r_j)^T\), put</p>
+        <div class="equation">\[
+          y_1=0,\qquad y_0=K_0^{-1}\bigl(-i h(r_1)+i h(r_0)\bigr), \tag{19}
+        \]</div>
+        <p>and set \(z_j=S(r_j,y_j)\). Equation (18) and \(r_0+h(r_0)=r_1+h(r_1)\) show \(\Gamma(z_0)=\Gamma(z_1)\). The two 54-tuples are recorded explicitly in <code>collision.json</code>; all coordinates have height at most 261. Direct differentiation of the 598-term expansion checks this equality exactly over \(\mathbb Q(i)\).</p>
+      </section>
+
+      <section id="vanishing-conjecture">
+        <h2>5. Failure of the Vanishing Conjecture</h2>
+        <p>Let \(\Delta=\sum_j\partial^2/\partial Z_j^2\). Zhao proved that Hessian nilpotence of a homogeneous polynomial \(P\) is equivalent to</p>
+        <div class="equation">\[
+          \Delta^mP^m=0\qquad\text{for every }m\ge1. \tag{20}
+        \]</div>
+        <p>Lemma 2 and the symmetric reduction therefore show that \(\mathcal P\) satisfies the hypothesis of the Vanishing Conjecture. Zhao's inversion formula writes the formal inverse of \(Z-t\nabla P\) as \(Z+t\nabla Q_t\), where</p>
+        <div class="equation">\[
+          Q_t=\sum_{m=0}^{\infty}
+          \frac{t^m}{2^m m!(m+1)!}\,\Delta^mP^{m+1}. \tag{21}
+        \]</div>
+        <p>If \(\Delta^m\mathcal P^{m+1}=0\) for all sufficiently large \(m\), then \(Q_t\) is a polynomial. Specializing at \(t=1\) would give a polynomial inverse of \(\Gamma\), contradicting the explicit collision above. Thus \(\Delta^m\mathcal P^{m+1}\ne0\) for infinitely many \(m\), proving Theorem 1.</p>
+      </section>
+
+      <section id="reproducibility">
+        <h2>6. Reproducibility</h2>
+        <p>The repository contains two complementary exact checks. <code>verify.py</code> rebuilds the construction symbolically and verifies the original map, all six stable reduction gadgets, the cubic homogeneous map, Hessian nilpotence through the structural reduction, and the final collision. <code>verify_exported_stdlib.py</code> uses only Python's standard library and the two JSON files to verify the expanded polynomial's degree and term count and the exact collision. The latter is not a stand-alone proof of Hessian nilpotence. All arithmetic in both checks is exact.</p>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/output/potential_sparse.json"><code>potential_sparse.json</code></a> — expanded 598-term polynomial.<br><small>SHA-256: <code class="hash">556683b30fd9e7b9ecfb4c4d5395ee3be6a8dc5f918da08ed60db8c125f0df28</code></small></li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/output/collision.json"><code>collision.json</code></a> — exact colliding 54-tuples.<br><small>SHA-256: <code class="hash">cbea49f88cc59ba7955a4dbd710c68224590ae310a320369c49f8c63e1f78cae</code></small></li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify.py"><code>verify.py</code></a> — end-to-end exact symbolic verifier.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify_exported_stdlib.py"><code>verify_exported_stdlib.py</code></a> — dependency-free exported-certificate verifier.</li>
+        </ul>
+      </section>
+
+      <section id="novelty">
+        <h2>7. Scope and novelty</h2>
+        <p>Zhang's consequence note of 20 July 2026 observes, by Zhao's equivalence, that the announced three-dimensional counterexample makes the Vanishing Conjecture false in some finite dimension; it explicitly leaves the consequence existential. An earlier public repository gives a 79-variable cubic homogeneous noninjective Keller map. Applying the standard symmetric reduction to that map would produce a 158-variable quartic in principle, but the repository did not supply an expanded quartic witness or its transported collision at the time of our search.</p>
+        <p>The narrower contribution here is an executed 54-variable, 598-term quartic Hessian-nilpotent polynomial, an exact collision for its gradient map, and a factor-reusing reduction that keeps the intermediate cubic homogeneous map in 27 variables. To our knowledge, after literature and public-code searches on 21 July 2026, no earlier source gives this compact explicit certificate. We do not claim minimality or unconditional worldwide priority; the literature surrounding the announced counterexample is evolving rapidly.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The construction, proof organization, verification programs, website, and typeset drafts were developed with extensive assistance from ChatGPT 5.6 Sol. Alec Kriebel takes responsibility for the submission and for preserving the complete source and exact certificates. The algebraic checks are reproducible, but the note has not been peer reviewed and independent expert scrutiny is welcome.</p>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <ol class="references">
+          <li>H. Bass, E. H. Connell, and D. Wright, “The Jacobian conjecture: reduction of degree and formal expansion of the inverse,” <cite>Bull. Amer. Math. Soc.</cite> 7 (1982), 287–330. <a href="https://doi.org/10.1090/S0273-0979-1982-15032-7">DOI</a>.</li>
+          <li>M. de Bondt and A. van den Essen, “A reduction of the Jacobian conjecture to the symmetric case,” <cite>Proc. Amer. Math. Soc.</cite> 133 (2005), 2201–2205. <a href="https://doi.org/10.1090/S0002-9939-05-07570-2">DOI</a>.</li>
+          <li>W. Zhao, “Hessian nilpotent polynomials and the Jacobian conjecture,” <cite>Trans. Amer. Math. Soc.</cite> 359 (2007), 249–274. <a href="https://arxiv.org/abs/math/0409534">arXiv:math/0409534</a>.</li>
+          <li>L. Alpöge, X post announcing the three-dimensional map, crediting Akhil Mathew for posing the question and Claude Fable for producing the example, 20 July 2026. <a href="https://x.com/__alpoge__/status/2079028340955197566">Original post</a>.</li>
+          <li>Z. Zhang, “Direct consequences of the three-dimensional counterexample to the Jacobian conjecture,” 20 July 2026. <a href="https://zzhang-iu.github.io/papers/direct-consequences-jacobian/">Web note</a>.</li>
+          <li>A. Harrison, <code>jacobian-anatomy</code>, public GitHub repository, commit <code>74808fb2e1c1691b0007576ba0508e5e7cdcb1e3</code>, 20 July 2026. <a href="https://github.com/DrAlexHarrison/jacobian-anatomy/commit/74808fb2e1c1691b0007576ba0508e5e7cdcb1e3">Commit</a>.</li>
+        </ol>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The HTML above contains the complete paper for accessibility and indexing. The PDF is compiled from the public TeX source.</p>
     </section>
-    <section>
-      <h2>What is potentially new</h2>
-      <p>Zhang's consequence note records that the announced three-dimensional Jacobian example would make the Vanishing Conjecture false in some finite dimension. This paper's narrower potential contribution is an explicit quartic polynomial, a finite exact collision certificate, and a factor-reusing reduction that holds the construction to 54 dimensions. This priority assessment is provisional and may be superseded by contemporaneous work.</p>
-    </section>
-    <section>
-      <h2>Exact certificates</h2>
-      <ul class="certificate-list"><li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/output/potential_sparse.json"><code>potential_sparse.json</code></a> — the expanded 598-term polynomial over Q(i).</li><li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/output/collision.json"><code>collision.json</code></a> — two exact 54-tuples with the same gradient-map image.</li><li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify_exported_stdlib.py"><code>verify_exported_stdlib.py</code></a> — dependency-free verification from the exported JSON, independent of the construction code.</li><li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_02_explicit_vanishing_counterexample/verify.py"><code>verify.py</code></a> — end-to-end exact symbolic verifier.</li></ul>
-    </section>
-    <section id="paper"><h2>Paper</h2><object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object><p class="fine-print">The PDF contains the release timestamp to the second and the full AI-assistance and verification disclosure.</p></section>
   </main>
+
   <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
 </body>
 </html>
