@@ -56,11 +56,119 @@ def _xor_bit(
     return difference
 
 
+def _edge_orbit_representatives(
+    n: int, lag: int, *, skew: bool
+) -> tuple[int, ...]:
+    """Represent directed edges under ``i -> -i-lag``.
+
+    For a symmetric sequence the reflection-fixed edge has difference zero,
+    leaving ``(n-1)/2`` doubled representatives.  For a normalized skew
+    sequence the fixed edge contributes one and the pair containing the two
+    edges incident with zero contributes one; the remaining
+    ``(n-3)/2`` representatives are doubled.
+    """
+
+    if n <= 1 or n % 2 != 1 or not 1 <= lag <= (n - 1) // 2:
+        raise ValueError("edge-orbit arguments are out of range")
+    inverse_two = pow(2, -1, n)
+    fixed = (-lag * inverse_two) % n
+    special = {0, (-lag) % n} if skew else set()
+    excluded = {fixed, *special}
+    representatives: list[int] = []
+    seen = set(excluded)
+    for index in range(n):
+        if index in seen:
+            continue
+        mate = (-index - lag) % n
+        if mate == index or mate in seen:
+            raise AssertionError("edge reflection orbit mismatch")
+        seen.add(index)
+        seen.add(mate)
+        representatives.append(min(index, mate))
+    expected = (n - 3) // 2 if skew else (n - 1) // 2
+    if len(representatives) != expected or len(seen) != n:
+        raise AssertionError("edge reflection did not partition the indices")
+    return tuple(representatives)
+
+
+def _add_lexicographic_greater_or_equal(
+    model: cp_model.CpModel,
+    left: list[cp_model.IntVar],
+    right: list[cp_model.IntVar],
+    name: str,
+) -> None:
+    if len(left) != len(right):
+        raise ValueError("lexicographic vectors must have equal length")
+    prefix: cp_model.IntVar | None = None
+    for index, (lhs, rhs) in enumerate(zip(left, right, strict=True)):
+        lex_clause = [lhs, rhs.negated()]
+        if prefix is not None:
+            lex_clause.append(prefix.negated())
+        model.add_bool_or(lex_clause)
+        if index + 1 == len(left):
+            break
+        next_prefix = model.new_bool_var(f"{name}_prefix_{index + 1}")
+        # next_prefix iff prefix is still active and lhs == rhs.  The first
+        # position has an implicit true prefix.
+        if prefix is not None:
+            model.add_bool_or((next_prefix.negated(), prefix))
+        model.add_bool_or((next_prefix.negated(), lhs.negated(), rhs))
+        model.add_bool_or((next_prefix.negated(), rhs.negated(), lhs))
+        both_one = [lhs.negated(), rhs.negated(), next_prefix]
+        both_zero = [lhs, rhs, next_prefix]
+        if prefix is not None:
+            both_one.append(prefix.negated())
+            both_zero.append(prefix.negated())
+        model.add_bool_or(both_one)
+        model.add_bool_or(both_zero)
+        prefix = next_prefix
+
+
+def _doubling_cycle_variable_order(n: int) -> tuple[int, ...] | None:
+    """Return the half-variable cycle induced by multiplication by two."""
+
+    half = (n - 1) // 2
+    result: list[int] = []
+    value = 1
+    for _ in range(half):
+        representative = min(value, n - value)
+        index = representative - 1
+        if index in result:
+            return None
+        result.append(index)
+        value = 2 * value % n
+    if value not in (1, n - 1) or set(result) != set(range(half)):
+        return None
+    return tuple(result)
+
+
+def _add_common_decimation_necklace(
+    model: cp_model.CpModel,
+    half_bits: list[cp_model.IntVar],
+    name: str,
+) -> bool:
+    """Make a symmetric half-word maximal under the doubling-cycle action."""
+
+    n = 2 * len(half_bits) + 1
+    order = _doubling_cycle_variable_order(n)
+    if order is None:
+        return False
+    word = [half_bits[index] for index in order]
+    for shift in range(1, len(word)):
+        rotated = word[shift:] + word[:shift]
+        _add_lexicographic_greater_or_equal(
+            model, word, rotated, f"{name}_rotation_{shift}"
+        )
+    return True
+
+
 def build_model(
     n: int,
     row_sums: tuple[int, int, int],
     *,
     fix_a1: bool = True,
+    half_edges: bool = True,
+    common_decimation_necklace: bool = True,
 ) -> tuple[cp_model.CpModel, tuple[list[cp_model.IntVar], ...]]:
     """Build the exact normalized good-matrix model at odd order ``n``."""
 
@@ -97,6 +205,18 @@ def build_model(
     for bits, target in zip((b_half, c_half, d_half), row_sums, strict=True):
         model.add(sum(bits) == (n - target) // 4)
 
+    if common_decimation_necklace and n == ORDER and row_sums.count(15) != 1:
+        raise ValueError("order-167 necklace requires a unique row-sum-15 anchor")
+    anchor_index = row_sums.index(15) if 15 in row_sums else 0
+    if common_decimation_necklace:
+        necklace_applied = _add_common_decimation_necklace(
+            model,
+            (b_half, c_half, d_half)[anchor_index],
+            "common_decimation",
+        )
+        if n == ORDER and not necklace_applied:
+            raise AssertionError("doubling should generate the order-167 quotient")
+
     # Product theorem in negative-entry bits:
     #   bar(a_k)+bar(a_2k)+bar(b_k)+bar(c_k)+bar(d_k) = 1 (mod 2).
     for k in range(1, half + 1):
@@ -104,29 +224,54 @@ def build_model(
             (full[0][k], full[0][2 * k % n], full[1][k], full[2][k], full[3][k])
         )
 
-    # PAF_X(k)=n-2*d_X(k), where d_X(k) is the cyclic Hamming distance
-    # between X and its shift by k.  Sum_X PAF_X(k)=0 is therefore exactly
-    # sum_X d_X(k)=2n.  Lags n-k duplicate lag k, so 1..(n-1)/2 is complete.
+    # PAF_X(k)=n-2*d_X(k), so complementarity is sum_X d_X(k)=2n.
+    # Pair directed edges under i -> -i-k.  A symmetric sequence has one
+    # fixed zero edge and 83 doubled representatives at n=167.  The skew
+    # sequence has a fixed one edge plus a special two-edge orbit totaling
+    # one, and 82 doubled representatives.  Dividing the resulting equation
+    # by two leaves exactly sum(representative XORs)=n-1.
     for lag in range(1, half + 1):
         differences = []
-        for sequence_index, bits in enumerate(full):
-            differences.extend(
-                _xor_bit(
-                    model,
-                    bits[index],
-                    bits[(index + lag) % n],
-                    f"diff_{lag}_{sequence_index}_{index}",
+        if half_edges:
+            for sequence_index, bits in enumerate(full):
+                representatives = _edge_orbit_representatives(
+                    n, lag, skew=sequence_index == 0
                 )
-                for index in range(n)
-            )
-        model.add(sum(differences) == 2 * n)
+                differences.extend(
+                    _xor_bit(
+                        model,
+                        bits[index],
+                        bits[(index + lag) % n],
+                        f"half_diff_{lag}_{sequence_index}_{index}",
+                    )
+                    for index in representatives
+                )
+            model.add(sum(differences) == n - 1)
+        else:
+            for sequence_index, bits in enumerate(full):
+                differences.extend(
+                    _xor_bit(
+                        model,
+                        bits[index],
+                        bits[(index + lag) % n],
+                        f"diff_{lag}_{sequence_index}_{index}",
+                    )
+                    for index in range(n)
+                )
+            model.add(sum(differences) == 2 * n)
 
     # When FIXED_SEARCH is requested, branch only on the genuine sequence
     # entries.  Put B,C,D first: the product-cycle XORs and a_1=+1 then force
     # all of A.  Auxiliary Hamming-difference bits are consequences, not
     # search choices.
+    symmetric_halves = (b_half, c_half, d_half)
+    ordered_symmetric = (
+        symmetric_halves[anchor_index],
+        *(symmetric_halves[index]
+          for index in range(3) if index != anchor_index),
+    )
     model.add_decision_strategy(
-        [*b_half, *c_half, *d_half, *a_half],
+        [*(bit for bits in ordered_symmetric for bit in bits), *a_half],
         cp_model.CHOOSE_FIRST,
         cp_model.SELECT_MIN_VALUE,
     )
@@ -157,10 +302,17 @@ def solve(
     random_seed: int,
     fixed_search: bool = False,
     max_memory_mb: int = 2048,
+    half_edges: bool = True,
+    common_decimation_necklace: bool = True,
 ) -> tuple[str, tuple[tuple[int, ...], ...] | None, cp_model.CpSolver]:
     if time_limit <= 0 or workers <= 0 or max_memory_mb <= 0:
         raise ValueError("time limit, workers, and memory cap must be positive")
-    model, halves = build_model(n, row_sums)
+    model, halves = build_model(
+        n,
+        row_sums,
+        half_edges=half_edges,
+        common_decimation_necklace=common_decimation_necklace,
+    )
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit
     solver.parameters.num_search_workers = workers
@@ -195,6 +347,21 @@ def main() -> int:
         action="store_true",
         help="branch on B,C,D,A primaries in that order instead of automatic search",
     )
+    parser.add_argument(
+        "--full-directed-edges",
+        action="store_true",
+        help="use the redundant full directed-edge PAF encoding",
+    )
+    parser.add_argument(
+        "--no-common-decimation-necklace",
+        action="store_true",
+        help="disable the exact common-decimation necklace symmetry break",
+    )
+    parser.add_argument(
+        "--build-only",
+        action="store_true",
+        help="build and validate the model without launching search",
+    )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
 
@@ -208,6 +375,21 @@ def main() -> int:
     profile = profiles[args.profile]
     print(f"order={args.order} profile={args.profile}/{len(profiles)} row_sums={profile}")
     print(f"workers={args.workers} max_memory_mb={args.max_memory_mb}")
+    if args.build_only:
+        model, _ = build_model(
+            args.order,
+            profile,
+            half_edges=not args.full_directed_edges,
+            common_decimation_necklace=not args.no_common_decimation_necklace,
+        )
+        proto = model.proto
+        print(f"variables={len(proto.variables)} constraints={len(proto.constraints)}")
+        print(
+            f"half_edges={not args.full_directed_edges} "
+            f"common_decimation_necklace="
+            f"{not args.no_common_decimation_necklace}"
+        )
+        return 0
     status, sequences, solver = solve(
         args.order,
         profile,
@@ -216,6 +398,8 @@ def main() -> int:
         random_seed=args.random_seed,
         fixed_search=args.fixed_search,
         max_memory_mb=args.max_memory_mb,
+        half_edges=not args.full_directed_edges,
+        common_decimation_necklace=not args.no_common_decimation_necklace,
     )
     print(f"status={status}")
     print(f"wall_time={solver.wall_time:.3f}")

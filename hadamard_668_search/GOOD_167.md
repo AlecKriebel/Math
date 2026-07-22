@@ -63,6 +63,15 @@ The safe symmetry break `A[1]=1` removes that final seed bit: applying the
 index automorphism `i -> -i` fixes the symmetric sequences and negates every
 off-diagonal entry of `A`.
 
+There is still an exact common-decimation quotient of order 83.  The classes
+of nonzero multipliers modulo sign form one doubling cycle.  In each profile,
+exactly one symmetric sequence has row sum 15 and hence half-weight 38.  Write
+its negative-entry bits in doubling-cycle order and require that word to be
+lexicographically maximal among all 83 cyclic rotations.  For any multiplier
+class, choosing its sign according to the skew entry restores `A[1]=1`, while
+the symmetric anchor sees the same rotation.  Thus this necklace leader
+removes the full residual factor of 83 without losing a solution.
+
 ## Exact CP-SAT model
 
 `search_good_167_cp_sat.py` encodes:
@@ -70,7 +79,8 @@ off-diagonal entry of `A`.
 1. 332 structural half-sequence bits (83 per sequence), with `A[1]=1`;
 2. one of the two exact row-sum profiles;
 3. 83 five-literal XORs from the product theorem; and
-4. all 83 independent periodic-correlation equations.
+4. the exact common-decimation necklace leader; and
+5. all 83 independent periodic-correlation equations.
 
 For the last item, if a Boolean denotes whether a sign is negative, the cyclic
 Hamming distance `d_X(k)` satisfies `PAF_X(k)=167-2*d_X(k)`.  Complementarity
@@ -80,7 +90,26 @@ is therefore the exact cardinality equation
 d_A(k)+d_B(k)+d_C(k)+d_D(k) = 334
 ```
 
-at each lag `k=1,...,83`.  No floating-point Fourier test is used as a proof.
+at each lag `k=1,...,83`.  The implementation halves this layer exactly.  Pair
+the directed edges `i -> i+k` under `i -> -i-k`.  A symmetric sequence has 83
+doubled representative XORs and a fixed zero edge.  The skew sequence has 82
+doubled representatives; its fixed edge and the exceptional pair incident
+with zero contribute a constant two.  Dividing the complementarity equation
+by two gives
+
+```text
+sum of the 82 + 3*83 representative XORs = 166.
+```
+
+This reduces the PAF auxiliaries from 55,444 to 27,473 with no relaxation.
+No floating-point Fourier test is used as a proof.
+
+The old full directed-edge model had 55,777 variables and 55,614 constraints.
+The half-edge model without the necklace has 27,806 variables and 27,643
+constraints.  With the exact 83-fold necklace quotient enabled, the default
+model has 34,530 variables and 67,987 mostly Boolean-clause constraints.  The
+lexicographic encoding was exhaustively truth-table tested through width four;
+the edge reduction was checked directly at orders 7 and 167.
 
 The model is deliberately parameterized by odd order and is regression-tested
 at order 7, where it finds a quadruple that the independent exact checker
@@ -97,12 +126,20 @@ Run the two order-167 profiles separately:
 
 ```bash
 ../tmp/hadamard-env/bin/python search_good_167_cp_sat.py \
-  --profile 0 --time-limit 3600 --workers 1 --max-memory-mb 2048 --fixed-search \
+  --profile 0 --time-limit 3600 --workers 1 --max-memory-mb 256 \
   --output output/good_167_profile_0.json
 
 ../tmp/hadamard-env/bin/python search_good_167_cp_sat.py \
-  --profile 1 --time-limit 3600 --workers 1 --max-memory-mb 2048 --fixed-search \
+  --profile 1 --time-limit 3600 --workers 1 --max-memory-mb 256 \
   --output output/good_167_profile_1.json
+```
+
+Build or compare the exact encodings without searching:
+
+```bash
+../tmp/hadamard-env/bin/python search_good_167_cp_sat.py --build-only
+../tmp/hadamard-env/bin/python search_good_167_cp_sat.py \
+  --build-only --full-directed-edges --no-common-decimation-necklace
 ```
 
 If either returns a candidate:
@@ -115,6 +152,14 @@ Matched 20-second, one-worker runs on both order-167 profiles returned
 `UNKNOWN`.  Automatic search made about 765,500 branches; the primary-only
 fixed search made about 222,250 branches and 4,100 conflicts.  No candidate
 was produced.  These are bounded feasibility runs, not exhaustive results.
+
+The reduced model was then run for 60 seconds per profile, sequentially, with
+one worker and a 256 MiB solver cap.  Profile 0 (seed 1668) ended `UNKNOWN`
+after 2,121,259 branches and 1,451 conflicts at 272.7 MB whole-process peak
+RSS.  Profile 1 (seed 2668) ended `UNKNOWN` after 2,256,669 branches and 1,543
+conflicts at 285.3 MB.  Both used zero swap.  These outcomes certify neither
+infeasibility nor existence; they only show the stronger exact model remains
+search-hard at this budget.
 
 ## Stronger A,B -> GF(2) -> C,D reducer
 

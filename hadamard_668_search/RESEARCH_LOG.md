@@ -256,6 +256,24 @@
   common multiplier of order 83 is impossible from block-size congruences,
   while the order-two multiplier merely recovers symmetric blocks.  These are
   subfamily reductions, not a nonexistence proof for `H(668)`.
+- Replaced each good-matrix PAF equation's 668 directed-edge XORs by an exact
+  reflection quotient with 331 representatives.  The skew distance is
+  `2+2*sum(82 XORs)` and each symmetric distance is `2*sum(83 XORs)`, so the
+  reduced cardinality target is 166.  This cuts the PAF auxiliaries from
+  55,444 to 27,473.  Direct order-7/order-167 distance regressions and the
+  exact `H(28)` construction test pass.
+- Added the remaining exact common-decimation quotient.  The unique row-sum-
+  15 symmetric sequence has a nonconstant 83-bit doubling-cycle word; making
+  it lexicographically maximal among all rotations removes a factor of 83
+  after the state-dependent multiplier sign restores `A[1]=1`.  Exhaustive
+  short-word truth tables validate the reified lex encoding.  The default
+  model now has 34,530 variables and 67,987 constraints versus 55,777 and
+  55,614 in the old full-edge model.
+- Sequential 60-second searches of the two reduced order-167 profiles ended
+  `UNKNOWN`, with 2,121,259 and 2,256,669 branches.  Whole-process peaks were
+  272.7 and 285.3 MB under a one-worker, 256 MiB solver cap; both used zero
+  swap.  No candidate was emitted, and these bounded outcomes prove no
+  nonexistence result.
 
 ## 22 July 2026: resource-safe search defaults
 

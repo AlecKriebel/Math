@@ -12,7 +12,13 @@ from good_167 import (
     validate_good_quadruple,
 )
 from good_167_linear import c_linear_system, derive_s, recover_c_d, solve_linear_system
-from search_good_167_cp_sat import _decode, build_model
+from search_good_167_cp_sat import (
+    _add_lexicographic_greater_or_equal,
+    _decode,
+    _doubling_cycle_variable_order,
+    _edge_orbit_representatives,
+    build_model,
+)
 from verify_good_167 import verify_payload
 from analyze_sds_167 import (
     common_multiplier_orbit_compatible,
@@ -24,6 +30,84 @@ from analyze_sds_167 import (
 
 
 class Good167Tests(unittest.TestCase):
+    def test_lexicographic_encoding_truth_table(self) -> None:
+        for width in range(1, 5):
+            for left_value in range(1 << width):
+                for right_value in range(1 << width):
+                    model = cp_model.CpModel()
+                    left = [model.new_bool_var(f"left_{index}")
+                            for index in range(width)]
+                    right = [model.new_bool_var(f"right_{index}")
+                             for index in range(width)]
+                    _add_lexicographic_greater_or_equal(
+                        model, left, right, "lex"
+                    )
+                    left_word = tuple(
+                        (left_value >> (width - 1 - index)) & 1
+                        for index in range(width)
+                    )
+                    right_word = tuple(
+                        (right_value >> (width - 1 - index)) & 1
+                        for index in range(width)
+                    )
+                    for variable, value in zip(left, left_word, strict=True):
+                        model.add(variable == value)
+                    for variable, value in zip(right, right_word, strict=True):
+                        model.add(variable == value)
+                    solver = cp_model.CpSolver()
+                    solver.parameters.num_search_workers = 1
+                    status = solver.solve(model)
+                    expected = left_word >= right_word
+                    self.assertEqual(
+                        status in (cp_model.FEASIBLE, cp_model.OPTIMAL),
+                        expected,
+                    )
+
+    def test_half_edge_orbits_reconstruct_directed_distances(self) -> None:
+        for n in (7, 167):
+            half = (n - 1) // 2
+            half_bits = tuple((5 * index + 1) % 7 < 3 for index in range(half))
+            symmetric = (False, *half_bits, *reversed(half_bits))
+            skew = (
+                False,
+                *half_bits,
+                *(not value for value in reversed(half_bits)),
+            )
+            for lag in range(1, half + 1):
+                symmetric_representatives = _edge_orbit_representatives(
+                    n, lag, skew=False
+                )
+                skew_representatives = _edge_orbit_representatives(
+                    n, lag, skew=True
+                )
+                self.assertEqual(len(symmetric_representatives), half)
+                self.assertEqual(len(skew_representatives), half - 1)
+                directed_symmetric = sum(
+                    symmetric[index] != symmetric[(index + lag) % n]
+                    for index in range(n)
+                )
+                directed_skew = sum(
+                    skew[index] != skew[(index + lag) % n]
+                    for index in range(n)
+                )
+                self.assertEqual(
+                    directed_symmetric,
+                    2 * sum(
+                        symmetric[index] != symmetric[(index + lag) % n]
+                        for index in symmetric_representatives
+                    ),
+                )
+                self.assertEqual(
+                    directed_skew,
+                    2 + 2 * sum(
+                        skew[index] != skew[(index + lag) % n]
+                        for index in skew_representatives
+                    ),
+                )
+        self.assertEqual(
+            set(_doubling_cycle_variable_order(167) or ()), set(range(83))
+        )
+
     def test_arithmetic_profiles(self) -> None:
         self.assertEqual(
             GOOD_167_ROW_SUM_PROFILES,
@@ -70,6 +154,20 @@ class Good167Tests(unittest.TestCase):
                 for row in range(28)
                 for column in range(28)
             )
+        )
+
+        full_model, _ = build_model(
+            7,
+            (3, 3, 3),
+            half_edges=False,
+            common_decimation_necklace=False,
+        )
+        full_solver = cp_model.CpSolver()
+        full_solver.parameters.max_time_in_seconds = 5
+        full_solver.parameters.num_search_workers = 1
+        self.assertIn(
+            full_solver.solve(full_model),
+            (cp_model.FEASIBLE, cp_model.OPTIMAL),
         )
 
         a, b, c, d = candidate

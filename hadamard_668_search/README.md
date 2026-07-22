@@ -135,13 +135,16 @@ fixed-column distance bounds have no hidden endpoint improvements or gaps.
 
 `GOOD_167.md` describes an independent route to a skew `H(668)`.  Symmetry and
 the good-matrix product theorem reduce the search to two signed row-sum
-profiles.  The exact CP-SAT model and a two-stage `GF(2)` filter are both
+profiles.  Its exact CP-SAT model pairs correlation edges to halve the PAF
+auxiliaries and uses a lexicographic necklace leader for the remaining
+83-fold common-decimation symmetry.  The default model has 34,530 variables,
+down from 55,777 in the original encoding.  A two-stage `GF(2)` filter is also
 implemented, but bounded runs and random diagnostic scans have found no
 candidate and prove no nonexistence result:
 
 ```sh
 .solver-venv/bin/python search_good_167_cp_sat.py \
-  --profile 0 --workers 1 --max-memory-mb 2048 --time-limit 3600 \
+  --profile 0 --workers 1 --max-memory-mb 256 --time-limit 3600 \
   --output output/good_167_profile_0.json
 python3 verify_good_167.py --self-test
 ```
@@ -223,6 +226,9 @@ its radius-four scans used 11.5 MB and its exact four-window MITM used 24.7
 MB.  The larger mixed-family MITM is explicitly capped at eight left-family
 pairs per batch and used 216.3 MB peak RSS.  Recorded searches are still run
 strictly one at a time.
+The reduced good-matrix CP-SAT runs also use one worker and a 256 MiB solver
+cap; their measured whole-process peaks were 272.7 and 285.3 MB with zero
+swap.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal
