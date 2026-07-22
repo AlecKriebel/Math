@@ -62,7 +62,8 @@ def main() -> None:
 
     program = "\n".join(
         [
-            "default(parisizemax,8000000000);",
+            "default(parisizemax,2000000000);",
+            "default(breakloop,0);",
             "t='t; r='r; q='q; s='s;",
             f"C0={to_gp(C0)};",
             f"C1={to_gp(C1)};",
@@ -82,6 +83,13 @@ def main() -> None:
         check=True,
         timeout=300,
     )
+    marked_lines = [
+        line
+        for stream in (result.stdout, result.stderr)
+        for line in stream.splitlines()
+        if "***" in line and "Warning:" not in line
+    ]
+    assert not marked_lines, "\n".join(marked_lines)
     assert "QDEG=27" in result.stdout
     match = re.search(r"DEGREES=(\[[^\n]+\])", result.stdout)
     assert match is not None

@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A provisional exact determination of the geometric monodromy of the square of the announced three-dimensional Keller map as S3 wreath S3, with local-field and machine-checkable certificates.">
+  <meta name="description" content="A provisional exact determination of the geometric monodromy of the second and third iterates of the announced three-dimensional Keller map as the full iterated wreath products W2 and W3.">
   <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
-  <meta name="citation_title" content="Full wreath-product monodromy for the square of an explicit Keller map">
+  <meta name="citation_title" content="Full wreath-product monodromy through the third iterate of an explicit Keller map">
   <meta name="citation_author" content="Alec Kriebel">
   <meta name="citation_publication_date" content="2026-07-21">
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/wreath-monodromy/paper.pdf">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Full wreath-product monodromy for the square of an explicit Keller map">
-  <meta property="og:description" content="A degree-nine S3 wreath S3 calculation, exact resultant/function-field certificate, and full-cycle inertia for every iterate.">
+  <meta property="og:title" content="Full wreath-product monodromy through the third iterate of an explicit Keller map">
+  <meta property="og:description" content="Exact degree-nine and degree-27 wreath-product calculations, with resultant, discriminant, denominator, Newton-polygon, and group certificates.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/wreath-monodromy/">
   <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/wreath-monodromy/">
-  <title>Full wreath-product monodromy for the square of an explicit Keller map · Alec's Math Explorations</title>
+  <title>Full wreath-product monodromy through the third iterate · Alec's Math Explorations</title>
   <link rel="stylesheet" href="../../assets/style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "Full wreath-product monodromy for the square of an explicit Keller map",
+    "headline": "Full wreath-product monodromy through the third iterate of an explicit Keller map",
     "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
     "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
     "datePublished": "2026-07-21T18:44:48Z",
-    "dateModified": "2026-07-22T02:24:28Z",
+    "dateModified": "2026-07-22",
     "url": "https://aleckriebel.github.io/Math/papers/wreath-monodromy/",
     "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/wreath-monodromy/paper.pdf", "encodingFormat": "application/pdf"}
   }
@@ -42,10 +42,11 @@
     </nav>
     <div class="paper-hero"><div class="inner">
       <p class="paper-status">Discovery 04 · Public research draft · Not peer reviewed</p>
-      <h1>Full wreath-product monodromy for the square of an explicit Keller map</h1>
+      <h1>Full wreath-product monodromy through the third iterate of an explicit Keller map</h1>
       <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
       <p class="release">First public repository release: <time datetime="2026-07-21T18:44:48Z">21 July 2026, 18:44:48 UTC</time> (21 July 2026, 11:44:48 PDT)</p>
       <p class="release">Strengthened site edition: <time datetime="2026-07-22T02:24:28Z">22 July 2026, 02:24:28 UTC</time> (21 July 2026, 19:24:28 PDT)</p>
+      <p class="release">Third-iterate upgrade: <time datetime="2026-07-22">22 July 2026</time></p>
     </div></div>
   </header>
 
@@ -61,17 +62,19 @@
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_symbolic.py">Symbolic verifier</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_modular.py">Independent finite-field checker</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_group.g">GAP certificate</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_level3_wreath.py">W<sub>3</sub> certificate</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/w4_search/RESULT.md">Separate W<sub>4</sub> certificate</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/PRIORITY_AUDIT.md">Priority audit</a>
     </div>
 
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">Let (F:\mathbb C^3\to\mathbb C^3) be the newly announced noninjective polynomial map with constant Jacobian determinant (-2) and geometric monodromy (S_3). This note provisionally determines the geometric monodromy of its canonical self-composition as the full imprimitive wreath product (S_3\wr S_3) in degree nine, of order (1296). It also proves that every iterate (F^{\circ m}) has a full (3^m)-cycle in its geometric inertia at infinity.</p>
+        <p class="lede" itemprop="abstract">Let \(F:\mathbb C^3\to\mathbb C^3\) be the announced noninjective polynomial map with constant Jacobian determinant \(-2\) and geometric monodromy \(S_3\). This note provisionally determines the geometric monodromy of its second and third iterates as the full imprimitive wreath products \(W_2=S_3\wr S_3\) and \(W_3=S_3\wr S_3\wr S_3\). It also proves that every iterate \(F^{\circ m}\) has a full \(3^m\)-cycle in its geometric inertia at infinity.</p>
         <div class="fact-grid">
-          <div class="fact"><strong>Composite degree</strong><span>9 sheets · three blocks of three</span></div>
-          <div class="fact"><strong>Exact group</strong><span>(S_3\wr S_3) · order 1296</span></div>
-          <div class="fact"><strong>All iterates</strong><span>One full (3^m)-cycle for every (m\ge1)</span></div>
+          <div class="fact"><strong>Degrees</strong><span>9 sheets and 27 sheets</span></div>
+          <div class="fact"><strong>Exact groups</strong><span>\(W_2\) and \(W_3\)</span></div>
+          <div class="fact"><strong>All iterates</strong><span>One full \(3^m\)-cycle for every \(m\ge1\)</span></div>
         </div>
       </section>
 
@@ -82,10 +85,10 @@
           F(x,y,z)=\bigl(u^3z+y^2u(4+3xy),\ y+3xu^2z+3xy^2(4+3xy),\ 2x-3x^2y-x^3z\bigr).
         \]</div>
         <p>Exact expansion gives (det JF=-2), and the three distinct rational points ((0,0,-1/4)), ((1,-3/2,13/2)), and ((-1,3/2,13/2)) have the same image.</p>
-        <div class="theorem-block"><p><strong>Provisional theorem.</strong> For (G=F\circ F),</p><div class="equation">\[
-          \operatorname{Mon}(G)=S_3\wr S_3\le S_9,
-          \qquad |\operatorname{Mon}(G)|=6^3\cdot6=1296.
-        \]</div><p>The natural block system consists of the three inner preimages above each of the three intermediate sheets.</p></div>
+        <div class="theorem-block"><p><strong>Provisional theorem.</strong> The second and third iterates have generic degrees 9 and 27, and</p><div class="equation">\[
+          \operatorname{Mon}(F^{\circ2})=W_2=S_3\wr S_3,\qquad
+          \operatorname{Mon}(F^{\circ3})=W_3=S_3\wr S_3\wr S_3.
+        \]</div><p>The corresponding orders are \(1296\) and \(13{,}060{,}694{,}016\).</p></div>
 
         <h2>2. Exact eliminant and function-field tower</h2>
         <p>On the target line ((1,2,s)), two inverse-resolvent cubics eliminate to a primitive degree-nine polynomial (P(r,s)). The strengthened edition does more than record the resultant: exact denominator resultants show that the rational reconstruction is defined generically, and a linear subresultant (lambda(r,s)t+mu(r,s)) has (gcd(P,lambda)=1). Therefore (t=-mu/\lambda) is recovered at the generic point and</p>
@@ -110,12 +113,16 @@
         \]</div>
         <p>makes the new parameter valuation have exact denominator (3^{k+1}). Each cubic step is therefore totally ramified of degree three. The level-(m) branch exhausts the (3^m)-sheet slice and tame inertia acts as a single (3^m)-cycle. This does <em>not</em> prove the full iterated wreath product at every level.</p>
 
-        <h2>5. Unit-Jacobian normalization</h2>
+        <h2>5. The third-iterate certificate</h2>
+        <p>Three inverse-resolvent cubics eliminate to a primitive polynomial \(Q(q,s)\) of degree 27 in \(q\). Its normalized lower Newton polygon is the single edge from \((0,0)\) to \((27,34)\), giving irreducibility and a 27-cycle. Exact PARI arithmetic factors the degree-1612 discriminant by multiplicity and isolates a squarefree degree-76 divisor that occurs exactly once and is coprime to the leading coefficient and both reconstruction-denominator norms.</p>
+        <p>Local inertia at a root of that divisor is a single transposition in one bottom block. The proved \(W_2\) quotient, the 27-cycle, and this transposition generate the full kernel \(S_3^9\), hence all of \(W_3\). The verifier recomputes the eliminant invariants and checks the group lemma without enumerating the more than ten million elements of the kernel.</p>
+
+        <h2>6. Unit-Jacobian normalization</h2>
         <p>Since (det J(F\circ F)=4), postcomposing by (operatorname{diag}(1/4,1,1)) gives a noninjective polynomial self-map of (mathbb C^3) with Jacobian determinant one and the same degree-nine wreath-product monodromy.</p>
       </section>
 
       <section id="certificates">
-        <h2>6. Exact certificates</h2>
+        <h2>7. Exact certificates</h2>
         <ul class="certificate-list">
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_symbolic.py"><code>verify_symbolic.py</code></a> — Jacobian, collisions, resolvent reconstruction, exact resultant, denominator control, linear subresultant, Newton edge, discriminant, squarefreeness, and coprimality.</li>
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_modular.py"><code>verify_modular.py</code></a> — dependency-free finite-field arithmetic and three Frobenius cycle types.</li>
@@ -123,13 +130,15 @@
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_pari.gp"><code>verify_pari.gp</code></a> — independent PARI/GP discriminant and arithmetic Galois checks.</li>
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_group.g"><code>verify_group.g</code></a> — exhaustive GAP subgroup exclusion inside (S_3\wr S_3).</li>
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_level3_newton.py"><code>verify_level3_newton.py</code></a> — independent degree-27 Newton edge for the third iterate.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/verify_level3_wreath.py"><code>verify_level3_wreath.py</code></a> — primitive degree-27 eliminant, multiplicity-one discriminant divisor, denominator guards, and \(W_3\) kernel lemma.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_04_wreath_monodromy/w4_search/RESULT.md"><code>w4_search/RESULT.md</code></a> — separate bounded-memory proof of \(W_4\), including good reduction, norm-to-inertia, a direct sheet derivative, and the \(S_3^{27}\) kernel lemma.</li>
         </ul>
       </section>
 
       <section id="scope">
-        <h2>7. Scope and priority</h2>
-        <p>The closest public weighted-lift monodromy note states only the containment (operatorname{Mon}(F\circ F)\le S_3\wr S_3) and calls the exact group a natural next computation. A timestamped audit of 23 repositories, arXiv, MathOverflow, and web sources found no earlier exact determination for this map. That is source-specific evidence, not a guarantee of worldwide priority.</p>
-        <p>A separate four-variable construction already claims a different imprimitive degree-eight group of order 192. This note therefore does not claim the first imprimitive or first non-symmetric Keller monodromy. Its narrow candidate contribution is the exact canonical self-composition group, the pair ((9,S_3\wr S_3)), and the all-iterate full-cycle statement.</p>
+        <h2>8. Scope and priority</h2>
+        <p>The closest public weighted-lift monodromy note states only the containment \(\operatorname{Mon}(F\circ F)\le S_3\wr S_3\) and calls the exact group a natural next computation. A timestamped audit of 23 repositories, arXiv, MathOverflow, and web sources found no earlier exact determination of \(W_2\) or \(W_3\) for this map. That is source-specific evidence, not a guarantee of worldwide priority.</p>
+        <p>A separate four-variable construction already claims a different imprimitive degree-eight group of order 192. This note therefore does not claim the first imprimitive or first non-symmetric Keller monodromy. Its narrow candidate contribution is the exact second- and third-iterate groups, the pairs \((9,W_2)\) and \((27,W_3)\), and the all-iterate full-cycle statement. The subsequently certified \(W_4\) computation is intentionally kept as a separate proof artifact rather than folded into this paper.</p>
       </section>
 
       <section id="disclosure">
@@ -139,7 +148,7 @@
 
       <section id="suggested-citation">
         <h2>Suggested citation</h2>
-        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “Full wreath-product monodromy for the square of an explicit Keller map,” provisional research note, first repository release 21 July 2026, strengthened site edition 22 July 2026, 02:24:28 UTC. <a href="https://aleckriebel.github.io/Math/papers/wreath-monodromy/">Permanent page</a>.</p>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “Full wreath-product monodromy through the third iterate of an explicit Keller map,” provisional research note, first repository release 21 July 2026, third-iterate upgrade 22 July 2026. <a href="https://aleckriebel.github.io/Math/papers/wreath-monodromy/">Permanent page</a>.</p>
       </section>
     </article>
 
