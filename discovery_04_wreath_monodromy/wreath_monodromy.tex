@@ -13,8 +13,9 @@
 \title{Full wreath-product monodromy for the square\\
 of an explicit Keller map}
 \author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
-\date{Research draft prepared 21 July 2026, 17:00:46 UTC\\
-Not peer reviewed or publicly released as a numbered exploration}
+\date{First public repository release 21 July 2026, 18:44:48 UTC\\
+Strengthened site edition 22 July 2026, 02:24:28 UTC\\
+Research draft; not peer reviewed}
 
 \begin{document}
 \maketitle
@@ -146,7 +147,41 @@ P={}&128r^9s-256r^8
 \end{align*}
 \endgroup
 
-Its roots generically parametrize the nine points in the slice fiber.
+\subsection{No extraneous generic branch}
+
+Put $K=\C(s)$ and $C_0(t)=2t^3-2t^2+2t-s$.  The equation
+$s=2t^3-2t^2+2t$ defines a degree-three rational function, so $C_0$ is
+irreducible over $K$ and the intermediate field is $K(t)$.  On $C_0=0$,
+\[
+x(t)=\frac{2t^2}{3s+2t^2-4t},\qquad
+y(t)=-\frac{3s+2t^2-6t}{2t^2}.
+\]
+The exact identities
+\[
+\operatorname{Res}_t(C_0,t)=s,\qquad
+\operatorname{Res}_t(C_0,3s+2t^2-4t)=4s(27s^2-28s+12)
+\]
+show that the reconstruction denominators do not vanish generically.
+
+Let $N(t,r,s)$ be the cleared numerator of the inner cubic and let $R$ be its
+remainder modulo $C_0$.  Then $\deg_tR=2$, and the checker verifies
+\begin{equation}
+\operatorname{Res}_t(C_0,R)=4s^7P(r,s).
+\label{eq:reduced-resultant}
+\end{equation}
+The subresultant degrees are $3,2,1,0$.  Write the linear subresultant as
+\[
+L(t,r,s)=\lambda(r,s)t+\mu(r,s).
+\]
+Here $\deg_r\lambda=6$, $\lambda$ has 52 terms, and
+\[
+\gcd(P,\lambda)=1\quad\hbox{in }\C(s)[r].
+\]
+Thus, at the generic point of every component of $P=0$, the common root is
+$t=-\mu/\lambda$; it satisfies $C_0=R=0$, and all reconstruction denominators
+are nonzero.  Conversely, every genuine inverse pair annihilates the
+resultant.  Hence the primitive resultant has no extraneous generic branch
+and has the same function field as the two-step inverse incidence curve.
 
 \section{Three inertia elements}
 
@@ -167,7 +202,17 @@ Set $v=w^9$ and $r=w^{-7}R$. The initial equation is
 Its roots are simple and lift uniquely to Puiseux branches. The local deck
 transformation $w\mapsto\zeta_9w$ multiplies the leading term by
 $\zeta_9^{-7}$. Since $\gcd(7,9)=1$, it permutes all nine branches in one
-orbit. Thus slice monodromy contains a 9-cycle $\alpha$.
+orbit. Thus $P$ is irreducible over $\C((1/s))$, hence over $\C(s)$, and
+slice monodromy contains a 9-cycle $\alpha$.
+
+Together with the linear-subresultant calculation, this gives the actual
+function-field tower
+\[
+\C(s)\subset\C(s)(t)\subset\C(s)(t,r)=\C(s)(r),
+\qquad [\C(s)(t):\C(s)]=3,\quad[\C(s)(r):\C(s)]=9.
+\]
+In particular, the inner step has degree three and the nine Puiseux branches
+are precisely the nine sheets of the pulled-back $F\circ F$ cover.
 
 \subsection{A single transposition}
 
@@ -235,56 +280,84 @@ combining this with~\eqref{eq:upper} proves Theorem~\ref{thm:main}.
 
 \section{Full-cycle inertia for all iterates}
 
-We prove Proposition~\ref{prop:iterates}. Put $v=1/s$, start from
-$X_0=(1,2,s)$, and choose a compatible inverse tower
-$F(X_k)=X_{k-1}$. Write
-\[
-x_k\sim c_xs^{-a_k},\qquad y_k\sim c_ys^{a_k},\qquad
-z_k\sim c_zs^{c_k},
-\]
-where the constants are nonzero. Initially $a_0=0$ and $c_0=1$.
+We prove Proposition~\ref{prop:iterates} by a local-field induction.  Put
+$u=1/s$, let $K=\C((u))$ with $\nu(u)=1$, and work in a fixed Puiseux closure.
+Start from $X_0=(1,2,u^{-1})$ and choose a compatible inverse tower
+$F(X_{k+1})=X_k$.  We prove that
+\begin{equation}
+\nu(x_k)=a_k,\qquad \nu(y_k)=-a_k,\qquad \nu(z_k)=-c_k,
+\label{eq:coordinate-valuations}
+\end{equation}
+with nonzero leading units, and that the level-$k$ local branch field has
+ramification degree $3^k$ over $K$.  Initially $a_0=0$ and $c_0=1$.
 
 The next inverse parameter satisfies
 \[
 2x_kt^3-y_kt^2+2t-z_k=0.
 \]
-If $c_k>5a_k$, the lower Newton edge balances the first and last terms, so
+The coefficient valuations, in increasing powers of $t$, are
 \[
-t_{k+1}\sim c_ts^{(a_k+c_k)/3}.
+(-c_k,0,-a_k,a_k).
 \]
-The reconstruction formulas then yield
+If $c_k>5a_k$, the two middle points lie strictly above the segment joining
+$(0,-c_k)$ to $(3,a_k)$.  The Newton polygon theorem gives, for all three
+roots,
+\begin{equation}
+\nu(t_{k+1})=-\frac{a_k+c_k}{3}.
+\label{eq:t-valuation}
+\end{equation}
+The endpoint residual polynomial is a separable binomial cubic.
+
+We now check every possible cancellation in the reconstruction formulas.  In
+\[
+y_{k+1}=-\frac{y_kt^2+3z_k-6t}{2t^2},
+\]
+the term $3z_k$ is uniquely smallest, since
+\[
+-c_k<-a_k+2\nu(t),\qquad -c_k<\nu(t).
+\]
+Consequently $\nu(y_{k+1})=(2a_k-c_k)/3=-a_{k+1}$.  Next,
+$\nu(ty_{k+1})=(a_k-2c_k)/3<0$, so $ty_{k+1}$ uniquely dominates $1$ in
+$x_{k+1}=t/(1-ty_{k+1})$ and $\nu(x_{k+1})=a_{k+1}$.  Finally, $-z_k$
+uniquely dominates the numerator of
+\[
+z_{k+1}=\frac{2x_{k+1}-3x_{k+1}^2y_{k+1}-z_k}{x_{k+1}^3}.
+\]
+Thus~\eqref{eq:coordinate-valuations} persists with
 \begin{equation}
 a_{k+1}=\frac{c_k-2a_k}{3},\qquad
 c_{k+1}=2(c_k-a_k).
 \label{eq:recurrence}
 \end{equation}
-The hypothesis persists: for $\rho_k=a_k/c_k$, the interval
-$0\leq\rho_k\leq1/6$ is invariant under
+For $\rho_k=a_k/c_k$, the interval $0\leq\rho_k\leq1/6$ is invariant under
 \[
 \rho_{k+1}=\frac{1-2\rho_k}{6(1-\rho_k)},
 \]
-whose image on that interval is $[2/15,1/6]$ after the first step. Thus no
-omitted term lies on the lower edge and no leading coefficient cancels.
+and its image is contained in $[2/15,1/6]$ after the first step.  Hence
+$c_k>5a_k$ at every level, completing the valuation induction.
 
-Set $A_k=3^ka_k$ and $C_k=3^kc_k$. Equation~\eqref{eq:recurrence} becomes
+For ramification, set $A_k=3^ka_k$ and $C_k=3^kc_k$.  Then
 \[
 A_{k+1}=C_k-2A_k,\qquad C_{k+1}=6(C_k-A_k),
 \quad A_0=0,\ C_0=1.
 \]
-The exponent of $t_m$ is
+At the $m$th inverse step,
 \[
-\frac{E_m}{3^m},\qquad E_m=A_{m-1}+C_{m-1}.
+\nu(t_m)=-\frac{E_m}{3^m},\qquad E_m=A_{m-1}+C_{m-1}.
 \]
-For $m\geq2$, $C_{m-1}$ is divisible by three and $A_{m-1}\equiv1\pmod3$.
-Hence $3\nmid E_m$. The first exponents are
-\[
-\frac13,\quad\frac79,\quad\frac{34}{27},\quad\frac{178}{81},\ldots.
-\]
-At level $m$, the local inverse field has ramification index at least $3^m$;
-the global degree is at most $3^m$, so equality holds and the local extension
-is totally ramified. Finite extensions of $\C((v))$ are tame Puiseux
-extensions, so inertia acts as a single $3^m$-cycle. This proves the
-proposition.
+For $m\geq2$, $3\mid C_{m-1}$ and $A_{m-1}\equiv1\pmod3$; also $E_1=1$.
+Thus $3\nmid E_m$ for every $m$.  By induction the preceding branch field has
+value group $(1/3^{m-1})\mathbb Z$, whereas $\nu(t_m)$ has exact denominator
+$3^m$.  Adjoining $t_m$ therefore has ramification degree at least three; its
+equation is cubic, so both relative degree and ramification degree equal
+three.  Reconstruction is rational and $t_m=x_m/(1+x_my_m)$, hence passing
+between $t_m$ and $X_m$ loses no field.
+
+The level-$m$ local branch consequently has degree and ramification index
+$3^m$ over $K$.  The global slice cover has degree at most $3^m$, so this
+branch exhausts it and is totally ramified.  Newton--Puiseux theory in
+characteristic zero makes tame inertia cyclic and transitive on the $3^m$
+conjugates; a generator is a single $3^m$-cycle.
 
 As an independent check, nested PARI resultants for $m=3$ give a degree-27
 eliminant with one lower Newton edge from $(0,0)$ to $(27,34)$.
@@ -320,23 +393,28 @@ monodromy from an arithmetic specialization.
 
 \section{Verification and priority scope}
 
-The artifact contains four independent checks:
+The artifact contains complementary exact checks:
 \begin{center}
 \begin{tabularx}{\textwidth}{@{}lX@{}}
 \toprule
 File & Scope\\ \midrule
 \texttt{verify\_symbolic.py} & Jacobian, collision, inverse identities,
-resultant, Newton data, discriminant, squarefreeness, coprimality\\
+resultant, denominator and subresultant certificates, Newton data,
+discriminant, squarefreeness, coprimality\\
 \texttt{verify\_modular.py} & dependency-free polynomial arithmetic and Rabin
 irreducibility certificates\\
+\texttt{verify\_iterate\_inertia.py} & dependency-free recurrence, Newton-edge,
+and reconstruction-dominance checks\\
 \texttt{verify\_pari.gp} & independent discriminant, coprimality, finite-field,
 and arithmetic Galois checks\\
 \texttt{verify\_group.g} & exhaustive subgroup check inside $S_3\wr S_3$\\
+\texttt{verify\_level3\_newton.py} & independent degree-27 resultant and Newton
+edge for the third iterate\\
 \bottomrule
 \end{tabularx}
 \end{center}
-The optional \texttt{verify\_level3\_newton.py} checks the degree-27 edge with
-SymPy-generated equations and PARI resultants.
+The level-three checker uses SymPy-generated equations and delegates nested
+resultants to PARI.
 
 The closest public monodromy study states only
 $\Mon(F_0\circ F_0)\leq S_3\wr S_3$ and calls its exact group a natural next

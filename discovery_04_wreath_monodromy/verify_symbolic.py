@@ -181,12 +181,50 @@ def derive_line_polynomial() -> sp.Poly:
 
     # A second inverse step for F: r is the inner resolvent root.
     inner = sp.together(2 * xx * r**3 - yy * r**2 + 2 * r - zz)
-    inner_numerator = inner.as_numer_denom()[0]
+    inner_numerator, inner_denominator = inner.as_numer_denom()
     resultant = sp.resultant(outer, inner_numerator, t)
     content, primitive = sp.Poly(resultant, r, domain=sp.QQ[s]).primitive()
     assert sp.factor(content) == 256 * s**7
     polynomial = sp.Poly(primitive, r, domain=sp.QQ[s])
     assert sp.expand(polynomial.as_expr() - P_EXPECTED) == 0
+
+    # Generic denominator control.  On the outer cubic, the only parameters at
+    # which t or the other reconstruction denominator can vanish lie over
+    # s*q(s)=0.  They therefore do not create a component over QQ(s).
+    other_denominator = 3 * s + 2 * t**2 - 4 * t
+    q = 27 * s**2 - 28 * s + 12
+    assert sp.factor(sp.resultant(outer, t, t)) == s
+    assert sp.factor(sp.resultant(outer, other_denominator, t)) == 4 * s * q
+    assert sp.rem(
+        sp.Poly(inner_denominator, t, domain=sp.QQ[s]),
+        sp.Poly(outer, t, domain=sp.QQ[s]),
+    ).as_expr() != 0
+
+    # Reduce the cleared inner cubic modulo the outer cubic.  Its resultant is
+    # exactly vertical content times P.  The penultimate subresultant is
+    # lambda(r,s)*t+mu(r,s), and lambda is a unit in QQ(s)[r]/(P); hence t is
+    # recovered rationally from (r,s).  This certifies the function-field
+    # tower and rules out a hidden/extraneous generic component of the
+    # resultant curve.
+    reduced_inner = sp.rem(
+        sp.Poly(inner_numerator, t, domain=sp.QQ[r, s]),
+        sp.Poly(outer, t, domain=sp.QQ[r, s]),
+    ).as_expr()
+    assert sp.degree(reduced_inner, t) == 2
+    assert sp.expand(
+        sp.resultant(outer, reduced_inner, t) - 4 * s**7 * P_EXPECTED
+    ) == 0
+    subresultants = sp.subresultants(outer, reduced_inner, t)
+    assert [sp.degree(item, t) for item in subresultants] == [3, 2, 1, 0]
+    linear = sp.Poly(subresultants[-2], t, domain=sp.QQ[r, s])
+    coefficient = linear.coeff_monomial(t)
+    assert sp.degree(coefficient, r) == 6
+    assert len(sp.Poly(coefficient, r, s).terms()) == 52
+    fraction_field = sp.QQ.frac_field(s)
+    assert sp.gcd(
+        sp.Poly(P_EXPECTED, r, domain=fraction_field),
+        sp.Poly(coefficient, r, domain=fraction_field),
+    ).degree() == 0
     return polynomial
 
 
@@ -229,7 +267,7 @@ def main() -> None:
     check_resolvent_parametrization()
     print("PASS inverse resolvent: the cubic root reconstructs a generic preimage")
     polynomial = derive_line_polynomial()
-    print("PASS line eliminant: degree 9, 48 terms, exact resultant identity")
+    print("PASS line eliminant: degree 9, exact resultant and function-field tower")
     check_inertia_data(polynomial)
     print("PASS inertia: one Newton edge (0,0)-(9,7), simple degree-12 branch")
     print("PASS discriminant: 2^38 q(s)^8 A(s) B(s)^2 with A squarefree")

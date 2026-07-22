@@ -1,6 +1,6 @@
 # Discovery 04 artifact manifest
 
-Status: research draft, not peer reviewed.
+Status: public research draft, not peer reviewed.
 
 ## Main artifacts
 
@@ -8,7 +8,7 @@ Status: research draft, not peer reviewed.
 |---|---|
 | `NOTE.md` | Full readable proof and exact displayed certificate |
 | `wreath_monodromy.tex` | Typeset paper source |
-| `output/pdf/wreath_monodromy.pdf` | Rendered six-page paper |
+| `output/pdf/wreath_monodromy.pdf` | Rendered paper |
 | `PRIORITY_AUDIT.md` | Timestamped 23-repository, web, arXiv, and MathOverflow audit |
 | `RESEARCH_LOG.md` | Chronological decisions, rejected targets, and proof development |
 | `README.md` | Entry point and reproduction commands |
@@ -17,9 +17,9 @@ Status: research draft, not peer reviewed.
 
 | Path | Independence and scope |
 |---|---|
-| `verify_symbolic.py` | SymPy derivation from the map: Jacobian, collisions, inverse resolvent, eliminant, Newton edge, discriminant, and coprimality |
+| `verify_symbolic.py` | SymPy derivation from the map: Jacobian, collisions, inverse resolvent, eliminant, subresultant/function-field certificate, Newton edge, discriminant, and coprimality |
 | `verify_modular.py` | Python-standard-library polynomial arithmetic and Rabin irreducibility certificates; no CAS |
-| `verify_iterate_inertia.py` | Python-standard-library check of the all-iterate integer recurrence |
+| `verify_iterate_inertia.py` | Python-standard-library check of the all-iterate recurrence, Newton edges, and reconstruction dominance inequalities |
 | `verify_pari.gp` | PARI/GP re-entry of the displayed polynomials and independent discriminant, modular, and Galois checks |
 | `verify_group.g` | GAP construction of `S_3 wr S_3` and exhaustive subgroup exclusion |
 | `verify_level3_newton.py` | SymPy-generated level-three equations with nested resultants delegated to PARI |

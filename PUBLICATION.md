@@ -24,12 +24,23 @@ Eliott Cassidy's repository and that William Thompson had priority for the
 rank-compression idea. The original release timestamp and Git history remain
 unchanged.
 
-The repository now presents **one canonical consolidated paper**, Exploration
-03. Exploration 01 is archival because its monodromy theorem was already
-available in stronger form; its uniform rational collision survives as
-Appendix A. Exploration 02 is archival because its 27/54-variable construction
-is superseded by, and incorporated into, the canonical 22/44-variable paper.
-The original files and timestamps remain public for provenance.
+The repository presents Exploration 03 as the **canonical consolidated paper**
+for Explorations 01-03. Exploration 01 is archival because its monodromy
+theorem was already available in stronger form; its uniform rational collision
+survives as Appendix A. Exploration 02 is archival because its 27/54-variable
+construction is superseded by, and incorporated into, the canonical
+22/44-variable paper. The original files and timestamps remain public for
+provenance.
+
+Discovery 04, “Full wreath-product monodromy for the square of an explicit
+Keller map,” first entered the public repository in commit
+[`786cd8f4ca320cdc187ecccc068121b5518907f0`](https://github.com/AlecKriebel/Math/commit/786cd8f4ca320cdc187ecccc068121b5518907f0)
+at **21 July 2026, 18:44:48 UTC** (**21 July 2026, 11:44:48 PDT**). Its
+strengthened website edition was prepared at **22 July 2026, 02:24:28 UTC**
+(**21 July 2026, 19:24:28 PDT**). That
+revision adds an exact function-field/subresultant certificate and replaces
+the informal all-iterate growth argument with a local-field Puiseux induction;
+it does not enlarge the theorem statement.
 
 ## Authorship and status
 

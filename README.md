@@ -20,10 +20,18 @@ published so that others can audit the work. Passing the included checks is
 evidence about the encoded algebra; it is not peer review and does not prove
 that the interpretation or literature claims are correct.
 
-## Canonical paper
+## Current papers
+
+**Full wreath-product monodromy for the square of an explicit Keller map** is
+Discovery 04. It provisionally determines the geometric monodromy of the
+canonical self-composition as `S_3 wr S_3` in degree nine and proves a full
+`3^m`-cycle in geometric inertia for every iterate. The strengthened site
+edition includes an exact linear-subresultant/function-field certificate and a
+local-field Puiseux induction.
 
 **An explicit 44-variable vanishing witness from a 22-variable cubic Keller
-map** is the single current paper. It contains the factor-reusing 13-variable
+map** remains the consolidated paper for Explorations 01-03. It contains the
+factor-reusing 13-variable
 stable reduction, the rank-eight/22-variable cubic construction, the explicit
 44-variable quartic certificate, the corrected priority audit, and an appendix
 with the surviving uniform rational collision from Exploration 01.
