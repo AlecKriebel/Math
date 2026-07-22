@@ -454,3 +454,33 @@
   decimation orbit, replays both C++ radius-four scans, and checks that their
   disjoint tie counts combine to the documented totals.  The complete replay
   passed in 28.96 seconds at 25.5 MB peak RSS with zero swaps.
+
+## 22 July 2026: cyclic-SDS quartic and guided-window lanes
+
+- Generalized the annealing objective to `w_E E + w_Q Q + w_B B`, while
+  retaining `E=0` as the only exactness test.  Added exact random
+  two-plus/two-minus moves within one sequence, including every autocorrelation
+  interaction term.  A 60-second pure-quartic run evaluated 152,303,355
+  proposals; a 120-second run with 30% same-sequence moves evaluated
+  237,719,274 proposals over 1,189 basins.  Neither lowered the incumbent's
+  `(E,Q)=(64,136)`; both used under 1.5 MB peak RSS and zero swaps.
+- Exhausted six disjoint guided `H=12` single-sequence window families.  The
+  union contains 64,899,721 unique fixed-profile states.  An exact paired
+  `H=6` scan then made 61,471,872 evaluations across twelve families and all
+  six sequence pairs, representing 61,383,193 unique states.  Neither scan
+  found an exact SDS or improved energy, quartic score, or maximum residual.
+  The paired evaluation count includes overlaps between its sequence-pair
+  domains; its printed ties are evaluation multiplicities.
+- Added an exact four-block `H=6` meet-in-the-middle scan.  Each aligned family
+  enumerates `924^4=728,933,458,176` assignments using 853,776 stored left
+  pairs.  Two linear 64-bit fingerprints admit no false negatives, and every
+  match is checked over all 83 residuals.  Twelve support-disjoint aligned
+  families have a union of 8,747,201,498,101 unique states; none is exact.
+  The complete optimized pass took 2.36 seconds at 24.7 MB peak RSS with zero
+  swaps.  A one-family ASan/UBSan pass used 44.2 MB and reported no issue.
+- Added `verify_sds_167_windows.py`.  It independently reconstructs every
+  correlation in a direct `6^4=1,296` regression, replays the full twelve-
+  family MITM, validates sign-balanced disjoint supports, and checks all
+  counts and unchanged output.  It passed in 2.47 seconds at 25.4 MB peak RSS
+  with zero swaps.  These results exclude only the documented guided domains,
+  not mixed-family windows or unrestricted cyclic SDS quadruples.

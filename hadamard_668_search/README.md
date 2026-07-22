@@ -161,7 +161,11 @@ polish found no further descent.  The engine now also exhausts the full
 every fixed-row-sum state through raw Hamming distance four.  The latter audit
 covers 335,097,301 states and proves
 the energy-64 checkpoint is the unique energy and quartic minimum in that
-neighborhood; all exact scans use at most 11.5 MB peak RSS in optimized mode.
+neighborhood.  Guided exact scans also exclude 64,899,721 single-window
+states, 61,383,193 unique paired-window states (61,471,872 evaluations), and
+an aligned four-window union of 8,747,201,498,101 unique states.  The
+four-window meet-in-the-middle pass uses 24.7 MB peak RSS and has an
+independent small-domain/full-replay audit.
 The checkpoint is nonexact and is deliberately rejected by the strict
 verifier; no candidate is claimed.
 
@@ -183,6 +187,8 @@ python3 verify_variable_q_seed_shell18_artifacts.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
 python3 verify_sds_167_neighborhood.py \
+  --engine ../tmp/search_sds_167_local
+python3 verify_sds_167_windows.py \
   --engine ../tmp/search_sds_167_local
 .solver-venv/bin/python -m unittest -v \
   test_construction.py test_legendre_333.py test_legendre_multiplier.py \
@@ -211,8 +217,8 @@ parity-neighborhood enumerator is intentionally capped at three exchanges;
 larger meet-in-the-middle tables are not safe on this machine.
 The seed-frontier models use a tighter 256 MiB solver cap and have remained
 at or below 176 MB total RSS.  The cyclic-SDS annealer remained below 2 MB;
-its exhaustive bounded move polish used 11.5 MB.  Recorded searches are still
-run strictly one at a time.
+its radius-four scans used 11.5 MB and its exact four-window MITM used 24.7
+MB.  Recorded searches are still run strictly one at a time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal

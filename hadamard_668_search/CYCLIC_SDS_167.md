@@ -7,8 +7,9 @@ subfamily.
 
 Status: implementation, strict compilation, sanitizer runs, exact single- and
 compound-delta self-tests, checkpoint continuation, bounded portfolio runs,
-an exhaustive independent-decimation orbit, and the complete fixed-profile
-Hamming-radius-four audit completed; no order-167 candidate is claimed.
+an exhaustive independent-decimation orbit, the complete fixed-profile
+Hamming-radius-four audit, and an exact aligned four-window union completed;
+no order-167 candidate is claimed.
 
 ## Exact target
 
@@ -248,6 +249,95 @@ energy and shaped score.  Three 60-second screens at penalties 2, 4, and 16
 did not displace the energy-64 incumbent.  Bad-lag count is only a diagnostic:
 a large positive penalty can favor a few concentrated residual spikes, so
 future shaped runs should prioritize quartic residual scoring instead.
+
+## Quartic shaping and exact guided-window scans
+
+The annealer now minimizes the configurable score
+
+```text
+w_E E + w_Q Q + w_B B,
+```
+
+while exactness remains tied exclusively to `E=0`.  A 60-second pure-quartic
+screen evaluated 152,303,355 proposals without lowering `Q=136`.  A separate
+120-second screen proposed an exact two-plus/two-minus move within one
+sequence 30% of the time; it evaluated 237,719,274 proposals across 1,189
+basins and also left the incumbent unchanged.  Both remained below 1.5 MB
+peak RSS with zero swaps.  These are heuristic diagnostics.
+
+Three deterministic modes then exhaust finite domains selected by the best
+single-exchange quartic scores:
+
+- A single-block `H=12` window contains 12 incumbent plus positions and 12
+  minus positions.  All `C(24,12)` row-sum-preserving assignments are visited.
+  Six support-disjoint families across all four sequences cover 64,899,721
+  unique states and contain no exact SDS or improvement of `E`, `Q`, or the
+  maximum residual.
+- A paired `H=6` window enumerates `C(12,6)^2=853,776` assignments for each
+  pair of sequences.  Twelve families and all six sequence pairs give
+  61,471,872 evaluations representing 61,383,193 unique states.  No exact SDS
+  or metric improvement occurs.  The evaluation count includes overlaps
+  between pair domains, and reported tie counts are evaluation multiplicities.
+- The four-block `H=6` meet-in-the-middle mode enumerates all 924 assignments
+  in each of four sequence windows.  It stores the 853,776 assignments of the
+  first pair and probes all 853,776 assignments of the second pair.  The two
+  unsigned 64-bit fingerprints are linear modulo `2^64`: every exact zero
+  must be a fingerprint match, and every match is replayed against all 83
+  residuals.  Collisions can therefore cause extra comparisons but neither a
+  false exclusion nor a false solution.
+
+Each aligned four-window family exhausts
+
+```text
+924^4 = 728,933,458,176
+```
+
+states.  The twelve supports are disjoint within every sequence, so distinct
+aligned family domains intersect only at the incumbent.  Their union has
+
+```text
+1 + 12 * (924^4 - 1) = 8,747,201,498,101
+```
+
+unique states.  The exact scan found no SDS.  It took 2.36 seconds at 24.7 MB
+peak RSS with zero swaps.  A one-family ASan/UBSan replay passed at 44.2 MB.
+This is another finite local exclusion: it does not cover windows made by
+mixing different family indices among the four sequences, nor arbitrary
+fixed-profile states.
+
+Reproduce the deterministic scans and the independent audit with:
+
+```sh
+../tmp/search_sds_167_local --window-scan-half-size 12 \
+  --window-family-count 6 \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_window.json
+
+../tmp/search_sds_167_local --paired-window-half-size 6 \
+  --window-family-count 12 \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_paired_window.json
+
+../tmp/search_sds_167_local --four-window-mitm-half-size 6 \
+  --window-family-count 12 \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_four_window.json
+
+python3 verify_sds_167_windows.py \
+  --engine ../tmp/search_sds_167_local
+```
+
+The verifier pins the checkpoint hash, independently rebuilds and directly
+enumerates a `6^4=1,296` small instance, replays the full scan, checks every
+large window's signs and support disjointness, and verifies all MITM domain
+counts.  It passed in 2.47 seconds at 25.4 MB peak RSS with zero swaps.
+
+The generic checkpoint field `moves` stores a mode-specific primary counter:
+unique cases for the single-window scan, raw evaluations for the paired scan,
+and right-pair probes for the MITM.  The complete conceptual and unique domain
+counts are printed by each deterministic mode; the MITM counts are also
+checked by the independent verifier.  `moves` must not be compared across
+modes as if it had one common unit.
 
 Only an exact output should be passed to:
 
