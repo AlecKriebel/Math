@@ -292,6 +292,23 @@
   factored runs used at most 1.44 MB RSS and zero swap.  Checkpoint writes are
   checked and atomic, and high-nullity systems are deferred rather than
   treated as rejections.
+- Added the full structured `(B,C,D)` local parameterization with
+  `S=C xor D` and `A` recovered by the doubling recurrence.  Atomic exchanges
+  in each mask make the fixed-weight state graph connected; three coupled
+  exchanges leave `A` unchanged.  A 96-step invariant test covers each move
+  family, and ASan/UBSan passed a 10,000-move shard.  The separate verifier
+  checks all structure and PAFs and explicitly reports `NOT H(668)`.
+- Profile 0 fell from energy 2,752 to 808 in 1,659,072 production moves and
+  then to 752 under cold reheating.  Profile 1 independently reached 752 in
+  1,657,915 moves.  Complete scans of 7,742 and 7,682 valid two-coordinate
+  neighbors found no improvement, so both are local minima for the stated
+  move union.  Hot reheating, compound moves, and soft GF-shadow penalties
+  did not pass this floor.  These results imply no global lower bound.
+- On the exact GF surface, complete scans of every one-exchange `B` neighbor
+  and two-toggle `S` neighbor evaluated 5,113 states per profile.  Including
+  the centers, only 64 and 65 recovered an exact-weight affine survivor; none
+  improved energies 2,752 and 3,264.  This is another finite local-minimum
+  result, not an exhaustive good-matrix search.
 
 ## 22 July 2026: resource-safe search defaults
 

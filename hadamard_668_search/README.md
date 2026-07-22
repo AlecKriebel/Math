@@ -144,7 +144,11 @@ product quotient `S`, factors the 83-variable system once, and reuses it for
 256 fixed-weight `B` samples.  This sustained about 48,000 samples/second at
 1.44 MB peak RSS.  Two 60-second shards evaluated 2,890,277 and 2,871,527
 samples; the best independently replayed PAF energies were 2,752 and 3,264,
-still nonzero.  These bounded runs prove no nonexistence result:
+still nonzero.  A connected structured annealer then preserved the product
+theorem and all row sums while reducing both profiles to independently
+verified energy 752.  Complete scans of their 7,742 and 7,682 valid
+two-coordinate neighbors found no improvement.  They are local minima, not a
+global lower bound, and these bounded runs prove no nonexistence result:
 
 ```sh
 .solver-venv/bin/python search_good_167_cp_sat.py \
@@ -159,6 +163,8 @@ clang++ -std=c++20 -O3 search_good_167_stream.cpp \
   --checkpoint output/good_167_stream_sb_profile0_60s.json
 python3 verify_good_167_stream.py \
   output/good_167_stream_sb_profile0_60s.json
+python3 verify_good_167_local.py \
+  output/good_167_local_steepest_profile0.json
 ```
 
 ## Live lane 4: unrestricted cyclic SDS of order 167
@@ -241,7 +247,8 @@ strictly one at a time.
 The reduced good-matrix CP-SAT runs also use one worker and a 256 MiB solver
 cap; their measured whole-process peaks were 272.7 and 285.3 MB with zero
 swap.  The fixed-array good-matrix streamer used 1.44 MB peak RSS in
-production; its ASan/UBSan trial used 16.8 MB.  Neither program retains a
+production; the structured local runs used at most 1.49 MB and their
+ASan/UBSan trial used 17.9 MB.  Neither program retains a
 visited set or any structure that grows with elapsed time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order

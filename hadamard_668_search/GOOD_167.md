@@ -282,6 +282,67 @@ the product quotient, GF(2) equations and rank, exact weights, product theorem,
 all 83 PAF residuals, and the saved RNG transition.  Candidate and checkpoint
 writes use checked close and atomic replacement.
 
+## Connected structured local search
+
+The same executable also has a complete connected local parameterization by
+fixed-weight masks `B,C,D`, with `S=C xor D`.  Their half-weights are
+
+```text
+profile 0: (38,42,47)
+profile 1: (38,44,37).
+```
+
+Consequently `S` always has odd weight, the doubling recurrence recovers the
+unique normalized `A`, and the product theorem and every row sum hold after
+every move.  Three atomic exchanges change one of `B,C,D`; their Johnson
+graphs make the state space connected.  Three coupled exchanges change
+`B,C`, `B,D`, or `C,D` together while keeping `A` fixed.  Every proposal is
+checked by direct integer PAF recomputation.  Optional compound proposals
+compose several valid moves before acceptance, and a shadow penalty can favor
+the exact mod-16 correlation surface without treating it as sufficient.
+
+Run annealing from a verified reducer checkpoint, then exhaust its complete
+two-coordinate neighborhood:
+
+```bash
+../tmp/search_good_167_stream --parameterization local --profile 0 \
+  --seconds 60 --trials 0 --moves-per-restart 10000 \
+  --start-temperature 256 --end-temperature 0.25 \
+  --initial output/good_167_stream_sb_profile0_60s.json \
+  --checkpoint output/good_167_local_profile0_60s.json
+
+../tmp/search_good_167_stream --parameterization local --profile 0 \
+  --steepest-polish --initial output/good_167_local_profile0_60s.json \
+  --checkpoint output/good_167_local_steepest_profile0.json
+
+../tmp/hadamard-env/bin/python verify_good_167_local.py \
+  output/good_167_local_steepest_profile0.json
+```
+
+The local verifier requires a versioned `near_miss`, checks canonical 83-bit
+masks, exact weights, `S=C xor D`, the `S,B -> A` recurrence, product theorem,
+all 166 nonzero PAF lags and reflection, and every recorded metric.  Its
+success banner deliberately reads `VERIFIED NONEXACT CHECKPOINT — NOT H(668)`;
+zero energy is rejected and routed to the full `668x668` exact verifier.
+
+Starting from the factored checkpoints, profile 0 reached energy 808 in
+1,659,072 moves and then 752 in a cold reheat.  Profile 1 reached energy 752
+in 1,657,915 moves.  The profile-0 state has 60 bad lags and maximum absolute
+quarter residual 8; profile 1 has 63 and 6.  Complete steepest scans evaluated
+7,742 and 7,682 valid atomic/coupled neighbors respectively and found no
+strict improvement, proving both states are local minima for that move union.
+A further 1,656,250 hot-reheat moves and bounded compound/shadow-guided probes
+did not beat 752.  These are neighborhood and heuristic results, not a lower
+bound on the global energy.
+
+Separately, exact GF-surface scans evaluated all 5,113 one-exchange `B` and
+two-toggle `S` neighbors of each factored incumbent.  Only 64 and 65 states,
+including the centers, survived exact recovery; none improved energies 2,752
+and 3,264.  Thus those centers are local minima on this defined GF
+neighborhood too.  Production local runs used at most 1.49 MB RSS and zero
+swap; the sanitized 10,000-move run used 17.9 MB and reached verified energy
+976.  No exact candidate was found.
+
 ## Assessment and limitation
 
 This lane is worth pursuing because the product theorem makes it much smaller
