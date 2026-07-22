@@ -480,7 +480,19 @@
   swaps.  A one-family ASan/UBSan pass used 44.2 MB and reported no issue.
 - Added `verify_sds_167_windows.py`.  It independently reconstructs every
   correlation in a direct `6^4=1,296` regression, replays the full twelve-
-  family MITM, validates sign-balanced disjoint supports, and checks all
-  counts and unchanged output.  It passed in 2.47 seconds at 25.4 MB peak RSS
-  with zero swaps.  These results exclude only the documented guided domains,
-  not mixed-family windows or unrestricted cyclic SDS quadruples.
+  family aligned MITM, validates sign-balanced disjoint supports, and checks
+  all counts and unchanged output.
+- Extended the MITM to all `12^4` mixed family choices.  Deduplicating the
+  repeated identity assignment leaves `11,077` configurations per sequence
+  and exactly 15,055,272,576,605,041 unique states.  Eight left-family pairs
+  per batch use 6,830,208 records plus a 32 MiB no-false-negative Bloom
+  filter.  All 18 batches completed 2,212,987,392 right probes in 39.92
+  seconds at 216.3 MB peak RSS and zero swaps.  There were 877,347 Bloom
+  positives, no exact fingerprint matches, and no exact SDS.  A full-size
+  one-batch ASan/UBSan replay passed at 279.0 MB peak RSS with zero swaps.
+- The window verifier now independently enumerates the 14,641 canonical
+  states at `H=2,F=2`, then replays both large aligned and mixed scans and
+  checks their exact counts.  It passed in 39.21 seconds at 216.2 MB peak RSS
+  with zero swaps.  The mixed result still covers at most one guided window
+  per sequence, not arbitrary cyclic SDS quadruples or multiple windows in a
+  single sequence.

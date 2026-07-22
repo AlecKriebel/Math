@@ -8,8 +8,8 @@ subfamily.
 Status: implementation, strict compilation, sanitizer runs, exact single- and
 compound-delta self-tests, checkpoint continuation, bounded portfolio runs,
 an exhaustive independent-decimation orbit, the complete fixed-profile
-Hamming-radius-four audit, and an exact aligned four-window union completed;
-no order-167 candidate is claimed.
+Hamming-radius-four audit, and exact aligned and mixed four-window unions
+completed; no order-167 candidate is claimed.
 
 ## Exact target
 
@@ -301,9 +301,40 @@ aligned family domains intersect only at the incumbent.  Their union has
 
 unique states.  The exact scan found no SDS.  It took 2.36 seconds at 24.7 MB
 peak RSS with zero swaps.  A one-family ASan/UBSan replay passed at 44.2 MB.
-This is another finite local exclusion: it does not cover windows made by
-mixing different family indices among the four sequences, nor arbitrary
-fixed-profile states.
+The aligned scan alone does not cover windows made by mixing different family
+indices among the four sequences.
+
+The `--mixed-window-mitm-half-size` mode closes that particular gap.  Each
+sequence may independently use any one of the twelve support-disjoint windows.
+After identifying the twelve repeated representations of the unchanged
+sequence, one sequence has
+
+```text
+1 + 12 * (924 - 1) = 11,077
+```
+
+distinct configurations.  The exact mixed-family union therefore contains
+
+```text
+11,077^4 = 15,055,272,576,605,041
+```
+
+unique states.  The implementation scans all
+`(12*924)^4 = 15,115,164,188,737,536` family/assignment representations.
+Eight left-family pairs are batched into 6,830,208 records.  A 32 MiB Bloom
+filter rejects almost all impossible right fingerprints before binary search.
+It cannot hide a solution: a true zero has exactly the fingerprint inserted
+on the left, so all three of its Bloom bits are necessarily set; every exact
+fingerprint match is still replayed over all 83 integer residuals.
+
+All 18 batches completed with no exact SDS.  The run made 2,212,987,392
+right-pair probes in 39.92 seconds, used 216.3 MB peak RSS and zero swap, and
+had 877,347 Bloom-positive probes but no exact 128-bit fingerprint match.  Its
+full-size one-batch ASan/UBSan replay passed at 279.0 MB peak RSS with zero
+swap.  Its
+scope is still finite: it permits at most one selected guided window per
+sequence and does not cover arbitrary fixed-profile states or combinations of
+two family windows within one sequence.
 
 Reproduce the deterministic scans and the independent audit with:
 
@@ -323,21 +354,27 @@ Reproduce the deterministic scans and the independent audit with:
   --initial output/sds_167_local_continued_600s.json \
   --output /tmp/sds_167_four_window.json
 
+../tmp/search_sds_167_local --mixed-window-mitm-half-size 6 \
+  --window-family-count 12 --mixed-window-batch-size 8 \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_mixed_window.json
+
 python3 verify_sds_167_windows.py \
   --engine ../tmp/search_sds_167_local
 ```
 
 The verifier pins the checkpoint hash, independently rebuilds and directly
-enumerates a `6^4=1,296` small instance, replays the full scan, checks every
-large window's signs and support disjointness, and verifies all MITM domain
-counts.  It passed in 2.47 seconds at 25.4 MB peak RSS with zero swaps.
+enumerates both a `6^4=1,296` aligned instance and a 14,641-state canonical
+mixed instance, replays both full scans, checks every large window's signs and
+support disjointness, and verifies all MITM domain counts.  It passed in 39.21
+seconds at 216.2 MB peak RSS with zero swaps.
 
 The generic checkpoint field `moves` stores a mode-specific primary counter:
 unique cases for the single-window scan, raw evaluations for the paired scan,
-and right-pair probes for the MITM.  The complete conceptual and unique domain
-counts are printed by each deterministic mode; the MITM counts are also
-checked by the independent verifier.  `moves` must not be compared across
-modes as if it had one common unit.
+and right-pair probes for either MITM.  The complete conceptual and unique
+domain counts are printed by each deterministic mode; the MITM counts are
+also checked by the independent verifier.  `moves` must not be compared
+across modes as if it had one common unit.
 
 Only an exact output should be passed to:
 

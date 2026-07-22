@@ -163,9 +163,11 @@ covers 335,097,301 states and proves
 the energy-64 checkpoint is the unique energy and quartic minimum in that
 neighborhood.  Guided exact scans also exclude 64,899,721 single-window
 states, 61,383,193 unique paired-window states (61,471,872 evaluations), and
-an aligned four-window union of 8,747,201,498,101 unique states.  The
-four-window meet-in-the-middle pass uses 24.7 MB peak RSS and has an
-independent small-domain/full-replay audit.
+an aligned four-window union of 8,747,201,498,101 unique states.  Allowing an
+independent family choice in each sequence expands the exact mixed-window
+union to 15,055,272,576,605,041 unique states; none is exact.  The mixed
+meet-in-the-middle pass uses 216.3 MB peak RSS and has an independent
+small-domain/full-replay audit.
 The checkpoint is nonexact and is deliberately rejected by the strict
 verifier; no candidate is claimed.
 
@@ -218,7 +220,9 @@ larger meet-in-the-middle tables are not safe on this machine.
 The seed-frontier models use a tighter 256 MiB solver cap and have remained
 at or below 176 MB total RSS.  The cyclic-SDS annealer remained below 2 MB;
 its radius-four scans used 11.5 MB and its exact four-window MITM used 24.7
-MB.  Recorded searches are still run strictly one at a time.
+MB.  The larger mixed-family MITM is explicitly capped at eight left-family
+pairs per batch and used 216.3 MB peak RSS.  Recorded searches are still run
+strictly one at a time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal

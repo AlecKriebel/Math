@@ -93,6 +93,10 @@ struct Options {
   int window_half_size = 0;
   int paired_window_half_size = 0;
   int four_window_mitm_half_size = 0;
+  int mixed_window_mitm_half_size = 0;
+  int mixed_window_batch_size = 8;
+  int mixed_window_batch_start = 0;
+  int mixed_window_batch_count = 0;
   int window_family_count = 1;
   std::string scan_objective = "energy";
   bool self_test = false;
@@ -702,6 +706,18 @@ Options parse_options(int argc, char **argv) {
     else if (argument == "--four-window-mitm-half-size")
       options.four_window_mitm_half_size =
           parse_bounded_int(next(argument), argument, 6);
+    else if (argument == "--mixed-window-mitm-half-size")
+      options.mixed_window_mitm_half_size =
+          parse_bounded_int(next(argument), argument, 6);
+    else if (argument == "--mixed-window-batch-size")
+      options.mixed_window_batch_size =
+          parse_bounded_int(next(argument), argument, 8);
+    else if (argument == "--mixed-window-batch-start")
+      options.mixed_window_batch_start =
+          parse_bounded_int(next(argument), argument, 144);
+    else if (argument == "--mixed-window-batch-count")
+      options.mixed_window_batch_count =
+          parse_bounded_int(next(argument), argument, 144);
     else if (argument == "--window-family-count")
       options.window_family_count =
           parse_bounded_int(next(argument), argument, 12);
@@ -739,6 +755,10 @@ Options parse_options(int argc, char **argv) {
           << "  --window-scan-half-size H exhaust H-plus/H-minus guided windows\n"
           << "  --paired-window-half-size H exhaust paired H-plus/H-minus windows\n"
           << "  --four-window-mitm-half-size H exact four-block window MITM\n"
+          << "  --mixed-window-mitm-half-size H exact all mixed-family windows\n"
+          << "  --mixed-window-batch-size N left-family pairs per batch (max 8)\n"
+          << "  --mixed-window-batch-start N first mixed-family batch\n"
+          << "  --mixed-window-batch-count N number of batches (0 means all)\n"
           << "  --window-family-count N  disjoint guided windows per sequence\n"
           << "  --scan-objective NAME    energy, quartic, or maximum\n"
           << "  --self-test              validate incremental deltas\n";
@@ -819,6 +839,13 @@ Options parse_options(int argc, char **argv) {
       options.four_window_mitm_half_size > 6)
     throw std::runtime_error(
         "four-window MITM half-size must lie in 0..6");
+  if (options.mixed_window_mitm_half_size < 0 ||
+      options.mixed_window_mitm_half_size > 6)
+    throw std::runtime_error(
+        "mixed-window MITM half-size must lie in 0..6");
+  if (options.mixed_window_batch_size < 1 ||
+      options.mixed_window_batch_size > 8)
+    throw std::runtime_error("mixed-window batch size must lie in 1..8");
   if (options.window_family_count < 1 || options.window_family_count > 12)
     throw std::runtime_error("window family count must lie in 1..12");
   if (options.window_half_size > 0 && options.initial.empty())
@@ -849,6 +876,22 @@ Options parse_options(int argc, char **argv) {
       options.pair_polish_size > 0)
     throw std::runtime_error(
         "four-window MITM cannot be combined with pair polish");
+  if (options.mixed_window_mitm_half_size > 0 && options.initial.empty())
+    throw std::runtime_error(
+        "mixed-window MITM requires an initial checkpoint");
+  if (options.mixed_window_mitm_half_size > 0 && !raw_energy_score)
+    throw std::runtime_error(
+        "mixed-window MITM requires a raw-score launch");
+  if (options.mixed_window_mitm_half_size > 0 &&
+      options.pair_polish_size > 0)
+    throw std::runtime_error(
+        "mixed-window MITM cannot be combined with pair polish");
+  if (options.mixed_window_mitm_half_size == 0 &&
+      (options.mixed_window_batch_size != 8 ||
+       options.mixed_window_batch_start != 0 ||
+       options.mixed_window_batch_count != 0))
+    throw std::runtime_error(
+        "mixed-window batch options require mixed-window MITM");
   const int exact_scan_modes = static_cast<int>(options.decimation_scan) +
                                static_cast<int>(options.same_sequence_pair_scan) +
                                static_cast<int>(options.cross_sequence_pair_scan) +
@@ -856,7 +899,9 @@ Options parse_options(int argc, char **argv) {
                                static_cast<int>(
                                    options.paired_window_half_size > 0) +
                                static_cast<int>(
-                                   options.four_window_mitm_half_size > 0);
+                                   options.four_window_mitm_half_size > 0) +
+                               static_cast<int>(
+                                   options.mixed_window_mitm_half_size > 0);
   if (exact_scan_modes > 1)
     throw std::runtime_error("select only one exact scan mode");
   if (options.scan_objective != "energy" &&
@@ -2510,6 +2555,466 @@ int run_four_window_mitm(const Options &options) {
   return found ? 0 : 1;
 }
 
+class PairBloomFilter {
+ public:
+  explicit PairBloomFilter(std::uint64_t entries) {
+    std::uint64_t bits = 1ULL << 16;
+    constexpr std::uint64_t maximum_bits = 1ULL << 28;
+    while (bits < maximum_bits && bits < 32 * entries) bits <<= 1;
+    bit_mask_ = bits - 1;
+    words_.assign(static_cast<std::size_t>(bits / 64), 0);
+  }
+
+  void insert(std::uint64_t first, std::uint64_t second) {
+    for (std::uint64_t hash : hashes(first, second))
+      words_[static_cast<std::size_t>((hash & bit_mask_) >> 6)] |=
+          1ULL << (hash & 63);
+  }
+
+  bool possibly_contains(std::uint64_t first, std::uint64_t second) const {
+    for (std::uint64_t hash : hashes(first, second)) {
+      if ((words_[static_cast<std::size_t>((hash & bit_mask_) >> 6)] &
+           (1ULL << (hash & 63))) == 0)
+        return false;
+    }
+    return true;
+  }
+
+  std::uint64_t bytes() const {
+    return static_cast<std::uint64_t>(words_.size()) * sizeof(std::uint64_t);
+  }
+
+ private:
+  static std::array<std::uint64_t, 3> hashes(
+      std::uint64_t first, std::uint64_t second) {
+    const std::uint64_t base =
+        splitmix64(first ^ splitmix64(second ^ 0x66816703ULL));
+    const std::uint64_t step =
+        splitmix64(second ^ splitmix64(first ^ 0x16766804ULL)) | 1ULL;
+    return {{base, base + step, base + 2 * step}};
+  }
+
+  std::vector<std::uint64_t> words_;
+  std::uint64_t bit_mask_ = 0;
+};
+
+void self_test_pair_bloom_filter() {
+  PairBloomFilter bloom(4096);
+  std::vector<std::pair<std::uint64_t, std::uint64_t>> inserted;
+  inserted.reserve(4096);
+  for (std::uint64_t index = 0; index < 4096; ++index) {
+    const std::pair<std::uint64_t, std::uint64_t> fingerprint{
+        splitmix64(0x66800000ULL + index),
+        splitmix64(0x16700000ULL + index)};
+    inserted.push_back(fingerprint);
+    bloom.insert(fingerprint.first, fingerprint.second);
+  }
+  for (const auto &[first, second] : inserted) {
+    if (!bloom.possibly_contains(first, second))
+      throw std::runtime_error("Bloom filter produced a false negative");
+  }
+  std::cout << "PASS: Bloom filter retained 4096 inserted fingerprints\n";
+}
+
+struct MixedFourWindowMove {
+  std::array<int, SEQUENCES> families{{-1, -1, -1, -1}};
+  int window_size = 0;
+  std::array<std::array<int, 12>, SEQUENCES> windows{};
+  std::array<std::uint16_t, SEQUENCES> masks{};
+};
+
+State state_after_mixed_four_window_move(
+    const State &source, const MixedFourWindowMove &move) {
+  State result = source;
+  if (move.families[0] >= 0) {
+    for (int which = 0; which < SEQUENCES; ++which) {
+      for (int index = 0; index < move.window_size; ++index) {
+        result.sequence[which][move.windows[which][index]] =
+            (move.masks[which] & (1U << index)) != 0 ? 1 : -1;
+      }
+    }
+  }
+  result.residual = full_residuals(result.sequence);
+  result.energy = energy(result.residual);
+  validate(result);
+  return result;
+}
+
+int run_mixed_window_mitm(const Options &options) {
+  const State source = read_checkpoint(options.initial);
+  if (options.profile >= 0 && options.profile != source.profile)
+    throw std::runtime_error(
+        "requested profile disagrees with initial checkpoint");
+  const int half_size = options.mixed_window_mitm_half_size;
+  const int window_size = 2 * half_size;
+  const int family_count = options.window_family_count;
+  const std::uint64_t assignment_count = binomial(window_size, half_size);
+  const std::uint64_t pair_count = assignment_count * assignment_count;
+  if (assignment_count > std::numeric_limits<std::uint32_t>::max() ||
+      pair_count > std::numeric_limits<std::uint32_t>::max())
+    throw std::runtime_error("mixed-window packed index exceeds 32 bits");
+  const std::uint32_t assignment_count_32 =
+      static_cast<std::uint32_t>(assignment_count);
+  const std::uint32_t pair_count_32 =
+      static_cast<std::uint32_t>(pair_count);
+  const int left_family_pair_count = family_count * family_count;
+  const int batch_size = options.mixed_window_batch_size;
+  const int total_batches =
+      (left_family_pair_count + batch_size - 1) / batch_size;
+  if (options.mixed_window_batch_start >= total_batches)
+    throw std::runtime_error("mixed-window batch start is out of range");
+  const int batch_begin = options.mixed_window_batch_start;
+  const int batch_end = options.mixed_window_batch_count == 0
+      ? total_batches
+      : batch_begin + options.mixed_window_batch_count;
+  if (batch_end > total_batches)
+    throw std::runtime_error("mixed-window batch range is out of range");
+  if (static_cast<std::uint64_t>(batch_size) * pair_count >
+      std::numeric_limits<std::uint32_t>::max())
+    throw std::runtime_error("mixed-window batch packing exceeds 32 bits");
+
+  for (int which = 0; which < SEQUENCES; ++which) {
+    const int plus = (N + row_sum(source.sequence[which])) / 2;
+    const int minus = N - plus;
+    const int required = half_size * family_count;
+    if (plus < required || minus < required)
+      throw std::runtime_error(
+          "mixed-window families require more signs than the profile contains");
+  }
+
+  std::array<std::vector<std::vector<int>>, SEQUENCES> windows;
+  std::array<std::vector<std::vector<WindowAssignment>>, SEQUENCES>
+      assignments;
+  std::array<
+      std::vector<std::vector<std::pair<std::uint64_t, std::uint64_t>>>,
+      SEQUENCES> hashes;
+  for (int which = 0; which < SEQUENCES; ++which) {
+    windows[which].resize(family_count);
+    assignments[which].resize(family_count);
+    hashes[which].resize(family_count);
+  }
+  std::array<std::array<bool, N>, SEQUENCES> excluded{};
+  for (int family = 0; family < family_count; ++family) {
+    for (int which = 0; which < SEQUENCES; ++which) {
+      const auto [plus, minus] =
+          guided_window(source, which, half_size, excluded[which]);
+      for (int position : plus) excluded[which][position] = true;
+      for (int position : minus) excluded[which][position] = true;
+      windows[which][family] = plus;
+      windows[which][family].insert(
+          windows[which][family].end(), minus.begin(), minus.end());
+      assignments[which][family] = enumerate_window_assignments(
+          source, which, windows[which][family], half_size);
+      const std::uint16_t identity_mask = static_cast<std::uint16_t>(
+          (1U << half_size) - 1U);
+      if (assignments[which][family].empty() ||
+          assignments[which][family][0].plus_mask != identity_mask ||
+          assignments[which][family][0].delta != Residuals{})
+        throw std::runtime_error(
+            "mixed-window assignment zero is not the identity");
+      hashes[which][family].reserve(assignments[which][family].size());
+      for (const WindowAssignment &assignment : assignments[which][family])
+        hashes[which][family].push_back(
+            residual_fingerprint(assignment.delta));
+      std::cout << "MIXED_WINDOW family=" << family
+                << " sequence=" << which << " positions=(";
+      for (int index = 0; index < window_size; ++index)
+        std::cout << (index == 0 ? "" : ",")
+                  << windows[which][family][index];
+      std::cout << ") assignments="
+                << assignments[which][family].size() << '\n';
+    }
+  }
+  std::cout.flush();
+
+  std::uint64_t brute_force_exact = 0;
+  const bool small_full_crosscheck =
+      half_size <= 2 && family_count <= 2 && batch_begin == 0 &&
+      batch_end == total_batches;
+  if (small_full_crosscheck) {
+    for (int first_family = 0; first_family < family_count; ++first_family) {
+      for (int second_family = 0; second_family < family_count;
+           ++second_family) {
+        for (int third_family = 0; third_family < family_count;
+             ++third_family) {
+          for (int fourth_family = 0; fourth_family < family_count;
+               ++fourth_family) {
+            for (const WindowAssignment &first :
+                 assignments[0][first_family]) {
+              for (const WindowAssignment &second :
+                   assignments[1][second_family]) {
+                for (const WindowAssignment &third :
+                     assignments[2][third_family]) {
+                  for (const WindowAssignment &fourth :
+                       assignments[3][fourth_family]) {
+                    bool exact = true;
+                    for (int lag = 1; lag <= HALF; ++lag) {
+                      if (source.residual[lag] + first.delta[lag] +
+                              second.delta[lag] + third.delta[lag] +
+                              fourth.delta[lag] !=
+                          0) {
+                        exact = false;
+                        break;
+                      }
+                    }
+                    brute_force_exact += exact;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  const auto source_hash = residual_fingerprint(source.residual);
+  const std::uint64_t right_pair_records =
+      static_cast<std::uint64_t>(left_family_pair_count) * pair_count;
+  MixedFourWindowMove solution;
+  bool found = false;
+  std::uint64_t right_pair_probes = 0;
+  std::uint64_t bloom_positive_probes = 0;
+  std::uint64_t exact_comparisons = 0;
+  std::uint64_t conceptual_exhausted = 0;
+  std::uint64_t fully_exhausted_left_family_pairs = 0;
+  std::array<bool, 12> exhausted_first_families{};
+  std::array<bool, 12> exhausted_second_families{};
+  const auto scan_started = std::chrono::steady_clock::now();
+
+  for (int batch = batch_begin; batch < batch_end && !found; ++batch) {
+    const auto batch_started = std::chrono::steady_clock::now();
+    const int first_left_pair = batch * batch_size;
+    const int last_left_pair =
+        std::min(first_left_pair + batch_size, left_family_pair_count);
+    const int left_pairs_in_batch = last_left_pair - first_left_pair;
+    const std::uint64_t left_record_count =
+        static_cast<std::uint64_t>(left_pairs_in_batch) * pair_count;
+    PairBloomFilter bloom(left_record_count);
+    std::vector<PairFingerprint> left_pairs;
+    left_pairs.reserve(static_cast<std::size_t>(left_record_count));
+    for (int pair_index = first_left_pair;
+         pair_index < last_left_pair; ++pair_index) {
+      const int local_pair = pair_index - first_left_pair;
+      const int first_family = pair_index / family_count;
+      const int second_family = pair_index % family_count;
+      for (std::uint32_t first = 0; first < assignment_count_32; ++first) {
+        for (std::uint32_t second = 0; second < assignment_count_32;
+             ++second) {
+          const std::uint64_t first_hash =
+              hashes[0][first_family][first].first +
+              hashes[1][second_family][second].first;
+          const std::uint64_t second_hash =
+              hashes[0][first_family][first].second +
+              hashes[1][second_family][second].second;
+          const std::uint32_t packed =
+              static_cast<std::uint32_t>(local_pair) * pair_count_32 +
+              first * assignment_count_32 + second;
+          left_pairs.push_back({first_hash, second_hash, packed});
+          bloom.insert(first_hash, second_hash);
+        }
+      }
+    }
+    if (left_pairs.size() != left_record_count)
+      throw std::runtime_error("mixed-window left-record count mismatch");
+    std::sort(left_pairs.begin(), left_pairs.end(),
+              [](const PairFingerprint &left,
+                 const PairFingerprint &right) {
+                return std::tie(left.first, left.second,
+                                left.packed_indices) <
+                       std::tie(right.first, right.second,
+                                right.packed_indices);
+              });
+
+    const std::uint64_t probes_before_batch = right_pair_probes;
+    for (int third_family = 0;
+         third_family < family_count && !found; ++third_family) {
+      for (int fourth_family = 0;
+           fourth_family < family_count && !found; ++fourth_family) {
+        for (std::uint32_t third = 0;
+             third < assignment_count_32 && !found; ++third) {
+          for (std::uint32_t fourth = 0;
+               fourth < assignment_count_32 && !found; ++fourth) {
+            const std::uint64_t target_first =
+                0 - source_hash.first -
+                hashes[2][third_family][third].first -
+                hashes[3][fourth_family][fourth].first;
+            const std::uint64_t target_second =
+                0 - source_hash.second -
+                hashes[2][third_family][third].second -
+                hashes[3][fourth_family][fourth].second;
+            if (bloom.possibly_contains(target_first, target_second)) {
+              ++bloom_positive_probes;
+              const auto begin = std::lower_bound(
+                  left_pairs.begin(), left_pairs.end(),
+                  std::pair<std::uint64_t, std::uint64_t>{target_first,
+                                                          target_second},
+                  [](const PairFingerprint &record,
+                     const std::pair<std::uint64_t, std::uint64_t> &target) {
+                    return record.first < target.first ||
+                           (record.first == target.first &&
+                            record.second < target.second);
+                  });
+              for (auto match = begin;
+                   match != left_pairs.end() &&
+                   match->first == target_first &&
+                   match->second == target_second;
+                   ++match) {
+                ++exact_comparisons;
+                const std::uint32_t local_pair =
+                    match->packed_indices / pair_count_32;
+                const std::uint32_t within_pair =
+                    match->packed_indices % pair_count_32;
+                const std::uint32_t first =
+                    within_pair / assignment_count_32;
+                const std::uint32_t second =
+                    within_pair % assignment_count_32;
+                const int left_pair =
+                    first_left_pair + static_cast<int>(local_pair);
+                const int first_family = left_pair / family_count;
+                const int second_family = left_pair % family_count;
+                bool exact = true;
+                for (int lag = 1; lag <= HALF; ++lag) {
+                  if (source.residual[lag] +
+                          assignments[0][first_family][first].delta[lag] +
+                          assignments[1][second_family][second].delta[lag] +
+                          assignments[2][third_family][third].delta[lag] +
+                          assignments[3][fourth_family][fourth].delta[lag] !=
+                      0) {
+                    exact = false;
+                    break;
+                  }
+                }
+                if (exact) {
+                  solution.families = {{first_family, second_family,
+                                        third_family, fourth_family}};
+                  solution.window_size = window_size;
+                  const std::array<int, SEQUENCES> selected_families{{
+                      first_family, second_family,
+                      third_family, fourth_family}};
+                  for (int which = 0; which < SEQUENCES; ++which) {
+                    for (int index = 0; index < window_size; ++index) {
+                      solution.windows[which][index] =
+                          windows[which][selected_families[which]][index];
+                    }
+                  }
+                  solution.masks = {{
+                      assignments[0][first_family][first].plus_mask,
+                      assignments[1][second_family][second].plus_mask,
+                      assignments[2][third_family][third].plus_mask,
+                      assignments[3][fourth_family][fourth].plus_mask}};
+                  found = true;
+                  break;
+                }
+              }
+            }
+            ++right_pair_probes;
+          }
+        }
+      }
+    }
+
+    if (!found) {
+      if (right_pair_probes - probes_before_batch != right_pair_records)
+        throw std::runtime_error("mixed-window right-record count mismatch");
+      conceptual_exhausted += left_record_count * right_pair_records;
+      fully_exhausted_left_family_pairs +=
+          static_cast<std::uint64_t>(left_pairs_in_batch);
+      for (int pair_index = first_left_pair;
+           pair_index < last_left_pair; ++pair_index) {
+        exhausted_first_families[pair_index / family_count] = true;
+        exhausted_second_families[pair_index % family_count] = true;
+      }
+    }
+    const double batch_seconds = std::chrono::duration<double>(
+        std::chrono::steady_clock::now() - batch_started).count();
+    std::cout << std::fixed << std::setprecision(3)
+              << "MIXED_WINDOW_BATCH batch=" << batch
+              << " first_left_pair=" << first_left_pair
+              << " left_family_pairs=" << left_pairs_in_batch
+              << " left_records=" << left_pairs.size()
+              << " record_bytes="
+              << left_pairs.size() * sizeof(PairFingerprint)
+              << " bloom_bytes=" << bloom.bytes()
+              << " cumulative_right_pair_probes=" << right_pair_probes
+              << " cumulative_bloom_positive_probes="
+              << bloom_positive_probes
+              << " cumulative_exact_comparisons=" << exact_comparisons
+              << " found=" << (found ? 1 : 0)
+              << " seconds=" << batch_seconds << '\n';
+    std::cout.flush();
+  }
+
+  const State result = state_after_mixed_four_window_move(source, solution);
+  if (found && result.energy != 0)
+    throw std::runtime_error(
+        "mixed-window fingerprint match failed exact materialization");
+  if (!found) {
+    const std::uint64_t completed_batches =
+        static_cast<std::uint64_t>(batch_end - batch_begin);
+    if (right_pair_probes != completed_batches * right_pair_records)
+      throw std::runtime_error("mixed-window total probe count mismatch");
+  }
+  if (small_full_crosscheck &&
+      found != (brute_force_exact != 0))
+    throw std::runtime_error(
+        "mixed-window MITM disagrees with direct enumeration");
+
+  write_checkpoint(options.output, result, options.seed, right_pair_probes,
+                   found, ScoreWeights{});
+  const std::uint64_t nonidentity = assignment_count - 1;
+  const std::uint64_t first_family_choices = static_cast<std::uint64_t>(
+      std::count(exhausted_first_families.begin(),
+                 exhausted_first_families.end(), true));
+  const std::uint64_t second_family_choices = static_cast<std::uint64_t>(
+      std::count(exhausted_second_families.begin(),
+                 exhausted_second_families.end(), true));
+  const std::uint64_t unique_left_states =
+      fully_exhausted_left_family_pairs == 0
+      ? 0
+      : 1 + (first_family_choices + second_family_choices) * nonidentity +
+            fully_exhausted_left_family_pairs * nonidentity * nonidentity;
+  const std::uint64_t unique_per_right_sequence =
+      1 + static_cast<std::uint64_t>(family_count) * nonidentity;
+  const std::uint64_t unique_exhausted = unique_left_states == 0
+      ? 0
+      : unique_left_states * unique_per_right_sequence *
+            unique_per_right_sequence;
+  const std::uint64_t full_unique_domain =
+      unique_per_right_sequence * unique_per_right_sequence *
+      unique_per_right_sequence * unique_per_right_sequence;
+  const double total_seconds = std::chrono::duration<double>(
+      std::chrono::steady_clock::now() - scan_started).count();
+  std::cout << "MIXED_WINDOW_MITM half_size=" << half_size
+            << " families=" << family_count
+            << " assignments_per_sequence=" << assignment_count
+            << " batch_size=" << batch_size
+            << " batch_begin=" << batch_begin
+            << " batch_end=" << batch_end
+            << " total_batches=" << total_batches
+            << " fully_exhausted_left_family_pairs="
+            << fully_exhausted_left_family_pairs
+            << " conceptual_exhausted=" << conceptual_exhausted
+            << " unique_exhausted=" << unique_exhausted
+            << " full_unique_domain=" << full_unique_domain
+            << " right_pair_probes=" << right_pair_probes
+            << " bloom_positive_probes=" << bloom_positive_probes
+            << " exact_comparisons=" << exact_comparisons
+            << " seconds=" << total_seconds << '\n';
+  if (small_full_crosscheck)
+    std::cout << "MIXED_WINDOW_BRUTE_FORCE conceptual_cases="
+              << static_cast<std::uint64_t>(left_family_pair_count) *
+                     pair_count * right_pair_records
+              << " exact_representations=" << brute_force_exact << '\n';
+  const bool full_scan = batch_begin == 0 && batch_end == total_batches;
+  std::cout << (found ? "FOUND" : (full_scan ? "DONE" : "DONE_SUBSET"))
+            << " mixed-window-mitm families=("
+            << solution.families[0] << ',' << solution.families[1] << ','
+            << solution.families[2] << ',' << solution.families[3]
+            << ") output=" << options.output << '\n';
+  return found ? 0 : 1;
+}
+
 int run(const Options &options) {
   std::mt19937_64 rng(options.seed);
   std::uniform_int_distribution<int> sequence_choice(0, SEQUENCES - 1);
@@ -2791,6 +3296,7 @@ int main(int argc, char **argv) {
     const Options options = parse_options(argc, argv);
     if (options.self_test) {
       self_test();
+      self_test_pair_bloom_filter();
       return 0;
     }
     if (options.decimation_scan)
@@ -2805,6 +3311,8 @@ int main(int argc, char **argv) {
       return run_paired_window_scan(options);
     if (options.four_window_mitm_half_size > 0)
       return run_four_window_mitm(options);
+    if (options.mixed_window_mitm_half_size > 0)
+      return run_mixed_window_mitm(options);
     return run(options);
   } catch (const std::exception &error) {
     std::cerr << "error: " << error.what() << '\n';
