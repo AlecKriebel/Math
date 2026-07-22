@@ -135,10 +135,11 @@ fixed-column distance bounds have no hidden endpoint improvements or gaps.
 
 `GOOD_167.md` describes an independent route to a skew `H(668)`.  Symmetry and
 the good-matrix product theorem reduce the search to two signed row-sum
-profiles.  Its exact CP-SAT model pairs correlation edges to halve the PAF
-auxiliaries and uses a lexicographic necklace leader for the remaining
-83-fold common-decimation symmetry.  The default model has 34,530 variables,
-down from 55,777 in the original encoding.  A two-stage `GF(2)` filter is also
+profiles.  Its exact CP-SAT model pairs correlation edges and caches repeated
+unordered half-bit XORs, reducing the PAF auxiliaries to 13,612, then uses a
+lexicographic necklace leader for the remaining 83-fold common-decimation
+symmetry.  The default model has 20,669 variables, down from 55,777 in the
+original encoding.  A two-stage `GF(2)` filter is also
 implemented.  Its constant-memory C++ form reparameterizes by the symmetric
 product quotient `S`, factors the 83-variable system once, and reuses it for
 256 fixed-weight `B` samples.  This sustained about 48,000 samples/second at
@@ -146,14 +147,19 @@ product quotient `S`, factors the 83-variable system once, and reuses it for
 samples; the best independently replayed PAF energies were 2,752 and 3,264,
 still nonzero.  A connected structured annealer then preserved the product
 theorem and all row sums while reducing both profiles to independently
-verified energy 752.  Complete scans of their 7,742 and 7,682 valid
-two-coordinate neighbors found no improvement.  They are local minima, not a
-global lower bound, and these bounded runs prove no nonexistence result:
+verified energy 752.  An exact three-coordinate triangle descent then reduced
+profile 1 to energy 728 with 58 bad lags; profile 0 stayed at 752.  Complete
+pair-plus-triangle scans found no further improvement.  These are local
+minima, not a global lower bound.  The states canonicalize into 332-primary-bit
+repair hints for the unchanged exact CP-SAT model.  Cached-model bounded runs
+ended `UNKNOWN`; the profile-1 run made 168,484 branches at 279.6 MB with zero
+swap.  These runs prove no nonexistence result:
 
 ```sh
 .solver-venv/bin/python search_good_167_cp_sat.py \
-  --profile 0 --workers 1 --max-memory-mb 256 --time-limit 3600 \
-  --output output/good_167_profile_0.json
+  --profile 0 --hint output/good_167_local_steepest_profile0.json \
+  --hint-conflict-limit 1000 --workers 1 --max-memory-mb 256 \
+  --time-limit 3600 --output output/good_167_hint_profile0_candidate.json
 python3 verify_good_167.py --self-test
 
 clang++ -std=c++20 -O3 search_good_167_stream.cpp \
@@ -164,7 +170,7 @@ clang++ -std=c++20 -O3 search_good_167_stream.cpp \
 python3 verify_good_167_stream.py \
   output/good_167_stream_sb_profile0_60s.json
 python3 verify_good_167_local.py \
-  output/good_167_local_steepest_profile0.json
+  output/good_167_local_triangle_profile1.json
 ```
 
 ## Live lane 4: unrestricted cyclic SDS of order 167

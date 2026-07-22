@@ -1027,6 +1027,78 @@ Bits83 coupled_exchange_toggle(SplitMix64 &rng, const Bits83 &left,
   throw std::runtime_error("coupled exchange has no feasible endpoint pair");
 }
 
+// At each of three coordinates, leave one of B,C,D unchanged and toggle the
+// other two.  The six permutations below are the six possible assignments of
+// the unchanged sequence to the three coordinates.  Each sequence therefore
+// exchanges one negative and one positive half-entry, while B xor C xor D --
+// and hence the recovered skew sequence A -- remains fixed.
+constexpr std::array<std::array<int, 3>, 6> TRIANGLE_UNCHANGED{{
+    {{0, 1, 2}},
+    {{0, 2, 1}},
+    {{1, 0, 2}},
+    {{1, 2, 0}},
+    {{2, 0, 1}},
+    {{2, 1, 0}},
+}};
+
+bool local_triangle_eligible(
+    const LocalState &state, const std::array<int, 3> &positions,
+    const std::array<int, 3> &unchanged_by_position) {
+  const std::array<const Bits83 *, 3> masks{{
+      &state.b_mask,
+      &state.c_mask,
+      &state.d_mask,
+  }};
+  for (int sequence = 0; sequence < 3; ++sequence) {
+    std::array<int, 2> changed{};
+    int changed_count = 0;
+    for (int offset = 0; offset < 3; ++offset) {
+      if (unchanged_by_position[offset] == sequence) continue;
+      if (changed_count >= 2) return false;
+      changed[changed_count++] = positions[offset];
+    }
+    if (changed_count != 2 ||
+        masks[sequence]->test(changed[0]) ==
+            masks[sequence]->test(changed[1]))
+      return false;
+  }
+  return true;
+}
+
+LocalState local_triangle_move(
+    const LocalState &current, const std::array<int, 3> &positions,
+    const std::array<int, 3> &unchanged_by_position, int c_sum, int d_sum,
+    const Instance &instance) {
+  if (!(0 <= positions[0] && positions[0] < positions[1] &&
+        positions[1] < positions[2] && positions[2] < instance.half))
+    throw std::runtime_error("triangle positions are not strictly ordered");
+  std::array<bool, 3> seen{};
+  for (int sequence : unchanged_by_position) {
+    if (sequence < 0 || sequence >= 3 || seen[sequence])
+      throw std::runtime_error("triangle assignment is not a permutation");
+    seen[sequence] = true;
+  }
+  if (!local_triangle_eligible(current, positions,
+                               unchanged_by_position))
+    throw std::runtime_error("triangle exchange does not preserve weights");
+
+  std::array<Bits83, 3> toggles{};
+  for (int offset = 0; offset < 3; ++offset)
+    for (int sequence = 0; sequence < 3; ++sequence)
+      if (unchanged_by_position[offset] != sequence)
+        toggles[sequence].set(positions[offset]);
+  const Bits83 b_mask = current.b_mask ^ toggles[0];
+  const Bits83 c_mask = current.c_mask ^ toggles[1];
+  const Bits83 d_mask = current.d_mask ^ toggles[2];
+  const LocalState proposal = make_local_state(
+      c_mask ^ d_mask, b_mask, c_mask, c_sum, d_sum, instance);
+  if (proposal.d_mask != d_mask || proposal.a_mask != current.a_mask ||
+      (proposal.b_mask ^ proposal.c_mask ^ proposal.d_mask) !=
+          (current.b_mask ^ current.c_mask ^ current.d_mask))
+    throw std::runtime_error("triangle exchange broke its fixed-A invariant");
+  return proposal;
+}
+
 std::string outcome_name(Outcome outcome) {
   switch (outcome) {
     case Outcome::early_rejection:
@@ -1453,11 +1525,48 @@ void self_test() {
       throw std::runtime_error("A-invariant coupled walk broke an invariant");
   }
 
+  int triangle_fixtures = 0;
+  for (const auto &unchanged : TRIANGLE_UNCHANGED) {
+    bool found = false;
+    for (int first = 0; first < production.half && !found; ++first) {
+      for (int second = first + 1; second < production.half && !found;
+           ++second) {
+        for (int third = second + 1; third < production.half; ++third) {
+          const std::array<int, 3> positions{{first, second, third}};
+          if (!local_triangle_eligible(walk, positions, unchanged)) continue;
+          const Bits83 old_parity =
+              walk.b_mask ^ walk.c_mask ^ walk.d_mask;
+          const LocalState proposal = local_triangle_move(
+              walk, positions, unchanged, -1, -21, production);
+          if (proposal.a_mask != walk.a_mask ||
+              (proposal.b_mask ^ proposal.c_mask ^ proposal.d_mask) !=
+                  old_parity ||
+              proposal.b_mask.count() != walk.b_mask.count() ||
+              proposal.c_mask.count() != walk.c_mask.count() ||
+              proposal.d_mask.count() != walk.d_mask.count() ||
+              proposal.s_mask != (proposal.c_mask ^ proposal.d_mask) ||
+              proposal.metrics.energy % 2 != 0)
+            throw std::runtime_error(
+                "three-coordinate triangle broke an invariant");
+          ++triangle_fixtures;
+          found = true;
+          break;
+        }
+      }
+    }
+    if (!found)
+      throw std::runtime_error(
+          "could not construct a triangle fixture for a permutation");
+  }
+  if (triangle_fixtures != 6)
+    throw std::runtime_error("triangle permutation fixture count mismatch");
+
   std::cout << "PASS: exhaustive order-7 reducer/brute-force equivalence ("
             << brute_exact_pairs << " exact A,B pairs)\n";
   std::cout << "PASS: SplitMix64 deterministic fixture\n";
   std::cout << "PASS: 16 direct/factored order-167 reducer fixtures\n";
   std::cout << "PASS: 96 atomic and 96 coupled structured local moves\n";
+  std::cout << "PASS: all 6 fixed-A triangle permutations\n";
 }
 
 struct Options {
@@ -1473,6 +1582,7 @@ struct Options {
   std::filesystem::path initial;
   bool restart_from_best = false;
   bool steepest_polish = false;
+  bool triangle_polish = false;
   bool gf_steepest_polish = false;
   std::int64_t shadow_weight = 0;
   double compound_probability = 0.0;
@@ -1520,6 +1630,8 @@ Options parse_options(int argc, char **argv) {
       options.restart_from_best = true;
     else if (argument == "--steepest-polish")
       options.steepest_polish = true;
+    else if (argument == "--triangle-polish")
+      options.triangle_polish = true;
     else if (argument == "--gf-steepest-polish")
       options.gf_steepest_polish = true;
     else if (argument == "--shadow-weight")
@@ -2170,7 +2282,8 @@ int run_local_steepest(const Options &options) {
 
   std::cout << "order=167 profile=" << options.profile
             << " parameterization=local_sbc steepest_polish=1 seed="
-            << options.random_seed << " shadow_weight="
+            << options.random_seed << " triangle_polish="
+            << options.triangle_polish << " shadow_weight="
             << options.shadow_weight << " workers=1\n";
   if (exact(best)) return 0;
   write_best();
@@ -2256,6 +2369,64 @@ int run_local_steepest(const Options &options) {
         }
       }
     }
+    if (options.triangle_polish && !stopped) {
+      for (int first = 0; first < instance.half && !stopped; ++first) {
+        for (int second = first + 1; second < instance.half && !stopped;
+             ++second) {
+          for (int third = second + 1; third < instance.half && !stopped;
+               ++third) {
+            const std::array<int, 3> positions{{first, second, third}};
+            for (const auto &unchanged : TRIANGLE_UNCHANGED) {
+              if (!local_triangle_eligible(current, positions, unchanged))
+                continue;
+              const double elapsed = std::chrono::duration<double>(
+                                         std::chrono::steady_clock::now() -
+                                         start)
+                                         .count();
+              if ((options.trials != 0 && evaluations >= options.trials) ||
+                  (options.seconds > 0 && elapsed >= options.seconds)) {
+                complete_neighborhood = false;
+                stopped = true;
+                break;
+              }
+              const LocalState proposal = local_triangle_move(
+                  current, positions, unchanged, c_sum, d_sum, instance);
+              ++evaluations;
+              if (exact(proposal)) return 0;
+              const std::int64_t proposal_score =
+                  local_score(proposal, options.shadow_weight);
+              if (proposal_score < best_score) {
+                best = proposal;
+                best_score = proposal_score;
+                write_best();
+              }
+              if (proposal_score < round_best_score) {
+                round_best = proposal;
+                round_best_score = proposal_score;
+              }
+
+              if (std::chrono::steady_clock::now() >= next_report) {
+                const double report_elapsed = std::chrono::duration<double>(
+                                                  std::chrono::steady_clock::
+                                                      now() -
+                                                  start)
+                                                  .count();
+                std::cout << "evaluations=" << evaluations
+                          << " elapsed=" << std::fixed
+                          << std::setprecision(3) << report_elapsed << " rate="
+                          << evaluations / report_elapsed
+                          << " rounds=" << rounds << " current_score="
+                          << local_score(current, options.shadow_weight)
+                          << " best_score=" << best_score << '\n';
+                next_report =
+                    std::chrono::steady_clock::now() +
+                    std::chrono::duration<double>(options.report_every);
+              }
+            }
+          }
+        }
+      }
+    }
     if (!complete_neighborhood) break;
     if (round_best_score >= local_score(current, options.shadow_weight)) {
       stopped = true;
@@ -2287,7 +2458,8 @@ int run_local_steepest(const Options &options) {
 }
 
 int run_local(const Options &options) {
-  if (options.steepest_polish) return run_local_steepest(options);
+  if (options.steepest_polish || options.triangle_polish)
+    return run_local_steepest(options);
   const Instance instance(ORDER);
   const std::array<int, 2> c_sums{{-1, -9}};
   const std::array<int, 2> d_sums{{-21, 19}};

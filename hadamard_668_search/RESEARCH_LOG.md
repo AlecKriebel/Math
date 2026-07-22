@@ -309,6 +309,42 @@
   the centers, only 64 and 65 recovered an exact-weight affine survivor; none
   improved energies 2,752 and 3,264.  This is another finite local-minimum
   result, not an exhaustive good-matrix search.
+- Added an exact CP-SAT bridge from the two energy-752 local checkpoints.  The
+  loader strictly verifies each nonexact state, reorders the symmetric
+  sequences by sorted row sum, selects the lexicographically maximal doubling
+  rotation of the unique row-sum-15 anchor, and chooses the multiplier sign
+  that restores `A[1]=1`.  Fixed regression masks, residual-multiset checks,
+  orbit-invariance checks, and the model proto confirm exactly 332 distinct
+  primary hints; no PAF auxiliary is hinted or fixed.
+- Sequential one-worker, 256 MiB repaired-hint runs of 60 seconds per profile
+  returned `UNKNOWN`.  Profiles 0 and 1 made 1,024,840 and 1,572,158 branches
+  with 1,429 and 1,241 conflicts; whole-process peaks were 337.4 and 339.0 MB,
+  with zero swap.  No candidate was emitted.  OR-Tools' hint repair preserves
+  every exact constraint, but these time-bounded outcomes prove neither
+  existence nor infeasibility.
+- Reused one PAF XOR auxiliary per sequence and unordered half-index pair.
+  Every pair occurs exactly twice across all 83 lags; skew occurrences have
+  opposite polarity, while each symmetric sequence contributes 83 direct
+  singleton literals.  This exact cache cuts PAF auxiliaries from 27,473 to
+  13,612 and the default necklace model from 34,530 variables / 67,987
+  constraints to 20,669 / 54,126.  Exhaustive order-7 assignments, all
+  order-167 multiplicities, proto counts, and the exact `H(28)` regression
+  pass.
+- Added exhaustive fixed-`A` triangle trades to the structured local descent.
+  Alternating all pair moves with all six triangle assignments left profile 0
+  at energy 752 after 77,144 evaluations.  Profile 1 improved from 752 to 728
+  at evaluation 73,261 and then exhausted a second round at 155,008 total.
+  The independently verified state has 58 bad lags and maximum absolute
+  quarter residual 6.  The 5.60-second run used 1.47 MB RSS and zero swap.
+  This proves only local minimality for the stated pair-plus-triangle union.
+- Cached-model repaired-hint runs emitted no candidate.  Profile 0, with a
+  10,000-conflict repair allowance, returned `UNKNOWN` after 39,844 branches
+  and 77.591 seconds at 287.0 MB peak RSS.  Profile 1 started from energy 728
+  and returned `UNKNOWN` after 168,484 branches and 3,539 conflicts in 60.004
+  seconds at 279.6 MB.  Both used one worker and zero swap.  A 30-second exact
+  CP-SAT ball of symmetric exchange radius one around the E728 state also
+  returned `UNKNOWN` at 537.4 MB, so that memory-heavier formulation was not
+  enlarged; the direct pair scan already exhausts that radius cheaply.
 
 ## 22 July 2026: resource-safe search defaults
 

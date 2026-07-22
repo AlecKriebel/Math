@@ -10,6 +10,7 @@ from verify_good_167_local import verify_local_checkpoint
 
 HERE = Path(__file__).resolve().parent
 FIXTURE = HERE / "output" / "good_167_local_smoke.json"
+TRIANGLE_FIXTURE = HERE / "output" / "good_167_local_triangle_profile1.json"
 
 
 class Good167LocalTests(unittest.TestCase):
@@ -24,6 +25,17 @@ class Good167LocalTests(unittest.TestCase):
                 "bad_lags": 70,
                 "max_abs_quarter": 10,
                 "s_weight": 43,
+            },
+        )
+
+    def test_triangle_checkpoint_is_verified_as_nonexact(self) -> None:
+        self.assertEqual(
+            verify_local_checkpoint(json.loads(TRIANGLE_FIXTURE.read_text())),
+            {
+                "energy": 728,
+                "bad_lags": 58,
+                "max_abs_quarter": 6,
+                "s_weight": 41,
             },
         )
 

@@ -78,7 +78,7 @@ removes the full residual factor of 83 without losing a solution.
 
 1. 332 structural half-sequence bits (83 per sequence), with `A[1]=1`;
 2. one of the two exact row-sum profiles;
-3. 83 five-literal XORs from the product theorem; and
+3. 83 five-literal XORs from the product theorem;
 4. the exact common-decimation necklace leader; and
 5. all 83 independent periodic-correlation equations.
 
@@ -101,13 +101,20 @@ by two gives
 sum of the 82 + 3*83 representative XORs = 166.
 ```
 
-This reduces the PAF auxiliaries from 55,444 to 27,473 with no relaxation.
-No floating-point Fourier test is used as a proof.
+This first reduces the PAF auxiliaries from 55,444 to 27,473.  Across all
+lags, every unordered pair of half bits occurs exactly twice in each sequence.
+The skew occurrences have opposite polarity; a symmetric sequence also has
+one direct singleton per lag.  Caching one XOR for each unordered pair reduces
+the auxiliaries again to `4*binom(83,2)=13,612`, with complemented occurrences
+represented by negated cached literals.  Exhaustive order-7 assignments and
+all order-167 descriptor multiplicities test this identity directly.  No
+floating-point Fourier test is used as a proof.
 
-The old full directed-edge model had 55,777 variables and 55,614 constraints.
-The half-edge model without the necklace has 27,806 variables and 27,643
-constraints.  With the exact 83-fold necklace quotient enabled, the default
-model has 34,530 variables and 67,987 mostly Boolean-clause constraints.  The
+The old uncached full directed-edge model had 55,777 variables and 55,614
+constraints.  After both exact reductions, the half-edge model without the
+necklace has 13,945 variables and 13,782 constraints.  With the exact 83-fold
+necklace quotient enabled, the default model has 20,669 variables and 54,126
+mostly Boolean-clause constraints.  The
 lexicographic encoding was exhaustively truth-table tested through width four;
 the edge reduction was checked directly at orders 7 and 167.
 
@@ -133,6 +140,28 @@ Run the two order-167 profiles separately:
   --profile 1 --time-limit 3600 --workers 1 --max-memory-mb 256 \
   --output output/good_167_profile_1.json
 ```
+
+The independently verified structured local checkpoints can also guide the
+same exact model.  `--hint` first verifies the nonexact checkpoint, permutes
+its symmetric sequences into the model's sorted row-sum order, and applies a
+common doubling decimation so that both `A[1]=1` and the row-sum-15 necklace
+leader hold.  It then hints exactly the 332 primary bits.  OR-Tools repairs
+the infeasible hint for a bounded number of conflicts before resuming ordinary
+exact feasibility search; it never fixes a hinted value or relaxes a PAF
+equation:
+
+```bash
+../tmp/hadamard-env/bin/python search_good_167_cp_sat.py \
+  --profile 0 --hint output/good_167_local_steepest_profile0.json \
+  --hint-conflict-limit 1000 --time-limit 3600 --workers 1 \
+  --max-memory-mb 256 --output output/good_167_hint_profile0_candidate.json
+```
+
+The profile-0 checkpoint canonicalizes with doubling shift 27 and multiplier
+162; profile 1 uses shift 2 and multiplier 4.  Regression tests pin the four
+resulting masks for each profile, preserve the complete residual multiset and
+energy, check common-decimation orbit invariance, and confirm that the model
+contains 332 distinct Boolean hints and no hinted auxiliaries.
 
 Build or compare the exact encodings without searching:
 
@@ -160,6 +189,22 @@ RSS.  Profile 1 (seed 2668) ended `UNKNOWN` after 2,256,669 branches and 1,543
 conflicts at 285.3 MB.  Both used zero swap.  These outcomes certify neither
 infeasibility nor existence; they only show the stronger exact model remains
 search-hard at this budget.
+
+Matched 60-second repaired-hint runs were also executed sequentially.  Profile
+0 ended `UNKNOWN` after 1,024,840 branches and 1,429 conflicts at 337.4 MB
+whole-process peak RSS.  Profile 1 ended `UNKNOWN` after 1,572,158 branches and
+1,241 conflicts at 339.0 MB.  Both used zero swap and emitted no candidate.
+The extra peak is consistent with OR-Tools' temporary repair model; these are
+again bounded search outcomes, not infeasibility certificates.
+
+After unordered-pair caching, profile 0 was rerun from its energy-752 hint
+with a 10,000-conflict repair allowance.  It ended `UNKNOWN` after 39,844
+branches at 287.0 MB peak RSS; the repair/presolve phase extended solver wall
+time to 77.591 seconds despite the nominal 60-second setting.  Profile 1 was
+rerun from the improved energy-728 checkpoint with the 1,000-conflict setting
+and ended `UNKNOWN` after 168,484 branches and 3,539 conflicts at 279.6 MB
+peak RSS in 60.004 seconds.  Both used one worker and zero swap and emitted no
+candidate.
 
 ## Stronger A,B -> GF(2) -> C,D reducer
 
@@ -315,6 +360,10 @@ two-coordinate neighborhood:
   --steepest-polish --initial output/good_167_local_profile0_60s.json \
   --checkpoint output/good_167_local_steepest_profile0.json
 
+../tmp/search_good_167_stream --parameterization local --profile 1 \
+  --triangle-polish --initial output/good_167_local_steepest_profile1.json \
+  --checkpoint output/good_167_local_triangle_profile1.json
+
 ../tmp/hadamard-env/bin/python verify_good_167_local.py \
   output/good_167_local_steepest_profile0.json
 ```
@@ -327,13 +376,21 @@ zero energy is rejected and routed to the full `668x668` exact verifier.
 
 Starting from the factored checkpoints, profile 0 reached energy 808 in
 1,659,072 moves and then 752 in a cold reheat.  Profile 1 reached energy 752
-in 1,657,915 moves.  The profile-0 state has 60 bad lags and maximum absolute
-quarter residual 8; profile 1 has 63 and 6.  Complete steepest scans evaluated
-7,742 and 7,682 valid atomic/coupled neighbors respectively and found no
-strict improvement, proving both states are local minima for that move union.
-A further 1,656,250 hot-reheat moves and bounded compound/shadow-guided probes
-did not beat 752.  These are neighborhood and heuristic results, not a lower
-bound on the global energy.
+in 1,657,915 moves.  Complete steepest scans evaluated 7,742 and 7,682 valid
+atomic/coupled neighbors and found no strict improvement.
+
+`--triangle-polish` extends the exact descent by choosing three half-indices,
+leaving a different one of `B,C,D` unchanged at each, and toggling the other
+two.  Each of the six assignments preserves all three weights and fixes
+`B xor C xor D`, hence fixes `A`.  Alternating complete pair and triangle
+scans left profile 0 at energy 752 after 77,144 evaluations.  Profile 1 fell
+to energy 728 after 73,261 evaluations and stopped after a complete second
+round totaling 155,008 evaluations.  The new checkpoint has 58 bad lags,
+maximum absolute quarter residual 6, and passes the strict nonexact verifier.
+The profile-1 run took 5.60 seconds at 1.47 MB RSS with zero swap.  These are
+local minima for the pair-plus-triangle union, not a global lower bound.  Hot
+restarts, sampled compound moves, and shadow objectives remain bounded
+heuristics and produced no exact state.
 
 Separately, exact GF-surface scans evaluated all 5,113 one-exchange `B` and
 two-toggle `S` neighbors of each factored incumbent.  Only 64 and 65 states,
