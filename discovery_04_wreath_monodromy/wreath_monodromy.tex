@@ -10,7 +10,7 @@
 \newcommand{\Mon}{\operatorname{Mon}}
 \newcommand{\disc}{\operatorname{disc}}
 
-\title{Full wreath-product monodromy for the square\\
+\title{Full wreath-product monodromy through the third iterate\\
 of an explicit Keller map}
 \author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
 \date{First public repository release 21 July 2026, 18:44:48 UTC\\
@@ -23,15 +23,19 @@ Research draft; not peer reviewed}
 \begin{abstract}
 Let $F:\C^3\to\C^3$ be the newly announced noninjective polynomial map with
 constant Jacobian determinant $-2$ and geometric monodromy $S_3$. We determine
-the geometric monodromy of its canonical self-composition:
+the geometric monodromy of its second and third iterates:
 \[
-  \Mon(F\circ F)=S_3\wr S_3
+  \Mon(F^{\circ2})=S_3\wr S_3,
+  \qquad
+  \Mon(F^{\circ3})=S_3\wr S_3\wr S_3.
 \]
-in degree nine, of order $1296$. On the target line $(1,2,s)$, an exact
-degree-nine eliminant has a one-edge Newton polygon at infinity, giving a
-9-cycle; its discriminant has a squarefree factor of multiplicity one, giving
-a single within-block transposition; and the outer cubic gives a transposition
-of the three blocks. An elementary group lemma forces the full wreath product.
+The respective degrees are 9 and 27, and the group orders are $1296$ and
+$13{,}060{,}694{,}016$. On the target line $(1,2,s)$, exact primitive
+eliminants have one-edge Newton polygons at infinity, giving a 9-cycle and a
+27-cycle. Each discriminant has a squarefree divisor of multiplicity one and
+hence gives a single deepest-block transposition; at level three, exact
+leading-coefficient and reconstruction-denominator guards are included.
+Elementary group lemmas force the full wreath products.
 Postcomposition by $\operatorname{diag}(1/4,1,1)$ gives a noninjective
 unit-Jacobian map realizing the pair $(9,S_3\wr S_3)$. We also prove that every
 iterate $F^{\circ m}$ has a full $3^m$-cycle in its geometric inertia at
@@ -66,14 +70,20 @@ For a dominant polynomial map $H$, write $\Mon(H)$ for the Galois group of
 the normal closure of the induced function-field extension, in its natural
 action on a generic fiber.
 
+Put $W_1=S_3$ and
+$W_{m+1}=S_3^{3^m}\rtimes W_m$ in the natural action on the depth-$(m+1)$
+ternary tree.
+
 \begin{theorem}\label{thm:main}
-The self-composition $G=F\circ F$ has generic degree nine and
+The second and third iterates have generic degrees 9 and 27, respectively,
+and
 \[
-\Mon(G)=S_3\wr S_3\leq S_9,
-\qquad |\Mon(G)|=6^3\cdot6=1296.
+\Mon(F^{\circ2})=W_2=S_3\wr S_3\leq S_9,
+\qquad
+\Mon(F^{\circ3})=W_3=S_3\wr S_3\wr S_3\leq S_{27}.
 \]
-The action has three blocks of size three, indexed by the intermediate points
-in a generic fiber of the outer copy of $F$.
+Moreover, $|W_2|=6^4=1296$ and
+$|W_3|=6^{1+3+9}=13{,}060{,}694{,}016$.
 \end{theorem}
 
 \begin{proposition}\label{prop:iterates}
@@ -82,7 +92,8 @@ of length $3^m$.
 \end{proposition}
 
 \begin{proposition}\label{prop:normalized}
-Let $\widehat G=(G_1/4,G_2,G_3)$. Then $\det J\widehat G=1$,
+Write $G=F^{\circ2}$ and let $\widehat G=(G_1/4,G_2,G_3)$. Then
+$\det J\widehat G=1$,
 $\Mon(\widehat G)=S_3\wr S_3$, and $\widehat G$ is noninjective. The three
 points in~\eqref{eq:points} all map under $\widehat G$ to $(0,0,-1/2)$.
 \end{proposition}
@@ -115,6 +126,9 @@ Consequently the generic degree is nine and
 \Mon(F\circ F)\leq S_3\wr S_3.
 \label{eq:upper}
 \end{equation}
+One further iteration gives the natural depth-three ternary-tree block system,
+so $\Mon(F^{\circ3})\leq W_3$; its action on the nine bottom blocks is the
+monodromy of the intermediate $F^{\circ2}$ cover.
 
 \section{A degree-nine slice}
 
@@ -276,7 +290,8 @@ surjecting onto the top is the full semidirect product.
 
 The three inertia elements constructed above satisfy the lemma, so the slice
 monodromy is $S_3\wr S_3$. Slice monodromy is a subgroup of generic monodromy;
-combining this with~\eqref{eq:upper} proves Theorem~\ref{thm:main}.
+combining this with~\eqref{eq:upper} proves the level-two assertion of
+Theorem~\ref{thm:main}.
 
 \section{Full-cycle inertia for all iterates}
 
@@ -362,6 +377,98 @@ conjugates; a generator is a single $3^m$-cycle.
 As an independent check, nested PARI resultants for $m=3$ give a degree-27
 eliminant with one lower Newton edge from $(0,0)$ to $(27,34)$.
 
+\section{Full wreath monodromy at level three}
+
+We retain the discriminant information from the same exact eliminant.  On the
+target line $(1,2,s)$, let
+\[
+C_0(t)=2t^3-2t^2+2t-s,\qquad X_1=\operatorname{rec}((1,2,s),t),
+\]
+where $\operatorname{rec}$ denotes~\eqref{eq:reconstruct}.  Let $C_1(t,r)$
+be the numerator of $C_{X_1}(r)$, set
+$X_2=\operatorname{rec}(X_1,r)$, and let $C_2(t,r,q)$ be the numerator of
+$C_{X_2}(q)$.  Define
+\[
+\mathcal R(q,s)=\operatorname{Res}_t
+ \bigl(C_0,\operatorname{Res}_r(C_1,C_2)\bigr),
+\qquad
+Q=\frac{\mathcal R}{\operatorname{content}_q(\mathcal R)}.
+\]
+Exact PARI arithmetic gives
+\[
+\begin{array}{c|ccccc}
+ &\deg_q\mathcal R&\deg_s\mathcal R&
+ \deg_s\operatorname{content}_q(\mathcal R)&\deg_qQ&\deg_sQ\\ \hline
+\text{value}&27&244&196&27&48.
+\end{array}
+\]
+
+After $u=1/s$ and the common valuation shift, the lower Newton polygon is the
+single edge $(0,0)$--$(27,34)$. Since $\gcd(27,34)=1$, each irreducible
+factor over $\C((u))$ would have degree divisible by 27. Thus $Q$ is
+irreducible over $\C((u))$, hence over $\C(s)$, and inertia contains a
+27-cycle $\alpha$.
+
+There is no hidden denominator branch. If $D_1,D_2$ are the denominators
+cleared when defining $C_1,C_2$, respectively, the checker forms
+\[
+L(s)=\operatorname{Res}_t(C_0,D_1),\qquad
+U(s)=\operatorname{Res}_t
+ \bigl(C_0,\operatorname{Res}_r(C_1,D_2)\bigr).
+\]
+Both are nonzero. Choose a generic inverse tower and its deepest resolvent
+parameter $q$. Reconstruction is defined there, and elimination gives
+$Q(q,s)=0$. Since $Q$ is irreducible of degree 27, it is the minimal
+polynomial of this genuine $q$. Thus the inverse-tower field has degree at
+least 27, while the three cubic steps give degree at most $3^3$. Equality
+holds, $q$ generates the tower field, and $Q$ is exactly the generic fiber
+polynomial of the pulled-back third iterate.
+
+Let $\mathcal D=\disc_q(Q)$ and put
+\[
+G=\gcd(\mathcal D,\mathcal D'),\qquad
+R_{\rm sf}=\mathcal D/G,\qquad
+M=\gcd(R_{\rm sf},G),\qquad E=R_{\rm sf}/M.
+\]
+Thus $E$ is the product of precisely the irreducible discriminant factors of
+multiplicity one. The exact degrees are
+\[
+\deg_s\mathcal D=1612,\qquad \deg_sR_{\rm sf}=752,\qquad
+\deg_sM=676,\qquad \deg_sE=76.
+\]
+Furthermore, $E$ is squarefree and coprime to $M$, to the degree-27 leading
+coefficient of $Q$ (of $s$-degree 14), and to $L$ and $U$.  At every root of
+$E$, the degree therefore remains 27, reconstruction is genuine, and the
+discriminant has valuation one. Local geometric inertia is a single
+transposition $\tau$. Since monodromy preserves the nine bottom blocks of
+size three, $\tau$ lies inside one bottom block.
+
+\begin{lemma}\label{lem:w3}
+Let $H\leq W_3$ contain a 27-cycle and a single transposition. If the image of
+$H$ on the nine bottom blocks is $W_2$, then $H=W_3$.
+\end{lemma}
+\begin{proof}
+The 27-cycle $\alpha$ induces a 9-cycle on the bottom blocks, and $\alpha^9$
+acts as a 3-cycle in each such block. The elements $\tau$ and
+$\alpha^9\tau\alpha^{-9}$ generate the full $S_3$ on one bottom block.
+Conjugation by powers of $\alpha$ supplies independent $S_3$ factors on all
+nine bottom blocks, so $S_3^9\leq H$. This is the complete kernel of
+$W_3\to W_2$. Since $H$ maps onto $W_2$, it follows that $H=W_3$.
+\end{proof}
+
+The image of $\Mon(F^{\circ3})$ on the bottom blocks is
+$\Mon(F^{\circ2})=W_2$ by the level-two argument in
+Sections~3--5. Applying Lemma~\ref{lem:w3} gives
+\[
+\Mon(F^{\circ3})=W_3,\qquad
+|W_3|=6^{9+3+1}=13{,}060{,}694{,}016.
+\]
+This paper proves level three only. The accompanying bounded-memory
+level-four certificate was subsequently computed and independently audited.
+It supplies the required deepest-block transposition and proves
+$\Mon(F^{\circ4})=W_4$. Its localization and norm-to-inertia argument remain
+outside this level-three paper.
+
 \section{Independent arithmetic cross-check}
 
 At $s=-3$, the primitive specialization is
@@ -388,7 +495,7 @@ independently enumerates all subgroups of the wreath product and finds no
 proper survivor. PARI/GP 2.17.4 identifies five unrelated rational fibers as
 transitive group $9T31$ of order $1296$.
 
-This is corroboration only; the geometric proof does not infer geometric
+This is corroboration only; neither geometric proof infers geometric
 monodromy from an arithmetic specialization.
 
 \section{Verification and priority scope}
@@ -410,24 +517,29 @@ and arithmetic Galois checks\\
 \texttt{verify\_group.g} & exhaustive subgroup check inside $S_3\wr S_3$\\
 \texttt{verify\_level3\_newton.py} & independent degree-27 resultant and Newton
 edge for the third iterate\\
+\texttt{verify\_level3\_wreath.py} & primitive degree-27 eliminant, simple
+discriminant divisor, leading and denominator guards, and depth-three group
+lemma\\
 \bottomrule
 \end{tabularx}
 \end{center}
-The level-three checker uses SymPy-generated equations and delegates nested
-resultants to PARI.
+The level-three checkers use SymPy-generated equations and delegate nested
+resultants and discriminants to PARI.
 
 The closest public monodromy study states only
 $\Mon(F_0\circ F_0)\leq S_3\wr S_3$ and calls its exact group a natural next
 computation~\cite{weighted}. A separate four-variable construction already
 claims a different imprimitive degree-eight group of order $192$~\cite{quartic}.
 We therefore do not claim the first imprimitive or first non-symmetric Keller
-monodromy. The claimed contribution is the exact canonical self-composition
-group, the realization $(9,S_3\wr S_3)$, and the all-iterate full-cycle
-statement. A timestamped 23-repository audit accompanies the artifact.
+monodromy. The claimed contribution is the exact second- and third-iterate
+groups, the realizations $(9,W_2)$ and $(27,W_3)$, and the all-iterate
+full-cycle statement. A timestamped 23-repository audit accompanies the
+artifact.
 
 The stronger arboreal assertion that every iterate has the full iterated
-wreath product remains open: the present argument does not yet produce a new
-single transposition at every level.
+wreath product remains open: the present paper does not produce a new single
+transposition at every level. The separate certificate in
+\texttt{w4\_search/\allowbreak RESULT.md} settles $W_4$.
 
 \appendix
 \section{The degree-22 square factor}\label{app:B}

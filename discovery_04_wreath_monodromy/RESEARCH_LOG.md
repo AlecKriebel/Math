@@ -132,6 +132,55 @@ single lower Newton edge `(0,0)-(27,34)`, matching the recurrence. This does
 not prove full iterated-wreath monodromy: a new single transposition at every
 level is still missing.
 
+## Level-three upgrade, 22 July 2026
+
+The degree-27 calculation was extended from a Newton-edge cross-check to an
+exact monodromy certificate. After removing `q`-content of `s`-degree 196,
+the primitive eliminant has bidegrees `(27,48)`. Its discriminant has
+`s`-degree 1612. The squarefree radical has degree 752, and the product `E`
+of factors occurring with multiplicity exactly one has degree 76. Exact gcd
+checks show that `E` is squarefree and avoids the degree-27 leading
+coefficient and both levels of rational-reconstruction denominators.
+
+Thus a root of `E` gives a literal transposition inside one of the nine
+bottom blocks. The one-edge Newton polygon supplies a 27-cycle. Its ninth
+power is a 3-cycle on every bottom block; conjugating the transposition first
+by this power and then around the nine blocks generates the full kernel
+`S_3^9`. The quotient on bottom blocks is the already-proved `W_2`, so
+
+```text
+Mon(F^3) = W_3 = S_3 wr S_3 wr S_3,
+|W_3| = 6^13 = 13,060,694,016.
+```
+
+At this stage `W_4` was still open: a new deepest-level simple branch divisor
+was required there. The next entry records the separate computation that
+found it.
+
+## Separate level-four certificate, 22 July 2026
+
+A bounded-memory quotient-tower evaluator scanned the target line modulo
+`p=1009`. At `s=801`, the lower discriminant norms are the units
+`497,650,840`, while the deepest norm vanishes. Every cubic-leading and
+rational-reconstruction guard is also a unit. Evaluation modulo `1009^2`
+gives deepest-norm derivative `917`, so the zero is simple.
+
+An independent audit tightened the localization and norm-valuation argument
+and added a direct dual-number check on the unique vanishing inverse sheet:
+the root path is `(803,282,899)`, the deepest point is `(727,885,561)`, and
+`d Delta/ds=527` modulo 1009. Thus exactly one deepest cubic acquires a simple
+double root, giving a single leaf transposition. With the all-level 81-cycle
+and the proved `W_3` quotient, its conjugates generate `S_3^27`, hence
+
+```text
+Mon(F^4) = W_4 = S_3 wr S_3 wr S_3 wr S_3.
+```
+
+The full scan used about 15 MB, the strengthened verifier about 24 MB, and an
+independent exact-determinant cross-check under 50 MB. The proof is published
+separately in `w4_search/RESULT.md`; it is not folded into the level-three
+paper.
+
 ## Initial exact evidence
 
 For each target below, the degree-nine polynomial is irreducible over `Q` and
@@ -189,5 +238,6 @@ therefore adds:
   valuations and every strict dominance inequality in the reconstruction
   formulas made explicit.
 
-The checkers were expanded to cover both additions. The theorem statement was
-not enlarged.
+The checkers were expanded to cover both additions. A later revision enlarged
+the theorem statement to the full third-level wreath product, backed by the
+separate exact certificate described above.

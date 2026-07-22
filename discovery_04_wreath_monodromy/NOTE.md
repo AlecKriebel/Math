@@ -1,4 +1,4 @@
-# Full wreath-product monodromy for the square of an explicit Keller map
+# Full wreath-product monodromy through the third iterate of an explicit Keller map
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol (OpenAI)**
 
@@ -11,30 +11,34 @@ Strengthened site edition: 22 July 2026, 02:24:28 UTC. Not peer reviewed.
 > and rapid correction possible. No claim of guaranteed worldwide priority is
 > made.
 
-**Revision note.** The site edition expands two points identified in external
-AI review: Section 3.1 now proves that the degree-nine resultant has no
+**Revision note.** The site edition first expanded two points identified in
+external AI review: Section 3.1 proves that the degree-nine resultant has no
 extraneous generic branch and identifies the complete function-field tower;
-Section 8 is now a local-field/Puiseux induction with every Newton and
-reconstruction valuation written explicitly.
+Section 8 is a local-field/Puiseux induction with every Newton and
+reconstruction valuation written explicitly. The present revision adds an
+exact degree-27 certificate and proves the full third-level wreath product.
 
 ## Abstract
 
 Let `F : C^3 -> C^3` be the newly announced noninjective polynomial map with
 constant Jacobian determinant `-2` and generic geometric monodromy `S_3`. We
-determine the geometric monodromy of its canonical self-composition. It is the
-full imprimitive wreath product
+determine the geometric monodromy of its second and third iterates. They are
+the full iterated imprimitive wreath products
 
 ```text
-Mon(F o F) = S_3 wr S_3
+Mon(F^2) = S_3 wr S_3,
+Mon(F^3) = S_3 wr S_3 wr S_3.
 ```
 
-in degree nine, of order `1296`. The proof is geometric. On the target line
-`(1,2,s)`, an exact degree-nine eliminant has a one-edge Newton polygon at
-infinity, giving a 9-cycle; its discriminant has a squarefree factor of
-multiplicity one, giving a single within-block transposition; and the outer
-cubic has a simple branch giving a transposition of the three blocks. An
-elementary group lemma forces the full wreath product. Postcomposing `F o F`
-by `diag(1/4,1,1)` gives a noninjective polynomial self-map of `C^3` with
+Their degrees are `9` and `27`, and their group orders are `1296` and
+`13,060,694,016`. The proof is geometric. On the target line `(1,2,s)`, exact
+primitive eliminants have one-edge Newton polygons at infinity, giving a
+9-cycle and a 27-cycle. Each discriminant has a squarefree divisor occurring
+with multiplicity one, hence supplies a single deepest-block transposition;
+at level three, exact leading-coefficient and reconstruction-denominator
+guards are included. Elementary group lemmas force the full wreath products.
+Postcomposing `F o F` by
+`diag(1/4,1,1)` gives a noninjective polynomial self-map of `C^3` with
 Jacobian determinant one and monodromy `S_3 wr S_3`. More generally, every
 iterate `F^m` has a full `3^m`-cycle in its geometric inertia at infinity.
 Exact SymPy, independent dependency-free finite-field, GAP, and PARI/GP checks
@@ -62,15 +66,25 @@ Let `G=F o F`. We use `Mon(G)` for the Galois group of the normal closure of
 the induced function-field extension, in its natural action on the generic
 fiber.
 
-**Theorem.** The map `G` has generic degree nine and
+Define `W_1=S_3` and
 
 ```text
-Mon(G) = S_3 wr S_3 <= S_9,
-|Mon(G)| = 6^3 * 6 = 1296.
+W_(m+1) = S_3^(3^m) semidirect W_m
 ```
 
-The action has three blocks of size three, indexed by the intermediate points
-in a generic fiber of the outer copy of `F`.
+in the natural action on the depth-`m+1` ternary tree.
+
+**Theorem.** The second and third iterates have generic degrees nine and 27,
+respectively, and
+
+```text
+Mon(F^2) = W_2 = S_3 wr S_3 <= S_9,
+Mon(F^3) = W_3 = S_3 wr S_3 wr S_3 <= S_27.
+```
+
+Here `|W_2|=6^4=1296` and
+`|W_3|=6^(1+3+9)=13,060,694,016`. The depth-three action has nine bottom
+blocks of size three, indexed by the points in a generic fiber of `F^2`.
 
 **All-iterate full-cycle statement.** For every `m >= 1`, the geometric
 monodromy of `F^m` contains a cycle of length `3^m`. This does not assert that
@@ -115,7 +129,10 @@ preimages. Therefore
 Mon(G) <= S_3 wr S_3.
 ```
 
-The remaining problem is to prove equality.
+Iterating once more gives the natural depth-three ternary-tree block system,
+so `Mon(F^3) <= W_3`. Its action on the nine bottom blocks is the monodromy of
+the intermediate `F^2` cover. The remaining problems are to prove equality at
+levels two and three.
 
 ## 3. A degree-nine one-parameter slice
 
@@ -343,7 +360,8 @@ the top is the whole semidirect product. QED.
 
 Applying the lemma to the three inertia elements above shows that the slice
 monodromy is `S_3 wr S_3`. Slice monodromy embeds into generic monodromy, while
-Section 2 gave the opposite upper bound. The theorem follows.
+Section 2 gave the opposite upper bound. This proves the level-two assertion
+of the theorem.
 
 ## 8. Full-cycle inertia for every iterate
 
@@ -472,7 +490,115 @@ As an independent check, nested PARI resultants for `m=3` produce a
 degree-27 eliminant. After removing common vertical content, its lower Newton
 edge is `(0,0)-(27,34)`, agreeing with the recurrence.
 
-## 9. Independent arithmetic cross-check
+## 9. Full wreath monodromy at level three
+
+We now retain more information from that exact level-three eliminant. On the
+same target line, put
+
+```text
+C_0(t) = 2t^3 - 2t^2 + 2t - s,
+X_1 = reconstruct((1,2,s),t),
+C_1(t,r) = numerator(C_(X_1)(r)),
+X_2 = reconstruct(X_1,r),
+C_2(t,r,q) = numerator(C_(X_2)(q)).
+```
+
+Here `reconstruct` denotes the three rational formulas in Section 2. Form the
+nested resultant
+
+```text
+R(q,s) = Res_t(C_0, Res_r(C_1,C_2))
+```
+
+and divide by its content in `q`, obtaining the primitive polynomial `Q(q,s)`.
+The exact computation gives
+
+```text
+deg_q R = 27,    deg_s R = 244,
+deg_s content_q(R) = 196,
+deg_q Q = 27,    deg_s Q = 48.
+```
+
+With `u=1/s`, the lower Newton polygon of the normalized polynomial is the
+single edge
+
+```text
+(0,0) -- (27,34).
+```
+
+Because `gcd(27,34)=1`, every irreducible factor over `C((u))` would have
+degree divisible by 27. Thus `Q` is irreducible over `C((u))`, hence over
+`C(s)`, and local inertia contains a 27-cycle `alpha`.
+
+The rational reconstruction denominators do not create a hidden component.
+Indeed, if `D_1` and `D_2` are the denominators cleared in the definitions of
+`C_1` and `C_2`, the exact checker forms
+
+```text
+L(s) = Res_t(C_0,D_1),
+U(s) = Res_t(C_0,Res_r(C_1,D_2)).
+```
+
+Both are nonzero. Choose a generic inverse tower and its deepest resolvent
+parameter `q`; reconstruction is defined there and elimination gives
+`Q(q,s)=0`. Since `Q` is irreducible of degree 27, it is the minimal polynomial
+of this genuine `q`. The corresponding inverse-tower field therefore has
+degree at least 27, while the three cubic steps give degree at most `3^3`.
+Equality holds, `q` generates the tower field, and `Q` is precisely the
+generic fiber polynomial of the pulled-back third iterate.
+
+It remains to obtain a deepest-block transposition. Let
+
+```text
+D = disc_q(Q),
+G = gcd(D,dD/ds),
+R_sf = D/G,
+M = gcd(R_sf,G),
+E = R_sf/M.
+```
+
+Thus `E` is the product of exactly those irreducible discriminant factors
+which occur with multiplicity one. Exact PARI arithmetic gives
+
+```text
+deg_s D = 1612,       deg_s R_sf = 752,
+deg_s M = 676,        deg_s E = 76.
+```
+
+Moreover, `E` is squarefree and coprime to `M`, to the degree-27 leading
+coefficient of `Q` (which has `s`-degree 14), and to both `L` and `U`. At any
+root of `E`, therefore, the degree remains 27, every reconstructed point is
+genuine, and the discriminant has valuation exactly one. Local geometric
+inertia is a single transposition `tau`. Since monodromy preserves the nine
+bottom blocks of size three, a permutation moving only two leaves must be
+supported inside one bottom block.
+
+We finish with the depth-three group argument. The image of `Mon(F^3)` on the
+nine bottom blocks is `Mon(F^2)=W_2`. The 27-cycle `alpha` induces a 9-cycle
+on those blocks, and `alpha^9` acts as a 3-cycle in each bottom block. Hence
+`tau` and its conjugate by `alpha^9` generate the full `S_3` on one bottom
+block. Conjugating by powers of `alpha` gives independent `S_3` factors on
+all nine bottom blocks, so the full kernel `S_3^9` lies in `Mon(F^3)`. A
+subgroup containing this kernel and surjecting onto `W_2` is all of
+
+```text
+W_3 = S_3^9 semidirect W_2.
+```
+
+Consequently
+
+```text
+Mon(F^3) = W_3,
+|W_3| = 6^(9+3+1) = 13,060,694,016.
+```
+
+This paper proves level three only. A separate bounded-memory computation,
+published in `w4_search/RESULT.md`, subsequently produced and independently
+audited the required deepest-block transposition at level four and proves
+`Mon(F^4)=W_4`. Its localization and norm-to-inertia argument are intentionally
+kept outside this level-three paper.
+
+## 10. Independent arithmetic cross-check
 
 At `s=-3`, the primitive specialization is
 
@@ -499,9 +625,10 @@ rational fibers as transitive group `9T31`, named
 `[S(3)^3]S(3)=S(3)wrS(3)`.
 
 This arithmetic calculation is corroboration only; unlike a bare arithmetic
-specialization, the proof in Sections 4-7 determines geometric monodromy.
+specialization, the proofs in Sections 4-7 and 9 determine geometric
+monodromy.
 
-## 10. Verification
+## 11. Verification
 
 From the repository root:
 
@@ -518,6 +645,7 @@ If PARI/GP and GAP are installed:
 gp -q discovery_04_wreath_monodromy/verify_pari.gp
 gap -q discovery_04_wreath_monodromy/verify_group.g
 python3 discovery_04_wreath_monodromy/verify_level3_newton.py
+python3 discovery_04_wreath_monodromy/verify_level3_wreath.py
 ```
 
 The symbolic verifier checks the Jacobian and collisions, the inverse
@@ -525,13 +653,16 @@ resolvent identities, denominator resultants, the exact resultant, the linear
 subresultant and function-field recovery, all 48 coefficients of `P`, the
 Newton data, the full discriminant factorization, squarefreeness, and every
 coprimality assertion. The dependency-free verifier implements polynomial
-arithmetic and Rabin irreducibility tests from scratch. The optional
-level-three script builds the tower equations in SymPy and delegates the two
-nested resultants to PARI, providing a cross-system check of the `(27,34)`
-Newton edge. The dependency-free iterate checker now also verifies every
-strict Newton-edge and reconstruction-dominance inequality for 30 levels.
+arithmetic and Rabin irreducibility tests from scratch. The level-three Newton
+script builds the tower equations in SymPy and delegates the two nested
+resultants to PARI, providing a cross-system check of the `(27,34)` Newton
+edge. The full level-three script additionally strips the vertical content,
+certifies the simple discriminant divisor, leading and denominator guards,
+and the depth-three group lemma. The dependency-free iterate checker verifies
+every strict Newton-edge and reconstruction-dominance inequality for 30
+levels.
 
-## 11. Priority and limitations
+## 12. Priority and limitations
 
 The closest public monodromy paper explicitly states only
 `Mon(F_0 o F_0) <= S_3 wr S_3` and calls its exact group a natural next
@@ -540,13 +671,14 @@ computation. The detailed, timestamped audit is in `PRIORITY_AUDIT.md`.
 A separate four-variable construction already claims a different imprimitive
 degree-eight group of order `192`; accordingly, this note does **not** claim to
 be the first imprimitive or first non-symmetric Keller monodromy. It claims the
-exact self-composition result and the specific realization
-`(9,S_3 wr S_3)`.
+exact second- and third-iterate results and the specific realizations
+`(9,W_2)` and `(27,W_3)`.
 
 The natural stronger question is whether every iterate `F^m` has the full
-iterated wreath product. Full-cycle inertia is proved above, but the required
-new single transposition at every level is not; the full arboreal statement
-remains open.
+iterated wreath product. Full-cycle inertia is proved above, but this paper
+does not produce the required new single transposition at every level. The
+separate certificate in `w4_search/RESULT.md` settles `W_4`; the full
+arboreal statement remains open.
 
 ## References and public comparison points
 

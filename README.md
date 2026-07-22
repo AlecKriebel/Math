@@ -22,21 +22,24 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
-**An explicit counterexample to the Special Image Conjecture in dimension
-21** is Discovery 05, currently an unreviewed research draft. It gives a
-72-term rational pair `(A,b)` in 42 indeterminates, proves that every positive
-power of `A` lies in `ker(E_21)`, and proves that `b*A^m` lies outside it for
-infinitely many `m`. Its novelty claim is intentionally limited: Exploration
-03's cubic model already implies SIC(22), while this construction removes one
-homogenizing variable and handles the resulting linear block with a
-scalar-parameter inversion lemma.
+**A 14-variable polynomial map with everywhere unipotent Jacobian and a
+three-point fiber** is Discovery 06, currently an unreviewed research draft.
+Its nonlinear Jacobian is generically one nilpotent Jordan block of size 14,
+the map has three displayed rational points in one fiber, and its 24-term
+image-operator witness disproves `SIC(14)`: every positive power of `A` lies
+in `ker(E_14)`, while `b*A^m` lies outside it for every positive `m`. The
+dimension and term counts are proved optimal only in the stated
+constant-state realization ansatz.
 
-**Full wreath-product monodromy for the square of an explicit Keller map** is
-Discovery 04. It provisionally determines the geometric monodromy of the
-canonical self-composition as `S_3 wr S_3` in degree nine and proves a full
-`3^m`-cycle in geometric inertia for every iterate. The strengthened site
-edition includes an exact linear-subresultant/function-field certificate and a
-local-field Puiseux induction.
+**Full wreath-product monodromy through the third iterate of an explicit
+Keller map** is Discovery 04. It provisionally determines the geometric
+monodromy of the second and third iterates as `S_3 wr S_3` and
+`S_3 wr S_3 wr S_3`, in degrees nine and 27. The strengthened paper includes
+exact function-field, discriminant, denominator, Newton-polygon, and group
+certificates and proves a full `3^m`-cycle in geometric inertia for every
+iterate. A separately published, independently audited bounded-memory
+certificate in the Discovery 04 source proves the fourth-iterate group
+`S_3 wr S_3 wr S_3 wr S_3`; this is an internal audit, not peer review.
 
 **An explicit 44-variable vanishing witness from a 22-variable cubic Keller
 map** remains the consolidated paper for Explorations 01-03. It contains the
@@ -47,6 +50,9 @@ with the surviving uniform rational collision from Exploration 01.
 
 ## Archival derivations
 
+- **Discovery 05** is retained as the earlier 21-dimensional Special Image
+  Conjecture construction. Discovery 06 supersedes its quantitative claim with
+  an explicit 14-dimensional witness and an every-exponent obstruction.
 - **Exploration 01** is retained as the full derivation of one weighted-lift
   specialization. Its monodromy theorem was already available in stronger form
   before release; only its uniform rational collision remains in the canonical

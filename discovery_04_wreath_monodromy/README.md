@@ -1,19 +1,25 @@
-# Discovery 04: full wreath monodromy of the self-composition
+# Discovery 04: full wreath monodromy through the third iterate
 
 Status: **public research draft; not peer reviewed**.
 
 First public repository release: **21 July 2026, 18:44:48 UTC**.
 Strengthened site edition: **22 July 2026, 02:24:28 UTC**.
 
-The provisional theorem is
+The provisional theorems are
 
 ```text
-Mon(F o F) = S_3 wr S_3
+Mon(F^2) = S_3 wr S_3,
+Mon(F^3) = S_3 wr S_3 wr S_3.
 ```
 
-for the newly announced three-dimensional Keller map `F`. The group has order
-`1296` in its natural imprimitive action on nine sheets. The normalized map
-`((F o F)_1/4,(F o F)_2,(F o F)_3)` has Jacobian determinant one.
+for the newly announced three-dimensional Keller map `F`. The groups have
+orders `1296` and `13,060,694,016` in their natural imprimitive actions on
+nine and 27 sheets. The normalized map
+`((F o F)_1/4,(F o F)_2,(F o F)_3)` has Jacobian determinant one. A separate
+bounded-memory certificate in [`w4_search/RESULT.md`](w4_search/RESULT.md)
+proves `Mon(F^4)=W_4`; it is deliberately kept outside the level-three paper
+so the two upgrades can be reviewed independently. The all-level full-wreath
+assertion remains open.
 
 Start with [`NOTE.md`](NOTE.md). The source-specific novelty investigation is
 in [`PRIORITY_AUDIT.md`](PRIORITY_AUDIT.md), and the chronological research
@@ -43,6 +49,9 @@ Independent PARI/GP and GAP checks are also supplied:
 gp -q verify_pari.gp
 gap -q verify_group.g
 python3 verify_level3_newton.py
+python3 verify_level3_wreath.py
+python3 w4_search/test_finite_field_norm.py
+python3 w4_search/verify_w4_modular.py
 ```
 
 `search_wreath.py` repeats the exploratory PARI `polgalois` calculation at

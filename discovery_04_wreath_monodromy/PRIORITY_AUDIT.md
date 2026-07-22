@@ -7,16 +7,24 @@ counterexample literature is changing on an hourly timescale, some work may be
 private or unindexed, and search engines lag. The defensible claim is therefore
 limited to the sources and snapshots below.
 
+**Level-three scope note.** The exact `W_3` certificate was added on 22 July,
+after the displayed audit timestamp. The original sweep did include
+`iterated monodromy`, `arboreal monodromy`, and composition terms and located
+no competing `F^3` computation, but this document makes no stronger priority
+claim for the extension than that source-bounded statement.
+
 ## Claim being audited
 
-For the announced degree-three Keller map `F`, the exact geometric monodromy
-of the self-composition `F o F` is the full imprimitive wreath product
+For the announced degree-three Keller map `F`, the exact geometric monodromies
+of the second and third iterates are the full imprimitive wreath products
 
 ```text
-S_3 wr S_3
+Mon(F^2) = S_3 wr S_3,
+Mon(F^3) = S_3 wr S_3 wr S_3.
 ```
 
-in its degree-nine action. Equivalently, its order is `6^3*6 = 1296`.
+Their degrees are nine and 27, and their orders are `6^4=1296` and
+`6^13=13,060,694,016`.
 
 The note also proves the narrower all-iterate statement that `Mon(F^m)`
 contains a full `3^m`-cycle for every `m>=1`. The audit searched for iterated
@@ -53,8 +61,8 @@ different imprimitive degree-eight monodromy group of order `192`, inspected at
 commit `640322133fa4bbe172e0ac95f3c485f2c86d8cea`. Discovery 04 therefore must
 not be advertised as the first non-symmetric or first imprimitive monodromy of
 a post-announcement Keller map. Its narrower contribution is the exact group
-of the canonical self-composition and the realization of the specific pair
-`(9, S_3 wr S_3)`.
+of the canonical second and third iterates and the realizations of the
+specific pairs `(9,W_2)` and `(27,W_3)`.
 
 Source:
 
@@ -96,7 +104,7 @@ for `wreath`, `monodromy`, `self-composition`, `iterated monodromy`,
 
 Only the weighted-lift note and the quartic-resultant note contained relevant
 composition/imprimitive-monodromy statements. Neither gives the exact group of
-`F o F`.
+`F^2` or `F^3`.
 
 ## Web, arXiv, and MathOverflow sweep
 
@@ -132,15 +140,18 @@ multivariate nonproper Keller map.
 
 Unless a later audit finds an earlier source, defensible wording is:
 
-> We determine the exact geometric monodromy of the self-composition of the
-> announced three-dimensional Keller map. It is the full imprimitive wreath
-> product `S_3 wr S_3` of order `1296`, answering a computation explicitly
-> left open in the closest public monodromy study. We also exhibit full-cycle
-> inertia of length `3^m` for every iterate `F^m`.
+> We determine the exact geometric monodromy of the second and third iterates
+> of the announced three-dimensional Keller map. They are the full imprimitive
+> wreath products `W_2` and `W_3`, of orders `1296` and `13,060,694,016`.
+> The level-two result answers a computation explicitly left open in the
+> closest public monodromy study. We also exhibit full-cycle inertia of length
+> `3^m` for every iterate `F^m`.
 
 Do not claim:
 
 - the first non-symmetric or imprimitive Keller monodromy;
 - the first observation that compositions are contained in wreath products;
 - guaranteed worldwide priority;
-- an all-iterate arboreal theorem unless that separate argument is completed.
+- an all-iterate arboreal theorem;
+- any priority claim for the separately certified `W_4` upgrade without a
+  new source audit specifically covering level four.

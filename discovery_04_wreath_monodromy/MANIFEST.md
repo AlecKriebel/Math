@@ -23,6 +23,11 @@ Status: public research draft, not peer reviewed.
 | `verify_pari.gp` | PARI/GP re-entry of the displayed polynomials and independent discriminant, modular, and Galois checks |
 | `verify_group.g` | GAP construction of `S_3 wr S_3` and exhaustive subgroup exclusion |
 | `verify_level3_newton.py` | SymPy-generated level-three equations with nested resultants delegated to PARI |
+| `verify_level3_wreath.py` | Exact primitive degree-27 eliminant, discriminant simple-divisor and denominator guards, plus the structural `W_3` kernel lemma |
+| `w4_search/RESULT.md` | Separate good-reduction, norm-to-inertia, and group proof of `Mon(F^4)=W_4` |
+| `w4_search/finite_field_norm.py` | Bounded-memory quotient-tower evaluator over a prime or prime-square coefficient ring |
+| `w4_search/verify_w4_modular.py` | Recomputes the level-four modular certificate, direct sheet derivative, scan digest, and `S_3^27` kernel lemma |
+| `w4_search/test_finite_field_norm.py` | Dependency-free quotient-algebra and prime-square determinant tests |
 | `search_wreath.py` | Exploratory exact arithmetic at five unrelated rational fibers |
 | `requirements.txt` | Pinned SymPy requirement |
 | `render_paper.py` | Reproducible Tectonic PDF build |
@@ -47,8 +52,12 @@ Proved in the draft:
 
 - `Mon(F o F)=S_3 wr S_3` geometrically;
 - order `1296` and generic degree nine;
+- `Mon(F^3)=S_3 wr S_3 wr S_3` geometrically;
+- order `13,060,694,016` and generic degree 27;
 - a unit-Jacobian noninjective normalization in `C^3`;
 - full `3^m`-cycle inertia for every iterate `F^m`.
+- in the separate `w4_search` proof artifact, `Mon(F^4)=W_4` geometrically,
+  of order `6^40=13,367,494,538,843,734,067,838,845,976,576`.
 
 Not proved:
 

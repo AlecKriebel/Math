@@ -1,0 +1,424 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\SIC}{\operatorname{SIC}}
+
+\title{A 14-variable polynomial map with everywhere\\
+unipotent Jacobian and a three-point fiber}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Branch draft prepared 22 July 2026\\Research draft; not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give an exact rational polynomial vector $g\in\Q[Z]^{14}$, with
+24 monomials, such that
+\[
+ \det(I+sJg)=1
+\]
+identically, and such that $I+g$ has three displayed rational points in one
+fiber.  Generically, $Jg$ is regular nilpotent, with Jordan type $(14)$.
+The generic degree is three and the geometric monodromy is $S_3$.
+For the image operator
+$E(\xi^\alpha p(Z))=\partial_Z^\alpha p(Z)$, put
+$A=-\sum_{j=1}^{14}\xi_jg_j$ and $b=x+y+u_{11}$.  We prove
+\[
+ E(A^m)=0,\qquad E(bA^m)\ne0\qquad(m\geq1).
+\]
+Thus $\SIC(14)$ fails, with an obstruction at every exponent.  We also
+record degree-seven homogeneous and Hessian-nilpotent companions.  The
+dimension and term counts are proved optimal only in a precisely stated
+constant-state realization ansatz.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The human author is a complete amateur exploring the limits of AI-assisted
+mathematics and cannot independently verify these claims.  This is a research
+artifact for expert checking, not an established result.  Priority and
+minimality have only the narrow scope stated below.
+
+\section{The three-variable source}
+
+Put $u=1+xy$ and
+\[
+\begin{aligned}
+F_1&=u^3z+y^2u(4+3xy),\\
+F_2&=y+3xu^2z+3xy^2(4+3xy),\\
+F_3&=2x-3x^2y-x^3z.
+\end{aligned}
+\]
+Use the identity-linear normalization
+\begin{equation}
+ \Phi=(F_3/2,F_2,F_1)=X+H_2+H_3+\cdots+H_7. \label{eq:Phi}
+\end{equation}
+The nonzero homogeneous pieces are displayed in Table~\ref{tab:pieces}.
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|ccc}
+\toprule
+$d$&$H_{d,1}$&$H_{d,2}$&$H_{d,3}$\\
+\midrule
+2&0&$3xz$&$4y^2$\\
+3&$-\tfrac32x^2y$&$12xy^2$&$3xyz$\\
+4&$-\tfrac12x^3z$&$6x^2yz$&$7xy^3$\\
+5&0&$9x^2y^3$&$3x^2y^2z$\\
+6&0&$3x^3y^2z$&$3x^2y^4$\\
+7&0&0&$x^3y^3z$\\
+\bottomrule
+\end{tabular}
+\caption{Homogeneous pieces of $\Phi-I$.}
+\label{tab:pieces}
+\end{table}
+
+Direct differentiation gives $\det J\Phi=1$.  The three points
+\begin{equation}
+ r_0=(0,0,-\tfrac14),\quad
+ r_+=(1,-\tfrac32,\tfrac{13}2),\quad
+ r_-=(-1,\tfrac32,\tfrac{13}2) \label{eq:sourcepoints}
+\end{equation}
+all map to $(0,0,-1/4)$.
+
+\section{The 14-variable construction}
+
+Take state coordinates
+\[
+ U=(u_{11},u_{12};u_{21},u_{22},u_{23},u_{24};
+ u_{31},u_{32},u_{33},u_{34},u_{35}).
+\]
+Let $B\in\operatorname{Mat}_{3\times11}(\Q)$ select the three chain heads,
+so $BU=(u_{11},u_{21},u_{31})^T$.  Let
+$N=J_2\oplus J_4\oplus J_5$, with ones immediately above the diagonal in
+each Jordan block, and put
+\[
+C=\begin{pmatrix}
+H_{3,1}\\H_{4,1}\\
+H_{3,2}\\H_{4,2}\\H_{5,2}\\H_{6,2}\\
+H_{3,3}\\H_{4,3}\\H_{5,3}\\H_{6,3}\\H_{7,3}
+\end{pmatrix}.
+\]
+Define
+\begin{equation}
+ g(X,U)=\bigl(H_2(X)+BU,-C(X)-NU\bigr). \label{eq:blockg}
+\end{equation}
+In the coordinate order $Z=(x,y,z,U)$, its components are
+\begingroup\small
+\begin{align}
+g_1&=u_{11},&
+g_2&=3xz+u_{21},&
+g_3&=4y^2+u_{31},\nonumber\\
+g_4&=\tfrac32x^2y-u_{12},&
+g_5&=\tfrac12x^3z,\nonumber\\
+g_6&=-12xy^2-u_{22},&
+g_7&=-6x^2yz-u_{23},\nonumber\\
+g_8&=-9x^2y^3-u_{24},&
+g_9&=-3x^3y^2z,\nonumber\\
+g_{10}&=-3xyz-u_{32},&
+g_{11}&=-7xy^3-u_{33},\nonumber\\
+g_{12}&=-3x^2y^2z-u_{34},&
+g_{13}&=-3x^2y^4-u_{35},\nonumber\\
+g_{14}&=-x^3y^3z. \label{eq:gdisplay}
+\end{align}
+\endgroup
+There are exactly 24 monomials.  Hence
+\begin{equation}
+ A(\xi,Z)=-\sum_{j=1}^{14}\xi_jg_j(Z) \label{eq:A}
+\end{equation}
+has 24 monomials in 28 indeterminates and total degree eight.
+
+\section{Determinant pencil and regular nilpotency}
+
+\begin{theorem}\label{thm:main}
+For the vector in~\eqref{eq:gdisplay},
+\[
+ \det(I+sJg)=1.
+\]
+The generic Jordan type of $Jg$ is $(14)$.  The map $I+g$ has three
+distinct rational points in one fiber, has generic degree three, and has
+geometric monodromy $S_3$.
+\end{theorem}
+
+\begin{proof}
+The Jacobian pencil has block form
+\[
+ I+sJg=
+ \begin{pmatrix}
+ I_3+sJH_2&sB\\
+ -sJC&I_{11}-sN
+ \end{pmatrix}.
+\]
+Since $N^5=0$,
+\[
+ \det(I-sN)=1,\qquad
+ (I-sN)^{-1}=\sum_{k=0}^4s^kN^k.
+\]
+The chain definition gives $BN^kC=H_{k+3}$ for $0\leq k\leq4$, with
+absent components zero.  The Schur complement is therefore
+\[
+\begin{aligned}
+I_3+sJH_2+s^2B(I-sN)^{-1}JC
+ &=I_3+\sum_{d=2}^7s^{d-1}JH_d(X)\\
+ &=J\Phi(sX).
+\end{aligned}
+\]
+Its determinant is one, proving the pencil identity.  Cayley--Hamilton gives
+$(Jg)^{14}=0$, while exact multiplication gives
+\begin{equation}
+ \bigl((Jg)^{13}\bigr)_{1,5}=-3x^6y^4z\ne0. \label{eq:index}
+\end{equation}
+The generic nilpotency index is therefore 14, which forces the single Jordan
+block $(14)$.
+
+For a source point $r$, put $U(r)=(I-N)^{-1}C(r)$.  Then
+\[
+ (I+g)(r,U(r))=(\Phi(r),0).
+\]
+Thus the three points in~\eqref{eq:sourcepoints} lift to the explicit points
+displayed in~\eqref{eq:liftedpoints} below and have common image.
+
+Finally, for a generic target $(Y,V)$ the state equations give
+\[
+ U=(I-N)^{-1}(V+C(X)),\qquad
+ \Phi(X)=Y-B(I-N)^{-1}V.
+\]
+Thus $I+g$ is stably equivalent to $\Phi\times I_{11}$.  The exact cubic
+resolvent, irreducibility, and nonsquare-discriminant certificates for
+$\Phi$ are given in Discovery 04; they show generic degree three and
+geometric monodromy $S_3$.
+\end{proof}
+
+The lifted points promised in the proof are
+\begingroup\small
+\begin{align}
+p_0={}&(0,0,-\tfrac14;0,0;0,0,0,0;0,0,0,0,0),\nonumber\\
+p_+={}&(1,-\tfrac32,\tfrac{13}2;-1,-\tfrac{13}4;
+-18,-45,\tfrac{27}2,\tfrac{351}8;\nonumber\\
+&\hspace{26mm}-\tfrac{63}4,\tfrac{27}2,\tfrac{297}8,
+-\tfrac{27}4,-\tfrac{351}{16}),\nonumber\\
+p_-={}&(-1,\tfrac32,\tfrac{13}2;1,\tfrac{13}4;
+18,45,-\tfrac{27}2,-\tfrac{351}8;\nonumber\\
+&\hspace{26mm}-\tfrac{63}4,\tfrac{27}2,\tfrac{297}8,
+-\tfrac{27}4,-\tfrac{351}{16}). \label{eq:liftedpoints}
+\end{align}
+\endgroup
+Their common image is $(0,0,-1/4,0,\ldots,0)$.
+
+For every nonzero scalar $s$, the same elimination applied to $I+sg$ gives
+\[
+ s^{-1}\Phi(sX)=Y-sB(I-sN)^{-1}V.
+\]
+Consequently every nonzero pencil member is noninjective and retains generic
+degree three and monodromy $S_3$.
+
+\section{Consequences for injectivity conjectures}
+
+The derivative of $I+g$ is everywhere unipotent, but
+\eqref{eq:liftedpoints} proves noninjectivity.  This gives an explicit
+dimension-14 counterexample to Campbell's Unipotent Jacobian Univalence
+Conjecture and to the all-eigenvalues-one form of Chamberland's injectivity
+conjecture.
+
+It also gives a concrete failure of Kulikov's $JN(14)$.  For
+$c\in\C^{14}$ set
+\[
+ N_c(Z)=c-g(Z).
+\]
+Then $JN_c=-Jg$ is nilpotent, and fixed points of $N_c$ are exactly the
+points of $(I+g)^{-1}(c)$.  The displayed value gives three rational fixed
+points; a generic value gives three geometric fixed points.
+
+These are algebraic injectivity statements.  They should not be confused
+with the classical dynamical Markus--Yamabe conjecture, which has older
+counterexamples, or with valid theorems using singular-value rather than
+eigenvalue bounds.
+
+\section{The Special Image Conjecture}
+
+For $n$ pairs of variables define
+\[
+ E_n:\C[\xi_1,\ldots,\xi_n,Z_1,\ldots,Z_n]\longrightarrow\C[Z],
+ \qquad E_n(\xi^\alpha p)=\partial_Z^\alpha p.
+\]
+The Special Image Conjecture says that $\ker E_n$ is a Mathieu--Zhao
+subspace.
+
+\begin{lemma}[scalar-parameter inversion]\label{lem:inverse}
+Suppose $\det(I+tJg)=1$, put $A=-\xi\cdot g$, and let $Q_t$ be the formal
+inverse of $I+tg$.  For every polynomial $p$,
+\begin{equation}
+ p(Q_t(Z))=\sum_{m\geq0}\frac{t^m}{m!}E_n(pA^m). \label{eq:AG}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Apply the Abhyankar--Gurjar inversion formula to
+$I+tg=I-H_t$, where $H_t=-tg$.  The determinant factor is one, and the
+multinomial theorem collects terms of total $\xi$-degree $m$.  The formula
+is valid $t$-adically: each coefficient receives only finitely many
+contributions.
+\end{proof}
+
+\begin{theorem}\label{thm:SIC}
+For $A$ in~\eqref{eq:A} and $b=x+y+u_{11}$,
+\[
+ E_{14}(A^m)=0,\qquad E_{14}(bA^m)\ne0
+ \qquad(m\geq1).
+\]
+Consequently $\SIC(14)$ is false.
+\end{theorem}
+
+\begin{proof}
+Taking $p=1$ in~\eqref{eq:AG} gives $E_{14}(A^m)=0$ for every $m\geq1$.
+For the sharp obstruction, specialize the inverse target to
+\[
+ Z_*=(\tfrac12,0,1,0,\ldots,0).
+\]
+Let $\tau\in t\Q[[t]]$ be the unique solution of
+\begin{equation}
+ \tau+t\tau^3=\frac t2. \label{eq:tau}
+\end{equation}
+State elimination followed by the source cubic reconstruction gives
+\[
+ Q_{t,x}(Z_*)=\tau',\qquad
+ Q_{t,y}(Z_*)=-3\tau,\qquad
+ Q_{t,u_{11}}(Z_*)=-\frac{\tau'-1/2}{t}.
+\]
+The last identity is also immediate from the first target equation
+$Q_x+tQ_{u_{11}}=1/2$.
+
+Write $b(Q_t)(Z_*)=\sum_{m\geq0}q_mt^m$.  Lagrange inversion
+in~\eqref{eq:tau} gives
+\begin{align}
+q_{3k}&=(-1)^k\frac{\binom{3k+1}{k}}{2^{2k+1}},\nonumber\\
+q_{3k+1}&=(-1)^{k+1}
+ \frac{3\binom{3k+1}{k}}{(3k+1)2^{2k+1}},\nonumber\\
+q_{3k+2}&=(-1)^k\frac{\binom{3k+4}{k+1}}{2^{2k+3}}. \label{eq:q}
+\end{align}
+Every number in~\eqref{eq:q} is nonzero.  Comparing coefficients
+in~\eqref{eq:AG} yields
+\[
+ E_{14}(bA^m)(Z_*)=m!q_m\ne0
+\]
+for every $m\geq1$.
+\end{proof}
+
+\section{Optimality inside the state ansatz}
+
+No global minimality claim is made.  Consider only realizations
+\begin{equation}
+ \widetilde g(X,U)=(H_2(X)+\widetilde BU,
+ -\widetilde C(X)-\widetilde NU) \label{eq:ansatz}
+\end{equation}
+with constant matrices, nilpotent $\widetilde N$, and exact Markov parameters
+\[
+ \widetilde B\widetilde N^k\widetilde C=H_{k+3}\qquad(k\geq0).
+\]
+Order the eleven distinct tail monomials as
+\[
+x^2y,\ xy^2,\ xyz,\ x^3z,\ x^2yz,\ xy^3,\ x^2y^3,\ x^2y^2z,\
+x^3y^2z,\ x^2y^4,\ x^3y^3z.
+\]
+Let $M_k\in\operatorname{Mat}_{3\times11}(\Q)$ be the coefficient matrix
+of $H_{k+3}$ in these columns, with $M_k=0$ for $k\geq5$.  For
+$0\leq j\leq5$, form
+$\mathcal H_j=(M_{j+r+c})_{0\leq r,c<5-j}$.  Their exact ranks are
+\[
+ 11,8,5,3,1,0.
+\]
+For $\mathcal H_0$, in standard block order, rows
+$1,2,3,4,5,6,8,9,11,12,15$ and columns $1,\ldots,11$ give the exact minor
+\[
+ 275562=2\cdot3^9\cdot7\ne0.
+\]
+Every realization factors $\mathcal H_0$ through its state space, so at
+least eleven states are required.  The shifted matrix $\mathcal H_1$ factors
+through $\widetilde N$, and hence its rank gives
+$\operatorname{rank}\widetilde N\geq8$.  Thus dimension 14 is minimal
+in~\eqref{eq:ansatz}.  Moreover
+$\operatorname{rank}\widetilde B\geq3$,
+and $\widetilde C$ must contain all eleven monomial inputs.  Together with
+the two terms of $H_2$, this gives
+\[
+ 2+3+8+11=24
+\]
+as a term lower bound.  The displayed construction attains it.
+
+\section{Homogeneous companions}
+
+Introduce $w$ and homogenize to degree seven:
+\begin{equation}
+ h(Z,w)=\bigl(w^7g(Z/w),0\bigr)\in\Q[Z,w]^{15}. \label{eq:h}
+\end{equation}
+This vector has 24 terms, and its zero last row gives
+\[
+ \det(I+sJh)=\det(I+sw^6Jg(Z/w))=1.
+\]
+Thus $Jh$ is nilpotent.  The points $(p_0,1),(p_+,1),(p_-,1)$ collide
+under $I+h$, while degree and monodromy remain $3$ and $S_3$.  The exact
+checker certifies $(Jh)^{13}\ne0$, so its generic nilpotency index is at
+least 14.  We make no exact index assertion without a separate degree-14
+zero certificate.
+
+As a standard consequence of the de Bondt--van den Essen symmetrization
+lemma, the polynomial
+\begin{equation}
+ P(A,B)=i\sum_{j=1}^{15}h_j(A+iB)B_j \label{eq:P}
+\end{equation}
+is a homogeneous degree-eight Hessian-nilpotent polynomial in 30 variables.
+The usual linear solve with $I+Jh(x)^T$ transports two displayed colliding
+points to a collision of $I-\nabla P$.  This paragraph invokes the standard
+lemma; the independently checked headline artifact is the 14-variable map.
+
+\section{Scope and priority}
+
+The state-space count
+\[
+ 3+(4-2)+(6-2)+(7-2)=14
+\]
+is classical degree bookkeeping in Kulikov's reduction.  The abstract
+existence of a 14-dimensional reduction is not claimed as new.  The asserted
+contribution is the sparse explicit realization, its regular-nilpotent and
+three-point certificates, and the consequence cascade, particularly the
+every-exponent $\SIC(14)$ formula.
+
+At the audit cutoff, no earlier public source was located giving this exact
+object or an explicit $\SIC(n)$ witness for $n\leq14$.  That is provisional
+evidence, not proof of worldwide priority.  No global smallest-dimension or
+smallest-term claim is made.
+
+\begin{thebibliography}{9}
+\bibitem{Campbell}
+L. A. Campbell,
+\emph{Unipotent Jacobian Matrices and Univalent Maps},
+\url{https://arxiv.org/abs/math/9907157}.
+
+\bibitem{Kulikov}
+V. S. Kulikov,
+\emph{Jacobian Conjecture and Nilpotent Mappings},
+\url{https://arxiv.org/abs/math/9803143}.
+
+\bibitem{Zhao}
+W. Zhao,
+\emph{Images of Commuting Differential Operators of Order One with
+Constant Leading Coefficients},
+J. Algebra 324 (2010), 231--247;
+\url{https://arxiv.org/abs/0902.0210}.
+
+\bibitem{BondtEssen}
+M. de Bondt and A. van den Essen,
+\emph{A reduction of the Jacobian conjecture to the symmetric case},
+Proc. Amer. Math. Soc. 133 (2005), 2201--2205.
+
+\bibitem{Discovery04}
+A. Kriebel, with ChatGPT 5.6 Sol,
+\emph{Full wreath-product monodromy through the third iterate of an explicit
+Keller map}, Discovery 04 (2026).
+\end{thebibliography}
+
+\end{document}

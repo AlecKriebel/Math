@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A provisional explicit 14-variable polynomial map with everywhere unipotent Jacobian, a rational three-point fiber, and an every-exponent counterexample to SIC(14).">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="A 14-variable polynomial map with everywhere unipotent Jacobian and a three-point fiber">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-22">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/unipotent-three-point/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A 14-variable polynomial map with everywhere unipotent Jacobian and a three-point fiber">
+  <meta property="og:description" content="An exact 24-term unipotent-Jacobian construction, rational three-point fiber, regular nilpotency certificate, and every-exponent SIC(14) obstruction.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/unipotent-three-point/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/unipotent-three-point/">
+  <title>A 14-variable unipotent map with a three-point fiber · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "A 14-variable polynomial map with everywhere unipotent Jacobian and a three-point fiber",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-22",
+    "dateModified": "2026-07-22",
+    "url": "https://aleckriebel.github.io/Math/papers/unipotent-three-point/",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/unipotent-three-point/paper.pdf", "encodingFormat": "application/pdf"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_06_unipotent_three_point">Source</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Discovery 06 · Research draft · Not peer reviewed</p>
+      <h1>A 14-variable polynomial map with everywhere unipotent Jacobian and a three-point fiber</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Draft prepared: <time datetime="2026-07-22">22 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div><h2>Do not treat these claims as established mathematics.</h2><p>Alec Kriebel is a complete amateur and cannot independently verify this note. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, attribution, and novelty claim requires independent expert review. Exact checks are evidence about the encoded algebra, not peer review.</p></div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/NOTE.md">Full note</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/verify_symbolic.py">Symbolic verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/verify_exported_stdlib.py">Independent checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/PRIORITY_AUDIT.md">Priority audit</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">This draft gives an exact rational polynomial vector \(g\in\mathbb Q[Z]^{14}\), with 24 monomials, for which \(\det(I+sJg)=1\), while \(I+g\) has three displayed rational points in one fiber. Generically, \(Jg\) is a single nilpotent Jordan block of size 14. The same object gives an explicit counterexample to the Special Image Conjecture in dimension 14 whose multiplier obstruction is nonzero at every positive exponent.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Map</strong><span>14 variables · 24 monomials</span></div>
+          <div class="fact"><strong>Generic Jacobian type</strong><span>One nilpotent block \((14)\)</span></div>
+          <div class="fact"><strong>Image conjecture</strong><span>SIC(14) fails for every \(m\ge1\)</span></div>
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>1. Explicit unipotent map</h2>
+        <p>The construction lifts the announced three-variable degree-three Keller map by eleven constant nilpotent state variables. In the coordinate order \(Z=(x,y,z,U)\), its nonlinear part has exactly 24 monomials and satisfies the exact polynomial identity</p>
+        <div class="equation">\[\det(I+sJg)=1.\]</div>
+        <p>Cayley–Hamilton gives \((Jg)^{14}=0\), while the checker obtains the nonzero entry</p>
+        <div class="equation">\[\bigl((Jg)^{13}\bigr)_{1,5}=-3x^6y^4z.\]</div>
+        <p>Thus the generic nilpotency index is 14 and the generic Jordan type is \((14)\).</p>
+
+        <h2>2. A rational three-point fiber</h2>
+        <p>Three explicit rational points lift from the source map and have the common image</p>
+        <div class="equation">\[(0,0,-\tfrac14,0,\ldots,0).\]</div>
+        <p>The lifted map has generic degree three and geometric monodromy \(S_3\). The construction therefore supplies a concrete noninjective map whose derivative is everywhere unipotent, together with fixed-point consequences for the nilpotent-Jacobian formulation discussed in the paper.</p>
+
+        <h2>3. Every-exponent failure of SIC(14)</h2>
+        <p>For the image operator \(E_{14}\), set</p>
+        <div class="equation">\[A(\xi,Z)=-\sum_{j=1}^{14}\xi_jg_j(Z),\qquad b=x+y+u_{11}.\]</div>
+        <div class="theorem-block"><p><strong>Provisional theorem.</strong> For every positive integer \(m\),</p><div class="equation">\[E_{14}(A^m)=0,\qquad E_{14}(bA^m)\ne0.\]</div><p>The nonzero value is given by closed binomial-coefficient formulas in all three residue classes modulo three, so this is not an extrapolation from a finite computation.</p></div>
+
+        <h2>4. Scoped optimality and companions</h2>
+        <p>Exact coefficient-Hankel ranks \(11,8,5,3,1,0\), including a displayed nonzero minor of determinant \(275562\), prove that eleven state variables and 24 terms are minimal inside the precisely stated constant-state realization ansatz. No global minimality claim is made. The paper also records a 15-dimensional homogeneous companion and the standard 30-dimensional Hessian-nilpotent symmetrization.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>5. Exact certificates</h2>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/verify_symbolic.py"><code>verify_symbolic.py</code></a> — determinant pencil, collision, generic nilpotency, every-exponent formulas, scoped minimality, and homogeneous companion.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/output/unipotent14_sparse.json"><code>unipotent14_sparse.json</code></a> — deterministic sparse map and collision certificate.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/verify_exported_stdlib.py"><code>verify_exported_stdlib.py</code></a> — dependency-free rational verification of the exported certificate.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_06_unipotent_three_point/MANIFEST.md"><code>MANIFEST.md</code></a> — complete artifact and claim inventory.</li>
+        </ul>
+        <p class="fine-print hash">Certificate SHA-256: <code>ce6ca33b38c808a973b18da3d5f4a1f5a647c7836c2fbd78889fa7ffb3ba746c</code></p>
+      </section>
+
+      <section id="scope">
+        <h2>6. Scope and priority</h2>
+        <p>The 14-dimensional degree bookkeeping is classical and is not claimed as new. The narrow candidate contribution is the explicit sparse instantiation, its regular-nilpotent and rational three-point certificates, and especially the every-exponent SIC(14) formula. The audit located no earlier public explicit SIC witness in dimension at most 14 at its cutoff, but that is source-bounded evidence, not a guarantee of worldwide priority.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The exploratory algebra, proof drafting, verification programs, and website were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently verify the claims. The note has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “A 14-variable polynomial map with everywhere unipotent Jacobian and a three-point fiber,” provisional research note, 22 July 2026. <a href="https://aleckriebel.github.io/Math/papers/unipotent-three-point/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The complete human-readable note, audit, exact source, and machine-readable certificate are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>
