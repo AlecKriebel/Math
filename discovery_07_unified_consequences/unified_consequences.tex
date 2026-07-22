@@ -1,0 +1,778 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\SIC}{\operatorname{SIC}}
+\newcommand{\Hess}{\operatorname{Hess}}
+
+\title{A 14-variable unipotent Keller map and\\
+every-order image and vanishing obstructions}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Research draft prepared 22 July 2026\\Not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Starting from the recently announced three-variable counterexample to the
+Jacobian conjecture, we give one self-contained consequence mechanism built
+from a formal inverse pencil and a linear observable.  Its first realization
+is an exact rational vector $g\in\Q[Z]^{14}$ with 24 monomials such that
+$\det(I+sJg)=1$, $Jg$ is generically regular nilpotent, and $I+g$ has an exact
+reduced fiber of three rational points.  The same inverse series gives an
+explicit every-exponent failure of the Special Image Conjecture $\SIC(14)$.
+After homogenization and symmetric reduction it gives a homogeneous
+degree-eight Hessian-nilpotent polynomial in 30 variables for which
+$\Delta^mP^{m+1}\ne0$ at every order.  A complementary rank-compressed cubic
+route gives a homogeneous quartic in 44 variables with the same every-order
+nonvanishing, directly addressing the classical quartic Vanishing
+Conjecture.  The real 14-variable map also supplies direct counterexamples to
+the Campbell, Chamberland--Meisters, and Kulikov injectivity and fixed-point
+formulations.  These are one consequence cascade, not independent
+discoveries.  All claims are accompanied by exact sparse certificates and
+bounded-memory checkers.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The human author is a complete amateur exploring the limits of AI-assisted
+mathematics and cannot independently verify these claims.  This is an
+unreviewed artifact for expert checking, not an established result.  The
+algebraic checks do not establish the literature or priority assertions.
+
+\section{The unified result}
+
+Let $E_n:\C[\xi,Z]\to\C[Z]$ be the linear map
+\begin{equation}
+ E_n(\xi^\alpha p(Z))=\partial_Z^\alpha p(Z),
+ \label{eq:E}
+\end{equation}
+and let $\Delta_N$ denote the Laplacian in $N$ variables.  The paper proves
+the following package directly; none of the operator statements is inferred
+only from a logical equivalence with the Jacobian conjecture.
+
+\begin{theorem}[Master theorem]\label{thm:master}
+There are explicit exact objects with the following properties.
+\begin{enumerate}
+\item A vector $g\in\Q[Z]^{14}$ with 24 monomials satisfies
+\[
+ \det(I+sJg)=1,\qquad (Jg)^{14}=0,\qquad (Jg)^{13}\ne0.
+\]
+The map $T=I+g$ has generic degree three, geometric monodromy $S_3$, and an
+exact scheme-theoretic fiber consisting of three reduced rational points.
+\item For $A=-\xi\cdot g$ and $b=x+y+u_{11}$,
+\[
+ E_{14}(A^m)=0,\qquad E_{14}(bA^m)\ne0\qquad(m\ge1).
+\]
+Thus $\SIC(14)$ is false, with one fixed multiplier obstructing every
+positive exponent.
+\item There is a 28-variable nonhomogeneous Hessian-nilpotent polynomial
+$P_{28}$ of degree eight and a 30-variable homogeneous Hessian-nilpotent
+polynomial $P_{30}$ of degree eight such that, for $P=P_{28},P_{30}$,
+\[
+ \Delta^m P^m=0\quad(m\ge1),\qquad
+ \Delta^mP^{m+1}\ne0\quad(m\ge0).
+\]
+The expanded term counts are 178 and 608, respectively.
+\item There is a 44-variable homogeneous Hessian-nilpotent quartic $P_{44}$,
+with 538 expanded monomials, such that
+\[
+ \Delta_{44}^mP_{44}^m=0\quad(m\ge1),\qquad
+ \Delta_{44}^mP_{44}^{m+1}\ne0\quad(m\ge0).
+\]
+\end{enumerate}
+\end{theorem}
+
+The 30- and 44-variable endpoints are complementary: the former has smaller
+ambient dimension, while the latter lies in the degree-four homogeneous case
+used in Zhao's equivalence with the Jacobian conjecture~\cite{zhao-hnp}.  No global
+minimality claim is made for either.
+
+\section{The source map and one inverse series}
+
+The following map is the announced three-dimensional counterexample that
+initiated the present constructions~\cite{alpoge}.  Put $u=1+xy$ and define
+\begin{align}
+ F_1&=u^3z+y^2u(4+3xy),\nonumber\\
+ F_2&=y+3xu^2z+3xy^2(4+3xy),\nonumber\\
+ F_3&=2x-3x^2y-x^3z.\label{eq:F}
+\end{align}
+We use the identity-linear normalization
+\begin{equation}
+ \Phi=(F_3/2,F_2,F_1).
+ \label{eq:Phi}
+\end{equation}
+Direct differentiation gives $\det J\Phi=1$.  The three points
+\begin{equation}
+ r_0=(0,0,-\tfrac14),\quad
+ r_+=(1,-\tfrac32,\tfrac{13}2),\quad
+ r_-=(-1,\tfrac32,\tfrac{13}2)
+ \label{eq:sourcepoints}
+\end{equation}
+map to $(0,0,-1/4)$.
+
+The common one-variable engine is the unique series $\tau\in t\Q[[t]]$
+satisfying
+\begin{equation}
+ \tau+t\tau^3=\frac t2.
+ \label{eq:tau}
+\end{equation}
+Let $D=1+3t\tau^2$.  Differentiating~\eqref{eq:tau} gives
+$t\tau'=\tau/D$.  Set
+\begin{equation}
+ \bar x=t\tau'=\frac{\tau}{D},\qquad
+ \bar y=-3t\tau,\qquad
+ \bar z=tD(1-30t\tau^2-18t^2\tau^4).
+ \label{eq:ray}
+\end{equation}
+
+\begin{lemma}[Exact inverse ray]\label{lem:ray}
+The series in~\eqref{eq:ray} satisfy
+\[
+ \Phi(\bar x,\bar y,\bar z)=(t/2,0,t).
+\]
+\end{lemma}
+
+\begin{proof}
+Here $1+\bar x\bar y=1/D$.  Direct substitution into~\eqref{eq:F}
+gives $F_1=t$, $F_2=0$, and
+$F_3=2\tau(1+t\tau^2)=t$, the last equality being~\eqref{eq:tau}.
+\end{proof}
+
+Two linear observables below produce the series
+\begin{align}
+ q(t)&=\tau'-3\tau-\frac{\tau'-1/2}{t}
+      =\sum_{m\ge0}q_mt^m,\label{eq:qdef}\\
+ r(t)&=\tau'-3\tau+3t\tau\tau'
+      =\sum_{m\ge0}r_mt^m.\label{eq:rdef}
+\end{align}
+
+\begin{lemma}[Coefficient-complete obstruction]\label{lem:coefficients}
+For every $k\ge0$,
+\begin{align}
+q_{3k}=r_{3k}
+ &=(-1)^k\frac{\binom{3k+1}{k}}{2^{2k+1}},\nonumber\\
+q_{3k+1}=r_{3k+1}
+ &=(-1)^{k+1}
+ \frac{3\binom{3k+1}{k}}{(3k+1)2^{2k+1}},\nonumber\\
+q_{3k+2}
+ &=(-1)^k\frac{\binom{3k+4}{k+1}}{2^{2k+3}},\label{eq:qcoeff}\\
+r_{3k+2}
+ &=(-1)^k\frac{3\binom{3k+2}{k}}{2^{2k+2}}.\label{eq:rcoeff}
+\end{align}
+In particular, $q_mr_m\ne0$ for every $m\ge0$.
+\end{lemma}
+
+\begin{proof}
+Lagrange inversion in~\eqref{eq:tau} gives
+\[
+ [t^{3k+1}]\tau=
+ (-1)^k\frac{\binom{3k+1}{k}}{(3k+1)2^{2k+1}}.
+\]
+Differentiation gives the residue class $0$, multiplication by $-3$ gives
+class $1$, and the remaining summands in~\eqref{eq:qdef} and
+\eqref{eq:rdef} give class $2$.  These classes are disjoint; elementary
+binomial simplification gives~\eqref{eq:qcoeff}--\eqref{eq:rcoeff}.
+\end{proof}
+
+\section{Two inverse-series transfer principles}
+
+The next two identities are the conceptual spine of the paper.
+
+\subsection{The image-operator transfer}
+
+Let $H\in\C[Z]^n$, suppose $\det(I+tJH)=1$, and let $Q_t$ be the formal
+inverse of $I+tH$.  Put
+\begin{equation}
+ A_H(\xi,Z)=-\sum_{j=1}^n\xi_jH_j(Z).
+\end{equation}
+
+\begin{lemma}[Abhyankar--Gurjar transfer]\label{lem:image-transfer}
+For every polynomial $p$,
+\begin{equation}
+ p(Q_t(Z))=
+ \sum_{m\ge0}\frac{t^m}{m!}E_n\bigl(pA_H^m\bigr)(Z).
+ \label{eq:image-transfer}
+\end{equation}
+Consequently $E_n(A_H^m)=0$ for every $m\ge1$, and any nonzero coefficient
+$[t^m]p(Q_t)(Z_*)$ proves $E_n(pA_H^m)(Z_*)\ne0$.
+\end{lemma}
+
+\begin{proof}
+Apply the Abhyankar--Gurjar inversion formula~\cite{bcw,zhao-ag} to
+$I+tH=I-(-tH)$.
+The determinant factor is one, and the multinomial theorem collects terms of
+total $\xi$-degree $m$.  Taking $p=1$ gives the first conclusion.
+\end{proof}
+
+\subsection{The symmetric Laplacian transfer}
+
+Suppose additionally that $H(0)=0$.  For $A,B\in\C^n$, define the
+de Bondt--van den Essen symmetric transform~\cite{debondt}
+\begin{equation}
+ P_H(A,B)=\ii\sum_{j=1}^n H_j(A+\ii B)B_j,
+ \qquad \Gamma_t=I-t\nabla P_H.
+ \label{eq:symmetrization}
+\end{equation}
+
+\begin{lemma}[Symmetric transfer]\label{lem:symmetric-transfer}
+Write $X=A+\ii B$.  In coordinates $(X,B)$,
+\begin{equation}
+ \Gamma_t(X,B)=
+ \bigl(X+tH(X),(I+tJH(X)^T)B-\ii tH(X)\bigr).
+ \label{eq:triangular}
+\end{equation}
+Hence
+\[
+ \det J\Gamma_t=\det(I+tJH)^2=1,
+\]
+so $P_H$ is Hessian nilpotent.  Moreover, the $A+\ii B$ component of
+$\Gamma_t^{-1}$ is $(I+tH)^{-1}$.
+
+Let $\lambda$ be a linear form on $\C^n$, put
+$\ell(A,B)=\lambda(A+\ii B)$, let $v$ be its coefficient vector in the
+$2n$ variables, and write $D_v=v\mathbin{\cdot}\nabla$.  If
+\[
+ \lambda((I+tH)^{-1}(Y_*))=\sum_{k\ge0}c_kt^k,
+\]
+then
+\begin{equation}
+ D_v\bigl(\Delta_{2n}^mP_H^{m+1}\bigr)(Y_*,0)
+ =2^m m!(m+1)!c_{m+1}.
+ \label{eq:laplace-transfer}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Differentiating~\eqref{eq:symmetrization} gives
+\[
+ \nabla_A P_H=\ii JH(X)^TB,\qquad
+ \nabla_B P_H=-JH(X)^TB+\ii H(X),
+\]
+which proves~\eqref{eq:triangular}.  The determinant identity for every
+$t$ is equivalent to nilpotence of $\Hess P_H$.
+
+Because $H(0)=0$, the polynomial $P_H$ has order at least two.  Zhao's
+inversion formula~\cite[Theorem~3.4]{zhao-hnp} for a Hessian-nilpotent
+polynomial therefore writes
+\begin{equation}
+ \Gamma_t^{-1}(Z)=Z+t\nabla R_t(Z),\qquad
+ R_t=\sum_{m\ge0}
+ \frac{t^m}{2^m m!(m+1)!}\Delta_{2n}^mP_H^{m+1}.
+ \label{eq:zhao}
+\end{equation}
+Apply $\ell$ at $(Y_*,0)$ and compare the coefficient of $t^{m+1}$.
+\end{proof}
+
+Zhao also proved that Hessian nilpotence is equivalent to
+$\Delta^mP^m=0$ for every $m\ge1$.  Thus a coefficient-complete inverse
+observable gives a coefficient-complete counterexample to the corresponding
+Vanishing Conjecture without ever expanding a high Laplacian
+power~\cite{zhao-hnp,zhao-general-vc}.
+
+\section{The 14-variable regular-nilpotent map}
+
+Write
+\begin{equation}
+ \Phi=X+H_2+H_3+\cdots+H_7.
+\end{equation}
+The nonzero homogeneous pieces of $\Phi-I$ are
+\begin{center}
+\begin{tabular}{c|ccc}
+\toprule
+$d$&$H_{d,1}$&$H_{d,2}$&$H_{d,3}$\\
+\midrule
+2&0&$3xz$&$4y^2$\\
+3&$-\tfrac32x^2y$&$12xy^2$&$3xyz$\\
+4&$-\tfrac12x^3z$&$6x^2yz$&$7xy^3$\\
+5&0&$9x^2y^3$&$3x^2y^2z$\\
+6&0&$3x^3y^2z$&$3x^2y^4$\\
+7&0&0&$x^3y^3z$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Take state coordinates
+\[
+ U=(u_{11},u_{12};u_{21},u_{22},u_{23},u_{24};
+ u_{31},u_{32},u_{33},u_{34},u_{35}).
+\]
+Let $B\in\operatorname{Mat}_{3\times11}(\Q)$ select the three chain heads,
+so $BU=(u_{11},u_{21},u_{31})^T$, let
+$N=J_2\oplus J_4\oplus J_5$ with ones immediately above the diagonal, and
+put
+\[
+C=(H_{3,1},H_{4,1};H_{3,2},H_{4,2},H_{5,2},H_{6,2};
+H_{3,3},H_{4,3},H_{5,3},H_{6,3},H_{7,3})^T.
+\]
+Define
+\begin{equation}
+ g(X,U)=\bigl(H_2(X)+BU,-C(X)-NU\bigr).
+ \label{eq:blockg}
+\end{equation}
+In the coordinate order $Z=(x,y,z,U)$, this is
+\begin{align}
+g_1&=u_{11},&
+g_2&=3xz+u_{21},&
+g_3&=4y^2+u_{31},\nonumber\\
+g_4&=\tfrac32x^2y-u_{12},&
+g_5&=\tfrac12x^3z,\nonumber\\
+g_6&=-12xy^2-u_{22},&
+g_7&=-6x^2yz-u_{23},\nonumber\\
+g_8&=-9x^2y^3-u_{24},&
+g_9&=-3x^3y^2z,\nonumber\\
+g_{10}&=-3xyz-u_{32},&
+g_{11}&=-7xy^3-u_{33},\nonumber\\
+g_{12}&=-3x^2y^2z-u_{34},&
+g_{13}&=-3x^2y^4-u_{35},\nonumber\\
+g_{14}&=-x^3y^3z.\label{eq:g}
+\end{align}
+
+\begin{theorem}\label{thm:g14}
+The vector~\eqref{eq:g} has 24 monomials and
+\[
+ \det(I+sJg)=1.
+\]
+Its generic nilpotency index is 14.  The fiber of $T=I+g$ over
+$c=(0,0,-1/4,0,\ldots,0)$ consists scheme-theoretically of exactly three
+reduced rational points, obtained by lifting~\eqref{eq:sourcepoints}.
+The generic degree is three and the geometric monodromy is $S_3$.
+\end{theorem}
+
+\begin{proof}
+The Jacobian pencil has block form
+\[
+ I+sJg=
+ \begin{pmatrix}
+ I_3+sJH_2&sB\\
+ -sJC&I_{11}-sN
+ \end{pmatrix}.
+\]
+Since $N^5=0$, a Schur complement gives
+\begin{align*}
+\det(I+sJg)
+ &=\det\!\left(I_3+sJH_2+s^2B(I-sN)^{-1}JC\right)\\
+ &=\det\!\left(I_3+\sum_{d=2}^7s^{d-1}JH_d(X)\right)
+ =\det J\Phi(sX)=1.
+\end{align*}
+Cayley--Hamilton gives $(Jg)^{14}=0$, while exact multiplication gives
+\[
+ \bigl((Jg)^{13}\bigr)_{1,5}=-3x^6y^4z\ne0.
+\]
+
+On the stated target the state equations uniquely give
+$U=(I-N)^{-1}C(X)$, and the first block becomes $\Phi(X)$.  The source-fiber
+ideal has lexicographic Gr\"obner basis
+\begin{equation}
+ 4z+1-27x^2,\qquad 2y+3x,\qquad x(x-1)(x+1).
+ \label{eq:fiberbasis}
+\end{equation}
+Its quotient is reduced of length three, proving the exact fiber assertion.
+
+More generally, over a target $(Y,V)$ the state block gives
+\[
+ U=(I-N)^{-1}(V+C(X)),\qquad
+ \Phi(X)=Y-B(I-N)^{-1}V.
+\]
+Thus $T$ is stably equivalent to $\Phi\times I_{11}$ over the target space,
+not merely on the displayed special fiber.
+
+For completeness, a target $(a,b,c)$ of the unnormalized map $F$ has inverse
+parameter $t$ satisfying
+\[
+ 2at^3-bt^2+2t-c=0,
+\]
+with
+\[
+ y=-\frac{bt^2+3c-6t}{2t^2},\quad
+ x=\frac{t}{1-ty},\quad
+ z=\frac{2x-3x^2y-c}{x^3}.
+\]
+Thus the generic degree is at most three; the reduced three-point fiber and
+\'{e}taleness give the reverse inequality.  The cubic discriminant is
+\[
+ -4(27a^2c^2-18abc+16a+b^3c-b^2),
+\]
+and the discriminant in $c$ of the parenthesized quadratic is
+$-(12a-b^2)^3\ne0$.  It is therefore squarefree in $\C(a,b)[c]$ and
+not a square in $\C(a,b,c)$.  Hence the transitive degree-three geometric
+monodromy group is $S_3$.
+\end{proof}
+
+The weights
+\begin{equation}
+ \omega=(1,1,1;2,3;2,3,4,5;2,3,4,5,6)
+ \label{eq:weights}
+\end{equation}
+satisfy $\operatorname{wt}(g_i)=\omega_i+1$.  If
+$D_s=\operatorname{diag}(s^{\omega_i})$, then
+\begin{equation}
+ D_s^{-1}TD_s=I+sg\qquad(s\ne0).
+ \label{eq:conjugacy}
+\end{equation}
+Thus the entire punctured pencil is linearly conjugate.  One diagonal
+conjugate has integer coefficients; separately, the member $I+g/4$ has an
+entirely integral three-point collision and common target $(0,0,-1,0,\ldots,0)$.
+These are two different normal forms.
+
+\section{Every-exponent SIC and the named consequence cascade}
+
+Let
+\begin{equation}
+ A=-\sum_{j=1}^{14}\xi_jg_j,\qquad b=x+y+u_{11},
+ \qquad Z_*=(\tfrac12,0,1,0,\ldots,0).
+\end{equation}
+For the inverse $Q_t$ of $I+tg$, state elimination and
+Lemma~\ref{lem:ray} give
+\begin{equation}
+ Q_{t,x}(Z_*)=\tau',\quad
+ Q_{t,y}(Z_*)=-3\tau,\quad
+ Q_{t,u_{11}}(Z_*)=-\frac{\tau'-1/2}{t}.
+ \label{eq:qcoordinates}
+\end{equation}
+The last equality is also the first target equation
+$Q_x+tQ_{u_{11}}=1/2$.  Hence $b(Q_t)(Z_*)=q(t)$.
+
+\begin{theorem}\label{thm:sic}
+For every $m\ge1$,
+\[
+ E_{14}(A^m)=0,\qquad
+ E_{14}(bA^m)(Z_*)=m!q_m\ne0.
+\]
+Consequently $\ker E_{14}$ is not a Mathieu subspace and $\SIC(14)$ is
+false.
+\end{theorem}
+
+\begin{proof}
+Apply Lemma~\ref{lem:image-transfer} with $H=g$ and use
+Lemma~\ref{lem:coefficients}.
+\end{proof}
+
+Zhao proved~\cite{zhao-image}
+\[
+ \ker E_{14}=\sum_{j=1}^{14}(\xi_j-\partial_{Z_j})\C[\xi,Z].
+\]
+Following Liu--Sun's terminology~\cite{liusun}, the assertion that this image
+is a Mathieu subspace is the Special Image Conjecture.  Thus
+Theorem~\ref{thm:sic} also refutes Zhao's regular-sequence Image Conjecture,
+of which SIC is this specialization.  It does not, by itself, reverse other
+one-way implications in the literature.
+
+The same map gives the following direct real and complex corollaries.  The
+conjecture numbers in the first column are Campbell's~\cite{campbell}; the
+other formulations are due to Chamberland--Meisters~\cite{chamberland} and
+Kulikov~\cite{kulikov}.
+\begin{center}
+\begin{tabular}{p{0.31\textwidth}p{0.26\textwidth}p{0.32\textwidth}}
+\toprule
+Statement refuted&Map&Exact obstruction\\
+\midrule
+Campbell Conj.~3 (unipotent univalence)&$T$ on $\R^{14}$&$\operatorname{Spec}JT=\{1\}$ and three real preimages\\
+Chamberland--Meisters Conj.~2.1&$T$ on $\R^{14}$&all eigenvalues have modulus one, hence a uniform gap from zero\\
+Campbell Conj.~4 (stability / weak injectivity)&$-T$&spectrum constantly $\{-1\}$ and noninjectivity\\
+Kulikov $JN(14)$ and Campbell Conj.~6&$N_c=c-g$&nilpotent derivative and exactly three fixed points\\
+Campbell Conj.~5 (fixed-point form)&translate $N_c$ at $p_0$&the origin and two other fixed points; spectrum $\{0\}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These statements are one transformation family, not five independent
+discoveries.  The classical dynamical Markus--Yamabe problems already had
+older counterexamples; the present maps only give unusually rigid
+constant-spectrum realizations.
+
+Padding $g$ by zero coordinates proves the corresponding map, fixed-point,
+and $\SIC(n)$ failures for every $n\ge14$.  The generic Jordan type becomes
+$(14,1^{n-14})$.
+
+\section{The 28- and 30-variable Hessian companions}
+
+Directly apply~\eqref{eq:symmetrization} to $H=g$ and call the result
+$P_{28}$.  It is nonhomogeneous of degrees two through eight and has 178
+expanded monomials.  At $(Z_*,0)$, take
+\[
+ \ell_{28}(A,B)=b(A+\ii B).
+\]
+Lemma~\ref{lem:symmetric-transfer} and~\eqref{eq:qcoordinates} give
+\begin{equation}
+ D_{v_{28}}\bigl(\Delta_{28}^mP_{28}^{m+1}\bigr)(Z_*,0)
+ =2^m m!(m+1)!q_{m+1}\ne0.
+ \label{eq:P28}
+\end{equation}
+
+For the homogeneous version introduce $w$ and put
+\begin{equation}
+ h(Z,w)=\bigl(w^7g(Z/w),0\bigr)\in\Q[Z,w]^{15}.
+ \label{eq:h15}
+\end{equation}
+It is homogeneous of degree seven and has 24 monomials.
+
+\begin{proposition}\label{prop:hindex}
+The matrix $Jh$ has exact generic nilpotency index 14 and Jordan type
+$(14,1)$.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+ Jh=\begin{pmatrix}W&q\\0&0\end{pmatrix},\qquad
+ W=w^6Jg(Z/w),\qquad
+ q=w^6\bigl(7g-Jg(Z/w)(Z/w)\bigr).
+\]
+Besides $(Jg)^{14}=0$, exact sparse multiplication gives
+$(Jg)^{13}g=0$.  Hence $W^{14}=0$ and $W^{13}q=0$, so $(Jh)^{14}=0$.
+On the other hand,
+\[
+ \bigl((Jh)^{13}\bigr)_{1,5}=-3w^{67}x^6y^4z\ne0.
+\]
+The only partition of 15 with largest part 14 is $(14,1)$.
+\end{proof}
+
+Let $P_{30}=P_h$ as in~\eqref{eq:symmetrization}.  This polynomial is
+homogeneous of degree eight and has 608 expanded monomials.  Since the last
+coordinate of $I+th$ is $w$, its inverse on the slice $w=1$ is exactly the
+inverse of $I+tg$.  With target $(Z_*,1;0)$ and
+$\ell_{30}(A,B)=b(A+\ii B)$, Lemma~\ref{lem:symmetric-transfer} gives
+\begin{equation}
+ D_{v_{30}}\bigl(\Delta_{30}^mP_{30}^{m+1}\bigr)(Z_*,1;0)
+ =2^m m!(m+1)!q_{m+1}\ne0.
+ \label{eq:P30}
+\end{equation}
+Equations~\eqref{eq:P28} and~\eqref{eq:P30}, together with Hessian
+nilpotence, prove parts (3) of Theorem~\ref{thm:master}.
+
+\section{The every-order homogeneous quartic}
+
+We now retain degree four at the cost of a larger ambient dimension.  A
+factor-reusing stable degree reduction in the classical
+framework~\cite{bcw} gives
+\begin{equation}
+ \Psi=X+H_2+H_3:\C^{13}\to\C^{13},\qquad \det J\Psi=1,
+ \label{eq:Psi13}
+\end{equation}
+in variables
+\[
+X=(x,y,z,g1a,g1b,g2a,g2b,g3a,g3b,g4a,g4b,g5a,g6b).
+\]
+For reproducibility, the six stable operations are summarized below.  A
+two-factor step appends outputs $a+P,b+Q$ and subtracts the indicated
+coefficient times their product from the target coordinate; one-factor steps
+reuse the named existing output.
+\begin{center}\small
+\begin{tabular}{c|c|p{0.53\textwidth}|c}
+\toprule
+step&target&new or reused factors&coefficient\\
+\midrule
+1&$\Phi_1$&$x^2,\ xz+3y$; add $g1a,g1b$&$-1/2$\\
+2&$\Phi_2$&$3x^2y,\ 2z+xyz+3y^2$; add $g2a,g2b$&$1$\\
+3&$\Phi_2$&$xy,\ g2a\,z+3xg2b$; add $g3a,g3b$&$-1$\\
+4&$\Phi_3$&$xy^2,\ 7y+3xz+3xy^2+x^2yz$; add $g4a,g4b$&$1$\\
+5&$\Phi_3$&add $g5a+g4a\,xy$; reuse $g1b+xz+3y$&$-1$\\
+6&$\Phi_3$&reuse $g3a+xy$; add $g6b+g4a\,g1b-yg4b$&$1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+A final output shear subtracts the product of the $g3a$- and $g1b$-outputs
+from the $g4b$-output.  Each displayed step is a composition with triangular
+source and target automorphisms, so it preserves the constant Jacobian up to
+its linear normalization.  Let $M$ be the resulting map and $L=JM(0)$, so
+$\Psi=L^{-1}M$ and $\det J\Psi=1$.  Exact coefficient reduction factors
+$H_3=BK$ with
+$K=(K_1,\ldots,K_8)$ and
+\begin{align}
+K_1={}&\tfrac12x(g1a\,z+g1b\,x),\nonumber\\
+K_2={}&g2a\,g3a\,z-3g2a\,y^2+3g2b\,g3a\,x+g3b\,xy+12xy^2,\nonumber\\
+K_3={}&-g1b\,g3a\,g4a+g3a\,g4b\,y-3g4a\,xz+g5a\,xz-g6b\,xy+3xyz,\nonumber\\
+K_4={}&3x^2y,\nonumber\\
+K_5={}&2g1b\,g3a\,g4a-2g3a\,g4b\,y+6g4a\,xz-2g5a\,xz+2g6b\,xy-5xyz,
+\label{eq:K}\\
+K_6={}&xy^2,\nonumber\\
+K_7={}&-g1b\,xy-7g2a\,g3a\,z+21g2a\,y^2-21g2b\,g3a\,x-g3a\,xz
+-7g3b\,xy-84xy^2,\nonumber\\
+K_8={}&g4a\,xy.\nonumber
+\end{align}
+Here
+\begin{equation}
+B(U_1,\ldots,U_8)=
+(U_1,U_2,U_3,0,-3U_2,U_4,U_5,0,0,U_6,U_7,U_8,0).
+\end{equation}
+Define the cubic homogeneous vector in 22 variables
+\begin{equation}
+ h_4(X,U,w)=\bigl(wH_2(X)+w^2BU,-K(X),0\bigr).
+ \label{eq:h22}
+\end{equation}
+A Schur complement gives
+\[
+ \det(I+sJh_4)
+ =\det\!\left(I+s wJH_2+s^2w^2BJK\right)
+ =\det J\Psi(swX)=1;
+\]
+hence $Jh_4$ is nilpotent.  The checker verifies this matrix identity
+directly.
+
+Set
+\begin{equation}
+Y=L^{-1}(\tfrac12,0,1,0,\ldots,0)
+=(\tfrac12,0,1,0,0,0,-2,0,\ldots,0)\in\Q^{13},
+\end{equation}
+and $R_*=(Y,0^8,1)\in\Q^{22}$.  If $X(t)$ is the first block of
+$(I+th_4)^{-1}(R_*)$, the second block gives $U=tK(X)$ and therefore
+\[
+ \Psi(tX)=tY,\qquad M(tX)=t(\tfrac12,0,1,0,\ldots,0).
+\]
+The stable outputs and Lemma~\ref{lem:ray} yield
+\begin{equation}
+ X_x=\tau',\qquad X_y=-3\tau,\qquad
+ X_{g3a}=3t\tau\tau'.
+ \label{eq:rcoordinates}
+\end{equation}
+Indeed the zero $g3a$-output is
+$tX_{g3a}+(tX_x)(tX_y)=0$.  Thus the linear observable
+$x+y+g3a$ equals $r(t)$ on this inverse.
+
+Finally define
+\begin{equation}
+ P_{44}(A,B)=\ii\sum_{j=1}^{22}h_{4,j}(A+\ii B)B_j.
+ \label{eq:P44}
+\end{equation}
+It is a homogeneous quartic with 538 expanded monomials.  At $(R_*,0)$ let
+$\ell_{44}(A,B)=(x+y+g3a)(A+\ii B)$.  Lemmas
+\ref{lem:symmetric-transfer} and~\ref{lem:coefficients} give
+\begin{equation}
+ D_{v_{44}}\bigl(\Delta_{44}^mP_{44}^{m+1}\bigr)(R_*,0)
+ =2^m m!(m+1)!r_{m+1}\ne0
+ \qquad(m\ge0).
+ \label{eq:P44nonzero}
+\end{equation}
+This proves the quartic part of Theorem~\ref{thm:master} by a closed formula
+at every order, strengthening the earlier collision-based conclusion of
+nonvanishing at infinitely many unspecified orders.  This is the
+homogeneous-quartic formulation equivalent to the Jacobian
+conjecture~\cite{zhao-hnp}; the degree-eight companion instead addresses the
+general homogeneous Vanishing Conjecture~\cite{zhao-general-vc}.
+
+\section{Verification, scope, and archival policy}
+
+The unified certificate contains the fully expanded 178-term and 608-term
+potentials, the fixed inverse targets, the two coefficient formulas, the
+fiber basis, and hashes of the precursor 14- and 44-variable sparse
+certificates.  The primary exact checker verifies the block identities,
+weighted conjugacy, exact fiber, $(Jg)^{13}g=0$, both inverse series,
+symmetrization gradients, degrees, and term counts.  Its peak memory in the
+reference run was below 100 MB.  A dependency-free standard-library checker
+audits the exported sparse data and the first 1000 nonzero coefficients.
+Finite coefficient checks are guards; the all-order proof is
+Lemma~\ref{lem:coefficients}.
+
+The formula $3+(4-2)+(6-2)+(7-2)=14$, the stable degree reductions, and the
+symmetric reduction are classical.  The Discovery~06 precursor contains a
+coefficient-Hankel proof of optimality only inside its stated constant-state
+realization ansatz; that scoped side result is not needed here.  No global
+smallest-dimension or smallest-term assertion is made.  Zihan Zhang had
+already recorded existential Image and quartic Vanishing consequences of the
+announced counterexample~\cite{zhang}; the contribution sought here is an
+explicit fixed-dimensional, every-order realization.  At the audit cutoff,
+no earlier public artifact was located with this exact 14-variable map, an
+explicit $\SIC(n)$ witness for $n\le14$, or the every-order 44-variable
+quartic formula.  That is provisional search evidence, not proof of worldwide
+priority.
+
+This paper is the canonical consequence paper.  The earlier 22/44-variable
+note, the 21-variable SIC note, and the 14-variable construction note remain
+public as timestamped technical precursors and certificate sources; they are
+not presented as three additional publications.  The separate iterated
+monodromy paper studies different mathematics and is not absorbed here.
+
+\section*{AI assistance and responsibility}
+
+The constructions, audits, programs, certificates, website, and manuscript
+were developed with heavy assistance from ChatGPT 5.6 Sol under Alec
+Kriebel's direction.  Alec Kriebel is the named human author and has requested
+prominent disclosure that he is not qualified to validate the mathematics
+independently.  Independent expert scrutiny is essential.
+
+\begin{thebibliography}{99}
+\bibitem{alpoge}
+L. Alp\"oge, X post announcing the three-variable map, crediting Akhil Mathew
+for posing the question and Claude Fable for producing the example,
+20 July 2026;
+\url{https://x.com/__alpoge__/status/2079028340955197566}.
+
+\bibitem{bcw}
+H. Bass, E. H. Connell, and D. Wright,
+The Jacobian conjecture: reduction of degree and formal expansion of the
+inverse, \emph{Bull. Amer. Math. Soc.} 7 (1982), 287--330.
+
+\bibitem{campbell}
+L. A. Campbell,
+Unipotent Jacobian matrices and univalent maps,
+\emph{Contemp. Math.} 264 (2000), 157--177;
+\url{https://doi.org/10.1090/conm/264/04218},
+\url{https://arxiv.org/abs/math/9907157}.
+
+\bibitem{chamberland}
+M. Chamberland and G. Meisters,
+A mountain pass to the Jacobian conjecture,
+\emph{Canad. Math. Bull.} 41 (1998), 442--451;
+\url{https://doi.org/10.4153/CMB-1998-058-4}.
+
+\bibitem{debondt}
+M. de Bondt and A. van den Essen,
+A reduction of the Jacobian conjecture to the symmetric case,
+\emph{Proc. Amer. Math. Soc.} 133 (2005), 2201--2205;
+\url{https://doi.org/10.1090/S0002-9939-05-07570-2}.
+
+\bibitem{kulikov}
+V. S. Kulikov,
+The Jacobian conjecture and nilpotent maps,
+\emph{J. Math. Sci.} 106 (2001), 3312--3319;
+\url{https://doi.org/10.1023/A:1017907526453},
+\url{https://arxiv.org/abs/math/9803143}.
+
+\bibitem{liusun}
+D. Liu and X. Sun,
+Images of higher-order differential operators of polynomial algebras,
+\emph{Bull. Aust. Math. Soc.} 96 (2017), 205--211;
+\url{https://doi.org/10.1017/S0004972717000454}.
+
+\bibitem{zhao-ag}
+W. Zhao,
+New proofs for the Abhyankar--Gurjar inversion formula and the equivalence of
+the Jacobian conjecture and the vanishing conjecture,
+\url{https://arxiv.org/abs/0907.3991}.
+
+\bibitem{zhao-general-vc}
+W. Zhao,
+A vanishing conjecture on differential operators with constant coefficients,
+\emph{Acta Math. Vietnam.} 32 (2007), 259--286;
+\url{https://arxiv.org/abs/0704.1691}.
+
+\bibitem{zhao-hnp}
+W. Zhao,
+Hessian nilpotent polynomials and the Jacobian conjecture,
+\emph{Trans. Amer. Math. Soc.} 359 (2007), 249--274;
+\url{https://doi.org/10.1090/S0002-9947-06-03898-0},
+\url{https://arxiv.org/abs/math/0409534}.
+
+\bibitem{zhao-image}
+W. Zhao,
+Images of commuting differential operators of order one with constant
+leading coefficients,
+\emph{J. Algebra} 324 (2010), 231--247;
+\url{https://doi.org/10.1016/j.jalgebra.2010.04.022},
+\url{https://arxiv.org/abs/0902.0210}.
+
+\bibitem{zhang}
+Z. Zhang,
+Direct consequences of the three-dimensional counterexample to the Jacobian
+conjecture, 20 July 2026;
+\url{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}.
+\end{thebibliography}
+
+\end{document}

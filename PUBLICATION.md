@@ -24,13 +24,14 @@ Eliott Cassidy's repository and that William Thompson had priority for the
 rank-compression idea. The original release timestamp and Git history remain
 unchanged.
 
-The repository presents Exploration 03 as the **canonical consolidated paper**
-for Explorations 01-03. Exploration 01 is archival because its monodromy
-theorem was already available in stronger form; its uniform rational collision
-survives as Appendix A. Exploration 02 is archival because its 27/54-variable
-construction is superseded by, and incorporated into, the canonical
-22/44-variable paper. The original files and timestamps remain public for
-provenance.
+Exploration 03 was the **canonical consolidated paper** for Explorations 01-03
+at that stage of the notebook. Exploration 01 is archival because its
+monodromy theorem was already available in stronger form; its uniform rational
+collision survives as Appendix A. Exploration 02 is archival because its
+27/54-variable construction was superseded by, and incorporated into, the
+22/44-variable paper. Discovery 07 now incorporates the relevant 22/44
+construction into the broader inverse-series consequence theorem. The
+original files and timestamps remain public for provenance.
 
 Discovery 04, “Full wreath-product monodromy for the square of an explicit
 Keller map,” first entered the public repository in commit
@@ -49,6 +50,20 @@ publication. Its scope is deliberately narrow: the prior 22-variable cubic
 model already implies SIC(22); Discovery 05 removes one homogenizing variable
 and supplies a scalar-parameter lemma for the resulting nonhomogeneous linear
 block.
+
+Discovery 06, “A 14-variable polynomial map with everywhere unipotent
+Jacobian and a three-point fiber,” entered its review branch in commit
+[`82f74ce80de73d220a6fc5a5910aee251bfd11b3`](https://github.com/AlecKriebel/Math/commit/82f74ce80de73d220a6fc5a5910aee251bfd11b3)
+at **22 July 2026, 14:26:12 UTC** (**22 July 2026, 07:26:12 PDT**). The same
+commit separately publishes the third-iterate manuscript and bounded-memory
+fourth-iterate certificate for Discovery 04.
+
+Discovery 07, “A 14-variable unipotent Keller map and every-order image and
+vanishing obstructions,” was prepared on **22 July 2026** as the repository's
+canonical consequence paper. It consolidates Discoveries 03, 05, and 06
+around two formal-inverse transfer identities, while preserving all precursor
+files, PDFs, hashes, and timestamps. Discovery 04 remains the other current
+paper because its iterated-monodromy theorem is mathematically independent.
 
 ## Authorship and status
 

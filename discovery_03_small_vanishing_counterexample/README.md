@@ -1,4 +1,11 @@
-# Canonical paper: a compressed explicit Vanishing-Conjecture witness
+# Archival technical precursor: the 22/44-variable construction
+
+> **Status update, 22 July 2026.** Discovery 07 is now the repository's
+> canonical consequence paper. It incorporates this 22/44-variable
+> construction and strengthens the quartic conclusion from collision-based
+> nonvanishing to a closed every-order formula. This directory, its PDF, and
+> its original timestamps remain unchanged as a technical precursor and exact
+> certificate source.
 
 This package accompanies the provisional note:
 
@@ -7,11 +14,11 @@ This package accompanies the provisional note:
 
 Author: **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol**.
 
-This is the repository's single canonical paper. Explorations 01 and 02 remain
-available only as timestamped archival derivations. The useful 13-variable
-reduction from Exploration 02 is incorporated into the main construction, and
-the surviving uniform rational collision from Exploration 01 is included as
-Appendix A.
+This was the consolidated paper for Explorations 01 and 02. Those archival
+derivations remain available, the useful 13-variable reduction is incorporated
+here, and the surviving uniform rational collision from Exploration 01 is
+included as Appendix A. Discovery 07 now incorporates the parts of this
+construction needed for the unified inverse-series theorem.
 
 ## Verification status
 

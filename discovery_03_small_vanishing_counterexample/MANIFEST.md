@@ -5,8 +5,10 @@ Author: **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol**.
 All mathematical claims are provisional and unreviewed. Alec Kriebel is a
 complete amateur and cannot independently verify them.
 
-This is the canonical consolidated package. Explorations 01 and 02 are
-archival provenance, not separate current papers.
+This is the archived consolidated package for Explorations 01 and 02.
+Discovery 07 is the current canonical consequence paper and incorporates this
+package's 22/44-variable construction. These files remain immutable provenance
+and an exact certificate source, not a separate current paper.
 
 ## Public artifacts
 

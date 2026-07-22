@@ -9,8 +9,9 @@ announced on 19 July 2026.
 > **Archived and subsumed.** Mikhail Szh published a stronger theorem for the
 > entire Gallagher weighted-lift family before this note appeared. The
 > monodromy and deck-group claims are therefore not novel. The particular seed
-> and uniform rational collision have been moved into Appendix A of the
-> repository's canonical 22/44-variable paper.
+> and uniform rational collision were moved into Appendix A of Discovery 03,
+> which is now itself a technical precursor to the canonical Discovery 07
+> consequence paper. The weighted-lift appendix is not part of Discovery 07.
 
 **Verification disclaimer:** Alec Kriebel is a complete amateur and cannot
 independently verify these mathematical claims. The note is an experiment in
@@ -58,5 +59,5 @@ python3 verify_announced_stdlib.py
 This is an archival derivation, not a current paper. Its main theorem is
 subsumed by earlier, stronger work. The exact checker and full proof remain
 available for provenance. Only the explicit uniform rational collision is
-retained in the canonical paper, and even that narrow novelty claim remains
-provisional pending expert review.
+retained in the archived Discovery 03 appendix, and even that narrow novelty
+claim remains provisional pending expert review.
