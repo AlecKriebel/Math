@@ -1,5 +1,12 @@
 # Discovery 06: a 14-variable unipotent map with a three-point fiber
 
+> **Technical precursor.** Discovery 07 is the canonical consequence paper.
+> It incorporates this flagship construction and adds the exact reduced-fiber
+> proof, weighted-pencil synthesis, homogeneous Jordan type `(14,1)`, and the
+> unified every-order Vanishing transfers. This directory, paper, certificate,
+> and timestamp remain public and unchanged as the detailed construction
+> source.
+
 Status: **branch draft; not peer reviewed**.
 
 This directory gives an exact rational polynomial map

@@ -14,4 +14,5 @@
 The package was finalized on 20 July 2026 and is now archival. Its monodromy
 theorem was already available in stronger form before public release. The
 uniform rational collision has been incorporated as Appendix A of the
-canonical 22/44-variable paper; these files remain for provenance.
+archived Discovery 03 paper; these files remain for provenance and are not
+part of the canonical Discovery 07 consequence paper.

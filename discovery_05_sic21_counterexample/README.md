@@ -1,5 +1,11 @@
 # Discovery 05: an explicit counterexample to SIC(21)
 
+> **Technical precursor.** Discovery 07 is the canonical consequence paper.
+> It incorporates the inverse-series lemma developed here and replaces this
+> 21-dimensional, infinitely-many-exponents result with an explicit
+> 14-dimensional obstruction at every positive exponent. This directory and
+> its release timestamp remain public for provenance.
+
 Status: **public branch draft; not peer reviewed**.
 
 First public branch draft: **22 July 2026, 02:59:33 UTC**.

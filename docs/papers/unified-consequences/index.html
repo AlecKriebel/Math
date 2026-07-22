@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A provisional unified inverse-series theorem giving an explicit SIC(14) counterexample and every-order 30- and 44-variable Hessian-nilpotent Vanishing obstructions.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="A 14-variable unipotent Keller map and every-order image and vanishing obstructions">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-22">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/unified-consequences/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A 14-variable unipotent Keller map and every-order image and vanishing obstructions">
+  <meta property="og:description" content="One formal-inverse mechanism, an exact 14D three-point Keller fiber, SIC(14) failure at every exponent, and homogeneous Vanishing obstructions at every order.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/unified-consequences/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/unified-consequences/">
+  <title>A 14-variable unipotent Keller map and every-order obstructions · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "A 14-variable unipotent Keller map and every-order image and vanishing obstructions",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-22",
+    "dateModified": "2026-07-22",
+    "url": "https://aleckriebel.github.io/Math/papers/unified-consequences/",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/unified-consequences/paper.pdf", "encodingFormat": "application/pdf"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#mechanism">Mechanism</a><a href="#results">Results</a><a href="#certificates">Certificates</a><a href="#scope">Scope</a><a href="https://github.com/AlecKriebel/Math/tree/main/discovery_07_unified_consequences">Source</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Discovery 07 · Canonical consequence paper · Not peer reviewed</p>
+      <h1>A 14-variable unipotent Keller map and every-order image and vanishing obstructions</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Research draft prepared: <time datetime="2026-07-22">22 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div><h2>Do not treat these claims as established mathematics.</h2><p>Alec Kriebel is a complete amateur and cannot independently verify this paper. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, attribution, scope statement, and novelty claim requires independent expert review. Exact checks are evidence about the encoded algebra, not peer review.</p></div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/unified_consequences.tex">TeX manuscript</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/verify_symbolic.py">Symbolic verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/verify_exported_stdlib.py">Independent checker</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/PRIORITY_AUDIT.md">Priority audit</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">This draft gives one self-contained formal-inverse mechanism behind several consequences of the announced three-variable Jacobian counterexample. Its flagship is an exact 24-term rational vector in 14 variables whose determinant pencil is one, whose nonlinear Jacobian is generically regular nilpotent, and whose identity-linear map has exactly three reduced rational points in one fiber. Closed inverse coefficients prove failure of the Special Image Conjecture at every exponent and, after exact homogeneous and symmetric transforms, failure of the Hessian-nilpotent Vanishing Conjecture at every order.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Flagship map</strong><span>14 variables · 24 monomials · type \((14)\)</span></div>
+          <div class="fact"><strong>Image obstruction</strong><span>\(\operatorname{SIC}(14)\) fails for every exponent</span></div>
+          <div class="fact"><strong>Vanishing endpoints</strong><span>30D degree 8 · 44D degree 4 · every order</span></div>
+        </div>
+      </section>
+
+      <section id="mechanism">
+        <h2>1. The unifying mechanism</h2>
+        <p>Let \(Q_t\) be the formal inverse of a Keller pencil \(I+tH\), and let \(\lambda\) be a linear observable. The paper proves two coefficient transfers.</p>
+        <div class="theorem-block"><p><strong>Image transfer.</strong> For \(A_H=-\xi\mathbin{\cdot}H\),</p><div class="equation">\[\lambda(Q_t(Z))=\sum_{m\ge0}\frac{t^m}{m!}E_n(\lambda A_H^m)(Z).\]</div></div>
+        <div class="theorem-block"><p><strong>Symmetric transfer.</strong> For \(P_H(A,B)=iH(A+iB)\mathbin{\cdot}B\), every inverse coefficient becomes</p><div class="equation">\[D_v\!\left(\Delta^mP_H^{m+1}\right)=2^m m!(m+1)!\,[t^{m+1}]\lambda(Q_t).\]</div></div>
+        <p>These identities—not a bare appeal to equivalence with the Jacobian conjecture—are the logical spine. One cubic series supplies closed nonzero coefficients in all three residue classes modulo three.</p>
+      </section>
+
+      <section id="results">
+        <h2>2. The exact 14-variable map</h2>
+        <p>The nonlinear vector \(g\in\mathbb Q[Z]^{14}\) has 24 displayed monomials and satisfies</p>
+        <div class="equation">\[\det(I+sJg)=1,\qquad (Jg)^{14}=0,\qquad (Jg)^{13}\ne0.\]</div>
+        <p>The special fiber is certified scheme-theoretically by the lexicographic basis</p>
+        <div class="equation">\[4z+1-27x^2,\qquad 2y+3x,\qquad x(x-1)(x+1),\]</div>
+        <p>so it contains exactly three reduced rational points. The same map has generic degree three and geometric monodromy \(S_3\). A weighted dilation conjugates every nonzero member of its pencil.</p>
+
+        <h2>3. Every-exponent Special Image failure</h2>
+        <p>For \(A=-\xi\mathbin{\cdot}g\) and one fixed linear multiplier \(b\), the draft proves for every positive integer \(m\)</p>
+        <div class="equation">\[E_{14}(A^m)=0,\qquad E_{14}(bA^m)\ne0.\]</div>
+        <p>This makes \(\ker E_{14}\) non-Mathieu and gives an explicit counterexample to \(\operatorname{SIC}(14)\). Padding propagates the statement to every dimension at least 14.</p>
+
+        <h2>4. Every-order Hessian endpoints</h2>
+        <p>The same 14D inverse series gives a 30-variable homogeneous degree-eight Hessian-nilpotent polynomial. A complementary rank-compressed cubic route gives a 44-variable homogeneous quartic. For each headline homogeneous polynomial \(P\),</p>
+        <div class="equation">\[\Delta^mP^m=0\quad(m\ge1),\qquad \Delta^mP^{m+1}\ne0\quad(m\ge0).\]</div>
+        <p>The 30D result optimizes ambient dimension within this package; the 44D result addresses the classical homogeneous-quartic formulation. The nonvanishing is proved by closed formulas at every order, not extrapolated from a finite computation.</p>
+
+        <h2>5. Named consequences without double counting</h2>
+        <p>The exact real three-point fiber and constant spectrum also refute the stated Campbell, full Chamberland–Meisters, and Kulikov injectivity or fixed-point formulations. They arise from direct sign, translation, and fixed-point transforms of one map and are presented as one consequence cascade. Older Markus–Yamabe counterexamples are expressly acknowledged.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>6. Exact certificates</h2>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/verify_symbolic.py"><code>verify_symbolic.py</code></a> — exact fiber, conjugacy, homogeneous Jordan type, inverse formulas, symmetric gradient identity, term counts, and Zhao normalization.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/output/unified_every_order.json"><code>unified_every_order.json</code></a> — expanded 178-term and 608-term companions, targets, formulas, fiber basis, and pinned precursor hashes.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/verify_exported_stdlib.py"><code>verify_exported_stdlib.py</code></a> and <a href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/verify_exported_node.mjs"><code>verify_exported_node.mjs</code></a> — independent Python and Node.js/BigInt checks.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/discovery_07_unified_consequences/MANIFEST.md"><code>MANIFEST.md</code></a> — claim-to-check inventory and explicit dependency boundaries.</li>
+        </ul>
+        <p class="fine-print hash">Unified certificate SHA-256: <code>deb01a83cea8543b17c13e8849cead0159d5d8feac07ae18034fd880a274495c</code></p>
+        <p class="fine-print">The reference symbolic run peaked at approximately 74 MiB RSS. The verification uses sparse structural identities and never expands high powers of the 30D or 44D polynomial.</p>
+      </section>
+
+      <section id="scope">
+        <h2>7. Scope, priority, and archival policy</h2>
+        <p>The general reductions, symmetric transport, Vanishing formulation, and dimension-14 degree bookkeeping are classical. The narrow candidate contribution is the sparse explicit realization and its coefficient-complete obstructions. No global minimum is claimed. The literature search is provisional and cannot establish worldwide priority.</p>
+        <p>Discoveries 03, 05, and 06 remain public as timestamped technical precursors and exact certificate sources; they are not counted as three additional current papers. Discovery 04 remains separate because its iterated-monodromy theorem studies different mathematics.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The exploratory algebra, theorem architecture, proof drafting, verification programs, audits, and website were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is the named human author and cannot independently validate the claims. The work has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “A 14-variable unipotent Keller map and every-order image and vanishing obstructions,” provisional research note, 22 July 2026. <a href="https://aleckriebel.github.io/Math/papers/unified-consequences/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The complete TeX manuscript, scope audit, exact source, and machine-readable certificate are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>

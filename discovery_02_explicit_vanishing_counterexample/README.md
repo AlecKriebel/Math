@@ -9,7 +9,8 @@ The paper contains a full AI-assistance and verification disclosure.
 > posted a 24-variable cubic reduction before this note's release. This folder
 > is retained for provenance, its 13-variable stable-reduction derivation, and
 > its exact 54-variable certificate. Both have been incorporated into the
-> canonical Exploration 03 paper; this folder should not be cited separately.
+> Discovery 03 paper and, for the 22/44 route, into the canonical Discovery 07
+> consequence paper. This folder should not be cited separately.
 
 This folder contains a provisional research note and exact certificates for a
 54-variable homogeneous quartic Hessian-nilpotent polynomial `P` such that the
@@ -47,7 +48,7 @@ python3 src/render_note.py
 ## Files
 
 - `explicit_vanishing_counterexample.md` — source research note.
-- `explicit_vanishing_counterexample.tex` — canonical arXiv-ready typeset source.
+- `explicit_vanishing_counterexample.tex` — original arXiv-ready typeset source.
 - `construction.py` — exact straight-line construction.
 - `verify.py` — exact verifier.
 - `verify_exported_stdlib.py` — dependency-free verification of the expanded
