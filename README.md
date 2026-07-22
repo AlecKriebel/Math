@@ -22,6 +22,15 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**An explicit counterexample to the Special Image Conjecture in dimension
+21** is Discovery 05, currently an unreviewed research draft. It gives a
+72-term rational pair `(A,b)` in 42 indeterminates, proves that every positive
+power of `A` lies in `ker(E_21)`, and proves that `b*A^m` lies outside it for
+infinitely many `m`. Its novelty claim is intentionally limited: Exploration
+03's cubic model already implies SIC(22), while this construction removes one
+homogenizing variable and handles the resulting linear block with a
+scalar-parameter inversion lemma.
+
 **Full wreath-product monodromy for the square of an explicit Keller map** is
 Discovery 04. It provisionally determines the geometric monodromy of the
 canonical self-composition as `S_3 wr S_3` in degree nine and proves a full

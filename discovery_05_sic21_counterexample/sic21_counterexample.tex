@@ -1,0 +1,300 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\N}{\mathbb N}
+\newcommand{\SIC}{\operatorname{SIC}}
+
+\title{An explicit counterexample to the\\Special Image Conjecture in dimension 21}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{First public branch draft 22 July 2026, 02:59:33 UTC\\
+Research draft; not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let
+\[
+ E:\C[\xi_1,\ldots,\xi_n,Z_1,\ldots,Z_n]\longrightarrow\C[Z],
+ \qquad E(\xi^\alpha p(Z))=\partial_Z^\alpha p(Z).
+\]
+The Special Image Conjecture $\SIC(n)$ says that $\ker E$ is a
+Mathieu--Zhao subspace. We give an exact rational polynomial
+$A\in\Q[\xi,Z]$ for $n=21$, with 72 monomials and total degree four,
+and take $b=Z_1$. We prove
+\[
+ A^m\in\ker E\quad(m\geq1),\qquad
+ bA^m\notin\ker E\quad\text{for infinitely many }m.
+\]
+Thus $\SIC(21)$ is false. The witness is obtained from a certified
+13-variable stable model of the newly announced Keller counterexample by
+adjoining eight variables. The bridge is a scalar-parameter form of
+Abhyankar--Gurjar inversion; unlike Zhao's homogeneous specialization, it
+permits the linear block in this construction. Exact SymPy and
+dependency-free rational checkers accompany a 72-term sparse certificate.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The human author is a complete amateur exploring the limits of AI-assisted
+mathematics and cannot independently verify these claims. This is a research
+artifact for expert checking, not an established result. Priority is
+provisional and limited by the documented audit.
+
+\section{The Special Image Conjecture}
+
+Put $R_n=\C[\xi_1,\ldots,\xi_n,Z_1,\ldots,Z_n]$ and define
+$E_n:R_n\to\C[Z]$ by
+\[
+ E_n(\xi^\alpha p(Z))=\partial_Z^\alpha p(Z).
+\]
+If $\Theta_j=\xi_j-\partial_{Z_j}$, Zhao's theorem gives
+\begin{equation}
+ \ker E_n=\sum_{j=1}^n\Theta_jR_n. \label{eq:kernel}
+\end{equation}
+A linear subspace $M$ of a commutative algebra is a Mathieu--Zhao subspace if
+\[
+ f^m\in M\ (m\geq1)
+ \quad\Longrightarrow\quad
+ qf^m\in M\ (m\gg0)\quad\text{for every }q.
+\]
+The assertion that $\ker E_n$ is such a subspace is $\SIC(n)$.
+
+\section{A scalar-parameter inversion lemma}
+
+The following form is useful because it does not require $g$ to be
+homogeneous or to have order at least two.
+
+\begin{lemma}[pencil-Keller collision lemma]\label{lem:pencil}
+Let $k$ have characteristic zero, let $g\in k[Z]^n$, and suppose
+\begin{equation}
+ \det(I+tJg)=1\quad\text{in }k[t,Z]. \label{eq:pencil}
+\end{equation}
+Set
+\[
+ A(\xi,Z)=-\sum_{j=1}^n\xi_jg_j(Z).
+\]
+Then $E_n(A^m)=0$ for every $m\geq1$. If $T=I+g$ has two points $p,q$
+with $T(p)=T(q)$ and $p_i\ne q_i$, then
+\[
+ E_n(Z_iA^m)\ne0
+\]
+for infinitely many $m$.
+\end{lemma}
+
+\begin{proof}
+Work in the $t$-adically complete ring $k[Z][[t]]$. The map
+\[
+ T_t(Z)=Z+tg(Z)=Z-H_t(Z),\qquad H_t=-tg,
+\]
+has a unique formal inverse $Q_t$, because it is congruent to the identity
+modulo $t$. The Abhyankar--Gurjar inversion identity is valid in this
+filtration: for $p\in k[Z]$,
+\begin{equation}
+ p(Q_t(Z))=
+ \sum_{\alpha\in\N^n}\frac1{\alpha!}\partial_Z^\alpha
+ \bigl(H_t(Z)^\alpha\det JT_t(Z)\,p(Z)\bigr). \label{eq:AG}
+\end{equation}
+Indeed, apply the usual formal identity modulo $t^{N+1}$ for every $N$;
+$H_t^\alpha$ has $t$-adic order $|\alpha|$, so every coefficient is a finite
+sum. By~\eqref{eq:pencil}, $\det JT_t=1$. The multinomial theorem turns
+\eqref{eq:AG} into
+\begin{equation}
+ p(Q_t(Z))=\sum_{m\geq0}\frac{t^m}{m!}E_n\bigl(p(Z)A^m\bigr). \label{eq:coeff}
+\end{equation}
+Taking $p=1$ makes the left side equal to one, proving
+$E_n(A^m)=0$ for every positive $m$.
+
+Now take $p=Z_i$. If $E_n(Z_iA^m)=0$ for all sufficiently large $m$,
+\eqref{eq:coeff} says that the $i$th coordinate of $Q_t$ is a polynomial in
+$t,Z$. The formal identity $Q_{t,i}(T_t(Z))=Z_i$ is then a polynomial
+identity and may be specialized at $t=1$. Hence
+$Q_{1,i}(T(p))=p_i$ and $Q_{1,i}(T(q))=q_i$, contradicting
+$T(p)=T(q)$ and $p_i\ne q_i$.
+\end{proof}
+
+The $t$-adic formulation matters below: $g$ has a linear $BU$ block. Zhao's
+homogeneous theorem should therefore not be quoted verbatim for this witness;
+Lemma~\ref{lem:pencil} supplies the needed extension.
+
+\section{The explicit 21-variable map}
+
+Use the coordinate order
+\[
+ Z=(x,y,z,a_1,b_1,a_2,b_2,a_3,b_3,a_4,b_4,a_5,b_6,U_1,\ldots,U_8).
+\]
+Define $g=(g_1,\ldots,g_{21})$ as follows.
+
+\begingroup\small
+\begin{align}
+g_1={}&U_1+\tfrac12a_1b_1+\tfrac32a_1y,&
+g_2={}&U_2-a_2b_2-2a_2z+a_3b_3+3xz,\nonumber\\
+g_3={}&U_3+b_1a_5-a_3b_6-a_4b_4-7a_4y+3a_5y+4y^2,&
+g_4={}&x^2,\nonumber\\
+g_5={}&-3U_2+3a_2b_2+6a_2z-3a_3b_3-8xz,&
+g_6={}&U_4,\nonumber\\
+g_7={}&U_5-2b_1a_5+2a_3b_6+2a_4b_4+14a_4y-6a_5y-5y^2,&
+g_8={}&xy,\nonumber\\
+g_9={}&a_2z+3b_2x,&g_{10}={}&U_6,\nonumber\\
+g_{11}={}&U_7-b_1a_3+7a_2b_2+14a_2z-7a_3b_3-3a_3y-18xz,&
+g_{12}={}&U_8,\nonumber\\
+g_{13}={}&b_1a_4-b_4y.&& \label{eq:gfirst}
+\end{align}
+\begin{align}
+g_{14}={}&-\tfrac12a_1xz-\tfrac12b_1x^2,\nonumber\\
+g_{15}={}&-a_2a_3z+3a_2y^2-3b_2a_3x-b_3xy-12xy^2,\nonumber\\
+g_{16}={}&b_1a_3a_4-a_3b_4y+3a_4xz-a_5xz+b_6xy-3xyz,\nonumber\\
+g_{17}={}&-3x^2y,\nonumber\\
+g_{18}={}&-2b_1a_3a_4+2a_3b_4y-6a_4xz+2a_5xz-2b_6xy+5xyz,\nonumber\\
+g_{19}={}&-xy^2,\nonumber\\
+g_{20}={}&b_1xy+7a_2a_3z-21a_2y^2+21b_2a_3x+a_3xz+7b_3xy+84xy^2,\nonumber\\
+g_{21}={}&-a_4xy. \label{eq:gsecond}
+\end{align}
+\endgroup
+
+The polynomial in the theorem is
+\begin{equation}
+ A(\xi,Z)=-\sum_{j=1}^{21}\xi_jg_j(Z),\qquad b=Z_1=x. \label{eq:A}
+\end{equation}
+It has exactly 72 monomials and total degree four. Equations
+\eqref{eq:gfirst}--\eqref{eq:A} are a human-readable certificate; the
+accompanying JSON records the same object as exact sparse rational data.
+
+\section{Determinant certificate}
+
+The structure behind the display is an exactly certified 13-variable stable
+model from Exploration 03,
+\begin{equation}
+ \Psi(X)=X+H_2(X)+BK(X), \label{eq:Psi}
+\end{equation}
+where $H_2$ is quadratic, $K$ has eight cubic components, and
+$B\in\operatorname{Mat}_{13\times8}(\Q)$. Its Jacobian determinant is one.
+With $Z=(X,U)$, the displayed vector is
+\begin{equation}
+ g(X,U)=\bigl(H_2(X)+BU,-K(X)\bigr). \label{eq:blockg}
+\end{equation}
+Therefore
+\[
+ I+sJg=\begin{pmatrix}I_{13}+sJH_2&sB\\-sJK&I_8\end{pmatrix}.
+\]
+Taking the Schur complement of $I_8$, and using the homogeneities of $H_2$
+and $K$, gives the polynomial identity
+\begin{align}
+\det(I+sJg)
+ &=\det\bigl(I_{13}+sJH_2+s^2BJK\bigr)\nonumber\\
+ &=\det J\Psi(sX)=1. \label{eq:detcert}
+\end{align}
+The primary checker verifies the matrix equality in~\eqref{eq:detcert}
+entry by entry. The dependency-free checker separately tests the determinant
+pencil at 66 exact rational specializations; a Node.js/BigInt implementation
+supplies a third runtime and checks 18 further exact specializations.
+
+\section{Collision certificate and theorem}
+
+The following three rational points use the coordinate order above.
+
+\begingroup\small
+\begin{align*}
+p_0={}&(0,0,-\tfrac14,0,0,0,\tfrac12,0,0,0,0,0,0;
+0,0,0,0,0,0,0,0),\\
+p_+={}&(1,-\tfrac32,\tfrac{13}2,-1,-2,\tfrac92,-10,\tfrac32,\tfrac34,
+-\tfrac94,-6,-\tfrac{27}8,\tfrac92;\\
+&\hspace{8mm}-\tfrac{17}4,-\tfrac{45}8,\tfrac{99}{16},-\tfrac92,
+-\tfrac{177}8,\tfrac94,\tfrac{213}8,\tfrac{27}8),\\
+p_-={}&(-1,\tfrac32,\tfrac{13}2,-1,2,-\tfrac92,-10,\tfrac32,-\tfrac34,
+\tfrac94,6,\tfrac{27}8,\tfrac92;\\
+&\hspace{8mm}\tfrac{17}4,\tfrac{45}8,\tfrac{99}{16},\tfrac92,
+-\tfrac{177}8,-\tfrac94,-\tfrac{213}8,-\tfrac{27}8).
+\end{align*}
+\endgroup
+Direct substitution gives
+\begin{equation}
+ (I+g)(p_0)=(I+g)(p_+)=(I+g)(p_-)
+ =(0,0,-\tfrac14,0,0,0,\tfrac12,0,\ldots,0). \label{eq:collision}
+\end{equation}
+Their first coordinates are $0,1,-1$.
+
+\begin{theorem}\label{thm:main}
+For $A$ and $b$ in~\eqref{eq:A},
+\[
+ A^m\in\ker E_{21}\quad\text{for every }m\geq1,
+\]
+but
+\[
+ bA^m\notin\ker E_{21}
+\]
+for infinitely many $m$. Consequently $\SIC(21)$ is false.
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:detcert} and the collision $p_0,p_+$ in
+\eqref{eq:collision}, separated by their first coordinate, satisfy
+Lemma~\ref{lem:pencil} with $n=21$ and $i=1$. The two assertions follow.
+Equation~\eqref{eq:kernel} identifies $\ker E_{21}$ with the image appearing
+in the usual statement of the Special Image Conjecture.
+\end{proof}
+
+As low-order guards, the symbolic checker also obtains
+\begin{equation}
+ E_{21}(A)=E_{21}(A^2)=0,\quad E_{21}(bA)\ne0,\quad
+ E_{21}(bA^2)=3x^2y\ne0. \label{eq:guards}
+\end{equation}
+
+\section{Verification and scope}
+
+The repository contains three exact implementations. The SymPy
+checker reconstructs the stable model, verifies the Schur-complement matrix
+identity, the 72-term count, the collision, and~\eqref{eq:guards}. A
+dependency-free checker parses only the exported JSON, rebuilds $A=-\xi\cdot
+g$, evaluates the collision with rational arithmetic, and checks the
+determinant pencil at 66 exact specializations. A separate Node.js/BigInt
+implementation rechecks the collision and 18 determinant specializations
+without Python or a computer algebra system.
+
+Zhang's immediate-consequences note correctly established only that the Image
+Conjecture fails in some finite dimension. There is nevertheless an immediate
+explicit predecessor: Exploration 03's 22-variable cubic homogeneous map,
+combined with Zhao's theorem, gives an $\SIC(22)$ witness. Thompson's
+24-variable and Harrison's 79-variable cubic models similarly imply larger
+witnesses, whether or not those corollaries were written out as pairs.
+
+The contribution here is narrower: removing the homogenizing variable lowers
+the explicit dimension from 22 to 21. The resulting linear $BU$ block requires
+Lemma~\ref{lem:pencil}. At the audit cutoff, no earlier public $\SIC(n)$
+witness with $n\leq21$, or the nonhomogeneous lemma in the form used here, was
+located.
+
+This is evidence, not proof, of priority. Public work is changing hourly and
+private or unindexed work may exist. We claim neither minimality of dimension
+nor minimality of support.
+
+\begin{thebibliography}{9}
+\bibitem{Zhao2010}
+W.~Zhao,
+\emph{Images of commuting differential operators of order one with constant
+leading coefficients}, J. Algebra 324 (2010), 231--247;
+\url{https://arxiv.org/abs/0902.0210}.
+
+\bibitem{DEZ2017}
+H.~Derksen, A.~van den Essen, and W.~Zhao,
+\emph{The Gaussian Moments Conjecture and the Jacobian Conjecture},
+Israel J. Math. 219 (2017), 917--928;
+\url{https://arxiv.org/abs/1506.05192}.
+
+\bibitem{Zhang2026}
+Z.~Zhang,
+\emph{Direct Consequences of the Three-Dimensional Counterexample to the
+Jacobian Conjecture}, 20 July 2026;
+\url{https://zzhang-iu.github.io/papers/direct-consequences-jacobian/}.
+
+\bibitem{KriebelD3}
+A.~Kriebel, with ChatGPT 5.6 Sol,
+\emph{Small explicit symmetric Keller and vanishing counterexamples},
+Exploration 03, 21 July 2026.
+\end{thebibliography}
+
+\end{document}
