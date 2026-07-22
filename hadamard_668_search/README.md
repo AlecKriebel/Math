@@ -149,12 +149,14 @@ python3 verify_good_167.py --self-test
 ## Live lane 4: unrestricted cyclic SDS of order 167
 
 `CYCLIC_SDS_167.md` removes the good-matrix symmetry restriction and searches
-all ten cyclic supplementary-difference-set row-sum profiles.  The new local
-engine is single-threaded and fixed-memory; its strict verifier checks every
+all ten cyclic supplementary-difference-set row-sum profiles.  The local
+engine is single-threaded and bounded-memory; its strict verifier checks every
 periodic correlation and the full order-668 Goethals-Seidel matrix.  Strict,
-sanitized compilation and the exact swap-delta self-test pass.  A 60-second
-portfolio run completed 184,060,343 moves using 1.4 MB peak RSS and reached
-quarter-energy 76 with 46 bad lags.  Its checkpoint is nonexact and is
+sanitized compilation and the exact single/compound-delta self-tests pass.  A
+600-second incumbent continuation completed 1,628,953,659 moves using 1.4 MB
+peak RSS and improved the best checkpoint from quarter-energy 76 to 64, still
+with 46 bad lags.  Exhaustive cross-sequence pair polish and bounded triple
+polish found no further descent.  The checkpoint is nonexact and is
 deliberately rejected by the strict verifier; no candidate is claimed.
 
 ## Verification
@@ -200,8 +202,9 @@ so it is a guardrail rather than an operating-system hard limit.  The exact
 parity-neighborhood enumerator is intentionally capped at three exchanges;
 larger meet-in-the-middle tables are not safe on this machine.
 The seed-frontier models use a tighter 256 MiB solver cap and have remained
-at or below 176 MB total RSS; the cyclic-SDS engine remained below 2 MB.  Recorded
-searches are still run strictly one at a time.
+at or below 176 MB total RSS.  The cyclic-SDS annealer remained below 2 MB;
+its exhaustive bounded move polish used 11.5 MB.  Recorded searches are still
+run strictly one at a time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal

@@ -40,7 +40,8 @@ unrestricted cyclic blocks.
 `search_sds_167_local.cpp` preserves one row-sum profile by exchanging two
 opposite signs within a sequence.  For a swap at positions `p,q`, every one
 of the 83 independent periodic residuals is updated exactly in constant work,
-so a move costs `O(83)` and the engine stores only fixed-size arrays.  A
+so a move costs `O(83)` and the annealer stores only fixed-size arrays.  The
+optional deterministic polish uses explicitly capped move pools.  A
 compound move couples exchanges in two, three, or four distinct sequences;
 their exact residual deltas add.  `--compound-probability` mixes these moves
 with ordinary single exchanges.  The engine is single-threaded.  Simulated
@@ -105,6 +106,59 @@ schedules, and three 20-second mixed schedules at compound probabilities
 10-second-per-profile screen reached quarter-energies
 `84,82,88,80,82,82,82,82,88,78`; none beat the cross-profile incumbent.
 These are heuristic diagnostics only.
+
+## Energy-64 continuation and deterministic compound polish
+
+A 600-second continuation from the energy-76 checkpoint used seed 12668,
+three-sequence moves with probability `0.05`, and incumbent perturb/restart.
+It evaluated 1,628,953,659 exact moves across 1,629 restart basins and found a
+new profile-5 checkpoint:
+
+```text
+row sums                         = (3,7,9,23)
+quarter-energy                   = 64
+nonzero independent lags        = 46 of 83
+maximum absolute raw residual   = 8
+quarter-residual histogram      = {-2:2, -1:22, 0:37, 1:18, 2:4}
+```
+
+The run used 1.4 MB peak RSS and zero swaps.  Independent Python arithmetic
+recomputed all 167 stored periodic sums and the energy.  The preserved file
+is `output/sds_167_local_continued_600s.json`, with SHA-256
+
+```text
+3c4a23d1190ed74e464dc66e852dd0730c97cfd4f1d12aa4946de05aff5a8edd
+```
+
+It remains a `cyclic_sds_167_checkpoint`, not a candidate, and the strict
+verifier rejects its kind.
+
+The engine now has a deterministic compound-polish option.  It ranks every
+single exchange in each sequence, keeps a bounded pool, and evaluates exact
+cross-sequence combinations.  On the energy-64 checkpoint, a pool size of
+8192 includes every possible opposite-sign exchange.  The resulting
+14.28-second scan proves that no single exchange and no pair of exchanges in
+distinct sequences lowers the energy.  A separate 219.57-second scan found
+no improving triple among the best 1,024 exchanges per sequence.  Both scans
+used 11.5 MB peak RSS and zero swaps.  The pair statement is exhaustive for
+that move class; the triple statement is only for the displayed pools.
+
+Reproduce the bounded scans with:
+
+```sh
+../tmp/search_sds_167_local \
+  --seconds 1 --initial output/sds_167_local_continued_600s.json \
+  --pair-polish-size 8192 --pair-polish-steps 1 --pair-polish-arity 2 \
+  --output output/sds_167_pair_polish.json
+
+../tmp/search_sds_167_local \
+  --seconds 1 --initial output/sds_167_local_continued_600s.json \
+  --pair-polish-size 1024 --pair-polish-steps 1 --pair-polish-arity 3 \
+  --output output/sds_167_triple_polish.json
+```
+
+Strict compilation, the expanded delta self-test, and an ASan/UBSan
+triple-polish continuation smoke test all pass.
 
 Only an exact output should be passed to:
 

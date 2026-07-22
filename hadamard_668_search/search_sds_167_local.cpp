@@ -2,9 +2,9 @@
 //
 // The engine keeps four row sums fixed and updates all 83 independent
 // periodic-correlation residuals in O(83) per two-coordinate exchange.  It is
-// deliberately single-threaded and uses only fixed-size arrays.  A zero is
-// accepted only after a full recomputation; Python independently expands any
-// exact output to the 668x668 Goethals-Seidel matrix.
+// deliberately single-threaded and uses bounded low-memory move pools.  A
+// zero is accepted only after a full recomputation; Python independently
+// expands any exact output to the 668x668 Goethals-Seidel matrix.
 
 #include <algorithm>
 #include <array>
@@ -23,6 +23,7 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace {
 
@@ -70,6 +71,9 @@ struct Options {
   std::uint64_t perturb_exchanges = 8;
   int move_arity = 1;
   double compound_probability = 1.0;
+  std::uint64_t pair_polish_size = 0;
+  std::uint64_t pair_polish_steps = 64;
+  int pair_polish_arity = 2;
   bool self_test = false;
 };
 
@@ -211,6 +215,145 @@ void apply_compound_exchange(
   for (int lag = 1; lag <= HALF; ++lag)
     state.residual[lag] += combined_delta[lag];
   state.energy = new_energy;
+}
+
+struct ExchangeMove {
+  int which = -1;
+  int left = -1;
+  int right = -1;
+  Residuals delta{};
+  std::int64_t energy = 0;
+};
+
+std::vector<ExchangeMove> best_exchange_moves(
+    const State &state, int which, std::size_t limit) {
+  std::vector<ExchangeMove> candidates;
+  candidates.reserve(7000);
+  for (int left = 0; left < N; ++left) {
+    for (int right = left + 1; right < N; ++right) {
+      if (state.sequence[which][left] == state.sequence[which][right]) continue;
+      ExchangeMove move;
+      move.which = which;
+      move.left = left;
+      move.right = right;
+      move.delta = exchange_deltas(state.sequence[which], left, right);
+      move.energy = exchanged_energy(state, move.delta);
+      candidates.push_back(move);
+    }
+  }
+  const auto less = [](const ExchangeMove &left, const ExchangeMove &right) {
+    if (left.energy != right.energy) return left.energy < right.energy;
+    if (left.left != right.left) return left.left < right.left;
+    return left.right < right.right;
+  };
+  if (candidates.size() > limit) {
+    std::nth_element(
+        candidates.begin(), candidates.begin() + static_cast<std::ptrdiff_t>(limit),
+        candidates.end(), less);
+    candidates.resize(limit);
+  }
+  std::sort(candidates.begin(), candidates.end(), less);
+  return candidates;
+}
+
+int best_pair_descent(State &state, std::size_t pool_size, int maximum_steps,
+                      int maximum_arity) {
+  int improvements = 0;
+  for (int step = 0; step < maximum_steps; ++step) {
+    std::array<std::vector<ExchangeMove>, SEQUENCES> pools;
+    for (int which = 0; which < SEQUENCES; ++which)
+      pools[which] = best_exchange_moves(state, which, pool_size);
+
+    std::int64_t best_energy = state.energy;
+    const ExchangeMove *best_first = nullptr;
+    const ExchangeMove *best_second = nullptr;
+    const ExchangeMove *best_third = nullptr;
+    Residuals best_delta{};
+    for (int first_sequence = 0; first_sequence < SEQUENCES;
+         ++first_sequence) {
+      for (const ExchangeMove &first : pools[first_sequence]) {
+        if (first.energy < best_energy) {
+          best_energy = first.energy;
+          best_first = &first;
+          best_second = nullptr;
+          best_third = nullptr;
+          best_delta = first.delta;
+        }
+      }
+      for (int second_sequence = first_sequence + 1;
+           second_sequence < SEQUENCES; ++second_sequence) {
+        for (const ExchangeMove &first : pools[first_sequence]) {
+          for (const ExchangeMove &second : pools[second_sequence]) {
+            Residuals combined{};
+            for (int lag = 1; lag <= HALF; ++lag)
+              combined[lag] = first.delta[lag] + second.delta[lag];
+            const std::int64_t candidate_energy =
+                exchanged_energy(state, combined);
+            if (candidate_energy < best_energy) {
+              best_energy = candidate_energy;
+              best_first = &first;
+              best_second = &second;
+              best_third = nullptr;
+              best_delta = combined;
+            }
+          }
+        }
+      }
+    }
+    if (maximum_arity >= 3) {
+      for (int first_sequence = 0; first_sequence < SEQUENCES;
+           ++first_sequence) {
+        for (int second_sequence = first_sequence + 1;
+             second_sequence < SEQUENCES; ++second_sequence) {
+          for (int third_sequence = second_sequence + 1;
+               third_sequence < SEQUENCES; ++third_sequence) {
+            for (const ExchangeMove &first : pools[first_sequence]) {
+              for (const ExchangeMove &second : pools[second_sequence]) {
+                Residuals pair_delta{};
+                for (int lag = 1; lag <= HALF; ++lag)
+                  pair_delta[lag] = first.delta[lag] + second.delta[lag];
+                for (const ExchangeMove &third : pools[third_sequence]) {
+                  Residuals combined{};
+                  for (int lag = 1; lag <= HALF; ++lag)
+                    combined[lag] = pair_delta[lag] + third.delta[lag];
+                  const std::int64_t candidate_energy =
+                      exchanged_energy(state, combined);
+                  if (candidate_energy < best_energy) {
+                    best_energy = candidate_energy;
+                    best_first = &first;
+                    best_second = &second;
+                    best_third = &third;
+                    best_delta = combined;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (best_first == nullptr) break;
+    if (best_second == nullptr) {
+      apply_exchange(state, best_first->which, best_first->left,
+                     best_first->right, best_delta, best_energy);
+    } else {
+      const int arity = best_third == nullptr ? 2 : 3;
+      std::array<int, SEQUENCES> which{{best_first->which, best_second->which,
+                                       best_third == nullptr ? 0
+                                                             : best_third->which}};
+      std::array<int, SEQUENCES> left{{best_first->left, best_second->left,
+                                      best_third == nullptr ? 0
+                                                            : best_third->left}};
+      std::array<int, SEQUENCES> right{{best_first->right, best_second->right,
+                                       best_third == nullptr ? 0
+                                                             : best_third->right}};
+      apply_compound_exchange(
+          state, which, left, right, arity, best_delta, best_energy);
+    }
+    ++improvements;
+    validate(state);
+  }
+  return improvements;
 }
 
 int bad_lags(const State &state) {
@@ -383,6 +526,13 @@ Options parse_options(int argc, char **argv) {
       options.move_arity = static_cast<int>(parse_unsigned(next(argument), argument));
     else if (argument == "--compound-probability")
       options.compound_probability = parse_double(next(argument), argument);
+    else if (argument == "--pair-polish-size")
+      options.pair_polish_size = parse_unsigned(next(argument), argument);
+    else if (argument == "--pair-polish-steps")
+      options.pair_polish_steps = parse_unsigned(next(argument), argument);
+    else if (argument == "--pair-polish-arity")
+      options.pair_polish_arity =
+          static_cast<int>(parse_unsigned(next(argument), argument));
     else if (argument == "--self-test")
       options.self_test = true;
     else if (argument == "--help") {
@@ -400,8 +550,11 @@ Options parse_options(int argc, char **argv) {
           << "  --initial PATH           start from a checkpoint JSON\n"
           << "  --restart-from-best      perturb and re-anneal the incumbent\n"
           << "  --perturb-exchanges N    exchanges before incumbent restart\n"
-          << "  --move-arity N            coupled exchanges in 1..4 sequences\n"
+          << "  --move-arity N           coupled exchanges in 1..4 sequences\n"
           << "  --compound-probability P use arity N with probability P\n"
+          << "  --pair-polish-size N      top single moves per sequence (0 disables)\n"
+          << "  --pair-polish-steps N     improving compound-descent steps\n"
+          << "  --pair-polish-arity N     evaluate pairs or triples (2 or 3)\n"
           << "  --self-test              validate incremental deltas\n";
       std::exit(0);
     } else {
@@ -420,6 +573,14 @@ Options parse_options(int argc, char **argv) {
   if (options.compound_probability < 0.0 ||
       options.compound_probability > 1.0)
     throw std::runtime_error("compound probability must lie in [0,1]");
+  if (options.pair_polish_size > 8192)
+    throw std::runtime_error("pair polish size must not exceed 8192");
+  if (options.pair_polish_steps > 10000)
+    throw std::runtime_error("pair polish steps must not exceed 10000");
+  if (options.pair_polish_size > 0 && options.pair_polish_steps == 0)
+    throw std::runtime_error("pair polish steps must be positive when enabled");
+  if (options.pair_polish_arity < 2 || options.pair_polish_arity > 3)
+    throw std::runtime_error("pair polish arity must be 2 or 3");
   return options;
 }
 
@@ -456,7 +617,11 @@ void self_test() {
       validate(state);
     }
   }
-  std::cout << "PASS: 10000 single and 1000 compound delta checks\n";
+  State polished = random_state(5, rng);
+  best_pair_descent(polished, 8, 1, 3);
+  validate(polished);
+  std::cout << "PASS: 10000 single and 1000 compound delta checks; "
+               "pair polish validates\n";
 }
 
 int run(const Options &options) {
@@ -474,6 +639,14 @@ int run(const Options &options) {
     initial = read_checkpoint(options.initial);
     if (options.profile >= 0 && options.profile != initial.profile)
       throw std::runtime_error("requested profile disagrees with initial checkpoint");
+    if (options.pair_polish_size > 0) {
+      const std::int64_t before = initial.energy;
+      const int improvements = best_pair_descent(
+          initial, static_cast<std::size_t>(options.pair_polish_size),
+          static_cast<int>(options.pair_polish_steps), options.pair_polish_arity);
+      std::cout << "PAIR_POLISH source=initial improvements=" << improvements
+                << " before=" << before << " after=" << initial.energy << '\n';
+    }
     best = initial;
     write_checkpoint(options.output, best, options.seed, 0, best.energy == 0);
     if (best.energy == 0) {
@@ -511,6 +684,11 @@ int run(const Options &options) {
     }
     ++restarts;
     if (state.energy < best.energy) {
+      if (options.pair_polish_size > 0)
+        best_pair_descent(
+            state, static_cast<std::size_t>(options.pair_polish_size),
+            static_cast<int>(options.pair_polish_steps),
+            options.pair_polish_arity);
       best = state;
       write_checkpoint(options.output, best, options.seed, moves, false);
     }
@@ -556,6 +734,11 @@ int run(const Options &options) {
       ++moves;
 
       if (state.energy < best.energy) {
+        if (options.pair_polish_size > 0)
+          best_pair_descent(
+              state, static_cast<std::size_t>(options.pair_polish_size),
+              static_cast<int>(options.pair_polish_steps),
+              options.pair_polish_arity);
         best = state;
         validate(best);
         const bool exact = best.energy == 0;

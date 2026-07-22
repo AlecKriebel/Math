@@ -361,6 +361,20 @@
   three 20-second mixed schedules, and a 10-second-per-profile screen did not
   beat quarter-energy 76.  These bounded failures are search diagnostics, not
   evidence against a cyclic SDS.
+- A later 600-second continuation with seed 12668 and a 5% three-sequence
+  compound mixture finally improved the profile-5 incumbent to quarter-energy
+  64 after roughly 360 seconds.  The complete run evaluated 1,628,953,659
+  exact moves over 1,629 restart basins at 1.4 MB peak RSS and zero swaps.
+  Independent arithmetic matches all stored correlations, 46 bad lags, raw
+  maximum residual 8, and quarter-residual histogram
+  `{-2:2,-1:22,0:37,1:18,2:4}`.  The checkpoint remains nonexact.
+- Added bounded deterministic compound polish.  An 8192-entry pool contains
+  every opposite-sign exchange and proves that the energy-64 checkpoint has
+  no improving single exchange or pair of exchanges in distinct sequences.
+  A 1,024-entry-per-sequence scan found no improving triple.  The exhaustive
+  pair scan took 14.28 seconds; the bounded triple scan took 219.57 seconds;
+  both used 11.5 MB peak RSS and zero swaps.  The triple result is not an
+  exhaustive all-triples statement.
 
 ## 22 July 2026: published-seed exclusion extended through radius 18
 
