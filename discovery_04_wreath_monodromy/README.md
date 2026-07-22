@@ -1,8 +1,11 @@
 # Discovery 04: full wreath monodromy of the self-composition
 
-Status: **research draft; not peer reviewed or published**.
+Status: **public research draft; not peer reviewed**.
 
-The candidate theorem is
+First public repository release: **21 July 2026, 18:44:48 UTC**.
+Strengthened site edition: **22 July 2026, 02:24:28 UTC**.
+
+The provisional theorem is
 
 ```text
 Mon(F o F) = S_3 wr S_3

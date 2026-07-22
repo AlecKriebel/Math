@@ -1,6 +1,6 @@
 # Discovery 04 research log
 
-Status: active research; nothing in this directory is yet a publishable claim.
+Status: public research draft; not peer reviewed.
 
 Author: Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.
 
@@ -174,3 +174,20 @@ degree-eight construction claiming an imprimitive group of order `192`.
 Accordingly, Discovery 04 must not be described as the first non-symmetric or
 first imprimitive Keller monodromy; its novelty claim is the exact canonical
 self-composition group and the all-iterate full-cycle inertia statement.
+
+## Post-release hardening
+
+The first repository release was committed at 21 July 2026, 18:44:48 UTC.
+Before publication on the notebook site, external AI review identified two
+places where a specialist would reasonably demand more detail. The revision
+therefore adds:
+
+- exact denominator resultants and a linear-subresultant certificate recovering
+  `t` from `(r,s)`, which identifies the function-field tower and rules out an
+  extraneous generic resultant branch;
+- a local-field induction over `C((1/s))`, with the four coefficient
+  valuations and every strict dominance inequality in the reconstruction
+  formulas made explicit.
+
+The checkers were expanded to cover both additions. The theorem statement was
+not enlarged.

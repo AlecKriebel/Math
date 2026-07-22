@@ -2,13 +2,20 @@
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol (OpenAI)**
 
-Research draft, 21 July 2026. Not peer reviewed.
+Public research draft, first posted 21 July 2026 at 18:44:48 UTC.
+Strengthened site edition: 22 July 2026, 02:24:28 UTC. Not peer reviewed.
 
 > Alec Kriebel is a complete amateur exploring the limits of AI-assisted
 > mathematics and cannot independently verify the claims in this note. The
 > argument and exact certificates are being released to make expert checking
 > and rapid correction possible. No claim of guaranteed worldwide priority is
 > made.
+
+**Revision note.** The site edition expands two points identified in external
+AI review: Section 3.1 now proves that the degree-nine resultant has no
+extraneous generic branch and identifies the complete function-field tower;
+Section 8 is now a local-field/Puiseux induction with every Newton and
+reconstruction valuation written explicitly.
 
 ## Abstract
 
@@ -149,7 +156,68 @@ P(r,s) =
       - 3544992 s + 557280.
 ```
 
-Its nine roots generically parametrize the nine points in the slice fiber.
+### 3.1 Why the eliminant is the actual fiber polynomial
+
+This point is slightly more delicate than the resultant calculation alone.
+Put `K=C(s)` and
+
+```text
+C_0(t)=2t^3-2t^2+2t-s.
+```
+
+The polynomial `C_0` is irreducible over `K`: equivalently,
+`s=2t^3-2t^2+2t` defines a degree-three map of rational function fields.
+Thus the intermediate slice field is `K_1=K(t)`. On `C_0=0`, the
+reconstruction formulas simplify to
+
+```text
+x(t) = 2t^2/(3s+2t^2-4t),
+y(t) = -(3s+2t^2-6t)/(2t^2).
+```
+
+The exact resultants
+
+```text
+Res_t(C_0,t)=s,
+Res_t(C_0,3s+2t^2-4t)=4s(27s^2-28s+12)
+```
+
+show that every reconstruction denominator is nonzero over the generic point
+of the `s`-line.
+
+Let `N(t,r,s)` be the numerator obtained after substituting the reconstructed
+intermediate point into the inner cubic, and let `R` be the remainder of `N`
+modulo `C_0`; then `deg_t R=2`. The exact checker verifies
+
+```text
+Res_t(C_0,R)=4s^7 P(r,s).
+```
+
+More importantly, the subresultant degrees of `C_0,R` with respect to `t`
+are
+
+```text
+3, 2, 1, 0.
+```
+
+Write the degree-one subresultant as
+
+```text
+L(t,r,s)=lambda(r,s)t+mu(r,s).
+```
+
+Here `lambda` has `r`-degree six, 52 nonzero terms, and
+
+```text
+gcd(P,lambda)=1 in C(s)[r].
+```
+
+Consequently, at the generic point of every component of `P=0`, the common
+root is recovered by `t=-mu/lambda`. It satisfies both `C_0=0` and the inner
+cubic, and none of the reconstruction denominators vanishes generically.
+Conversely, every genuine pair `(t,r)` annihilates the resultant. Thus the
+primitive resultant has no extraneous generic branch: its function field is
+the function field of the two-step inverse incidence curve.
 
 ## 4. A 9-cycle at infinity
 
@@ -174,7 +242,19 @@ local deck transformation `v -> zeta_9 v` multiplies the leading term of `w`
 by `zeta_9^-7`. Since `gcd(7,9)=1`, it permutes all nine branches in one orbit.
 Hence the geometric monodromy of the slice contains a 9-cycle `alpha`.
 
-In particular, the slice eliminant is irreducible over `C(s)`.
+In particular, `P` is irreducible over `C((1/s))`, hence over `C(s)`.
+Combining this with the subresultant calculation in Section 3.1 gives the
+explicit field tower
+
+```text
+C(s)  subset  C(s)(t)  subset  C(s)(t,r)=C(s)(r),
+          degree 3                 total degree 9.
+```
+
+The inner step therefore has degree three, `P` is the genuine degree-nine
+fiber polynomial, and the nine Puiseux branches are precisely the nine sheets
+of the pullback of `F o F` to the line. This proves both generic degree and the
+absence of hidden vertical or denominator components used below.
 
 ## 5. A single transposition
 
@@ -267,58 +347,95 @@ Section 2 gave the opposite upper bound. The theorem follows.
 
 ## 8. Full-cycle inertia for every iterate
 
-The 9-cycle above is the second case of a uniform local calculation. Put
-`u=1/s` and start from
+We replace a growth heuristic by a local-field induction. Put `u=1/s`, let
+`K=C((u))` with valuation `nu(u)=1`, and work in a fixed Puiseux closure of
+`K`. Start from `X_0=(1,2,u^-1)` and choose a compatible inverse tower
+`F(X_(k+1))=X_k`. We prove inductively that, for nonzero leading units,
 
 ```text
-X_0 = (1,2,s).
+nu(x_k)= a_k,     nu(y_k)=-a_k,     nu(z_k)=-c_k,
 ```
 
-Choose a compatible inverse tower `F(X_k)=X_(k-1)`. Write the leading growth
-of its coordinates as
+where `a_0=0`, `c_0=1`, and that the local branch field at level `k` has
+ramification degree `3^k` over `K`.
 
-```text
-x_k ~ const * s^(-a_k),
-y_k ~ const * s^( a_k),
-z_k ~ const * s^( c_k),
-```
-
-with `a_0=0` and `c_0=1`. If `t_(k+1)` is the next inverse-resolvent
-parameter, its cubic is
+Assume the statement at level `k`. The next inverse parameter satisfies
 
 ```text
 2 x_k t^3 - y_k t^2 + 2t - z_k = 0.
 ```
 
-Provided `c_k>5a_k`, the lower Newton edge balances the first and last terms,
-so
+The valuations of its coefficients, in increasing powers of `t`, are
 
 ```text
-t_(k+1) ~ const * s^((a_k+c_k)/3).
+(-c_k, 0, -a_k, a_k).
 ```
 
-The reconstruction formulas then give
+If `c_k>5a_k`, the two middle points lie strictly above the segment joining
+`(0,-c_k)` to `(3,a_k)`. The Newton polygon theorem therefore gives, for
+each of the three roots,
+
+```text
+nu(t_(k+1)) = -(a_k+c_k)/3.
+```
+
+The endpoint residual polynomial is a binomial cubic with nonzero endpoint
+coefficients and is separable in characteristic zero.
+
+It remains to justify the valuations after reconstruction, including every
+possible cancellation. In
+
+```text
+y_(k+1) = -(y_k t^2 + 3z_k - 6t)/(2t^2),
+```
+
+the term `3z_k` is uniquely smallest because
+
+```text
+-c_k < -a_k+2nu(t),    -c_k < nu(t).
+```
+
+Hence
+
+```text
+nu(y_(k+1))=(2a_k-c_k)/3=-a_(k+1).
+```
+
+Next `nu(t y_(k+1))=(a_k-2c_k)/3<0`, so `t y_(k+1)` uniquely dominates `1`
+in the denominator of
+
+```text
+x_(k+1)=t/(1-t y_(k+1)),
+```
+
+and `nu(x_(k+1))=a_(k+1)`. Finally, `-z_k` uniquely dominates the numerator
+of
+
+```text
+z_(k+1)=(2x_(k+1)-3x_(k+1)^2 y_(k+1)-z_k)/x_(k+1)^3,
+```
+
+so `nu(z_(k+1))=-c_(k+1)`, where
 
 ```text
 a_(k+1) = (c_k-2a_k)/3,
 c_(k+1) = 2(c_k-a_k).
 ```
 
-The hypothesis persists. Indeed, for `rho_k=a_k/c_k`, the interval
-`0 <= rho_k <= 1/6` is invariant because
+Thus all leading coefficients stay nonzero. For `rho_k=a_k/c_k`, the
+interval `0<=rho_k<=1/6` is invariant under
 
 ```text
-rho_(k+1) = (1-2rho_k)/(6(1-rho_k)),
+rho_(k+1)=(1-2rho_k)/(6(1-rho_k));
 ```
 
-whose image on that interval is `[2/15,1/6]` after the first step. In
-particular `c_k>5a_k`, so no omitted term lies on the lower edge and no leading
-coefficient cancels.
+its image is contained in `[2/15,1/6]` after the first step. In particular,
+`c_k>5a_k` at every level, completing the valuation induction.
 
-Now put
+For the ramification induction, set
 
 ```text
-A_k = 3^k a_k,   C_k = 3^k c_k.
+A_k=3^k a_k,       C_k=3^k c_k.
 ```
 
 These are integers satisfying
@@ -329,23 +446,27 @@ A_(k+1)=C_k-2A_k,
 C_(k+1)=6(C_k-A_k).
 ```
 
-The exponent of `t_m` is
+At the `m`th inverse step,
 
 ```text
-E_m / 3^m,  where E_m=A_(m-1)+C_(m-1).
+nu(t_m)=-E_m/3^m,       E_m=A_(m-1)+C_(m-1).
 ```
 
-For `m>=2`, `C_(m-1)` is divisible by three and `A_(m-1)` is congruent to one
-modulo three. Hence `E_m` is never divisible by three. The first exponents are
+For `m>=2`, `C_(m-1)` is divisible by three and
+`A_(m-1)=1 mod 3`; the case `m=1` has `E_1=1`. Hence `3` never divides
+`E_m`. The level-`m-1` branch field has value group
+`(1/3^(m-1)) Z`, while `nu(t_m)` has exact denominator `3^m`. Adjoining
+`t_m` therefore has ramification degree at least three. Its defining
+polynomial is cubic, so the relative field degree and ramification degree are
+both exactly three. Since the reconstruction is rational and
+`t_m=x_m/(1+x_m y_m)`, no field is lost in passing between `t_m` and `X_m`.
 
-```text
-1/3, 7/9, 34/27, 178/81, ... .
-```
-
-At stage `m`, the local inverse field therefore has ramification index at
-least `3^m`; the global degree is at most `3^m`, so it is exactly `3^m` and is
-totally ramified. Over `C((u))` the extension is tame, and local inertia acts
-as one `3^m`-cycle on the sheets. This proves the all-iterate statement.
+Inductively, the chosen level-`m` local branch has degree and ramification
+index `3^m` over `C((u))`. The global slice cover has degree at most `3^m`,
+so this one branch exhausts it and is totally ramified. Newton-Puiseux theory
+in characteristic zero makes tame inertia cyclic and transitive on its
+`3^m` conjugates; its generator is a single `3^m`-cycle. This proves the
+all-iterate statement.
 
 As an independent check, nested PARI resultants for `m=3` produce a
 degree-27 eliminant. After removing common vertical content, its lower Newton
@@ -400,13 +521,15 @@ python3 discovery_04_wreath_monodromy/verify_level3_newton.py
 ```
 
 The symbolic verifier checks the Jacobian and collisions, the inverse
-resolvent identities, the exact resultant, all 48 coefficients of `P`, the
+resolvent identities, denominator resultants, the exact resultant, the linear
+subresultant and function-field recovery, all 48 coefficients of `P`, the
 Newton data, the full discriminant factorization, squarefreeness, and every
 coprimality assertion. The dependency-free verifier implements polynomial
 arithmetic and Rabin irreducibility tests from scratch. The optional
 level-three script builds the tower equations in SymPy and delegates the two
 nested resultants to PARI, providing a cross-system check of the `(27,34)`
-Newton edge.
+Newton edge. The dependency-free iterate checker now also verifies every
+strict Newton-edge and reconstruction-dominance inequality for 30 levels.
 
 ## 11. Priority and limitations
 
