@@ -274,6 +274,24 @@
   272.7 and 285.3 MB under a one-worker, 256 MiB solver cap; both used zero
   swap.  No candidate was emitted, and these bounded outcomes prove no
   nonexistence result.
+- Implemented a fixed-array C++ form of the exact `A,B -> GF(2) -> C,D`
+  reducer.  Its self-test exhausts the order-7 `(A,B)` domain and agrees with
+  brute force on all nine extendible pairs; 16 order-167 fixtures give the
+  same result under direct elimination and transformed-RHS factor reuse.
+  ASan/UBSan passed 10,000 order-167 trials.
+- Derived the bijective `(S,B)` parameterization.  With `A[1]=1` and
+  half-weight 38 for `B`, the doubling recurrence closes exactly when the
+  half-weight of `S` is odd.  The two exact `C,D` profiles restrict this to
+  `5..77` or `7..81` by twos.  A lex-max doubling necklace removes the exact
+  83-fold common-decimation action.  Fixing `S` also fixes the GF(2) matrix,
+  allowing one row-transform factorization to serve 256 `B` samples.
+- Direct 60-second streams evaluated 442,374 and 441,506 samples and reached
+  PAF energies 3,200 and 3,296.  Factored `(S,B)` streams evaluated 2,890,277
+  and 2,871,527 samples, reaching energies 2,752 and 3,264.  All four best
+  checkpoints pass the independent Python replay; none is exact.  The
+  factored runs used at most 1.44 MB RSS and zero swap.  Checkpoint writes are
+  checked and atomic, and high-nullity systems are deferred rather than
+  treated as rejections.
 
 ## 22 July 2026: resource-safe search defaults
 

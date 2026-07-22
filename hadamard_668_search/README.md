@@ -139,14 +139,26 @@ profiles.  Its exact CP-SAT model pairs correlation edges to halve the PAF
 auxiliaries and uses a lexicographic necklace leader for the remaining
 83-fold common-decimation symmetry.  The default model has 34,530 variables,
 down from 55,777 in the original encoding.  A two-stage `GF(2)` filter is also
-implemented, but bounded runs and random diagnostic scans have found no
-candidate and prove no nonexistence result:
+implemented.  Its constant-memory C++ form reparameterizes by the symmetric
+product quotient `S`, factors the 83-variable system once, and reuses it for
+256 fixed-weight `B` samples.  This sustained about 48,000 samples/second at
+1.44 MB peak RSS.  Two 60-second shards evaluated 2,890,277 and 2,871,527
+samples; the best independently replayed PAF energies were 2,752 and 3,264,
+still nonzero.  These bounded runs prove no nonexistence result:
 
 ```sh
 .solver-venv/bin/python search_good_167_cp_sat.py \
   --profile 0 --workers 1 --max-memory-mb 256 --time-limit 3600 \
   --output output/good_167_profile_0.json
 python3 verify_good_167.py --self-test
+
+clang++ -std=c++20 -O3 search_good_167_stream.cpp \
+  -o ../tmp/search_good_167_stream
+../tmp/search_good_167_stream --parameterization sb --profile 0 \
+  --seconds 60 --trials 0 --inner-batch 256 \
+  --checkpoint output/good_167_stream_sb_profile0_60s.json
+python3 verify_good_167_stream.py \
+  output/good_167_stream_sb_profile0_60s.json
 ```
 
 ## Live lane 4: unrestricted cyclic SDS of order 167
@@ -228,7 +240,9 @@ pairs per batch and used 216.3 MB peak RSS.  Recorded searches are still run
 strictly one at a time.
 The reduced good-matrix CP-SAT runs also use one worker and a 256 MiB solver
 cap; their measured whole-process peaks were 272.7 and 285.3 MB with zero
-swap.
+swap.  The fixed-array good-matrix streamer used 1.44 MB peak RSS in
+production; its ASan/UBSan trial used 16.8 MB.  Neither program retains a
+visited set or any structure that grows with elapsed time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal

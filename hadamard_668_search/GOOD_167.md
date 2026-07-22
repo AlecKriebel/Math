@@ -209,6 +209,79 @@ target row sums retain at most one orientation.  The
 reducer is independently regression-tested on a good quadruple of order 7,
 where it recovers the correct `C,D` and verifies the resulting skew `H(28)`.
 
+## Constant-memory streaming reducer
+
+`search_good_167_stream.cpp` is a dependency-free, single-threaded C++20
+implementation of the same exact filter.  It uses two 64-bit limbs for every
+83-bit vector, fixed arrays for all equations, and streaming Gray-code affine
+enumeration.  No table grows with the number of trials.  A built-in test
+exhausts every normalized order-7 `(A,B)` pair and agrees with direct brute
+force on all nine pairs that extend to good matrices.  Sixteen frozen
+order-167 samples also give identical outcomes under the direct and factored
+reducers.  ASan and UBSan passed the self-test and 10,000 order-167 trials.
+
+The faster parameterization searches by the symmetric product quotient `S`
+and `B`.  In negative-entry bits along the doubling cycle,
+
+```text
+a(2i) = 1 + s(i) + b(i) + a(i)  (mod 2).
+```
+
+Since doubling has order 83 modulo 167 and visits one member of every
+`{i,-i}` pair, `A[1]=+1` makes this recurrence bijective precisely when the
+half-weight of `S` is odd.  The exact `C,D` weights restrict that weight to
+
+```text
+profile 0: 5,7,...,77
+profile 1: 7,9,...,81.
+```
+
+The doubling-cycle word of `S` is made lexicographically maximal among its 83
+rotations, giving the exact common-decimation quotient.  For fixed `S`, the
+83 GF(2) coefficient rows are fixed too.  The engine carries an 83-bit row
+transform through Gauss-Jordan elimination and reuses that factorization for
+256 independently sampled fixed-weight `B` masks.  Only the right-hand side,
+weight tests, and exact integer PAF check change.  High-nullity systems are
+reported as deferred if their affine space exceeds the explicit cap; they are
+never counted as rejections.
+
+Compile, self-test, and run one profile at a time:
+
+```bash
+clang++ -std=c++20 -O3 -Wall -Wextra -Wpedantic -Werror \
+  search_good_167_stream.cpp -o ../tmp/search_good_167_stream
+../tmp/search_good_167_stream --self-test
+
+../tmp/search_good_167_stream --parameterization sb --profile 0 \
+  --seconds 60 --trials 0 --inner-batch 256 --random-seed 5668 \
+  --checkpoint output/good_167_stream_sb_profile0_60s.json \
+  --output output/good_167_sb_profile0_candidate.json
+```
+
+Every saved near-miss is independently replayed by Python:
+
+```bash
+../tmp/hadamard-env/bin/python verify_good_167_stream.py \
+  output/good_167_stream_sb_profile0_60s.json
+```
+
+The direct and factored 60-second shards produced:
+
+| parameterization | profile | samples | exact-PAF stage | best energy | bad lags | max quarter residual |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `(A,B)` | 0 | 442,374 | 6,494 | 3,200 | 66 | 16 |
+| `(A,B)` | 1 | 441,506 | 7,157 | 3,296 | 55 | 16 |
+| `(S,B)`, factored | 0 | 2,890,277 | 36,143 | 2,752 | 60 | 12 |
+| `(S,B)`, factored | 1 | 2,871,527 | 49,035 | 3,264 | 59 | 16 |
+
+The factored runs sustained about 48,000 samples/second.  Whole-process peak
+RSS was 1.44 MB or less and every measured run used zero swap.  All non-early
+systems in these shards had rank 82; that remains an observation, not a
+theorem.  No exact candidate was found.  The checkpoint verifier recomputes
+the product quotient, GF(2) equations and rank, exact weights, product theorem,
+all 83 PAF residuals, and the saved RNG transition.  Candidate and checkpoint
+writes use checked close and atomic replacement.
+
 ## Assessment and limitation
 
 This lane is worth pursuing because the product theorem makes it much smaller
