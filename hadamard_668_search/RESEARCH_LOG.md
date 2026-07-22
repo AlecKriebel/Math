@@ -412,3 +412,45 @@
 - Consequently no exact `BS(84,83)` lies within raw labeled Hamming distance
   18 of Eliahou's published base quadruple.  This is a finite local theorem,
   not a global nonexistence result for `BS(84,83)` or `H(668)`.
+
+## 22 July 2026: cyclic-SDS decimation and complete radius-four audit
+
+- Added a shaped annealing score `E + pB`, while keeping exactness tied only
+  to raw energy `E=0`.  Strict and sanitized delta tests pass, checkpoint
+  metadata records the penalty and score, and raw-energy pair polish is
+  rejected when a nonzero penalty is active.  Sixty-second screens at
+  penalties 2, 4, and 16 evaluated 156,994,182, 151,691,146, and 151,667,228
+  proposals, respectively, without displacing the energy-64 incumbent.  Each
+  used 1.4 MB peak RSS and zero swaps.  Bad-lag shaping remains diagnostic
+  because a strong penalty can concentrate residual mass.
+- Exhausted the complete relative independent-decimation orbit.  PAF symmetry
+  quotients each multiplier by sign, and a common multiplier only permutes
+  lags, leaving `83^3 = 571,787` normalized tuples.  The identity tuple wins
+  the invariant energy, quartic, and maximum-residual rankings at
+  `(E,Q,B,max)=(64,136,46,2)`.  The C++ scan took 0.33 seconds at 1.4 MB peak
+  RSS.  An independently written standard-library Python enumeration checked
+  all 571,787 tuples in 20.08 seconds at 16.8 MB peak RSS and reproduced the
+  winner.
+- Added exact same-sequence four-flip deltas, including the cross interaction
+  omitted by naive delta addition.  One hundred randomized incremental cases
+  match full recomputation.  The exhaustive scan covered 46,884,138
+  two-in/two-out states in 6.34 seconds at 3.9 MB peak RSS.
+- Rescored all 27,722 single exchanges and all 288,185,440 pairs of exchanges
+  in distinct sequences for energy, quartic score, and maximum residual.  The
+  optimized scan took 11.88 seconds at 11.5 MB peak RSS.  Full sanitized
+  repetitions of the same- and cross-sequence scans took 15.13 and 28.09
+  seconds and stayed below 29 MB peak RSS; all runs used one core and zero
+  swaps.
+- Together with the identity, these disjoint classes are exactly all
+  335,097,301 states preserving the four row sums at raw labeled Hamming
+  distance at most four.  Only the incumbent attains energy 64, and only it
+  attains quartic score 136.  The minimum maximum quarter-residual is 2,
+  attained by 5,442 states.  Hence no exact cyclic SDS occurs in this complete
+  neighborhood.  This is a finite local theorem around the stored profile-5
+  checkpoint, not a global cyclic-SDS obstruction.
+- Added `verify_sds_167_neighborhood.py`.  It pins the incumbent checkpoint
+  hash, independently recomputes the row sums, correlations, metrics, and all
+  four combinatorial class counts, independently exhausts the normalized
+  decimation orbit, replays both C++ radius-four scans, and checks that their
+  disjoint tie counts combine to the documented totals.  The complete replay
+  passed in 28.96 seconds at 25.5 MB peak RSS with zero swaps.

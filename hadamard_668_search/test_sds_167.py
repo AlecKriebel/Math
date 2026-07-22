@@ -5,6 +5,7 @@ import unittest
 from construction import goethals_seidel, verify_hadamard
 from sds_167 import ROW_SUM_PROFILES, validate_cyclic_sds
 from verify_sds_167 import verify_payload
+from verify_sds_167_neighborhood import neighborhood_counts
 
 
 class CyclicSds167Tests(unittest.TestCase):
@@ -42,6 +43,18 @@ class CyclicSds167Tests(unittest.TestCase):
                     "sequences": [list(sequence) for sequence in fixture],
                 }
             )
+
+    def test_profile_five_radius_four_counts(self) -> None:
+        sequences = tuple(
+            tuple([1] * ((167 + row_sum) // 2) +
+                  [-1] * ((167 - row_sum) // 2))
+            for row_sum in ROW_SUM_PROFILES[5]
+        )
+        exchanges, same, cross, total = neighborhood_counts(sequences)
+        self.assertEqual(exchanges, (6970, 6960, 6952, 6840))
+        self.assertEqual(sum(same), 46_884_138)
+        self.assertEqual(cross, 288_185_440)
+        self.assertEqual(total, 335_097_301)
 
 
 if __name__ == "__main__":

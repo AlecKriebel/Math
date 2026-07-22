@@ -6,8 +6,9 @@ does not impose the skew/symmetric conditions of the smaller good-matrix
 subfamily.
 
 Status: implementation, strict compilation, sanitizer runs, exact single- and
-compound-delta self-tests, checkpoint continuation, and bounded portfolio
-runs completed; no order-167 candidate is claimed.
+compound-delta self-tests, checkpoint continuation, bounded portfolio runs,
+an exhaustive independent-decimation orbit, and the complete fixed-profile
+Hamming-radius-four audit completed; no order-167 candidate is claimed.
 
 ## Exact target
 
@@ -95,9 +96,10 @@ incumbent before annealing:
 ```
 
 The JSON loader recomputes all residuals and energy rather than trusting
-stored diagnostics.  The expanded self-test performs 10,000 single and 1,000
-compound exact-delta checks.  Strict compilation and an AddressSanitizer plus
-UndefinedBehaviorSanitizer continuation smoke test both pass.
+stored diagnostics.  The expanded self-test performs 10,000 single, 1,000
+cross-sequence compound, and 100 same-sequence compound exact-delta checks.
+Strict compilation and AddressSanitizer plus UndefinedBehaviorSanitizer runs
+both pass.
 
 Bounded continuation experiments did not improve the energy-76 incumbent:
 six 10-second incumbent-restart schedules, four 10-second pure-compound
@@ -159,6 +161,93 @@ Reproduce the bounded scans with:
 
 Strict compilation, the expanded delta self-test, and an ASan/UBSan
 triple-polish continuation smoke test all pass.
+
+## Exact decimation orbit and complete Hamming-radius-four audit
+
+For a sequence `x` on `Z_167`, decimation by a nonzero multiplier `d` sends
+its periodic autocorrelation to `PAF_x(d*k)`.  Since `PAF_x(-k)=PAF_x(k)`,
+each sequence has 83 possible multiplier classes.  Multiplying all four
+decimations by one common class only permutes the lag labels, so the first
+multiplier can be fixed to one.  The `--decimation-scan` mode therefore
+exhausts exactly
+
+```text
+83^3 = 571,787
+```
+
+relative decimation tuples.  On the energy-64 checkpoint, the identity tuple
+is the lexicographic winner for each invariant ranking `(E,Q,max,B)`,
+`(Q,E,max,B)`, and `(max,Q,E,B)`, where
+
+```text
+E = sum r_k^2 = 64
+Q = sum r_k^4 = 136
+B = number of nonzero r_k = 46
+max |r_k| = 2
+```
+
+No decimation improves any displayed primary metric.  The optimized exhaustive
+pass took 0.33 seconds and 1.4 MB peak RSS.  An independent standard-library
+Python enumeration of all 571,787 tuples reproduced the energy winner in
+20.08 seconds at 16.8 MB peak RSS.  A sanitized C++ pass also reproduced the
+result.
+
+The incumbent is much more strongly isolated under sign exchanges.  A state
+at raw labeled Hamming distance at most four that preserves all four row sums
+is necessarily one of:
+
+```text
+identity                                             1
+one opposite-sign exchange                         27,722
+two exchanges in one sequence                  46,884,138
+one exchange in each of two sequences         288,185,440
+total                                           335,097,301
+```
+
+The same-sequence scan uses the exact four-flip autocorrelation interaction
+term; two deltas from the same sequence cannot merely be added.  Across all
+335,097,301 states, only the incumbent attains energy 64, and only the
+incumbent attains quartic value 136.  The minimum maximum residual remains 2
+and is attained by 5,442 states.  In particular, no exact cyclic SDS lies in
+this complete fixed-profile Hamming-radius-four neighborhood.  This is a
+finite local theorem around the stored profile-5 checkpoint, not a global
+nonexistence result.
+
+The optimized same-sequence and cross-sequence passes took 6.34 and 11.88
+seconds, respectively, with peak RSS 3.9 and 11.5 MB and zero swaps.  Full
+ASan/UBSan repetitions took 15.13 and 28.09 seconds at under 29 MB peak RSS.
+Reproduce the three exact scans with:
+
+```sh
+../tmp/search_sds_167_local --decimation-scan \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_decimation.json
+
+../tmp/search_sds_167_local --same-sequence-pair-scan \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_same_sequence_pair.json
+
+../tmp/search_sds_167_local --cross-sequence-pair-scan \
+  --initial output/sds_167_local_continued_600s.json \
+  --output /tmp/sds_167_cross_sequence_pair.json
+
+python3 verify_sds_167_neighborhood.py \
+  --engine ../tmp/search_sds_167_local
+```
+
+`--scan-objective energy|quartic|maximum` selects which independently tracked
+champion is materialized.  Every materialized output is fully recomputed.  The
+standard-library verifier pins the incumbent SHA-256, independently derives
+all combinatorial class counts, independently re-enumerates the full relative
+decimation orbit, replays both radius-four scans, and checks the combined tie
+counts.  Its complete replay took 28.96 seconds at 25.5 MB peak RSS with zero
+swaps.
+
+The local annealer also accepts `--bad-lag-penalty N`, recording both its raw
+energy and shaped score.  Three 60-second screens at penalties 2, 4, and 16
+did not displace the energy-64 incumbent.  Bad-lag count is only a diagnostic:
+a large positive penalty can favor a few concentrated residual spikes, so
+future shaped runs should prioritize quartic residual scoring instead.
 
 Only an exact output should be passed to:
 

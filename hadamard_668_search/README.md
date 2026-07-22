@@ -156,8 +156,14 @@ sanitized compilation and the exact single/compound-delta self-tests pass.  A
 600-second incumbent continuation completed 1,628,953,659 moves using 1.4 MB
 peak RSS and improved the best checkpoint from quarter-energy 76 to 64, still
 with 46 bad lags.  Exhaustive cross-sequence pair polish and bounded triple
-polish found no further descent.  The checkpoint is nonexact and is
-deliberately rejected by the strict verifier; no candidate is claimed.
+polish found no further descent.  The engine now also exhausts the full
+`83^3` relative independent-decimation orbit modulo common decimation and
+every fixed-row-sum state through raw Hamming distance four.  The latter audit
+covers 335,097,301 states and proves
+the energy-64 checkpoint is the unique energy and quartic minimum in that
+neighborhood; all exact scans use at most 11.5 MB peak RSS in optimized mode.
+The checkpoint is nonexact and is deliberately rejected by the strict
+verifier; no candidate is claimed.
 
 ## Verification
 
@@ -176,6 +182,8 @@ python3 verify_variable_q_seed_frontier_artifacts.py
 python3 verify_variable_q_seed_shell18_artifacts.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
+python3 verify_sds_167_neighborhood.py \
+  --engine ../tmp/search_sds_167_local
 .solver-venv/bin/python -m unittest -v \
   test_construction.py test_legendre_333.py test_legendre_multiplier.py \
   test_legendre_column_distance_dp.py test_variable_q_base.py \
