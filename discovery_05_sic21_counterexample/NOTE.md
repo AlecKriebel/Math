@@ -151,6 +151,10 @@ Use the coordinate order
 
 Define \(g=(g_1,\ldots,g_{21})\) by
 
+**Normalization note.** The coefficient of \(U_1\) in \(g_1\) is one:
+\(g_1=U_1+\tfrac12a_1b_1+\tfrac32a_1y\). There is no scalar prefactor on
+\(g_1\).
+
 \[
 \begin{aligned}
 g_1={}&U_1+\tfrac12a_1b_1+\tfrac32a_1y,\\

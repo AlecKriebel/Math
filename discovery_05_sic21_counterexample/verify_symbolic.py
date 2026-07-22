@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import sympy as sp
 
 from construction import build_construction, evaluate, image_map, image_operator
@@ -14,10 +16,23 @@ def main():
     assert data.injection.shape == (13, 8)
     assert data.injection.rank() == 8
 
+    expected_g1 = data.u_variables[0] + data.x_variables[3] * data.x_variables[4] / 2
+    expected_g1 += 3 * data.x_variables[3] * data.x_variables[1] / 2
+    assert sp.expand(data.g[0] - expected_g1) == 0
+    expected_typesetting = r"g_1={}&U_1+\tfrac12a_1b_1+\tfrac32a_1y"
+    root = Path(__file__).resolve().parent
+    for filename in ("NOTE.md", "sic21_counterexample.tex"):
+        source = (root / filename).read_text(encoding="utf-8")
+        assert expected_typesetting in source
+        assert "2g_1=" not in source and "2g_1={}" not in source
+
     polynomial = sp.Poly(data.A, *(data.xi_variables + data.z_variables))
     assert polynomial.total_degree() == 4
     assert len(polynomial.terms()) == 72
-    print("[1/5] dimensions and sparsity: 21 pairs, degree(A)=4, 72 terms")
+    print(
+        "[1/5] dimensions, sparsity, and typesetting: 21 pairs, "
+        "degree(A)=4, 72 terms, coefficient of U1 in g1 is one"
+    )
 
     # Exact Schur-complement identity.  Since H2 is quadratic and K is cubic,
     # its right side is J Psi(sX), where Psi=X+H2+BK.

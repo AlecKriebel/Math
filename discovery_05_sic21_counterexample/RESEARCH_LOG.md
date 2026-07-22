@@ -78,3 +78,17 @@ The five-page PDF was built with Tectonic, rendered to images with Poppler,
 and every page was visually inspected. The TeX log contains no overfull or
 underfull box warnings.
 
+## Typesetting clarification
+
+An external review reported that Equation (5) appeared to begin with `2g_1`.
+Inspection of the TeX, Markdown, sparse JSON, and rendered page showed that
+all four already contained the intended coefficient-one formula
+
+```text
+g_1 = U_1 + (1/2)*a_1*b_1 + (3/2)*a_1*y.
+```
+
+The apparent `2` was the page-2 footer concatenated with the first formula on
+page 3 by a PDF text extractor. The PDF layout now places an explicit
+normalization sentence at the top of page 3, and the primary verifier checks
+the exact formula in both human-readable sources to prevent regression.
