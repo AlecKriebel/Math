@@ -5,9 +5,9 @@ length-167 sign sequences with complementary periodic autocorrelation, but
 does not impose the skew/symmetric conditions of the smaller good-matrix
 subfamily.
 
-Status: implementation, strict compilation, sanitizer run, exact delta
-self-test, and a bounded portfolio run completed; no order-167 candidate is
-claimed.
+Status: implementation, strict compilation, sanitizer runs, exact single- and
+compound-delta self-tests, checkpoint continuation, and bounded portfolio
+runs completed; no order-167 candidate is claimed.
 
 ## Exact target
 
@@ -40,9 +40,12 @@ unrestricted cyclic blocks.
 `search_sds_167_local.cpp` preserves one row-sum profile by exchanging two
 opposite signs within a sequence.  For a swap at positions `p,q`, every one
 of the 83 independent periodic residuals is updated exactly in constant work,
-so a move costs `O(83)` and the engine stores only fixed-size arrays.  It is
-single-threaded.  Simulated annealing is a heuristic: a nonzero checkpoint is
-only a diagnostic, never evidence of nonexistence.
+so a move costs `O(83)` and the engine stores only fixed-size arrays.  A
+compound move couples exchanges in two, three, or four distinct sequences;
+their exact residual deltas add.  `--compound-probability` mixes these moves
+with ordinary single exchanges.  The engine is single-threaded.  Simulated
+annealing is a heuristic: a nonzero checkpoint is only a diagnostic, never
+evidence of nonexistence.
 
 Every zero is fully recomputed before it is written with kind
 `cyclic_sds_167`.  `verify_sds_167.py` then checks strict order/metadata, all
@@ -78,6 +81,30 @@ Reproduce that bounded run with:
 ../tmp/search_sds_167_local --seconds 60 --profile -1 --seed 668 \
   --output output/sds_167_local_best_60s.json
 ```
+
+The engine can now continue a verified checkpoint and repeatedly perturb the
+incumbent before annealing:
+
+```sh
+../tmp/search_sds_167_local --seconds 60 \
+  --initial output/sds_167_local_best_60s.json \
+  --restart-from-best --perturb-exchanges 8 \
+  --move-arity 3 --compound-probability 0.05 --seed 668 \
+  --output output/sds_167_local_continued.json
+```
+
+The JSON loader recomputes all residuals and energy rather than trusting
+stored diagnostics.  The expanded self-test performs 10,000 single and 1,000
+compound exact-delta checks.  Strict compilation and an AddressSanitizer plus
+UndefinedBehaviorSanitizer continuation smoke test both pass.
+
+Bounded continuation experiments did not improve the energy-76 incumbent:
+six 10-second incumbent-restart schedules, four 10-second pure-compound
+schedules, and three 20-second mixed schedules at compound probabilities
+`0.01`, `0.05`, and `0.10` all returned energy 76.  A separate
+10-second-per-profile screen reached quarter-energies
+`84,82,88,80,82,82,82,82,88,78`; none beat the cross-profile incumbent.
+These are heuristic diagnostics only.
 
 Only an exact output should be passed to:
 

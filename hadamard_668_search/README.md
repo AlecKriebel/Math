@@ -64,14 +64,19 @@ half-energy 232 and 43 bad lags, so it is not a solution.  The exact CP model
 uses the standard four-literal base-sequence quad parities by default; the
 older endpoint telescope is an equivalent optional basis.
 
-`VARIABLE_Q_SEED_DISTANCE.md` now gives a global raw-radius-17 exclusion around
+`VARIABLE_Q_SEED_DISTANCE.md` now gives a global raw-radius-18 exclusion around
 Eliahou's published base quadruple.  A dependency-free dynamic program first
 enumerates every raw margin image and proves that no quad-preserving target is
 reachable through radius 13.  Exact fixed-margin CP-SAT models with table-
 encoded primitive 3rd-, 4th-, and 6th-root norms then eliminate all 197
 margin-plus-quad targets through radius 16 and all 276 targets in the exact
-distance-17 shell.  The recorded runs used one worker, peaked below 165 MB
-resident memory, and made no exact-`BS(84,83)` claim outside this finite ball.
+distance-17 shell.  At distance 18, an exact modulo-12 endpoint-quad quotient
+finishes the root frontier: 811 of 823 targets are root-infeasible.  The 12
+decoded root survivors are all eliminated by primitive-7 or primitive-14
+compression.  A dependency-free artifact checker verifies all nine hashes,
+selection edges, and witnesses.  The recorded runs used one worker, peaked
+at 176 MB resident memory with no swaps, and make no exact-`BS(84,83)` claim
+outside this finite ball.
 
 `VARIABLE_Q_PARITY_NEIGHBORHOOD.md` gives a deterministic exact scan inside
 the checkpoint's same-margin, endpoint-parity-feasible subspace.  The
@@ -166,6 +171,7 @@ python3 verify_variable_q.py --self-test
 python3 verify_variable_q_seed_radius.py
 python3 verify_variable_q_seed_quad_radius.py
 python3 verify_variable_q_seed_frontier_artifacts.py
+python3 verify_variable_q_seed_shell18_artifacts.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
 .solver-venv/bin/python -m unittest -v \
@@ -194,7 +200,7 @@ so it is a guardrail rather than an operating-system hard limit.  The exact
 parity-neighborhood enumerator is intentionally capped at three exchanges;
 larger meet-in-the-middle tables are not safe on this machine.
 The seed-frontier models use a tighter 256 MiB solver cap and have remained
-below 165 MB total RSS; the cyclic-SDS engine remained below 2 MB.  Recorded
+at or below 176 MB total RSS; the cyclic-SDS engine remained below 2 MB.  Recorded
 searches are still run strictly one at a time.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order

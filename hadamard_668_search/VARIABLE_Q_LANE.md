@@ -336,12 +336,15 @@ are recorded in `VARIABLE_Q_NEIGHBORHOOD.md`.
 
 A distinct unsharded calculation starts from Eliahou's published base
 quadruple rather than the shard-213 local checkpoint.  Exhaustive raw margin
-images, an exact endpoint-quad dynamic program, and fixed-margin primitive-
-3/4/6 root-table models exclude the complete raw Hamming ball through radius
-17.  The radius-16 certificate contains 197 finite `INFEASIBLE` models, and
-the exact distance-17 shell contains 276 more.  This result covers every
-margin shard but only this bounded ball; its derivation, resource statistics,
-and reproduction commands are in `VARIABLE_Q_SEED_DISTANCE.md`.
+images, an exact endpoint-quad dynamic program, fixed-margin primitive-3/4/6
+root models, and primitive-7/14 compression exclude the complete raw Hamming
+ball through radius 18.  The radius-16 certificate contains 197 finite
+`INFEASIBLE` models, and the exact distance-17 shell contains 276 more.  At
+distance 18 an exact modulo-12 quad-orbit quotient classifies all 823 targets:
+811 are root-infeasible and the 12 root survivors are eliminated by the
+compression layers.  This result covers every margin shard but only this
+bounded ball; its derivation, hashes, resource statistics, and verifier are in
+`VARIABLE_Q_SEED_DISTANCE.md`.
 
 Every emitted candidate is checked through `base_to_special`, the exact
 special-quadruple correlations, and the full Goethals-Seidel matrix.  The same

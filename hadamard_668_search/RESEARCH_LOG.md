@@ -351,3 +351,50 @@
   checkpoint has row sums `(3,7,9,23)`, quarter-energy 76, and 46 bad lags.
   The checkpoint kind is deliberately rejected by the strict verifier; no
   exact SDS or `H(668)` candidate was found.
+- Added strict checkpoint loading, incumbent perturb-and-restart, exact
+  compound exchanges across up to four distinct sequences, and a mixed
+  single/compound move probability.  Loaded residuals and energy are always
+  recomputed.  The self-test now covers 10,000 single and 1,000 compound
+  deltas; strict compilation and a sanitized mixed-continuation smoke test
+  pass.
+- Six 10-second incumbent continuations, four 10-second pure-compound runs,
+  three 20-second mixed schedules, and a 10-second-per-profile screen did not
+  beat quarter-energy 76.  These bounded failures are search diagnostics, not
+  evidence against a cyclic SDS.
+
+## 22 July 2026: published-seed exclusion extended through radius 18
+
+- Enumerated the exact distance-18 margin-plus-quad frontier: 823 targets are
+  parity-compatible, while 276 raw targets have the wrong fixed-distance
+  parity.  A first half-second root screen proved 525 targets infeasible,
+  decoded 7 root witnesses, and left 291 timeouts.
+- Added compatibility-checked survivor and timeout selection to the frontier
+  driver, together with exact long/short quad-distance lower bounds.  A
+  2-second pass on the 298 live targets proved 209 more infeasible and exposed
+  11 root witnesses; a 5-second pass on its 78 timeouts proved 37 more and
+  exposed one additional witness.
+- Identified the exact modulo-12 symmetry of the root relaxation.  Endpoint
+  quads with equal oriented seed signs and equal endpoint residues are
+  interchangeable.  Bit-level orbit ordering proved 2 more targets
+  infeasible.  Replacing each orbit by counts of its eight even-flip patterns
+  gives an exact quotient with 60 quad orbits, 512 small integer variables,
+  and 111 constraints before presolve.
+- The quotient proved 32 of 38 hard targets infeasible at a 5-second cap and
+  the remaining 6 in 6.229--11.302 seconds each.  It was independently
+  checked in both directions: all 18 radius-14 targets remain infeasible, and
+  a known shell-18 witness decodes to 334 signs whose margins, distance, quad
+  products, and primitive-root norms verify exactly.
+- The complete root classification is therefore 811 infeasible targets and
+  12 verified root witnesses.  Primitive-7 compression eliminates 9 witness
+  targets.  Primitive-14 compression eliminates the remaining 3 in 5.077,
+  12.913, and 29.017 seconds.
+- Added `verify_variable_q_seed_shell18_artifacts.py`.  With standard-library
+  integer arithmetic it reconstructs all 823 targets, pins nine SHA-256
+  artifacts and every parent-selection edge, independently verifies all 12
+  witnesses, and checks that the compression eliminations cover exactly the
+  witness set.  It passed at 39 MB peak RSS.  The largest recorded solver run
+  in this chain used 176 MB peak RSS; every run used one worker, a 256 MiB
+  solver cap, and zero swaps.
+- Consequently no exact `BS(84,83)` lies within raw labeled Hamming distance
+  18 of Eliahou's published base quadruple.  This is a finite local theorem,
+  not a global nonexistence result for `BS(84,83)` or `H(668)`.

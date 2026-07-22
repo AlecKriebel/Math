@@ -17,6 +17,7 @@
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <iterator>
 #include <limits>
 #include <random>
 #include <stdexcept>
@@ -64,6 +65,11 @@ struct Options {
   std::uint64_t validate_every = 1'000'000;
   double report_every = 10.0;
   std::filesystem::path output = "output/sds_167_local_best.json";
+  std::filesystem::path initial;
+  bool restart_from_best = false;
+  std::uint64_t perturb_exchanges = 8;
+  int move_arity = 1;
+  double compound_probability = 1.0;
   bool self_test = false;
 };
 
@@ -193,6 +199,20 @@ void apply_exchange(State &state, int which, int left, int right,
   state.energy = new_energy;
 }
 
+void apply_compound_exchange(
+    State &state, const std::array<int, SEQUENCES> &which,
+    const std::array<int, SEQUENCES> &left,
+    const std::array<int, SEQUENCES> &right, int arity,
+    const std::array<int, HALF + 1> &combined_delta,
+    std::int64_t new_energy) {
+  for (int move = 0; move < arity; ++move)
+    std::swap(state.sequence[which[move]][left[move]],
+              state.sequence[which[move]][right[move]]);
+  for (int lag = 1; lag <= HALF; ++lag)
+    state.residual[lag] += combined_delta[lag];
+  state.energy = new_energy;
+}
+
 int bad_lags(const State &state) {
   int result = 0;
   for (int lag = 1; lag <= HALF; ++lag)
@@ -262,6 +282,52 @@ void write_checkpoint(const std::filesystem::path &path, const State &state,
   std::filesystem::rename(temporary, path);
 }
 
+State read_checkpoint(const std::filesystem::path &path) {
+  std::ifstream stream(path);
+  if (!stream) throw std::runtime_error("could not open initial checkpoint");
+  const std::string text((std::istreambuf_iterator<char>(stream)),
+                         std::istreambuf_iterator<char>());
+  const std::size_t profile_key = text.find("\"profile\"");
+  if (profile_key == std::string::npos)
+    throw std::runtime_error("initial checkpoint has no profile");
+  const std::size_t profile_colon = text.find(':', profile_key);
+  if (profile_colon == std::string::npos)
+    throw std::runtime_error("initial checkpoint profile is malformed");
+
+  State state;
+  std::size_t consumed = 0;
+  state.profile = std::stoi(text.substr(profile_colon + 1), &consumed);
+  if (state.profile < 0 || state.profile >= static_cast<int>(PROFILES.size()))
+    throw std::runtime_error("initial checkpoint profile is out of range");
+
+  const std::size_t sequence_key = text.find("\"sequences\"");
+  if (sequence_key == std::string::npos)
+    throw std::runtime_error("initial checkpoint has no sequences");
+  const char *cursor = text.c_str() + sequence_key;
+  const char *const finish = text.c_str() + text.size();
+  int count = 0;
+  while (cursor < finish && count < SEQUENCES * N) {
+    if (*cursor == '-' || (*cursor >= '0' && *cursor <= '9')) {
+      char *end = nullptr;
+      const long value = std::strtol(cursor, &end, 10);
+      if (end == cursor) throw std::runtime_error("could not parse initial sign");
+      if (value != -1 && value != 1)
+        throw std::runtime_error("initial checkpoint contains a non-sign");
+      state.sequence[count / N][count % N] = static_cast<std::int8_t>(value);
+      ++count;
+      cursor = end;
+    } else {
+      ++cursor;
+    }
+  }
+  if (count != SEQUENCES * N)
+    throw std::runtime_error("initial checkpoint has too few signs");
+  state.residual = full_residuals(state.sequence);
+  state.energy = energy(state.residual);
+  validate(state);
+  return state;
+}
+
 std::uint64_t parse_unsigned(std::string_view value, std::string_view name) {
   std::size_t consumed = 0;
   const std::string text(value);
@@ -307,6 +373,16 @@ Options parse_options(int argc, char **argv) {
       options.report_every = parse_double(next(argument), argument);
     else if (argument == "--output")
       options.output = std::string(next(argument));
+    else if (argument == "--initial")
+      options.initial = std::string(next(argument));
+    else if (argument == "--restart-from-best")
+      options.restart_from_best = true;
+    else if (argument == "--perturb-exchanges")
+      options.perturb_exchanges = parse_unsigned(next(argument), argument);
+    else if (argument == "--move-arity")
+      options.move_arity = static_cast<int>(parse_unsigned(next(argument), argument));
+    else if (argument == "--compound-probability")
+      options.compound_probability = parse_double(next(argument), argument);
     else if (argument == "--self-test")
       options.self_test = true;
     else if (argument == "--help") {
@@ -321,6 +397,11 @@ Options parse_options(int argc, char **argv) {
           << "  --validate-every N       full-check interval\n"
           << "  --report-every S         progress interval\n"
           << "  --output PATH            best-checkpoint JSON\n"
+          << "  --initial PATH           start from a checkpoint JSON\n"
+          << "  --restart-from-best      perturb and re-anneal the incumbent\n"
+          << "  --perturb-exchanges N    exchanges before incumbent restart\n"
+          << "  --move-arity N            coupled exchanges in 1..4 sequences\n"
+          << "  --compound-probability P use arity N with probability P\n"
           << "  --self-test              validate incremental deltas\n";
       std::exit(0);
     } else {
@@ -330,10 +411,15 @@ Options parse_options(int argc, char **argv) {
   if (!(options.seconds > 0.0) || options.moves_per_restart == 0 ||
       !(options.start_temperature > 0.0) ||
       !(options.end_temperature > 0.0) || options.validate_every == 0 ||
-      !(options.report_every > 0.0))
+      !(options.report_every > 0.0) || options.perturb_exchanges == 0)
     throw std::runtime_error("time, move, temperature, and interval values must be positive");
   if (options.profile < -1 || options.profile >= static_cast<int>(PROFILES.size()))
     throw std::runtime_error("profile must be -1 or lie in 0..9");
+  if (options.move_arity < 1 || options.move_arity > SEQUENCES)
+    throw std::runtime_error("move arity must lie in 1..4");
+  if (options.compound_probability < 0.0 ||
+      options.compound_probability > 1.0)
+    throw std::runtime_error("compound probability must lie in [0,1]");
   return options;
 }
 
@@ -350,8 +436,27 @@ void self_test() {
       apply_exchange(state, which, left, right, delta, new_energy);
       validate(state);
     }
+    for (int trial = 0; trial < 100; ++trial) {
+      std::array<int, SEQUENCES> order{{0, 1, 2, 3}};
+      std::shuffle(order.begin(), order.end(), rng);
+      std::array<int, SEQUENCES> left{};
+      std::array<int, SEQUENCES> right{};
+      std::array<int, HALF + 1> combined{};
+      for (int move = 0; move < 2; ++move) {
+        const auto endpoints = random_exchange(state.sequence[order[move]], rng);
+        left[move] = endpoints.first;
+        right[move] = endpoints.second;
+        const auto delta = exchange_deltas(
+            state.sequence[order[move]], left[move], right[move]);
+        for (int lag = 1; lag <= HALF; ++lag) combined[lag] += delta[lag];
+      }
+      const std::int64_t new_energy = exchanged_energy(state, combined);
+      apply_compound_exchange(
+          state, order, left, right, 2, combined, new_energy);
+      validate(state);
+    }
   }
-  std::cout << "PASS: 10000 exact cyclic exchange-delta checks\n";
+  std::cout << "PASS: 10000 single and 1000 compound delta checks\n";
 }
 
 int run(const Options &options) {
@@ -363,15 +468,47 @@ int run(const Options &options) {
   auto next_report = started + std::chrono::duration<double>(options.report_every);
   State best;
   best.energy = std::numeric_limits<std::int64_t>::max();
+  State initial;
+  const bool has_initial = !options.initial.empty();
+  if (has_initial) {
+    initial = read_checkpoint(options.initial);
+    if (options.profile >= 0 && options.profile != initial.profile)
+      throw std::runtime_error("requested profile disagrees with initial checkpoint");
+    best = initial;
+    write_checkpoint(options.output, best, options.seed, 0, best.energy == 0);
+    if (best.energy == 0) {
+      std::cout << "FOUND exact cyclic SDS in initial checkpoint output="
+                << options.output << '\n';
+      return 0;
+    }
+  }
   std::uint64_t moves = 0;
   std::uint64_t accepted = 0;
   std::uint64_t restarts = 0;
 
   while (std::chrono::steady_clock::now() < deadline) {
-    const int profile = options.profile >= 0
-                            ? options.profile
-                            : static_cast<int>(restarts % PROFILES.size());
-    State state = random_state(profile, rng);
+    State state;
+    if (has_initial && restarts == 0) {
+      state = initial;
+    } else if (options.restart_from_best &&
+               best.energy != std::numeric_limits<std::int64_t>::max()) {
+      state = best;
+      for (std::uint64_t perturb = 0; perturb < options.perturb_exchanges;
+           ++perturb) {
+        const int which = sequence_choice(rng);
+        const auto [left, right] = random_exchange(state.sequence[which], rng);
+        const auto delta = exchange_deltas(state.sequence[which], left, right);
+        const std::int64_t new_energy = exchanged_energy(state, delta);
+        apply_exchange(state, which, left, right, delta, new_energy);
+        ++moves;
+      }
+      validate(state);
+    } else {
+      const int profile = options.profile >= 0
+                              ? options.profile
+                              : static_cast<int>(restarts % PROFILES.size());
+      state = random_state(profile, rng);
+    }
     ++restarts;
     if (state.energy < best.energy) {
       best = state;
@@ -382,10 +519,24 @@ int run(const Options &options) {
          phase < options.moves_per_restart &&
          std::chrono::steady_clock::now() < deadline;
          ++phase) {
-      const int which = sequence_choice(rng);
-      const auto [left, right] = random_exchange(state.sequence[which], rng);
-      const auto delta = exchange_deltas(state.sequence[which], left, right);
-      const std::int64_t candidate_energy = exchanged_energy(state, delta);
+      std::array<int, SEQUENCES> order{{0, 1, 2, 3}};
+      std::shuffle(order.begin(), order.end(), rng);
+      const int effective_arity =
+          options.move_arity > 1 && uniform(rng) < options.compound_probability
+              ? options.move_arity
+              : 1;
+      std::array<int, SEQUENCES> left{};
+      std::array<int, SEQUENCES> right{};
+      std::array<int, HALF + 1> combined{};
+      for (int move = 0; move < effective_arity; ++move) {
+        const auto endpoints = random_exchange(state.sequence[order[move]], rng);
+        left[move] = endpoints.first;
+        right[move] = endpoints.second;
+        const auto delta = exchange_deltas(
+            state.sequence[order[move]], left[move], right[move]);
+        for (int lag = 1; lag <= HALF; ++lag) combined[lag] += delta[lag];
+      }
+      const std::int64_t candidate_energy = exchanged_energy(state, combined);
       const double fraction = options.moves_per_restart <= 1
                                   ? 1.0
                                   : static_cast<double>(phase) /
@@ -398,7 +549,8 @@ int run(const Options &options) {
           increase <= 0 || uniform(rng) < std::exp(-static_cast<double>(increase) /
                                                    temperature);
       if (accept) {
-        apply_exchange(state, which, left, right, delta, candidate_energy);
+        apply_compound_exchange(state, order, left, right, effective_arity,
+                                combined, candidate_energy);
         ++accepted;
       }
       ++moves;

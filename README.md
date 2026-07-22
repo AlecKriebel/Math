@@ -52,7 +52,7 @@ construct a Hadamard matrix of order 668. No exact matrix has been found. The
 current mechanically checked progress includes the fixed-`q` obstruction,
 exhaustive variable-`q` margin decomposition, independent Legendre-pair and
 cyclic-SDS lanes, and a bounded exclusion of every exact `BS(84,83)` within
-raw Hamming distance 17 of Eliahou's published seed. A result counts only if
+raw Hamming distance 18 of Eliahou's published seed. A result counts only if
 an explicit `668 x 668` matrix passes exact full verification.
 
 ## Archival derivations

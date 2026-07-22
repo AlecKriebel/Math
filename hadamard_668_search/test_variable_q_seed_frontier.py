@@ -1,13 +1,19 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+import tempfile
 import unittest
 
 from search_variable_q_seed_frontier import (
     SHARD_287_MINIMUM_TARGET,
     _quadratic_norm_rows,
+    build_quad_orbit_root_model,
     build_target_model,
+    select_prior_survivors,
 )
 from verify_variable_q_seed_quad_radius import check_radius
+from verify_variable_q_seed_radius import SEED
 
 
 class VariableQSeedFrontierTests(unittest.TestCase):
@@ -35,8 +41,79 @@ class VariableQSeedFrontierTests(unittest.TestCase):
         )
         self.assertEqual(len(frontier), 18)
         for record in frontier:
-            model, _variables = build_target_model(record.target, radius)
+            self.assertIsNotNone(record.long_distance)
+            self.assertIsNotNone(record.short_distance)
+            model, _variables = build_target_model(
+                record.target,
+                radius,
+                pair_distance_lower_bounds=(
+                    int(record.long_distance),
+                    int(record.short_distance),
+                ),
+            )
             self.assertEqual(model.validate(), "")
+
+    def test_pair_distance_bounds_are_checked(self) -> None:
+        record = next(
+            record
+            for record in check_radius(14).targets
+            if record.quad_distance is not None and record.quad_distance <= 14
+        )
+        with self.assertRaises(ValueError):
+            build_target_model(
+                record.target,
+                14,
+                pair_distance_lower_bounds=(14, 2),
+            )
+
+    def test_quad_orbit_root_model_validates(self) -> None:
+        record = next(
+            record
+            for record in check_radius(14).targets
+            if record.quad_distance is not None and record.quad_distance <= 14
+        )
+        model, encoding = build_quad_orbit_root_model(
+            record.target,
+            14,
+            pair_distance_lower_bounds=(
+                int(record.long_distance),
+                int(record.short_distance),
+            ),
+        )
+        self.assertEqual(model.validate(), "")
+        self.assertEqual(len(encoding.orbits), 60)
+        self.assertEqual(
+            sum(len(orbit.physical_groups) for orbit in encoding.orbits),
+            84,
+        )
+        covered = set()
+        for orbit in encoding.orbits:
+            representative = orbit.physical_groups[0]
+            for physical in orbit.physical_groups:
+                self.assertEqual(
+                    tuple(index for index, _coordinate in physical),
+                    tuple(index for index, _coordinate in representative),
+                )
+                self.assertEqual(
+                    tuple(coordinate % 12 for _index, coordinate in physical),
+                    tuple(
+                        coordinate % 12
+                        for _index, coordinate in representative
+                    ),
+                )
+                self.assertEqual(
+                    tuple(SEED[index][coordinate] for index, coordinate in physical),
+                    tuple(
+                        SEED[index][coordinate]
+                        for index, coordinate in representative
+                    ),
+                )
+                for cell in physical:
+                    self.assertNotIn(cell, covered)
+                    covered.add(cell)
+            if len(representative) == 4:
+                self.assertTrue(all(mask.bit_count() % 2 == 0 for mask in orbit.masks))
+        self.assertEqual(len(covered), 334)
 
     def test_optional_layers_validate(self) -> None:
         record = next(
@@ -73,6 +150,58 @@ class VariableQSeedFrontierTests(unittest.TestCase):
             record.target, 17, minimum_distance=17
         )
         self.assertEqual(model.validate(), "")
+
+    def test_select_prior_survivors(self) -> None:
+        radius = 14
+        frontier = tuple(
+            record
+            for record in check_radius(radius).targets
+            if record.quad_distance is not None
+            and record.quad_distance <= radius
+        )
+        source = {
+            "kind": "variable-q-seed-frontier-filter",
+            "radius": radius,
+            "minimum_distance": 0,
+            "results": [
+                {
+                    "shard": record.shard,
+                    "target": record.target,
+                    "status": (
+                        "OPTIMAL"
+                        if index in (2, 7)
+                        else "UNKNOWN"
+                        if index == 11
+                        else "INFEASIBLE"
+                    ),
+                }
+                for index, record in enumerate(frontier)
+            ],
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "frontier.json"
+            path.write_text(json.dumps(source), encoding="utf-8")
+            selected, digest = select_prior_survivors(
+                frontier, path, radius=radius, minimum_distance=0
+            )
+            unresolved, _digest = select_prior_survivors(
+                frontier,
+                path,
+                radius=radius,
+                minimum_distance=0,
+                selection_mode="unresolved",
+            )
+            timeouts, _digest = select_prior_survivors(
+                frontier,
+                path,
+                radius=radius,
+                minimum_distance=0,
+                selection_mode="timeouts",
+            )
+        self.assertEqual(selected, (frontier[2], frontier[7]))
+        self.assertEqual(unresolved, (frontier[2], frontier[7], frontier[11]))
+        self.assertEqual(timeouts, (frontier[11],))
+        self.assertEqual(len(digest), 64)
 
 
 if __name__ == "__main__":
