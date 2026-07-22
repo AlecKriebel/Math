@@ -42,6 +42,14 @@ revision adds an exact function-field/subresultant certificate and replaces
 the informal all-iterate growth argument with a local-field Puiseux induction;
 it does not enlarge the theorem statement.
 
+Discovery 05, “An explicit counterexample to the Special Image Conjecture in
+dimension 21,” first entered a public branch at **22 July 2026, 02:59:33 UTC**
+(**21 July 2026, 19:59:33 PDT**). It is a review draft rather than a website
+publication. Its scope is deliberately narrow: the prior 22-variable cubic
+model already implies SIC(22); Discovery 05 removes one homogenizing variable
+and supplies a scalar-parameter lemma for the resulting nonhomogeneous linear
+block.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
