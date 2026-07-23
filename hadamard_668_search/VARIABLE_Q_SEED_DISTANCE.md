@@ -2,14 +2,14 @@
 
 The published 64-modular quadruple has only 13 nonzero correlation lags, but
 its base-sequence margins are far from the exact norm shell.  This note gives
-a mechanically checked local result without fixing `q`, choosing a canonical
+a solver-backed local computation without fixing `q`, choosing a canonical
 margin shard, or applying a distance-changing symmetry quotient:
 
-> No exact `BS(84,83)` lies within raw labeled Hamming distance 18 of
-> Eliahou's published base quadruple.
+> The recorded CP-SAT decomposition reports no exact `BS(84,83)` within raw
+> labeled Hamming distance 18 of Eliahou's published base quadruple.
 
-This is a finite local exclusion, not a nonexistence result for `BS(84,83)` or
-`H(668)`.
+This is a finite local solver report with the explicit certification boundary
+described below, not a nonexistence result for `BS(84,83)` or `H(668)`.
 
 ## The first radius-eight obstruction
 
@@ -112,7 +112,8 @@ a0c842a2bb01696874cb911ac8d2ba41d1fd5467323b1e9e58d833a24d51bf8e  shell17
 The shell calculation skips 161 even-parity targets because a fixed margin
 vector fixes Hamming-distance parity; those targets cannot occur at odd
 distance 17.  Combining the complete radius-16 result with the exact shell
-therefore excludes the complete raw ball through radius 17.
+therefore makes the recorded CP-SAT chain report exclusion of the complete
+raw ball through radius 17.
 
 At exact distance 18, 823 parity-compatible margin-plus-quad targets remain.
 A sequence of compatibility-checked, one-worker root-layer runs classifies
@@ -127,12 +128,12 @@ them completely:
 | exact quad-orbit quotient, 5 seconds | 38 | 32 | 0 | 6 |
 | final quotient models, 30-second cap | 6 | 6 | 0 | 0 |
 
-Thus the root layer proves 811 targets infeasible and decodes exactly 12
-root witnesses.  Ordinary length-seven compression proves 9 of those target
+Thus the root layer reports 811 targets infeasible and decodes exactly 12
+root witnesses.  Ordinary length-seven compression reports 9 of those target
 models infeasible.  Primitive-14 compression—equivalently length-seven
-compression after coordinate alternation—proves the remaining 3 infeasible.
-Every exact `BS(84,83)` must satisfy all of these identities, so the complete
-distance-18 shell is empty.
+compression after coordinate alternation—reports the remaining 3 infeasible.
+Every exact `BS(84,83)` must satisfy all of these identities, so, subject to
+the CP-SAT trust boundary below, the complete distance-18 shell is empty.
 
 The orbit-count encoding is an exact quotient, not an added necessary
 condition.  At the root-only layer, margins and primitive 3rd/4th/6th roots
@@ -185,8 +186,9 @@ infeasibility search.
 
 `verify_variable_q_seed_shell18_artifacts.py` performs the layered shell-18
 check.  It reconstructs all 823 targets, verifies every checksum and parent
-selection edge, independently rechecks all 12 decoded witnesses, and confirms
-that the compression layers eliminate exactly those 12 targets:
+selection edge, independently rechecks all 12 decoded root witnesses, and
+confirms that the stored compression-layer statuses cover exactly those 12
+targets:
 
 ```sh
 python3 verify_variable_q_seed_shell18_artifacts.py
@@ -195,6 +197,10 @@ python3 verify_variable_q_seed_shell18_artifacts.py
 The verifier uses standard integer arithmetic, ran at 39 MB peak RSS, and
 does not import OR-Tools.  As above, it does not replay CP-SAT's infeasibility
 search or turn the solver statuses into independently replayable SAT proofs.
+The proof-grade release gate therefore contains 1,296 infeasible leaves:
+1,284 at the primitive-root layer and 12 at the primitive-7/14 compression
+layer.  Replaying a decoded root witness does not prove that its whole target
+becomes infeasible after adding a compression identity.
 
 ## Superseded diagnostics
 
@@ -207,11 +213,12 @@ optimality bound.
 
 `search_variable_q_seed_ball.py` instead includes all 83 exact aperiodic
 equations.  Its initial raw radius-10 run ended `UNKNOWN` after 300 seconds at
-251 MB peak RSS.  The decomposed radius-18 certificates above supersede that
-undecided diagnostic; the timed-out monolithic run is not cited as evidence.
+251 MB peak RSS.  The decomposed radius-18 artifact chain above supersedes
+that undecided diagnostic; the timed-out monolithic run is not cited as
+evidence.
 
 Primitive-7 and primitive-14 compression layers remain available on the
-frontier script and are essential to the shell-18 exclusion.  No exact
+frontier script and are essential to the shell-18 report.  No exact
 candidate has been produced by any seed-
 distance calculation.  Any future survivor must still pass all 83 exact base
 correlations and full `668 x 668` Hadamard verification.

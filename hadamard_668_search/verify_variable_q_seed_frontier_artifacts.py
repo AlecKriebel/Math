@@ -18,6 +18,9 @@ from typing import Any
 from verify_variable_q_seed_quad_radius import MarginTarget, TargetCheck, check_radius
 
 
+BASE = Path(__file__).resolve().parent
+
+
 @dataclass(frozen=True)
 class ArtifactSpec:
     path: Path
@@ -29,14 +32,14 @@ class ArtifactSpec:
 
 SPECS = (
     ArtifactSpec(
-        Path("output/variable_q_seed_frontier_radius16_root_table.json"),
+        BASE / "output/variable_q_seed_frontier_radius16_root_table.json",
         16,
         0,
         "4b38d392d9b48e9ee3d9466813863d4ab9ca59c513245469fa5afeb39ef39a0f",
         197,
     ),
     ArtifactSpec(
-        Path("output/variable_q_seed_frontier_shell17_root_table.json"),
+        BASE / "output/variable_q_seed_frontier_shell17_root_table.json",
         17,
         17,
         "a0c842a2bb01696874cb911ac8d2ba41d1fd5467323b1e9e58d833a24d51bf8e",
@@ -126,7 +129,10 @@ def main() -> None:
             f"PASS: {spec.path} contains all {spec.frontier_size} "
             "expected INFEASIBLE records"
         )
-    print("RESULT: recorded artifacts exclude the complete raw seed ball through radius 17")
+    print(
+        "RESULT: recorded CP-SAT statuses cover the complete raw seed ball "
+        "through radius 17; this checker does not replay their UNSAT proofs"
+    )
 
 
 if __name__ == "__main__":

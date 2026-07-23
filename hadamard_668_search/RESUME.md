@@ -11,17 +11,28 @@ The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
 
 - fixing Eliahou's `q` reduces an exact repair to `TU(41)`, whose emptiness is
-  supplied by a published exhaustive classification;
-- a solver-backed exhaustive computation excludes exact `BS(84,83)` sequences
-  through raw labelled Hamming distance 18 of the seed; the retained artifact
-  checker verifies the decomposition and records, not proof-producing UNSAT
-  transcripts;
+  supplied by a published exhaustive classification and independently
+  reproduced here by a 461-shard, 57,543,021-node exact enumeration;
+- a solver-backed exhaustive computation reports no exact `BS(84,83)`
+  sequence through raw labelled Hamming distance 18 of the seed; the retained artifact
+  checker verifies the decomposition and records, not the 1,296
+  solver-reported UNSAT claims (1,284 root-layer and 12 compression-layer
+  leaves); four representative leaves now have independently checked DRAT
+  proofs and all twelve stored root witnesses pass pinned positive-CNF
+  validation, leaving the full UNSAT gate incomplete;
 - inversion-symmetric/normalized-skew `LP(333)` type pairs are impossible;
 - several large, explicitly defined local neighborhoods around retained near
   misses have been independently exhausted.
 
 Read `README.md` for the lane map, `RESEARCH_LOG.md` for chronology, and
 `PRIORITY_AUDIT.md` before making any novelty or publication claim.
+
+For the publication snapshot, also read `MANIFEST.md`,
+`proof_certificates/README.md`, and `tu41_certificate/README.md`.  The exact
+next certification task is an orbit-count CNF for the six hard radius-18 root
+leaves.  Do not resume the tested raw-bit or combined z7/z14 hard pilots
+unchanged: one reached 1.785 GB RSS without finishing, and scaling it to a
+corpus would waste both memory and disk.
 
 ## Authoritative Legendre checkpoints
 

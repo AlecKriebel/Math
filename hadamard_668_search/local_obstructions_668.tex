@@ -1,0 +1,567 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{computationallemma}[theorem]{Computational Lemma}
+\newtheorem{computationalclaim}[theorem]{Computational Claim}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\PAF}{\operatorname{PAF}}
+\newcommand{\BS}{\operatorname{BS}}
+\newcommand{\TU}{\operatorname{TU}}
+\newcommand{\dist}{\operatorname{dist}}
+
+\title{Exact local obstructions around a\\
+64-modular Hadamard matrix of order 668}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Research draft prepared 22 July 2026\\Not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Eliahou recently constructed a 64-modular Hadamard matrix of order $668$
+from a structured length-$167$ Golay quadruple modulo $64$.  We study two
+sharply delimited exact-repair questions around that construction.  First,
+if Eliahou's sequence $q=(+^{83},-^2,+^{81},-)$ is held fixed, then no
+choice of the other binary sequence makes the special quadruple exactly
+Golay.  The proof is a parity telescope followed by even--odd decimation:
+any such repair would produce a Turyn sequence in $\TU(41)$, which is empty.
+We independently reproduce that endpoint by an exact 461-shard enumeration.
+Second, allowing both sequences to vary is equivalent to the base-sequence
+problem $\BS(84,83)$.  A finite decomposition by ordinary and alternating
+margins, endpoint-quad parity, and primitive-root norm identities reports no
+exact base sequence within raw labelled Hamming distance $18$ of the
+published seed.  The latter is a local computational claim about one
+orientation of one structured construction, not a nonexistence result for
+$\BS(84,83)$ or for Hadamard matrices of order $668$.  Exact data,
+bounded-memory generators, and independent artifact checkers are being
+assembled for release with the paper; proof-grade certification of all
+solver-infeasible leaves is a release requirement.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+The human author is a complete amateur exploring the limits of AI-assisted
+mathematics and cannot independently validate these claims.  This is an
+unreviewed artifact for expert checking, not an established result.  Passing
+the included programs establishes properties of their encoded finite models;
+it is not peer review and does not by itself establish priority.
+
+\section{Introduction}
+
+A Hadamard matrix of order $n$ is a matrix
+$H\in\{\pm1\}^{n\times n}$ satisfying
+\[
+ HH^\top=nI_n.
+\]
+The Hadamard conjecture asserts existence whenever $4\mid n$.  The smallest
+order for which no matrix is presently known is $668$; the next unresolved
+orders in the implemented range are $716$, $892$, and
+$1132$~\cite{cati-pasechnik,sage}.
+
+Eliahou constructed a $64$-modular matrix at order $668$, meaning
+\[
+ HH^\top\equiv668I_{668}\pmod {64},
+\]
+from four binary sequences of length $167$ and the Goethals--Seidel
+array~\cite{eliahou-2025}.  A subsequent paper embeds this example in
+families of 64-modular constructions~\cite{eliahou-2026}.  The order-$668$
+seed is unusually close to exact complementarity: only thirteen positive
+aperiodic correlation lags are nonzero.
+
+The natural question is whether a small sign repair can turn this structured
+seed into an exact Golay quadruple and hence into a true Hadamard matrix.  The
+present paper proves one bounded negative result and reports one larger
+solver-backed exclusion.
+
+\begin{theorem}[Fixed-$q$ obstruction]\label{thm:fixedq}
+Keep Eliahou's length-$167$ sequence
+\[
+ q=(+^{83},-^2,+^{81},-)
+\]
+and the special form
+\[
+ (s,s',sq,(sq)').
+\]
+No binary sequence $s$ makes this quadruple exactly Golay.
+\end{theorem}
+
+\begin{computationalclaim}[Raw radius-$18$ solver report]\label{thm:radius}
+Let $\mathcal E\in\{\pm1\}^{334}$ be the labelled base quadruple obtained
+from Eliahou's published order-$668$ seed.  The recorded CP-SAT decomposition
+reports that there is no
+\[
+ (A;B;C;D)\in\BS(84,83)
+\]
+with raw labelled Hamming distance
+\[
+ \dist\bigl((A;B;C;D),\mathcal E\bigr)\le18.
+\]
+\end{computationalclaim}
+
+The word \emph{raw} is essential.  No distance-changing equivalence is
+applied, and no global neighbourhood of an equivalence class is claimed.
+The ball has radius $18$ in a $334$-dimensional binary cube; even a certified
+exclusion would not suggest that the unrestricted base-sequence problem is
+nearly exhausted.
+
+Theorem~\ref{thm:fixedq} is a short mathematical reduction whose endpoint
+uses the exhaustive classification of Turyn sequences of long length below
+$43$~\cite{edmondson}.  Claim~\ref{thm:radius} is a finite solver report.
+Its decomposition and decoded root witnesses have dependency-free
+checkers.  The public release is not proof-grade until every solver-reported
+infeasible leaf is also covered by an independently replayable proof or a
+second exact enumeration; Section~\ref{sec:certification} makes that
+distinction explicit.
+
+\section{Sequences, the modular seed, and base sequences}
+
+For a sign sequence $X=(x_0,\ldots,x_{r-1})$, write
+\[
+ N_X(k)=\sum_{i=0}^{r-k-1}x_ix_{i+k}
+ \qquad(0\le k<r)
+\]
+for its aperiodic autocorrelation.  A quadruple
+$(X_1,X_2,X_3,X_4)$ of equal length is Golay when
+\[
+ \sum_{j=1}^4N_{X_j}(k)=0
+ \qquad(1\le k<r).
+\]
+
+Let $h\in\{\pm1\}^{167}$ be $+1$ on coordinates $0,\ldots,83$ and
+$-1$ on coordinates $84,\ldots,166$, and write $s'=hs$ for pointwise
+multiplication.  Eliahou's quadruple is
+\begin{equation}
+ \mathcal G(s,q)=(s,hs,sq,hsq).
+ \label{eq:special}
+\end{equation}
+The published $q$ has alternating run lengths
+\[
+ (83,2,81,1).
+\]
+For reproducibility, the published $s$ has run-length word
+\begin{align*}
+ &((4)^5,(2,1,1)^5,1,5,(4)^4,(2,1,1)^6,(4)^4,3,\\
+ &\hspace{32mm}(1,2,1)^5,3,(4)^4,3,(1,2,1)^5),
+\end{align*}
+where an exponent means repetition of a block and the first run has sign
+$+1$.  These two words are encoded directly in run-length form in the
+accompanying checker.
+
+The nonzero summed aperiodic correlations of the quadruple occur at the
+thirteen lags shown below.
+\[
+\begin{array}{c|rrrrrrrrrrrrr}
+k&4&8&12&16&26&30&34&38&42&46&50&54&58\\ \hline
+\sum_jN_{X_j}(k)
+&-512&384&-256&128&-64&128&-192&256&-320&256&-192&128&-64
+\end{array}
+\]
+Thus every residual is divisible by $64$, but the quadruple is not exact.
+
+A base sequence in $\BS(m,n)$ is a quadruple
+$(A;B;C;D)$ with $|A|=|B|=m$, $|C|=|D|=n$, and
+\[
+ N_A(k)+N_B(k)+N_C(k)+N_D(k)=0
+ \qquad(1\le k<m),
+\]
+where the shorter terms vanish once $k\ge n$.
+
+\begin{proposition}[Exact change of variables]\label{prop:bs}
+The special quadruple $\mathcal G(s,q)$ of length $167$ is Golay if and
+only if
+\[
+ A=s_{[0,84)},\quad B=(sq)_{[0,84)},\quad
+ C=s_{[84,167)},\quad D=(sq)_{[84,167)}
+\]
+belong to $\BS(84,83)$.  The correspondence is bijective, with inverse
+\[
+ s=A\Vert C,\qquad q=(AB)\Vert(CD).
+\]
+\end{proposition}
+
+\begin{proof}
+At lag $k$, the coefficient in the summed autocorrelation of
+\eqref{eq:special} is
+\[
+ \sum_i s_is_{i+k}
+ (1+h_ih_{i+k})(1+q_iq_{i+k}).
+\]
+Cross-half terms vanish.  The remaining expression is twice
+\[
+ N_A(k)+N_B(k)+N_C(k)+N_D(k).
+\]
+It vanishes automatically for $k\ge84$, proving the equivalence.  The
+displayed inverse follows coordinatewise.
+\end{proof}
+
+Proposition~\ref{prop:bs} is useful in both directions: an exact repair gives
+a standard base sequence, and any base-sequence candidate gives explicit
+$(s,q)$ and a full order-$668$ Goethals--Seidel verification path.
+
+\section{The fixed-\texorpdfstring{$q$}{q} obstruction}
+
+We prove Theorem~\ref{thm:fixedq}.  The special shape of the four runs in
+$q$ makes almost all variables disappear from the correlation equations.
+Write
+\[
+ X=s_{[0,83)},\quad u=s_{84},\quad
+ Y=s_{[85,166)},\quad v=s_{166}.
+\]
+The coordinate $s_{83}$ is isolated.  Direct inspection of the factor
+$(1+h_ih_{i+k})(1+q_iq_{i+k})$ in
+\eqref{eq:special} leaves the within-$X$ and within-$Y$ pairs at lags
+$1\le k\le80$, only the two within-$X$ pairs at lag $81$, and the pair
+$x_0x_{82}$ together with $uv$ at lag $82$.  No active pair remains at a
+larger lag.  Exact complementarity is therefore equivalent to
+\begin{align}
+ N_X(k)+N_Y(k)&=0 &&(1\le k\le80),\label{eq:fixed-main}\\
+ x_0x_{81}+x_1x_{82}&=0,\label{eq:fixed-81}\\
+ x_0x_{82}+uv&=0.\label{eq:fixed-end}
+\end{align}
+
+\begin{lemma}[Parity telescope]\label{lem:telescope}
+Every solution of \eqref{eq:fixed-main}--\eqref{eq:fixed-end} satisfies
+\begin{align}
+ x_{82-i}&=(-1)^{i+1}x_i &&(0\le i\le82),\label{eq:xreverse}\\
+ y_{80-i}&=(-1)^iy_i &&(0\le i\le80),\label{eq:yreverse}\\
+ u&=v.\label{eq:uv}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+For $0\le k\le81$, let $P_k$ be the product of all sign terms in
+$N_X(k)+N_Y(k)$, with the $Y$ product empty at $k=81$.  Every lag-zero term
+is a square, so $P_0=1$.  At positive lag the zero sum contains
+$2(82-k)$ signs, of which exactly $82-k$ are negative, so
+\[
+ P_k=(-1)^k.
+\]
+Cancellation between consecutive products gives
+\[
+ (x_ix_{82-i})(y_iy_{80-i})=-1
+ \qquad(0\le i\le80).
+\]
+Put $r_i=x_ix_{82-i}$ and $t_i=y_iy_{80-i}$.  Reflection and comparison at
+$i$ and $80-i$ give $r_i=r_{i+2}$.  The central products are
+$r_{41}=t_{40}=1$, while $r_{40}t_{40}=-1$ gives $r_{40}=-1$.
+These two central values fix the odd and even classes of $r_i$; the relation
+$r_it_i=-1$ then fixes $t_i$.  This gives \eqref{eq:xreverse} and
+\eqref{eq:yreverse}.  In particular $x_0x_{82}=-1$, so
+equation~\eqref{eq:fixed-end} gives $uv=1$ and hence $u=v$.
+\end{proof}
+
+Separate the even and odd coordinates:
+\begin{align*}
+ E&=(x_0,x_2,\ldots,x_{82}), & |E|&=42,& E^{\rm rev}&=-E,\\
+ O&=(x_1,x_3,\ldots,x_{81}), & |O|&=41,& O^{\rm rev}&=O,\\
+ P&=(y_0,y_2,\ldots,y_{80}), & |P|&=41,& P^{\rm rev}&=P,\\
+ Q&=(y_1,y_3,\ldots,y_{79}), & |Q|&=40,& Q^{\rm rev}&=-Q,
+\end{align*}
+and set $B=(u,Q,v)$.  Since $Q$ is skew and $u=v$, the endpoint
+contributions to $N_B(k)$ cancel for $1\le k\le40$.  The even-lag equations
+in \eqref{eq:fixed-main}, together with \eqref{eq:fixed-end}, become
+\[
+ N_E(k)+N_B(k)+N_O(k)+N_P(k)=0
+ \qquad(1\le k\le41).
+\]
+Therefore
+\[
+ (E;B;O;P)\in\BS(42,41).
+\]
+Its first long sequence is skew and its first short sequence is symmetric,
+which is precisely a Turyn sequence in $\TU(41)$ under the standard
+definition~\cite{djokovic-quadruples}.  Edmondson, Seberry, and Anderson
+exhaustively enumerated all inequivalent Turyn sequences whose long length
+is below $43$ and found none of long length $42$~\cite{edmondson}.
+This proves Theorem~\ref{thm:fixedq}.  As an independent modern
+reproduction of that endpoint, the accompanying outside-in enumerator
+exhausts all $461$ normalized depth-five shards for $\TU(41)$:
+$57{,}543{,}021$ deterministic nodes and zero solutions.  A separate Python
+program exhausts the $2^{19}$ assignments defining the shard cover.
+
+\paragraph{A necessary correction.}
+The argument does not follow from $83$ failing to be a sum of two squares.
+For $\BS(42,41)$ the relevant row-sum identity at odd parameter $41$ is
+\[
+ C^2+D^2=4\cdot41-2=162=9^2+9^2.
+\]
+The final nonexistence step is the Turyn classification, not a two-squares
+obstruction.
+
+\section{The raw seed neighbourhood}
+
+Let
+\[
+ \mathcal E=(A_0;B_0;C_0;D_0)
+\]
+be the labelled base quadruple obtained from the published $(s,q)$ through
+Proposition~\ref{prop:bs}.  We now allow all $334$ signs to change.
+
+\subsection{Margins and endpoint quads}
+
+For a sign sequence $X$, let
+\[
+ S(X)=\sum_i x_i,\qquad T(X)=\sum_i(-1)^ix_i.
+\]
+Evaluation of the base-sequence norm identity at $z=1$ gives
+\[
+ S(A)^2+S(B)^2+S(C)^2+S(D)^2=334,
+\]
+and evaluation at $z=-1$ gives the same identity for $T$.
+The long sums are even, the short sums odd.  Independent sequence
+negations and equal-length swaps reduce the ordinary sums to twelve
+canonical profiles:
+\[
+\begin{array}{rrrr}
+(4,2,17,5)&(6,0,17,3)&(8,6,15,3)&(10,0,15,3)\\
+(10,4,13,7)&(10,8,11,7)&(10,8,13,1)&(12,10,9,3)\\
+(14,4,11,1)&(14,8,7,5)&(16,2,7,5)&(18,0,3,1).
+\end{array}
+\]
+Coordinate parity leaves exactly twenty-four compatible alternating
+profiles for each ordinary profile, hence $288$ nominal margin shards.
+The verifier expands every raw labelled image under the normalizing
+negations, swaps, and safe reversals before measuring distance from
+$\mathcal E$.
+
+For $1\le k\le82$, the lag-$k$ equation contains
+$2(167-2k)$ sign terms, while the lag-$83$ equation contains two.  A zero
+sum forces exactly half to be negative; that half-count is odd, so the term
+product is $-1$ at every positive lag.  The lag-zero product is $+1$.
+Dividing consecutive products telescopes to the standard base-sequence
+endpoint parity system, equivalently the endpoint-quad conditions
+\begin{align*}
+ A_jA_{83-j}B_jB_{83-j}&=
+ \begin{cases}-1,&j=0,\\+1,&1\le j\le41,\end{cases}\\
+ C_jC_{82-j}D_jD_{82-j}&=+1
+ \qquad(0\le j\le40).
+\end{align*}
+The two central short signs $C_{41}$ and $D_{41}$ are unpaired and remain
+unrestricted by these conditions.
+The modular seed already has these products.  Thus a repair must flip an
+even number of signs in each four-cell endpoint quad.
+
+For one sequence, $(S,T)$ fixes the even- and odd-coordinate sums:
+\[
+ E_X=\frac{S+T}{2},\qquad O_X=\frac{S-T}{2}.
+\]
+The minimum number of flips required for a target pair is consequently
+exact.  A dynamic program processes the endpoint quads independently,
+retaining the cheapest realization of every eight-component margin delta.
+
+\begin{computationallemma}[Dependency-free inner ball]\label{lem:r13}
+No exact base sequence lies within raw distance $13$ of $\mathcal E$.
+At radius $13$ there are $85$ raw margin targets and none survives the
+endpoint-quad dynamic program.  At exact distance $14$, eighteen targets
+survive.
+\end{computationallemma}
+
+The unique closest raw margin target occurs at distance $8$:
+\[
+ A:(-18,18),\quad B:(0,0),\quad C:(3,1),\quad D:(-1,-3).
+\]
+It requires eight positive odd coordinates of $A$ to flip.  They lie in
+eight distinct endpoint quads, so the correct quad products cannot be
+preserved at distance $8$.  The dynamic program generalizes this observation
+through radius $13$ and is independently checked against complete brute
+force on small even- and odd-length fixtures.
+
+\subsection{Primitive-root filters}
+
+Write $X(z)=\sum_i x_i z^i$.  For $m\in\{3,4,6\}$, evaluation at a primitive
+$m$th root expresses the norm
+of each sequence by two integer linear forms $a_m(X),b_m(X)$:
+\[
+ |X(\zeta_m)|^2
+ =a_m(X)^2+\epsilon_m a_m(X)b_m(X)+b_m(X)^2,
+ \qquad
+ (\epsilon_3,\epsilon_4,\epsilon_6)=(-1,0,1).
+\]
+Every base sequence satisfies
+\begin{equation}
+ \sum_{X\in\{A,B,C,D\}}|X(\zeta_m)|^2=334
+ \qquad(m=3,4,6).
+ \label{eq:smallroots}
+\end{equation}
+The finite models encode the two linear forms directly and impose their
+quadratic norm through a complete allowed-value table.  Terms above $334$
+can be discarded because all four norms are nonnegative.
+
+The remaining frontier is split by raw margin target.  Each model fixes all
+eight ordinary and alternating class sums, the exact distance interval, every
+endpoint-quad product, and \eqref{eq:smallroots}.  For the hard distance-$18$
+root cases, endpoint quads are grouped into exact orbits by their residues
+modulo $12$ and their oriented seed signs.  Any quotient witness is decoded
+to all $334$ physical signs and rechecked with integer arithmetic.
+
+The completed counts are:
+\[
+\begin{array}{lrrl}
+\toprule
+\text{scope}&\text{targets}&\text{root-infeasible}&\text{root survivors}\\
+\midrule
+\text{complete ball through radius }16&197&197&0\\
+\text{exact distance-17 shell}&276&276&0\\
+\text{exact distance-18 shell}&823&811&12\\
+\bottomrule
+\end{array}
+\]
+Solver models with ordinary length-$7$ compression report nine of the twelve
+distance-$18$ root-survivor targets infeasible.  Applying the same compression
+after coordinate alternation, equivalently primitive-$14$ compression, reports
+the final three infeasible.  This supports Claim~\ref{thm:radius} subject to
+the proof-certification boundary made explicit next.
+
+\section{Certificates and trust boundary}\label{sec:certification}
+
+The reproducibility package separates four levels of evidence.
+\begin{enumerate}
+\item Standard-library programs reconstruct all raw margin targets and prove
+the radius-$13$ margin-plus-quad exclusion by dynamic programming.
+\item Independent artifact checkers reconstruct the $197$, $276$, and $823$
+frontiers, verify target uniqueness and completeness, pin all file hashes,
+and validate every artifact-selection edge.
+\item All twelve decoded root witnesses are independently checked against the
+margin, distance, endpoint-quad, and primitive-$3/4/6$ identities.
+\item The $1{,}284$ root-infeasible leaves ($197+276+811$), together with the
+twelve primitive-$7/14$ compression-infeasible leaves, were originally
+reported by one-worker OR-Tools CP-SAT models.  Their JSON records are
+reproducible solver outcomes, not independently replayable UNSAT proofs.
+\end{enumerate}
+
+Four representative leaves---one each from radius $16$, shell $17$, shell
+$18$, and shell-$18$ primitive-$7$ compression---have now been translated
+independently to deterministic CNF.  Their pinned binary DRAT traces
+regenerate and pass \texttt{drat-trim}; replay of all four took $34.62$
+seconds and peaked at $250$ MB resident memory.  A known feasible shell-$18$
+root instance also passes an independent positive-model checker with the
+symmetry quotient enabled.  All twelve stored root witnesses separately
+extend to SAT models of their exactly pinned, unquotiented v2 CNFs and pass
+every clause plus independent arithmetic checks.  An exhaustive
+contribution-signature regression independently verifies the global root
+orbit partition for every even endpoint-quad mask.  This is $4/1{,}296$
+proof coverage, not certification of the complete claim.
+
+The release gate for a theorem-level preprint is to replace all $1{,}296$
+infeasible solver outcomes in item 4 by
+proof-producing SAT or pseudo-Boolean certificates, or by a structurally
+independent exact enumeration of every leaf.  Until that gate is met, the
+radius-$18$ statement should be read as a strongly audited computational
+claim rather than a proof-assistant-level theorem.  The fixed-$q$ reduction
+is independent of these solver records.
+
+All production runs were single-threaded.  The original frontier solves
+peaked at $176$ MB resident memory; the dependency-free shell-$18$ artifact
+checker peaked at $39$ MB.  The independent $\TU(41)$ enumeration completed
+$461/461$ shards in $362.92$ seconds of summed serial time; its slowest shard
+used $1.38$ MB peak resident memory.  Commands, solver versions, wall times,
+memory measurements, and SHA-256 digests are preserved in the repository.
+
+\section{Scope and relation to other work}
+
+The conclusions are deliberately local.
+\begin{itemize}
+\item Theorem~\ref{thm:fixedq} fixes the exact published $q$.  It does not
+exclude changing both $s$ and $q$, a nonspecial Golay quadruple, a Legendre
+pair, or a general Hadamard matrix.
+\item Claim~\ref{thm:radius} concerns one raw labelled ball.  It does not
+exclude the rest of $\BS(84,83)$.
+\item A Legendre pair of length $333$ would independently construct an
+order-$668$ Hadamard matrix.  Current compression-based work on that route
+is mathematically distinct from the seed-repair problem here
+~\cite{kotsireas-pq2,chojecki}.
+\end{itemize}
+
+Đoković classified $\BS(n+1,n)$ through $n=30$~\cite{djokovic-bs}; that
+enumeration does not reach the present $n=83$.  At the audit cutoff, no
+public source located by the authors stated either the fixed-$q$ reduction
+to $\TU(41)$ or the radius-$18$ repair exclusion.  That is provisional
+search evidence, not a guarantee of worldwide priority.  Project policy
+prohibits external outreach, so no unpublished-overlap claim is made.
+
+\section*{Code and data availability}
+
+The development repository is
+\url{https://github.com/AlecKriebel/Math/tree/main/hadamard_668_search}.
+It contains the published seed reconstruction, finite-model generators,
+pinned solver records, and independent artifact checkers.  The present
+manuscript and certificate work are not yet an immutable public release.
+The current reproduction environment uses Python 3.12.13 with OR-Tools
+pinned at 9.14.6206; this PDF is built with Tectonic 0.16.9.
+Before public circulation they will be frozen at a tagged commit with a
+complete manifest and, if size requires, separately archived proof files
+identified by SHA-256 digests.
+
+\section*{AI assistance and responsibility}
+
+The derivations, programs, certificates, literature audit, and manuscript
+were developed with heavy assistance from ChatGPT 5.6 Sol under Alec
+Kriebel's direction.  Alec Kriebel is the named human author and has
+requested prominent disclosure that he is not qualified to validate the
+mathematics independently.  Independent expert scrutiny is essential.
+
+\begin{thebibliography}{99}
+\small
+\setlength{\itemsep}{0.25em}
+
+\bibitem{cati-pasechnik}
+M. Cati and D. V. Pasechnik,
+A database of constructions of Hadamard matrices,
+\url{https://arxiv.org/abs/2411.18897}.
+
+\bibitem{chojecki}
+P. Chojecki,
+Computational search for a Hadamard matrix of order 668 via Legendre pairs
+of length 333: status report and roadmap,
+March 2026;
+\url{https://www.ulam.ai/research/frontier-had.pdf}.
+
+\bibitem{djokovic-quadruples}
+D. Ž. Đoković,
+Aperiodic complementary quadruples of binary sequences,
+\emph{J. Combin. Math. Combin. Comput.} 27 (1998), 3--31;
+\url{https://combinatorialpress.com/article/jcmcc/Volume%20027/vol-27-paper%201.pdf}.
+
+\bibitem{djokovic-bs}
+D. Ž. Đoković,
+Classification of base sequences $\BS(n+1,n)$,
+\emph{Int. J. Combin.} (2010), Article ID 851857;
+\url{https://arxiv.org/abs/1002.1414}.
+
+\bibitem{edmondson}
+G. M. Edmondson, J. Seberry, and M. R. Anderson,
+On the existence of Turyn sequences of length less than 43,
+\emph{Math. Comp.} 62 (1994), 351--362;
+\url{https://doi.org/10.1090/S0025-5718-1994-1203733-8}.
+
+\bibitem{eliahou-2025}
+S. Eliahou,
+A 64-modular Hadamard matrix of order 668,
+\emph{Australas. J. Combin.} 93(2) (2025), 422--427;
+\url{https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf}.
+
+\bibitem{eliahou-2026}
+S. Eliahou,
+An update on modular Hadamard matrices,
+\emph{J. Algebraic Combin.} 64 (2026), Article 1;
+\url{https://doi.org/10.1007/s10801-026-01544-5}.
+
+\bibitem{kotsireas-pq2}
+I. Kotsireas, R. Gallardo-Cava, A. I. Gómez, and D. Gómez-Pérez,
+On the search of binary Legendre pairs of length $pq^2$,
+\emph{J. Symbolic Comput.} 138 (2027), Article 102606;
+\url{https://doi.org/10.1016/j.jsc.2026.102606}.
+
+\bibitem{sage}
+SageMath,
+Hadamard matrix constructions and current unknown orders;
+\url{https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html}.
+
+\end{thebibliography}
+
+\end{document}

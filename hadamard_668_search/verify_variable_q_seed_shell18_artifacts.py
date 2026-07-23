@@ -396,15 +396,21 @@ def main() -> None:
     }
     if eliminated != set(root_witnesses):
         raise AssertionError(
-            f"compression layers eliminate {len(eliminated)} of "
+            f"stored compression statuses cover {len(eliminated)} of "
             f"{len(root_witnesses)} root survivors"
         )
 
     print("PASS: all 9 pinned shell-18 artifacts match their SHA-256 digests")
     print("PASS: the reconstructed 823-target root frontier is 811 infeasible + 12 witnessed")
     print("PASS: all 12 root witnesses pass independent integer verification")
-    print("PASS: primitive-7 eliminates 9 survivors and primitive-14 eliminates the remaining 3")
-    print("RESULT: no exact BS(84,83) lies within raw Hamming distance 18 of Eliahou's seed")
+    print(
+        "PASS: stored primitive-7/14 INFEASIBLE statuses cover all 12 "
+        "root-survivor targets"
+    )
+    print(
+        "RESULT: artifact integrity and decoded witnesses verified; "
+        "the 1,296 UNSAT claims are not replayed by this checker"
+    )
 
 
 if __name__ == "__main__":

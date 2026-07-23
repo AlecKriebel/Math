@@ -36,11 +36,16 @@ The initially natural repair lane—hold Eliahou's
 any exact repair to decimate to a Turyn sequence in `TU(41)`, but `TU(41)` is
 empty by the published exhaustive classification of Edmondson, Seberry, and
 Anderson.  The new reduction has a dependency-free symbolic checker and a
-self-contained explanation; the final literature theorem is an explicit
-external dependency:
+self-contained explanation.  In addition, `tu41_certificate/` independently
+reproduces the endpoint with a deterministic, low-memory enumeration:
+461/461 shards, 57,543,021 nodes, and zero solutions.  This modern
+reproduction supports, rather than supersedes, the 1994 theorem:
 
 ```sh
 python3 verify_fixed_q_obstruction.py
+python3 tu41_certificate/verify_manifest.py
+python3 tu41_certificate/verify_cube_cover.py \
+  tu41_certificate/cubes_depth5.txt
 ```
 
 See `FIXED_Q_OBSTRUCTION.md` for the precise scope and literature dependency.
@@ -70,19 +75,30 @@ half-energy 232 and 43 bad lags, so it is not a solution.  The exact CP model
 uses the standard four-literal base-sequence quad parities by default; the
 older endpoint telescope is an equivalent optional basis.
 
-`VARIABLE_Q_SEED_DISTANCE.md` now gives a global raw-radius-18 exclusion around
-Eliahou's published base quadruple.  A dependency-free dynamic program first
+`VARIABLE_Q_SEED_DISTANCE.md` now gives a solver-backed raw-radius-18 report
+around Eliahou's published base quadruple.  A dependency-free dynamic program first
 enumerates every raw margin image and proves that no quad-preserving target is
 reachable through radius 13.  Exact fixed-margin CP-SAT models with table-
-encoded primitive 3rd-, 4th-, and 6th-root norms then eliminate all 197
-margin-plus-quad targets through radius 16 and all 276 targets in the exact
-distance-17 shell.  At distance 18, an exact modulo-12 endpoint-quad quotient
-finishes the root frontier: 811 of 823 targets are root-infeasible.  The 12
-decoded root survivors are all eliminated by primitive-7 or primitive-14
-compression.  A dependency-free artifact checker verifies all nine hashes,
+encoded primitive 3rd-, 4th-, and 6th-root norms then report infeasibility
+for all 197 margin-plus-quad targets through radius 16 and all 276 targets in
+the exact distance-17 shell.  At distance 18, an exact modulo-12 endpoint-quad
+quotient
+classifies the recorded root frontier as 811 infeasible targets and 12
+decoded witnesses.  Primitive-7 or primitive-14 models report those 12
+targets infeasible.  A dependency-free artifact checker verifies all nine hashes,
 selection edges, and witnesses.  The recorded runs used one worker, peaked
 at 176 MB resident memory with no swaps, and make no exact-`BS(84,83)` claim
-outside this finite ball.
+outside this finite ball.  The checker does not replay any solver
+infeasibility proof: a proof-grade release still requires independent
+certification of 1,284 root-layer and 12 compression-layer `INFEASIBLE`
+statuses.  `proof_certificates/` is the first proof-producing upgrade: four
+representative root/compression leaves regenerate to deterministic CNF and
+pass independent DRAT replay.  That is 4/1,296 coverage, not a proof of the
+whole radius-18 report.  All twelve stored root witnesses separately pass
+exactly pinned positive-CNF validation, closing the known-feasible encoding
+gate.  Hard-leaf pilots reached 1.785 GB RSS, so no
+memory-risking full batch was launched; the next planned step is an exact
+orbit-count CNF for the six hard root leaves.
 
 `VARIABLE_Q_PARITY_NEIGHBORHOOD.md` gives a deterministic exact scan inside
 the checkpoint's same-margin, endpoint-parity-feasible subspace.  The
