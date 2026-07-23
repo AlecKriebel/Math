@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-23T19:32:06Z
+Last updated: 2026-07-23T21:51:06Z
 
 ## Rigorous bounds
 
@@ -21,36 +21,78 @@ No exact value has been established.
 
 ## Strongest candidate routes
 
-The strongest current candidate is a **fixed-cardinality, marginal-consistent
-three-point moment/SOS feasibility problem**.  Unlike the standard
-variable-cardinality Bachoc--Vallentin relaxation, fixing \(N=41\) makes the
-exact triple-to-pair marginal relation linear.  No exact infeasibility
-certificate has yet been found.
+The strongest current candidate is a **four-point local-to-global route**
+coupling very negative pairs, their forced positive wedges, local residual
+rank, and the deep-pair graph.  Exact inequalities have already eliminated
+the first ordinary-LP pseudo-distribution, but a strengthened rational witness
+survives all aggregate constraints certified so far.  The missing ingredient
+must retain more incidence or common-source information than a global
+distance distribution.
 
 Other active incompatible routes are:
 
 1. rank-aware Gram/nullspace inequalities, including a degree-two sign kernel
-   of rank at most 20;
-2. compatible local-cap/link bounds rather than isolated cap occupancy bounds;
+   of rank at most 20 and an exact degree-two Tverberg partition at \(N=41\);
+2. compatible local-cap/link and deep-pair graph bounds;
 3. unrestricted numerical construction searches for 41--44 points, followed
    by exact reconstruction if a genuine candidate appears;
-4. hybrid finite reductions with a proved continuous covering or interval
-   branch-and-bound certificate.
+4. a maximum-volume-basis semialgebraic reduction with explicit rational
+   conditioning and a boundary-safe finite cell cover.
+
+The best independently generated unrestricted 41-point numerical candidate
+currently has maximum inner product \(0.5155570516153127\). A separate public
+benchmark reaches approximately \(0.514994652512\). Both exceed \(1/2\) and
+are numerical near misses, not lower or upper bounds.
 
 Ordinary two-point LP is now **certifiably blocked**: an exact mass-41
 pseudo-distance distribution satisfies every Gegenbauer moment inequality and
 has no off-diagonal atom at the contact value.
 
+The entire fixed-cardinality two/three-point route, in the formulation
+recorded here, is now **certifiably blocked**: one exact rational
+pseudo-distribution satisfies every radial block in every harmonic degree and
+every pair Gegenbauer inequality.  The proof uses exact finite checks through
+harmonic degree 505 and rational parity-tail estimates thereafter.  It does
+not extend to four-point consistency or to a rank-five Gram matrix.
+
+The sharpest current separator is instead a four-point/common-source
+inequality.  For
+\[
+ f(u)=u-\frac83u^2,\qquad
+ r_{ij}=x_j-\langle x_i,x_j\rangle x_i,
+\]
+every genuine code satisfies
+\[
+ \frac1N\sum_i\left\|\sum_{j\ne i}f(g_{ij})r_{ij}\right\|^2\ge0.
+\]
+The strongest labeled 41-vertex pseudo-Gram object surviving all
+\(3\times3\) minors and all degree-two BV blocks violates this inequality by
+the exact amount
+\(-105027064094021/15375000000000\).  Converting this separator into a
+universal continuous-label bound remains the leading gap.
+
 ## Theorem-strength unresolved gaps
 
 - No universal inequality excludes a 41-point code.
 - No exact three-point or higher-point dual certificate below 41 is known here.
+- The all-degree fixed-cardinality three-point pseudo-distribution proves that
+  no contradiction can follow from only the complete pair/triple measure
+  conditions formalized in this repository; four-point consistency, rank, or
+  another genuinely stronger invariant is necessary.
 - No complete interval, semialgebraic, or finite-cell exhaustion of all
   41-point codes is known here.
 - No construction with 41 or more points is known here.
 - No theorem justifies restricting a hypothetical extremizer to a contact
   graph, finite inner-product alphabet, symmetry class, rigidity class, or
   lattice.
+- The compact maximum-volume formulation still has 154 intrinsic continuous
+  dimensions; no complete interval tree or SOS infeasibility certificate has
+  been produced.
+- The aggregate four-point inequalities do not yet encode the incidence
+  compatibility needed to eliminate their surviving rational witness.
+- The residual-vector square above separates the best labeled pseudo-object,
+  but no classification-free bound yet forces enough high closures among its
+  deep--middle wedges for arbitrary real inner products.
 
 ## Reproducible artifacts
 
@@ -68,8 +110,32 @@ has no off-diagonal atom at the contact value.
   [`proofs/d5_saturation.md`](proofs/d5_saturation.md)
 - Exact quadratic-kernel constraints and counterexamples:
   [`proofs/rank_kernel_barriers.md`](proofs/rank_kernel_barriers.md)
+- Fixed-\(41\) three-point formulation and exact pseudo-distributions:
+  [`proofs/fixed41_three_point_formulation.md`](proofs/fixed41_three_point_formulation.md)
+- All-degree exact three-point barrier:
+  [`proofs/fixed41_bv_all_harmonics.md`](proofs/fixed41_bv_all_harmonics.md)
+- Degree-two BV-surviving labeled object and its exact degree-three separator:
+  [`proofs/degree2_bv_barrier.md`](proofs/degree2_bv_barrier.md)
+- Exact local links and a contact-free maximal code:
+  [`proofs/local_link_geometry.md`](proofs/local_link_geometry.md)
+- Exact maximum-volume semialgebraic reduction:
+  [`proofs/max_volume_semialgebraic_reduction.md`](proofs/max_volume_semialgebraic_reduction.md)
+- Degree-two Tverberg constraint and exact rank-five barrier:
+  [`proofs/tverberg_moment_barrier.md`](proofs/tverberg_moment_barrier.md)
+- Exact antipodal upper bound and unrestricted deep-pair corollary:
+  [`proofs/antipodal_bound.md`](proofs/antipodal_bound.md) and
+  [`proofs/negative_tail_graph.md`](proofs/negative_tail_graph.md)
+- Exact Pfender/local-hybrid inequalities and their surviving mass-41
+  two-point witness:
+  [`proofs/local_hybrid_barrier.md`](proofs/local_hybrid_barrier.md)
 - Reproducible construction round:
   [`experiments/construction_round1.md`](experiments/construction_round1.md)
+- Independent layer, higher-root-map, projective-line, and sharp
+  deep-graph construction searches:
+  [`experiments/construction_round2/RESULTS.md`](experiments/construction_round2/RESULTS.md)
+- 152 unrestricted Riemannian augmented-Lagrangian trials and complete
+  numerical diagnostics:
+  [`experiments/construction_round3/README.md`](experiments/construction_round3/README.md)
 - Imported discovery-only numerical 41-point near miss:
   [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
 
@@ -93,6 +159,22 @@ a second human/agent audit is still pending.
 - The finite-field and \(D_6\) examples exactly refute generic sign/rank
   shortcuts, while the split harmonic-factor Ky Fan inequalities remain valid
   for every actual rank-five Gram matrix.
+- Contact-clique links have exact bounds \(15,7,4,2,0\), and every pair has at
+  most seven common contact neighbors.
+- Every antipodal five-dimensional kissing code has at most 40 points.
+  Consequently the \(<-1/2\) graph of a hypothetical 41-code is triangle-free,
+  has independence number at most 20, and has at least 23 edges.
+- Every hypothetical 41-code admits the exact compact 190-variable
+  maximum-volume formulation recorded in the semialgebraic certificate.
+- The fixed-41 rational pair/triple pseudo-distribution passes all ordinary
+  and Bachoc--Vallentin three-point harmonic inequalities at every degree,
+  with unrestricted radial test functions.  An independent adversarial audit
+  rederived the endpoint normalization, parity recurrence, finite/tail
+  coverage, norm argument, and arbitrary-radial factorization and found no
+  mathematical gap.
+- Every genuine Gram source satisfies the exact residual-vector square
+  inequality displayed above; its negative value on the labeled pseudo-object
+  is independently recomputable in rational arithmetic.
 
 ## Failed or rejected claims
 
@@ -112,3 +194,14 @@ a second human/agent audit is still pending.
   feasibility or the bound.
 - “Failure to append one point to \(D_5\) proves the global upper bound”:
   **refuted**; it proves saturation of one fixed configuration only.
+- “An inclusion-maximal code must have contacts or a positive minimum contact
+  degree”: **refuted** by an exact 26-point inclusion-maximal code whose
+  contact graph is empty.
+- “Matching first and second moments on three disjoint Tverberg parts is
+  contradictory for a five-dimensional kissing code”: **refuted** by an exact
+  18-point rank-five code partitioned into three regular simplices with common
+  moments \(m=0,M=I/5\).
+- “The fixed-\(41\) three-point relaxation is already infeasible at low
+  degree, or eventually becomes infeasible at high harmonic degree”:
+  **refuted** for the complete formulation used here by the all-degree exact
+  rational pseudo-distribution.

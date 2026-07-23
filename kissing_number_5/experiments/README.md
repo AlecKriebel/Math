@@ -16,3 +16,16 @@ Every experiment added here must record:
 - whether the method imposed symmetry or another restriction.
 
 Certificate generation, if successful, must be separated from verification.
+
+`construction_round2/` records independent searches using asymmetric
+spherical layers, projections and rank-five linear maps of \(D_6,E_6,E_7\)
+roots, projective-line optimization, and an ansatz motivated by the sharp
+abstract deep graph \(C_5\sqcup18K_2\). No feasible 41--44 point code was
+found; all outputs are explicitly numerical evidence only.
+
+`construction_round3/` records 152 unrestricted Riemannian
+augmented-Lagrangian searches for \(N=41,42,43,44\), including asymmetric
+Gaussian starts, perturbed public benchmarks, higher-root projections, and
+round-2 warm starts.  It stores complete coordinates, histories, active
+graphs, spectra, seeds, software versions, and hashes.  Every maximum remained
+strictly above \(1/2\); the directory is numerical evidence only.

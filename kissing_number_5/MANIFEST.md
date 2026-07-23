@@ -61,3 +61,59 @@ minimum_moment: 1027/16000
 minimum_moment_degree: 2
 status: PASS
 ```
+
+## Checkpoint 2026-07-23T21:51:06Z
+
+The exact proof verifiers in this checkpoint use only Python's standard
+library.  The construction experiments additionally used NumPy 2.5.1; their
+outputs are explicitly numerical evidence only.
+
+New exact-certificate hashes:
+
+```text
+0062d4a2e6b35c04444040584fd78730cb11539987a557d4f164d22dc01d0290  certificates/fixed41_bv_degree5_pseudodistribution.json
+9da63f90c8968fa8e58b795ff2479d8362ad0d32347d8dade34adf815087ca4a  certificates/fixed41_bv_degree6_pseudodistribution.json
+08a954c23da6cc6de6495f8edd2e4969e464c28ac7cc6c058f0f2e1a252bfabb  certificates/fixed41_bv_fullradial_k8_pseudodistribution.json
+8c016c5ab1770f930d3f31f5448ffef7731616dd7025b29c43828760064b4d88  certificates/fixed41_bv_fullradial_k16_pseudodistribution.json
+f0c9c314e56c84fc92d6b1ef55a73ea6349ed49975b39890018d503506e4c897  certificates/fixed41_bv_all_harmonics_certificate.json
+d68c21438929adf0526c6a8533da4e38d90320adfac49ed91a6ad5577a34798b  certificates/local_hybrid_pseudodistribution.json
+051aa7fa97ad852654137f02da4ff85476b0895b16f9e23ed4dcecc8ede7620b  certificates/max_volume_semialgebraic_reduction.json
+8748d9cfb6b3518d84dc661fd90bea0b71f5b670482b7e5861dabe9bffc9fcda  certificates/tverberg_moment_counterexample.json
+```
+
+Key proof and verifier hashes:
+
+```text
+95de3e49fed62570b0425fe464b5d21b2cb1d871008dd69e70ce92ec4d01275f  proofs/fixed41_bv_all_harmonics.md
+cee6e0555b0e54ae7549cab6f9844d2fb91d5eae1a5b1fc21aa4316ace7474ce  proofs/degree2_bv_barrier.md
+8cd226e71e5163031c0d1797a789e4af8725ae7c67f0026559dabf3b86568e33  proofs/local_hybrid_barrier.md
+efc6b9795117bea434fb5217c46228026c835a5d24244b89918a693aa098190e  proofs/max_volume_semialgebraic_reduction.md
+d2954ed3fb1cebb3d8bd4a39609b3838d907e3537b03853f36fdd91e90a5db81  verifiers/verify_fixed41_bv_all_harmonics.py
+947a0330c2d57bd9558cb39b94ba7bd22f562ede10b4ebcb7e09c12dcdffdd77  verifiers/verify_degree2_bv_barrier.py
+1916b8487af5bb441a83b990d8d97fec51808bee1631f93683c486018f07f5f1  verifiers/verify_local_hybrid_barrier.py
+16e72b4876e92cb64152977f94236e74ff14569dc48fe03d5bcd268ddac5b507  verifiers/verify_max_volume_semialgebraic.py
+```
+
+Construction-round-3 result hashes:
+
+```text
+4b927239e59bb9d59274f41145a5474a47f9f0af5140c7e9ffb6cec9cdb560cf  experiments/construction_round3/results/portfolio_core.json
+0f5f9ae57c675ed524cc508c1791ff6f87fec60af90dd601b3ea8d8609b54883  experiments/construction_round3/results/portfolio_asymmetric.json
+1d0882e66e9de56cecee0276a894a56166a30ded9e7e30f3019e82b271a44744  experiments/construction_round3/results/portfolio_round2_warm.json
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m unittest \
+  experiments.construction_round3.test_manifold_augmented_lagrangian -v
+.venv/bin/python -m experiments.construction_round3.check_results \
+  experiments/construction_round3/results/portfolio_core.json \
+  experiments/construction_round3/results/portfolio_asymmetric.json \
+  experiments/construction_round3/results/portfolio_round2_warm.json
+```
+
+At this checkpoint the exact suite reports 43 passing tests; the numerical
+construction module reports seven passing tests and rechecks all 152 stored
+runs.

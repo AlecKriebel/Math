@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-23T19:32:06Z
+Last updated: 2026-07-23T21:51:06Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -17,13 +17,29 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Unresolved:** Whether any \(N\geq41\) feasible code exists; whether persistent
   near misses have a common exact obstruction.
 - **Artifacts:** `certificates/d5_roots.json`; `proofs/d5_saturation.md`;
-  `experiments/construction_round1.md`; `experiments/random_codes/`.
+  `experiments/construction_round1.md`; `experiments/random_codes/`;
+  `experiments/construction_round2/`.
 - **Numerical evidence:** Broad asymmetric searches and perturbations found no
   feasible 41--44 code.  The best inspected public basins have maximal inner
   products approximately \(0.51499465,0.51824116,0.52470960,0.52745771\).
-  These values are not lower bounds.
+  The best independently generated 41-point value is
+  \(0.5155570516153127\). These values are not lower bounds.
 - **Counterexamples:** Non-uniqueness and non-antipodality of 40-point codes
   invalidate symmetry-only search assumptions.
+- **Restricted theorem:** Every antipodal code has at most 40 points, by an
+  exact even Gegenbauer polynomial and an integrality obstruction at the
+  apparent 42-point equality case.  This does not restrict a general optimum.
+- **Second-round target:** 18 near-antipodal pairs plus a five-point odd-cycle
+  component, motivated by the sharp minimum-edge deep-pair graph
+  \(C_5\sqcup18K_2\). The constrained and released searches remained above
+  \(1/2\); this numerical failure does not rule out the graph cell.
+- **Third round:** 152 unrestricted Riemannian
+  augmented-Lagrangian trials covered \(N=41,42,43,44\).  The best 41-point
+  value remained the imported benchmark \(0.5149946525251737\); eleven
+  independent Gaussian starts converged near \(0.515557052\) with a common
+  155-edge active-graph profile.  All coordinates, histories, spectra, seeds,
+  and hashes are stored in `experiments/construction_round3/`.  These are
+  numerical basin diagnostics only.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -65,20 +81,28 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Proved lemmas:** Published three-point computations imply the imported upper
   bound 44.  For fixed cardinality \(N=41\), the usually omitted
   three-point marginal identity becomes linear:
-  \(\sum_{u,v}x(u,v,t)=41x(t,t,1)\) as a measure identity.
-- **Unresolved:** Formulate and solve the fixed-41 marginal-consistent
-  three-point moment/SOS feasibility problem, then obtain an exact infeasibility
-  certificate.  Exactification of every PSD and domain-nonnegativity condition
-  remains mandatory.
-- **Artifacts:** A low-degree second-level Lasserre trial was attempted against
-  the public `LasserreSphericalCodes` code, but failed during exact
-  symmetry-adapted-basis generation under the current Nemo version; the
-  exception and environment are recorded in the research log.
+  \(\pi_u\nu=\pi_v\nu=\pi_t\nu=39\alpha\).
+- **Exact all-degree barrier:** Positive rational pair/triple measures on a
+  seven-point inner-product grid satisfy the full closed support domain, all
+  fixed-size marginals, every radial harmonic block for every \(k\geq0\), and
+  every pair Gegenbauer moment.  Exact LDL checks cover \(k\leq505\);
+  rational even/odd limiting matrices and perturbation bounds cover the
+  infinite tail.  Thus the complete fixed-cardinality pair/triple formulation
+  used here is rigorously feasible at \(N=41\).
+- **Unresolved:** Add genuinely four-point/common-source or rank-five
+  information.  Raising only harmonic or radial degree in this formulation
+  cannot work against the certified witness.
+- **Artifacts:** `proofs/fixed41_three_point_formulation.md`;
+  `proofs/fixed41_bv_all_harmonics.md`; four exact JSON certificates; two
+  dependency-free rational verifiers.  Patched
+  discovery-only second-level Lasserre runs give objectives 90 at degree 4
+  and 48 at degrees 6 and 8; these are numerical evidence only.
 - **Known counterexamples:** Solver status or near-PSD matrices are not
-  certificates.
+  certificates.  The exact pseudo-distributions refute low-degree
+  fixed-cardinality infeasibility claims.
 - **Restrictions:** Universal if the full three-point domain and all boundary
   cases are retained.
-- **Status:** active.
+- **Status:** certified as a barrier; four-point extensions remain active.
 
 ## D. Rank-aware Gram matrices and nullspace/stress
 
@@ -110,21 +134,34 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   principal example with the same signs and one negative eigenvalue; it even
   admits the same fixed-coefficient PSD-minus-\(3J/10\) decomposition.  The
   common rank-five Gram source and Hadamard-square identity are essential.
+- **Tverberg consequence:** Applying affine Tverberg to
+  \(\Phi(x)=(x,xx^T-I/5)\in\mathbb R^{19}\) at the exact threshold 41 forces
+  three disjoint measures with identical first and second moments.  Exact
+  interval-factor inequalities follow.
+- **Tverberg barrier:** An exact rank-five 18-point code, split into three
+  regular 5-simplices, realizes the common moments \(m=0,M=I/5\).  Hence the
+  degree-two Tverberg conclusion alone is insufficient.
 - **Restrictions:** None intended.
 - **Status:** active.
 
-## E. Contact graphs and rigidity
+## E. Contact and deep-pair graphs
 
 - **Route:** Derive universal consequences of first-order optimality only after
   proving the required maximality/rigidity hypotheses, and combine local
   contact links with stress identities.
-- **Proved lemmas:** none beyond definitions.
+- **Proved lemmas:** Contact degrees are at most 15 and any distinct pair has
+  at most seven common contact neighbors.  For the graph joining pairs with
+  inner product \(<-1/2\) in a hypothetical 41-code, every independent set
+  has size at most 20 (otherwise antipodalization gives 42 points), the graph
+  is triangle-free, and it has at least 23 edges.
 - **Unresolved:** A contact lower bound or stress certificate valid for every
-  maximum 41-point code, including flexible and degenerate cases.
-- **Artifacts:** none yet.
-- **Known counterexamples:** Maximum need not imply a prescribed graph;
-  locally jammed does not imply globally maximum; known 40-point codes are
-  nonunique.
+  maximum 41-point code, including flexible and degenerate cases; or a
+  rank/geometric contradiction from the deep-pair graph.
+- **Artifacts:** `proofs/local_link_geometry.md`;
+  `proofs/negative_tail_graph.md`.
+- **Known counterexamples:** The exact 26-point code in the local-link note is
+  inclusion-maximal with an empty contact graph.  Thus maximality does not
+  imply contacts, positive contact degree, or contact rigidity.
 - **Restrictions:** Potentially severe; every use must be audited.
 - **Status:** active.
 
@@ -133,10 +170,16 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Route:** Condition on points, contacts, or small simplices; project to
   orthogonal complements; derive exact cap/link occupancy bounds and
   compatibility constraints between overlapping neighborhoods.
-- **Proved lemmas:** elementary projection identities pending formal write-up.
+- **Proved lemmas:** The exact conditional projection lemma reduces the common
+  link of a contact \(k\)-clique to
+  \(A(5-k,1/(k+2))\).  This gives link bounds \(15,7,4,2,0\).  A separate
+  four-dimensional LP certificate proves \(A(4,9/16)\leq32\), yielding the
+  strict frame inequality \(S\succ(9/25)I\) for every hypothetical 41-code.
 - **Unresolved:** A global averaging or compatibility inequality that excludes
   total size 41.
-- **Artifacts:** none yet.
+- **Artifacts:** `proofs/local_link_geometry.md`;
+  `verifiers/verify_local_links.py`;
+  `proofs/max_volume_semialgebraic_reduction.md`.
 - **Known counterexamples:** Averaging a weak isolated cap bound is insufficient.
 - **Restrictions:** Case assumptions must cover boundary contacts exactly.
 - **Status:** active.
@@ -146,11 +189,18 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Route:** Fix orthogonal gauge safely, describe a compact coordinate/Gram
   domain, and use exact rational interval branch-and-bound, Bernstein
   enclosures, CAD, or Positivstellensatz certificates.
-- **Proved lemmas:** Compactness of \((S^4)^{41}\) ensures feasibility is attained
-  when nonempty.
+- **Proved lemmas:** A maximum-volume five-point basis has Gram determinant at
+  least \(6488829/7318339843750\), an explicit eigenvalue lower bound, and
+  coefficient vectors in \([-1,1]^5\).  Every coefficient minor is bounded
+  by one.  This gives a bidirectionally exact compact rational system in 190
+  variables (154 after norm equalities), with rank five automatic.  An
+  \(11^5\)-cell coefficient cover is boundary-safe and has capacity one per
+  cell.
 - **Unresolved:** A tractable complete branching scheme and independently
   checkable tree covering the continuous domain.
-- **Artifacts:** none yet.
+- **Artifacts:** `proofs/max_volume_semialgebraic_reduction.md`;
+  `certificates/max_volume_semialgebraic_reduction.json`;
+  `verifiers/verify_max_volume_semialgebraic.py`.
 - **Known counterexamples:** Finite guessed combinatorial types or solver
   “infeasible” statuses are incomplete.
 - **Restrictions:** Symmetry breaking must be proved safe.
@@ -174,11 +224,36 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
 - **Route:** Seek moment forcing, rank-versus-sparsity, average-degree, or
   global consistency inequalities applying to every 41-point code.
-- **Proved lemmas:** none yet.
-- **Unresolved:** The separating inequality.
-- **Artifacts:** none yet.
-- **Known counterexamples:** All proposed statements must be tested against the
-  four known 40-point configurations and randomized smaller codes.
+- **Proved lemmas:** For \(a>3/4\), with \(b=2a^2-1\), ordered deep-pair and
+  high-pair counts obey
+  \[
+  Q_b\geq2\sum_x\binom{d_a(x)}2\geq8D_a-20N.
+  \]
+  Common-center multiplicity and strict endpoint handling have been audited.
+  For \(a>1/\sqrt2\), \(d_a(x)\leq5\).  A rank-deficit refinement for
+  \(3/4<a<\sqrt{3/5}\) couples deep-edge and forced-positive-pair slacks.
+- **Unresolved:** Retain enough incidence information to rule out the exact
+  rational distance-distribution witnesses that survive the aggregate
+  inequalities.
+- **Artifacts:** `proofs/local_hybrid_barrier.md`;
+  `certificates/local_hybrid_pseudodistribution.json`;
+  `verifiers/verify_local_hybrid_barrier.py`.
+- **Known counterexamples:** Uniqueness of a common deep center fails at the
+  endpoint \(a=3/4\); an exact four-point \(K_{2,2}\) configuration shows that
+  multiplicity two is necessary there.
+- **Incidence-level separator:** A 41-vertex exact labeled object now survives
+  all pair counts, all \(3\times3\) principal minors, all scalar cuts above,
+  and every BV block through total degree two.  Nevertheless, for
+  \(f(u)=u-\frac83u^2\), it violates
+  \[
+  N^{-1}\sum_i\left\|\sum_{j\ne i}f(g_{ij})
+       (x_j-g_{ij}x_i)\right\|^2\ge0
+  \]
+  by an exact negative rational amount.  Its failure is dominated by 1,056
+  explicitly counted deep--middle colored wedges.  This supplies a concrete
+  four-point/common-source target, but not yet a continuous-label exclusion.
+- **Artifacts:** also `proofs/degree2_bv_barrier.md`,
+  `verifiers/verify_degree2_bv_barrier.py`.
 - **Restrictions:** None intended.
 - **Status:** active.
 
