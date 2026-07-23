@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-23T18:39:53Z
+Last updated: 2026-07-23T19:32:06Z
 
 ## Rigorous bounds
 
@@ -21,16 +21,25 @@ No exact value has been established.
 
 ## Strongest candidate routes
 
-There is not yet a theorem-strength leading route.  The initial portfolio is:
+The strongest current candidate is a **fixed-cardinality, marginal-consistent
+three-point moment/SOS feasibility problem**.  Unlike the standard
+variable-cardinality Bachoc--Vallentin relaxation, fixing \(N=41\) makes the
+exact triple-to-pair marginal relation linear.  No exact infeasibility
+certificate has yet been found.
 
-1. exactification and strengthening of the three-point SDP to an objective
-   strictly below 41;
-2. rank-aware Gram/nullspace inequalities that retain `rank(G) <= 5`;
-3. compatible local-cap/link bounds rather than isolated cap occupancy bounds;
-4. unrestricted numerical construction searches for 41--44 points, followed
+Other active incompatible routes are:
+
+1. rank-aware Gram/nullspace inequalities, including a degree-two sign kernel
+   of rank at most 20;
+2. compatible local-cap/link bounds rather than isolated cap occupancy bounds;
+3. unrestricted numerical construction searches for 41--44 points, followed
    by exact reconstruction if a genuine candidate appears;
-5. hybrid finite reductions with a proved continuous covering or interval
+4. hybrid finite reductions with a proved continuous covering or interval
    branch-and-bound certificate.
+
+Ordinary two-point LP is now **certifiably blocked**: an exact mass-41
+pseudo-distance distribution satisfies every Gegenbauer moment inequality and
+has no off-diagonal atom at the contact value.
 
 ## Theorem-strength unresolved gaps
 
@@ -51,6 +60,18 @@ There is not yet a theorem-strength leading route.  The initial portfolio is:
   [`verifiers/verify_d5.py`](verifiers/verify_d5.py)
 - Verifier tests:
   [`tests/test_verify_d5.py`](tests/test_verify_d5.py)
+- Exact ordinary-LP barrier proof:
+  [`proofs/two_point_lp_barrier.md`](proofs/two_point_lp_barrier.md)
+- Exact barrier verifier:
+  [`verifiers/verify_two_point_barrier.py`](verifiers/verify_two_point_barrier.py)
+- Exact fixed-\(D_5\) saturation lemma:
+  [`proofs/d5_saturation.md`](proofs/d5_saturation.md)
+- Exact quadratic-kernel constraints and counterexamples:
+  [`proofs/rank_kernel_barriers.md`](proofs/rank_kernel_barriers.md)
+- Reproducible construction round:
+  [`experiments/construction_round1.md`](experiments/construction_round1.md)
+- Imported discovery-only numerical 41-point near miss:
+  [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
 
 ## Claims surviving adversarial audit
 
@@ -64,6 +85,15 @@ There is not yet a theorem-strength leading route.  The initial portfolio is:
 These statements currently have a direct proof and a separate exact checker;
 a second human/agent audit is still pending.
 
+- The mass-41 two-point witness has exact total mass and pair-count parity.
+- Its normalized Gegenbauer moments are positive through degree 53 by rational
+  recurrence and in all higher degrees by an explicit analytic tail bound.
+- The fixed \(D_5\) code is saturated against adding one point; its exact
+  covering value is \(\sqrt{2/5}\).
+- The finite-field and \(D_6\) examples exactly refute generic sign/rank
+  shortcuts, while the split harmonic-factor Ky Fan inequalities remain valid
+  for every actual rank-five Gram matrix.
+
 ## Failed or rejected claims
 
 - “An extremal 40-point configuration must be \(D_5\), antipodal, or unique”:
@@ -73,3 +103,12 @@ a second human/agent audit is still pending.
   condition unless an additional mechanism recovers it.
 - “A floating-point SDP objective below 41 is itself a proof”: **rejected**;
   exact or directed-interval dual feasibility is required.
+- “Positive diagonal, nonpositive off-diagonal entries, rank below half the
+  order, and at most one negative eigenvalue are mutually incompatible”:
+  **refuted** by the analogous quadratic kernel of the exact \(D_6\) root code.
+- The first low-degree public Lasserre-code trial did not reach an SDP: exact
+  symmetry-basis generation raised `UndefRefError` under the resolved
+  Julia/Nemo environment.  This is an environment failure, not evidence about
+  feasibility or the bound.
+- “Failure to append one point to \(D_5\) proves the global upper bound”:
+  **refuted**; it proves saturation of one fixed configuration only.
