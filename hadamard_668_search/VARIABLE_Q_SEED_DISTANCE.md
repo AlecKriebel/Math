@@ -1,5 +1,11 @@
 # Distance from Eliahou's published seed
 
+**Superseded distance bound.** `VARIABLE_Q_ROOT8.md` now proves, without a
+solver, that every exact `BS(84,83)` is at raw labelled Hamming distance at
+least 34 from the seed. The radius-18 computation below remains an accurate
+record of an earlier, more elaborate solver-backed decomposition, but it is
+no longer the authoritative local exclusion.
+
 The published 64-modular quadruple has only 13 nonzero correlation lags, but
 its base-sequence margins are far from the exact norm shell.  This note gives
 a solver-backed local computation without fixing `q`, choosing a canonical

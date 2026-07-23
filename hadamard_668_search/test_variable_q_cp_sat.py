@@ -105,6 +105,12 @@ class VariableQCpSatTests(unittest.TestCase):
         self.assertEqual(fixed_model.validate(), "")
         self.assertTrue(
             any(
+                variable.name.startswith("a_z8_")
+                for variable in fixed_model.proto.variables
+            )
+        )
+        self.assertTrue(
+            any(
                 variable.name.startswith("global_alternation")
                 for variable in fixed_model.proto.variables
             )

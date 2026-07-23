@@ -239,6 +239,65 @@ def add_small_root_spectral_invariants(
     model.add(sum(norm_6) == 2 * (LONG + SHORT))
 
 
+def add_primitive_eighth_root_invariants(
+    model: cp_model.CpModel,
+    sequences: tuple[list[cp_model.IntVar], ...],
+) -> None:
+    """Expose both coefficients of the norm identity over ``Q(sqrt(2))``.
+
+    At ``z=exp(pi*i/4)``, write the eight residue sums as ``c_0,...,c_7`` and
+    set
+
+        x=c_0-c_4, y=c_2-c_6, alpha=c_1-c_5, beta=c_3-c_7.
+
+    The squared norm is
+
+        x^2+y^2+alpha^2+beta^2
+        + sqrt(2)*(alpha*(x+y)+beta*(y-x)).
+
+    Its rational coefficient must be 334 and its irrational coefficient zero.
+    These equations are redundant with the full lag model but give a compact,
+    strong propagator; they also underlie the dependency-free distance-33
+    obstruction in ``variable_q_root8.py``.
+    """
+
+    rational_terms = []
+    irrational_terms = []
+    for label, bits in zip("abcd", sequences, strict=True):
+        residues = residue_sign_sums(model, bits, 8, f"{label}_mod8")
+        coordinates = []
+        for name, left, right in (
+            ("x", 0, 4),
+            ("y", 2, 6),
+            ("alpha", 1, 5),
+            ("beta", 3, 7),
+        ):
+            coordinate = model.new_int_var(
+                -len(bits), len(bits), f"{label}_z8_{name}"
+            )
+            model.add(coordinate == residues[left] - residues[right])
+            coordinates.append(coordinate)
+            rational_terms.append(
+                square(
+                    model,
+                    coordinate,
+                    len(bits),
+                    f"{label}_z8_{name}2",
+                )
+            )
+        x, y, alpha, beta = coordinates
+        irrational_terms.extend(
+            (
+                product(model, alpha, x, len(bits), f"{label}_z8_alpha_x"),
+                product(model, alpha, y, len(bits), f"{label}_z8_alpha_y"),
+                product(model, beta, y, len(bits), f"{label}_z8_beta_y"),
+                -product(model, beta, x, len(bits), f"{label}_z8_beta_x"),
+            )
+        )
+    model.add(sum(rational_terms) == 2 * (LONG + SHORT))
+    model.add(sum(irrational_terms) == 0)
+
+
 def add_length_seven_compression_invariants(
     model: cp_model.CpModel,
     sequences: tuple[list[cp_model.IntVar], ...],
@@ -422,6 +481,7 @@ def build_model(
         add_alternating_sum(model, bits, alt_sum)
 
     add_small_root_spectral_invariants(model, sequences)
+    add_primitive_eighth_root_invariants(model, sequences)
     if compression_7:
         add_length_seven_compression_invariants(model, sequences)
     if compression_7_alternating:

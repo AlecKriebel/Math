@@ -17,8 +17,14 @@ this milestone.
 |---|---|---|
 | Eliahou seed verification | reproduced near matrix | published 64-modular matrix of order 668, not an exact Hadamard matrix |
 | Repair with Eliahou's exact `q` | impossible | reduces to empty `TU(41)` |
-| Variable `s,q` special quadruple | active | `BS(84,83)` in 288 nominal shards / 156 alternation representatives |
-| Fixed-compression `LP(333)` | active restricted lane | 166 periodic equations plus conjectural factor-9 margins |
+| Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
+| Variable `s,q` special quadruple | active | adjacent cyclic folds at 84 and prime 83; root/margins force seed distance at least 34 |
+| Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
+| Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
+| Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
+| Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; projective rank-nine and high-lag reductions survive |
+| Sextic-multiplier `LP(333)` | active construction lane | exact 108-sign quotient; 298 row-signature shards |
+| Quartic-multiplier `LP(333)` | active secondary lane | 45-phase quotient; axis-preserving pilot has quotient energy 112, not zero |
 | Order-three multiplier `LP(333)` | active restricted sublane | one of four subgroups ruled out |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
@@ -68,6 +74,138 @@ python3 variable_q_base.py
   --shard 0 --workers 1 --max-memory-mb 2048 --time-limit 3600
 ```
 
+`VARIABLE_Q_ROOT8.md` gives a new dependency-free obstruction obtained by
+evaluating the base norm at a primitive eighth root. It splits the norm over
+`Q(sqrt(2))` into a 16-square equation of energy 334 and one bilinear
+equation. Eliahou's seed has rational energy 1614. A complete 16-coordinate
+dynamic program proves that the primitive-eight sphere begins at distance 33;
+an exhaustive check of all 1,350 minimum-shell targets against the exact
+ordinary/alternating margin norms raises the base-sequence lower bound to 34,
+closing the complete ball through radius 33 without solver trust. An explicit
+radius-34 witness also passes both root equations, both margin norms, and every
+endpoint-quad product, so this combined relaxation is sharp. The same method
+also proves that holding Eliahou's `s`
+fixed is impossible, since the fixed `A,C` contribution is already
+`807+24*sqrt(2)>334`. The root-eight equations are now included in the exact
+CP-SAT model by default:
+
+```sh
+python3 variable_q_root8.py
+```
+
+`NOVEL_BS84_THEORY.md` gives a new exact construction formulation. For
+general `BS(n+1,n)`, all aperiodic equations are equivalent to the
+simultaneous complementarity of two adjacent cyclic folds: pad the short
+sequences modulo `n+1`, and fold the long endpoints modulo `n`. At `n=83`,
+the prime fold becomes 41 oriented supplementary-difference-set equations on
+`Z/83`; its mod-2 shadow is a relative norm equation over
+`GF(2^82)/GF(2^41)`. There are 45 anchored size profiles. Once a prime-fold
+object is found, only `82*83^2=564,898` multiplier/phase lifts need be tested
+against the modulo-84 fold, and any pass is an exact `BS(84,83)` by the
+adjacent-fold theorem:
+
+```sh
+python3 check_bs84_cyclic_folds.py
+```
+
+`NOVEL_LIFTING_64.md` gives a complementary 2-adic formulation. Exactness
+first forces an 84-parameter reciprocal skeleton for `q`; the next lift is
+linear in `s` and has rank 82 at the published seed. Eliahou's point already
+passes through the quartic/modulo-16 layer. Its first failed lift consists of
+only five lags and is a Frobenius square, but an exact Boolean-Jacobian
+certificate proves that no first-order tangent direction repairs it. The
+remaining constructive proposal is therefore a nonlinear five-comb move
+coupled to 42 linear causal-mate equations:
+
+```sh
+python3 verify_novel_lifting_64.py
+```
+
+`FIVE_COMB_SECANT.md` sharpens the seed identity to
+
+```text
+sum N(X) = 14 + 32*N((z^42-1)(1-z^4+z^8-z^12+z^16)).
+```
+
+The literal 30-variable reciprocal chord and every aligned orthogonally
+staged disjoint five-comb completion are exactly excluded. More generally, a
+unit-circle root of the common comb rules out every repair that retains that
+factor in all four sequences. The checker then supplies a constructive escape:
+a minimum complementary octet, polarized at separation 42 and doubled, gives
+32 flat carrier channels of energy 320. Those channels pack into the target
+lengths with exactly 14 singleton holes. The live finite problem is to assign
+the carrier channels and hole signs so that the packing cross terms cancel:
+
+```sh
+python3 verify_five_comb_secant.py
+```
+
+`FIVE_COMB_PROJECTIVE_EXHAUSTION.md` solves the complete modulo-four
+projective quotient for the common-type construction. Row-sign normalization
+leaves twelve label bits and 4,096 maps; row-pair swaps reduce these to 1,440
+orbits, and the physical holes form a label-independent 256-point fiber.
+The exact lags-78-through-81 boundary table leaves 2,434 possible projective
+parameter rows. A resume-safe exact sweep then reports `INFEASIBLE` for all
+1,536 quartet/core models. This is a solver-backed exclusion of that family,
+not a proof certificate and not an exclusion of arbitrary five-combs:
+
+```sh
+python3 verify_five_comb_high_lag_boundary.py
+python3 verify_five_comb_unrestricted_full_corpus.py
+```
+
+`FIVE_COMB_PAIRED_LOBES.md` gives the constructive escape. Same-word carriers
+form an ordered pair of complementary quartets, but allowing distinct words
+in the two lobes needs only one complementary octet. There are 1,246 such
+octets and 768,512 sorted directed-pair inventories; 721,984 are genuinely
+beyond separate lower/upper quartets. The rank-nine projective quotient,
+1,440 row orbits, physical hole fiber, and lags-78-through-81 table all remain
+valid. A new universal `z=1` row-square obstruction removes structural core
+zero before any carrier search: all 128 of its row-orbit representatives
+would require 165 or 166 to be a sum of two squares. Thus only 31 structural
+cores remain. `FIVE_COMB_DYADIC_COMPRESSION.md` replaces the root conditions
+through order 16 by one exact `Z/16` compressed autocorrelation identity and
+specifies a staged or meet-in-the-middle architecture whose production
+implementation is not yet retained:
+
+```sh
+python3 verify_five_comb_paired_lobes.py
+python3 verify_five_comb_core0_obstruction.py
+python3 verify_five_comb_dyadic_compression.py
+```
+
+`BS84_ORIENTED_SDS_SEARCH.md` implements the prime-fold constructor rather
+than the original 334-sign aperiodic search. The retained profile-19 state has
+sizes `(37,37,35,41)`, row sums `(8,10,13,1)`, quarter-energy 14, and 11 bad
+independent lags. It is a verified checkpoint, not a prime fold. Its exact
+structured neighborhood—including up to three inverse-pair changes and
+coordinated single/double exchanges—contains no zero. The Python constructor
+is resumable across all 45 profiles and automatically tests all 564,898
+modulo-84 lifts if it finds a prime fold:
+
+```sh
+python3 verify_bs84_oriented_sds.py --allow-checkpoint \
+  output/bs84_oriented_sds_local_p19.json
+```
+
+The safe-prime identity `167=2*83+1` yields a further exact character
+calculation. `PRIME83_SIDELNIKOV_FOLD.md` proves that a binary Sidelnikov word
+and its one-zero skew companion have summed PAF `-2` at every nonzero lag.
+The natural endpoint completion and its degree-two product extension fail.
+`PRIME83_SIDELNIKOV_DECIMATIONS.md` then allows independent block
+decimations and proves the universal orientation condition
+
+```text
+U_k U_-k = v_k v_-k,  k=1,...,41.
+```
+
+The row-admissible fingerprint catalogs are disjoint. An independent exact
+join checks 12,584,792 normalized `U/V` states and finds no prime fold:
+
+```sh
+python3 check_bs84_sidelnikov_fold.py
+```
+
 `VARIABLE_Q_LOCAL_NOTES.md` documents the margin- and endpoint-parity-
 preserving C++ engine and its independently rejected diagnostic checkpoints.
 The tracked parity-feasible checkpoint is now in canonical shard 213; it has
@@ -75,7 +213,7 @@ half-energy 232 and 43 bad lags, so it is not a solution.  The exact CP model
 uses the standard four-literal base-sequence quad parities by default; the
 older endpoint telescope is an equivalent optional basis.
 
-`VARIABLE_Q_SEED_DISTANCE.md` now gives a solver-backed raw-radius-18 report
+`VARIABLE_Q_SEED_DISTANCE.md` retains a superseded solver-backed raw-radius-18 report
 around Eliahou's published base quadruple.  A dependency-free dynamic program first
 enumerates every raw margin image and proves that no quad-preserving target is
 reachable through radius 13.  Exact fixed-margin CP-SAT models with table-
@@ -138,6 +276,63 @@ engine, and full bordered two-circulant verification:
 .solver-venv/bin/python search_legendre_333_cp_sat.py \
   --workers 1 --max-memory-mb 2048 --time-limit 3600 \
   --output output/legendre_pair_333.json
+```
+
+`NOVEL_LP333_THEORY.md` recasts the binary pair as one QPSK sequence on
+`Z_9 x F_37`. The quartic residues form a cyclic `(37,9,2)` difference set,
+which yields an exact multiplier quotient with 45 fourth-root phases and only
+22 equations. A checked `9 x 5` phase table already satisfies the prescribed
+compression, all 36 pure-column correlations, and all eight pure-row
+correlations; precisely 16 mixed quotient equations remain. This is a
+construction-sized problem, not the earlier 666-bit model:
+
+```sh
+python3 check_lp333_quartic_quotient.py
+```
+
+`search_lp333_quartic_quotient.cpp` stays on the proved row-axis fiber. A
+bounded pilot reduced quotient energy from 1536 to 112 while preserving the
+length-9 Legendre core and all row-axis equations. Its best table still has
+14 of 18 remaining quotient equations nonzero (126 of 166 independent full
+lags), so it is explicitly a non-candidate.
+
+`LP333_SEXTIC_QUOTIENT.md` gives a stronger order-six multiplier lane. Its
+`9 x 7` QPSK quotient has 34 reversal-inequivalent lag equations. The
+zero-column word can be fixed by symmetry, leaving exactly 108 binary signs.
+The row-axis equations factor into 28 short-word signatures and only 298
+three-plus-three meet-in-the-middle shards. An explicit skeleton satisfies
+both coordinate axes but remains nonexact at 20 of 24 mixed quotient cells.
+The checker reconstructs the orbit matrices, short-word catalogs, full
+333-cell expansion, and two closed smaller subfamilies:
+
+```sh
+python3 check_lp333_sextic_quotient.py
+python3 verify_lp333_sextic_c3.py
+python3 -m unittest -v \
+  test_lp333_sextic_quotient.py test_lp333_sextic_cp_sat.py
+```
+
+The exact constructor now channels all six short words to their 28
+real-PAF signatures and the 298 exact meet-in-the-middle shards by default.
+A residual decimation `d=226` fixes the CRT row and zero column and rotates
+the nonzero classes by two. Burnside's lemma reduces the 1,658,700 compatible
+ordered signature sextuples to exactly 552,912 signature-level `C3` orbits;
+the low-memory lex leader handles tied signatures exactly. The strengthened
+default model has 2,979 variables and 2,923 constraints. A fixed signature
+shard has 2,978 variables and the same constraint count. For audit
+regressions, `--no-c3-symmetry` restores 2,977/2,916 and
+`--no-signature-channel` restores the original 2,970/2,908 model.
+
+A 20-second four-worker pilot of the strengthened model ended `UNKNOWN`,
+with no candidate, after 711 conflicts and 149,953 branches. It used 2.11 GiB
+maximum RSS and zero swaps. This proves nothing negative; it shows that the
+new channel is active and remains safe on the 16 GiB host. The 298-shard
+runner is sequential, atomic-record, and resume-safe:
+
+```sh
+.solver-venv/bin/python run_lp333_sextic_signature_shards.py \
+  --start 0 --end 297 --time-limit 3600 \
+  --workers 1 --max-memory-mb 4096
 ```
 
 `LEGENDRE_MULTIPLIER.md` gives a much smaller exact order-three-multiplier
@@ -266,6 +461,11 @@ python3 verify_variable_q_seed_radius.py
 python3 verify_variable_q_seed_quad_radius.py
 python3 verify_variable_q_seed_frontier_artifacts.py
 python3 verify_variable_q_seed_shell18_artifacts.py
+python3 verify_five_comb_high_lag_boundary.py
+python3 verify_five_comb_dyadic_compression.py
+python3 verify_five_comb_paired_lobes.py
+python3 verify_five_comb_unrestricted_full_corpus.py
+python3 check_lp333_sextic_quotient.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
 python3 verify_sds_167_neighborhood.py \
@@ -276,6 +476,7 @@ python3 verify_sds_167_windows.py \
   test_construction.py test_legendre_333.py \
   test_legendre_333_eight_cycle.py \
   test_legendre_333_profile_local.py \
+  test_lp333_sextic_quotient.py test_lp333_sextic_cp_sat.py \
   test_search_legendre_333_profile_catalog.py test_legendre_multiplier.py \
   test_legendre_column_distance_dp.py test_variable_q_base.py \
   test_variable_q_cp_sat.py test_variable_q_compression.py \
@@ -292,20 +493,22 @@ and checked exactly before it is treated as verified.
 
 ## Resource safety
 
-This repository is currently run on a 16 GiB host.  The live CP-SAT commands
-therefore default to one worker and set `max_memory_in_mb=2048`; the shard
-scheduler runs attempts sequentially.  Do not launch concurrent solvers or
-increase `--workers`/`--max-memory-mb` without checking available memory.  The
-OR-Tools limit applies to the solver, not all Python/model-construction memory,
-so it is a guardrail rather than an operating-system hard limit.  The exact
-parity-neighborhood enumerator is intentionally capped at three exchanges;
+This repository is currently run on a 16 GiB host. Solver jobs may use several
+gigabytes when the reduction warrants it, but their measured aggregate
+whole-process RSS must remain below 16 GB. The OR-Tools limit applies to the
+solver, not all Python/model-construction memory, so it is a guardrail rather
+than an operating-system hard limit. During the full common-type sweep, the
+live session monitor observed four disjoint single-worker processes at
+roughly 1.4 GB aggregate RSS; this measurement is not encoded in the corpus
+records. Use disjoint resume-safe shards before introducing similar
+concurrency. The exact parity-neighborhood enumerator is intentionally capped
+at three exchanges;
 larger meet-in-the-middle tables are not safe on this machine.
 The seed-frontier models use a tighter 256 MiB solver cap and have remained
 at or below 176 MB total RSS.  The cyclic-SDS annealer remained below 2 MB;
 its radius-four scans used 11.5 MB and its exact four-window MITM used 24.7
 MB.  The larger mixed-family MITM is explicitly capped at eight left-family
-pairs per batch and used 216.3 MB peak RSS.  Recorded searches are still run
-strictly one at a time.
+pairs per batch and used 216.3 MB peak RSS.
 The reduced good-matrix CP-SAT runs also use one worker and a 256 MiB solver
 cap; their measured whole-process peaks were 272.7 and 285.3 MB with zero
 swap.  The fixed-array good-matrix streamer used 1.44 MB peak RSS in

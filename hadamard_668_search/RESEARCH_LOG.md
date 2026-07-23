@@ -1,5 +1,183 @@
 # Hadamard 668 research log
 
+## 23 July 2026: unrestricted projective exhaustion and two larger constructions
+
+- Solved the complete modulo-four projective quotient for the common-type
+  five-comb packing. Its 24 label bits have rank-nine syndrome; row-sign
+  normalization leaves twelve free bits and exactly 4,096 label maps. Row-pair
+  swaps reduce them to 1,440 representatives, partitioned by five structural
+  bits into 32 exact cores.
+- Derived the complete label-independent physical hole fiber: five
+  equalities and one disequality form six affine relations and leave 256
+  completions; lag 82 fixes the outer position-82 vector to
+  `eta*V_2`, and lag 83 makes the two long tails opposite.
+- Derived and dependency-free verified the exact lags-81-through-78 boundary
+  equations. The physical table has 10,934 rows; its projective image has
+  2,434 rows and yields the universal clause
+  `beta or u7 or y1 or y7`. The checker replayed 134,872 table/sequence
+  boundary cases and 13,824 general high-lag formulas.
+- Integrated the physical boundary table into the exact factorized,
+  pure-Boolean, and spectral models. A 32-core pilot excluded quartet zero
+  completely in 193.51 seconds wall time at 473 MB maximum RSS. The full
+  disjoint four-process sweep stayed around 1.4 GB aggregate memory.
+- Completed all `48*32=1,536` exact common-type cores: every record is
+  `INFEASIBLE`, with zero `UNKNOWN` and zero candidate. Recorded totals are
+  10,768.610061 solver-seconds, 3,568,646 conflicts, and 71,107,207 branches.
+  The canonical corpus digest is
+  `9c1534a77319dd1b8e0a90f8fb2a620ad09499c6948e1198087bc29c967ecb45`.
+  This is a solver-backed restricted-family exclusion with no independent
+  UNSAT certificates.
+- Proved the exact dyadic-compression theorem. Norm identities at all roots
+  through order 16 are equivalent to one periodic autocorrelation identity
+  for four length-16 integer compressions. The nine bucket/root bases differ
+  by determinant `-256`. Physical parity gives 14 even and 50 odd cells and
+  exactly 1,589 possible magnitude shells. An independent audit reproduced
+  all formulas and counts; the dependency-free verifier digest is
+  `f029b9690c941297b1da21286a7299ab9bf60e319306488a9e781c642ce05a51`.
+- Audited the obvious odd-modulus shortcuts and stopped them: all 704
+  spectral-class/core units reach full affine rank modulo 3, 5, and 7 after
+  cross catalogs are included, and direct modular reachability survives in
+  every class tested. The next spectral engine must retain component
+  consistency or use staged cyclotomic filtering.
+- Proved the same-word self-cancellation theorem: the exact extension of the
+  diagonal/common-type family is an ordered pair of complementary quartets,
+  2,304 cases. Then proved a strictly larger distinct-lobe theorem: four
+  directed pairs used with both polarizations self-cancel exactly when their
+  combined eight words form one complementary octet.
+- Classified the distinct-lobe family exactly: 1,246 octets in 35 signature
+  profiles and 768,512 sorted directed-pair inventories. Of these, 557 octets
+  and 721,984 inventories are genuinely beyond separate lower/upper
+  quartets. An exhaustive 65,536-state check proves that the rank-nine
+  projective quotient, 4,096 labels, 1,440 row orbits, hole fiber, and
+  physical high-lag table all carry over.
+- Found a new independent `LP(333)` construction lane invariant under the
+  order-six multiplier 64 modulo 333. Its sextic `9 x 7` QPSK quotient has 34
+  reversal-inequivalent lag equations. Symmetry fixes the 972-element
+  `LP(9)` zero-column orbit and leaves 108 Boolean signs. The other columns
+  have 28 real-PAF signatures, reducing the row-axis fiber to 298 exact
+  three-plus-three signature shards.
+- Constructed and fully expanded a sextic axis-complete skeleton. It satisfies
+  every pure row and column equation but remains a non-candidate with 20/24
+  mixed quotient residuals, energy 784, and 120/144 mixed physical lags bad.
+  A dependency-free checker reproduced the quotient matrices, all short-word
+  counts, the full 333-cell expansion, and exact obstructions to the
+  quadratic-residue and logarithmic-template subfamilies. An independent
+  audit corrected the wording: the 34 equations are reversal-inequivalent;
+  fixed compression leaves at most 27 linearly independent.
+- Built the first exact sextic CP model with 108 primary signs, 2,862 cached
+  XORs, 2,970 total variables, and 2,908 constraints. Its candidate gate
+  replays all quotient/CRT equations, all 333 periodic correlations, the
+  bordered construction, and the full order-668 matrix before writing. A
+  300-second eight-worker pilot ended `UNKNOWN` after 145,214 conflicts and
+  3,155,570 branches, at 522.8 MB maximum RSS and zero swaps. It emitted no
+  candidate.
+- Implemented the exact 28-signature/298-shard propagation layer. The
+  unsharded model without residual symmetry has 2,977 variables and 2,916
+  constraints; a fixed shard has 2,976 variables. A sequential
+  atomic-record runner makes all 298 shards resumable.
+- Proved and dependency-free verified the residual order-three decimation
+  symmetry. The unit `226` fixes the `Z/9` row coordinate, rotates sextic
+  classes by two, and has cube `64`, which is trivial on the multiplier
+  quotient. The 972 zero-column cores form one free symmetry orbit, all 298
+  signature shards are invariant, and the 1,658,700 compatible ordered
+  signature sextuples have 18 fixed points and exactly 552,912
+  signature-level `C3` orbits. The exact tie-safe lex leader gives a default
+  model with 2,979 variables and 2,923 constraints.
+- A 20-second four-worker pilot of that strengthened model ended `UNKNOWN`
+  after 711 conflicts and 149,953 branches, at 2,263,646,208 bytes maximum
+  RSS and zero swaps. It emitted no candidate and proves no infeasibility.
+- Proved the universal projective-core-zero obstruction. In that core all
+  carrier row sums are `(x,x,y,y)`; the physical hole fiber and the `z=1`
+  norm force either 165 or 166 to be a sum of two integer squares, which is
+  impossible. This removes all 128 core-zero row-orbit representatives,
+  including 8/2,434 projected and 288/10,934 full high-lag rows. A
+  dependency-free verifier also classifies all 768,512 paired-lobe
+  inventories into four exact root-amplitude profiles.
+- A broader session-only `z=1` profile audit found 3,968/4,096 projective maps
+  feasible for each of the four profiles, with exactly the same 128
+  core-zero maps excluded. No stronger profile-dependent root cut emerged.
+  That auxiliary all-core DP is not retained by the verifier and is recorded
+  only to prevent repeating the same exploratory calculation.
+
+## 23 July 2026: constructed prime-fold lane and algebraic exclusions
+
+- Implemented the 45-shard prime-83 oriented-SDS constructor with an
+  independent verifier and automatic `82*83^2` adjacent-fold lift bank.
+- Retained and replayed profile 19, sizes `(37,37,35,41)`, row sums
+  `(8,10,13,1)`, quarter-energy 14, and 11 bad independent lags. Exact
+  meet-in-the-middle polishing through the documented coordinated move
+  families found no zero. No prime fold or lift was produced.
+- Used `167=2*83+1` to derive a Sidelnikov binary/one-zero PAF identity.
+  Direct endpoint completions, zero filling, and degree-two products were
+  excluded exactly.
+- Enlarged that character family by independent decimations. A modulo-four
+  theorem forces equality of the 41 inverse-pair orientation fingerprints.
+  The only catalog intersection has `U` row sum 82 and therefore violates the
+  energy bound. The full 12,584,792-state signature join independently found
+  zero prime folds.
+- Factored all thirteen Eliahou base residuals as
+  `32*N((z^42-1)(1-z^4+z^8-z^12+z^16))` above a constant 14.
+  The complete literal reciprocal chord has zero modulo-32 points, and all
+  80,896 endpoint pairs in the disjoint-comb constructor fail exact
+  cross-orthogonality. A unit-circle root also excludes every four-sequence
+  repair retaining the common comb factor.
+- Found a constructive spectral escape: the alternating comb extends to a
+  minimum complementary octet; opposite separation-42 polarizations and two
+  copies give 32 flat channels of energy 320. Eight carrier shifts per target
+  sequence occupy 80 coefficients and leave precisely the 14 singleton
+  positions needed for energy 334. Only their packing cross terms remain.
+- Added an axis-preserving quartic `LP(333)` constructor. Its bounded pilot
+  improved quotient energy from 1536 to 112 but left 14/18 quotient
+  equations nonzero. It remains a checked non-candidate.
+
+## 23 July 2026: three theory-first construction reductions
+
+- Proved the adjacent cyclic-fold theorem: `BS(n+1,n)` is equivalent to the
+  intersection of the padded modulo-`n+1` cyclic complement and the
+  endpoint-folded modulo-`n` cyclic complement.
+- At `n=83`, converted the prime fold into 41 exact oriented-SDS equations,
+  enumerated 45 anchored size profiles, and derived a relative norm shadow in
+  `GF(2^82)/GF(2^41)`. An oriented SDS has 564,898 basic phase/multiplier
+  lifts to test at modulus 84; any passing lift is already exact.
+- Recast `LP(333)` as a QPSK real-autocorrelation problem. The quartic
+  residues modulo 37 form a `(37,9,2)` difference set and give an exact
+  45-phase, 22-equation quotient. A checked axis-complete table leaves only
+  16 mixed quotient equations; it remains a strict non-candidate.
+- Derived a finite 2-adic lift for the special seed. Exactness forces an
+  84-bit reciprocal `q` skeleton; the next layer is linear in `s`. The
+  published seed first fails at five modulo-32 lags whose syndrome is a
+  Frobenius square. Exact Jacobian ranks `82,163,200,200`, with augmented rank
+  201 at the next lift, rule out a first-order tangent repair.
+- Added dependency-free checkers for all three reductions. No exact
+  `BS(84,83)`, `LP(333)`, or `H(668)` is claimed.
+
+## 23 July 2026: primitive-eight sphere and a distance-34 theorem
+
+- Evaluated the `BS(84,83)` norm identity at
+  `z=exp(pi*i/4)` and split it over `Q(sqrt(2))`.
+- Reduced each base sequence to four signed residue sums
+  `(x,y,alpha,beta)`. Every exact quadruple must satisfy a rational
+  16-square equation of energy 334 and a second bilinear cancellation.
+- The published seed has rational energy 1614 at this root. A
+  dependency-free dynamic program over the sixteen bounded coordinates proves
+  that the nearest point on the required rational sphere is at raw Hamming
+  distance 33. There are 1,350 targets on this first shell; 66 satisfy the
+  bilinear equation, and an exact enumeration proves that none can also meet
+  both ordinary/alternating margin norm identities.
+- An explicit distance-34 sign witness passes the complete primitive-eight
+  equations, both margin norms, and every endpoint-quad product. Thus the
+  strengthened necessary-condition bound is sharp.
+- This closes the full seed ball through radius 33 without relying on CP-SAT,
+  strictly superseding the earlier solver-backed radius-18 distance report as
+  a local exclusion.
+- Holding Eliahou's `s` fixed is independently impossible: its fixed `A,C`
+  partial norm is `807+24*sqrt(2)>334`, before the nonnegative `B,D`
+  contributions are added.
+- Added both primitive-eight coefficient equations to the exact sharded
+  CP-SAT model as redundant but strong propagation.
+- The theorem and checker are in `VARIABLE_Q_ROOT8.md` and
+  `variable_q_root8.py`.
+
 ## 21 July 2026: exact seed recovery and fixed-q reduction
 
 - Recovered Eliahou's length-167 sequences from the published run-length code
@@ -781,6 +959,8 @@ proof-assistant-level theorem.
   Project policy prohibits external outreach; no contact drafts or recipient
   lists are retained.
 - Drafted `local_obstructions_668.tex` as one theorem plus one explicitly
-  solver-backed computational claim.  Public theorem-level release remains
-  gated on all 1,296 radius leaves, the inaccessible 2026 text or author
-  response, and expert review.
+  solver-backed computational claim. It remains an internal draft. Any
+  release decision by the human user should wait for all 1,296 radius leaves,
+  lawful public-source review of the inaccessible 2026 text if it becomes
+  available, and independent expert review. The project will not initiate
+  outreach.

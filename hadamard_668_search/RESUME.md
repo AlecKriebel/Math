@@ -13,6 +13,15 @@ The strongest results in this repository are negative or local:
 - fixing Eliahou's `q` reduces an exact repair to `TU(41)`, whose emptiness is
   supplied by a published exhaustive classification and independently
   reproduced here by a 461-shard, 57,543,021-node exact enumeration;
+- fixing Eliahou's `s` is impossible already at `z=1`, where the remaining
+  two row sums would have to represent `321` as two squares; the
+  primitive-eighth-root partial norm gives an independent obstruction;
+- a dependency-free 16-coordinate dynamic program proves that every exact
+  `BS(84,83)` is at raw labelled Hamming distance at least 34 from Eliahou's
+  base quadruple; the primitive-eight sphere first becomes reachable at
+  distance 33, but all 66 full root-eight targets there fail the exact margin
+  norms. A distance-34 witness passes roots, margins, and endpoint quads, so
+  this combined relaxation is sharp;
 - a solver-backed exhaustive computation reports no exact `BS(84,83)`
   sequence through raw labelled Hamming distance 18 of the seed; the retained artifact
   checker verifies the decomposition and records, not the 1,296
@@ -20,12 +29,95 @@ The strongest results in this repository are negative or local:
   leaves); four representative leaves now have independently checked DRAT
   proofs and all twelve stored root witnesses pass pinned positive-CNF
   validation, leaving the full UNSAT gate incomplete;
+- the unrestricted-projective common-type five-comb family is solver-excluded
+  for all 48 complementary quartets and all 32 structural label cores:
+  1,536/1,536 models are `INFEASIBLE`, with no timeout or candidate. The
+  corpus verifier attests records and source state, not independent UNSAT
+  proofs;
 - inversion-symmetric/normalized-skew `LP(333)` type pairs are impossible;
 - several large, explicitly defined local neighborhoods around retained near
   misses have been independently exhausted.
 
+The strongest new constructive reductions are:
+
+- `NOVEL_BS84_THEORY.md`: exact equivalence of `BS(84,83)` with simultaneous
+  cyclic folds at 84 and 83. The prime fold is a 41-equation oriented SDS with
+  45 size profiles and a `GF(2^82)/GF(2^41)` norm parameterization. Construct
+  the prime fold first, then test 564,898 finite phase/multiplier lifts.
+- `NOVEL_LP333_THEORY.md`: an exact 45-phase quartic-residue QPSK quotient.
+  A frozen axis-complete table leaves only 16 mixed equations.
+- `LP333_SEXTIC_QUOTIENT.md`: an order-six multiplier quotient with 108 free
+  binary signs after fixing its `LP(9)` core. The row-axis fiber reduces to
+  298 exact meet-in-the-middle signature shards and 34 reversal-inequivalent
+  quotient lag equations. The implemented default channel has 2,979
+  variables and 2,923 constraints after an exact residual `C3` lex leader.
+  It reduces 1,658,700 compatible signature sextuples to 552,912
+  signature-level orbits.
+- `NOVEL_LIFTING_64.md`: an 84-bit reciprocal `q` skeleton and finite 2-adic
+  lift. The seed's first obstruction is a five-lag Frobenius square, while an
+  augmented-rank certificate rules out a first-order tangent repair.
+- `FIVE_COMB_SECANT.md`: the complete seed defect is one rank-one ten-sparse
+  carrier. Common-factor repairs are impossible, but a minimum complementary
+  octet gives 32 flat carrier channels of energy 320 that pack into the target
+  lengths with exactly 14 singleton holes. Cancelling the packing cross terms
+  would directly construct `BS(84,83)`.
+- `FIVE_COMB_PAIRED_LOBES.md`: distinct words in the two lobes reduce exact
+  self-cancellation to one complementary length-five octet. There are 1,246
+  octets and 768,512 sorted directed-pair inventories; the rank-nine
+  projective quotient, 1,440 row orbits, physical hole fiber, and high-lag
+  boundary table all survive.
+- `FIVE_COMB_DYADIC_COMPRESSION.md`: every norm equation through order 16 is
+  one exact periodic-autocorrelation identity on four `Z/16` compressions.
+  A staged cyclotomic or meet-in-the-middle architecture is specified, but
+  no production implementation is retained yet. Session sizing estimates
+  put those designs below the host memory limit; a naive final-state DP does
+  not fit.
+
+The strongest current construction checkpoints are:
+
+- `output/bs84_oriented_sds_local_p19.json`: verified prime-fold near state,
+  profile `(37,37,35,41)`, quarter-energy 14, 11 bad lags, SHA-256
+  `432b9708d77c7c45001265ad5ed0938e527af08a20782f0044d14a0ad65cc39c`;
+- the frozen table in `search_lp333_quartic_quotient.cpp`: quotient energy
+  112, 14/18 remaining quotient equations bad, hence not an `LP(333)`;
+- the sextic table in `check_lp333_sextic_quotient.py`: both coordinate axes
+  exact, but 20/24 mixed quotient cells bad, quotient energy 784, hence not an
+  `LP(333)`;
+- the exact sextic CP model has 108 primary signs, 2,862 cached XORs, the
+  implemented 28-signature/298-shard channel, and the exact residual `C3`
+  lex leader. Its latest 20-second four-worker pilot ended `UNKNOWN`, with no
+  candidate, after 711 conflicts and 149,953 branches, at 2.11 GiB maximum
+  RSS and zero swaps;
+- no character checkpoint survives: the independently decimated
+  degree-at-most-two Sidelnikov family has zero row-admissible orientation
+  matches and zero exact PAF joins.
+
 Read `README.md` for the lane map, `RESEARCH_LOG.md` for chronology, and
 `PRIORITY_AUDIT.md` before making any novelty or publication claim.
+Read `VARIABLE_Q_ROOT8.md` before doing any further seed-centered search:
+shells through radius 33 are now excluded without a solver.
+
+## Theory-first continuation order
+
+1. Solve the audited 108-sign sextic `LP(333)` quotient with the implemented
+   298 row-signature shards and residual `C3` quotient. Use
+   `run_lp333_sextic_signature_shards.py` for atomic resume records, and
+   strictly expand every feasible quotient before any claim.
+2. Build the universal four-directed-pair model from
+   `FIVE_COMB_PAIRED_LOBES.md`. Filter it with the modulo-16
+   meet-in-the-middle and high-lag boundary table before imposing all 83
+   lags. Omit the universally impossible structural core zero, leaving 31
+   cores, and prioritize the 21 genuinely nondecomposable octet profiles.
+3. Continue the prime-83 oriented-SDS construction outside the exact
+   neighborhood already exhausted around profile 19. Any prime fold
+   automatically triggers its finite modulo-84 lift bank.
+4. Keep the quartic `LP(333)` quotient as a secondary independent lane.
+   Do not rerun the 48 diagonal common-type five-comb cases: the complete
+   1,536-shard corpus is closed.
+
+These lanes may use several gigabytes when needed, but keep total machine RSS
+below 16 GB. Do not resume the old radius-18 shell expansion or the generic
+666-bit Legendre model as the primary strategy.
 
 For the publication snapshot, also read `MANIFEST.md`,
 `proof_certificates/README.md`, and `tu41_certificate/README.md`.  The exact
@@ -125,6 +217,21 @@ Only a successful full-matrix check permits an `H(668)` claim.
 
 ## Safe continuation points
 
+The primary exact continuation is the sequential sextic signature corpus.
+Every completed shard writes one atomic JSON record under
+`output/lp333_sextic_signature_shards/`; existing records are skipped, so the
+command is safe to interrupt and resume:
+
+```sh
+.solver-venv/bin/python run_lp333_sextic_signature_shards.py \
+  --start 0 --end 297 --time-limit 3600 \
+  --workers 1 --max-memory-mb 4096
+```
+
+Use `--rerun-unknown` only when intentionally extending the time allotted to
+previously unresolved shards. A reported assignment is still accepted only
+after the full `LP(333)` and `H(668)` candidate gate succeeds.
+
 The best low-memory continuation command is reproducible but has low expected
 value after the closed local neighborhoods:
 
@@ -154,16 +261,28 @@ canonical `BS(84,83)` representative shards documented in
 `VARIABLE_Q_LANE.md`.  The radius-18 result excludes only the raw labelled ball
 around Eliahou's seed.
 
+For the structured five-comb route, do not resume
+`output/five_comb_unrestricted_core_cp_v2`: it is complete. Start from the
+distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
+
 ## Resource rules for the 16 GiB host
 
-- Run one solver or production search at a time.
-- Keep CP-SAT at one worker.
+- Keep combined resident memory below roughly 14 GB so the OS and verifier
+  retain headroom. Multi-gigabyte exact joins are allowed.
+- Multi-process sharding is allowed when ranges are disjoint and measured
+  aggregate RSS stays below the limit. During the completed common-type
+  sweep, the live session monitor observed four processes at roughly 1.4 GB
+  aggregate RSS; that measurement is not encoded in the shard records.
+- Keep the oriented-SDS CP-SAT constructor at one worker; its model and
+  checkpoint format assume that reproducible mode.
 - Treat `max_memory_in_mb` as an internal solver limit, not a process limit.
 - Do not enlarge the full 111,554-variable fixed-profile model here: measured
   whole-process peaks were 703 MB and 931 MB in short pilots despite lower
   internal limits.
-- The C++ local engines use under 10 MB; the independent radius-two verifier
-  uses about 73 MB; the outer profile sampler has used at most 117 MB.
+- The quartic LP constructor uses about 6 MB. The dependency-free sextic and
+  dyadic checkers use only tens of megabytes. The deepest oriented-SDS exact
+  polish used 927 MB RSS; the independent Sidelnikov-decimation join used
+  about 137 MB.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
