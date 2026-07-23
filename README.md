@@ -44,6 +44,16 @@ iterate. A separately published, independently audited bounded-memory
 certificate in the Discovery 04 source proves the fourth-iterate group
 `S_3 wr S_3 wr S_3 wr S_3`; this is an internal audit, not peer review.
 
+## Active computational search
+
+[`hadamard_668_search/`](hadamard_668_search/) is a reproducible attempt to
+construct a Hadamard matrix of order 668. No exact matrix has been found. The
+current mechanically checked progress includes the fixed-`q` obstruction,
+exhaustive variable-`q` margin decomposition, independent Legendre-pair and
+cyclic-SDS lanes, and a bounded exclusion of every exact `BS(84,83)` within
+raw Hamming distance 18 of Eliahou's published seed. A result counts only if
+an explicit `668 x 668` matrix passes exact full verification.
+
 ## Archival derivations
 
 - **Discovery 06** is the technical precursor containing the flagship
