@@ -189,7 +189,7 @@ def verify() -> dict[str, object]:
     # Pfender's row generator, checked row by row.  Its support is precisely
     # LOW_EDGES for these labels.
     labels = {}
-    for node, edges in zip(NODES, classes, strict=True):
+    for node, edges in zip(NODES, classes):
         for edge in edges:
             labels[edge] = node
     row_values = []

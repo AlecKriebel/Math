@@ -43,3 +43,20 @@ counterexample to the degree-two Tverberg shortcut.
 `verify_local_hybrid_barrier.py` checks the all-degree Gegenbauer tail estimate,
 every rational threshold cell in the common-center cuts, the Pfender margin,
 and the rank-deficit margin for the surviving mass-41 pseudo-measure.
+
+The weighted-residual and degree-three local-hybrid verifiers reconstruct all
+pair/triple incidences, BV blocks, wedge cells, rank-five moment residuals,
+color-degree covariance values, graphical degree sequences, and same-color
+three-vertex motif counts in exact rational arithmetic.
+
+`verify_rank_five_spectral_moment.py` checks the exact spectral identities,
+witness violations, and four-cycle partition.  The improved frame verifier
+reconstructs its \(S^3\) polynomial and closed-slab bound exactly.
+
+`verify_sparse_deep_graph_stability.py` and
+`verify_quantitative_root_system_stability.py` check the sparse graph,
+quadratic-field, row-energy, determinant-rounding, and robust-gap constants.
+
+The two split-kernel verifiers check their exact feature spectra.  The
+full-interval verifier uses directed rational Machin and Taylor enclosures;
+no floating-point cosine sign is trusted.

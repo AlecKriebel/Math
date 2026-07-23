@@ -117,3 +117,103 @@ Verification commands from `kissing_number_5/`:
 At this checkpoint the exact suite reports 43 passing tests; the numerical
 construction module reports seven passing tests and rechecks all 152 stored
 runs.
+
+## Checkpoint 2026-07-23T22:49:43Z
+
+All certificate verifiers added in this checkpoint use only the Python
+standard library and exact rational or quadratic-field arithmetic.
+
+Certificate hashes:
+
+```text
+5ca96eaab703e0e06527b638d1d671247242f824ebe39fe42d1dbdc028a2d59d  certificates/one_sided_tukey_bound.json
+3556839af73150f149855f570300c29b8527d7a24c89086113170ff4ed15700c  certificates/improved_frame_cap_bound.json
+8e2f4897b024c21e6b44ce17f05eb47105e286a7e3c59f5524acf9ce2e5615ef  certificates/rank_five_spectral_moment_certificate.json
+305719113ef9be62b2185084ffbea6f9e3241accfb98a4b81c2aef2aa5b07632  certificates/local_hybrid_degree3_triple_pseudodistribution.json
+3ad81376802cecfde1012345fa7d45f7de7de1762166fd1bbc2817b8899327ba  certificates/sparse_deep_graph_stability.json
+8c6315baefe9c8f9f26dd6f590eb248fb6d34e6b31bc910a838572cefc7bd400  certificates/split_kernel_abstract_counterexample.json
+```
+
+Proof hashes:
+
+```text
+6d50e29bebc641e7e744d75a0e6bed73f34a0a4aa743a70c5a56339de7f74ada  proofs/one_sided_tukey_bound.md
+a14be23eb3ebd60dcd473736c8f1d60b84ffd980e5494b46bc1834fd5472ca3a  proofs/improved_frame_cap_bound.md
+2c21a4bd1f88182fc88880615546b2f5824341ae50631dc12e3f7550a79ada19  proofs/rank_five_spectral_moment.md
+c48135e2299345d73622a09dc37f103992bd8e95e68051ec1e685c141237510a  proofs/rank_five_four_cycle_moments.md
+c98a5ef08e0426fe1f96c70c5dc8316809ca7eb7aa74c6252bebf3d80e092b82  proofs/weighted_residual_barrier.md
+25323172a8a4ea95252965f96d6cb8d95febd395531bb200e7f4f1306a29ee04  proofs/local_hybrid_degree3_barrier.md
+56af714cff75ef04e53963bb52cd12490ddc5c6bc4633deba8aa079adda87924  proofs/sparse_deep_graph_stability.md
+bd2940719c2783bf45c6001e91184cd1423f9762448f30d1bd206b89ab18c498  proofs/split_kernel_abstract_barrier.md
+```
+
+Verifier hashes:
+
+```text
+1a003b9365ebaf492b5bc818a39c27cbb8343fcbd7085e4cf9ad4968bf4add6b  verifiers/verify_one_sided_tukey.py
+d7579705d03e688f5d11791dc90462db586ff1edf76f535d72a75b644e0c27f4  verifiers/verify_improved_frame_cap_bound.py
+7799504d24c5df05e9f51d65e3b0d10753dcfc70bf0804f6900702e4dafc26be  verifiers/verify_rank_five_spectral_moment.py
+92acea05137931bb14634ead309e56a91452620e6996e4ac32d5c85b6eb9df70  verifiers/verify_weighted_residual_barrier.py
+9908df9ad1aa3818a588a6259d19c5449ebaae8b4608986fd323b576470a6477  verifiers/verify_local_hybrid_degree3.py
+494dd60a770e4c8196067eed1c92d9b644ac06a7ecfe478a4161a9df75c6fd11  verifiers/verify_sparse_deep_graph_stability.py
+17462bbe7c053f37277c19093f8172ce68dbaf5adba728dcf448943c40d7b4c1  verifiers/verify_split_kernel_abstract.py
+```
+
+Verification commands:
+
+```sh
+cd kissing_number_5
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python verifiers/verify_one_sided_tukey.py
+.venv/bin/python verifiers/verify_improved_frame_cap_bound.py
+.venv/bin/python verifiers/verify_rank_five_spectral_moment.py
+.venv/bin/python verifiers/verify_weighted_residual_barrier.py
+.venv/bin/python verifiers/verify_local_hybrid_degree3.py
+.venv/bin/python verifiers/verify_sparse_deep_graph_stability.py
+.venv/bin/python verifiers/verify_split_kernel_abstract.py
+```
+
+The full exact suite reports 60 passing tests at this checkpoint.  The
+SLSQP and MILP programs under `experiments/` remain discovery-only and are
+not trusted by any proof.
+
+## Checkpoint 2026-07-23T23:19:11Z
+
+This checkpoint adds the conjunction test for degree-three BV and the
+rank-five cubic moment, the full-interval split-kernel counterexample, and
+effective root-system stability.  Current hashes are:
+
+```text
+84fff611607343b328a00162b299e51821238cb37bcd1e37131886404a55e7c0  certificates/local_hybrid_degree3_rank_pseudodistribution.json
+a520b0c8f412cff2acfd2576c56f3c095bc8942fd7e9dcd1a1769cff6020db62  certificates/quantitative_root_system_stability.json
+d6648240575ad686e0b9857c3561f8e1d3bcac740cc6de435a8bbdcd06c494ad  certificates/split_kernel_full_interval_counterexample.json
+176b1e5cffad4082e226ff1f19f1db02727f4c3ee4ea2d936d62f7043534109b  proofs/local_hybrid_degree3_rank_barrier.md
+54a7c921e865e4502ebe1f58b1eb959439f37e6679a148f3072c038a390f86e4  proofs/quantitative_root_system_stability.md
+cc9cfaf7b716e5f1763a1897d13f3395349aff7983f757465b66629992b41afc  proofs/split_kernel_full_interval_barrier.md
+ab6dbad6ffc9601d3d9db8afa4502a35a0f0779e7a26903b462e962f465fc18c  proofs/sparse_deep_graph_stability.md
+d4ae77d013cdebfbf104056860114b3f8f211d65f8c6519131e8546f29fb87c9  verifiers/verify_local_hybrid_degree3_rank.py
+87b2916f8b94c19fbc8a190219b780677636a80ecc19d140997fca8b0aef7488  verifiers/verify_quantitative_root_system_stability.py
+082d857c2dff1b6ca89b8e1c66d604c04c5d1bba71b69312f6f427cc89379c44  verifiers/verify_split_kernel_full_interval.py
+f4ce4d09f1d99617b2ef3f2608c85fb18f6a8f1d04248b60e0fee0dc47fec17f  verifiers/verify_sparse_deep_graph_stability.py
+7b2f2234a1a7bdf28c7b71fd037507b93d429b7bb0907a7815720fb713291198  experiments/sparse_deep_rank5_search.js
+c70d4e6ba71422973e04f06bfa4ae112b94a10bcedf37fcb62a88daeefad70e5  experiments/sparse_deep_rank5_results.md
+075ee6216bdb6e96415e10e818be483a55afc12188430f387b375461de1ced7d  certificates/fixed41_rank_mixture_separator.json
+79febcf2a4d237b0dcf1d5bed839a74251b58af90d645a569f678db779bd73b3  certificates/local_hybrid_degree3_rank_color_pseudodistribution.json
+e2e43f549c78cb52a74d1be148d61e6029dc9f806da4018110d3a42464c3eb54  proofs/fixed41_rank_mixture_separator.md
+565109114e14ac1ee81f7fef8d2bc1ecb4c1f3fd51869d9dcea9fae6bf38c4df  proofs/local_hybrid_degree3_rank_color_barrier.md
+3d848d6a4a78604f259473cac807b43fef689088ab5e87576449413aebeec165  verifiers/verify_fixed41_rank_mixture_separator.py
+0c07746e621e358ebdb03d6cd2b1662e7137200f3b2833d7981f8f2b9cfea659  verifiers/verify_local_hybrid_degree3_rank_color.py
+```
+
+Run from `kissing_number_5/`:
+
+```sh
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+Python 3.14.6 reports 67 passing tests at 2026-07-23T23:25:45Z.  The
+project requires Python 3.11 or later; the system Python on the research host
+is older and does not support `zip(..., strict=True)`, so it is not the
+clean-environment interpreter for the full suite.  This run includes
+`test_fixed41_rank_mixture_separator` and
+`test_local_hybrid_degree3_rank_color`.

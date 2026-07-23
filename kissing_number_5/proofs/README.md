@@ -39,6 +39,34 @@ rank-deficit inequalities. It also supplies an exact mass-41 two-point
 pseudo-measure surviving their aggregate scalar consequences, so it is a
 barrier report rather than an upper-bound proof.
 
+`weighted_residual_barrier.md`, `local_hybrid_degree3_barrier.md`, and
+`local_hybrid_degree3_rank_barrier.md`, and
+`local_hybrid_degree3_rank_color_barrier.md` record successive exact triple
+pseudo-measures.  Together they distinguish degree-three BV positivity,
+rank-five spectral moments, wedge capacities, color-degree covariance, and
+individual-color graphicality instead of conflating those independent
+necessary conditions.
+
+`fixed41_rank_mixture_separator.md` exactly rejects the direct convex mixture
+of the all-degree and rank-feasible witnesses with one finite \(H_{3,9}\)
+radial direction.  It is a scoped barrier, not a universal separation.
+
+`rank_five_spectral_moment.md` and `rank_five_four_cycle_moments.md` prove
+sharp spectral inequalities and exact cycle expansions forced by rank five.
+The missing all-distinct four-cycle statistic is stated explicitly.
+
+`sparse_deep_graph_stability.md` classifies the 23- and 24-edge deep graphs,
+proves angular and root-system obstructions, and supplies a rank-20
+countermodel to the aggregate kernel route.
+`quantitative_root_system_stability.md` makes its zero-slack argument
+effective by exact determinant rounding.
+
+`split_kernel_abstract_barrier.md` and
+`split_kernel_full_interval_barrier.md` give exact 41-row counterexamples to
+progressively stronger abstractions of the quadratic kernel.  They identify
+the original kissing entries and nonlinear common-source identity as the
+remaining indispensable information.
+
 `tverberg_moment_barrier.md` proves the exact degree-two Tverberg consequence
 at 41 points and gives an exact rank-five code showing why that consequence
 alone is insufficient.

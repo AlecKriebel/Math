@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-23T21:51:06Z
+Last updated: 2026-07-23T23:23:05Z
 
 ## Rigorous bounds
 
@@ -21,13 +21,18 @@ No exact value has been established.
 
 ## Strongest candidate routes
 
-The strongest current candidate is a **four-point local-to-global route**
-coupling very negative pairs, their forced positive wedges, local residual
-rank, and the deep-pair graph.  Exact inequalities have already eliminated
-the first ordinary-LP pseudo-distribution, but a strengthened rational witness
-survives all aggregate constraints certified so far.  The missing ingredient
-must retain more incidence or common-source information than a global
-distance distribution.
+The strongest current candidate is a **rank-aware four-point
+local-to-global route** coupling very negative pairs, their forced positive
+wedges, local residual rank, the deep-pair graph, and spectral moments of the
+common rank-five Gram matrix.  Exact inequalities have eliminated several
+successive pseudo-distributions, but no universal combination yet excludes
+all of them.  The missing ingredient must retain four-cycle or comparable
+common-source information rather than only global pair/triple marginals.
+The sparse cases are sharply localized: with 23 deep pairs the graph is
+exactly \(C_5\sqcup18K_2\), while with 24 it is one of three explicit
+component types.  A rank-20 countermodel passes all aggregate
+projective-kernel and local angular inequalities for the 23-edge graph, so
+the needed continuation must use rank five across distinct components.
 
 Other active incompatible routes are:
 
@@ -38,6 +43,40 @@ Other active incompatible routes are:
    by exact reconstruction if a genuine candidate appears;
 4. a maximum-volume-basis semialgebraic reduction with explicit rational
    conditioning and a boundary-safe finite cell cover.
+
+An exact one-sided argument also gives
+\[
+A(4,1/\sqrt3)\le33,\qquad B(5)\le38.
+\]
+Consequently, every open hemisphere of a hypothetical 41-code contains at
+least three points, the origin remains in the interior of the convex hull
+after deletion of any two points, and every vertex obeys
+\(d_{\rm contact}(x)+d_{<0}(x)\ge7\) and
+\(d_{\rm contact}(x)\le d_{<0}(x)+2\).  These constraints have survived an
+independent exact audit but do not alone yield a contradiction.
+
+An independent exact \(S^3\) cap polynomial improves the frame conditioning
+of every hypothetical 41-code to
+\[
+\sum_{x\in C}xx^{\mathsf T}\succ \frac{15059}{40000}I_5.
+\]
+For its five nonzero Gram eigenvalues, if
+\(V=\sum_i(\lambda_i-41/5)^2\) and
+\(D=\sum_i(\lambda_i-41/5)^3\), the sharp rank-five constraint
+\[
+20D^2\le9V^3
+\]
+is proved exactly.  It rejects both stored high-quality pair/triple
+pseudo-witnesses, demonstrating genuine information absent from all
+three-point harmonic blocks.  A separate feasible spectral completion with
+\(D=0\), and now an exact degree-three BV/wedge pseudo-measure satisfying the
+sharp inequality with strict slack, show that spectral moments alone cannot
+finish the proof.  The latter pseudo-measure fails a simpler common
+edge-colored-graph covariance square, so the two constraints carry
+independent information.  Convexly mixing that witness with the all-degree
+three-point witness cannot repair both defects: an exact radial interpolation
+polynomial annihilates the old support and exposes a negative
+\(H_{3,9}\) direction for every positive mixture weight.
 
 The best independently generated unrestricted 41-point numerical candidate
 currently has maximum inner product \(0.5155570516153127\). A separate public
@@ -55,8 +94,8 @@ every pair Gegenbauer inequality.  The proof uses exact finite checks through
 harmonic degree 505 and rational parity-tail estimates thereafter.  It does
 not extend to four-point consistency or to a rank-five Gram matrix.
 
-The sharpest current separator is instead a four-point/common-source
-inequality.  For
+One useful four-point/common-source separator is the residual-vector square.
+For
 \[
  f(u)=u-\frac83u^2,\qquad
  r_{ij}=x_j-\langle x_i,x_j\rangle x_i,
@@ -65,11 +104,28 @@ every genuine code satisfies
 \[
  \frac1N\sum_i\left\|\sum_{j\ne i}f(g_{ij})r_{ij}\right\|^2\ge0.
 \]
-The strongest labeled 41-vertex pseudo-Gram object surviving all
+The first labeled 41-vertex pseudo-Gram object surviving all
 \(3\times3\) minors and all degree-two BV blocks violates this inequality by
 the exact amount
 \(-105027064094021/15375000000000\).  Converting this separator into a
-universal continuous-label bound remains the leading gap.
+universal continuous-label bound remains an important gap.  A second exact
+integral triple pseudo-incidence survives this residual square and all
+degree-two BV blocks, but fails an explicit degree-three radial square and
+the sharp rank-five spectral inequality.  A third exact integral
+pseudo-incidence passes every BV block through total degree three and every
+certified wedge capacity on the same support; within the BV hierarchy it
+first fails a displayed degree-four block, while the independent sharp
+rank-five spectral cut already rejects it.  A fourth assignment passes the
+degree-three and rank-five tests simultaneously but fails the exact
+color-degree covariance square
+\(\sum_v(2d_0(v)-d_1(v)+d_4(v))^2\ge
+(\sum_v(2d_0(v)-d_1(v)+d_4(v)))^2/41\).
+A fifth exact assignment repairs that covariance defect as well, passes
+individual-color graphical degree sequences and all induced three-vertex
+motif counts, and still satisfies the rank cut.  It is eliminated by the
+scalar total-degree-four block \(H_{4,4}<0\).  Thus the currently useful
+constraints are genuinely independent; the active finite-support search has
+moved to degree four plus simultaneous-color realizability.
 
 ## Theorem-strength unresolved gaps
 
@@ -93,6 +149,19 @@ universal continuous-label bound remains the leading gap.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
+- The sharp rank-five inequality eliminates the stored witnesses but can be
+  evaded by other three-point-feasible moment data; a successful rank route
+  must control the all-distinct four-cycle term in
+  \(\operatorname{tr}(G^4)\), or an equivalent common-source statistic.
+- The deep-graph cases with 23 and 24 edges are finite, but no
+  rank-five/cross-component elimination of their continuously labeled Gram
+  realizations is known.
+- In the exact-antipodal reduction for the sparse graphs, a zero-slack
+  root-system argument forces the base lines into \(D_5\) and proves a strict
+  cross-component projective-energy loss.  An effective determinant-rounding
+  proof gives the explicit gap \(1/1658880000\) and a robust
+  near-antipodal inequality, but this certified constant is far too small for
+  the remaining global margin.
 
 ## Reproducible artifacts
 
@@ -118,6 +187,34 @@ universal continuous-label bound remains the leading gap.
   [`proofs/degree2_bv_barrier.md`](proofs/degree2_bv_barrier.md)
 - Exact local links and a contact-free maximal code:
   [`proofs/local_link_geometry.md`](proofs/local_link_geometry.md)
+- Exact one-sided bound, Tukey-depth, and contact/sign consequences:
+  [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
+- Improved exact cap/frame conditioning:
+  [`proofs/improved_frame_cap_bound.md`](proofs/improved_frame_cap_bound.md)
+- Sharp rank-five spectral moment and four-/six-cycle identities:
+  [`proofs/rank_five_spectral_moment.md`](proofs/rank_five_spectral_moment.md)
+  and
+  [`proofs/rank_five_four_cycle_moments.md`](proofs/rank_five_four_cycle_moments.md)
+- Exact weighted-residual/triple-incidence barrier:
+  [`proofs/weighted_residual_barrier.md`](proofs/weighted_residual_barrier.md)
+- Exact degree-three local-hybrid barrier:
+  [`proofs/local_hybrid_degree3_barrier.md`](proofs/local_hybrid_degree3_barrier.md)
+- Exact degree-three plus rank-five barrier and its common-graph covariance
+  failure:
+  [`proofs/local_hybrid_degree3_rank_barrier.md`](proofs/local_hybrid_degree3_rank_barrier.md)
+- Strongest degree-three/rank/color-moment barrier:
+  [`proofs/local_hybrid_degree3_rank_color_barrier.md`](proofs/local_hybrid_degree3_rank_color_barrier.md)
+- Exact sparse deep-graph classification, angular bounds, and rank-20
+  countermodel:
+  [`proofs/sparse_deep_graph_stability.md`](proofs/sparse_deep_graph_stability.md)
+- Effective root-system stability bound:
+  [`proofs/quantitative_root_system_stability.md`](proofs/quantitative_root_system_stability.md)
+- Exact split quadratic-kernel countermodel:
+  [`proofs/split_kernel_abstract_barrier.md`](proofs/split_kernel_abstract_barrier.md)
+- Stronger full-entry-interval split-kernel countermodel:
+  [`proofs/split_kernel_full_interval_barrier.md`](proofs/split_kernel_full_interval_barrier.md)
+- Exact separator for the attempted all-harmonic/rank-witness mixture:
+  [`proofs/fixed41_rank_mixture_separator.md`](proofs/fixed41_rank_mixture_separator.md)
 - Exact maximum-volume semialgebraic reduction:
   [`proofs/max_volume_semialgebraic_reduction.md`](proofs/max_volume_semialgebraic_reduction.md)
 - Degree-two Tverberg constraint and exact rank-five barrier:
@@ -166,6 +263,11 @@ a second human/agent audit is still pending.
   has independence number at most 20, and has at least 23 edges.
 - Every hypothetical 41-code admits the exact compact 190-variable
   maximum-volume formulation recorded in the semialgebraic certificate.
+- Every one-sided five-dimensional kissing code has at most 38 points.
+  Hence a hypothetical 41-code has origin Tukey depth at least three and
+  remains positively spanning after any two deletions.  The exact
+  \(\mathbb Q(\sqrt3)\) LP certificate, all hemisphere boundary conventions,
+  and the derived vertex inequalities passed an independent audit.
 - The fixed-41 rational pair/triple pseudo-distribution passes all ordinary
   and Bachoc--Vallentin three-point harmonic inequalities at every degree,
   with unrestricted radial test functions.  An independent adversarial audit
@@ -175,6 +277,22 @@ a second human/agent audit is still pending.
 - Every genuine Gram source satisfies the exact residual-vector square
   inequality displayed above; its negative value on the labeled pseudo-object
   is independently recomputable in rational arithmetic.
+- Every hypothetical rank-five Gram spectrum satisfies
+  \(20D^2\le9V^3\).  The bound is sharp, including for a concrete exact
+  11-point code, and rejects both stored pair/triple witnesses by exact
+  rational margins.
+- The exact cap polynomial proves
+  \(A(4,7123/12877)\le30\), including the closed endpoint, and therefore the
+  strict frame floor \(15059/40000\).  Its coefficients and objective have
+  been independently recomputed.
+- A triangle-free 41-vertex graph with independence number at most 20 and
+  exactly 23 edges is uniquely \(C_5\sqcup18K_2\); at 24 edges exactly three
+  graph types occur.  Exact component bookkeeping and strict angular
+  boundaries are independently checked.
+- At the exact-antipodal boundary of each sparse deep graph, the vanishing of
+  every base/base and base/core projective penalty is impossible: ADE
+  classification forces a \(D_5\) root system with one fewer unused oriented
+  root slot than the core requires.
 
 ## Failed or rejected claims
 
@@ -205,3 +323,19 @@ a second human/agent audit is still pending.
   degree, or eventually becomes infeasible at high harmonic degree”:
   **refuted** for the complete formulation used here by the all-degree exact
   rational pseudo-distribution.
+- “The displayed rank-five spectral inequalities alone exclude all feasible
+  fixed-41 pair/triple moments”: **refuted** by a feasible small-variance
+  five-eigenvalue completion with \(D=0\); actual four-point linkage is still
+  required.
+- “The quadratic-kernel sign, rank, trace, and both split Ky Fan constraints
+  imply \(N\le40\)”: **refuted** by an exact 41-row split-feature
+  counterexample.  It fails precisely the common-source entry range.
+- “Adding the full genuine off-diagonal interval for the split quadratic
+  kernel makes those abstract constraints sufficient”: **refuted** by an
+  exact cyclic Fourier 41-row counterexample with a strict \(1/2000\) interval
+  buffer.  It still violates the original kissing inequality on the linear
+  factor and the nonlinear common-source factor identity.
+- “Aggregate projective-kernel positivity and every local deep-component
+  inequality force at least 24 deep pairs”: **refuted** by an exact rank-20
+  code with deep graph \(C_5\sqcup18K_2\).  Rank five and cross-component
+  compatibility are indispensable.

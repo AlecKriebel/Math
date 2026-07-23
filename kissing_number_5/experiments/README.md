@@ -29,3 +29,12 @@ Gaussian starts, perturbed public benchmarks, higher-root projections, and
 round-2 warm starts.  It stores complete coordinates, histories, active
 graphs, spectra, seeds, software versions, and hashes.  Every maximum remained
 strictly above \(1/2\); the directory is numerical evidence only.
+
+`search_local_hybrid_degree3.py` is the discovery-only MILP/separation search
+that produced the independently verified degree-three triple
+pseudo-distribution.  Its solver status is not used by the certificate.
+
+`search_local_deep_energy.py` explores inexpensive scalar relaxations of the
+deep-edge row energy with deterministic seeds.  Its SLSQP outputs are
+numerical diagnostics only; the exact envelopes used in proofs are derived
+and verified separately.

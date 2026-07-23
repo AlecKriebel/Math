@@ -89,6 +89,19 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   rational even/odd limiting matrices and perturbation bounds cover the
   infinite tail.  Thus the complete fixed-cardinality pair/triple formulation
   used here is rigorously feasible at \(N=41\).
+- **Rank-aware separation:** The sharp five-eigenvalue inequality
+  \(20D^2\le9V^3\) rejects the stored all-degree witness exactly.  A second
+  integral triple incidence passes all total-degree-two blocks and the first
+  residual-vector square, but fails both this rank inequality and an explicit
+  total-degree-three radial square.  Numerical reoptimization indicates that
+  the three-point cone can move to \(D=0\), so the separator is not by itself
+  an infeasibility certificate.
+- **Convex-mixture audit:** The direct segment joining C039 to the
+  degree-three/rank-feasible witness cannot satisfy both families.  A
+  degree-six radial interpolation polynomial annihilates the complete C039
+  support and gives a strictly negative \(H_{3,9}\) form on every positive
+  mixture.  This rules out that synthesis only, not other union-support
+  reoptimizations.
 - **Unresolved:** Add genuinely four-point/common-source or rank-five
   information.  Raising only harmonic or radial degree in this formulation
   cannot work against the certified witness.
@@ -119,11 +132,28 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \sum_{i=1}^5\lambda_i(R)\geq N/2,\qquad
   \sum_{i=1}^{14}\lambda_i(R)\geq4N/5.
   \]
-- **Unresolved:** Convert the large nullspace plus entry inequalities into a
-  contradiction without assuming a contact pattern.  Identify additional
-  dimension-five information not captured by the generic sign/rank statement.
+- **Spectral moment cone:** For the five padded eigenvalues, the centered
+  moments satisfy the sharp exact inequality
+  \(20D^2\le9V^3\).  The centered fourth moment obeys
+  \(7V^2/30\le C_4\le13V^2/20\), the moment Hankel determinant gives
+  \(5VC_4\ge5D^2+V^3\), and Newton's identity eliminates the sixth moment:
+  \[
+  C_6=-V^3/8+3VC_4/4+D^2/3.
+  \]
+  The four-cycle expansion of \(\operatorname{tr}(G^4)\) has also been
+  derived exactly; all terms are pair/triple moments except the all-distinct
+  four-cycle statistic.
+- **Unresolved:** Bound the all-distinct four-cycle statistic jointly with its
+  overlapping triples, or convert the large nullspace plus entry inequalities
+  into a contradiction without assuming a contact pattern.  Pure abstract
+  spectral completion is insufficient once \(D=0\).
 - **Artifacts:** `proofs/rank_kernel_barriers.md`;
+  `proofs/split_kernel_abstract_barrier.md`;
+  `proofs/split_kernel_full_interval_barrier.md`;
+  `proofs/rank_five_spectral_moment.md`;
+  `proofs/rank_five_four_cycle_moments.md`;
   `verifiers/verify_rank_kernel_barriers.py`;
+  `verifiers/verify_rank_five_spectral_moment.py`;
   `tests/test_rank_kernel_barriers.py`.
 - **Known counterexamples:** Dropping rank admits irrelevant correlation
   matrices and cannot establish the geometric claim.  The normalized \(D_6\)
@@ -134,6 +164,18 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   principal example with the same signs and one negative eigenvalue; it even
   admits the same fixed-coefficient PSD-minus-\(3J/10\) decomposition.  The
   common rank-five Gram source and Hadamard-square identity are essential.
+- **Split-spectrum barrier:** An exact 41-row construction over
+  \(\mathbb Q(\sqrt2)\) has separate PSD factors of ranks 5 and 14 with the
+  correct diagonals and traces, satisfies the quadratic-kernel sign condition
+  and both Ky Fan bounds, but violates the genuine common-source entry range.
+  The full interval provably prevents this same extension while retaining the
+  old \(D_5\) factors.  Thus split spectrum alone is certified insufficient.
+- **Full-interval barrier:** A stronger cyclic Fourier construction satisfies
+  the entire genuine off-diagonal interval for \(R\) and \(K\), with a strict
+  rationally certified buffer, while retaining all split ranks, diagonals,
+  traces, signs, inertia, and Ky Fan constraints.  It fails the original
+  kissing inequality on \(G=2A\) and the nonlinear identity
+  \(B=G\circ G-J/5\).  These common-source conditions are indispensable.
 - **Tverberg consequence:** Applying affine Tverberg to
   \(\Phi(x)=(x,xx^T-I/5)\in\mathbb R^{19}\) at the exact threshold 41 forces
   three disjoint measures with identical first and second moments.  Exact
@@ -154,14 +196,34 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   inner product \(<-1/2\) in a hypothetical 41-code, every independent set
   has size at most 20 (otherwise antipodalization gives 42 points), the graph
   is triangle-free, and it has at least 23 edges.
+- **Sparse classification:** At exactly 23 edges the graph is uniquely
+  \(C_5\sqcup18K_2\).  At 24 edges it is one of
+  \(C_7\sqcup17K_2\), a \(C_5\) with a pendant length-two path plus
+  \(17K_2\), or \(C_5\sqcup P_4\sqcup16K_2\).  Incident antipodal
+  deviations sum to at least \(\pi/3\), and every odd deep cycle has total
+  deviation at least \(\pi\).
 - **Unresolved:** A contact lower bound or stress certificate valid for every
   maximum 41-point code, including flexible and degenerate cases; or a
   rank/geometric contradiction from the deep-pair graph.
 - **Artifacts:** `proofs/local_link_geometry.md`;
-  `proofs/negative_tail_graph.md`.
+  `proofs/negative_tail_graph.md`;
+  `proofs/sparse_deep_graph_stability.md`.
 - **Known counterexamples:** The exact 26-point code in the local-link note is
   inclusion-maximal with an empty contact graph.  Thus maximality does not
-  imply contacts, positive contact degree, or contact rigidity.
+  imply contacts, positive contact degree, or contact rigidity.  Separately,
+  an exact rank-20 code with deep graph \(C_5\sqcup18K_2\) passes the
+  aggregate degree-four projective kernel and every subset inequality, so
+  sparse graph/local component information needs rank-five cross-component
+  input.
+- **Exact-antipodal obstruction:** With 16--18 collapsed base lines, zero
+  base/base and base/core projective penalty would generate a simply-laced
+  rank-five root system with at least 32 roots, hence \(D_5\).  The remaining
+  root lines accommodate one fewer oriented core point than required.
+  Therefore the cross loss is strictly negative.  For 18 base lines,
+  \(D_5\) minus any two root lines is also proved projectively saturated.
+  Determinant rounding makes the gap explicit as
+  \(1/1658880000\) and gives a robust near-antipodal inequality, but this
+  certified constant is far too small for the full argument.
 - **Restrictions:** Potentially severe; every use must be audited.
 - **Status:** active.
 
@@ -175,13 +237,33 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \(A(5-k,1/(k+2))\).  This gives link bounds \(15,7,4,2,0\).  A separate
   four-dimensional LP certificate proves \(A(4,9/16)\leq32\), yielding the
   strict frame inequality \(S\succ(9/25)I\) for every hypothetical 41-code.
+  A stronger exact degree-11 certificate proves
+  \(A(4,7123/12877)\le30\), and a closed-slab projection improves this to
+  \[
+  S\succ(15059/40000)I.
+  \]
+- **One-sided strengthening:** An exact degree-11
+  \(\mathbb Q(\sqrt3)\) polynomial proves
+  \(A(4,1/\sqrt3)\le33\).  Equatorial projection and boundary-safe cap
+  reflection, together with the rigorous baseline \(\tau(5)\le44\), give
+  \(B(5)\le38\).  Thus every open origin hemisphere of a hypothetical
+  41-code contains at least three points; deletion of any two points leaves
+  the origin in the convex-hull interior.  Directionally,
+  \(\max(0,8-r(u))\le b(u)\le r(u)+3\), and at a code vertex
+  \(d(x)+r(x)\ge7,\ d(x)\le r(x)+2\).
 - **Unresolved:** A global averaging or compatibility inequality that excludes
   total size 41.
 - **Artifacts:** `proofs/local_link_geometry.md`;
-  `verifiers/verify_local_links.py`;
+  `verifiers/verify_local_links.py`; `proofs/one_sided_tukey_bound.md`;
+  `verifiers/verify_one_sided_tukey.py`;
+  `proofs/improved_frame_cap_bound.md`;
+  `verifiers/verify_improved_frame_cap_bound.py`;
   `proofs/max_volume_semialgebraic_reduction.md`.
 - **Known counterexamples:** Averaging a weak isolated cap bound is insufficient.
 - **Restrictions:** Case assumptions must cover boundary contacts exactly.
+- **Audit:** The one-sided polynomial, projection square, reflection
+  self-pair, open/closed conventions, integer optimization, and all convex
+  consequences were independently recomputed with no mathematical objection.
 - **Status:** active.
 
 ## G. Semialgebraic exhaustive proof
@@ -252,8 +334,39 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   by an exact negative rational amount.  Its failure is dominated by 1,056
   explicitly counted deep--middle colored wedges.  This supplies a concrete
   four-point/common-source target, but not yet a continuous-label exclusion.
+- **Stronger barrier:** A second exact integral triple pseudo-incidence
+  retains the same pair data, all triangle determinants, all BV blocks
+  through total degree two, Pfender/deep-wedge patterns, and the displayed
+  residual square.  It fails a specific degree-three radial square and the
+  sharp rank-five spectral inequality.  This pinpoints the next target as
+  simultaneous degree-three, realizability, and rank consistency.
+- **Degree-three barrier:** A third exact integral pseudo-incidence passes
+  every fixed-\(N\) BV block through total degree three and all certified
+  wedge event cells, including the tight mixed capacities.  Its first pure
+  BV failure is an explicit total-degree-four direction, and the independent
+  rank-five spectral cut also rejects it.
+- **Degree-three plus rank barrier:** A fourth assignment passes total
+  degree three, all wedge cells, and the sharp rank-five spectral inequality
+  with strict slack.  It fails an exact common-graph color-degree covariance
+  square by \(-570/41\).  This supplies a new inexpensive realizability block
+  for the next search and proves that the rank and graph-incidence cuts are
+  independent on the stored assignments.
+- **Degree-three/rank/color barrier:** A fifth assignment repairs the full
+  color-degree covariance matrix, has explicit Erdős--Gallai graphical
+  sequences for every color, and nonnegative induced same-color
+  three-vertex motif counts.  It passes degree three, all wedge cells, and
+  C047, but fails the scalar degree-four block \(H_{4,4}\).  No simultaneous
+  five-color graph is claimed.
 - **Artifacts:** also `proofs/degree2_bv_barrier.md`,
-  `verifiers/verify_degree2_bv_barrier.py`.
+  `verifiers/verify_degree2_bv_barrier.py`;
+  `proofs/weighted_residual_barrier.md`,
+  `verifiers/verify_weighted_residual_barrier.py`;
+  `proofs/local_hybrid_degree3_barrier.md`,
+  `verifiers/verify_local_hybrid_degree3.py`;
+  `proofs/local_hybrid_degree3_rank_barrier.md`,
+  `verifiers/verify_local_hybrid_degree3_rank.py`;
+  `proofs/local_hybrid_degree3_rank_color_barrier.md`,
+  `verifiers/verify_local_hybrid_degree3_rank_color.py`.
 - **Restrictions:** None intended.
 - **Status:** active.
 

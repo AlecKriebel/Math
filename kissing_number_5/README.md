@@ -41,6 +41,63 @@ Both commands use only the Python standard library and exact integer
 arithmetic.  The stored integer vector \(r\) denotes the unit vector
 \(r/\sqrt2\).
 
+## Reproduce the certified one-sided bound
+
+The proof [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
+establishes \(A(4,1/\sqrt3)\leq33\), \(B(5)\leq38\), and the resulting
+origin-depth constraints for any hypothetical 41-point code.  Its exact
+\(\mathbb Q(\sqrt3)\) data are stored in
+[`certificates/one_sided_tukey_bound.json`](certificates/one_sided_tukey_bound.json)
+and checked by
+[`verifiers/verify_one_sided_tukey.py`](verifiers/verify_one_sided_tukey.py).
+
+From this directory:
+
+```sh
+python3 verifiers/verify_one_sided_tukey.py
+python3 -m unittest tests.test_one_sided_tukey -v
+```
+
+## Reproduce the rank and frame certificates
+
+The exact cap certificate in
+[`proofs/improved_frame_cap_bound.md`](proofs/improved_frame_cap_bound.md)
+proves \(A(4,7123/12877)\le30\) and the strict frame floor
+\((15059/40000)I_5\).  The notes
+[`proofs/rank_five_spectral_moment.md`](proofs/rank_five_spectral_moment.md)
+and
+[`proofs/rank_five_four_cycle_moments.md`](proofs/rank_five_four_cycle_moments.md)
+give sharp rank-five spectral constraints and exact cycle expansions.  These
+are necessary conditions and witness separators, not a 41-point exclusion.
+
+From this directory:
+
+```sh
+python3 verifiers/verify_improved_frame_cap_bound.py
+python3 verifiers/verify_rank_five_spectral_moment.py
+python3 verifiers/verify_weighted_residual_barrier.py
+python3 verifiers/verify_local_hybrid_degree3.py
+python3 verifiers/verify_local_hybrid_degree3_rank.py
+python3 verifiers/verify_local_hybrid_degree3_rank_color.py
+python3 verifiers/verify_fixed41_rank_mixture_separator.py
+python3 verifiers/verify_sparse_deep_graph_stability.py
+python3 verifiers/verify_quantitative_root_system_stability.py
+python3 verifiers/verify_split_kernel_abstract.py
+python3 verifiers/verify_split_kernel_full_interval.py
+python3 -m unittest \
+  tests.test_improved_frame_cap_bound \
+  tests.test_rank_five_spectral_moment \
+  tests.test_weighted_residual_barrier \
+  tests.test_local_hybrid_degree3 \
+  tests.test_local_hybrid_degree3_rank \
+  tests.test_local_hybrid_degree3_rank_color \
+  tests.test_fixed41_rank_mixture_separator \
+  tests.test_sparse_deep_graph_stability \
+  tests.test_quantitative_root_system_stability \
+  tests.test_split_kernel_abstract \
+  tests.test_split_kernel_full_interval -v
+```
+
 ## Layout
 
 - `STATUS.md`: live theorem-level status and bottlenecks.
