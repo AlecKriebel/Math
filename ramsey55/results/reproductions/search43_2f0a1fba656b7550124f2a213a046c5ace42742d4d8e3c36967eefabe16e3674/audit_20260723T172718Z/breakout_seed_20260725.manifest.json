@@ -1,0 +1,70 @@
+{
+  "schema": "ramsey55.search_reproduction_run.v1",
+  "run_id": "breakout_seed_20260725",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "source_environment_manifest": "environment.json",
+  "source_sha256": "2f0a1fba656b7550124f2a213a046c5ace42742d4d8e3c36967eefabe16e3674",
+  "historical_configuration_source": "results/experiments.csv row 4",
+  "historical_output": "results/best_candidates/breakout_seed_20260725.g6",
+  "seed_artifact": {
+    "path": "results/best_candidates/exoo_seed_20260724.g6",
+    "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a"
+  },
+  "argv": [
+    "build/search43-src-2f0a1fba",
+    "--n", "43",
+    "--seed", "20260725",
+    "--steps", "50000",
+    "--restarts", "4",
+    "--tabu", "17",
+    "--random-walk", "0.01",
+    "--breakout-interval", "250",
+    "--initial-perturbation", "8",
+    "--seed-graph", "results/best_candidates/exoo_seed_20260724.g6",
+    "--output", "results/reproductions/search43_2f0a1fba656b7550124f2a213a046c5ace42742d4d8e3c36967eefabe16e3674/audit_20260723T172718Z/graphs/breakout_seed_20260725.g6"
+  ],
+  "process_exit_code": 0,
+  "stdout_json": "breakout_seed_20260725.stdout.json",
+  "stderr": {
+    "machine_readable": false,
+    "observed": "9 strict global-best progress messages"
+  },
+  "artifact": {
+    "path": "graphs/breakout_seed_20260725.g6",
+    "bytes": 153,
+    "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+    "historical_sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+    "byte_identical_to_historical": true
+  },
+  "verification": {
+    "expected_search_validity": false,
+    "python": {
+      "argv": ["python3", "verify/exhaustive_verify.py", "results/reproductions/search43_2f0a1fba656b7550124f2a213a046c5ace42742d4d8e3c36967eefabe16e3674/audit_20260723T172718Z/graphs/breakout_seed_20260725.g6", "--k", "5"],
+      "process_exit_code": 1,
+      "result": {
+        "verifier": "python_exhaustive_k_subset_pairs_v1",
+        "n": 43,
+        "k": 5,
+        "edge_count": 454,
+        "clique_count": 0,
+        "independent_count": 2,
+        "objective": 2,
+        "valid": false
+      }
+    },
+    "cpp": {
+      "argv": ["build/bitset_verify", "results/reproductions/search43_2f0a1fba656b7550124f2a213a046c5ace42742d4d8e3c36967eefabe16e3674/audit_20260723T172718Z/graphs/breakout_seed_20260725.g6", "--k", "5"],
+      "process_exit_code": 1,
+      "result": {
+        "verifier": "cpp_recursive_bitset_clique_v1",
+        "n": 43,
+        "k": 5,
+        "edge_count": 454,
+        "clique_k_found": false,
+        "independent_k_found": true,
+        "valid": false
+      }
+    },
+    "note": "Exit code 1 is the documented verifier result for an invalid candidate, not a checker failure."
+  }
+}
