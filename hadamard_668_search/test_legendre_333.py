@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import json
 from math import gcd
+from pathlib import Path
+import tempfile
 import unittest
 
 from ortools.sat.python import cp_model
@@ -23,11 +26,13 @@ from legendre_333 import (
     verify_legendre_pair,
     xor_distance,
 )
+from legendre_333_profile_catalog import ROW_SUM_PROFILES
 from search_legendre_333_cp_sat import (
     MONOCHROMATIC_TRIPLE_ROWS,
     MOD3_COMPRESSION_TUPLES,
     add_cycle_parity_constraints,
     add_lexicographic_greater_or_equal,
+    add_fixed_mod9_profile,
     add_mod111_compression_equations,
     add_xor_difference,
     build_model,
@@ -35,6 +40,7 @@ from search_legendre_333_cp_sat import (
     cyclic_shift_cycles,
     fixed_compression_distance_bounds,
     generate_mod3_compression_tuples,
+    load_search_hint,
     raw_column_distance_bounds,
 )
 from verify_legendre_333 import deterministic_margin_sequence
@@ -374,6 +380,77 @@ class LegendreCpSatTests(unittest.TestCase):
         self.assertEqual(full_model.validate(), "")
         self.assertIn("#kIntProd: 12'300", full_model.model_stats())
         self.assertIn("#kTable: 223", full_model.model_stats())
+
+        profile_model, _, _ = build_model(
+            symmetry="none", last_lag=2, mod9_profile=6
+        )
+        self.assertEqual(profile_model.validate(), "")
+        profile_stats = profile_model.model_stats()
+        self.assertIn("#kBoolXor: 1'332", profile_stats)
+        self.assertNotIn("#kIntProd", profile_stats)
+        self.assertNotIn("#kTable", profile_stats)
+
+    def test_fixed_mod9_profile_cardinalities_are_exact(self) -> None:
+        model = cp_model.CpModel()
+        a = [model.new_bool_var(f"a_{index}") for index in range(N)]
+        b = [model.new_bool_var(f"b_{index}") for index in range(N)]
+        add_fixed_mod9_profile(model, a, b, 6)
+        solver = cp_model.CpSolver()
+        solver.parameters.num_search_workers = 1
+        self.assertIn(solver.solve(model), (cp_model.FEASIBLE, cp_model.OPTIMAL))
+        for variables, expected in zip(
+            (a, b), ROW_SUM_PROFILES[6], strict=True
+        ):
+            actual = tuple(
+                2 * sum(solver.value(variables[index]) for index in range(row, N, 9))
+                - 37
+                for row in range(9)
+            )
+            self.assertEqual(actual, expected)
+
+        with self.assertRaisesRegex(ValueError, "requires --symmetry none"):
+            build_model(symmetry="anchor", last_lag=1, mod9_profile=6)
+        bad_hint = (
+            deterministic_margin_sequence(FIXED_PLUS_COUNTS_A),
+            deterministic_margin_sequence(FIXED_PLUS_COUNTS_B),
+        )
+        with self.assertRaisesRegex(ValueError, "selected fixed mod9 profile"):
+            build_model(
+                symmetry="none", last_lag=1, mod9_profile=6, hint=bad_hint
+            )
+
+    def test_profile_checkpoint_hint_is_strictly_audited(self) -> None:
+        fixture = (
+            Path(__file__).resolve().parent
+            / "output"
+            / "legendre_333_profile6_local_60s.json"
+        )
+        a, b = load_search_hint(fixture)
+        self.assertEqual(len(a), N)
+        self.assertEqual(len(b), N)
+        model, _, _ = build_model(
+            symmetry="none", last_lag=1, mod9_profile=6, hint=(a, b)
+        )
+        hinted = tuple(model.proto.solution_hint.vars)
+        self.assertEqual(len(hinted), 2 * N)
+        self.assertEqual(len(set(hinted)), 2 * N)
+        payload = json.loads(fixture.read_text())
+        with tempfile.TemporaryDirectory() as directory:
+            tampered = Path(directory) / "hint.json"
+            for schema in (None, "unsupported.profile.checkpoint.v2"):
+                changed = dict(payload)
+                if schema is None:
+                    changed.pop("schema")
+                else:
+                    changed["schema"] = schema
+                tampered.write_text(json.dumps(changed), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "schema"):
+                    load_search_hint(tampered)
+            changed = dict(payload)
+            changed["energy_half_paf"] += 1
+            tampered.write_text(json.dumps(changed), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "energy_half_paf"):
+                load_search_hint(tampered)
 
     def test_bad_fixture_is_rejected_by_diagnostic_model(self) -> None:
         a = deterministic_margin_sequence(FIXED_PLUS_COUNTS_A)

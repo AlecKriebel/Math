@@ -58,13 +58,18 @@
 - Even/odd decimation then maps every hypothetical exact fixed-q repair to
   `(E;B;O;P) in BS(42,41)`, where `E` is skew and `O` is symmetric.  This is
   exactly a Turyn sequence in `TU(41)`.
-- The standard Turyn necessary condition rules out `TU(41)` because
-  `2*41+1=83` is not a sum of two squares.  The published exhaustive
-  classification through long length 42 independently gives the same result.
+- Edmondson, Seberry, and Anderson's published exhaustive classification of
+  Turyn sequences below long length 43 contains no sequence of long length 42,
+  excluding `TU(41)`.
 - Added `FIXED_Q_OBSTRUCTION.md` and a pure-Python checker which verifies the
   fixed-q edge structure, product telescope, forced reversal signs, symbolic
-  decimation identity, and the two-squares arithmetic.  The only imported
-  fact is the cited Turyn necessary-condition theorem.
+  decimation identity.  The only imported nonexistence fact is the cited
+  exhaustive Turyn classification.
+- A subsequent priority audit removed an invalid shortcut that had applied a
+  `2n+1` two-squares statement at odd `n=41`.  The correct zero-lag identity is
+  `C^2+D^2=162`, and `162=9^2+9^2`, so that shortcut supplies no obstruction.
+  The fixed-q reduction remains valid, and its final contradiction now rests
+  solely on the exhaustive classification.
 - Consequence: further SAT or local search with Eliahou's exact `q` is wasted
   computation.  This closes only that subfamily; it does not settle order 668.
 
@@ -585,3 +590,148 @@
   with zero swaps.  The mixed result still covers at most one guided window
   per sequence, not arbitrary cyclic SDS quadruples or multiple windows in a
   single sequence.
+
+## 22 July 2026: exact modulo-9 Legendre profile fibers
+
+- Derived the exact row-compression equations.  For row sums `alpha,beta`,
+  the shifted vectors `z=(alpha-1)/2`, `w=(beta-1)/2` have sums `-4`, combined
+  squared norm 152, and combined cyclic correlations `-15` at lags 1 through
+  4.  Equivalently the row sums have combined PAF
+  `(594,-74,...,-74)`.  Every such profile is automatically Gale--Ryser
+  compatible with the fixed 37 column margins.
+- Catalogued an initial 12 exact, pairwise orbit-distinct sampled profiles
+  under the 1,944-element compressed symmetry.  The catalog at that stage was
+  deliberately not called exhaustive.  Added a single-threaded C++ fiber
+  engine whose `2 x 2` CRT
+  checkerboard switches preserve all 18 row and 74 column margins.  Exact
+  delta/full-recompute self-tests cover all profiles and compound A/B moves.
+- Added a reproducible 18-variable exact profile sampler.  It canonicalizes
+  every output orbit, streams atomic JSON with explicit non-certificate flags,
+  and defaults to one worker with a 128 MiB solver cap.  Its smoke test used
+  93.2 MB whole-process RSS and zero swap.
+- Partitioned the exact outer model by the invariant centered norm
+  `max(sum(z_i^2),sum(w_i^2))`.  The 37 even shards from 76 through 148 are
+  disjoint and exhaustive.  Sequential 1.5-second screens of the 25 shards
+  absent from the original catalog found four new orbit classes, at norms 82,
+  116, 130, and 134; the other 21 runs were `UNKNOWN`, not infeasible.  A
+  second three-second pass over five balanced missing shards found a fifth
+  class at norm 86, while norms 76, 84, 92, and 94 stayed `UNKNOWN`.  The
+  catalog and fixed-memory engine then validated 17 profiles.
+- Ten-second local screens of new profiles 12 through 16 reached energies
+  2528, 2400, 2488, 2560, and 2480.  Deepening profile 13 for 60 seconds reached
+  E2344 with 133 bad lags, maximum raw residual 20, and L1 residual 984.  A
+  complete engine scan of its single, cross-pair, disjoint-pair, and six-cycle
+  neighborhoods found no improvement.  The generalized independent verifier
+  confirms all 17,676,364 unique states in that radius-two ball have energy at
+  least 2344; it used 72.6 MB RSS and zero swap.  The searches used at most
+  2.12 MB RSS; profile 6 at E2320 was the catalog incumbent at that stage.
+- A separate 60-second profile-1 depth run evaluated 219,985,355 proposals
+  and retained E2360.  Its complete engine radius-two polish also found no
+  improvement.  The disposable checkpoint passed strict replay; this bounded
+  result does not justify retaining another near-miss artifact.
+- A 60-second profile-4 depth run evaluated 221,282,503 proposals and improved
+  the global catalog incumbent from E2320 to E2280, with 120 bad lags, maximum
+  raw residual 20, and L1 residual 928.  Complete single, cross-pair,
+  disjoint-pair, and six-cycle polish found no descent.  The independent
+  verifier enumerated all 17,801,598 unique radius-two states and confirmed no
+  lower energy.  The search used 2.12 MB RSS and the independent audit 73.0
+  MB; both used zero swap.  E2280 remains nonexact and is not an H(668).
+- Completed the larger exact mixed neighborhood at the profile-4 E2280
+  incumbent.  Pairing every legal alternating six-cycle in either sequence
+  with every legal checkerboard switch in the other gives 749,359,042
+  possible pair distances.  The exact bounding-box search evaluated
+  486,717,630 point distances after safe pruning and found no descent.  The
+  complete pass took 285.28 seconds at 8.52 MB RSS with zero swap; strict
+  replay confirms that its center is unchanged and nonexact.  This is only a
+  finite local theorem, not a profile-fiber or Legendre-pair impossibility.
+- Four-second sequential screens used about 2 MB RSS and zero swap.  Profile
+  6 led at half-PAF energy 2352; a 60-second run improved it to 2320 with 135
+  bad lags, maximum raw PAF residual 20, and L1 residual 976.  The strict
+  verifier recomputes all correlations, compression lifts, margins, and
+  redundant count metadata, then explicitly reports `NOT H(668)`.
+- Exhaustively rescored the profile-6 one-switch neighborhood: 2,939 legal A
+  switches and 3,053 legal B switches.  None ties or improves the incumbent;
+  the least uphill move reaches energy 2400.  This is a finite local result,
+  not a bound on the whole fiber.  A fixed-memory exact polish then scored the
+  complete A-by-B two-switch neighborhood of 8,972,767 states and found no
+  improvement.  The same run scored 4,109,262 disjoint A-switch pairs and
+  4,438,151 disjoint B-switch pairs, again with no improvement.  The combined
+  replay also scored 120,553 valid A and 126,980 valid B alternating
+  six-cycles.  It took 1.38 seconds at 4.42 MB RSS with zero swap; the output
+  signs are byte-identical to the independently verified E2320 checkpoint.
+- Added an independent collision-free radius-two verifier.  It classifies
+  every overlap of two same-sequence switches, combinadically deduplicates
+  their resulting eight-cell supports, and directly recomputes all residual
+  energies.  The complete product switch-graph ball contains 17,661,680
+  unique states including the center.  None has energy below 2320.  The
+  independent replay took 0.92 seconds at 72.4 MB RSS with zero swap.  This is
+  a finite local theorem only, not a global lower bound for the fiber.
+- A 60-second incumbent continuation with a 5% coordinated A/B proposal
+  mixture evaluated 213,783,033 exact moves over 855 restart basins.  It
+  retained E2320 unchanged, used 2.44 MB peak RSS and zero swap, and passed
+  strict replay.  This is a bounded heuristic result only.
+- Added an exact CP-SAT profile option.  Fixing one catalog entry replaces the
+  generic modulo-3 table and 90 nonlinear products with 18 row cardinalities;
+  `--symmetry none` is required because row symmetries change the chosen
+  orientation.  Profile-checkpoint hints now pass the strict verifier and can
+  request CP-SAT hint repair without fixing any sign.
+- The full profile-6 model has 111,554 variables and 110,556 Boolean XORs.
+  A 15-second one-worker pilot returned `UNKNOWN` after 493,894 branches and
+  155 conflicts.  Model construction peaked at 254 MB; the solve peaked at
+  703 MB total RSS with zero swap even under a 320 MiB solver limit, confirming
+  that the solver cap does not account for all process memory.
+- A second 10-second profile-6 run enabled repaired-hint search with a tighter
+  128 MiB solver limit.  It returned `UNKNOWN` after 222,444 branches and no
+  conflicts, emitted no candidate, and nevertheless reached 931 MB total RSS
+  with zero swap.  Hint repair and presolve storage are not bounded by the
+  internal limit, so this full-model experiment is not being enlarged on the
+  current 16 GiB host.
+- Added exact model-level exclusion of every oriented image of already
+  catalogued compressed profiles.  A constructive subgroup symmetry chooses
+  independent dihedral maxima and orders the two vectors, reducing each
+  1,944-element orbit by a sound 648-element subgroup while leaving the common
+  multiplier for output canonicalization.  Independent tests prove that every
+  full orbit retains a representative and that each exclusion table is exactly
+  the selected catalog-orbit union.
+- The improved outer sampler found four more orbit-distinct profiles: profile
+  17 in centered-norm shard 82, profile 18 in shard 102, profile 19 in shard
+  108, and profile 20 in shard 130.  The catalog and both engines now validate
+  21 exact compressed profiles.  Their ten-second fixed-margin screens reached
+  E2480, E2544, E2336, and E2408 respectively; none is exact.
+- A 60-second continuation from profile 19 evaluated 214,957,700 proposals and
+  retained E2336 with 133 bad lags.  Complete cross-pair, same-sequence-pair,
+  six-cycle, and connected-eight-cycle engine scans found no descent.  The
+  independent radius-two verifier enumerated 17,708,876 states including the
+  center and found none below 2336.  The independent eight-cycle replay
+  covered 9,526,800 moves and found exact minimum 2448.
+- Added an exact connected alternating-eight-cycle polish.  At the profile-4
+  E2280 incumbent the engine evaluates 9,549,173 legal cycles in fixed memory
+  and finds no descent.  A structurally independent DFS verifier finds exact
+  minimum 2568 with multiplicity two and replays its witness with every margin
+  unchanged.  Independent exhaustive `4 x 4` tests prove that the canonical
+  generator equals all 72 connected two-regular supports and that its sign
+  buckets cover all 65,536 signings.
+- Replaced reliance on the mixed-neighborhood KD-tree claim with a direct
+  independent verifier.  It evaluates all 749,359,042 cycle/opposite-checker
+  states, finds unique minimum 2408, and reports no state tying or improving
+  the E2280 center.  The full replay took 8.51 seconds at 4.03 MB RSS with zero
+  swap.  This remains a finite local theorem, not a profile-fiber lower bound.
+
+## 22 July 2026: milestone freeze and priority audit
+
+- Added `RESUME.md` with authoritative checkpoints, hashes, low-memory restart
+  commands, and an explicit full-matrix finish line.
+- Re-ran the complete 116-test Python suite, strict replay of every retained
+  Legendre checkpoint, the independent radius-two/mixed/eight-cycle
+  verifiers, seed and obstruction checkers, and the radius-16/17/18 frontier
+  artifact checkers.  Release builds were warning-clean and stayed well below
+  the 16 GiB host limit.
+- Corrected the exposition of the fixed-`q` theorem.  The parity telescope and
+  reduction to `TU(41)` remain valid, but a previously stated odd-`n`
+  two-squares shortcut does not: `162=9^2+9^2`.  Emptiness of `TU(41)` rests
+  on the exhaustive 1994 classification by Edmondson, Seberry, and Anderson.
+- The provisional audit in `PRIORITY_AUDIT.md` ranks the raw-radius-18 seed
+  exclusion as the strongest likely-new result, with the fixed-`q` reduction
+  as a useful theorem component.  It also records the main prepublication
+  gap: CP-SAT `INFEASIBLE` records are reproducible solver results, not
+  independently replayable proof transcripts.

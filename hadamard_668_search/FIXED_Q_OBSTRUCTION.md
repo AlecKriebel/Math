@@ -99,28 +99,28 @@ element of `TU(41)`.
 
 ## 3. TU(41) is empty
 
-Đoković records the standard necessary condition: if `n` is odd and
-`2n+1` is not a sum of two squares, then both `TU(n)` and `TU(n+1)` are
-empty.  Here
+Edmondson, Seberry, and Anderson exhaustively classified Turyn sequences of
+long length below 43.  Their classification contains no sequence of long
+length 42, so `TU(41)` is empty.
 
-```text
-2*41+1 = 83,
-```
-
-and 83, a prime congruent to 3 modulo 4, is not a sum of two integer squares.
-Hence `TU(41)` is empty.  Independently, Edmondson, Seberry, and Anderson's
-exhaustive enumeration through long length 42 found Turyn sequences only at
-long lengths `2,...,8,13,15`, again excluding `TU(41)`.
+An earlier version of this note also invoked a claimed `2n+1` sum-of-two-
+squares obstruction at odd `n=41`.  That argument is invalid here: the
+zero-lag row-sum identity for `BS(42,41)` is
+`C^2+D^2=4*41-2=162`, which is represented by `9^2+9^2`.  The fixed-q
+conclusion therefore rests on the published exhaustive classification, not on
+the fact that 83 is not a sum of two squares.
 
 Sources:
 
-- Dragomir Ž. Đoković, [Classification of Turyn
+- Dragomir Ž. Đoković, [Aperiodic complementary quadruples of binary
   sequences](https://combinatorialpress.com/article/jcmcc/Volume%20027/vol-27-paper%201.pdf),
-  *J. Combin. Math. Combin. Comput.* 27 (1998), Sections 10-11, pp. 14-15.
+  *J. Combin. Math. Combin. Comput.* 27 (1998), 3-31.  This is used for
+  definitions and context, not for the final nonexistence step.
 - G. M. Edmondson, Jennifer Seberry, and M. R. Anderson,
-  [Turyn sequences of length less than
+  [On the existence of Turyn sequences of length less than
   43](https://documents.uow.edu.au/~jennie/WEBPDF/1994_03.pdf),
-  *J. Statist. Plann. Inference* 40 (1994), Results 3.2.2, p. 358.
+  *Mathematics of Computation* 62 (1994), 351-362,
+  [doi:10.1090/S0025-5718-1994-1203733-8](https://doi.org/10.1090/S0025-5718-1994-1203733-8).
 
 ## Reproduce the checked reduction
 
@@ -131,5 +131,5 @@ python3 verify_fixed_q_obstruction.py
 The expected final line is:
 
 ```text
-PASS all mechanically checkable obstruction steps
+PASS mechanically checkable reduction to TU(41)
 ```

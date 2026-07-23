@@ -5,19 +5,16 @@ This script verifies the new, elementary part of the obstruction:
 
 * the exact edge decomposition induced by Eliahou's fixed q;
 * the product-parity telescope forcing the reversal signs of X and Y;
-* the decimation identity producing a Turyn base sequence in BS(42, 41);
-* the elementary fact that 83 is not a sum of two integer squares.
+* the decimation identity producing a Turyn base sequence in BS(42, 41).
 
-It does not re-prove the published theorem that TU(n) is empty when n is odd
-and 2*n+1 is not a sum of two squares.  That literature dependency and an
-independent exhaustive classification are cited in FIXED_Q_OBSTRUCTION.md.
+It does not re-run the published exhaustive classification that excludes
+TU(41).  That literature dependency is cited in FIXED_Q_OBSTRUCTION.md.
 """
 
 from __future__ import annotations
 
 from collections import defaultdict
 from collections.abc import Iterable, Sequence
-from math import isqrt
 
 from seed import ELIAHOU_Q, fixed_q_edges
 
@@ -256,17 +253,6 @@ def verify_decimation_to_turyn() -> None:
         raise AssertionError("endpoint identity failed at lag 41")
 
 
-def verify_sum_of_two_squares_obstruction() -> None:
-    target = 2 * 41 + 1
-    representations = [
-        (left, isqrt(target - left * left))
-        for left in range(isqrt(target) + 1)
-        if isqrt(target - left * left) ** 2 == target - left * left
-    ]
-    if target != 83 or representations:
-        raise AssertionError("83 unexpectedly represented as two squares")
-
-
 def main() -> int:
     verify_edge_decomposition()
     print("PASS fixed-q edge decomposition")
@@ -276,9 +262,7 @@ def main() -> int:
     print("PASS forced reversal signs")
     verify_decimation_to_turyn()
     print("PASS symbolic reduction to TU(41) in BS(42,41)")
-    verify_sum_of_two_squares_obstruction()
-    print("PASS 83 is not a sum of two integer squares")
-    print("PASS all mechanically checkable obstruction steps")
+    print("PASS mechanically checkable reduction to TU(41)")
     return 0
 
 
