@@ -503,9 +503,21 @@
   witness set.  It passed at 39 MB peak RSS.  The largest recorded solver run
   in this chain used 176 MB peak RSS; every run used one worker, a 256 MiB
   solver cap, and zero swaps.
-- Consequently no exact `BS(84,83)` lies within raw labeled Hamming distance
-  18 of Eliahou's published base quadruple.  This is a finite local theorem,
-  not a global nonexistence result for `BS(84,83)` or `H(668)`.
+- The stored CP-SAT results consequently report no exact `BS(84,83)` within
+  raw labeled Hamming distance 18 of Eliahou's published base quadruple.  The
+  publication-audit correction below records the remaining proof boundary.
+
+### Publication-audit correction
+
+The artifact checker independently validates the twelve decoded
+primitive-root witnesses, but it does not independently prove that their
+whole target models become infeasible after primitive-7/14 compression.
+Those twelve eliminations are CP-SAT `INFEASIBLE` statuses, just like the
+1,284 primitive-root eliminations.  A proof-grade radius-18 release therefore
+has 1,296 solver leaves to certify, not 1,284.  Until those certificates or a
+structurally independent enumeration exist, the radius-18 statement is a
+strongly audited solver-backed computational claim rather than a
+proof-assistant-level theorem.
 
 ## 22 July 2026: cyclic-SDS decimation and complete radius-four audit
 
@@ -730,8 +742,45 @@
   reduction to `TU(41)` remain valid, but a previously stated odd-`n`
   two-squares shortcut does not: `162=9^2+9^2`.  Emptiness of `TU(41)` rests
   on the exhaustive 1994 classification by Edmondson, Seberry, and Anderson.
-- The provisional audit in `PRIORITY_AUDIT.md` ranks the raw-radius-18 seed
-  exclusion as the strongest likely-new result, with the fixed-`q` reduction
-  as a useful theorem component.  It also records the main prepublication
-  gap: CP-SAT `INFEASIBLE` records are reproducible solver results, not
-  independently replayable proof transcripts.
+- The provisional audit initially ranked the raw-radius-18 seed exclusion as
+  the strongest likely-new result, with the fixed-`q` reduction as a theorem
+  component.  The certificate audit below reverses that publication order:
+  fixed-`q` is the strongest theorem-sized result, while radius 18 remains a
+  solver-backed claim.  CP-SAT `INFEASIBLE` records are reproducible solver
+  results, not independently replayable proof transcripts.
+
+## 22 July 2026: publication-certificate audit
+
+- Corrected the radius-18 proof gate from 1,284 to 1,296 leaves.  The twelve
+  primitive-7/14 eliminations are solver-reported infeasibility decisions too;
+  decoding their parent witnesses does not independently prove those final
+  models empty.
+- Added an OR-Tools-independent deterministic CNF exporter and four pinned
+  DRAT proofs: one radius-16 root, one shell-17 root, one shell-18 root, and
+  one shell-18 primitive-7 leaf.  Regeneration plus `drat-trim` replay passed
+  4/4 in 34.62 seconds at 250 MB peak RSS.  A known feasible shell-18 root
+  also passed an independent SAT-model and clause checker with the symmetry
+  quotient enabled.  All twelve stored root witnesses then passed exactly
+  pinned, unquotiented v2 CNFs, every DIMACS clause, and independent margin,
+  distance, quad, pair-bound, and primitive-root checks.  A fourth exhaustive
+  regression independently reconstructs the complete contribution signature
+  of all 83 endpoint quads for every even mask and matches the exporter's
+  global root-orbit partition and comparison forest.
+- Stopped the hard-leaf pilots rather than scaling them.  A raw-bit hard
+  trace reached 388 MB without completing; combined z7/z14 reached 1.785 GB
+  RSS and timed out.  The next proof task is an exact orbit-count CNF for the
+  six hard root leaves, followed by a size audit before any full corpus.
+- Independently reproduced `TU(41)=empty` with a dependency-free outside-in
+  enumerator: 461/461 canonical shards, 57,543,021 nodes, zero solutions,
+  362.92 seconds summed serial time, and 1.38 MB peak RSS on the slowest
+  shard.  A separate Python exhaustion verifies the exact `2^19` depth-five
+  cube cover, and sanitizer regressions reproduce the known small cases.
+- Completed a primary-source priority audit.  The open 2025 Eliahou paper and
+  conference slides do not contain either repair result.  The body of the
+  June 2026 update remains paywalled, so its overlap status is unresolved.
+  Project policy prohibits external outreach; no contact drafts or recipient
+  lists are retained.
+- Drafted `local_obstructions_668.tex` as one theorem plus one explicitly
+  solver-backed computational claim.  Public theorem-level release remains
+  gated on all 1,296 radius leaves, the inaccessible 2026 text or author
+  response, and expert review.

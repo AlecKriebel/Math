@@ -7,34 +7,42 @@ material, and identifies what must be strengthened before submission.
 
 ## Executive verdict
 
-It is worth drafting a short computational paper now, but it is not yet ready
-to submit or post as a theorem-level preprint.
+It is worth privately circulating a short computational paper now, but it is
+not yet ready to submit or post as a theorem-level preprint.
 
-The strongest likely-new result is the solver-backed exclusion of every exact
-`BS(84,83)` in the raw labelled Hamming ball of radius 18 around Eliahou's
-published seed.  The fixed-`q` reduction to the empty class `TU(41)` is the
-strongest mathematical companion.  The inversion-type Legendre obstructions
-and the large finite local-neighborhood audits are useful supporting results,
-not convincing standalone papers.
+The strongest theorem-sized likely-new result is the fixed-`q` reduction to
+the empty class `TU(41)`.  Its 1994 endpoint has now also been reproduced by
+an independent 461-shard enumeration.  The solver-backed radius-18 exclusion
+around Eliahou's seed is promising and likely new, but remains a
+computational claim until all 1,296 infeasible leaves are independently
+certified.  The inversion-type Legendre obstructions and the large finite
+local-neighborhood audits are useful supporting results, not convincing
+standalone papers.
 
-Two issues should be closed before public theorem claims:
+Two issues remain before public radius-18 theorem claims:
 
-1. replace or independently certify the 1,284 retained CP-SAT
-   `INFEASIBLE` statuses used through radius 18;
-2. inspect the full 2026 Eliahou update and the complete recent
-   `LP(333)` literature, then circulate the draft privately to the closest
-   authors for overlap checking.
+1. replace or independently certify all 1,296 retained CP-SAT
+   `INFEASIBLE` statuses used through radius 18: 1,284 at the
+   primitive-root layer and 12 at the primitive-7/14 compression layer;
+2. inspect the body of Eliahou's 2026 update if it becomes lawfully accessible
+   without outreach, and obtain independent expert review before submission.
+
+The openly available recent `LP(333)` papers and March 2026 status report
+have been inspected.  The symmetric/symmetric observation is prior; the
+skew/skew and mixed equations were not located but are incremental
+specializations, not paper-leading results.  Project policy prohibits all
+external outreach; no contact drafts or recipient lists are retained.
 
 ## A. Radius-18 exclusion around Eliahou's seed
 
-**Priority assessment: strongest result; likely new, with moderate
-confidence.**
+**Priority assessment: strongest computational result; likely new, with
+moderate confidence.**
 
 Eliahou's 2025 paper constructs and verifies the 64-modular matrix and exposes
 the structured seed, but does not report a Hamming-ball repair exclusion.
 The current SageMath construction table still lists 668 as unknown, and the
 recent public `LP(333)` status report pursues a different compression route.
-No located source reports the same `BS(84,83)` radius-18 theorem.
+No located source reports the same `BS(84,83)` radius-18 computation.
 
 The repository's finite decomposition is unusually reproducible: it checks
 the margin images, quad quotient, hashes, parent edges, root witnesses, and
@@ -44,10 +52,30 @@ transcripts here.  The artifact checker confirms that the recorded
 `INFEASIBLE` statuses and all surrounding arithmetic are internally
 consistent; it does not prove those statuses without trusting the solver.
 
-Before submission, regenerate these finite instances in a proof-producing
+Before submission, regenerate all 1,296 finite instances in a proof-producing
 format (for example CNF plus DRAT/LRAT, or pseudo-Boolean plus VeriPB) or have
 an independent exact solver reproduce every infeasible case.  Preserve the
 proof files, solver versions, commands, checksums, and a small proof checker.
+The existing checker independently validates the twelve decoded root
+witnesses, but that witness replay does not certify the twelve subsequent
+compression-target infeasibility claims.
+
+The first certification prototype is complete.  Four representative leaves
+(radius 16, shell 17, shell 18, and shell-18 primitive 7) regenerate to
+deterministic CNF and pass `drat-trim`; final replay used 250 MB peak RSS.
+This is 4/1,296 coverage.  One known feasible root model also passes an
+independent positive-model checker with the symmetry quotient enabled.  In
+addition, all twelve stored root witnesses extend to SAT models of their
+exactly pinned, unquotiented v2 CNFs and pass every clause plus independent
+mathematical checks.  A separate exhaustive contribution-signature regression
+reconstructs all 83 endpoint quads and verifies the exporter's global root
+orbit partition for every even four-bit mask.  The exporter also has small
+exhaustive regressions.
+
+A naïve batch is not currently responsible.  One hard raw-bit proof grew to
+388 MB without finishing; z7+z14 strengthening timed out at 60 seconds and
+peaked at 1.785 GB RSS.  The next bounded step is an exact orbit-count CNF for
+the six hard root leaves, followed by a proof-size audit before any corpus run.
 
 ## B. Fixed-`q` reduction to `TU(41)`
 
@@ -60,12 +88,18 @@ Nonexistence at the endpoint is not new: Edmondson, Seberry, and Anderson
 totally enumerated inequivalent Turyn sequences of long length below 43, and
 their classification has none of long length 42.
 
-The checker verifies the new symbolic reduction but deliberately imports that
-published classification.  A previous draft also gave an invalid
+The symbolic checker verifies the new reduction.  A separate independent
+outside-in enumerator now reproduces the published endpoint: 461/461
+canonical depth-five shards, 57,543,021 nodes, and zero solutions.  An
+independent Python program exhausts all `2^19` assignments defining the shard
+cover; ASan/UBSan regressions reproduce the known small cases at short
+lengths 3, 7, and 9.  The computation supports the theorem while continuing
+to credit the 1994 classification.
+
+A previous draft also gave an invalid
 sum-of-two-squares shortcut.  That shortcut has been removed:
 for `BS(42,41)` the relevant identity is
-`C^2+D^2=162=9^2+9^2`.  This correction does not affect the reduction, but it
-makes an independent modern certificate for the `TU(41)` endpoint desirable.
+`C^2+D^2=162=9^2+9^2`.  This correction does not affect the reduction.
 
 A promising unproved extension is to test whether the same telescope works
 for Eliahou's apparent family
@@ -101,7 +135,7 @@ Draft one compact paper organized around:
 
 1. Eliahou's structured quadruple and its exact translation to `BS(84,83)`;
 2. the fixed-`q` parity telescope and reduction to `TU(41)`;
-3. the certified radius-18 exclusion ladder;
+3. the radius-18 solver report and proof-certification ladder;
 4. the Legendre inversion lemmas and local searches as appendices or
    supplementary experiments.
 
@@ -111,13 +145,15 @@ nonexistence theorem for `H(668)`, `BS(84,83)`, or `LP(333)`.
 
 Before posting:
 
-- inspect the full text of Shalom Eliahou's 2026
+- obtain and inspect the full text of Shalom Eliahou's 2026
   [update on modular Hadamard matrices](https://doi.org/10.1007/s10801-026-01544-5);
-- ask Eliahou, the `LP(333)` authors, and the database authors whether they
-  know overlapping unpublished work;
 - upgrade the solver statuses to independently replayable certificates;
-- obtain or construct a modern independent `TU(41)` certificate;
 - freeze a tagged release with all inputs, hashes, versions, and checkers.
+
+The independent `TU(41)` enumeration is complete.  Full-text access to the
+2026 article was not lawfully available during this audit.  No author contact
+will be attempted; priority language must remain provisional unless public
+sources or independent review resolve the overlap question.
 
 ## Sources checked
 
@@ -126,7 +162,8 @@ Before posting:
   *Australasian Journal of Combinatorics* 93(2) (2025), 422-427.
 - Shalom Eliahou,
   [An update on modular Hadamard matrices](https://doi.org/10.1007/s10801-026-01544-5),
-  *Journal of Algebraic Combinatorics* 64 (2026).
+  *Journal of Algebraic Combinatorics* 64 (2026); metadata and abstract
+  checked, full body unavailable in the audit environment.
 - G. M. Edmondson, Jennifer Seberry, and M. R. Anderson,
   [On the existence of Turyn sequences of length less than
   43](https://documents.uow.edu.au/~jennie/WEBPDF/1994_03.pdf),
