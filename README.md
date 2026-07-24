@@ -66,6 +66,16 @@ searches, and a detailed resume guide. The
 [public checkpoint](https://aleckriebel.github.io/Math/research/kissing-number-5/)
 is deliberately labeled paused and unresolved.
 
+[`erdos_084_cycle_sets/`](erdos_084_cycle_sets/) records a paused attempt on
+the lower-bound half of Erdős Problem 84. It did **not** prove
+\(f(n)/2^{n/2}\to\infty\) or improve the published asymptotic bounds. The
+dossier preserves a protected difference-support reduction, exact shadow
+counts, a short all-\(m\) twin-boundary identity, finite Hall-matching tests,
+and explicit falsifications of several proposed proof mechanisms. The
+[public checkpoint](https://aleckriebel.github.io/Math/research/erdos-problem-84/)
+separates the proved lemmas, finite evidence, conjectures, and two remaining
+global gaps.
+
 ## Archival derivations
 
 - **Discovery 06** is the technical precursor containing the flagship

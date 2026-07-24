@@ -45,7 +45,7 @@ been extracted.
 
 ## Research classification
 
-- **New internal theorem:** the twin-boundary identity and the
+- **Internal all-\(m\) theorem:** the twin-boundary identity and the
   join-commuting fibre embedding.
 - **Sharp falsification:** one local representative edit is insufficient.
 - **Viable conjecture:** the representation-aware Hamming-two graph may
@@ -56,6 +56,9 @@ been extracted.
   worth retaining as a component of a future proof or broader manuscript,
   but the present finite matching evidence should not be published as a
   theorem.
+
+The public research checkpoint is
+<https://aleckriebel.github.io/Math/research/erdos-problem-84/>.
 
 The prescribed stop was honored: no \(m>7\), parameter radius two in the
 representation graph, row radius three, or second enlargement was tested.

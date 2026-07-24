@@ -191,3 +191,29 @@ No outside communication occurred.
   distinct new old-window shadows. Both were added to the proof notes.
 
 No outside communication occurred.
+
+## 2026-07-24
+
+### 13:00 PDT — Program paused and public checkpoint prepared
+
+- Closed the bounded Hall experiment at its prescribed \(m=6,7\) gates.
+  No \(m=8\) matching enumeration, larger edit radius, or further template
+  mining was performed.
+- Classified the all-\(m\) twin-boundary identity and join-commuting fibre
+  embedding as useful future-proof infrastructure, the one-local-edit
+  mechanism as exactly refuted, and the Hamming-two matching as conjectural
+  despite exact finite success.
+- Recorded that the route remains at least two global mechanisms away from
+  Erdős Problem 84: the trace lower bound and the trace-to-excess bridge are
+  separately missing.
+- Completed a publication audit. The correct artifact is a public research
+  report, not a paper or preprint: there is no asymptotic improvement, and
+  the sole clean all-\(m\) lemma has no independent consequence.
+- Repeated the novelty audit against Alvin Dunås's 2026 thesis. The primary
+  record and abstract confirm material overlap risk, but the 33-page PDF
+  remained inaccessible after direct, browser, and proxy attempts.
+  Consequently no component is described as literature-cleared novel.
+- Prepared the paused-state status, resume criteria, literature audit, public
+  page, social-preview image, source links, and site-index entry.
+
+No outside communication occurred.

@@ -1,6 +1,11 @@
 # Status
 
-Last updated: 2026-07-24 11:33 PDT.
+Last updated: 2026-07-24 13:00 PDT.
+
+> **Program state: PAUSED on 24 July 2026.** Erdős Problem 84 remains open.
+> This dossier contains one internally proved all-\(m\) simplification, several
+> exact finite tests, and useful falsifications, but no improved asymptotic
+> bound.
 
 ## Published frontier
 
@@ -36,7 +41,7 @@ Last updated: 2026-07-24 11:33 PDT.
    \end{aligned}
    \]
 
-## Strongest active route
+## Strongest route at pause
 
 Put \(T_m=S_m/8^m\). The sharper recurrence implies
 
@@ -57,7 +62,7 @@ A concrete intermediate target is
 \gg\frac{8^m}{m}.
 \]
 
-The shortest active target is the global shadow inequality
+The shortest target at pause is the global shadow inequality
 
 \[
 mE_m\ge S_m.
@@ -167,6 +172,31 @@ The \(m=7\) repairs nevertheless use 32 coarse templates, so no canonical
 all-\(m\) rule or uniform-depth lemma has been obtained.  The bounded
 experiment is complete; no \(m>7\) or larger locality was tested.
 
+## Pause decision
+
+The final Hall experiment was scientifically successful but did not expose a
+uniform proof mechanism. From \(m=6\) to \(m=7\), the one-local-edit
+deficiency grows from \(20\) to \(268\), the maximum repair depth from \(2\)
+to \(3\), the number of coarse repair templates from \(7\) to \(32\), and
+the number of alternating transition types from \(3\) to \(21\). The larger
+case also needs double additions as well as double removals.
+
+Consequently, the Hamming-two matching is retained as a precise conjecture,
+not as evidence of an emerging canonical rule. Even an all-\(m\) proof of
+that conjecture would supply only the trace-to-excess bridge. The independent
+trace estimate
+
+\[
+\sum_{P\ni1}R_m(P)\gg\frac{8^m}{m}
+\]
+
+would still be missing. The program is therefore at least two global
+mechanisms away from resolving the recognized problem.
+
+No further enumeration, larger edit radius, or template mining is authorized
+under this checkpoint. The exact criteria for a theoretical resumption are
+recorded in [`RESUME.md`](RESUME.md).
+
 ## Theorem-strength unresolved gaps
 
 - Prove a nonsummable lower bound for \(E_m/8^m\).
@@ -179,7 +209,8 @@ experiment is complete; no \(m>7\) or larger locality was tested.
   finite matching by a canonical congestion-two boundary charge.
 - Or prove a fixed-block amplification
   \(S_{m+L}\ge8^LS_m+c8^{m+L}\) for fixed \(L,c>0\).
-- Audit the exact relationship with the 2026 Dunås thesis.
+- Obtain and audit the full 2026 Dunås thesis before making any novelty claim
+  about the protected construction or its associated statistics.
 
 ## Failed or insufficient claims
 
