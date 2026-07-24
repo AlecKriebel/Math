@@ -168,6 +168,14 @@ The strongest new constructive reductions are:
   Attempt zero is fully resumable and records 72 `UNKNOWN` statuses; it is a
   performance baseline, not an exclusion.  A five-minute union run peaked
   near 604 MB with no swap and also returned `UNKNOWN`.
+- `phase_second_digit/`: all five shell-two profiles survive the complete
+  quadratic next digit.  Six structured row-collapse coordinates are the
+  residue layer of
+  `(F_27 x F_27) tensor F_3[epsilon]/(epsilon^3)` and their exact joint map
+  `F_3^36 -> F_3^6` is surjective, with fibers near `3^30`.  The full
+  eighteen polar forms have scalar common centroid, which falsifies the
+  proposed free rank-two ramified-module/Hensel shortcut.  A second-digit
+  witness is therefore diagnostic, not a milestone.
 - `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
   correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
   `2I`.  Exact affine restriction and Gauss bounds prove this universal
@@ -300,6 +308,11 @@ The strongest current construction checkpoints are:
 - the shell descent: `h=3,4,5,6` are empty, while `h=2` has exactly five
   profile-zero symmetry orbits.  The constructor enforces `n_9<=2`, but the
   five explicit `h=2` representatives are now the primary phase-lift inputs;
+- the shell-two placement digit: all five first-digit affine spaces have
+  dimension 36; the six structured second-digit coordinates are exactly
+  surjective with fibers near `3^30`, while the full polar centroid is only
+  the scalar algebra.  Do not treat one second-digit point or an automatic
+  module lift as evidence of convergence;
 - the dense-shell quadratic algebra: the six correction matrices form
   `F_27 x F_27`, their sum is radial, and exact Gauss bounds rule out a
   one-form anisotropy shortcut in `h=1,0`.  Use the 729-character full-map
@@ -371,9 +384,12 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to lift or exclude the five explicit `n_9=2`
-   profile-zero orbits through the quadratic and exact integral phase
-   equations.  Work on `n_9=1,0` should use the `F_27 x F_27`
+   next exact task is to test structured phase families on all five
+   `n_9=2` orbits and to lift through at least two consecutive digits beyond
+   the quadratic layer, while estimating the complete exact replay cost.
+   A point satisfying only the quadratic second digit is not a progress
+   gate: the structured six-coordinate subsystem alone leaves about `3^30`
+   points per profile.  Work on `n_9=1,0` should use the `F_27 x F_27`
    729-character compression rather than phase enumeration.  The general
    seven-target CRT constructor remains the fallback for discovering dense
    profile inputs.  The prime-167 channel-first MITM is a low-memory

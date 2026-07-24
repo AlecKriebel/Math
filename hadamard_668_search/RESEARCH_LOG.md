@@ -1657,3 +1657,41 @@ proof-assistant-level theorem.
 - The dense verifier and independent warning-clean C++ audit passed below
   19 MB resident memory with no swap.  Nothing was sent, contacted, pushed,
   or published.
+
+## 24 July 2026: complete second placement digit and 72-hour gate
+
+- Reconstructed the next exact Eisenstein placement digit on all five
+  shell-two profiles.  The first digit leaves an affine `F_3^36`; the next
+  digit has twenty displayed quadratic rows, of which two origin rows vanish
+  structurally and the remaining eighteen polar forms are independent with
+  common radical zero.
+- Exhausted all 3,588 projective combinations of support at most three.
+  Exactly six have polar rank below 28.  They are the row-collapse forms
+  `E0(b)+E1(b)+E1(27b)` for `b=1,2,4,8,16,32`, with ranks between 15 and 21.
+- Identified those six forms as the residue layer of the ramified
+  row-coordinate algebra
+  `(F_27 x F_27) tensor F_3[epsilon]/(epsilon^3)`.  An independent
+  factorization verifies the `F_27 x F_27` class algebra, the fixed-zero
+  boundary terms, and explicit radical translations.
+- Evaluated all 729 quadratic additive characters exactly.  On every
+  profile, the six-coordinate map `F_3^36 -> F_3^6` is surjective; its
+  zero-fiber sizes are
+  `205891130500326,205891148037879,205891197461892,`
+  `205891052378499,205891125717357`.  Hence one second-digit witness is
+  expected to be abundant and is not evidence of convergence.
+- Falsified the proposed free rank-two module lift over the ramified
+  algebra.  The residue ranks exceed the required bound, the first
+  nilpotent layer has common radical zero, odd polar ranks violate the
+  unimodular norm spectrum, and the exact common self-adjoint centroid
+  system has rank 1,295 in 1,296 variables on every profile.  Only scalar
+  endomorphisms remain.
+- The complete five-test regression passed under Python 3.9 and 3.14; the
+  independent structured theorem has semantic hash
+  `aa6dbb0c3272e8695e3c8beff8381702a9f7f5a2505716138086d8074aa20d5c`,
+  and the module falsification has semantic hash
+  `a09bcdb69480fb94c79e941db77c8081e8a5403b4472863c557db7c1f2d0ce58`.
+- Began a 72-hour gated continuation.  Its required evidence is a structured
+  exact family or contraction through at least two consecutive higher
+  digits together with an end-to-end search estimate.  A lone
+  second-digit SAT witness does not pass the gate.  No external contact,
+  push, or publication occurred.

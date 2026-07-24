@@ -504,6 +504,19 @@ publication-worthy as part of the order-three theorem package.  It remains
 a quotient-level classification: none of the five is yet an `LP(333)` or a
 Hadamard matrix.
 
+The complete next placement digit strengthens the internal theorem package
+but weakens its value as a construction milestone.  On each of the five
+orbits the first digit leaves `F_3^36`; the next digit has eighteen
+independent quadratic polar forms.  Six structured combinations are the
+row-residue layer of a ramified `F_27 x F_27` coordinate algebra, and exact
+quadratic Fourier inversion proves that their map onto `F_3^6` is
+surjective, with every fiber close to `3^30`.  The companion common-centroid
+calculation has rank 1,295 in 1,296 endomorphism variables, so only scalar
+endomorphisms survive and a free rank-two ramified-module Hensel lift is
+impossible.  These are new-looking structural results, not evidence that a
+full labelled lift is near: a lone second-digit witness would be expected
+to be abundant.
+
 For the remaining `n_9=1,0` shells, the six first quadratic correction forms
 generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
 sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss

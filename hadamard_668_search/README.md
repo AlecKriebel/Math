@@ -25,7 +25,7 @@ this milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums and a lossless prime-167 split; exact certificates exclude `n_9=6,5,4,3`, while the complete `n_9=2` classification has five exact profile orbits now undergoing phase lift; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active 72-hour gated lane | `<112>` closed; `<10>` has five exact `n_9=2` profile orbits, a 36-dimensional first-digit space, and an audited quadratic second digit whose six-coordinate residue layer is surjective; the finish gate now requires consecutive higher-digit contraction or exact structured-family replay, not a second-digit witness; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -696,6 +696,26 @@ lift of the first representative.  Its 72 row-margin shards are all
 `UNKNOWN` after the short attempt-zero diagnostic; this is explicitly not
 an exclusion.  The bounded model is retained so future algebraic cuts can be
 measured against the same exact save-and-replay gate.
+
+`phase_second_digit/` gives the complete next placement digit on all five
+representatives.  The first digit leaves `F_3^36`; the next exact digit is a
+system of eighteen independent quadratic forms, with two additional
+structural-zero rows and no affine contradiction.  Six three-row
+combinations form the residue layer of the ramified row-coordinate algebra
+
+```text
+(F_27 x F_27) tensor F_3[epsilon]/(epsilon^3).
+```
+
+An exact 729-character transform proves that their joint map
+`F_3^36 -> F_3^6` is surjective for every profile, with every fiber close to
+`3^30`.  Thus a second-digit witness is expected to be abundant and is not a
+construction milestone.  A separate exact centroid audit proves that the
+36-dimensional placement space is not a free rank-two module over the
+ramified algebra: its common self-adjoint centroid has dimension one, not
+eighteen.  The remaining twelve coordinates therefore require genuinely
+conditional quadratic or exact finite-field methods rather than automatic
+linear Hensel lifting.
 
 `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` analyzes the first genuinely
 quadratic uniformizer response in the remaining `n_9=1,0` shells without

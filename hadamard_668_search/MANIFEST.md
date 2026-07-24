@@ -46,6 +46,9 @@
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
+| `phase_second_digit/LP333_ORDER3_PHASE_SECOND_DIGIT_PENCIL.md` | Complete quadratic next placement digit on the five shell-two profiles, sparse-pencil census, and exact six-coordinate fiber counts |
+| `phase_second_digit/structured_triples/STRUCTURED_TRIPLE_THEOREM.md` | Ramified row-collapse factorization and exact `F_27 x F_27` residue-layer theorem |
+| `phase_second_digit/r_module_hypothesis/R_MODULE_HYPOTHESIS_FALSIFIED.md` | Exact rank, radical, centroid, and norm-spectrum obstruction to a free rank-two ramified-module lift |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
@@ -163,6 +166,12 @@
 | `shell_two_exact/test_shell_two_partition.py` | Focused certificate, hash, phase-transfer, and five-orbit regressions |
 | `shell_two_exact/shell_two_exact_orbits_certificate.json` | Compact five-orbit and seven-partition census certificate |
 | `shell_two_exact/shell_two_exact_profile_certificate.json` | Detached full certificate for the first exact shell-two profile |
+| `phase_second_digit/verify_phase_second_digit.py` | Reconstructs the five affine first-digit spaces and all twenty exact quadratic next-digit rows |
+| `phase_second_digit/verify_phase_second_digit_pencil.py` | Exhausts every support-at-most-three polar combination and evaluates exact quadratic character sums |
+| `phase_second_digit/structured_triples/verify_structured_triples.py` | Independently verifies the residue algebra, ambient factorization, radical translations, and all 729 joint fibers |
+| `phase_second_digit/r_module_hypothesis/verify_r_module_hypothesis.py` | Computes the Hasse-layer ranks and the exact 1,295-rank common-centroid systems |
+| `phase_second_digit/test_phase_second_digit.py` | Pins the complete forms, pencil, Gauss primitives, and compact stored certificate |
+| `phase_second_digit/phase_second_digit_certificate.json` | Compact five-profile second-digit certificate |
 | `scratch_exact_profile_lift/README.md` | Scope and resume instructions for the bounded exact lift of the first shell-two profile |
 | `scratch_exact_profile_lift/search_exact_profile_lift_xor.py` | Exact fixed-profile XOR/CP-SAT model with full length-333 replay gate |
 | `scratch_exact_profile_lift/run_row_sum_shards.py` | Resumable 72-row-margin shard driver with a 12 GB aggregate declared-memory ceiling |
