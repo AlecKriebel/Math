@@ -1354,3 +1354,76 @@ proof-assistant-level theorem.
 - This parameterizes the entire finite modular norm cone but does not solve
   its sparse zero/unit inverse-CRT intersection.  No phase assignment,
   `LP(333)`, or `H(668)` is claimed.
+
+## 24 July 2026: exact profile-shell descent and physical cone decoders
+
+- Excluded the norm-nine endpoint profile shell
+  `(n_9,n_3,n_0)=(6,0,18)`.  The zero-column incidence condition reduces
+  each opposite quartet from 256 high/zero states to 40.  Exact aggregate
+  and count leave 288 assignments in twelve full profile-symmetry orbits;
+  detached integer replay rejects every assignment, with bad-class
+  histogram `10:24, 12:264`.  The pinned certificate is
+  `addf4ad655ca1ca16eaef5aebf8787eb14e8a56676e73e05f68e905fc9f45b5a`.
+- Excluded the adjacent shell `(5,3,16)`.  The universal quartet table has
+  no state with exactly one norm-three letter, so all three such letters
+  lie in one quartet.  Fixing that medium frame makes all six
+  reversal-independent correlations affine in the five norm-nine letters
+  modulo nine.  A complete additive join reduces 34,634,136 aggregate/local
+  assignments to 552, all rejected by 20,424 detached physical-lag replays.
+  The bad-class histogram is `6:24, 10:144, 12:384`; certificate
+  `51c25095c92ba49c4c7c493373bb68f7d9c0c4671d65490413ae140c2b0aad69`.
+- Excluded `(4,6,14)` by a new support/phase split of the affine
+  modulo-nine equations.  Legal medium counts per quartet are
+  `0:1, 1:0, 2:108, 3:216, 4:486`, so the six medium letters have only the
+  distributions `2+2+2`, `3+3`, and `4+2`.  The coordinate sum of `D/3`
+  is a phase-free local high-support flag; all high/medium terms lie in its
+  one-dimensional kernel, and an occupied quartet's high phases span that
+  kernel.  A streaming verifier checks 27,468,720 oriented medium frames,
+  115,033,608 high-support leaves, 12,835,512 phase solutions, and 345,984
+  exact-aggregate modulo-nine survivors.  Exact 37-lag replay rejects all,
+  with histogram
+  `4:204, 6:1860, 8:16884, 10:96192, 12:230844`.
+- These three independent shell theorems strengthen the exact profile
+  constructor from the energy-only bound `n_9<=6` to the categorical cut
+  `n_9<=3`.  The checkpoint and survivor schemas were advanced to `v5`,
+  and all theorem sources are included in its semantic fingerprint.
+- Removed the zero branch of the trivial prime-167 phase cone.  If either
+  channel coordinate
+  `c_X=sum_r m_(X,r) alpha^r` vanished, irreducibility of `Phi_9` would make
+  the nine margins repeat with period three.  Their integer range lifts the
+  congruence exactly, contradicting total plus support 167.  The complete
+  1,756-row catalog maps to 1,411 distinct nonzero coordinate pairs and
+  1,411 distinct norm-minus-one ratios, versus `167^3+1=4,657,464` abstract
+  ratios.  Certificate
+  `50f3d0f090187ded04c9bce52cfb6900c451dd005d48e4db965046c8d71edb26`.
+- Built an exact row-Galois and trace inverse for the four prime-167 cone
+  blocks.  Three-by-three Vandermonde transforms recover all six original
+  fiber CRT triples, and weighted `E/K` traces recover every physical class
+  coefficient.  Parseval supplies twelve independent fixed-zero linear
+  equations and six profile support forms; after the cone-supplied total,
+  five profile-resolved equations remain as displayed cuts, without a
+  codimension claim on the constrained locus.
+- Replaced the local sparse-alphabet lookup by an if-and-only-if decoder.
+  One proposed primitive ninth-root value supplies six Frobenius DFT
+  channels, while weight and residue profile supply the remaining three.
+  The word is physical exactly when all nine inverse-DFT values satisfy
+  `b^2=b`.  Exhaustive weight-three and weight-six checks test 820
+  value/profile pairs per branch and accept exactly the 84 physical words.
+  The same certificate gives seven possible local norms and the cubic
+  branches `t^3-6t^2+9t-3` and `t^3-9t^2+18t-9`.  Composite trace-sieve
+  certificate
+  `8253d73531cfbf4d5111c211b75da5abfdd8abeb11efc47973e49daedcc9b1e1`.
+- Independently reduced the phase equation modulo seven:
+  `Phi_9=(X^3-2)(X^3-4)` and every component splits into thirteen scalars
+  over `F_(7^3)`.  Local phase coefficients remain injective with alphabet
+  sizes 1, 9, and 27, and one factor has 40,353,264 compatible quadruples
+  parameterized as an affine line.  A compact CP-SAT multiplication layer
+  needs only 234 scalar 49-row tables.  The accompanying audit rejects raw
+  trellis, balanced MITM, additive Wagner, and alphabet-independent
+  one-factor BCH architectures as primary decoders.  Corrected certificate
+  `0605563ad589018e39ac73a41ecf880c678f38ad6941730b9dd7fcb2e33e84cf`.
+- Independent audits and focused replays found no mathematical or
+  completeness defect.  The largest new verifier used about 147 MB RSS
+  (the CP-SAT constructor tests); the exhaustive shell-four theorem itself
+  used under 4 MB.  No exact profile, `LP(333)`, or `H(668)` has yet been
+  found.  Nothing was sent, contacted, pushed, or published.

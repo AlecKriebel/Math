@@ -1,4 +1,4 @@
-# Priority audit updated 23 July 2026
+# Priority audit updated 24 July 2026
 
 This is a provisional mathematical-priority review, not a legal opinion and
 not a guarantee that every unpublished manuscript has been found.  It records
@@ -44,9 +44,13 @@ report:
    a 24-element formal symmetry reducing 22 targets to seven, and a
    three-fiber unit-phase factorization whose complete 39-condition phase
    system is also lossless modulo 167 and splits into four parameterized
-   finite-field cones; all 22 aggregate shards survive the ideal, but every
-   stored ideal witness fails the zero gate, and the coupled `<121>/<211>`
-   lanes share a separate exact 1,296-word boundary;
+   finite-field cones; three exact affine modulo-nine shell theorems exclude
+   `n_9=6,5,4`, forcing every profile-zero solution into `n_9<=3`; the phase
+   cone has an exact row-Galois/trace inverse, fixed-origin and
+   profile-support cuts, a lookup-free binary physicality decoder, and an
+   independent 13-factor mod-seven sieve; all 22 aggregate shards survive
+   the ideal, but every stored ideal witness fails the zero gate, and the
+   coupled `<121>/<211>` lanes share a separate exact 1,296-word boundary;
 9. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
    degree-two independently decimated extension.
@@ -417,6 +421,22 @@ bounded pilot left 37 disjoint pending cubes, with no candidate and no
 infeasibility proof.  The symmetry theorem is useful supporting mathematics;
 the constructor is research infrastructure, not publication evidence.
 
+The profile energy equation has now yielded three complete shell exclusions.
+The `n_9=6` endpoint reduces to 288 aggregate-compatible assignments and
+twelve symmetry orbits.  At `n_9=5`, the local quartet equation forces all
+three norm-three letters into one quartet; an affine modulo-nine join reduces
+34,634,136 aggregate/local assignments to 552 exact replays.  At `n_9=4`,
+the six norm-three letters occupy only `2+2+2`, `3+3`, or `4+2` quartet
+patterns; a streaming enumeration checks 27,468,720 oriented frames and
+345,984 exact-aggregate modulo-nine survivors.  Exact integer correlation
+rejects every survivor in all three shells, proving `n_9<=3`.
+
+This sequence is new-looking and mechanically complete.  It is worth
+including as a supporting theorem package because it demonstrates a
+nontrivial descent through adjacent energy shells without a general-purpose
+solver.  It does not exclude the remaining four shells, so it should not be
+presented as evidence for nonexistence of `LP(333)`.
+
 After profiles are fixed, every active residue fiber is a signed cube root
 of unity.  The identity `active=3-Norm/3` shows that total profile norm 54
 forces exactly 54 Eisenstein phases for every viable tuple, while the fixed
@@ -450,6 +470,26 @@ checked.  This is theorem-sized structural progress and should lead the
 order-three portion of an internal paper.  It parameterizes the modular
 norm cone, not the sparse zero/unit inverse-CRT intersection, so it is not an
 existence result.
+
+The physical intersection now has three further exact reductions.  First,
+the trivial coordinate of either binary channel cannot vanish: its vanishing
+would make the nine row margins period three, contradicting their total 167.
+The complete row-sum catalog leaves only 1,411 exact nonzero coordinate
+pairs, rather than the abstract `167^3+1` norm-minus-one ratios.  Second, a
+three-by-three row-Galois inverse recovers the six original fiber CRT triples
+from the four cone blocks, and weighted traces recover every physical class
+coefficient.  This supplies twelve independent fixed-origin linear
+equations, five additional displayed profile-support equations after the
+known total, and an if-and-only-if physical decoder: the nine inverse
+ninth-root DFT coordinates must be idempotent.  Third, reduction modulo seven
+splits the cyclic algebra into thirteen scalar factors over `F_(7^3)`, with
+exact 1/9/27 local alphabets and a compact multiplication encoding.
+
+The row-Galois, trace, Parseval, and physicality results materially sharpen
+the four-cone theorem and belong with it in an internal write-up.  The
+mod-seven factorization is a useful independent sieve and architecture
+audit, but is not paper-leading by itself: it does not beat the known
+profile-enumeration barrier without another structural reduction.
 
 At the trivial `C_37` character, the six phase sums admit a further exact
 transfer: one integer energy and one Eisenstein cross term per channel.
@@ -626,8 +666,11 @@ Maintain one compact internal paper organized around:
 7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
    and the order-three difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
-   profile-zero, prime-167 split, exact symmetry, unit-phase, lossless
-   full-phase four-cone factorization, and coupled-lane boundaries;
+   profile-zero, top-three energy-shell exclusions, prime-167 split, exact
+   symmetry, unit-phase, lossless full-phase four-cone factorization,
+   trivial-branch obstruction, factorwise trace/Parseval inversion,
+   lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane
+   boundaries;
 8. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
 9. the fixed-`q` parity telescope and reduction to `TU(41)`;
 10. the radius-18 solver report and proof-certification ladder as historical

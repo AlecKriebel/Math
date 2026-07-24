@@ -71,8 +71,8 @@ Target = tuple[int, int, int, int]
 Identifiers = tuple[int, ...]
 Prefix = tuple[int, ...]
 
-SCHEMA = "hadamard668.lp333-order3-profile-crt-search.v2"
-CANDIDATE_SCHEMA = "hadamard668.lp333-order3-profile-crt-survivors.v2"
+SCHEMA = "hadamard668.lp333-order3-profile-crt-search.v5"
+CANDIDATE_SCHEMA = "hadamard668.lp333-order3-profile-crt-survivors.v5"
 CLASS_COUNT = 12
 PROFILE_STATE_COUNT = 10
 DEFAULT_TOTAL_TIME_SECONDS = 60.0
@@ -85,6 +85,7 @@ TIGHT_CORRELATION_COORDINATE_BOUND = 192
 CORRELATION_COORDINATE_BOUND = TIGHT_CORRELATION_COORDINATE_BOUND
 QUARTET_ASSIGNMENT_COUNT = 3334
 QUARTET_COARSE_STATE_COUNT = 1409
+MAX_NORM_NINE_PROFILES = 3
 
 SEMANTIC_SOURCE_DEPENDENCIES = (
     "search_lp333_order3_profile_crt.py",
@@ -93,6 +94,9 @@ SEMANTIC_SOURCE_DEPENDENCIES = (
     "verify_lp333_order3_profile9.py",
     "verify_lp333_order3_profile9_shards.py",
     "verify_lp333_order3_profile_crt.py",
+    "verify_lp333_order3_profile_endpoint_shell.py",
+    "verify_lp333_order3_profile_penultimate_shell.py",
+    "verify_lp333_order3_profile_shell_four.cpp",
     "verify_lp333_order3_profile_zero_symmetry.py",
     "verify_lp333_order3_prime167_split.py",
 )
@@ -250,12 +254,13 @@ class ProfileCRTModel:
 
 def _allowed_profile_rows(
     channel: int, class_index: int
-) -> tuple[tuple[int, int, int, int], ...]:
+) -> tuple[tuple[int, int, int, int, int], ...]:
     return tuple(
         (
             profile_id,
             *signed_profile_integer(channel, class_index, profile_id),
             profile_norm(profile_id),
+            int(profile_norm(profile_id) == 9),
         )
         for profile_id in range(PROFILE_STATE_COUNT)
     )
@@ -418,6 +423,7 @@ def build_profile_crt_model(
     coefficients_real: list[list[cp_model.IntVar]] = [[], []]
     coefficients_omega: list[list[cp_model.IntVar]] = [[], []]
     norms: list[list[cp_model.IntVar]] = [[], []]
+    norm_nine_flags: list[list[cp_model.IntVar]] = [[], []]
     for channel in range(2):
         for class_index in range(CLASS_COUNT):
             profile_id = model.new_int_var(
@@ -428,14 +434,18 @@ def build_profile_crt_model(
                 -3, 3, f"z_omega_{channel}_{class_index}"
             )
             norm = model.new_int_var(0, 9, f"norm_{channel}_{class_index}")
+            norm_nine = model.new_bool_var(
+                f"norm_nine_{channel}_{class_index}"
+            )
             model.add_allowed_assignments(
-                [profile_id, real, omega, norm],
+                [profile_id, real, omega, norm, norm_nine],
                 _allowed_profile_rows(channel, class_index),
             )
             identifiers[channel].append(profile_id)
             coefficients_real[channel].append(real)
             coefficients_omega[channel].append(omega)
             norms[channel].append(norm)
+            norm_nine_flags[channel].append(norm_nine)
 
     id_words = (
         tuple(identifiers[0]),
@@ -450,6 +460,10 @@ def build_profile_crt_model(
         tuple(coefficients_omega[1]),
     )
     norm_words = (tuple(norms[0]), tuple(norms[1]))
+    norm_nine_words = (
+        tuple(norm_nine_flags[0]),
+        tuple(norm_nine_flags[1]),
+    )
 
     for channel in range(2):
         model.add(sum(real_words[channel]) == normalized_target[2 * channel])
@@ -457,6 +471,16 @@ def build_profile_crt_model(
             sum(omega_words[channel]) == normalized_target[2 * channel + 1]
         )
     model.add(sum(norm_words[0]) + sum(norm_words[1]) == 54)
+    # The six-, five-, and four-norm-nine endpoint shells are excluded
+    # exactly by the local modulo-nine and symmetry certificates in
+    # verify_lp333_order3_profile_endpoint_shell.py and
+    # verify_lp333_order3_profile_penultimate_shell.py, and by the streaming
+    # affine-modulo-nine certificate in
+    # verify_lp333_order3_profile_shell_four.cpp.
+    model.add(
+        sum(norm_nine_words[0]) + sum(norm_nine_words[1])
+        <= MAX_NORM_NINE_PROFILES
+    )
 
     # Exact opposite-pair quartet tables.  Besides enforcing the local
     # primitive-nine signature, each table maps its four IDs to one of 1,409
@@ -879,7 +903,7 @@ def semantic_manifest() -> dict[str, Any]:
     return {
         "schema": SCHEMA,
         "ortools_version": ortools.__version__,
-        "python_source_sha256": source_hashes,
+        "semantic_source_sha256": source_hashes,
         "table_sha256": compact_hash(table_signature),
         "quartet_census": {
             "assignments": QUARTET_ASSIGNMENT_COUNT,
@@ -910,6 +934,7 @@ def model_fingerprint(
         "mathematical_layers": (
             "aggregate",
             "energy54",
+            "norm9_top_three_shell_exclusions",
             "quartet3334_coarse1409",
             "target_stabilizer_lex",
             "primitive9_lambda3",
