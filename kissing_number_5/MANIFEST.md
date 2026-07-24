@@ -480,3 +480,81 @@ The common-pair source, independent-audit, dual, and tamper suites pass all
 16 tests.  The continuous package passes five structural tests, both exact
 audits, both independent numerical checks, and its complete hash manifest.
 Its atomic outputs are deliberately labeled `NUMERICAL EVIDENCE ONLY`.
+
+## Checkpoint 2026-07-24T03:34:00Z
+
+This checkpoint adds an exact quantitative enlarged-cap theorem, exact
+Lorentzian structure and a weakened-surrogate countermodel, a primary-source
+literature audit, and construction round 9.  The global bounds remain
+\(40\leq\tau(5)\leq44\).
+
+Robust cap theorem:
+
+```text
+b1f9d8cd7ae7167b69eaeb8bd7afcd2bb8c402292c232336162dbc30e6bc512e  proofs/one_sided_cap_degree11_robust.md
+7b21c77ad88060c29ecf2bf643d8abfdaa73c6bc70ccad39dd42963cf15a4c93  certificates/one_sided_cap_degree11_robust_1_over_300.json
+4466de5918c7ace68b0173758a4938c1d3a8edd805c8fedf9e8f7d1d00caeb79  verifiers/verify_one_sided_cap_degree11_robust.py
+a4b555410057eb46b672e11d8e6005a2fe2c2cdb0a7efe97eba9b3a91da9cb5f  tests/test_one_sided_cap_degree11_robust.py
+```
+
+Lorentzian theorem and exact countermodel:
+
+```text
+ef2a7322c2c2015cffb96a994fcd6e57499adb524c74ce5e899ac44bf2ac681a  proofs/lorentzian_inertia_graph.md
+49df7b42e37ebc74a9b2c61fde65eb6b70ffab31b68040f0e86e173e2d3cb47a  certificates/lorentzian_rank6_interval_countermodel.json
+faa908c8876a915b3aa5782dfb773f0c53f30ad548c38763772c23ed9b336be3  verifiers/verify_lorentzian_inertia_graph.py
+ee65e0d7d03d849839abe5de3f865eb53988743789b00b98a1268814c5b8acc4  tests/test_lorentzian_inertia_graph.py
+2d75e08d01cf5706d49e3835ba544a655af07a6a7ac8745bccf3ad5052bebf9c  experiments/lorentzian_inertia_graph/README.md
+846fd7038b359e2ff7508fcfb59b3e74d4b2b0b710ae78322966d0de9da3e2e9  experiments/lorentzian_inertia_graph/search_range_surrogate.py
+```
+
+Construction round 9:
+
+```text
+24c023fe97e8ef303be550a1a475435199ba936bc52deede64cfc5fe4f91ab55  experiments/construction_round9_core_rattler/README.md
+b2b1a9c3906712a2a4cf620b344220c6cd70b455d10c433e131f8adae963d698  experiments/construction_round9_core_rattler/__init__.py
+e65d1a16d5a29128e7f2ae9c12ecbd129d3e742f16a646bdc3e91dedaaf8da17  experiments/construction_round9_core_rattler/core_rattler_search.py
+17c49974d4a21d2fca21482c110155249109aee2aaf295a9f4997b0cdae5fd08  experiments/construction_round9_core_rattler/check_results.py
+e5666fea829d5e9b2030cae507d946261fb18e36166f2cef81e1af3f52a33d22  experiments/construction_round9_core_rattler/test_core_rattler_search.py
+56b0f6a2aefb16d057a33511ef52b3eeae35b7debe92536121fa5749d460a5cd  experiments/construction_round9_core_rattler/requirements.txt
+55aa13f81cc305d5007f840875623547625167b1e6f762092f3f80f7154e5f9c  experiments/construction_round9_core_rattler/results/core_rattler_portfolio.json
+```
+
+One-sided degree-12/13 discovery artifacts:
+
+```text
+e9fed75adf0be6729249100843be8d4a23a29c69f501285931144955b93ac3ce  experiments/one_sided_cap_d12_d13/README.md
+ec80254d9284abc98d976728c079251533480ca8abd991263b50bfd9c4114d13  experiments/one_sided_cap_d12_d13/research_log.md
+03d749f7a3b328f377e061354186c1bc005c6dc0554a5ba90f9d8bf70a4d9ed3  experiments/one_sided_cap_d12_d13/scan_degree11_robustness.py
+c4b5de6610c034dd7ceae67c5215ac1ee0d648e57ac9ddbc2b0e01b3214ad9d1  experiments/one_sided_cap_d12_d13/search.py
+a5be01b4c127c088b5128a2b628f604bad2319254a27b300b815cc690e8c57e2  experiments/one_sided_cap_d12_d13/try_exact_robustness.py
+a6319df4efd48121bab07d870e10af1ddc4be938e41c805380550027c3685394  experiments/one_sided_cap_d12_d13/results/degree11_robustness_recon.json
+66990781202c1feaeae0a2ef0974753a070526f26b6428bdde1173c7ed54f782  experiments/one_sided_cap_d12_d13/results/degree11_robustness_threshold.json
+a322733f7545d418fbde73428c0c9c66e682a1d6f88c42014af92f3efa9c01c1  experiments/one_sided_cap_d12_d13/results/degree11_robustness_wide.json
+33ad5e84fa24897fce49121d230821a57edfac4b52ed6ed3d4120b7d33150a0f  experiments/one_sided_cap_d12_d13/results/degree12_mixed2.npz
+5282e3b718f989de138c875845ab367cbb80556127a25767b45cee42d7d5f9d9  experiments/one_sided_cap_d12_d13/results/degree12_mixed2_report.json
+9857b75d6f5c03214eb4bf10b7f462a70dcc182d4d98cd5c8b78f028e3afe8ba  experiments/one_sided_cap_d12_d13/results/degree12_recon.npz
+188f176ed4f850751afad38647e99d675c4d602283af003426a6403c569305e3  experiments/one_sided_cap_d12_d13/results/degree12_recon_report.json
+961b3e9c76892332c1518f4c39373b1a49bc89f2eb148ff67e224d3046a71f41  experiments/one_sided_cap_d12_d13/results/degree13_mixed3.npz
+da169ae0ed9f418b39eca3ccb4a373f999543b602aa1b4da7c93136a05da24fc  experiments/one_sided_cap_d12_d13/results/degree13_mixed3_report.json
+7e88fa257000ad6a1a838893beccdac015d11e48a09060d4ed11bb8e039ef10a  experiments/one_sided_cap_d12_d13/results/degree13_recon.npz
+31ad7015a2bf9654c997b4a02f7775564c17a0cce7a90968afed64ef5cc0beb1  experiments/one_sided_cap_d12_d13/results/degree13_recon_report.json
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+python3 verifiers/verify_one_sided_cap_degree11_robust.py
+python3 -m unittest tests.test_one_sided_cap_degree11_robust -v
+python3 verifiers/verify_lorentzian_inertia_graph.py
+python3 -m unittest tests.test_lorentzian_inertia_graph -v
+PYTHONPATH=. .venv/bin/python -m \
+  experiments.construction_round9_core_rattler.check_results \
+  experiments/construction_round9_core_rattler/results/core_rattler_portfolio.json
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round9_core_rattler.test_core_rattler_search -v
+```
+
+The exact verifiers and the Lorentzian and construction test suites pass.
+The cap certificate uses only exact rational arithmetic; the degree-12/13
+and round-9 coordinates remain explicitly `NUMERICAL EVIDENCE ONLY`.

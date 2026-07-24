@@ -60,6 +60,15 @@ polynomial terms and all 5,995 tree leaves.  The independent
 tangent-projection lemma proves that every point has at least seven strictly
 negative neighbors.
 
+The strengthened certificate in
+[`proofs/one_sided_cap_degree11_robust.md`](proofs/one_sided_cap_degree11_robust.md)
+uses the same positive kernel on the larger closed cap
+\(\langle e,x\rangle\ge-1/300\).  Its exact objective is
+\(16939/484=35-1/484\), so a hypothetical 41-code has at least seven
+points below \(-1/300\) and seven above \(1/300\) in every direction.
+The independent verifier rebuilds all 650 terms and all 6,053 Bernstein
+leaves using exact rational arithmetic.
+
 The earlier proof
 [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
 also establishes \(A(4,1/\sqrt3)\leq33\) exactly.  It remains a dependency
@@ -70,12 +79,14 @@ From this directory:
 
 ```sh
 python3 verifiers/verify_one_sided_cap_degree11.py
+python3 verifiers/verify_one_sided_cap_degree11_robust.py
 python3 verifiers/verify_one_sided_cap_degree10.py
 python3 verifiers/verify_tangent_nonnegative_neighborhood.py
 python3 verifiers/verify_one_sided_tukey.py
 python3 -m unittest \
   tests.test_one_sided_cap_degree11 \
   tests.test_one_sided_cap_degree11_independent_audit \
+  tests.test_one_sided_cap_degree11_robust \
   tests.test_one_sided_cap_degree10 \
   tests.test_tangent_nonnegative_neighborhood \
   tests.test_one_sided_tukey -v
@@ -133,6 +144,21 @@ python3 -m unittest \
   tests.test_split_kernel_full_interval -v
 ```
 
+## Reproduce the Lorentzian structure and countermodel
+
+The exact note
+[`proofs/lorentzian_inertia_graph.md`](proofs/lorentzian_inertia_graph.md)
+proves the inertia, Perron interval, six-core star-complement formulation,
+and critical rank-one-shift lemma for \(A=2G-J\).  It also supplies an exact
+rational 41-row countermodel showing that separate inertia, interval, graph,
+depth, and unnormalized-circuit conditions do not recover the Gram lift.
+The countermodel is explicitly indefinite and is not a kissing code.
+
+```sh
+python3 verifiers/verify_lorentzian_inertia_graph.py
+python3 -m unittest tests.test_lorentzian_inertia_graph -v
+```
+
 ## Reproduce the anchored barrier and tight-frame challenge
 
 The exact note
@@ -153,6 +179,20 @@ PYTHONPATH=. .venv/bin/python \
 PYTHONPATH=. .venv/bin/python -m unittest \
   experiments.construction_round8_tight_frames.test_results -v
 ```
+
+The independent checker for construction round 9 recomputes all maxima,
+Gram spectra, active components, and the finite extracted core graph:
+
+```sh
+PYTHONPATH=. .venv/bin/python -m \
+  experiments.construction_round9_core_rattler.check_results \
+  experiments/construction_round9_core_rattler/results/core_rattler_portfolio.json
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round9_core_rattler.test_core_rattler_search -v
+```
+
+All round-9 configurations remain above \(1/2\); these commands reproduce a
+numerical construction search, not an upper-bound certificate.
 
 ## Reproduce the corrected common-pair audit
 

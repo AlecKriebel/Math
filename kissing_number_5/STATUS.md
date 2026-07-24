@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T02:47:00Z
+Last updated: 2026-07-24T03:34:00Z
 
 ## Rigorous bounds
 
@@ -23,8 +23,9 @@ No exact value has been established.
 
 **Best guess: 21% toward a complete exact resolution.**  The lower
 construction and several new universal necessary conditions are exact and
-audited, including an exact one-sided bound \(B(5)\le34\), but the decisive
-step—either a 41-point exact construction or a
+audited, including an exact one-sided bound \(B(5)\le34\) and a quantitative
+enlargement of that cap theorem, but the decisive step—either a 41-point
+exact construction or a
 classification-free exclusion of every continuous 41-point Gram
 realization—is still absent.  The estimate is intentionally uncertain and
 may decrease if the surviving continuous-support barriers prove broader
@@ -85,6 +86,24 @@ previously missed symmetry ridge and all pole/contact/determinant
 boundaries, and found no flaw.  The earlier degree-10 proof of
 \(B(5)\le35\) remains as a smaller independent certificate.
 
+The same degree-11 positive kernel has now been exact-certified on the
+strictly larger closed cap
+\[
+\langle e,x\rangle\ge-1/300.
+\]
+On that domain the exact diagonal and off-diagonal bounds are \(3291/100\)
+and \(-121/125\), giving
+\[
+|C|\le\frac{16939}{484}=35-\frac1{484}<35.
+\]
+The rebuilt 650-term polynomial and 6,053-leaf Bernstein tree therefore
+prove that every hypothetical 41-code has at least seven points with
+\(\langle e,x\rangle<-1/300\) and at least seven with
+\(\langle e,x\rangle>1/300\), for every unit direction \(e\).  At a code
+vertex this gives at least seven other points below \(-1/300\) and at least
+six other points above \(1/300\).  All thresholds are strict consequences
+of an audit on a closed domain.
+
 Deletion-six robustness also forces two disjoint inclusion-minimal positive
 circuits, each with between two and six points, and therefore two disjointly
 supported positive Gram-kernel vectors.  This is exact but not decisive:
@@ -92,6 +111,23 @@ the \(D_5\) code realizes every one of the 15 possible circuit-size pairs,
 and an exact 41-point subset of \(D_6\) satisfies the same entry and circuit
 conditions at rank six.  A continuation must exploit genuinely global
 rank-five compatibility rather than circuit sizes alone.
+
+The Lorentzian transform
+\[
+A=2G-J,\qquad W=I-A
+\]
+now gives another exact structural view.  Any hypothetical 41-code has
+\(\operatorname{inertia}(A)=(5,1,35)\), \(W\) irreducible and nonnegative,
+and Perron root \(18<\rho(W)\le42\).  A nonsingular six-vertex principal
+core represents the other 35 rows on one signature-\((5,1)\) quadric.
+Most importantly, if a normalized positive circuit satisfies
+\(A\alpha=-c{\bf1}\), then \(A+cJ\succeq0\) has rank five and \(c\) is the
+unique critical rank-one shift.  Thus the genuine identity \(c=1\) is
+already equivalent to recovering the omitted PSD rank-five Gram lift.
+An exact rational 41-point surrogate satisfies the separate inertia,
+interval, graph, depth, and two-circuit conditions but has \(c=21/19\);
+its pseudo-Gram matrix is explicitly indefinite.  This sharply identifies,
+rather than removes, the common-source bottleneck.
 
 An independent exact \(S^3\) cap polynomial improves the frame conditioning
 of every hypothetical 41-code to
@@ -135,6 +171,21 @@ and every row-sign switching of one: a forced sign reversal around a
 oriented \(D_5\) roots form an orthonormal basis.  The best general numerical
 UNTF search ended at \(0.5262002628454\), still infeasible.  These are
 restricted construction results, not a universal upper bound.
+
+A ninth unrestricted construction round attacked the persistent
+35-point-core/six-rattler basin by complete floating one-point facet scans,
+deletion/reinsertion of 2--8 points, all-coordinate release, large core
+quakes, and replica exchange.  It found no 41--44 point code.  The best
+recomputed maxima were
+\[
+0.5149946525121668,\ 0.5182411558622623,\
+0.5247244770145227,\ 0.5274711925359574.
+\]
+The extracted 35-core active graph has 153 edges and minimum vertex cover
+26, explaining exactly why replacing only 2--8 locked core vertices cannot
+remove every old maximum edge.  This is an exact fact about one
+well-separated finite graph extracted from floating data, not a geometric
+upper bound.
 
 The proposed anchored row-energy BV route is now exactly blocked in its pure
 three-point form.  The all-harmonic pseudo-measure forces its objective to be
@@ -258,6 +309,11 @@ mechanism is still required.
 - The deep-graph cases with 23 and 24 edges are finite, but no
   rank-five/cross-component elimination of their continuously labeled Gram
   realizations is known.
+- The six-core Lorentzian star-complement representation is exact, but the
+  normalized positive-circuit identity needed to recover the PSD rank-five
+  lift is already equivalent to the original common-source condition.  No
+  weaker tractable shadow yet excludes all continuous star-complement
+  realizations.
 - In the exact-antipodal reduction for the sparse graphs, a zero-slack
   root-system argument forces the base lines into \(D_5\) and proves a strict
   cross-component projective-energy loss.  An effective determinant-rounding
@@ -297,6 +353,8 @@ mechanism is still required.
   [`proofs/one_sided_cap_degree11_bound.md`](proofs/one_sided_cap_degree11_bound.md)
   and
   [`proofs/one_sided_cap_degree11_adversarial_audit.md`](proofs/one_sided_cap_degree11_adversarial_audit.md)
+- Exact enlarged-cap degree-11 theorem at height \(-1/300\):
+  [`proofs/one_sided_cap_degree11_robust.md`](proofs/one_sided_cap_degree11_robust.md)
 - Tangent nonnegative-neighborhood projection and minimum negative degree:
   [`proofs/tangent_nonnegative_neighborhood.md`](proofs/tangent_nonnegative_neighborhood.md)
 - Improved exact cap/frame conditioning:
@@ -342,6 +400,9 @@ mechanism is still required.
   [`proofs/quantitative_root_system_stability.md`](proofs/quantitative_root_system_stability.md)
 - Exact split quadratic-kernel countermodel:
   [`proofs/split_kernel_abstract_barrier.md`](proofs/split_kernel_abstract_barrier.md)
+- Lorentzian inertia/Perron/star-complement structure and exact weakened
+  surrogate:
+  [`proofs/lorentzian_inertia_graph.md`](proofs/lorentzian_inertia_graph.md)
 - Stronger full-entry-interval split-kernel countermodel:
   [`proofs/split_kernel_full_interval_barrier.md`](proofs/split_kernel_full_interval_barrier.md)
 - Exact separator for the attempted all-harmonic/rank-witness mixture:
@@ -370,6 +431,8 @@ mechanism is still required.
   [`experiments/construction_round5_population/README.md`](experiments/construction_round5_population/README.md)
 - Riemannian nonsmooth active-bundle and facet-escape continuation:
   [`experiments/construction_round6_bundle/README.md`](experiments/construction_round6_bundle/README.md)
+- Core/rattler deletion, facet-insertion, quake, and replica-exchange search:
+  [`experiments/construction_round9_core_rattler/README.md`](experiments/construction_round9_core_rattler/README.md)
 - Imported discovery-only numerical 41-point near miss:
   [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
 
@@ -405,6 +468,16 @@ a second human/agent audit is still pending.
   remains positively spanning after any six deletions.  The exact
   degree-11 cap kernel, all hemisphere boundary conventions, and the complete
   5,995-leaf Bernstein tree passed a separate independent audit.
+- The same exact kernel bounds every kissing code in the enlarged cap
+  \(\langle e,x\rangle\ge-1/300\) by 34.  Its independently rebuilt
+  6,053-leaf tree includes the new cap face and every determinant/contact
+  boundary, forcing seven points on each strict side of the
+  \(\pm1/300\) slabs in every direction.
+- The Lorentzian matrix \(A=2G-J\) of a hypothetical 41-code has exact
+  inertia \((5,1,35)\), and \(W=I-A\) has \(18<\rho\le42\).  A normalized
+  circuit identity \(A\alpha=-c{\bf1}\) makes \(c\) the unique PSD
+  rank-five shift; an exact \(c=21/19\) surrogate demonstrates why the
+  normalization cannot be weakened.
 - The fixed-41 rational pair/triple pseudo-distribution passes all ordinary
   and Bachoc--Vallentin three-point harmonic inequalities at every degree,
   with unrestricted radial test functions.  An independent adversarial audit

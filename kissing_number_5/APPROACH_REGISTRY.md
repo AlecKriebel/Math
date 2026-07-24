@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T02:47:00Z
+Last updated: 2026-07-24T03:34:00Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -78,6 +78,18 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   respectively.  These exact restricted exclusions and numerical failures
   are in `experiments/construction_round8_tight_frames/`; they do not exclude
   a non-tight or unrelated 41-code.
+- **Ninth round:** complete floating one-point facet scans, 2--8 point
+  deletion/reinsertion, movable-block continuation, all-coordinate release,
+  core quakes, and replica exchange again found no 41--44 point code.  The
+  best stored maxima are approximately
+  \(0.51499465,0.51824116,0.52472448,0.52747119\).  The persistent
+  41-point basin has a 35-vertex active core whose extracted 153-edge graph
+  has independence number 9 and minimum vertex-cover size 26.  Thus no
+  replacement of only 2--8 locked core vertices can destroy every old
+  maximum edge, although larger core quakes do leave the basin and return
+  worse maxima.  The package in
+  `experiments/construction_round9_core_rattler/` is numerical evidence
+  only.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -268,6 +280,25 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   a 41-point \(D_6\) subset satisfies the same entry and circuit conditions
   at rank six.  Circuit sizes and two kernel vectors alone are therefore a
   certified barrier; global rank-five compatibility remains essential.
+- **Lorentzian transform:** For a hypothetical 41-code,
+  \(A=2G-J\) has inertia \((5,1,35)\), while
+  \(W=I-A\) is irreducible and nonnegative with
+  \(18<\rho(W)\le42\).  A nonsingular six-vertex principal core gives a
+  signature-\((5,1)\) star-complement representation of all remaining rows.
+  If \({\bf1}^{\mathsf T}\alpha=1\) and
+  \(A\alpha=-c{\bf1}\), then \(A+cJ\succeq0\) has rank five and \(c\)
+  is the unique critical rank-one shift.  Hence the actual circuit identity
+  \(c=1\) exactly recovers the omitted Gram lift rather than supplying an
+  easier relaxation.
+- **Lorentzian barrier:** An exact rational 41-row surrogate has the correct
+  Lorentzian rank/inertia, scalar entry interval, graph-degree conditions,
+  origin depth 14, and two disjoint positive circuits, but its circuit scale
+  is \(c=21/19\), its pseudo-Gram matrix is indefinite, and its all-ones
+  \(W\)-Rayleigh quotient exceeds 46.  Separate spectral, graph, depth, and
+  unnormalized-circuit shadows are therefore insufficient.
+- **Additional artifacts:** `proofs/lorentzian_inertia_graph.md`;
+  `certificates/lorentzian_rank6_interval_countermodel.json`;
+  `verifiers/verify_lorentzian_inertia_graph.py`.
 - **Restrictions:** None intended.
 - **Status:** active.
 
@@ -370,6 +401,21 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   implementations, including the symmetry ridge missed by the first
   numerical candidate.  Thus every hypothetical 41-code has open-hemisphere
   depth at least seven and remains origin-spanning after any six deletions.
+- **Quantitative enlarged cap:** The same exact positive kernel has been
+  audited on the larger closed domain
+  \(\langle e,x\rangle\ge-1/300\).  Exact bounds
+  \(F(u,u,1)\le3291/100\) and \(F(u,v,t)\le-121/125\) give objective
+  \(16939/484=35-1/484\), hence at most 34 points.  The rebuilt tree has
+  6,053 leaves and includes the new cap faces.  Therefore every direction
+  of a hypothetical 41-code has at least seven points below \(-1/300\) and
+  at least seven above \(1/300\).  At a code vertex, at least seven other
+  points lie below \(-1/300\) and at least six other points lie above
+  \(1/300\).
+- **Degree-12/13 search barrier:** New numerical cap-kernel searches did not
+  yield a rationalization target for \(B(5)\le33\).  Their sampled
+  objectives below 34 failed independent dense audits, with audited
+  objectives above 34.  These are discovery-only failures; they do not
+  exclude a different higher-degree certificate.
 - **Unresolved:** A global averaging or compatibility inequality that excludes
   total size 41.  A one-antipodal-pair belt SDP is now being explored:
   proving at most 38 points in \(|\langle e,x\rangle|\le1/2\) would exclude
@@ -381,6 +427,8 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `verifiers/verify_one_sided_cap_degree10.py`;
   `proofs/one_sided_cap_degree11_bound.md`;
   `verifiers/verify_one_sided_cap_degree11.py`;
+  `proofs/one_sided_cap_degree11_robust.md`;
+  `verifiers/verify_one_sided_cap_degree11_robust.py`;
   `proofs/tangent_nonnegative_neighborhood.md`;
   `verifiers/verify_tangent_nonnegative_neighborhood.py`;
   `proofs/improved_frame_cap_bound.md`;
@@ -390,8 +438,9 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Restrictions:** Case assumptions must cover boundary contacts exactly.
 - **Audit:** The one-sided polynomials, projection square, reflection
   self-pair, open/closed conventions, integer optimization, all 5,995
-  degree-11 tree leaves, and all convex consequences were independently
-  recomputed with no mathematical objection.
+  hemisphere tree leaves, all 6,053 enlarged-cap tree leaves, and all convex
+  consequences were independently recomputed with no mathematical
+  objection.
 - **Status:** active.
 
 ## G. Semialgebraic exhaustive proof

@@ -1,6 +1,6 @@
 # Primary-Source Baseline and Imported Hypotheses
 
-Last updated: 2026-07-23T20:15:00Z
+Last updated: 2026-07-24T03:34:00Z
 
 ## Bachoc--Vallentin three-point bound
 
@@ -88,6 +88,31 @@ The associated public code and exact-verification data are archived at
 <https://doi.org/10.4121/74ce1c25-6fca-4680-8a36-e9c18e7e9594>.
 Our local degree-4, 6, and 8 trials are discovery computations only and are
 recorded separately in the research log.
+
+## 2025 dissertation audit of three- and four-point computations
+
+N. M. Leijenhorst, *On the computation of three and four-point bounds in
+discrete geometry and analytic number theory*, TU Delft dissertation (2025).
+
+- DOI:
+  <https://doi.org/10.4233/uuid:91af805a-376c-4ef8-aec5-e6ce08ae20a7>
+
+Primary-source findings relevant here:
+
+- the reported degree-20 three-point bound in dimension five is
+  \(44.970252\), so it still rounds only to 44;
+- the second Lasserre step was computed in dimensions
+  \(4,5,6,7,10,12,16\) with \(d_1=14\) and \(d_2=\delta=16\);
+- the text reports a sharp dimension-four result and the rigorous
+  dimension-six improvement \(77.85<78\), but no dimension-five
+  improvement below 44;
+- the public 4TU archive above contains exact dimension-four and
+  dimension-six certificates and source code, but no exact
+  dimension-five certificate approaching 41.
+
+This rules out treating a straightforward reproduction of that released
+truncation as a hidden 40/41 separator.  It does not rule out a stronger
+four-point truncation or a different exact dual.
 
 ## Exact eight-point Tammes result
 
