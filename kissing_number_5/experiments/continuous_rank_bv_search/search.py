@@ -623,12 +623,40 @@ def fixed_pair_variance(
     return trace_two - trace_one**2 / kernel.rank
 
 
+def centered_quarter_row_types() -> tuple[tuple[int, ...], ...]:
+    """All exact integer degree rows for a centered 41-point quarter-grid code."""
+
+    answer = []
+    for d0 in range(2):
+        for d1 in range(41 - d0):
+            for d2 in range(41 - d0 - d1):
+                for d3 in range(41 - d0 - d1 - d2):
+                    remainder = 40 - d0 - d1 - d2 - d3
+                    for d5 in range(remainder + 1):
+                        twice_d6 = (
+                            -4 + 4 * d0 + 3 * d1 + 2 * d2 + d3 - d5
+                        )
+                        if twice_d6 < 0 or twice_d6 % 2:
+                            continue
+                        d6 = twice_d6 // 2
+                        d4 = remainder - d5 - d6
+                        if d4 >= 0:
+                            answer.append(
+                                (d0, d1, d2, d3, d4, d5, d6)
+                            )
+    return tuple(answer)
+
+
 def solve(
     nodes: tuple[Q, ...],
     harmonic_degree: int,
     pair_degree: int,
     kernel_profile: str,
     pair_mode: str,
+    require_centered: bool,
+    robust_vertex_marginals: bool,
+    integer_degree_cut: bool,
+    integer_degree_lift: bool,
     solver: str,
     output_path: Path | None,
     project_root: Path,
@@ -649,6 +677,29 @@ def solve(
         margin <= 1.0,
         margin >= -1.0,
     ]
+    if require_centered:
+        # For an actual Gram matrix, G*1=0 implies
+        # sum_{i,j} g_ij=0.  In the normalized pair measure this is
+        # 1 + sum_t alpha_t*t = 0.
+        constraints.append(
+            1
+            + np.array([float(node) for node in nodes], dtype=float) @ alpha
+            == 0
+        )
+    if robust_vertex_marginals:
+        # The exact enlarged-cap theorem gives, at every code vertex,
+        # at least seven other rows below -1/300 and at least six other
+        # rows above 1/300.  Summing over vertices yields these normalized
+        # pair-mass inequalities.
+        delta = Q(1, 300)
+        negative = [index for index, node in enumerate(nodes) if node < -delta]
+        positive = [index for index, node in enumerate(nodes) if node > delta]
+        constraints.extend(
+            (
+                cp.sum(alpha[negative]) >= 7,
+                cp.sum(alpha[positive]) >= 6,
+            )
+        )
     for index in range(m):
         multiplicities = np.array(
             [triple.count(index) / 3 for triple in orbits], dtype=float
@@ -691,6 +742,10 @@ def solve(
         nodes, orbits, harmonic_degree
     )
     bv_expressions = []
+    bv_margin_expressions = []
+    integer_degree_expression = None
+    integer_degree_weights = None
+    integer_degree_types: tuple[tuple[int, ...], ...] = ()
     for degree in range(harmonic_degree + 1):
         size = m + 1
         expression = constants[degree] + cp.reshape(
@@ -705,11 +760,112 @@ def solve(
             # A*1=40*alpha for its node-node block A, so A PSD is
             # equivalent to full W_0 PSD.  Keeping only A avoids presenting
             # an exactly singular cone to the floating-point solver.
-            constraints.append(expression[:m, :m] - margin * np.eye(m) >> 0)
+            active = expression[:m, :m]
+            if integer_degree_cut:
+                certificate_path = (
+                    project_root
+                    / "certificates"
+                    / "centered_quarter_integer_degree_obstruction.json"
+                )
+                certificate = json.loads(certificate_path.read_text())
+                expected_nodes = tuple(
+                    Q(value, 4)
+                    for value in certificate["grid_numerators_over_four"]
+                )
+                if nodes != expected_nodes:
+                    raise ValueError(
+                        "--integer-degree-cut requires the exact quarter grid"
+                    )
+                degree_terms = certificate["quadratic_terms"]
+                coefficient_scale = max(
+                    abs(int(term["coefficient"])) for term in degree_terms
+                )
+                integer_degree_expression = sum(
+                    (int(term["coefficient"]) / coefficient_scale)
+                    * active[term["indices"][0], term["indices"][1]]
+                    for term in degree_terms
+                )
+                constraints.append(integer_degree_expression >= 0)
+            if integer_degree_lift:
+                expected_nodes = tuple(Q(value, 4) for value in range(-4, 3))
+                if nodes != expected_nodes or not require_centered:
+                    raise ValueError(
+                        "--integer-degree-lift requires --centered and the "
+                        "exact quarter grid"
+                    )
+                integer_degree_types = centered_quarter_row_types()
+                degree_array = np.asarray(integer_degree_types, dtype=float)
+                integer_degree_weights = cp.Variable(
+                    len(integer_degree_types),
+                    nonneg=True,
+                    name="integer_degree_weights",
+                )
+                constraints.extend(
+                    (
+                        cp.sum(integer_degree_weights) == 1,
+                        (degree_array.T @ integer_degree_weights) / 40
+                        == alpha / 40,
+                    )
+                )
+                for i in range(m):
+                    for j in range(i, m):
+                        constraints.append(
+                            (degree_array[:, i] * degree_array[:, j])
+                            @ integer_degree_weights
+                            / 1600
+                            == active[i, j] / 1600
+                        )
+            if require_centered:
+                # In the full W_0 block the centered radial function is
+                # f(u)=u, including f(1)=1 at the appended diagonal atom.
+                # Eliminating that atom using A*1=40*alpha sends its kernel
+                # to u+(1/40)*1 in the node-node block.
+                node_vector = np.array(
+                    [float(node + Q(1, N - 1)) for node in nodes],
+                    dtype=float,
+                )
+                raw_basis = np.vstack(
+                    (
+                        np.eye(m - 1),
+                        -node_vector[:-1] / node_vector[-1],
+                    )
+                )
+                reduced_basis, _ = np.linalg.qr(raw_basis, mode="reduced")
+                reduced = reduced_basis.T @ active @ reduced_basis
+                constraints.extend(
+                    (
+                        active >> 0,
+                        active @ node_vector == 0,
+                        reduced - margin * np.eye(m - 1) >> 0,
+                    )
+                )
+                bv_margin_expressions.append(reduced)
+            else:
+                constraints.append(active - margin * np.eye(m) >> 0)
+                bv_margin_expressions.append(active)
+        elif require_centered and degree == 1:
+            # A centered code has sum_i x_i=0.  For the k=1 radial
+            # block this gives the constant-radial all-ones kernel.
+            # Retain the full PSD constraint and maximize margin only on
+            # its orthogonal complement.
+            active = expression[1:m, 1:m]
+            ones = np.ones(m - 1)
+            raw_basis = np.vstack((np.eye(m - 2), -np.ones(m - 2)))
+            reduced_basis, _ = np.linalg.qr(raw_basis, mode="reduced")
+            reduced = reduced_basis.T @ active @ reduced_basis
+            constraints.extend(
+                (
+                    active >> 0,
+                    active @ ones == 0,
+                    reduced - margin * np.eye(m - 2) >> 0,
+                )
+            )
+            bv_margin_expressions.append(reduced)
         else:
             # q=-1 and the appended q=1 row vanish identically for k>0.
             active = expression[1:m, 1:m]
             constraints.append(active - margin * np.eye(m - 1) >> 0)
+            bv_margin_expressions.append(active)
 
     pair_values = np.array(
         [
@@ -719,7 +875,10 @@ def solve(
     )
     for degree in range(1, pair_degree + 1):
         moment = 1 + pair_values[:, degree] @ alpha
-        constraints.append(moment >= margin)
+        if require_centered and degree == 1:
+            constraints.append(moment == 0)
+        else:
+            constraints.append(moment >= margin)
 
     constraints.extend(pair_frame_constraints(nodes, alpha))
 
@@ -870,6 +1029,11 @@ def solve(
         "bv_full_radial_harmonic_degrees": f"0..{harmonic_degree}",
         "ordinary_pair_degrees": f"1..{pair_degree}",
         "pair_mode": pair_mode,
+        "centered_pair_moment": require_centered,
+        "robust_vertex_marginals": robust_vertex_marginals,
+        "integer_degree_cut": integer_degree_cut,
+        "integer_degree_lift": integer_degree_lift,
+        "integer_degree_row_types": len(integer_degree_types),
         "kernel_profile": kernel_profile,
         "rank_outer_bands": rank_band_records,
         "stratified_common_pair_capacity_rows": len(capacity_rows),
@@ -907,6 +1071,7 @@ def solve(
 
         minimum_bv = []
         minimum_active_bv = []
+        minimum_margin_bv = []
         for degree, expression in enumerate(bv_expressions):
             eigenvalues = np.linalg.eigvalsh(
                 np.asarray(expression.value, dtype=float)
@@ -920,6 +1085,16 @@ def solve(
             )
             minimum_active_bv.append(
                 float(np.linalg.eigvalsh(active_value)[0])
+            )
+            minimum_margin_bv.append(
+                float(
+                    np.linalg.eigvalsh(
+                        np.asarray(
+                            bv_margin_expressions[degree].value,
+                            dtype=float,
+                        )
+                    )[0]
+                )
             )
         pair_moments = (
             1.0 + pair_values[:, 1:].T @ alpha_value
@@ -975,6 +1150,7 @@ def solve(
                 "active_nu_count": int(np.count_nonzero(nu_value > 1.0e-7)),
                 "minimum_full_bv_eigenvalues": minimum_bv,
                 "minimum_active_bv_eigenvalues": minimum_active_bv,
+                "minimum_margin_bv_eigenvalues": minimum_margin_bv,
                 "minimum_pair_moment": (
                     None
                     if not len(pair_moments)
@@ -989,10 +1165,50 @@ def solve(
                 "minimum_pointwise_weighted_capacity_slack": float(
                     min(weighted_capacity_slacks)
                 ),
+                "total_first_gram_moment": float(
+                    1
+                    + np.dot(
+                        np.array([float(node) for node in nodes]),
+                        alpha_value,
+                    )
+                ),
+                "robust_negative_pair_mass": float(
+                    sum(
+                        value
+                        for node, value in zip(nodes, alpha_value)
+                        if node < Q(-1, 300)
+                    )
+                ),
+                "robust_positive_pair_mass": float(
+                    sum(
+                        value
+                        for node, value in zip(nodes, alpha_value)
+                        if node > Q(1, 300)
+                    )
+                ),
                 "rank_sharp_audit": rank_audit,
                 "all_sharp_rank_cuts_pass_at_1e-6": all(
                     item["sharp_pass_at_1e-6"]
                     for item in rank_audit.values()
+                ),
+                "integer_degree_cut_value": (
+                    None
+                    if integer_degree_expression is None
+                    else float(integer_degree_expression.value)
+                ),
+                "active_integer_degree_row_types": (
+                    None
+                    if integer_degree_weights is None
+                    or integer_degree_weights.value is None
+                    else int(
+                        np.count_nonzero(
+                            np.asarray(
+                                integer_degree_weights.value,
+                                dtype=float,
+                            )
+                            > 1.0e-7
+                        )
+                    )
                 ),
             }
         )
@@ -1024,6 +1240,24 @@ def main() -> None:
         default="free",
     )
     parser.add_argument("--warm-from", type=Path)
+    parser.add_argument("--centered", action="store_true")
+    parser.add_argument("--robust-vertex-marginals", action="store_true")
+    parser.add_argument(
+        "--integer-degree-cut",
+        action="store_true",
+        help=(
+            "add the exact centered quarter-grid degree-moment separator; "
+            "requires --grid quarter"
+        ),
+    )
+    parser.add_argument(
+        "--integer-degree-lift",
+        action="store_true",
+        help=(
+            "require the degree moments to lie in the exact convex hull of "
+            "centered quarter-grid integer row types"
+        ),
+    )
     parser.add_argument(
         "--solver", choices=("CLARABEL", "SCS"), default="CLARABEL"
     )
@@ -1047,6 +1281,10 @@ def main() -> None:
         pair_degree=args.pair_degree,
         kernel_profile=args.kernel_profile,
         pair_mode=args.pair_mode,
+        require_centered=args.centered,
+        robust_vertex_marginals=args.robust_vertex_marginals,
+        integer_degree_cut=args.integer_degree_cut,
+        integer_degree_lift=args.integer_degree_lift,
         solver=args.solver,
         output_path=args.output,
         project_root=project_root,

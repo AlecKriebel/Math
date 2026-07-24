@@ -558,3 +558,66 @@ PYTHONPATH=. .venv/bin/python -m unittest \
 The exact verifiers and the Lorentzian and construction test suites pass.
 The cap certificate uses only exact rational arithmetic; the degree-12/13
 and round-9 coordinates remain explicitly `NUMERICAL EVIDENCE ONLY`.
+
+## Checkpoint 2026-07-24T05:18:00Z
+
+This checkpoint exact-certifies the centered all-degree barrier and its
+local rank-five hierarchy through \(K_7\), exact-certifies a
+product-compatible rank-five \(K_6\) replacement, and records construction
+round 10.  The global bounds remain \(40\leq\tau(5)\leq44\).
+
+Centered all-degree and local hierarchy:
+
+```text
+f3339e267ea4aa200858f155de30ecab5704234107ec22682ed8d914b7f38c17  certificates/centered_quarter_bv_all_harmonics.json
+112be681b4fb98dcfb8af29d08be78bfecfde7088154429fba76774d4c57d550  certificates/centered_quarter_bv_pseudodistribution.json
+60a94eb603ecdad3319e400ce880b7c0b6fe922ba25feb68868eba16fda7f8de  certificates/centered_quarter_k4_extension.json
+133e8b502653b3bb1e1c4c3eb6c0452705020f65128959dc9d0cb34a8c0645ef  certificates/centered_quarter_k5_extension.json
+c196074fa65ce7a493e9fdafb678055fca638e9c7db14af89dd27b163877aa5f  verifiers/verify_centered_quarter_bv_all_harmonics.py
+107a6dad0be8c9331958c57b9068607878423bd80c742de94225b5d7530d7a90  verifiers/verify_centered_quarter_k4_extension.py
+0328f6576e7d610cb3d2d438bf75961a21dc7cb04dbe7c7a09cd4a742674c3a2  verifiers/verify_centered_quarter_k5_extension.py
+32e629ab5df91cf6e616aa1f7a61af22f853b78ccff50947738b5cab1394d0ba  experiments/centered_quarter_k6_rank/direct_k6_triangle_extension.json
+006af4225c33b6458dba553e543b0146cc0396f2992a96794a1586142c9b40f9  experiments/centered_quarter_k6_rank/fixed_support_obstruction.json
+e666aea9882e10b25be7d73bd288a959f3df7bf8dd8f68dc6bb02f2fdf96ce19  experiments/centered_quarter_k6_rank/k7/direct_k7_triangle_extension.json
+753dc6c15946b819c5b5985e8cf88c7c848b3dab0a3578e3ebc4583265b63818  experiments/centered_quarter_k6_rank/k7/fixed_support_obstruction.json
+```
+
+Four-distinct-point product hierarchy:
+
+```text
+cf369d35fbe448cfba6668fedcd6bb2f53b4e7ed12c3b00cae5826a63a1b8a8c  experiments/four_point_depth_projection/k5_product_audit/centered_quarter_k5_product_extension.json
+def805e0c73fb5a5306f230ad21866a5b0fcab1a3708f6f7daaa3b175dc54991  experiments/four_point_depth_projection/k6_product_audit/productpool_extension.json
+60eeb5ec1ef85bda97f39fd8c7c562d3409ee2c8469c518487af886c82fb8015  experiments/four_point_depth_projection/k6_product_audit/productpool_verify.py
+5f205bef75d8d8039805ec67f7346bdf4dbfffd1afa6daaff0abb70ab9d82178  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_extension_independent.py
+e07ed034a37b955015365a75290d165fd4b00ad9b6411dbec7a70e989caa32c6  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_via_deleted_k5.py
+```
+
+Construction round 10:
+
+```text
+d79ead5f649b74012ba19f711d4e8976c2d294080482ec58678a9bf34ba8045a  experiments/construction_round10/results/best_configurations.json
+98dec446c70bf8b99aa73d461bdaa971f0d234af8eb43614c46d8fc52f8888d0  experiments/construction_round10/results/metric_subset_portfolio.json
+a9332eadac1ea10e94d7f983030cf39f166b3f283165d06c33ed8fd8b10ebe10  experiments/construction_round10/results/cross_cardinality_challenge.json
+f6faa78c4e267662964bc4ef06c6962d457bea6e193c6997271132db8e03837b  experiments/construction_round10/SHA256SUMS
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k7/verify_fixed_support_obstruction.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k7/verify_direct_k7_triangle_extension.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k6_product_audit/productpool_verify.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_via_deleted_k5.py
+PYTHONPATH=. .venv/bin/python -m \
+  experiments.construction_round10.check_results \
+  experiments/construction_round10/results/metric_subset_portfolio.json
+cd experiments/construction_round10 && shasum -a 256 -c SHA256SUMS
+```
+
+The exact hierarchy and product verifiers, their independent cross-checks,
+and all tamper tests pass.  Construction round 10 remains explicitly
+`NUMERICAL EVIDENCE ONLY`.

@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T03:34:00Z
+Last updated: 2026-07-24T05:18:00Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -90,6 +90,17 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   worse maxima.  The package in
   `experiments/construction_round9_core_rattler/` is numerical evidence
   only.
+- **Tenth round:** 120 deterministic searches optimized general rank-five
+  anisotropic images and exact-cardinality subsets of the \(E_6,D_6,D_7\)
+  shells for \(N=41,\ldots,44\), followed by 12 unrestricted polishes and
+  six exhaustive cross-cardinality deletion challenges.  The best maxima
+  were approximately
+  \(0.52206926,0.53430359,0.53666002,0.52747119\), so no candidate or new
+  record appeared.  A structured 42-point image beating the direct
+  41-point structured basin exposes a multi-swap trap in alternating subset
+  selection.  All maps, subsets, endpoints, hashes, and numerical checks are
+  reproducible in `experiments/construction_round10/`; this is construction
+  evidence only.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -180,16 +191,45 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   A thirteen-node refinement also passes, but near the BV boundary.  This
   is numerical evidence that the corrected local cut is not by itself a
   global separator; no gridding theorem or all-degree certificate exists.
+- **Exact centered all-degree upgrade:** the quarter-grid candidate has been
+  rationalized while preserving centering, all fixed-size marginals, the
+  forced \(W_0,W_1\) kernels, all corrected pair/common-capacity rows, and
+  27 harmonic-rank cuts.  Exact LDL checks plus parity-tail arguments prove
+  every ordinary and full-radial harmonic inequality in every degree.
+- **Local extension hierarchy:** the same pair/triple marginal has exact
+  symmetric Gram-PSD \(K_4\) and \(K_5\) mixtures.  The first sparse \(K_5\)
+  distribution has an exact support-specific Farkas obstruction at \(K_6\),
+  but another exact 51-atom \(K_6\) mixture matches the same pair/triple
+  marginals and every atom is PSD of rank exactly five.  That frozen \(K_6\)
+  distribution has a complete support-specific obstruction at \(K_7\):
+  277,410 exact gluing trials leave no compatible pattern.  A direct
+  reoptimization nevertheless gives a positive 51-atom rank-exactly-five
+  \(K_7\) mixture with the original pair/triple marginal.  Thus local
+  determinant-rank consistency through seven vertices is a certified
+  barrier, not a separator.
+- **Four-point product hierarchy:** edge-conditioned robust-depth and
+  common-capacity counts give a valid four-distinct-point product row.  Two
+  rows reject the first \(K_5\) mixture, but an exact alternative 64-atom
+  \(K_5\) mixture passes all 560 continuum direction/capacity states.  Its
+  support has no quarter-grid \(K_6\) lift.  Independently, the first direct
+  \(K_6\) mixture fails 41 product rows, but a new exact 74-atom
+  rank-exactly-five \(K_6\) mixture passes all 560 rows after exact
+  reoptimization.  Neither distribution supplies overlap consistency.
 - **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
-  continuous pair/triple domain, or add genuinely four-point/common-source
-  information.  Raising only harmonic or radial degree in the old
-  formulation cannot work against the certified witness.
+  continuous pair/triple domain while coupling overlapping local subsets, or
+  add a genuinely global moment-PSD/common-source invariant.  Raising only
+  harmonic/radial degree or isolated local rank cannot work against the
+  certified witnesses.
 - **Artifacts:** `proofs/fixed41_three_point_formulation.md`;
   `proofs/fixed41_bv_all_harmonics.md`; four exact JSON certificates; two
   dependency-free rational verifiers;
   `proofs/common_pair_capacity_hierarchy_adversarial_audit.md`;
   `proofs/common_pair_capacity_stratified_obstruction.md`; and
-  `experiments/continuous_rank_bv_search/RESULTS.md`.  Patched
+  `experiments/continuous_rank_bv_search/RESULTS.md`;
+  `proofs/centered_quarter_bv_all_harmonics.md`;
+  `experiments/centered_quarter_k6_rank/README.md` and its `k7/` continuation;
+  `experiments/four_point_depth_projection/k5_product_audit/README.md`.
+  Patched
   discovery-only second-level Lasserre runs give objectives 90 at degree 4
   and 48 at degrees 6 and 8; these are numerical evidence only.
 - **Known counterexamples:** Solver status or near-PSD matrices are not
@@ -197,7 +237,8 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   fixed-cardinality infeasibility claims.
 - **Restrictions:** Universal if the full three-point domain and all boundary
   cases are retained.
-- **Status:** certified as a barrier; four-point extensions remain active.
+- **Status:** certified as a barrier through local rank-five \(K_7\);
+  overlapping-subset and higher moment-PSD extensions remain active.
 
 ## D. Rank-aware Gram matrices and nullspace/stress
 
@@ -296,9 +337,28 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   is \(c=21/19\), its pseudo-Gram matrix is indefinite, and its all-ones
   \(W\)-Rayleigh quotient exceeds 46.  Separate spectral, graph, depth, and
   unnormalized-circuit shadows are therefore insufficient.
+- **Centered tight endpoint:** Centering plus Welch equality gives
+  \(G^2=(41/5)G\).  For \(B=I+J-2G\), the full off-diagonal identity is
+  \[
+  B^2=(77/5)I+(287/5)J-(72/5)B.
+  \]
+  An exact rational pair/triple witness satisfies centering, tight pair and
+  cubic traces, every ordinary and full-radial harmonic block in every
+  degree, all low-harmonic frame matrices, and all 27 rank-skew cuts.  It
+  fails exactly four corrected common-pair strata.  Thus tightness and
+  capacity information are independent; the full matrix identity, rather
+  than its averaged shadows, is the active continuation.
+- **Perron/depth hybrid barrier:** Exact Perron-axis identities and the
+  robust slab theorem give a strict variance floor, but a rational scalar
+  family approaches \(\rho=42\) and the Welch frame endpoint while
+  satisfying those shadows.  Exact \(D_5\)-based rank-five near-models show
+  that robust depth and both centered/noncentered Perron endpoints coexist
+  when explicitly listed kissing inequalities are relaxed.
 - **Additional artifacts:** `proofs/lorentzian_inertia_graph.md`;
   `certificates/lorentzian_rank6_interval_countermodel.json`;
-  `verifiers/verify_lorentzian_inertia_graph.py`.
+  `verifiers/verify_lorentzian_inertia_graph.py`;
+  `proofs/centered_tight_frame_endpoint/README.md`;
+  `experiments/perron_robust_depth_hybrid/proof.md`.
 - **Restrictions:** None intended.
 - **Status:** active.
 
@@ -416,6 +476,17 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   objectives below 34 failed independent dense audits, with audited
   objectives above 34.  These are discovery-only failures; they do not
   exclude a different higher-degree certificate.
+- **Pair-conditioned continuum audit:** The exact centered quarter-grid
+  witness survives every robust-depth row obtained from every direction
+  \(\lambda y+\mu z\), including all algebraic critical slopes, open cells,
+  projective infinities, and strict boundary cases.  The minimum exact slack
+  is positive.
+- **Rank-six adversarial model:** An exact 41-point subset of the \(E_6\)
+  roots has rank six and satisfies robust \(\pm1/300\) depth, every
+  code-base common-pair capacity, and all local Gram constraints through four
+  points.  It fails the dimension-five \(H_2\) inequality and a valid
+  arbitrary-axis capacity.  Hence code-base depth/cap shadows do not recover
+  rank five.
 - **Unresolved:** A global averaging or compatibility inequality that excludes
   total size 41.  A one-antipodal-pair belt SDP is now being explored:
   proving at most 38 points in \(|\langle e,x\rangle|\le1/2\) would exclude
@@ -433,7 +504,8 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `verifiers/verify_tangent_nonnegative_neighborhood.py`;
   `proofs/improved_frame_cap_bound.md`;
   `verifiers/verify_improved_frame_cap_bound.py`;
-  `proofs/max_volume_semialgebraic_reduction.md`.
+  `proofs/max_volume_semialgebraic_reduction.md`;
+  `experiments/four_point_depth_projection/README.md`.
 - **Known counterexamples:** Averaging a weak isolated cap bound is insufficient.
 - **Restrictions:** Case assumptions must cover boundary contacts exactly.
 - **Audit:** The one-sided polynomials, projection square, reflection

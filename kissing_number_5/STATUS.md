@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T03:34:00Z
+Last updated: 2026-07-24T05:18:00Z
 
 ## Rigorous bounds
 
@@ -129,6 +129,51 @@ interval, graph, depth, and two-circuit conditions but has \(c=21/19\);
 its pseudo-Gram matrix is explicitly indefinite.  This sharply identifies,
 rather than removes, the common-source bottleneck.
 
+The former numerical quarter-grid barrier has now been upgraded to an exact
+all-degree certificate.  A positive rational mass-41 pair/triple measure is
+centered, passes every ordinary Gegenbauer inequality and every full-radial
+Bachoc--Vallentin block in every degree, the corrected robust/common-pair
+rows, and all 27 recorded harmonic-rank cuts.  Its forced \(W_0,W_1\)
+kernels and both infinite-degree tails were checked exactly.  More strongly,
+the same pair/triple marginal admits symmetric local Gram-PSD extensions on
+four and five vertices and exact 51-atom extensions on six and seven
+vertices in which every atom has rank exactly five.  The particular stored
+\(K_6\) distribution has no supported \(K_7\) lift, but changing its \(K_6\)
+marginal again restores an exact \(K_7\) extension.  Thus isolated local
+determinant-rank conditions through seven vertices do not separate 40 from
+41.  These are local mixtures, not overlapping-subset consistency or a
+global Gram matrix.
+
+Edge-conditioned robust-depth/common-capacity products carry genuinely
+four-distinct-point information.  They reject the first sparse \(K_5\)
+extension in two exact rows, but a different exact 64-atom \(K_5\) mixture
+with the same pair/triple marginal passes all 560 continuum direction states.
+The first rank-five \(K_6\) mixture fails 41 of the corresponding product
+rows after deletion to \(K_5\), and the 64-atom \(K_5\) support has no
+quarter-grid \(K_6\) lift.  Nevertheless, a separately reoptimized exact
+74-atom rank-five \(K_6\) mixture has the original pair/triple marginal and
+passes all 560 rows; 113 rows are equalities.  The unresolved separator must
+therefore couple overlapping local samples or impose a stronger
+moment-PSD/common-source condition.
+
+At the centered unit-norm tight-frame endpoint, the exact matrix identity
+\[
+B^2=\frac{77}{5}I+\frac{287}{5}J-\frac{72}{5}B
+\]
+has been derived.  A separate exact pair/triple witness satisfies centering,
+Welch equality, the tight cubic trace, every ordinary and full-radial
+harmonic block in every degree, low-harmonic frame matrices, and all 27
+rank-skew cuts.  It fails exactly four corrected common-pair strata.  Hence
+tightness and the corrected capacities provide independent information; no
+argument here yet enforces their intersection for arbitrary continuous
+support.
+
+An exact 41-point rank-six \(E_6\) subset supplies another adversarial
+boundary: it obeys strict robust \(\pm1/300\) depth, all code-base
+common-pair capacities, and every local four-point Gram condition, but fails
+the dimension-five \(H_2\) inequality and an arbitrary-axis capacity.  It
+prevents those local shadows from being mistaken for rank five.
+
 An independent exact \(S^3\) cap polynomial improves the frame conditioning
 of every hypothetical 41-code to
 \[
@@ -186,6 +231,20 @@ The extracted 35-core active graph has 153 edges and minimum vertex cover
 remove every old maximum edge.  This is an exact fact about one
 well-separated finite graph extracted from floating data, not a geometric
 upper bound.
+
+A tenth construction round optimized general rank-five anisotropic images
+and exact-cardinality subsets of the \(E_6,D_6,D_7\) shells, followed by
+unrestricted release.  Across 120 deterministic structured starts, 12
+polishes, and six exhaustive cross-cardinality deletion challenges, no
+41--44 point code appeared.  The best maxima in this mechanism were
+\[
+0.5220692609969377,\ 0.5343035874522938,\
+0.5366600203477839,\ 0.5274711925362580.
+\]
+The fact that a structured 42-point image outperformed the direct 41-point
+structured search exposes a multi-swap subset trap.  This is reproducible
+numerical construction evidence only and is weaker than the stored
+unrestricted 41--43 records.
 
 The proposed anchored row-energy BV route is now exactly blocked in its pure
 three-point form.  The all-harmonic pseudo-measure forces its objective to be
@@ -264,7 +323,7 @@ excluding every nonnegative triangle measure on the historical five-node
 support and pair data.  The original cumulative-only artifact is retained
 but explicitly marked **REFUTED**.
 
-This correction still does not globalize.  A fresh atomic search reoptimized
+This correction initially did not globalize.  A fresh atomic search reoptimized
 the triangle measure on both a seven-node quarter grid and a thirteen-node
 refinement.  The quarter-grid numerical witness simultaneously passes all
 corrected stratum/weighted capacities, full-radial BV through harmonic
@@ -276,14 +335,23 @@ finite-grid, finite-degree pseudodistributions—not codes or exact
 certificates—and they show why a continuous-domain dual or a new four-point
 mechanism is still required.
 
+The quarter-grid witness has since been rationalized without losing any of
+those constraints and extended to every harmonic degree.  Exact local
+extensions through rank-five \(K_6\) now supersede the finite-degree
+numerical evidence.  The stored sparse \(K_5\) mixture itself has an exact
+four-orbit Farkas obstruction to extension to \(K_6\), but this is
+support-specific: changing its \(K_5\) marginal yields the direct rank-five
+\(K_6\) extension above.
+
 ## Theorem-strength unresolved gaps
 
 - No universal inequality excludes a 41-point code.
 - No exact three-point or higher-point dual certificate below 41 is known here.
-- The all-degree fixed-cardinality three-point pseudo-distribution proves that
-  no contradiction can follow from only the complete pair/triple measure
-  conditions formalized in this repository; four-point consistency, rank, or
-  another genuinely stronger invariant is necessary.
+- The exact centered all-degree pair/triple pseudo-distribution, its
+  product-compatible local \(K_5\) extension, and its direct rank-five local
+  \(K_6\) extension prove that no contradiction can follow from only those
+  symmetrized local marginals.  Overlap consistency, higher moment-matrix
+  positivity, or another genuinely global invariant is necessary.
 - No complete interval, semialgebraic, or finite-cell exhaustion of all
   41-point codes is known here.
 - No construction with 41 or more points is known here.
@@ -295,9 +363,9 @@ mechanism is still required.
   been produced.
 - The fixed five-node support is now eliminated, but no theorem reduces an
   arbitrary real inner-product distribution to that support or pair data.
-- Exact-stratum common-pair cuts are universal, but no continuous-support
-  combination of them currently excludes all possible 41-point pair/triple
-  measures; corrected finite-grid relaxations remain numerically feasible.
+- Exact-stratum and edge-conditioned product cuts are universal, but no
+  continuous-support combination currently excludes all possible 41-point
+  marginals; exact rational local witnesses survive every recorded row.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
@@ -386,6 +454,21 @@ mechanism is still required.
   [`proofs/common_pair_capacity_stratified_obstruction.md`](proofs/common_pair_capacity_stratified_obstruction.md)
 - Continuous-grid rank/BV barrier search:
   [`experiments/continuous_rank_bv_search/RESULTS.md`](experiments/continuous_rank_bv_search/RESULTS.md)
+- Exact centered all-degree barrier and local \(K_4,K_5\) extensions:
+  [`proofs/centered_quarter_bv_all_harmonics.md`](proofs/centered_quarter_bv_all_harmonics.md)
+- Exact fixed-support \(K_6\) obstruction and alternative direct rank-five
+  \(K_6\) extension:
+  [`experiments/centered_quarter_k6_rank/README.md`](experiments/centered_quarter_k6_rank/README.md)
+- Exact edge-conditioned product audit and product-compatible \(K_5\)
+  extension:
+  [`experiments/four_point_depth_projection/k5_product_audit/README.md`](experiments/four_point_depth_projection/k5_product_audit/README.md)
+- Centered tight-frame endpoint algebra and exact all-degree barrier:
+  [`proofs/centered_tight_frame_endpoint/README.md`](proofs/centered_tight_frame_endpoint/README.md)
+- Exact Perron/robust-depth hybrid barriers:
+  [`experiments/perron_robust_depth_hybrid/proof.md`](experiments/perron_robust_depth_hybrid/proof.md)
+- Rank-six \(E_6\) depth/common-pair countermodel and the universal
+  four-point product row:
+  [`experiments/four_point_depth_projection/README.md`](experiments/four_point_depth_projection/README.md)
 - Exact anchored negative-cap inequality and nonseparation audit:
   [`proofs/anchored_negative_cap_kernel.md`](proofs/anchored_negative_cap_kernel.md)
 - Depth-seven positive-circuit packing and exact barrier catalog:
@@ -484,6 +567,22 @@ a second human/agent audit is still pending.
   rederived the endpoint normalization, parity recurrence, finite/tail
   coverage, norm argument, and arbitrary-radial factorization and found no
   mathematical gap.
+- A second, centered rational pair/triple witness passes all ordinary and
+  full-radial inequalities in every degree, every corrected pair-level
+  capacity row, and all 27 recorded harmonic-rank cuts.  It has independently
+  verified local Gram-PSD extensions through five vertices and a direct
+  rank-exactly-five extension through six vertices.  These are local
+  symmetrized mixtures, never a claimed 41-point code.
+- The edge-conditioned depth/common-capacity product inequality is an exact
+  four-distinct-point consequence with all strict boundaries retained.  Its
+  560 quarter-grid direction states have been independently regenerated; a
+  64-atom local \(K_5\) extension satisfies all of them exactly.
+- The centered tight-frame identity, its forced BV kernels, and its exact
+  all-degree relaxation witness passed independent audit.  The witness's
+  four failed common-pair strata are recorded explicitly rather than hidden.
+- The 41-point \(E_6\) countermodel has exact rank six, robust slab depth,
+  code-base capacities, and local \(K_4\) positivity; two independent
+  rational verification paths locate its dimension-sensitive failures.
 - Every genuine Gram source satisfies the exact residual-vector square
   inequality displayed above; its negative value on the labeled pseudo-object
   is independently recomputable in rational arithmetic.
@@ -533,6 +632,22 @@ a second human/agent audit is still pending.
   degree, or eventually becomes infeasible at high harmonic degree”:
   **refuted** for the complete formulation used here by the all-degree exact
   rational pseudo-distribution.
+- “Centering, all harmonic degrees, the recorded common-pair rows, and local
+  Gram consistency through six vertices exclude mass 41”: **refuted** by the
+  exact centered quarter-grid certificates.  The six-point atoms even have
+  rank exactly five, but are not coupled as overlapping subsets of one
+  global object.
+- “The first sparse \(K_5\) extension's failure of product or \(K_6\)
+  consistency eliminates its pair/triple marginal”: **refuted** by the
+  alternative exact 64-atom product-compatible \(K_5\) extension and the
+  direct 51-atom rank-five \(K_6\) extension.
+- “Centered tightness plus all recorded harmonic/rank moments is already
+  contradictory”: **refuted** at the pair/triple level by the exact
+  centered-tight all-degree witness; it fails four independent capacity
+  rows, so the combined intersection remains open.
+- “Robust depth, every code-base common-pair capacity, and local four-point
+  Gram positivity recover dimension five”: **refuted** by the exact
+  rank-six \(E_6\) subset.
 - “The displayed rank-five spectral inequalities alone exclude all feasible
   fixed-41 pair/triple moments”: **refuted** by a feasible small-variance
   five-eigenvalue completion with \(D=0\); actual four-point linkage is still

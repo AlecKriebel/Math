@@ -194,6 +194,21 @@ PYTHONPATH=. .venv/bin/python -m unittest \
 All round-9 configurations remain above \(1/2\); these commands reproduce a
 numerical construction search, not an upper-bound certificate.
 
+Construction round 10 checks general rank-five anisotropic images and
+exact-cardinality subsets of \(E_6,D_6,D_7\):
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  -m experiments.construction_round10.check_results \
+  experiments/construction_round10/results/metric_subset_portfolio.json
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round10.test_rank5_metric_subset_search -v
+cd experiments/construction_round10 && shasum -a 256 -c SHA256SUMS
+```
+
+All 41--44 point endpoints remain above \(1/2\).  This is reproducible
+construction evidence only.
+
 ## Reproduce the corrected common-pair audit
 
 The original cumulative-only pseudo-certificate is retained with an explicit
@@ -216,6 +231,93 @@ sha256sum -c \
 The last two commands reproduce a discovery-only continuous-grid barrier:
 corrected capacities eliminate the old witnesses, but reoptimized
 finite-grid measures survive.  They are explicitly numerical-only.
+
+## Reproduce the centered all-degree and local-rank barriers
+
+The exact centered quarter-grid witness passes the recorded pair/triple,
+capacity, robust-depth, and harmonic-rank conditions at every degree.  Its
+local mixtures extend through rank-exactly-five \(K_7\), but are not
+overlapping subsets of one global configuration.
+
+```sh
+python3 verifiers/verify_centered_quarter_bv_all_harmonics.py
+python3 verifiers/verify_centered_quarter_k4_extension.py
+python3 verifiers/verify_centered_quarter_k5_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/verify_fixed_support_obstruction.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/verify_direct_k6_triangle_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k7/verify_fixed_support_obstruction.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k7/verify_direct_k7_triangle_extension.py
+python3 -m unittest \
+  tests.test_centered_quarter_bv_all_harmonics \
+  tests.test_centered_quarter_k4_extension \
+  tests.test_centered_quarter_k5_extension -v
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.centered_quarter_k6_rank.test_fixed_support_obstruction \
+  experiments.centered_quarter_k6_rank.test_direct_k6_triangle_extension \
+  experiments.centered_quarter_k6_rank.k7.test_fixed_support_obstruction \
+  experiments.centered_quarter_k6_rank.k7.test_direct_k7_triangle_extension \
+  -v
+```
+
+The first \(K_5\) mixture fails two edge-conditioned product rows.  A
+different exact 64-atom mixture passes all 560 continuum direction states.
+That support has no \(K_6\) lift.  A separately reoptimized exact 74-atom
+rank-five \(K_6\) mixture also passes all 560 rows:
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  experiments/four_point_depth_projection/k5_product_audit/verify_centered_quarter_k5_product.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/four_point_depth_projection/k5_product_audit/verify_product_extension_independent.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.four_point_depth_projection.k5_product_audit.test_verify \
+  experiments.four_point_depth_projection.k5_product_audit.test_alternative_extension \
+  experiments.four_point_depth_projection.k5_product_audit.test_verify_centered_quarter_k5_product \
+  experiments.four_point_depth_projection.k5_product_audit.test_verify_product_extension_independent \
+  -v
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k6_product_audit/productpool_verify.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_via_deleted_k5.py
+PYTHONPATH=. /usr/bin/python3 -m unittest \
+  experiments.four_point_depth_projection.k6_product_audit.productpool_test \
+  experiments.four_point_depth_projection.k6_product_audit.test_productpool_via_deleted_k5 \
+  experiments.four_point_depth_projection.k6_product_audit.test_verify_productpool_extension_independent \
+  -v
+```
+
+## Reproduce the tight-frame and depth/Perron adversarial barriers
+
+The centered tight-frame package derives the full weighted strongly-regular
+matrix identity and checks an exact all-degree pair/triple countermodel.  The
+Perron/depth and \(E_6\) packages delimit which robust-depth and common-pair
+shadows still fail to recover rank five.
+
+```sh
+python3 experiments/centered_tight_frame_endpoint/verify_countermodel.py
+python3 experiments/centered_tight_frame_endpoint/verify_centered_tight_bv.py
+python3 -m unittest \
+  experiments.centered_tight_frame_endpoint.test_exact_artifacts -v
+python3 experiments/perron_robust_depth_hybrid/verify.py
+python3 -m unittest \
+  experiments.perron_robust_depth_hybrid.test_verify -v
+python3 \
+  experiments/four_point_depth_projection/verify_e6_rank6_shadow_countermodel.py
+python3 \
+  experiments/four_point_depth_projection/audit_e6_rank6_shadow_countermodel.py
+python3 -m unittest \
+  experiments.four_point_depth_projection.test_e6_rank6_shadow_countermodel \
+  experiments.four_point_depth_projection.test_e6_rank6_shadow_adversarial_audit \
+  -v
+```
+
+All claims in this section are exact relaxation barriers or restricted
+structural theorems.  None is a 41-point construction or a universal upper
+bound.
 
 ## Layout
 
