@@ -1,6 +1,6 @@
 # Claims Ledger
 
-Last updated: 2026-07-24T08:40:54Z
+Last updated: 2026-07-24T16:33:20Z
 
 Allowed labels are `PROVED`, `COMPUTATIONALLY CERTIFIED`,
 `NUMERICAL EVIDENCE ONLY`, `CONJECTURAL`, and `REFUTED`.
@@ -167,3 +167,18 @@ Allowed labels are `PROVED`, `COMPUTATIONALLY CERTIFIED`,
 | C158 | On the quarter grid, the centered spectral variance \(V=\operatorname{tr}(G^2)-41^2/5\) can take arbitrary small nonnegative values. | REFUTED | Exact pair-count arithmetic gives \(40V=5Q-11808\equiv2\pmod5\); below or at \(3/10\), only \(1/20,7/40,3/10\) occur.  This is a finite-support theorem only. |
 | C159 | A quarter-grid 41-code can have exactly 14, 15, or 16 antipodal pairs. | REFUTED | An exact rational Farkas identity combining degrees 1, 3, and 4 bounds squared Gram energy strictly below the rank-five trace lower bound in each branch.  No continuous-support reduction is claimed. |
 | C160 | For a weighted-isotropic support Gram matrix \(S\), a profile \(h\) with \(h^{\mathsf T}Ph=1/5\) is realized by a unit vector in the common support span exactly when \(h^{\mathsf T}PSPh=1/25\). | PROVED | With \(K=5P^{1/2}SP^{1/2}\), the exact deficit is \((1/5)\|(I-K)P^{1/2}h\|^2\).  Equality is equivalent to \(h=5SPh\), and the realizing vector is \(5\sum_i p_i h_i x_i\). |
+| C161 | The July 2026 program improved the rigorous global interval \(40\le\tau(5)\le44\). | REFUTED | The exact \(D_5\) lower bound and published upper bound remain unchanged.  No 41-point construction or universal 41-point exclusion was obtained. |
+| C162 | The exact ADE package excludes all 38 profiles stored in `r11_quarter_grid_global_profiles.json`. | COMPUTATIONALLY CERTIFIED | The standard-library verifier authenticates every stored row and applies exact ADE core-shell bounds; direct and test runs pass in normal and `-O` modes.  This statement is only about the stored export. |
+| C163 | Those 38 stored profiles exhaust every quarter-grid 41-code with 11 antipodal pairs. | CONJECTURAL | The upstream exact enumeration generator was temporary and did not survive.  JSON metadata is not an independent coverage certificate. |
+| C164 | The quarter-grid endpoint with unordered edge counts \((12,35,199,40,279,0,255)\) is impossible. | COMPUTATIONALLY CERTIFIED | Exact ADE root-system, dual-shell, and rank-four 24-cell arguments are independently enumerated by `verify_ade_core_shells.py`; normal and optimized runs pass. |
+| C165 | C164 excludes the entire quarter-grid branch with 12 antipodal pairs. | CONJECTURAL | No surviving exact generator proves that the named endpoint is the only possible \(r=12\) endpoint. |
+| C166 | Quarter-grid 41-codes with 14, 15, or 16 antipodal pairs are impossible. | COMPUTATIONALLY CERTIFIED | Exact rational degree-1, degree-3, and degree-4 identities plus rank-five energy are verified by the stored central certificate.  No continuous-support reduction is claimed. |
+| C167 | The repository certifies complete quarter-grid exclusions for \(r=13,17,18\), or the interrupted \(r=10\) branch. | REFUTED | No theorem-strength package for these claims survived the interrupted run.  They must be rebuilt rather than inferred from research chat history. |
+| C168 | Every PSD five-point Gram matrix in the closed \(C_5\) sign cell has \(\lambda_{\max}\le3\). | PROVED | `lambda_max_c5_cell.md` gives an exact analytic proof and a dependency-free checker covers constants and boundary cases. |
+| C169 | On the minimal angular-metric face \(\sum_iA_i=3\), the five-point quartic energy is at most \(3/2\). | COMPUTATIONALLY CERTIFIED | An exact adjacent-merge reduction and integer Bernstein tensor are verified from scratch, including tamper tests and closed boundaries. |
+| C170 | The quartic energy is at most \(3/2\) throughout the full \(C_5\) sign cell. | CONJECTURAL | C169 covers only the minimal metric face.  The region \(\sum_iA_i>3\) remains unresolved, so the \(r=18\) branch is not eliminated. |
+| C171 | For the realized 12-root weighted \(D_5\) support, every union of at most three extension conflicts satisfies the stated Hall inequality. | COMPUTATIONALLY CERTIFIED | Exact finite enumeration, a stored certificate, ordinary/optimized tests, and tamper cases agree.  This is support-specific. |
+| C172 | The corresponding \(3/4\)-Hall proxy or a uniform conflict-charge rule extends C171 to all relevant unions. | REFUTED | Exact four-point and uniform-charge counterexamples are stored and independently verified. |
+| C173 | The degree-three rooted-triangle dual is valid on its stored 1,782-atom \(K_7\) catalog. | COMPUTATIONALLY CERTIFIED | Exact integer/rational reconstruction and an independent audit authenticate the finite-pool certificate. |
+| C174 | The C173 dual is a universal inequality for all rank-five quarter-grid \(K_7\) atoms. | REFUTED | `catalog_dual_counteratom.json` is an exact PSD rank-five atom outside the catalog with strictly negative dual slack. |
+| C175 | Failure of the construction program to find \(N=41,\ldots,44\) proves nonexistence. | REFUTED | The best stored maxima remain above \(1/2\), but finite floating-point search cannot cover the continuous configuration space. |

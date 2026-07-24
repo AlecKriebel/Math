@@ -1,8 +1,29 @@
 # Approach Registry
 
-Last updated: 2026-07-24T08:40:54Z
+Last updated: 2026-07-24T16:33:20Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
+
+> **Program state: PAUSED.**  Historical `active` labels below record which
+> mechanisms were live when the run stopped; none is currently executing.
+> The global bounds remain \(40\le\tau(5)\le44\).
+
+## Pause checkpoint and restart triage
+
+| Mechanism | Precise surviving result | Exact gap | State at pause |
+|---|---|---|---|
+| Unrestricted construction | Many reproducible 41--44 point searches; best 41-point maximum about \(0.5149946525\) | No exact candidate at \(1/2\), and search failure gives no obstruction | paused |
+| Global common-source/rank-five compatibility | Exact spectral, weighted, Lorentzian, projection-membership, and overlap identities; many exact countermodels to weaker shadows | One universal inequality coupling overlapping local views in a common five-dimensional column space | strongest restart candidate |
+| Quarter-grid antipodal branches | \(r=14,15,16\) certified; one \(r=12\) endpoint and 38 stored \(r=11\) profiles excluded | Missing exhaustive generators for \(r=11,r=12\); no surviving \(r=10,13,17,18\) package; no off-grid reduction | blocked |
+| Five-cycle energy | \(\lambda_{\max}\le3\) on the closed sign cell and quartic energy \(\le3/2\) on \(\sum A_i=3\) | Entire region \(\sum A_i>3\) | blocked |
+| Root-triangle \(K_7\) overlap | Exact finite-catalog dual and exact centered-radical fragment | Exact rank-five counteratom outside catalog; degree-three radical incomplete | finite-catalog route falsified as universal |
+| Pair/triple SDP and local rank-five mixtures | Exact mass-41 pseudodistributions survive the implemented hierarchies | Higher-order global overlap or an exact SOS dual below 41 | blocked |
+| Semialgebraic/discretization | Compact formulations and boundary-safe ingredients exist | No complete continuous cover or finite reduction | blocked |
+
+The recommended restart is not another finite-grid refinement.  It is a new
+global-overlap mechanism, a proved continuous-to-finite reduction, or an exact
+higher-order dual certificate.  See [`RESUME.md`](RESUME.md) for the operational
+handoff and [`STATUS.md`](STATUS.md) for the audited claim scope.
 
 ## A. Exact constructions and unrestricted optimization
 

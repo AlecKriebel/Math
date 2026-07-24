@@ -1,962 +1,206 @@
-# Status
+# Status — paused research checkpoint
 
-Last updated: 2026-07-24T08:40:54Z
+Last updated: 2026-07-24T16:33:20Z
 
-## Rigorous bounds
+> **Program state: PAUSED. This is not a resolution of the
+> five-dimensional kissing-number problem.**
+
+## Rigorous global status
 
 \[
 \boxed{40\leq\tau(5)\leq44}.
 \]
 
-- Lower bound 40: **independently exact-verified** from the \(D_5\) root
-  configuration.  See
-  [`proofs/lower_bound_d5.md`](proofs/lower_bound_d5.md) and run
-  `python3 verifiers/verify_d5.py certificates/d5_roots.json`.
-- Upper bound 44: **imported published baseline**, due to the
-  Bachoc--Vallentin three-point SDP as computed at high precision by
-  Mittelmann--Vallentin.  This project has not yet reconstructed a standalone
-  exact certificate for that bound.
+- The lower bound \(40\) is exact.  The normalized \(D_5\) roots are written
+  out in [`certificates/d5_roots.json`](certificates/d5_roots.json), proved in
+  [`proofs/lower_bound_d5.md`](proofs/lower_bound_d5.md), and checked with
+  exact integer arithmetic by
+  [`verifiers/verify_d5.py`](verifiers/verify_d5.py).
+- The upper bound \(44\) is the published baseline from the
+  Bachoc--Vallentin/Mittelmann--Vallentin semidefinite-programming method.  It
+  is imported here; this repository does not contain a standalone exact
+  certificate for it.
+- The July 2026 literature check still reports \(44\) as the best proved upper
+  bound and at least four non-isometric 40-point configurations:
+  [Cohn--Rajagopal, *Variations on Five-Dimensional Sphere
+  Packings*](https://doi.org/10.1007/s00454-026-00841-x).
 
-No exact value has been established.
+**This program did not improve either global bound, construct 41 points, or
+prove that 41 points are impossible.**  No percentage-to-completion estimate
+is defensible.  The earlier “22%” estimate measured accumulated infrastructure,
+not mathematical proximity to a solution, and is retired.
 
-## Completion estimate
+## What survived exact audit
 
-**Best guess: 22% toward a complete exact resolution.**  The lower
-construction and several new universal necessary conditions are exact and
-audited, including an exact one-sided bound \(B(5)\le34\) and a quantitative
-enlargement of that cap theorem, but the decisive step—either a 41-point
-exact construction or a
-classification-free exclusion of every continuous 41-point Gram
-realization—is still absent.  The estimate is intentionally uncertain and
-may decrease if the surviving continuous-support barriers prove broader
-than currently known.
+The following are useful necessary conditions or restricted theorems.  None
+alone, or in the combinations checked so far, excludes every continuous
+rank-five \(41\times41\) Gram matrix.
 
-## Strongest candidate routes
+### Universal statements
 
-The strongest current candidate is a **rank-aware higher-harmonic
-local-to-global route** coupling very negative pairs, forced positive wedges,
-colored-degree consistency, and the finite ranks of several harmonic Gram
-matrices.  For every real harmonic combination \(K\) of rank at most \(r\),
-the newly proved sharp inequality
-\[
-r(r-1)D_K^2\le (r-2)^2V_K^3
-\]
-adds rank information visible in pair/triple moments.  Its \(H_2\) and
-\((H_0+5H_1)/6\) instances exactly reject the strongest degree-four
-pseudo-distribution.  Together with degree-five BV blocks and necessary
-outer rank bands, these cuts now give an exact rational dual excluding the
-entire historical five-node support with its fixed pair multiplicities.
-This is a genuine fixed-support theorem, not a universal 41-point exclusion.
-The missing global ingredient must either control continuously varying
-supports or retain four-cycle/comparable common-source information.
-The sparse cases are sharply localized: with 23 deep pairs the graph is
-exactly \(C_5\sqcup18K_2\), while with 24 it is one of three explicit
-component types.  A rank-20 countermodel passes all aggregate
-projective-kernel and local angular inequalities for the 23-edge graph, so
-the needed continuation must use rank five across distinct components.
+- Every antipodal five-dimensional kissing code has at most 40 points.
+- For a hypothetical 41-code, the graph of pairs with inner product below
+  \(-1/2\) is triangle-free, has independence number at most 20, and has at
+  least 23 edges.
+- If such a code has \(r\) antipodal pairs, those pairs are isolated components
+  of the strict-deep graph and
+  \[
+  e(H)\le r+(20-r)^2+1.
+  \]
+  At \(r=18\), equality forces \(H=18K_2\sqcup C_5\).  The five residual cycle
+  products obey an exact projective-harmonic energy lower bound, forcing one
+  product at most
+  \[
+  -\sqrt{\frac{1+\sqrt{17}}8}.
+  \]
+  This localizes but does not eliminate the branch.
+- Exact tangent-projection certificates give the positive-height occupancy
+  ladder
+  \[
+  \#\{y\ne x:\langle x,y\rangle\ge h\}\le
+  \begin{cases}
+  23,&h=1/4,\\
+  22,&h=3/10,\\
+  21,&h=1/3,\\
+  20,&h=3/8,\\
+  19,&h=2/5.
+  \end{cases}
+  \]
+- Exact cap certificates in this repository independently prove
+  \(B(5)\le34\) and several robust variants.  This is weaker than the published
+  \(B(5)\le33\) value in Bachoc--Vallentin's spherical-cap table, so no record
+  is claimed.
+- The exact rank-five spectral, harmonic-combination, Lorentzian, weighted
+  isotropy, and common-source identities recorded in the claims ledger are
+  valid necessary conditions.  Exact countermodels show that their aggregate
+  low-order shadows do not yet recover one global rank-five Gram source.
 
-A new exact branch coupling prevents antipodal mass and strict-deep-edge
-mass from being optimized independently.  If a hypothetical 41-code has
-\(r\) antipodal pairs, those pairs are isolated components of the
-strict-deep graph and
-\[
-e(H)\le r+(20-r)^2+1.
-\]
-The upper bounds at \(r=15,16,17,18\) are \(41,33,27,23\), respectively.  Every
-odd harmonic moment also receives contributions only from the
-\(41-2r\) unpaired core points.  See
-[`proofs/antipodal_deep_graph_coupling.md`](proofs/antipodal_deep_graph_coupling.md).
-At the endpoint \(r=18\), equality forces
-\(H=18K_2\sqcup C_5\).  A new weighted projective-harmonic argument proves
-for its five cycle products \(s_i<-1/2\) that
-\[
-\sum_{i=1}^5\frac{64}{45}s_i^2(4s_i^2-1)\ge\frac{64}{9}.
-\]
-An independent exact derivation checked every ordered/unordered factor and
-the arbitrary-weight extension.  In particular some
-\[
-s_i\le-\sqrt{\frac{1+\sqrt{17}}8}
-      =-0.8002425902\ldots .
-\]
-This sharply localizes, but does not yet eliminate, the 18-antipode branch.
+### Restricted and finite-model statements
 
-Independently, tangent projection plus an exact rational \(S^3\) Delsarte
-polynomial proves that every anchor has at most 23 neighbors at height at
-least \(1/4\).  The projected maximum inner product is \(7/15\), and the
-exact objective is
-\[
-\frac{162458260679981924352}{6933123990242908417}<24.
-\]
-The certificate is
-[`certificates/a4_7_15_delsarte.json`](certificates/a4_7_15_delsarte.json).
-The same projection has now been exact-certified at four higher thresholds:
-\[
-\#\{y\ne x:\langle x,y\rangle\ge h\}\le
-\begin{cases}
-22,&h=3/10,\\
-21,&h=1/3,\\
-20,&h=3/8,\\
-19,&h=2/5.
-\end{cases}
-\]
-The four projected maxima are \(41/91,7/16,23/55,17/42\);
-all polynomial signs and integer gaps are rational and boundary-safe.
+- In the **quarter-grid model only**, where all inner products are multiples
+  of \(1/4\), exact certificates exclude the branches with 14, 15, or 16
+  antipodal pairs.
+- An exact ADE core-shell calculation excludes one specific \(r=12\) endpoint
+  with edge-count vector
+  \((12,35,199,40,279,0,255)\).
+- The same machinery excludes all 38 profiles stored in
+  [`r11_quarter_grid_global_profiles.json`](experiments/centered_quarter_k4_flag_psd/audit/k5_centering_products/rank5_strengthening/r11_quarter_grid_global_profiles.json).
+  The upstream generators proving that these lists exhaust their whole
+  \(r=11\) and \(r=12\) branches were temporary and did not survive.  Therefore
+  **the complete \(r=11\) and \(r=12\) branches are not repository-certified**.
+- Earlier exploratory claims concerning complete \(r=13\), \(r=17\), or
+  \(r=18\) quarter-grid exclusions have no surviving exact package and are not
+  claimed here.  The interrupted \(r=10\) exploration likewise produced no
+  theorem-strength artifact.
+- On the closed five-cycle sign cell, an exact proof gives
+  \(\lambda_{\max}(G)\le3\).  A separate exact Bernstein certificate proves
+  the target quartic-energy upper bound only on the minimal angular-metric
+  face \(\sum A_i=3\).  The off-face region remains open, so this does not
+  eliminate the \(r=18\) branch.
+- A degree-three root-triangle dual is exact on one finite 1,782-atom \(K_7\)
+  catalog.  An exact rank-five quarter-grid counteratom outside the catalog
+  violates it, refuting any universal interpretation of that finite dual.
+- The realized-\(D_5\) extension audit proves a small-union Hall lemma and
+  supplies exact counterexamples to two tempting stronger charging
+  principles.  It is a study of one support, not a classification of arbitrary
+  41-codes.
 
-Other active incompatible routes are:
+## Construction search at pause
 
-1. rank-aware Gram/nullspace inequalities, including a degree-two sign kernel
-   of rank at most 20 and an exact degree-two Tverberg partition at \(N=41\);
-2. compatible local-cap/link and deep-pair graph bounds;
-3. unrestricted numerical construction searches for 41--44 points, followed
-   by exact reconstruction if a genuine candidate appears;
-4. a maximum-volume-basis semialgebraic reduction with explicit rational
-   conditioning and a boundary-safe finite cell cover.
+No exact configuration with 41--44 points was found.  The best repeatedly
+reproduced numerical maxima were approximately:
 
-An exact degree-11 cap-SDP certificate now gives
-\[
-A(4,1/\sqrt3)\le33,\qquad B(5)\le34.
-\]
-Consequently, every open hemisphere of a hypothetical 41-code contains at
-least seven points, and the origin remains in the interior of the convex hull
-after deletion of any six points.  Independently, tangent projection of
-the nonnegative neighborhood at each code point proves that every vertex
-has at least seven strictly negative neighbors, so the negative-pair graph
-has minimum degree at least seven and at least 144 edges; the two oriented
-hemisphere bounds also force at least six other strictly positive neighbors
-at every vertex.  The new proof
-uses exact rational Gram factors, diagonal bound \(1647/50\),
-off-diagonal bound \(-969/1000\), and a 5,995-leaf Bernstein certificate
-over the full closed semialgebraic domain.  Its objective is
-\(11303/323=35-2/323\), so integrality gives 34.  A separate verifier
-independently rebuilt every polynomial term and tree leaf, checked the
-previously missed symmetry ridge and all pole/contact/determinant
-boundaries, and found no flaw.  The earlier degree-10 proof of
-\(B(5)\le35\) remains as a smaller independent certificate.
+| Points | Best maximum inner product | Required |
+|---:|---:|---:|
+| 41 | 0.5149946525 | \(\le0.5\) |
+| 42 | 0.51824116 | \(\le0.5\) |
+| 43 | 0.52470960 | \(\le0.5\) |
+| 44 | 0.52745771 | \(\le0.5\) |
 
-The same degree-11 positive kernel has now been exact-certified on the
-strictly larger closed cap
-\[
-\langle e,x\rangle\ge-1/300.
-\]
-On that domain the exact diagonal and off-diagonal bounds are \(3291/100\)
-and \(-121/125\), giving
-\[
-|C|\le\frac{16939}{484}=35-\frac1{484}<35.
-\]
-The rebuilt 650-term polynomial and 6,053-leaf Bernstein tree therefore
-prove that every hypothetical 41-code has at least seven points with
-\(\langle e,x\rangle<-1/300\) and at least seven with
-\(\langle e,x\rangle>1/300\), for every unit direction \(e\).  At a code
-vertex this gives at least seven other points below \(-1/300\) and at least
-six other points above \(1/300\).  All thresholds are strict consequences
-of an audit on a closed domain.
+These are basin-search outcomes, not lower bounds on the optimum and not
+evidence of nonexistence in the logical sense.  The dedicated \(r=18\)
+five-cycle search reached a best common load near \(0.54248\).
 
-A separate degree-eight exact kernel proves the larger-cap theorem
-\[
-\langle e,x\rangle\ge-1/50\quad\Longrightarrow\quad |C|\le39.
-\]
-Its exact diagonal/off-diagonal bounds \(35\) and \(-9/10\) give objective
-\(359/9<40\), and a 1,344-leaf Bernstein certificate covers the full closed
-domain.  This compactifies the failure-of-weighted-isotropy branch: a
-mean-zero quadratic separator can be normalized to an explicit compact
-eight-parameter family.  It does not finish the problem.  Even a uniform
-occupancy theorem for that family would only force nonnegative weighted
-spherical 2-design weights; arbitrary weighted-isotropic 41-codes remain a
-separate theorem-strength branch.
+## Strongest route if resumed
 
-That weighted branch is now algebraically explicit.  If \(P=\operatorname{diag}
-(p)\), then
-\[
-Gp=0,\qquad GPG=G/5,
-\]
-and \(5P^{1/2}GP^{1/2}\) is a rank-five orthogonal projection annihilating
-\(\sqrt p\).  For \(B=I+J-2G\), the exact common-source identity is
-\[
-BPB=PB+BP-P+\frac25I+\frac75J-\frac25B.
-\]
-Every weight is at most \(1/6\); every direction has weighted mass at least
-\(9/98\) below \(-1/50\) and above \(1/50\).  Carathéodory reduces any
-feasible weighting to support between 6 and 20, leaving at least 21
-zero-weight code points.  These facts still do not contradict feasibility:
-the exact \(D_5\) code has a weighted two-design supported on only 12 roots,
-and an exact 41-vertex graph model passes all current local weight/count
-inequalities.  See
-[`experiments/quadratic_positive_residual/weighted_branch_audit.md`](experiments/quadratic_positive_residual/weighted_branch_audit.md).
+The best remaining direction is a **global common-source/rank-five
+compatibility inequality** that couples several overlapping local views.
+Pair distributions, three-point SDP blocks, finite local rank-five mixtures,
+integer row moments, and many cap rows all admit exact mass-41
+pseudodistributions.  What repeatedly separates those shadows from geometry
+is that their local vectors need not live in one common five-dimensional
+column space.
 
-The full quadratic identity is stronger than the rank constraint: factoring
-\(G=XX^{\mathsf T}\) shows \(X^{\mathsf T}PX=I/5\), and tracing forces
-\(\operatorname{rank}G=5\), even with zero weights.  In squared-distance
-coordinates \(D=2(J-G)\),
-\[
-Dp=2{\bf1},\qquad DPD=\frac{24}{5}J-\frac25D,
-\]
-so \(P^{1/2}DP^{1/2}\) has spectrum
-\(\{2,(-2/5)^5,0\}\).  The complementary Naimark stress gives exact subset
-and pair-weight inequalities.  For a zero-weight code point the support
-mass below \(-1/50\) is at least \(19/147\), and the mass above \(1/50\)
-is at least \(1/4\).
+A useful restart should bring one genuinely new mechanism:
 
-These improvements expose the next gap rather than close it.  An exact
-25-point rational code refutes the tempting universal row-energy ceiling
-\(41/5\).  More decisively, the actual 12-root \(D_5\) support admits 29
-formal zero-point profiles satisfying every scalar moment, strict-tail,
-pairwise kissing, and support-support-zero \(3\times3\) Gram test.  Their
-profile rank is seven rather than five.  Thus the first missing condition
-is common column-space compatibility.  This condition now has a compact
-exact scalar form.  If \(S\) is the weighted support Gram matrix and \(h\)
-is a proposed support-height profile with \(h^{\mathsf T}Ph=1/5\), then
-\[
-h^{\mathsf T}PSPh\le\frac1{25},\qquad
-\frac1{25}-h^{\mathsf T}PSPh
- =\frac15\left\|(I-5P^{1/2}SP^{1/2})P^{1/2}h\right\|^2.
-\]
-Equality holds exactly when \(h\) is realized by a unit vector in the
-common five-dimensional support span.  It kills 27 of the 29 formal
-profiles above, but does not yet bound the number of jointly realizable
-profiles.  See
-[`experiments/weighted_common_source_attack/proof.md`](experiments/weighted_common_source_attack/proof.md)
-and
-[`experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md`](experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md).
+1. an exact positive square or stress identity involving overlapping
+   four-cycles/rooted triangles and retaining a common Gram source;
+2. a boundary-safe continuous-to-finite theorem, not merely a finer grid; or
+3. a rigorously certified higher-order SDP/SOS dual with objective strictly
+   below 41.
 
-An independent global-overlap mechanism is also exact.  For any rooted
-two-extension feature \(f_{ij}(A)\), the hypergeometrically reweighted
-local square on a sampled \(k\)-set has expectation
-\[
-\frac{k(k-1)}{N(N-1)}
-\sum_{i\ne j}\left(\sum_A f_{ij}(A)\right)^2\ge0.
-\]
-A continuous degree-two feature rejects all eight stored \(K_6\)--\(K_{11}\)
-and product local lifts by strict rational margins.  This proves those
-specific local pseudo-measures are not globally exchangeable, even as real
-symmetric arrays.  It does not yet exclude all continuous rank-five local
-lifts.  See
-[`experiments/global_flag_exchangeability/README.md`](experiments/global_flag_exchangeability/README.md).
-Indeed, an exact positive 73-atom rank-five \(K_6\) mixture repairs the
-entire centered symmetric degree-at-most-two rooted-edge block: its
-18-dimensional matrix is PSD of rank seven, with precisely the 11 forced
-centering identities in its radical.  Root-triangle \(K_7\) overlap or
-higher degree is therefore essential.
-
-All proof-critical checkers touched in this round were also run under
-optimized Python.  The cap, weighted, support-six, and rooted-flag verifiers
-now use always-on exceptions and include deliberate-tamper tests; ordinary
-and `python -O` suites agree.
-
-Deletion-six robustness also forces two disjoint inclusion-minimal positive
-circuits, each with between two and six points, and therefore two disjointly
-supported positive Gram-kernel vectors.  This is exact but not decisive:
-the \(D_5\) code realizes every one of the 15 possible circuit-size pairs,
-and an exact 41-point subset of \(D_6\) satisfies the same entry and circuit
-conditions at rank six.  A continuation must exploit genuinely global
-rank-five compatibility rather than circuit sizes alone.
-
-The Lorentzian transform
-\[
-A=2G-J,\qquad W=I-A
-\]
-now gives another exact structural view.  Any hypothetical 41-code has
-\(\operatorname{inertia}(A)=(5,1,35)\), \(W\) irreducible and nonnegative,
-and Perron root \(18<\rho(W)\le42\).  A nonsingular six-vertex principal
-core represents the other 35 rows on one signature-\((5,1)\) quadric.
-Most importantly, if a normalized positive circuit satisfies
-\(A\alpha=-c{\bf1}\), then \(A+cJ\succeq0\) has rank five and \(c\) is the
-unique critical rank-one shift.  Thus the genuine identity \(c=1\) is
-already equivalent to recovering the omitted PSD rank-five Gram lift.
-An exact rational 41-point surrogate satisfies the separate inertia,
-interval, graph, depth, and two-circuit conditions but has \(c=21/19\);
-its pseudo-Gram matrix is explicitly indefinite.  This sharply identifies,
-rather than removes, the common-source bottleneck.
-
-The former numerical quarter-grid barrier has now been upgraded to an exact
-all-degree certificate.  A positive rational mass-41 pair/triple measure is
-centered, passes every ordinary Gegenbauer inequality and every full-radial
-Bachoc--Vallentin block in every degree, the corrected robust/common-pair
-rows, and all 27 recorded harmonic-rank cuts.  Its forced \(W_0,W_1\)
-kernels and both infinite-degree tails were checked exactly.  More strongly,
-the same pair/triple marginal admits symmetric local Gram-PSD extensions on
-four and five vertices and exact 51-atom extensions on every size from six
-through eleven in which every atom has rank exactly five.  Frozen-support
-obstructions recur at several levels, but changing the preceding marginal
-restores the next extension.  Thus isolated local determinant-rank
-conditions through eleven vertices do not separate 40 from 41.  These are
-local mixtures, not overlapping-subset consistency or a global Gram matrix.
-
-One centered quarter-grid spectral endpoint is nevertheless excluded
-exactly.  For edge counts
-\((0,100,55,207,173,35,250)\), divisibility and the sharp rank-five cubic
-inequality force Gram spectrum \(\{8,(33/4)^4\}\).  The resulting rank-one
-matrix identity and row parity put at least 25 points in one
-four-dimensional orthogonal complement, contradicting \(\tau(4)=24\).
-After adding this exact no-good row, however, the global integer count model
-has an independently audited interior survivor at spectral integer \(X=12\).
-Thus the endpoint mechanism is a restricted theorem, not a quarter-grid
-upper bound.
-
-Finite-population degree integrality does reject the original quarter-grid
-witness: an exact integral quadratic is nonnegative on all 27,041 possible
-centered row-degree vectors and has strictly negative expected value.
-However, three exact cutting rounds repair that defect.  The repaired
-all-degree witness has an exact positive 18-atom mixture of integer
-row-degree vectors matching every first and second degree moment, as well as
-exact local \(K_5\) and rank-five \(K_6\) extensions.  Consequently first and
-second integer row moments are a certified barrier rather than a route to a
-centered-grid contradiction.  A stronger global integer
-edge/triple/row-type layer is nonempty by an exact certificate satisfying
-all 28 row/triangle incidence equations.  The same row multiset separately
-has a simultaneous edge coloring, but that coloring has 649 infeasible
-triangles, so the two shadows are not coupled.  Adding floating PSD cuts in
-a stronger MILP found integral count shadows after 39 cuts; the next solve
-timed out.
-
-The analogous noncentered obstruction has now been repaired exactly rather
-than only numerically.  After six exact integer-row facets, a positive
-rational mass-41 pair/triple witness passes every ordinary and full-radial
-harmonic degree, all 20 recorded cap rows, ten frame blocks, and 27
-sharp-rank residuals.  More decisively, an exact positive 26-atom mixture
-drawn from the complete 855,168 admissible integer rows matches every first
-and second row-degree moment.  A verifier-independent reconstruction
-confirmed all orbit normalizations, tails, principal minors, and row
-enumeration.  Thus all current first/second noncentered integer-row
-information is also a certified barrier; the witness is not a code or a
-global Gram matrix.
-
-Edge-conditioned robust-depth/common-capacity products carry genuinely
-four-distinct-point information.  They reject the first sparse \(K_5\)
-extension in two exact rows, but a different exact 64-atom \(K_5\) mixture
-with the same pair/triple marginal passes all 560 continuum direction states.
-The first rank-five \(K_6\) mixture fails 41 of the corresponding product
-rows after deletion to \(K_5\), and the 64-atom \(K_5\) support has no
-quarter-grid \(K_6\) lift.  Nevertheless, a separately reoptimized exact
-74-atom rank-five \(K_6\) mixture has the original pair/triple marginal and
-passes all 560 rows; 113 rows are equalities.  The unresolved separator must
-therefore couple overlapping local samples or impose a stronger
-moment-PSD/common-source condition.
-
-The corresponding \(K_7\) audit again separates a frozen distribution
-without separating the marginal: the 74-atom \(K_6\) support has no
-supported \(K_7\) lift, while a different exact 53-atom rank-five \(K_7\)
-mixture passes all 560 currently proved product states.  A full-interval
-pair/triple/\(K_4\) moment formulation with polynomial covariance blocks is
-also exactly feasible at every polynomial order, by scaling the authenticated
-\(K_6\) atomic mixture.  Its covariance positivity is an atomwise
-sum-of-squares identity, so merely increasing the polynomial order of those
-same edge-conditioned blocks cannot produce an upper bound.
-
-For an arbitrary hypothetical 41-code, deletion-six interiority now yields
-a controlled full-support centering vector with \(0<p_i<1/4\).  With
-\(B=I+J-2G\), \(a_i=p_i/(1+p_i)\), and
-\(S=A^{1/2}BA^{1/2}\), the matrix \(S\) is similar to a reversible Markov
-chain, has at most five negative eigenvalues, and satisfies
-\(\lambda_2(S)<1/5\).  In fact \(S-A\) has inertia \((1,5)\), and if \(P\)
-is the sum of the non-Perron positive eigenvalues then
-\(\operatorname{tr}S^3\ge0\) gives \(P<2\).  The universal quadratic transform
-\[
-W-4I=\frac65J-2G-\frac{16}{5}H_2
-\]
-has rank at most 20 and eigenvalue 4 with multiplicity at least 21.  Exact
-\(D_5\) weight families and a 41-row generalized-quadrangle sign model show
-why neither uncontrolled barycentric weights nor the abstract sign/rank
-pattern suffices.  An exact non-kissing 41-point family with deletion-six
-depth and optimized \(p_{\min}\to0\) further proves that depth alone cannot
-quantify balance.  A successful continuation must retain the nonlinear
-common Gram source and the kissing inequalities together.
-
-At the centered unit-norm tight-frame endpoint, the exact matrix identity
-\[
-B^2=\frac{77}{5}I+\frac{287}{5}J-\frac{72}{5}B
-\]
-has been derived.  A separate exact pair/triple witness satisfies centering,
-Welch equality, the tight cubic trace, every ordinary and full-radial
-harmonic block in every degree, low-harmonic frame matrices, and all 27
-rank-skew cuts.  It fails exactly four corrected common-pair strata.  Hence
-tightness and the corrected capacities provide independent information; no
-argument here yet enforces their intersection for arbitrary continuous
-support.
-
-An exact 41-point rank-six \(E_6\) subset supplies another adversarial
-boundary: it obeys strict robust \(\pm1/300\) depth, all code-base
-common-pair capacities, and every local four-point Gram condition, but fails
-the dimension-five \(H_2\) inequality and an arbitrary-axis capacity.  It
-prevents those local shadows from being mistaken for rank five.
-
-An independent exact \(S^3\) cap polynomial improves the frame conditioning
-of every hypothetical 41-code to
-\[
-\sum_{x\in C}xx^{\mathsf T}\succ \frac{15059}{40000}I_5.
-\]
-For its five nonzero Gram eigenvalues, if
-\(V=\sum_i(\lambda_i-41/5)^2\) and
-\(D=\sum_i(\lambda_i-41/5)^3\), the sharp rank-five constraint
-\[
-20D^2\le9V^3
-\]
-is proved exactly.  It rejects both stored high-quality pair/triple
-pseudo-witnesses, demonstrating genuine information absent from all
-three-point harmonic blocks.  A separate feasible spectral completion with
-\(D=0\), and now an exact degree-three BV/wedge pseudo-measure satisfying the
-sharp inequality with strict slack, show that spectral moments alone cannot
-finish the proof.  The latter pseudo-measure fails a simpler common
-edge-colored-graph covariance square, so the two constraints carry
-independent information.  Convexly mixing that witness with the all-degree
-three-point witness cannot repair both defects: an exact radial interpolation
-polynomial annihilates the old support and exposes a negative
-\(H_{3,9}\) direction for every positive mixture weight.
-
-The best stored unrestricted 41-point numerical candidate has maximum inner
-product approximately \(0.514994652512\); a repeatedly reached fully
-independent basin is \(0.5155570516153127\).  Both exceed \(1/2\) and are
-numerical near misses, not lower or upper bounds.
-
-A seventh construction round compressed 20 feasible six-dimensional starts
-toward rank five.  Every path crossed above \(1/2\) at the same coarse
-homotopy stage, and the best final 41-point maximum was
-\(0.5207137808832133\), worse than the stored unrestricted record.  Exact
-\(D_6\)-label checking and binary64 trajectory verification make this
-reproducible numerical evidence about one mechanism only.
-
-The newest profile-guided portfolio again found no 41--44-point code.  It
-improved only the numerical \(N=44\) benchmark to approximately
-\(0.5274577123235293\), still above \(1/2\); an independent 90-digit
-recomputation identifies the active pair.  This remains construction-search
-evidence only.
-
-A distinct layer-evolution, crossover, and cardinality-surgery portfolio
-also found no code.  Its independently recomputed maxima for
-\(N=41,42,43,44\) are
-\[
-0.5155656485808731,\ 0.5199641730896757,\
-0.5261397477047198,\ 0.5274711925360355.
-\]
-All remain above \(1/2\); this is reproducible numerical search evidence
-only.
-
-A separate scaling audit found that several discovery-only coarse/refined
-row facets had been divided by their coefficient scale twice.  Results that
-visibly violated those facets are withdrawn as feasible evidence.  Correctly
-scaled LP/eigenvector-cut and exact antipodal-count branch runs are active;
-no floating ceiling from that family is currently promoted to a theorem.
-
-An eighth construction round tested unit-norm tight frames.  Exact directed
-interval arithmetic rejects every canonical cyclic 41-vector harmonic frame
-and every row-sign switching of one: a forced sign reversal around a
-41-cycle has odd parity.  A separate determinant argument shows that no five
-oriented \(D_5\) roots form an orthonormal basis.  The best general numerical
-UNTF search ended at \(0.5262002628454\), still infeasible.  These are
-restricted construction results, not a universal upper bound.
-
-A ninth unrestricted construction round attacked the persistent
-35-point-core/six-rattler basin by complete floating one-point facet scans,
-deletion/reinsertion of 2--8 points, all-coordinate release, large core
-quakes, and replica exchange.  It found no 41--44 point code.  The best
-recomputed maxima were
-\[
-0.5149946525121668,\ 0.5182411558622623,\
-0.5247244770145227,\ 0.5274711925359574.
-\]
-The extracted 35-core active graph has 153 edges and minimum vertex cover
-26, explaining exactly why replacing only 2--8 locked core vertices cannot
-remove every old maximum edge.  This is an exact fact about one
-well-separated finite graph extracted from floating data, not a geometric
-upper bound.
-
-A tenth construction round optimized general rank-five anisotropic images
-and exact-cardinality subsets of the \(E_6,D_6,D_7\) shells, followed by
-unrestricted release.  Across 120 deterministic structured starts, 12
-polishes, and six exhaustive cross-cardinality deletion challenges, no
-41--44 point code appeared.  The best maxima in this mechanism were
-\[
-0.5220692609969377,\ 0.5343035874522938,\
-0.5366600203477839,\ 0.5274711925362580.
-\]
-The fact that a structured 42-point image outperformed the direct 41-point
-structured search exposes a multi-swap subset trap.  This is reproducible
-numerical construction evidence only and is weaker than the stored
-unrestricted 41--43 records.
-
-The proposed anchored row-energy BV route is now exactly blocked in its pure
-three-point form.  The all-harmonic pseudo-measure forces its objective to be
-\(7.209745740250104\ldots>36/5\).  Degree-6, 8, and 10 numerical
-antipodal-belt searches also remain far from their required objective below
-39.  Any useful continuation of either route must add genuinely new rank or
-four-point consistency.
-
-Ordinary two-point LP is now **certifiably blocked**: an exact mass-41
-pseudo-distance distribution satisfies every Gegenbauer moment inequality and
-has no off-diagonal atom at the contact value.
-
-The entire fixed-cardinality two/three-point route, in the formulation
-recorded here, is now **certifiably blocked**: one exact rational
-pseudo-distribution satisfies every radial block in every harmonic degree and
-every pair Gegenbauer inequality.  The proof uses exact finite checks through
-harmonic degree 505 and rational parity-tail estimates thereafter.  It does
-not extend to four-point consistency or to a rank-five Gram matrix.
-
-One useful four-point/common-source separator is the residual-vector square.
-For
-\[
- f(u)=u-\frac83u^2,\qquad
- r_{ij}=x_j-\langle x_i,x_j\rangle x_i,
-\]
-every genuine code satisfies
-\[
- \frac1N\sum_i\left\|\sum_{j\ne i}f(g_{ij})r_{ij}\right\|^2\ge0.
-\]
-The first labeled 41-vertex pseudo-Gram object surviving all
-\(3\times3\) minors and all degree-two BV blocks violates this inequality by
-the exact amount
-\(-105027064094021/15375000000000\).  Converting this separator into a
-universal continuous-label bound remains an important gap.  A second exact
-integral triple pseudo-incidence survives this residual square and all
-degree-two BV blocks, but fails an explicit degree-three radial square and
-the sharp rank-five spectral inequality.  A third exact integral
-pseudo-incidence passes every BV block through total degree three and every
-certified wedge capacity on the same support; within the BV hierarchy it
-first fails a displayed degree-four block, while the independent sharp
-rank-five spectral cut already rejects it.  A fourth assignment passes the
-degree-three and rank-five tests simultaneously but fails the exact
-color-degree covariance square
-\(\sum_v(2d_0(v)-d_1(v)+d_4(v))^2\ge
-(\sum_v(2d_0(v)-d_1(v)+d_4(v)))^2/41\).
-A fifth exact assignment repairs that covariance defect as well, passes
-individual-color graphical degree sequences and all induced three-vertex
-motif counts, and still satisfies the rank-five \(H_1\) cut.  A sixth exact
-assignment passes every BV block through total degree four, the old
-rank/color/clique conditions, a joint colored-degree decomposition, and all
-negative-degree requirements.  Both are rejected by the new
-higher-harmonic centered-skew constraints.  An exact degree-five dual then
-rules out every triple distribution on this fixed support and pair data
-using only necessary outer rank bands.  Thus these constraints are genuinely
-independent, while continuous-support universality remains unresolved.
-
-A new four-point/common-source audit gives a much shorter rejection of the
-sixth assignment.  If a base pair has inner product at most \(-11/25\),
-it has at most one common neighbor whose two incident inner products are at
-least \(499/1000\).  Exact projection gives the forbidden lower bound
-\(109001/140000>1/2\) for two such neighbors.  The stored witness requires
-243 such triangles but has only 219 eligible base edges.  An independent
-enumeration of all 198 Gram-PSD colored-\(K_4\) orbits reduces to the same
-one-row covariance contradiction.  This is a universal threshold lemma but
-still only rejects the fixed-support witness.
-
-Adversarial audit found that the subsequently proposed five-node
-common-pair “survivor” was not a survivor at all: cumulative base thresholds
-had incorrectly allowed unused deeper edges to subsidize shallower ones.
-The valid pointwise theorem can be summed over any measurable base stratum.
-Exact singleton strata give \(n_{244}=219>131=E_2\) and
-\(n_{344}=1424>1304=4E_3\); the seven-node all-harmonic witness also fails
-its exact \(q=-1/4,b=1/2\) stratum.  Combining two such rows with only three
-total-degree-three BV scalar forms yields a short exact Farkas certificate
-excluding every nonnegative triangle measure on the historical five-node
-support and pair data.  The original cumulative-only artifact is retained
-but explicitly marked **REFUTED**.
-
-This correction initially did not globalize.  A fresh atomic search reoptimized
-the triangle measure on both a seven-node quarter grid and a thirteen-node
-refinement.  The quarter-grid numerical witness simultaneously passes all
-corrected stratum/weighted capacities, full-radial BV through harmonic
-degree 16, ordinary pair moments, frame PSD constraints, and 27 sampled
-sharp harmonic-rank inequalities; its independently recomputed active BV
-margin is about \(2.02\cdot10^{-6}\).  The thirteen-node refinement also
-passes numerically, but only at a \(4.96\cdot10^{-11}\) BV margin.  These are
-finite-grid, finite-degree pseudodistributions—not codes or exact
-certificates—and they show why a continuous-domain dual or a new four-point
-mechanism is still required.
-
-The quarter-grid witness has since been rationalized without losing any of
-those constraints and extended to every harmonic degree.  Exact local
-extensions through rank-five \(K_6\) now supersede the finite-degree
-numerical evidence.  The stored sparse \(K_5\) mixture itself has an exact
-four-orbit Farkas obstruction to extension to \(K_6\), but this is
-support-specific: changing its \(K_5\) marginal yields the direct rank-five
-\(K_6\) extension above.
+More optimization of the same pair/triple or quarter-grid relaxations is
+unlikely to be a good use of a fixed research budget.
 
 ## Theorem-strength unresolved gaps
 
-- No universal inequality excludes a 41-point code.
-- No exact three-point or higher-point dual certificate below 41 is known here.
-- The exact centered all-degree pair/triple pseudo-distribution, its
-  product-compatible local \(K_5\) extension, and its direct rank-five local
-  extensions through \(K_{11}\) prove that no contradiction can follow from
-  only those separately symmetrized local marginals.  Overlap consistency,
-  higher moment-matrix positivity, or another genuinely global invariant is
-  necessary.
-- No complete interval, semialgebraic, or finite-cell exhaustion of all
-  41-point codes is known here.
-- No construction with 41 or more points is known here.
-- No theorem justifies restricting a hypothetical extremizer to a contact
-  graph, finite inner-product alphabet, symmetry class, rigidity class, or
-  lattice.
-- The compact maximum-volume formulation still has 154 intrinsic continuous
-  dimensions; no complete interval tree or SOS infeasibility certificate has
-  been produced.
-- The fixed five-node support is now eliminated, but no theorem reduces an
-  arbitrary real inner-product distribution to that support or pair data.
-- Exact-stratum and edge-conditioned product cuts are universal, but no
-  continuous-support combination currently excludes all possible 41-point
-  marginals.  The complete falling-factorial depth/cap hierarchy has now
-  been derived exactly.  It rejects both stored product witnesses and gives
-  tiny exact Farkas contradictions for the current \(K_7\) pools, even after
-  one explicit repairing atom.  Those pools are not a complete list of
-  continuous rank-five \(K_7\) Gram atoms.  An exact seven-point atom refutes
-  the attempted pointwise rank-five globalization of the joint ray.
-- The exact integer degree-row mixture controls only first and second moments;
-  no globally realizable 41-vertex colored graph, overlapping local system,
-  or rational infeasibility certificate has been obtained from the count
-  MILP.
-- The original noncentered witness is rejected by an exact integer-row
-  facet, but the six-cut replacement is an exact all-degree witness with a
-  complete first/second integer-row mixture.  A successful finite-population
-  continuation must use higher joint row moments or overlapping labeled
-  incidence information.
-- The compact quadratic-positive-locus program covers only failure of
-  weighted degree-two isotropy.  Proving that occupancy theorem would still
-  leave the branch \(G p=0,\ GPG=G/5,\ p\ge0\), for which neither uniformity
-  nor full support is available.
-- Weighted centering gives \(p_{\max}<1/4\) but no effective universal
-  \(p_{\min}\) or cap-mass lower bound.  Compactness alone does not supply the
-  explicit constant needed by the reversible-matrix inequalities.
-- The residual-vector square above separates the best labeled pseudo-object,
-  but no classification-free bound yet forces enough high closures among its
-  deep--middle wedges for arbitrary real inner products.
-- The sharp rank-five inequality eliminates the stored witnesses but can be
-  evaded by other three-point-feasible moment data; a successful rank route
-  must impose the new harmonic-combination hierarchy on a continuous
-  pair/triple domain and likely control the all-distinct four-cycle term in
-  \(\operatorname{tr}(G^4)\), or an equivalent common-source statistic.
-- The deep-graph cases with 23 and 24 edges are finite, but no
-  rank-five/cross-component elimination of their continuously labeled Gram
-  realizations is known.
-- The six-core Lorentzian star-complement representation is exact, but the
-  normalized positive-circuit identity needed to recover the PSD rank-five
-  lift is already equivalent to the original common-source condition.  No
-  weaker tractable shadow yet excludes all continuous star-complement
-  realizations.
-- In the exact-antipodal reduction for the sparse graphs, a zero-slack
-  root-system argument forces the base lines into \(D_5\) and proves a strict
-  cross-component projective-energy loss.  An effective determinant-rounding
-  proof gives the explicit gap \(1/1658880000\) and a robust
-  near-antipodal inequality, but this certified constant is far too small for
-  the remaining global margin.
+1. No construction of 41, 42, 43, or 44 points is known here.
+2. No universal inequality excludes every real PSD unit-diagonal
+   \(41\times41\) matrix with off-diagonal entries at most \(1/2\) and rank at
+   most five.
+3. No theorem maps an arbitrary continuous code to the quarter grid or any
+   other finite alphabet while preserving feasibility.
+4. No complete continuous classification of the \(r=18\) five-cycle branch is
+   available.
+5. No exact exhaustive generator currently authenticates the stored \(r=11\)
+   profile list or the upstream \(r=12\) endpoint list.
+6. The root-triangle degree-three radical and the off-face five-cycle energy
+   argument are incomplete.
 
-## Reproducible artifacts
+## Claims that survived adversarial audit
 
-- Exact \(D_5\) coordinates:
-  [`certificates/d5_roots.json`](certificates/d5_roots.json)
-- Independent verifier:
-  [`verifiers/verify_d5.py`](verifiers/verify_d5.py)
-- Verifier tests:
-  [`tests/test_verify_d5.py`](tests/test_verify_d5.py)
-- Exact ordinary-LP barrier proof:
-  [`proofs/two_point_lp_barrier.md`](proofs/two_point_lp_barrier.md)
-- Exact barrier verifier:
-  [`verifiers/verify_two_point_barrier.py`](verifiers/verify_two_point_barrier.py)
-- Exact fixed-\(D_5\) saturation lemma:
-  [`proofs/d5_saturation.md`](proofs/d5_saturation.md)
-- Exact quadratic-kernel constraints and counterexamples:
-  [`proofs/rank_kernel_barriers.md`](proofs/rank_kernel_barriers.md)
-- Fixed-\(41\) three-point formulation and exact pseudo-distributions:
-  [`proofs/fixed41_three_point_formulation.md`](proofs/fixed41_three_point_formulation.md)
-- All-degree exact three-point barrier:
-  [`proofs/fixed41_bv_all_harmonics.md`](proofs/fixed41_bv_all_harmonics.md)
-- Degree-two BV-surviving labeled object and its exact degree-three separator:
-  [`proofs/degree2_bv_barrier.md`](proofs/degree2_bv_barrier.md)
-- Exact local links and a contact-free maximal code:
-  [`proofs/local_link_geometry.md`](proofs/local_link_geometry.md)
-- Exact one-sided bound, Tukey-depth, and contact/sign consequences:
-  [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
-- Exact degree-10 cap-SDP bound \(B(5)\le35\):
-  [`proofs/one_sided_cap_degree10_bound.md`](proofs/one_sided_cap_degree10_bound.md)
-- Exact degree-11 cap-SDP bound \(B(5)\le34\) and independent audit:
-  [`proofs/one_sided_cap_degree11_bound.md`](proofs/one_sided_cap_degree11_bound.md)
-  and
-  [`proofs/one_sided_cap_degree11_adversarial_audit.md`](proofs/one_sided_cap_degree11_adversarial_audit.md)
-- Exact enlarged-cap degree-11 theorem at height \(-1/300\):
-  [`proofs/one_sided_cap_degree11_robust.md`](proofs/one_sided_cap_degree11_robust.md)
-- Tangent nonnegative-neighborhood projection and minimum negative degree:
-  [`proofs/tangent_nonnegative_neighborhood.md`](proofs/tangent_nonnegative_neighborhood.md)
-- Improved exact cap/frame conditioning:
-  [`proofs/improved_frame_cap_bound.md`](proofs/improved_frame_cap_bound.md)
-- Sharp rank-five spectral moment and four-/six-cycle identities:
-  [`proofs/rank_five_spectral_moment.md`](proofs/rank_five_spectral_moment.md)
-  and
-  [`proofs/rank_five_four_cycle_moments.md`](proofs/rank_five_four_cycle_moments.md)
-- Exact weighted-residual/triple-incidence barrier:
-  [`proofs/weighted_residual_barrier.md`](proofs/weighted_residual_barrier.md)
-- Exact degree-three local-hybrid barrier:
-  [`proofs/local_hybrid_degree3_barrier.md`](proofs/local_hybrid_degree3_barrier.md)
-- Exact degree-three plus rank-five barrier and its common-graph covariance
-  failure:
-  [`proofs/local_hybrid_degree3_rank_barrier.md`](proofs/local_hybrid_degree3_rank_barrier.md)
-- Strongest degree-three/rank/color-moment barrier:
-  [`proofs/local_hybrid_degree3_rank_color_barrier.md`](proofs/local_hybrid_degree3_rank_color_barrier.md)
-- Universal harmonic-combination centered-skew rank inequality and exact
-  witness separators:
-  [`proofs/harmonic_combination_centered_skew.md`](proofs/harmonic_combination_centered_skew.md)
-- Exact degree-five necessary-rank separator for the historical five-node
-  support:
-  [`proofs/local5_degree5_necessary_rank_separator.md`](proofs/local5_degree5_necessary_rank_separator.md)
-- Exact common-neighbor/edge-conditioned \(K_4\) obstruction:
-  [`proofs/edge_conditioned_k4_exact_obstruction.md`](proofs/edge_conditioned_k4_exact_obstruction.md)
-- Corrected common-pair hierarchy audit and exact fixed-support dual:
-  [`proofs/common_pair_capacity_hierarchy_adversarial_audit.md`](proofs/common_pair_capacity_hierarchy_adversarial_audit.md)
-  and
-  [`proofs/common_pair_capacity_stratified_obstruction.md`](proofs/common_pair_capacity_stratified_obstruction.md)
-- Continuous-grid rank/BV barrier search:
-  [`experiments/continuous_rank_bv_search/RESULTS.md`](experiments/continuous_rank_bv_search/RESULTS.md)
-- Exact centered all-degree barrier and local \(K_4,K_5\) extensions:
-  [`proofs/centered_quarter_bv_all_harmonics.md`](proofs/centered_quarter_bv_all_harmonics.md)
-- Exact fixed-support \(K_6\) obstruction and alternative direct rank-five
-  \(K_6\) extension:
-  [`experiments/centered_quarter_k6_rank/README.md`](experiments/centered_quarter_k6_rank/README.md)
-- Exact direct local rank-five hierarchy through \(K_{11}\):
-  [`experiments/centered_quarter_k6_rank/k8/README.md`](experiments/centered_quarter_k6_rank/k8/README.md),
-  [`experiments/centered_quarter_k6_rank/k9/README.md`](experiments/centered_quarter_k6_rank/k9/README.md),
-  [`experiments/centered_quarter_k6_rank/k10/README.md`](experiments/centered_quarter_k6_rank/k10/README.md),
-  and
-  [`experiments/centered_quarter_k6_rank/k11/README.md`](experiments/centered_quarter_k6_rank/k11/README.md)
-- Exact integer degree-moment obstruction, repair, and positive row mixture:
-  [`proofs/centered_quarter_integer_degree_obstruction.md`](proofs/centered_quarter_integer_degree_obstruction.md)
-  and
-  [`experiments/centered_integer_degree_moments/README.md`](experiments/centered_integer_degree_moments/README.md)
-- Exact edge-conditioned product audit and product-compatible \(K_5\)
-  extension:
-  [`experiments/four_point_depth_projection/k5_product_audit/README.md`](experiments/four_point_depth_projection/k5_product_audit/README.md)
-- Exact \(K_7\) product audit, frozen-support obstruction, and alternative
-  rank-five mixture:
-  [`experiments/four_point_depth_projection/k7_product_audit/README.md`](experiments/four_point_depth_projection/k7_product_audit/README.md)
-- Full-interval four-point/covariance counter-witness:
-  [`experiments/continuous_four_point_moment/README.md`](experiments/continuous_four_point_moment/README.md)
-- Universal weighted-centering and reversible-Lorentzian identities:
-  [`experiments/universal_weighted_centering/README.md`](experiments/universal_weighted_centering/README.md)
-- Centered tight-frame endpoint algebra and exact all-degree barrier:
-  [`proofs/centered_tight_frame_endpoint/README.md`](proofs/centered_tight_frame_endpoint/README.md)
-- Exact Perron/robust-depth hybrid barriers:
-  [`experiments/perron_robust_depth_hybrid/proof.md`](experiments/perron_robust_depth_hybrid/proof.md)
-- Rank-six \(E_6\) depth/common-pair countermodel and the universal
-  four-point product row:
-  [`experiments/four_point_depth_projection/README.md`](experiments/four_point_depth_projection/README.md)
-- Exact anchored negative-cap inequality and nonseparation audit:
-  [`proofs/anchored_negative_cap_kernel.md`](proofs/anchored_negative_cap_kernel.md)
-- Depth-seven positive-circuit packing and exact barrier catalog:
-  [`proofs/positive_circuit_packing_from_depth.md`](proofs/positive_circuit_packing_from_depth.md)
-- Low-harmonic frame-potential inequalities and their all-harmonic
-  mass-41 barrier:
-  [`proofs/harmonic_rank_frame_barrier.md`](proofs/harmonic_rank_frame_barrier.md)
-- Exact sparse deep-graph classification, angular bounds, and rank-20
-  countermodel:
-  [`proofs/sparse_deep_graph_stability.md`](proofs/sparse_deep_graph_stability.md)
-- Effective root-system stability bound:
-  [`proofs/quantitative_root_system_stability.md`](proofs/quantitative_root_system_stability.md)
-- Exact split quadratic-kernel countermodel:
-  [`proofs/split_kernel_abstract_barrier.md`](proofs/split_kernel_abstract_barrier.md)
-- Lorentzian inertia/Perron/star-complement structure and exact weakened
-  surrogate:
-  [`proofs/lorentzian_inertia_graph.md`](proofs/lorentzian_inertia_graph.md)
-- Stronger full-entry-interval split-kernel countermodel:
-  [`proofs/split_kernel_full_interval_barrier.md`](proofs/split_kernel_full_interval_barrier.md)
-- Exact separator for the attempted all-harmonic/rank-witness mixture:
-  [`proofs/fixed41_rank_mixture_separator.md`](proofs/fixed41_rank_mixture_separator.md)
-- Exact maximum-volume semialgebraic reduction:
-  [`proofs/max_volume_semialgebraic_reduction.md`](proofs/max_volume_semialgebraic_reduction.md)
-- Degree-two Tverberg constraint and exact rank-five barrier:
-  [`proofs/tverberg_moment_barrier.md`](proofs/tverberg_moment_barrier.md)
-- Exact antipodal upper bound and unrestricted deep-pair corollary:
-  [`proofs/antipodal_bound.md`](proofs/antipodal_bound.md) and
-  [`proofs/negative_tail_graph.md`](proofs/negative_tail_graph.md)
-- Exact Pfender/local-hybrid inequalities and their surviving mass-41
-  two-point witness:
-  [`proofs/local_hybrid_barrier.md`](proofs/local_hybrid_barrier.md)
-- Reproducible construction round:
-  [`experiments/construction_round1.md`](experiments/construction_round1.md)
-- Independent layer, higher-root-map, projective-line, and sharp
-  deep-graph construction searches:
-  [`experiments/construction_round2/RESULTS.md`](experiments/construction_round2/RESULTS.md)
-- 152 unrestricted Riemannian augmented-Lagrangian trials and complete
-  numerical diagnostics:
-  [`experiments/construction_round3/README.md`](experiments/construction_round3/README.md)
-- Asymmetric deletion/reinsertion, basin-hopping, and released SQP surgery:
-  [`experiments/construction_round4_surgery/README.md`](experiments/construction_round4_surgery/README.md)
-- Unrestricted inverse-chord population continuation and crossover:
-  [`experiments/construction_round5_population/README.md`](experiments/construction_round5_population/README.md)
-- Riemannian nonsmooth active-bundle and facet-escape continuation:
-  [`experiments/construction_round6_bundle/README.md`](experiments/construction_round6_bundle/README.md)
-- Core/rattler deletion, facet-insertion, quake, and replica-exchange search:
-  [`experiments/construction_round9_core_rattler/README.md`](experiments/construction_round9_core_rattler/README.md)
-- Imported discovery-only numerical 41-point near miss:
-  [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
+- The exact \(D_5\) lower construction and its boundary pairs.
+- Antipodal optimality, the deep-graph structure, and the \(r=18\) residual
+  projective-energy lower bound.
+- The local positive-height ladder and the scoped cap certificates.
+- Rank-five spectral and common-source identities with their stated
+  hypotheses.
+- Quarter-grid \(r=14,15,16\) exclusions.
+- The specifically scoped ADE, five-cycle-face, finite-catalog, and realized
+  \(D_5\)-extension results described above.
 
-## Claims surviving adversarial audit
+## Principal failed or overbroad claims
 
-- The 40 stored vectors are distinct.
-- Every stored vector has squared norm 2 before normalization.
-- Every distinct stored pair has integer dot product at most 1, hence normalized
-  inner product at most \(1/2\).
-- Boundary equality is accepted: many pairs have inner product exactly
-  \(1/2\).
+- Ordinary two-point linear programming, the implemented three-point
+  relaxation, and the current finite local mixtures do not separate 40 from
+  41; exact pseudodistributions witness the barriers.
+- “Local rank five through \(K_6\), \(K_7\), or even \(K_{11}\) implies one
+  global rank-five code” is false at the symmetrized marginal level.
+- Fixed-support or finite-catalog infeasibility does not imply a continuous
+  upper bound.
+- The full five-cycle quartic-energy lemma is not proved.
+- The stored \(r=11/r=12\) profile exclusions are not complete branch
+  exclusions without their missing enumeration generators.
+- Floating solver infeasibility, near-PSD matrices, and failure to find a
+  construction prove no upper bound.
 
-These statements currently have a direct proof and a separate exact checker;
-a second human/agent audit is still pending.
+The full record, including more than 160 individually scoped claims and their
+counterexamples, remains in [`CLAIMS_LEDGER.md`](CLAIMS_LEDGER.md).  Mechanism
+history is in [`APPROACH_REGISTRY.md`](APPROACH_REGISTRY.md).
 
-- The mass-41 two-point witness has exact total mass and pair-count parity.
-- Its normalized Gegenbauer moments are positive through degree 53 by rational
-  recurrence and in all higher degrees by an explicit analytic tail bound.
-- The fixed \(D_5\) code is saturated against adding one point; its exact
-  covering value is \(\sqrt{2/5}\).
-- The finite-field and \(D_6\) examples exactly refute generic sign/rank
-  shortcuts, while the split harmonic-factor Ky Fan inequalities remain valid
-  for every actual rank-five Gram matrix.
-- Contact-clique links have exact bounds \(15,7,4,2,0\), and every pair has at
-  most seven common contact neighbors.
-- Every antipodal five-dimensional kissing code has at most 40 points.
-  Consequently the \(<-1/2\) graph of a hypothetical 41-code is triangle-free,
-  has independence number at most 20, and has at least 23 edges.
-- Every hypothetical 41-code admits the exact compact 190-variable
-  maximum-volume formulation recorded in the semialgebraic certificate.
-- Every one-sided five-dimensional kissing code has at most 34 points.
-  Hence a hypothetical 41-code has origin Tukey depth at least seven and
-  remains positively spanning after any six deletions.  The exact
-  degree-11 cap kernel, all hemisphere boundary conventions, and the complete
-  5,995-leaf Bernstein tree passed a separate independent audit.
-- The same exact kernel bounds every kissing code in the enlarged cap
-  \(\langle e,x\rangle\ge-1/300\) by 34.  Its independently rebuilt
-  6,053-leaf tree includes the new cap face and every determinant/contact
-  boundary, forcing seven points on each strict side of the
-  \(\pm1/300\) slabs in every direction.
-- The Lorentzian matrix \(A=2G-J\) of a hypothetical 41-code has exact
-  inertia \((5,1,35)\), and \(W=I-A\) has \(18<\rho\le42\).  A normalized
-  circuit identity \(A\alpha=-c{\bf1}\) makes \(c\) the unique PSD
-  rank-five shift; an exact \(c=21/19\) surrogate demonstrates why the
-  normalization cannot be weakened.
-- The fixed-41 rational pair/triple pseudo-distribution passes all ordinary
-  and Bachoc--Vallentin three-point harmonic inequalities at every degree,
-  with unrestricted radial test functions.  An independent adversarial audit
-  rederived the endpoint normalization, parity recurrence, finite/tail
-  coverage, norm argument, and arbitrary-radial factorization and found no
-  mathematical gap.
-- A second, centered rational pair/triple witness passes all ordinary and
-  full-radial inequalities in every degree, every corrected pair-level
-  capacity row, and all 27 recorded harmonic-rank cuts.  It has independently
-  verified local Gram-PSD extensions through five vertices and direct
-  rank-exactly-five extensions through eleven vertices.  These are local
-  symmetrized mixtures, never a claimed 41-point code.
-- The original centered witness fails an exact finite-population
-  integer-degree facet, but the three-cut repaired witness has an exact
-  positive integer-row mixture matching every first and second degree
-  moment.  Both the rejection and the repair are checked independently in
-  rational arithmetic.
-- The edge-conditioned depth/common-capacity product inequality is an exact
-  four-distinct-point consequence with all strict boundaries retained.  Its
-  560 quarter-grid direction states have been independently regenerated; a
-  64-atom local \(K_5\) extension and a separately reoptimized 53-atom
-  rank-five \(K_7\) extension satisfy all currently recorded states exactly.
-- Every joint falling-factorial moment of two disjoint residual strata has
-  an exact without-replacement sampling transform.  The resulting hierarchy
-  refutes the stored 74-atom \(K_6\) and 53-atom \(K_7\) witnesses, and two
-  independently checked rational Farkas rays refute the current finite
-  \(K_7\) pools.  These are explicitly pool-scoped certificates, not a
-  continuous enumeration; an exact rank-five seven-point kissing atom makes
-  the joint-ray atom coefficient \(-2109\).
-- A universal noncentered integer-degree facet is nonnegative on all 855,168
-  quarter-grid degree rows obeying the current local cap bounds and has
-  strictly negative expectation on the original fixed-41 all-harmonic
-  witness.  Its exact exhaustive verifier and tamper tests pass.
-- Every hypothetical 41-code admits full-support centering weights below
-  \(1/4\); the associated reversible matrix has at most five negative
-  eigenvalues and second eigenvalue below \(1/5\).  The proof uses only the
-  audited deletion-six cap theorem and exact matrix algebra.
-- The centered tight-frame identity, its forced BV kernels, and its exact
-  all-degree relaxation witness passed independent audit.  The witness's
-  four failed common-pair strata are recorded explicitly rather than hidden.
-- The 41-point \(E_6\) countermodel has exact rank six, robust slab depth,
-  code-base capacities, and local \(K_4\) positivity; two independent
-  rational verification paths locate its dimension-sensitive failures.
-- Every genuine Gram source satisfies the exact residual-vector square
-  inequality displayed above; its negative value on the labeled pseudo-object
-  is independently recomputable in rational arithmetic.
-- Every hypothetical rank-five Gram spectrum satisfies
-  \(20D^2\le9V^3\).  The bound is sharp, including for a concrete exact
-  11-point code, and rejects both stored pair/triple witnesses by exact
-  rational margins.
-- The exact cap polynomial proves
-  \(A(4,7123/12877)\le30\), including the closed endpoint, and therefore the
-  strict frame floor \(15059/40000\).  Its coefficients and objective have
-  been independently recomputed.
-- A triangle-free 41-vertex graph with independence number at most 20 and
-  exactly 23 edges is uniquely \(C_5\sqcup18K_2\); at 24 edges exactly three
-  graph types occur.  Exact component bookkeeping and strict angular
-  boundaries are independently checked.
-- At the exact-antipodal boundary of each sparse deep graph, the vanishing of
-  every base/base and base/core projective penalty is impossible: ADE
-  classification forces a \(D_5\) root system with one fewer unused oriented
-  root slot than the core requires.
+## Reproducibility and resumption
 
-## Failed or rejected claims
+- [`RESUME.md`](RESUME.md) is the operational handoff, with five-minute smoke
+  tests, exact package commands, missing-artifact warnings, and restart
+  priorities.
+- [`PAUSE_MANIFEST.sha256`](PAUSE_MANIFEST.sha256) hashes the final tracked
+  research tree.
+- [`MANIFEST.md`](MANIFEST.md) explains how to verify that checksum manifest.
+- Search code is under `experiments/`; proof-facing checkers are under
+  `verifiers/`; claims and proof notes are separate from numerical discovery
+  output.
 
-- “An extremal 40-point configuration must be \(D_5\), antipodal, or unique”:
-  **refuted** by the known \(D_5,L_5,Q_5,R_5\) examples.
-- “A generic PSD relaxation of the Gram constraints proves the desired upper
-  bound”: **rejected** because it discards the essential rank-at-most-5
-  condition unless an additional mechanism recovers it.
-- “A floating-point SDP objective below 41 is itself a proof”: **rejected**;
-  exact or directed-interval dual feasibility is required.
-- “Positive diagonal, nonpositive off-diagonal entries, rank below half the
-  order, and at most one negative eigenvalue are mutually incompatible”:
-  **refuted** by the analogous quadratic kernel of the exact \(D_6\) root code.
-- The first low-degree public Lasserre-code trial did not reach an SDP: exact
-  symmetry-basis generation raised `UndefRefError` under the resolved
-  Julia/Nemo environment.  This is an environment failure, not evidence about
-  feasibility or the bound.
-- “Failure to append one point to \(D_5\) proves the global upper bound”:
-  **refuted**; it proves saturation of one fixed configuration only.
-- “An inclusion-maximal code must have contacts or a positive minimum contact
-  degree”: **refuted** by an exact 26-point inclusion-maximal code whose
-  contact graph is empty.
-- “Matching first and second moments on three disjoint Tverberg parts is
-  contradictory for a five-dimensional kissing code”: **refuted** by an exact
-  18-point rank-five code partitioned into three regular simplices with common
-  moments \(m=0,M=I/5\).
-- “The fixed-\(41\) three-point relaxation is already infeasible at low
-  degree, or eventually becomes infeasible at high harmonic degree”:
-  **refuted** for the complete formulation used here by the all-degree exact
-  rational pseudo-distribution.
-- “Centering, all harmonic degrees, the recorded common-pair rows, and local
-  Gram consistency through six vertices exclude mass 41”: **refuted** by the
-  exact centered quarter-grid certificates.  The local atoms through eleven
-  points even have rank exactly five, but are not coupled as overlapping
-  subsets of one global object.
-- “First and second integer color-degree moments close the centered
-  quarter-grid relaxation”: **refuted** by the exact repaired 18-row mixture.
-  Its rows need not be jointly realizable as one colored graph.
-- “Arbitrarily high polynomial degree in the recorded edge-conditioned
-  covariance blocks closes the continuous four-point relaxation”: **refuted**
-  by an exact atomic \(K_6\)-induced sum-of-squares counter-witness.
-- “Deletion-six depth makes every barycentric centering vector quantitatively
-  balanced”: **refuted** by exact \(D_5\) weight families with
-  \(p_{\min}\to0\), \(p_{\max}\to1/2\), and singular limiting covariance.
-- “The first sparse \(K_5\) extension's failure of product or \(K_6\)
-  consistency eliminates its pair/triple marginal”: **refuted** by the
-  alternative exact 64-atom product-compatible \(K_5\) extension and the
-  direct 51-atom rank-five \(K_6\) extension.
-- “Centered tightness plus all recorded harmonic/rank moments is already
-  contradictory”: **refuted** at the pair/triple level by the exact
-  centered-tight all-degree witness; it fails four independent capacity
-  rows, so the combined intersection remains open.
-- “Robust depth, every code-base common-pair capacity, and local four-point
-  Gram positivity recover dimension five”: **refuted** by the exact
-  rank-six \(E_6\) subset.
-- “The displayed rank-five spectral inequalities alone exclude all feasible
-  fixed-41 pair/triple moments”: **refuted** by a feasible small-variance
-  five-eigenvalue completion with \(D=0\); actual four-point linkage is still
-  required.
-- “The quadratic-kernel sign, rank, trace, and both split Ky Fan constraints
-  imply \(N\le40\)”: **refuted** by an exact 41-row split-feature
-  counterexample.  It fails precisely the common-source entry range.
-- “Adding the full genuine off-diagonal interval for the split quadratic
-  kernel makes those abstract constraints sufficient”: **refuted** by an
-  exact cyclic Fourier 41-row counterexample with a strict \(1/2000\) interval
-  buffer.  It still violates the original kissing inequality on the linear
-  factor and the nonlinear common-source factor identity.
-- “Aggregate projective-kernel positivity and every local deep-component
-  inequality force at least 24 deep pairs”: **refuted** by an exact rank-20
-  code with deep graph \(C_5\sqcup18K_2\).  Rank five and cross-component
-  compatibility are indispensable.
+The workstream was paused on 24 July 2026 because the global bounds had not
+moved and marginal returns had narrowed to increasingly restrictive finite
+models.  The repository is intended to make a later restart possible without
+mistaking those restricted results for a solution.

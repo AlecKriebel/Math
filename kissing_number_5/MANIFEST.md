@@ -1,623 +1,120 @@
-# Reproducibility Manifest
+# Reproducibility manifest
 
-Checkpoint: 2026-07-23T19:32:06Z
+Checkpoint: 2026-07-24T16:33:20Z
 
-Environment used:
+Program state: paused, unresolved
 
-- macOS
-- Python 3.14.6
-- Git 2.38.2
-- no third-party Python packages
+Global bounds: \(40\le\tau(5)\le44\)
 
-SHA-256:
+The former append-only manifest had accumulated stale duplicate hashes.  This
+checkpoint replaces it with one generated checksum file:
+[`PAUSE_MANIFEST.sha256`](PAUSE_MANIFEST.sha256).
 
-```text
-968b88fe00a386c81cafa5182e5b5471d099148cc1b83e8c767a168aec49ca96  certificates/d5_roots.json
-af4cded5a82b4ee5a4937c59dafc1eccb23586e8a3163c18f77d61b01e2cb7be  verifiers/verify_d5.py
-b32168e4095e3bded767e58a9b34afcf6a79051162468547926d92ddef9cf8f8  tests/test_verify_d5.py
-322d0f231da5eba91a1f462d4abf68018d170492ef3489fb4de95eddeaac9bc1  verifiers/verify_two_point_barrier.py
-7be6d018fc1ad77485d4614f1bef398286bb1c4252d5bc2f2d6662ca61f1c6f5  tests/test_two_point_barrier.py
-d9686f397e9524b21b22afe670d4fe679ee9678342d290b778b5ac29485f5c52  proofs/two_point_lp_barrier.md
-c54b38d8216bf76a79c57119fc46245811188e1de05c840c68a33cec9b7fe1b0  experiments/input/spherical_codes_5_41.txt
-4a024b409000af8bec2d980ebbc170beb2e17531babb5f8b57ed631ff2e893f3  proofs/d5_saturation.md
-7d25d2398624517b47f30116d538f436945d06bc076ffa477cc287f34dc8e3a7  verifiers/verify_d5_saturation.py
-378d1a761741bfa3543025a6bc136848cb7733228d0b5d1e9d9fbd2cceb932d3  tests/test_d5_saturation.py
-c45af67ba5ce5e810acb95562619106703dbb5aa42a5153bb7c656d6e2bb9b88  proofs/rank_kernel_barriers.md
-2264bd73e98fb3ba0b0248d09fda31d94a739c1fbc71e76d4802204111eec7cf  verifiers/verify_rank_kernel_barriers.py
-d67db988fc68333dad1a8c538121f146418efc3f9586ee536873198adfa684b5  tests/test_rank_kernel_barriers.py
-7c32331f627222fb7d93a6f629b593bb1e09f131011f19d8343a200a0d70c964  experiments/construction_round1.md
-29056696abf516b1abeae51bdad90254a6800bf0b5e2b7c96ff4802944e14937  experiments/random_codes/analyze_refine_coordinates.py
-4935eae66ce2866733bd17e8376290d33e618d3a772cf19e09ed046cb654f0ec  experiments/random_codes/perturb_benchmark.py
-27021a1e1105488e2e0e60a0782e3ceb6ae974bad1084c7143ae0dc7b22ac1d6  experiments/random_codes/refine_spherical5.py
-f69a1b5cb760a16d9cda8d7f287c6f25fba08538d7a7a0aded2bb2eea02a5b39  experiments/random_codes/search_spherical5.py
-7e1dc5ac460b575506fd22aff853a412dc6240195973c815d230ddd3d297c07a  experiments/random_codes/slsqp_perturb.py
-d443c739d3ecf0d3ca10a4647dfb8c820621ca9c45b464e4b0b44e9244a9df2a  experiments/random_codes/test_numerical_tools.py
-3c0a92f5f9f275ed4532701ddb4b07adc506aad4aac29e8cae9597a45bb71c33  experiments/random_codes/README.md
-b8b6468665f9f80a85dedd23ec082ff1c15299a4e22b6433c4c3a45a3cf9a1bf  experiments/random_codes/RESULTS.md
+## What the checksum proves
+
+`PAUSE_MANIFEST.sha256` hashes every Git-tracked file under
+`kissing_number_5/` except the checksum file itself.  From the repository root:
+
+```sh
+shasum -a 256 -c kissing_number_5/PAUSE_MANIFEST.sha256
 ```
 
-Verification commands:
+A successful run proves only that the local files are byte-for-byte identical
+to this checkpoint.  It does not prove the mathematical interpretation of a
+certificate.  Claim scope and proof status remain governed by
+[`CLAIMS_LEDGER.md`](CLAIMS_LEDGER.md).
+
+To regenerate after an intentional edit, from the repository root:
+
+```sh
+git ls-files -z kissing_number_5 \
+  | tr '\0' '\n' \
+  | grep -v '^kissing_number_5/PAUSE_MANIFEST.sha256$' \
+  | sort \
+  | xargs shasum -a 256 \
+  > kissing_number_5/PAUSE_MANIFEST.sha256
+```
+
+Review the resulting diff and rerun the checker before committing.  Do not
+silently refresh hashes after an unexplained mismatch.
+
+## Exact pause-checkpoint commands
+
+The small construction certificate:
 
 ```sh
 cd kissing_number_5
 python3 verifiers/verify_d5.py certificates/d5_roots.json
-python3 verifiers/verify_two_point_barrier.py
-python3 verifiers/verify_d5_saturation.py
-python3 verifiers/verify_rank_kernel_barriers.py
-python3 -m unittest discover -s tests -v
 ```
 
-Expected verifier summary:
-
-```json
-{"boundary_pair_count": 240, "dimension": 5, "maximum_integer_dot": 1, "minimum_integer_dot": -2, "pair_count": 780, "point_count": 40, "status": "PASS"}
-```
-
-Expected two-point-barrier summary includes:
-
-```text
-mass: 41
-minimum_moment: 1027/16000
-minimum_moment_degree: 2
-status: PASS
-```
-
-## Checkpoint 2026-07-23T21:51:06Z
-
-The exact proof verifiers in this checkpoint use only Python's standard
-library.  The construction experiments additionally used NumPy 2.5.1; their
-outputs are explicitly numerical evidence only.
-
-New exact-certificate hashes:
-
-```text
-0062d4a2e6b35c04444040584fd78730cb11539987a557d4f164d22dc01d0290  certificates/fixed41_bv_degree5_pseudodistribution.json
-9da63f90c8968fa8e58b795ff2479d8362ad0d32347d8dade34adf815087ca4a  certificates/fixed41_bv_degree6_pseudodistribution.json
-08a954c23da6cc6de6495f8edd2e4969e464c28ac7cc6c058f0f2e1a252bfabb  certificates/fixed41_bv_fullradial_k8_pseudodistribution.json
-8c016c5ab1770f930d3f31f5448ffef7731616dd7025b29c43828760064b4d88  certificates/fixed41_bv_fullradial_k16_pseudodistribution.json
-f0c9c314e56c84fc92d6b1ef55a73ea6349ed49975b39890018d503506e4c897  certificates/fixed41_bv_all_harmonics_certificate.json
-d68c21438929adf0526c6a8533da4e38d90320adfac49ed91a6ad5577a34798b  certificates/local_hybrid_pseudodistribution.json
-051aa7fa97ad852654137f02da4ff85476b0895b16f9e23ed4dcecc8ede7620b  certificates/max_volume_semialgebraic_reduction.json
-8748d9cfb6b3518d84dc661fd90bea0b71f5b670482b7e5861dabe9bffc9fcda  certificates/tverberg_moment_counterexample.json
-```
-
-Key proof and verifier hashes:
-
-```text
-95de3e49fed62570b0425fe464b5d21b2cb1d871008dd69e70ce92ec4d01275f  proofs/fixed41_bv_all_harmonics.md
-cee6e0555b0e54ae7549cab6f9844d2fb91d5eae1a5b1fc21aa4316ace7474ce  proofs/degree2_bv_barrier.md
-8cd226e71e5163031c0d1797a789e4af8725ae7c67f0026559dabf3b86568e33  proofs/local_hybrid_barrier.md
-efc6b9795117bea434fb5217c46228026c835a5d24244b89918a693aa098190e  proofs/max_volume_semialgebraic_reduction.md
-d2954ed3fb1cebb3d8bd4a39609b3838d907e3537b03853f36fdd91e90a5db81  verifiers/verify_fixed41_bv_all_harmonics.py
-947a0330c2d57bd9558cb39b94ba7bd22f562ede10b4ebcb7e09c12dcdffdd77  verifiers/verify_degree2_bv_barrier.py
-1916b8487af5bb441a83b990d8d97fec51808bee1631f93683c486018f07f5f1  verifiers/verify_local_hybrid_barrier.py
-16e72b4876e92cb64152977f94236e74ff14569dc48fe03d5bcd268ddac5b507  verifiers/verify_max_volume_semialgebraic.py
-```
-
-Construction-round-3 result hashes:
-
-```text
-4b927239e59bb9d59274f41145a5474a47f9f0af5140c7e9ffb6cec9cdb560cf  experiments/construction_round3/results/portfolio_core.json
-0f5f9ae57c675ed524cc508c1791ff6f87fec60af90dd601b3ea8d8609b54883  experiments/construction_round3/results/portfolio_asymmetric.json
-1d0882e66e9de56cecee0276a894a56166a30ded9e7e30f3019e82b271a44744  experiments/construction_round3/results/portfolio_round2_warm.json
-```
-
-Verification commands from `kissing_number_5/`:
+The quarter-grid ADE package:
 
 ```sh
-.venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python -m unittest \
-  experiments.construction_round3.test_manifold_augmented_lagrangian -v
-.venv/bin/python -m experiments.construction_round3.check_results \
-  experiments/construction_round3/results/portfolio_core.json \
-  experiments/construction_round3/results/portfolio_asymmetric.json \
-  experiments/construction_round3/results/portfolio_round2_warm.json
+ADE=experiments/centered_quarter_k4_flag_psd/audit/k5_centering_products/rank5_strengthening
+python3 "$ADE/verify_ade_core_shells.py"
+python3 "$ADE/verify_general_quarter_grid_moments.py"
+python3 "$ADE/verify_r11_profile_ade_bounds.py"
 ```
 
-At this checkpoint the exact suite reports 43 passing tests; the numerical
-construction module reports seven passing tests and rechecks all 152 stored
-runs.
-
-## Checkpoint 2026-07-23T22:49:43Z
-
-All certificate verifiers added in this checkpoint use only the Python
-standard library and exact rational or quadratic-field arithmetic.
-
-Certificate hashes:
-
-```text
-5ca96eaab703e0e06527b638d1d671247242f824ebe39fe42d1dbdc028a2d59d  certificates/one_sided_tukey_bound.json
-3556839af73150f149855f570300c29b8527d7a24c89086113170ff4ed15700c  certificates/improved_frame_cap_bound.json
-8e2f4897b024c21e6b44ce17f05eb47105e286a7e3c59f5524acf9ce2e5615ef  certificates/rank_five_spectral_moment_certificate.json
-305719113ef9be62b2185084ffbea6f9e3241accfb98a4b81c2aef2aa5b07632  certificates/local_hybrid_degree3_triple_pseudodistribution.json
-3ad81376802cecfde1012345fa7d45f7de7de1762166fd1bbc2817b8899327ba  certificates/sparse_deep_graph_stability.json
-8c6315baefe9c8f9f26dd6f590eb248fb6d34e6b31bc910a838572cefc7bd400  certificates/split_kernel_abstract_counterexample.json
-```
-
-Proof hashes:
-
-```text
-6d50e29bebc641e7e744d75a0e6bed73f34a0a4aa743a70c5a56339de7f74ada  proofs/one_sided_tukey_bound.md
-a14be23eb3ebd60dcd473736c8f1d60b84ffd980e5494b46bc1834fd5472ca3a  proofs/improved_frame_cap_bound.md
-2c21a4bd1f88182fc88880615546b2f5824341ae50631dc12e3f7550a79ada19  proofs/rank_five_spectral_moment.md
-c48135e2299345d73622a09dc37f103992bd8e95e68051ec1e685c141237510a  proofs/rank_five_four_cycle_moments.md
-c98a5ef08e0426fe1f96c70c5dc8316809ca7eb7aa74c6252bebf3d80e092b82  proofs/weighted_residual_barrier.md
-25323172a8a4ea95252965f96d6cb8d95febd395531bb200e7f4f1306a29ee04  proofs/local_hybrid_degree3_barrier.md
-56af714cff75ef04e53963bb52cd12490ddc5c6bc4633deba8aa079adda87924  proofs/sparse_deep_graph_stability.md
-bd2940719c2783bf45c6001e91184cd1423f9762448f30d1bd206b89ab18c498  proofs/split_kernel_abstract_barrier.md
-```
-
-Verifier hashes:
-
-```text
-1a003b9365ebaf492b5bc818a39c27cbb8343fcbd7085e4cf9ad4968bf4add6b  verifiers/verify_one_sided_tukey.py
-d7579705d03e688f5d11791dc90462db586ff1edf76f535d72a75b644e0c27f4  verifiers/verify_improved_frame_cap_bound.py
-7799504d24c5df05e9f51d65e3b0d10753dcfc70bf0804f6900702e4dafc26be  verifiers/verify_rank_five_spectral_moment.py
-92acea05137931bb14634ead309e56a91452620e6996e4ac32d5c85b6eb9df70  verifiers/verify_weighted_residual_barrier.py
-9908df9ad1aa3818a588a6259d19c5449ebaae8b4608986fd323b576470a6477  verifiers/verify_local_hybrid_degree3.py
-494dd60a770e4c8196067eed1c92d9b644ac06a7ecfe478a4161a9df75c6fd11  verifiers/verify_sparse_deep_graph_stability.py
-17462bbe7c053f37277c19093f8172ce68dbaf5adba728dcf448943c40d7b4c1  verifiers/verify_split_kernel_abstract.py
-```
-
-Verification commands:
+The scoped five-cycle package:
 
 ```sh
-cd kissing_number_5
-.venv/bin/python -m unittest discover -s tests -v
-.venv/bin/python verifiers/verify_one_sided_tukey.py
-.venv/bin/python verifiers/verify_improved_frame_cap_bound.py
-.venv/bin/python verifiers/verify_rank_five_spectral_moment.py
-.venv/bin/python verifiers/verify_weighted_residual_barrier.py
-.venv/bin/python verifiers/verify_local_hybrid_degree3.py
-.venv/bin/python verifiers/verify_sparse_deep_graph_stability.py
-.venv/bin/python verifiers/verify_split_kernel_abstract.py
+cd experiments/r18_c5_h_energy
+python3 verify_manifest.py
+python3 test_verify_lambda_max_c5_cell.py
+python3 test_verify_adjacent_merge.py
 ```
 
-The full exact suite reports 60 passing tests at this checkpoint.  The
-SLSQP and MILP programs under `experiments/` remain discovery-only and are
-not trusted by any proof.
-
-## Checkpoint 2026-07-23T23:19:11Z
-
-This checkpoint adds the conjunction test for degree-three BV and the
-rank-five cubic moment, the full-interval split-kernel counterexample, and
-effective root-system stability.  Current hashes are:
-
-```text
-84fff611607343b328a00162b299e51821238cb37bcd1e37131886404a55e7c0  certificates/local_hybrid_degree3_rank_pseudodistribution.json
-a520b0c8f412cff2acfd2576c56f3c095bc8942fd7e9dcd1a1769cff6020db62  certificates/quantitative_root_system_stability.json
-d6648240575ad686e0b9857c3561f8e1d3bcac740cc6de435a8bbdcd06c494ad  certificates/split_kernel_full_interval_counterexample.json
-176b1e5cffad4082e226ff1f19f1db02727f4c3ee4ea2d936d62f7043534109b  proofs/local_hybrid_degree3_rank_barrier.md
-54a7c921e865e4502ebe1f58b1eb959439f37e6679a148f3072c038a390f86e4  proofs/quantitative_root_system_stability.md
-cc9cfaf7b716e5f1763a1897d13f3395349aff7983f757465b66629992b41afc  proofs/split_kernel_full_interval_barrier.md
-ab6dbad6ffc9601d3d9db8afa4502a35a0f0779e7a26903b462e962f465fc18c  proofs/sparse_deep_graph_stability.md
-d4ae77d013cdebfbf104056860114b3f8f211d65f8c6519131e8546f29fb87c9  verifiers/verify_local_hybrid_degree3_rank.py
-87b2916f8b94c19fbc8a190219b780677636a80ecc19d140997fca8b0aef7488  verifiers/verify_quantitative_root_system_stability.py
-082d857c2dff1b6ca89b8e1c66d604c04c5d1bba71b69312f6f427cc89379c44  verifiers/verify_split_kernel_full_interval.py
-f4ce4d09f1d99617b2ef3f2608c85fb18f6a8f1d04248b60e0fee0dc47fec17f  verifiers/verify_sparse_deep_graph_stability.py
-7b2f2234a1a7bdf28c7b71fd037507b93d429b7bb0907a7815720fb713291198  experiments/sparse_deep_rank5_search.js
-c70d4e6ba71422973e04f06bfa4ae112b94a10bcedf37fcb62a88daeefad70e5  experiments/sparse_deep_rank5_results.md
-075ee6216bdb6e96415e10e818be483a55afc12188430f387b375461de1ced7d  certificates/fixed41_rank_mixture_separator.json
-79febcf2a4d237b0dcf1d5bed839a74251b58af90d645a569f678db779bd73b3  certificates/local_hybrid_degree3_rank_color_pseudodistribution.json
-e2e43f549c78cb52a74d1be148d61e6029dc9f806da4018110d3a42464c3eb54  proofs/fixed41_rank_mixture_separator.md
-565109114e14ac1ee81f7fef8d2bc1ecb4c1f3fd51869d9dcea9fae6bf38c4df  proofs/local_hybrid_degree3_rank_color_barrier.md
-3d848d6a4a78604f259473cac807b43fef689088ab5e87576449413aebeec165  verifiers/verify_fixed41_rank_mixture_separator.py
-0c07746e621e358ebdb03d6cd2b1662e7137200f3b2833d7981f8f2b9cfea659  verifiers/verify_local_hybrid_degree3_rank_color.py
-```
-
-Run from `kissing_number_5/`:
+The realized-\(D_5\) extension package:
 
 ```sh
-.venv/bin/python -m unittest discover -s tests -v
+cd experiments/weighted_common_source_attack/realized_d5_extension
+python3 test_verify_small_union_hall.py
+python3 test_verify_hall_counterexample.py
+python3 test_verify_uniform_conflict_charge_counterexample.py
+python3 test_verify_known_28.py
 ```
 
-Python 3.14.6 reports 67 passing tests at 2026-07-23T23:25:45Z.  The
-project requires Python 3.11 or later; the system Python on the research host
-is older and does not support `zip(..., strict=True)`, so it is not the
-clean-environment interpreter for the full suite.  This run includes
-`test_fixed41_rank_mixture_separator` and
-`test_local_hybrid_degree3_rank_color`.
+See [`RESUME.md`](RESUME.md) for a five-minute smoke test and the exact
+limitations of each package.
 
-## Checkpoint 2026-07-24T01:14:00Z
+## Environment
 
-This checkpoint adds the exact one-sided cap bound \(B(5)\le35\), its
-tangent-neighborhood consequence, harmonic-combination centered-skew rank
-cuts, an exact necessary-rank separator for the historical fixed support,
-independent adversarial tests, and two further unrestricted construction
-rounds.  All proof verifiers use standard-library exact rational arithmetic.
-The construction packages use ordinary binary64 NumPy/SciPy and remain
-numerical evidence only.
+Final audit environment:
 
-Key certificate, proof, and verifier hashes:
+- macOS;
+- Python 3.14.6;
+- Git 2.38.2 or later;
+- standard library only for the commands above.
 
-```text
-12f555b75d436ce6d4f1b6d7d0f812b06278e13ca241095eee24f18abd7e9562  certificates/one_sided_cap_degree10_bound.json
-38beabfe7b00257c2635a9fbe633d083d8e34d8ec738cf297f5315283b46b8fa  proofs/one_sided_cap_degree10_bound.md
-c220c83724daace3f8e9007e55b8a72337b7b15136d9dfd6354d3b93ebcef8de  verifiers/verify_one_sided_cap_degree10.py
-877fe3454924a3b52a510290acc6cb98dc842dcf3b2be975c24960cf26b79864  proofs/tangent_nonnegative_neighborhood.md
-8631e37c15a7fe106c58ac28a5d777fcaf693c1f17e5aea237da920d7cb19099  verifiers/verify_tangent_nonnegative_neighborhood.py
-36555b4d489b9804c742a896ad5d978aeb4772362958e61ad5632be97a7078a9  certificates/local_hybrid_degree4_rank_color_clique_pseudodistribution.json
-f23bda83df4318d5ce963ca768559ce96390a2ed5b0287233a30fdefded40806  certificates/harmonic_combination_centered_skew_instances.json
-e3a3fdc64aa4e41f0013079c84c1903e4a201ed5a545afe7bdca696c2b183934  proofs/harmonic_combination_centered_skew.md
-284b3675a4a78ec3c0a41992fe804ec046c65aa9d60be4a186424bdb42ca588a  verifiers/verify_harmonic_combination_centered_skew.py
-45c73100075706bc67ede740a3549281fb0b6bf48e2ef2177e10a6922a76ecaa  certificates/local5_degree5_necessary_rank_separator.json
-cedb01b6813ef0a9a091422b69b965e87919cf9172872a1e62007b2a55e725cf  proofs/local5_degree5_necessary_rank_separator.md
-67dab3ec643beabd72b6e6459eabf1009de92273c70eea78cedc2053c4c51188  verifiers/verify_local5_degree5_necessary_rank_separator.py
-142fab6011445c6efd6e4843b1e26146e7606dba1f97f7bca10d78cb7535c1db  proofs/rank_skew_local5_degree5_adversarial_audit.md
-082619d617bddf620ac38759f62ad2c6065c599a7ebe51473e32cee111f0fbe2  proofs/harmonic_rank_frame_barrier.md
-42021d949b68403299cabf7bdfdca907d2e3f2580923c65419f591dcc4501416  verifiers/verify_harmonic_rank_frame_barrier.py
-85473a118bd35397e1bb3c8198857b2834aa6c0f007cc60da7ee9633eecc9fd6  certificates/sparse_deep_graph_stability.json
-a8e53ae9f6ff94ee8efdb1c552e0346993ca7d51eee8ac1fc05321250dd72ed8  proofs/sparse_deep_graph_stability.md
-912ab4e0fea9d6c3df21a41fa7a1b5c9f9fe59a3b83b5fc30fffcb6ea2c64fde  verifiers/verify_sparse_deep_graph_stability.py
-```
+The discovery stack is pinned separately in
+[`requirements-discovery.txt`](requirements-discovery.txt).  NumPy, SciPy,
+CVXPY, NetworkX, and solver output are not trusted by proof-facing checkers
+unless a package supplies a separate exact certificate.
 
-Adversarial and tamper-test hashes:
+## Excluded local caches
 
-```text
-ecaa56e1f4c221297127b543b627dd0239c6e30cc2e6c71f19331c23d36b711b  tests/test_one_sided_cap_degree10.py
-afbe61b84b7ae30e712356a3124c36f4f74060069e0ac86fdbe3ddf731aaa923  tests/test_tangent_nonnegative_neighborhood.py
-48efad925903d04856afb07784f77c987da440f39b94cdee57e7ac29ec84f367  tests/test_harmonic_combination_centered_skew.py
-7c0747dc341c30ba5c7bb8dfdbc27bcbb9089062114e1a3d70fc0ba337cfdea0  tests/test_local5_degree5_necessary_rank_separator.py
-e27371c779e7aaaa5d3cf843a435383054a194a7f6c54c9a971b228e1150c8cd  tests/test_harmonic_rank_frame_barrier.py
-ecf0a8fc384a6485b223a2a8961e74912dc59d64558dd4c690508d0dd397abe1  tests/test_rank_skew_local5_degree5_adversarial_audit.py
-f231ae69e6027125cecd588c41432dffad3e97c1835364c69a6447c2e1c7244b  tests/test_sparse_deep_graph_stability.py
-```
+The checksum covers the tracked research record, not temporary environments or
+regenerable numerical caches.  The following are deliberately ignored:
 
-Construction artifact hashes:
+- `.tmp_py/`;
+- Python bytecode and test caches;
+- centered-\(K_5\) matrix-cache `.npz` files and the compiled enumerator;
+- root-triangle moment-table `.npz` files.
 
-```text
-c41781a5f1d33f24738620811646412d7b255bec94b913404bfeba19fd91036f  experiments/construction_round4_surgery/results/contact_surgery_portfolio.json
-37ee2140585c18a329a00f79038a0d7bf9e9df51d7685405410ade2d32d58e82  experiments/construction_round5_population/results/population_portfolio.json
-ab26f6cd16a769bec4137983f766c9ba4af544ed0ad3b0491ed7563447ba3c81  experiments/construction_round5_population/results/population_targeted_n43_n44.json
-5271520e08cc2187bb1f1851f36886895133f9d1951188c5e8ee9d8c9629081e  experiments/construction_round5_population/results/tukey_probe_n41.json
-936d0d1cbd98dd44b1df8ddc53a68d5fedacb40d8a40490acfb636207c76f47c  experiments/construction_round4_surgery/check_portfolio.py
-1e2b00d4f818baeb353aa26254e51cfb4a4720a9c9f429a678d3b7c87a161b45  experiments/construction_round5_population/check_population.py
-```
+The pre-split local safety archive retains these files.  All sources and
+smaller exact artifacts needed for the public scoped claims are tracked.
 
-Verification commands from `kissing_number_5/`:
+## Boundary and optimization policy
 
-```sh
-PYTHONPATH=. .venv/bin/python -m unittest discover -s tests -v
-PYTHONPATH=. .venv/bin/python -m unittest \
-  experiments.construction_round4_surgery.test_contact_surgery \
-  experiments.construction_round5_population.test_population_continuation -v
-```
+- A proof-facing inequality must cover closed boundaries in the direction
+  needed by the claim.
+- Solver feasibility, infeasibility, or a small floating eigenvalue is never a
+  certificate.
+- Finite support, symmetry, antipodality, or a prescribed contact graph is
+  never promoted to a universal theorem without a proved reduction.
+- The rank-at-most-five condition may not be dropped from the Gram formulation.
+- Older historical verifiers may rely on `assert`; use ordinary Python unless
+  the package explicitly audits `python -O`.
 
-Python 3.14.6 reports 81 passing exact tests.  The cap test reconstructs all
-2,483 exact Bernstein leaves; factor and manifest corruption are rejected.
-The construction tests recheck norms, pair maxima, active graphs, spectra,
-stored hashes, and the floating halfspace-depth diagnostic without treating
-any of them as a proof.
-
-## Checkpoint 2026-07-24T02:12:00Z
-
-This checkpoint strengthens the exact one-sided bound to \(B(5)\le34\),
-adds a separately implemented full-domain adversarial audit, proves an exact
-common-neighbor threshold capacity and its colored-\(K_4\) consequence,
-records a valid but nonseparating anchored negative-cap kernel, derives two
-disjoint positive circuits from depth seven, and releases two further
-construction portfolios.  The global bounds remain
-\(40\le\tau(5)\le44\), and the best-guess completion estimate is 21%.
-
-Degree-11 cap certificate and independent audit:
-
-```text
-182553399ad2f0cd932e82237943f6b9bd27d18a970bd94592294df8cc5abf5c  certificates/one_sided_cap_degree11_bound.json
-86f6924b403734e4d9e38d1138ff41d2e7b216ffcdd0cf133cf969512d1829a1  proofs/one_sided_cap_degree11_bound.md
-4d7cae70d93d687e6c2d169339095e60bf7e81b3b788375de129d80995bffadc  verifiers/verify_one_sided_cap_degree11.py
-43432599e8c687aa401c062e426b388912ebed90b6d91940c90cb17dc96017e7  tests/test_one_sided_cap_degree11.py
-1510412373865c0a03b889639b630d14a59c9b31063b854a0b040803ed38dd02  proofs/one_sided_cap_degree11_adversarial_audit.md
-a7e37f2bf16d96bdec456a242c29d6c477e07281392fd6a25285d319edd2d5b3  tests/test_one_sided_cap_degree11_independent_audit.py
-280232713343c121d258fb47a74bced1c760989f61de03db41ae71705b698cdf  experiments/search_one_sided_cap_sdp_adjusted_d11.py
-f33ca6373f8ab05465a2c2fb305aa86e91251ce317a1913f9962913a0ac7d219  experiments/rationalize_one_sided_cap_candidate.py
-```
-
-The exact certificate has objective \(11303/323<35\).  Its two independent
-implementations rebuild 650 polynomial terms and the same 5,995-leaf exact
-Bernstein tree.  The tree digest is
-`3ffd08afa66bcd12e52399e392c09fda237f8bab18fc1af9a8090e76f1f81f65`
-and the Gram-factor digest is
-`723d5521951ce45d236116016a69e7e8e510b8e7ba1f0338f7c1d6fffe507257`.
-
-Four-point, anchored-kernel, and circuit artifacts:
-
-```text
-d7952147e42d90c06a50424a8e64c4d79dd3920043293727315e073d521bf3b3  certificates/edge_conditioned_k4_exact_obstruction.json
-e855c7acbab05676612cffedff5bc37be18a47ceb03459ed4f88681af3bb182c  proofs/edge_conditioned_k4_exact_obstruction.md
-c3622d00c77ddec488a19abd3517d029313ee2cc296bb3859a4171577bb89a60  verifiers/verify_edge_conditioned_k4_exact_obstruction.py
-f1fd31665c65bafd4f301e05900997b225ecb49a8e9f0a2ccd76dd15654b6b9a  tests/test_edge_conditioned_k4_exact_obstruction.py
-3d463da506d30222bf3e2f65991b2056c4be77248282db71d25914d125dfe04e  certificates/anchored_negative_cap_kernel_evaluations.json
-cde352b039b77987c2c4e3ef98694f4fe41638c13282154d186b2072c73b73d4  proofs/anchored_negative_cap_kernel.md
-a7f5d442e5de0cb604dcb47839364ff2ce593368c8e93391f2820704b0489f11  verifiers/verify_anchored_negative_cap_kernel.py
-e3e3d2c64f238063d830ae32c66a0ba480b6722e88bfba3076ad65a8ad6c8e40  tests/test_anchored_negative_cap_kernel.py
-87247ebc36dd86f10a014e71db74416f7c789f279c0c093a957424dcdbec4426  certificates/positive_circuit_pair_catalog.json
-cb3c1bd47920026014e1f48de45a4fe65ffedbef7728b4e8d0b1f13ea78bf601  proofs/positive_circuit_packing_from_depth.md
-36a33fa0c4f5ac7dae520d91a052f727fd97ddb72fdd6f79e5adc9f0d0c609c1  verifiers/verify_positive_circuit_pair_catalog.py
-5f12d373eacd92f7584af6127b31bf2bedede5865f14a6f856039d685be737c2  tests/test_positive_circuit_pair_catalog.py
-```
-
-Construction round 6 and 7 key artifacts:
-
-```text
-d5f0e950027b9aa05105663069d003e6ebf0bc8f7366a93f63c9fc318eb4ec86  experiments/construction_round6_bundle/results/bundle_portfolio.json
-71f47f8563d2eccdfe289c32b802c8622be643243202fc3ef2bb4ac52b7ab9fe  experiments/construction_round6_bundle/results/halfspace_depth_n41.json
-3c701fc2ef2aaedf504ba3b4558b2f45e3ece1d301e43a56bb89ab0030a24edf  experiments/construction_round6_bundle/check_bundle.py
-81dc0165d95b449e988856dd1d25d7a6be1277f73ae59b73b56381772b3b408f  experiments/construction_round6_bundle/test_bundle_search.py
-95b3ba874ef9d9e011f0e228909eeff2bda615a94160a518f85e2a1e5d1db571  experiments/construction_round6_bundle/README.md
-902a65a6d87f0662d785280ba08cc8852996225a404a93f8ba587a00556b3de2  experiments/construction_round7_d6_compression/results/compression_portfolio.json
-884ae4e52e6f6a124e5c805f9e83470a734cd1efcd73a8637578c1556806e126  experiments/construction_round7_d6_compression/results/posthoc_prior_comparison.json
-ba3d4904afeb56f8262fb8151b1e5d2c872ed11f4c79a6a97028cd3086fefe17  experiments/construction_round7_d6_compression/README.md
-fab419024b4c864b15318a6821be417afe629b305ce3a5128e881db6b9272315  experiments/construction_round7_d6_compression/check_compression.py
-d141a3bfab2d9b510722c07574d5729efaf9eefaddd173f7b0ce6bc804a54d8d  experiments/construction_round7_d6_compression/test_compress_d6.py
-```
-
-Verification commands from `kissing_number_5/`:
-
-```sh
-PYTHONPATH=. .venv/bin/python -m unittest discover -s tests -v
-PYTHONPATH=. .venv/bin/python -m experiments.construction_round6_bundle.check_bundle \
-  experiments/construction_round6_bundle/results/bundle_portfolio.json \
-  --depth experiments/construction_round6_bundle/results/halfspace_depth_n41.json
-PYTHONPATH=. .venv/bin/python -m experiments.construction_round7_d6_compression.check_compression \
-  experiments/construction_round7_d6_compression/results/compression_portfolio.json
-PYTHONPATH=. .venv/bin/python -m unittest \
-  experiments.construction_round7_d6_compression.test_compress_d6 -v
-```
-
-Python 3.14.6 reports 90 passing exact tests in 698.121 seconds.  The two
-construction checkers also pass, and the round-7 package adds four passing
-numerical-tool tests.  Never run the assertion-based exact verifiers with
-`python -O`.
-
-## Checkpoint 2026-07-24T02:45:00Z
-
-This checkpoint records an exact obstruction to the pure axisymmetric
-three-point row-energy route, a boundary-audited but unsuccessful numerical
-antipodal-belt search, and an exact/numerical tight-frame construction
-challenge.  The global bounds remain \(40\leq\tau(5)\leq44\).
-
-Anchored row-energy barrier and antipodal-belt search:
-
-```text
-0fce0399badb1dee6fba8780c53af370a43679c235515efd54718a74acbb079a  proofs/anchored_local_energy_bv_barrier.md
-333dab394fa357baaa2bf1979733e5fc301a0124ee7a02e8628cdd5935bb9f17  verifiers/verify_anchored_local_energy_bv_barrier.py
-8017c8005b7f7313a45898fecf48c5ce62c0d2797bbd28d95639ac8e1eaee769  tests/test_anchored_local_energy_bv_barrier.py
-2909852a1c0fc159b7b3bbdec67cd3c877c490e9e9259b13efd1e0ff2889c661  proofs/antipodal_belt_sdp_search.md
-821c1d6f9417f39e27ed2fe78eb6a3a74974624d94e3a9eec10b05c06f3549d7  experiments/search_antipodal_belt_sdp.py
-```
-
-Round-8 tight-frame artifacts:
-
-```text
-ec6814c4acaf090d72f511e3fbf547caef2c7043db7039bedd99e3adb3087f88  experiments/construction_round8_tight_frames/README.md
-1b6630136065bcc11db256a0cbacb83301c3eaa7b375811c74a38e79b4bd84f3  experiments/construction_round8_tight_frames/check_results.py
-bfd3875c10ca2deadb2a7e94bcd0dc3529dfef7470dc9bb274ab7b78a8b7b0d0  experiments/construction_round8_tight_frames/checker.py
-98895f1ed0cfd9045c2abc4e2f2681378e63fadbc0607f952bee8deec60985d6  experiments/construction_round8_tight_frames/d5_basis_checker.py
-e41cd389efc7640a25e01b29b1998718badc5acbc77a3e2a840dac8c06ee849f  experiments/construction_round8_tight_frames/optimize_untf.py
-4c7c109556cf54b3fdc69b01c7803f212a8ff52263a04f1e778a18c91708dd3a  experiments/construction_round8_tight_frames/polish_untf_result.py
-ae963e6607f16addfd972849b8742e99169343b466af18f82bff57311c8354d4  experiments/construction_round8_tight_frames/results/cyclic_exhaustive.json
-02a8f8e669ffecbb28f7f6af71f0c6db591f00ffa658c9b4779d4a43f0cb63c1  experiments/construction_round8_tight_frames/results/seeded_untf_challenges.json
-2b3424dfa9bf6381c4eb97ccf651d43937679e6f690340e4b923d691c2618980  experiments/construction_round8_tight_frames/results/untf_optimization.json
-6726996f1719d4a098e732e967df17d64a6ceef5d1fb1d6b53f4098ec8688c87  experiments/construction_round8_tight_frames/search_cyclic_frames.py
-aaa2cdd4146c5cb49574736c435073b34184d56a842ece8cd3f08bd9cb6ce204  experiments/construction_round8_tight_frames/seeded_untf_challenges.py
-ffe541623a2bb14616c3b33d6f6328723bc36b7eed12d3e9fafee5a6a61c8fb3  experiments/construction_round8_tight_frames/test_results.py
-```
-
-Verification commands from `kissing_number_5/`:
-
-```sh
-PYTHONPATH=. .venv/bin/python \
-  verifiers/verify_anchored_local_energy_bv_barrier.py
-PYTHONPATH=. .venv/bin/python -m unittest \
-  tests.test_anchored_local_energy_bv_barrier -v
-PYTHONPATH=. .venv/bin/python \
-  experiments/construction_round8_tight_frames/check_results.py
-PYTHONPATH=. .venv/bin/python -m unittest \
-  experiments.construction_round8_tight_frames.test_results -v
-```
-
-The exact barrier verifier and two tamper tests pass.  Both project-root and
-package-local round-8 invocations pass all three tests.  The numerical UNTF
-coordinates remain construction evidence only; no floating-point result is
-used as an upper bound.
-
-## Checkpoint 2026-07-24T02:48:00Z
-
-This checkpoint corrects and adversarially audits the common-pair capacity
-hierarchy.  The old five-node candidate is explicitly retained as a refuted
-cumulative-only calculation.  A new exact-stratum/Farkas certificate proves
-a fixed-support obstruction.  A separate continuous-grid package records
-only numerical barriers and carries its own complete hash manifest.
-
-Corrected common-pair artifacts:
-
-```text
-d32431dcd9b4fcc4ddf09036bb42c5aa8bcfbf2e39243318f0db01bcfb381d3b  certificates/common_pair_capacity_degree4_pseudodistribution.json
-3a39ac1163ccb58859fed9952c2bba46f14cc13d4050dc0d116156a337f25cfd  certificates/common_pair_capacity_stratified_dual.json
-a96fe721fed4f67ef77686269e2f4b5adddf41e1a0e7059d00f9a450d9663817  experiments/common_pair_capacity_hierarchy.md
-375a35e882c98d220f4ca5ae8e41f9748b7988281879224ca6129b6e9fab629b  experiments/search_common_pair_capacity_hierarchy.py
-361eb8c7bd80bfc9d23dbb4f5024c00f8c8c695806f679696adb9f9d95ac6a97  experiments/search_common_pair_capacity_stratified.py
-34bca73a05543a3acbe18d241be04b50e03a3dd2abfea5fa022a4cbd84278212  experiments/search_local_hybrid_degree3.py
-3c4ff327d7622805550dca46f55384bd405c9446d5d4f22cfc947e1b4f756529  proofs/common_pair_capacity_hierarchy.md
-96a128ef170ecde837036a786aeee6c41debb8400840274eca57b9194f2aae02  proofs/common_pair_capacity_hierarchy_adversarial_audit.md
-56f67c4c2cf29f8a3896d8966c091b39528bb3e7bba63e4e41bc1ddb6b510446  proofs/common_pair_capacity_stratified_obstruction.md
-b808eb811928a64b2f13f717cf270d1866b32c0bd4b849e74ab84eecb8e3d24d  tests/test_common_pair_capacity_hierarchy.py
-23b50881207b331a036e0d4c1a97bc12a2e4842637f92564275b3423a9720caf  tests/test_common_pair_capacity_hierarchy_independent_audit.py
-ff2093527769ed8479db9e455d718b75ec60403e73ed1423b9880d1cb8bc41cb  tests/test_common_pair_capacity_stratified_dual.py
-49603057399d537ef2b0cad770e8ba3b0f080821863b80ce925cc4514532f959  verifiers/verify_common_pair_capacity_hierarchy.py
-df89a319bfeff190187cae44eee3d9b0294802a85ebea8d6fe7b0ca97754cbcf  verifiers/verify_common_pair_capacity_stratified_dual.py
-```
-
-Continuous-grid barrier summary:
-
-```text
-a6916ff00dd48c562e09d09e4654b00952c115bd27b7e68f0c43e4ad7634edeb  experiments/continuous_rank_bv_search/MANIFEST.sha256
-9c4efb4de692ca68308d803d8464ffc19218b53ae9caad875c2dbcf5e0be64e6  experiments/continuous_rank_bv_search/RESULTS.md
-da604eeb3977cd87a1b5c3a8994aa29ee3df9b4da7b41762d4736f8e001dbf9f  experiments/continuous_rank_bv_search/results/fixed_baseline_d16_stratified.json
-446b63a72d7f54702b3fc32b7b4d18566be437e6a3c621d0b8538cefc788a898  experiments/continuous_rank_bv_search/results/eighth_d16_local_stratified.json
-```
-
-Verification commands from `kissing_number_5/`:
-
-```sh
-PYTHONPATH=. .venv/bin/python -m unittest \
-  tests.test_common_pair_capacity_hierarchy \
-  tests.test_common_pair_capacity_hierarchy_independent_audit \
-  tests.test_common_pair_capacity_stratified_dual -v
-PYTHONPATH=. .venv/bin/python \
-  verifiers/verify_common_pair_capacity_stratified_dual.py
-PYTHONPATH=. .venv/bin/python -m unittest \
-  experiments.continuous_rank_bv_search.test_search -v
-PYTHONPATH=. .venv/bin/python \
-  experiments/continuous_rank_bv_search/audit_capacity_barriers.py
-PYTHONPATH=. .venv/bin/python \
-  experiments/continuous_rank_bv_search/audit_common_pair_witness.py
-sha256sum -c \
-  experiments/continuous_rank_bv_search/MANIFEST.sha256
-```
-
-The common-pair source, independent-audit, dual, and tamper suites pass all
-16 tests.  The continuous package passes five structural tests, both exact
-audits, both independent numerical checks, and its complete hash manifest.
-Its atomic outputs are deliberately labeled `NUMERICAL EVIDENCE ONLY`.
-
-## Checkpoint 2026-07-24T03:34:00Z
-
-This checkpoint adds an exact quantitative enlarged-cap theorem, exact
-Lorentzian structure and a weakened-surrogate countermodel, a primary-source
-literature audit, and construction round 9.  The global bounds remain
-\(40\leq\tau(5)\leq44\).
-
-Robust cap theorem:
-
-```text
-b1f9d8cd7ae7167b69eaeb8bd7afcd2bb8c402292c232336162dbc30e6bc512e  proofs/one_sided_cap_degree11_robust.md
-7b21c77ad88060c29ecf2bf643d8abfdaa73c6bc70ccad39dd42963cf15a4c93  certificates/one_sided_cap_degree11_robust_1_over_300.json
-4466de5918c7ace68b0173758a4938c1d3a8edd805c8fedf9e8f7d1d00caeb79  verifiers/verify_one_sided_cap_degree11_robust.py
-a4b555410057eb46b672e11d8e6005a2fe2c2cdb0a7efe97eba9b3a91da9cb5f  tests/test_one_sided_cap_degree11_robust.py
-```
-
-Lorentzian theorem and exact countermodel:
-
-```text
-ef2a7322c2c2015cffb96a994fcd6e57499adb524c74ce5e899ac44bf2ac681a  proofs/lorentzian_inertia_graph.md
-49df7b42e37ebc74a9b2c61fde65eb6b70ffab31b68040f0e86e173e2d3cb47a  certificates/lorentzian_rank6_interval_countermodel.json
-faa908c8876a915b3aa5782dfb773f0c53f30ad548c38763772c23ed9b336be3  verifiers/verify_lorentzian_inertia_graph.py
-ee65e0d7d03d849839abe5de3f865eb53988743789b00b98a1268814c5b8acc4  tests/test_lorentzian_inertia_graph.py
-2d75e08d01cf5706d49e3835ba544a655af07a6a7ac8745bccf3ad5052bebf9c  experiments/lorentzian_inertia_graph/README.md
-846fd7038b359e2ff7508fcfb59b3e74d4b2b0b710ae78322966d0de9da3e2e9  experiments/lorentzian_inertia_graph/search_range_surrogate.py
-```
-
-Construction round 9:
-
-```text
-24c023fe97e8ef303be550a1a475435199ba936bc52deede64cfc5fe4f91ab55  experiments/construction_round9_core_rattler/README.md
-b2b1a9c3906712a2a4cf620b344220c6cd70b455d10c433e131f8adae963d698  experiments/construction_round9_core_rattler/__init__.py
-e65d1a16d5a29128e7f2ae9c12ecbd129d3e742f16a646bdc3e91dedaaf8da17  experiments/construction_round9_core_rattler/core_rattler_search.py
-17c49974d4a21d2fca21482c110155249109aee2aaf295a9f4997b0cdae5fd08  experiments/construction_round9_core_rattler/check_results.py
-e5666fea829d5e9b2030cae507d946261fb18e36166f2cef81e1af3f52a33d22  experiments/construction_round9_core_rattler/test_core_rattler_search.py
-56b0f6a2aefb16d057a33511ef52b3eeae35b7debe92536121fa5749d460a5cd  experiments/construction_round9_core_rattler/requirements.txt
-55aa13f81cc305d5007f840875623547625167b1e6f762092f3f80f7154e5f9c  experiments/construction_round9_core_rattler/results/core_rattler_portfolio.json
-```
-
-One-sided degree-12/13 discovery artifacts:
-
-```text
-e9fed75adf0be6729249100843be8d4a23a29c69f501285931144955b93ac3ce  experiments/one_sided_cap_d12_d13/README.md
-ec80254d9284abc98d976728c079251533480ca8abd991263b50bfd9c4114d13  experiments/one_sided_cap_d12_d13/research_log.md
-03d749f7a3b328f377e061354186c1bc005c6dc0554a5ba90f9d8bf70a4d9ed3  experiments/one_sided_cap_d12_d13/scan_degree11_robustness.py
-c4b5de6610c034dd7ceae67c5215ac1ee0d648e57ac9ddbc2b0e01b3214ad9d1  experiments/one_sided_cap_d12_d13/search.py
-a5be01b4c127c088b5128a2b628f604bad2319254a27b300b815cc690e8c57e2  experiments/one_sided_cap_d12_d13/try_exact_robustness.py
-a6319df4efd48121bab07d870e10af1ddc4be938e41c805380550027c3685394  experiments/one_sided_cap_d12_d13/results/degree11_robustness_recon.json
-66990781202c1feaeae0a2ef0974753a070526f26b6428bdde1173c7ed54f782  experiments/one_sided_cap_d12_d13/results/degree11_robustness_threshold.json
-a322733f7545d418fbde73428c0c9c66e682a1d6f88c42014af92f3efa9c01c1  experiments/one_sided_cap_d12_d13/results/degree11_robustness_wide.json
-33ad5e84fa24897fce49121d230821a57edfac4b52ed6ed3d4120b7d33150a0f  experiments/one_sided_cap_d12_d13/results/degree12_mixed2.npz
-5282e3b718f989de138c875845ab367cbb80556127a25767b45cee42d7d5f9d9  experiments/one_sided_cap_d12_d13/results/degree12_mixed2_report.json
-9857b75d6f5c03214eb4bf10b7f462a70dcc182d4d98cd5c8b78f028e3afe8ba  experiments/one_sided_cap_d12_d13/results/degree12_recon.npz
-188f176ed4f850751afad38647e99d675c4d602283af003426a6403c569305e3  experiments/one_sided_cap_d12_d13/results/degree12_recon_report.json
-961b3e9c76892332c1518f4c39373b1a49bc89f2eb148ff67e224d3046a71f41  experiments/one_sided_cap_d12_d13/results/degree13_mixed3.npz
-da169ae0ed9f418b39eca3ccb4a373f999543b602aa1b4da7c93136a05da24fc  experiments/one_sided_cap_d12_d13/results/degree13_mixed3_report.json
-7e88fa257000ad6a1a838893beccdac015d11e48a09060d4ed11bb8e039ef10a  experiments/one_sided_cap_d12_d13/results/degree13_recon.npz
-31ad7015a2bf9654c997b4a02f7775564c17a0cce7a90968afed64ef5cc0beb1  experiments/one_sided_cap_d12_d13/results/degree13_recon_report.json
-```
-
-Verification commands from `kissing_number_5/`:
-
-```sh
-python3 verifiers/verify_one_sided_cap_degree11_robust.py
-python3 -m unittest tests.test_one_sided_cap_degree11_robust -v
-python3 verifiers/verify_lorentzian_inertia_graph.py
-python3 -m unittest tests.test_lorentzian_inertia_graph -v
-PYTHONPATH=. .venv/bin/python -m \
-  experiments.construction_round9_core_rattler.check_results \
-  experiments/construction_round9_core_rattler/results/core_rattler_portfolio.json
-PYTHONPATH=. .venv/bin/python -m unittest \
-  experiments.construction_round9_core_rattler.test_core_rattler_search -v
-```
-
-The exact verifiers and the Lorentzian and construction test suites pass.
-The cap certificate uses only exact rational arithmetic; the degree-12/13
-and round-9 coordinates remain explicitly `NUMERICAL EVIDENCE ONLY`.
-
-## Checkpoint 2026-07-24T05:18:00Z
-
-This checkpoint exact-certifies the centered all-degree barrier and its
-local rank-five hierarchy through \(K_7\), exact-certifies a
-product-compatible rank-five \(K_6\) replacement, and records construction
-round 10.  The global bounds remain \(40\leq\tau(5)\leq44\).
-
-Centered all-degree and local hierarchy:
-
-```text
-f3339e267ea4aa200858f155de30ecab5704234107ec22682ed8d914b7f38c17  certificates/centered_quarter_bv_all_harmonics.json
-112be681b4fb98dcfb8af29d08be78bfecfde7088154429fba76774d4c57d550  certificates/centered_quarter_bv_pseudodistribution.json
-60a94eb603ecdad3319e400ce880b7c0b6fe922ba25feb68868eba16fda7f8de  certificates/centered_quarter_k4_extension.json
-133e8b502653b3bb1e1c4c3eb6c0452705020f65128959dc9d0cb34a8c0645ef  certificates/centered_quarter_k5_extension.json
-c196074fa65ce7a493e9fdafb678055fca638e9c7db14af89dd27b163877aa5f  verifiers/verify_centered_quarter_bv_all_harmonics.py
-107a6dad0be8c9331958c57b9068607878423bd80c742de94225b5d7530d7a90  verifiers/verify_centered_quarter_k4_extension.py
-0328f6576e7d610cb3d2d438bf75961a21dc7cb04dbe7c7a09cd4a742674c3a2  verifiers/verify_centered_quarter_k5_extension.py
-32e629ab5df91cf6e616aa1f7a61af22f853b78ccff50947738b5cab1394d0ba  experiments/centered_quarter_k6_rank/direct_k6_triangle_extension.json
-006af4225c33b6458dba553e543b0146cc0396f2992a96794a1586142c9b40f9  experiments/centered_quarter_k6_rank/fixed_support_obstruction.json
-e666aea9882e10b25be7d73bd288a959f3df7bf8dd8f68dc6bb02f2fdf96ce19  experiments/centered_quarter_k6_rank/k7/direct_k7_triangle_extension.json
-753dc6c15946b819c5b5985e8cf88c7c848b3dab0a3578e3ebc4583265b63818  experiments/centered_quarter_k6_rank/k7/fixed_support_obstruction.json
-```
-
-Four-distinct-point product hierarchy:
-
-```text
-cf369d35fbe448cfba6668fedcd6bb2f53b4e7ed12c3b00cae5826a63a1b8a8c  experiments/four_point_depth_projection/k5_product_audit/centered_quarter_k5_product_extension.json
-def805e0c73fb5a5306f230ad21866a5b0fcab1a3708f6f7daaa3b175dc54991  experiments/four_point_depth_projection/k6_product_audit/productpool_extension.json
-60eeb5ec1ef85bda97f39fd8c7c562d3409ee2c8469c518487af886c82fb8015  experiments/four_point_depth_projection/k6_product_audit/productpool_verify.py
-5f205bef75d8d8039805ec67f7346bdf4dbfffd1afa6daaff0abb70ab9d82178  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_extension_independent.py
-e07ed034a37b955015365a75290d165fd4b00ad9b6411dbec7a70e989caa32c6  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_via_deleted_k5.py
-```
-
-Construction round 10:
-
-```text
-d79ead5f649b74012ba19f711d4e8976c2d294080482ec58678a9bf34ba8045a  experiments/construction_round10/results/best_configurations.json
-98dec446c70bf8b99aa73d461bdaa971f0d234af8eb43614c46d8fc52f8888d0  experiments/construction_round10/results/metric_subset_portfolio.json
-a9332eadac1ea10e94d7f983030cf39f166b3f283165d06c33ed8fd8b10ebe10  experiments/construction_round10/results/cross_cardinality_challenge.json
-f6faa78c4e267662964bc4ef06c6962d457bea6e193c6997271132db8e03837b  experiments/construction_round10/SHA256SUMS
-```
-
-Verification commands from `kissing_number_5/`:
-
-```sh
-PYTHONPATH=. .venv/bin/python \
-  experiments/centered_quarter_k6_rank/k7/verify_fixed_support_obstruction.py
-PYTHONPATH=. .venv/bin/python \
-  experiments/centered_quarter_k6_rank/k7/verify_direct_k7_triangle_extension.py
-PYTHONPATH=. /usr/bin/python3 \
-  experiments/four_point_depth_projection/k6_product_audit/productpool_verify.py
-PYTHONPATH=. /usr/bin/python3 \
-  experiments/four_point_depth_projection/k6_product_audit/verify_productpool_via_deleted_k5.py
-PYTHONPATH=. .venv/bin/python -m \
-  experiments.construction_round10.check_results \
-  experiments/construction_round10/results/metric_subset_portfolio.json
-cd experiments/construction_round10 && shasum -a 256 -c SHA256SUMS
-```
-
-The exact hierarchy and product verifiers, their independent cross-checks,
-and all tamper tests pass.  Construction round 10 remains explicitly
-`NUMERICAL EVIDENCE ONLY`.
+The manifest authenticates a paused research dossier, not a solution.

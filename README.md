@@ -54,6 +54,18 @@ cyclic-SDS lanes, and a bounded exclusion of every exact `BS(84,83)` within
 raw Hamming distance 18 of Eliahou's published seed. A result counts only if
 an explicit `668 x 668` matrix passes exact full verification.
 
+## Paused research
+
+[`kissing_number_5/`](kissing_number_5/) records an intensive attempt on the
+five-dimensional kissing-number problem. It did **not** resolve the problem or
+improve the rigorous interval
+\(40\leq\tau(5)\leq44\). The repository contains an exact checker for the
+40-point \(D_5\) construction, scoped local and finite-model results, exact
+counterexamples to several tempting proof strategies, numerical construction
+searches, and a detailed resume guide. The
+[public checkpoint](https://aleckriebel.github.io/Math/research/kissing-number-5/)
+is deliberately labeled paused and unresolved.
+
 ## Archival derivations
 
 - **Discovery 06** is the technical precursor containing the flagship

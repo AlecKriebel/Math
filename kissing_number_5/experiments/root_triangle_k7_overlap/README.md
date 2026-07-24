@@ -18,11 +18,15 @@ inequality could turn local rank-five `K7` data into a global obstruction.
 Run from `kissing_number_5/`:
 
 ```sh
-python3 experiments/root_triangle_k7_overlap/verify_exact_catalog_dual.py
-python3 experiments/root_triangle_k7_overlap/independent_catalog_dual_audit.py
-python3 experiments/root_triangle_k7_overlap/verify_dual_counteratom.py
-python3 experiments/root_triangle_k7_overlap/test_centered_degree3_radical.py
+PYTHONPATH=. python3 experiments/root_triangle_k7_overlap/verify_exact_catalog_dual.py
+PYTHONPATH=. python3 experiments/root_triangle_k7_overlap/independent_catalog_dual_audit.py
+PYTHONPATH=. python3 experiments/root_triangle_k7_overlap/verify_dual_counteratom.py
+PYTHONPATH=. .venv/bin/python experiments/root_triangle_k7_overlap/test_centered_degree3_radical.py
 ```
+
+The first three commands use the standard library.  The radical test imports
+the discovery module and therefore needs NumPy from the pinned discovery
+environment.
 
 ## What is not proved
 

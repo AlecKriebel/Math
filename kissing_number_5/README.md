@@ -4,7 +4,12 @@ This directory is a self-contained research program for determining
 \(\tau(5)=A(5,1/2)\), the largest cardinality of a subset \(C\subset S^4\)
 whose distinct points satisfy \(\langle x,y\rangle\leq 1/2\).
 
-## Current rigorous baseline
+> **Paused 24 July 2026 — unresolved.**  The program did not improve the
+> global bounds.  Start with the concise [`STATUS.md`](STATUS.md) and use
+> [`RESUME.md`](RESUME.md) for the exact handoff.  This directory is an
+> incomplete research dossier, not a claimed solution.
+
+## Rigorous baseline at pause
 
 \[
 40\leq \tau(5)\leq 44.
@@ -14,16 +19,19 @@ The lower bound is independently verified here using the exact \(D_5\) root
 configuration.  The upper bound is the published baseline imported from
 Mittelmann--Vallentin; it is not a resolution of the problem.
 
-Nothing in this repository assumes that 40 is optimal.  Construction searches
-for 41, 42, 43, and 44 points run independently of the obstruction program.
+Nothing in this repository assumes that 40 is optimal.  During the active run,
+construction searches for 41, 42, 43, and 44 points were kept independent of
+the obstruction program.  No feasible candidate was found.
 
 ## Integrity rules
 
 - `CLAIMS_LEDGER.md` is authoritative about epistemic status.
 - Floating-point output is never promoted to a theorem without an exact or
   directed-interval certificate and an independent verifier.
-- Run verifiers with ordinary Python, not `python -O`; their exact rejection
-  checks deliberately use assertions.
+- Run historical verifiers with ordinary Python unless their package
+  explicitly audits `python -O`.  The final ADE, five-cycle, and realized
+  \(D_5\)-extension packages pass both modes; some older checkers deliberately
+  rely on assertions.
 - Search code belongs under `experiments/`; certificate checkers belong under
   `verifiers/`.
 - A restriction to symmetric, antipodal, lattice, rigid, rational, or
@@ -51,6 +59,9 @@ proves
 \[
 B(5)\leq34.
 \]
+This is an independently checkable repository result but not a record:
+Bachoc--Vallentin's published spherical-cap table already gives
+\(B(5)\leq33\).
 It uses rational Gram factors and a complete exact Bernstein subdivision of
 the full three-dimensional cap-pair domain.  Consequently, every open
 hemisphere contains at least seven points of a hypothetical 41-code, and
