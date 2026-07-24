@@ -1,0 +1,83 @@
+{
+  "schema": "lp333-order3-char2-profile-census-v1",
+  "scope": "Complete characteristic-two necessary-quotient census by reduced aggregate type and profile shell; positive counts are not exact profiles.",
+  "field": {
+    "definition": "F_4=F_2[w]/(w^2+w+1)",
+    "encoding": {
+      "0": 0,
+      "1": 1,
+      "w": 2,
+      "1+w": 3
+    }
+  },
+  "group": {
+    "prime": 37,
+    "subgroup": [1, 10, 26],
+    "class_representatives": [1, 2, 4, 8, 16, 32, 27, 17, 34, 31, 25, 13]
+  },
+  "factorization": {
+    "algebra": "F_4 x F_(4^6) x F_(4^6)",
+    "frobenius_orbits": [[0, 2, 4, 6, 8, 10], [1, 3, 5, 7, 9, 11]],
+    "star": "(a,X,Y)^*=(a^2,Y^32,X^128)",
+    "nontrivial_norm_equation": "X_A*Y_A^32 + X_B*Y_B^32 = 1"
+  },
+  "signature_dependency": {
+    "equation": "sum_(j=0)^5 Tr_F4/F2(D_j)=0",
+    "reason": "fixed augmentation and unit zero-lag force the sum of all nonzero residual coefficients to vanish",
+    "ambient_bits": 11
+  },
+  "shells": [
+    {"high_count": 0, "medium_count": 18, "total_support": 18},
+    {"high_count": 1, "medium_count": 15, "total_support": 16},
+    {"high_count": 2, "medium_count": 12, "total_support": 14}
+  ],
+  "target_residue_types": [
+    {
+      "name": "1+w,0",
+      "aggregate": [3, 0],
+      "multiplicity": 5,
+      "matches": {"h0": 1591338552, "h1": 966197016, "h2": 286163712},
+      "ambient": {"h0": 3259075252884, "h1": 1978728254712, "h2": 586287507960}
+    },
+    {
+      "name": "1,1+w",
+      "aggregate": [1, 3],
+      "multiplicity": 4,
+      "matches": {"h0": 1591301760, "h1": 966296568, "h2": 286154784},
+      "ambient": {"h0": 3259080747472, "h1": 1978723520928, "h2": 586290578016}
+    },
+    {
+      "name": "1,w",
+      "aggregate": [1, 2],
+      "multiplicity": 4,
+      "matches": {"h0": 1591301760, "h1": 966296568, "h2": 286154784},
+      "ambient": {"h0": 3259080747472, "h1": 1978723520928, "h2": 586290578016}
+    },
+    {
+      "name": "w,0",
+      "aggregate": [2, 0],
+      "multiplicity": 5,
+      "matches": {"h0": 1591338552, "h1": 966197016, "h2": 286163712},
+      "ambient": {"h0": 3259075252884, "h1": 1978728254712, "h2": 586287507960}
+    },
+    {
+      "name": "0,0",
+      "aggregate": [0, 0],
+      "multiplicity": 4,
+      "matches": {"h0": 1591802496, "h1": 966019275, "h2": 286244568},
+      "ambient": {"h0": 3259069892892, "h1": 1978733723967, "h2": 586286399160}
+    }
+  ],
+  "computation": {
+    "channel_words": 16777216,
+    "channels": 2,
+    "algorithm": "directly interpolated Boolean quadratic map plus complete Gray-code evaluation",
+    "claim": "all fifteen shell/residue cells survive; the quotient is a strict sieve, not an exclusion",
+    "reference_measurement": {
+      "date": "2026-07-24",
+      "host": "Apple M1 Pro",
+      "wall_seconds": 0.50,
+      "maximum_resident_bytes": 3129344
+    }
+  }
+}
