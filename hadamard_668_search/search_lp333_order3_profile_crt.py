@@ -6,6 +6,7 @@ uses the local-global theorem in ``LP333_ORDER3_PROFILE_CRT.md``:
 
 * exact four-coordinate aggregate target;
 * normalized profile energy 54;
+* the exact sparse-shell theorem, which leaves at most four norm-9 letters;
 * six opposite-pair local conditions;
 * the primitive-nine ``3(1-omega)`` ideal on all nonzero parts;
 * all thirteen characteristic-37 logarithmic transfer coefficients; and
@@ -90,6 +91,7 @@ TIGHT_CORRELATION_COORDINATE_BOUND = 192
 CORRELATION_COORDINATE_BOUND = TIGHT_CORRELATION_COORDINATE_BOUND
 QUARTET_ASSIGNMENT_COUNT = 3334
 QUARTET_COARSE_STATE_COUNT = 1409
+MAX_EXACT_NORM9_PROFILE_COUNT = 4
 
 SEMANTIC_SOURCE_DEPENDENCIES = (
     "search_lp333_order3_profile_crt.py",
@@ -98,6 +100,7 @@ SEMANTIC_SOURCE_DEPENDENCIES = (
     "verify_lp333_order3_profile9.py",
     "verify_lp333_order3_profile9_shards.py",
     "verify_lp333_order3_profile_crt.py",
+    "verify_lp333_order3_profile_sparse_shells.cpp",
     "verify_lp333_order3_profile_zero_symmetry.py",
     "verify_lp333_order3_prime167_split.py",
     # Complete local import closure relevant to the profile replay.  In
@@ -251,6 +254,9 @@ class ProfileCRTModel:
     coefficient_omega: tuple[
         tuple[cp_model.IntVar, ...], tuple[cp_model.IntVar, ...]
     ]
+    norm9_flags: tuple[
+        tuple[cp_model.IntVar, ...], tuple[cp_model.IntVar, ...]
+    ]
     correlation_real: tuple[Any, ...]
     correlation_omega: tuple[Any, ...]
     quartet_states: tuple[cp_model.IntVar, ...]
@@ -263,15 +269,32 @@ class ProfileCRTModel:
 
 def _allowed_profile_rows(
     channel: int, class_index: int
-) -> tuple[tuple[int, int, int, int], ...]:
+) -> tuple[tuple[int, int, int, int, int], ...]:
     return tuple(
         (
             profile_id,
             *signed_profile_integer(channel, class_index, profile_id),
             profile_norm(profile_id),
+            int(profile_norm(profile_id) == 9),
         )
         for profile_id in range(PROFILE_STATE_COUNT)
     )
+
+
+def add_sparse_shell_cut(
+    model: cp_model.CpModel,
+    norm9_words: Sequence[Sequence[cp_model.IntVar]],
+) -> None:
+    """Delete the exactly excluded ``h=5,6`` profile type sectors."""
+
+    flat = tuple(variable for word in norm9_words for variable in word)
+    if len(norm9_words) != 2 or any(
+        len(word) != CLASS_COUNT for word in norm9_words
+    ):
+        raise ValueError("the sparse-shell cut needs two twelve-letter words")
+    if len(flat) != 2 * CLASS_COUNT:
+        raise AssertionError("the sparse-shell flag count changed")
+    model.add(sum(flat) <= MAX_EXACT_NORM9_PROFILE_COUNT)
 
 
 def _product_rows(
@@ -431,6 +454,7 @@ def build_profile_crt_model(
     coefficients_real: list[list[cp_model.IntVar]] = [[], []]
     coefficients_omega: list[list[cp_model.IntVar]] = [[], []]
     norms: list[list[cp_model.IntVar]] = [[], []]
+    norm9_flags: list[list[cp_model.IntVar]] = [[], []]
     for channel in range(2):
         for class_index in range(CLASS_COUNT):
             profile_id = model.new_int_var(
@@ -441,14 +465,18 @@ def build_profile_crt_model(
                 -3, 3, f"z_omega_{channel}_{class_index}"
             )
             norm = model.new_int_var(0, 9, f"norm_{channel}_{class_index}")
+            norm9 = model.new_bool_var(
+                f"norm9_{channel}_{class_index}"
+            )
             model.add_allowed_assignments(
-                [profile_id, real, omega, norm],
+                [profile_id, real, omega, norm, norm9],
                 _allowed_profile_rows(channel, class_index),
             )
             identifiers[channel].append(profile_id)
             coefficients_real[channel].append(real)
             coefficients_omega[channel].append(omega)
             norms[channel].append(norm)
+            norm9_flags[channel].append(norm9)
 
     id_words = (
         tuple(identifiers[0]),
@@ -463,6 +491,10 @@ def build_profile_crt_model(
         tuple(coefficients_omega[1]),
     )
     norm_words = (tuple(norms[0]), tuple(norms[1]))
+    norm9_words = (
+        tuple(norm9_flags[0]),
+        tuple(norm9_flags[1]),
+    )
 
     for channel in range(2):
         model.add(sum(real_words[channel]) == normalized_target[2 * channel])
@@ -470,6 +502,11 @@ def build_profile_crt_model(
             sum(omega_words[channel]) == normalized_target[2 * channel + 1]
         )
     model.add(sum(norm_words[0]) + sum(norm_words[1]) == 54)
+    if enforce_crt:
+        # The exact modulo-nine sparse-shell theorem excludes the h=5 and
+        # h=6 type sectors.  It applies only with the exact zero gate, so the
+        # deliberately weakened arithmetic-fixture mode retains those words.
+        add_sparse_shell_cut(model, norm9_words)
 
     # Exact opposite-pair quartet tables.  Besides enforcing the local
     # primitive-nine signature, each table maps its four IDs to one of 1,409
@@ -780,6 +817,7 @@ def build_profile_crt_model(
         identifiers=id_words,
         coefficient_real=real_words,
         coefficient_omega=omega_words,
+        norm9_flags=norm9_words,
         correlation_real=tuple(correlation_real),
         correlation_omega=tuple(correlation_omega),
         quartet_states=tuple(quartet_states),
@@ -897,6 +935,9 @@ def semantic_manifest() -> dict[str, Any]:
             "column_modulus": PROFILE_COLUMN_MODULUS,
             "row_count": PROFILE_ROW_COUNT,
             "zero_eisenstein": ZERO_EISENSTEIN,
+            "max_exact_norm9_profile_count": (
+                MAX_EXACT_NORM9_PROFILE_COUNT
+            ),
         },
         "table_sha256": compact_hash(table_signature),
         "quartet_census": {
@@ -928,6 +969,7 @@ def model_fingerprint(
         "mathematical_layers": (
             "aggregate",
             "energy54",
+            "sparse_shell_h_le_4",
             "quartet3334_coarse1409",
             "target_stabilizer_lex",
             "primitive9_lambda3",

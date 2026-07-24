@@ -560,6 +560,22 @@ satisfies `U U*= -1`, leaving one fixed-target primitive torus of exactly
 `(167^12-1)^3` points.  This rules out the old degenerate and axis branches
 but does not yet produce a small-alphabet point.
 
+`LP333_ORDER3_PROFILE_SPARSE_SHELLS.md` excludes the two sparsest exact
+profile sectors
+
+```text
+(n_9,n_3,n_0)=(5,3,16), (6,0,18).
+```
+
+The opposite-quartet condition confines the three norm-three letters in the
+first sector to one quartet.  Since every norm-nine coefficient is divisible
+by 3, all high-high cross terms vanish modulo 9.  This reduces the two
+sectors to 552 and 288 assignments for detached exact replay, respectively;
+none has all 36 nonzero physical correlations zero.  Independent enumeration,
+sanitizer runs, all-37-lag replay, and external certificate hashes confirm the
+exclusion.  Thus any exact profile survivor has at most four norm-nine
+letters.  Five type sectors remain.
+
 `LP333_ORDER3_PRIME163_EXTREME.md` gives an exact complementary obstruction
 at the opposite rational prime 163.  In the two norm-pair `(163,4)` targets,
 the extreme channel-energy allocation makes `B=2 delta_0` and would require
@@ -600,7 +616,8 @@ on sampled assignments.
 orbits as a finite 24-variable discovery search.  It enforces the six
 reversal-independent equations `D_j=0` directly, uses the sharp
 `[-192,192]` correlation box, and replaces each opposite-pair quartet by an
-exact 3,334-row/1,409-state coarse layer.  The model also uses the full
+exact 3,334-row/1,409-state coarse layer.  It applies the independently
+verified sparse-shell theorem as the hard cut `n_9<=4`.  The model also uses the full
 fixed-target stabilizer, semantic checkpoint fingerprints, persistent exact
 no-goods, complete formal/lift-compatible orbit emission, and three detached
 integer replays of every survivor.  Persisted survivors are replayed again

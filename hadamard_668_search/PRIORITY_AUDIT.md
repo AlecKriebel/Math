@@ -418,6 +418,17 @@ physical candidates.  This is worth including as a central lemma in the
 focused prime-167 write-up.  It remains a structural reduction rather than
 existence or nonexistence evidence.
 
+The exact sparse-shell theorem is the strongest direct profile-space
+exclusion so far.  Opposite-quartet geometry and divisibility of every
+norm-nine letter by 3 make the two highest-energy sectors linear modulo 9.
+Only 552 words in `(n_9,n_3,n_0)=(5,3,16)` and 288 words in `(6,0,18)`
+reach detached all-37-lag replay, and none is exact.  Independent exhaustive
+quartet enumeration, a separate weighted DP, sanitizer runs, and external
+hashes confirm the result.  This appears potentially new and is suitable as
+a theorem in a focused order-three write-up: it eliminates two of seven
+complete type sectors, not merely sampled profiles.  Its scope remains
+restricted—five sectors, the labelled phase lift, and `H(668)` are open.
+
 The prime-163 extreme-sector theorem is a genuine exact pruning result, but
 its proper publication role is supporting rather than headline.  The
 factorization
@@ -449,7 +460,8 @@ lift-compatible orbits.  This distinction prevents an invalid quotient at
 the phase stage.  A deterministic 24-variable constructor implements the
 seven formal targets with exact quartet states, full target stabilizers,
 direct zero equations, semantically pinned atomic checkpoints, and detached
-exact replay.  No long campaign has been run on the hardened model, and
+exact replay.  It now applies the independently verified sparse-shell cut
+`n_9<=4`.  No long campaign has been run on the hardened model, and
 solver-reported exhaustion would still require a proof-producing SAT/PB
 translation.  The symmetry theorem is useful supporting mathematics; the
 constructor is research infrastructure, not publication evidence.

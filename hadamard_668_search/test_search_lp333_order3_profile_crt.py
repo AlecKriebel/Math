@@ -13,12 +13,14 @@ from ortools.sat.python import cp_model
 from search_lp333_order3_profile_crt import (
     CORRELATION_COORDINATE_BOUND,
     MAX_MEMORY_MIB,
+    MAX_EXACT_NORM9_PROFILE_COUNT,
     PROFILE_STATE_COUNT,
     QUARTET_ASSIGNMENT_COUNT,
     QUARTET_COARSE_STATE_COUNT,
     TIGHT_CORRELATION_COORDINATE_BOUND,
     VARIABLE_ORDER,
     add_assignment_nogood,
+    add_sparse_shell_cut,
     audit_correlation_coordinate_bound,
     audit_quartet_state_census,
     build_profile_crt_model,
@@ -123,6 +125,50 @@ class ProfileCRTConstructorTests(unittest.TestCase):
         self.assertEqual(
             census["two_layer_energy_bounded_prefixes"], 10_934_035
         )
+
+    def test_exact_sparse_shell_cut_removes_h5_fixture(self) -> None:
+        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[1]
+        weak = build_profile_crt_model(
+            target,
+            enforce_crt=False,
+            break_rotation_symmetry=False,
+        )
+        for channel, identifiers in enumerate(
+            (identifiers_a, identifiers_b)
+        ):
+            for class_index, value in enumerate(identifiers):
+                weak.model.add(
+                    weak.identifiers[channel][class_index] == value
+                )
+        solver = configure_solver(time_limit=5.0, max_memory_mib=256)
+        self.assertIn(
+            solver.solve(weak.model), (cp_model.FEASIBLE, cp_model.OPTIMAL)
+        )
+        self.assertEqual(
+            sum(
+                solver.value(flag)
+                for word in weak.norm9_flags
+                for flag in word
+            ),
+            5,
+        )
+
+        cut = build_profile_crt_model(
+            target,
+            enforce_crt=False,
+            break_rotation_symmetry=False,
+        )
+        add_sparse_shell_cut(cut.model, cut.norm9_flags)
+        for channel, identifiers in enumerate(
+            (identifiers_a, identifiers_b)
+        ):
+            for class_index, value in enumerate(identifiers):
+                cut.model.add(
+                    cut.identifiers[channel][class_index] == value
+                )
+        cut_solver = configure_solver(time_limit=5.0, max_memory_mib=256)
+        self.assertEqual(cut_solver.solve(cut.model), cp_model.INFEASIBLE)
+        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 4)
 
     def test_variable_order_is_complete(self) -> None:
         self.assertEqual(len(VARIABLE_ORDER), 24)
@@ -306,6 +352,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
                 "column_modulus": 37,
                 "row_count": 9,
                 "zero_eisenstein": ((-1, 0), (2, 0)),
+                "max_exact_norm9_profile_count": 4,
             },
         )
 

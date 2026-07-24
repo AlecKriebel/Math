@@ -34,6 +34,7 @@
 | `LP333_ORDER3_PROFILE_CRT.md` | Exact local-global zero detector from the lambda-cube ideal, complete characteristic-37 transfer, and Cauchy norm gap |
 | `LP333_ORDER3_PRIME167_SPLIT.md` | Lossless prime-167 reduction, invariant finite-field split, involution, inverse CRT, and complete two-channel parameterization |
 | `LP333_ORDER3_SPECTRAL_UNITS.md` | Twelve-factor spectral norm gap, CRT-unit theorem, unitary ratio, and single physical prime-167 torus |
+| `LP333_ORDER3_PROFILE_SPARSE_SHELLS.md` | Opposite-quartet and modulo-nine theorem excluding the complete `h=5,6` profile type sectors |
 | `LP333_ORDER3_PRIME163_EXTREME.md` | CM prime-factor and Fourier obstruction excluding the two extreme norm-pair `(163,4)` profile sectors |
 | `LP333_ORDER3_SPARSE_B_NORM.md` | Relative-norm classification excluding 312 of 396 normalized energy-six sparse-`B` words in the two `(163,4)` targets |
 | `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` | Formal 24-element profile symmetry, seven target orbits, and the 12-element labelled-transport caveat |
@@ -122,6 +123,8 @@
 | `test_lp333_order3_prime167_split.py` | Focused equality-case, field, branch, recovery, and profile-corpus regressions |
 | `verify_lp333_order3_spectral_units.py` | Checks the profile polynomial, cyclotomic norm gap, residue-prime degrees, unitary ratio, and exact torus counts |
 | `test_lp333_order3_spectral_units.py` | Focused alphabet, irreducibility, norm-gap, unit, axis-exclusion, and pinned-certificate regressions |
+| `verify_lp333_order3_profile_sparse_shells.cpp` | Exact modulo-nine reduction and detached all-37-lag replay excluding the `h=5,6` profile sectors |
+| `test_lp333_order3_profile_sparse_shells.py` | Warning-clean compile, complete census, replay-hash, and scope regressions for the sparse shells |
 | `verify_lp333_order3_prime163_extreme.py` | Checks the explicit principal primes above 163, CM-unit rigidity, Fourier contradiction, and exact extreme-sector census |
 | `test_lp333_order3_prime163_extreme.py` | Focused prime-factor, unit, Fourier, census, and scope regressions |
 | `verify_lp333_order3_sparse_b_norm.py` | Checks all 396 sparse words, both orbit partitions, total positivity, and exact inert-prime valuation certificates |

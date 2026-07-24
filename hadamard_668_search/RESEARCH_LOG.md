@@ -1472,3 +1472,31 @@ proof-assistant-level theorem.
   `6920db3a6912ad854e0af57562a0e61cd1a1966cb1ed91f8954bd520d4722f5d`.
   The 84 survivors still need a physical complementary `A`; the energy-six
   sector, both targets, `LP(333)`, and `H(668)` remain open.
+
+## 24 July 2026: exact exclusion of the two sparse profile shells
+
+- Partitioned the 24 profile letters by Eisenstein norm as
+  `(n_9,n_3,n_0)=(h,18-3h,6+2h)`.  Exact enumeration of all 10,000 labelled
+  opposite quartets leaves 3,334 legal rows and shows that a quartet contains
+  `0,2,3`, or `4` norm-three letters, never exactly one.
+- For `h=5`, all three norm-three letters therefore occupy one quartet.
+  Every norm-nine coefficient lies in `3 Z[omega]`, so high-high cross terms
+  vanish modulo 9 and the other five quartets become independent after the
+  distinguished frame is fixed.  Of 34,634,136 aggregate/local candidates,
+  only 552 reach detached exact replay.
+- For `h=6`, modulo 9 localizes each quartet's self term to its own reversal
+  pair.  Of 1,653,840 aggregate/local candidates, only 288 reach detached
+  replay.  None of the 552 or 288 words has all nonzero physical
+  correlations zero.  The pinned certificate hashes are
+  `e917360e36cbf57b96e5f0a8d842017eaeab9a73c4cdff804bdad719d898090e`
+  and
+  `981f1a39c7858271e9588b7606dece1c6d408b31506381c71eecc9dbc85d410e`.
+- An independent audit re-enumerated the complete quartet catalog, reproduced
+  every aggregate count by a separate weighted DP, checked the 22-target
+  table against its upstream catalog, replayed all 37 physical lags,
+  reproduced both hashes externally, and passed warning-clean,
+  ASan/UBSan, Python 3.9, and Python 3.14 runs.  Normal peak RSS was 63 MB.
+- The resumable exact constructor now maps every profile ID to a norm-nine
+  flag and enforces the proved cut `n_9<=4`.  Its theorem verifier is included
+  in the semantic checkpoint fingerprint; 19 constructor tests pass.  Five
+  profile sectors, the labelled lift, `LP(333)`, and `H(668)` remain open.

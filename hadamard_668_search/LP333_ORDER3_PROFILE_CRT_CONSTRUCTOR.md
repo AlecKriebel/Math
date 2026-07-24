@@ -52,10 +52,10 @@ For the first catalog target, whose fixed-target stabilizer is just `C_6`, the
 current exact model has:
 
 ```text
-integer/Boolean variables                     747
+integer/Boolean variables                     771
 allowed tables                                162
-linear constraints                            838
-total constraints                           1,000
+linear constraints                            839
+total constraints                           1,001
 exact zero scalar equations                    12
 primitive-nine ideal parts                     12
 characteristic-37 scalar equations             26
@@ -64,7 +64,34 @@ characteristic-37 scalar equations             26
 Targets fixed by one coefficient star receive six additional orbit images in
 their lex-leader and consequently have a slightly larger model.
 
-## 2. Sharp correlation coordinates
+The sparse-shell theorem below accounts for the 24 additional Boolean
+norm-nine indicators relative to the earlier 747-variable model.
+
+## 2. Exact sparse-shell cut
+
+Normalized energy 54 partitions every profile word into one of seven sectors
+
+```text
+(n_9,n_3,n_0)=(h,18-3h,6+2h),             0<=h<=6.
+```
+
+The independent exact sparse-shell verifier proves that the `h=5` and `h=6`
+sectors are empty.  Its modulo-nine reduction leaves only 552 and 288
+assignments for detached all-37-lag replay, respectively, and neither sector
+has an exact survivor.  The constructor therefore imposes
+
+```text
+n_9 <= 4.
+```
+
+Each profile ID is linked by the existing alphabet table to a Boolean
+norm-nine flag, and one linear inequality applies the theorem.  The cut is
+enabled only with the exact `D_t=0` gate; deliberately weakened arithmetic
+fixture models retain all seven sectors.  The sparse-shell verifier source is
+part of the semantic checkpoint fingerprint, so changing its theorem
+implementation invalidates old queues.
+
+## 3. Sharp correlation coordinates
 
 For `D=a+b*omega`,
 
@@ -84,7 +111,7 @@ not the former conservative `[-400,400]` box.  At model construction it checks
 that 192 is the largest integer not excluded by the displayed coordinate
 inequality.
 
-## 3. Quartet coarse layer
+## 4. Quartet coarse layer
 
 The variable order completes one opposite-class quartet at a time:
 
@@ -125,7 +152,7 @@ most 54 contain:
 The self-test recomputes all four numbers (`3,334`, `1,409`, `96,104`, and
 `10,934,035`) from the ten-state catalog.
 
-## 4. Exact and redundant correlation layers
+## 5. Exact and redundant correlation layers
 
 For each of the twelve nonzero invariant parts, the model reconstructs the
 exact integer pair for `D_t`.  It then imposes:
@@ -151,7 +178,7 @@ verified local-global theorem:
                                                > 167^2 = 27,889.
 ```
 
-## 5. Fixed-target symmetry and orbit emission
+## 6. Fixed-target symmetry and orbit emission
 
 Common even-class rotation gives `C_6` at every fixed target.  If coefficient
 star on A or B also fixes that target, the constructor uses the full
@@ -172,7 +199,7 @@ target representatives remain complete for the profile equation, while the
 twelve lift-compatible target representatives remain available as a separate
 mode.
 
-## 6. Resumable enumeration
+## 7. Resumable enumeration
 
 The checkpoint begins with one empty prefix cube per selected target.  A cube
 that reaches its wall-clock budget is replaced by its ten disjoint children.
@@ -212,7 +239,7 @@ new checkpoint path.  JSON loading rejects duplicate keys, non-finite
 numbers, booleans in integer fields, floats, numeric strings, malformed
 prefixes, and inconsistent candidate hashes.
 
-## 7. Memory semantics
+## 8. Memory semantics
 
 The solver is configured with:
 
@@ -231,7 +258,7 @@ The fixed-fixture self-test and the complete constructor unit suite each
 remain below 140 MB maximum RSS on the reference machine.  No long or
 multi-gigabyte solve is part of the test procedure.
 
-## 8. Mandatory detached replay
+## 9. Mandatory detached replay
 
 The candidate verifier imports no solver package and strictly parses every
 serialized integer.  It checks:

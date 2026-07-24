@@ -116,6 +116,12 @@ The strongest new constructive reductions are:
   prime of norm `167^12`.  Thus `U=A B^(-1)` satisfies `U U*=-1`, and a
   fixed target has only the single primitive torus `(167^12-1)^3`; the old
   degenerate and both axis branches are impossible for a profile survivor.
+- `LP333_ORDER3_PROFILE_SPARSE_SHELLS.md`: the two sparsest type sectors
+  `(n_9,n_3,n_0)=(5,3,16),(6,0,18)` are exactly empty.  Opposite-quartet
+  geometry plus modulo-nine linearization leaves only 552 and 288 words for
+  detached all-37-lag replay, with zero exact survivors.  Independent
+  enumeration and external hashes confirm the theorem, so every future
+  exact profile has `n_9<=4`.
 - `LP333_ORDER3_PRIME163_EXTREME.md`: in targets `(4,-1,0,0)` and
   `(5,1,0,0)`, the extreme energy split `(163,4)` would give
   `B=2 delta_0` and `A A^*=163 delta_0`.  Explicit principal degree-12
@@ -251,6 +257,8 @@ The strongest current construction checkpoints are:
 - the spectral-unit refinement: every physical profile-zero channel is a
   unit in that `1+6+6` algebra, so the modular intersection has no
   degenerate or axis branch and may be written as one unitary-ratio torus;
+- the sparse-shell exclusion: the `h=5,6` sectors are empty, leaving only
+  `h=0,1,2,3,4`; the constructor now enforces the exact cut `n_9<=4`;
 - the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
   remain in the normalized energy-six allocation for the two `(163,4)`
   targets.  Continue only from those 84 words/eight lift-safe orbits;
@@ -313,9 +321,10 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to solve the 24-profile finite system with `D_t=0`
-   using the seven formal symmetry representatives and the resumable exact
-   CRT constructor.  The prime-167 channel-first MITM is a low-memory
+  next exact task is to solve the 24-profile finite system with `D_t=0`
+  using the seven formal symmetry representatives and the resumable exact
+  CRT constructor, now restricted by the proved `n_9<=4` sparse-shell cut.
+  The prime-167 channel-first MITM is a low-memory
    fallback, not the primary route at its current 6.34-billion-signature
    cost.  Any new spectral constructor should use the unitary ratio
    `U=A B^(-1)` and the single nonzero torus, never the now-excluded
