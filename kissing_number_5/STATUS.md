@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-23T23:23:05Z
+Last updated: 2026-07-24T01:08:00Z
 
 ## Rigorous bounds
 
@@ -21,13 +21,22 @@ No exact value has been established.
 
 ## Strongest candidate routes
 
-The strongest current candidate is a **rank-aware four-point
-local-to-global route** coupling very negative pairs, their forced positive
-wedges, local residual rank, the deep-pair graph, and spectral moments of the
-common rank-five Gram matrix.  Exact inequalities have eliminated several
-successive pseudo-distributions, but no universal combination yet excludes
-all of them.  The missing ingredient must retain four-cycle or comparable
-common-source information rather than only global pair/triple marginals.
+The strongest current candidate is a **rank-aware higher-harmonic
+local-to-global route** coupling very negative pairs, forced positive wedges,
+colored-degree consistency, and the finite ranks of several harmonic Gram
+matrices.  For every real harmonic combination \(K\) of rank at most \(r\),
+the newly proved sharp inequality
+\[
+r(r-1)D_K^2\le (r-2)^2V_K^3
+\]
+adds rank information visible in pair/triple moments.  Its \(H_2\) and
+\((H_0+5H_1)/6\) instances exactly reject the strongest degree-four
+pseudo-distribution.  Together with degree-five BV blocks and necessary
+outer rank bands, these cuts now give an exact rational dual excluding the
+entire historical five-node support with its fixed pair multiplicities.
+This is a genuine fixed-support theorem, not a universal 41-point exclusion.
+The missing global ingredient must either control continuously varying
+supports or retain four-cycle/comparable common-source information.
 The sparse cases are sharply localized: with 23 deep pairs the graph is
 exactly \(C_5\sqcup18K_2\), while with 24 it is one of three explicit
 component types.  A rank-20 countermodel passes all aggregate
@@ -44,16 +53,26 @@ Other active incompatible routes are:
 4. a maximum-volume-basis semialgebraic reduction with explicit rational
    conditioning and a boundary-safe finite cell cover.
 
-An exact one-sided argument also gives
+An exact degree-10 cap-SDP certificate now gives
 \[
-A(4,1/\sqrt3)\le33,\qquad B(5)\le38.
+A(4,1/\sqrt3)\le33,\qquad B(5)\le35.
 \]
 Consequently, every open hemisphere of a hypothetical 41-code contains at
-least three points, the origin remains in the interior of the convex hull
-after deletion of any two points, and every vertex obeys
-\(d_{\rm contact}(x)+d_{<0}(x)\ge7\) and
-\(d_{\rm contact}(x)\le d_{<0}(x)+2\).  These constraints have survived an
-independent exact audit but do not alone yield a contradiction.
+least six points, and the origin remains in the interior of the convex hull
+after deletion of any five points.  Independently, tangent projection of
+the nonnegative neighborhood at each code point proves that every vertex
+has at least seven strictly negative neighbors, so the negative-pair graph
+has minimum degree at least seven and at least 144 edges.  The cap proof uses
+exact rational Gram factors and a 2,483-leaf Bernstein certificate over the
+full closed semialgebraic domain; an independent audit found no omitted
+normalization or boundary case.
+
+The first degree-11 cap search had a rescaled sampled objective
+\(34.959006682570\), but exact evaluation found a feasible dyadic point
+where its proposed off-diagonal bound fails.  A still worse narrow ridge
+occurs on the symmetry plane \(u=v\).  That candidate is **refuted**, not
+numerical evidence for \(B(5)\le34\); a redesigned solve is active, and no
+stronger exact one-sided bound is claimed.
 
 An independent exact \(S^3\) cap polynomial improves the frame conditioning
 of every hypothetical 41-code to
@@ -122,10 +141,14 @@ color-degree covariance square
 (\sum_v(2d_0(v)-d_1(v)+d_4(v)))^2/41\).
 A fifth exact assignment repairs that covariance defect as well, passes
 individual-color graphical degree sequences and all induced three-vertex
-motif counts, and still satisfies the rank cut.  It is eliminated by the
-scalar total-degree-four block \(H_{4,4}<0\).  Thus the currently useful
-constraints are genuinely independent; the active finite-support search has
-moved to degree four plus simultaneous-color realizability.
+motif counts, and still satisfies the rank-five \(H_1\) cut.  A sixth exact
+assignment passes every BV block through total degree four, the old
+rank/color/clique conditions, a joint colored-degree decomposition, and all
+negative-degree requirements.  Both are rejected by the new
+higher-harmonic centered-skew constraints.  An exact degree-five dual then
+rules out every triple distribution on this fixed support and pair data
+using only necessary outer rank bands.  Thus these constraints are genuinely
+independent, while continuous-support universality remains unresolved.
 
 ## Theorem-strength unresolved gaps
 
@@ -144,14 +167,15 @@ moved to degree four plus simultaneous-color realizability.
 - The compact maximum-volume formulation still has 154 intrinsic continuous
   dimensions; no complete interval tree or SOS infeasibility certificate has
   been produced.
-- The aggregate four-point inequalities do not yet encode the incidence
-  compatibility needed to eliminate their surviving rational witness.
+- The fixed five-node support is now eliminated, but no theorem reduces an
+  arbitrary real inner-product distribution to that support or pair data.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
 - The sharp rank-five inequality eliminates the stored witnesses but can be
   evaded by other three-point-feasible moment data; a successful rank route
-  must control the all-distinct four-cycle term in
+  must impose the new harmonic-combination hierarchy on a continuous
+  pair/triple domain and likely control the all-distinct four-cycle term in
   \(\operatorname{tr}(G^4)\), or an equivalent common-source statistic.
 - The deep-graph cases with 23 and 24 edges are finite, but no
   rank-five/cross-component elimination of their continuously labeled Gram
@@ -189,6 +213,10 @@ moved to degree four plus simultaneous-color realizability.
   [`proofs/local_link_geometry.md`](proofs/local_link_geometry.md)
 - Exact one-sided bound, Tukey-depth, and contact/sign consequences:
   [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
+- Exact degree-10 cap-SDP bound \(B(5)\le35\):
+  [`proofs/one_sided_cap_degree10_bound.md`](proofs/one_sided_cap_degree10_bound.md)
+- Tangent nonnegative-neighborhood projection and minimum negative degree:
+  [`proofs/tangent_nonnegative_neighborhood.md`](proofs/tangent_nonnegative_neighborhood.md)
 - Improved exact cap/frame conditioning:
   [`proofs/improved_frame_cap_bound.md`](proofs/improved_frame_cap_bound.md)
 - Sharp rank-five spectral moment and four-/six-cycle identities:
@@ -204,6 +232,15 @@ moved to degree four plus simultaneous-color realizability.
   [`proofs/local_hybrid_degree3_rank_barrier.md`](proofs/local_hybrid_degree3_rank_barrier.md)
 - Strongest degree-three/rank/color-moment barrier:
   [`proofs/local_hybrid_degree3_rank_color_barrier.md`](proofs/local_hybrid_degree3_rank_color_barrier.md)
+- Universal harmonic-combination centered-skew rank inequality and exact
+  witness separators:
+  [`proofs/harmonic_combination_centered_skew.md`](proofs/harmonic_combination_centered_skew.md)
+- Exact degree-five necessary-rank separator for the historical five-node
+  support:
+  [`proofs/local5_degree5_necessary_rank_separator.md`](proofs/local5_degree5_necessary_rank_separator.md)
+- Low-harmonic frame-potential inequalities and their all-harmonic
+  mass-41 barrier:
+  [`proofs/harmonic_rank_frame_barrier.md`](proofs/harmonic_rank_frame_barrier.md)
 - Exact sparse deep-graph classification, angular bounds, and rank-20
   countermodel:
   [`proofs/sparse_deep_graph_stability.md`](proofs/sparse_deep_graph_stability.md)
@@ -233,6 +270,10 @@ moved to degree four plus simultaneous-color realizability.
 - 152 unrestricted Riemannian augmented-Lagrangian trials and complete
   numerical diagnostics:
   [`experiments/construction_round3/README.md`](experiments/construction_round3/README.md)
+- Asymmetric deletion/reinsertion, basin-hopping, and released SQP surgery:
+  [`experiments/construction_round4_surgery/README.md`](experiments/construction_round4_surgery/README.md)
+- Unrestricted inverse-chord population continuation and crossover:
+  [`experiments/construction_round5_population/README.md`](experiments/construction_round5_population/README.md)
 - Imported discovery-only numerical 41-point near miss:
   [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
 

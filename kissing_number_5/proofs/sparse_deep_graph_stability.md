@@ -659,8 +659,9 @@ lines have one of three forms:
 \]
 
 Let \(a=\max_i|y_i|\).  If \(a\leq1/2\), then
-\(\|y\|^2\leq5/4<2\).  Suppose \(a\geq1/2\).  In the first two cases of
-(24), if a largest coordinate belongs to a deleted support, at most one
+\(\|y\|^2\leq5/4<2\).  Suppose \(a\geq1/2\).  The retained inequalities
+also give \(a\leq1\).  In the first two cases of (24), if a largest
+coordinate belongs to a deleted support, at most one
 other coordinate is unconstrained from it.  Hence
 
 \[
@@ -693,6 +694,122 @@ energy \(A\) cannot vanish.  If it did, Lemma 6 would identify the base with
 points for a five-point core.  Thus any induced \(C_5\) in the extension
 compatibility graph forces \(A<0\), not merely \(A+B<0\).  Compactness again
 gives a strict but presently unquantified gap.
+
+The obstruction scale in Lemma 7 has a useful exact test configuration.
+It is not a code extension, but it is a sharp-looking target for any
+quantitative stability argument.
+
+### Lemma 8 (an exact hypercube \(C_5\) probe)
+
+Let
+\[
+\begin{split}
+s_0&=(1,1,1,1,1),\\
+s_1&=(1,-1,-1,-1,-1),\\
+s_2&=(-1,1,1,1,-1),\\
+s_3&=(1,1,-1,-1,1),\\
+s_4&=(-1,-1,1,-1,-1),
+\end{split}
+\]
+and put \(z_i=s_i/\sqrt5\).  In cyclic order their Gram matrix has
+
+\[
+ \langle z_i,z_{i+1}\rangle=-\frac35,\qquad
+ \langle z_i,z_{i+2}\rangle=\frac15.                 \tag{27}
+\]
+
+Thus the deep graph is exactly \(C_5\).  Moreover, for every \(D_5\) root
+line \(u=(e_j\pm e_k)/\sqrt2\),
+
+\[
+ |\langle u,z_i\rangle|\in
+ \left\{0,\sqrt{\frac25}\right\}.                    \tag{28}
+\]
+
+Indeed, the unnormalized numerator in (28) is \(0\) or \(\pm2\), while
+the product of the two normalizing factors is \(\sqrt{10}\).  Hence the
+same five-point core lies within common cross slack
+
+\[
+ \sigma=\sqrt{\frac25}-\frac12                       \tag{29}
+\]
+
+of all twenty \(D_5\) root lines, and therefore of every eighteen-line
+deletion.  Its exact internal \(h\)-energy is
+
+\[
+ 5h\left(-\frac35\right)+5h\left(\frac15\right)
+ =\frac{39}{250}.                                    \tag{30}
+\]
+
+Lemma 8 is only an upper construction for the relaxed cross-slack problem;
+no matching lower bound for (29) is claimed.  It does show that a
+quantitative form of Lemma 7 based only on a common cross tolerance cannot
+force a gap larger than \(\sqrt{2/5}-1/2\).  The standard-library verifier
+checks (27)--(30) using integer dot products and rational squares.
+
+There is also an exact continuum showing that the numerically conjectured
+five-point core bound \(3/2\) would be sharp.  This does **not** prove that
+bound in arbitrary rank.
+
+### Lemma 9 (a planar \(3/2\)-energy family)
+
+Put \(L=\pi/3\), choose \(a\in[0,L]\), and set \(b=L-a\).  In an oriented
+Euclidean plane, let the five unit vectors \(w_i\) have arguments
+
+\[
+ 0,\quad a,\quad L,\quad L+a,\quad 2L+a,
+\]
+
+and put \(z_i=(-1)^i w_i\).  Then the consecutive inner products of the
+\(z_i\)'s are
+
+\[
+ -\cos a,\quad-\cos b,\quad-\cos a,\quad-\frac12,
+ \quad-\cos b,
+\]
+
+while their five chord inner products are
+
+\[
+ \frac12,\quad\frac12,\quad\cos(L+a),\quad
+ \cos(2L-a),\quad\frac12.
+\]
+
+Thus the consecutive pairs are deep (in the closed-cell sense), every
+chord belongs to \([-1/2,1/2]\), and
+
+\[
+ \sum_{0\leq i<j\leq4}h(\langle z_i,z_j\rangle)=\frac32.          \tag{31}
+\]
+
+Indeed, write \(H(\theta)=h(\cos\theta)\).  Since
+\[
+ H(\theta)=\frac{2+3\cos(2\theta)+\cos(4\theta)}8,
+\]
+the identities
+\[
+\begin{aligned}
+ &\cos(2a)+\cos(2L-2a)+\cos(2L+2a)=0,\\
+ &\cos(4a)+\cos(4L-4a)+\cos(4L+4a)=0
+\end{aligned}
+\]
+follow from \(\cos(2L)=\cos(4L)=-1/2\).  Consequently
+\[
+ H(a)+H(L-a)+H(L+a)=\frac34.
+\]
+Also \(H(2L-a)=H(L+a)\), because the two arguments sum to
+\(\pi\).  Substitution of the displayed edge and chord lists now gives
+\[
+ 2H(a)+2H(b)+H(L+a)+H(2L-a)=\frac32.
+\]
+
+Direct constrained Gram optimization repeatedly returns this rank-two
+family as a global maximizer of the five-point \(C_5\) core energy.  That
+global upper bound remains `NUMERICAL EVIDENCE ONLY`: local \(3\times3\)
+PSD conditions together with odd-cycle angular frustration still permit
+the larger relaxation value \(49/32\), so a proof must use a genuinely
+five-point Gram relation.
 
 An independent dependency-free numerical search imposed the isolated
 matching components as exact antipodal pairs and optimized all remaining

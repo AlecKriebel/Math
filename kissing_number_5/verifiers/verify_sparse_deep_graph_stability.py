@@ -310,6 +310,47 @@ def verify_d5_two_line_saturation_envelopes() -> None:
     assert len(deletion_orbits) == 3
 
 
+def verify_hypercube_c5_probe(data: dict[str, object]) -> None:
+    """Verify the exact relaxed-extension probe from Lemma 8."""
+
+    probe = data["hypercube_c5_probe"]
+    assert isinstance(probe, dict)
+    vectors = probe["sign_vectors"]
+    assert isinstance(vectors, list) and len(vectors) == 5
+    assert all(len(vector) == 5 for vector in vectors)
+    assert all(entry in (-1, 1) for vector in vectors for entry in vector)
+    assert all(sum(entry * entry for entry in vector) == 5 for vector in vectors)
+
+    cycle_pairs = {(0, 1), (1, 2), (2, 3), (3, 4), (0, 4)}
+    for i, j in combinations(range(5), 2):
+        numerator = sum(a * b for a, b in zip(vectors[i], vectors[j]))
+        expected = -3 if (i, j) in cycle_pairs else 1
+        assert numerator == expected
+
+    # An unnormalized D5 root is e_i +/- e_j and has norm squared 2.
+    # Against s/sqrt(5), the squared normalized inner product is
+    # (r.s)^2/10. Every value is therefore 0 or 2/5.
+    cross_squares: set[Q] = set()
+    for vector in vectors:
+        for i, j in combinations(range(5), 2):
+            for relative_sign in (-1, 1):
+                numerator = vector[i] + relative_sign * vector[j]
+                cross_squares.add(Q(numerator * numerator, 10))
+    assert cross_squares == {Q(0), Q(2, 5)}
+    assert [Q(value) for value in probe["d5_cross_squared_values"]] == [
+        Q(0),
+        Q(2, 5),
+    ]
+    assert Q(2, 5) > Q(1, 4)
+
+    def h(value: Q) -> Q:
+        square = value * value
+        return square * (square - Q(1, 4))
+
+    core_h_sum = 5 * h(-Q(3, 5)) + 5 * h(Q(1, 5))
+    assert core_h_sum == Q(probe["core_h_sum"]) == Q(39, 250)
+
+
 def verify_all_subset_inequalities(
     matching_h: Qsqrt5,
     deep_h: Qsqrt5,
@@ -371,6 +412,7 @@ def verify() -> dict[str, object]:
     row_envelopes = verify_row_energy_envelopes()
     verify_root_system_zero_slack_counts()
     verify_d5_two_line_saturation_envelopes()
+    verify_hypercube_c5_probe(data)
     smallest_margin = verify_all_subset_inequalities(
         values["matching_h"], values["deep_h"], values["chord_h"]
     )
@@ -383,6 +425,7 @@ def verify() -> dict[str, object]:
         "row_envelopes_checked": len(row_envelopes),
         "root_zero_slack_cases_checked": 3,
         "d5_two_line_deletion_orbits_checked": 3,
+        "hypercube_c5_probe_checked": True,
         "subset_checks": 32 * 37,
         "smallest_subset_margin": str(smallest_margin.a),
         "aggregate_kernel_psd": True,

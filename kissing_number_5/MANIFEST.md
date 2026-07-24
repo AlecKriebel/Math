@@ -217,3 +217,74 @@ is older and does not support `zip(..., strict=True)`, so it is not the
 clean-environment interpreter for the full suite.  This run includes
 `test_fixed41_rank_mixture_separator` and
 `test_local_hybrid_degree3_rank_color`.
+
+## Checkpoint 2026-07-24T01:14:00Z
+
+This checkpoint adds the exact one-sided cap bound \(B(5)\le35\), its
+tangent-neighborhood consequence, harmonic-combination centered-skew rank
+cuts, an exact necessary-rank separator for the historical fixed support,
+independent adversarial tests, and two further unrestricted construction
+rounds.  All proof verifiers use standard-library exact rational arithmetic.
+The construction packages use ordinary binary64 NumPy/SciPy and remain
+numerical evidence only.
+
+Key certificate, proof, and verifier hashes:
+
+```text
+12f555b75d436ce6d4f1b6d7d0f812b06278e13ca241095eee24f18abd7e9562  certificates/one_sided_cap_degree10_bound.json
+38beabfe7b00257c2635a9fbe633d083d8e34d8ec738cf297f5315283b46b8fa  proofs/one_sided_cap_degree10_bound.md
+c220c83724daace3f8e9007e55b8a72337b7b15136d9dfd6354d3b93ebcef8de  verifiers/verify_one_sided_cap_degree10.py
+877fe3454924a3b52a510290acc6cb98dc842dcf3b2be975c24960cf26b79864  proofs/tangent_nonnegative_neighborhood.md
+8631e37c15a7fe106c58ac28a5d777fcaf693c1f17e5aea237da920d7cb19099  verifiers/verify_tangent_nonnegative_neighborhood.py
+36555b4d489b9804c742a896ad5d978aeb4772362958e61ad5632be97a7078a9  certificates/local_hybrid_degree4_rank_color_clique_pseudodistribution.json
+f23bda83df4318d5ce963ca768559ce96390a2ed5b0287233a30fdefded40806  certificates/harmonic_combination_centered_skew_instances.json
+e3a3fdc64aa4e41f0013079c84c1903e4a201ed5a545afe7bdca696c2b183934  proofs/harmonic_combination_centered_skew.md
+284b3675a4a78ec3c0a41992fe804ec046c65aa9d60be4a186424bdb42ca588a  verifiers/verify_harmonic_combination_centered_skew.py
+45c73100075706bc67ede740a3549281fb0b6bf48e2ef2177e10a6922a76ecaa  certificates/local5_degree5_necessary_rank_separator.json
+cedb01b6813ef0a9a091422b69b965e87919cf9172872a1e62007b2a55e725cf  proofs/local5_degree5_necessary_rank_separator.md
+67dab3ec643beabd72b6e6459eabf1009de92273c70eea78cedc2053c4c51188  verifiers/verify_local5_degree5_necessary_rank_separator.py
+142fab6011445c6efd6e4843b1e26146e7606dba1f97f7bca10d78cb7535c1db  proofs/rank_skew_local5_degree5_adversarial_audit.md
+082619d617bddf620ac38759f62ad2c6065c599a7ebe51473e32cee111f0fbe2  proofs/harmonic_rank_frame_barrier.md
+42021d949b68403299cabf7bdfdca907d2e3f2580923c65419f591dcc4501416  verifiers/verify_harmonic_rank_frame_barrier.py
+85473a118bd35397e1bb3c8198857b2834aa6c0f007cc60da7ee9633eecc9fd6  certificates/sparse_deep_graph_stability.json
+a8e53ae9f6ff94ee8efdb1c552e0346993ca7d51eee8ac1fc05321250dd72ed8  proofs/sparse_deep_graph_stability.md
+912ab4e0fea9d6c3df21a41fa7a1b5c9f9fe59a3b83b5fc30fffcb6ea2c64fde  verifiers/verify_sparse_deep_graph_stability.py
+```
+
+Adversarial and tamper-test hashes:
+
+```text
+ecaa56e1f4c221297127b543b627dd0239c6e30cc2e6c71f19331c23d36b711b  tests/test_one_sided_cap_degree10.py
+afbe61b84b7ae30e712356a3124c36f4f74060069e0ac86fdbe3ddf731aaa923  tests/test_tangent_nonnegative_neighborhood.py
+48efad925903d04856afb07784f77c987da440f39b94cdee57e7ac29ec84f367  tests/test_harmonic_combination_centered_skew.py
+7c0747dc341c30ba5c7bb8dfdbc27bcbb9089062114e1a3d70fc0ba337cfdea0  tests/test_local5_degree5_necessary_rank_separator.py
+e27371c779e7aaaa5d3cf843a435383054a194a7f6c54c9a971b228e1150c8cd  tests/test_harmonic_rank_frame_barrier.py
+ecf0a8fc384a6485b223a2a8961e74912dc59d64558dd4c690508d0dd397abe1  tests/test_rank_skew_local5_degree5_adversarial_audit.py
+f231ae69e6027125cecd588c41432dffad3e97c1835364c69a6447c2e1c7244b  tests/test_sparse_deep_graph_stability.py
+```
+
+Construction artifact hashes:
+
+```text
+c41781a5f1d33f24738620811646412d7b255bec94b913404bfeba19fd91036f  experiments/construction_round4_surgery/results/contact_surgery_portfolio.json
+37ee2140585c18a329a00f79038a0d7bf9e9df51d7685405410ade2d32d58e82  experiments/construction_round5_population/results/population_portfolio.json
+ab26f6cd16a769bec4137983f766c9ba4af544ed0ad3b0491ed7563447ba3c81  experiments/construction_round5_population/results/population_targeted_n43_n44.json
+5271520e08cc2187bb1f1851f36886895133f9d1951188c5e8ee9d8c9629081e  experiments/construction_round5_population/results/tukey_probe_n41.json
+936d0d1cbd98dd44b1df8ddc53a68d5fedacb40d8a40490acfb636207c76f47c  experiments/construction_round4_surgery/check_portfolio.py
+1e2b00d4f818baeb353aa26254e51cfb4a4720a9c9f429a678d3b7c87a161b45  experiments/construction_round5_population/check_population.py
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+PYTHONPATH=. .venv/bin/python -m unittest discover -s tests -v
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round4_surgery.test_contact_surgery \
+  experiments.construction_round5_population.test_population_continuation -v
+```
+
+Python 3.14.6 reports 81 passing exact tests.  The cap test reconstructs all
+2,483 exact Bernstein leaves; factor and manifest corruption are rejected.
+The construction tests recheck norms, pair maxima, active graphs, spectra,
+stored hashes, and the floating halfspace-depth diagnostic without treating
+any of them as a proof.

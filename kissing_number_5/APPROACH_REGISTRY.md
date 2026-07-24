@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-23T21:51:06Z
+Last updated: 2026-07-24T01:08:00Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -40,6 +40,19 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   155-edge active-graph profile.  All coordinates, histories, spectra, seeds,
   and hashes are stored in `experiments/construction_round3/`.  These are
   numerical basin diagnostics only.
+- **Fourth round:** 36 asymmetric deletion/reinsertion, contact-stress
+  basin-hopping, smoothmax-release, and epigraph-SQP runs covered
+  \(N=41,42,43,44\).  Every recomputed maximum remained above \(1/2\);
+  the released portfolio, seeds, coordinates, and checker are in
+  `experiments/construction_round4_surgery/`.  This is numerical evidence
+  only.
+- **Fifth round:** 30 unrestricted inverse-chord \(p\)-energy population
+  runs used aligned crossover, hyperplane splicing, tangent mutation,
+  diversity retention, random immigrants, and final SQP.  The best maxima
+  were approximately
+  \(0.51499465,0.51824116,0.52472448,0.52747119\); no exact reconstruction
+  target appeared.  The full package is in
+  `experiments/construction_round5_population/`.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -96,15 +109,23 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   total-degree-three radial square.  Numerical reoptimization indicates that
   the three-point cone can move to \(D=0\), so the separator is not by itself
   an infeasibility certificate.
+- **Higher-harmonic rank separation:** For every real harmonic combination
+  \(K\) of rank at most \(r\), the sharp centered traces satisfy
+  \(r(r-1)D_K^2\le(r-2)^2V_K^3\).  The \(H_2\) and
+  \((H_0+5H_1)/6\) instances exactly reject the strongest degree-four
+  five-node pseudo-measure.  Necessary rational outer bands, degree-five BV
+  forms, and color covariance give an exact dual excluding that fixed
+  support and pair multiplicity vector.
 - **Convex-mixture audit:** The direct segment joining C039 to the
   degree-three/rank-feasible witness cannot satisfy both families.  A
   degree-six radial interpolation polynomial annihilates the complete C039
   support and gives a strictly negative \(H_{3,9}\) form on every positive
   mixture.  This rules out that synthesis only, not other union-support
   reoptimizations.
-- **Unresolved:** Add genuinely four-point/common-source or rank-five
-  information.  Raising only harmonic or radial degree in this formulation
-  cannot work against the certified witness.
+- **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
+  continuous pair/triple domain, or add genuinely four-point/common-source
+  information.  Raising only harmonic or radial degree in the old
+  formulation cannot work against the certified witness.
 - **Artifacts:** `proofs/fixed41_three_point_formulation.md`;
   `proofs/fixed41_bv_all_harmonics.md`; four exact JSON certificates; two
   dependency-free rational verifiers.  Patched
@@ -143,6 +164,13 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   The four-cycle expansion of \(\operatorname{tr}(G^4)\) has also been
   derived exactly; all terms are pair/triple moments except the all-distinct
   four-cycle statistic.
+- **Harmonic rank hierarchy:** The centered-skew argument is now proved for
+  every symmetric rank-\(r\) matrix and therefore for arbitrary real linear
+  combinations of harmonic Gram matrices.  It detects defects in \(H_2\)
+  and mixed low-harmonic kernels that C047 misses.  The separate quadratic
+  frame-potential matrix inequalities are exact but insufficient: the
+  all-harmonic mass-41 witness passes all eleven instances whose summed
+  feature dimension is below 41.
 - **Unresolved:** Bound the all-distinct four-cycle statistic jointly with its
   overlapping triples, or convert the large nullspace plus entry inequalities
   into a contradiction without assuming a contact pattern.  Pure abstract
@@ -242,7 +270,7 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \[
   S\succ(15059/40000)I.
   \]
-- **One-sided strengthening:** An exact degree-11
+- **Earlier one-sided strengthening:** An exact degree-11
   \(\mathbb Q(\sqrt3)\) polynomial proves
   \(A(4,1/\sqrt3)\le33\).  Equatorial projection and boundary-safe cap
   reflection, together with the rigorous baseline \(\tau(5)\le44\), give
@@ -251,11 +279,26 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   the origin in the convex-hull interior.  Directionally,
   \(\max(0,8-r(u))\le b(u)\le r(u)+3\), and at a code vertex
   \(d(x)+r(x)\ge7,\ d(x)\le r(x)+2\).
+- **Direct cap SDP and tangent projection:** Exact rational degree-10 Gram
+  factors and a complete 2,483-leaf Bernstein tree on the full closed
+  cap-pair domain prove \(B(5)\le35\).  Hence a hypothetical 41-code has at
+  least six points in every open hemisphere and remains origin-spanning
+  after deletion of any five points.  Independently, the nonnegative
+  neighborhood at every code point projects injectively to an
+  \(A(4,1/\sqrt3)\)-code, proving at least seven strictly negative
+  neighbors per vertex.
 - **Unresolved:** A global averaging or compatibility inequality that excludes
-  total size 41.
+  total size 41.  A degree-11 cap candidate has audited numerical objective
+  below 35, but exact rationalization has already exposed a missed narrow
+  interior ridge in the first attempt; no \(B(5)\le34\) certificate is
+  claimed.
 - **Artifacts:** `proofs/local_link_geometry.md`;
   `verifiers/verify_local_links.py`; `proofs/one_sided_tukey_bound.md`;
   `verifiers/verify_one_sided_tukey.py`;
+  `proofs/one_sided_cap_degree10_bound.md`;
+  `verifiers/verify_one_sided_cap_degree10.py`;
+  `proofs/tangent_nonnegative_neighborhood.md`;
+  `verifiers/verify_tangent_nonnegative_neighborhood.py`;
   `proofs/improved_frame_cap_bound.md`;
   `verifiers/verify_improved_frame_cap_bound.py`;
   `proofs/max_volume_semialgebraic_reduction.md`.
@@ -357,6 +400,17 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   three-vertex motif counts.  It passes degree three, all wedge cells, and
   C047, but fails the scalar degree-four block \(H_{4,4}\).  No simultaneous
   five-color graph is claimed.
+- **Degree-four/rank/color/clique barrier:** A sixth integral assignment
+  passes every BV block through total degree four, C047, all five
+  color-degree covariances, the support-specific rank clique cut, a joint
+  degree-vector decomposition, all color-union Erdős--Gallai tests, and the
+  minimum-negative-degree requirements.  It fails total degree five and the
+  new \(H_2\) and mixed-harmonic centered-skew constraints.
+- **Fixed-support closure:** With necessary outer C047 and harmonic-rank
+  bands, an exact degree-five dual proves that no triple distribution exists
+  on this historical five-node support with the fixed pair multiplicities.
+  This is a fixed-support theorem only; no discretization theorem reduces an
+  arbitrary code to it.
 - **Artifacts:** also `proofs/degree2_bv_barrier.md`,
   `verifiers/verify_degree2_bv_barrier.py`;
   `proofs/weighted_residual_barrier.md`,
@@ -366,7 +420,11 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/local_hybrid_degree3_rank_barrier.md`,
   `verifiers/verify_local_hybrid_degree3_rank.py`;
   `proofs/local_hybrid_degree3_rank_color_barrier.md`,
-  `verifiers/verify_local_hybrid_degree3_rank_color.py`.
+  `verifiers/verify_local_hybrid_degree3_rank_color.py`;
+  `proofs/harmonic_combination_centered_skew.md`,
+  `verifiers/verify_harmonic_combination_centered_skew.py`;
+  `proofs/local5_degree5_necessary_rank_separator.md`,
+  `verifiers/verify_local5_degree5_necessary_rank_separator.py`.
 - **Restrictions:** None intended.
 - **Status:** active.
 

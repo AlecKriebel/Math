@@ -24,6 +24,7 @@ class SparseDeepGraphStabilityTests(unittest.TestCase):
         self.assertEqual(result["row_envelopes_checked"], 41)
         self.assertEqual(result["root_zero_slack_cases_checked"], 3)
         self.assertEqual(result["d5_two_line_deletion_orbits_checked"], 3)
+        self.assertTrue(result["hypercube_c5_probe_checked"])
         self.assertTrue(result["aggregate_kernel_psd"])
         self.assertEqual(result["smallest_subset_margin"], "3/28")
 
@@ -50,6 +51,13 @@ class SparseDeepGraphStabilityTests(unittest.TestCase):
     def test_root_slot_shortage(self):
         MODULE.verify_root_system_zero_slack_counts()
         MODULE.verify_d5_two_line_saturation_envelopes()
+
+    def test_hypercube_c5_probe(self):
+        import json
+
+        with MODULE.CERTIFICATE.open("r", encoding="utf-8") as stream:
+            data = json.load(stream)
+        MODULE.verify_hypercube_c5_probe(data)
 
 
 if __name__ == "__main__":

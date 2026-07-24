@@ -1,0 +1,67 @@
+{
+  "schema": "local-hybrid-degree4-rank-color-clique-pseudodistribution-v1",
+  "dimension": 5,
+  "cardinality": 41,
+  "maximum_inner_product": "1/2",
+  "pair_certificate": "certificates/local_hybrid_pseudodistribution.json",
+  "nodes": [
+    "-77/100",
+    "-7/10",
+    "-11/25",
+    "-9/100",
+    "499/1000"
+  ],
+  "ordered_pair_counts": [
+    170,
+    6,
+    262,
+    652,
+    550
+  ],
+  "triple_counts": [
+    {"types": [0, 0, 4], "count": 275},
+    {"types": [0, 1, 4], "count": 17},
+    {"types": [0, 2, 3], "count": 302},
+    {"types": [0, 2, 4], "count": 789},
+    {"types": [0, 3, 3], "count": 774},
+    {"types": [0, 3, 4], "count": 883},
+    {"types": [1, 1, 4], "count": 3},
+    {"types": [1, 2, 3], "count": 30},
+    {"types": [1, 3, 3], "count": 5},
+    {"types": [1, 3, 4], "count": 59},
+    {"types": [2, 2, 2], "count": 25},
+    {"types": [2, 2, 3], "count": 397},
+    {"types": [2, 2, 4], "count": 242},
+    {"types": [2, 3, 3], "count": 629},
+    {"types": [2, 3, 4], "count": 1763},
+    {"types": [2, 4, 4], "count": 243},
+    {"types": [3, 3, 3], "count": 651},
+    {"types": [3, 3, 4], "count": 1564},
+    {"types": [3, 4, 4], "count": 1383},
+    {"types": [4, 4, 4], "count": 626}
+  ],
+  "joint_degree_vectors": [
+    {"degrees": [2, 3, 4, 17, 14], "multiplicity": 1},
+    {"degrees": [3, 0, 7, 12, 18], "multiplicity": 1},
+    {"degrees": [3, 1, 6, 14, 16], "multiplicity": 1},
+    {"degrees": [4, 0, 6, 15, 15], "multiplicity": 3},
+    {"degrees": [4, 0, 6, 16, 14], "multiplicity": 10},
+    {"degrees": [4, 0, 7, 14, 15], "multiplicity": 10},
+    {"degrees": [4, 0, 7, 15, 14], "multiplicity": 3},
+    {"degrees": [4, 1, 6, 17, 12], "multiplicity": 2},
+    {"degrees": [5, 0, 6, 18, 11], "multiplicity": 1},
+    {"degrees": [5, 0, 6, 19, 10], "multiplicity": 5},
+    {"degrees": [5, 0, 7, 18, 10], "multiplicity": 4}
+  ],
+  "scope": {
+    "asserted": "exact fixed-N triple pseudodistribution satisfying total-degree-four BV, C047, full color-degree covariance, the forced color-{0,1} neighborhood-clique moment inequality, and an exact joint colored-degree moment decomposition",
+    "not_asserted": "realizability by one edge-colored complete graph or by a rank-five Gram matrix"
+  },
+  "discovery": {
+    "program": "experiments/search_local_hybrid_degree3.py --degree 4 --rank-five --color-degree --support local5 --lp-warm-start",
+    "python": "3.9.6",
+    "numpy": "1.24.2",
+    "scipy": "1.10.1",
+    "method": "continuous warm-start followed by MILP with iteratively separated harmonic and color-degree eigenvector cuts"
+  }
+}

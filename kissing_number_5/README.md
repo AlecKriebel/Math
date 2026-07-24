@@ -43,19 +43,35 @@ arithmetic.  The stored integer vector \(r\) denotes the unit vector
 
 ## Reproduce the certified one-sided bound
 
-The proof [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
-establishes \(A(4,1/\sqrt3)\leq33\), \(B(5)\leq38\), and the resulting
-origin-depth constraints for any hypothetical 41-point code.  Its exact
-\(\mathbb Q(\sqrt3)\) data are stored in
-[`certificates/one_sided_tukey_bound.json`](certificates/one_sided_tukey_bound.json)
-and checked by
-[`verifiers/verify_one_sided_tukey.py`](verifiers/verify_one_sided_tukey.py).
+The exact degree-10 cap-SDP certificate in
+[`proofs/one_sided_cap_degree10_bound.md`](proofs/one_sided_cap_degree10_bound.md)
+proves
+\[
+B(5)\leq35.
+\]
+It uses rational Gram factors and a complete exact Bernstein subdivision of
+the full three-dimensional cap-pair domain.  Consequently, every open
+hemisphere contains at least six points of a hypothetical 41-code, and
+deleting any five points leaves the origin in the interior of the remaining
+convex hull.  The independent tangent-projection lemma proves the stronger
+vertex-direction statement that every point has at least seven strictly
+negative neighbors.
+
+The earlier proof
+[`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
+also establishes \(A(4,1/\sqrt3)\leq33\) exactly.  It remains a dependency
+of the tangent-neighborhood lemma.
 
 From this directory:
 
 ```sh
+python3 verifiers/verify_one_sided_cap_degree10.py
+python3 verifiers/verify_tangent_nonnegative_neighborhood.py
 python3 verifiers/verify_one_sided_tukey.py
-python3 -m unittest tests.test_one_sided_tukey -v
+python3 -m unittest \
+  tests.test_one_sided_cap_degree10 \
+  tests.test_tangent_nonnegative_neighborhood \
+  tests.test_one_sided_tukey -v
 ```
 
 ## Reproduce the rank and frame certificates
@@ -79,6 +95,9 @@ python3 verifiers/verify_weighted_residual_barrier.py
 python3 verifiers/verify_local_hybrid_degree3.py
 python3 verifiers/verify_local_hybrid_degree3_rank.py
 python3 verifiers/verify_local_hybrid_degree3_rank_color.py
+python3 verifiers/verify_harmonic_combination_centered_skew.py
+python3 verifiers/verify_harmonic_rank_frame_barrier.py
+python3 verifiers/verify_local5_degree5_necessary_rank_separator.py
 python3 verifiers/verify_fixed41_rank_mixture_separator.py
 python3 verifiers/verify_sparse_deep_graph_stability.py
 python3 verifiers/verify_quantitative_root_system_stability.py
@@ -91,6 +110,9 @@ python3 -m unittest \
   tests.test_local_hybrid_degree3 \
   tests.test_local_hybrid_degree3_rank \
   tests.test_local_hybrid_degree3_rank_color \
+  tests.test_harmonic_combination_centered_skew \
+  tests.test_harmonic_rank_frame_barrier \
+  tests.test_local5_degree5_necessary_rank_separator \
   tests.test_fixed41_rank_mixture_separator \
   tests.test_sparse_deep_graph_stability \
   tests.test_quantitative_root_system_stability \

@@ -1,6 +1,6 @@
 # A Triple Pseudo-Measure Passing Degree-Three BV, C047, and Color Moments
 
-## Certified barrier
+## Certified historical barrier (superseded)
 
 On the exact five-node pair support from `local_hybrid_barrier.md`, an
 integral fixed-\(41\) triple pseudo-distribution simultaneously satisfies
@@ -14,9 +14,11 @@ integral fixed-\(41\) triple pseudo-distribution simultaneously satisfies
 - basic individual-color degree-sequence and three-vertex motif
   consistency.
 
-This is the strongest five-node triple barrier in this sequence.  It is
-still not asserted to arise from one edge-colored complete graph, much less
-from a rank-five Gram matrix.
+This was a useful intermediate barrier, but it has now been superseded by
+`local_hybrid_degree4_rank_color_clique_barrier.md`.  In particular, it
+does **not** pass the later support-specific colored-neighborhood clique
+inequality and cannot arise from one edge-colored complete graph on this
+support, much less from a rank-five Gram matrix.
 
 The exact certificate and standard-library verifier are
 `certificates/local_hybrid_degree3_rank_color_pseudodistribution.json` and
@@ -72,14 +74,24 @@ In particular,
 W_{\{0\}}=275,\qquad
 W_{\{0,1\}}=275+30+3=308.                        \tag{6}
 \]
-The mixed value \(30\) and type-\(1\) value \(3\) attain the universal
-caps
+The mixed value \(30\) and type-\(1\) value \(3\) attain the two loose
+moment caps used at this stage,
 \[
 \sum_vd_0(v)d_1(v)\le5\sum_vd_1(v)=30,\qquad
 \sum_v{d_1(v)\choose2}\le{3\choose2}=3.           \tag{7}
 \]
 The verifier also checks the integer-envelope/common-center inequality at
 every threshold event cell in \(3/8<q\le3/4\), including boundaries.
+
+These separate caps miss a stronger exact consequence.  On this support,
+any color-\(\{0,1\}\) neighborhood is a color-\(4\) equidistant clique,
+so rank at most five gives \(d_0+d_1\le5\) rowwise.  Therefore
+\[
+W_{01}+2W_{11}\le4D_1=24.
+\]
+The present data give \(30+2\cdot3=36\), so they are exactly refuted by
+this later graph/rank compatibility condition.  See
+`local_hybrid_degree4_rank_color_clique_barrier.md` for the proof.
 
 For a common colored graph, set
 \[

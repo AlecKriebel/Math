@@ -13,7 +13,13 @@ from itertools import combinations_with_replacement
 import numpy as np
 from scipy.optimize import Bounds, LinearConstraint, milp
 
-from verifiers.verify_local_hybrid_barrier import load_certificate
+from verifiers.verify_local_hybrid_barrier import (
+    common_center_bound,
+    integer_wedge_minimum,
+    load_certificate,
+    threshold_test_points,
+    zonal_values,
+)
 from verifiers.verify_weighted_residual_barrier import (
     center_count,
     harmonic_matrix,
@@ -77,14 +83,96 @@ def exact_blocks(total_degree, nodes, ordered_counts, triples, values):
     ]
 
 
+def rank_kernel_interval(
+    nodes,
+    ordered_counts,
+    triples,
+    harmonic_weights,
+    rank_bound,
+    rational_band,
+):
+    """A rational outer interval from the rank spectral-moment inequality.
+
+    For K=sum_k a_k(P_k(<x_i,x_j>)) with arbitrary real a_k, K is symmetric
+    and has rank at most the sum of the corresponding harmonic dimensions.
+    The centered third spectral moment D therefore obeys
+
+        r(r-1) D^2 <= (r-2)^2 V^3.
+
+    Pair data fix tr(K), tr(K^2), and hence V.  Only tr(K^3) depends on the
+    triangle variables, so any rational band outside the square-root bound
+    gives two valid linear constraints.
+    """
+
+    maximum_degree = max(harmonic_weights)
+
+    def kernel(t):
+        values = zonal_values(t, maximum_degree)
+        return sum(
+            coefficient * values[degree]
+            for degree, coefficient in harmonic_weights.items()
+        )
+
+    diagonal = kernel(Q(1))
+    node_values = tuple(kernel(node) for node in nodes)
+    pair_square = sum(
+        Q(count) * value**2
+        for count, value in zip(ordered_counts, node_values)
+    )
+    trace_one = N * diagonal
+    trace_two = N * diagonal**2 + pair_square
+    variance = trace_two - trace_one**2 / rank_bound
+    center = (
+        Q(3) * trace_one * trace_two / rank_bound
+        - Q(2) * trace_one**3 / rank_bound**2
+    )
+    assert variance >= 0
+    assert (
+        rank_bound * (rank_bound - 1) * rational_band**2
+        > (rank_bound - 2) ** 2 * variance**3
+    )
+    constant_trace_three = (
+        N * diagonal**3 + 3 * diagonal * pair_square
+    )
+    row = np.array(
+        [
+            float(6 * node_values[i] * node_values[j] * node_values[k])
+            for i, j, k in triples
+        ],
+        dtype=float,
+    )
+    return (
+        row,
+        float(center - rational_band - constant_trace_three),
+        float(center + rational_band - constant_trace_three),
+    )
+
+
 def solve(
     total_degree=3,
     require_rank_five=False,
     require_color_degree=False,
+    support="local5",
+    integer=True,
+    lp_warm_start=False,
+    rank_outer_band=None,
     max_rounds=80,
 ):
-    size, nodes, ordered_counts, _, _ = load_certificate()
-    assert size == N
+    if support == "local5":
+        size, nodes, ordered_counts, _, _ = load_certificate()
+        assert size == N
+    elif support == "six":
+        nodes = (
+            Q(-157, 200),
+            Q(-39, 50),
+            Q(-9, 20),
+            Q(-1, 10),
+            Q(-19, 200),
+            Q(99, 200),
+        )
+        ordered_counts = (32, 132, 264, 130, 522, 560)
+    else:
+        raise ValueError(f"unknown support {support!r}")
     edge_counts = np.array([count // 2 for count in ordered_counts])
     triples = feasible_triples(nodes)
     variable_count = len(triples)
@@ -145,8 +233,7 @@ def solve(
             direction[index] = 1
             cuts.append((harmonic_degree, direction))
 
-    # Exact universal wedge constraints on this support:
-    # 270 <= W_{type 0} <= 275 and 294 <= W_{types 0,1} <= 825.
+    # Exact universal wedge constraints on this support.
     wedge_0 = np.array(
         [center_count(triple, {0}) for triple in triples], dtype=float
     )
@@ -172,6 +259,34 @@ def solve(
     wedge_1 = np.array(
         [center_count(triple, {1}) for triple in triples], dtype=float
     )
+    threshold_constraints = []
+    for q in threshold_test_points(nodes):
+        deep_types = {
+            index
+            for index, node in enumerate(nodes)
+            if node < 0 and node * node >= q
+        }
+        high_types = {
+            index
+            for index, node in enumerate(nodes)
+            if node >= 2 * q - 1
+        }
+        deep_degree = sum(
+            ordered_counts[index] for index in deep_types
+        )
+        high_edges = sum(
+            ordered_counts[index] // 2 for index in high_types
+        )
+        row = np.array(
+            [
+                center_count(triple, deep_types)
+                for triple in triples
+            ],
+            dtype=float,
+        )
+        lower = integer_wedge_minimum(deep_degree, N)
+        upper = common_center_bound(q) * high_edges
+        threshold_constraints.append((row, lower, upper))
     triple_cycle = np.array(
         [
             float(Q(6, N) * nodes[i] * nodes[j] * nodes[k])
@@ -184,9 +299,44 @@ def solve(
     )
     delta = pair_square - Q(36, 5)
     rank_center = Q(1116, 25) + Q(108, 5) * delta
-    rank_band = Q(1, 100)
-    assert 20 * rank_band**2 < 369 * delta**3
+    if rank_outer_band is None:
+        rank_band = (
+            Q(29, 1000) if support == "local5" else Q(19, 625)
+        )
+        # Historical construction search: this is a sufficient inner
+        # interval for C047, not a necessary relaxation of all C047 points.
+        assert 20 * rank_band**2 < 369 * delta**3
+    else:
+        rank_band = Q(rank_outer_band)
+        # A rational outer interval is a valid necessary linear relaxation
+        # of the exact square-root C047 interval.
+        assert 20 * rank_band**2 > 369 * delta**3
+    rank_kernel_constraints = (
+        (
+            "H0/6+5H1/6",
+            rank_kernel_interval(
+                nodes,
+                ordered_counts,
+                triples,
+                {0: Q(1, 6), 1: Q(5, 6)},
+                6,
+                Q(7, 2),
+            ),
+        ),
+        (
+            "H2",
+            rank_kernel_interval(
+                nodes,
+                ordered_counts,
+                triples,
+                {2: Q(1)},
+                14,
+                Q(157, 50),
+            ),
+        ),
+    )
 
+    current_integer = integer and not lp_warm_start
     for round_index in range(max_rounds):
         rows = []
         lower = []
@@ -197,26 +347,47 @@ def solve(
             lower.append(target)
             upper.append(target)
 
-        rows.extend(
-            (
-                np.r_[wedge_0, 0.0],
-                np.r_[wedge_01, 0.0],
-                np.r_[mixed_01, 0.0],
-                np.r_[wedge_1, 0.0],
+        for row, row_lower, row_upper in threshold_constraints:
+            rows.append(np.r_[row, 0.0])
+            lower.append(row_lower)
+            upper.append(row_upper)
+        if support == "local5":
+            rows.extend(
+                (
+                    np.r_[mixed_01 + 2 * wedge_1, 0.0],
+                    np.r_[wedge_1, 0.0],
+                )
             )
-        )
-        lower.extend((270, 294, 0, 0))
-        # There are only three type-1 edges.  Since every type-0 degree is
-        # at most five, sum_v d_0(v)d_1(v) <= 5 sum_v d_1(v)=30.
-        # Also sum_v binom(d_1(v),2) <= binom(3,2)=3.
-        upper.extend((275, 825, 30, 3))
+            lower.extend((0, 0))
+            # A color-{0,1} neighborhood is a color-4 equidistant clique:
+            # every other closing color gives a non-PSD 3 by 3 Gram matrix.
+            # Its size is at most five by rank.  Thus d_0+d_1<=5 at each
+            # vertex.  Hence
+            #
+            #   d_0 d_1 + d_1(d_1-1)
+            #       = d_1(d_0+d_1-1) <= 4d_1.
+            #
+            # Summing gives W_01+2W_11<=4D_1=24.  Also W_11<=3.
+            upper.extend((24, 3))
+        else:
+            # Pfender's row inequality makes the union of the first two
+            # colors have degree at most four.  Its total degree is exactly
+            # 4N, hence it is 4-regular and has exactly 41*binom(4,2)
+            # centered wedges.
+            rows.append(np.r_[wedge_01, 0.0])
+            lower.append(246)
+            upper.append(246)
         if require_rank_five:
-            # T-rank_center is E in the fixed-N form of C047.  The exact
-            # rational band |E|<=1/100 lies strictly inside
+            # T-rank_center is E in the fixed-N form of C047.  The selected
+            # exact rational band lies strictly inside
             # 20 E^2 <= 369 delta^3.
             rows.append(np.r_[triple_cycle, 0.0])
             lower.append(float(rank_center - rank_band))
             upper.append(float(rank_center + rank_band))
+            for _, (row, row_lower, row_upper) in rank_kernel_constraints:
+                rows.append(np.r_[row, 0.0])
+                lower.append(row_lower)
+                upper.append(row_upper)
 
         for harmonic_degree, direction in cuts:
             constant_value = (
@@ -245,7 +416,14 @@ def solve(
             np.r_[np.zeros(variable_count), -1.0e5],
             np.r_[np.full(variable_count, 10660.0), 1.0e5],
         )
-        integrality = np.r_[np.ones(variable_count), 0]
+        integrality = np.r_[
+            (
+                np.ones(variable_count)
+                if current_integer
+                else np.zeros(variable_count)
+            ),
+            0,
+        ]
         result = milp(
             objective,
             integrality=integrality,
@@ -270,22 +448,44 @@ def solve(
         if result.x is None:
             return None
 
-        values = np.rint(result.x[:variable_count]).astype(int)
+        values = (
+            np.rint(result.x[:variable_count]).astype(int)
+            if current_integer
+            else result.x[:variable_count]
+        )
         margin = result.x[-1]
-        assert np.array_equal(incidence.astype(int) @ values, targets)
+        if current_integer:
+            assert np.array_equal(
+                incidence.astype(int) @ values, targets
+            )
+        else:
+            assert np.allclose(incidence @ values, targets, atol=1.0e-5)
         print(
             "reported margin",
             margin,
             "wedges",
-            int(wedge_0 @ values),
-            int(wedge_01 @ values),
+            float(wedge_0 @ values),
+            float(wedge_01 @ values),
             "mixed",
-            int(mixed_01 @ values),
+            float(mixed_01 @ values),
             "type1",
-            int(wedge_1 @ values),
+            float(wedge_1 @ values),
             "rank E",
             float(triple_cycle @ values - float(rank_center)),
         )
+        if require_rank_five:
+            for label, (row, row_lower, row_upper) in (
+                rank_kernel_constraints
+            ):
+                value = float(row @ values)
+                print(
+                    " rank-kernel",
+                    label,
+                    "value",
+                    value,
+                    "interval",
+                    (row_lower, row_upper),
+                )
 
         violations = []
         minimum_eigenvalues = []
@@ -323,23 +523,37 @@ def solve(
             )
         )
         if numerically_feasible:
+            if integer and not current_integer:
+                print(
+                    "continuous warm start is feasible; retaining cuts and "
+                    "switching to integral counts"
+                )
+                current_integer = True
+                continue
             counts = {
-                triple: int(value)
+                triple: (
+                    int(value) if current_integer else float(value)
+                )
                 for triple, value in zip(triples, values)
-                if value
+                if abs(value) > 1.0e-8
             }
             print("candidate counts")
             for item in counts.items():
                 print(item)
-            print("exact blocks")
-            for harmonic_degree, matrix in enumerate(
-                exact_blocks(
-                    total_degree, nodes, ordered_counts, triples, values
-                )
-            ):
-                print("k", harmonic_degree)
-                for row in matrix:
-                    print([str(entry) for entry in row])
+            if current_integer:
+                print("exact blocks")
+                for harmonic_degree, matrix in enumerate(
+                    exact_blocks(
+                        total_degree,
+                        nodes,
+                        ordered_counts,
+                        triples,
+                        values,
+                    )
+                ):
+                    print("k", harmonic_degree)
+                    for row in matrix:
+                        print([str(entry) for entry in row])
             return counts
 
         for block_index, direction, _ in violations:
@@ -353,9 +567,25 @@ if __name__ == "__main__":
     parser.add_argument("--degree", type=int, default=3)
     parser.add_argument("--rank-five", action="store_true")
     parser.add_argument("--color-degree", action="store_true")
+    parser.add_argument(
+        "--support", choices=("local5", "six"), default="local5"
+    )
+    parser.add_argument("--continuous", action="store_true")
+    parser.add_argument("--lp-warm-start", action="store_true")
+    parser.add_argument(
+        "--rank-outer-band",
+        help=(
+            "rational outer half-width for C047, e.g. 3/100; "
+            "must strictly contain the exact interval"
+        ),
+    )
     arguments = parser.parse_args()
     solve(
         arguments.degree,
         arguments.rank_five,
         arguments.color_degree,
+        arguments.support,
+        not arguments.continuous,
+        arguments.lp_warm_start,
+        arguments.rank_outer_band,
     )
