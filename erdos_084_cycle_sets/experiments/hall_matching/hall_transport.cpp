@@ -17,6 +17,7 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <numeric>
 #include <queue>
 #include <stdexcept>
 #include <string>
@@ -569,14 +570,7 @@ int main(int argc, char** argv) {
     std::vector<Count> capacities(parameter_count, 0);
     Count transport_supply = 0;
     Count transport_capacity = 0;
-    std::vector<Mask> parameter_order(parameter_count);
     for (Mask p = 0; p < parameter_count; ++p) {
-      parameter_order[static_cast<std::size_t>(p)] = p;
-    }
-    if (options.reverse_order) {
-      std::reverse(parameter_order.begin(), parameter_order.end());
-    }
-    for (const Mask p : parameter_order) {
       const ParameterCounts& profile =
           counts[static_cast<std::size_t>(p)];
       if (options.net) {
@@ -600,7 +594,12 @@ int main(int argc, char** argv) {
                                    ? optional_bits * (optional_bits - 1) / 2
                                    : 0)));
 
-    for (Mask p = 0; p < parameter_count; ++p) {
+    std::vector<Mask> parameter_order(parameter_count);
+    std::iota(parameter_order.begin(), parameter_order.end(), Mask{0});
+    if (options.reverse_order) {
+      std::reverse(parameter_order.begin(), parameter_order.end());
+    }
+    for (const Mask p : parameter_order) {
       const int left = left_offset + static_cast<int>(p);
       const int right = right_offset + static_cast<int>(p);
       flow.add_edge(source, left, supplies[static_cast<std::size_t>(p)]);
@@ -614,14 +613,16 @@ int main(int argc, char** argv) {
       while (remaining != 0) {
         const int bit = __builtin_ctzll(remaining);
         present.push_back(bit);
-        const Mask q = p ^ (Mask{1} << bit);
-        const int edge_index =
-            flow.add_edge(left, right_offset + static_cast<int>(q), infinity);
-        transport_edges.push_back(TransportEdge{p, q, 1, edge_index});
         remaining &= remaining - 1;
       }
       if (options.reverse_order) {
         std::reverse(present.begin(), present.end());
+      }
+      for (const int bit : present) {
+        const Mask q = p ^ (Mask{1} << bit);
+        const int edge_index =
+            flow.add_edge(left, right_offset + static_cast<int>(q), infinity);
+        transport_edges.push_back(TransportEdge{p, q, 1, edge_index});
       }
       if (options.radius == 2) {
         for (std::size_t first = 0; first < present.size(); ++first) {

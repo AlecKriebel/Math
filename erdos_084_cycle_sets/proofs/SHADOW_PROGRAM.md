@@ -279,6 +279,134 @@ Thus the only negative contribution is the collision deficit
 expansions of the unsafe-row closure. For the smallest obstruction
 \(m=3,\ P=\{1,2,6\}\), that deficit is one and both boundary terms vanish.
 
+### Twin-boundary lemma
+
+The two positive boundary families in (DC) are in fact identical as
+underlying set families for every \(m\) and every \(P\ni1\).  Indeed,
+
+\[
+G_{m,P}(-m)=\{-m,m\},
+\]
+
+because \(-m-p<-m\) for every \(p\in P\).  If
+\(A\in\mathcal A_P\), adjoining this bottom generator gives an unsafe
+signature whose trace
+
+\[
+j_P(A)=A\cup\{m\}
+\]
+
+belongs to \(\mathcal H_P\).  Since \(1\in P\), the shadow row \(U=V(P)\)
+contains \(m\), and hence
+
+\[
+j_P(A)\cup U=A\cup U.
+\tag{TB1}
+\]
+
+Therefore
+
+\[
+\mathcal A_P\vee U\subseteq\mathcal H_P\vee U
+\]
+
+and
+
+\[
+((\mathcal A_P\vee U)\cup(\mathcal H_P\vee U))
+ \setminus\mathcal H_P
+=
+(\mathcal H_P\vee U)\setminus\mathcal H_P.
+\tag{TB2}
+\]
+
+Writing this common boundary family as
+
+\[
+\mathcal B_P=(\mathcal H_P\vee U)\setminus\mathcal H_P,
+\]
+
+the exact identities simplify to
+
+\[
+\begin{aligned}
+e_0(P)&=|\mathcal A_P\vee U|+|\mathcal B_P|,\\
+e_1(P)&=|\mathcal B_P|,\\
+g_m(P)
+&=2|\mathcal B_P|
+ -\bigl(|\mathcal A_P|-|\mathcal A_P\vee U|\bigr).
+\tag{TB3}
+\end{aligned}
+\]
+
+The factor two in (TB3) is genuine: the same stripped boundary signature
+occurs once in each of the two distinct extension channels, so a charging
+argument has two typed copies of every \(\mathcal B_P\)-object.
+
+There is also a representation-level strengthening.  Every safe signature
+omits \(m\), since any generator containing the marker \(m\) also contains
+\(-m\).  Thus \(j_P:\mathcal A_P\hookrightarrow\mathcal H_P\) is injective,
+and (TB1) embeds every safe \(\vee U\)-collision fibre canonically into the
+corresponding unsafe fibre.  This does not by itself produce boundary:
+at \(m=3,\ P=\{1,2,6\}\), the collision deficit is one while
+\(\mathcal B_P\) is empty.  Downward transport between parameters remains
+necessary.
+
+### Bounded representation-aware Hall experiment
+
+The twin-boundary lemma gives two typed copies of each
+\(\mathcal B_P\)-object.  To test a genuine object-level charge, give each
+safe \(\vee U\)-fibre its canonical union-top and use every other safe member
+as one left unit.  A proposed edge from \((P,A)\) to a typed boundary unit at
+\(Q\) is admitted only if
+
+\[
+Q=P\quad\text{or}\quad Q=P\setminus\{p\},
+\]
+
+and there are labelled generator-row selections \(B,B'\subseteq J_m\) with
+\(\Phi_P(B)=A\), \(\Phi_Q(B')\) equal to the boundary witness, and the stated
+local edit bound.
+
+The exact one-local-edit graph
+
+\[
+|B\setminus B'|\le1,\qquad |B'\setminus B|\le1
+\tag{HA}
+\]
+
+allows one add, one remove, or one exchange.  It fails at the two prescribed
+gates:
+
+\[
+\begin{array}{c|r|r|r}
+m&|L|&\nu(\mathcal G_A)&\text{maximum Hall deficiency}\\ \hline
+6&11{,}155&11{,}135&20\\
+7&101{,}623&101{,}355&268.
+\end{array}
+\]
+
+The sole enlargement to
+
+\[
+|B\mathbin\triangle B'|\le2
+\tag{HB}
+\]
+
+adds the double-add and double-remove cases.  It has exact full matchings:
+
+\[
+\nu(\mathcal G_B)=11{,}155,\ 101{,}623
+\qquad(m=6,7).
+\]
+
+Preserving the failed (HA) matchings, (HB) repairs them with alternating
+depth at most two and three, respectively.  However, the \(m=7\) repair uses
+32 coarse path templates and both double removals and double additions.
+Thus (HB) is a precise all-\(m\) conjecture, but the finite matchings do not
+yet expose a canonical injection or a uniform-depth proof.  No larger \(m\)
+or edit radius was tested in this bounded experiment.
+
 Toggling \(p\) has a one-diagonal effect. If
 \[
 p\in P\cap\bigl(\{2,\ldots,2m-1\}\setminus\{m\}\bigr),\quad

@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-23 14:38 PDT.
+Last updated: 2026-07-24 11:33 PDT.
 
 ## Published frontier
 
@@ -144,6 +144,29 @@ for every \(P_0\ni1\) is exactly verified through \(m=10\), but unproved.
 At \(m=10\), the minimum remains \(H_m(\{1\})=0\), and the minimum
 nontrivial first difference is \(352\).
 
+A bounded Hall-matching experiment at \(m=6,7\) has now sharpened this route.
+The two positive boundary families in the safe/unsafe identity are proved to
+be identical setwise for every \(m\): with
+\(\mathcal B_P=(\mathcal H_P\vee V(P))\setminus\mathcal H_P\),
+
+\[
+g_m(P)=2|\mathcal B_P|
+ -\bigl(|\mathcal A_P|-|\mathcal A_P\vee V(P)|\bigr).
+\]
+
+This follows by adjoining the universal bottom generator \(\{-m,m\}\) and
+is a genuine all-\(m\) simplification.  Exact raw one-deletion capacity
+matchings exist at \(m=6,7\), but a normalized one-deletion rule has Hall
+deficiencies \(7,158\); two deletions repair those finite capacity graphs.
+
+At the object level, a graph permitting one row add, remove, or exchange
+fails by \(20,268\) units at \(m=6,7\).  The sole enlargement to
+row-selection Hamming radius two has exact full matchings in both cases and
+repairs the failed matchings with alternating depth at most two and three.
+The \(m=7\) repairs nevertheless use 32 coarse templates, so no canonical
+all-\(m\) rule or uniform-depth lemma has been obtained.  The bounded
+experiment is complete; no \(m>7\) or larger locality was tested.
+
 ## Theorem-strength unresolved gaps
 
 - Prove a nonsummable lower bound for \(E_m/8^m\).
@@ -152,6 +175,8 @@ nontrivial first difference is \(352\).
   aperiodic orbit-boundary lemma (O).
 - Prove the displayed trace estimate via \(D_m\gg8^m/m\), or a replacement.
 - Prove the Boolean down-set trace-to-excess lemma.
+- Prove the representation-aware Hamming-two Hall conjecture, or replace its
+  finite matching by a canonical congestion-two boundary charge.
 - Or prove a fixed-block amplification
   \(S_{m+L}\ge8^LS_m+c8^{m+L}\) for fixed \(L,c>0\).
 - Audit the exact relationship with the 2026 Dunås thesis.

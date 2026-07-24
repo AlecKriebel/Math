@@ -30,6 +30,13 @@
 | C26 | The additive orbit defect bound (AD) holds. | PROVED |
 | C27 | The empty/full orbit satisfies \(\Lambda>m/12\). | PROVED |
 | C28 | The orbit-boundary inequality (O) holds for some fixed \(c>0\). | CONJECTURAL; FOUR-RUN DATA SUGGEST \(\Lambda\asymp1/m\) AND MAY REFUTE IT |
+| C29 | For every \(P\ni1\), the two unsafe boundary families in (DC) are identical, and \(g_m(P)=2|\mathcal B_P|-(|\mathcal A_P|-|\mathcal A_P\vee V(P)|)\). | PROVED BY ADJOINING THE BOTTOM GENERATOR \(\{-m,m\}\) |
+| C30 | The raw one-deletion Hall capacity graph saturates all collision deficit at \(m=6,7\). | EXACTLY VERIFIED BY TWO INDEPENDENT IMPLEMENTATIONS; FINITE ONLY |
+| C31 | After local cancellation, the one-deletion Hall graph saturates at \(m=6,7\). | REFUTED: DEFICIENCIES \(7,158\) AT \(m=6,7\) |
+| C32 | After local cancellation, the two-deletion Hall graph saturates at \(m=6,7\). | EXACTLY VERIFIED BY TWO INDEPENDENT IMPLEMENTATIONS; FINITE ONLY |
+| C33 | The representation-aware one-local-edit Hall graph saturates all collision units. | REFUTED AT \(m=6,7\), WITH EXACT DEFICIENCIES \(20,268\) |
+| C34 | The representation-aware Hamming-radius-two Hall graph saturates all collision units. | EXACTLY VERIFIED FOR \(3\le m\le7\); INDEPENDENT FULL GRAPH CHECK AT \(m=6\); UNPROVED IN GENERAL |
+| C35 | Raw one-deletion matching is equivalent to downward net transshipment with relay capacity \(\min(d(P),b(P))\) at \(P\). | PROVED BY NORMALIZING DIAGONAL FLOW; STANDARD FINITE-DAG FLOW LEMMA |
 
 No numerical observation may be promoted without updating this ledger and
 recording its verifier.

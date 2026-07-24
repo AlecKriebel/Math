@@ -75,13 +75,17 @@ No outside communication occurred.
   graph then matches all demand at both \(m=6\) and \(m=7\).  A deterministic
   local-first greedy order uses respectively \(9\) and \(209\) units on
   double-deletion edges and requires no alternating repair.
+- Reversing the source and edge priority changes those double-deletion totals
+  to \(7\) and \(199\) and radically changes the deletion-pair labels.
+  Therefore the default \(9,209\) and their apparent coordinate patterns are
+  algorithm artifacts, not canonical DC statistics.
 - No radius-three test and no enumeration beyond \(m=7\) will be run.
 - These are exact finite statements.  They do not prove an all-\(m\) Hall
   lemma and are not by themselves publication-worthy.
 
 No outside communication occurred.
 
-### 11:42 PDT — Independent implementation agrees
+### 11:27 PDT — Independent implementation agrees
 
 - Added a separate Python verifier using direct set semantics for
   \(\mathcal F,\mathcal A,\mathcal H\), typed boundary sets, and every
@@ -94,5 +98,76 @@ No outside communication occurred.
 - The full independent verification takes approximately 3.3 seconds on the
   local machine; additional hardware would not materially help this bounded
   capacity experiment.
+
+No outside communication occurred.
+
+### 11:28 PDT — Twin-boundary identity proved for every \(m\)
+
+- Proved that \(G_{m,P}(-m)=\{-m,m\}\) and, for every safe signature
+  \(A\), the unsafe trace \(A\cup\{m\}\) has exactly the same
+  \(U\)-join as \(A\).
+- Consequently the two positive boundary families in the safe/unsafe
+  decomposition are identical setwise for every \(m\) and every \(P\ni1\).
+  With
+  \(\mathcal B_P=(\mathcal H_P\vee U)\setminus\mathcal H_P\),
+  \[
+  e_0=|\mathcal A_P\vee U|+|\mathcal B_P|,\qquad
+  e_1=|\mathcal B_P|,\qquad
+  g_m(P)=2|\mathcal B_P|-d(P).
+  \]
+- The map \(A\mapsto A\cup\{m\}\) is an injective, join-commuting embedding
+  of every safe collision fibre into the corresponding unsafe fibre.
+- This is a genuine all-\(m\) structural lemma and reduces a typed matching
+  to congestion two on one underlying boundary family.  It does not prove
+  the required downward charge; the \(m=3\) obstruction has positive deficit
+  and empty boundary.
+
+No outside communication occurred.
+
+### 11:30 PDT — Representation-aware gate and sole enlargement completed
+
+- Added `representation_hall.cpp`, which expands collision fibres into their
+  actual non-top safe signatures and retains the two typed copies of every
+  boundary trace.  Every edge stores a certificate
+  \((P,Q,B,B')\), and the final verifier recomputes and checks every graph
+  edge from the original \(2m\) labelled generator rows.
+- Corrected an ambiguity in the proposed gate.  The condition
+  \(|B\mathbin\triangle B'|\leq2\) is not just one exchange: it also permits
+  two additions or two removals.  Stage A therefore uses the exact local-edit
+  condition
+  \[
+  |B\setminus B'|\leq1,\qquad |B'\setminus B|\leq1,
+  \]
+  while the sole enlargement, stage B, adds the two same-direction
+  Hamming-two cases.  The downward parameter radius remains one.
+- Reproduced every earlier \(m=3,4,5\) prototype value, including the
+  \(m=5\) stage-B graph with \(56{,}669\) edges and matching \(1298/1298\).
+- The exact representation-aware results are
+  \[
+  \begin{array}{c|r|r|r|r|r}
+  m&|L|&E_A&\nu_A&E_B&\nu_B\\ \hline
+  6&11{,}155&722{,}305&11{,}135&851{,}589&11{,}155\\
+  7&101{,}623&9{,}145{,}839&101{,}355&
+       11{,}249{,}586&101{,}623.
+  \end{array}
+  \]
+  The stage-A residual Hall cuts have respectively
+  \((|X|,|N(X)|)=(20,0)\) and \((276,8)\), giving exact deficiencies
+  \(20\) and \(268\).
+- Preserved the maximum stage-A matching before adding the new edges.
+  At \(m=6\), the 20 repairs have alternating depths
+  \(1^{11},2^9\); at \(m=7\), the 268 repairs have depths
+  \(1^{69},2^{196},3^3\).  Every repair uses a new edge.  The final repaired
+  matchings use 21 and 295 new edges, respectively.  All 21 at \(m=6\) are
+  double removals; at \(m=7\), 285 are double removals and 10 are double
+  additions.
+- An independent direct-set Python implementation reproduces the complete
+  \(m=6\) stage-A and stage-B edge counts, isolated vertices, and maximum
+  matching cardinalities.  Strict compilation, an every-edge certificate
+  audit, and ASan/UBSan checks also pass.  Peak memory at \(m=7\) was about
+  \(715\) MB, so additional hardware is unnecessary.
+- The shallow repairs are a useful conjecture generator, but they do not yet
+  expose a unique canonical all-\(m\) rule: 32 coarse repair templates occur
+  at \(m=7\), and double additions first appear among the final repairs.
 
 No outside communication occurred.

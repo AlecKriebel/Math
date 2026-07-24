@@ -42,7 +42,12 @@ has also been recovered. The unresolved step is to prove a nonsummable
 normalized gain, for example \(E_m\gg 8^m/m\). Exact enumeration through
 \(m=10\) supports the stronger global inequality \(mE_m\ge S_m\). A
 Boolean down-set charging conjecture, exactly verified through \(m=10\), is
-the strongest active proof target. A defect-sensitive cyclic-orbit route is
+the strongest active proof target.  A new all-\(m\) identity collapses its
+two positive unsafe-boundary families to two typed copies of one family.
+A bounded representation-aware Hall graph succeeds through \(m=7\) only
+at full row-selection Hamming radius two; no all-\(m\) matching rule is yet
+known.
+A defect-sensitive cyclic-orbit route is
 now secondary because explicit four-run words suggest its required constant
 may decay like \(1/m\).
 
