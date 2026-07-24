@@ -83,6 +83,80 @@ def exact_blocks(total_degree, nodes, ordered_counts, triples, values):
     ]
 
 
+def common_pair_capacity(p):
+    """Universal S^2 capacity from the common-pair projection hierarchy."""
+
+    if p > 1:
+        return 0
+    if p > Q(3, 4):
+        return 1
+    if p > Q(2, 3):
+        return 2
+    if p > Q(5, 8):
+        return 3
+    if p > Q(1, 2):
+        return 4
+    if p == Q(1, 2):
+        return 6
+    return None
+
+
+def common_pair_capacity_rows(nodes, ordered_counts, triples):
+    """Historical cumulative rows only; not the full pointwise hierarchy.
+
+    The candidate found with these rows is REFUTED by exact base-color
+    strata.  Corrected discovery code is in
+    ``search_common_pair_capacity_stratified.py``.
+    """
+
+    answer = []
+    for base_threshold in (node for node in nodes if node <= 0):
+        for high_threshold in (node for node in nodes if node > 0):
+            if base_threshold == -1:
+                capacity = 0
+                p = None
+            else:
+                p = 2 * high_threshold**2 / (1 + base_threshold)
+                capacity = common_pair_capacity(p)
+            if capacity is None:
+                continue
+            row = np.array(
+                [
+                    sum(
+                        (
+                            nodes[triple[0]] <= base_threshold
+                            and nodes[triple[1]] >= high_threshold
+                            and nodes[triple[2]] >= high_threshold,
+                            nodes[triple[1]] <= base_threshold
+                            and nodes[triple[0]] >= high_threshold
+                            and nodes[triple[2]] >= high_threshold,
+                            nodes[triple[2]] <= base_threshold
+                            and nodes[triple[0]] >= high_threshold
+                            and nodes[triple[1]] >= high_threshold,
+                        )
+                    )
+                    for triple in triples
+                ],
+                dtype=float,
+            )
+            upper = capacity * sum(
+                count // 2
+                for node, count in zip(nodes, ordered_counts)
+                if node <= base_threshold
+            )
+            answer.append(
+                (
+                    base_threshold,
+                    high_threshold,
+                    p,
+                    capacity,
+                    row,
+                    upper,
+                )
+            )
+    return tuple(answer)
+
+
 def rank_kernel_interval(
     nodes,
     ordered_counts,
@@ -152,6 +226,7 @@ def solve(
     total_degree=3,
     require_rank_five=False,
     require_color_degree=False,
+    require_common_pair_capacity=False,
     support="local5",
     integer=True,
     lp_warm_start=False,
@@ -335,6 +410,11 @@ def solve(
             ),
         ),
     )
+    common_pair_constraints = (
+        common_pair_capacity_rows(nodes, ordered_counts, triples)
+        if require_common_pair_capacity
+        else ()
+    )
 
     current_integer = integer and not lp_warm_start
     for round_index in range(max_rounds):
@@ -350,6 +430,10 @@ def solve(
         for row, row_lower, row_upper in threshold_constraints:
             rows.append(np.r_[row, 0.0])
             lower.append(row_lower)
+            upper.append(row_upper)
+        for _, _, _, capacity, row, row_upper in common_pair_constraints:
+            rows.append(np.r_[row, 0.0])
+            lower.append(0)
             upper.append(row_upper)
         if support == "local5":
             rows.extend(
@@ -486,6 +570,29 @@ def solve(
                     "interval",
                     (row_lower, row_upper),
                 )
+        if common_pair_constraints:
+            print(" common-pair capacities")
+            for (
+                base_threshold,
+                high_threshold,
+                p,
+                capacity,
+                row,
+                row_upper,
+            ) in common_pair_constraints:
+                print(
+                    "  ",
+                    base_threshold,
+                    high_threshold,
+                    "p",
+                    p,
+                    "capacity",
+                    capacity,
+                    "value",
+                    float(row @ values),
+                    "upper",
+                    row_upper,
+                )
 
         violations = []
         minimum_eigenvalues = []
@@ -567,6 +674,7 @@ if __name__ == "__main__":
     parser.add_argument("--degree", type=int, default=3)
     parser.add_argument("--rank-five", action="store_true")
     parser.add_argument("--color-degree", action="store_true")
+    parser.add_argument("--common-pair-capacity", action="store_true")
     parser.add_argument(
         "--support", choices=("local5", "six"), default="local5"
     )
@@ -584,6 +692,7 @@ if __name__ == "__main__":
         arguments.degree,
         arguments.rank_five,
         arguments.color_degree,
+        arguments.common_pair_capacity,
         arguments.support,
         not arguments.continuous,
         arguments.lp_warm_start,

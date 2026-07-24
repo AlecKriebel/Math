@@ -133,6 +133,50 @@ python3 -m unittest \
   tests.test_split_kernel_full_interval -v
 ```
 
+## Reproduce the anchored barrier and tight-frame challenge
+
+The exact note
+[`proofs/anchored_local_energy_bv_barrier.md`](proofs/anchored_local_energy_bv_barrier.md)
+shows why a natural pure-BV row-energy bound cannot cross the rank-five
+threshold \(36/5\).  Construction round 8 exactly exhausts cyclic
+41-vector harmonic tight frames, including all row-sign switchings, and
+records separate numerical searches on larger UNTF families.  Neither result
+is a universal upper bound.
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  verifiers/verify_anchored_local_energy_bv_barrier.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  tests.test_anchored_local_energy_bv_barrier -v
+PYTHONPATH=. .venv/bin/python \
+  experiments/construction_round8_tight_frames/check_results.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round8_tight_frames.test_results -v
+```
+
+## Reproduce the corrected common-pair audit
+
+The original cumulative-only pseudo-certificate is retained with an explicit
+refutation notice.  The corrected exact-stratum theorem and fixed-support
+Farkas certificate are independently checked here:
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  verifiers/verify_common_pair_capacity_stratified_dual.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  tests.test_common_pair_capacity_hierarchy \
+  tests.test_common_pair_capacity_hierarchy_independent_audit \
+  tests.test_common_pair_capacity_stratified_dual -v
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.continuous_rank_bv_search.test_search -v
+sha256sum -c \
+  experiments/continuous_rank_bv_search/MANIFEST.sha256
+```
+
+The last two commands reproduce a discovery-only continuous-grid barrier:
+corrected capacities eliminate the old witnesses, but reoptimized
+finite-grid measures survive.  They are explicitly numerical-only.
+
 ## Layout
 
 - `STATUS.md`: live theorem-level status and bottlenecks.

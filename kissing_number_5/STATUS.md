@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T02:12:00Z
+Last updated: 2026-07-24T02:47:00Z
 
 ## Rigorous bounds
 
@@ -128,6 +128,21 @@ homotopy stage, and the best final 41-point maximum was
 \(D_6\)-label checking and binary64 trajectory verification make this
 reproducible numerical evidence about one mechanism only.
 
+An eighth construction round tested unit-norm tight frames.  Exact directed
+interval arithmetic rejects every canonical cyclic 41-vector harmonic frame
+and every row-sign switching of one: a forced sign reversal around a
+41-cycle has odd parity.  A separate determinant argument shows that no five
+oriented \(D_5\) roots form an orthonormal basis.  The best general numerical
+UNTF search ended at \(0.5262002628454\), still infeasible.  These are
+restricted construction results, not a universal upper bound.
+
+The proposed anchored row-energy BV route is now exactly blocked in its pure
+three-point form.  The all-harmonic pseudo-measure forces its objective to be
+\(7.209745740250104\ldots>36/5\).  Degree-6, 8, and 10 numerical
+antipodal-belt searches also remain far from their required objective below
+39.  Any useful continuation of either route must add genuinely new rank or
+four-point consistency.
+
 Ordinary two-point LP is now **certifiably blocked**: an exact mass-41
 pseudo-distance distribution satisfies every Gegenbauer moment inequality and
 has no off-diagonal atom at the contact value.
@@ -186,6 +201,30 @@ enumeration of all 198 Gram-PSD colored-\(K_4\) orbits reduces to the same
 one-row covariance contradiction.  This is a universal threshold lemma but
 still only rejects the fixed-support witness.
 
+Adversarial audit found that the subsequently proposed five-node
+common-pair “survivor” was not a survivor at all: cumulative base thresholds
+had incorrectly allowed unused deeper edges to subsidize shallower ones.
+The valid pointwise theorem can be summed over any measurable base stratum.
+Exact singleton strata give \(n_{244}=219>131=E_2\) and
+\(n_{344}=1424>1304=4E_3\); the seven-node all-harmonic witness also fails
+its exact \(q=-1/4,b=1/2\) stratum.  Combining two such rows with only three
+total-degree-three BV scalar forms yields a short exact Farkas certificate
+excluding every nonnegative triangle measure on the historical five-node
+support and pair data.  The original cumulative-only artifact is retained
+but explicitly marked **REFUTED**.
+
+This correction still does not globalize.  A fresh atomic search reoptimized
+the triangle measure on both a seven-node quarter grid and a thirteen-node
+refinement.  The quarter-grid numerical witness simultaneously passes all
+corrected stratum/weighted capacities, full-radial BV through harmonic
+degree 16, ordinary pair moments, frame PSD constraints, and 27 sampled
+sharp harmonic-rank inequalities; its independently recomputed active BV
+margin is about \(2.02\cdot10^{-6}\).  The thirteen-node refinement also
+passes numerically, but only at a \(4.96\cdot10^{-11}\) BV margin.  These are
+finite-grid, finite-degree pseudodistributions—not codes or exact
+certificates—and they show why a continuous-domain dual or a new four-point
+mechanism is still required.
+
 ## Theorem-strength unresolved gaps
 
 - No universal inequality excludes a 41-point code.
@@ -205,9 +244,9 @@ still only rejects the fixed-support witness.
   been produced.
 - The fixed five-node support is now eliminated, but no theorem reduces an
   arbitrary real inner-product distribution to that support or pair data.
-- The common-neighbor threshold cut is universal, but no continuous-support
-  combination of such cuts currently excludes all possible 41-point
-  pair/triple measures.
+- Exact-stratum common-pair cuts are universal, but no continuous-support
+  combination of them currently excludes all possible 41-point pair/triple
+  measures; corrected finite-grid relaxations remain numerically feasible.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
@@ -283,6 +322,12 @@ still only rejects the fixed-support witness.
   [`proofs/local5_degree5_necessary_rank_separator.md`](proofs/local5_degree5_necessary_rank_separator.md)
 - Exact common-neighbor/edge-conditioned \(K_4\) obstruction:
   [`proofs/edge_conditioned_k4_exact_obstruction.md`](proofs/edge_conditioned_k4_exact_obstruction.md)
+- Corrected common-pair hierarchy audit and exact fixed-support dual:
+  [`proofs/common_pair_capacity_hierarchy_adversarial_audit.md`](proofs/common_pair_capacity_hierarchy_adversarial_audit.md)
+  and
+  [`proofs/common_pair_capacity_stratified_obstruction.md`](proofs/common_pair_capacity_stratified_obstruction.md)
+- Continuous-grid rank/BV barrier search:
+  [`experiments/continuous_rank_bv_search/RESULTS.md`](experiments/continuous_rank_bv_search/RESULTS.md)
 - Exact anchored negative-cap inequality and nonseparation audit:
   [`proofs/anchored_negative_cap_kernel.md`](proofs/anchored_negative_cap_kernel.md)
 - Depth-seven positive-circuit packing and exact barrier catalog:

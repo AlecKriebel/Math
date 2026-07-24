@@ -368,3 +368,115 @@ Python 3.14.6 reports 90 passing exact tests in 698.121 seconds.  The two
 construction checkers also pass, and the round-7 package adds four passing
 numerical-tool tests.  Never run the assertion-based exact verifiers with
 `python -O`.
+
+## Checkpoint 2026-07-24T02:45:00Z
+
+This checkpoint records an exact obstruction to the pure axisymmetric
+three-point row-energy route, a boundary-audited but unsuccessful numerical
+antipodal-belt search, and an exact/numerical tight-frame construction
+challenge.  The global bounds remain \(40\leq\tau(5)\leq44\).
+
+Anchored row-energy barrier and antipodal-belt search:
+
+```text
+0fce0399badb1dee6fba8780c53af370a43679c235515efd54718a74acbb079a  proofs/anchored_local_energy_bv_barrier.md
+333dab394fa357baaa2bf1979733e5fc301a0124ee7a02e8628cdd5935bb9f17  verifiers/verify_anchored_local_energy_bv_barrier.py
+8017c8005b7f7313a45898fecf48c5ce62c0d2797bbd28d95639ac8e1eaee769  tests/test_anchored_local_energy_bv_barrier.py
+2909852a1c0fc159b7b3bbdec67cd3c877c490e9e9259b13efd1e0ff2889c661  proofs/antipodal_belt_sdp_search.md
+821c1d6f9417f39e27ed2fe78eb6a3a74974624d94e3a9eec10b05c06f3549d7  experiments/search_antipodal_belt_sdp.py
+```
+
+Round-8 tight-frame artifacts:
+
+```text
+ec6814c4acaf090d72f511e3fbf547caef2c7043db7039bedd99e3adb3087f88  experiments/construction_round8_tight_frames/README.md
+1b6630136065bcc11db256a0cbacb83301c3eaa7b375811c74a38e79b4bd84f3  experiments/construction_round8_tight_frames/check_results.py
+bfd3875c10ca2deadb2a7e94bcd0dc3529dfef7470dc9bb274ab7b78a8b7b0d0  experiments/construction_round8_tight_frames/checker.py
+98895f1ed0cfd9045c2abc4e2f2681378e63fadbc0607f952bee8deec60985d6  experiments/construction_round8_tight_frames/d5_basis_checker.py
+e41cd389efc7640a25e01b29b1998718badc5acbc77a3e2a840dac8c06ee849f  experiments/construction_round8_tight_frames/optimize_untf.py
+4c7c109556cf54b3fdc69b01c7803f212a8ff52263a04f1e778a18c91708dd3a  experiments/construction_round8_tight_frames/polish_untf_result.py
+ae963e6607f16addfd972849b8742e99169343b466af18f82bff57311c8354d4  experiments/construction_round8_tight_frames/results/cyclic_exhaustive.json
+02a8f8e669ffecbb28f7f6af71f0c6db591f00ffa658c9b4779d4a43f0cb63c1  experiments/construction_round8_tight_frames/results/seeded_untf_challenges.json
+2b3424dfa9bf6381c4eb97ccf651d43937679e6f690340e4b923d691c2618980  experiments/construction_round8_tight_frames/results/untf_optimization.json
+6726996f1719d4a098e732e967df17d64a6ceef5d1fb1d6b53f4098ec8688c87  experiments/construction_round8_tight_frames/search_cyclic_frames.py
+aaa2cdd4146c5cb49574736c435073b34184d56a842ece8cd3f08bd9cb6ce204  experiments/construction_round8_tight_frames/seeded_untf_challenges.py
+ffe541623a2bb14616c3b33d6f6328723bc36b7eed12d3e9fafee5a6a61c8fb3  experiments/construction_round8_tight_frames/test_results.py
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+PYTHONPATH=. .venv/bin/python \
+  verifiers/verify_anchored_local_energy_bv_barrier.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  tests.test_anchored_local_energy_bv_barrier -v
+PYTHONPATH=. .venv/bin/python \
+  experiments/construction_round8_tight_frames/check_results.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round8_tight_frames.test_results -v
+```
+
+The exact barrier verifier and two tamper tests pass.  Both project-root and
+package-local round-8 invocations pass all three tests.  The numerical UNTF
+coordinates remain construction evidence only; no floating-point result is
+used as an upper bound.
+
+## Checkpoint 2026-07-24T02:48:00Z
+
+This checkpoint corrects and adversarially audits the common-pair capacity
+hierarchy.  The old five-node candidate is explicitly retained as a refuted
+cumulative-only calculation.  A new exact-stratum/Farkas certificate proves
+a fixed-support obstruction.  A separate continuous-grid package records
+only numerical barriers and carries its own complete hash manifest.
+
+Corrected common-pair artifacts:
+
+```text
+d32431dcd9b4fcc4ddf09036bb42c5aa8bcfbf2e39243318f0db01bcfb381d3b  certificates/common_pair_capacity_degree4_pseudodistribution.json
+3a39ac1163ccb58859fed9952c2bba46f14cc13d4050dc0d116156a337f25cfd  certificates/common_pair_capacity_stratified_dual.json
+a96fe721fed4f67ef77686269e2f4b5adddf41e1a0e7059d00f9a450d9663817  experiments/common_pair_capacity_hierarchy.md
+375a35e882c98d220f4ca5ae8e41f9748b7988281879224ca6129b6e9fab629b  experiments/search_common_pair_capacity_hierarchy.py
+361eb8c7bd80bfc9d23dbb4f5024c00f8c8c695806f679696adb9f9d95ac6a97  experiments/search_common_pair_capacity_stratified.py
+34bca73a05543a3acbe18d241be04b50e03a3dd2abfea5fa022a4cbd84278212  experiments/search_local_hybrid_degree3.py
+3c4ff327d7622805550dca46f55384bd405c9446d5d4f22cfc947e1b4f756529  proofs/common_pair_capacity_hierarchy.md
+96a128ef170ecde837036a786aeee6c41debb8400840274eca57b9194f2aae02  proofs/common_pair_capacity_hierarchy_adversarial_audit.md
+56f67c4c2cf29f8a3896d8966c091b39528bb3e7bba63e4e41bc1ddb6b510446  proofs/common_pair_capacity_stratified_obstruction.md
+b808eb811928a64b2f13f717cf270d1866b32c0bd4b849e74ab84eecb8e3d24d  tests/test_common_pair_capacity_hierarchy.py
+23b50881207b331a036e0d4c1a97bc12a2e4842637f92564275b3423a9720caf  tests/test_common_pair_capacity_hierarchy_independent_audit.py
+ff2093527769ed8479db9e455d718b75ec60403e73ed1423b9880d1cb8bc41cb  tests/test_common_pair_capacity_stratified_dual.py
+49603057399d537ef2b0cad770e8ba3b0f080821863b80ce925cc4514532f959  verifiers/verify_common_pair_capacity_hierarchy.py
+df89a319bfeff190187cae44eee3d9b0294802a85ebea8d6fe7b0ca97754cbcf  verifiers/verify_common_pair_capacity_stratified_dual.py
+```
+
+Continuous-grid barrier summary:
+
+```text
+a6916ff00dd48c562e09d09e4654b00952c115bd27b7e68f0c43e4ad7634edeb  experiments/continuous_rank_bv_search/MANIFEST.sha256
+9c4efb4de692ca68308d803d8464ffc19218b53ae9caad875c2dbcf5e0be64e6  experiments/continuous_rank_bv_search/RESULTS.md
+da604eeb3977cd87a1b5c3a8994aa29ee3df9b4da7b41762d4736f8e001dbf9f  experiments/continuous_rank_bv_search/results/fixed_baseline_d16_stratified.json
+446b63a72d7f54702b3fc32b7b4d18566be437e6a3c621d0b8538cefc788a898  experiments/continuous_rank_bv_search/results/eighth_d16_local_stratified.json
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+PYTHONPATH=. .venv/bin/python -m unittest \
+  tests.test_common_pair_capacity_hierarchy \
+  tests.test_common_pair_capacity_hierarchy_independent_audit \
+  tests.test_common_pair_capacity_stratified_dual -v
+PYTHONPATH=. .venv/bin/python \
+  verifiers/verify_common_pair_capacity_stratified_dual.py
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.continuous_rank_bv_search.test_search -v
+PYTHONPATH=. .venv/bin/python \
+  experiments/continuous_rank_bv_search/audit_capacity_barriers.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/continuous_rank_bv_search/audit_common_pair_witness.py
+sha256sum -c \
+  experiments/continuous_rank_bv_search/MANIFEST.sha256
+```
+
+The common-pair source, independent-audit, dual, and tamper suites pass all
+16 tests.  The continuous package passes five structural tests, both exact
+audits, both independent numerical checks, and its complete hash manifest.
+Its atomic outputs are deliberately labeled `NUMERICAL EVIDENCE ONLY`.
