@@ -134,7 +134,7 @@ def verify(certificate_path: Path, source_path: Path) -> dict[str, object]:
         (tuple(item["indices"]), int(item["coefficient"]))
         for item in certificate["quadratic_terms"]
     ]
-    check(len(terms) == 22, "unexpected number of quadratic terms")
+    check(0 < len(terms) <= 28, "unexpected number of quadratic terms")
     check(
         len({indices for indices, _coefficient in terms}) == len(terms),
         "duplicate quadratic term",

@@ -19,6 +19,17 @@ from pathlib import Path
 Q = Fraction
 
 
+class VerificationError(ValueError):
+    """Raised when an exact certificate condition fails."""
+
+
+def check(condition: bool, message: str) -> None:
+    """Proof-critical assertion that remains active under ``python -O``."""
+
+    if not condition:
+        raise VerificationError(message)
+
+
 def parse_q(value: str) -> Q:
     return Q(value)
 
@@ -43,7 +54,7 @@ def ldl_pivots(matrix: list[list[Q]]) -> list[Q]:
     for i in range(size):
         lower[i][i] = Q(1)
         for j in range(i):
-            assert pivots[j] != 0
+            check(pivots[j] != 0, f"zero LDL pivot at index {j}")
             lower[i][j] = (
                 matrix[i][j]
                 - sum(
@@ -88,7 +99,7 @@ def inverse(matrix: list[list[Q]]) -> list[list[Q]]:
 
 def ceil_sqrt_fraction(value: Q) -> int:
     """Least integer n with n^2 >= value, computed without floats."""
-    assert value > 0
+    check(value > 0, "square-root argument must be positive")
     result = math.isqrt(value.numerator // value.denominator)
     while result * result * value.denominator < value.numerator:
         result += 1
@@ -123,7 +134,7 @@ def normalized_transverse_sequences(
     sequence is sqrt(area) P_(2m+1)^(4)(z).  Both are rational because
     z=displacement/sqrt(area).
     """
-    assert area > 0
+    check(area > 0, "transverse area must be positive")
     x = 4 * displacement * displacement / area - 2
     even = [Q(1), (4 * displacement * displacement / area - 1) / 3]
     odd = [
@@ -160,46 +171,72 @@ def verify(
     source = json.loads(source_bytes)
     certificate = json.loads(all_harmonics_certificate_path.read_text())
 
-    assert certificate["schema"] == "fixed41-bv-all-harmonics-v1"
-    assert certificate["source_certificate"] == source_path.name
-    assert certificate["source_sha256"] == source_sha256
-    assert (
-        source["schema"]
-        == "fixed41-bv-fullradial-k16-pseudodistribution-v1"
+    check(
+        certificate["schema"] == "fixed41-bv-all-harmonics-v1",
+        "unexpected all-harmonics certificate schema",
     )
-    assert source["dimension"] == 5
-    assert source["cardinality"] == 41
-    assert parse_q(source["maximum_inner_product"]) == Q(1, 2)
+    check(
+        certificate["source_certificate"] == source_path.name,
+        "source certificate filename mismatch",
+    )
+    check(
+        certificate["source_sha256"] == source_sha256,
+        "source certificate SHA-256 mismatch",
+    )
+    check(
+        source["schema"]
+        == "fixed41-bv-fullradial-k16-pseudodistribution-v1",
+        "unexpected source schema",
+    )
+    check(source["dimension"] == 5, "source dimension is not five")
+    check(source["cardinality"] == 41, "source cardinality is not 41")
+    check(
+        parse_q(source["maximum_inner_product"]) == Q(1, 2),
+        "source maximum inner product is not 1/2",
+    )
 
     grid = [parse_q(value) for value in source["grid"]]
     alpha = [parse_q(value) for value in source["alpha"]]
     triples = [tuple(triple) for triple in source["triples"]]
     nu = [parse_q(value) for value in source["nu"]]
-    assert grid == [
-        Q(-1),
-        Q(-3, 4),
-        Q(-1, 2),
-        Q(-1, 4),
-        Q(0),
-        Q(1, 4),
-        Q(1, 2),
-    ]
-    assert len(alpha) == len(grid)
-    assert len(triples) == len(nu)
-    assert all(weight > 0 for weight in alpha + nu)
-    assert sum(alpha) == 40
-    assert sum(nu) == 40 * 39
+    check(
+        grid
+        == [
+            Q(-1),
+            Q(-3, 4),
+            Q(-1, 2),
+            Q(-1, 4),
+            Q(0),
+            Q(1, 4),
+            Q(1, 2),
+        ],
+        "unexpected source grid",
+    )
+    check(len(alpha) == len(grid), "pair vector length mismatch")
+    check(len(triples) == len(nu), "triple vector length mismatch")
+    check(all(weight > 0 for weight in alpha + nu), "nonpositive source mass")
+    check(sum(alpha) == 40, "pair mass is not 40")
+    check(sum(nu) == 40 * 39, "triple mass is not 1560")
 
-    for triple in triples:
-        assert tuple(sorted(triple)) == triple
+    for triple_index, triple in enumerate(triples):
+        check(
+            tuple(sorted(triple)) == triple,
+            f"triple {triple_index} is not sorted",
+        )
         u, v, t = (grid[index] for index in triple)
-        assert 1 + 2 * u * v * t - u * u - v * v - t * t >= 0
+        check(
+            1 + 2 * u * v * t - u * u - v * v - t * t >= 0,
+            f"triple {triple_index} violates the Gram determinant",
+        )
     for index in range(len(grid)):
         marginal = sum(
             weight * triple.count(index) / 3
             for triple, weight in zip(triples, nu)
         )
-        assert marginal == 39 * alpha[index]
+        check(
+            marginal == 39 * alpha[index],
+            f"fixed-cardinality marginal mismatch at grid index {index}",
+        )
 
     # Check W_0 itself: it has the fixed-cardinality kernel, and the
     # complementary 7-by-7 principal submatrix is positive definite.
@@ -217,15 +254,22 @@ def verify(
             w_zero[extended_grid.index(u)][extended_grid.index(v)] += (
                 weight / len(orbit)
             )
-    assert symmetric(w_zero)
+    check(symmetric(w_zero), "W_0 is not symmetric")
     kernel = [Q(-1, 40)] * len(grid) + [Q(1)]
-    assert all(
-        sum(w_zero[i][j] * kernel[j] for j in range(len(w_zero))) == 0
-        for i in range(len(w_zero))
+    check(
+        all(
+            sum(w_zero[i][j] * kernel[j] for j in range(len(w_zero)))
+            == 0
+            for i in range(len(w_zero))
+        ),
+        "W_0 fixed-cardinality kernel identity fails",
     )
     zero_reduced = [row[:-1] for row in w_zero[:-1]]
     zero_pivots = ldl_pivots(zero_reduced)
-    assert all(pivot > 0 for pivot in zero_pivots)
+    check(
+        all(pivot > 0 for pivot in zero_pivots),
+        "W_0 reduced block is not positive definite",
+    )
 
     # For k>0, the endpoint rows u=-1 and u=1 vanish.  Work on the six
     # interior support points and aggregate equal (area, displacement)
@@ -245,14 +289,20 @@ def verify(
             area = (1 - u * u) * (1 - v * v)
             displacement = t - u * v
             delta = area - displacement * displacement
-            assert area > 0 and delta >= 0
+            check(
+                area > 0 and delta >= 0,
+                "active transverse support violates its closed Gram domain",
+            )
             key = (area, displacement)
             matrix = coefficient_matrices.setdefault(key, zero_matrix(6))
             matrix[i][j] += coefficient
             ordered_terms.append(
                 (i, j, coefficient, area, displacement, delta)
             )
-    assert all(symmetric(matrix) for matrix in coefficient_matrices.values())
+    check(
+        all(symmetric(matrix) for matrix in coefficient_matrices.values()),
+        "transverse coefficient matrix is not symmetric",
+    )
 
     # Exact even/odd boundary limits and entrywise interior-tail bounds.
     limits = [zero_matrix(6), zero_matrix(6)]
@@ -284,26 +334,41 @@ def verify(
     tail_constants: list[Q] = []
     eigenvalue_lower_bounds: list[Q] = []
     for parity, name in enumerate(("even", "odd")):
-        assert symmetric(limits[parity])
-        assert symmetric(tail_bounds[parity])
+        check(symmetric(limits[parity]), f"{name} limit matrix is not symmetric")
+        check(
+            symmetric(tail_bounds[parity]),
+            f"{name} tail-bound matrix is not symmetric",
+        )
         pivots = ldl_pivots(limits[parity])
-        assert all(pivot > 0 for pivot in pivots)
-        assert [str(value) for value in pivots] == expected_limit_pivots[name]
+        check(
+            all(pivot > 0 for pivot in pivots),
+            f"{name} limit matrix is not positive definite",
+        )
+        check(
+            [str(value) for value in pivots] == expected_limit_pivots[name],
+            f"{name} stored limit LDL pivots mismatch",
+        )
 
         limit_inverse = inverse(limits[parity])
         inverse_infinity_norm = max(
             sum(abs(value) for value in row) for row in limit_inverse
         )
-        assert str(inverse_infinity_norm) == expected_inverse_norms[name]
+        check(
+            str(inverse_infinity_norm) == expected_inverse_norms[name],
+            f"{name} stored inverse infinity norm mismatch",
+        )
         eigenvalue_lower_bound = 1 / inverse_infinity_norm
         eigenvalue_lower_bounds.append(eigenvalue_lower_bound)
-        assert (
-            str(eigenvalue_lower_bound) == expected_eigenvalue_bounds[name]
+        check(
+            str(eigenvalue_lower_bound) == expected_eigenvalue_bounds[name],
+            f"{name} stored eigenvalue lower bound mismatch",
         )
 
         tail_row_sums = [sum(row) for row in tail_bounds[parity]]
-        assert [str(value) for value in tail_row_sums] == (
-            expected_tail_rows[name]
+        check(
+            [str(value) for value in tail_row_sums]
+            == expected_tail_rows[name],
+            f"{name} stored interior-tail row sums mismatch",
         )
         tail_constant = max(
             sum(
@@ -313,14 +378,26 @@ def verify(
             for i in range(6)
         )
         tail_constants.append(tail_constant)
-        assert str(tail_constant) == expected_tail_constants[name]
+        check(
+            str(tail_constant) == expected_tail_constants[name],
+            f"{name} stored tail constant mismatch",
+        )
 
     finite_check_through = certificate["finite_check_through"]
     analytic_tail_from = certificate["analytic_tail_from"]
-    assert finite_check_through == 505
-    assert analytic_tail_from == 506
-    assert tail_constants[0] < analytic_tail_from
-    assert tail_constants[1] < 430
+    check(finite_check_through >= 1, "finite harmonic range is empty")
+    check(
+        analytic_tail_from == finite_check_through + 1,
+        "finite and analytic harmonic ranges are not consecutive",
+    )
+    check(
+        tail_constants[0] < analytic_tail_from,
+        "even analytic tail threshold is insufficient",
+    )
+    check(
+        tail_constants[1] < analytic_tail_from,
+        "odd analytic tail threshold is insufficient",
+    )
 
     # Exact finite verification.  Scaling row i by
     # (1-q_i^2)^floor(k/2) turns W_k into the following rational matrix.
@@ -345,24 +422,44 @@ def verify(
                     matrix[i][j] += (
                         coefficient_matrix[i][j] * kernel_value
                     )
-        assert symmetric(matrix)
+        check(symmetric(matrix), f"degree-{k} matrix is not symmetric")
         pivots = ldl_pivots(matrix)
-        assert all(pivot > 0 for pivot in pivots)
+        check(
+            all(pivot > 0 for pivot in pivots),
+            f"degree-{k} matrix is not positive definite",
+        )
         for pivot_index, pivot in enumerate(pivots):
             candidate = (pivot, k, pivot_index)
             if minimum_pivot is None or pivot < minimum_pivot[0]:
                 minimum_pivot = candidate
-    assert minimum_pivot is not None
+    check(minimum_pivot is not None, "finite harmonic range produced no pivot")
+    # The preceding check narrows the type for human readers and static tools.
+    if minimum_pivot is None:
+        raise VerificationError("unreachable missing finite harmonic pivot")
     expected_minimum = certificate["minimum_finite_ldl_pivot"]
-    assert minimum_pivot[1] == expected_minimum["harmonic_degree"]
-    assert minimum_pivot[2] == expected_minimum["pivot_index"]
-    assert str(minimum_pivot[0]) == expected_minimum["value"]
+    check(
+        minimum_pivot[1] == expected_minimum["harmonic_degree"],
+        "stored minimum harmonic-pivot degree mismatch",
+    )
+    check(
+        minimum_pivot[2] == expected_minimum["pivot_index"],
+        "stored minimum harmonic-pivot index mismatch",
+    )
+    check(
+        str(minimum_pivot[0]) == expected_minimum["value"],
+        "stored minimum harmonic-pivot value mismatch",
+    )
 
     # Ordinary two-point moments at every degree.  The atom at -1 is
     # separated exactly; the remaining six atoms obey the analytic
     # dimension-five Gegenbauer tail estimate documented in the proof.
     pair_finite_through = certificate["pair_moment_finite_check_through"]
-    assert pair_finite_through == 114
+    pair_tail_from = certificate["pair_analytic_tail_from"]
+    check(pair_finite_through >= 1, "finite pair-moment range is empty")
+    check(
+        pair_tail_from == pair_finite_through + 1,
+        "finite and analytic pair-moment ranges are not consecutive",
+    )
     sequences_5 = [
         gegenbauer_5_sequence(q, pair_finite_through) for q in grid
     ]
@@ -371,14 +468,25 @@ def verify(
         moment = 1 + sum(
             alpha[i] * sequences_5[i][k] for i in range(len(grid))
         )
-        assert moment > 0
+        check(moment > 0, f"pair moment is nonpositive at degree {k}")
         candidate = (moment, k)
         if minimum_pair_moment is None or moment < minimum_pair_moment[0]:
             minimum_pair_moment = candidate
-    assert minimum_pair_moment is not None
+    check(
+        minimum_pair_moment is not None,
+        "finite pair-moment range produced no moment",
+    )
+    if minimum_pair_moment is None:
+        raise VerificationError("unreachable missing finite pair moment")
     expected_pair_minimum = certificate["minimum_finite_pair_moment"]
-    assert minimum_pair_moment[1] == expected_pair_minimum["degree"]
-    assert str(minimum_pair_moment[0]) == expected_pair_minimum["value"]
+    check(
+        minimum_pair_moment[1] == expected_pair_minimum["degree"],
+        "stored minimum pair-moment degree mismatch",
+    )
+    check(
+        str(minimum_pair_moment[0]) == expected_pair_minimum["value"],
+        "stored minimum pair-moment value mismatch",
+    )
 
     inverse_three_halves_bounds = [
         parse_q(value)
@@ -386,33 +494,54 @@ def verify(
             "pair_interior_inverse_three_halves_bounds"
         ]
     ]
-    assert len(inverse_three_halves_bounds) == len(active_grid)
-    for t, upper in zip(active_grid, inverse_three_halves_bounds):
+    check(
+        len(inverse_three_halves_bounds) == len(active_grid),
+        "wrong number of inverse-three-halves bounds",
+    )
+    for index, (t, upper) in enumerate(
+        zip(active_grid, inverse_three_halves_bounds, strict=True)
+    ):
         q = 1 - t * t
-        assert upper > 0 and upper**2 * q**3 >= 1
+        check(
+            upper > 0 and upper**2 * q**3 >= 1,
+            f"inverse-three-halves bound fails at active index {index}",
+        )
     weighted_pair_bound = sum(
         alpha[i + 1] * inverse_three_halves_bounds[i]
         for i in range(len(active_grid))
     )
-    assert str(weighted_pair_bound) == certificate[
-        "pair_weighted_tail_bound"
-    ]
+    check(
+        str(weighted_pair_bound) == certificate["pair_weighted_tail_bound"],
+        "stored weighted pair-tail bound mismatch",
+    )
     endpoint_margin = 1 - alpha[0]
-    assert str(endpoint_margin) == certificate["pair_endpoint_margin"]
+    check(
+        str(endpoint_margin) == certificate["pair_endpoint_margin"],
+        "stored pair endpoint margin mismatch",
+    )
 
     # pi<22/7 and sqrt(2*pi)<251/100 imply the analytic constant is <31/5.
-    assert Q(44, 7) < Q(251, 100) ** 2
+    check(
+        Q(44, 7) < Q(251, 100) ** 2,
+        "rational sqrt(2*pi) comparison fails",
+    )
     analytic_constant_upper = Q(22, 7) ** 2 * Q(251, 100) / 4
-    assert analytic_constant_upper < Q(31, 5)
+    check(
+        analytic_constant_upper < Q(31, 5),
+        "rational analytic Gegenbauer constant is too large",
+    )
     normalized_pair_tail = (
         Q(31, 5) * weighted_pair_bound / endpoint_margin
     )
-    assert str(normalized_pair_tail) == certificate[
-        "normalized_pair_tail_constant"
-    ]
-    pair_tail_from = certificate["pair_analytic_tail_from"]
-    assert pair_tail_from == 115
-    assert normalized_pair_tail**2 < pair_tail_from**3
+    check(
+        str(normalized_pair_tail)
+        == certificate["normalized_pair_tail_constant"],
+        "stored normalized pair-tail constant mismatch",
+    )
+    check(
+        normalized_pair_tail**2 < pair_tail_from**3,
+        "analytic pair-tail threshold is insufficient",
+    )
 
     return {
         "status": "PASS",

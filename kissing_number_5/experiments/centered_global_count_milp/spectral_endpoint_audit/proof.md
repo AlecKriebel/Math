@@ -9,7 +9,10 @@ This note proves the following restricted theorem.
 > \[
 > \{-1,-3/4,-1/2,-1/4,0,1/4,1/2\}
 > \]
-> and whose unordered edge-count vector, in that order, is
+> and whose integer color-square sum
+> \(Q=\sum_{i<j}(4\langle x_i,x_j\rangle)^2\) is \(2362\).
+> In particular, there is no such code whose unordered edge-count vector,
+> in the displayed grid order, is
 > \[
 > E=(0,100,55,207,173,35,250).
 > \]
@@ -41,7 +44,7 @@ Thus \(a_{ii}=4\), while the off-diagonal entries are the seven integers
 Q=\sum_{i<j}a_{ij}^2,\qquad
 P=\sum_{i<j<k}a_{ij}a_{ik}a_{jk}.
 \]
-The proposed edge counts give, by direct integer arithmetic,
+The displayed edge counts give, by direct integer arithmetic,
 \[
 \sum E_k=820,\qquad
 \sum kE_k=-82,\qquad
@@ -79,7 +82,7 @@ are the integers
 X=5Q-11808,\qquad
 Y=3636864-2160Q+75P.
 \]
-At \(Q=2362\), this becomes
+Under the theorem's hypothesis \(Q=2362\), this becomes
 \[
 X=2,\qquad Y\equiv-6\pmod {75}.
 \]
@@ -212,9 +215,11 @@ This proves the theorem.
 
 ## What the finite artifacts show
 
-The discovery output stored one particular triple-count vector and one
-particular mixture of integer row degrees.  That row mixture is already
-incompatible with (7): its exact value of
+The discovery output stored one particular edge vector, triple-count vector,
+and mixture of integer row degrees.  The proof above eliminates every
+centered quarter-grid edge vector with \(Q=2362\), not merely the stored
+edge vector.  The stored row mixture is already incompatible with (7):
+its exact value of
 \[
 \sum_iq_i^2
 \]
@@ -226,7 +231,8 @@ and
 \[
 16(114)^2+25(116)^2=544336.
 \]
-This rejects that particular triple/row witness, but not the edge vector.
+This scalar check by itself rejects that particular triple/row witness,
+but not the edge vector.
 
 To check that no hidden strength is being attributed to this observation,
 `endpoint_row_marginal_shadows.json` contains two exact countermodels to
@@ -263,7 +269,8 @@ arithmetic.  It does not attempt to re-prove the imported theorem
 
 ## Dependency map
 
-1. Centering and the fixed edge counts give \(Q=2362\).
+1. The centered quarter-grid hypothesis and \(Q=2362\) fix \(X\) and the
+   residue class of \(Y\).
 2. The five-eigenvalue inequality plus integer cubic congruence forces
    \(X=2,Y=-6\).
 3. Its equality case gives the spectrum (2).
