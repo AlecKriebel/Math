@@ -110,14 +110,35 @@ The strongest new constructive reductions are:
   `F_(167^2) x F_(167^12) x F_(167^12)` with checked star, inverse CRT, and
   complete two-channel solution parameterization.  All 22 stored tuples
   fail.
+- `LP333_ORDER3_SPECTRAL_UNITS.md`: on the physical ten-value profile
+  alphabet, both channels are units in every prime-167 CRT factor.  A
+  twelve-factor number-field norm below `167^12` cannot meet either residue
+  prime of norm `167^12`.  Thus `U=A B^(-1)` satisfies `U U*=-1`, and a
+  fixed target has only the single primitive torus `(167^12-1)^3`; the old
+  degenerate and both axis branches are impossible for a profile survivor.
+- `LP333_ORDER3_PRIME163_EXTREME.md`: in targets `(4,-1,0,0)` and
+  `(5,1,0,0)`, the extreme energy split `(163,4)` would give
+  `B=2 delta_0` and `A A^*=163 delta_0`.  Explicit principal degree-12
+  primes above 163 plus CM-unit rigidity and Fourier inversion rule this
+  out.  Exactly 1,617,192 local-sieve assignments per target are removed;
+  nonextreme sectors remain, so zero whole shards are excluded.
+- `LP333_ORDER3_SPARSE_B_NORM.md`: in the same two targets, normalized
+  `B`-energy six gives exactly 396 two-orbit words.  Relative-norm
+  obstructions at inert primes above 11 and 101 exclude 312 words and 26 of
+  34 lift-safe orbits.  Four field-norm types remain, comprising 84 words
+  and eight lift-safe orbits, so the sector is reduced but not closed.
 - `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md`: the formal profile group
   `C6 x C2_A x C2_B` reduces 22 targets to seven.  Only `C6 x C2_B`
   transports the canonical labelled zero words, giving twelve
   lift-compatible target orbits.
-- `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md`: the exact 24-profile search uses
-  deterministic prefix cubes, atomic checkpoints, `C6` lex leaders, and
-  mandatory solver-free replay.  Its 45-second workflow pilot left 37
-  pending cubes, no candidate, and no exclusion.
+- `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md`: the exact 24-profile discovery
+  search directly enforces six reversal-independent `D_j=0` equations.  It
+  uses 3,334-row quartet tables, 1,409 coarse states, full fixed-target
+  stabilizers, semantically pinned atomic checkpoints, persistent no-goods,
+  orbit-complete survivor emission, and three solver-free integer replays.
+  Loaded survivors are replayed before being restored as no-goods, and the
+  replay dependency closure is fingerprinted.  No long campaign has been
+  run, and CP-SAT exhaustion is not a proof certificate.
 - `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
   54 signed Eisenstein unit phases and automatic physical frame energy 167.
   Exact primitive-nine lifting is one six-sequence complementary-frame
@@ -128,6 +149,12 @@ The strongest new constructive reductions are:
   recombination gives one Hermitian plus three bilinear cones in
   `F_(167^6) x F_(167^12)^6`.  The remaining gate is the sparse physical
   inverse-CRT intersection.
+- `LP333_ORDER3_PHASE_FIBER_SUPPORT.md`: every nonzero zero/unit phase fiber
+  is nonzero in both primitive prime-167 coordinates.  The two primitive
+  vectors therefore have identical zero support, and the fixed zero column
+  leaves only the dense stratum or the synchronized `B0`-zero stratum.
+  Exactly 4,094 of 4,096 ambient joint support patterns are removed; the
+  `B0`-zero primitive plane has rank at least two.
 - `LP333_ORDER3_PHASE_TRANSFER.md`: the trivial-column character collapses
   to one integer energy and one Eisenstein cross term per channel and is
   exactly equivalent, with multiplicity, to the existing row-sum catalog.
@@ -221,9 +248,16 @@ The strongest current construction checkpoints are:
   split.  Both are equivalent to exact zero on the shared profile domain;
   the prime-167 invariant algebra has dimensions `1+6+6` over
   `F_(167^2)`;
-- the exact profile symmetry and constructor: seven formal target orbits,
-  twelve lift-compatible target orbits, and a deterministic checkpoint
-  queue.  The bounded pilot has no candidate or negative implication;
+- the spectral-unit refinement: every physical profile-zero channel is a
+  unit in that `1+6+6` algebra, so the modular intersection has no
+  degenerate or axis branch and may be written as one unitary-ratio torus;
+- the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
+  remain in the normalized energy-six allocation for the two `(163,4)`
+  targets.  Continue only from those 84 words/eight lift-safe orbits;
+- the exact profile symmetry and hardened constructor: seven formal target
+  orbits, twelve lift-compatible target orbits, a 3,334-to-1,409 quartet
+  layer, direct exact-zero equations, and a deterministic semantically pinned
+  checkpoint queue.  No hardened-model campaign or negative result exists;
 - do not build the obvious balanced prime-167 profile MITM: its
   `3,334^3=37,059,263,704` injective half list requires more than 151 GiB
   before field data.  The exact channel-first fallback uses little RAM but
@@ -232,9 +266,14 @@ The strongest current construction checkpoints are:
   phases, automatic diagonal frame energy 167, and exactly two independent
   Eisenstein group-ring equations;
 - the full phase prime-167 theorem: both equations are exact modulo 167; the
-  39 scalar conditions recombine into one Hermitian cone and three bilinear
-  cones with complete branch parameterizations.  No sparse physical point is
-  known;
+  39 prime-field component conditions recombine into one Hermitian cone and
+  three bilinear cones with complete branch parameterizations.  The direct
+  ninth-root bridge and generic/both-axis recovery cases are pinned.  No
+  sparse physical point is known;
+- the phase-fiber support theorem: only the dense and synchronized
+  `B0`-zero support strata can be physical.  It removes all one-sided and
+  other coordinate-degenerate branches but leaves both surviving strata
+  large;
 - the phase refinements are reusable but diagnostic on the present corpus:
   the trivial-character transfer equals the row-sum catalog, the first
   Eisenstein-adic digit has one fixed-profile contradiction, and the
@@ -278,7 +317,9 @@ audit.
    using the seven formal symmetry representatives and the resumable exact
    CRT constructor.  The prime-167 channel-first MITM is a low-memory
    fallback, not the primary route at its current 6.34-billion-signature
-   cost. Do not phase-lift the 22 pinned
+   cost.  Any new spectral constructor should use the unitary ratio
+   `U=A B^(-1)` and the single nonzero torus, never the now-excluded
+   degenerate or axis branches. Do not phase-lift the 22 pinned
    ideal-compatible tuples: the exact zero-moment audit already excludes
    every one as a full-LP input. Only a zero-moment profile survivor should
    proceed through the lossless prime-167 phase cones, sparse inverse CRT,

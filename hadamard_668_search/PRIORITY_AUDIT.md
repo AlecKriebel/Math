@@ -42,7 +42,7 @@ report:
    five-independent-condition profile ideal, an exact full-LP zero-moment
    gate, a local-global CRT closure, a lossless prime-167 finite-field split,
    a 24-element formal symmetry reducing 22 targets to seven, and a
-   three-fiber unit-phase factorization whose complete 39-condition phase
+   three-fiber unit-phase factorization whose complete 39-component phase
    system is also lossless modulo 167 and splits into four parameterized
    finite-field cones; all 22 aggregate shards survive the ideal, but every
    stored ideal witness fails the zero gate, and the coupled `<121>/<211>`
@@ -407,15 +407,52 @@ finite-field structure is mechanically replayed, and it is worth a focused
 internal write-up.  Literature priority remains provisional, and it does
 not supply a small-alphabet profile point.
 
+The spectral-unit refinement is a substantive strengthening on the actual
+profile alphabet.  A primitive Fourier value lies in the degree-24 field
+`Q(omega,zeta_37)^H`; its absolute norm is the product of twelve positive
+spectral energies, each strictly below 167.  Either prime-167 primitive
+coordinate vanishing would instead make that norm divisible by `167^12`.
+Therefore both channels are CRT units, the unitary ratio `A B^(-1)` is
+always legal, and the four ambient cone branches collapse to one torus on
+physical candidates.  This is worth including as a central lemma in the
+focused prime-167 write-up.  It remains a structural reduction rather than
+existence or nonexistence evidence.
+
+The prime-163 extreme-sector theorem is a genuine exact pruning result, but
+its proper publication role is supporting rather than headline.  The
+factorization
+`163=(14+3 omega)(11-3 omega)`, cyclotomic Frobenius order 12, Kronecker
+unit rigidity, and Fourier inversion combine to forbid
+`A A^*=163 delta_0` with `A(0)=-1`.  This eliminates 1,617,192 locally legal
+assignments in each of the two norm-pair `(163,4)` targets.  The ingredients
+are classical; the application and exact sector census appear useful and
+potentially new, but literature priority is provisional.  Because
+nonextreme `(37,130)` local witnesses remain, this is neither a whole-shard
+obstruction nor existence/nonexistence evidence for `LP(333)`.
+
+The sparse-`B` relative-norm screen is a useful follow-on lemma.  In those
+same two targets, normalized `B`-energy six has only 396 structural words.
+Total positivity and the quadratic CM norm equation reduce them to 17 field
+types; exact odd valuations at inert primes over 11 and 101 rule out 13
+types, or 312 words and 26 of 34 lift-safe orbits.  A guaranteed cyclic
+`rnfisnorm` replay shows that the other four types are genuine field norms,
+so 84 words remain.  The finite classification and local certificates appear
+new in this setting, but the underlying Hasse-norm and inert-valuation tools
+are classical.  This belongs as supporting exact pruning, not as a headline:
+relative-norm solvability does not produce a physical complementary
+`A`-profile and the sector remains open.
+
 The exact profile equation also has formal symmetry
 `C6 x C2_A x C2_B`.  It gives seven target orbits, but only
 `C6 x C2_B` transports the canonical labelled zero words, leaving twelve
 lift-compatible orbits.  This distinction prevents an invalid quotient at
 the phase stage.  A deterministic 24-variable constructor implements the
-seven formal targets with atomic prefix cubes and detached exact replay. Its
-bounded pilot left 37 disjoint pending cubes, with no candidate and no
-infeasibility proof.  The symmetry theorem is useful supporting mathematics;
-the constructor is research infrastructure, not publication evidence.
+seven formal targets with exact quartet states, full target stabilizers,
+direct zero equations, semantically pinned atomic checkpoints, and detached
+exact replay.  No long campaign has been run on the hardened model, and
+solver-reported exhaustion would still require a proof-producing SAT/PB
+translation.  The symmetry theorem is useful supporting mathematics; the
+constructor is research infrastructure, not publication evidence.
 
 After profiles are fixed, every active residue fiber is a signed cube root
 of unity.  The identity `active=3-Norm/3` shows that total profile norm 54
@@ -442,14 +479,26 @@ stronger semisimple presentation
 F_(167^6) x F_(167^12)^6.
 ```
 
-Star pairs the six primitive factors, reducing all 39 scalar equations to
-one Hermitian cone over `F_(167^6)/F_(167^3)` and three bilinear cones over
-`F_(167^12)`.  The six factor orbits, rank-13 invariant CRT, universal star
-action, branch exhaustiveness, and solution counts are independently
-checked.  This is theorem-sized structural progress and should lead the
-order-three portion of an internal paper.  It parameterizes the modular
-norm cone, not the sparse zero/unit inverse-CRT intersection, so it is not an
-existence result.
+Star pairs the six primitive factors, reducing all 39 prime-field component
+conditions to one Hermitian cone over `F_(167^6)/F_(167^3)` and three
+bilinear cones over `F_(167^12)`.  The direct ninth-root bridge, six factor
+orbits, rank-13 invariant CRT, universal star action, generic and both-axis
+parameter recoveries, branch exhaustiveness, and solution counts are
+independently checked.  This is theorem-sized structural progress and should
+lead the order-three portion of an internal paper.  It parameterizes the
+modular norm cone, not the sparse zero/unit inverse-CRT intersection, so it
+is not an existence result.
+
+The physical zero/unit alphabet removes almost all coordinate-degenerate
+phase branches.  The same twelve-factor norm gap shows, fiber by fiber, that
+a primitive prime-167 coordinate vanishes exactly when the physical word is
+zero, and then both primitive coordinates vanish together.  Five words are
+forced nonzero at the fixed column, so only the dense and synchronized
+`B0`-zero support strata survive: 4,094 of 4,096 ambient joint patterns are
+impossible, and the latter stratum has plane rank at least two.  This is a
+clean supporting lemma for the phase-algebra write-up.  It does not make the
+two surviving inverse-CRT intersections small enough to enumerate and is not
+an existence or nonexistence result.
 
 At the trivial `C_37` character, the six phase sums admit a further exact
 transfer: one integer energy and one Eisenstein cross term per channel.

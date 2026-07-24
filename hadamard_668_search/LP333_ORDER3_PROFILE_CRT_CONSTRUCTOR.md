@@ -190,11 +190,18 @@ Finding a survivor no longer stops the campaign.  Instead the runner:
 Candidate hashes prevent duplicate emission after resumption.  A fully fixed
 cube that times out is retained rather than silently dropped.
 
+On every checkpoint reload, each persisted survivor is also rerun through the
+detached exact verifier before its assignment can be installed as a no-good.
+A self-consistent serialized hash is not treated as evidence that the profile
+zero gate passed.  The stored replay-certificate hash must agree with the
+fresh replay as well.
+
 The checkpoint fingerprint covers:
 
 ```text
 the constructor source,
-the detached verifier and every mathematical source dependency,
+the detached verifier and its complete relevant local import closure,
+the effective profile modulus, row count, and canonical zero coefficients,
 the complete profile/quartet/product/transfer tables,
 the OR-Tools version,
 the selected targets, variable order, symmetry setting, and exact layers.
@@ -249,6 +256,11 @@ It performs three correlation reconstructions:
 Passing this replay certifies only the 24-profile zero gate.  The 54 placement
 phases, exact row margins, full 333 correlations, and final order-668 matrix
 remain separate obligations.
+
+The constructor invokes this same replay both when a survivor is first found
+and whenever a checkpoint containing that survivor is resumed.  Consequently
+no persisted assignment is trusted as an enumeration no-good solely because
+its JSON fields and digest are internally consistent.
 
 ## Reproduction
 

@@ -51,7 +51,12 @@ from verify_lp333_order3_char37_transfer import (
     row_sum_targets,
     signed_profile_integer,
 )
-from verify_lp333_order3_profile9 import profile_correlation_table
+from verify_lp333_order3_profile9 import (
+    P as PROFILE_COLUMN_MODULUS,
+    ROWS as PROFILE_ROW_COUNT,
+    ZERO_EISENSTEIN,
+    profile_correlation_table,
+)
 from verify_lp333_order3_profile9_shards import PROFILE9_SHARD_WITNESSES
 from verify_lp333_order3_profile_crt_candidate import (
     audit_profile_crt_candidate,
@@ -95,6 +100,14 @@ SEMANTIC_SOURCE_DEPENDENCIES = (
     "verify_lp333_order3_profile_crt.py",
     "verify_lp333_order3_profile_zero_symmetry.py",
     "verify_lp333_order3_prime167_split.py",
+    # Complete local import closure relevant to the profile replay.  In
+    # particular, profile9 obtains P, ROWS, and the canonical zero words
+    # through labeled_jet and primitive9_jet.
+    "verify_lp333_order3_integral9.py",
+    "verify_lp333_order3_labeled_jet.py",
+    "verify_lp333_order3_primitive9_jet.py",
+    "verify_lp333_order3_quotient.py",
+    "verify_lp333_order3_trit_lift.py",
 )
 
 # Complete one opposite-pair quartet before moving to the next.  Prefix
@@ -880,6 +893,11 @@ def semantic_manifest() -> dict[str, Any]:
         "schema": SCHEMA,
         "ortools_version": ortools.__version__,
         "python_source_sha256": source_hashes,
+        "effective_profile_semantics": {
+            "column_modulus": PROFILE_COLUMN_MODULUS,
+            "row_count": PROFILE_ROW_COUNT,
+            "zero_eisenstein": ZERO_EISENSTEIN,
+        },
         "table_sha256": compact_hash(table_signature),
         "quartet_census": {
             "assignments": QUARTET_ASSIGNMENT_COUNT,
@@ -1146,6 +1164,33 @@ def _validate_checkpoint_payload(
             raise ValueError("a candidate survivor hash is invalid")
         if hashes[index] != candidate_hash:
             raise ValueError("candidate hash catalog order is invalid")
+        # A digest proves only that the serialized IDs are self-consistent.
+        # It does not prove that they survived the exact profile-zero gate.
+        # Replay every persisted survivor before it can become a no-good in
+        # run_checkpoint, so a corrupted checkpoint cannot silently remove
+        # an arbitrary complete assignment from the search.
+        try:
+            replay = audit_profile_crt_candidate(
+                normalized_fields["target"],
+                normalized_fields["profiles_a"],
+                normalized_fields["profiles_b"],
+            )
+        except ValueError as error:
+            raise ValueError(
+                f"candidates[{index}] failed detached exact replay: {error}"
+            ) from error
+        stored_replay = candidate.get("exact_replay")
+        if not isinstance(stored_replay, dict):
+            raise ValueError(
+                f"candidates[{index}] is missing its exact replay record"
+            )
+        if (
+            stored_replay.get("certificate_sha256")
+            != replay["certificate_sha256"]
+        ):
+            raise ValueError(
+                f"candidates[{index}] exact replay certificate changed"
+            )
     return checkpoint
 
 

@@ -22,6 +22,7 @@ from search_lp333_order3_profile_crt import (
     audit_correlation_coordinate_bound,
     audit_quartet_state_census,
     build_profile_crt_model,
+    compact_hash,
     configure_solver,
     load_or_create_checkpoint,
     model_fingerprint,
@@ -243,6 +244,36 @@ class ProfileCRTConstructorTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "exact integer"):
                 load_or_create_checkpoint(path, indices, True)
 
+    def test_checkpoint_rejects_hash_consistent_invalid_persisted_candidate(
+        self,
+    ) -> None:
+        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[0]
+        target_index = row_sum_targets().index(target)
+        checkpoint = new_checkpoint((target_index,), True)
+        survivor_hash = compact_hash(
+            (target, identifiers_a, identifiers_b)
+        )
+        checkpoint["candidates"] = [
+            {
+                "survivor_sha256": survivor_hash,
+                "target_index": target_index,
+                "target": target,
+                "profiles_a": identifiers_a,
+                "profiles_b": identifiers_b,
+                "exact_replay": {
+                    "certificate_sha256": "0" * 64,
+                },
+            }
+        ]
+        checkpoint["candidate_sha256"] = [survivor_hash]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "checkpoint.json"
+            save_checkpoint(path, checkpoint)
+            with self.assertRaisesRegex(
+                ValueError, "failed detached exact replay"
+            ):
+                load_or_create_checkpoint(path, (target_index,), True)
+
     def test_semantic_fingerprint_covers_sources_tables_and_solver(self) -> None:
         manifest = semantic_manifest()
         self.assertIn("ortools_version", manifest)
@@ -254,6 +285,28 @@ class ProfileCRTConstructorTests(unittest.TestCase):
         self.assertEqual(
             manifest["quartet_census"],
             {"assignments": 3334, "coarse_states": 1409},
+        )
+
+    def test_semantic_fingerprint_pins_replay_dependency_closure(self) -> None:
+        manifest = semantic_manifest()
+        source_hashes = manifest["python_source_sha256"]
+        self.assertTrue(
+            {
+                "verify_lp333_order3_integral9.py",
+                "verify_lp333_order3_labeled_jet.py",
+                "verify_lp333_order3_primitive9_jet.py",
+                "verify_lp333_order3_quotient.py",
+                "verify_lp333_order3_trit_lift.py",
+            }
+            <= set(source_hashes)
+        )
+        self.assertEqual(
+            manifest["effective_profile_semantics"],
+            {
+                "column_modulus": 37,
+                "row_count": 9,
+                "zero_eisenstein": ((-1, 0), (2, 0)),
+            },
         )
 
     def test_candidate_json_loader(self) -> None:

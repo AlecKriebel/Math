@@ -1291,6 +1291,23 @@ proof-assistant-level theorem.
   star exponents 5 and 7, inverse CRT round trips, and all four branches of a
   complete two-channel solution parameterization.  All 22 pinned profile
   tuples fail the modular equation, agreeing with exact replay.
+- Proved that none of those four ambient branches can lie on the boundary
+  for a physical profile-zero pair.  `Phi_37(X+1)` is Eisenstein at
+  `7+3 omega`, so every primitive complex Fourier value is nonzero.  Its
+  absolute norm in `Q(omega,zeta_37)^H` is a product of twelve numbers
+  strictly between zero and 167, hence is a positive integer below
+  `167^12`.  Each of the two primitive residue primes has norm `167^12`, so
+  every channel coordinate has prime valuation zero.  The trivial
+  coordinates are units as well.
+- Reparameterized the surviving modular locus by the unitary ratio
+  `U=A B^(-1)`, `U U*=-1`.  For a fixed aggregate target the primitive
+  locus is the single torus `(x_A,x_B,tau) in (F_(167^12)^*)^3`, of size
+  `(167^12-1)^3`; the removed degenerate/axis boundary has
+  `(2*167^12-1)^2` points.  The dependency-free verifier also pins the seven
+  exact profile type sectors coming from
+  `X(X^3-27)(X^6+27)`.  Its master certificate is
+  `a8f551c9c7933f17178d7f63e2df78871b393462d890ccba9753bdc74bcae6ac`.
+  This is a search reduction, not a profile survivor.
 - Certified the formal profile symmetry
   `C6 x C2_A x C2_B`, of order 24.  The 22 aggregate targets form seven
   formal orbits.  With the complete canonical zero words fixed, only the
@@ -1304,15 +1321,30 @@ proof-assistant-level theorem.
   narrower scopes, and emphasized that no package excludes a whole aggregate
   shard or constructs an `LP(333)`.
 - Repository and filename searches found no draft messages, recipient lists,
-  or outreach files to delete.  Nothing was sent or pushed; external contact
-  remains prohibited.
-- Built a resumable exact 24-profile constructor with aggregate, energy,
-  opposite-pair, lambda-cube, and all 13 characteristic-37 constraints.  It
-  uses one deterministic worker, exact ten-way prefix cubes, atomic
-  checkpoints, a 4 GiB solver ceiling, and mandatory solver-free replay of
-  all 37 physical correlations.  A 45-second workflow pilot made four exact
-  subdivisions, leaving 37 disjoint pending cubes, zero candidates, and zero
-  infeasible cubes.  This is resume validation, not negative evidence.
+  or outreach files to delete.  At that audit point this task had sent and
+  pushed nothing.  A later concurrent workspace workflow pushed the shared
+  branch while archiving unrelated Ramsey artifacts; this task did not
+  initiate that push and did not attempt a destructive remote rewrite.
+  Further H(668) work was isolated on the local, no-upstream branch
+  `codex/h668-local-only`.  External contact remains prohibited.
+- The first-generation resumable 24-profile constructor used aggregate,
+  energy, opposite-pair, lambda-cube, and all 13 characteristic-37
+  constraints.  A 45-second workflow pilot made four exact subdivisions,
+  leaving 37 disjoint pending cubes, zero candidates, and zero infeasible
+  cubes.  That pilot only validated resumption and has no negative meaning.
+- Replaced that model by a hardened constructor enforcing the six
+  reversal-independent integer equations `D_j=0` directly in the sharp
+  `[-192,192]` box.  Its four-profile tables have 3,334 exact legal rows and
+  1,409 coarse states; all 132 off-diagonal product tables are materialized.
+  Full fixed-target stabilizers, semantic source/dependency/table
+  fingerprints, persistent exact no-goods, formal and lift-compatible orbit
+  output, and three independent exact survivor replays make the discovery
+  workflow safely resumable.  Every loaded survivor is replayed before it can
+  become a resumed no-good, closing a checkpoint-corruption hole, and the
+  fingerprint includes the full operational replay dependency closure.
+  Eighteen tests and the constructor self-test pass below 140 MB.  No long
+  hardened solve has been run, and CP-SAT exhaustion alone is not accepted
+  as an infeasibility proof.
 - Audited a prime-167 meet-in-the-middle alternative before implementing it.
   The three ordered opposite-pair signature buckets have sizes `34,33,33`,
   so a legal four-profile quartet has 3,334 choices.  A balanced three-plus-
@@ -1342,15 +1374,101 @@ proof-assistant-level theorem.
   `ord_9(167)=6`, the coefficient field is `F_(167^6)`, and the complete
   invariant algebra is
   `F_(167^6) x F_(167^12)^6`.  The six primitive factors form three star
-  pairs with Frobenius exponents 3 and 9.  All 39 scalar equations are one
-  Hermitian norm cone over `F_(167^6)/F_(167^3)` and three bilinear cones
-  over `F_(167^12)`.
+  pairs with Frobenius exponents 3 and 9.  All 39 prime-field component
+  conditions are one Hermitian norm cone over `F_(167^6)/F_(167^3)` and
+  three bilinear cones over `F_(167^12)`.
 - Mechanically partitioned all 36 nonzero character exponents into six
   factor orbits, proved rank 13 on the origin plus twelve class-indicator
   basis, checked star on all 13 basis words, and pinned the exhaustive
-  degenerate/nondegenerate branch counts.  An independent audit found no
-  mathematical defect; six tests passed in 25.84 seconds at about 31.5 MB
-  maximum RSS.
+  degenerate/nondegenerate branch counts.  The verifier now also checks the
+  coefficientwise bridge
+  `sum_X W_X W_X^*=E0+alpha E1+alpha^2 omega^2 E1^*` directly and exercises
+  a generic recovery together with both nondegenerate axis cases.  An
+  independent audit found no mathematical defect.  Both Python runtimes
+  reproduce the corrected hash
+  `765e4631c4142b778c4c05eb4fe4220a23f06fd2198cf05d7ac2cf8dfc0463f1`;
+  verifier and six tests stay below 31 MB maximum RSS.
 - This parameterizes the entire finite modular norm cone but does not solve
   its sparse zero/unit inverse-CRT intersection.  No phase assignment,
   `LP(333)`, or `H(668)` is claimed.
+
+## 23 July 2026: primitive support of the six phase fibers
+
+- Proved for every zero/unit phase fiber that
+  `U_i=0` if and only if either prime-167 primitive coordinate is zero.
+  Irreducibility of `Phi_37` over `Q(omega)` first rules out a primitive
+  complex zero for a nonzero word.  The diagonal frame and five fixed
+  nonzero fibers then make all twelve conjugate energy factors strictly
+  smaller than 167.  Either residue-prime vanishing would make their product
+  divisible by `167^12`, contradicting the strict norm gap.
+- The two primitive vectors consequently have the same zero support.  Since
+  `A0,A1,A2,B1,B2` are nonzero already at the fixed zero column, only two of
+  the `4^6=4096` ambient joint support patterns remain: the dense pattern and
+  synchronized zero at `B0`.  Rank one requires the zero set to be a union
+  of the two fiber three-cycles, so the `B0`-zero branch has plane rank at
+  least two.  Dense rank-one points remain algebraically possible.
+- Independent mathematical and PARI audits found no defect.  The verifier
+  and five tests pass under Python 3.9.6, 3.12.13, and 3.14.6 below 26 MB
+  combined peak RSS, reproducing certificate
+  `c15e8357dc55e49f63469888dc306113165cf39c0cfc19b66aec15c747b2669e`.
+  This removes 4,094 support patterns but does not produce a physical phase
+  point, `LP(333)`, or `H(668)`.
+
+## 23 July 2026: prime-163 extreme-sector obstruction
+
+- Isolated the extreme energy allocation in the two aggregate targets
+  `(4,-1,0,0)` and `(5,1,0,0)`, whose trivial-character norm pair is
+  `(163,4)`.  Zero profile energy in the second channel forces
+  `B=2 delta_0`, reducing exact complementarity to
+  `A A^*=163 delta_0` with `A(0)=-1`.
+- Factored 163 explicitly in `Z[omega]` as
+  `(14+3 omega)(11-3 omega)`.  Since `ord_37(163)=36`, both factors are
+  inert through the degree-12 quotient
+  `Q(omega,zeta_37)^H/Q(omega)`.  The two primes above 163 are therefore
+  principal of absolute norm `163^12`; no class-group computation is
+  needed.
+- Ideal factorization and Kronecker's theorem force
+  `A(zeta_37)` to be a sixth root of unity times one of the two displayed
+  Eisenstein primes, hence to lie in `Q(omega)`.  All 36 nontrivial Fourier
+  values are then constant.  Fourier inversion would require
+  `S+36q=-37` with `|S|^2=|q|^2=163`, contradicting the exact inequality
+  `35^2*163=199675>37^2=1369`.
+- A dependency-free multiplicity DP counts 1,151,042,580 aggregate-and-
+  energy profile words per target before the opposite-pair sieve and
+  exactly 1,617,192 after it.  The theorem removes all 3,234,384 such local
+  survivors.  Explicit nonextreme local witnesses with physical energies
+  `(37,130)` remain in both targets, so no aggregate shard is excluded.
+- An independent PARI/GP 2.17.4 audit reconstructs the degree-24 field,
+  finds two primes with `(e,f)=(1,12)`, matches them to the explicit
+  principal generators, and finds six roots of unity below 29 MB RSS.
+  The dependency-free verifier and five tests reproduce master hash
+  `631649252c20db62a2bd0b2200c588708b07b9eb94fa350b73cd7f3c3865f191`
+  with Python 3.14.6 and the project environment's Python 3.12.13, staying
+  below 35 MB RSS.
+
+## 23 July 2026: sparse-\(B\) relative-norm screen
+
+- In the two aggregate targets `(5,1,0,0)` and `(4,-1,0,0)`, normalized
+  `B`-profile energy six and aggregate zero force exactly two opposite
+  norm-three coefficients:
+  `B=2+z(eta_i-eta_j)`, `Norm(z)=3`.  This gives 396 distinct words,
+  partitioned into 34 lift-compatible `C6 x C2_B` orbits and 17 larger
+  field-norm types.
+- Proved uniformly that `gamma=167-BB*` is totally positive using
+  `(2+6 sqrt(3))^2<167`.  Exact complementarity would make `gamma` a norm
+  from the quadratic CM extension.  Degree-one primes of the real field
+  above 11 and 101 are inert in that extension, so an odd local valuation
+  is impossible for a norm.
+- Exact evaluations modulo `p^2` find such a simple valuation for 13 of the
+  17 field types: twelve at 11 and one additional type at 101.  They account
+  for 312 raw words and 26 lift-safe orbits.  Four types remain:
+  `(d,z)=(1,-1-2 omega),(3,-2-omega),(6,-2-omega),`
+  and `(6,-1-2 omega)`, totaling 84 words and eight lift-safe orbits.
+- An independent PARI/GP replay reconstructs the real degree-12 field,
+  verifies all ideal valuations, and returns quotient one in the guaranteed
+  cyclic relative-norm test for all four survivors.  The GP run uses about
+  81 MB RSS with no swap.  Python 3.9.6, 3.12.13, and 3.14.6 reproduce the
+  dependency-free certificate
+  `6920db3a6912ad854e0af57562a0e61cd1a1966cb1ed91f8954bd520d4722f5d`.
+  The 84 survivors still need a physical complementary `A`; the energy-six
+  sector, both targets, `LP(333)`, and `H(668)` remain open.
