@@ -7,16 +7,24 @@ exact candidate.  Exact success means producing explicit signs and passing the
 full `668 x 668` verification path; energy zero in a search engine is not
 sufficient by itself.
 
-The 24 July higher-digit construction gate failed.  Do not resume generic
-search on the five shell-two `3^36` placement charts: we found no
-row-margin-compatible digit-two seed, full digit-three point, or structured
-exact lift, and obtained neither a feasible complete search nor a
-whole-profile exclusion.  A later restart of that lift requires a genuinely
-new construction principle.
-The separate dense-shell arithmetic benchmark passes comfortably; an
-end-to-end `n_9=1,0` **profile classifier** is the one scoped continuation
-supported by current evidence, and should be treated as a paper project
-rather than a forecast of `H(668)`.
+The 24 July higher-digit construction gate on the five shell-two `3^36`
+placement charts failed.  Do not resume generic search on those charts: we
+found no row-margin-compatible digit-two seed, full digit-three point, or
+structured exact lift, and obtained neither a feasible complete search nor
+a whole-profile exclusion.
+
+A genuinely new input has since justified a bounded restart.  The
+dense-shell classifier found and exactly replayed an `h=0` profile.  Its
+profile half-turn gives a `21+15` lift decomposition, complete exclusions
+of the global fiber twists and the anti-weight-four/five families, and one
+asymmetric digit-two point.  There is still no row-compatible digit-two
+point or full digit-three point.  The exact 300-second digit-three slice and
+180-second all-margin digit-two run both returned `UNKNOWN`.
+
+The separate dense-shell arithmetic benchmark still passes comfortably;
+an end-to-end `n_9=1,0` **profile classifier** is the one scoped
+continuation supported by current evidence, and should be treated as a
+paper project rather than a forecast of `H(668)`.
 
 The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
@@ -184,6 +192,32 @@ The strongest new constructive reductions are:
   prime-167, aggregate, and orbit replay.  Each has 54 placement trits and
   first Hensel rank/nullity `18/36`; compatible row-margin counts are
   `72,72,72,96,93`.  These are profile inputs, not `LP(333)` objects.
+- `dense_shell_exact_profile_h0/`: the incomplete dense-shell production
+  run found an exact `n_9=0` profile with shell `(0,18,6)`, all 36
+  nonzero-lag correlations zero, a size-12 orbit, and a profile half-turn.
+  It is a profile input, not a labelled `LP(333)`.
+- `h0_halfturn_twists/`: the new profile's first lift splits as `21+15`;
+  the second digit becomes twelve even quadrics and six odd bilinear
+  equations.  All 35 nonidentity global fiber-permutation twists are
+  excluded, while the identity family is the publicly excluded order-six
+  multiplier ID8.
+- `h0_minimal_anti_code/`: the 15-dimensional anti space is a ternary
+  `[27,15,4]` code in the natural class pairs.  All six weight-four and
+  fourteen weight-five words are exhausted: 658 signed digit-two points,
+  zero row-margin intersections, and zero digit-three points.  The exact
+  syndrome join proves that anti weight zero has no physical precursor and
+  one minimum projective direction has 7,346 row-margin precursors per
+  sign, disjoint from its 87 digit-two points.
+- `h0_asymmetric_higher_digits/`: a canonical half-turn-breaking slice has
+  an exact digit-two point.  It fails the row-margin catalog and exact
+  zero-column-lag equation, leaves 13 digit-three rows nonzero, and its
+  bounded exact digit-three solve is `UNKNOWN`.
+- `h0_even_algebra/`: neither the global even/odd systems nor the canonical
+  asymmetric slice has a common affine recentering or invariant block.
+  Their relative polar operators generate the full matrix algebras
+  `M_21(F_3)`, `M_15(F_3)`, and `M_15(F_3)`, respectively.  This closes
+  the direct simultaneous-diagonalization and ordinary field-norm shortcut,
+  not nonlinear elimination.
 - `scratch_exact_profile_lift/`: a secondary exact XOR/CP-SAT model fixes the
   first shell-two representative and splits its 72 compatible row margins.
   Attempt zero is fully resumable and records 72 `UNKNOWN` statuses; it is a

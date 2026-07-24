@@ -18,6 +18,51 @@ The finish line remains an explicit pair of binary sequences whose complete
 periodic autocorrelations replay exactly, followed by the standard exact
 construction and verification of a `668 x 668` Hadamard matrix.
 
+## Post-gate restart on 24 July 2026
+
+The original five-profile gate below remains failed.  A genuinely new
+input justified a bounded restart: the dense-shell classifier found and
+independently certified the first local `h=0` profile, with shell
+`(0,18,6)` and all 36 nonzero compressed correlations exactly zero.
+
+The restart has produced five certified results:
+
+1. The profile half-turn splits its first placement space as `21+15`.  The
+   second digit consists of twelve even quadrics and six odd bilinear
+   equations.
+2. All 35 nonidentity global fiber-permutation twists are excluded by the
+   second digit.  The identity branch is the publicly excluded order-six
+   common-multiplier family.
+3. In the 27 natural opposite-class pairs, the antisymmetric space is a
+   ternary `[27,15,4]` code.  The complete anti-weight-four and
+   anti-weight-five families contain 658 signed digit-two points, zero
+   exact row-margin intersections, and zero digit-three points.
+4. A separate asymmetric slice contains a genuine digit-two point but
+   fails row margins and leaves 13 digit-three rows nonzero.  Its exact
+   300-second digit-three solve returned `UNKNOWN`.
+5. The global even pencils generate the full matrix algebras
+   `M_21(F_3)` and `M_15(F_3)`, and the asymmetric slice again generates
+   `M_15(F_3)`.  No common affine recentering exists.  This rules out the
+   direct simultaneous-block and ordinary field-norm contractions.
+
+The exact support-and-sign row-margin join further shows that the symmetric
+fiber has no physical precursor.  One projective minimum-weight direction
+has exactly 7,346 first-digit row-margin placements per sign, but its 87
+digit-two placements are disjoint from them.
+
+These are new finite family exclusions and useful mathematics.  They do
+not pass the construction gate: no row-compatible digit-two point, full
+digit-three point, pair of consecutive higher digits, exact structured
+lift, or whole-profile obstruction has been obtained.  The remaining
+anti-coordinate space still has `3^15=14,348,907` words, so shell-by-shell
+enumeration is not a complete strategy, and the simplest linear-algebraic
+contraction of its even pencils is now rigorously absent.
+
+The parallel Eliahou `Phi_28` audit also produced no certificate.  It
+identified a valid prospective modulo-three sieve using the two degree-six
+factors of `Phi_28`, but no implementation, measured pruning, exact integer
+classifier, exclusion, or construction.  It does not change the gate.
+
 ## Result on 24 July 2026: construction gate failed
 
 All required lanes were executed, but none of the four forms of evidence

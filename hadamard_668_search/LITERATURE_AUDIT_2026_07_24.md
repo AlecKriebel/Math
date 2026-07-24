@@ -23,6 +23,23 @@ The result uses exact compression, row-sum certificates, value-set
 enumeration, direct pseudo-Boolean bounds, and checked DRAT proofs.  It is not
 a timeout report and it leaves unrestricted `LP(333)` and `H(668)` open.
 
+A second 2026 source is directly relevant:
+Kotsireas, Gallardo-Cava, Gómez, and Gómez-Pérez,
+[On the search of binary Legendre pairs of length
+`p q^2`](https://doi.org/10.1016/j.jsc.2026.102606).  Its proposed
+`q^2`-uncompression starts from
+
+```text
+A(p,q) = [1, q chi],
+B(p,q) = [1,-q chi],
+```
+
+where `chi` is the quadratic character modulo `p`.  At `(p,q)=(37,3)`,
+this is exactly the prescribed length-37 compression underlying the local
+`LP(333)` program.  The paper verifies its conjectured uncompression only
+at smaller parameters; it does not construct `LP(333)`, classify the local
+order-three Eisenstein profiles, or close `H(668)`.
+
 ## Exact correspondence
 
 | Local lane | Paper ID and subgroup | Public status | Consequence here |
@@ -53,6 +70,27 @@ The paper does not contain the following deeper ID3 results:
 
 These remain potentially novel but are restricted results within a
 non-necessary fixed-compression branch.
+
+## `q^2`-uncompression overlap
+
+The fixed compression itself must now be attributed to the
+`p q^2` paper.  It is not a local discovery.  The additional restriction by
+the open order-three common multiplier `<10>` is also not a necessary
+condition for an uncompression of that seed.
+
+Within that restricted lane, the checked sources do not contain:
+
+- the explicit dense-shell `h=0` profile with shell `(0,18,6)`;
+- its exact all-37-lag Eisenstein certificate and 12-element formal orbit;
+- the half-turn splitting `36=21+15`;
+- the twelve even quadrics and six odd bilinear equations;
+- the complete 35-family nonidentity global fiber-twist exclusion; or
+- the ternary `[27,15,4]` antisymmetric code and complete exclusion of its
+  three projective minimum directions.
+
+These are plausible new internal results about one open `p=37,q=3`
+uncompression branch.  They are not yet a complete uncompression theorem,
+an `LP(333)`, or an `H(668)`.
 
 ## Search consequence
 
@@ -97,19 +135,32 @@ The April 2026 paper
 Legendre pair](https://arxiv.org/abs/2604.22423) must also be cited before
 claiming priority for formal equivalence groups or lex-leader machinery.
 
-No second July 2026 primary source directly addressing binary `LP(333)` or
-`H(668)` was located in the targeted audit.
+The March 2026
+[Ulam Frontier-HAD report](https://www.ulam.ai/research/frontier-had.pdf)
+already uses `9 x 37` compression, multiplier-orbit search, SAT/SMT, and
+decompression.  Those generic ingredients are prior.  No order-three
+Eisenstein profile, half-turn algebra, or profile-specific fiber-twist
+census was located there.
 
 ## Priority verdict
 
-The five-orbit classification and its second-digit algebra are not
-superseded by the July paper.  Their honest scope is now sharper:
+The five-orbit classification, the new `h=0` profile, and their
+second-digit algebra are not superseded by the checked 2026 papers.  Their
+honest scope is now sharper:
 
 ```text
-new-looking exact structure inside public open subgroup ID3,
+new-looking exact structure inside the p=37,q=3 q^2-uncompression
+and public open subgroup ID3,
 not a classification of the complete ID3 family,
 not an unrestricted Legendre-pair result,
 and not an H(668) construction.
 ```
+
+The isolated `h=0` profile and its half-turn family are not recommended as
+a standalone paper.  Their strongest current role is as sections of a
+complete order-three profile-classification paper.  A stronger publication
+threshold is a complete `h=0` orbit census, extension of the structured
+theorems across every resulting orbit, or a row-margin-compatible lift
+through two consecutive higher digits.
 
 No external contact was made during this audit.

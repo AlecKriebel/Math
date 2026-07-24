@@ -1801,6 +1801,106 @@ proof-assistant-level theorem.
   evidence-backed bounded continuation.
 - No external contact, message, push, or publication occurred.
 
+## 24 July 2026: exact dense-shell `h=0` profile
+
+- The first production prefix of the dense-shell classifier found the
+  explicit profile
+  `A=112445112445`, `B=551741551741`, target `(2,-2,-4,-2)`.
+- An independent dependency-free replay gives `D_0=167` and `D_t=0` for
+  all `t=1,...,36`, shell `(0,18,6)`, stabilizer order two, and orbit size
+  12.
+- The production prefix stopped after 3,979 canonical decorations and is
+  incomplete.  The witness proves profile existence but supplies no orbit
+  count for the dense shell.
+- No labelled `LP(333)` or `H(668)` was obtained.
+
+## 24 July 2026: half-turn lift and asymmetric digit-two point
+
+- The profile half-turn splits the rank-18 first placement fiber into
+  dimensions `21+15`.
+- The 18 active second-digit equations become twelve even quadrics and six
+  odd bilinear equations.  The six odd equations have exactly
+  205,901,492,005,503 common points; this is near the generic `3^30`
+  scale and is not a contraction.
+- Exhausted all 36 global quotient-position fiber pairings.  Seventeen are
+  first-layer inconsistent; eighteen leave dimension nine and have no
+  second-digit point after all `18*3^9=354,294` points are checked; the
+  identity family has dimension 21 and is the publicly excluded
+  order-six multiplier ID8.
+- Found and replayed a canonical asymmetric `y=e_0` point through digit
+  two.  It fails the exact row-margin catalog and zero-column-lag equation,
+  and leaves 13 digit-three rows nonzero.
+- A 300-second exact digit-three solve on the 15-dimensional slice returned
+  `UNKNOWN` after 4,340,808 branches and 177,136 conflicts, with peak RSS
+  175,112,192 bytes.  No obstruction or witness is inferred.
+- A separate all-target row-margin-aware digit-two solve returned `UNKNOWN`
+  after 180 seconds and 2,065,449 branches.
+
+## 24 July 2026: ternary support-and-sign filtration
+
+- In the 27 natural opposite-class pairs, the antisymmetric translation
+  space is a ternary `[27,15,4]` code.  Its complete `3^15` weight census
+  has six minimum words and fourteen weight-five words.
+- Exhausted all six weight-four slices: 266 digit-two points, zero exact
+  row-margin points, and zero digit-three points.  The best third-digit
+  defect is six rows.
+- Exhausted all seven projective weight-five slices: 392 signed digit-two
+  points, zero exact row-margin points, and zero digit-three points.  The
+  best third-digit defect is seven rows.
+- Derived an exact row-margin precursor join.  The fixed eigenspace is a
+  ternary `[27,21]` code with six parity checks; the six local blocks of
+  sizes `3,4,6,4,4,6` join exactly in `Z[F_3^6]`.
+- Anti weight zero has no physical precursor.  Exactly one minimum
+  projective direction reaches row-margin target 34, with 7,346
+  first-digit placements per sign.  Its 87 digit-two placements are
+  disjoint from those physical points.
+- The verifier semantic hash is
+  `2deaa893bb4e6e2f1afa218ae7a1ff8e6d06a036d89cbfd711fe3868bfbfaf11`.
+
+## 24 July 2026: irreducibility of the half-turn pencils
+
+- Tested whether the twelve even quadrics admit a common affine center,
+  invariant block, simultaneous diagonalization, or ordinary field-norm
+  model.
+- The even `x` and `y` center systems both have coefficient/augmented ranks
+  `21/22`, so neither can be homogenized by one translation.
+- Relative polar operators generate the full matrix algebras
+  `M_21(F_3)` and `M_15(F_3)`.
+- On the canonical `y=e_0` asymmetric slice, the twelve restricted polar
+  operators again generate the full `M_15(F_3)`.
+- This exactly rules out the direct invariant-block and one-field
+  trace/norm contractions.  It does not rule out nonlinear or global
+  elimination and does not construct or exclude `LP(333)`.
+
+## 24 July 2026: updated priority boundary
+
+- The 2026 `p q^2` paper of Kotsireas, Gallardo-Cava, Gómez, and
+  Gómez-Pérez is the source of the prescribed
+  `A=[1,3 chi], B=[1,-3 chi]` compression at `(p,q)=(37,3)`.
+- The checked sources do not contain the exact `h=0` profile, its `21+15`
+  algebra, nonidentity global-twist census, or ternary low-weight
+  filtration.  These remain plausible new restricted results inside the
+  public-open order-three subgroup ID3.
+- The isolated profile and family exclusions are not recommended as a
+  standalone paper.  Their proper current role is within a complete
+  dense-shell/order-three profile-classification paper.
+- No external contact, message, push, or publication occurred.
+
+## 24 July 2026: bounded `Phi_28` Eliahou audit
+
+- Stopped the independent `Phi_28` lane without a witness, exclusion,
+  implementation, or repository artifact.
+- Corrected the proposed half-join: self-norm hashes alone lose the
+  bilinear cross terms, and the mod-six removal vector must be retained
+  until the full row is assembled.
+- Over `F_3`, `Phi_28` splits into two degree-six Frobenius orbits and
+  inversion is the third Frobenius power.  Evaluating the full joined
+  element before `u -> u*u^27` gives two `F_27` norm values and a possible
+  729-signature modulo-three sieve.
+- This is only a prospective necessary sieve with nominal `3^6`
+  selectivity.  It has no measured or publication value yet.
+- No external contact, message, push, or publication occurred.
+
 ## 24 July 2026: unconditional integral closure of the sparse-B sector
 
 - Closed the 84 field-norm survivors from the normalized `B`-energy-six

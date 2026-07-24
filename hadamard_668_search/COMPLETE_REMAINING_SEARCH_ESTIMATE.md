@@ -28,8 +28,10 @@ histogram equations directly; constructing the current pairwise-one-hot
 digit-8 CNF would waste essentially all 16 GB of RAM.
 
 Most importantly, failure of all five `h=2` lifts would **not** finish the
-order-three route.  The `h=1` and `h=0` profile shells remain
-unclassified.  They contain exactly 510,384 and 107,476 legal unsigned
+order-three route.  The `h=1` and `h=0` profile shells remain incompletely
+classified.  A production prefix has now found and exactly replayed one
+`h=0` profile orbit, but the unfinished census gives no total orbit count.
+The two shells contain exactly 510,384 and 107,476 legal unsigned
 medium-support masks.  Their mandatory local equation reduces the relevant
 raw signed-medium-skeleton counts to 59,743,488 and 47,730,304, but a
 straight 729-character calculation still costs between 78.35 billion
@@ -546,6 +548,76 @@ profile.
 No honest complete phase-lift cost can be assigned to `h=1,0` until the
 profile classification gives the number and first-digit ranks of its exact
 orbits.
+
+### 3.6 Measured lift geometry of the first exact `h=0` profile
+
+The first production prefix found the exact profile
+
+```text
+A IDs = 1,1,2,4,4,5,1,1,2,4,4,5
+B IDs = 5,5,1,7,4,1,5,5,1,7,4,1
+target  = (2,-2,-4,-2).
+```
+
+It has a profile half-turn and first-layer splitting
+
+```text
+F_3^36 = V+ direct-sum V-,
+dim(V+),dim(V-) = 21,15.
+```
+
+In the 27 natural opposite-class pairs, `V-` is a ternary `[27,15,4]`
+code.  Its complete weight census has six weight-four words and fourteen
+weight-five words.  The second digit splits into twelve even quadrics and
+six odd bilinear equations.  The exact common-zero count of the six odd
+equations is
+
+```text
+205,901,492,005,503.
+```
+
+This is essentially the generic `3^30` scale and is not a contraction.
+Enumerating a generic fixed-anti slice currently takes about four seconds
+in the exact NumPy prototype.  Applying that rate to all `3^15` anti words
+would take roughly 664 one-core days, or 66 ideal ten-core days, merely to
+reach digit two.  This is a measured implementation projection, not a
+lower bound and not a forecast for optimized compiled algebra.
+
+The two smallest anti-weight families have been exhausted:
+
+| anti weight | signed words | signed digit-two points | exact row-margin intersection | best digit-three defect |
+|---:|---:|---:|---:|---:|
+| 4 | 6 | 266 | 0 | 6 rows |
+| 5 | 14 | 392 | 0 | 7 rows |
+
+The row-margin layer is not empty at minimum anti weight.  Anti weight zero
+has no physical precursor, while one projective weight-four direction has
+exactly 7,346 first-digit row-margin placements for each sign.  Its 87
+digit-two points are disjoint from those 7,346 placements.  This is a
+certified low-weight incompatibility, not a whole-profile obstruction.
+
+A separate canonical asymmetric slice contains an exact digit-two point,
+but it fails row margins and leaves 13 digit-three rows nonzero.  A
+300-second compact digit-three solve on its 15 free trits returned
+`UNKNOWN` after 4,340,808 branches.  The all-target row-margin-aware
+digit-two model likewise returned `UNKNOWN` after 180 seconds and
+2,065,449 branches.
+
+An exact algebra audit also rules out the most direct spectral contraction.
+The relative operators of the global `x` and `y` polar pencils generate
+the full algebras `M_21(F_3)` and `M_15(F_3)`.  On the canonical
+asymmetric slice the restricted operators again generate `M_15(F_3)`.
+Neither system has a common affine recentering.  Therefore there is no
+simultaneous invariant-block decomposition or ordinary one-field
+trace/norm model of these quadrics.  This does not rule out nonlinear
+elimination, but it removes the simplest route to making the full search
+finite on this host.
+
+Consequently the complete remaining search for this one `h=0` profile is
+still unestimated at the decisive digit-three layer.  The half-turn
+decomposition provides a natural sharding coordinate and exact low-weight
+certificates, but no complete runtime bound.  Neither the isolated profile
+nor its abundant digit-two points count as convergence toward `LP(333)`.
 
 ## 4. CPU, RAM, and disk planning
 

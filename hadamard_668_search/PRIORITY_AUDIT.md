@@ -600,6 +600,44 @@ unsigned supports, respectively.  Their local signed-skeleton counts are
 certified front-end counts and useful architecture, not a forecast that an
 exact phase lift exists or can be completed in four weeks.
 
+The first dense-shell production prefix has now found an exact `n_9=0`
+profile.  Its two compressed words repeat after six classes, its detached
+correlations vanish at all 36 nonzero lags, and its formal orbit has size
+12.  The result is plausibly new within the checked sources, but the
+classifier stopped before completing the shell.  An isolated necessary
+profile is therefore not a scarcity theorem or a publication-leading
+result.
+
+Its half-turn algebra is stronger.  The first lift splits as `21+15`; the
+second digit becomes twelve even quadrics plus six odd bilinear equations.
+A complete census of 35 nonidentity global fiber-permutation twists leaves
+no second-digit point, while the identity branch is the publicly excluded
+order-six multiplier ID8.  In the natural 27 opposite-class pairs, the
+antisymmetric translation space is a ternary `[27,15,4]` code.  All
+anti-weight-four and anti-weight-five digit-two slices are now exhausted:
+658 signed digit-two points in total, zero exact row-margin intersections,
+and zero digit-three points.  The row-margin precursor count is sharper
+than a timeout: anti weight zero is empty, and one projective weight-four
+direction has exactly 7,346 first-digit physical placements per sign, but
+its 87 digit-two points are disjoint from them.
+
+These appear to be clean new profile-specific theorems, especially the
+support-and-sign code decomposition.  Their honest publication role is a
+substantive section in a complete order-three profile paper, not a
+standalone claim and not evidence that `LP(333)` is close.  A canonical
+asymmetric digit-two point outside the low-weight shells still fails row
+margins and leaves 13 digit-three rows nonzero; its bounded digit-three
+solve is `UNKNOWN`.
+
+The companion irreducibility audit is a rigorous stop result for the most
+obvious algebraic shortcut.  The global relative polar operators generate
+the full matrix algebras in dimensions 21 and 15, and the canonical
+asymmetric restriction again generates the full dimension-15 algebra.
+There is no common affine center or proper invariant block.  This is useful
+supporting negative mathematics, but its publication value is
+methodological: it rules out a contraction ansatz rather than a
+combinatorial family.
+
 For the remaining `n_9=1,0` shells, the six first quadratic correction forms
 generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
 sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss
@@ -842,9 +880,11 @@ bounded higher-digit failures kept as supplementary diagnostics.  The
 unconditional sparse-`B` integral norm closure is the strongest independent
 supporting theorem and should be presented prominently.  The dense-shell
 character kernel passes its arithmetic throughput gate by more than 700
-times, so a complete `n_9=1,0` profile classifier is a credible separate
-paper-scoped continuation; it is not evidence that an exact phase lift or
-`H(668)` is near.
+times, and its first exact `h=0` output now supplies a half-turn/code case
+study.  A complete `n_9=1,0` profile classifier remains the credible
+paper-scoped continuation; the isolated `h=0` profile is not a substitute
+for that census and is not evidence that an exact phase lift or `H(668)` is
+near.
 
 Maintain one compact internal paper organized around:
 
@@ -869,7 +909,9 @@ Maintain one compact internal paper organized around:
    profile-zero, top-four energy-shell exclusions, prime-167 split, exact
    symmetry, the sparse-`B` inert/integral norm closure, the five-orbit
    shell-two classification, exact carry and delayed-origin equations,
-   dense-shell character compression,
+   dense-shell character compression, the first exact `h=0` profile,
+   its `21+15` half-turn algebra, global fiber-twist theorem, and
+   `[27,15,4]` support-and-sign code filtration,
    unit-phase, lossless full-phase four-cone factorization,
    trivial-branch obstruction, factorwise trace/Parseval inversion,
    lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane
