@@ -1448,3 +1448,38 @@ earlier outcomes.
 - **CLAIM BOUNDARY:** the 328 supplied graphs are not asserted to be a
   complete catalog of all order-42 Ramsey graphs. This theorem is not
   global order-43 nonexistence and does not change \(43\le R(5,5)\le46\).
+
+## 2026-07-24T06:02:50Z — Exact 143-orbit anchor extension to degree 18
+
+- **CERTIFIED EXACT COVER AND ENCODING:** extended the global Ramsey-anchor
+  construction to the normalized degree-18 branch without altering any
+  degree-19/20 v1 artifact. For the root partition, \(|A|=18=R(4,4)\)
+  forces an `A` independent four-set despite zero slack, while \(|B|=24\)
+  forces a `B` four-clique.
+- Independently audited the secondary witnesses: \(R(3,5)=14\) forces an
+  `A` triangle and a `B` independent triple. Each meets its opposite-type
+  four-vertex anchor in zero or one vertex, so the disjoint case plus four
+  one-anchor cases make the five selectors per side exhaustive.
+- Re-enumerated all 65,536 cross matrices independently: 35,714 are
+  feasible and form exactly 143 \(S_4\times S_4\) orbits. The canonical
+  representative hash
+  `7ac386a677a64b1bfe00226a73ffca27957cc2aa355b552b008e74b3d170d97e`
+  exactly matches the earlier v1 cover.
+- The lean union has 65,556 variables and 2,061,137 clauses. Its 9,005
+  additions have stream SHA-256
+  `782dd9bfe9d83d74ccf69939e6cbfff5b3060bed29904f0694a20f4bf223e904`.
+  Independent streaming replay matched all 2,052,132 base clauses and every
+  addition. The 90,757,889-byte working CNF has SHA-256
+  `a14a4951041942c01d8787a381c36ca3d094633255a2d134c7879fbec0af78c7`.
+- Plan / plan-check / materialized-check SHA-256:
+  `3c653a20a3d985921a3bf5b1b25b3744dbddb82fa43c278007e256ed5b161934` /
+  `d368da3f32239487917559a3e2b0943d7bdf73200a4b018ed58ed51fa2f00c36` /
+  `be5c00086b5f32e046d25ef0aab24e9c8ab8faa2e6a5195d98388fa3dfaa09cf`.
+  Six focused tests pass, and comparator semantics were exhaustively checked
+  for widths one through eight.
+- The degree-19/20 v1 plan, generator, checker, and tests remain
+  byte-identical at their recorded hashes. Full degree-18 report SHA-256:
+  `e21ca156a4db8c0af29220710631997991c4f4da29ee3b40f8d410807f12112c`.
+- **CLAIM BOUNDARY:** no solver was run and no SAT model, UNSAT conclusion,
+  DRAT, or LRAT was produced. Degree 18 remains unresolved; this checkpoint
+  changes no Ramsey bound.

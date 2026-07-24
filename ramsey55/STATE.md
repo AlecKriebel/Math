@@ -1,12 +1,32 @@
 # Research state
 
-Last updated: 2026-07-23T23:36:47Z.
+Last updated: 2026-07-24T05:49:15Z.
 
 ## Current certified mathematical status
 
 - **CERTIFIED:** `data/exoo42_constructed.canonical.json` is a
   \((5,5;42)\)-graph. Two independent verifier paths find no homogeneous
   five-set, so \(R(5,5)\geq43\).
+- **CERTIFIED, FINITE-CATALOG SCOPE:** among the 328 supplied order-42
+  Ramsey graphs, exactly lines 42 and 256 admit one-vertex extensions with
+  \(E\le2\). The other 326 formulas have checked DRAT proofs. Each
+  exceptional core has exactly two optimum neighborhoods, all with \(E=2\).
+- **CERTIFIED, LOCAL SCOPE:** the full labeled Hamming ball of radius nine
+  around `results/best_candidates/core_kick_seed_20260731.g6` is UNSAT.
+  The independently reconstructed CNF and streamed DRAT-to-LRAT proof both
+  verify. The radius-ten solve timed out and has no mathematical conclusion.
+- **CERTIFIED, FINITE-CORPUS SCOPE:** 22 independently replayed \(E=2\)
+  candidates collapse to three isomorphism classes and two classes modulo
+  complement. Their 88 shared-core deletions collapse to the two catalog
+  classes represented by lines 42 and 256.
+- **CERTIFIED STRUCTURAL SUBCLASS EXCLUSIONS:** eleven prime-order
+  automorphism cycle types are excluded, including all prime-order types
+  with prime at least 23. Fifty-four prime-order types remain uncovered.
+- **CERTIFIED EXACT DECOMPOSITIONS, NOT EXCLUSIONS:** the global root-degree
+  19 and 20 branches each have an independently checked 143-cube
+  \(S_4\times S_4\) anchor cover. The preferred union formulas remain
+  unsolved. The \(3^{14}1\) automorphism type likewise has a checked
+  two-case normalizer quotient but no UNSAT proof.
 - **CERTIFIED:** the fixed Exoo42 graph has no one-vertex extension. All 42
   labeled one-vertex replacements are also impossible, and the first bounded
   two-vertex replacement case (deleting vertices 0 and 1) is impossible.
@@ -66,6 +86,30 @@ and independent C++ bitset verifier reject both graphs.
 
 ## Latest executed experiments
 
+### All-328 \(E\le2\) catalog extension proof census
+
+- Frozen catalog SHA-256
+  `067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb`.
+- 328 independently reconstructed formulas; 8,335,860 clauses in total.
+- SAT with exhaustive full-graph checks on lines 42 and 256 only.
+- 326/326 remaining lines returned UNSAT with DRAT accepted by pinned
+  `drat-trim`; total retained proof size 158,998,676 bytes.
+- End-to-end two-worker runtime 220.9611118 seconds.
+- Result SHA-256
+  `1534f38464bd55180c60981b019258799512595a984011906b8d49a27eef2355`.
+
+### Global exact decomposition pilots
+
+- Degree-19 and degree-20 anchor covers each reduce 35,714 feasible cross
+  matrices to exactly 143 symmetry orbits; both materialized union formulas
+  independently match 2,061,223 clauses.
+- Matched 50,000-conflict MapleChrono pilots exhausted their budgets with no
+  model or proof. The lean formulas were 4.97x and 3.91x faster than the
+  exact-branch baselines.
+- The \(3^{14}1\) automorphism cover and its \(m=6,7\) greedy normalizer
+  quotients independently validate. All completed solves exhausted budgets;
+  two later jobs ended on external signal 15. No exclusion follows.
+
 ### Restricted constructive search
 
 - Seed 20260726; four restarts; 75,000 moves per restart
@@ -96,6 +140,13 @@ and independent C++ bitset verifier reject both graphs.
 - **CONJECTURE OR HEURISTIC:** the repeated four-vertex overlap after 135
   boundary changes is a structural obstruction rather than an accident of
   one search trajectory.
+- **CERTIFIED FINITE-CORPUS STRUCTURE:** the apparent plateau is exactly two
+  complement classes in the retained 22-candidate corpus, and each
+  exceptional supplied order-42 core has only two optimum extensions.
+- **CONJECTURE OR HEURISTIC:** deleting vertices from the shared-conflict
+  cores and solving exact three-vertex replacement problems is more likely
+  to cross the structural basin boundary than additional single-edge or
+  neutral-cycle search.
 - **CERTIFIED LOCAL CONSEQUENCE:** arbitrary rewiring of the six-vertex
   boundary cannot work unless at least seven of the 666 original core edges
   also change.
@@ -121,6 +172,14 @@ and independent C++ bitset verifier reject both graphs.
    fixed core edges.
 10. One preregistered proof-core-guided cut at the first admissible shell,
     radius seven.
+11. Stratified search from 22 catalog seeds, conflict-block walks, exact
+    neutral-cycle auditing, and a complete current-conflict \(E\le4\) atomic
+    barrier scan.
+12. Full-graph Hamming certificates through radius nine; radius ten timed
+    out under its frozen cap.
+13. Exact \(E\le2\) extension classification over all 328 supplied cores.
+14. Exact root-degree 19/20 anchor covers and prime-automorphism quotient
+    encodings.
 
 ## Strategies rejected or paused
 
@@ -131,17 +190,27 @@ and independent C++ bitset verifier reject both graphs.
   timeout was a solver limitation, not evidence about satisfiability.
 - A blind aggregate radius-seven Glucose budget increase is paused after the
   strict 120-second replay timed out. The timeout makes no UNSAT claim.
+- Radius ten is paused after its 300-second Glucose replay timed out on the
+  independently checked formula.
+- Blind conflict-block and neutral-cycle budget increases are paused because
+  exact auditing showed that all retained \(E=2\) starts occupy only two
+  complement classes with closed low-barrier regions under the tested moves.
 - An interrupted CaDiCaL radius-seven attempt is an infrastructure failure
   because that wrapper did not support limited interruption; it is not a
   mathematical result.
 
 ## Next selected experiment
 
-Build a small preregistered portfolio of radius-seven cuts chosen by
-complementary rules: proof-core occurrence rank, vertex coverage, low overlap,
-and deterministic diversity. For each cut, free the same 237 boundary edges
-plus exactly seven core edges, reconstruct the CNF independently, and use the
-pinned proof pipeline. A SAT model will be exported and checked as a full
-graph; each UNSAT result will remain scoped to its exact 659-edge fixed core.
-The already executed top-ranked cut is the first portfolio member and is
-certified UNSAT.
+Run two constructive exact-completion programs in parallel:
+
+1. From one representative of each certified \(E=2\) complement class,
+   delete vertex triples and add three unconstrained vertices, screening the
+   resulting 40-vertex fixed cores for a genuine order-43 completion.
+2. Extend the moving-boundary track beyond the completed seven- and
+   eight-incident-vertex screens with a preregistered, structurally diverse
+   portfolio of wider incident boundaries.
+
+Any SAT result will be exported immediately and checked by both independent
+graph verifiers. Unchecked negative solver results remain observations. In
+parallel, finish the order-five automorphism certificate attempt and retain
+only proof-checked exclusions.
