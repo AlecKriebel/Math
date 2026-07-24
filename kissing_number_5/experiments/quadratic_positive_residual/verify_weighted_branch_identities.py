@@ -8,6 +8,15 @@ import itertools
 import json
 
 
+class VerificationError(Exception):
+    """Raised when an exact weighted-branch check fails."""
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise VerificationError(message)
+
+
 def matrix_multiply(left: list[list[Q]], right: list[list[Q]]) -> list[list[Q]]:
     return [
         [
@@ -49,7 +58,7 @@ def d5_gram() -> tuple[list[tuple[int, int, int, int]], list[list[Q]]]:
             )
             row.append(Q(numerator, 2))
         gram.append(row)
-    assert len(roots) == 40
+    require(len(roots) == 40, "D5 root enumeration must have size 40")
     return roots, gram
 
 
@@ -82,16 +91,20 @@ def verify_design(
     gram: list[list[Q]], p: list[Q]
 ) -> dict[str, object]:
     size = len(gram)
-    assert sum(p) == 1
-    assert all(value >= 0 for value in p)
+    require(len(p) == size, "weight vector has wrong length")
+    require(sum(p) == 1, "weights do not sum to one")
+    require(all(value >= 0 for value in p), "weights must be nonnegative")
     gp = [
         sum((gram[i][j] * p[j] for j in range(size)), Q(0))
         for i in range(size)
     ]
-    assert gp == [Q(0)] * size
+    require(gp == [Q(0)] * size, "weighted first moment is nonzero")
     pg = [[p[i] * gram[i][j] for j in range(size)] for i in range(size)]
     gpg = matrix_multiply(gram, pg)
-    assert gpg == [[value / 5 for value in row] for row in gram]
+    require(
+        gpg == [[value / 5 for value in row] for row in gram],
+        "weighted second-moment Gram identity failed",
+    )
 
     identity = [
         [Q(1) if i == j else Q(0) for j in range(size)]
@@ -107,7 +120,7 @@ def verify_design(
         sum((b[i][j] * p[j] for j in range(size)), Q(0))
         for i in range(size)
     ]
-    assert bp == [1 + value for value in p]
+    require(bp == [1 + value for value in p], "Bp=1+p identity failed")
     bpb = matrix_multiply(matrix_multiply(b, diagonal_p), b)
     pb = matrix_multiply(diagonal_p, b)
     bp_matrix = matrix_multiply(b, diagonal_p)
@@ -119,7 +132,7 @@ def verify_design(
         (Q(7, 5), ones),
         (Q(-2, 5), b),
     )
-    assert bpb == right
+    require(bpb == right, "weighted B P B identity failed")
     return {
         "support": sum(value > 0 for value in p),
         "distinct_weights": sorted({str(value) for value in p}),
@@ -133,36 +146,55 @@ def verify() -> dict[str, object]:
         for i in range(6)
     ]
     simplex = verify_design(simplex_gram, [Q(1, 6)] * 6)
-    assert simplex["support"] == 6
-    assert simplex["maximum_weight"] == "1/6"
+    require(simplex["support"] == 6, "simplex support is not six")
+    require(simplex["maximum_weight"] == "1/6", "simplex weight is wrong")
 
     roots, gram = d5_gram()
-    assert max(
-        gram[i][j]
-        for i in range(40)
-        for j in range(40)
-        if i != j
-    ) == Q(1, 2)
+    require(
+        max(
+            gram[i][j]
+            for i in range(40)
+            for j in range(40)
+            if i != j
+        )
+        == Q(1, 2),
+        "D5 Gram matrix violates the claimed kissing threshold",
+    )
     full = verify_design(gram, weights(roots, Q(1, 200)))
     sparse = verify_design(gram, weights(roots, Q(1, 40)))
     sparse_twelve = verify_design(gram, sparse_twelve_weights())
-    assert full == {
-        "support": 40,
-        "distinct_weights": ["1/40", "1/50", "3/100"],
-        "maximum_weight": "3/100",
-    }
-    assert sparse["support"] == 32
-    assert sparse_twelve == {
-        "support": 12,
-        "distinct_weights": ["0", "1/10", "1/20"],
-        "maximum_weight": "1/10",
-    }
+    require(
+        full
+        == {
+            "support": 40,
+            "distinct_weights": ["1/40", "1/50", "3/100"],
+            "maximum_weight": "3/100",
+        },
+        "full-support D5 weighting audit failed",
+    )
+    require(sparse["support"] == 32, "32-support D5 weighting audit failed")
+    require(
+        sparse_twelve
+        == {
+            "support": 12,
+            "distinct_weights": ["0", "1/10", "1/20"],
+            "maximum_weight": "1/10",
+        },
+        "12-support D5 weighting audit failed",
+    )
 
     # Universal constants from the variance and depth arguments.
-    assert Q(1, 6) < Q(1, 5)
-    assert (Q(1, 5) - Q(1, 50)) / (2 * (1 - Q(1, 50))) == Q(9, 98)
+    require(Q(1, 6) < Q(1, 5), "maximum-weight comparison failed")
+    require(
+        (Q(1, 5) - Q(1, 50)) / (2 * (1 - Q(1, 50)))
+        == Q(9, 98),
+        "universal deep-mass constant is wrong",
+    )
     uniform_41 = Q(1, 41)
-    assert (1 - 6 * uniform_41) / 12 == Q(35, 492)
+    require(
+        (1 - 6 * uniform_41) / 12 == Q(35, 492),
+        "uniform one-fifth-deep-mass constant is wrong",
+    )
     return {
         "status": "PASS",
         "sharp_regular_simplex": simplex,

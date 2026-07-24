@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T08:06:40Z
+Last updated: 2026-07-24T08:40:54Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -271,6 +271,15 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   stored direct \(K_6\)--\(K_{11}\) and product \(K_6,K_7\) lifts.  This is
   a genuine overlap obstruction, but it excludes named marginals only; the
   continuous family of alternative rank-five lifts remains unclassified.
+- **Exact degree-two repair:** a positive rational 73-atom mixture of
+  rank-five \(K_6\) atoms matches the fixed centered triangle marginal and
+  makes the complete 18-dimensional symmetric rooted-edge block through
+  degree two PSD.  It has rank seven, with exactly the 11 forced centering
+  identities as its radical; all 127 quotient principal minors and an
+  independent exact \(LDL^{\mathsf T}\) audit are positive.  Thus neither
+  the first separating row nor any degree-two row on an independently
+  sampled \(K_6\) eliminates the marginal.  Root-triangle \(K_7\) overlap
+  and degree three are now active.
 - **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
   continuous pair/triple domain while coupling overlapping local subsets, or
   add a genuinely global moment-PSD/common-source invariant.  Raising only
@@ -293,7 +302,8 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `experiments/four_point_depth_projection/k7_product_audit/README.md`;
   `experiments/continuous_four_point_moment/README.md`;
   `experiments/continuous_four_point_moment/FACTORIAL_HIERARCHY.md`;
-  `experiments/global_flag_exchangeability/README.md`.
+  `experiments/global_flag_exchangeability/README.md`;
+  `experiments/global_flag_reoptimization/README.md`.
   Patched
   discovery-only second-level Lasserre runs give objectives 90 at degree 4
   and 48 at degrees 6 and 8; these are numerical evidence only.
@@ -458,13 +468,34 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   consequences do not close it.
   Proving a quadratic-positive-locus occupancy theorem would only force this
   weighted branch and would not complete the upper bound.
+- **Distance/stress strengthening and exact barriers:** the full quadratic
+  identity itself recovers rank five.  With \(D=2(J-G)\),
+  \(Dp=2{\bf1}\), \(DPD=(24/5)J-(2/5)D\), and
+  \(P^{1/2}DP^{1/2}\) has spectrum
+  \(\{2,(-2/5)^5,0\}\).  Naimark stress gives all-subset and pair-weight
+  inequalities.  Carathéodory leaves support 6--20; supports 6--10 occur
+  as orthogonal simplex unions, and an exact \(D_5\) weighting has support
+  12 with 28 zero-weight extensions.  A rational 25-code refutes a
+  universal row-energy ceiling \(41/5\).  On that actual 12-root support,
+  29 exact ternary formal extension profiles pass all one-/two-point
+  moments, tail bounds, pair kissing inequalities, and all
+  support-support-zero \(3\times3\) Gram determinants, but have rank seven.
+  Exact projection positivity now expresses the missing condition for each
+  profile \(h\) by one equality,
+  \(h^{\mathsf T}PSPh=1/25\), under
+  \(h^{\mathsf T}Ph=1/5\).  Equality is equivalent to realization by a unit
+  vector in the support span, and it eliminates 27 of those 29 profiles.
+  The live gap is a continuous cardinality bound for profiles satisfying
+  this equality jointly with the pairwise kissing inequalities.
 - **Additional artifacts:** `proofs/lorentzian_inertia_graph.md`;
   `certificates/lorentzian_rank6_interval_countermodel.json`;
   `verifiers/verify_lorentzian_inertia_graph.py`;
   `proofs/centered_tight_frame_endpoint/README.md`;
   `experiments/perron_robust_depth_hybrid/proof.md`;
   `experiments/universal_weighted_centering/README.md`;
-  `experiments/quadratic_positive_residual/weighted_branch_audit.md`.
+  `experiments/quadratic_positive_residual/weighted_branch_audit.md`;
+  `experiments/weighted_common_source_attack/proof.md`;
+  `experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md`.
 - **Restrictions:** None intended.
 - **Status:** active.
 

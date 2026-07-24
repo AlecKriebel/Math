@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T08:06:40Z
+Last updated: 2026-07-24T08:40:54Z
 
 ## Rigorous bounds
 
@@ -66,8 +66,19 @@ The upper bounds at \(r=15,16,17,18\) are \(41,33,27,23\), respectively.  Every
 odd harmonic moment also receives contributions only from the
 \(41-2r\) unpaired core points.  See
 [`proofs/antipodal_deep_graph_coupling.md`](proofs/antipodal_deep_graph_coupling.md).
-This kills the latest high-antipode pseudo-witness branch but has not yet
-excluded every value of \(r\).
+At the endpoint \(r=18\), equality forces
+\(H=18K_2\sqcup C_5\).  A new weighted projective-harmonic argument proves
+for its five cycle products \(s_i<-1/2\) that
+\[
+\sum_{i=1}^5\frac{64}{45}s_i^2(4s_i^2-1)\ge\frac{64}{9}.
+\]
+An independent exact derivation checked every ordered/unordered factor and
+the arbitrary-weight extension.  In particular some
+\[
+s_i\le-\sqrt{\frac{1+\sqrt{17}}8}
+      =-0.8002425902\ldots .
+\]
+This sharply localizes, but does not yet eliminate, the 18-antipode branch.
 
 Independently, tangent projection plus an exact rational \(S^3\) Delsarte
 polynomial proves that every anchor has at most 23 neighbors at height at
@@ -172,6 +183,41 @@ and an exact 41-vertex graph model passes all current local weight/count
 inequalities.  See
 [`experiments/quadratic_positive_residual/weighted_branch_audit.md`](experiments/quadratic_positive_residual/weighted_branch_audit.md).
 
+The full quadratic identity is stronger than the rank constraint: factoring
+\(G=XX^{\mathsf T}\) shows \(X^{\mathsf T}PX=I/5\), and tracing forces
+\(\operatorname{rank}G=5\), even with zero weights.  In squared-distance
+coordinates \(D=2(J-G)\),
+\[
+Dp=2{\bf1},\qquad DPD=\frac{24}{5}J-\frac25D,
+\]
+so \(P^{1/2}DP^{1/2}\) has spectrum
+\(\{2,(-2/5)^5,0\}\).  The complementary Naimark stress gives exact subset
+and pair-weight inequalities.  For a zero-weight code point the support
+mass below \(-1/50\) is at least \(19/147\), and the mass above \(1/50\)
+is at least \(1/4\).
+
+These improvements expose the next gap rather than close it.  An exact
+25-point rational code refutes the tempting universal row-energy ceiling
+\(41/5\).  More decisively, the actual 12-root \(D_5\) support admits 29
+formal zero-point profiles satisfying every scalar moment, strict-tail,
+pairwise kissing, and support-support-zero \(3\times3\) Gram test.  Their
+profile rank is seven rather than five.  Thus the first missing condition
+is common column-space compatibility.  This condition now has a compact
+exact scalar form.  If \(S\) is the weighted support Gram matrix and \(h\)
+is a proposed support-height profile with \(h^{\mathsf T}Ph=1/5\), then
+\[
+h^{\mathsf T}PSPh\le\frac1{25},\qquad
+\frac1{25}-h^{\mathsf T}PSPh
+ =\frac15\left\|(I-5P^{1/2}SP^{1/2})P^{1/2}h\right\|^2.
+\]
+Equality holds exactly when \(h\) is realized by a unit vector in the
+common five-dimensional support span.  It kills 27 of the 29 formal
+profiles above, but does not yet bound the number of jointly realizable
+profiles.  See
+[`experiments/weighted_common_source_attack/proof.md`](experiments/weighted_common_source_attack/proof.md)
+and
+[`experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md`](experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md).
+
 An independent global-overlap mechanism is also exact.  For any rooted
 two-extension feature \(f_{ij}(A)\), the hypergeometrically reweighted
 local square on a sampled \(k\)-set has expectation
@@ -185,6 +231,16 @@ specific local pseudo-measures are not globally exchangeable, even as real
 symmetric arrays.  It does not yet exclude all continuous rank-five local
 lifts.  See
 [`experiments/global_flag_exchangeability/README.md`](experiments/global_flag_exchangeability/README.md).
+Indeed, an exact positive 73-atom rank-five \(K_6\) mixture repairs the
+entire centered symmetric degree-at-most-two rooted-edge block: its
+18-dimensional matrix is PSD of rank seven, with precisely the 11 forced
+centering identities in its radical.  Root-triangle \(K_7\) overlap or
+higher degree is therefore essential.
+
+All proof-critical checkers touched in this round were also run under
+optimized Python.  The cap, weighted, support-six, and rooted-flag verifiers
+now use always-on exceptions and include deliberate-tamper tests; ordinary
+and `python -O` suites agree.
 
 Deletion-six robustness also forces two disjoint inclusion-minimal positive
 circuits, each with between two and six points, and therefore two disjointly

@@ -78,6 +78,10 @@ python3 -m unittest discover \
   -s experiments/quadratic_positive_residual -p 'test_*.py' -v
 ```
 
+The exact verifiers use always-on exceptions.  The tests also execute
+valid and deliberately invalid inputs under `python -O`, ensuring that
+optimized mode cannot erase proof-critical checks.
+
 Numerical scans:
 
 ```sh

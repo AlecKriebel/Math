@@ -12,6 +12,7 @@ import itertools
 import json
 import math
 from pathlib import Path
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -32,9 +33,21 @@ EXPECTED_POLYNOMIAL = Q(
 EXPECTED_HG = Q(-746187, 5)
 
 
-def polynomial_audit() -> Q:
-    assert hashlib.sha256(SOURCE.read_bytes()).hexdigest() == EXPECTED_HASH
-    data = json.loads(SOURCE.read_text())
+class VerificationError(Exception):
+    """Raised when the independent exact audit fails."""
+
+
+def require(condition, message):
+    if not condition:
+        raise VerificationError(message)
+
+
+def polynomial_audit(source=SOURCE) -> Q:
+    require(
+        hashlib.sha256(source.read_bytes()).hexdigest() == EXPECTED_HASH,
+        "source hash mismatch",
+    )
+    data = json.loads(source.read_text())
     atoms = data["atoms"]
     key = next(key for key in atoms[0] if key.startswith("edge_color_indices"))
     ps = tuple(itertools.combinations(range(7), 2))
@@ -132,27 +145,39 @@ def abstract_sampling_audit():
                     * values[second]
                 )
         accumulated += local
-    assert accumulated / len(samples) == global_square
+    require(
+        accumulated / len(samples) == global_square,
+        "abstract finite-sampling identity failed",
+    )
+
+
+def verify(source=SOURCE):
+    abstract_sampling_audit()
+    polynomial = polynomial_audit(source)
+    coarse = coarse_hg_audit()
+    require(
+        polynomial == EXPECTED_POLYNOMIAL and polynomial < 0,
+        "K7 polynomial audit value mismatch or nonnegative",
+    )
+    require(
+        coarse == EXPECTED_HG and coarse < 0,
+        "coarse H/G audit value mismatch or nonnegative",
+    )
+    return {
+        "status": "PASS",
+        "abstract_sampling_identity": "PASS",
+        "K7_product_53_polynomial_row": str(polynomial),
+        "continuous_counteratom_H_G_row": str(coarse),
+    }
 
 
 def main():
-    abstract_sampling_audit()
-    polynomial = polynomial_audit()
-    coarse = coarse_hg_audit()
-    assert polynomial == EXPECTED_POLYNOMIAL < 0
-    assert coarse == EXPECTED_HG < 0
-    print(
-        json.dumps(
-            {
-                "status": "PASS",
-                "abstract_sampling_identity": "PASS",
-                "K7_product_53_polynomial_row": str(polynomial),
-                "continuous_counteratom_H_G_row": str(coarse),
-            },
-            indent=2,
-            sort_keys=True,
-        )
+    require(
+        len(sys.argv) <= 2,
+        "usage: independent_flag_audit.py [K7-source]",
     )
+    source = Path(sys.argv[1]) if len(sys.argv) == 2 else SOURCE
+    print(json.dumps(verify(source), indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

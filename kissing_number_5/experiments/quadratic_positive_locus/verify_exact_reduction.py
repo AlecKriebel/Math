@@ -20,6 +20,15 @@ HERE = Path(__file__).resolve().parent
 CERTIFICATE = HERE / "exact_reduction_certificate.json"
 
 
+class VerificationError(Exception):
+    """Raised when the exact positive-locus reduction audit fails."""
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise VerificationError(message)
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -36,64 +45,116 @@ def q_plus(t: Q, beta: Q) -> Q:
     return 5 * t * t - 1 + beta * t
 
 
-def verify() -> dict[str, object]:
-    data = json.loads(CERTIFICATE.read_text())
-    assert data["status"].startswith("PROVED REDUCTION")
-    assert data["dimension"] == 5
-    assert data["hypothetical_code_size"] == 41
+def verify(certificate_path: Path = CERTIFICATE) -> dict[str, object]:
+    data = json.loads(certificate_path.read_text())
+    require(
+        data["status"].startswith("PROVED REDUCTION"),
+        "unexpected certificate status",
+    )
+    require(data["dimension"] == 5, "wrong dimension")
+    require(data["hypothetical_code_size"] == 41, "wrong code size")
 
     cap = data["robust_cap"]
-    assert Q(cap["minimum_height"]) == -Q(1, 50)
-    assert cap["maximum_occupancy"] == 39 < 41
+    require(Q(cap["minimum_height"]) == -Q(1, 50), "wrong cap height")
+    require(
+        cap["maximum_occupancy"] == 39 and 39 < 41,
+        "wrong cap occupancy",
+    )
+    require(
+        cap["source_certificate"]
+        == (
+            "experiments/quadratic_positive_locus/"
+            "enlarged_cap_minus_1_over_50_certificate.json"
+        ),
+        "unexpected source certificate",
+    )
     source = ROOT / cap["source_certificate"]
-    assert source.is_file()
-    assert sha256(source) == cap["source_certificate_sha256"]
+    require(source.is_file(), "source certificate is missing")
+    require(
+        sha256(source) == cap["source_certificate_sha256"],
+        "source certificate hash mismatch",
+    )
+    require(
+        cap["source_certificate_sha256"]
+        == "c39b937146c515988f408662b388a6b1d4d9f116798dafadd58dcc8509d841df",
+        "unexpected source certificate hash",
+    )
     source_data = json.loads(source.read_text())
-    assert source_data["status"] == "COMPUTATIONALLY CERTIFIED"
-    assert Q(source_data["minimum_height"]) == -Q(1, 50)
-    assert Q(source_data["resulting_real_objective"]) < 40
-    assert source_data["resulting_integer_bound"] == 39
+    require(
+        source_data["status"] == "COMPUTATIONALLY CERTIFIED",
+        "unexpected source status",
+    )
+    require(
+        Q(source_data["minimum_height"]) == -Q(1, 50),
+        "source cap height mismatch",
+    )
+    require(
+        Q(source_data["resulting_real_objective"]) < 40,
+        "source objective is not below 40",
+    )
+    require(
+        source_data["resulting_integer_bound"] == 39,
+        "source integer bound mismatch",
+    )
 
     canonical = data["canonical_normalization"]
-    assert Q(canonical["largest_eigenvalue"]) == 1
-    assert [Q(value) for value in canonical["ordered_eigenvalue_interval"]] == [
-        -4,
-        1,
-    ]
-    assert [
-        Q(value) for value in canonical["linear_norm_residual_interval"]
-    ] == [0, 50]
+    require(
+        Q(canonical["largest_eigenvalue"]) == 1,
+        "wrong largest-eigenvalue normalization",
+    )
+    require(
+        [Q(value) for value in canonical["ordered_eigenvalue_interval"]]
+        == [-4, 1],
+        "wrong eigenvalue interval",
+    )
+    require(
+        [Q(value) for value in canonical["linear_norm_residual_interval"]]
+        == [0, 50],
+        "wrong residual linear-norm interval",
+    )
 
     # At ||b||=50, q(x)>0 and x^T A x<=1 force
     # <b/||b||,x> > -1/50.  The inequality is strict even at the endpoint.
     b_norm = Q(50)
     cap_floor = -Q(1, 50)
-    assert 1 + b_norm * cap_floor == 0
+    require(1 + b_norm * cap_floor == 0, "linear cap endpoint mismatch")
 
     # The lowest possible eigenvalue after lambda_max=1 and trace(A)=0 is
     # -4: four other eigenvalues can contribute at most four.
     dimension = data["dimension"]
-    assert -(dimension - 1) == -4
+    require(-(dimension - 1) == -4, "lowest eigenvalue bound mismatch")
 
     families = data["axisymmetric_families"]
     beta_transition = Q(4)
     # Both root transitions occur at an endpoint t=+/-1.
-    assert q_minus(Q(1), beta_transition) == 0
-    assert q_plus(Q(-1), beta_transition) == 0
+    require(
+        q_minus(Q(1), beta_transition) == 0,
+        "q-minus transition is wrong",
+    )
+    require(
+        q_plus(Q(-1), beta_transition) == 0,
+        "q-plus transition is wrong",
+    )
 
     # q_-(t) has its lower root at -1/50 precisely at beta=499/10.
     beta_robust = Q(499, 10)
-    assert q_minus(-Q(1, 50), beta_robust) == 0
-    assert beta_robust < 50
-    assert (
+    require(
+        q_minus(-Q(1, 50), beta_robust) == 0,
+        "q-minus robust threshold is wrong",
+    )
+    require(beta_robust < 50, "q-minus threshold must be below 50")
+    require(
         families["belt_to_cap"]["certified_occupancy_39_range"]
-        == "beta >= 499/10"
+        == "beta >= 499/10",
+        "wrong q-minus certified range",
     )
 
     # q_+(t), beta>=4, is positive only above its positive root, hence in
     # the open northern hemisphere and therefore in the robust cap.
-    assert families["two_caps_to_cap"]["certified_occupancy_39_range"] == (
-        "beta >= 4"
+    require(
+        families["two_caps_to_cap"]["certified_occupancy_39_range"]
+        == "beta >= 4",
+        "wrong q-plus certified range",
     )
 
     return {

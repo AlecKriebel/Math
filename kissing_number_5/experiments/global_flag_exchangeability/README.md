@@ -196,3 +196,7 @@ PYTHONPATH=. python3 -m unittest \
   experiments.global_flag_exchangeability.test_global_flag_exchangeability \
   -v
 ```
+
+Both proof checkers use always-on verification exceptions rather than
+Python `assert`.  The test suite runs each checker under `python -O` and
+also verifies that optimized mode rejects a deliberately tampered input.

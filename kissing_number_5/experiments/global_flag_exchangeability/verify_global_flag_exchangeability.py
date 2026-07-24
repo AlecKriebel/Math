@@ -14,6 +14,7 @@ import itertools
 import json
 import math
 from pathlib import Path
+import sys
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -97,6 +98,15 @@ SOURCES = (
 EDGE_KEY_PREFIX = "edge_color_indices"
 
 
+class VerificationError(Exception):
+    """Raised when an exact certificate check fails."""
+
+
+def require(condition, message):
+    if not condition:
+        raise VerificationError(message)
+
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -109,13 +119,16 @@ def infer_size(edge_count: int) -> int:
     size = 0
     while size * (size - 1) // 2 < edge_count:
         size += 1
-    assert size * (size - 1) // 2 == edge_count
+    require(
+        size * (size - 1) // 2 == edge_count,
+        "edge count is not triangular",
+    )
     return size
 
 
 def edge_key(atom: dict[str, object]) -> str:
     keys = [key for key in atom if key.startswith(EDGE_KEY_PREFIX)]
-    assert len(keys) == 1
+    require(len(keys) == 1, "atom does not have one edge-color field")
     return keys[0]
 
 
@@ -193,10 +206,13 @@ def scaled_polynomial_flag_value(
 def evaluate_pseudodistribution(path: Path, expected_hash: str) -> Q:
     """Evaluate the continuous polynomial flag square at N=41 exactly."""
 
-    assert sha256(path) == expected_hash
+    require(sha256(path) == expected_hash, f"source hash mismatch: {path}")
     data = json.loads(path.read_text())
     atoms = data["atoms"]
-    assert sum((Q(atom["weight"]) for atom in atoms), Q(0)) == 1
+    require(
+        sum((Q(atom["weight"]) for atom in atoms), Q(0)) == 1,
+        f"source weights do not sum to one: {path}",
+    )
     key = edge_key(atoms[0])
     size = infer_size(len(atoms[0][key]))
     residual_count = size - 2
@@ -209,9 +225,12 @@ def evaluate_pseudodistribution(path: Path, expected_hash: str) -> Q:
     }
     total_scaled = Q(0)
     for atom in atoms:
-        assert edge_key(atom) == key
+        require(edge_key(atom) == key, "inconsistent atom edge field")
         edges = tuple(atom[key])
-        assert len(edges) == size * (size - 1) // 2
+        require(
+            len(edges) == size * (size - 1) // 2,
+            "atom has the wrong edge count",
+        )
         lookup = edge_lookup(edges, size)
         atom_sums = [0, 0, 0]
         for first_root, second_root in itertools.permutations(
@@ -240,7 +259,7 @@ def d5_vectors():
             vector[first] = first_sign
             vector[second] = second_sign
             result.append(tuple(vector))
-    assert len(result) == 40
+    require(len(result) == 40, "D5 construction does not have 40 vectors")
     return tuple(result)
 
 
@@ -346,20 +365,29 @@ def rational_rank(matrix: tuple[tuple[Q, ...], ...]) -> int:
 
 def verify_continuous_atom_geometry():
     gram = tuple(tuple(Q(entry) for entry in row) for row in CONTINUOUS_ATOM)
-    assert all(gram[index][index] == 1 for index in range(7))
-    assert all(
-        gram[first][second] == gram[second][first] <= Q(1, 2)
-        for first in range(7)
-        for second in range(first + 1, 7)
+    require(
+        all(gram[index][index] == 1 for index in range(7)),
+        "continuous atom does not have unit diagonal",
     )
-    assert rational_rank(gram) == 5
+    require(
+        all(
+            gram[first][second] == gram[second][first] <= Q(1, 2)
+            for first in range(7)
+            for second in range(first + 1, 7)
+        ),
+        "continuous atom is not symmetric or violates the kissing bound",
+    )
+    require(rational_rank(gram) == 5, "continuous atom rank is not five")
     for size in range(1, 8):
         for subset in itertools.combinations(range(7), size):
             principal = tuple(
                 tuple(gram[first][second] for second in subset)
                 for first in subset
             )
-            assert determinant(principal) >= 0
+            require(
+                determinant(principal) >= 0,
+                f"negative continuous-atom principal minor on {subset}",
+            )
     return gram
 
 
@@ -419,25 +447,45 @@ def continuous_atom_hg_row() -> Q:
     )
 
 
-def main():
-    expected = json.loads(CERTIFICATE.read_text())
+def verify(certificate_path=CERTIFICATE):
+    expected = json.loads(certificate_path.read_text())
+    require(
+        expected.get("schema") == "kissing5.global_flag_exchangeability.v1",
+        "unexpected certificate schema",
+    )
+    require(expected.get("target_cardinality") == 41, "wrong target size")
     results = {}
     for name, path, expected_hash in SOURCES:
         value = evaluate_pseudodistribution(path, expected_hash)
-        assert value == Q(expected["pseudodistributions"][name]["value"])
-        assert value < 0
+        require(
+            value == Q(expected["pseudodistributions"][name]["value"]),
+            f"stored pseudodistribution value mismatch for {name}",
+        )
+        require(value < 0, f"row is not negative for {name}")
         results[name] = str(value)
 
     d5_value = d5_polynomial_square()
-    assert d5_value == Q(expected["D5"]["direct_global_square"])
-    assert d5_value > 0
+    require(
+        d5_value == Q(expected["D5"]["direct_global_square"]),
+        "stored D5 square mismatch",
+    )
+    require(d5_value > 0, "D5 positive control is not positive")
 
     gram = verify_continuous_atom_geometry()
     qe_value = continuous_atom_qe_row(gram)
     hg_value = continuous_atom_hg_row()
-    assert qe_value == Q(expected["continuous_counteratom"]["q_times_e_row"])
-    assert hg_value == Q(expected["continuous_counteratom"]["H_G_row"])
-    assert qe_value < 0 and hg_value < 0
+    require(
+        qe_value == Q(expected["continuous_counteratom"]["q_times_e_row"]),
+        "stored continuous q-times-e value mismatch",
+    )
+    require(
+        hg_value == Q(expected["continuous_counteratom"]["H_G_row"]),
+        "stored continuous H/G value mismatch",
+    )
+    require(
+        qe_value < 0 and hg_value < 0,
+        "continuous counteratom rows are not both negative",
+    )
 
     report = {
         "status": "PASS",
@@ -454,7 +502,16 @@ def main():
         },
         "negative_pseudodistribution_rows": results,
     }
-    print(json.dumps(report, indent=2, sort_keys=True))
+    return report
+
+
+def main():
+    require(
+        len(sys.argv) <= 2,
+        "usage: verify_global_flag_exchangeability.py [certificate]",
+    )
+    certificate_path = Path(sys.argv[1]) if len(sys.argv) == 2 else CERTIFICATE
+    print(json.dumps(verify(certificate_path), indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":

@@ -10,6 +10,15 @@ from fractions import Fraction as Q
 import json
 
 
+class VerificationError(Exception):
+    """Raised when the exact graph-and-weight countermodel check fails."""
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise VerificationError(message)
+
+
 def verify() -> dict[str, object]:
     number = 41
     weights = [Q(1, number)] * number
@@ -22,16 +31,35 @@ def verify() -> dict[str, object]:
         }
         for vertex in range(number)
     ]
-    assert sum(weights) == 1
-    assert all(weight <= Q(1, 6) for weight in weights)
+    require(sum(weights) == 1, "weights do not sum to one")
+    require(
+        all(weight <= Q(1, 6) for weight in weights),
+        "individual weight bound failed",
+    )
     for vertex, neighbors in enumerate(deep_neighbors):
-        assert len(neighbors) == 4 >= 2
-        assert all(vertex in deep_neighbors[neighbor] for neighbor in neighbors)
-        assert sum(weights[neighbor] for neighbor in neighbors) == Q(4, 41)
-        assert Q(4, 41) >= Q(9, 98)
+        require(
+            len(neighbors) == 4 and len(neighbors) >= 2,
+            f"wrong deep degree at vertex {vertex}",
+        )
+        require(
+            all(vertex in deep_neighbors[neighbor] for neighbor in neighbors),
+            f"deep adjacency is not symmetric at vertex {vertex}",
+        )
+        require(
+            sum(weights[neighbor] for neighbor in neighbors) == Q(4, 41),
+            f"wrong deep mass at vertex {vertex}",
+        )
+        require(Q(4, 41) >= Q(9, 98), "universal deep-mass bound failed")
         required_one_fifth_mass = (1 - 6 * weights[vertex]) / 12
-        assert required_one_fifth_mass == Q(35, 492)
-        assert Q(4, 41) == Q(48, 492) >= required_one_fifth_mass
+        require(
+            required_one_fifth_mass == Q(35, 492),
+            f"wrong one-fifth threshold at vertex {vertex}",
+        )
+        require(
+            Q(4, 41) == Q(48, 492)
+            and Q(48, 492) >= required_one_fifth_mass,
+            f"one-fifth deep-mass bound failed at vertex {vertex}",
+        )
     return {
         "status": "PASS",
         "scope": (

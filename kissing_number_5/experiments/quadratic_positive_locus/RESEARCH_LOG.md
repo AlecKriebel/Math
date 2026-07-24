@@ -39,3 +39,7 @@
   (i) stabilize and exactly audit the \(-1/50\) cap candidate; (ii) solve
   parameter-uniform axisymmetric belt/two-cap SDPs; (iii) only then lift to
   the full eight-parameter matrix-SOS problem.
+- Hardened both exact proof verifiers against optimized Python: all
+  proof-critical checks now raise always-on exceptions, factor shapes are
+  prevalidated before calling shared arithmetic helpers, and `python -O`
+  tests reject tampered enlarged-cap and reduction certificates.

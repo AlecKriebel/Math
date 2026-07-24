@@ -12,17 +12,29 @@ HERE = Path(__file__).resolve().parent
 CERTIFICATE = HERE / "exact_subregion_certificate.json"
 
 
-def verify() -> dict[str, object]:
-    data = json.loads(CERTIFICATE.read_text())
-    assert data["status"] == "PROVED"
+class VerificationError(Exception):
+    """Raised when the exact subregion certificate check fails."""
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise VerificationError(message)
+
+
+def verify(certificate_path: Path = CERTIFICATE) -> dict[str, object]:
+    data = json.loads(certificate_path.read_text())
+    require(data["status"] == "PROVED", "unexpected certificate status")
     epsilon = Q(data["epsilon"])
-    assert epsilon == Q(1, 50)
-    assert data["cap_integer_bound"] == 39
+    require(epsilon == Q(1, 50), "wrong epsilon")
+    require(data["cap_integer_bound"] == 39, "wrong cap integer bound")
 
     # The second endpoint allowance is
     # epsilon*beta-epsilon^2-lambda4*(1-epsilon^2).
-    assert epsilon**2 == Q(1, 2500)
-    assert 1 - epsilon**2 == Q(2499, 2500)
+    require(epsilon**2 == Q(1, 2500), "wrong epsilon square")
+    require(
+        1 - epsilon**2 == Q(2499, 2500),
+        "wrong transverse coefficient",
+    )
 
     example = data["example_region"]
     beta = Q(example["beta_lower"])
@@ -34,15 +46,19 @@ def verify() -> dict[str, object]:
         - epsilon**2
         - lambda4 * (1 - epsilon**2)
     )
-    assert endpoint_one_allowance == 1
-    assert endpoint_epsilon_allowance == Q(99, 2500)
-    assert transverse <= min(
-        endpoint_one_allowance, endpoint_epsilon_allowance
+    require(endpoint_one_allowance == 1, "wrong top-endpoint allowance")
+    require(
+        endpoint_epsilon_allowance == Q(99, 2500),
+        "wrong epsilon-endpoint allowance",
+    )
+    require(
+        transverse <= min(endpoint_one_allowance, endpoint_epsilon_allowance),
+        "example transverse width exceeds the endpoint allowance",
     )
 
     # f(s)=lambda4+(1-lambda4)s^2-beta*s+B_perp has
     # f''=2(1-lambda4)>=0 whenever lambda4<=1.
-    assert 2 * (1 - Q(1)) == 0
+    require(2 * (1 - Q(1)) == 0, "convexity boundary check failed")
     return {
         "status": "PASS",
         "epsilon": str(epsilon),

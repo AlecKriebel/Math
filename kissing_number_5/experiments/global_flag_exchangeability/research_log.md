@@ -18,3 +18,12 @@
   exclude its occurrence inside a repaired global mixture.
 - Recorded the precise remaining gap: the fixed pair/triple marginal could
   have a different continuous \(K_6\) lift satisfying the new flag square.
+
+## 2026-07-24T01:35:00-07:00
+
+- Replaced every proof-critical Python `assert` in both verification paths
+  with an always-on verification exception.
+- Added ordinary and optimized-mode tests for the primary and independent
+  checkers.
+- Added tamper tests and confirmed that both checkers reject modified input
+  under `python -O`.

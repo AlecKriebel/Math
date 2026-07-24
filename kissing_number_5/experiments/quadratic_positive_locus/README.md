@@ -226,6 +226,10 @@ claim that a low-degree certificate exists.
   every \(b_i\geq0\).
 - Solver objectives, random audits, and approximate coordinates in this
   folder are never imported by the exact verifier.
+- Proof verifiers use always-on exceptions rather than Python `assert`.
+  Their tests run valid and deliberately tampered certificates under
+  `python -O`, so optimized mode cannot silently discard certificate
+  checks.
 - This reduction does not assume that a maximum code is centered, jammed,
   antipodal, or a two-design.  It addresses precisely the alternative in
   which weighted centering and isotropy fail.

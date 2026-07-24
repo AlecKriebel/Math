@@ -224,11 +224,56 @@ weighted bound
 \quad}                                                \tag{11}
 \]
 
-This explains why the coarser quarter-grid relaxation rejects the branch:
-at its only strict-deep grid node \(t=-3/4\), one has \(q(t)=1\), whereas
-\(2048/315>5\).  That finite-grid contradiction is not a continuous proof.
-For example, \(q(t)>1\) when \(t<-3/4\), so (11) by itself does not
-eliminate a genuine residual pentagon.
+Arbitrary nonnegative weights strengthen (11).  Collapse each antipodal
+pair to a representative \(u_j\), assign all 18 representatives weight
+\(\lambda\geq0\), and assign each residual vertex weight one.  The positive
+Gegenbauer expansion of \(q\) gives
+
+\[
+\sum_{v,w}a_va_wq(\langle v,w\rangle)
+\geq\frac{64}{315}(18\lambda+5)^2.                    \tag{12}
+\]
+
+All off-diagonal \(u\)-\(u\) and \(u\)-\(z\) terms are nonpositive.
+Dropping them from the upper side of (12), and retaining only the diagonal
+and residual-cycle terms, gives
+
+\[
+2\sum_{i=1}^{5}q(s_i)
+\geq
+\frac{64}{315}(18\lambda+5)^2
+-18\frac{64}{15}\lambda^2
+-5\frac{64}{15}.                                     \tag{13}
+\]
+
+The right side is a concave quadratic whose maximum occurs at
+\(\lambda=5/3\).  Therefore
+
+\[
+\boxed{\quad
+ \sum_{i=1}^{5}q(s_i)\geq\frac{64}{9}.
+\quad}                                                \tag{14}
+\]
+
+More generally, giving the five residual vertices arbitrary nonnegative
+weights \(a_1,\ldots,a_5\), and optimizing the common representative weight
+at \(\lambda=(a_1+\cdots+a_5)/3\), proves the copositive family
+
+\[
+\sum_{i=1}^{5}a_i a_{i+1}q(s_i)
+\geq
+\frac{32}{45}
+\left[
+  \left(\sum_{i=1}^{5}a_i\right)^2
+  -3\sum_{i=1}^{5}a_i^2
+\right].                                             \tag{15}
+\]
+
+This also explains why the coarser quarter-grid relaxation rejects the
+branch: at its only strict-deep grid node \(t=-3/4\), one has \(q(t)=1\),
+whereas \(64/9>5\).  That finite-grid contradiction is not a continuous
+proof.  For example, \(q(t)>1\) when \(t<-3/4\), so (14)--(15) do not by
+themselves eliminate a genuine residual pentagon.
 
 ## Odd-harmonic cancellation on each branch
 
@@ -251,7 +296,7 @@ the harmonic sum.  If \(z_1,\ldots,z_n\) are the unpaired points, then
 \sum_{x,y\in C}P_k(\langle x,y\rangle)
  &=\left\|\sum_{x\in C}\Phi_k(x)\right\|^2\\
  &=\left\|\sum_{j=1}^{n}\Phi_k(z_j)\right\|^2
- \leq n^2.                                             \tag{12}
+ \leq n^2.                                             \tag{16}
 \end{aligned}
 \]
 
@@ -260,7 +305,7 @@ For \(k=1\), the kissing inequality sharpens the last bound:
 \[
 \left\|\sum_{j=1}^{n}z_j\right\|^2
 =n+2\sum_{i<j}\langle z_i,z_j\rangle
- \leq n+\binom n2=\frac{n(n+1)}2.                       \tag{13}
+ \leq n+\binom n2=\frac{n(n+1)}2.                       \tag{17}
 \]
 
 In the average ordered pair-distribution normalization
@@ -268,14 +313,14 @@ In the average ordered pair-distribution normalization
 
 \[
 1+\sum_t\alpha_tP_k(t)\leq\frac{(41-2r)^2}{41}
-\quad(k\text{ odd}),                                  \tag{14}
+\quad(k\text{ odd}),                                  \tag{18}
 \]
 
 and
 
 \[
 1+\sum_t\alpha_t t
-\leq\frac{(41-2r)(42-2r)}{82}.                         \tag{15}
+\leq\frac{(41-2r)(42-2r)}{82}.                         \tag{19}
 \]
 
 These are necessary conditions on every exact antipodal-count branch.

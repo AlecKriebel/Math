@@ -47,3 +47,7 @@
   insufficient; a successful continuation must use a labeled
   common-source consequence of \(GPG=G/5\), the weighted stress, or the
   special Veronese relation between \(G\) and \(H_2\).
+- Replaced every proof-critical bare assertion in the three exact
+  verifiers by an always-on exception check.  Added optimized-mode normal
+  runs and tamper rejection for the certificate and exact-identity
+  families.
