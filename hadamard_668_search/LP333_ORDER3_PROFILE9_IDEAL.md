@@ -26,8 +26,10 @@ This eliminates those 22 assignments, not their 22 aggregate shards:
 alternative profile assignments have not been exhausted.
 
 The row-695 profiles used by the labelled-jet checkpoint pass (1), so they
-remain viable at profile level even though both currently pinned placements
-fail exact primitive-nine equidistribution.
+remain viable for this ideal test even though both currently pinned
+placements fail exact primitive-nine equidistribution.  The later full-LP
+zero-moment gate is stronger and excludes this fixed profile tuple on all
+twelve nonzero column classes.
 
 ## 1. Profile Fourier data
 
@@ -193,8 +195,8 @@ and a uniquely determined target table.
 
 ## 5. Pinned row-695 target table
 
-The row-695 profiles pass all six conditions.  Listing `q-167` for the
-twelve nonzero classes gives
+The row-695 profiles pass all six ideal conditions.  Listing `q-167` for
+the twelve nonzero classes gives
 
 ```text
 C0   ( 3,  3, -6)       C6   ( 3, -6,  3)
@@ -218,6 +220,11 @@ The complete target-table hash is
 The verifier independently computes the same profile moments from both
 labelled row-695 certificates, despite their different within-residue
 placements.
+
+These nonconstant targets also make the scope transparent: a full
+`LP(333)` requires the special target `(167,167,167)` in every class, hence
+`D_t=0`.  Thus the table is an exact primitive-nine ideal witness, not a
+full-LP profile survivor.
 
 ## 6. Audit of the 22 prior profile assignments
 

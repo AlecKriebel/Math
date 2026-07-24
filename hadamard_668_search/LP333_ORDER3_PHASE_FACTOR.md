@@ -8,7 +8,7 @@ into its three residue fibers modulo three.  A fiber of fixed size zero or
 three has Fourier value zero; a fiber of size one or two has Fourier value a
 signed cube root of unity.
 
-For the row-695 profile lift, the 54 placement trits are therefore exactly
+For every norm-54 profile lift, the 54 placement trits are therefore exactly
 54 signed Eisenstein phases.  The complete primitive-nine equation factors
 into:
 
@@ -57,13 +57,36 @@ p_s=2:       U_s=-omega^( u).                        (3)
 Equation (3) is a bijection in both cases.  It replaces the lookup-table
 meaning of a placement trit by an intrinsic cyclotomic meaning.
 
+There is also a universal count identity.  If `a(p)` is the number of active
+entries of a profile `p=(p_0,p_1,p_2)` and
+
+```text
+z(p)=p_0+p_1 omega+p_2 omega^2,
+```
+
+then the ten possible compositions of three obey
+
+```text
+a(p)=3-Norm(z(p))/3.                                (4)
+```
+
+Every viable tuple has 24 profiles and total profile norm 54.  Summing (4)
+therefore gives
+
+```text
+total active nonzero-class fibers = 24*3-54/3 = 54. (5)
+```
+
+Thus the 54-phase count is universal at this layer; only the affine rank 18
+previously measured for row 695 is profile-specific.
+
 ## 2. Extension-basis decomposition
 
 For each channel and physical column `c`, let `U_0(c),U_1(c),U_2(c)` be
 the three values (1).  The primitive-nine evaluation of the column word is
 
 ```text
-W(c)=U_0(c)+zeta_9 U_1(c)+zeta_9^2 U_2(c).            (4)
+W(c)=U_0(c)+zeta_9 U_1(c)+zeta_9^2 U_2(c).            (6)
 ```
 
 For Eisenstein sequences on `C_37`, define
@@ -80,14 +103,14 @@ E_0 = K_00+K_11+K_22,
 
 E_1 = K_10+K_21+omega^2 K_02,
 
-E_2 = K_20+omega^2 K_01+omega^2 K_12.                (5)
+E_2 = K_20+omega^2 K_01+omega^2 K_12.                (7)
 ```
 
 The exact primitive-nine difference-family equation is equivalent to
 
 ```text
 E_0=167 e,             E_1=0,             E_2=0
-                  in Z[omega][C_37].                  (6)
+                  in Z[omega][C_37].                  (8)
 ```
 
 No modular reduction is used here.
@@ -100,21 +123,21 @@ The correlation matrices obey
 K_st^*=K_ts.
 ```
 
-Taking the adjoint of `E_1` in (5) gives the exact identity
+Taking the adjoint of `E_1` in (7) gives the exact identity
 
 ```text
-E_2=omega^2 E_1^*.                                  (7)
+E_2=omega^2 E_1^*.                                  (9)
 ```
 
-Therefore (6) is equivalent to only
+Therefore (8) is equivalent to only
 
 ```text
-K_00+K_11+K_22 = 167 e,                             (8)
+K_00+K_11+K_22 = 167 e,                            (10)
 
-K_10+K_21+omega^2 K_02 = 0.                         (9)
+K_10+K_21+omega^2 K_02 = 0.                        (11)
 ```
 
-Equation (8) says that the six sequences
+Equation (10) says that the six sequences
 
 ```text
 U_(A,0), U_(A,1), U_(A,2),
@@ -125,19 +148,19 @@ form a periodic complementary family over the Eisenstein integers.  At
 every nontrivial character `chi` of `C_37`,
 
 ```text
-sum_(channel,s) |U_(channel,s)(chi)|^2 = 167.        (10)
+sum_(channel,s) |U_(channel,s)(chi)|^2 = 167.       (12)
 ```
 
-Equation (9) is the remaining directed cross-fiber coupling.
+Equation (11) is the remaining directed cross-fiber coupling.
 
-This separation is useful: the diagonal frame (8) can be sieved or lifted
+This separation is useful: the diagonal frame (10) can be sieved or lifted
 without carrying the cross terms, while every survivor retains the exact
-coupling (9).
+coupling (11).
 
 ## 4. Exact equation count
 
 Order-three column invariance gives thirteen column classes.  The
-self-adjoint equation (8) has:
+self-adjoint equation (10) has:
 
 ```text
 one real origin coefficient
@@ -145,7 +168,7 @@ one real origin coefficient
 = 13 independent integer conditions.
 ```
 
-Equation (9) is a general invariant Eisenstein word:
+Equation (11) is a general invariant Eisenstein word:
 
 ```text
 13 Eisenstein coefficients = 26 integer conditions.
@@ -162,23 +185,24 @@ equations account for three of them.  The genuinely mixed-column layer has
 independent integer conditions.  This agrees with, and explains, the 36
 triple-equality groups in the integral correlation formulation.
 
-## 5. Row-695 specialization
+## 5. Universal energy and the row-695 fixtures
 
-The fixed row-695 profiles have exactly 54 active nonzero-class fibers, one
-for each placement trit.  After each nonzero column class is expanded to its
-three physical columns and the fixed zero column is included, the six
-Eisenstein sequences have total support
+Every norm-54 tuple has exactly 54 active nonzero-class fibers by (5).
+Each nonzero column class expands to three physical columns, while the fixed
+zero column contributes five active fibers.  The six Eisenstein sequences
+therefore always have total support
 
 ```text
-167.
+3*54+5 = 167.
 ```
 
-Thus the zero coefficient of (8) is automatic on this profile.  The search
-variables are 54 signed unit phases subject to the nonzero coefficients of
-(8), the cross equation (9), and the exact row-margin constraints.
+Thus the zero coefficient of (10) is automatic for every viable profile
+tuple.  The search variables are universally 54 signed unit phases subject
+to the nonzero coefficients of (10), the cross equation (11), and the exact
+row-margin constraints.
 
 Both labelled mod-three certificates in the repository replay perfectly
-through (1)--(7), but fail (8)--(9), exactly as their nonzero integral
+through (1)--(9), but fail (10)--(11), exactly as their nonzero integral
 primitive-nine defects require.  They are consistency fixtures, not
 solutions.  Each has nonzero coefficients in all twelve nonzero invariant
 classes of all three displayed components.  Their complete invariant

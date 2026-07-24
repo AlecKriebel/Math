@@ -21,6 +21,12 @@ class OrderThreePhaseFactorTests(unittest.TestCase):
         result = phase.verify_local_phase_bijection()
         self.assertEqual(result["active_placement_checks"], 6)
 
+    def test_norm54_forces_54_phase_variables(self) -> None:
+        result = phase.verify_universal_phase_count()
+        self.assertEqual(result["forced_active_profile_fibers"], 54)
+        self.assertEqual(result["fixed_zero_column_active_fibers"], 5)
+        self.assertEqual(result["physical_frame_energy"], 167)
+
     def test_pinned_certificate_replays_in_both_bases(self) -> None:
         result = phase.verify_certificate_factorization(
             LABELLED_SURVIVOR_MASKS_A,

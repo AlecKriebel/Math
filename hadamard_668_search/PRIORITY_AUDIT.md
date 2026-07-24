@@ -39,9 +39,12 @@ report:
    22 Eisenstein shards, a strict primitive-nine jet, an invertible
    characteristic-37 transfer, a labelled `F_729` field split, a rank-18
    pinned trit lift, an exact integral primitive-nine criterion, a
-   five-independent-condition profile ideal, and a three-fiber unit-phase
-   factorization; all 22 aggregate shards survive the profile ideal, and the
-   coupled `<121>/<211>` lanes share a separate exact 1,296-word boundary;
+   five-independent-condition profile ideal, an exact full-LP zero-moment
+   gate, a local-global CRT closure, a lossless prime-167 finite-field split,
+   a 24-element formal symmetry reducing 22 targets to seven, and a
+   three-fiber unit-phase factorization; all 22 aggregate shards survive the
+   ideal, but every stored ideal witness fails the zero gate, and the coupled
+   `<121>/<211>` lanes share a separate exact 1,296-word boundary;
 9. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
    degree-two independently decimated extension.
@@ -371,14 +374,70 @@ certificate corpus supplies a different passing profile tuple for every one
 of the 22 aggregate shards.  The result is therefore a strict
 assignment-level filter, not a shard exclusion.
 
+The full Legendre equation imposes a stronger profile condition.  Its
+adjusted plus-support intersection is 167 at every row lag, so the
+order-three Fourier correlation must satisfy `D_t=0` on all thirteen column
+parts.  Exact replay excludes every stored ideal-compatible tuple: one fails
+on ten nonzero classes and 21 fail on all twelve; the original row-695
+profile and stored same-shard witness both fail all twelve.  This is a useful
+correction and an exact 22-object audit,
+but it excludes no aggregate shard and the equation itself is the existing
+full Eisenstein channel rather than a newly discovered general identity.
+
+The zero gate now has two exact finite closures.  Combining the
+`(1-omega)^3` profile ideal with the complete characteristic-37 transfer
+puts any residual in `37(1-omega)^3 Z[omega]`; its least nonzero norm,
+36,963, exceeds the universal Cauchy bound 27,889.  More strongly, on total
+energy 167, reduction modulo 167 is already lossless: equality in Cauchy
+would force a nonzero order-37 translation eigenvector whose energy is
+divisible by 37, contradicting 167.  The order-three invariant algebra then
+splits explicitly as
+
+```text
+F_167(omega)[C_37]^H = F_(167^2) x F_(167^12) x F_(167^12),
+```
+
+with a checked involution, inverse CRT, and complete parameterization of the
+two-channel modular complementarity cone.  The prime-167 theorem is the
+strongest likely-new contribution in the order-three lane.  Its proof is
+short and general, its finite-field structure is mechanically replayed, and
+it is worth a focused internal write-up.  Literature priority remains
+provisional, and it does not supply a small-alphabet profile point.
+
+The exact profile equation also has formal symmetry
+`C6 x C2_A x C2_B`.  It gives seven target orbits, but only
+`C6 x C2_B` transports the canonical labelled zero words, leaving twelve
+lift-compatible orbits.  This distinction prevents an invalid quotient at
+the phase stage.  The symmetry theorem is a useful supporting result and
+gives the correct target quotient for a future exact constructor.
+
 After profiles are fixed, every active residue fiber is a signed cube root
-of unity.  The 54 row-695 placement trits are exactly these Eisenstein
-phases, and the primitive-nine equation becomes one six-sequence periodic
-complementary-frame identity plus one directed cross-fiber identity.  The
-third cubic-basis equation is the adjoint of the second.  This explains the
-36 independent mixed-column integer conditions and provides a materially
-smaller exact architecture for the next labelled lift.  It is a structural
-factorization, not yet an obstruction.
+of unity.  The identity `active=3-Norm/3` shows that total profile norm 54
+forces exactly 54 Eisenstein phases for every viable tuple, while the fixed
+zero column makes physical frame energy 167 automatic. The primitive-nine
+equation becomes one six-sequence periodic complementary-frame identity plus
+one directed cross-fiber identity. The third cubic-basis equation is the
+adjoint of the second. This explains the 36 independent mixed-column integer
+conditions and provides a materially smaller exact architecture for the next
+labelled lift. It is a structural factorization, not yet an obstruction.
+
+At the trivial `C_37` character, the six phase sums admit a further exact
+transfer: one integer energy and one Eisenstein cross term per channel.
+Object-by-object comparison, including multiplicities, proves that this is
+exactly the existing 1,756-word row-sum gate in phase coordinates.  It is
+valuable search architecture, with reductions of roughly 160,000--321,000
+on the diagnostic fixtures, but it is not an independent obstruction or a
+publication-leading result.
+
+Two further phase filters are exact but subordinate.  The first
+`(1-omega)`-adic digit is affine over `F_3`; it gives 21 rank-18 systems and
+one explicit rank-`(16,17)` contradiction on the stored corpus.  The
+augmentation-plus-first-characteristic-37 diagonal prefix compresses each
+sequence to at most 444 states and the six-sequence join to at most 666, but
+all 22 tuples survive it.  Since every one of those tuples already fails the
+upstream zero-moment gate, neither census is new exclusion evidence.  The
+affine and small-state decompositions are useful methods for a future
+zero-moment profile, not standalone publication claims.
 
 There is now a second exact coordinate system at the prime 37. In
 characteristic 37, the logarithm `x=exp(u)` turns inversion into `u -> -u`;
@@ -537,7 +596,8 @@ Maintain one compact internal paper organized around:
 7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
    and the order-three difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
-   unit-phase, and coupled-lane boundaries;
+   profile-zero, prime-167 split, exact symmetry, unit-phase, and coupled-lane
+   boundaries;
 8. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
 9. the fixed-`q` parity telescope and reduction to `TU(41)`;
 10. the radius-18 solver report and proof-certification ladder as historical

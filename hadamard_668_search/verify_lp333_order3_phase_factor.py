@@ -23,6 +23,8 @@ from verify_lp333_order3_labeled_jet import (
     LABELLED_SURVIVOR_MASKS_B,
     P,
     ROWS,
+    ZERO_A_PLUS,
+    ZERO_B_PLUS,
 )
 from verify_lp333_order3_quotient import PARTS
 from verify_lp333_order3_trit_lift import (
@@ -107,6 +109,60 @@ def phase_from_trit(count: int, trit: int) -> Eisenstein:
     if count == 2:
         return e_scale(-1, e_power_of_omega(trit))
     raise ValueError("only active fiber counts one and two have a trit")
+
+
+def profile_active_fibers(profile: Sequence[int]) -> int:
+    if (
+        len(profile) != 3
+        or any(value not in (0, 1, 2, 3) for value in profile)
+        or sum(profile) != 3
+    ):
+        raise ValueError("a profile must be a composition of three")
+    return sum(value in (1, 2) for value in profile)
+
+
+def profile_eisenstein_norm(profile: Sequence[int]) -> int:
+    if (
+        len(profile) != 3
+        or any(value not in (0, 1, 2, 3) for value in profile)
+        or sum(profile) != 3
+    ):
+        raise ValueError("a profile must be a composition of three")
+    first = int(profile[0]) - int(profile[2])
+    second = int(profile[1]) - int(profile[2])
+    return first * first - first * second + second * second
+
+
+def verify_universal_phase_count() -> dict[str, object]:
+    """Prove that norm 54 forces 54 active nonzero-class fibers."""
+
+    profiles = tuple(
+        (first, second, 3 - first - second)
+        for first in range(4)
+        for second in range(4)
+        if 0 <= 3 - first - second <= 3
+    )
+    assert len(profiles) == 10
+    for profile in profiles:
+        assert profile_active_fibers(profile) == (
+            3 - profile_eisenstein_norm(profile) // 3
+        )
+
+    zero_active = sum(
+        fiber_phase(word, residue) != ZERO
+        for word in (ZERO_A_PLUS, ZERO_B_PLUS)
+        for residue in range(3)
+    )
+    assert zero_active == 5
+    return {
+        "profile_types": len(profiles),
+        "per_profile_identity": "active=3-norm/3",
+        "profiles_per_tuple": 24,
+        "required_total_profile_norm": 54,
+        "forced_active_profile_fibers": 54,
+        "fixed_zero_column_active_fibers": zero_active,
+        "physical_frame_energy": 3 * 54 + zero_active,
+    }
 
 
 def phase_columns(
@@ -302,6 +358,7 @@ def pinned_active_profile_fibers() -> int:
 
 def verify() -> dict[str, object]:
     local = verify_local_phase_bijection()
+    universal = verify_universal_phase_count()
     pinned = verify_certificate_factorization(
         LABELLED_SURVIVOR_MASKS_A,
         LABELLED_SURVIVOR_MASKS_B,
@@ -310,7 +367,9 @@ def verify() -> dict[str, object]:
         TRIT_SURVIVOR_MASKS_A,
         TRIT_SURVIVOR_MASKS_B,
     )
-    assert pinned_active_profile_fibers() == 54
+    assert pinned_active_profile_fibers() == (
+        universal["forced_active_profile_fibers"]
+    )
     assert pinned["active_physical_fibers"] == 167
     assert trit["active_physical_fibers"] == 167
     assert pinned["nonzero_invariant_coefficients"] == (12, 12, 12)
@@ -321,6 +380,7 @@ def verify() -> dict[str, object]:
     assert not trit["exact_integral_survivor"]
     return {
         "local_phase_bijection": local,
+        "universal_phase_count": universal,
         "pinned_profile_trits": 54,
         "physical_frame_energy": 167,
         "independent_group_ring_equations": 2,
@@ -337,7 +397,10 @@ def verify() -> dict[str, object]:
 
 def main() -> None:
     result = verify()
-    print(f"pinned_profile_trits={result['pinned_profile_trits']}")
+    print(
+        "universal_profile_trits="
+        f"{result['universal_phase_count']['forced_active_profile_fibers']}"
+    )
     print(f"physical_frame_energy={result['physical_frame_energy']}")
     print(
         "independent_group_ring_equations="

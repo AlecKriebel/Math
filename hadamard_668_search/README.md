@@ -25,7 +25,7 @@ this milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, 22 surviving profile-ideal shards, an invertible characteristic-37 transfer, labelled/trit lifts, and an exact three-fiber Eisenstein phase factorization; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; all 22 stored ideal witnesses fail the full-LP zero gate, but no whole shard is excluded; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -509,10 +509,67 @@ control: one different exact profile assignment exists for every one of the
 22 aggregate shards. Thus the ideal is a strict assignment-level filter but
 does not exclude an aggregate shard.
 
+`LP333_ORDER3_PROFILE_ZERO_GATE.md` records the stronger condition that was
+missing from the continuation plan.  A full Legendre pair has adjusted
+plus-support intersection 167 at every row lag, so its order-three profile
+moment satisfies
+
+```text
+D_t=0
+```
+
+on all thirteen column parts.  All 22 stored ideal-compatible tuples fail:
+one on ten nonzero classes and 21 on all twelve.  The original row-695
+profile and stored same-shard witness both fail all twelve.  These are 22
+fixed-profile exclusions and zero
+aggregate-shard exclusions; only a different zero-moment profile tuple may
+proceed to placement.
+
+`LP333_ORDER3_PROFILE_CRT.md` turns that exact zero gate into a finite
+local-global test.  On the energy-167 shell, every profile correlation lies
+in the Cauchy disk of norm at most `167^2=27,889`.  Simultaneous membership
+in the primitive-nine ideal and vanishing modulo 37 puts it in
+
+```text
+37(1-omega)^3 Z[omega],
+```
+
+whose least nonzero norm is `36,963`.  The norm gap therefore makes the
+`lambda^3` and complete characteristic-37 layers equivalent to exact
+`D_t=0`.  `LP333_ORDER3_PRIME167_SPLIT.md` gives an independent one-prime
+version with a broader ambient theorem: on total energy 167, divisibility of
+every nonzero-lag correlation by 167 already forces exact zero.  In the
+order-three invariant algebra this
+becomes
+
+```text
+F_167(omega)[C_37]^H = k x E x E,
+k=F_(167^2),  E=F_(167^12),
+```
+
+with an explicit involution, inverse CRT, and complete finite-field
+parameterization.  All 22 stored profile tuples fail both exact forms.
+
+`LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` certifies the formal profile group
+`C6 x C2_A x C2_B`, reducing the 22 aggregate targets to seven equation
+orbits.  Only `C6 x C2_B` transports the canonical labelled zero words, so a
+lift-complete campaign has twelve target orbits; `A`-star images must be
+lifted independently.  The verifier now checks correlation covariance
+term-by-term over the complete finite profile alphabet rather than relying
+on sampled assignments.
+
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or
 fixed-size-two residue fiber has a signed cube-root phase in
-`Z[omega]`; the 54 row-695 placement trits are exactly these phases. The
+`Z[omega]`. The identity
+
+```text
+active(profile)=3-Norm(profile Fourier value)/3
+```
+
+shows that total profile norm 54 forces exactly 54 phase variables for every
+viable profile tuple, not only row 695. After the threefold physical-column
+expansion and the fixed zero column, frame energy 167 is automatic. The
 complete primitive-ninth-root equation is equivalent to two group-ring
 identities:
 
@@ -524,7 +581,29 @@ K_10+K_21+omega^2 K_02 = 0.
 The first is a periodic complementary frame of six sparse Eisenstein
 sequences; the formally third cubic-basis equation is the adjoint of the
 second. This explains the 36 independent mixed-column integer conditions
-and is the preferred architecture for the next exact labelled lift.
+and is the preferred architecture for the next exact labelled lift after a
+zero-moment profile has been found.
+
+`LP333_ORDER3_PHASE_TRANSFER.md` collapses the trivial-column character of
+that phase frame to one integer energy and one Eisenstein cross term per
+channel.  It proves object-by-object, including multiplicities, that this is
+exactly a phase-coordinate form of the existing 1,756-word row-sum catalog,
+not a new obstruction.  On the diagnostic stored tuples it reduces
+`3^54` phase assignments to 22--87 transfer signatures and 45--98 compatible
+catalog rows.  The architecture is retained for a future `D_t=0` profile.
+
+`LP333_ORDER3_PHASE_HENSEL.md` gives the first placement-dependent
+`(1-omega)`-adic digit as 20 affine equations over `F_3`.  On the stored
+corpus, 21 tuples have rank 18 and nullity 36, while fixed-profile witness 3
+has coefficient/augmented ranks `(16,17)` and an explicit contradiction.
+This census is subsumed because all 22 inputs already fail `D_t=0`; only the
+generic affine formulation is a forward search tool.
+
+`LP333_ORDER3_DIAGONAL_FRAME_PREFIX.md` independently compresses the
+augmentation and first characteristic-37 coefficient of the diagonal frame.
+The largest one-sequence and joined tables have 444 and 666 states, and all
+22 diagnostic tuples have positive exact counts.  No second coefficient or
+complete diagonal-frame survivor is claimed.
 
 Reproduce the new exact layer with:
 
@@ -539,7 +618,14 @@ python3 verify_lp333_order3_trit_lift.py
 python3 verify_lp333_order3_integral9.py
 python3 verify_lp333_order3_profile9.py
 python3 verify_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_profile_zero_gate.py
+python3 verify_lp333_order3_profile_crt.py
+python3 verify_lp333_order3_prime167_split.py
+python3 verify_lp333_order3_profile_zero_symmetry.py
 python3 verify_lp333_order3_phase_factor.py
+python3 verify_lp333_order3_phase_transfer.py
+python3 verify_lp333_order3_phase_hensel.py
+python3 verify_lp333_order3_diagonal_frame_prefix.py
 ../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
   --workers 4 --time-limit 2
 ../tmp/hadamard-env/bin/python -m unittest -v \
@@ -553,7 +639,14 @@ python3 verify_lp333_order3_phase_factor.py
   test_lp333_order3_integral9.py \
   test_lp333_order3_profile9.py \
   test_lp333_order3_profile9_shards.py \
+  test_lp333_order3_profile_zero_gate.py \
+  test_lp333_order3_profile_crt.py \
+  test_lp333_order3_prime167_split.py \
+  test_lp333_order3_profile_zero_symmetry.py \
   test_lp333_order3_phase_factor.py \
+  test_lp333_order3_phase_transfer.py \
+  test_lp333_order3_phase_hensel.py \
+  test_lp333_order3_diagonal_frame_prefix.py \
   test_lp333_order3_lift_catalog.py \
   test_lp333_order3_cp_sat.py
 ```

@@ -22,8 +22,16 @@ The 22 assignments are pinned in
 all constraints from their definitions and independently reconstructs the
 exact periodic correlation target table for every assignment.
 
-This is a complete profile-level survival result.  It is not a labelled
-nine-row lift, an `LP(333)`, or a Hadamard matrix of order 668.
+This is a complete survival result only for the primitive-nine **ideal**
+layer.  The later exact full-LP zero-moment audit in
+`LP333_ORDER3_PROFILE_ZERO_GATE.md` excludes all 22 fixed profile tuples:
+one has ten nonzero class moments and the other 21 have twelve.  It does
+not exclude any aggregate shard, because the profile assignments within a
+shard have not been exhausted.
+
+None of these 22 tuples should be sent to a labelled phase lift.  They are
+not labelled nine-row lifts, `LP(333)` objects, or Hadamard matrices of
+order 668.
 
 ## 1. The finite layer
 
@@ -88,9 +96,10 @@ profile-level shard exclusions             0
 labelled lifts asserted                     0
 ```
 
-Thus the new ideal test removes all 22 *previously pinned assignments* but
-each of their aggregate shards has at least one different profile
-assignment that passes.
+Thus the ideal test removes all 22 *previously pinned assignments* and each
+aggregate shard has a different assignment that passes the ideal.  The
+stronger full-LP condition is `D_t=0`, not merely ideal membership.  The
+zero-moment verifier subsequently excludes every assignment listed here.
 
 ## 3. Certificate hashes
 
@@ -113,21 +122,32 @@ lift must realize.
 
 ## 4. Consequence for the next search
 
-The profile ideal is useful pruning, but aggregate-level branching should
-not treat it as an exclusion layer.  The next exact step must lift one or
-more of these 22 profile assignments to actual nine-row class words and
-enforce their reconstructed `12 by 3` correlation targets.
+The profile ideal is useful pruning, but neither its successes nor the
+zero-moment failures of these particular tuples exclude an aggregate
+shard.  A full `LP(333)` has adjusted intersection 167 at every row lag, so
+every profile correlation must satisfy
 
-The existing trit parameterization is the natural representation for that
-step: after profiles are fixed, the six-digit modular primitive-nine system
-is affine over `F_3`, while exact row margins and the integral target table
-remain as the finite realization constraints.
+```text
+D_t=0
+```
+
+on all thirteen column parts.  The next exact step is to search the finite
+profile space in each aggregate shard under this zero-moment equation.
+Only a profile tuple that passes `D_t=0` should proceed to the 54-trit
+phase-frame, exact row-margin, and full-correlation lift.
+
+The existing trit parameterization remains the natural representation
+after that stronger gate.  Lifting one of the 22 tuples in this file would
+only realize a nonconstant primitive-nine target table and cannot produce
+an `LP(333)`.
 
 ## Reproduction
 
 ```text
 python3 verify_lp333_order3_profile9_shards.py
 python3 -m unittest -v test_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_profile_zero_gate.py
+python3 -m unittest -v test_lp333_order3_profile_zero_gate.py
 ```
 
 On the reference replay, the verifier used about `27 MB` peak RSS, recorded

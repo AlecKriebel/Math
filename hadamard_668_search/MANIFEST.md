@@ -30,7 +30,14 @@
 | `LP333_ORDER3_INTEGRAL9.md` | Exact primitive-ninth-root triple-equidistribution criterion and strict modular-certificate audit |
 | `LP333_ORDER3_PROFILE9_IDEAL.md` | Five-independent-condition Eisenstein profile ideal and reconstructed exact target tables |
 | `LP333_ORDER3_PROFILE9_SHARDS.md` | Exact alternative profile witnesses showing that all 22 aggregate shards survive the ideal |
+| `LP333_ORDER3_PROFILE_ZERO_GATE.md` | Exact full-LP zero-moment condition and audit excluding 22 fixed ideal witnesses but no whole shard |
+| `LP333_ORDER3_PROFILE_CRT.md` | Exact local-global zero detector from the lambda-cube ideal, complete characteristic-37 transfer, and Cauchy norm gap |
+| `LP333_ORDER3_PRIME167_SPLIT.md` | Lossless prime-167 reduction, invariant finite-field split, involution, inverse CRT, and complete two-channel parameterization |
+| `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` | Formal 24-element profile symmetry, seven target orbits, and the 12-element labelled-transport caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
+| `LP333_ORDER3_PHASE_TRANSFER.md` | Exact trivial-character phase transfer and multiplicity-preserving equivalence with the row-sum catalog |
+| `LP333_ORDER3_PHASE_HENSEL.md` | Exact first Eisenstein-adic phase digit, rank census, and fixed-profile contradiction certificate |
+| `LP333_ORDER3_DIAGONAL_FRAME_PREFIX.md` | Exact augmentation-plus-characteristic-37 prefix for the six-sequence diagonal frame |
 | `LP333_TWISTED_ORDER3.md` | Common 1,296-word outer theorem for the coupled `<121>` and `<211>` lanes |
 | `BS84_ORIENTED_SDS_SEARCH.md` | Resumable prime-83 constructor, exact polishing, and retained checkpoint |
 | `PRIME83_SIDELNIKOV_FOLD.md` | Safe-prime Sidelnikov identity and exact direct/product-family exclusions |
@@ -101,8 +108,22 @@
 | `test_lp333_order3_profile9.py` | Focused profile-moment, ideal-membership, and target-reconstruction regressions |
 | `verify_lp333_order3_profile9_shards.py` | Replays one ideal-compatible profile assignment for each of the 22 aggregate shards |
 | `test_lp333_order3_profile9_shards.py` | Focused complete-corpus, single-witness, and tamper-rejection regressions |
+| `verify_lp333_order3_profile_zero_gate.py` | Checks the full-LP profile zero moment on row 695 and all 22 stored ideal witnesses |
+| `test_lp333_order3_profile_zero_gate.py` | Focused target-identity, strictness, row-695, and complete-corpus regressions |
+| `verify_lp333_order3_profile_crt.py` | Checks the lambda-cube/characteristic-37 CRT equivalence, threshold, lattice disk, and 22 negative controls |
+| `test_lp333_order3_profile_crt.py` | Focused norm-gap, transfer, corpus, and explicit CRT-division regressions |
+| `verify_lp333_order3_prime167_split.py` | Checks prime-167 exactness, the `k x E x E` split, star, inverse CRT, and finite-field parameterization |
+| `test_lp333_order3_prime167_split.py` | Focused equality-case, field, branch, recovery, and profile-corpus regressions |
+| `verify_lp333_order3_profile_zero_symmetry.py` | Checks all formal actions, universal termwise covariance, target orbits, Burnside count, and lift caveat |
+| `test_lp333_order3_profile_zero_symmetry.py` | Focused group, covariance, orbit, zero-word, and rejected-symmetry regressions |
 | `verify_lp333_order3_phase_factor.py` | Checks the 54 signed-unit phases and the two exact Eisenstein group-ring equations |
 | `test_lp333_order3_phase_factor.py` | Focused fiber-bijection, adjoint, and dual-certificate factorization regressions |
+| `verify_lp333_order3_phase_transfer.py` | Checks the small phase-sum transfer and its exact catalog-intersection equivalence |
+| `test_lp333_order3_phase_transfer.py` | Focused convolution, fixture, corpus, pruning, and catalog-equivalence regressions |
+| `verify_lp333_order3_phase_hensel.py` | Checks the first affine `1-omega` phase digit, rank census, direct replays, and contradiction |
+| `test_lp333_order3_phase_hensel.py` | Focused system-shape, rank, certificate, and bounds regressions |
+| `verify_lp333_order3_diagonal_frame_prefix.py` | Checks the exact augmentation and first characteristic-37 diagonal-frame summaries and counts |
+| `test_lp333_order3_diagonal_frame_prefix.py` | Focused exact-count, state-width, transfer, and zero-sequence regressions |
 | `verify_lp333_twisted_order3.py` | Replays the coupled row-sum census, symmetries, row-axis DP, and partial 121/211 bijection |
 | `test_lp333_twisted_order3.py` | Focused exact coupled-order-three regressions |
 | `verify_lp333_order3_lift_catalog.py` | Audits the pure-axis/signature histogram lift for all 1,756 catalog rows |

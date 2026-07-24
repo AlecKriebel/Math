@@ -1207,13 +1207,15 @@ proof-assistant-level theorem.
   and
   `e7d395500053eeb4346260d545affbb1baea35f01a6793ef48d6b3a3ee9c8628`.
 - Split each nine-row class word into three `C_3` fibers. A fiber of size one
-  or two has a signed cube-root Fourier value, so the 54 row-695 placement
-  trits are exactly 54 Eisenstein unit phases. Expanding in the cubic basis
-  of `Q(zeta_9)/Q(omega)` reduces the exact primitive-nine equation to two
-  independent group-ring identities: a complementary frame of six sparse
-  Eisenstein sequences with energy 167, and one directed cross-fiber
-  equation. The third displayed component is `omega^2` times the adjoint of
-  the second.
+  or two has a signed cube-root Fourier value. For every profile composition,
+  `active=3-Norm/3`; summing over 24 profiles of total norm 54 proves that
+  every viable tuple has exactly 54 Eisenstein unit phases. Threefold column
+  expansion plus five fixed zero-column units makes frame energy 167
+  automatic. Expanding in the cubic basis of
+  `Q(zeta_9)/Q(omega)` reduces the remaining exact primitive-nine equation
+  to two independent group-ring identities: the complementary frame and one
+  directed cross-fiber equation. The third displayed component is
+  `omega^2` times the adjoint of the second.
 - Exact replay against both labelled modular certificates checks all 37
   physical column lags and the direct integer correlation tables. Both have
   167 active physical fibers and nonzero coefficients in all twelve
@@ -1225,3 +1227,82 @@ proof-assistant-level theorem.
   the packaged case-0 theorem; it does not enlarge its one-of-30 scope.
 - No exact `LP(333)`, `BS(84,83)`, or Hadamard matrix of order 668 has yet
   been constructed.
+
+## 23 July 2026: exact full-LP profile zero gate
+
+- Corrected the continuation scope after the primitive-nine ideal audit.
+  For two length-333 sign sequences of sum one, the Legendre target `-2`
+  is equivalent to combined plus-support intersection 167 at every nonzero
+  lag. After the standard origin subtraction, all nine row-lag coefficients
+  at every `C_37` lag are therefore 167. Their order-three Fourier moment
+  is exactly zero.
+- This moment is the profile correlation `D_t` already reconstructed by the
+  Eisenstein channel. Thus a full `LP(333)` requires `D_t=0` on all 13
+  column parts. Membership in `3(1-omega) Z[omega]` is strictly weaker: it
+  only makes the primitive-nine target triple integral.
+- Applied the exact zero gate to all 22 ideal-compatible profile witnesses.
+  One tuple has nonzero `D_t` on ten nonzero classes and the other 21 fail
+  on all twelve, for 262 nonzero class moments. The compact certificate hash
+  is
+  `d0e496d2a2b01ed5432e4ff89c2a306a778a52cac08cebd22aa60292588a9060`.
+- Catalog row 695 lies in aggregate shard `(1,-1,2,-2)`. Its original pinned
+  profile and alternative same-shard ideal-witness 8 both fail `D_t=0` on
+  all twelve nonzero classes. The original-profile certificate hash is
+  `e22de237bf4a6e3b61d7bd31aff2bad9d7126fd8739b5ab503f75ca52c758621`.
+- These are 22 exact fixed-profile exclusions and zero aggregate-shard
+  exclusions. The correct next finite search is for different profile
+  tuples satisfying `D_t=0`; only such a tuple merits a 54-trit phase lift.
+- Collapsed the trivial `C_37` character of the six phase sequences to
+  `(energy,cross term)` per channel. A dependency-free comparison with the
+  pinned 1,756-word row-sum catalog agrees object-by-object and with exact
+  assignment multiplicities on all 22 diagnostic tuples and row 695. Thus
+  this is a useful phase-coordinate transfer, not a new obstruction. It
+  reduces the diagnostic `3^54` spaces to 22--87 transfer signatures and
+  45--98 catalog rows before nontrivial column-character equations.
+- Reduced the first placement-dependent `1-omega` digit of the exact phase
+  equations to a 20-row affine system over `F_3`. Twenty-one diagnostic
+  tuples have rank 18 and nullity 36; fixed-profile witness 3 has ranks
+  `(16,17)` and an explicit two-row contradiction. The result is subsumed on
+  this corpus by `D_t != 0`, but the affine formulation is reusable.
+- Enumerated the diagonal-frame augmentation and first characteristic-37
+  coefficient by six separable sequence summaries. The largest sequence
+  table has 444 states and the largest joined table 666; all 22 diagnostic
+  tuples survive, with exact pinned counts and result hash
+  `443d0e733f5c383d5d5ed14d5ec98b458becf9d7dd9e64c08d9d07c2b625a81a`.
+  No second coefficient or complete diagonal frame is claimed.
+
+## 23 July 2026: exact local-global and prime-167 profile closures
+
+- Combined the primitive-nine lambda-cube ideal with the complete
+  characteristic-37 transfer.  On energy 167, every correlation has norm at
+  most `167^2=27,889`, while a nonzero element of
+  `37(1-omega)^3 Z[omega]` has norm at least 36,963.  The two finite modular
+  layers are therefore equivalent to exact `D_t=0`.  The third lambda digit
+  is the first one sufficient for this universal norm argument.
+- Found a broader single-prime closure.  If an energy-167 Eisenstein
+  autocorrelation is divisible by 167, equality in Cauchy would make the
+  nonzero order-37 translation act by an Eisenstein unit.  The unit must be
+  one, making every sequence constant and the energy divisible by 37, a
+  contradiction.  Thus exact complementarity is equivalent to its complete
+  reduction modulo 167.
+- Factored the order-three invariant modular algebra as
+  `F_(167^2) x F_(167^12) x F_(167^12)`.  The exact checker proves both
+  degree-18 factors, the two six-dimensional invariant period spaces, the
+  star exponents 5 and 7, inverse CRT round trips, and all four branches of a
+  complete two-channel solution parameterization.  All 22 pinned profile
+  tuples fail the modular equation, agreeing with exact replay.
+- Certified the formal profile symmetry
+  `C6 x C2_A x C2_B`, of order 24.  The 22 aggregate targets form seven
+  formal orbits.  With the complete canonical zero words fixed, only the
+  B-star is affinely transportable, so labelled lifting has twelve target
+  orbits.  An exhaustive termwise checker now verifies 2,200,368 local
+  correlation monomials, making the covariance certificate universal over
+  the full finite profile alphabet.
+- The independent audit found no blocking mathematical error.  It classed
+  prime-167 exactness as the strongest new order-three theorem, retained the
+  CRT, Hensel, diagonal-prefix, transfer, and symmetry packages with their
+  narrower scopes, and emphasized that no package excludes a whole aggregate
+  shard or constructs an `LP(333)`.
+- Repository and filename searches found no draft messages, recipient lists,
+  or outreach files to delete.  Nothing was sent or pushed; external contact
+  remains prohibited.

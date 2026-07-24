@@ -93,10 +93,43 @@ The strongest new constructive reductions are:
   table.
 - `LP333_ORDER3_PROFILE9_SHARDS.md`: all 22 aggregate shards have explicit
   alternative profile tuples passing the ideal. The ideal eliminates the 22
-  old witnesses but no whole shard.
-- `LP333_ORDER3_PHASE_FACTOR.md`: the 54 row-695 placement trits are signed
-  Eisenstein units. Exact primitive-nine lifting is one six-sequence
-  complementary-frame identity plus one independent cross-fiber identity.
+  old witnesses but no whole shard. The later exact zero-moment gate excludes
+  all 22 of these alternative fixed tuples as full-LP inputs, again without
+  excluding a whole shard.
+- `LP333_ORDER3_PROFILE_ZERO_GATE.md`: a full `LP(333)` requires the
+  order-three profile correlation `D_t` to vanish exactly on all 13 column
+  parts. All 22 ideal-compatible tuples fail: one on 10 nonzero classes and
+  21 on all 12. The original row-695 profile and stored same-shard witness
+  both fail on all 12 classes.
+- `LP333_ORDER3_PROFILE_CRT.md`: on energy 167, the lambda-cube ideal plus
+  all 13 characteristic-37 transfer coefficients is equivalent to exact
+  `D_t=0`; the least nonzero CRT norm is 36,963, above the Cauchy bound
+  27,889.
+- `LP333_ORDER3_PRIME167_SPLIT.md`: reduction modulo 167 alone is lossless
+  on the energy-167 shell.  The invariant algebra is
+  `F_(167^2) x F_(167^12) x F_(167^12)` with checked star, inverse CRT, and
+  complete two-channel solution parameterization.  All 22 stored tuples
+  fail.
+- `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md`: the formal profile group
+  `C6 x C2_A x C2_B` reduces 22 targets to seven.  Only `C6 x C2_B`
+  transports the canonical labelled zero words, giving twelve
+  lift-compatible target orbits.
+- `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
+  54 signed Eisenstein unit phases and automatic physical frame energy 167.
+  Exact primitive-nine lifting is one six-sequence complementary-frame
+  identity plus one independent cross-fiber identity.
+- `LP333_ORDER3_PHASE_TRANSFER.md`: the trivial-column character collapses
+  to one integer energy and one Eisenstein cross term per channel and is
+  exactly equivalent, with multiplicity, to the existing row-sum catalog.
+  Use it only after finding a `D_t=0` profile; the current fixture counts are
+  diagnostic.
+- `LP333_ORDER3_PHASE_HENSEL.md`: the first `1-omega` placement digit is an
+  affine `F_3` system. The diagnostic census has 21 rank-18 systems and one
+  exact `(16,17)` contradiction, but every input already fails `D_t=0`.
+- `LP333_ORDER3_DIAGONAL_FRAME_PREFIX.md`: augmentation plus the first
+  characteristic-37 diagonal coefficient collapse to one-sequence tables of
+  at most 444 states and joined tables of at most 666. All 22 diagnostic
+  inputs survive; no second coefficient or full frame is claimed.
 - `LP333_TWISTED_ORDER3.md`: the `<121>` and `<211>` lanes share an exact
   1,296-word, 108-orbit outer boundary and a complete row-axis lift.
 - `NOVEL_LIFTING_64.md`: an 84-bit reciprocal `q` skeleton and finite 2-adic
@@ -167,9 +200,27 @@ The strongest current construction checkpoints are:
 - the primitive-nine profile ideal: six displayed conjugate-pair tests but
   only five independent conditions; all 22 aggregate shards survive through
   pinned alternative profile tuples, each with a uniquely reconstructed
-  exact target table;
-- the three-fiber phase factor: 54 signed unit phases, diagonal frame energy
-  167, and exactly two independent Eisenstein group-ring equations;
+  exact target table. None of those 22 tuples survives the stronger full-LP
+  zero-moment gate, so they are not phase-lift inputs;
+- the full-LP profile zero gate: 22/22 fixed ideal-compatible tuples are
+  excluded, with nonzero-class histogram `10:1, 12:21`; this is zero
+  profile-tuple survival in the audited corpus but zero whole-shard
+  exclusions;
+- the exact finite zero detectors: lambda-cube plus all 13
+  characteristic-37 coefficients, or the independent single-prime-167
+  split.  Both are equivalent to exact zero on the shared profile domain;
+  The prime-167 invariant algebra has dimensions `1+6+6` over
+  `F_(167^2)`;
+- the exact profile symmetry: seven formal target orbits and twelve
+  lift-compatible target orbits, with the latter distinction required before
+  any labelled lift;
+- the three-fiber phase factor: every norm-54 tuple has 54 signed unit
+  phases, automatic diagonal frame energy 167, and exactly two independent
+  Eisenstein group-ring equations;
+- the phase refinements are reusable but diagnostic on the present corpus:
+  the trivial-character transfer equals the row-sum catalog, the first
+  Eisenstein-adic digit has one fixed-profile contradiction, and the
+  augmentation-plus-`T_1` diagonal prefix leaves all 22 tuples;
 - `output/antifold42_q0_proof/`: the only certified anti-fold exclusion,
   containing the 39,580-variable CNF, compressed binary DRAT proof,
   `certificate.json`, and narrow-scope README. The default verifier checks
@@ -205,11 +256,16 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to lift the 22 certified ideal-compatible profile
-   tuples through the diagonal Eisenstein frame and cross-fiber equation,
-   while quantifying later characteristic-37 coefficients. A profile-level
-   ideal-only search cannot exclude a shard: all 22 now have witnesses.
-   Strictly expand and verify any full quotient before any claim.
+   next exact task is to solve the 24-profile finite system with `D_t=0`
+   using the seven formal symmetry representatives and a hardened exact-zero
+   constructor that exploits the prime-167 split. Do not
+   phase-lift the 22 pinned
+   ideal-compatible tuples: the exact zero-moment audit already excludes
+   every one as a full-LP input. Only a zero-moment profile survivor should
+   proceed through the diagonal Eisenstein frame, cross-fiber equation,
+   exact margins, and full replay. A fixed-profile exclusion is not a
+   whole-shard exclusion. Strictly expand and verify any full quotient before
+   any claim.
 2. Build the universal four-directed-pair model from
    `FIVE_COMB_PAIRED_LOBES.md`. Filter it with the modulo-16
    meet-in-the-middle, the retained roots `+1,-1,i,zeta_8`, and the high-lag
@@ -376,7 +432,14 @@ python3 verify_lp333_order3_trit_lift.py
 python3 verify_lp333_order3_integral9.py
 python3 verify_lp333_order3_profile9.py
 python3 verify_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_profile_zero_gate.py
+python3 verify_lp333_order3_profile_crt.py
+python3 verify_lp333_order3_prime167_split.py
+python3 verify_lp333_order3_profile_zero_symmetry.py
 python3 verify_lp333_order3_phase_factor.py
+python3 verify_lp333_order3_phase_transfer.py
+python3 verify_lp333_order3_phase_hensel.py
+python3 verify_lp333_order3_diagonal_frame_prefix.py
 python3 verify_lp333_twisted_order3.py
 ../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
   --workers 4 --time-limit 2
