@@ -19,6 +19,16 @@ Last updated: 2026-07-24T01:08:00Z
 
 No exact value has been established.
 
+## Completion estimate
+
+**Best guess: 18% toward a complete exact resolution.**  The lower
+construction and several new universal necessary conditions are exact and
+audited, but the decisive step—either a 41-point exact construction or a
+classification-free exclusion of every continuous 41-point Gram
+realization—is still absent.  The estimate is intentionally uncertain and
+may decrease if the surviving continuous-support barriers prove broader
+than currently known.
+
 ## Strongest candidate routes
 
 The strongest current candidate is a **rank-aware higher-harmonic
