@@ -11,8 +11,16 @@ h = 18, 9, 6
 are empty. This closes the column-only order-18 family, the order-9
 (`quartic`) quotient, and the order-6 (`sextic`) quotient.
 
-The same projection is feasible for `h=3`. That is the sharp viable boundary
-among these four subgroup sizes, but the retained `h=3` object is only a
+Since this computation was completed, Ramos--Hulak--de Queiroz
+[arXiv:2607.20765](https://arxiv.org/abs/2607.20765) proved stronger
+full-family exclusions for the corresponding paper IDs 20, 12, and 8,
+without assuming the prescribed fixed compression.  This note is retained
+as a compact independent proof and as the front end of paper ID3, not as a
+priority claim for those three conclusions.
+
+The same projection is feasible for `h=3`. That is the first surviving
+member among these four nested fixed-compression subgroup sizes, but the
+retained `h=3` object is only a
 length-nine row-sum witness. It is **not** a Legendre pair, a Hadamard matrix,
 or evidence that the remaining column equations can be solved.
 

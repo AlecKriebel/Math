@@ -26,6 +26,14 @@ These are necessary conditions, not a construction.  No `BS(84,83)` or
 Hadamard matrix is claimed.  The dependency-free checker
 `verify_eliahou_adjacent42_repair.py` replays every finite claim.
 
+A July 2026
+[companion report](https://raw.githubusercontent.com/Arthur742Ramos/hadamard-668-multiplier-obstructions/main/mod64/report.md)
+already states the basic equivalence between an exact lift in Eliahou's
+special form and `BS(84,83)` and proves a raw-distance lower bound of 64.
+That translation is therefore prior.  The base-distance bound 80 below is a
+strict improvement; the adjacent-42 fold, special-distance-41 boundary, and
+anti-fold continuation were not located in that release.
+
 ## 1. A third cyclic image of `BS(84,83)`
 
 For a row `X` of length 84 or 83, fold it modulo 42:

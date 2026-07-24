@@ -1695,3 +1695,34 @@ proof-assistant-level theorem.
   digits together with an end-to-end search estimate.  A lone
   second-digit SAT witness does not pass the gate.  No external contact,
   push, or publication occurred.
+
+## 24 July 2026: current multiplier-literature audit
+
+- Audited Ramos--Hulak--de Queiroz, arXiv:2607.20765, submitted 22 July
+  2026, together with its public proof artifacts.  It proves that every
+  fixed common-multiplier subgroup of order at least nine is impossible for
+  `LP(333)` and also closes one order-four and one order-six subgroup.
+- Mapped our column-only `h=18,9,6` lanes exactly to its paper IDs 20, 12,
+  and 8.  Its conclusions are strictly stronger because they do not assume
+  our prescribed fixed compression.  The local row-sum proofs remain useful
+  as compact independent replays and as the front end of the `h=3` chain,
+  but are no longer headline novelty.
+- The active `<10>` subgroup is paper ID3 and remains open.  The other
+  order-three subgroups `<112>,<121>,<211>` are paper IDs 2, 4, and 5 and
+  also remain open in the full-family classification.  Corrected the local
+  `<112>` language to claim only the fixed-compression exclusion.
+- The five minimal proper common-multiplier supergroups of paper ID3 are all
+  publicly excluded.  Any exact pair in our `<10>` lane must therefore have
+  fixed common-multiplier stabilizer exactly `<10>`; structured searches
+  must break every proper supergroup rather than adding more common
+  multiplier symmetry.
+- The companion mod-64 report already contains the basic Eliahou special
+  lift/`BS(84,83)` equivalence and a raw-distance lower bound of 64.  The
+  local distance-80 theorem remains a strict improvement, but the basic
+  translation is no longer treated as new.  Generic fixed-field novelty
+  language was likewise narrowed after checking the companion compression
+  note.
+- No second July 2026 binary-Legendre-pair or `H(668)` paper was located in
+  the targeted audit.  The April 2026 Legendre-pair equivalence-group paper
+  was added to the priority source ledger.  No external contact, message,
+  push, or publication occurred.

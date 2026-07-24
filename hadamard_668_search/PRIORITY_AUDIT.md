@@ -76,6 +76,14 @@ external outreach; no contact drafts or recipient lists are retained.
 confidence in the repository proof, provisional confidence in literature
 priority.**
 
+A July 2026 companion report already records the basic equivalence between
+an exact lift in Eliahou's special form and `BS(84,83)`, an analytic raw
+distance lower bound of 64, and a solver-backed distance-17 statement for a
+128-modular lift.  The basic translation is therefore prior.  The
+distance-80 theorem below is a strict improvement, and no counterpart was
+found there for the adjacent-42/anti-fold structure or the special-distance
+41 classification.
+
 Reducing all four base rows modulo `z^42-1` reveals that Eliahou's thirteen
 residual lags cancel exactly: the folded seed is periodically flat with
 energy 14. Every exact `BS(84,83)` has folded energy 334. If `E` is the
@@ -287,9 +295,17 @@ still relaxes compatibility between the even and odd high-lag projections.
 
 ## E. Multiplier row-sum obstruction and order-three boundary
 
-**Priority assessment: likely-new theorem-sized restricted-family
-obstruction plus a strong construction boundary; high confidence in the
-dependency-free proof, provisional literature confidence.**
+**Priority assessment: compact independent fixed-compression proofs now
+subsumed by stronger July 2026 full-family exclusions; the order-three ID3
+front end and its deeper algebra remain potentially new.**
+
+Ramos, Hulak, and de Queiroz now prove that all fixed common-multiplier
+subgroups of order at least nine are impossible at length 333, together with
+one order-four and one order-six subgroup.  Their paper IDs 20, 12, and 8
+strictly contain the column-only `h=18,9,6` families below because the public
+theorem does not assume our prescribed length-37 compression.  The present
+enumerations are therefore retained as compact independent proofs and as the
+front end of the surviving order-three chain, not as headline novelty.
 
 For a fixed-compression column-only multiplier subgroup `H` of size `h`, sum
 all 37 column-lag equations. If `x` is the zero-column word, `t` is the
@@ -307,9 +323,14 @@ for `h=18`; for `h=9` it has 40 states and 29 PAF profiles but no target; for
 `h=6` it has 2,376 states and 971 profiles but no target. Replaying all 972
 cores gives 38,880 quartic and 2,309,472 sextic states with zero hits. This
 closes all three restricted families exactly and supersedes their bounded
-CP-SAT searches.
+CP-SAT searches, but the conclusions themselves are now subsumed by the
+stronger public full-family results.
 
-At `h=3`, the same projection is feasible. A warning-clean dependency-free
+Here `h=3` is the first surviving member of this particular column-only
+fixed-compression chain `H_18 superset H_9 superset H_6 superset H_3`; it is
+not a statement that all larger multiplier families were first excluded
+here.  Public paper ID3, `H_3=<10>`, remains open.  At `h=3`, the same
+projection is feasible. A warning-clean dependency-free
 C++ enumeration checks 46,503,026 energy-and-sum words and finds exactly
 1,756 full row-sum PAF words. Every word admits the exact zero-column
 signature lift. After complementing the high-weight binary channels, that
@@ -753,7 +774,9 @@ impossible.
 
 Maintain one compact internal paper organized around:
 
-1. Eliahou's structured quadruple and its exact translation to `BS(84,83)`;
+1. Eliahou's structured quadruple, crediting the contemporaneous public
+   report for the basic exact-lift equivalence with `BS(84,83)`, followed by
+   our strict distance-80 improvement over its distance-64 bound;
 2. the adjacent cyclic-fold theorem and prime-83 oriented-SDS construction;
 3. the adjacent-42 energy fold, distance-80/distance-41 theorems, and the
    39-pair minimum-shell frontier, followed by the orientation-free
@@ -765,8 +788,9 @@ Maintain one compact internal paper organized around:
 6. the projective quotient, physical high-lag table, dyadic compression
    theorem, distinct-lobe complementary-octet construction, and scoped
    primitive-eight vertical census;
-7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
-   and the order-three difference-family, Eisenstein, primitive-nine,
+7. the archival compact multiplier row-sum proofs, with the stronger July
+   full-family exclusions credited, and the still-open order-three
+   difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
    profile-zero, top-four energy-shell exclusions, prime-167 split, exact
    symmetry, unit-phase, lossless full-phase four-cone factorization,
@@ -800,6 +824,24 @@ public sources resolve the overlap question.
 
 ## Sources checked
 
+- Arthur F. Ramos, David B. Hulak, and Ruy J. G. B. de Queiroz,
+  [Multiplier obstructions for Legendre pairs of length
+  333](https://arxiv.org/abs/2607.20765), arXiv:2607.20765 (22 July
+  2026), together with its
+  [proof-artifact repository](https://github.com/Arthur742Ramos/hadamard-668-multiplier-obstructions).
+  Its full-family exclusions subsume our fixed-compression paper IDs
+  20/12/8, while paper ID3 `<10>` remains open.
+- The same release's
+  [Eliahou mod-64 report](https://raw.githubusercontent.com/Arthur742Ramos/hadamard-668-multiplier-obstructions/main/mod64/report.md)
+  and
+  [fixed-field compression note](https://raw.githubusercontent.com/Arthur742Ramos/hadamard-668-multiplier-obstructions/main/compression_theorem/theorem_note.md).
+  These establish priority for the basic `BS(84,83)` lift translation and
+  general fixed-field framework, but not the present distance-80 or
+  order-three profile algebra.
+- [Determining the group that sends each Legendre pair to an equivalent
+  Legendre pair](https://arxiv.org/abs/2604.22423), arXiv:2604.22423
+  (2026), checked before making priority claims for formal equivalence and
+  lex-leader machinery.
 - Shalom Eliahou,
   [A 64-modular Hadamard matrix of order 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf),
   *Australasian Journal of Combinatorics* 93(2) (2025), 422-427.

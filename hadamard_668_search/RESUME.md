@@ -47,7 +47,9 @@ The strongest results in this repository are negative or local:
 - the fixed-compression column-only `LP(333)` multiplier families of orders
   18, 9, and 6 are empty by an exact row-sum PAF obstruction. The all-core
   replays check 38,880 quartic and 2,309,472 sextic projected states with
-  zero hits; no solver status is used;
+  zero hits; no solver status is used.  The July 2026 full multiplier
+  classification now subsumes these conclusions for paper IDs 20, 12, and
+  8, so retain them as independent compact proofs rather than novelty claims;
 - inversion-symmetric/normalized-skew `LP(333)` type pairs are impossible;
 - several large, explicitly defined local neighborhoods around retained near
   misses have been independently exhausted.
@@ -58,9 +60,9 @@ The strongest new constructive reductions are:
   cyclic folds at 84 and 83. The prime fold is a 41-equation oriented SDS with
   45 size profiles and a `GF(2^82)/GF(2^41)` norm parameterization. Construct
   the prime fold first, then test 564,898 finite phase/multiplier lifts.
-- `LP333_MULTIPLIER_ROW_SUM.md`: the exact row-sum identity that closes the
-  order-18, quartic, and sextic fixed-compression quotients and identifies
-  order three as the first viable multiplier boundary.
+- `LP333_MULTIPLIER_ROW_SUM.md`: an exact compact row-sum identity for the
+  now-subsumed order-18, quartic, and sextic fixed-compression quotients,
+  plus the 1,756-word front end of the still-open paper ID3 order-three lane.
 - `LP333_ORDER3_DIFFERENCE_FAMILY.md`: the viable order-three boundary has
   exactly 1,756 row-sum PAF words. Their zero-column/signature lift is
   equivalent to 24 cyclic triples on `Z/9`; all 1,756 words lift in that

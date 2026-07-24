@@ -20,7 +20,7 @@
 | `FIVE_COMB_ROOT8_VERTICAL.md` | Primitive-eight vertical-pair sieve and retained core-4/core-27 censuses |
 | `NOVEL_LP333_THEORY.md` | Historical QPSK quartic-residue quotient, now closed by the row-sum theorem |
 | `LP333_SEXTIC_QUOTIENT.md` | Historical order-six quotient and 108-sign model, now closed by the row-sum theorem |
-| `LP333_MULTIPLIER_ROW_SUM.md` | Exact obstruction for multiplier orders 18, 9, and 6, and the viable order-three boundary |
+| `LP333_MULTIPLIER_ROW_SUM.md` | Independent compact fixed-compression proofs for July-paper IDs 20, 12, and 8, now subsumed by stronger full-family exclusions, plus the 1,756-word open ID3 front end |
 | `LP333_ORDER3_DIFFERENCE_FAMILY.md` | Exact 24-triple pure-axis lift and full mixed-lag non-candidate audit |
 | `LP333_ORDER3_EISENSTEIN.md` | Exact 13-condition Eisenstein factorization and local mod-three sieve |
 | `LP333_ORDER3_PRIMITIVE9_JET.md` | Six-digit ramified primitive-nine refinement of the order-three quotient |
@@ -43,6 +43,7 @@
 | `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` | Exact affine modulo-nine exclusion of the five-norm-nine shell |
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
+| `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local lanes, corrected priority scope, and ID3 search consequences |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |

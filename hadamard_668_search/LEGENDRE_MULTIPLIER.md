@@ -20,7 +20,8 @@ Their present status is:
 <10>    active structured boundary: exact 9 x 13 QPSK quotient,
         1,756 row sums, 22 Eisenstein shards, a primitive-9 jet,
         and an invertible characteristic-37 transfer
-<112>   impossible by the lag-111 distance contradiction below
+<112>   impossible under the prescribed fixed compression by the lag-111
+        distance contradiction below; unrestricted paper ID2 remains open
 <121>   active coupled lane: 1,296 fixed-margin row sums / 108 outer orbits
 <211>   active coupled lane: the same exact outer boundary.
 ```
@@ -65,9 +66,11 @@ cyclic Hamming distance at lag 111 is at most 111.
 
 The fixed 9-bit column weights independently force the distance of each
 sequence at lag 111 to be at least 112.  This contradiction rules out the
-entire `<112>` subfamily.  The test suite mechanically checks the orbit-edge
-count 111 and the fixed-column lower bound; CP-SAT also reports the model
-infeasible during initial constraint loading.
+prescribed fixed-compression `<112>` subfamily.  It does not exclude every
+pair fixed by `<112>`: the July 2026 full subgroup classification lists that
+unrestricted paper ID2 family as open.  The test suite mechanically checks
+the orbit-edge count 111 and the fixed-column lower bound; CP-SAT also
+reports the model infeasible during initial constraint loading.
 
 ## Reproduction
 
