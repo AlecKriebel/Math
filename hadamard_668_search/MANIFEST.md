@@ -34,7 +34,9 @@
 | `LP333_ORDER3_PROFILE_CRT.md` | Exact local-global zero detector from the lambda-cube ideal, complete characteristic-37 transfer, and Cauchy norm gap |
 | `LP333_ORDER3_PRIME167_SPLIT.md` | Lossless prime-167 reduction, invariant finite-field split, involution, inverse CRT, and complete two-channel parameterization |
 | `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` | Formal 24-element profile symmetry, seven target orbits, and the 12-element labelled-transport caveat |
+| `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md` | Resumable 24-profile exact constructor with deterministic cubes and detached candidate replay |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
+| `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
 | `LP333_ORDER3_PHASE_TRANSFER.md` | Exact trivial-character phase transfer and multiplicity-preserving equivalence with the row-sum catalog |
 | `LP333_ORDER3_PHASE_HENSEL.md` | Exact first Eisenstein-adic phase digit, rank census, and fixed-profile contradiction certificate |
 | `LP333_ORDER3_DIAGONAL_FRAME_PREFIX.md` | Exact augmentation-plus-characteristic-37 prefix for the six-sequence diagonal frame |
@@ -116,8 +118,13 @@
 | `test_lp333_order3_prime167_split.py` | Focused equality-case, field, branch, recovery, and profile-corpus regressions |
 | `verify_lp333_order3_profile_zero_symmetry.py` | Checks all formal actions, universal termwise covariance, target orbits, Burnside count, and lift caveat |
 | `test_lp333_order3_profile_zero_symmetry.py` | Focused group, covariance, orbit, zero-word, and rejected-symmetry regressions |
+| `search_lp333_order3_profile_crt.py` | Resumable deterministic exact constructor for seven formal, twelve lift-compatible, or all 22 targets |
+| `verify_lp333_order3_profile_crt_candidate.py` | Solver-free exact replay of every future profile-constructor survivor |
+| `test_search_lp333_order3_profile_crt.py` | Constructor arithmetic, symmetry, checkpoint, memory-ceiling, and replay regressions |
 | `verify_lp333_order3_phase_factor.py` | Checks the 54 signed-unit phases and the two exact Eisenstein group-ring equations |
 | `test_lp333_order3_phase_factor.py` | Focused fiber-bijection, adjoint, and dual-certificate factorization regressions |
+| `verify_lp333_order3_phase_prime167.py` | Checks exactness of both phase equations, both finite-field splits, universal star, and all cone branches |
+| `test_lp333_order3_phase_prime167.py` | Focused equality-orbit, CRT, annihilator, recombination, rank, and parameter-count regressions |
 | `verify_lp333_order3_phase_transfer.py` | Checks the small phase-sum transfer and its exact catalog-intersection equivalence |
 | `test_lp333_order3_phase_transfer.py` | Focused convolution, fixture, corpus, pruning, and catalog-equivalence regressions |
 | `verify_lp333_order3_phase_hensel.py` | Checks the first affine `1-omega` phase digit, rank census, direct replays, and contradiction |

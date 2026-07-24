@@ -42,9 +42,11 @@ report:
    five-independent-condition profile ideal, an exact full-LP zero-moment
    gate, a local-global CRT closure, a lossless prime-167 finite-field split,
    a 24-element formal symmetry reducing 22 targets to seven, and a
-   three-fiber unit-phase factorization; all 22 aggregate shards survive the
-   ideal, but every stored ideal witness fails the zero gate, and the coupled
-   `<121>/<211>` lanes share a separate exact 1,296-word boundary;
+   three-fiber unit-phase factorization whose complete 39-condition phase
+   system is also lossless modulo 167 and splits into four parameterized
+   finite-field cones; all 22 aggregate shards survive the ideal, but every
+   stored ideal witness fails the zero gate, and the coupled `<121>/<211>`
+   lanes share a separate exact 1,296-word boundary;
 9. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
    degree-two independently decimated extension.
@@ -398,18 +400,22 @@ F_167(omega)[C_37]^H = F_(167^2) x F_(167^12) x F_(167^12),
 ```
 
 with a checked involution, inverse CRT, and complete parameterization of the
-two-channel modular complementarity cone.  The prime-167 theorem is the
-strongest likely-new contribution in the order-three lane.  Its proof is
-short and general, its finite-field structure is mechanically replayed, and
-it is worth a focused internal write-up.  Literature priority remains
-provisional, and it does not supply a small-alphabet profile point.
+two-channel modular complementarity cone.  Together with the full phase
+extension below, the prime-167 program is the strongest likely-new
+contribution in the order-three lane.  Its proof is short and general, its
+finite-field structure is mechanically replayed, and it is worth a focused
+internal write-up.  Literature priority remains provisional, and it does
+not supply a small-alphabet profile point.
 
 The exact profile equation also has formal symmetry
 `C6 x C2_A x C2_B`.  It gives seven target orbits, but only
 `C6 x C2_B` transports the canonical labelled zero words, leaving twelve
 lift-compatible orbits.  This distinction prevents an invalid quotient at
-the phase stage.  The symmetry theorem is a useful supporting result and
-gives the correct target quotient for a future exact constructor.
+the phase stage.  A deterministic 24-variable constructor implements the
+seven formal targets with atomic prefix cubes and detached exact replay. Its
+bounded pilot left 37 disjoint pending cubes, with no candidate and no
+infeasibility proof.  The symmetry theorem is useful supporting mathematics;
+the constructor is research infrastructure, not publication evidence.
 
 After profiles are fixed, every active residue fiber is a signed cube root
 of unity.  The identity `active=3-Norm/3` shows that total profile norm 54
@@ -420,6 +426,30 @@ one directed cross-fiber identity. The third cubic-basis equation is the
 adjoint of the second. This explains the 36 independent mixed-column integer
 conditions and provides a materially smaller exact architecture for the next
 labelled lift. It is a structural factorization, not yet an obstruction.
+
+The entire phase factorization is now lossless modulo 167 as well.  For the
+diagonal equation, Cauchy equality would make support a union of 37-cycles.
+For the directed cross equation, the twisted three-fiber operator has orbit
+length 3 at zero column lag and 111 otherwise.  Support 167 is divisible by
+none of these, so modular vanishing forces exact vanishing coefficient by
+coefficient.  In `F_(167^2) x F_(167^12)^2`, the three primitive equations
+form the annihilator of a three-dimensional twisted orbit plane.
+
+Recombining the three fibers over the irreducible ninth-root field gives the
+stronger semisimple presentation
+
+```text
+F_(167^6) x F_(167^12)^6.
+```
+
+Star pairs the six primitive factors, reducing all 39 scalar equations to
+one Hermitian cone over `F_(167^6)/F_(167^3)` and three bilinear cones over
+`F_(167^12)`.  The six factor orbits, rank-13 invariant CRT, universal star
+action, branch exhaustiveness, and solution counts are independently
+checked.  This is theorem-sized structural progress and should lead the
+order-three portion of an internal paper.  It parameterizes the modular
+norm cone, not the sparse zero/unit inverse-CRT intersection, so it is not an
+existence result.
 
 At the trivial `C_37` character, the six phase sums admit a further exact
 transfer: one integer energy and one Eisenstein cross term per channel.
@@ -596,8 +626,8 @@ Maintain one compact internal paper organized around:
 7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
    and the order-three difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
-   profile-zero, prime-167 split, exact symmetry, unit-phase, and coupled-lane
-   boundaries;
+   profile-zero, prime-167 split, exact symmetry, unit-phase, lossless
+   full-phase four-cone factorization, and coupled-lane boundaries;
 8. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
 9. the fixed-`q` parity telescope and reduction to `TU(41)`;
 10. the radius-18 solver report and proof-certification ladder as historical

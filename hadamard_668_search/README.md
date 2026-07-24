@@ -558,6 +558,17 @@ lifted independently.  The verifier now checks correlation covariance
 term-by-term over the complete finite profile alphabet rather than relying
 on sampled assignments.
 
+`LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md` implements the seven formal target
+orbits as a finite 24-variable search with exact `C6` symmetry breaking,
+deterministic prefix cubes, atomic checkpoints, and solver-free replay of
+all 37 correlations.  Its bounded workflow pilot left 37 disjoint pending
+cubes and proved no exclusion.  A separate prime-167 MITM audit found that
+the obvious balanced split would need more than 151 GiB, while the
+low-memory channel-first version still requires 6,338,555,429 degree-12
+field signatures.  The checkpointed constructor is therefore the current
+exact profile route; neither pilot nor MITM count is evidence of
+infeasibility.
+
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or
 fixed-size-two residue fiber has a signed cube-root phase in
@@ -583,6 +594,29 @@ sequences; the formally third cubic-basis equation is the adjoint of the
 second. This explains the 36 independent mixed-column integer conditions
 and is the preferred architecture for the next exact labelled lift after a
 zero-moment profile has been found.
+
+`LP333_ORDER3_PHASE_PRIME167.md` makes this phase architecture finite without
+loss.  On the universal zero/unit support-167 shell, Cauchy equality would
+force support to be a union of translation or twisted-translation orbits.
+Their relevant lengths are 37, 3, and 111, none of which can sum to 167.
+Consequently both phase equations are exactly equivalent to their full
+reductions modulo 167.  In the existing `k x E x E` split, the three
+primitive equations become the annihilator of a three-dimensional twisted
+orbit plane.
+
+Recombining the three fibers at a primitive ninth root gives the still
+smaller complete algebra
+
+```text
+F_(167^6) x F_(167^12)^6.
+```
+
+Star pairs the six primitive factors into three pairs, so all 39 scalar
+conditions are one Hermitian norm cone over
+`F_(167^6)/F_(167^3)` and three bilinear cones over `F_(167^12)`.
+Every branch is explicitly parameterized and the rank-13 invariant CRT is
+checked on a complete basis.  The remaining problem is the sparse
+zero/unit inverse-CRT intersection; no physical phase point is asserted.
 
 `LP333_ORDER3_PHASE_TRANSFER.md` collapses the trivial-column character of
 that phase frame to one integer energy and one Eisenstein cross term per
@@ -623,9 +657,14 @@ python3 verify_lp333_order3_profile_crt.py
 python3 verify_lp333_order3_prime167_split.py
 python3 verify_lp333_order3_profile_zero_symmetry.py
 python3 verify_lp333_order3_phase_factor.py
+python3 verify_lp333_order3_phase_prime167.py
 python3 verify_lp333_order3_phase_transfer.py
 python3 verify_lp333_order3_phase_hensel.py
 python3 verify_lp333_order3_diagonal_frame_prefix.py
+../.venv/bin/python search_lp333_order3_profile_crt.py \
+  --self-test --max-memory-mb 512
+../.venv/bin/python -m unittest -v \
+  test_search_lp333_order3_profile_crt.py
 ../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
   --workers 4 --time-limit 2
 ../tmp/hadamard-env/bin/python -m unittest -v \
@@ -644,6 +683,7 @@ python3 verify_lp333_order3_diagonal_frame_prefix.py
   test_lp333_order3_prime167_split.py \
   test_lp333_order3_profile_zero_symmetry.py \
   test_lp333_order3_phase_factor.py \
+  test_lp333_order3_phase_prime167.py \
   test_lp333_order3_phase_transfer.py \
   test_lp333_order3_phase_hensel.py \
   test_lp333_order3_diagonal_frame_prefix.py \

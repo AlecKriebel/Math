@@ -1306,3 +1306,51 @@ proof-assistant-level theorem.
 - Repository and filename searches found no draft messages, recipient lists,
   or outreach files to delete.  Nothing was sent or pushed; external contact
   remains prohibited.
+- Built a resumable exact 24-profile constructor with aggregate, energy,
+  opposite-pair, lambda-cube, and all 13 characteristic-37 constraints.  It
+  uses one deterministic worker, exact ten-way prefix cubes, atomic
+  checkpoints, a 4 GiB solver ceiling, and mandatory solver-free replay of
+  all 37 physical correlations.  A 45-second workflow pilot made four exact
+  subdivisions, leaving 37 disjoint pending cubes, zero candidates, and zero
+  infeasible cubes.  This is resume validation, not negative evidence.
+- Audited a prime-167 meet-in-the-middle alternative before implementing it.
+  The three ordered opposite-pair signature buckets have sizes `34,33,33`,
+  so a legal four-profile quartet has 3,334 choices.  A balanced three-plus-
+  three quartet split has `3,334^3=37,059,263,704` injective half signatures
+  and would exceed 151 GiB for identifiers alone.  A channel-first split is
+  low-memory—half lists at most 39,304 and collision cells at most
+  2,105,586—but still requires 6,338,555,429 degree-12 field signatures
+  across the seven formal targets.  The 729 local-signature patterns have
+  exactly 125 `C6` orbits.  This is a rigorous fallback/barrier audit, not a
+  practical primary constructor, so no speculative implementation was kept.
+
+## 23 July 2026: lossless prime-167 full phase algebra
+
+- Extended prime-167 exactness from ordinary complementarity to both
+  independent phase-frame equations.  The diagonal Cauchy equality support
+  orbits have length 37.  The directed cross operator has three-cycles at
+  zero column lag and 111-cycles otherwise because its fiber twist satisfies
+  `P^3=omega^2`.  Total support 167 is a multiple of none of these lengths,
+  so modular vanishing is equivalent to exact vanishing coefficient by
+  coefficient.
+- In the existing `F_(167^2) x F_(167^12)^2` invariant split, the three
+  primitive equations are exactly `x` orthogonal to the span of
+  `z,bar(P)z,bar(P)^2z`.  This span has rank at most three, giving an
+  explicit at-least-three-dimensional annihilator for fixed minus spectral
+  data.
+- Recombined the three fiber sequences at a primitive ninth root.  Since
+  `ord_9(167)=6`, the coefficient field is `F_(167^6)`, and the complete
+  invariant algebra is
+  `F_(167^6) x F_(167^12)^6`.  The six primitive factors form three star
+  pairs with Frobenius exponents 3 and 9.  All 39 scalar equations are one
+  Hermitian norm cone over `F_(167^6)/F_(167^3)` and three bilinear cones
+  over `F_(167^12)`.
+- Mechanically partitioned all 36 nonzero character exponents into six
+  factor orbits, proved rank 13 on the origin plus twelve class-indicator
+  basis, checked star on all 13 basis words, and pinned the exhaustive
+  degenerate/nondegenerate branch counts.  An independent audit found no
+  mathematical defect; six tests passed in 25.84 seconds at about 31.5 MB
+  maximum RSS.
+- This parameterizes the entire finite modular norm cone but does not solve
+  its sparse zero/unit inverse-CRT intersection.  No phase assignment,
+  `LP(333)`, or `H(668)` is claimed.

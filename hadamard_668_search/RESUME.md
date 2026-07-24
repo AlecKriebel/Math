@@ -114,10 +114,20 @@ The strongest new constructive reductions are:
   `C6 x C2_A x C2_B` reduces 22 targets to seven.  Only `C6 x C2_B`
   transports the canonical labelled zero words, giving twelve
   lift-compatible target orbits.
+- `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md`: the exact 24-profile search uses
+  deterministic prefix cubes, atomic checkpoints, `C6` lex leaders, and
+  mandatory solver-free replay.  Its 45-second workflow pilot left 37
+  pending cubes, no candidate, and no exclusion.
 - `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
   54 signed Eisenstein unit phases and automatic physical frame energy 167.
   Exact primitive-nine lifting is one six-sequence complementary-frame
   identity plus one independent cross-fiber identity.
+- `LP333_ORDER3_PHASE_PRIME167.md`: both phase equations are losslessly
+  reduced modulo 167 by the `37/3/111` equality-orbit obstruction.  The
+  primitive equations form a three-plane annihilator, and ninth-root
+  recombination gives one Hermitian plus three bilinear cones in
+  `F_(167^6) x F_(167^12)^6`.  The remaining gate is the sparse physical
+  inverse-CRT intersection.
 - `LP333_ORDER3_PHASE_TRANSFER.md`: the trivial-column character collapses
   to one integer energy and one Eisenstein cross term per channel and is
   exactly equivalent, with multiplicity, to the existing row-sum catalog.
@@ -209,14 +219,22 @@ The strongest current construction checkpoints are:
 - the exact finite zero detectors: lambda-cube plus all 13
   characteristic-37 coefficients, or the independent single-prime-167
   split.  Both are equivalent to exact zero on the shared profile domain;
-  The prime-167 invariant algebra has dimensions `1+6+6` over
+  the prime-167 invariant algebra has dimensions `1+6+6` over
   `F_(167^2)`;
-- the exact profile symmetry: seven formal target orbits and twelve
-  lift-compatible target orbits, with the latter distinction required before
-  any labelled lift;
+- the exact profile symmetry and constructor: seven formal target orbits,
+  twelve lift-compatible target orbits, and a deterministic checkpoint
+  queue.  The bounded pilot has no candidate or negative implication;
+- do not build the obvious balanced prime-167 profile MITM: its
+  `3,334^3=37,059,263,704` injective half list requires more than 151 GiB
+  before field data.  The exact channel-first fallback uses little RAM but
+  still needs 6,338,555,429 degree-12 signatures across the seven targets;
 - the three-fiber phase factor: every norm-54 tuple has 54 signed unit
   phases, automatic diagonal frame energy 167, and exactly two independent
   Eisenstein group-ring equations;
+- the full phase prime-167 theorem: both equations are exact modulo 167; the
+  39 scalar conditions recombine into one Hermitian cone and three bilinear
+  cones with complete branch parameterizations.  No sparse physical point is
+  known;
 - the phase refinements are reusable but diagnostic on the present corpus:
   the trivial-character transfer equals the row-sum catalog, the first
   Eisenstein-adic digit has one fixed-profile contradiction, and the
@@ -257,12 +275,13 @@ audit.
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
    next exact task is to solve the 24-profile finite system with `D_t=0`
-   using the seven formal symmetry representatives and a hardened exact-zero
-   constructor that exploits the prime-167 split. Do not
-   phase-lift the 22 pinned
+   using the seven formal symmetry representatives and the resumable exact
+   CRT constructor.  The prime-167 channel-first MITM is a low-memory
+   fallback, not the primary route at its current 6.34-billion-signature
+   cost. Do not phase-lift the 22 pinned
    ideal-compatible tuples: the exact zero-moment audit already excludes
    every one as a full-LP input. Only a zero-moment profile survivor should
-   proceed through the diagonal Eisenstein frame, cross-fiber equation,
+   proceed through the lossless prime-167 phase cones, sparse inverse CRT,
    exact margins, and full replay. A fixed-profile exclusion is not a
    whole-shard exclusion. Strictly expand and verify any full quotient before
    any claim.
