@@ -1749,3 +1749,54 @@ proof-assistant-level theorem.
   replay.  Peak resident memory stayed below 32 MB.
 - These are exact structured-family exclusions, not whole-profile
   exclusions.  No external contact, push, or publication occurred.
+
+## 24 July 2026: higher-digit and complete-search gate
+
+- Certified one proper-supergroup-free placement through digits zero, one,
+  and two.  The second-digit dimension heuristic predicts about `3^18`
+  points per profile, so the witness is an instrument check rather than
+  convergence toward `LP(333)`.
+- Derived the exact coordinate identity
+  `F=A+(3Q-A)omega`.  It makes exactness the signed-histogram condition
+  `A=Q=0`, proves that digits zero through eight force exact zero, and
+  exposes a nineteenth digit-three equation from the delayed `E1` origin
+  row.
+- Counted the delayed origin equation exactly: 30 admissible orientation
+  histograms with total weight 596,095,200 among `3^22` orientations.
+  Degree-three XL has rank 666 and produces neither a refutation nor a new
+  lower-degree consequence.
+- A five-profile bounded census replayed nine further digit-two points.  Two
+  also satisfy the delayed nineteenth row, disproving the proposed
+  implication that digit two forces that row nonzero.  They leave 11 and 16
+  other digit-three rows nonzero, and all nine census points fail the exact
+  row-margin join.
+- Exact local analysis at the two stage-2.5 points found regular rank-18
+  digit-two Jacobians, 17-dimensional tangents, zero common Hessian
+  radicals, and inconsistent complete first-order cubic corrections.  The
+  candidate-zero six-dimensional correction sheet contains no digit-two
+  point among its 729 elements.
+- Exhausted the affine Hamming ball of radius five about the better
+  stage-2.5 point: 13,065,937 points contain only the center and one
+  radius-five digit-two point.  Neither is row-margin compatible, and the
+  second point is worse at digit three.
+- Added exact row-margin membership to the sparse histogram model.  The
+  candidate-zero digit-two union, eight sampled fixed targets, a
+  target-preserving permutation search, and the all-target digit-three
+  model all ended `UNKNOWN`.  No bounded status was promoted to an
+  exclusion.
+- Completed the whole-route estimate.  Generic enumeration of the five
+  `3^36` shell-two charts is infeasible; the `n_9=1,0` shells still contain
+  510,384 and 107,476 legal supports and 59,743,488 and 47,730,304 legal
+  signed skeletons.
+- Implemented the exact dense-shell 729-character kernel.  Its conservative
+  single-core median is 12,668,666 evaluations/second, 718 times the
+  four-week arithmetic threshold.  Independent brute force agrees on all
+  1,458 character sums for two real affine cubes.  Full streaming,
+  canonicalization, survivor recovery, and exact replay remain unmeasured.
+- The strict higher-digit construction gate failed: no full digit-three or
+  digit-four point, exact structured lift, feasible complete phase lift, or
+  whole-profile exclusion was obtained.  Headline search on the five
+  placement charts stops here.  The five-orbit/carry package is preserved
+  for a scoped paper, while the dense profile classifier is the only
+  evidence-backed bounded continuation.
+- No external contact, message, push, or publication occurred.

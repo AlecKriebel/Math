@@ -7,6 +7,17 @@ exact candidate.  Exact success means producing explicit signs and passing the
 full `668 x 668` verification path; energy zero in a search engine is not
 sufficient by itself.
 
+The 24 July higher-digit construction gate failed.  Do not resume generic
+search on the five shell-two `3^36` placement charts: we found no
+row-margin-compatible digit-two seed, full digit-three point, or structured
+exact lift, and obtained neither a feasible complete search nor a
+whole-profile exclusion.  A later restart of that lift requires a genuinely
+new construction principle.
+The separate dense-shell arithmetic benchmark passes comfortably; an
+end-to-end `n_9=1,0` **profile classifier** is the one scoped continuation
+supported by current evidence, and should be treated as a paper project
+rather than a forecast of `H(668)`.
+
 The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
 
@@ -186,6 +197,38 @@ The strongest new constructive reductions are:
   channel pairs per profile, leaving six supergroup-free digit-one points
   and no digit-two point.  Its sole structured digit-two control is
   order-six fixed and fails digit three.
+- `phase_second_digit/higher_digits/`: one independently replayed
+  supergroup-free point survives digits zero through two.  None has yet
+  survived digit three or four.  The exact norm bound shows that digits
+  zero through eight force exact zero.
+- `digit3_carry_algebra/`: the exact coordinate identity
+  `F=A+(3Q-A)omega` exposes a nineteenth digit-three equation.  The delayed
+  `E1` origin equation is linear and reduces the affine dimension to 35;
+  its complete exact local count has 30 histogram pairs and 596,095,200 of
+  `3^22` orientations.  Degree-three XL has rank 666 and yields neither a
+  refutation nor a new lower-degree consequence.
+- `scratch_stage25_algebra/`: two points satisfy digit two plus the delayed
+  nineteenth row, falsifying the proposed universal obstruction, but both
+  fail exact row margins.  Their digit-two tangent spaces are regular,
+  their first-order cubic corrections are inconsistent, and the
+  candidate-zero 729-point correction sheet contains no digit-two root.
+- `scratch_row_margin_digit3/`: exact CP-SAT intersection of all digit-three
+  equations with a compatible six-sum row-margin target.  The
+  candidate-zero all-target pilot is `UNKNOWN` after 600 seconds and
+  3,671,985 branches; it is a resumable performance checkpoint only.
+- `COMPLETE_REMAINING_SEARCH_ESTIMATE.md`: exact endpoint, model-size,
+  row-margin, CPU, RAM, disk, and symmetry accounting for the five
+  shell-two lifts, plus explicit support and signed-skeleton counts for the
+  still-unclassified `n_9=1,0` shells.  Generic `3^36` enumeration is ruled
+  out; a compact exact digit-three shard fits locally.  The compiled
+  729-character kernel now runs at a conservative 12,668,666
+  evaluations/s/core, over 700 times the four-week arithmetic threshold;
+  end-to-end skeleton streaming and survivor handling remain unmeasured.
+- `scratch_dense_shell_benchmark/`: exact C++ character kernel,
+  machine-readable timing checkpoint, and an independent direct
+  affine-cube verifier covering 1,458 Eisenstein character sums.  This is
+  a go result for arithmetic throughput, not a profile-classification
+  result.
 - `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
   correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
   `2I`.  Exact affine restriction and Gauss bounds prove this universal

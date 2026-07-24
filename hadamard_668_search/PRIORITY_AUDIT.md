@@ -551,6 +551,51 @@ only structured second-digit control is order-six fixed and fails five rows
 at digit three.  These are scoped family exclusions, not evidence that any
 of the five full profile spaces is impossible.
 
+The unrestricted higher-digit audit now contains one independently replayed,
+proper-supergroup-free point through placement digit two.  As predicted by
+the quadratic dimension count, this is instrumentation evidence rather than
+construction progress: a neutral model expects `3^18` such points per
+profile.  No point through digit three or four has been found.  Exact
+Eisenstein coordinates give
+
+```text
+F=A+(3Q-A)omega,
+```
+
+so exactness is simply `A=Q=0`, or equality of three signed phase
+histograms.  This also proves that digits zero through eight already force
+exact zero.  More importantly, the apparently structural `E1` origin row
+reveals an independent linear equation at digit three.  The true transition
+is therefore eighteen digit-two quadrics plus nineteen digit-three
+equations in 36 variables.  Its local exact equation has 30 admissible
+orientation-count pairs and 596,095,200 solutions among `3^22`
+orientations.  Degree-three XL gives no contradiction and no new
+lower-degree consequence.  The exact carry identity, delayed-row theorem,
+and finite orientation count are new-looking supporting results; the
+bounded `UNKNOWN` searches and absence of a higher-digit point are not
+publication claims.
+
+A bounded follow-up census found two points that satisfy digit two and the
+delayed nineteenth linear equation, thereby falsifying the tempting claim
+that the digit-two variety forces that row nonzero.  The better point leaves
+eleven other digit-three rows nonzero, and both points fail the exact
+row-margin join.  At the better point the digit-two tangent inside the
+delayed hyperplane has dimension 17 with trivial common Hessian radical; the
+six-dimensional affine sheet correcting all eleven current cubic defects
+contains no digit-two point among its 729 elements.  These exact local facts
+rule out one proposed obstruction and one Newton neighborhood, not the
+global profile.
+
+The complete planning audit rules out generic enumeration of the five
+`3^36` affine cubes and supplies a compact exact histogram model that fits
+within 16 GB.  It also prevents an invalid conclusion from five-profile
+failure: the `n_9=1,0` shells still contain 510,384 and 107,476 legal
+unsigned supports, respectively.  Their local signed-skeleton counts are
+59,743,488 and 47,730,304, with 78.35--426.77 billion exact
+729-character evaluations before profile reconstruction.  These are
+certified front-end counts and useful architecture, not a forecast that an
+exact phase lift exists or can be completed in four weeks.
+
 For the remaining `n_9=1,0` shells, the six first quadratic correction forms
 generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
 sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss
@@ -785,6 +830,16 @@ impossible.
 
 ## Recommended paper and release plan
 
+The completed higher-digit gate does not justify continued headline search
+on the five shell-two placement cubes.  The strongest publication path from
+that lane is the exact shell descent through `n_9=3`, the five-orbit
+classification at `n_9=2`, and the associated carry/phase algebra, with all
+bounded higher-digit failures kept as supplementary diagnostics.  The
+dense-shell character kernel passes its arithmetic throughput gate by more
+than 700 times, so a complete `n_9=1,0` profile classifier is a credible
+separate paper-scoped continuation; it is not evidence that an exact
+phase lift or `H(668)` is near.
+
 Maintain one compact internal paper organized around:
 
 1. Eliahou's structured quadruple, crediting the contemporaneous public
@@ -806,7 +861,9 @@ Maintain one compact internal paper organized around:
    difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
    profile-zero, top-four energy-shell exclusions, prime-167 split, exact
-   symmetry, unit-phase, lossless full-phase four-cone factorization,
+   symmetry, the five-orbit shell-two classification, exact carry and
+   delayed-origin equations, dense-shell character compression,
+   unit-phase, lossless full-phase four-cone factorization,
    trivial-branch obstruction, factorwise trace/Parseval inversion,
    lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane
    boundaries;

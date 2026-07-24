@@ -9,8 +9,12 @@ status are diagnostics, never discoveries.
 
 `RESUME.md` is the compact handoff for restarting this project after a pause.
 `PRIORITY_AUDIT.md` records the provisional novelty and publication audit for
-this milestone.  `H668_72H_GATE.md` records the active sprint's success and
-stop criteria; in particular, one second-digit witness is not a milestone.
+this milestone.  `H668_72H_GATE.md` records the completed sprint and its
+strict construction-gate failure; in particular, one second-digit witness
+is not a milestone.
+`COMPLETE_REMAINING_SEARCH_ESTIMATE.md` separates certified bounds from
+heuristics for the five shell-two lifts and the still-unclassified
+`n_9=1,0` profile shells.
 
 ## Current map
 
@@ -26,7 +30,7 @@ stop criteria; in particular, one second-digit witness is not a milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | active 72-hour gated lane | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits, a 36-dimensional first-digit space, and an audited quadratic second digit whose six-coordinate residue layer is surjective; the finish gate now requires consecutive higher-digit contraction or exact structured-family replay, not a second-digit witness; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | paper-scoped after failed construction gate | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits, but no digit-three lift, structured exact lift, feasible exhaustive search, or whole-profile exclusion was obtained; the dense `n_9=1,0` character kernel passes its separate throughput gate, so a bounded profile-classification project remains credible; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -729,6 +733,44 @@ supergroup-free structured point fails the quadratic second digit.  The
 single structured second-digit point is order-six fixed and fails digit
 three, so it is a positive control rather than a viable lift.
 
+`phase_second_digit/higher_digits/` records the exact consecutive-digit
+audit.  It contains a supergroup-free full second-digit point, the integral
+prefix lattice, and the sharp proof that digits zero through eight already
+force exact zero.  `digit3_carry_algebra/` then rewrites every residual as
+
+```text
+F=A+(3Q-A) omega.
+```
+
+Exactness is the signed-histogram equality `n_0-target=n_1=n_2`.  The
+apparently structural `E1` origin row contributes an independent linear
+equation at digit three, reducing the placement space from dimension 36 to
+35; its exact local equation has 30 admissible orientation histograms and
+596,095,200 solutions among `3^22` orientations.  A complete degree-three
+XL audit finds no contradiction and no new linear or quadratic consequence.
+No digit-three or digit-four point has been found.
+
+Two later stage-2.5 points satisfy the full second digit and the delayed
+nineteenth linear row, disproving a tempting universal obstruction.  Both
+fail the exact row-margin join.  `scratch_stage25_algebra/` shows that their
+digit-two tangent spaces are regular, with no common Hessian radical, and
+that the complete first-order cubic corrections are inconsistent.  The
+candidate-zero 729-point Newton sheet contains no digit-two point.
+`scratch_row_margin_digit3/` consequently searches the physically relevant
+row-margin/digit-three intersection; its 600-second candidate-zero pilot is
+`UNKNOWN`, not an exclusion.
+
+`COMPLETE_REMAINING_SEARCH_ESTIMATE.md` closes the sprint's resource audit.
+The compact signed-histogram endpoint fits within 16 GB, but a generic
+enumeration of the five `3^36` shell-two spaces is infeasible.  Failure of
+those five lifts would not close the order-three route: the dense `n_9=1,0`
+shells still require a compiled, symmetry-aware 729-character
+classification before their exact phase lifts can even be counted.
+The arithmetic kernel is now benchmarked at a conservative
+12,668,666 exact character evaluations per second per core, over 700 times
+the four-week threshold.  Full skeleton streaming, canonicalization,
+survivor recovery, and exact replay remain unmeasured.
+
 `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` analyzes the first genuinely
 quadratic uniformizer response in the remaining `n_9=1,0` shells without
 enumerating phases.  Its six polar matrices commute and generate
@@ -745,6 +787,8 @@ for `n_9=1` and 54,675 times for `n_9=0`.  Thus no single-form anisotropy can
 exclude either dense shell.  The positive consequence is a lossless next
 architecture: count the full six-coordinate layer using 729 exact quadratic
 Gauss sums per signed skeleton, then recover a witness by self-reduction.
+`scratch_dense_shell_benchmark/` independently checks 1,458 character sums
+against direct affine-cube enumeration and pins the measured throughput.
 
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or

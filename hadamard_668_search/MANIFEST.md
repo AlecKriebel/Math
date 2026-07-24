@@ -45,12 +45,18 @@
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local lanes, corrected priority scope, and ID3 search consequences |
 | `H668_72H_GATE.md` | Explicit success, stop, evidence, and host-resource criteria for the current construction sprint |
+| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, plus explicit dense-shell counts and four-week throughput thresholds |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
 | `phase_second_digit/LP333_ORDER3_PHASE_SECOND_DIGIT_PENCIL.md` | Complete quadratic next placement digit on the five shell-two profiles, sparse-pencil census, and exact six-coordinate fiber counts |
 | `phase_second_digit/structured_triples/STRUCTURED_TRIPLE_THEOREM.md` | Ramified row-collapse factorization and exact `F_27 x F_27` residue-layer theorem |
 | `phase_second_digit/r_module_hypothesis/R_MODULE_HYPOTHESIS_FALSIFIED.md` | Exact rank, radical, centroid, and norm-spectrum obstruction to a free rank-two ramified-module lift |
+| `phase_second_digit/higher_digits/HIGHER_DIGIT_LIFT_AUDIT.md` | Exact higher-digit lattice, supergroup-free second-digit witness, nine-digit exactness cutoff, and bounded digit-three/four audit |
+| `digit3_carry_algebra/README.md` | Exact `A,Q` carry coordinates, delayed `E1`-origin theorem, signed-histogram exactness, and degree-three XL audit |
+| `scratch_stage25_algebra/README.md` | Exact local geometry of the two stage-2.5 witnesses, Newton-sheet exclusions, and row-margin scope warning |
+| `scratch_row_margin_digit3/README.md` | Exact row-margin plus digit-three CP-SAT pilot and bounded candidate-zero checkpoint |
+| `scratch_dense_shell_benchmark/README.md` | Validated dense-shell character kernel, independent affine-cube replay, and conservative per-core throughput gate |
 | `structured_phase_families/README.md` | Exact nine-family phase audit, proper-supergroup separation, opposite-class constructions, and complete minimal-`F_27`-submodule census |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
@@ -175,6 +181,21 @@
 | `phase_second_digit/r_module_hypothesis/verify_r_module_hypothesis.py` | Computes the Hasse-layer ranks and the exact 1,295-rank common-centroid systems |
 | `phase_second_digit/test_phase_second_digit.py` | Pins the complete forms, pencil, Gauss primitives, and compact stored certificate |
 | `phase_second_digit/phase_second_digit_certificate.json` | Compact five-profile second-digit certificate |
+| `phase_second_digit/higher_digits/verify_full_second_digit_witness.py` | Independently replays the full second-digit point, proper-supergroup separation, and sharp exactness cutoff |
+| `phase_second_digit/higher_digits/verify_stage_2_5_witnesses.py` | Replays both delayed-row stage-2.5 points and their failed exact row-margin joins |
+| `phase_second_digit/higher_digits/verify_bounded_search_checkpoints.py` | Replays bounded digit-three and digit-four near points without promoting `UNKNOWN` statuses |
+| `phase_second_digit/higher_digits/test_higher_digits.py` | Pins the integral prefix lattice, exact witness, cutoff, and bounded checkpoints |
+| `digit3_carry_algebra/audit_digit3_carry.py` | Verifies `F=A+(3Q-A)omega`, all prefix lattices, delayed row ranks, and exact local catalogs |
+| `digit3_carry_algebra/verify_e1_origin_exact_dp.py` | Two independent finite counts of the exact delayed-origin equation |
+| `digit3_carry_algebra/audit_digit3_xl.py` | Exact degree-three XL ranks after eliminating the delayed linear row |
+| `digit3_carry_algebra/test_digit3_algebra.py` | Pins the carry, exact-origin, and XL semantic certificates |
+| `verify_complete_remaining_search_estimate.py` | Recomputes dense-shell generating functions, affine bounds, character work totals, shell-two shard counts, and exactness inequality |
+| `test_complete_remaining_search_estimate.py` | Focused dependency-free regressions for the complete remaining-search estimate |
+| `scratch_stage25_algebra/analyze_stage25_local.py` | Audits tangent/Hessian ranks, Newton consistency, correction sheets, and local XL at both stage-2.5 points |
+| `scratch_stage25_algebra/test_stage25_local.py` | Pins both local-algebra semantic certificates and corrected leave-one-out counts |
+| `scratch_row_margin_digit3/search_row_margin_digit3_cp_sat.py` | Optional exact row-margin plus digit-three search with union or fixed-target sharding and direct replay |
+| `scratch_dense_shell_benchmark/benchmark_dense_shell_characters.cpp` | Exact support-factorized 729-character kernel with pinned checksums and throughput measurements |
+| `scratch_dense_shell_benchmark/verify_dense_shell_benchmark.py` | Independently brute-forces two real affine cubes and checks all 1,458 benchmark character sums |
 | `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families |
 | `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per profile |
 | `structured_phase_families/test_structured_phase_families.py` | Pins both structured-family semantic certificates and the unique order-six digit-two control |

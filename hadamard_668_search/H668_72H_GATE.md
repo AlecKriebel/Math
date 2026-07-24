@@ -18,6 +18,47 @@ The finish line remains an explicit pair of binary sequences whose complete
 periodic autocorrelations replay exactly, followed by the standard exact
 construction and verification of a `668 x 668` Hadamard matrix.
 
+## Result on 24 July 2026: construction gate failed
+
+All required lanes were executed, but none of the four forms of evidence
+listed below was obtained.
+
+| lane | certified result | gate consequence |
+|---|---|---|
+| literature | the July 2026 full-multiplier paper subsumes the local order-18, order-9, and order-6 fixed-compression lanes; paper ID3 `<10>` remains open, while every minimal proper supergroup of `<10>` is excluded | any viable point here must be exactly `<10>`-fixed |
+| structured families | nine named families were tested on all five profiles; thousands of supergroup-free first-digit points and six minimal-submodule points produced no viable second-digit survivor | no structured exact lift |
+| unrestricted higher digits | one proper-supergroup-free digit-two point was certified; digit three and digit four were both attempted, but no full digit-three point was found | the abundant digit-two witness does not pass |
+| carry algebra | exact coordinates expose eighteen digit-two quadrics plus nineteen digit-three equations; the delayed origin row has a complete finite orientation count, while degree-three XL gives no refutation or contraction | new supporting mathematics, no global exclusion |
+| stage 2.5 | two points also satisfy the delayed nineteenth row, disproving the proposed universal obstruction; they leave 11 and 16 other digit-three rows nonzero, fail exact row margins, and have regular full-rank local geometry | useful falsification, no viable partial lift |
+| local coverage | the radius-five ball around the better stage-2.5 point contains 13,065,937 points and only one further digit-two point; neither point is row-margin compatible | exact local result, not a whole-profile exclusion |
+| physical join | all nine saved digit-two census points fail the exact row-margin join; row-margin-aware digit-two and digit-three models ended `UNKNOWN` | no physically viable higher-digit seed |
+| exact endpoint | digits zero through eight force every displayed residual to vanish exactly; the compact signed-histogram model fits within 16 GB | finish line is finite, but generic search is infeasible |
+| complete route estimate | the five shell-two charts contain `5*3^36` points; the still-open dense shells contain 510,384 and 107,476 unsigned supports and 59,743,488 and 47,730,304 legal signed skeletons | failure of the five lifts would not close the order-three route |
+
+The strict construction gate therefore fails: there is no consecutive
+higher-digit witness, no exact structured lift, no feasible complete exact
+lift, and no whole-profile exclusion.
+
+One secondary rate gate did succeed.  The compiled dense-shell
+729-character kernel runs at a conservative 12,668,666 exact evaluations
+per second per core, 718 times the four-week arithmetic threshold, with an
+independent 1,458-character replay.  This makes an end-to-end
+`n_9=1,0` **profile classifier** a technically credible scoped paper
+project.  It does not make an exact phase lift feasible, and it does not
+retroactively pass the `H(668)` construction gate.
+
+The decision is:
+
+1. stop headline search on the present five-profile placement lift;
+2. preserve the five-orbit, structured-family, carry, and local-radius
+   package as a paper project;
+3. treat a dense-shell classifier as a separate bounded classification
+   project, with its next gate requiring measured end-to-end skeleton
+   generation, symmetry canonicalization, witness recovery, and exact
+   replay—not merely the already-fast character kernel;
+4. require a genuinely new construction principle before resuming the
+   five-profile `H(668)` lift itself.
+
 ## Required lanes
 
 1. Test at least three genuinely different structured placement families on
