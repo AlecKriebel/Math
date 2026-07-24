@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -36,6 +37,20 @@ def confined(relative: str) -> Path:
     resolved = (ROOT / candidate).resolve()
     resolved.relative_to(ROOT)
     return resolved
+
+
+def is_generated_python_cache(path: Path) -> bool:
+    """Recognize only interpreter-generated cache files."""
+    relative = path.relative_to(ROOT)
+    return (
+        "__pycache__" in relative.parts
+        and path.suffix in {".pyc", ".pyo"}
+    )
+
+
+def is_repository_metadata(path: Path) -> bool:
+    """Ignore only Git's private checkout metadata."""
+    return ".git" in path.relative_to(ROOT).parts
 
 
 def check_bundle_files() -> dict[str, object]:
@@ -78,7 +93,12 @@ def check_bundle_files() -> dict[str, object]:
     actual_files = {
         str(path.relative_to(ROOT))
         for path in ROOT.rglob("*")
-        if path.is_file() and path != MANIFEST
+        if (
+            path.is_file()
+            and path != MANIFEST
+            and not is_generated_python_cache(path)
+            and not is_repository_metadata(path)
+        )
     }
     if seen != actual_files:
         missing = sorted(actual_files - seen)
@@ -103,6 +123,7 @@ def run_checked(
         cwd=cwd,
         check=True,
         text=True,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )

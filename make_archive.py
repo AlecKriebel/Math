@@ -16,6 +16,18 @@ ROOT = Path(__file__).resolve().parent
 ARCHIVE_ROOT = ROOT.name
 
 
+def is_generated_python_cache(path: Path) -> bool:
+    relative = path.relative_to(ROOT)
+    return (
+        "__pycache__" in relative.parts
+        and path.suffix in {".pyc", ".pyo"}
+    )
+
+
+def is_repository_metadata(path: Path) -> bool:
+    return ".git" in path.relative_to(ROOT).parts
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -61,13 +73,23 @@ def build(output: Path) -> None:
         raise ValueError("archive output must be outside the bundle")
 
     files = sorted(
-        path for path in ROOT.rglob("*") if path.is_file()
+        path
+        for path in ROOT.rglob("*")
+        if (
+            path.is_file()
+            and not is_generated_python_cache(path)
+            and not is_repository_metadata(path)
+        )
     )
     directories = sorted(
-        path for path in ROOT.rglob("*") if path.is_dir()
+        path
+        for path in ROOT.rglob("*")
+        if (
+            path.is_dir()
+            and path.name not in {"__pycache__", ".git"}
+            and not is_repository_metadata(path)
+        )
     )
-    if any("__pycache__" in path.parts for path in files + directories):
-        raise ValueError("refusing to archive Python cache files")
 
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("wb") as raw:

@@ -9,6 +9,11 @@ catalog-conditional exclusion of the regular degree-18 endpoint
 
 in a hypothetical \((5,5;43)\)-graph.
 
+Packaging revision: **v1.0.1**. This revision makes verification work both in
+an extracted archive and in a Git checkout: it ignores Git's private `.git`
+metadata and interpreter-generated `__pycache__/*.pyc` files while retaining
+fail-closed checking for every other unlisted file.
+
 The mathematical statement and proof are in `THEOREM.md`. The focused
 prior-art assessment is in `NOVELTY_REVIEW.md`.
 
@@ -48,15 +53,15 @@ with a JSON object containing `"valid": true`.
 For the two phases separately:
 
 ```sh
-python3 verify/branch18_regular_endpoint_capacity_cover_check.py --root .
-python3 -m unittest tests/branch18_regular_endpoint_capacity_cover_tests.py
+PYTHONDONTWRITEBYTECODE=1 python3 verify/branch18_regular_endpoint_capacity_cover_check.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest tests/branch18_regular_endpoint_capacity_cover_tests.py
 ```
 
 To regenerate the classification and compact claim manifest before checking:
 
 ```sh
-python3 src/branch18_regular_endpoint_capacity_cover.py --root .
-python3 verify/branch18_regular_endpoint_capacity_cover_check.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 src/branch18_regular_endpoint_capacity_cover.py --root .
+PYTHONDONTWRITEBYTECODE=1 python3 verify/branch18_regular_endpoint_capacity_cover_check.py --root .
 ```
 
 Regeneration is deterministic and invokes no SAT solver.

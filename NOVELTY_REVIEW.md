@@ -29,7 +29,7 @@ exist.
 
 | Result or ingredient | Assessment |
 |---|---|
-| A column hits every independent four-set | Exact prior analogue in feasible-cone gluing |
+| A column hits every independent four-set | Immediate one-column forbidden-set analogue |
 | Two columns on an appropriate edge jointly hit every independent triple | Exact prior analogue after complement/orientation translation |
 | Minimum-miss profile \(q_s(A)\) over exact-size transversals | No exact match found |
 | Aggregate comparison with \(4i_3(A)\) | No exact match found; generic double-counting antecedent |
@@ -47,8 +47,10 @@ McKay and Radziszowski's
 (1995), 309–322, defines feasible cones and requires that unions of cones
 indexed by independent sets not miss the complementary forbidden set. Its
 \(t=2\) condition is the direct ancestor of the present two-column
-independent-triple condition. The one-column independent-four-set condition
-is likewise part of the extension framework.
+independent-triple condition. The present one-column
+independent-four-set condition is the immediate \(t=1\) forbidden-set
+analogue, but it is not explicitly listed there because that case is vacuous
+in their setup.
 
 The formal reconstruction by Gauthier and Brown,
 [A Formal Proof of \(R(4,5)=25\)](https://arxiv.org/abs/2404.01761),
@@ -113,7 +115,7 @@ and the notation \(q_s(A)\) found no relevant primary-source match.
 
 ## Safe novelty statement
 
-> We introduce a minimum-miss capacity profile for feasible
+> We formulate a minimum-miss capacity profile for feasible
 > cross-neighborhoods and use an elementary incidence bound, together with
 > equality rigidity, to exclude the regular-degree-18 endpoint
 > \((e(A),e(H))=(85,128)\).
