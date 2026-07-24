@@ -1726,3 +1726,26 @@ proof-assistant-level theorem.
   the targeted audit.  The April 2026 Legendre-pair equivalence-group paper
   was added to the priority source ledger.  No external contact, message,
   push, or publication occurred.
+
+## 24 July 2026: structured phase-family gate
+
+- Exhausted four low-period placement controls on all five shell-two
+  profiles.  Every first-digit point in them is fixed by the already
+  excluded order-six common-multiplier subgroup.
+- Exhausted three genuinely opposite-class-twisted families.  Their
+  per-family supergroup-free first-digit counts are 2,916, 174,960, and
+  1,458; none has a supergroup-free second-digit survivor.  The family sets
+  overlap, so these counts are not summed.
+- The sole structured second-digit control occurs in the opposite-helical
+  family.  It is order-six fixed and fails six displayed equations at digit
+  three.
+- Independently reconstructed all 56 minimal three-dimensional invariant
+  submodules of the `F_27 x F_27` class algebra.  All 3,136 asymmetric
+  channel pairs per profile were tested: 436 distinct first-digit points,
+  six outside every excluded proper supergroup, and no second-digit point.
+- The six-test package passed under the system Python and the pinned Python
+  3.9 runtime.  A compatibility helper replaced direct `int.bit_count()`
+  calls in the shared dense-shell verifier without changing its semantic
+  replay.  Peak resident memory stayed below 32 MB.
+- These are exact structured-family exclusions, not whole-profile
+  exclusions.  No external contact, push, or publication occurred.

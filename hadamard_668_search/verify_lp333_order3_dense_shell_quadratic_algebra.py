@@ -451,8 +451,14 @@ def verify_pencil_algebra() -> dict[str, object]:
     }
 
 
+def popcount(value: int) -> int:
+    """Return the binary weight, including on the pinned Python 3.9."""
+
+    return bin(int(value)).count("1")
+
+
 LOCAL_MASKS = tuple(
-    mask for mask in range(16) if mask.bit_count() != 1
+    mask for mask in range(16) if popcount(mask) != 1
 )
 
 
@@ -466,7 +472,7 @@ def legal_supports(total_medium: int) -> Iterator[tuple[int, ...]]:
             return
         remaining = QUARTETS - quartet - 1
         for mask in LOCAL_MASKS:
-            count = mask.bit_count()
+            count = popcount(mask)
             next_used = used + count
             if next_used > total_medium:
                 continue
@@ -503,9 +509,9 @@ def affine_restriction_invariants(
     mixed = False
     for row, quartet in enumerate(nonempty):
         mask = local_masks[quartet]
-        medium = mask.bit_count()
-        a_count = (mask & 0b0011).bit_count()
-        b_count = (mask & 0b1100).bit_count()
+        medium = popcount(mask)
+        a_count = popcount(mask & 0b0011)
+        b_count = popcount(mask & 0b1100)
         mixed |= bool(a_count and b_count)
         a_total += a_count
         gram[row][row] = medium % FIELD

@@ -538,6 +538,19 @@ impossible.  These are new-looking structural results, not evidence that a
 full labelled lift is near: a lone second-digit witness would be expected
 to be abundant.
 
+The structured-family sprint adds exact negative coverage without claiming a
+profile exclusion.  Four low-period controls lie wholly in the already
+excluded order-six common-multiplier family.  Three deliberately
+opposite-class-twisted families contain respectively 2,916, 174,960, and
+1,458 supergroup-free first-digit points, but none survives the quadratic
+second digit; these family sets need not be disjoint.  Independently, a
+complete reconstruction of all 56 minimal three-dimensional invariant
+submodules tests all 3,136 asymmetric channel pairs per profile, leaving six
+supergroup-free first-digit points and again no second-digit point.  The
+only structured second-digit control is order-six fixed and fails six rows
+at digit three.  These are scoped family exclusions, not evidence that any
+of the five full profile spaces is impossible.
+
 For the remaining `n_9=1,0` shells, the six first quadratic correction forms
 generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
 sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss

@@ -178,6 +178,14 @@ The strongest new constructive reductions are:
   eighteen polar forms have scalar common centroid, which falsifies the
   proposed free rank-two ramified-module/Hensel shortcut.  A second-digit
   witness is therefore diagnostic, not a milestone.
+- `structured_phase_families/`: exact solver-free tests of nine named phase
+  families.  Three opposite-class-twisted families have respectively
+  `2,916`, `174,960`, and `1,458` supergroup-free digit-one points, with no
+  such digit-two survivor; these per-family sets may overlap.  The
+  complete `F_27 x F_27` minimal-submodule family tests all 3,136 asymmetric
+  channel pairs per profile, leaving six supergroup-free digit-one points
+  and no digit-two point.  Its sole structured digit-two control is
+  order-six fixed and fails digit three.
 - `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
   correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
   `2I`.  Exact affine restriction and Gauss bounds prove this universal

@@ -718,6 +718,17 @@ eighteen.  The remaining twelve coordinates therefore require genuinely
 conditional quadratic or exact finite-field methods rather than automatic
 linear Hensel lifting.
 
+`structured_phase_families/` then tests nine named algebraic placement
+families on all five profiles.  The four low-period controls are entirely
+contained in the already excluded order-six common-multiplier family.  Three
+opposite-class-twisted families deliberately break every excluded proper
+supergroup, while the final family reconstructs all 56 minimal
+three-dimensional invariant submodules of the `F_27 x F_27` class algebra
+and tests all `56^2` asymmetric channel pairs per profile.  Every
+supergroup-free structured point fails the quadratic second digit.  The
+single structured second-digit point is order-six fixed and fails digit
+three, so it is a positive control rather than a viable lift.
+
 `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` analyzes the first genuinely
 quadratic uniformizer response in the remaining `n_9=1,0` shells without
 enumerating phases.  Its six polar matrices commute and generate

@@ -51,6 +51,7 @@
 | `phase_second_digit/LP333_ORDER3_PHASE_SECOND_DIGIT_PENCIL.md` | Complete quadratic next placement digit on the five shell-two profiles, sparse-pencil census, and exact six-coordinate fiber counts |
 | `phase_second_digit/structured_triples/STRUCTURED_TRIPLE_THEOREM.md` | Ramified row-collapse factorization and exact `F_27 x F_27` residue-layer theorem |
 | `phase_second_digit/r_module_hypothesis/R_MODULE_HYPOTHESIS_FALSIFIED.md` | Exact rank, radical, centroid, and norm-spectrum obstruction to a free rank-two ramified-module lift |
+| `structured_phase_families/README.md` | Exact nine-family phase audit, proper-supergroup separation, opposite-class constructions, and complete minimal-`F_27`-submodule census |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
@@ -174,6 +175,10 @@
 | `phase_second_digit/r_module_hypothesis/verify_r_module_hypothesis.py` | Computes the Hasse-layer ranks and the exact 1,295-rank common-centroid systems |
 | `phase_second_digit/test_phase_second_digit.py` | Pins the complete forms, pencil, Gauss primitives, and compact stored certificate |
 | `phase_second_digit/phase_second_digit_certificate.json` | Compact five-profile second-digit certificate |
+| `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families |
+| `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per profile |
+| `structured_phase_families/test_structured_phase_families.py` | Pins both structured-family semantic certificates and the unique order-six digit-two control |
+| `structured_phase_families/certificate_summary.json` | Compact combined structured-family census |
 | `scratch_exact_profile_lift/README.md` | Scope and resume instructions for the bounded exact lift of the first shell-two profile |
 | `scratch_exact_profile_lift/search_exact_profile_lift_xor.py` | Exact fixed-profile XOR/CP-SAT model with full length-333 replay gate |
 | `scratch_exact_profile_lift/run_row_sum_shards.py` | Resumable 72-row-margin shard driver with a 12 GB aggregate declared-memory ceiling |
