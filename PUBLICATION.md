@@ -65,6 +65,27 @@ around two formal-inverse transfer identities, while preserving all precursor
 files, PDFs, hashes, and timestamps. Discovery 04 remains the other current
 paper because its iterated-monodromy theorem is mathematically independent.
 
+## Ramsey \(R(5,5)\) endpoint note
+
+The paused Ramsey-number research program was published as a research
+checkpoint and seven-page technical note on **24 July 2026**. The narrow
+candidate contribution is a minimum-miss transversal-capacity profile,
+its graph-indexed aggregate inequality, and an equality-rigidity argument
+excluding the regular-degree-18 endpoint
+\((e(A),e(H))=(85,128)\), conditional on published catalog statements.
+
+This publication does **not** determine \(R(5,5)\) or change the published
+range \(43\le R(5,5)\le46\). It is listed once on the homepage as paused
+research rather than promoted as an additional headline discovery.
+
+The corrected history-independent verifier release
+[`ramsey55-endpoint-capacity-v1.0.1`](https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1)
+was published at **24 July 2026, 22:28:24 UTC**. Its normalized archive has
+SHA-256
+`de541d6c7ed8be496784397ea0ee3f1b12c2b93cdbc42ba908160095c1d79cc4`.
+Version v1.0 remains mathematically valid as a fresh archive, but v1.0.1
+supersedes it for repeat-run and source-checkout reproducibility.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
