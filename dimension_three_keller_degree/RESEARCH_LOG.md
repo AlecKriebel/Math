@@ -137,3 +137,67 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - Rung 1's four-page PDF was rebuilt and visually inspected after the final
   divisibility proof was added.  The independent SymPy and PARI/GP exact
   regression checks both pass.
+
+## 2026-07-24T23:43:08Z — Quartic conductor and leading-form checkpoint
+
+### Banked working lemmas
+
+- In the coprime-leading \((4,4)\) complete-intersection case, finite duality
+  and the Keller adjunction residue give the exact divisor equation
+  \[
+  \operatorname{div}(dt)+A=4E.
+  \]
+  For a boundary branch of hyperplane multiplicity \(m\) and local target
+  degree \(e\), the conductor exponent is
+  \[
+  c=4m-e+1
+  \]
+  over a finite target value and \(c=4m+e+1\) over infinity.
+- In generic degree three this yields an exact boundary-profile table.  If
+  \(s=\deg S_F=2\), the only profile is
+  \[
+  q=1,\quad g=0,\quad b=0,\quad \tau=2,\quad
+  \Delta_\infty=33,
+  \]
+  and the two finite local-degree-two branches must meet the same projective
+  singular support.
+- For a primitive line-valued quartic leading pencil
+  \(H_4=(P,Q,0)\), the degree-eight and degree-seven Keller identities force
+  either a pencil member \(L^4\) paired with
+  \((H_3)_3\propto L^3\), or a pencil member proportional to
+  \((H_2)_3^2\).  If both subleading third components vanish, the map is an
+  automorphism.
+- If \(F=X+H_3+H_4\) and \(\operatorname{rank}JH_4\le1\), then
+  \(JH_3,JH_4\) share a strict triangular flag and \(F\) is an automorphism.
+  With \(H_2\ne0\), the same conclusion holds whenever the constant image
+  line of \(JH_4\) is invariant under both \(JH_2\) and \(JH_3\).
+
+### Adversarial corrections
+
+- The first conductor draft falsely asserted that every finite conductor
+  exponent is positive.  An exact smooth local complete-intersection branch
+  has \(m=1,e=5,c=0\).  All boundary-singularity conclusions were restricted
+  to generic degree three, where \(e\le2\).
+- The first line-type draft falsely inferred primitive parametrization from
+  line image.  The example \(H_4=(x^4,y^4,0)\) disproves that inference.
+  Relative algebraic closedness is now an explicit hypothesis; the composite
+  \((2,2)\) and \((1,4)\) parameter strata remain active.
+- Rank-one \(JH_4\) does not force simultaneous triangularization once
+  \(H_2\ne0\).  The exact automorphism
+  \[
+  (x,y,z)\mapsto(x+y^2,\ y+(x+y^2)^2,\ z)
+  \]
+  supplies a counterexample to that strategy.
+
+### Verification and frontier
+
+- Independent SymPy and PARI/GP exact regressions pass.  A separate
+  mathematical audit checked the duality sign, local conductor formulas,
+  divisor partitions, nilpotent matrix pencil, and common-flag arguments.
+- Source-specific searches found the imported homogeneous theorems but no
+  exact occurrence of these mixed quartic structural lemmas.  This is not a
+  guarantee of worldwide priority.
+- The universal certified degree floor remains \(4\).  The current
+  highest-information experiment is the composite line-image
+  \((\deg(p,q),\deg A)=(2,2)\) stratum, where the degree-eight identity has
+  already reduced to a concrete vertical-divisor syzygy.

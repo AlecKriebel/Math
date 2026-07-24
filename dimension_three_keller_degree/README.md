@@ -18,7 +18,16 @@ for a counterexample in dimension three.  The current work asks whether total
 degree four can be excluded, while keeping algebraic, compactification, and
 nonproperness routes independent.
 
-No claim is promoted to a theorem without an adversarial scope and hypothesis
-audit.
+The first audited quartic working lemmas now constrain:
+
+- generic-line defect and genus;
+- the conductor divisor on coprime-leading \((4,4)\) closures;
+- primitive line-valued leading quartic pencils; and
+- rank-one quartic Jacobian parts in two substantial subcases.
+
+These are structural lemmas, not a complete degree-four exclusion.  Exact
+counterexamples to two tempting overclaims are retained in the notes and
+verification harness.  No claim is promoted without an adversarial scope and
+hypothesis audit.
 
 First research timestamp: 2026-07-24T22:30:00Z.

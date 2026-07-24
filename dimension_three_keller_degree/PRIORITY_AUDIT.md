@@ -141,3 +141,59 @@ priority.
   did not locate the defect identity or the quartic genus-at-infinity table
   recorded in the working lemma.  This is not a guarantee of worldwide
   priority.
+
+### 2026-07-24T23:43Z — quartic conductor and leading-form audit
+
+All negative search results below are source-specific and do not establish
+worldwide priority.
+
+- de Bondt,
+  [*Rational maps \(H\) for which \(K(tH)\) has transcendence degree 2 over
+  \(K\)*](https://arxiv.org/abs/1501.06046), Theorem 2.7, was checked in
+  full.  Part (ix) attaches relative algebraic closedness to a
+  **minimal-degree** pair \((p,q)\).  It does not permit the inference that a
+  line-valued quartic map is already a primitive quartic parametrization.
+  This source check forced a correction to the primitive line-type theorem.
+- de Bondt,
+  [*Computations of Keller maps over fields with
+  \(1/6\)*](https://arxiv.org/abs/1609.09753), classifies homogeneous quartic
+  perturbations in dimension at most three.  It does not cover the mixed
+  \(H_3+H_4\) or \(H_2+H_3+H_4\) theorems recorded here.
+- de Bondt--van den Essen,
+  [*The Jacobian Conjecture: linear triangularization for homogeneous
+  polynomial maps in dimension
+  three*](https://doi.org/10.1016/j.jalgebra.2005.04.018),
+  J. Algebra 294 (2005), 294--306, is the exact imported theorem used to
+  triangularize homogeneous \(H_3\).  It is unconditional in the present
+  characteristic-zero setting; it does not assume the Jacobian Conjecture.
+- Searches for the exact strings and combinations
+  “\(X+H_3+H_4\)”, “rank \(JH_4\)”, “mixed cubic quartic Keller”,
+  “quartic Keller map dimension three”, and “simultaneous
+  triangularization” found the homogeneous papers above but no exact prior
+  statement of the mixed rank-one-leading theorem or the invariant-image-line
+  proposition.
+- Searches combining “conductor divisor”, “Keller map”, “generic line”,
+  “adjunction”, and “nonproperness” found the classical Rosenlicht/Noether
+  conductor and dualizing-sheaf formulas, but no checked source states the
+  Keller specialization
+  \[
+  \operatorname{div}(dt)+A=4E
+  \]
+  or its generic-degree-three boundary table.  The underlying conductor
+  duality and the local equality
+  \(\sum c_p=2\delta_Q\) for Gorenstein curve singularities are classical and
+  are not novelty claims.
+- The required arXiv, MathOverflow, Tao blog, Secret Blogging Seminar, and
+  X/Twitter sweep earlier the same UTC day was re-used for collision
+  comparison.  No newly encountered item changed the four priority
+  conclusions recorded above.
+
+### Priority conclusions after the quartic audit
+
+1. The three quartic statements remain unpublished **working lemmas**, not
+   priority claims.
+2. Their imported ingredients are explicitly attributed and classical.
+3. No checked source contains the exact mixed quartic conclusions, but this
+   absence is not evidence of worldwide priority.
+4. The universal degree floor is still the prior bound \(4\); no degree-four
+   exclusion has yet been proved.
