@@ -76,6 +76,11 @@ For a broader run:
 python3 -m unittest discover -s tests -v
 ```
 
+At the pause checkpoint this completed with **155 tests passing** in
+1,575.892 seconds when run from the `kissing_number_5/` directory.  Running
+the discovery from the repository root without setting `PYTHONPATH` causes
+import errors and is not the documented invocation.
+
 The checksum manifest is verified from the repository root:
 
 ```sh

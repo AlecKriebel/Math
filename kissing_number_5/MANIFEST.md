@@ -78,6 +78,15 @@ python3 test_verify_known_28.py
 See [`RESUME.md`](RESUME.md) for a five-minute smoke test and the exact
 limitations of each package.
 
+The complete central suite was also run from `kissing_number_5/`:
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Final result: 155 tests passed in 1,575.892 seconds.  This includes the
+long-running exact cap-domain reconstructions and their tamper checks.
+
 ## Environment
 
 Final audit environment:
