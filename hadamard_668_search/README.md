@@ -23,9 +23,9 @@ this milestone.
 | Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; projective rank-nine and high-lag reductions survive |
-| Sextic-multiplier `LP(333)` | active construction lane | exact 108-sign quotient; 298 row-signature shards |
-| Quartic-multiplier `LP(333)` | active secondary lane | 45-phase quotient; axis-preserving pilot has quotient energy 112, not zero |
-| Order-three multiplier `LP(333)` | active restricted sublane | one of four subgroups ruled out |
+| Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
+| Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, 22 Eisenstein shards, and a primitive-9 jet; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -281,29 +281,34 @@ engine, and full bordered two-circulant verification:
 `NOVEL_LP333_THEORY.md` recasts the binary pair as one QPSK sequence on
 `Z_9 x F_37`. The quartic residues form a cyclic `(37,9,2)` difference set,
 which yields an exact multiplier quotient with 45 fourth-root phases and only
-22 equations. A checked `9 x 5` phase table already satisfies the prescribed
-compression, all 36 pure-column correlations, and all eight pure-row
-correlations; precisely 16 mixed quotient equations remain. This is a
-construction-sized problem, not the earlier 666-bit model:
+22 equations. A checked `9 x 5` phase table satisfies the prescribed
+compression and both coordinate axes, but the later row-sum theorem proves
+that no fixed-compression order-nine quotient can satisfy the mixed
+equations. The old constructor and table are retained as exact historical
+regressions:
 
 ```sh
 python3 check_lp333_quartic_quotient.py
 ```
 
-`search_lp333_quartic_quotient.cpp` stays on the proved row-axis fiber. A
-bounded pilot reduced quotient energy from 1536 to 112 while preserving the
-length-9 Legendre core and all row-axis equations. Its best table still has
-14 of 18 remaining quotient equations nonzero (126 of 166 independent full
-lags), so it is explicitly a non-candidate.
+`LP333_MULTIPLIER_ROW_SUM.md` gives the decisive exact projection. For a
+column-only multiplier subgroup of size `h`, sum all 37 column-lag equations
+and write the complete row sum as `s`. Every candidate must satisfy
 
-`LP333_SEXTIC_QUOTIENT.md` gives a stronger order-six multiplier lane. Its
-`9 x 7` QPSK quotient has 34 reversal-inequivalent lag equations. The
-zero-column word can be fixed by symmetry, leaving exactly 108 binary signs.
-The row-axis equations factor into 28 short-word signatures and only 298
-three-plus-three meet-in-the-middle shards. An explicit skeleton satisfies
-both coordinate axes but remains nonexact at 20 of 24 mixed quotient cells.
-The checker reconstructs the orbit matrices, short-word catalogs, full
-333-cell expansion, and two closed smaller subfamilies:
+```text
+Re PAF_s(0)=297,       Re PAF_s(a)=-37  (a=1,...,4).
+```
+
+The zero-column equations force one 972-word normalization orbit. Exact
+integer enumeration then gives no target profile for `h=18`, `h=9`, or
+`h=6`, closing the quadratic-residue, quartic, and sextic
+fixed-compression families. Across all zero cores the `h=9` and `h=6`
+replays check 38,880 and 2,309,472 projected states, respectively, with zero
+hits. These are complete restricted-family obstructions, not solver
+timeouts.
+
+The sextic `9 x 7` quotient and its 108-sign CP model remain useful regression
+artifacts. Its former 298 signature shards should not be resumed:
 
 ```sh
 python3 check_lp333_sextic_quotient.py
@@ -312,32 +317,96 @@ python3 -m unittest -v \
   test_lp333_sextic_quotient.py test_lp333_sextic_cp_sat.py
 ```
 
-The exact constructor now channels all six short words to their 28
-real-PAF signatures and the 298 exact meet-in-the-middle shards by default.
-A residual decimation `d=226` fixes the CRT row and zero column and rotates
-the nonzero classes by two. Burnside's lemma reduces the 1,658,700 compatible
-ordered signature sextuples to exactly 552,912 signature-level `C3` orbits;
-the low-memory lex leader handles tied signatures exactly. The strengthened
-default model has 2,979 variables and 2,923 constraints. A fixed signature
-shard has 2,978 variables and the same constraint count. For audit
-regressions, `--no-c3-symmetry` restores 2,977/2,916 and
-`--no-signature-channel` restores the original 2,970/2,908 model.
+At the sharp viable boundary `h=3`, a dependency-free C++ enumeration checks
+46,503,026 energy-and-sum states and finds exactly 1,756 row-sum words. The
+catalog is byte-pinned in `output/lp333_order3_row_sum_catalog.csv`. Every one
+passes the exact zero-column/signature lift, which is equivalent to choosing
+24 cyclic triples in `Z/9` with four signed incidence margins and four
+difference totals equal to 18. This proves that the pure-axis layer is a
+reformulation, not a useful filter.
 
-A 20-second four-worker pilot of the strengthened model ended `UNKNOWN`,
-with no candidate, after 711 conflicts and 149,953 branches. It used 2.11 GiB
-maximum RSS and zero swaps. This proves nothing negative; it shows that the
-new channel is active and remains safe on the 16 GiB host. The 298-shard
-runner is sequential, atomic-record, and resume-safe:
+`LP333_ORDER3_DIFFERENCE_FAMILY.md` freezes one such 24-triple lift and
+expands it through all 333 entries. It is deliberately a non-candidate:
+51 of its 54 reversal-independent nonzero-column equations fail, including
+all six geometric column-axis equations. The dedicated
+`search_lp333_order3_cp_sat.py` model therefore imposes the full 58 quotient
+equations on 216 primary sign bits, with the row-sum catalog as an exact
+redundant channel. Its exact baseline has 11,790 variables and 11,657
+constraints; the full residual `C6 x C2` lex leader gives 11,857 variables
+and 11,889 constraints. The corrected involution is
+`B'[n]=B[323n+111]`; the tempting class-fixed multiplier 260 is explicitly
+disproved by a PAF counterexample. Any assignment must pass the full
+`LP(333)` and `668 x 668` save gate before reaching disk. A 60-second
+four-worker pilot ended `UNKNOWN` with no candidate; it proves nothing
+negative.
 
-```sh
-.solver-venv/bin/python run_lp333_sextic_signature_shards.py \
-  --start 0 --end 297 --time-limit 3600 \
-  --workers 1 --max-memory-mb 4096
+`LP333_ORDER3_EISENSTEIN.md` factors the nontrivial three-row Fourier channel
+exactly. Each 100-state Gaussian class catalog is a product of two ten-state
+binary profiles, and the compressed problem is equivalent to two
+`H`-invariant Eisenstein sequences on `F_37` satisfying
+
+```text
+a*a^* + b*b^* = 167 delta_0.
 ```
 
-`LEGENDRE_MULTIPLIER.md` gives a much smaller exact order-three-multiplier
-sublane.  The subgroup generated by 112 is impossible by a direct lag-111
-distance contradiction; the other three subgroup searches remain open.
+Seven of the former 20 real equations are dependent, leaving one energy
+equation and six Eisenstein equations, or 13 integer conditions. The 1,756
+row-sum words collapse to 22 aggregate shards in six norm-pair types. A
+ramified-prime sieve retains exactly 3,334 of 10,000 choices on each
+opposite-class pair, but explicit witnesses show that all 22 shards survive
+this local sieve plus the origin energy. This is a sharp algebraic reduction,
+not a construction or infeasibility proof.
+
+`LP333_ORDER3_PRIMITIVE9_JET.md` restores placement information lost by the
+three-row compression. In the exact local ring
+
+```text
+F_3[pi]/(pi^6),       pi=1-zeta_9,
+```
+
+the canonical zero-column power is 5 and
+`v_pi(167-5)=v_pi(162)=24`. All six jet digits must vanish. Digit one is
+exactly the 3,334/10,000 Eisenstein pair sieve; digits two through five
+contain new nonzero/nonzero class products. A pinned local survivor first
+fails digit two, with nonzero-lag residual census `(0,0,18,24,30,24)` across
+digits zero through five. This proves strictness beyond the local pair sieve,
+but no complete row-sum catalog entry is yet excluded.
+
+Reproduce the new exact layer with:
+
+```sh
+python3 verify_lp333_multiplier_row_sum.py
+python3 verify_lp333_order3_difference_family.py
+python3 verify_lp333_order3_mod3_sieve.py
+python3 verify_lp333_order3_primitive9_jet.py
+../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
+  --workers 4 --time-limit 2
+../tmp/hadamard-env/bin/python -m unittest -v \
+  test_lp333_multiplier_row_sum.py \
+  test_lp333_order3_difference_family.py \
+  test_lp333_order3_mod3_sieve.py \
+  test_lp333_order3_primitive9_jet.py \
+  test_lp333_order3_lift_catalog.py \
+  test_lp333_order3_cp_sat.py
+```
+
+`LEGENDRE_MULTIPLIER.md` records the other order-three subgroups. The subgroup
+generated by 112 is impossible by a direct lag-111 distance contradiction;
+the `<121>` and `<211>` lanes remain open. `LP333_TWISTED_ORDER3.md` gives
+their common exact outer theorem. Row-multiplier invariance reduces the
+Gaussian row sum through the census
+
+```text
+36 -> 12 -> 6,048 -> 1,296.
+```
+
+The 1,296 fixed-margin words form 216 free row-dihedral orbits and 108
+extended equivalence classes. An exact 21,953-state dynamic program proves
+that all 1,296 still lift through both zero-column-lag LP equations.
+Exponent reversal gives a bijection between the 121 and 211 spaces through
+fixed margins, row sums, and the complete zero-column axis, but it is
+nonadditive and does not preserve mixed lags. Thus only nonzero-column
+equations can now distinguish or eliminate these lanes.
 
 An additional fixed-row-profile fiber replaces the generic modulo-9 products
 by 18 exact cardinalities.  Twenty-one sampled compressed-profile orbits are
@@ -464,8 +533,15 @@ python3 verify_variable_q_seed_shell18_artifacts.py
 python3 verify_five_comb_high_lag_boundary.py
 python3 verify_five_comb_dyadic_compression.py
 python3 verify_five_comb_paired_lobes.py
+python3 verify_five_comb_root12_sieve.py
+python3 verify_five_comb_root4_vertical.py
 python3 verify_five_comb_unrestricted_full_corpus.py
 python3 check_lp333_sextic_quotient.py
+python3 verify_lp333_multiplier_row_sum.py
+python3 verify_lp333_order3_difference_family.py
+python3 verify_lp333_order3_mod3_sieve.py
+python3 verify_lp333_order3_primitive9_jet.py
+python3 verify_lp333_twisted_order3.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
 python3 verify_sds_167_neighborhood.py \
@@ -477,6 +553,11 @@ python3 verify_sds_167_windows.py \
   test_legendre_333_eight_cycle.py \
   test_legendre_333_profile_local.py \
   test_lp333_sextic_quotient.py test_lp333_sextic_cp_sat.py \
+  test_lp333_multiplier_row_sum.py \
+  test_lp333_order3_difference_family.py \
+  test_lp333_order3_mod3_sieve.py \
+  test_lp333_order3_primitive9_jet.py test_lp333_twisted_order3.py \
+  test_lp333_order3_lift_catalog.py test_lp333_order3_cp_sat.py \
   test_search_legendre_333_profile_catalog.py test_legendre_multiplier.py \
   test_legendre_column_distance_dp.py test_variable_q_base.py \
   test_variable_q_cp_sat.py test_variable_q_compression.py \
@@ -527,6 +608,17 @@ reached 931 MB whole-process RSS even with a 128 MiB internal limit, so this
 full model is not being lengthened on the current host.
 The separate 18-variable profile sampler used at most 117 MB whole-process RSS
 in recorded runs with one worker, a 128 MiB solver cap, and zero swap.
+The exact order-three row-sum enumerator used 2.82 MB maximum RSS. The
+all-1,756 pure-axis histogram replay used 114.1 MB in the independent run,
+the Eisenstein verifier and tests stayed below 29 MB, and the corrected full
+quotient pilot used 390.4 MB; all completed with zero swap. The paired-lobe
+roots `+1,-1` retained replay peaked near 712 MB and
+the vertical `Phi_4` replay at 499.6 MB. These measurements leave substantial
+headroom, but future jobs must still account for the several gigabytes used
+by the desktop and other applications rather than treating 16 GB as wholly
+available to one solver.
+The primitive-nine verifier stayed below 22 MB, while the coupled-order-three
+verifier and tests stayed below 94 MB, again with zero swap.
 
 Primary seed source: Shalom Eliahou, [A 64-modular Hadamard matrix of order
 668](https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf), *Australasian Journal

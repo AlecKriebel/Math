@@ -13,6 +13,12 @@ the literal lexicographic minimum of all three cyclic rotations on every
 signature sextuple.  Exactly 18 signature sextuples are fixed, and exactly
 552,912 signature-sextuple representatives remain, agreeing with Burnside's
 lemma.  This is not a count of full QPSK word or LP(333) solution orbits.
+
+The verifier also audits the commuting B-only involution
+``B(r,c) -> B(3-r,c)``.  On physical length-333 indices it is
+``B'[n]=B[260*n+111]``; reversal and multiplier-73 invariance preserve every
+B autocorrelation.  The action fixes the canonical zero column, all class
+signatures, and every signature shard.
 """
 
 from __future__ import annotations
@@ -396,11 +402,156 @@ def verify_all_signature_shards_invariant() -> int:
     return len(compatible)
 
 
+def b_reflect_exponents(
+    exponents: tuple[tuple[int, ...], ...],
+) -> tuple[tuple[int, ...], ...]:
+    """Apply ``A'=A, B'(r,c)=B(3-r,c)`` to a QPSK quotient."""
+
+    result = []
+    for row in range(ROWS):
+        reflected_row = (3 - row) % ROWS
+        transformed = []
+        for column in range(7):
+            a_sign = qpsk_to_sign_pair(ROOTS[exponents[row][column]])[0]
+            b_sign = qpsk_to_sign_pair(
+                ROOTS[exponents[reflected_row][column]]
+            )[1]
+            transformed.append(SIGN_PAIR_TO_EXPONENT[(a_sign, b_sign)])
+        result.append(tuple(transformed))
+    return tuple(result)
+
+
+def sign_sequences(
+    exponents: tuple[tuple[int, ...], ...],
+) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    qpsk = expand_length333(expand_crt_array(exponents))
+    pairs = tuple(qpsk_to_sign_pair(value) for value in qpsk)
+    return (
+        tuple(pair[0] for pair in pairs),
+        tuple(pair[1] for pair in pairs),
+    )
+
+
+def sign_paf(sequence: tuple[int, ...], lag: int) -> int:
+    return sum(
+        sequence[index] * sequence[(index + lag) % len(sequence)]
+        for index in range(len(sequence))
+    )
+
+
+def verify_b_reflection_action() -> dict[str, int]:
+    """Audit the commuting B-only involution on full quotient fibers."""
+
+    canonical_pairs = tuple(
+        qpsk_to_sign_pair(ROOTS[exponent])
+        for exponent in CANONICAL_ZERO_EXPONENTS
+    )
+    canonical_a = tuple(pair[0] for pair in canonical_pairs)
+    canonical_b = tuple(pair[1] for pair in canonical_pairs)
+    reflected_a = tuple(canonical_a[(3 - row) % ROWS] for row in range(ROWS))
+    reflected_b = tuple(canonical_b[(3 - row) % ROWS] for row in range(ROWS))
+    if reflected_b != canonical_b:
+        raise AssertionError("canonical zero B word lost its reflection")
+    if reflected_a == canonical_a:
+        raise AssertionError("canonical zero A word unexpectedly has the reflection")
+
+    affine_multiplier = 260
+    affine_translation = 111
+    if affine_multiplier % ROWS != -1 % ROWS:
+        raise AssertionError("physical B reflection has the wrong row multiplier")
+    if affine_multiplier % P != 1 or affine_translation % P != 0:
+        raise AssertionError("physical B reflection does not fix CRT columns")
+    if affine_translation % ROWS != 3:
+        raise AssertionError("physical B reflection has the wrong row translation")
+    if affine_multiplier % N != (-73) % N:
+        raise AssertionError("260 is not reversal times multiplier 73")
+    if 73 not in tuple(pow(64, exponent, N) for exponent in range(6)):
+        raise AssertionError("73 left the multiplier-64 subgroup")
+
+    # The 54-bit permutation has six fixed bits and 24 transpositions.  The
+    # first member of each transposition occurs in the same order as the only
+    # potentially decisive comparisons in the full row-major lex word.
+    permutation = tuple(
+        ((3 - row) % ROWS) * len(CLASSES) + class_index
+        for row in range(ROWS)
+        for class_index in range(len(CLASSES))
+    )
+    if any(permutation[permutation[index]] != index for index in range(54)):
+        raise AssertionError("B reflection bit permutation is not an involution")
+    fixed_bits = sum(permutation[index] == index for index in range(54))
+    early_pairs = tuple(
+        index for index in range(54) if index < permutation[index]
+    )
+    if fixed_bits != 6 or len(early_pairs) != 24:
+        raise AssertionError("B reflection must have six fixed bits and 24 pairs")
+
+    paf_checks = 0
+    signature_checks = 0
+    fixtures = deterministic_quotient_fixtures()
+    for exponents in fixtures:
+        transformed = b_reflect_exponents(exponents)
+        if b_reflect_exponents(transformed) != exponents:
+            raise AssertionError("B reflection is not an involution")
+        if tuple(row[0] for row in transformed) != CANONICAL_ZERO_EXPONENTS:
+            raise AssertionError("B reflection moved the canonical zero column")
+        if b_reflect_exponents(rotate_quotient_classes(exponents)) != (
+            rotate_quotient_classes(transformed)
+        ):
+            raise AssertionError("B reflection does not commute with residual C3")
+
+        for class_index in range(len(CLASSES)):
+            before_word = tuple(
+                row[class_index + 1] for row in exponents
+            )
+            after_word = tuple(
+                row[class_index + 1] for row in transformed
+            )
+            if phase_sum(before_word) != phase_sum(after_word):
+                raise AssertionError("B reflection changed fixed compression")
+            if real_signature(before_word) != real_signature(after_word):
+                raise AssertionError("B reflection changed a class signature")
+            signature_checks += 1
+
+        a, b = sign_sequences(exponents)
+        transformed_a, transformed_b = sign_sequences(transformed)
+        if transformed_a != a:
+            raise AssertionError("B reflection changed the A sequence")
+        physical_b = tuple(
+            b[(affine_multiplier * index + affine_translation) % N]
+            for index in range(N)
+        )
+        if transformed_b != physical_b:
+            raise AssertionError("quotient and physical B reflections disagree")
+        if tuple(b[(64 * index) % N] for index in range(N)) != b:
+            raise AssertionError("fixture B sequence is not multiplier-64 invariant")
+        for lag in range(N):
+            if sign_paf(transformed_b, lag) != sign_paf(b, lag):
+                raise AssertionError(
+                    f"B reflection changed periodic autocorrelation at lag {lag}"
+                )
+            if (
+                sign_paf(transformed_a, lag) + sign_paf(transformed_b, lag)
+                != sign_paf(a, lag) + sign_paf(b, lag)
+            ):
+                raise AssertionError(
+                    f"B reflection changed the LP equation at lag {lag}"
+                )
+            paf_checks += 1
+    return {
+        "b_reflection_fixtures": len(fixtures),
+        "b_reflection_paf_checks": paf_checks,
+        "b_reflection_signature_checks": signature_checks,
+        "b_reflection_fixed_bits": fixed_bits,
+        "b_reflection_transpositions": len(early_pairs),
+    }
+
+
 @lru_cache(maxsize=1)
 def verify_c3_reduction() -> dict[str, int]:
     verify_decimation_action()
     zero_counts = verify_zero_word_transitivity()
     expanded_counts = verify_full_expanded_action()
+    reflection_counts = verify_b_reflection_action()
     negative = target_signatures(-3)
     positive = target_signatures(3)
     if negative != positive or len(negative) != 28:
@@ -451,6 +602,7 @@ def verify_c3_reduction() -> dict[str, int]:
         "compatible_signature_shards": len(compatible),
         **zero_counts,
         **expanded_counts,
+        **reflection_counts,
     }
 
 
@@ -474,6 +626,12 @@ def main() -> None:
         "C3 invariant "
         f"({counts['compatible_signature_shards']} shards; "
         f"{counts['full_correlation_checks']} correlation checks)"
+    )
+    print(
+        "PASS: commuting B-only affine reflection preserves all tested "
+        "signatures and PAFs "
+        f"({counts['b_reflection_signature_checks']} signatures; "
+        f"{counts['b_reflection_paf_checks']} PAF checks)"
     )
     print(
         "PASS: exact pair-rotation lex leader including every tie case "

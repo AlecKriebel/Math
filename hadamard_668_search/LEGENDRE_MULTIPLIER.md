@@ -14,6 +14,29 @@ length-37 compression.  Representatives and their nonidentity squares are
 <121> = {1,121,322}      <211> = {1,211,232}.
 ```
 
+Their present status is:
+
+```text
+<10>    active structured boundary: exact 9 x 13 QPSK quotient,
+        1,756 row sums, 22 Eisenstein shards, and a primitive-9 jet
+<112>   impossible by the lag-111 distance contradiction below
+<121>   active coupled lane: 1,296 fixed-margin row sums / 108 outer orbits
+<211>   active coupled lane: the same exact outer boundary.
+```
+
+The `<10>` lane is the column-only order-three subgroup.  The row-sum theorem
+closes its order-18, order-9, and order-6 supergroups but is feasible exactly
+at order three.  See `LP333_MULTIPLIER_ROW_SUM.md`,
+`LP333_ORDER3_DIFFERENCE_FAMILY.md`, and the dedicated exact quotient model
+`search_lp333_order3_cp_sat.py`.
+
+The two coupled lanes have the common row action `r -> 4r`.
+`LP333_TWISTED_ORDER3.md` reduces each to exactly 1,296 fixed-margin Gaussian
+row sums and 108 extended outer equivalence classes. All 1,296 survive the
+two zero-column-lag equations. A nonadditive exponent-reversal permutation
+bijections the 121 and 211 spaces through this complete row-axis layer, so
+only nonzero-column equations can distinguish them.
+
 For multiplier 121 or 211, 333 coordinates collapse to 113 orbits.  Because
 periodic correlations are constant on multiplier orbits of lags, the 166
 independent LP equations collapse to 56 representative equations.  XOR
@@ -48,6 +71,7 @@ infeasible during initial constraint loading.
 
 ```sh
 ../tmp/hadamard-env/bin/python -m unittest -v test_legendre_multiplier.py
+python3 verify_lp333_twisted_order3.py
 
 ../tmp/hadamard-env/bin/python search_legendre_333_multiplier.py \
   --multiplier 112 --workers 1 --time-limit 2
@@ -57,5 +81,5 @@ infeasible during initial constraint loading.
   --output output/legendre_pair_333_multiplier_121.json
 ```
 
-The `<10>`, `<121>`, and `<211>` searches remain open.  No multiplier-invariant
-LP(333) candidate has been found.
+The structured `<10>` quotient and the `<121>`, `<211>` searches remain open.
+No multiplier-invariant `LP(333)` candidate has been found.

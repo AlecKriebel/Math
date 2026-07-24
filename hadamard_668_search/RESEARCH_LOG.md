@@ -964,3 +964,124 @@ proof-assistant-level theorem.
   lawful public-source review of the inaccessible 2026 text if it becomes
   available, and independent expert review. The project will not initiate
   outreach.
+
+## 23 July 2026: multiplier row-sum obstruction
+
+- Summed all 37 column-lag equations in a fixed-compression, column-only
+  multiplier quotient. For subgroup size `h`, transition matrices satisfy
+  `D+h sum(M_j)=w w^T`; hence the complete length-nine row sum `s=x+h t`
+  must have real PAF `(297,-37,-37,-37,-37)`.
+- The zero-column divisibility condition leaves exactly the same 972 QPSK
+  words for `h=18,9,6,3`. They form one free normalization orbit and all have
+  nonzero real PAF `-1`, so the canonical zero word is fixed without loss.
+- Completed the exact nonnegative integer projection. The order-18 family has
+  no energy state. The order-9/quartic family has 40 canonical states and 29
+  PAF profiles, none targeted; over all zero cores it has 38,880 states and
+  zero hits. The order-6/sextic family has 2,376 canonical states and 971
+  profiles, none targeted; the all-core replay has 2,309,472 states and zero
+  hits. These are complete restricted-family obstructions, not solver
+  outcomes. The former quartic and sextic searches are now historical only.
+- Retained `verify_lp333_multiplier_row_sum.py`,
+  `test_lp333_multiplier_row_sum.py`, and
+  `LP333_MULTIPLIER_ROW_SUM.md`. Six focused tests pass, including an
+  independent `Phi_3` shell derivation for the already closed sextic family.
+
+## 23 July 2026: exact order-three boundary
+
+- At `h=3`, the row-sum projection is viable. A warning-clean C++20
+  enumerator checks exactly 46,503,026 energy-and-sum words and finds 1,756
+  full row-sum PAF words. Regeneration took 8.60 seconds and 2,818,048 bytes
+  maximum RSS with no swap. The emitted 1,757-line catalog has SHA-256
+  `e8631dc0ae2f65c475af1c2e13429778f666a0fa8a13c9f1153d07d7883a98ea`
+  and reproduced byte-for-byte.
+- Complementing each high-weight binary class word turns a zero-column lift
+  into four groups of six triples on `Z/9`. Signed incidence equations encode
+  the aggregate row sums, and the zero-column PAF equations are exactly the
+  four difference totals `18,18,18,18`. A frozen 24-triple witness passes
+  compression, row sums, and all zero-column equations.
+- Expanded that witness through all 333 coordinates. It fails 51 of 54
+  reversal-independent nonzero-column equations, with residual energy 8,320
+  and maximum absolute residual 30; all six geometric column-axis equations
+  fail. It is explicitly a pure-axis lift, not an `LP(333)` candidate.
+- Recast the 24 labeled blocks as four 84-entry multiplicity histograms and
+  audited all 1,756 catalog rows. Every row is feasible; there are zero
+  infeasible and zero unresolved cases. The full independent replay took
+  168.09 seconds, 114,081,792 bytes maximum RSS, and no swap, with coverage
+  digest
+  `b32aa9116098ea455063d256b37541033d3a9f8eb6ff5e32f57c3d7039fb1049`.
+  Thus strengthening only the row-sum and zero-column layer cannot prune the
+  order-three catalog.
+- Implemented a dedicated exact `9 x 13` quotient and dependency-free save
+  gate. The quotient has 216 primary signs and 58 reversal-independent lag
+  equations. The baseline model has 11,790 variables and 11,657 constraints.
+  A full lex leader for the commuting `C6 x C2` action raises this to 11,857
+  variables and 11,889 constraints. The corrected B-only affine involution
+  is `B'[n]=B[323n+111]`; the plausible class-fixed multiplier 260 is false,
+  changing 264 PAF lags on the frozen pure-axis witness. All 26 combined
+  focused tests and the dependency-free symmetry verifier pass.
+- A 60-second four-worker pilot of the full corrected model ended `UNKNOWN`
+  with no candidate after 32,600 conflicts and 293,875 branches. It used
+  390,365,184 bytes maximum RSS with no swap. This is a bounded diagnostic
+  only and makes no feasibility or infeasibility claim. Every solver
+  assignment must replay all 333 correlations and the complete bordered
+  `668 x 668` matrix before any candidate can be written.
+- Factored the modulo-three row compression into two independent ten-state
+  binary profiles per class. Their nontrivial Fourier coefficients lie in
+  `Z[omega]`, with norm census `0^1,3^6,9^3`, and the full compressed system
+  is exactly `a*a^*+b*b^*=167 delta_0` for two `H`-invariant Eisenstein
+  sequences on `F_37`.
+- Proved that seven of the 20 reversal-independent real equations are
+  fixed-sum dependencies. The exact system therefore has one real origin
+  equation and six complex class equations, or 13 integer conditions. The
+  1,756 row-sum words collapse to 22 aggregate shards with norm-pair census
+  `(19,148)^4,(28,139)^4,(64,103)^2,(91,76)^8,(100,67)^2,(163,4)^2`.
+- Reduced each opposite-class block modulo the ramified prime
+  `1-omega`. Its three signatures have multiplicities 34,33,33, leaving
+  `34^2+33^2+33^2=3,334` of 10,000 local choices. Explicit pinned witnesses
+  show all 22 aggregate shards survive after adding the origin energy, so
+  the sieve is exact but nondecisive. The verifier and five tests pass below
+  29 MB RSS with no swap.
+- An optimized 1,344-variable, 1,287-constraint pilot of the 13-condition
+  model ended `UNKNOWN` after 120.024 seconds with no assignment, 387,475
+  conflicts, 708,771 branches, and 188.5 MiB maximum RSS. No mathematical
+  conclusion is drawn from that bounded run.
+
+## 23 July 2026: primitive-nine and coupled order-three boundaries
+
+- Expanded the `<10>` quotient at the primitive ninth root in
+  `F_3[pi]/(pi^6)`, `pi=1-zeta_9`. The canonical zero-column reciprocal power
+  is 5 and `v_pi(167-5)=v_pi(162)=24`. This yields six exact triangular jet
+  equations modulo three.
+- Proved by exhaustive local replay that jet digit one is exactly the
+  3,334/10,000 Eisenstein opposite-pair sieve. Digits two through five retain
+  within-residue placement and introduce nonzero/nonzero class products. A
+  pinned aggregate/origin/local-pair survivor has nonzero-lag residual census
+  `(0,0,18,24,30,24)` and first fails digit two, proving strictness. No
+  row-sum catalog exclusion is claimed. The verifier and five tests pass
+  below 22 MB with no swap.
+- Derived a common outer theorem for the coupled multipliers 121 and 211.
+  Their invariant row sums satisfy a positive-definite five-value equation:
+  36 Gaussian repeated-row pairs reduce to 12 realizable pairs, 6,048 generic
+  row words, and 1,296 words compatible with the invariant zero column and
+  all fixed margins.
+- The 1,296-word catalog has SHA-256
+  `4c03c95355e161dca2bca94c635f377f73ec069baf36aa1be8143fd351ea2965`,
+  216 free row-dihedral orbits, and 108 extended equivalence classes. An exact
+  21,953-state DP proves every word lifts through both zero-column-lag LP
+  equations. A nonadditive column-orbit exponent reversal bijections the
+  121/211 spaces through margins, row sums, and the zero-column axis only.
+  The verifier and five tests pass below 94 MB with no swap.
+
+## 23 July 2026: first paired-lobe dyadic root sieves
+
+- Joined the even and odd carrier groups at roots `+1,-1`. In the
+  arbitrary-placement relaxation, 46 new map/profile rows are impossible,
+  representing 2,576,920 of 1,864,410,112 weighted inventory-map products
+  (0.1382%); no whole surviving core/profile cell is removed.
+- In the narrower vertical-pair slice, roots `+1,-1` reject 830,528 of
+  23,823,872 inventory/core products. Adding `Phi_4` rejects 75,713 more, for
+  a cumulative 906,241 products (3.8039%) and eleven complete cells. The
+  3.8039% figure applies only to vertical placement.
+- Both retained standard-library verifiers and focused tests pass with zero
+  swap. The roots `+1,-1` replay peaked near 712 MB; the `Phi_4` replay peaked
+  at 499,613,696 bytes. Work stopped before `Phi_8` and `Phi_16`.

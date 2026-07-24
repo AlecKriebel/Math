@@ -40,6 +40,13 @@ pairs ``((0,1),(2,3),(4,5))``.  By default the model selects the lexicographical
 least of those three pair rotations with a two-Boolean exact tie encoding.
 This symmetry channel can be disabled independently.
 
+There is also a commuting residual involution on full word fibers.  It fixes
+the A channel and sends ``B(r,c)`` to ``B(3-r,c)``.  The canonical zero column
+is fixed, while physically the action is the affine map
+``B'[n]=B[260*n+111]``.  Reversal plus multiplier-73 invariance preserves all
+B autocorrelations.  A one-constraint automaton selects the least global
+54-bit B image by default; this channel too can be disabled independently.
+
 A solver assignment is never written directly.  It is expanded through the
 audited CRT quotient, converted into two length-333 sign sequences, checked by
 an independent full 333-lag correlation replay, checked by the repository's
@@ -121,10 +128,12 @@ class SexticModel:
     signature_variables: tuple[cp_model.IntVar, ...]
     signature_shard_variable: cp_model.IntVar | None
     c3_variables: tuple[cp_model.IntVar, ...]
+    c2_variables: tuple[cp_model.IntVar, ...]
     equations: tuple[QuotientEquation, ...]
     compression_constraints: int
     signature_constraints: int
     c3_constraints: int
+    c2_constraints: int
 
     def exact_counts(self) -> dict[str, int]:
         """Return exact model-size counts from the serialized CP-SAT model."""
@@ -138,11 +147,13 @@ class SexticModel:
                 self.signature_shard_variable is not None
             ),
             "c3_variables": len(self.c3_variables),
+            "c2_variables": len(self.c2_variables),
             "total_variables": len(proto.variables),
             "compression_constraints": self.compression_constraints,
             "quotient_lag_constraints": len(self.equations),
             "signature_constraints": self.signature_constraints,
             "c3_constraints": self.c3_constraints,
+            "c2_constraints": self.c2_constraints,
             "total_constraints": len(proto.constraints),
         }
 
@@ -586,11 +597,82 @@ def _add_c3_signature_lex_leader(
     return (equal_01, equal_02), 7
 
 
+def _add_b_reflection_lex_leader(
+    model: cp_model.CpModel,
+    b_rows: Sequence[Sequence[BitNode]],
+) -> tuple[tuple[cp_model.IntVar, ...], int]:
+    """Choose the least image under ``B(r,c) -> B(3-r,c)`` exactly.
+
+    The global row-major word has 54 nonzero-column B bits.  Its reflection
+    consists of 24 transposed pairs and six fixed bits.  Once the earlier
+    member of a transposed pair agrees with its image, the later comparison is
+    forced equal, so the full 54-bit lexicographic comparison is exactly the
+    comparison of the 24 earlier members.
+
+    Symbols ``2*left+right`` feed a two-state automaton: state zero means the
+    prefixes are equal, state one means the original is already smaller, and
+    the forbidden transition is ``(left,right)=(1,0)`` from state zero.  CP-SAT
+    requires one-variable transition expressions, so 24 four-valued symbol
+    variables and their linear definitions feed one automaton constraint.
+    """
+
+    if len(b_rows) != ROWS or any(len(row) != 7 for row in b_rows):
+        raise ValueError("B reflection requires the complete 9 by 7 quotient")
+    original = tuple(
+        b_rows[row][class_index + 1]
+        for row in range(ROWS)
+        for class_index in range(len(CLASSES))
+    )
+    reflected = tuple(
+        b_rows[(3 - row) % ROWS][class_index + 1]
+        for row in range(ROWS)
+        for class_index in range(len(CLASSES))
+    )
+    if any(type(node) is int for node in (*original, *reflected)):
+        raise ValueError("nonzero B quotient cells must all be variables")
+
+    seen_pairs: set[tuple[int, int]] = set()
+    comparison_pairs: list[tuple[cp_model.IntVar, cp_model.IntVar]] = []
+    for left, right in zip(original, reflected, strict=True):
+        if left.index == right.index:
+            continue
+        key = tuple(sorted((left.index, right.index)))
+        if key in seen_pairs:
+            continue
+        seen_pairs.add(key)
+        comparison_pairs.append((left, right))
+    if len(comparison_pairs) != 24:
+        raise AssertionError("B reflection must have 24 nontrivial bit pairs")
+
+    symbols_list = []
+    for index, (left, right) in enumerate(comparison_pairs):
+        symbol = model.new_int_var(0, 3, f"b_reflection_symbol_{index}")
+        model.add(symbol == 2 * left + right).with_name(
+            f"define_b_reflection_symbol_{index}"
+        )
+        symbols_list.append(symbol)
+    symbols = tuple(symbols_list)
+    transitions = (
+        (0, 0, 0),  # equal prefix, 0 == 0
+        (0, 1, 1),  # first difference 0 < 1
+        (0, 3, 0),  # equal prefix, 1 == 1
+        (1, 0, 1),
+        (1, 1, 1),
+        (1, 2, 1),
+        (1, 3, 1),
+    )
+    model.add_automaton(symbols, 0, (0, 1), transitions).with_name(
+        "b_reflection_global_lex_leader"
+    )
+    return symbols, 25
+
+
 def build_model(
     *,
     signature_channel: bool = True,
     signature_shard: int | None = None,
     c3_symmetry: bool = True,
+    c2_symmetry: bool = True,
 ) -> SexticModel:
     """Build the complete exact sextic quotient model."""
 
@@ -678,6 +760,13 @@ def build_model(
             model, signature_variables
         )
 
+    c2_variables: tuple[cp_model.IntVar, ...] = ()
+    c2_constraints = 0
+    if signature_channel and c2_symmetry:
+        c2_variables, c2_constraints = _add_b_reflection_lex_leader(
+            model, b_rows
+        )
+
     bundle = SexticModel(
         model=model,
         a_nodes=tuple(a_rows),
@@ -687,10 +776,12 @@ def build_model(
         signature_variables=signature_variables,
         signature_shard_variable=signature_shard_variable,
         c3_variables=c3_variables,
+        c2_variables=c2_variables,
         equations=QUOTIENT_EQUATIONS,
         compression_constraints=compression_constraints,
         signature_constraints=signature_constraints,
         c3_constraints=c3_constraints,
+        c2_constraints=c2_constraints,
     )
     counts = bundle.exact_counts()
     if counts["primary_sign_bits"] != PRIMARY_SIGN_BITS:
@@ -703,6 +794,7 @@ def build_model(
         + counts["signature_variables"]
         + counts["signature_shard_variables"]
         + counts["c3_variables"]
+        + counts["c2_variables"]
     ):
         raise AssertionError("unexpected variables entered the model")
     if counts["total_constraints"] != (
@@ -711,6 +803,7 @@ def build_model(
         + counts["quotient_lag_constraints"]
         + counts["signature_constraints"]
         + counts["c3_constraints"]
+        + counts["c2_constraints"]
     ):
         raise AssertionError("unexpected constraints entered the model")
     return bundle
@@ -850,6 +943,14 @@ def parse_args() -> argparse.Namespace:
         ),
     )
     parser.add_argument(
+        "--no-c2-symmetry",
+        action="store_true",
+        help=(
+            "disable the exact B-only row-reflection lex leader while "
+            "retaining the signature channel"
+        ),
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=Path("output/lp333_sextic_candidate.json"),
@@ -885,6 +986,7 @@ def main() -> int:
         signature_channel=not args.no_signature_channel,
         signature_shard=args.signature_shard,
         c3_symmetry=not args.no_c3_symmetry,
+        c2_symmetry=not args.no_c2_symmetry,
     )
     validation_error = bundle.model.validate()
     counts = bundle.exact_counts()
@@ -906,6 +1008,10 @@ def main() -> int:
     print(
         "c3_symmetry="
         f"{'enabled' if not args.no_signature_channel and not args.no_c3_symmetry else 'disabled'}"
+    )
+    print(
+        "c2_symmetry="
+        f"{'enabled' if not args.no_signature_channel and not args.no_c2_symmetry else 'disabled'}"
     )
     if args.build_only:
         return 0

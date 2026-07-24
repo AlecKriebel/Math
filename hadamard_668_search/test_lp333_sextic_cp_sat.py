@@ -36,6 +36,7 @@ from search_lp333_sextic_cp_sat import (
     SIGN_PAIR_TO_EXPONENT,
     TARGET_XOR_COUNT,
     _add_c3_signature_lex_leader,
+    _add_b_reflection_lex_leader,
     aggregate_signature_table,
     _cached_xor,
     build_model,
@@ -69,6 +70,51 @@ FIXTURE_EXPONENTS = tuple(
 
 
 class SexticCpSatTests(unittest.TestCase):
+    def test_b_reflection_global_lex_encoding(self) -> None:
+        patterns = [
+            (0,) * 54,
+            (1,) * 54,
+            tuple(index % 2 for index in range(54)),
+            tuple((index // 6) % 2 for index in range(54)),
+        ]
+        patterns.extend(
+            tuple(int(index == distinguished) for index in range(54))
+            for distinguished in range(54)
+        )
+        patterns.extend(
+            tuple(int(index != distinguished) for index in range(54))
+            for distinguished in range(54)
+        )
+        for pattern in patterns:
+            model = cp_model.CpModel()
+            b_rows = []
+            variables = []
+            for row in range(9):
+                row_variables = [
+                    model.new_bool_var(f"b_{row}_{class_index}")
+                    for class_index in range(6)
+                ]
+                variables.extend(row_variables)
+                b_rows.append((0, *row_variables))
+            symbols, constraint_count = _add_b_reflection_lex_leader(
+                model, b_rows
+            )
+            self.assertEqual(len(symbols), 24)
+            self.assertEqual(constraint_count, 25)
+            for variable, value in zip(variables, pattern, strict=True):
+                model.add(variable == value)
+            solver = cp_model.CpSolver()
+            status = solver.solve(model)
+            reflected = tuple(
+                pattern[((3 - row) % 9) * 6 + class_index]
+                for row in range(9)
+                for class_index in range(6)
+            )
+            expected = pattern <= reflected
+            self.assertEqual(
+                status in (cp_model.FEASIBLE, cp_model.OPTIMAL), expected
+            )
+
     def test_cached_xor_encoding_and_reuse(self) -> None:
         for left_value in (0, 1):
             for right_value in (0, 1):
@@ -131,23 +177,26 @@ class SexticCpSatTests(unittest.TestCase):
         self.assertEqual(counts["signature_variables"], 6)
         self.assertEqual(counts["signature_shard_variables"], 1)
         self.assertEqual(counts["c3_variables"], 2)
-        self.assertEqual(counts["total_variables"], 2979)
+        self.assertEqual(counts["c2_variables"], 24)
+        self.assertEqual(counts["total_variables"], 3003)
         self.assertEqual(counts["quotient_lag_constraints"], 34)
         self.assertEqual(counts["compression_constraints"], 12)
         self.assertEqual(counts["signature_constraints"], 8)
         self.assertEqual(counts["c3_constraints"], 7)
-        self.assertEqual(counts["total_constraints"], 2923)
+        self.assertEqual(counts["c2_constraints"], 25)
+        self.assertEqual(counts["total_constraints"], 2948)
         self.assertEqual(
             counts["total_variables"],
             counts["primary_sign_bits"]
             + counts["cached_xor_variables"]
             + counts["signature_variables"]
             + counts["signature_shard_variables"]
-            + counts["c3_variables"],
+            + counts["c3_variables"]
+            + counts["c2_variables"],
         )
         self.assertEqual(
             counts["total_constraints"],
-            counts["cached_xor_variables"] + 12 + 34 + 8 + 7,
+            counts["cached_xor_variables"] + 12 + 34 + 8 + 7 + 25,
         )
         self.assertEqual(len(QUOTIENT_EQUATIONS), 34)
 
@@ -157,16 +206,36 @@ class SexticCpSatTests(unittest.TestCase):
         self.assertEqual(sharded_counts["signature_variables"], 6)
         self.assertEqual(sharded_counts["signature_shard_variables"], 0)
         self.assertEqual(sharded_counts["c3_variables"], 2)
-        self.assertEqual(sharded_counts["total_variables"], 2978)
-        self.assertEqual(sharded_counts["total_constraints"], 2923)
+        self.assertEqual(sharded_counts["c2_variables"], 24)
+        self.assertEqual(sharded_counts["total_variables"], 3002)
+        self.assertEqual(sharded_counts["c2_constraints"], 25)
+        self.assertEqual(sharded_counts["total_constraints"], 2948)
 
         unsymmetrized = build_model(c3_symmetry=False)
         self.assertEqual(unsymmetrized.model.validate(), "")
         unsymmetrized_counts = unsymmetrized.exact_counts()
         self.assertEqual(unsymmetrized_counts["c3_variables"], 0)
         self.assertEqual(unsymmetrized_counts["c3_constraints"], 0)
-        self.assertEqual(unsymmetrized_counts["total_variables"], 2977)
-        self.assertEqual(unsymmetrized_counts["total_constraints"], 2916)
+        self.assertEqual(unsymmetrized_counts["c2_variables"], 24)
+        self.assertEqual(unsymmetrized_counts["c2_constraints"], 25)
+        self.assertEqual(unsymmetrized_counts["total_variables"], 3001)
+        self.assertEqual(unsymmetrized_counts["total_constraints"], 2941)
+
+        no_reflection = build_model(c2_symmetry=False)
+        self.assertEqual(no_reflection.model.validate(), "")
+        no_reflection_counts = no_reflection.exact_counts()
+        self.assertEqual(no_reflection_counts["c2_variables"], 0)
+        self.assertEqual(no_reflection_counts["c2_constraints"], 0)
+        self.assertEqual(no_reflection_counts["total_variables"], 2979)
+        self.assertEqual(no_reflection_counts["total_constraints"], 2923)
+
+        fully_unsymmetrized = build_model(
+            c3_symmetry=False, c2_symmetry=False
+        )
+        self.assertEqual(fully_unsymmetrized.model.validate(), "")
+        fully_unsymmetrized_counts = fully_unsymmetrized.exact_counts()
+        self.assertEqual(fully_unsymmetrized_counts["total_variables"], 2977)
+        self.assertEqual(fully_unsymmetrized_counts["total_constraints"], 2916)
 
     def test_old_model_count_regression(self) -> None:
         bundle = build_model(signature_channel=False)
@@ -177,11 +246,13 @@ class SexticCpSatTests(unittest.TestCase):
         self.assertEqual(counts["signature_variables"], 0)
         self.assertEqual(counts["signature_shard_variables"], 0)
         self.assertEqual(counts["c3_variables"], 0)
+        self.assertEqual(counts["c2_variables"], 0)
         self.assertEqual(counts["total_variables"], 2970)
         self.assertEqual(counts["compression_constraints"], 12)
         self.assertEqual(counts["quotient_lag_constraints"], 34)
         self.assertEqual(counts["signature_constraints"], 0)
         self.assertEqual(counts["c3_constraints"], 0)
+        self.assertEqual(counts["c2_constraints"], 0)
         self.assertEqual(counts["total_constraints"], 2908)
         with self.assertRaisesRegex(ValueError, "requires the signature channel"):
             build_model(signature_channel=False, signature_shard=0)
@@ -205,6 +276,11 @@ class SexticCpSatTests(unittest.TestCase):
                 "full_correlation_checks": 666,
                 "canonical_zero_columns_fixed": 2,
                 "multiplier_64_replays": 2,
+                "b_reflection_fixtures": 2,
+                "b_reflection_paf_checks": 666,
+                "b_reflection_signature_checks": 12,
+                "b_reflection_fixed_bits": 6,
+                "b_reflection_transpositions": 24,
             },
         )
 

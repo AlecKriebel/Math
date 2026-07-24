@@ -2,10 +2,14 @@
 
 ## Status
 
-This is an exact order-six multiplier reduction of the Legendre-pair route.
-It leaves 108 Boolean signs after symmetry normalization. An explicit quotient
-table satisfies both coordinate axes but is not a Legendre pair because 20
-of its 24 mixed quotient cells remain nonzero.
+**Closed restricted family.** The multiplier row-sum theorem in
+`LP333_MULTIPLIER_ROW_SUM.md` proves that no fixed-compression quotient in
+this order-six family can satisfy all `LP(333)` equations. The obstruction is
+an exact finite integer argument, not a bounded solver outcome.
+
+The 108-sign quotient, its axis-complete non-candidate, and the CP-SAT model
+are retained as derivation and regression artifacts. They should not be
+resumed as a construction search.
 
 No `LP(333)` or `H(668)` is claimed.
 
@@ -183,21 +187,30 @@ quotient equations          34
 
 The implemented default additionally channels six class words to the exact
 28-signature catalog and 298 aggregate shards, then imposes a tie-safe
-low-memory lex leader on the three adjacent class pairs:
+low-memory lex leader on the three adjacent class pairs. A commuting B-only
+reflection fixes the class labels and sends `B(r,c)` to `B(3-r,c)`;
+physically it is `B'[n]=B[260n+111]`. A second exact global lex leader
+selects the least reflection image:
 
 ```text
-                                      variables  constraints
-base model, no signature channel          2,970        2,908
-signature channel, no C3                  2,977        2,916
-signature channel plus C3 (default)       2,979        2,923
-fixed signature shard plus C3             2,978        2,923.
+                                             variables  constraints
+base model, no signature channel                 2,970        2,908
+signature plus C3, no reflection                 2,979        2,923
+signature plus reflection, no C3                 3,001        2,941
+signature plus C3 and reflection (default)       3,003        2,948
+fixed signature shard, both symmetries           3,002        2,948.
 ```
 
 The `C3` leader has two Boolean auxiliaries and seven constraints; exhaustive
 replay proves it selects exactly the least cyclic signature rotation,
-including every tie case. A feasible assignment is expanded and independently
+including every tie case. The reflection leader uses 24 comparison symbols
+and 25 constraints; the verifier checks its six fixed bits, 24
+transpositions, signature preservation, and all 333 B autocorrelations on
+two deterministic fixtures. A feasible assignment is expanded and independently
 checked at the quotient, CRT, all-333-lag Legendre-pair, bordered construction,
-and full Hadamard layers before it can be written:
+and full Hadamard layers before it can be written. The command below is
+historical and is retained only to reproduce the model; the row-sum theorem
+already proves that it cannot emit a candidate:
 
 ```sh
 .solver-venv/bin/python search_lp333_sextic_cp_sat.py \
@@ -229,8 +242,9 @@ swaps                       0
 candidates                  0.
 ```
 
-Neither pilot proves anything negative. The strengthened model is now the
-default, and the separate-shard continuation is resume-safe:
+Neither pilot proved anything negative. The later row-sum obstruction is the
+complete negative result. The separate-shard command is retained for
+historical reproducibility only and should not be resumed:
 
 ```sh
 .solver-venv/bin/python run_lp333_sextic_signature_shards.py \
@@ -238,7 +252,7 @@ default, and the separate-shard continuation is resume-safe:
   --workers 1 --max-memory-mb 4096
 ```
 
-The construction order is:
+The historical construction order was:
 
 1. fix the canonical zero column;
 2. impose the six nonzero-column compressions;
@@ -251,6 +265,19 @@ The construction order is:
    construction.
 
 ## 5. Closed smaller subfamilies
+
+The row-sum projection now closes the entire order-six family. Summing all
+37 column-lag equations produces a length-nine Gaussian row sum `s` with
+
+```text
+Re PAF_s(0)=297,       Re PAF_s(a)=-37  (a=1,...,4).
+```
+
+After the zero column is normalized to its unique 972-word orbit, the exact
+sum-and-energy census has 2,376 states and 971 distinct PAF profiles, none of
+which reaches the target. Replaying all 972 zero cores checks 2,309,472
+states and finds zero hits. See `LP333_MULTIPLIER_ROW_SUM.md` and
+`verify_lp333_multiplier_row_sum.py`.
 
 The quadratic-residue/order-18 quotient is already impossible from two
 pure-column equations. Bounds leave only two cross terms, `J=-9` and `J=-8`,

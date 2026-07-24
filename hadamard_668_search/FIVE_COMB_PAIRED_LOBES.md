@@ -190,7 +190,120 @@ and the four inventory counts. Its retained source SHA-256 is
 c693765752453b276f35db41bbe780f33573e1d208681142bb09a4d76ae52dff.
 ```
 
-## 6. Safe and unsafe symmetries
+## 6. First dyadic root sieve
+
+The first exact stage of the order-16 compression now joins the even carrier
+groups `(0,4)+(2,6)` against the odd groups `(1,5)+(3,7)` at roots `+1`
+and `-1`. There are exactly 672 ordered row-sum targets at either root.
+Writing the completed targets as `A,B`, the join key is the integral midpoint
+
+```text
+(A+B)/2 = E + (H_+ + H_-)/2.
+```
+
+The inventory side has the exact hierarchy
+
+```text
+768,512 directed-pair inventories
+     35 octet autocorrelation profiles
+    652 four-component signature profiles
+  8,729 (sum P, sum Q, terminal Q) component multisets.
+```
+
+Each of the 652 component-signature profiles determines one of the four
+root-amplitude profiles.
+
+Two scopes are kept separate.
+
+For arbitrary carrier placement, allowing every amplitude permutation and
+independent sign is a rigorous relaxation of the full distinct-lobe family.
+Together with the exact hole fiber and the 2,434-row physical high-lag
+parameter image, it rejects 46 new nonzero-core map/profile rows. Weighted
+by the four inventory counts, this removes
+
+```text
+2,576,920 / 1,864,410,112 = 0.1382%
+```
+
+of the post-core-zero inventory-by-parameter-map products. It eliminates no
+entire surviving core/profile cell.
+
+For the narrower vertical-pair placement in which the two polarizations of
+one directed pair occupy `(g,g+4)`, projecting the 10,934-row high-lag table
+independently onto the even and odd halves gives a stronger necessary sieve:
+
+```text
+cores 9,15,18   reject profiles 0 and 1       82,492 inventories each
+core 20         rejects profile 0             43,948 inventories
+core 27         rejects profiles 0,1,3 and
+                340,548 of profile 2         539,104 inventories
+```
+
+Thus ten vertical-placement profile/core cells and 830,528 of the
+23,823,872 inventory/core products are removed. This `3.486%` figure does
+**not** apply to arbitrary placement. The even/odd projection deliberately
+forgets whether both halves came from the same high-lag row, so its
+infeasibility conclusions are sound but its surviving set is a relaxation.
+
+Run the standard-library replay with
+
+```sh
+python3 verify_five_comb_root12_sieve.py
+```
+
+Its retained source SHA-256 is
+
+```text
+aa79ce46ec9e495864bd12c85d29bcd5d1633b7dbb6265f5ad95939a02fd246e.
+```
+
+The isolated vertical-stage prototype used 52.2 seconds, about 705 MB RSS,
+and no swap. The retained combined replay used 123.4 seconds and
+693,534,720 bytes maximum RSS with no swap. Orders `4,8,16` remain the next
+dyadic stages; neither root sieve claims a base sequence or an `H(668)`.
+
+The vertical-pair slice has also been lifted through `Phi_4`. For a pair
+with word sums `p,q`, its two carrier amplitudes are `p+epsilon*q` at root
+`1` and `p-epsilon*q` at root `i`; thus the two polarizations exchange
+amplitudes at the new root. Retaining this exchange in the same component
+join adds 75,713 inventory/core rejections:
+
+```text
+core 4    rejects all of profile 0                         43,948
+core 9    additionally rejects profile 2 / profile 3       1,918 / 8,462
+core 12   rejects part of profile 1 / profile 3             4,784 / 7,506
+core 18   additionally rejects profile 2 / profile 3          581 / 8,327
+core 23   rejects part of profile 2                            187.
+```
+
+Cumulatively, roots `+1,-1,i` remove
+
+```text
+906,241 / 23,823,872 = 3.8039%
+```
+
+of the vertical-placement inventory/core products and completely reject
+eleven profile/core cells. These counts remain vertical-pair-only and do
+not exclude arbitrary carrier placement.
+
+Run the standard-library replay with
+
+```sh
+python3 verify_five_comb_root4_vertical.py
+```
+
+Its retained source SHA-256 is
+
+```text
+87b183aa0edd5f6a0f9c9898f58f8d51ab58f7880686b11a6ebebc847dea67eb.
+```
+
+The isolated all-core `Phi_4` sweep used 302.1 seconds, about 510 MB RSS,
+and no swap. The focused retained replay passed in 368.2 seconds with
+499,613,696 bytes maximum RSS and no swap. The `Phi_8` and `Phi_16` stages
+remain open.
+
+## 7. Safe and unsafe symmetries
 
 Safe exact reductions include:
 
@@ -204,7 +317,7 @@ Word reversal and tooth alternation are useful for classifying self norms but
 are not safe exact symmetries of the fixed `84/83` support and hole mask.
 Neither `P<->Q` nor a polarization swap is a universal construction symmetry.
 
-## 7. Construction program
+## 8. Construction program
 
 The next model should select four sorted pair codes directly, not launch
 768,512 unrelated searches:

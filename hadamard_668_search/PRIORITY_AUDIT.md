@@ -26,13 +26,14 @@ report:
    high-lag boundary table, and a dependency-free dyadic compression theorem;
    its diagonal/common-type family is completely solver-excluded, while the
    distinct-lobe theorem exposes 721,984 genuinely larger inventories;
-5. the sextic `LP(333)` quotient reduces an order-six multiplier family to
-   108 binary signs and 298 exact row-signature shards after both axes are
-   factored; a residual `C3` theorem cuts 1,658,700 compatible signature
-   sextuples to 552,912 signature-level orbits;
+5. a multiplier row-sum theorem closes the order-18, quartic, and sextic
+   fixed-compression `LP(333)` families by exact integer enumeration, while
+   proving that order three is the first viable boundary;
 6. the independent fixed-`q` telescope reduces to the empty class `TU(41)`;
-7. the quartic-residue `LP(333)` quotient reduces a motivated subfamily to 45
-   QPSK phases and 16 remaining mixed equations after both axes are solved;
+7. the surviving order-three `<10>` quotient has exactly 1,756 row-sum words,
+   22 Eisenstein shards, a strict primitive-nine jet, and a full `9 x 13`
+   mixed-lag model; the coupled `<121>/<211>` lanes share a separate exact
+   1,296-word outer boundary;
 8. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
    degree-two independently decimated extension.
@@ -149,12 +150,11 @@ not itself a matrix or an existence theorem.
 Independently, the `LP(333)` pair becomes one QPSK array on `Z_9 x F_37`.
 Quartic residues form a `(37,9,2)` difference set, yielding an exact
 45-phase, 22-equation multiplier quotient. A checked table satisfies the
-fixed compression and every pure-axis equation; 16 mixed equations remain.
-The elementary Paley-row lift is exactly impossible by a group-algebra
-denominator obstruction. An axis-preserving constructor reduced its quotient
-energy from 1536 to 112, but still misses 14 of the 18 remaining quotient
-orbits. This is a strong construction checkpoint, not a candidate and not a
-theorem about existence in the quotient.
+fixed compression and every pure-axis equation, and the elementary Paley-row
+lift is exactly impossible by a group-algebra denominator obstruction. The
+later row-sum theorem now closes the entire fixed-compression quartic family,
+so the old energy-112 constructor is a historical non-candidate rather than
+a construction checkpoint.
 
 Both reductions look new in the sources inspected, but neither finds an
 exact object. They should be presented as construction frameworks with
@@ -205,40 +205,95 @@ The exact checker reconstructs the affected high-lag rows and all 768,512
 paired-lobe root profiles. This is a clean supporting lemma rather than a
 standalone existence result.
 
-## E. Sextic order-six `LP(333)` quotient
+The first dyadic root sieves add two exact but deliberately scoped filters.
+At roots `+1,-1`, an arbitrary-placement relaxation rejects 2,576,920 of
+1,864,410,112 weighted inventory-map products (0.1382%) but no complete
+surviving core/profile cell. In the narrower vertical-pair slice, roots
+`+1,-1,i` cumulatively reject 906,241 of 23,823,872 inventory/core products
+(3.8039%) and eleven complete cells. The larger percentage is not valid for
+arbitrary carrier placement. These are worthwhile supporting computations,
+not a five-comb nonexistence theorem.
 
-**Priority assessment: promising new exact construction reduction; high
-confidence in the repository derivation, provisional literature confidence.**
+## E. Multiplier row-sum obstruction and order-three boundary
 
-Invariance under multiplier 64 modulo 333 gives a `9 x 7` QPSK quotient on
-the six cosets of `<2^6>` in `F_37^*`. There are 34 reversal-inequivalent
-quotient lag equations. The zero column is necessarily an `LP(9)` word;
-symmetry fixes its 972-element orbit and leaves 108 Boolean signs. The
-remaining length-nine words have only 28 real-PAF signatures, and the
-row-axis condition splits into 298 three-plus-three meet-in-the-middle
-shards. The signature channel and a resume-safe shard runner are implemented.
+**Priority assessment: likely-new theorem-sized restricted-family
+obstruction plus a strong construction boundary; high confidence in the
+dependency-free proof, provisional literature confidence.**
 
-After canonicalizing the zero column, the compression-preserving residual
-symmetry is exactly the class rotation `C3`. It is induced by decimation 226
-modulo 333; its cube is multiplier 64. The dependency-free verifier
-reconstructs the complete 972-word normalization orbit, all 298 invariant
-shards, and the physical correlation action. Of 1,658,700 compatible ordered
-signature sextuples, exactly 18 are fixed and Burnside's lemma leaves 552,912
-signature-level orbits. This count is not a full word-orbit or solution-orbit
-count.
+For a fixed-compression column-only multiplier subgroup `H` of size `h`, sum
+all 37 column-lag equations. If `x` is the zero-column word, `t` is the
+pointwise sum of the nonzero class words, and `s=x+h t`, every candidate must
+satisfy
 
-An explicit table satisfies every pure row and pure column equation, while
-20 of 24 mixed quotient cells remain nonzero. The checker expands all 333
-positions and reproduces the residual energy exactly. It also proves that
-the quadratic-residue order-18 quotient and a logarithmically shifted
-template are impossible. The 34 equations should not be called linearly
-independent: fixed compression supplies seven affine relations.
+```text
+Re PAF_s(0)=297,       Re PAF_s(a)=-37  (a=1,...,4).
+```
 
-This is a more compact current construction target than the quartic quotient.
-It is not an existence result until an exact quotient is found and expanded
-through the full `H(668)` verifier. The strengthened exact model has 2,979
-variables and 2,923 constraints; a 20-second pilot remained `UNKNOWN` with no
-candidate, so no negative result is claimed.
+The zero-column equations leave exactly 972 QPSK words, one free
+normalization orbit, all with nonzero real PAF `-1`. After fixing a canonical
+core, a small nonnegative integer energy census is complete. It has no state
+for `h=18`; for `h=9` it has 40 states and 29 PAF profiles but no target; for
+`h=6` it has 2,376 states and 971 profiles but no target. Replaying all 972
+cores gives 38,880 quartic and 2,309,472 sextic states with zero hits. This
+closes all three restricted families exactly and supersedes their bounded
+CP-SAT searches.
+
+At `h=3`, the same projection is feasible. A warning-clean dependency-free
+C++ enumeration checks 46,503,026 energy-and-sum words and finds exactly
+1,756 full row-sum PAF words. Every word admits the exact zero-column
+signature lift. After complementing the high-weight binary channels, that
+lift is equivalent to 24 three-subsets of `Z/9` with signed incidence
+margins and four cyclic difference totals equal to 18. The complete
+1,756-word histogram audit has no unresolved or infeasible row and therefore
+proves that this pure-axis layer does not prune the catalog.
+
+The nontrivial three-row Fourier channel has a second exact factorization.
+Each 100-state Gaussian class catalog is a product of two ten-state binary
+profiles, and the compressed system becomes a complementary pair of
+`H`-invariant Eisenstein sequences with energy 167. Seven of the original 20
+real equations are fixed-sum dependencies, leaving 13 independent integer
+conditions. The 1,756 rows collapse to 22 aggregate shards in six norm-pair
+types. A local ramified-prime sieve keeps 3,334/10,000 choices per opposite
+class pair, but all 22 shards have pinned surviving witnesses. This is a
+clean structural theorem and useful solver reduction, not an obstruction by
+itself.
+
+A primitive-nine ramified expansion restores information erased by the
+three-row profile. In `F_3[pi]/(pi^6)`, `pi=1-zeta_9`, the zero-column power
+is 5 and the defect `167-5=162` has integral `pi`-valuation 24. The first jet
+digit is exactly the 3,334/10,000 Eisenstein pair sieve; digits two through
+five contain new nonzero/nonzero class products. A pinned local survivor
+first fails digit two, proving that the higher digits are strict. No complete
+row-sum catalog entry is yet excluded, so this is a theorem-sized propagation
+layer rather than a negative result.
+
+A frozen lift expands to a `9 x 37` quotient and passes compression, row-sum,
+and zero-column equations, but fails 51 of 54 independent nonzero-column
+equations. The full `9 x 13` order-three quotient model imposes all 58
+reversal-independent equations on 216 primary sign bits and independently
+replays any assignment through all 333 lags and the bordered order-668
+matrix. Its baseline has 11,790 variables and 11,657 constraints; the
+complete corrected `C6 x C2` symmetry leader has 11,857 variables and 11,889
+constraints. The B-only involution is the affine action with multiplier 323,
+while the initially tempting multiplier 260 is explicitly falsified by a
+PAF counterexample. A 60-second full-group pilot remained `UNKNOWN` with no
+candidate and carries no negative implication.
+
+The row-sum obstruction is likely worth publishing as a supporting theorem:
+it converts two formerly promising construction searches into exact no-go
+results and identifies a sharp viable symmetry boundary. The 1,756-word
+order-three reduction is a research framework rather than an existence
+result until the mixed equations are solved.
+
+The two coupled subgroups `<121>` and `<211>` also admit a common exact outer
+theorem. Row invariance gives a positive-definite five-value equation with
+36 Gaussian solutions, 12 realizable repeated-row pairs, 6,048 generic row
+words, and exactly 1,296 words after the invariant zero column and fixed
+margins. They form 108 extended outer classes. A 21,953-state exact DP proves
+all 1,296 survive both zero-column-lag equations. A nonadditive exponent
+reversal bijections the two multiplier spaces through this entire row-axis
+layer but not through mixed lags. This is a useful sharp boundary, not an
+obstruction.
 
 ## F. Radius-18 exclusion around Eliahou's seed
 
@@ -348,7 +403,9 @@ Maintain one compact internal paper organized around:
    exact nonlinear no-go theorems;
 5. the projective quotient, physical high-lag table, dyadic compression
    theorem, and distinct-lobe complementary-octet construction;
-6. the sextic and quartic QPSK construction reductions;
+6. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
+   and the order-three difference-family, Eisenstein, primitive-nine, and
+   coupled-lane boundaries;
 7. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
 8. the fixed-`q` parity telescope and reduction to `TU(41)`;
 9. the radius-18 solver report and proof-certification ladder as historical

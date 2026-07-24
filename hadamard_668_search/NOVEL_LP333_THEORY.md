@@ -5,13 +5,14 @@
 No Legendre pair of length `333`, and hence no Hadamard matrix of order
 `668`, is claimed here.
 
-The useful outcome is an exact cyclotomic reduction.  Inside one natural
-order-nine multiplier subfamily, the `166` independent PAF equations become
-`22` coupled equations on only `45` fourth roots of unity.  Those equations
-split into six coordinate-axis equations and sixteen genuinely mixed
-equations.  An explicit quotient array satisfies the fixed compression and
-every equation on both axes, so the sixteen mixed equations are the sole
-remaining obstruction in this subfamily.
+The order-nine multiplier subfamily developed here is now **closed**.  The
+cyclotomic reduction remains exact: the `166` independent PAF equations
+become `22` coupled equations on only `45` fourth roots of unity, split into
+six coordinate-axis equations and sixteen mixed equations.  However, the
+later multiplier row-sum theorem proves that no fixed-compression array can
+satisfy all 22 equations.  The displayed axis-complete quotient is therefore
+a useful historical non-candidate, not an active construction target.  See
+`LP333_MULTIPLIER_ROW_SUM.md`.
 
 The dependency-free checker is:
 
@@ -404,9 +405,12 @@ These are solver diagnostics, not proof certificates.
 - The axis-complete skeleton was found in a restricted quotient model and is
   then verified from scratch by the standard-library checker.
 
+These bounded outcomes were later superseded by the exact row-sum
+obstruction, which proves the quotient empty.
+
 The negative local-search checkpoints in `LEGENDRE_LOCAL_NOTES.md` concern
 different fixed row-profile fibers.  They neither imply nor contradict this
-quartic construction.
+historical quartic quotient.
 
 ## 9. Proved, conjectural, and refuted
 
@@ -423,23 +427,23 @@ quartic construction.
 
 ### Open or conjectural
 
-- Whether the sixteen mixed equations have a solution together with the six
-  axis equations.
-- Whether an `LP(333)` exists in the quartic-invariant subfamily.
 - Whether the factor-9 compressed family contains any `LP(333)`.
 - Whether any `LP(333)`, or any Hadamard matrix of order `668`, exists.
 
 ### Refuted
 
+- The fixed-compression quartic/order-nine multiplier subfamily, by the exact
+  row-sum obstruction.
 - The nine phased-translate Paley-row construction.
 - Merely permuting the rows of either frozen pure-column multiset tested
   during this derivation; those finite failures do not refute the full
   quotient.
 
-## 10. Best concrete next construction
+## 10. Historical axis-preserving constructor
 
 `search_lp333_quartic_quotient.cpp` implements the first structured
-constructor.  It never leaves the exact row-axis fiber:
+constructor used before the row-sum obstruction was found.  It never leaves
+the exact row-axis fiber:
 
 - `z` is always one of the `972` real-perfect sequences;
 - each `w` always has the required phase sum;
@@ -450,7 +454,8 @@ constructor.  It never leaves the exact row-axis fiber:
 
 Thus every proposal satisfies the fixed compression and all four row-axis
 equations.  Its objective contains only the two pure-column and sixteen
-mixed quotient equations.  Compile and run it with:
+mixed quotient equations.  The program is retained for regression and should
+not be resumed as a live search.  Its historical reproduction command is:
 
 ```sh
 clang++ -O3 -DNDEBUG -std=c++17 -Wall -Wextra -Wpedantic \
@@ -491,8 +496,8 @@ objective reaches zero, the constructor expands the phases, inverts the QPSK
 encoding, and checks all `332` oriented nonzero binary correlations before
 returning success.
 
-The exact completion strategy should continue to work entirely with the
-short objects from the axis factorization:
+The historical exact-completion plan worked entirely with the short objects
+from the axis factorization:
 
 1. enumerate the `972` admissible `z` sequences modulo dihedral symmetry and
    conjugation;
@@ -503,9 +508,10 @@ short objects from the axis factorization:
 5. hash the resulting left/right mixed-correlation vectors for the sixteen
    remaining equations.
 
-The finish line for this construction is one `9 x 5` exponent table passing
-all `22` quotient equations.  Expansion is then deterministic: map each
-quartic class to its phase, invert
+Its finish line would have been one `9 x 5` exponent table passing all `22`
+quotient equations. The row-sum theorem proves that no such table exists.
+Had one existed, expansion would have been deterministic: map each quartic
+class to its phase, invert
 
 ```text
 u=(A+iB)/(1+i),
@@ -514,10 +520,11 @@ u=(A+iB)/(1+i),
 and run `verify_legendre_333.py` to construct and check the full bordered
 `668 x 668` Hadamard matrix.
 
-If the exact quotient is eventually certified empty, the next relaxation
-should break quartic invariance in one controlled `H`-orbit at a time while
-retaining the QPSK compression and axis-factorization constraints.  That is
-a mathematically organized lift, not an unrestricted restart.
+The next controlled relaxation is already implemented: break quartic
+invariance to the order-three subgroup `<10>`, while retaining the QPSK
+compression. Its exact 1,756-word boundary and full quotient are documented
+in `LP333_MULTIPLIER_ROW_SUM.md` and
+`LP333_ORDER3_DIFFERENCE_FAMILY.md`.
 
 ## 11. Priority caution
 
