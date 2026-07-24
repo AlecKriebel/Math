@@ -1,0 +1,78 @@
+{
+  "schema": "ramsey55.branch20_e2_targeted_pilot.v1",
+  "status": "TARGETED_CONSTRUCTIVE_HEURISTIC_NO_COVER_NO_NEGATIVE_CLAIM",
+  "base_cnf_sha256": "141de0a9714fb40e100508031b37fa555bf2fbdefd13c2dee4c04141c159bcb1",
+  "branch_cover_plan_sha256": "f21df79e827b75b1800861d3ca42c088af0ed8cce5a55829036b58e8a9ce8e5b",
+  "branch": {
+    "degree_of_vertex_0": 20,
+    "global_degree_interval": [
+      20,
+      22
+    ],
+    "exact_branch_assumption_count": 128,
+    "exact_branch_units_sha256": "eb68ad70651d15f392e335ebe2702b3713a298c5596596f61c29e2d6dabb1500"
+  },
+  "start": {
+    "path": "results/constructive/catalog_seed_search_stratified_v1/line_001.g6",
+    "sha256": "c168d89376f939653c4a7d1f9da4c5800fb9379bf2c4a5cd7db226fce8789a85",
+    "objective": 2,
+    "conflict_topology": "two I5 sets with four-vertex intersection"
+  },
+  "state_design": {
+    "complement_states": [
+      false,
+      true
+    ],
+    "cyclic_relabel_offsets": [
+      0,
+      11
+    ],
+    "normalization": "exact complement/minimum-degree branch normalization",
+    "state_count": 4,
+    "original_degree_multiplicities": {
+      "20": 20,
+      "21": 10,
+      "22": 13
+    },
+    "complement_degree_multiplicities": {
+      "20": 13,
+      "21": 10,
+      "22": 20
+    }
+  },
+  "phase_design": {
+    "free_vertex_counts": [
+      6,
+      8,
+      12
+    ],
+    "description": "free every edge incident to the six-vertex conflict union, then deterministically add the first two or six remaining labels",
+    "conflict_budget_per_job": 50000,
+    "proof_logging": false
+  },
+  "observations": {
+    "job_count": 12,
+    "sat_count": 0,
+    "observed_unsat_unchecked_count": 9,
+    "budget_exhausted_count": 3,
+    "free6_statuses": {
+      "UNSAT_OBSERVED_UNCHECKED": 4
+    },
+    "free8_statuses": {
+      "UNSAT_OBSERVED_UNCHECKED": 4
+    },
+    "free12_statuses": {
+      "UNSAT_OBSERVED_UNCHECKED": 1,
+      "BUDGET_EXHAUSTED": 3
+    },
+    "free6_fixed_candidate_primary_count_range": [
+      630,
+      666
+    ],
+    "free8_fixed_candidate_primary_count": 595,
+    "free12_fixed_candidate_primary_count": 465,
+    "total_wall_seconds": 86.91169008400175,
+    "max_rss_bytes": 1747288064
+  },
+  "claim_limit": "This is a 12-job targeted heuristic, not a branch cover. Unchecked UNSAT statuses and budget exhaustion imply nothing about branch 20 or global existence."
+}

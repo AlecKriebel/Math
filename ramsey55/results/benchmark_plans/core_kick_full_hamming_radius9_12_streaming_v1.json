@@ -1,0 +1,179 @@
+{
+  "created_utc": "2026-07-24T02:17:00Z",
+  "experiment": "core_kick_full_graph_hamming_radius9_12_streaming_v1",
+  "status": "PREREGISTERED_BEFORE_RADIUS9_FORMULA_GENERATION",
+  "question": "Can the independently reconstructed and proof-checked full Hamming-ball exclusion around the core-kick E=2 candidate be extended beyond certified radius eight while retaining LRAT only as a lossless compressed stream?",
+  "scope": {
+    "base_graph": "results/best_candidates/core_kick_seed_20260731.g6",
+    "base_graph_sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6",
+    "free_boundary_edge_count": 0,
+    "distance_counted_edge_count": 903,
+    "radii_in_order": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "certified_predecessor_radius": 8
+  },
+  "expected_formula_counts": [
+    {
+      "radius": 9,
+      "auxiliary_variables": 8985,
+      "variables": 9888,
+      "counter_clauses": 17961,
+      "clauses": 1943157
+    },
+    {
+      "radius": 10,
+      "auxiliary_variables": 9878,
+      "variables": 10781,
+      "counter_clauses": 19746,
+      "clauses": 1944942
+    },
+    {
+      "radius": 11,
+      "auxiliary_variables": 10770,
+      "variables": 11673,
+      "counter_clauses": 21529,
+      "clauses": 1946725
+    },
+    {
+      "radius": 12,
+      "auxiliary_variables": 11661,
+      "variables": 12564,
+      "counter_clauses": 23310,
+      "clauses": 1948506
+    }
+  ],
+  "streaming_method": {
+    "description": "drat-trim writes LRAT through a FIFO into zstd; the retained archive is streamed through zstd decompression into lrat-check while the exact uncompressed byte count and SHA-256 are recomputed",
+    "no_uncompressed_lrat_file": true,
+    "zstd_level": 3,
+    "zstd_threads": 1
+  },
+  "control_validation": {
+    "cnf": "certificates/residual_lns_incident_alt_six.cnf",
+    "cnf_sha256": "e470ed2a4a1fe316b8cce77ab2e3f1c4f6ceb9d57b37e1e076f780e77a919867",
+    "result": "results/verification/streaming_pipeline_control.result.json",
+    "result_sha256": "1415a6bb215a23213d83751373635c7cc768e2aec2a463ce1e44c9e304feace5",
+    "compressed_lrat_sha256": "67ee36aaa614b0ac97ea4f63703a25aeb26d42bccf1bd349f9b3ca186f6f8332",
+    "uncompressed_lrat_bytes": 1806516,
+    "uncompressed_lrat_sha256": "df22449c12fcb20fb2140a1fa3f8ffe3f10bc4716c957e10b4518a0de821c5c3",
+    "historical_uncompressed_lrat_sha256": "df22449c12fcb20fb2140a1fa3f8ffe3f10bc4716c957e10b4518a0de821c5c3",
+    "drat_trim_verified": true,
+    "lrat_check_verified": true,
+    "byte_exact_match": true
+  },
+  "hardening_audit": {
+    "completed_utc": "2026-07-24T02:49:33Z",
+    "streaming_pipeline_sha256": "9a8f6fe4b0f9f20d57b174d7360b6f5afbb55d55231db02ec09c60d515cd8d03",
+    "checks": [
+      "FIFO endpoints use explicit guards and readiness handshakes so a producer or consumer that fails before opening cannot leave the partner blocked in open().",
+      "The replay guard has no write end while lrat-check runs, so it cannot suppress EOF.",
+      "zstd has a pinned SHA-256 and each compression/decompression subprocess is bounded or explicitly terminated.",
+      "Checker acceptance requires an exact `s VERIFIED` or `c VERIFIED` line, a zero exit status, and successful replay transport.",
+      "SAT is reported only after an independent streaming DIMACS model replay; worker status, proof metadata, artifact aliases, and post-check hashes fail closed.",
+      "A fresh hardened control reproduced the historical DRAT, compressed LRAT, uncompressed LRAT hash, and 1806516-byte LRAT length exactly."
+    ],
+    "fresh_control_result": "results/verification/streaming_pipeline_hardened_control.result.json",
+    "fresh_control_result_sha256": "dc947228f45e052dbb47d505f6567b6d971003339e3d54787624b9ef5fdf0d88",
+    "historical_drat_sha256": "bb7cdeecfaabdddd96117d1bd3463cf5699ffd84959787d5fdcd55d18423bb70",
+    "compressed_lrat_sha256": "67ee36aaa614b0ac97ea4f63703a25aeb26d42bccf1bd349f9b3ca186f6f8332",
+    "uncompressed_lrat_sha256": "df22449c12fcb20fb2140a1fa3f8ffe3f10bc4716c957e10b4518a0de821c5c3",
+    "stored_stream_byte_identical_to_historical_lrat": true
+  },
+  "radius8_storage_baseline": {
+    "compressed_cnf_bytes": 9132094,
+    "compressed_drat_bytes": 39529830,
+    "compressed_lrat_bytes": 260180829,
+    "total_bytes": 308842753
+  },
+  "pinned_files": [
+    {
+      "path": "src/core_radius_cnf.py",
+      "sha256": "4900f6fd0b9adcb3558ef9c8b161637608ce33e6fefcd528d5be96583a6a0a22"
+    },
+    {
+      "path": "verify/core_radius_cnf_check.py",
+      "sha256": "cbaf55f63595de2e3b4f9252e7a490bb397364e0c70429dd5ab0c53988c1144d"
+    },
+    {
+      "path": "results/constructive/core_kick_full_hamming_boundary.metadata.json",
+      "sha256": "be4c5183c085d5ac454ce1b790d3bd62cfc01d60bfbaab15169a5eb8b642af22"
+    },
+    {
+      "path": "src/certify_cnf_glucose_streaming.py",
+      "sha256": "9a8f6fe4b0f9f20d57b174d7360b6f5afbb55d55231db02ec09c60d515cd8d03"
+    },
+    {
+      "path": "src/direct_ramsey_cnf.py",
+      "sha256": "97e4ce41b6172702e8a0e7e1bdb3ad58aaed464b1687689cb7eacadebcea2b8c"
+    },
+    {
+      "path": "src/graph_io.py",
+      "sha256": "5eb4087aa2c601f86e02b87de858febf1f2987dcd96471be776fb63a30207c22"
+    },
+    {
+      "path": "verify/direct_ramsey_cnf_check.py",
+      "sha256": "99e8d79d9daead363eb99f8bab28d4a7e07610c2b574b5c01f615b7a118e92b0"
+    },
+    {
+      "path": "src/residual_completion.py",
+      "sha256": "b8117443d48a2d51c528fe126166455ed4f62e0caf2efd6d9dc86dbc6a75c2db"
+    },
+    {
+      "path": "src/residual_completion_glucose.py",
+      "sha256": "d8ce8f16146069ba438130f48e2e21babdd7bdc7a6c963e74114ae9c54029006"
+    },
+    {
+      "path": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+      "sha256": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysolvers.cpython-311-darwin.so",
+      "sha256": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded"
+    },
+    {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/drat-trim",
+      "sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+    },
+    {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/lrat-check",
+      "sha256": "bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea"
+    },
+    {
+      "path": "/opt/homebrew/bin/zstd",
+      "sha256": "aff8169fb421bb925fb16c44a7e0143fa2c7a941dc45cce76b15062a2ce54917"
+    }
+  ],
+  "per_radius_limits": {
+    "solve_wall_seconds": 300,
+    "drat_trim_wall_seconds": 1800,
+    "lrat_check_wall_seconds": 1800
+  },
+  "storage_preflight": {
+    "absolute_reserve_bytes": 2147483648,
+    "first_radius_minimum_free_bytes": 4294967296,
+    "later_radius_minimum_free_bytes_rule": "max(4294967296, 2147483648 + 4 * immediately_preceding_radius_retained_cnf_drat_lrat_bytes)",
+    "measurement": "df available bytes on the filesystem containing certificates/",
+    "failure_action": "Do not generate or solve that radius; record INFRASTRUCTURE_STORAGE_GATE and continue other research tracks.",
+    "current_gate_status_at_preregistration": "FAILED; available space was below 2 GiB"
+  },
+  "execution_rule": [
+    "Process radii strictly in increasing order.",
+    "Pass the storage preflight before generating each formula.",
+    "For each radius, independently reconstruct every expected clause before solving.",
+    "Use the pinned streaming pipeline to produce DRAT, validate it with drat-trim, retain LRAT as zstd, and replay the exact decompressed LRAT through lrat-check.",
+    "After CERTIFIED_UNSAT, losslessly compress the CNF and DRAT, test each archive, and require decompression hashes to match the result record.",
+    "Continue after CERTIFIED_UNSAT only if the next storage preflight also passes.",
+    "Stop this ladder immediately after SAT, TIMEOUT, proof-check failure, metadata mismatch, or other infrastructure error.",
+    "Never infer the status of a larger radius from an unresolved or unrun smaller radius."
+  ],
+  "outcome_policy": {
+    "SAT": "Reconstruct the complete order-43 graph and require both independent graph verifiers before any lower-bound claim.",
+    "UNSAT": "Claim only the labeled full Hamming ball after formula reconstruction and both DRAT/LRAT checks accept.",
+    "TIMEOUT_OR_ERROR": "Record no SAT/UNSAT conclusion for that radius or any unrun larger radius.",
+    "scope_warning": "No Hamming-radius result is global order-43 nonexistence."
+  }
+}

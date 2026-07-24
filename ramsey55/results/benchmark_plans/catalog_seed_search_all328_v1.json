@@ -1,0 +1,69 @@
+{
+  "schema": "ramsey55.catalog_seed_search_plan.v1",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "created_utc": "2026-07-24T03:13:28Z",
+  "experiment": "catalog_seed_search_all328_v1",
+  "evidence_category": "PREREGISTERED COMPUTATIONAL PLAN",
+  "hypothesis": "The stratified pilot reached 22 distinct E=2 order-43 basins from 22/22 catalog representatives. A fresh deterministic run from every one of the 328 verified representatives may expose an E=0 basin or materially broaden the audited E=2 corpus.",
+  "catalog": {
+    "path": "data/r55_42some.g6",
+    "sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb"
+  },
+  "search": {
+    "path": "build/search43",
+    "sha256": "4141c3a52e309ff5a3aff7c3022638e9f9bc902926d3939fddf9d81720662491"
+  },
+  "exhaustive_verifier": {
+    "path": "verify/exhaustive_verify.py",
+    "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+  },
+  "bitset_verifier": {
+    "path": "build/bitset_verify",
+    "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+  },
+  "selected_lines": {
+    "path": "results/benchmark_plans/catalog_seed_search_all328_v1.lines",
+    "sha256": "a0ee5a862edc59137f0745dcb6252a8f2d10b2aacda3843ba09fc3ee38c925ad",
+    "count": 328,
+    "selection_rule": "Every physical catalog line 1 through 328 exactly once, in increasing order."
+  },
+  "runner": {
+    "path": "src/catalog_seed_search_batch.py",
+    "sha256": "69247a3a4bda68626f4fa10bc9a4432066291a94b9ee9a7a009e356e4dead10d"
+  },
+  "configuration": {
+    "seed_base": 2026100000,
+    "steps": 20000,
+    "restarts": 1,
+    "tabu": 11,
+    "random_walk": 0.03,
+    "breakout_interval": 250,
+    "initial_perturbation": 8,
+    "workers": 2,
+    "instance_time_limit": 30.0,
+    "verifier_time_limit": 60.0
+  },
+  "outputs": {
+    "directory": "results/constructive/catalog_seed_search_all328_v1",
+    "summary": "results/verification/catalog_seed_search_all328_v1.summary.json"
+  },
+  "storage_preflight": {
+    "maximum_new_artifact_bytes": 5000000,
+    "minimum_free_bytes_after_completion": 2147483648,
+    "on_failure": "Do not launch; retain the frozen plan unchanged."
+  },
+  "execution_rule": [
+    "Validate this schema, every pinned path and SHA-256, the all-lines hash/count, and every configuration field before creating outputs.",
+    "Before launch require free bytes >= 2,152,483,648; the pilot's measured artifact density makes the 5,000,000-byte cap conservative.",
+    "Run exactly all 328 labels with derived seed seed_base + catalog_line.",
+    "Refuse to overwrite any existing output.",
+    "Stop ordinary scheduling immediately if E=0 appears; preserve the graph and require both independent verifiers.",
+    "Treat every nonzero objective only as a reproducible computational observation."
+  ],
+  "outcome_policy": {
+    "DUAL_VERIFIED_SAT_CONSTRUCTION": "Preserve all representations and begin adversarial verification for a lower-bound claim.",
+    "COMPLETE_NO_CONSTRUCTION": "Audit all stored graphs independently, quantify objective/topology/diversity, and use the corpus for a separately preregistered escape search.",
+    "TIMEOUT_OR_ERROR": "Mark the sweep incomplete and make no aggregate search claim.",
+    "scope_warning": "Failure to find E=0 is not evidence that an order-43 Ramsey graph does not exist."
+  }
+}

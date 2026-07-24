@@ -1,0 +1,43 @@
+{
+  "claim_boundary": "A SAT model would be a valid (5,5;43) graph after independent full-graph verification and would prove R(5,5) >= 44. A checked UNSAT proof excludes only undirected circulant graphs on Z_43; it is not global order-43 nonexistence.",
+  "clique_size": 5,
+  "cnf_reduction": "Enumerate every 5-subset of Z_43, replace its ten pairs by the set of distinct undirected circular distances, deduplicate identical distance signatures, and emit one all-positive and one all-negative clause per signature.",
+  "expected_five_set_count": 962598,
+  "expected_unique_distance_signature_count": 10437,
+  "expected_variable_count": 21,
+  "hypothesis": "The known near-cyclic order-42 construction does not extend to a fully translation-invariant order-43 coloring; the complete 21-variable circulant class is UNSAT.",
+  "immutable_commands": [
+    "python3 src/circulant43_cnf.py --cnf certificates/circulant43_exact.cnf --metadata certificates/circulant43_exact.metadata.json",
+    "python3 verify/circulant43_cnf_check.py certificates/circulant43_exact.cnf --metadata certificates/circulant43_exact.metadata.json --result results/verification/circulant43_exact_cnf_check.json",
+    "python3 src/certify_cnf_glucose.py certificates/circulant43_exact.cnf --proof certificates/circulant43_exact_glucose3.drat --lrat certificates/circulant43_exact_glucose3.lrat --result certificates/circulant43_exact_glucose3.result.json --time-limit 120 --proof-check-time-limit 120"
+  ],
+  "order": 43,
+  "proof_requirements": [
+    "Independent clause-by-clause reconstruction must match the exact generated CNF.",
+    "For UNSAT, drat-trim must validate the Glucose DRAT and emit LRAT.",
+    "lrat-check must validate the LRAT against the independently matched CNF.",
+    "For SAT, decode every distance variable, materialize all 903 graph edges, and run both established full-graph verifiers before making any construction claim."
+  ],
+  "schema": "ramsey55_preregistered_experiment_v1",
+  "source_sha256": {
+    "src/certify_cnf_glucose.py": "4adfcbfe33c99813ef67f4746b507e06d7d74ff64788de7e9838295ebc48eaba",
+    "src/circulant43_cnf.py": "3143089366d9c9af608f4e38a60b671984fac37343b662a76048b46c01620f58",
+    "src/residual_completion.py": "b8117443d48a2d51c528fe126166455ed4f62e0caf2efd6d9dc86dbc6a75c2db",
+    "src/residual_completion_glucose.py": "d8ce8f16146069ba438130f48e2e21babdd7bdc7a6c963e74114ae9c54029006",
+    "tests/circulant43_cnf_tests.py": "d435f3439454bb54f1e24eef8cceac9b4d72e1a10d3764d1c59f09327e718a01",
+    "verify/circulant43_cnf_check.py": "453b0715242dac4596b6d20d9994f57e25f4c1c124f04ac7dfb90dcc79dc7ff3"
+  },
+  "storage_gate": {
+    "maximum_new_artifact_bytes": 50000000,
+    "minimum_free_bytes_after_completion": 2147483648,
+    "on_failure": "Do not launch; retain the frozen plan unchanged."
+  },
+  "toolchain_sha256": {
+    "drat_trim": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47",
+    "lrat_check": "bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea",
+    "pysat_solvers_py": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e",
+    "pysolvers_extension": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+    "python": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+  },
+  "variable_semantics": "For d in {1,...,21}, variable d is true exactly when every pair {u,v} with min((u-v) mod 43,(v-u) mod 43)=d is a graph edge."
+}

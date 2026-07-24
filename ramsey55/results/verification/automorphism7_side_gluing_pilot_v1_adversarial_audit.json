@@ -1,0 +1,177 @@
+{
+  "schema": "ramsey55.automorphism7_side_gluing_adversarial_audit.v1",
+  "created_utc": "2026-07-24T03:34:00Z",
+  "status": "MATH_VALID_RUNNER_HARDENED_PLAN_REGENERATION_REQUIRED",
+  "production_launched": false,
+  "plan_must_be_regenerated": true,
+  "frozen_v1_plan": {
+    "path": "results/benchmark_plans/automorphism7_side_gluing_pilot_v1.json",
+    "sha256": "b569f3e4d99bfbadfaec2ec432740d0308e7631c70f08ecd371ad719ffbd312a",
+    "schema": "ramsey55.automorphism7_side_gluing_plan.v1",
+    "pinned_runner_sha256": "8abe4bd14c481d1d09a63a413a53dd3df36504098bca051f74608b666d2f6917",
+    "currently_launchable": false
+  },
+  "hardened_runner": {
+    "path": "src/automorphism7_side_gluing_pilot.py",
+    "schema": "ramsey55.automorphism7_side_gluing_plan.v2",
+    "pilot": "ramsey55_automorphism7_side_gluing_pilot_v2",
+    "sha256": "5bc3852bb0e81f127652f14e15e806f9e3712e8ecc8163a92c8255bfa743a906"
+  },
+  "mathematical_audit": {
+    "valid": true,
+    "degree_range": [
+      18,
+      24
+    ],
+    "fixed_vertex_degree_divisor": 7,
+    "forced_fixed_vertex_degree": 21,
+    "canonical_neighbor_cycle_count": 3,
+    "cycle_block_permutation_is_wlog": true,
+    "local_side_order": 21,
+    "local_edge_orbit_count": 30,
+    "local_edge_orbit_size_histogram": {
+      "7": 30
+    },
+    "local_orbit_decomposition": {
+      "within_three_cycles": 9,
+      "between_three_cycles": 21
+    },
+    "k4_signature_count": 843,
+    "k4_signature_length_histogram": {
+      "3": 3,
+      "5": 189,
+      "6": 651
+    },
+    "i5_signature_count": 2775,
+    "i5_signature_length_histogram": {
+      "3": 3,
+      "7": 336,
+      "8": 126,
+      "9": 1134,
+      "10": 1176
+    },
+    "local_clause_count": 3618,
+    "local_formula_sha256_trailing_newline": "f59be7024c4b15cba7238da38d865a4f8ea8dd631ed5c096300054679cd65c96",
+    "a_side_semantics": "K4-free and I5-free",
+    "b_side_mapping": "global B edge equals complement of local model edge",
+    "b_side_semantics": "K5-free and I4-free",
+    "a_side_variable_count": 30,
+    "b_side_variable_count": 30,
+    "fixed_vertex_variable_count": 6,
+    "cross_side_free_variable_count": 63,
+    "assigned_variable_count": 66,
+    "fixed_vertex_orbit_variables": [
+      39,
+      71,
+      96,
+      114,
+      125,
+      129
+    ],
+    "fixed_vertex_units": [
+      39,
+      71,
+      96,
+      -114,
+      -125,
+      -129
+    ],
+    "fully_assigned_global_clause_control_count": 14472,
+    "fully_assigned_global_clause_control_violations": 0
+  },
+  "deterministic_pool_and_pair_audit": {
+    "side_pool_count": 64,
+    "side_pool_unique_count": 64,
+    "side_pool_k4_violating_models": 0,
+    "side_pool_i5_violating_models": 0,
+    "side_pool_sha256_newline_terminated": "5a67cd579a64e1011533a04d36a17aeaf3e92b332997645726d73c00aa36b01f",
+    "side_pool_sha256_without_trailing_newline": "fe7b5485ad4477b570cdc87edb5a724e0b43beb42cfa3e94fed7b1ca212bc7c8",
+    "pair_count": 256,
+    "unique_pair_count": 256,
+    "left_model_use_count": 4,
+    "right_model_use_count": 4,
+    "pair_schedule_sha256_newline_terminated": "e6da298b77008bcb68a3c6cc67dc40376accd98ce4a96a2edb238e654d38b6fb"
+  },
+  "sat_decode_and_verifier_audit": {
+    "complete_129_variable_assignment_required": true,
+    "duplicate_zero_out_of_range_literals_rejected": true,
+    "edge_orbit_metadata_requires_exactly_129_size_7_orbits": true,
+    "graph6_round_trip_exact": true,
+    "decoded_graph_c7_invariant": true,
+    "direct_global_cnf_model_replay_required": true,
+    "python_verifier_binds_candidate_sha256_n43_k5_and_verifier_id": true,
+    "cpp_verifier_binds_n43_k5_and_verifier_id": true,
+    "valid_42_vertex_control_rejected": true
+  },
+  "genuine_v1_runner_defects_fixed": [
+    "The frozen storage gate and artifact cap were described but never enforced by the runner.",
+    "Recorded Python, PySAT solver-wrapper, and native-extension hashes were never checked at runtime.",
+    "The plan did not bind the exact local formula, deterministic 64-model pool, or 256-pair schedule digests.",
+    "SAT decoding silently accepted a partial or ambiguous solver model instead of requiring one literal for every primary variable.",
+    "Verifier success did not bind the candidate hash, order 43, clique size 5, or expected verifier identities.",
+    "Candidate and summary writes were non-atomic and the combined retained output size was not checked before writing."
+  ],
+  "regenerated_v2_plan_requirements": {
+    "schema": "ramsey55.automorphism7_side_gluing_plan.v2",
+    "runner_sha256": "5bc3852bb0e81f127652f14e15e806f9e3712e8ecc8163a92c8255bfa743a906",
+    "pysat_version": "1.9.dev7",
+    "configuration_additions": {
+      "side_formula_sha256": "f59be7024c4b15cba7238da38d865a4f8ea8dd631ed5c096300054679cd65c96",
+      "side_pool_sha256": "5a67cd579a64e1011533a04d36a17aeaf3e92b332997645726d73c00aa36b01f",
+      "pair_schedule_sha256": "e6da298b77008bcb68a3c6cc67dc40376accd98ce4a96a2edb238e654d38b6fb"
+    },
+    "retain_existing_toolchain_hashes": true,
+    "retain_storage_gate": true,
+    "use_new_v2_output_paths": true
+  },
+  "pinned_artifact_hash_audit": {
+    "cnf": {
+      "expected": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1",
+      "actual": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1",
+      "match": true
+    },
+    "metadata": {
+      "expected": "04f18fdcf4d50bda27580e1653f99f423d9799ba1ddbf0e95b1683542e6b7a56",
+      "actual": "04f18fdcf4d50bda27580e1653f99f423d9799ba1ddbf0e95b1683542e6b7a56",
+      "match": true
+    },
+    "exhaustive_verifier": {
+      "expected": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5",
+      "actual": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5",
+      "match": true
+    },
+    "bitset_verifier": {
+      "expected": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89",
+      "actual": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89",
+      "match": true
+    },
+    "pysat_solvers_py": {
+      "expected": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e",
+      "actual": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e",
+      "match": true
+    },
+    "pysolvers_extension": {
+      "expected": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+      "actual": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+      "match": true
+    },
+    "python": {
+      "expected": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0",
+      "actual": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0",
+      "match": true
+    }
+  },
+  "tests": {
+    "path": "tests/automorphism7_side_gluing_tests.py",
+    "sha256": "749d1a800544f8ea15f8b3d7c9c965bee5d1555d8fae94785ac651cabc4806f4",
+    "passed": 10,
+    "production_outputs_created": false
+  },
+  "storage_gate_snapshot": {
+    "required_prelaunch_free_bytes": 2149483648,
+    "observed_free_bytes": 130781184,
+    "shortfall_bytes": 2018702464,
+    "passed": false
+  },
+  "scope_warning": "No production side-pair solve was launched. The mathematical reduction is valid, but the frozen v1 plan must not be used with the hardened v2 runner."
+}

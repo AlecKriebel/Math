@@ -1,0 +1,88 @@
+{
+  "schema": "ramsey55.automorphism7_pair_lifted_full_design.v1",
+  "status": "FROZEN_DESIGN",
+  "purpose": "Specify a compact, sharded, globally checkable order-7 certificate architecture using selector-guarded proof lifting, retained compressed DRAT shards, transient LRAT replay, and a separately certified exact symmetry cover.",
+  "claim_boundary": "This file is a design and a hard storage envelope. It is not authorization to launch, is not evidence about any unsampled pair, and is not an order-7 UNSAT certificate.",
+  "pins": {
+    "cnf": {
+      "path": "certificates/order43_automorphism7_six_cycles.cnf",
+      "sha256": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1"
+    },
+    "metadata": {
+      "path": "certificates/order43_automorphism7_six_cycles.metadata.json",
+      "sha256": "04f18fdcf4d50bda27580e1653f99f423d9799ba1ddbf0e95b1683542e6b7a56"
+    },
+    "sweep_runner": {
+      "path": "src/automorphism7_side_pair_orbit_sweep.py",
+      "sha256": "016ba250cea7d51e6b95b45c599514ccd25f904af2b8957599d1c2b57702ec72"
+    },
+    "one_side_checker": {
+      "path": "verify/automorphism7_side_orbit_cover.py",
+      "sha256": "b4531da9785fb98a668b3ea9876660f46500c47115f9aa582d19455081071543"
+    },
+    "pair_audit": {
+      "path": "results/verification/automorphism7_side_pair_orbit_cover_v1.json",
+      "sha256": "cd29189badf8d01f8f02704c14ad9edb19c63bb96ac4b2402d51e5b03b975294"
+    },
+    "lifted_sample_result": {
+      "path": "results/global_exact/automorphism7_pair_lifted_blocker_sample_v1.json",
+      "sha256": "2961f48127ce5628d69d15b0d586ccefb34f1b0480329fa1abb2446350ab6382"
+    },
+    "lifted_sample_check": {
+      "path": "results/verification/automorphism7_pair_lifted_blocker_sample_v1.check.json",
+      "sha256": "72be0d62ed38a4aba6d8b3b087894ab38e2e02fe40280b24f2b6eb395f6870a5"
+    },
+    "existing_concat_plan": {
+      "path": "results/benchmark_plans/automorphism7_pair_proof_concat_sample_v1.json",
+      "sha256": "d802112df73aa38844ee91f98e4c80148c1b80de4fdc97e67ff8a43b00e4b1cc"
+    }
+  },
+  "design_audit": {
+    "path": "verify/automorphism7_pair_lifted_full_design_audit.py",
+    "sha256": "df320ee2c2d7daa338740b4f5dbe898e03ae160d48ea725111f0255deafd60b4"
+  },
+  "target_pair_count": 37194,
+  "pair_schedule_sha256": "cbcb78bd7c2b58669d2241eb109a0cfb9c5b61bb916a151d953ffdacf03cc1ae",
+  "sharding": {
+    "shard_count": 128,
+    "assignment_rule": "pair_index modulo 128",
+    "expected_pairs_per_shard": [
+      290,
+      291
+    ],
+    "selector_rule": "selector variable 130+pair_index",
+    "retention": "Retain only zstd-19 compressed lifted DRAT shards plus hashes and indices. For every shard, regenerate LRAT transiently with pinned drat-trim, verify it with lrat-check, and delete the transient raw DRAT/LRAT only after both checks pass."
+  },
+  "hard_storage_gate": {
+    "pair_drat_zstd_total_cap_bytes": 2147483648,
+    "exact_cover_total_cap_bytes": 536870912,
+    "maximum_transient_bytes": 2147483648,
+    "minimum_free_bytes_after_completion": 4294967296,
+    "required_prelaunch_free_bytes": 9126805504,
+    "per_shard_raw_drat_cap_bytes": 268435456,
+    "per_shard_raw_lrat_cap_bytes": 1610612736,
+    "per_shard_wrapper_cap_bytes": 67108864,
+    "semantics": "A future runner must atomically abort before any per-shard or cumulative cap is exceeded. The caps bound storage safety; they do not guarantee that all proofs fit."
+  },
+  "exact_cover_requirements": {
+    "side_model_list": "Directly check every one of the 191,394 listed 30-bit assignments satisfies the independently reconstructed side formula.",
+    "side_model_exhaustion": "Produce and retain a checked DRAT-to-LRAT proof that the side formula plus one 30-literal blocking clause for every listed model is UNSAT.",
+    "finite_orbit_partition": "Recompute the 294 H actions, 664 H classes, six common multipliers, color-complementing swap, and all 37,194 pair representatives from the certified model list.",
+    "global_symmetry_link": "Check every action generator preserves the normalized global formula and fixed units, and check the exact signed action on pair cubes.",
+    "shard_partition": "Check every pair-schedule index occurs in exactly one of the 128 shard cover clauses."
+  },
+  "launch_prerequisites": {
+    "selector_lifting_sample": "PASS",
+    "independent_sample_replay": "PASS",
+    "pair_action_and_schedule_audit": "PASS_RELATIVE_TO_PROOF_FREE_MODEL_ENUMERATION",
+    "side_model_exhaustion_lrat": "MISSING",
+    "full_sharded_runner_hash_pin": "MISSING",
+    "full_sharded_independent_checker": "MISSING",
+    "one_full_size_shard_pilot": "MISSING"
+  },
+  "existing_conservative_gate": {
+    "status": "UNCHANGED_AND_FROZEN",
+    "required_prelaunch_free_bytes": 20317547392
+  },
+  "full_run_authorized": false
+}

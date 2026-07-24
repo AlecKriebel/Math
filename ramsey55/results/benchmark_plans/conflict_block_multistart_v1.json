@@ -1,0 +1,278 @@
+{
+  "schema": "ramsey55.conflict_block_multistart_plan.v1",
+  "created_utc": "2026-07-24T02:35:40Z",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "objective": "Test a storage-light conflict-hypergraph ProbSAT search that can leave fixed labeled-degree fibers, using conflict-directed one-, two-, and three-edge moves plus multi-conflict perturbations, and stop immediately on E=0.",
+  "hypothesis": "The degree-switch pilot's 162000 accepted fixed-degree moves, including 317654 evaluated compound candidates, produced no positive-Hamming E<=2 state because its three E=2 starts lie behind barriers between fixed-degree fibers. At a comparable 150000 selected-move budget, allowing transient degree changes and conflict-directed multi-edge blocks will produce at least one positive-Hamming E<=2 final state from the three E=2 starts, while both the catalog-derived and global starts will finish strictly below their registered initial objectives.",
+  "degree_switch_failure_basis": {
+    "summary": "results/verification/degree_switch_pilot_summary.json",
+    "summary_sha256": "8d94e6976c4579385ed0c1de3781c5f7bde14877d2b014ab61750de6debbe9e6",
+    "registered_runs": 9,
+    "accepted_moves": 162000,
+    "evaluated_candidates": 2099473,
+    "evaluated_compound_candidates": 317654,
+    "positive_hamming_E_le_2_states": 0,
+    "E_le_1_states": 0,
+    "interpretation": "The null result is evidence about the bounded fixed-degree neighborhoods only, not about nonexistence or true local optimality."
+  },
+  "starts": [
+    {
+      "label": "exoo",
+      "family": "E=2 incumbent",
+      "path": "results/best_candidates/exoo_seed_20260724.g6",
+      "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+      "C5": 0,
+      "I5": 2,
+      "E": 2,
+      "python_verification": "results/verification/conflict_block_exoo_python.json",
+      "python_verification_sha256": "72755cd5bd48e52bc5bb712f84a2893896b950d0a6d6e6e4fa140fd6a94ce967",
+      "cpp_verification": "results/verification/conflict_block_exoo_cpp.json",
+      "cpp_verification_sha256": "537e4d50ccdf7207c21c88678fe0a9510e6e58de1e9121d0110e563a0ddf0a0a"
+    },
+    {
+      "label": "incident",
+      "family": "E=2 incumbent",
+      "path": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337",
+      "C5": 2,
+      "I5": 0,
+      "E": 2,
+      "python_verification": "results/verification/conflict_block_incident_python.json",
+      "python_verification_sha256": "71e4d322092f97f991a8b7b355bf8c02f0090ce9be2bc1df81aa1258bdee1715",
+      "cpp_verification": "results/verification/conflict_block_incident_cpp.json",
+      "cpp_verification_sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "label": "core_kick",
+      "family": "E=2 incumbent",
+      "path": "results/best_candidates/core_kick_seed_20260731.g6",
+      "sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6",
+      "C5": 2,
+      "I5": 0,
+      "E": 2,
+      "python_verification": "results/verification/conflict_block_core_kick_python.json",
+      "python_verification_sha256": "057c00bf38a7869c59db7e2a3ae3a043c6089f8088a99bbddb5b621cbf750d0d",
+      "cpp_verification": "results/verification/conflict_block_core_kick_cpp.json",
+      "cpp_verification_sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "label": "catalog_line1",
+      "family": "catalog-derived balanced extension",
+      "path": "results/best_candidates/catalog_line1_balanced_extension.g6",
+      "sha256": "a40637fbac732e3371e8a475614334b23bed237682388762122b12b1632a539c",
+      "C5": 55,
+      "I5": 49,
+      "E": 104,
+      "python_verification": "results/verification/conflict_block_catalog_line1_python.json",
+      "python_verification_sha256": "fd3b4d019488fadf6469e2dbe1a8514a5a39344387907e1610dddec4439529f3",
+      "cpp_verification": "results/verification/conflict_block_catalog_line1_cpp.json",
+      "cpp_verification_sha256": "717e885a831c4f5700928b891c18282e69c278d789ee90f74ffeaaf1c549ade6"
+    },
+    {
+      "label": "global_baseline",
+      "family": "global constructive seed",
+      "path": "results/best_candidates/baseline_seed_20260723.g6",
+      "sha256": "9d5df88ca438c5390f41af58a21e7f81572f6af6c53da30c8bbc9fad710a95bd",
+      "C5": 127,
+      "I5": 104,
+      "E": 231,
+      "python_verification": "results/verification/conflict_block_global_baseline_python.json",
+      "python_verification_sha256": "d322047fe43fc7ce7d8ab582462a6e63bf8f9fd883032e3fe80334e6b2ef81d0",
+      "cpp_verification": "results/verification/conflict_block_global_baseline_cpp.json",
+      "cpp_verification_sha256": "3771cca44b1896f5075c0fe3372687583d91039dacc43d9e359ae5affbe15b1b"
+    }
+  ],
+  "strategy": {
+    "algorithm": "conflict_hypergraph_probsat_blocks_v1",
+    "conflict_hypergraph": "Each monochromatic five-set is a violated hyperedge over its ten graph-edge variables.",
+    "candidate_moves": "At each selected move, enumerate all ten single-edge repairs of one sampled violation, sample conflict-internal two- and three-edge blocks, sample two-conflict paired blocks, and sample global two-edge blocks.",
+    "selection": "Seeded mt19937_64 integer ProbSAT roulette on breakout-weighted exact objective delta plus a soft quadratic penalty for degrees outside [18,24], with an independent random-walk probability.",
+    "perturbations": "Breakout weights increase on current violations after stagnation. Periodic blocks sample edges from five current violations; later restarts begin after four such blocks.",
+    "retention": "Retain every strict objective record in the JSON trace and keep the lowest-E final graph, breaking ties toward lower degree penalty and then greater Hamming distance from the start.",
+    "storage": "Retain one graph and three small verification JSONs per run; no trajectory graphs or candidate dumps."
+  },
+  "validation": {
+    "self_check": "results/verification/conflict_block_dynamic_self_check.json",
+    "self_check_sha256": "433205d4cc8ceea8d651611c5c24662a088810e9e422fcd1e54d92096fd6b51f",
+    "self_check_scope": "150 sampled one-/two-/three-edge and paired blocks plus 50 multi-conflict perturbations checked against full all-5-subset objective recomputation; also checked weighted delta, degree energy, and exact rollback.",
+    "determinism_check": "results/verification/conflict_block_determinism_check.json",
+    "determinism_check_sha256": "b3cea397520bd114f571948f959160f0202e57b51e998b46c2c98fa03b426a6e",
+    "determinism_scope": "Two independent 500-step calibration runs with seed 20260810 produced byte-identical graphs and identical semantic JSON after excluding runtime and output paths. The retained E=2 graph was 35 edges from the E=2 start.",
+    "production_seeds_used_in_validation": false
+  },
+  "seeds": [
+    20260811,
+    20260812
+  ],
+  "search": {
+    "steps_per_restart": 7500,
+    "restarts": 2,
+    "selected_moves_per_start_seed": 15000,
+    "block2_samples": 5,
+    "block3_samples": 3,
+    "pair_samples": 4,
+    "global_samples": 2,
+    "noise_per_million": 60000,
+    "degree_penalty_weight": 2,
+    "breakout_interval": 400,
+    "shake_interval": 800,
+    "shake_conflicts": 5,
+    "restart_shakes": 4,
+    "full_audit_interval": 250
+  },
+  "registered_run_count": 10,
+  "total_registered_selected_move_budget": 150000,
+  "per_run_wall_limit_seconds": 600,
+  "storage_limit_bytes": 20000000,
+  "binary": {
+    "path": "build/search43_conflict_block_walksat",
+    "sha256": "8bf8dacdfb32095406c817407b31dcbf89e01a4567d8a901c024daf28f21ce90",
+    "compile_command": "clang++ -O3 -std=c++17 -Wall -Wextra -pedantic src/search43_conflict_block_walksat.cpp -o build/search43_conflict_block_walksat"
+  },
+  "verification": {
+    "python_source": "verify/exhaustive_verify.py",
+    "bitset_binary": "build/bitset_verify",
+    "structural_source": "verify/conflict_block_candidate_check.py",
+    "every_final_artifact": [
+      "Direct Python enumeration of every 5-subset and all ten pairs",
+      "Separately compiled C++ recursive-bitset graph/complement verifier",
+      "Independent objective, degree-penalty, edge-Hamming, graph6, budget, and search-record audit"
+    ],
+    "E_equals_0_only": [
+      "Write the graph immediately, end the active search, and launch no later registered run",
+      "Repeat both direct verifiers and the structural search-record audit",
+      "Canonical graph artifact export",
+      "Parser-path comparison, seeded relabel checks, complement checks, and repeat C++ verification through the adversarial artifact audit"
+    ]
+  },
+  "outcome_policy": {
+    "valid_E0": "Label CERTIFIED only after direct Python enumeration, the separately compiled C++ verifier, the independent structural audit, canonical export, and adversarial audit all pass.",
+    "nonzero_best": "Label REPRODUCIBLE COMPUTATIONAL OBSERVATION. Evaluate the preregistered mobility and reduction criteria, but infer neither nonexistence nor basin exhaustion.",
+    "timeout_or_error": "Record the bounded failure exactly and make no construction or nonexistence claim."
+  },
+  "output_root": "results/constructive/conflict_block_v1",
+  "summary_output": "results/verification/conflict_block_pilot_summary.json",
+  "report_output": "results/verification/conflict_block_pilot.report.md",
+  "pinned_files": [
+    {
+      "path": "src/search43_conflict_block_walksat.cpp",
+      "sha256": "bc9e3bd03c377218ec3026934a67ca7dd430ea8904db5603dde74d591d5145f8"
+    },
+    {
+      "path": "src/search43_incident_lns.cpp",
+      "sha256": "556f5550f74b5d835b79646d888979177b710bda7ef5a9b83f4b30fb7fead3fe"
+    },
+    {
+      "path": "src/run_conflict_block_pilot.py",
+      "sha256": "2cb492e74472a4d26bc0791138791b053e5526d6404d60ca1fec8c5e753cee09"
+    },
+    {
+      "path": "src/prepare_conflict_block_starts.py",
+      "sha256": "cade203c9bcb930b0a3bfcdfa48f9c6e1cde67d12cf3c6ad531f8b8b9fa7a1e5"
+    },
+    {
+      "path": "verify/conflict_block_candidate_check.py",
+      "sha256": "9a32878fc0903e8cbc7f4245e1caf9d437736cdb11a1c06945eaf03605924c41"
+    },
+    {
+      "path": "verify/exhaustive_verify.py",
+      "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+    },
+    {
+      "path": "verify/adversarial_audit.py",
+      "sha256": "fe36a288ac707783d2962003060e4d853f78b29c646b8f3902b393e81ddd24ac"
+    },
+    {
+      "path": "src/export_artifact.py",
+      "sha256": "9f4b6f56a57875890511366f8864a3620d2bf869c31ea226583cd7d4ded5d472"
+    },
+    {
+      "path": "build/search43_conflict_block_walksat",
+      "sha256": "8bf8dacdfb32095406c817407b31dcbf89e01a4567d8a901c024daf28f21ce90"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    },
+    {
+      "path": "results/verification/conflict_block_dynamic_self_check.json",
+      "sha256": "433205d4cc8ceea8d651611c5c24662a088810e9e422fcd1e54d92096fd6b51f"
+    },
+    {
+      "path": "results/verification/conflict_block_determinism_check.json",
+      "sha256": "b3cea397520bd114f571948f959160f0202e57b51e998b46c2c98fa03b426a6e"
+    },
+    {
+      "path": "results/verification/conflict_block_start_manifest.json",
+      "sha256": "f9fd8218cae65f290934c65d4f901e2b7298646167f91eb2d7ae6494aec18c10"
+    },
+    {
+      "path": "results/constructive/conflict_block_catalog_line1_seed.metadata.json",
+      "sha256": "5e0dd2f02f13de9158daa8dfcb9693b57499df9e42100216efdde923b0863dc5"
+    },
+    {
+      "path": "results/verification/degree_switch_pilot_summary.json",
+      "sha256": "8d94e6976c4579385ed0c1de3781c5f7bde14877d2b014ab61750de6debbe9e6"
+    },
+    {
+      "path": "results/best_candidates/exoo_seed_20260724.g6",
+      "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a"
+    },
+    {
+      "path": "results/verification/conflict_block_exoo_python.json",
+      "sha256": "72755cd5bd48e52bc5bb712f84a2893896b950d0a6d6e6e4fa140fd6a94ce967"
+    },
+    {
+      "path": "results/verification/conflict_block_exoo_cpp.json",
+      "sha256": "537e4d50ccdf7207c21c88678fe0a9510e6e58de1e9121d0110e563a0ddf0a0a"
+    },
+    {
+      "path": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337"
+    },
+    {
+      "path": "results/verification/conflict_block_incident_python.json",
+      "sha256": "71e4d322092f97f991a8b7b355bf8c02f0090ce9be2bc1df81aa1258bdee1715"
+    },
+    {
+      "path": "results/verification/conflict_block_incident_cpp.json",
+      "sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "path": "results/best_candidates/core_kick_seed_20260731.g6",
+      "sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6"
+    },
+    {
+      "path": "results/verification/conflict_block_core_kick_python.json",
+      "sha256": "057c00bf38a7869c59db7e2a3ae3a043c6089f8088a99bbddb5b621cbf750d0d"
+    },
+    {
+      "path": "results/verification/conflict_block_core_kick_cpp.json",
+      "sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "path": "results/best_candidates/catalog_line1_balanced_extension.g6",
+      "sha256": "a40637fbac732e3371e8a475614334b23bed237682388762122b12b1632a539c"
+    },
+    {
+      "path": "results/verification/conflict_block_catalog_line1_python.json",
+      "sha256": "fd3b4d019488fadf6469e2dbe1a8514a5a39344387907e1610dddec4439529f3"
+    },
+    {
+      "path": "results/verification/conflict_block_catalog_line1_cpp.json",
+      "sha256": "717e885a831c4f5700928b891c18282e69c278d789ee90f74ffeaaf1c549ade6"
+    },
+    {
+      "path": "results/best_candidates/baseline_seed_20260723.g6",
+      "sha256": "9d5df88ca438c5390f41af58a21e7f81572f6af6c53da30c8bbc9fad710a95bd"
+    },
+    {
+      "path": "results/verification/conflict_block_global_baseline_python.json",
+      "sha256": "d322047fe43fc7ce7d8ab582462a6e63bf8f9fd883032e3fe80334e6b2ef81d0"
+    },
+    {
+      "path": "results/verification/conflict_block_global_baseline_cpp.json",
+      "sha256": "3771cca44b1896f5075c0fe3372687583d91039dacc43d9e359ae5affbe15b1b"
+    }
+  ]
+}

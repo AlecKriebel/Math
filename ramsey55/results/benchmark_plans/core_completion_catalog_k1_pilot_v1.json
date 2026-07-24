@@ -1,0 +1,93 @@
+{
+  "schema": "ramsey55.core_completion_catalog_k1_pilot.v1",
+  "created_utc": "2026-07-24T00:30:00Z",
+  "evidence_category": "PREREGISTERED COMPUTATIONAL PLAN",
+  "purpose": "Estimate checked per-core cost before scheduling all 13776 fixed 41-vertex cores.",
+  "catalog": "data/r55_42some.g6",
+  "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+  "catalog_data_line_count": 328,
+  "full_catalog_pair_count": 13776,
+  "sampling_rule": "Eight approximately equally spaced catalog lines; two deletion labels per line, shifted across the 0..41 range.",
+  "pairs": [
+    {
+      "catalog_line": 1,
+      "deleted_vertex": 0
+    },
+    {
+      "catalog_line": 1,
+      "deleted_vertex": 21
+    },
+    {
+      "catalog_line": 47,
+      "deleted_vertex": 5
+    },
+    {
+      "catalog_line": 47,
+      "deleted_vertex": 26
+    },
+    {
+      "catalog_line": 94,
+      "deleted_vertex": 10
+    },
+    {
+      "catalog_line": 94,
+      "deleted_vertex": 31
+    },
+    {
+      "catalog_line": 141,
+      "deleted_vertex": 15
+    },
+    {
+      "catalog_line": 141,
+      "deleted_vertex": 36
+    },
+    {
+      "catalog_line": 188,
+      "deleted_vertex": 20
+    },
+    {
+      "catalog_line": 188,
+      "deleted_vertex": 41
+    },
+    {
+      "catalog_line": 235,
+      "deleted_vertex": 4
+    },
+    {
+      "catalog_line": 235,
+      "deleted_vertex": 24
+    },
+    {
+      "catalog_line": 282,
+      "deleted_vertex": 9
+    },
+    {
+      "catalog_line": 282,
+      "deleted_vertex": 29
+    },
+    {
+      "catalog_line": 328,
+      "deleted_vertex": 14
+    },
+    {
+      "catalog_line": 328,
+      "deleted_vertex": 34
+    }
+  ],
+  "seconds_limit_per_instance": 10.0,
+  "node_limit_per_instance": 1000000,
+  "jobs": 4,
+  "solver_mode": "C++ exhaustive DPLL tree with CORE2DP2 proof output",
+  "acceptance": {
+    "SAT": "Persist the raw model immediately, reconstruct the 43-vertex graph, and require both independent graph verifiers.",
+    "UNSAT": "Require the independent Python checker to reconstruct the selected fixed core and replay the complete proof tree.",
+    "LIMIT": "No conclusion; retain the partial trace only as diagnostic data."
+  },
+  "decision_rule": [
+    "Stop and preserve any dual-verified SAT construction.",
+    "Do not schedule the full classification if any model verification or proof check fails.",
+    "If any pilot core reaches a limit, first run a separately planned limit-scaling pilot.",
+    "Otherwise estimate the full checked wall time from observed batch and per-instance timings, then use resumable catalog-line chunks."
+  ],
+  "scope_warning": "A checked UNSAT result excludes only its selected fixed 41-vertex core. Even all 13776 results would not be global order-43 UNSAT."
+}

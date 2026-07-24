@@ -1,0 +1,81 @@
+{
+  "schema": "ramsey55.prime_automorphism_degree_certification_plan.v1",
+  "status": "PREREGISTERED",
+  "scope": [
+    "19^2 1^5",
+    "17^2 1^9",
+    "11^3 1^10"
+  ],
+  "claim_boundary": "Each certificate covers only its listed prime-order cycle type and uses the established R(4,5)=25 degree interval 18..24. It does not cover other cycle types or arbitrary order-43 graphs.",
+  "generator": {
+    "path": "src/prime_automorphism_degree_cnf.py",
+    "sha256": "e2c926c783335ef5d2d55d7aaf6ff1d366bc7824df232f78787e46263b4c693a"
+  },
+  "checker": {
+    "path": "verify/prime_automorphism_degree_cnf_check.py",
+    "sha256": "4abc8b75a589d37ebce233f6d6c4c58710efe1a7bfaf03dabadf3842ccf1213e"
+  },
+  "tests": {
+    "path": "tests/prime_automorphism_degree_cnf_tests.py",
+    "sha256": "8ee27c59d05e20f968d0889e9893ae4cfdde82d22cd41ac665b932bf606ffedd",
+    "result": "3/3 passed"
+  },
+  "proof_pipeline": {
+    "path": "src/certify_cnf_glucose.py",
+    "sha256": "4adfcbfe33c99813ef67f4746b507e06d7d74ff64788de7e9838295ebc48eaba",
+    "solver_timeout_seconds": 600,
+    "proof_check_timeout_seconds": 1200
+  },
+  "instances": [
+    {
+      "cycle_type": "19^2 1^5",
+      "cnf": {
+        "path": "certificates/prime_automorphism_degree/order43_p19_c2.cnf",
+        "sha256": "f9e3b5f323748138aa53e8480f7887a8ed8aae0bef34762e517202b2ec358643"
+      },
+      "metadata": {
+        "path": "certificates/prime_automorphism_degree/order43_p19_c2.metadata.json",
+        "sha256": "e9ac7fbeea624f8fcdbdbd8fc7ce44f841368f6fccc766068ca1843965811f88"
+      },
+      "checker_result": {
+        "path": "results/verification/order43_p19_c2_degree_cnf_check.json",
+        "sha256": "c21891f7cfeb5801f5eaef9508c27f348ab1748342c7033f97655a78aa4a137d"
+      }
+    },
+    {
+      "cycle_type": "17^2 1^9",
+      "cnf": {
+        "path": "certificates/prime_automorphism_degree/order43_p17_c2.cnf",
+        "sha256": "f08ce8bfb2e5b7d0d82f1cc5893b8df5cb9a7e72c744af2a131a31a55b16d859"
+      },
+      "metadata": {
+        "path": "certificates/prime_automorphism_degree/order43_p17_c2.metadata.json",
+        "sha256": "d37119b3ed0d44ef6d709639971622a9375d872e8bd06c4d51f8b0c0da182e48"
+      },
+      "checker_result": {
+        "path": "results/verification/order43_p17_c2_degree_cnf_check.json",
+        "sha256": "56be15839fae502722db6b5e79a51e1190284356a6c28143b41ba7028d3f86d1"
+      }
+    },
+    {
+      "cycle_type": "11^3 1^10",
+      "cnf": {
+        "path": "certificates/prime_automorphism_degree/order43_p11_c3.cnf",
+        "sha256": "5820693762b36869935e3bb16b8ea5bf05f8c221d79b36c999447518f19c9775"
+      },
+      "metadata": {
+        "path": "certificates/prime_automorphism_degree/order43_p11_c3.metadata.json",
+        "sha256": "eee9cff9aecac1946e5a017562ad7fa7adecfa50ff6815240ddfe0d3a629f98f"
+      },
+      "checker_result": {
+        "path": "results/verification/order43_p11_c3_degree_cnf_check.json",
+        "sha256": "b3016e2ca13fea7522e79ce4e9384d29d0a61db0cd965f905254cbfd8acb8932"
+      }
+    }
+  ],
+  "storage_gate": {
+    "maximum_new_artifact_bytes": 1073741824,
+    "minimum_free_bytes_after_completion": 2147483648,
+    "required_prelaunch_free_bytes": 3221225472
+  }
+}

@@ -59,6 +59,7 @@ struct ClauseCounts {
 struct Options {
   std::string graph_path;
   std::string proof_path;
+  uint32_t catalog_line = 1;
   int deleted_vertex = 0;
   uint64_t node_limit = std::numeric_limits<uint64_t>::max();
   double seconds_limit = std::numeric_limits<double>::infinity();
@@ -71,16 +72,24 @@ struct SearchResult {
   Mask false_mask{};
 };
 
-std::string first_data_line(const std::string& path) {
+std::string selected_data_line(const std::string& path,
+                               uint32_t requested_line) {
+  if (requested_line == 0)
+    throw std::runtime_error("catalog line numbers are one-based");
   std::ifstream input(path);
   if (!input) throw std::runtime_error("cannot open graph: " + path);
   std::string line;
+  uint32_t data_line = 0;
   while (std::getline(input, line)) {
     while (!line.empty() && (line.back() == '\r' || line.back() == '\n'))
       line.pop_back();
-    if (!line.empty() && line[0] != '#') return line;
+    const size_t first = line.find_first_not_of(" \t");
+    if (first == std::string::npos || line[first] == '#') continue;
+    ++data_line;
+    if (data_line == requested_line)
+      return line.substr(first);
   }
-  throw std::runtime_error("graph file has no data line");
+  throw std::runtime_error("requested catalog line is absent");
 }
 
 Graph decode_graph6(const std::string& raw) {
@@ -416,6 +425,12 @@ Options parse_options(int argc, char** argv) {
     };
     if (arg == "--graph")
       options.graph_path = value(arg);
+    else if (arg == "--line") {
+      const uint64_t line = parse_u64(value(arg), arg);
+      if (line == 0 || line > std::numeric_limits<uint32_t>::max())
+        throw std::runtime_error("--line is outside 1..2^32-1");
+      options.catalog_line = static_cast<uint32_t>(line);
+    }
     else if (arg == "--delete")
       options.deleted_vertex = parse_int(value(arg), arg);
     else if (arg == "--proof")
@@ -439,11 +454,12 @@ void write_u32(std::ostream& output, uint32_t value) {
     output.put(static_cast<char>((value >> shift) & 0xff));
 }
 
-void write_header(std::ostream& output, int input_n, int deleted,
-                  uint32_t clauses) {
-  const char magic[8] = {'C', 'O', 'R', 'E', '2', 'D', 'P', '1'};
+void write_header(std::ostream& output, int input_n, uint32_t catalog_line,
+                  int deleted, uint32_t clauses) {
+  const char magic[8] = {'C', 'O', 'R', 'E', '2', 'D', 'P', '2'};
   output.write(magic, sizeof(magic));
   output.put(static_cast<char>(input_n));
+  write_u32(output, catalog_line);
   output.put(static_cast<char>(deleted));
   output.put(static_cast<char>(kVariableCount));
   write_u32(output, clauses);
@@ -465,7 +481,8 @@ void print_mask_indices(Mask mask) {
 int main(int argc, char** argv) {
   try {
     const Options options = parse_options(argc, argv);
-    const Graph input = decode_graph6(first_data_line(options.graph_path));
+    const Graph input = decode_graph6(
+        selected_data_line(options.graph_path, options.catalog_line));
     const Graph core = delete_vertex(input, options.deleted_vertex);
     ClauseCounts counts;
     check_fixed_core(core, counts);
@@ -479,7 +496,8 @@ int main(int argc, char** argv) {
     if (!temporary.empty()) {
       proof.open(temporary, std::ios::binary | std::ios::trunc);
       if (!proof) throw std::runtime_error("cannot open proof output");
-      write_header(proof, input.n, options.deleted_vertex,
+      write_header(proof, input.n, options.catalog_line,
+                   options.deleted_vertex,
                    static_cast<uint32_t>(clauses.size()));
     }
 
@@ -491,6 +509,7 @@ int main(int argc, char** argv) {
                              : (result.value == SearchResult::kUnsat ? "UNSAT"
                                                                      : "LIMIT");
     std::cout << "{\"status\":\"" << status << "\",\"input_n\":" << input.n
+              << ",\"catalog_line\":" << options.catalog_line
               << ",\"deleted_vertex\":" << options.deleted_vertex
               << ",\"core_n\":" << core.n
               << ",\"variables\":" << kVariableCount

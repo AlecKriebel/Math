@@ -1,0 +1,34 @@
+{
+  "claim_boundary": "A SAT model is actionable and must be decoded and independently checked as a full graph. Any solver UNSAT response is labeled OBSERVED_UNSAT_UNCHECKED until a replayable proof is produced and independently accepted. Budget exhaustion has no mathematical meaning.",
+  "cnf_sha256": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1",
+  "conflict_budget_per_solver": 500000,
+  "hypothesis": "At least one proof-free solver will decide the independently matched order-7 orbit formula within 500,000 conflicts, identifying whether to prioritize model decoding or a storage-safe native proof trace.",
+  "immutable_commands": [
+    "PYTHONPATH=/tmp/ramsey55-pysat.4YSXId /opt/homebrew/opt/python@3.11/bin/python3.11 src/cnf_solver_observation.py certificates/order43_automorphism7_six_cycles.cnf --solver Cadical195 --conflict-budget 500000 --output results/global_exact/automorphism7_portfolio/Cadical195.json",
+    "PYTHONPATH=/tmp/ramsey55-pysat.4YSXId /opt/homebrew/opt/python@3.11/bin/python3.11 src/cnf_solver_observation.py certificates/order43_automorphism7_six_cycles.cnf --solver MapleChrono --conflict-budget 500000 --output results/global_exact/automorphism7_portfolio/MapleChrono.json",
+    "PYTHONPATH=/tmp/ramsey55-pysat.4YSXId /opt/homebrew/opt/python@3.11/bin/python3.11 src/cnf_solver_observation.py certificates/order43_automorphism7_six_cycles.cnf --solver Glucose4 --conflict-budget 500000 --output results/global_exact/automorphism7_portfolio/Glucose4.json",
+    "PYTHONPATH=/tmp/ramsey55-pysat.4YSXId /opt/homebrew/opt/python@3.11/bin/python3.11 src/cnf_solver_observation.py certificates/order43_automorphism7_six_cycles.cnf --solver Lingeling --conflict-budget 500000 --output results/global_exact/automorphism7_portfolio/Lingeling.json"
+  ],
+  "parent_formula_plan_sha256": "c9635c7778cfbe5159ba1f83a180d159a87cd3665094166a831db51a93dffc5e",
+  "schema": "ramsey55_preregistered_experiment_v1",
+  "solver_order": [
+    "Cadical195",
+    "MapleChrono",
+    "Glucose4",
+    "Lingeling"
+  ],
+  "source_sha256": {
+    "src/cnf_solver_observation.py": "4939d935e709fed3527d31858dc8854c3d8b7b84420e29197856b126e92dcbf3",
+    "src/residual_completion_glucose.py": "d8ce8f16146069ba438130f48e2e21babdd7bdc7a6c963e74114ae9c54029006"
+  },
+  "stop_rule": "Stop the remaining portfolio immediately on SAT. Otherwise run all four registered solvers even if one reports unproved UNSAT, to obtain an independent decision cross-check.",
+  "storage_gate": {
+    "maximum_new_artifact_bytes": 1000000,
+    "minimum_free_bytes_after_completion": 2147483648
+  },
+  "toolchain_sha256": {
+    "pysat_solvers_py": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e",
+    "pysolvers_extension": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+    "python": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+  }
+}

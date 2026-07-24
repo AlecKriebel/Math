@@ -1,0 +1,89 @@
+{
+  "schema": "ramsey55.core_completion_catalog_k2_persistent_pilot.v1",
+  "created_utc": "2026-07-24T02:27:40Z",
+  "status": "PREREGISTERED_BEFORE_EXECUTION_BLOCKED_UNTIL_DISK_PREFLIGHT",
+  "evidence_category": "PREREGISTERED COMPUTATIONAL PLAN",
+  "purpose": "Storage-light constructive benchmark of delete-two/add-three completions from the pinned verified 42-vertex catalog.",
+  "catalog": "data/r55_42some.g6",
+  "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+  "catalog_data_line_count": 328,
+  "catalog_dual_verification": "results/verification/r55_42some_catalog_dual_check.json",
+  "catalog_dual_verification_sha256": "6fe9186d25b16efe98029f60b11f4a5f5f8559c7150380cb3dc45b09833c0931",
+  "full_delete_pair_count": 282408,
+  "pilot_pair_count": 32,
+  "sampling_rule": "Sixteen catalog lines rounded from an equally spaced grid spanning 1..328. Each line contributes one cyclic long-span deletion pair (labels separated by 21) and one cyclic adjacent deletion pair.",
+  "shards": [
+    {
+      "worker": 0,
+      "pairs": "results/benchmark_plans/core_completion_catalog_k2_pilot_v1_worker0.pairs",
+      "pairs_sha256": "f90e35be12bed9074c71a5dd65d1b3ab8e4570516339f80667f6c8647caf2076",
+      "pair_count": 8
+    },
+    {
+      "worker": 1,
+      "pairs": "results/benchmark_plans/core_completion_catalog_k2_pilot_v1_worker1.pairs",
+      "pairs_sha256": "9f5dcfb8fdeb8eb47ebfc7617e8f90df5514a6be776d8276522e1c6ceb018d18",
+      "pair_count": 8
+    },
+    {
+      "worker": 2,
+      "pairs": "results/benchmark_plans/core_completion_catalog_k2_pilot_v1_worker2.pairs",
+      "pairs_sha256": "18c31f93a61dc791e707a682b3a3ed04defb2ac879ca21d54279be2ffb58f0be",
+      "pair_count": 8
+    },
+    {
+      "worker": 3,
+      "pairs": "results/benchmark_plans/core_completion_catalog_k2_pilot_v1_worker3.pairs",
+      "pairs_sha256": "6203038cd3bf80cfdf9175e3fa4a020d31b3e603317d6c0b2a3ec3e72594e53a",
+      "pair_count": 8
+    }
+  ],
+  "encoding": {
+    "fixed_core_order": 40,
+    "added_vertices": 3,
+    "variables": 123,
+    "variable_order": "40 A-core, 40 B-core, 40 C-core, AB, AC, BC",
+    "clauses": "homogeneous core 4-sets with one new vertex, triples with two new vertices, and pairs with all three new vertices"
+  },
+  "solver_source": "src/core_completion_k2_persistent_solver.cpp",
+  "solver_source_sha256": "216ab01bb398975873668757bdc7dad900a65e8f59ccce879b03cf4c7712952f",
+  "solver_binary": "/tmp/core_completion_k2_persistent_solver",
+  "solver_binary_sha256": "52cf1dbbb5875013aa49a7237474dd7eb4d98e0b44a23879047b3941f9bb6811",
+  "independent_semantic_helper": "src/core_completion_k2.py",
+  "independent_semantic_helper_sha256": "dfbb16bd1d5dec18aa2fa3b4b90c579b1ba64d50d37bd7fe6d46606c6bb4a1fd",
+  "runner": "src/core_completion_k2_pilot.py",
+  "runner_source_sha256": "794a00f83f46b3af8cc2be081edaef313b19f8686ab5b6631bf6f0a0df9934ec",
+  "coverage_checker": "verify/core_completion_k2_pilot_coverage.py",
+  "coverage_checker_sha256": "1181b459a15ee5e3c87901a5a8fff976fbc33de8e94e53693bb2f02f5f5d3131",
+  "exhaustive_sat_verifier": "verify/exhaustive_verify.py",
+  "exhaustive_sat_verifier_sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5",
+  "bitset_sat_verifier": "build/bitset_verify",
+  "bitset_sat_verifier_sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89",
+  "jobs": 4,
+  "worker_mode": "four persistent C++ processes, one exact eight-pair shard each",
+  "seconds_limit_per_instance": 0.5,
+  "node_limit_per_instance": 100000,
+  "max_wall_seconds": 300.0,
+  "output_byte_cap": 8388608,
+  "free_disk_reserve_bytes": 2147483648,
+  "required_free_bytes_before_launch": 2155872256,
+  "available_free_bytes_at_preregistration": 1987260416,
+  "disk_preflight_passed_at_preregistration": false,
+  "output_directory": "results/core_completion_catalog_k2_pilot_v1",
+  "output_directory_verified_absent": true,
+  "record_policy": "One compact summary JSON containing all 32 records; no per-core files unless a SAT model is found.",
+  "status_policy": {
+    "SAT": "The C++ worker stops immediately. Atomically preserve the raw model, reconstruct the 43-vertex graph, and require both independent graph verifiers before certification.",
+    "UNSAT": "Record OBSERVED_UNSAT_UNCHECKED with negative_certified=false and no proof. This is only a reproducible computational observation.",
+    "LIMIT": "Record LIMIT_NO_CONCLUSION exactly.",
+    "ERROR": "Fail the exact coverage audit and make no aggregate claim."
+  },
+  "immutable_stop_rules": [
+    "Do not launch until available disk is at least 2155872256 bytes, preserving a 2 GiB reserve even if the full 8 MiB output cap is consumed.",
+    "Never write more than 8388608 bytes under the pilot output directory and never produce any artifact approaching 50 MB.",
+    "Stop ordinary work on the first SAT status for immediate model preservation and dual verification.",
+    "Stop and report incomplete on hash drift, pair-order mismatch, worker error, wall-cap breach, output-cap breach, or reserve breach.",
+    "UNSAT and LIMIT statuses are never certified negative outcomes in this pilot."
+  ],
+  "scope_warning": "Every outcome concerns one fixed induced 40-vertex catalog core. Negative observations imply no global order-43 nonexistence and change no Ramsey bound."
+}

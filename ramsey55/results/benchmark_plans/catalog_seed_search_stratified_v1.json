@@ -1,0 +1,73 @@
+{
+  "schema": "ramsey55.catalog_seed_search_plan.v1",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "created_utc": "2026-07-24T02:33:58Z",
+  "experiment": "catalog_seed_search_stratified_v1",
+  "evidence_category": "PREREGISTERED COMPUTATIONAL PLAN",
+  "hypothesis": "Starting the existing exact-delta min-conflicts kernel from structurally diverse members of the verified 328-graph order-42 catalog can reach order-43 basins not represented by the single Exoo seed.",
+  "catalog": {
+    "path": "data/r55_42some.g6",
+    "sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb"
+  },
+  "search": {
+    "path": "build/search43",
+    "sha256": "4141c3a52e309ff5a3aff7c3022638e9f9bc902926d3939fddf9d81720662491"
+  },
+  "exhaustive_verifier": {
+    "path": "verify/exhaustive_verify.py",
+    "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+  },
+  "bitset_verifier": {
+    "path": "build/bitset_verify",
+    "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+  },
+  "selected_lines": {
+    "path": "results/benchmark_plans/catalog_seed_search_stratified_v1.lines",
+    "sha256": "c2640a9e552dcdaac6de34c18a3e922d9cb275ac9498e67b624554006dfbd09b",
+    "count": 22,
+    "selection_rule": "For each observed edge count 424 through 430, take the first, median, and last catalog occurrence; also take the unique 423-edge graph. Store the resulting labels in increasing order.",
+    "edge_count_coverage": {
+      "423": 1,
+      "424": 3,
+      "425": 3,
+      "426": 3,
+      "427": 3,
+      "428": 3,
+      "429": 3,
+      "430": 3
+    }
+  },
+  "runner": {
+    "path": "src/catalog_seed_search_batch.py",
+    "sha256": "69247a3a4bda68626f4fa10bc9a4432066291a94b9ee9a7a009e356e4dead10d"
+  },
+  "configuration": {
+    "seed_base": 2026090100,
+    "steps": 20000,
+    "restarts": 1,
+    "tabu": 11,
+    "random_walk": 0.03,
+    "breakout_interval": 250,
+    "initial_perturbation": 8,
+    "workers": 2,
+    "instance_time_limit": 30.0,
+    "verifier_time_limit": 60.0
+  },
+  "outputs": {
+    "directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "summary": "results/verification/catalog_seed_search_stratified_v1.summary.json"
+  },
+  "execution_rule": [
+    "The runner must validate this schema, every pinned path and SHA-256, the selected-lines hash/count, and every configuration field before creating outputs.",
+    "Run exactly the 22 selected labels with derived seed seed_base + catalog_line.",
+    "Refuse to overwrite any existing output.",
+    "Stop ordinary scheduling immediately if E=0 appears; preserve the graph and require both independent verifiers.",
+    "Treat every nonzero objective only as a reproducible computational observation."
+  ],
+  "outcome_policy": {
+    "DUAL_VERIFIED_SAT_CONSTRUCTION": "Preserve all representations and begin adversarial verification for a lower-bound claim.",
+    "COMPLETE_NO_CONSTRUCTION": "Use objective distribution and basin diversity to decide whether a full 328-line sweep has sufficient information value.",
+    "TIMEOUT_OR_ERROR": "Mark the pilot incomplete and make no aggregate search claim.",
+    "scope_warning": "Failure to find E=0 is not evidence that an order-43 Ramsey graph does not exist."
+  }
+}

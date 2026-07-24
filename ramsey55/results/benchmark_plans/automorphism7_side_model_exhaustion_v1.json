@@ -1,0 +1,71 @@
+{
+  "schema": "ramsey55.automorphism7_side_model_exhaustion_plan.v1",
+  "status": "PREREGISTERED",
+  "purpose": "Turn the 191,394 proof-free C7 side-model enumeration into an independently replayed, proof-carrying exact model cover.",
+  "claim_boundary": "The certificate concerns only the 30-variable C7 side formula. It does not by itself certify any global pair cube or the order-7 branch.",
+  "logic": {
+    "listed_models": "Every listed 30-bit assignment must independently satisfy the reconstructed 3,618-clause side formula.",
+    "exhaustion_formula": "Append one 30-literal blocking clause for every listed model to the side formula.",
+    "certificate": "A checked DRAT-to-LRAT UNSAT proof of the exhaustion formula proves that no unlisted side model exists."
+  },
+  "expected": {
+    "variable_count": 30,
+    "side_clause_count": 3618,
+    "model_count": 191394,
+    "model_blocker_count": 191394,
+    "clause_count": 195012
+  },
+  "generator": {
+    "path": "src/automorphism7_side_model_exhaustion.py",
+    "sha256": "453b36cb55455ca8d9ca0818f5c3390c691735252dc5f9023df9660542b41737"
+  },
+  "checker": {
+    "path": "verify/automorphism7_side_model_exhaustion_check.py",
+    "sha256": "e4f61e4186547b9dd02098cd50130f9bcab554405b2469edb86b7d0e727c8f8e"
+  },
+  "tests": {
+    "path": "tests/automorphism7_side_model_exhaustion_tests.py",
+    "sha256": "e798699314593d284d4c1e5faeacb587019bdb5601493b00732c6ba66bb4ca57",
+    "result": "3/3 passed before preregistration"
+  },
+  "proof_pipeline": {
+    "path": "src/certify_cnf_glucose.py",
+    "sha256": "4adfcbfe33c99813ef67f4746b507e06d7d74ff64788de7e9838295ebc48eaba",
+    "solver_time_limit_seconds": 600,
+    "proof_check_time_limit_seconds": 1200
+  },
+  "enumerator_dependency": {
+    "path": "verify/automorphism7_side_orbit_cover.py",
+    "sha256": "b4531da9785fb98a668b3ea9876660f46500c47115f9aa582d19455081071543"
+  },
+  "toolchain": {
+    "python": "/opt/homebrew/bin/python3.11",
+    "pysat_path": "/tmp/ramsey55-pysat.4YSXId",
+    "pysat_version": "1.9.dev7",
+    "drat_trim": {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/drat-trim",
+      "sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+    },
+    "lrat_check": {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/lrat-check",
+      "sha256": "bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea"
+    }
+  },
+  "outputs": {
+    "models": "certificates/automorphism7_side_model_exhaustion/side_models_191394.txt",
+    "cnf": "certificates/automorphism7_side_model_exhaustion/side_model_exhaustion.cnf",
+    "metadata": "certificates/automorphism7_side_model_exhaustion/side_model_exhaustion.metadata.json",
+    "structural_check": "results/verification/automorphism7_side_model_exhaustion_v1.check.json",
+    "drat": "certificates/automorphism7_side_model_exhaustion/side_model_exhaustion_glucose3.drat",
+    "lrat": "certificates/automorphism7_side_model_exhaustion/side_model_exhaustion_glucose3.lrat",
+    "proof_result": "certificates/automorphism7_side_model_exhaustion/side_model_exhaustion_glucose3.result.json"
+  },
+  "storage_gate": {
+    "maximum_transient_bytes": 2147483648,
+    "maximum_retained_bytes": 1073741824,
+    "minimum_free_bytes_after_completion": 4294967296,
+    "required_prelaunch_free_bytes": 7516192768,
+    "full_design_exact_cover_cap_bytes": 536870912
+  },
+  "full_run_authorized": false
+}

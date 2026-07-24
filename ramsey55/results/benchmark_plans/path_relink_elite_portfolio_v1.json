@@ -1,0 +1,230 @@
+{
+  "schema": "ramsey55.path_relink_elite_portfolio_plan.v1",
+  "created_utc": "2026-07-24T03:42:23Z",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "objective": "Test a genuinely two-parent, topology-neutral path-relinking/crossover operator on all 22 independently audited catalog-derived E=2 starts, arranged as 11 deterministic complement-normalized pairs and run in both directions, with an immediate portfolio stop and full certification if E=0 is found.",
+  "hypothesis": {
+    "repair": "At least 20 of the 22 directional path-relink children will repair to E<=2 within 10000 selected single-edge repair moves.",
+    "strict_plateau_departure": "At least one of the 22 verified finals will have E<=1, or will have E=2 with mixed conflict colors or conflict-pair vertex overlap at most 3.",
+    "interpretation": "Failure or success is a bounded computational observation. Only a fully audited E=0 output is a certified construction; no nonzero portfolio outcome is evidence of nonexistence."
+  },
+  "input_provenance": {
+    "catalog_followup_summary": "results/verification/conflict_block_catalog22_followup_summary.json",
+    "catalog_followup_summary_sha256": "55b09b6f5c020b43eb892076e3768712dcba2fa754753523ca9fc10fa2ebea66",
+    "catalog_followup_report": "results/verification/conflict_block_catalog22_followup.report.md",
+    "catalog_followup_report_sha256": "44140fd3e7c0c4dd5f1b05473dfec6b0d00368555c96b378b832c0632cbd8bf3",
+    "start_pool_audit": "results/verification/path_relink_start_pool_audit.json",
+    "start_pool_audit_sha256": "dfe4f87ece3a10b4cb0789fccc6e0ddfeb7aa41735378c37ffe76acdf9cccccb",
+    "final_pool_audit": "results/verification/path_relink_elite_pool_audit.json",
+    "final_pool_audit_sha256": "69af765c7ab10d1493d1ff7909b490cf2c62dccaac3b2c5021d2f60eafdba46b",
+    "pool_topology_audit": "results/verification/path_relink_pool_topology.json",
+    "pool_topology_audit_sha256": "aade65ce899c27f87ed19de62e70237fd8f7a158a30ace6ad0d9c3e7b5351562",
+    "exact_44_record_topology_corpus": "results/verification/e2_overlap_topology_corpus_v1.json",
+    "exact_44_record_topology_corpus_sha256": "f8d506f1161c936e05594aae9f97453537929e4dd5cc14ca3fae657819a78655",
+    "pool_choice": "Use the 22 audited E=2 starts as parents because their complement-normalized local-alignment distances range from 0 to 300. The 22 retained conflict-block finals are not used as distinct parents because the final-pool audit found local-alignment distance 0 for all 231 pairs, i.e. a single isomorphism/complement class.",
+    "start_distribution": {
+      "raw_graph6_unique_count": 22,
+      "C5=2,I5=0": 11,
+      "C5=0,I5=2": 11
+    },
+    "start_pairwise_complement_normalized_local_alignment": {
+      "pair_count": 231,
+      "minimum": 0,
+      "maximum": 300,
+      "mean": 143.7922077922078,
+      "median": 250
+    },
+    "known_topology_before_registration": "All 22 starts and all 22 conflict-block finals have two same-color conflicts whose vertex sets overlap in exactly four vertices. This diagnostic is recorded but is not used by child generation, move scoring, repair, or retention."
+  },
+  "pairing": {
+    "audit": "results/verification/path_relink_start_pool_audit.json",
+    "audit_sha256": "dfe4f87ece3a10b4cb0789fccc6e0ddfeb7aa41735378c37ffe76acdf9cccccb",
+    "pair_count": 11,
+    "directions_per_pair": 2,
+    "policy": "Complement precisely the original I5-only member of every pair, retain the original C5-only member, locally align by the deterministic audit mapping, and execute A-to-B then B-to-A. Pairs are selected deterministically by the frozen audit, require opposite original color sides, and cover each of the 22 starts exactly once.",
+    "selected_aligned_hamming": [
+      300,
+      294,
+      294,
+      294,
+      292,
+      292,
+      290,
+      288,
+      288,
+      280,
+      0
+    ],
+    "zero_alignment_policy": "identity_embedding",
+    "zero_alignment_explanation": "For the one isomorphic aligned pair, ignore the zero-distance isomorphism and use the deterministic identity embedding, whose oriented labeled disagreement is 442, so the registered crossover is nondegenerate.",
+    "production_seed_base": 2026083101,
+    "production_seeds": {
+      "first": 2026083101,
+      "last": 2026083122,
+      "count": 22
+    }
+  },
+  "strategy": {
+    "algorithm": "aligned_path_relink_minconflicts_v1",
+    "child_generation": "Starting from the directional source parent, make exactly 48 moves along the aligned parent-disagreement path. At each path step sample 24 remaining target edges without replacement and choose an edge with minimum exact full-objective delta, with deterministic seeded tie-breaking.",
+    "repair": "Run exact incremental single-edge min-conflicts from the retained child with tabu tenure 11, 3 percent random walk, breakout interval 250, agreement-break penalty 4, corridor penalty 1, and complete objective audits every 250 selected moves.",
+    "genuine_two_parent_boundary": "Child generation requires two separately audited parent graphs, a frozen vertex alignment, a directional disagreement set, and a 48-edge partial path toward the target. It is not a single-trajectory conflict-block mutation.",
+    "topology_neutrality": "Conflict colors and overlap topology are never consulted by the search executable. Every strict objective improvement is retained; E=0 is written immediately. Topology is computed only afterward by the independent structural verifier.",
+    "coverage": "Process the 22 registered jobs in deterministic pair and direction order. Stop the active job and launch no later job only after a triple-verified E=0 output; otherwise execute every registered job."
+  },
+  "validation": {
+    "dynamic_self_check": "results/verification/path_relink_dynamic_self_check.json",
+    "dynamic_self_check_sha256": "195c645edf8300084e7eb7eacffd21349568ca16d957ce56c0ea2b8e27a163b1",
+    "determinism_check": "results/verification/path_relink_determinism_check.json",
+    "determinism_check_sha256": "da2122379f8b0c099d9cf0d95a0ced54b207ca0ed92befa829a4fb67526610ab",
+    "validation_seeds": [
+      2026082993,
+      2026082994
+    ],
+    "production_seeds_used_in_validation": false,
+    "production_outputs_present_at_registration": false
+  },
+  "search": {
+    "path_flips": 48,
+    "path_sample": 24,
+    "steps": 10000,
+    "tabu_tenure": 11,
+    "random_walk_per_million": 30000,
+    "breakout_interval": 250,
+    "agreement_penalty": 4,
+    "corridor_penalty": 1,
+    "full_audit_interval": 250
+  },
+  "registered_run_count": 22,
+  "total_registered_selected_repair_move_budget": 220000,
+  "total_registered_path_move_budget": 1056,
+  "per_run_wall_limit_seconds": 600,
+  "storage_limit_bytes": 20000000,
+  "disk_reserve_bytes_after_registered_cap": 200000000,
+  "disk_reserve_gate": "Immediately before launching any production job, require free bytes to be at least storage_limit_bytes plus disk_reserve_bytes_after_registered_cap, i.e. 220000000 bytes. Recheck after every verified job and abort if free space falls below the 200000000-byte reserve.",
+  "binary": {
+    "path": "build/search43_path_relink",
+    "sha256": "d2f6f1eed61c5baa91cc909eb72701528af4ffe41d3161fe3b349923698179da",
+    "compile_command": "clang++ -O3 -std=c++17 -Wall -Wextra -pedantic src/search43_path_relink.cpp -o build/search43_path_relink"
+  },
+  "verification": {
+    "python_source": "verify/exhaustive_verify.py",
+    "bitset_binary": "build/bitset_verify",
+    "structural_source": "verify/path_relink_candidate_check.py",
+    "every_retained_final": [
+      "Direct Python enumeration of every five-set and all ten pairs",
+      "Separately compiled C++ recursive-bitset graph/complement verifier",
+      "Independent complement, alignment, parent, child, path-depth, trace, graph6, distance, topology, and budget audit"
+    ],
+    "E_equals_0_only": [
+      "Write the graph immediately and stop the active and all later registered searches",
+      "Require both direct graph verifiers and the independent structural audit",
+      "Export a canonical graph artifact",
+      "Run parser-path, relabel, complement, and repeat C++ adversarial audit"
+    ]
+  },
+  "metrics": [
+    "E0, E1, and E2 counts over completed registered jobs",
+    "repair-to-E<=2 count and preregistered hypothesis outcome",
+    "E2 mixed-color, overlap-at-most-3, and same-color-overlap-4 counts",
+    "child objective distribution",
+    "distance from each aligned parent after repair",
+    "distinct raw final graph count",
+    "pairwise labeled final-edge Hamming distribution",
+    "exact selected repair moves, delta evaluations, runtime, and artifact bytes"
+  ],
+  "outcome_policy": {
+    "valid_E0": "Label CERTIFIED only after both direct graph verifiers, the independent path/crossover audit, canonical export, and adversarial audit all pass.",
+    "nonzero_best": "Label REPRODUCIBLE COMPUTATIONAL OBSERVATION, report every registered run and every preregistered metric, and make no construction or nonexistence claim.",
+    "timeout_or_error": "Record the bounded failure and exact coverage, and make no construction or nonexistence claim."
+  },
+  "output_root": "results/constructive/path_relink_elite_portfolio_v1",
+  "summary_output": "results/verification/path_relink_elite_portfolio_summary.json",
+  "report_output": "results/verification/path_relink_elite_portfolio.report.md",
+  "pinned_files": [
+    {
+      "path": "src/run_path_relink_portfolio.py",
+      "sha256": "64cd3c9cc07f85b5e3505e04e9ae3bfa6060f8fb305f9a4bab7f676514373ff1"
+    },
+    {
+      "path": "src/search43_path_relink.cpp",
+      "sha256": "45a84256333c14be1eeea6cabb90ec839dd6a65ba56ddf5140281ac9aa698eb4"
+    },
+    {
+      "path": "src/audit_path_relink_elite_pool.py",
+      "sha256": "b3bc72d85bfd64a8e25145b5bc413f4798275723ca7578cbd3149c49a265d7a8"
+    },
+    {
+      "path": "src/run_conflict_block_pilot.py",
+      "sha256": "2cb492e74472a4d26bc0791138791b053e5526d6404d60ca1fec8c5e753cee09"
+    },
+    {
+      "path": "src/graph_io.py",
+      "sha256": "5eb4087aa2c601f86e02b87de858febf1f2987dcd96471be776fb63a30207c22"
+    },
+    {
+      "path": "verify/path_relink_candidate_check.py",
+      "sha256": "34c6e8c1632f633a04e004b1547b5b99daacf930e8e95f8a6c905eccf51c1340"
+    },
+    {
+      "path": "verify/path_relink_pool_topology_check.py",
+      "sha256": "a3f7ab7543f43e9169b9b5fb40a1b098ad3f8f6b15b04692b887a9c6a77bfcd6"
+    },
+    {
+      "path": "verify/e2_overlap_topology_audit.py",
+      "sha256": "7542e0281d33afe5379af3b2142c2117b2cc6d4217ae5a524159e0916e9d357a"
+    },
+    {
+      "path": "verify/exhaustive_verify.py",
+      "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+    },
+    {
+      "path": "verify/adversarial_audit.py",
+      "sha256": "fe36a288ac707783d2962003060e4d853f78b29c646b8f3902b393e81ddd24ac"
+    },
+    {
+      "path": "src/export_artifact.py",
+      "sha256": "9f4b6f56a57875890511366f8864a3620d2bf869c31ea226583cd7d4ded5d472"
+    },
+    {
+      "path": "build/search43_path_relink",
+      "sha256": "d2f6f1eed61c5baa91cc909eb72701528af4ffe41d3161fe3b349923698179da"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    },
+    {
+      "path": "results/verification/path_relink_start_pool_audit.json",
+      "sha256": "dfe4f87ece3a10b4cb0789fccc6e0ddfeb7aa41735378c37ffe76acdf9cccccb"
+    },
+    {
+      "path": "results/verification/path_relink_elite_pool_audit.json",
+      "sha256": "69af765c7ab10d1493d1ff7909b490cf2c62dccaac3b2c5021d2f60eafdba46b"
+    },
+    {
+      "path": "results/verification/path_relink_pool_topology.json",
+      "sha256": "aade65ce899c27f87ed19de62e70237fd8f7a158a30ace6ad0d9c3e7b5351562"
+    },
+    {
+      "path": "results/verification/e2_overlap_topology_corpus_v1.json",
+      "sha256": "f8d506f1161c936e05594aae9f97453537929e4dd5cc14ca3fae657819a78655"
+    },
+    {
+      "path": "results/verification/path_relink_dynamic_self_check.json",
+      "sha256": "195c645edf8300084e7eb7eacffd21349568ca16d957ce56c0ea2b8e27a163b1"
+    },
+    {
+      "path": "results/verification/path_relink_determinism_check.json",
+      "sha256": "da2122379f8b0c099d9cf0d95a0ced54b207ca0ed92befa829a4fb67526610ab"
+    },
+    {
+      "path": "results/verification/conflict_block_catalog22_followup_summary.json",
+      "sha256": "55b09b6f5c020b43eb892076e3768712dcba2fa754753523ca9fc10fa2ebea66"
+    },
+    {
+      "path": "results/verification/conflict_block_catalog22_followup.report.md",
+      "sha256": "44140fd3e7c0c4dd5f1b05473dfec6b0d00368555c96b378b832c0632cbd8bf3"
+    }
+  ]
+}

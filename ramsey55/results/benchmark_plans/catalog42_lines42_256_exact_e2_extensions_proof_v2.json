@@ -1,0 +1,54 @@
+{
+  "created_utc": "2026-07-24T05:25:41Z",
+  "experiment": "catalog42_lines42_256_exact_e2_extensions_proof_v2",
+  "status": "PREREGISTERED_BEFORE_PROOF_PRODUCTION",
+  "supersedes_for_checking": "results/benchmark_plans/catalog42_lines42_256_exact_e2_extensions_v1.json",
+  "v1_plan_sha256": "26517597ddbcdf95852bdd48dc033df8709235b5c78fd3853d2795f728b31475",
+  "fail_closed_recovery": {
+    "issue": "The first independent checker compared each violated four-vertex extension constraint directly with its five-vertex full-graph conflict and therefore returned valid=false on both formulas.",
+    "mathematical_effect": "None. The checker stopped both runs before any proof production or completeness claim.",
+    "repair": "The checker now appends the new vertex 42 when comparing an extension constraint with a full-graph conflict; a regression assertion checks exact equality.",
+    "formula_regeneration": "Not needed: both immutable CNFs and generation metadata were produced by the unchanged pinned generator and are bound below."
+  },
+  "immutable_formula_inputs": [
+    {
+      "catalog_line": 42,
+      "cnf": "certificates/catalog42_line042_exact_e2_extensions.cnf",
+      "cnf_sha256": "7cbe0a232d3f6d4e1589229161780e85bb125f1150ed367360a582c2ec3a7521",
+      "metadata_sha256": "71c82bd5078054f070686b54999fafea88b81e315dc15fc780b3fba455816adf",
+      "structural_check_sha256": "533a2f094b1f4758dcc72f50f68a2987595dabb658e4eedaf8dc7e9f51b05ebc",
+      "structural_check_valid": true
+    },
+    {
+      "catalog_line": 256,
+      "cnf": "certificates/catalog42_line256_exact_e2_extensions.cnf",
+      "cnf_sha256": "5320d4a265a17099ef9edca1d8b55634429265dfbf37737ba4aadd8ee7766127",
+      "metadata_sha256": "f599ac74c261ea53525ecdc8eacaff4776a65af67d5091e754ac8ffb8609b9e9",
+      "structural_check_sha256": "d26052896cf16a7470513f1f61b18bfd459ef49ac1175f95b5639b74ac6fc378",
+      "structural_check_valid": true
+    }
+  ],
+  "pinned_sources": {
+    "generator_sha256": "ead0d4c14e2888b54db044b426bb666d505b9b57018abe05625ffd9f331afff5",
+    "repaired_checker_sha256": "e33ede2fd0736f6e3839205c1b67bb77515e0d923175f3a669a439feb7b1e711",
+    "regression_tests_sha256": "d36369c7465b5cd1a793bcc445fea812ff4b8f30154a7c204a1bbcc7a8488c8d",
+    "regression_tests_passed": 2
+  },
+  "execution": {
+    "pipeline": "src/certify_cnf_glucose.py",
+    "solve_wall_seconds_per_line": 300,
+    "proof_check_wall_seconds_per_line": 600,
+    "required_acceptance": [
+      "Glucose3 UNSAT",
+      "drat-trim VERIFIED",
+      "lrat-check VERIFIED",
+      "post-check artifact hashes stable"
+    ]
+  },
+  "outcome_policy": {
+    "both_certified_unsat": "For each fixed core, the two recorded cost-two adjacency vectors are the complete set with at most two conflicts, and the extension optimum is exactly two.",
+    "sat": "The blocked enumeration is incomplete; independently decode and verify the additional primary assignment.",
+    "timeout_or_failure": "Make no completeness claim for the affected core."
+  },
+  "scope_warning": "The result is fixed to catalog cores 42 and 256 and has no global order-43 implication."
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "ramsey55.core_completion_catalog_k1_proof_bundle_sample.v1",
+  "created_utc": "2026-07-24T01:59:36Z",
+  "status": "PREREGISTERED_BEFORE_SAMPLE_EXECUTION",
+  "evidence_category": "PREREGISTERED COMPUTATIONAL PLAN",
+  "purpose": "Estimate replay-safe proof volume and producer/checker runtime before deciding the maximum auditable catalog tranche.",
+  "catalog": "data/r55_42some.g6",
+  "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+  "catalog_data_line_count": 328,
+  "full_pair_count": 13776,
+  "sample_pairs": "results/benchmark_plans/core_completion_catalog_k1_proof_bundle_sample_v1.pairs",
+  "sample_pairs_sha256": "b11f0fdf15de251152acc608c622fd9c2155fcd45c51e05dd1e496af6a7a6e0c",
+  "sample_pair_count": 64,
+  "sampling_rule": "Sixteen catalog lines rounded from an equally spaced grid spanning 1..328; four deletion labels per line formed from cyclically shifted quartile offsets 0,10,21,31.",
+  "producer_source": "src/core_completion_catalog_proof_bundle_solver.cpp",
+  "producer_source_sha256": "f664294dba8cdcd3612767988bf79f18a00d50310070b3d3194f3868f4448c20",
+  "included_solver_source": "src/core_completion_proof_solver.cpp",
+  "included_solver_source_sha256": "944737d42270b381e5b302e9b38ea4421b1a9c4049d363ecfcc89150e60877e3",
+  "producer_binary": "/tmp/core_completion_catalog_proof_bundle_solver",
+  "producer_binary_sha256": "91bcf559bed147788e316a8fd796aeaff77d9e4b8799af2cdd3e12cccec86445",
+  "checker_source": "verify/core_completion_catalog_proof_bundle_check.cpp",
+  "checker_source_sha256": "634ee72c6dd68faaedeeca93f1c8e11fd76d412389718700518ea320bc1bd278",
+  "checker_binary": "/tmp/core_completion_catalog_proof_bundle_check",
+  "checker_binary_sha256": "8e91a77d65fe8ac8e2affc49a40ac052d3893a7fdf075ca2a3b950245d4589b8",
+  "bundle_format": "C2DPB001 containing ordered CORE2DP2 trees",
+  "bundle_binding": [
+    "The 76-byte bundle header binds its record count, catalog SHA-256, and pair-list SHA-256.",
+    "Every record repeats its catalog line and deletion label.",
+    "Every embedded CORE2DP2 header independently repeats the input order, catalog line, deletion label, variable count, and reconstructed clause count.",
+    "The checker requires exact pair-list order, exact record count, no trailing bytes, and atomic transcript promotion only after all trees replay."
+  ],
+  "seconds_limit_per_instance": 10.0,
+  "node_limit_per_instance": 1000000,
+  "sample_jobs": 1,
+  "sample_output_directory": "results/core_completion_catalog_k1_proof_bundle_sample_v1",
+  "sample_output_directory_verified_absent": true,
+  "initial_free_disk_kib": 5650100,
+  "estimators": {
+    "full_bundle_mean_projection_bytes": "8*76 + 13776*(sample_mean_proof_bytes + 9)",
+    "full_bundle_conservative_projection_bytes": "8*76 + 13776*(sample_max_proof_bytes + 9)",
+    "full_artifact_projection_bytes": "Scale total sample bundle, producer transcript, checker transcript, and result bytes by 13776/64, then add eight bundle headers.",
+    "full_eight_worker_wall_projection_seconds": "120 + 4*(sample_producer_wall_seconds + sample_checker_wall_seconds)*13776/(64*8)"
+  },
+  "immutable_decision_rule": [
+    "Stop without a production plan if any sample pair is SAT, LIMIT, malformed, or rejected by the independent checker.",
+    "Proceed to a full 13776-pair plan only if all 64 sample pairs are independently replayed, the conservative bundle projection is at most 268435456 bytes, the total-artifact projection is at most 536870912 bytes, and the eight-worker wall projection is at most 1800 seconds.",
+    "Before production, require free disk to exceed max(3221225472 bytes, ten times the projected total persistent artifact bytes).",
+    "If a proceed threshold fails, preregister only the largest whole contiguous 41-line shard prefix whose conservative projections fit every threshold.",
+    "Any future SAT stops ordinary processing for immediate model preservation and dual graph verification. Any LIMIT, producer error, checker rejection, hash drift, transcript mismatch, disk-floor breach, or global wall-stop breach makes its entire shard uncertified.",
+    "Only fully generated and independently replayed shards count toward a certified tranche; partial bundles never count."
+  ],
+  "scope_warning": "A replayed UNSAT tree certifies only its selected fixed induced 41-vertex core. Even exact replay of all 13776 pairs would not imply global order-43 nonexistence or change a Ramsey bound."
+}

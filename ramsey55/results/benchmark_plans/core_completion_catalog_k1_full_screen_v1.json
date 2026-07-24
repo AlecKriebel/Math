@@ -1,0 +1,47 @@
+{
+  "schema": "ramsey55.core_completion_catalog_k1_full_screen.v1",
+  "created_utc": "2026-07-24T01:00:00Z",
+  "status": "PREREGISTERED_BEFORE_EXECUTION",
+  "purpose": "Constructive screening of every delete-one/add-two fixed core without promoting unchecked UNSAT statuses.",
+  "catalog": "data/r55_42some.g6",
+  "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+  "catalog_data_line_count": 328,
+  "deletion_labels": "0..41",
+  "pair_selection": "exact Cartesian product of catalog lines 1..328 and deletion labels 0..41",
+  "full_pair_count": 13776,
+  "solver_source": "src/core_completion_proof_solver.cpp",
+  "solver_source_sha256": "944737d42270b381e5b302e9b38ea4421b1a9c4049d363ecfcc89150e60877e3",
+  "solver_binary": "/tmp/core_completion_proof_solver_catalog_screen",
+  "solver_binary_sha256": "0043eb175c163bf26c936e743298fbf296c1413855fa445d8255098d20643a33",
+  "screen_runner": "src/core_completion_catalog_screen.py",
+  "screen_runner_sha256": "a9aca0d613f02ccb112cfd25b6f7c24b5802503cc36e973b70034a28cfca4fe2",
+  "coverage_checker": "verify/core_completion_catalog_screen_coverage.py",
+  "coverage_checker_sha256": "b26dd113bb72b6d7b9a5c2296b183d23ee401051685a98c4ef430592d01d4f56",
+  "seconds_limit_per_instance": 10.0,
+  "node_limit_per_instance": 1000000,
+  "jobs": 8,
+  "unsat_proof_generation": false,
+  "unsat_proof_replay": false,
+  "output_directory": "results/core_completion_catalog_k1_full_screen",
+  "status_policy": {
+    "SAT": "Atomically preserve the raw model before reconstruction, then require both independent graph verifiers. Only dual-verified SAT is certified.",
+    "UNSAT": "Record OBSERVED_UNSAT_UNCHECKED with solver statistics. This is a reproducible computational observation, never a certified negative.",
+    "LIMIT": "Record LIMIT_NO_CONCLUSION exactly; do not infer SAT or UNSAT.",
+    "ERROR": "Record SCREEN_ERROR exactly and fail the coverage/status audit."
+  },
+  "coverage_policy": [
+    "Require exactly 13776 unique records.",
+    "Require every pair in the Cartesian product and no extra pair.",
+    "Require each record's selected line and deletion to agree with the solver output.",
+    "Require catalog and solver hashes to match this plan.",
+    "Report negative_certified_count=0 regardless of aggregate UNSAT observations."
+  ],
+  "sat_artifact_policy": [
+    "Write the raw zero-based true-variable model atomically before any graph processing.",
+    "Write graph6 and canonical JSON for the reconstructed 43-vertex graph.",
+    "Run the exhaustive Python five-subset verifier.",
+    "Run the independent C++ recursive bitset clique verifier on graph and complement.",
+    "Retain every model and verifier output even if verification fails."
+  ],
+  "scope_warning": "Even 13776 observed UNSAT statuses would only be an unchecked screen of these fixed 41-vertex cores. They would not certify their nonextendibility and would not imply global order-43 nonexistence. The earlier 16-pair checked pilot remains the only certified negative subset."
+}

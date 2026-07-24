@@ -31,8 +31,8 @@ MAGIC = b"EXTDPLL1"
 LEAF = 255
 
 
-def decode_short_graph6(raw: bytes) -> list[int]:
-    """Decode one noncomment short-graph6 line without project imports."""
+def selected_graph6_line(raw: bytes, line_number: int = 1) -> bytes:
+    """Return a selected noncomment graph6 line."""
     lines = [
         line.strip()
         for line in raw.splitlines()
@@ -40,7 +40,16 @@ def decode_short_graph6(raw: bytes) -> list[int]:
     ]
     if not lines:
         raise ValueError("graph file has no data line")
-    line = lines[0]
+    if not 1 <= line_number <= len(lines):
+        raise ValueError(
+            f"graph line {line_number} is outside 1..{len(lines)}"
+        )
+    return lines[line_number - 1]
+
+
+def decode_short_graph6(raw: bytes) -> list[int]:
+    """Decode one short-graph6 line without project imports."""
+    line = selected_graph6_line(raw)
     if line.startswith(b">>graph6<<"):
         line = line[len(b">>graph6<<") :]
     if not line:
@@ -178,11 +187,13 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--graph", required=True, type=Path)
     parser.add_argument("--proof", required=True, type=Path)
+    parser.add_argument("--line", type=int, default=1)
     args = parser.parse_args()
     started = time.perf_counter()
 
     graph_raw = args.graph.read_bytes()
-    adjacency = decode_short_graph6(graph_raw)
+    graph6_raw = selected_graph6_line(graph_raw, args.line)
+    adjacency = decode_short_graph6(graph6_raw)
     clauses, k4_count, i4_count = extension_clauses(adjacency)
     proof_raw = args.proof.read_bytes()
     if len(proof_raw) < 13:
@@ -199,7 +210,9 @@ def main() -> int:
     result = {
         "status": "VERIFIED_UNSAT_FIXED_EXTENSION_CNF",
         "graph": str(args.graph),
+        "graph_line": args.line,
         "graph_sha256": hashlib.sha256(graph_raw).hexdigest(),
+        "graph6_sha256": hashlib.sha256(graph6_raw + b"\n").hexdigest(),
         "proof": str(args.proof),
         "proof_sha256": hashlib.sha256(proof_raw).hexdigest(),
         "proof_bytes": len(proof_raw),

@@ -1,0 +1,194 @@
+{
+  "schema": "ramsey55.degree_switch_multistart_plan.v1",
+  "created_utc": "2026-07-24T02:08:49.441Z",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "objective": "Escape three independently verified E=2 order-43 basins using only labeled-degree-preserving 2-switches and compound pairs of such switches, stopping immediately on E=0.",
+  "starts": [
+    {
+      "label": "exoo",
+      "path": "results/best_candidates/exoo_seed_20260724.g6",
+      "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+      "C5": 0,
+      "I5": 2,
+      "E": 2,
+      "python_verification": "results/verification/best43_python.json",
+      "python_verification_sha256": "ffe589bfffb0f92c83caca7d6f0b2e855108ecaa265808d5ada7054b0f2d55e4",
+      "cpp_verification": "results/verification/best43_cpp.json",
+      "cpp_verification_sha256": "141e0cc281113acaed2b79e43e0cbb5f5486a09bb5dd85f7f93bd5f0996412ef"
+    },
+    {
+      "label": "incident",
+      "path": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337",
+      "C5": 2,
+      "I5": 0,
+      "E": 2,
+      "python_verification": "results/verification/incident_lns_seed_20260726_python.json",
+      "python_verification_sha256": "66e3a25c987ccfa3bfd2bc38522ba5ae76513ebb861eeec9eecac6d682b3eb68",
+      "cpp_verification": "results/verification/incident_lns_seed_20260726_cpp.json",
+      "cpp_verification_sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "label": "core_kick",
+      "path": "results/best_candidates/core_kick_seed_20260731.g6",
+      "sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6",
+      "C5": 2,
+      "I5": 0,
+      "E": 2,
+      "python_verification": "results/verification/core_kick_seed_20260731_python.json",
+      "python_verification_sha256": "7d1d7942024d894da801261ceb9af19f95cefa6974eac850d7ebf798a7bc8d8f",
+      "cpp_verification": "results/verification/core_kick_seed_20260731_cpp.json",
+      "cpp_verification_sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    }
+  ],
+  "strategy": {
+    "algorithm": "degree_preserving_2switch_compound_lns_v1",
+    "primitive_move": "Choose disjoint present edges ab and cd and replace them by one absent opposite matching ac,bd or ad,bc. Every primitive move preserves the degree of each labeled vertex exactly.",
+    "violated_set_targeting": "For a forbidden clique, force one removed edge to lie in it. For a forbidden independent set, force one added edge to lie in it. Global random legal 2-switches provide diversification.",
+    "larger_neighborhood": "Sample compound moves formed by two edge-disjoint legal 2-switches and evaluate their exact joint unweighted and breakout-weighted objective delta.",
+    "restarts": "Restart zero begins at the registered E=2 graph. Later restarts apply 24 seeded random legal 2-switches before local search.",
+    "selection": "Seeded mt19937_64, integer random-walk threshold, edge tabu, violated-set breakout weights, exact incremental deltas, and periodic full objective audits.",
+    "retention": "Preserve every strict objective improvement immediately as a separate graph. Also retain the most distant equal-best final graph from each bounded run.",
+    "degree_invariant": "The full labeled 43-entry degree vector must equal the corresponding start at every accepted move, restart, retained improvement, and final output."
+  },
+  "validation": {
+    "self_check": "results/verification/degree_switch_dynamic_self_check.json",
+    "self_check_sha256": "8b068749888f4ecf8107f910d71ee3038cfbc452afdc6e880e13420e04e1214a",
+    "self_check_scope": "100 primitive and 50 compound switches checked against full all-5-subset objective recomputation, weighted objective recomputation, exact degree vectors, and rollback.",
+    "determinism_check": "results/verification/degree_switch_determinism_check.json",
+    "determinism_check_sha256": "db70b8b4287e95b129ff944a2cdaae98829f1ab310416fc5af5856e116016a82",
+    "determinism_scope": "Two independent 200-step runs with calibration seed 20260800 produced byte-identical graphs and identical semantic JSON after excluding runtime and output path fields.",
+    "production_seeds_used_in_validation": false
+  },
+  "seeds": [
+    20260801,
+    20260802,
+    20260803
+  ],
+  "search": {
+    "steps_per_restart": 6000,
+    "restarts": 3,
+    "moves_per_start_seed": 18000,
+    "tabu_tenure": 13,
+    "random_walk_per_million": 40000,
+    "breakout_interval": 300,
+    "restart_switches": 24,
+    "targeted_samples": 8,
+    "global_samples": 3,
+    "compound_samples": 2,
+    "full_audit_interval": 250
+  },
+  "registered_run_count": 9,
+  "total_registered_accepted_move_budget": 162000,
+  "per_run_wall_limit_seconds": 900,
+  "binary": {
+    "path": "build/search43_degree_switch_lns",
+    "sha256": "b7142ba147e44bf0b5d4236729678e4d897c143d1eab2419589bda514246f4db",
+    "compile_command": "clang++ -O3 -std=c++17 -Wall -Wextra -pedantic src/search43_degree_switch_lns.cpp -o build/search43_degree_switch_lns"
+  },
+  "verification": {
+    "python_source": "verify/exhaustive_verify.py",
+    "bitset_binary": "build/bitset_verify",
+    "structural_source": "verify/degree_switch_candidate_check.py",
+    "every_retained_artifact": [
+      "Direct Python enumeration of every 5-subset and all ten pairs",
+      "Separately compiled C++ recursive-bitset graph/complement verifier",
+      "Independent exact labeled-degree, balanced changed-incidence, full objective, graph6, and search-record audit"
+    ],
+    "E_equals_0_only": [
+      "Stop the active search immediately and launch no later registered search",
+      "Canonical graph artifact export",
+      "Parser-path comparison, seeded relabel checks, complement checks, and repeat C++ verification through the adversarial artifact audit"
+    ]
+  },
+  "outcome_policy": {
+    "valid_E0": "Label CERTIFIED only after every registered graph and artifact audit passes.",
+    "nonzero_best": "Label REPRODUCIBLE COMPUTATIONAL OBSERVATION. Do not infer nonexistence, local optimality, or basin exhaustion.",
+    "timeout_or_error": "Record the bounded failure exactly and make no construction or nonexistence claim."
+  },
+  "output_root": "results/constructive/degree_switch_v1",
+  "summary_output": "results/verification/degree_switch_pilot_summary.json",
+  "report_output": "results/verification/degree_switch_pilot.report.md",
+  "pinned_files": [
+    {
+      "path": "src/search43_degree_switch_lns.cpp",
+      "sha256": "ceea9d1a7132c9928d2ce6a15018d2be590bd37bb845e8e33d6ce9aae0ae4bb9"
+    },
+    {
+      "path": "src/search43_incident_lns.cpp",
+      "sha256": "556f5550f74b5d835b79646d888979177b710bda7ef5a9b83f4b30fb7fead3fe"
+    },
+    {
+      "path": "src/run_degree_switch_pilot.py",
+      "sha256": "3112f208a97e6fe820d83c3343381522f5ab6bda1e0f608734bf7fcd131e07c4"
+    },
+    {
+      "path": "verify/degree_switch_candidate_check.py",
+      "sha256": "572ad6defe5449d92250c0e6661c1ccef740b06d82e3e2791ea4611e0bb01604"
+    },
+    {
+      "path": "verify/exhaustive_verify.py",
+      "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+    },
+    {
+      "path": "verify/adversarial_audit.py",
+      "sha256": "fe36a288ac707783d2962003060e4d853f78b29c646b8f3902b393e81ddd24ac"
+    },
+    {
+      "path": "src/export_artifact.py",
+      "sha256": "9f4b6f56a57875890511366f8864a3620d2bf869c31ea226583cd7d4ded5d472"
+    },
+    {
+      "path": "build/search43_degree_switch_lns",
+      "sha256": "b7142ba147e44bf0b5d4236729678e4d897c143d1eab2419589bda514246f4db"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    },
+    {
+      "path": "results/verification/degree_switch_dynamic_self_check.json",
+      "sha256": "8b068749888f4ecf8107f910d71ee3038cfbc452afdc6e880e13420e04e1214a"
+    },
+    {
+      "path": "results/verification/degree_switch_determinism_check.json",
+      "sha256": "db70b8b4287e95b129ff944a2cdaae98829f1ab310416fc5af5856e116016a82"
+    },
+    {
+      "path": "results/best_candidates/exoo_seed_20260724.g6",
+      "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a"
+    },
+    {
+      "path": "results/verification/best43_python.json",
+      "sha256": "ffe589bfffb0f92c83caca7d6f0b2e855108ecaa265808d5ada7054b0f2d55e4"
+    },
+    {
+      "path": "results/verification/best43_cpp.json",
+      "sha256": "141e0cc281113acaed2b79e43e0cbb5f5486a09bb5dd85f7f93bd5f0996412ef"
+    },
+    {
+      "path": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337"
+    },
+    {
+      "path": "results/verification/incident_lns_seed_20260726_python.json",
+      "sha256": "66e3a25c987ccfa3bfd2bc38522ba5ae76513ebb861eeec9eecac6d682b3eb68"
+    },
+    {
+      "path": "results/verification/incident_lns_seed_20260726_cpp.json",
+      "sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    },
+    {
+      "path": "results/best_candidates/core_kick_seed_20260731.g6",
+      "sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6"
+    },
+    {
+      "path": "results/verification/core_kick_seed_20260731_python.json",
+      "sha256": "7d1d7942024d894da801261ceb9af19f95cefa6974eac850d7ebf798a7bc8d8f"
+    },
+    {
+      "path": "results/verification/core_kick_seed_20260731_cpp.json",
+      "sha256": "898a0b3ec075f337bcbbf51f6bda9f048446d9932c5219dae2494cc049eed216"
+    }
+  ]
+}

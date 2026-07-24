@@ -1,0 +1,84 @@
+{
+  "schema": "ramsey55.core_radius_semantic_audit.v1",
+  "date": "2026-07-23",
+  "valid": true,
+  "scope": "Independent semantic audit of the aggregate radius-6 constraint on the 666 non-residual core edges, composed with all direct Ramsey clauses.",
+  "artifacts": {
+    "base_graph_sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+    "boundary_metadata_sha256": "6377935d48dcebb4e7c402a6c39a8f1e73a1eeb58cc6918fc489d34e1f21c1fe",
+    "generation_metadata_sha256": "82f52a0f9c5c3d20e36eda1247d2dec643de91f2890aeb3f512151094732c268",
+    "cnf_sha256": "34183fc806ec83136001f49c3373b770484168d70f846ba9b08de5fbe2bfea7d",
+    "generator_source_sha256": "2f7efada3bffe297429f0dcfa83b33cd5fee180fea979a92b595284a66d981ed",
+    "counter_source_sha256": "97e4ce41b6172702e8a0e7e1bdb3ad58aaed464b1687689cb7eacadebcea2b8c",
+    "independent_checker_source_sha256": "0a5bc9ac92a398a0d938c9448d172d0e7e3495aca5b39bc5618318f69fd535c2",
+    "independent_checker_result_sha256": "a705d73398c16f0167b07f9ea08c9ee473c1f51324f285a6c9a539250c99f863"
+  },
+  "production_partition": {
+    "order": 43,
+    "total_edge_variables": 903,
+    "residual_vertices": [3, 4, 7, 38, 41, 42],
+    "non_residual_vertex_count": 37,
+    "free_internal_residual_edges": 15,
+    "free_cut_edges": 222,
+    "free_boundary_edges": 237,
+    "core_edges": 666,
+    "partition_exact": true
+  },
+  "difference_literal_semantics": {
+    "base_nonedge": "positive x; true exactly when x changes from 0 to 1",
+    "base_edge": "negative -x; true exactly when x changes from 1 to 0",
+    "all_666_literals_match_base_adjacency": true,
+    "absolute_variables_are_unique_core_edge_variables": true,
+    "all_difference_literals_are_false_on_the_base_assignment": true
+  },
+  "radius_six_counter": {
+    "bound": 6,
+    "first_auxiliary_variable": 904,
+    "auxiliary_variable_count": 4641,
+    "last_variable": 5544,
+    "counter_clause_count": 9276,
+    "forward_overflow_threshold": 7,
+    "count_formula_checked": true
+  },
+  "full_formula": {
+    "ramsey_clause_count": 1925196,
+    "counter_clause_count": 9276,
+    "clause_count": 1934472,
+    "variable_count": 5544,
+    "degree_counters_included": false,
+    "independent_clause_by_clause_reconstruction_valid": true
+  },
+  "tests_executed": {
+    "repository_unit_tests": {
+      "files": [
+        "tests/core_radius_cnf_tests.py",
+        "tests/direct_ramsey_cnf_tests.py"
+      ],
+      "tests": 10,
+      "status": "PASS"
+    },
+    "small_full_formula_exhaustive": {
+      "order": 5,
+      "mixed_base_core_edges": 3,
+      "free_edges": 7,
+      "radii": [0, 1, 2, 3],
+      "primary_assignments_checked": 4096,
+      "criterion": "There exists an auxiliary assignment satisfying the generated CNF iff the graph avoids homogeneous 5-sets and its core Hamming distance is at most r.",
+      "status": "PASS"
+    },
+    "production_direct_semantic_checks": {
+      "core_literal_checks": 666,
+      "partition_checks": true,
+      "metadata_hash_chain_checks": true,
+      "status": "PASS"
+    }
+  },
+  "recommended_regression_tests": [
+    "Promote the order-5 full-formula exhaustive test into tests/core_radius_cnf_tests.py so integration of Ramsey clauses, signed inputs, auxiliary offsets, and the counter is tested existentially rather than only through a canonical auxiliary assignment.",
+    "Add explicit radius endpoint cases r=0, r=core_edge_count-1, and r=core_edge_count. Radius 0 must force every base edge present and every base nonedge absent; the maximal radius must allocate no auxiliaries or counter clauses.",
+    "Add a complement metamorphic test on a small mixed base: complementing base and candidate flips every primary x but preserves every difference truth value and formula acceptance.",
+    "Add empty-core and empty-boundary cases, plus an invalid/reversed/out-of-range boundary edge rejection test.",
+    "Add a production assertion that the boundary metadata base SHA-256 equals the supplied base graph SHA-256 and that its edge set is exactly the 237-edge residual incidence set, not merely a set used consistently by generator and checker."
+  ],
+  "claim_boundary": "This validates the encoding semantics and the retained formula structure. It does not establish SAT or UNSAT for radius 6 and does not change a Ramsey-number bound."
+}

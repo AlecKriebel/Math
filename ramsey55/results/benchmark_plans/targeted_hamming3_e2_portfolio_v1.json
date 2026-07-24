@@ -1,0 +1,92 @@
+{
+  "created_utc": "2026-07-24T00:59:20Z",
+  "experiment": "targeted_exhaustive_hamming_distance_3",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "question": "Does any graph at exact Hamming distance three from one of the three independently obtained E=2 candidates satisfy the Ramsey(5,5;43) constraints?",
+  "coverage_rule": "Enumerate every unordered triple of distinct graph edges that intersects the edge set of each of the base graph's two homogeneous five-sets. Every valid exact-distance-three repair must meet this necessary condition.",
+  "instances": [
+    {
+      "name": "exoo_seed",
+      "graph": "results/best_candidates/exoo_seed_20260724.g6",
+      "graph_sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+      "first_conflict": [
+        3,
+        4,
+        7,
+        41,
+        42
+      ],
+      "second_conflict": [
+        3,
+        4,
+        38,
+        41,
+        42
+      ],
+      "output": "results/best_candidates/targeted_hamming3_exoo_seed.g6",
+      "result": "results/constructive/targeted_hamming3_exoo_seed.result.json"
+    },
+    {
+      "name": "incident_lns_seed",
+      "graph": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "graph_sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337",
+      "first_conflict": [
+        2,
+        4,
+        24,
+        25,
+        42
+      ],
+      "second_conflict": [
+        4,
+        24,
+        25,
+        26,
+        42
+      ],
+      "output": "results/best_candidates/targeted_hamming3_incident_lns_seed.g6",
+      "result": "results/constructive/targeted_hamming3_incident_lns_seed.result.json"
+    },
+    {
+      "name": "core_kick_seed",
+      "graph": "results/best_candidates/core_kick_seed_20260731.g6",
+      "graph_sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6",
+      "first_conflict": [
+        17,
+        18,
+        19,
+        39,
+        40
+      ],
+      "second_conflict": [
+        17,
+        18,
+        38,
+        39,
+        40
+      ],
+      "output": "results/best_candidates/targeted_hamming3_core_kick_seed.g6",
+      "result": "results/constructive/targeted_hamming3_core_kick_seed.result.json"
+    }
+  ],
+  "expected_targeted_triple_count_per_instance": 2438883,
+  "pinned_files": [
+    {
+      "path": "src/search43_targeted_hamming3.cpp",
+      "sha256": "b6e201dfee4159e91ccfe538672dd50fdbbfa55a6020eae1a7fc6e1b27795d63"
+    },
+    {
+      "path": "src/search43.cpp",
+      "sha256": "2f0a1fba656b7550124f2a213a046c5ace42742d4d8e3c36967eefabe16e3674"
+    },
+    {
+      "path": "build/search43_targeted_hamming3",
+      "sha256": "3110771959fb1798f508ac237ede020ee1a741321a562c02e94adf31732e6878"
+    }
+  ],
+  "outcome_policy": {
+    "E0": "Immediately run both full graph verifiers, canonical export, relabel/complement audit, and adversarial artifact audit. Only the complete audit can establish a construction.",
+    "positive_best_E": "Record exhaustive scoped evidence only. It excludes exact-distance-three repairs around that labeled base but is not global nonexistence.",
+    "error_or_interruption": "Record incomplete execution and make no coverage claim."
+  }
+}

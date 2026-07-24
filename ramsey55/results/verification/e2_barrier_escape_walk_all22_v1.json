@@ -1,0 +1,77 @@
+{
+  "artifact": "ramsey55_e2_barrier_escape_walk_all22_v1",
+  "generated_at_utc": "2026-07-24T04:22:00Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "implementation": {
+    "source": "src/search43_e2_barrier_escape.cpp",
+    "source_sha256": "3c8f97d2dbff5b7736768b891c1b40f4f627ec0d353bb3d67f31154db4ea9c69",
+    "ephemeral_binary_sha256": "61a16d71d9b729de9979da91232d695b4043d0d31ae556b0de961a76bc80f638"
+  },
+  "input_binding": {
+    "independent_cycle_audit": "results/verification/e2_neutral_cycle_audit_v1.json",
+    "independent_cycle_audit_sha256": "13a5ff1f9572f385d86d89751ff935a8289a321310f40cf5969f5250a731936e",
+    "input_seed_glob": "results/constructive/catalog_seed_search_stratified_v1/*.g6",
+    "input_seed_count": 22
+  },
+  "parameters": {
+    "seed": 20261232,
+    "rollouts_per_barrier": 1,
+    "steps_per_rollout": 160,
+    "tabu_tenure": 11,
+    "noise_per_million": 90000,
+    "objective_ceiling": 80,
+    "component_limit": 256
+  },
+  "result": {
+    "initial_components": 22,
+    "initial_neutral_states": 1892,
+    "components_discovered": 0,
+    "total_components": 22,
+    "total_neutral_states": 1892,
+    "cycle_length_distribution": {
+      "86": 22
+    },
+    "barriers_per_state_distribution": {
+      "4": 1892
+    },
+    "barriers_by_height": {
+      "9": 2838,
+      "10": 1892,
+      "12": 946,
+      "15": 946,
+      "38": 946
+    },
+    "rollouts": 7568,
+    "steps": 910881,
+    "known_cycle_visits": 7977,
+    "repeated_barrier_crossings": 7977,
+    "exhausted": 7568,
+    "noncycle_E2_hits": 0,
+    "E1_visits": 0,
+    "best_E": 2,
+    "maximum_E": 80,
+    "terminal_best_distribution": {
+      "2": 7176,
+      "3": 14,
+      "4": 8,
+      "5": 5,
+      "6": 7,
+      "7": 2,
+      "8": 5,
+      "9": 151,
+      "10": 120,
+      "11": 1,
+      "12": 45,
+      "13": 1,
+      "15": 29,
+      "17": 1,
+      "20": 2,
+      "23": 1
+    },
+    "exact_objective_checks": 914380,
+    "ceiling_rejections": 2305362,
+    "stopped_on_E0": false,
+    "runtime_seconds": 13.294195
+  },
+  "claim_boundary": "These are heuristic forced-barrier excursions from a finite retained corpus. No E=0, E=1, or new E=2 component was observed, but this does not certify nonexistence."
+}

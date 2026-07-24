@@ -1,0 +1,70 @@
+{
+  "created_utc": "2026-07-24T05:41:52Z",
+  "experiment": "catalog42_all328_e2_extension_proof_v1",
+  "status": "FROZEN_BEFORE_PROOF_PRODUCTION",
+  "question": "For each of the 328 supplied order-42 Ramsey cores, does any one-vertex extension have at most two monochromatic five-sets?",
+  "catalog": {
+    "path": "data/r55_42some.g6",
+    "sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+    "expected_graph_count": 328,
+    "require_unique_lines": true
+  },
+  "prior_exploration": {
+    "proof_free": true,
+    "observation": "A complete 328-line Glucose screen found SAT only on catalog lines 42 and 256.",
+    "evidentiary_status": "Hypothesis only until every UNSAT line has an independently checked proof and every SAT model passes exhaustive graph checking."
+  },
+  "encoding": {
+    "primary_variables": "42 adjacency bits from the new vertex to the fixed core",
+    "relaxations": "One definition-equivalent relaxation variable for every core homogeneous four-set extension constraint",
+    "bound": "A deterministic forward counter enforces at most two true relaxation variables",
+    "semantics": "SAT iff the fixed core has a one-vertex extension with at most two monochromatic five-sets"
+  },
+  "pinned_sources": {
+    "batch_sha256": "463d849577375cb708dc0a6d83ef7f0f809e8752176304b37a480ba3c87b220c",
+    "generator_sha256": "faf9dc82bbd749916792f7cd7ecef47e55139cc18f9f2df1772be7c9e748e9c5",
+    "shared_definition_sha256": "ead0d4c14e2888b54db044b426bb666d505b9b57018abe05625ffd9f331afff5",
+    "counter_sha256": "97e4ce41b6172702e8a0e7e1bdb3ad58aaed464b1687689cb7eacadebcea2b8c",
+    "graph_io_sha256": "5eb4087aa2c601f86e02b87de858febf1f2987dcd96471be776fb63a30207c22",
+    "independent_checker_sha256": "6e6134bedc48606e9d37f8bc617f6d56159fc45dd66e70fbd9a45413eeee908d",
+    "checker_helpers_sha256": "e33ede2fd0736f6e3839205c1b67bb77515e0d923175f3a669a439feb7b1e711",
+    "solver_worker_sha256": "d8ce8f16146069ba438130f48e2e21babdd7bdc7a6c963e74114ae9c54029006",
+    "formula_tests_sha256": "3410e2fd24f2478d02dcc22bb8f60ac93182c5da53b28c42bcde000d23eadfdf",
+    "batch_tests_sha256": "ba64f83d18af471965409f4b52480d91b6ab5d174aac5c8d2cececa6973a3cfb",
+    "tests_passed": 6,
+    "orchestrator_python_path": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "orchestrator_python_sha256": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf"
+  },
+  "pinned_proof_toolchain": {
+    "solver": "PySAT 1.9.dev7 Glucose3 with proof logging",
+    "python_sha256": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0",
+    "pysolvers_extension_sha256": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+    "drat_trim_commit": "2e3b2dc0ecf938addbd779d42877b6ed69d9a985",
+    "drat_trim_sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+  },
+  "execution": {
+    "jobs": 2,
+    "generate_and_check_timeout_seconds_per_line": 60,
+    "solve_timeout_seconds_per_line": 60,
+    "drat_check_timeout_seconds_per_line": 120,
+    "proof_directory": "certificates/catalog42_e2_extension_proofs_v1",
+    "result": "certificates/catalog42_e2_extension_proof_batch_v1.result.json"
+  },
+  "storage_gate": {
+    "free_bytes_before_run": 11369021440,
+    "minimum_required_free_bytes": 2147483648,
+    "passed": true
+  },
+  "acceptance": {
+    "formula": "The independent checker must reconstruct every clause exactly, validate the core as K5-free and independent-5-free, and match all formula metadata and hashes.",
+    "sat": "The solver model must satisfy the CNF and an independent exhaustive enumeration of all 962598 five-subsets of the resulting 43-vertex graph must find at most two homogeneous sets.",
+    "unsat": "Glucose3 must emit DRAT and independently pinned drat-trim must print the exact status line s VERIFIED; all formula and proof hashes must remain stable.",
+    "coverage": "Exactly one accepted terminal record is required for each catalog line 1 through 328."
+  },
+  "outcome_policy": {
+    "expected_sat_lines_only": "If and only if lines 42 and 256 are SAT and all other 326 lines are certified UNSAT, report that these are the unique E<=2-extensible supplied cores.",
+    "unexpected_sat": "Independently validate and report the model; do not preserve the exploratory two-line claim.",
+    "timeout_or_failure": "Make no complete-catalog claim and retain only individually verified line results.",
+    "global_scope": "No outcome proves a global order-43 Ramsey claim because the supplied 328 graphs are not a complete catalog of all order-42 Ramsey graphs."
+  }
+}

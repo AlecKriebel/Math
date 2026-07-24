@@ -143,3 +143,32 @@ semantic/adversarial tests
 ```
 
 The retained CNF and metadata occupy 1,522,911 bytes.
+
+## 2026-07-23 proof-producing follow-up
+
+The timeout above remains an accurate record of the first solver attempt, but
+it is superseded as the current formula status.
+
+**CERTIFIED:** Glucose3 from Python-SAT 1.9.dev7 subsequently solved the same
+byte-identical CNF UNSAT in 0.283349 internal seconds (0.436018 wall seconds),
+with 10,035 conflicts, 14,400 decisions, and 189,745 propagations.
+
+The 1,070,726-byte ASCII DRAT trace, SHA-256
+`e7c8da6188c304e79ca2ca9bc077d261ed7536b3e4b3ec1181bebb006547c654`,
+was accepted by `drat-trim` at commit
+`2e3b2dc0ecf938addbd779d42877b6ed69d9a985`. The checker retained 6,335
+input clauses and 5,810 of 10,036 lemmas, used 185,659 resolution steps, and
+reported zero RAT lemmas. Its generated 1,891,741-byte LRAT proof, SHA-256
+`592d2ce4df932c6332af5b2523b4fbaaf6d394d14aa639c74b303f1bf1195209`,
+was independently accepted by `lrat-check`.
+
+The retained proof and complete checker transcripts are:
+
+- `residual_lns_incident_six_glucose3.drat`
+- `residual_lns_incident_six_glucose3.lrat`
+- `residual_lns_incident_six_glucose3.result.json`
+- `residual_completion_workflow.report.md`
+
+The conclusion remains strictly fixed-boundary: no rewiring of the 237
+incident edges works while the other 666 edges equal the recorded \(E=2\)
+base graph. It is not global order-43 nonexistence.

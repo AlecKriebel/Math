@@ -16,11 +16,13 @@ from extension_sat_proof_check import (  # noqa: E402
     TreeChecker,
     decode_short_graph6,
     extension_clauses,
+    selected_graph6_line,
 )
 
 
 GRAPH = ROOT / "data" / "exoo42_constructed.g6"
 PROOF = ROOT / "results" / "extension_sat_proof_exoo42.bin"
+CATALOG = ROOT / "data" / "r55_42some.g6"
 
 
 class ExtensionSatProofTests(unittest.TestCase):
@@ -56,6 +58,18 @@ class ExtensionSatProofTests(unittest.TestCase):
         corrupted = bytes([254]) + self.tree[1:]
         with self.assertRaisesRegex(ValueError, "invalid branch"):
             TreeChecker(corrupted, 42, self.clauses).run()
+
+    def test_catalog_line_selection(self) -> None:
+        raw = CATALOG.read_bytes()
+        first = selected_graph6_line(raw, 1)
+        second = selected_graph6_line(raw, 2)
+        self.assertNotEqual(first, second)
+        self.assertEqual(len(decode_short_graph6(first)), 42)
+        self.assertEqual(len(decode_short_graph6(second)), 42)
+        with self.assertRaisesRegex(ValueError, "outside"):
+            selected_graph6_line(raw, 0)
+        with self.assertRaisesRegex(ValueError, "outside"):
+            selected_graph6_line(raw, 329)
 
 
 if __name__ == "__main__":

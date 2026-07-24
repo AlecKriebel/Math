@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-07-24T05:07:51Z",
+  "experiment": "e2_core_deletion_catalog_expansion_v1",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUN",
+  "question": "Do the four certified order-42 graphs obtained by deleting a shared-core vertex from each of the 22 exact E=2 near misses add isomorphism classes beyond the supplied 328-line order-42 catalog?",
+  "mathematical_basis": "When two same-colour forbidden five-sets intersect in a four-set C, deleting any vertex of C destroys both; if they are the only forbidden five-sets, each deletion is a Ramsey(5,5;42) graph.",
+  "inputs": {
+    "candidate_directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "candidate_count": 22,
+    "candidate_corpus_concatenated_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0",
+    "catalog": "data/r55_42some.g6",
+    "catalog_line_count": 328,
+    "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb"
+  },
+  "implementation": {
+    "source": "src/e2_core_deletion_catalog_expansion.py",
+    "source_sha256": "4ac809b1d671ca1e41792b8c4ecb34f4deea1588a8bf097805dd2b0645d7d1f4",
+    "tests": "tests/e2_core_deletion_catalog_expansion_tests.py",
+    "tests_sha256": "ff9eea16c7c0904ac2f9f42f3dd87b94399ae185443118623ba4f6d473c231d1",
+    "tests_passed": 2,
+    "nauty_version": "2.9.3",
+    "nauty_release_tarball_sha256": "9fc4edae04f88a0f5883985be3b39cf7f898fd6cc96e96b9ee25452743cc1b5b",
+    "labelg_sha256": "ae8b1e7ef173c1665725e708bd7abd00b08ee4230ba2bd04117ec63d441274a0"
+  },
+  "expected_checks": [
+    "Each source has exactly two homogeneous five-sets of one colour intersecting in exactly four vertices.",
+    "All 88 core deletions have order 42 and pass direct all-five-subset enumeration.",
+    "All 88 core deletions independently pass recursive bitset clique searches in the graph and complement.",
+    "nauty labelg canonicalizes both each graph and its complement before catalog comparison."
+  ],
+  "outcome_policy": {
+    "novel_classes": "Retain one canonical graph per new complement-normalized class as new constructive seeds; novelty is only relative to the supplied catalog.",
+    "no_novel_classes": "Record closure of this finite 22-candidate transformation only; do not infer completeness of the order-42 catalog.",
+    "verification_failure": "Stop and make no transformation or novelty claim."
+  }
+}

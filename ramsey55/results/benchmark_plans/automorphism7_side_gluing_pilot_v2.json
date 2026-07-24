@@ -1,0 +1,81 @@
+{
+  "schema": "ramsey55.automorphism7_side_gluing_plan.v2",
+  "status": "PREREGISTERED",
+  "created_utc": "2026-07-24T03:38:50Z",
+  "supersedes_nonlaunchable_plan": {
+    "path": "results/benchmark_plans/automorphism7_side_gluing_pilot_v1.json",
+    "sha256": "b569f3e4d99bfbadfaec2ec432740d0308e7631c70f08ecd371ad719ffbd312a",
+    "reason": "The adversarial audit hardened the runner after v1 was frozen. The v1 runner hash and v1 schema are intentionally rejected; no v1 production launched."
+  },
+  "hypothesis": "Fixing independently valid C7-invariant R(4,5;21) neighborhood and dual-neighborhood sides will turn the hard 129-variable order-7 orbit instance into small 63-variable cross-edge gluings, and at least one of 256 deterministic diverse pairs may yield a valid (5,5;43) graph.",
+  "mathematical_reduction": {
+    "degree_argument": "The unique fixed vertex has degree divisible by 7. Every (5,5;43) graph has degree in [18,24], so its degree must be 21 and it is adjacent to exactly three of the six 7-cycles.",
+    "canonicalization": "The six cycles may be permuted while preserving the prescribed automorphism. Therefore the three neighbor cycles may be named first and their six fixed-vertex orbit variables set true,true,true,false,false,false without loss of generality.",
+    "side_A": "The 21 neighbors induce a K4-free, I5-free graph.",
+    "side_B": "The 21 nonneighbors induce a K5-free, I4-free graph and are represented as the complement of another K4-free, I5-free side model.",
+    "fixed_orbit_count": 66,
+    "remaining_variables_per_gluing": 63
+  },
+  "cnf": {
+    "path": "certificates/order43_automorphism7_six_cycles.cnf",
+    "sha256": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1"
+  },
+  "metadata": {
+    "path": "certificates/order43_automorphism7_six_cycles.metadata.json",
+    "sha256": "04f18fdcf4d50bda27580e1653f99f423d9799ba1ddbf0e95b1683542e6b7a56"
+  },
+  "runner": {
+    "path": "src/automorphism7_side_gluing_pilot.py",
+    "sha256": "5bc3852bb0e81f127652f14e15e806f9e3712e8ecc8163a92c8255bfa743a906"
+  },
+  "exhaustive_verifier": {
+    "path": "verify/exhaustive_verify.py",
+    "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+  },
+  "bitset_verifier": {
+    "path": "build/bitset_verify",
+    "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+  },
+  "configuration": {
+    "side_pool_count": 64,
+    "side_pool_seed": 20261101,
+    "pair_count": 256,
+    "conflict_budget_per_pair": 200000,
+    "side_formula_variable_count": 30,
+    "side_formula_clause_count": 3618,
+    "side_formula_sha256": "f59be7024c4b15cba7238da38d865a4f8ea8dd631ed5c096300054679cd65c96",
+    "side_pool_sha256": "5a67cd579a64e1011533a04d36a17aeaf3e92b332997645726d73c00aa36b01f",
+    "pair_rule": "a=i mod 64; round=floor(i/64); b=(17*i+23+11*round) mod 64 for i=0,...,255",
+    "pair_schedule_sha256": "e6da298b77008bcb68a3c6cc67dc40376accd98ce4a96a2edb238e654d38b6fb"
+  },
+  "outputs": {
+    "summary": "results/global_exact/automorphism7_side_gluing_pilot_v2.json",
+    "candidate": "results/best_candidates/automorphism7_side_gluing_v2.g6"
+  },
+  "storage_gate": {
+    "maximum_new_artifact_bytes": 2000000,
+    "minimum_free_bytes_after_completion": 2147483648,
+    "required_prelaunch_free_bytes": 2149483648,
+    "on_failure": "Do not launch and do not weaken the frozen plan."
+  },
+  "pysat_version": "1.9.dev7",
+  "toolchain_sha256": {
+    "pysat_solvers_py": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e",
+    "pysolvers_extension": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded",
+    "python": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+  },
+  "audit": {
+    "path": "results/verification/automorphism7_side_gluing_pilot_v1_adversarial_audit.json",
+    "sha256": "823e59cf9c6c56fd3fbf6396281429e73d4158f556e12053c8bd00ca87ce4f69",
+    "test_path": "tests/automorphism7_side_gluing_tests.py",
+    "test_sha256": "749d1a800544f8ea15f8b3d7c9c965bee5d1555d8fae94785ac651cabc4806f4",
+    "test_count": 10,
+    "no_production_controls_passed": true
+  },
+  "outcome_policy": {
+    "SAT": "Immediately materialize the full graph atomically, replay the orbit CNF, and require both established full-graph verifiers. A dual-verified model proves R(5,5)>=44.",
+    "UNSAT": "Each proof-free pair decision is OBSERVED_UNSAT_UNCHECKED and makes no negative class claim.",
+    "BUDGET": "Budget exhaustion has no mathematical meaning.",
+    "scope_warning": "Failure across the sampled side pairs neither excludes the full order-7 class nor arbitrary order-43 graphs."
+  }
+}

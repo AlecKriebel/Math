@@ -1,0 +1,109 @@
+{
+  "schema": "ramsey55.core_kick_dynamic_pilot_plan.v1",
+  "created_utc": "2026-07-24T00:07:16Z",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "objective": "Search beyond the certified aggregate core-radius-six barrier while all 237 residual-boundary edges remain mutable and every visited state differs on at least seven of the other 666 core edges.",
+  "prior_evidence": {
+    "core_radius_6": "CERTIFIED UNSAT for all assignments with at most six changed core edges",
+    "proof_core_top_7_cut": "CERTIFIED UNSAT for the single fixed cut containing proof-core ranks 1 through 7",
+    "aggregate_core_radius_7": "TIMEOUT; neither SAT nor UNSAT"
+  },
+  "strategy": {
+    "name": "core_kick_dynamic_swap_lns_v1",
+    "initialization": "Restart zero flips proof-core ranks 1 through 7. Later restarts choose four distinct edges from ranks 1 through 64 and three distinct edges from all 666 ranked core pairs, using the run seed.",
+    "boundary_moves": "Every one of the 237 edges incident to vertices 3,4,7,38,41,42 is always eligible.",
+    "core_moves": "Admissible single flips maintain the registered distance interval. Dynamic changed/unchanged core swaps preserve distance and sample new proof-guided or diverse cuts.",
+    "distance_invariant": "Every production state has core Hamming distance in [7,12], so no state lies inside the certified radius-six region.",
+    "selection": "Weighted violated-set min-conflicts with deterministic tabu, breakout weights, random walk, bad-set core swaps, and periodic global core swaps."
+  },
+  "seeds": [
+    20260731,
+    20260732,
+    20260733
+  ],
+  "search": {
+    "seed_graph": "results/best_candidates/exoo_seed_20260724.g6",
+    "metadata": "certificates/residual_lns_incident_six.metadata.json",
+    "ranking": "results/verification/residual_lns_incident_six_proof_core_edge_rank.json",
+    "incident_vertices": "3,4,7,38,41,42",
+    "steps_per_restart": 6000,
+    "restarts": 2,
+    "total_steps_per_seed": 12000,
+    "tabu_tenure": 11,
+    "random_walk": 0.04,
+    "breakout_interval": 250,
+    "boundary_perturbation": 12,
+    "initial_core_distance": 7,
+    "min_core_distance": 7,
+    "max_core_distance": 12,
+    "guided_initial_edges": 4,
+    "guided_pool": 64,
+    "swap_samples": 2,
+    "global_swap_interval": 8
+  },
+  "total_registered_steps": 36000,
+  "per_seed_wall_limit_seconds": 180,
+  "binary": {
+    "path": "build/search43_core_kick_lns",
+    "sha256": "8698ec5a69fd000949af75aef59c3c1277486f608298b5dee6f4fa9d5c56db04",
+    "compile_command": "clang++ -O3 -std=c++17 -Wall -Wextra -pedantic src/search43_core_kick_lns.cpp -o build/search43_core_kick_lns"
+  },
+  "pinned_files": [
+    {
+      "path": "src/search43_core_kick_lns.cpp",
+      "sha256": "3af7168a8f90197a3286126a774f8aef5c5bae42d3c8f8fd14276e0ec8657fb0"
+    },
+    {
+      "path": "src/search43_incident_lns.cpp",
+      "sha256": "556f5550f74b5d835b79646d888979177b710bda7ef5a9b83f4b30fb7fead3fe"
+    },
+    {
+      "path": "src/run_core_kick_pilot.py",
+      "sha256": "a2233a8095d74e2dd46c81f68d79ff18eb626378846bd93ba1b67d5088a77a33"
+    },
+    {
+      "path": "verify/core_kick_candidate_check.py",
+      "sha256": "736d520de764fa6e7da614ab014a7447730c1604e12e9b5c5680a2bbe9e226cc"
+    },
+    {
+      "path": "verify/exhaustive_verify.py",
+      "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    },
+    {
+      "path": "results/best_candidates/exoo_seed_20260724.g6",
+      "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a"
+    },
+    {
+      "path": "certificates/residual_lns_incident_six.metadata.json",
+      "sha256": "6377935d48dcebb4e7c402a6c39a8f1e73a1eeb58cc6918fc489d34e1f21c1fe"
+    },
+    {
+      "path": "results/verification/residual_lns_incident_six_proof_core_edge_rank.json",
+      "sha256": "3cd52e8c6f60e7d1923bc53c449a09ca93541eb27593a3f9e840ab76f60e4f65"
+    }
+  ],
+  "verification_policy": {
+    "every_retained_candidate": [
+      "direct Python enumeration of every 5-subset",
+      "independent C++ recursive-bitset graph/complement verifier",
+      "independent boundary/core-distance/search-output audit"
+    ],
+    "E_equals_0_only": [
+      "canonical graph artifact export",
+      "parser-path comparison",
+      "deterministic relabel audit",
+      "complement audit",
+      "repeat C++ verification on all transformed artifacts"
+    ]
+  },
+  "outcome_policy": {
+    "valid_E0": "Label CERTIFIED only after every registered graph and artifact audit passes.",
+    "nonzero_best": "Label REPRODUCIBLE COMPUTATIONAL OBSERVATION. Do not infer nonexistence or local optimality.",
+    "timeout_or_error": "Record the bounded failure exactly and make no construction or nonexistence claim."
+  },
+  "summary_output": "results/verification/core_kick_dynamic_pilot_summary.json"
+}

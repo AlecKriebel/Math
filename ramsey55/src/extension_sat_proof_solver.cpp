@@ -40,6 +40,7 @@ struct Graph {
 struct Options {
   std::string graph_path;
   std::string proof_path;
+  uint64_t line_number = 1;
   uint64_t node_limit = std::numeric_limits<uint64_t>::max();
   double seconds_limit = std::numeric_limits<double>::infinity();
   uint64_t progress_interval = 10000000;
@@ -51,16 +52,23 @@ struct SearchResult {
   uint64_t false_mask{};
 };
 
-std::string first_data_line(const std::string& path) {
+std::string data_line(const std::string& path, uint64_t requested_line) {
+  if (requested_line == 0)
+    throw std::runtime_error("--line must be at least 1");
   std::ifstream input(path);
   if (!input) throw std::runtime_error("cannot open graph: " + path);
   std::string line;
+  uint64_t data_index = 0;
   while (std::getline(input, line)) {
     while (!line.empty() && (line.back() == '\r' || line.back() == '\n'))
       line.pop_back();
-    if (!line.empty() && line[0] != '#') return line;
+    if (!line.empty() && line[0] != '#') {
+      ++data_index;
+      if (data_index == requested_line) return line;
+    }
   }
-  throw std::runtime_error("graph file has no data line");
+  throw std::runtime_error(
+      "requested graph data line is outside the input catalog");
 }
 
 Graph decode_graph6(const std::string& raw) {
@@ -314,6 +322,8 @@ Options parse_options(int argc, char** argv) {
       options.graph_path = value(arg);
     else if (arg == "--proof")
       options.proof_path = value(arg);
+    else if (arg == "--line")
+      options.line_number = parse_u64(value(arg), arg);
     else if (arg == "--node-limit")
       options.node_limit = parse_u64(value(arg), arg);
     else if (arg == "--seconds-limit")
@@ -341,7 +351,8 @@ void write_header(std::ostream& output, int n, uint32_t clauses) {
 int main(int argc, char** argv) {
   try {
     const Options options = parse_options(argc, argv);
-    const Graph graph = decode_graph6(first_data_line(options.graph_path));
+    const Graph graph =
+        decode_graph6(data_line(options.graph_path, options.line_number));
     uint64_t clique4_count = 0;
     uint64_t independent4_count = 0;
     const std::vector<Clause> clauses =
@@ -370,6 +381,7 @@ int main(int argc, char** argv) {
       status = "LIMIT";
 
     std::cout << "{\"status\":\"" << status << "\",\"n\":" << graph.n
+              << ",\"graph_line\":" << options.line_number
               << ",\"k4_clauses\":" << clique4_count
               << ",\"i4_clauses\":" << independent4_count
               << ",\"clauses\":" << clauses.size()

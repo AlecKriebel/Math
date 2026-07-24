@@ -1,0 +1,82 @@
+{
+  "schema": "ramsey55.proof_guided_core_cut_plan.v1",
+  "created_utc": "2026-07-23T23:31:23Z",
+  "status": "PREREGISTERED_BEFORE_FORMULA_GENERATION",
+  "evidence_label": "CERTIFIED if and only if an independently reconstructed formula and checked DRAT/LRAT establish UNSAT; otherwise record SAT, TIMEOUT, or ERROR exactly",
+  "motivation": "The aggregate certificate excludes every assignment with at most six changed core edges. The first unexplored shell is therefore radius seven. Instead of blindly increasing the timed-out aggregate radius-seven solve, open one deterministic seven-edge cut selected by the independently reproduced proof-core occurrence ranking.",
+  "base_graph": {
+    "path": "results/best_candidates/exoo_seed_20260724.g6",
+    "sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a"
+  },
+  "ranking": {
+    "path": "results/verification/residual_lns_incident_six_proof_core_edge_rank.json",
+    "sha256": "3cd52e8c6f60e7d1923bc53c449a09ca93541eb27593a3f9e840ab76f60e4f65",
+    "selection_rule": "Take ranks 1 through 7 in full_occurrence_order_ranking; equal scores retain the first-scored order explicitly recorded by the audit."
+  },
+  "free_incident_vertices": [
+    3,
+    4,
+    7,
+    38,
+    41,
+    42
+  ],
+  "additional_free_core_edges": [
+    [0, 32],
+    [18, 33],
+    [18, 20],
+    [24, 26],
+    [1, 10],
+    [9, 29],
+    [27, 29]
+  ],
+  "ranking_scores": [
+    104,
+    102,
+    101,
+    101,
+    100,
+    96,
+    94
+  ],
+  "expected_free_edge_count": 244,
+  "fixed_core_edge_count": 659,
+  "solver": {
+    "name": "Glucose3",
+    "pysat_version": "1.9.dev7",
+    "time_limit_seconds": 300,
+    "proof_check_time_limit_seconds": 1200,
+    "proof_chain": "ASCII DRAT checked by pinned drat-trim, converted to LRAT, then checked by pinned lrat-check"
+  },
+  "outcome_policy": {
+    "SAT": "Export the 43-vertex graph, verify every five-subset independently in Python and by the C++ bitset verifier, and audit the fixed 659-edge boundary before any construction claim.",
+    "CERTIFIED_UNSAT": "Record a scoped exclusion of this exact 244-edge cut only. Do not generalize to all radius-seven assignments or global order-43 nonexistence.",
+    "TIMEOUT": "Record timeout only; do not infer satisfiability.",
+    "ERROR_OR_UNCERTIFIED": "Record the infrastructure or proof-checking failure and make no mathematical claim."
+  },
+  "generation_argv": [
+    "python3",
+    "src/residual_lns_sat.py",
+    "results/best_candidates/exoo_seed_20260724.g6",
+    "--free-incident-vertices",
+    "3,4,7,38,41,42",
+    "--free-edge",
+    "0,32",
+    "--free-edge",
+    "18,33",
+    "--free-edge",
+    "18,20",
+    "--free-edge",
+    "24,26",
+    "--free-edge",
+    "1,10",
+    "--free-edge",
+    "9,29",
+    "--free-edge",
+    "27,29",
+    "--output",
+    "certificates/residual_lns_incident_six_plus_core_top7.cnf",
+    "--metadata",
+    "certificates/residual_lns_incident_six_plus_core_top7.metadata.json"
+  ]
+}

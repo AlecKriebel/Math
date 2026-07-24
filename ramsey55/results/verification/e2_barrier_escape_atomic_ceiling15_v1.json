@@ -1,0 +1,115 @@
+{
+  "artifact": "ramsey55_e2_barrier_escape_atomic_ceiling15_v1",
+  "generated_at_utc": "2026-07-24T04:19:13Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "implementation": {
+    "source": "src/search43_e2_barrier_escape.cpp",
+    "source_sha256": "3c8f97d2dbff5b7736768b891c1b40f4f627ec0d353bb3d67f31154db4ea9c69",
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "compile_flags": [
+      "-std=c++20",
+      "-O3",
+      "-DNDEBUG",
+      "-Wall",
+      "-Wextra",
+      "-pedantic"
+    ],
+    "ephemeral_binary_sha256": "61a16d71d9b729de9979da91232d695b4043d0d31ae556b0de961a76bc80f638"
+  },
+  "input_binding": {
+    "independent_cycle_audit": "results/verification/e2_neutral_cycle_audit_v1.json",
+    "independent_cycle_audit_sha256": "13a5ff1f9572f385d86d89751ff935a8289a321310f40cf5969f5250a731936e",
+    "input_seed_glob": "results/constructive/catalog_seed_search_stratified_v1/*.g6",
+    "input_seed_count": 22
+  },
+  "dynamic_self_check": {
+    "seed_graph": "results/constructive/catalog_seed_search_stratified_v1/line_001.g6",
+    "seed": 20261231,
+    "exhaustive_base_edge_delta_checks": 903,
+    "random_sequence_delta_checks": 200,
+    "status": "PASS"
+  },
+  "production_parameters": {
+    "mode": "atomic_scan",
+    "atomic_pair_retain": 15,
+    "closure_state_limit": 250000
+  },
+  "result": {
+    "algorithm": "e2_atomic_barrier_pair_triple_scan_v1",
+    "component_count": 22,
+    "neutral_state_count": 1892,
+    "pair_checks": 6826336,
+    "pair_exact_replays": 549626,
+    "minimum_pair_objective": 9,
+    "pair_retain_ceiling": 15,
+    "pair_raw_retained_distribution": {
+      "9": 5676,
+      "10": 26488,
+      "11": 54868,
+      "12": 90816,
+      "13": 105952,
+      "14": 125818,
+      "15": 140008
+    },
+    "pair_unique_retained_distribution": {
+      "9": 5676,
+      "10": 26488,
+      "11": 54868,
+      "12": 90816,
+      "13": 105952,
+      "14": 125818,
+      "15": 140008
+    },
+    "triple_checks": 32465774,
+    "triple_exact_replays": 120142,
+    "triple_raw_E_le_4_distribution": {
+      "2": 11352,
+      "3": 46354,
+      "4": 62436
+    },
+    "triple_unique_E_le_4_distribution": {
+      "2": 1892,
+      "3": 16082,
+      "4": 18920
+    },
+    "fourth_checks": 33315282,
+    "fourth_exact_replays": 261096,
+    "minimum_fourth_objective": 2,
+    "fourth_raw_E_le_4_distribution": {
+      "2": 40678,
+      "3": 48246,
+      "4": 172172
+    },
+    "fourth_unique_E_le_4_distribution": {
+      "2": 1892,
+      "3": 16082,
+      "4": 73788
+    },
+    "fifth_checks": 2764212,
+    "fifth_exact_replays": 311234,
+    "fifth_raw_E_le_4_distribution": {
+      "2": 36894,
+      "3": 140008,
+      "4": 134332
+    },
+    "fifth_unique_E_le_4_distribution": {
+      "2": 1892,
+      "3": 16082,
+      "4": 72842
+    },
+    "closure_checks": 2764212,
+    "closure_exact_replays": 311234,
+    "closure_E1_hits": 0,
+    "closure_known_E2_hits": 36894,
+    "closure_state_limit": 250000,
+    "closure_state_distribution": {
+      "3": 16082,
+      "4": 73788
+    },
+    "closure_complete": true,
+    "offcycle_E2_count": 0,
+    "E0_found": false,
+    "runtime_seconds": 32.465051
+  },
+  "claim_boundary": "The pair scan is exhaustive only for two-flip paths whose first edge is one of the four shared-core worsening edges of the 1,892 audited cycle states. The targeted third-edge scan is exhaustive only over the conflict-edge union of pair states at or below E=15. The fourth-edge layer checks all 903 edges from each retained triple state. The fifth-edge layer and complete final closure use only current-conflict edges. This is neither a construction nor a global nonexistence result."
+}

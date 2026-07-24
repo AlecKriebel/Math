@@ -63,3 +63,60 @@ Measured output:
 - precomputation: 0.020514 s
 - 100 full exact recomputations: 0.232385 s (430.32/s)
 - 100,000 exact incremental flip evaluations: 0.717463 s (139,380/s)
+
+## Isolated proof-producing SAT follow-up
+
+The “not available” observations above describe the initial machine audit.
+For the 2026-07-23 exact-completion cycle, a pinned proof-producing toolchain
+was installed into isolated temporary directories rather than the default
+Python environment:
+
+- Python 3.11.8:
+  `/opt/homebrew/opt/python@3.11/bin/python3.11`
+- Python-SAT 1.9.dev7:
+  `/tmp/ramsey55-pysat.4YSXId`
+- `drat-trim` and `lrat-check` from commit
+  `2e3b2dc0ecf938addbd779d42877b6ed69d9a985`:
+  `/tmp/ramsey55-drat-trim.x3nb3p/src/`
+- Zstandard 1.5.7:
+  `/opt/homebrew/bin/zstd`
+
+The bootstrap operations were:
+
+```sh
+/opt/homebrew/opt/python@3.11/bin/python3.11 -m pip install \
+  --target /tmp/ramsey55-pysat.4YSXId python-sat==1.9.dev7
+
+git clone https://github.com/marijnheule/drat-trim.git \
+  /tmp/ramsey55-drat-trim.x3nb3p/src
+git -C /tmp/ramsey55-drat-trim.x3nb3p/src checkout \
+  2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+make -C /tmp/ramsey55-drat-trim.x3nb3p/src
+```
+
+Pinned executable/source hashes:
+
+```text
+Python executable
+831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0
+
+pysat/solvers.py
+253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e
+
+PySAT pysolvers extension
+e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded
+
+drat-trim
+f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47
+
+lrat-check
+bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea
+
+zstd
+aff8169fb421bb925fb16c44a7e0143fa2c7a941dc45cce76b15062a2ce54917
+```
+
+These `/tmp` paths are ephemeral. The exact versions, commits, commands,
+hashes, solver statistics, and checker transcripts are also embedded in the
+retained result JSON files and
+`certificates/residual_completion_workflow.report.md`.

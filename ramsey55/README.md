@@ -44,19 +44,34 @@ reconstructed and every exhaustive tree proof checked. These results rule out
 only those four neighborhoods; they do not establish global or unrestricted
 local nonexistence.
 
-**REPRODUCIBLE COMPUTATIONAL OBSERVATION:** freeing all 237 edges incident to
-the six residual-conflict vertices produced an exact 49,461-clause formula,
-but the bounded solver timed out at 60.003 s. This is neither SAT nor UNSAT
-and supports no existence or nonexistence conclusion.
+**CERTIFIED:** the complete 237-edge neighborhood around the original six
+residual-conflict vertices is UNSAT under its fixed 666-edge boundary. The
+first in-repository solver attempt timed out, but a later Glucose3 DRAT trace
+was accepted by `drat-trim` and its generated LRAT was accepted by
+`lrat-check`. A second, structurally different \(E=2\) candidate's complete
+237-edge residual boundary is also certified UNSAT.
+
+**CERTIFIED:** the stronger aggregate radius-six formula is UNSAT: all 237
+original boundary edges may vary arbitrarily and at most six of the remaining
+666 core edges may differ from the base graph. Therefore a valid graph in
+this labeled framework must change at least seven core edges. This remains a
+local fixed-structure statement, not global order-43 nonexistence.
+
+**CERTIFIED:** the first preregistered proof-guided radius-seven cut is UNSAT.
+It frees the original 237 boundary edges and seven proof-core-ranked core
+edges, fixing the other 659. This closes only that selected cut. The aggregate
+radius-seven formula was independently reconstructed but timed out under a
+strict 120-second cap, so its SAT/UNSAT status remains open.
 
 **CERTIFIED:** the unrestricted direct \(n=43\) CNF encoding was generated and
 independently reconstructed clause-by-clause: 65,403 variables and 2,052,132
 clauses, including the sound degree bounds \(18\le d(v)\le24\). This certifies
 the encoding identity only. No global solve was launched.
 
-**REPRODUCIBLE COMPUTATIONAL OBSERVATION:** the best 43-vertex candidate has
-\(C_5=0\), \(I_5=2\), \(E=2\). It is **not** a Ramsey graph and proves no new
-bound.
+**REPRODUCIBLE COMPUTATIONAL OBSERVATION:** two verified 43-vertex candidates
+tie at \(E=2\): the original has \(C_5=0,I_5=2\), while a restricted
+300,000-move search found a graph with \(C_5=2,I_5=0\) after changing 135 of
+237 boundary edges. Both are invalid and prove no new bound.
 
 Current primary sources report \(43\leq R(5,5)\leq46\). The upper-bound
 computation has not been replayed or certificate-checked in this repository;
@@ -64,7 +79,9 @@ see `literature.md`.
 
 ## Reproduce
 
-The implementation has no third-party runtime dependencies.
+The baseline construction, search, and verification implementation has no
+third-party runtime dependencies. Replaying the DRAT/LRAT certificates uses
+the pinned isolated toolchain recorded in `environment.md`.
 
 ```sh
 make test
@@ -108,6 +125,32 @@ python3 verify/extension_sat_check.py \
 python3 verify/direct_ramsey_cnf_check.py \
   certificates/direct_ramsey43.cnf \
   --order 43
+
+python3 src/core_radius_cnf.py \
+  --base-graph results/best_candidates/exoo_seed_20260724.g6 \
+  --boundary-metadata certificates/residual_lns_incident_six.metadata.json \
+  --radius 6 \
+  --output /tmp/ramsey55_core_radius6.cnf \
+  --metadata /tmp/core_radius6.metadata.json
+
+python3 verify/core_radius_cnf_check.py \
+  --cnf /tmp/ramsey55_core_radius6.cnf \
+  --graph results/best_candidates/exoo_seed_20260724.g6 \
+  --boundary-metadata certificates/residual_lns_incident_six.metadata.json \
+  --generation-metadata /tmp/core_radius6.metadata.json \
+  --radius 6
+
+zstd -dc certificates/core_radius6_glucose3.drat.zst \
+  > /tmp/core_radius6_glucose3.drat
+
+/tmp/ramsey55-drat-trim.x3nb3p/src/drat-trim \
+  /tmp/ramsey55_core_radius6.cnf \
+  /tmp/core_radius6_glucose3.drat \
+  -I -L /tmp/core_radius6_glucose3.lrat
+
+/tmp/ramsey55-drat-trim.x3nb3p/src/lrat-check \
+  /tmp/ramsey55_core_radius6.cnf \
+  /tmp/core_radius6_glucose3.lrat
 
 build/search43 --benchmark --n 43 --seed 20260723
 

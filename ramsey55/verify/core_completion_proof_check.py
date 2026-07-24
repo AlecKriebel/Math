@@ -10,15 +10,19 @@ the 41-vertex labeled core and all clauses for adding vertices A and B:
 * homogeneous core 4-sets give width-4 clauses for A and separately B;
 * homogeneous core triples give width-7 clauses involving A, B, and A--B.
 
-The binary proof format is:
+The version-2 binary proof format is:
 
-* bytes 0..7: ASCII ``CORE2DP1``;
+* bytes 0..7: ASCII ``CORE2DP2``;
 * byte 8: original graph order (42);
-* byte 9: deleted original vertex;
-* byte 10: variable count (83);
-* bytes 11..14: little-endian original-clause count;
+* bytes 9..12: one-based catalog data-line number;
+* byte 13: deleted original vertex;
+* byte 14: variable count (83);
+* bytes 15..18: little-endian original-clause count;
 * remaining bytes: a preorder full binary tree, where 0..82 branches false
   then true and 255 marks an original-clause unit-propagation conflict.
+
+The checker remains backward compatible with the original 15-byte
+``CORE2DP1`` header, which implicitly refers to catalog line 1.
 
 No solver code, clause file, learned clause, or claimed branch heuristic is
 trusted.  The checker decodes graph6, reconstructs the core and formula,
@@ -37,22 +41,32 @@ from pathlib import Path
 
 
 MAGIC = b"CORE2DP1"
+MAGIC_V2 = b"CORE2DP2"
 LEAF = 255
 INPUT_ORDER = 42
 CORE_ORDER = 41
 VARIABLE_COUNT = 83
 
 
-def decode_short_graph6(raw: bytes) -> list[int]:
-    """Decode the first noncomment short-graph6 line without project imports."""
+def select_data_line(raw: bytes, line_number: int = 1) -> bytes:
+    """Select a one-based nonempty, noncomment data line independently."""
+    if line_number < 1:
+        raise ValueError("catalog line number must be positive")
     lines = [
         line.strip()
         for line in raw.splitlines()
-        if line.strip() and not line.startswith(b"#")
+        if line.strip() and not line.lstrip().startswith(b"#")
     ]
-    if not lines:
-        raise ValueError("graph file has no data line")
-    line = lines[0]
+    if line_number > len(lines):
+        raise ValueError(
+            f"catalog line {line_number} outside 1..{len(lines)}"
+        )
+    return lines[line_number - 1]
+
+
+def decode_short_graph6(raw: bytes, line_number: int = 1) -> list[int]:
+    """Decode one selected short-graph6 line without project imports."""
+    line = select_data_line(raw, line_number)
     if line.startswith(b">>graph6<<"):
         line = line[len(b">>graph6<<") :]
     if not line:
@@ -286,12 +300,14 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--graph", required=True, type=Path)
     parser.add_argument("--proof", required=True, type=Path)
+    parser.add_argument("--line", type=int, default=1)
     parser.add_argument("--delete", required=True, type=int)
     args = parser.parse_args()
     started = time.perf_counter()
 
     graph_raw = args.graph.read_bytes()
-    input_graph = decode_short_graph6(graph_raw)
+    selected_graph6 = select_data_line(graph_raw, args.line)
+    input_graph = decode_short_graph6(graph_raw, args.line)
     core = delete_vertex(input_graph, args.delete)
     core_k5, core_i5 = check_core(core)
     formula = build_formula(core)
@@ -299,23 +315,43 @@ def main() -> int:
     proof_raw = args.proof.read_bytes()
     if len(proof_raw) < 15:
         raise ValueError("proof is shorter than its header")
-    if proof_raw[:8] != MAGIC:
+    if proof_raw[:8] == MAGIC:
+        header_bytes = 15
+        recorded_catalog_line = 1
+        recorded_deleted = proof_raw[9]
+        recorded_variables = proof_raw[10]
+        recorded_clause_count = int.from_bytes(proof_raw[11:15], "little")
+    elif proof_raw[:8] == MAGIC_V2:
+        if len(proof_raw) < 19:
+            raise ValueError("version-2 proof is shorter than its header")
+        header_bytes = 19
+        recorded_catalog_line = int.from_bytes(proof_raw[9:13], "little")
+        recorded_deleted = proof_raw[13]
+        recorded_variables = proof_raw[14]
+        recorded_clause_count = int.from_bytes(proof_raw[15:19], "little")
+    else:
         raise ValueError("wrong proof magic/version")
     if proof_raw[8] != len(input_graph):
         raise ValueError("proof input order does not match graph")
-    if proof_raw[9] != args.delete:
+    if recorded_catalog_line != args.line:
+        raise ValueError("proof catalog line does not match --line")
+    if recorded_deleted != args.delete:
         raise ValueError("proof deleted vertex does not match --delete")
-    if proof_raw[10] != VARIABLE_COUNT:
+    if recorded_variables != VARIABLE_COUNT:
         raise ValueError("proof variable count is not 83")
-    recorded_clause_count = int.from_bytes(proof_raw[11:15], "little")
     if recorded_clause_count != len(formula.clauses):
         raise ValueError("proof clause count does not match reconstructed formula")
 
-    stats = TreeChecker(proof_raw[15:], formula.clauses).run()
+    stats = TreeChecker(proof_raw[header_bytes:], formula.clauses).run()
     result = {
         "status": "VERIFIED_UNSAT_FIXED_41_CORE_TWO_VERTEX_COMPLETION",
         "graph": str(args.graph),
         "graph_sha256": hashlib.sha256(graph_raw).hexdigest(),
+        "selected_graph6_sha256": hashlib.sha256(
+            selected_graph6 + b"\n"
+        ).hexdigest(),
+        "catalog_line": args.line,
+        "proof_format": proof_raw[:8].decode("ascii"),
         "deleted_original_vertex": args.delete,
         "core_order": len(core),
         "core_k5": core_k5,

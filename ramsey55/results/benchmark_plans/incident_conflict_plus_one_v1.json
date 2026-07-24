@@ -1,0 +1,61 @@
+{
+  "created_utc": "2026-07-24T00:20:50Z",
+  "experiment": "ramsey55_incident_conflict_expansion_pilot_v1",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUN",
+  "question": "Does any exact boundary obtained by freeing every edge incident to the six vertices in the two-conflict union and one additional vertex contain a Ramsey(5,5;43) graph?",
+  "scope": {
+    "base_graph": "results/best_candidates/core_kick_seed_20260731.g6",
+    "base_graph_sha256": "64d2362eb9fac1ed2bf387578e92f3fc3bbdbe6655b38fa65329f737ee40bff6",
+    "base_objective": {
+      "C5": 2,
+      "I5": 0,
+      "E": 2
+    },
+    "conflict_union_vertices": [
+      17,
+      18,
+      19,
+      38,
+      39,
+      40
+    ],
+    "extra_vertex_rule": "each vertex in 0..42 outside the conflict union, in increasing order",
+    "selection_count": 37,
+    "free_edge_rule": "every edge having at least one endpoint in the seven selected incident vertices",
+    "fixed_edge_rule": "every other edge equals the base graph"
+  },
+  "solver": {
+    "name": "Glucose3",
+    "pysat_version": "1.9.dev7",
+    "conflict_budget_per_instance": 200000,
+    "jobs": 8
+  },
+  "pinned_files": [
+    {
+      "path": "src/incident_expansion_pilot.py",
+      "sha256": "217b97e67c2360df7689c8c99acc8ada8accc267000eb19f2abc65ccfe9bbb1b"
+    },
+    {
+      "path": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+      "sha256": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysat/solvers.py",
+      "sha256": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysolvers.cpython-311-darwin.so",
+      "sha256": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded"
+    }
+  ],
+  "outputs": {
+    "result": "results/constructive/incident_conflict_plus_one_v1.result.json",
+    "candidate_directory": "results/best_candidates/incident_conflict_plus_one_v1"
+  },
+  "outcome_policy": {
+    "SAT": "Reconstruct the full graph, require direct zero-forbidden-set enumeration in the worker, then run both repository verifiers and the adversarial artifact audit before making a lower-bound claim.",
+    "UNSAT": "Record only a non-proof-carrying negative observation for that exact fixed boundary.",
+    "BUDGET_EXHAUSTED": "Record an unresolved boundary; it is neither SAT nor UNSAT.",
+    "all_negative": "This does not imply global nonexistence and does not change any Ramsey-number bound."
+  }
+}

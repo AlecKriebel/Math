@@ -1,0 +1,82 @@
+{
+  "created_utc": "2026-07-24T00:23:32Z",
+  "experiment": "ramsey55_incident_conflict_expansion_pilot_v1",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUNS",
+  "question": "Does either remaining independently obtained E=2 basin contain a Ramsey(5,5;43) graph after freeing its entire six-vertex conflict union plus each possible additional vertex?",
+  "instances": [
+    {
+      "base_graph": "results/best_candidates/exoo_seed_20260724.g6",
+      "base_graph_sha256": "f5adf13e5791bb8fe4c58941e3d797c283223013290a2376935f1e1eef4ef31a",
+      "base_objective": {
+        "C5": 0,
+        "I5": 2,
+        "E": 2
+      },
+      "conflict_union_vertices": [
+        3,
+        4,
+        7,
+        38,
+        41,
+        42
+      ],
+      "result": "results/constructive/incident_conflict_plus_one_exoo_v1.result.json",
+      "candidate_directory": "results/best_candidates/incident_conflict_plus_one_exoo_v1"
+    },
+    {
+      "base_graph": "results/best_candidates/incident_lns_seed_20260726.g6",
+      "base_graph_sha256": "c0a8d2de5e7efa1abc6848c71e61019579ff31d8958fcce70f257d725792c337",
+      "base_objective": {
+        "C5": 2,
+        "I5": 0,
+        "E": 2
+      },
+      "conflict_union_vertices": [
+        2,
+        4,
+        24,
+        25,
+        26,
+        42
+      ],
+      "result": "results/constructive/incident_conflict_plus_one_incident_v1.result.json",
+      "candidate_directory": "results/best_candidates/incident_conflict_plus_one_incident_v1"
+    }
+  ],
+  "shared_scope": {
+    "extra_vertex_rule": "each vertex in 0..42 outside the specified conflict union, in increasing order",
+    "selection_count_per_base": 37,
+    "free_edge_rule": "every edge having at least one endpoint in the seven selected incident vertices",
+    "fixed_edge_rule": "every other edge equals that instance's base graph"
+  },
+  "solver": {
+    "name": "Glucose3",
+    "pysat_version": "1.9.dev7",
+    "conflict_budget_per_instance": 200000,
+    "jobs": 8
+  },
+  "pinned_files": [
+    {
+      "path": "src/incident_expansion_pilot.py",
+      "sha256": "217b97e67c2360df7689c8c99acc8ada8accc267000eb19f2abc65ccfe9bbb1b"
+    },
+    {
+      "path": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+      "sha256": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysat/solvers.py",
+      "sha256": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysolvers.cpython-311-darwin.so",
+      "sha256": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded"
+    }
+  ],
+  "outcome_policy": {
+    "SAT": "Reconstruct the full graph, require direct zero-forbidden-set enumeration in the worker, then run both repository verifiers and the adversarial artifact audit before making a lower-bound claim.",
+    "UNSAT": "Record only a non-proof-carrying negative observation for that exact fixed boundary.",
+    "BUDGET_EXHAUSTED": "Record an unresolved boundary; it is neither SAT nor UNSAT.",
+    "all_negative": "This does not imply global nonexistence and does not change any Ramsey-number bound."
+  }
+}

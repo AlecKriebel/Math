@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-07-24T05:24:05Z",
+  "experiment": "catalog42_lines42_256_exact_e2_extensions_v1",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_FORMULA_GENERATION",
+  "question": "Are the two observed cost-two adjacency vectors the complete set of one-vertex extensions with at most two forbidden five-sets for catalog cores 42 and 256?",
+  "catalog": {
+    "path": "data/r55_42some.g6",
+    "sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+    "lines": [
+      {
+        "line": 42,
+        "expected_extension_constraints": 2318,
+        "models": [
+          "111111111011010000110000001110010111100000",
+          "111111111011000000110000001110010111100000"
+        ]
+      },
+      {
+        "line": 256,
+        "expected_extension_constraints": 2331,
+        "models": [
+          "111111111000010111001000011111101000000000",
+          "111111111000010111001000010111101000000000"
+        ]
+      }
+    ]
+  },
+  "formula": {
+    "primary_variables": 42,
+    "definition": "One relaxation variable is true exactly when its core K4 or independent four-set extension clause is violated.",
+    "conflict_bound": 2,
+    "counter": "forward_sequential_threshold_at_most_v1",
+    "blocking": "One 42-literal primary blocking clause for each recorded model."
+  },
+  "implementation": {
+    "generator": "src/catalog42_optimal_extension_certificate.py",
+    "generator_sha256": "ead0d4c14e2888b54db044b426bb666d505b9b57018abe05625ffd9f331afff5",
+    "independent_checker": "verify/catalog42_optimal_extension_check.py",
+    "independent_checker_sha256": "e0ef75feac04e28b06b490d9f4fd0f01de02e5a329bb8345694c5e1cfec7572e",
+    "tests": "tests/catalog42_optimal_extension_tests.py",
+    "tests_sha256": "b54d7cfacdf25d3193de4699f512dcff76efa44ef51fa9f82b85a7121dc4acfa",
+    "tests_passed": 2
+  },
+  "execution": {
+    "solver": "Pinned Glucose3 proof-producing pipeline",
+    "proof_checks": [
+      "drat-trim",
+      "lrat-check"
+    ],
+    "solve_wall_seconds_per_line": 300,
+    "proof_check_wall_seconds_per_line": 600
+  },
+  "outcome_policy": {
+    "certified_unsat_after_blocks": "The two recorded models are exactly every extension with at most two conflicts; since each has cost two, the fixed core's extension optimum is exactly two.",
+    "sat": "Independently decode the unblocked primary assignment as an additional extension; the proposed enumeration is incomplete.",
+    "timeout_or_proof_failure": "Record no completeness claim."
+  },
+  "scope_warning": "This concerns only one-vertex extensions of catalog cores 42 and 256, not arbitrary order-43 graphs."
+}

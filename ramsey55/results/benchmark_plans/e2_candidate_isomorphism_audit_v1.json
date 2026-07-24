@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-07-24T05:14:53Z",
+  "experiment": "e2_candidate_isomorphism_audit_v1",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_RUN",
+  "question": "How many isomorphism and complement-isomorphism classes occur among the 22 independently replayed E=2 candidates?",
+  "inputs": {
+    "candidate_directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "candidate_count": 22,
+    "candidate_corpus_concatenated_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0",
+    "nauty_version": "2.9.3",
+    "nauty_release_tarball_sha256": "9fc4edae04f88a0f5883985be3b39cf7f898fd6cc96e96b9ee25452743cc1b5b",
+    "labelg_sha256": "ae8b1e7ef173c1665725e708bd7abd00b08ee4230ba2bd04117ec63d441274a0"
+  },
+  "implementation": {
+    "source": "src/e2_candidate_isomorphism_audit.py",
+    "source_sha256": "0002171b5f088b66585adfa9b5a62bcddbed65d2b6eda6171f34f059c3917ef9",
+    "tests": "tests/e2_candidate_isomorphism_audit_tests.py",
+    "tests_sha256": "5d376334c84450f414729d7509838e7717f96a332269cf940188c7cd0c5f1fc7",
+    "tests_passed": 2
+  },
+  "audit_rules": [
+    "Re-enumerate all five-sets and require exactly two same-colour conflicts with four common vertices.",
+    "Canonicalize every graph and complement with nauty labelg's dense representation.",
+    "Repeat with labelg's sparse representation.",
+    "Require the dense and sparse equivalence partitions to agree exactly before reporting class counts."
+  ],
+  "claim_boundary": "Any result classifies only this fixed 22-candidate corpus and cannot imply a global order-43 classification."
+}

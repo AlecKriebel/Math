@@ -1,0 +1,60 @@
+{
+  "schema": "ramsey55.catalog42_extension_batch_plan.v1",
+  "created_utc": "2026-07-24T00:06:35Z",
+  "status": "PREREGISTERED_BEFORE_PRODUCTION_BATCH",
+  "hypothesis": "A one-vertex extension may exist for a known 42-vertex witness other than the single cyclic witness previously tested. Screening the entire authoritative 328-graph catalog has high information gain and directly yields outcome A if any model is found.",
+  "catalog": {
+    "path": "data/r55_42some.g6",
+    "sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+    "expected_graph_count": 328,
+    "source": "https://users.cecs.anu.edu.au/~bdm/data/r55_42some.g6",
+    "dual_verifier_precondition": "All 328 entries must first pass both independent full-graph verifiers."
+  },
+  "configuration": {
+    "jobs": 8,
+    "seconds_limit_per_instance": 60,
+    "coverage": "Every catalog line 1 through 328 exactly once",
+    "solver": {
+      "path": "build/extension_sat_proof_solver",
+      "sha256": "5c52f4e24b5770e01cef36320e9699d31884caa3db2b830a29475689bf877fd6",
+      "source_sha256": "8ca4cdfbb957c71faa32f39bd7f30d3342c6b51b90e37760082f55b14a914090",
+      "proof_format": "EXTDPLL1 complete binary DPLL tree"
+    },
+    "checker": {
+      "path": "verify/extension_sat_proof_check.py",
+      "sha256": "abd751b8635c03423736e7f66e0a2b33ce86b639a4d6ac23310dc83330fd7a9b",
+      "independence": "Separate graph6 decoder, direct four-subset clause reconstruction, unit propagation, and exhaustive proof-tree traversal"
+    },
+    "orchestrator": {
+      "path": "src/catalog42_extension_batch.py",
+      "sha256": "77d4c40b4d85e73cb8ac53109e19cd7072b1961a16fd784c4995e69986baf69d"
+    }
+  },
+  "output": {
+    "proof_directory": "certificates/catalog42_extensions_v1",
+    "result": "certificates/catalog42_extensions_v1.result.json"
+  },
+  "outcome_policy": {
+    "SAT": "Immediately export the 43-vertex model, run both full graph verifiers, relabel/complement audits, and canonical artifact validation. Only the complete audit may establish outcome A.",
+    "ALL_UNSAT": "Require 328 checked proof trees and exact line coverage. Claim only that none of the 328 listed fixed graphs has a one-vertex extension. Complement invariance then covers their 328 complements, but this is not global order-43 nonexistence.",
+    "LIMIT": "Record the incomplete subset and make no claim for uncovered or limited instances.",
+    "ERROR": "Fail closed and make no mathematical claim."
+  },
+  "command": [
+    "python3",
+    "src/catalog42_extension_batch.py",
+    "data/r55_42some.g6",
+    "--proof-dir",
+    "certificates/catalog42_extensions_v1",
+    "--result",
+    "certificates/catalog42_extensions_v1.result.json",
+    "--expected-count",
+    "328",
+    "--expected-sha256",
+    "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+    "--jobs",
+    "8",
+    "--seconds-limit",
+    "60"
+  ]
+}

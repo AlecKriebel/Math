@@ -1,0 +1,216 @@
+{
+  "schema": "ramsey55.delete3_add4_targeted_plan.v1",
+  "experiment": "core_completion_k3_targeted_v1",
+  "created_utc": "2026-07-24T03:02:08Z",
+  "status": "PREREGISTERED_BEFORE_TARGET_FORMULA_GENERATION",
+  "question": "Does either of two independently identified 39-vertex induced catalog cores admit any labeled four-vertex completion to a (5,5)-Ramsey graph on 43 vertices?",
+  "scope": {
+    "catalog": "data/r55_42some.g6",
+    "catalog_sha256": "067902e853d87b49bcef0d1d4c0e3bbadd238ee18bc65341b079a3ca4780eccb",
+    "input_order": 42,
+    "delete_count": 3,
+    "fixed_core_order": 39,
+    "added_vertex_count": 4,
+    "output_order": 43,
+    "unknown_edge_count": 162,
+    "fixed_edge_count": 741,
+    "forbidden_set_size": 5,
+    "complete_assignment_count": "2^162",
+    "labeling_note": "The 39 retained catalog vertices are relabeled increasingly as 0..38, and the four added vertices are 39..42. This is a complete labeled completion space for the fixed core, not a Hamming ball."
+  },
+  "formula_definition": {
+    "edge_variable_semantics": "A true variable denotes an edge.",
+    "variable_order": "First, for added vertices 39,40,41,42 in that order, their edges to core vertices 0..38 in increasing order; then added-added pairs (39,40),(39,41),(39,42),(40,41),(40,42),(41,42).",
+    "clause_order": "For new-vertex counts 1..4, enumerate chosen added vertices lexicographically and chosen core vertices lexicographically; emit the clique-blocking negative clause first when applicable, then the independent-set-blocking positive clause.",
+    "completeness": "The independently checked core has no fixed K5 or I5. Every remaining five-set contains 1..4 added vertices and receives exactly the applicable clique and/or independent-set blocking clause."
+  },
+  "targets_in_order": [
+    {
+      "id": "line_327_delete_6_19_24",
+      "catalog_line": 327,
+      "catalog_graph6_sha256": "db5c06af43ae150a04661a8f5a4276cf2035363554fd6df5850d22fb073d07c7",
+      "deleted_original_labels": [
+        6,
+        19,
+        24
+      ],
+      "candidate": "results/constructive/catalog_seed_search_stratified_v1/line_327.g6",
+      "candidate_sha256": "537fb76c898280794eb45837257c478ef8e7e7897a821b98f516b58f4005c43d",
+      "candidate_result": "results/constructive/catalog_seed_search_stratified_v1/line_327.result.json",
+      "candidate_result_sha256": "86f020788af62e65ee02b67d8b02f387bae1eecb1f725e489fab31fbb82a4f18",
+      "candidate_forbidden_counts": {
+        "clique_5": 2,
+        "independent_5": 0
+      },
+      "coverage_check": "results/verification/core_completion_k3_line327.coverage.json",
+      "coverage_check_sha256": "d400679f22bac2fae292f788c50e82bf7cda4538ee99c5544cf5ba217a01f614",
+      "coverage": {
+        "fixed_pairs_checked": 741,
+        "fixed_pairs_matching_catalog": 741,
+        "uncovered_changed_pairs": 0,
+        "changed_catalog_pairs": [
+          [
+            6,
+            35
+          ],
+          [
+            19,
+            32
+          ],
+          [
+            24,
+            40
+          ]
+        ]
+      },
+      "artifact_prefix": "certificates/core_completion_k3_targeted_v1/line_327_delete_6_19_24"
+    },
+    {
+      "id": "line_177_delete_13_19_36",
+      "catalog_line": 177,
+      "catalog_graph6_sha256": "532e5cc5728cc6405ecab269ba648291f1581fb04e670cd956dd90e8324fbbed",
+      "deleted_original_labels": [
+        13,
+        19,
+        36
+      ],
+      "candidate": "results/constructive/catalog_seed_search_stratified_v1/line_177.g6",
+      "candidate_sha256": "9fe511a29f47cc1e83e9f34c86b6ebc43cd34d64053bade17d7adc547ddba8e9",
+      "candidate_result": "results/constructive/catalog_seed_search_stratified_v1/line_177.result.json",
+      "candidate_result_sha256": "595dbfa129aaeec28ebf6df6780e8befa737a7b7ba138b081a5ae94543f29d0f",
+      "candidate_forbidden_counts": {
+        "clique_5": 0,
+        "independent_5": 2
+      },
+      "coverage_check": "results/verification/core_completion_k3_line177.coverage.json",
+      "coverage_check_sha256": "b8a28b7fceab540ec150465e57d99d1c06a2e29929561851e7c0fb5d1b4c5b31",
+      "coverage": {
+        "fixed_pairs_checked": 741,
+        "fixed_pairs_matching_catalog": 741,
+        "uncovered_changed_pairs": 0,
+        "changed_catalog_pairs": [
+          [
+            11,
+            19
+          ],
+          [
+            13,
+            37
+          ],
+          [
+            19,
+            35
+          ],
+          [
+            24,
+            36
+          ],
+          [
+            33,
+            36
+          ]
+        ]
+      },
+      "artifact_prefix": "certificates/core_completion_k3_targeted_v1/line_177_delete_13_19_36"
+    }
+  ],
+  "pinned_files": [
+    {
+      "path": "src/core_completion_k3.py",
+      "sha256": "491d1fd3b1db3f08f72fc3bff4f4ee0b9bd16f6a98c41aafbeaeaa6481aef714"
+    },
+    {
+      "path": "verify/core_completion_k3_cnf_check.py",
+      "sha256": "c5cde9c411afca191fc9ef40fc9a6487664ed8b80c62df7154891c72d94b9ac1"
+    },
+    {
+      "path": "verify/core_completion_k3_coverage_check.py",
+      "sha256": "4dfa9ecd1cce06affbf895228b964209455b8f556440ff015e0407f464b3ae92"
+    },
+    {
+      "path": "verify/core_completion_k3_model_check.py",
+      "sha256": "9181560c67691897988751668fd80db8d0aeead4f2e84bbc5c8e26451224a99b"
+    },
+    {
+      "path": "src/run_with_file_size_gate.py",
+      "sha256": "8063f27b49e0a9412a21e3538c76e0f4c083cdd4d6599f224f13dd6245a7043b"
+    },
+    {
+      "path": "src/graph_io.py",
+      "sha256": "5eb4087aa2c601f86e02b87de858febf1f2987dcd96471be776fb63a30207c22"
+    },
+    {
+      "path": "src/certify_cnf_glucose_streaming.py",
+      "sha256": "9a8f6fe4b0f9f20d57b174d7360b6f5afbb55d55231db02ec09c60d515cd8d03"
+    },
+    {
+      "path": "src/residual_completion.py",
+      "sha256": "b8117443d48a2d51c528fe126166455ed4f62e0caf2efd6d9dc86dbc6a75c2db"
+    },
+    {
+      "path": "src/residual_completion_glucose.py",
+      "sha256": "d8ce8f16146069ba438130f48e2e21babdd7bdc7a6c963e74114ae9c54029006"
+    },
+    {
+      "path": "verify/exhaustive_verify.py",
+      "sha256": "fb8f5bee76f98a37a080970cd0548b88825f6f0f49f1144db20a3524ce5878b5"
+    },
+    {
+      "path": "verify/bitset_verify.cpp",
+      "sha256": "d529f31cb05f2366ac4a7e171a2300263b440af58de6ceec89404e1ab4093be0"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    },
+    {
+      "path": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+      "sha256": "831365631dac62f232a720858703d0b2ddca5eed33e0a51986cf06aac9d38bc0"
+    },
+    {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysolvers.cpython-311-darwin.so",
+      "sha256": "e9828032a114da49429305e5afcf58db259034687a9c098c996da65e5e099ded"
+    },
+    {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/drat-trim",
+      "sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+    },
+    {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/lrat-check",
+      "sha256": "bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea"
+    },
+    {
+      "path": "/opt/homebrew/bin/zstd",
+      "sha256": "aff8169fb421bb925fb16c44a7e0143fa2c7a941dc45cce76b15062a2ce54917"
+    }
+  ],
+  "limits": {
+    "solve_wall_seconds_per_target": 300,
+    "proof_check_wall_seconds_per_target": 900,
+    "maximum_regular_file_bytes_during_solver_pipeline": 134217728,
+    "maximum_simultaneous_large_regular_files": 2,
+    "absolute_free_space_reserve_bytes": 2147483648,
+    "scratch_margin_bytes": 16777216,
+    "minimum_free_bytes_before_each_formula_and_solver_launch": 2432696320,
+    "pre_registration_available_bytes": 2460811264,
+    "pre_registration_gate_passed": true,
+    "gate_filesystem": "certificates/"
+  },
+  "execution_rule": [
+    "Before each target formula generation and again immediately before each solver launch, require at least 2432696320 available bytes on the filesystem containing certificates/.",
+    "Generate the deterministic CNF and metadata only after all pinned input and source hashes match this plan.",
+    "Independently reconstruct and compare every clause, its order, all bindings, and formula metadata before solving.",
+    "Launch the pinned streaming solver/checker pipeline only through the pinned file-size gate, imposing RLIMIT_FSIZE=134217728 bytes on the pipeline and every child process.",
+    "Run targets sequentially in the listed order; never run both proof-producing solver pipelines concurrently.",
+    "On SAT, independently replay the DIMACS model, reconstruct the complete graph, count every five-set, and require both the Python exhaustive verifier and compiled C++ bitset verifier to accept.",
+    "On UNSAT, require both drat-trim verification and exact decompressed LRAT replay through lrat-check; only CERTIFIED_UNSAT is a mathematical conclusion.",
+    "After CERTIFIED_UNSAT, compress the CNF and DRAT losslessly with pinned zstd, test both archives, verify decompressed hashes, and remove the uncompressed copies only after those checks pass.",
+    "On a file-size limit, timeout, storage-gate failure, proof-check failure, hash mismatch, or any other error, record no SAT/UNSAT conclusion and stop before the next target."
+  ],
+  "outcome_policy": {
+    "SAT": "A dual-verified reconstructed graph is a global order-43 (5,5)-Ramsey witness.",
+    "CERTIFIED_UNSAT": "Exclude only all four-vertex completions of this one labeled 39-vertex fixed core.",
+    "TIMEOUT_OR_ERROR": "Make no mathematical claim for the target.",
+    "scope_warning": "Even certified UNSAT for both fixed cores is not global order-43 nonexistence."
+  }
+}
