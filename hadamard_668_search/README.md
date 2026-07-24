@@ -25,7 +25,7 @@ this milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; all 22 stored ideal witnesses fail the full-LP zero gate, but no whole shard is excluded; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; exact modulo-nine certificates exclude the three highest profile-energy shells and force `n_9<=3`; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -632,6 +632,23 @@ checkpointed constructor is therefore the current exact profile route;
 neither the obsolete first-generation workflow pilot nor the MITM count is
 evidence of infeasibility.
 
+Three exact energy-shell theorems now prune that constructor before any
+solver search.  `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` excludes
+`(n_9,n_3,n_0)=(6,0,18)`, and
+`LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` excludes `(5,3,16)` after an
+affine modulo-nine join reduces 34,634,136 aggregate/local assignments to
+552 exact replays.  `LP333_ORDER3_PROFILE_SHELL_FOUR.md` then classifies the
+six medium letters into the only possible quartet patterns `2+2+2`, `3+3`,
+and `4+2`.  Its streaming verifier checks 27,468,720 oriented frames,
+replays 345,984 exact-aggregate modulo-nine survivors on all 37 lags, and
+finds none with `D_t=0`.  Hence every exact profile satisfies
+
+```text
+n_9 <= 3.
+```
+
+These are complete shell exclusions, not a whole-quotient obstruction.
+
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or
 fixed-size-two residue fiber has a signed cube-root phase in
@@ -700,6 +717,31 @@ zero/nonzero patterns.  The `B0`-zero stratum also has primitive-plane rank
 at least two; the dense rank-one stratum remains possible, so no rank-three
 or existence claim is made.
 
+`LP333_PHASE_CONE_TRIVIAL_BRANCH_OBSTRUCTION.md` removes the trivial zero
+branch from that intersection.  If one channel's recombined trivial
+coordinate vanished, its nine row margins would repeat with period three,
+making their total divisible by three; the exact total is 167.  The complete
+row-sum catalog sharpens the surviving branch from `167^3+1=4,657,464`
+abstract projective ratios to 1,411 exact nonzero coordinate pairs.
+
+`LP333_ORDER3_PHASE_TRACE_SIEVE.md` inverts the four cone blocks by a
+three-by-three row-Galois transform and reconstructs every physical class
+coefficient by factorwise traces.  It exposes twelve independent fixed-zero
+linear equations and five further displayed profile-support equations after
+the cone total is used.  A proposed ninth-root coefficient is physical if
+and only if the nine inverse-DFT values satisfy `b^2=b`; exhaustive replay
+proves this decoder for all weight-three and complementary weight-six
+words.  The same analysis gives a seven-value local norm alphabet with
+explicit cubic branches.
+
+Independently, `LP333_ORDER3_PHASE_CYCLIC_DECODER.md` factors the phase
+equation modulo seven into thirteen scalar equations over `F_(7^3)`.  It
+gives exact local alphabets of sizes 1, 9, and 27 and a compact
+11,466-row multiplication layer.  Its accompanying architecture audit rules
+out the raw trellis, plain balanced MITM, additive Wagner, and
+alphabet-independent one-factor BCH shortcuts; it is a necessary propagator,
+not yet a practical standalone decoder.
+
 `LP333_ORDER3_PHASE_TRANSFER.md` collapses the trivial-column character of
 that phase frame to one integer energy and one Eisenstein cross term per
 channel.  It proves object-by-object, including multiplicities, that this is
@@ -742,9 +784,17 @@ python3 verify_lp333_order3_prime163_extreme.py
 python3 verify_lp333_order3_sparse_b_norm.py
 gp -q verify_lp333_order3_sparse_b_norm.gp
 python3 verify_lp333_order3_profile_zero_symmetry.py
+python3 verify_lp333_order3_profile_endpoint_shell.py
+python3 verify_lp333_order3_profile_penultimate_shell.py
+c++ -std=c++20 -O3 verify_lp333_order3_profile_shell_four.cpp \
+  -o /tmp/verify_lp333_order3_profile_shell_four
+/tmp/verify_lp333_order3_profile_shell_four
 python3 verify_lp333_order3_phase_factor.py
 python3 verify_lp333_order3_phase_prime167.py
 python3 verify_lp333_order3_phase_fiber_support.py
+python3 verify_lp333_phase_cone_trivial_branch.py
+python3 verify_lp333_order3_phase_trace_sieve.py
+python3 verify_lp333_order3_phase_cyclic_decoder.py
 python3 verify_lp333_order3_phase_transfer.py
 python3 verify_lp333_order3_phase_hensel.py
 python3 verify_lp333_order3_diagonal_frame_prefix.py
@@ -772,9 +822,15 @@ python3 verify_lp333_order3_diagonal_frame_prefix.py
   test_lp333_order3_prime163_extreme.py \
   test_lp333_order3_sparse_b_norm.py \
   test_lp333_order3_profile_zero_symmetry.py \
+  test_lp333_order3_profile_endpoint_shell.py \
+  test_lp333_order3_profile_penultimate_shell.py \
+  test_lp333_order3_profile_shell_four.py \
   test_lp333_order3_phase_factor.py \
   test_lp333_order3_phase_prime167.py \
   test_lp333_order3_phase_fiber_support.py \
+  test_lp333_phase_cone_trivial_branch.py \
+  test_lp333_order3_phase_trace_sieve.py \
+  test_lp333_order3_phase_cyclic_decoder.py \
   test_lp333_order3_phase_transfer.py \
   test_lp333_order3_phase_hensel.py \
   test_lp333_order3_diagonal_frame_prefix.py \

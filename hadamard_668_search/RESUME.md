@@ -143,8 +143,14 @@ The strongest new constructive reductions are:
   stabilizers, semantically pinned atomic checkpoints, persistent no-goods,
   orbit-complete survivor emission, and three solver-free integer replays.
   Loaded survivors are replayed before being restored as no-goods, and the
-  replay dependency closure is fingerprinted.  No long campaign has been
-  run, and CP-SAT exhaustion is not a proof certificate.
+  replay dependency closure is fingerprinted. Exact shell certificates now
+  impose `n_9<=3`; the earlier bounded pilot found no candidate and has no
+  exclusionary force.
+- `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md`,
+  `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md`, and
+  `LP333_ORDER3_PROFILE_SHELL_FOUR.md`: complete affine modulo-nine
+  certificates exclude `n_9=6,5,4`.  The last checks 27,468,720 oriented
+  medium frames and exactly replays 345,984 modular survivors.
 - `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
   54 signed Eisenstein unit phases and automatic physical frame energy 167.
   Exact primitive-nine lifting is one six-sequence complementary-frame
@@ -161,6 +167,17 @@ The strongest new constructive reductions are:
   leaves only the dense stratum or the synchronized `B0`-zero stratum.
   Exactly 4,094 of 4,096 ambient joint support patterns are removed; the
   `B0`-zero primitive plane has rank at least two.
+- `LP333_PHASE_CONE_TRIVIAL_BRANCH_OBSTRUCTION.md`: each channel's trivial
+  coordinate is nonzero by the period-three margin kernel and total 167.
+  The complete row catalog leaves exactly 1,411 nonzero coordinate pairs.
+- `LP333_ORDER3_PHASE_TRACE_SIEVE.md`: row-Galois inversion and factorwise
+  traces recover all physical coefficients; twelve fixed-origin equations,
+  five displayed profile-support equations, and the inverse-DFT
+  idempotence test are exact necessary constraints.
+- `LP333_ORDER3_PHASE_CYCLIC_DECODER.md`: modulo seven gives thirteen scalar
+  factors over `F_(7^3)`, exact local alphabets of size 1/9/27, and a compact
+  nonlinear propagator.  The raw trellis/MITM/Wagner/BCH shortcuts audited
+  there are not viable standalone decoders.
 - `LP333_ORDER3_PHASE_TRANSFER.md`: the trivial-column character collapses
   to one integer energy and one Eisenstein cross term per channel and is
   exactly equivalent, with multiplicity, to the existing row-sum catalog.
@@ -257,8 +274,8 @@ The strongest current construction checkpoints are:
 - the spectral-unit refinement: every physical profile-zero channel is a
   unit in that `1+6+6` algebra, so the modular intersection has no
   degenerate or axis branch and may be written as one unitary-ratio torus;
-- the sparse-shell exclusion: the `h=5,6` sectors are empty, leaving only
-  `h=0,1,2,3,4`; the constructor now enforces the exact cut `n_9<=4`;
+- the sparse-shell exclusions: the `h=4,5,6` sectors are empty, leaving only
+  `h=0,1,2,3`; the constructor now enforces the exact cut `n_9<=3`;
 - the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
   remain in the normalized energy-six allocation for the two `(163,4)`
   targets.  Continue only from those 84 words/eight lift-safe orbits;
@@ -282,6 +299,11 @@ The strongest current construction checkpoints are:
   `B0`-zero support strata can be physical.  It removes all one-sided and
   other coordinate-degenerate branches but leaves both surviving strata
   large;
+- the prime-167 physical-intersection refinements: the trivial zero branch is
+  impossible; row-Galois and factorwise trace inversion expose fixed-origin
+  and profile-support equations; inverse-DFT idempotence exactly recognizes
+  physical local words; the independent mod-seven split supplies thirteen
+  scalar propagation factors;
 - the phase refinements are reusable but diagnostic on the present corpus:
   the trivial-character transfer equals the row-sum catalog, the first
   Eisenstein-adic digit has one fixed-profile contradiction, and the
@@ -321,18 +343,19 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-  next exact task is to solve the 24-profile finite system with `D_t=0`
-  using the seven formal symmetry representatives and the resumable exact
-  CRT constructor, now restricted by the proved `n_9<=4` sparse-shell cut.
-  The prime-167 channel-first MITM is a low-memory
+   next exact task is to solve the remaining `n_9<=3` part of the 24-profile
+   finite system with `D_t=0`, beginning with structural shell descent before
+   using the seven formal symmetry representatives and the resumable exact
+   CRT constructor.  The prime-167 channel-first MITM is a low-memory
    fallback, not the primary route at its current 6.34-billion-signature
    cost.  Any new spectral constructor should use the unitary ratio
    `U=A B^(-1)` and the single nonzero torus, never the now-excluded
    degenerate or axis branches. Do not phase-lift the 22 pinned
    ideal-compatible tuples: the exact zero-moment audit already excludes
    every one as a full-LP input. Only a zero-moment profile survivor should
-   proceed through the lossless prime-167 phase cones, sparse inverse CRT,
-   exact margins, and full replay. A fixed-profile exclusion is not a
+   proceed through the nonzero trivial-coordinate catalog, row-Galois trace
+   inverse, local idempotence decoder, mod-seven factors, exact margins, and
+   full replay. A fixed-profile exclusion is not a
    whole-shard exclusion. Strictly expand and verify any full quotient before
    any claim.
 2. Build the universal four-directed-pair model from

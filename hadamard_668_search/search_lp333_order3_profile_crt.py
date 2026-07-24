@@ -77,8 +77,8 @@ Target = tuple[int, int, int, int]
 Identifiers = tuple[int, ...]
 Prefix = tuple[int, ...]
 
-SCHEMA = "hadamard668.lp333-order3-profile-crt-search.v2"
-CANDIDATE_SCHEMA = "hadamard668.lp333-order3-profile-crt-survivors.v2"
+SCHEMA = "hadamard668.lp333-order3-profile-crt-search.v5"
+CANDIDATE_SCHEMA = "hadamard668.lp333-order3-profile-crt-survivors.v5"
 CLASS_COUNT = 12
 PROFILE_STATE_COUNT = 10
 DEFAULT_TOTAL_TIME_SECONDS = 60.0
@@ -91,7 +91,7 @@ TIGHT_CORRELATION_COORDINATE_BOUND = 192
 CORRELATION_COORDINATE_BOUND = TIGHT_CORRELATION_COORDINATE_BOUND
 QUARTET_ASSIGNMENT_COUNT = 3334
 QUARTET_COARSE_STATE_COUNT = 1409
-MAX_EXACT_NORM9_PROFILE_COUNT = 4
+MAX_EXACT_NORM9_PROFILE_COUNT = 3
 
 SEMANTIC_SOURCE_DEPENDENCIES = (
     "search_lp333_order3_profile_crt.py",
@@ -101,6 +101,9 @@ SEMANTIC_SOURCE_DEPENDENCIES = (
     "verify_lp333_order3_profile9_shards.py",
     "verify_lp333_order3_profile_crt.py",
     "verify_lp333_order3_profile_sparse_shells.cpp",
+    "verify_lp333_order3_profile_endpoint_shell.py",
+    "verify_lp333_order3_profile_penultimate_shell.py",
+    "verify_lp333_order3_profile_shell_four.cpp",
     "verify_lp333_order3_profile_zero_symmetry.py",
     "verify_lp333_order3_prime167_split.py",
     # Complete local import closure relevant to the profile replay.  In
@@ -285,7 +288,7 @@ def add_sparse_shell_cut(
     model: cp_model.CpModel,
     norm9_words: Sequence[Sequence[cp_model.IntVar]],
 ) -> None:
-    """Delete the exactly excluded ``h=5,6`` profile type sectors."""
+    """Delete the exactly excluded ``h=4,5,6`` profile type sectors."""
 
     flat = tuple(variable for word in norm9_words for variable in word)
     if len(norm9_words) != 2 or any(
@@ -503,9 +506,8 @@ def build_profile_crt_model(
         )
     model.add(sum(norm_words[0]) + sum(norm_words[1]) == 54)
     if enforce_crt:
-        # The exact modulo-nine sparse-shell theorem excludes the h=5 and
-        # h=6 type sectors.  It applies only with the exact zero gate, so the
-        # deliberately weakened arithmetic-fixture mode retains those words.
+        # Exact shell certificates exclude h=4,5,6. They apply only with the
+        # exact zero gate, so weakened arithmetic-fixture mode retains them.
         add_sparse_shell_cut(model, norm9_words)
 
     # Exact opposite-pair quartet tables.  Besides enforcing the local
@@ -969,7 +971,7 @@ def model_fingerprint(
         "mathematical_layers": (
             "aggregate",
             "energy54",
-            "sparse_shell_h_le_4",
+            "norm9_top_three_shell_exclusions",
             "quartet3334_coarse1409",
             "target_stabilizer_lex",
             "primitive9_lambda3",

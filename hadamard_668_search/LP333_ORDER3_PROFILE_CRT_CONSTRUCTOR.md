@@ -25,6 +25,24 @@ verifier.
 No profile survivor, labelled lift, `LP(333)`, or `H(668)` is asserted here.
 No long search was run while hardening this version.
 
+The exact top-three-shell theorems now add the categorical cut
+
+```text
+number of norm-nine profile letters <= 3.
+```
+
+The removed six-letter endpoint has been exhausted independently: its local
+modulo-nine reduction leaves 288 assignments in twelve symmetry orbits, and
+all twelve fail exact correlation.  In the adjacent five-letter shell, the
+opposite-class equation localizes all three norm-three letters in one
+quartet.  An affine modulo-nine join reduces 34,634,136 aggregate/local
+assignments to 552, and detached integer replay rejects every survivor.
+In the four-letter shell, the six norm-three letters can occupy opposite
+quartets only in the patterns `2+2+2`, `3+3`, or `4+2`.  A streaming affine
+modulo-nine enumeration checks 27,468,720 oriented medium frames, reduces
+them to 345,984 exact-aggregate modular survivors, and rejects all of those
+by detached 37-lag integer replay.
+
 ## 1. Exact finite state model
 
 There are two profile words of length twelve.  Each letter is one of the ten
@@ -230,6 +248,7 @@ the constructor source,
 the detached verifier and its complete relevant local import closure,
 the effective profile modulus, row count, and canonical zero coefficients,
 the complete profile/quartet/product/transfer tables,
+the exact exclusions of the three highest norm-nine shells,
 the OR-Tools version,
 the selected targets, variable order, symmetry setting, and exact layers.
 ```
@@ -309,8 +328,8 @@ A bounded resumable discovery invocation is:
 tmp/hadamard-env/bin/python \
   hadamard_668_search/search_lp333_order3_profile_crt.py \
   --target-mode formal \
-  --checkpoint hadamard_668_search/output/profile_crt_v2_checkpoint.json \
-  --candidate hadamard_668_search/output/profile_crt_v2_survivors.json \
+  --checkpoint hadamard_668_search/output/profile_crt_v5_checkpoint.json \
+  --candidate hadamard_668_search/output/profile_crt_v5_survivors.json \
   --time-limit 60 \
   --cube-time-limit 15 \
   --max-memory-mb 4096
@@ -321,5 +340,5 @@ If a survivor catalog appears, replay every entry without OR-Tools:
 ```text
 python3 \
   hadamard_668_search/verify_lp333_order3_profile_crt_candidate.py \
-  hadamard_668_search/output/profile_crt_v2_survivors.json
+  hadamard_668_search/output/profile_crt_v5_survivors.json
 ```

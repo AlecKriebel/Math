@@ -36,7 +36,7 @@ from search_lp333_order3_profile_crt import (
     target_stabilizer_elements,
     target_modes,
 )
-from verify_lp333_order3_char37_transfer import row_sum_targets
+from verify_lp333_order3_char37_transfer import profile_norm, row_sum_targets
 from verify_lp333_order3_profile9 import profile_correlation_table
 from verify_lp333_order3_profile9_shards import PROFILE9_SHARD_WITNESSES
 from verify_lp333_order3_profile_crt_candidate import (
@@ -168,7 +168,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
                 )
         cut_solver = configure_solver(time_limit=5.0, max_memory_mib=256)
         self.assertEqual(cut_solver.solve(cut.model), cp_model.INFEASIBLE)
-        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 4)
+        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 3)
 
     def test_variable_order_is_complete(self) -> None:
         self.assertEqual(len(VARIABLE_ORDER), 24)
@@ -197,7 +197,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
         self.assertLessEqual(result["solver_memory_limit_mib"], 512)
 
     def test_fixed_fixture_table_without_crt(self) -> None:
-        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[1]
+        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[0]
         bundle = build_profile_crt_model(
             target,
             enforce_crt=False,
@@ -225,8 +225,37 @@ class ProfileCRTConstructorTests(unittest.TestCase):
             profile_correlation_table(identifiers_a, identifiers_b),
         )
 
+    def test_norm_nine_top_three_shell_cut(self) -> None:
+        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 3)
+        for witness_index, expected_high_count in ((4, 4), (1, 5), (3, 6)):
+            target, identifiers_a, identifiers_b = (
+                PROFILE9_SHARD_WITNESSES[witness_index]
+            )
+            self.assertEqual(
+                sum(
+                    profile_norm(identifier) == 9
+                    for identifier in identifiers_a + identifiers_b
+                ),
+                expected_high_count,
+            )
+            bundle = build_profile_crt_model(
+                target,
+                enforce_crt=False,
+                break_rotation_symmetry=False,
+            )
+            add_sparse_shell_cut(bundle.model, bundle.norm9_flags)
+            for channel, identifiers in enumerate(
+                (identifiers_a, identifiers_b)
+            ):
+                for class_index, value in enumerate(identifiers):
+                    bundle.model.add(
+                        bundle.identifiers[channel][class_index] == value
+                    )
+            solver = configure_solver(time_limit=5.0, max_memory_mib=256)
+            self.assertEqual(solver.solve(bundle.model), cp_model.INFEASIBLE)
+
     def test_complete_assignment_nogood_is_exact(self) -> None:
-        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[1]
+        target, identifiers_a, identifiers_b = PROFILE9_SHARD_WITNESSES[0]
         bundle = build_profile_crt_model(
             target,
             enforce_crt=False,
@@ -328,6 +357,14 @@ class ProfileCRTConstructorTests(unittest.TestCase):
             "search_lp333_order3_profile_crt.py",
             manifest["python_source_sha256"],
         )
+        self.assertIn(
+            "verify_lp333_order3_profile_penultimate_shell.py",
+            manifest["python_source_sha256"],
+        )
+        self.assertIn(
+            "verify_lp333_order3_profile_shell_four.cpp",
+            manifest["python_source_sha256"],
+        )
         self.assertEqual(
             manifest["quartet_census"],
             {"assignments": 3334, "coarse_states": 1409},
@@ -352,7 +389,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
                 "column_modulus": 37,
                 "row_count": 9,
                 "zero_eisenstein": ((-1, 0), (2, 0)),
-                "max_exact_norm9_profile_count": 4,
+                "max_exact_norm9_profile_count": 3,
             },
         )
 

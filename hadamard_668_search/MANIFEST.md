@@ -39,9 +39,15 @@
 | `LP333_ORDER3_SPARSE_B_NORM.md` | Relative-norm classification excluding 312 of 396 normalized energy-six sparse-`B` words in the two `(163,4)` targets |
 | `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` | Formal 24-element profile symmetry, seven target orbits, and the 12-element labelled-transport caveat |
 | `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md` | Hardened resumable 24-profile constructor with direct zero equations, exact quartet tables, semantic checkpoints, orbit-complete output, and detached candidate replay |
+| `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` | Exact exclusion of the six-norm-nine endpoint shell |
+| `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` | Exact affine modulo-nine exclusion of the five-norm-nine shell |
+| `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
 | `LP333_ORDER3_PHASE_FIBER_SUPPORT.md` | Twelve-factor norm obstruction leaving only the dense and synchronized `B0`-zero primitive phase-support strata |
+| `LP333_PHASE_CONE_TRIVIAL_BRANCH_OBSTRUCTION.md` | Physical row-margin obstruction to the trivial zero cone branch and exact 1,411-pair catalog image |
+| `LP333_ORDER3_PHASE_TRACE_SIEVE.md` | Row-Galois cone inversion, factorwise trace recovery, Parseval support cuts, and lookup-free physical decoder |
+| `LP333_ORDER3_PHASE_CYCLIC_DECODER.md` | Mod-seven 13-factor necessary sieve, local alphabets, affine factor equation, and architecture audit |
 | `LP333_ORDER3_PHASE_TRANSFER.md` | Exact trivial-character phase transfer and multiplicity-preserving equivalence with the row-sum catalog |
 | `LP333_ORDER3_PHASE_HENSEL.md` | Exact first Eisenstein-adic phase digit, rank census, and fixed-profile contradiction certificate |
 | `LP333_ORDER3_DIAGONAL_FRAME_PREFIX.md` | Exact augmentation-plus-characteristic-37 prefix for the six-sequence diagonal frame |
@@ -135,12 +141,24 @@
 | `search_lp333_order3_profile_crt.py` | Resumable deterministic exact constructor for seven formal, twelve lift-compatible, or all 22 targets |
 | `verify_lp333_order3_profile_crt_candidate.py` | Solver-free exact replay of every future profile-constructor survivor |
 | `test_search_lp333_order3_profile_crt.py` | Constructor arithmetic, symmetry, checkpoint, memory-ceiling, and replay regressions |
+| `verify_lp333_order3_profile_endpoint_shell.py` | Exhaustively excludes the `n_9=6` profile-energy endpoint |
+| `test_lp333_order3_profile_endpoint_shell.py` | Focused endpoint-shell census, symmetry, and exact-replay regressions |
+| `verify_lp333_order3_profile_penultimate_shell.py` | Exhaustively excludes the `n_9=5` shell by an affine modulo-nine join |
+| `test_lp333_order3_profile_penultimate_shell.py` | Focused localization, join-census, symmetry, and exact-replay regressions |
+| `verify_lp333_order3_profile_shell_four.cpp` | Streaming exhaustive affine modulo-nine verifier for the `n_9=4` shell |
+| `test_lp333_order3_profile_shell_four.py` | Compiles, runs, and checks every pinned shell-four census |
 | `verify_lp333_order3_phase_factor.py` | Checks the 54 signed-unit phases and the two exact Eisenstein group-ring equations |
 | `test_lp333_order3_phase_factor.py` | Focused fiber-bijection, adjoint, and dual-certificate factorization regressions |
 | `verify_lp333_order3_phase_prime167.py` | Checks exactness of both phase equations, both finite-field splits, universal star, and all cone branches |
 | `test_lp333_order3_phase_prime167.py` | Focused equality-orbit, CRT, annihilator, recombination, rank, and parameter-count regressions |
 | `verify_lp333_order3_phase_fiber_support.py` | Checks primitive irreducibility, residue-prime norm thresholds, fixed-fiber activity, support strata, and plane-rank consequence |
 | `test_lp333_order3_phase_fiber_support.py` | Focused irreducibility, norm-gap, support-pattern, rank, and pinned-certificate regressions |
+| `verify_lp333_phase_cone_trivial_branch.py` | Checks the period-three margin obstruction and exact nonzero catalog image |
+| `test_lp333_phase_cone_trivial_branch.py` | Focused kernel, lift, catalog, and projective-ratio regressions |
+| `verify_lp333_order3_phase_trace_sieve.py` | Checks row-Galois/trace inversion, Parseval cuts, physical idempotence, and local norm cubics |
+| `test_lp333_order3_phase_trace_sieve.py` | Focused full-algebra, decoder, alphabet, and negative-cone regressions |
+| `verify_lp333_order3_phase_cyclic_decoder.py` | Checks the mod-seven split, factor orientation, local alphabets, and exact architecture bounds |
+| `test_lp333_order3_phase_cyclic_decoder.py` | Focused finite-field, compatibility, barrier, and certificate regressions |
 | `verify_lp333_order3_phase_transfer.py` | Checks the small phase-sum transfer and its exact catalog-intersection equivalence |
 | `test_lp333_order3_phase_transfer.py` | Focused convolution, fixture, corpus, pruning, and catalog-equivalence regressions |
 | `verify_lp333_order3_phase_hensel.py` | Checks the first affine `1-omega` phase digit, rank census, direct replays, and contradiction |
