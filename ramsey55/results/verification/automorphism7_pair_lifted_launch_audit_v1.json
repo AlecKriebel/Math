@@ -1,0 +1,71 @@
+{
+  "audit": "ramsey55_automorphism7_pair_lifted_launch_audit_v1",
+  "blockers": [
+    "available storage is below the 9,126,805,504-byte prelaunch requirement",
+    "the frozen audit plan explicitly withholds full-run authorization"
+  ],
+  "claim_boundary": "This is a launch-readiness audit based on one certified full-size shard. It does not certify any of the other 127 shards or the complete order-7 branch.",
+  "exact_evidence": {
+    "independent_pilot_replay": true,
+    "pilot_check_sha256": "6fe337ed22aa3bf8447f82a89bb98e088df9e8efd9d22ee2740e0d76808a468c",
+    "pilot_result_sha256": "43b2d1e4bea5521db4d4bf51716735543d6673c302565677d5a6b2c9f834b461",
+    "pilot_shard": true,
+    "side_model_exhaustion": true
+  },
+  "existing_conservative_gate": {
+    "required_prelaunch_free_bytes": 20317547392,
+    "status": "UNCHANGED_AND_FROZEN"
+  },
+  "full_run_authorized": false,
+  "gates": {
+    "dynamic_storage": false,
+    "every_gate_passed": false,
+    "runtime_projection": true,
+    "tooling_and_exact_evidence": true
+  },
+  "launch_recommended": false,
+  "pilot_measurements": {
+    "conflict_cap_per_pair": 200000,
+    "independent_check_seconds": 182.9587627909932,
+    "maximum_conflicts": 9135,
+    "pair_count": 291,
+    "raw_drat_bytes": 32761321,
+    "raw_lrat_bytes": 146139966,
+    "run_seconds": 1108.8966002079978,
+    "shard_index": 73,
+    "wrapper_bytes": 10566888,
+    "zstd_drat_bytes": 5135902,
+    "zstd_lrat_bytes": 18659091
+  },
+  "plan_sha256": "9818bc2a048e2189fc5463d279adb165f04edee3bd4fd5b82aaf24261786394d",
+  "runtime_audit": {
+    "basis": "Scale the certified maximum-size shard and its independent replay by all 128 shards, then apply the frozen contingency factor. This is an empirical planning bound, not a proof that every shard will finish below it.",
+    "combined_128x_seconds": 165357.48646387085,
+    "contingency_factor": 1.25,
+    "contingency_seconds": 206697,
+    "full_serial_cap_seconds": 259200,
+    "independent_verification_128x_seconds": 23418.72163724713,
+    "production_128x_seconds": 141938.76482662372,
+    "runtime_projection_passed": true
+  },
+  "runtime_seconds": 0.028298749995883554,
+  "status": "DO_NOT_LAUNCH",
+  "storage_audit": {
+    "available_bytes_at_audit": 8296607744,
+    "dynamic_storage_gate_passed": false,
+    "per_shard_caps_passed": true,
+    "projection": {
+      "raw_drat_bytes_128x": 4193449088,
+      "raw_lrat_bytes_128x_informational_only": 18705915648,
+      "wrapper_bytes_128x_informational_only": 1352561664,
+      "zstd_drat_bytes_128x": 657395456,
+      "zstd_lrat_bytes_128x_informational_only": 2388363648
+    },
+    "required_prelaunch_free_bytes": 9126805504,
+    "retained_cap_bytes": 2684354560,
+    "retained_projection_bytes": 757453866,
+    "retained_projection_passed": true,
+    "retention_semantics": "Retain only zstd-19 compressed lifted DRAT shards plus hashes and indices. For every shard, regenerate LRAT transiently with pinned drat-trim, verify it with lrat-check, and delete the transient raw DRAT/LRAT only after both checks pass."
+  },
+  "valid": true
+}

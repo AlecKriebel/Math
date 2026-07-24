@@ -1,0 +1,64 @@
+{
+  "schema": "ramsey55.e2_low_closure_quotient_plan.v1",
+  "status": "FROZEN_BEFORE_QUOTIENT_EXECUTION",
+  "frozen_at_utc": "2026-07-24T06:07:48Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "motivation": "The completed low-conflict closure contains many labeled states. Quotient it before selecting starts for a second forced-barrier search, so later computation is allocated to structural classes rather than labeled duplicates.",
+  "input": {
+    "seed_graph_count": 22,
+    "seed_corpus_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0",
+    "expected_E3_labeled_count": 16082,
+    "expected_E4_labeled_count": 73788,
+    "expected_total_labeled_count": 89870,
+    "counts_source": "results/verification/e2_barrier_escape_atomic_ceiling15_v1.json"
+  },
+  "export_replay": {
+    "note": "The exact closure replay was already running when this quotient plan was frozen; it is a deterministic data export, not a preregistered hypothesis test.",
+    "source": "src/search43_e2_barrier_escape.cpp",
+    "source_sha256": "c2012e96947d5597116f6c49e7f45df0acd001738633722d76cb57b77865016e",
+    "binary_sha256": "cff15c1ca71cd668d4e13b25b366fd098f170a21d1f1306ba6dac496a187fe84",
+    "compile_flags": [
+      "-std=c++20",
+      "-O3",
+      "-DNDEBUG",
+      "-Wall",
+      "-Wextra",
+      "-pedantic"
+    ],
+    "parameters": {
+      "atomic_pair_retain": 15,
+      "closure_state_limit": 250000,
+      "seed": 20261231
+    },
+    "acceptance": [
+      "closure_complete is true",
+      "E0_found is false unless a construction is independently verified",
+      "closure counts exactly match 16082 E=3 and 73788 E=4",
+      "exported graph6 line counts equal the closure counts",
+      "the exact scan counters match the prior accepted run"
+    ]
+  },
+  "quotient": {
+    "source": "src/e2_low_closure_isomorphism_audit.py",
+    "source_sha256": "a36c36753fe7d86513008bfcaf38840286ae1c43bc72ce24155bbbf3c6145589",
+    "test": "tests/e2_low_closure_isomorphism_audit_tests.py",
+    "test_sha256": "da9605b4aca3528f824270be06f158858a92b9e5f8ae6a85d55f9ac023b6f523",
+    "labelg_sha256": "ae8b1e7ef173c1665725e708bd7abd00b08ee4230ba2bd04117ec63d441274a0",
+    "operations": [
+      "canonicalize every graph and its complement with dense labelg",
+      "repeat with sparse labelg",
+      "require equality of the induced ordinary and complement-isomorphism partitions",
+      "retain the lexicographically smaller dense canonical label of each graph/complement pair",
+      "independently recount K5s in each retained graph and its complement with a recursive bitset implementation"
+    ],
+    "acceptance": [
+      "all graph6 streams are unique and have order 43",
+      "complement is an exact involution on every input",
+      "dense and sparse partitions agree for E=3 and E=4",
+      "each retained representative independently recounts to its declared objective",
+      "the audit result reports valid=true"
+    ]
+  },
+  "next_decision_rule": "Use every complement-isomorphism representative if there are at most 10000 total. If there are more, freeze a deterministic stratified schedule by objective, conflict split, degree sequence, and class size before launching any second-barrier search.",
+  "claim_boundary": "This finite-corpus quotient cannot prove that no Ramsey graph exists and cannot classify low-conflict graphs outside the exported closure."
+}

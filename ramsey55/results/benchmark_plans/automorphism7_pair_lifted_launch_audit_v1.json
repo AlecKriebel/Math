@@ -1,0 +1,66 @@
+{
+  "schema": "ramsey55.automorphism7_pair_lifted_launch_audit_plan.v1",
+  "status": "FROZEN_POST_PILOT_AUDIT",
+  "purpose": "Bind the exact C7 side cover, the fail-closed shard tools, and the independently replayed full-size shard-73 pilot; then evaluate conservative storage and runtime launch gates without starting the 37,194-pair sweep.",
+  "claim_boundary": "This plan audits launch readiness only. It cannot certify an unrun shard or the complete order-7 branch.",
+  "pins": {
+    "full_design": {
+      "path": "results/benchmark_plans/automorphism7_pair_lifted_full_design_v1.json",
+      "sha256": "36bb3b19006df33086857daaac6ab693d6d63a1bb1d14eab2ebc9b13950c78c0"
+    },
+    "full_design_audit": {
+      "path": "results/verification/automorphism7_pair_lifted_full_design_v1.audit.json",
+      "sha256": "ecba883848d6f40760c84abbd01c599fd13646f63ca06f84e862bbb43ff3b589"
+    },
+    "side_exhaustion_plan": {
+      "path": "results/benchmark_plans/automorphism7_side_model_exhaustion_v1.json",
+      "sha256": "c54226419298ef1342c0a7562ba90fbe7b7aa3949a64c65c636d22c531587652"
+    },
+    "side_exhaustion_bundle": {
+      "path": "results/verification/automorphism7_side_model_exhaustion_v1.bundle_check.json",
+      "sha256": "d958bc62726c9607478012803037aec93b59cdab1c683361c4518f6bbe742e53"
+    },
+    "pilot_plan": {
+      "path": "results/benchmark_plans/automorphism7_pair_lifted_shard73_pilot_v1.json",
+      "sha256": "0cf02cf8f345e80eee987b06f87b42867606b94e94ea8dcd1fd72afbe7c17038"
+    },
+    "pilot_result": {
+      "path": "results/global_exact/automorphism7_pair_lifted_shard73_pilot_v1.json",
+      "sha256": "43b2d1e4bea5521db4d4bf51716735543d6673c302565677d5a6b2c9f834b461"
+    },
+    "pilot_check": {
+      "path": "results/verification/automorphism7_pair_lifted_shard73_pilot_v1.check.json",
+      "sha256": "6fe337ed22aa3bf8447f82a89bb98e088df9e8efd9d22ee2740e0d76808a468c"
+    },
+    "runner": {
+      "path": "src/automorphism7_pair_lifted_shard.py",
+      "sha256": "dd6c4d82c599adfc881691532133e3abb08740e7cb081aadc270b4bb997073ae"
+    },
+    "checker": {
+      "path": "verify/automorphism7_pair_lifted_shard_check.py",
+      "sha256": "04a15d1250355bfba1a09ec0a3584f9676f4d644c668047f858a0e41df44f471"
+    },
+    "tests": {
+      "path": "tests/automorphism7_pair_lifted_shard_tests.py",
+      "sha256": "c04fcd8229f0776006b861ac35a52e494290c5ba60caf7760a5eeb6862be3fa8"
+    }
+  },
+  "audit": {
+    "path": "verify/automorphism7_pair_lifted_launch_audit.py",
+    "sha256": "d8e5f64ee311e1a16d487ebd2bad117bc4df6a2eb3f53e886b333f2f127998e2"
+  },
+  "runtime_gate": {
+    "per_shard_runner_cap_seconds": 3600,
+    "per_shard_checker_cap_seconds": 3600,
+    "contingency_factor": 1.25,
+    "full_serial_cap_seconds": 259200,
+    "semantics": "Scale the measured maximum-size shard and its independent replay by 128, add a 25 percent contingency, and require at most 72 serial hours. This empirical gate does not override any per-shard fail-closed cap."
+  },
+  "recommend_if_every_gate_passes": true,
+  "existing_conservative_gate": {
+    "status": "UNCHANGED_AND_FROZEN",
+    "required_prelaunch_free_bytes": 20317547392
+  },
+  "full_run_authorized": false,
+  "output": "results/verification/automorphism7_pair_lifted_launch_audit_v1.json"
+}

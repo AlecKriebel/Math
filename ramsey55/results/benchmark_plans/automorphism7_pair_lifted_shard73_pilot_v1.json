@@ -1,0 +1,115 @@
+{
+  "schema": "ramsey55.automorphism7_pair_lifted_shard_pilot_plan.v1",
+  "status": "PREREGISTERED",
+  "purpose": "Run exactly one full-size 291-pair shard containing the hardest prior sample endpoint, under fail-closed conflict and file-size caps, then verify the streamed lifted proof in DRAT and LRAT.",
+  "claim_boundary": "This pilot can certify shard 73 only. It does not authorize or certify the other 127 shards and cannot establish the complete order-7 exclusion.",
+  "shard": {
+    "index": 73,
+    "count": 128,
+    "rule": "pair_index modulo 128",
+    "expected_pair_count": 291,
+    "first_pair_index": 73,
+    "last_pair_index": 37193,
+    "selection_reason": "This is a maximum-size shard and contains pair 37193, the largest/hardest proof in the prior twelve-sample benchmark."
+  },
+  "pins": {
+    "cnf": {
+      "path": "certificates/order43_automorphism7_six_cycles.cnf",
+      "sha256": "8045d463f68d78a745e18bb02ccc7d49fa02b47176a7282b1ef6f436fb109eb1"
+    },
+    "metadata": {
+      "path": "certificates/order43_automorphism7_six_cycles.metadata.json",
+      "sha256": "04f18fdcf4d50bda27580e1653f99f423d9799ba1ddbf0e95b1683542e6b7a56"
+    },
+    "side_models": {
+      "path": "certificates/automorphism7_side_model_exhaustion/side_models_191394.txt",
+      "sha256": "e5043141e771eb1c0f615c620e2ae39f3a911915f1a4385ae60351538df7eeab"
+    },
+    "side_exhaustion_bundle": {
+      "path": "results/verification/automorphism7_side_model_exhaustion_v1.bundle_check.json",
+      "sha256": "d958bc62726c9607478012803037aec93b59cdab1c683361c4518f6bbe742e53"
+    },
+    "pair_audit": {
+      "path": "results/verification/automorphism7_side_pair_orbit_cover_v1.json",
+      "sha256": "cd29189badf8d01f8f02704c14ad9edb19c63bb96ac4b2402d51e5b03b975294"
+    },
+    "schedule_runner": {
+      "path": "src/automorphism7_side_pair_orbit_sweep.py",
+      "sha256": "016ba250cea7d51e6b95b45c599514ccd25f904af2b8957599d1c2b57702ec72"
+    },
+    "lifting_sample_source": {
+      "path": "src/automorphism7_pair_lifted_blocker_sample.py",
+      "sha256": "3904c326936fb1a3662d4cde1c81db93c1ed309c0a0f0cc494c4d30229bd78fe"
+    },
+    "file_gate": {
+      "path": "src/run_with_file_size_gate.py",
+      "sha256": "8063f27b49e0a9412a21e3538c76e0f4c083cdd4d6599f224f13dd6245a7043b"
+    },
+    "full_design": {
+      "path": "results/benchmark_plans/automorphism7_pair_lifted_full_design_v1.json",
+      "sha256": "36bb3b19006df33086857daaac6ab693d6d63a1bb1d14eab2ebc9b13950c78c0"
+    },
+    "full_design_audit": {
+      "path": "results/verification/automorphism7_pair_lifted_full_design_v1.audit.json",
+      "sha256": "ecba883848d6f40760c84abbd01c599fd13646f63ca06f84e862bbb43ff3b589"
+    },
+    "drat_trim": {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/drat-trim",
+      "sha256": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+    },
+    "lrat_check": {
+      "path": "/tmp/ramsey55-drat-trim.x3nb3p/src/lrat-check",
+      "sha256": "bd7eb8052623525814a0a37502b47f05375d9d9dfaf96ddc2fcd858958517cea"
+    },
+    "zstd": {
+      "path": "/opt/homebrew/bin/zstd",
+      "sha256": "aff8169fb421bb925fb16c44a7e0143fa2c7a941dc45cce76b15062a2ce54917"
+    },
+    "pysat_solvers": {
+      "path": "/tmp/ramsey55-pysat.4YSXId/pysat/solvers.py",
+      "sha256": "253654d8efabae650a0d136ad2f2e6d30b57206b1fb70846c714197468a28f7e"
+    }
+  },
+  "runner": {
+    "path": "src/automorphism7_pair_lifted_shard.py",
+    "sha256": "dd6c4d82c599adfc881691532133e3abb08740e7cb081aadc270b4bb997073ae"
+  },
+  "checker": {
+    "path": "verify/automorphism7_pair_lifted_shard_check.py",
+    "sha256": "04a15d1250355bfba1a09ec0a3584f9676f4d644c668047f858a0e41df44f471"
+  },
+  "tests": {
+    "path": "tests/automorphism7_pair_lifted_shard_tests.py",
+    "sha256": "c04fcd8229f0776006b861ac35a52e494290c5ba60caf7760a5eeb6862be3fa8",
+    "result": "4/4 passed before preregistration"
+  },
+  "pysat_version": "1.9.dev7",
+  "conflict_budget_per_pair": 200000,
+  "proof_check_timeout_seconds": 3600,
+  "maximum_pilot_wall_seconds": 3600,
+  "zstd_level": 19,
+  "hard_caps": {
+    "per_cube_raw_proof_bytes": 67108864,
+    "raw_drat_bytes": 268435456,
+    "raw_lrat_bytes": 1610612736,
+    "wrapper_bytes": 67108864,
+    "compressed_drat_bytes": 67108864,
+    "compressed_lrat_bytes": 67108864,
+    "minimum_free_bytes_after_completion": 4294967296,
+    "required_prelaunch_free_bytes": 6375342080
+  },
+  "outputs": {
+    "wrapper_cnf": "certificates/automorphism7_pair_lifted_shard73_pilot/shard73.cnf",
+    "lifted_drat": "certificates/automorphism7_pair_lifted_shard73_pilot/shard73.drat",
+    "lifted_lrat": "certificates/automorphism7_pair_lifted_shard73_pilot/shard73.lrat",
+    "lifted_drat_zstd": "certificates/automorphism7_pair_lifted_shard73_pilot/shard73.drat.zst",
+    "lifted_lrat_zstd": "certificates/automorphism7_pair_lifted_shard73_pilot/shard73.lrat.zst",
+    "result": "results/global_exact/automorphism7_pair_lifted_shard73_pilot_v1.json",
+    "independent_check": "results/verification/automorphism7_pair_lifted_shard73_pilot_v1.check.json"
+  },
+  "existing_conservative_gate": {
+    "status": "UNCHANGED_AND_FROZEN",
+    "required_prelaunch_free_bytes": 20317547392
+  },
+  "full_run_authorized": false
+}

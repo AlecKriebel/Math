@@ -1,0 +1,34 @@
+{
+  "schema": "ramsey55.e2_second_barrier_discovery_audit_plan.v1",
+  "status": "FROZEN_BEFORE_CLASSIFICATION",
+  "frozen_at_utc": "2026-07-24T06:18:30Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "input": {
+    "search_plan": "results/benchmark_plans/e2_low_closure_second_barrier_v1.json",
+    "search_plan_sha256": "ebbe4ce7d5a6b9027651fe0e1d2ca70b729eda5545b6f84a44e3c5291ec8cac7",
+    "search_result": "results/constructive/e2_low_closure_v2/second_barrier.result.json",
+    "search_result_sha256": "ce9e17cae63f40dde390cc960fbd1865156cf923f2615f8f5c36d4fac3fba993",
+    "endpoint_stream": "results/constructive/e2_low_closure_v2/second_barrier_new_E2.g6",
+    "endpoint_count": 1670,
+    "endpoint_stream_sha256": "ba35df48ba6577605135fda1c893283b76420724bd9ff70b4c0641427ec96e97",
+    "known_seed_count": 22,
+    "known_seed_corpus_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0"
+  },
+  "audit": {
+    "source": "src/e2_second_barrier_discovery_audit.py",
+    "source_sha256": "c23e744d1af07323fecb03aa7f8b3872baa5aa4bb1411f2d5f5d5a636da3e187",
+    "test": "tests/e2_second_barrier_discovery_audit_tests.py",
+    "test_sha256": "972ee1d56b74e15492bed78bea44bc9484b66f3e2a1e46fa85d93dc9c3f53da0",
+    "labelg_sha256": "ae8b1e7ef173c1665725e708bd7abd00b08ee4230ba2bd04117ec63d441274a0",
+    "operations": [
+      "independently enumerate every K5 in each endpoint and its complement and require total objective two",
+      "record whether the two conflicts have one color or mixed colors and their overlap",
+      "canonicalize endpoints, known seeds, and all complements with dense labelg",
+      "repeat with sparse labelg and require identical ordinary/complement partitions and identical endpoint novelty decisions",
+      "write one canonical representative per endpoint complement class and a separate stream of classes absent from the known 22-seed corpus",
+      "recount the canonical representatives themselves"
+    ]
+  },
+  "decision_rule": "If any novel class exists, preserve all novel representatives and make them the next constructive starts. If no novel class exists, record that the second barrier returned only to the two known structural basins and redesign the repair operator rather than increasing the same budget.",
+  "claim_boundary": "The audit classifies only the retained 1,670 endpoints; even zero novel classes cannot imply a global classification or nonexistence theorem."
+}

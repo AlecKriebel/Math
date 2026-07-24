@@ -1,0 +1,66 @@
+{
+  "schema": "ramsey55.e2_low_closure_second_barrier_plan.v1",
+  "status": "FROZEN_BEFORE_PRODUCTION",
+  "frozen_at_utc": "2026-07-24T06:15:33Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "input": {
+    "quotient_audit": "results/verification/e2_low_closure_isomorphism_audit_v1.json",
+    "quotient_audit_sha256": "cd1f8a9e56e76b0c94df1c5705ca7090588e2eb12a2bd0009f3e53e115f47725",
+    "E3_representatives": "results/constructive/e2_low_closure_v2/representatives.e3.g6",
+    "E3_representative_count": 9,
+    "E3_representatives_sha256": "0f9485a82ecb6dba9b19ea0759ba37ef7c9bc64d481cf8fd7a248480b348471d",
+    "E4_representatives": "results/constructive/e2_low_closure_v2/representatives.e4.g6",
+    "E4_representative_count": 44,
+    "E4_representatives_sha256": "2ea9964afed1205884e971fb50fce77d783925804ae9d1064460e7b89190bca4",
+    "known_E2_seed_count": 22,
+    "known_E2_seed_corpus_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0"
+  },
+  "implementation": {
+    "source": "src/search43_e2_barrier_escape.cpp",
+    "source_sha256": "cdddaef4c35dfb9ccdbcc7478029c15eb909247714ffc2bef9e8fa636fb0099c",
+    "binary_sha256": "e145c90c00a6ba7058c58e0ee184ebb3bc8c6292f21c7231161422972cad4b69",
+    "compile_flags": [
+      "-std=c++20",
+      "-O3",
+      "-DNDEBUG",
+      "-Wall",
+      "-Wextra",
+      "-pedantic"
+    ],
+    "dynamic_self_check": {
+      "seed": 20261231,
+      "exhaustive_base_edge_delta_checks": 903,
+      "random_sequence_delta_checks": 200,
+      "status": "PASS"
+    }
+  },
+  "first_barrier_schedule": {
+    "coverage": "all 53 complement-isomorphism representatives",
+    "conflict_edge_union": "the union of the ten graph edges in every current forbidden five-set",
+    "eligible_edge_rule": "force every one of the 903 edges that is outside the conflict-edge union, plus every conflict-union edge whose exact post-flip objective exceeds four",
+    "objective_ceiling": 80,
+    "per_seed_limit": 0,
+    "meaning_of_zero_limit": "no truncation; use every eligible edge",
+    "exact_replay": "recount every forced graph before its repair rollout",
+    "rationale": "Conflict-union moves that remain at E<=4 are exactly the move type already closed in the prior finite closure. Every scheduled first edge therefore leaves that targeted closure."
+  },
+  "repair": {
+    "seed": 20261321,
+    "rollouts_per_barrier": 1,
+    "steps_per_rollout": 256,
+    "tabu_tenure": 11,
+    "noise_per_million": 90000,
+    "objective_ceiling": 80,
+    "progress_interval": 5000,
+    "discovery_output": "results/constructive/e2_low_closure_v2/second_barrier_new_E2.g6"
+  },
+  "acceptance": [
+    "all 53 seeds independently recount to E=3 or E=4",
+    "all forced-barrier incremental heights match exact conflict recounts",
+    "the result binds the frozen source, binary, inputs, parameters, and output hashes",
+    "any E=0 graph is immediately checked by both independent Ramsey verifiers before any construction claim",
+    "any E=2 graph is independently recounted and quotient-classified before a novelty claim"
+  ],
+  "stopping_rule": "Run the complete frozen first-barrier schedule once. Stop early only for a replay failure, resource-safety failure, or an E=0 construction requiring immediate independent verification.",
+  "claim_boundary": "The first forced edge schedule is exhaustive only relative to the 53 retained classes and the stated outside-closure rule. Every subsequent repair trajectory is heuristic. No failure can imply nonexistence."
+}

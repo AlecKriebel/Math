@@ -577,3 +577,66 @@ Every entry uses exactly one project evidence category.
 - Scope limitation: the 328 graphs are not asserted to be a complete
   catalog of all order-42 Ramsey graphs. This is not a global order-43
   exclusion or a Ramsey-bound improvement.
+
+## C26 — All normalized global branches have a 143-orbit anchor cover
+
+- Category: **CERTIFIED**
+- Claim: each normalized root-degree branch \(d=18,19,20\) has an exact
+  symmetry-complete cover by the same 143 feasible
+  \(S_4\times S_4\) anchor-matrix orbits.
+- Degree-18 boundary obligation: \(A=N(0)\) has order
+  \(18=R(4,4)\) and no \(K_4\), so it contains an independent four-set.
+  The complementary side \(B\) has order 24 and no independent four-set,
+  so it contains a four-clique.
+- Independent enumeration/check:
+  - all 65,536 binary cross matrices were reconstructed;
+  - exactly 35,714 are feasible;
+  - they partition into exactly 143 row/column-permutation orbits;
+  - every cube assumption and every selector-union clause was independently
+    reconstructed.
+- The degree-18 union has 65,556 variables and 2,061,137 clauses. Its
+  9,005 additions have SHA-256
+  `782dd9bfe9d83d74ccf69939e6cbfff5b3060bed29904f0694a20f4bf223e904`;
+  the materialized formula has SHA-256
+  `a14a4951041942c01d8787a381c36ca3d094633255a2d134c7879fbec0af78c7`.
+- Artifacts:
+  - `certificates/global_anchor_degree18_extension_v1.report.md`
+  - `results/benchmark_plans/global_anchor_degree18_extension_v1.json`
+  - `results/verification/global_anchor_degree18_extension_v1.check.json`
+  - `results/verification/global_anchor_d18_extension_union.check.json`
+  - `certificates/global_anchor_degree19_20_cover.report.md`
+- Scope limitation: these are exact decompositions and checked encodings,
+  not solved formulas. No branch is excluded and no Ramsey bound changes.
+
+## C27 — The retained low frontier has 53 classes and funnels to two E=2 basins
+
+- Category: **REPRODUCIBLE COMPUTATIONAL OBSERVATION**
+- Claim: the exported targeted closure of 16,082 labeled \(E=3\) and 73,788
+  labeled \(E=4\) states has only 9 and 44 classes, respectively, modulo
+  graph isomorphism and complementation.
+- Validation:
+  - dense and sparse nauty partitions agree;
+  - complement pairing is exact;
+  - an independent recursive-bitset K5 enumerator recounts all 53 canonical
+    representatives.
+- A frozen all-class experiment exactly replayed 47,675 first edges outside
+  the prior move closure and executed 2,080,964 heuristic repair steps.
+  It retained 1,670 labeled \(E=2\) endpoints, all independently verified to
+  occupy the same two complement-isomorphism classes as the earlier
+  22-candidate corpus. It found zero \(E=1\), zero \(E=0\), and zero novel
+  \(E=2\) class.
+- Artifacts:
+  - `certificates/e2_low_closure_quotient_second_barrier_v1.report.md`
+  - `results/verification/e2_low_closure_isomorphism_audit_v1.json`
+  - `results/constructive/e2_low_closure_v2/second_barrier.result.json`
+  - `results/verification/e2_second_barrier_discovery_audit_v1.json`
+- Principal hashes:
+  - closure quotient:
+    `cd1f8a9e56e76b0c94df1c5705ca7090588e2eb12a2bd0009f3e53e115f47725`;
+  - endpoint audit:
+    `fae8b82dd05df36cfc353848fb0c1ebd3f049c8975b3e02bf237d2a0ea06f2b1`;
+  - report:
+    `f1e0ec7e6db727a5d9b39d608344d8ee761a70b169afdff5202a3ad984069666`.
+- Scope limitation: this classifies only the exported finite closure and
+  one frozen heuristic endpoint corpus. It is neither a global low-conflict
+  classification nor evidence of nonexistence.

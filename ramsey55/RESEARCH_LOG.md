@@ -1483,3 +1483,96 @@ earlier outcomes.
 - **CLAIM BOUNDARY:** no solver was run and no SAT model, UNSAT conclusion,
   DRAT, or LRAT was produced. Degree 18 remains unresolved; this checkpoint
   changes no Ramsey bound.
+
+## 2026-07-24T06:26:46Z — The 89,870-state low frontier has only 53 structural classes
+
+- Replayed the complete targeted low-conflict closure with deterministic
+  graph6 export. All 28 substantive counters match the prior accepted run:
+  16,082 unique labeled `E=3` states, 73,788 `E=4` states, zero off-cycle
+  `E=2`, zero `E=1`, and zero `E=0`.
+- **REPRODUCIBLE FINITE-CORPUS CLASSIFICATION:** dense and sparse nauty
+  canonicalization agree exactly. The 89,870 states collapse to 18/88
+  ordinary isomorphism classes at `E=3`/`E=4`, and only 9/44 classes after
+  complementation is identified: 53 total.
+- An independent recursive-bitset K5 counter replayed every one of the 53
+  canonical representatives. Representative-stream SHA-256 values are
+  `0f9485a82ecb6dba9b19ea0759ba37ef7c9bc64d481cf8fd7a248480b348471d`
+  (`E=3`) and
+  `2ea9964afed1205884e971fb50fce77d783925804ae9d1064460e7b89190bca4`
+  (`E=4`). Quotient-audit SHA-256:
+  `cd1f8a9e56e76b0c94df1c5705ca7090588e2eb12a2bd0009f3e53e115f47725`.
+- The class sizes are entirely 946 or 1,892, exposing the same 86-step
+  neutral-cycle symmetry throughout the low frontier rather than tens of
+  thousands of unrelated basins.
+
+## 2026-07-24T06:26:46Z — All-53-class second barrier returns to the same two E=2 basins
+
+- Froze and executed every first edge outside the previously closed move
+  type from all 53 complement-isomorphism representatives. The schedule had
+  47,675 exact forced barriers: 46,225 non-conflict edges and 1,450
+  conflict-union edges whose post-flip objective exceeded four.
+- One 256-step tabu/noise repair per barrier executed 2,080,964 steps and
+  2,125,169 exact objective checks in 51.646461 seconds. There were no
+  `E=1` visits and no `E=0` construction. The run retained 1,670 distinct
+  labeled `E=2` endpoints.
+- **REPRODUCIBLE ENDPOINT CLASSIFICATION:** all 1,670 endpoints independently
+  recount to two same-color forbidden five-sets overlapping in four
+  vertices. Dense/sparse nauty audits give four ordinary classes and exactly
+  two complement classes; every class is already present in the prior
+  22-near-miss corpus. Novel labeled endpoints/classes: `0/0`.
+- Frozen plan / search result / endpoint stream / endpoint audit SHA-256:
+  `ebbe4ce7d5a6b9027651fe0e1d2ca70b729eda5545b6f84a44e3c5291ec8cac7` /
+  `ce9e17cae63f40dde390cc960fbd1865156cf923f2615f8f5c36d4fac3fba993` /
+  `ba35df48ba6577605135fda1c893283b76420724bd9ff70b4c0641427ec96e97` /
+  `fae8b82dd05df36cfc353848fb0c1ebd3f049c8975b3e02bf237d2a0ea06f2b1`.
+- Frozen decision applied: do not increase the same repair budget. The next
+  constructive operator must force two non-repairing escape edges before
+  repair or otherwise change the move architecture.
+- The production source counted but did not export `E=1`; this run had zero
+  such visits, so no evidence was lost. A successor must stop and export on
+  `E=1`.
+- Full report SHA-256:
+  `f1e0ec7e6db727a5d9b39d608344d8ee761a70b169afdff5202a3ad984069666`.
+  **CLAIM BOUNDARY:** this finite-corpus search and quotient are not a
+  global classification, construction, or nonexistence result; the Ramsey
+  bound is unchanged.
+
+## 2026-07-24T06:26:45Z — Exact C7 side cover and certified full-shard pilot
+
+- **COMPLETE SIDE-MODEL COVER:** retained all 191,394 satisfying assignments
+  of the 30-variable C7 side formula, added their 30-literal blockers, and
+  certified the resulting 195,012-clause formula UNSAT. The 26,251,320-byte
+  DRAT and 49,294,605-byte LRAT both verify; an independent checker
+  reconstructed the CNF, replayed every listed model, and regenerated the
+  LRAT byte-for-byte. Bundle-check SHA-256:
+  `d958bc62726c9607478012803037aec93b59cdab1c683361c4518f6bbe742e53`.
+- This closes the logical gap in the earlier finite quotient: the 664 side
+  classes and 37,194 pair representatives are now derived from a certified
+  complete model list, not an unproved enumeration.
+- Implemented a fail-closed 128-way selector-lifted shard runner and an
+  independent checker. SAT, conflict-budget exhaustion, proof failure, file
+  cap breach, source-pin mismatch, or storage-reserve breach all stop the
+  negative pipeline. Four focused tests pass.
+- **CERTIFIED SHARD-73 PILOT:** all 291 representatives, including prior hard
+  endpoint 37,193, are UNSAT. Maximum conflicts were 9,135 under a 200,000
+  per-pair cap. End-to-end time was 1,108.897 seconds. The 32,761,321-byte
+  DRAT and 146,139,966-byte LRAT verify; compressed sizes are 5,135,902 and
+  18,659,091 bytes. Result SHA-256:
+  `43b2d1e4bea5521db4d4bf51716735543d6673c302565677d5a6b2c9f834b461`.
+- Independent replay reconstructed the certified schedule, wrapper, and all
+  291 proof segments, verified compression, and regenerated the same LRAT
+  byte-for-byte. Check SHA-256:
+  `6fe337ed22aa3bf8447f82a89bb98e088df9e8efd9d22ee2740e0d76808a468c`.
+- **POST-PILOT GATE: DO NOT LAUNCH.** Worst-pilot scaling projects
+  657,395,456 bytes of retained compressed DRAT and 57.42 serial hours after
+  a 25% contingency, so the proof-size and empirical runtime gates pass.
+  Available space at audit was 8,296,607,744 bytes, 830,197,760 bytes below
+  the new 9,126,805,504-byte storage requirement. Audit SHA-256:
+  `c84a3bf2cea28e30de0ea204dabb0d4e2d9f92618b07ca0aa59f84041a5eb620`.
+- The older conservative LRAT-only gate remains unchanged and frozen at
+  20,317,547,392 bytes. No production sweep was launched.
+- Full report SHA-256:
+  `70e145e08f1c9414f632ca039616767a718ad7d0f5fb0c89fbb3f5b8e85c7b74`.
+- **CLAIM BOUNDARY:** this checkpoint proves only the exact side cover and
+  shard 73. The other 127 shards remain unrun, so the order-7 branch remains
+  unresolved and the Ramsey bound is unchanged.

@@ -1,6 +1,6 @@
 # Research state
 
-Last updated: 2026-07-24T05:49:15Z.
+Last updated: 2026-07-24T06:26:46Z.
 
 ## Current certified mathematical status
 
@@ -22,11 +22,16 @@ Last updated: 2026-07-24T05:49:15Z.
 - **CERTIFIED STRUCTURAL SUBCLASS EXCLUSIONS:** eleven prime-order
   automorphism cycle types are excluded, including all prime-order types
   with prime at least 23. Fifty-four prime-order types remain uncovered.
-- **CERTIFIED EXACT DECOMPOSITIONS, NOT EXCLUSIONS:** the global root-degree
-  19 and 20 branches each have an independently checked 143-cube
-  \(S_4\times S_4\) anchor cover. The preferred union formulas remain
-  unsolved. The \(3^{14}1\) automorphism type likewise has a checked
+- **CERTIFIED EXACT DECOMPOSITIONS, NOT EXCLUSIONS:** all three normalized
+  global root-degree branches 18, 19, and 20 have independently checked
+  143-cube \(S_4\times S_4\) anchor covers. The preferred union formulas
+  remain unsolved. The \(3^{14}1\) automorphism type likewise has a checked
   two-case normalizer quotient but no UNSAT proof.
+- **CERTIFIED FINITE SIDE ENUMERATION:** for the order-seven automorphism
+  track, all 191,394 side models and the side-model exhaustion proof replay
+  independently. A full-size 291-pair shard pilot also has checked DRAT and
+  LRAT, but the remaining 127 shards have not run and the cycle type is not
+  excluded.
 - **CERTIFIED:** the fixed Exoo42 graph has no one-vertex extension. All 42
   labeled one-vertex replacements are also impossible, and the first bounded
   two-vertex replacement case (deleting vertices 0 and 1) is impossible.
@@ -86,6 +91,40 @@ and independent C++ bitset verifier reject both graphs.
 
 ## Latest executed experiments
 
+### Structural quotient and all-class second barrier
+
+- Re-exported the exact targeted low-conflict closure: 16,082 labeled
+  \(E=3\) states and 73,788 \(E=4\) states.
+- Dense/sparse nauty audits and independent bitset recounting collapse the
+  89,870 states to 53 classes modulo complement: 9 at \(E=3\), 44 at
+  \(E=4\).
+- The frozen all-class run exactly replayed 47,675 first barriers outside
+  the old move closure, then executed 2,080,964 heuristic repair steps.
+- It found no \(E=0\) or \(E=1\), and retained 1,670 labeled \(E=2\)
+  endpoints. Every endpoint independently falls back into the same two
+  previously known complement-isomorphism classes; zero novel class was
+  found.
+
+### Degree-18 exact anchor cover
+
+- The equality case \(|N(0)|=18=R(4,4)\) still forces an independent
+  four-set. The complementary side of order 24 forces a four-clique.
+- Independent enumeration again gives 35,714 feasible cross matrices and
+  exactly 143 \(S_4\times S_4\) orbits.
+- The lean degree-18 union has 65,556 variables and 2,061,137 clauses; all
+  2,052,132 base clauses and 9,005 additions match independently.
+- No solve was attempted, so the branch remains open.
+
+### Prime-automorphism certificate progress
+
+- The order-five all-ones internal split has 17 of 80 leaves fully checked
+  through DRAT-to-LRAT. The remaining leaves are active; this is not yet an
+  exclusion.
+- The order-seven side exhaustion is certified. Its worst 291-pair shard
+  pilot completed 291/291 UNSAT with independent byte-exact LRAT
+  regeneration. The full 128-shard launch is paused below its frozen
+  9.13-GB free-space gate.
+
 ### All-328 \(E\le2\) catalog extension proof census
 
 - Frozen catalog SHA-256
@@ -140,6 +179,14 @@ and independent C++ bitset verifier reject both graphs.
 - **CONJECTURE OR HEURISTIC:** the repeated four-vertex overlap after 135
   boundary changes is a structural obstruction rather than an accident of
   one search trajectory.
+- **REPRODUCIBLE FINITE-CORPUS STRUCTURE:** 89,870 labeled \(E=3/E=4\)
+  frontier states occupy only 53 complement classes, and every one of 1,670
+  retained second-barrier \(E=2\) endpoints returns to the same two known
+  complement classes.
+- **CONJECTURE OR HEURISTIC:** a successor must force at least two
+  non-repairing escape edges before allowing conflict-directed repair;
+  increasing the completed one-barrier rollout budget is unlikely to add
+  information.
 - **CERTIFIED FINITE-CORPUS STRUCTURE:** the apparent plateau is exactly two
   complement classes in the retained 22-candidate corpus, and each
   exceptional supplied order-42 core has only two optimum extensions.
@@ -180,6 +227,10 @@ and independent C++ bitset verifier reject both graphs.
 13. Exact \(E\le2\) extension classification over all 328 supplied cores.
 14. Exact root-degree 19/20 anchor covers and prime-automorphism quotient
     encodings.
+15. Exact degree-18 anchor cover, completing the common 143-orbit
+    decomposition of all normalized global branches.
+16. Dense/sparse quotient of the full 89,870-state low frontier and an
+    all-53-class, 47,675-barrier repair run.
 
 ## Strategies rejected or paused
 
@@ -195,22 +246,26 @@ and independent C++ bitset verifier reject both graphs.
 - Blind conflict-block and neutral-cycle budget increases are paused because
   exact auditing showed that all retained \(E=2\) starts occupy only two
   complement classes with closed low-barrier regions under the tested moves.
+- A larger budget for the same one-forced-edge repair operator is rejected:
+  the frozen all-class run covered every retained structural seed and every
+  stated first escape edge, yet all 1,670 \(E=2\) endpoints returned to the
+  two known classes.
+- The order-seven full shard launch is paused until free space again exceeds
+  its frozen 9,126,805,504-byte safety requirement.
 - An interrupted CaDiCaL radius-seven attempt is an infrastructure failure
   because that wrapper did not support limited interruption; it is not a
   mathematical result.
 
 ## Next selected experiment
 
-Run two constructive exact-completion programs in parallel:
-
-1. From one representative of each certified \(E=2\) complement class,
-   delete vertex triples and add three unconstrained vertices, screening the
-   resulting 40-vertex fixed cores for a genuine order-43 completion.
-2. Extend the moving-boundary track beyond the completed seven- and
-   eight-incident-vertex screens with a preregistered, structurally diverse
-   portfolio of wider incident boundaries.
+Freeze and execute a changed constructive move architecture: from every one
+of the 53 low-frontier complement classes, force two explicitly
+non-repairing escape edges before any conflict-directed repair. Retain and
+independently verify any \(E\le1\) state immediately; quotient every \(E=2\)
+endpoint before claiming a new basin.
 
 Any SAT result will be exported immediately and checked by both independent
 graph verifiers. Unchecked negative solver results remain observations. In
-parallel, finish the order-five automorphism certificate attempt and retain
-only proof-checked exclusions.
+parallel, continue the order-five certificate bundle. Launch the remaining
+order-seven shards only after the frozen storage gate passes; retain only
+proof-checked exclusions.
