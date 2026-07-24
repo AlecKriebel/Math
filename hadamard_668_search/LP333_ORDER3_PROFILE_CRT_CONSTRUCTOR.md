@@ -25,10 +25,10 @@ verifier.
 No profile survivor, labelled lift, `LP(333)`, or `H(668)` is asserted here.
 No long search was run while hardening this version.
 
-The exact top-three-shell theorems now add the categorical cut
+The exact top-four-shell theorems now add the categorical cut
 
 ```text
-number of norm-nine profile letters <= 3.
+number of norm-nine profile letters <= 2.
 ```
 
 The removed six-letter endpoint has been exhausted independently: its local
@@ -42,6 +42,11 @@ quartets only in the patterns `2+2+2`, `3+3`, or `4+2`.  A streaming affine
 modulo-nine enumeration checks 27,468,720 oriented medium frames, reduces
 them to 345,984 exact-aggregate modular survivors, and rejects all of those
 by detached 37-lag integer replay.
+In the three-letter shell, a signed-uniformizer skeleton quotient leaves
+38,296 canonical skeletons.  A lossless affine modulo-nine join produces
+479,850 exact-aggregate survivors; only two survive modulo 27, and detached
+exact replay rejects all 479,850.  An independent cubic characteristic-37
+moment rejects both modulo-27 near witnesses.
 
 ## 1. Exact finite state model
 
@@ -248,7 +253,7 @@ the constructor source,
 the detached verifier and its complete relevant local import closure,
 the effective profile modulus, row count, and canonical zero coefficients,
 the complete profile/quartet/product/transfer tables,
-the exact exclusions of the three highest norm-nine shells,
+the exact exclusions of the four highest norm-nine shells,
 the OR-Tools version,
 the selected targets, variable order, symmetry setting, and exact layers.
 ```

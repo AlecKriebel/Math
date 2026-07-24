@@ -25,7 +25,7 @@ this milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; exact modulo-nine certificates exclude the three highest profile-energy shells and force `n_9<=3`; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; exact certificates exclude the four highest profile-energy shells and force `n_9<=2`; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -617,7 +617,7 @@ orbits as a finite 24-variable discovery search.  It enforces the six
 reversal-independent equations `D_j=0` directly, uses the sharp
 `[-192,192]` correlation box, and replaces each opposite-pair quartet by an
 exact 3,334-row/1,409-state coarse layer.  It applies the independently
-verified sparse-shell theorem as the hard cut `n_9<=4`.  The model also uses the full
+verified shell theorems as the hard cut `n_9<=2`.  The model also uses the full
 fixed-target stabilizer, semantic checkpoint fingerprints, persistent exact
 no-goods, complete formal/lift-compatible orbit emission, and three detached
 integer replays of every survivor.  Persisted survivors are replayed again
@@ -632,7 +632,7 @@ checkpointed constructor is therefore the current exact profile route;
 neither the obsolete first-generation workflow pilot nor the MITM count is
 evidence of infeasibility.
 
-Three exact energy-shell theorems now prune that constructor before any
+Four exact energy-shell theorems now prune that constructor before any
 solver search.  `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` excludes
 `(n_9,n_3,n_0)=(6,0,18)`, and
 `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` excludes `(5,3,16)` after an
@@ -641,10 +641,21 @@ affine modulo-nine join reduces 34,634,136 aggregate/local assignments to
 six medium letters into the only possible quartet patterns `2+2+2`, `3+3`,
 and `4+2`.  Its streaming verifier checks 27,468,720 oriented frames,
 replays 345,984 exact-aggregate modulo-nine survivors on all 37 lags, and
-finds none with `D_t=0`.  Hence every exact profile satisfies
+finds none with `D_t=0`.  `shell_four_compressed/` independently quotients
+the medium skeletons and reproduces the same survivor counts and exact
+failure histogram; it is corroboration and explicitly shares the production
+alphabet and transition source.
+
+The three-high shell `(3,9,12)` is excluded independently in
+`shell_three_mod27/`.  Its signed-uniformizer quotient has 38,296 canonical
+skeletons.  A lossless affine modulo-nine join leaves 479,850
+exact-aggregate assignments; only two survive modulo 27, and detached exact
+replay rejects all 479,850.  The companion cubic characteristic-37 moment
+also rejects both modulo-27 near witnesses.  Hence every exact profile
+satisfies
 
 ```text
-n_9 <= 3.
+n_9 <= 2.
 ```
 
 These are complete shell exclusions, not a whole-quotient obstruction.
@@ -789,6 +800,11 @@ python3 verify_lp333_order3_profile_penultimate_shell.py
 c++ -std=c++20 -O3 verify_lp333_order3_profile_shell_four.cpp \
   -o /tmp/verify_lp333_order3_profile_shell_four
 /tmp/verify_lp333_order3_profile_shell_four
+clang++ -std=c++20 -O3 -DNDEBUG -Wall -Wextra -pedantic \
+  shell_three_mod27/verify_lp333_order3_profile_shell_three_mod27.cpp \
+  -o /tmp/verify_lp333_order3_profile_shell_three_mod27
+/tmp/verify_lp333_order3_profile_shell_three_mod27
+python3 shell_three_character/verify_lp333_order3_shell3_cubic_character.py
 python3 verify_lp333_order3_phase_factor.py
 python3 verify_lp333_order3_phase_prime167.py
 python3 verify_lp333_order3_phase_fiber_support.py
@@ -825,6 +841,8 @@ python3 verify_lp333_order3_diagonal_frame_prefix.py
   test_lp333_order3_profile_endpoint_shell.py \
   test_lp333_order3_profile_penultimate_shell.py \
   test_lp333_order3_profile_shell_four.py \
+  shell_three_mod27/test_lp333_order3_profile_shell_three_mod27.py \
+  shell_three_character/test_lp333_order3_shell3_cubic_character.py \
   test_lp333_order3_phase_factor.py \
   test_lp333_order3_phase_prime167.py \
   test_lp333_order3_phase_fiber_support.py \

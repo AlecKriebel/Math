@@ -1529,9 +1529,10 @@ proof-assistant-level theorem.
   exact-aggregate modulo-nine survivors.  Exact 37-lag replay rejects all,
   with histogram
   `4:204, 6:1860, 8:16884, 10:96192, 12:230844`.
-- These three independent shell theorems strengthen the exact profile
-  constructor from the energy-only bound `n_9<=6` to the categorical cut
-  `n_9<=3`.  The checkpoint and survivor schemas were advanced to `v5`,
+- At this stage these three independent shell theorems strengthened the exact
+  profile constructor from the energy-only bound `n_9<=6` to `n_9<=3`.
+  The later shell-three theorem strengthens it again to `n_9<=2`.  The
+  checkpoint and survivor schemas were advanced to `v5`,
   and all theorem sources are included in its semantic fingerprint.
 - Removed the zero branch of the trivial prime-167 phase cone.  If either
   channel coordinate
@@ -1573,3 +1574,40 @@ proof-assistant-level theorem.
   (the CP-SAT constructor tests); the exhaustive shell-four theorem itself
   used under 4 MB.  No exact profile, `LP(333)`, or `H(668)` has yet been
   found.  Nothing was sent, contacted, pushed, or published.
+
+## 24 July 2026: exact exclusion of the three-high profile shell
+
+- Reparameterized every norm-three profile coefficient as a signed
+  uniformizer `sigma*(1-omega)*omega^u`.  The opposite-quartet equation
+  leaves 908,800 signed skeletons and 38,296 exact skeleton orbits in the
+  shell `(n_9,n_3,n_0)=(3,9,12)`.
+- For a fixed skeleton, every remaining medium-phase or high-letter
+  correction is divisible by three.  Distinct correction products therefore
+  disappear modulo nine, yielding a lossless additive signature join with
+  exact aggregate coordinates.  Across 93,564 canonical-skeleton/target
+  loops it checks 17,424,680 high supports and produces exactly 479,850
+  modulo-nine/exact-aggregate survivors.
+- Carrying the correction expansion one digit farther restores the quadratic
+  cross terms modulo 27 and leaves exactly two near witnesses.  Their six
+  independent exact correlations are nonzero multiples of 27.  A separate
+  cubic characteristic-37 moment has values 33 and 23 on them, so neither
+  can be exact.
+- Detached integer replay was deliberately applied to all 479,850 modular
+  survivors on all 37 physical lags and found zero exact profiles.  Thus
+  `n_9=3` is excluded independently of the cubic moment, and the exact
+  constructor may enforce `n_9<=2`.
+- An independent audit recomputed the complete skeleton and target-orbit
+  counts, exhaustively checked 5,514,624 locality/phase conditions, compared
+  14,400 unary responses and 6,000 full flags to direct correlation, passed
+  warning-clean and Python 3.9/3.14 regressions, and completed separated
+  ASan/UBSan shards below 702 MB.  It found no arithmetic or completeness
+  defect.
+- The older `n_9=4` verifier was also replayed independently:
+  27,468,720 frames, 345,984 modular survivors, zero exact profiles.  A
+  compressed skeleton/MITM corroboration reproduces the same target counts
+  and exact failure histogram in about 12 seconds; it is retained with an
+  explicit shared-source caveat.
+- Four of the seven profile-energy shells are now closed.  The exact
+  mathematical frontier is `(n_9,n_3,n_0)=(2,12,10),(1,15,8),(0,18,6)`.
+  No exact profile, labelled lift, `LP(333)`, or `H(668)` has yet been found.
+  Nothing was sent, contacted, pushed, or published.

@@ -91,7 +91,7 @@ TIGHT_CORRELATION_COORDINATE_BOUND = 192
 CORRELATION_COORDINATE_BOUND = TIGHT_CORRELATION_COORDINATE_BOUND
 QUARTET_ASSIGNMENT_COUNT = 3334
 QUARTET_COARSE_STATE_COUNT = 1409
-MAX_EXACT_NORM9_PROFILE_COUNT = 3
+MAX_EXACT_NORM9_PROFILE_COUNT = 2
 
 SEMANTIC_SOURCE_DEPENDENCIES = (
     "search_lp333_order3_profile_crt.py",
@@ -104,6 +104,8 @@ SEMANTIC_SOURCE_DEPENDENCIES = (
     "verify_lp333_order3_profile_endpoint_shell.py",
     "verify_lp333_order3_profile_penultimate_shell.py",
     "verify_lp333_order3_profile_shell_four.cpp",
+    "shell_three_mod27/verify_lp333_order3_profile_shell_three_mod27.cpp",
+    "shell_three_character/verify_lp333_order3_shell3_cubic_character.py",
     "verify_lp333_order3_profile_zero_symmetry.py",
     "verify_lp333_order3_prime167_split.py",
     # Complete local import closure relevant to the profile replay.  In
@@ -288,7 +290,7 @@ def add_sparse_shell_cut(
     model: cp_model.CpModel,
     norm9_words: Sequence[Sequence[cp_model.IntVar]],
 ) -> None:
-    """Delete the exactly excluded ``h=4,5,6`` profile type sectors."""
+    """Delete the exactly excluded ``h=3,4,5,6`` profile type sectors."""
 
     flat = tuple(variable for word in norm9_words for variable in word)
     if len(norm9_words) != 2 or any(
@@ -506,7 +508,7 @@ def build_profile_crt_model(
         )
     model.add(sum(norm_words[0]) + sum(norm_words[1]) == 54)
     if enforce_crt:
-        # Exact shell certificates exclude h=4,5,6. They apply only with the
+        # Exact shell certificates exclude h=3,4,5,6. They apply only with the
         # exact zero gate, so weakened arithmetic-fixture mode retains them.
         add_sparse_shell_cut(model, norm9_words)
 
@@ -971,7 +973,7 @@ def model_fingerprint(
         "mathematical_layers": (
             "aggregate",
             "energy54",
-            "norm9_top_three_shell_exclusions",
+            "norm9_top_four_shell_exclusions",
             "quartet3334_coarse1409",
             "target_stabilizer_lex",
             "primitive9_lambda3",

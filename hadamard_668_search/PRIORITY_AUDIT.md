@@ -44,8 +44,8 @@ report:
    a 24-element formal symmetry reducing 22 targets to seven, and a
    three-fiber unit-phase factorization whose complete 39-component phase
    system is also lossless modulo 167 and splits into four parameterized
-   finite-field cones; three exact affine modulo-nine shell theorems exclude
-   `n_9=6,5,4`, forcing every profile-zero solution into `n_9<=3`; the phase
+   finite-field cones; four exact shell theorems exclude
+   `n_9=6,5,4,3`, forcing every profile-zero solution into `n_9<=2`; the phase
    cone has an exact row-Galois/trace inverse, fixed-origin and
    profile-support cuts, a lookup-free binary physicality decoder, and an
    independent 13-factor mod-seven sieve; all 22 aggregate shards survive
@@ -464,13 +464,13 @@ lift-compatible orbits.  This distinction prevents an invalid quotient at
 the phase stage.  A deterministic 24-variable constructor implements the
 seven formal targets with exact quartet states, full target stabilizers,
 direct zero equations, semantically pinned atomic checkpoints, and detached
-exact replay.  It now applies the independently verified sparse-shell cut
-`n_9<=4`.  No long campaign has been run on the hardened model, and
+  exact replay.  It now applies the independently verified shell cut
+`n_9<=2`.  No long campaign has been run on the hardened model, and
 solver-reported exhaustion would still require a proof-producing SAT/PB
 translation.  The symmetry theorem is useful supporting mathematics; the
 constructor is research infrastructure, not publication evidence.
 
-The profile energy equation has now yielded three complete shell exclusions.
+The profile energy equation has now yielded four complete shell exclusions.
 The `n_9=6` endpoint reduces to 288 aggregate-compatible assignments and
 twelve symmetry orbits.  At `n_9=5`, the local quartet equation forces all
 three norm-three letters into one quartet; an affine modulo-nine join reduces
@@ -478,12 +478,16 @@ three norm-three letters into one quartet; an affine modulo-nine join reduces
 the six norm-three letters occupy only `2+2+2`, `3+3`, or `4+2` quartet
 patterns; a streaming enumeration checks 27,468,720 oriented frames and
 345,984 exact-aggregate modulo-nine survivors.  Exact integer correlation
-rejects every survivor in all three shells, proving `n_9<=3`.
+rejects every survivor in these three shells.  At `n_9=3`, a
+signed-uniformizer skeleton quotient leaves 38,296 canonical skeletons and
+479,850 modulo-nine/exact-aggregate survivors.  Only two survive modulo 27;
+both fail an independent cubic characteristic-37 moment, and detached exact
+replay rejects all 479,850.  Thus the four shells prove `n_9<=2`.
 
 This sequence is new-looking and mechanically complete.  It is worth
 including as a supporting theorem package because it demonstrates a
 nontrivial descent through adjacent energy shells without a general-purpose
-solver.  It does not exclude the remaining four shells, so it should not be
+solver.  It does not exclude the remaining three shells, so it should not be
 presented as evidence for nonexistence of `LP(333)`.
 
 After profiles are fixed, every active residue fiber is a signed cube root
@@ -727,7 +731,7 @@ Maintain one compact internal paper organized around:
 7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
    and the order-three difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
-   profile-zero, top-three energy-shell exclusions, prime-167 split, exact
+   profile-zero, top-four energy-shell exclusions, prime-167 split, exact
    symmetry, unit-phase, lossless full-phase four-cone factorization,
    trivial-branch obstruction, factorwise trace/Parseval inversion,
    lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane

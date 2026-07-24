@@ -168,7 +168,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
                 )
         cut_solver = configure_solver(time_limit=5.0, max_memory_mib=256)
         self.assertEqual(cut_solver.solve(cut.model), cp_model.INFEASIBLE)
-        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 3)
+        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 2)
 
     def test_variable_order_is_complete(self) -> None:
         self.assertEqual(len(VARIABLE_ORDER), 24)
@@ -225,9 +225,14 @@ class ProfileCRTConstructorTests(unittest.TestCase):
             profile_correlation_table(identifiers_a, identifiers_b),
         )
 
-    def test_norm_nine_top_three_shell_cut(self) -> None:
-        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 3)
-        for witness_index, expected_high_count in ((4, 4), (1, 5), (3, 6)):
+    def test_norm_nine_top_four_shell_cut(self) -> None:
+        self.assertEqual(MAX_EXACT_NORM9_PROFILE_COUNT, 2)
+        for witness_index, expected_high_count in (
+            (0, 3),
+            (4, 4),
+            (1, 5),
+            (3, 6),
+        ):
             target, identifiers_a, identifiers_b = (
                 PROFILE9_SHARD_WITNESSES[witness_index]
             )
@@ -365,6 +370,11 @@ class ProfileCRTConstructorTests(unittest.TestCase):
             "verify_lp333_order3_profile_shell_four.cpp",
             manifest["python_source_sha256"],
         )
+        self.assertIn(
+            "shell_three_mod27/"
+            "verify_lp333_order3_profile_shell_three_mod27.cpp",
+            manifest["python_source_sha256"],
+        )
         self.assertEqual(
             manifest["quartet_census"],
             {"assignments": 3334, "coarse_states": 1409},
@@ -389,7 +399,7 @@ class ProfileCRTConstructorTests(unittest.TestCase):
                 "column_modulus": 37,
                 "row_count": 9,
                 "zero_eisenstein": ((-1, 0), (2, 0)),
-                "max_exact_norm9_profile_count": 3,
+                "max_exact_norm9_profile_count": 2,
             },
         )
 

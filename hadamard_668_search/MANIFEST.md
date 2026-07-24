@@ -42,6 +42,9 @@
 | `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` | Exact exclusion of the six-norm-nine endpoint shell |
 | `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` | Exact affine modulo-nine exclusion of the five-norm-nine shell |
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
+| `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
+| `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
+| `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
 | `LP333_ORDER3_PHASE_FIBER_SUPPORT.md` | Twelve-factor norm obstruction leaving only the dense and synchronized `B0`-zero primitive phase-support strata |
@@ -147,6 +150,14 @@
 | `test_lp333_order3_profile_penultimate_shell.py` | Focused localization, join-census, symmetry, and exact-replay regressions |
 | `verify_lp333_order3_profile_shell_four.cpp` | Streaming exhaustive affine modulo-nine verifier for the `n_9=4` shell |
 | `test_lp333_order3_profile_shell_four.py` | Compiles, runs, and checks every pinned shell-four census |
+| `shell_three_mod27/verify_lp333_order3_profile_shell_three_mod27.cpp` | Symmetry-reduced exhaustive verifier and exact 37-lag replay for the `n_9=3` shell |
+| `shell_three_mod27/test_lp333_order3_profile_shell_three_mod27.py` | Pins the shell-three census and independently replays its two modulo-27 near witnesses |
+| `shell_three_mod27/shell_three_mod27_certificate.json` | Machine-readable complete census and near-witness certificate |
+| `shell_three_character/verify_lp333_order3_shell3_cubic_character.py` | Dependency-free cubic-moment identity, rank, and negative-control verifier |
+| `shell_three_character/test_lp333_order3_shell3_cubic_character.py` | Focused cubic-character regressions |
+| `shell_four_compressed/census_h4_skeleton.cpp` | Independent signed-skeleton and exact-orbit census for the `n_9=4` shell |
+| `shell_four_compressed/verify_h4_skeleton_mitm.cpp` | Compressed modulo-nine MITM and detached exact replay corroboration |
+| `shell_four_compressed/test_h4_skeleton_mitm.py` | Pinned compiled regression for the compressed shell-four verifier |
 | `verify_lp333_order3_phase_factor.py` | Checks the 54 signed-unit phases and the two exact Eisenstein group-ring equations |
 | `test_lp333_order3_phase_factor.py` | Focused fiber-bijection, adjoint, and dual-certificate factorization regressions |
 | `verify_lp333_order3_phase_prime167.py` | Checks exactness of both phase equations, both finite-field splits, universal star, and all cone branches |

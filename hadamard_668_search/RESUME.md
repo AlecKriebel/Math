@@ -144,13 +144,18 @@ The strongest new constructive reductions are:
   orbit-complete survivor emission, and three solver-free integer replays.
   Loaded survivors are replayed before being restored as no-goods, and the
   replay dependency closure is fingerprinted. Exact shell certificates now
-  impose `n_9<=3`; the earlier bounded pilot found no candidate and has no
+  impose `n_9<=2`; the earlier bounded pilot found no candidate and has no
   exclusionary force.
 - `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md`,
   `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md`, and
   `LP333_ORDER3_PROFILE_SHELL_FOUR.md`: complete affine modulo-nine
   certificates exclude `n_9=6,5,4`.  The last checks 27,468,720 oriented
   medium frames and exactly replays 345,984 modular survivors.
+- `shell_three_mod27/` and `shell_three_character/`: a signed-uniformizer
+  skeleton quotient excludes `n_9=3`.  It exactly replays all 479,850
+  modulo-nine/aggregate survivors, finds only two modulo-27 near witnesses,
+  and rejects both exactly and by an independent cubic characteristic-37
+  moment.
 - `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
   54 signed Eisenstein unit phases and automatic physical frame energy 167.
   Exact primitive-nine lifting is one six-sequence complementary-frame
@@ -274,8 +279,8 @@ The strongest current construction checkpoints are:
 - the spectral-unit refinement: every physical profile-zero channel is a
   unit in that `1+6+6` algebra, so the modular intersection has no
   degenerate or axis branch and may be written as one unitary-ratio torus;
-- the sparse-shell exclusions: the `h=4,5,6` sectors are empty, leaving only
-  `h=0,1,2,3`; the constructor now enforces the exact cut `n_9<=3`;
+- the sparse-shell exclusions: the `h=3,4,5,6` sectors are empty, leaving
+  only `h=0,1,2`; the constructor now enforces the exact cut `n_9<=2`;
 - the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
   remain in the normalized energy-six allocation for the two `(163,4)`
   targets.  Continue only from those 84 words/eight lift-safe orbits;
@@ -343,7 +348,7 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to solve the remaining `n_9<=3` part of the 24-profile
+   next exact task is to solve the remaining `n_9<=2` part of the 24-profile
    finite system with `D_t=0`, beginning with structural shell descent before
    using the seven formal symmetry representatives and the resumable exact
    CRT constructor.  The prime-167 channel-first MITM is a low-memory
