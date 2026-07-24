@@ -1,5 +1,9 @@
 import importlib.util
+import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import unittest
 
 
@@ -46,6 +50,40 @@ class Fixed41BVAllHarmonicsTest(unittest.TestCase):
         self.assertEqual(
             VERIFIER.ceil_sqrt_fraction(VERIFIER.Q(9, 4)), 2
         )
+
+    def test_historical_certificate_under_optimized_python(self) -> None:
+        source = (
+            ROOT
+            / "certificates"
+            / "fixed41_bv_fullradial_k16_pseudodistribution.json"
+        )
+        certificate = (
+            ROOT
+            / "certificates"
+            / "fixed41_bv_all_harmonics_certificate.json"
+        )
+        environment = dict(os.environ)
+        environment["PYTHONPATH"] = str(ROOT)
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-O",
+                str(VERIFIER_PATH),
+                str(source),
+                "--all-harmonics-certificate",
+                str(certificate),
+            ],
+            cwd=ROOT,
+            env=environment,
+            capture_output=True,
+            text=True,
+            timeout=180,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        payload = json.loads(result.stdout)
+        self.assertEqual(payload["status"], "PASS")
+        self.assertEqual(payload["finite_harmonic_check"], "1..505")
 
 
 if __name__ == "__main__":

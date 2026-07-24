@@ -662,6 +662,7 @@ def solve(
     project_root: Path,
     warm_from: Path | None = None,
     fixed_rank_scale: int = 10**8,
+    extra_integer_degree_cuts: tuple[Path, ...] = (),
 ) -> dict[str, object]:
     """Solve one finite atomic relaxation and return a JSON-ready record."""
 
@@ -770,6 +771,7 @@ def solve(
                 certificate_paths = sorted(
                     (project_root / "certificates").glob(pattern)
                 )
+                certificate_paths.extend(extra_integer_degree_cuts)
                 if not certificate_paths:
                     raise ValueError("no integer degree-cut certificates found")
                 for certificate_path in certificate_paths:
@@ -1271,10 +1273,24 @@ def main() -> None:
         ),
     )
     parser.add_argument(
+        "--extra-integer-degree-cut",
+        action="append",
+        type=Path,
+        default=[],
+        help=(
+            "additional exact quarter-grid integer row-facet JSON; "
+            "may be repeated and requires --integer-degree-cut"
+        ),
+    )
+    parser.add_argument(
         "--solver", choices=("CLARABEL", "SCS"), default="CLARABEL"
     )
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
+    if args.extra_integer_degree_cut and not args.integer_degree_cut:
+        parser.error(
+            "--extra-integer-degree-cut requires --integer-degree-cut"
+        )
 
     project_root = Path(__file__).resolve().parents[2]
     nodes = parse_grid(args.grid)
@@ -1301,6 +1317,7 @@ def main() -> None:
         output_path=args.output,
         project_root=project_root,
         warm_from=args.warm_from,
+        extra_integer_degree_cuts=tuple(args.extra_integer_degree_cut),
     )
     print(json.dumps(record, indent=2, sort_keys=True))
 
