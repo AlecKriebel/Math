@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T06:40:54Z
+Last updated: 2026-07-24T08:40:54Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -101,6 +101,13 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   selection.  All maps, subsets, endpoints, hashes, and numerical checks are
   reproducible in `experiments/construction_round10/`; this is construction
   evidence only.
+- **Layer-evolution round:** latitude crossover, source-layer insertion,
+  cardinality surgery, and unrestricted release again found no code.  The
+  independently recomputed maxima for \(N=41,42,43,44\) are
+  \(0.5155656485808731,0.5199641730896757,0.5261397477047198,
+  0.5274711925360355\).  All coordinates, seeds, hashes, and tamper tests
+  are in `experiments/construction_layer_evolution/`; this is numerical
+  construction evidence only.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -222,6 +229,14 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   incidence equations.  Those rows separately admit a simultaneous colored
   \(K_{41}\), but its 649 infeasible triangles show that graph realization
   and feasible-triangle counts have not yet been coupled.
+- **Exact noncentered repair:** six solve/separate rounds produce a positive
+  rational pair/triple witness passing every recorded pair and full-radial
+  harmonic degree, 20 cap rows, ten frame blocks, and 27 sharp-rank cuts.
+  An exact 26-atom mixture, selected from the complete 855,168 admissible
+  integer row types, matches all first and second row-degree moments.  An
+  independent implementation rebuilt the orbit normalization, row universe,
+  harmonic tails, and every matrix check.  This certifies the corresponding
+  first/second finite-population relaxation as a barrier, not as a code.
 - **Four-point product hierarchy:** edge-conditioned robust-depth and
   common-capacity counts give a valid four-distinct-point product row.  Two
   rows reject the first \(K_5\) mixture, but an exact alternative 64-atom
@@ -244,6 +259,27 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   the joint ray is false: an exact seven-point kissing Gram atom has
   coefficient \(-2109\).  The active continuation must therefore add a
   genuinely global incidence invariant rather than merely local Gram PSD.
+- **Rooted finite-exchangeability square:** for every real symmetric
+  \(N\)-array and every rooted two-extension feature \(f_{ij}(A)\), the
+  exact overlap coefficients
+  \[
+  \lambda_u=\binom{N-2}{u}/\binom{k-2}{u},\qquad u=2,3,4,
+  \]
+  turn the sampled local quadratic into the global nonnegative square
+  \(\sum_{i\ne j}(\sum_A f_{ij}(A))^2\).  The continuous feature
+  \(g_{pq}(2-3(g_{ip}+g_{iq}))\) rejects, by strict exact margins, all eight
+  stored direct \(K_6\)--\(K_{11}\) and product \(K_6,K_7\) lifts.  This is
+  a genuine overlap obstruction, but it excludes named marginals only; the
+  continuous family of alternative rank-five lifts remains unclassified.
+- **Exact degree-two repair:** a positive rational 73-atom mixture of
+  rank-five \(K_6\) atoms matches the fixed centered triangle marginal and
+  makes the complete 18-dimensional symmetric rooted-edge block through
+  degree two PSD.  It has rank seven, with exactly the 11 forced centering
+  identities as its radical; all 127 quotient principal minors and an
+  independent exact \(LDL^{\mathsf T}\) audit are positive.  Thus neither
+  the first separating row nor any degree-two row on an independently
+  sampled \(K_6\) eliminates the marginal.  Root-triangle \(K_7\) overlap
+  and degree three are now active.
 - **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
   continuous pair/triple domain while coupling overlapping local subsets, or
   add a genuinely global moment-PSD/common-source invariant.  Raising only
@@ -261,10 +297,13 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/centered_quarter_integer_degree_obstruction.md`;
   `experiments/centered_integer_degree_moments/README.md`;
   `experiments/noncentered_integer_degree_moments/README.md`;
+  `experiments/noncentered_integer_degree_repair/README.md`;
   `experiments/four_point_depth_projection/k5_product_audit/README.md`;
   `experiments/four_point_depth_projection/k7_product_audit/README.md`;
   `experiments/continuous_four_point_moment/README.md`;
-  `experiments/continuous_four_point_moment/FACTORIAL_HIERARCHY.md`.
+  `experiments/continuous_four_point_moment/FACTORIAL_HIERARCHY.md`;
+  `experiments/global_flag_exchangeability/README.md`;
+  `experiments/global_flag_reoptimization/README.md`.
   Patched
   discovery-only second-level Lasserre runs give objectives 90 at degree 4
   and 48 at degrees 6 and 8; these are numerical evidence only.
@@ -412,12 +451,51 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   generalized-quadrangle model has entries in the genuine \(\{0,2\}\) range
   and rank 17, although the nonlinear common-source harmonic moment rules it
   out.
+- **Weighted degree-two isotropy branch:** if nonnegative weights satisfy
+  \(Gp=0\) and \(GPG=G/5\), then
+  \(H=5P^{1/2}GP^{1/2}\) is a rank-five orthogonal projection.  The exact
+  nonuniform \(B=I+J-2G\) identity is recorded separately; it specializes
+  to the centered-tight identity only for uniform weights.  Exact \(D_5\)
+  examples have nonuniform full-support weights and solutions supported on
+  32 and even 12 roots, so uniformity and full support are false.  Every
+  weight is at most \(1/6\), and Carathéodory gives an alternative support
+  of size 6 through 20.  The exact weighted common-source identity
+  \[
+  BPB=PB+BP-P+\frac25I+\frac75J-\frac25B
+  \]
+  is the current algebraic target.  Exact weighted depth inequalities and a
+  41-vertex graph countermodel show that the present local cap/count
+  consequences do not close it.
+  Proving a quadratic-positive-locus occupancy theorem would only force this
+  weighted branch and would not complete the upper bound.
+- **Distance/stress strengthening and exact barriers:** the full quadratic
+  identity itself recovers rank five.  With \(D=2(J-G)\),
+  \(Dp=2{\bf1}\), \(DPD=(24/5)J-(2/5)D\), and
+  \(P^{1/2}DP^{1/2}\) has spectrum
+  \(\{2,(-2/5)^5,0\}\).  Naimark stress gives all-subset and pair-weight
+  inequalities.  Carathéodory leaves support 6--20; supports 6--10 occur
+  as orthogonal simplex unions, and an exact \(D_5\) weighting has support
+  12 with 28 zero-weight extensions.  A rational 25-code refutes a
+  universal row-energy ceiling \(41/5\).  On that actual 12-root support,
+  29 exact ternary formal extension profiles pass all one-/two-point
+  moments, tail bounds, pair kissing inequalities, and all
+  support-support-zero \(3\times3\) Gram determinants, but have rank seven.
+  Exact projection positivity now expresses the missing condition for each
+  profile \(h\) by one equality,
+  \(h^{\mathsf T}PSPh=1/25\), under
+  \(h^{\mathsf T}Ph=1/5\).  Equality is equivalent to realization by a unit
+  vector in the support span, and it eliminates 27 of those 29 profiles.
+  The live gap is a continuous cardinality bound for profiles satisfying
+  this equality jointly with the pairwise kissing inequalities.
 - **Additional artifacts:** `proofs/lorentzian_inertia_graph.md`;
   `certificates/lorentzian_rank6_interval_countermodel.json`;
   `verifiers/verify_lorentzian_inertia_graph.py`;
   `proofs/centered_tight_frame_endpoint/README.md`;
   `experiments/perron_robust_depth_hybrid/proof.md`;
-  `experiments/universal_weighted_centering/README.md`.
+  `experiments/universal_weighted_centering/README.md`;
+  `experiments/quadratic_positive_residual/weighted_branch_audit.md`;
+  `experiments/weighted_common_source_attack/proof.md`;
+  `experiments/weighted_common_source_attack/zero_extension_attack/projection_membership.md`.
 - **Restrictions:** None intended.
 - **Status:** active.
 
@@ -456,6 +534,17 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \(17K_2\), or \(C_5\sqcup P_4\sqcup16K_2\).  Incident antipodal
   deviations sum to at least \(\pi/3\), and every odd deep cycle has total
   deviation at least \(\pi\).
+- **Antipodal branch coupling:** If there are exactly \(r\) antipodal
+  pairs, each is an isolated deep \(K_2\), the residual graph has
+  \(41-2r\) vertices and independence number at most \(20-r\), and
+  \[
+  e(H)\le r+(20-r)^2+1.
+  \]
+  Thus the branchwise upper bounds at \(r=15,16,17,18\) are
+  \(41,33,27,23\).
+  Odd harmonic features of the antipodal pairs cancel exactly, providing
+  additional branchwise moment upper bounds.  The current numerical
+  program branches on the integral value of \(r\).
 - **Unresolved:** A contact lower bound or stress certificate valid for every
   maximum 41-point code, including flexible and degenerate cases; or a
   rank/geometric contradiction from the deep-pair graph.
@@ -496,6 +585,16 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \[
   S\succ(15059/40000)I.
   \]
+- **Positive-quarter link:** Projecting all neighbors at height at least
+  \(1/4\) gives an \(S^3\) code with maximum inner product \(7/15\).
+  An exact rational degree-nine Delsarte polynomial has objective strictly
+  below 24, so every such neighborhood has at most 23 points.  The proof
+  includes the \(1/4\), \(1/2\), and \(7/15\) boundaries.
+- **Nested positive-height ladder:** the same projection, with four exact
+  rational Delsarte certificates, proves occupancy bounds
+  \(22,21,20,19\) at heights \(3/10,1/3,3/8,2/5\), respectively.  The
+  projected maxima \(41/91,7/16,23/55,17/42\) and every closed interval
+  boundary are checked symbolically.
 - **Earlier one-sided strengthening:** An exact degree-11
   \(\mathbb Q(\sqrt3)\) polynomial proves
   \(A(4,1/\sqrt3)\le33\).  Equatorial projection and boundary-safe cap
@@ -530,6 +629,14 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   at least seven above \(1/300\).  At a code vertex, at least seven other
   points lie below \(-1/300\) and at least six other points lie above
   \(1/300\).
+- **Larger cap and quadratic-separator reduction:** a separate degree-eight
+  exact kernel proves occupancy at most 39 in the closed cap
+  \(\langle e,x\rangle\ge-1/50\), with objective \(359/9\) and a complete
+  1,344-leaf Bernstein tree.  Hence failure of nonnegative weighted
+  degree-two isotropy reduces to a compact eight-parameter family of
+  mean-zero quadratic positive loci.  This is one branch only: even a proof
+  of uniform occupancy at most 40 on those loci would leave arbitrary
+  weighted-isotropic codes unresolved.
 - **Degree-12/13 search barrier:** New numerical cap-kernel searches did not
   yield a rationalization target for \(B(5)\le33\).  Their sampled
   objectives below 34 failed independent dense audits, with audited
@@ -561,8 +668,11 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `verifiers/verify_one_sided_cap_degree11_robust.py`;
   `proofs/tangent_nonnegative_neighborhood.md`;
   `verifiers/verify_tangent_nonnegative_neighborhood.py`;
+  `proofs/local_positive_height_ladder.md`;
+  `verifiers/verify_local_positive_height_ladder.py`;
   `proofs/improved_frame_cap_bound.md`;
   `verifiers/verify_improved_frame_cap_bound.py`;
+  `experiments/quadratic_positive_locus/README.md`;
   `proofs/max_volume_semialgebraic_reduction.md`;
   `experiments/four_point_depth_projection/README.md`.
 - **Known counterexamples:** Averaging a weak isolated cap bound is insufficient.
