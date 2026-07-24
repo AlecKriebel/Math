@@ -18,7 +18,8 @@ Their present status is:
 
 ```text
 <10>    active structured boundary: exact 9 x 13 QPSK quotient,
-        1,756 row sums, 22 Eisenstein shards, and a primitive-9 jet
+        1,756 row sums, 22 Eisenstein shards, a primitive-9 jet,
+        and an invertible characteristic-37 transfer
 <112>   impossible by the lag-111 distance contradiction below
 <121>   active coupled lane: 1,296 fixed-margin row sums / 108 outer orbits
 <211>   active coupled lane: the same exact outer boundary.
@@ -27,7 +28,8 @@ Their present status is:
 The `<10>` lane is the column-only order-three subgroup.  The row-sum theorem
 closes its order-18, order-9, and order-6 supergroups but is feasible exactly
 at order three.  See `LP333_MULTIPLIER_ROW_SUM.md`,
-`LP333_ORDER3_DIFFERENCE_FAMILY.md`, and the dedicated exact quotient model
+`LP333_ORDER3_DIFFERENCE_FAMILY.md`,
+`LP333_ORDER3_CHAR37_TRANSFER.md`, and the dedicated exact quotient model
 `search_lp333_order3_cp_sat.py`.
 
 The two coupled lanes have the common row action `r -> 4r`.

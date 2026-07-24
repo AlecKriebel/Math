@@ -301,7 +301,15 @@ Its retained source SHA-256 is
 The isolated all-core `Phi_4` sweep used 302.1 seconds, about 510 MB RSS,
 and no swap. The focused retained replay passed in 368.2 seconds with
 499,613,696 bytes maximum RSS and no swap. The `Phi_8` and `Phi_16` stages
-remain open.
+were the next open layers at that milestone.
+
+`FIVE_COMB_ROOT8_VERTICAL.md` now implements `Phi_8` in the same
+vertical-pair slice. Exact retained joins reduce core 4 from 724,564
+`Phi_4` survivors to 140,007 and core 27 from 229,408 to 65,868. These are
+additional rejections of 80.6771% and 71.2878%, respectively. The current
+implementation retains the independent even/odd high-lag projection, so the
+survivors remain a relaxation, and no percentage applies to arbitrary
+placement. The other 29 cores and `Phi_16` remain open.
 
 ## 7. Safe and unsafe symmetries
 

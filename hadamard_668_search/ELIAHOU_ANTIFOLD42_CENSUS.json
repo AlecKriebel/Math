@@ -1,0 +1,112 @@
+{
+  "schema": "eliahou-antifold42-support-census-v1",
+  "scope": {
+    "distance": 41,
+    "formula": "orientation-free support only",
+    "modulus": 42,
+    "profiles_ignored": true,
+    "redundant_layer": "modulo 2",
+    "distinct_cases": 30
+  },
+  "reproduction": {
+    "list": "python search_eliahou_antifold_sat.py --ignore-profiles --start 0 --stop 30 --list-instances",
+    "list_certified_formula": "python search_eliahou_antifold_sat.py --ignore-profiles --start 0 --stop 1 --hensel-mod4 --list-instances",
+    "resume": "python search_eliahou_antifold_sat.py --ignore-profiles --start FIRST --stop LAST --time-limit SECONDS"
+  },
+  "observations": [
+    {
+      "case": 0,
+      "block": "L",
+      "q_index": 0,
+      "variables": 32956,
+      "clauses": 102949,
+      "cnf_sha256": "65cfd33aea33074db6da55b16cd99e180eabf6767bd0eb360ad3020e63e45932",
+      "status": "certified_unsat",
+      "runs": [
+        {
+          "seconds": 128.170,
+          "note": "parity-enhanced canonical formula"
+        },
+        {
+          "seconds": 140.94,
+          "note": "independently generated pre-parity encoding"
+        },
+        {
+          "seconds": 200.17,
+          "peak_memory_mb": 163.9,
+          "note": "standalone CaDiCaL on the certified modulo-4 formula"
+        }
+      ],
+      "certified_formula": {
+        "variables": 39580,
+        "clauses": 127589,
+        "cnf_path": "output/antifold42_q0_proof/antifold_00.cnf",
+        "cnf_sha256": "f3eb29b1ea9c386e53b03726349fe0c38577d7e187b56aa19f86412c8749755d",
+        "redundant_layer": "modulo 2 plus modulo 4"
+      },
+      "certificate": {
+        "path": "output/antifold42_q0_proof/antifold_00.drat.zst",
+        "format": "binary DRAT compressed with zstd",
+        "compressed_bytes": 90490737,
+        "compressed_sha256": "efd8abd9d80d50365822754f36345f368d7cff8f2740ca33b9cab7d5866aa519",
+        "uncompressed_sha256": "7ab546776c7b0c199d524a952f51015a045c4aa7433b8eaa78d471e34129a374",
+        "checker": "drat-trim",
+        "checker_status": "VERIFIED",
+        "checker_seconds": 75.00,
+        "checker_peak_memory_mb": 471.1,
+        "core_lemmas": 824251,
+        "total_lemmas": 4451261,
+        "resolution_steps": 73135509,
+        "rat_steps": 0
+      },
+      "rejected_artifact_note": "An earlier PySAT wrapper trace failed replay and was removed; it is not part of the theorem record."
+    },
+    {
+      "case": 1,
+      "block": "L",
+      "q_index": 2,
+      "variables": 33553,
+      "clauses": 104689,
+      "cnf_sha256": "f794f43b723a98cb44fd98c37ddf46709798d5ca25fd0ddd2b706b6b44e1e048",
+      "status": "solver_unsat_unproved",
+      "runs": [
+        {
+          "seconds": 1218.051,
+          "note": "parity-enhanced canonical formula"
+        }
+      ],
+      "certificate": "none"
+    }
+  ],
+  "unknown_cases": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+  ],
+  "interpretation": "Case 0 is rigorously excluded by a checked proof. Case 1 is only a solver observation until a proof trace passes an independent checker. Timeout or interruption is UNKNOWN. No exact BS(84,83) or Hadamard matrix is claimed."
+}

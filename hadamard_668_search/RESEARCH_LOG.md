@@ -1085,3 +1085,143 @@ proof-assistant-level theorem.
 - Both retained standard-library verifiers and focused tests pass with zero
   swap. The roots `+1,-1` replay peaked near 712 MB; the `Phi_4` replay peaked
   at 499,613,696 bytes. Work stopped before `Phi_8` and `Phi_16`.
+
+## 23 July 2026: adjacent-42, characteristic-37, and primitive-eight lifts
+
+- Folded all four published base rows modulo `z^42-1`. The thirteen nonzero
+  seed residuals cancel in four exact triples plus the lag-42 energy term,
+  leaving a periodically flat fold of energy 14. An exact `BS(84,83)` has
+  folded energy 334.
+- Across the four rows there are 166 separation-42 pairs and two singleton
+  signs. If `E` pairs have equal endpoints, the folded energy is `2+4E`.
+  The target therefore needs 83 equal pairs, while the seed has three. This
+  proves an exact base-row Hamming lower bound of 80.
+- Translating the bound into special `(s,q)` coordinates gives distance at
+  least 40. Equality would keep `q` fixed and is excluded by the completed
+  `TU(41)` reduction, so the true special-coordinate bound is 41. The
+  complete distance-41 cost split has zero, one, or two `q` changes. Fixed
+  `q` is closed, the unique one-`q` center case is impossible at `z=-1`, and
+  the remaining case is exactly two reciprocal `q` flips plus 39 `s` flips.
+- Exactly 80 reciprocal pairs are compatible with the minimum base shell.
+  Roots `+1,-1` leave 39 pairs, each with two joined ordinary/alternating
+  profiles. The complete base-distance-80 adjacent-42 condition is an
+  80-sparse ternary group-ring equation on `C_42`. The reciprocal-skeleton
+  shell coefficient is reproduced by
+  `(1+12t^2+8t^4)^39(1+6t^2)(1+2t^2)(1+4t^2)`.
+  The dependency-free verifier and five tests pass below 25 MB with zero
+  swap.
+- Reduced the order-three Eisenstein group ring modulo 37. Since
+  `x^37-1=(x-1)^37`, the truncated logarithm `x=exp(u)` turns inversion into
+  `u -> -u`; `H`-invariance leaves only powers of `v=u^3`. The resulting
+  13-dimensional transfer matrix has rank 13 and determinant 11, making the
+  degree-twelve norm identity equivalent to all invariant mixed equations
+  modulo 37.
+- A direct 373-fixture audit checks 4,476 physical/cyclotomic equations.
+  Explicit witnesses prove that all 22 aggregate shards survive the joined
+  aggregate, norm-54, local mod-three, and first two characteristic-37
+  coefficients. Every pinned witness fails six, eight, or nine of the later
+  coefficients, so no candidate is implied. The verifier and three tests
+  pass below 28 MB with zero swap.
+- Extended the distinct-lobe vertical-pair slice through a primitive eighth
+  root. The completed evaluation `E+zeta_8 O` yields one rational norm and
+  one exact `sqrt(2)`-coefficient equation. Independent monomial replay
+  checks 2,048 carrier cases and all 512 hole evaluations. The 768,512
+  inventories refine to 87,695 five-coordinate feature classes.
+- At core 27, `Phi_8` cuts 229,408 prior survivors to 65,868. At core 4 it
+  cuts 724,564 to 140,007. The new rejection rates are 71.2878% and
+  80.6771%. Both are vertical-pair-only necessary filters. The core-27 run
+  used 2.82 GB maximum RSS; the larger core-4 relation used 3.87 GB. Both
+  recorded zero swap, and all four focused tests pass.
+
+## 23 July 2026: anti-fold certificate and exact labelled order-three lifts
+
+- Reduced the base-sequence norm modulo `z^42+1`, complementary to the
+  adjacent-42 sum fold. On the special-distance-41 shell, flipping either
+  endpoint of a seed-opposite separation-42 pair zeros the same anti-fold
+  cell. This removes all `2^39` endpoint orientations from the first stage.
+  The 39 reciprocal-`q` pairs collapse to 30 distinct binary support
+  instances: 21 long and nine mirrored short instances.
+- The seed anti-fold has energy 654 and the exact target has energy 334.
+  After the reciprocal `q` pair and 39 support cells are removed, zero-lag
+  energy is automatic and the remaining problem is exactly 20 independent
+  negacyclic correlation equations.
+- Pair-sum/pair-difference normalization gives an exact first affine lift
+  over `F_2`. Including support-weight parity, all 39 reciprocal-`q` cases
+  have rank 21: 38 systems have 78 variables and one has 79. Exact
+  MacWilliams counts leave tens of quadrillions of target-weight words in
+  representative affine codes, so the lift is a solver reduction rather
+  than an exclusion.
+- Canonical anti-fold case 0, the long `q` representative 0, is certified
+  UNSAT. Its 39,580-variable, 127,589-clause CNF has SHA-256
+  `f3eb29b1ea9c386e53b03726349fe0c38577d7e187b56aa19f86412c8749755d`.
+  Standalone CaDiCaL 3.0.1 solved it in 200.17 seconds at 163.9 MB peak RSS.
+  The 90,490,737-byte compressed binary DRAT proof has SHA-256
+  `efd8abd9d80d50365822754f36345f368d7cff8f2740ca33b9cab7d5866aa519`
+  and passed independent `drat-trim` replay in 75.00 seconds at 471.1 MB.
+  `verify_eliahou_antifold_q0_proof.py` audits metadata, hashes, DIMACS shape,
+  and optionally the full proof.
+- Canonical case 1, the long representative 2, has one solver-UNSAT
+  observation but no checked proof. The other 28 distinct support instances
+  are `UNKNOWN`. Exactly one of 30 instances is therefore excluded; no
+  complete distance-41 exclusion, `BS(84,83)`, or `H(668)` is claimed.
+- Completed the fully labelled primitive-nine algebra split
+  `F_3[C_37]^H ~= F_3 x F_729 x F_729`. Column negation is the third
+  Frobenius iterate in both field factors. A pinned row-695 lift passes all
+  222 modular jet equations and four exact row-direction equations, proving
+  that the labelled modular sieve has at least one survivor and zero
+  certified catalog exclusions.
+- Parameterized the upper three primitive-nine digits by 54 placement trits
+  for the pinned row-695 profiles. Their affine system has rank 18 and
+  nullity 36 before exact margins and correlations. A reduced model produced
+  a second fully labelled modular certificate, independently replayed
+  through the same 226 equations. These rank values are profile-specific.
+- Replaced the modular primitive-nine shadow by its exact integral criterion.
+  Divisibility by `Phi_9=x^6+x^3+1` is equivalent to equality of correlation
+  counts at row lags `s,s+3,s+6`. Both modular certificates fail all 36
+  nonzero column-class/residue groups; their defects are divisible by three
+  but not zero. This proves strictness of the integral layer on the pinned
+  lifts, not infeasibility of row 695.
+- These labelled and integral layers complement the already verified
+  characteristic-37 logarithmic transfer. None of them currently removes a
+  row-sum catalog entry or constructs an `LP(333)`.
+
+## 23 July 2026: profile ideal and three-fiber phase factor
+
+- Extracted the placement-independent part of exact primitive-nine
+  equidistribution.  At each nonzero column class, the profile Fourier
+  coefficient must lie in `3(1-omega) Z[omega]`, an Eisenstein ideal of norm
+  27. Reversal gives six displayed conjugate-pair tests; the aggregate
+  moment supplies one global dependency, leaving five independent ideal
+  trits. Passing the ideal uniquely reconstructs the full `12 x 3` exact
+  periodic-correlation target table.
+- All 22 profile assignments retained by the characteristic-37
+  two-coefficient checkpoint fail the new ideal test. A separate complete
+  certificate corpus then found and exactly replayed one alternative passing
+  profile tuple for every aggregate shard. The replay checks 132 local
+  opposite-class conditions and 264 displayed ideal conditions. Thus the
+  ideal is a strict assignment filter but excludes zero of the 22 shards.
+  The profile corpus, correlation-table, and reconstructed-target hashes are
+  respectively
+  `92fbf448260334f3e4a9b7d1cfb82046d3cb5043721bd5fcb09fbcb4aeaab43f`,
+  `27a3fc0c11e745e05e3da8ca273cde3535419009e78cb2ce34ca83fc074b1a78`,
+  and
+  `e7d395500053eeb4346260d545affbb1baea35f01a6793ef48d6b3a3ee9c8628`.
+- Split each nine-row class word into three `C_3` fibers. A fiber of size one
+  or two has a signed cube-root Fourier value, so the 54 row-695 placement
+  trits are exactly 54 Eisenstein unit phases. Expanding in the cubic basis
+  of `Q(zeta_9)/Q(omega)` reduces the exact primitive-nine equation to two
+  independent group-ring identities: a complementary frame of six sparse
+  Eisenstein sequences with energy 167, and one directed cross-fiber
+  equation. The third displayed component is `omega^2` times the adjoint of
+  the second.
+- Exact replay against both labelled modular certificates checks all 37
+  physical column lags and the direct integer correlation tables. Both have
+  167 active physical fibers and nonzero coefficients in all twelve
+  nonzero invariant classes of all three components, so neither is an exact
+  survivor. Four focused phase-factor tests pass below 17 MB RSS.
+- Replayed the compressed anti-fold proof again through a regular
+  decompressed binary DRAT file. `drat-trim` returned `VERIFIED` in 78.353
+  seconds at 458,539,008 bytes maximum RSS. This independent rerun confirms
+  the packaged case-0 theorem; it does not enlarge its one-of-30 scope.
+- No exact `LP(333)`, `BS(84,83)`, or Hadamard matrix of order 668 has yet
+  been constructed.

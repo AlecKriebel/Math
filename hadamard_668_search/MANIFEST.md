@@ -10,16 +10,27 @@
 | `RESEARCH_LOG.md` | Chronological derivation and computational record |
 | `NOVEL_BS84_THEORY.md` | Adjacent-fold theorem, prime-83 oriented SDS, and norm-circle construction route |
 | `NOVEL_LIFTING_64.md` | Active-edge, 2-adic Hensel, Frobenius-comb, and causal-mate reductions |
+| `ELIAHOU_ADJACENT42_REPAIR.md` | Exact modulo-42 fold, distance-80 base bound, distance-41 special boundary, and 39-pair root frontier |
+| `ELIAHOU_ANTIFOLD42.md` | Orientation-free negacyclic distance-41 support theorem, 30-instance reduction, and exact census status |
+| `ELIAHOU_ANTIFOLD_MOD2.md` | Rank-21 first binary lift for all 39 reciprocal-`q` boundary cases |
 | `FIVE_COMB_SECANT.md` | Rank-one defect factorization and exact no-go theorems for literal/disjoint comb repairs |
 | `FIVE_COMB_PROJECTIVE_EXHAUSTION.md` | Rank-nine projective quotient, physical boundary theorem, and 1,536-shard common-family exclusion |
 | `FIVE_COMB_DYADIC_COMPRESSION.md` | Exact `Z/16` compression theorem and memory-safe spectral construction architecture |
 | `FIVE_COMB_PAIRED_LOBES.md` | Same-word and distinct-lobe self-cancellation theorems, finite classification, and first dyadic root sieves |
+| `FIVE_COMB_ROOT8_VERTICAL.md` | Primitive-eight vertical-pair sieve and retained core-4/core-27 censuses |
 | `NOVEL_LP333_THEORY.md` | Historical QPSK quartic-residue quotient, now closed by the row-sum theorem |
 | `LP333_SEXTIC_QUOTIENT.md` | Historical order-six quotient and 108-sign model, now closed by the row-sum theorem |
 | `LP333_MULTIPLIER_ROW_SUM.md` | Exact obstruction for multiplier orders 18, 9, and 6, and the viable order-three boundary |
 | `LP333_ORDER3_DIFFERENCE_FAMILY.md` | Exact 24-triple pure-axis lift and full mixed-lag non-candidate audit |
 | `LP333_ORDER3_EISENSTEIN.md` | Exact 13-condition Eisenstein factorization and local mod-three sieve |
 | `LP333_ORDER3_PRIMITIVE9_JET.md` | Six-digit ramified primitive-nine refinement of the order-three quotient |
+| `LP333_ORDER3_CHAR37_TRANSFER.md` | Invertible 13-dimensional logarithmic transfer for the mixed equations modulo 37 |
+| `LP333_ORDER3_LABELED_JET.md` | Exact `F_3 x F_729 x F_729` labelled-jet split and replayed row-695 survivor |
+| `LP333_ORDER3_TRIT_LIFT.md` | Exact upper-jet trit linearization, pinned rank-18 system, and second replayed survivor |
+| `LP333_ORDER3_INTEGRAL9.md` | Exact primitive-ninth-root triple-equidistribution criterion and strict modular-certificate audit |
+| `LP333_ORDER3_PROFILE9_IDEAL.md` | Five-independent-condition Eisenstein profile ideal and reconstructed exact target tables |
+| `LP333_ORDER3_PROFILE9_SHARDS.md` | Exact alternative profile witnesses showing that all 22 aggregate shards survive the ideal |
+| `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_TWISTED_ORDER3.md` | Common 1,296-word outer theorem for the coupled `<121>` and `<211>` lanes |
 | `BS84_ORIENTED_SDS_SEARCH.md` | Resumable prime-83 constructor, exact polishing, and retained checkpoint |
 | `PRIME83_SIDELNIKOV_FOLD.md` | Safe-prime Sidelnikov identity and exact direct/product-family exclusions |
@@ -36,6 +47,16 @@
 | `variable_q_root8.py` | Checks the fixed-`s` obstruction, distance-33 root shell, and sharp raw distance-34 root-plus-margin bound |
 | `check_bs84_cyclic_folds.py` | Checks adjacent-fold equivalence, oriented-SDS arithmetic, and finite character-template exclusions |
 | `verify_novel_lifting_64.py` | Checks the reciprocal skeleton, finite Hensel tower, comb syndrome, causal split, and tangent obstruction |
+| `verify_eliahou_adjacent42_repair.py` | Checks the modulo-42 fold, distance bounds, shell transfer polynomial, and 39-pair distance-41 frontier |
+| `test_eliahou_adjacent42_repair.py` | Focused exact adjacent-42 and distance-41 regressions |
+| `verify_eliahou_antifold42.py` | Checks the negacyclic anti-fold identity, orientation independence, and 39-to-30 support collapse |
+| `test_eliahou_antifold42.py` | Focused exact anti-fold reduction regressions |
+| `verify_eliahou_antifold_mod2.py` | Checks the rank-21 affine lift and exact representative MacWilliams counts |
+| `test_eliahou_antifold_mod2.py` | Focused binary anti-fold lift regressions |
+| `search_eliahou_antifold_sat.py` | Deterministic support-instance encoder with formula hashes, hard time limits, and direct model replay |
+| `ELIAHOU_ANTIFOLD42_CENSUS.json` | Resume ledger: case 0 certified UNSAT, case 1 unproved solver-UNSAT, cases 2-29 UNKNOWN |
+| `output/antifold42_q0_proof/` | Checked CNF, compressed binary DRAT proof, certificate metadata, and narrow-scope README for case 0 |
+| `verify_eliahou_antifold_q0_proof.py` | Audits proof metadata, hashes, DIMACS shape, and optionally performs full `drat-trim` replay |
 | `verify_five_comb_secant.py` | Checks the rank-one seed norm, literal chord, and 80,896 disjoint-comb endpoint pairs |
 | `verify_five_comb_high_lag_boundary.py` | Checks the physical hole direction and exact lags-81-through-78 boundary tables |
 | `verify_five_comb_dyadic_compression.py` | Checks root/bucket/compressed-PAF equivalence, polarization, and 1,589 energy shells |
@@ -46,6 +67,8 @@
 | `test_five_comb_root12_sieve.py` | Focused retained replay of the first dyadic root sieve |
 | `verify_five_comb_root4_vertical.py` | Checks the additional `Phi_4` sieve in the vertical-pair slice |
 | `test_five_comb_root4_vertical.py` | Focused retained replay of the vertical `Phi_4` stage |
+| `verify_five_comb_root8_vertical.py` | Checks the rational and irrational `Phi_8` equations in the vertical-pair slice |
+| `test_five_comb_root8_vertical.py` | Focused primitive-eight arithmetic and refined-inventory regressions |
 | `verify_five_comb_unrestricted_full_corpus.py` | Audits all 1,536 strengthened common-type solver records and pinned source state |
 | `FIVE_COMB_UNRESTRICTED_FULL_CORPUS_MANIFEST.json` | Canonical full common-type corpus manifest |
 | `check_lp333_quartic_quotient.py` | Checks the quartic difference set, 45-phase quotient, and axis-complete non-candidate |
@@ -65,6 +88,21 @@
 | `test_lp333_order3_mod3_sieve.py` | Focused exact Eisenstein and local-sieve regressions |
 | `verify_lp333_order3_primitive9_jet.py` | Replays the ramified jet ring, digit-one equivalence, and strict higher digits |
 | `test_lp333_order3_primitive9_jet.py` | Focused primitive-nine jet regressions |
+| `verify_lp333_order3_char37_transfer.py` | Replays the invertible characteristic-37 transfer and 4,476 physical/cyclotomic equations |
+| `test_lp333_order3_char37_transfer.py` | Focused transfer, fixture, and paired-layer witness regressions |
+| `verify_lp333_order3_labeled_jet.py` | Replays the invariant field split and all 222 labelled jet equations for the pinned survivor |
+| `test_lp333_order3_labeled_jet.py` | Focused field-algebra, Frobenius, linearization, and labelled-certificate regressions |
+| `verify_lp333_order3_trit_lift.py` | Replays the 54-trit rank-18 lift and second fully labelled modular certificate |
+| `test_lp333_order3_trit_lift.py` | Focused trit bijection, affine-rank, and certificate regressions |
+| `search_lp333_order3_trit_lift.py` | Optional bounded reconstruction of the pinned-profile trit certificate |
+| `verify_lp333_order3_integral9.py` | Checks exact `Phi_9` divisibility, triple equidistribution, and both modular-certificate defects |
+| `test_lp333_order3_integral9.py` | Focused exact integral primitive-nine regressions |
+| `verify_lp333_order3_profile9.py` | Checks the profile ideal, its global dependency, and the fixed row-695 target table |
+| `test_lp333_order3_profile9.py` | Focused profile-moment, ideal-membership, and target-reconstruction regressions |
+| `verify_lp333_order3_profile9_shards.py` | Replays one ideal-compatible profile assignment for each of the 22 aggregate shards |
+| `test_lp333_order3_profile9_shards.py` | Focused complete-corpus, single-witness, and tamper-rejection regressions |
+| `verify_lp333_order3_phase_factor.py` | Checks the 54 signed-unit phases and the two exact Eisenstein group-ring equations |
+| `test_lp333_order3_phase_factor.py` | Focused fiber-bijection, adjoint, and dual-certificate factorization regressions |
 | `verify_lp333_twisted_order3.py` | Replays the coupled row-sum census, symmetries, row-axis DP, and partial 121/211 bijection |
 | `test_lp333_twisted_order3.py` | Focused exact coupled-order-three regressions |
 | `verify_lp333_order3_lift_catalog.py` | Audits the pure-axis/signature histogram lift for all 1,756 catalog rows |

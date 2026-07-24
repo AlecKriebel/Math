@@ -14,35 +14,43 @@ report:
 1. the adjacent cyclic-fold theorem turns `BS(84,83)` exactly into the
    intersection of cyclic complements at 84 and 83, with a prime-83
    oriented-SDS construction target;
-2. a dependency-free primitive-eight reduction plus exact margin norms proves
-   that every exact `BS(84,83)` is at raw distance at least 34 from Eliahou's
-   seed;
-3. the exact 2-adic formulation reduces the first two special-construction
+2. the adjacent-42 fold proves a true base-row distance bound of 80 and a
+   special-coordinate bound of 41, reducing the complete distance-41
+   boundary to 39 reciprocal `q` pairs with two root profiles each; its
+   complementary anti-fold removes endpoint orientation, collapses these to
+   30 support instances, and has one independently certified exclusion;
+3. a dependency-free primitive-eight reduction plus exact margin norms gives
+   a separate sharp necessary-condition boundary at distance 34;
+4. the exact 2-adic formulation reduces the first two special-construction
    layers to 169 structural bits and identifies a five-lag Frobenius-square
-   obstruction with no first-order tangent repair; the full residual is now
-   factored as one rank-one ten-sparse carrier, and two natural nonlinear
-   comb completions are exactly excluded;
-4. the projective five-comb quotient has rank nine, an exact physical
+   obstruction with no first-order tangent repair; the full residual is one
+   rank-one ten-sparse carrier, and two natural nonlinear comb completions
+   are exactly excluded;
+5. the projective five-comb quotient has rank nine, an exact physical
    high-lag boundary table, and a dependency-free dyadic compression theorem;
-   its diagonal/common-type family is completely solver-excluded, while the
-   distinct-lobe theorem exposes 721,984 genuinely larger inventories;
-5. a multiplier row-sum theorem closes the order-18, quartic, and sextic
+   its diagonal/common-type family is solver-excluded, while the
+   distinct-lobe theorem exposes 721,984 larger inventories and the first
+   primitive-eight vertical joins remove more than 70% of prior survivors;
+6. a multiplier row-sum theorem closes the order-18, quartic, and sextic
    fixed-compression `LP(333)` families by exact integer enumeration, while
    proving that order three is the first viable boundary;
-6. the independent fixed-`q` telescope reduces to the empty class `TU(41)`;
-7. the surviving order-three `<10>` quotient has exactly 1,756 row-sum words,
-   22 Eisenstein shards, a strict primitive-nine jet, and a full `9 x 13`
-   mixed-lag model; the coupled `<121>/<211>` lanes share a separate exact
-   1,296-word outer boundary;
-8. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
+7. the independent fixed-`q` telescope reduces to the empty class `TU(41)`;
+8. the surviving order-three `<10>` quotient has exactly 1,756 row-sum words,
+   22 Eisenstein shards, a strict primitive-nine jet, an invertible
+   characteristic-37 transfer, a labelled `F_729` field split, a rank-18
+   pinned trit lift, an exact integral primitive-nine criterion, a
+   five-independent-condition profile ideal, and a three-fiber unit-phase
+   factorization; all 22 aggregate shards survive the profile ideal, and the
+   coupled `<121>/<211>` lanes share a separate exact 1,296-word boundary;
+9. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
    degree-two independently decimated extension.
 
 These results are worth preserving as a compact internal manuscript. Nothing
 will be circulated, submitted, posted, or sent by this project. The
 radius-18 CP-SAT corpus is now secondary: its uncertified leaves no longer
-limit the stronger dependency-free radius-33 exclusion, though they remain
-useful historical artifacts.
+limit the stronger dependency-free adjacent-42 distance-80 theorem, though
+they remain useful historical artifacts.
 
 The openly available recent `LP(333)` papers and March 2026 status report
 have been inspected.  The symmetric/symmetric observation is prior; the
@@ -50,11 +58,54 @@ skew/skew and mixed equations were not located but are incremental
 specializations, not paper-leading results.  Project policy prohibits all
 external outreach; no contact drafts or recipient lists are retained.
 
-## A. Primitive-eight fixed-`s` and distance-34 obstruction
+## A. Adjacent-42 and primitive-eight seed-distance obstructions
 
 **Priority assessment: strongest likely-new theorem-sized result; high
 confidence in the repository proof, provisional confidence in literature
 priority.**
+
+Reducing all four base rows modulo `z^42-1` reveals that Eliahou's thirteen
+residual lags cancel exactly: the folded seed is periodically flat with
+energy 14. Every exact `BS(84,83)` has folded energy 334. If `E` is the
+number of equal separation-42 endpoint pairs, the folded energy is `2+4E`;
+the target needs `E=83`, while the seed has only three. A single base-sign
+change toggles at most one pair, proving a global base-row Hamming lower
+bound of 80.
+
+In special `(s,q)` coordinates this first gives distance at least 40.
+Equality would consist entirely of `s` changes and keep `q` fixed,
+contradicting the exact `TU(41)` reduction. Hence the special-coordinate
+distance is at least 41. The complete distance-41 cost split leaves only
+zero, one, or two `q` changes. Fixed `q` is closed; the unique single-`q`
+center change fails at `z=-1`; and the two-`q` case must be one reciprocal
+pair plus 39 `s` changes. Roots `+1,-1` reduce 80 shell-compatible pairs to
+39, each with exactly two joined outer profiles. The minimum base shell is
+equivalently an 80-sparse ternary norm equation in `Z[C_42]`. This is a much
+stronger true repair-distance theorem than the earlier radius-34
+necessary-condition bound.
+
+The complementary reduction modulo `z^42+1` is the most important new
+refinement of this boundary. On a seed-opposite separation-42 pair, either
+endpoint flip zeros the same anti-fold cell. The 39 `s` changes therefore
+become an orientation-free 39-cell support, and the 39 root-compatible
+reciprocal `q` pairs collapse to 30 distinct support instances. Pair-sum and
+pair-difference normalization gives a first affine lift over `F_2` of rank
+exactly 21 in every reciprocal-`q` case, including support-weight parity.
+Exact MacWilliams counts prove that this binary layer alone leaves many
+supports.
+
+Exactly one anti-fold instance is currently a certified exclusion:
+canonical case 0, the long `q` representative 0. Its 39,580-variable,
+127,589-clause CNF includes only redundant modulo-two and modulo-four
+consequences of the exact integer equations. Standalone CaDiCaL produced a
+binary DRAT proof, and independent `drat-trim` replay returned `VERIFIED`.
+The checked proof package records formula and proof hashes, solver/checker
+versions, and a standard-library artifact verifier. Canonical case 1, the
+long representative 2, has one solver-UNSAT observation but no checked
+proof; the other 28 distinct instances are `UNKNOWN`. Thus the anti-fold
+theorem and the one certified leaf are suitable for the internal manuscript,
+but they do not establish a distance-41 exclusion, `BS(84,83)`
+nonexistence, or `H(668)` nonexistence.
 
 Evaluation at `z=exp(pi*i/4)` reduces each base sequence to four signed
 residue sums. Splitting over `Q(sqrt(2))` forces a rational 16-square equation
@@ -214,6 +265,14 @@ surviving core/profile cell. In the narrower vertical-pair slice, roots
 arbitrary carrier placement. These are worthwhile supporting computations,
 not a five-comb nonexistence theorem.
 
+The vertical-pair slice now also has an exact primitive-eight coefficient
+split. Writing the completed evaluation as `E+zeta_8 O` produces one
+rational norm equation and one vanishing `sqrt(2)` coefficient. Retained
+full joins reduce core 4 from 724,564 previous survivors to 140,007 and core
+27 from 229,408 to 65,868. The additional rejection rates are 80.6771% and
+71.2878%. These percentages remain vertical-pair-only, and the current join
+still relaxes compatibility between the even and odd high-lag projections.
+
 ## E. Multiplier row-sum obstruction and order-three boundary
 
 **Priority assessment: likely-new theorem-sized restricted-family
@@ -266,6 +325,74 @@ five contain new nonzero/nonzero class products. A pinned local survivor
 first fails digit two, proving that the higher digits are strict. No complete
 row-sum catalog entry is yet excluded, so this is a theorem-sized propagation
 layer rather than a negative result.
+
+The fully labelled jet has an exact semisimple column-algebra split
+
+```text
+F_3[C_37]^H ~= F_3 x F_729 x F_729.
+```
+
+Column negation is the third Frobenius iterate in both field factors. Lucas'
+theorem fixes jet digits zero through two from the residue profiles, while
+the square-zero ideal `pi^3 R` makes digits three through five linear in
+within-residue placement. A pinned row-695 lift passes all 222 mod-three jet
+equations and four exact row-direction equations. This is an explicit
+survivor, not a catalog exclusion.
+
+For the same pinned profile tuple, the upper placement data has an exact
+54-trit parameterization. Its affine jet system has rank 18 and nullity 36
+before the integer margin and row-correlation constraints. A reduced model
+produced a second fully labelled certificate, independently replayed through
+the same 226 equations. The rank statement is profile-specific and should
+not be generalized to all 1,756 rows.
+
+The exact cyclotomic-integer layer is strictly stronger. Since
+`Phi_9(x)=x^6+x^3+1`, primitive-ninth-root vanishing for each column lag is
+equivalent to equality of its three correlation counts at row lags separated
+by three. This yields 72 new displayed integer equations outside the zero
+column. Both pinned modular certificates fail all 36 nonzero
+column-class/residue groups, although every defect is divisible by three.
+This proves strictness on actual labelled lifts, not infeasibility of row
+695 or any catalog row.
+
+The exact integer condition also has two new low-dimensional forms.  Before
+within-residue placement, each nonzero profile Fourier coefficient must lie
+in the Eisenstein ideal
+
+```text
+3(1-omega) Z[omega].
+```
+
+Reversal gives six displayed tests and the aggregate moment makes one
+dependent, so only five new finite-ideal conditions are independent.  A
+passing profile tuple uniquely determines all 36 exact correlation targets.
+All 22 earlier characteristic-37 witnesses fail this ideal, but a complete
+certificate corpus supplies a different passing profile tuple for every one
+of the 22 aggregate shards.  The result is therefore a strict
+assignment-level filter, not a shard exclusion.
+
+After profiles are fixed, every active residue fiber is a signed cube root
+of unity.  The 54 row-695 placement trits are exactly these Eisenstein
+phases, and the primitive-nine equation becomes one six-sequence periodic
+complementary-frame identity plus one directed cross-fiber identity.  The
+third cubic-basis equation is the adjoint of the second.  This explains the
+36 independent mixed-column integer conditions and provides a materially
+smaller exact architecture for the next labelled lift.  It is a structural
+factorization, not yet an obstruction.
+
+There is now a second exact coordinate system at the prime 37. In
+characteristic 37, the logarithm `x=exp(u)` turns inversion into `u -> -u`;
+order-three invariance kills all moments except multiples of three. With
+`v=u^3`, the complete invariant group ring becomes a 13-dimensional
+truncated polynomial algebra, and the mixed equations are one norm identity
+through degree twelve. The transfer matrix has rank 13 and determinant 11,
+so this is equivalent to the full invariant correlation system modulo 37,
+not a lossy filter. A 373-fixture audit replays 4,476 physical/cyclotomic
+equations. Exact witnesses show all 22 shards survive the first two
+nonconstant transfer coefficients joined to the aggregate, energy, and
+local mod-three conditions; every pinned witness fails later coefficients.
+The theorem is substantial, while the first two layers alone are not an
+obstruction.
 
 A frozen lift expands to a `9 x 37` quotient and passes compression, row-sum,
 and zero-column equations, but fails 51 of 54 independent nonzero-column
@@ -397,20 +524,25 @@ Maintain one compact internal paper organized around:
 
 1. Eliahou's structured quadruple and its exact translation to `BS(84,83)`;
 2. the adjacent cyclic-fold theorem and prime-83 oriented-SDS construction;
-3. the primitive-eight 16-square reduction, fixed-`s` obstruction, and sharp
-   distance-34 theorem;
-4. the 2-adic/Frobenius reduction, rank-one comb factorization, and the two
+3. the adjacent-42 energy fold, distance-80/distance-41 theorems, and the
+   39-pair minimum-shell frontier, followed by the orientation-free
+   anti-fold, rank-21 binary lift, and one certified case-0 exclusion;
+4. the primitive-eight 16-square reduction, fixed-`s` obstruction, and sharp
+   distance-34 necessary-condition theorem;
+5. the 2-adic/Frobenius reduction, rank-one comb factorization, and the two
    exact nonlinear no-go theorems;
-5. the projective quotient, physical high-lag table, dyadic compression
-   theorem, and distinct-lobe complementary-octet construction;
-6. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
-   and the order-three difference-family, Eisenstein, primitive-nine, and
-   coupled-lane boundaries;
-7. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
-8. the fixed-`q` parity telescope and reduction to `TU(41)`;
-9. the radius-18 solver report and proof-certification ladder as historical
+6. the projective quotient, physical high-lag table, dyadic compression
+   theorem, distinct-lobe complementary-octet construction, and scoped
+   primitive-eight vertical census;
+7. the multiplier row-sum obstruction, the closed quartic/sextic quotients,
+   and the order-three difference-family, Eisenstein, primitive-nine,
+   characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
+   unit-phase, and coupled-lane boundaries;
+8. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
+9. the fixed-`q` parity telescope and reduction to `TU(41)`;
+10. the radius-18 solver report and proof-certification ladder as historical
    supplementary computation;
-10. the Legendre inversion lemmas and local searches as appendices or
+11. the Legendre inversion lemmas and local searches as appendices or
    supplementary experiments.
 
 Use a title that states the local scope, such as *Exact local obstructions

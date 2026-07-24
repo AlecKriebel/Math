@@ -18,14 +18,14 @@ this milestone.
 | Eliahou seed verification | reproduced near matrix | published 64-modular matrix of order 668, not an exact Hadamard matrix |
 | Repair with Eliahou's exact `q` | impossible | reduces to empty `TU(41)` |
 | Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
-| Variable `s,q` special quadruple | active | adjacent cyclic folds at 84 and prime 83; root/margins force seed distance at least 34 |
+| Variable `s,q` special quadruple | active | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances, with exactly case 0 certified UNSAT, case 1 unproved, and 28 UNKNOWN |
 | Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
 | Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
-| Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; projective rank-nine and high-lag reductions survive |
+| Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, 22 Eisenstein shards, and a primitive-9 jet; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, 22 surviving profile-ideal shards, an invertible characteristic-37 transfer, labelled/trit lifts, and an exact three-fiber Eisenstein phase factorization; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -121,6 +121,64 @@ coupled to 42 linear causal-mate equations:
 python3 verify_novel_lifting_64.py
 ```
 
+`ELIAHOU_ADJACENT42_REPAIR.md` supplies a third exact cyclic image. Folding
+all four base rows modulo `z^42-1` turns the published seed into a perfectly
+flat periodic quadruple of energy 14, while every exact `BS(84,83)` must have
+energy 334. Equivalently, the target needs exactly 83 equal separation-42
+pairs and the seed has only three. Therefore every exact repair changes at
+least 80 base-row signs. In special `(s,q)` coordinates the distance is at
+least 41: equality 40 would keep `q` fixed and is already excluded by the
+`TU(41)` theorem. A complete distance-41 split leaves only two reciprocal
+`q` flips plus 39 `s` flips; roots `+1,-1` reduce its 80 shell-compatible
+reciprocal pairs to 39, each with two joined root profiles:
+
+```sh
+python3 verify_eliahou_adjacent42_repair.py
+```
+
+`ELIAHOU_ANTIFOLD42.md` supplies the complementary reduction modulo
+`z^42+1`. On the distance-41 shell, either endpoint choice in a
+separation-42 pair has the same anti-fold effect, so all `2^39` endpoint
+orientations disappear from the first stage. The 39 reciprocal `q` pairs
+collapse to 30 orientation-free, 39-cell binary support instances. Exactly
+one is now closed: canonical case 0, the long `q` representative 0, has a
+standalone CaDiCaL binary-DRAT certificate that passes independent
+`drat-trim` replay. Canonical case 1, the long representative 2, has one
+solver-UNSAT observation but no checked proof; the other 28 instances are
+`UNKNOWN`.
+
+`ELIAHOU_ANTIFOLD_MOD2.md` gives the exact first binary lift. Pairing the two
+long and two short rows produces an affine system over `F_2`; including
+support-weight parity, its rank is exactly 21 in all 39 reciprocal-`q`
+cases. Exact MacWilliams counts show that this layer leaves many supports,
+so it is a reduction rather than another exclusion.
+
+```sh
+python3 verify_eliahou_antifold42.py
+python3 verify_eliahou_antifold_mod2.py
+python3 verify_eliahou_antifold_q0_proof.py
+```
+
+The proof package is in `output/antifold42_q0_proof/`. The default verifier
+checks metadata, hashes, and the complete DIMACS shape. A full replay, when
+`drat-trim` and `zstd` are available, is:
+
+```sh
+python3 verify_eliahou_antifold_q0_proof.py \
+  --full --drat-trim /absolute/path/to/drat-trim
+```
+
+The machine-readable `ELIAHOU_ANTIFOLD42_CENSUS.json` is the authoritative
+resume ledger. Rebuild deterministic formulas or resume only the unresolved
+range with:
+
+```sh
+../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
+  --ignore-profiles --start 0 --stop 30 --list-instances
+../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
+  --ignore-profiles --start 2 --stop 30 --time-limit 1800
+```
+
 `FIVE_COMB_SECANT.md` sharpens the seed identity to
 
 ```text
@@ -172,6 +230,20 @@ implementation is not yet retained:
 python3 verify_five_comb_paired_lobes.py
 python3 verify_five_comb_core0_obstruction.py
 python3 verify_five_comb_dyadic_compression.py
+```
+
+`FIVE_COMB_ROOT8_VERTICAL.md` extends the narrower vertical-pair placement
+through a primitive eighth root. Writing the four completed evaluations as
+`E+zeta_8 O` splits the norm into an integer energy equation and an exact
+`sqrt(2)`-coefficient cancellation. The retained core-4 census reduces
+724,564 prior survivors to 140,007; core 27 reduces 229,408 to 65,868.
+These are exact exclusions only for the vertical-pair slice and retain the
+even/odd high-lag projection. The larger run used 3.87 GB maximum RSS with
+zero swap:
+
+```sh
+python3 verify_five_comb_root8_vertical.py --cores 4
+python3 verify_five_comb_root8_vertical.py --cores 27
 ```
 
 `BS84_ORIENTED_SDS_SEARCH.md` implements the prime-fold constructor rather
@@ -372,6 +444,88 @@ fails digit two, with nonzero-lag residual census `(0,0,18,24,30,24)` across
 digits zero through five. This proves strictness beyond the local pair sieve,
 but no complete row-sum catalog entry is yet excluded.
 
+`LP333_ORDER3_CHAR37_TRANSFER.md` gives an independent exact mixed-lag
+coordinate system. In characteristic 37, `x^37-1=(x-1)^37`; the logarithmic
+coordinate `x=exp(u)` and order-three invariance leave only powers of
+`v=u^3`. This identifies the complete 13-dimensional invariant group ring
+with `F_37[omega][v]/(v^13)`, and the six complex mixed equations become one
+truncated norm identity. The transfer matrix has rank 13 and determinant 11,
+so it loses no invariant information modulo 37. Direct replay matches 4,476
+physical/cyclotomic equations. Explicit witnesses show all 22 aggregate
+shards survive coefficients one and two together with the older local sieve,
+while every pinned witness fails later coefficients:
+
+```sh
+python3 verify_lp333_order3_char37_transfer.py
+```
+
+`LP333_ORDER3_LABELED_JET.md` makes the primitive-nine layer fully labelled.
+It proves the exact invariant-algebra split
+
+```text
+F_3[C_37]^H  ~=  F_3 x F_729 x F_729
+```
+
+and identifies column negation with the third Frobenius iterate in both
+field factors. The lower three jet digits depend only on residue profiles;
+the upper three form a linear placement lift because `pi^3 R` is
+square-zero. One row-695 lift is replayed through all 222 mod-three jet
+equations and four exact row-direction equations. It proves survival, not an
+`LP(333)` and not a catalog exclusion.
+
+`LP333_ORDER3_TRIT_LIFT.md` compresses the upper placement layer further.
+For the pinned row-695 profiles, 54 placement trits satisfy a rank-18 affine
+system over `F_3`, leaving nullity 36 before exact margin and correlation
+conditions. A second fully labelled modular certificate is independently
+replayed. These rank values apply only to the pinned profile tuple.
+
+`LP333_ORDER3_INTEGRAL9.md` records the stronger exact ninth-root condition.
+For each invariant column lag, vanishing at a primitive ninth root is
+equivalent over the integers to
+
+```text
+c_(b,s) = c_(b,s+3) = c_(b,s+6),    s=0,1,2.
+```
+
+This gives 72 genuinely new displayed integer equations outside the zero
+column. Both pinned mod-three certificates fail all 36 nonzero
+column-class/residue groups. This proves strictness of the integral layer on
+those witnesses, but does not exclude row 695 or any other catalog row.
+
+`LP333_ORDER3_PROFILE9_IDEAL.md` extracts the part of that exact condition
+visible before within-residue placement. For each reversal-paired nonzero
+column class, the profile Fourier coefficient must lie in
+
+```text
+3(1-omega) Z[omega].
+```
+
+The six displayed tests have one global dependency, leaving five independent
+finite-ideal conditions. Passing the ideal uniquely reconstructs the full
+`12 x 3` table of exact periodic correlation targets. All 22 profile
+assignments retained by the earlier characteristic-37 checkpoint fail this
+test. `LP333_ORDER3_PROFILE9_SHARDS.md` then gives the necessary negative
+control: one different exact profile assignment exists for every one of the
+22 aggregate shards. Thus the ideal is a strict assignment-level filter but
+does not exclude an aggregate shard.
+
+`LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
+intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or
+fixed-size-two residue fiber has a signed cube-root phase in
+`Z[omega]`; the 54 row-695 placement trits are exactly these phases. The
+complete primitive-ninth-root equation is equivalent to two group-ring
+identities:
+
+```text
+K_00+K_11+K_22 = 167 e,
+K_10+K_21+omega^2 K_02 = 0.
+```
+
+The first is a periodic complementary frame of six sparse Eisenstein
+sequences; the formally third cubic-basis equation is the adjoint of the
+second. This explains the 36 independent mixed-column integer conditions
+and is the preferred architecture for the next exact labelled lift.
+
 Reproduce the new exact layer with:
 
 ```sh
@@ -379,6 +533,13 @@ python3 verify_lp333_multiplier_row_sum.py
 python3 verify_lp333_order3_difference_family.py
 python3 verify_lp333_order3_mod3_sieve.py
 python3 verify_lp333_order3_primitive9_jet.py
+python3 verify_lp333_order3_char37_transfer.py
+python3 verify_lp333_order3_labeled_jet.py
+python3 verify_lp333_order3_trit_lift.py
+python3 verify_lp333_order3_integral9.py
+python3 verify_lp333_order3_profile9.py
+python3 verify_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_phase_factor.py
 ../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
   --workers 4 --time-limit 2
 ../tmp/hadamard-env/bin/python -m unittest -v \
@@ -386,6 +547,13 @@ python3 verify_lp333_order3_primitive9_jet.py
   test_lp333_order3_difference_family.py \
   test_lp333_order3_mod3_sieve.py \
   test_lp333_order3_primitive9_jet.py \
+  test_lp333_order3_char37_transfer.py \
+  test_lp333_order3_labeled_jet.py \
+  test_lp333_order3_trit_lift.py \
+  test_lp333_order3_integral9.py \
+  test_lp333_order3_profile9.py \
+  test_lp333_order3_profile9_shards.py \
+  test_lp333_order3_phase_factor.py \
   test_lp333_order3_lift_catalog.py \
   test_lp333_order3_cp_sat.py
 ```
@@ -530,6 +698,10 @@ python3 verify_variable_q_seed_radius.py
 python3 verify_variable_q_seed_quad_radius.py
 python3 verify_variable_q_seed_frontier_artifacts.py
 python3 verify_variable_q_seed_shell18_artifacts.py
+python3 verify_eliahou_adjacent42_repair.py
+python3 verify_eliahou_antifold42.py
+python3 verify_eliahou_antifold_mod2.py
+python3 verify_eliahou_antifold_q0_proof.py
 python3 verify_five_comb_high_lag_boundary.py
 python3 verify_five_comb_dyadic_compression.py
 python3 verify_five_comb_paired_lobes.py
@@ -541,6 +713,13 @@ python3 verify_lp333_multiplier_row_sum.py
 python3 verify_lp333_order3_difference_family.py
 python3 verify_lp333_order3_mod3_sieve.py
 python3 verify_lp333_order3_primitive9_jet.py
+python3 verify_lp333_order3_char37_transfer.py
+python3 verify_lp333_order3_labeled_jet.py
+python3 verify_lp333_order3_trit_lift.py
+python3 verify_lp333_order3_integral9.py
+python3 verify_lp333_order3_profile9.py
+python3 verify_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_phase_factor.py
 python3 verify_lp333_twisted_order3.py
 python3 verify_good_167.py --self-test
 python3 verify_sds_167.py --self-test
@@ -556,7 +735,15 @@ python3 verify_sds_167_windows.py \
   test_lp333_multiplier_row_sum.py \
   test_lp333_order3_difference_family.py \
   test_lp333_order3_mod3_sieve.py \
-  test_lp333_order3_primitive9_jet.py test_lp333_twisted_order3.py \
+  test_lp333_order3_primitive9_jet.py \
+  test_lp333_order3_char37_transfer.py \
+  test_lp333_order3_labeled_jet.py \
+  test_lp333_order3_trit_lift.py \
+  test_lp333_order3_integral9.py \
+  test_lp333_order3_profile9.py \
+  test_lp333_order3_profile9_shards.py \
+  test_lp333_order3_phase_factor.py \
+  test_lp333_twisted_order3.py \
   test_lp333_order3_lift_catalog.py test_lp333_order3_cp_sat.py \
   test_search_legendre_333_profile_catalog.py test_legendre_multiplier.py \
   test_legendre_column_distance_dp.py test_variable_q_base.py \

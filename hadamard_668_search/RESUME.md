@@ -16,12 +16,22 @@ The strongest results in this repository are negative or local:
 - fixing Eliahou's `s` is impossible already at `z=1`, where the remaining
   two row sums would have to represent `321` as two squares; the
   primitive-eighth-root partial norm gives an independent obstruction;
-- a dependency-free 16-coordinate dynamic program proves that every exact
-  `BS(84,83)` is at raw labelled Hamming distance at least 34 from Eliahou's
-  base quadruple; the primitive-eight sphere first becomes reachable at
-  distance 33, but all 66 full root-eight targets there fail the exact margin
-  norms. A distance-34 witness passes roots, margins, and endpoint quads, so
-  this combined relaxation is sharp;
+- the adjacent-42 fold proves that every exact `BS(84,83)` changes at least
+  80 of Eliahou's 334 base-row signs and at least 41 special `(s,q)` signs.
+  The only open distance-41 type is two reciprocal `q` flips plus 39 `s`
+  flips; roots `+1,-1` reduce it to 39 reciprocal pairs and two joined
+  profiles per pair;
+- the complementary anti-fold removes all endpoint orientations from the
+  first distance-41 stage and collapses the 39 reciprocal pairs to 30
+  distinct support instances. Canonical case 0, long `q` representative 0,
+  is certified UNSAT by a checked binary DRAT proof. Canonical case 1, long
+  representative 2, has one unproved solver-UNSAT observation; the other 28
+  instances are `UNKNOWN`. Exactly one of 30 is closed;
+- the older primitive-eight 16-coordinate dynamic program gives a sharp
+  necessary-condition boundary at distance 34: its sphere first becomes
+  reachable at distance 33, all 66 full targets there fail exact margins,
+  and a distance-34 witness passes roots, margins, and endpoint quads. The
+  adjacent-42 theorem now supplies the stronger true repair-distance bound;
 - a solver-backed exhaustive computation reports no exact `BS(84,83)`
   sequence through raw labelled Hamming distance 18 of the seed; the retained artifact
   checker verifies the decomposition and records, not the 1,296
@@ -63,11 +73,44 @@ The strongest new constructive reductions are:
 - `LP333_ORDER3_PRIMITIVE9_JET.md`: six exact ramified digits restore
   within-residue placement information. Digit one is the Eisenstein pair
   sieve; digits two through five contain genuinely new mixed class products.
+- `LP333_ORDER3_CHAR37_TRANSFER.md`: the complete mixed system modulo 37 is
+  one invertible 13-dimensional logarithmic norm transfer. The first two
+  coefficients leave all 22 shards alive, while the later coefficients are
+  nonredundant on every retained partial witness.
+- `LP333_ORDER3_LABELED_JET.md`: the invariant column algebra splits exactly
+  as `F_3 x F_729 x F_729`; a fully labelled row-695 lift passes all 222
+  modular jet equations and four exact row-direction equations.
+- `LP333_ORDER3_TRIT_LIFT.md`: the pinned row-695 profile tuple has 54 upper
+  placement trits cut by a rank-18 affine system, leaving nullity 36 before
+  exact margins and correlations. A second modular certificate is replayed.
+- `LP333_ORDER3_INTEGRAL9.md`: exact primitive-ninth-root vanishing is triple
+  equality of integer correlation counts at row lags separated by three.
+  Both modular certificates fail all 36 nonzero class/residue groups, proving
+  strictness but not excluding row 695.
+- `LP333_ORDER3_PROFILE9_IDEAL.md`: profile data alone must satisfy six
+  displayed Eisenstein ideal tests with one global dependency, hence five
+  independent conditions. Passing fixes the complete `12 x 3` exact target
+  table.
+- `LP333_ORDER3_PROFILE9_SHARDS.md`: all 22 aggregate shards have explicit
+  alternative profile tuples passing the ideal. The ideal eliminates the 22
+  old witnesses but no whole shard.
+- `LP333_ORDER3_PHASE_FACTOR.md`: the 54 row-695 placement trits are signed
+  Eisenstein units. Exact primitive-nine lifting is one six-sequence
+  complementary-frame identity plus one independent cross-fiber identity.
 - `LP333_TWISTED_ORDER3.md`: the `<121>` and `<211>` lanes share an exact
   1,296-word, 108-orbit outer boundary and a complete row-axis lift.
 - `NOVEL_LIFTING_64.md`: an 84-bit reciprocal `q` skeleton and finite 2-adic
   lift. The seed's first obstruction is a five-lag Frobenius square, while an
   augmented-rank certificate rules out a first-order tangent repair.
+- `ELIAHOU_ADJACENT42_REPAIR.md`: the seed's 13 residuals cancel in an exact
+  flat energy-14 fold modulo 42. The target energy 334 forces 80 new equal
+  separation-42 pairs, an 80-sparse ternary group-ring shell, and the
+  distance-41 reciprocal-pair frontier above.
+- `ELIAHOU_ANTIFOLD42.md` and `ELIAHOU_ANTIFOLD_MOD2.md`: the complementary
+  negacyclic fold turns the distance-41 frontier into 30 orientation-free
+  support instances. Its first binary lift has rank exactly 21 in every
+  reciprocal-`q` case. The binary lift leaves many supports and is not itself
+  an exclusion.
 - `FIVE_COMB_SECANT.md`: the complete seed defect is one rank-one ten-sparse
   carrier. Common-factor repairs are impossible, but a minimum complementary
   octet gives 32 flat carrier channels of energy 320 that pack into the target
@@ -80,6 +123,9 @@ The strongest new constructive reductions are:
   boundary table all survive. The first dyadic root sieves remove 0.1382% of
   the arbitrary-placement relaxation and 3.8039% of the narrower
   vertical-pair slice; the latter percentage must not be generalized.
+- `FIVE_COMB_ROOT8_VERTICAL.md`: the primitive-eight rational/irrational join
+  further cuts core 4 from 724,564 to 140,007 inventories and core 27 from
+  229,408 to 65,868, still only in the vertical-pair slice.
 - `FIVE_COMB_DYADIC_COMPRESSION.md`: every norm equation through order 16 is
   one exact periodic-autocorrelation identity on four `Z/16` compressions.
   A staged cyclotomic or meet-in-the-middle architecture is specified, but
@@ -111,6 +157,23 @@ The strongest current construction checkpoints are:
 - the primitive-nine jet: a pinned local survivor passes digits zero and one
   but first fails digit two, proving the higher digits are nonredundant. No
   1,756-word catalog exclusion has yet been performed;
+- the characteristic-37 transfer: rank 13, determinant 11, and 4,476 direct
+  physical/cyclotomic equation checks. All 22 shards survive the joined first
+  two coefficients, but none of their pinned witnesses passes all thirteen;
+- the two fully labelled row-695 modular certificates: each passes 222
+  primitive-nine equations and four exact row-direction equations; the trit
+  certificate uses the pinned rank-18/nullity-36 upper lift. Both fail the
+  stronger integral primitive-nine criterion in all 36 nonzero groups;
+- the primitive-nine profile ideal: six displayed conjugate-pair tests but
+  only five independent conditions; all 22 aggregate shards survive through
+  pinned alternative profile tuples, each with a uniquely reconstructed
+  exact target table;
+- the three-fiber phase factor: 54 signed unit phases, diagonal frame energy
+  167, and exactly two independent Eisenstein group-ring equations;
+- `output/antifold42_q0_proof/`: the only certified anti-fold exclusion,
+  containing the 39,580-variable CNF, compressed binary DRAT proof,
+  `certificate.json`, and narrow-scope README. The default verifier checks
+  metadata, hashes, and DIMACS shape; full `drat-trim` replay is optional;
 - the coupled `<121>/<211>` boundary: `36 -> 12 -> 6,048 -> 1,296` row
   states, 216 row-dihedral orbits, 108 extended classes, and all 1,296
   feasible on the zero-column axis. Only nonzero-column lags remain useful;
@@ -123,29 +186,45 @@ The strongest current construction checkpoints are:
 
 Read `README.md` for the lane map, `RESEARCH_LOG.md` for chronology, and
 `PRIORITY_AUDIT.md` before making any novelty or publication claim.
-Read `VARIABLE_Q_ROOT8.md` before doing any further seed-centered search:
-shells through radius 33 are now excluded without a solver.
+Read `ELIAHOU_ADJACENT42_REPAIR.md` before doing any further seed-centered
+search: base-row shells through radius 79 and special-coordinate shells
+through radius 40 are now excluded. Then read `ELIAHOU_ANTIFOLD42.md`,
+`ELIAHOU_ANTIFOLD_MOD2.md`, and `ELIAHOU_ANTIFOLD42_CENSUS.json`: case 0 is
+certified closed, case 1 is unproved, and cases 2-29 are `UNKNOWN`.
+`VARIABLE_Q_ROOT8.md` remains the sharp primitive-eight necessary-condition
+audit.
 
 ## Theory-first continuation order
 
 1. Attack the full mixed equations of the order-three `<10>` quotient through
    new algebraic invariants. Start from the exact 1,756-word row-sum catalog,
    the 24-triple formulation, the 13-condition Eisenstein identity, the
-   six-digit primitive-nine jet, and the audited `9 x 13` quotient. Do not
+   six-digit primitive-nine jet, invertible characteristic-37 transfer,
+   labelled `F_729` split, pinned trit linearization, exact integral
+   primitive-nine criterion, profile ideal, three-fiber phase factor, and the
+   audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to quantify the higher jet digits over labeled lifts.
+   next exact task is to lift the 22 certified ideal-compatible profile
+   tuples through the diagonal Eisenstein frame and cross-fiber equation,
+   while quantifying later characteristic-37 coefficients. A profile-level
+   ideal-only search cannot exclude a shard: all 22 now have witnesses.
    Strictly expand and verify any full quotient before any claim.
 2. Build the universal four-directed-pair model from
    `FIVE_COMB_PAIRED_LOBES.md`. Filter it with the modulo-16
-   meet-in-the-middle, the retained roots `+1,-1,i`, and the high-lag
+   meet-in-the-middle, the retained roots `+1,-1,i,zeta_8`, and the high-lag
    boundary table before imposing all 83 lags. Omit the universally
    impossible structural core zero, leaving 31 cores, and prioritize the 21
    genuinely nondecomposable octet profiles.
 3. Continue the prime-83 oriented-SDS construction outside the exact
    neighborhood already exhausted around profile 19. Any prime fold
    automatically triggers its finite modulo-84 lift bank.
-4. Treat the `<121>` and `<211>` order-three multiplier subgroups as coupled
+4. Continue the 30 orientation-free anti-fold support instances before any
+   wider seed-centered search. Case 0 is certified closed. Case 1 requires a
+   fresh proof-producing run before its solver observation becomes a theorem;
+   cases 2 through 29 are `UNKNOWN`. Only a surviving support proceeds to
+   the adjacent-fold endpoint-orientation lift.
+5. Treat the `<121>` and `<211>` order-three multiplier subgroups as coupled
    secondary lanes, starting after their shared 1,296-word row-axis theorem.
    Do not duplicate that completed outer work. Do not resume the quartic,
    sextic, or 48 diagonal common-type five-comb searches: those restricted
@@ -253,6 +332,31 @@ Only a successful full-matrix check permits an `H(668)` claim.
 
 ## Safe continuation points
 
+Audit the complete distance-41 reduction and the one certified leaf before
+continuing its census:
+
+```sh
+python3 verify_eliahou_adjacent42_repair.py
+python3 verify_eliahou_antifold42.py
+../tmp/hadamard-env/bin/python verify_eliahou_antifold_mod2.py
+python3 verify_eliahou_antifold_q0_proof.py
+../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
+  --ignore-profiles --start 0 --stop 30 --list-instances
+../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
+  --ignore-profiles --start 2 --stop 30 --time-limit 1800
+```
+
+The last command records timeout or interruption as `UNKNOWN`; it never
+turns either into an exclusion. Canonical case 1 still needs an independently
+checked proof-producing run. Do not use the earlier Python-wrapper proof
+capture as evidence: it failed replay and was removed. To replay the retained
+case-0 proof itself:
+
+```sh
+python3 verify_eliahou_antifold_q0_proof.py \
+  --full --drat-trim /absolute/path/to/drat-trim
+```
+
 The primary exact continuation is the order-three quotient. Rebuild and
 audit its finite front end before changing the model:
 
@@ -266,6 +370,13 @@ python3 verify_lp333_multiplier_row_sum.py
 python3 verify_lp333_order3_difference_family.py
 python3 verify_lp333_order3_mod3_sieve.py
 python3 verify_lp333_order3_primitive9_jet.py
+python3 verify_lp333_order3_char37_transfer.py
+python3 verify_lp333_order3_labeled_jet.py
+python3 verify_lp333_order3_trit_lift.py
+python3 verify_lp333_order3_integral9.py
+python3 verify_lp333_order3_profile9.py
+python3 verify_lp333_order3_profile9_shards.py
+python3 verify_lp333_order3_phase_factor.py
 python3 verify_lp333_twisted_order3.py
 ../tmp/hadamard-env/bin/python verify_lp333_order3_lift_catalog.py \
   --workers 4 --time-limit 2
@@ -326,8 +437,10 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
   below 29 MB for the Eisenstein replay/tests, 114.1 MB for the complete
   histogram replay, and 390.4 MB for the latest full quotient pilot, all with
   zero swap. The primitive-nine replay stayed below 22 MB and the
-  twisted-lane verifier/tests below 94 MB. The paired-lobe root replays used
-  at most about 712 MB.
+  labelled-jet tests below 30 MB; the pinned trit reconstruction stayed below
+  100 MB. The twisted-lane verifier/tests stayed below 94 MB. The anti-fold
+  case-0 solve used 163.9 MB and full DRAT replay used 471.1 MB. The
+  paired-lobe root replays used at most about 712 MB.
 - Do not enlarge the full 111,554-variable fixed-profile model here: measured
   whole-process peaks were 703 MB and 931 MB in short pilots despite lower
   internal limits.
