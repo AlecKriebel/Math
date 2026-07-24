@@ -26,14 +26,14 @@ listed below was obtained.
 | lane | certified result | gate consequence |
 |---|---|---|
 | literature | the July 2026 full-multiplier paper subsumes the local order-18, order-9, and order-6 fixed-compression lanes; paper ID3 `<10>` remains open, while every minimal proper supergroup of `<10>` is excluded | any viable point here must be exactly `<10>`-fixed |
-| structured families | nine named families were tested on all five profiles; thousands of supergroup-free first-digit points and six minimal-submodule points produced no viable second-digit survivor | no structured exact lift |
-| unrestricted higher digits | one proper-supergroup-free digit-two point was certified; digit three and digit four were both attempted, but no full digit-three point was found | the abundant digit-two witness does not pass |
+| structured families | eight named programs were tested on all five profiles; thousands of supergroup-free first-digit points and six minimal-submodule points produced no viable second-digit survivor | no structured exact lift |
+| unrestricted higher digits | one proper-supergroup-free digit-two point was certified; digit three and a bounded joint digit-two/three/four objective were attempted, but no full digit-three point was found | the abundant digit-two witness does not pass |
 | carry algebra | exact coordinates expose eighteen digit-two quadrics plus nineteen digit-three equations; the delayed origin row has a complete finite orientation count, while degree-three XL gives no refutation or contraction | new supporting mathematics, no global exclusion |
 | stage 2.5 | two points also satisfy the delayed nineteenth row, disproving the proposed universal obstruction; they leave 11 and 16 other digit-three rows nonzero, fail exact row margins, and have regular full-rank local geometry | useful falsification, no viable partial lift |
 | local coverage | the radius-five ball around the better stage-2.5 point contains 13,065,937 points and only one further digit-two point; neither point is row-margin compatible | exact local result, not a whole-profile exclusion |
 | physical join | all nine saved digit-two census points fail the exact row-margin join; row-margin-aware digit-two and digit-three models ended `UNKNOWN` | no physically viable higher-digit seed |
 | exact endpoint | digits zero through eight force every displayed residual to vanish exactly; the compact signed-histogram model fits within 16 GB | finish line is finite, but generic search is infeasible |
-| complete route estimate | the five shell-two charts contain `5*3^36` points; the still-open dense shells contain 510,384 and 107,476 unsigned supports and 59,743,488 and 47,730,304 legal signed skeletons | failure of the five lifts would not close the order-three route |
+| complete route scope/cost audit | the five shell-two charts contain `5*3^36` points; the still-open dense shells contain 510,384 and 107,476 unsigned supports and 59,743,488 and 47,730,304 legal signed skeletons; their post-classification phase-lift cost cannot yet be assigned | failure of the five lifts would not close the order-three route |
 
 The strict construction gate therefore fails: there is no consecutive
 higher-digit witness, no exact structured lift, no feasible complete exact
@@ -46,6 +46,15 @@ independent 1,458-character replay.  This makes an end-to-end
 `n_9=1,0` **profile classifier** a technically credible scoped paper
 project.  It does not make an exact phase lift feasible, and it does not
 retroactively pass the `H(668)` construction gate.
+
+One post-gate theory result strengthens the paper package.  The normalized
+energy-six sparse-`B` sector in the two extreme `(163,4)` targets is now
+closed: all 396 structural words and 34 lift-safe orbits are impossible.
+The unconditional proof combines an exact CM class number, an explicit
+Hasse-index unit, and a finite quadratic/cubic residue certificate for an
+order-12 ideal class.  This is a genuine whole-sector exclusion, but it is
+one narrow `<10>`-invariant profile-energy sector and does not change the
+failed construction verdict.
 
 The decision is:
 

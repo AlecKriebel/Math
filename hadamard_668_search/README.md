@@ -605,9 +605,19 @@ CM extension
 requires `167-BB*` to be a relative norm.  Odd valuations at inert primes
 above 11 and 101 exclude 13 of 17 field types: 312 words and 26 lift-safe
 orbits.  PARI's guaranteed cyclic norm test confirms that four types really
-are field norms, leaving 84 words and eight lift-safe orbits.  This is a
-substantial exact reduction, not a closure of the energy-six sector; the
-remaining norm witnesses need not have a physical `A`-profile.
+are field norms, leaving 84 words and eight lift-safe orbits.
+
+`LP333_ORDER3_SPARSE_B_INTEGRAL_NORM.md` closes those 84 survivors.
+An exact CM class-number formula and an explicit Hasse-index unit give
+`h(L)=12` and the full unit-norm square classes.  Quadratic and cubic
+residue signatures at four split primes prove that a displayed ideal class
+has exact order 12; every factor coordinate is then authenticated by an
+exact principal-generator identity.  Three residual types have no
+principal integral ideal allocation, while the fourth has four principal
+allocations whose correction units are not relative norms.  Thus all
+396 words and all 34 lift-safe orbits are impossible.  This closes one exact
+energy-six sector inside the `<10>`-invariant profile equation, not either
+whole target, unrestricted `LP(333)`, or `H(668)`.
 
 `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` certifies the formal profile group
 `C6 x C2_A x C2_B`, reducing the 22 aggregate targets to seven equation
@@ -722,7 +732,7 @@ eighteen.  The remaining twelve coordinates therefore require genuinely
 conditional quadratic or exact finite-field methods rather than automatic
 linear Hensel lifting.
 
-`structured_phase_families/` then tests nine named algebraic placement
+`structured_phase_families/` then tests eight named algebraic placement
 families on all five profiles.  The four low-period controls are entirely
 contained in the already excluded order-six common-multiplier family.  Three
 opposite-class-twisted families deliberately break every excluded proper
@@ -924,6 +934,8 @@ python3 verify_lp333_order3_spectral_units.py
 python3 verify_lp333_order3_prime163_extreme.py
 python3 verify_lp333_order3_sparse_b_norm.py
 gp -q verify_lp333_order3_sparse_b_norm.gp
+python3 verify_lp333_order3_sparse_b_integral_norm.py
+gp -q verify_lp333_order3_sparse_b_integral_norm.gp
 python3 verify_lp333_order3_profile_zero_symmetry.py
 python3 verify_lp333_order3_profile_endpoint_shell.py
 python3 verify_lp333_order3_profile_penultimate_shell.py
@@ -967,6 +979,7 @@ python3 verify_lp333_order3_diagonal_frame_prefix.py
   test_lp333_order3_spectral_units.py \
   test_lp333_order3_prime163_extreme.py \
   test_lp333_order3_sparse_b_norm.py \
+  test_lp333_order3_sparse_b_integral_norm.py \
   test_lp333_order3_profile_zero_symmetry.py \
   test_lp333_order3_profile_endpoint_shell.py \
   test_lp333_order3_profile_penultimate_shell.py \

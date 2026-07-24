@@ -145,7 +145,15 @@ The strongest new constructive reductions are:
   `B`-energy six gives exactly 396 two-orbit words.  Relative-norm
   obstructions at inert primes above 11 and 101 exclude 312 words and 26 of
   34 lift-safe orbits.  Four field-norm types remain, comprising 84 words
-  and eight lift-safe orbits, so the sector is reduced but not closed.
+  and eight lift-safe orbits at this first stage.
+- `LP333_ORDER3_SPARSE_B_INTEGRAL_NORM.md`: the four remaining field-norm
+  types are all impossible integrally.  An exact CM class-number formula,
+  explicit Hasse-index unit, and finite quadratic/cubic residue certificate
+  prove `Cl(O_L)=C_12` unconditionally.  Three types have no principal ideal
+  allocation; the fourth has four principal allocations, all blocked by
+  unit-norm square-class parity.  Combined with the inert-prime screen this
+  excludes all 396 words and all 34 lift-safe orbits.  It closes only this
+  exact `<10>`-invariant energy-six sector, not either whole target.
 - `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md`: the formal profile group
   `C6 x C2_A x C2_B` reduces 22 targets to seven.  Only `C6 x C2_B`
   transports the canonical labelled zero words, giving twelve
@@ -189,8 +197,8 @@ The strongest new constructive reductions are:
   eighteen polar forms have scalar common centroid, which falsifies the
   proposed free rank-two ramified-module/Hensel shortcut.  A second-digit
   witness is therefore diagnostic, not a milestone.
-- `structured_phase_families/`: exact solver-free tests of nine named phase
-  families.  Three opposite-class-twisted families have respectively
+- `structured_phase_families/`: exact solver-free tests of eight named phase
+  programs.  Three opposite-class-twisted families have respectively
   `2,916`, `174,960`, and `1,458` supergroup-free digit-one points, with no
   such digit-two survivor; these per-family sets may overlap.  The
   complete `F_27 x F_27` minimal-submodule family tests all 3,136 asymmetric
@@ -370,9 +378,11 @@ The strongest current construction checkpoints are:
   `F_27 x F_27`, their sum is radial, and exact Gauss bounds rule out a
   one-form anisotropy shortcut in `h=1,0`.  Use the 729-character full-map
   count instead of enumerating a phase cube;
-- the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
-  remain in the normalized energy-six allocation for the two `(163,4)`
-  targets.  Continue only from those 84 words/eight lift-safe orbits;
+- the sparse-`B` integral norm closure: the inert-prime screen leaves four
+  of 17 field-norm types, but the exact class-group/unit-norm theorem
+  excludes all 84 remaining words.  The complete normalized energy-six
+  sector is closed in the two `(163,4)` targets; do not continue from its
+  former eight lift-safe orbits;
 - the exact profile symmetry and hardened constructor: seven formal target
   orbits, twelve lift-compatible target orbits, a 3,334-to-1,409 quartet
   layer, direct exact-zero equations, and a deterministic semantically pinned

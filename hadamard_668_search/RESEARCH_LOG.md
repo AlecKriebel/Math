@@ -1800,3 +1800,44 @@ proof-assistant-level theorem.
   for a scoped paper, while the dense profile classifier is the only
   evidence-backed bounded continuation.
 - No external contact, message, push, or publication occurred.
+
+## 24 July 2026: unconditional integral closure of the sparse-B sector
+
+- Closed the 84 field-norm survivors from the normalized `B`-energy-six
+  census.  Combined with the earlier inert-prime obstruction, all 396
+  structural words and all 34 lift-safe orbits are impossible in this exact
+  `<10>`-invariant sector.
+- Certified the real field unconditionally with `h(M)=1` and unit rank 11.
+  The exact product of the twelve odd `L(0,chi)` values is 4096.
+- Found the explicit `H`-fixed cyclotomic unit
+  `u=product_(h in {1,10,100})(1-zeta_111^h)` with `u/u*=-1`.  This proves
+  Hasse unit index `Q_L=2`, hence the CM relative class-number formula gives
+  `h(L)=12`.
+- Replaced an infeasible generic degree-24 class certificate with a finite
+  exact theorem.  For a candidate ideal `J`, an exact generator verifies
+  `J^12=(a)`.  At the split primes `1777,2221,2887,3109`, the quadratic and
+  cubic unit-signature matrices each have rank 12 and augmented rank 13.
+  Therefore no unit twist of `a` is a square or cube, so neither `J^6` nor
+  `J^4` is principal.  It follows that `ord([J])=12`; since `h(L)=12`,
+  `Cl(O_L)=<J>=C_12`.
+- Authenticated every displayed prime-ideal coordinate by an exact
+  generator identity for `I J^(-c)`.  Three residual field types have no
+  principal integral allocation.  The fourth has four principal
+  allocations.
+- The full unit group is `mu_6 U_M <u>`, so its norm image is
+  `U_M^2<N(u)>`.  All four principal correction units have free parity
+  outside the two norm square classes and are impossible.
+- The canonical PARI/GP 2.17.4 replay exits successfully in 4.78 seconds
+  with 60,014,592 bytes maximum RSS.  Two independent audits replayed it in
+  4.76--4.77 seconds, cross-checked every residue signature using
+  `idealprimedec`/`nfmodpr`, and found no mathematical or implementation
+  gap.
+- A generic `bnfcertify` attempt was stopped after 3 hours 29 minutes and
+  58,802,176 bytes maximum RSS.  PARI's degree-24 path uses the Minkowski
+  bound `1,095,226,102,412`; measured progress projects to roughly 433 days.
+  No inference was made from the interrupted run.
+- The compact companion certificate is
+  `ee3c525efe9b6f9c86c11960ba493159cc33c906a945c297c8676304cb934706`.
+  The theorem closes one profile-energy sector, not either aggregate target,
+  unrestricted `LP(333)`, or `H(668)`.
+- No external contact, message, push, or publication occurred.

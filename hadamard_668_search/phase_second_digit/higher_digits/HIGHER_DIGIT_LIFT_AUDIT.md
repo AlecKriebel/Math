@@ -222,11 +222,12 @@ Three CDCL slices each reached 100,000 conflicts in 28.67, 29.69, and
 point.  Under the neutral count each slice should contain about `3^6`
 digit-2 points, so this is evidence of solver hardness, not emptiness.
 
-A direct digit-4 tabu objective was also run for 300 seconds from the best
-structured digit-2 control.  It completed 209,203 updates and three
-restarts, with best combined digit-2/3/4 objective 17 and status UNKNOWN.
-Thus both consecutive higher digits were explicitly attempted, but neither
-was reached.
+A joint digit-2/3/4 tabu objective was also run for 300 seconds from the
+best structured digit-2 control.  It completed 209,203 updates and three
+restarts, with best combined objective 17 and status UNKNOWN.  Thus
+constraints from both requested higher digits were explicitly attempted,
+but this was not a sequential digit-3-to-digit-4 lift and neither digit was
+reached globally.
 
 The sparse-solver JSON files in the sibling digit-3 carry package are
 historical benchmark records only.  Subsequent strengthening of the

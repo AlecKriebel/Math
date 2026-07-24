@@ -469,17 +469,21 @@ potentially new, but literature priority is provisional.  Because
 nonextreme `(37,130)` local witnesses remain, this is neither a whole-shard
 obstruction nor existence/nonexistence evidence for `LP(333)`.
 
-The sparse-`B` relative-norm screen is a useful follow-on lemma.  In those
-same two targets, normalized `B`-energy six has only 396 structural words.
+The sparse-`B` program now closes one exact energy sector.  In those same
+two targets, normalized `B`-energy six has only 396 structural words.
 Total positivity and the quadratic CM norm equation reduce them to 17 field
 types; exact odd valuations at inert primes over 11 and 101 rule out 13
-types, or 312 words and 26 of 34 lift-safe orbits.  A guaranteed cyclic
-`rnfisnorm` replay shows that the other four types are genuine field norms,
-so 84 words remain.  The finite classification and local certificates appear
-new in this setting, but the underlying Hasse-norm and inert-valuation tools
-are classical.  This belongs as supporting exact pruning, not as a headline:
-relative-norm solvability does not produce a physical complementary
-`A`-profile and the sector remains open.
+types, or 312 words and 26 of 34 lift-safe orbits.  The remaining four types
+are genuine field norms, but an integral relative-norm theorem excludes all
+84 of their words.  Three types have no principal ideal allocation.  The
+fourth has four principal allocations, all blocked by the unit-norm square
+classes.  The unconditional proof combines an exact odd-character class
+number, an explicit Hasse-index unit, and a new finite residue certificate
+showing that a candidate ideal class has order 12.  This appears
+mathematically distinctive and potentially new in this setting.  It should
+be a prominent supporting theorem in the order-three profile paper, but its
+scope is still one `<10>`-invariant energy allocation: it excludes neither
+whole aggregate target, unrestricted `LP(333)`, nor `H(668)`.
 
 The exact profile equation also has formal symmetry
 `C6 x C2_A x C2_B`.  It gives seven target orbits, but only
@@ -835,10 +839,12 @@ on the five shell-two placement cubes.  The strongest publication path from
 that lane is the exact shell descent through `n_9=3`, the five-orbit
 classification at `n_9=2`, and the associated carry/phase algebra, with all
 bounded higher-digit failures kept as supplementary diagnostics.  The
-dense-shell character kernel passes its arithmetic throughput gate by more
-than 700 times, so a complete `n_9=1,0` profile classifier is a credible
-separate paper-scoped continuation; it is not evidence that an exact
-phase lift or `H(668)` is near.
+unconditional sparse-`B` integral norm closure is the strongest independent
+supporting theorem and should be presented prominently.  The dense-shell
+character kernel passes its arithmetic throughput gate by more than 700
+times, so a complete `n_9=1,0` profile classifier is a credible separate
+paper-scoped continuation; it is not evidence that an exact phase lift or
+`H(668)` is near.
 
 Maintain one compact internal paper organized around:
 
@@ -861,8 +867,9 @@ Maintain one compact internal paper organized around:
    difference-family, Eisenstein, primitive-nine,
    characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
    profile-zero, top-four energy-shell exclusions, prime-167 split, exact
-   symmetry, the five-orbit shell-two classification, exact carry and
-   delayed-origin equations, dense-shell character compression,
+   symmetry, the sparse-`B` inert/integral norm closure, the five-orbit
+   shell-two classification, exact carry and delayed-origin equations,
+   dense-shell character compression,
    unit-phase, lossless full-phase four-cone factorization,
    trivial-branch obstruction, factorwise trace/Parseval inversion,
    lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane

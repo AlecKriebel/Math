@@ -22,6 +22,13 @@ is a substantial exact pruning theorem, but it does **not** close either
 target or the full energy-six sector.  A field norm is only a necessary
 condition for a physical \(A\)-profile.
 
+The follow-on theorem
+`LP333_ORDER3_SPARSE_B_INTEGRAL_NORM.md` now excludes the remaining 84
+words by an unconditional ideal-class and unit-norm obstruction, so the
+combined two-stage argument closes this exact energy-six sector.  The
+present note is retained as the complete first-stage census and inert-prime
+certificate.
+
 All structural counts and local obstructions are replayed without external
 dependencies by `verify_lp333_order3_sparse_b_norm.py`.  The four positive
 relative-norm answers are independently replayed in the cyclic quadratic

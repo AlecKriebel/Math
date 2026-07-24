@@ -37,6 +37,7 @@
 | `LP333_ORDER3_PROFILE_SPARSE_SHELLS.md` | Opposite-quartet and modulo-nine theorem excluding the complete `h=5,6` profile type sectors |
 | `LP333_ORDER3_PRIME163_EXTREME.md` | CM prime-factor and Fourier obstruction excluding the two extreme norm-pair `(163,4)` profile sectors |
 | `LP333_ORDER3_SPARSE_B_NORM.md` | Relative-norm classification excluding 312 of 396 normalized energy-six sparse-`B` words in the two `(163,4)` targets |
+| `LP333_ORDER3_SPARSE_B_INTEGRAL_NORM.md` | Unconditional class-group and unit-norm obstruction excluding the remaining 84 words and closing the exact sparse-`B` energy-six sector |
 | `LP333_ORDER3_PROFILE_ZERO_SYMMETRY.md` | Formal 24-element profile symmetry, seven target orbits, and the 12-element labelled-transport caveat |
 | `LP333_ORDER3_PROFILE_CRT_CONSTRUCTOR.md` | Hardened resumable 24-profile constructor with direct zero equations, exact quartet tables, semantic checkpoints, orbit-complete output, and detached candidate replay |
 | `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` | Exact exclusion of the six-norm-nine endpoint shell |
@@ -153,6 +154,10 @@
 | `verify_lp333_order3_sparse_b_norm.py` | Checks all 396 sparse words, both orbit partitions, total positivity, and exact inert-prime valuation certificates |
 | `test_lp333_order3_sparse_b_norm.py` | Focused sparse-word, orbit, obstruction, survivor, and pinned-certificate regressions |
 | `verify_lp333_order3_sparse_b_norm.gp` | Independent PARI replay of field embeddings, ideal valuations, and the four guaranteed cyclic relative norms |
+| `verify_lp333_order3_sparse_b_integral_norm.py` | Checks the exact upstream survivor link, finite ideal allocations, class-order residue ranks, unit square classes, and compact certificate |
+| `test_lp333_order3_sparse_b_integral_norm.py` | Focused allocation, class-order, unit-parity, sector-closure, and certificate-hash regressions |
+| `verify_lp333_order3_sparse_b_integral_norm.gp` | Unconditional CM class-number, Hasse-index, order-12 residue, exact ideal-coordinate, and unit-norm replay |
+| `proof_certificates/lp333_order3_sparse_b_integral_norm_gp_2.17.4.txt` | Canonical and independent GP replay outputs, timing, memory, residue cross-check, and scope |
 | `verify_lp333_order3_profile_zero_symmetry.py` | Checks all formal actions, universal termwise covariance, target orbits, Burnside count, and lift caveat |
 | `test_lp333_order3_profile_zero_symmetry.py` | Focused group, covariance, orbit, zero-word, and rejected-symmetry regressions |
 | `search_lp333_order3_profile_crt.py` | Resumable deterministic exact constructor for seven formal, twelve lift-compatible, or all 22 targets |
