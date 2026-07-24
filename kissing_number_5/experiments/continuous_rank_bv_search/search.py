@@ -743,7 +743,7 @@ def solve(
     )
     bv_expressions = []
     bv_margin_expressions = []
-    integer_degree_expression = None
+    integer_degree_expressions = []
     integer_degree_weights = None
     integer_degree_types: tuple[tuple[int, ...], ...] = ()
     for degree in range(harmonic_degree + 1):
@@ -762,30 +762,43 @@ def solve(
             # an exactly singular cone to the floating-point solver.
             active = expression[:m, :m]
             if integer_degree_cut:
-                certificate_path = (
-                    project_root
-                    / "certificates"
-                    / "centered_quarter_integer_degree_obstruction.json"
+                pattern = (
+                    "centered_quarter_integer_degree_obstruction*.json"
+                    if require_centered
+                    else "fixed41_noncentered_integer_degree_obstruction.json"
                 )
-                certificate = json.loads(certificate_path.read_text())
-                expected_nodes = tuple(
-                    Q(value, 4)
-                    for value in certificate["grid_numerators_over_four"]
+                certificate_paths = sorted(
+                    (project_root / "certificates").glob(pattern)
                 )
-                if nodes != expected_nodes:
-                    raise ValueError(
-                        "--integer-degree-cut requires the exact quarter grid"
+                if not certificate_paths:
+                    raise ValueError("no integer degree-cut certificates found")
+                for certificate_path in certificate_paths:
+                    certificate = json.loads(certificate_path.read_text())
+                    expected_nodes = tuple(
+                        Q(value, 4)
+                        for value in certificate[
+                            "grid_numerators_over_four"
+                        ]
                     )
-                degree_terms = certificate["quadratic_terms"]
-                coefficient_scale = max(
-                    abs(int(term["coefficient"])) for term in degree_terms
-                )
-                integer_degree_expression = sum(
-                    (int(term["coefficient"]) / coefficient_scale)
-                    * active[term["indices"][0], term["indices"][1]]
-                    for term in degree_terms
-                )
-                constraints.append(integer_degree_expression >= 0)
+                    if nodes != expected_nodes:
+                        raise ValueError(
+                            "--integer-degree-cut requires the exact "
+                            "quarter grid"
+                        )
+                    degree_terms = certificate["quadratic_terms"]
+                    coefficient_scale = max(
+                        abs(int(term["coefficient"]))
+                        for term in degree_terms
+                    )
+                    degree_expression = sum(
+                        (int(term["coefficient"]) / coefficient_scale)
+                        * active[term["indices"][0], term["indices"][1]]
+                        for term in degree_terms
+                    )
+                    constraints.append(degree_expression >= 0)
+                    integer_degree_expressions.append(
+                        (certificate_path.name, degree_expression)
+                    )
             if integer_degree_lift:
                 expected_nodes = tuple(Q(value, 4) for value in range(-4, 3))
                 if nodes != expected_nodes or not require_centered:
@@ -1191,11 +1204,10 @@ def solve(
                     item["sharp_pass_at_1e-6"]
                     for item in rank_audit.values()
                 ),
-                "integer_degree_cut_value": (
-                    None
-                    if integer_degree_expression is None
-                    else float(integer_degree_expression.value)
-                ),
+                "integer_degree_cut_values": {
+                    name: float(expression.value)
+                    for name, expression in integer_degree_expressions
+                },
                 "active_integer_degree_row_types": (
                     None
                     if integer_degree_weights is None
@@ -1246,8 +1258,8 @@ def main() -> None:
         "--integer-degree-cut",
         action="store_true",
         help=(
-            "add the exact centered quarter-grid degree-moment separator; "
-            "requires --grid quarter"
+            "add the exact quarter-grid integer degree-moment separators "
+            "appropriate to centered/noncentered mode; requires --grid quarter"
         ),
     )
     parser.add_argument(

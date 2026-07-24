@@ -11,6 +11,7 @@ The certificate is checked by a separate standard-library verifier.
 from __future__ import annotations
 
 from fractions import Fraction as Q
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -85,16 +86,21 @@ def parse_enumeration(
 
 
 def main() -> None:
-    if len(sys.argv) != 2:
-        raise SystemExit("usage: extend_k5.py ENUMERATION.csv")
-    enumeration_path = Path(sys.argv[1]).resolve()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("enumeration", type=Path)
+    parser.add_argument("--source", type=Path)
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args()
+    enumeration_path = args.enumeration.resolve()
     root = Path(__file__).resolve().parents[2]
-    source_path = (
+    default_source_path = (
         root / "certificates" / "centered_quarter_bv_pseudodistribution.json"
     )
-    output_path = (
+    default_output_path = (
         root / "certificates" / "centered_quarter_k5_extension.json"
     )
+    source_path = (args.source or default_source_path).resolve()
+    output_path = (args.output or default_output_path).resolve()
     source_bytes = source_path.read_bytes()
     source = json.loads(source_bytes)
     triples = tuple(tuple(item) for item in source["triple_orbits"])

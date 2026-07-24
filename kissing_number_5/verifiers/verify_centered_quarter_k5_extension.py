@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from fractions import Fraction as Q
+import argparse
 import hashlib
 import itertools
 import json
@@ -215,14 +216,39 @@ def verify(
 
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--source",
+        type=Path,
+        default=(
+            root
+            / "certificates"
+            / "centered_quarter_bv_pseudodistribution.json"
+        ),
+    )
+    parser.add_argument(
+        "--certificate",
+        type=Path,
+        default=(
+            root / "certificates" / "centered_quarter_k5_extension.json"
+        ),
+    )
+    parser.add_argument(
+        "--enumeration",
+        type=Path,
+        default=(
+            root
+            / "experiments"
+            / "centered_atomic_bv_barrier"
+            / "results"
+            / "k5_triangle_vectors.csv"
+        ),
+    )
+    args = parser.parse_args()
     report = verify(
-        root / "certificates" / "centered_quarter_bv_pseudodistribution.json",
-        root / "certificates" / "centered_quarter_k5_extension.json",
-        root
-        / "experiments"
-        / "centered_atomic_bv_barrier"
-        / "results"
-        / "k5_triangle_vectors.csv",
+        args.source,
+        args.certificate,
+        args.enumeration,
     )
     print(json.dumps(report, indent=2, sort_keys=True))
 

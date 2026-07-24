@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T05:18:00Z
+Last updated: 2026-07-24T06:40:54Z
 
 ## Rigorous bounds
 
@@ -136,13 +136,28 @@ Bachoc--Vallentin block in every degree, the corrected robust/common-pair
 rows, and all 27 recorded harmonic-rank cuts.  Its forced \(W_0,W_1\)
 kernels and both infinite-degree tails were checked exactly.  More strongly,
 the same pair/triple marginal admits symmetric local Gram-PSD extensions on
-four and five vertices and exact 51-atom extensions on six and seven
-vertices in which every atom has rank exactly five.  The particular stored
-\(K_6\) distribution has no supported \(K_7\) lift, but changing its \(K_6\)
-marginal again restores an exact \(K_7\) extension.  Thus isolated local
-determinant-rank conditions through seven vertices do not separate 40 from
-41.  These are local mixtures, not overlapping-subset consistency or a
-global Gram matrix.
+four and five vertices and exact 51-atom extensions on every size from six
+through eleven in which every atom has rank exactly five.  Frozen-support
+obstructions recur at several levels, but changing the preceding marginal
+restores the next extension.  Thus isolated local determinant-rank
+conditions through eleven vertices do not separate 40 from 41.  These are
+local mixtures, not overlapping-subset consistency or a global Gram matrix.
+
+Finite-population degree integrality does reject the original quarter-grid
+witness: an exact integral quadratic is nonnegative on all 27,041 possible
+centered row-degree vectors and has strictly negative expected value.
+However, three exact cutting rounds repair that defect.  The repaired
+all-degree witness has an exact positive 18-atom mixture of integer
+row-degree vectors matching every first and second degree moment, as well as
+exact local \(K_5\) and rank-five \(K_6\) extensions.  Consequently first and
+second integer row moments are a certified barrier rather than a route to a
+centered-grid contradiction.  A stronger global integer
+edge/triple/row-type layer is nonempty by an exact certificate satisfying
+all 28 row/triangle incidence equations.  The same row multiset separately
+has a simultaneous edge coloring, but that coloring has 649 infeasible
+triangles, so the two shadows are not coupled.  Adding floating PSD cuts in
+a stronger MILP found integral count shadows after 39 cuts; the next solve
+timed out.
 
 Edge-conditioned robust-depth/common-capacity products carry genuinely
 four-distinct-point information.  They reject the first sparse \(K_5\)
@@ -155,6 +170,35 @@ quarter-grid \(K_6\) lift.  Nevertheless, a separately reoptimized exact
 passes all 560 rows; 113 rows are equalities.  The unresolved separator must
 therefore couple overlapping local samples or impose a stronger
 moment-PSD/common-source condition.
+
+The corresponding \(K_7\) audit again separates a frozen distribution
+without separating the marginal: the 74-atom \(K_6\) support has no
+supported \(K_7\) lift, while a different exact 53-atom rank-five \(K_7\)
+mixture passes all 560 currently proved product states.  A full-interval
+pair/triple/\(K_4\) moment formulation with polynomial covariance blocks is
+also exactly feasible at every polynomial order, by scaling the authenticated
+\(K_6\) atomic mixture.  Its covariance positivity is an atomwise
+sum-of-squares identity, so merely increasing the polynomial order of those
+same edge-conditioned blocks cannot produce an upper bound.
+
+For an arbitrary hypothetical 41-code, deletion-six interiority now yields
+a controlled full-support centering vector with \(0<p_i<1/4\).  With
+\(B=I+J-2G\), \(a_i=p_i/(1+p_i)\), and
+\(S=A^{1/2}BA^{1/2}\), the matrix \(S\) is similar to a reversible Markov
+chain, has at most five negative eigenvalues, and satisfies
+\(\lambda_2(S)<1/5\).  In fact \(S-A\) has inertia \((1,5)\), and if \(P\)
+is the sum of the non-Perron positive eigenvalues then
+\(\operatorname{tr}S^3\ge0\) gives \(P<2\).  The universal quadratic transform
+\[
+W-4I=\frac65J-2G-\frac{16}{5}H_2
+\]
+has rank at most 20 and eigenvalue 4 with multiplicity at least 21.  Exact
+\(D_5\) weight families and a 41-row generalized-quadrangle sign model show
+why neither uncontrolled barycentric weights nor the abstract sign/rank
+pattern suffices.  An exact non-kissing 41-point family with deletion-six
+depth and optimized \(p_{\min}\to0\) further proves that depth alone cannot
+quantify balance.  A successful continuation must retain the nonlinear
+common Gram source and the kissing inequalities together.
 
 At the centered unit-norm tight-frame endpoint, the exact matrix identity
 \[
@@ -349,9 +393,10 @@ support-specific: changing its \(K_5\) marginal yields the direct rank-five
 - No exact three-point or higher-point dual certificate below 41 is known here.
 - The exact centered all-degree pair/triple pseudo-distribution, its
   product-compatible local \(K_5\) extension, and its direct rank-five local
-  \(K_6\) extension prove that no contradiction can follow from only those
-  symmetrized local marginals.  Overlap consistency, higher moment-matrix
-  positivity, or another genuinely global invariant is necessary.
+  extensions through \(K_{11}\) prove that no contradiction can follow from
+  only those separately symmetrized local marginals.  Overlap consistency,
+  higher moment-matrix positivity, or another genuinely global invariant is
+  necessary.
 - No complete interval, semialgebraic, or finite-cell exhaustion of all
   41-point codes is known here.
 - No construction with 41 or more points is known here.
@@ -365,7 +410,24 @@ support-specific: changing its \(K_5\) marginal yields the direct rank-five
   arbitrary real inner-product distribution to that support or pair data.
 - Exact-stratum and edge-conditioned product cuts are universal, but no
   continuous-support combination currently excludes all possible 41-point
-  marginals; exact rational local witnesses survive every recorded row.
+  marginals.  The complete falling-factorial depth/cap hierarchy has now
+  been derived exactly.  It rejects both stored product witnesses and gives
+  tiny exact Farkas contradictions for the current \(K_7\) pools, even after
+  one explicit repairing atom.  Those pools are not a complete list of
+  continuous rank-five \(K_7\) Gram atoms.  An exact seven-point atom refutes
+  the attempted pointwise rank-five globalization of the joint ray.
+- The exact integer degree-row mixture controls only first and second moments;
+  no globally realizable 41-vertex colored graph, overlapping local system,
+  or rational infeasibility certificate has been obtained from the count
+  MILP.
+- The analogous exact integer-row facet rejects the original noncentered
+  all-harmonic witness.  A floating degree-12 reoptimization appears to
+  repair it while retaining all currently recorded sharp rank cuts, but this
+  `optimal_inaccurate` result has not yet been rationalized or independently
+  certified.
+- Weighted centering gives \(p_{\max}<1/4\) but no effective universal
+  \(p_{\min}\) or cap-mass lower bound.  Compactness alone does not supply the
+  explicit constant needed by the reversible-matrix inequalities.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
@@ -459,9 +521,26 @@ support-specific: changing its \(K_5\) marginal yields the direct rank-five
 - Exact fixed-support \(K_6\) obstruction and alternative direct rank-five
   \(K_6\) extension:
   [`experiments/centered_quarter_k6_rank/README.md`](experiments/centered_quarter_k6_rank/README.md)
+- Exact direct local rank-five hierarchy through \(K_{11}\):
+  [`experiments/centered_quarter_k6_rank/k8/README.md`](experiments/centered_quarter_k6_rank/k8/README.md),
+  [`experiments/centered_quarter_k6_rank/k9/README.md`](experiments/centered_quarter_k6_rank/k9/README.md),
+  [`experiments/centered_quarter_k6_rank/k10/README.md`](experiments/centered_quarter_k6_rank/k10/README.md),
+  and
+  [`experiments/centered_quarter_k6_rank/k11/README.md`](experiments/centered_quarter_k6_rank/k11/README.md)
+- Exact integer degree-moment obstruction, repair, and positive row mixture:
+  [`proofs/centered_quarter_integer_degree_obstruction.md`](proofs/centered_quarter_integer_degree_obstruction.md)
+  and
+  [`experiments/centered_integer_degree_moments/README.md`](experiments/centered_integer_degree_moments/README.md)
 - Exact edge-conditioned product audit and product-compatible \(K_5\)
   extension:
   [`experiments/four_point_depth_projection/k5_product_audit/README.md`](experiments/four_point_depth_projection/k5_product_audit/README.md)
+- Exact \(K_7\) product audit, frozen-support obstruction, and alternative
+  rank-five mixture:
+  [`experiments/four_point_depth_projection/k7_product_audit/README.md`](experiments/four_point_depth_projection/k7_product_audit/README.md)
+- Full-interval four-point/covariance counter-witness:
+  [`experiments/continuous_four_point_moment/README.md`](experiments/continuous_four_point_moment/README.md)
+- Universal weighted-centering and reversible-Lorentzian identities:
+  [`experiments/universal_weighted_centering/README.md`](experiments/universal_weighted_centering/README.md)
 - Centered tight-frame endpoint algebra and exact all-degree barrier:
   [`proofs/centered_tight_frame_endpoint/README.md`](proofs/centered_tight_frame_endpoint/README.md)
 - Exact Perron/robust-depth hybrid barriers:
@@ -570,13 +649,34 @@ a second human/agent audit is still pending.
 - A second, centered rational pair/triple witness passes all ordinary and
   full-radial inequalities in every degree, every corrected pair-level
   capacity row, and all 27 recorded harmonic-rank cuts.  It has independently
-  verified local Gram-PSD extensions through five vertices and a direct
-  rank-exactly-five extension through six vertices.  These are local
+  verified local Gram-PSD extensions through five vertices and direct
+  rank-exactly-five extensions through eleven vertices.  These are local
   symmetrized mixtures, never a claimed 41-point code.
+- The original centered witness fails an exact finite-population
+  integer-degree facet, but the three-cut repaired witness has an exact
+  positive integer-row mixture matching every first and second degree
+  moment.  Both the rejection and the repair are checked independently in
+  rational arithmetic.
 - The edge-conditioned depth/common-capacity product inequality is an exact
   four-distinct-point consequence with all strict boundaries retained.  Its
   560 quarter-grid direction states have been independently regenerated; a
-  64-atom local \(K_5\) extension satisfies all of them exactly.
+  64-atom local \(K_5\) extension and a separately reoptimized 53-atom
+  rank-five \(K_7\) extension satisfy all currently recorded states exactly.
+- Every joint falling-factorial moment of two disjoint residual strata has
+  an exact without-replacement sampling transform.  The resulting hierarchy
+  refutes the stored 74-atom \(K_6\) and 53-atom \(K_7\) witnesses, and two
+  independently checked rational Farkas rays refute the current finite
+  \(K_7\) pools.  These are explicitly pool-scoped certificates, not a
+  continuous enumeration; an exact rank-five seven-point kissing atom makes
+  the joint-ray atom coefficient \(-2109\).
+- A universal noncentered integer-degree facet is nonnegative on all 855,168
+  quarter-grid degree rows obeying the current local cap bounds and has
+  strictly negative expectation on the original fixed-41 all-harmonic
+  witness.  Its exact exhaustive verifier and tamper tests pass.
+- Every hypothetical 41-code admits full-support centering weights below
+  \(1/4\); the associated reversible matrix has at most five negative
+  eigenvalues and second eigenvalue below \(1/5\).  The proof uses only the
+  audited deletion-six cap theorem and exact matrix algebra.
 - The centered tight-frame identity, its forced BV kernels, and its exact
   all-degree relaxation witness passed independent audit.  The witness's
   four failed common-pair strata are recorded explicitly rather than hidden.
@@ -634,9 +734,18 @@ a second human/agent audit is still pending.
   rational pseudo-distribution.
 - “Centering, all harmonic degrees, the recorded common-pair rows, and local
   Gram consistency through six vertices exclude mass 41”: **refuted** by the
-  exact centered quarter-grid certificates.  The six-point atoms even have
-  rank exactly five, but are not coupled as overlapping subsets of one
-  global object.
+  exact centered quarter-grid certificates.  The local atoms through eleven
+  points even have rank exactly five, but are not coupled as overlapping
+  subsets of one global object.
+- “First and second integer color-degree moments close the centered
+  quarter-grid relaxation”: **refuted** by the exact repaired 18-row mixture.
+  Its rows need not be jointly realizable as one colored graph.
+- “Arbitrarily high polynomial degree in the recorded edge-conditioned
+  covariance blocks closes the continuous four-point relaxation”: **refuted**
+  by an exact atomic \(K_6\)-induced sum-of-squares counter-witness.
+- “Deletion-six depth makes every barycentric centering vector quantitatively
+  balanced”: **refuted** by exact \(D_5\) weight families with
+  \(p_{\min}\to0\), \(p_{\max}\to1/2\), and singular limiting covariance.
 - “The first sparse \(K_5\) extension's failure of product or \(K_6\)
   consistency eliminates its pair/triple marginal”: **refuted** by the
   alternative exact 64-atom product-compatible \(K_5\) extension and the

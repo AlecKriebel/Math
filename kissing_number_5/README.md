@@ -236,7 +236,7 @@ finite-grid measures survive.  They are explicitly numerical-only.
 
 The exact centered quarter-grid witness passes the recorded pair/triple,
 capacity, robust-depth, and harmonic-rank conditions at every degree.  Its
-local mixtures extend through rank-exactly-five \(K_7\), but are not
+local mixtures extend through rank-exactly-five \(K_{11}\), but are not
 overlapping subsets of one global configuration.
 
 ```sh
@@ -251,6 +251,14 @@ PYTHONPATH=. .venv/bin/python \
   experiments/centered_quarter_k6_rank/k7/verify_fixed_support_obstruction.py
 PYTHONPATH=. .venv/bin/python \
   experiments/centered_quarter_k6_rank/k7/verify_direct_k7_triangle_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k8/verify_direct_k8_triangle_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k9/verify_direct_k9_triangle_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k10/verify_direct_k10_triangle_extension.py
+PYTHONPATH=. .venv/bin/python \
+  experiments/centered_quarter_k6_rank/k11/verify_direct_k11_triangle_extension.py
 python3 -m unittest \
   tests.test_centered_quarter_bv_all_harmonics \
   tests.test_centered_quarter_k4_extension \
@@ -261,6 +269,21 @@ PYTHONPATH=. .venv/bin/python -m unittest \
   experiments.centered_quarter_k6_rank.k7.test_fixed_support_obstruction \
   experiments.centered_quarter_k6_rank.k7.test_direct_k7_triangle_extension \
   -v
+```
+
+The original witness fails an exact integer row-degree facet, while a
+three-cut repaired witness has a positive exact mixture matching all first
+and second integer degree moments:
+
+```sh
+PYTHONPATH=. /usr/bin/python3 \
+  verifiers/verify_centered_quarter_integer_degree_obstruction.py
+PYTHONPATH=. /usr/bin/python3 \
+  verifiers/verify_centered_quarter_integer_degree_mixture.py
+PYTHONPATH=. /usr/bin/python3 -m unittest \
+  tests.test_centered_quarter_integer_degree_obstruction \
+  tests.test_centered_quarter_integer_degree_mixture \
+  tests.test_centered_quarter_repaired_integer_degree_barrier -v
 ```
 
 The first \(K_5\) mixture fails two edge-conditioned product rows.  A
@@ -289,6 +312,49 @@ PYTHONPATH=. /usr/bin/python3 -m unittest \
   experiments.four_point_depth_projection.k6_product_audit.test_verify_productpool_extension_independent \
   -v
 ```
+
+The corresponding \(K_7\) audit has both a complete frozen-support
+obstruction and a different exact 53-atom rank-five extension:
+
+```sh
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k7_product_audit/verify_k6_support_no_k7_lift.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k7_product_audit/verify_candidate_k7_product.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/four_point_depth_projection/k7_product_audit/verify_candidate_k7_via_k6_faces.py
+```
+
+A full-interval continuous moment/covariance relaxation is also exactly
+feasible at every polynomial degree tested by that formulation.  A stronger
+falling-factorial hierarchy refutes the stored \(K_6/K_7\) witnesses and the
+current finite \(K_7\) atom pools; its exact verifier also records why this is
+not a complete continuous obstruction.  The universal weighted-centering
+identities are independently audited:
+
+```sh
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/continuous_four_point_moment/verify_exact_counterwitness.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/continuous_four_point_moment/verify_factorial_hierarchy.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/continuous_four_point_moment/verify_factorial_farkas_independent.py
+PYTHONPATH=. /usr/bin/python3 \
+  experiments/universal_weighted_centering/verify_weighted_centering.py
+```
+
+The original noncentered all-harmonic witness also fails an exact universal
+integer degree-row facet:
+
+```sh
+PYTHONPATH=. /usr/bin/python3 \
+  verifiers/verify_fixed41_noncentered_integer_degree_obstruction.py
+PYTHONPATH=. /usr/bin/python3 -m unittest \
+  tests.test_fixed41_noncentered_integer_degree_obstruction -v
+```
+
+These degree-row and finite-pool obstructions are not upper bounds for
+arbitrary continuous 41-point codes.
 
 ## Reproduce the tight-frame and depth/Perron adversarial barriers
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from collections import Counter
 from fractions import Fraction as Q
+import argparse
 import hashlib
 import itertools
 import json
@@ -82,22 +83,22 @@ def triangle_indices(
     return tuple(sorted(result))
 
 
-def verify() -> dict[str, object]:
-    source_bytes = SOURCE_PATH.read_bytes()
+def verify(
+    source_path: Path = SOURCE_PATH,
+    certificate_path: Path = CERTIFICATE_PATH,
+) -> dict[str, object]:
+    source_bytes = source_path.read_bytes()
     source = json.loads(source_bytes)
-    certificate = json.loads(CERTIFICATE_PATH.read_text())
+    certificate = json.loads(certificate_path.read_text())
     assert certificate["schema"] == (
         "kissing5.centered_quarter_direct_k6_triangle_extension.v1"
     )
-    assert certificate["source_certificate"] == (
-        "certificates/centered_quarter_bv_pseudodistribution.json"
+    assert (ROOT / certificate["source_certificate"]).resolve() == (
+        source_path.resolve()
     )
     assert certificate["source_sha256"] == hashlib.sha256(
         source_bytes
     ).hexdigest()
-    assert certificate["source_sha256"] == (
-        "112be681b4fb98dcfb8af29d08be78bfecfde7088154429fba76774d4c57d550"
-    )
     assert certificate["grid"] == source["grid"]
     grid = tuple(Q(value) for value in source["grid"])
     scaled_values = tuple(int(4 * value) for value in grid)
@@ -182,4 +183,14 @@ def verify() -> dict[str, object]:
 
 
 if __name__ == "__main__":
-    print(json.dumps(verify(), indent=2, sort_keys=True))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--source", type=Path, default=SOURCE_PATH)
+    parser.add_argument("--certificate", type=Path, default=CERTIFICATE_PATH)
+    arguments = parser.parse_args()
+    print(
+        json.dumps(
+            verify(arguments.source, arguments.certificate),
+            indent=2,
+            sort_keys=True,
+        )
+    )

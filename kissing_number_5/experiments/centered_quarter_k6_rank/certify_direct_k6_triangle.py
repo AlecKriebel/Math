@@ -25,14 +25,16 @@ def main() -> None:
     parser.add_argument("catalog", type=Path)
     parser.add_argument("numerical_report", type=Path)
     parser.add_argument("output", type=Path)
+    parser.add_argument("--source", type=Path)
     args = parser.parse_args()
     args.catalog = args.catalog.resolve()
     args.numerical_report = args.numerical_report.resolve()
     args.output = args.output.resolve()
 
-    source_path = (
+    default_source_path = (
         ROOT / "certificates" / "centered_quarter_bv_pseudodistribution.json"
     )
+    source_path = (args.source or default_source_path).resolve()
     source = json.loads(source_path.read_text())
     report = json.loads(args.numerical_report.read_text())
     assert report["success"]

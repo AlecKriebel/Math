@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T05:18:00Z
+Last updated: 2026-07-24T06:40:54Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -204,9 +204,24 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   distribution has a complete support-specific obstruction at \(K_7\):
   277,410 exact gluing trials leave no compatible pattern.  A direct
   reoptimization nevertheless gives a positive 51-atom rank-exactly-five
-  \(K_7\) mixture with the original pair/triple marginal.  Thus local
-  determinant-rank consistency through seven vertices is a certified
+  \(K_7\) mixture with the original pair/triple marginal.  Direct exact
+  51-atom rank-five mixtures now continue through \(K_8,K_9,K_{10},K_{11}\).
+  Frozen-support obstructions at \(K_8\) and \(K_9\) are again bypassed by
+  changing the preceding marginal; the \(K_{10}\) frozen-support audit is
+  recorded only as a size estimate.  Thus separately symmetrized local
+  determinant-rank consistency through eleven vertices is a certified
   barrier, not a separator.
+- **Integer row-moment audit:** an exact integral quadratic rejects the
+  original witness on the complete list of 27,041 centered quarter-grid
+  degree rows.  Three solve/separate rounds produce a repaired exact
+  all-degree witness with a positive 18-row integer mixture matching every
+  first and second degree moment, plus local \(K_5\) and rank-five \(K_6\)
+  extensions.  First/second finite-population row moments are therefore
+  certified insufficient.  An exact global count shadow additionally uses
+  41 integer rows and 10,660 Gram-feasible triangle counts satisfying all 28
+  incidence equations.  Those rows separately admit a simultaneous colored
+  \(K_{41}\), but its 649 infeasible triangles show that graph realization
+  and feasible-triangle counts have not yet been coupled.
 - **Four-point product hierarchy:** edge-conditioned robust-depth and
   common-capacity counts give a valid four-distinct-point product row.  Two
   rows reject the first \(K_5\) mixture, but an exact alternative 64-atom
@@ -214,7 +229,21 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   support has no quarter-grid \(K_6\) lift.  Independently, the first direct
   \(K_6\) mixture fails 41 product rows, but a new exact 74-atom
   rank-exactly-five \(K_6\) mixture passes all 560 rows after exact
-  reoptimization.  Neither distribution supplies overlap consistency.
+  reoptimization.  That particular \(K_6\) support has no \(K_7\) lift, but
+  a different exact 53-atom rank-five \(K_7\) mixture again passes all 560
+  rows.  Neither distribution supplies overlap consistency.
+- **Continuous four-point barrier:** a full-interval pair/triple/\(K_4\)
+  moment-localizer formulation with polynomial edge-conditioned covariance
+  blocks, one robust cap/product flag, and all 27 current rank cuts has an
+  exact atomic mass-41 counter-witness induced from the 74-atom \(K_6\)
+  mixture.  Its covariance blocks have an atomwise SOS factorization at every
+  polynomial order.  The full falling-factorial depth/cap hierarchy, obtained
+  by exact hypergeometric sampling, rejects both stored \(K_6/K_7\)
+  witnesses.  Exact two- and three-multiplier Farkas rays reject the current
+  finite \(K_7\) pools.  The proposed pointwise rank-five globalization of
+  the joint ray is false: an exact seven-point kissing Gram atom has
+  coefficient \(-2109\).  The active continuation must therefore add a
+  genuinely global incidence invariant rather than merely local Gram PSD.
 - **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
   continuous pair/triple domain while coupling overlapping local subsets, or
   add a genuinely global moment-PSD/common-source invariant.  Raising only
@@ -227,8 +256,15 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/common_pair_capacity_stratified_obstruction.md`; and
   `experiments/continuous_rank_bv_search/RESULTS.md`;
   `proofs/centered_quarter_bv_all_harmonics.md`;
-  `experiments/centered_quarter_k6_rank/README.md` and its `k7/` continuation;
-  `experiments/four_point_depth_projection/k5_product_audit/README.md`.
+  `experiments/centered_quarter_k6_rank/README.md` and its `k7/`--`k11/`
+  continuations;
+  `proofs/centered_quarter_integer_degree_obstruction.md`;
+  `experiments/centered_integer_degree_moments/README.md`;
+  `experiments/noncentered_integer_degree_moments/README.md`;
+  `experiments/four_point_depth_projection/k5_product_audit/README.md`;
+  `experiments/four_point_depth_projection/k7_product_audit/README.md`;
+  `experiments/continuous_four_point_moment/README.md`;
+  `experiments/continuous_four_point_moment/FACTORIAL_HIERARCHY.md`.
   Patched
   discovery-only second-level Lasserre runs give objectives 90 at degree 4
   and 48 at degrees 6 and 8; these are numerical evidence only.
@@ -237,7 +273,8 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   fixed-cardinality infeasibility claims.
 - **Restrictions:** Universal if the full three-point domain and all boundary
   cases are retained.
-- **Status:** certified as a barrier through local rank-five \(K_7\);
+- **Status:** certified as a barrier through separately symmetrized local
+  rank-five \(K_{11}\);
   overlapping-subset and higher moment-PSD extensions remain active.
 
 ## D. Rank-aware Gram matrices and nullspace/stress
@@ -354,11 +391,33 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   satisfying those shadows.  Exact \(D_5\)-based rank-five near-models show
   that robust depth and both centered/noncentered Perron endpoints coexist
   when explicitly listed kissing inequalities are relaxed.
+- **Universal weighted centering:** deletion-six interiority gives two
+  disjoint positive circuits and hence a full-support barycentric choice
+  \(0<p_i<1/4\).  For \(B=I+J-2G\) and
+  \(a_i=p_i/(1+p_i)\), the symmetric matrix
+  \(S=A^{1/2}BA^{1/2}\) is similar to a reversible Markov chain, has at most
+  five negative eigenvalues, and obeys \(\lambda_2(S)<1/5\).  More exactly,
+  \(S-A\) has inertia \((1,5)\); nonnegativity of
+  \(\operatorname{tr}S^3\) forces the total non-Perron positive spectral mass
+  below two.  Exact trace, covariance, and degree-two harmonic identities are
+  recorded.
+- **Weighted-centering barrier:** exact full-support \(D_5\) weight families
+  have \(p_{\min}\to0\), \(p_{\max}\to1/2\), and covariance tending to rank
+  one.  The controlled \(p_{\max}<1/4\) selection still supplies no explicit
+  \(p_{\min}\) or cap-mass lower bound.  An exact non-kissing 41-point
+  moment-curve/antipode family survives every six deletions and has optimized
+  \(p_{\min}\to0\), proving that deletion depth alone cannot supply one.
+  The abstract rank-20
+  degree-two sign transform is also insufficient: an exact order-41
+  generalized-quadrangle model has entries in the genuine \(\{0,2\}\) range
+  and rank 17, although the nonlinear common-source harmonic moment rules it
+  out.
 - **Additional artifacts:** `proofs/lorentzian_inertia_graph.md`;
   `certificates/lorentzian_rank6_interval_countermodel.json`;
   `verifiers/verify_lorentzian_inertia_graph.py`;
   `proofs/centered_tight_frame_endpoint/README.md`;
-  `experiments/perron_robust_depth_hybrid/proof.md`.
+  `experiments/perron_robust_depth_hybrid/proof.md`;
+  `experiments/universal_weighted_centering/README.md`.
 - **Restrictions:** None intended.
 - **Status:** active.
 

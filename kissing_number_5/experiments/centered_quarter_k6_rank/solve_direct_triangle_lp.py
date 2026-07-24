@@ -20,9 +20,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("catalog", type=Path)
     parser.add_argument("report", type=Path)
+    parser.add_argument("--source", type=Path, default=SOURCE)
     args = parser.parse_args()
 
-    source = json.loads(SOURCE.read_text())
+    source = json.loads(args.source.read_text())
     lines = args.catalog.read_text().splitlines()
     assert lines and lines[0].startswith("# ")
     edges = []
