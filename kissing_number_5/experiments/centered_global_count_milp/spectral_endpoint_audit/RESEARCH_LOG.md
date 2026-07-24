@@ -40,6 +40,39 @@
 
 ## Status
 
-Certified within its explicit scope.  This rules out one centered
-quarter-grid edge distribution, not all centered quarter-grid codes and
-not any off-grid or noncentered code.
+Certified within its explicit scope.  This rules out the centered
+quarter-grid spectral layer \(Q=2362\), not all centered quarter-grid
+codes and not any off-grid or noncentered code.
+
+## 2026-07-24 00:05 PDT
+
+- Observed that the endpoint proof uses only \(Q=2362\), so it excludes
+  the entire selector \(X=40V=2\), not just one edge vector.  Added an
+  exact repeatable spectral-selector no-good and exact disjunctive
+  edge-vector no-goods to the discovery MILP.
+- Checked the apparent next selector \(X=7\).  It is arithmetically
+  impossible before any solver is used: centering gives
+  \(Q=\sum k^2E_k\equiv\sum kE_k=-82\equiv0\pmod2\), hence
+  \(X=5Q-11808\equiv2\pmod {10}\).
+- With \(X=2\) excluded, the next search returned \(X=12\), with
+  \(E=(6,72,102,174,181,34,251)\), \(Q=2364\), \(P=19591\), and
+  \(Y=-51\).  Congruence and the sharp skew inequality allow
+  \(Y\in\{-51,24\}\); the stored value is strictly interior, with exact
+  residual \(9X^3-2Y^2=10350\).  Therefore the equality-spectrum
+  mechanism cannot iterate past this point.
+- Added an independent standard-library verifier for this interior
+  pseudomarginal.  It rebuilds all 9,882 allowed row types and 51 triangle
+  types; checks the exact first/second degree marginals, pair moments
+  through degree 60, all 20 capacity rows, the degree-zero radial PSD
+  block, and ten rank/frame PSD blocks.  The minimum positive pair moment
+  is \(9/128\), and the degree-zero radial block has exact rank six.
+- Pinned the imported theorem \(\tau(4)=24\) to Musin's primary Annals
+  paper, including the publisher PDF SHA-256 and the exact closed-boundary
+  convention.
+
+## Updated status
+
+The \(X=2\) centered quarter-grid endpoint is certified impossible.  The
+same finite relaxation has a certified strict-interior shadow at \(X=12\).
+No conclusion follows for a labeled matrix, an off-grid code, or a
+noncentered code.

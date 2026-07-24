@@ -96,6 +96,12 @@ def main() -> None:
         metavar="X",
         help="repeatable exact no-good cut setting the selector for X=40V to zero",
     )
+    parser.add_argument(
+        "--fix-spectral-x",
+        type=int,
+        metavar="X",
+        help="fix the exact selector X=40V to one value",
+    )
     args = parser.parse_args()
 
     nodes = bv.parse_grid("quarter")
@@ -134,6 +140,12 @@ def main() -> None:
         for value in forbidden_spectral_x
     ):
         parser.error("--exclude-spectral-x is outside the selector range")
+    if args.fix_spectral_x is not None and not (
+        0 <= args.fix_spectral_x < len(spectral_x_values)
+    ):
+        parser.error("--fix-spectral-x is outside the selector range")
+    if args.fix_spectral_x in forbidden_spectral_x:
+        parser.error("the fixed spectral X is also excluded")
     nogood_offset = spectral_offset + len(spectral_x_values)
     nogood_width = 2 * edge_count
     variable_count = (
@@ -409,6 +421,11 @@ def main() -> None:
     ]
     for value in forbidden_spectral_x:
         column_upper[spectral_offset + value] = 0
+    if args.fix_spectral_x is not None:
+        column_upper[
+            spectral_offset : spectral_offset + len(spectral_x_values)
+        ] = 0
+        column_upper[spectral_offset + args.fix_spectral_x] = 1
     highs.addVars(variable_count, column_lower, column_upper)
     highs.changeColsIntegrality(
         variable_count,
@@ -623,6 +640,7 @@ def main() -> None:
             list(vector) for vector in forbidden_edge_vectors
         ],
         "excluded_spectral_x": forbidden_spectral_x,
+        "fixed_spectral_x": args.fix_spectral_x,
         "harmonic_degree": args.harmonic_degree,
         "pair_degree": args.pair_degree,
         "iterations": history,
