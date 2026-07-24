@@ -1,0 +1,81 @@
+{
+  "schema": "ramsey55.e2_double_forced_search_independent_check_plan.v1",
+  "status": "FROZEN_BEFORE_RETAINED_FULL_AUDIT_AFTER_IMPLEMENTATION_SMOKE",
+  "frozen_at_utc": "2026-07-24T07:14:00Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "question": "Do the frozen two-forced-edge plan, result, exact schedules, E=1 stop/export semantics, and 1,878-endpoint quotient withstand an independent fail-closed reconstruction and deterministic replay?",
+  "inputs": {
+    "search_plan": "results/benchmark_plans/e2_low_closure_double_forced_v1.json",
+    "search_plan_sha256": "07a8f8a238775bbe70621c221446e250ba4852973f167d0313990b8784dbbb54",
+    "search_result": "results/constructive/e2_low_closure_v2/double_forced.result.json",
+    "search_result_sha256": "68a95613c09406cea836523f43ee39aa3345edf1023b883e20016b259e160071",
+    "search_source": "src/search43_e2_barrier_escape.cpp",
+    "search_source_sha256": "18079f5b3f1a0018cd0d47ac7965091401aa9a9a9c59dcd492c26ec4d327dcca",
+    "search_binary": "build/search43_e2_barrier_escape",
+    "search_binary_sha256": "578fd32bc5312b844e411789660e64eca05ea207cd2df8a1698bf2cfaa0d2214",
+    "E3_representatives": "results/constructive/e2_low_closure_v2/representatives.e3.g6",
+    "E3_representatives_sha256": "0f9485a82ecb6dba9b19ea0759ba37ef7c9bc64d481cf8fd7a248480b348471d",
+    "E4_representatives": "results/constructive/e2_low_closure_v2/representatives.e4.g6",
+    "E4_representatives_sha256": "2ea9964afed1205884e971fb50fce77d783925804ae9d1064460e7b89190bca4",
+    "known_E2_seed_directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "known_E2_seed_count": 22,
+    "known_E2_seed_corpus_concatenated_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0",
+    "endpoint_stream": "results/constructive/e2_low_closure_v2/double_forced_new_E2.g6",
+    "endpoint_count": 1878,
+    "endpoint_stream_sha256": "ad48e7eb76403abc050bd6200003720ff781840116c6c6651414cbc27b90b646",
+    "endpoint_audit_v1_plan": "results/benchmark_plans/e2_double_forced_discovery_audit_v1.json",
+    "endpoint_audit_v1_plan_sha256": "b67f43f1800aa4fdc19f1897dea13be8dd43fa51e0e1903e52af7df9546d2ae4",
+    "endpoint_audit_v1_result": "results/verification/e2_double_forced_discovery_audit_v1.json",
+    "endpoint_audit_v1_result_sha256": "51e96399543b837115b0111e86dcd1e3a5c7d3d2b4dc0a6326dd7ebef280bdf4",
+    "endpoint_audit_v2_plan": "results/benchmark_plans/e2_double_forced_discovery_audit_v2.json",
+    "endpoint_audit_v2_plan_sha256": "a9948365b9938ce36ec40d8b168bc8fc2f53e05d26b6d5140964b8939fd6a348",
+    "endpoint_audit_v2_result": "results/verification/e2_double_forced_discovery_audit_v2.json",
+    "endpoint_audit_v2_result_sha256": "6b853b060f8a8b603af62bc86036475258cd448b183e57e39bcfda37cbe8e9f7"
+  },
+  "implementation": {
+    "orchestrator": "verify/e2_double_forced_search_independent_check.py",
+    "orchestrator_sha256": "2e8cddb5971a246d0c3b502c0c687badac3e7abedb20338cf357710be491802d",
+    "exact_schedule_checker": "verify/e2_double_forced_schedule_exact.cpp",
+    "exact_schedule_checker_sha256": "fd133602a1057e49470e514325af066d951f1aca395a2dcf6b047c71d417b9ec",
+    "focused_tests": "tests/e2_double_forced_search_independent_tests.py",
+    "focused_tests_sha256": "1eeb40e11549de68bd699a25d6378e56479470a0582c32ef60ec8e99f7515d62",
+    "focused_tests_passed_before_freeze": 7,
+    "CXX": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "CXX_flags": [
+      "-std=c++20",
+      "-O3",
+      "-DNDEBUG",
+      "-Wall",
+      "-Wextra",
+      "-pedantic"
+    ],
+    "shortg": "/private/tmp/ramsey55-nauty.eJeqDy/nauty2_9_3/shortg",
+    "shortg_sha256": "d31954e657d682802ea4d1f881cad175066b3a8ed624e91e4bfa9b8eb94d39d8"
+  },
+  "operations": [
+    "strictly parse JSON without duplicate keys and verify every hard-coded artifact hash",
+    "statically inspect the hash-bound production source for both in-loop and terminal E=1 stopping, exact E=1 replay, frozen-path export, exit code 11, terminal recount, and initial tabu on both forced edges",
+    "independently reconstruct all 22 labeled neutral cycles and require 22 cycles of length 86 with 1,892 distinct states",
+    "independently reconstruct all 47,675 first barriers and exact-recount every selected first graph",
+    "independently enumerate all 39,511,631 eligible second candidates, select the minimum height and lexicographic edge for every first graph, and exact-recount all 47,675 selected second graphs",
+    "independently decode and recursively enumerate every K5 and I5 in all 1,878 retained endpoints",
+    "independently reconstruct ordinary and complement-isomorphism classes with the Traces engine shortg -t, including explicit complements and published v2 representatives",
+    "preserve and bind the v1 stale-prose amendment record and the separately corrected v2 endpoint audit without modifying either",
+    "rerun the hash-bound production binary with all frozen parameters in a temporary directory and require byte-identical E=2 output, no E=1 output, exit code zero, and equality of every non-runtime result field"
+  ],
+  "acceptance": [
+    "all 53 low-frontier seeds and all 22 known E=2 inputs match their frozen counts and hashes",
+    "the exact schedule reconstruction matches every published first/second count and height histogram, including all 39,511,631 second candidates",
+    "the source audit confirms immediate exact E=1 stop/export behavior both within and after the last rollout step",
+    "the frozen E=1 output is absent and the recorded E1_visits field is zero",
+    "all 1,878 endpoints independently recount to E=2 with same-colour overlap-four geometry",
+    "Traces reconstructs four ordinary classes, two complement classes of labeled sizes 930 and 948, and zero classes novel relative to the supplied 22 seeds",
+    "the deterministic replay exits zero, creates no E=1 output, and writes an E=2 stream byte-identical to the frozen stream",
+    "all seven focused tests pass after the retained audit"
+  ],
+  "output": {
+    "audit": "results/verification/e2_double_forced_search_independent_v1.json",
+    "report": "certificates/e2_low_closure_double_forced_independent_v1.report.md"
+  },
+  "claim_boundary": "The first and second forced schedules are exact only relative to the 53 supplied representatives and stated edge rules. The following tabu repair is heuristic. Reproducing zero E=0/E=1 outcomes proves no global nonexistence statement and does not improve the public Ramsey bound."
+}

@@ -1,0 +1,171 @@
+{
+  "schema": "ramsey55.global_anchor_selector_cube_pilot.v1",
+  "status": "FROZEN_BEFORE_RUN",
+  "created_utc": "2026-07-24T06:45:00Z",
+  "working_directory": "/Users/alec/Documents/Math/ramsey55",
+  "purpose": "Measure proof-free bounded solver behavior on every exact anchor-matrix selector cube for normalized degree branches 18, 19, and 20, and stop immediately on any independently verified SAT construction.",
+  "claim_boundary": "SAT must pass exact union-CNF replay and two independent full graph verifiers. OBSERVED_UNSAT_UNCHECKED and BUDGET_EXHAUSTED have no proof and do not exclude a cube or branch.",
+  "worker_source": "src/global_anchor_cube_pilot.py",
+  "worker_source_sha256": "505d8bcb6dfe65dbdce475d568cc4d385e725c5b70358f922b43b91acd85155f",
+  "checker_source": "verify/global_anchor_cube_pilot_check.py",
+  "checker_source_sha256": "898793b02c01c9b527de537f71b5087040d407cf7657f885430ef2892c58ba78",
+  "test_source": "tests/global_anchor_cube_pilot_tests.py",
+  "test_source_sha256": "ae1d70122dc93c3986db3310d0d115691610179ec3f08ef1a8c7d8fb0bb7ea1c",
+  "solver": "MapleChrono",
+  "pysat_version": "1.9.dev7",
+  "proof_logging": false,
+  "conflict_budget_per_cube": 5000,
+  "selector_assumption_count_per_call": 1,
+  "selector_variable_first": 65404,
+  "selector_count_per_branch": 143,
+  "branch_order": [
+    18,
+    19,
+    20
+  ],
+  "cube_order": "canonical matrix index 0 through 142",
+  "persistent_solver_within_branch": true,
+  "cross_branch_learned_clause_reuse": false,
+  "measurement_caveat": "The 143 calls within a branch share sound learned clauses. Per-call conflict deltas are exact, but later calls are not fresh-solver timing samples.",
+  "candidate_path": "results/global_exact/global_anchor_selector_cube_pilot_v1.sat.g6",
+  "cpp_verifier": "/Users/alec/Documents/Math/ramsey55/build/bitset_verify",
+  "resource_gates": {
+    "disk_path": "/Users/alec/Documents/Math",
+    "minimum_free_disk_bytes": 4000000000,
+    "maximum_worker_rss_bytes": 3000000000,
+    "prohibited_process_substrings": [
+      "drat-trim "
+    ],
+    "policy": "Fail closed before loading any CNF if disk is below the gate or a proof conversion is active; abort after any cube if worker peak RSS exceeds the cap."
+  },
+  "branches": [
+    {
+      "degree": 18,
+      "union_cnf": "/private/tmp/ramsey55_global_anchor_d18_extension.cnf",
+      "union_cnf_sha256": "a14a4951041942c01d8787a381c36ca3d094633255a2d134c7879fbec0af78c7",
+      "union_cnf_bytes": 90757889,
+      "variable_count": 65556,
+      "clause_count": 2061137,
+      "cover_plan": "results/benchmark_plans/global_anchor_degree18_extension_v1.json",
+      "cover_plan_sha256": "3c653a20a3d985921a3bf5b1b25b3744dbddb82fa43c278007e256ed5b161934",
+      "cover_plan_check": "results/verification/global_anchor_degree18_extension_v1.check.json",
+      "cover_plan_check_sha256": "d368da3f32239487917559a3e2b0943d7bdf73200a4b018ed58ed51fa2f00c36",
+      "union_check": "results/verification/global_anchor_d18_extension_union.check.json",
+      "union_check_sha256": "be5c00086b5f32e046d25ef0aab24e9c8ab8faa2e6a5195d98388fa3dfaa09cf",
+      "schedule_sha256": "bc97e5ca40695177c5f9b4210a58232456d69f137fa917743c584afe2b8e1ffb"
+    },
+    {
+      "degree": 19,
+      "union_cnf": "/private/tmp/ramsey55_global_anchor_d19.cnf",
+      "union_cnf_sha256": "7540802b0e2b85256e85ed1a67ba6a9ca1736d703a025201ee8a2244c7c10ae8",
+      "union_cnf_bytes": 90758428,
+      "variable_count": 65556,
+      "clause_count": 2061223,
+      "cover_plan": "results/benchmark_plans/global_anchor_cube_cover_v1.json",
+      "cover_plan_sha256": "c4f7bc7e1e6191c81006530ca5204ef81e79ddb4403dbc790bedd77865cec28a",
+      "cover_plan_check": "results/verification/global_anchor_cube_cover_v1.check.json",
+      "cover_plan_check_sha256": "ad3355a578e5688f07706e923d8265db801b96816506960edcddff6ea54eedab",
+      "union_check": "results/verification/global_anchor_d19_union_cnf_check.json",
+      "union_check_sha256": "2146e48d7875b0b1df67e7a3b900b0a9b2cbe55aa85f21b04a48834cf579dc2d",
+      "schedule_sha256": "742794b864184fd74083b9492d1e54f7fadb95c0ece82d526ea3ff60adf0e9a3"
+    },
+    {
+      "degree": 20,
+      "union_cnf": "/private/tmp/ramsey55_global_anchor_d20.cnf",
+      "union_cnf_sha256": "19f7d3a00ce8b491627cc063cb7b9584fce6619ca94416ada5926a19cf7ea7f6",
+      "union_cnf_bytes": 90758427,
+      "variable_count": 65556,
+      "clause_count": 2061223,
+      "cover_plan": "results/benchmark_plans/global_anchor_cube_cover_v1.json",
+      "cover_plan_sha256": "c4f7bc7e1e6191c81006530ca5204ef81e79ddb4403dbc790bedd77865cec28a",
+      "cover_plan_check": "results/verification/global_anchor_cube_cover_v1.check.json",
+      "cover_plan_check_sha256": "ad3355a578e5688f07706e923d8265db801b96816506960edcddff6ea54eedab",
+      "union_check": "results/verification/global_anchor_d20_union_cnf_check.json",
+      "union_check_sha256": "23249c021ab14731266f21409555369833c24cdd14c1362410461b6d5023d488",
+      "schedule_sha256": "00fba82598a0fcdb3ab3fbbec873506fe0a37e283f2f6c15bd4142135e528414"
+    }
+  ],
+  "matched_union_references": [
+    {
+      "degree": 19,
+      "path": "results/global_exact/global_anchor_d19_maplechrono_50k.json",
+      "sha256": "0e5e5f332a5e5cf6ec83f6262f51a728743be2634c7863612fe5717da048fa65",
+      "status": "BUDGET_EXHAUSTED",
+      "conflict_budget": 50000
+    },
+    {
+      "degree": 20,
+      "path": "results/global_exact/global_anchor_d20_maplechrono_50k.json",
+      "sha256": "8435dbd5898395147e193f9e44388e8bfda8be004fd437934e8ef4b9f2660bd2",
+      "status": "BUDGET_EXHAUSTED",
+      "conflict_budget": 50000
+    }
+  ],
+  "interpretation_rule": "Report per-branch resolution counts and conflict distributions. A high bounded-UNSAT rate relative to the 50,000-conflict union exhaustion is engineering evidence for cube decomposition only, never an UNSAT claim.",
+  "inputs": [
+    {
+      "path": "/private/tmp/ramsey55_global_anchor_d18_extension.cnf",
+      "sha256": "a14a4951041942c01d8787a381c36ca3d094633255a2d134c7879fbec0af78c7"
+    },
+    {
+      "path": "/private/tmp/ramsey55_global_anchor_d19.cnf",
+      "sha256": "7540802b0e2b85256e85ed1a67ba6a9ca1736d703a025201ee8a2244c7c10ae8"
+    },
+    {
+      "path": "/private/tmp/ramsey55_global_anchor_d20.cnf",
+      "sha256": "19f7d3a00ce8b491627cc063cb7b9584fce6619ca94416ada5926a19cf7ea7f6"
+    },
+    {
+      "path": "results/benchmark_plans/global_anchor_degree18_extension_v1.json",
+      "sha256": "3c653a20a3d985921a3bf5b1b25b3744dbddb82fa43c278007e256ed5b161934"
+    },
+    {
+      "path": "results/benchmark_plans/global_anchor_cube_cover_v1.json",
+      "sha256": "c4f7bc7e1e6191c81006530ca5204ef81e79ddb4403dbc790bedd77865cec28a"
+    },
+    {
+      "path": "results/verification/global_anchor_degree18_extension_v1.check.json",
+      "sha256": "d368da3f32239487917559a3e2b0943d7bdf73200a4b018ed58ed51fa2f00c36"
+    },
+    {
+      "path": "results/verification/global_anchor_cube_cover_v1.check.json",
+      "sha256": "ad3355a578e5688f07706e923d8265db801b96816506960edcddff6ea54eedab"
+    },
+    {
+      "path": "results/verification/global_anchor_d18_extension_union.check.json",
+      "sha256": "be5c00086b5f32e046d25ef0aab24e9c8ab8faa2e6a5195d98388fa3dfaa09cf"
+    },
+    {
+      "path": "results/verification/global_anchor_d19_union_cnf_check.json",
+      "sha256": "2146e48d7875b0b1df67e7a3b900b0a9b2cbe55aa85f21b04a48834cf579dc2d"
+    },
+    {
+      "path": "results/verification/global_anchor_d20_union_cnf_check.json",
+      "sha256": "23249c021ab14731266f21409555369833c24cdd14c1362410461b6d5023d488"
+    },
+    {
+      "path": "results/global_exact/global_anchor_d19_maplechrono_50k.json",
+      "sha256": "0e5e5f332a5e5cf6ec83f6262f51a728743be2634c7863612fe5717da048fa65"
+    },
+    {
+      "path": "results/global_exact/global_anchor_d20_maplechrono_50k.json",
+      "sha256": "8435dbd5898395147e193f9e44388e8bfda8be004fd437934e8ef4b9f2660bd2"
+    },
+    {
+      "path": "results/global_exact/global_anchor_union_pilot_v1.json",
+      "sha256": "6c7def6295a1a0c1ac2c22c137ec768cb5aba3df23877235387f4aaa584aeda9"
+    },
+    {
+      "path": "verify/global_anchor_cube_pilot_check.py",
+      "sha256": "898793b02c01c9b527de537f71b5087040d407cf7657f885430ef2892c58ba78"
+    },
+    {
+      "path": "tests/global_anchor_cube_pilot_tests.py",
+      "sha256": "ae1d70122dc93c3986db3310d0d115691610179ec3f08ef1a8c7d8fb0bb7ea1c"
+    },
+    {
+      "path": "build/bitset_verify",
+      "sha256": "2ba9e189bc56b4d7c439b26317ade8eec60589c58e294bd26d7f35f4bd631f89"
+    }
+  ]
+}

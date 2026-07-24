@@ -1576,3 +1576,369 @@ earlier outcomes.
 - **CLAIM BOUNDARY:** this checkpoint proves only the exact side cover and
   shard 73. The other 127 shards remain unrun, so the order-7 branch remains
   unresolved and the Ramsey bound is unchanged.
+
+## 2026-07-24T06:50:34Z — Independent E=3/E=4 quotient and second-barrier audit
+
+- **VALID INDEPENDENT FINITE-CORPUS AUDIT:** an implementation importing no
+  production graph, quotient, or search modules decoded and checked all
+  89,870 supplied labeled graphs. A Traces (`shortg -t`) partition, distinct
+  from the published dense/sparse `labelg` routes, independently recovered
+  18 ordinary / 9 complement-isomorphism classes at `E=3` and 88 ordinary /
+  44 complement-isomorphism classes at `E=4`. Every published representative
+  and its complement binds exactly once.
+- Independently reconstructed all `53 * 903 = 47,859` seed-edge decisions:
+  47,675 are forced barriers and 184 remain in the prior closure. Scheduled
+  heights range from 4 through 47, so the configured ceiling 80 excludes
+  exactly zero eligible edges. Every schedule count and the complete height
+  histogram match the production result.
+- Bound the completed run to immutable source commit
+  `5677276e8135daec5af9fb09e360ec9b8a8dfe79`, source SHA-256
+  `cdddaef4c35dfb9ccdbcc7478029c15eb909247714ffc2bef9e8fa636fb0099c`,
+  and a deterministic rebuild matching the frozen executable SHA-256
+  `e145c90c00a6ba7058c58e0ee184ebb3bc8c6292f21c7231161422972cad4b69`.
+  The worktree implementation has advanced and was not substituted for the
+  executable used by the completed run.
+- Independently recounted all 1,670 returned endpoints to exactly `E=2`.
+  Traces recovered four ordinary and two complement classes, of sizes 819
+  and 851; both are the already-known `E=2` complement classes. Novel
+  endpoints/classes: `0/0`.
+- Design review found no omission invalidating the stated heuristic run:
+  the frozen code did not retain `E=1`, but recorded zero `E=1` visits; the
+  audit supplies fail-closed source/binary/input/output binding absent from
+  the run JSON; and one trajectory per quotient representative is correctly
+  treated as heuristic rather than exhaustive under relabeling/complement.
+- Checker / tests / valid result / report SHA-256:
+  `302a30ced1c7ad772c4f25710efc995541fd3e66e33c74f8743ad9f136df1c41` /
+  `b73c6032bb4a56aff8ace7e1ad4af7f414bd05072036ba46628a0ce3c117856a` /
+  `38f70c21e61a2c381d7dfbba94441d988505f50536997f47503825c24eaaa9e7` /
+  `15fb81b7a382a099be1c8415884effe165e7b3f58245ed43273f24e880731a2d`.
+  Seven focused tests pass; result status is
+  `VALID_FINITE_CORPUS_PARTITION_AND_SCHEDULE_AUDIT` with `errors=[]`.
+- **CLAIM BOUNDARY:** this verifies the supplied closure quotient and binds
+  one finite heuristic search. It is not a global low-conflict
+  classification, construction, or nonexistence proof, and the Ramsey bound
+  is unchanged.
+
+## 2026-07-24T07:07:07Z — Two forced escape edges still return to the same two basins
+
+- Froze a changed constructive architecture before production. From each of
+  the 53 low-frontier complement classes, the exact first-edge schedule
+  forces all 47,675 edges outside the prior targeted closure. From every
+  once-forced graph, the new schedule then selects the lowest-height edge
+  outside the current conflict-edge union and forces it before repair.
+- **CERTIFIED FINITE SCHEDULE:** all 47,675 first and all 47,675 second
+  forced graphs passed exact conflict recounts. There are 39,511,631 eligible
+  second edges in total; every first graph has at least one. The selected
+  edges have exact objective deltas `0:15615, 1:32060`, so none repairs a
+  current conflict. A separate C++ implementation sharing no production
+  search code reproduced every count and histogram; schedule-check SHA-256:
+  `3bd61319d912193b9efb18683653d66517560ceafa695ed791bca55f6c04007e`.
+- The successor rollout now stops and exports `E=1`, and it exact-recounts
+  the state after the last permitted move so a terminal `E=0`, `E=1`, or
+  new `E=2` cannot be discarded.
+- **REPRODUCIBLE COMPUTATIONAL OBSERVATION:** the frozen seed-20261322 run
+  executed 47,675 rollouts, 2,720,135 repair steps, and 2,767,810 exact
+  objective checks in 147.696827 seconds. It found zero `E=1`, zero `E=0`,
+  and retained 1,878 distinct labeled `E=2` endpoints.
+- **REPRODUCIBLE FINITE-CORPUS CLASSIFICATION:** all 1,878 endpoints
+  independently recount to a same-color conflict pair with overlap four.
+  Dense and sparse nauty routes agree on four ordinary and exactly two
+  complement classes, of labeled sizes 930 and 948. Both are already
+  present in the frozen 22-near-miss corpus; novel labeled endpoints/classes
+  are `0/0`.
+- A fail-closed checker independently recounted all 53 starts, all 22 known
+  near misses, and all 1,878 outputs, then bound the source, binary, plans,
+  results, inputs, counters, endpoint stream, `E1` absence, and endpoint
+  audit. Five tests pass and the stored result is byte-reproducible with
+  `valid=true`.
+- Search plan / result / endpoint stream / audit result / fail-closed check
+  SHA-256:
+  `07a8f8a238775bbe70621c221446e250ba4852973f167d0313990b8784dbbb54` /
+  `68a95613c09406cea836523f43ee39aa3345edf1023b883e20016b259e160071` /
+  `ad48e7eb76403abc050bd6200003720ff781840116c6c6651414cbc27b90b646` /
+  `6b853b060f8a8b603af62bc86036475258cd448b183e57e39bcfda37cbe8e9f7` /
+  `8b2dca7f2a21b6a676c366128884643afc00041a51395a2279f5d8115dd78e2d`.
+  Full report SHA-256:
+  `eefdeeec1c2ffb0e554382c55126f7071e919e0e5444ec0a89decef54987e031`.
+- The v1 audit output exposed a hard-coded prior endpoint count only in its
+  prose claim boundary. A frozen v2 plan explicitly supersedes that
+  presentation-bugged artifact, derives counts from audited inputs, and
+  writes distinct outputs. A focused regression test was added and the full
+  classification rerun without changing graph, partition, or novelty logic.
+- Frozen decision applied: do not increase this same two-edge repair budget.
+  Move to a vertex/block-scale operator or an exact proof-carrying
+  neighborhood.
+- **CLAIM BOUNDARY:** exact schedule coverage and finite endpoint
+  classification do not make the repair trajectories exhaustive. This is
+  neither a construction nor a nonexistence proof, and the Ramsey bound is
+  unchanged.
+
+## 2026-07-24T07:07:07Z — Complete delete-three/add-three screen of the two known basins
+
+- Froze the two representatives of the known `E=2` complement classes and
+  enumerated every labeled delete-three/add-three replacement:
+  `2 * C(43,3) = 24,682` exact cases with no isomorphism deduplication.
+- **CERTIFIED FINITE STRUCTURAL EXCLUSIONS:** in 18,204 cases, the retained
+  40-vertex core already contains a homogeneous five-set. No choice of the
+  three new vertices can remove that fixed obstruction. The independent
+  coverage audit reconstructed sampled formulas and accepted exact labeled
+  coverage.
+- **REPRODUCIBLE COMPUTATIONAL OBSERVATION:** bounded DPLL reported UNSAT on
+  6,361 further formulas and reached its cap on 117. A frozen CaDiCaL195
+  retry reported UNSAT on all 117 capped formulas. Combined observational
+  UNSAT count is 6,478, with zero remaining limits and no SAT model.
+- No negative proof was requested or retained:
+  `proof_checked_negative_count=0`. The 6,478 solver negatives are not
+  certified theorems.
+- Base plan / result / coverage / retry plan / retry result / retry check
+  SHA-256:
+  `edd273371349fe072d027a8118d4982094842df5e8efc221aaf454ea75d32757` /
+  `021ddca560267c5e5c7f4ea2520bba6461abc16f97d632b0b581baea80148a9a` /
+  `e830f3581311006c544195aed014d69d067bf7f243368492d153299c89c27a29` /
+  `2836f147d3f57258233771a7161c950b2ec0e8c6394fae3baae9ff0e267c2dcc` /
+  `37a1fa28d4744784a753230c92507357d9731ba464dad211d28533843f3678d7` /
+  `8cb43be4db0642bb4ed7dc51a0a0997d7e6cfc64c3fca11d35b9d9cd31d6a382`.
+  Full report SHA-256:
+  `afde3e307151f05c4bf0fa021fbd493354b5d5b4d383273253dd2821794f0f2d`.
+- Nine focused triple-replacement tests pass on the current tree, and fresh
+  coverage/retry checks report `valid=true`.
+- **CLAIM BOUNDARY:** this covers only delete-three/add-three replacements
+  of two fixed graphs. It targets `E=0` and retained no `E=1/E=2` corpus.
+  Proof-free UNSAT observations do not imply even local certified
+  nonexistence, much less global order-43 nonexistence.
+
+## 2026-07-24T07:07:07Z — Incident-boundary k=9..12 portfolio selects four proof targets
+
+- Froze 16 exact incident-boundary formulas: two known complement classes,
+  two deterministic nested vertex policies, and boundary sizes 9 through
+  12. The corresponding free-edge counts are 342, 375, 407, and 438.
+- **REPRODUCIBLE COMPUTATIONAL OBSERVATION:** two `k=9` formulas returned
+  proof-free UNSAT and 14 runs exhausted their conflict budgets. No SAT
+  model or candidate was found.
+- **CERTIFIED ENCODING/SCOPE AUDIT:** the independent checker regenerated
+  every formula stream, verified all boundary sets and nesting metadata, and
+  accepted plan/result semantics. Four focused tests pass under the pinned
+  Python/PySAT environment. The checker explicitly does not promote the two
+  proof-free solver outcomes.
+- Plan / result / plan-check / result-check / report SHA-256:
+  `9a002eae81f5ce72cea27f07dad3cd5e74a47d828fa4121e0bb5dc47904cbbf7` /
+  `cb5dbbcd815278643ef05e9e082ffabd9f956493da67965aa8a96bdf417d6e4d` /
+  `9ca50bdd0564e27dfd80e09ec926a54f33ffde0d4b2a2b3a9aac170e948255d1` /
+  `f1250cf0b6cff12c851ab305ec6e099e204c6796147b3ceef116a74c4afa9c93` /
+  `9e304a34b07000340f242e8c3f46ba0ea9ba0fa910ac041de4d15708e2df7701`.
+- The four `k=12` formulas are the next high-information exact targets.
+  Each is a relaxation containing its track's `k=9`, `k=10`, and `k=11`
+  neighborhoods. A checked UNSAT proof for one `k=12` leaf therefore closes
+  the whole nested track; SAT would yield a candidate for immediate dual
+  verification. A proof-carrying retry must pass an explicit retained-proof
+  disk gate before launch.
+- **CLAIM BOUNDARY:** none of the 16 proof-free solver outcomes is an UNSAT
+  theorem. The portfolio is local to four fixed incident-boundary tracks and
+  changes no Ramsey bound.
+
+## 2026-07-24T07:20:01Z — Fail-closed recovery of the one-edge frontier run
+
+- Preserved the first independent checker's initial fail-closed rejection.
+  The only error was literal comparison of two equivalent relative path
+  spellings. Invalid-result SHA-256:
+  `0a83743f5c04011efefa6f201c3c87332805d4ffa0216826de9901455f27aed8`.
+- Added regression-tested path resolution without weakening artifact
+  identity checks. Nine focused tests now pass and still reject unrelated
+  paths, misbound representatives, and ordinary/complement count swaps.
+- Recovered the exact frozen production source from immutable commit
+  `5677276e8135daec5af9fb09e360ec9b8a8dfe79` and compiled it into a distinct
+  executable rather than overwriting the advanced worktree binary.
+  Recovered executable SHA-256:
+  `4597c7fb130edbf75c9a192a2042f44acda0a897193fcef22af98b56165b0a34`.
+- The frozen recovery rerun reproduced every substantive counter and the
+  1,670-record endpoint stream byte-for-byte. Recovery result / endpoint
+  stream SHA-256:
+  `4969871cccbd0e07edf169fd468aafa2a3584f176ba858d706d104fc77d60da4` /
+  `ba35df48ba6577605135fda1c893283b76420724bd9ff70b4c0641427ec96e97`.
+- **VALID INDEPENDENT FINITE-CORPUS AUDIT:** the corrected v2 result has
+  `errors=[]`, independently reproduces the 9/44 low-frontier complement
+  classes, all 47,675 scheduled first barriers, and the two known endpoint
+  complement classes. Checker / tests / v2 result / report SHA-256:
+  `e77f4ee29c9eb1b532f0d3827e04b5d579ec7d69c818e791241e312516bc1358` /
+  `7566dc4543119667a777ac5bb3ba1658805686411023c0700f8fd5b54fcfb303` /
+  `48437f3d20788379e3ba890f73086c51777bd068d7056ac0ce613aec97fb5c4e` /
+  `41b3a092567b1f60cd7f0c953f5e67fd7c6624ea5b2d0ac8ad660f6e302dc868`.
+- **CLAIM BOUNDARY:** this recovers and binds one finite heuristic run and
+  its supplied frontier. It is not a global classification or nonexistence
+  result, and the Ramsey bound is unchanged.
+
+## 2026-07-24T07:22:00Z — All 429 anchor-selector cubes remain hard at 5,000 conflicts
+
+- Froze and ran every one of the 143 exact anchor-matrix selectors in each
+  normalized root-degree branch 18, 19, and 20, for 429 solver calls total.
+  A persistent MapleChrono instance was used within each branch and learned
+  clauses were shared only across that branch's checked selector calls.
+- **REPRODUCIBLE COMPUTATIONAL OBSERVATION:** all 429 calls exhausted the
+  5,000-conflict budget. There were zero SAT models and zero solver-complete
+  UNSAT results. The aggregate was 2,145,309 conflicts in 281.92 wall
+  seconds, with peak resident memory 836,354,048 bytes.
+- The independent checker reconstructed the three checked union formulas,
+  all 429 selector mappings and assumption hashes, every result counter, and
+  the aggregate identities. Five focused tests pass.
+- Plan / result / independent check / report SHA-256:
+  `4e67e6708c5dfc255224feaf9ba0b4e67cd2182d895ebccef3e9dd829ce62c3d` /
+  `3567a678597edf52a4a60adbac82c83ab89e765438401de6c230bf2ba3622c9a` /
+  `60ad7f784b2a4b7eb2b9b9b1b234f7f4db0e4f896a6b568608b96dea3082f384` /
+  `94f696950da8638ebcadef1dde8a65f0396a19aba0d4ec850c1cdd1ef361c271`.
+- A matrix selector alone exposes no easy leaf at this budget. The next
+  global pilot refines each matrix with the two exact five-way secondary
+  witness selectors. All negative outcomes here are proof-free and exclude
+  no cube or degree branch.
+
+## 2026-07-24T07:22:00Z — Fully independent replay of the two-forced-edge run
+
+- A second fail-closed implementation independently reconstructed the 22
+  disjoint 86-state neutral cycles, all 47,675 first barriers, all
+  39,511,631 eligible second candidates, and the selected minimum for every
+  once-forced graph. Every count, histogram, forced-graph recount, and the
+  selected-schedule digest matched production.
+- It statically audited the frozen source's in-loop and terminal `E=1`
+  stop/export paths, then reran the SHA-bound production executable. The
+  99.35-second replay again returned no `E=0` or `E=1`, created no `E=1`
+  file, matched every non-runtime result field, and reproduced the
+  1,878-record endpoint stream byte-for-byte.
+- Independent recursive enumeration found 938 endpoints with two cliques
+  and 940 with two independent sets, always in same-color overlap-four
+  pairs. A separate Traces route recovered four ordinary and two complement
+  classes of sizes 930 and 948, both known and neither novel.
+- Audit plan / valid result / report SHA-256:
+  `67a508dc4c42360f6dc07837ffe2b3f12d6ef82b23ef15e130d2c9fa1b6193b7` /
+  `38bebb3adf501ab4df75b3fd16777f018535e47e8170c70be341f4a5d2c5cb3d` /
+  `b149d5fbc686d2f0a6adf22bd8614d10b3eb1e6c6fe836081b8a0a0e5666be86`.
+  Seven focused tests pass.
+- The exact schedules and deterministic replay validate the stated finite
+  experiment. The 256-step repairs remain heuristic; this is not a global
+  construction or exclusion and changes no Ramsey bound.
+
+## 2026-07-24T07:30:00Z — Exact nonpositive-excess root cover
+
+- Defined
+  \(c(v)=e(G[B_v])-e(G[A_v])-d(v)(43-2d(v))/2\) and proved the exact
+  identity \(\sum_v c(v)=0\) by counting each edge's contribution across all
+  induced neighborhoods and nonneighborhoods.
+- Checked that complementation preserves \(c(v)\). The established
+  degree interval therefore reduces every hypothetical order-43 candidate,
+  after complementing and relabeling, to a root of degree \(18,19,20,\) or
+  \(21\) with \(c(0)\leq0\).
+- Converted the four cases into the exact cardinality thresholds
+  \(e(G[A])+e(\overline{G[B]})\geq213,206,201,200\), respectively, and
+  froze deterministic sequential-counter encodings.
+- Refined the cover by the exact invariant
+  \(\mu=\min(\delta,42-\Delta)\). A checked low/high extremum-selector cover
+  and the parity obstruction to a 21-regular graph yield nine exhaustive
+  \((\mu,d(0))\) branches.
+- The independent checker reconstructed all base endpoints, counters,
+  selectors, and appended-clause hashes without importing the generator;
+  it returned `valid=true` with zero errors. Five focused tests pass.
+- Plan / independent check / report SHA-256:
+  `3d462687328fa9096a2be42b6fd16e0f0916a622533e3b18d4351bf8680d6847` /
+  `bf1ad9b6c2cd797697db30fe845fe9a152438c6cfd6f5bae67275cff3e90a907` /
+  `4b33f7c88debb87662dd8e52c28f8dbef30a0b785fad8b5f7a94fd36c92c8353`.
+- This is a new exhaustive global decomposition, not a solve: no branch has
+  been proved UNSAT or produced a valid graph, so the public bound is
+  unchanged.
+
+## 2026-07-24T07:36:12Z — Four-\(k=12\) proof runner held for hardening
+
+- Built an inert proof-retry template for exactly the four maximal \(k=12\)
+  incident-boundary formulas. The formulas have 438 variables each,
+  208,932--210,930 clauses, and 31,429,304 total DIMACS bytes. Independent
+  reconstruction accepted every formula stream and the nesting metadata.
+- The first seven-test suite passed, template/audit regeneration was
+  byte-identical, and `--run` on the inert template failed before creating
+  an output directory. No proof solver was launched.
+- A separate code review then found six fail-closed implementation defects:
+  decompression enforced its output cap too late; freeze provenance was not
+  mandatory; the independent checker accepted output paths the runner would
+  reject; two proof replays ignored nonzero return codes; retained-space
+  arithmetic omitted small manifest/summary/candidate overhead; and one
+  compressed replay timeout did not cover its blocking read.
+- **CORRECT RESPONSE:** the template remains non-launchable and the entire
+  path is held until all six findings have regression tests, the runner and
+  independent checker agree, and fresh hashes/audits supersede the initial
+  versions. Because no solve ran, no mathematical result or prior
+  certificate is affected.
+- A conservative one-leaf size-pilot design would have required
+  7,802,458,112 free bytes. At its audit only 7,758,913,536 bytes were free,
+  so it also failed the storage gate by 43,544,576 bytes independently of
+  the code review.
+- Initial producer / checker / tests / inert template / audit SHA-256,
+  preserved as review history:
+  `088a139afbcac1c88fda6b51ea367d62f122b9b253b7c8f084adb2ad6dc61f5f` /
+  `8391c1ca110b1b57e33fa662ebf9fb4041f207b6e034d6e641f0f45fbd60a148` /
+  `63a0043f8b4f1abf787b798c7f3ed3610bcdfc66a082bc689ee1c7a62192216d` /
+  `a99b8f6ec75763eded079a8c48a4fa4c526445605d8ccf2d7bc0fdde7b27a818` /
+  `f06160d6bed8cb1b303ddf08e774bc12aabe47af06f4ae481162ca4101bff152`.
+- **CLAIM BOUNDARY:** this is infrastructure review, not a construction,
+  local exclusion, global exclusion, or Ramsey-bound change.
+
+## 2026-07-24T07:36:12Z — Obsolete transient proof workspace removed safely
+
+- Identified process group 66671 as the older
+  `automorphism5_orientation_tail_bundle.py --run` workflow. Its active
+  `tail_017_018` batch was still converting a solver trace and had no final
+  result JSON or compressed checked certificate. Six neighboring two-leaf
+  batches were already finalized and were left untouched.
+- Sent an interrupt to that exact process group and confirmed both the
+  parent and `drat-trim` child had exited. Removed only the generated CNF,
+  generated metadata copy, raw DRAT, trimmed DRAT, in-progress LRAT, and
+  worker record under the exact
+  `certificates/order43_automorphism5_orientation_tail65/.work/tail_017_018`
+  path.
+- The six transients consumed 1,170,068 KiB. They are not recoverable from
+  the filesystem but are deterministically regenerable from retained source,
+  plan, and root metadata. All completed compressed certificates remain.
+  Free space rose from 6,685,024 KiB to 7,816,268 KiB.
+- The strengthened order-five dynamic gate then resumed. At this snapshot
+  its summary records 40/80 `CERTIFIED_UNSAT` leaves; the other 40 remain
+  active, so the \(5^8 1^3\) automorphism cycle type is not yet excluded.
+- Added ignore rules for proof work directories, run locks, and the active
+  order-five compressed proof payloads so source-control scans cannot
+  consume proof-checking CPU or mistake transients for checkpoint content.
+
+## 2026-07-24T07:50:17Z — Proof-storage reserve restored and guarded
+
+- A second obsolete orientation-tail recovery process recreated the six
+  `tail_017_018` transients beneath the exact `.recovery` path after the first
+  cleanup. Its process group was stopped, including a subsequently respawned
+  `drat-trim`, and only that incomplete recovery workspace was removed. No
+  finalized batch, compressed certificate, result JSON, or source file was
+  touched.
+- Archived the order-seven side-model CNF, DRAT, and LRAT as tested Zstandard
+  streams. Their compressed SHA-256 values are respectively
+  `bcbd284466fa1cdf68dd8e04220b378d97d0e6e18a7d4d6f909c457fe6baa052`,
+  `4a26785e84ac24ed6fd775a37ee7a98d57c37b276b9b1e7984ad5b26e68e9fa5`,
+  and
+  `bffaa47a061ac1acb17bd37b2e1f820fe5e6cea0cc691a95d44a98a241e3484a`.
+  `zstd -t` passed, and streaming decompression reproduced the retained raw
+  SHA-256 values for all three files. The raw copies remain present.
+- Independently streamed the existing order-seven shard-73 and lifted-sample
+  proof archives and matched their result-bound raw DRAT/LRAT hashes. Their
+  redundant raw CNF/DRAT/LRAT files were then removed; the checked compressed
+  proof streams, result metadata, deterministic generators, and plans remain.
+  Eight deterministic order-three root-degree/greedy/normalizer/reduced CNFs
+  were also removed while retaining their generators and metadata. The
+  proof-free radius-ten CNF was removed after recording its
+  `cbe399bdce8025691609cbd5ce1cf2f966f6fe1bee38e02d45ac8ab23c0feff5`
+  SHA-256 and 88,479,584-byte size; its timeout metadata and report remain and
+  still make no mathematical claim.
+- A separate head-15 checker began redundantly replaying the already certified
+  order-five leaf 15, creating about 1.3 GB of temporary residual/proof data.
+  The active order-five researcher confirmed it was not part of the current
+  workflow and that leaf 15 had already passed production DRAT and LRAT
+  checks. The exact checker process group was interrupted; its own cleanup
+  removed the temporary directory. A matching ignore rule now prevents these
+  ephemeral checker directories from entering source-control scans.
+- Free space recovered to 7,406,825,472 bytes, above the frozen
+  6,514,999,680-byte order-five reserve. The halted leaf-40 unbounded attempt
+  remains a no-claim observation. Work proceeds only on a frozen binary
+  split/lift design with per-child time, proof-size, and free-space caps; no
+  proof-producing relaunch is authorized yet.
+- **CLAIM BOUNDARY:** these were storage and process-control actions. They
+  preserve certified proof bits where proofs existed, retain deterministic
+  regeneration paths for deleted CNFs, and do not change any Ramsey bound.

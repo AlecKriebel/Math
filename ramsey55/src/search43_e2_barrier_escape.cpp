@@ -80,9 +80,12 @@ struct Options {
   int atomic_pair_retain = 8;
   int closure_state_limit = 250000;
   int low_barriers_per_seed = 0;
+  int low_second_barriers_per_first = 1;
   std::string closure_output_prefix;
   std::string discovery_output;
+  std::string near_output;
   bool atomic_scan = false;
+  bool low_double_barrier = false;
   bool self_check = false;
   int self_check_flips = 200;
 };
@@ -413,12 +416,18 @@ Options parse_options(int argc, char** argv) {
       options.closure_state_limit = std::stoi(value());
     else if (option == "--low-barriers-per-seed")
       options.low_barriers_per_seed = std::stoi(value());
+    else if (option == "--low-second-barriers-per-first")
+      options.low_second_barriers_per_first = std::stoi(value());
     else if (option == "--closure-output-prefix")
       options.closure_output_prefix = value();
     else if (option == "--discovery-output")
       options.discovery_output = value();
+    else if (option == "--near-output")
+      options.near_output = value();
     else if (option == "--atomic-scan")
       options.atomic_scan = true;
+    else if (option == "--low-double-barrier")
+      options.low_double_barrier = true;
     else if (option == "--self-check-flips")
       options.self_check_flips = std::stoi(value());
     else if (option == "--self-check")
@@ -429,9 +438,15 @@ Options parse_options(int argc, char** argv) {
   if (options.seed_graphs.empty() && options.low_seed_files.empty())
     throw std::runtime_error(
         "at least one --seed-graph or --low-seed-file is required");
+  if (options.self_check && options.seed_graphs.empty())
+    throw std::runtime_error(
+        "--self-check requires at least one --seed-graph");
   if (options.atomic_scan && !options.low_seed_files.empty())
     throw std::runtime_error(
         "--atomic-scan cannot be combined with --low-seed-file");
+  if (options.low_double_barrier && options.low_seed_files.empty())
+    throw std::runtime_error(
+        "--low-double-barrier requires --low-seed-file");
   if (options.rollouts_per_barrier < 1 ||
       options.steps_per_rollout < 1 || options.tabu_tenure < 0 ||
       options.noise_per_million < 0 ||
@@ -440,6 +455,7 @@ Options parse_options(int argc, char** argv) {
       options.progress_interval < 0 || options.atomic_pair_retain < 0 ||
       options.closure_state_limit < 1 ||
       options.low_barriers_per_seed < 0 ||
+      options.low_second_barriers_per_first < 1 ||
       options.self_check_flips < 0)
     throw std::runtime_error("invalid nonnegative search option");
   return options;
@@ -495,7 +511,13 @@ struct SearchCounters {
 };
 
 struct RolloutResult {
-  enum Kind { kAbsorbed, kExhausted, kNewE2, kConstruction } kind;
+  enum Kind {
+    kAbsorbed,
+    kExhausted,
+    kNewE2,
+    kNearConstruction,
+    kConstruction
+  } kind;
   Graph graph;
   int best{};
   int steps{};
@@ -508,10 +530,13 @@ RolloutResult rollout(
     const std::unordered_map<std::string,
                              std::vector<std::pair<Edge, int>>>&
         known_barriers,
-    SearchCounters& counters) {
+    SearchCounters& counters, Edge additional_forced = {-1, -1}) {
   std::array<long long, kEdgeCount> tabu{};
   tabu[edge_index[forced_edge.left][forced_edge.right]] =
       options.tabu_tenure + 1;
+  if (additional_forced.left >= 0 && additional_forced.right >= 0)
+    tabu[edge_index[additional_forced.left][additional_forced.right]] =
+        options.tabu_tenure + 1;
   int best = objective;
   int stagnation = 0;
   counters.maximum_objective =
@@ -524,7 +549,10 @@ RolloutResult rollout(
       throw std::runtime_error("incremental objective mismatch in rollout");
     if (objective == 0)
       return {RolloutResult::kConstruction, graph, 0, step};
-    if (objective == 1) ++counters.e1_visits;
+    if (objective == 1) {
+      ++counters.e1_visits;
+      return {RolloutResult::kNearConstruction, graph, 1, step};
+    }
     if (objective == 2) {
       const std::string code = graph6(graph);
       if (known_states.contains(code)) {
@@ -637,6 +665,31 @@ RolloutResult rollout(
     // next choice noisy; the existing noise mechanism supplies that move.
     if (stagnation > 4 * options.tabu_tenure) stagnation = 0;
   }
+  // Recount the terminal graph as well: the last permitted move can be the
+  // one that reaches E=0, E=1, or a previously unseen E=2 state.
+  const std::vector<Conflict> terminal_conflicts = all_conflicts(graph);
+  ++counters.exact_objective_checks;
+  if (static_cast<int>(terminal_conflicts.size()) != objective)
+    throw std::runtime_error(
+        "incremental objective mismatch at rollout terminal");
+  if (objective == 0)
+    return {RolloutResult::kConstruction, graph, 0,
+            options.steps_per_rollout};
+  if (objective == 1) {
+    ++counters.e1_visits;
+    return {RolloutResult::kNearConstruction, graph, 1,
+            options.steps_per_rollout};
+  }
+  if (objective == 2) {
+    const std::string code = graph6(graph);
+    if (known_states.contains(code)) {
+      ++counters.known_cycle_visits;
+      return {RolloutResult::kAbsorbed, graph, best,
+              options.steps_per_rollout};
+    }
+    return {RolloutResult::kNewE2, graph, best,
+            options.steps_per_rollout};
+  }
   return {RolloutResult::kExhausted, graph, best,
           options.steps_per_rollout};
 }
@@ -656,6 +709,19 @@ std::string json_quote(const std::string& value) {
   }
   output << '"';
   return output.str();
+}
+
+void write_single_graph(
+    const std::string& path, const std::string& code,
+    const std::string& description) {
+  if (path.empty()) return;
+  std::ofstream output(path, std::ios::binary);
+  if (!output)
+    throw std::runtime_error("cannot open " + description + " output");
+  output << code << '\n';
+  output.close();
+  if (!output)
+    throw std::runtime_error(description + " output write failed");
 }
 
 struct LowState {
@@ -1182,23 +1248,30 @@ int run_low_seed_search(
         counters.best_objective =
             std::min(counters.best_objective, result.best);
         ++counters.terminal_best_distribution[result.best];
+        if (result.kind == RolloutResult::kNearConstruction) {
+          const std::string code = graph6(result.graph);
+          if (all_conflicts(result.graph).size() != 1)
+            throw std::runtime_error(
+                "low-search E=1 near-construction replay failed");
+          write_single_graph(
+              options.near_output, code, "near-construction");
+          std::cout
+              << "{\"mode\":\"near_construction\","
+              << "\"algorithm\":\"e2_low_closure_second_barrier_v1\","
+              << "\"graph6\":" << json_quote(code) << ','
+              << "\"objective\":1,"
+              << "\"low_seed_index\":" << seed_index << ','
+              << "\"rollouts\":" << counters.rollouts << ','
+              << "\"steps\":" << counters.steps << "}\n";
+          return 11;
+        }
         if (result.kind == RolloutResult::kConstruction) {
           const std::string code = graph6(result.graph);
           if (!all_conflicts(result.graph).empty())
             throw std::runtime_error(
                 "low-search E=0 construction replay failed");
-          if (!options.discovery_output.empty()) {
-            std::ofstream output(
-                options.discovery_output, std::ios::binary);
-            if (!output)
-              throw std::runtime_error(
-                  "cannot open construction output");
-            output << code << '\n';
-            output.close();
-            if (!output)
-              throw std::runtime_error(
-                  "construction output write failed");
-          }
+          write_single_graph(
+              options.discovery_output, code, "construction");
           std::cout
               << "{\"mode\":\"construction\","
               << "\"algorithm\":\"e2_low_closure_second_barrier_v1\","
@@ -1326,6 +1399,367 @@ int run_low_seed_search(
   return 0;
 }
 
+int run_low_double_seed_search(
+    const Options& options,
+    const std::unordered_map<std::string, int>& known_states,
+    const std::unordered_map<
+        std::string, std::vector<std::pair<Edge, int>>>& known_barriers,
+    const Clock::time_point started) {
+  std::vector<LowState> seeds;
+  std::unordered_set<std::string> seed_codes;
+  std::map<int, long long> seed_objectives;
+  for (const std::string& path : options.low_seed_files) {
+    for (const std::string& line : data_lines(path)) {
+      Graph graph = decode_graph6(line);
+      std::vector<Conflict> conflicts = all_conflicts(graph);
+      const int objective = static_cast<int>(conflicts.size());
+      if (objective != 3 && objective != 4)
+        throw std::runtime_error(
+            "low-double seed does not have objective three or four");
+      const std::string code = graph6(graph);
+      if (!seed_codes.insert(code).second)
+        throw std::runtime_error(
+            "low-double seed stream repeats a graph");
+      ++seed_objectives[objective];
+      seeds.push_back({graph, objective, std::move(conflicts)});
+    }
+  }
+
+  struct FirstBarrier {
+    Edge edge;
+    int height{};
+    bool nonconflict{};
+  };
+  struct SecondBarrier {
+    Edge edge;
+    int height{};
+  };
+
+  SearchCounters counters;
+  for (const LowState& seed : seeds)
+    counters.best_objective =
+        std::min(counters.best_objective, seed.objective);
+  std::mt19937_64 rng(options.seed);
+  std::set<std::string> discoveries;
+  long long first_barrier_count = 0;
+  long long first_barrier_exact_replays = 0;
+  long long first_nonconflict_barrier_count = 0;
+  long long first_high_conflict_barrier_count = 0;
+  long long second_candidate_count = 0;
+  long long second_barrier_count = 0;
+  long long second_barrier_exact_replays = 0;
+  long long first_without_second_candidate_count = 0;
+  std::map<int, long long> first_by_source_objective;
+  std::map<int, long long> first_by_height;
+  std::map<int, long long> second_by_height;
+  std::map<int, long long> second_delta_distribution;
+
+  for (size_t seed_index = 0; seed_index < seeds.size(); ++seed_index) {
+    const LowState& seed = seeds[seed_index];
+    std::set<Edge> seed_conflict_union;
+    for (const Conflict& conflict : seed.conflicts)
+      for (Edge edge : conflict_edges(conflict))
+        seed_conflict_union.insert(edge);
+
+    std::vector<FirstBarrier> first_barriers;
+    for (int edge_number = 0; edge_number < kEdgeCount; ++edge_number) {
+      const Edge edge = indexed_edge[edge_number];
+      const bool nonconflict = !seed_conflict_union.contains(edge);
+      const int height =
+          seed.objective + flip_delta(seed.graph, edge);
+      if (nonconflict && height < seed.objective)
+        throw std::runtime_error(
+            "a first nonconflict edge unexpectedly improves "
+            "the objective");
+      const bool outside_targeted_closure =
+          nonconflict || height > 4;
+      if (!outside_targeted_closure ||
+          height > options.objective_ceiling)
+        continue;
+      first_barriers.push_back({edge, height, nonconflict});
+    }
+    std::sort(
+        first_barriers.begin(), first_barriers.end(),
+        [](const FirstBarrier& left, const FirstBarrier& right) {
+          return std::tuple{
+                     left.height, !left.nonconflict,
+                     left.edge.left, left.edge.right
+                 } <
+                 std::tuple{
+                     right.height, !right.nonconflict,
+                     right.edge.left, right.edge.right
+                 };
+        });
+    if (options.low_barriers_per_seed > 0 &&
+        static_cast<int>(first_barriers.size()) >
+            options.low_barriers_per_seed)
+      first_barriers.resize(options.low_barriers_per_seed);
+
+    for (const FirstBarrier& first : first_barriers) {
+      Graph once_forced = seed.graph;
+      flip(once_forced, first.edge);
+      const std::vector<Conflict> first_conflicts =
+          all_conflicts(once_forced);
+      ++first_barrier_exact_replays;
+      if (static_cast<int>(first_conflicts.size()) != first.height)
+        throw std::runtime_error(
+            "low-double first barrier replay failed");
+      ++first_barrier_count;
+      ++first_by_source_objective[seed.objective];
+      ++first_by_height[first.height];
+      if (first.nonconflict)
+        ++first_nonconflict_barrier_count;
+      else
+        ++first_high_conflict_barrier_count;
+
+      std::set<Edge> first_conflict_union;
+      for (const Conflict& conflict : first_conflicts)
+        for (Edge edge : conflict_edges(conflict))
+          first_conflict_union.insert(edge);
+      std::vector<SecondBarrier> second_barriers;
+      for (int edge_number = 0; edge_number < kEdgeCount; ++edge_number) {
+        const Edge edge = indexed_edge[edge_number];
+        if (edge == first.edge ||
+            first_conflict_union.contains(edge))
+          continue;
+        const int height =
+            first.height + flip_delta(once_forced, edge);
+        if (height < first.height)
+          throw std::runtime_error(
+              "a second nonconflict edge unexpectedly improves "
+              "the objective");
+        if (height > options.objective_ceiling) continue;
+        second_barriers.push_back({edge, height});
+      }
+      second_candidate_count += second_barriers.size();
+      std::sort(
+          second_barriers.begin(), second_barriers.end(),
+          [](const SecondBarrier& left, const SecondBarrier& right) {
+            return std::tuple{
+                       left.height, left.edge.left, left.edge.right
+                   } <
+                   std::tuple{
+                       right.height, right.edge.left, right.edge.right
+                   };
+          });
+      if (second_barriers.empty()) {
+        ++first_without_second_candidate_count;
+        continue;
+      }
+      if (static_cast<int>(second_barriers.size()) >
+          options.low_second_barriers_per_first)
+        second_barriers.resize(
+            options.low_second_barriers_per_first);
+
+      for (const SecondBarrier& second : second_barriers) {
+        Graph twice_forced = once_forced;
+        flip(twice_forced, second.edge);
+        const std::vector<Conflict> second_conflicts =
+            all_conflicts(twice_forced);
+        ++second_barrier_exact_replays;
+        if (static_cast<int>(second_conflicts.size()) != second.height)
+          throw std::runtime_error(
+              "low-double second barrier replay failed");
+        ++second_barrier_count;
+        ++second_by_height[second.height];
+        ++second_delta_distribution[second.height - first.height];
+        ++counters.barriers_by_height[second.height];
+
+        for (int repetition = 0;
+             repetition < options.rollouts_per_barrier;
+             ++repetition) {
+          RolloutResult result = rollout(
+              twice_forced, second.height, second.edge, options, rng,
+              known_states, known_barriers, counters, first.edge);
+          ++counters.rollouts;
+          counters.steps += result.steps;
+          counters.best_objective =
+              std::min(counters.best_objective, result.best);
+          ++counters.terminal_best_distribution[result.best];
+          if (result.kind == RolloutResult::kNearConstruction) {
+            const std::string code = graph6(result.graph);
+            if (all_conflicts(result.graph).size() != 1)
+              throw std::runtime_error(
+                  "low-double E=1 near-construction replay failed");
+            write_single_graph(
+                options.near_output, code, "near-construction");
+            std::cout
+                << "{\"mode\":\"near_construction\","
+                << "\"algorithm\":"
+                   "\"e2_low_closure_double_forced_v1\","
+                << "\"graph6\":" << json_quote(code) << ','
+                << "\"objective\":1,"
+                << "\"low_seed_index\":" << seed_index << ','
+                << "\"first_edge\":[" << first.edge.left << ','
+                << first.edge.right << "],"
+                << "\"second_edge\":[" << second.edge.left << ','
+                << second.edge.right << "],"
+                << "\"rollouts\":" << counters.rollouts << ','
+                << "\"steps\":" << counters.steps << "}\n";
+            return 11;
+          }
+          if (result.kind == RolloutResult::kConstruction) {
+            const std::string code = graph6(result.graph);
+            if (!all_conflicts(result.graph).empty())
+              throw std::runtime_error(
+                  "low-double E=0 construction replay failed");
+            write_single_graph(
+                options.discovery_output, code, "construction");
+            std::cout
+                << "{\"mode\":\"construction\","
+                << "\"algorithm\":"
+                   "\"e2_low_closure_double_forced_v1\","
+                << "\"graph6\":" << json_quote(code) << ','
+                << "\"objective\":0,"
+                << "\"low_seed_index\":" << seed_index << ','
+                << "\"first_edge\":[" << first.edge.left << ','
+                << first.edge.right << "],"
+                << "\"second_edge\":[" << second.edge.left << ','
+                << second.edge.right << "],"
+                << "\"rollouts\":" << counters.rollouts << ','
+                << "\"steps\":" << counters.steps << "}\n";
+            return 10;
+          }
+          if (result.kind == RolloutResult::kAbsorbed) {
+            ++counters.absorbed_known_cycle;
+          } else if (result.kind == RolloutResult::kExhausted) {
+            ++counters.exhausted;
+          } else if (result.kind == RolloutResult::kNewE2) {
+            discoveries.insert(graph6(result.graph));
+          }
+          if (options.progress_interval > 0 &&
+              counters.rollouts % options.progress_interval == 0) {
+            const double elapsed = std::chrono::duration<double>(
+                                       Clock::now() - started)
+                                       .count();
+            std::cerr
+                << "low_double_progress rollouts=" << counters.rollouts
+                << " seeds_done=" << seed_index
+                << " first_barriers=" << first_barrier_count
+                << " best_E=" << counters.best_objective
+                << " new_E2=" << discoveries.size()
+                << " elapsed=" << elapsed << '\n';
+          }
+        }
+      }
+    }
+  }
+
+  if (!options.discovery_output.empty()) {
+    std::ofstream output(options.discovery_output, std::ios::binary);
+    if (!output)
+      throw std::runtime_error(
+          "cannot open low-double E=2 discovery output");
+    for (const std::string& code : discoveries)
+      output << code << '\n';
+    output.close();
+    if (!output)
+      throw std::runtime_error(
+          "low-double E=2 discovery output write failed");
+  }
+
+  auto integer_map = [](const auto& values) {
+    std::ostringstream output;
+    output << '{';
+    bool first = true;
+    for (const auto& [key, value] : values) {
+      if (!first) output << ',';
+      first = false;
+      output << '"' << key << "\":" << value;
+    }
+    output << '}';
+    return output.str();
+  };
+  const double elapsed =
+      std::chrono::duration<double>(Clock::now() - started).count();
+  std::cout
+      << std::fixed << std::setprecision(6)
+      << "{\"mode\":\"low_seed_double_forced_search\","
+      << "\"algorithm\":\"e2_low_closure_double_forced_v1\","
+      << "\"evidence_label\":\"REPRODUCIBLE COMPUTATIONAL "
+         "OBSERVATION\","
+      << "\"seed\":" << options.seed << ','
+      << "\"low_seed_file_count\":"
+      << options.low_seed_files.size() << ','
+      << "\"low_seed_count\":" << seeds.size() << ','
+      << "\"low_seed_objective_distribution\":"
+      << integer_map(seed_objectives) << ','
+      << "\"known_E2_state_count\":" << known_states.size() << ','
+      << "\"first_barrier_count\":" << first_barrier_count << ','
+      << "\"first_barrier_exact_replays\":"
+      << first_barrier_exact_replays << ','
+      << "\"first_nonconflict_barrier_count\":"
+      << first_nonconflict_barrier_count << ','
+      << "\"first_high_conflict_barrier_count\":"
+      << first_high_conflict_barrier_count << ','
+      << "\"first_by_source_objective\":"
+      << integer_map(first_by_source_objective) << ','
+      << "\"first_by_height\":" << integer_map(first_by_height) << ','
+      << "\"second_candidate_count\":" << second_candidate_count << ','
+      << "\"second_barrier_count\":" << second_barrier_count << ','
+      << "\"second_barrier_exact_replays\":"
+      << second_barrier_exact_replays << ','
+      << "\"first_without_second_candidate_count\":"
+      << first_without_second_candidate_count << ','
+      << "\"second_by_height\":"
+      << integer_map(second_by_height) << ','
+      << "\"second_delta_distribution\":"
+      << integer_map(second_delta_distribution) << ','
+      << "\"low_barriers_per_seed\":"
+      << options.low_barriers_per_seed << ','
+      << "\"low_second_barriers_per_first\":"
+      << options.low_second_barriers_per_first << ','
+      << "\"rollouts_per_barrier\":"
+      << options.rollouts_per_barrier << ','
+      << "\"rollouts\":" << counters.rollouts << ','
+      << "\"steps\":" << counters.steps << ','
+      << "\"steps_per_rollout\":"
+      << options.steps_per_rollout << ','
+      << "\"tabu_tenure\":" << options.tabu_tenure << ','
+      << "\"noise_per_million\":"
+      << options.noise_per_million << ','
+      << "\"objective_ceiling\":"
+      << options.objective_ceiling << ','
+      << "\"best_E\":" << counters.best_objective << ','
+      << "\"maximum_E\":" << counters.maximum_objective << ','
+      << "\"E1_visits\":" << counters.e1_visits << ','
+      << "\"absorbed_known_cycle\":"
+      << counters.absorbed_known_cycle << ','
+      << "\"known_cycle_visits\":"
+      << counters.known_cycle_visits << ','
+      << "\"repeated_barrier_crossings\":"
+      << counters.repeated_barrier_crossings << ','
+      << "\"exhausted\":" << counters.exhausted << ','
+      << "\"new_E2_unique_count\":" << discoveries.size() << ','
+      << "\"terminal_best_distribution\":"
+      << integer_map(counters.terminal_best_distribution) << ','
+      << "\"exact_objective_checks\":"
+      << counters.exact_objective_checks << ','
+      << "\"ceiling_rejections\":"
+      << counters.ceiling_rejections << ','
+      << "\"discovery_output\":"
+      << (options.discovery_output.empty()
+              ? "null"
+              : json_quote(options.discovery_output))
+      << ','
+      << "\"near_output\":"
+      << (options.near_output.empty()
+              ? "null"
+              : json_quote(options.near_output))
+      << ','
+      << "\"E0_found\":false,"
+      << "\"claim_boundary\":\"Every retained complement-isomorphism "
+         "class was used as a seed and every configured first edge "
+         "outside the prior conflict-edge E<=4 closure was forced. "
+         "For each first edge, the configured lowest-height second "
+         "edge outside the new conflict-edge union was forced and "
+         "both forced edges were initially tabu. The subsequent "
+         "repair is heuristic; failure to find E=0 or E=1 proves no "
+         "nonexistence statement.\","
+      << "\"runtime_seconds\":" << elapsed << "}\n";
+  return 0;
+}
+
 int run_search(const Options& options) {
   const auto started = Clock::now();
   std::mt19937_64 rng(options.seed);
@@ -1359,8 +1793,11 @@ int run_search(const Options& options) {
   if (options.atomic_scan)
     return run_atomic_scan(options, components, known_states, started);
   if (!options.low_seed_files.empty())
-    return run_low_seed_search(
-        options, known_states, known_barriers, started);
+    return options.low_double_barrier
+               ? run_low_double_seed_search(
+                     options, known_states, known_barriers, started)
+               : run_low_seed_search(
+                     options, known_states, known_barriers, started);
   SearchCounters counters;
   counters.best_objective = 2;
 
@@ -1388,6 +1825,25 @@ int run_search(const Options& options) {
           counters.best_objective =
               std::min(counters.best_objective, result.best);
           ++counters.terminal_best_distribution[result.best];
+          if (result.kind == RolloutResult::kNearConstruction) {
+            const std::vector<Conflict> conflicts =
+                all_conflicts(result.graph);
+            if (conflicts.size() != 1)
+              throw std::runtime_error(
+                  "E=1 near-construction replay failed");
+            const std::string code = graph6(result.graph);
+            write_single_graph(
+                options.near_output, code, "near-construction");
+            std::cout
+                << "{\"mode\":\"near_construction\","
+                << "\"algorithm\":"
+                   "\"e2_neutral_cycle_barrier_escape_v1\","
+                << "\"graph6\":" << json_quote(code) << ','
+                << "\"objective\":1,"
+                << "\"rollouts\":" << counters.rollouts << ','
+                << "\"steps\":" << counters.steps << "}\n";
+            return 11;
+          }
           if (result.kind == RolloutResult::kConstruction) {
             const std::vector<Conflict> conflicts =
                 all_conflicts(result.graph);

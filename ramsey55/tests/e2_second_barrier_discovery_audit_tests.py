@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from e2_second_barrier_discovery_audit import (  # noqa: E402
     ORDER,
+    claim_boundary,
     e2_geometry,
     five_cliques,
 )
@@ -41,6 +42,12 @@ class E2SecondBarrierDiscoveryAuditTests(unittest.TestCase):
             geometry, "same_colour_pair;overlap=4"
         )
         self.assertEqual(len(cliques) + len(independent), 2)
+
+    def test_claim_boundary_uses_actual_corpus_sizes(self) -> None:
+        boundary = claim_boundary(1878, 22)
+        self.assertIn("1,878 retained", boundary)
+        self.assertIn("22 known", boundary)
+        self.assertNotIn("1,670", boundary)
 
 
 if __name__ == "__main__":

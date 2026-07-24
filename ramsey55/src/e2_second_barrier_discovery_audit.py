@@ -31,6 +31,15 @@ SCHEMA = "ramsey55.e2_second_barrier_discovery_audit.v1"
 FULL_MASK = (1 << ORDER) - 1
 
 
+def claim_boundary(discovery_count: int, known_count: int) -> str:
+    return (
+        f"This classifies only the {discovery_count:,} retained E=2 "
+        f"endpoints and compares them with the supplied {known_count:,} "
+        "known near misses. It is not a classification of all E=2 graphs "
+        "and makes no Ramsey existence or nonexistence claim."
+    )
+
+
 def five_cliques(adjacency: list[int]) -> list[tuple[int, ...]]:
     result: list[tuple[int, ...]] = []
 
@@ -253,12 +262,7 @@ def main() -> int:
         ),
         "labelg_path": str(args.labelg.resolve()),
         "labelg_sha256": sha256_file(args.labelg),
-        "claim_boundary": (
-            "This classifies only the 1,670 retained E=2 endpoints and "
-            "compares them with the supplied 22 known near misses. It is "
-            "not a classification of all E=2 graphs and makes no Ramsey "
-            "existence or nonexistence claim."
-        ),
+        "claim_boundary": claim_boundary(len(discoveries), len(known)),
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(

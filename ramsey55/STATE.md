@@ -1,6 +1,6 @@
 # Research state
 
-Last updated: 2026-07-24T06:26:46Z.
+Last updated: 2026-07-24T07:50:17Z.
 
 ## Current certified mathematical status
 
@@ -27,11 +27,23 @@ Last updated: 2026-07-24T06:26:46Z.
   143-cube \(S_4\times S_4\) anchor covers. The preferred union formulas
   remain unsolved. The \(3^{14}1\) automorphism type likewise has a checked
   two-case normalizer quotient but no UNSAT proof.
+- **CERTIFIED EXACT GLOBAL ROOT COVER, NOT AN EXCLUSION:** the zero-sum
+  local-excess identity guarantees, after complementing and relabeling, a
+  root of degree \(18,19,20,\) or \(21\) satisfying one of four exact dense
+  induced-side thresholds. An exact extremum refinement gives nine branches
+  indexed by \((\mu,d(0))\), where
+  \(\mu=\min(\delta,42-\Delta)\). All counters and selectors reconstruct
+  independently, but none of these branches has been solved.
 - **CERTIFIED FINITE SIDE ENUMERATION:** for the order-seven automorphism
   track, all 191,394 side models and the side-model exhaustion proof replay
   independently. A full-size 291-pair shard pilot also has checked DRAT and
   LRAT, but the remaining 127 shards have not run and the cycle type is not
   excluded.
+- **CERTIFIED, FINITE STRUCTURAL SCOPE:** among all 24,682 labeled
+  delete-three/add-three replacements of the two known \(E=2\) complement
+  representatives, 18,204 retained 40-vertex cores already contain a fixed
+  homogeneous five-set and therefore cannot be completed by the three new
+  vertices. The other 6,478 cases have only proof-free UNSAT observations.
 - **CERTIFIED:** the fixed Exoo42 graph has no one-vertex extension. All 42
   labeled one-vertex replacements are also impossible, and the first bounded
   two-vertex replacement case (deleting vertices 0 and 1) is impossible.
@@ -105,6 +117,37 @@ and independent C++ bitset verifier reject both graphs.
   previously known complement-isomorphism classes; zero novel class was
   found.
 
+### Two-forced-edge low-frontier search
+
+- The exact schedule reused all 47,675 first barriers, then selected and
+  replayed one lowest-height second edge outside the once-forced
+  conflict-edge union. Every first graph had an eligible second edge.
+- Across 39,511,631 candidates, the 47,675 selected second moves were 15,615
+  neutral and 32,060 worsening by one. Both forced edges were initially
+  tabu.
+- The frozen search executed 2,720,135 heuristic repair steps and found no
+  \(E=1\) or \(E=0\). Its 1,878 distinct \(E=2\) endpoints independently
+  collapse to four ordinary and the same two known complement classes,
+  with zero novel class.
+- A fail-closed checker independently recounted all inputs and outputs and
+  bound the complete source/binary/plan/result/audit chain with
+  `valid=true`.
+- A separate implementation exhaustively reconstructed all 39,511,631
+  second candidates and replayed the frozen binary. It reproduced the
+  1,878-record stream byte-for-byte and independently recovered the same
+  two complement classes.
+
+### Vertex-level constructive screens
+
+- The complete two-class delete-three/add-three screen covered all 24,682
+  labeled deletion triples. Exact retained-core conflicts close 18,204.
+  Proof-free solvers reported UNSAT on the remaining 6,478; no proof was
+  retained, so these are observations only.
+- A 16-instance incident-boundary portfolio covered two classes, two nested
+  policies, and \(k=9,\ldots,12\). Two runs reported proof-free UNSAT and
+  14 exhausted their budgets; no construction was found. Independent
+  regeneration accepted every formula and the recorded scope.
+
 ### Degree-18 exact anchor cover
 
 - The equality case \(|N(0)|=18=R(4,4)\) still forces an independent
@@ -117,9 +160,9 @@ and independent C++ bitset verifier reject both graphs.
 
 ### Prime-automorphism certificate progress
 
-- The order-five all-ones internal split has 17 of 80 leaves fully checked
-  through DRAT-to-LRAT. The remaining leaves are active; this is not yet an
-  exclusion.
+- The order-five all-ones internal split has 40 of 80 leaves fully checked
+  through DRAT-to-LRAT at this snapshot. The remaining leaves are active;
+  this is not yet an exclusion.
 - The order-seven side exhaustion is certified. Its worst 291-pair shard
   pilot completed 291/291 UNSAT with independent byte-exact LRAT
   regeneration. The full 128-shard launch is paused below its frozen
@@ -139,9 +182,26 @@ and independent C++ bitset verifier reject both graphs.
 
 ### Global exact decomposition pilots
 
+- The exact identity
+  \[
+  \sum_v\left(e(G[B_v])-e(G[A_v])
+    -\frac{d(v)(43-2d(v))}{2}\right)=0
+  \]
+  and complement invariance give four exhaustive nonpositive-excess root
+  branches. For root degrees \(18,19,20,21\), they require
+  \(e(G[A])+e(\overline{G[B]})\geq213,206,201,200\), respectively.
+- Exact minimum-degree/complement-maximum-degree witnesses refine this into
+  nine \((\mu,d(0))\) branches. The frozen clause-stream designs, selector
+  cover, and every appended-clause hash pass an implementation-independent
+  checker. Full branch DIMACS files have not yet been materialized and bound.
+  This is a theorem-level decomposition only; no branch has a solve result.
 - Degree-19 and degree-20 anchor covers each reduce 35,714 feasible cross
   matrices to exactly 143 symmetry orbits; both materialized union formulas
   independently match 2,061,223 clauses.
+- An exact per-selector pilot covered all 429 matrix cubes across degrees
+  18, 19, and 20. Every 5,000-conflict call exhausted its budget; there
+  were no SAT or completed UNSAT outcomes. This is hardness information
+  only.
 - Matched 50,000-conflict MapleChrono pilots exhausted their budgets with no
   model or proof. The lean formulas were 4.97x and 3.91x faster than the
   exact-branch baselines.
@@ -183,10 +243,12 @@ and independent C++ bitset verifier reject both graphs.
   frontier states occupy only 53 complement classes, and every one of 1,670
   retained second-barrier \(E=2\) endpoints returns to the same two known
   complement classes.
-- **CONJECTURE OR HEURISTIC:** a successor must force at least two
-  non-repairing escape edges before allowing conflict-directed repair;
-  increasing the completed one-barrier rollout budget is unlikely to add
-  information.
+- **REPRODUCIBLE FINITE-CORPUS STRUCTURE:** forcing a second non-repairing
+  edge did not cross the observed basin boundary: all 1,878 retained
+  endpoints again occupy only the same two known complement classes.
+- **CONJECTURE OR HEURISTIC:** further budget increases within the same
+  edge-local repair architecture are unlikely to add information; the next
+  move should be vertex/block-scale or exact and proof-carrying.
 - **CERTIFIED FINITE-CORPUS STRUCTURE:** the apparent plateau is exactly two
   complement classes in the retained 22-candidate corpus, and each
   exceptional supplied order-42 core has only two optimum extensions.
@@ -231,6 +293,14 @@ and independent C++ bitset verifier reject both graphs.
     decomposition of all normalized global branches.
 16. Dense/sparse quotient of the full 89,870-state low frontier and an
     all-53-class, 47,675-barrier repair run.
+17. A complete two-forced-edge schedule over those 47,675 barriers, with
+    fail-closed \(E=1\) retention and independent classification of 1,878
+    returned \(E=2\) endpoints.
+18. Every labeled delete-three/add-three replacement of the two known
+    \(E=2\) complement classes, plus a 16-formula \(k=9\ldots12\)
+    incident-boundary portfolio.
+19. A zero-sum local-excess identity, four exact nonpositive-excess root
+    branches, and a nine-branch exact-\(\mu\) extremum refinement.
 
 ## Strategies rejected or paused
 
@@ -250,6 +320,12 @@ and independent C++ bitset verifier reject both graphs.
   the frozen all-class run covered every retained structural seed and every
   stated first escape edge, yet all 1,670 \(E=2\) endpoints returned to the
   two known classes.
+- A larger budget for the same two-forced-edge repair operator is also
+  rejected: all 47,675 second moves were exactly replayed, but all 1,878
+  returned \(E=2\) endpoints again occupy the same two classes.
+- Treating the complete delete-three/add-three solver screen as an exact
+  exclusion is rejected. Only 18,204 fixed-core obstructions are certified;
+  the other 6,478 UNSAT outcomes have no checked proof.
 - The order-seven full shard launch is paused until free space again exceeds
   its frozen 9,126,805,504-byte safety requirement.
 - An interrupted CaDiCaL radius-seven attempt is an infrastructure failure
@@ -258,14 +334,17 @@ and independent C++ bitset verifier reject both graphs.
 
 ## Next selected experiment
 
-Freeze and execute a changed constructive move architecture: from every one
-of the 53 low-frontier complement classes, force two explicitly
-non-repairing escape edges before any conflict-directed repair. Retain and
-independently verify any \(E\le1\) state immediately; quotient every \(E=2\)
-endpoint before claiming a new basin.
+Benchmark the four nonpositive-excess root branches against their
+root-degree-only controls under identical bounded schedules. Where the
+cardinality cut is effective, intersect it with the 143 exact anchor-matrix
+orbits and the two five-way secondary witness selectors. Any SAT model goes
+immediately through both full-graph verifiers; proof-free negative solver
+outcomes remain observations only.
 
-Any SAT result will be exported immediately and checked by both independent
-graph verifiers. Unchecked negative solver results remain observations. In
-parallel, continue the order-five certificate bundle. Launch the remaining
-order-seven shards only after the frozen storage gate passes; retain only
-proof-checked exclusions.
+In parallel, continue the order-five certificate bundle. The frozen 10,725
+global witness-cube runner requires no active `drat-trim` process and
+therefore remains paused while that proof workflow is converting traces.
+The four maximal \(k=12\) incident-boundary targets remain behind both a
+proof-storage gate and a six-item fail-closed hardening review; do not launch
+even their size pilot until both gates pass. Launch the remaining order-seven
+shards only after their frozen free-space gate passes.

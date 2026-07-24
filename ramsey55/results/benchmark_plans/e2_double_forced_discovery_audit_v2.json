@@ -1,0 +1,54 @@
+{
+  "schema": "ramsey55.e2_double_forced_discovery_audit_plan.v2",
+  "status": "FROZEN_BEFORE_AUDIT",
+  "frozen_at_utc": "2026-07-24T06:54:00Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "supersedes": {
+    "plan": "results/benchmark_plans/e2_double_forced_discovery_audit_v1.json",
+    "reason": "The v1 computation was valid, but its inherited prose hard-coded the earlier 1,670-endpoint count. V2 derives all corpus sizes dynamically and leaves the v1 result intact."
+  },
+  "question": "Do the 1,878 retained E=2 endpoints from the frozen two-forced-edge run occupy any complement-isomorphism class outside the two already certified in the 22-candidate corpus?",
+  "input": {
+    "search_plan": "results/benchmark_plans/e2_low_closure_double_forced_v1.json",
+    "search_plan_sha256": "07a8f8a238775bbe70621c221446e250ba4852973f167d0313990b8784dbbb54",
+    "search_result": "results/constructive/e2_low_closure_v2/double_forced.result.json",
+    "search_result_sha256": "68a95613c09406cea836523f43ee39aa3345edf1023b883e20016b259e160071",
+    "endpoint_stream": "results/constructive/e2_low_closure_v2/double_forced_new_E2.g6",
+    "endpoint_count": 1878,
+    "endpoint_stream_sha256": "ad48e7eb76403abc050bd6200003720ff781840116c6c6651414cbc27b90b646",
+    "known_seed_directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "known_seed_count": 22,
+    "known_seed_corpus_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0"
+  },
+  "implementation": {
+    "source": "src/e2_second_barrier_discovery_audit.py",
+    "source_sha256": "60cd9fbb6224ccda33504cd9010dacf61567a99b2f580bf8286f1563c020f87c",
+    "tests": "tests/e2_second_barrier_discovery_audit_tests.py",
+    "tests_sha256": "38ea83d15a97bf80bdc7f94fb52c228339bef33b9471d346be907309506b89dc",
+    "focused_tests_passed": 3,
+    "labelg": "/private/tmp/ramsey55-nauty.eJeqDy/nauty2_9_3/labelg",
+    "labelg_sha256": "ae8b1e7ef173c1665725e708bd7abd00b08ee4230ba2bd04117ec63d441274a0",
+    "operations": [
+      "independently decode every graph6 endpoint",
+      "enumerate all five-cliques and independent five-sets with a recursive bitset implementation",
+      "require exact objective E=2 for every endpoint",
+      "canonicalize every endpoint and its complement with dense and sparse nauty labelg",
+      "require dense and sparse ordinary and complement partitions to agree",
+      "compare every endpoint class with the supplied 22-candidate corpus",
+      "derive every corpus count appearing in the claim boundary from the audited inputs"
+    ]
+  },
+  "output": {
+    "representatives": "results/constructive/e2_low_closure_v2/double_forced_E2_representatives_v2.g6",
+    "novel_representatives": "results/constructive/e2_low_closure_v2/double_forced_E2_novel_representatives_v2.g6",
+    "audit": "results/verification/e2_double_forced_discovery_audit_v2.json"
+  },
+  "acceptance": [
+    "the endpoint count and SHA-256 match the frozen input",
+    "all 1,878 endpoints independently recount to E=2",
+    "dense and sparse ordinary and complement-isomorphism partitions agree",
+    "the claim boundary records the actual 1,878 and 22 corpus sizes",
+    "any claimed novel class is retained as graph6 and independently recounted before interpretation"
+  ],
+  "claim_boundary": "This classifies only the retained endpoints of one frozen heuristic repair schedule. A negative novelty result is not a global E=2 classification and proves no Ramsey nonexistence statement."
+}

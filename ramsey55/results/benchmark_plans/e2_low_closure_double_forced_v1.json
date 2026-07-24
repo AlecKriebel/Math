@@ -1,0 +1,94 @@
+{
+  "schema": "ramsey55.e2_low_closure_double_forced_plan.v1",
+  "status": "FROZEN_BEFORE_PRODUCTION",
+  "frozen_at_utc": "2026-07-24T06:48:09Z",
+  "evidence_label": "REPRODUCIBLE COMPUTATIONAL OBSERVATION",
+  "motivation": "The complete one-forced-edge schedule returned 1,670 labeled E=2 endpoints but only the two already-known complement classes. This follow-up changes the move architecture by forcing a second, explicitly non-repairing edge before tabu repair.",
+  "input": {
+    "quotient_audit": "results/verification/e2_low_closure_isomorphism_audit_v1.json",
+    "quotient_audit_sha256": "cd1f8a9e56e76b0c94df1c5705ca7090588e2eb12a2bd0009f3e53e115f47725",
+    "E3_representatives": "results/constructive/e2_low_closure_v2/representatives.e3.g6",
+    "E3_representative_count": 9,
+    "E3_representatives_sha256": "0f9485a82ecb6dba9b19ea0759ba37ef7c9bc64d481cf8fd7a248480b348471d",
+    "E4_representatives": "results/constructive/e2_low_closure_v2/representatives.e4.g6",
+    "E4_representative_count": 44,
+    "E4_representatives_sha256": "2ea9964afed1205884e971fb50fce77d783925804ae9d1064460e7b89190bca4",
+    "known_E2_seed_directory": "results/constructive/catalog_seed_search_stratified_v1",
+    "known_E2_seed_count": 22,
+    "known_E2_seed_corpus_concatenated_sha256": "172fd8dca7e2a465bb483148036c7dd7a549796b191078742b80ef7df0ff34f0",
+    "expected_known_E2_labeled_state_count": 1892
+  },
+  "implementation": {
+    "source": "src/search43_e2_barrier_escape.cpp",
+    "source_sha256": "18079f5b3f1a0018cd0d47ac7965091401aa9a9a9c59dcd492c26ec4d327dcca",
+    "binary_sha256": "578fd32bc5312b844e411789660e64eca05ea207cd2df8a1698bf2cfaa0d2214",
+    "compile_flags": [
+      "-std=c++20",
+      "-O3",
+      "-DNDEBUG",
+      "-Wall",
+      "-Wextra",
+      "-pedantic"
+    ],
+    "dynamic_self_check": {
+      "seed": 20261231,
+      "exhaustive_base_edge_delta_checks": 903,
+      "random_sequence_delta_checks": 200,
+      "status": "PASS"
+    },
+    "independent_review": {
+      "compiler_warnings": 0,
+      "sanitizer_smoke": "PASS",
+      "terminal_state_recount": "E=0, E=1, and E=2 are exact-recounted after the last permitted move as well as before every move"
+    }
+  },
+  "first_barrier_schedule": {
+    "coverage": "all 53 complement-isomorphism representatives",
+    "eligible_edge_rule": "force every edge outside the seed conflict-edge union, plus every conflict-union edge whose exact post-flip objective exceeds four",
+    "objective_ceiling": 80,
+    "per_seed_limit": 0,
+    "meaning_of_zero_limit": "no truncation",
+    "expected_first_barrier_count": 47675,
+    "expected_nonconflict_count": 46225,
+    "expected_high_conflict_count": 1450,
+    "expected_maximum_height": 47,
+    "exact_replay": "recount the graph after every first forced edge"
+  },
+  "second_barrier_schedule": {
+    "eligible_edge_rule": "from the once-forced graph, exclude the first edge and every edge in the union of the current forbidden-five-set edges; retain candidates with exact post-flip objective at most 80",
+    "non_repairing_invariant": "because an eligible second edge lies in no current conflict, its exact objective delta must be nonnegative",
+    "ordering": [
+      "exact post-second-flip objective ascending",
+      "left endpoint ascending",
+      "right endpoint ascending"
+    ],
+    "barriers_per_first": 1,
+    "expected_first_without_candidate_count": 0,
+    "exact_replay": "recount the graph after every selected second forced edge",
+    "initial_tabu": "both forced edges are tabu at the start of repair"
+  },
+  "repair": {
+    "seed": 20261322,
+    "rollouts_per_second_barrier": 1,
+    "steps_per_rollout": 256,
+    "tabu_tenure": 11,
+    "noise_per_million": 90000,
+    "objective_ceiling": 80,
+    "progress_interval": 5000,
+    "E2_discovery_output": "results/constructive/e2_low_closure_v2/double_forced_new_E2.g6",
+    "E1_output": "results/constructive/e2_low_closure_v2/double_forced_E1.g6",
+    "result_output": "results/constructive/e2_low_closure_v2/double_forced.result.json"
+  },
+  "acceptance": [
+    "all 53 seeds independently recount to E=3 or E=4",
+    "all 22 known E=2 inputs expand to exactly 1,892 distinct labeled neutral-cycle states",
+    "the first-barrier schedule exactly matches the accepted 47,675-case schedule and every first forced graph passes exact replay",
+    "every first forced graph has at least one eligible second edge and every selected second forced graph passes exact replay",
+    "any E=1 graph is immediately exact-recounted, written to the frozen E1 output, printed, and stops the run with exit code 11",
+    "any E=0 graph is immediately exact-recounted, written to the frozen discovery output, printed, and stops the run with exit code 10 for two independent Ramsey checks",
+    "if no E=0 or E=1 is found, every exported E=2 graph is independently recounted and quotient-classified before a novelty claim",
+    "the result binds the frozen source, binary, inputs, parameters, and output hashes"
+  ],
+  "stopping_rule": "Run the complete frozen two-forced-edge schedule once. Stop early only for a replay failure, resource-safety failure, E=1 near-construction, or E=0 construction.",
+  "claim_boundary": "The two forced schedules are exhaustive only relative to the 53 retained classes and the stated edge rules. Every subsequent repair trajectory is heuristic. Failure to find E=0 or E=1 proves no nonexistence statement."
+}

@@ -627,16 +627,199 @@ Every entry uses exactly one project evidence category.
   \(E=2\) class.
 - Artifacts:
   - `certificates/e2_low_closure_quotient_second_barrier_v1.report.md`
+  - `certificates/e2_low_closure_partition_recovery_v2.report.md`
   - `results/verification/e2_low_closure_isomorphism_audit_v1.json`
   - `results/constructive/e2_low_closure_v2/second_barrier.result.json`
   - `results/verification/e2_second_barrier_discovery_audit_v1.json`
+  - `results/verification/e2_low_closure_partition_independent_v2.json`
 - Principal hashes:
   - closure quotient:
     `cd1f8a9e56e76b0c94df1c5705ca7090588e2eb12a2bd0009f3e53e115f47725`;
   - endpoint audit:
     `fae8b82dd05df36cfc353848fb0c1ebd3f049c8975b3e02bf237d2a0ea06f2b1`;
+  - fail-closed independent recovery audit:
+    `48437f3d20788379e3ba890f73086c51777bd068d7056ac0ce613aec97fb5c4e`;
   - report:
     `f1e0ec7e6db727a5d9b39d608344d8ee761a70b169afdff5202a3ad984069666`.
 - Scope limitation: this classifies only the exported finite closure and
   one frozen heuristic endpoint corpus. It is neither a global low-conflict
   classification nor evidence of nonexistence.
+
+## C28 — Two forced escape edges still funnel to the same two E=2 basins
+
+- Category: **REPRODUCIBLE COMPUTATIONAL OBSERVATION**
+- Claim: from every one of the 47,675 first-barrier graphs in the complete
+  53-class schedule, forcing the lowest-height edge outside the new
+  conflict-edge union and then running one frozen 256-step repair trajectory
+  found no \(E=0\) or \(E=1\). The 1,878 retained labeled \(E=2\) endpoints
+  form four ordinary and exactly two complement-isomorphism classes, both
+  already known.
+- Exact finite schedule facts:
+  - 39,511,631 eligible second edges;
+  - zero first graphs without an eligible second edge;
+  - 47,675/47,675 first and second forced-flip recounts passed;
+  - selected second-edge deltas are `0:15615, 1:32060`.
+- Independent validation:
+  - every endpoint independently recounts to a same-color conflict pair with
+    overlap four;
+  - dense and sparse nauty partitions agree;
+  - a fail-closed checker independently recounts all inputs and outputs and
+    binds every frozen source, binary, plan, result, and audit hash.
+  - a second implementation exhaustively reconstructs every second
+    candidate, uses Traces for the quotient, and reproduces the frozen
+    binary's endpoint stream byte-for-byte.
+- Artifacts:
+  - `certificates/e2_low_closure_double_forced_v1.report.md`
+  - `certificates/e2_low_closure_double_forced_independent_v1.report.md`
+  - `results/benchmark_plans/e2_low_closure_double_forced_v1.json`
+  - `results/benchmark_plans/e2_double_forced_search_independent_check_v1.json`
+  - `results/constructive/e2_low_closure_v2/double_forced.result.json`
+  - `results/verification/e2_double_forced_schedule_exact_v1.json`
+  - `results/verification/e2_double_forced_discovery_audit_v2.json`
+  - `results/verification/e2_double_forced_result_check_v1.json`
+  - `results/verification/e2_double_forced_search_independent_v1.json`
+- Principal hashes:
+  - search plan:
+    `07a8f8a238775bbe70621c221446e250ba4852973f167d0313990b8784dbbb54`;
+  - endpoint stream:
+    `ad48e7eb76403abc050bd6200003720ff781840116c6c6651414cbc27b90b646`;
+  - independent schedule check:
+    `3bd61319d912193b9efb18683653d66517560ceafa695ed791bca55f6c04007e`;
+  - endpoint audit:
+    `6b853b060f8a8b603af62bc86036475258cd448b183e57e39bcfda37cbe8e9f7`;
+  - fail-closed check:
+    `8b2dca7f2a21b6a676c366128884643afc00041a51395a2279f5d8115dd78e2d`.
+  - fully independent replay:
+    `38bebb3adf501ab4df75b3fd16777f018535e47e8170c70be341f4a5d2c5cb3d`.
+- Scope limitation: the forced schedules are exact, but the subsequent
+  repair trajectories are heuristic. This is neither a global
+  low-conflict classification nor nonexistence evidence.
+
+## C29 — 18,204 delete-three/add-three cases have fixed core obstructions
+
+- Category: **CERTIFIED**
+- Claim: among the 24,682 labeled ways to delete three vertices from either
+  of the two known \(E=2\) complement-class representatives, 18,204 retained
+  40-vertex cores already contain a homogeneous five-set. Adding three
+  vertices with arbitrary adjacencies cannot remove that fixed obstruction.
+- Coverage: all
+  \(2\binom{43}{3}=24{,}682\) labeled deletion triples were recorded without
+  isomorphism or automorphism reduction. The independent checker accepted
+  the corpus hash, record layout, every shard hash, exact totals, and sampled
+  formula reconstructions.
+- Artifacts:
+  - `results/benchmark_plans/e2_triple_replacement_screen_v1.json`
+  - `results/constructive/e2_triple_replacement_screen_v1/coverage.json`
+  - `certificates/e2_complement_class_triple_replacement_screen.report.md`
+- Hashes:
+  - plan:
+    `edd273371349fe072d027a8118d4982094842df5e8efc221aaf454ea75d32757`;
+  - coverage:
+    `e830f3581311006c544195aed014d69d067bf7f243368492d153299c89c27a29`;
+  - report:
+    `afde3e307151f05c4bf0fa021fbd493354b5d5b4d383273253dd2821794f0f2d`.
+- Scope limitation: this certifies only the 18,204 listed retained-core
+  obstructions for two fixed input graphs. It says nothing about arbitrary
+  order-43 graphs or the other 6,478 deletion triples.
+
+## C30 — The remaining 6,478 triple replacements are proof-free UNSAT observations
+
+- Category: **REPRODUCIBLE COMPUTATIONAL OBSERVATION**
+- Claim: bounded DPLL reported UNSAT on 6,361 non-obstructed
+  delete-three/add-three formulas and capped on 117; a frozen CaDiCaL195
+  retry reported UNSAT on all 117 capped formulas. No SAT model was found
+  and the combined observational UNSAT count is 6,478.
+- Artifacts:
+  - `results/constructive/e2_triple_replacement_screen_v1/result.json`
+  - `results/benchmark_plans/e2_triple_replacement_limit_retry_v2.json`
+  - `results/constructive/e2_triple_replacement_limit_retry_v2/result.json`
+  - `results/constructive/e2_triple_replacement_limit_retry_v2/check.json`
+- Hashes:
+  - base result:
+    `021ddca560267c5e5c7f4ea2520bba6461abc16f97d632b0b581baea80148a9a`;
+  - retry plan:
+    `2836f147d3f57258233771a7161c950b2ec0e8c6394fae3baae9ff0e267c2dcc`;
+  - retry result:
+    `37a1fa28d4744784a753230c92507357d9731ba464dad211d28533843f3678d7`;
+  - retry check:
+    `8cb43be4db0642bb4ed7dc51a0a0997d7e6cfc64c3fca11d35b9d9cd31d6a382`.
+- Scope limitation: `proof_checked_negative_count=0`. Solver-reported UNSAT
+  without DRAT/LRAT is not a certified exclusion, even for these local
+  formulas.
+
+## C31 — The incident-boundary portfolio selects four maximal proof targets
+
+- Category: **REPRODUCIBLE COMPUTATIONAL OBSERVATION**
+- Claim: a frozen portfolio ran 16 exact incident-boundary formulas over two
+  known complement classes, two deterministic nested policies, and
+  \(k=9,10,11,12\). Two \(k=9\) instances returned proof-free UNSAT and the
+  other 14 exhausted their budgets; no SAT candidate was found.
+- Independent validation: every boundary, input graph, formula stream, and
+  plan/result field was regenerated and accepted. The checker explicitly
+  leaves all negative solver outcomes uncertified.
+- Nested consequence for experiment selection: within each class/policy
+  track, the \(k=12\) free-edge neighborhood contains its \(k=9\) through
+  \(k=11\) predecessors. A future checked UNSAT proof for the maximal leaf
+  would therefore close all four local scopes in that track.
+- Artifacts:
+  - `results/benchmark_plans/incident_structural_k9_k12_portfolio_v1.json`
+  - `results/constructive/incident_structural_k9_k12_portfolio_v1.result.json`
+  - `results/verification/incident_structural_k9_k12_portfolio_v1.result.check.json`
+  - `certificates/incident_structural_k9_k12_portfolio_v1.report.md`
+- Principal hashes:
+  - plan:
+    `9a002eae81f5ce72cea27f07dad3cd5e74a47d828fa4121e0bb5dc47904cbbf7`;
+  - result:
+    `cb5dbbcd815278643ef05e9e082ffabd9f956493da67965aa8a96bdf417d6e4d`;
+  - result check:
+    `f1250cf0b6cff12c851ab305ec6e099e204c6796147b3ceef116a74c4afa9c93`;
+  - report:
+    `9e304a34b07000340f242e8c3f46ba0ea9ba0fa910ac041de4d15708e2df7701`.
+- Scope limitation: the current solver outcomes carry no proof certificate,
+  and all 16 neighborhoods are local to four fixed boundary tracks.
+
+## C32 — Every order-43 candidate has a nonpositive-excess root
+
+- Category: **CERTIFIED EXACT DECOMPOSITION, NOT AN EXCLUSION**
+- Claim: for
+  \(A_v=N(v)\), \(B_v=V\setminus(A_v\cup\{v\})\), and
+  \[
+  c(v)=e(G[B_v])-e(G[A_v])-\frac{d(v)(43-2d(v))}{2},
+  \]
+  every order-43 graph satisfies \(\sum_v c(v)=0\), and complementation
+  preserves \(c(v)\). Hence any hypothetical \((5,5;43)\)-graph can be
+  complemented and relabeled so that vertex 0 has \(c(0)\leq0\) and degree
+  \(18,19,20,\) or \(21\).
+- Exact four-branch consequence: writing \(A=N(0)\) and
+  \(H=\overline{G[V\setminus(A\cup\{0\})]}\), the respective constraints are
+  \[
+  e(G[A])+e(H)\geq213,\ 206,\ 201,\ 200.
+  \]
+  Deterministic sequential-counter encodings of all four branches have been
+  generated and independently reconstructed clause-by-clause.
+- Exact refinement: with
+  \(\mu=\min(\delta(G),42-\Delta(G))\), parity excludes \(\mu=21\).
+  Global degree intervals plus an exact low/high extremum-selector cover give
+  nine exhaustive \((\mu,d(0))\) branches:
+  \[
+  (18,18),(18,19),(18,20),(18,21),
+  (19,19),(19,20),(19,21),(20,20),(20,21).
+  \]
+- Artifacts:
+  - `results/benchmark_plans/global_croot_cover_v1.json`
+  - `results/verification/global_croot_cover_v1.check.json`
+  - `certificates/global_croot_cover_v1.report.md`
+- Principal hashes:
+  - plan:
+    `3d462687328fa9096a2be42b6fd16e0f0916a622533e3b18d4351bf8680d6847`;
+  - independent check:
+    `bf1ad9b6c2cd797697db30fe845fe9a152438c6cfd6f5bae67275cff3e90a907`;
+  - report:
+    `4b33f7c88debb87662dd8e52c28f8dbef30a0b785fad8b5f7a94fd36c92c8353`.
+- Validation: the independent checker reports `valid=true` with zero errors,
+  and five focused tests cover the zero-sum identity, complement invariance,
+  thresholds, clause reconstruction, selector layout, and a regular boundary
+  example.
+- Scope limitation: this is an exhaustive theorem-level reduction and
+  checked CNF design. No branch has been solved, no UNSAT proof is claimed,
+  and the Ramsey bound remains \(43\leq R(5,5)\leq46\).
