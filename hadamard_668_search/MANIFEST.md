@@ -44,6 +44,7 @@
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local lanes, corrected priority scope, and ID3 search consequences |
+| `H668_72H_GATE.md` | Explicit success, stop, evidence, and host-resource criteria for the current construction sprint |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |

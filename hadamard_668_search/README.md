@@ -9,7 +9,8 @@ status are diagnostics, never discoveries.
 
 `RESUME.md` is the compact handoff for restarting this project after a pause.
 `PRIORITY_AUDIT.md` records the provisional novelty and publication audit for
-this milestone.
+this milestone.  `H668_72H_GATE.md` records the active sprint's success and
+stop criteria; in particular, one second-digit witness is not a milestone.
 
 ## Current map
 
