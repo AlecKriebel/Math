@@ -38,7 +38,7 @@ from hashlib import sha256
 from io import StringIO
 from pathlib import Path
 import sys
-from typing import Sequence
+from typing import Sequence, Union
 
 from ortools.sat.python import cp_model
 
@@ -74,7 +74,7 @@ ROW_SUM_HEADER = tuple(
     for coordinate in (f"s{row}_real", f"s{row}_imag")
 )
 
-BitNode = int | cp_model.IntVar
+BitNode = Union[int, cp_model.IntVar]
 
 
 @dataclass
@@ -155,7 +155,9 @@ def row_sum_catalog() -> tuple[tuple[int, ...], ...]:
         ) != (-37, -37, -37, -37):
             raise AssertionError("catalog row has the wrong PAF")
         aggregate: list[int] = []
-        for value, core in zip(full, zero, strict=True):
+        if len(full) != len(zero):
+            raise AssertionError("row-sum and zero words have different lengths")
+        for value, core in zip(full, zero):
             difference = value[0] - core[0], value[1] - core[1]
             if difference[0] % 3 or difference[1] % 3:
                 raise AssertionError("catalog row is not x+3t")

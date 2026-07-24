@@ -42,8 +42,10 @@
 | `LP333_ORDER3_PROFILE_ENDPOINT_SHELL.md` | Exact exclusion of the six-norm-nine endpoint shell |
 | `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` | Exact affine modulo-nine exclusion of the five-norm-nine shell |
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
+| `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
+| `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
@@ -155,6 +157,18 @@
 | `shell_three_mod27/shell_three_mod27_certificate.json` | Machine-readable complete census and near-witness certificate |
 | `shell_three_character/verify_lp333_order3_shell3_cubic_character.py` | Dependency-free cubic-moment identity, rank, and negative-control verifier |
 | `shell_three_character/test_lp333_order3_shell3_cubic_character.py` | Focused cubic-character regressions |
+| `shell_two_exact/verify_shell_two_partition.cpp` | Complete partition-by-partition exact enumerator for `n_9=2` |
+| `shell_two_exact/verify_shell_two_partition_theory.py` | Detached uniformizer, local-partition, and exact-correlation audit |
+| `shell_two_exact/verify_shell_two_exact_orbits.py` | Replays all five exact representatives, their full formal orbits, Hensel ranks, and row-margin joins |
+| `shell_two_exact/test_shell_two_partition.py` | Focused certificate, hash, phase-transfer, and five-orbit regressions |
+| `shell_two_exact/shell_two_exact_orbits_certificate.json` | Compact five-orbit and seven-partition census certificate |
+| `shell_two_exact/shell_two_exact_profile_certificate.json` | Detached full certificate for the first exact shell-two profile |
+| `scratch_exact_profile_lift/README.md` | Scope and resume instructions for the bounded exact lift of the first shell-two profile |
+| `scratch_exact_profile_lift/search_exact_profile_lift_xor.py` | Exact fixed-profile XOR/CP-SAT model with full length-333 replay gate |
+| `scratch_exact_profile_lift/run_row_sum_shards.py` | Resumable 72-row-margin shard driver with a 12 GB aggregate declared-memory ceiling |
+| `scratch_exact_profile_lift/output/row_sum_shards/checkpoint.json` | Attempt-zero ledger: 72 `UNKNOWN`, no positive or negative claim |
+| `verify_lp333_order3_dense_shell_quadratic_algebra.py` | Reconstructs the dense quadratic algebra, exact affine rows, all legal supports, restricted ranks, and Gauss lower bounds |
+| `audit_lp333_order3_dense_shell_quadratic_pencil.cpp` | Independent warning-clean projective-pencil and support-rank census |
 | `shell_four_compressed/census_h4_skeleton.cpp` | Independent signed-skeleton and exact-orbit census for the `n_9=4` shell |
 | `shell_four_compressed/verify_h4_skeleton_mitm.cpp` | Compressed modulo-nine MITM and detached exact replay corroboration |
 | `shell_four_compressed/test_h4_skeleton_mitm.py` | Pinned compiled regression for the compressed shell-four verifier |

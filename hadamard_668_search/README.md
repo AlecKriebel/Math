@@ -25,7 +25,7 @@ this milestone.
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 2,309,472 projected states over all normalized zero cores, zero hits |
 | Quartic-multiplier `LP(333)` | closed restricted lane | exact row-sum obstruction; 38,880 projected states over all normalized zero cores, zero hits |
-| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums, a lossless prime-167 split, and seven formal profile orbits; exact certificates exclude the four highest profile-energy shells and force `n_9<=2`; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | active theory-led lane | `<112>` closed; `<10>` has 1,756 row sums and a lossless prime-167 split; exact certificates exclude `n_9=6,5,4,3`, while the complete `n_9=2` classification has five exact profile orbits now undergoing phase lift; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -660,6 +660,60 @@ n_9 <= 2.
 
 These are complete shell exclusions, not a whole-quotient obstruction.
 
+The next shell behaves differently: it contains genuine exact profile
+solutions.  `shell_two_exact/` gives a complete, symmetry-reduced
+classification of
+
+```text
+(n_9,n_3,n_0)=(2,12,10).
+```
+
+There are exactly five profile-zero orbits under the order-24 formal profile
+group, with orbit sizes `24,12,12,12,24`.  One lies in the medium-support
+partition `222222` and four lie in `422220`; the other five possible
+partitions are empty.  The exact enumerator checks 14,715,744 raw signed
+skeletons, 617,788 canonical skeletons, 10,201,038 exact replays, and five
+survivors.  Every representative independently passes all 37 physical
+profile correlations, the characteristic-37 and prime-167 gates, exact
+aggregate reconstruction, and orbit replay.  This is the first point in the
+descent where exact profile solutions exist.  It is not yet an `LP(333)`:
+each representative still has 54 placement trits.
+
+For all five representatives, the first placement Hensel digit has rank 18
+and nullity 36.  Their exact row-margin joins retain `72,72,72,96,93`
+catalog rows, respectively.  The active problem is therefore the remaining
+integral phase lift of these five finite inputs, in parallel with the
+unclassified `n_9=1,0` shells.
+
+```sh
+python3 shell_two_exact/verify_shell_two_partition_theory.py
+python3 shell_two_exact/verify_shell_two_exact_orbits.py
+python3 -m unittest -v shell_two_exact/test_shell_two_partition.py
+```
+
+`scratch_exact_profile_lift/` preserves a secondary, resumable exact CP-SAT
+lift of the first representative.  Its 72 row-margin shards are all
+`UNKNOWN` after the short attempt-zero diagnostic; this is explicitly not
+an exclusion.  The bounded model is retained so future algebraic cuts can be
+measured against the same exact save-and-replay gate.
+
+`LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` analyzes the first genuinely
+quadratic uniformizer response in the remaining `n_9=1,0` shells without
+enumerating phases.  Its six polar matrices commute and generate
+
+```text
+F_27 x F_27,
+```
+
+with projective rank census `rank 12: 338, rank 6: 26` and the exact radial
+identity `M_0+...+M_5=2I_12`.  After the actual local and aggregate affine
+rows are imposed, exact Gauss bounds prove that this universal combination
+attains every right-hand side on every nonempty fiber—at least 2,025 times
+for `n_9=1` and 54,675 times for `n_9=0`.  Thus no single-form anisotropy can
+exclude either dense shell.  The positive consequence is a lossless next
+architecture: count the full six-coordinate layer using 729 exact quadratic
+Gauss sums per signed skeleton, then recover a witness by self-reduction.
+
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or
 fixed-size-two residue fiber has a signed cube-root phase in
@@ -682,9 +736,9 @@ K_10+K_21+omega^2 K_02 = 0.
 
 The first is a periodic complementary frame of six sparse Eisenstein
 sequences; the formally third cubic-basis equation is the adjoint of the
-second. This explains the 36 independent mixed-column integer conditions
-and is the preferred architecture for the next exact labelled lift after a
-zero-moment profile has been found.
+second. This explains the 36 independent mixed-column integer conditions.
+It is now the preferred architecture for lifting the five exact shell-two
+profiles.
 
 `LP333_ORDER3_PHASE_PRIME167.md` makes this phase architecture finite without
 loss.  On the universal zero/unit support-167 shell, Cauchy equality would

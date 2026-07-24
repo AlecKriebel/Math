@@ -45,7 +45,10 @@ report:
    three-fiber unit-phase factorization whose complete 39-component phase
    system is also lossless modulo 167 and splits into four parameterized
    finite-field cones; four exact shell theorems exclude
-   `n_9=6,5,4,3`, forcing every profile-zero solution into `n_9<=2`; the phase
+   `n_9=6,5,4,3`, and a fifth complete classification finds exactly five
+   profile-zero symmetry orbits at `n_9=2`; the dense-shell quadratic
+   correction algebra is `F_27 x F_27` and supplies an exact 729-character
+   compression for `n_9=1,0`; the phase
    cone has an exact row-Galois/trace inverse, fixed-origin and
    profile-support cuts, a lookup-free binary physicality decoder, and an
    independent 13-factor mod-seven sieve; all 22 aggregate shards survive
@@ -487,8 +490,29 @@ replay rejects all 479,850.  Thus the four shells prove `n_9<=2`.
 This sequence is new-looking and mechanically complete.  It is worth
 including as a supporting theorem package because it demonstrates a
 nontrivial descent through adjacent energy shells without a general-purpose
-solver.  It does not exclude the remaining three shells, so it should not be
-presented as evidence for nonexistence of `LP(333)`.
+solver.
+
+The complete `n_9=2` continuation is more significant than another
+exclusion: it finds exactly five genuine profile-zero symmetry orbits after
+14,715,744 raw signed skeletons and 10,201,038 detached exact replays.  Their
+orbit sizes are `24,12,12,12,24`; one has medium-support partition `222222`
+and four have `422220`.  All five pass independent all-37-lag,
+characteristic-37, prime-167, aggregate, and orbit checks.  Each then has 54
+placement trits with first Hensel rank/nullity `18/36`.  This appears to be
+the first exact classification of this structured profile shell and is
+publication-worthy as part of the order-three theorem package.  It remains
+a quotient-level classification: none of the five is yet an `LP(333)` or a
+Hadamard matrix.
+
+For the remaining `n_9=1,0` shells, the six first quadratic correction forms
+generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
+sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss
+bounds show that this radial combination attains every right-hand side on
+every nonempty fiber.  This rules out a tempting anisotropy shortcut, while
+giving a lossless 729-character count for the complete six-coordinate
+quadratic map.  The algebra theorem and compression are likely useful
+supporting results; the surjectivity statement is not an existence result
+for a profile, and the two dense shells remain unclassified.
 
 After profiles are fixed, every active residue fiber is a signed cube root
 of unity.  The identity `active=3-Norm/3` shows that total profile norm 54

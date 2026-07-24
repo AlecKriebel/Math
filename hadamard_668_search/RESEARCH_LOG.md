@@ -1611,3 +1611,49 @@ proof-assistant-level theorem.
   mathematical frontier is `(n_9,n_3,n_0)=(2,12,10),(1,15,8),(0,18,6)`.
   No exact profile, labelled lift, `LP(333)`, or `H(668)` has yet been found.
   Nothing was sent, contacted, pushed, or published.
+
+## 24 July 2026: five exact two-high profiles and dense quadratic algebra
+
+- Completed the exact shell
+  `(n_9,n_3,n_0)=(2,12,10)`.  Uniformizer descent leaves seven possible
+  medium-support partitions.  A symmetry-reduced exact enumerator checks
+  14,715,744 raw signed skeletons, 617,788 canonical skeletons, and
+  10,201,038 exact replays.
+- Exactly five profile-zero symmetry orbits survive, of sizes
+  `24,12,12,12,24`.  One representative lies in partition `222222` and
+  four lie in `422220`; `332220,333300,433200,442200,444000` are empty.
+  This is the first shell in the descent with genuine exact profile
+  solutions.
+- Every representative passes detached all-37-lag Eisenstein replay, the
+  exact aggregate and norm census, all local signatures, complete formal
+  orbit reconstruction, the characteristic-37 gate, and the lossless
+  prime-167 gate.  The complete semantic certificate hash is
+  `36099444b32f88869557a6f510f06cfa3b6eaa7a876b26cf62a0796ca4232565`.
+- All five representatives have 54 placement trits.  Their first
+  placement-Hensel systems have coefficient/augmented rank `18/18` and
+  nullity 36.  Exact trivial-character transfer leaves
+  `72,72,72,96,93` compatible row-margin catalog rows.  They are profile
+  inputs only; no labelled `LP(333)` or `H(668)` has been obtained.
+- Built a secondary exact XOR/CP-SAT lift for the first representative.
+  A five-minute four-worker run ended `UNKNOWN` after 1,674,513 branches,
+  peaking near 604 MB with no swap.  A resumable five-second pass over all
+  72 compatible row-margin shards also returned 72 `UNKNOWN`.  These runs
+  establish an exact baseline and no mathematical exclusion.
+- Independent Python 3.9 and 3.14 replays, warning-clean compilation, and a
+  full ASan/UBSan partition replay passed.  The exact enumerator uses about
+  4 MB resident memory; completeness comes from pinned finite counts, not a
+  timeout.
+- For the remaining `n_9=1,0` shells, reconstructed the six quadratic
+  correction polar matrices over `F_3`.  They commute, generate
+  `F_27 x F_27`, have projective rank census `12:338, 6:26`, and satisfy
+  `M_0+...+M_5=2I_12`.
+- After imposing the actual local-quartet and channel-aggregate affine
+  rows, complete support-only censuses cover 510,384 masks at `n_9=1` and
+  107,476 at `n_9=0`.  Exact quadratic Gauss bounds show that the radial
+  combination attains every right-hand side at least 2,025 and 54,675
+  times, respectively.  Thus it cannot exclude either shell.  The full
+  six-coordinate layer can instead be counted by 729 exact character sums
+  per skeleton and self-reduced to a witness.
+- The dense verifier and independent warning-clean C++ audit passed below
+  19 MB resident memory with no swap.  Nothing was sent, contacted, pushed,
+  or published.

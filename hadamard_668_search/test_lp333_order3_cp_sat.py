@@ -187,19 +187,16 @@ class OrderThreeQuotientTests(unittest.TestCase):
         quotient = validate_quotient_exponents(witness_quotient())
         replay = quotient_replay(quotient)
         self.assertEqual(len(replay), 58)
+        self.assertEqual(len(QUOTIENT_EQUATIONS), len(replay))
         zero_column = tuple(
             distance
-            for equation, (_, distance) in zip(
-                QUOTIENT_EQUATIONS, replay, strict=True
-            )
+            for equation, (_, distance) in zip(QUOTIENT_EQUATIONS, replay)
             if equation.column_lag == 0
         )
         self.assertEqual(zero_column, (TARGET_XOR_COUNT,) * 4)
         nonzero = tuple(
             distance
-            for equation, (_, distance) in zip(
-                QUOTIENT_EQUATIONS, replay, strict=True
-            )
+            for equation, (_, distance) in zip(QUOTIENT_EQUATIONS, replay)
             if equation.column_lag != 0
         )
         self.assertEqual(len(nonzero), 54)

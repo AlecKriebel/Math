@@ -156,6 +156,24 @@ The strongest new constructive reductions are:
   modulo-nine/aggregate survivors, finds only two modulo-27 near witnesses,
   and rejects both exactly and by an independent cubic characteristic-37
   moment.
+- `shell_two_exact/`: the complete `n_9=2` census is not empty.  It checks
+  14,715,744 raw signed skeletons and 10,201,038 exact replays and proves
+  that precisely five profile-zero symmetry orbits survive, with orbit sizes
+  `24,12,12,12,24`.  All five pass detached all-37-lag, characteristic-37,
+  prime-167, aggregate, and orbit replay.  Each has 54 placement trits and
+  first Hensel rank/nullity `18/36`; compatible row-margin counts are
+  `72,72,72,96,93`.  These are profile inputs, not `LP(333)` objects.
+- `scratch_exact_profile_lift/`: a secondary exact XOR/CP-SAT model fixes the
+  first shell-two representative and splits its 72 compatible row margins.
+  Attempt zero is fully resumable and records 72 `UNKNOWN` statuses; it is a
+  performance baseline, not an exclusion.  A five-minute union run peaked
+  near 604 MB with no swap and also returned `UNKNOWN`.
+- `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
+  correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
+  `2I`.  Exact affine restriction and Gauss bounds prove this universal
+  form attains every right-hand side, so it cannot exclude either shell.
+  The full six-coordinate layer can instead be counted with 729 exact
+  quadratic character sums per skeleton and self-reduced to a witness.
 - `LP333_ORDER3_PHASE_FACTOR.md`: profile norm 54 universally forces exactly
   54 signed Eisenstein unit phases and automatic physical frame energy 167.
   Exact primitive-nine lifting is one six-sequence complementary-frame
@@ -279,8 +297,13 @@ The strongest current construction checkpoints are:
 - the spectral-unit refinement: every physical profile-zero channel is a
   unit in that `1+6+6` algebra, so the modular intersection has no
   degenerate or axis branch and may be written as one unitary-ratio torus;
-- the sparse-shell exclusions: the `h=3,4,5,6` sectors are empty, leaving
-  only `h=0,1,2`; the constructor now enforces the exact cut `n_9<=2`;
+- the shell descent: `h=3,4,5,6` are empty, while `h=2` has exactly five
+  profile-zero symmetry orbits.  The constructor enforces `n_9<=2`, but the
+  five explicit `h=2` representatives are now the primary phase-lift inputs;
+- the dense-shell quadratic algebra: the six correction matrices form
+  `F_27 x F_27`, their sum is radial, and exact Gauss bounds rule out a
+  one-form anisotropy shortcut in `h=1,0`.  Use the 729-character full-map
+  count instead of enumerating a phase cube;
 - the sparse-`B` relative-norm screen: only four of 17 algebraic norm types
   remain in the normalized energy-six allocation for the two `(163,4)`
   targets.  Continue only from those 84 words/eight lift-safe orbits;
@@ -348,17 +371,20 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to solve the remaining `n_9<=2` part of the 24-profile
-   finite system with `D_t=0`, beginning with structural shell descent before
-   using the seven formal symmetry representatives and the resumable exact
-   CRT constructor.  The prime-167 channel-first MITM is a low-memory
+   next exact task is to lift or exclude the five explicit `n_9=2`
+   profile-zero orbits through the quadratic and exact integral phase
+   equations.  Work on `n_9=1,0` should use the `F_27 x F_27`
+   729-character compression rather than phase enumeration.  The general
+   seven-target CRT constructor remains the fallback for discovering dense
+   profile inputs.  The prime-167 channel-first MITM is a low-memory
    fallback, not the primary route at its current 6.34-billion-signature
    cost.  Any new spectral constructor should use the unitary ratio
    `U=A B^(-1)` and the single nonzero torus, never the now-excluded
    degenerate or axis branches. Do not phase-lift the 22 pinned
    ideal-compatible tuples: the exact zero-moment audit already excludes
-   every one as a full-LP input. Only a zero-moment profile survivor should
-   proceed through the nonzero trivial-coordinate catalog, row-Galois trace
+   every one as a full-LP input. The five certified shell-two zero-moment
+   survivors should proceed through the nonzero trivial-coordinate catalog,
+   row-Galois trace
    inverse, local idempotence decoder, mod-seven factors, exact margins, and
    full replay. A fixed-profile exclusion is not a
    whole-shard exclusion. Strictly expand and verify any full quotient before
