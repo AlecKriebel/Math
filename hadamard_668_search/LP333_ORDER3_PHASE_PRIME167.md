@@ -282,6 +282,18 @@ ord_9(167)=6,
 K=F_167(alpha)=F_(167^6).
 ```
 
+Direct expansion in the basis `1,alpha,alpha^2` gives the bridge
+
+```text
+sum_X W_X W_X^*
+  = E0 + alpha E1 + alpha^2 omega^2 E1^*.              (20a)
+```
+
+The verifier checks (20a) coefficientwise in the complete `C_37` group
+ring.  Since `1,alpha,alpha^2` are linearly independent over
+`F_167(omega)`, this proves the recombination equivalence rather than merely
+checking its resulting field coordinates.
+
 The two equations `E0=E1=0` modulo 167, together with the redundant adjoint
 component, are now the single two-channel norm equation
 
@@ -408,7 +420,7 @@ exactly
 3+3*12=39
 ```
 
-independent scalar conditions, matching the integral phase-factor count.
+prime-field component conditions, matching the integral phase-factor count.
 
 ## 7. Search architecture
 
@@ -447,7 +459,7 @@ primitive three-plane annihilator
 3294fad8192a163fefdcaaaee120601ebed3fda20c0ef4db4501d268b91c2257
 
 ninth-root split, star, and complete factorwise parameterization
-cc86f194497dd5b6bc9139d9a299e888596dc99d98cf4b768730a605af0dafac
+765e4631c4142b778c4c05eb4fe4220a23f06fd2198cf05d7ac2cf8dfc0463f1
 ```
 
 ## Reproduction

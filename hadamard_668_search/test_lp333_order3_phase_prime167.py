@@ -81,6 +81,8 @@ class PhasePrime167Tests(unittest.TestCase):
             13,
         )
         self.assertEqual(result["class_indicator_rank"], 13)
+        self.assertTrue(result["recombination_identity_checked"])
+        self.assertEqual(len(result["recombination_identity_sha256"]), 64)
         self.assertEqual(result["star_basis_words"], 13)
         self.assertEqual(result["star_pair_count"], 3)
         self.assertEqual(result["star_frobenius_exponents"], (3, 9))
@@ -90,6 +92,7 @@ class PhasePrime167Tests(unittest.TestCase):
             result["primitive_branches_per_pair"],
             ("degenerate", "nondegenerate"),
         )
+        self.assertEqual(result["nondegenerate_parameter_fixtures"], 3)
         expected_trivial = (
             1 + (phase167.P**6 - 1) * (phase167.P**3 + 1)
         )

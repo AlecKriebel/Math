@@ -60,7 +60,7 @@ EXPECTED_PLANE_CERTIFICATE_SHA256 = (
     "3294fad8192a163fefdcaaaee120601ebed3fda20c0ef4db4501d268b91c2257"
 )
 EXPECTED_RECOMBINED_CERTIFICATE_SHA256 = (
-    "cc86f194497dd5b6bc9139d9a299e888596dc99d98cf4b768730a605af0dafac"
+    "765e4631c4142b778c4c05eb4fe4220a23f06fd2198cf05d7ac2cf8dfc0463f1"
 )
 
 
@@ -730,6 +730,60 @@ def l_group_star_ninth(word: Sequence[split.L]) -> tuple[split.L, ...]:
     )
 
 
+def l_group_add_ninth(
+    left: Sequence[split.L], right: Sequence[split.L]
+) -> tuple[split.L, ...]:
+    if len(left) != N or len(right) != N:
+        raise ValueError("expected two C_37 words over F_(167^6)")
+    return tuple(split.l_add(a, b) for a, b in zip(left, right))
+
+
+def l_group_scale_ninth(
+    scalar: split.L, word: Sequence[split.L]
+) -> tuple[split.L, ...]:
+    if len(word) != N:
+        raise ValueError("expected a C_37 word over F_(167^6)")
+    return tuple(split.l_multiply(scalar, value) for value in word)
+
+
+def l_group_multiply_ninth(
+    left: Sequence[split.L], right: Sequence[split.L]
+) -> tuple[split.L, ...]:
+    if len(left) != N or len(right) != N:
+        raise ValueError("expected two C_37 words over F_(167^6)")
+    result = [split.L_ZERO] * N
+    for left_index, left_value in enumerate(left):
+        if left_value == split.L_ZERO:
+            continue
+        for right_index, right_value in enumerate(right):
+            if right_value == split.L_ZERO:
+                continue
+            target = (left_index + right_index) % N
+            result[target] = split.l_add(
+                result[target],
+                split.l_multiply(left_value, right_value),
+            )
+    return tuple(result)
+
+
+def l_group_inner_ninth(
+    words: Sequence[Sequence[split.L]],
+) -> tuple[split.L, ...]:
+    result = (split.L_ZERO,) * N
+    for word in words:
+        result = l_group_add_ninth(
+            result,
+            l_group_multiply_ninth(word, l_group_star_ninth(word)),
+        )
+    return result
+
+
+def l_embed_k_word(word: Sequence[split.K]) -> tuple[split.L, ...]:
+    if len(word) != N:
+        raise ValueError("expected a C_37 word over F_(167^2)")
+    return tuple(split.l_embed(value) for value in word)
+
+
 def integer_is_prime(value: int) -> bool:
     if value < 2:
         return False
@@ -922,6 +976,36 @@ def verify_recombined_split() -> dict[str, object]:
         recombined_word(reduced[3 * channel : 3 * channel + 3], alpha)
         for channel in range(2)
     )
+
+    # Check the bridge from the cubic extension-basis equations to the
+    # recombined ninth-root norm:
+    #
+    #   sum_X W_X W_X^*
+    #       = E0 + alpha E1 + alpha^2 omega^2 E1^*.
+    #
+    # This makes the equivalence used by the semisimple split explicit rather
+    # than relying only on the later coordinate formulas.
+    diagonal_word = group_inner_mod(reduced, reduced)
+    cross_word = group_inner_mod(twist_mod_frame(reduced), reduced)
+    recombined_norm_word = l_group_inner_ninth(channel_words)
+    alpha_squared = split.l_multiply(alpha, alpha)
+    alpha_squared_omega2 = split.l_multiply(
+        alpha_squared, split.l_embed(K_OMEGA2)
+    )
+    bridge_word = l_group_add_ninth(
+        l_embed_k_word(diagonal_word),
+        l_group_add_ninth(
+            l_group_scale_ninth(alpha, l_embed_k_word(cross_word)),
+            l_group_scale_ninth(
+                alpha_squared_omega2,
+                l_embed_k_word(split.group_star(cross_word)),
+            ),
+        ),
+    )
+    if recombined_norm_word != bridge_word:
+        raise AssertionError("the ninth-root recombination identity changed")
+    bridge_hash = compact_hash(recombined_norm_word)
+
     coordinate_pairs = tuple(
         recombined_coordinates(word) for word in channel_words
     )
@@ -986,25 +1070,42 @@ def verify_recombined_split() -> dict[str, object]:
         split.l_multiply(split.L_ZERO, split.l_power(degenerate_y[1], P**3)),
     ):
         raise AssertionError("the degenerate primitive branch failed")
-    x_a = split.field_fixture(303)
-    x_b = split.field_fixture(304)
+    generic_x_a = split.field_fixture(303)
+    generic_x_b = split.field_fixture(304)
     tau = split.field_fixture(305)
-    powered_y_a = split.l_neg(split.l_multiply(tau, x_b))
-    powered_y_b = split.l_multiply(tau, x_a)
-    y_a = split.l_power(powered_y_a, P**9)
-    y_b = split.l_power(powered_y_b, P**9)
-    nondegenerate_residual = split.l_add(
-        split.l_multiply(x_a, split.l_power(y_a, P**3)),
-        split.l_multiply(x_b, split.l_power(y_b, P**3)),
-    )
-    if nondegenerate_residual != split.L_ZERO:
-        raise AssertionError("the nondegenerate primitive branch failed")
-    recovered_tau = split.l_multiply(
-        split.l_neg(split.l_power(y_a, P**3)),
-        split.l_inverse(x_b),
-    )
-    if recovered_tau != tau:
-        raise AssertionError("the nondegenerate primitive parameter is not unique")
+    nondegenerate_branch_certificates = []
+    for x_a, x_b in (
+        (generic_x_a, generic_x_b),
+        (split.L_ZERO, generic_x_b),
+        (generic_x_a, split.L_ZERO),
+    ):
+        powered_y_a = split.l_neg(split.l_multiply(tau, x_b))
+        powered_y_b = split.l_multiply(tau, x_a)
+        y_a = split.l_power(powered_y_a, P**9)
+        y_b = split.l_power(powered_y_b, P**9)
+        nondegenerate_residual = split.l_add(
+            split.l_multiply(x_a, split.l_power(y_a, P**3)),
+            split.l_multiply(x_b, split.l_power(y_b, P**3)),
+        )
+        if nondegenerate_residual != split.L_ZERO:
+            raise AssertionError("the nondegenerate primitive branch failed")
+        if x_b != split.L_ZERO:
+            recovered_tau = split.l_multiply(
+                split.l_neg(split.l_power(y_a, P**3)),
+                split.l_inverse(x_b),
+            )
+        else:
+            recovered_tau = split.l_multiply(
+                split.l_power(y_b, P**3),
+                split.l_inverse(x_a),
+            )
+        if recovered_tau != tau:
+            raise AssertionError(
+                "the nondegenerate primitive parameter is not unique"
+            )
+        nondegenerate_branch_certificates.append(
+            compact_hash((x_a, x_b, y_a, y_b, recovered_tau))
+        )
 
     # Build and verify one norm-minus-one ratio for the trivial quadratic
     # extension F_(p^6)/F_(p^3).
@@ -1076,12 +1177,13 @@ def verify_recombined_split() -> dict[str, object]:
         invariant_rank,
         compact_hash(tuple(basis_star_certificates)),
         compact_hash(alpha),
+        bridge_hash,
         compact_hash(tuple(coordinate_pairs)),
         compact_hash(tuple(star_coordinate_pairs)),
         compact_hash(trivial_residual),
         compact_hash(primitive_residuals),
         compact_hash(norm_minus_one_ratio),
-        compact_hash((y_a, y_b, nondegenerate_residual)),
+        tuple(nondegenerate_branch_certificates),
         k6_factorization,
         (
             trivial_zero_branch_count,
@@ -1108,12 +1210,17 @@ def verify_recombined_split() -> dict[str, object]:
         "primitive_q_orbit_sizes": tuple(map(len, q_orbits)),
         "invariant_dimension_over_coefficient_field": 13,
         "class_indicator_rank": invariant_rank,
+        "recombination_identity_checked": True,
+        "recombination_identity_sha256": bridge_hash,
         "star_basis_words": len(basis_star_certificates),
         "star_pair_count": 3,
         "star_frobenius_exponents": (3, 9),
         "scalar_equation_count_over_f_167": 3 + 3 * 12,
         "trivial_branches": ("zero", "nonzero"),
         "primitive_branches_per_pair": ("degenerate", "nondegenerate"),
+        "nondegenerate_parameter_fixtures": len(
+            nondegenerate_branch_certificates
+        ),
         "trivial_branch_counts": (
             trivial_zero_branch_count,
             trivial_nonzero_branch_count,
