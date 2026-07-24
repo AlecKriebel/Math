@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-07-24T01:08:00Z
+Last updated: 2026-07-24T02:12:00Z
 
 ## Rigorous bounds
 
@@ -21,9 +21,10 @@ No exact value has been established.
 
 ## Completion estimate
 
-**Best guess: 18% toward a complete exact resolution.**  The lower
+**Best guess: 21% toward a complete exact resolution.**  The lower
 construction and several new universal necessary conditions are exact and
-audited, but the decisive step—either a 41-point exact construction or a
+audited, including an exact one-sided bound \(B(5)\le34\), but the decisive
+step—either a 41-point exact construction or a
 classification-free exclusion of every continuous 41-point Gram
 realization—is still absent.  The estimate is intentionally uncertain and
 may decrease if the surviving continuous-support barriers prove broader
@@ -63,26 +64,34 @@ Other active incompatible routes are:
 4. a maximum-volume-basis semialgebraic reduction with explicit rational
    conditioning and a boundary-safe finite cell cover.
 
-An exact degree-10 cap-SDP certificate now gives
+An exact degree-11 cap-SDP certificate now gives
 \[
-A(4,1/\sqrt3)\le33,\qquad B(5)\le35.
+A(4,1/\sqrt3)\le33,\qquad B(5)\le34.
 \]
 Consequently, every open hemisphere of a hypothetical 41-code contains at
-least six points, and the origin remains in the interior of the convex hull
-after deletion of any five points.  Independently, tangent projection of
+least seven points, and the origin remains in the interior of the convex hull
+after deletion of any six points.  Independently, tangent projection of
 the nonnegative neighborhood at each code point proves that every vertex
 has at least seven strictly negative neighbors, so the negative-pair graph
-has minimum degree at least seven and at least 144 edges.  The cap proof uses
-exact rational Gram factors and a 2,483-leaf Bernstein certificate over the
-full closed semialgebraic domain; an independent audit found no omitted
-normalization or boundary case.
+has minimum degree at least seven and at least 144 edges; the two oriented
+hemisphere bounds also force at least six other strictly positive neighbors
+at every vertex.  The new proof
+uses exact rational Gram factors, diagonal bound \(1647/50\),
+off-diagonal bound \(-969/1000\), and a 5,995-leaf Bernstein certificate
+over the full closed semialgebraic domain.  Its objective is
+\(11303/323=35-2/323\), so integrality gives 34.  A separate verifier
+independently rebuilt every polynomial term and tree leaf, checked the
+previously missed symmetry ridge and all pole/contact/determinant
+boundaries, and found no flaw.  The earlier degree-10 proof of
+\(B(5)\le35\) remains as a smaller independent certificate.
 
-The first degree-11 cap search had a rescaled sampled objective
-\(34.959006682570\), but exact evaluation found a feasible dyadic point
-where its proposed off-diagonal bound fails.  A still worse narrow ridge
-occurs on the symmetry plane \(u=v\).  That candidate is **refuted**, not
-numerical evidence for \(B(5)\le34\); a redesigned solve is active, and no
-stronger exact one-sided bound is claimed.
+Deletion-six robustness also forces two disjoint inclusion-minimal positive
+circuits, each with between two and six points, and therefore two disjointly
+supported positive Gram-kernel vectors.  This is exact but not decisive:
+the \(D_5\) code realizes every one of the 15 possible circuit-size pairs,
+and an exact 41-point subset of \(D_6\) satisfies the same entry and circuit
+conditions at rank six.  A continuation must exploit genuinely global
+rank-five compatibility rather than circuit sizes alone.
 
 An independent exact \(S^3\) cap polynomial improves the frame conditioning
 of every hypothetical 41-code to
@@ -107,10 +116,17 @@ three-point witness cannot repair both defects: an exact radial interpolation
 polynomial annihilates the old support and exposes a negative
 \(H_{3,9}\) direction for every positive mixture weight.
 
-The best independently generated unrestricted 41-point numerical candidate
-currently has maximum inner product \(0.5155570516153127\). A separate public
-benchmark reaches approximately \(0.514994652512\). Both exceed \(1/2\) and
-are numerical near misses, not lower or upper bounds.
+The best stored unrestricted 41-point numerical candidate has maximum inner
+product approximately \(0.514994652512\); a repeatedly reached fully
+independent basin is \(0.5155570516153127\).  Both exceed \(1/2\) and are
+numerical near misses, not lower or upper bounds.
+
+A seventh construction round compressed 20 feasible six-dimensional starts
+toward rank five.  Every path crossed above \(1/2\) at the same coarse
+homotopy stage, and the best final 41-point maximum was
+\(0.5207137808832133\), worse than the stored unrestricted record.  Exact
+\(D_6\)-label checking and binary64 trajectory verification make this
+reproducible numerical evidence about one mechanism only.
 
 Ordinary two-point LP is now **certifiably blocked**: an exact mass-41
 pseudo-distance distribution satisfies every Gegenbauer moment inequality and
@@ -160,6 +176,16 @@ rules out every triple distribution on this fixed support and pair data
 using only necessary outer rank bands.  Thus these constraints are genuinely
 independent, while continuous-support universality remains unresolved.
 
+A new four-point/common-source audit gives a much shorter rejection of the
+sixth assignment.  If a base pair has inner product at most \(-11/25\),
+it has at most one common neighbor whose two incident inner products are at
+least \(499/1000\).  Exact projection gives the forbidden lower bound
+\(109001/140000>1/2\) for two such neighbors.  The stored witness requires
+243 such triangles but has only 219 eligible base edges.  An independent
+enumeration of all 198 Gram-PSD colored-\(K_4\) orbits reduces to the same
+one-row covariance contradiction.  This is a universal threshold lemma but
+still only rejects the fixed-support witness.
+
 ## Theorem-strength unresolved gaps
 
 - No universal inequality excludes a 41-point code.
@@ -179,6 +205,9 @@ independent, while continuous-support universality remains unresolved.
   been produced.
 - The fixed five-node support is now eliminated, but no theorem reduces an
   arbitrary real inner-product distribution to that support or pair data.
+- The common-neighbor threshold cut is universal, but no continuous-support
+  combination of such cuts currently excludes all possible 41-point
+  pair/triple measures.
 - The residual-vector square above separates the best labeled pseudo-object,
   but no classification-free bound yet forces enough high closures among its
   deep--middle wedges for arbitrary real inner products.
@@ -225,6 +254,10 @@ independent, while continuous-support universality remains unresolved.
   [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
 - Exact degree-10 cap-SDP bound \(B(5)\le35\):
   [`proofs/one_sided_cap_degree10_bound.md`](proofs/one_sided_cap_degree10_bound.md)
+- Exact degree-11 cap-SDP bound \(B(5)\le34\) and independent audit:
+  [`proofs/one_sided_cap_degree11_bound.md`](proofs/one_sided_cap_degree11_bound.md)
+  and
+  [`proofs/one_sided_cap_degree11_adversarial_audit.md`](proofs/one_sided_cap_degree11_adversarial_audit.md)
 - Tangent nonnegative-neighborhood projection and minimum negative degree:
   [`proofs/tangent_nonnegative_neighborhood.md`](proofs/tangent_nonnegative_neighborhood.md)
 - Improved exact cap/frame conditioning:
@@ -248,6 +281,12 @@ independent, while continuous-support universality remains unresolved.
 - Exact degree-five necessary-rank separator for the historical five-node
   support:
   [`proofs/local5_degree5_necessary_rank_separator.md`](proofs/local5_degree5_necessary_rank_separator.md)
+- Exact common-neighbor/edge-conditioned \(K_4\) obstruction:
+  [`proofs/edge_conditioned_k4_exact_obstruction.md`](proofs/edge_conditioned_k4_exact_obstruction.md)
+- Exact anchored negative-cap inequality and nonseparation audit:
+  [`proofs/anchored_negative_cap_kernel.md`](proofs/anchored_negative_cap_kernel.md)
+- Depth-seven positive-circuit packing and exact barrier catalog:
+  [`proofs/positive_circuit_packing_from_depth.md`](proofs/positive_circuit_packing_from_depth.md)
 - Low-harmonic frame-potential inequalities and their all-harmonic
   mass-41 barrier:
   [`proofs/harmonic_rank_frame_barrier.md`](proofs/harmonic_rank_frame_barrier.md)
@@ -284,6 +323,8 @@ independent, while continuous-support universality remains unresolved.
   [`experiments/construction_round4_surgery/README.md`](experiments/construction_round4_surgery/README.md)
 - Unrestricted inverse-chord population continuation and crossover:
   [`experiments/construction_round5_population/README.md`](experiments/construction_round5_population/README.md)
+- Riemannian nonsmooth active-bundle and facet-escape continuation:
+  [`experiments/construction_round6_bundle/README.md`](experiments/construction_round6_bundle/README.md)
 - Imported discovery-only numerical 41-point near miss:
   [`experiments/input/spherical_codes_5_41.txt`](experiments/input/spherical_codes_5_41.txt)
 
@@ -314,11 +355,11 @@ a second human/agent audit is still pending.
   has independence number at most 20, and has at least 23 edges.
 - Every hypothetical 41-code admits the exact compact 190-variable
   maximum-volume formulation recorded in the semialgebraic certificate.
-- Every one-sided five-dimensional kissing code has at most 38 points.
-  Hence a hypothetical 41-code has origin Tukey depth at least three and
-  remains positively spanning after any two deletions.  The exact
-  \(\mathbb Q(\sqrt3)\) LP certificate, all hemisphere boundary conventions,
-  and the derived vertex inequalities passed an independent audit.
+- Every one-sided five-dimensional kissing code has at most 34 points.
+  Hence a hypothetical 41-code has origin Tukey depth at least seven and
+  remains positively spanning after any six deletions.  The exact
+  degree-11 cap kernel, all hemisphere boundary conventions, and the complete
+  5,995-leaf Bernstein tree passed a separate independent audit.
 - The fixed-41 rational pair/triple pseudo-distribution passes all ordinary
   and Bachoc--Vallentin three-point harmonic inequalities at every degree,
   with unrestricted radial test functions.  An independent adversarial audit

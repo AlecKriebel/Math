@@ -22,12 +22,17 @@ def main() -> None:
     parser.add_argument("output")
     parser.add_argument("--denominator", type=int, default=100_000_000)
     parser.add_argument("--eigenvalue-floor", type=float, default=0.0)
+    parser.add_argument("--scale-numerator", type=int, default=1)
+    parser.add_argument("--scale-denominator", type=int, default=1)
     args = parser.parse_args()
+    assert args.scale_numerator > 0
+    assert args.scale_denominator > 0
+    matrix_scale = args.scale_numerator / args.scale_denominator
 
     source = np.load(args.input)
     blocks = []
     for k in range(len(source.files)):
-        matrix = source[f"F{k}"]
+        matrix = matrix_scale * source[f"F{k}"]
         eigenvalues, eigenvectors = np.linalg.eigh(matrix)
         retained = eigenvalues > args.eigenvalue_floor
         factor = eigenvectors[:, retained] * np.sqrt(eigenvalues[retained])
@@ -54,6 +59,9 @@ def main() -> None:
         "status": "NUMERICAL CANDIDATE REQUIRING EXACT DOMAIN AUDIT",
         "source_npz": str(Path(args.input).resolve()),
         "harmonic_degree": len(blocks) - 1,
+        "source_matrix_scale": (
+            f"{args.scale_numerator}/{args.scale_denominator}"
+        ),
         "modified_zonal_normalization": (
             "lambda_ij omitted by positive diagonal congruence"
         ),

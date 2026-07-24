@@ -1,6 +1,6 @@
 # Approach Registry
 
-Last updated: 2026-07-24T01:08:00Z
+Last updated: 2026-07-24T02:12:00Z
 
 Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 
@@ -53,6 +53,21 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   \(0.51499465,0.51824116,0.52472448,0.52747119\); no exact reconstruction
   target appeared.  The full package is in
   `experiments/construction_round5_population/`.
+- **Sixth round:** 26 Riemannian log-sum-exp/active-bundle trajectories used
+  exact-max trust acceptance and finite facet-escape kicks.  They reproduced
+  the same four best basins and found no code.  The full numerical portfolio,
+  all \(\binom{41}{4}\) depth supports, and an independent checker are in
+  `experiments/construction_round6_bundle/`.
+- **Seventh round:** 20 dimension-compression homotopies started from four
+  exact \(D_6\) subsets and one unrelated numerical \(S^5\) code at each
+  \(N=41,\ldots,44\).  Every path forced the sixth covariance fraction below
+  \(1.42\cdot10^{-12}\), but every path crossed above \(1/2\) at homotopy
+  weight \(3\).  The best final maxima were approximately
+  \(0.52071378,0.52542888,0.52846539,0.53315367\).  The endpoints are
+  numerically distinct from the earlier stored basins and strictly worse.
+  Exact start-label checks, released histories, and four tests are in
+  `experiments/construction_round7_d6_compression/`; this is a failed
+  construction mechanism, not an obstruction theorem.
 - **Restrictions:** The main search must be unrestricted; structured searches
   are discovery subroutines only.
 - **Status:** active.
@@ -122,6 +137,12 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   support and gives a strictly negative \(H_{3,9}\) form on every positive
   mixture.  This rules out that synthesis only, not other union-support
   reoptimizations.
+- **Four-point extension:** Exact enumeration of 3,213 labeled Gram-PSD
+  colored \(K_4\) patterns in 198 orbits shows that the degree-four
+  five-node witness has no edge-conditioned covariance extension.  The
+  contradiction collapses to a single universal common-neighbor capacity,
+  so no floating LP status is trusted.  This is still a fixed-support
+  witness rejection, not a continuous four-point bound.
 - **Unresolved:** Extend the nonlinear harmonic-rank hierarchy to the full
   continuous pair/triple domain, or add genuinely four-point/common-source
   information.  Raising only harmonic or radial degree in the old
@@ -180,8 +201,10 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/split_kernel_full_interval_barrier.md`;
   `proofs/rank_five_spectral_moment.md`;
   `proofs/rank_five_four_cycle_moments.md`;
+  `proofs/positive_circuit_packing_from_depth.md`;
   `verifiers/verify_rank_kernel_barriers.py`;
   `verifiers/verify_rank_five_spectral_moment.py`;
+  `verifiers/verify_positive_circuit_pair_catalog.py`;
   `tests/test_rank_kernel_barriers.py`.
 - **Known counterexamples:** Dropping rank admits irrelevant correlation
   matrices and cannot establish the geometric claim.  The normalized \(D_6\)
@@ -211,6 +234,12 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
 - **Tverberg barrier:** An exact rank-five 18-point code, split into three
   regular 5-simplices, realizes the common moments \(m=0,M=I/5\).  Hence the
   degree-two Tverberg conclusion alone is insufficient.
+- **Depth/circuit consequence:** The exact depth-seven cap bound forces two
+  disjoint inclusion-minimal positive Gram-kernel circuits, each of size
+  \(2,\ldots,6\).  Exact \(D_5\) examples realize all 15 size pairs, while
+  a 41-point \(D_6\) subset satisfies the same entry and circuit conditions
+  at rank six.  Circuit sizes and two kernel vectors alone are therefore a
+  certified barrier; global rank-five compatibility remains essential.
 - **Restrictions:** None intended.
 - **Status:** active.
 
@@ -287,16 +316,24 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   neighborhood at every code point projects injectively to an
   \(A(4,1/\sqrt3)\)-code, proving at least seven strictly negative
   neighbors per vertex.
+- **Degree-11 cap strengthening:** A separate rational kernel with diagonal
+  target \(1647/50\) and off-diagonal target \(-969/1000\) has exact
+  objective \(11303/323<35\), proving \(B(5)\le34\).  Its complete
+  5,995-leaf closed-domain Bernstein tree was rebuilt by two independent
+  implementations, including the symmetry ridge missed by the first
+  numerical candidate.  Thus every hypothetical 41-code has open-hemisphere
+  depth at least seven and remains origin-spanning after any six deletions.
 - **Unresolved:** A global averaging or compatibility inequality that excludes
-  total size 41.  A degree-11 cap candidate has audited numerical objective
-  below 35, but exact rationalization has already exposed a missed narrow
-  interior ridge in the first attempt; no \(B(5)\le34\) certificate is
-  claimed.
+  total size 41.  A one-antipodal-pair belt SDP is now being explored:
+  proving at most 38 points in \(|\langle e,x\rangle|\le1/2\) would exclude
+  41 whenever an antipodal pair is present.
 - **Artifacts:** `proofs/local_link_geometry.md`;
   `verifiers/verify_local_links.py`; `proofs/one_sided_tukey_bound.md`;
   `verifiers/verify_one_sided_tukey.py`;
   `proofs/one_sided_cap_degree10_bound.md`;
   `verifiers/verify_one_sided_cap_degree10.py`;
+  `proofs/one_sided_cap_degree11_bound.md`;
+  `verifiers/verify_one_sided_cap_degree11.py`;
   `proofs/tangent_nonnegative_neighborhood.md`;
   `verifiers/verify_tangent_nonnegative_neighborhood.py`;
   `proofs/improved_frame_cap_bound.md`;
@@ -304,9 +341,10 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/max_volume_semialgebraic_reduction.md`.
 - **Known counterexamples:** Averaging a weak isolated cap bound is insufficient.
 - **Restrictions:** Case assumptions must cover boundary contacts exactly.
-- **Audit:** The one-sided polynomial, projection square, reflection
-  self-pair, open/closed conventions, integer optimization, and all convex
-  consequences were independently recomputed with no mathematical objection.
+- **Audit:** The one-sided polynomials, projection square, reflection
+  self-pair, open/closed conventions, integer optimization, all 5,995
+  degree-11 tree leaves, and all convex consequences were independently
+  recomputed with no mathematical objection.
 - **Status:** active.
 
 ## G. Semialgebraic exhaustive proof
@@ -411,6 +449,17 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   on this historical five-node support with the fixed pair multiplicities.
   This is a fixed-support theorem only; no discretization theorem reduces an
   arbitrary code to it.
+- **Common-neighbor threshold cut:** A pair at inner product at most
+  \(-11/25\) has at most one common neighbor whose two incident products are
+  at least \(499/1000\).  Projection forces two such neighbors above the
+  kissing threshold.  The resulting universal count rejects the degree-four
+  witness by \(243>219\), and an exact 198-orbit \(K_4\) audit gives the
+  equivalent covariance residual \(-27216/131\).
+- **Anchored-cap barrier:** Summing the exact cap kernel over every negative
+  code-point neighborhood gives a universal pair/triple inequality, including
+  zero-height and determinant boundaries.  Both the degree-four and
+  all-harmonic witnesses pass every natural threshold and support-subset
+  variant with strict exact slack, so code-point axes alone are insufficient.
 - **Artifacts:** also `proofs/degree2_bv_barrier.md`,
   `verifiers/verify_degree2_bv_barrier.py`;
   `proofs/weighted_residual_barrier.md`,
@@ -424,7 +473,11 @@ Statuses are `active`, `blocked`, `falsified`, `subsumed`, or `certified`.
   `proofs/harmonic_combination_centered_skew.md`,
   `verifiers/verify_harmonic_combination_centered_skew.py`;
   `proofs/local5_degree5_necessary_rank_separator.md`,
-  `verifiers/verify_local5_degree5_necessary_rank_separator.py`.
+  `verifiers/verify_local5_degree5_necessary_rank_separator.py`;
+  `proofs/edge_conditioned_k4_exact_obstruction.md`,
+  `verifiers/verify_edge_conditioned_k4_exact_obstruction.py`;
+  `proofs/anchored_negative_cap_kernel.md`,
+  `verifiers/verify_anchored_negative_cap_kernel.py`.
 - **Restrictions:** None intended.
 - **Status:** active.
 

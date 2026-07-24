@@ -288,3 +288,83 @@ Python 3.14.6 reports 81 passing exact tests.  The cap test reconstructs all
 The construction tests recheck norms, pair maxima, active graphs, spectra,
 stored hashes, and the floating halfspace-depth diagnostic without treating
 any of them as a proof.
+
+## Checkpoint 2026-07-24T02:12:00Z
+
+This checkpoint strengthens the exact one-sided bound to \(B(5)\le34\),
+adds a separately implemented full-domain adversarial audit, proves an exact
+common-neighbor threshold capacity and its colored-\(K_4\) consequence,
+records a valid but nonseparating anchored negative-cap kernel, derives two
+disjoint positive circuits from depth seven, and releases two further
+construction portfolios.  The global bounds remain
+\(40\le\tau(5)\le44\), and the best-guess completion estimate is 21%.
+
+Degree-11 cap certificate and independent audit:
+
+```text
+182553399ad2f0cd932e82237943f6b9bd27d18a970bd94592294df8cc5abf5c  certificates/one_sided_cap_degree11_bound.json
+86f6924b403734e4d9e38d1138ff41d2e7b216ffcdd0cf133cf969512d1829a1  proofs/one_sided_cap_degree11_bound.md
+4d7cae70d93d687e6c2d169339095e60bf7e81b3b788375de129d80995bffadc  verifiers/verify_one_sided_cap_degree11.py
+43432599e8c687aa401c062e426b388912ebed90b6d91940c90cb17dc96017e7  tests/test_one_sided_cap_degree11.py
+1510412373865c0a03b889639b630d14a59c9b31063b854a0b040803ed38dd02  proofs/one_sided_cap_degree11_adversarial_audit.md
+a7e37f2bf16d96bdec456a242c29d6c477e07281392fd6a25285d319edd2d5b3  tests/test_one_sided_cap_degree11_independent_audit.py
+280232713343c121d258fb47a74bced1c760989f61de03db41ae71705b698cdf  experiments/search_one_sided_cap_sdp_adjusted_d11.py
+f33ca6373f8ab05465a2c2fb305aa86e91251ce317a1913f9962913a0ac7d219  experiments/rationalize_one_sided_cap_candidate.py
+```
+
+The exact certificate has objective \(11303/323<35\).  Its two independent
+implementations rebuild 650 polynomial terms and the same 5,995-leaf exact
+Bernstein tree.  The tree digest is
+`3ffd08afa66bcd12e52399e392c09fda237f8bab18fc1af9a8090e76f1f81f65`
+and the Gram-factor digest is
+`723d5521951ce45d236116016a69e7e8e510b8e7ba1f0338f7c1d6fffe507257`.
+
+Four-point, anchored-kernel, and circuit artifacts:
+
+```text
+d7952147e42d90c06a50424a8e64c4d79dd3920043293727315e073d521bf3b3  certificates/edge_conditioned_k4_exact_obstruction.json
+e855c7acbab05676612cffedff5bc37be18a47ceb03459ed4f88681af3bb182c  proofs/edge_conditioned_k4_exact_obstruction.md
+c3622d00c77ddec488a19abd3517d029313ee2cc296bb3859a4171577bb89a60  verifiers/verify_edge_conditioned_k4_exact_obstruction.py
+f1fd31665c65bafd4f301e05900997b225ecb49a8e9f0a2ccd76dd15654b6b9a  tests/test_edge_conditioned_k4_exact_obstruction.py
+3d463da506d30222bf3e2f65991b2056c4be77248282db71d25914d125dfe04e  certificates/anchored_negative_cap_kernel_evaluations.json
+cde352b039b77987c2c4e3ef98694f4fe41638c13282154d186b2072c73b73d4  proofs/anchored_negative_cap_kernel.md
+a7f5d442e5de0cb604dcb47839364ff2ce593368c8e93391f2820704b0489f11  verifiers/verify_anchored_negative_cap_kernel.py
+e3e3d2c64f238063d830ae32c66a0ba480b6722e88bfba3076ad65a8ad6c8e40  tests/test_anchored_negative_cap_kernel.py
+87247ebc36dd86f10a014e71db74416f7c789f279c0c093a957424dcdbec4426  certificates/positive_circuit_pair_catalog.json
+cb3c1bd47920026014e1f48de45a4fe65ffedbef7728b4e8d0b1f13ea78bf601  proofs/positive_circuit_packing_from_depth.md
+36a33fa0c4f5ac7dae520d91a052f727fd97ddb72fdd6f79e5adc9f0d0c609c1  verifiers/verify_positive_circuit_pair_catalog.py
+5f12d373eacd92f7584af6127b31bf2bedede5865f14a6f856039d685be737c2  tests/test_positive_circuit_pair_catalog.py
+```
+
+Construction round 6 and 7 key artifacts:
+
+```text
+d5f0e950027b9aa05105663069d003e6ebf0bc8f7366a93f63c9fc318eb4ec86  experiments/construction_round6_bundle/results/bundle_portfolio.json
+71f47f8563d2eccdfe289c32b802c8622be643243202fc3ef2bb4ac52b7ab9fe  experiments/construction_round6_bundle/results/halfspace_depth_n41.json
+3c701fc2ef2aaedf504ba3b4558b2f45e3ece1d301e43a56bb89ab0030a24edf  experiments/construction_round6_bundle/check_bundle.py
+81dc0165d95b449e988856dd1d25d7a6be1277f73ae59b73b56381772b3b408f  experiments/construction_round6_bundle/test_bundle_search.py
+95b3ba874ef9d9e011f0e228909eeff2bda615a94160a518f85e2a1e5d1db571  experiments/construction_round6_bundle/README.md
+902a65a6d87f0662d785280ba08cc8852996225a404a93f8ba587a00556b3de2  experiments/construction_round7_d6_compression/results/compression_portfolio.json
+884ae4e52e6f6a124e5c805f9e83470a734cd1efcd73a8637578c1556806e126  experiments/construction_round7_d6_compression/results/posthoc_prior_comparison.json
+ba3d4904afeb56f8262fb8151b1e5d2c872ed11f4c79a6a97028cd3086fefe17  experiments/construction_round7_d6_compression/README.md
+fab419024b4c864b15318a6821be417afe629b305ce3a5128e881db6b9272315  experiments/construction_round7_d6_compression/check_compression.py
+d141a3bfab2d9b510722c07574d5729efaf9eefaddd173f7b0ce6bc804a54d8d  experiments/construction_round7_d6_compression/test_compress_d6.py
+```
+
+Verification commands from `kissing_number_5/`:
+
+```sh
+PYTHONPATH=. .venv/bin/python -m unittest discover -s tests -v
+PYTHONPATH=. .venv/bin/python -m experiments.construction_round6_bundle.check_bundle \
+  experiments/construction_round6_bundle/results/bundle_portfolio.json \
+  --depth experiments/construction_round6_bundle/results/halfspace_depth_n41.json
+PYTHONPATH=. .venv/bin/python -m experiments.construction_round7_d6_compression.check_compression \
+  experiments/construction_round7_d6_compression/results/compression_portfolio.json
+PYTHONPATH=. .venv/bin/python -m unittest \
+  experiments.construction_round7_d6_compression.test_compress_d6 -v
+```
+
+Python 3.14.6 reports 90 passing exact tests in 698.121 seconds.  The two
+construction checkers also pass, and the round-7 package adds four passing
+numerical-tool tests.  Never run the assertion-based exact verifiers with
+`python -O`.

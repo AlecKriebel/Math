@@ -22,6 +22,8 @@ for 41, 42, 43, and 44 points run independently of the obstruction program.
 - `CLAIMS_LEDGER.md` is authoritative about epistemic status.
 - Floating-point output is never promoted to a theorem without an exact or
   directed-interval certificate and an independent verifier.
+- Run verifiers with ordinary Python, not `python -O`; their exact rejection
+  checks deliberately use assertions.
 - Search code belongs under `experiments/`; certificate checkers belong under
   `verifiers/`.
 - A restriction to symmetric, antipodal, lattice, rigid, rational, or
@@ -43,32 +45,37 @@ arithmetic.  The stored integer vector \(r\) denotes the unit vector
 
 ## Reproduce the certified one-sided bound
 
-The exact degree-10 cap-SDP certificate in
-[`proofs/one_sided_cap_degree10_bound.md`](proofs/one_sided_cap_degree10_bound.md)
+The exact degree-11 cap-SDP certificate in
+[`proofs/one_sided_cap_degree11_bound.md`](proofs/one_sided_cap_degree11_bound.md)
 proves
 \[
-B(5)\leq35.
+B(5)\leq34.
 \]
 It uses rational Gram factors and a complete exact Bernstein subdivision of
 the full three-dimensional cap-pair domain.  Consequently, every open
-hemisphere contains at least six points of a hypothetical 41-code, and
-deleting any five points leaves the origin in the interior of the remaining
-convex hull.  The independent tangent-projection lemma proves the stronger
-vertex-direction statement that every point has at least seven strictly
+hemisphere contains at least seven points of a hypothetical 41-code, and
+deleting any six points leaves the origin in the interior of the remaining
+convex hull.  A separately implemented adversarial test rebuilds all 650
+polynomial terms and all 5,995 tree leaves.  The independent
+tangent-projection lemma proves that every point has at least seven strictly
 negative neighbors.
 
 The earlier proof
 [`proofs/one_sided_tukey_bound.md`](proofs/one_sided_tukey_bound.md)
 also establishes \(A(4,1/\sqrt3)\leq33\) exactly.  It remains a dependency
-of the tangent-neighborhood lemma.
+of the tangent-neighborhood lemma.  The degree-10 cap proof
+\(B(5)\le35\) remains as a smaller independent certificate.
 
 From this directory:
 
 ```sh
+python3 verifiers/verify_one_sided_cap_degree11.py
 python3 verifiers/verify_one_sided_cap_degree10.py
 python3 verifiers/verify_tangent_nonnegative_neighborhood.py
 python3 verifiers/verify_one_sided_tukey.py
 python3 -m unittest \
+  tests.test_one_sided_cap_degree11 \
+  tests.test_one_sided_cap_degree11_independent_audit \
   tests.test_one_sided_cap_degree10 \
   tests.test_tangent_nonnegative_neighborhood \
   tests.test_one_sided_tukey -v
@@ -98,6 +105,9 @@ python3 verifiers/verify_local_hybrid_degree3_rank_color.py
 python3 verifiers/verify_harmonic_combination_centered_skew.py
 python3 verifiers/verify_harmonic_rank_frame_barrier.py
 python3 verifiers/verify_local5_degree5_necessary_rank_separator.py
+python3 verifiers/verify_edge_conditioned_k4_exact_obstruction.py
+python3 verifiers/verify_anchored_negative_cap_kernel.py
+python3 verifiers/verify_positive_circuit_pair_catalog.py
 python3 verifiers/verify_fixed41_rank_mixture_separator.py
 python3 verifiers/verify_sparse_deep_graph_stability.py
 python3 verifiers/verify_quantitative_root_system_stability.py
@@ -113,6 +123,9 @@ python3 -m unittest \
   tests.test_harmonic_combination_centered_skew \
   tests.test_harmonic_rank_frame_barrier \
   tests.test_local5_degree5_necessary_rank_separator \
+  tests.test_edge_conditioned_k4_exact_obstruction \
+  tests.test_anchored_negative_cap_kernel \
+  tests.test_positive_circuit_pair_catalog \
   tests.test_fixed41_rank_mixture_separator \
   tests.test_sparse_deep_graph_stability \
   tests.test_quantitative_root_system_stability \
