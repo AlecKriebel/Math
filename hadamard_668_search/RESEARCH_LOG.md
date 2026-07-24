@@ -1737,7 +1737,7 @@ proof-assistant-level theorem.
   1,458; none has a supergroup-free second-digit survivor.  The family sets
   overlap, so these counts are not summed.
 - The sole structured second-digit control occurs in the opposite-helical
-  family.  It is order-six fixed and fails six displayed equations at digit
+  family.  It is order-six fixed and fails five displayed equations at digit
   three.
 - Independently reconstructed all 56 minimal three-dimensional invariant
   submodules of the `F_27 x F_27` class algebra.  All 3,136 asymmetric

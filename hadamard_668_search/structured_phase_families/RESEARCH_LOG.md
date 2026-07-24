@@ -34,7 +34,7 @@
     supergroups, no digit-two point;
   - opposite-helical C4: 178,605 digit-one points, 1,458 outside all five
     supergroups, one digit-two point.
-- Replayed the unique digit-two point.  It is ID-8 fixed and fails six
+- Replayed the unique digit-two point.  It is ID-8 fixed and fails five
   displayed rows at digit three.
 
 ## 2026-07-24 10:24 PDT

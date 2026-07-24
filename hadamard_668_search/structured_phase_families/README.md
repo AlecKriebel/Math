@@ -182,7 +182,7 @@ It is ID-8 fixed.  Its displayed digit-three residual is
 (0,0,0,0,0,0,0,1,0,1,0,0,2,0,0,1,0,0,2,0),
 ```
 
-so it fails six rows immediately at the next digit.
+so it fails five rows immediately at the next digit.
 
 The three tables are per-family counts.  Their point sets can intersect;
 the totals must not be added and described as a disjoint union.

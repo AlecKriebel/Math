@@ -547,7 +547,7 @@ second digit; these family sets need not be disjoint.  Independently, a
 complete reconstruction of all 56 minimal three-dimensional invariant
 submodules tests all 3,136 asymmetric channel pairs per profile, leaving six
 supergroup-free first-digit points and again no second-digit point.  The
-only structured second-digit control is order-six fixed and fails six rows
+only structured second-digit control is order-six fixed and fails five rows
 at digit three.  These are scoped family exclusions, not evidence that any
 of the five full profile spaces is impossible.
 
