@@ -158,6 +158,14 @@ The strongest results in this repository are negative or local:
   were all replayed physically, with zero exact support.  Canonical case 1
   has one unproved solver-UNSAT observation, and the twenty long-block cases
   1--20 remain open;
+- the new long-case orientation cascade proves that positive-fold modulo
+  eight is redundant on the anti-mod-2 code, then replaces a fixed support's
+  39 endpoint bits by a typically 17-dimensional mod-16/root-parity fiber
+  followed by 21 exact mod-32 quadrics.  The pinned 200-support audit leaves
+  22 mod-32 orientations, one with exact roots, and zero modulo-64 points.
+  This is a bounded control, not a case exclusion.  Independent review also
+  proves that the two 42-folds leave a nonzero aperiodic kernel; exactness
+  requires 41 causal equations and 5,928 shared quadratic products;
 - the characteristic-three anti-fold condition is a full three-jet system,
   not only a primitive-28 value sieve. A case-26 support satisfies all
   twenty normalized equations modulo three. The normalized
@@ -901,6 +909,12 @@ python3 verify_eliahou_antifold42.py
 python3 verify_eliahou_antifold_q0_proof.py
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
   eliahou_short_block_census/verify_nine_case_completion.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_long_orientation_cascade/audit_orientation_cascade.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_long_orientation_cascade/verify_sample5_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_long_orientation_redteam/audit_exact_ternary_model.py
 ../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
   --ignore-profiles --start 0 --stop 30 --list-instances
 ```

@@ -79,6 +79,8 @@
 | `eliahou_global_quotient_plan/README.md` | Complete case-26 262,144-quotient census, zero-exact certificate, and strict live replay |
 | `eliahou_short_block_census/README.md` | Complete exact census of all nine canonical short-block cases: 3,710,853,316,608 join rows, 88,927,740 physically replayed joint modulo-six supports, and zero exact support |
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
+| `eliahou_long_orientation_cascade/README.md` | Exact all-case plus-fold mod-8 redundancy, fixed-support mod-16/root system, mod-32 quadratic lift, bounded 200-support certificate, and corrected causal-equation scope |
+| `eliahou_long_orientation_redteam/README.md` | Independent cascade derivation, fold-kernel counterexample, exact 5,928-product ternary formulation, and pinned-survivor replay |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
 | `conference_334_z37_lift/README.md` | Complete 625-class semiregular-`C37` quotient layer, exact all-quotient trace and finite-field bounds, formal completions, modulo-two supports, and constant-generator obstructions through rank three |
 | `conference_334_z37_lift/QUOTIENT_CENSUS.md` | Exact 625-class integral quotient classification, three parity types, all-quotient ambient counts, exceptional representative, and reproduction protocol |

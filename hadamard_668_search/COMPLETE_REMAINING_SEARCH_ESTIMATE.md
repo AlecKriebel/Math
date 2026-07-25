@@ -942,6 +942,29 @@ the `3^36` lift projections, this is an exhaustive, bounded calculation with
 a detached strict aggregate.  It closes all nine short-block cases only;
 the twenty long-block cases remain outside this engine.
 
+The long-case endpoint-orientation layer now has a sharp local cost but no
+global enumeration.  Case 1 has exactly
+
+```text
+25,953,942,447,362,002
+```
+
+weight-39 supports at the anti-fold characteristic-two layer before root
+profile conditioning.  For a supplied support, the new positive-fold lift
+typically reduces `2^39` endpoint choices to `2^17`, then imposes 21 exact
+quadratics.  A deterministic 200-support control processed 26,607,616
+mod-16 orientation points in about 94 seconds and left 22 mod-32 points,
+one with the exact roots and none modulo 64.  These are bounded observations,
+not a whole-space survival rate.
+
+A literal support-first pass at the measured 0.47 seconds per support would
+take roughly 390 million single-core years.  Even one million complete
+supports per second would take about 823 years for this first layer.  The
+exact fold-plus-causal ternary model still uses all 5,928 quadratic products,
+so neither additional local hardware nor a syntax-only solver rewrite makes
+this a production search.  The required advance is a global support
+obstruction or a coupled parametrization that avoids enumerating supports.
+
 The near-Williamson length-167 route has a much worse exact front end.  Its
 one-defect identity removes one block, but the 33 unique gauge-fixed `A,B`
 shards contain exactly

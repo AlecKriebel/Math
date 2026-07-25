@@ -29,7 +29,7 @@ completed nine-case Eliahou short-block census.
 | Eliahou seed verification | reproduced near matrix | published 64-modular matrix of order 668, not an exact Hadamard matrix |
 | Repair with Eliahou's exact `q` | impossible | reduces to empty `TU(41)` |
 | Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
-| Variable `s,q` special quadruple | short boundary closed; long boundary open | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Case 0 is excluded by checked DRAT, all nine short-block cases 21--29 are excluded by an exact 3,710,853,316,608-row census, and the 20 long-block cases 1--20 remain open; case 1 has only an unproved solver-UNSAT observation |
+| Variable `s,q` special quadruple | short boundary closed; long boundary open with a new orientation cascade | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Case 0 is excluded by checked DRAT, all nine short-block cases 21--29 are excluded by an exact 3,710,853,316,608-row census, and the 20 long-block cases 1--20 remain open. On a fixed long support, a new exact plus-fold lift typically cuts 39 endpoint bits to 17 before 21 quadratic mod-32 equations; this does not solve the global support bottleneck |
 | Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
 | Prime-83 character families | closed larger restricted lanes | independently decimated Sidelnikov products through degree three and un-decimated products through degree four are excluded by exact full-PAF joins; independently decimated degree four and higher degrees remain open |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
@@ -168,6 +168,27 @@ long and two short rows produces an affine system over `F_2`; including
 support-weight parity, its rank is exactly 21 in all 39 reciprocal-`q`
 cases. Exact MacWilliams counts show that this layer leaves many supports,
 so it is a reduction rather than another exclusion.
+
+`eliahou_long_orientation_cascade/` supplies the next exact lift for all
+twenty open long cases.  Positive-fold divisibility by eight is proved
+redundant on the complete anti-fold characteristic-two code.  At the next
+digit, one fixed `23 x 78` binary matrix restricted to a support's 39 columns
+imposes positive-fold divisibility by 16 and both root parities; typical
+sampled fibers have dimension 17.  Exact root values are four cardinality
+equations, and divisibility by 32 is exactly 21 quadratic Boolean equations.
+A deterministic 200-support certificate contracts 26,607,616 mod-16
+orientations to 22 mod-32 points, then one exact-root point, which fails
+modulo 64.  These are bounded fixtures, not a long-case exclusion.
+
+The independent `eliahou_long_orientation_redteam/` package reproduces the
+algebra and catches the essential scope boundary: the positive and anti
+42-folds prove only periodic length-84 complementarity.  Exact aperiodic
+complementarity still needs 41 causal equations.  The resulting exact
+lower/upper/none ternary formulation has 5,928 quadratic products—the same
+inventory as the direct aperiodic system—so there is no hidden global
+product-count collapse.  Case 1 alone still has
+25,953,942,447,362,002 anti-mod-2 supports; support-first enumeration is not
+viable.
 
 The new characteristic-three audit sharpens the complementary necessary
 condition.  Over `F_3`,

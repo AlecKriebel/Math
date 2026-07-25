@@ -1017,6 +1017,14 @@ eighteen-orbit classification package for a scoped paper and stop spending
 headline `H(668)` research tokens unless a genuinely new construction
 principle appears.
 
+The subsequent theory-first restart adds one paper-quality Eliahou lemma
+package without changing that headline verdict.  On every open long case,
+the positive-fold mod-8 layer is redundant, the fixed-support mod-16/root
+lift is one `23 x 78` binary system, and the next digit is 21 exact
+quadratics.  The corrected exact ternary formulation also proves that 41
+causal equations and all 5,928 quadratic products remain.  This is a strong
+structural filter, not a long-case exclusion or evidence of convergence.
+
 Maintain two separate internal paper projects rather than forcing the
 Eliahou and Legendre-pair programs into one manuscript.
 
@@ -1024,7 +1032,9 @@ Eliahou and Legendre-pair programs into one manuscript.
 Organize it around the strict distance-80 improvement over the public
 distance-64 bound, the special-distance-41 frontier, the orientation-free
 anti-fold and rank-21 binary lift, the checked case-0 proof, and the complete
-nine-short-case exact exclusion.  The twenty-long-case structural triage,
+nine-short-case exact exclusion.  The long-case endpoint-orientation
+cascade, its independent fold-kernel correction, and the 5,928-product
+ternary theorem are natural supporting sections.  The twenty-long-case structural triage,
 primitive-eight boundary, fixed-`q` reduction to `TU(41)`, and other
 seed-local computations belong only where they sharpen the main theorem or
 as appendices.  A scoped title would be *Exact local obstructions to

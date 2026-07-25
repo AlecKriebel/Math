@@ -2574,3 +2574,30 @@ proof-assistant-level theorem.
 - No prime fold, `BS(84,83)`, or `H(668)` was found.  Independently
   decimated degree four, higher products, and arbitrary character families
   remain open.
+
+## 25 July 2026: exact Eliahou endpoint-orientation cascade
+
+- Derived the complete positive-fold 2-adic orientation lift on all twenty
+  open distance-41 long cases.
+- Proved that the apparent positive-fold mod-8 obstruction is exactly
+  redundant on the full anti-fold characteristic-two affine code.
+- At a fixed support, replaced 39 raw endpoint choices by one fixed
+  `23 x 78` mod-16/root-parity matrix restricted to the selected columns,
+  four exact root cardinalities, and 21 exact mod-32 quadratics.
+- Regenerated a deterministic 200-support certificate.  Its 26,607,616
+  consistent mod-16 points leave 22 mod-32 points, one exact-root point, and
+  zero positive-fold mod-64 points.  This excludes only the pinned supports,
+  not any complete long case.
+- Independent derivation reproduced the algebra on a different 200-support
+  sample and replayed the lone primary root-exact point directly.
+- Corrected an initially promising but false equivalence: the positive and
+  anti 42-folds leave the nonzero kernel `C_1=2,C_83=-2` and prove periodic,
+  not aperiodic, complementarity.  Exactness needs 41 causal equations.
+- Verified in every long case that the exact ternary fold-plus-causal system
+  has 5,928 quadratic products, identical to the direct aperiodic inventory.
+  A bounded exact case-1 diagnostic returned `UNKNOWN`; no solver claim or
+  Hadamard candidate was retained.
+- Exact case-1 support-first scale is
+  25,953,942,447,362,002 already at the anti-mod-2 layer.  The orientation
+  cascade is meaningful local contraction, but a global support theorem is
+  still required.
