@@ -652,3 +652,31 @@ source-specific negative evidence only, not a guarantee of worldwide
 priority.  The result remains unreviewed, leaves companion-at-infinity
 forms open, and does not raise the certified universal total-degree floor
 above \(4\).
+
+### 2026-07-25T08:06Z — all-vertical fixed-quadratic audit delta
+
+The current-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+Gallagher, and publicly indexed X/Twitter sweeps were compared with the
+stronger all-vertical theorem for
+\[
+H_4=(hp,hq,0),\qquad\deg h=\deg p=\deg q=2.
+\]
+No checked source states the same-fibre congruence
+\[
+4(v_{f_1}G_3-v_{f_2}G_3)
+=3(v_{f_1}(hp)-v_{f_2}(hp)),
+\]
+the divisor-parity criterion for a double-line pencil member, or the
+resulting exhaustive frontier
+\[
+\langle x^2,yz\rangle,\qquad
+\langle x^2,y^2+xz\rangle,\qquad
+G_3\in x\langle p,q\rangle.
+\]
+
+An independent hostile audit confirmed every mathematical step and
+explicitly rejected misleading reductions in characteristics \(5\) and
+\(11\).  This source-specific negative evidence is not a guarantee of
+worldwide priority.  The result is unreviewed, identifies rather than
+excludes the final two lower-identity frontiers, and leaves the certified
+universal floor at \(4\).

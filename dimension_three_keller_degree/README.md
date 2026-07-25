@@ -78,7 +78,14 @@ The first audited quartic working lemmas now constrain:
   quadratic-component automorphism exit.  This covers the fixed-linear
   cubic-pencil row, opens an exact all-vertical frontier in the
   fixed-quadratic quadratic-pencil row, and recovers binary necessity in
-  the fixed-cubic line-pencil row; and
+  the fixed-cubic line-pencil row.  On the fixed-quadratic frontier, a
+  same-fibre valuation obstruction eliminates the genuine
+  \(h=\ell^2,p=\ell m\) and split
+  \(h=\ell_1\ell_2\) shapes.  The sole top-identity survivor has
+  \(p=h\), a unique double-line member \(s=\ell^2\), and
+  \((H_3)_3\in\ell\langle p,q\rangle\); its pencil is exactly
+  \(\langle x^2,yz\rangle\) or
+  \(\langle x^2,y^2+xz\rangle\); and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are
@@ -116,8 +123,9 @@ exceptional \(c=0,c^2=9,c=\infty\) pieces of its rank-one-restriction
 pencil, ramified birational quartic parametrizations,
 the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
-with a fixed divisor, including the vertical parts of the primitive
-cubic- and quadratic-pencil rows.
+with a fixed divisor, including the vertical part of the primitive
+cubic-pencil row and the two unique-double-line quadratic-pencil
+frontiers identified above.
 The nodal-cubic, cuspidal-cubic, fixed-divisor conic, and conic
 double-cover rows are closed.  In the rank-one stratum, fixed-component
 projected cubic pencils and a binary common-ramification locus remain.  The

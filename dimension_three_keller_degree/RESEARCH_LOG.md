@@ -926,3 +926,34 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   specializations, and target-shear legality.  Verdict: PASS after
   correcting one overlapping generic-row label.
 - The certified universal total-degree floor remains \(4\).
+
+## 2026-07-25T08:05:00Z — All-vertical fixed-quadratic frontier reduced to two pencils
+
+- Starting from the audited verticality theorem for
+  \(H_4=(hp,hq,0)\), \(\deg h=\deg p=\deg q=2\), compared two simple
+  primes in one pencil fibre:
+  \[
+  4(v_{f_1}G_3-v_{f_2}G_3)
+  =3(v_{f_1}(hp)-v_{f_2}(hp)).
+  \]
+- The genuine \(h=\ell^2,p=\ell m\) shape gives \(4N=6\).
+  The split \(h=\ell_1\ell_2\) shape gives \(4N=3\), unless it degenerates
+  to the nonminimal pencil \(\langle\ell_1^2,\ell_2^2\rangle\).
+  Both shapes are therefore excluded for Keller maps by the
+  quadratic-component exit.
+- In the remaining \(p=h\) shape, divisor parity forces a unique
+  double-line member \(s=\ell^2\).  The exhaustive source/pencil normal
+  forms and complete cubic kernels are
+  \[
+  \langle x^2,yz\rangle,\quad\langle x^3,xyz\rangle,
+  \qquad
+  \langle x^2,y^2+xz\rangle,\quad
+  \langle x^3,x(y^2+xz)\rangle.
+  \]
+- A hostile audit reconstructed the valuation, parity, normal-form, kernel,
+  and exit arguments in exact PARI and dependency-free arithmetic.
+  Characteristics \(5\) and \(11\) were discarded after producing
+  spurious modular kernels; modulo \(101\) and all fault tests pass.
+- This identifies the sole all-vertical top frontier with the two
+  unique-double-line line-\((2,2)\) pencils.  It does not yet exclude both
+  lower-identity frontiers, so the universal floor remains \(4\).

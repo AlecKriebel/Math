@@ -791,6 +791,38 @@ zero specializations.  Combined with the separately audited origin, this
 excludes every finite companion in the chart.  It does not include the
 companion-at-infinity form \(xq\).
 
+### All-vertical fixed-quadratic top obstruction
+
+At 2026-07-25T08:05:00Z the exact reconstruction and independent hostile
+audit passed:
+
+```text
+cd fixed_divisor_verticality/all_vertical_top_obstruction
+/usr/bin/python3 verify_top_obstruction_sympy.py
+cd audit_hostile
+./audit_exact_pari_strict.sh
+/usr/bin/python3 -u audit_reconstruct_mod101.py
+./test_audit_guards.sh
+```
+
+The same-fibre valuation identity eliminates the genuine
+\(h=\ell^2,p=\ell m\) and split
+\(h=\ell_1\ell_2\) all-vertical shapes.  In the remaining \(p=h\) shape,
+divisor parity forces a unique double-line member, and exact normal-form
+and kernel reconstruction leaves precisely
+\[
+\langle x^2,yz\rangle,\quad\langle x^3,xyz\rangle,
+\qquad
+\langle x^2,y^2+xz\rangle,\quad
+\langle x^3,x(y^2+xz)\rangle.
+\]
+
+The hostile audit independently checked the field descent, divisor
+pullback, minimality exception, canonical normalizations, kernel ranks, and
+quadratic-component exit.  It rejected characteristics \(5\) and \(11\)
+after spurious modular kernels appeared; only exact characteristic-zero
+and a dependency-free modulo-\(101\) rank certificate are retained.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

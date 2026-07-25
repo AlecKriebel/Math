@@ -288,8 +288,20 @@ The fixed-divisor coverage is now more precise.
   p=h;\qquad h=\ell^2,\ p=\ell m;\qquad
   h=\ell_1\ell_2,\ p=\ell_1m_1,\ q=\ell_2m_2.
   \]
-  This is an audited restriction, not an exclusion of those vertical
-  shapes.
+  The audited refinement
+  `fixed_divisor_verticality/all_vertical_top_obstruction/NOTE.md`
+  eliminates the genuine second and third shapes by comparing two simple
+  components in the same pencil fibre.  In the first shape, divisor parity
+  forces a unique double-line member \(s=\ell^2\), and the complete cubic
+  normal kernel is
+  \[
+  \ell\langle p,q\rangle.
+  \]
+  Every such minimal quadratic pencil is exactly
+  \(\langle x^2,yz\rangle\) or
+  \(\langle x^2,y^2+xz\rangle\).  Thus the full all-vertical top frontier
+  is now identified with the two unique-double-line line-\((2,2)\)
+  mechanisms already under lower-identity analysis.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 
