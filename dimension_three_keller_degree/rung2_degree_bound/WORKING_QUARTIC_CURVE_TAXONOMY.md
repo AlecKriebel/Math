@@ -256,6 +256,16 @@ The fixed-divisor coverage is now more precise.
   excludes the entire transverse locus \(h\notin\langle p,q\rangle\), for
   every cubic-cover modulus.  The binary locus
   \(h\in\langle p,q\rangle\) remains.
+- In the fixed-linear primitive cubic-pencil row
+  \((e,a,b,\delta,\nu)=(1,3,1,1,1)\),
+  `fixed_linear_cubic_pencil/WORKING_HORIZONTAL_FIXED_LINEAR_CUBIC_PENCIL.md`
+  excludes the horizontal locus
+  \[
+  h\nmid\alpha p+\beta q
+  \quad\text{for every }(\alpha,\beta)\ne(0,0).
+  \]
+  The complementary vertical locus has a unique pencil member divisible
+  by \(h\), and remains active.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

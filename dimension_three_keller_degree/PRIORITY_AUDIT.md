@@ -548,3 +548,24 @@ worldwide priority.  The theorem passed hostile audit but is unreviewed,
 and excludes only the single point \((a,c)=(0,0)\) in the
 outer-critical-infinity chart.  It does not raise the universal certified
 floor above total degree \(4\).
+
+### 2026-07-25T06:18Z — horizontal fixed-linear cubic-pencil overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“fixed linear”, “primitive cubic pencil”, “horizontal divisor”, the tuple
+\((1,3,1,1,1)\), and the leading form \(h(p,q,0)\).  Separate searches
+covered arXiv, MathOverflow, Tao's blog, Secret Blogging Seminar, and
+publicly indexed X/Twitter results.
+
+The closest checked structural source is de Bondt's homogeneous
+minimal-pair factorization, which supplies the taxonomy input but not the
+degree-zero scaling descent or fixed-divisor valuation.  Shaska's current
+graded-map paper and the current counterexample discussions do not state
+the horizontal/vertical cubic-pencil split or the \(E_8/E_7\) normal exit.
+The dedicated package records the full query and source ledger.
+
+No checked source states the equation \(4v_h(G)=d\) for this row or its
+sharp vertical witnesses.  This is source-specific negative evidence only,
+not a guarantee of worldwide priority.  The theorem passed hostile audit
+but remains unreviewed, and the vertical locus stays open.  The certified
+universal total-degree floor remains \(4\).

@@ -3,8 +3,8 @@
 **Verification timestamps:** 2026-07-24T23:43:08Z,
 2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
 2026-07-25T02:04:55Z, 2026-07-25T02:48:29Z, and
-2026-07-25T03:19:56Z, 2026-07-25T06:06:25Z, and
-2026-07-25T06:11:00Z.
+2026-07-25T03:19:56Z, 2026-07-25T06:06:25Z,
+2026-07-25T06:11:00Z, and 2026-07-25T06:18:12Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -619,6 +619,47 @@ rejected.  This excludes exactly the transverse/nonbinary part of
 (e,a,b,\delta,\nu)=(1,1,3,1,3);
 \]
 the binary fixed line remains.
+
+### Horizontal fixed-linear primitive cubic pencil
+
+At 2026-07-25T06:18:12Z the exact and hostile-audit checks passed:
+
+```text
+cd fixed_linear_cubic_pencil
+/usr/bin/python3 verify_horizontal_fixed_linear_cubic_pencil_sympy.py
+./verify_horizontal_fixed_linear_cubic_pencil_pari_strict.sh
+./audit_hostile/audit_finite_field_strict.sh
+./audit_hostile/audit_supplied_runners.sh
+```
+
+For
+\[
+H_4=h(p,q,0),\qquad \deg h=1,\quad\deg p=\deg q=3,
+\]
+with \((p,q)\) a minimal coprime pencil and no pencil member divisible by
+\(h\), a homogeneous normal first integral \(G\) of degree \(d\) gives
+\[
+\frac{G^4}{(hp)^d}=R(q/p).
+\]
+Valuation along \(h=0\) forces \(4v_h(G)=d\), impossible for \(d=2,3\).
+The degree-eight and degree-seven Keller identities therefore kill the
+cubic and quadratic third components, after which the plane-fibre exit
+makes the map an automorphism.
+
+The independent audit reconstructed the minimality/relative-closure
+argument, scaling descent, divisor valuation, determinant polarizations,
+and plane exit.  A dependency-free finite-field implementation checked
+the low-degree kernels and both top coefficients; strict runners reject
+optimized Python, GP diagnostics, trailing output, and nonzero exits.
+
+The theorem is sharp only at the top identities.  On the vertical locus
+\(p=h^m r\), the valuation acquires the term
+\[
+m\,\operatorname{ord}_{\infty}R,
+\]
+and explicit primitive examples retain nonzero quadratic or cubic normal
+first integrals.  Those witnesses are not Keller maps, and the vertical
+locus remains active.
 
 ## Scope
 

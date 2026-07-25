@@ -789,3 +789,27 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   noncritical endpoint, the generic infinity chart, and both
   companion-at-infinity orbits remain active.
 - The universal certified floor remains total degree \(4\).
+
+## 2026-07-25T06:18:12Z — Horizontal fixed-linear cubic-pencil locus excluded
+
+- In the row
+  \[
+  (e,a,b,\delta,\nu)=(1,3,1,1,1),\qquad H_4=h(p,q,0),
+  \]
+  assume the cubic pencil is minimal and no member contains the fixed line
+  \(h=0\).
+- If a homogeneous normal component \(G\) of degree \(d\) satisfies
+  \(\operatorname{Jac}(hp,hq,G)=0\), scaling descent and relative
+  algebraic closure give \(G^4/(hp)^d=R(q/p)\).  The \(h\)-valuation then
+  forces \(4v_h(G)=d\), impossible for \(d=2,3\).
+- Thus the top two Keller identities kill both nonlinear normal
+  components.  The remaining linear normal coordinate gives a
+  degree-at-most-four plane Keller map on every fibre, hence a polynomial
+  automorphism.
+- A hostile audit reconstructed every field, valuation, determinant, and
+  plane-exit step and added fail-closed runners plus a dependency-free
+  finite-field audit.  Verdict: PASS.
+- The vertical determinantal locus remains active.  Exact primitive
+  witnesses show that the top-identity vanishing fails there, though they
+  are not Keller maps.
+- The universal certified floor remains total degree \(4\).

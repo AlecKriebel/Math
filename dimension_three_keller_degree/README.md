@@ -68,6 +68,10 @@ The first audited quartic working lemmas now constrain:
   \(H_4=r(A(p,q),B(p,q),0)\): for every degree-three cover \(A/B\), the
   Wronskian derivation has no polynomial normal eigenform in degrees two
   or three, leaving a plane-field automorphism; and
+- the horizontal part of the fixed-linear primitive cubic-pencil row
+  \(H_4=h(p,q,0)\): a degree-zero first integral has incompatible
+  valuation along \(h=0\) in degrees two and three, so the normal
+  components vanish.  The vertical determinantal locus remains open; and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are
@@ -92,7 +96,8 @@ infinity point, ramified birational quartic parametrizations, the binary
 fixed-cubic line locus
 \(h\in\mathbb C[p,q]\), the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
-with a fixed divisor.
+with a fixed divisor, including the vertical part of the primitive
+cubic-pencil row.
 The nodal-cubic, cuspidal-cubic, fixed-divisor conic, and conic
 double-cover rows are closed.  In the rank-one stratum, fixed-component
 projected cubic pencils and a binary common-ramification locus remain.  The
