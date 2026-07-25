@@ -44,7 +44,8 @@
   UNSAT proof consistent with the human theorem; the proof is not yet a
   campaign negative certificate.
 - The one-edge-toggle engine has not run. Its first hostile review found a
-  real nondefault path collision; a repair is under independent re-review.
+  real nondefault path collision; the repair passed independent re-review,
+  including the exact former SQLite-overwrite geometry.
 - No result at this checkpoint resolves the universal conjecture or raises
   the complete all-graph order frontier beyond the published order 11.
 
@@ -55,7 +56,7 @@
 | Literature/status audit | active-weekly | Current refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain gaps |
 | Exact evaluators/certificates | complete-for-current-artifacts | A/B, theta traces, order-9, extension coverage, and third mathematical replay passed |
 | MMV one-vertex extensions | complete-review-pending | Search and two independent audits passed; final hostile coverage report pending |
-| Single-edge toggles of closest seeds | repair-re-review | Exact 25,641-origin engine built; launch blocked until repaired path validator is accepted |
+| Single-edge toggles of closest seeds | accepted-launch | Exact 25,641-origin engine and repaired path validator accepted; production paths remain absent |
 | Direct synthesis `(12,3)` | active-prelaunch | Four exact base encodings built; generator path safety and clause semantics under hostile review |
 | Structural `k=3` lane | active | Three-template theorem accepted as C-017; cautious novelty assessment remains search-limited |
 | General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
@@ -82,8 +83,8 @@
 
 1. Close and archive the hostile coverage and odd-antihole reviews, then
    promote the extension result with an exactly delimited claim.
-2. Repair and re-review the synthesis generator and edge-toggle path gates;
-   launch the 25,641-toggle search only after acceptance.
+2. Launch and independently audit the now-accepted 25,641-toggle search while
+   closing the still-pending synthesis-generator repairs.
 3. Complete the proof-audited CEGAR orchestrator and begin the three
    hub-free odd-hole branches for the full `(n,k)=(12,3)` slice.
 

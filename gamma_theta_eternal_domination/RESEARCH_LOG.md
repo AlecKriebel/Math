@@ -191,6 +191,9 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   JSON. Production launch was correctly blocked.
 - The engine author repaired the derived checkpoint-path validation and
   added exact overwrite, nesting, and symlink regressions. A separate
-  re-review is in progress; no edge-toggle production run has started.
+  re-review accepted the repaired engine: all 25,641 toggle semantics retained
+  their independent digest, the former SQLite-overwrite assignment and nine
+  adjacent aliases now fail before output creation, and no high or medium
+  finding remains. No edge-toggle production run has started.
 - The synthesis generator audit independently found unsafe output/input path
   aliases. Those are also launch-blocking until repaired and re-reviewed.
