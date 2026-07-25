@@ -730,6 +730,37 @@ unexpected-output, missing-output, and nonzero-exit failures.  The
 theorem excludes exactly \(c(c^2-9)\ne0\); it does not claim the marked
 or exceptional frontier.
 
+### Binary fixed-cubic line row
+
+At 2026-07-25T06:55:00Z the promoted verifiers and two clean-room hostile
+reconstructions passed:
+
+```text
+cd ..
+/usr/bin/python3 -u verify_binary_fixed_cubic_complete.py
+gp -q verify_binary_fixed_cubic_complete_pari.gp
+/usr/bin/python3 -u audit_binary_fixed_cubic_hostile/audit_orbits_lower_exact.py
+/usr/bin/python3 -u audit_binary_fixed_cubic_hostile/audit_exceptional_branches_exact.py
+./audit_binary_fixed_cubic_hostile/test_fail_closed.sh
+```
+
+For \(H_4=h(p,q)(p,q,0)\) with binary cubic \(h\), the verification
+enumerates all squarefree, double-root, and triple-root stabilizer orbits
+of the binary cubic normal component.  It certifies the local root-order
+formula, every raw tangent splitting, all parameter pivots, the
+\(\rho=2,3,4\) exceptional branches, and the complete lower-syzygy
+kernel.  The only four zero-normal lower leaves end in the exact constants
+\[
+-24/5,\qquad-15/2,\qquad3/2,\qquad-12.
+\]
+
+The hostile scripts independently assert every raw \(E_6\) rank, both
+conjugate algebraic branches, and a converse row reduction for the
+delicate \(t4\) branch.  They also verify the degree bounds in all
+coordinate exits and inject false identities to test fail-closed
+behavior.  No Keller-compatible leaf remains.  Combined with the audited
+nonbinary theorem, this closes the full fixed-cubic line taxonomy row.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

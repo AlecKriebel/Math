@@ -56,10 +56,12 @@ The first audited quartic working lemmas now constrain:
   block plus a shear, while all five nonbinary normal forms are impossible
   by exact logarithmic-valuation, affine-translation, and degree-six
   obstructions; and
-- the nonbinary fixed-cubic line subrow
-  \(H_4=h(p,q,r)(p,q,0)\): logarithmic valuations reduce the only
-  exceptional factorization to \(h=pr^2\), and its two residual stabilizer
-  orbits force a singular linear part; and
+- the entire fixed-cubic line row
+  \(H_4=h(p,q,r)(p,q,0)\): the nonbinary half reduces by logarithmic
+  valuations to two impossible \(h=pr^2\) orbits, while the binary half
+  has a complete squarefree/double/triple-root stabilizer tree whose
+  tangent, multiplier, and lower-syzygy leaves all exit or contradict the
+  Keller condition; and
 - the nonbinary fixed-quadratic line double-cover subrow
   \(H_4=h(p,q,r)(p^2,q^2,0)\): the only residual square factor has exactly
   two stabilizer orbits, and complete lower determinant solves force a
@@ -103,9 +105,7 @@ locus in type \((1,4)\), the projective-infinity and companion-at-infinity
 parts of the unique-double-line line-image \((2,2)\) stratum, plus the
 marked and exceptional \(c=0,c^2=9,c=\infty\) pieces of its
 rank-one-restriction pencil, ramified birational quartic parametrizations,
-the binary
-fixed-cubic line locus
-\(h\in\mathbb C[p,q]\), the binary fixed-quadratic line double-cover locus,
+the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
 with a fixed divisor, including the vertical parts of the primitive
 cubic- and quadratic-pencil rows.

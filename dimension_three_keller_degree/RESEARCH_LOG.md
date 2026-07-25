@@ -870,3 +870,34 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   verification-independence disclosure, and a permissive PARI wrapper were
   corrected; all fault-injection tests now pass.
 - The certified universal total-degree floor remains \(4\).
+
+## 2026-07-25T07:05:00Z — Binary fixed-cubic line row excluded
+
+- In the binary half of
+  \[
+  (e,a,b,\delta,\nu)=(3,1,1,1,1),\qquad
+  H_4=h(p,q)(p,q,0),
+  \]
+  the squarefree, double-root, and triple-root types of the binary cubic
+  \(h\) give an exhaustive stabilizer quotient for the cubic normal part
+  \(W=(H_3)_3\).
+- The local marked-root formula
+  \[
+  \operatorname{ord}_{\ell}\gcd(a,b,c)
+  =\min(2m,m+n-1)
+  \]
+  controls every raw \(E_7\) splitting.  Exact lower identities close all
+  residual parameter pivots, including two algebraic multiplier branches
+  and precisely four zero-normal lower leaves with constants
+  \(-24/5,-15/2,3/2,-12\).
+- Every other branch has a quadratic, pure-cube, matched-linear-factor, or
+  binary plane-plus-shear coordinate exit whose plane degree is below the
+  unconditional bound \(100\).  Hence every Keller map in this binary
+  stratum is an automorphism.
+- A hostile audit independently reconstructed the full orbit list, every
+  raw rank and pivot, both conjugate algebraic branches, the delicate
+  \(t4\) converse, all lower leaves, and the coordinate degree costs.
+  Verdict: PASS; optimized and fault-injected executions fail closed.
+- Together with the previously audited nonbinary theorem, this closes the
+  entire fixed-cubic line taxonomy row.  The certified universal
+  total-degree floor remains \(4\).

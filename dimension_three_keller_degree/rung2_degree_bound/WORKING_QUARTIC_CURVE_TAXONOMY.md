@@ -246,8 +246,11 @@ The fixed-divisor coverage is now more precise.
 - In the fixed-cubic line row
   \((e,a,b,\delta,\nu)=(3,1,1,1,1)\),
   `WORKING_FIXED_CUBIC_LINE_ROW.md` excludes every nonbinary fixed divisor
-  \(h\notin\mathbb C[p,q]\).  The binary locus
-  \(h\in\mathbb C[p,q]\) remains.
+  \(h\notin\mathbb C[p,q]\).
+  `WORKING_BINARY_FIXED_CUBIC_LINE_ROW.md` excludes the complementary
+  binary locus \(h\in\mathbb C[p,q]\) by an exhaustive
+  squarefree/double/triple-root orbit and lower-syzygy tree.  Both halves
+  passed independent hostile audits, so the entire row is closed.
 - In the fixed-quadratic line double-cover row
   \((e,a,b,\delta,\nu)=(2,1,2,1,2)\),
   `fixed_quadratic_line_doublecover/WORKING_NONBINARY_FIXED_QUADRATIC_LINE_DOUBLECOVER.md`

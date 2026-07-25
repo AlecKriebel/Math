@@ -613,3 +613,23 @@ frontier.  This is source-specific negative evidence only, not a guarantee
 of worldwide priority.  The result remains unreviewed, does not cover the
 marked or exceptional rank-one-restriction orbits, and does not raise the
 certified universal total-degree floor above \(4\).
+
+### 2026-07-25T07:05Z — binary fixed-cubic row audit delta
+
+New exact searches combined “Keller map dimension three degree four” with
+“binary fixed cubic”, “line image”, “fixed divisor”, the tuple
+\((3,1,1,1,1)\), and
+\[
+H_4=h(p,q)(p,q,0),\qquad h\in\mathbb C[p,q]_3.
+\]
+The checked current arXiv, MathOverflow, Tao-blog, Secret Blogging
+Seminar, and publicly indexed X/Twitter results do not state the
+binary-cubic orbit tree, marked-root gcd formula, exceptional lower
+constants, or the exclusion of this full binary stratum.  The dedicated
+audit file records the query scope.
+
+The binary theorem passed a hostile mathematical audit and, together with
+the already audited nonbinary theorem, closes the fixed-cubic line row.
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The result is unreviewed and does not raise the
+certified universal total-degree floor above \(4\).
