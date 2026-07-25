@@ -293,7 +293,10 @@ families remain.
 Within item 2, the squarefree and double-root strata are excluded by
 literal constant minors through total source degrees six, five, and four;
 see `VERTICAL_ELL_ZERO_NONTRIPLE_LEMMA.md` and its independent hostile
-audit.  Its triple-root part remains separate.
+audit.  On the triple-root stratum, the complete
+\(\gamma=0,\ell=0\) sublocus is also excluded on all three minimal
+charts by `VERTICAL_TRIPLE_GAMMA0_ELL0_LEMMA.md` and its independent
+hostile audit.
 
 No leaf is called excluded here.  The formulas are necessary conditions
 through \(E_4\), and the full lower-\(z\)-coefficient solve is still in

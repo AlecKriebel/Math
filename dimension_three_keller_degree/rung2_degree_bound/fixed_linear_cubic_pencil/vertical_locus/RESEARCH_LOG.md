@@ -193,3 +193,23 @@
   solve, and final determinant calculation.
 - The audit passed at exactly the candidate lemma's scope.  The result
   excludes this sublocus but does not close the frozen row.
+
+## 2026-07-25T21:22:00Z — first triple-root zero-\(\gamma\), zero-\(\ell\) chart
+
+- On \(q=x^3+yz^2\), \(W=wz^2\), constant \(E_6,E_5,E_4\) pivots give
+  the complete successive solutions and force the linear part singular.
+- A fresh dependency-free sparse reconstruction independently checked the
+  chart normalization, all pivots and residuals, and fail-closed mutations.
+- The one-chart result passed hostile audit.  A unified calculation now
+  covers the other two minimal triple-root charts and awaits its own
+  broader-scope hostile audit.
+
+## 2026-07-25T21:31:00Z — unified triple-root zero-\(\gamma\), zero-\(\ell\) audit
+
+- Constant pivots extend the one-chart calculation uniformly to the
+  \(y^2z+\alpha xz^2\), \(xyz\), and \(yz^2\) minimal charts.
+- A fresh sparse reconstruction independently derived the atlas, gauges,
+  pivots, complete solves, residuals, and singular-linear-part conclusion,
+  retaining \(\alpha,w\) and testing mutations on every chart.
+- The unified hostile audit passed.  The result still excludes only the
+  \(\gamma=\ell=0\) triple-root sublocus, not the frozen row.
