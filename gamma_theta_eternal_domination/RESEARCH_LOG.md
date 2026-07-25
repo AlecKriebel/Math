@@ -220,3 +220,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - This remains an unpromoted finite search result until a standalone checker
   independently reconstructs all toggles and a third mathematical
   implementation certifies `gamma < gamma-infinity` on every canonical row.
+
+### 16:23 — Single-edge-toggle universe independently certified
+
+- A standalone coverage checker independently reselected the 391 seeds,
+  reconstructed all 25,641 add/delete origins, directly verified a saved
+  raw-to-canonical isomorphism for every origin, and reconciled all 19,136
+  canonical multiplicities and first-origin records.  A separate hostile
+  implementation replayed the entire ledger and accepted the exact coverage
+  claim with no critical, high, or medium finding.
+- A third mathematical checker, sharing no domination or transition core
+  with the search or evaluators A/B, proved `gamma < gamma-infinity` for
+  every canonical row.  It found 7,934 rows with `gamma=2` and 11,202 with
+  `gamma=3`; complete simultaneous fixed-point traces delete all 1,235,981
+  dominating configurations at `k=gamma` in 37,552 rounds.  An independent
+  frozenset implementation replayed every blocker and deletion round.
+- The exact finite statement is promoted as claim C-019.  It concerns only
+  single-edge toggles of the 391 specified seeds; it neither covers all
+  order-12 graphs nor resolves the universal conjecture.
+- During hostile testing, one default-path completed-state replay rewrote
+  only the coverage report's runtime/timestamp fields.  The receipt database,
+  origin chain, binding, and conclusions remained byte-identical.  The
+  resulting report was frozen at SHA-256 `82c6918f...`, the mathematical
+  checker binds those exact bytes, and the incident is recorded in the
+  hostile review.
+- As workload evidence only, a throwaway CEGAR dry run of the accepted
+  order-12 `C9` template reached solver `UNSAT` after 170 valid coloring
+  cuts in 22.7 seconds.  The `C7` and `C5` probes reached 594 and 543 cuts,
+  respectively, at their separate 90-second gates without a terminal.
+  These probes retained no proof logs and support no mathematical claim;
+  production awaits the audited resumable orchestrator.

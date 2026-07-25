@@ -1,5 +1,94 @@
 # Campaign State
 
+## Checkpoint 004 — 2026-07-25 16:24 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `ace5d109` (full hash recorded in Git).
+- Shared-main HEAD observed at checkpoint creation:
+  `a915e9d5b46b184b9ec5bf8b2f44c02886ffb82b`.
+- Completion estimate for the campaign work plan: **36%**.
+- Completion estimate toward an actual universal resolution: **8%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25.  No new terminology requiring an
+  out-of-cycle refresh arose in this checkpoint.
+
+### Verified facts and artifacts
+
+- The single-edge-toggle search around the 391 closest extension seeds is
+  now independently certified as claim C-019.  Its exact universe comprises
+  25,641 seed/pair origins and 19,136 isomorphism classes.
+- The standalone coverage audit reconstructed every toggle, checked an
+  explicit raw-to-key isomorphism for every origin, and reconciled all
+  multiplicities.  A separate hostile reconstruction accepted the result
+  with no critical, high, or medium finding.
+- A third mathematical implementation proves `gamma < gamma-infinity` on
+  every canonical row: 7,934 rows have `gamma=2`, 11,202 have `gamma=3`,
+  and complete simultaneous fixed-point traces delete all 1,235,981
+  dominating configurations at `k=gamma`.  An independent frozenset replay
+  checked every domination blocker and one-guard deletion round.
+- The final coverage report, receipt state, mathematical certificates, audit
+  report, checker source sets, and both hostile reviews are manifest-bound as
+  ART-070--080.  Read-only replay commands are documented in `README.md`.
+
+### Claim and review boundary
+
+- C-019 is a certificate-backed negative result only for one edge toggle of
+  each of the specified 391 seeds.  It is not a complete order-12
+  enumeration, does not improve the published all-graph order frontier, and
+  does not resolve the conjecture.
+- The accepted three-template reduction and base CNF stack make a complete
+  `(n,k)=(12,3)` result possible if all three proof-producing CEGAR branches
+  terminate and their coverage/cut/proof packages pass independent audit.
+- A temporary `C9` dry run reached unlogged solver `UNSAT` after 170 cuts;
+  `C7` and `C5` hit their 90-second exploratory gates at 594 and 543 cuts.
+  These are workload observations only and are not claims.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | Current refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain gaps |
+| Exact evaluators/certificates | complete-for-current-artifacts | A/B plus independent coverage, mathematical, and hostile replays passed |
+| MMV one-vertex extensions | complete-certified | C-018 covers 110,537 origins and 54,216 canonical graphs |
+| Single-edge toggles of closest seeds | complete-certified | C-019 covers 25,641 origins and 19,136 canonical graphs |
+| Direct synthesis `(12,3)` | active-orchestrator-audit | Base encoding accepted; resumable proof-producing runner is being completed before hostile launch review |
+| Structural `k=3` lane | active | C-017 accepted; a stronger transition-kernel condition is under independent development |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- No production search or solver process is active.
+- All extension and edge-toggle production artifacts and their independent
+  replays are complete at the hashes in manifest ART-042--080.
+- The CEGAR runner and its tests/protocol are under construction; no
+  production synthesis run directory or checkpoint exists yet.
+- The exploratory `C5`, `C7`, and `C9` dry runs ended and retained no
+  certificate artifacts.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Edge-toggle search: 724.27 seconds wall, 709.44 seconds CPU, 75.92 MiB
+  peak RSS.
+- Independent coverage reconstruction/replay: 16.10/4.96 seconds wall,
+  approximately 64.2/73.33 MiB peak RSS.
+- Third mathematical certificate generation plus two replays: 46.19 seconds
+  wall, 35.44 MiB peak RSS; separate hostile replay took 19.81 seconds.
+- Free disk is approximately 8.6 GiB.  No more than two memory-heavy jobs
+  remain permitted; current work is source review and low-memory testing.
+
+### Next three highest-value actions
+
+1. Finish and hostile-audit the resumable CEGAR orchestrator, including its
+   crash, path, model, cut, proof, and terminal-state semantics.
+2. Launch the proof-producing `C9` branch, verify its DRAT proof
+   independently, then run bounded resumable `C7` and `C5` branches.
+3. Audit the proposed transition-kernel lemma and use it either as a proved
+   structural filter or record a precise counterexample/failed route.
+
 ## Checkpoint 003 — 2026-07-25 15:35 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.

@@ -73,3 +73,47 @@ PYTHONPATH=src python3 -m search.certify_mmv2022_theta \
 The second command independently replays every saved proof when the
 certificates already exist. It never silently replaces an invalid or
 mismatched certificate.
+
+The certified one-vertex-extension result (claim C-018) can be replayed
+without rerunning or modifying the frozen search.  The first, read-only
+command reconstructs all 110,537 labeled extensions and checks their 54,216
+canonical-class receipts; the second checks every saved domination,
+independence, and one-guard fixed-point certificate using the separately
+written mathematical verifier:
+
+```text
+PYTHONWARNINGS=error python3 reviews/extension_coverage_hostile_probe.py
+
+PYTHONPATH=src PYTHONWARNINGS=error python3 -m evaluation_checker \
+  --verify-only
+```
+
+To regenerate that bounded search from the pinned 55-graph input catalog,
+use:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error python3 -m search.extension_killtest \
+  --validation-gate-open \
+  --batch-size 256 \
+  --wall-limit-seconds 2700 \
+  --memory-limit-mib 1024
+```
+
+The production search is transactionally resumable.  The replay commands are
+read-only and check the installed artifacts against their recorded hashes
+rather than replacing them.
+
+Claim C-019, the complete one-edge-toggle search around the 391 closest
+extensions, has the same two-layer replay:
+
+```text
+PYTHONWARNINGS=error python3 reviews/edge_toggle_coverage_hostile_probe.py
+
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 -m edge_toggle_evaluation_checker --verify-only
+```
+
+The first command reconstructs all 25,641 labeled toggles and verifies their
+19,136 canonical-class mappings.  The second independently proves
+`gamma < gamma-infinity` for every class from the installed domination and
+one-guard fixed-point certificates.
