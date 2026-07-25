@@ -213,3 +213,57 @@
   retaining \(\alpha,w\) and testing mutations on every chart.
 - The unified hostile audit passed.  The result still excludes only the
   \(\gamma=\ell=0\) triple-root sublocus, not the frozen row.
+
+## 2026-07-25T21:31:36Z — all nonzero-\(\ell\) nontriple charts reduced
+
+- Reconstructed the binary \(E_5\) equation and its full kernels directly
+  from the raw determinant, retaining all five lower-\(z\) moduli of \(q\).
+- On the squarefree kernel, the full degree-six identity contains
+  \([x^4yz]E_6=su\) and \([xy^4z]E_6=-sv\) for
+  \(\ell=ux+vy\). On the double-root noncollision kernel, it contains
+  \([x^4yz]E_6=su\) and \([x^3y^2z]E_6=-2sv\).
+- Replayed the two collision kernels separately. For \(\ell=cx\), including
+  the extra tangent parameter, \([x^4yz]E_6=sc\). For \(\ell=cy\),
+  \([x^3y^2z]E_6=-2sc\). Thus no nonzero-\(\ell\) nontriple branch survives.
+- Added a candidate lemma, a raw SymPy checker, and a strict optimized-Python
+  guard. This candidate awaits independent hostile audit; no global row
+  status was changed.
+
+## 2026-07-25T21:50:05Z — nonzero-\(\ell\) nontriple hostile audit
+
+- A fresh dependency-free sparse implementation reconstructed the full raw
+  determinant and the exterior \(E_5,E_6\) expansions with all five
+  lower-\(z\) moduli and every lower jet symbolic.
+- It independently recovered the squarefree rank-five kernel, the double
+  noncollision kernel, both rank-four collision kernels, and every decisive
+  degree-six coefficient.
+- It also supplied the missing local exposition step
+  \(E_6|_{z=0}=-s q_0\{q_0,W_0\}\), whose constant bracket minor \(-8\)
+  forces \(W_0=0\). The lemma was patched to make this reduction explicit.
+- Verdict: PASS on exactly the \(s\ne0\), nontriple vertical companion.
+  Combined with the audited \(\ell=0\) result, this closes that complete
+  nontriple subfamily; the global frozen-row count is unchanged.
+
+## 2026-07-25T21:36:24Z — complete zero-\(\gamma\) triple-root branch
+
+- On every minimal triple-root chart,
+  \([x^5z]E_6=-3sv\) first forces \(v=0\).
+- Three lower-jet-free coefficient combinations then force \(u=0\), so
+  \(W=wz^2\) and the already audited terminal theorem applies.
+- A dependency-free raw/exterior reconstruction passed with negative
+  controls.  This closes the complete \(a\ne0,\gamma=0\) branch.
+
+## 2026-07-25T21:41:16Z — nonzero-\(\gamma\) triple-root hostile audit
+
+- A fresh dependency-free sparse reconstruction compared the complete raw
+  degree-six determinant with an independent exterior expansion on all
+  three minimal triple-root charts.
+- It reproduced the \(q_C\) single coefficient, both incompatible \(q_B\)
+  relations and their denominator-free \(5s\gamma\) elimination, and the
+  \(q_E\) coefficient combination with every lower jet symbolic.
+- The audit rederived the ordered three-chart atlas, the nonminimal binary
+  boundary, and every target shear, retaining rather than normalizing
+  \(\gamma,s\).
+- Normalization, out-of-scope \(W_0\), gamma-sensitivity, optimized-Python,
+  and supplied-checker mutations all failed closed. Verdict: PASS at the
+  candidate theorem's exact scope.

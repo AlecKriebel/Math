@@ -296,7 +296,20 @@ see `VERTICAL_ELL_ZERO_NONTRIPLE_LEMMA.md` and its independent hostile
 audit.  On the triple-root stratum, the complete
 \(\gamma=0,\ell=0\) sublocus is also excluded on all three minimal
 charts by `VERTICAL_TRIPLE_GAMMA0_ELL0_LEMMA.md` and its independent
-hostile audit.
+hostile audit.  The raw \(E_6\) identities in
+`VERTICAL_TRIPLE_GAMMA0_REDUCTION.md` reduce every
+\(a\ne0,\gamma=0\) point to that sublocus, while
+`VERTICAL_TRIPLE_GAMMA_NONZERO_EXCLUSION.md` excludes
+\(\gamma\ne0\) directly.  Both reductions passed independent hostile
+audits.  Hence the complete triple-root part of the \(a\ne0\) vertical
+companion is excluded.
+
+On the nontriple strata, `VERTICAL_NONZERO_ELL_NONTRIPLE_LEMMA.md`
+and its dependency-free hostile audit exclude every \(\ell\ne0\)
+kernel, including all root-line collision kernels; the previously audited
+`VERTICAL_ELL_ZERO_NONTRIPLE_LEMMA.md` excludes \(\ell=0\).
+Consequently the complete nontriple part of the \(a\ne0\) vertical
+companion is also excluded.
 
 No leaf is called excluded here.  The formulas are necessary conditions
 through \(E_4\), and the full lower-\(z\)-coefficient solve is still in
