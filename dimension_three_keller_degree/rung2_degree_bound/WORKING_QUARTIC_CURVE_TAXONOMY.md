@@ -196,11 +196,14 @@ The common-factor-free rows have the following exact or partial coverage.
    two marked mixed companions \(xq\) and \(x(p-q)\), and
    `line22_rankone_restriction/marked_triple_orbit/NOTE.md` excludes the
    marked triple \(x^3\).
-   `line22_rankone_restriction/unmarked_resonance_c3/NOTE.md` now
-   excludes the finite resonance \(c^2=9\) after an independent hostile
-   audit.  The unmarked companion at infinity is the sole remaining
-   stratum and has a provisional exact calculation undergoing hostile
-   audit.
+   `line22_rankone_restriction/unmarked_resonance_c3/NOTE.md` and
+   `line22_rankone_restriction/unmarked_companion_infinity/NOTE.md` now
+   exclude the finite resonance \(c^2=9\) and the companion at infinity
+   after independent hostile audits. Thus the entire
+   rank-one-restriction pencil is closed. The only remaining genuine
+   line-\((2,2)\) package is the rank-two-restriction
+   companion-at-infinity pair described above, whose final resonance
+   audit is active.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

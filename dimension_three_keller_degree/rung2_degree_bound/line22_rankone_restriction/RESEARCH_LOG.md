@@ -140,3 +140,17 @@ is not a guarantee of worldwide priority.
 - The unmarked companion at infinity is now the sole genuine
   rank-one-restriction line-\((2,2)\) frontier. The universal
   total-degree floor remains \(4\).
+
+## 2026-07-25T10:00:00Z — unmarked companion at infinity audited
+
+- A dependency-free sparse-polynomial reconstruction confirmed the raw
+  rank-\(18\) kernel, all legal gauges, the parameter-free rank-ten
+  \(E_6\) forcing and converse, and the four \(E_5\) determinant pivots.
+- The audit uses neither SymPy nor PARI/GP and introduces no parameter
+  localization. Four targeted mutations and exact-transcript guards pass.
+- Together with the open finite locus, \(c=0\), \(c^2=9\), and the three
+  marked orbits, this closes every joint orbit for the
+  rank-one-restriction pencil \(\langle x^2,y^2+xz\rangle\).
+- This does not yet close the distinct rank-two-restriction pencil:
+  its companion-at-infinity package is undergoing a final hostile audit.
+  The universal total-degree floor remains \(4\).

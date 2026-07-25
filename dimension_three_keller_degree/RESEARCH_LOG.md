@@ -1071,3 +1071,21 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The unmarked companion at infinity is the sole remaining genuine
   rank-one line-\((2,2)\) orbit. The universal total-degree floor remains
   \(4\).
+
+## 2026-07-25T10:00:00Z — Rank-one companion at infinity excluded
+
+- For
+  \[
+  p=x^2,\quad q=y^2+xz,\quad
+  H_4=((p-q)^2,(p+q)^2,0),\quad(H_3)_3=xq,
+  \]
+  constant raw and lower minors force the last two columns of the linear
+  part to vanish.
+- A dependency-free hostile implementation reconstructed the determinant
+  using sparse rational arithmetic, proved raw kernel completeness by a
+  rank sandwich, and checked every gauge and lower converse. All strict
+  and fault-injection tests pass. Verdict: PASS.
+- Every joint orbit for the rank-one-restriction line-\((2,2)\) pencil is
+  now excluded. The rank-two-restriction companion-at-infinity package is
+  the sole remaining genuine line-\((2,2)\) frontier and is under final
+  audit. The universal total-degree floor remains \(4\).
