@@ -1,14 +1,17 @@
 # Priority audit: symmetric monodromy realizations
 
 **Initial sweep (UTC):** 2026-07-25T19:47:04Z.
+**Hostile-audit correction (UTC):** 2026-07-25T20:08:55Z.
 
 This is source-specific evidence, not a guarantee of worldwide priority.
 No person was contacted.
 
 ## Candidate claim
 
-For every \(d\ge3\), the full symmetric group \(S_d\) occurs as the
-geometric monodromy group of a dimension-three Keller counterexample.
+Every admissible degree-\((d-1)\) seed in Gallagher's weighted-lift
+construction has geometric monodromy \(S_d\).  In particular, for every
+\(d\ge3\), the full symmetric group \(S_d\) occurs as the geometric
+monodromy group of a dimension-three Keller counterexample.
 
 ## Sources checked
 
@@ -36,6 +39,14 @@ geometric monodromy group of a dimension-three Keller counterexample.
   monodromy](https://mathoverflow.net/questions/513387/galois-structure-of-the-new-counterexample-to-the-jacobian-conjecture-an-explic).
   It asks whether constraints beyond non-normality are known and contains
   no all-degree symmetric realization.
+- The MathOverflow answer
+  [*Geometric degrees of counterexamples to the Jacobian conjecture in
+  dimension three*](https://mathoverflow.net/a/513470) and its linked
+  [Note 19](https://github.com/dasjoms/jacobian-conjecture-counterexample-exploration/blob/main/jacobian_pin_transposition.md).
+  This is a direct predecessor: it proves \(S_d\) for Gallagher's
+  canonical tower for \(3\le d\le13\).  Public commit
+  `ad47e9cea792` records the note on 21 July 2026.  It reports further
+  finite checks but expressly leaves the all-degree argument open.
 - Terence Tao's
   [digestion post and current comments](https://terrytao.wordpress.com/2026/07/21/a-digestion-of-the-jacobian-conjecture-counterexample/).
   The post has no Gallagher monodromy calculation.  One comment describes
@@ -60,14 +71,17 @@ geometric monodromy group of a dimension-three Keller counterexample.
   MathOverflow, and Secret Blogging Seminar discussions.  No matching
   all-\(d\) Keller realization was found.
 
-## Current verdict
+## Corrected verdict
 
 Gallagher has clear priority for the counterexample family and its all-degree
 generic-fibre theorem.  Brink has clear priority for the two-parameter
-symmetric Galois theorem.  Their combination through the exact
-weighted-lift root-field recovery, and hence the realization of every
-\(S_d\) by dimension-three Keller counterexamples, was not found in the
-checked public record.  That combination remains provisional until the
-independent hostile search and mathematical audit are complete.
+symmetric Galois theorem.  The MathOverflow/Note 19 authors have priority
+for the finite \(3\le d\le13\) symmetric-monodromy computation in
+Gallagher's canonical tower.  Their family-wide combination through the
+exact weighted-lift root-field recovery--full symmetric monodromy for every
+admissible seed and every \(d\ge3\)--was not found in the checked public
+record and passed the independent mathematical audit.  It should be
+presented as a new attributed Brink--Gallagher corollary, not as a new
+Galois theorem.
 
 The absence of a hit is not proof of novelty.

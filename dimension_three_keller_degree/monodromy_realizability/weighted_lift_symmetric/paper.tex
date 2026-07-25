@@ -1,0 +1,360 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Full symmetric monodromy throughout Gallagher's weighted-lift family}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Mon}{\operatorname{Mon}}
+\newcommand{\Gal}{\operatorname{Gal}}
+
+\title{\bfseries Full symmetric monodromy throughout\\
+Gallagher's weighted-lift family\\[3pt]
+\large An attributed Brink--Gallagher corollary}
+\author{Alec Kriebel, with substantial AI assistance}
+\date{Research record: 25 July 2026\\
+First public release: 25 July 2026, 20:15:16 UTC}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black!45}{yellow!8}{%
+\begin{minipage}{0.90\textwidth}
+\small
+\textbf{Status, priority, and review notice.}
+Gallagher has priority for the weighted-lift maps and their generic degrees.
+Brink's 2004 theorem supplies the abstract two-free-coefficient Galois
+calculation.  A MathOverflow answer and linked Note~19 had already proved
+full symmetric monodromy for Gallagher's canonical tower in generic degrees
+$3$ through $13$.  The contribution recorded here is only the uniform
+all-degree, all-admissible-seed corollary obtained by combining Gallagher's
+exact inverse equation with Brink's theorem.  A source audit found no earlier
+statement of that combination, but cannot guarantee worldwide priority.
+This work is not peer reviewed.  Exact computations check encoded algebra;
+they are evidence against transcription errors, not peer review.
+\end{minipage}}
+\end{center}
+
+\begin{abstract}
+Gallagher constructed dimension-three Keller counterexamples of every
+generic degree $d\geq3$ by a weighted-lift procedure depending on an
+admissible polynomial seed.  We observe that the inverse equation for every
+such seed is
+\[
+ \Phi(T)-PT+cQ=0,
+\]
+where $\Phi$ has degree $d$ and $P,Q$ are independent target parameters.
+Brink's classical theorem on a polynomial with free linear and constant
+coefficients therefore applies verbatim.  Exact rational recovery identifies
+the root field with the function-field extension of the Keller map and rules
+out extraneous denominator branches.  Consequently every admissible
+weighted lift of generic degree $d$ has geometric monodromy $S_d$.
+In particular every symmetric group $S_d$, $d\geq3$, is realized as the
+geometric monodromy group of a Keller counterexample
+$\A^3_\C\to\A^3_\C$.
+\end{abstract}
+
+\section{Statement}
+
+For a dominant polynomial map
+$F:\A^3_\C\to\A^3_\C$, write
+\[
+ K=\C(F_1,F_2,F_3),\qquad L=\C(x,y,z).
+\]
+Its generic degree is $[L:K]$, and its geometric monodromy group is the
+Galois group of the Galois closure of $L/K$, in its natural action on the
+generic fibre.
+
+\begin{theorem}\label{thm:main}
+Let $p\in\C[w]$ be any admissible seed in Gallagher's weighted-lift
+construction and suppose $\deg p=d-1\geq2$.  The associated Keller
+counterexample has generic degree $d$ and geometric monodromy group $S_d$.
+\end{theorem}
+
+\begin{corollary}\label{cor:realization}
+For every $d\geq3$, the symmetric group $S_d$ occurs as the geometric
+monodromy group of a Keller counterexample
+$\A^3_\C\to\A^3_\C$ of generic degree $d$.
+\end{corollary}
+
+\section{The weighted lift}
+
+Fix $b,c\in\C^\times$.  An admissible seed is a polynomial $p$ satisfying
+\begin{equation}
+ p(0)=0,\qquad p(1)=-c,\qquad \int_0^1p(s)\,ds=0,
+ \qquad \kappa:=\frac{p'(1)}c\ne-2.                 \label{eq:seed}
+\end{equation}
+Define
+\begin{equation}
+ q(0)=0,\qquad q'(w)=\frac{w p'(w)}c,\qquad
+ a=-\frac{1+\kappa}{2+\kappa}.                     \label{eq:q}
+\end{equation}
+Put
+\[
+ v=xy,\quad t=x^2z,\quad u=1+v,\quad
+ \gamma=1+av+bt,\quad w=u\gamma
+\]
+and
+\[
+ \beta=c+\frac{p(w)}{\gamma},\qquad
+ \alpha=u+\frac{q(w)}{\gamma^2}.
+\]
+Gallagher's weighted lift is
+\begin{equation}
+ F_p=(A,B,C)=
+ \left(\frac{\alpha}{x^2},\frac{\beta}{x},x\gamma\right).
+                                                               \label{eq:map}
+\end{equation}
+
+For completeness, the apparent divisions in \eqref{eq:map} cancel.
+The condition $p(0)=0$ makes $p(u\gamma)/\gamma$ polynomial in $u,\gamma$.
+Since $q(0)=q'(0)=0$, the same holds for
+$q(u\gamma)/\gamma^2$.  At $(v,t)=(0,0)$ one has $u=\gamma=w=1$.
+Integration by parts gives
+\begin{equation}
+ q(w)=\frac{wp(w)-\Phi(w)}c,\qquad
+ \Phi(w):=\int_0^w p(s)\,ds,                       \label{eq:phi}
+\end{equation}
+so \eqref{eq:seed} gives $q(1)=-1$.  Thus
+$\alpha(0,0)=\beta(0,0)=0$, while
+\[
+ \frac{\partial\alpha}{\partial v}(0,0)
+ =1+\kappa(1+a)+2a=0.
+\]
+After substituting $v=xy$ and $t=x^2z$, $\beta$ is divisible by $x$ and
+$\alpha$ by $x^2$.
+
+We also recall the determinant calculation.  Set
+\begin{equation}
+ P=BC=c\gamma+p(w),\qquad
+ Q=AC^2=w\gamma+q(w).                              \label{eq:PQ}
+\end{equation}
+Then
+\[
+ \det\frac{\partial(P,Q)}{\partial(w,\gamma)}=-c\gamma,
+ \qquad
+ \det\frac{\partial(w,\gamma)}{\partial(v,t)}=b\gamma.
+\]
+Moreover,
+\[
+ \det\frac{\partial(x,v,t)}{\partial(x,y,z)}=x^3,
+ \qquad
+ \det\frac{\partial(A,B,C)}{\partial(P,Q,C)}=-C^{-3}.
+\]
+Multiplication, using $C=x\gamma$, gives
+\begin{equation}
+ \det JF_p=bc\ne0.                                  \label{eq:jac}
+\end{equation}
+Thus $F_p$ is a Keller map and $A,B,C$ are algebraically independent.
+
+\section{Inverse equation and exact recovery}
+
+Equation \eqref{eq:phi} is equivalent to
+\[
+ \Phi(w)=wp(w)-cq(w).
+\]
+Eliminating $\gamma$ from \eqref{eq:PQ} yields
+\begin{equation}
+ H(T):=\Phi(T)-PT+cQ=0.                             \label{eq:inverse}
+\end{equation}
+Conversely, a generic root $w$ of \eqref{eq:inverse} recovers the source:
+\begin{equation}
+\begin{aligned}
+ \gamma&=\frac{P-p(w)}c,&
+ x&=\frac C\gamma,&
+ u&=\frac w\gamma,&
+ v&=u-1,\\
+ y&=\frac vx,&
+ t&=\frac{\gamma-1-av}{b},&
+ z&=\frac t{x^2}.&
+\end{aligned}                                      \label{eq:recovery}
+\end{equation}
+There is a particularly short certificate against an extraneous branch:
+\begin{equation}
+ H'(w)=p(w)-P=-c\gamma.                             \label{eq:derivative}
+\end{equation}
+A root with $\gamma=0$ would therefore be a repeated generic root.
+As proved immediately below, $H$ is irreducible and hence separable in
+characteristic zero.  Moreover, $C\ne0$ on a generic open set, so all
+denominators in \eqref{eq:recovery} are valid at the generic point.
+
+The target change is birational:
+\[
+ \C(A,B,C)=\C(P,Q,C),
+\]
+since $P=BC$, $Q=AC^2$, $B=P/C$, and $A=Q/C^2$.  If
+$K=\C(A,B,C)$ and $L=\C(x,y,z)$, exact recovery gives
+\begin{equation}
+ L=K(w).                                            \label{eq:rootfield}
+\end{equation}
+
+If $\deg p=d-1$, then $\deg\Phi=d$.  The polynomial
+$\Phi(T)-PT+cQ$ is irreducible over $\C(P,Q)$: it is irreducible in
+$\C[P,Q,T]$ because it is primitive and linear in $Q$ with unit
+coefficient, and it is primitive as a polynomial in $T$.  Gauss's lemma
+applies.  Adjoining the independent transcendental $C$ preserves
+irreducibility.  Hence \eqref{eq:rootfield} has degree $d$.
+
+\section{Full symmetric monodromy}
+
+We use the following classical theorem.
+
+\begin{theorem}[Brink {\cite[Theorem 13]{Brink}}]\label{thm:brink}
+Let $k$ be a field whose characteristic does not divide $d(d-1)$.  For
+fixed $a_{d-1},\ldots,a_2\in k$, the polynomial
+\[
+ X^d+a_{d-1}X^{d-1}+\cdots+a_2X^2+SX+R
+\]
+has Galois group $S_d$ over $k(S,R)$.
+\end{theorem}
+
+Divide \eqref{eq:inverse} by the nonzero leading coefficient of $\Phi$.
+Because $p(0)=0$, the fixed polynomial $\Phi$ has no linear term.  The
+linear and constant coefficients of the normalized equation are independent
+nonzero scalar multiples of $P$ and $Q$.  Taking $k=\C$ in
+Theorem~\ref{thm:brink} gives
+\begin{equation}
+ \Gal\bigl(H/\C(P,Q)\bigr)=S_d.                     \label{eq:galois}
+\end{equation}
+The field $\C$ is algebraically closed, so this is already the geometric
+group.  Adjoining the independent transcendental $C$ does not change the
+splitting-field group.  Finally, \eqref{eq:rootfield} identifies its natural
+root action with the action on the $d$ points of the generic fibre.
+Therefore $\Mon(F_p)=S_d$, proving Theorem~\ref{thm:main}.
+
+Gallagher's construction supplies admissible seeds in every degree
+$d-1\ge2$.  Since $d>1$, the associated map cannot be a polynomial
+automorphism.  This proves Corollary~\ref{cor:realization}.
+
+\section{A compact rational family}
+
+One particularly simple choice, useful for direct checking, is
+\[
+ b=c=1,\qquad
+ p_d(w)=\frac{2w-dw^{d-1}}{d-2}.
+\]
+It satisfies \eqref{eq:seed}, has $\kappa=-(d+1)$, and gives
+\[
+ a=-\frac d{d-1},\qquad
+ q_d(w)=\frac{w^2-(d-1)w^d}{d-2}.
+\]
+Thus
+\[
+ u=1+xy,\qquad
+ \gamma=1-\frac d{d-1}xy+x^2z
+\]
+and
+\begin{align*}
+ A_d&=\frac{(d-2)u+u^2-(d-1)u^d\gamma^{d-2}}
+              {(d-2)x^2},\\
+ B_d&=\frac{(d-2)+2u-du^{d-1}\gamma^{d-2}}
+              {(d-2)x},&
+ C_d&=x\gamma.
+\end{align*}
+After $U=(d-2)P$ and $V=-(d-2)Q$, the inverse polynomial is simply
+\[
+ T^d-T^2+UT+V.
+\]
+This is also a direct instance of Brink's theorem.  Alternatively,
+$T^d-T^2+UT$ is Morse over $\overline{\C(U)}$: its critical points are
+simple, and equality of two critical values with ratio $r$ would imply
+\[
+ (d-2)r^d-dr^{d-1}+dr-(d-2)=0,
+\]
+forcing the transcendental parameter $U$ to be algebraic.  The classical
+Morse-polynomial theorem \cite[Theorem 4.4.5]{Serre} again gives $S_d$.
+
+There is an explicit collision.  Put
+\[
+ s_d=\frac{4-2^d}{d-2}.
+\]
+At the target $(A_d,B_d,C_d)=(s_d,s_d,1)$, the inverse polynomial has the
+distinct roots $1$ and $2$.  Their recovery denominators are
+\[
+ \gamma(1)=\frac{d+2-2^d}{d-2}\ne0,\qquad
+ \gamma(2)=2^{d-1}\ne0.
+\]
+Hence every displayed map is visibly noninjective.
+
+\section{Priority and verification}
+
+Gallagher \cite{Gallagher} proved the weighted-lift construction and the
+occurrence of every generic degree at least three.  Brink
+\cite{Brink} proved the Galois theorem used here.  Before this record,
+MathOverflow answer 513470 and its linked Note~19
+\cite{MO,Note19} proved $S_d$ for Gallagher's canonical tower for
+$3\le d\le13$ and reported further finite checks.  We claim none of those
+ingredients.  A source-specific search found no earlier statement that
+Brink's theorem makes \emph{every} admissible Gallagher seed symmetric in
+every degree.  Absence of a search hit is not proof of worldwide priority.
+
+The accompanying exact verification has three parts.  A symbolic script
+keeps all unconstrained seed coefficients symbolic and checks the endpoint,
+integral, divisibility, elimination, and recovery identities for
+$3\le d\le10$.  A separate PARI/GP resultant calculation verifies at the
+specialization $U=1$ that all $d-1$ finite branch values are simple for
+$3\le d\le20$, independently checking the geometric Morse mechanism.
+Exact number-field specializations give arithmetic $S_d$ for
+$3\le d\le10$; these are only arithmetic consistency checks and are not
+presented as independent proof of geometric monodromy.
+
+\medskip
+\noindent\textbf{AI-assistance disclosure.}
+This research record, proof organization, source search, and verification
+code were produced with substantial assistance from OpenAI Codex agents.
+The primary human researcher directed the program.  No person was contacted
+by the agents.  The theorem passed an internal hostile-agent audit, which is
+not peer review.
+
+\begin{thebibliography}{9}
+
+\bibitem{Brink}
+D. Brink,
+\emph{On alternating and symmetric groups as Galois groups},
+Israel J. Math. \textbf{142} (2004), 47--60.
+\href{https://doi.org/10.1007/BF02771527}{doi:10.1007/BF02771527}.
+
+\bibitem{Gallagher}
+A. Gallagher,
+\emph{An infinite family of counterexamples to the Jacobian Conjecture in
+dimension three: every generic fiber degree $n\ge3$ occurs},
+Zenodo (20 July 2026).
+\href{https://doi.org/10.5281/zenodo.21479195}{doi:10.5281/zenodo.21479195}.
+
+\bibitem{MO}
+\emph{Geometric degrees of counterexamples to the Jacobian conjecture in
+dimension three}, MathOverflow answer 513470 (July 2026),
+\url{https://mathoverflow.net/a/513470}.
+
+\bibitem{Note19}
+dasjoms,
+\emph{Note 19---The Pin's Transposition}, public research note
+(21 July 2026),
+\url{https://github.com/dasjoms/jacobian-conjecture-counterexample-exploration/blob/main/jacobian_pin_transposition.md}.
+
+\bibitem{Serre}
+J.-P. Serre,
+\emph{Topics in Galois Theory}, 2nd ed.,
+Research Notes in Mathematics 1, A K Peters, 2008.
+
+\end{thebibliography}
+
+\end{document}
