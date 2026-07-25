@@ -86,10 +86,12 @@ restart report:
    quadratic-class control family fail by digit three. This includes 2,592
    genuinely non-affine-in-class laws. The result is exhaustive for that
    finite ansatz only; it is not a whole-profile obstruction.
-4. Across all five original shell-two profiles, a new multiplicative
-   class×row anti-tensor family gives 720 exact charts and 517,109 distinct
-   first-digit placements. Exactly 514,912 lie outside all prior all-five
-   feature, minimal-`F_27`, and proper-multiplier families. None survives
+4. Across the five canonical representatives of the original shell-two
+   orbits, a new multiplicative class×row anti-tensor family gives 720
+   exact charts and 517,109 distinct
+   first-digit placements. Exactly 514,912 lie outside all prior
+   representative-scoped feature, minimal-`F_27`, and proper-multiplier
+   families. None survives
    digit two; the best points satisfy 18 of 20 rows. All 361 exact
    fixed-background separable corrections around those near misses fail to
    reach 19 of 20, so they do not open a cheap rank-two continuation.
@@ -185,6 +187,25 @@ exact survivor would trigger immediate reconstruction, while an empty
 census would close all nine short-block cases and strengthen the pivot
 package without closing the nineteen long-block cases.
 
+## Shell-two action-closure correction on 24 July 2026
+
+The original `structured_phase_families/` result was exact on the five
+canonical representatives, but its coordinate-dependent feature laws were
+not invariant under the full 24-element profile action.  It therefore did
+not justify an all-orbit claim.  The separate
+`shell_two_structured_action_closure/` certificate now derives and exhausts
+all `24+12+12+12+24=84` distinct labelled images for the three nontrivial
+opposite families and the `F_27` minimal-submodule family.
+
+The closure evaluates 5,900,019 attained first-digit placements.  Exactly
+five reach digit two, all in `opposite_helical_c4`; they are five distinct
+exactly replayed `C6`-rotation classes, all fixed by minimal proper
+multiplier supergroup ID8, with digit-three defects `5,6,7,8,12`.  Zero
+reach digit three.  These five points are not counted as gate progress.
+The already separate `five_orbit_family_audit/` remains what it originally
+claimed: an exact audit on the five canonical representatives, not an
+84-image action closure.
+
 ## Result on 24 July 2026: construction gate failed
 
 All required lanes were executed, but none of the four forms of evidence
@@ -193,7 +214,7 @@ listed below was obtained.
 | lane | certified result | gate consequence |
 |---|---|---|
 | literature | the July 2026 full-multiplier paper subsumes the local order-18, order-9, and order-6 fixed-compression lanes; paper ID3 `<10>` remains open, while every minimal proper supergroup of `<10>` is excluded | any viable point here must be exactly `<10>`-fixed |
-| structured families | eight named programs were tested on all five profiles; thousands of supergroup-free first-digit points and six minimal-submodule points produced no viable second-digit survivor | no structured exact lift |
+| structured families | eight named programs were tested on five canonical representatives; the four nontrivial lanes were then action-closed over all 84 labelled images and 5,900,019 first-digit placements, yielding five ID8-fixed digit-two points and zero digit-three points | no consecutive or structured exact lift |
 | unrestricted higher digits | one proper-supergroup-free digit-two point was certified; digit three and a bounded joint digit-two/three/four objective were attempted, but no full digit-three point was found | the abundant digit-two witness does not pass |
 | carry algebra | exact coordinates expose eighteen digit-two quadrics plus nineteen digit-three equations; the delayed origin row has a complete finite orientation count, while degree-three XL gives no refutation or contraction | new supporting mathematics, no global exclusion |
 | stage 2.5 | two points also satisfy the delayed nineteenth row, disproving the proposed universal obstruction; they leave 11 and 16 other digit-three rows nonzero, fail exact row margins, and have regular full-rank local geometry | useful falsification, no viable partial lift |
@@ -238,7 +259,9 @@ The decision is:
 ## Required lanes
 
 1. Test at least three genuinely different structured placement families on
-   all five exact profile orbits.  Families obtained only by adding a proper
+   the five canonical profile representatives, and action-close every
+   coordinate-dependent family before making an orbit-wide claim.  Families
+   obtained only by adding a proper
    fixed common-multiplier supergroup do not count: the July 2026
    classification excludes every such supergroup of `<10>`.
 2. Derive and attempt at least the two consecutive digits after the audited

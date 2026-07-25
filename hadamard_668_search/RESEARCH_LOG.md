@@ -1729,9 +1729,9 @@ proof-assistant-level theorem.
 
 ## 24 July 2026: structured phase-family gate
 
-- Exhausted four low-period placement controls on all five shell-two
-  profiles.  Every first-digit point in them is fixed by the already
-  excluded order-six common-multiplier subgroup.
+- Exhausted four low-period placement controls on the five canonical
+  shell-two orbit representatives.  Every first-digit point in them is
+  fixed by the already excluded order-six common-multiplier subgroup.
 - Exhausted three genuinely opposite-class-twisted families.  Their
   per-family supergroup-free first-digit counts are 2,916, 174,960, and
   1,458; none has a supergroup-free second-digit survivor.  The family sets
@@ -1741,14 +1741,16 @@ proof-assistant-level theorem.
   three.
 - Independently reconstructed all 56 minimal three-dimensional invariant
   submodules of the `F_27 x F_27` class algebra.  All 3,136 asymmetric
-  channel pairs per profile were tested: 436 distinct first-digit points,
+  channel pairs per canonical representative were tested: 436 distinct
+  first-digit points,
   six outside every excluded proper supergroup, and no second-digit point.
 - The six-test package passed under the system Python and the pinned Python
   3.9 runtime.  A compatibility helper replaced direct `int.bit_count()`
   calls in the shared dense-shell verifier without changing its semantic
   replay.  Peak resident memory stayed below 32 MB.
-- These are exact structured-family exclusions, not whole-profile
-  exclusions.  No external contact, push, or publication occurred.
+- These are exact canonical-representative structured-family exclusions,
+  not action-closed or whole-profile exclusions.  No external contact,
+  push, or publication occurred.
 
 ## 24 July 2026: higher-digit and complete-search gate
 
@@ -2098,19 +2100,19 @@ proof-assistant-level theorem.
   source, requires exact-orbit enumeration mode and the v2 shard schema,
   and passes.
 
-## 24 July 2026: all-five anti-tensor family
+## 24 July 2026: five-representative anti-tensor family
 
 - Introduced the multiplicative class-by-row family
   `u_X(j,s)=P_X(j mod 3,s)+h_j F_X(j mod 6)G_X(s)`, with arbitrary
   quadratic background `P_X`, arbitrary six-class table `F_X`, and one of
   twelve nonconstant projective row laws `G_X` in each channel.
-- The two independent row laws give 144 charts per profile and 720 across
-  the five shell-two representatives. Exactly 703 charts are consistent
+- The two independent row laws give 144 charts per representative and 720
+  across the five shell-two representatives. Exactly 703 charts are consistent
   at the first placement digit.
 - Complete affine enumeration gives 879,741 chart incidences and 517,109
   distinct first-digit placements. Only 2,197 lie in the combined union of
-  the seven earlier all-five feature families and every minimal `F_27`
-  submodule family. The other 514,912 are also outside all five proper
+  the seven earlier representative-scoped feature families and every
+  minimal `F_27` submodule family. The other 514,912 are also outside all five proper
   fixed common-multiplier supergroups.
 - Exhaustive evaluation of all twenty exact second-digit equations leaves
   zero survivors. The best points satisfy 18 of 20 rows on two profiles.
@@ -2120,9 +2122,10 @@ proof-assistant-level theorem.
 - The independent replay took 28.30 seconds and 180,355,072 bytes maximum
   RSS. A flat rank-two extension is projected at about
   327,370,313,205 chart incidences, so it is not a viable next census.
-- This is a complete obstruction for one new structured family on all five
-  profiles. It removes only 517,109 points from five `3^36` spaces and is
-  not a whole-profile, `LP(333)`, or `H(668)` result.
+- This is a complete obstruction for one new structured family on the five
+  canonical representatives.  It was already scoped that way and has not
+  been action-closed.  It removes only 517,109 points from five `3^36`
+  spaces and is not a whole-profile, `LP(333)`, or `H(668)` result.
 
 ## 24 July 2026: bounded `Phi_28` norm-key assessment
 
@@ -2144,7 +2147,8 @@ proof-assistant-level theorem.
 
 ## 24 July 2026: anti-tensor correction obstruction
 
-- Took all three `18/20` points from the all-five anti-tensor census and
+- Took all three `18/20` points from the five-representative anti-tensor
+  census and
   allowed a second separable component
   `h_j F'_X(j mod 6)G'_X(s)` with all 13 projective row directions per
   channel, while holding each point's background and first component fixed.
@@ -2345,3 +2349,33 @@ proof-assistant-level theorem.
   `cc272f74521b7cf58216b1971f8a2659b1eb1068a295b6c7552cb3c15c778dc8`.
   This closes the stated quadratic antipodal family on one orbit, not
   degree-three, non-antipodal, or unrestricted center laws.
+
+## 24 July 2026: shell-two structured action closure
+
+- Audited the older `structured_phase_families/` scope.  Its feature laws
+  use the chosen class coordinates, while its verifier iterates only the
+  five canonical shell-two representatives.  The earlier exact results
+  remain valid on those representatives but were not all-action-image
+  theorems.  The independent `five_orbit_family_audit/` was already
+  explicitly representative scoped and is unchanged.
+- Built a separate exact, resumable closure for
+  `opposite_planar_c3_envelope`, `opposite_twisted_c6`,
+  `opposite_helical_c4`, and the `F_27` minimal-submodule family.  The frozen
+  24-element action produces exactly
+  `24+12+12+12+24=84` distinct labelled images.
+- Exhausted 5,900,019 attained first-digit placements across the four
+  family-image audits: 72,900 planar, 3,542,940 twisted, 2,278,854
+  helical, and 5,325 `F_27`.  The `F_27` total includes all `56^2=3,136`
+  asymmetric submodule pairs on every image.
+- Exactly five points reach digit two, all in the helical family.  They are
+  five distinct classes under the common `C6` rotation, with every one of
+  the six rotations directly replayed.  All five are fixed by minimal
+  proper multiplier supergroup ID8; none is proper-supergroup-free.
+  Their digit-three defects are `5,6,7,8,12`, and zero reach digit three.
+- The action closure therefore repairs a real orbit-scope gap but fails the
+  consecutive-lift gate.  The five digit-two points are not counted as
+  construction progress.
+- The pinned, live-output, and full 84-image recomputation verifiers all
+  pass.  The certificate semantic SHA-256 is
+  `e5a27d107a5e2f140feabb3a69a02c16044980a05baaa1523fafff3ef9d0d802`.
+  No commit, push, or external contact occurred.

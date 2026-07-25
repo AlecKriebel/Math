@@ -13,6 +13,15 @@ found no row-margin-compatible digit-two seed, full digit-three point, or
 structured exact lift, and obtained neither a feasible complete search nor
 a whole-profile exclusion.
 
+The earlier `structured_phase_families/` certificate covered only the five
+canonical representatives, not every labelled action image.  The corrected
+four-family action closure now exhausts all 84 images and 5,900,019 attained
+first-digit placements.  It finds five helical digit-two points, all fixed
+by minimal proper multiplier supergroup ID8 and all distinct under verified
+`C6` rotation; their digit-three defects are `5,6,7,8,12`, so zero survive
+digit three.  This closes the scope gap but does not reopen the construction
+gate.
+
 A genuinely new input justified a bounded restart, and the dense `h=0`
 profile census is now complete.  All 729 production shards cover
 47,730,304 raw decorations and 25,368,365,895,696 weighted primitive
@@ -297,18 +306,30 @@ The strongest new constructive reductions are:
   proposed free rank-two ramified-module/Hensel shortcut.  A second-digit
   witness is therefore diagnostic, not a milestone.
 - `structured_phase_families/`: exact solver-free tests of eight named phase
-  programs.  Three opposite-class-twisted families have respectively
+  programs on the five canonical orbit representatives.  This original
+  certificate is representative scoped, because its feature laws use the
+  chosen class coordinates.  Three opposite-class-twisted families have
+  respectively
   `2,916`, `174,960`, and `1,458` supergroup-free digit-one points, with no
   such digit-two survivor; these per-family sets may overlap.  The
   complete `F_27 x F_27` minimal-submodule family tests all 3,136 asymmetric
-  channel pairs per profile, leaving six supergroup-free digit-one points
-  and no digit-two point.  Its sole structured digit-two control is
+  channel pairs per representative, leaving six supergroup-free digit-one
+  points and no digit-two point.  Its sole structured digit-two control is
   order-six fixed and fails digit three.
+- `shell_two_structured_action_closure/`: action-closes the three nontrivial
+  opposite families and the `F_27` minimal-submodule family over all
+  `24+12+12+12+24=84` labelled images.  The exact 5,900,019-placement
+  census has five helical digit-two survivors, five distinct verified
+  `C6`-rotation classes, all fixed by minimal proper multiplier supergroup
+  ID8, digit-three defects `5,6,7,8,12`, and zero digit-three survivors.
+  The default, live, and full-recompute verifiers pass.
 - `five_orbit_family_audit/`: a new multiplicative class×row anti-tensor
-  family supplies 720 exact charts across all five profiles. Its affine
-  unions contain 517,109 distinct digit-one placements, including 514,912
-  outside every prior all-five feature family, minimal `F_27` submodule,
-  and proper multiplier supergroup. All fail digit two; the best points
+  family supplies 720 exact charts across the five canonical
+  representatives.  It was already explicitly representative scoped and
+  has not been action-closed.  Its affine unions contain 517,109 distinct
+  digit-one placements, including 514,912 outside every prior
+  representative-scoped feature family, minimal `F_27` submodule, and
+  proper multiplier supergroup. All fail digit two; the best points
   satisfy 18 of 20 rows. The immediately larger rank-two flat census is
   estimated at about 327.4 billion chart incidences and is not authorized.
 - `anti_tensor_correction/`: exact low-rank elimination tests every
@@ -595,9 +616,10 @@ audit.
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
    next exact task is to complete the resumable dense-profile census, test
-   any genuinely new structured phase law across all five `n_9=2` orbits,
-   and lift only seeds that pass exact row margins through at least two
-   consecutive digits beyond the quadratic layer.
+   any genuinely new structured phase law first on the five `n_9=2`
+   canonical representatives and then across every action image before an
+   orbit-wide claim, and lift only seeds that pass exact row margins through
+   at least two consecutive digits beyond the quadratic layer.
    A point satisfying only the quadratic second digit is not a progress
    gate: the structured six-coordinate subsystem alone leaves about `3^30`
    points per profile. Work on `n_9=1,0` should use the v2 streaming
@@ -699,6 +721,13 @@ Run the complete Python suite:
 
 ```sh
 .solver-venv/bin/python -m unittest discover -v
+```
+
+Replay the authoritative shell-two structured action closure:
+
+```sh
+python3 shell_two_structured_action_closure/verify_action_closure.py
+python3 shell_two_structured_action_closure/verify_action_closure.py --live
 ```
 
 Build the fixed-memory engine and independent verifiers:

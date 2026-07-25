@@ -783,29 +783,50 @@ eighteen.  The remaining twelve coordinates therefore require genuinely
 conditional quadratic or exact finite-field methods rather than automatic
 linear Hensel lifting.
 
-`structured_phase_families/` then tests eight named algebraic placement
-families on all five profiles.  The four low-period controls are entirely
-contained in the already excluded order-six common-multiplier family.  Three
+`structured_phase_families/` tests eight named algebraic placement families
+on the five **canonical orbit representatives**.  The feature laws use the
+chosen class coordinates, so this frozen certificate is representative
+scoped and is not by itself an all-action-image theorem.  On those
+representatives, the four low-period controls are entirely contained in the
+already excluded order-six common-multiplier family.  Three
 opposite-class-twisted families deliberately break every excluded proper
 supergroup, while the final family reconstructs all 56 minimal
 three-dimensional invariant submodules of the `F_27 x F_27` class algebra
-and tests all `56^2` asymmetric channel pairs per profile.  Every
+and tests all `56^2` asymmetric channel pairs per representative.  Every
 supergroup-free structured point fails the quadratic second digit.  The
-single structured second-digit point is order-six fixed and fails digit
-three, so it is a positive control rather than a viable lift.
+representative certificate's single structured second-digit point is
+order-six fixed and fails digit three, so it is a positive control rather
+than a viable lift.
+
+`shell_two_structured_action_closure/` repairs that scope gap for the three
+nontrivial opposite families and the `F_27` minimal-submodule family.  It
+derives all `24+12+12+12+24=84` distinct labelled action images and
+exhausts 5,900,019 attained first-digit placements across the four
+family-image audits.  Exactly five points reach digit two, all in
+`opposite_helical_c4`; they remain five distinct classes under the exactly
+replayed common `C6` rotation, all are fixed by minimal proper multiplier
+supergroup ID8, and their digit-three defects are `5,6,7,8,12`.  Zero reach
+digit three.  Thus the action closure corrects the orbit-wide accounting but
+does not pass the consecutive-lift gate.
+
+```sh
+python3 shell_two_structured_action_closure/verify_action_closure.py
+```
 
 `five_orbit_family_audit/` tests a genuinely different multiplicative
-class×row coupling on all five profiles:
+class×row coupling on the five canonical representatives.  That audit was
+already explicitly representative scoped; it has not been promoted to an
+84-image action-closure claim:
 
 ```text
 u_X(j,s)=P_X(j mod 3,s)+h_j F_X(j mod 6)G_X(s).
 ```
 
 The two channels independently choose among twelve nonconstant projective
-row laws, giving 720 exact charts across the five profiles. Their affine
-unions contain 517,109 distinct first-digit placements; 514,912 are outside
-all seven earlier all-five feature families, every minimal `F_27`
-submodule family, and all five proper multiplier supergroups. Exhaustive
+row laws, giving 720 exact charts across the five representatives. Their
+affine unions contain 517,109 distinct first-digit placements; 514,912 are
+outside all seven earlier representative-scoped feature families, every
+minimal `F_27` submodule family, and all five proper multiplier supergroups. Exhaustive
 evaluation leaves zero digit-two points. The best points satisfy 18 of 20
 rows. This is substantial new finite-family coverage, but it removes only
 517,109 points from five spaces of size `3^36`; it does not imply

@@ -77,9 +77,10 @@
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
 | `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
-| `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, all-five exact census, prior-family overlap, and rank-two cost boundary |
+| `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, exact five-canonical-representative census, prior-family overlap, and rank-two cost boundary |
 | `anti_tensor_correction/README.md` | Exact fixed-background rank-two correction obstruction at all three anti-tensor near misses |
-| `structured_phase_families/README.md` | Exact nine-family phase audit, proper-supergroup separation, opposite-class constructions, and complete minimal-`F_27`-submodule census |
+| `structured_phase_families/README.md` | Exact eight-program audit on five canonical representatives, proper-supergroup separation, opposite-class constructions, and minimal-`F_27`-submodule census |
+| `shell_two_structured_action_closure/README.md` | Corrected four-family closure over all 84 labelled shell-two images and 5,900,019 attained first-digit placements; five ID8-fixed digit-two points and zero digit-three points |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
@@ -268,13 +269,17 @@
 | `conference_333_group_obstruction/verify_conference_333_group_obstruction.py` | Reconstructs the character obstruction and both exact order-nine quotient classifications |
 | `conference_333_group_obstruction/CONFERENCE_333_GROUP_CERTIFICATE.json` | Frozen cyclic- and elementary-abelian-quotient counts proving zero group-developed conference cores |
 | `near_williamson_167_audit/audit_near_williamson_167.py` | Replays row-sum profiles, one-defect reduction, exact front-end count, and bounded feasibility pilots |
-| `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
-| `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact all-five chart census, residual histograms, nearest points, and semantic hash |
+| `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts on five canonical representatives, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
+| `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact five-representative chart census, residual histograms, nearest points, and semantic hash |
 | `anti_tensor_correction/verify_anti_tensor_correction.py` | Exhausts all fixed-background separable corrections and records full-rank-two Newton diagnostics |
-| `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families |
-| `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per profile |
+| `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families on five canonical representatives |
+| `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per canonical representative |
 | `structured_phase_families/test_structured_phase_families.py` | Pins both structured-family semantic certificates and the unique order-six digit-two control |
-| `structured_phase_families/certificate_summary.json` | Compact combined structured-family census |
+| `structured_phase_families/certificate_summary.json` | Compact combined canonical-representative structured-family census |
+| `shell_two_structured_action_closure/action_closure_common.py` | Derives the sorted 84-image action manifest, calls frozen family auditors, replays digit-two witnesses, and aggregates verified `C6` equivalence classes |
+| `shell_two_structured_action_closure/run_action_closure.py` | Atomic resumable one-image-at-a-time action-closure runner |
+| `shell_two_structured_action_closure/verify_action_closure.py` | Strict pinned, live-output, and full 84-image recomputation verifier |
+| `shell_two_structured_action_closure/ACTION_CLOSURE_CERTIFICATE_V2.json` | Complete 84-image semantic certificate: 5,900,019 first-digit placements, five ID8-fixed digit-two classes, zero digit-three survivors |
 | `scratch_exact_profile_lift/README.md` | Scope and resume instructions for the bounded exact lift of the first shell-two profile |
 | `scratch_exact_profile_lift/search_exact_profile_lift_xor.py` | Exact fixed-profile XOR/CP-SAT model with full length-333 replay gate |
 | `scratch_exact_profile_lift/run_row_sum_shards.py` | Resumable 72-row-margin shard driver with a 12 GB aggregate declared-memory ceiling |

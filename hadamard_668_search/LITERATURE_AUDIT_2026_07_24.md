@@ -69,8 +69,11 @@ prescribed-compression slice of public ID3:
 - the eighteen-orbit classification of exact compressed profiles in the
   frozen dense `n_9=0` characteristic-two/modulo-nine search scope;
 - the quadratic second-placement-digit pencil and ramified row-collapse
-  theorem; or
-- the all-five multiplicative class-by-row anti-tensor obstruction.
+  theorem;
+- the five-canonical-representative multiplicative class-by-row anti-tensor
+  obstruction; or
+- the 84-image action closure of the three nontrivial opposite structured
+  families and the `F_27` minimal-submodule family.
 
 These remain potentially novel but are restricted results within a
 non-necessary fixed-compression slice of the public ID3 family.
@@ -178,7 +181,8 @@ search-complexity analysis unless a broader theorem is extracted.
 
 ## Post-audit structured-family comparison
 
-The new anti-tensor family is not a fixed-common-multiplier family. Its
+The anti-tensor family is a five-canonical-representative audit, not an
+all-action-image theorem, and is not a fixed-common-multiplier family. Its
 class-by-row term
 
 ```text
@@ -191,8 +195,18 @@ fixed common-multiplier supergroups of ID3. The July multiplier theorem
 therefore neither proves nor subsumes their digit-two failure. Conversely,
 the anti-tensor census is much narrower than the paper's full-orbit
 theorems: it excludes one explicitly parameterized placement ansatz inside
-five already compressed profiles, not any common-multiplier subgroup or
-the complete ID3 lane.
+five canonical compressed-profile representatives, not any
+common-multiplier subgroup or the complete ID3 lane.
+
+The separate structured action closure repairs the corresponding scope gap
+for three opposite families and the `F_27` minimal-submodule family.  It
+exhausts all 84 labelled profile images and 5,900,019 attained first-digit
+placements.  Its five digit-two points are five distinct verified
+`C6`-rotation classes, all fixed by minimal proper multiplier supergroup
+ID8, with digit-three defects `5,6,7,8,12`; zero reach digit three.  This is
+consistent with the public exclusion of ID8 and supplies no surviving point
+in the open exactly-`<10>` lane.  It is a mechanically useful scope
+correction, not construction progress.
 
 This comparison is based on the paper's stated limitation to untranslated
 fixed common multipliers, its complete subgroup ledger, and its explicit
@@ -252,9 +266,9 @@ developed.
 
 The five-orbit shell-two classification, the eighteen-orbit classification
 in the frozen dense-`h=0` characteristic-two/modulo-nine compressed-profile
-scope, the all-five anti-tensor obstruction, and their second-digit algebra
-are not superseded by the checked 2026 papers.  Their honest scope is now
-sharper:
+scope, the five-representative anti-tensor obstruction, the four-family
+84-image action closure, and their second-digit algebra are not superseded
+by the checked 2026 papers.  Their honest scope is now sharper:
 
 ```text
 new-looking exact structure inside the p=37,q=3 q^2-uncompression
@@ -280,6 +294,8 @@ as progress probability toward an unrestricted Legendre pair.
 A construction claim still requires a row-margin-compatible lift through
 two consecutive higher digits.  An even stronger obstruction paper would
 require a whole-profile digit-three exclusion, rather than the finite
-structured families presently closed.
+structured families presently closed.  In particular, the five
+action-closure ID8-fixed digit-two points and zero digit-three points do not
+change the construction verdict.
 
 No external contact was made during this audit.

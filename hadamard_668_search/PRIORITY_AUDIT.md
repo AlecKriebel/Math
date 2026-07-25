@@ -542,18 +542,30 @@ impossible.  These are new-looking structural results, not evidence that a
 full labelled lift is near: a lone second-digit witness would be expected
 to be abundant.
 
-The structured-family sprint adds exact negative coverage without claiming a
-profile exclusion.  Four low-period controls lie wholly in the already
+The frozen structured-family sprint adds exact negative coverage on the five
+canonical orbit representatives without claiming a profile exclusion or an
+all-action-image theorem.  Four low-period controls lie wholly in the already
 excluded order-six common-multiplier family.  Three deliberately
 opposite-class-twisted families contain respectively 2,916, 174,960, and
 1,458 supergroup-free first-digit points, but none survives the quadratic
 second digit; these family sets need not be disjoint.  Independently, a
 complete reconstruction of all 56 minimal three-dimensional invariant
-submodules tests all 3,136 asymmetric channel pairs per profile, leaving six
+submodules tests all 3,136 asymmetric channel pairs per representative,
+leaving six
 supergroup-free first-digit points and again no second-digit point.  The
 only structured second-digit control is order-six fixed and fails five rows
 at digit three.  These are scoped family exclusions, not evidence that any
 of the five full profile spaces is impossible.
+
+The action-closure audit corrects this coordinate-scope limitation for the
+three nontrivial opposite families and the `F_27` minimal-submodule family.
+It exhausts all 84 distinct labelled images and 5,900,019 attained
+first-digit placements.  Five points reach digit two, all in the helical
+family; they remain five distinct exactly replayed `C6`-rotation classes,
+are all fixed by minimal proper multiplier supergroup ID8, and have
+digit-three defects `5,6,7,8,12`.  Zero reach digit three.  This is a useful
+certification repair and finite negative result, but it does not improve the
+construction gate.
 
 The unrestricted higher-digit audit now contains one independently replayed,
 proper-supergroup-free point through placement digit two.  As predicted by
@@ -875,8 +887,12 @@ impossible.
 The completed higher-digit gate does not justify continued headline search
 on the five shell-two placement cubes.  The strongest publication path from
 that lane is the exact shell descent through `n_9=3`, the five-orbit
-classification at `n_9=2`, and the associated carry/phase algebra, with all
-bounded higher-digit failures kept as supplementary diagnostics.  The
+classification at `n_9=2`, and the associated carry/phase algebra.  The
+84-image structured action closure belongs as a supplementary scope
+correction: its five ID8-fixed digit-two points all fail the next digit and
+are not construction progress.  The separately certified anti-tensor audit
+remains representative scoped.  All bounded higher-digit failures should
+remain supplementary diagnostics.  The
 unconditional sparse-`B` integral norm closure is the strongest independent
 supporting theorem and should be presented prominently.  The dense-shell
 character kernel passes its arithmetic throughput gate by more than 700

@@ -329,6 +329,35 @@ that rate would still take about two million years.  The only credible
 path is algebraic elimination, strong decomposition, or a proof-producing
 constraint search that prunes astronomical subcubes at once.
 
+### 2.7 Completed structured action closure
+
+The earlier `structured_phase_families/` certificate was exact on the five
+canonical orbit representatives, not on every labelled image: its feature
+laws depend on the selected class coordinates.  The separate action-closure
+certificate now covers all `24+12+12+12+24=84` distinct images for the
+three nontrivial opposite families and the `F_27` minimal-submodule family.
+
+The exact attained first-digit counts are:
+
+| family | attained first-digit placements | digit-two survivors |
+|---|---:|---:|
+| opposite planar | 72,900 | 0 |
+| opposite twisted | 3,542,940 | 0 |
+| opposite helical | 2,278,854 | 5 |
+| `F_27` minimal submodules | 5,325 | 0 |
+| **total** | **5,900,019** | **5** |
+
+The five helical points remain five distinct classes under exact common
+`C6`-rotation replay.  Every point is fixed by minimal proper multiplier
+supergroup ID8; their digit-three defects are `5,6,7,8,12`, and zero
+survive digit three.  Hence this complete finite census does not satisfy the
+progress gate.  It also shows why representative-only testing was
+insufficient for coordinate-dependent families.
+
+The independent `five_orbit_family_audit/` anti-tensor result remains an
+exact audit of the five canonical representatives; it was already scoped
+that way and has not been action-closed.
+
 ## 3. The dense `h=1` and `h=0` profile shells
 
 The remaining dense shells are
@@ -751,6 +780,14 @@ search should be gated on either:
 Repeating generic 300-second stochastic runs is exploration, not progress
 toward exhaustion.
 
+The completed 84-image structured closure should not be rerun or enlarged
+by cosmetic variants of the same coordinate laws.  It already costs only
+555.84 summed single-process image seconds and approximately 36.4 MB peak
+resident memory, so additional hardware would add no mathematical
+information.  Its five ID8-fixed digit-two points all fail the next digit.
+Any new bounded family should supply a genuinely different invariant and
+the same exact action-image denominator.
+
 **RAM.**  The sparse CP model's measured peak near 517 MB leaves room for
 several workers within 16 GB.  Four concurrent workers would use roughly
 2--3 GB for models before process/runtime overhead and are a conservative
@@ -894,6 +931,10 @@ independent, strongly pruned shards.
 ## 5. Recommended finite gate
 
 ### First priority: exact `h=2` digit-3 gate
+
+The four-family 84-image action closure has completed and failed this gate.
+Do not count its five ID8-fixed digit-two points as progress or resume the
+same coordinate templates under new parameter names.
 
 1. Use the sparse histogram variables, not high-modulus prefix automata.
 2. Impose one compatible row-margin signature at a time, with symmetry
