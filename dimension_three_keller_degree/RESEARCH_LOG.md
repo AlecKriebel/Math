@@ -1262,3 +1262,82 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
          7/14\text{ open}.}
   \]
   This does not improve the universal total-degree floor above four.
+
+## 2026-07-25T22:49:00Z — fixed-divisor \(e=2\) scope correction
+
+- A post-freeze readiness audit found that the 10:48 “entire row closed”
+  entry overclaimed the scope of the retained lower packages.
+- The audited top theorem leaves a marked fixed quadratic member \(h\) and
+  a unique double-line pencil member \(s=\ell^2\).  The lower packages
+  silently specialized to \(h=s\); the top theorem does not force that
+  equality.
+- Three \(h\ne s\) marked-member orbits, each with mixed and triple cubic
+  companions, remain: at least six lower branches or a uniform theorem are
+  missing.  Exact top witnesses show the distinction is genuine.
+- The frozen row `Q2-E2-A2-B1-D1-N1` therefore remains provisional.  No
+  denominator changed and this is not a freeze violation; it is an internal
+  coverage failure caught by the required post-freeze bridge audit.
+
+## 2026-07-25T22:53:24Z — fixed-linear primitive cubic-pencil row certified
+
+- The frozen row `Q2-E1-A3-B1-D1-N1` has the uniform leading form
+  \(H_4=h(p,q,0)\), with \(h\) linear and \((p,q)\) a coprime minimal
+  cubic pencil.
+- The horizontal route and the complete unique-vertical route are now
+  hostile-audited.  The latter has 47 disjoint internal atoms; its last
+  \(s=0,W_0\ne0\) branch collapses already at \(E_6\) to the exact
+  nonminimal binary boundary.
+- A standalone hostile audit repaired the quadratic-component exit's
+  provenance using Vistoli's unconditional degree-\(\le12\) plane theorem;
+  the induced plane maps here have degree at most eight.
+- The independent post-freeze bridge accounts for all 45 frozen pivots,
+  expands the full row into 48 disjoint route atoms and 15 audited terminal
+  groups, and rejects missing-route, overlap, provenance, semantic
+  truncation, and optimized-Python mutations.
+- The honest frozen count is now
+  \[
+  \boxed{3/14\text{ certified},\quad
+         5/14\text{ provisional},\quad
+         6/14\text{ open}.}
+  \]
+  This is a candidate novel structural row theorem.  It does not yet raise
+  the universal total-degree floor above four.
+
+## 2026-07-25T23:00:00Z — amended program adopted
+
+- The active goal is now explicitly split into Objective A (a numerical
+  total-degree table entry) and Objective B (a novel citable structural
+  theorem).  The certified fixed-linear row is banked under Objective B;
+  the total-degree floor remains four.
+- Quartic progress will be reported only against the immutable denominator
+  of fourteen inclusive rows.  Any new internal case is a coverage failure,
+  not an increase in the denominator.
+- The false promotion attempt on the \(e=2\) row confirms that this audit
+  discipline is substantive: it exposed six precise marked-member branches
+  before publication.
+- The next highest-information experiment is the exact \(E_7/E_6\) solve
+  on those six branches, run in parallel with an independent reconstruction
+  of their marked-member orbit taxonomy.
+- Track B's regular-action obstruction, all-\(d\) symmetric realization,
+  and degree-\(\le10\) realizability table remain banked.  Tao's affine
+  miracle is removed from the active allocation.
+
+## 2026-07-25T23:08:00Z — second \(e=2\) freeze failure
+
+- The attempted six-branch denominator was not exhaustive.  A pencil shear
+  changes the chosen generator but does not normalize the marked
+  leading-form data and the cubic companion simultaneously.
+- The exact top-identity point
+  \[
+  h=yz,\quad s=x^2,\quad
+  H_4=(h^2,hs,0),\quad G=x(h+s)
+  \]
+  is not equivalent to either pure companion slice: \(G/x=x^2+yz\) has
+  rank three, whereas \(h\) and \(s\) have ranks two and one.
+- The existing six \(E_7/E_6\) computations remain valid coordinate
+  slices, and all six survive through \(E_6\); they are not a complete
+  taxonomy and will not be counted.
+- Under the freeze protocol, lower-identity work on this row is halted
+  until an independent reconstruction freezes the full stabilizer quotient
+  of the marked pencil and the projective companion.  No quartic
+  certification count changes.

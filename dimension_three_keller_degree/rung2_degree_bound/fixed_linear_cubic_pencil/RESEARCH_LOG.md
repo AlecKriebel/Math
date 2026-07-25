@@ -111,3 +111,37 @@ The vertical locus remains a separate active problem.
   locus remains open; its displayed witnesses are not Keller maps.
 - Updated the global taxonomy and verification records without changing
   the universal total-degree floor \(4\).
+
+## 2026-07-25T23:13:53Z — full-row publication draft and aggregate replay
+
+- Added `NOTE.md` and `paper.tex` for the now-certified invariant row
+  theorem.  Both drafts include the coefficient-independent normalization,
+  intrinsic horizontal/unique-vertical split, homogeneous first-integral
+  descent, vertical multiplicity lemma, fifteen terminal groups, and the
+  complete \(W_0\ne0\) nonminimal-boundary elimination.
+- Recorded the frozen \(3/14\) context, the literal release placeholder
+  `RELEASE_TIMESTAMP_UTC`, exact Vistoli/Moh attribution for the bounded
+  plane theorem, a not-peer-reviewed warning, and no worldwide novelty
+  claim.
+- Added `AI_DISCLOSURE.md` and the executable fail-closed entry point
+  `verify_all_strict.sh`.
+- The aggregate runner passed 26 supplied and independent suites, ending
+  with
+  `BRIDGE_Q2_E1_A3_B1_D1_N1_STRICT_PASS_72C8E1` and
+  `FIXED_LINEAR_CUBIC_PENCIL_ALL_STRICT_PASS_5E7C2A`.
+- No PDF was generated.  No status ledger, branch, commit, remote, or
+  external communication was changed by this publication-draft task.
+
+## 2026-07-25T23:14:47Z — first repository release packaged
+
+- Replaced all release placeholders with the first repository release
+  timestamp `2026-07-25T23:14:47Z`.
+- Compiled `paper.tex` to the nine-page `paper.pdf` with Tectonic.
+- Rendered every page with Poppler and visually inspected the result.
+  The terminal table was changed to ragged-right columns to remove poor
+  justification; the final render has no clipping or overlap.
+- Poppler text extraction contains the timestamp and review warning and no
+  release placeholder.
+- The source-specific priority audit remains negative evidence only, not a
+  claim of worldwide priority.  The manuscript remains AI-assisted and not
+  peer reviewed.

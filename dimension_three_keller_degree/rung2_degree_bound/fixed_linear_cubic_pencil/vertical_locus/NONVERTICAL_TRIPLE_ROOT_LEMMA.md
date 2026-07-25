@@ -1,7 +1,8 @@
 # The nonvertical triple-root companion is impossible
 
-**Status:** exact standalone working lemma.  It has not yet received an
-independent hostile audit and is not peer reviewed.
+**Status:** exact standalone lemma; the complete nonvertical-companion
+hostile audit passed in `audit_nonvertical_companion/REPORT.md`.  This is
+not peer reviewed.
 
 **Recorded:** 2026-07-25T11:39:23Z.
 

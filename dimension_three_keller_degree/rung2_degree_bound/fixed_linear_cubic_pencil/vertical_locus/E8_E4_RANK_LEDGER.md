@@ -1,8 +1,8 @@
 # Rank ledger for the triple-vertical \(E_8\)--\(E_4\) frontier
 
-**Status:** active exact reduction, not a full-row exclusion.  The complete
-nonvertical-companion exclusion and the zero-\(\ell\), nontriple part of
-the vertical companion have passed independent hostile audits.
+**Status:** complete audited exclusion inside the normalized
+triple-vertical frontier.  The horizontal theorem and the external
+post-freeze bridge remain separate inputs to a frozen-row statement.
 
 **Recorded:** 2026-07-25T12:35:00Z.
 
@@ -227,8 +227,8 @@ It follows that
 \boxed{\text{the nonvertical companion is impossible whenever }
 q_0\text{ is not a cube}.}                              \tag{22}
 \]
-This is an exact working exclusion; it awaits hostile audit before global
-promotion.
+This exact exclusion is included in the complete hostile audit
+`audit_nonvertical_companion/REPORT.md`.
 
 The triple-root rank drop has now also been solved.  Its complete minimal
 stabilizer atlas is
@@ -315,10 +315,18 @@ On the separate \(a=0\) family, the full five-chart calculation in
 `VERTICAL_A0_W0_ZERO_EXCLUSION.md` excludes \(W_0=0\) through
 \(E_6,E_5,E_4\).  A derivation completed independently before comparison,
 a second symbolic parameterization, and a PARI/GP exterior reconstruction
-all pass; see `audit_vertical_a0_w0_zero/REPORT.md`.  The only remaining
-vertical-companion family is therefore
+all pass; see `audit_vertical_a0_w0_zero/REPORT.md`.  The complementary
+family
 \[
 \boxed{a=0,\qquad W_0\ne0.}
 \]
-It is not called excluded in this ledger until its separate candidate and
-hostile audit pass.
+is excluded already by \(E_6\): `a0_w0_nonzero_attack/NOTE.md` forces the
+cubic pencil onto its exact nonminimal boundary, and the independent
+hostile reconstruction in `audit_a0_w0_nonzero/REPORT.md` passes.
+
+Together with the audited \(a\ne0\) branches and the complete
+nonvertical-companion audit, this closes every terminal of the normalized
+triple-vertical frontier.  The independent 47-atom routing certificate is
+`audit_complete_vertical_coverage/REPORT.md`.  This local conclusion does
+not by itself promote the frozen row; that requires the separate
+post-freeze bridge from `Q2-E1-A3-B1-D1-N1`.

@@ -1,8 +1,9 @@
 # Working theorem: the quadratic-component exit
 
-**Status:** proved and independently adversarially audited.  This is not peer
-reviewed.  A source-specific search found no exact prior statement, which is
-not a guarantee of worldwide priority.
+**Status:** proved and independently adversarially audited.  The standalone
+hostile report is `audit_quadratic_component_exit/REPORT.md`.  This is not
+peer reviewed.  A source-specific search found no exact prior statement,
+which is not a guarantee of worldwide priority.
 
 **Recorded:** 2026-07-24T23:59:52Z.
 
@@ -54,31 +55,32 @@ then \(HX=-b\) has a solution and gives a critical point.  Hence
 \[
 b\notin\operatorname{im}H=(\ker H)^\perp.
 \]
-Choose \(v\in\ker H\) with \(b^Tv\ne0\), and make a linear source change
-taking \(v\) to the third coordinate direction.  Since \(Hv=0\), the
-quadratic part has no term involving \(X_3\).  Thus
+Choose \(v\in\ker H\) with \(b^Tv\ne0\), complete \(v\) to a linear
+source-coordinate basis, and call the resulting coordinates
+\((Y_1,Y_2,Y_3)\), with \(v\) in the \(Y_3\)-direction.  Since \(Hv=0\),
+the quadratic part has no term involving \(Y_3\).  Thus
 \[
-f=g(X_1,X_2)+\beta X_3,\qquad \beta\ne0,
+f=g(Y_1,Y_2)+\beta Y_3,\qquad \beta\ne0,
 \]
 after absorbing affine-linear terms in \(g\).  The triangular map
 \[
-T(X_1,X_2,X_3)=(X_1,X_2,f)
+T(Y_1,Y_2,Y_3)=(Y_1,Y_2,f)
 \]
 has inverse
 \[
-T^{-1}(Y_1,Y_2,Y_3)=
-\left(Y_1,Y_2,\frac{Y_3-g(Y_1,Y_2)}{\beta}\right).
+T^{-1}(Z_1,Z_2,Z_3)=
+\left(Z_1,Z_2,\frac{Z_3-g(Z_1,Z_2)}{\beta}\right).
 \]
 Both degree bounds and the constant-Jacobian assertion follow.
 \(\square\)
 
 ## 3. Reduction to low-degree plane fibres
 
-Apply a target linear change whose third row is \(\lambda\), and keep the
-notation \(F\) for the changed map.  Since \(JF\) is invertible at every
-point, the row
+Let \(F^0\) denote the original map.  Apply a target linear change whose
+third row is \(\lambda\), and call the changed map \(F\).  Since \(JF^0\)
+is invertible at every point, the row
 \[
-\nabla F_3=\lambda^TJF
+\nabla F_3=\lambda^TJF^0
 \]
 never vanishes.  The lemma supplies \(T\) with third component \(F_3\).
 Set
@@ -98,14 +100,20 @@ G_c:\mathbb A^2\longrightarrow\mathbb A^2,\qquad
 (X_1,X_2)\longmapsto
 \bigl(G_1(X_1,X_2,c),G_2(X_1,X_2,c)\bigr)
 \]
-is Keller and has degree at most \(8\).  The unconditional plane lower bound
-for a counterexample is at least \(100\), so every \(G_c\) is a polynomial
-automorphism.
+is Keller and has degree at most \(8\).  Vistoli states on journal p. 80
+the unconditional theorem that an étale polynomial self-map of
+\(\mathbb A^2\) of degree at most \(12\) is an isomorphism (citing Moh).
+Since \(8\le12\), every \(G_c\) is a polynomial automorphism.  This is a
+proved bounded-degree theorem, not an assumption of the plane Jacobian
+Conjecture.
 
 If two points have the same image under \(G\), their third coordinates are
 equal and they lie in the same fibre.  Injectivity of \(G_c\) then makes the
 two points equal.  Hence \(G\), and therefore \(F\), is injective.
-Ax--Grothendieck makes \(F\) a polynomial automorphism.
+The injective-étale theorem quoted by Vistoli makes \(F\) surjective; an
+étale universally injective morphism is an open immersion, so a surjective
+one is an isomorphism.  Equivalently, this last step is the
+Ax--Grothendieck theorem together with the Keller étaleness.
 \(\square\)
 
 ## 4. Immediate quartic consequences
@@ -127,4 +135,7 @@ Ax--Grothendieck makes \(F\) a polynomial automorphism.
 The only nonlinear coordinate change in the proof and its inverse both have
 degree at most \(2\); therefore \(8\), not \(16\), is the correct worst-case
 plane-fibre degree.  The proof works with an arbitrary invertible linear part
-and with constants.
+and with constants.  The exact coordinate and fibre identities are replayed
+in `audit_quadratic_component_exit/verify_quadratic_component_exit_exact.py`;
+the cited plane theorem itself is a literature input, not a computational
+claim.

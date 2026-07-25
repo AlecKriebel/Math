@@ -308,3 +308,16 @@
   combinations.  A sharp nonminimal witness with \(q=x^3,W=x^2,L=I\)
   survives \(E_8,\ldots,E_4\), guarding the scope.  The candidate theorem
   in `a0_w0_nonzero_attack/NOTE.md` awaits a fresh hostile audit.
+
+## 2026-07-25T22:46:00Z — complete vertical companion hostile-audited
+
+- A clean-room sparse reconstruction of the \(a=0,W_0\ne0\) branch formed
+  the literal weighted determinant, recovered the compact \(E_6\) bracket
+  identity, and checked every root and parameter divisor.  It confirmed
+  that the sole survivor is exactly the nonminimal binary boundary.
+- A separate coverage audit expanded the normalized triple-vertical tree
+  into 47 disjoint atoms.  Every atom reaches exactly one independently
+  audited terminal; missing-route and overlapping-route mutations fail.
+- The complete normalized triple-vertical frontier is therefore excluded.
+  This remains a local structural theorem until the independent
+  post-freeze bridge from the frozen row passes.

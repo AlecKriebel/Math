@@ -1,0 +1,673 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{array,booktabs,longtable}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Exclusion of the fixed-linear primitive cubic-pencil quartic row}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\title{\bfseries Exclusion of the fixed-linear primitive
+cubic-pencil quartic row\\[3pt]
+\large A self-contained, AI-assisted research-program note}
+\author{Alec Kriebel\\with substantial AI assistance}
+\date{First repository release timestamp (UTC):
+  \texttt{\detokenize{2026-07-25T23:14:47Z}}}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black!45}{yellow!8}{%
+\begin{minipage}{0.91\textwidth}
+\small
+\textbf{Review, priority, and verification notice.}
+This manuscript is not peer reviewed.  Exact computer algebra checks the
+identities and finite case ledgers encoded in the accompanying files; it is
+evidence, not peer review.  Substantial AI assistance was used in the
+mathematical exploration, proof organization, software, hostile internal
+audits, and exposition.  No claim of worldwide priority is made.  The result
+excludes one frozen quartic leading-form row; it does not prove the full
+degree-four case of the Jacobian Conjecture.
+\end{minipage}}
+\end{center}
+
+\begin{abstract}
+Let $F:\A^3_\C\to\A^3_\C$ be a degree-four Keller map.  We prove that
+$F$ is an automorphism when the canonical invariant tuple of its quartic
+homogeneous part is
+\[
+ (\rank JH_4,e,a,b,\delta,\nu)=(2,1,3,1,1,1).
+\]
+Equivalently, the leading part is an invariant fixed linear divisor times a
+primitive cubic pencil.  A coefficient-independent normalization gives
+$H_4=h(p,q,0)$ and an intrinsic horizontal/unique-vertical split.  A
+homogeneous first-integral valuation settles the horizontal branch and
+reduces the vertical branch to two cubic companions over a triple vertical
+member.  Weighted Jacobian identities then eliminate all root, collision,
+and lower-jet branches.  On the final branch, where a binary quadratic
+$W_0$ is nonzero, the degree-six identity forces the cubic pencil onto the
+exact nonminimal boundary.  Arbitrary quadratic and cubic lower jets are
+retained throughout.
+\end{abstract}
+
+\section{Invariant statement and frozen context}
+
+After translating source and target, write a degree-four polynomial map as
+\begin{equation}
+ F=LX+H_2+H_3+H_4, \qquad L\in\operatorname{GL}_3(\C),
+ \label{eq:F}
+\end{equation}
+where $H_i$ is homogeneous of degree $i$ and $H_4\ne0$.  The map is
+\emph{Keller} if $\det JF\in\C^\times$.
+
+For a rank-two $H_4$, let
+\[
+ h=\gcd(H_{4,1},H_{4,2},H_{4,3}),\qquad e=\deg h,\qquad G=H_4/h.
+\]
+Put
+\[
+ K_G=\C(G_i/G_j:G_j\ne0)\subset M=\C(\PP^2),
+\]
+and let $E_G$ be the relative algebraic closure of $K_G$ in $M$.  The curve
+with function field $E_G$ is rational, so $E_G=\C(p/q)$ for coprime
+homogeneous forms of a common least degree $a$.  If the reduced projective
+image of $G$ has degree $\delta$ and $\nu=[E_G:K_G]$, the induced map from
+the pencil line is represented by a basepoint-free binary triple $A$ of
+degree
+\begin{equation}
+ b=\delta\nu,\qquad e+ab=4.                           \label{eq:arithmetic}
+\end{equation}
+This defines the invariant tuple in the theorem.
+
+\begin{theorem}[Fixed-linear primitive cubic-pencil exclusion]
+\label{thm:main}
+Let $F$ be as in \eqref{eq:F}, of exact total degree four, and suppose
+\[
+ (\rank JH_4,e,a,b,\delta,\nu)=(2,1,3,1,1,1).
+\]
+If $F$ is Keller, then $F$ is a polynomial automorphism.
+\end{theorem}
+
+\begin{corollary}
+No degree-four Keller counterexample belongs to frozen row
+\texttt{Q2-E1-A3-B1-D1-N1}.
+\end{corollary}
+
+The project's frozen denominator contains fourteen disjoint inclusive
+leading-form rows.  At this release the internal status is
+\[
+ 3/14\ \text{certified excluded},\qquad
+ 5/14\ \text{provisional},\qquad
+ 6/14\ \text{open}.
+\]
+This is bookkeeping context, not a theorem about the other rows.  The
+universal total-degree floor remains four.
+
+\section{Canonical normalization}
+
+\begin{proposition}\label{prop:normal}
+After independent invertible source and target changes,
+\begin{equation}
+ H_4=(hp,hq,0)^T,                                    \label{eq:normal}
+\end{equation}
+where $h$ is linear, $p,q$ are coprime nonproportional cubics, and
+\begin{equation}
+ \C(p/q)\text{ is relatively algebraically closed in }\C(\PP^2).
+ \label{eq:minimal}
+\end{equation}
+The target normalization has three intrinsic rank-two charts and does not
+divide by a frozen coefficient pivot.
+\end{proposition}
+
+\begin{proof}
+The construction preceding \eqref{eq:arithmetic} gives the exact polynomial
+factorization
+\[
+ H_4=hA(p,q).
+\]
+Indeed, the curve with function field $E_G$ is dominated by $\PP^2$.
+Restriction to a general source line makes it dominated by $\PP^1$, hence
+rational.  The primitive triples $G$ and $A(p,q)$ define the same
+projective rational map.  The substituted triple is primitive because
+$p,q$ are coprime and $A$ is basepoint-free.  Two primitive triples over
+the UFD $\C[x,y,z]$ defining the same projective map differ by a unit,
+which can be absorbed into $A$.
+
+Here $b=1$, so
+\[
+ A(u,v)=\mathbf a\,u+\mathbf b\,v
+\]
+for linearly independent $\mathbf a,\mathbf b\in\C^3$.  Complete them to a
+target basis and apply its inverse.  This proves \eqref{eq:normal}.
+Explicitly, the three charts are given by the nonvanishing of
+\[
+ \Delta_{01}=a_0b_1-a_1b_0,\quad
+ \Delta_{02}=a_0b_2-a_2b_0,\quad
+ \Delta_{12}=a_1b_2-a_2b_1.
+\]
+Adjoining the unused standard basis vector gives determinant, up to sign,
+equal to the selected minor.  These charts cover the rank-two condition and
+refer to no first-nonzero coefficient of $H_4$.  Finally, $a=3$ is the
+least pencil degree by the relative-closure construction, giving
+\eqref{eq:minimal}.  Arbitrary lower jets are transported bijectively.
+\end{proof}
+
+\section{Weighted identities and first-integral descent}
+
+Put
+\[
+ P=hp,\qquad Q=hq,\qquad D(R)=\Jac(P,Q,R),
+\]
+and introduce
+\[
+ \mathcal J(\tau)=L+\tau JH_2+\tau^2JH_3+\tau^3JH_4,\qquad
+ E_j=[\tau^j]\det\mathcal J(\tau).
+\]
+The Keller condition gives $E_j=0$ for $j>0$.  If
+$G_3=(H_3)_3$ and $G_2=(H_2)_3$, the zero third row of $JH_4$ gives
+\begin{equation}
+ E_8=D(G_3)=0.                                       \label{eq:E8}
+\end{equation}
+After $G_3=0$, the third rows of both $JH_4$ and $JH_3$ vanish, and
+\begin{equation}
+ E_7=D(G_2)=0.                                       \label{eq:E7zero}
+\end{equation}
+
+\begin{lemma}[Homogeneous first-integral descent]\label{lem:descent}
+If $0\ne R\in\C[x,y,z]$ is homogeneous of degree $d$ and $D(R)=0$, then
+\begin{equation}
+ \frac{R^4}{P^d}=\mathcal R(q/p)
+ \quad\text{for some }\mathcal R\in\C(t).             \label{eq:descent}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The functions $P,Q$ are algebraically independent: $Q/P=q/p$ is
+nonconstant on $\PP^2$, while $P$ supplies the independent scaling
+parameter.  In characteristic zero,
+$dP\wedge dQ\wedge dR=0$ makes $R$ algebraic over
+$\C(P,Q)=\C(q/p,P)$.
+
+The quotient $\Theta=R^4/P^d$ has degree zero and lies in
+$M=\C(\PP^2)$.  With a scaling coordinate $s$ one has
+$\C(x,y,z)=M(s)$, $P=s^4P_0$, and $R=s^dR_0$, so $P$ is
+transcendental over $M$.  Clear denominators in an algebraic relation for
+$\Theta$ over $\C(q/p)(P)$ and collect powers of $P$.  Transcendence makes
+each coefficient vanish; hence $\Theta$ is algebraic over $\C(q/p)$.
+Relative algebraic closure \eqref{eq:minimal} gives
+$\Theta\in\C(q/p)$.
+\end{proof}
+
+\section{The horizontal/unique-vertical split}
+
+Let $\mathcal P=\langle p,q\rangle$ and restrict to $h=0$:
+\[
+ \rho_h:\mathcal P\longrightarrow\C[x,y,z]_3/(h).
+\]
+Rank two means that no pencil member is divisible by $h$ and defines the
+\emph{horizontal} branch.  Rank one gives a unique projective vertical
+member.  Rank zero would make $h$ divide both generators, contrary to
+coprimality.  This split is intrinsic under a change of pencil generators.
+
+\subsection{The horizontal branch}
+
+Horizontality says that $h$ divides neither $p$ nor $q-\lambda p$ for any
+$\lambda\in\C$.  Factoring the numerator and denominator of $\mathcal R$
+in \eqref{eq:descent} therefore gives
+$v_h(\mathcal R(q/p))=0$.  Since $v_h(P)=1$,
+\[
+ 4v_h(R)=d.
+\]
+There is no nonzero homogeneous first integral of degree two or three.
+Equations \eqref{eq:E8} and \eqref{eq:E7zero} give
+\[
+ G_3=G_2=0.
+\]
+The third component of $F$ is linear.  After linear changes,
+$F=(F_1,F_2,z)$; each plane fibre is Keller of degree at most four.
+The bounded plane theorem used below makes each fibre an automorphism,
+whence $F$ is injective and therefore an automorphism.
+
+\subsection{The vertical branch}
+
+Set $h=z$ and choose the unique vertical member as the first generator:
+\begin{equation}
+ p=z^m r,\qquad 1\le m\le3,\qquad z\nmid rq.          \label{eq:vertical}
+\end{equation}
+The integer $m=v_z(p)$ is intrinsic.
+
+\section{The quadratic-component exit}
+
+\begin{lemma}\label{lem:quadratic}
+Let $F:\A^3_\C\to\A^3_\C$ be Keller of degree at most four.  If a
+nonzero target-linear combination of its components has degree at most two,
+then $F$ is an automorphism.
+\end{lemma}
+
+\begin{proof}
+Call the combination $f$.  Its gradient never vanishes because $JF$ is
+invertible.  Write $\nabla f=HX+b$, with $H$ constant symmetric.  If
+$b\in\operatorname{im}H$, the equation $HX=-b$ gives a critical point.
+Thus $b\notin(\ker H)^\perp$.  Choose $v\in\ker H$ with $b^Tv\ne0$.
+In linear coordinates with $v$ as the third direction,
+\[
+ f=g(y_1,y_2)+\beta y_3,\qquad\beta\ne0.
+\]
+The triangular map $T=(y_1,y_2,f)$ and its inverse both have degree at
+most two.  After the target change selecting $f$, put $G=F\circ T^{-1}$.
+Then
+\[
+ G=(G_1,G_2,x_3),\qquad \deg G\le8.
+\]
+Each fibre $x_3=c$ is a plane etale polynomial map of maximum component
+degree at most eight.
+
+Vistoli states on journal p.~80 that an etale polynomial self-map of
+$\A^2$ over the algebraically closed characteristic-zero field fixed on
+p.~79 is an isomorphism when its degree is at most $12$
+\cite[p.~80]{Vistoli}.  He attributes this theorem to Moh and notes that
+Moh proves the result through degree $100$, whereas $12$ is all Vistoli
+uses.  Hence every fibre of $G$ is an automorphism.  Equal images under
+$G$ have equal third coordinates and then equal first two coordinates, so
+$G$ is injective.  The injective-etale theorem quoted by Vistoli, or
+Ax--Grothendieck together with etaleness, makes $G$ an automorphism.
+\end{proof}
+
+\begin{remark}
+This uses Moh's bounded plane theorem in the exact degree-$\le12$ form
+quoted by Vistoli.  It does not assume the unresolved plane Jacobian
+Conjecture.
+\end{remark}
+
+\section{The vertical multiplicity lemma}
+
+\begin{lemma}\label{lem:multiplicity}
+For \eqref{eq:vertical}, the cubic kernel of \eqref{eq:E8} is
+\[
+\begin{array}{c|c}
+ m&\ker\bigl(D:\C[x,y,z]_3\to\C[x,y,z]_8\bigr)\\ \hline
+ 1&0\\
+ 2&0\\
+ 3&\langle z^3,q\rangle .
+\end{array}
+\]
+\end{lemma}
+
+\begin{proof}
+Apply Lemma~\ref{lem:descent} to a nonzero cubic $R$, and put
+$\eta=\ord_\infty\mathcal R$, with a degree-$n$ polynomial having order
+$-n$ at infinity.  If a prime $f$ occurs in $p$ with multiplicity $a$,
+valuation of \eqref{eq:descent} gives
+\begin{equation}
+ 4v_f(R)-3\bigl(a+\mathbf1_{f=z}\bigr)=a\eta.
+ \label{eq:valuation}
+\end{equation}
+For $m=1$, the $z$-equation gives $\eta\equiv2\pmod4$.  Every prime of
+the quadratic $r$ has multiplicity $a=1$ or $2$, but its equation requires
+$a(3+\eta)\equiv0\pmod4$, impossible because
+$3+\eta\equiv1\pmod4$.
+
+For $m=2$, the $z$-equation is $4v_z(R)=9+2\eta$, an opposite-parity
+contradiction.  For $m=3$ it is
+\[
+ 4v_z(R)=12+3\eta.
+\]
+Since $0\le v_z(R)\le3$, the possibilities are
+$(v_z(R),\eta)=(3,0)$ and $(0,-4)$.  The first gives
+$R\sim z^3$.  In the second, $\mathcal R$ has no finite pole, since a
+pole would give a negative valuation along a finite pencil fibre while the
+left side of \eqref{eq:descent} is nonnegative there.  Thus $\mathcal R$ is
+a degree-four polynomial.  A root of multiplicity $n<4$ would require
+$4\mid na$ for every component multiplicity $a\in\{1,2,3\}$ of a cubic
+fibre, impossible in total degree three.  Hence
+$\mathcal R=c(t-\lambda)^4$ and unique factorization gives
+$R\sim q-\lambda z^3$.
+\end{proof}
+
+The cases $m=1,2$, and $m=3$ with $G_3=0$ are settled by
+Lemma~\ref{lem:quadratic}.  If $m=3$ and
+$G_3=\alpha z^3+\beta q\ne0$, then $\beta=0$ gives the
+\emph{vertical companion} $G_3=z^3$.  If $\beta\ne0$, replacing $q$ by
+$G_3$ gives the \emph{nonvertical companion} $G_3=q$.  They cannot merge:
+the unique vertical member is divisible by $z$, and $q$ is not.
+
+\section{Companion gauges and the root atlas}
+
+Write
+\[
+ H_3=(U,V,G_3)^T,\qquad H_2=(A,B,W)^T,\qquad
+ \{f,g\}=f_xg_y-f_yg_x.
+\]
+For $G_3=q$, the complete weight-seven solve modulo legal target shears is
+\begin{equation}
+ U=dz^3,\qquad V=zW+fz^3.                             \label{eq:nonvertgauge}
+\end{equation}
+For $G_3=z^3$,
+\[
+ E_7=z^3\{q,4zW-3U\}=0,
+\]
+and the complete legal gauge is
+\begin{equation}
+ U=\frac43zW+\sigma q,\qquad [z^3]V=0.               \label{eq:vertgauge}
+\end{equation}
+Target shears remove the free $z^3$ coefficients of $q$ and $V$ while
+only renaming unrestricted lower jets.  The split $\sigma=0$ or
+$\sigma\ne0$ is exhaustive.
+
+The nonzero binary cubic $q_0=q|_{z=0}$ has root partition
+$1+1+1$, $2+1$, or $3$, represented by $xy(x-y)$, $x^2y$, and $x^3$.
+On the triple-root locus, the full parabolic stabilizer gives the three
+minimal charts
+\begin{equation}
+\begin{aligned}
+ q_C&=x^3+y^2z+\alpha xz^2+\beta z^3,\\
+ q_B&=x^3+xyz+\beta z^3,\\
+ q_E&=x^3+yz^2.
+\end{aligned}                                        \label{eq:tripleatlas}
+\end{equation}
+The fourth shape is $q\in\C[x,z]_3$ and is exactly the nonminimal
+boundary.  For the vertical companion the term $\beta z^3$ is removable;
+for the nonvertical companion it is retained.
+
+\section{The fifteen terminal groups}
+
+Let SF, D, and T denote squarefree, double-plus-simple, and triple root
+types.  The following table is disjoint and exhaustive.
+
+\begin{longtable}{@{}>{\bfseries\raggedright\arraybackslash}p{0.07\textwidth}
+                         >{\raggedright\arraybackslash}p{0.55\textwidth}
+                         >{\raggedright\arraybackslash}p{0.29\textwidth}@{}}
+\toprule
+ID & Predicate & Exit\\
+\midrule
+\endhead
+H  & horizontal restriction rank two & homogeneous valuation, then plane
+fibres\\
+Z1 & vertical $m=1$ & $G_3=0$, Lemma~\ref{lem:quadratic}\\
+Z2 & vertical $m=2$ & $G_3=0$, Lemma~\ref{lem:quadratic}\\
+Z3 & $m=3$, $G_3=0$ & Lemma~\ref{lem:quadratic}\\
+N1 & $G_3=q$, $q_0$ SF & nonvertical nontriple obstruction\\
+N2 & $G_3=q$, $q_0$ D & nonvertical nontriple obstruction\\
+N3 & $G_3=q$, $q_0$ T & three-chart nonvertical obstruction\\
+V1 & $G_3=z^3$, $\sigma\ne0$, $q_0$ SF, $\ell=0$ &
+zero-$\ell$ obstruction\\
+V2 & same, $\ell\ne0$ & nonzero-$\ell$ obstruction\\
+V3 & $G_3=z^3$, $\sigma\ne0$, $q_0$ D, $\ell=0$ &
+zero-$\ell$ obstruction\\
+V4 & same, $\ell\ne0$ & nonzero-$\ell$, including both collisions\\
+V5 & $G_3=z^3$, $\sigma\ne0$, $q_0$ T, $\gamma\ne0$ &
+direct $E_6$ contradiction\\
+V6 & same, $\gamma=0$ & $E_6$ forces $\ell=0$, then $E_5,E_4$\\
+V7 & $G_3=z^3$, $\sigma=0$, $W_0=0$ &
+five-chart $E_6,E_5,E_4$ obstruction\\
+V8 & $G_3=z^3$, $\sigma=0$, $W_0\ne0$ &
+$E_6$ forces the nonminimal boundary\\
+\bottomrule
+\end{longtable}
+
+Here $W_0=W|_{z=0}$.  If $\sigma\ne0$, restriction of $E_6$ gives
+\begin{equation}
+ -\sigma q_0\{q_0,W_0\}=0.                            \label{eq:Wrestrict}
+\end{equation}
+For SF or D the degree-two bracket kernel is zero, so
+$W=z\ell+\omega z^2$.  For T, \eqref{eq:Wrestrict} gives
+$W_0=\gamma x^2$.  Thus the table covers the entire vertical companion.
+
+\subsection{Nonvertical terminals N1--N3}
+
+With \eqref{eq:nonvertgauge}, for a noncube $q_0$, restrictions of
+$E_6,E_5,E_4$ give
+\[
+ A_0=0,\qquad\overline L_1=0,\qquad
+ A=\alpha z^2\ \text{or}\ B_0=0.
+\]
+The two full systems have constant pivot minors $-2^{19}$ and $-2^{11}$,
+uniformly for $q_0=xy(x-y)$ and $q_0=x^2y$, and force
+\[
+ B=z(\ell_{31}x+\ell_{32}y+\beta z),\qquad
+ \overline L_2=0,\qquad
+ \overline L_3=(\ell_{31},\ell_{32}).
+\]
+The first two rows of $L$ are multiples of $z$, so $\det L=0$.
+
+On the three charts \eqref{eq:tripleatlas}, the full $E_6,E_5$ systems have
+constant $14\times14$ minors
+\[
+ -2^{24}3^8,\qquad -2^{18}3^6,\qquad -2^{20}3^7,
+\]
+and give the same dependent-row conclusion.  The moduli $\alpha,\beta$ are
+not specialized.
+
+\subsection{Vertical terminals V1--V6}
+
+For SF or D and $\ell=ux+vy\ne0$, the complete binary $E_5$ kernel is
+$V_0=\kappa q_0$, $\overline L_3=0$, except on the two D collision
+lines, whose larger kernels are retained.  Raw coefficients give
+\[
+\begin{array}{c|cc}
+\text{SF}&[x^4yz]E_6=\sigma u&[xy^4z]E_6=-\sigma v\\
+\text{D, noncollision}&[x^4yz]E_6=\sigma u&
+[x^3y^2z]E_6=-2\sigma v.
+\end{array}
+\]
+On the collision kernels $\ell=cx$ and $\ell=cy$, the decisive
+coefficients are $\sigma c$ and $-2\sigma c$.  Hence $\ell\ne0$ is
+impossible.
+
+If $\ell=0$, the complete degree-six solution is
+\[
+ V=kq+\frac z\sigma(A-a_5z^2)
+   -\frac4{3\sigma}z^2(\ell_{31}x+\ell_{32}y).
+\]
+Constant pivots $2^5 3^{11}\sigma^8$ and
+$-2^4 3^5\sigma^5$ prove completeness of the $E_6,E_5$ solves.
+They give $\ell_{31}=\ell_{32}=0$, and $E_4$ gives
+\[
+ \ell_{21}=\frac{k}{\sigma}\ell_{11},\qquad
+ \ell_{22}=\frac{k}{\sigma}\ell_{12}.
+\]
+Thus $\det L=0$.
+
+For T, put $W=\gamma x^2+z(ux+vy+\omega z)$.  If $\gamma\ne0$, the
+three charts give
+\[
+\begin{aligned}
+[x^4yz]E_6&=4\gamma\sigma,\\
+[x^5z]E_6&=\sigma(2\gamma-3v),&
+-\tfrac16[x^3yz^2]E_6+[xy^2z^3]E_6
+  &=-\tfrac{\sigma}{3}(\gamma+v),\\
+\tfrac23[x^4z^2]E_6+[xyz^4]E_6&=\tfrac{10}{3}\gamma\sigma .
+\end{aligned}
+\]
+Each chart is impossible.  If $\gamma=0$, every chart first gives
+$[x^5z]E_6=-3\sigma v$, and a second chartwise linear combination gives a
+nonzero constant times $\sigma u$.  Hence $u=v=0$, after which the complete
+$E_6,E_5,E_4$ solution above makes $\det L=0$.
+
+\subsection{The zero-parameter, zero-$W_0$ terminal V7}
+
+Write $W=z(ux+vy+\omega z)$.  The SF, D, and three minimal T charts form
+a complete atlas.  A constant $5\times5$ subsystem of $E_6$ gives on all
+five charts
+\[
+\begin{aligned}
+A_{20}&=\frac29u^2,&A_{11}&=\frac49uv,&A_{02}&=\frac29v^2,\\
+\ell_{31}&=\frac{9A_{10}-4u\omega}{12},&
+\ell_{32}&=\frac{9A_{01}-4v\omega}{12}.
+\end{aligned}
+\]
+The nontriple charts and $q_C$ force $u=v=0$ through cubic monomials of
+$E_5$.  The $q_B,q_E$ charts either do the same or leave one explicit
+$u\ne0$ compatibility family.  On $u=v=0$, $E_5,E_4$ force
+\[
+ \ell_{11}=\ell_{12}=\ell_{31}=\ell_{32}=0,
+\]
+so $\det L=0$.  On either exceptional $u\ne0$ family, two or three raw
+$E_4$ coefficients require incompatible values of a coefficient of $V$.
+
+\section{The final $W_0\ne0$ elimination}
+
+Assume $\sigma=0$, so $U=\frac43zW$.  Row multilinearity gives
+\begin{equation}
+ 3E_6=z\Phi,\qquad
+ \Phi=4W\{q,W\}+9z^2\{A,q\}+12z^3\{q,L_3\}.
+ \label{eq:Phi}
+\end{equation}
+The variables $B,V,L_1,L_2$ cancel or do not occur.  The lowest
+$z$-coefficient gives
+\[
+ \{q_0,W_0\}=0.
+\]
+For binary forms of degrees three and two, dehomogenization gives
+$2F'G-3FG'=0$.  Thus $F^2/G^3$ is constant, and unique factorization
+gives
+\begin{equation}
+ q_0=\kappa L^3,\qquad W_0=\gamma L^2,\qquad
+ \kappa\gamma\ne0.                                   \label{eq:powers}
+\end{equation}
+After a binary change take $L=x$ and retain every coefficient:
+\[
+\begin{aligned}
+q={}&\kappa x^3+z(\alpha x^2+\beta xy+\chi y^2)
+ +z^2(\delta x+\epsilon y)+\phi z^3,\\
+W={}&\gamma x^2+z(ux+vy)+\omega z^2,\\
+A={}&a_{20}x^2+a_{11}xy+a_{02}y^2
+ +z(a_{10}x+a_{01}y)+a_{00}z^2.
+\end{aligned}
+\]
+Six raw coefficients of $\Phi$ suffice.  The first four give
+\[
+\chi=0,\quad
+r=2\beta\gamma-3\kappa v=0,\quad
+f=27\kappa a_{02}+2\beta\gamma v-6\kappa v^2=0,\quad
+h=9a_{02}\beta-2\beta v^2=0.
+\]
+Put $g=9a_{02}-v^2$.  The division-free combinations
+\[
+ f-vr=3\kappa g,\qquad h-\beta g=-\beta v^2
+\]
+give $g=0$ and $\beta v^2=0$.  Multiplying $r=0$ by $v^2$ gives
+$-3\kappa v^3=0$, hence
+\[
+ v=\beta=a_{02}=0.
+\]
+The remaining two coefficients reduce to
+\[
+ 27\kappa a_{11}+8\gamma^2\epsilon=0,\qquad
+ 9a_{11}\epsilon=0.
+\]
+Multiplying the first by $\epsilon$ and subtracting three $\kappa$ times
+the second gives $8\gamma^2\epsilon^2=0$.  Therefore
+$\epsilon=a_{11}=0$, and
+\[
+ q=\kappa x^3+\alpha x^2z+\delta xz^2+\phi z^3
+   \in\Sym^3\langle x,z\rangle.
+\]
+For a cubic pencil containing $z^3$, this is exactly the nonminimal
+boundary $q\in\Sym^3\langle z,L\rangle$.  Its canonical pencil degree is
+$a=1$, not $a=3$, so it reclassifies into a separate frozen row.  No point
+of the minimal row survives.  This closes V8 and proves
+Theorem~\ref{thm:main}.
+
+\section{Frozen pivots, retained calculations, and verification boundary}
+
+The frozen coefficient partition orders the fifteen quartic monomials
+component by component and takes the first nonzero coefficient among
+$c_0,\ldots,c_{44}$.  Proposition~\ref{prop:normal} and the proof above
+are global on the invariant row and divide by none of these coefficients.
+Every nonempty pivot \texttt{C00}--\texttt{C29} therefore enters the
+theorem directly.  If the first pivot were \texttt{C30} or later, the
+first two target components of $H_4$ would vanish, forcing
+$\rank JH_4\le1$.  Hence \texttt{C30}--\texttt{C44} are empty.
+
+The post-freeze bridge checker expands the proof into 48 disjoint route
+atoms mapping uniquely to the fifteen terminal groups.  It checks all 45
+pivots and includes leading-form witnesses for \texttt{C00}--\texttt{C29};
+those witnesses are not asserted to be Keller completions.
+
+Detailed derivations and separate hostile reconstructions are retained in
+the repository files
+\path{WORKING_HORIZONTAL_FIXED_LINEAR_CUBIC_PENCIL.md},
+\path{vertical_locus/WORKING_VERTICAL_FIXED_LINEAR_CUBIC_PENCIL.md},
+the branch lemmas under \path{vertical_locus/},
+\path{vertical_locus/a0_w0_nonzero_attack/NOTE.md}, and
+\path{../WORKING_QUADRATIC_COMPONENT_EXIT.md}.  The final bridge report is
+\path{../taxonomy_freeze/audit_bridge_q2_e1_a3_b1_d1_n1_v1/REPORT.md}.
+The aggregate entry point is \path{verify_all_strict.sh}.
+
+These programs check encoded algebra, rank certificates, collision strata,
+coverage, and deliberate fault injections.  Their ``hostile audit'' label
+denotes an internal adversarial workflow, not independent human peer review.
+The literature theorems used in Lemma~\ref{lem:quadratic} remain black
+boxes.
+
+\section{Prior art, attribution, and disclosure}
+
+The external bounded-degree input is Moh's plane theorem in the
+degree-$\le12$ form quoted by Vistoli.  Moh's cited paper is the 1983 paper
+on configurations of roots \cite{Moh}.  We do not attribute the present
+three-dimensional row decomposition to Moh, and we do not confuse the plane
+theorem with the separate unpublished Moh--Sathaye computer calculation for
+three-dimensional degree three discussed by Vistoli.
+
+No claim is made that this row theorem is absent from all prior literature.
+The project's source-specific search and internal provenance record are not
+a worldwide priority determination.  A fuller account of the AI roles and
+limitations is in \path{AI_DISCLOSURE.md}.  No external person was contacted
+by an AI system on behalf of this project.
+
+\begin{thebibliography}{9}
+
+\bibitem{Moh}
+T.-T. Moh,
+\newblock On the Jacobian conjecture and the configurations of roots,
+\newblock \emph{J. Reine Angew. Math.} \textbf{340} (1983), 140--212.
+\newblock \url{https://doi.org/10.1515/crll.1983.340.140}.
+
+\bibitem{Vistoli}
+Angelo Vistoli,
+\newblock The Jacobian conjecture in dimension 3 and degree 3,
+\newblock \emph{J. Pure Appl. Algebra} \textbf{142} (1999), 79--89.
+\newblock \url{https://doi.org/10.1016/S0022-4049(98)00040-1}.
+
+\bibitem{BCW}
+Hyman Bass, Edwin H. Connell, and David Wright,
+\newblock The Jacobian conjecture: reduction of degree and formal expansion
+of the inverse,
+\newblock \emph{Bull. Amer. Math. Soc. (N.S.)} \textbf{7} (1982), 287--330.
+\newblock
+\url{https://www.ams.org/bull/1982-07-02/S0273-0979-1982-15032-7/}.
+
+\bibitem{Stacks}
+The Stacks Project,
+\newblock Theorem 41.14.1, Tag 025G,
+\newblock \url{https://stacks.math.columbia.edu/tag/025G}.
+
+\end{thebibliography}
+
+\end{document}

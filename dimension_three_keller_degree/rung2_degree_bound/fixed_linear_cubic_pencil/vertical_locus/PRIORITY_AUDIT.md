@@ -62,3 +62,55 @@ frontier.
 No collision was found in the named sources.  This negative result is not
 a priority guarantee.  The exact scripts certify only the encoded algebra,
 and all current vertical statements remain unreviewed.
+
+## 2026-07-25T22:19:58Z delta
+
+Before treating the completed vertical companion as a candidate full-row
+ingredient, a second sweep used:
+
+- `site:arxiv.org 2607 Keller map dimension three degree four cubic pencil`;
+- `site:arxiv.org "Keller" "dimension three" quartic counterexample`;
+- `"fixed-linear" "cubic pencil" Keller map`;
+- current arXiv `math.AG`, `math.AC`, `math.CO`, and `math.NT` listings;
+- current MathOverflow Jacobian questions;
+- the Secret Blogging Seminar counterexample thread;
+- Terence Tao's digestion post; and
+- indexed X/Twitter searches for dimension-three quartic Keller maps.
+
+The current arXiv listings returned Shaska's graded-map paper and Migus's
+generic-degree paper, but no quartic leading-shape classification.  A
+Secret Blogging Seminar comment reports an independently certified
+classification of the **grading-equivariant** Keller locus through ordinary
+degree four.  Its scope is explicitly equivariant and does not state the
+general fixed-linear primitive-cubic-pencil theorem here.  The nearby
+Gallagher and MathOverflow uses of “degree four” concern generic fibre
+degree, not total polynomial degree.  Long's five-term degree-four object
+is a Gaussian-moments polynomial, not a three-dimensional Keller map.
+
+The sweep also read Z. Jelonek, *On mappings with Jacobian one*,
+arXiv:2607.20597, submitted 22 July 2026.  That note proves closedness and
+component statements for the bounded-degree Jacobian-one loci
+\(A(n,d)\) and \(X(n,d)\).  It does not give a degree-four leading-form
+taxonomy or a primitive cubic-pencil exclusion, so it does not collide
+with the candidate structural row theorem.
+
+No exact phrase, displayed normal form, or theorem matching the vertical
+companion exclusions was located.  Source-specific negative evidence is
+not a guarantee of worldwide priority, and no person was contacted.
+
+## 2026-07-25T22:50:00Z final-row delta
+
+After the post-freeze bridge reached an unconditional candidate, a final
+search used the exact strings
+
+- `"fixed-linear" "primitive cubic pencil" Keller`;
+- `"H_4=(hp,hq,0)" Keller map`;
+- `quartic Keller map dimension three primitive cubic pencil`; and
+- current July 2026 arXiv results for dimension-three degree-four Keller
+  maps.
+
+The returned current papers concerned graded maps, real generic degree,
+the announced counterexample, or unrelated classical pencils.  No checked
+source stated the full fixed-linear primitive-cubic-pencil exclusion or
+its horizontal/vertical route.  This remains source-specific negative
+evidence, not a guarantee of worldwide priority.  No person was contacted.

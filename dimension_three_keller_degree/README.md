@@ -9,14 +9,26 @@ explicit weighted-lift counterexamples realize every generic degree at least
 three.  The exact spectrum is therefore known and is not a new result of this
 program.
 
-The active frontier is Rung 2.  Vistoli's 1999 theorem already gives the
-certified total-polynomial-degree floor
+The active frontier is Rung 2.  Moh--Sathaye proved, by computer
+calculation, and Vistoli gave a short conceptual proof in 1999, that over
+an algebraically closed characteristic-zero field the certified
+total-polynomial-degree floor is
 \[
 \deg F\geq 4
 \]
 for a counterexample in dimension three.  The current work asks whether total
 degree four can be excluded, while keeping algebraic, compactification, and
 nonproperness routes independent.
+
+The immutable post-freeze denominator has fourteen inclusive leading-shape
+rows.  The current certified status is
+\[
+3/14\text{ excluded},\qquad5/14\text{ provisional},\qquad6/14\text{ open}.
+\]
+In particular, the complete fixed-linear primitive-cubic-pencil row
+`Q2-E1-A3-B1-D1-N1` is now certified excluded by a post-freeze bridge and
+an independent 48-atom hostile replay.  This is a structural row theorem,
+not yet an improvement of the universal floor.
 
 The first audited quartic working lemmas now constrain:
 
@@ -86,12 +98,19 @@ The first audited quartic working lemmas now constrain:
   \((H_3)_3\in\ell\langle p,q\rangle\); its pencil is exactly
   \(\langle x^2,yz\rangle\) or
   \(\langle x^2,y^2+xz\rangle\); and
-- the complete lower-identity exclusion of that fixed-divisor \(e=2\)
-  frontier.  A pencil shear leaves exactly the mixed companion \(xq\)
-  and triple companion \(x^3\); exact, specialization-safe determinant
-  trees exclude both companions for both canonical pencils.  Independent
-  hostile audits repaired four hidden pivot drops across the two triple
-  packages and found no surviving leaf; and
+- the complete lower-identity exclusion of the **marked sublocus** of the
+  fixed-divisor \(e=2\) frontier where the fixed quadratic gcd equals the
+  pencil's unique double-line member.  A pencil shear leaves exactly the
+  mixed companion \(xq\) and triple companion \(x^3\); exact,
+  specialization-safe determinant trees exclude both companions for both
+  canonical pencils.  A post-freeze readiness audit found that the top
+  theorem also allows a distinct marked fixed member \(h\ne s\).  A second
+  hostile pass then found that the previously asserted two-orbit companion
+  shear is invalid: mixed combinations in
+  \(\mathbb P(\ell\langle h,s\rangle)\) can remain inequivalent.  The
+  marked-member and companion quotient is therefore being reconstructed
+  before any further exclusion.  Thus the frozen \(e=2\) row remains
+  provisional; and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are
@@ -139,12 +158,13 @@ hypothesis audit.
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), ramified birational quartic parametrizations, the
 binary fixed-quadratic line double-cover locus,
-the binary fixed-linear line triple-cover locus, and the other leading maps
-with a fixed divisor, including the vertical part of the primitive
-cubic-pencil row.
+the binary fixed-linear line triple-cover locus, and the other unresolved
+fixed-divisor rows.  The primitive cubic-pencil row, including its vertical
+part, is certified closed.
 The genuine line-\((2,2)\), nodal-cubic, cuspidal-cubic, fixed-divisor
-conic, conic-double-cover, and fixed-divisor \(e=2\) quadratic-pencil rows
-are closed. In the rank-one stratum,
+conic, and conic-double-cover rows are closed at the legacy algebraic
+level.  The fixed-divisor \(e=2\) quadratic-pencil row still has the
+distinct-marked-member \(h\ne s\) frontier. In the rank-one stratum,
 fixed-component projected cubic pencils and a binary common-ramification
 locus remain. The universal certified floor remains \(4\).
 

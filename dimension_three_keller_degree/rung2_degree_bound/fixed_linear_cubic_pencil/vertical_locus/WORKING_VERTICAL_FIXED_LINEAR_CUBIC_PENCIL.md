@@ -1,7 +1,7 @@
 # The vertical fixed-linear primitive cubic-pencil frontier
 
-**Status:** provisional exact theorem and frontier reduction.  This package
-has not yet received an independent hostile audit and is not peer reviewed.
+**Status:** exact theorem and frontier reduction; independent hostile audit
+passed in `audit_vertical_hostile/REPORT.md`.  This is not peer reviewed.
 
 **Recorded:** 2026-07-25T10:55:06Z.
 
