@@ -290,7 +290,8 @@ no-low-syzygy statement then forces \(\partial_rH_2=0\).  The audit
 independently checked the omitted \(h=q\) chart and the final
 degree-at-most-four plane Keller block plus shear.  No scope correction was
 needed.  Combining this with the transverse calculation excludes the
-entire nodal row.  The cuspidal cubic row remains.
+entire nodal row.  The transverse cuspidal branch is treated separately
+below; its scalar-aligned branch remains.
 
 ### Binary fixed-divisor conic
 
@@ -362,6 +363,34 @@ fixed-divisor conic row
 \[
 (e,a,b,\delta,\nu)=(2,1,2,2,1).
 \]
+
+### Transverse cuspidal cubic
+
+At 2026-07-25T04:07:17Z both exact regressions passed:
+
+```text
+/usr/bin/python3 verify_cuspidal_cubic_exit_sympy.py
+gp -q verify_cuspidal_cubic_exit_pari.gp
+```
+
+The SymPy regression reconstructs the ramified normal and Hilbert--Burch
+syzygies for
+\[
+H_4=r(p^2q,p^3,q^3)^T,
+\]
+the full degree-seven and degree-six coefficient systems and ranks, the
+complete quadratic solution, and every lower factor.  PARI/GP independently
+expands the determinants, checks the parameterized solutions, and verifies
+all final homogeneous coefficients and \(\det L_0\).
+
+An independent audit first reconstructed the projective and transverse
+normalization, then used a fresh coefficient dictionary rather than the
+scripts' extraction path.  It reproduced the degree-seven rank \(14\), the
+three compatibility entries, the four-dimensional kernel, the degree-six
+rank \(8\), its one-dimensional linear-part nullspace, and the degree-five
+and degree-three factors.  It also checked the PARI source for reserved
+symbols and false-pass paths.  The conclusion excludes exactly the
+transverse cuspidal branch; the scalar-aligned branch remains open.
 
 ## Scope
 

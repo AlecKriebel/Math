@@ -383,3 +383,23 @@ The exact-phrase searches for “fixed-divisor conic” and for
 source-specific negative evidence only, not a guarantee of worldwide
 priority.  The theorem remains unreviewed and does not raise the certified
 universal total-degree floor above \(4\).
+
+### 2026-07-25T04:07Z — transverse cuspidal-cubic overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“cuspidal cubic”, “leading homogeneous part”, “fixed divisor”, and the
+normal form \(r(p^2q,p^3,q^3)\).  Separate searches covered arXiv,
+MathOverflow, Tao's blog, Secret Blogging Seminar, and read-only X/Twitter
+results.
+
+The checked current results concerned generic degree, the announced
+counterexample, graded Keller maps, or unrelated cuspidal geometry.  None
+states the ramified Hilbert--Burch reduction, the rank-\(14\) degree-seven
+compatibility system, or an exclusion of the transverse cuspidal leading
+stratum.  Exact-phrase searches for “transverse cuspidal Keller map” and the
+displayed normal form found no checked overlap.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem remains unreviewed, leaves the
+scalar-aligned cusp locus open, and does not raise the certified universal
+total-degree floor above \(4\).

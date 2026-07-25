@@ -589,3 +589,30 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   is not a guarantee of worldwide priority.  The result is an unreviewed
   stratum theorem and does not raise the universal certified floor above
   total degree \(4\).
+
+## 2026-07-25T04:07:17Z — Transverse cuspidal-cubic branch excluded
+
+- Every transverse fixed-divisor map in the cuspidal cubic row normalizes
+  to
+  \[
+  H_4=r(p^2q,p^3,q^3)^T.
+  \]
+  Its reduced normal has Hilbert--Burch syzygies of coefficient degrees one
+  and two.  The degree-eight equation gives their complete cubic tangent
+  family.
+- A specialization at \(r=0\) produces an exact square.  The full
+  degree-seven system has rank \(14\); its three compatibility entries force
+  the two exceptional tangent parameters to vanish, and its four-dimensional
+  kernel gives the complete quadratic part.
+- The degree-six system retains an arbitrary nine-entry \(L_0\), has rank
+  \(8\), and solves all but one entry.  Degree five factors into two
+  conjugate polynomial factors; degree three then forces the same square
+  whose multiple is \(\det L_0\) to vanish.  Thus no Keller map occurs.
+- Exact SymPy and independent PARI/GP regressions pass.  A separate audit
+  reconstructed the projective normalization, raw ranks, kernel
+  completeness, lower factors, and verifier failure paths.  It found no
+  correction or scope overreach.
+- This closes only \(h\notin\langle p,q\rangle\).  The scalar-aligned
+  cuspidal branch remains active.  The source-specific priority sweep found
+  no exact checked overlap, which is not a guarantee of worldwide priority.
+  The universal certified floor remains total degree \(4\).

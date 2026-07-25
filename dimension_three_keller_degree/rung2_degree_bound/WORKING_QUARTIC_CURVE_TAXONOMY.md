@@ -220,8 +220,12 @@ The fixed-divisor coverage is now more precise.
   \]
   `WORKING_NONBINARY_FIXED_CONIC_ROW.md` excludes all five, so the entire
   fixed-divisor conic taxonomy row is closed.
-- The cuspidal cubic and the other \(e>0\) rows remain uncovered except
-  where a separate component or rank-one exit theorem applies.
+- In the cuspidal cubic row,
+  `WORKING_CUSPIDAL_CUBIC_CURVE_EXIT.md` excludes the transverse fixed-factor
+  branch.  Only the scalar-aligned branch \(h\in\langle p,q\rangle\)
+  remains.
+- The other \(e>0\) rows remain uncovered except where a separate component
+  or rank-one exit theorem applies.
 
 ## 5. The transverse cubic stratum
 
@@ -360,6 +364,7 @@ degrees six and five and excludes the transverse nodal branch.
 `WORKING_SCALAR_ALIGNED_NODAL_CUBIC_EXIT.md` independently handles
 \(h\in\langle p,q\rangle\).  Thus the nodal row is now empty; the cuspidal
 ramified normal-minor locus \(\gcd\Delta\ne1\) remains separate.
+`WORKING_CUSPIDAL_CUBIC_CURVE_EXIT.md` now excludes its transverse branch.
 
 ## 8. Nodal gcd-one representative
 
@@ -387,7 +392,9 @@ By contrast, the cuspidal parametrization
 (p^2q,p^3,q^3)
 \]
 has a nonconstant common factor in its derivative minors and lies on the
-ramified branch.
+ramified branch.  The audited cuspidal note carries that branch through the
+lower identities when the fixed linear divisor is transverse to
+\(\langle p,q\rangle\); only the scalar-aligned placement remains.
 
 Every irreducible nodal plane cubic over \(\mathbb C\) is projectively
 equivalent to (18).  The two audited lower-identity calculations in
