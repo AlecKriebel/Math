@@ -680,3 +680,20 @@ explicitly rejected misleading reductions in characteristics \(5\) and
 worldwide priority.  The result is unreviewed, identifies rather than
 excludes the final two lower-identity frontiers, and leaves the certified
 universal floor at \(4\).
+
+### 2026-07-25T08:39Z — rank-one exceptional-orbit audit delta
+
+The current-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+Gallagher, and publicly indexed X/Twitter sweeps were compared with the
+unmarked \(c=0\) orbit and the two marked mixed companions in
+\[
+p=x^2,\qquad q=y^2+xz.
+\]
+No checked source states the \(c=0\) square/cubic compatibility syzygies,
+the complete marked-pair residual orbit ledger, or the common
+constant-rank zero-second-column exit.
+
+Independent hostile PARI reconstructions passed for both the unmarked
+triple and both marked mixed rows.  This source-specific negative evidence
+is not a guarantee of worldwide priority.  The results remain unreviewed
+and do not raise the universal certified floor above \(4\).

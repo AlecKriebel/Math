@@ -44,3 +44,18 @@ the audit is **not a guarantee of worldwide priority**.  The theorem
 passed an independent hostile mathematical audit at
 2026-07-25T07:02:00Z but remains unreviewed.  Re-run the sweep immediately
 before any public release.
+
+## 2026-07-25T08:39:00Z — exceptional-orbit audit delta
+
+The current-day search corpus was rechecked against the exact unmarked
+triple orbit \(c=0\) and the two marked mixed companions
+\[
+H_4=(p^2,q^2,0),\qquad R=xq,\ x(p-q).
+\]
+No checked source states their complete raw gauges, the square/cubic
+compatibility syzygies at \(c=0\), or the common constant-rank
+zero-column exit for the marked mixed rows.
+
+Both results passed independent hostile reconstruction.  This remains
+source-specific negative evidence, not a guarantee of worldwide priority;
+the results are unreviewed.

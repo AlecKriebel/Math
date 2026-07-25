@@ -823,6 +823,35 @@ quadratic-component exit.  It rejected characteristics \(5\) and \(11\)
 after spurious modular kernels appeared; only exact characteristic-zero
 and a dependency-free modulo-\(101\) rank certificate are retained.
 
+### Rank-one exceptional \(c=0\) and marked mixed orbits
+
+At 2026-07-25T08:38:00Z the supplied reconstructions and independent
+hostile audits passed:
+
+```text
+cd line22_rankone_restriction/unmarked_triple_c0
+/usr/bin/python3 -u verify_unmarked_triple_sympy.py
+cd audit_hostile
+./verify_hostile_pari_strict.sh
+
+cd ../../marked_mixed_orbits
+/usr/bin/python3 -u verify_marked_mixed_sympy.py
+cd audit_hostile
+./verify_marked_mixed_pari_strict.sh
+./test_fail_closed.sh
+```
+
+For the unmarked triple \(c=0\), exact square and cubic compatibility
+syzygies force \(w_2=w_3\) and \(w_1=0\).  A constant lower solve then
+zeros the second column of \(L\).
+
+For the marked critical pair \(H_4=(p^2,q^2,0)\), the two mixed companions
+\(xq\) and \(x(p-q)\) each have a complete five-gauge/three-normal raw
+kernel.  Parameter-free \(E_6/E_5\) pivots remain nonzero at
+\(w_2=w_3\), and both complete solutions zero the second column of \(L\).
+The hostile audit independently reconstructed the orbit ledger, gauges,
+all converses, and the collision specialization.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

@@ -109,7 +109,16 @@ The first audited quartic working lemmas now constrain:
   \(p=x^2,q=y^2+xz\), every unmarked-critical finite mixed-companion orbit
   \(H_4=((p-q)^2,(p+q)^2,0)\),
   \((H_3)_3=x(p-cq)\) with \(c(c^2-9)\ne0\).  The full Borel stabilizer,
-  exceptional raw ranks, and residual equivalence \(c\sim-c\) are retained.
+  exceptional raw ranks, and residual equivalence \(c\sim-c\) are
+  retained; and
+- the unmarked triple companion \(c=0\) in that pencil: degree-six and
+  degree-five compatibility successively force \(w_2=w_3\) and \(w_1=0\),
+  after which the second column of the linear part vanishes; and
+- both marked-critical mixed-companion orbits for
+  \(H_4=(p^2,q^2,0)\), namely
+  \((H_3)_3=xq\) and \(x(p-q)\).  Constant-rank degree-six and degree-five
+  solves include the collision \(w_2=w_3\) and again zero the second
+  column of the linear part.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -119,8 +128,8 @@ hypothesis audit.
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the companion-at-infinity parts of the
 unique-double-line line-image \((2,2)\) stratum, plus the marked and
-exceptional \(c=0,c^2=9,c=\infty\) pieces of its rank-one-restriction
-pencil, ramified birational quartic parametrizations,
+exceptional triple-marked, \(c^2=9\), and \(c=\infty\) pieces of its
+rank-one-restriction pencil, ramified birational quartic parametrizations,
 the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
 with a fixed divisor, including the vertical part of the primitive

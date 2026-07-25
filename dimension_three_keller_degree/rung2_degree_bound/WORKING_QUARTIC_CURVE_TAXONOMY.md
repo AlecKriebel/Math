@@ -189,8 +189,14 @@ The common-factor-free rows have the following exact or partial coverage.
    active.  For the rank-one-restriction pencil
    \(q=y^2+xz\),
    `line22_rankone_restriction/WORKING_RANKONE_RESTRICTION_OPEN_ORBIT.md`
-   excludes the unmarked finite mixed locus \(c(c^2-9)\ne0\); its three
-   marked-pair orbits and unmarked \(c=0,c^2=9,\infty\) remain active.
+   excludes the unmarked finite mixed locus \(c(c^2-9)\ne0\).
+   `line22_rankone_restriction/unmarked_triple_c0/NOTE.md` excludes
+   \(c=0\), while
+   `line22_rankone_restriction/marked_mixed_orbits/NOTE.md` excludes the
+   two marked mixed companions \(xq\) and \(x(p-q)\).  The audited
+   frontier is therefore the marked triple and unmarked
+   \(c^2=9,\infty\); each has a separate provisional exact calculation
+   awaiting or undergoing hostile audit.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

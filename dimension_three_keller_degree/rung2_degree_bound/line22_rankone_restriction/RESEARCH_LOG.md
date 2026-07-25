@@ -85,3 +85,27 @@ is not a guarantee of worldwide priority.
 - The strict PARI wrapper was strengthened from sentinel recognition to an
   exact transcript whitelist, with injected tests for extra output,
   missing output, diagnostics, and nonzero exits.
+
+## 2026-07-25T08:32:00Z — unmarked triple \(c=0\) excluded
+
+- Raw rank \(16\) leaves a ten-dimensional kernel and a complete
+  five-direction affine/target gauge.
+- A literal degree-six compatibility row forces \(w_2=w_3\); an integer
+  degree-five row syzygy then forces \(w_1=0\).
+- A constant four-pivot solve gives
+  \(\ell_{12}=\ell_{22}=\ell_{32}=0\), so the second column of \(L\)
+  vanishes.
+- Independent PARI reconstruction passed without hidden division or
+  rank-drop specialization.
+
+## 2026-07-25T08:38:00Z — both marked mixed orbits excluded
+
+- For the marked critical pair \(H_4=(p^2,q^2,0)\), the two mixed
+  companions are exactly \(R=xq\) and \(R=x(p-q)\).
+- Both raw \(E_7\) matrices have rank \(18\) and complete
+  five-gauge/three-normal kernels.
+- Parameter-free \(E_6/E_5\) minors remain nonzero at
+  \(d=w_2-w_3=0\), and both complete solves force the second column of
+  \(L\) to vanish.
+- A hostile PARI audit reconstructed the orbit ledger, all gauges,
+  converses, and the collision specialization.  Verdict: PASS.

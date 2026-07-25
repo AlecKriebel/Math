@@ -957,3 +957,36 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - This identifies the sole all-vertical top frontier with the two
   unique-double-line line-\((2,2)\) pencils.  It does not yet exclude both
   lower-identity frontiers, so the universal floor remains \(4\).
+
+## 2026-07-25T08:32:00Z — Rank-one unmarked triple \(c=0\) excluded
+
+- In the pencil \(p=x^2,q=y^2+xz\), the unmarked triple companion
+  \[
+  H_4=((p-q)^2,(p+q)^2,0),\qquad(H_3)_3=x^3
+  \]
+  has raw \(E_7\) rank \(16\) and a complete five-direction gauge.
+- Degree-six and degree-five compatibility successively force
+  \(w_2=w_3\) and \(w_1=0\), with no parameter division.
+- The final constant pivot gives
+  \(\ell_{12}=\ell_{22}=\ell_{32}=0\), so the linear part is singular.
+- An independent hostile PARI reconstruction recovered literal square and
+  cubic row syzygies and the full converses.  Verdict: PASS.
+
+## 2026-07-25T08:38:00Z — Both rank-one marked mixed orbits excluded
+
+- For the marked pair \(H_4=(p^2,q^2,0)\), the residual Borel quotient has
+  exactly two mixed companions:
+  \[
+  (H_3)_3=xq,\qquad(H_3)_3=x(p-q).
+  \]
+- Each raw \(E_7\) system has rank \(18\), with a complete
+  five-gauge/three-normal kernel.
+- Constant \(E_6/E_5\) minors give complete solutions and force
+  \(\ell_{12}=\ell_{22}=\ell_{32}=0\), including at
+  \(w_2=w_3\).
+- A hostile PARI audit reconstructed both orbit normal forms, all lower
+  converses, and the collision specialization.  Verdict: PASS.
+- The audited rank-one-restriction frontier is now the marked triple,
+  unmarked \(c^2=9\), and unmarked companion at infinity.  Each has an
+  exact provisional exclusion undergoing independent audit.  The
+  universal floor remains \(4\).
