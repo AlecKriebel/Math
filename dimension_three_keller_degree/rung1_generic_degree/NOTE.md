@@ -6,10 +6,12 @@
 
 > **Status and priority.**  The exclusion proved below is classical.  Campbell
 > proved the complex Galois case in 1973; Razar and Wright supplied
-> characteristic-zero algebraic proofs.  The exact minimum generic degree
-> three was already stated publicly after the July 2026 counterexample, and
-> the weighted-lift family realizing every degree at least three was already
-> public.  This note banks and audits the result; it does not claim novelty.
+> characteristic-zero algebraic proofs, and Trushin's May 2026 preprint
+> already contains the degree-two branch/singular-locus mechanism reproduced
+> in Section 3.  The exact minimum generic degree three was already stated
+> publicly after the July 2026 counterexample, and Gallagher proved the
+> weighted-lift family uniformly for every degree at least three.  This note
+> banks and audits the result; it does not claim novelty.
 
 > **Review status.**  This note is not peer reviewed.  It was prepared with
 > substantial AI assistance.  Exact computer checks test only the encoded
@@ -49,7 +51,11 @@ counterexample has geometric monodromy \(S_3\).
 The two uses of “degree” must not be confused.  These theorems concern the
 function-field degree \([L:K]\), not
 \(\max_i\deg F_i\).  The total-polynomial-degree problem begins separately at
-degree four by Vistoli's theorem.
+degree four.  The dimension-three degree-three result was first obtained by
+Moh--Sathaye in an unpublished computer calculation; Vistoli's 1999 paper
+gives the published conceptual proof over an algebraically closed
+characteristic-zero field.  Faithfully flat descent gives the same floor over
+an arbitrary characteristic-zero field.
 
 ## 2. The classical Galois proof
 
@@ -72,9 +78,12 @@ For clarity, “the Galois closure has a Galois group” is not the hypothesis:
 every finite separable extension has a Galois closure.  The theorem requires
 the original extension \(L/K\) itself to be normal.
 
-## 3. A short independent quadratic proof over \(\mathbb C\)
+## 3. A self-contained quadratic proof over \(\mathbb C\)
 
-We give a second proof which exposes the codimension obstruction directly.
+Trushin's May 2026 preprint already contains both the square-root construction
+and the branch/singular-locus mechanism below.  We reproduce the short
+specialization because it exposes the codimension obstruction directly; it is
+not a prior-art-independent proof.
 Assume for contradiction that \([L:K]=2\).  Since
 \(A\simeq\mathbb C[y_1,\ldots,y_n]\) is a unique factorization domain, after
 removing a square from a representative of the nontrivial square class we may

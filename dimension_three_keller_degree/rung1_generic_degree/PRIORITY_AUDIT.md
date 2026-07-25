@@ -17,22 +17,35 @@ This is source-specific evidence, not a guarantee of worldwide priority.
   <https://doi.org/10.1215/ijm/1256047158>, Theorem 3.7.  This gives the
   dimension-free characteristic-zero Galois case.
 - Trushin, *Contracted divisors and Degree-Two Maps*, arXiv:2605.26390,
-  <https://arxiv.org/abs/2605.26390>, explicitly identifies function-field
-  degree two as already covered and supplies a degree-two-specific divisor
-  theorem.
+  <https://arxiv.org/abs/2605.26390>, Proposition 3.2.2,
+  Proposition 3.3.3, Corollary 3.3.5, Lemma 4.2.1, and Corollary 4.2.2.
+  These contain both the square-root construction and the
+  singular-locus/branch contradiction reproduced in Section 3.  The local
+  presentation is self-contained, not independent.
 - MathOverflow question 513387, posted 20 July 2026,
   <https://mathoverflow.net/questions/513387>, already states that generic
   degree three is minimal.
 - Migus, arXiv:2607.21572,
   <https://arxiv.org/abs/2607.21572>, explicitly invokes Campbell to exclude
   degree two.
-- Gallagher's public weighted-lift construction,
-  <https://jacobianfun.org/jacobian-explained>, and the repository's
-  independently encoded subfamily realize every generic degree \(d\ge3\).
+- Gallagher, *An infinite family of counterexamples to the Jacobian
+  Conjecture in dimension three: every generic fiber degree \(n\ge3\)
+  occurs*, <https://doi.org/10.5281/zenodo.21479195>, proves the all-\(n\)
+  construction uniformly.  The finite degree atlas is regression evidence,
+  not the basis of the general theorem.
+
+## Total-degree attribution correction
+
+Vistoli's 1999 introduction states that Moh and Sathaye had already proved
+the dimension-three degree-three theorem by an unpublished computer
+calculation whose printout ran to roughly one hundred pages.  Vistoli gives
+the short published conceptual proof.  His stated base field is algebraically
+closed of characteristic zero.  Base change to an algebraic closure followed
+by faithful-flat descent extends the resulting total-degree floor of four to
+any characteristic-zero field.
 
 ## Conclusion
 
 No novelty is claimed for the exclusion, the minimum, or the full spectrum.
 This artifact exists to prevent the program from re-deriving or overstating a
 classical result.
-

@@ -1,16 +1,18 @@
 # Verification record
 
-The universal exclusion is checked by methodologically independent
-mathematical routes:
+The universal exclusion is checked against the following mathematical
+routes:
 
 1. Campbell's 1973 complex-analytic covering/Hartogs proof of the Galois
    case.
 2. Wright's 1981 characteristic-zero algebraic proof of the Galois case.
-3. The singular-locus argument reproduced in `NOTE.md`, which uses only
-   normality of a polynomial ring, quasi-finiteness of an étale map, and the
-   codimension of the singular locus of a reduced hypersurface.
-4. Trushin's 2026 contracted/branch-divisor theorem, specialized to degree
+3. Trushin's 2026 contracted/branch-divisor theorem, specialized to degree
    two.
+4. The short singular-locus argument reproduced in `NOTE.md`, which uses
+   only normality of a polynomial ring, quasi-finiteness of an étale map, and
+   the codimension of the singular locus of a reduced hypersurface.  This is
+   a self-contained specialization of Trushin's mechanism, not an independent
+   prior-art route.
 
 The two scripts are deliberately narrower.  They independently check the
 encoded algebra of the weighted-lift examples used for the existence half of
@@ -30,4 +32,3 @@ the verification basis.
 
 This work is not peer reviewed.  All scripts and proofs were prepared with
 substantial AI assistance and require expert scrutiny.
-
