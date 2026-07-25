@@ -267,3 +267,44 @@
 - Normalization, out-of-scope \(W_0\), gamma-sensitivity, optimized-Python,
   and supplied-checker mutations all failed closed. Verdict: PASS at the
   candidate theorem's exact scope.
+
+## 2026-07-25T22:10:03Z — \(a=0,W_0=0\) hostile audit
+
+- A raw determinant solve on all two nontriple and three minimal
+  triple-root charts excludes the complete \(a=0,W_0=0\) family through
+  \(E_6,E_5,E_4\).
+- An auditor derived the result independently before opening the root
+  candidate.  Its parameterization solves for the five coefficients of
+  \(A\), whereas the root candidate solves for three coefficients of
+  \(A\) and two entries of the third linear row; the two solves agree
+  exactly.
+- The independent replay retains the removable \(z^3\)-coefficients of
+  both \(q\) and \(V\), reconstructs the weighted determinant in SymPy,
+  and separately reconstructs the exterior row polarization in PARI/GP.
+  All complete branch converses and fail-closed tests pass.
+- The hostile verdict is PASS at exactly \(a=0,W_0=0\).  The remaining
+  vertical-companion family is \(a=0,W_0\ne0\); the global frozen-row
+  count remains unchanged pending its audit and a post-freeze bridge.
+
+## 2026-07-25T22:06:11Z — zero companion parameter with \(W_0\ne0\)
+
+- On the \(a=0\) (equivalently \(s=0\)) vertical companion, an exact
+  exterior cancellation reduces the complete degree-six identity to
+  \[
+  3E_6=z\bigl(4W\{q,W\}+9z^2\{A,q\}+12z^3\{q,L_3\}\bigr).
+  \]
+- Its first \(z\)-coefficient forces
+  \(\{q_0,W_0\}=0\).  Thus \(q_0=\kappa L^3\) and
+  \(W_0=\gamma L^2\); every squarefree/double root type and every partial
+  common-factor boundary is eliminated at once.
+- Retaining every lower jet and neither normalizing \(\kappa\) nor
+  \(\gamma\), six exact coefficients force the \(y^2z,xyz,yz^2\)
+  coefficients of \(q\) to vanish.  Hence
+  \(q\in\operatorname{Sym}^3\langle z,L\rangle\), exactly the nonminimal
+  boundary.  The full minimal \(a=0,W_0\ne0\) branch is therefore
+  excluded already by \(E_6\).
+- A raw SymPy determinant reconstruction and a dependency-free sparse
+  reconstruction agree with the exterior formula and division-free ideal
+  combinations.  A sharp nonminimal witness with \(q=x^3,W=x^2,L=I\)
+  survives \(E_8,\ldots,E_4\), guarding the scope.  The candidate theorem
+  in `a0_w0_nonzero_attack/NOTE.md` awaits a fresh hostile audit.

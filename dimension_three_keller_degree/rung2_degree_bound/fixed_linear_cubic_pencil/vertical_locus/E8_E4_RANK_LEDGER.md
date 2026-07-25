@@ -311,6 +311,14 @@ kernel, including all root-line collision kernels; the previously audited
 Consequently the complete nontriple part of the \(a\ne0\) vertical
 companion is also excluded.
 
-No leaf is called excluded here.  The formulas are necessary conditions
-through \(E_4\), and the full lower-\(z\)-coefficient solve is still in
-progress.
+On the separate \(a=0\) family, the full five-chart calculation in
+`VERTICAL_A0_W0_ZERO_EXCLUSION.md` excludes \(W_0=0\) through
+\(E_6,E_5,E_4\).  A derivation completed independently before comparison,
+a second symbolic parameterization, and a PARI/GP exterior reconstruction
+all pass; see `audit_vertical_a0_w0_zero/REPORT.md`.  The only remaining
+vertical-companion family is therefore
+\[
+\boxed{a=0,\qquad W_0\ne0.}
+\]
+It is not called excluded in this ledger until its separate candidate and
+hostile audit pass.
