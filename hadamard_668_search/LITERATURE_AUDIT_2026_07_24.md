@@ -65,8 +65,10 @@ The paper does not contain the following deeper ID3 results:
 - prime-167 exactness and the spectral-unit theorem;
 - the exact shell exclusions `n_9=6,5,4,3`;
 - the five exact `n_9=2` profile orbits;
+- the complete eighteen-orbit `n_9=0` profile classification;
 - the quadratic second-placement-digit pencil and ramified row-collapse
-  theorem.
+  theorem; or
+- the all-five multiplicative class-by-row anti-tensor obstruction.
 
 These remain potentially novel but are restricted results within a
 non-necessary fixed-compression branch.
@@ -80,8 +82,10 @@ condition for an uncompression of that seed.
 
 Within that restricted lane, the checked sources do not contain:
 
-- the explicit dense-shell `h=0` profile with shell `(0,18,6)`;
-- its exact all-37-lag Eisenstein certificate and 12-element formal orbit;
+- the complete set of eighteen dense-shell `h=0` profile orbits with shell
+  `(0,18,6)`;
+- their exact all-37-lag Eisenstein certificates and formal orbit
+  distribution of twelve size-24 and six size-12 orbits;
 - the half-turn splitting `36=21+15`;
 - the twelve even quadrics and six odd bilinear equations;
 - the complete 35-family nonidentity global fiber-twist exclusion; or
@@ -89,8 +93,9 @@ Within that restricted lane, the checked sources do not contain:
   three projective minimum directions.
 
 These are plausible new internal results about one open `p=37,q=3`
-uncompression branch.  They are not yet a complete uncompression theorem,
-an `LP(333)`, or an `H(668)`.
+uncompression branch.  The eighteen-orbit statement is a complete
+classification at the profile layer, but it is not a complete
+uncompression theorem, an `LP(333)`, or an `H(668)`.
 
 ## Search consequence
 
@@ -142,9 +147,53 @@ decompression.  Those generic ingredients are prior.  No order-three
 Eisenstein profile, half-turn algebra, or profile-specific fiber-twist
 census was located there.
 
+## Post-audit structured-family comparison
+
+The new anti-tensor family is not a fixed-common-multiplier family. Its
+class-by-row term
+
+```text
+h_j F_X(j mod 6) G_X(s)
+```
+
+varies by channel and by the row law `G_X`; exact overlap replay shows that
+514,912 of its 517,109 first-digit placements lie outside all five proper
+fixed common-multiplier supergroups of ID3. The July multiplier theorem
+therefore neither proves nor subsumes their digit-two failure. Conversely,
+the anti-tensor census is much narrower than the paper's full-orbit
+theorems: it excludes one explicitly parameterized placement ansatz inside
+five already compressed profiles, not any common-multiplier subgroup or
+the complete ID3 lane.
+
+This comparison is based on the paper's stated limitation to untranslated
+fixed common multipliers, its complete subgroup ledger, and its explicit
+conclusion that nine subgroups of orders at most six remain open. No
+similar multiplicative class×row placement family was found in the checked
+paper or its artifact description. This is a novelty assessment, not proof
+of priority across all literature.
+
+## Near-Williamson comparison
+
+Kharaghani, Mohammadian, and Tayfeh-Rezaie,
+[A search for Hadamard matrices of Williamson
+type](https://arxiv.org/abs/2605.08661), submitted 9 May 2026, introduces
+near-Williamson matrices: one circulant block and three symmetric circulant
+blocks satisfying the Williamson norm identity.  It classifies all odd
+orders through 35 and gives examples through 63.  It does not give an
+order-167 object or a route to one.
+
+The local order-167 audit derives a one-defect binary reduction and an
+exact gauge-fixed front-end count of about `10^48.73`.  Neither the
+reduction nor that count was located in the checked paper.  This is useful
+negative feasibility information, not a construction and not a
+publication-level theorem by itself.  The public paper makes clear that
+the family is active and should be cited if the order-167 route is ever
+developed.
+
 ## Priority verdict
 
-The five-orbit classification, the new `h=0` profile, and their
+The five-orbit shell-two classification, the complete eighteen-orbit
+`h=0` profile classification, the all-five anti-tensor obstruction, and their
 second-digit algebra are not superseded by the checked 2026 papers.  Their
 honest scope is now sharper:
 
@@ -156,11 +205,21 @@ not an unrestricted Legendre-pair result,
 and not an H(668) construction.
 ```
 
-The isolated `h=0` profile and its half-turn family are not recommended as
-a standalone paper.  Their strongest current role is as sections of a
-complete order-three profile-classification paper.  A stronger publication
-threshold is a complete `h=0` orbit census, extension of the structured
-theorems across every resulting orbit, or a row-margin-compatible lift
-through two consecutive higher digits.
+The former two-profile fragment is now a complete eighteen-orbit `h=0`
+classification with detached exact certificates, so it has crossed the
+threshold for a scoped classification manuscript.  The strongest paper
+package combines that theorem with the all-orbit lift geometry, the complete
+six-profile half-turn low-shell exclusion, and the rank-one conic-center
+obstruction.  A complete `3^14` quadratic antipodal rank-two census on one
+priority orbit supplies an additional finite-family theorem, with zero
+digit-two, margin-compatible, or consecutive-digit survivors.  The package
+must be advertised as a profile-layer classification in the prescribed
+order-three `q^2`-uncompression branch, not as progress probability toward
+an unrestricted Legendre pair.
+
+A construction claim still requires a row-margin-compatible lift through
+two consecutive higher digits.  An even stronger obstruction paper would
+require a whole-profile digit-three exclusion, rather than the finite
+structured families presently closed.
 
 No external contact was made during this audit.

@@ -2141,3 +2141,207 @@ proof-assistant-level theorem.
   correct stronger layer. No additional support-level sieve, pruning
   count, witness, exclusion, or construction was obtained from the
   `Phi_28` norm-key approach.
+
+## 24 July 2026: anti-tensor correction obstruction
+
+- Took all three `18/20` points from the all-five anti-tensor census and
+  allowed a second separable component
+  `h_j F'_X(j mod 6)G'_X(s)` with all 13 projective row directions per
+  channel, while holding each point's background and first component fixed.
+- Exact first-digit elimination reduces the two relevant profiles to 175
+  and 11 distinct corrections, or 361 base-correction incidences. None
+  reaches `19/20` or `20/20` in the exact second-digit equations.
+- The two near misses on `h2-422220-2` lie in the same unique original
+  chart. Their difference is the only nonzero correction retaining
+  `18/20`, and it merely swaps the two points; the third point on that line
+  scores `9/20`.
+- Every fixed-background Newton system is inconsistent. A broader
+  rebalanced rank-two diagnostic retains 2 of 16 charts for each first
+  profile point and 7 of 16 for the second profile point, but its exact
+  Newton steps score at most `11/20`. This is heuristic prioritization, not
+  a nonlinear full-chart exclusion.
+- The independent verifier passes with semantic hash
+  `ed254a1e0a884227b447d31910298ea09ef9d7080b244bce3934c459bed9c4b8`,
+  in 4.37 seconds and 39,534,592 bytes maximum RSS.
+
+## 24 July 2026: second-profile quadratic character compression
+
+- For the second exact `h=0` profile, grouped the eighteen active quadrics
+  into six triple-sums `g_i=q_i+q_(i+6)+q_(i+12)`.
+- All 728 nonzero scalar combinations have singular polar rank between 19
+  and 34. Exactly 722 are balanced by a radical translation; the remaining
+  six vectors form three projective exceptional lines.
+- Every nonzero combination of the first five `g_i` is balanced, so the map
+  `F_3^36 -> F_3^5` is exactly uniform with fibers `3^31`. Exact Fourier
+  inversion gives
+  `#g^(-1)(0)=3^30-7*3^13=205,891,120,934,388` and a complete five-size
+  histogram for all 729 fibers.
+- The first four forms have a seven-dimensional common radical on which
+  their linear terms have rank four. This yields an explicit quadratic
+  bijection from `F_3^32` to their common zero set.
+- A single 29,524-projective-character census gives exact zero-fiber counts
+  after six through ten equations:
+  `205891120934388,68630383210734,22876784306199,7625590635303,
+  2541863158002`. Each is within roughly `10^-6` of its random-map
+  expectation. The compression is structurally exact but does not indicate
+  anomalous convergence toward all eighteen equations.
+- The verifier passes in 16.66 seconds and 44,138,496 bytes maximum RSS.
+  This is a digit-two coordinate theorem, not a placement witness or
+  higher-digit lift.
+
+## 24 July 2026: first complete mod-six anti-fold supports
+
+- In case 26, fixed the 39 reflected-pair parities to the affine quotient
+  state of the prior defect-two point. It has 23 odd pairs and 16 even
+  pairs, with exactly eight full even pairs, hence
+  `2^23*binom(16,8)=107,961,384,960` weight-39 supports.
+- After substitution, the cross-block central pair is an articulation of
+  the characteristic-three interaction graph. Conditioning it separates
+  components of sizes `10,10,10,8`, permitting an exact vector-valued
+  meet-in-the-middle join.
+- The complete fixed-quotient census finds exactly 62 simultaneous
+  normalized mod-two/mod-three supports. These are the first full mod-six
+  survivors in this lane. Detached physical replay of all 62 finds zero
+  exact integer supports; the minimum has 11 nonzero lags and the minimum
+  `L1` residual under a separate objective is 114.
+- The pinned lexicographic witness has Hamming distance 28 from the old
+  center and residual
+  `(6,0,0,-36,0,6,6,24,0,0,-6,-18,-6,-12,0,0,0,0,-6,-6)`.
+- This covers exactly one of `2^18=262,144` quotient states, not the full
+  25,941,166,955,843,488-point characteristic-two slice. The exact next
+  problem is to reuse the same articulation join across the other 262,143
+  quotient states.
+- Independent replay passes in 3.36 seconds with 452,722,688 bytes maximum
+  RSS. No integer repair or whole-case exclusion is claimed.
+
+## 24 July 2026: complete dense `h=0` profile classification
+
+- Finished all 729 production shards for the dense `(n_9,n_3,n_0)=(0,18,6)`
+  shell.  The strict aggregate covers 47,730,304 raw decorations,
+  1,999,128 canonical decorations, and
+  25,368,365,895,696 weighted primitive leaves.
+- The filters leave 19,986 characteristic-two/modulo-nine hits, 64
+  post-modulo-nine lambda hits, and exactly 18 inequivalent canonical
+  exact-zero profile orbits.  Twelve have orbit size 24 and six have orbit
+  size 12; their weighted exact-zero population is 360.
+- Froze the complete classification in
+  `dense_shell_h0_complete_classification/`.  Its dependency-free verifier
+  reconstructs all 666 nonzero-lag integer Eisenstein correlations, the
+  faithful 24-element action, canonicality, stabilizers, 153 pairwise
+  disjointness checks, and the complete 729-shard provenance.  It passes
+  without the ignored production output.
+- This is a complete profile-layer classification in the prescribed
+  order-three `q^2`-uncompression branch.  It is not a Legendre pair or a
+  physical phase-lift classification.
+
+## 24 July 2026: all-eighteen lift geometry and complete half-turn extension
+
+- Replayed every exact `h=0` orbit from the frozen classification
+  certificate.  All eighteen first placement layers have rank/nullity
+  `18/36`, every quadratic span has rank 18, and the individual polar ranks
+  range from 33 through 36.
+- Audited 6,552 structured characters and 6,552 hyperplanes.  Retraction
+  maxima split exactly nine profiles at dimension five and nine at
+  dimension four; none reaches six.  Exact transfer through every one of
+  the 1,756 row-sum words leaves 45--96 compatible rows per profile.
+- Exactly six profiles are half-turn fixed.  Across their complete
+  anti-weight-four and anti-weight-five shells, 244 signed anti-words give
+  242 consistent slices and 7,178 exact digit-two points.  None meets an
+  exact row margin and none survives the full third digit; the minimum
+  digit-three defect is six.
+- The full one-core replay passes with semantic SHA-256
+  `1e95c26f935cd6f7cfcb69044d9b97c9fdf0a0e1907b774240a0a63bd394cbea`.
+  This satisfies the sprint's consecutive-higher-digit requirement on a
+  rigorously delimited family, but does not exclude the remaining anti
+  spaces or the twelve generic profiles.
+
+## 24 July 2026: Witt-conic reduction and rank-one obstruction
+
+- Derived the lossless local characteristic-three form
+  `(q-t)^2=p(s)-1`, `t=-p u` for every exact `h=0` block.
+- For profile `c90c`, exhaustively tested the rank-one antipodal
+  quadratic-center family: 29,524 projective shapes, 78,729 canonical
+  shape/amplitude centers, and 65,601 distinct physical placements.
+- No placement survives the full second digit; the best satisfies 16 of 18
+  equations.  A successful conic-center law in this model must have rank at
+  least two or be nonquadratic.
+- Independent replay passes with semantic SHA-256
+  `0c68683c63f9116179530430435e9da69728e198b7e5d8a2e63d8d69c8696a3c`.
+
+## 24 July 2026: complete case-26 Eliahou quotient exclusion
+
+- Exhausted all 262,144 characteristic-two parity quotients in canonical
+  case 26.  The complete run evaluates 412,316,860,416 principal join rows,
+  obtains 10,533,216 simultaneous normalized modulo-six supports, and
+  physically replays all 10,533,216 as integer polynomials.
+- No exact support exists in this case.  The best quotient is 123143 with
+  pair state 369546495487 and residual
+  `(0,0,0,-36,0,0,0,18,6,0,0,0,0,0,-6,0,0,0,0,0)`.
+- Froze an output-independent completion certificate and verifier in
+  `eliahou_global_quotient_plan/`.  Strict live replay checks all 256 range
+  manifests, the range digest
+  `c566eef9154ebefb13bca52c5e3e931c622e7d930619e2d3f35bec09d9e27fc7`,
+  aggregate SHA-256
+  `268adc90d99e7a045c60879fd9367910c78a3b0b93e11aab47589e743d5a5253`,
+  and zero exact supports.
+- An independent reference replay of the best quotient finds 46 normalized
+  survivors, zero exact supports, and the same best residual.
+
+## 24 July 2026: all-nine short-block theorem and active census
+
+- Generalized the case-26 articulation join to every canonical short-block
+  case 21 through 29.  Each has 78 binary variables, 39 equal-syndrome
+  pairs, quotient dimension 18, the same four conditional cliques, and a
+  free reflection on every quotient.
+- Cases 24 and 27 alone can lack an odd long-block pair; a symmetric
+  short-block fallback gauge is exact there.  The resulting total work for
+  all nine cases is 3,710,853,316,608 principal join rows.
+- The parameterized compiled kernel, atomic resume runner, strict
+  aggregator, and independent physical replay pass controls against the
+  case-26 model and exceptional gauges.
+- The other eight cases are running sequentially with eight workers and
+  fixed small memory.  An exact survivor will be replayed immediately; an
+  empty completion will close all nine short-block cases but leave nineteen
+  long-block cases open.
+
+## 24 July 2026: near-Williamson order-167 feasibility audit
+
+- Derived the one-defect identity
+  `d_t=b_t+c_t+x_t+x_(2t-1)+x_(2t+1) mod 2`, which eliminates one binary
+  block after the other three are fixed.
+- The 68 normalized row-sum profiles split into 34 Williamson and 34
+  genuine one-defect profiles.  Nevertheless the 33 unique gauge-fixed
+  `A,B` front-end shards contain exactly
+  `5,389,321,893,816,717,644,217,498,408,040,941,405,747,563,982,000`
+  states, about `10^48.73`.
+- The May 2026 near-Williamson paper classifies odd orders through 35 and
+  gives examples through 63, but supplies no order-167 construction.  The
+  present route is not scalable without a new parametrization or spectral
+  theorem and has not been authorized for production.
+
+## 24 July 2026: complete quadratic antipodal rank-two conic family
+
+- Selected exact `h=0` orbit 07, digest `0x86b13a0388d98a5e`, from the
+  all-eighteen lift scan.  It ties the maximum 96 compatible row-sum words,
+  has the second-largest raw transfer mass, and gives the smallest
+  rank-two image dimension among the audited targets.
+- Allowed four arbitrary degree-at-most-two center polynomials
+  `P_A,P_B,Q_A,Q_B` in the antipodal Witt-conic closure.  The `2 x 10`
+  coefficient matrix includes every rank-zero, rank-one, and rank-two
+  opposite correction in this quadratic feature space.
+- The exact linear quotient has 40 coefficients, feature rank 32,
+  first-layer rank 18, solution dimension 22, and evaluation-kernel
+  dimension eight.  Thus the complete physical family has exactly
+  `3^14=4,782,969` distinct placements, or fraction `3^-22` of the ambient
+  `F_3^36` first layer.
+- Exhausted all 4,782,969 placements after restricting the eighteen
+  quadrics to fourteen variables.  There are zero exact digit-two
+  survivors, zero row-margin-compatible digit-two points, and zero
+  two-consecutive-digit survivors.  Exactly five near misses score 17 of
+  18 and fail rows 2, 3, 4, 10, and 16 once each; none meets the 1,756-row
+  catalog.
+- Independent replay passes in 11.80 seconds at 59,604,992 bytes maximum
+  RSS with semantic SHA-256
+  `cc272f74521b7cf58216b1971f8a2659b1eb1068a295b6c7552cb3c15c778dc8`.
+  This closes the stated quadratic antipodal family on one orbit, not
+  degree-three, non-antipodal, or unrestricted center laws.

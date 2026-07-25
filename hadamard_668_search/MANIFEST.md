@@ -46,7 +46,7 @@
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local lanes, corrected priority scope, and ID3 search consequences |
 | `H668_72H_GATE.md` | Explicit success, stop, evidence, and host-resource criteria for the current construction sprint |
-| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, plus explicit dense-shell counts and four-week throughput thresholds |
+| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed dense `h=0` census, the remaining `h=1` shell, the nine short-block Eliahou cases, and near-Williamson order 167 |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
@@ -60,11 +60,23 @@
 | `scratch_dense_shell_benchmark/README.md` | Validated dense-shell character kernel, independent affine-cube replay, and conservative per-core throughput gate |
 | `dense_shell_e2e_audit/README.md` | Connected nontrivial production prefix, actual 729-character transform, replay-scope correction, and narrowed runtime projection |
 | `dense_shell_exact_profile_h0_orbit2/README.md` | Second exact dense-shell `h=0` profile orbit, detached all-lag replay, and provenance boundary |
+| `dense_shell_h0_complete_classification/README.md` | Complete 729-shard classification of the dense `h=0` shell into eighteen exact profile orbits |
 | `h0_orbit2_lift_audit/README.md` | Independent 18-quadric lift, defect-one point, and exact radius-six local exclusion for the second profile |
+| `h0_orbit2_quadric_theory/README.md` | Singular character compression, exact prefix fibers, and quadratic parametrization for the second profile's quadrics |
+| `h0_new_orbits_lift_triage/README.md` | Exact all-eighteen first-layer, quadratic-span, retraction, and row-transfer audit |
+| `h0_new_halfturn_lifts/README.md` | Complete low-anti-weight two-consecutive-digit audit across all six half-turn profiles |
+| `h0_witt_conic_rank_one/README.md` | Lossless local conic form and complete rank-one quadratic-center obstruction |
+| `h0_witt_conic_rank_two_orbit07/README.md` | Complete quadratic antipodal rank-two conic-center exclusion on priority orbit 07 |
 | `h0_affine_class_twists/README.md` | Exhaustive affine- and quadratic-class control-law obstructions for the first exact `h=0` profile |
 | `eliahou_char3_jet_audit/README.md` | Characteristic-three three-jet anti-fold theorem, full mod-three survivor, and joint local-search scope |
 | `eliahou_char3_jet_audit/MOD2_AFFINE_CODE.md` | Exact characteristic-two affine code, quotient structure, and fixed-weight counts |
+| `eliahou_defect2_math/README.md` | Fixed parity-quotient articulation theorem and first complete normalized mod-six support census |
+| `eliahou_global_reuse_math/README.md` | Free reflection gauge and quotient-independent four-component reuse theorem |
+| `eliahou_global_quotient_plan/README.md` | Complete case-26 262,144-quotient census, zero-exact certificate, and strict live replay |
+| `eliahou_short_block_census/README.md` | Generalized exact engine and complete work denominator for all nine canonical short-block cases |
+| `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
 | `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, all-five exact census, prior-family overlap, and rank-two cost boundary |
+| `anti_tensor_correction/README.md` | Exact fixed-background rank-two correction obstruction at all three anti-tensor near misses |
 | `structured_phase_families/README.md` | Exact nine-family phase audit, proper-supergroup separation, opposite-class constructions, and complete minimal-`F_27`-submodule census |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
@@ -219,16 +231,36 @@
 | `dense_shell_classifier_pilot/test_dense_shell_production.py` | Production resume, complete-prefix, known exact-orbit retention, corruption, and resource-cleanup regressions |
 | `dense_shell_exact_profile_h0_orbit2/verify_exact_profile_h0_orbit2.py` | Dependency-free semantic, orbit, stabilizer, digest, and all-37-lag verifier for the second dense profile |
 | `dense_shell_exact_profile_h0_orbit2/certificate.json` | Hash-pinned raw-discovery provenance and independent replay hashes |
+| `dense_shell_h0_complete_classification/verify_h0_complete_classification.py` | Replays all eighteen profiles, 666 exact correlations, the 24-element action, stabilizers, canonicality, and disjointness |
+| `dense_shell_h0_complete_classification/certificate.json` | Detached complete-classification counts, canonical representatives, and 729-shard provenance |
+| `h0_new_orbits_lift_triage/verify_new_orbits_lift_triage.py` | Reconstructs the frozen all-eighteen rank, character, hyperplane, and 1,756-row transfer scan |
+| `h0_new_orbits_lift_triage/FINAL_PRODUCTION_SCAN_18.json` | Exact per-profile lift geometry for all eighteen dense orbits |
+| `h0_new_halfturn_lifts/verify_final_halfturn_extension.py` | Replays all six half-turn low-anti-weight shells through digit three and exact row margins |
+| `h0_witt_conic_rank_one/verify_witt_conic_rank_one.py` | Reconstructs the conic law and exhausts the rank-one antipodal quadratic-center family |
+| `h0_witt_conic_rank_two_orbit07/verify_witt_conic_rank_two.py` | Quotients and exhausts all `3^14` physical quadratic antipodal rank-two placements |
+| `h0_witt_conic_rank_two_orbit07/rank_two_orbit07_certificate.json` | Complete score histogram, near-miss replays, and exact family denominator |
 | `h0_orbit2_lift_audit/verify_orbit2_quadrics.py` | Reconstructs the first lift, eighteen quadrics, defect-one point, Jacobians, and radius-six exclusion |
 | `h0_orbit2_lift_audit/DEFECT1_CERTIFICATE.json` | Pinned second-profile defect-one point and local-exclusion counts |
+| `h0_orbit2_quadric_theory/verify_quadric_character_compression.py` | Exhausts scalar characters, exact fiber counts, and the four-equation parametrization |
+| `h0_orbit2_quadric_theory/EXACT_PREFIX_ZERO_FIBERS.json` | Exact zero-fiber census after six through ten independent quadrics |
 | `h0_affine_class_twists/verify_h0_affine_class_twists.py` | Exhausts 324 affine-in-class paired control laws |
 | `h0_affine_class_twists/verify_h0_quadratic_class_twists.py` | Exhausts all 2,916 quadratic-class paired control laws through digit three |
 | `h0_affine_class_twists/quadratic_class_twists_certificate.json` | Exceptional-family parameters, representative placements, and corpus hashes |
 | `eliahou_char3_jet_audit/verify_char3_jet_audit.py` | Independently reconstructs cyclotomic factors, three-jet equations, direct support replays, and the mod-three survivor |
 | `eliahou_char3_jet_audit/verify_mod2_affine_code.py` | Reconstructs characteristic-two affine codes and exact weight-39 slice counts |
 | `eliahou_char3_jet_audit/search_hamming_sat.py` | Exact bounded joint modulo-two/modulo-three Hamming-ball checker |
+| `eliahou_defect2_math/verify_fixed_quotient_join.py` | Reconstructs the fixed parity quotient, articulation split, exact component join, and all 62 physical replays |
+| `eliahou_defect2_math/CASE26_FIXED_QUOTIENT_MOD6_CENSUS.json` | Pinned fixed-quotient mod-six census, best survivor, and remaining-scope metadata |
+| `eliahou_global_reuse_math/verify_global_reuse_math.py` | Proves the free reflection gauge and quotient-independent interaction split |
+| `eliahou_global_quotient_plan/COMPLETION_CERTIFICATE.json` | Output-independent certificate for the complete case-26 zero-exact census |
+| `eliahou_global_quotient_plan/verify_completion_certificate.py` | Regenerates the model by default and optionally verifies all live production ranges and aggregates |
+| `eliahou_short_block_census/verify_short_block_census.py` | Reconstructs all nine models, gauges, clique couplings, and bounded physical replay controls |
+| `eliahou_short_block_census/run_short_block_census.py` | Atomic, resumable, memory-capped exact runner for cases 21 through 29 |
+| `eliahou_short_block_census/aggregate_short_block_census.py` | Strict per-case range and exact-survivor aggregator |
+| `near_williamson_167_audit/audit_near_williamson_167.py` | Replays row-sum profiles, one-defect reduction, exact front-end count, and bounded feasibility pilots |
 | `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
 | `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact all-five chart census, residual histograms, nearest points, and semantic hash |
+| `anti_tensor_correction/verify_anti_tensor_correction.py` | Exhausts all fixed-background separable corrections and records full-rank-two Newton diagnostics |
 | `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families |
 | `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per profile |
 | `structured_phase_families/test_structured_phase_families.py` | Pins both structured-family semantic certificates and the unique order-six digit-two control |

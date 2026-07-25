@@ -77,7 +77,11 @@ restart report:
    layer has eighteen dense independent quadrics. A defect-one point was
    found and the complete ternary Hamming ball through radius six,
    137,724,625 points, was exactly excluded. The global digit-two SAT
-   instances remain `UNKNOWN`.
+   instances remain `UNKNOWN`. Six structured triple-sums nevertheless
+   admit exact character compression: five form a uniform quadratic map,
+   the six-equation zero fiber has `3^30-7*3^13` points, and the first four
+   have an explicit `F_3^32` parametrization. Exact counts through ten
+   equations remain essentially generic.
 3. On the first profile, all 2,915 nonidentity laws in a 2,916-member
    quadratic-class control family fail by digit three. This includes 2,592
    genuinely non-affine-in-class laws. The result is exhaustive for that
@@ -86,7 +90,9 @@ restart report:
    class×row anti-tensor family gives 720 exact charts and 517,109 distinct
    first-digit placements. Exactly 514,912 lie outside all prior all-five
    feature, minimal-`F_27`, and proper-multiplier families. None survives
-   digit two; the best points satisfy 18 of 20 rows.
+   digit two; the best points satisfy 18 of 20 rows. All 361 exact
+   fixed-background separable corrections around those near misses fail to
+   reach 19 of 20, so they do not open a cheap rank-two continuation.
 5. The connected production audit measures a complete positive-work
    prefix. After removing 554,008 redundant diagnostic replays, the current
    v2 enumeration path has a five-run median of 0.744369 seconds. The
@@ -103,8 +109,10 @@ restart report:
    support passes all twenty normalized equations modulo three. The
    normalized characteristic-two layer is exactly affine; its case-26
    weight-39 slice has 25,941,166,955,843,488 points. A joint
-   modulo-two/modulo-three search reaches defect two and exactly excludes
-   the radius-eight ball around that point, but has no joint survivor.
+   modulo-two/modulo-three search first reached defect two. Freezing its
+   parity quotient exposes a central articulation and exactly contracts
+   107,961,384,960 supports to 62 full mod-six survivors. All 62 fail
+   integer replay. This covers one of 262,144 quotient states.
 
 This checkpoint still fails the construction gate. There is no physical
 placement for either dense profile, no pair of consecutive higher-digit
@@ -112,6 +120,70 @@ survivors, no integer Eliahou repair, no whole-profile obstruction, and no
 exact Legendre pair. The dense-shell census is now the finite, measurable
 paper-level computation; its later physical lifts remain uncosted and are
 not implied by profile classification.
+
+## Third restart checkpoint on 24 July 2026
+
+The two largest finite computations proposed above are no longer estimates.
+They have produced six further certified results:
+
+1. The dense `h=0` census is complete.  All 729 resumable shards finished,
+   covering 47,730,304 raw decorations, 1,999,128 canonical decorations,
+   and 25,368,365,895,696 weighted primitive leaves.  Detached exact replay
+   proves that precisely **18** inequivalent canonical profile orbits
+   survive: twelve have orbit size 24 and six have orbit size 12.  The
+   weighted exact-zero count is 360.  The certificate checks all 666
+   nonzero-lag integer Eisenstein correlations, the faithful 24-element
+   action, stabilizers, canonicality, and pairwise disjointness.
+2. All eighteen profiles have first-layer rank/nullity `18/36` and
+   quadratic-span rank 18.  The complete structured-character and
+   hyperplane scan checks 6,552 instances of each kind.  No profile has a
+   six-dimensional retraction; the maxima split nine profiles at dimension
+   five and nine at dimension four.  Exact transfer through all 1,756
+   row-sum words leaves only 45--96 compatible rows per profile before the
+   nonlinear placement digits.
+3. The six half-turn profiles have now all been lifted through two
+   consecutive higher layers in their complete anti-weight-four and
+   anti-weight-five shells.  The 244 signed anti-words yield 242 consistent
+   slices and 7,178 exact digit-two points, but zero exact row-margin
+   matches and zero full digit-three points.  The minimum digit-three
+   defect is six.  This is a complete finite-family exclusion, not a
+   sample.
+4. Every local `h=0` block admits the lossless characteristic-three
+   conic form
+   `(q-t)^2=p(s)-1`, `t=-p u`.  On a selected dense profile, the complete
+   rank-one antipodal quadratic-center family has 65,601 distinct physical
+   placements and no full digit-two point; the best meets 16 of 18
+   equations.  The complete quadratic antipodal rank-two closure on the
+   strongest row-transfer orbit reduces losslessly to `3^14=4,782,969`
+   distinct placements.  None survives digit two, row margins, or two
+   consecutive digits; five reach 17 of 18 equations.  A successful center
+   law on that orbit must therefore be degree at least three,
+   non-antipodal, or outside this conic parametrization.
+5. The complete case-26 Eliahou characteristic-six quotient is excluded.
+   Exact enumeration covers all 262,144 quotient states,
+   412,316,860,416 principal join rows, and 10,533,216 joint modulo-six
+   supports.  Every survivor was replayed as a physical integer
+   polynomial; none is exact.  The same reflection gauge and four-clique
+   split extend mechanically to all nine canonical short-block cases
+   21--29, for an exact total of 3,710,853,316,608 principal join rows.
+   The remaining eight cases are running as a resumable census.
+6. The independent near-Williamson route at length 167 has a clean
+   one-defect reduction, but its exact gauge-fixed `A,B` front end still
+   has
+   `5,389,321,893,816,717,644,217,498,408,040,941,405,747,563,982,000`
+   states, about `10^48.73`.  It is not a four-week search route without a
+   new parametrization theorem.
+
+This checkpoint still does not pass the construction gate: it contains no
+`LP(333)`, no integer Eliahou support, and no `H(668)`.  It is materially
+stronger than the earlier gate failure, however.  The dense profile
+classification is now a complete paper-level theorem rather than an
+unfinished census, and the remaining short-block Eliahou boundary is a
+fully costed finite computation rather than an unmeasured solver proposal.
+The construction decision must wait for that active eight-case census; an
+exact survivor would trigger immediate reconstruction, while an empty
+census would close all nine short-block cases and strengthen the pivot
+package without closing the nineteen long-block cases.
 
 ## Result on 24 July 2026: construction gate failed
 

@@ -23,15 +23,16 @@ heuristics for the five shell-two lifts and the still-unclassified
 | Eliahou seed verification | reproduced near matrix | published 64-modular matrix of order 668, not an exact Hadamard matrix |
 | Repair with Eliahou's exact `q` | impossible | reduces to empty `TU(41)` |
 | Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
-| Variable `s,q` special quadruple | active | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances, with exactly case 0 certified UNSAT, case 1 unproved, and 28 UNKNOWN |
+| Variable `s,q` special quadruple | active exact census | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Cases 0 and 26 are now completely excluded, the other eight short-block cases are in a resumable exact census, case 1 remains unproved, and 19 other long-block cases remain open |
 | Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
 | Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | exhaustive dense-profile census plus algebraically gated lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and now two independently certified `n_9=0` profile orbits from an incomplete dense-shell census.  The first dense profile has exact `21+15` half-turn algebra and complete exclusions for several finite control-law families; the second has a 36-variable, 18-quadric next layer with a certified defect-one radius-six exclusion but no digit-two point.  The v2 classifier retains every canonical exact orbit and is resumable; neither dense profile has a physical placement or digit-three lift.  `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus algebraically gated lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. The 729-shard census and a detached 666-correlation certificate both pass. Six profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. Conic families add exact 65,601-point rank-one and 4,782,969-point quadratic rank-two obstructions. No dense profile has a physical consecutive lift. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
+| Near-Williamson order 167 | audited, not scalable | exact one-defect reduction eliminates one block, but the naturally gauge-fixed `A,B` front end still has about `5.39*10^48` states; no production search is justified without a new parametrization theorem |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
 
@@ -145,12 +146,14 @@ python3 verify_eliahou_adjacent42_repair.py
 `z^42+1`. On the distance-41 shell, either endpoint choice in a
 separation-42 pair has the same anti-fold effect, so all `2^39` endpoint
 orientations disappear from the first stage. The 39 reciprocal `q` pairs
-collapse to 30 orientation-free, 39-cell binary support instances. Exactly
-one is now closed: canonical case 0, the long `q` representative 0, has a
-standalone CaDiCaL binary-DRAT certificate that passes independent
-`drat-trim` replay. Canonical case 1, the long representative 2, has one
-solver-UNSAT observation but no checked proof; the other 28 instances are
-`UNKNOWN`.
+collapse to 30 orientation-free, 39-cell binary support instances.
+Canonical case 0, the long `q` representative 0, has a standalone CaDiCaL
+binary-DRAT certificate that passes independent `drat-trim` replay.
+Canonical case 26 is separately excluded by the complete
+characteristic-six quotient census below. Canonical case 1, the long
+representative 2, has one solver-UNSAT observation but no checked proof;
+the remaining cases are unresolved, with eight short-block instances in
+the active exact census.
 
 `ELIAHOU_ANTIFOLD_MOD2.md` gives the exact first binary lift. Pairing the two
 long and two short rows produces an affine system over `F_2`; including
@@ -174,14 +177,42 @@ normalized characteristic-two layer is exactly affine: after the weight
 parity row, case 26 has rank 21 and dimension 57, with
 25,941,166,955,843,488 exact weight-39 supports.  A code-preserving search
 reaches joint modulo-six defect two, at lags 9 and 11, and an exact SAT
-replay excludes the Hamming-radius-eight ball around that point.  These are
-structural reductions and local geometry, not a joint survivor, integer
-repair, or exclusion.
+replay excludes the Hamming-radius-eight ball around that point.
+
+`eliahou_defect2_math/` first freezes one reflected-pair parity quotient and
+finds 62 simultaneous normalized mod-six supports, all failing integer
+replay. `eliahou_global_quotient_plan/` then proves that the same
+phase-adjusted four-component split works in every quotient, supplies a
+free reflection gauge, and exhausts the complete case-26 slice:
+
+```text
+affine parity quotients                  262,144
+principal join rows              412,316,860,416
+joint mod-six supports                 10,533,216
+exact integer and physical replays     10,533,216
+exact anti-fold supports                        0
+```
+
+Thus canonical short-block case 26 is completely excluded, rather than
+left at solver status `UNKNOWN`. The independent best-witness replay has
+four nonzero anti-fold lags and `L1=66`.
+
+The same algebra extends to all nine short-block cases `S02,S04,...,S18`.
+Each has a 39-pair, 18-dimensional quotient and the same four interaction
+cliques. Reflection is free in every quotient; two cases need a certified
+one-state \(S\)-side gauge fallback. The complete nine-case work is exactly
+`3,710,853,316,608` join rows. The other eight cases are running through
+the resumable, hash-pinned production kernel in
+`eliahou_short_block_census/`.
 
 ```sh
 python3 verify_eliahou_antifold42.py
-python3 verify_eliahou_antifold_mod2.py
+../tmp/hadamard-env/bin/python verify_eliahou_antifold_mod2.py
 python3 verify_eliahou_antifold_q0_proof.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_global_quotient_plan/verify_completion_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_short_block_census/verify_short_block_census.py
 ```
 
 The proof package is in `output/antifold42_q0_proof/`. The default verifier
@@ -780,6 +811,13 @@ rows. This is substantial new finite-family coverage, but it removes only
 517,109 points from five spaces of size `3^36`; it does not imply
 unrestricted convergence.
 
+`anti_tensor_correction/` exactly tests the complete fixed-background
+separable correction star around all three `18/20` points. After linear
+elimination there are only 361 base-correction incidences. None reaches
+`19/20`; on the first profile the only nonzero correction retaining
+`18/20` merely swaps the two known points along their original rank-one
+chart. The broader rebalanced rank-two family remains open.
+
 `phase_second_digit/higher_digits/` records the exact consecutive-digit
 audit.  It contains a supergroup-free full second-digit point, the integral
 prefix lattice, and the sharp proof that digits zero through eight already
@@ -810,13 +848,16 @@ row-margin/digit-three intersection; its 600-second candidate-zero pilot is
 `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` closes the sprint's resource audit.
 The compact signed-histogram endpoint fits within 16 GB, but a generic
 enumeration of the five `3^36` shell-two spaces is infeasible.  Failure of
-those five lifts would not close the order-three route: the dense `n_9=1,0`
-shells still require a compiled, symmetry-aware 729-character
-classification before their exact phase lifts can even be counted.
-The arithmetic kernel is now benchmarked at a conservative
+those five lifts would not close the order-three route.  The dense `n_9=0`
+profile classification is now complete with eighteen orbits, but all
+eighteen nonlinear physical lifts remain open; the `n_9=1` shell still
+requires a compiled, symmetry-aware classification.  The arithmetic kernel
+is benchmarked at a conservative
 12,668,666 exact character evaluations per second per core, over 700 times
-the four-week threshold.  Full skeleton streaming, canonicalization,
-survivor recovery, and exact replay remain unmeasured.
+the four-week threshold.  The connected v2 prefix measured full skeleton
+streaming, canonicalization, witness handling, and exact replay before the
+`n_9=0` production run replaced that shell's extrapolation with a complete
+runtime certificate.
 
 `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` analyzes the first genuinely
 quadratic uniformizer response in the remaining `n_9=1,0` shells without
@@ -841,30 +882,49 @@ against direct affine-cube enumeration and pins the measured throughput.
 production prefix. After removing 554,008 redundant diagnostic replays,
 the current v2 orbit-enumeration path has a five-run median of 0.744369
 seconds for 19,131,876 primitive phase leaves. The resulting one-cell
-projection is 51.72 single-core hours for both dense shells, or 5.17 ideal
-ten-core hours; this is a measured extrapolation, not a runtime certificate.
+projection was 51.72 single-core hours for both dense shells, or 5.17 ideal
+ten-core hours.  The completed `h=0` run now supersedes that part of the
+projection; the `h=1` estimate remains distribution-sensitive.
 The audit also applies all 729 characters to one
 actual affine fiber, inverts them exactly, recovers the sole following-digit
 point in the selected target, and rejects it by characteristic two and
 detached exact replay.
 
-The same production campaign has already exposed a second exact `h=0`
-profile orbit:
+The production campaign is now complete. Its 729/729 strict aggregate
+contains exactly 18 canonical exact `h=0` profile orbits. Twelve have orbit
+size 24 and six have orbit size 12, so their weighted total is
 
 ```text
-A IDs = 1,2,6,1,5,1,4,5,1,5,7,4
-B IDs = 2,4,2,4,4,6,5,5,8,1,5,8
-target  = (-3,0,0,3).
+12*24 + 6*12 = 360,
 ```
 
-It has trivial stabilizer and orbit size 24 and is disjoint from the first
-size-12 orbit.  Independent integer replay gives `D_0=167` and
-`D_t=0` for all 36 nonzero lags.  Its first placement layer again has
-rank/nullity `18/36`.  The next layer consists of eighteen dense,
-quadratically independent forms.  A bounded search found a defect-one
-point, and exact enumeration rejects every one of the 137,724,625 ternary
-points within Hamming radius six of it.  No global digit-two witness or
-obstruction follows.
+exactly matching the production counter. The detached,
+dependency-free certificate in `dense_shell_h0_complete_classification/`
+reconstructs all 666 integer-Eisenstein correlations, the faithful
+24-element action, canonicality, stabilizers, and all 153 pairwise orbit
+disjointness checks. This is a complete classification inside the stated
+dense `h=0` compressed-profile scope, not a labelled `LP(333)`.
+
+Every orbit again has first placement rank/nullity `18/36` and eighteen
+dense second-layer quadrics. The second orbit's bounded defect-one
+experiment still exactly excludes the 137,724,625-point radius-six ball;
+that remains local geometry rather than a global obstruction.
+
+`h0_orbit2_quadric_theory/` exposes exact global structure hidden by the
+dense individual polar ranks. Six triple-sums of the eighteen quadrics span
+an entirely singular polar space; the first five form an exactly uniform
+map `F_3^36 -> F_3^5`. The six-equation zero fiber has exactly
+
+```text
+3^30 - 7*3^13 = 205,891,120,934,388
+```
+
+points, and the first four equations admit an explicit quadratic
+parametrization by `F_3^32`. Exact character counts after six through ten
+independent equations remain within roughly one part per million of the
+random-map expectation. This is a rigorous coordinate compression for
+future work, but it also shows that the system remains globally generic
+through ten equations rather than collapsing toward a digit-two witness.
 
 For the first dense profile, `h0_affine_class_twists/` exhausts a larger
 finite control-law family.  It permits arbitrary functions
@@ -877,11 +937,61 @@ digit-two points.  This forces any successful placement outside this
 profile's identity branch to use a more irregular class coupling; it does
 not exclude the profile.
 
-`dense_shell_classifier_pilot/` now has an exhaustive v2 mode.  Every exact
-hit is canonicalized under the 24-element action, replayed on all 37 lags,
-deduplicated, and retained while its prefix continues.  The runner is
-atomic, memory-capped, and resumable.  The stopped v1 discovery output is
-frozen; v2 must use the separate `output/production-v2` directory.
+The six half-turn-fixed profiles split their affine lift spaces as
+`36=21+15`. Across the baseline and the two final extensions,
+`h0_new_halfturn_lifts/` exhausts 244 signed words in the two lowest
+positive antisymmetric-code shells. The 242 consistent slices contain
+7,178 exact digit-two points, but zero exact row-margin matches and zero
+full digit-three points; the best following-digit defect is six. This is a
+finite structured exclusion, not a whole-profile lift search.
+
+`h0_witt_conic_rank_one/` supplies a separate profile-covariant
+construction test. Every local dense-shell block has the lossless
+finite-geometric form
+
+```text
+(q-t)^2 = p(s)-1,    t=-p*u.
+```
+
+For the priority `c90c` orbit, the complete rank-one antipodal
+quadratic-center family has 29,524 projective shapes and 65,601 distinct
+physical placements. None satisfies all eighteen second-layer equations;
+the best satisfies 16. Thus a successful conic-center law must have rank
+at least two or nonquadratic dependence.
+
+`h0_witt_conic_rank_two_orbit07/` tests the full quadratic antipodal
+closure on the strongest row-transfer target, orbit 07.  Four arbitrary
+degree-at-most-two center polynomials give 40 coefficients, but exact
+evaluation and first-layer quotienting reduce the family to
+
+```text
+3^14 = 4,782,969 distinct physical placements.
+```
+
+The exhaustive replay covers every one.  No placement passes all eighteen
+second-layer equations, none meets the exact row-margin catalog, and none
+survives two consecutive digits.  Five points reach `17/18`, missing five
+different equations once each.  This completely excludes quadratic
+antipodal rank-two center laws on orbit 07; degree-three, non-antipodal,
+and unrestricted laws remain open.
+
+`dense_shell_classifier_pilot/` retains the exhaustive v2 runner and strict
+aggregate machinery. Every exact hit was canonicalized under the 24-element
+action, replayed on all 37 lags, deduplicated, and retained. The live output
+is ignored build data; the final 18-orbit certificate is tracked and
+self-contained.
+
+```sh
+python3 -I dense_shell_h0_complete_classification/verify_h0_complete_classification.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_new_orbits_lift_triage/verify_new_orbits_lift_triage.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_new_halfturn_lifts/verify_final_halfturn_extension.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_one/verify_witt_conic_rank_one.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_orbit07/verify_witt_conic_rank_two.py
+```
 
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or

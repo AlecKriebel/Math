@@ -13,23 +13,26 @@ found no row-margin-compatible digit-two seed, full digit-three point, or
 structured exact lift, and obtained neither a feasible complete search nor
 a whole-profile exclusion.
 
-A genuinely new input has since justified a bounded restart.  The
-dense-shell classifier has found and exactly replayed two inequivalent
-`h=0` profile orbits.  The first profile's half-turn gives a `21+15` lift
-decomposition, complete exclusions of several finite control-law families,
-and one asymmetric digit-two point.  The second has trivial stabilizer and
-an independently derived 18-quadric next layer; a defect-one point has a
-complete radius-six local exclusion, but no exact digit-two point is known.
-There is still no row-compatible digit-two point or full digit-three point
-for either orbit.
+A genuinely new input justified a bounded restart, and the dense `h=0`
+profile census is now complete.  All 729 production shards cover
+47,730,304 raw decorations and 25,368,365,895,696 weighted primitive
+leaves.  Detached exact replay proves there are precisely 18 inequivalent
+canonical profile orbits: twelve of size 24 and six of size 12.  Every
+orbit has first-placement rank/nullity `18/36`.
 
-The connected dense-shell audit now measures one complete positive-work
-prefix rather than only a microkernel. Its current v2 one-cell projection
-is 51.72 single-core hours for both dense shells, with substantial
-distribution uncertainty.  The v2 classifier is exhaustive, orbit-retaining,
-atomic, and resumable.  Completing the `n_9=1,0` **profile census** is the
-one scoped continuation supported by current evidence, and should be
-treated as a paper project rather than a forecast of `H(668)`.
+The full all-orbit structured scan finds no six-dimensional retraction.
+All six half-turn profiles have been tested through two consecutive higher
+layers on their complete anti-weight-four and anti-weight-five shells:
+7,178 exact digit-two points, zero row-margin matches, and zero full
+digit-three points.  A separate complete rank-one Witt-conic family tests
+65,601 physical placements and leaves no digit-two point.  There is still
+no physical consecutive lift for any dense profile.
+
+The complete profile classification is a scoped paper-level theorem, not a
+forecast of `H(668)`.  The `h=1` profile shell remains unclassified and the
+decisive nonlinear physical lifts of all eighteen `h=0` profiles remain
+uncosted.  Resume those only through a genuinely bounded algebraic family
+or proof decomposition with an explicit coverage denominator.
 
 The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
@@ -48,17 +51,21 @@ The strongest results in this repository are negative or local:
 - the complementary anti-fold removes all endpoint orientations from the
   first distance-41 stage and collapses the 39 reciprocal pairs to 30
   distinct support instances. Canonical case 0, long `q` representative 0,
-  is certified UNSAT by a checked binary DRAT proof. Canonical case 1, long
-  representative 2, has one unproved solver-UNSAT observation; the other 28
-  instances are `UNKNOWN`. Exactly one of 30 is closed;
+  is certified UNSAT by a checked binary DRAT proof. Canonical case 26 is
+  now completely excluded by a 262,144-quotient exact census.  The same
+  reflection gauge and articulation join gives a bounded engine for all
+  nine short-block cases 21--29; the remaining eight are in an active,
+  resumable exact production run.  Canonical case 1 has one unproved
+  solver-UNSAT observation, and nineteen long-block cases remain open;
 - the characteristic-three anti-fold condition is a full three-jet system,
   not only a primitive-28 value sieve. A case-26 support satisfies all
   twenty normalized equations modulo three. The normalized
   characteristic-two system is exactly affine; after weight parity its
   case-26 dimension is 57 and its exact weight-39 slice contains
-  25,941,166,955,843,488 supports. The best joint point has modulo-three
-  defect two, and its radius-eight Hamming ball is exactly excluded. No
-  joint modulo-six support or integer repair is known;
+  25,941,166,955,843,488 supports. The complete parity-quotient join finds
+  10,533,216 joint modulo-six supports and physically replays every one;
+  none is an integer repair.  This closes case 26, not the other boundary
+  cases;
 - the older primitive-eight 16-coordinate dynamic program gives a sharp
   necessary-condition boundary at distance 34: its sphere first becomes
   reachable at distance 33, all 66 full targets there fail exact margins,
@@ -205,10 +212,12 @@ The strongest new constructive reductions are:
   prime-167, aggregate, and orbit replay.  Each has 54 placement trits and
   first Hensel rank/nullity `18/36`; compatible row-margin counts are
   `72,72,72,96,93`.  These are profile inputs, not `LP(333)` objects.
-- `dense_shell_exact_profile_h0/`: the incomplete dense-shell production
-  run found an exact `n_9=0` profile with shell `(0,18,6)`, all 36
-  nonzero-lag correlations zero, a size-12 orbit, and a profile half-turn.
-  It is a profile input, not a labelled `LP(333)`.
+- `dense_shell_h0_complete_classification/`: the complete 729-shard
+  `n_9=0` census proves that exactly eighteen canonical profile orbits
+  survive, twelve of size 24 and six of size 12.  Its detached verifier
+  checks 666 exact integer-Eisenstein correlations, the full group action,
+  canonicality, stabilizers, pairwise disjointness, and weighted total 360.
+  The earlier single-profile folders are retained as discovery provenance.
 - `dense_shell_exact_profile_h0_orbit2/`: a second exact `n_9=0` profile,
   with canonical words
   `(1,2,6,1,5,1,4,5,1,5,7,4)` and
@@ -221,6 +230,32 @@ The strongest new constructive reductions are:
   137,724,625-point ternary ball through radius six contains no exact
   digit-two point. Global SAT remained `UNKNOWN`, so this is not an
   obstruction.
+- `h0_orbit2_quadric_theory/`: six structured triple-sums of those
+  quadrics span an entirely singular polar space. The first five define an
+  exactly uniform map; the six-equation zero fiber has
+  `3^30-7*3^13=205,891,120,934,388` points. The first four equations have
+  an explicit `F_3^32` quadratic parametrization. Exact zero-fiber counts
+  through ten equations remain within roughly `10^-6` of random-map
+  expectations, so this is a coordinate reduction, not convergence.
+- `h0_new_orbits_lift_triage/`: exact all-eighteen replay gives first-layer
+  rank/nullity `18/36`, quadratic-span rank 18, polar ranks 33--36, 6,552
+  structured-character checks, 6,552 hyperplane checks, and exact
+  1,756-row transfer for each orbit.  Retraction maxima are nine profiles
+  at dimension five and nine at four; none reaches six.
+- `h0_new_halfturn_lifts/`: all six half-turn-fixed profiles are exhausted
+  on their anti-weight-four and anti-weight-five shells.  The 244 signed
+  words yield 7,178 exact digit-two points, zero row-margin matches, and
+  zero full digit-three points; the best digit-three defect is six.
+- `h0_witt_conic_rank_one/`: every local block has the lossless form
+  `(q-t)^2=p(s)-1`, `t=-p u`.  On the selected `c90c` profile, all 65,601
+  physical placements in the rank-one antipodal quadratic-center family
+  fail digit two; the best meets 16 of 18 equations.
+- `h0_witt_conic_rank_two_orbit07/`: the complete arbitrary-quadratic
+  antipodal rank-two closure on orbit 07 reduces to exactly
+  `3^14=4,782,969` physical placements.  Exhaustive replay leaves zero
+  digit-two, row-margin-compatible, or consecutive-digit survivors; five
+  placements score 17 of 18.  Degree-three and non-antipodal laws remain
+  open.
 - `h0_halfturn_twists/`: the new profile's first lift splits as `21+15`;
   the second digit becomes twelve even quadrics and six odd bilinear
   equations.  All 35 nonidentity global fiber-permutation twists are
@@ -276,6 +311,11 @@ The strongest new constructive reductions are:
   and proper multiplier supergroup. All fail digit two; the best points
   satisfy 18 of 20 rows. The immediately larger rank-two flat census is
   estimated at about 327.4 billion chart incidences and is not authorized.
+- `anti_tensor_correction/`: exact low-rank elimination tests every
+  fixed-background separable correction around the three `18/20` points.
+  All 361 base-correction incidences fail to reach even `19/20`; the only
+  nonzero correction retaining `18/20` swaps two points already lying on
+  the same rank-one chart. Rebalanced rank-two charts remain open.
 - `phase_second_digit/higher_digits/`: one independently replayed
   supergroup-free point survives digits zero through two.  None has yet
   survived digit three or four.  The exact norm bound shows that digits
@@ -297,12 +337,11 @@ The strongest new constructive reductions are:
   3,671,985 branches; it is a resumable performance checkpoint only.
 - `COMPLETE_REMAINING_SEARCH_ESTIMATE.md`: exact endpoint, model-size,
   row-margin, CPU, RAM, disk, and symmetry accounting for the five
-  shell-two lifts, plus explicit support and signed-skeleton counts for the
-  still-unclassified `n_9=1,0` shells.  Generic `3^36` enumeration is ruled
-  out; a compact exact digit-three shard fits locally.  The compiled
-  729-character kernel now runs at a conservative 12,668,666
-  evaluations/s/core, over 700 times the four-week arithmetic threshold;
-  end-to-end skeleton streaming and survivor handling remain unmeasured.
+  shell-two lifts, plus the completed eighteen-orbit `n_9=0`
+  classification and explicit counts for the still-unclassified `n_9=1`
+  shell.  It also records the exact all-nine Eliahou short-block work
+  `3,710,853,316,608` and the near-Williamson `10^48.73` front-end
+  obstruction.  Generic `3^36` physical-lift enumeration is ruled out.
 - `scratch_dense_shell_benchmark/`: exact C++ character kernel,
   machine-readable timing checkpoint, and an independent direct
   affine-cube verifier covering 1,458 Eisenstein character sums.  This is
@@ -314,11 +353,10 @@ The strongest new constructive reductions are:
   prefix from 2.615347 to 0.771325 seconds. The current v2 enumeration path
   has a five-run median of 0.744369 seconds and a 51.72-single-core-hour
   combined projection, but remains a one-cell extrapolation.
-- `dense_shell_classifier_pilot/`: v2 continues after exact hits, retains
-  every canonical target-labelled orbit, independently replays all 37
-  lags, and resumes only hash-matching atomic shards. Preserve the v1
-  discovery directory unchanged and use `output/production-v2` for the
-  exhaustive census.
+- `dense_shell_classifier_pilot/`: the resumable v2 production completed
+  all 729 `h=0` shards.  Preserve the ignored live output and the frozen v1
+  discovery directory; use the detached
+  `dense_shell_h0_complete_classification/` certificate for verification.
 - `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
   correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
   `2I`.  Exact affine restriction and Gauss bounds prove this universal
@@ -384,6 +422,27 @@ The strongest new constructive reductions are:
   jet. The folder contains a full modulo-three survivor, exact
   characteristic-two affine-code counts, a joint defect-two point, and
   local SAT exclusions. None is an integer repair.
+- `eliahou_defect2_math/`: fixing the reflected-pair parity quotient of the
+  case-26 defect-two point leaves exactly 107,961,384,960 weight-39
+  supports. A central articulation splits the quadratic interaction graph
+  into components `10,10,10,8`; exact joining finds 62 full normalized
+  mod-six supports, and physical replay rejects all 62 integrally. This was
+  the pilot quotient for the completed global calculation.
+- `eliahou_global_quotient_plan/`: all `2^18=262,144` case-26 parity
+  quotients are exhausted.  The exact join checks 412,316,860,416 principal
+  rows and physically replays 10,533,216 joint modulo-six supports, with
+  zero exact integer supports.  The output-independent completion
+  certificate regenerates the model; strict live mode checks every range
+  manifest and aggregate hash.
+- `eliahou_short_block_census/`: the case-26 reflection gauge and four-clique
+  split extend to every canonical short-block case 21--29.  The complete
+  nine-case denominator is 3,710,853,316,608 principal join rows.  The
+  remaining eight cases run sequentially with eight workers and atomic
+  resume; stop immediately and replay if any exact support appears.
+- `near_williamson_167_audit/`: a one-defect parity identity eliminates one
+  block, but the 33 gauge-fixed `A,B` shards still contain about
+  `10^48.73` states.  Do not productionize this lane without a new
+  parametrization or spectral theorem.
 - `FIVE_COMB_SECANT.md`: the complete seed defect is one rank-one ten-sparse
   carrier. Common-factor repairs are impossible, but a minimum complementary
   octet gives 32 flat carrier channels of energy 320 that pack into the target
@@ -705,6 +764,36 @@ python3 verify_eliahou_antifold_q0_proof.py \
   --full --drat-trim /absolute/path/to/drat-trim
 ```
 
+The highest-value live exact computation is now the remaining eight
+short-block cases.  The current sequential command is also its safe resume
+command: it strictly validates completed atomic ranges and skips them.
+
+```sh
+cd /Users/alec/Documents/Math-h668-local/hadamard_668_search/eliahou_short_block_census
+for case_number in 21 22 23 24 25 27 28 29; do
+  env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+    VECLIB_MAXIMUM_THREADS=1 \
+    /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+    run_short_block_census.py \
+    --case "${case_number}" \
+    --output "output/production-case${case_number}" \
+    --workers 8 --chunk-size 1024 \
+    --rss-limit-mib 8192 --output-limit-mib 100
+done
+```
+
+Do not launch a duplicate while this loop is active.  If a range contains
+an exact candidate, stop the loop and replay it independently before any
+claim.  The completed case-26 certificate is checked without live output
+by default and against every production range with `--live`:
+
+```sh
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_global_quotient_plan/verify_completion_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_global_quotient_plan/verify_completion_certificate.py --live
+```
+
 The primary exact continuation is the order-three quotient. Rebuild and
 audit its finite front end before changing the model:
 
@@ -806,5 +895,6 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-The next high-value step is structural mathematics or distributed exact
-sharding, not indefinite repetition of the same local annealer.
+After the active short-block census, the next high-value step is structural
+mathematics on the remaining dense-profile lifts or long-block Eliahou
+cases, not indefinite repetition of the same local annealer.
