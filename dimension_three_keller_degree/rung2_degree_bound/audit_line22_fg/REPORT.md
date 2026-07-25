@@ -223,15 +223,15 @@ This corrected three-family list absorbs the old separately listed
 marked-critical triple orbit into item 2.  The original three-item list is
 not exhaustive.
 
-**Current-worktree update.**  During this audit, a separate provisional
-package was added under `line22_marked_critical_infinity/` for the single
+**Subsequent audited update.**  A separate package under
+`line22_marked_critical_infinity/` treats the single
 orbit
 \[
 H_4=(p^2,q^2,0),\qquad R_3=x^3.
 \]
-That new proof is outside this audit and has not been hostile-audited here.
-If its provisional conclusion is accepted, delete only the point
-\((a,c)=(0,0)\) from item 2 above.  The generic mixed infinity chart, both
+That proof was outside this audit, but subsequently passed its own
+independent hostile audit.  Delete only the point \((a,c)=(0,0)\) from
+item 2 above.  The generic mixed infinity chart, both
 resonances, the noncritical triple endpoint, the marked mixed point, and
 both companion-at-infinity orbits remain outside the audited F/G package.
 

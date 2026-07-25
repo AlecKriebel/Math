@@ -1,0 +1,30 @@
+#!/bin/sh
+sentinel='line-(2,2) marked-critical infinity PARI/GP checks passed'
+
+case "${FAKE_GP_MODE:-diagnostic}" in
+    success)
+        printf '%s\n' "$sentinel"
+        exit 0
+        ;;
+    diagnostic)
+        printf '%s\n' '  *** injected PARI diagnostic'
+        printf '%s\n' "$sentinel"
+        exit 0
+        ;;
+    extra)
+        printf '%s\n' "$sentinel"
+        printf '%s\n' 'injected trailing output'
+        exit 0
+        ;;
+    wrong)
+        printf '%s\n' 'wrong success sentinel'
+        exit 0
+        ;;
+    nonzero)
+        printf '%s\n' "$sentinel"
+        exit 7
+        ;;
+    *)
+        exit 99
+        ;;
+esac

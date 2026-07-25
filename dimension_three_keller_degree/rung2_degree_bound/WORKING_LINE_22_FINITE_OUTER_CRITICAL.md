@@ -371,9 +371,9 @@ theorems encoded here.
    a=c=0.
    \end{gathered}
    \]
-   The separate working package
+   The independently audited package
    `line22_marked_critical_infinity/` closes only the last point
-   \(a=c=0\), pending its own hostile audit.  For \(R_3=xq\), the
+   \(a=c=0\).  For \(R_3=xq\), the
    \(a=0\) and \(a\ne0\) orbits remain.
 3. The rank-one-restriction pencil
    \[

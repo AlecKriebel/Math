@@ -531,3 +531,20 @@ worldwide priority.  The theorem is unreviewed, closes only the chart with
 both outer critical points and the cubic companion finite, and leaves the
 one-critical-point-at-infinity and companion-at-infinity charts open.  The
 certified universal total-degree floor remains \(4\).
+
+### 2026-07-25T06:11Z — marked-critical infinity-orbit audit delta
+
+The same-day exact searches were compared with the narrower leading datum
+\[
+H_4=(x^4,y^2z^2,0),\qquad (H_3)_3=x^3.
+\]
+The arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, Gallagher, and
+publicly indexed X/Twitter results checked above contain no complete
+degree-six branch split or lower exclusion for this orbit.  The dedicated
+package records the exact query ledger.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem passed hostile audit but is unreviewed,
+and excludes only the single point \((a,c)=(0,0)\) in the
+outer-critical-infinity chart.  It does not raise the universal certified
+floor above total degree \(4\).

@@ -3,7 +3,8 @@
 **Verification timestamps:** 2026-07-24T23:43:08Z,
 2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
 2026-07-25T02:04:55Z, 2026-07-25T02:48:29Z, and
-2026-07-25T03:19:56Z, and 2026-07-25T06:06:25Z.
+2026-07-25T03:19:56Z, 2026-07-25T06:06:25Z, and
+2026-07-25T06:11:00Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -372,6 +373,38 @@ leading-order witnesses to the omission.  Thus the promoted theorem closes
 only the chart with both outer critical points and the companion finite;
 the projective-infinity charts remain active.  Optimized-Python and forged
 GP-diagnostic tests now fail closed.
+
+### Marked-critical infinity orbit
+
+At 2026-07-25T06:11:00Z all supplied and hostile-audit checks passed:
+
+```text
+cd line22_marked_critical_infinity
+/usr/bin/python3 verify_line22_marked_critical_infinity_sympy.py
+./verify_line22_marked_critical_infinity_pari_strict.sh
+/usr/bin/python3 audit_hostile/audit_exact_reconstruct.py
+./audit_hostile/test_python_guard.sh
+./audit_hostile/test_runner_faults.sh
+```
+
+For the single orbit
+\[
+H_4=(x^4,y^2z^2,0),\qquad (H_3)_3=x^3,
+\]
+the raw \(E_7\) matrix has rank \(8\) and nullity \(18\), with a complete
+four-direction affine quotient.  The rank-\(4\) \(E_6\) converse splits
+into four specialization-safe \((A,C)\) leaves.  Cubes, squares, and in the
+last resonant leaf the division-free identity
+\[
+\det L_0=\frac{\ell_{31}}3[x^2]E_2
+\]
+force a singular linear part in every case.
+
+The hostile audit independently reconstructed the target-shear effects on
+\(H_2,L_0\), all zero specializations, the extra harmless \(K=0\)
+products, and every lower exit.  It also fault-tested the Python guard and
+strict GP wrapper.  This removes only \((a,c)=(0,0)\) from the
+outer-critical-infinity chart; all neighboring moduli remain open.
 
 ### Complete fixed-divisor conic row
 

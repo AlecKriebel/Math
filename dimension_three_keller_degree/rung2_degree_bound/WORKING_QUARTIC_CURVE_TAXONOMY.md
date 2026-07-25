@@ -179,8 +179,12 @@ The common-factor-free rows have the following exact or partial coverage.
    `WORKING_LINE_22_FINITE_OUTER_CRITICAL.md` together with
    `WORKING_LINE_22_FG_RESONANCE.md` excludes the full chart having two
    finite outer critical points and finite mixed cubic companion.  The
-   outer-critical-infinity and companion-at-infinity charts, and the
-   rank-one-restriction pencil \(q=y^2+xz\), remain active.
+   separate theorem
+   `line22_marked_critical_infinity/WORKING_LINE22_MARKED_CRITICAL_INFINITY.md`
+   additionally excludes the single outer-infinity orbit
+   \(H_4=(p^2,q^2,0)\), \((H_3)_3=x^3\).  Every other
+   outer-critical-infinity modulus, both companion-at-infinity charts, and
+   the rank-one-restriction pencil \(q=y^2+xz\), remain active.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

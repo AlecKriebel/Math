@@ -771,3 +771,21 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   two independent direct reconstructions, optimized-mode rejection, and
   forged-GP diagnostic tests all pass.
 - The universal certified floor remains total degree \(4\).
+
+## 2026-07-25T06:11:00Z — Marked-critical infinity orbit excluded
+
+- In the separate outer-critical-at-infinity chart, the point
+  \[
+  H_4=(x^4,y^2z^2,0),\qquad (H_3)_3=x^3
+  \]
+  has raw \(E_7\) rank \(8\), nullity \(18\), and a complete affine gauge.
+- The rank-\(4\) \(E_6\) converse splits into four \((A,C)\) branches.
+  Exact degree-five cubes, degree-four squares, and the resonant identity
+  \(\det L_0=(\ell_{31}/3)[x^2]E_2\) close every specialization.
+- A hostile audit reconstructed the complete gauges, target-shear ledger,
+  lower converses, all zero cases, and executable failure paths.  Verdict:
+  PASS after five nonfatal exposition/certificate corrections.
+- This removes only \((a,c)=(0,0)\).  Both mixed resonances, the
+  noncritical endpoint, the generic infinity chart, and both
+  companion-at-infinity orbits remain active.
+- The universal certified floor remains total degree \(4\).
