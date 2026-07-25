@@ -726,3 +726,25 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - Exact SymPy, supplied PARI/GP, and independent audit PARI/GP checks pass
   behind fail-closed guards.  The binary locus remains active, and the
   universal certified floor remains total degree \(4\).
+
+## 2026-07-25T05:47:58Z — Transverse fixed-linear line triple cover excluded
+
+- In the row \((e,a,b,\delta,\nu)=(1,1,3,1,3)\), a transverse fixed line
+  gives
+  \[
+  H_4=r(A(p,q),B(p,q),0)
+  \]
+  with completely general coprime binary cubics \(A,B\).
+- The leading cross-product derivation diagonalizes after
+  \(q=pt,r=ps\).  Its degree-three and degree-two normal equations have
+  eigenvalues \(4j-3\) and \(4j-2\), respectively, so both nonlinear normal
+  components vanish.
+- The remaining linear normal coordinate reduces to a degree-at-most-four
+  plane Keller map over \(\mathbb C(r)\); the established plane theorem
+  and birational Keller theorem make the map an automorphism.
+- A hostile audit retained every cubic-cover modulus, recomputed the
+  Wronskian identity and polarizations, justified cancellation in the
+  integral domain and generic-degree descent, and fault-tested both
+  verifiers.  Verdict: PASS.
+- The binary fixed-line locus remains active.  The universal certified
+  total-degree floor remains \(4\).

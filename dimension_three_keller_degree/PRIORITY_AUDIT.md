@@ -480,3 +480,23 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem passed an independent hostile audit at
 2026-07-25T05:38:33Z but remains unreviewed.  Its binary locus stays open,
 and the certified universal total-degree floor remains \(4\).
+
+### 2026-07-25T05:29Z — transverse fixed-linear triple-cover overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“fixed divisor”, “line triple cover”, “binary cubic”, and “cubic pencil”.
+Separate searches covered arXiv, MathOverflow, Tao's blog, Secret Blogging
+Seminar, current July 2026 Keller listings, and public indexed X/Twitter
+results.
+
+The checked current discussion concerned the announced degree-seven map,
+its generic degree and grading, or unrelated cubic-pencil geometry.  None
+states the transverse Wronskian derivation, its degree-two/degree-three
+eigenvalue obstruction, or exclusion of the nonbinary part of
+\((e,a,b,\delta,\nu)=(1,1,3,1,3)\).  Shaska's current graded-map paper
+does not contain this leading-form theorem.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem passed hostile audit at
+2026-07-25T05:47:58Z but remains unreviewed.  Its binary locus stays open,
+and the certified universal total-degree floor remains \(4\).

@@ -241,6 +241,12 @@ The fixed-divisor coverage is now more precise.
   excludes every nonbinary fixed divisor.  The residue reduction has one
   global-square exception \(h=r^2\); its two full-stabilizer normal orbits
   both force \(\det L_0=0\).  The binary locus remains.
+- In the fixed-linear line triple-cover row
+  \((e,a,b,\delta,\nu)=(1,1,3,1,3)\),
+  `fixed_linear_line_triplecover/WORKING_NONBINARY_FIXED_LINEAR_LINE_TRIPLECOVER.md`
+  excludes the entire transverse locus \(h\notin\langle p,q\rangle\), for
+  every cubic-cover modulus.  The binary locus
+  \(h\in\langle p,q\rangle\) remains.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

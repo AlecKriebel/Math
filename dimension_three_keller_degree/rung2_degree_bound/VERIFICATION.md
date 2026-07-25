@@ -512,6 +512,38 @@ excludes exactly the nonbinary part of
 \]
 the binary fixed quadratic remains.
 
+### Transverse fixed-linear line triple cover
+
+At 2026-07-25T05:47:58Z the supplied implementations and independent
+hostile reconstruction passed:
+
+```text
+cd fixed_linear_line_triplecover
+/usr/bin/python3 verify_nonbinary_fixed_linear_line_sympy.py
+./verify_nonbinary_fixed_linear_line_pari_strict.sh
+./audit_hostile/audit_reconstruct_pari_strict.sh
+```
+
+The checks retain eight independent coefficients for a completely general
+pair of binary cubics.  They reproduce
+\[
+\nabla(rA)\times\nabla(rB)=p^6s(ab'-a'b)(-1,-t,3s)
+\]
+and, for a degree-\(d\) homogeneous form,
+\[
+D(G)=p^{d+5}s(ab'-a'b)(4sg_s-dg).
+\]
+They also reconstruct both raw determinant polarizations and the complete
+degree-two and degree-three eigenvalue tables.  The hostile audit verifies
+that the nonunit Wronskian cancels in the integral domain, no cubic-cover
+modulus is normalized away, and generic degree descends through the
+plane-field base change.  Optimized Python and injected GP failures are
+rejected.  This excludes exactly the transverse/nonbinary part of
+\[
+(e,a,b,\delta,\nu)=(1,1,3,1,3);
+\]
+the binary fixed line remains.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller
