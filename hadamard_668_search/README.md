@@ -30,7 +30,7 @@ heuristics for the five shell-two lifts and the still-unclassified
 | Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | bounded restart on a new `h=0` profile | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and a newly certified `n_9=0` profile from an incomplete dense-shell census.  The new profile has exact `21+15` half-turn algebra and complete global-twist/anti-weight-4/5 exclusions, but still no row-compatible digit-two point or digit-three lift.  A complete dense-shell profile classifier remains the credible paper-scoped continuation; `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | exhaustive dense-profile census plus algebraically gated lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and now two independently certified `n_9=0` profile orbits from an incomplete dense-shell census.  The first dense profile has exact `21+15` half-turn algebra and complete exclusions for several finite control-law families; the second has a 36-variable, 18-quadric next layer with a certified defect-one radius-six exclusion but no digit-two point.  The v2 classifier retains every canonical exact orbit and is resumable; neither dense profile has a physical placement or digit-three lift.  `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
@@ -157,6 +157,26 @@ long and two short rows produces an affine system over `F_2`; including
 support-weight parity, its rank is exactly 21 in all 39 reciprocal-`q`
 cases. Exact MacWilliams counts show that this layer leaves many supports,
 so it is a reduction rather than another exclusion.
+
+The new characteristic-three audit sharpens the complementary necessary
+condition.  Over `F_3`,
+
+```text
+Phi_12 = Phi_4^2,
+Phi_84 = Phi_28^2,
+z^42+1 = (z^14+1)^3.
+```
+
+Thus a primitive-28 value check is only the zeroth Hasse jet; the complete
+anti-fold condition has three jets and twenty normalized equations.  A
+case-26 support satisfies all twenty modulo three.  Independently, the
+normalized characteristic-two layer is exactly affine: after the weight
+parity row, case 26 has rank 21 and dimension 57, with
+25,941,166,955,843,488 exact weight-39 supports.  A code-preserving search
+reaches joint modulo-six defect two, at lags 9 and 11, and an exact SAT
+replay excludes the Hamming-radius-eight ball around that point.  These are
+structural reductions and local geometry, not a joint survivor, integer
+repair, or exclusion.
 
 ```sh
 python3 verify_eliahou_antifold42.py
@@ -743,6 +763,23 @@ supergroup-free structured point fails the quadratic second digit.  The
 single structured second-digit point is order-six fixed and fails digit
 three, so it is a positive control rather than a viable lift.
 
+`five_orbit_family_audit/` tests a genuinely different multiplicative
+class×row coupling on all five profiles:
+
+```text
+u_X(j,s)=P_X(j mod 3,s)+h_j F_X(j mod 6)G_X(s).
+```
+
+The two channels independently choose among twelve nonconstant projective
+row laws, giving 720 exact charts across the five profiles. Their affine
+unions contain 517,109 distinct first-digit placements; 514,912 are outside
+all seven earlier all-five feature families, every minimal `F_27`
+submodule family, and all five proper multiplier supergroups. Exhaustive
+evaluation leaves zero digit-two points. The best points satisfy 18 of 20
+rows. This is substantial new finite-family coverage, but it removes only
+517,109 points from five spaces of size `3^36`; it does not imply
+unrestricted convergence.
+
 `phase_second_digit/higher_digits/` records the exact consecutive-digit
 audit.  It contains a supergroup-free full second-digit point, the integral
 prefix lattice, and the sharp proof that digits zero through eight already
@@ -799,6 +836,52 @@ architecture: count the full six-coordinate layer using 729 exact quadratic
 Gauss sums per signed skeleton, then recover a witness by self-reduction.
 `scratch_dense_shell_benchmark/` independently checks 1,458 character sums
 against direct affine-cube enumeration and pins the measured throughput.
+
+`dense_shell_e2e_audit/` connects that arithmetic to one complete positive
+production prefix. After removing 554,008 redundant diagnostic replays,
+the current v2 orbit-enumeration path has a five-run median of 0.744369
+seconds for 19,131,876 primitive phase leaves. The resulting one-cell
+projection is 51.72 single-core hours for both dense shells, or 5.17 ideal
+ten-core hours; this is a measured extrapolation, not a runtime certificate.
+The audit also applies all 729 characters to one
+actual affine fiber, inverts them exactly, recovers the sole following-digit
+point in the selected target, and rejects it by characteristic two and
+detached exact replay.
+
+The same production campaign has already exposed a second exact `h=0`
+profile orbit:
+
+```text
+A IDs = 1,2,6,1,5,1,4,5,1,5,7,4
+B IDs = 2,4,2,4,4,6,5,5,8,1,5,8
+target  = (-3,0,0,3).
+```
+
+It has trivial stabilizer and orbit size 24 and is disjoint from the first
+size-12 orbit.  Independent integer replay gives `D_0=167` and
+`D_t=0` for all 36 nonzero lags.  Its first placement layer again has
+rank/nullity `18/36`.  The next layer consists of eighteen dense,
+quadratically independent forms.  A bounded search found a defect-one
+point, and exact enumeration rejects every one of the 137,724,625 ternary
+points within Hamming radius six of it.  No global digit-two witness or
+obstruction follows.
+
+For the first dense profile, `h0_affine_class_twists/` exhausts a larger
+finite control-law family.  It permits arbitrary functions
+`f:F_3 -> F_3` independently in both channels, for 2,916 paired laws.
+Exactly 2,592 are genuinely non-affine in the class coordinate.  Every one
+of the 2,915 nonidentity laws fails by digit three; the only surviving
+control is the already separated order-six identity branch.  The verifier
+exhausts 57,415,311 family-point incidences and replays all 48 exceptional
+digit-two points.  This forces any successful placement outside this
+profile's identity branch to use a more irregular class coupling; it does
+not exclude the profile.
+
+`dense_shell_classifier_pilot/` now has an exhaustive v2 mode.  Every exact
+hit is canonicalized under the 24-element action, replayed on all 37 lags,
+deduplicated, and retained while its prefix continues.  The runner is
+atomic, memory-capped, and resumable.  The stopped v1 discovery output is
+frozen; v2 must use the separate `output/production-v2` directory.
 
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
 intrinsic unit phases. Splitting row `r=s+3q`, every fixed-size-one or

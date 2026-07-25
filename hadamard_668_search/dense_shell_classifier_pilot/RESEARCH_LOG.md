@@ -175,3 +175,56 @@
   censuses: approximately 11 seconds and below 170 MB.
 - No external communication, commit, push, or unrelated scratch mutation
   occurred.
+
+## 24 July 2026: exhaustive exact-orbit retention
+
+- Upgraded the classifier with `--enumerate-exact-orbits`.  In this mode an
+  exact hit no longer stops its shard: it is transformed to the
+  lexicographically canonical 24-ID representative, keyed together with
+  its exact aggregate-target index, deduplicated in a sorted map, and
+  retained through shard completion.
+- Preserved the original stop-on-first behavior when the new flag is
+  absent.  It remains available for bounded discovery runs, while the
+  production runner now always requests exhaustive enumeration.
+- Bumped the production manifest, shard, result, aggregate, and runner
+  schemas to v2.  The source hash, binary hash, exact command including the
+  enumeration flag, and explicit orbit policy prevent a stopped v1 result
+  from being silently treated as resumable v2 work.
+- Froze the existing `output/production` directory as v1 provenance.  Its
+  manifest has source hash `cf48f07cf1c69b2df1adc9f5f48ffd96c4b3daccc747bcab5a9852d9138e2025`
+  and contains the raw stopped `h0-p00-p05` candidate.  V2 must use the
+  fresh explicit `output/production-v2` directory; no manifest, candidate,
+  partial counter, or binary is migrated, and that prefix restarts from its
+  beginning.  The runner now checks schema, runner version, and source hash
+  before compiling, so accidentally selecting v1 fails without adding a
+  new binary or changing any frozen byte.
+- Added a shared strict orbit validator used by both runner and aggregator.
+  It independently checks canonicality under all 24 transformations,
+  target/index agreement, exact-zero flags, semantic digest, deterministic
+  ordering and deduplication, and all 37 physical correlations for every
+  retained orbit.
+- The aggregator now preserves the complete machine-readable orbit list,
+  performs a second canonical deduplication across shards, and records all
+  source shards.  Aggregate exact-hit counters are no longer incorrectly
+  required to vanish.
+- Replayed the certified `h0-p00-p05` exact profile through the enumeration
+  path using `--skip 35879 --limit 2`.  Two deterministic runs each retained
+  exactly one canonical orbit with target index 3 and digest
+  `0x7395e771c01b49bf`, then processed the following decoration instead of
+  stopping; independent Python replay checked all 37 lags.  Each run took
+  under one second and roughly 1 MB resident memory.
+- Production regression tests cover the empty complete shard, a nontrivial
+  complete shard, the known exact-profile retention path, deterministic
+  replay, corruption rejection, and atomic resume behavior.  No complete
+  shell census was launched.
+- Final Python 3.14 combined classifier/production suite: 8/8 tests pass in
+  26.224 seconds.  The exact-orbit and v1 fail-closed tests also pass under
+  system Python 3.9.6.  AddressSanitizer plus UndefinedBehaviorSanitizer
+  replayed the known enumerated orbit without a report
+  (`detect_leaks=0`, because Darwin's ASan runtime does not support leak
+  detection).
+- A no-search production dry run generated the v2 command template with
+  `--complete-shard --enumerate-exact-orbits`; final classifier source hash
+  is `ef7c77598396c1050d13848b5fde536eba4e8b1426c6554705a1015fbc7f3404`.
+- No external communication, commit, push, or unrelated scratch mutation
+  occurred.

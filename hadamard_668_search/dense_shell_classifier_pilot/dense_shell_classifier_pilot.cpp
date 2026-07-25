@@ -24,6 +24,8 @@
 #include <iomanip>
 #include <iostream>
 #include <limits>
+#include <map>
+#include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -824,6 +826,7 @@ struct Config {
   std::uint64_t limit = 1;
   bool count_decorations = false;
   bool complete_shard = false;
+  bool enumerate_exact_orbits = false;
   int prefix_first = -1;
   int prefix_second = -1;
 };
@@ -975,6 +978,10 @@ class Search {
 
   const Stats& stats() const { return stats_; }
   const std::array<Witness, 6>& witnesses() const { return witnesses_; }
+  using ExactOrbitKey = std::pair<Assignment, int>;
+  const std::map<ExactOrbitKey, Witness>& exact_orbits() const {
+    return exact_orbits_;
+  }
   bool candidate_found() const { return candidate_found_; }
 
  private:
@@ -1194,8 +1201,13 @@ class Search {
     }
 
     std::array<E, PAIRS> recovered_exact = exact;
+    // This fallback exists only to materialize the first bounded-pilot
+    // target/char2 witnesses.  Production never emits those two marginal
+    // witnesses.  Its mathematically sufficient exact-replay trigger is
+    // run_upper_exact above: exact zero necessarily implies both mod9 and
+    // the characteristic-two unitary quotient.
     const bool needs_recovered_exact =
-        !mod9 &&
+        !config_.complete_shard && !mod9 &&
         (!witnesses_[0].present ||
          (char2 && !witnesses_[1].present));
     if (needs_recovered_exact) {
@@ -1242,11 +1254,7 @@ class Search {
           post_lambda, zero_mod27, zero);
     }
     if (zero) {
-      Assignment candidate_ids = ids;
-      std::array<E, PAIRS> candidate_exact = exact;
-      int candidate_target = target_index;
-      bool candidate_canonical = false;
-      try {
+      auto canonical_witness = [&]() {
         const Values canonical_values =
             values_from_assignment(canonical_ids);
         const auto canonical_exact =
@@ -1255,25 +1263,61 @@ class Search {
             exact_target_index(aggregate(canonical_values));
         const bool canonical_char2 =
             characteristic_two_unitary(geometry_, canonical_values);
-        if (exact_zero(canonical_exact) &&
-            canonical_target >= 0 && canonical_char2) {
-          detached_replay(
-              geometry_, canonical_values, canonical_exact,
-              TARGETS[canonical_target]);
-          ++stats_.detached_replays;
-          candidate_ids = canonical_ids;
-          candidate_exact = canonical_exact;
-          candidate_target = canonical_target;
-          candidate_canonical = true;
+        if (!exact_zero(canonical_exact) ||
+            canonical_target < 0 || !canonical_char2) {
+          throw std::runtime_error(
+              "canonical exact-zero orbit representative failed replay");
         }
+        detached_replay(
+            geometry_, canonical_values, canonical_exact,
+            TARGETS[canonical_target]);
+        ++stats_.detached_replays;
+        return Witness{
+            true, canonical_ids, canonical_target, canonical_exact,
+            true, true, true, true, true, true,
+        };
+      };
+
+      if (config_.enumerate_exact_orbits) {
+        const Witness candidate = canonical_witness();
+        const ExactOrbitKey key{
+            candidate.ids, candidate.target_index,
+        };
+        const auto [stored, inserted] =
+            exact_orbits_.try_emplace(key, candidate);
+        if (!inserted &&
+            assignment_digest(
+                stored->second.ids, stored->second.exact,
+                stored->second.target_index) !=
+                assignment_digest(
+                    candidate.ids, candidate.exact,
+                    candidate.target_index)) {
+          throw std::runtime_error(
+              "canonical exact-orbit deduplication collision");
+        }
+        save_witness(
+            5, candidate.ids, candidate.target_index, candidate.exact,
+            true, true, true, true, true, true);
+        return;
+      }
+
+      Assignment candidate_ids = ids;
+      std::array<E, PAIRS> candidate_exact = exact;
+      int candidate_target = target_index;
+      bool candidate_canonical = false;
+      try {
+        const Witness candidate = canonical_witness();
+        candidate_ids = candidate.ids;
+        candidate_exact = candidate.exact;
+        candidate_target = candidate.target_index;
+        candidate_canonical = true;
       } catch (const std::exception&) {
         // The already detached-replayed raw exact witness remains valid.
         // Preserve it rather than allowing a canonicalization defect to
-        // erase a discovery.
+        // erase a stop-on-first discovery.
       }
-      save_witness(
-          5, candidate_ids, candidate_target, candidate_exact,
-          true, true, true, true, true, candidate_canonical);
+      save_witness(5, candidate_ids, candidate_target, candidate_exact,
+                   true, true, true, true, true, candidate_canonical);
       candidate_found_ = true;
       stopped_ = true;
     }
@@ -1287,6 +1331,7 @@ class Search {
   bool candidate_found_ = false;
   Stats stats_;
   std::array<Witness, 6> witnesses_{};
+  std::map<ExactOrbitKey, Witness> exact_orbits_;
 };
 
 void print_assignment(const char* prefix, const Witness& witness) {
@@ -1378,6 +1423,8 @@ int main(int argc, char** argv) {
         config.prefix_second = static_cast<int>(second);
       } else if (option == "--complete-shard") {
         config.complete_shard = true;
+      } else if (option == "--enumerate-exact-orbits") {
+        config.enumerate_exact_orbits = true;
       } else if (option == "--count-decorations") {
         config.count_decorations = true;
       } else {
@@ -1403,6 +1450,11 @@ int main(int argc, char** argv) {
       throw std::runtime_error(
           "--count-decorations is a global census and cannot be "
           "combined with prefix/bounded-search options");
+    }
+    if (config.count_decorations && config.enumerate_exact_orbits) {
+      throw std::runtime_error(
+          "--enumerate-exact-orbits cannot be combined with "
+          "--count-decorations");
     }
     if (!config.count_decorations && config.limit == 0) {
       throw std::runtime_error("--limit must be positive");
@@ -1443,7 +1495,7 @@ int main(int argc, char** argv) {
         config.medium_total == 15 ? "h1" : "h0";
     if (config.complete_shard) {
       const auto local = local_states();
-      std::cout << "schema=dense-shell-production-shard-v1\n";
+      std::cout << "schema=dense-shell-production-shard-v2\n";
       std::cout << "mode=complete_shard\n";
       std::cout << "shell=" << shell << '\n';
       std::cout << "shard_id=" << shell << "-p"
@@ -1549,8 +1601,38 @@ int main(int argc, char** argv) {
         "witness_post_mod9_lambda",
         "witness_exact",
     };
-    for (int index = 0; index < 6; ++index) {
+    for (int index = 0; index < 5; ++index) {
       print_assignment(names[index], search.witnesses()[index]);
+    }
+    if (config.enumerate_exact_orbits &&
+        !search.exact_orbits().empty()) {
+      print_assignment(
+          names[5], search.exact_orbits().begin()->second);
+    } else {
+      print_assignment(names[5], search.witnesses()[5]);
+    }
+    std::cout << "exact_orbit_mode="
+              << (config.enumerate_exact_orbits
+                      ? "enumerate"
+                      : "stop_on_first")
+              << '\n';
+    std::cout << "exact_orbit_collection="
+              << (config.enumerate_exact_orbits
+                      ? (config.complete_shard
+                             ? "complete_shard"
+                             : "bounded_stream")
+                      : "disabled")
+              << '\n';
+    std::cout << "exact_orbit_count="
+              << search.exact_orbits().size() << '\n';
+    std::size_t exact_orbit_index = 0;
+    for (const auto& [key, witness] : search.exact_orbits()) {
+      (void)key;
+      std::ostringstream name;
+      name << "exact_orbit_" << std::setw(6) << std::setfill('0')
+           << exact_orbit_index++;
+      const std::string prefix = name.str();
+      print_assignment(prefix.c_str(), witness);
     }
     if (config.complete_shard) {
       if (search.candidate_found()) {

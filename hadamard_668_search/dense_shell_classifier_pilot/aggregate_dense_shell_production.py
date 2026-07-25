@@ -17,6 +17,7 @@ from production_common import (
     AGGREGATE_SCHEMA,
     BURNSIDE,
     DIAGNOSTIC_COUNTER_KEYS,
+    EXACT_ORBIT_POLICY,
     MANIFEST_SCHEMA,
     PREFIX_COUNT,
     PRODUCTION_SCHEMA,
@@ -31,6 +32,7 @@ from production_common import (
     shard_id,
     workload_audit,
 )
+from production_orbits import ExactOrbit, validate_exact_orbit_output
 from verify_dense_shell_classifier_pilot import replay_witness
 
 
@@ -85,6 +87,7 @@ def validate_manifest(
         "runner_version": RUNNER_VERSION,
         "partition_audit": partition_audit(),
         "workload_audit": workload_audit(),
+        "exact_orbit_policy": EXACT_ORBIT_POLICY,
     }
     for key, expected in required.items():
         if manifest.get(key) != expected:
@@ -114,87 +117,15 @@ def validate_manifest(
 def validate_candidate_records(
     output: Path, manifest: dict[str, object]
 ) -> bool:
+    del manifest
     paths = sorted((output / "candidates").glob("*.json"))
     if not paths:
         return False
-    if len(paths) != 1:
-        raise ValueError("multiple exact-candidate records exist")
-    record = read_json(paths[0])
-    if not isinstance(record, dict):
-        raise ValueError("candidate record is malformed")
-    required = {
-        "schema": RESULT_SCHEMA,
-        "runner_version": RUNNER_VERSION,
-        "source_sha256": manifest["source_sha256"],
-        "binary_sha256": manifest["binary_sha256"],
-        "returncode": 2,
-        "complete": False,
-        "candidate": True,
-    }
-    for key, expected in required.items():
-        if record.get(key) != expected:
-            raise ValueError(f"candidate {key} mismatch")
-    shell = record.get("shell")
-    first = record.get("prefix_first")
-    second = record.get("prefix_second")
-    if (
-        shell not in SHELLS
-        or not isinstance(first, int)
-        or not isinstance(second, int)
-        or record.get("shard_id") != shard_id(shell, first, second)
-    ):
-        raise ValueError("candidate shard identity mismatch")
-    parsed = record.get("parsed")
-    transcript = record.get("transcript")
-    if (
-        not isinstance(parsed, dict)
-        or not isinstance(transcript, str)
-        or parse_key_value_output(transcript) != parsed
-    ):
-        raise ValueError("candidate transcript/parse mismatch")
-    identifier = shard_id(shell, first, second)
-    expected_command = [
-        str(manifest["binary_path"]),
-        "--shell",
-        shell,
-        "--complete-shard",
-        "--prefix",
-        str(first),
-        str(second),
-    ]
-    if record.get("command") != expected_command:
-        raise ValueError("candidate command mismatch")
-    required_output = {
-        "schema": PRODUCTION_SCHEMA,
-        "mode": "complete_shard",
-        "shell": shell,
-        "shard_id": identifier,
-        "prefix_first": str(first),
-        "prefix_second": str(second),
-        "upper_exact_scope": "char2_mod9_intersection",
-        "shard_complete": "0",
-        "witness_exact_present": "1",
-    }
-    for key, expected in required_output.items():
-        if parsed.get(key) != expected:
-            raise ValueError(
-                f"candidate output {key} mismatch "
-                f"({parsed.get(key)!r} != {expected!r})"
-            )
-    for key in (*ADDITIVE_COUNTER_KEYS, *DIAGNOSTIC_COUNTER_KEYS):
-        require_nonnegative_integer(parsed, key)
-    if require_nonnegative_integer(parsed, "exact_zero_hits") < 1:
-        raise ValueError("candidate exact-zero counter is zero")
-    if parsed.get("witness_exact_canonical") not in ("0", "1"):
-        raise ValueError("candidate canonical-witness marker is malformed")
-    replay_witness(parsed, "witness_exact", shell)
-    if parsed.get("witness_exact_exact_zero") != "1":
-        raise ValueError("candidate detached witness is not exact zero")
-    print(
-        "EXACT-ZERO CANDIDATE independently replayed; "
-        f"investigate {paths[0]}"
+    raise ValueError(
+        "stop-on-first candidate records are incompatible with the "
+        "v2 exhaustive-orbit production manifest; use a fresh output "
+        f"directory (found {paths[0]})"
     )
-    return True
 
 
 def validate_result_record(
@@ -205,7 +136,7 @@ def validate_result_record(
     first: int,
     second: int,
     manifest: dict[str, object],
-) -> dict[str, str]:
+) -> tuple[dict[str, str], tuple[ExactOrbit, ...]]:
     if not isinstance(record, dict):
         raise ValueError(f"{path}: result is not an object")
     identifier = shard_id(shell, first, second)
@@ -215,6 +146,7 @@ def validate_result_record(
         "--shell",
         shell,
         "--complete-shard",
+        "--enumerate-exact-orbits",
         "--prefix",
         str(first),
         str(second),
@@ -260,7 +192,8 @@ def validate_result_record(
         "prefix_second": str(second),
         "upper_exact_scope": "char2_mod9_intersection",
         "shard_complete": "1",
-        "witness_exact_present": "0",
+        "exact_orbit_mode": "enumerate",
+        "exact_orbit_collection": "complete_shard",
     }
     for key, expected in required_output.items():
         if parsed.get(key) != expected:
@@ -270,13 +203,12 @@ def validate_result_record(
             )
     for key in (*ADDITIVE_COUNTER_KEYS, *DIAGNOSTIC_COUNTER_KEYS):
         require_nonnegative_integer(parsed, key)
-    if require_nonnegative_integer(parsed, "exact_zero_hits"):
-        raise RuntimeError(
-            f"{identifier}: exact-zero counter requires investigation"
-        )
-    for witness in WITNESS_NAMES:
+    exact_orbits = validate_exact_orbit_output(
+        parsed, shell, expected_collection="complete_shard"
+    )
+    for witness in WITNESS_NAMES[:-1]:
         replay_witness(parsed, witness, shell)
-    return parsed
+    return parsed, exact_orbits
 
 
 def aggregate_shell(
@@ -305,10 +237,15 @@ def aggregate_shell(
     diagnostics: dict[str, int] = defaultdict(int)
     identities: set[str] = set()
     retained_witnesses = 0
+    retained_exact_orbits = 0
+    exact_orbits: dict[
+        tuple[tuple[int, ...], int],
+        tuple[ExactOrbit, list[str]],
+    ] = {}
     for cell in cells:
         path = result_directory / f"{cell.identifier}.json"
         record = read_json(path)
-        parsed = validate_result_record(
+        parsed, shard_orbits = validate_result_record(
             record,
             path=path,
             shell=shell,
@@ -352,6 +289,22 @@ def aggregate_shell(
             require_nonnegative_integer(parsed, f"{name}_present")
             for name in WITNESS_NAMES
         )
+        retained_exact_orbits += len(shard_orbits)
+        for orbit in shard_orbits:
+            existing = exact_orbits.get(orbit.key)
+            if existing is None:
+                exact_orbits[orbit.key] = (
+                    orbit,
+                    [cell.identifier],
+                )
+            else:
+                retained, sources = existing
+                if retained != orbit:
+                    raise ValueError(
+                        f"{cell.identifier}: canonical exact-orbit "
+                        "record disagrees across shards"
+                    )
+                sources.append(cell.identifier)
 
     expected = BURNSIDE[shell]
     exact_checks = {
@@ -363,8 +316,6 @@ def aggregate_shell(
             expected["canonical_decorations"],
         "weighted_decorations_processed":
             expected["raw_decorations"],
-        "exact_zero_hits": 0,
-        "weighted_exact_zero_hits": 0,
     }
     for key, wanted in exact_checks.items():
         if sums[key] != wanted:
@@ -372,6 +323,19 @@ def aggregate_shell(
                 f"{shell}: aggregate {key} mismatch "
                 f"({sums[key]} != {wanted})"
             )
+    if (
+        sums["weighted_exact_zero_hits"] < sums["exact_zero_hits"]
+        or sums["mod27_hits"] < sums["exact_zero_hits"]
+        or sums["post_mod9_lambda_hits"] < sums["exact_zero_hits"]
+        or sums["char2_mod9_hits"] < sums["exact_zero_hits"]
+    ):
+        raise ValueError(f"{shell}: aggregate exact-hit accounting failed")
+    orbit_rows = []
+    for key in sorted(exact_orbits):
+        orbit, sources = exact_orbits[key]
+        row = orbit.as_dict()
+        row["source_shards"] = sorted(sources)
+        orbit_rows.append(row)
     return {
         "prefix_shards": len(identities),
         "complete": len(identities) == PREFIX_COUNT,
@@ -379,6 +343,10 @@ def aggregate_shell(
         "counters": dict(sums),
         "diagnostic_idlex_coincidence_counters": dict(diagnostics),
         "retained_witnesses_independently_replayed": retained_witnesses,
+        "retained_exact_orbits_across_shards": retained_exact_orbits,
+        "distinct_canonical_exact_profile_orbits":
+            len(exact_orbits),
+        "exact_profile_orbits": orbit_rows,
         "burnside_weighted_partition_check": "PASS",
     }
 

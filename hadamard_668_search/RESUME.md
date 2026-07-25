@@ -14,17 +14,22 @@ structured exact lift, and obtained neither a feasible complete search nor
 a whole-profile exclusion.
 
 A genuinely new input has since justified a bounded restart.  The
-dense-shell classifier found and exactly replayed an `h=0` profile.  Its
-profile half-turn gives a `21+15` lift decomposition, complete exclusions
-of the global fiber twists and the anti-weight-four/five families, and one
-asymmetric digit-two point.  There is still no row-compatible digit-two
-point or full digit-three point.  The exact 300-second digit-three slice and
-180-second all-margin digit-two run both returned `UNKNOWN`.
+dense-shell classifier has found and exactly replayed two inequivalent
+`h=0` profile orbits.  The first profile's half-turn gives a `21+15` lift
+decomposition, complete exclusions of several finite control-law families,
+and one asymmetric digit-two point.  The second has trivial stabilizer and
+an independently derived 18-quadric next layer; a defect-one point has a
+complete radius-six local exclusion, but no exact digit-two point is known.
+There is still no row-compatible digit-two point or full digit-three point
+for either orbit.
 
-The separate dense-shell arithmetic benchmark still passes comfortably;
-an end-to-end `n_9=1,0` **profile classifier** is the one scoped
-continuation supported by current evidence, and should be treated as a
-paper project rather than a forecast of `H(668)`.
+The connected dense-shell audit now measures one complete positive-work
+prefix rather than only a microkernel. Its current v2 one-cell projection
+is 51.72 single-core hours for both dense shells, with substantial
+distribution uncertainty.  The v2 classifier is exhaustive, orbit-retaining,
+atomic, and resumable.  Completing the `n_9=1,0` **profile census** is the
+one scoped continuation supported by current evidence, and should be
+treated as a paper project rather than a forecast of `H(668)`.
 
 The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
@@ -46,6 +51,14 @@ The strongest results in this repository are negative or local:
   is certified UNSAT by a checked binary DRAT proof. Canonical case 1, long
   representative 2, has one unproved solver-UNSAT observation; the other 28
   instances are `UNKNOWN`. Exactly one of 30 is closed;
+- the characteristic-three anti-fold condition is a full three-jet system,
+  not only a primitive-28 value sieve. A case-26 support satisfies all
+  twenty normalized equations modulo three. The normalized
+  characteristic-two system is exactly affine; after weight parity its
+  case-26 dimension is 57 and its exact weight-39 slice contains
+  25,941,166,955,843,488 supports. The best joint point has modulo-three
+  defect two, and its radius-eight Hamming ball is exactly excluded. No
+  joint modulo-six support or integer repair is known;
 - the older primitive-eight 16-coordinate dynamic program gives a sharp
   necessary-condition boundary at distance 34: its sphere first becomes
   reachable at distance 33, all 66 full targets there fail exact margins,
@@ -196,6 +209,18 @@ The strongest new constructive reductions are:
   run found an exact `n_9=0` profile with shell `(0,18,6)`, all 36
   nonzero-lag correlations zero, a size-12 orbit, and a profile half-turn.
   It is a profile input, not a labelled `LP(333)`.
+- `dense_shell_exact_profile_h0_orbit2/`: a second exact `n_9=0` profile,
+  with canonical words
+  `(1,2,6,1,5,1,4,5,1,5,7,4)` and
+  `(2,4,2,4,4,6,5,5,8,1,5,8)`, target `(-3,0,0,3)`,
+  trivial stabilizer, and orbit size 24. It is disjoint from the first
+  orbit and independently passes all 37 exact profile correlations.
+- `h0_orbit2_lift_audit/`: the second dense profile's first layer has
+  rank/nullity `18/36`; the next layer has eighteen dense independent
+  quadrics. A pinned point has defect one, and the complete
+  137,724,625-point ternary ball through radius six contains no exact
+  digit-two point. Global SAT remained `UNKNOWN`, so this is not an
+  obstruction.
 - `h0_halfturn_twists/`: the new profile's first lift splits as `21+15`;
   the second digit becomes twelve even quadrics and six odd bilinear
   equations.  All 35 nonidentity global fiber-permutation twists are
@@ -218,6 +243,11 @@ The strongest new constructive reductions are:
   `M_21(F_3)`, `M_15(F_3)`, and `M_15(F_3)`, respectively.  This closes
   the direct simultaneous-diagonalization and ordinary field-norm shortcut,
   not nonlinear elimination.
+- `h0_affine_class_twists/`: all 2,915 nonidentity controls in the
+  2,916-law quadratic-class family fail by digit three. This includes
+  2,592 genuinely non-affine-in-class paired laws. All 48 exceptional
+  digit-two points fail digit three and row margins. The exhaustive work
+  count is 57,415,311 family-point incidences, not distinct placements.
 - `scratch_exact_profile_lift/`: a secondary exact XOR/CP-SAT model fixes the
   first shell-two representative and splits its 72 compatible row margins.
   Attempt zero is fully resumable and records 72 `UNKNOWN` statuses; it is a
@@ -239,6 +269,13 @@ The strongest new constructive reductions are:
   channel pairs per profile, leaving six supergroup-free digit-one points
   and no digit-two point.  Its sole structured digit-two control is
   order-six fixed and fails digit three.
+- `five_orbit_family_audit/`: a new multiplicative class×row anti-tensor
+  family supplies 720 exact charts across all five profiles. Its affine
+  unions contain 517,109 distinct digit-one placements, including 514,912
+  outside every prior all-five feature family, minimal `F_27` submodule,
+  and proper multiplier supergroup. All fail digit two; the best points
+  satisfy 18 of 20 rows. The immediately larger rank-two flat census is
+  estimated at about 327.4 billion chart incidences and is not authorized.
 - `phase_second_digit/higher_digits/`: one independently replayed
   supergroup-free point survives digits zero through two.  None has yet
   survived digit three or four.  The exact norm bound shows that digits
@@ -271,6 +308,17 @@ The strongest new constructive reductions are:
   affine-cube verifier covering 1,458 Eisenstein character sums.  This is
   a go result for arithmetic throughput, not a profile-classification
   result.
+- `dense_shell_e2e_audit/`: one complete positive-work prefix, actual
+  729-character inversion, exact witness recovery, and detached replay.
+  Removing a redundant diagnostic fallback changed the historical v1
+  prefix from 2.615347 to 0.771325 seconds. The current v2 enumeration path
+  has a five-run median of 0.744369 seconds and a 51.72-single-core-hour
+  combined projection, but remains a one-cell extrapolation.
+- `dense_shell_classifier_pilot/`: v2 continues after exact hits, retains
+  every canonical target-labelled orbit, independently replays all 37
+  lags, and resumes only hash-matching atomic shards. Preserve the v1
+  discovery directory unchanged and use `output/production-v2` for the
+  exhaustive census.
 - `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md`: the six quadratic
   correction forms relevant to `n_9=1,0` generate `F_27 x F_27` and sum to
   `2I`.  Exact affine restriction and Gauss bounds prove this universal
@@ -330,6 +378,12 @@ The strongest new constructive reductions are:
   support instances. Its first binary lift has rank exactly 21 in every
   reciprocal-`q` case. The binary lift leaves many supports and is not itself
   an exclusion.
+- `eliahou_char3_jet_audit/`: the inseparable identities
+  `Phi_12=Phi_4^2`, `Phi_84=Phi_28^2`, and
+  `z^42+1=(z^14+1)^3` expose the complete characteristic-three anti-fold
+  jet. The folder contains a full modulo-three survivor, exact
+  characteristic-two affine-code counts, a joint defect-two point, and
+  local SAT exclusions. None is an integer repair.
 - `FIVE_COMB_SECANT.md`: the complete seed defect is one rank-one ten-sparse
   carrier. Common-factor repairs are impossible, but a minimum complementary
   octet gives 32 flat carrier channels of energy 320 that pack into the target
@@ -481,13 +535,15 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to test structured phase families on all five
-   `n_9=2` orbits and to lift through at least two consecutive digits beyond
-   the quadratic layer, while estimating the complete exact replay cost.
+   next exact task is to complete the resumable dense-profile census, test
+   any genuinely new structured phase law across all five `n_9=2` orbits,
+   and lift only seeds that pass exact row margins through at least two
+   consecutive digits beyond the quadratic layer.
    A point satisfying only the quadratic second digit is not a progress
    gate: the structured six-coordinate subsystem alone leaves about `3^30`
-   points per profile.  Work on `n_9=1,0` should use the `F_27 x F_27`
-   729-character compression rather than phase enumeration.  The general
+   points per profile. Work on `n_9=1,0` should use the v2 streaming
+   classifier and its exact-orbit retention rather than phase enumeration.
+   The general
    seven-target CRT constructor remains the fallback for discovering dense
    profile inputs.  The prime-167 channel-first MITM is a low-memory
    fallback, not the primary route at its current 6.34-billion-signature

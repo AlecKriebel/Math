@@ -93,13 +93,14 @@ The current `--skip` implementation reaches a later canonical index by
 rescanning the earlier prefix.  It gives deterministic bounded recovery,
 but large collections of skip-based shards would repeat work.
 
-Production mode avoids this defect.  `--prefix i j --complete-shard` fixes
-the first two local-state indices **before** decoration canonicalization and
-phase restoration.  The 729 ordered pairs partition every raw skeleton
-exactly once.  Every canonical decoration consequently belongs to exactly
-one shard, and summing its exact orbit weight over all shards recovers the
-raw decoration census.  A successful shard prints `shard_complete=1`; no
-bounded limit or skip is accepted in this mode.
+Production mode avoids this defect.  `--prefix i j --complete-shard
+--enumerate-exact-orbits` fixes the first two local-state indices **before**
+decoration canonicalization and phase restoration.  The 729 ordered pairs
+partition every raw skeleton exactly once.  Every canonical decoration
+consequently belongs to exactly one shard, and summing its exact orbit
+weight over all shards recovers the raw decoration census.  A successful
+shard prints `shard_complete=1`; no bounded limit or skip is accepted in
+this mode.
 
 ## 2. Actual equations
 
@@ -141,8 +142,10 @@ The subsequent gates are evaluated on the actual correlations:
 
 The second gate is the first post-modulo-nine lambda digit and is the
 quadratic dense-shell layer.  The pilot checks it by exact enumeration,
-making this package a small reference oracle for a future 729-character
-implementation.  Complete production shards reconstruct exact upper
+making this package a small reference oracle.  The connected audit in
+`../dense_shell_e2e_audit/` now evaluates and inverts all 729 characters
+for one actual affine target fiber, recovers its following-digit witness,
+and replays it exactly.  Complete production shards reconstruct exact upper
 correlations only on the actual `char2 && mod9` intersection.  Thus
 `post_mod9_lambda_hits`, `mod27_hits`, and `exact_zero_hits` in production
 are explicitly scoped to that intersection.  This is exhaustive for exact
@@ -187,16 +190,27 @@ The independent Python verifier repeats this physical replay without using
 the C++ transition code.  It also verifies every emitted prefix flag and
 semantic digest.
 
-In complete production mode, an exact-zero hit is never allowed to disappear
-inside a nominally completed result.  The classifier canonicalizes and
-detached-replays the full assignment, emits it, prints `shard_complete=0`,
-and exits with candidate status.  If canonicalization itself exposes an
-invariant defect, it preserves the already detached-replayed raw witness
-instead of losing the discovery; `witness_exact_canonical` distinguishes the
-two cases.  The runner atomically preserves that record, stops its remaining
-child pool, and requires investigation before resume.  Therefore a
-collection of 729 `shard_complete=1` results is also a certificate that the
-shell contained no exact hit in this family.
+The default classifier behavior remains stop-on-first: an exact-zero hit is
+canonicalized, detached-replayed, emitted with `shard_complete=0`, and
+returns candidate status.  This is useful for bounded discovery work.
+
+The production runner instead always supplies
+`--enumerate-exact-orbits`.  Every exact hit is transformed to the
+lexicographically canonical 24-ID representative, paired with its exact
+target index, and inserted into a sorted per-shard map.  Duplicate
+representatives do not create duplicate records.  Each retained orbit is
+recomputed and replayed on all 37 physical lags, then emitted as
+`exact_orbit_000000`, `exact_orbit_000001`, and so on.  Exact hits do not
+stop the shard in this mode.
+
+The runner and strict aggregator independently check canonicality, target
+consistency, ordering, deduplication, semantic digests, all exact flags, and
+all 37 correlations for every retained orbit.  The aggregator also performs
+a second deterministic deduplication across prefix shards and writes the
+complete orbit list with source-shard provenance.  Thus 729
+`shard_complete=1` records now certify an exhaustive shell census while
+preserving every exact profile they contain; completion no longer means
+that the shell had no exact hit.
 
 ## 5. Reproduction
 
@@ -219,6 +233,11 @@ clang++ -O3 -DNDEBUG -std=c++20 \
 
 /tmp/h668_dense_shell_classifier_pilot \
   --shell h0 --count-decorations
+
+# Reproduce the certified exact profile through the census path:
+/tmp/h668_dense_shell_classifier_pilot \
+  --shell h0 --prefix 0 5 --skip 35879 --limit 2 \
+  --enumerate-exact-orbits
 ```
 
 Run the detached verifier and regression test from the repository root:
@@ -250,30 +269,63 @@ python3 \
   --shell h0 --prefix 13 13 --workers 1
 ```
 
-A complete `h=0` launch, when authorized, is:
+A complete v2 `h=0` launch, when authorized, is:
 
 ```text
 python3 \
   hadamard_668_search/dense_shell_classifier_pilot/run_dense_shell_production.py \
-  --shell h0 --workers 8
+  --output \
+  hadamard_668_search/dense_shell_classifier_pilot/output/production-v2 \
+  --shell h0 --workers 8 --aggregate-rss-limit-mib 3072
 
 python3 \
   hadamard_668_search/dense_shell_classifier_pilot/aggregate_dense_shell_production.py \
+  --output \
+  hadamard_668_search/dense_shell_classifier_pilot/output/production-v2 \
   --shell h0
 ```
 
 The same runner command is the resume command.  It validates every existing
-result and launches only missing shards.  The manifest records source,
-binary, compiler, flags, exact commands, both Burnside fixed vectors, and
-all 1,458 prefix cells.  Results are written by atomic rename.  Work is
+result, including every retained exact orbit, and launches only missing
+shards.  The v2 manifest pins the source, binary, compiler, flags,
+enumeration command, exact-orbit policy, both Burnside fixed vectors, and
+all 1,458 prefix cells.  Results are written by atomic rename.  A v1
+stop-on-candidate output cannot be silently resumed as v2: its manifest,
+source hash, command, and result schema all fail validation.  Work is
 ordered by descending raw-decoration count to avoid a single large final
 wave.  At most eight children run, while the parent polls their aggregate
 resident memory and stops the pool above 3,072 MiB.  Darwin `RLIMIT_AS` is
 not used because it prevents process startup on the reference Mac.
 
-## 6. Corrected workload and measured-rate projection
+### v1 discovery-output migration boundary
 
-Three consecutive optimized runs gave the following median single-core
+The existing directory
+
+```text
+hadamard_668_search/dense_shell_classifier_pilot/output/production
+```
+
+is a frozen v1 discovery artifact.  Its manifest pins source hash
+`cf48f07cf1c69b2df1adc9f5f48ffd96c4b3daccc747bcab5a9852d9138e2025`,
+and its raw `candidates/h0-p00-p05.json` record pins the stopped second
+exact-profile discovery.  Leave that directory unchanged.
+
+There is deliberately no in-place conversion.  Do not copy its manifest,
+candidate, binary, temporary files, or partial counters into v2.  The v1
+prefix stopped after the hit and is not a complete prefix result.  The
+explicit `output/production-v2` command above creates a fresh v2 manifest
+with the new source and binary hashes, restarts `h0-p00-p05` from the
+beginning, rediscovers and retains its certified orbit, and then continues
+to the end of that prefix.  Repeating exactly that command safely resumes
+only hash-matching v2 results.  Pointing the v2 runner at the old default
+directory fails its read-only provenance preflight before compilation, so
+it neither adds a new binary nor overwrites or mixes the two provenance
+lines.
+
+## 6. Historical pilot rate and complete-prefix correction
+
+Three consecutive optimized bounded runs gave the following median
+single-core
 rates.  “Raw-equivalent” means that every processed canonical decoration
 and every phase leaf is weighted by its **measured** `24/|Stab_G|`; it does
 not divide by an assumed free orbit of size 24.
@@ -311,22 +363,47 @@ h=0: 26,743,335,560,064,
 total: 71,779,465,554,048.
 ```
 
-Applying the pinned **primitive-leaf** rates to those bounds gives:
+Applying those early bounded **primitive-leaf** rates to the bounds gave:
 
 ```text
 h=1: 31.806 single-core hours,
 h=0: 14.876 single-core hours,
-total: 46.681 single-core hours.
+total: 46.681 single-core hours (now superseded).
 ```
 
-This is much smaller than a four-week budget.  It is evidence that a full
-direct compiled enumeration may be practical and that character
-self-reduction is not yet required for feasibility.  It is not a runtime
-certificate: the first lexicographic shards are not stratified across all
-support/rank cells, and whole-run canonicalization and checkpoint overhead
-remain unmeasured.  The 46.681 figure is a small-early-shard rate projection,
-not a production measurement.  So far only a zero-work production smoke has
-run; no complete nontrivial prefix and no shell-wide job has been launched.
+The connected audit superseded that estimate with the first complete
+positive-work production prefix, `h0-p01-p13`. It contains 1,296 legal
+signed skeletons and 42 canonical decorations.  A diagnostic-witness
+fallback had caused 554,008 redundant all-37-lag replays in complete mode;
+restricting that fallback to bounded mode changed the prefix from
+2.615347 seconds to 0.771325 seconds, with every lower counter unchanged
+and zero production replays because the prefix has no `char2 && mod9`
+point.
+
+Those values are the historical v1 post-fix measurement. The exhaustive v2
+source was then measured with `--enumerate-exact-orbits` on the same prefix.
+Its five-run median is 0.744369 seconds and 385,532,181 raw-equivalent
+primitive leaves per second. Applying the current v2 rate to the rigorous
+upper bounds gives:
+
+```text
+h=1: 32.45 single-core hours,
+h=0: 19.27 single-core hours,
+total: 51.72 single-core hours.
+```
+
+This is still not a runtime certificate: the prefix belongs to the rare
+`(r,d,rho,nu)=(5,12,12,0)` cell, the `h=1` shell has high-position work,
+and the remaining prefixes have different support, survivor, and
+canonicalization distributions.
+
+The earlier 12.7-million-character/second microbenchmark also cannot be
+used unchanged as a production projection.  On the connected actual
+modulo-nine fiber, 459 of 864 restricted polar entries differ from that
+benchmark's synthetic/theoretical family.  The same factorization code runs
+at a three-run median 15,641,863 characters/second on the actual fitted
+representative family, but support-level reuse and shell-wide rate
+distribution remain unmeasured.  See `../dense_shell_e2e_audit/README.md`.
 
 No actual char2/mod9 intersection occurs in the pinned sample.  The earlier
 neutral-intersection figures `622,743` and `3,304` were scaled from the
@@ -337,11 +414,12 @@ production run can measure the intersection directly.
 ## 7. Resource boundary and interpretation
 
 Each production child keeps only six local option tables, one phase vector,
-and the current witnesses.  The pinned standalone C++ runs use roughly
-1.5 MB maximum resident memory.  The independent Python verifier, including
-temporary compilation, four bounded C++ runs, and both complete Burnside
-censuses, completes in about eleven seconds and stays below 170 MB on the
-reference machine.
+the current witnesses, and the retained canonical exact-orbit map.  The map
+grows only with distinct exact profiles, not raw exact hits.  The pinned
+standalone C++ runs use roughly 1.5 MB maximum resident memory.  The
+independent Python verifier, including temporary compilation, four bounded
+C++ runs, and both complete Burnside censuses, completes in about eleven
+seconds and stays below 170 MB on the reference machine.
 
 The resource-safe default is one canonical `h=1` decoration:
 
@@ -356,5 +434,6 @@ gate.
 This is now production-resumable infrastructure, but it is not a completed
 shell classification until all 729 results for that shell pass the strict
 aggregator.  The verified 729-character count/self-reduction kernel remains
-an available acceleration if actual prefix timings invalidate the direct
-46.681-core-hour small-shard projection.
+an available architecture, but it must use the actual production polynomial
+and be validated across representative support cells before a shell-wide
+character-cost projection is claimed.

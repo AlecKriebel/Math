@@ -18,7 +18,7 @@ The finish line remains an explicit pair of binary sequences whose complete
 periodic autocorrelations replay exactly, followed by the standard exact
 construction and verification of a `668 x 668` Hadamard matrix.
 
-## Post-gate restart on 24 July 2026
+## First post-gate restart on 24 July 2026
 
 The original five-profile gate below remains failed.  A genuinely new
 input justified a bounded restart: the dense-shell classifier found and
@@ -62,6 +62,56 @@ The parallel Eliahou `Phi_28` audit also produced no certificate.  It
 identified a valid prospective modulo-three sieve using the two degree-six
 factors of `Phi_28`, but no implementation, measured pruning, exact integer
 classifier, exclusion, or construction.  It does not change the gate.
+
+## Second restart checkpoint on 24 July 2026
+
+The prospective `Phi_28` sieve and the dense-shell continuation have now
+been implemented far enough to replace several statements in the first
+restart report:
+
+1. The dense classifier found a second exact `h=0` profile orbit. Its
+   stabilizer is trivial, its orbit has size 24, and detached integer
+   arithmetic gives `D_0=167` and `D_t=0` at every nonzero lag. It is
+   disjoint from the first size-12 orbit.
+2. The second profile again has first-layer rank/nullity `18/36`. Its next
+   layer has eighteen dense independent quadrics. A defect-one point was
+   found and the complete ternary Hamming ball through radius six,
+   137,724,625 points, was exactly excluded. The global digit-two SAT
+   instances remain `UNKNOWN`.
+3. On the first profile, all 2,915 nonidentity laws in a 2,916-member
+   quadratic-class control family fail by digit three. This includes 2,592
+   genuinely non-affine-in-class laws. The result is exhaustive for that
+   finite ansatz only; it is not a whole-profile obstruction.
+4. Across all five original shell-two profiles, a new multiplicative
+   class×row anti-tensor family gives 720 exact charts and 517,109 distinct
+   first-digit placements. Exactly 514,912 lie outside all prior all-five
+   feature, minimal-`F_27`, and proper-multiplier families. None survives
+   digit two; the best points satisfy 18 of 20 rows.
+5. The connected production audit measures a complete positive-work
+   prefix. After removing 554,008 redundant diagnostic replays, the current
+   v2 enumeration path has a five-run median of 0.744369 seconds. The
+   resulting projection for both dense shells is 51.72 single-core hours,
+   or 5.17 hours under ideal ten-core scaling. This is a one-cell
+   extrapolation, not a runtime certificate.
+6. The v2 production runner now continues after exact hits, retains every
+   target-labelled canonical orbit, independently replays all 37 lags, and
+   is hash-pinned, atomic, memory-capped, and resumable. The old stopped v1
+   discovery output remains frozen.
+7. In the Eliahou lane, characteristic three is not merely a primitive-28
+   value sieve. The inseparable factorization
+   `z^42+1=(z^14+1)^3` produces a complete three-jet condition. A case-26
+   support passes all twenty normalized equations modulo three. The
+   normalized characteristic-two layer is exactly affine; its case-26
+   weight-39 slice has 25,941,166,955,843,488 points. A joint
+   modulo-two/modulo-three search reaches defect two and exactly excludes
+   the radius-eight ball around that point, but has no joint survivor.
+
+This checkpoint still fails the construction gate. There is no physical
+placement for either dense profile, no pair of consecutive higher-digit
+survivors, no integer Eliahou repair, no whole-profile obstruction, and no
+exact Legendre pair. The dense-shell census is now the finite, measurable
+paper-level computation; its later physical lifts remain uncosted and are
+not implied by profile classification.
 
 ## Result on 24 July 2026: construction gate failed
 

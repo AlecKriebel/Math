@@ -18,13 +18,15 @@ import time
 from typing import Any
 
 from production_common import (
-    BURNSIDE,
+    ADDITIVE_COUNTER_KEYS,
+    DIAGNOSTIC_COUNTER_KEYS,
+    EXACT_ORBIT_POLICY,
     MANIFEST_SCHEMA,
-    PREFIX_COUNT,
     PRODUCTION_SCHEMA,
     RESULT_SCHEMA,
     RUNNER_VERSION,
     SHELLS,
+    WITNESS_NAMES,
     parse_key_value_output,
     partition_audit,
     prefix_cells,
@@ -32,6 +34,8 @@ from production_common import (
     shard_id,
     workload_audit,
 )
+from production_orbits import validate_exact_orbit_output
+from verify_dense_shell_classifier_pilot import replay_witness
 
 
 HERE = Path(__file__).resolve().parent
@@ -83,6 +87,55 @@ def atomic_json(path: Path, value: object) -> None:
 def read_json(path: Path) -> Any:
     with path.open(encoding="utf-8") as stream:
         return json.load(stream)
+
+
+def preflight_existing_output(output: Path) -> None:
+    """Refuse incompatible provenance before compiling into the directory."""
+
+    manifest_path = output / "manifest.json"
+    if not manifest_path.exists():
+        candidate_paths = sorted(
+            (output / "candidates").glob("*.json")
+        )
+        if candidate_paths:
+            raise RuntimeError(
+                "candidate records without a compatible manifest cannot "
+                f"be resumed: {candidate_paths[0]}"
+            )
+        return
+    try:
+        manifest = read_json(manifest_path)
+    except (OSError, json.JSONDecodeError) as error:
+        raise RuntimeError(
+            f"cannot read existing manifest {manifest_path}: {error}"
+        ) from error
+    if not isinstance(manifest, dict):
+        raise RuntimeError(
+            f"existing manifest is not an object: {manifest_path}"
+        )
+    current_source_hash = sha256(CPP)
+    required = {
+        "schema": MANIFEST_SCHEMA,
+        "runner_version": RUNNER_VERSION,
+        "source_sha256": current_source_hash,
+    }
+    mismatches = [
+        key
+        for key, expected in required.items()
+        if manifest.get(key) != expected
+    ]
+    if mismatches:
+        raise RuntimeError(
+            f"{manifest_path} is an incompatible provenance line "
+            f"({', '.join(mismatches)} mismatch); leave it unchanged "
+            "and select a fresh --output directory"
+        )
+    candidate_paths = sorted((output / "candidates").glob("*.json"))
+    if candidate_paths:
+        raise RuntimeError(
+            "v2 exhaustive production cannot resume a stop-on-first "
+            f"candidate record: {candidate_paths[0]}"
+        )
 
 
 def compile_once(
@@ -164,6 +217,7 @@ def command_for(
         "--shell",
         shell,
         "--complete-shard",
+        "--enumerate-exact-orbits",
         "--prefix",
         str(first),
         str(second),
@@ -197,10 +251,12 @@ def expected_manifest(
             "--shell",
             "{h1|h0}",
             "--complete-shard",
+            "--enumerate-exact-orbits",
             "--prefix",
             "{0..26}",
             "{0..26}",
         ],
+        "exact_orbit_policy": EXACT_ORBIT_POLICY,
         "memory_policy": {
             "max_workers": MAX_WORKERS,
             "max_aggregate_child_rss_mib":
@@ -289,11 +345,14 @@ def validate_result(
                 f"({result.get(key)!r} != {expected!r})"
             )
     parsed = result.get("parsed")
+    transcript = result.get("transcript")
     if not isinstance(parsed, dict) or not all(
         isinstance(key, str) and isinstance(value, str)
         for key, value in parsed.items()
+    ) or not isinstance(transcript, str) or (
+        parse_key_value_output(transcript) != parsed
     ):
-        raise ValueError(f"{identifier}: malformed parsed output")
+        raise ValueError(f"{identifier}: transcript/parse mismatch")
     required_text = {
         "schema": PRODUCTION_SCHEMA,
         "mode": "complete_shard",
@@ -303,7 +362,8 @@ def validate_result(
         "prefix_second": str(second),
         "upper_exact_scope": "char2_mod9_intersection",
         "shard_complete": "1",
-        "witness_exact_present": "0",
+        "exact_orbit_mode": "enumerate",
+        "exact_orbit_collection": "complete_shard",
     }
     for key, expected in required_text.items():
         if parsed.get(key) != expected:
@@ -311,8 +371,13 @@ def validate_result(
                 f"{identifier}: output {key} mismatch "
                 f"({parsed.get(key)!r} != {expected!r})"
             )
-    if require_nonnegative_integer(parsed, "exact_zero_hits"):
-        raise ValueError(f"{identifier}: complete result contains exact hit")
+    validate_exact_orbit_output(
+        parsed, shell, expected_collection="complete_shard"
+    )
+    for key in (*ADDITIVE_COUNTER_KEYS, *DIAGNOSTIC_COUNTER_KEYS):
+        require_nonnegative_integer(parsed, key)
+    for witness in WITNESS_NAMES[:-1]:
+        replay_witness(parsed, witness, shell)
     return result
 
 
@@ -383,17 +448,14 @@ def classify_transcript(
     active: Active,
     source_hash: str,
     binary_hash: str,
-) -> tuple[dict[str, object], bool]:
+) -> dict[str, object]:
     output = active.transcript.read_text(
         encoding="utf-8", errors="replace"
     )
     parsed = parse_key_value_output(output)
-    candidate = (
-        active.process.returncode == 2
-        and parsed.get("shard_complete") == "0"
-        and parsed.get("witness_exact_present") == "1"
-        and require_nonnegative_integer(parsed, "exact_zero_hits") > 0
-    )
+    # Every v2 production command requests exhaustive orbit enumeration.
+    # A stop-on-first return code is therefore a failed production shard,
+    # never a successful candidate record.
     result = {
         "schema": RESULT_SCHEMA,
         "runner_version": RUNNER_VERSION,
@@ -407,12 +469,12 @@ def classify_transcript(
         "command": active.job.command,
         "returncode": active.process.returncode,
         "complete": active.process.returncode == 0,
-        "candidate": candidate,
+        "candidate": False,
         "wall_seconds_runner": time.monotonic() - active.started,
         "parsed": parsed,
         "transcript": output,
     }
-    return result, candidate
+    return result
 
 
 def selected_shells(value: str) -> tuple[str, ...]:
@@ -480,6 +542,7 @@ def main() -> int:
         if any(not 0 <= value < 27 for value in args.prefix):
             raise SystemExit("--prefix indices must lie in [0,26]")
 
+    preflight_existing_output(output)
     output.mkdir(parents=True, exist_ok=True)
     (
         binary,
@@ -496,14 +559,6 @@ def main() -> int:
         build_command,
         build_provenance,
     )
-
-    candidate_directory = output / "candidates"
-    existing_candidates = sorted(candidate_directory.glob("*.json"))
-    if existing_candidates:
-        raise SystemExit(
-            "candidate record already exists; investigate before "
-            f"resuming: {existing_candidates[0]}"
-        )
 
     jobs: list[Job] = []
     completed = 0
@@ -571,13 +626,11 @@ def main() -> int:
     active: dict[int, Active] = {}
     next_job = 0
     failure = False
-    candidate_found = False
     last_rss_check = 0.0
     try:
         while next_job < len(jobs) or active:
             while (
                 not failure
-                and not candidate_found
                 and next_job < len(jobs)
                 and len(active) < args.workers
             ):
@@ -631,23 +684,9 @@ def main() -> int:
             for pid in finished:
                 item = active.pop(pid)
                 try:
-                    record, candidate = classify_transcript(
+                    record = classify_transcript(
                         item, source_hash, binary_hash
                     )
-                    if candidate:
-                        candidate_path = (
-                            candidate_directory
-                            / f"{item.job.identifier}.json"
-                        )
-                        atomic_json(candidate_path, record)
-                        candidate_found = True
-                        print(
-                            "EXACT-ZERO CANDIDATE: stopped shard and "
-                            "saved detached witness to "
-                            f"{candidate_path}",
-                            file=sys.stderr,
-                        )
-                        continue
                     if item.process.returncode:
                         failure = True
                         failure_path = (
@@ -680,9 +719,6 @@ def main() -> int:
                     raise
                 finally:
                     item.transcript.unlink(missing_ok=True)
-
-            if candidate_found:
-                return 2
 
         return 1 if failure else 0
     finally:

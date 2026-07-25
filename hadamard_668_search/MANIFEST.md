@@ -58,6 +58,13 @@
 | `scratch_stage25_algebra/README.md` | Exact local geometry of the two stage-2.5 witnesses, Newton-sheet exclusions, and row-margin scope warning |
 | `scratch_row_margin_digit3/README.md` | Exact row-margin plus digit-three CP-SAT pilot and bounded candidate-zero checkpoint |
 | `scratch_dense_shell_benchmark/README.md` | Validated dense-shell character kernel, independent affine-cube replay, and conservative per-core throughput gate |
+| `dense_shell_e2e_audit/README.md` | Connected nontrivial production prefix, actual 729-character transform, replay-scope correction, and narrowed runtime projection |
+| `dense_shell_exact_profile_h0_orbit2/README.md` | Second exact dense-shell `h=0` profile orbit, detached all-lag replay, and provenance boundary |
+| `h0_orbit2_lift_audit/README.md` | Independent 18-quadric lift, defect-one point, and exact radius-six local exclusion for the second profile |
+| `h0_affine_class_twists/README.md` | Exhaustive affine- and quadratic-class control-law obstructions for the first exact `h=0` profile |
+| `eliahou_char3_jet_audit/README.md` | Characteristic-three three-jet anti-fold theorem, full mod-three survivor, and joint local-search scope |
+| `eliahou_char3_jet_audit/MOD2_AFFINE_CODE.md` | Exact characteristic-two affine code, quotient structure, and fixed-weight counts |
+| `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, all-five exact census, prior-family overlap, and rank-two cost boundary |
 | `structured_phase_families/README.md` | Exact nine-family phase audit, proper-supergroup separation, opposite-class constructions, and complete minimal-`F_27`-submodule census |
 | `shell_four_compressed/README.md` | Compressed skeleton/MITM corroboration of the primary four-norm-nine exclusion, with shared-source caveat |
 | `LP333_ORDER3_PHASE_FACTOR.md` | Exact three-fiber unit-phase factorization into a complementary frame and one cross equation |
@@ -201,6 +208,27 @@
 | `scratch_row_margin_digit3/search_row_margin_digit3_cp_sat.py` | Optional exact row-margin plus digit-three search with union or fixed-target sharding and direct replay |
 | `scratch_dense_shell_benchmark/benchmark_dense_shell_characters.cpp` | Exact support-factorized 729-character kernel with pinned checksums and throughput measurements |
 | `scratch_dense_shell_benchmark/verify_dense_shell_benchmark.py` | Independently brute-forces two real affine cubes and checks all 1,458 benchmark character sums |
+| `dense_shell_e2e_audit/audit_dense_shell_e2e.cpp` | Connects legal skeleton generation, exact symmetry, the actual modulo-nine quadratic map, all 729 characters, witness recovery, and detached replay |
+| `dense_shell_e2e_audit/verify_dense_shell_e2e.py` | Pins the complete positive-work prefix, character inversion, witness digest, and zero redundant production replays |
+| `dense_shell_e2e_audit/benchmark_results.json` | Hash-pinned before/after timings, actual-family character trials, resource use, and narrowed projection |
+| `dense_shell_classifier_pilot/dense_shell_classifier_pilot.cpp` | Streaming dense-shell classifier with bounded stop-on-first mode and exhaustive canonical exact-orbit production mode |
+| `dense_shell_classifier_pilot/run_dense_shell_production.py` | Hash-pinned, memory-capped, atomic and resumable 1,458-prefix production runner |
+| `dense_shell_classifier_pilot/aggregate_dense_shell_production.py` | Strict complete-shell counter audit and cross-shard canonical exact-orbit aggregator |
+| `dense_shell_classifier_pilot/production_common.py` | Exact prefix partition, Burnside totals, production schemas, and workload audits |
+| `dense_shell_classifier_pilot/production_orbits.py` | Shared canonicality, ordering, deduplication, digest, target, and all-37-lag exact-orbit validator |
+| `dense_shell_classifier_pilot/test_dense_shell_production.py` | Production resume, complete-prefix, known exact-orbit retention, corruption, and resource-cleanup regressions |
+| `dense_shell_exact_profile_h0_orbit2/verify_exact_profile_h0_orbit2.py` | Dependency-free semantic, orbit, stabilizer, digest, and all-37-lag verifier for the second dense profile |
+| `dense_shell_exact_profile_h0_orbit2/certificate.json` | Hash-pinned raw-discovery provenance and independent replay hashes |
+| `h0_orbit2_lift_audit/verify_orbit2_quadrics.py` | Reconstructs the first lift, eighteen quadrics, defect-one point, Jacobians, and radius-six exclusion |
+| `h0_orbit2_lift_audit/DEFECT1_CERTIFICATE.json` | Pinned second-profile defect-one point and local-exclusion counts |
+| `h0_affine_class_twists/verify_h0_affine_class_twists.py` | Exhausts 324 affine-in-class paired control laws |
+| `h0_affine_class_twists/verify_h0_quadratic_class_twists.py` | Exhausts all 2,916 quadratic-class paired control laws through digit three |
+| `h0_affine_class_twists/quadratic_class_twists_certificate.json` | Exceptional-family parameters, representative placements, and corpus hashes |
+| `eliahou_char3_jet_audit/verify_char3_jet_audit.py` | Independently reconstructs cyclotomic factors, three-jet equations, direct support replays, and the mod-three survivor |
+| `eliahou_char3_jet_audit/verify_mod2_affine_code.py` | Reconstructs characteristic-two affine codes and exact weight-39 slice counts |
+| `eliahou_char3_jet_audit/search_hamming_sat.py` | Exact bounded joint modulo-two/modulo-three Hamming-ball checker |
+| `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
+| `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact all-five chart census, residual histograms, nearest points, and semantic hash |
 | `structured_phase_families/verify_structured_phase_families.py` | Exhausts four calibration and three genuinely opposite-class-twisted placement families |
 | `structured_phase_families/verify_f27_submodule_families.py` | Reconstructs all 56 minimal invariant 3-spaces and tests all 3,136 asymmetric channel pairs per profile |
 | `structured_phase_families/test_structured_phase_families.py` | Pins both structured-family semantic certificates and the unique order-six digit-two control |

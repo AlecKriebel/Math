@@ -29,8 +29,8 @@ digit-8 CNF would waste essentially all 16 GB of RAM.
 
 Most importantly, failure of all five `h=2` lifts would **not** finish the
 order-three route.  The `h=1` and `h=0` profile shells remain incompletely
-classified.  A production prefix has now found and exactly replayed one
-`h=0` profile orbit, but the unfinished census gives no total orbit count.
+classified.  Production has now found and exactly replayed two inequivalent
+`h=0` profile orbits, but the unfinished census gives no total orbit count.
 The two shells contain exactly 510,384 and 107,476 legal unsigned
 medium-support masks.  Their mandatory local equation reduces the relevant
 raw signed-medium-skeleton counts to 59,743,488 and 47,730,304, but a
@@ -44,9 +44,10 @@ Thus:
 1. a complete generic search of the five `h=2` affine cubes is infeasible;
 2. a compact, row-margin-sharded exact digit-3 attack is memory-feasible
    but has unproved runtime;
-3. the compiled `h=1,0` character kernel clears its four-week throughput
-   gate by more than 700 times, so end-to-end classifier orchestration is
-   the best finite computation to implement next;
+3. a connected complete-prefix audit projects 51.72 single-core hours for
+   both dense shells, and the exhaustive orbit-retaining v2 classifier is
+   implemented and resumable, so completing that census is the best finite
+   computation to run next;
 4. neither task presently supports a four-week forecast of `H(668)`;
 5. an exact digit-3 obstruction or a complete dense-shell classification
    would itself be a credible theorem-level result.
@@ -619,6 +620,48 @@ decomposition provides a natural sharding coordinate and exact low-weight
 certificates, but no complete runtime bound.  Neither the isolated profile
 nor its abundant digit-two points count as convergence toward `LP(333)`.
 
+### 3.7 Second dense profile and census update
+
+The first heavy production prefix also found the distinct exact profile
+
+```text
+A IDs = 1,2,6,1,5,1,4,5,1,5,7,4
+B IDs = 2,4,2,4,4,6,5,5,8,1,5,8
+target  = (-3,0,0,3).
+```
+
+Its stabilizer is trivial, its orbit has size 24, and all 37 integer
+profile correlations replay exactly. Its first placement layer has
+rank/nullity `18/36`; the next layer is eighteen quadrically independent
+dense forms. A bounded search reaches defect one, but exact enumeration of
+the complete 137,724,625-point ternary Hamming ball through radius six finds
+no digit-two point. This gives local geometry, not a global obstruction or
+a useful completion-rate estimate.
+
+The classifier has therefore been upgraded from stop-on-first discovery to
+exhaustive exact-orbit retention. Every exact hit is canonicalized,
+target-labelled, deduplicated, and replayed on all 37 lags while its prefix
+continues. Atomic shards and a hash-pinned manifest make the census
+resumable. The stopped v1 discovery output is not migrated into v2.
+
+The current v2 enumeration path processes the first connected positive-work
+prefix, containing 19,131,876 primitive phase leaves, with a five-run median
+of 0.744369 seconds after the redundant diagnostic fallback was removed.
+Applying that one measured rate to the rigorous primitive-leaf upper bounds
+gives:
+
+```text
+h=0:     19.27 single-core hours
+h=1:     32.45 single-core hours
+combined 51.72 single-core hours.
+```
+
+Ideal ten-core scaling would give 5.17 hours. Prefix distributions,
+survivor density, scheduling, and exact-orbit retention make this an
+extrapolation rather than a runtime certificate. More importantly, it
+prices only profile classification: the number and cost of the subsequent
+54-trit physical lifts remain unknown until the census finishes.
+
 ## 4. CPU, RAM, and disk planning
 
 ### 4.1 Five `h=2` lifts
@@ -697,10 +740,13 @@ arithmetic-only projections are about 1.86 one-core hours for the
 compiled-rate gate and corrects the deliberately conservative
 10,000--100,000/s planning examples.
 
-It does **not** estimate full classification time.  Complete support and
-signed-skeleton streaming, order-24 canonicalization, positive-fiber
-self-reduction, upper-digit checks, row-margin joins, and exact replay are
-outside the timed loop.  Those are now the bottleneck to measure.
+That microbenchmark alone does **not** estimate full classification time.
+The later connected audit measures complete support and signed-skeleton
+streaming, order-24 canonicalization, lower gates, witness handling, and
+detached replay on one positive-work prefix. Its current v2 51.72
+single-core-hour combined projection supersedes the arithmetic-only rate as
+the operational planning number. It still samples only one support cell and
+does not price the physical phase lifts after an exact profile is found.
 
 **RAM.**  Streaming one support orbit at a time should stay well below
 16 GB.  Storing one byte for all 450,419,940 support-character pairs costs
@@ -763,9 +809,11 @@ would not.
 
 - **Go:** an algebraic digit-3 reduction, a certified digit-3 point, or a
   dense-shell compiled rate comfortably above 17,641 character
-  evaluations/s/core without exhausting RAM.  The arithmetic-only dense
-  benchmark now meets this last condition at 12,668,666/s/core, while the
-  end-to-end classifier remains unmeasured.
+  evaluations/s/core without exhausting RAM. The arithmetic benchmark
+  meets the rate condition, and one complete positive-work prefix now gives
+  a 51.72-single-core-hour combined projection. The exhaustive v2 census is
+  therefore authorized as a resumable finite computation; the projection
+  remains distribution-sensitive.
 - **Publish/pivot:** a complete digit-3 obstruction for one or more
   `h=2` profiles, or a complete exact classification/exclusion of either
   dense shell.

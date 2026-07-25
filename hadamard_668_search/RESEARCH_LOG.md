@@ -1941,3 +1941,203 @@ proof-assistant-level theorem.
   The theorem closes one profile-energy sector, not either aggregate target,
   unrestricted `LP(333)`, or `H(668)`.
 - No external contact, message, push, or publication occurred.
+
+## 24 July 2026: connected dense-shell production audit
+
+- Completed the first nontrivial production prefix `h0-p01-p13`: 1,296
+  legal skeletons, 42 canonical decorations, 19,131,876 primitive phase
+  leaves, 753 modulo-nine hits, and no characteristic-two/modulo-nine
+  intersection.
+- Found a production cost-model defect: 554,008 diagnostic all-37-lag
+  replays ran outside the declared joint-gate scope.  Restricting marginal
+  witness recovery to bounded mode changed the shard from 2.615347 to
+  0.771325 seconds and leaves zero production replays, with every lower
+  count unchanged.
+- Connected one real canonical skeleton and target to a complete
+  729-character transform.  Its actual `3^12` affine fiber has exactly 729
+  modulo-nine points, 34 with the selected exact aggregate, and one that
+  passes the following lambda digit.  All 729 character sums, their inverse
+  transform, digest `0xc8ac157d026d3025`, and detached physical replay
+  agree.
+- The recovered point has nonzero exact correlations and fails
+  characteristic two.  It is not an exact profile, physical placement,
+  Legendre pair, or `H(668)`.
+- The actual production modulo-nine polar differs in 459 of 864 entries
+  from the older synthetic/theoretical benchmark family.  The old
+  12.7-million-character rate is therefore not a drop-in production
+  projection.  The actual fitted representative family has a three-run
+  median of 15,641,863 characters/second/core.
+- The corrected complete-prefix rate projects the rigorous combined
+  primitive-leaf upper bound to 53.59 single-core hours.  This is a
+  one-cell extrapolation, not a runtime certificate.
+- No commit, push, or external communication was performed.
+
+## 24 July 2026: dense-shell exact-orbit census upgrade
+
+- Converted dense-shell production from stop-on-first discovery to
+  exhaustive per-shard exact-profile collection.  Exact hits are now
+  canonicalized under the 24-element action, keyed by canonical IDs and
+  target index, deterministically deduplicated, independently replayed on
+  all 37 physical lags, and retained while the shard continues.
+- Preserved the original stop-on-first classifier mode for bounded
+  discovery.  The resumable production runner always selects the exhaustive
+  mode, and its v2 manifest pins that command and policy together with
+  source and binary hashes.
+- Preserved `dense_shell_classifier_pilot/output/production` unchanged as
+  the v1 raw-discovery provenance line.  Its source hash is
+  `cf48f07cf1c69b2df1adc9f5f48ffd96c4b3daccc747bcab5a9852d9138e2025`
+  and it contains the stopped `h0-p00-p05` candidate.  A future exhaustive
+  run must use a fresh `output/production-v2` directory and restart that
+  prefix; v1 files are never copied into or overwritten by v2.
+- Upgraded both runner and strict aggregator to reject malformed,
+  noncanonical, unsorted, duplicate, target-inconsistent, digest-invalid,
+  or physically invalid exact-orbit records.  The aggregate certificate now
+  contains the complete distinct canonical orbit list and source-shard
+  provenance instead of assuming every complete shard has zero exact hits.
+- Used the certified second `h=0` profile as a bounded end-to-end fixture.
+  The census path reproducibly retains its canonical target-3 orbit with
+  digest `0x7395e771c01b49bf`; two runs and the independent validator agree.
+  This targeted check took under one second per run and roughly 1 MB
+  resident memory.
+- No full shell census was launched.  No commit, push, publication, or
+  external communication occurred.
+
+## 24 July 2026: second exact dense-shell profile orbit
+
+- The first heavy production prefix, `h0-p00-p05`, reached an exact hit
+  after raw skeleton 44,172 of 110,976. The canonical compressed words are
+  `A=(1,2,6,1,5,1,4,5,1,5,7,4)` and
+  `B=(2,4,2,4,4,6,5,5,8,1,5,8)`, with aggregate target
+  `(-3,0,0,3)`.
+- Independent integer Eisenstein replay gives `D_0=167` and
+  `D_t=0` for all `t=1,...,36`. The shell is `(n_9,n_3,n_0)=(0,18,6)`.
+  The representative is canonical with trivial stabilizer and orbit size
+  24, and its full orbit is disjoint from the previously certified size-12
+  `h=0` orbit.
+- Frozen v1 discovery provenance is pinned in
+  `dense_shell_exact_profile_h0_orbit2/certificate.json`. The raw candidate
+  hash is
+  `291a1d2246ceab2b067b225e78deac0757ec47b08ee1ba973d0fbddebef10001`.
+  The prefix stopped on discovery, so this is not a complete dense-shell
+  census.
+- The first placement digit has rank 18 and nullity 36. Its next layer
+  contains eighteen active quadrics; eleven polar matrices have rank 36
+  and seven have rank 35, while the eighteen polar coefficient vectors are
+  independent.
+- A 120-second ternary tabu run evaluated 2,841,815 updates and found a
+  defect-one point. The full Jacobian has rank 18 and the satisfied
+  seventeen-row subsystem has rank 17. Exact enumeration then checked all
+  137,724,625 points in the ternary Hamming ball through radius six and
+  found no digit-two solution. Peak memory was 539 MB. Full SAT remained
+  `UNKNOWN`; no global obstruction is claimed.
+
+## 24 July 2026: quadratic-class control-law obstruction
+
+- Extended the first dense profile's opposite-class control from affine
+  laws to arbitrary functions `f:F_3 -> F_3` independently in both
+  channels. This gives 2,916 paired families, including 2,592 genuinely
+  non-affine-in-class cases.
+- Exactly 1,454 families are inconsistent at the first lift and 1,458
+  dimension-nine families are empty at the second. One dimension-15
+  exception is also empty at the second digit. Two nonidentity
+  dimension-21 families each leave 24 digit-two points; all 48 fail digit
+  three in between eight and sixteen displayed rows and none meets the
+  exact row-margin catalog.
+- Therefore all 2,915 nonidentity controls are excluded no later than digit
+  three. The only retained law is the identity/identity order-six branch
+  already separated by the multiplier audit.
+- The dependency-free exhaustive verifier replays 57,415,311 family-point
+  incidences in 166.74 seconds with maximum RSS 60,407,808 bytes and zero
+  swap. Family-point incidences are not asserted to be distinct placements.
+  This is a finite-family theorem for one profile, not a whole-profile or
+  `LP(333)` exclusion.
+
+## 24 July 2026: characteristic-three Eliahou anti-fold jet
+
+- Over `F_3`, independently reconstructed
+  `Phi_12=Phi_4^2`, `Phi_84=Phi_28^2`, and
+  `z^42+1=(z^14+1)^3`. A primitive-28 value sieve is therefore only the
+  zeroth Hasse jet; the complete characteristic-three anti-fold condition
+  has three jets and twenty normalized support equations.
+- Found and detached-replayed a canonical case-26 weight-39 support that
+  satisfies all twenty equations modulo three. It is not a joint
+  modulo-six point and not an integer repair.
+- After division by the common content four, every quadratic coefficient is
+  even. The normalized characteristic-two equation is exactly affine.
+  Adding weight parity gives rank 21 and dimension 57 in case 26 and rank
+  21/dimension 58 in case 0. Exact quotient enumeration counts
+  25,941,166,955,843,488 and 51,310,052,181,007,034 fixed-weight supports,
+  respectively.
+- Code-preserving search reached characteristic-three defect two at lags 9
+  and 11 while satisfying the full characteristic-two layer. An exact
+  joint SAT check excludes its complete Hamming-radius-eight ball; the
+  radius-ten run remained `UNKNOWN`. No joint modulo-six support, integer
+  repair, or exclusion follows.
+- Independent verifiers replayed the cyclotomic factorization, 68 physical
+  support cases, all thirty canonical equation systems, the full
+  characteristic-three witness, both characteristic-two code counts, and
+  the pinned defect-two point.
+
+## 24 July 2026: v2 connected-prefix provenance repair
+
+- The connected end-to-end verifier correctly rejected the v2 classifier
+  because its benchmark certificate pinned the frozen v1 post-fix source.
+  No mathematical counter changed.
+- Recompiled the exact v2 source hash
+  `ef7c77598396c1050d13848b5fde536eba4e8b1426c6554705a1015fbc7f3404`
+  and reran `h0-p01-p13` five times with the actual production flag
+  `--enumerate-exact-orbits`.
+- The five wall times were `0.745499,0.744369,0.742056,0.763598,0.743341`
+  seconds. The median rate is 385,532,181 raw-equivalent primitive leaves
+  per second per core; maximum measured RSS was 1,540,096 bytes.
+- The current one-cell projections are 19.27 single-core hours for `h=0`,
+  32.45 for `h=1`, and 51.72 combined, or 5.17 ideal ten-core hours.
+  They remain extrapolations rather than runtime certificates.
+- Bumped the connected benchmark schema to v2 while preserving the
+  historical v1 before/after measurements. The verifier now pins the v2
+  source, requires exact-orbit enumeration mode and the v2 shard schema,
+  and passes.
+
+## 24 July 2026: all-five anti-tensor family
+
+- Introduced the multiplicative class-by-row family
+  `u_X(j,s)=P_X(j mod 3,s)+h_j F_X(j mod 6)G_X(s)`, with arbitrary
+  quadratic background `P_X`, arbitrary six-class table `F_X`, and one of
+  twelve nonconstant projective row laws `G_X` in each channel.
+- The two independent row laws give 144 charts per profile and 720 across
+  the five shell-two representatives. Exactly 703 charts are consistent
+  at the first placement digit.
+- Complete affine enumeration gives 879,741 chart incidences and 517,109
+  distinct first-digit placements. Only 2,197 lie in the combined union of
+  the seven earlier all-five feature families and every minimal `F_27`
+  submodule family. The other 514,912 are also outside all five proper
+  fixed common-multiplier supergroups.
+- Exhaustive evaluation of all twenty exact second-digit equations leaves
+  zero survivors. The best points satisfy 18 of 20 rows on two profiles.
+  The verifier uses no solver statuses or timeouts and passes with semantic
+  hash
+  `39de8bf9d6e60ee078e7710daa81d3546e519589a769bbd2c5579693c6203bef`.
+- The independent replay took 28.30 seconds and 180,355,072 bytes maximum
+  RSS. A flat rank-two extension is projected at about
+  327,370,313,205 chart incidences, so it is not a viable next census.
+- This is a complete obstruction for one new structured family on all five
+  profiles. It removes only 517,109 points from five `3^36` spaces and is
+  not a whole-profile, `LP(333)`, or `H(668)` result.
+
+## 24 July 2026: bounded `Phi_28` norm-key assessment
+
+- Factored
+  `Phi_28 mod 3=(x^6+x^5+x^3+x+1)(x^6-x^5-x^3-x+1)`.
+  Both factors are degree-six Frobenius orbits, and inversion is
+  Frobenius cubed because `3^3=-1 mod 28`. A completed row therefore maps
+  to two norms `u*u^27` in `F_27`, a combined 729-valued signature.
+- The norm must be formed only after joining row halves; half self-norms
+  omit the bilinear cross terms. Modulo-six local state products are
+  36,000,000 for the 40-cell `P` block and 30,720,000 for the 39-cell `Q`
+  block, so the earlier collapsed `Phi_4/Phi_12` histogram cannot acquire
+  this key cheaply.
+- Since `z^42+1=(z^14+1)^3` in characteristic three, the norm signature is
+  only Hasse jet zero. The separate full three-jet audit above supplies the
+  correct stronger layer. No additional support-level sieve, pruning
+  count, witness, exclusion, or construction was obtained from the
+  `Phi_28` norm-key approach.

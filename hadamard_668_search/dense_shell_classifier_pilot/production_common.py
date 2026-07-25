@@ -14,12 +14,23 @@ from dataclasses import dataclass
 from typing import Iterable
 
 
-PRODUCTION_SCHEMA = "dense-shell-production-shard-v1"
-MANIFEST_SCHEMA = "dense-shell-production-manifest-v1"
-RESULT_SCHEMA = "dense-shell-production-result-v1"
-AGGREGATE_SCHEMA = "dense-shell-production-aggregate-v1"
+PRODUCTION_SCHEMA = "dense-shell-production-shard-v2"
+MANIFEST_SCHEMA = "dense-shell-production-manifest-v2"
+RESULT_SCHEMA = "dense-shell-production-result-v2"
+AGGREGATE_SCHEMA = "dense-shell-production-aggregate-v2"
 PARTITION_SCHEMA = "dense-shell-prefix-partition-audit-v1"
-RUNNER_VERSION = "dense-shell-production-runner-v1"
+RUNNER_VERSION = "dense-shell-production-runner-v2"
+EXACT_ORBIT_POLICY = {
+    "mode": "exhaustive_per_prefix_shard",
+    "deduplication_key": (
+        "lexicographically canonical 24 profile identifiers "
+        "followed by exact target index"
+    ),
+    "verification": (
+        "every retained orbit is independently replayed at all "
+        "37 physical lags before its result is accepted"
+    ),
+}
 
 SHELLS = ("h1", "h0")
 PREFIX_SIZE = 27
