@@ -483,3 +483,33 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   records an exact missed configuration and makes no exhaustive claim.
 - These are structural stratum results, not a universal quartic exclusion.
   The certified floor remains \(4\).
+
+## 2026-07-25T02:48:29Z — Complete nodal row and fixed-conic opening
+
+- The scalar-aligned nodal branch was computed with the fixed divisor left
+  as \(h=p+kq\); the smooth marked-point modulus was not normalized away.
+  Four division-free left-null certificates in the full
+  \(15\times30\) degree-seven system force the two complementary-variable
+  coefficients of \(H_3\) to vanish for every \(k\).
+- The remaining degree-seven equation is
+  \[
+  \frac43h^2(A_p\times A_q)\cdot\partial_rH_2=0.
+  \]
+  Hilbert--Burch gives no linear syzygy, so all nonlinear terms are binary.
+  The map is a degree-at-most-four plane Keller block plus a shear and is
+  therefore an automorphism.
+- An independent raw-column audit reconstructed the complete polarization,
+  Hilbert--Burch shifts, all four specialization-safe certificates, the
+  \(h=q\) chart, and the plane exit.  Both SymPy and PARI regressions pass.
+  Together with the prior transverse theorem, this excludes the entire
+  nodal-cubic fixed-divisor row.  The cuspidal row remains.
+- The first calculation in the binary fixed-divisor conic row writes
+  \(H_4=h\operatorname{Ver}(p,q)\), with \(h=pq\) or \(p^2\).
+  Degree six reduces the nonzero tangent field to finitely many Jordan
+  branches.  For \(h=pq\), the opposite-weight branch has the exact
+  degree-five incompatibility \(64=0\); the scalar branch ends in a
+  degree-two square whose vanishing makes \(\det L_0=0\).
+  These conic calculations remain unpromoted pending a second derivation.
+- The exact priority search found no checked overlap with the complete
+  nodal-row exclusion.  This is not a guarantee of worldwide priority.
+- The certified universal floor remains total degree \(4\).

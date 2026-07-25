@@ -38,8 +38,10 @@ The first audited quartic working lemmas now constrain:
   ramification divisor;
 - the complete thirteen-row taxonomy of rank-two quartic leading maps with
   projective curve image; and
-- the full transverse nodal-cubic fixed-divisor row, which is excluded by
-  exact degree-seven-through-five identities.
+- the entire nodal-cubic fixed-divisor row: the transverse branch is
+  excluded by exact degree-seven-through-five identities, while the
+  scalar-aligned branch collapses to a degree-at-most-four plane Keller
+  block plus a shear.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -48,9 +50,12 @@ hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
-\((2,2)\) stratum, the conic double-cover locus, ramified birational quartic
-parametrizations, and leading maps with a fixed divisor.  In the rank-one
-stratum, fixed-component projected cubic pencils and a binary
+\((2,2)\) stratum, the conic double-cover locus, the cuspidal cubic,
+ramified birational quartic parametrizations, and the other leading maps
+with a fixed divisor.  Two nonzero tangent branches of the binary
+fixed-divisor conic row have additionally been reduced to exact
+contradictions, pending an independent audit of that new calculation.  In
+the rank-one stratum, fixed-component projected cubic pencils and a binary
 common-ramification locus remain.  The universal certified floor remains
 \(4\).
 

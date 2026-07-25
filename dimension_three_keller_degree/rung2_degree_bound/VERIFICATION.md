@@ -2,7 +2,7 @@
 
 **Verification timestamps:** 2026-07-24T23:43:08Z,
 2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
-2026-07-25T02:04:55Z.
+2026-07-25T02:04:55Z, and 2026-07-25T02:48:29Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -34,6 +34,8 @@ gp -q verify_rank_one_composite_exit_pari.gp
 gp -q verify_quartic_curve_taxonomy_pari.gp
 /usr/bin/python3 verify_nodal_cubic_exit_sympy.py
 gp -q verify_nodal_cubic_exit_pari.gp
+/usr/bin/python3 verify_scalar_aligned_nodal_sympy.py
+gp -q verify_scalar_aligned_nodal_pari.gp
 /usr/bin/python3 verify_line22_doubleline_sympy.py
 ```
 
@@ -233,7 +235,7 @@ and ramified sharpness example.  It found no mathematical correction; the
 scope wording was tightened to a birationally parametrized plane quartic and
 to the ramification divisor of the displayed basepoint-free parametrization.
 
-### Curve-image taxonomy and transverse nodal cubic
+### Curve-image taxonomy and the complete nodal row
 
 The curve-image taxonomy was reconstructed independently from de Bondt's
 minimal-pair factorization.  The audit checked the fixed polynomial gcd,
@@ -263,7 +265,29 @@ H_2=\frac13(uA_p+vA_q)+\frac r2D^2A,
 and the square factor in degree five.  The latter forces
 \((u,v)=3\lambda(\alpha,\beta)\), hence makes the displayed determinant
 zero.  This excludes the full transverse nodal branch; the cuspidal and
-scalar-aligned branches remain.
+scalar-aligned branches are not part of that calculation.
+
+For the scalar-aligned branch, the new SymPy regression starts with an
+arbitrary twelve-coefficient binary cubic \(V\), arbitrary
+eighteen-coefficient \(H_2\), and the unspecialized marked-point parameter
+\(h=p+kq\).  It checks the \(15\times30\) degree-seven system and four
+polynomial left-null certificates.  The PARI regression independently
+re-expands the determinant and those four coefficient combinations.
+
+The adversarial audit began again from Jacobian columns and obtained
+\[
+E_7=\operatorname{tr}(\operatorname{adj}(JH_4)JH_2)
+   +\operatorname{tr}(\operatorname{adj}(JH_3)JH_4).
+\]
+It confirmed that no polarization term was omitted, that the four
+certificates are division-free at every specialization of \(k\), and that
+the Hilbert--Burch shifts admit no syzygy below coefficient degree two.
+The compatibility equations force \(\alpha=\beta=0\); the same
+no-low-syzygy statement then forces \(\partial_rH_2=0\).  The audit
+independently checked the omitted \(h=q\) chart and the final
+degree-at-most-four plane Keller block plus shear.  No scope correction was
+needed.  Combining this with the transverse calculation excludes the
+entire nodal row.  The cuspidal cubic row remains.
 
 ### Unique-double-line line charts
 

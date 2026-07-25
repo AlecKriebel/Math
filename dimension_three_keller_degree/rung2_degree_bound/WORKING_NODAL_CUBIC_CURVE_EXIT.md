@@ -35,7 +35,9 @@ Thus the transverse nodal row
 \]
 in `WORKING_QUARTIC_CURVE_TAXONOMY.md` is empty.  The cuspidal
 normal-minor branch and the locus where the fixed linear factor belongs to
-\(\langle p,q\rangle\) are not covered.
+\(\langle p,q\rangle\) are not covered by this theorem.  The latter locus
+is now excluded separately in
+`WORKING_SCALAR_ALIGNED_NODAL_CUBIC_EXIT.md`.
 
 ## 2. Degree eight
 

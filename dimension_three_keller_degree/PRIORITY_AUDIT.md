@@ -317,3 +317,23 @@ forces the nodal branch's linear part to be singular.  This is
 source-specific negative evidence only, not a guarantee of worldwide
 priority.  The taxonomy and nodal exclusion remain unreviewed working
 theorems, and they do not exclude all total-degree-four counterexamples.
+
+### 2026-07-25T02:48Z — complete nodal-row overlap check
+
+Exact searches were repeated after the scalar-aligned branch was closed.
+Queries combined “Keller map dimension three degree four”, “nodal cubic
+leading homogeneous part”, “fixed divisor”, “scalar-aligned”, and
+“marked-point parameter”; the corresponding arXiv-restricted and
+MathOverflow-restricted searches were also run.  The checked results
+included Migus's generic-degree paper, Long's Gaussian-moments paper,
+de Bondt's low-rank homogeneous-map papers, the current MathOverflow
+monodromy discussion, and unrelated uses of “nodal cubic” and “Keller”.
+None states either scalar-aligned nodal compatibility system or an exclusion
+of the complete nodal-cubic leading row.
+
+The same-day required-channel sweep already recorded above was compared
+again against the stronger conclusion.  No checked arXiv listing,
+MathOverflow item, Tao-blog post, Secret Blogging Seminar post, or
+read-only X/Twitter result contains it.  This is source-specific negative
+evidence only and is not a guarantee of worldwide priority.  The theorem is
+unreviewed, and the certified universal total-degree floor remains \(4\).

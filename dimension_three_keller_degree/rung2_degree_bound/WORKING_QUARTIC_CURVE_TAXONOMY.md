@@ -339,10 +339,11 @@ Keller map in this generic cubic stratum satisfies the
 \]
 
 This is the first necessary condition.  For the nodal normal form below,
-`WORKING_NODAL_CUBIC_CURVE_EXIT.md` now carries the lower identities through
-degrees six and five and excludes the entire transverse nodal branch.  The
-scalar-aligned locus \(h\in\langle p,q\rangle\), and the cuspidal ramified
-normal-minor locus \(\gcd\Delta\ne1\), remain separate.
+`WORKING_NODAL_CUBIC_CURVE_EXIT.md` carries the lower identities through
+degrees six and five and excludes the transverse nodal branch.
+`WORKING_SCALAR_ALIGNED_NODAL_CUBIC_EXIT.md` independently handles
+\(h\in\langle p,q\rangle\).  Thus the nodal row is now empty; the cuspidal
+ramified normal-minor locus \(\gcd\Delta\ne1\) remains separate.
 
 ## 8. Nodal gcd-one representative
 
@@ -373,9 +374,12 @@ has a nonconstant common factor in its derivative minors and lies on the
 ramified branch.
 
 Every irreducible nodal plane cubic over \(\mathbb C\) is projectively
-equivalent to (18).  The audited lower-identity calculation in
-`WORKING_NODAL_CUBIC_CURVE_EXIT.md` therefore excludes this complete
-unramified transverse row, not merely the displayed representative.
+equivalent to (18).  The two audited lower-identity calculations in
+`WORKING_NODAL_CUBIC_CURVE_EXIT.md` and
+`WORKING_SCALAR_ALIGNED_NODAL_CUBIC_EXIT.md` cover respectively
+\(h\notin\langle p,q\rangle\) and \(h\in\langle p,q\rangle\).  They
+therefore exclude the complete nodal row, not merely the displayed
+representative.
 
 ## 9. Verification and disclosure
 
