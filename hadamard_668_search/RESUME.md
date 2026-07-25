@@ -7,6 +7,46 @@ exact candidate.  Exact success means producing explicit signs and passing the
 full `668 x 668` verification path; energy zero in a search engine is not
 sufficient by itself.
 
+## Active restart: semiregular \(C_{37}\) conference lift
+
+A genuinely different construction principle now justifies a bounded
+headline restart without reopening the failed Legendre-pair lift.  A
+normalized symmetric conference matrix of order 334 would double to
+`H(668)`.  Requiring only a semiregular `C37` action on its 333-vertex core
+produces nine circulant fibers, a family not covered by the earlier
+group-developed obstruction.
+
+The folder `conference_334_z37_lift/` contains the current exact checkpoint:
+
+- an explicit feasible integral `9 x 9` orbit-sum quotient;
+- an exact failure formula for the obvious mixed order-10/order-38
+  conference-core tensor;
+- exact exclusions of the Paley three-class, full-`S4`, regular-order-four,
+  paired-transposition, and paired-three-cycle lifts;
+- a general `6/3` quadratic-class incidence law for the nine diagonal
+  blocks;
+- a rank-16 characteristic-37 first-moment law, cutting the exact
+  trace-compatible ambient space to between `2^1214` and `2^1215`;
+- a concrete membership witness through three nontrivial modular layers,
+  first failing at layer four;
+- a complete formal integration
+  `exp(-zA)(N0+z^18 J+19 y^36 J)exp(zA)` through degree 36; and
+- exact no-go theorems for every constant diagonal and every constant
+  symmetric rank-one generator in that exponential family, forcing a viable
+  constant generator to have rank at least two and genuinely mix
+  coordinates.
+
+No conference graph or Hadamard matrix is constructed.  The remaining
+problem is exact simultaneous `0/1` support realizability; the complete
+ambient count rules out direct enumeration.  The formula supplies a full
+completion for every admissible first moment but does not classify all
+formal solutions or exclude higher-`y` conjugators.  Replay the checkpoint
+with:
+
+```sh
+python3 conference_334_z37_lift/verify_z37_lift_frontier.py
+```
+
 The 24 July higher-digit construction gate on the five shell-two `3^36`
 placement charts failed.  Do not resume generic search on those charts: we
 found no row-margin-compatible digit-two seed, full digit-three point, or
@@ -945,7 +985,10 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-The bounded construction gate has failed.  Preserve the five-orbit and
-eighteen-orbit classification package for a paper, and do not spend headline
-`H(668)` tokens on the remaining dense-profile lifts or twenty long-block
-Eliahou cases without a genuinely new construction principle.
+The bounded order-three construction gate has failed.  Preserve the
+five-orbit and eighteen-orbit classification package for a paper, and do not
+spend headline `H(668)` tokens on the remaining dense-profile lifts or twenty
+long-block Eliahou cases.  The semiregular-`C37` conference lift above is the
+new construction principle that justifies the current restart; keep its work
+algebraic and bounded rather than enumerating its `2^1214` residual ambient
+space.

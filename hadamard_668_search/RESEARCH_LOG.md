@@ -2419,3 +2419,56 @@ proof-assistant-level theorem.
 - The bounded construction gate therefore fails.  Preserve the five-orbit
   and eighteen-orbit classifications as a scoped paper project, and stop
   headline `H(668)` work absent a genuinely new construction principle.
+
+## 25 July 2026: semiregular \(C_{37}\) conference-lift restart
+
+- Began a genuinely different route: construct a normalized symmetric
+  conference matrix of order 334 and double it to `H(668)`.  The 333-vertex
+  core is required to have only a semiregular `C37` action with nine fibers,
+  so the earlier obstruction to group-developed cores of order 333 does not
+  apply.
+- The obvious product of normalized order-10 and order-38 conference cores
+  fails exactly: its natural zero-filling tensor has residual
+  `28*(I9 tensor J37-J9 tensor I37)`.  This closes that mixed Turyn-style
+  repair, not all product constructions.
+- Derived the exact zero-frequency equations
+  `T*1=0`, `T^2=333I-37J` and constructed an explicit integral feasible
+  quotient from four norm-333 planes in an `A8` Hadamard basis.  Its
+  adjacency quotient is nonnegative, 166-regular, and satisfies the full
+  strongly-regular orbit equation.
+- Excluded the quadratic-residue three-class lift, the natural full-`S4`
+  lift, every regular order-four pair translation, every simultaneous
+  paired-label transposition, and every paired-label three-cycle by exact
+  norm, trace, and representation-sector arguments.
+- Proved a general trace law: after orientation, every nonzero quadratic
+  residue appears in six diagonal blocks and every nonresidue in three.
+  The complete trace-compatible fixed-margin ambient space is still between
+  `2^1297` and `2^1298`.
+- In characteristic 37, the full graph equation becomes
+  `N(y)^2=9*y^36*J`.  Its first moment has rank 16 on 36 skew variables,
+  reducing the exact ambient count by `37^16` to between `2^1214` and
+  `2^1215`.  A concrete support witness passes through `y^3` and first fails
+  at `y^4`; this is calibration, not convergence.
+- Constructed an explicit full formal completion for every admissible first
+  moment.  With `z=log(1+y)`, each is `[N0,A]` for symmetric `A`, and
+  `exp(-zA)*(N0+z^18*J+19*y^36*J)*exp(zA)` satisfies the complete truncated
+  equation and the correct trace branch.  This does not classify all formal
+  solutions; exact binary support realization remains open.
+- Excluded every constant diagonal and every constant symmetric rank-one
+  generator in that exponential family.  The nonisotropic case contradicts
+  six exact
+  quadratic-character lag patterns; the isotropic square-zero case retains
+  five nonbinary zero-lag diagonal coefficients.  Any viable constant
+  generator must be genuinely nondiagonal and have rank at least two;
+  higher-`y` conjugators are not excluded.
+- The literature audit confirms that orbit matrices and semiregular cyclic
+  blocks are standard.  Mathon's apparently matching `p*q^2+1` construction
+  requires `p=q+2` and therefore does not cover `37*3^2+1=334`; the 22 July
+  2026 common-multiplier Legendre-pair paper is a separate lane.  No
+  occurrence of this particular quotient or its specialized trace/moment
+  results was found, but the search was not exhaustive and novelty remains
+  provisional.
+- Froze the derivation, machine-readable certificate, and dependency-free
+  verifier in `conference_334_z37_lift/`.  No conference matrix, strongly
+  regular graph, or `H(668)` is claimed, and no external communication was
+  made.

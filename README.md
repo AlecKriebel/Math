@@ -50,9 +50,15 @@ certificate in the Discovery 04 source proves the fourth-iterate group
 construct a Hadamard matrix of order 668. No exact matrix has been found. The
 current mechanically checked progress includes the fixed-`q` obstruction,
 exhaustive variable-`q` margin decomposition, independent Legendre-pair and
-cyclic-SDS lanes, and a bounded exclusion of every exact `BS(84,83)` within
-raw Hamming distance 18 of Eliahou's published seed. A result counts only if
-an explicit `668 x 668` matrix passes exact full verification.
+cyclic-SDS lanes, a bounded exclusion of every exact `BS(84,83)` within raw
+Hamming distance 18 of Eliahou's published seed, and a new semiregular
+`C37` conference-core lane with an explicit feasible nine-orbit quotient.
+The latter has exact trace and moment laws and an explicit full
+characteristic-37 completion for every admissible first moment, but this is
+not a classification of all formal solutions and its binary-support problem
+remains open.
+A result counts only if an explicit `668 x 668` matrix passes exact full
+verification.
 
 ## Archival derivations
 

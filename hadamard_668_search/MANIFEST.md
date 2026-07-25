@@ -78,6 +78,8 @@
 | `eliahou_short_block_census/README.md` | Complete exact census of all nine canonical short-block cases: 3,710,853,316,608 join rows, 88,927,740 physically replayed joint modulo-six supports, and zero exact support |
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
+| `conference_334_z37_lift/README.md` | Feasible semiregular-`C37` nine-orbit conference quotient, general trace/moment laws, explicit full completions for admissible first moments, and exact constant diagonal/rank-one family obstructions |
+| `conference_334_z37_lift/LITERATURE_AUDIT.md` | Provisional priority boundary against orbit-matrix, m-Cayley, Mathon conference, and July 2026 multiplier literature |
 | `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
 | `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, exact five-canonical-representative census, prior-family overlap, and rank-two cost boundary |
 | `anti_tensor_correction/README.md` | Exact fixed-background rank-two correction obstruction at all three anti-tensor near misses |
@@ -276,6 +278,9 @@
 | `eliahou_long_block_exact_triage/SHA256SUMS` | Byte-level hashes for the delivered long-block artifact bundle |
 | `conference_333_group_obstruction/verify_conference_333_group_obstruction.py` | Reconstructs the character obstruction and both exact order-nine quotient classifications |
 | `conference_333_group_obstruction/CONFERENCE_333_GROUP_CERTIFICATE.json` | Frozen cyclic- and elementary-abelian-quotient counts proving zero group-developed conference cores |
+| `conference_334_z37_lift/verify_z37_lift_frontier.py` | Reconstructs the semiregular quotient, lift obstructions, exact ambient census, trace and moment laws, formal integration, and diagonal/rank-one no-go theorems |
+| `conference_334_z37_lift/Z37_LIFT_FRONTIER_CERTIFICATE.json` | Hash-pinned partial certificate for the open semiregular-`C37` conference lift |
+| `conference_334_z37_lift/ARTIFACT_SHA256.txt` | Byte-level hashes for the delivered semiregular-`C37` frontier bundle |
 | `near_williamson_167_audit/audit_near_williamson_167.py` | Replays row-sum profiles, one-defect reduction, exact front-end count, and bounded feasibility pilots |
 | `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts on five canonical representatives, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
 | `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact five-representative chart census, residual histograms, nearest points, and semantic hash |

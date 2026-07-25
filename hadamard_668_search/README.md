@@ -1,7 +1,8 @@
 # Hadamard order 668 search
 
-Status: bounded construction gate failed; headline `H(668)` search paused;
-no exact matrix has been found.
+Status: the earlier order-three construction gate failed, but a new
+semiregular-\(C_{37}\) conference-matrix principle has reopened a bounded
+headline lane; no exact matrix has been found.
 
 This directory is a reproducible attack on the smallest unresolved Hadamard
 order.  A result counts only when an explicit `668 x 668` sign matrix passes an
@@ -34,6 +35,8 @@ completed nine-case Eliahou short-block census.
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
 | Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus scoped algebraic lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. The 729-shard census and a detached 666-correlation certificate both pass. Six profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
+| Group-developed conference core of order 333 | impossible | exact character and order-nine quotient obstruction excludes every group of order 333 |
+| Semiregular `C37` conference core with nine fibers | active algebraic lane | an explicit feasible `9 x 9` quotient survives; every lift obeys exact `6/3` diagonal incidence and 16 first-moment equations, every admissible first moment has an explicit full formal completion, and all constant diagonal/rank-one generators in that exponential family are impossible. Exact binary support realizability remains open |
 | Near-Williamson order 167 | audited, not scalable | exact one-defect reduction eliminates one block, but the naturally gauge-fixed `A,B` front end still has about `5.39*10^48` states; no production search is justified without a new parametrization theorem |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | retained heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
