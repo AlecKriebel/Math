@@ -761,6 +761,36 @@ coordinate exits and inject false identities to test fail-closed
 behavior.  No Keller-compatible leaf remains.  Combined with the audited
 nonbinary theorem, this closes the full fixed-cubic line taxonomy row.
 
+### Outer-infinity finite companions in line-\((2,2)\)
+
+At 2026-07-25T07:01:00Z the supplied symbolic, direct-determinant, and
+fault-injection checks passed, followed by an independent hostile audit:
+
+```text
+cd line22_outer_infinity_remaining
+/usr/bin/python3 verify_line22_outer_infinity_remaining_sympy.py
+./verify_line22_outer_infinity_remaining_pari_strict.sh
+./test_fail_closed.sh
+```
+
+For \(p=x^2,q=yz\),
+\[
+H_4=((p-aq)^2,q^2,0),\qquad
+(H_3)_3=x(p-cq),
+\]
+the common-scaling quotient is \(\mathbb P^1_{[a:c]}\) plus the fixed
+origin.  The verifier reconstructs raw ranks \(18,14,14,16,18\) on the
+generic locus, the two resonances, and the two projective endpoints.
+Every complete lower solve makes columns two and three of the linear part
+proportional; the \(K=0\) resonance branches are closed by explicit
+\(E_4\) squares without cancellation.
+
+The hostile audit independently checked the orbit quotient, target
+shears, all maximal minors, kernel dimensions, lower converse ranks, and
+zero specializations.  Combined with the separately audited origin, this
+excludes every finite companion in the chart.  It does not include the
+companion-at-infinity form \(xq\).
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

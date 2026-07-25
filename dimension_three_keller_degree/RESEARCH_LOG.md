@@ -901,3 +901,28 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - Together with the previously audited nonbinary theorem, this closes the
   entire fixed-cubic line taxonomy row.  The certified universal
   total-degree floor remains \(4\).
+
+## 2026-07-25T07:08:00Z — Outer-infinity finite companions excluded
+
+- In the one-outer-critical-point-at-infinity chart for
+  \(p=x^2,q=yz\),
+  \[
+  H_4=((p-aq)^2,q^2,0),\qquad
+  (H_3)_3=x(p-cq),
+  \]
+  simultaneous scaling makes the nonzero joint orbits
+  \([a:c]\in\mathbb P^1\).
+- Exact raw \(E_7\) ranks split this line into the generic locus, the
+  resonances \(c=3a\) and \(2c=3a\), and the endpoints \(c=0\) and
+  \(a=0\).  Complete \(E_6/E_5\) solves, with division-free \(K=0\)
+  \(E_4\) square exits at both resonances, make columns two and three of
+  the linear part proportional on every stratum.
+- The origin \((a,c)=(0,0)\) was already excluded separately.  Therefore
+  every finite companion in this outer chart is impossible; only the
+  companion-at-infinity form \((H_3)_3=xq\), with its two residual outer
+  orbits, remains there.
+- A hostile audit independently reconstructed the orbit ledger, every raw
+  rank and maximal minor, complete kernels, lower converses, endpoint
+  specializations, and target-shear legality.  Verdict: PASS after
+  correcting one overlapping generic-row label.
+- The certified universal total-degree floor remains \(4\).

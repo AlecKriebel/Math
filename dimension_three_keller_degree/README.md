@@ -89,6 +89,15 @@ The first audited quartic working lemmas now constrain:
   \(H_4=(x^4,y^2z^2,0)\), \((H_3)_3=x^3\).  All four exact lower branches
   force a singular linear part; no neighboring infinity-chart modulus is
   included; and
+- every remaining finite companion in that outer-critical-at-infinity
+  \(p=x^2,q=yz\) chart:
+  \[
+  H_4=((p-aq)^2,q^2,0),\qquad (H_3)_3=x(p-cq).
+  \]
+  The generic orbit, both rank resonances, and both projective endpoints
+  force proportional columns of the linear part.  Combined with the
+  marked point, only companion-at-infinity forms remain in this outer
+  chart; and
 - in the rank-one-restriction pencil
   \(p=x^2,q=y^2+xz\), every unmarked-critical finite mixed-companion orbit
   \(H_4=((p-q)^2,(p+q)^2,0)\),
@@ -101,10 +110,10 @@ verification harness.  No claim is promoted without an adversarial scope and
 hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
-locus in type \((1,4)\), the projective-infinity and companion-at-infinity
-parts of the unique-double-line line-image \((2,2)\) stratum, plus the
-marked and exceptional \(c=0,c^2=9,c=\infty\) pieces of its
-rank-one-restriction pencil, ramified birational quartic parametrizations,
+locus in type \((1,4)\), the companion-at-infinity parts of the
+unique-double-line line-image \((2,2)\) stratum, plus the marked and
+exceptional \(c=0,c^2=9,c=\infty\) pieces of its rank-one-restriction
+pencil, ramified birational quartic parametrizations,
 the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
 with a fixed divisor, including the vertical parts of the primitive

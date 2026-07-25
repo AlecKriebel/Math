@@ -633,3 +633,22 @@ the already audited nonbinary theorem, closes the fixed-cubic line row.
 This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The result is unreviewed and does not raise the
 certified universal total-degree floor above \(4\).
+
+### 2026-07-25T07:08Z — outer-infinity finite-companion audit delta
+
+The same-day sweep was compared with the complete projective family
+\[
+H_4=((p-aq)^2,q^2,0),\qquad
+(H_3)_3=x(p-cq),\qquad p=x^2,\ q=yz.
+\]
+No checked current arXiv, MathOverflow, Tao-blog, Secret Blogging
+Seminar, Gallagher, or publicly indexed X/Twitter source states the
+resonances \(c=3a,2c=3a\), their division-free lower exits, or the
+exclusion of every nonzero \([a:c]\) orbit.  The dedicated package records
+the search ledger.
+
+The theorem passed an independent hostile mathematical audit.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The result remains unreviewed, leaves companion-at-infinity
+forms open, and does not raise the certified universal total-degree floor
+above \(4\).

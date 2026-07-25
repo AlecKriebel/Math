@@ -182,9 +182,11 @@ The common-factor-free rows have the following exact or partial coverage.
    separate theorem
    `line22_marked_critical_infinity/WORKING_LINE22_MARKED_CRITICAL_INFINITY.md`
    additionally excludes the single outer-infinity orbit
-   \(H_4=(p^2,q^2,0)\), \((H_3)_3=x^3\).  Every other
-   outer-critical-infinity modulus and both companion-at-infinity charts
-   remain active.  For the rank-one-restriction pencil
+   \(H_4=(p^2,q^2,0)\), \((H_3)_3=x^3\).
+   `line22_outer_infinity_remaining/NOTE.md` excludes every other finite
+   companion in that outer-infinity chart, including both resonances and
+   projective endpoints.  The two companion-at-infinity charts remain
+   active.  For the rank-one-restriction pencil
    \(q=y^2+xz\),
    `line22_rankone_restriction/WORKING_RANKONE_RESTRICTION_OPEN_ORBIT.md`
    excludes the unmarked finite mixed locus \(c(c^2-9)\ne0\); its three
