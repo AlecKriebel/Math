@@ -1,0 +1,177 @@
+{
+  "schema": "local5-degree5-finite-cut-exact-separator-v1",
+  "variant": "necessary-rank-outer-bands",
+  "dimension": 5,
+  "cardinality": 41,
+  "maximum_inner_product": "1/2",
+  "pair_certificate": "certificates/local_hybrid_pseudodistribution.json",
+  "total_degree": 5,
+  "nodes": [
+    "-77/100",
+    "-7/10",
+    "-11/25",
+    "-9/100",
+    "499/1000"
+  ],
+  "ordered_pair_counts": [
+    170,
+    6,
+    262,
+    652,
+    550
+  ],
+  "rank_band": "3/100",
+  "rank_band_mode": "outer",
+  "basic_triple_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    8,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "active_inequalities": [
+    {
+      "kind": "threshold_upper",
+      "q": "5777/10000"
+    },
+    {
+      "kind": "colored_clique"
+    },
+    {
+      "kind": "c047_lower"
+    },
+    {
+      "kind": "rank_kernel_lower",
+      "name": "(H0+5H1)/6",
+      "harmonic_weights": {
+        "0": "1/6",
+        "1": "5/6"
+      },
+      "rank_bound": 6,
+      "outer_band": "7/2"
+    },
+    {
+      "kind": "rank_kernel_upper",
+      "name": "H2",
+      "harmonic_weights": {
+        "2": "1"
+      },
+      "rank_bound": 14,
+      "outer_band": "157/50"
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 2,
+      "direction": [
+        "-1732/62887",
+        "-5415/24623",
+        "-27638/64187",
+        "1"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 4,
+      "direction": [
+        "-8740/56711",
+        "1"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 1,
+      "direction": [
+        "7631/43851",
+        "-26974/76717",
+        "13175/62658",
+        "1",
+        "-51275/60621"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 2,
+      "direction": [
+        "217/3713",
+        "-19533/84788",
+        "-21494/57645",
+        "1"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 3,
+      "direction": [
+        "5239/90316",
+        "1",
+        "-14833/77466"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 6,
+      "direction": [
+        "28871/92366",
+        "-37412/38597",
+        "2750/9887",
+        "1",
+        "-6308/10151"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 2,
+      "direction": [
+        "2990/97879",
+        "-26017/88677",
+        "-40430/90799",
+        "1"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 3,
+      "direction": [
+        "1046/33015",
+        "1",
+        "6113/91586"
+      ]
+    },
+    {
+      "kind": "quadratic_cut",
+      "block": 6,
+      "direction": [
+        "-1068/38785",
+        "1",
+        "-208/1271",
+        "-12554/17103",
+        "-5013/67028"
+      ]
+    }
+  ],
+  "scope": {
+    "asserted": "exact nonexistence of a 41-point rank-at-most-five spherical code having exactly these five inner products with these ordered multiplicities",
+    "mechanism": "degree-five harmonic PSD cuts, colored-degree covariance, threshold and support-specific clique cuts, a necessary outer relaxation of C047, and two necessary harmonic-kernel rank intervals",
+    "not_asserted": "nonexistence of a 41-point code on a moved or enlarged support, or the global inequality tau(5)<=40"
+  },
+  "discovery": {
+    "program": "OUTER_RANK_MODEL=1 NUMERIC_DUAL_ONLY=1 experiments/extract_local5_degree5_separator.py",
+    "python": "3.9.6",
+    "numpy": "1.24.2",
+    "scipy": "1.10.1",
+    "method": "rationalized eigenvector cutting planes followed by exact active-basis reconstruction"
+  }
+}

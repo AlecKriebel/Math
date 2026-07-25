@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A paused, unresolved research notebook on the five-dimensional kissing-number problem, preserving exact checks, counterexamples, numerical searches, and the unchanged bounds 40 ≤ τ(5) ≤ 44.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="How many spheres can kiss in five dimensions?">
+  <meta property="og:description" content="A paused research notebook. No resolution: the rigorous range remains 40 ≤ τ(5) ≤ 44.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/research/kissing-number-5/">
+  <meta property="og:image" content="https://aleckriebel.github.io/Math/assets/kissing-number-5-og.png">
+  <meta property="og:image:width" content="1730">
+  <meta property="og:image:height" content="909">
+  <meta property="og:image:alt" content="The Five-Dimensional Kissing Number: 40 ≤ τ(5) ≤ 44. Research notebook, paused and unresolved.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Five-Dimensional Kissing Number">
+  <meta name="twitter:description" content="Research notebook · Paused · Unresolved · 40 ≤ τ(5) ≤ 44">
+  <meta name="twitter:image" content="https://aleckriebel.github.io/Math/assets/kissing-number-5-og.png">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/research/kissing-number-5/">
+  <title>Five-Dimensional Kissing Number · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "How many spheres can kiss in five dimensions?",
+    "description": "A paused and unresolved research notebook on the five-dimensional kissing-number problem.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT 5.6 Sol"
+    },
+    "datePublished": "2026-07-24",
+    "dateModified": "2026-07-24",
+    "url": "https://aleckriebel.github.io/Math/research/kissing-number-5/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Research notebook navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#findings">Findings</a>
+        <a href="#numerics">Numerics</a>
+        <a href="#reproduce">Reproduce</a>
+        <a href="https://github.com/AlecKriebel/Math/tree/main/kissing_number_5">Source</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Research notebook · Paused 24 July 2026 · Unresolved</p>
+      <h1>How many spheres can kiss in five dimensions?</h1>
+      <p class="byline">An intensive research run by Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Checkpoint prepared: <time datetime="2026-07-24">24 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Unresolved research notice">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>No resolution was obtained.</h2>
+        <p>The rigorous global range is still \(40\leq\tau(5)\leq44\). This is an unreviewed research record, not a paper announcing a solution. Every restricted result below says exactly what class it covers.</p>
+      </div>
+    </div>
+
+    <figure class="research-cover">
+      <img src="../../assets/kissing-number-5-og.png" width="1730" height="909" alt="The Five-Dimensional Kissing Number: 40 ≤ τ(5) ≤ 44. Research notebook, paused and unresolved.">
+    </figure>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/WebPage">
+      <section id="problem">
+        <h2>The problem, in plain language</h2>
+        <p class="lede">The kissing number \(\tau(5)\) is the largest number of unit spheres that can all touch one fixed unit sphere in five dimensions without overlapping each other.</p>
+        <p>On the unit four-sphere this becomes a point-packing question: find as many unit vectors as possible while keeping every pairwise inner product at most \(1/2\). Forty points come from the \(D_5\) root system. The challenge is to decide whether 41, 42, 43, or 44 points can exist.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Known construction</strong><span>40 exact points</span></div>
+          <div class="fact"><strong>Published upper bound</strong><span>44 points</span></div>
+          <div class="fact"><strong>Our outcome</strong><span>No global improvement</span></div>
+        </div>
+        <p>Recent published work also emphasizes how little symmetry can be assumed: at least four non-isometric 40-point configurations are known. So a proof cannot safely insist that an optimum looks like \(D_5\), is antipodal, or has a prescribed contact graph.</p>
+      </section>
+
+      <section id="outcome">
+        <h2>What the run actually accomplished</h2>
+        <p>We tried both directions at once: build 41–44 points, and prove that 41 points cannot exist. The project produced exact necessary conditions, reproducible near misses, and several useful counterexamples to attractive proof ideas. It did not find the missing global argument.</p>
+        <div class="theorem-block">
+          <p><strong>The lower bound is completely explicit.</strong> An independent checker reconstructs all 40 normalized \(D_5\) roots, verifies every norm, and checks all 780 unordered pairs with exact integer arithmetic.</p>
+        </div>
+        <p>The recurring difficulty was not finding another local restriction. It was proving that all local views must come from one common rank-five Gram matrix. Many pair, triple, cap, and finite local models can look perfectly feasible while failing that global compatibility test.</p>
+      </section>
+
+      <section id="findings">
+        <h2>Exact findings that survived audit</h2>
+
+        <h3>Local geometry</h3>
+        <p>Exact cap projections bound how many other code points can sit high above any anchor. At heights \(1/4,3/10,1/3,3/8,\) and \(2/5\), the respective occupancy bounds are 23, 22, 21, 20, and 19. These are universal necessary conditions, but averaging them does not yet give a 40-point upper bound.</p>
+
+        <h3>Many antipodal pairs</h3>
+        <p>If a hypothetical 41-point code contains \(r\) antipodal pairs, those pairs become isolated components in its graph of very negative inner products. At \(r=18\), exact graph bookkeeping forces the remaining five points into a five-cycle. A projective-harmonic inequality then forces one residual cycle pair to be especially negative. This sharply narrows the branch, but it does not rule it out.</p>
+
+        <h3>A finite quarter-grid model</h3>
+        <p>When every inner product is artificially restricted to a multiple of \(1/4\), exact certificates eliminate the cases with 14, 15, or 16 antipodal pairs. Separate ADE calculations eliminate one named 12-pair endpoint and all 38 profiles in a stored 11-pair export.</p>
+        <p><strong>Important limitation:</strong> the independent generators proving those 11- and 12-pair lists exhaustive were temporary and did not survive. We therefore do not claim complete 11- or 12-pair exclusions, and none of this is a discretization theorem for arbitrary spherical codes.</p>
+
+        <h3>The five-cycle subproblem</h3>
+        <p>On the closed five-cycle sign cell, an exact analytic argument gives a largest Gram eigenvalue at most 3. A separate exact Bernstein certificate proves the desired quartic-energy bound on one minimal metric face. The rest of the metric polytope remains open, so this partial result cannot close the 18-antipode branch.</p>
+
+        <h3>Counterexamples that saved us from false proofs</h3>
+        <p>Several plausible shortcuts failed exactly. Local rank-five mixtures need not glue globally. A degree-three rooted-triangle dual that works on a finite 1,782-atom catalog is violated by an exact rank-five atom outside the catalog. Two natural Hall-style charging principles fail on a fixed \(D_5\) extension problem. These failures are part of the useful output: they mark where local or finite information stops being universal.</p>
+      </section>
+
+      <section id="numerics">
+        <h2>What the construction searches said</h2>
+        <p>Unrestricted and structured searches did not find a code of size 41–44. The best repeatedly reproduced 41-point basin has maximum inner product about \(0.51499465\), above the required \(0.5\).</p>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <thead><tr><th>Points</th><th>Best stored maximum inner product</th><th>Needed</th></tr></thead>
+            <tbody>
+              <tr><td>41</td><td>0.5149946525</td><td>\(\le0.5\)</td></tr>
+              <tr><td>42</td><td>0.51824116</td><td>\(\le0.5\)</td></tr>
+              <tr><td>43</td><td>0.52470960</td><td>\(\le0.5\)</td></tr>
+              <tr><td>44</td><td>0.52745771</td><td>\(\le0.5\)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>That persistent gap is suggestive, but it proves nothing about a configuration the searches did not find. Numerical failure is not a lower bound on the best possible maximum inner product.</p>
+      </section>
+
+      <section id="pause">
+        <h2>Why we paused</h2>
+        <p>The same bottleneck kept reappearing: global compatibility in five dimensions. We can control many local views, finite-support shadows, and moment tables, but we do not have a rigorous bridge that covers continuously varying inner products while preserving rank at most five.</p>
+        <p>Returns had narrowed to more elaborate versions of the same restricted models, while the global bounds stayed fixed. We paused rather than let a finite-grid exclusion, a solver status, or a missing enumeration package drift into a claimed solution.</p>
+        <p>If this program resumes, the strongest target is a new common-source inequality coupling overlapping local views, a genuine continuous-to-finite theorem, or an exact higher-order SDP/SOS dual below 41—not merely a finer grid or more random seeds.</p>
+      </section>
+
+      <section id="reproduce">
+        <h2>Reproduce and inspect</h2>
+        <p>The repository separates search code, exact certificates, tests, and smaller independent verifiers. Start with these files:</p>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/STATUS.md"><code>STATUS.md</code></a> — concise paused-state report, exact bounds, surviving claims, and unresolved gaps.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/RESUME.md"><code>RESUME.md</code></a> — clean setup, five-minute smoke tests, missing artifacts, and restart priorities.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/CLAIMS_LEDGER.md"><code>CLAIMS_LEDGER.md</code></a> — every important statement labeled proved, computationally certified, numerical only, conjectural, or refuted.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/APPROACH_REGISTRY.md"><code>APPROACH_REGISTRY.md</code></a> — mechanisms, artifacts, counterexamples, restrictions, and exact bottlenecks.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/proofs/lower_bound_d5.md"><code>proofs/lower_bound_d5.md</code></a> and <a href="https://github.com/AlecKriebel/Math/blob/main/kissing_number_5/verifiers/verify_d5.py"><code>verifiers/verify_d5.py</code></a> — the exact 40-point construction and small checker.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/kissing_number_5"><code>kissing_number_5/</code></a> — complete source, experiments, certificates, tests, logs, and checksum manifest.</li>
+        </ul>
+      </section>
+
+      <section id="context">
+        <h2>Published context</h2>
+        <ul class="references">
+          <li>Henry Cohn and Isaac Rajagopal, <a href="https://doi.org/10.1007/s00454-026-00841-x">“Variations on Five-Dimensional Sphere Packings”</a> (2026): four non-isometric 40-point configurations and the still-best upper bound 44.</li>
+          <li>Hans D. Mittelmann and Frank Vallentin, <a href="https://arxiv.org/abs/0902.1105">“High accuracy semidefinite programming bounds for kissing numbers”</a> (2010): the high-precision SDP computation behind the published five-dimensional upper bound.</li>
+          <li>Christine Bachoc and Frank Vallentin, <a href="https://arxiv.org/abs/math/0608426">“New upper bounds for kissing numbers from semidefinite programming”</a>: the three-point SDP framework used as a baseline throughout the project.</li>
+        </ul>
+      </section>
+
+      <section id="disclosure">
+        <h2>Scope and AI-assistance disclosure</h2>
+        <p>This page is a checkpoint, not a paper or a claim of priority. The exploratory mathematics, proof drafting, programs, audits, and website were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently validate the mathematics. The work has not been peer reviewed.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/kissing_number_5">Research source</a> · Paused and unresolved
+  </footer>
+</body>
+</html>

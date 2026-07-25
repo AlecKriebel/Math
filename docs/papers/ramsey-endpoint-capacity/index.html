@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A provisional seven-page research note formulating a transversal-capacity inequality and using equality rigidity to exclude one regular R(5,5) endpoint.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="A transversal-capacity obstruction for a regular R(5,5) endpoint">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-24">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A transversal-capacity obstruction for a regular R(5,5) endpoint">
+  <meta property="og:description" content="A catalog-conditional endpoint theorem with an exact compact verifier. The global bounds remain 43 ≤ R(5,5) ≤ 46.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/">
+  <meta property="og:image" content="https://aleckriebel.github.io/Math/assets/ramsey-5-5-og.png">
+  <meta property="og:image:width" content="1727">
+  <meta property="og:image:height" content="910">
+  <meta property="og:image:alt" content="The Ramsey Number R(5,5): 43 ≤ R(5,5) ≤ 46. One regular endpoint excluded; global bound unchanged.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="A transversal-capacity obstruction for a regular R(5,5) endpoint">
+  <meta name="twitter:description" content="Provisional research note · One endpoint excluded · Global bound unchanged">
+  <meta name="twitter:image" content="https://aleckriebel.github.io/Math/assets/ramsey-5-5-og.png">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/">
+  <title>A transversal-capacity obstruction for a regular R(5,5) endpoint · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "A transversal-capacity obstruction for a regular R(5,5) endpoint",
+    "description": "A catalog-conditional endpoint theorem based on a transversal-capacity inequality, equality rigidity, and exact finite verification.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT 5.6 Sol"
+    },
+    "datePublished": "2026-07-24",
+    "dateModified": "2026-07-24",
+    "url": "https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#theorem">Theorem</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#scope">Scope</a>
+        <a href="../../research/ramsey-number-5-5/">Research page</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Short research note · Provisional · Not peer reviewed</p>
+      <h1>A transversal-capacity obstruction for a regular \(R(5,5)\) endpoint</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">First public paper edition: <time datetime="2026-07-24">24 July 2026</time></p>
+      <p class="release">Verifier release v1.0.1: <time datetime="2026-07-24T22:28:24Z">24 July 2026, 22:28:24 UTC</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Read this as a candidate short note, not an established theorem.</h2>
+        <p>The endpoint claim is conditional on published catalog-completeness and extremal-edge statements, has not been peer reviewed, and does not improve the global bounds \(43\le R(5,5)\le46\). Alec Kriebel is a complete amateur and cannot independently validate the mathematics.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="../../research/ramsey-number-5-5/">Plain-language research page</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1">Verifier release v1.0.1</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/ramsey55_endpoint_capacity/ramsey55_endpoint_capacity.tex">Manuscript source</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/ramsey55_endpoint_capacity/PRIORITY_AUDIT.md">Priority audit</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">We give an elementary capacity inequality for hypergraph transversals indexed by the vertices of a graph. Applied to cross-neighborhoods at a vertex of a hypothetical 18-regular \((5,5;43)\)-graph, it excludes the endpoint \(e(G[N(v)])=85\).</p>
+        <p>On byte-pinned published \(R(4,5;18)\) and \(R(4,5;24)\) catalogs, the inequality strictly excludes 61,939 of 62,382 fixed-side pairs. The remaining 443 attain equality. Uniqueness of one minimizing transversal forces two adjacent cross-neighborhoods to coincide, contradicting the required two-column covering condition.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Strict exclusions</strong><span>61,939 pairs</span></div>
+          <div class="fact"><strong>Equality closures</strong><span>443 pairs</span></div>
+          <div class="fact"><strong>Endpoint survivors</strong><span>0 pairs</span></div>
+        </div>
+      </section>
+
+      <section id="theorem">
+        <h2>Endpoint theorem</h2>
+        <div class="theorem-block">
+          <p><strong>Conditional theorem.</strong> Assume the completeness and nonisomorphism statements for the published edge-85 \(R(4,5;18)\) catalog and the complete \(R(4,5;24)\) catalog. No 18-regular \((5,5)\)-graph on 43 vertices has a vertex \(v\) with \(e(G[N(v)])=85\).</p>
+          <p>Together with the published extremal bound, every vertex of such a graph lies in at most 84 triangles.</p>
+        </div>
+        <p>The reusable lemma considers graph-indexed transversals \(X_b\). If each \(X_b\) meets one forbidden family and the union on every graph edge meets a second forbidden family, then the minimum number of second-family sets missed by columns of each size obeys a global capacity bound. In the Ramsey specialization this becomes</p>
+        <div class="equation">\[
+          \sum_{b\in V(H)} q_{d_H(b)-5}(A)\le4i_3(A).
+        \]</div>
+        <p>Equality is rigid: every column must be a minimizer and every missed-triple incidence must saturate the independence-number bound. A unique size-six minimizer then closes all 443 equality pairs without enumerating cross-edge matrices.</p>
+      </section>
+
+      <section id="evidence">
+        <h2>Claim-to-evidence map</h2>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <thead>
+              <tr><th scope="col">Claim</th><th scope="col">Evidence</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Transversal-capacity inequality</td><td>Elementary incidence proof in the paper</td></tr>
+              <tr><td>74 edge-85 order-18 records</td><td>Byte-pinned publisher catalog</td></tr>
+              <tr><td>843 edge-128 order-24 records</td><td>Exact filter of the pinned complete order-24 catalog</td></tr>
+              <tr><td>61,939 strict and 443 equality pairs</td><td>Deterministic producer plus separately implemented checker</td></tr>
+              <tr><td>Unique minimizer and terminal contradiction</td><td>Exact subset enumeration plus a short graph argument</td></tr>
+              <tr><td>Release integrity</td><td>Downloaded clean replay, deterministic archive, 17/17 tests</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The normalized release archive has SHA-256:</p>
+        <p class="hash"><code>de541d6c7ed8be496784397ea0ee3f1b12c2b93cdbc42ba908160095c1d79cc4</code></p>
+      </section>
+
+      <section id="scope">
+        <h2>Novelty and scope</h2>
+        <p>The two-column covering rule is classical feasible-cone gluing, and the capacity lemma is an elementary double count. The candidate contribution is narrower: the exact minimum-miss profile, its graph-indexed aggregate use, the equality-rigidity argument, and the complete \((85,128)\) endpoint exclusion. A focused primary-source search found no earlier exact match, but cannot establish worldwide priority.</p>
+        <p>The theorem is catalog-conditional and endpoint-local. It does not exclude the \((84,129)\) layer, close another regular degree-18 layer, resolve any of the other global branches, determine \(R(5,5)\), or change its known bounds.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The exploratory mathematics, proof drafting, programs, independent-code audits, literature review, and publication materials were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. No external expert has reviewed the note. Exact computation verifies the encoded finite statements; it does not independently regenerate the published catalogs or establish literature priority.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “A transversal-capacity obstruction for a regular \(R(5,5)\) endpoint,” provisional research note, 24 July 2026. <a href="https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">Seven pages · prepared 24 July 2026 · source, audit, and verifier are public.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="../../research/ramsey-number-5-5/">Research checkpoint</a> · <a href="https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1">Verifier release</a>
+  </footer>
+</body>
+</html>

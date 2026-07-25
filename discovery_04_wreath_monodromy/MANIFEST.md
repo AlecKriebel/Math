@@ -28,6 +28,11 @@ Status: public research draft, not peer reviewed.
 | `w4_search/finite_field_norm.py` | Bounded-memory quotient-tower evaluator over a prime or prime-square coefficient ring |
 | `w4_search/verify_w4_modular.py` | Recomputes the level-four modular certificate, direct sheet derivative, scan digest, and `S_3^27` kernel lemma |
 | `w4_search/test_finite_field_norm.py` | Dependency-free quotient-algebra and prime-square determinant tests |
+| `w5_search/RESULT.md` | Separate good-reduction, norm-to-inertia, and group proof of `Mon(F^5)=W_5` |
+| `w5_search/finite_field_norm_depth4.py` | Rank-81 depth-agnostic quotient-tower evaluator and prime-square Hensel profile |
+| `w5_search/verify_w5_modular.py` | Recomputes the level-five profile, direct sheet derivative, final double root, and `S_3^81` kernel lemma |
+| `w5_search/audit_w5_hostile/verify_w5_matrix_tower.py` | Independent block regular-representation replay, with no imports from the W4/W5 quotient-vector arithmetic |
+| `w5_search/verify_all_strict.sh` | Runs the primary, regression, hostile, and fault-injection level-five suites |
 | `search_wreath.py` | Exploratory exact arithmetic at five unrelated rational fibers |
 | `requirements.txt` | Pinned SymPy requirement |
 | `render_paper.py` | Reproducible Tectonic PDF build |
@@ -58,6 +63,8 @@ Proved in the draft:
 - full `3^m`-cycle inertia for every iterate `F^m`.
 - in the separate `w4_search` proof artifact, `Mon(F^4)=W_4` geometrically,
   of order `6^40=13,367,494,538,843,734,067,838,845,976,576`.
+- in the separately audited `w5_search` proof artifact,
+  `Mon(F^5)=W_5` geometrically, of degree 243 and order `6^121`.
 
 Not proved:
 

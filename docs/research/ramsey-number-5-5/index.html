@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A paused R(5,5) research checkpoint: a transversal-capacity inequality and exact verifier exclude one regular degree-18 endpoint, while the global bounds remain 43 ≤ R(5,5) ≤ 46.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The Ramsey Number R(5,5): one regular endpoint excluded">
+  <meta property="og:description" content="A catalog-conditional endpoint theorem and compact verifier. The exact Ramsey number remains unknown: 43 ≤ R(5,5) ≤ 46.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/research/ramsey-number-5-5/">
+  <meta property="og:image" content="https://aleckriebel.github.io/Math/assets/ramsey-5-5-og.png">
+  <meta property="og:image:width" content="1727">
+  <meta property="og:image:height" content="910">
+  <meta property="og:image:alt" content="The Ramsey Number R(5,5): 43 ≤ R(5,5) ≤ 46. One regular endpoint excluded; global bound unchanged.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Ramsey Number R(5,5)">
+  <meta name="twitter:description" content="One regular endpoint excluded · Global bound unchanged · 43 ≤ R(5,5) ≤ 46">
+  <meta name="twitter:image" content="https://aleckriebel.github.io/Math/assets/ramsey-5-5-og.png">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/research/ramsey-number-5-5/">
+  <title>The Ramsey Number R(5,5) · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "The Ramsey Number R(5,5): one regular endpoint excluded",
+    "description": "A paused R(5,5) research checkpoint containing a catalog-conditional endpoint theorem, a transversal-capacity inequality, and an independently checked finite certificate.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT 5.6 Sol"
+    },
+    "datePublished": "2026-07-24",
+    "dateModified": "2026-07-24",
+    "url": "https://aleckriebel.github.io/Math/research/ramsey-number-5-5/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    },
+    "subjectOf": {
+      "@type": "ScholarlyArticle",
+      "name": "A transversal-capacity obstruction for a regular R(5,5) endpoint",
+      "url": "https://aleckriebel.github.io/Math/papers/ramsey-endpoint-capacity/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Ramsey research navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#result">Result</a>
+        <a href="#method">Method</a>
+        <a href="#verification">Verify</a>
+        <a href="../../papers/ramsey-endpoint-capacity/">Paper</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Research checkpoint · Paused 24 July 2026 · Global problem unresolved</p>
+      <h1>The Ramsey number <span class="nowrap">\(R(5,5)\):</span> one regular endpoint excluded</h1>
+      <p class="byline">A research run by Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Publication checkpoint: <time datetime="2026-07-24">24 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Unresolved research notice">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>The exact Ramsey number is still unknown.</h2>
+        <p>The published range remains \(43\le R(5,5)\le46\). We excluded one endpoint inside one hypothetical regular branch; we did not improve either global bound. This is an unreviewed, AI-assisted research checkpoint.</p>
+      </div>
+    </div>
+
+    <figure class="research-cover">
+      <img src="../../assets/ramsey-5-5-og.png" width="1727" height="910" alt="The Ramsey Number R(5,5): 43 ≤ R(5,5) ≤ 46. One regular endpoint excluded; global bound unchanged.">
+    </figure>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="../../papers/ramsey-endpoint-capacity/paper.pdf">Read the short paper</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1">Verifier release v1.0.1</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/ramsey55_endpoint_capacity">Paper source and audit</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/WebPage">
+      <section id="problem">
+        <h2>The problem, in plain language</h2>
+        <p class="lede">How large must a party be before five mutual acquaintances or five mutual strangers are unavoidable?</p>
+        <p>The diagonal Ramsey number \(R(5,5)\) is the smallest \(n\) such that every graph on \(n\) vertices contains either a five-vertex clique or a five-vertex independent set. A 42-vertex construction proves \(R(5,5)\ge43\); the best published impossibility computation proves \(R(5,5)\le46\). Determining whether the answer is 43, 44, 45, or 46 remains a major open computational problem.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Published range</strong><span>\(43\le R(5,5)\le46\)</span></div>
+          <div class="fact"><strong>Endpoint closed here</strong><span>\((e(A),e(H))=(85,128)\)</span></div>
+          <div class="fact"><strong>Global outcome</strong><span>No bound improved</span></div>
+        </div>
+      </section>
+
+      <section id="result">
+        <h2>What survived the integrity audit</h2>
+        <div class="theorem-block">
+          <p><strong>Endpoint theorem, conditional on the published catalogs.</strong> No 18-regular graph on 43 vertices with neither a \(K_5\) nor an independent five-set has a vertex \(v\) whose neighborhood spans 85 edges.</p>
+          <p>Together with the published extremal-edge statement, every vertex in such a hypothetical graph lies in at most 84 triangles.</p>
+        </div>
+        <p>This is a genuine complete exclusion of one finite endpoint, not a statistical observation. It rests on an elementary capacity inequality, a byte-pinned exhaustive calculation over 62,382 catalog pairs, and a short equality-rigidity argument. Its catalog completeness and nonisomorphism assumptions remain external published inputs.</p>
+        <p>The result is substantial enough for a short computational-combinatorics note because the inequality and equality mechanism are reusable beyond the raw enumeration. It is not substantial enough to present as a new value or new bound for \(R(5,5)\).</p>
+      </section>
+
+      <section id="method">
+        <h2>How the endpoint reduces</h2>
+        <p>Assume a hypothetical 18-regular \((5,5;43)\)-graph \(G\), choose a vertex \(v\), let \(A=G[N(v)]\), let \(B\) be its 24 non-neighbors, and set \(H=\overline{G[B]}\). Thus an edge of \(H\) is a nonedge of \(G[B]\). Both \(A\) and \(H\) are \(R(4,5)\)-graphs. A two-sided count of the cross edges gives</p>
+        <div class="equation">\[
+          e(H)=213-e(A).
+        \]</div>
+        <p>Thus the maximum local value \(e(A)=85\) is paired exactly with \(e(H)=128\). Published catalogs contain 74 such \(A\)-graphs and 843 such \(H\)-graphs.</p>
+
+        <h3>The capacity inequality</h3>
+        <p>For every vertex \(b\) of \(H\), its cross-neighborhood \(X_b\subseteq V(A)\) must meet every independent four-set of \(A\). If \(bc\) is an edge of \(H\), the union \(X_b\cup X_c\) must meet every independent triple of \(A\). Define \(q_s(A)\) to be the least number of independent triples missed by any size-\(s\) set that meets all independent four-sets. Then every valid assignment must satisfy</p>
+        <div class="theorem-block">
+          <div class="equation">\[
+            \sum_{b\in V(H)} q_{d_H(b)-5}(A)\le4\,i_3(A),
+          \]</div>
+          <p>where \(i_3(A)\) is the number of independent triples of \(A\).</p>
+        </div>
+        <p>The proof is a short incidence double count. For each independent triple \(Q\), the vertices \(b\) whose column \(X_b\) misses \(Q\) form an independent set in \(H\), so at most four columns can miss the same triple.</p>
+
+        <h3>Exact finite result</h3>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <caption>Classification of all \(74\times843\) fixed-side catalog pairs</caption>
+            <thead>
+              <tr><th scope="col">Classification</th><th scope="col">Pairs</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Strictly violate the capacity inequality</td><td>61,939</td></tr>
+              <tr><td>Attain equality and require terminal analysis</td><td>443</td></tr>
+              <tr><td>Survive the terminal analysis</td><td>0</td></tr>
+              <tr><td><strong>Total</strong></td><td><strong>62,382</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>All 443 equality pairs share one exceptional \(A\). Its size-six minimizing transversal is unique and misses ten independent triples. Equality forces every degree-11 vertex of \(H\) to use that same set. There are sixteen such vertices, and they necessarily contain an edge; the two endpoint columns are then identical and jointly miss those ten triples, contradicting the two-column rule.</p>
+      </section>
+
+      <section id="verification">
+        <h2>Reproduce the computation</h2>
+        <p>The corrected release is a compact, self-contained verifier independent of the multi-gigabyte exploratory history. It includes the two pinned source catalogs, the deterministic producer, a separately implemented checker that imports no producer code, the complete 62,382-line classification stream, and 17 focused tests.</p>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1"><strong>Release v1.0.1</strong></a> — theorem, novelty review, verifier, pinned data, and downloadable archive.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/releases/download/ramsey55-endpoint-capacity-v1.0.1/branch18_regular_endpoint_capacity_v1.0.1.tar.gz"><strong>Normalized archive</strong></a> — 11.1 MB; rebuilds deterministically.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/codex/ramsey55-endpoint-capacity-v1"><strong>History-independent source branch</strong></a> — compact Git checkout at commit <code>b6d7f1a</code>.</li>
+          <li><a href="../../papers/ramsey-endpoint-capacity/"><strong>Short paper</strong></a> — seven-page proof, scope statement, and exceptional endpoint data.</li>
+        </ul>
+        <p>From the extracted archive, run <code>python3 verify_bundle.py</code>. A fresh copy downloaded from GitHub reproduced every frozen artifact byte-for-byte, returned <code>"valid": true</code>, and passed all 17 tests in under 70 seconds with peak memory below 140 MB.</p>
+        <p>Archive SHA-256:</p>
+        <p class="hash"><code>de541d6c7ed8be496784397ea0ee3f1b12c2b93cdbc42ba908160095c1d79cc4</code></p>
+      </section>
+
+      <section id="novelty">
+        <h2>Novelty assessment</h2>
+        <p>A focused primary-source review found a positive but moderate novelty signal. Feasible-cone gluing, the two-column covering condition, and incidence counting are classical. We found no earlier statement of the exact minimum-miss profile \(q_s(A)\), its graph-indexed aggregate inequality, the equality-rigidity closure, or this \((85,128)\) endpoint theorem.</p>
+        <p>That search cannot establish worldwide priority. The paper therefore says “we formulate,” not “we introduce,” and makes no claim that the elementary double count itself is new.</p>
+      </section>
+
+      <section id="pause">
+        <h2>Why this program is paused</h2>
+        <p>The endpoint theorem eliminated one layer cleanly, but it did not scale across the six global branches. The next regular layer \((84,129)\) remained mostly open, and the published \(R(5,5)\le46\) result was obtained using computations far larger than this local machine can economically reproduce.</p>
+        <p>Continuation is justified only if one of four stronger signals appears: a global count forcing a vertex into this endpoint; a correlated or weighted multi-column inequality with whole-layer reach; a pilot eliminating essentially all of the \((84,129)\) layer; or a genuinely new construction basin with at most one forbidden edge.</p>
+      </section>
+
+      <section id="context">
+        <h2>Published context</h2>
+        <ul class="references">
+          <li>Geoffrey Exoo, <a href="https://doi.org/10.1002/jgt.3190130113">“A lower bound for \(R(5,5)\)”</a>, <em>Journal of Graph Theory</em> 13 (1989), 97–98.</li>
+          <li>Vigleik Angeltveit and Brendan McKay, <a href="https://doi.org/10.1002/jgt.70029">“\(R(5,5)\le46\)”</a>, <em>Journal of Graph Theory</em> 112 (2026), 198–208.</li>
+          <li>Brendan McKay and Stanisław Radziszowski, <a href="https://doi.org/10.1002/jgt.3190190304">“\(R(4,5)=25\)”</a>, <em>Journal of Graph Theory</em> 19 (1995), 309–322.</li>
+          <li>Vigleik Angeltveit and Brendan McKay, <a href="https://doi.org/10.1002/jgt.22235">“\(R(5,5)\le48\)”</a>, <em>Journal of Graph Theory</em> 89 (2018), 5–13.</li>
+          <li>Brendan McKay, <a href="https://users.cecs.anu.edu.au/~bdm/data/ramsey.html">Ramsey graph data</a>, source of the pinned catalogs.</li>
+        </ul>
+      </section>
+
+      <section id="disclosure">
+        <h2>Scope and AI-assistance disclosure</h2>
+        <p>The exploratory mathematics, proof drafting, programs, independent-code audits, literature review, and publication materials were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a complete amateur and cannot independently validate the mathematics. No external expert has reviewed this work. Exact verification is evidence about the encoded finite statements; it is not peer review and does not independently prove the external catalog-completeness assertions.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="../../papers/ramsey-endpoint-capacity/">Short paper</a> · <a href="https://github.com/AlecKriebel/Math/releases/tag/ramsey55-endpoint-capacity-v1.0.1">Verifier release</a> · Global problem unresolved
+  </footer>
+</body>
+</html>

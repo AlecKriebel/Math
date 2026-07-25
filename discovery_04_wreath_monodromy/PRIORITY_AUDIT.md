@@ -155,3 +155,38 @@ Do not claim:
 - an all-iterate arboreal theorem;
 - any priority claim for the separately certified `W_4` upgrade without a
   new source audit specifically covering level four.
+
+## 2026-07-25T11:23:41Z delta — level-five certificate
+
+A new source-specific sweep was run before promoting the finite-level claim
+
+```text
+Mon_C(F^5) = W_5.
+```
+
+Queries covered exact and variant combinations of `Alpöge`, `Keller`,
+`F^4`, `F^5`, `iterated monodromy`, `arboreal monodromy`, and `wreath
+product`.  The following public sources were searched:
+
+- current arXiv/web indexing, including July 2026 Jacobian/Keller results;
+- MathOverflow, including questions 513387 and 513440;
+- Terence Tao's blog and its indexed discussion;
+- the July 2026 Secret Blogging Seminar archive;
+- publicly indexed X/Twitter results.
+
+No exact level-five computation, all-iterate wreath theorem, or source that
+immediately implies either statement for this map was found.  The closest
+results remain the original-map \(S_3\) computation and general facts placing
+monodromy of a composition inside a wreath product.  Recent MathOverflow
+513440 concerns generic degrees and monodromy of a different weighted-lift
+family, not iterates of the announced map.
+
+This is evidence only about the searched public sources as indexed at the
+timestamp.  It is not a guarantee of worldwide priority, and private,
+unindexed, or newly posted work may collide.  Defensible wording is:
+
+> We certify the exact geometric monodromy \(W_5\) of the fifth iterate of
+> the announced map, extending the separately certified \(W_2,W_3,W_4\)
+> computations.
+
+Do not describe the finite-level computation as an all-iterate theorem.

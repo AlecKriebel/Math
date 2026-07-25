@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case "${AUDIT_HORIZONTAL_CUBIC_FAKE_MODE:-pass}" in
+    pass)
+        printf '%s\n' "horizontal fixed-linear cubic-pencil PARI/GP checks passed"
+        exit 0
+        ;;
+    diagnostic)
+        printf '%s\n' "*** injected GP diagnostic"
+        printf '%s\n' "horizontal fixed-linear cubic-pencil PARI/GP checks passed"
+        exit 0
+        ;;
+    extra)
+        printf '%s\n' "horizontal fixed-linear cubic-pencil PARI/GP checks passed"
+        printf '%s\n' "injected trailing output"
+        exit 0
+        ;;
+    nonzero)
+        printf '%s\n' "horizontal fixed-linear cubic-pencil PARI/GP checks passed"
+        exit 42
+        ;;
+    *)
+        exit 64
+        ;;
+esac

@@ -1,0 +1,25 @@
+#!/bin/sh
+
+case "${AUDIT_FIXED_LINEAR_FAKE_MODE:-pass}" in
+    pass)
+        printf '%s\n' "nonbinary fixed-linear line triple-cover PARI/GP checks passed"
+        exit 0
+        ;;
+    diagnostic)
+        printf '%s\n' "*** injected GP diagnostic"
+        printf '%s\n' "nonbinary fixed-linear line triple-cover PARI/GP checks passed"
+        exit 0
+        ;;
+    extra)
+        printf '%s\n' "nonbinary fixed-linear line triple-cover PARI/GP checks passed"
+        printf '%s\n' "injected trailing output"
+        exit 0
+        ;;
+    nonzero)
+        printf '%s\n' "nonbinary fixed-linear line triple-cover PARI/GP checks passed"
+        exit 42
+        ;;
+    *)
+        exit 64
+        ;;
+esac

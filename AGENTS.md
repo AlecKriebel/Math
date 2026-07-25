@@ -14,6 +14,10 @@ research notes without preparing or initiating outreach.
 - Maintain a research log for each effort and checkpoint work frequently. Log
   important breakthroughs, findings, decisions, and the timestamps when they
   occurred.
+- With every checkpoint, report a best-guess percentage of completion toward
+  the relevant discovery or research goal. This estimate may increase or
+  decrease as new findings change what is known about the problem; it is not
+  required to be monotonic.
 - Stay on the `main` branch unless the human user explicitly requests a
   different branch.
 - Commit and push changes to the remote regularly. Treat each push as the

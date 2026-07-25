@@ -1,0 +1,27 @@
+{
+  "schema": "kissing5.centered_quarter_k10_frozen_k9_support_size.v1",
+  "status": "exact support-size and minimum-work certificate; full K10 support gluing not performed and no obstruction claimed",
+  "source_k9_certificate": "experiments/centered_quarter_k6_rank/k9/direct_k9_triangle_extension.json",
+  "source_k9_sha256": "b0ead73d99ea050a002a36bfd78f549348d37d19244c147228bee26ad692b148",
+  "estimation_core": "experiments/centered_quarter_k6_rank/k10/estimate_frozen_support_core.cpp",
+  "estimation_core_sha256": "429f25da8ed861281a52c84bca56c88ed485ae22e5b52a2361d4960842addc48",
+  "exact_counts": {
+    "k9_orbits": 51,
+    "labeled_k9_support": 16057440,
+    "orbit_size_distribution": {
+      "90720": 1,
+      "181440": 12,
+      "362880": 38
+    },
+    "automorphism_size_distribution": {
+      "1": 38,
+      "2": 12,
+      "4": 1
+    },
+    "minimum_k10_color_trials": 112402080,
+    "packed_support_bytes_at_16_per_pattern": 256919040
+  },
+  "minimum_trial_derivation": "If the K9 support records are grouped by their common labeled K8 restriction with group sizes n_g, gluing uses sum_g n_g^2 ordered face pairs. Since n_g^2 >= n_g and sum_g n_g is the labeled support size, seven missing-edge colors give at least 7*16057440 trials.",
+  "decision": "Skip the full frozen-support gluing at K10. The exact lower bound already exceeds 112 million color trials; a packed implementation analogous to K9 needs a 245 MiB support array, another comparably sized overlap-record array, and a large prefix index. Resources are prioritized toward the direct exact K10 construction.",
+  "scope_warning": "This certificate does not decide whether the frozen K9 distribution extends to K10. It is neither a Farkas certificate nor a global code obstruction."
+}

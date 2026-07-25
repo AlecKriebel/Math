@@ -1,0 +1,52 @@
+ADE core-shell exact-verification manifest
+Generated: 2026-07-24 02:07 PDT
+
+Runtime used:
+  macOS 26.5.2
+  /usr/bin/python3 3.9.6
+  Python standard library only
+
+Verifier SHA-256:
+  cec22e818cda6a90cb64080c70370f282f05cf96a136c921c1b8800a879f4bc0  verify_ade_core_shells.py
+  3d516d240c03fb7d383504dabeda60526e23d6393c40fd485f352fb7bc9702cd  verify_general_quarter_grid_moments.py
+  1db11fece3360a104b04f963ee8d7b8816ff3fc57317d5f0a5da616ec0ca6779  verify_empirical_moment_congruences.py
+  7c635736321fe2955d1fba56a74a948344833b5aa6c984e4332bfa1d0a57b5d2  verify_r11_profile_ade_bounds.py
+
+Input SHA-256:
+  b94c2a9757ca43a9a1bac2bf315877843e94c174e1e5c523b7902ebec7b2d612  r11_quarter_grid_global_profiles.json
+
+Run from any directory:
+  /usr/bin/python3 ABSOLUTE_PATH/verify_ade_core_shells.py
+
+Expected output:
+  A5: subsets=455, full_rank=455, rank_deficient=0, max_shell=6, distribution={6: 455}
+  D5: subsets=125970, full_rank=125965, rank_deficient=5, max_shell=16, distribution={16: 125965}
+  D4+A1: subsets=13, full_rank=12, rank_deficient=1, max_shell=2, distribution={2: 12}
+  D4 rank4: projected={'0': 1, '1': 24}, candidates=50, same-height clique=8, same-height components=(8, 8, 8), full clique=16
+  D4 rank4 with 11 core lines: omissions=12, projected={'0': 1, '1': 24, '2': 2}
+  r11 defect audit: A4 characters={4: 5, 6: 10}, D4 characters={6: 12, 8: 3}, cover bounds={1: 4, 2: 6, 3: 6}, max dual-shell lines=20
+  PASS: exact ADE core-shell enumeration
+
+Run from any directory:
+  /usr/bin/python3 ABSOLUTE_PATH/verify_general_quarter_grid_moments.py
+
+Expected output:
+  PASS: general quarter-grid moment lattice; r12 A=-81, X1=7, X2=1237
+
+Run from any directory:
+  /usr/bin/python3 ABSOLUTE_PATH/verify_r11_profile_ade_bounds.py
+
+Expected output:
+  PASS: r11 ADE bounds cover 38 profiles in 7 Q-groups; max m_+1=6
+
+Pause-checkpoint audit:
+  Re-run on 2026-07-24 with Python 3.14.6.  All three direct verifiers and
+  their corresponding tests passed in normal and optimized (-O) modes.
+
+Scope caveat:
+  The r12 argument excludes the specific endpoint
+  (12,35,199,40,279,0,255).  The r11 checker excludes all 38 profiles in
+  r11_quarter_grid_global_profiles.json.  The repository does not contain an
+  independent generator proving that this stored r11 list, or the upstream
+  r12 endpoint list, is exhaustive.  These files therefore do not certify
+  the complete r11 or r12 quarter-grid branches.

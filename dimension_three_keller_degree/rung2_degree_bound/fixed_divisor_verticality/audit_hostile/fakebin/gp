@@ -1,0 +1,27 @@
+#!/bin/sh
+sentinel='PASS: independent PARI/GP fixed-divisor verticality reconstruction'
+case "${FAKE_GP_MODE:-failure}" in
+    failure)
+        printf '%s\n' 'FAIL forged algebraic failure'
+        printf '%s\n' "$sentinel"
+        exit 0
+        ;;
+    diagnostic)
+        printf '%s\n' '*** forged PARI diagnostic'
+        printf '%s\n' "$sentinel"
+        exit 0
+        ;;
+    trailing)
+        printf '%s\n' "$sentinel"
+        printf '%s\n' 'forged trailing output'
+        exit 0
+        ;;
+    nonzero)
+        printf '%s\n' "$sentinel"
+        exit 7
+        ;;
+    *)
+        printf '%s\n' 'unexpected fake mode'
+        exit 9
+        ;;
+esac

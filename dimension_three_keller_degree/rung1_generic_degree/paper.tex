@@ -1,0 +1,304 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.08in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={The generic-degree spectrum of Keller counterexamples in dimension three}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Frac}{\operatorname{Frac}}
+\newcommand{\Sing}{\operatorname{Sing}}
+
+\title{\bfseries The generic-degree spectrum of Keller
+counterexamples in dimension three\\[3pt]
+\large An audited, non-novel record}
+\author{Alec Kriebel, with substantial AI assistance}
+\date{Program record: 24 July 2026, 22:42:23 UTC\\
+First public release: 24 July 2026, 23:04:08 UTC}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black!45}{yellow!8}{%
+\begin{minipage}{0.90\textwidth}
+\small
+\textbf{Status, priority, and review notice.}
+The degree-two exclusion is classical: Campbell proved the complex Galois
+case in 1973, followed by characteristic-zero algebraic proofs of Razar and
+Wright.  The minimum generic degree three and the every-degree weighted-lift
+family were public before this record.  No novelty is claimed.  This note is
+not peer reviewed.  Exact computations check encoded identities only; they
+are evidence, not peer review or verification of the universal geometric
+arguments.
+\end{minipage}}
+\end{center}
+
+\begin{abstract}
+We record the exact generic-degree spectrum of Keller counterexamples
+$\A^3_\C\to\A^3_\C$.  Generic degrees one and two cannot occur, by the
+classical theorem that a Keller map with Galois function-field extension is
+an automorphism.  We also give a short independent proof of the quadratic
+case: a square-root generator would force a hypersurface into the
+codimension-two singular locus of a reduced hypersurface.  Existing explicit
+weighted-lift maps realize every generic degree at least three.  Hence the
+spectrum is exactly $\{3,4,5,\ldots\}$.  Every cubic counterexample has
+geometric monodromy $S_3$.  This note is an attributed research-program
+checkpoint, not a new result.
+\end{abstract}
+
+\section{Statement and scope}
+
+Let $k$ be a field of characteristic zero and let
+\[
+ F=(F_1,\ldots,F_n):\A^n_k\longrightarrow\A^n_k
+\]
+be polynomial with $\det JF\in k^\times$.  Put
+\[
+ A=k[F_1,\ldots,F_n]\subset B=k[x_1,\ldots,x_n],\qquad
+ K=\Frac A\subset L=\Frac B.
+\]
+The \emph{generic degree} is $[L:K]$.
+
+\begin{theorem}[Quadratic exclusion]\label{thm:quadratic}
+If $[L:K]\leq2$, then $F$ is a polynomial automorphism.  Thus a
+characteristic-zero Keller counterexample has neither generic degree one nor
+generic degree two.
+\end{theorem}
+
+\begin{theorem}[Exact complex spectrum]\label{thm:spectrum}
+The generic degrees of Keller counterexamples
+$\A^3_\C\to\A^3_\C$ are exactly
+\[
+ \{3,4,5,\ldots\}.
+\]
+Every generic-degree-three counterexample has geometric monodromy $S_3$.
+\end{theorem}
+
+These statements concern function-field degree, not total polynomial degree
+$\max_i\deg F_i$.  The latter is a separate problem.  Vistoli's theorem in
+dimension three and total degree three gives the presently certified
+total-degree floor $4$.
+
+\section{The classical Galois proof}
+
+The Keller condition makes the $F_i$ algebraically independent.  A
+polynomial relation among them, after differentiation and multiplication by
+the inverse of $JF$, would have zero gradient; in characteristic zero it is
+constant.  Thus $F$ is dominant and $L/K$ is finite and separable.
+
+Campbell--Razar--Wright prove the following dimension-free statement.
+
+\begin{theorem}[Galois case {\cite{Campbell,Razar,Wright}}]\label{thm:galois}
+If $F:\A^n_k\to\A^n_k$ is Keller in characteristic zero and $L/K$ is
+Galois, then $A=B$.
+\end{theorem}
+
+The theorem requires neither properness nor surjectivity.  A degree-one
+extension is trivially Galois, and every separable quadratic extension is
+Galois.  This proves Theorem~\ref{thm:quadratic}.
+
+\begin{remark}
+The hypothesis is that the original extension $L/K$ is Galois.  The existence
+of a Galois closure is not enough: every finite separable extension has one.
+\end{remark}
+
+\section{An independent quadratic argument}
+
+Over $\C$ the quadratic case has a short proof that exposes the codimension
+obstruction directly.
+
+\begin{proof}[Second proof of Theorem~\ref{thm:quadratic} over $\C$]
+Suppose $[L:K]=2$.  Since
+$A\simeq\C[y_1,\ldots,y_n]$ is a unique factorization domain, the nontrivial
+square class can be represented by a nonconstant squarefree $h\in A$:
+\[
+ L=K(\sqrt h).
+\]
+Set $g=\sqrt h\in L$.  It satisfies
+\[
+ g^2=h(F)\in B.
+\]
+Thus $g$ is integral over the integrally closed ring $B$, and consequently
+$g\in B$.
+
+The polynomial $g$ is nonconstant, so it has a zero.  At every $p\in V(g)$,
+\[
+ 0=d(g^2)_p=d(h\circ F)_p=(dh)_{F(p)}\circ dF_p.
+\]
+Since $dF_p$ is invertible, $dh$ vanishes at $F(p)$; also $h(F(p))=0$.
+Therefore
+\begin{equation}
+ F(V(g))\subseteq \Sing V(h).                         \label{eq:sing-image}
+\end{equation}
+The map $F$ is etale and hence quasi-finite.  Each irreducible hypersurface
+component of $V(g)$ has image closure of dimension $n-1$.  But squarefreeness
+of $h$ in characteristic zero makes $V(h)$ reduced, so it has no
+codimension-one singular component:
+\begin{equation}
+ \dim\Sing V(h)\leq n-2.                              \label{eq:sing-codim}
+\end{equation}
+Equations~\eqref{eq:sing-image} and~\eqref{eq:sing-codim} contradict each
+other.
+\end{proof}
+
+This proof does not extend formally to a prime degree $p>2$.  Such an
+extension need not be Galois and need not be generated by a $p$th root that
+integrality places in the source polynomial ring.
+
+\section{Every generic degree at least three}
+
+We record an explicit existing weighted-lift family.  Fix $d\geq3$ and put
+\[
+ u=1+xy,\qquad
+ \gamma=1-\frac d{d-1}xy+x^2z.
+\]
+Define $F_d=(A_d,B_d,C_d)$ by
+\begin{align*}
+ A_d&=\frac{(d-2)u+u^2-(d-1)u^d\gamma^{d-2}}
+              {(d-2)x^2},\\
+ B_d&=\frac{(d-2)+2u-du^{d-1}\gamma^{d-2}}
+              {(d-2)x},&
+ C_d&=x\gamma.                                       \tag{3}
+\end{align*}
+For a direct divisibility check, put $v=xy$ and $\tau=x^2z$.  Both numerators
+are polynomials in $v,\tau$; the numerator of $B_d$ has zero constant term,
+whereas that of $A_d$ has zero constant and zero $v$-linear term.  Every
+remaining monomial is divisible by $x$ and $x^2$, respectively.  Hence (3)
+defines a polynomial map over $\mathbb Q$.
+
+Set $w=u\gamma$, $P=B_dC_d$, and $Q=A_dC_d^2$.  Elimination gives
+\[
+ w^d-w^2+(d-2)Pw-(d-2)Q=0.                           \tag{4}
+\]
+After $U=(d-2)P$ and $V=-(d-2)Q$, the inverse equation becomes
+\[
+ T^d-T^2+UT+V.                                       \tag{5}
+\]
+It is irreducible over $\C(U,V)$: as an element of
+$\C[U,V,T]$ it is primitive and linear in $V$, and any factor independent of
+$V$ would have to divide its coefficient $1$.  Conversely, away from a
+proper denominator locus, a root $w$ recovers the source through
+\[
+ \gamma=P-\frac{2w-dw^{d-1}}{d-2},\quad
+ x=\frac{C_d}{\gamma},\quad u=\frac w\gamma,\quad
+ y=\frac{u-1}{x},\quad
+ z=\frac{\gamma-1+\frac d{d-1}(u-1)}{x^2}.           \tag{6}
+\]
+Thus there is no branch introduced by denominator clearing, and the generic
+degree is exactly $d$.
+
+For the Jacobian calculation, write
+\[
+ p_d(w)=\frac{2w-dw^{d-1}}{d-2},\qquad
+ q_d(w)=\frac{w^2-(d-1)w^d}{d-2}.
+\]
+The identity $q_d'(w)=wp_d'(w)$ collapses the $2\times2$ Jacobian after the
+target change
+\[
+ (A_d,B_d,C_d)\mapsto(B_dC_d,A_dC_d^2,C_d).
+\]
+Comparison with the input changes
+$(x,y,z)\mapsto(x,xy,x^2z)\mapsto(x,w,\gamma)$ gives
+\[
+ \det JF_d=1.                                        \tag{7}
+\]
+
+It remains to certify noninjectivity.  Let
+\[
+ s_d=\frac{4-2^d}{d-2}.
+\]
+Over the target $(A,B,C)=(s_d,s_d,1)$, equation (4) has the distinct roots
+$1$ and $2$.  The recovery denominators are
+\[
+ \gamma_1=\frac{d+2-2^d}{d-2}\neq0,\qquad
+ \gamma_2=2^{d-1}\neq0.
+\]
+Equations (6) therefore give two distinct rational source points with the
+same image.  So $F_d$ is a counterexample of generic degree $d$.
+Together with Theorem~\ref{thm:quadratic}, this proves
+Theorem~\ref{thm:spectrum}.
+
+\section{Monodromy}
+
+A transitive subgroup of $S_3$ is either $C_3$ or $S_3$.  If a separable
+cubic extension had geometric monodromy $C_3$, it would itself be Galois.
+Theorem~\ref{thm:galois} would then make the Keller map an automorphism.
+Hence every cubic counterexample has geometric monodromy $S_3$.
+
+More generally, a counterexample cannot have regular monodromy.  In a regular
+transitive action the point stabilizer is trivial, so the original extension
+is already Galois.
+
+\section{Verification and disclosure}
+
+The universal exclusion was checked against methodologically independent
+proofs: Campbell's complex-analytic covering/Hartogs argument, Wright's
+algebraic characteristic-zero argument, the singular-locus proof reproduced
+above, and Trushin's 2026 branch-divisor theorem.  Companion SymPy and PARI/GP
+scripts regression-test (3), (7), and the explicit collision for
+$3\leq d\leq8$.  Finite computation is not a proof for all $d$.
+
+This record was produced with substantial AI assistance in theorem search,
+proof reconstruction, adversarial checking, exact computation, writing, and
+typesetting.  It has not been peer reviewed and should not be represented as
+an independent discovery.
+
+\begin{thebibliography}{9}
+
+\bibitem{Campbell}
+L.~A. Campbell,
+\emph{A condition for a polynomial map to be invertible},
+Math. Ann. \textbf{205} (1973), 243--248.
+\href{https://doi.org/10.1007/BF01349234}{doi:10.1007/BF01349234}.\par\smallskip
+
+\bibitem{Razar}
+M. Razar,
+\emph{Polynomial maps with constant Jacobian},
+Israel J. Math. \textbf{32} (1979), 97--106.
+\href{https://doi.org/10.1007/BF02764906}{doi:10.1007/BF02764906}.\par\smallskip
+
+\bibitem{Wright}
+D. Wright,
+\emph{On the Jacobian conjecture},
+Illinois J. Math. \textbf{25} (1981), 423--440.
+\href{https://doi.org/10.1215/ijm/1256047158}{doi:10.1215/ijm/1256047158}.\par\smallskip
+
+\bibitem{Trushin}
+A. Trushin,
+\emph{Contracted divisors and Degree-Two Maps},
+\href{https://arxiv.org/abs/2605.26390}{arXiv:2605.26390} (2026).\newline
+
+\bibitem{Vistoli}
+A. Vistoli,
+\emph{The Jacobian conjecture in dimension 3 and degree 3},
+J. Pure Appl. Algebra \textbf{142} (1999), 79--89.
+\href{https://doi.org/10.1016/S0022-4049(98)00040-1}
+{doi:10.1016/S0022-4049(98)00040-1}.\par\smallskip
+
+\bibitem{Gallagher}
+A. Gallagher,
+\emph{An infinite family of counterexamples to the Jacobian Conjecture in
+dimension three: every generic fiber degree $n\geq3$ occurs},
+public construction (20 July 2026);
+\url{https://jacobianfun.org/jacobian-explained}.
+
+\end{thebibliography}
+
+\end{document}

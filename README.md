@@ -44,31 +44,49 @@ iterate. A separately published, independently audited bounded-memory
 certificate in the Discovery 04 source proves the fourth-iterate group
 `S_3 wr S_3 wr S_3 wr S_3`; this is an internal audit, not peer review.
 
-## Active computational search
+Three scoped **Hadamard-order-668 pause papers** publish exact mathematics
+from a four-day construction program: local repair obstructions around
+Eliahou's modular seed, shell descent and norm gates in one fixed-compression
+Legendre-pair chart, and semiregular cyclic conference quotients. All three
+are computer-assisted, unreviewed, and explicitly state that they neither
+construct nor exclude `H(668)`. See the
+[public research checkpoint](https://aleckriebel.github.io/Math/research/hadamard-matrix-order-668/)
+and tagged
+[reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0).
+
+## Paused H(668) research
 
 [`hadamard_668_search/`](hadamard_668_search/) is a reproducible attempt to
-construct a Hadamard matrix of order 668. No exact matrix has been found. The
-current mechanically checked progress includes the fixed-`q` obstruction,
-exhaustive variable-`q` margin decomposition, independent Legendre-pair and
-cyclic-SDS lanes, a bounded exclusion of every exact `BS(84,83)` within raw
-Hamming distance 18 of Eliahou's published seed, and a new semiregular
-`C37` conference-core lane whose 625 integral nine-orbit quotient classes
-are now classified exactly.  The latter has exact trace and moment laws and
-an explicit full
-characteristic-37 completion for every admissible first moment.  Its exact
-all-quotient characteristic-two relaxation is bounded between `2^720` and
-`2^721` modulo natural equivalences.  Explicit supports for both surviving
-parity classes now satisfy every exact block margin and all adjacency
-equations modulo two, while the best retained next-digit support still has
-672 of 1,503 independent carry coefficients wrong.  Constant generators
-through rank three and two named first-nonconstant rank-two families are
-excluded across the quotient census; the smallest exact switch families
-also fail.  This is not a classification of all formal solutions and no
-support reaches adjacency modulo four.  The current construction gate is
-therefore paused pending a genuinely new contraction or integral
-construction principle.
-A result counts only if an explicit `668 x 668` matrix passes exact full
+construct a Hadamard matrix of order 668. No exact matrix, Legendre pair of
+length 333, base sequence in `BS(84,83)`, or conference graph was found.
+The strongest final reduction is a triple pair-resultant norm key in
+`F_(167^3)^*`, but the complete remaining join still requires about
+5.092 trillion invariant evaluations and 81.5 TB under the stated naive
+layout. The headline search is paused under explicit restart criteria.
+A solution counts only if an explicit `668 x 668` matrix passes exact full
 verification.
+
+## Paused research
+
+[`kissing_number_5/`](kissing_number_5/) records an intensive attempt on the
+five-dimensional kissing-number problem. It did **not** resolve the problem or
+improve the rigorous interval
+\(40\leq\tau(5)\leq44\). The repository contains an exact checker for the
+40-point \(D_5\) construction, scoped local and finite-model results, exact
+counterexamples to several tempting proof strategies, numerical construction
+searches, and a detailed resume guide. The
+[public checkpoint](https://aleckriebel.github.io/Math/research/kissing-number-5/)
+is deliberately labeled paused and unresolved.
+
+[`erdos_084_cycle_sets/`](erdos_084_cycle_sets/) records a paused attempt on
+the lower-bound half of Erdős Problem 84. It did **not** prove
+\(f(n)/2^{n/2}\to\infty\) or improve the published asymptotic bounds. The
+dossier preserves a protected difference-support reduction, exact shadow
+counts, a short all-\(m\) twin-boundary identity, finite Hall-matching tests,
+and explicit falsifications of several proposed proof mechanisms. The
+[public checkpoint](https://aleckriebel.github.io/Math/research/erdos-problem-84/)
+separates the proved lemmas, finite evidence, conjectures, and two remaining
+global gaps.
 
 ## Archival derivations
 
@@ -92,4 +110,6 @@ verification.
   construction. It is superseded and absorbed through Discoveries 03 and 07.
 
 The archive remains public to preserve provenance rather than rewrite history.
-The only current papers are Discovery 04 and Discovery 07.
+Discovery 04 and Discovery 07 are the two current canonical discovery papers;
+the three H(668) papers are separately labeled provisional pause-checkpoint
+research.

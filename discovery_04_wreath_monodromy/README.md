@@ -17,9 +17,11 @@ orders `1296` and `13,060,694,016` in their natural imprimitive actions on
 nine and 27 sheets. The normalized map
 `((F o F)_1/4,(F o F)_2,(F o F)_3)` has Jacobian determinant one. A separate
 bounded-memory certificate in [`w4_search/RESULT.md`](w4_search/RESULT.md)
-proves `Mon(F^4)=W_4`; it is deliberately kept outside the level-three paper
-so the two upgrades can be reviewed independently. The all-level full-wreath
-assertion remains open.
+proves `Mon(F^4)=W_4`.  A second independently audited certificate in
+[`w5_search/RESULT.md`](w5_search/RESULT.md) proves `Mon(F^5)=W_5`.  Both are
+deliberately kept outside the level-three paper so the finite-level upgrades
+can be reviewed independently. The all-level full-wreath assertion remains
+open.
 
 Start with [`NOTE.md`](NOTE.md). The source-specific novelty investigation is
 in [`PRIORITY_AUDIT.md`](PRIORITY_AUDIT.md), and the chronological research
@@ -52,6 +54,7 @@ python3 verify_level3_newton.py
 python3 verify_level3_wreath.py
 python3 w4_search/test_finite_field_norm.py
 python3 w4_search/verify_w4_modular.py
+./w5_search/verify_all_strict.sh
 ```
 
 `search_wreath.py` repeats the exploratory PARI `polgalois` calculation at
