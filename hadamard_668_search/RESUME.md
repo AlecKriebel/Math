@@ -7,6 +7,12 @@ exact candidate.  Exact success means producing explicit signs and passing the
 full `668 x 668` verification path; energy zero in a search engine is not
 sufficient by itself.
 
+The headline search is paused as of 25 July 2026.  The final theory-first
+gate produced an exact three-key pair-resultant norm theorem, but every
+audited character marginal is full and a complete physical join remains
+approximately `5.092e12` evaluations with 81.5 TB of naive exact-key
+storage.  See `H668_PAUSE_DECISION_2026_07_25.md`.
+
 ## Completed restart: semiregular \(C_{37}\) conference lift
 
 A genuinely different construction principle justified a bounded restart
@@ -690,6 +696,15 @@ The strongest current construction checkpoints are:
   excludes 0 of 405 targets and leaves 1,123,966,766,238,638,605
   assignments; continue only through a new multiplicative restriction on
   `R`, not another candidate-by-candidate digit;
+- the pair-resultant norm theorem: star pairing gives three exact keys in
+  `F_(167^3)^*`, and every solution must match all three between channels.
+  Equality splits into nine character gates of orders `2`, `83`, and
+  `28,057`.  All fifteen physical seed/channel alphabets have full
+  one-coordinate images and affine-rank-three triple images.  Exact
+  `3^9 x 3^9` joins contract at the random rates, so the complete
+  margin-conditioned join remains `5,091,993,547,996` evaluations and about
+  81.5 TB of naive key storage.  This exact search architecture is
+  publication material, not an operational continuation gate;
 - the prime-167 physical-intersection refinements: the trivial zero branch is
   impossible; row-Galois and factorwise trace inversion expose fixed-origin
   and profile-support equations; inverse-DFT idempotence exactly recognizes
@@ -940,6 +955,8 @@ maximal-case and margin diagnostics sequentially:
   lp333_shell_two_primitive_units/replay_maximal_hash_filter.py
 /Users/alec/Documents/tmp/hadamard-env/bin/python \
   lp333_shell_two_primitive_units/audit_margin_t12_convolution.py
+/Users/alec/Documents/tmp/hadamard-env/bin/python \
+  lp333_shell_two_pair_resultant_norm/verify_ratio_resultant_norm.py
 ```
 
 The listing command does not override the final arithmetic certificate.
@@ -1068,13 +1085,14 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-Both bounded construction gates failed.  The current authorized restart is
-theory-first: require a new exact contraction before enlarging a family or
-running a production search.  Preserve the five-orbit, eighteen-orbit,
-physical-margin, and semiregular-conference packages for papers.  The
-remaining dense-profile lifts and the exactly counted
-`2^720`--`2^721` characteristic-two relaxation are not production-search
-targets.  A new globally coupled margin theorem, a finite rank-at-least-four
-parameterization, a direct integral construction, or a physical point
-passing exact margins and two consecutive higher digits would justify a
-larger restart.
+Both bounded construction gates and the final pair-resultant operational
+gate failed.  Headline research is paused while the exact results are
+published.  Preserve the five-orbit, eighteen-orbit, physical-margin,
+pair-resultant, and semiregular-conference packages.  The remaining
+dense-profile lifts, the `5.092e12` raw three-key join, and the exactly
+counted `2^720`--`2^721` characteristic-two relaxation are not
+production-search targets.  Resume only for an implicit character-sum
+compression of the complete three-key join, a proof-producing closure of a
+whole profile or Eliahou long case, a materially broader construction
+theorem, or an exact external-memory design that makes the full join
+bounded and reproducible.

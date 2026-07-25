@@ -848,6 +848,29 @@ ratio torus `R R*=-1`, but it does not change this candidate count.  A
 complete remaining search is therefore still unpriced until a nontrivial
 multiplicative inverse-CRT sieve is proved.
 
+The subsequent pair-resultant theorem supplies exactly such a multiplicative
+coordinate system, but not a feasible exhaustive algorithm.  Star pairing
+gives three independent keys in `F_(167^3)^*`; their abstract index is
+
+```text
+(167^3-1)^3 = 101,029,443,456,638,735,128.
+```
+
+All nine character marginals of orders `2`, `83`, and `28,057` are full on
+every required physical seed/channel alphabet, and exact `3^9 x 3^9` joins
+contract at random-model rates.  If the three keys were independent of the
+margin and `T1/T2` gates, the heuristic residual would be about `0.011`.
+That heuristic is encouraging only at the level of existence density; it
+does not price an algorithm.  A complete margin-conditioned channel pass
+still requires `5,091,993,547,996` invariant evaluations.  Storing one
+16-byte exact key per entry would require about 81.5 TB.  At one million
+evaluations per second this is roughly 59 days, while even 100 million per
+second is about 14 hours before sorting, I/O, collision resolution, or exact
+replay.  The measured high-level arithmetic rate is orders of magnitude
+lower.  The complete search is therefore operationally blocked on an
+implicit character-sum or algebraic join, not on RAM tuning or a larger raw
+slice.
+
 The completed 84-image structured closure should not be rerun or enlarged
 by cosmetic variants of the same coordinate laws.  It already costs only
 555.84 summed single-process image seconds and approximately 36.4 MB peak

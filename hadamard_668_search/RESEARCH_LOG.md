@@ -2640,3 +2640,38 @@ proof-assistant-level theorem.
 - No Legendre pair or `H(668)` was found.  Further work in this lane is
   justified only by a new multiplicative character, resultant, or
   local-coset obstruction on the ratio torus.
+
+## 25 July 2026: pair-resultant norm gate and pause decision
+
+- Put `E=F_(167^12)` and `F=F_(167^3)`.  Star-pairing the six primitive
+  coordinates gives
+  `nu_(X,r)=Norm_(E/F)(W_(X,r)W_(X,r+3))`, for `r=0,1,2`.
+  The ratio involution proves that every complementary solution must satisfy
+  `nu_(A,r)=nu_(B,r)` separately for all three values of `r`.
+- The exact abstract triple-key space has
+  `(167^3-1)^3=101,029,443,456,638,735,128` points.  Since
+  `167^3-1=2*83*28,057`, equality decomposes into nine exact character
+  gates of orders 2, 83, and 28,057.
+- Exported and independently bridged all 15 physical seed/channel
+  alphabets covering the 84 labelled shell-two images.  All nine scalar
+  character images are full and every triple image has affine rank three.
+  Complete six-factor images are full for the order-two and order-three
+  diagnostic characters.
+- Completed ten exact `19,683 x 19,683` joins on deterministic nine-trit
+  slices.  The order-two and order-83 triple equalities contract at the
+  random-model rates.  The order-28,057 triple intersection is empty on
+  each tiny slice, as its random expected count is only about
+  `1.75e-5`; this excludes no profile.
+- A complete margin-conditioned channel pass requires exactly
+  `5,091,993,547,996` invariant evaluations, including target duplication.
+  Naive 16-byte key storage would require about 81.5 TB.  The independence
+  heuristic leaves about `0.011` expected solutions after the preceding
+  margin and `T1/T2` gates, but supplies no feasible enumeration.
+- An independent algebraic red-team found no compression beyond the three
+  norm keys.  A separate 54-trit exact full-phase CP diagnostic remained
+  `UNKNOWN` after 300.024 seconds, 3,270,456 branches, and 609,889
+  conflicts; peak RSS was 236 MB.  This is not an exclusion.
+- The headline `H(668)` search was paused.  No matrix, Legendre pair,
+  base sequence, or conference graph was found.  The exact mathematics is
+  being frozen into three scoped papers and a public reproducibility page.
+  Resume only under the triggers in `H668_PAUSE_DECISION_2026_07_25.md`.

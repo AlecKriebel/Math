@@ -47,6 +47,7 @@
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local slices, corrected priority scope, and public-ID3 search consequences |
 | `H668_72H_GATE.md` | Completed construction gate, final failure evidence, stop decision, and host-resource criteria |
 | `H668_POST_GATE_DECISION_2026_07_25.md` | Post-restart gate scorecard, complete remaining-search scale, publication boundary, and strict pause/restart decision |
+| `H668_PAUSE_DECISION_2026_07_25.md` | Final pair-resultant gate, exact operational cost, three-paper publication set, and restart triggers |
 | `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed frozen dense-`h=0` compressed-profile census and canonical-gauge rank-two family, the remaining `h=1` shell, the completed nine-case Eliahou short-block exclusion, twenty open long cases, and near-Williamson order 167 |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
@@ -104,6 +105,8 @@
 | `LP333_ORDER3_PHASE_FIBER_SUPPORT.md` | Twelve-factor norm obstruction leaving only the dense and synchronized `B0`-zero primitive phase-support strata |
 | `LP333_PHASE_CONE_TRIVIAL_BRANCH_OBSTRUCTION.md` | Physical row-margin obstruction to the trivial zero cone branch and exact 1,411-pair catalog image |
 | `lp333_shell_two_primitive_units/README.md` | Complete 84-image primitive-unit theorem, global ratio-torus normalization, and exact zero-exclusion margin-`T1/T2` audit |
+| `lp333_shell_two_pair_resultant_norm/README.md` | Three exact star-pair norm keys, nine character gates, complete physical-alphabet image/rank audit, and field-bridge replay |
+| `lp333_shell_two_pair_resultant_slices/README.md` | Exact `3^9 x 3^9` character joins, random-rate contraction evidence, and complete physical-join resource accounting |
 | `LP333_ORDER3_PHASE_TRACE_SIEVE.md` | Row-Galois cone inversion, factorwise trace recovery, Parseval support cuts, and lookup-free physical decoder |
 | `LP333_ORDER3_PHASE_CYCLIC_DECODER.md` | Mod-seven 13-factor necessary sieve, local alphabets, affine factor equation, and architecture audit |
 | `LP333_ORDER3_PHASE_TRANSFER.md` | Exact trivial-character phase transfer and multiplicity-preserving equivalence with the row-sum catalog |

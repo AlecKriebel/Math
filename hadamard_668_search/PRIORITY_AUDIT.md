@@ -66,11 +66,12 @@ report:
     modulo-two supports for both parity types, and excludes every constant
     formal generator through rank three across the quotient census.
 
-These results are worth preserving as a compact internal manuscript. Nothing
-will be circulated, submitted, posted, or sent by this project. The
-radius-18 CP-SAT corpus is now secondary: its uncertified leaves no longer
-limit the stronger dependency-free adjacent-42 distance-80 theorem, though
-they remain useful historical artifacts.
+These results are worth publishing as three tightly scoped, reproducible
+preprints and a public research checkpoint.  Publication is archival and
+noninteractive: the project will not contact, message, email, or otherwise
+approach any individual.  The radius-18 CP-SAT corpus is now secondary: its
+uncertified leaves no longer limit the stronger dependency-free adjacent-42
+distance-80 theorem, though they remain useful historical artifacts.
 
 The openly available recent `LP(333)` papers and March 2026 status report
 have been inspected.  The symmetric/symmetric observation is prior; the
@@ -469,6 +470,18 @@ potentially publishable supporting lemma because it removes a genuine case
 split over a complete classified family.  It is not headline construction
 progress: the exact physical-margin plus `T1/T2` layer excludes 0 of 405
 targets and leaves about `1.124e18` assignments.
+
+The pair-resultant norm theorem is the strongest final structural refinement
+of that architecture.  Star pairs reduce the six primitive factors to three
+independent keys in `F_(167^3)^*`, and every solution must match all three
+between channels.  The key space has exact size
+`(167^3-1)^3=101,029,443,456,638,735,128`; equality is equivalent to nine
+character conditions of orders `2`, `83`, and `28,057`.  This is a clean
+theorem suitable for Paper B.  It does not justify renewed exhaustive search:
+all one-coordinate images are full, all triple images have affine rank three,
+and exact `3^9 x 3^9` joins contract at random-model rates.  The complete
+margin-conditioned channel pass remains `5,091,993,547,996` evaluations and
+about 81.5 TB of naive exact-key storage.
 
 The exact sparse-shell theorem is the strongest direct profile-space
 exclusion so far.  Opposite-quartet geometry and divisibility of every
@@ -1036,8 +1049,17 @@ quadratics.  The corrected exact ternary formulation also proves that 41
 causal equations and all 5,928 quadratic products remain.  This is a strong
 structural filter, not a long-case exclusion or evidence of convergence.
 
-Maintain two separate internal paper projects rather than forcing the
-Eliahou and Legendre-pair programs into one manuscript.
+The final pair-resultant restart also fails the operational gate.  Its
+three-key norm identity strengthens the paper, but full character marginals,
+random-rate exact slices, a `5.092e12`-evaluation complete join, and a
+300-second full-phase model ending `UNKNOWN` provide no evidence of imminent
+construction.  The headline search is therefore paused.  It should resume
+only after an implicit character-sum compression, a proof-producing closure
+of a complete profile or Eliahou long case, a materially broader construction
+theorem, or a bounded external-memory design for the full join.
+
+Maintain three separate paper projects rather than forcing the Eliahou,
+Legendre-pair, and conference-quotient programs into one manuscript.
 
 **Paper A — Eliahou repair obstructions (first publication priority).**
 Organize it around the strict distance-80 improvement over the public
@@ -1058,8 +1080,11 @@ carry/phase algebra.  Include the rank-six physical-margin digit, the exact
 four-space retraction classification, and the zero-common-radical quadratic
 margin layer as the lift-theoretic extension of the five-orbit theorem.
 Include the 84-image primitive-unit theorem and ratio-torus corollary as the
-strongest phase-level structural lemma, while reporting explicitly that
-`T1/T2` excludes no target.
+first phase-level structural lemma, followed by the three pair-resultant norm
+keys and their nine character gates.  Report explicitly that `T1/T2`
+excludes no target, every audited character marginal is full, and the
+complete join remains computationally infeasible on the present
+architecture.
 The half-turn, rank-one, canonical-gauge rank-two, and 84-image
 structured-family censuses are supporting finite-family results, with the
 action-noninvariance correction stated prominently.  Credit both the public
