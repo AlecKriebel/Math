@@ -134,6 +134,50 @@ def line_22_and_conic_checks() -> None:
     ) == 0
 
 
+def conic_degree_six_exclusion_checks() -> None:
+    a_entries = sp.symbols("a0:9")
+    A = sp.Matrix(3, 3, a_entries)
+    b_1 = sp.Matrix(sp.symbols("b10:13"))
+    b_2 = sp.Matrix(sp.symbols("b20:23"))
+    k_1 = sp.Matrix(sp.symbols("k10:13"))
+    k_2 = sp.Matrix(sp.symbols("k20:23"))
+    updated = A + b_1 * k_1.T + b_2 * k_2.T
+    rank_two_formula = (
+        A.det()
+        + (k_1.T * A.adjugate() * b_1)[0]
+        + (k_2.T * A.adjugate() * b_2)[0]
+        + (b_1.cross(b_2)).dot(A * k_1.cross(k_2))
+    )
+    assert sp.expand(updated.det() - rank_two_formula) == 0
+
+    x, y, z = sp.symbols("x y z")
+    variables = (x, y, z)
+
+    def gradient(form: sp.Expr) -> sp.Matrix:
+        return sp.Matrix([sp.diff(form, variable) for variable in variables])
+
+    def coefficient_rank(first: sp.Expr, second: sp.Expr) -> int:
+        d_vector = gradient(first).cross(gradient(second))
+        normal = sp.Matrix([second**2, -2 * first * second, first**2])
+        equation = sp.Poly(
+            sp.expand((normal.T * A * d_vector)[0]), *variables
+        )
+        matrix, _ = sp.linear_eq_to_matrix(equation.coeffs(), a_entries)
+        return matrix.rank()
+
+    # One exact representative of each self-adjoint Jordan type.
+    cases = (
+        (y**2 + 2 * z**2, x**2 + y**2 + z**2),
+        (y**2 + z**2, 2 * x * y + z**2),
+        (2 * y * z, 2 * x * z + y**2),
+    )
+    assert [coefficient_rank(p_form, q_form) for p_form, q_form in cases] == [
+        9,
+        9,
+        9,
+    ]
+
+
 def sharpness_and_gcd_checks() -> None:
     x, y, z = sp.symbols("x y z")
     p = x**2
@@ -176,6 +220,7 @@ def quadratic_coordinate_check() -> None:
 if __name__ == "__main__":
     line_14_determinant_checks()
     line_22_and_conic_checks()
+    conic_degree_six_exclusion_checks()
     sharpness_and_gcd_checks()
     quadratic_coordinate_check()
     print("PASS: exact quartic leading-stratum regressions")

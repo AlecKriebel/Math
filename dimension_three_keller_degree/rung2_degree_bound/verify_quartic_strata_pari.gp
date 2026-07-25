@@ -10,6 +10,47 @@ asserttrue(x, label) =
   if (!x, error(Str("FAIL: ", label)));
 };
 
+cross3(u, v) =
+{
+  return([u[2]*v[3]-u[3]*v[2],
+          u[3]*v[1]-u[1]*v[3],
+          u[1]*v[2]-u[2]*v[1]]~);
+};
+
+coeff3(pol, i, j, k) =
+{
+  return(polcoef(polcoef(polcoef(pol,k,z),j,y),i,x));
+};
+
+conicrank(pform, qform) =
+{
+  my(pgrad, qgrad, dgrad, normal, products, monoms, index, coeffmat);
+  pgrad = [deriv(pform,x),deriv(pform,y),deriv(pform,z)]~;
+  qgrad = [deriv(qform,x),deriv(qform,y),deriv(qform,z)]~;
+  dgrad = cross3(pgrad,qgrad);
+  normal = [qform^2,-2*pform*qform,pform^2]~;
+  products = vector(9);
+  index = 0;
+  for (i=1,3,
+    for (j=1,3,
+      index++;
+      products[index] = normal[i]*dgrad[j];
+    );
+  );
+  monoms = List();
+  for (i=0,6,
+    for (j=0,6-i,
+      for (k=0,6-i-j,
+        listput(monoms,[i,j,k]);
+      );
+    );
+  );
+  coeffmat = matrix(#monoms,9,row,column,
+    coeff3(products[column],
+           monoms[row][1],monoms[row][2],monoms[row][3]));
+  return(matrank(coeffmat));
+};
+
 main() =
 {
   lm =
@@ -98,6 +139,28 @@ main() =
   expected7 = 2*dv~*(gradndoth-2*thetav*gradtheta);
   assertzero(polcoef(conicdet,7,scale)-expected7,
              "conic full degree 7");
+
+  ag =
+  [ag11,ag12,ag13;
+   ag21,ag22,ag23;
+   ag31,ag32,ag33];
+  bg1 = [bg11,bg12,bg13]~;
+  bg2 = [bg21,bg22,bg23]~;
+  kg1 = [kg11,kg12,kg13]~;
+  kg2 = [kg21,kg22,kg23]~;
+  updated = ag+bg1*kg1~+bg2*kg2~;
+  ranktwo = matdet(ag)
+            +kg1~*matadjoint(ag)*bg1
+            +kg2~*matadjoint(ag)*bg2
+            +cross3(bg1,bg2)~*ag*cross3(kg1,kg2);
+  assertzero(matdet(updated)-ranktwo, "rank-two determinant formula");
+
+  asserttrue(conicrank(y^2+2*z^2,x^2+y^2+z^2)==9,
+             "conic degree 6, three eigenvalues");
+  asserttrue(conicrank(y^2+z^2,2*x*y+z^2)==9,
+             "conic degree 6, two-by-two block");
+  asserttrue(conicrank(2*y*z,2*x*z+y^2)==9,
+             "conic degree 6, three-by-three block");
 
   p0 = x^2;
   q0 = y*z;

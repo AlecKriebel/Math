@@ -49,9 +49,12 @@ The second pair independently checks:
    \(\operatorname{adj}(JH_4)=2Dn^T\);
 4. the full conic degree-seven determinant identity and the tangent and
    square syzygies used in the conic normal form;
-5. exact double-line sharpness examples;
-6. a concrete gcd-one ramification triple; and
-7. the constant Jacobian of the quadratic coordinate change.
+5. the rank-two determinant formula with arbitrary, possibly singular,
+   constant part and the rank-nine degree-six systems for all three conic
+   pencil Jordan types;
+6. exact double-line sharpness examples;
+7. a concrete gcd-one ramification triple; and
+8. the constant Jacobian of the quadratic coordinate change.
 
 ## Independent mathematical audits
 
@@ -142,6 +145,13 @@ double-line fibre; the conic-pencil determinant classification now covers
 that case.  Finally, the audit observed that the first harness version checked
 only the conic syzygies, not the entire degree-seven determinant coefficient.
 The full generic coefficient is now encoded in both exact scripts.
+
+A separate adversarial audit reconstructed the conic degree-six exclusion
+from scratch.  It checked the complete self-adjoint Jordan classification,
+the three spaces \(W=\{\operatorname{Jac}(p,q,h):h\text{ linear}\}\), and
+the syzygy orientation.  Direct coefficient solving gives rank nine in the
+nine entries of the residual constant matrix for each canonical pencil,
+which both exact scripts retain as a regression.
 
 ## Scope
 

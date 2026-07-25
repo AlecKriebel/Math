@@ -241,3 +241,13 @@ No checked source contains the exact four rational-image quartic statements.
 They remain unreviewed working theorems, not public priority claims.  The
 certified universal lower bound remains the prior value \(4\), and no
 degree-four exclusion has been proved.
+
+### 2026-07-25T00:26Z — conic-stratum collision check
+
+The same-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, and
+X/Twitter sweep was re-audited against the stronger conclusion obtained from
+the degree-six identity.  No checked item states an exclusion of the
+no-double-line conic-image \((2,2)\) quartic stratum.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The result remains an unreviewed working theorem and does not
+exclude all total-degree-four Keller maps.

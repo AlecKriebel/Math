@@ -1,8 +1,8 @@
 # Working theorem: the conic-image \((2,2)\) stratum
 
-**Status:** proved by two independent derivations of the determinant and
-syzygy steps.  This is not peer reviewed.  The source-specific priority
-search is not a guarantee of worldwide priority.
+**Status:** proved and independently adversarially audited, including the
+full degree-six exclusion.  This is not peer reviewed.  The source-specific
+priority search is not a guarantee of worldwide priority.
 
 **Recorded:** 2026-07-24T23:59:52Z.
 
@@ -25,9 +25,11 @@ n=(q^2,-2pq,p^2)^T.
 
 ### Theorem
 
-If the pencil \(\langle p,q\rangle\) has no double-line member, then there
-are linear forms \(\ell,m\) and a constant \(3\times2\) matrix \(M\) such
-that
+There is no such Keller map if the pencil \(\langle p,q\rangle\) has no
+double-line member.
+
+More precisely, the degree-eight and degree-seven identities first force
+linear forms \(\ell,m\) and a constant \(3\times2\) matrix \(M\) such that
 \[
 \boxed{
 H_4+H_3+H_2
@@ -36,6 +38,7 @@ H_4+H_3+H_2
 }
 \tag{3}
 \]
+The degree-six identity then contradicts the Keller condition.
 
 If the pencil has a unique double-line member \(L^2\), the degree-eight
 identity instead permits the exact normal components
@@ -47,8 +50,8 @@ n\cdot H_3
 \]
 where \(\Phi_k\) is a binary form of degree \(k\).
 
-The theorem is a normal-form constraint for this leading stratum.  It does
-not yet prove that every map in (3) is an automorphism.
+Thus a conic-image \((2,2)\) leading part compatible with a quartic Keller
+map must lie in the unique-double-line exceptional locus.
 
 ## 2. Primitive-fibre and homogeneous first-integral lemmas
 
@@ -226,7 +229,125 @@ H_2=\operatorname{Ver}(\ell,m)+M(p,q).
 \]
 Combining (1), (8), and (11) proves (3).
 
-## 5. Sharpness of the degree-eight exception
+## 5. Degree six excludes the normal form
+
+Let \(R\) be the \(2\times3\) matrix whose rows are \(d\ell\) and \(dm\),
+put
+\[
+P=p+\ell,\qquad Q=q+m,\qquad A=L_0-MR,
+\]
+and define
+\[
+\Phi(s,t)=\operatorname{Ver}(s,t)+M(s,t).
+\]
+The normal form (3) rewrites the entire map exactly as
+\[
+F=AX+\Phi(P,Q).
+\tag{12}
+\]
+
+Set
+\[
+b_1=\Phi_s(P,Q),\quad b_2=\Phi_t(P,Q),\qquad
+k_1=\nabla P,\quad k_2=\nabla Q.
+\]
+Then
+\[
+JF=A+b_1k_1^T+b_2k_2^T.
+\]
+Multilinearity of the determinant, or rank-two Cauchy--Binet, gives for
+every constant \(A\), without any invertibility hypothesis,
+\[
+\begin{aligned}
+\det JF={}&\det A
++k_1^T\operatorname{adj}(A)b_1
++k_2^T\operatorname{adj}(A)b_2\\
+&+\bigl(b_1\times b_2\bigr)\cdot
+A\bigl(k_1\times k_2\bigr).
+\end{aligned}
+\tag{13}
+\]
+The two adjugate terms have degree at most three.  The degree-two part of
+\(k_1\times k_2\) is \(D=\nabla p\times\nabla q\), while the degree-four
+part of \(b_1\times b_2\) is \(2n\).  Hence the degree-six Keller identity
+is
+\[
+n^TAD=0.
+\tag{14}
+\]
+
+For the rows of \(A\), choose linear forms \(h_i\) with
+\(\nabla h_i^T\) equal to row \(i\), and write
+\[
+\delta(h)=D\cdot\nabla h,\qquad
+f_i=\delta(h_i),\qquad
+W=\delta\bigl((\mathbb C^3)^*\bigr),\qquad
+U=\langle p,q\rangle.
+\]
+Equation (14) is
+\[
+q^2f_1-2pqf_2+p^2f_3=0.
+\tag{15}
+\]
+Since \(p,q\) are coprime and all \(f_i\) are quadratic, the syzygies of
+\((q^2,-2pq,p^2)\) give constants \(c,d\) such that
+\[
+f_1=cp,\qquad
+f_2=\frac{cq+dp}{2},\qquad
+f_3=dq.
+\tag{16}
+\]
+If \(\delta\) is injective, (16) has only two possibilities: either
+\(A=0\), or \(U\subseteq W\).
+
+It remains to check that the second possibility never occurs.  Section 2
+provides a nonsingular pencil member; call it \(q\).  The operator
+\[
+T=q^{-1}p
+\]
+is self-adjoint for the nondegenerate symmetric form \(q\).  A repeated
+diagonal eigenspace, or a size-two plus size-one decomposition with one
+eigenvalue, makes \(p-\lambda q\) rank one; the scalar case makes \(p,q\)
+proportional.  Thus the absence of a double line leaves exactly three
+self-adjoint Jordan types.  Standard Jordan-chain normalization over
+\(\mathbb C\), together with a pencil change, gives:
+
+1. Three distinct eigenvalues:
+   \[
+   q=X^2+Y^2+Z^2,\qquad
+   p=aX^2+bY^2+cZ^2,\qquad a,b,c\ \text{distinct}.
+   \]
+   Here
+   \[
+   W=\langle YZ,XZ,XY\rangle,\qquad W\cap U=0.
+   \]
+2. One size-two block and one distinct eigenvalue:
+   \[
+   q=2XY+Z^2,\qquad p=Y^2+Z^2.
+   \]
+   Here
+   \[
+   D=4\bigl(Z(Y-X),YZ,-Y^2\bigr),\qquad
+   W=\langle XZ,YZ,Y^2\rangle,\qquad W\cap U=0.
+   \]
+3. One size-three block:
+   \[
+   q=2XZ+Y^2,\qquad p=2YZ.
+   \]
+   Here
+   \[
+   D=4\bigl(XZ-Y^2,YZ,-Z^2\bigr),\qquad
+   W=\langle XZ-Y^2,YZ,Z^2\rangle,\qquad
+   W\cap U=\langle p\rangle.
+   \]
+
+In every case the three components of \(D\) are linearly independent, so
+\(\delta\) is injective, while \(U\nsubseteq W\).  Equations (15)--(16)
+therefore force \(A=0\).  But then (12) factors through the two functions
+\((P,Q)\), so \(JF\) has rank at most two everywhere, contradicting the
+Keller condition.  This proves the no-double-line exclusion.
+
+## 6. Sharpness of the degree-eight exception
 
 Take
 \[

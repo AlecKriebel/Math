@@ -267,3 +267,41 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The highest-information experiment is to classify the common factor of the
   three binary ramification minors in type \((1,4)\), while independently
   expanding the lower identities of the conic normal form.
+
+## 2026-07-25T00:26:09Z — No-double-line conic stratum excluded
+
+- The conic \((2,2)\) normal form was pushed through the next Keller
+  coefficient.  Writing
+  \[
+  F=AX+\Phi(P,Q),\qquad
+  \Phi(s,t)=\operatorname{Ver}(s,t)+M(s,t),
+  \]
+  the rank-two determinant formula shows that degree six is exactly
+  \[
+  (q^2,-2pq,p^2)A(\nabla p\times\nabla q)=0.
+  \]
+- The syzygies of \((q^2,-2pq,p^2)\) reduce this to a statement about
+  \[
+  W=\{\operatorname{Jac}(p,q,h):h\text{ linear}\}
+  \quad\text{and}\quad U=\langle p,q\rangle.
+  \]
+  Either the residual constant matrix \(A\) vanishes, or \(U\subseteq W\).
+- A nonsingular member identifies the pencil with a self-adjoint
+  three-dimensional operator.  Absence of a double line leaves exactly
+  three Jordan types: three distinct eigenvalues, a \(2+1\) type with
+  distinct eigenvalues, or one size-three block.  In the three canonical
+  forms,
+  \[
+  W\cap U=0,\quad 0,\quad\langle p\rangle,
+  \]
+  respectively, and the derivation on linear forms is injective.  Hence
+  \(A=0\), which makes \(JF\) have rank at most two, a contradiction.
+- Therefore **no** quartic Keller map, automorphism or counterexample, has a
+  conic-image \((2,2)\) leading part whose quadratic pencil has no
+  double-line member.
+- An adversarial agent independently reconstructed the rank-two determinant,
+  Jordan classification, intersections, and row/column orientations.
+  SymPy and PARI/GP also check the generic determinant formula and rank-nine
+  coefficient systems for all three canonical types.
+- Scope remains exact: the unique-double-line conic locus is not excluded.
+  The universal degree floor remains \(4\).
