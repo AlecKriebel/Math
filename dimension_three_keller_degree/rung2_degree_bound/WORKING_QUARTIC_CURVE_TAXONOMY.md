@@ -314,9 +314,11 @@ The fixed-divisor coverage is now more precise.
   The audited lower-identity package
   `fixed_divisor_e2_quadratic_pencils/NOTE.md` excludes the mixed cubic
   companion \(R=xq\) for both canonical pencils.  Only the triple
-  companion \(R=xp=x^3\) remains in this \(e=2\) row.  The rank-two
-  triple calculation is provisionally closed and under hostile audit; the
-  rank-one triple calculation remains active.
+  companion \(R=xp=x^3\) remains in this \(e=2\) row.
+  `fixed_divisor_e2_quadratic_pencils/ranktwo_triple/NOTE.md` now
+  excludes that orbit for \(\langle x^2,yz\rangle\), after independent
+  hostile audit and repair of three rank drops.  The rank-one triple for
+  \(\langle x^2,y^2+xz\rangle\) is the sole active lower frontier.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

@@ -1034,3 +1034,22 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   the separate fixed-divisor \(e=2\) triple problem.  The genuine
   rank-one frontier is now only unmarked \(c^2=9\) and the unmarked
   companion at infinity.  The universal total-degree floor remains \(4\).
+
+## 2026-07-25T09:46:39Z — Fixed-divisor rank-two triple orbit excluded
+
+- For the separate fixed-divisor \(e=2\) leading form
+  \(H_4=(x^4,x^2yz,0)\), the triple companion
+  \((H_3)_3=x^3\) is incompatible with the Keller condition.
+- The corrected branch proof covers the two \(K\ne0\) resonances,
+  \(K=0,A\ne0\), the nonzero-\((w_1,w_2)\) tail charts, and the
+  full terminal chart.  Every leaf gives either a literal fourth-power
+  contradiction or \(\det L=0\).
+- Hostile audit found three parameter-dependent pivots that had been
+  specialized illegally.  Fresh calculations repaired all three; the
+  primary SymPy and independent PARI/GP certificates now pass, together
+  with optimized-mode and fault-injection guards.
+- Combined with the audited mixed-companion theorem, this closes every
+  cubic companion orbit for the rank-two pencil
+  \(\langle x^2,yz\rangle\).  The rank-one triple is the sole remaining
+  fixed-divisor \(e=2\) orbit.  The universal total-degree floor remains
+  \(4\).

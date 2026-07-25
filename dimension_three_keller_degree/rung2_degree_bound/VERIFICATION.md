@@ -907,6 +907,31 @@ replaying the SymPy row reductions.  Both backends have targeted
 fail-closed tests.  This theorem concerns only the genuine marked
 \(e=0\) orbit, not either fixed-divisor \(e=2\) triple companion.
 
+### Fixed-divisor \(e=2\) rank-two triple companion
+
+At 2026-07-25T09:46:39Z the corrected primary certificate and hostile
+reconstruction passed:
+
+```text
+cd fixed_divisor_e2_quadratic_pencils/ranktwo_triple
+/usr/bin/python3 -u verify_ranktwo_triple_sympy.py
+cd audit_hostile
+./verify_ranktwo_triple_pari_strict.sh
+./test_fail_closed.sh
+```
+
+For \(H_4=(x^4,x^2yz,0)\) and \(R=x^3\), the raw \(E_7\)
+system has rank \(8\), five legal gauges, and a thirteen-parameter
+normal complement.  Exact \(E_6\) and lower identities exhaust the
+\(K\ne0\), resonant, \(K=0,A\ne0\), nonzero-tail, and terminal
+charts.
+
+Hostile review caught three invalid specializations of generic pivots.
+The repaired proof rebuilds each leaf before solving; the independent
+PARI/GP audit confirms all pivots, squares, fourth-power contradictions,
+and determinant identities.  The result is scoped only to the rank-two
+fixed-divisor triple orbit.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

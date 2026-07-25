@@ -94,3 +94,21 @@ syzygies directly at \(w_4=C\), obtaining \(2C^4\) and \(-6C^4\).
 Strict-runner and arithmetic-corruption/missing-attestation injections pass.
 The mixed-companion theorem is promoted to audited.  Its scope is exactly
 the two \(e=2\) forms with \(R=xq\).
+
+## 2026-07-25T09:46:39Z — rank-two triple companion audited
+
+- Hostile PARI/GP reconstruction confirmed the raw rank-eight
+  \(E_7\) system, five legal gauges, thirteen normal directions, the
+  constant-pivot \(E_6\) split, and every lower branch.
+- The audit found three unsafe specializations in the provisional proof:
+  the aligned \(9A=2K\) zero-end resonance, the
+  \(r=0,B_3=0\) tail chart, and the terminal \(B_1=0\) rank drop.
+- Each was rebuilt before solving.  The repairs respectively close by
+  two squares plus a \(2\times2\) minor, a fresh
+  \([y^4]E_4=4s^4/27\) contradiction, and a global \(E_5\) product
+  split followed by fresh \(E_4\) rows.
+- Corrected SymPy, independent PARI/GP, optimized-mode rejection, and
+  fail-closed injections all pass.  Verdict: PASS.
+- The rank-two canonical pencil is now completely excluded for both
+  cubic companion orbits.  The rank-one triple companion is the sole
+  remaining fixed-divisor \(e=2\) lower frontier.

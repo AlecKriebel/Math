@@ -722,3 +722,21 @@ reconstruction now pass, including targeted fault injection.  This is
 source-specific negative evidence only, not a guarantee of worldwide
 priority.  The theorem remains unreviewed and does not raise the
 universal certified floor above \(4\).
+
+### 2026-07-25T09:46Z — fixed-divisor rank-two triple audit delta
+
+The current-day source sweep was compared with the separate all-vertical
+shape
+\[
+H_4=(x^4,x^2yz,0),\qquad (H_3)_3=x^3.
+\]
+No checked arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+Gallagher, or publicly indexed X/Twitter source states its exact
+\(K=9A-12w_4\) branch tree or the three specialization-safe repairs
+recorded in the dedicated audit.
+
+An independent hostile PARI/GP reconstruction now passes after finding
+and repairing three gaps in the provisional proof.  This is
+source-specific negative evidence, not a guarantee of worldwide
+priority.  The theorem remains unreviewed and does not raise the
+universal certified floor above \(4\).
