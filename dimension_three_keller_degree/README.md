@@ -33,6 +33,10 @@ The first audited quartic working lemmas now constrain:
   exception;
 - conic-image \((2,2)\) leading maps: the entire genuine/minimal stratum is
   excluded, including the unique-double-line exceptional branch; and
+- the conic double-cover row
+  \(H_4=(x^4,x^2y^2,y^4)\): its three cubic-tangent zero patterns and
+  every lower specialization either reduce to a plane automorphism or
+  force a singular linear part; and
 - birationally parametrized rational-quartic leading curves, whose
   basepoint-free parametrization must have a nonconstant normal-minor
   ramification divisor;
@@ -64,12 +68,12 @@ hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
-\((2,2)\) stratum, the conic double-cover locus, ramified birational quartic
-parametrizations, the binary fixed-cubic line locus
+\((2,2)\) stratum, ramified birational quartic parametrizations, the binary
+fixed-cubic line locus
 \(h\in\mathbb C[p,q]\), and the other leading maps with a fixed divisor.
-The nodal-cubic, cuspidal-cubic, and fixed-divisor conic rows are closed.
-In the rank-one stratum, fixed-component projected cubic pencils and a
-binary common-ramification locus remain.  The universal certified floor
-remains \(4\).
+The nodal-cubic, cuspidal-cubic, fixed-divisor conic, and conic
+double-cover rows are closed.  In the rank-one stratum, fixed-component
+projected cubic pencils and a binary common-ramification locus remain.  The
+universal certified floor remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

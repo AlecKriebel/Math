@@ -442,3 +442,21 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem is unreviewed, leaves the binary locus
 \(h\in\mathbb C[p,q]\) open, and does not raise the certified universal
 total-degree floor above \(4\).
+
+### 2026-07-25T05:13Z — conic double-cover overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“conic double cover”, “leading homogeneous part”, and the exhaustive normal
+form \((x^4,x^2y^2,y^4)\).  Separate searches covered arXiv, MathOverflow,
+Tao's blog, Secret Blogging Seminar, and read-only X/Twitter results.
+
+The checked results concerned the announced counterexample, unrelated
+double covers and conics, or classical plane questions.  None states the
+rank-\(16\) ramified conic normal, its three stabilizer zero patterns, the
+five-modulus \(PM=0\) lower slice, or an exclusion of the complete
+conic-double-cover taxonomy row.  Exact searches for the displayed leading
+form found no checked Keller-map overlap.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem is unreviewed and does not raise the
+certified universal total-degree floor above \(4\).

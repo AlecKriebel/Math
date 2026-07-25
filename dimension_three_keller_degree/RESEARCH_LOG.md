@@ -678,3 +678,30 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   is not a guarantee of worldwide priority.  The binary locus
   \(h\in\mathbb C[p,q]\) remains active, and the universal certified floor
   remains total degree \(4\).
+
+## 2026-07-25T05:19:48Z — Conic double-cover row excluded
+
+- Every degree-two normalization map in the row
+  \((e,a,b,\delta,\nu)=(0,1,4,2,2)\) is left-right equivalent to the
+  squaring map, giving the exhaustive leading form
+  \[
+  H_4=(x^4,x^2y^2,y^4)^T.
+  \]
+- The degree-eight operator has rank \(16\) and a complete
+  \(14\)-parameter cubic kernel.  Degree seven has constant rank \(9\),
+  with exactly two endpoint compatibilities.  The stabilizer reduces their
+  tangent parameters to the zero, two-nonzero, and one-nonzero patterns.
+- In the two-nonzero pattern, a constant rank-\(6\) degree-six solve and
+  division-free affine gauge give one canonical family; degree five kills
+  the first two columns of \(L_0\).  In the one-nonzero pattern, the
+  complete affine slice has five moduli with the exact equation \(PM=0\).
+  The \(P\ne0\) branch loses its second column, while \(P=0\) loses its
+  first column.  The zero pattern is a plane degree-at-most-four
+  automorphism plus a shear.
+- Exact SymPy and independent PARI/GP regressions pass.  A hostile audit
+  reconstructed the normalization, stabilizer, raw ranks, all gauges and
+  converses, every specialization endpoint, and the plane input.  It found
+  no omitted branch or false-hypothesis inheritance.
+- The source-specific priority sweep found no exact checked overlap.  This
+  is not a guarantee of worldwide priority.  The universal certified
+  total-degree floor remains \(4\).

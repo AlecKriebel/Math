@@ -448,6 +448,38 @@ H_4=h(p,q,r)(p,q,0)^T,\qquad h\notin\mathbb C[p,q].
 \]
 The binary cubic fixed-divisor locus remains.
 
+### Conic double cover
+
+At 2026-07-25T05:19:48Z both exact implementations passed:
+
+```text
+/usr/bin/python3 verify_conic_double_cover_exit_sympy.py
+./audit_conic_double_cover_hostile/audit_conic_double_cover_pari_strict.sh
+```
+
+The SymPy regression starts with all \(30\) cubic, \(18\) quadratic, and
+\(9\) linear coefficients.  It reconstructs the rank-\(16\) degree-eight
+kernel, rank-\(9\) degree-seven solve, both constant rank-\(6\)
+degree-six systems, every affine gauge, the full \(PM=0\) slice, and the
+degree-five/degree-four exits.  A `__debug__` guard prevents optimized
+Python from disabling its assertions.
+
+The hostile audit independently reconstructed the degree-two-cover
+normalization, stabilizer quotient, ranks, kernels, gauge converses, and
+every zero/nonzero specialization.  Its PARI/GP implementation reproduces
+the decisive identities from raw Jacobian determinants; the strict wrapper
+rejects diagnostics, trailing output, and nonzero status.  The audit found
+the strengthening
+\[
+P=0\Longrightarrow
+E_5=-4\ell_{31}x^4y+8\ell_{21}x^2y^3-4\ell_{11}y^5,
+\]
+so that branch directly forces a zero first column of \(L_0\).  No omitted
+branch or failing equation was found.  This excludes the complete row
+\[
+(e,a,b,\delta,\nu)=(0,1,4,2,2).
+\]
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

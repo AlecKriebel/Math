@@ -200,7 +200,12 @@ the present \((a,b,\delta,\nu)=(1,4,2,2)\) row, with canonical leading form
 \[
 \operatorname{Ver}(p^2,q^2)=(p^4,p^2q^2,q^4).
 \]
-That conic-double-cover stratum is not excluded.
+That conic-double-cover stratum was the remaining branch at the raw
+taxonomy checkpoint.  The audited theorem
+`WORKING_CONIC_DOUBLE_COVER_EXIT.md` now excludes it:
+the degree-eight and degree-seven kernels split into three stabilizer
+zero-patterns, and every lower branch either reduces to a plane
+degree-at-most-four automorphism or forces \(\det L_0=0\).
 
 The fixed-divisor coverage is now more precise.
 
