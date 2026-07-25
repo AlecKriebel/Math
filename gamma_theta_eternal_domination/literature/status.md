@@ -189,8 +189,17 @@ Two additional useful results are:
 - every plane graph all of whose faces have size at least 12 is
   maximum-demand (Kimura--Matsumoto--Sato 2026, Theorem 1.2).
 
-Together with the independently proved equality collapse, the latter gives
-the minimum counterexample parameter `k>=3`.
+Goddard--Hedetniemi--Hedetniemi (2005, Theorem 3, attributing the result to
+Burger et al.) also record the exact one-guard values
+`gamma-infinity(C_n)=(n+1)/2` and
+`gamma-infinity(complement(C_n))=3` for odd `n`.  In particular,
+`gamma-infinity(C_7)=4`; this classical value is now used in the structural
+lane to eliminate an induced `complement(C_7)` in the complement of any
+parameter-three counterexample.
+
+Together with the independently proved equality collapse, the
+`alpha=gamma-infinity=2` item gives the minimum counterexample parameter
+`k>=3`.
 
 ## 6. Related constructions and near misses
 

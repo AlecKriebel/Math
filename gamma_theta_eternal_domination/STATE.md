@@ -1,5 +1,100 @@
 # Campaign State
 
+## Checkpoint 002 — 2026-07-25 14:56 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `68e1c1fe7b4e339fea6199af165b3ba3a2ec3f81`.
+- Shared-main HEAD observed at checkpoint creation:
+  `edd7d9c693c8bc7cd3470eb2860f32c8455f6f10`.
+- Completion estimate for the campaign work plan: **21%**.
+- Completion estimate toward an actual universal resolution: **4%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25, refreshed for the classical one-guard
+  odd-cycle theorem.
+
+### Verified facts and artifacts
+
+- The complete connected-unlabeled order-9 validation gate is finished:
+  261,080 graphs across all eight nauty residues.  Evaluators A and B agree
+  on every parameter and greatest eternal family at every guard count.
+  No graph has `gamma-infinity < theta`.
+- The aggregate reproduces the published order-9 table exactly:
+  `gamma=alpha` for 4,515 graphs and
+  `gamma=gamma-infinity=theta` for 2,265 graphs.  Shard, graph-stream, and
+  ordered shard-set hashes are in
+  `results/logs/unlabeled-n09-all.json`.
+- The exact 110,537-origin one-vertex-extension engine passed 16 focused
+  tests and the complete 77-test campaign suite.  Its hostile review accepts
+  the exact source hash with no open critical, high, or medium issue.
+- The accepted structural lane proves that an induced odd wheel in the
+  complement obstructs `gamma-infinity=3` and gives an exhaustive order-12
+  SPGT template split.
+- A stronger three-branch split is now proved in
+  `math/lemmas/k3_antihole_elimination.md`: the classical
+  `gamma-infinity(C7)=4` removes the induced `complement(C7)` branch.  It
+  remains unpromoted pending its independent hostile audit.
+
+### Literature and restriction status
+
+- No universal proof or certified counterexample was located through
+  2026-07-25.
+- Goddard--Hedetniemi--Hedetniemi (2005, Theorem 3, attributing Burger et
+  al.) verifies the exact one-guard odd-cycle and odd-antihole values; its
+  author-hosted PDF and hash are archived.
+- The planar, subcubic, and triangle-free restrictions retain their prior
+  status.  The unavailable 2018 `C4`-free manuscript remains provisional and
+  is not a hard search filter.
+- No all-guards, eviction, occupied-attack, or other variant result has been
+  imported into the one-guard campaign.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | Current refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain source gaps |
+| Exact evaluators/certificates | validation-complete | A/B, coloring trace, MMV catalog, and connected order-9 gates accepted |
+| Required reductions | complete | All core reductions hostile-reviewed |
+| MMV near-miss extensions | active-launch | Search engine accepted; independent post-run checker is in final integration before production launch |
+| Direct synthesis `(12,3)` | pending-next | Opens after the near-miss kill test; three-template reduction awaits hostile audit |
+| Structural `k=3` lane | active | Odd-wheel theorem accepted; odd-antihole elimination under review |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- All order-9 workers completed cleanly; there is no residual regression
+  process.
+- No extension or synthesis process was running at checkpoint creation.
+- The independent extension coverage checker is being integrated and tested.
+  The production extension database does not yet exist.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- The order-9 gate used at most two CPU cores and about 56 MiB aggregate
+  resident memory; the largest per-worker resident set was 28,033,024 bytes.
+- Free disk is approximately 9.9 GiB.
+- The extension launch remains one process with a 1 GiB advisory memory gate,
+  45-minute resumable wall gate, and transactional batches of 256 origins.
+
+### Next three highest-value actions
+
+1. Finish the standalone post-run reconstruction/isomorphism/evaluation
+   checker, then launch the full 110,537-origin near-miss extension search.
+2. Independently audit the `C7`/odd-antihole elimination and, if accepted,
+   replace the four-branch order-12 split by hub-free `C5`, `C7`, and `C9`.
+3. Audit the extension result and begin direct `(n,k)=(12,3)` synthesis using
+   the proved complement dictionary and template restrictions.
+
+### Claim boundary
+
+No checkpoint-002 result resolves the conjecture.  The connected order-9
+enumeration is a validation result below the published order-11 frontier.
+The extension search has not yet run, and the stronger three-template
+reduction is not yet hostile-reviewed.
+
 ## Checkpoint 001 — 2026-07-25 14:28 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.

@@ -17,6 +17,7 @@ PDF text.
 | `taletskii2024.tar.gz` | Current arXiv source package for 2412.20120 | `b9dc839fc015fcd806a71b60d9488de1672609d1c822ca3ad5e2f4e65dde57c6` |
 | `taletskii2024_src/GammaThetav2.tex` | Extracted primary TeX used to check the planar theorem and the `C4`-free citation status | `d9ecc1529c91f3857136e8709a7233a02f08f9a528a783744ed419db3870fdc1` |
 | `kimura2026.pdf` | Open-access Discrete Mathematics Letters article, DOI 10.47443/dml.2025.208 | `fc1c83b913c8b84349ace44427381e01a990f3191b09c5a3bfb394692d71c610` |
+| `goddard_hedetniemi_2005.pdf` | Author-hosted copy of Goddard--Hedetniemi--Hedetniemi, JCMCC 52 (2005), used to verify the one-guard odd-cycle formula | `46cf4f4516105514ddc362b77c3401f468b27505a7165aec0280e0983183ff7c` |
 
 The extracted source directories are retained beside their archives. The
 arXiv MMV package contains only `EternalDomination.tex` and

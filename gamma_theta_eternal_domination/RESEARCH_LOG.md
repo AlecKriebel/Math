@@ -96,3 +96,47 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Began the final evaluator-validation item: eight resumable residue shards
   covering all 261,080 connected unlabeled order-9 graphs, with two workers
   and roughly 27 MiB resident memory per worker.
+
+### 14:39 — Extension engine hostile gate accepted
+
+- Closed every critical, high, and medium issue found in the independent
+  hostile review of the one-vertex-extension engine.
+- Bound the exact `labelg` executable, nauty source archive, engine, private
+  obstruction module, both evaluator stacks, and Python runtime identity into
+  the immutable resume configuration.
+- Verified fail-closed candidate handling, transactional initialization and
+  final-host commits, exact-mask replay after injected failure, path-role
+  separation, and finite resource controls.
+- The focused extension suite passed 16 of 16 tests and the full campaign
+  suite passed 77 of 77.  The engine was accepted for a validation-gated run,
+  but no finite claim is permitted until a separately written checker
+  reconstructs and audits the completed ledger.
+
+### 14:54 — Connected order-9 validation gate complete
+
+- Completed all eight nauty residue partitions, covering exactly 261,080
+  connected unlabeled order-9 graphs.
+- Both exact implementations agreed on all five parameters and on the
+  greatest eternal family at every guard count for every graph.  No graph
+  has `gamma-infinity < theta`.
+- The aggregate reproduced the published counts exactly: 4,515 graphs have
+  `gamma=alpha`, and 2,265 have
+  `gamma=gamma-infinity=theta`.
+- The eight graph-stream hashes, shard file hashes, residue coverage, and
+  ordered shard-set hash are bound in
+  `results/logs/unlabeled-n09-all.json`.  Peak resident memory was about
+  28 MiB per worker.
+
+### 14:55 — Stronger parameter-three template reduction
+
+- Proved that the classical value `gamma-infinity(C7)=4`, combined with
+  induced-subgraph monotonicity, eliminates an induced
+  `complement(C7)` from the complement of a parameter-three counterexample.
+- Consequently the Strong Perfect Graph Theorem should reduce an order-12
+  parameter-three synthesis to hub-free induced `C5`, `C7`, or `C9` branches,
+  rather than the previously accepted four-branch split.  This strengthening
+  is awaiting a separate hostile audit before claim promotion.
+- Located and archived Goddard--Hedetniemi--Hedetniemi (2005), which records
+  the general odd-cycle value and attributes it to Burger et al.  The cycle
+  value is therefore classical; only the complement-side synthesis
+  combination is treated as a campaign contribution.
