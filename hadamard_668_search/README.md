@@ -36,7 +36,7 @@ completed nine-case Eliahou short-block census.
 | Distinct-lobe five-comb packing | retained incomplete lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus scoped algebraic lifts | `<112>` is closed only under the prescribed fixed compression; public-open ID3 `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. On all 405 compatible targets for the five two-high profiles, the first physical margin digit has rank six, the next layer is six quadrics with zero common polar radical, no five-form retraction survives, and the exact maximum retraction dimensions are `4,3,3,3,4`. No physical digit-two or later consecutive lift is known. The 729-shard dense census and detached 666-correlation certificate both pass. Six dense profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus exact shell-two primitive-unit theorem | `<112>` is closed only under the prescribed fixed compression; public-open ID3 `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. On all 405 compatible targets for the five two-high profiles, the first physical margin digit has rank six, the next layer is six quadrics with zero common polar radical, no five-form retraction survives, and the exact maximum retraction dimensions are `4,3,3,3,4`. Across all 84 labelled shell-two images, both recombined channels are units in all six primitive prime-167 factors, so the primitive cone has the global ratio form `R R*= -1`; however, the exact margin-plus-`T1/T2` audit excludes zero targets and leaves 1,123,966,766,238,638,605 assignments. No physical digit-two or later consecutive lift is known. The 729-shard dense census and detached 666-correlation certificate both pass. Six dense profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Group-developed conference core of order 333 | impossible | exact character and order-nine quotient obstruction excludes every group of order 333 |
 | Semiregular `C37` conference core with nine fibers | exact checkpoint; construction gate failed | all 625 integral quotient classes are classified and reduce to only two parity types up to complement; every lift obeys exact `6/3` diagonal incidence and 16 first-moment equations; the complete symmetry-reduced characteristic-two relaxation lies between `2^720` and `2^721`. One explicit support for each parity class now realizes exact degree 166, every integer block margin, and all 110,889 adjacency equations modulo two. The best retained next-digit carry is still nonzero at `672/1503`; ordinary four-cycle repair and the smallest semiregular transvection family fail. Every admissible first moment has a full formal completion; all constant generators through rank three, pure first-higher rank two, and the common nondegenerate two-plane family are impossible. Adjacency modulo four and an integral conference graph remain open |
@@ -1162,6 +1162,35 @@ coordinate vanished, its nine row margins would repeat with period three,
 making their total divisible by three; the exact total is 167.  The complete
 row-sum catalog sharpens the surviving branch from `167^3+1=4,657,464`
 abstract projective ratios to 1,411 exact nonzero coordinate pairs.
+
+`lp333_shell_two_primitive_units/` closes the remaining primitive
+degeneracies on the complete shell-two phase alphabets.  A complete
+meet-in-the-middle audit of five canonical profiles, both channels, all six
+primitive factors, and the five additional `A`-star seeds gives 90 exact
+zero-assignment counts, all zero.  A detached action verifier partitions the
+84 formal images into ten physical lift orbits of sizes
+
+```text
+12,6,6,6,12,12,6,6,6,12
+```
+
+and transports the factorwise result over their union.  Thus every physical
+shell-two placement has primitive units `W_A,W_B`, and every solution can be
+normalized by
+
+```text
+R=W_B/W_A,   R R*=-1,
+R_(r+3)=(-R_r^(-1))^(167^9),  r=0,1,2.
+```
+
+The largest exact half-list is `3^15=14,348,907`; an independent pinned-hash
+replay certifies its nonintersection.  This is a genuine structural lemma,
+not a construction.  The adjacent exact margin-plus-`T1/T2` convolution
+excludes 0 of 405 targets and leaves
+`1,123,966,766,238,638,605` assignments, essentially the random `37^2`
+reduction.  Any continuation must obtain a new multiplicative
+character/resultant/local-coset restriction on `R`, rather than enumerate
+the remaining assignments.
 
 `LP333_ORDER3_PHASE_TRACE_SIEVE.md` inverts the four cone blocks by a
 three-by-three row-Galois transform and reconstructs every physical class

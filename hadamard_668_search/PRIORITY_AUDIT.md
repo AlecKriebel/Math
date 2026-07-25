@@ -459,6 +459,17 @@ physical candidates.  This is worth including as a central lemma in the
 focused prime-167 write-up.  It remains a structural reduction rather than
 existence or nonexistence evidence.
 
+The new shell-two primitive-unit theorem makes that ratio architecture
+physical and action-complete at the phase level.  Ninety exact
+channel/factor audits, including the five required `A`-star seeds, have zero
+primitive-vanishing assignments; a detached verifier closes the result over
+all 84 labelled images.  Hence every shell-two phase placement lies in the
+single unit branch and admits `R=W_B/W_A`, `R R*=-1`.  This is a clean,
+potentially publishable supporting lemma because it removes a genuine case
+split over a complete classified family.  It is not headline construction
+progress: the exact physical-margin plus `T1/T2` layer excludes 0 of 405
+targets and leaves about `1.124e18` assignments.
+
 The exact sparse-shell theorem is the strongest direct profile-space
 exclusion so far.  Opposite-quartet geometry and divisibility of every
 norm-nine letter by 3 make the two highest-energy sectors linear modulo 9.
@@ -1046,6 +1057,9 @@ orbits, eighteen frozen dense-`h=0` compressed-profile orbits, and the exact
 carry/phase algebra.  Include the rank-six physical-margin digit, the exact
 four-space retraction classification, and the zero-common-radical quadratic
 margin layer as the lift-theoretic extension of the five-orbit theorem.
+Include the 84-image primitive-unit theorem and ratio-torus corollary as the
+strongest phase-level structural lemma, while reporting explicitly that
+`T1/T2` excludes no target.
 The half-turn, rank-one, canonical-gauge rank-two, and 84-image
 structured-family censuses are supporting finite-family results, with the
 action-noninvariance correction stated prominently.  Credit both the public

@@ -826,6 +826,28 @@ search should be gated on either:
 Repeating generic 300-second stochastic runs is exploration, not progress
 toward exhaustion.
 
+The exact physical-margin plus characteristic-37 `T1/T2` convolution now
+prices the next additive prefix without extrapolation.  Across all 405
+targets it reduces
+
+```text
+1,538,710,506,610,661,125,476
+```
+
+physical-margin assignments to
+
+```text
+1,123,966,766,238,638,605.
+```
+
+Every target survives; the reduction factor `1369.0000032296` is essentially
+the random `37^2` expectation.  Even an unrealistic rate of one billion
+complete assignments per second would require about 35.6 years.  The
+simultaneous primitive-unit theorem changes the search coordinates to the
+ratio torus `R R*=-1`, but it does not change this candidate count.  A
+complete remaining search is therefore still unpriced until a nontrivial
+multiplicative inverse-CRT sieve is proved.
+
 The completed 84-image structured closure should not be rerun or enlarged
 by cosmetic variants of the same coordinate laws.  It already costs only
 555.84 summed single-process image seconds and approximately 36.4 MB peak

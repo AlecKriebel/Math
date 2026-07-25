@@ -2601,3 +2601,42 @@ proof-assistant-level theorem.
   25,953,942,447,362,002 already at the anti-mod-2 layer.  The orientation
   cascade is meaningful local contraction, but a global support theorem is
   still required.
+
+## 25 July 2026: exact Eliahou ternary-model diagnostic
+
+- Built the exact case-1 fold-plus-causal model with 78 trits, 156 endpoint
+  Booleans, 5,928 shared products, 6,085 proto variables, and 17,949 proto
+  constraints.
+- Source ternary polynomials, Boolean expansions, and direct physical
+  correlations agree in 4,080 scalar checks over 24 deterministic
+  assignments.
+- Profile 0 remained `UNKNOWN` after 300 seconds with four workers; profile
+  1 was deliberately interrupted after the gate failed and also returned
+  `UNKNOWN`.  Peak RSS was 322 MB.
+- No profile is excluded.  A proof-capable encoding is mechanically
+  available, but the observed propagation does not justify a raw
+  proof-producing run before a new mathematical contraction.
+
+## 25 July 2026: shell-two primitive-unit theorem
+
+- Exhausted all five canonical shell-two profiles, both channels, and all
+  six primitive prime-167 factors, then audited the five additional
+  `A`-star seeds needed for physical action closure: 90 exact zero-assignment
+  counts, all zero.
+- The largest meet-in-the-middle halves have `3^15=14,348,907` exact field
+  values.  An independent pinned linear-hash replay gives a disjoint
+  necessary-image certificate and passes its positive control.  Peak RSS
+  was 1.86 GB.
+- A detached verifier partitions the 84 formal profile images into ten
+  physical lift orbits of sizes `12,6,6,6,12,12,6,6,6,12` and verifies
+  their disjoint union and factor transport.
+- Therefore both recombined channel words are units in all six primitive
+  factors on every physical shell-two placement.  The norm cone has the
+  global ratio form `R=W_B/W_A`, `R R*=-1`, with
+  `R_(r+3)=(-R_r^(-1))^(167^9)`.
+- The exact physical-margin plus `T1/T2` convolution excludes 0 of 405
+  targets.  It leaves 1,123,966,766,238,638,605 assignments, a reduction
+  essentially equal to `37^2`; this is not convergence evidence.
+- No Legendre pair or `H(668)` was found.  Further work in this lane is
+  justified only by a new multiplicative character, resultant, or
+  local-coset obstruction on the ratio torus.

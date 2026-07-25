@@ -682,6 +682,14 @@ The strongest current construction checkpoints are:
   `B0`-zero support strata can be physical.  It removes all one-sided and
   other coordinate-degenerate branches but leaves both surviving strata
   large;
+- the shell-two primitive-unit theorem: all 90 exact channel/factor audits
+  are zero, and detached action closure transports them over every one of
+  the 84 labelled shell-two images.  Both recombined channels are therefore
+  units in all six primitive factors, so `R=W_B/W_A` is globally legal and
+  satisfies `R R*=-1`.  The exact margin-plus-`T1/T2` audit nevertheless
+  excludes 0 of 405 targets and leaves 1,123,966,766,238,638,605
+  assignments; continue only through a new multiplicative restriction on
+  `R`, not another candidate-by-candidate digit;
 - the prime-167 physical-intersection refinements: the trivial zero branch is
   impossible; row-Galois and factorwise trace inversion expose fixed-origin
   and profile-support equations; inverse-DFT idempotence exactly recognizes
@@ -915,8 +923,23 @@ python3 verify_eliahou_antifold_q0_proof.py
   eliahou_long_orientation_cascade/verify_sample5_certificate.py
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
   eliahou_long_orientation_redteam/audit_exact_ternary_model.py
+/Users/alec/Documents/tmp/hadamard-env/bin/python \
+  eliahou_exact_ternary_cp_diagnostic/diagnose_case1_cp_sat.py \
+  --audit-only --random-audit-samples 24
 ../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
   --ignore-profiles --start 0 --stop 30 --list-instances
+```
+
+Replay the promoted shell-two primitive-unit theorem and its independent
+maximal-case and margin diagnostics sequentially:
+
+```sh
+/Users/alec/Documents/tmp/hadamard-env/bin/python \
+  lp333_shell_two_primitive_units/verify_action_closure.py
+/Users/alec/Documents/tmp/hadamard-env/bin/python \
+  lp333_shell_two_primitive_units/replay_maximal_hash_filter.py
+/Users/alec/Documents/tmp/hadamard-env/bin/python \
+  lp333_shell_two_primitive_units/audit_margin_t12_convolution.py
 ```
 
 The listing command does not override the final arithmetic certificate.

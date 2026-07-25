@@ -81,6 +81,7 @@
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
 | `eliahou_long_orientation_cascade/README.md` | Exact all-case plus-fold mod-8 redundancy, fixed-support mod-16/root system, mod-32 quadratic lift, bounded 200-support certificate, and corrected causal-equation scope |
 | `eliahou_long_orientation_redteam/README.md` | Independent cascade derivation, fold-kernel counterexample, exact 5,928-product ternary formulation, and pinned-survivor replay |
+| `eliahou_exact_ternary_cp_diagnostic/README.md` | Exact 78-trit fold-plus-causal CP encoding, 4,080-check algebra replay, and bounded `UNKNOWN` propagation diagnostic |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
 | `conference_334_z37_lift/README.md` | Complete 625-class semiregular-`C37` quotient layer, exact all-quotient trace and finite-field bounds, formal completions, modulo-two supports, and constant-generator obstructions through rank three |
 | `conference_334_z37_lift/QUOTIENT_CENSUS.md` | Exact 625-class integral quotient classification, three parity types, all-quotient ambient counts, exceptional representative, and reproduction protocol |
@@ -102,6 +103,7 @@
 | `LP333_ORDER3_PHASE_PRIME167.md` | Lossless full-phase reduction, three-plane annihilator, and recombined four-cone parameterization modulo 167 |
 | `LP333_ORDER3_PHASE_FIBER_SUPPORT.md` | Twelve-factor norm obstruction leaving only the dense and synchronized `B0`-zero primitive phase-support strata |
 | `LP333_PHASE_CONE_TRIVIAL_BRANCH_OBSTRUCTION.md` | Physical row-margin obstruction to the trivial zero cone branch and exact 1,411-pair catalog image |
+| `lp333_shell_two_primitive_units/README.md` | Complete 84-image primitive-unit theorem, global ratio-torus normalization, and exact zero-exclusion margin-`T1/T2` audit |
 | `LP333_ORDER3_PHASE_TRACE_SIEVE.md` | Row-Galois cone inversion, factorwise trace recovery, Parseval support cuts, and lookup-free physical decoder |
 | `LP333_ORDER3_PHASE_CYCLIC_DECODER.md` | Mod-seven 13-factor necessary sieve, local alphabets, affine factor equation, and architecture audit |
 | `LP333_ORDER3_PHASE_TRANSFER.md` | Exact trivial-character phase transfer and multiplicity-preserving equivalence with the row-sum catalog |
