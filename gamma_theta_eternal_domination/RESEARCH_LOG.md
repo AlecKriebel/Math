@@ -196,4 +196,10 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   adjacent aliases now fail before output creation, and no high or medium
   finding remains. No edge-toggle production run has started.
 - The synthesis generator audit independently found unsafe output/input path
-  aliases. Those are also launch-blocking until repaired and re-reviewed.
+  aliases. The generator was repaired to reject direct, symlink and hard-link
+  collisions before writes; ingest strict JSON once; bind sources, runtime,
+  working directory and required environment; and rehash installed bytes.
+  The final hostile replay executed the exact recorded command under an empty
+  environment and reproduced the artifacts byte-for-byte. The base encoding
+  and generator are accepted; the resumable CEGAR orchestrator remains to be
+  built and reviewed.

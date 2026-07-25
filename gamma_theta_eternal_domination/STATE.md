@@ -39,10 +39,11 @@
 - The extension result is fully bound by independent coverage and
   mathematical certificates. Promotion to `CLAIMS.md` awaits the final
   hostile audit of the frozen coverage package.
-- The initial order-12 CNF is exploratory until its hostile review closes.
-  Its induced `complement(C7)` base template produced a verified temporary
-  UNSAT proof consistent with the human theorem; the proof is not yet a
-  campaign negative certificate.
+- The initial order-12 CNF, all four template/relabeling arguments, coloring
+  cuts, exact coloring oracle, strict generator, and replay manifest are
+  hostile-review accepted. The induced `complement(C7)` base template
+  produced a verified temporary UNSAT proof consistent with the human
+  theorem; that temporary proof is not yet a promoted finite certificate.
 - The one-edge-toggle engine has not run. Its first hostile review found a
   real nondefault path collision; the repair passed independent re-review,
   including the exact former SQLite-overwrite geometry.
@@ -57,7 +58,7 @@
 | Exact evaluators/certificates | complete-for-current-artifacts | A/B, theta traces, order-9, extension coverage, and third mathematical replay passed |
 | MMV one-vertex extensions | complete-review-pending | Search and two independent audits passed; final hostile coverage report pending |
 | Single-edge toggles of closest seeds | accepted-launch | Exact 25,641-origin engine and repaired path validator accepted; production paths remain absent |
-| Direct synthesis `(12,3)` | active-prelaunch | Four exact base encodings built; generator path safety and clause semantics under hostile review |
+| Direct synthesis `(12,3)` | active-orchestrator | Exact base encodings and generator accepted; resumable proof-producing CEGAR orchestration is the remaining launch gate |
 | Structural `k=3` lane | active | Three-template theorem accepted as C-017; cautious novelty assessment remains search-limited |
 | General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
 
