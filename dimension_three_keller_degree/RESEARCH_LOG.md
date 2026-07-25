@@ -1134,3 +1134,22 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   source-specific only and not a worldwide-priority guarantee.
 - This closes a second full quartic line-image taxonomy row today.  Other
   quartic rows remain, so the universal certified floor remains \(4\).
+
+## 2026-07-25T18:40:21Z — Exceptional unmarked-double component closed
+
+- In the binary fixed-linear line-triple-cover row, the exact \(q^2\)
+  normal form has exceptional Hilbert--Burch divisor
+  \(3b_1^2-8b_2=0\).
+- The \(b_1\ne0\) chart is excluded by a complete contact solve and a
+  lower-independent \(E_5\) obstruction, with its sole zero-contact
+  resonance obstructed literally at \(E_4\).
+- At \(b_1=0\), exact gcd normalizes the top to
+  \((P,Q,R)=(pq^3,p^4,dp^3+q^3)\).  Its rank-12 \(E_7\) system has a
+  three-dimensional contact kernel.  Every nonzero projective contact
+  chart forces two columns of the linear part to be proportional; the
+  zero chart has the unconditional plane-field exit.
+- Exact SymPy and independently reconstructed PARI/GP suites pass.  The
+  full exceptional unmarked-double \(\{2,0\}\) component is
+  provisionally excluded pending hostile audit.  Its complementary
+  \(\{1,1\}\) component remains active, and the universal certified
+  floor remains \(4\).

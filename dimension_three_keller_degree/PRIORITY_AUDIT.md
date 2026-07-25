@@ -790,3 +790,21 @@ the audit found and repaired a hidden \(a_3=0\) pivot drop.
 This is source-specific negative evidence only, not a guarantee of worldwide
 priority.  The theorem is AI-assisted and unreviewed.  Closing this row does
 not yet raise the universal total-degree floor above \(4\).
+
+### 2026-07-25T18:40Z — fixed-linear exceptional \(q^2\) audit delta
+
+The current-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+and publicly indexed X/Twitter sweep was compared with the full
+exceptional unmarked-double component in the binary fixed-linear
+line-triple-cover row.  Exact searches included the endpoint
+\[
+(P,Q,R)=(pq^3,p^4,dp^3+q^3),
+\]
+the divisor \(3b_1^2-8b_2=0\), and rank-12 Hilbert--Burch contact
+systems.
+
+No checked source states the component exclusion or its endpoint
+proportional-column obstruction.  Exact SymPy and independently rebuilt
+PARI/GP certificates pass, but hostile mathematical audit is pending.
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority; the result is AI-assisted and unreviewed.
