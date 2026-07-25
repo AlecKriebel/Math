@@ -225,6 +225,11 @@ The fixed-divisor coverage is now more precise.
   branch, while `WORKING_SCALAR_ALIGNED_CUSPIDAL_CUBIC_EXIT.md` excludes
   the three scalar-aligned marked-point orbits.  Thus the entire cuspidal
   row is closed.
+- In the fixed-cubic line row
+  \((e,a,b,\delta,\nu)=(3,1,1,1,1)\),
+  `WORKING_FIXED_CUBIC_LINE_ROW.md` excludes every nonbinary fixed divisor
+  \(h\notin\mathbb C[p,q]\).  The binary locus
+  \(h\in\mathbb C[p,q]\) remains.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

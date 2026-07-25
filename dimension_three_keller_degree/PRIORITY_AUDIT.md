@@ -422,3 +422,23 @@ parametrization found no checked overlap.
 This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem is unreviewed and does not raise the
 certified universal total-degree floor above \(4\).
+
+### 2026-07-25T04:41Z — nonbinary fixed-cubic line overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“fixed cubic”, “line image”, “nonbinary fixed divisor”, and the displayed
+form \(h(p,q,r)(p,q,0)\).  Separate searches covered arXiv, MathOverflow,
+Tao's blog, Secret Blogging Seminar, and read-only X/Twitter results.
+
+The checked current results concerned the announced multiplication map,
+generic-degree claims, older plane results, or unrelated uses of “Keller”
+and “cubic”.  None states the rank-one adjugate derivation, the
+factor-residue classification, the two \(h=pr^2\) residual orbits, or an
+exclusion of the full nonbinary fixed-cubic line subrow.  Exact-phrase
+searches for “nonbinary fixed-cubic Keller” and the displayed leading form
+found no checked mathematical overlap.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem is unreviewed, leaves the binary locus
+\(h\in\mathbb C[p,q]\) open, and does not raise the certified universal
+total-degree floor above \(4\).

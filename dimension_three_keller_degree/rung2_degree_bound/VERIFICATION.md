@@ -420,6 +420,34 @@ No specialization or relative-position modulus is omitted.  Together with
 the transverse theorem, this excludes the entire cuspidal-cubic taxonomy
 row.
 
+### Nonbinary fixed-cubic line stratum
+
+At 2026-07-25T04:41:47Z both exact regressions passed:
+
+```text
+/usr/bin/python3 verify_fixed_cubic_line_sympy.py
+./verify_fixed_cubic_line_pari_strict.sh
+```
+
+The SymPy regression checks the rank-one adjugate identity, both
+logarithmic derivation formulas, the exact degree-eight/degree-seven
+polarization, the complete exceptional invariant space for \(h=pr^2\),
+and both residual orbit exits.  PARI/GP independently expands the
+normalized determinant identities.  The strict wrapper rejects every GP
+diagnostic and requires a unique pass marker.
+
+The adversarial audit independently reconstructed the factor-multiplicity
+classification, proved that the nonzero exceptional invariant has exactly
+the \(qr\) and \(pr\) stabilizer orbits, repeated the raw degree-six and
+degree-five normalizations, and checked the plane-field birational exit.
+It also injected a diagnostic, extra output, and nonzero status into the GP
+wrapper; all three false-pass attempts were rejected.  This excludes
+exactly
+\[
+H_4=h(p,q,r)(p,q,0)^T,\qquad h\notin\mathbb C[p,q].
+\]
+The binary cubic fixed-divisor locus remains.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

@@ -51,7 +51,11 @@ The first audited quartic working lemmas now constrain:
   either contradict the Keller condition or collapse to a plane Keller
   block plus a shear, while all five nonbinary normal forms are impossible
   by exact logarithmic-valuation, affine-translation, and degree-six
-  obstructions.
+  obstructions; and
+- the nonbinary fixed-cubic line subrow
+  \(H_4=h(p,q,r)(p,q,0)\): logarithmic valuations reduce the only
+  exceptional factorization to \(h=pr^2\), and its two residual stabilizer
+  orbits force a singular linear part.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -61,10 +65,11 @@ hypothesis audit.
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
 \((2,2)\) stratum, the conic double-cover locus, ramified birational quartic
-parametrizations, and the other leading maps with a fixed divisor.  The
-nodal-cubic, cuspidal-cubic, and fixed-divisor conic rows are closed.  In
-the rank-one stratum, fixed-component projected cubic pencils and a binary
-common-ramification locus remain.  The universal certified floor remains
-\(4\).
+parametrizations, the binary fixed-cubic line locus
+\(h\in\mathbb C[p,q]\), and the other leading maps with a fixed divisor.
+The nodal-cubic, cuspidal-cubic, and fixed-divisor conic rows are closed.
+In the rank-one stratum, fixed-component projected cubic pencils and a
+binary common-ramification locus remain.  The universal certified floor
+remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

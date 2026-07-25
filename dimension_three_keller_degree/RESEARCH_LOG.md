@@ -646,3 +646,35 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The source-specific priority sweep found no exact checked overlap.  This
   is not a guarantee of worldwide priority.  The universal certified floor
   remains total degree \(4\).
+
+## 2026-07-25T04:41:47Z — Nonbinary fixed-cubic line subrow excluded
+
+- For
+  \[
+  H_4=h(p,q,r)(p,q,0)^T,\qquad h\notin\mathbb C[p,q],
+  \]
+  the leading Jacobian has
+  \[
+  \operatorname{adj}JH_4=-hke_3^T,\qquad
+  k=(ph_r,qh_r,rh_r-4h)^T.
+  \]
+  The degree-eight identity is therefore a logarithmic derivation equation
+  for \((H_3)_3\), and factor residues force that component to vanish.
+- The corresponding degree-seven equation for \((H_2)_3\) has residue
+  condition \(2v=m\).  It vanishes unless
+  \(h=\ell(p,q)m(p,q,r)^2\).  In the vanishing case the third component is
+  linear and the established degree-at-most-four plane theorem over
+  \(\overline{\mathbb C(r)}\), followed by the birational Keller theorem,
+  makes the whole map an automorphism.
+- The exceptional factorization normalizes to \(h=pr^2\), with complete
+  normal-component space \(r\langle p,q\rangle\).  Its two nonzero
+  stabilizer orbits \(qr\) and \(pr\) were carried through the lower
+  determinant identities; both force \(\det L_0=0\).
+- Exact SymPy and independent PARI/GP regressions pass.  A separate audit
+  reconstructed the factor classification, stabilizer quotient, raw
+  normalized systems, and plane-field exit.  A strict wrapper prevents GP
+  diagnostics from being followed by a false pass.
+- The source-specific priority sweep found no exact checked overlap.  This
+  is not a guarantee of worldwide priority.  The binary locus
+  \(h\in\mathbb C[p,q]\) remains active, and the universal certified floor
+  remains total degree \(4\).
