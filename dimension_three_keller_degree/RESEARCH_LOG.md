@@ -992,3 +992,26 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   unmarked \(c^2=9\), and unmarked companion at infinity.  Each has an
   exact provisional exclusion undergoing independent audit.  The
   universal floor remains \(4\).
+
+## 2026-07-25T08:52:17Z — Both fixed-divisor \(e=2\) mixed companions excluded
+
+- For the two canonical all-vertical pencils
+  \[
+  \langle x^2,yz\rangle,\qquad
+  \langle x^2,y^2+xz\rangle,
+  \]
+  the fixed-divisor leading form is \(H_4=(p^2,pq,0)\).  The mixed cubic
+  companion \(R=xq\) is impossible in both cases.
+- The rank-two branch has exact \(E_6\) residuals
+  \(Cw_3=Dw_5=0\); every nonzero normal produces a cube obstruction,
+  while the zero-normal leaf has four literal \(E_5\) coefficients
+  forcing \(\det L=0\).
+- The rank-one branch has residuals
+  \(Dw_5=Cw_5+Dw_4=0\).  Nonzero normals exit by \(D^3\) or the exact
+  resultant \(-250C^9\).  Four separately recomputed zero-normal charts
+  exhaust every rank drop and force \(\det L=0\).
+- A hostile PARI reconstruction independently verified all raw kernels,
+  constant pivots, syzygies, the apparent \(w_4=C\) denominator
+  resonance, and every determinant exit.  Fault injections pass.
+- Only the triple companion \(R=x^3\) remains for each \(e=2\) pencil.
+  The universal total-degree floor remains \(4\).

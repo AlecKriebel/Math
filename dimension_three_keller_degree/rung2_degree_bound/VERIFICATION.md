@@ -852,6 +852,35 @@ kernel.  Parameter-free \(E_6/E_5\) pivots remain nonzero at
 The hostile audit independently reconstructed the orbit ledger, gauges,
 all converses, and the collision specialization.
 
+### Fixed-divisor \(e=2\) mixed companions
+
+At 2026-07-25T08:52:17Z the supplied exact certificate and independent
+hostile reconstruction passed:
+
+```text
+cd fixed_divisor_e2_quadratic_pencils
+/usr/bin/python3 verify_mixed_orbits_sympy.py
+cd audit_hostile
+./verify_mixed_orbits_pari_strict.sh
+./test_fail_closed.sh
+```
+
+For each canonical unique-double-line pencil
+\[
+\langle x^2,yz\rangle,\qquad
+\langle x^2,y^2+xz\rangle,
+\]
+the mixed companion \(R=xq\) has a complete raw kernel.  Constant
+\(E_6\) pivots split every normal branch.  The rank-two pencil exits by
+cube syzygies or four literal determinant coefficients; the rank-one
+pencil exits by a \(D^3\) syzygy, the exact resultant
+\(-250C^9\), or one of four exhaustive zero-normal charts.
+
+The PARI audit independently reconstructed every matrix and explicitly
+verified that cross-multiplication preserves the two polynomial syzygies
+at the apparent \(w_4=C\) denominator resonance.  The theorem is scoped
+only to the two fixed-divisor \(e=2\) mixed companions.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

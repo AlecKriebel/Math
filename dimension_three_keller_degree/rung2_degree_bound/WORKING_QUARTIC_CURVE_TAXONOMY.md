@@ -310,7 +310,12 @@ The fixed-divisor coverage is now more precise.
   fixed-divisor row \(e=2\), with leading form
   \(H_4=(p^2,pq,0)\) after a pencil change; the genuine \(e=0\)
   outer-double-cover packages for the same pencils do not exclude it.
-  Its lower identities remain active.
+  The audited lower-identity package
+  `fixed_divisor_e2_quadratic_pencils/NOTE.md` excludes the mixed cubic
+  companion \(R=xq\) for both canonical pencils.  Only the triple
+  companion \(R=xp=x^3\) remains in this \(e=2\) row.  The rank-two
+  triple calculation is provisionally closed and under hostile audit; the
+  rank-one triple calculation remains active.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 
