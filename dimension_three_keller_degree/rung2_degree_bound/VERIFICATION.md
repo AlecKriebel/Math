@@ -932,6 +932,42 @@ PARI/GP audit confirms all pivots, squares, fourth-power contradictions,
 and determinant identities.  The result is scoped only to the rank-two
 fixed-divisor triple orbit.
 
+### Completion of the genuine line-\((2,2)\) row
+
+At 2026-07-25T10:07:13Z the last four exceptional packages and their
+hostile reconstructions all passed:
+
+```text
+cd line22_rankone_restriction/unmarked_resonance_c3
+/usr/bin/python3 -u verify_resonance_c3_sympy.py
+./verify_resonance_c3_pari_strict.sh
+./audit_hostile/verify_hostile_pari_strict.sh
+
+cd ../unmarked_companion_infinity
+/usr/bin/python3 -u verify_unmarked_infinity_sympy.py
+./verify_unmarked_infinity_pari_strict.sh
+./audit_hostile/verify_hostile_strict.sh
+./audit_hostile/test_hostile_fail_closed.sh
+
+cd ../../line22_companion_infinity
+/usr/bin/python3 -u verify_companion_infinity_sympy.py
+./verify_companion_infinity_pari_strict.sh
+./audit_hostile/verify_resonance_pari_strict.sh
+./audit_hostile/test_resonance_fail_closed.sh
+```
+
+The marked triple package is recorded above. The finite resonance
+\(c^2=9\), rank-one companion at infinity, and rank-two reciprocal
+resonance have independent reconstructions using PARI/GP or
+dependency-free sparse rational arithmetic. Constant rank floors,
+polynomial compatibility syzygies, every zero specialization, and the
+final determinant exits are checked exactly.
+
+Together with the earlier open-orbit, finite-companion, outer-infinity,
+and no-double-line packages, these checks exhaust both canonical
+unique-double-line pencils. Hence the entire genuine
+\((e,a,b,\delta,\nu)=(0,2,2,1,2)\) taxonomy row is excluded.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

@@ -1,13 +1,15 @@
 # Working theorem: the genuine line-image \((2,2)\) stratum
 
-**Status:** Sections 1--4 are proved and independently audited.  Sections
-5--6 record exact conditional charts on the remaining double-line locus.
-An adversarial audit proved their equations but found that their simultaneous
-normalizations do not exhaust the locus.  The full locus is unresolved.
-This is not peer reviewed.  The source-specific priority search found no
-exact prior statement and is not a guarantee of worldwide priority.
+**Status:** complete theorem, assembled from independently audited joint-orbit
+packages. Sections 5--6 retain the earlier conditional-chart calculations
+and the normalization defect that forced the joint-moduli analysis; Section 7
+records the exhaustive closure. This is not peer reviewed. The
+source-specific priority search found no exact prior statement and is not a
+guarantee of worldwide priority.
 
 **Recorded:** 2026-07-24T23:59:52Z.
+
+**Completed after final hostile audit:** 2026-07-25T10:07:13Z.
 
 ## 1. Setup and theorem
 
@@ -35,6 +37,16 @@ R_3=(H_3)_3,\qquad R_2=(H_2)_3.
 
 ### Theorem
 
+Every Keller map satisfying (1) is a polynomial automorphism. Equivalently,
+no degree-four Keller counterexample belongs to the genuine line-image
+taxonomy row
+\[
+(e,a,b,\delta,\nu)=(0,2,2,1,2).
+\tag{2}
+\]
+
+The top identity begins the proof with the following sharper alternative.
+
 If the pencil \(\langle p,q\rangle\) has no scheme-theoretic double-line
 member, then \(F\) is a polynomial automorphism.
 
@@ -47,12 +59,12 @@ alternatives:
    R_3=cL^3
    \quad\text{or}\quad
    R_3=cL(\alpha p+\beta q).
-   \tag{2}
+   \tag{2a}
    \]
 
-Consequently every counterexample in the \((2,2)\) line-image stratum must
-have the unique-double-line configuration and one of the two nonzero cubic
-shapes in (2).
+Consequently a putative counterexample would have to have the
+unique-double-line configuration and one of the two nonzero cubic shapes in
+(2a). Section 7 excludes every joint orbit on that remaining locus.
 
 ## 2. Degree eight as a vertical-divisor equation
 
@@ -128,7 +140,7 @@ Möbius transform of \(p/q\) a square.  Its square root is algebraic over
 
 If there is no double line, all coefficients of \(B\) would be even, which
 contradicts \(\deg B=3\).  If the unique double line exists, the only
-partitions are \(3\) and \(1+2\), which give precisely (2).
+partitions are \(3\) and \(1+2\), which give precisely (2a).
 
 ## 3. The \(R_3=0\) branch
 
@@ -171,13 +183,13 @@ Equation (3) holds with \(R_3=X_1^3\ne0\).
 This example certifies only the sharpness of the leading determinant
 constraint; it is not claimed to extend to a Keller map.
 
-## 5. Conditional charts for the remaining double-line locus
+## 5. Historical conditional charts on the double-line locus
 
-**Status of this section:** unresolved frontier.  The reductions and
+**Status of this section:** retained diagnostic calculation, superseded by
+the exhaustive joint-orbit packages in Section 7. The reductions and
 degree-seven identities below are proved on the stated simultaneous-normal-
-form slices, but those slices are not exhaustive.  Neither nonzero \(R_3\)
-branch has yet been excluded.  In particular, nothing in this section claims
-that the displayed leading data extend to a Keller map.
+form slices, but those slices are not exhaustive. Nothing in this section
+alone claims that the displayed leading data extend to a Keller map.
 
 Suppose now that the pencil has its unique double-line member.  After a
 source linear change, a change of pencil basis preserving that member, and
@@ -242,7 +254,7 @@ as an additional chart condition, not as a general simultaneous
 normalization.
 
 Likewise, in a pencil basis adapted to the cubic, the two alternatives in
-(2) become
+(2a) become
 \[
  R_3=x^3
  \qquad\text{or}\qquad
@@ -386,7 +398,8 @@ and
 These equations have nonzero solution spaces and do not exclude either
 branch.
 
-The next unresolved coefficient is degree six.  It includes the arbitrary
+At this historical chart stage, the next unresolved coefficient was degree
+six.  It includes the arbitrary
 linear part \(L_0\), the quadratic components \(U_2,V_2,W_2\), and the
 curvature term with two rows from \(JH_3\).  Any exclusion must retain these
 terms rather than normalize \(L_0\) in a way incompatible with
@@ -440,3 +453,45 @@ joint-orbit assertion is made there either.
 The exact regression script verifies (13)--(24), the kernel/image
 calculations, and the displayed conditional substitutions.  It does not
 verify exhaustiveness of the simultaneous normalizations.
+
+## 7. Exhaustive joint-orbit closure
+
+The normalization defect in Section 6.3 is resolved by retaining the outer
+critical pair, the marked double-line value, and the cubic companion
+simultaneously. The unique-double-line pencil has exactly two source-linear
+normal forms:
+\[
+\langle x^2,yz\rangle,\qquad
+\langle x^2,y^2+xz\rangle.
+\tag{26}
+\]
+Their stabilizers and joint orbit spaces are different, so they were audited
+separately.
+
+For the rank-two-restriction pencil \(\langle x^2,yz\rangle\):
+
+- `WORKING_LINE_22_FINITE_OUTER_CRITICAL.md` and
+  `WORKING_LINE_22_FG_RESONANCE.md` exclude the full finite-critical,
+  finite-companion moduli, including every resonance and endpoint;
+- `line22_marked_critical_infinity/WORKING_LINE22_MARKED_CRITICAL_INFINITY.md`
+  excludes the marked infinity triple orbit;
+- `line22_outer_infinity_remaining/NOTE.md` excludes every other finite
+  companion in the outer-critical-at-infinity chart; and
+- `line22_companion_infinity/NOTE.md` excludes both
+  companion-at-infinity outer families, including the reciprocal
+  \(t=-2\sim-1/2\) resonance.
+
+For the rank-one-restriction pencil
+\(\langle x^2,y^2+xz\rangle\), the full Borel stabilizer gives an unmarked
+one-parameter family and three marked orbits. They are exhausted by:
+
+- `line22_rankone_restriction/WORKING_RANKONE_RESTRICTION_OPEN_ORBIT.md`;
+- the sibling packages `unmarked_triple_c0`,
+  `unmarked_resonance_c3`, and `unmarked_companion_infinity`; and
+- the sibling packages `marked_mixed_orbits` and `marked_triple_orbit`.
+
+Each listed terminal package has a complete raw-kernel/gauge certificate,
+specialization-safe lower-identity tree, and an independent hostile audit.
+Every leaf gives a positive-degree Jacobian contradiction or
+\(\det L_0=0\). The \(R_3=0\) branch was already closed in Section 3.
+Thus (26) leaves no joint orbit, proving the theorem.

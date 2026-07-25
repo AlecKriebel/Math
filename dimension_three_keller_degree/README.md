@@ -118,7 +118,12 @@ The first audited quartic working lemmas now constrain:
   \(H_4=(p^2,q^2,0)\), namely
   \((H_3)_3=xq\) and \(x(p-q)\).  Constant-rank degree-six and degree-five
   solves include the collision \(w_2=w_3\) and again zero the second
-  column of the linear part.
+  column of the linear part; and
+- the remaining exceptional rank-one-restriction orbits
+  \(c^2=9\), \(c=\infty\), and the marked triple, together with both
+  companion-at-infinity outer families for the rank-two-restriction
+  pencil. Their independent hostile audits close every joint orbit in
+  both unique-double-line pencils.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -126,18 +131,15 @@ verification harness.  No claim is promoted without an adversarial scope and
 hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
-locus in type \((1,4)\), the companion-at-infinity parts of the
-unique-double-line line-image \((2,2)\) stratum, plus the marked and
-exceptional triple-marked, \(c^2=9\), and \(c=\infty\) pieces of its
-rank-one-restriction pencil, ramified birational quartic parametrizations,
-the binary fixed-quadratic line double-cover locus,
+locus in type \((1,4)\), ramified birational quartic parametrizations, the
+binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
 with a fixed divisor, including the vertical part of the primitive
 cubic-pencil row and the two unique-double-line quadratic-pencil
 frontiers identified above.
-The nodal-cubic, cuspidal-cubic, fixed-divisor conic, and conic
-double-cover rows are closed.  In the rank-one stratum, fixed-component
-projected cubic pencils and a binary common-ramification locus remain.  The
-universal certified floor remains \(4\).
+The genuine line-\((2,2)\), nodal-cubic, cuspidal-cubic, fixed-divisor
+conic, and conic-double-cover rows are closed. In the rank-one stratum,
+fixed-component projected cubic pencils and a binary common-ramification
+locus remain. The universal certified floor remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

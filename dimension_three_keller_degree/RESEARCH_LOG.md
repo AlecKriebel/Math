@@ -1089,3 +1089,23 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   now excluded. The rank-two-restriction companion-at-infinity package is
   the sole remaining genuine line-\((2,2)\) frontier and is under final
   audit. The universal total-degree floor remains \(4\).
+
+## 2026-07-25T10:07:13Z — Entire genuine line-\((2,2)\) row closed
+
+- The remaining rank-two-restriction companion-at-infinity resonance
+  \(t=-2\sim-1/2\) has raw \(E_7\) rank \(14\), a complete
+  five-gauge/seven-normal kernel, and a division-free \(E_6\) square
+  chain.
+- A fresh PARI/GP reconstruction confirms the constant-rank lower
+  converse and the \(E_5\) residual
+  \(36K(\ell_{32}y^3z^2-\ell_{33}y^2z^3)\). Both \(K\)-branches force
+  dependent columns of the linear part. Strict and six mutation tests
+  pass.
+- The projective orbit ledger covers the finite, outer, \(t=0\),
+  \(t=\infty\), and reciprocal-resonance charts. Combined with the
+  separately audited rank-one-restriction packages and the no-double-line
+  exit, this excludes the entire genuine taxonomy row
+  \((e,a,b,\delta,\nu)=(0,2,2,1,2)\).
+- A fresh source-specific web sweep found no checked collision. This is
+  not a worldwide-priority guarantee, and the result is not peer reviewed.
+  The universal total-degree floor remains \(4\).

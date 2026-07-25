@@ -740,3 +740,27 @@ and repairing three gaps in the provisional proof.  This is
 source-specific negative evidence, not a guarantee of worldwide
 priority.  The theorem remains unreviewed and does not raise the
 universal certified floor above \(4\).
+
+### 2026-07-25T10:10Z — complete genuine line-\((2,2)\) row audit delta
+
+The current-day sweep was rerun against the assembled theorem excluding the
+entire genuine quartic line-image row
+\[
+(e,a,b,\delta,\nu)=(0,2,2,1,2).
+\]
+Queries covered current arXiv Keller/Jacobian listings, MathOverflow,
+Terence Tao's blog, the Secret Blogging Seminar, and publicly indexed
+X/Twitter material, including exact searches for the two canonical pencils
+\(\langle x^2,yz\rangle\) and
+\(\langle x^2,y^2+xz\rangle\).
+
+The checked results concerned the announced degree-seven counterexample,
+graded maps, generic-degree constructions, the plane problem, or unrelated
+quadratic pencils. No checked source states the complete joint-orbit
+exclusion. The final rank-two companion-at-infinity resonance was
+independently reconstructed in PARI/GP with global polynomial syzygies and
+six fail-closed mutations.
+
+This is source-specific negative evidence only, not a guarantee of worldwide
+priority. The theorem is AI-assisted and unreviewed. Closing this taxonomy
+row does not yet raise the universal total-degree floor above \(4\).

@@ -185,8 +185,10 @@ The common-factor-free rows have the following exact or partial coverage.
    \(H_4=(p^2,q^2,0)\), \((H_3)_3=x^3\).
    `line22_outer_infinity_remaining/NOTE.md` excludes every other finite
    companion in that outer-infinity chart, including both resonances and
-   projective endpoints.  The two companion-at-infinity charts remain
-   active.  For the rank-one-restriction pencil
+   projective endpoints.
+   `line22_companion_infinity/NOTE.md` now excludes both
+   companion-at-infinity charts, including the reciprocal resonance, after
+   an independent hostile audit. For the rank-one-restriction pencil
    \(q=y^2+xz\),
    `line22_rankone_restriction/WORKING_RANKONE_RESTRICTION_OPEN_ORBIT.md`
    excludes the unmarked finite mixed locus \(c(c^2-9)\ne0\).
@@ -200,10 +202,10 @@ The common-factor-free rows have the following exact or partial coverage.
    `line22_rankone_restriction/unmarked_companion_infinity/NOTE.md` now
    exclude the finite resonance \(c^2=9\) and the companion at infinity
    after independent hostile audits. Thus the entire
-   rank-one-restriction pencil is closed. The only remaining genuine
-   line-\((2,2)\) package is the rank-two-restriction
-   companion-at-infinity pair described above, whose final resonance
-   audit is active.
+   rank-one-restriction pencil is closed. Thus every joint orbit in both
+   unique-double-line pencils is excluded; combined with the banked
+   no-double-line theorem, the entire genuine line-\((2,2)\) taxonomy row
+   is closed.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded
