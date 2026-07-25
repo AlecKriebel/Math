@@ -16,5 +16,9 @@
 - The single arithmetic specialization
   \(X^d-X^2-3X-5\) has PARI/GP Galois group \(S_d\) for every
   \(3\le d\le10\).
+- Located Brink 2004, Theorem 13, which proves the polynomial Galois lemma in
+  greater generality.  Demoted that lemma explicitly to prior art; the
+  candidate contribution is now framed only as the Keller realization
+  obtained by combining Brink with Gallagher and rational recovery.
 - Began independent hostile proof and priority audits.  The result
   remains a candidate until those audits close.

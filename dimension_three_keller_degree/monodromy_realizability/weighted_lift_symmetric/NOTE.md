@@ -99,6 +99,13 @@ it remains to compute the group over \(\mathbb C(U,V)\).
 
 ## 2. A Morse-polynomial lemma
 
+The lemma below is a direct special case of David Brink's Theorem 13 in
+*On Alternating and Symmetric Groups as Galois Groups* (Israel J. Math.
+142 (2004), 47--60): fixing all coefficients except the linear and constant
+terms in a monic degree-\(d\) polynomial gives Galois group \(S_d\) in
+characteristic zero.  We include the short critical-value calculation to
+make the specialization and its branch geometry explicit.
+
 ### Lemma
 
 For every \(d\geq3\),
@@ -213,16 +220,28 @@ Keller map.
 
 ## 5. Scope and attribution
 
-Gallagher proved the weighted-lift construction uniformly for every
-generic degree at least three.  The seed used here,
+Gallagher proved the weighted-lift construction uniformly for every generic
+degree at least three.  Brink's 2004 theorem already gives the required
+two-parameter \(S_d\) Galois calculation.  The seed used here,
 \[
 \frac{2w-dw^{d-1}}{d-2},
 \]
 is an immediate specialization of that construction.  No novelty is
-claimed for the classical fact that a Morse polynomial cover has full
-symmetric monodromy.  The candidate new statement is their combination:
-the realization of every \(S_d\), \(d\ge3\), as the geometric
-monodromy group of a dimension-three Keller counterexample.
+claimed for the polynomial-cover lemma.  The candidate new statement is the
+combination of Gallagher's construction, its exact root-field recovery, and
+Brink's theorem: the realization of every \(S_d\), \(d\ge3\), as the
+geometric monodromy group of a dimension-three Keller counterexample.
+
+## References
+
+- D. Brink, *On Alternating and Symmetric Groups as Galois Groups*,
+  Israel J. Math. **142** (2004), 47--60,
+  [doi:10.1007/BF02771527](https://doi.org/10.1007/BF02771527),
+  especially Theorem 13.
+- A. Gallagher, *An infinite family of counterexamples to the Jacobian
+  Conjecture in dimension three: every generic fiber degree \(n\ge3\)
+  occurs*, Zenodo (20 July 2026),
+  [doi:10.5281/zenodo.21479195](https://doi.org/10.5281/zenodo.21479195).
 
 This note was produced with substantial AI assistance.  The exact
 scripts check the encoded algebra and finite specializations; they are

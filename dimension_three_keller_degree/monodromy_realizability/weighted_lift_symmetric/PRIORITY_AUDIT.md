@@ -48,19 +48,26 @@ geometric monodromy group of a dimension-three Keller counterexample.
   real generic degrees.  No collision with the all-\(d\) statement was
   found.
 - Exact web searches for `T^d-T^2+UT+V`, the weighted-lift inverse
-  polynomial, and Keller/symmetric-monodromy combinations.  The
-  polynomial-cover lemma is classical in character; novelty is not
-  claimed for it.
+  polynomial, and Keller/symmetric-monodromy combinations.  This located
+  David Brink, *On Alternating and Symmetric Groups as Galois Groups*,
+  Israel J. Math. 142 (2004), 47--60,
+  [doi:10.1007/BF02771527](https://doi.org/10.1007/BF02771527).
+  Brink's Theorem 13 directly proves that every monic polynomial with fixed
+  higher coefficients and independent linear and constant coefficients has
+  Galois group \(S_d\) in characteristic zero.  Thus the Galois lemma used
+  here is prior art in exactly the needed generality.
 - Search-engine sweeps of X/Twitter-indexed pages and the current Tao,
   MathOverflow, and Secret Blogging Seminar discussions.  No matching
   all-\(d\) Keller realization was found.
 
 ## Current verdict
 
-Gallagher has clear priority for the counterexample family and its
-all-degree generic-fibre theorem.  Full symmetric monodromy for the
-simple seed used here was not found in the checked public record.  The
-claim remains provisional until the independent hostile search and
-mathematical audit are complete.
+Gallagher has clear priority for the counterexample family and its all-degree
+generic-fibre theorem.  Brink has clear priority for the two-parameter
+symmetric Galois theorem.  Their combination through the exact
+weighted-lift root-field recovery, and hence the realization of every
+\(S_d\) by dimension-three Keller counterexamples, was not found in the
+checked public record.  That combination remains provisional until the
+independent hostile search and mathematical audit are complete.
 
 The absence of a hit is not proof of novelty.
