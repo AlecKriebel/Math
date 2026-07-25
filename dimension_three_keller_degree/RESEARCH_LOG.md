@@ -705,3 +705,24 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The source-specific priority sweep found no exact checked overlap.  This
   is not a guarantee of worldwide priority.  The universal certified
   total-degree floor remains \(4\).
+
+## 2026-07-25T05:38:33Z — Nonbinary fixed-quadratic line double cover excluded
+
+- The degree-two outer line cover normalizes exhaustively to
+  \[
+  H_4=h(p,q,r)(p^2,q^2,0)^T.
+  \]
+- For nonbinary \(h\), logarithmic residues kill the cubic normal
+  component.  A nonzero quadratic normal forces the global polynomial
+  square \(h=c(r+uq+vp)^2\), not merely a square over
+  \(\mathbb C(t)\).
+- After \(h=r^2\), the full stabilizer has exactly the two nonzero normal
+  orbits \(pr\) and \((p+q)r\).  Complete constant-rank degree-six and
+  degree-five solves, followed by division-free lower identities, force
+  \(\det L_0=0\) in both.
+- A separate hostile audit reconstructed the normalization, global
+  rehomogenization, stabilizer, ranks, converses, \(K\)-split, determinant
+  divisibilities, and the plane-field exit.  Verdict: PASS.
+- Exact SymPy, supplied PARI/GP, and independent audit PARI/GP checks pass
+  behind fail-closed guards.  The binary locus remains active, and the
+  universal certified floor remains total degree \(4\).

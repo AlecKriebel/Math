@@ -1,0 +1,26 @@
+#!/bin/sh
+# Fake GP executable used only to fault-test the supplied strict wrapper.
+
+case "${AUDIT_FIXED_QUADRATIC_FAKE_MODE:-pass}" in
+    pass)
+        printf '%s\n' "nonbinary fixed-quadratic line-cover PARI/GP checks passed"
+        exit 0
+        ;;
+    diagnostic)
+        printf '%s\n' "*** injected GP diagnostic"
+        printf '%s\n' "nonbinary fixed-quadratic line-cover PARI/GP checks passed"
+        exit 0
+        ;;
+    extra)
+        printf '%s\n' "nonbinary fixed-quadratic line-cover PARI/GP checks passed"
+        printf '%s\n' "injected trailing output"
+        exit 0
+        ;;
+    nonzero)
+        printf '%s\n' "nonbinary fixed-quadratic line-cover PARI/GP checks passed"
+        exit 42
+        ;;
+    *)
+        exit 64
+        ;;
+esac

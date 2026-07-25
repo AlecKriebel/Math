@@ -460,3 +460,23 @@ form found no checked Keller-map overlap.
 This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem is unreviewed and does not raise the
 certified universal total-degree floor above \(4\).
+
+### 2026-07-25T05:13Z — nonbinary fixed-quadratic line-cover overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“fixed quadratic”, “line double cover”, “nonbinary fixed divisor”, and
+the leading form \(h(p,q,r)(p^2,q^2,0)\).  Separate searches covered
+arXiv, MathOverflow, Tao's blog, Secret Blogging Seminar, and read-only
+X/Twitter results.
+
+The checked results concerned the announced counterexample,
+generic-degree claims, classical plane work, or unrelated quadratic and
+conic covers.  None states the logarithmic adjugate reduction, global
+square exception, its two full-stabilizer orbits, or the exclusion of the
+nonbinary part of
+\((e,a,b,\delta,\nu)=(2,1,2,1,2)\).
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem passed an independent hostile audit at
+2026-07-25T05:38:33Z but remains unreviewed.  Its binary locus stays open,
+and the certified universal total-degree floor remains \(4\).

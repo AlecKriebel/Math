@@ -59,7 +59,11 @@ The first audited quartic working lemmas now constrain:
 - the nonbinary fixed-cubic line subrow
   \(H_4=h(p,q,r)(p,q,0)\): logarithmic valuations reduce the only
   exceptional factorization to \(h=pr^2\), and its two residual stabilizer
-  orbits force a singular linear part.
+  orbits force a singular linear part; and
+- the nonbinary fixed-quadratic line double-cover subrow
+  \(H_4=h(p,q,r)(p^2,q^2,0)\): the only residual square factor has exactly
+  two stabilizer orbits, and complete lower determinant solves force a
+  singular linear part in both.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -70,7 +74,8 @@ The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
 \((2,2)\) stratum, ramified birational quartic parametrizations, the binary
 fixed-cubic line locus
-\(h\in\mathbb C[p,q]\), and the other leading maps with a fixed divisor.
+\(h\in\mathbb C[p,q]\), the binary fixed-quadratic line double-cover locus,
+and the other leading maps with a fixed divisor.
 The nodal-cubic, cuspidal-cubic, fixed-divisor conic, and conic
 double-cover rows are closed.  In the rank-one stratum, fixed-component
 projected cubic pencils and a binary common-ramification locus remain.  The

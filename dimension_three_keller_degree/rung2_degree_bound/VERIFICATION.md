@@ -480,6 +480,38 @@ branch or failing equation was found.  This excludes the complete row
 (e,a,b,\delta,\nu)=(0,1,4,2,2).
 \]
 
+### Nonbinary fixed-quadratic line double cover
+
+At 2026-07-25T05:38:33Z the supplied exact implementations and the
+independent hostile reconstruction passed:
+
+```text
+cd fixed_quadratic_line_doublecover
+/usr/bin/python3 verify_nonbinary_fixed_quadratic_line_sympy.py
+./verify_nonbinary_fixed_quadratic_line_pari_strict.sh
+./audit_hostile/audit_reconstruct_pari_strict.sh
+```
+
+The supplied checks reconstruct the general adjugate and logarithmic
+derivation, both raw exceptional orbit systems, every lower
+specialization, and the final determinant vanishings.  The hostile audit
+independently proves the global square rehomogenization and full stabilizer
+exhaustion.  Its raw coefficient matrices have constant ranks
+\[
+E_6:10,14,\qquad E_5:4,6,
+\]
+and it verifies the \(K\ne0\) lower ranks \(4,3\), the literal
+divisibilities \(M\mid\det L_0\), \(M_*\mid\det L_0\), and
+\[
+a[pr]E_2-[p]E_1=M_*^2.
+\]
+Optimized-Python and GP-diagnostic fault injection both fail closed.  This
+excludes exactly the nonbinary part of
+\[
+(e,a,b,\delta,\nu)=(2,1,2,1,2);
+\]
+the binary fixed quadratic remains.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

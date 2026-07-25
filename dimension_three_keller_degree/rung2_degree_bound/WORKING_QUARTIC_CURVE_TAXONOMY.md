@@ -235,6 +235,12 @@ The fixed-divisor coverage is now more precise.
   `WORKING_FIXED_CUBIC_LINE_ROW.md` excludes every nonbinary fixed divisor
   \(h\notin\mathbb C[p,q]\).  The binary locus
   \(h\in\mathbb C[p,q]\) remains.
+- In the fixed-quadratic line double-cover row
+  \((e,a,b,\delta,\nu)=(2,1,2,1,2)\),
+  `fixed_quadratic_line_doublecover/WORKING_NONBINARY_FIXED_QUADRATIC_LINE_DOUBLECOVER.md`
+  excludes every nonbinary fixed divisor.  The residue reduction has one
+  global-square exception \(h=r^2\); its two full-stabilizer normal orbits
+  both force \(\det L_0=0\).  The binary locus remains.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 
