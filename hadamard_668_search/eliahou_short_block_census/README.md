@@ -1,5 +1,56 @@
 # Nine-case all-short-block Eliahou census
 
+## Complete production result
+
+Production finished on 2026-07-25 PDT.  All \(2^{18}\) quotient states in
+each of cases 21 through 29 were searched, in 256 atomic ranges per case.
+The complete result is:
+
+- 9 cases and 2,304 strictly validated ranges;
+- 3,710,853,316,608 exact join rows;
+- 88,927,740 modular survivors;
+- 88,927,740 exact integer-polynomial checks;
+- 88,927,740 independent bit-packed physical replays; and
+- **zero exact integer supports**.
+
+| case | short block | join rows | modular survivors | best (nonzero, L1, Linf) | wall |
+|---:|---:|---:|---:|---:|---:|
+| 21 | S02 | 412,316,860,416 | 9,564,254 | (4, 72, 30) | 37.68 min |
+| 22 | S04 | 412,316,860,416 | 9,796,880 | (4, 78, 36) | 36.75 min |
+| 23 | S06 | 412,316,860,416 | 9,807,738 | (3, 54, 30) | 40.30 min |
+| 24 | S08 | 412,317,646,848 | 9,561,296 | (4, 66, 36) | 46.63 min |
+| 25 | S10 | 412,316,860,416 | 9,789,738 | (3, 72, 36) | 40.08 min |
+| 26 | S12 | 412,316,860,416 | 10,533,216 | (4, 66, 36) | 73.67 min |
+| 27 | S14 | 412,317,646,848 | 10,285,492 | (3, 66, 24) | 36.10 min |
+| 28 | S16 | 412,316,860,416 | 9,789,970 | (4, 66, 24) | 35.17 min |
+| 29 | S18 | 412,316,860,416 | 9,799,156 | (4, 66, 30) | 31.82 min |
+
+`NINE_CASE_COMPLETION_CERTIFICATE.json` freezes the exact counts, retained
+best witness, model/binary/config/aggregate/source hashes, original
+survivor-stream range digest, complete raw-manifest digest, and normalized
+full-semantic range digest for every case.  The semantic digest includes
+every validated range field except the two nondeterministic timing-rate
+fields.
+
+The output-independent verifier requires both the original nine-model
+algebra certificate and the separately frozen case-26 completion
+certificate.  It regenerates all nine models, checks byte-for-byte
+equivalence of the independently derived case-26 models, and independently
+replays every aggregate-best quotient plus both exceptional fallback
+quotients:
+
+```text
+env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
+  VECLIB_MAXIMUM_THREADS=1 PYTHONDONTWRITEBYTECODE=1 \
+  /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  verify_nine_case_completion.py
+```
+
+Add `--live` to audit all 2,304 ignored range manifests, exact path sets,
+configs, aggregates, model binaries, and executables.  Live verification
+also reruns both exceptional quotients in gauged and ungauged C++ modes and
+requires exact agreement with the independent NumPy/physical replay.
+
 ## Exact algebraic result
 
 Canonical cases 21 through 29 are precisely
@@ -115,8 +166,8 @@ Prepare a case without launching a range:
 When machine capacity is available, remove `--prepare-only` to run.  A
 separate output directory is required for `--ungauged`.
 
-After the active case-26 census finishes, the exact sequential production
-command for the other eight cases is:
+The other eight cases were completed with the following sequential
+production command.  It remains their exact resume command:
 
 ```text
 cd /Users/alec/Documents/Math-h668-local/hadamard_668_search/eliahou_short_block_census
@@ -132,10 +183,9 @@ for case_number in 21 22 23 24 25 27 28 29; do
 done
 ```
 
-The loop is sequential across cases and parallel only within one case.  Do
-not launch it until case-26 production has released its eight workers.
-Re-running exactly the same command resumes: validated atomic ranges are
-skipped and only missing ranges run.
+The loop is sequential across cases and parallel only within one case.
+Re-running exactly the same command now performs strict validation and
+skips all completed atomic ranges.
 
 Aggregate all eight completed cases:
 
@@ -183,12 +233,14 @@ The independent replay deliberately caps itself at two quotients unless
 - byte-identical regeneration of the active case-26 model, including the
   known quotient-zero survivor count and stream hash.
 
-Only bounded single-core controls were run.  No complete new short-block
-case was launched while the existing case-26 production used eight workers.
+These bounded controls preceded full production.  The complete nine-case
+result and its stronger independent verification are now frozen in
+`NINE_CASE_COMPLETION_CERTIFICATE.json`.
 
 ## Scope
 
 These are necessary characteristic-two/three anti-fold searches inside
-Eliahou's structured repair family.  A completed exact support would still
-need the retained physical replay—which the kernel performs—but the current
-artifact contains no exact support and does not construct \(H(668)\).
+Eliahou's structured repair family.  The result excludes an exact repair in
+these nine all-short-block cases.  It does not exclude other Eliahou repair
+cases, other construction families, or \(H(668)\) itself, and it does not
+construct \(H(668)\).
