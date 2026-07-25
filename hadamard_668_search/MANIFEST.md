@@ -20,7 +20,7 @@
 | `FIVE_COMB_ROOT8_VERTICAL.md` | Primitive-eight vertical-pair sieve and retained core-4/core-27 censuses |
 | `NOVEL_LP333_THEORY.md` | Historical QPSK quartic-residue quotient, now closed by the row-sum theorem |
 | `LP333_SEXTIC_QUOTIENT.md` | Historical order-six quotient and 108-sign model, now closed by the row-sum theorem |
-| `LP333_MULTIPLIER_ROW_SUM.md` | Independent compact fixed-compression proofs for July-paper IDs 20, 12, and 8, now subsumed by stronger full-family exclusions, plus the 1,756-word open ID3 front end |
+| `LP333_MULTIPLIER_ROW_SUM.md` | Independent compact fixed-compression proofs for July-paper IDs 20, 12, and 8, now subsumed by stronger full-family exclusions, plus the 1,756-word front end for the local prescribed-compression slice of public-open ID3 |
 | `LP333_ORDER3_DIFFERENCE_FAMILY.md` | Exact 24-triple pure-axis lift and full mixed-lag non-candidate audit |
 | `LP333_ORDER3_EISENSTEIN.md` | Exact 13-condition Eisenstein factorization and local mod-three sieve |
 | `LP333_ORDER3_PRIMITIVE9_JET.md` | Six-digit ramified primitive-nine refinement of the order-three quotient |
@@ -44,9 +44,9 @@
 | `LP333_ORDER3_PROFILE_PENULTIMATE_SHELL.md` | Exact affine modulo-nine exclusion of the five-norm-nine shell |
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
-| `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local lanes, corrected priority scope, and ID3 search consequences |
+| `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local slices, corrected priority scope, and public-ID3 search consequences |
 | `H668_72H_GATE.md` | Explicit success, stop, evidence, and host-resource criteria for the current construction sprint |
-| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed dense `h=0` census, the remaining `h=1` shell, the nine short-block Eliahou cases, and near-Williamson order 167 |
+| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed frozen dense-`h=0` compressed-profile census, the remaining `h=1` shell, the nine short-block Eliahou cases, and near-Williamson order 167 |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
@@ -60,7 +60,7 @@
 | `scratch_dense_shell_benchmark/README.md` | Validated dense-shell character kernel, independent affine-cube replay, and conservative per-core throughput gate |
 | `dense_shell_e2e_audit/README.md` | Connected nontrivial production prefix, actual 729-character transform, replay-scope correction, and narrowed runtime projection |
 | `dense_shell_exact_profile_h0_orbit2/README.md` | Second exact dense-shell `h=0` profile orbit, detached all-lag replay, and provenance boundary |
-| `dense_shell_h0_complete_classification/README.md` | Complete 729-shard classification of the dense `h=0` shell into eighteen exact profile orbits |
+| `dense_shell_h0_complete_classification/README.md` | Complete 729-shard classification of the frozen dense-`h=0` characteristic-two/modulo-nine compressed-profile scope into eighteen exact orbits |
 | `h0_orbit2_lift_audit/README.md` | Independent 18-quadric lift, defect-one point, and exact radius-six local exclusion for the second profile |
 | `h0_orbit2_quadric_theory/README.md` | Singular character compression, exact prefix fibers, and quadratic parametrization for the second profile's quadrics |
 | `h0_new_orbits_lift_triage/README.md` | Exact all-eighteen first-layer, quadratic-span, retraction, and row-transfer audit |
@@ -74,6 +74,8 @@
 | `eliahou_global_reuse_math/README.md` | Free reflection gauge and quotient-independent four-component reuse theorem |
 | `eliahou_global_quotient_plan/README.md` | Complete case-26 262,144-quotient census, zero-exact certificate, and strict live replay |
 | `eliahou_short_block_census/README.md` | Generalized exact engine and complete work denominator for all nine canonical short-block cases |
+| `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
+| `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
 | `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
 | `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, all-five exact census, prior-family overlap, and rank-two cost boundary |
 | `anti_tensor_correction/README.md` | Exact fixed-background rank-two correction obstruction at all three anti-tensor near misses |
@@ -257,6 +259,14 @@
 | `eliahou_short_block_census/verify_short_block_census.py` | Reconstructs all nine models, gauges, clique couplings, and bounded physical replay controls |
 | `eliahou_short_block_census/run_short_block_census.py` | Atomic, resumable, memory-capped exact runner for cases 21 through 29 |
 | `eliahou_short_block_census/aggregate_short_block_census.py` | Strict per-case range and exact-survivor aggregator |
+| `eliahou_long_block_exact_triage/verify_all_artifacts.py` | Detached replay of all twenty long-case structural models, complete Walsh pencils, CNF hashes, and frozen certificates |
+| `eliahou_long_block_exact_triage/verify_long_block_exact_triage.py` | Reconstructs quotient dimensions, interaction graphs, reflection audit, exact counts, mod-4 ANFs, and characteristic-seven ranks |
+| `eliahou_long_block_exact_triage/LONG_BLOCK_EXACT_TRIAGE.json` | Frozen all-case structural, cost, graph, rank, and semantic-hash certificate |
+| `eliahou_long_block_exact_triage/MOD4_WALSH_CENSUS.json` | Complete `2^20` quadratic-Walsh pencil certificate for each of the twenty open long cases |
+| `eliahou_long_block_exact_triage/EXACT_CRT_SAT_BENCHMARK.json` | Hash-pinned bounded exact-CRT and integer-PB comparison; all runs are explicitly `UNKNOWN` |
+| `eliahou_long_block_exact_triage/SHA256SUMS` | Byte-level hashes for the delivered long-block artifact bundle |
+| `conference_333_group_obstruction/verify_conference_333_group_obstruction.py` | Reconstructs the character obstruction and both exact order-nine quotient classifications |
+| `conference_333_group_obstruction/CONFERENCE_333_GROUP_CERTIFICATE.json` | Frozen cyclic- and elementary-abelian-quotient counts proving zero group-developed conference cores |
 | `near_williamson_167_audit/audit_near_williamson_167.py` | Replays row-sum profiles, one-defect reduction, exact front-end count, and bounded feasibility pilots |
 | `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |
 | `five_orbit_family_audit/anti_tensor_family_certificate.json` | Compact all-five chart census, residual histograms, nearest points, and semantic hash |
