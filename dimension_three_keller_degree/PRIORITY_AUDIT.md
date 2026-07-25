@@ -808,3 +808,18 @@ proportional-column obstruction.  Exact SymPy and independently rebuilt
 PARI/GP certificates pass, but hostile mathematical audit is pending.
 This is source-specific negative evidence only, not a guarantee of
 worldwide priority; the result is AI-assisted and unreviewed.
+
+### 2026-07-25T19:01Z — full unmarked-double \(q^2\) audit delta
+
+The same current-day source sweep was compared with the complementary
+\(\{1,1\}\) component \(3b^2-8c\ne0\), including exact searches for
+its two divided-gradient columns, the larger-gcd polynomial
+\[
+J=192c^3-48c^2-1024ce-5c+1024e^2+320e,
+\]
+and the contact-resultant chain.
+
+No checked source contains this component exclusion or the assembled
+full unmarked-double theorem.  This remains source-specific negative
+evidence, not a worldwide-priority guarantee.  Hostile audit is
+pending, and the result is AI-assisted and unreviewed.

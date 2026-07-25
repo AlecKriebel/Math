@@ -1153,3 +1153,20 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   provisionally excluded pending hostile audit.  Its complementary
   \(\{1,1\}\) component remains active, and the universal certified
   floor remains \(4\).
+
+## 2026-07-25T19:01:34Z — Full unmarked-double \(q^2\) locus closed
+
+- The complementary \(K=3b^2-8c\ne0\) component has two explicit
+  determinant-\(q^2\) Hilbert--Burch columns of splitting
+  \(\{1,1\}\).
+- Four scaling charts exhaust its parameter space.  On the generic
+  chart, every contact along the first tangent lies on the exact
+  larger-gcd boundary \(eJ=0\); the second projective tangent chart is
+  inconsistent by two exact resultants and an augmented determinant.
+  The three boundary charts have no contact off \(K=0\).
+- Exact SymPy Gröbner/saturation checks and an independent PARI/GP
+  remainder-resultant reconstruction pass.  An independent hostile
+  audit is running.
+- Together with the \(K=0\) package, this provisionally excludes the
+  entire unmarked-double exact-\(\delta=2\) locus in the fixed-linear
+  row.  The universal certified floor remains \(4\).
