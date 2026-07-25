@@ -1,11 +1,17 @@
 # Verification record for the quartic working lemmas
 
-**Verification timestamp:** 2026-07-24T23:43:08Z.
+**Verification timestamps:** 2026-07-24T23:43:08Z and
+2026-07-25T00:10:26Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
 geometric hypothesis has been encoded, and they are not a substitute for
 peer review.
+
+The derivations, adversarial audits, scripts, and exposition were produced
+with AI assistance under human direction.  Every promoted algebraic identity
+is retained in an exact reproducible check, but that disclosure and those
+checks do not constitute independent peer review.
 
 ## Exact checks
 
@@ -14,6 +20,8 @@ The following commands pass:
 ```text
 /usr/bin/python3 verify_quartic_constraints_sympy.py
 gp -q verify_quartic_constraints_pari.gp
+/usr/bin/python3 verify_quartic_strata_sympy.py
+gp -q verify_quartic_strata_pari.gp
 ```
 
 The SymPy and PARI/GP implementations independently expand:
@@ -31,6 +39,19 @@ The SymPy and PARI/GP implementations independently expand:
 
 They also verify the local complete-intersection branch used to disprove the
 discarded claim that every finite conductor exponent is positive.
+
+The second pair independently checks:
+
+1. the degree-eight, degree-seven, and corrected degree-six coefficients in
+   the genuine line-image \((1,4)\) theorem;
+2. the binary chain-rule factor in the line-image \((2,2)\) theorem;
+3. the conic-image adjugate
+   \(\operatorname{adj}(JH_4)=2Dn^T\);
+4. the full conic degree-seven determinant identity and the tangent and
+   square syzygies used in the conic normal form;
+5. exact double-line sharpness examples;
+6. a concrete gcd-one ramification triple; and
+7. the constant Jacobian of the quadratic coordinate change.
 
 ## Independent mathematical audits
 
@@ -89,6 +110,38 @@ For \(H_2\ne0\), the invariant-image-line proposition is verified directly by
 the block factorization of \(JF\).  The explicit two-shear example was
 checked in both systems and proves that a global simultaneous-triangularization
 strategy is false.
+
+### Quadratic-component exit and rational-curve strata
+
+The quadratic-coordinate lemma was derived from the kernel and image of the
+constant Hessian and independently audited with arbitrary constants and
+linear part.  Both implementations check the triangular Jacobian, and the
+degree tracking is explicit:
+\[
+\deg(F\circ T^{-1})\le4\cdot2=8.
+\]
+
+For the \((1,4)\) line-image theorem, one derivation used direct determinant
+row replacement and a second recomputed all three coefficients from generic
+symbolic matrices.  The Hilbert--Burch resolution was audited with the
+arbitrary linear part left unnormalized; this caught the need to retain the
+scalar \((L_0)_{3r}\) in degree six.
+
+For the line-image and conic-image \((2,2)\) theorems, the vertical-divisor
+argument and the exact matrix/syzygy calculations were performed
+independently.  The double-line hypotheses are sharp only for the stated
+leading determinant identities; the examples are not asserted to be Keller
+maps.
+
+The adversarial audit identified a missing logical bridge between
+\(D\)-invariance and algebraicity over \(\mathbb C(p/q)\).  Both notes now
+include the homogeneous first-integral lemma proving that bridge through the
+constant field of \(D\) and the scaling action.  It also identified the need
+to prove relative algebraic closedness separately when there is exactly one
+double-line fibre; the conic-pencil determinant classification now covers
+that case.  Finally, the audit observed that the first harness version checked
+only the conic syzygies, not the entire degree-seven determinant coefficient.
+The full generic coefficient is now encoded in both exact scripts.
 
 ## Scope
 

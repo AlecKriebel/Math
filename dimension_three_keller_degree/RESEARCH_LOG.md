@@ -201,3 +201,69 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   highest-information experiment is the composite line-image
   \((\deg(p,q),\deg A)=(2,2)\) stratum, where the degree-eight identity has
   already reduced to a concrete vertical-divisor syzygy.
+
+## 2026-07-25T00:10:26Z — Rational-image quartic strata banked
+
+### New structural theorems
+
+- **Quadratic-component exit.**  A total-degree-at-most-four Keller map in
+  dimension three is an automorphism whenever a nonzero target-linear
+  combination of its components has degree at most two.  A nowhere-critical
+  quadratic is straightened by a degree-two polynomial automorphism; the
+  resulting plane fibres have degree at most eight and are automorphisms by
+  the established plane lower bound.
+- **Genuine line image, type \((2,2)\).**  For a primitive quadratic pencil
+  with no scheme-theoretic double-line member, the degree-eight identity
+  forces the third cubic component to vanish, so the quadratic-component
+  exit applies.  A counterexample in this stratum must have a unique
+  double-line fibre and cubic normal component
+  \[
+  cL^3\quad\text{or}\quad cL(\alpha p+\beta q).
+  \]
+- **Genuine line image, type \((1,4)\).**  With binary quartics \(P,Q\) and
+  binary cubic \(R\), a map is an automorphism whenever
+  \[
+  \gcd\bigl(J(P,Q),J(P,R),J(Q,R)\bigr)=1.
+  \]
+  The proof uses the exact Hilbert--Burch resolution of the ramification
+  minors.  Keeping the arbitrary linear part exposed was essential: degree
+  six also forces its complementary source direction into the leading target
+  plane.
+- **Conic image, type \((2,2)\).**  Away from a double-line fibre, the
+  nonlinear part has the exact form
+  \[
+  \operatorname{Ver}(p+\ell,q+m)+M(p,q).
+  \]
+  This is a normal-form constraint, not yet an automorphism theorem.
+
+### Verification, corrections, and scope
+
+- Independent SymPy and PARI/GP scripts check the determinant coefficients,
+  chain-rule factors, conic adjugate and syzygies, double-line examples, and
+  quadratic coordinate change.
+- Independent mathematical audits checked the arbitrary linear part, divisor
+  parity, relative-algebraic-closedness hypotheses, and the exact degree
+  tracking.  The conic-pencil primitive-fibre lemma now includes its explicit
+  determinant calculation.
+- A final adversarial pass caught two omitted proof bridges rather than false
+  conclusions: it required an explicit homogeneous first-integral lemma
+  before descending \(D\)-invariants to \(\mathbb C(p/q)\), and a separate
+  proof of geometric integrality when there is exactly one double-line
+  fibre.  Both repairs are now in the notes.  The same pass found that the
+  conic degree-seven coefficient was not fully represented in the initial
+  harness; both exact systems now expand that complete identity.
+- The leading sharpness examples certify only the corresponding homogeneous
+  determinant identities; none is presented as a Keller map.
+- The universal certified lower bound remains total degree \(4\).  The active
+  rational-image loci are common ramification in type \((1,4)\), the unique
+  double-line branches in type \((2,2)\), and the lower identities in the
+  conic normal form.
+
+### Priority and next experiment
+
+- A fresh required-channel sweep after the UTC date change found no checked
+  source containing these exact quartic statements.  This is source-specific
+  evidence only and is not a guarantee of worldwide priority.
+- The highest-information experiment is to classify the common factor of the
+  three binary ramification minors in type \((1,4)\), while independently
+  expanding the lower identities of the conic normal form.

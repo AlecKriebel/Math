@@ -197,3 +197,47 @@ worldwide priority.
    absence is not evidence of worldwide priority.
 4. The universal degree floor is still the prior bound \(4\); no degree-four
    exclusion has yet been proved.
+
+## 2026-07-25
+
+### 2026-07-25T00:00Z--00:10Z — required-channel sweep
+
+All negative results in this entry are source-specific.  They do not
+establish worldwide priority.
+
+- The new listings in
+  [math.AG](https://arxiv.org/list/math.AG/recent),
+  [math.AC](https://arxiv.org/list/math.AC/recent),
+  [math.CO](https://arxiv.org/list/math.CO/recent), and
+  [math.NT](https://arxiv.org/list/math.NT/recent) were rechecked for
+  “Jacobian”, “Keller”, “polynomial automorphism”, “quartic”, “ramification”,
+  and “conic”.  The relevant algebraic-geometry/algebra records were Migus
+  (arXiv:2607.21572), Shaska (arXiv:2607.20210), the
+  characteristic-two item arXiv:2607.20968, and Jelonek
+  [*On mappings with Jacobian one*](https://arxiv.org/abs/2607.20597).
+  No relevant match appeared in the combinatorics or number-theory listings.
+- Jelonek's full text was inspected.  It proves that the automorphism locus
+  \(A(n,d)\) is Zariski closed and studies its components.  It does not state
+  a total-degree-four structural classification, a line- or conic-image
+  theorem, or the quadratic-component exit recorded here.
+- The newest and active
+  [MathOverflow questions](https://mathoverflow.net/questions/tagged/jacobian-conjecture?tab=Newest)
+  were checked.  The generic-degree discussion has new activity but no
+  statement overlapping the total-degree-four strata.
+- Tao's
+  [July 2026 archive](https://terrytao.wordpress.com/2026/07/) contains no
+  newer relevant post after the 21 July digestion article.
+  A new
+  [Secret Blogging Seminar search](https://sbseminar.wordpress.com/?s=Jacobian)
+  again found no relevant current item.
+- A read-only X/Twitter search restricted to posts since 24 July found
+  general discussion of the counterexample but no checked statement of the
+  quadratic-component exit, binary common-ramification obstruction, or
+  conic normal form.
+
+### Quartic-strata priority conclusion
+
+No checked source contains the exact four rational-image quartic statements.
+They remain unreviewed working theorems, not public priority claims.  The
+certified universal lower bound remains the prior value \(4\), and no
+degree-four exclusion has been proved.

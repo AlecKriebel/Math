@@ -66,12 +66,14 @@ Exactly one of the following necessary shapes occurs.
    \tag{5}
    \]
    for some \((\alpha,\beta)\ne(0,0)\) and
-   \(\lambda\in\mathbb C^\times\).
-3. \(R_3=R_2=0\).  Then \(F\) is a polynomial automorphism.
+   \(\lambda\in\mathbb C^\times\); moreover \(F\) is a polynomial
+   automorphism.
+3. \(R_3=R_2=0\).  Then \(F\) is also a polynomial automorphism.
 
 Consequently a Keller **counterexample** in the primitive line-type
-leading-net class must satisfy (4) or (5).  A primitive quartic pencil all of
-whose members are squarefree cannot occur.
+leading-net class must satisfy (4).  In particular, its leading pencil
+contains \(L^4\), paired with the cubic subleading term
+\(R_3=\lambda L^3\).
 
 ## 2. Why the leading net factors through a pencil
 
@@ -220,26 +222,22 @@ of \(A\), giving
 \]
 If \(R_2\ne0\), the \(d=2\) part of the lemma proves (5).
 
-## 5. The linear-coordinate exit
+## 5. The degree-at-most-two coordinate exit
 
-If \(R_3=R_2=0\), the normalization (1) has
+If \(R_3=0\), the normalization (1) has
 \[
-F_3=X_3.
+F_3=X_3+R_2
 \]
-For each \(c\in\mathbb C\), the restriction
-\[
-(X_1,X_2)\longmapsto
-\bigl(F_1(X_1,X_2,c),F_2(X_1,X_2,c)\bigr)
-\]
-is a plane Keller map of degree at most \(4\).  The established plane
-degree bound makes every such map an automorphism.  Hence equality of two
-values of \(F\) first forces equality of their third coordinates and then,
-on that fibre, equality of the first two coordinates.  Thus \(F\) is
-injective.  The Ax--Grothendieck theorem makes it a polynomial
-automorphism.
+and this component has degree at most \(2\).  The quadratic-component exit
+proved in `WORKING_QUADRATIC_COMPONENT_EXIT.md` applies: a quadratic
+submersion is straightened by an automorphism of degree at most \(2\), after
+which the plane fibres have degree at most \(8\).  The established plane
+degree bound makes those fibre maps automorphisms, and injectivity plus
+Ax--Grothendieck finishes.  Thus both cases 2 and 3 are automorphisms.
 
-This invokes an established low-degree plane theorem; it neither assumes
-the plane Jacobian Conjecture nor attempts new work in dimension two.
+This invokes the established plane lower bound only as a black box; it
+neither assumes the plane Jacobian Conjecture nor attempts new work in
+dimension two.
 
 ## 6. Next work
 

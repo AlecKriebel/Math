@@ -23,11 +23,21 @@ The first audited quartic working lemmas now constrain:
 - generic-line defect and genus;
 - the conductor divisor on coprime-leading \((4,4)\) closures;
 - primitive line-valued leading quartic pencils; and
-- rank-one quartic Jacobian parts in two substantial subcases.
+- rank-one quartic Jacobian parts in two substantial subcases;
+- every quartic map having a target-linear component of degree at most two;
+- genuine line-image \((2,2)\) pencils without a double-line fibre;
+- the unramified part of the genuine line-image \((1,4)\) stratum; and
+- conic-image \((2,2)\) leading maps, which admit an exact nonlinear normal
+  form away from double-line fibres.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
 verification harness.  No claim is promoted without an adversarial scope and
 hypothesis audit.
+
+The remaining rational-image frontier consists of the common-ramification
+locus in type \((1,4)\), the unique-double-line locus in type \((2,2)\), and
+the lower Keller identities in the conic normal form.  The universal
+certified floor remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.
