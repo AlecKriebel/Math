@@ -569,3 +569,28 @@ sharp vertical witnesses.  This is source-specific negative evidence only,
 not a guarantee of worldwide priority.  The theorem passed hostile audit
 but remains unreviewed, and the vertical locus stays open.  The certified
 universal total-degree floor remains \(4\).
+
+### 2026-07-25T06:54Z — unified fixed-divisor verticality audit delta
+
+The same-day source sweep was rechecked against the stronger statement for
+all three primitive quartic line-pencil rows
+\[
+H_4=(hp,hq,0),\qquad \deg h+\deg p=4.
+\]
+The checked arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+Gallagher, and publicly indexed X/Twitter sources do not state the
+scaling-descent identity
+\[
+G^4/(hp)^d=R(q/p),
+\]
+the horizontal-prime constraint \(4v_f(G)=d\,v_f(h)\), or the conclusion
+that every prime component of the fixed divisor must be vertical.
+The closest checked structural input remains the known homogeneous
+minimal-pair factorization; it does not extract the degree-eight normal
+component or this divisor constraint.
+
+The theorem passed an independent hostile audit, including finite and
+infinite valuation factors and a shared-factor degeneration.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The theorem remains unreviewed, its all-vertical loci remain
+open, and the certified universal total-degree floor remains \(4\).

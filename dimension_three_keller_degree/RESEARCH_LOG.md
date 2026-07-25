@@ -813,3 +813,31 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   witnesses show that the top-identity vanishing fails there, though they
   are not Keller maps.
 - The universal certified floor remains total degree \(4\).
+
+## 2026-07-25T06:54:01Z — Fixed-divisor verticality unified across line pencils
+
+- The scaling-descent argument extends from the fixed-linear
+  cubic-pencil row to every primitive quartic line-pencil leading form
+  \[
+  H_4=(hp,hq,0),\qquad
+  \deg h=e,\quad\deg p=\deg q=4-e,\quad1\le e\le3.
+  \]
+- If \(f^m\mid h\) is horizontal, a homogeneous cubic normal first
+  integral satisfies
+  \[
+  \frac{G_3^4}{(hp)^3}=R(q/p),\qquad 4v_f(G_3)=3m.
+  \]
+  Since \(1\le m\le3\), this is impossible.  Thus \(G_3=0\), and the
+  audited quadratic-component theorem makes the Keller map an
+  automorphism.
+- Consequently every prime component of \(h\) must be vertical.  For
+  \(e=3\) this recovers \(h\in\mathbb C[p,q]\); for \(e=1\) it recovers
+  the vertical fixed-line condition; and for \(e=2\) it leaves exactly
+  the irreducible, double-line, and split-two-member vertical shapes
+  listed in the dedicated note.
+- A hostile audit independently reconstructed the field descent,
+  valuation at finite and infinite pencil values, determinant
+  orientation, and plane exit.  It added a dependency-free modular check
+  and repaired a fail-closed PARI-wrapper defect.  Verdict: PASS.
+- This is a structural restriction, not a universal quartic exclusion.
+  The certified total-degree floor remains \(4\).

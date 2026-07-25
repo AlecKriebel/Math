@@ -266,6 +266,21 @@ The fixed-divisor coverage is now more precise.
   \]
   The complementary vertical locus has a unique pencil member divisible
   by \(h\), and remains active.
+- More generally,
+  `fixed_divisor_verticality/WORKING_FIXED_DIVISOR_VERTICALITY_PRINCIPLE.md`
+  proves for every primitive quartic line-pencil form
+  \[
+  H_4=(hp,hq,0),\qquad \deg h+\deg p=4,
+  \]
+  that every prime component of \(h\) must be vertical.  In the previously
+  uncovered row \((e,a,b,\delta,\nu)=(2,2,1,1,1)\), the exact survivors
+  are, up to pencil change,
+  \[
+  p=h;\qquad h=\ell^2,\ p=\ell m;\qquad
+  h=\ell_1\ell_2,\ p=\ell_1m_1,\ q=\ell_2m_2.
+  \]
+  This is an audited restriction, not an exclusion of those vertical
+  shapes.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

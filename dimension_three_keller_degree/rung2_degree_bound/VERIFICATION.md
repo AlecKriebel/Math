@@ -661,6 +661,41 @@ and explicit primitive examples retain nonzero quadratic or cubic normal
 first integrals.  Those witnesses are not Keller maps, and the vertical
 locus remains active.
 
+### Unified fixed-divisor verticality principle
+
+At 2026-07-25T06:54:01Z the supplied checks, independent reconstruction,
+and fault tests passed:
+
+```text
+cd fixed_divisor_verticality
+/usr/bin/python3 verify_fixed_divisor_verticality_sympy.py
+./verify_fixed_divisor_verticality_pari_strict.sh
+/usr/bin/python3 audit_hostile/audit_reconstruct_modp.py
+./audit_hostile/test_supplied_runners.sh
+```
+
+For every primitive quartic line-pencil leading form
+\[
+H_4=(hp,hq,0),\qquad
+\deg h=e,\quad\deg p=\deg q=4-e,\quad1\le e\le3,
+\]
+the degree-eight identity and scaling descent give
+\[
+G_3^4/(hp)^3=R(q/p).
+\]
+At a horizontal prime \(f^m\mid h\), all finite and infinite pencil
+factors have valuation zero, so \(4v_f(G_3)=3m\).  This is impossible for
+\(m=1,2,3\); the cubic normal component vanishes and the audited
+quadratic-component theorem gives an automorphism.
+
+The independent checker uses dependency-free finite-field arithmetic and
+also tests a degeneration where another factor of \(h\) is shared with a
+pencil member.  The hostile audit verified the relative-closure descent,
+\(E_8\) orientation, all three row corollaries, and the complete
+fixed-quadratic all-vertical frontier.  The strict runners reject
+optimized Python, explicit algebra failures, PARI diagnostics, trailing
+output, and nonzero exits.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller
