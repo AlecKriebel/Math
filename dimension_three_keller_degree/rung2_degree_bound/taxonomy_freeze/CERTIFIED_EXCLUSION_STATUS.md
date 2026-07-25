@@ -1,6 +1,6 @@
 # Certified exclusion status against frozen taxonomy v1
 
-**Updated (UTC):** 2026-07-25T20:50:37Z.
+**Updated (UTC):** 2026-07-25T21:43:27Z.
 
 This is the mutable status ledger for the immutable fourteen-leaf denominator
 in `FROZEN_TAXONOMY_v1.md`.  Historical status strings in the hashed manifest
@@ -8,8 +8,8 @@ are not certification.  A row is promoted here only after a post-freeze
 coverage bridge and an independent hostile replay both pass.
 
 \[
-\boxed{1/14\text{ certified excluded},\quad
-       6/14\text{ provisional legacy exclusions},\quad
+\boxed{2/14\text{ certified excluded},\quad
+       5/14\text{ provisional legacy exclusions},\quad
        7/14\text{ open}.}
 \]
 
@@ -28,12 +28,19 @@ coverage bridge and an independent hostile replay both pass.
 | `Q2-E2-A2-B1-D1-N1` | provisional | -- |
 | `Q2-E2-A1-B2-D1-N2` | open | -- |
 | `Q2-E2-A1-B2-D2-N1` | provisional | -- |
-| `Q2-E3-A1-B1-D1-N1` | provisional | -- |
+| `Q2-E3-A1-B1-D1-N1` | **certified excluded** | `BRIDGE_Q2_E3_A1_B1_D1_N1_v1.md`; `HOSTILE_BRIDGE_AUDIT_Q2_E3_A1_B1_D1_N1_v1.md` |
 
-The certified row is covered pointwise on every nonempty frozen pivot
-stratum `C00`--`C14`; `C15`--`C44` are empty because the three leading
-components are linearly independent.  Its lower exclusion has exact SymPy
-and independently reconstructed PARI/GP checks.
+For `Q2-E0-A1-B4-D2-N2`, every nonempty frozen pivot stratum
+`C00`--`C14` is covered pointwise; `C15`--`C44` are empty because the
+three leading components are linearly independent.  Its lower exclusion
+has exact SymPy and independently reconstructed PARI/GP checks.
+
+For `Q2-E3-A1-B1-D1-N1`, `C00`--`C29` route pointwise through a uniform
+normal form to an intrinsic binary/nonbinary split, while `C30`--`C44`
+are division-free empty by the rank-two condition.  Both legacy exits
+replay, and a new dependency-free hostile checker reconstructs the
+unrestricted nonbinary coefficient solves that were missing as retained
+standalone provenance.
 
 This status record and its certificates were produced with substantial AI
 assistance.  They are not peer review.  Exact checks are evidence about the
