@@ -250,13 +250,16 @@ obstruction rather than merely by a large negative computation.
 
 The next character lane must alter the inverse-pair orientation fingerprints.
 Merely applying more multipliers, phases, signs, or PAF-preserving
-equivalences to these degree-two templates cannot help.  Plausible next
-extensions are:
+equivalences to these degree-two templates cannot help.  The follow-up
+package `prime83_sidelnikov_higher_products/` has since closed independently
+decimated degree three and un-decimated degree four by complete integer PAF
+joins.  Plausible remaining extensions are:
 
 1. mixed products using genuinely different character families on
    `Z_83`, retained only when their row squares fit the five admissible norm
    layers;
-2. degree-three Sidelnikov products, filtered first by (8);
+2. independently decimated degree-four or degree-at-least-five Sidelnikov
+   products, filtered first by (8);
 3. an algebraic construction that targets the oriented inverse-pair states
    directly rather than their PAFs.
 

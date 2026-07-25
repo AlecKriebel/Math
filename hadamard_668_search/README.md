@@ -1,9 +1,9 @@
 # Hadamard order 668 search
 
 Status: both the order-three construction gate and the bounded
-semiregular-\(C_{37}\) restart have failed.  No exact matrix has been found;
-the exact classifications and obstructions are preserved as paper projects,
-and headline search is paused pending a new construction principle.
+semiregular-\(C_{37}\) restart failed.  A theory-first restart is now active
+on the Eliahou, prime-83, and prime-167 structural boundaries.  No exact
+matrix has been found.
 
 This directory is a reproducible attack on the smallest unresolved Hadamard
 order.  A result counts only when an explicit `668 x 668` sign matrix passes an
@@ -31,7 +31,7 @@ completed nine-case Eliahou short-block census.
 | Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
 | Variable `s,q` special quadruple | short boundary closed; long boundary open | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Case 0 is excluded by checked DRAT, all nine short-block cases 21--29 are excluded by an exact 3,710,853,316,608-row census, and the 20 long-block cases 1--20 remain open; case 1 has only an unproved solver-UNSAT observation |
 | Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
-| Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
+| Prime-83 character families | closed larger restricted lanes | independently decimated Sidelnikov products through degree three and un-decimated products through degree four are excluded by exact full-PAF joins; independently decimated degree four and higher degrees remain open |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
 | Distinct-lobe five-comb packing | retained incomplete lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
@@ -344,6 +344,26 @@ join checks 12,584,792 normalized `U/V` states and finds no prime fold:
 ```sh
 python3 check_bs84_sidelnikov_fold.py
 ```
+
+`prime83_sidelnikov_higher_products/` extends that finite theorem.
+It exhausts 3,910,048 canonical affine representatives in the independently
+decimated degree-at-most-three family; 5,434 exact row-compatible `U/V`
+states have zero complete `C/D` PAF matches.  It also exhausts the
+un-decimated degree-at-most-four family: 325,835 row-compatible states yield
+179,221 required 41-coordinate PAF vectors and zero decompositions.  Both
+release modes, frozen outputs, an independent Python certificate,
+ASan/UBSan, and a separate red-team implementation pass:
+
+```sh
+clang++ -O3 -std=c++20 \
+  prime83_sidelnikov_higher_products/audit_independent_decimations.cpp \
+  -o /tmp/audit_degree34
+python3 prime83_sidelnikov_higher_products/verify_expected_outputs.py \
+  --binary /tmp/audit_degree34
+```
+
+This is an exact exclusion of two structured families, not a prime fold or
+evidence against unrestricted `BS(84,83)`.
 
 `VARIABLE_Q_LOCAL_NOTES.md` documents the margin- and endpoint-parity-
 preserving C++ engine and its independently rejected diagnostic checkpoints.

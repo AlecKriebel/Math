@@ -109,6 +109,7 @@
 | `BS84_ORIENTED_SDS_SEARCH.md` | Resumable prime-83 constructor, exact polishing, and retained checkpoint |
 | `PRIME83_SIDELNIKOV_FOLD.md` | Safe-prime Sidelnikov identity and exact direct/product-family exclusions |
 | `PRIME83_SIDELNIKOV_DECIMATIONS.md` | Independent-decimation join and inverse-pair orientation obstruction |
+| `prime83_sidelnikov_higher_products/README.md` | Exact independently decimated degree-at-most-three and un-decimated degree-at-most-four Sidelnikov product exclusions, with frozen outputs and sanitizers |
 | `local_obstructions_668.tex` | Narrow research manuscript |
 | `output/pdf/local_obstructions_668.pdf` | Rendered manuscript |
 

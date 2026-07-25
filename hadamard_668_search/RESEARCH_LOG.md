@@ -2555,3 +2555,22 @@ proof-assistant-level theorem.
   integral construction.  All promoted replays stayed below 101 MB except
   the bounded CP-SAT diagnostic, which stayed near 2.7 GB; no external
   communication occurred.
+
+## 25 July 2026: theory-first restart and higher Sidelnikov products
+
+- Restarted only on structural reductions; no unrestricted brute-force
+  production search was launched.
+- Extended the prime-83 character-product theorem from independently
+  decimated degree at most two to independently decimated degree at most
+  three.  The complete quotient has 3,910,048 affine representatives and
+  5,434 row-compatible endpoint states; the exact 41-coordinate integer PAF
+  join has zero ordinary-block completions.
+- Independently exhausted the un-decimated degree-at-most-four family:
+  325,835 row-compatible endpoint states yield 179,221 required PAF vectors
+  and zero decompositions.
+- Frozen byte-for-byte outputs, the separate Python semantic certificate,
+  release replay, ASan/UBSan, the seven-file hash manifest, and an
+  independent red-team enumeration all pass.
+- No prime fold, `BS(84,83)`, or `H(668)` was found.  Independently
+  decimated degree four, higher products, and arbitrary character families
+  remain open.

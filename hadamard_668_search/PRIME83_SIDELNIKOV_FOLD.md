@@ -344,7 +344,7 @@ higher-degree character products or independently decimated blocks.
 Even a periodic prime-fold match would still need the independent modulo-84
 fold before it could lift to a base sequence.
 
-## 8. Independent decimations: completed
+## 8. Independent decimations and higher products
 
 The independent-decimation extension proposed here has now been exhausted;
 see `PRIME83_SIDELNIKOV_DECIMATIONS.md`.  Its exact quotient contains `1,723`
@@ -360,6 +360,14 @@ equivalences cannot rescue this degree-two family.
 The next character construction must change those inverse-pair orientation
 fingerprints.  Higher-degree or mixed character products should be filtered
 first by that condition and by the five compatible row-norm layers above.
+
+`prime83_sidelnikov_higher_products/` applies exactly that filter and then a
+complete 41-coordinate integer PAF join.  It excludes the independently
+decimated degree-at-most-three family and the un-decimated
+degree-at-most-four family.  The former leaves 5,434 row-compatible `U/V`
+states and the latter 325,835; neither has a `C/D` completion.  Independent
+decimation at degree four, degree five and above, and arbitrary character
+products remain open.
 
 ## 9. Priority caution
 

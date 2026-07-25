@@ -191,11 +191,13 @@ nonexistence.
 The identity `167=2*83+1` also produces a binary Sidelnikov word and a
 one-zero skew companion whose PAFs sum to `-2`. The natural endpoint
 completion, zero-fill variant, degree-two product family, and all independent
-decimations of that family are exactly excluded. The decisive necessary
-condition is equality of the 41 inverse-pair orientation fingerprints; the
-only catalog intersection violates the row-energy bound. This is a clean
-supporting theorem, but it excludes one algebraic family rather than the
-prime fold itself.
+decimations of that family are exactly excluded.  The higher-product audit
+now also excludes every independently decimated product through degree three
+and every un-decimated product through degree four.  The decisive necessary
+condition is equality of the 41 inverse-pair orientation fingerprints,
+followed by a complete integer PAF join.  This is a clean supporting theorem,
+but it excludes named algebraic families rather than the prime fold itself;
+independently decimated degree four remains open.
 
 ## C. Finite 2-adic lift and quartic QPSK quotient
 

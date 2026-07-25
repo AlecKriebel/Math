@@ -696,8 +696,12 @@ The strongest current construction checkpoints are:
   non-candidates in families now proved empty; their search programs are
   historical regressions, not continuation points;
 - no character checkpoint survives: the independently decimated
-  degree-at-most-two Sidelnikov family has zero row-admissible orientation
-  matches and zero exact PAF joins.
+  degree-at-most-three Sidelnikov family has 5,434 exact row-compatible
+  orientation states and zero full PAF joins; the un-decimated
+  degree-at-most-four family has 325,835 such states, 179,221 required PAF
+  vectors, and zero decompositions.  Independently decimated degree four
+  remains open.  The frozen package is
+  `prime83_sidelnikov_higher_products/`.
 
 Read `README.md` for the lane map, `RESEARCH_LOG.md` for chronology, and
 `PRIORITY_AUDIT.md` before making any novelty or publication claim.
@@ -1020,16 +1024,20 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
   internal limits.
 - The quartic LP constructor uses about 6 MB. The dependency-free sextic and
   dyadic checkers use only tens of megabytes. The deepest oriented-SDS exact
-  polish used 927 MB RSS; the independent Sidelnikov-decimation join used
-  about 137 MB.
+  polish used 927 MB RSS.  The original independent Sidelnikov-decimation
+  join used about 137 MB; the promoted degree-three/four replay used about
+  244 MB peak as one combined command, and its sanitizer replay stayed below
+  724 MB.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-Both bounded construction gates have failed.  Preserve the five-orbit,
-eighteen-orbit, physical-margin, and semiregular-conference packages for
-papers, and do not spend headline `H(668)` tokens on the remaining
-dense-profile lifts, twenty long-block Eliahou cases, or the exactly counted
-`2^720`--`2^721` characteristic-two relaxation.  Resume only for a new
-globally coupled margin-restoration theorem, a finite rank-at-least-four
+Both bounded construction gates failed.  The current authorized restart is
+theory-first: require a new exact contraction before enlarging a family or
+running a production search.  Preserve the five-orbit, eighteen-orbit,
+physical-margin, and semiregular-conference packages for papers.  The
+remaining dense-profile lifts and the exactly counted
+`2^720`--`2^721` characteristic-two relaxation are not production-search
+targets.  A new globally coupled margin theorem, a finite rank-at-least-four
 parameterization, a direct integral construction, or a physical point
-passing exact margins and two consecutive higher digits.
+passing exact margins and two consecutive higher digits would justify a
+larger restart.
