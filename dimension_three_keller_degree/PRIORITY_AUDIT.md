@@ -337,3 +337,27 @@ MathOverflow item, Tao-blog post, Secret Blogging Seminar post, or
 read-only X/Twitter result contains it.  This is source-specific negative
 evidence only and is not a guarantee of worldwide priority.  The theorem is
 unreviewed, and the certified universal total-degree floor remains \(4\).
+
+### 2026-07-25T03:19Z — binary fixed-conic overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“Veronese conic”, “fixed divisor”, “binary quadratic”, and the leading form
+\((p^2,pq,q^2)\).  Separate searches were restricted to arXiv,
+MathOverflow, Tao's blog, Secret Blogging Seminar, and X/Twitter.  The
+checked results included de Bondt's homogeneous degree-four
+classification, Shaska's graded-map paper, Migus's generic-degree paper,
+the current MathOverflow generic-degree discussion, and unrelated
+Veronese-conic geometry.  De Bondt's paper concerns homogeneous maps
+\(x+H\); it does not state the mixed
+\(L_0X+H_2+H_3+H_4\) fixed-divisor theorem recorded here.
+
+No checked source states the seven-branch determinant exclusion for
+\[
+H_4=h(p,q)(p^2,pq,q^2)^T,\qquad \deg h=2.
+\]
+The current-day arXiv listing sweep and the previously recorded Tao,
+Secret Blogging Seminar, and read-only social searches were also compared
+against this exact statement.  This is source-specific negative evidence
+only, not a guarantee of worldwide priority.  The theorem is unreviewed,
+does not exclude the five nonbinary fixed factors, and does not raise the
+certified universal total-degree floor above \(4\).

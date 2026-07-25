@@ -202,10 +202,24 @@ the present \((a,b,\delta,\nu)=(1,4,2,2)\) row, with canonical leading form
 \]
 That conic-double-cover stratum is not excluded.
 
-Every row with \(e>0\) is likewise uncovered by the current curve-image
-theorems.  Some special lower homogeneous terms may trigger another exit
-theorem, but none of those results excludes an entire common-factor
-stratum.
+The fixed-divisor coverage is now more precise.
+
+- The entire nodal cubic row
+  \((e,a,b,\delta,\nu)=(1,1,3,3,1)\) is excluded by the two nodal notes.
+- In the conic row
+  \((e,a,b,\delta,\nu)=(2,1,2,2,1)\),
+  `WORKING_FIXED_CONIC_ROW.md` excludes the complete invariant subrow
+  \[
+  H_4=h(p,q)\operatorname{Ver}(p,q),
+  \]
+  equivalently \(\iota_kB_h=0\) for the quotient source direction \(k\).
+  It does not exclude the whole taxonomy row.  The remaining fixed-factor
+  normal forms are
+  \[
+  r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2.
+  \]
+- The cuspidal cubic and the other \(e>0\) rows remain uncovered except
+  where a separate component or rank-one exit theorem applies.
 
 ## 5. The transverse cubic stratum
 

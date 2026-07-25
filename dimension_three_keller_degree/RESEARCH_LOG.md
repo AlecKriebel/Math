@@ -513,3 +513,41 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The exact priority search found no checked overlap with the complete
   nodal-row exclusion.  This is not a guarantee of worldwide priority.
 - The certified universal floor remains total degree \(4\).
+
+## 2026-07-25T03:19:56Z — Binary fixed-divisor conic subrow excluded
+
+- The full raw determinant audit closed every branch of
+  \[
+  H_4=h(p,q)\operatorname{Ver}(p,q),\qquad \deg h=2.
+  \]
+  The two binary quadratic orbits are \(h=pq\) and \(h=p^2\).  Degree
+  eight gives the tangent Hilbert--Burch form, degree seven removes its
+  quadratic \(r\)-part, and the coefficient of \(r^2\) in degree six gives
+  the exhaustive scalar/opposite/semisimple/nilpotent/zero branch list.
+- In the split-root scalar and double-root scalar branches, the final
+  determinant coefficient is an exact square.  Its vanishing cancels the
+  exact square factor of \(\det L_0\), without dividing by any branch
+  parameter.  The split opposite branch has the constant obstruction
+  \(64\).
+- The double-root semisimple branch has a constant \(9\times9\) linear-system
+  minor \(32768\) and its unique \(L_0\) is singular.  The nilpotent branch
+  was split at the essential parameter \(K=0\); on that branch two columns
+  of \(L_0\) are exactly proportional.  All nonzero zero-tangent support
+  orbits have constant degree-five obstructions.  The remaining zero orbit
+  is a degree-at-most-four plane Keller block plus a shear and is an
+  automorphism.
+- The adversarial audit found no missing binary branch, but caught a scope
+  overstatement before promotion.  For a general quadratic fixed factor,
+  the binary condition is intrinsically \(\iota_kB_h=0\).  The five
+  nonbinary parabolic normal forms
+  \[
+  r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2
+  \]
+  remain open.
+- The new SymPy regression covers all seven tangent branches; an independent
+  PARI/GP expansion covers the top reductions and both scalar endgames.
+  Both pass, and the raw-system audit supplies the methodologically
+  independent check.
+- The source-specific priority sweep found no exact overlap.  It is not a
+  guarantee of worldwide priority.  The universal certified floor remains
+  total degree \(4\).

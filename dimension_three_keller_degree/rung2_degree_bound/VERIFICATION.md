@@ -2,7 +2,8 @@
 
 **Verification timestamps:** 2026-07-24T23:43:08Z,
 2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
-2026-07-25T02:04:55Z, and 2026-07-25T02:48:29Z.
+2026-07-25T02:04:55Z, 2026-07-25T02:48:29Z, and
+2026-07-25T03:19:56Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -37,6 +38,8 @@ gp -q verify_nodal_cubic_exit_pari.gp
 /usr/bin/python3 verify_scalar_aligned_nodal_sympy.py
 gp -q verify_scalar_aligned_nodal_pari.gp
 /usr/bin/python3 verify_line22_doubleline_sympy.py
+/usr/bin/python3 verify_fixed_conic_row_sympy.py
+gp -q verify_fixed_conic_row_pari.gp
 ```
 
 The SymPy and PARI/GP implementations independently expand:
@@ -288,6 +291,29 @@ independently checked the omitted \(h=q\) chart and the final
 degree-at-most-four plane Keller block plus shear.  No scope correction was
 needed.  Combining this with the transverse calculation excludes the
 entire nodal row.  The cuspidal cubic row remains.
+
+### Binary fixed-divisor conic
+
+The SymPy regression begins with
+\[
+H_4=h(p,q)(p^2,pq,q^2)^T
+\]
+and a completely general cubic, quadratic, and linear part.  It checks the
+top normal and both degree-six branch polynomials, then retains the decisive
+raw lower-identity solve for every residual tangent orbit: split scalar,
+split opposite, split zero, double scalar, double semisimple, double
+nilpotent (including its zero branch parameter), and double zero.
+
+The PARI/GP regression independently expands the top identities and both
+scalar-tangent degree-two-square endgames.  A separate adversarial audit
+reconstructed all seven branches from the raw Jacobian columns.  It checked
+the constant degree-five obstructions, the specialization-safe square
+certificates, the semisimple system's constant \(9\times9\) minor \(32768\),
+and the nilpotent branch in which two columns of \(L_0\) become
+proportional.  The audit's crucial correction was one of scope, not algebra:
+the proof excludes precisely the binary condition
+\(\iota_kB_h=0\), rather than every quadratic fixed divisor.  The five
+nonbinary parabolic normal forms remain open.
 
 ### Unique-double-line line charts
 

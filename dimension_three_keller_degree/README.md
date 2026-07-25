@@ -41,7 +41,11 @@ The first audited quartic working lemmas now constrain:
 - the entire nodal-cubic fixed-divisor row: the transverse branch is
   excluded by exact degree-seven-through-five identities, while the
   scalar-aligned branch collapses to a degree-at-most-four plane Keller
-  block plus a shear.
+  block plus a shear; and
+- the complete binary fixed-divisor conic subrow
+  \(H_4=h(p,q)\operatorname{Ver}(p,q)\): all seven residual tangent-field
+  branches either contradict the Keller condition or collapse to a plane
+  Keller block plus a shear.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -52,11 +56,13 @@ The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
 \((2,2)\) stratum, the conic double-cover locus, the cuspidal cubic,
 ramified birational quartic parametrizations, and the other leading maps
-with a fixed divisor.  Two nonzero tangent branches of the binary
-fixed-divisor conic row have additionally been reduced to exact
-contradictions, pending an independent audit of that new calculation.  In
-the rank-one stratum, fixed-component projected cubic pencils and a binary
-common-ramification locus remain.  The universal certified floor remains
-\(4\).
+with a fixed divisor.  In the fixed-divisor conic row, the exact remaining
+normal forms are
+\[
+r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2
+\]
+for the quadratic fixed factor.  In the rank-one stratum, fixed-component
+projected cubic pencils and a binary common-ramification locus remain.  The
+universal certified floor remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.
