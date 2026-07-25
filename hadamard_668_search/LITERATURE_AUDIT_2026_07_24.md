@@ -2,6 +2,10 @@
 
 ## Status
 
+The literature search was performed on 24 July 2026.  The scoped local
+construction results completed on 25 July are integrated below without
+changing the source cutoff.
+
 Ramos, Hulak, and de Queiroz,
 [Multiplier obstructions for Legendre pairs of length
 333](https://arxiv.org/abs/2607.20765), submitted 22 July 2026, materially
@@ -70,6 +74,8 @@ prescribed-compression slice of public ID3:
   frozen dense `n_9=0` characteristic-two/modulo-nine search scope;
 - the quadratic second-placement-digit pencil and ramified row-collapse
   theorem;
+- the complete quadratic antipodal rank-two census on eighteen frozen
+  canonical gauges, together with its exact action-noninvariance audit;
 - the five-canonical-representative multiplicative class-by-row anti-tensor
   obstruction; or
 - the 84-image action closure of the three nontrivial opposite structured
@@ -94,9 +100,11 @@ Within that restricted slice, the checked sources do not contain:
   distribution of twelve size-24 and six size-12 orbits;
 - the half-turn splitting `36=21+15`;
 - the twelve even quadrics and six odd bilinear equations;
-- the complete 35-family nonidentity global fiber-twist exclusion; or
+- the complete 35-family nonidentity global fiber-twist exclusion;
 - the ternary `[27,15,4]` antisymmetric code and complete exclusion of its
-  three projective minimum directions.
+  three projective minimum directions; and
+- the 3,663,754,254-state canonical-gauge rank-two census, its seven
+  digit-two controls, and its zero row-margin/consecutive-lift result.
 
 These are plausible new internal results about one open `p=37,q=3`
 uncompression branch.  The eighteen-orbit statement is a complete
@@ -134,7 +142,8 @@ solver-backed distance-17 bound for a 128-modular lift.  The basic
 Eliahou-to-base-sequence translation is therefore prior.  The local
 adjacent-42 distance bound 80 is still a strict improvement; the companion
 source does not contain the local special-distance-41 boundary, anti-fold
-reduction, rank-21 lift, or certified anti-fold case.
+reduction, rank-21 lift, checked case-0 proof, complete nine-short-case
+arithmetic exclusion, or twenty-long-case structural triage.
 
 Its
 [fixed-field compression note](https://raw.githubusercontent.com/Arthur742Ramos/hadamard-668-multiplier-obstructions/main/compression_theorem/theorem_note.md)
@@ -282,11 +291,20 @@ The former two-profile fragment is now a complete eighteen-orbit
 classification of that frozen compressed-profile scope, with detached exact
 certificates, so it has crossed the threshold for a scoped classification
 manuscript.  The strongest paper package combines that theorem with the
-all-orbit lift geometry, the complete six-profile half-turn low-shell
-exclusion, and the rank-one conic-center obstruction.  A complete `3^14`
-quadratic antipodal rank-two census on one priority orbit supplies an
-additional finite-family theorem, with zero digit-two, margin-compatible, or
-consecutive-digit survivors.  The package must be advertised as a
+all-eighteen canonical-representative lift geometry, the complete
+six-profile half-turn low-shell
+exclusion, and the rank-one conic-center obstruction.  The quadratic
+antipodal rank-two census now exhausts 3,663,754,254 states on all eighteen
+**frozen canonical gauges**.  It has seven ordinary digit-two controls, with
+following-digit defects `10,10,11,13,13,14,14`, and zero row-margin-compatible
+or consecutive lifts.
+
+That family is not action invariant.  The exact audit covers 360 labelled
+images and proves rank changes; only the eighteen canonical gauges were
+enumerated, leaving 342 images and 84,151,556,586 of the
+87,815,310,840-state action-image workload.  It is therefore an additional
+scoped finite-family theorem, not an all-orbit exclusion.  The package must
+be advertised as a
 compressed-profile classification in the prescribed order-three
 `q^2`-uncompression branch, not as a complete dense-shell classification or
 as progress probability toward an unrestricted Legendre pair.

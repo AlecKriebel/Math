@@ -133,9 +133,10 @@ They have produced six further certified results:
    and 25,368,365,895,696 weighted primitive leaves.  Detached exact replay
    proves that precisely **18** inequivalent canonical profile orbits
    survive: twelve have orbit size 24 and six have orbit size 12.  The
-   weighted exact-zero count is 360.  The certificate checks all 666
-   nonzero-lag integer Eisenstein correlations, the faithful 24-element
-   action, stabilizers, canonicality, and pairwise disjointness.
+   weighted exact-zero count is 360.  The certificate checks all 666 exact
+   integer-Eisenstein correlations (648 nonzero-lag and 18 zero-lag), the
+   faithful 24-element action, stabilizers, canonicality, and pairwise
+   disjointness.
 2. All eighteen profiles have first-layer rank/nullity `18/36` and
    quadratic-span rank 18.  The complete structured-character and
    hyperplane scan checks 6,552 instances of each kind.  No profile has a
@@ -168,7 +169,7 @@ They have produced six further certified results:
    polynomial; none is exact.  The same reflection gauge and four-clique
    split extend mechanically to all nine canonical short-block cases
    21--29, for an exact total of 3,710,853,316,608 principal join rows.
-   The remaining eight cases are running as a resumable census.
+   The remaining eight cases were launched as a resumable exact census.
 6. The independent near-Williamson route at length 167 has a clean
    one-defect reduction, but its exact gauge-fixed `A,B` front end still
    has
@@ -182,10 +183,9 @@ stronger than the earlier gate failure, however.  The dense profile
 classification is now a complete paper-level theorem rather than an
 unfinished census, and the remaining short-block Eliahou boundary is a
 fully costed finite computation rather than an unmeasured solver proposal.
-The construction decision must wait for that active eight-case census; an
-exact survivor would trigger immediate reconstruction, while an empty
-census would close all nine short-block cases and strengthen the pivot
-package without closing the nineteen long-block cases.
+The construction decision carries into the final checkpoint below: an exact
+survivor would trigger reconstruction, while an empty census would close all
+nine short-block cases without closing the twenty long-block cases.
 
 ## Shell-two action-closure correction on 24 July 2026
 
@@ -206,7 +206,37 @@ The already separate `five_orbit_family_audit/` remains what it originally
 claimed: an exact audit on the five canonical representatives, not an
 84-image action closure.
 
-## Result on 24 July 2026: construction gate failed
+## Final restart checkpoint on 25 July 2026
+
+Two final exact enumerations plus one action-scope audit settle the bounded
+restart without producing a construction.
+
+1. The all-nine Eliahou short-block census evaluates exactly
+   `3,710,853,316,608` principal join rows and retains 88,927,740 joint
+   modulo-six supports.  Every support is replayed through the integer and
+   bit-packed physical equations; none is exact.  Cases 21--29 are therefore
+   closed.  The twenty long cases 1--20 remain open, and the case-1
+   solver-UNSAT observation remains unproved.
+2. The arbitrary-quadratic antipodal rank-two conic family is exhausted on
+   all eighteen frozen canonical dense-`h=0` gauges.  Its exact denominator
+   is 3,663,754,254 physical states.  Seven points reach digit two, with
+   following-digit defects `10,10,11,13,13,14,14`; none reaches full digit
+   three or a consecutive lift, and none meets an exact row margin.
+3. The feature law in item 2 is not invariant under the 24-element profile
+   action.  The 360 distinct labelled images have dimension distribution
+   `14:12, 15:8, 16:56, 17:96, 18:188`.  Only the eighteen frozen canonical
+   gauges were enumerated.  The other 342 images account for
+   84,151,556,586 of the 87,815,310,840-state full action-image workload,
+   projected at about 89 single-core wall hours.  This is a decisive scope
+   correction, not an invitation to perform another undifferentiated sweep.
+
+Neither computation yields a row-compatible consecutive lift or a
+whole-profile obstruction.  The agreed stop condition is therefore met:
+preserve the five-orbit and eighteen-orbit classification package as a
+scoped paper project, and stop spending headline `H(668)` research tokens
+unless a genuinely new construction principle appears.
+
+## Final result, updated 25 July 2026: construction gate failed
 
 All required lanes were executed, but none of the four forms of evidence
 listed below was obtained.
@@ -220,8 +250,10 @@ listed below was obtained.
 | stage 2.5 | two points also satisfy the delayed nineteenth row, disproving the proposed universal obstruction; they leave 11 and 16 other digit-three rows nonzero, fail exact row margins, and have regular full-rank local geometry | useful falsification, no viable partial lift |
 | local coverage | the radius-five ball around the better stage-2.5 point contains 13,065,937 points and only one further digit-two point; neither point is row-margin compatible | exact local result, not a whole-profile exclusion |
 | physical join | all nine saved digit-two census points fail the exact row-margin join; row-margin-aware digit-two and digit-three models ended `UNKNOWN` | no physically viable higher-digit seed |
+| canonical-gauge rank-two family | all 3,663,754,254 states on the 18 frozen canonical gauges were exhausted; seven digit-two controls have defects 10--14, with zero row-margin or consecutive lifts | finite-family exclusion only; the law is action-noninvariant and 342 labelled images were not enumerated |
+| Eliahou short blocks | all nine cases 21--29 were exhausted over 3,710,853,316,608 join rows and 88,927,740 physically replayed joint modulo-six supports, with zero exact support | closes the short boundary; 20 long cases remain |
 | exact endpoint | digits zero through eight force every displayed residual to vanish exactly; the compact signed-histogram model fits within 16 GB | finish line is finite, but generic search is infeasible |
-| complete route scope/cost audit | the five shell-two charts contain `5*3^36` points; the still-open dense shells contain 510,384 and 107,476 unsigned supports and 59,743,488 and 47,730,304 legal signed skeletons; their post-classification phase-lift cost cannot yet be assigned | failure of the five lifts would not close the order-three route |
+| complete route scope/cost audit | the five shell-two charts contain `5*3^36` points; the dense `h=1,0` routes contain 510,384 and 107,476 unsigned supports and 59,743,488 and 47,730,304 legal signed skeletons; `h=0` profiles are classified but unrestricted physical lifts remain uncosted | failure of the five lifts would not close the order-three route |
 
 The strict construction gate therefore fails: there is no consecutive
 higher-digit witness, no exact structured lift, no feasible complete exact
@@ -231,9 +263,10 @@ One secondary rate gate did succeed.  The compiled dense-shell
 729-character kernel runs at a conservative 12,668,666 exact evaluations
 per second per core, 718 times the four-week arithmetic threshold, with an
 independent 1,458-character replay.  This makes an end-to-end
-`n_9=1,0` **profile classifier** a technically credible scoped paper
-project.  It does not make an exact phase lift feasible, and it does not
-retroactively pass the `H(668)` construction gate.
+`n_9=1` **profile classifier** a technically credible scoped paper
+project; the `n_9=0` classifier has since completed.  Neither result makes
+an exact phase lift feasible, and neither retroactively passes the `H(668)`
+construction gate.
 
 One post-gate theory result strengthens the paper package.  The normalized
 energy-six sparse-`B` sector in the two extreme `(163,4)` targets is now
@@ -246,15 +279,15 @@ failed construction verdict.
 
 The decision is:
 
-1. stop headline search on the present five-profile placement lift;
-2. preserve the five-orbit, structured-family, carry, and local-radius
-   package as a paper project;
-3. treat a dense-shell classifier as a separate bounded classification
-   project, with its next gate requiring measured end-to-end skeleton
-   generation, symmetry canonicalization, witness recovery, and exact
-   replay—not merely the already-fast character kernel;
-4. require a genuinely new construction principle before resuming the
-   five-profile `H(668)` lift itself.
+1. stop headline search on the present shell-two and dense-profile placement
+   lifts;
+2. preserve the five-orbit and eighteen-orbit classifications, structured
+   families, carry algebra, scoped rank-two census, and local-radius package
+   as a paper project;
+3. treat any future `n_9=1` classifier as a separate bounded classification
+   project, not as evidence that a physical lift is near;
+4. require a genuinely new construction principle before resuming headline
+   `H(668)` work.
 
 ## Required lanes
 

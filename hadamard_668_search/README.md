@@ -1,6 +1,7 @@
 # Hadamard order 668 search
 
-Status: active computational research; no exact matrix has been found yet.
+Status: bounded construction gate failed; headline `H(668)` search paused;
+no exact matrix has been found.
 
 This directory is a reproducible attack on the smallest unresolved Hadamard
 order.  A result counts only when an explicit `668 x 668` sign matrix passes an
@@ -13,8 +14,9 @@ this milestone.  `H668_72H_GATE.md` records the completed sprint and its
 strict construction-gate failure; in particular, one second-digit witness
 is not a milestone.
 `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` separates certified bounds from
-heuristics for the five shell-two lifts and the still-unclassified
-`n_9=1,0` profile shells.
+heuristics for the five shell-two lifts, the completed dense `n_9=0`
+profile classification, the still-unclassified `n_9=1` shell, and the
+completed nine-case Eliahou short-block census.
 
 ## Current map
 
@@ -23,18 +25,18 @@ heuristics for the five shell-two lifts and the still-unclassified
 | Eliahou seed verification | reproduced near matrix | published 64-modular matrix of order 668, not an exact Hadamard matrix |
 | Repair with Eliahou's exact `q` | impossible | reduces to empty `TU(41)` |
 | Repair with Eliahou's exact `s` | impossible | already contradicted by the `z=1` sum-of-two-squares norm |
-| Variable `s,q` special quadruple | active exact census | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Cases 0 and 26 are now completely excluded, the other eight short-block cases are in a resumable exact census, case 1 remains unproved, and 19 other long-block cases remain open |
+| Variable `s,q` special quadruple | short boundary closed; long boundary open | adjacent-42 forces base distance 80 and special distance 41; the anti-fold reduces the boundary to 30 support instances. Case 0 is excluded by checked DRAT, all nine short-block cases 21--29 are excluded by an exact 3,710,853,316,608-row census, and the 20 long-block cases 1--20 remain open; case 1 has only an unproved solver-UNSAT observation |
 | Prime-83 oriented SDS | implemented construction lane | best verified checkpoint has quarter-energy 14 and 11 bad lags; no prime fold yet |
 | Prime-83 character families | closed restricted lane | degree-two Sidelnikov products, phases, signs, and independent decimations excluded exactly |
 | Common-type five-comb packing | closed restricted lane | all 48 quartets and 32 projective cores solver-excluded; no proof certificates |
-| Distinct-lobe five-comb packing | active construction lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
+| Distinct-lobe five-comb packing | retained incomplete lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus algebraically gated lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. The 729-shard census and a detached 666-correlation certificate both pass. Six profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. Conic families add exact 65,601-point rank-one and 4,782,969-point quadratic rank-two obstructions. No dense profile has a physical consecutive lift. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus scoped algebraic lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. The 729-shard census and a detached 666-correlation certificate both pass. Six profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Near-Williamson order 167 | audited, not scalable | exact one-defect reduction eliminates one block, but the naturally gauge-fixed `A,B` front end still has about `5.39*10^48` states; no production search is justified without a new parametrization theorem |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
-| Unrestricted cyclic SDS of order 167 | active heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
+| Unrestricted cyclic SDS of order 167 | retained heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |
 
 The published 64-modular seed is encoded exactly in `seed.py`.  Run its full
 regression check with:
@@ -151,9 +153,9 @@ Canonical case 0, the long `q` representative 0, has a standalone CaDiCaL
 binary-DRAT certificate that passes independent `drat-trim` replay.
 Canonical case 26 is separately excluded by the complete
 characteristic-six quotient census below. Canonical case 1, the long
-representative 2, has one solver-UNSAT observation but no checked proof;
-the remaining cases are unresolved, with eight short-block instances in
-the active exact census.
+representative 2, has one solver-UNSAT observation but no checked proof.
+All nine short-block instances 21--29 are now exactly excluded; the
+twenty long-block instances 1--20 remain unresolved.
 
 `ELIAHOU_ANTIFOLD_MOD2.md` gives the exact first binary lift. Pairing the two
 long and two short rows produces an affine system over `F_2`; including
@@ -201,9 +203,11 @@ The same algebra extends to all nine short-block cases `S02,S04,...,S18`.
 Each has a 39-pair, 18-dimensional quotient and the same four interaction
 cliques. Reflection is free in every quotient; two cases need a certified
 one-state \(S\)-side gauge fallback. The complete nine-case work is exactly
-`3,710,853,316,608` join rows. The other eight cases are running through
-the resumable, hash-pinned production kernel in
-`eliahou_short_block_census/`.
+`3,710,853,316,608` join rows.  It retains 88,927,740 joint modulo-six
+supports, replays every one through the integer and physical equations, and
+finds zero exact support in every case 21--29.  Its output-independent
+certificate and verifier are in `eliahou_short_block_census/`; no short case
+should be resumed.
 
 ```sh
 python3 verify_eliahou_antifold42.py
@@ -212,7 +216,7 @@ python3 verify_eliahou_antifold_q0_proof.py
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
   eliahou_global_quotient_plan/verify_completion_certificate.py
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
-  eliahou_short_block_census/verify_short_block_census.py
+  eliahou_short_block_census/verify_nine_case_completion.py
 ```
 
 The proof package is in `output/antifold42_q0_proof/`. The default verifier
@@ -224,15 +228,16 @@ python3 verify_eliahou_antifold_q0_proof.py \
   --full --drat-trim /absolute/path/to/drat-trim
 ```
 
-The machine-readable `ELIAHOU_ANTIFOLD42_CENSUS.json` is the authoritative
-resume ledger. Rebuild deterministic formulas or resume only the unresolved
-range with:
+The machine-readable `ELIAHOU_ANTIFOLD42_CENSUS.json` is the historical
+SAT ledger.  Its `UNKNOWN` entries for cases 21--29 are superseded by the
+complete arithmetic certificate above.  Rebuild deterministic formulas or
+resume only genuinely unresolved long cases with:
 
 ```sh
 ../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
   --ignore-profiles --start 0 --stop 30 --list-instances
 ../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
-  --ignore-profiles --start 2 --stop 30 --time-limit 1800
+  --ignore-profiles --start 1 --stop 21 --time-limit 1800
 ```
 
 `FIVE_COMB_SECANT.md` sharpens the seed identity to
@@ -747,9 +752,10 @@ each representative still has 54 placement trits.
 
 For all five representatives, the first placement Hensel digit has rank 18
 and nullity 36.  Their exact row-margin joins retain `72,72,72,96,93`
-catalog rows, respectively.  The active problem is therefore the remaining
-integral phase lift of these five finite inputs, in parallel with the
-unclassified `n_9=1,0` shells.
+catalog rows, respectively.  The unresolved layer is the remaining integral
+phase lift of these five finite inputs, alongside the unclassified `n_9=1`
+shell and the classified-but-unlifted `n_9=0` shell.  The failed gate means
+these are archival research boundaries, not active headline searches.
 
 ```sh
 python3 shell_two_exact/verify_shell_two_partition_theory.py
@@ -871,7 +877,7 @@ The compact signed-histogram endpoint fits within 16 GB, but a generic
 enumeration of the five `3^36` shell-two spaces is infeasible.  Failure of
 those five lifts would not close the order-three route.  The dense `n_9=0`
 profile classification is now complete with eighteen orbits, but all
-eighteen nonlinear physical lifts remain open; the `n_9=1` shell still
+eighteen unrestricted nonlinear physical lifts remain open; the `n_9=1` shell still
 requires a compiled, symmetry-aware classification.  The arithmetic kernel
 is benchmarked at a conservative
 12,668,666 exact character evaluations per second per core, over 700 times
@@ -996,6 +1002,23 @@ different equations once each.  This completely excludes quadratic
 antipodal rank-two center laws on orbit 07; degree-three, non-antipodal,
 and unrestricted laws remain open.
 
+`h0_witt_conic_rank_two_full_18/` extends that exact family census to all
+18 **frozen canonical representative gauges**.  Their physical quotients
+contain 3,663,754,254 states.  Exhaustive enumeration finds seven ordinary
+digit-two controls, with following-digit defects
+`10,10,11,13,13,14,14`, but zero full digit-three or consecutive lifts and
+zero row-margin-compatible points.
+
+This result is deliberately not called an all-orbit theorem.  The feature
+law is not invariant under the 24-element profile action.  Across the 360
+distinct labelled profile images, the physical dimensions split as
+`14:12, 15:8, 16:56, 17:96, 18:188`; only the 18 canonical gauges were
+enumerated.  The remaining 342 images contain an enumeration-workload sum
+of 84,151,556,586 states, out of 87,815,310,840 over all 360 images, and
+project to roughly 89 single-core wall hours.  The exact noninvariance
+certificate makes this a scoped finite-family result, not a dense-shell,
+`LP(333)`, or `H(668)` exclusion.
+
 `dense_shell_classifier_pilot/` retains the exhaustive v2 runner and strict
 aggregate machinery. Every exact hit was canonicalized under the 24-element
 action, replayed on all 37 lags, deduplicated, and retained. The live output
@@ -1012,6 +1035,10 @@ python3 -I dense_shell_h0_complete_classification/verify_h0_complete_classificat
   h0_witt_conic_rank_one/verify_witt_conic_rank_one.py
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
   h0_witt_conic_rank_two_orbit07/verify_witt_conic_rank_two.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_canonical_representative_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_action_noninvariance.py
 ```
 
 `LP333_ORDER3_PHASE_FACTOR.md` turns the remaining labelled lift into
@@ -1359,6 +1386,8 @@ python3 verify_eliahou_adjacent42_repair.py
 python3 verify_eliahou_antifold42.py
 python3 verify_eliahou_antifold_mod2.py
 python3 verify_eliahou_antifold_q0_proof.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_short_block_census/verify_nine_case_completion.py
 python3 verify_five_comb_high_lag_boundary.py
 python3 verify_five_comb_dyadic_compression.py
 python3 verify_five_comb_paired_lobes.py

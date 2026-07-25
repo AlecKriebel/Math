@@ -45,8 +45,8 @@
 | `LP333_ORDER3_PROFILE_SHELL_FOUR.md` | Exact streaming affine exclusion of the four-norm-nine shell |
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local slices, corrected priority scope, and public-ID3 search consequences |
-| `H668_72H_GATE.md` | Explicit success, stop, evidence, and host-resource criteria for the current construction sprint |
-| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed frozen dense-`h=0` compressed-profile census, the remaining `h=1` shell, the nine short-block Eliahou cases, and near-Williamson order 167 |
+| `H668_72H_GATE.md` | Completed construction gate, final failure evidence, stop decision, and host-resource criteria |
+| `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed frozen dense-`h=0` compressed-profile census and canonical-gauge rank-two family, the remaining `h=1` shell, the completed nine-case Eliahou short-block exclusion, twenty open long cases, and near-Williamson order 167 |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
@@ -66,14 +66,16 @@
 | `h0_new_orbits_lift_triage/README.md` | Exact all-eighteen first-layer, quadratic-span, retraction, and row-transfer audit |
 | `h0_new_halfturn_lifts/README.md` | Complete low-anti-weight two-consecutive-digit audit across all six half-turn profiles |
 | `h0_witt_conic_rank_one/README.md` | Lossless local conic form and complete rank-one quadratic-center obstruction |
-| `h0_witt_conic_rank_two_orbit07/README.md` | Complete quadratic antipodal rank-two conic-center exclusion on priority orbit 07 |
+| `h0_witt_conic_rank_two_orbit07/README.md` | Complete quadratic antipodal rank-two conic-center exclusion on frozen canonical gauge 07 |
+| `h0_witt_conic_rank_two_full_18/README.md` | Complete 3,663,754,254-state rank-two census on eighteen frozen canonical gauges, seven digit-two controls, zero row-margin/consecutive lifts, and exact action-noninvariance scope |
+| `h0_witt_conic_rank_two_all_orbits/SCOPE_CORRECTION.json` | Machine-readable correction withdrawing the legacy all-orbit interpretation in favor of the frozen canonical-gauge result |
 | `h0_affine_class_twists/README.md` | Exhaustive affine- and quadratic-class control-law obstructions for the first exact `h=0` profile |
 | `eliahou_char3_jet_audit/README.md` | Characteristic-three three-jet anti-fold theorem, full mod-three survivor, and joint local-search scope |
 | `eliahou_char3_jet_audit/MOD2_AFFINE_CODE.md` | Exact characteristic-two affine code, quotient structure, and fixed-weight counts |
 | `eliahou_defect2_math/README.md` | Fixed parity-quotient articulation theorem and first complete normalized mod-six support census |
 | `eliahou_global_reuse_math/README.md` | Free reflection gauge and quotient-independent four-component reuse theorem |
 | `eliahou_global_quotient_plan/README.md` | Complete case-26 262,144-quotient census, zero-exact certificate, and strict live replay |
-| `eliahou_short_block_census/README.md` | Generalized exact engine and complete work denominator for all nine canonical short-block cases |
+| `eliahou_short_block_census/README.md` | Complete exact census of all nine canonical short-block cases: 3,710,853,316,608 join rows, 88,927,740 physically replayed joint modulo-six supports, and zero exact support |
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
 | `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
@@ -114,7 +116,7 @@
 | `verify_eliahou_antifold_mod2.py` | Checks the rank-21 affine lift and exact representative MacWilliams counts |
 | `test_eliahou_antifold_mod2.py` | Focused binary anti-fold lift regressions |
 | `search_eliahou_antifold_sat.py` | Deterministic support-instance encoder with formula hashes, hard time limits, and direct model replay |
-| `ELIAHOU_ANTIFOLD42_CENSUS.json` | Resume ledger: case 0 certified UNSAT, case 1 unproved solver-UNSAT, cases 2-29 UNKNOWN |
+| `ELIAHOU_ANTIFOLD42_CENSUS.json` | Historical SAT ledger: case 0 certified UNSAT and case 1 unproved solver-UNSAT; its short-case UNKNOWN entries are superseded by the nine-case arithmetic certificate |
 | `output/antifold42_q0_proof/` | Checked CNF, compressed binary DRAT proof, certificate metadata, and narrow-scope README for case 0 |
 | `verify_eliahou_antifold_q0_proof.py` | Audits proof metadata, hashes, DIMACS shape, and optionally performs full `drat-trim` replay |
 | `verify_five_comb_secant.py` | Checks the rank-one seed norm, literal chord, and 80,896 disjoint-comb endpoint pairs |
@@ -240,8 +242,12 @@
 | `h0_new_orbits_lift_triage/FINAL_PRODUCTION_SCAN_18.json` | Exact per-profile lift geometry for all eighteen dense orbits |
 | `h0_new_halfturn_lifts/verify_final_halfturn_extension.py` | Replays all six half-turn low-anti-weight shells through digit three and exact row margins |
 | `h0_witt_conic_rank_one/verify_witt_conic_rank_one.py` | Reconstructs the conic law and exhausts the rank-one antipodal quadratic-center family |
-| `h0_witt_conic_rank_two_orbit07/verify_witt_conic_rank_two.py` | Quotients and exhausts all `3^14` physical quadratic antipodal rank-two placements |
-| `h0_witt_conic_rank_two_orbit07/rank_two_orbit07_certificate.json` | Complete score histogram, near-miss replays, and exact family denominator |
+| `h0_witt_conic_rank_two_orbit07/verify_witt_conic_rank_two.py` | Quotients and exhausts all `3^14` physical quadratic antipodal rank-two placements on frozen canonical gauge 07 |
+| `h0_witt_conic_rank_two_orbit07/rank_two_orbit07_certificate.json` | Complete score histogram, near-miss replays, and exact canonical-gauge family denominator |
+| `h0_witt_conic_rank_two_full_18/verify_canonical_representative_certificate.py` | Reconstructs all eighteen canonical quotients and replays the seven digit-two controls, following digit, and exact row-margin gate |
+| `h0_witt_conic_rank_two_full_18/canonical_18_rank_two_certificate.json` | Detached complete canonical-gauge census, score histograms, seven assignments, and source-provenance hashes |
+| `h0_witt_conic_rank_two_full_18/verify_action_noninvariance.py` | Reconstructs all 360 distinct labelled images, proves feature-rank changes, and checks the exact full-action workload |
+| `h0_witt_conic_rank_two_full_18/ACTION_NONINVARIANCE_CERTIFICATE.json` | Exact image dimensions, rank-change witnesses, 87,815,310,840-state action-image workload sum, and 342-image remaining scope |
 | `h0_orbit2_lift_audit/verify_orbit2_quadrics.py` | Reconstructs the first lift, eighteen quadrics, defect-one point, Jacobians, and radius-six exclusion |
 | `h0_orbit2_lift_audit/DEFECT1_CERTIFICATE.json` | Pinned second-profile defect-one point and local-exclusion counts |
 | `h0_orbit2_quadric_theory/verify_quadric_character_compression.py` | Exhausts scalar characters, exact fiber counts, and the four-equation parametrization |
@@ -258,8 +264,10 @@
 | `eliahou_global_quotient_plan/COMPLETION_CERTIFICATE.json` | Output-independent certificate for the complete case-26 zero-exact census |
 | `eliahou_global_quotient_plan/verify_completion_certificate.py` | Regenerates the model by default and optionally verifies all live production ranges and aggregates |
 | `eliahou_short_block_census/verify_short_block_census.py` | Reconstructs all nine models, gauges, clique couplings, and bounded physical replay controls |
-| `eliahou_short_block_census/run_short_block_census.py` | Atomic, resumable, memory-capped exact runner for cases 21 through 29 |
-| `eliahou_short_block_census/aggregate_short_block_census.py` | Strict per-case range and exact-survivor aggregator |
+| `eliahou_short_block_census/NINE_CASE_COMPLETION_CERTIFICATE.json` | Detached final all-nine aggregate: exact range semantics, 3,710,853,316,608 join rows, 88,927,740 joint modulo-six supports, and zero exact support |
+| `eliahou_short_block_census/verify_nine_case_completion.py` | Strict default verification of the final certificate and optional replay against retained live production ranges |
+| `eliahou_short_block_census/run_short_block_census.py` | Historical atomic, resumable, memory-capped production runner for the now-closed cases 21 through 29 |
+| `eliahou_short_block_census/aggregate_short_block_census.py` | Strict per-case range and exact-survivor aggregator used to freeze the final certificate |
 | `eliahou_long_block_exact_triage/verify_all_artifacts.py` | Detached replay of all twenty long-case structural models, complete Walsh pencils, CNF hashes, and frozen certificates |
 | `eliahou_long_block_exact_triage/verify_long_block_exact_triage.py` | Reconstructs quotient dimensions, interaction graphs, reflection audit, exact counts, mod-4 ANFs, and characteristic-seven ranks |
 | `eliahou_long_block_exact_triage/LONG_BLOCK_EXACT_TRIAGE.json` | Frozen all-case structural, cost, graph, rank, and semantic-hash certificate |

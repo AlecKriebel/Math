@@ -1,4 +1,4 @@
-# Priority audit updated 24 July 2026
+# Priority audit updated 25 July 2026
 
 This is a provisional mathematical-priority review, not a legal opinion and
 not a guarantee that every unpublished manuscript has been found.  It records
@@ -18,7 +18,8 @@ report:
    special-coordinate bound of 41, reducing the complete distance-41
    boundary to 39 reciprocal `q` pairs with two root profiles each; its
    complementary anti-fold removes endpoint orientation, collapses these to
-   30 support instances, and has one independently certified exclusion;
+   30 support instances, has an independently checked case-0 DRAT exclusion,
+   and has an exact empty census of all nine short-block cases 21--29;
 3. a dependency-free primitive-eight reduction plus exact margin norms gives
    a separate sharp necessary-condition boundary at distance 34;
 4. the exact 2-adic formulation reduces the first two special-construction
@@ -46,9 +47,10 @@ report:
    system is also lossless modulo 167 and splits into four parameterized
    finite-field cones; four exact shell theorems exclude
    `n_9=6,5,4,3`, and a fifth complete classification finds exactly five
-   profile-zero symmetry orbits at `n_9=2`; the dense-shell quadratic
-   correction algebra is `F_27 x F_27` and supplies an exact 729-character
-   compression for `n_9=1,0`; the phase
+   profile-zero symmetry orbits at `n_9=2`; a 729-shard census classifies the
+   frozen dense `n_9=0` compressed-profile scope into eighteen exact orbits;
+   the dense-shell quadratic correction algebra is `F_27 x F_27` and
+   supplies an exact 729-character compression for `n_9=1,0`; the phase
    cone has an exact row-Galois/trace inverse, fixed-origin and
    profile-support cuts, a lookup-free binary physicality decoder, and an
    independent 13-factor mod-seven sieve; all 22 aggregate shards survive
@@ -114,18 +116,21 @@ exactly 21 in every reciprocal-`q` case, including support-weight parity.
 Exact MacWilliams counts prove that this binary layer alone leaves many
 supports.
 
-Exactly one anti-fold instance is currently a certified exclusion:
-canonical case 0, the long `q` representative 0. Its 39,580-variable,
+Canonical case 0, the long `q` representative 0, is excluded by a checked
+standalone proof. Its 39,580-variable,
 127,589-clause CNF includes only redundant modulo-two and modulo-four
 consequences of the exact integer equations. Standalone CaDiCaL produced a
 binary DRAT proof, and independent `drat-trim` replay returned `VERIFIED`.
 The checked proof package records formula and proof hashes, solver/checker
 versions, and a standard-library artifact verifier. Canonical case 1, the
 long representative 2, has one solver-UNSAT observation but no checked
-proof; the other 28 distinct instances are `UNKNOWN`. Thus the anti-fold
-theorem and the one certified leaf are suitable for the internal manuscript,
-but they do not establish a distance-41 exclusion, `BS(84,83)`
-nonexistence, or `H(668)` nonexistence.
+proof. Separately, the exact characteristic-six census exhausts all nine
+short-block cases 21--29: 3,710,853,316,608 principal join rows produce
+88,927,740 joint modulo-six supports, all physically replayed, with zero
+exact support. The twenty long-block cases 1--20 remain open. Thus the
+anti-fold theorem, case-0 proof, and short-block exclusion are suitable for
+the internal manuscript, but they do not establish a complete distance-41
+exclusion, `BS(84,83)` nonexistence, or `H(668)` nonexistence.
 
 Evaluation at `z=exp(pi*i/4)` reduces each base sequence to four signed
 residue sums. Splitting over `Q(sqrt(2))` forces a rational 16-square equation
@@ -612,13 +617,13 @@ unsigned supports, respectively.  Their local signed-skeleton counts are
 certified front-end counts and useful architecture, not a forecast that an
 exact phase lift exists or can be completed in four weeks.
 
-The first dense-shell production prefix has now found an exact `n_9=0`
-profile.  Its two compressed words repeat after six classes, its detached
-correlations vanish at all 36 nonzero lags, and its formal orbit has size
-12.  The result is plausibly new within the checked sources, but the
-classifier stopped before completing the shell.  An isolated necessary
-profile is therefore not a scarcity theorem or a publication-leading
-result.
+The dense-shell production campaign is now complete.  All 729 shards yield
+exactly eighteen canonical `n_9=0` profile orbits, twelve of size 24 and six
+of size 12, with weighted population 360.  A detached verifier checks all
+666 exact integer-Eisenstein correlations (648 nonzero-lag and 18 zero-lag),
+the complete action, stabilizers, canonicality, and pairwise disjointness. This frozen
+compressed-profile classification is plausibly new within the checked
+sources and is paper-level, but it is not a physical lift classification.
 
 Its half-turn algebra is stronger.  The first lift splits as `21+15`; the
 second digit becomes twelve even quadrics plus six odd bilinear equations.
@@ -650,7 +655,7 @@ supporting negative mathematics, but its publication value is
 methodological: it rules out a contraction ansatz rather than a
 combinatorial family.
 
-For the remaining `n_9=1,0` shells, the six first quadratic correction forms
+For the dense `n_9=1,0` shells, the six first quadratic correction forms
 generate the exact algebra `F_27 x F_27`, with projective ranks 12 and 6 and
 sum `2I`.  After the true local and aggregate affine rows are imposed, Gauss
 bounds show that this radial combination attains every right-hand side on
@@ -658,7 +663,20 @@ every nonempty fiber.  This rules out a tempting anisotropy shortcut, while
 giving a lossless 729-character count for the complete six-coordinate
 quadratic map.  The algebra theorem and compression are likely useful
 supporting results; the surjectivity statement is not an existence result
-for a profile, and the two dense shells remain unclassified.
+for a profile.  The `n_9=0` compressed-profile scope is now classified,
+while the `n_9=1` profile shell and the unrestricted physical lifts remain
+open.
+
+The quadratic antipodal rank-two family has also been exhausted on all
+eighteen frozen canonical `n_9=0` gauges.  Its exact denominator is
+3,663,754,254 physical states.  Seven ordinary digit-two controls survive,
+with following-digit defects `10,10,11,13,13,14,14`, but none meets an exact
+row margin or survives the next digit.  This is a finite-family theorem, not
+a whole-orbit result: the feature law is not invariant under the formal
+24-element action.  The audit covers only 18 canonical gauges, leaving 342
+of 360 labelled images unenumerated; full action-image enumeration would
+sum to 87,815,310,840 states.  The scope correction materially limits the
+claim and makes another raw sweep a poor construction bet.
 
 After profiles are fixed, every active residue fiber is a signed cube root
 of unity.  The identity `active=3-Norm/3` shows that total profile norm 54
@@ -896,52 +914,51 @@ remain supplementary diagnostics.  The
 unconditional sparse-`B` integral norm closure is the strongest independent
 supporting theorem and should be presented prominently.  The dense-shell
 character kernel passes its arithmetic throughput gate by more than 700
-times, and its first exact `h=0` output now supplies a half-turn/code case
-study.  A complete `n_9=1,0` profile classifier remains the credible
-paper-scoped continuation; the isolated `h=0` profile is not a substitute
-for that census and is not evidence that an exact phase lift or `H(668)` is
-near.
+times, and the complete eighteen-orbit `h=0` classification now supplies the
+paper nucleus.  Its full canonical-gauge rank-two census is useful supporting
+negative evidence, with the explicit action-noninvariance caveat above.  A
+complete `n_9=1` profile classifier remains a credible paper-scoped
+continuation, but it is not evidence that an exact phase lift or `H(668)` is
+near.  The empty all-nine short-block census likewise strengthens the paper
+package without touching the twenty open long cases.
 
-Maintain one compact internal paper organized around:
+The portfolio decision is therefore to preserve the five-orbit and
+eighteen-orbit classification package for a scoped paper and stop spending
+headline `H(668)` research tokens unless a genuinely new construction
+principle appears.
 
-1. Eliahou's structured quadruple, crediting the contemporaneous public
-   report for the basic exact-lift equivalence with `BS(84,83)`, followed by
-   our strict distance-80 improvement over its distance-64 bound;
-2. the adjacent cyclic-fold theorem and prime-83 oriented-SDS construction;
-3. the adjacent-42 energy fold, distance-80/distance-41 theorems, and the
-   39-pair minimum-shell frontier, followed by the orientation-free
-   anti-fold, rank-21 binary lift, and one certified case-0 exclusion;
-4. the primitive-eight 16-square reduction, fixed-`s` obstruction, and sharp
-   distance-34 necessary-condition theorem;
-5. the 2-adic/Frobenius reduction, rank-one comb factorization, and the two
-   exact nonlinear no-go theorems;
-6. the projective quotient, physical high-lag table, dyadic compression
-   theorem, distinct-lobe complementary-octet construction, and scoped
-   primitive-eight vertical census;
-7. the archival compact multiplier row-sum proofs, with the stronger July
-   full-family exclusions credited, and the still-open order-three
-   difference-family, Eisenstein, primitive-nine,
-   characteristic-37, labelled-field, trit, exact-integral, profile-ideal,
-   profile-zero, top-four energy-shell exclusions, prime-167 split, exact
-   symmetry, the sparse-`B` inert/integral norm closure, the five-orbit
-   shell-two classification, exact carry and delayed-origin equations,
-   dense-shell character compression, the first exact `h=0` profile,
-   its `21+15` half-turn algebra, global fiber-twist theorem, and
-   `[27,15,4]` support-and-sign code filtration,
-   unit-phase, lossless full-phase four-cone factorization,
-   trivial-branch obstruction, factorwise trace/Parseval inversion,
-   lookup-free physical decoder, mod-seven cyclic sieve, and coupled-lane
-   boundaries;
-8. the safe-prime Sidelnikov identity and orientation-fingerprint exclusion;
-9. the fixed-`q` parity telescope and reduction to `TU(41)`;
-10. the radius-18 solver report and proof-certification ladder as historical
-   supplementary computation;
-11. the Legendre inversion lemmas and local searches as appendices or
-   supplementary experiments.
+Maintain two separate internal paper projects rather than forcing the
+Eliahou and Legendre-pair programs into one manuscript.
 
-Use a title that states the local scope, such as *Exact local obstructions
-around a 64-modular Hadamard matrix of order 668*.  Do not imply a
-nonexistence theorem for `H(668)`, `BS(84,83)`, or `LP(333)`.
+**Paper A — Eliahou repair obstructions (first publication priority).**
+Organize it around the strict distance-80 improvement over the public
+distance-64 bound, the special-distance-41 frontier, the orientation-free
+anti-fold and rank-21 binary lift, the checked case-0 proof, and the complete
+nine-short-case exact exclusion.  The twenty-long-case structural triage,
+primitive-eight boundary, fixed-`q` reduction to `TU(41)`, and other
+seed-local computations belong only where they sharpen the main theorem or
+as appendices.  A scoped title would be *Exact local obstructions to
+repairing a 64-modular Hadamard matrix of order 668*.
+
+**Paper B — prescribed-compression `LP(333)` classification (second
+priority).**  Center it on the exact shell descent, five `n_9=2` profile
+orbits, eighteen frozen dense-`h=0` compressed-profile orbits, and the exact
+carry/phase algebra.  The half-turn, rank-one, canonical-gauge rank-two, and
+84-image structured-family censuses are supporting finite-family results,
+with the action-noninvariance correction stated prominently.  Credit both
+the public `p q^2` compression and the July common-multiplier theorem; claim
+only a prescribed-compression slice of open public subgroup ID3.  A scoped
+title would be *Compressed-profile classifications in a length-333
+Legendre-pair uncompression problem*.
+
+Paper A is presently the more coherent specialty-journal candidate.  Paper
+B has a genuine classification nucleus but needs a lean theorem statement,
+an independent production rerun, and another targeted priority check before
+submission.  The prime-83, comb-packing, Sidelnikov, and local-search lanes
+should not be added merely to enlarge either manuscript.
+
+Neither paper may imply a nonexistence theorem for `H(668)`, `BS(84,83)`, or
+unrestricted `LP(333)`.
 
 If the user independently decides to publish in the future, the remaining
 priority checks are:

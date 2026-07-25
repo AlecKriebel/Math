@@ -1,6 +1,6 @@
 # Complete remaining-search estimate for the order-three LP(333) route
 
-**Checkpoint date:** 2026-07-24
+**Checkpoint date:** 2026-07-25
 
 ## Executive conclusion
 
@@ -54,9 +54,16 @@ Thus:
 4. the six half-turn orbits have a complete two-layer low-anti-weight
    exclusion: 7,178 digit-two points, zero row-margin matches, and zero
    digit-three points;
-5. neither the remaining `h=1` classification nor the eighteen physical
-   phase lifts presently supports a four-week forecast of `H(668)`;
-6. the completed `h=0` classification is a credible theorem-level result,
+5. the quadratic antipodal rank-two family is exhausted on all eighteen
+   frozen canonical gauges: 3,663,754,254 states give seven digit-two
+   controls and zero row-margin or consecutive lifts, but the
+   action-noninvariant law leaves 342 labelled images unenumerated;
+6. all nine Eliahou short-block cases are exactly excluded after
+   3,710,853,316,608 join rows and 88,927,740 physical replays; twenty long
+   cases remain open;
+7. neither the remaining `h=1` classification nor the eighteen unrestricted
+   physical phase lifts presently supports a four-week forecast of `H(668)`;
+8. the completed `h=0` classification is a credible theorem-level result,
    while an exact digit-3 obstruction for a whole profile would materially
    strengthen it.
 
@@ -588,7 +595,8 @@ profile before the nonlinear placement digits.
 No honest complete phase-lift cost can be assigned to `h=1` until its
 classification gives the number and first-digit ranks of its exact orbits.
 For `h=0`, the orbit count and first-layer ranks are now known, but the
-decisive quadratic/cubic completion cost remains unbounded.
+decisive unrestricted quadratic/cubic completion cost remains unbounded.
+One delimited rank-two family is fully costed below.
 
 ### 3.6 Measured lift geometry of the first exact `h=0` profile
 
@@ -668,7 +676,7 @@ digit-three defect six.  This closes the two lowest anti-code shells on
 every half-turn orbit.  It does not enumerate the remaining anti spaces or
 the twelve generic profiles.
 
-The independent Witt-conic lane gives a second exact denominator.  The
+The independent Witt-conic lane first gave a second exact denominator.  The
 complete quadratic antipodal rank-two closure on orbit 07 has 40 polynomial
 coefficients, first-layer solution dimension 22, evaluation-kernel dimension
 eight, and therefore exactly
@@ -684,7 +692,45 @@ equations.  This is the entire stated family, but only a `3^-22` fraction
 of the ambient `F_3^36` first layer.  It demonstrates how a theorem can make
 a rank-two family finite without making unrestricted lifting feasible.
 
-### 3.7 Complete `h=0` census and all-orbit lift audit
+The same family has now been exhausted on all eighteen **frozen canonical
+representative gauges**.  Their physical quotient denominators sum to
+
+```text
+3,663,754,254 states.
+```
+
+Seven ordinary digit-two controls survive, with following-digit defects
+`10,10,11,13,13,14,14`.  None survives full digit three or two consecutive
+digits, and none meets the exact row-margin catalog.
+
+This is not an all-orbit result.  The feature law is not invariant under the
+24-element profile action.  Across all 360 distinct labelled images the
+physical dimensions are
+
+```text
+dimension 14:  12 images
+dimension 15:   8 images
+dimension 16:  56 images
+dimension 17:  96 images
+dimension 18: 188 images.
+```
+
+Only eighteen canonical gauges were enumerated.  Independent enumeration of
+all action images would have workload sum
+
+```text
+all 360 images       87,815,310,840 states
+completed 18          3,663,754,254 states
+remaining 342        84,151,556,586 states.
+```
+
+At the observed rate, the remaining raw sweep projects to roughly 89
+single-core wall hours before verification overhead or contention.  These
+are workload sums, not disjoint placement counts.  The noninvariance makes
+the canonical census a finite-family theorem and makes another
+undifferentiated action-image sweep a poor construction priority.
+
+### 3.7 Complete `h=0` census and all-canonical-representative lift audit
 
 The first heavy production prefix also found the distinct exact profile
 
@@ -755,8 +801,8 @@ correlations, the faithful 24-element action, canonicality, stabilizers,
 and all 153 pairwise-disjointness comparisons.  The orbit-size distribution
 is twelve at 24 and six at 12.
 
-The exact all-orbit follow-up finds first-layer rank/nullity `18/36` and
-quadratic-span rank 18 for every profile.  It audits 6,552 structured
+The exact all-eighteen canonical-representative follow-up finds first-layer
+rank/nullity `18/36` and quadratic-span rank 18 for every profile.  It audits 6,552 structured
 characters and 6,552 hyperplanes; the maximum retraction dimensions split
 nine profiles at five and nine at four, with none at six.  Exact transfer
 through all 1,756 row-sum words leaves 45--96 compatible words per profile.
@@ -888,13 +934,13 @@ each.  The total nine-case work is therefore
 3,710,853,316,608 principal join rows.
 ```
 
-Case 26 is complete: 10,533,216 joint modulo-six supports were all replayed
-as physical integer polynomials, with zero exact supports.  Its observed
-eight-worker wall time predicts roughly 4--5 hours for the remaining eight
-cases on this host.  Unlike the `3^36` lift projections, this is an
-exhaustive, bounded, resumable calculation with fixed memory and a strict
-aggregate.  An empty result closes all nine short-block cases only; the
-nineteen long-block cases remain outside this engine.
+The complete run is now finished.  Across all nine cases, 88,927,740 joint
+modulo-six supports were replayed as physical integer polynomials and
+bit-packed correlations, with zero exact support.  The eight cases beyond
+the original case-26 run used 145,055.25557 summed kernel seconds.  Unlike
+the `3^36` lift projections, this is an exhaustive, bounded calculation with
+a detached strict aggregate.  It closes all nine short-block cases only;
+the twenty long-block cases remain outside this engine.
 
 The near-Williamson length-167 route has a much worse exact front end.  Its
 one-defect identity removes one block, but the 33 unique gauge-fixed `A,B`
@@ -930,25 +976,22 @@ independent, strongly pruned shards.
 
 ## 5. Recommended finite gate
 
-### First priority: exact `h=2` digit-3 gate
+### Resolved priority: publish/pivot
 
-The four-family 84-image action closure has completed and failed this gate.
-Do not count its five ID8-fixed digit-two points as progress or resume the
-same coordinate templates under new parameter names.
+The four-family 84-image action closure, the all-eighteen canonical-gauge
+rank-two census, and the all-nine short-block Eliahou census have completed.
+None passes the gate.  The rank-two family supplies seven more digit-two
+controls but zero row-compatible consecutive lift, and its action
+noninvariance leaves a large mechanically enumerable scope rather than a new
+contraction.
 
-1. Use the sparse histogram variables, not high-modulus prefix automata.
-2. Impose one compatible row-margin signature at a time, with symmetry
-   deduplication across the 405 raw profile/margin pairs.
-3. Include the delayed `E1(origin)` exact row at the start.
-4. Seek either an explicit digit-3 survivor or a complete proof on a
-   nontrivial collection of shards.
-5. If a digit-3 point appears, switch immediately to `A=Q=0`; digits 4--8
-   need not be searched sequentially.
+Preserve the five-orbit and eighteen-orbit classifications with these finite
+lift obstructions as a scoped paper project.  Stop headline `H(668)` search
+on the present lifts.  Any future restart must begin with a genuinely new
+construction principle or quotient, not another digit-two witness, cosmetic
+structured family, or undifferentiated sweep of the remaining 342 images.
 
-A digit-3 point would be a meaningful milestone.  Another digit-2 point
-would not.
-
-### Parallel priority: `h=1` classification and `h=0` physical lifts
+### Optional paper-scoped continuation, not headline `H(668)` work
 
 1. Preserve the completed 18-orbit `h=0` certificate as the fixed profile
    input.
@@ -956,9 +999,9 @@ would not.
    authorizing its complete census.
 3. Canonicalize complete decorated `h=1` objects under the order-24 group
    and exact-replay every positive profile.
-4. For `h=0`, pursue only algebraically bounded lift families or proof
-   decompositions that cover an explicitly measured fraction of the
-   `3^36` first-digit spaces.
+4. Do not resume `h=0` lifting unless a genuinely new construction principle
+   first yields an algebraically bounded family or proof decomposition with
+   an explicit coverage denominator.
 5. Require exact row margins and two consecutive higher digits in the same
    physical point; another isolated digit-two point is not a milestone.
 
@@ -969,9 +1012,9 @@ would not.
   row-compatible consecutive lift.  The dense `h=0` profile classifier has
   already passed and completed; its output is now an 18-orbit theorem, not
   a reason to extrapolate physical-lift feasibility.
-- **Publish/pivot:** a complete digit-3 obstruction for one or more
-  profiles, the completed 18-orbit `h=0` classification with its finite
-  lift obstructions, or an empty all-nine short-block Eliahou census.
+- **Publish/pivot:** this condition is met by the completed 18-orbit `h=0`
+  classification with its finite lift obstructions and the empty all-nine
+  short-block Eliahou census.
 - **Stop headline search:** only more digit-2 witnesses, repeated
   `UNKNOWN` runs without increasing certified coverage, or proposed
   families whose complete denominators remain astronomically uncosted.
@@ -985,7 +1028,7 @@ Eliminating all of these profile shells would close this order-three profile
 route, not prove that no unrestricted Legendre pair of length 333 exists
 and not prove that no Hadamard matrix of order 668 exists by some other
 construction.  Likewise, exhausting the nine Eliahou short-block cases
-would leave nineteen long-block boundary cases open.
+leaves twenty long-block boundary cases open.
 
 The mechanically verified five-orbit shell-two classification and
 eighteen-orbit dense-shell classification remain valuable regardless of
@@ -993,14 +1036,21 @@ the phase-lift outcome.
 
 ## 7. Arithmetic replay
 
-From `hadamard_668_search`, the dependency-free audit
+From `hadamard_668_search`, the first two commands are dependency-free; the
+environment-pinned commands then audit the final certificates:
 
 ```text
 python3 verify_complete_remaining_search_estimate.py
 python3 -m unittest -v test_complete_remaining_search_estimate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_short_block_census/verify_nine_case_completion.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_canonical_representative_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_action_noninvariance.py
 ```
 
-recomputes both local generating functions, all support and signed-skeleton
+Together these commands recompute both local generating functions, all support and signed-skeleton
 coefficients, the counts by nonempty quartet, every affine upper bound, all
 three 729-character work totals, the 405 row-margin shards, the five-cube
 volume, and the exactness inequality.  Its semantic hash is

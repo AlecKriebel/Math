@@ -2230,10 +2230,10 @@ proof-assistant-level theorem.
   size 12; their weighted exact-zero population is 360.
 - Froze the complete classification in
   `dense_shell_h0_complete_classification/`.  Its dependency-free verifier
-  reconstructs all 666 nonzero-lag integer Eisenstein correlations, the
-  faithful 24-element action, canonicality, stabilizers, 153 pairwise
-  disjointness checks, and the complete 729-shard provenance.  It passes
-  without the ignored production output.
+  reconstructs all 666 exact integer-Eisenstein correlations (648
+  nonzero-lag and 18 zero-lag), the faithful 24-element action, canonicality,
+  stabilizers, 153 pairwise disjointness checks, and the complete 729-shard
+  provenance.  It passes without the ignored production output.
 - This is a complete profile-layer classification in the prescribed
   order-three `q^2`-uncompression branch.  It is not a Legendre pair or a
   physical phase-lift classification.
@@ -2291,7 +2291,7 @@ proof-assistant-level theorem.
 - An independent reference replay of the best quotient finds 46 normalized
   survivors, zero exact supports, and the same best residual.
 
-## 24 July 2026: all-nine short-block theorem and active census
+## 24 July 2026: all-nine short-block theorem and census launch
 
 - Generalized the case-26 articulation join to every canonical short-block
   case 21 through 29.  Each has 78 binary variables, 39 equal-syndrome
@@ -2303,10 +2303,10 @@ proof-assistant-level theorem.
 - The parameterized compiled kernel, atomic resume runner, strict
   aggregator, and independent physical replay pass controls against the
   case-26 model and exceptional gauges.
-- The other eight cases are running sequentially with eight workers and
-  fixed small memory.  An exact survivor will be replayed immediately; an
-  empty completion will close all nine short-block cases but leave nineteen
-  long-block cases open.
+- The other eight cases were launched sequentially with eight workers and
+  fixed small memory.  The prospective decision rule was to replay an exact
+  survivor immediately or, on empty completion, close all nine short-block
+  cases while leaving twenty long-block cases open.
 
 ## 24 July 2026: near-Williamson order-167 feasibility audit
 
@@ -2379,3 +2379,43 @@ proof-assistant-level theorem.
   pass.  The certificate semantic SHA-256 is
   `e5a27d107a5e2f140feabb3a69a02c16044980a05baaa1523fafff3ef9d0d802`.
   No commit, push, or external contact occurred.
+
+## 25 July 2026: complete all-nine Eliahou short-block exclusion
+
+- Finished every case 21 through 29 with the exact reflection-gauged
+  four-clique engine.  The complete denominator is
+  3,710,853,316,608 principal join rows.
+- The nine runs retain 88,927,740 joint modulo-six supports.  Every support
+  was replayed through the integer equations and the independent bit-packed
+  physical correlations; zero is exact.
+- Froze the output-independent result in
+  `eliahou_short_block_census/NINE_CASE_COMPLETION_CERTIFICATE.json`, with
+  detached verification by `verify_nine_case_completion.py`.
+- This closes the complete short-block boundary.  The twenty long cases
+  1--20 remain open; the case-1 solver-UNSAT observation still has no checked
+  proof.
+
+## 25 July 2026: all-canonical-gauge rank-two census and action correction
+
+- Exhausted the arbitrary-quadratic antipodal rank-two conic family on all
+  eighteen frozen canonical dense-`h=0` gauges: 3,663,754,254 exact physical
+  quotient states.
+- Seven points survive digit two.  Their following-digit defects are
+  `10,10,11,13,13,14,14`; none survives full digit three or two consecutive
+  digits, and none meets an exact row margin.
+- An exact action audit disproves invariance of this coordinate-dependent
+  feature law.  Across all 360 distinct labelled images, the physical
+  dimensions split as `14:12, 15:8, 16:56, 17:96, 18:188`.  The completed
+  census covers only the eighteen frozen canonical gauges, not the other
+  342 images.
+- The complete action-image workload is 87,815,310,840 states.  The remaining
+  342 images account for 84,151,556,586 states, projected at roughly 89
+  single-core wall hours.  This is a workload sum, not a disjoint-placement
+  count or an exclusion.
+- Froze the canonical census and noninvariance audit in
+  `h0_witt_conic_rank_two_full_18/`; the legacy
+  `h0_witt_conic_rank_two_all_orbits/SCOPE_CORRECTION.json` records the
+  withdrawn all-orbit interpretation.
+- The bounded construction gate therefore fails.  Preserve the five-orbit
+  and eighteen-orbit classifications as a scoped paper project, and stop
+  headline `H(668)` work absent a genuinely new construction principle.

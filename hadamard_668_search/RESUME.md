@@ -29,19 +29,31 @@ leaves.  Detached exact replay proves there are precisely 18 inequivalent
 canonical profile orbits: twelve of size 24 and six of size 12.  Every
 orbit has first-placement rank/nullity `18/36`.
 
-The full all-orbit structured scan finds no six-dimensional retraction.
+The complete all-eighteen canonical-representative structured scan finds no
+six-dimensional retraction.
 All six half-turn profiles have been tested through two consecutive higher
 layers on their complete anti-weight-four and anti-weight-five shells:
 7,178 exact digit-two points, zero row-margin matches, and zero full
 digit-three points.  A separate complete rank-one Witt-conic family tests
-65,601 physical placements and leaves no digit-two point.  There is still
-no physical consecutive lift for any dense profile.
+65,601 physical placements and leaves no digit-two point.  The
+quadratic-antipodal rank-two family has also been exhausted on all eighteen
+frozen canonical gauges: 3,663,754,254 states leave seven digit-two
+controls, zero row-margin matches, and zero consecutive lifts.
+
+That last family is not invariant under the profile action.  Only 18 of the
+360 labelled images were enumerated; 342 remain, with an exact
+84,151,556,586-state workload out of 87,815,310,840 over the full action
+closure.  Thus no physical consecutive lift has been found in the audited
+dense-profile families, but no whole-profile or all-action-image exclusion
+is claimed.
 
 The complete profile classification is a scoped paper-level theorem, not a
 forecast of `H(668)`.  The `h=1` profile shell remains unclassified and the
-decisive nonlinear physical lifts of all eighteen `h=0` profiles remain
-uncosted.  Resume those only through a genuinely bounded algebraic family
-or proof decomposition with an explicit coverage denominator.
+decisive unrestricted nonlinear physical lifts of all eighteen `h=0`
+profiles remain uncosted.  The agreed gate is now closed: preserve these
+results as a paper project and resume headline `H(668)` work only after a
+genuinely new construction principle, not another undifferentiated
+second-digit sweep.
 
 The closest published structured object remains Eliahou's 64-modular seed.
 The strongest results in this repository are negative or local:
@@ -60,12 +72,12 @@ The strongest results in this repository are negative or local:
 - the complementary anti-fold removes all endpoint orientations from the
   first distance-41 stage and collapses the 39 reciprocal pairs to 30
   distinct support instances. Canonical case 0, long `q` representative 0,
-  is certified UNSAT by a checked binary DRAT proof. Canonical case 26 is
-  now completely excluded by a 262,144-quotient exact census.  The same
-  reflection gauge and articulation join gives a bounded engine for all
-  nine short-block cases 21--29; the remaining eight are in an active,
-  resumable exact production run.  Canonical case 1 has one unproved
-  solver-UNSAT observation, and nineteen long-block cases remain open;
+  is certified UNSAT by a checked binary DRAT proof.  All nine short-block
+  cases 21--29 are now completely excluded by an exact
+  3,710,853,316,608-row census.  Its 88,927,740 joint modulo-six supports
+  were all replayed physically, with zero exact support.  Canonical case 1
+  has one unproved solver-UNSAT observation, and the twenty long-block cases
+  1--20 remain open;
 - the characteristic-three anti-fold condition is a full three-jet system,
   not only a primitive-28 value sieve. A case-26 support satisfies all
   twenty normalized equations modulo three. The normalized
@@ -73,8 +85,8 @@ The strongest results in this repository are negative or local:
   case-26 dimension is 57 and its exact weight-39 slice contains
   25,941,166,955,843,488 supports. The complete parity-quotient join finds
   10,533,216 joint modulo-six supports and physically replays every one;
-  none is an integer repair.  This closes case 26, not the other boundary
-  cases;
+  none is an integer repair.  The completed nine-case extension closes the
+  entire short-block boundary, not the twenty long cases;
 - the older primitive-eight 16-coordinate dynamic program gives a sharp
   necessary-condition boundary at distance 34: its sphere first becomes
   reachable at distance 33, all 66 full targets there fail exact margins,
@@ -265,6 +277,15 @@ The strongest new constructive reductions are:
   digit-two, row-margin-compatible, or consecutive-digit survivors; five
   placements score 17 of 18.  Degree-three and non-antipodal laws remain
   open.
+- `h0_witt_conic_rank_two_full_18/`: exhausts the same family on all
+  eighteen frozen canonical gauges.  The 3,663,754,254 states contain seven
+  digit-two controls with following-digit defects
+  `10,10,11,13,13,14,14`, zero row-margin matches, and zero consecutive
+  lifts.  A separate exact audit proves that the feature law is not
+  action-invariant: only 18 of 360 labelled images were enumerated, and the
+  other 342 account for 84,151,556,586 states.  Use the canonical-gauge and
+  action-noninvariance certificates together; never call this an all-orbit
+  exclusion.
 - `h0_halfturn_twists/`: the new profile's first lift splits as `21+15`;
   the second digit becomes twelve even quadrics and six odd bilinear
   equations.  All 35 nonidentity global fiber-permutation twists are
@@ -457,9 +478,11 @@ The strongest new constructive reductions are:
   manifest and aggregate hash.
 - `eliahou_short_block_census/`: the case-26 reflection gauge and four-clique
   split extend to every canonical short-block case 21--29.  The complete
-  nine-case denominator is 3,710,853,316,608 principal join rows.  The
-  remaining eight cases run sequentially with eight workers and atomic
-  resume; stop immediately and replay if any exact support appears.
+  nine-case denominator is 3,710,853,316,608 principal join rows.  The final
+  census retains 88,927,740 joint modulo-six supports, replays every one
+  through the integer and physical equations, and finds zero exact support.
+  `NINE_CASE_COMPLETION_CERTIFICATE.json` is authoritative; do not resume
+  these closed cases.
 - `near_williamson_167_audit/`: a one-defect parity identity eliminates one
   block, but the 33 gauge-fixed `A,B` shards still contain about
   `10^48.73` states.  Do not productionize this lane without a new
@@ -580,10 +603,12 @@ The strongest current construction checkpoints are:
   the trivial-character transfer equals the row-sum catalog, the first
   Eisenstein-adic digit has one fixed-profile contradiction, and the
   augmentation-plus-`T_1` diagonal prefix leaves all 22 tuples;
-- `output/antifold42_q0_proof/`: the only certified anti-fold exclusion,
+- `output/antifold42_q0_proof/`: the independently proof-certified case-0
+  anti-fold exclusion,
   containing the 39,580-variable CNF, compressed binary DRAT proof,
   `certificate.json`, and narrow-scope README. The default verifier checks
-  metadata, hashes, and DIMACS shape; full `drat-trim` replay is optional;
+  metadata, hashes, and DIMACS shape; full `drat-trim` replay is optional.
+  The separate all-nine arithmetic certificate closes cases 21--29;
 - the coupled `<121>/<211>` boundary: `36 -> 12 -> 6,048 -> 1,296` row
   states, 216 row-dihedral orbits, 108 extended classes, and all 1,296
   feasible on the zero-column axis. Only nonzero-column lags remain useful;
@@ -600,7 +625,9 @@ Read `ELIAHOU_ADJACENT42_REPAIR.md` before doing any further seed-centered
 search: base-row shells through radius 79 and special-coordinate shells
 through radius 40 are now excluded. Then read `ELIAHOU_ANTIFOLD42.md`,
 `ELIAHOU_ANTIFOLD_MOD2.md`, and `ELIAHOU_ANTIFOLD42_CENSUS.json`: case 0 is
-certified closed, case 1 is unproved, and cases 2-29 are `UNKNOWN`.
+certified closed and case 1 is unproved.  Treat that JSON as a historical SAT
+ledger: its `UNKNOWN` entries for cases 21--29 are superseded by the complete
+short-block certificate.  Cases 1--20 remain open.
 `VARIABLE_Q_ROOT8.md` remains the sharp primitive-eight necessary-condition
 audit.
 
@@ -615,15 +642,16 @@ audit.
    audited `9 x 13` quotient. Do not
    spend more time strengthening only the pure-axis or first mod-three layer:
    all 1,756 rows and all 22 Eisenstein shards already pass those tests. The
-   next exact task is to complete the resumable dense-profile census, test
+   completed dense `h=0` census is now a frozen input.  Test
    any genuinely new structured phase law first on the five `n_9=2`
    canonical representatives and then across every action image before an
    orbit-wide claim, and lift only seeds that pass exact row margins through
    at least two consecutive digits beyond the quadratic layer.
    A point satisfying only the quadratic second digit is not a progress
    gate: the structured six-coordinate subsystem alone leaves about `3^30`
-   points per profile. Work on `n_9=1,0` should use the v2 streaming
-   classifier and its exact-orbit retention rather than phase enumeration.
+   points per profile. Any bounded `n_9=1` classification should use the v2
+   streaming classifier and its exact-orbit retention rather than phase
+   enumeration; the `n_9=0` classification is complete.
    The general
    seven-target CRT constructor remains the fallback for discovering dense
    profile inputs.  The prime-167 channel-first MITM is a low-memory
@@ -648,11 +676,11 @@ audit.
 3. Continue the prime-83 oriented-SDS construction outside the exact
    neighborhood already exhausted around profile 19. Any prime fold
    automatically triggers its finite modulo-84 lift bank.
-4. Continue the 30 orientation-free anti-fold support instances before any
-   wider seed-centered search. Case 0 is certified closed. Case 1 requires a
-   fresh proof-producing run before its solver observation becomes a theorem;
-   cases 2 through 29 are `UNKNOWN`. Only a surviving support proceeds to
-   the adjacent-fold endpoint-orientation lift.
+4. Preserve the completed short-block exclusion and the exact structural
+   triage of the twenty open long cases.  Case 1 requires a fresh
+   proof-producing run before its solver observation becomes a theorem.
+   Do not restart the closed cases 21--29; any future long-case work requires
+   a new contraction beyond the current exact Walsh and CRT audits.
 5. Treat the `<121>` and `<211>` order-three multiplier subgroups as coupled
    secondary lanes, starting after their shared 1,296-word row-axis theorem.
    Do not duplicate that completed outer work. Do not resume the quartic,
@@ -730,6 +758,17 @@ python3 shell_two_structured_action_closure/verify_action_closure.py
 python3 shell_two_structured_action_closure/verify_action_closure.py --live
 ```
 
+Replay the completed short-block and canonical-gauge rank-two certificates:
+
+```sh
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_short_block_census/verify_nine_case_completion.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_canonical_representative_certificate.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  h0_witt_conic_rank_two_full_18/verify_action_noninvariance.py
+```
+
 Build the fixed-memory engine and independent verifiers:
 
 ```sh
@@ -768,23 +807,24 @@ Only a successful full-matrix check permits an `H(668)` claim.
 
 ## Safe continuation points
 
-Audit the complete distance-41 reduction and the one certified leaf before
-continuing its census:
+Audit the complete distance-41 reduction, the checked case-0 leaf, and the
+completed nine-short-case certificate:
 
 ```sh
 python3 verify_eliahou_adjacent42_repair.py
 python3 verify_eliahou_antifold42.py
 ../tmp/hadamard-env/bin/python verify_eliahou_antifold_mod2.py
 python3 verify_eliahou_antifold_q0_proof.py
+/Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
+  eliahou_short_block_census/verify_nine_case_completion.py
 ../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
   --ignore-profiles --start 0 --stop 30 --list-instances
-../tmp/hadamard-env/bin/python search_eliahou_antifold_sat.py \
-  --ignore-profiles --start 2 --stop 30 --time-limit 1800
 ```
 
-The last command records timeout or interruption as `UNKNOWN`; it never
-turns either into an exclusion. Canonical case 1 still needs an independently
-checked proof-producing run. Do not use the earlier Python-wrapper proof
+The listing command does not override the final arithmetic certificate.
+Cases 21--29 are closed and must not be resumed. Canonical case 1 still
+needs an independently checked proof-producing run. Do not use the earlier
+Python-wrapper proof
 capture as evidence: it failed replay and was removed. To replay the retained
 case-0 proof itself:
 
@@ -793,28 +833,8 @@ python3 verify_eliahou_antifold_q0_proof.py \
   --full --drat-trim /absolute/path/to/drat-trim
 ```
 
-The highest-value live exact computation is now the remaining eight
-short-block cases.  The current sequential command is also its safe resume
-command: it strictly validates completed atomic ranges and skips them.
-
-```sh
-cd /Users/alec/Documents/Math-h668-local/hadamard_668_search/eliahou_short_block_census
-for case_number in 21 22 23 24 25 27 28 29; do
-  env OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 \
-    VECLIB_MAXIMUM_THREADS=1 \
-    /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
-    run_short_block_census.py \
-    --case "${case_number}" \
-    --output "output/production-case${case_number}" \
-    --workers 8 --chunk-size 1024 \
-    --rss-limit-mib 8192 --output-limit-mib 100
-done
-```
-
-Do not launch a duplicate while this loop is active.  If a range contains
-an exact candidate, stop the loop and replay it independently before any
-claim.  The completed case-26 certificate is checked without live output
-by default and against every production range with `--live`:
+The completed case-26 certificate can still be checked without live output
+by default and against every retained production range with `--live`:
 
 ```sh
 /Users/alec/Documents/Math/tmp/hadamard-env/bin/python \
@@ -823,8 +843,9 @@ by default and against every production range with `--live`:
   eliahou_global_quotient_plan/verify_completion_certificate.py --live
 ```
 
-The primary exact continuation is the order-three quotient. Rebuild and
-audit its finite front end before changing the model:
+If a genuinely new construction principle later justifies a restart, the
+order-three quotient is the best-preserved exact framework. Rebuild and audit
+its finite front end before changing the model:
 
 ```sh
 clang++ -std=c++20 -O3 -Wall -Wextra -Wpedantic -Werror \
@@ -924,6 +945,7 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-After the active short-block census, the next high-value step is structural
-mathematics on the remaining dense-profile lifts or long-block Eliahou
-cases, not indefinite repetition of the same local annealer.
+The bounded construction gate has failed.  Preserve the five-orbit and
+eighteen-orbit classification package for a paper, and do not spend headline
+`H(668)` tokens on the remaining dense-profile lifts or twenty long-block
+Eliahou cases without a genuinely new construction principle.
