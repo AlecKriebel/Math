@@ -1235,3 +1235,30 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   connects its normal-form atlas to the frozen coefficient cover.  Those
   labels are now treated as algebraic evidence, not global progress, until
   explicit bridges are written.
+
+## 2026-07-25T20:50:37Z — First frozen quartic leaf certified
+
+- The post-freeze bridge for
+  `Q2-E0-A1-B4-D2-N2` proves that every conic-double-cover leading term is
+  linearly equivalent to
+  \[
+  (x^4,x^2y^2,y^4)
+  \]
+  without selecting a frozen coefficient as a denominator.
+- A clean-room hostile reconstruction independently recovered the unique
+  separable degree-two cover orbit, the symmetric-square target lift, the
+  primitive affine triple, and the exact transfer of Keller and automorphism
+  properties under the required source/target changes.
+- The audit checked the codimension-two source basepoint explicitly.  It is
+  not a component gcd or an omitted cover branch.  All nonempty frozen
+  pivots `C00`--`C14` are covered and `C15`--`C44` are empty.
+- The bridge verifier, independent SymPy reconstruction, existing exact
+  SymPy lower calculation, independent PARI/GP lower audit, mutation wrapper,
+  and unchanged frozen-manifest verifier all pass.
+- The honest frozen count is now
+  \[
+  \boxed{1/14\text{ certified},\quad
+         6/14\text{ provisional},\quad
+         7/14\text{ open}.}
+  \]
+  This does not improve the universal total-degree floor above four.

@@ -14,9 +14,10 @@ The mechanism-level status entries below record algebraic work inside those
 leaves; they do **not** by themselves certify a frozen leaf.  A leaf counts as
 excluded only after its normal-form proof is mapped to all relevant frozen
 coefficient-pivot strata, or is shown to be division-free.  A hostile
-row-by-row bridge audit returned **0/14 frozen-certified, 7/14 provisional
-legacy exclusions, and 7/14 open**.  The fail-closed numerator is therefore
-zero until explicit post-freeze bridges are certified.
+row-by-row bridge audit initially returned **0/14 frozen-certified, 7/14
+provisional legacy exclusions, and 7/14 open**.  The conic-double-cover row
+has since passed a post-freeze bridge and clean-room hostile replay, so the
+current honest count is **1/14 certified, 6/14 provisional, 7/14 open**.
 
 | Family | Mechanism | Status | Decisive gap or target |
 |---|---|---|---|
@@ -50,7 +51,7 @@ zero until explicit post-freeze bridges are certified.
 | Fixed-divisor verticality in primitive line pencils | For \(H_4=h(p,q,0)\), \(\deg h+\deg p=4\), descend \(G_3^4/(hp)^3\), compare valuations in one pencil fibre, and use divisor parity | **audited; \(e=3\) and the all-vertical \(e=2\) row closed** | Every prime of \(h\) is vertical.  Same-fibre congruences leave only \(p=h\), a unique double member \(\ell^2\), \(G_3\in\ell\langle p,q\rangle\), and the two canonical pencils; the lower-identity family below excludes every remaining companion |
 | Fixed-divisor \(e=2\) quadratic-pencil lower identities | Normalize \(H_4=(p^2,pq,0)\), quotient the cubic kernel \(x\langle p,q\rangle\), and solve \(E_7,\ldots,E_1\) with specialization-safe pivots | **entire row excluded; audited** | A pencil shear leaves exactly \(R=xq\) and \(R=x^3\).  Both are impossible for both \(\langle x^2,yz\rangle\) and \(\langle x^2,y^2+xz\rangle\); hostile audits found and repaired all parameter-dependent pivot drops |
 | Frozen quartic denominator | Canonical relative algebraic closure of the leading pencil, followed by the arithmetic \(e+ab=4,\ b=\delta\nu\) | **banked; F1/F2 certified** | Fourteen disjoint inclusive leaves, with 45 fixed first-nonzero coefficient strata per leaf; exclusions are being re-audited against this denominator |
-| Frozen-exclusion bridges | Map each historical normal-form/orbit proof to the frozen coefficient partition, or replace it by a division-free proof | **active; 0/14 certified** | Seven legacy exclusions are provisional; the conic-double-cover row is the cheapest first promotion target |
+| Frozen-exclusion bridges | Map each historical normal-form/orbit proof to the frozen coefficient partition, or replace it by a division-free proof | **active; 1/14 certified** | The conic-double-cover row is promoted; six legacy exclusions remain provisional |
 | Regular monodromy obstruction | Translate Campbell--Razar--Wright using the point stabilizer in the Galois closure | **banking; priority occupied** | Regular geometric monodromy is equivalent to the original function-field extension being Galois, hence is impossible for a Keller counterexample |
 | Weighted-lift symmetric monodromy | Recover the source from the inverse root \(w\), then apply Brink's two-free-coefficient theorem to \(\Phi(T)-PT+cQ\) | **banked; hostile-audited** | Every admissible Gallagher seed of generic degree \(d\ge3\) has geometric monodromy \(S_d\); finite degrees \(3\)--\(13\) were already public |
 | Monodromy realizability table | Enumerate transitive groups by degree and mark regular exclusions, symmetric realizations, and certified wreath realizations | **active** | Complete exact table through degree ten and separate group-theoretic translation from genuinely new family realizations |
