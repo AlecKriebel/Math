@@ -1,5 +1,18 @@
 # Research log
 
+## 2026-07-25 PDT — scope correction
+
+- Relabeled the result explicitly as a census on the frozen
+  `orbit-07` canonical representative gauge.
+- The classification orbit has 12 distinct action images.  This
+  certificate covers the canonical image only; the other 11 were not
+  enumerated.  Although all 12 have physical feature dimension 14,
+  equality of dimensions alone does not prove covariance of the feature
+  spaces.
+- Preserved the verifier and certificate byte-for-byte.  The exact
+  result on the chosen gauge remains valid; only any implicit
+  whole-action-orbit interpretation is withdrawn.
+
 ## 2026-07-24 20:03--20:12 PDT
 
 - Started from the proved local identity

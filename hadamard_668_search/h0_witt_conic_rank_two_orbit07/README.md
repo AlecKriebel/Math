@@ -1,9 +1,16 @@
-# Full quadratic rank-two conic pilot on `h=0` orbit 07
+# Full quadratic rank-two conic pilot on canonical `h=0` gauge 07
+
+> **Scope correction, 2026-07-25.**  `orbit-07` below names the frozen
+> canonical representative gauge, not the whole 12-image classification
+> orbit.  The feature law is not known to be covariant under the
+> 24-element action.  This certificate exhausts one gauge only and makes
+> no outcome claim for its 11 other distinct action images.  See
+> `../h0_witt_conic_rank_two_full_18/ACTION_NONINVARIANCE_CERTIFICATE.json`.
 
 ## Result
 
 The complete independent-channel quadratic extension of the Witt-conic
-center law has been exhausted for exact dense-shell profile
+center law has been exhausted for the exact dense-shell canonical gauge
 
 ```text
 orbit-07 = 0x86b13a0388d98a5e.
@@ -54,9 +61,10 @@ physical rows
 one point per row.  None of the five has a row-margin word in the exact
 1,756-word catalog.
 
-This excludes the complete delimited family for `orbit-07`.  It is not an
-exclusion of the full 36-dimensional placement layer, `LP(333)`, or
-`H(668)`.
+This excludes the complete delimited family for the chosen `orbit-07`
+canonical gauge.  It does not transfer to the other 11 action images and
+is not an exclusion of the full 36-dimensional placement layer,
+`LP(333)`, or `H(668)`.
 
 ## Why `orbit-07`
 
@@ -129,7 +137,7 @@ PYTHONDONTWRITEBYTECODE=1 \
   verify_witt_conic_rank_two.py
 ```
 
-The verifier reconstructs the profile from the frozen complete
+The verifier reconstructs the canonical-gauge profile from the frozen complete
 classification, checks the selection data against the frozen 18-profile
 scan, re-derives the conic identity and all finite-field ranks, restricts
 the quadrics, exhausts all `3^14` physical placements, directly replays
