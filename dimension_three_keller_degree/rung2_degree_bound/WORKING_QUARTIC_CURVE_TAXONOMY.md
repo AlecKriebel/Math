@@ -174,8 +174,13 @@ The common-factor-free rows have the following exact or partial coverage.
    \(L^4/L^3\) shape but does not exclude it.
 2. For \((0,2,2)\), `WORKING_CONIC_TYPE_22.md` excludes the entire genuine
    conic row.  `WORKING_LINE_TYPE_22.md` excludes the zero-cubic and
-   no-double-line branches of the line row, while its unique-double-line
-   nonzero-cubic branches remain active.
+   no-double-line branches of the line row.  In the unique-double-line
+   pencil \(p=x^2,q=yz\),
+   `WORKING_LINE_22_FINITE_OUTER_CRITICAL.md` together with
+   `WORKING_LINE_22_FG_RESONANCE.md` excludes the full chart having two
+   finite outer critical points and finite mixed cubic companion.  The
+   outer-critical-infinity and companion-at-infinity charts, and the
+   rank-one-restriction pencil \(q=y^2+xz\), remain active.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

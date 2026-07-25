@@ -500,3 +500,34 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem passed hostile audit at
 2026-07-25T05:47:58Z but remains unreviewed.  Its binary locus stays open,
 and the certified universal total-degree floor remains \(4\).
+
+### 2026-07-25T06:06Z — finite unique-double-line chart overlap check
+
+Exact searches combined “Keller map dimension three degree four” with
+“unique double line”, “quadratic pencil”, the canonical pair
+\(p=x^2,q=yz\), and finite critical-point/companion moduli.  Separate
+searches covered current arXiv listings, MathOverflow, Tao's blog, Secret
+Blogging Seminar, Gallagher's current explainer, and publicly indexed
+X/Twitter results.
+
+The checked current sources concern the announced degree-seven map,
+generic fibre degrees, graded maps, automorphism loci, or classical plane
+geometry.  None states the finite-chart \(E_7\) resonance factors
+\[
+3ab-2ac-bc,\qquad 3ab-ac-2bc,
+\]
+their lower square exits, or the resulting chart exclusion.  Searches for
+the exact canonical pencil and “unique double line” found no checked
+Keller-map overlap.
+
+Migus's current abstract says “degree-four real Keller map,” but its
+Remark 3 and Gallagher's primary explainer make clear that “four” is the
+**generic fibre degree**: Gallagher's component degrees are
+\((12,11,4)\), so this is not a total-polynomial-degree-four
+counterexample and does not collide with the present degree-bound program.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem is unreviewed, closes only the chart with
+both outer critical points and the cubic companion finite, and leaves the
+one-critical-point-at-infinity and companion-at-infinity charts open.  The
+certified universal total-degree floor remains \(4\).

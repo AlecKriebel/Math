@@ -748,3 +748,26 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   verifiers.  Verdict: PASS.
 - The binary fixed-line locus remains active.  The universal certified
   total-degree floor remains \(4\).
+
+## 2026-07-25T06:06:25Z — Finite unique-double-line line-\((2,2)\) chart excluded
+
+- For \(p=x^2,q=yz\), the simultaneous moduli of a two-finite-critical-point
+  outer double cover and a finite mixed cubic companion are
+  \[
+  H_4=((p-aq)^2,(p-bq)^2,0),\qquad
+  (H_3)_3=x(p-cq),\qquad a\ne b,
+  \]
+  modulo common scaling of \((a,b,c)\).
+- Exact raw \(E_7\) weight blocks split the chart into the open locus,
+  the triple branch \(c=0\), and the two resonances
+  \(3ab-2ac-bc=0\) and \(3ab-ac-2bc=0\).  Complete lower solves in every
+  finite-chart specialization force \(\det L_0=0\).
+- The hostile audit found a real scope error before promotion: the
+  stabilizer fixes \(p/q=\infty\), so
+  \(H_4=((p-aq)^2,q^2,0)\) is a separate outer chart.  It reconstructed
+  its resonances \(c=3a\) and \(2c=3a\), raw-rank strata, and exact
+  leading witnesses.  No claim of whole-row closure is made.
+- After narrowing and renaming the theorem, exact SymPy and PARI/GP checks,
+  two independent direct reconstructions, optimized-mode rejection, and
+  forged-GP diagnostic tests all pass.
+- The universal certified floor remains total degree \(4\).

@@ -3,7 +3,7 @@
 **Verification timestamps:** 2026-07-24T23:43:08Z,
 2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
 2026-07-25T02:04:55Z, 2026-07-25T02:48:29Z, and
-2026-07-25T03:19:56Z.
+2026-07-25T03:19:56Z, and 2026-07-25T06:06:25Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -324,11 +324,54 @@ for both canonical quadratic pencils, both displayed outer double-cover
 charts, and both cubic branches.  The adversarial audit confirmed every
 sign, kernel, and image calculation but disproved exhaustiveness of the
 simultaneous normalization.  For
-\(\langle x^2,yz\rangle\), the outer critical pair and the companion conic
+\(\langle x^2,yz\rangle\), the outer critical pair and the companion cubic
 carry relative-position parameters.  The note now retains the calculations
 only as conditional charts and records an exact missed configuration with
-vanishing degrees eight and seven.  No exclusion of the remaining
-unique-double-line line locus is claimed.
+vanishing degrees eight and seven.  That earlier conditional package alone
+made no exclusion claim; the following scope-corrected package closes one
+complete joint-moduli chart without claiming the remaining row.
+
+### Finite-outer-critical unique-double-line chart
+
+At 2026-07-25T06:06:25Z the scope-corrected supplied checks and independent
+hostile reconstructions passed:
+
+```text
+/usr/bin/python3 verify_line_22_finite_outer_critical_sympy.py
+./run_verify_line_22_finite_outer_critical_pari.sh
+/usr/bin/python3 verify_line_22_fg_resonance_sympy.py
+./run_verify_line_22_fg_resonance_pari.sh
+/usr/bin/python3 audit_line22_fg/audit_fg_chart_exact.py
+/usr/bin/python3 audit_line22_fg/audit_outer_infinity.py
+./audit_line22_fg/test_supplied_python_optimized.sh
+./audit_line22_fg/test_supplied_runner.sh
+```
+
+For \(p=x^2,q=yz\), the two theorem notes retain the full simultaneous
+moduli
+\[
+H_4=((p-aq)^2,(p-bq)^2,0),\qquad
+(H_3)_3=x(p-cq),\qquad a\ne b.
+\]
+The open raw \(E_7\) stratification, the \(c=0\) noncritical and
+marked-critical branches, and both resonance divisors
+\[
+3ab-2ac-bc=0,\qquad 3ab-ac-2bc=0
+\]
+all end in a singular linear part.  The finite-chart raw kernels,
+specialization-safe rank minors, square compatibilities, and common
+\(E_5\) column-kernel exit were independently reconstructed.
+
+The audit rejected the earlier full-row scope.  The pencil stabilizer only
+scales \(p/q\), hence fixes infinity, and the missing chart
+\[
+H_4=((p-aq)^2,q^2,0)
+\]
+has its own resonances \(c=3a\) and \(2c=3a\).  The audit records exact
+leading-order witnesses to the omission.  Thus the promoted theorem closes
+only the chart with both outer critical points and the companion finite;
+the projective-infinity charts remain active.  Optimized-Python and forged
+GP-diagnostic tests now fail closed.
 
 ### Complete fixed-divisor conic row
 

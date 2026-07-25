@@ -67,7 +67,13 @@ The first audited quartic working lemmas now constrain:
 - the transverse fixed-linear line triple-cover subrow
   \(H_4=r(A(p,q),B(p,q),0)\): for every degree-three cover \(A/B\), the
   Wronskian derivation has no polynomial normal eigenform in degrees two
-  or three, leaving a plane-field automorphism.
+  or three, leaving a plane-field automorphism; and
+- in the unique-double-line line-\((2,2)\) pencil
+  \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
+  points of the outer double cover and the mixed cubic companion are
+  finite.  The hostile audit found a genuinely separate
+  one-critical-point-at-infinity chart, so this is a chart theorem rather
+  than closure of the whole row.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -75,8 +81,9 @@ verification harness.  No claim is promoted without an adversarial scope and
 hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
-locus in type \((1,4)\), the unique-double-line locus in the line-image
-\((2,2)\) stratum, ramified birational quartic parametrizations, the binary
+locus in type \((1,4)\), the projective-infinity and companion-at-infinity
+parts of the unique-double-line line-image \((2,2)\) stratum (plus its
+rank-one-restriction pencil), ramified birational quartic parametrizations, the binary
 fixed-cubic line locus
 \(h\in\mathbb C[p,q]\), the binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps

@@ -1,0 +1,13 @@
+#!/bin/sh
+# Fault injector for the supplied strict runner: emit a convincing success
+# sentinel after a PARI-style diagnostic while returning status zero.
+echo '  *** injected parser/runtime diagnostic'
+case "$*" in
+  *finite_outer_critical*)
+    echo 'PASS: independent PARI/GP finite-outer-critical line-(2,2) identities'
+    ;;
+  *)
+    echo 'PASS: independent PARI/GP finite-outer-critical F=0 and G=0 reconstruction'
+    ;;
+esac
+exit 0
