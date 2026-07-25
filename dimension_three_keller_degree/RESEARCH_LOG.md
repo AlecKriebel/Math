@@ -1341,3 +1341,21 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   until an independent reconstruction freezes the full stabilizer quotient
   of the marked pencil and the projective companion.  No quartic
   certification count changes.
+
+## 2026-07-25T23:28:00Z — corrected \(e=2\) internal taxonomy frozen
+
+- Two independent reconstructions agree on exactly three marked-pair types.
+  The outer two have three nonzero companion orbits; the smooth secant
+  marked pair has a pointwise-fixed \(\mathbb P^1\) companion modulus.
+- The stable parameterized denominator is \(4+5+4=13\) strata after the
+  zero companions are included.  Its nonzero orbit-space shorthand is
+  \(3+\mathbb P^1+3\).
+- The second hostile audit verified the coordinate change
+  \(\theta=1/(1+\tau)\), all \(0,-1,\infty\) boundaries, and rejected four
+  semantic mutations.  The version-one frozen file is pinned at SHA-256
+  `27e5a4f894ef523156abea389f89c2d4481d58d243c756b70386fdea10e9e01f`.
+- Separately, exact SymPy and PARI calculations show that every value of
+  the middle modulus survives through \(E_6\).  This is not an exclusion.
+- The next authorized high-information experiment is the homogeneous
+  \([u:v]\) uniform \(E_5\) compatibility ideal, with the frozen boundary
+  divisor \(uv(u+v)=0\) handled explicitly.

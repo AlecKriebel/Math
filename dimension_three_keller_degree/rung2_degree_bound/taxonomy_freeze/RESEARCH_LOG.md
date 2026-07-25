@@ -36,6 +36,22 @@ boundary chart for the seven open rows, then check that the seven excluded
 rows have archived completeness manifests rather than merely terminal
 theorem statements.
 
+## 2026-07-25T23:28:00Z — `Q2-E2` marked-companion subfreeze certified
+
+- A purported six-branch lower denominator failed: a mixed companion
+  survives the top identity and cannot be removed by the claimed pencil
+  shear.
+- A blinded reconstruction and a second sealed hostile derivation both
+  recover three marked-pair types with companion orbit space
+  \(3+\mathbb P^1+3\).
+- Version one freezes thirteen stable internal strata, including a
+  parameterized `CTAU` leaf with explicit \(0,-1,\infty\) boundaries.
+- The frozen file hash is
+  `27e5a4f894ef523156abea389f89c2d4481d58d243c756b70386fdea10e9e01f`;
+  its separate certificate records both audit chains.
+- This subfreeze does not change the fourteen-row denominator or promote
+  the provisional parent row.
+
 ## 2026-07-25T19:30:28Z — first candidate-manifest correction
 
 - The initial 65-leaf draft used the Hilbert--Burch lists only for

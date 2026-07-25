@@ -107,10 +107,12 @@ The first audited quartic working lemmas now constrain:
   theorem also allows a distinct marked fixed member \(h\ne s\).  A second
   hostile pass then found that the previously asserted two-orbit companion
   shear is invalid: mixed combinations in
-  \(\mathbb P(\ell\langle h,s\rangle)\) can remain inequivalent.  The
-  marked-member and companion quotient is therefore being reconstructed
-  before any further exclusion.  Thus the frozen \(e=2\) row remains
-  provisional; and
+  \(\mathbb P(\ell\langle h,s\rangle)\) can remain inequivalent.  Two
+  clean-room reconstructions now freeze the corrected internal quotient as
+  \(3+\mathbb P^1+3\), with thirteen stable strata and a genuine
+  cross-ratio parameter in the middle family.  Every parameter value
+  survives through \(E_6\), so the next valid target is a uniform \(E_5\)
+  calculation.  The parent \(e=2\) row remains provisional; and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are
