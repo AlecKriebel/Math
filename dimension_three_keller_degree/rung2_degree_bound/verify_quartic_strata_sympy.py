@@ -43,6 +43,16 @@ def line_14_determinant_checks() -> None:
     expected_7 = c * wr + a * ur - b * vr
     assert sp.expand(coefficient(determinant_7, t, 7) - expected_7) == 0
 
+    curvature_6 = (
+        sp.Matrix([[pp, pq, 0], [vp, vq, vr], [wp, wq, wr]]).det()
+        + sp.Matrix([[up, uq, ur], [qp, qq, 0], [wp, wq, wr]]).det()
+        + sp.Matrix([[up, uq, ur], [vp, vq, vr], [rp, rq, 0]]).det()
+    )
+    expected_6_general = c * L[2, 2] + a * ar - b * br + curvature_6
+    assert sp.expand(
+        coefficient(determinant_7, t, 6) - expected_6_general
+    ) == 0
+
     B_binary = B_r_binary.subs({ur: 0, vr: 0})
     A_w_binary = A.subs(wr, 0)
     determinant_6 = sp.expand(
@@ -50,6 +60,150 @@ def line_14_determinant_checks() -> None:
     )
     expected_6 = c * L[2, 2] + a * ar - b * br
     assert sp.expand(coefficient(determinant_6, t, 6) - expected_6) == 0
+
+
+def rational_quartic_curve_checks() -> None:
+    scale = sp.symbols("curve_scale")
+    linear = sp.Matrix(3, 3, sp.symbols("curve_l0:9"))
+    quadratic = sp.Matrix(3, 3, sp.symbols("curve_a0:9"))
+    cubic = sp.Matrix(3, 3, sp.symbols("curve_b0:9"))
+    leading_entries = sp.symbols("curve_c0:6")
+    leading = sp.Matrix(
+        [
+            [leading_entries[0], leading_entries[1], 0],
+            [leading_entries[2], leading_entries[3], 0],
+            [leading_entries[4], leading_entries[5], 0],
+        ]
+    )
+    normal = leading[:, 0].cross(leading[:, 1])
+    determinant = sp.expand(
+        (
+            linear
+            + scale * quadratic
+            + scale**2 * cubic
+            + scale**3 * leading
+        ).det()
+    )
+    assert sp.expand(
+        coefficient(determinant, scale, 8) - normal.dot(cubic[:, 2])
+    ) == 0
+
+    binary_cubic = cubic.copy()
+    binary_cubic[:, 2] = sp.zeros(3, 1)
+    determinant_7 = sp.expand(
+        (
+            linear
+            + scale * quadratic
+            + scale**2 * binary_cubic
+            + scale**3 * leading
+        ).det()
+    )
+    assert sp.expand(
+        coefficient(determinant_7, scale, 7)
+        - normal.dot(quadratic[:, 2])
+    ) == 0
+
+    p, q = sp.symbols("curve_p curve_q")
+    parametrization = sp.Matrix([p**4, p * q**3, q**4])
+    delta = sp.Matrix(
+        [sp.diff(entry, p) for entry in parametrization]
+    ).cross(
+        sp.Matrix([sp.diff(entry, q) for entry in parametrization])
+    )
+    assert [sp.factor(entry) for entry in delta] == [
+        4 * q**6,
+        -16 * p**3 * q**3,
+        12 * p**4 * q**2,
+    ]
+    reduced_normal = delta / (4 * q**2)
+    assert sp.expand(reduced_normal.dot(sp.Matrix([0, 3 * p, 4 * q]))) == 0
+
+
+def line_14_ramification_examples() -> None:
+    p, q = sp.symbols("ram_p ram_q")
+
+    def jacobian(first: sp.Expr, second: sp.Expr) -> sp.Expr:
+        return sp.expand(
+            sp.diff(first, p) * sp.diff(second, q)
+            - sp.diff(first, q) * sp.diff(second, p)
+        )
+
+    examples = (
+        (
+            p**4 + p**2 * q**2 + p * q**3 + q**4,
+            p**2 * q**2 + p * q**3 + 2 * q**4,
+            p**3 + 2 * p * q**2 + 3 * q**3,
+            1,
+            ((2 * p**2 + 3 * p * q + 4 * q**2,
+              2 * p**2 + 3 * p * q + 8 * q**2,
+              4 * p + 9 * q),),
+        ),
+        (
+            p**4 + p**2 * q**2 + 2 * q**4,
+            2 * p**4 + 3 * p**2 * q**2 + q**4,
+            p**3 + q**3,
+            2,
+            ((4 * p**2 + 2 * q**2, 8 * p**2 + 6 * q**2, 3 * p),
+             (2 * p**2 + 8 * q**2, 6 * p**2 + 4 * q**2, 3 * q)),
+        ),
+        (
+            p**4 + p * q**3 + q**4,
+            p * q**3 + 2 * q**4,
+            p**3 + q**3,
+            2,
+            ((3 * p + 4 * q, 3 * p + 8 * q, 3),),
+        ),
+        (
+            p**4 + 4 * p**2 * q**2 + 4 * p * q**3 + 2 * q**4,
+            q**4,
+            p**3 + 3 * p * q**2 + 3 * q**3,
+            3,
+            ((52 * p + 40 * q, -8 * p + 12 * q, 39),
+             (-q * (5 * p + q), p**2 + q**2, 0)),
+        ),
+        (
+            p**4 + 2 * q**4,
+            q**4,
+            p**3 + q**3,
+            4,
+            ((-p + 2 * q, q, 0), (4 * p, 0, 3)),
+        ),
+    )
+    for P, Q, R, expected_degree, syzygies in examples:
+        a = jacobian(Q, R)
+        b = jacobian(P, R)
+        c = jacobian(P, Q)
+        common = sp.gcd(sp.gcd(a, b), c)
+        assert sp.Poly(common, p, q).total_degree() == expected_degree
+        for first, second, third in syzygies:
+            assert sp.expand(a * first - b * second + c * third) == 0
+
+    r, scale = sp.symbols("ram_r ram_scale")
+    P = p**4 + p**2 * q**2 + q**4
+    Q = p**2 * q**2 + 2 * q**4
+    R = p**3 + 2 * p * q**2
+    low_syzygy = sp.Matrix(
+        [2 * p**2 + 4 * q**2, 2 * p**2 + 8 * q**2, 4 * p]
+    )
+    linear_part = sp.Matrix([r, q, p])
+    H_2 = sp.Matrix([4 * r**2, 8 * r**2, r * low_syzygy[2]])
+    H_3 = sp.Matrix([r * low_syzygy[0], r * low_syzygy[1], R])
+    H_4 = sp.Matrix([P, Q, 0])
+    variables = (p, q, r)
+    determinant = sp.expand(
+        (
+            linear_part.jacobian(variables)
+            + scale * H_2.jacobian(variables)
+            + scale**2 * H_3.jacobian(variables)
+            + scale**3 * H_4.jacobian(variables)
+        ).det()
+    )
+    polynomial = sp.Poly(determinant, scale)
+    for degree in (8, 7, 6):
+        assert polynomial.coeff_monomial(scale**degree) == 0
+    assert sp.factor(polynomial.coeff_monomial(scale**5)) == (
+        -2 * q * (p**2 + 2 * q**2) * (3 * p**2 + 4 * q**2)
+    )
 
 
 def line_22_and_conic_checks() -> None:
@@ -219,6 +373,8 @@ def quadratic_coordinate_check() -> None:
 
 if __name__ == "__main__":
     line_14_determinant_checks()
+    line_14_ramification_examples()
+    rational_quartic_curve_checks()
     line_22_and_conic_checks()
     conic_degree_six_exclusion_checks()
     sharpness_and_gcd_checks()

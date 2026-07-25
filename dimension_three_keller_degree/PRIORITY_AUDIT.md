@@ -251,3 +251,14 @@ no-double-line conic-image \((2,2)\) quartic stratum.  This is
 source-specific negative evidence only, not a guarantee of worldwide
 priority.  The result remains an unreviewed working theorem and does not
 exclude all total-degree-four Keller maps.
+
+### 2026-07-25T00:45Z — ramification-shape overlap check
+
+Exact searches combining “Keller map”, “binary quartic”, “common
+ramification factor”, “Hilbert--Burch”, “leading homogeneous part”, and
+“rational quartic” found literature on parametrized-curve syzygies and the
+general Hilbert--Burch machinery, but no checked source stating the five
+line-image \((1,4)\) splittings, the degree-six curvature test, or the
+gcd-one rational-quartic-leading reduction recorded here.  This negative
+result is source-specific and does not establish worldwide priority.  Both
+statements remain unreviewed working theorems.

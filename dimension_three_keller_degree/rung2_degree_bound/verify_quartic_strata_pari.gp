@@ -22,6 +22,12 @@ coeff3(pol, i, j, k) =
   return(polcoef(polcoef(polcoef(pol,k,z),j,y),i,x));
 };
 
+jac2(first, second, firstvar, secondvar) =
+{
+  return(deriv(first,firstvar)*deriv(second,secondvar)
+         -deriv(first,secondvar)*deriv(second,firstvar));
+};
+
 conicrank(pform, qform) =
 {
   my(pgrad, qgrad, dgrad, normal, products, monoms, index, coeffmat);
@@ -83,6 +89,13 @@ main() =
   determinant7 = matdet(lm+t*am+t^2*bm7+t^3*cm);
   assertzero(polcoef(determinant7,7,t)-(cc*wr+aa*ur-bb*vr),
              "line (1,4) degree 7");
+  curvature6 =
+    matdet([pp,pq,0;vp,vq,vr;wp,wq,wr])
+    +matdet([up,uq,ur;qp,qq,0;wp,wq,wr])
+    +matdet([up,uq,ur;vp,vq,vr;rp,rq,0]);
+  assertzero(polcoef(determinant7,6,t)
+             -(cc*l33+aa*ar-bb*br+curvature6),
+             "line (1,4) full degree 6");
 
   bm6 =
   [up,uq,0;
@@ -95,6 +108,140 @@ main() =
   determinant6 = matdet(lm+t*am6+t^2*bm6+t^3*cm);
   assertzero(polcoef(determinant6,6,t)-(cc*l33+aa*ar-bb*br),
              "line (1,4) degree 6");
+
+  curveL =
+  [cl0,cl1,cl2;
+   cl3,cl4,cl5;
+   cl6,cl7,cl8];
+  curveA =
+  [ca0,ca1,ca2;
+   ca3,ca4,ca5;
+   ca6,ca7,ca8];
+  curveB =
+  [cb0,cb1,cb2;
+   cb3,cb4,cb5;
+   cb6,cb7,cb8];
+  curveC =
+  [cc0,cc1,0;
+   cc2,cc3,0;
+   cc4,cc5,0];
+  curveNormal = cross3(curveC[,1],curveC[,2]);
+  curveDet = matdet(curveL+u*curveA+u^2*curveB+u^3*curveC);
+  assertzero(polcoef(curveDet,8,u)-curveNormal~*curveB[,3],
+             "rational quartic curve degree 8");
+  curveB0 =
+  [cb0,cb1,0;
+   cb3,cb4,0;
+   cb6,cb7,0];
+  curveDet7 = matdet(curveL+u*curveA+u^2*curveB0+u^3*curveC);
+  assertzero(polcoef(curveDet7,7,u)-curveNormal~*curveA[,3],
+             "rational quartic curve degree 7");
+  curveParam = [cp^4,cp*cq^3,cq^4]~;
+  curveDelta = cross3(
+    [deriv(curveParam[1],cp),deriv(curveParam[2],cp),
+     deriv(curveParam[3],cp)]~,
+    [deriv(curveParam[1],cq),deriv(curveParam[2],cq),
+     deriv(curveParam[3],cq)]~
+  );
+  curveReduced = curveDelta/(4*cq^2);
+  assertzero(curveReduced~*[0,3*cp,4*cq]~,
+             "ramified quartic-curve sharpness");
+
+  ramP1 = hp^4+hp^2*hq^2+hp*hq^3+hq^4;
+  ramQ1 = hp^2*hq^2+hp*hq^3+2*hq^4;
+  ramR1 = hp^3+2*hp*hq^2+3*hq^3;
+  rama1 = jac2(ramQ1,ramR1,hp,hq);
+  ramb1 = jac2(ramP1,ramR1,hp,hq);
+  ramc1 = jac2(ramP1,ramQ1,hp,hq);
+  asserttrue(poldegree(gcd(gcd(rama1,ramb1),ramc1),hq)==1,
+             "ramification delta 1");
+  assertzero(rama1*(2*hp^2+3*hp*hq+4*hq^2)
+             -ramb1*(2*hp^2+3*hp*hq+8*hq^2)
+             +ramc1*(4*hp+9*hq), "ramification syzygy delta 1");
+
+  ramP2a = hp^4+hp^2*hq^2+2*hq^4;
+  ramQ2a = 2*hp^4+3*hp^2*hq^2+hq^4;
+  ramR2a = hp^3+hq^3;
+  rama2a = jac2(ramQ2a,ramR2a,hp,hq);
+  ramb2a = jac2(ramP2a,ramR2a,hp,hq);
+  ramc2a = jac2(ramP2a,ramQ2a,hp,hq);
+  ramg2a = gcd(gcd(rama2a,ramb2a),ramc2a);
+  asserttrue(poldegree(ramg2a,hp)+poldegree(ramg2a,hq)==2,
+             "ramification delta 2 split");
+  assertzero(rama2a*(4*hp^2+2*hq^2)
+             -ramb2a*(8*hp^2+6*hq^2)+ramc2a*3*hp,
+             "ramification syzygy delta 2 split, first");
+  assertzero(rama2a*(2*hp^2+8*hq^2)
+             -ramb2a*(6*hp^2+4*hq^2)+ramc2a*3*hq,
+             "ramification syzygy delta 2 split, second");
+
+  ramP2b = hp^4+hp*hq^3+hq^4;
+  ramQ2b = hp*hq^3+2*hq^4;
+  ramR2b = hp^3+hq^3;
+  rama2b = jac2(ramQ2b,ramR2b,hp,hq);
+  ramb2b = jac2(ramP2b,ramR2b,hp,hq);
+  ramc2b = jac2(ramP2b,ramQ2b,hp,hq);
+  asserttrue(poldegree(gcd(gcd(rama2b,ramb2b),ramc2b),hq)==2,
+             "ramification delta 2 tangent");
+  assertzero(rama2b*(3*hp+4*hq)-ramb2b*(3*hp+8*hq)+3*ramc2b,
+             "ramification syzygy delta 2 tangent");
+
+  ramP3 = hp^4+4*hp^2*hq^2+4*hp*hq^3+2*hq^4;
+  ramQ3 = hq^4;
+  ramR3 = hp^3+3*hp*hq^2+3*hq^3;
+  rama3 = jac2(ramQ3,ramR3,hp,hq);
+  ramb3 = jac2(ramP3,ramR3,hp,hq);
+  ramc3 = jac2(ramP3,ramQ3,hp,hq);
+  asserttrue(poldegree(gcd(gcd(rama3,ramb3),ramc3),hq)==3,
+             "ramification delta 3");
+  assertzero(rama3*(52*hp+40*hq)-ramb3*(-8*hp+12*hq)+39*ramc3,
+             "ramification syzygy delta 3, first");
+  assertzero(rama3*(-hq*(5*hp+hq))-ramb3*(hp^2+hq^2),
+             "ramification syzygy delta 3, second");
+
+  ramP4 = hp^4+2*hq^4;
+  ramQ4 = hq^4;
+  ramR4 = hp^3+hq^3;
+  rama4 = jac2(ramQ4,ramR4,hp,hq);
+  ramb4 = jac2(ramP4,ramR4,hp,hq);
+  ramc4 = jac2(ramP4,ramQ4,hp,hq);
+  ramg4 = gcd(gcd(rama4,ramb4),ramc4);
+  asserttrue(poldegree(ramg4,hp)+poldegree(ramg4,hq)==4,
+             "ramification delta 4");
+  assertzero(rama4*(-hp+2*hq)-ramb4*hq,
+             "ramification syzygy delta 4, first");
+  assertzero(4*hp*rama4+3*ramc4,
+             "ramification syzygy delta 4, second");
+
+  sharpP = hp^4+hp^2*hq^2+hq^4;
+  sharpQ = hp^2*hq^2+2*hq^4;
+  sharpR = hp^3+2*hp*hq^2;
+  sharpN1 = 2*hp^2+4*hq^2;
+  sharpN2 = 2*hp^2+8*hq^2;
+  sharpN3 = 4*hp;
+  sharpL =
+  [0,0,1;
+   0,1,0;
+   1,0,0];
+  sharpH2 =
+  [0,0,8*hr;
+   0,0,16*hr;
+   4*hr,0,4*hp];
+  sharpH3 =
+  [deriv(hr*sharpN1,hp),deriv(hr*sharpN1,hq),sharpN1;
+   deriv(hr*sharpN2,hp),deriv(hr*sharpN2,hq),sharpN2;
+   deriv(sharpR,hp),deriv(sharpR,hq),0];
+  sharpH4 =
+  [deriv(sharpP,hp),deriv(sharpP,hq),0;
+   deriv(sharpQ,hp),deriv(sharpQ,hq),0;
+   0,0,0];
+  sharpDet = matdet(sharpL+hs*sharpH2+hs^2*sharpH3+hs^3*sharpH4);
+  assertzero(polcoef(sharpDet,8,hs), "sharpness degree 8");
+  assertzero(polcoef(sharpDet,7,hs), "sharpness degree 7");
+  assertzero(polcoef(sharpDet,6,hs), "sharpness degree 6");
+  assertzero(polcoef(sharpDet,5,hs)
+             +2*hq*(hp^2+2*hq^2)*(3*hp^2+4*hq^2),
+             "sharpness degree 5");
 
   pv = [p1,p2,p3]~;
   qv = [q1,q2,q3]~;

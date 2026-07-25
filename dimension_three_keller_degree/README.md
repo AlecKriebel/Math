@@ -26,9 +26,14 @@ The first audited quartic working lemmas now constrain:
 - rank-one quartic Jacobian parts in two substantial subcases;
 - every quartic map having a target-linear component of degree at most two;
 - genuine line-image \((2,2)\) pencils without a double-line fibre;
-- the unramified part of the genuine line-image \((1,4)\) stratum; and
+- the genuine line-image \((1,4)\) stratum, whose common-ramification locus
+  has five exact Hilbert--Burch splitting types plus one power-fibre
+  exception;
 - conic-image \((2,2)\) leading maps: the entire no-double-line stratum is
-  excluded by its degree-six Keller identity.
+  excluded by its degree-six Keller identity; and
+- birationally parametrized rational-quartic leading curves, whose
+  basepoint-free parametrization must have a nonconstant normal-minor
+  ramification divisor.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and

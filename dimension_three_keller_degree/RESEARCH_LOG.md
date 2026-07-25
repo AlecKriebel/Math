@@ -305,3 +305,43 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   coefficient systems for all three canonical types.
 - Scope remains exact: the unique-double-line conic locus is not excluded.
   The universal degree floor remains \(4\).
+
+## 2026-07-25T00:45:17Z — Binary and quartic-curve ramification shapes
+
+- In the genuine line-image \((1,4)\) stratum, put
+  \[
+  g=\gcd\bigl(J(Q,R),J(P,R),J(P,Q)\bigr).
+  \]
+  If the first two minors are independent, Hilbert--Burch forces
+  \[
+  \deg g\le4,\qquad
+  \{k_1,k_2\}\in
+  \{\{1,0\},\{2,0\},\{1,1\},\{2,1\},\{2,2\}\}.
+  \]
+  These are the complete possible degree-seven third-direction syzygy
+  shapes, and exact binary representatives realize every splitting.
+- If the first two minors are dependent and \(R\ne0\), the case is exactly
+  the power fibre \(L^4/L^3\), with \(\deg g=5\).  The already excluded
+  \(R=0\) branch is recorded separately.
+- Every nonexceptional root of \(g\) has multiplicity at most three.  The
+  resulting \(\operatorname{PGL}_2\)-normal divisor list and a local
+  coefficient normal form are explicit in the working note.
+- The exact degree-six equation contains a curvature term \(T_6\); simple
+  divisibility by \(g\) is weaker than the required ideal-membership test.
+  A degrees-eight-through-six construction with nonzero degree five proves
+  that this frontier is sharp.
+- The adversarial audit caught a cross-term error in the initial
+  \(\{2,2\}\) statement.  The corrected formula applies the quadratic
+  contact curvature to the combined syzygy
+  \(N_\gamma=\sum\gamma_iN_i\).  All shifts, signs, local forms,
+  representatives, and sharpness coefficients then passed.
+- Independently, if the leading projective image is a birationally
+  parametrized plane quartic and the three normal minors have gcd one,
+  Hilbert--Burch forces the cubic and quadratic terms to be independent of
+  the complementary source coordinate.  The map reduces to a degree-four
+  plane automorphism plus a shear.  Thus any counterexample in that stratum
+  must have a nonconstant ramification divisor in its basepoint-free
+  parametrization.
+- Both exact regression systems and separate mathematical audits pass.  These
+  are structural classifications, not a complete degree-four exclusion; the
+  universal floor remains \(4\).

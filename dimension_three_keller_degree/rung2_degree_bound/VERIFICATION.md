@@ -44,17 +44,22 @@ The second pair independently checks:
 
 1. the degree-eight, degree-seven, and corrected degree-six coefficients in
    the genuine line-image \((1,4)\) theorem;
-2. the binary chain-rule factor in the line-image \((2,2)\) theorem;
-3. the conic-image adjugate
+2. the full degree-six curvature term, all five ramification splitting
+   representatives, and the exact degrees-eight-through-five sharpness
+   construction in the ramified \((1,4)\) locus;
+3. the degree-eight and degree-seven normal-minor coefficients for a
+   rational-quartic leading curve;
+4. the binary chain-rule factor in the line-image \((2,2)\) theorem;
+5. the conic-image adjugate
    \(\operatorname{adj}(JH_4)=2Dn^T\);
-4. the full conic degree-seven determinant identity and the tangent and
+6. the full conic degree-seven determinant identity and the tangent and
    square syzygies used in the conic normal form;
-5. the rank-two determinant formula with arbitrary, possibly singular,
+7. the rank-two determinant formula with arbitrary, possibly singular,
    constant part and the rank-nine degree-six systems for all three conic
    pencil Jordan types;
-6. exact double-line sharpness examples;
-7. a concrete gcd-one ramification triple; and
-8. the constant Jacobian of the quadratic coordinate change.
+8. exact double-line sharpness examples;
+9. a concrete gcd-one ramification triple; and
+10. the constant Jacobian of the quadratic coordinate change.
 
 ## Independent mathematical audits
 
@@ -152,6 +157,25 @@ the three spaces \(W=\{\operatorname{Jac}(p,q,h):h\text{ linear}\}\), and
 the syzygy orientation.  Direct coefficient solving gives rank nine in the
 nine entries of the residual constant matrix for each canonical pencil,
 which both exact scripts retain as a regression.
+
+### Ramified line image and rational-quartic image
+
+The Hilbert--Burch shift calculation, local root normalization, degree-six
+signs, curvature formulas, and all five line-image splitting
+representatives were derived independently and then adversarially checked.
+That audit found one genuine error in the first draft: with two \(k=2\)
+columns, the \(r^3\) curvature is the quadratic expression on their
+**combined** \(r\)-leading syzygy, not the sum of separate expressions.  The
+note now retains the cross terms through
+\[
+N_\gamma=\sum\gamma_iN_i,\qquad [r^3]T_6=C(N_\gamma).
+\]
+
+A separate audit checked the rational-quartic normal-minor resolution,
+degree-eight and degree-seven identities, arbitrary-linear-part reduction,
+and ramified sharpness example.  It found no mathematical correction; the
+scope wording was tightened to a birationally parametrized plane quartic and
+to the ramification divisor of the displayed basepoint-free parametrization.
 
 ## Scope
 
