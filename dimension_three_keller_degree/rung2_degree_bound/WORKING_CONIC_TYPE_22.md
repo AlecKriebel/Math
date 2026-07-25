@@ -1,8 +1,9 @@
 # Working theorem: the conic-image \((2,2)\) stratum
 
-**Status:** proved and independently adversarially audited, including the
-full degree-six exclusion.  This is not peer reviewed.  The source-specific
-priority search is not a guarantee of worldwide priority.
+**Status:** proved and independently adversarially audited, including both
+the no-double-line and unique-double-line exclusions.  This is not peer
+reviewed.  The source-specific priority search is not a guarantee of
+worldwide priority.
 
 **Recorded:** 2026-07-24T23:59:52Z.
 
@@ -25,8 +26,8 @@ n=(q^2,-2pq,p^2)^T.
 
 ### Theorem
 
-There is no such Keller map if the pencil \(\langle p,q\rangle\) has no
-double-line member.
+There is no such Keller map if the pencil \(\langle p,q\rangle\) has at
+most one double-line member.
 
 More precisely, the degree-eight and degree-seven identities first force
 linear forms \(\ell,m\) and a constant \(3\times2\) matrix \(M\) such that
@@ -50,8 +51,12 @@ n\cdot H_3
 \]
 where \(\Phi_k\) is a binary form of degree \(k\).
 
-Thus a conic-image \((2,2)\) leading part compatible with a quartic Keller
-map must lie in the unique-double-line exceptional locus.
+Sections 6--7 show that all these exceptional components also fail the
+degree-six or degree-five identities.  A minimal pair cannot have two
+double-line fibres, since their ratio would make a Möbius transform of
+\(p/q\) a square.  Therefore the entire genuine/minimal conic-image
+\((2,2)\) stratum is empty.  A presentation with two double lines is
+nonminimal and reclassifies into type \((1,4)\).
 
 ## 2. Primitive-fibre and homogeneous first-integral lemmas
 
@@ -361,3 +366,228 @@ n\cdot H_3=X_1^7\ne0
 satisfies (7).  Thus the no-double-line hypothesis cannot be removed from
 the tangency conclusion.  This is a leading-identity example, not a Keller
 map.
+
+## 7. The unique-double-line exclusion
+
+### 7.1 Pencil and invariant normal forms
+
+Move the unique double line to
+\[
+p=X^2.
+\]
+The restriction of \(q\) to \(X=0\) has rank two or one.  Rank zero would
+make \(X\) divide both \(p,q\).  In rank two, linear changes in \(Y,Z\),
+shears by \(X\), and subtraction of a multiple of \(p\) give
+\[
+q=YZ.
+\tag{17}
+\]
+In rank one they give
+\[
+q=Y^2+2XZ.
+\tag{18}
+\]
+The \(XZ\)-coefficient must be nonzero, since otherwise the pencil contains
+the second double line \(Y^2\).
+
+The generic conics \(X^2-tYZ\) and
+\(X^2-t(Y^2+2XZ)\) have determinants \(-t^2/4\) and \(t^3\),
+respectively.  They are geometrically integral over \(\mathbb C(t)\).
+This also verifies relative algebraic closedness directly.
+
+In (17),
+\[
+\frac{D}{2X}=-Y\partial_Y+Z\partial_Z,
+\qquad
+\ker(D)=\mathbb C[X,YZ],
+\]
+and in (18),
+\[
+\frac{D}{4X}=-X\partial_Y+Y\partial_Z,
+\qquad
+\ker(D)=\mathbb C[X,Y^2+2XZ].
+\]
+Thus the degree-eight equation for \(S=n\cdot H_3\) gives
+\[
+S=X\Phi_3(p,q).
+\]
+Using the two tangent syzygies of \(n\), every solution has the unique form
+\[
+\begin{aligned}
+H_3={}&
+\bigl(2p\ell,\ q\ell+pm,\ 2qm\bigr)\\
+&+X\bigl(\alpha q+\beta p,\ 0,\ \gamma q+\delta p\bigr)
+\end{aligned}
+\tag{19}
+\]
+for linear forms \(\ell,m\) and constants
+\(\alpha,\beta,\gamma,\delta\).
+
+### 7.2 Degree seven
+
+Put
+\[
+\bar\ell=\ell-\ell_X X,\qquad
+\bar m=m-m_X X.
+\]
+Exact coefficient comparison in degree seven gives a rank-twelve linear
+operator on the eighteen coefficients of \(H_2\).  Its kernel is exactly
+\[
+\{M(p,q):M\in\operatorname{Mat}_{3\times2}(\mathbb C)\},
+\]
+and its compatibility conditions are
+\[
+\alpha\ell_Y=\alpha\ell_Z=0.
+\tag{20}
+\]
+When \(\alpha=0\), all solutions are
+\[
+\begin{aligned}
+H_2={}&\operatorname{Ver}(\ell,m)\\
+&+X\left(
+\frac{3\beta}{2}\bar\ell,\
+-\frac{\gamma}{4}\bar\ell,\
+\frac{3\delta}{2}\bar\ell+\gamma\bar m
+\right)
++M(p,q).
+\end{aligned}
+\tag{21}
+\]
+When \(\bar\ell=0\), an affine translation in \(X\) completes the square
+\(p+\ell\) and removes \(\ell\); in the second pencil it merely changes the
+linear \(Z\)-part of \(m\).  After this translation, all solutions are
+\[
+H_2=\operatorname{Ver}(0,m)
++(\alpha X\bar m,0,\gamma X\bar m)
++M(p,q).
+\tag{22}
+\]
+Constants introduced by these affine translations are removed by a target
+translation and do not affect the homogeneous determinant identities.
+
+### 7.3 Degree six
+
+Write \(M=(u\mid v)\).  In the branch \(\ell=0\), degree six forces the
+three columns of the invertible linear part to be
+\[
+L_0=\bigl[a,\ v\,m_Y,\ v\,m_Z\bigr].
+\tag{23}
+\]
+This matrix has rank at most two, a contradiction.
+
+It remains to take \(\alpha=0\) and \(\bar\ell\ne0\).  Affine translations
+preserving the leading pencil remove \(\ell_X\).  For \(q=YZ\), translations
+in \(Y,Z\) remove the corresponding components of \(m\), so
+\[
+\ell=\ell_1Y+\ell_2Z,\qquad m=m_0X.
+\]
+Degree-six compatibility is the ideal
+\[
+\langle
+\beta\ell_1^2,\beta\ell_2^2,\gamma\ell_1^2,\gamma\ell_2^2,
+\delta\ell_1^2,\delta\ell_2^2
+\rangle,
+\]
+which forces \(\beta=\gamma=\delta=0\).
+
+For \(q=Y^2+2XZ\), a \(Y\)-translation removes \(m_Y\) and a
+\(Z\)-translation removes \(m_X\), leaving
+\[
+\ell=\ell_1Y+\ell_2Z,\qquad m=kZ.
+\]
+The compatibility ideal is
+\[
+\langle
+\beta\ell_2^2,\beta\ell_1\ell_2,
+\gamma\ell_2^2,\gamma\ell_1\ell_2,
+\delta\ell_2^2,\delta\ell_1\ell_2
+\rangle.
+\tag{24}
+\]
+If \(\ell_2\ne0\), this again kills all exceptional coefficients.
+
+Whenever \(\alpha=\beta=\gamma=\delta=0\), equations (19)--(21) return the
+normal form (3).  Put \(P=p+\ell,Q=q+m\),
+\[
+A=L_0-M\begin{pmatrix}d\ell\\dm\end{pmatrix},
+\qquad
+\Phi(s,t)=\operatorname{Ver}(s,t)+M(s,t).
+\]
+Then
+\[
+F=AX+\Phi(P,Q).
+\tag{25}
+\]
+Degree six is \(n^TAD=0\).  In (17),
+\[
+W=\{\operatorname{Jac}(p,q,h):h\text{ linear}\}
+=\langle XY,XZ\rangle,\qquad W\cap\langle p,q\rangle=0.
+\]
+In (18),
+\[
+W=\langle p,XY\rangle,\qquad
+W\cap\langle p,q\rangle=\langle p\rangle.
+\]
+The syzygy solution (16) forces in both cases
+\[
+A=a\,dX
+\tag{26}
+\]
+for a constant target vector \(a\).
+
+Now factor
+\[
+F=G\circ T,\qquad
+T=(X,P,Q),\qquad
+G(s,P,Q)=as+\Phi(P,Q).
+\]
+The identity
+\[
+\det JF=(\det JG)\circ T\cdot\det JT\in\mathbb C^\times
+\]
+makes both displayed factors units in \(\mathbb C[X,Y,Z]\).  In particular
+\(\det JT\in\mathbb C^\times\), so \(T\) is dominant and its pullback on
+coordinate rings is injective.  Hence \(\det JG\) itself is constant.
+But its degree-two part in \(P,Q\) is
+\[
+2\bigl(a_1Q^2-2a_2PQ+a_3P^2\bigr),
+\]
+which forces \(a=0\) and makes \(\det JG=0\), a contradiction.
+
+### 7.4 The sole degree-six residue and degree five
+
+The only case not yet covered by (24) is
+\[
+q=Y^2+2XZ,\qquad
+\ell=\lambda Y,\qquad m=kZ,\qquad \lambda\ne0.
+\tag{27}
+\]
+With \(M=(u\mid v)\) and first column \(a\), the complete degree-six
+solution for \(L_0\) is
+\[
+\begin{pmatrix}
+a_1&\lambda u_1&kv_1-\frac34\beta\lambda^2\\
+a_2&\lambda u_2&kv_2+\frac38\gamma\lambda^2\\
+a_3&\lambda u_3-\frac14\gamma^2\lambda&
+kv_3-\frac34\delta\lambda^2
+\end{pmatrix}.
+\tag{28}
+\]
+Five exact degree-five coefficients are
+\[
+\begin{array}{c|l}
+X^2Z^3&12\beta\lambda^3\\
+XY^4&2\lambda(-v_1\gamma+2a_1)\\
+X^3Z^2&2\lambda(-4v_1\gamma+3\gamma\lambda^2+8a_1)\\
+X^3Y^2&-4\lambda(-v_2\gamma+2a_2)\\
+X^4Z&-\lambda(-8v_2\gamma-3\delta\lambda^2+16a_2).
+\end{array}
+\tag{29}
+\]
+They successively force
+\[
+\beta=\gamma=\delta=0.
+\]
+The factorization contradiction above then applies.  This completes the
+unique-double-line exclusion and hence the genuine conic-image
+\((2,2)\) theorem.

@@ -22,6 +22,8 @@ The following commands pass:
 gp -q verify_quartic_constraints_pari.gp
 /usr/bin/python3 verify_quartic_strata_sympy.py
 gp -q verify_quartic_strata_pari.gp
+/usr/bin/python3 verify_conic_doubleline_sympy.py
+gp -q verify_conic_doubleline_pari.gp
 ```
 
 The SymPy and PARI/GP implementations independently expand:
@@ -157,6 +159,22 @@ the three spaces \(W=\{\operatorname{Jac}(p,q,h):h\text{ linear}\}\), and
 the syzygy orientation.  Direct coefficient solving gives rank nine in the
 nine entries of the residual constant matrix for each canonical pencil,
 which both exact scripts retain as a regression.
+
+The final pair checks the unique-double-line conic branch independently:
+
+1. the two canonical pencil determinants;
+2. both complete degree-seven solution families;
+3. the forced singular linear part in the \(\ell=0\) branch;
+4. the residual degree-six linear-part matrix;
+5. all five decisive degree-five coefficients; and
+6. the top-degree obstruction in the final rank-two factorization.
+
+An adversarial audit independently reconstructed the invariant rings,
+rank-twelve degree-seven operator, degree-six compatibility ideals, affine
+normalizations, arbitrary-linear-part conventions, and dominance step.  It
+found no algebraic correction.  The proof now explicitly records why the
+affine translations preserve the leading pencil and why dominance is needed
+to infer that \(\det JG\) itself is constant.
 
 ### Ramified line image and rational-quartic image
 

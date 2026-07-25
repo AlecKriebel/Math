@@ -345,3 +345,33 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - Both exact regression systems and separate mathematical audits pass.  These
   are structural classifications, not a complete degree-four exclusion; the
   universal floor remains \(4\).
+
+## 2026-07-25T00:59:22Z — Genuine conic-image \((2,2)\) eliminated
+
+- A primitive quadratic pencil with one double-line member has exactly two
+  canonical forms:
+  \[
+  (p,q)=(X^2,YZ)
+  \quad\text{or}\quad
+  (p,q)=(X^2,Y^2+2XZ).
+  \]
+  Their invariant rings give the full degree-eight cubic normal form.
+- Exact degree-seven comparison has rank twelve, kernel \(M(p,q)\), and
+  compatibility \(\alpha\ell_Y=\alpha\ell_Z=0\).  The two complete solution
+  families for \(H_2\) are recorded in the conic note.
+- Degree six immediately makes the linear part singular in the
+  \(\ell=0\) branch.  In the remaining branch it kills all exceptional
+  normal coefficients except one Jordan-pencil residue.
+- In that residue, five displayed degree-five coefficients successively
+  force \(\beta=\gamma=\delta=0\).  The remaining map factors through
+  \(T=(X,P,Q)\); the unit product, dominance of \(T\), and injective pullback
+  make the outer Jacobian constant, whose quadratic top then forces its
+  first column to vanish.  This is a contradiction.
+- The independent audit checked every canonical form, rank/kernel,
+  compatibility ideal, affine translation, arbitrary \(L_0\) orientation,
+  and coefficient.  New SymPy and PARI/GP scripts retain exact certificates.
+- Together with the no-double-line theorem, this excludes the entire
+  genuine/minimal conic-image \((2,2)\) stratum.  Pencils with two double
+  lines are nonminimal and reclassify into type \((1,4)\).
+- The universal certified degree floor remains \(4\); this is not yet a
+  complete quartic exclusion.

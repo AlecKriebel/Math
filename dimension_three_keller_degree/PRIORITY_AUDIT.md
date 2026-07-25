@@ -262,3 +262,12 @@ line-image \((1,4)\) splittings, the degree-six curvature test, or the
 gcd-one rational-quartic-leading reduction recorded here.  This negative
 result is source-specific and does not establish worldwide priority.  Both
 statements remain unreviewed working theorems.
+
+### 2026-07-25T00:59Z — full conic-stratum collision check
+
+The same-day required-channel sweep and exact leading-form searches were
+rechecked against the stronger unique-double-line conclusion.  No checked
+source excludes the full genuine conic-image \((2,2)\) quartic stratum or
+states its two canonical degree-five certificate.  This is source-specific
+negative evidence only, not a guarantee of worldwide priority.  The theorem
+is unreviewed and does not exclude every total-degree-four Keller map.

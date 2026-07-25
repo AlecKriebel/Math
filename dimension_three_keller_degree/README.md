@@ -29,8 +29,8 @@ The first audited quartic working lemmas now constrain:
 - the genuine line-image \((1,4)\) stratum, whose common-ramification locus
   has five exact Hilbert--Burch splitting types plus one power-fibre
   exception;
-- conic-image \((2,2)\) leading maps: the entire no-double-line stratum is
-  excluded by its degree-six Keller identity; and
+- conic-image \((2,2)\) leading maps: the entire genuine/minimal stratum is
+  excluded, including the unique-double-line exceptional branch; and
 - birationally parametrized rational-quartic leading curves, whose
   basepoint-free parametrization must have a nonconstant normal-minor
   ramification divisor.
@@ -41,8 +41,8 @@ verification harness.  No claim is promoted without an adversarial scope and
 hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
-locus in type \((1,4)\) and the unique-double-line loci in the line- and
-conic-image type \((2,2)\) strata.  The universal certified floor remains
-\(4\).
+locus in type \((1,4)\), the unique-double-line locus in the line-image
+\((2,2)\) stratum, and ramified birational quartic parametrizations.  The
+universal certified floor remains \(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.
