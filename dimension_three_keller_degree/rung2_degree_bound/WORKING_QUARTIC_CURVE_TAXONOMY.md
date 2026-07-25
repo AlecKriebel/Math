@@ -183,8 +183,12 @@ The common-factor-free rows have the following exact or partial coverage.
    `line22_marked_critical_infinity/WORKING_LINE22_MARKED_CRITICAL_INFINITY.md`
    additionally excludes the single outer-infinity orbit
    \(H_4=(p^2,q^2,0)\), \((H_3)_3=x^3\).  Every other
-   outer-critical-infinity modulus, both companion-at-infinity charts, and
-   the rank-one-restriction pencil \(q=y^2+xz\), remain active.
+   outer-critical-infinity modulus and both companion-at-infinity charts
+   remain active.  For the rank-one-restriction pencil
+   \(q=y^2+xz\),
+   `line22_rankone_restriction/WORKING_RANKONE_RESTRICTION_OPEN_ORBIT.md`
+   excludes the unmarked finite mixed locus \(c(c^2-9)\ne0\); its three
+   marked-pair orbits and unmarked \(c=0,c^2=9,\infty\) remain active.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

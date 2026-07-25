@@ -696,6 +696,40 @@ fixed-quadratic all-vertical frontier.  The strict runners reject
 optimized Python, explicit algebra failures, PARI diagnostics, trailing
 output, and nonzero exits.
 
+### Rank-one-restriction line-\((2,2)\) open orbit
+
+At 2026-07-25T07:02:00Z the supplied checks, guard suite, and clean-room
+audit passed:
+
+```text
+cd line22_rankone_restriction
+/usr/bin/python3 verify_rankone_restriction_sympy.py
+./verify_rankone_restriction_pari_strict.sh
+./test_verifier_guards.sh
+/usr/bin/python3 audit_hostile/audit_rankone_exact.py
+```
+
+For \(p=x^2,q=y^2+xz\), the source stabilizer induces the full Borel
+fixing the marked double-line value.  On the unmarked-critical normal
+form
+\[
+H_4=((p-q)^2,(p+q)^2,0),\qquad
+(H_3)_3=x(p-cq),
+\]
+the exact open \(E_7\) minor has zero set \(c(c^2-9)=0\), and eight
+explicit kernel directions give the matching upper rank bound.  After the
+complete affine/target gauge, \(E_6\) has a full ten-variable forcing
+minor and \(E_5\) forces both remaining columns of the linear part to
+vanish.
+
+The clean-room audit independently recovered the stabilizer, six joint
+orbits, all exceptional raw ranks, the dependent translation jet, and
+alternate \(E_7,E_6,E_5\) minors.  The strict wrapper uses an exact output
+whitelist and the guard suite injects optimized Python, diagnostic,
+unexpected-output, missing-output, and nonzero-exit failures.  The
+theorem excludes exactly \(c(c^2-9)\ne0\); it does not claim the marked
+or exceptional frontier.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

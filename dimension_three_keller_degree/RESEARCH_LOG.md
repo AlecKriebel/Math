@@ -841,3 +841,32 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   and repaired a fail-closed PARI-wrapper defect.  Verdict: PASS.
 - This is a structural restriction, not a universal quartic exclusion.
   The certified total-degree floor remains \(4\).
+
+## 2026-07-25T07:02:00Z — Rank-one-restriction open orbit excluded
+
+- For the second unique-double-line quadratic pencil
+  \[
+  p=x^2,\qquad q=y^2+xz,
+  \]
+  the exact source stabilizer induces the full Borel fixing the marked
+  double-line value.
+- When the two outer critical points avoid that value, the joint leading
+  data normalize to
+  \[
+  H_4=((p-q)^2,(p+q)^2,0),\qquad
+  (H_3)_3=x(p-cq),\qquad c\sim-c.
+  \]
+  The finite raw \(E_7\) rank is \(18\) away from
+  \(c=0,\pm3\); a complete affine/target gauge then makes \(E_6\) kill ten
+  transverse variables and \(E_5\) zero the last two columns of the
+  linear part.
+- Thus \(c(c^2-9)\ne0\) is impossible for a Keller map.  The theorem
+  includes the critical-companion incidence \(c^2=1\) and leaves exactly
+  the three marked-pair orbits plus unmarked \(c=0,c^2=9,\infty\).
+- A hostile audit reconstructed the full stabilizer and six-row orbit
+  taxonomy, found alternate exact \(E_7/E_6/E_5\) certificates, and
+  confirmed every scope boundary.  Verdict: mathematical PASS.
+- Before promotion, a missing plus sign, Borel-action wording, the
+  verification-independence disclosure, and a permissive PARI wrapper were
+  corrected; all fault-injection tests now pass.
+- The certified universal total-degree floor remains \(4\).

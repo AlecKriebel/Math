@@ -594,3 +594,22 @@ infinite valuation factors and a shared-factor degeneration.  This is
 source-specific negative evidence only, not a guarantee of worldwide
 priority.  The theorem remains unreviewed, its all-vertical loci remain
 open, and the certified universal total-degree floor remains \(4\).
+
+### 2026-07-25T07:02Z — rank-one-restriction open-orbit audit delta
+
+The same-day sweep was compared with the canonical pencil
+\[
+p=x^2,\qquad q=y^2+xz,
+\]
+its full Borel stabilizer, the residual companion parameter \(c\sim-c\),
+and the raw resonance \(c^2=9\).  No checked current arXiv,
+MathOverflow, Tao-blog, Secret Blogging Seminar, Gallagher, or publicly
+indexed X/Twitter source states this joint-moduli taxonomy or excludes the
+finite open locus \(c(c^2-9)\ne0\).  The dedicated package records the
+query ledger and links inspected.
+
+An independent hostile audit confirmed the mathematical theorem and exact
+frontier.  This is source-specific negative evidence only, not a guarantee
+of worldwide priority.  The result remains unreviewed, does not cover the
+marked or exceptional rank-one-restriction orbits, and does not raise the
+certified universal total-degree floor above \(4\).
