@@ -1,8 +1,9 @@
 # Hadamard order 668 search
 
-Status: the earlier order-three construction gate failed, but a new
-semiregular-\(C_{37}\) conference-matrix principle has reopened a bounded
-headline lane; no exact matrix has been found.
+Status: both the order-three construction gate and the bounded
+semiregular-\(C_{37}\) restart have failed.  No exact matrix has been found;
+the exact classifications and obstructions are preserved as paper projects,
+and headline search is paused pending a new construction principle.
 
 This directory is a reproducible attack on the smallest unresolved Hadamard
 order.  A result counts only when an explicit `668 x 668` sign matrix passes an
@@ -14,6 +15,8 @@ status are diagnostics, never discoveries.
 this milestone.  `H668_72H_GATE.md` records the completed sprint and its
 strict construction-gate failure; in particular, one second-digit witness
 is not a milestone.
+`H668_POST_GATE_DECISION_2026_07_25.md` records the completed restart,
+whole-search scale, recent-literature boundary, and strict restart triggers.
 `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` separates certified bounds from
 heuristics for the five shell-two lifts, the completed dense `n_9=0`
 profile classification, the still-unclassified `n_9=1` shell, and the
@@ -33,10 +36,10 @@ completed nine-case Eliahou short-block census.
 | Distinct-lobe five-comb packing | retained incomplete lane | 1,246 complementary octets; primitive-eight vertical sieves retain 140,007 inventories at core 4 and 65,868 at core 27 |
 | Sextic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 full-family exclusion covers this paper ID8 subgroup |
 | Quartic-multiplier `LP(333)` | archival/subsumed restricted lane | our compact fixed-compression census has zero hits, but the stronger July 2026 analytic full-family exclusion covers this paper ID12 subgroup |
-| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus scoped algebraic lifts | `<112>` is closed only under the prescribed fixed compression; `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. The 729-shard census and a detached 666-correlation certificate both pass. Six profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
+| Order-three multiplier `LP(333)` | complete dense `h=0` profile classification plus scoped algebraic lifts | `<112>` is closed only under the prescribed fixed compression; public-open ID3 `<10>` has five exact `n_9=2` profile orbits and exactly 18 dense `n_9=0` profile orbits. On all 405 compatible targets for the five two-high profiles, the first physical margin digit has rank six, the next layer is six quadrics with zero common polar radical, no five-form retraction survives, and the exact maximum retraction dimensions are `4,3,3,3,4`. No physical digit-two or later consecutive lift is known. The 729-shard dense census and detached 666-correlation certificate both pass. Six dense profiles have half-turn symmetry; 7,178 structured digit-two points across their lowest anti-code shells give zero row-margin matches and zero digit-three points. The quadratic antipodal rank-two family has been exhausted on all 18 frozen canonical gauges: 3,663,754,254 states give seven digit-two controls, zero row-margin matches, and zero consecutive lifts. The feature law is not action invariant, so this is not a 360-image or whole-profile exclusion. `<121>,<211>` share a 1,296-word/108-orbit outer boundary |
 | Symmetric/skew `LP(333)` | impossible sublane | mod-3 norm obstruction |
 | Group-developed conference core of order 333 | impossible | exact character and order-nine quotient obstruction excludes every group of order 333 |
-| Semiregular `C37` conference core with nine fibers | active algebraic lane | all 625 integral quotient classes are classified and reduce to only two parity types up to complement; every lift obeys exact `6/3` diagonal incidence and 16 first-moment equations; the complete symmetry-reduced characteristic-two relaxation lies between `2^720` and `2^721`; every admissible first moment has an explicit full formal completion; and all constant generators through rank two are impossible across the quotient census. Exact binary support realizability remains open |
+| Semiregular `C37` conference core with nine fibers | exact checkpoint; construction gate failed | all 625 integral quotient classes are classified and reduce to only two parity types up to complement; every lift obeys exact `6/3` diagonal incidence and 16 first-moment equations; the complete symmetry-reduced characteristic-two relaxation lies between `2^720` and `2^721`. One explicit support for each parity class now realizes exact degree 166, every integer block margin, and all 110,889 adjacency equations modulo two. The best retained next-digit carry is still nonzero at `672/1503`; ordinary four-cycle repair and the smallest semiregular transvection family fail. Every admissible first moment has a full formal completion; all constant generators through rank three, pure first-higher rank two, and the common nondegenerate two-plane family are impossible. Adjacency modulo four and an integral conference graph remain open |
 | Near-Williamson order 167 | audited, not scalable | exact one-defect reduction eliminates one block, but the naturally gauge-fixed `A,B` front end still has about `5.39*10^48` states; no production search is justified without a new parametrization theorem |
 | Circulant good matrices of order 167 | active | two row-sum profiles; an exact quadruple gives a skew `H(668)` |
 | Unrestricted cyclic SDS of order 167 | retained heuristic lane | ten row-sum profiles; an exact quadruple gives `H(668)` |

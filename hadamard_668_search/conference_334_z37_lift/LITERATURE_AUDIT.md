@@ -108,8 +108,12 @@ specific items:
 - the exact characteristic-two unitary-projection and
   characteristic-three Hermitian-square-zero relaxation censuses;
 - the trace-corrected full formal completion for every admissible first
-  moment; or
-- the constant-generator no-go results through rank two.
+  moment;
+- the explicit exact-margin characteristic-two supports for both parity
+  types and their exact small-switch gates;
+- the constant-generator no-go results through rank three; or
+- the `20+20` first-nonconstant normal form and its pure-rank-two and
+  common-two-plane exclusions.
 
 This is evidence for possible novelty, not proof of novelty.  The
 conference, regular-two-graph, association-scheme, and `m`-Cayley
@@ -120,9 +124,10 @@ literatures are large, and some sources are not publicly searchable.
 The earlier paper threshold of an exhaustive nine-orbit quotient
 classification has now been met: the exact census has 625 permutation
 classes, its parity layer has only three types, and the trace, finite-field,
-and constant-rank-two consequences are mechanically certified and
-independently replayed.  Bundled together, this is now a plausible focused
-computational-combinatorics note rather than merely a private checkpoint.
+support, and constant-rank-three consequences are mechanically certified
+and independently replayed.  Bundled together, this is now a plausible
+focused computational-combinatorics note rather than merely a private
+checkpoint.
 
 It is still not a Wikipedia-level discovery, because it neither constructs
 nor excludes the conference graph or `H(668)`.  A paper claim also remains
@@ -132,8 +137,14 @@ orderly-enumeration proof.  The strongest next thresholds are:
 1. an exact conference graph, hence `H(668)`;
 2. a general theorem for conference `m`-Cayley graphs that contains the
    trace and finite-field phenomena; or
-3. a binary-support obstruction that reduces the two unitary parity types
-   to a genuinely feasible exact census.
+3. a modulo-four or integral-support obstruction that reduces the two
+   unitary parity types to a genuinely feasible exact census.
+
+The construction gate itself is now negative: exact-margin supports exist
+modulo two for both parity types, but the best retained next-digit carry is
+`672/1503`, and the smallest exact switch families are empty.  The package
+has strengthened as a scoped paper while weakening as evidence of imminent
+construction.
 
 Retain all novelty language as provisional, but preserve the quotient
 classification as a paper project even if the construction lane later

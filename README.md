@@ -57,10 +57,16 @@ are now classified exactly.  The latter has exact trace and moment laws and
 an explicit full
 characteristic-37 completion for every admissible first moment.  Its exact
 all-quotient characteristic-two relaxation is bounded between `2^720` and
-`2^721` modulo natural equivalences, and constant formal generators through
-rank two are excluded across the quotient census, but this is not a
-classification of all formal solutions and its binary-support problem
-remains open.
+`2^721` modulo natural equivalences.  Explicit supports for both surviving
+parity classes now satisfy every exact block margin and all adjacency
+equations modulo two, while the best retained next-digit support still has
+672 of 1,503 independent carry coefficients wrong.  Constant generators
+through rank three and two named first-nonconstant rank-two families are
+excluded across the quotient census; the smallest exact switch families
+also fail.  This is not a classification of all formal solutions and no
+support reaches adjacency modulo four.  The current construction gate is
+therefore paused pending a genuinely new contraction or integral
+construction principle.
 A result counts only if an explicit `668 x 668` matrix passes exact full
 verification.
 

@@ -46,10 +46,12 @@
 | `LP333_ORDER3_DENSE_SHELL_QUADRATIC_ALGEBRA.md` | `F_27 x F_27` quadratic-pencil theorem, dense-shell Gauss bounds, and 729-character compression |
 | `LITERATURE_AUDIT_2026_07_24.md` | Exact mapping from the July 2026 full multiplier classification to local slices, corrected priority scope, and public-ID3 search consequences |
 | `H668_72H_GATE.md` | Completed construction gate, final failure evidence, stop decision, and host-resource criteria |
+| `H668_POST_GATE_DECISION_2026_07_25.md` | Post-restart gate scorecard, complete remaining-search scale, publication boundary, and strict pause/restart decision |
 | `COMPLETE_REMAINING_SEARCH_ESTIMATE.md` | Certified endpoint and resource accounting for all five shell-two lifts, the completed frozen dense-`h=0` compressed-profile census and canonical-gauge rank-two family, the remaining `h=1` shell, the completed nine-case Eliahou short-block exclusion, twenty open long cases, and near-Williamson order 167 |
 | `shell_three_mod27/LP333_ORDER3_PROFILE_SHELL_THREE_MOD27.md` | Exact signed-skeleton, modulo-27, and detached-replay exclusion of the three-norm-nine shell |
 | `shell_three_character/LP333_ORDER3_SHELL3_CUBIC_CHARACTER.md` | Cubic characteristic-37 moment used as an independent shell-three obstruction |
 | `shell_two_exact/LP333_ORDER3_SHELL_TWO_EXACT_ORBITS.md` | Complete exact classification of the two-norm-nine shell into five profile-zero symmetry orbits |
+| `shell_two_physical_margin_lift/README.md` | Exact physical-margin filtration on all 405 two-high targets, complete four-space retraction census, digit-four quadratic layer, and failed construction gate |
 | `phase_second_digit/LP333_ORDER3_PHASE_SECOND_DIGIT_PENCIL.md` | Complete quadratic next placement digit on the five shell-two profiles, sparse-pencil census, and exact six-coordinate fiber counts |
 | `phase_second_digit/structured_triples/STRUCTURED_TRIPLE_THEOREM.md` | Ramified row-collapse factorization and exact `F_27 x F_27` residue-layer theorem |
 | `phase_second_digit/r_module_hypothesis/R_MODULE_HYPOTHESIS_FALSIFIED.md` | Exact rank, radical, centroid, and norm-spectrum obstruction to a free rank-two ramified-module lift |
@@ -78,10 +80,15 @@
 | `eliahou_short_block_census/README.md` | Complete exact census of all nine canonical short-block cases: 3,710,853,316,608 join rows, 88,927,740 physically replayed joint modulo-six supports, and zero exact support |
 | `eliahou_long_block_exact_triage/README.md` | Exact structural and cost classification of open long cases 1--20, including the conditioned mod-4 theorem and all-case Walsh census; no existence or infeasibility claim |
 | `conference_333_group_obstruction/README.md` | Exact exclusion of group-developed order-334 conference cores over every group of order 333, with PDS priority boundary |
-| `conference_334_z37_lift/README.md` | Complete 625-class semiregular-`C37` quotient layer, exact all-quotient trace and finite-field bounds, formal completions, and constant-generator obstructions through rank two |
+| `conference_334_z37_lift/README.md` | Complete 625-class semiregular-`C37` quotient layer, exact all-quotient trace and finite-field bounds, formal completions, modulo-two supports, and constant-generator obstructions through rank three |
 | `conference_334_z37_lift/QUOTIENT_CENSUS.md` | Exact 625-class integral quotient classification, three parity types, all-quotient ambient counts, exceptional representative, and reproduction protocol |
 | `conference_334_z37_lift/RANK_TWO_CONJUGATION_OBSTRUCTION.md` | Rational/Jordan classification and universal diagonal-code obstruction for constant symmetric rank-two formal generators |
 | `conference_334_z37_lift/RANK_TWO_JORDAN_OBSTRUCTION.md` | Fixed-coefficient affine-code closure of the two residual rank-two Jordan types across the complete quotient census |
+| `conference_334_z37_lift/char2_support_realization/README.md` | Explicit exact-margin supports for both parity types satisfying all adjacency equations modulo two |
+| `conference_334_z37_lift/char2_carry_switches/README.md` | Exact four-cycle and smallest semiregular-transvection gates for the frozen modulo-two supports |
+| `conference_334_z37_lift/mod4_support_lift/README.md` | Resumable next-digit carry audit and exact fixed-quotient CP-SAT model; no modulo-four witness |
+| `conference_334_z37_lift/first_nonconstant_conjugator/FIRST_NONCONSTANT_CONJUGATOR.md` | `20+20` first-nonconstant normal form and exact pure-rank-two/common-two-plane obstructions |
+| `conference_334_z37_lift/rank_three_constant/README.md` | Complete 1,452-type obstruction for constant symmetric rank-three generators |
 | `conference_334_z37_lift/LITERATURE_AUDIT.md` | Provisional priority boundary against orbit-matrix, m-Cayley, Mathon conference, and July 2026 multiplier literature |
 | `near_williamson_167_audit/README.md` | Order-167 one-defect reduction, exact front-end count, and feasibility verdict |
 | `five_orbit_family_audit/README.md` | New multiplicative class-by-row anti-tensor family, exact five-canonical-representative census, prior-family overlap, and rank-two cost boundary |
@@ -209,6 +216,10 @@
 | `shell_two_exact/test_shell_two_partition.py` | Focused certificate, hash, phase-transfer, and five-orbit regressions |
 | `shell_two_exact/shell_two_exact_orbits_certificate.json` | Compact five-orbit and seven-partition census certificate |
 | `shell_two_exact/shell_two_exact_profile_certificate.json` | Detached full certificate for the first exact shell-two profile |
+| `shell_two_physical_margin_lift/audit_row_margin_retraction.py` | Verifies all 405 affine margin cuts, delayed-origin identity, and five-hyperplane retraction gate |
+| `shell_two_physical_margin_lift/audit_four_subspaces.py` | Exhausts all 11,011 four-subspaces and certifies maximum retraction dimensions `4,3,3,3,4` |
+| `shell_two_physical_margin_lift/audit_margin_digit4.py` | Reconstructs the six digit-four quadrics, polar ranks, and zero common radical |
+| `shell_two_physical_margin_lift/verify_pinned_physical_chart_seed.py` | Replays the bounded-search seed and its complete 2,187-point tangent sheet |
 | `phase_second_digit/verify_phase_second_digit.py` | Reconstructs the five affine first-digit spaces and all twenty exact quadratic next-digit rows |
 | `phase_second_digit/verify_phase_second_digit_pencil.py` | Exhausts every support-at-most-three polar combination and evaluates exact quadratic character sums |
 | `phase_second_digit/structured_triples/verify_structured_triples.py` | Independently verifies the residue algebra, ambient factorization, radical translations, and all 729 joint fibers |
@@ -289,6 +300,14 @@
 | `conference_334_z37_lift/verify_rank_two_conjugation_obstruction.py` | Exhausts the constant rank-two rational/Jordan diagonal over-codes |
 | `conference_334_z37_lift/verify_rank_two_jordan_obstruction.py` | Verifies the seven-dimensional fixed-coefficient affine obstruction for the residual Jordan types |
 | `conference_334_z37_lift/RANK_TWO_JORDAN_OBSTRUCTION.json` | Machine-readable exceptional quotient and affine-coset certificate |
+| `conference_334_z37_lift/char2_support_realization/verify_all_char2_support.py` | Replays both parity-type supports and the 672-carry optimized support by exact cyclic convolution |
+| `conference_334_z37_lift/char2_carry_switches/audit_four_cycle_and_carry_invariants.py` | Exhausts pair-vector invariant planes and verifies the exact carry-change identities |
+| `conference_334_z37_lift/char2_carry_switches/audit_sparse_unitary_transvections.py` | Exhausts 49,284 smallest semiregular transvections per selected support |
+| `conference_334_z37_lift/mod4_support_lift/audit_mod4_carry_chart.cpp` | Replays the 720-coordinate targeted derivative and 3,000-point affine rank diagnostics |
+| `conference_334_z37_lift/mod4_support_lift/audit_char2_witness_mod4.py` | Computes exact modulo-four carry defects of frozen lower-layer supports |
+| `conference_334_z37_lift/first_nonconstant_conjugator/verify_first_nonconstant_gauge.py` | Verifies the `20+20` gauge normal form and pure first-higher rank-two obstruction |
+| `conference_334_z37_lift/first_nonconstant_conjugator/verify_exceptional_plane_fixed_j.py` | Closes the four exceptional quotient profiles after restoring the fixed `J` term |
+| `conference_334_z37_lift/rank_three_constant/audit_rank_three_constant.py` | Exhausts all 1,452 projective rational rank-three types and the fixed-`J` closure |
 | `conference_334_z37_lift/ARTIFACT_SHA256.txt` | Byte-level hashes for the delivered semiregular-`C37` frontier bundle |
 | `near_williamson_167_audit/audit_near_williamson_167.py` | Replays row-sum profiles, one-defect reduction, exact front-end count, and bounded feasibility pilots |
 | `five_orbit_family_audit/verify_anti_tensor_family.py` | Reconstructs all 720 anti-tensor charts on five canonical representatives, prior-family overlaps, multiplier fixed sets, and exact digit-two residuals |

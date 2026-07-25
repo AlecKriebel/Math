@@ -2507,3 +2507,51 @@ proof-assistant-level theorem.
   verifier in `conference_334_z37_lift/`.  No conference matrix, strongly
   regular graph, or `H(668)` is claimed, and no external communication was
   made.
+
+## 25 July 2026: exact support and higher-layer construction gate
+
+- Constructed one explicit semiregular `333 x 333` binary support for an
+  integral quotient representative of each of the two parity types.  Each
+  has exact degree 166, every prescribed integer block margin, the full
+  `6/3` diagonal trace law, and all 2,997 ordered group-ring equations
+  modulo two, equivalently all 110,889 scalar equations.  A third frozen
+  type-1 representative retains the lower layer while reducing the
+  independent next-digit carry from `722/1503` to `672/1503`.
+- None of the three frozen supports reaches adjacency modulo four.  The
+  exact next-digit CP-SAT model ended `UNKNOWN` in bounded runs, while
+  sampled targeted derivative ranks `720/721` and affine rank 1,493 show
+  why its generic relaxation is weak rather than proving infeasibility.
+- Proved that an ordinary four-cycle toggle preserves the modulo-two
+  equation only on an invariant pair-vector plane.  Exhausting all 55,278
+  pair-vectors per frozen type gives minimum column-difference weights 136
+  and 138 and zero invariant planes.  Exhausting 49,284 smallest
+  semiregular Hermitian transvections per witness gives zero
+  exact-margin members.
+- Extended the characteristic-37 formal obstruction from constant rank two
+  through rank three.  The complete projective rational over-list contains
+  1,452 types; 960 survive the diagonal weight gate and every one fails
+  after the fixed `J` coefficient is restored.  A viable generator in this
+  single-constant family must have rank at least four.
+- Derived the first-nonconstant unitary logarithm through degree two:
+  `K=z*A0+z^2*A1` has a `20+20`-parameter gauge slice with `A0` symmetric
+  and `A1` skew.  Pure first-higher rank two and the entire common
+  nondegenerate two-plane pencil are impossible across all 625 quotients.
+  Degenerate or moving support and general nonconstant generators remain
+  open.
+- Completed the five-profile LP333 physical-margin gate.  All 405 targets
+  have a rank-six affine margin digit, the next six quadrics have zero
+  common polar radical, no five-form retraction survives, and all 11,011
+  four-subspaces give maximum dimensions `4,3,3,3,4`.  No physical
+  consecutive higher-digit witness was found; the five-profile
+  construction lane is stopped but preserved as a paper project.
+- Audited arXiv `2607.20765`: its full-family results subsume the local
+  multiplier-order 18, 9, and 6 exclusions.  The five-orbit and
+  physical-margin results lie only in the paper's still-open subgroup ID3
+  and remain novel-looking within the additional fixed-compression slice.
+- The strict construction gate fails: no `H(668)`, conference graph,
+  Legendre pair, modulo-four support, or two-consecutive-higher-digit
+  physical lift was produced.  Headline search should pause unless a new
+  theorem supplies globally coupled margin restoration or a direct
+  integral construction.  All promoted replays stayed below 101 MB except
+  the bounded CP-SAT diagnostic, which stayed near 2.7 GB; no external
+  communication occurred.

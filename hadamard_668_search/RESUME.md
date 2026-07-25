@@ -7,10 +7,11 @@ exact candidate.  Exact success means producing explicit signs and passing the
 full `668 x 668` verification path; energy zero in a search engine is not
 sufficient by itself.
 
-## Active restart: semiregular \(C_{37}\) conference lift
+## Completed restart: semiregular \(C_{37}\) conference lift
 
-A genuinely different construction principle now justifies a bounded
-headline restart without reopening the failed Legendre-pair lift.  A
+A genuinely different construction principle justified a bounded restart
+without reopening the failed Legendre-pair lift.  Its construction gate has
+now also failed, but its exact checkpoint remains valuable.  A
 normalized symmetric conference matrix of order 334 would double to
 `H(668)`.  Requiring only a semiregular `C37` action on its 333-vertex core
 produces nine circulant fibers, a family not covered by the earlier
@@ -35,28 +36,41 @@ The folder `conference_334_z37_lift/` contains the current exact checkpoint:
   orientation-fixed binary lift injects into a 217-digit modular relaxation
   lying between `2^719` and `2^720`, while the complete quotient lane is
   bounded between `2^720` and `2^721` up to fiber permutation/complement;
+- one explicit characteristic-two support for each of the two parity
+  classes, each with exact degree 166, exact integer block margins, the
+  full `6/3` trace law, and all 110,889 scalar adjacency equations modulo
+  two; the best retained type-1 phase representative still has
+  `672/1503` nonzero next-digit carry coefficients;
 - an independent characteristic-three Hermitian square-zero census between
   `2^1141` and `2^1142`;
 - a concrete membership witness through three nontrivial modular layers,
   first failing at layer four;
 - a complete formal integration
-  `exp(-zA)(N0+z^18 J+19 y^36 J)exp(zA)` through degree 36; and
+  `exp(-zA)(N0+z^18 J+19 y^36 J)exp(zA)` through degree 36;
 - exact no-go theorems for every constant diagonal and every constant
-  symmetric generator of rank one or two in that exponential family,
-  across all 625 quotient classes, forcing a viable constant generator to
-  have rank at least three and genuinely mix coordinates.
+  symmetric generator of rank one, two, or three in that exponential family,
+  across all 625 quotient classes;
+- an exact first-nonconstant logarithmic normal form with `20+20`
+  parameters through degree two, together with exclusions of pure
+  first-higher rank two and the complete common nondegenerate two-plane
+  pencil; and
+- exact small-switch gates: neither frozen support admits an
+  equation-preserving four-cycle switch, and none of 49,284 smallest
+  semiregular transvections per witness preserves the block margins.
 
-No conference graph or Hadamard matrix is constructed.  The remaining
-problem is exact simultaneous `0/1` support realizability; even the much
-smaller characteristic-two relaxation rules out direct enumeration.  The
-formula supplies a full completion for every admissible first moment but
-does not classify all
-formal solutions or exclude higher-`y` conjugators.  Replay the checkpoint
-with:
+No conference graph or Hadamard matrix is constructed.  Characteristic-two
+support realizability itself is no longer an obstruction, but the next
+carry—adjacency modulo four, equivalently conference-core orthogonality
+modulo 16—remains open.  The formula supplies a full completion for every
+admissible first moment but does not classify all formal solutions or
+exclude degenerate/moving support, nonconstant rank at least three, or general
+higher-`y` conjugators.  Replay the checkpoint with:
 
 ```sh
 python3 conference_334_z37_lift/verify_z37_lift_frontier.py
 python3 conference_334_z37_lift/verify_rank_two_jordan_obstruction.py
+python3 conference_334_z37_lift/char2_support_realization/verify_all_char2_support.py
+python3 conference_334_z37_lift/first_nonconstant_conjugator/verify_first_nonconstant_gauge.py
 ```
 
 `conference_334_z37_lift/QUOTIENT_CENSUS.md` gives the separate
@@ -68,6 +82,16 @@ placement charts failed.  Do not resume generic search on those charts: we
 found no row-margin-compatible digit-two seed, full digit-three point, or
 structured exact lift, and obtained neither a feasible complete search nor
 a whole-profile exclusion.
+
+The final physical-margin audit strengthens that stop decision.  Across all
+five two-high profile orbits and all 405 compatible catalog targets, six
+independent affine margin equations reduce dimension `36 -> 30`.  The next
+margin digit is six exact quadrics with zero common polar radical.  No
+five-form retraction survives the margin cut, and exhaustive enumeration of
+all 11,011 four-subspaces gives exact maximum dimensions `4,3,3,3,4`.
+This is a paper-strength extension of the five-orbit classification, not a
+physical higher-digit witness or an exclusion of public multiplier subgroup
+ID3.
 
 The earlier `structured_phase_families/` certificate covered only the five
 canonical representatives, not every labelled action image.  The corrected
@@ -1001,10 +1025,11 @@ distinct-lobe universal model specified in `FIVE_COMB_PAIRED_LOBES.md`.
 - Record seed, command, wall time, maximum RSS, swap count, solver status, and
   output hash for every retained production result.
 
-The bounded order-three construction gate has failed.  Preserve the
-five-orbit and eighteen-orbit classification package for a paper, and do not
-spend headline `H(668)` tokens on the remaining dense-profile lifts or twenty
-long-block Eliahou cases.  The semiregular-`C37` conference lift above is the
-new construction principle that justifies the current restart; keep its work
-algebraic and bounded rather than enumerating even its exactly counted
-`2^720` characteristic-two relaxation.
+Both bounded construction gates have failed.  Preserve the five-orbit,
+eighteen-orbit, physical-margin, and semiregular-conference packages for
+papers, and do not spend headline `H(668)` tokens on the remaining
+dense-profile lifts, twenty long-block Eliahou cases, or the exactly counted
+`2^720`--`2^721` characteristic-two relaxation.  Resume only for a new
+globally coupled margin-restoration theorem, a finite rank-at-least-four
+parameterization, a direct integral construction, or a physical point
+passing exact margins and two consecutive higher digits.

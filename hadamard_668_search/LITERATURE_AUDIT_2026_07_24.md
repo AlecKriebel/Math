@@ -58,8 +58,8 @@ order-three Eisenstein profiles, or close `H(668)`.
 
 The public full-family conclusions for IDs 20, 12, and 8 are strictly
 stronger than `LP333_MULTIPLIER_ROW_SUM.md`.  That local theorem is retained
-as a compact independent proof and as the row-sum front end of the local
-prescribed-compression slice of ID3, not as headline novelty.
+as a compact self-contained alternative proof and as the row-sum front end
+of the local prescribed-compression slice of ID3, not as headline novelty.
 
 The paper does not contain the following local results inside that
 prescribed-compression slice of public ID3:
@@ -83,6 +83,34 @@ prescribed-compression slice of public ID3:
 
 These remain potentially novel but are restricted results within a
 non-necessary fixed-compression slice of the public ID3 family.
+
+## Physical-margin filtration on the two-high shell
+
+The completed `shell_two_physical_margin_lift/` audit is also inside public
+paper ID3 and the additional prescribed Legendre-symbol compression.  The
+July paper and its public artifacts contain no lambda-adic physical-margin
+filtration comparable to the following exact local results:
+
+- on all five exact two-high profile orbits and all 405 compatible
+  row-margin targets, the first nonautomatic margin digit consists of six
+  independent affine equations, cutting the first correlation chart from
+  dimension 36 to 30;
+- the next physical margin digit is a six-quadric system whose common polar
+  radical is zero for every target;
+- after the margin cut, exhaustive enumeration of all 364 projective
+  five-hyperplanes finds no five-form retraction; and
+- exhaustive enumeration of all 11,011 four-subspaces gives exact maximum
+  retraction dimensions `4,3,3,3,4`.
+
+These are potentially publishable as a lift-theoretic extension of the
+five-orbit classification.  They do not classify paper ID3, exclude any of
+the five profiles, or produce a physical higher-digit witness.  The bounded
+searches and the neutral-model estimate `2.6461e-5` are planning evidence
+only and must remain outside theorem statements.
+
+To avoid collision with the paper's use of `h` for multiplier-image order,
+publication-facing prose should call this the **two-high shell** or the
+`n_9=2` shell, not the “`h=2` profile.”
 
 ## `q^2`-uncompression overlap
 

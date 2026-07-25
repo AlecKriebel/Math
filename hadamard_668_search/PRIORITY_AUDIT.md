@@ -62,8 +62,9 @@ report:
 10. the new semiregular-`C37` conference lane completely classifies its
     zero-frequency layer into 625 permutation classes, collapses all of
     them to two parity types up to complement, counts the full
-    characteristic-two relaxation below `2^721`, and excludes every
-    constant formal generator through rank two across the quotient census.
+    characteristic-two relaxation below `2^721`, constructs exact-margin
+    modulo-two supports for both parity types, and excludes every constant
+    formal generator through rank three across the quotient census.
 
 These results are worth preserving as a compact internal manuscript. Nothing
 will be circulated, submitted, posted, or sent by this project. The
@@ -305,7 +306,7 @@ still relaxes compatibility between the even and odd high-lag projections.
 
 ## E. Multiplier row-sum obstruction and order-three boundary
 
-**Priority assessment: compact independent fixed-compression proofs now
+**Priority assessment: compact self-contained alternative fixed-compression proofs now
 subsumed by stronger July 2026 full-family exclusions; the order-three ID3
 front end and its deeper algebra remain potentially new.**
 
@@ -314,7 +315,7 @@ subgroups of order at least nine are impossible at length 333, together with
 one order-four and one order-six subgroup.  Their paper IDs 20, 12, and 8
 strictly contain the column-only `h=18,9,6` families below because the public
 theorem does not assume our prescribed length-37 compression.  The present
-enumerations are therefore retained as compact independent proofs and as the
+enumerations are therefore retained as compact self-contained alternative proofs and as the
 front end of the surviving order-three chain, not as headline novelty.
 
 For a fixed-compression column-only multiplier subgroup `H` of size `h`, sum
@@ -925,32 +926,74 @@ base-two logarithm `1307.10873431446430`, falling to
 Unitary finite-field geometry gives a stronger symmetry-reduced
 all-quotient characteristic-two upper bound between `2^720` and `2^721`.
 
-The trace-corrected characteristic-37 family formally integrates every
-admissible first moment, but constant symmetric generators of ranks zero,
-one, and two are impossible across the complete quotient census.  The last
-rank-two Jordan cases reduce to a seven-dimensional affine code with no
-binary word at either genuine trace orientation.
+The characteristic-two relaxation is now known to be physically realizable
+at its first support layer for representatives of both complement classes:
+two explicit `333 x 333` binary supports have exact degree 166, exact
+integer block margins, the full `6/3` trace law, and all 110,889 scalar
+equations
 
-The result reaches the earlier internal threshold of a complete
-nine-orbit quotient classification and is mechanically replayable in under
-a minute, with independent canonical and modular audits.  It does not
-construct or exclude a graph: higher-`y` conjugators and general binary
-support realization remain open.  No exact occurrence of this
+```text
+A^2 + A = I + J  (mod 2).
+```
+
+This is a genuine constructive modular result.  Retained direct cyclic
+convolution replays all 2,997 ordered group-ring coefficients, equivalently
+the 110,889 scalar equations.  It removes characteristic two as a possible
+obstruction for one integral representative of each parity type.  The
+stronger retained type-1 seed still has 672 of 1,503
+independent carry coefficients wrong at the next digit, so it is not a
+conference graph or evidence of rapid 2-adic convergence.
+
+The trace-corrected characteristic-37 family formally integrates every
+admissible first moment, but constant symmetric generators of ranks zero
+through three are impossible across the complete quotient census.  The
+rank-three proof exhausts 1,452 projective rational types; 960 survive the
+loose weight gate and all fail after restoring the fixed `J` term.
+
+The first genuinely nonconstant unitary-conjugator layer is also partially
+closed.  Its exact logarithmic normal form has 20 symmetric plus 20
+skew-symmetric parameters through degree two.  Pure higher rank-two
+generators and the complete family supported on one common nondegenerate
+two-plane are impossible across all 625 quotients.  The result is exact
+within those named families; degenerate support, moving support, rank at
+least three, and unrestricted binary lifts remain open.
+
+The two smallest support-repair families also fail exactly.  Neither
+frozen support has an equation-preserving ordinary four-cycle switch, and
+none of 49,284 smallest semiregular Hermitian transvections per witness
+preserves its exact block margins.  These are named finite-family
+exclusions, not a general switching theorem.
+
+The quotient-classification core reaches the earlier internal threshold of
+a complete nine-orbit classification and is mechanically replayable in
+under a minute, with independent canonical and modular audits.  The
+rank-three obstruction is a separate roughly 5.5-minute replay.  Neither
+result constructs or excludes a graph: higher-`y` conjugators and general
+integral support realization remain open.  No exact occurrence of this
 classification was found in the targeted literature search, but novelty
 remains provisional.
 
 ## Recommended paper and release plan
 
-The semiregular conference result supersedes the earlier recommendation to
-stop all headline `H(668)` work absent a new construction principle: that
-new principle has now appeared and passed its outer-layer gate.  Continued
-work should remain algebraic and attack the two parity types, not enumerate
-the roughly `2^721` modular relaxation.
+The semiregular conference principle passed its outer quotient and
+characteristic-two gates, but it has now failed the construction gate:
+no retained support reaches adjacency modulo four, no two consecutive
+higher support digits were found, carry optimization improved only
+`722 -> 672`, and the smallest exact repair families are empty.  Pause
+headline `H(668)` spending on this lane unless a new theorem supplies
+globally coupled margin restoration or a direct integral construction;
+do not enumerate the roughly `2^721` modular relaxation.
 
 The completed higher-digit gate does not justify continued headline search
 on the five shell-two placement cubes.  The strongest publication path from
 that lane is the exact shell descent through `n_9=3`, the five-orbit
-classification at `n_9=2`, and the associated carry/phase algebra.  The
+classification at `n_9=2`, and the associated carry/phase algebra.  The new
+physical-margin filtration strengthens that paper path: all 405 compatible
+targets have a rank-six affine margin digit, the following six quadrics have
+zero common polar radical, no five-form retraction survives the margin cut,
+and the exact maximum retraction dimensions are `4,3,3,3,4`.  These are
+theorems inside the fixed-compression public-ID3 chart, not an ID3
+classification or a construction milestone.  The
 84-image structured action closure belongs as a supplementary scope
 correction: its five ID8-fixed digit-two points all fail the next digit and
 are not construction progress.  The separately certified anti-tensor audit
@@ -988,20 +1031,26 @@ repairing a 64-modular Hadamard matrix of order 668*.
 **Paper B — prescribed-compression `LP(333)` classification (second
 priority).**  Center it on the exact shell descent, five `n_9=2` profile
 orbits, eighteen frozen dense-`h=0` compressed-profile orbits, and the exact
-carry/phase algebra.  The half-turn, rank-one, canonical-gauge rank-two, and
-84-image structured-family censuses are supporting finite-family results,
-with the action-noninvariance correction stated prominently.  Credit both
-the public `p q^2` compression and the July common-multiplier theorem; claim
-only a prescribed-compression slice of open public subgroup ID3.  A scoped
-title would be *Compressed-profile classifications in a length-333
-Legendre-pair uncompression problem*.
+carry/phase algebra.  Include the rank-six physical-margin digit, the exact
+four-space retraction classification, and the zero-common-radical quadratic
+margin layer as the lift-theoretic extension of the five-orbit theorem.
+The half-turn, rank-one, canonical-gauge rank-two, and 84-image
+structured-family censuses are supporting finite-family results, with the
+action-noninvariance correction stated prominently.  Credit both the public
+`p q^2` compression and the July common-multiplier theorem; claim only a
+prescribed-compression slice of open public subgroup ID3.  A scoped title
+would be *Exact shell classification and lambda-adic lift obstructions in a
+fixed-compression chart for Legendre pairs of length 333*.
 
 **Paper C — semiregular conference quotients at order 334.**  Center it on
 the 625-class quotient theorem, the three parity types, universal `6/3`
-trace law, exact unitary finite-field censuses, and constant-rank-two
-closure.  State prominently that no conference graph is constructed or
-excluded.  A scoped title would be *Semiregular cyclic quotient constraints
-for a conference graph on 333 vertices*.
+trace law, exact unitary finite-field censuses, the two explicit
+characteristic-two support realizations, the constant-rank-three closure,
+the two named first-nonconstant rank-two closures, and the exact
+small-switch gates.  State prominently that no support reaches adjacency
+modulo four and no conference graph is constructed or excluded.
+A scoped title would be *Semiregular cyclic support constraints for a
+conference graph on 333 vertices*.
 
 Paper C is now the cleanest finite classification package and the most
 directly connected to `H(668)`, while Paper A remains the strongest

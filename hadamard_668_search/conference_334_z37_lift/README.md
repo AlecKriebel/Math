@@ -368,6 +368,57 @@ known for this lane.  It cuts the fixed-quotient frontier by roughly 578
 further bits beyond the trace-only census, but even the symmetry-reduced
 all-quotient bound near \(2^{721}\) rules out flat enumeration.
 
+## Exact characteristic-two support realizations
+
+The modular relaxation is not merely nonempty abstractly.  One explicit
+rank-four unitary projection has been converted into a physical binary
+support for a representative of each surviving parity class.  Both
+`333 x 333` supports have:
+
+- zero diagonal and row degree 166;
+- every prescribed exact integral `9 x 9` block margin;
+- the full quadratic-residue/nonresidue diagonal incidence law `6/3`; and
+- all 110,889 scalar equations
+
+  \[
+  D^2+D=I+J\pmod2.
+  \]
+
+The construction uses exact two-coordinate unitary rotations to prescribe
+the nine diagonal words, the support identity
+
+\[
+\operatorname{Tr}_{\mathbf F_{2^{18}}/\mathbf F_2}
+  (f\bar f)=\binom{\operatorname{wt}(f)}2\pmod2,
+\]
+
+and a nine-vertex phase-difference CSP in the unit circle of order 262,145.
+The retained direct cyclic-convolution replay verifies all 2,997 ordered
+group-ring coefficients, equivalently every one of the 110,889 scalar
+matrix equations.
+
+This proves adjacency only modulo two, equivalently the conference-core
+equation modulo eight.  It removes characteristic two as an obstruction
+for one integral quotient representative of each parity type; it does not
+make that claim for all 625 integral quotients and does not construct a
+graph.  The two initial next-digit carry weights are
+`722/1503` and `764/1503`.  A deterministic walk inside one exact
+fixed-diagonal phase fibre improves the first to `672/1503`, an attained
+upper bound rather than a minimum or convergence result.  The complete
+artifacts are in `char2_support_realization/`.
+
+The smallest exact repair families do not improve this situation.  For
+either frozen support, a four-cycle toggle preserves
+\(D^2+D=I+J\pmod2\) only if its two pair-vectors span a
+\(D\)-invariant plane.  Exhausting all 55,278 pair-vectors gives minimum
+column-difference weights 136 and 138 and zero such planes.  A separate
+census exhausts 49,284 projection-preserving binomial Hermitian
+transvections per witness; none preserves the exact block margins.  These
+are finite named-family exclusions, not an obstruction to all support
+switches.  The certificates are in `char2_carry_switches/`, while
+`mod4_support_lift/` preserves the exact next-digit equation, sampled rank
+diagnostics, and the bounded CP-SAT model.
+
 ## A characteristic-37 moment filtration
 
 There is a second, independent general reduction.  Work in the
@@ -595,6 +646,41 @@ The complete proofs and scopes are in
 `RANK_TWO_CONJUGATION_OBSTRUCTION.md` and
 `RANK_TWO_JORDAN_OBSTRUCTION.md`.
 
+## Constant rank three and the first nonconstant layer
+
+The same constant-generator lane is now closed through rank three.  A
+complete projective rational-similarity over-list contains 1,452
+rank-three types.  A symmetry-reduced diagonal temporal over-code removes
+492 types against the 625 quotient profiles.  For each of the remaining
+960, restoring the fixed \(z^{18}J\) coefficient and exhausting both trace
+orientations plus every relaxed local power tuple leaves zero binary words.
+The over-list includes types not realizable by symmetric matrices and the
+local tuple test relaxes global matrix relations, so both approximations
+enlarge the candidate set in the safe direction.  The complete certificate
+is in `rank_three_constant/`.  Within this single-constant-\(A\) family a
+viable generator must therefore have rank at least four.
+
+The first genuinely nonconstant logarithmic layer has also been
+parameterized.  For
+
+\[
+K=zA_0+z^2A_1,\qquad A_0^T=A_0,\quad A_1^T=-A_1,
+\]
+
+gauge reduction leaves 20 essential parameters in each coefficient.  Two
+complete subfamilies are impossible across all 625 quotients:
+
+- a pure first-higher rank-two generator \(K=z^2B\); and
+- the full pencil in which \(A_0\) and \(A_1\) share one common
+  nondegenerate two-plane.
+
+The latter census leaves four quotient classes at a symmetry-only
+diagonal over-code, then the fixed \(J\) term eliminates every residual
+assignment.  Degenerate or moving support, rank at least three in a
+nonconstant coefficient, and a general \(y\)-adic conjugator remain open.
+The exact normal form and certificates are in
+`first_nonconstant_conjugator/`.
+
 ## A group-ring characteristic identity
 
 The same spectral multiplicity argument gives a compact necessary identity
@@ -633,13 +719,21 @@ The result is mixed but useful:
   and complement, into an all-quotient characteristic-two relaxation
   between \(2^{720}\) and \(2^{721}\);
   and
-- all later mod-37 matrix equations are formally integrable, isolating
-  exact `0/1` support realizability as the remaining modular difficulty;
+- one exact-margin characteristic-two support exists for a representative
+  of each parity type, while the next carry—adjacency modulo four—is still
+  nonzero on every retained support;
   and
-- constant diagonal and all constant symmetric generators of ranks one and
-  two in the explicit exponential family are impossible across all 625
-  quotient classes, so a viable constant generator must genuinely mix
-  coordinates and have rank at least three;
+- ordinary four-cycle repair and the smallest semiregular transvection
+  family fail on both frozen supports;
+  and
+- constant diagonal and all constant symmetric generators of ranks one
+  through three in the explicit exponential family are impossible across
+  all 625 quotient classes, so a viable constant generator has rank at
+  least four;
+  and
+- pure first-higher rank two and the common nondegenerate two-plane
+  first-nonconstant pencil are impossible, while more general nonconstant
+  supports remain open;
   and
 - a lift with the displayed quotient must break every paired-label
   transposition, every paired-label 3-cycle, and all regular order-four
@@ -658,8 +752,13 @@ Run the dependency-free verification from this folder:
 python3 verify_z37_lift_frontier.py
 python3 verify_rank_two_conjugation_obstruction.py
 python3 verify_rank_two_jordan_obstruction.py
+python3 char2_support_realization/verify_all_char2_support.py
+python3 first_nonconstant_conjugator/verify_first_nonconstant_gauge.py
+python3 first_nonconstant_conjugator/verify_exceptional_plane_fixed_j.py
 ```
 
 The complete quotient replay additionally compiles
 `census_z37_quotients.cpp`; see `QUOTIENT_CENSUS.md` for the exact commands
-and the two independent audit programs.
+and the two independent audit programs.  The complete constant-rank-three
+replay is intentionally separate because it takes about 5.5 minutes; see
+`rank_three_constant/README.md`.

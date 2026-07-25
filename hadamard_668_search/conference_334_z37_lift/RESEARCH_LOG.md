@@ -133,3 +133,26 @@
 - The general semiregular `C37` lift is still open.  Any successful lift of
   this quotient must break the regular symmetry of the four paired fibers.
 - No external communication was made.
+
+## 2026-07-25 PDT: support realization and construction-gate completion
+
+- Built exact-margin characteristic-two supports for one integral quotient
+  representative of each parity type.  Direct cyclic convolution verifies
+  all 2,997 ordered coefficients, equivalent to all 110,889 scalar
+  adjacency equations modulo two.
+- An exact phase walk improved type-1 next-digit carry
+  `722 -> 672` out of 1,503 independent coefficients.  No frozen support
+  reaches adjacency modulo four.
+- Exhausted the smallest exact repair mechanisms: zero
+  equation-preserving ordinary four-cycle switches and zero exact-margin
+  members among 49,284 semiregular transvections per witness.
+- Proved a complete constant-rank-three obstruction across all 625
+  quotients by exhausting 1,452 projective rational types and restoring the
+  fixed `J` term on all 960 weight-compatible types.
+- Derived the `20+20` first-nonconstant gauge normal form and excluded both
+  pure first-higher rank two and the common nondegenerate two-plane pencil.
+- The resulting gate is negative for construction: characteristic two is
+  attainable for both parity types, but no evidence of contraction to the
+  next digit remains.  General rank-at-least-four constant generators,
+  degenerate or moving nonconstant supports, and unrestricted semiregular
+  lifts remain open.  No conference graph or `H(668)` is claimed.
