@@ -1,0 +1,1193 @@
+\documentclass[11pt]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Exact repair obstructions around a 64-modular Hadamard matrix of order 668},
+  pdfauthor={Alec Kriebel, with substantial assistance from ChatGPT 5.6 Sol},
+  pdfsubject={Exact local obstructions and certified reductions for Eliahou's order-668 modular Hadamard seed},
+  pdfkeywords={Hadamard matrix, base sequence, Golay quadruple, Turyn sequence, SAT certificate}
+}
+
+\allowdisplaybreaks
+\setlist{itemsep=2pt,topsep=4pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{computationaltheorem}[theorem]{Computational Theorem}
+\newtheorem{computationalproposition}[theorem]{Computational Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\F}{\mathbb F}
+\newcommand{\BS}{\operatorname{BS}}
+\newcommand{\TU}{\operatorname{TU}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\rev}{\operatorname{rev}}
+\newcommand{\Norm}{\operatorname{N}}
+\newcommand{\Cor}{\operatorname{Cor}}
+\newcommand{\PAF}{\operatorname{PAF}}
+\newcommand{\sha}{\textsc{sha-256}}
+
+\title{Exact repair obstructions around a\\
+64-modular Hadamard matrix of order 668}
+\author{Alec Kriebel\\[2pt]\large with substantial assistance from ChatGPT 5.6 Sol}
+\date{Research draft, 25 July 2026\\Not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Eliahou constructed a $64$-modular Hadamard matrix of order $668$ from a
+special binary quadruple of length $167$.  An exact repair within that
+special form is equivalent to a base sequence in $\BS(84,83)$.  We give
+several exact obstructions and reductions around the published seed.
+
+First, if Eliahou's sequence $q=(+^{83},-^2,+^{81},-)$ is fixed, no choice
+of the other sign sequence gives an exact quadruple.  A parity telescope
+and even--odd decimation would otherwise produce an element of
+$\TU(41)$; in addition to the known classification, we independently
+exhaust $461$ normalized shards, comprising $57{,}543{,}021$ deterministic
+search nodes and no solution.
+
+Second, reduction of the four base rows modulo $z^{42}-1$ proves that any
+exact repair changes at least $80$ of the $334$ base signs, and at least
+$41$ signs in the natural $(s,q)$ coordinates.  At special distance $41$,
+the only remaining form is $39$ changes in $s$ and one reciprocal pair of
+changes in $q$.  Root filters leave $21$ long and $18$ short reciprocal
+pairs.  Reduction modulo $z^{42}+1$ removes endpoint orientation and
+collapses these to $30$ canonical support problems.  A checked DRAT proof
+excludes the boundary long case, and an exhaustive exact-integer census of
+$3{,}710{,}853{,}316{,}608$ modular join rows excludes all nine short
+cases.
+
+The remaining twenty long cases are not excluded.  For them we prove an
+exact endpoint-orientation cascade: the positive fold modulo $8$ is
+redundant on the full anti-fold characteristic-two code, the modulo-$16$
+layer is a fixed binary linear system, exact root conditions are four
+cardinality equations, and the modulo-$32$ layer is quadratic.  We also
+correct the scope of the two-fold method: the positive and negative
+$42$-folds imply cyclic length-$84$ complementarity, not the original
+aperiodic equations.  Forty-one causal equations restore exact
+equivalence.  No $\BS(84,83)$, Golay quadruple, or Hadamard matrix of order
+$668$ is constructed or ruled out.
+\end{abstract}
+
+\noindent\textbf{Verification and authorship disclaimer.}
+This is an AI-assisted, unreviewed research artifact.  The mathematical
+exploration, program development, certificate analysis, and manuscript
+drafting used substantial assistance from OpenAI language models operating
+through ChatGPT and Codex.  The named human author directed the project and
+is responsible for any release, but describes himself as a non-specialist
+and cannot independently certify every derivation or implementation.
+The repository includes deterministic checkers and independently replayable
+certificates where stated.  Those artifacts strengthen auditability; they
+do not replace expert review, establish priority, or constitute a
+proof-assistant formalization.
+
+\section{Introduction}
+
+A Hadamard matrix of order $n$ is a matrix
+$H\in\{\pm1\}^{n\times n}$ such that
+\[
+ HH^{\mathsf T}=nI_n.
+\]
+The Hadamard conjecture predicts such a matrix whenever $4\mid n$.
+Order $668$ is a prominent unresolved instance in current construction
+tables~\cite{cati-pasechnik,sage}.  Eliahou constructed a
+$64$-modular matrix at that order, satisfying
+\[
+ HH^{\mathsf T}\equiv 668I_{668}\pmod {64},
+\]
+from a structured length-$167$ quadruple and the Goethals--Seidel
+array~\cite{eliahou-2025}.  Its failure of exact
+complementarity is concentrated at thirteen aperiodic lags.
+Eliahou's 2026 update is cited for bibliographic context only:
+its metadata and abstract, but not its full text, were inspected during
+this project~\cite{eliahou-2026}.  No claim below depends on that article.
+
+The most direct local question is whether signs in that structured seed can
+be changed to obtain exact complementarity.  Ramos, Hulak, and de Queiroz
+have already recorded the basic translation of this question to
+$\BS(84,83)$ and a raw base-row distance lower bound of $64$ in the
+artifact release accompanying their work on multiplier
+obstructions~\cite{ramos-2026,ramos-artifacts}.  The present paper starts
+from the same standard base-sequence translation.  Its main additions are:
+\begin{enumerate}
+  \item a fixed-$q$ obstruction through $\TU(41)$, with an independent
+        modern exhaustive certificate for the known endpoint;
+  \item an adjacent-$42$ fold giving the stronger base-row distance bound
+        $80$ and the exact special-coordinate boundary $41$;
+  \item an orientation-free anti-fold, one checked DRAT exclusion, and a
+        complete exact census of all nine short boundary cases; and
+  \item an exact $2$-adic orientation cascade for the twenty open long
+        cases, together with the necessary aperiodic scope correction.
+\end{enumerate}
+
+These conclusions are deliberately local.  The exact fixed-$q$ family is
+closed, and ten of the thirty minimum-boundary anti-fold support cases are
+closed.  Twenty long support cases remain open.  Nothing here implies
+nonexistence of $\BS(84,83)$, of a nonspecial Golay quadruple of length
+$167$, or of a Hadamard matrix of order $668$.
+
+\section{Sequences and Eliahou's special form}
+
+\subsection{Aperiodic norms and base sequences}
+
+For a real sequence $X=(x_0,\ldots,x_{r-1})$, put
+\[
+ N_X(k)=\sum_{i=0}^{r-k-1}x_ix_{i+k}
+ \qquad(0\leq k<r),
+\]
+and set $N_X(k)=0$ when $k\geq r$.  In polynomial notation,
+$X(z)=\sum_i x_i z^i$, the Laurent polynomial
+$X(z)X(z^{-1})$ has coefficient $N_X(|k|)$ at $z^k$.
+
+A binary Golay quadruple of length $r$ is a quadruple
+$(X_1,X_2,X_3,X_4)$ of sign sequences satisfying
+\[
+ \sum_{j=1}^4 N_{X_j}(k)=0
+ \qquad(1\leq k<r).
+\]
+A base sequence in $\BS(m,n)$ is a quadruple $(A;B;C;D)$ of binary
+sequences with
+\[
+ |A|=|B|=m,\qquad |C|=|D|=n,
+\]
+and
+\[
+ R_k:=N_A(k)+N_B(k)+N_C(k)+N_D(k)=0
+ \qquad(1\leq k<m).
+\]
+We use the standard base-sequence notation and equivalences of
+Đoković~\cite{djokovic-bs}.  Its zero-lag energy is $R_0=2m+2n$.
+We use coefficientwise products of sign sequences without a separate
+symbol.
+
+\subsection{The special quadruple and its base rows}
+
+Let $h\in\{\pm1\}^{167}$ be $+1$ on coordinates $0,\ldots,83$ and
+$-1$ on coordinates $84,\ldots,166$.  Eliahou's special quadruple has
+the form
+\begin{equation}
+ \mathcal G(s,q)=(s,hs,sq,hsq).                 \label{eq:special}
+\end{equation}
+The published sequence $q$ has alternating run lengths
+\[
+ q=(+^{83},-^2,+^{81},-).
+\]
+For a direct reconstruction of the seed, the run-length word of $s$ is
+\begin{align*}
+ &((4)^5,(2,1,1)^5,1,5,(4)^4,(2,1,1)^6,(4)^4,3,\\
+ &\hspace{31mm}(1,2,1)^5,3,(4)^4,3,(1,2,1)^5),
+\end{align*}
+where the first run is positive and a parenthesized exponent denotes block
+repetition.
+
+Split at the sign change of $h$:
+\begin{equation}
+ A=s_{[0,84)},\quad B=(sq)_{[0,84)},\quad
+ C=s_{[84,167)},\quad D=(sq)_{[84,167)}.       \label{eq:base-map}
+\end{equation}
+
+\begin{proposition}[Special-to-base-sequence translation]
+\label{prop:translation}
+The quadruple $\mathcal G(s,q)$ is exactly Golay if and only if
+$(A;B;C;D)\in\BS(84,83)$.  The correspondence is bijective, with inverse
+\[
+ s=A\Vert C,\qquad q=(AB)\Vert(CD).
+\]
+\end{proposition}
+
+\begin{proof}
+At lag $k$, the summed correlation in \eqref{eq:special} is
+\[
+ \sum_i s_is_{i+k}
+ (1+h_ih_{i+k})(1+q_iq_{i+k}).
+\]
+Terms crossing the $84+83$ split vanish.  The remaining value is twice
+$R_k$ for the four rows in \eqref{eq:base-map}, and it vanishes
+automatically for $k\geq84$.  The inverse follows coordinatewise.
+\end{proof}
+
+For the published base rows, the only nonzero positive-lag values of $R_k$
+are
+\[
+\begin{array}{c|rrrrrrrrrrrrr}
+k&4&8&12&16&26&30&34&38&42&46&50&54&58\\ \hline
+R_k&-256&192&-128&64&-32&64&-96&128&-160&128&-96&64&-32.
+\end{array}                                                \tag{2.1}
+\]
+The corresponding correlations of the four length-$167$ rows are twice
+these values.  In particular, divisibility by $64$ does not imply exact
+complementarity.  In the associated Goethals--Seidel matrix, Eliahou
+records that every row is already orthogonal to $641$ of the other $667$
+rows, with $26$ nonzero off-diagonal Gram entries~\cite{eliahou-2025}.
+
+\section{The fixed-\texorpdfstring{$q$}{q} obstruction}
+\label{sec:fixedq}
+
+This section keeps the published $q$ fixed and permits arbitrary $s$.
+The proof reduces the exact equations to a Turyn sequence of parameter
+$41$, then uses both the known classification and an independent
+enumeration.
+
+\subsection{A parity telescope}
+
+Write
+\[
+ X=(s_0,\ldots,s_{82}),\quad u=s_{84},\quad
+ Y=(s_{85},\ldots,s_{165}),\quad v=s_{166}.
+\]
+The coordinate $s_{83}$ is isolated by the four runs of $q$.  Writing
+$X=(x_0,\ldots,x_{82})$ and $Y=(y_0,\ldots,y_{80})$, exact
+complementarity is equivalent to
+\begin{align}
+ N_X(k)+N_Y(k)&=0 &&(1\leq k\leq80),       \label{eq:fixed-main}\\
+ x_0x_{81}+x_1x_{82}&=0,                   \label{eq:fixed-81}\\
+ x_0x_{82}+uv&=0.                          \label{eq:fixed-82}
+\end{align}
+
+\begin{lemma}[Parity telescope]\label{lem:telescope}
+Every solution of \eqref{eq:fixed-main}--\eqref{eq:fixed-82} satisfies
+\begin{align}
+ x_{82-i}&=(-1)^{i+1}x_i &&(0\leq i\leq82), \label{eq:Xreverse}\\
+ y_{80-i}&=(-1)^iy_i     &&(0\leq i\leq80), \label{eq:Yreverse}\\
+ u&=v.                                             \label{eq:uv}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+For $0\leq k\leq81$, let $P_k$ be the product of all sign terms in
+$N_X(k)+N_Y(k)$, with the $Y$ product empty at $k=81$.  At every positive
+lag the zero sum contains $2(82-k)$ signs and exactly half are negative.
+Hence
+\[
+ P_k=(-1)^k,\qquad 0\leq k\leq81.
+\]
+Cancellation in $P_{i+1}/P_i$ gives
+\[
+ (x_ix_{82-i})(y_iy_{80-i})=-1
+ \qquad(0\leq i\leq80).
+\]
+Set $r_i=x_ix_{82-i}$ and $t_i=y_iy_{80-i}$.  Reflection gives
+$r_i=r_{82-i}$ and $t_i=t_{80-i}$.  Comparing the equations at $i$ and
+$80-i$ gives $r_i=r_{i+2}$.  The central products are
+$r_{41}=t_{40}=1$, and $r_{40}t_{40}=-1$.  These values determine the two
+parity classes of every $r_i$ and then every $t_i$, yielding
+\eqref{eq:Xreverse} and \eqref{eq:Yreverse}.  Finally
+$x_0x_{82}=-1$, so \eqref{eq:fixed-82} gives $uv=1$ and therefore $u=v$.
+\end{proof}
+
+\subsection{Even--odd decimation}
+
+Define
+\begin{align*}
+ E&=(x_0,x_2,\ldots,x_{82}), & |E|&=42,& \rev(E)&=-E,\\
+ O&=(x_1,x_3,\ldots,x_{81}), & |O|&=41,& \rev(O)&= O,\\
+ P&=(y_0,y_2,\ldots,y_{80}), & |P|&=41,& \rev(P)&= P,\\
+ Q&=(y_1,y_3,\ldots,y_{79}), & |Q|&=40,& \rev(Q)&=-Q,
+\end{align*}
+and let $\widehat Q=(u,Q,v)$, of length $42$.  Since $Q$ is skew and
+$u=v$, the two endpoint contributions to $N_{\widehat Q}(k)$ cancel for
+$1\leq k\leq40$.  The even-lag equations above, including the endpoint
+equation, become
+\[
+ N_E(k)+N_{\widehat Q}(k)+N_O(k)+N_P(k)=0
+ \qquad(1\leq k\leq41).
+\]
+Thus
+\[
+ (E;\widehat Q;O;P)\in\BS(42,41),
+\]
+with the first long row skew and the first short row symmetric.  Under the
+standard definition this is an element of $\TU(41)$
+~\cite{djokovic-quadruples,edmondson}.
+
+\subsection{Independent exhaustion of \texorpdfstring{$\TU(41)$}{TU(41)}}
+
+The nonexistence of $\TU(41)$ is already contained in the exhaustive
+classification of Edmondson, Seberry, and Anderson~\cite{edmondson}.
+For an independently reproducible endpoint, we also performed a fresh
+enumeration.
+
+The standard normalized form at odd parameter $41=2\cdot20+1$ is
+\begin{equation}
+\label{eq:normalized-tu}
+\begin{aligned}
+ A&=(1,1,a_2,\ldots,a_{20},-a_{20},\ldots,-a_2,-1,-1),\\
+ B&=(1,1,b_2,\ldots,b_{20},-b_{20},\ldots,-b_2,-1, 1),\\
+ C&=(1,c_1,\ldots,c_{19},c_{20},c_{19},\ldots,c_1,1),\\
+ D&=(1,d_1,\ldots,d_{19},d_{20},d_{19},\ldots,d_1,1).
+\end{aligned}
+\end{equation}
+This normalized search covers the object produced by the decimation above.
+Definition 7(i) of Edmondson--Seberry--Anderson states that every odd
+Turyn sequence---a base sequence whose first long row is skew and whose
+first short row is symmetric---has a representative of
+\eqref{eq:normalized-tu} under the standard sign, reversal, and
+equal-length interchange normalizations, all of which preserve the summed
+aperiodic norm~\cite{edmondson}.  The decimated quadruple
+$(E;\widehat Q;O;P)$ has exactly those skew/symmetric types.  Hence a
+hypothetical decimated solution would supply a normalized representative
+enumerated below.  This bridge uses the cited normalization theorem; the
+certificate independently exhausts its normalized representatives rather
+than formalizing the equivalence theorem itself.
+
+There are $78$ free signs.  The interchange symmetry of $C,D$ is removed
+by lexicographic order.  Evaluation at $z=1$ gives
+\[
+ \sum(A)^2+\sum(B)^2+\sum(C)^2+\sum(D)^2=166.
+\]
+Here $\sum(A)=0$ and $\sum(B)=2$, so
+\[
+ |\sum(C)|=|\sum(D)|=9.
+\]
+
+\begin{computationaltheorem}[Independent $\TU(41)$ certificate]
+\label{thm:tu41}
+No normalized quadruple in \eqref{eq:normalized-tu} satisfies all $41$ positive-lag
+base-sequence equations.  The deterministic outside-in enumeration has
+\[
+ 461\ \text{complete shards},\qquad
+ 57{,}543{,}021\ \text{search nodes},\qquad
+ 0\ \text{solutions}.
+\]
+\end{computationaltheorem}
+
+\paragraph{Certificate method.}
+After symbolic cancellation, the high-lag equations introduce the
+variables in small outside-in blocks.  A branch is retained only if every
+newly complete high-lag equation is zero.  For a lower lag with fixed
+contribution $F$ and $U$ unresolved product terms, a branch is rejected
+only if $|F|>U$ or $F+U$ is odd.  These are necessary bounds even when the
+unresolved products are dependent.  After five recursion steps, $19$
+signs have been assigned and exactly $461$ prefixes survive.  An
+independent Python program exhausts all $2^{19}$ prefix assignments and
+verifies this cover.  Each shard then evaluates all $41$ equations at
+every leaf.  Small cases $n=3,7,9$ reproduce the known pattern
+present, present, absent.  The source, cube cover, shard index, and summary
+are joined by hashes in the certificate.
+
+\begin{theorem}[Fixed-$q$ obstruction]\label{thm:fixedq}
+Keep Eliahou's published sequence
+\[
+ q=(+^{83},-^2,+^{81},-)
+\]
+and the special form $\mathcal G(s,q)$.  No binary sequence $s$ makes
+$\mathcal G(s,q)$ exactly Golay.
+\end{theorem}
+
+\begin{proof}
+A solution would yield an element of $\TU(41)$ by
+Lemma~\ref{lem:telescope} and the even--odd decimation.  This contradicts
+either the published classification~\cite{edmondson} or the independent
+certificate in Theorem~\ref{thm:tu41}.
+\end{proof}
+
+\begin{remark}
+The obstruction is not a two-squares argument.  The relevant row-sum
+identity is
+\[
+ \sum(C)^2+\sum(D)^2=162=9^2+9^2.
+\]
+The final step is the exhaustive nonexistence of $\TU(41)$.
+\end{remark}
+
+\section{The adjacent-\texorpdfstring{$42$}{42} fold and exact distance}
+\label{sec:distance}
+
+\subsection{A cyclic image of \texorpdfstring{$\BS(84,83)$}{BS(84,83)}}
+
+For a row $X$ of length $84$ or $83$, fold modulo $42$:
+\[
+ F_X(j)=X_j+X_{j+42},\qquad 0\leq j<42,
+\]
+where the missing second endpoint in a short row contributes zero.
+Let $P_k$ be the summed periodic correlation of the four folded rows.
+Ordinary reduction of the four-row norm modulo $z^{42}-1$ gives
+\begin{align}
+ P_0&=R_0+2R_{42},\nonumber\\
+ P_k&=R_k+R_{42-k}+R_{42+k}+R_{84-k}
+       &&(1\leq k\leq20),\label{eq:plusfold}\\
+ P_{21}&=2(R_{21}+R_{63}).\nonumber
+\end{align}
+Consequently every $\BS(84,83)$ has a periodically complementary
+length-$42$ integer image of energy $334$.
+
+For Eliahou's base rows the folds are
+\begin{equation}
+ F_A=-2z^{41},\qquad F_B=0,\qquad
+ F_C=2+z^{41},\qquad F_D=-2z^{40}+z^{41}.        \label{eq:seed-folds}
+\end{equation}
+Their summed cyclic norm is the constant $14$.  In particular, all
+nonconstant fold correlations already vanish: the thirteen residual
+aperiodic lags cancel in four triples under \eqref{eq:plusfold}.
+
+\subsection{The distance-\texorpdfstring{$80$}{80} theorem}
+
+Across the four base rows there are
+\[
+ 42+42+41+41=166
+\]
+disjoint separation-$42$ pairs and two unpaired short-row signs.  If $E$
+of those pairs have equal endpoints, the folded energy is
+\begin{equation}
+ 2+4E.                                               \label{eq:fold-energy}
+\end{equation}
+An exact target has energy $334$, so it has exactly $83$ equal pairs.
+The seed in \eqref{eq:seed-folds} has only three: row $A$ at cell $41$,
+row $C$ at cell $0$, and row $D$ at cell $40$.
+
+\begin{theorem}[Base and special distance bounds]\label{thm:distance}
+Let $\mathcal E$ be Eliahou's labelled base quadruple.
+\begin{enumerate}
+  \item Every $(A;B;C;D)\in\BS(84,83)$ differs from $\mathcal E$ in at
+        least $80$ of its $334$ base signs.
+  \item Every exact special pair $(s,q)$ differs from the published
+        $(s_0,q_0)$ in at least $41$ of its $334$ special-coordinate
+        signs.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Changing one base sign toggles the equality status of at most one
+separation-$42$ pair.  Raising the number of equal pairs from $3$ to $83$
+therefore takes at least $80$ changes, proving the first assertion.
+
+At one coordinate, changing $s$ alone changes both associated base signs;
+changing $q$ alone or changing both $s$ and $q$ changes one base sign.
+Thus special distance $d$ produces base distance at most $2d$, and the
+first assertion gives $d\geq40$.  Equality $d=40$ would require all
+$40$ changes to be $s$-only, leaving $q=q_0$.  This is impossible by
+Theorem~\ref{thm:fixedq}, so $d\geq41$.
+\end{proof}
+
+Equality in the first part is rigid.  All three seed-equal pairs and the
+two short singletons remain fixed; exactly $80$ of the $163$ seed-opposite
+pairs become equal; and exactly one endpoint is changed in each selected
+pair.  If $F_0$ denotes the four folds in \eqref{eq:seed-folds}, write
+$F=F_0+2G$.  Then $G$ is a four-row ternary word supported on exactly
+$80$ seed-opposite cells and satisfies the exact group-ring equation
+\begin{equation}
+ \sum_r\bigl(F_{0,r}G_r^*+G_rF_{0,r}^*\bigr)
+ +2\sum_r G_rG_r^*=160
+ \quad\text{in }\Z[C_{42}].                         \label{eq:min-shell}
+\end{equation}
+The sign of every nonzero coefficient of $G$ identifies which endpoint
+was changed.  Equation~\eqref{eq:min-shell} is necessary and sufficient
+for the adjacent-$42$ cyclic image on the minimum shell, but not for the
+original aperiodic equations.
+
+\section{The special-distance-\texorpdfstring{$41$}{41} boundary}
+\label{sec:boundary}
+
+\subsection{The reciprocal \texorpdfstring{$q$}{q} skeleton}
+
+Write $q=g\Vert h$, with $|g|=84$ and $|h|=83$.  Exact
+complementarity forces the number of active equal-$q$ pairs at every lag to
+be even.  Row reduction over $\F_2$ gives the following closed form.
+
+\begin{lemma}[Reciprocal skeleton]\label{lem:skeleton}
+Every exact special quadruple has
+\begin{align}
+ g&=(g_0,g_1,\ldots,g_{41},g_{41},\ldots,g_1,-g_0),\nonumber\\
+ h&=(h_0,h_1,\ldots,h_{40},h_{41},h_{40},\ldots,h_1,h_0).
+                                                               \label{eq:skeleton}
+\end{align}
+Conversely, every $q$ of this form makes the active-pair count even at
+every lag.
+\end{lemma}
+
+\begin{proof}
+Use bits for the signs of $q$.  Modulo two, the indicator that two signs
+are equal is $1+q_i+q_j$.  If $e_k$ is the parity equation at lag $k$,
+then elementary row operations give
+\[
+\begin{array}{ll}
+ e_{83}:&g_0+g_{83}=1,\\
+ e_j+e_{83-j}:&g_j+g_{83-j}=0\quad(1\leq j\leq41),\\
+ e_{j+1}+e_{83-j}:&h_j+h_{82-j}=0\quad(0\leq j\leq40).
+\end{array}
+\]
+These $83$ independent equations are precisely \eqref{eq:skeleton}.
+Reversing the row operations proves the converse.
+\end{proof}
+
+Relative to the published $q_0$, the skeleton has exactly one possible
+weight-one change, at the center of the short block (global coordinate
+$125$).  Every legal weight-two change is one reciprocal pair; there are
+$42$ long and $41$ short pairs.
+
+\subsection{Classification at equality}
+
+At one special coordinate let
+\[
+ a=\#(s\text{-only changes}),\quad
+ b=\#(q\text{-only changes}),\quad
+ c=\#(\text{changes in both }s\text{ and }q).
+\]
+Then
+\[
+ d_{\rm special}=a+b+2c,\qquad
+ d_{\rm base}=2a+b+c.                                \label{eq:costs}
+\]
+
+\begin{theorem}[Complete special-distance-$41$ split]
+\label{thm:boundary}
+An exact repair at special distance $41$, if one exists, has exactly
+\[
+ 39\ s\text{-only changes}
+ \quad+\quad
+ 2\ q\text{-only changes},
+                                                        \label{eq:only-boundary}
+\]
+and the two $q$ changes form one reciprocal pair.
+
+Before root filtering there are $80$ shell-compatible reciprocal pairs.
+The evaluations at $z=1$ and $z=-1$ leave exactly $39$ pairs:
+$21$ long and $18$ short.  Every surviving pair has exactly two compatible
+joined root profiles.
+\end{theorem}
+
+\begin{proof}
+Combining $d_{\rm special}=41$ with $d_{\rm base}\geq80$ in
+\eqref{eq:costs} leaves only
+\[
+ (a,b,c)=(41,0,0),\ (40,1,0),\ (39,2,0).
+\]
+The first keeps $q$ fixed and is impossible by
+Theorem~\ref{thm:fixedq}.  In the second, the unique $q$ change is the
+short center.  If $\lambda$ and $\sigma$ denote the ordinary signed sums
+of the common long and short fold changes, the root energy equation is
+\[
+ \lambda(\lambda+1)+\sigma^2=41,
+\]
+or
+\[
+ (2\lambda+1)^2+(2\sigma)^2=165.
+\]
+This has no integer solution because both $3$ and $11$, primes congruent
+to $3$ modulo $4$, occur to odd exponent in $165$.  Hence only
+\eqref{eq:only-boundary} remains, and Lemma~\ref{lem:skeleton} makes the
+two $q$ changes reciprocal.
+
+Three of the $83$ reciprocal pairs are incompatible with equality in the
+base distance bound, leaving $80$.  For a reciprocal $q$ pair, let
+$H(z)$ be its signed two-term contribution to the active product row after
+the adjacent fold, and define
+\[
+ h_+=H(1),\qquad h_-=H(-1).
+\]
+The exact $z=\pm1$ calculation gives
+the following signed two-term fold distributions:
+\[
+\begin{array}{c|rrrr}
+\text{long }(h_+,h_-)&(-2,0)&(0,2)&(0,-2)&(2,0)\\
+\text{count}&6&15&15&6\\ \hline
+\text{short }(h_+,h_-)&(2,-2)&(0,0)&(-2,2)&\\
+\text{count}&10&18&10&
+\end{array}
+\]
+Only the first two long types and the middle short type have compatible
+root energy and parity profiles.  Their counts are $6+15+18=39$.
+Solving the two exact sum-of-squares systems gives two profiles per pair.
+\end{proof}
+
+Writing a profile as
+$((L(1),S(1)),(L(-1),S(-1)))$, the two profiles are
+\begin{equation}
+\label{eq:root-profiles}
+\begin{array}{c|cc}
+\text{pair type}&\text{profile 0}&\text{profile 1}\\ \hline
+\text{long }(-2,0)&((-3,4),(-5,-4))&((6,-5),(4,5))\\
+\text{long }(0,2)&((-4,-5),(-6,5))&((5,4),(3,-4))\\
+\text{short }(0,0)&((-4,-5),(4,5))&((5,4),(-5,-4)).
+\end{array}
+\end{equation}
+
+\section{The orientation-free anti-fold}
+\label{sec:antifold}
+
+\subsection{Reduction modulo \texorpdfstring{$z^{42}+1$}{z42+1}}
+
+For a base row define its anti-fold
+\[
+ D_X(j)=X_j-X_{j+42},\qquad 0\leq j<42,
+\]
+again treating the missing short endpoint as zero.  Let $Q_k$ be the
+summed negacyclic correlation of the four anti-folds.  Reduction modulo
+$z^{42}+1$ gives
+\begin{align}
+ Q_0&=R_0-2R_{42},\nonumber\\
+ Q_k&=R_k-R_{42-k}-R_{42+k}+R_{84-k}
+       &&(1\leq k\leq20),                       \label{eq:antifold}\\
+ Q_{21}&=0,\qquad Q_{42-k}=-Q_k.\nonumber
+\end{align}
+Every $\BS(84,83)$ therefore satisfies
+\[
+ \sum_X D_X(z)D_X(z^{-1})=334
+ \quad\text{in }\Z[z]/(z^{42}+1).                    \label{eq:anti-norm}
+\]
+
+For a seed-opposite pair $(x,-x)$, changing the lower endpoint gives
+$(-x)-(-x)=0$, whereas changing the upper endpoint gives $x-x=0$.
+Thus endpoint orientation disappears from the anti-fold.  At the boundary
+in Theorem~\ref{thm:boundary}, the $39$ changes in $s$ select $39$ cells;
+each selected long cell is zeroed in both long anti-fold rows, and each
+selected short cell is zeroed in both short anti-fold rows.  The fixed
+reciprocal $q$ pair zeroes two further entries in the active product row.
+The anti-fold energy drops by exactly
+\[
+ 80\cdot4=320,
+\]
+from the seed value $654$ to the required $334$.  The remaining task is
+the set of $20$ noncentral equations in \eqref{eq:anti-norm}.
+
+The $21$ long reciprocal pairs remain distinct.  The $18$ short pairs
+occur in nine mirrored pairs,
+\[
+ (2,38),(4,36),\ldots,(18,22),
+\]
+and each mirrored pair gives the same orientation-free support problem.
+There are therefore
+\[
+ 21\text{ long cases}+9\text{ short cases}=30
+\]
+canonical anti-fold instances.  We label the long boundary instance
+$L0$ as case $0$, the other long instances as cases $1,\ldots,20$, and
+the short instances $S02,S04,\ldots,S18$ as cases $21,\ldots,29$.
+
+\subsection{A checked DRAT exclusion}
+
+Case $0=L0$ has $79$ available support variables; all other cases have
+$78$.  In every case exactly $39$ support cells must be selected.
+
+\begin{computationaltheorem}[Case-$0$ anti-fold exclusion]
+\label{thm:case0}
+The complete orientation-free anti-fold support problem for the long
+reciprocal pair $L0$ is unsatisfiable.  This exclusion is independent of
+the two adjacent-fold root profiles.
+\end{computationaltheorem}
+
+\paragraph{Encoding and certificate.}
+The exact cardinality equation and the twenty integer anti-fold equations
+were translated to CNF.  Every product of two retained-entry literals is
+linked to an auxiliary variable by the three-clause Boolean AND
+equivalence.  Signed pseudo-Boolean sums are encoded exactly.  Redundant
+modulo-two and modulo-four Hensel chains are consequences of the integer
+equations and therefore do not remove a genuine support.  The resulting
+formula has
+\[
+ 39{,}580\ \text{variables},\qquad
+ 127{,}589\ \text{clauses}.
+\]
+Its \sha\ digest is
+\[
+\texttt{f3eb29b1ea9c386e53b03726349fe0c38577d7e187b56aa19f86412c8749755d}.
+\]
+CaDiCaL 3.0.1 produced a binary DRAT proof in $200.17$ seconds.  The
+$90{,}490{,}737$-byte compressed proof has digest
+\[
+\texttt{efd8abd9d80d50365822754f36345f368d7cff8f2740ca33b9cab7d5866aa519}.
+\]
+Independent \texttt{drat-trim} replay returned \texttt{VERIFIED}, using
+$73{,}135{,}509$ resolution steps, $0$ RAT lemmas, $75.00$ seconds, and
+$471.1$ MB peak resident memory.
+
+The formal proof trace certifies the generated CNF.  The mathematical
+interpretation additionally relies on the auditable encoder and on the
+reduction to the support equations; neither is formalized in a proof
+assistant.
+
+\subsection{Complete census of the nine short cases}
+
+The short cases have a common exact quotient structure.  Modulo two, the
+$78$ support variables form $39$ pairs of equal syndrome columns.  The
+affine quotient has rank $21$, leaving $2^{18}$ parity states.  For every
+state, a phase-adjusted parity splits the characteristic-three interaction
+graph into four cliques:
+\[
+ L_0,\ L_1,\ S_0,\ S_1.
+\]
+After conditioning the common central pair, sums from these four components
+can be joined by exact packed modulo-six signatures.  Any survivor is
+reconstructed as all $78$ support bits, checked against the exact
+twenty-coordinate integer polynomial, and independently replayed in the
+four physical anti-fold rows.
+
+Spatial reflection acts freely because every quotient state has an odd
+noncentral reflected pair.  The canonical gauge fixes the lowest-index odd
+long-pair orientation.  Two exceptional quotient states, one in $S08$ and
+one in $S14$, instead use the lowest odd short pair.  The reflected mate of
+every retained representative is reconstructed, so the gauge loses no
+support.
+
+\begin{computationaltheorem}[All nine short cases]
+\label{thm:short}
+The complete exact anti-fold support problems for cases $21$ through $29$,
+namely
+\[
+ S02,S04,S06,S08,S10,S12,S14,S16,S18,
+\]
+have no solution.
+\end{computationaltheorem}
+
+The frozen census is summarized below.
+\[
+\begin{array}{cclrrr}
+\toprule
+\text{case}&\text{label}&\text{join rows}&
+\text{mod-6 survivors}&\multicolumn{2}{c}{\text{best residual}}\\
+&&&&\#\ne0&\ell_1\\
+\midrule
+21&S02&412{,}316{,}860{,}416& 9{,}564{,}254&4&72\\
+22&S04&412{,}316{,}860{,}416& 9{,}796{,}880&4&78\\
+23&S06&412{,}316{,}860{,}416& 9{,}807{,}738&3&54\\
+24&S08&412{,}317{,}646{,}848& 9{,}561{,}296&4&66\\
+25&S10&412{,}316{,}860{,}416& 9{,}789{,}738&3&72\\
+26&S12&412{,}316{,}860{,}416&10{,}533{,}216&4&66\\
+27&S14&412{,}317{,}646{,}848&10{,}285{,}492&3&66\\
+28&S16&412{,}316{,}860{,}416& 9{,}789{,}970&4&66\\
+29&S18&412{,}316{,}860{,}416& 9{,}799{,}156&4&66\\
+\midrule
+\multicolumn{2}{r}{\text{total}}&
+3{,}710{,}853{,}316{,}608&
+88{,}927{,}740&&\\
+\bottomrule
+\end{array}                                           \tag{6.3}
+\]
+All $88{,}927{,}740$ modular survivors received both an exact
+integer-polynomial check and an independent bit-packed physical replay.
+The number of exact supports was zero.  The production was partitioned
+into $2{,}304$ atomic ranges.  The completion certificate freezes every
+case total, best witness, source and binary hash, the original
+survivor-stream digest, and a timing-independent semantic range digest.
+Without the underlying range manifests, those stream digests are
+cryptographic commitments rather than independently inspectable survivor
+lists.  The immutable companion release includes the production-manifest
+archive, so the live verifier can check all $2{,}304$ records; an
+independent full production replay remains the strongest check.
+
+\begin{corollary}[Certified minimum-boundary frontier]
+\label{cor:frontier}
+Among the thirty canonical orientation-free anti-fold support problems at
+special distance $41$, case $0$ and all nine short cases are impossible.
+Only the twenty long cases $1,\ldots,20$ remain.
+\end{corollary}
+
+\begin{remark}
+Corollary~\ref{cor:frontier} is not a distance-$41$ nonexistence theorem.
+It closes ten support cases and leaves twenty.  It also says nothing about
+repairs at larger special distance or about base sequences unrelated to
+Eliahou's seed.
+\end{remark}
+
+\section{Exact orientation cascade for the open long cases}
+\label{sec:orientation}
+
+The twenty open long instances all have $78$ eligible support cells,
+split into $39$ long and $39$ short cells.  Fix a support
+$S$ of exact weight $39$ that satisfies the characteristic-two anti-fold
+conditions and one of the two root profiles in \eqref{eq:root-profiles}.  The
+remaining choice is which endpoint of each selected seed-opposite pair is
+changed.
+
+For a selected cell $i$, let $\delta_i$ be the change in the four positive
+fold rows when the lower endpoint is chosen.  The upper endpoint contributes
+$-\delta_i$.  Encode the upper choice by $e_i\in\F_2$.
+
+\subsection{Modulo \texorpdfstring{$8$}{8} is redundant}
+
+Let $C_k$ be the summed periodic correlation at cyclic lag $k$ of the
+positive folds.  Exact expansion into constant, singleton, and pair
+coefficients proves the following.
+
+\begin{theorem}[Long-case orientation cascade]\label{thm:cascade}
+For each open long case $1,\ldots,20$:
+\begin{enumerate}
+  \item For every support in the full $57$-dimensional affine anti-fold
+        characteristic-two code, all positive-fold correlations vanish
+        modulo $8$, independently of endpoint orientation.
+  \item There is a support-independent binary matrix
+        $M_c\in\F_2^{23\times78}$ such that a support $S$ selects its
+        columns and the complete modulo-$16$ plus-fold and root-parity
+        conditions are
+        \[
+        (M_c)_S e=b_{c,S,\rho}.                       \label{eq:mod16}
+        \]
+        The first $21$ rows encode $C_k/8\bmod2$ and the final two rows
+        encode the long- and short-block root-orientation parities.
+  \item On any consistent affine solution fiber of
+        \eqref{eq:mod16}, the four exact root values are equivalent,
+        after a fixed sign gauge, to four disjoint Hamming-weight
+        equations.
+  \item If a consistent fiber has free coordinates
+        $u_1,\ldots,u_d$, the next $21$ plus-fold conditions modulo $32$
+        are exact Boolean quadratics
+        \[
+        q_{c,S,\rho,k}(u)=0,\qquad 1\leq k\leq21.      \label{eq:mod32}
+        \]
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof outline and exact checks]
+For the first assertion, direct integer expansion proves that every
+positive-fold correlation is divisible by $4$ for arbitrary support and
+that $C_k/4\bmod2$ is affine in the $78$ support bits.  Restricting these
+$21$ affine functions to a basis and particular point of each complete
+$57$-dimensional anti-fold affine code makes every coefficient and constant
+zero.  All $20$ cases and all $3{,}003$ second differences per case were
+also reconstructed by an independent implementation.
+
+Every orientation interaction coefficient
+\[
+ \langle\delta_i,T^k\delta_j\rangle+
+ \langle\delta_j,T^k\delta_i\rangle
+\]
+is divisible by $8$.  After division by $8$ and reduction modulo $2$, the
+orientation dependence is therefore affine, and the column belonging to
+cell $i$ is independent of the other selected cells.  This constructs
+$M_c$ and proves \eqref{eq:mod16}.
+
+For a block/parity bin $G$, let $a_j\in\{\pm1\}$ be the signed root
+contribution in the lower orientation and put
+$n_j=e_j\mathbin{\mathsf{xor}}[a_j=-1]$.  A prescribed signed target $t_G$
+is equivalent to
+\[
+ \sum_{j\in G}a_j(-1)^{e_j}
+ =|G|-2\wt(n|_G)=t_G,
+\]
+which is exactly one cardinality equation.
+
+Finally, substitute an affine parameterization of the solution space of
+\eqref{eq:mod16}.  An orientation flip changes a positive-fold coefficient
+by a multiple of $4$.  After division by $16$ and reduction modulo $2$,
+all terms of degree at least three vanish.  Direct interpolation of every
+constant, linear, and quadratic coefficient, followed by physical replay
+at deterministic higher-weight points, proves \eqref{eq:mod32}.
+\end{proof}
+
+No universal lower bound on $\operatorname{rank}(M_c)_S$ is asserted.  In
+the pinned audits, consistent supports usually had rank $22$ and hence
+nullity $17$, with a small number of nullity-$18$ fibers.  Those counts are
+finite diagnostics, not a theorem about all supports.
+
+\begin{computationalproposition}[Sparse generation of the mod-$2$ support codes]
+\label{prop:sparse-code}
+For each of the twenty open long cases, the $57$-dimensional homogeneous
+anti-fold characteristic-two code is generated by words of weight at most
+$6$.  In cases $6$ and $14$, weight at most $4$ suffices.  After adjoining
+the four block/parity profile checks, the homogeneous code has dimension
+$55$ and is generated by words of weight at most $6$ in every case.
+\end{computationalproposition}
+
+\paragraph{Exact rank certificate.}
+The verifier
+\path{eliahou_long_orientation_cascade/audit_orientation_cascade.py}
+constructs the complete binary check matrix: the anti-fold linear rows and
+the all-ones weight-parity row, with the four block/parity rows adjoined in
+the profile-conditioned calculation.  It encodes each coordinate column by
+its syndrome.  Two unordered coordinate pairs with the same XOR syndrome
+have a symmetric difference in the kernel of weight at most $4$.
+The verifier groups all pairs by syndrome, inserts these differences into
+an exact binary Gaussian basis, and records their rank.  If that rank is
+not the full code dimension, it analogously groups all coordinate triples
+by syndrome; differences of equal-syndrome triples have weight at most
+$6$.  The resulting basis ranks are exactly $57$ in every unconditioned
+case and $55$ in every conditioned case.  Pair differences already attain
+rank $57$ in unconditioned cases $6$ and $14$, proving their stronger
+weight-$4$ statement.  The ordered rank arrays and a semantic hash are
+frozen in \path{EXPECTED_SAMPLE5_SUMMARY.json}.
+
+This provides an exact connected local-move system, but it does not bound
+the number of exact-weight-$39$ supports sharply enough for enumeration.
+
+\subsection{Certified finite controls}
+
+Two independent implementations used different deterministic sets of five
+supports per case and profile.  Their exact finite results are:
+\begin{equation}
+\label{eq:bounded-controls}
+\begin{array}{lrr}
+\toprule
+&\text{primary audit}&\text{red-team audit}\\
+\midrule
+\text{supports tested}&200&200\\
+\text{mod-$16$ inconsistent}&5&5\\
+\text{points in consistent fibers}&26{,}607{,}616&26{,}476{,}544\\
+\text{points satisfying exact roots}&121{,}764&120{,}455\\
+\text{mod-$32$ survivors}&22&24\\
+\text{mod-$32$ survivors satisfying exact roots}&1&0\\
+\bottomrule
+\end{array}
+\end{equation}
+The one root-exact modulo-$32$ point in the primary audit was independently
+replayed and failed modulo $64$.  Thus all $400$ pinned fixture evaluations
+were excluded at the recorded stage.  Equation~\eqref{eq:bounded-controls} is an exact
+statement about those fixed inputs only; it is not a sampling theorem,
+frequency estimate, or exclusion of any long case.
+
+\section{Why the two folds are not aperiodically complete}
+\label{sec:scope}
+
+The positive and negative folds at the same $42$ split do not reconstruct
+the original aperiodic norm.  This point is essential to the scope of every
+computational claim above.
+
+\begin{proposition}[Two-fold scope correction]\label{prop:scope}
+Let $R_k$ be the summed aperiodic correlations of four rows of lengths
+$84,84,83,83$.  Exact positive-fold and anti-fold norm equations together
+are equivalent to the cyclic length-$84$ conditions
+\begin{equation}
+ R_{42}=0,\qquad R_k+R_{84-k}=0
+ \quad(1\leq k\leq41).                              \label{eq:cyclic84}
+\end{equation}
+They do not imply $R_k=0$ separately.
+
+Adding the causal half
+\begin{equation}
+ R_{43}=R_{44}=\cdots=R_{83}=0                       \label{eq:causal}
+\end{equation}
+to \eqref{eq:cyclic84} is equivalent to all $83$ positive-lag aperiodic
+equations.
+\end{proposition}
+
+\begin{proof}
+Adding and subtracting the coefficient identities
+\eqref{eq:plusfold} and \eqref{eq:antifold} yields exactly
+\eqref{eq:cyclic84}.  The residual vector
+\[
+ R_1=2,\qquad R_{83}=-2,\qquad R_k=0\text{ otherwise}
+\]
+is a nonzero integral kernel element, so the implication to aperiodic
+complementarity fails.  If \eqref{eq:causal} is added, then
+\eqref{eq:cyclic84} successively forces $R_1,\ldots,R_{41}$ to vanish as
+well, while $R_{42}=0$ is already present.
+\end{proof}
+
+There is a compact exact ternary formulation of each long boundary case.
+For each eligible cell let
+\[
+ t_j\in\{-1,0,1\},\qquad u_j=t_j^2,
+\]
+where $t_j=0$ means no change and the two nonzero signs choose the endpoint
+orientation.  Then the exact physical problem is
+\begin{equation}
+\begin{aligned}
+ \sum_j u_j&=39,\\
+ 20\ \text{anti-fold equations}&\quad\text{in }u,\\
+ 21\ \text{positive-fold equations}&\quad\text{in }t,\\
+ 41\ \text{causal equations \eqref{eq:causal}}.&
+\end{aligned}                                        \label{eq:ternary}
+\end{equation}
+Independent symbolic reconstruction verifies \eqref{eq:ternary} against
+all original correlations in all twenty cases.  The direct aperiodic model
+and the fold-plus-causal model each use exactly
+\[
+ 5{,}928
+ =1{,}482\,uu+1{,}482\,ut+1{,}482\,tu+1{,}482\,tt
+\]
+quadratic products.  The causal equations touch all of them.  Thus the
+folds expose strong modular structure, but they do not secretly eliminate
+the global aperiodic coupling.
+
+\section{Reproducibility and trust boundary}
+\label{sec:repro}
+
+All paths below are relative to the public repository's
+\texttt{hadamard\_668\_search} directory.  The accompanying paper README
+gives exact commands and separates quick verification from complete
+production replay.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.21\textwidth}
+                >{\raggedright\arraybackslash}p{0.28\textwidth}
+                >{\raggedright\arraybackslash}p{0.35\textwidth}}
+\toprule
+\textbf{Claim} & \textbf{Primary artifact} & \textbf{Independent check}\\
+\midrule
+Fixed-$q$ reduction &
+\path{FIXED_Q_OBSTRUCTION.md} &
+\path{verify_fixed_q_obstruction.py}\\
+Distance $80$, boundary $41$, root frontier &
+\path{ELIAHOU_ADJACENT42_REPAIR.md} &
+\path{verify_eliahou_adjacent42_repair.py}\\
+Anti-fold reduction &
+\path{ELIAHOU_ANTIFOLD42.md} &
+\path{verify_eliahou_antifold42.py}\\
+$\TU(41)$ exhaustion &
+\path{tu41_certificate/certificate.json} &
+\path{verify_manifest.py}, \path{verify_cube_cover.py},
+\path{test_regressions.py}\\
+Case-$0$ UNSAT &
+\path{output/antifold42_q0_proof/certificate.json} &
+\path{verify_eliahou_antifold_q0_proof.py}; full
+\path{drat-trim} replay\\
+Nine short cases &
+\path{eliahou_short_block_census/NINE_CASE_COMPLETION_CERTIFICATE.json} &
+\path{verify_nine_case_completion.py}; independent model and physical
+replays\\
+Long orientation cascade &
+\path{eliahou_long_orientation_cascade/} &
+separate \path{eliahou_long_orientation_redteam/} implementation\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The trust levels are not identical.
+\begin{itemize}
+  \item The algebraic reductions are short exact-integer identities with
+        dependency-free reconstruction tests.
+  \item The $\TU(41)$ result is an exhaustive C++ enumeration with an
+        independently exhausted prefix cover.  It trusts the displayed
+        normalization, the small programs, and the compiler.
+  \item The case-$0$ formula has an independently checked DRAT proof.
+        It additionally trusts the formula generator's faithful encoding of
+        the mathematical support problem.
+  \item The nine-case certificate freezes the full production semantics,
+        hashes, counts, and survivor streams.  Bounded independent replays
+        reconstruct quotient states and physical rows.  Repeating all
+        $3.71$ trillion joins is possible with the resumable production
+        driver but is not part of the quick verifier.
+  \item The long-case statements labeled as theorems are complete symbolic
+        audits over their stated affine spaces.  The $200$-support tables
+        are explicitly bounded controls and have no extrapolated scope.
+\end{itemize}
+
+No solver timeout, interrupted search, or unproved solver
+\texttt{INFEASIBLE} status is used as a theorem in this manuscript.  In
+particular, an older uncertified local-radius computation is intentionally
+omitted.
+
+\section{Discussion}
+
+The fixed-$q$ theorem closes a natural but very narrow repair family.
+The adjacent fold then shows that ``nearby'' in the published special
+coordinates is already a global condition: an exact target cannot occur
+before distance $41$, and equality forces the rigid $39+2$ form of
+Theorem~\ref{thm:boundary}.  The anti-fold converts that boundary into a
+finite collection of orientation-free support equations.  Ten of the
+thirty canonical instances are now exactly excluded.
+
+The open part is not the endpoint-orientation layer by itself.
+Within the $400$ bounded fixture evaluations in
+\eqref{eq:bounded-controls}, Theorem~\ref{thm:cascade} reduced a consistent
+fixed-support orientation problem from $2^{39}$ raw choices to a
+modulo-$16$ affine fiber usually of size about $2^{17}$ before the exact
+root and quadratic modulo-$32$ filters.  No $2^{17}$ fiber-size claim is
+made for untested supports or for a complete long case.  The
+bottleneck is the enormous collection of admissible supports and the
+aperiodic causal coupling in Proposition~\ref{prop:scope}.  A successful
+continuation appears to require a support-level theorem or a method that
+couples support and orientation algebraically; a literal support-first
+census remains out of reach on ordinary hardware.
+
+The known empty status of $\TU(41)$ is not claimed as new.  The independent
+enumeration is valuable as a modern, inspectable reproduction.  The basic
+special-form/$\BS(84,83)$ equivalence and a weaker distance bound were
+already present in the companion release to
+Ramos--Hulak--de Queiroz~\cite{ramos-artifacts}.  We did not locate the
+distance-$80$ fold, special-distance-$41$ classification, anti-fold
+certificates, or long orientation cascade in the cited public sources.
+That literature search is not a guarantee of priority.
+
+\section*{Code and data availability}
+
+The immutable companion release is
+\begin{center}
+\url{https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0}.
+\end{center}
+The paper package identifies the exact source paths and hashes used for
+this draft.  The companion release includes the case-$0$ compressed DRAT
+artifact and a production-manifest archive for the nine short cases.
+Large artifacts are additionally identified by cryptographic digests.
+No external communication or independent peer validation occurred during
+preparation of this draft.
+
+\section*{AI assistance and responsibility}
+
+The research program was conducted by Alec Kriebel with extensive
+assistance from ChatGPT 5.6 Sol, operating through ChatGPT and Codex.
+AI assistance included proposing
+reductions, deriving and checking algebra, writing and optimizing exact
+enumerators, constructing certificate verifiers, auditing scope, and
+drafting this manuscript.  The human author selected the research
+directions and requested the explicit scope and verification disclosures.
+Language-model output can contain subtle mathematical or implementation
+errors.  Readers should therefore treat every claim as provisional until
+the proofs, encodings, and computations receive independent expert review.
+The software and certificates are provided to make that review feasible,
+not to transfer responsibility to the tools.
+
+\begin{thebibliography}{99}
+\small
+\setlength{\itemsep}{0.35em}
+
+\bibitem{cati-pasechnik}
+M. Cati and D. V. Pasechnik,
+\emph{A database of constructions of Hadamard matrices},
+arXiv:2411.18897 (2024);
+\url{https://arxiv.org/abs/2411.18897}.
+
+\bibitem{djokovic-quadruples}
+D. Ž. Đoković,
+Aperiodic complementary quadruples of binary sequences,
+\emph{J. Combin. Math. Combin. Comput.} \textbf{27} (1998), 3--31;
+\url{https://combinatorialpress.com/article/jcmcc/Volume%20027/vol-27-paper%201.pdf}.
+
+\bibitem{djokovic-bs}
+D. Ž. Đoković,
+Classification of base sequences $\BS(n+1,n)$,
+\emph{Int. J. Combin.} (2010), Article ID 851857;
+\url{https://arxiv.org/abs/1002.1414}.
+
+\bibitem{edmondson}
+G. M. Edmondson, J. Seberry, and M. R. Anderson,
+On the existence of Turyn sequences of length less than 43,
+\emph{Math. Comp.} \textbf{62} (1994), 351--362;
+\url{https://doi.org/10.1090/S0025-5718-1994-1203733-8}.
+
+\bibitem{eliahou-2025}
+S. Eliahou,
+A 64-modular Hadamard matrix of order 668,
+\emph{Australas. J. Combin.} \textbf{93}(2) (2025), 422--427;
+\url{https://ajc.maths.uq.edu.au/pdf/93/ajc_v93_p422.pdf}.
+
+\bibitem{eliahou-2026}
+S. Eliahou,
+An update on modular Hadamard matrices,
+\emph{J. Algebraic Combin.} \textbf{64} (2026), Article 1;
+\url{https://doi.org/10.1007/s10801-026-01544-5}.
+Only its bibliographic metadata and abstract were inspected for this draft;
+the full text was not inspected.
+
+\bibitem{ramos-2026}
+A. F. Ramos, D. B. Hulak, and R. J. G. B. de Queiroz,
+\emph{Multiplier obstructions for Legendre pairs of length 333},
+arXiv:2607.20765 (2026);
+\url{https://arxiv.org/abs/2607.20765}.
+
+\bibitem{ramos-artifacts}
+A. F. Ramos, D. B. Hulak, and R. J. G. B. de Queiroz,
+\emph{Hadamard-668 multiplier-obstruction proof artifacts},
+companion repository and mod-$64$ report (2026);
+\url{https://github.com/Arthur742Ramos/hadamard-668-multiplier-obstructions}.
+
+\bibitem{sage}
+SageMath,
+\emph{Hadamard matrix constructions and current unknown orders};
+\url{https://doc.sagemath.org/html/en/reference/combinat/sage/combinat/matrices/hadamard_matrix.html}.
+
+\end{thebibliography}
+
+\end{document}

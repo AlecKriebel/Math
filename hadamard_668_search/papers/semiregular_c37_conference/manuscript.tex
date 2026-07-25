@@ -1,0 +1,1462 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[hidelinks]{hyperref}
+
+\hypersetup{
+  pdftitle={Semiregular C37 Conference Lifts at Order 334},
+  pdfauthor={Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol},
+  pdfsubject={Quotient classification, modular realizations, and low-rank obstructions for a semiregular conference-matrix lift},
+  pdfkeywords={Hadamard matrix, conference matrix, strongly regular graph, semiregular cyclic action, C37, exhaustive enumeration},
+  pdfcreator={LaTeX}
+}
+
+\definecolor{codegray}{gray}{0.96}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codegray},
+  frame=single,
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  showstringspaces=false
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\QR}{\mathrm{QR}}
+\newcommand{\NQR}{\mathrm{NQR}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\wt}{\operatorname{wt}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\J}{J}
+\newcommand{\e}{\mathrm{e}}
+
+\title{\textbf{Semiregular \(C_{37}\) Conference Lifts at Order \(334\):}\\
+Quotient Classification, Modular Realizations, and Low-Rank Obstructions}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Research draft prepared 25 July 2026\\Not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study symmetric conference matrices of order \(334\) whose
+\(333\)-vertex core admits a semiregular cyclic group of order \(37\),
+with nine vertex orbits.  Such a matrix would yield a Hadamard matrix of
+order \(668\), but no such matrix is constructed here.
+
+The zero-frequency orbit equations are classified exhaustively.  There
+are \(196{,}560{,}000\) labeled orbit-sum matrices, \(625\) classes under
+simultaneous permutation, and \(314\) classes after also identifying
+global sign.  Their reductions modulo two collapse to three parity
+classes, or two up to complement.  No quotient has zero diagonal, and a
+Fourier trace argument therefore forces a universal \(6/3\) incidence
+law on the diagonal circulant blocks.
+
+We count exact finite-field relaxations.  In characteristic two the
+nontrivial Fourier component is a rank-four Hermitian projection in a
+nine-dimensional unitary space over \(\F_{2^{36}}/\F_{2^{18}}\); the
+orientation-fixed relaxation has between \(2^{719}\) and \(2^{720}\)
+points.  In characteristic three the corresponding Hermitian
+square-zero census lies between \(2^{1141}\) and \(2^{1142}\) per fixed
+quotient.  We also construct an exact-margin binary support for one
+integral representative of each of the two complement classes.  Both
+supports satisfy the complete graph equation modulo two, equivalently
+the conference-core equation modulo eight.
+
+In characteristic \(37\), the first-moment system has rank \(16\), and
+for a certified quotient every admissible first moment has an explicit
+formal completion through all \(37\) truncated layers.  Physical
+\(0/1\)-realizability remains the obstruction.  Within the resulting
+exponential family, all constant symmetric generators of ranks at most
+three are excluded across all \(625\) quotients.  At the first
+nonconstant layer we obtain a \(20+20\)-parameter normal form and exclude
+both pure rank-two higher terms and the fully enumerated common nondegenerate
+two-plane pencil.  Finally, exhaustive four-cycle and small
+semiregular-transvection gates fail to repair either frozen
+characteristic-two support.
+
+The retained supports do not satisfy the adjacency equation modulo four:
+the best recorded carry has \(672\) nonzero coordinates among \(1503\).
+Consequently this paper neither constructs nor excludes a conference
+graph, and it does not settle the Hadamard problem at order \(668\).
+\end{abstract}
+
+\section{Introduction}
+
+A normalized symmetric conference matrix of order \(334\) may be written
+\[
+ C=
+ \begin{pmatrix}
+ 0&\one^{T}\\
+ \one&S
+ \end{pmatrix},
+ \qquad C^2=333I_{334}.
+\]
+Its symmetric \(333\times333\) core satisfies
+\[
+ S\one=0,\qquad S^2=333I_{333}-J_{333}.
+ \tag{1.1}\label{eq:seidel-core}
+\]
+Equivalently,
+\[
+ A=\frac{J-I-S}{2}
+\]
+would be a strongly regular graph with parameters
+\[
+ (v,k,\lambda,\mu)=(333,166,82,83).
+ \tag{1.2}\label{eq:srg-parameters}
+\]
+The standard conference doubling construction would then produce a
+Hadamard matrix of order \(668\); the conference-matrix correspondence and
+doubling construction are classical \cite{goethals-seidel}.
+
+At the date of this draft, order \(668\) remains listed as the smallest
+unresolved Hadamard order in both a recent construction database and a
+public open-problem list \cite{cati-pasechnik,epoch-hadamard}, and the
+strongly regular graph parameter set \eqref{eq:srg-parameters} remains open
+in the standard table \cite{brouwer-srg}.  Mathon's title ``Symmetric
+conference matrices of order \(pq^2+1\)'' is a potentially misleading
+near-match because \(333=37\cdot3^2\).  In his Theorem~4.1, however, the
+same integer \(t\) determines \(q=4t-1\) and \(p=4t+1\), so \(p=q+2\);
+the pair \((p,q)=(37,3)\) is outside that construction \cite{mathon}.
+
+The orbit-matrix method for strongly regular graphs with prime-order
+automorphisms is classical \cite{behbahani-lam}, as is the general
+multicirculant or \(m\)-Cayley framework \cite{martinez}.  A recent
+multiplier-obstruction theorem for Legendre pairs of length \(333\)
+concerns a different, common-multiplier route and explicitly leaves
+unrestricted existence open \cite{ramos-hulak-queiroz}.  Our claims concern
+the stated nine-orbit calculation and its quotient-specific consequences,
+not those general frameworks.
+
+We impose a semiregular \(C_{37}\)-action with nine vertex orbits.  This is
+strictly broader than a regular action by a group of order \(333\).  The
+result is a finite but still enormous \(45\)-block lifting problem.  The
+main contribution is to identify exactly what is already forced, what can
+be realized modulo small primes, and which natural formal and switching
+families are impossible.
+
+\subsection*{Main results}
+
+The principal results are as follows.
+
+\begin{enumerate}[label=(\roman*)]
+\item The integral zero-frequency quotient system has exactly \(625\)
+permutation classes and \(314\) sign-permutation classes
+(Theorem~\ref{thm:quotient-census}).
+\item The quotient census has only three parity types, two up to
+complement, and every integral lift satisfies a \(6/3\)
+quadratic-residue incidence law on its diagonal blocks
+(Theorems~\ref{thm:parity-types} and \ref{thm:trace-law}).
+\item The orientation-fixed characteristic-two relaxation is a
+unitary Grassmannian of size strictly between \(2^{719}\) and \(2^{720}\).
+The characteristic-three relaxation is counted separately
+(Theorems~\ref{thm:mod2-count} and \ref{thm:mod3-count}).
+\item Both complement classes have explicit exact-margin binary supports
+satisfying every equation modulo two (Theorem~\ref{thm:char2-supports}).
+\item The characteristic-\(37\) first-moment map has rank \(16\).  For one
+certified quotient every admissible first moment extends through all
+truncated layers to a formal solution, but not necessarily to binary blocks
+(Theorems~\ref{thm:first-moment} and \ref{thm:formal-completion}).
+\item Constant generators of ranks one, two, and three, as well as the
+diagonal constant family, are impossible in the explicit formal
+conjugation family.  Two fully enumerated rank-two subfamilies at the first
+nonconstant layer are also impossible
+(Theorems~\ref{thm:constant-low-rank} and
+\ref{thm:first-nonconstant-exclusions}).
+\item Neither ordinary four-cycle switching nor the smallest
+semiregular unitary-transvection family repairs the two frozen modular
+supports (Theorem~\ref{thm:switch-gates}).
+\end{enumerate}
+
+Computational assertions are tied to deterministic replay programs or
+finite certificates, with separate checks for several key counts;
+Section~\ref{sec:reproducibility} gives a map from claims to artifacts.
+
+\subsection*{Scope}
+
+The distinction between a relaxation and a construction is essential.
+The two binary supports satisfy the adjacency equation only modulo two.
+None satisfies it modulo four, and no integer conference graph, symmetric
+conference matrix, or Hadamard matrix is produced.  The formal
+characteristic-\(37\) completion similarly solves a matrix equation in a
+truncated group algebra while deliberately forgetting the physical
+\(0/1\) coefficient alphabet.  All results are restricted to the
+semiregular \(C_{37}\) lane; they do not exclude that lane, much less
+conference graphs without such an automorphism.
+
+\section{The semiregular group-ring model}
+\label{sec:model}
+
+Let
+\[
+ U(x)=1+x+\cdots+x^{36}
+\]
+in the group ring \(\Z[C_{37}]\cong\Z[x]/(x^{37}-1)\).  A graph invariant
+under a semiregular \(C_{37}\)-action on nine fibers is represented by a
+\(9\times9\) matrix
+\[
+ D(x)=(d_{ij}(x))
+\]
+of binary cyclic words.  Undirectedness and looplessness give
+\[
+ d_{ji}(x)=d_{ij}(x^{-1}),\qquad [x^0]d_{ii}(x)=0.
+ \tag{2.1}\label{eq:star-symmetry}
+\]
+The strongly regular equation is
+\[
+ D(x)^2+D(x)=83I_9+83U(x)J_9.
+ \tag{2.2}\label{eq:group-ring-srg}
+\]
+
+The augmentation
+\[
+ B=D(1)
+\]
+is the equitable adjacency quotient.  In Seidel coordinates define
+\[
+ T=37J_9-I_9-2B.
+ \tag{2.3}\label{eq:T-from-B}
+\]
+Then \(T\) is the matrix of block row sums of the core \(S\).  Evaluation
+of \eqref{eq:seidel-core} at the trivial character gives
+\[
+ T\one=0,\qquad T^2=333I_9-37J_9.
+ \tag{2.4}\label{eq:quotient-system}
+\]
+The diagonal entries of \(T\) are even sums of \(36\) signs; the
+off-diagonal entries are odd sums of \(37\) signs.
+
+\begin{lemma}[Local quotient rigidity]
+\label{lem:local-rigidity}
+Every solution of \eqref{eq:quotient-system} satisfying the block bounds
+has
+\[
+ T_{ii}\in\{-16,-12,-8,-4,0,4,8,12,16\},
+ \qquad |T_{ij}|\leq15\quad(i\neq j).
+\]
+\end{lemma}
+
+\begin{proof}
+For one row, write \(d=T_{ii}\) and \(x_1,\ldots,x_8\) for its odd
+off-diagonal entries.  The row equations are
+\[
+ d+\sum_jx_j=0,\qquad d^2+\sum_jx_j^2=296.
+\]
+Every odd square is \(1\bmod8\), so \(d^2\equiv0\bmod8\), whence
+\(4\mid d\).  The norm equation gives \(|d|\leq16\).  If some
+\(|x_j|=17\), the remaining seven odd squares and \(d^2\) must contribute
+only \(7\), forcing \(d=0\) and the seven remaining entries to be
+\(\pm1\); they cannot cancel \(\pm17\).
+\end{proof}
+
+There are exactly \(411\) unordered row multisets satisfying these two
+row equations, expanding to \(2{,}109{,}524\) ordered rows.  This finite
+row catalog is the input to the quotient census.
+
+\section{Complete quotient classification}
+\label{sec:quotients}
+
+\begin{theorem}[Exact quotient census]
+\label{thm:quotient-census}
+The system \eqref{eq:quotient-system}, together with symmetry, parity, and
+the block bounds, has exactly
+\[
+\begin{array}{rcl}
+196{,}560{,}000&&\text{fully labeled solutions},\\
+625&&\text{classes under }T\sim PTP^T,\\
+314&&\text{classes under }T\sim\pm PTP^T.
+\end{array}
+\]
+Exactly three permutation classes are equivalent to their negatives.
+The automorphism-order distribution is
+\[
+\begin{array}{c|rrrrrr}
+|\Aut(T)|&1&2&3&4&6&24\\ \hline
+\#\text{ classes}&480&100&24&5&14&2.
+\end{array}
+\]
+Every quotient has rank \(4\) over \(\F_{37}\).  There are \(111\)
+diagonal multisets, none equal to \(0^9\).
+\end{theorem}
+
+\begin{proof}[Certified enumeration]
+The enumerator fills a symmetric matrix row by row from the complete
+ordered row catalog.  A new row agrees with the previously fixed upper
+triangle and has inner product \(-37\) with every earlier row.  The root
+row is sorted.  At later depths, unprocessed vertices with identical
+columns against earlier rows form interchangeable cells, and new entries
+inside each cell are required to be nondecreasing.  This is an orderly
+augmentation in the standard isomorph-free generation sense
+\cite{mckay}: every solution has a relabeling satisfying the imposed
+order.
+
+There are \(7016\) orderly terminal matrices.  Each terminal is checked
+directly against every entry of \eqref{eq:quotient-system}, canonicalized
+under all \(9!\) permutations, and assigned a stabilizer.  The labeled
+total is also reconstructed from the orbit-stabilizer identity
+\[
+ \sum_{[T]}\frac{9!}{|\Aut(T)|}=196{,}560{,}000.
+\]
+The packaged certificate
+\path{z37_quotient_census_canonical_625.txt} contains the \(625\)
+canonical upper triangles together with the audit summaries.  Its
+SHA-256 is
+\[
+\texttt{c5d8765da49deb39c2ff3407b9d0f265e3ca56c1015d5b0075355c53ca60fb5b}.
+\]
+
+For the rank assertion, \(T^2=0\bmod37\) makes \(\im T\) totally
+isotropic in dimension nine.  Hence \(\rank T\leq4\).  On
+\(\one^\perp\), the determinant has \(37\)-adic valuation \(4\).  The
+decomposition
+\[
+\F_{37}^9=\langle\one\rangle\oplus\one^\perp
+\]
+therefore gives \(\rank T\geq4\).
+\end{proof}
+
+An explicit feasible quotient is
+\[
+\left(
+\begin{array}{rrrrrrrrr}
+0&-11&-3&7&-3&7&-3&7&-1\\
+-11&-4&7&-1&7&-1&7&-1&-3\\
+-3&7&0&-11&-3&7&-3&7&-1\\
+7&-1&-11&-4&7&-1&7&-1&-3\\
+-3&7&-3&7&0&-11&-3&7&-1\\
+7&-1&7&-1&-11&-4&7&-1&-3\\
+-3&7&-3&7&-3&7&0&-11&-1\\
+7&-1&7&-1&7&-1&-11&-4&-3\\
+-1&-3&-1&-3&-1&-3&-1&-3&16
+\end{array}
+\right).
+\tag{3.1}\label{eq:certified-T}
+\]
+It is signed-permutation equivalent to a \(1+4+4\) normal form and is one
+of the two order-\(24\) permutation classes.  Those two classes are
+negatives, hence form the unique maximally symmetric sign-class.
+
+\begin{theorem}[Parity collapse]
+\label{thm:parity-types}
+Reducing \(B=(37J-I-T)/2\) modulo two maps the \(625\) integral quotient
+classes onto exactly three binary graph classes.  Their integral preimage
+counts are
+\[
+206,\quad213,\quad206,
+\]
+and their automorphism orders are
+\[
+24,\quad20,\quad24.
+\]
+The first and third are complements; the middle class is
+self-complementary up to permutation.  Thus two types remain after
+identifying complement.
+\end{theorem}
+
+The number of fully labeled binary quotients is consequently
+\[
+\frac{9!}{24}+\frac{9!}{20}+\frac{9!}{24}=48{,}384.
+\]
+One order-\(24\) representative consists of a \(K_4\), an independent
+set of order four, a ninth vertex joined to the independent set, and a
+matching between the two four-sets.  Its degree sequence is
+\(2^4,4^5\).  Its complement has degree sequence \(4^5,6^4\), while the
+order-\(20\) class has degree sequence \(2,2,4,4,4,4,4,6,6\).
+
+\section{The universal diagonal trace law}
+\label{sec:trace-law}
+
+For \(t\in\F_{37}^{\times}\), let \(g(t)\) be the number of the nine
+diagonal adjacency blocks containing displacement \(t\).
+
+\begin{theorem}[The \(6/3\) law]
+\label{thm:trace-law}
+After possibly interchanging quadratic residues and nonresidues, every
+semiregular \(C_{37}\) lift of every quotient in
+Theorem~\ref{thm:quotient-census} satisfies
+\[
+ g(t)=
+ \begin{cases}
+ 6,&t\in\QR,\\
+ 3,&t\in\NQR.
+ \end{cases}
+\tag{4.1}\label{eq:63-law}
+\]
+\end{theorem}
+
+\begin{proof}
+At a nontrivial character \(\zeta^a\), the Hermitian Fourier block
+\(D(\zeta^a)\) satisfies
+\[
+ D(\zeta^a)^2+D(\zeta^a)=83I_9.
+\]
+Its only eigenvalues are
+\[
+ r,s=\frac{-1\pm3\sqrt{37}}2.
+\]
+At frequency zero, \(B=D(1)\) has eigenvalue \(166\) on
+\(\langle\one\rangle\).  On \(\one^\perp\), equation
+\eqref{eq:quotient-system} gives the conjugate eigenvalues \(r,s\), each
+with multiplicity four.  The full
+\(\operatorname{srg}(333,166,82,83)\) spectrum has \(r\) and \(s\), each
+with multiplicity \(166\).
+
+Cyclotomic Galois conjugacy makes the multiplicity of \(r\) constant,
+say \(m\), on the \(18\) quadratic-residue frequencies and constant, say
+\(m'\), on the \(18\) nonresidue frequencies.  Counting the full
+\(r\)-eigenspace, including the four copies at frequency zero, gives
+\[
+ 4+18m+18m'=166,
+\]
+so \(m+m'=9\), or \(m'=9-m\).  Consequently the two nonzero-frequency
+traces are
+\[
+ \tau_{\QR}=-\frac92+\frac{3\sqrt{37}}2(2m-9),
+ \qquad
+ \tau_{\NQR}=-\frac92-\frac{3\sqrt{37}}2(2m-9),
+\]
+while \(\tau_0=\Tr B=162\).
+
+For \(t\neq0\), the quadratic Gaussian sums, with a fixed choice of
+\(\sqrt{37}\), are
+\[
+ \sum_{a\in\QR}\zeta^{-at}
+   =\frac{-1+\chi(t)\sqrt{37}}2,
+ \qquad
+ \sum_{a\in\NQR}\zeta^{-at}
+   =\frac{-1-\chi(t)\sqrt{37}}2.
+\]
+Fourier inversion of
+\(\Tr D(\zeta^a)=\sum_tg(t)\zeta^{at}\) now gives
+\[
+ g(t)=\frac1{37}
+ \left(
+ 162+\tau_{\QR}\sum_{a\in\QR}\zeta^{-at}
+     +\tau_{\NQR}\sum_{a\in\NQR}\zeta^{-at}
+ \right)
+ =\frac{9+3(2m-9)\chi(t)}2.
+\tag{4.2}\label{eq:g-formula}
+\]
+The pointwise bounds \(0\leq g(t)\leq9\) leave
+\(m\in\{3,4,5,6\}\), and therefore, up to orientation, incidence pairs
+\((0,9)\) or \((3,6)\).
+
+In the \((0,9)\) branch every diagonal block is one complete quadratic
+class and has degree \(18\).  Equation \eqref{eq:T-from-B} would then give
+\(T_{ii}=0\) for all \(i\), contradicting the exhaustive assertion in
+Theorem~\ref{thm:quotient-census}.  Hence only \((3,6)\) remains.
+\end{proof}
+
+\subsection{Ambient search sizes}
+
+There are \(1494\) raw block-membership bits: \(1332\) from the \(36\)
+unordered off-diagonal blocks and \(162\) inverse-pair bits from the nine
+diagonal blocks.  For one quotient \(T\), the fixed-margin count before
+\eqref{eq:63-law} is
+\[
+ \prod_i
+ \binom{18}{(36-T_{ii})/4}
+ \prod_{i<j}
+ \binom{37}{(37-T_{ij})/2}.
+\tag{4.3}\label{eq:margin-count}
+\]
+Across the \(625\) classes, the extremal base-two logarithms are
+\[
+1340.52392808143
+\quad\text{and}\quad
+1340.83193919044.
+\]
+
+After the \(6/3\) law and a nonresidue decimation fixing its orientation,
+the per-class logarithm lies between
+\[
+1297.60492221007667
+\quad\text{and}\quad
+1297.90621474626255.
+\]
+Summing one canonical space for each quotient gives
+\[
+\log_2(\text{\(625\)-class trace-law union})
+=1307.10873431446430.
+\tag{4.4}\label{eq:trace-union}
+\]
+These are exact combinatorial counts before the remaining Fourier
+equations, not estimates of conference graphs.
+
+\section{Exact finite-field relaxations}
+\label{sec:finite-field}
+
+\subsection{Characteristic two}
+
+Because \(2\) is primitive modulo \(37\),
+\[
+ \F_2[C_{37}]\cong \F_2\times K,
+ \qquad K=\F_{2^{36}}.
+\]
+Group inversion on \(K\) is
+\[
+ \bar a=a^{2^{18}},
+\]
+with fixed field \(L=\F_{q}\), \(q=2^{18}\).  On the nontrivial factor,
+\eqref{eq:group-ring-srg} reduces to
+\[
+ D^2+D=I.
+\tag{5.1}\label{eq:char2-D}
+\]
+For a primitive \(\omega\in\F_4\subseteq L\), one of the two shifts
+\[
+ E=D+\omega^2I
+\]
+is Hermitian and idempotent.  Hence \(E\) is the orthogonal projection
+onto a nondegenerate subspace of the unitary space \(K^9\).
+
+Recall
+\[
+ |U(n,q)|=q^{n(n-1)/2}
+ \prod_{i=1}^{n}\bigl(q^i-(-1)^i\bigr).
+\tag{5.2}\label{eq:unitary-order}
+\]
+The finite unitary order formula, Witt geometry, and the associated
+transitivity and isotropic-subspace counts used below are standard; see,
+for example, Taylor's treatment of finite classical groups
+\cite{taylor-classical-groups}.
+
+\begin{theorem}[Characteristic-two census]
+\label{thm:mod2-count}
+For a fixed parity quotient and a fixed \(6/3\) orientation, the
+nontrivial characteristic-two relaxation consists of exactly
+\[
+ N_4=
+ \frac{|U(9,q)|}{|U(4,q)|\,|U(5,q)|},
+ \qquad q=2^{18},
+\tag{5.3}\label{eq:N4}
+\]
+rank-four Hermitian projections.  This \(217\)-digit integer satisfies
+\[
+2^{719}<N_4<2^{720}.
+\tag{5.4}\label{eq:N4-bound}
+\]
+The opposite orientation has rank five and the same count.  Up to fiber
+permutation and complement, every integral lift in the complete quotient
+census injects into a union of at most two such sets; consequently
+\[
+2^{720}<2N_4<2^{721}.
+\tag{5.5}\label{eq:all-mod2-bound}
+\]
+\end{theorem}
+
+\begin{proof}
+Hermitian idempotents are in bijection with nondegenerate subspaces via
+their images.  The unitary group is transitive on nondegenerate
+\(r\)-spaces, with stabilizer \(U(r,q)\times U(9-r,q)\), giving
+\eqref{eq:N4}.  The trace law fixes \(r=4\) in one orientation and \(r=5\)
+in the other.  Fixing both the trivial CRT factor and the nontrivial field
+factor uniquely fixes each binary word of length \(37\), so every integral
+lift injects into this relaxation.  The parity collapse in
+Theorem~\ref{thm:parity-types} gives the factor two.
+\end{proof}
+
+The same calculation gives the characteristic-polynomial identity
+\[
+\det(\lambda I+D(x))
+=\lambda^9+C(x)(\lambda^8+\lambda^4+1)+\lambda^5+\lambda
+\pmod2,
+\tag{5.6}\label{eq:char2-characteristic}
+\]
+where \(C\) is the oriented quadratic-class indicator.  Equivalently,
+write
+\[
+\det(\lambda I+D)=\sum_{i=0}^{9}e_i(D)\lambda^{9-i},
+\qquad e_0(D)=1,
+\]
+so \(e_i(D)\in\F_2[C_{37}]\) is the \(i\)th elementary symmetric
+coefficient, and let \(\delta=x^0\) be the identity element of this group
+algebra.  Then
+\[
+e_1=e_5=e_9=C,\qquad
+e_4=e_8=\delta,\qquad
+e_2=e_3=e_6=e_7=0.
+\tag{5.7}\label{eq:char2-minors}
+\]
+
+\subsection{Characteristic three}
+
+Here
+\[
+ \F_3[C_{37}]
+ \cong
+ \F_3\times \F_{3^{18}}\times\F_{3^{18}},
+\]
+and inversion on either nontrivial factor is the unitary involution over
+\(\F_q\), \(q=3^9\).  If \(N=D-I\), the nontrivial equation becomes
+\[
+ N^2=0,\qquad N^*=N.
+\tag{5.8}\label{eq:char3-squarezero}
+\]
+Its image is totally isotropic, so \(\rank N\leq4\).
+
+Let \(I_{n,r}(q)\) denote the number of totally isotropic \(r\)-spaces in
+a nondegenerate \(n\)-dimensional Hermitian space:
+\[
+I_{n,r}(q)=
+\prod_{j=0}^{r-1}
+\frac{
+\bigl(q^{n-2j}-(-1)^{n-2j}\bigr)
+\bigl(q^{n-2j-1}-(-1)^{n-2j-1}\bigr)}
+{q^{2(j+1)}-1}.
+\tag{5.9}\label{eq:isotropic-count}
+\]
+Let
+\[
+H_r(q)=\frac{|GL(r,q^2)|}{|U(r,q)|}
+\tag{5.10}\label{eq:hermitian-form-count}
+\]
+be the number of nonsingular Hermitian forms on a fixed \(r\)-space.
+
+\begin{theorem}[Characteristic-three census]
+\label{thm:mod3-count}
+For one degree-\(18\) factor, the exact number of Hermitian square-zero
+matrices is
+\[
+ M_3=\sum_{r=0}^{4}I_{9,r}(3^9)H_r(3^9).
+\tag{5.11}\label{eq:M3}
+\]
+For a fixed trivial quotient, the two nontrivial factors are independent,
+so the relaxation contains \(M_3^2\) points, with
+\[
+2^{1141}<M_3^2<2^{1142}.
+\tag{5.12}\label{eq:M3-bound}
+\]
+\end{theorem}
+
+\begin{proof}
+A Hermitian square-zero map is determined by its totally isotropic image
+\(U\) and the nonsingular Hermitian form induced on \(U\) by the map from
+the quotient dual to \(U\).  This gives the factor
+\(I_{9,r}(q)H_r(q)\).  The CRT split gives the square.
+\end{proof}
+
+\begin{remark}
+Neither \eqref{eq:N4-bound} nor \eqref{eq:M3-bound} is an exact count of
+binary or integral conference graphs.  These are separate upper bounds
+from different modular relaxations and must not be multiplied as if they
+were independent filters.
+\end{remark}
+
+\section{Exact characteristic-two physical supports}
+\label{sec:char2-supports}
+
+The unitary projection census does not itself impose the prescribed
+integer Hamming weights of all \(45\) cyclic blocks.  Nevertheless both
+complement classes have an explicit exact-margin realization.
+
+\begin{theorem}[Two exact modular supports]
+\label{thm:char2-supports}
+For one integral quotient representing each of the two parity types up to
+complement, there exists a \(9\times9\) matrix of binary cyclic words
+satisfying:
+\begin{enumerate}[label=(\alph*)]
+\item the prescribed exact integer margin of every block;
+\item star symmetry and zero diagonal identity coefficients;
+\item the \(6/3\) law \eqref{eq:63-law};
+\item every one of the \(2997\) ordered group-ring coefficients of
+\[
+ D(x)^2+D(x)=I_9+U(x)J_9
+ \quad\text{over }\F_2.
+\tag{6.1}\label{eq:physical-mod2}
+\]
+\end{enumerate}
+Equivalently, the two expanded \(333\times333\) supports are loopless,
+have degree \(166\), and satisfy all \(110{,}889\) scalar equations.
+\end{theorem}
+
+The text-witness SHA-256 values are
+\[
+\begin{array}{c|l}
+\text{type 1}&
+\texttt{3f77fc3d39fc6b8dfd33efbba846e61ca835581d15f9ae4c12d8f57a3249e697}\\
+\text{type 2}&
+\texttt{2e5087308dceb18398daaba4b1ca5868d755cecb41ae7892f988ae8083c03c22}.
+\end{array}
+\tag{6.2}\label{eq:support-hashes}
+\]
+
+\subsection{Construction outline}
+
+The CRT is particularly explicit.  If \(d\in K\) is represented by a
+polynomial of degree below \(36\) and \(q_0\in\F_2\) is the augmentation,
+the unique binary cyclic word is
+\[
+ f=d+c\Phi_{37},\qquad c=q_0+d(1).
+\tag{6.3}\label{eq:char2-crt}
+\]
+A max-flow first prescribes a \(9\times18\) incidence table for diagonal
+inverse pairs, simultaneously enforcing all nine margins and column sums
+six on residues and three on nonresidues.
+
+Starting from a dense central projection, exact two-coordinate unitary
+rotations prescribe eight diagonal entries; the ninth is forced by trace.
+The off-diagonal margins are then imposed by diagonal unitary conjugation.
+The relevant unit circle has order
+\[
+2^{18}+1=262{,}145.
+\]
+For each edge, all phase differences are enumerated, and the remaining
+nine-vertex difference constraint is solved exactly.
+
+The following identity is the compatibility gate for off-diagonal norms.
+
+\begin{proposition}[Norm-support trace identity]
+\label{prop:norm-support}
+Let \(f\) be a binary word of length \(37\) and weight \(k\), evaluated at
+a nontrivial \(37\)th root \(\zeta\).  Then
+\[
+\Tr_{\F_{2^{18}}/\F_2}
+\bigl(f(\zeta)f(\zeta^{-1})\bigr)
+=\binom{k}{2}\pmod2.
+\tag{6.4}\label{eq:norm-support}
+\]
+\end{proposition}
+
+\begin{proof}
+Expand the norm into parity autocorrelations.  The \(18\) inverse-pair
+terms have absolute trace one because \(2\) is primitive modulo \(37\).
+Their sum counts each unordered pair of support positions once.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:char2-supports} concerns one integral representative of
+each parity type.  It does not assert exact-margin realizability for all
+\(625\) integral quotients.
+\end{remark}
+
+\section{The characteristic-\texorpdfstring{\(37\)}{37} moment filtration}
+\label{sec:char37}
+
+Work in
+\[
+ R=\F_{37}[y]/(y^{37}),\qquad x=1+y.
+\]
+Since \(U(x)=y^{36}\) and \(18^2+18=9\bmod37\), set
+\[
+ N(y)=D(1+y)-18I_9.
+\]
+Equation \eqref{eq:group-ring-srg} becomes
+\[
+ N(y)^2=9y^{36}J_9.
+\tag{7.1}\label{eq:yadic-equation}
+\]
+Its constant term is
+\[
+ N_0=B-18I_9=-\frac{T}{2}\pmod{37},
+\tag{7.2}\label{eq:N0}
+\]
+a symmetric rank-four square-zero matrix annihilating \(\one\).
+
+\subsection{The first moment}
+
+Star symmetry makes the first coefficient \(N_1\) skew-symmetric.  The
+coefficient of \(y\) in \eqref{eq:yadic-equation} is
+\[
+ N_0N_1+N_1N_0=0.
+\tag{7.3}\label{eq:first-moment-system}
+\]
+
+\begin{theorem}[Rank-\(16\) first-moment law]
+\label{thm:first-moment}
+For every quotient in Theorem~\ref{thm:quotient-census}, the linear system
+\eqref{eq:first-moment-system} on the \(36\) skew coordinates has rank
+\(16\), leaving a \(20\)-dimensional kernel.
+
+For every fixed nontrivial block size, translation acts transitively on
+the possible first moments of a subset of \(\F_{37}\).  Hence the
+\(16\) equations divide every fixed-margin ambient count by exactly
+\[
+37^{16}.
+\tag{7.4}\label{eq:37^16}
+\]
+The \(625\)-class trace-law union therefore has logarithm
+\[
+1307.10873431446430-16\log_2(37)
+=1223.75748046440094.
+\tag{7.5}\label{eq:first-moment-union}
+\]
+\end{theorem}
+
+The first three nonconstant binomial moments can be realized
+simultaneously with the quotient margins, star symmetry, and the trace
+law for the certified quotient \eqref{eq:certified-T}.  The corresponding
+physical support satisfies \eqref{eq:yadic-equation} through degree three.
+Its first failure is degree four, with \(79\) of the \(81\) matrix entries
+nonzero.  Thus several low layers are feasible but are not evidence of
+convergence to a graph.
+
+\subsection{A full formal completion}
+
+The correct coordinate for the involution is
+\[
+ z=\log(1+y),
+\]
+because cyclic reversal sends \(z\) to \(-z\).  In the truncated ring,
+\[
+ z^{36}=y^{36}
+\quad\text{and}\quad
+ z^{18}=6\sum_{t\neq0}\chi(t)x^t,
+\tag{7.6}\label{eq:z18-paley}
+\]
+where \(\chi\) is the quadratic character of \(\F_{37}\).
+
+\begin{theorem}[Formal integrability for the certified quotient]
+\label{thm:formal-completion}
+Let \(N_0\) be \eqref{eq:N0} for the certified quotient
+\eqref{eq:certified-T}.  Every admissible first moment
+\[
+ X^T=-X,\qquad N_0X+XN_0=0
+\]
+has the form
+\[
+ X=[N_0,A]
+\]
+for some symmetric \(A\in M_9(\F_{37})\).  For either
+\(\eta\in\{1,-1\}\),
+\[
+ N_A(y)=
+ \e^{-zA}
+ \left(
+ N_0+\eta z^{18}J_9+19y^{36}J_9
+ \right)
+ \e^{zA}
+\tag{7.7}\label{eq:formal-family}
+\]
+has star symmetry and satisfies the full equation
+\[
+ N_A(y)^2=9y^{36}J_9.
+\]
+\end{theorem}
+
+\begin{proof}
+Exact elimination gives rank \(20\) for the map
+\[
+\operatorname{Sym}_9(\F_{37})\longrightarrow
+\operatorname{Skew}_9(\F_{37}),
+\qquad A\longmapsto[N_0,A],
+\]
+equal to the dimension of the admissible first-moment kernel.
+Furthermore,
+\[
+N_0^2=0,\qquad N_0J=JN_0=0,\qquad J^2=9J.
+\]
+The term \(19y^{36}J\) lies in the terminal socle: it changes the trace
+but neither the square nor lower coefficients.  Since
+\((\eta z^{18}J)^2=z^{36}J^2=9y^{36}J\), the middle matrix in
+\eqref{eq:formal-family} has the required square.  Conjugation preserves
+the square and star symmetry.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:formal-completion} is not a classification of all formal
+solutions.  More importantly, the coefficients of
+\eqref{eq:formal-family} need not be realizable simultaneously by binary
+cyclic blocks with the required margins.  The theorem identifies physical
+support realizability, rather than formal matrix algebra, as the remaining
+obstruction in this chart.
+\end{remark}
+
+\section{Constant-generator obstructions through rank three}
+\label{sec:constant-rank}
+
+For each diagonal block, let \(r_i(t)\) denote the coefficient after
+removing the common terminal \(19y^{36}J\) contribution from
+\eqref{eq:formal-family}.  Since \(y^{36}=U=\sum_t x^t\) and
+\(D=N+18I\), restoring the physical adjacency coefficient gives
+\[
+ D_{ii}(0)=r_i(0),\qquad
+ D_{ii}(t)=r_i(t)+19\pmod{37}\quad(t\neq0).
+\]
+Thus the reduced target \(\{18,19\}\) below is equivalent to the restored
+adjacency target \(\{0,1\}\).  A generic reduced cyclic word \(r\) must
+satisfy
+\[
+r(0)=0,\qquad r(t)\in\{18,19\}\quad(t\neq0).
+\tag{8.1}\label{eq:binary-diagonal-target}
+\]
+Its number of nonzero-lag \(19\)'s is the diagonal block degree.
+
+\begin{theorem}[Constant low-rank obstruction]
+\label{thm:constant-low-rank}
+Within the family \eqref{eq:formal-family}:
+\begin{enumerate}[label=(\alph*)]
+\item no diagonal constant generator \(A\) is physical;
+\item no nonzero symmetric rank-one constant generator is physical;
+\item no symmetric rank-two constant generator is physical for any of the
+\(625\) quotient classes;
+\item no symmetric rank-three constant generator is physical for any of
+the \(625\) quotient classes.
+\end{enumerate}
+Thus a viable single constant generator in this family must have rank at
+least four.
+\end{theorem}
+
+\subsection{Ranks zero, one, and two}
+
+For diagonal \(A\), every restored nonzero-lag coefficient of \(D\) is
+\(13\) or \(25\), rather than \(0\) or \(1\); these are not the reduced
+\(\{18,19\}\) values in \eqref{eq:binary-diagonal-target}.
+
+Rank one separates into nonisotropic and isotropic cases.  In the
+nonisotropic case, six explicitly occurring quadratic-character patterns
+force the normalized local parameters to satisfy \(b_i=0\) and
+\(a_i\in\{3,-3\}\), while the rank-one parametrization gives
+\(b_i=0\Rightarrow a_i=1\).  This contradiction is independent of the
+quotient.
+
+In the isotropic case write \(A=\lambda uu^T\) with \(u^Tu=0\), so
+\(A^2=0\).  After the terminal \(19y^{36}J\) term has been removed, every
+zero-lag diagonal correction is a multiple of \(z^k\) with
+\(1\leq k\leq35\).  Exact conversion from the \(z\)-basis to the cyclic
+\(x\)-basis gives
+\[
+ [x^0]z^k=0\qquad(1\leq k\leq35).
+\]
+Consequently the reduced zero-lag coefficient is fixed, for every
+quotient and every coordinate, at
+\[
+ r_i(0)=N_{0,ii}=B_{ii}-18=-\frac{T_{ii}}2\pmod{37}.
+\]
+Physicality would require \(r_i(0)=0\) for all \(i\), hence
+\(T_{ii}=0\) for all \(i\).  The \(625\)-class canonical census contains
+no quotient with all-zero diagonal, so no isotropic rank-one generator is
+physical for any quotient.
+
+For rank two, split semisimple types are eliminated by an exhaustive local
+character test over all \(35\) projective eigenvalue ratios and all
+\(37^2\) projector-coordinate triples.  The remaining rational types are:
+\[
+\begin{array}{ll}
+\text{(i)}&\text{an irreducible quadratic block},\\
+\text{(ii)}&\text{a nonzero \(J_2\) block},\\
+\text{(iii)}&\text{a nonzero eigenline plus \(J_2(0)\)},\\
+\text{(iv)}&J_3(0),\\
+\text{(v)}&J_2(0)\oplus J_2(0).
+\end{array}
+\]
+A similarity-invariant temporal overcode gives only the two Paley
+weight-\(18\) words in cases (i), (iv), and (v).  Cases (ii) and (iii)
+initially allow weights \(16,\ldots,20\), leaving one quotient sign-class
+with diagonal Seidel profile
+\[
+(-4,-4,0,0,0,0,0,4,4).
+\]
+Restoring the fixed coefficient of \(z^{18}J\) reduces the final diagonal
+condition to two affine cosets of a seven-dimensional cyclic code.  The
+two genuine orientations \(\eta=\pm1\) have empty binary intersection,
+closing the exception.
+
+\subsection{Rank three}
+
+The rank-three audit uses a safe over-list of all projective rational
+similarity types, including types not realizable by symmetric matrices:
+\[
+\begin{array}{l|r}
+\text{primary shape}&\text{projective types}\\ \hline
+\text{invertible dimension three, cyclic}&1371\\
+\text{invertible dimension three, noncyclic}&37\\
+J_2(0)\text{ plus invertible dimension two}&39\\
+\text{zero-primary rank two plus a nonzero line}&2\\
+\text{pure nilpotent rank three}&3\\ \hline
+\text{total}&1452.
+\end{array}
+\tag{8.2}\label{eq:rank3-types}
+\]
+For a minimal polynomial of degree \(m\leq4\), write
+\[
+\e^{\pm zA}=\sum_{r=0}^{m-1}f_r^\pm(z)A^r.
+\]
+Symmetry gives
+\[
+\diag(A^rMA^s)=\diag(A^sMA^r)
+\]
+for symmetric \(A,M\).  This yields a reduced temporal code
+\[
+W_A=F_A+z^{18}F_A
+\]
+spanned by the symmetrized products of the \(f_r^\pm\).  Its intersection
+with \eqref{eq:binary-diagonal-target} contains at most \(256\) words for
+any type.  Quotient diagonal profiles remove \(492\) types.  For each of
+the remaining \(960\), the audit restores the fixed \(J\) coefficient and
+exhausts both trace orientations and at most \(37^3=50{,}653\) relaxed
+local power tuples.  No binary word remains.  Every relaxation enlarges
+the candidate set, so emptiness proves the stated obstruction.
+
+\begin{remark}
+Theorem~\ref{thm:constant-low-rank} does not exclude rank at least four,
+a genuinely nonconstant conjugator, a different formal parametrization,
+or the unrestricted \(45\)-block lift.
+\end{remark}
+
+\section{The first nonconstant conjugator layer}
+\label{sec:first-nonconstant}
+
+For a matrix polynomial \(M\), put
+\[
+M^\dagger=M(-z)^T.
+\]
+A near-identity conjugator \(G\) preserves star symmetry precisely when
+\(G^\dagger=G^{-1}\).  Since logarithm and exponential are inverse on the
+nilpotent ideal, write \(G=\e^K\) with \(K^\dagger=-K\).  Thus
+\[
+K=zA_0+z^2A_1+z^3A_2+\cdots,
+\qquad A_r^T=(-1)^rA_r.
+\tag{9.1}\label{eq:adjoint-parity}
+\]
+The first extension beyond a constant generator is
+\[
+K=zA_0+z^2A_1,
+\qquad A_0^T=A_0,\quad A_1^T=-A_1.
+\tag{9.2}\label{eq:first-nonconstant-K}
+\]
+
+\begin{proposition}[\(20+20\) normal form]
+\label{prop:20plus20}
+Through degree two, gauge reduction of
+\eqref{eq:first-nonconstant-K} leaves \(20\) essential parameters in
+\(A_0\) and \(20\) in \(A_1\).
+\end{proposition}
+
+\begin{proof}
+Expanding
+\[
+\e^{-K}N_0\e^K=N_0+zX+z^2Y+O(z^3)
+\]
+gives
+\[
+X=[N_0,A_0],\qquad
+Y=[N_0,A_1]+\frac12[[N_0,A_0],A_0].
+\]
+The exact commutator ranks are
+\[
+\begin{array}{rcl}
+\operatorname{Sym}_9&\xrightarrow{[N_0,-]}&
+\operatorname{Skew}_9:
+\quad\rank=20,\quad\dim\ker=25,\\
+\operatorname{Skew}_9&\xrightarrow{[N_0,-]}&
+\operatorname{Sym}_9:
+\quad\rank=20,\quad\dim\ker=16.
+\end{array}
+\]
+The homogeneous second tangent has dimension \(21\); its trace-zero
+subspace is exactly the second commutator image.  Centralizer-valued
+left multiplication removes the two kernels, leaving the claimed slice.
+\end{proof}
+
+\begin{theorem}[Rank-two closures at the first nonconstant layer]
+\label{thm:first-nonconstant-exclusions}
+Across all \(625\) quotient classes, neither of the following families can
+produce binary diagonal blocks:
+\begin{enumerate}[label=(\alph*)]
+\item the pure first-higher rank-two family \(K=z^2B\), with
+\(B^T=-B\) and \(\rank B=2\);
+\item the complete family in which \(A_0\) and \(A_1\) in
+\eqref{eq:first-nonconstant-K} are supported on one common nondegenerate
+two-plane and \(A_1\neq0\).
+\end{enumerate}
+\end{theorem}
+
+\subsection{Pure first-higher rank two}
+
+Write \(B=uv^T-vu^T\).  Then
+\[
+B^3=-\Delta B,\qquad
+\Delta=(u^Tu)(v^Tv)-(u^Tv)^2,
+\]
+so there are four projective rational types: split semisimple,
+irreducible trace-zero semisimple, \(J_3(0)\), and
+\(J_2(0)\oplus J_2(0)\).  In every type, the exact diagonal temporal
+overcode meets the binary target only in the two Paley words, both of
+weight \(18\).  Theorem~\ref{thm:quotient-census} excludes an all-degree-18
+quotient.
+
+\subsection{The common nondegenerate two-plane pencil}
+
+On the active plane, write
+\[
+A_0=tI+S,\qquad A_1=B,
+\]
+where \(S^T=S\), \(\Tr S=0\), and \(B^T=-B\neq0\).  Then
+\[
+S^2=\alpha I,\qquad B^2=\beta I,\qquad SB+BS=0,
+\quad\beta\neq0.
+\tag{9.3}\label{eq:two-plane-relations}
+\]
+The traceless exponent closes because
+\[
+(zS+z^2B)^2=(\alpha z^2+\beta z^4)I.
+\tag{9.4}\label{eq:two-plane-square}
+\]
+After decimation there are \(76\) orbits with \(t=0\) and \(1332\)
+normalized parameter types with \(t\neq0\).  A symmetry-restored temporal
+overcode leaves only two exceptional nonzero-\(t\) types:
+\[
+(\alpha,\beta)=(5,32),\quad
+(\alpha,\beta)=(19,20),
+\]
+with allowed weight sets
+\[
+\{14,18,18,22\},
+\qquad
+\{12,18,18,24\},
+\]
+respectively.  Only the second meets any quotient profile, leaving four
+quotient classes and \(40\) trace-compatible overcode assignments.
+
+For \((t,\alpha,\beta)=(1,19,20)\), the ordinary function space \(F\)
+and \(z^{18}F\) are disjoint seven-dimensional spaces.  Restoring the
+fixed \(J=\one\one^T\) coefficient forces, at each coordinate, a
+ten-component vector determined by three scalars
+\((p,s,b)\in\F_{37}^3\).  Exhausting all \(37^3\) relaxed triples for
+both \(\eta=\pm1\) gives zero survivors for every exceptional word.  This
+closes the entire named pencil.
+
+\begin{remark}
+Degenerate common support with nonzero \(A_0\), support that changes with
+degree, and nonconstant coefficients of rank at least three remain open.
+\end{remark}
+
+\section{The next \texorpdfstring{\(2\)}{2}-adic digit and small-switch gates}
+\label{sec:switches}
+
+Throughout this section \(D\) denotes the expanded \(333\times333\)
+binary adjacency matrix represented earlier by \(D(x)\).  Put
+\[
+ J=J_{333},\qquad I=I_{333},\qquad S=J-I-2D.
+\]
+Define the expanded carry
+\[
+R(D)=
+\frac{D^2+D-83(I+J)}{2}\pmod2.
+\tag{10.1}\label{eq:carry}
+\]
+Vanishing of \(R(D)\) is exactly the adjacency equation modulo four.
+Since
+\[
+S^2-(333I-J)
+=4\bigl(D^2+D-83(I+J)\bigr),
+\]
+this is equivalently the conference-core equation modulo \(16\).
+
+The two initial supports from Theorem~\ref{thm:char2-supports} have,
+among the \(1503\) independent star-symmetric orbit coefficients of this
+expanded carry,
+\[
+\begin{array}{c|cc}
+&\text{nonzero carries}&\text{zero carries}\\ \hline
+\text{type 1}&722&781\\
+\text{type 2}&764&739.
+\end{array}
+\tag{10.2}\label{eq:initial-carries}
+\]
+A deterministic \(200{,}000\)-move walk within one exact-margin type-1
+phase fiber improves \(722\) to \(672\), consisting of \(72\) diagonal
+and \(600\) off-diagonal defects.  This is an attained upper bound, not a
+minimum.
+
+\begin{theorem}[Exact small-switch gates]
+\label{thm:switch-gates}
+For each of the two original frozen supports:
+\begin{enumerate}[label=(\alph*)]
+\item no ordinary four-cycle toggle preserves the complete
+characteristic-two equation;
+\item among the \(49{,}284\) tested smallest semiregular Hermitian
+transvections, none preserves all exact block margins.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For a four-cycle toggle,
+\[
+\Delta=uv^T+vu^T
+\]
+with disjoint weight-two vectors \(u,v\), and \(\Delta^2=0\).
+The toggled matrix preserves \(D^2+D=I+J\) if and only if
+\(\langle u,v\rangle\) is \(D\)-invariant.  Exhausting all
+\(\binom{333}{2}=55{,}278\) pair-vectors gives minimum
+\(\wt(Du)=136\) and \(138\), respectively, and no invariant plane.
+
+For the second family, work in
+\(K=\F_2[x]/(\Phi_{37}(x))\) with \(\bar x=x^{-1}\), and take
+\[
+u=e_a+x^se_b,\qquad a<b,\quad s\in\F_{37},
+\]
+so \(u^*u=0\).  The audited scalar family is explicitly
+\[
+\mathcal C_{\mathrm{small}}
+=\{1\}\cup
+\{x^t+x^{-t}:1\leq t\leq18\}\cup
+\{1+x^t+x^{-t}:1\leq t\leq18\}.
+\]
+Every \(c\in\mathcal C_{\mathrm{small}}\) satisfies \(c=\bar c\), and
+\[
+ U_c=I_9+c\,uu^*
+\]
+is unitary.  The audit exhausts the
+\(36\cdot37=1332\) binomial isotropic directions and all \(37\) displayed
+scalars, hence \(49{,}284\) exact unitary conjugations per support.  All
+remain loopless, and
+\(1492\) or \(1604\) retain the trace law, but none retains every block
+margin.
+\end{proof}
+
+These are exclusions of two finite named families, not of all support
+switches.  A complete fixed-quotient CP-SAT model for the modulo-four
+problem has \(1494\) physical bits, \(418{,}293\) reused Boolean products,
+and \(1503\) independent cyclic congruences.  Bounded runs returned
+\texttt{UNKNOWN}, including at the lower layer where a witness is known.
+Those solver outcomes are diagnostics of the formulation, not
+mathematical evidence.
+
+\section{Reproducibility}
+\label{sec:reproducibility}
+
+The mathematical source artifacts referenced below are contained in the
+repository directory
+\begin{center}
+\path{hadamard_668_search/conference_334_z37_lift/}.
+\end{center}
+This paper package also includes the canonical census dump, its digest
+sidecar, and a dependency-free structural checker.  The calculations use
+exact integer or finite-field arithmetic.  No floating-point comparison,
+stochastic nonexistence inference, or timeout is used in a theorem.
+
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.27\textwidth}
+                  >{\raggedright\arraybackslash}p{0.66\textwidth}}
+\toprule
+Claim & Primary replay or certificate\\
+\midrule
+\endhead
+Quotient census and \(625\)-class dump&
+\path{QUOTIENT_CENSUS.md} and \path{census_z37_quotients.cpp};
+separate parity audit
+\path{audit_z37_quotient_parity.cpp}; all-quotient ambient replay
+\path{audit_z37_all_quotient_ambient.py}; packaged
+\path{z37_quotient_census_canonical_625.txt},
+\path{z37_quotient_census_canonical_625.sha256}, and
+\path{verify_package.py}.\\[0.5mm]
+Trace law, finite-field counts, first moment, and formal completion&
+\path{README.md}, \path{verify_z37_lift_frontier.py}, and
+\path{Z37_LIFT_FRONTIER_CERTIFICATE.json}.\\[0.5mm]
+Constant rank two&
+\path{RANK_TWO_CONJUGATION_OBSTRUCTION.md},
+\path{RANK_TWO_JORDAN_OBSTRUCTION.md}, and the corresponding two
+verification scripts.\\[0.5mm]
+Constant rank three&
+\path{rank_three_constant/README.md},
+\path{rank_three_constant/audit_rank_three_constant.py}, and
+\path{rank_three_constant/RANK_THREE_CONSTANT_CERTIFICATE.json}.\\[0.5mm]
+Two physical characteristic-two supports&
+\path{char2_support_realization/README.md},
+\path{char2_support_realization/verify_all_char2_support.py},
+\path{char2_support_realization/TYPE1_SUPPORT_WITNESS.json}, and
+\path{char2_support_realization/TYPE2_SUPPORT_WITNESS.json}.\\[0.5mm]
+First nonconstant normal form and closures&
+\path{first_nonconstant_conjugator/FIRST_NONCONSTANT_CONJUGATOR.md},
+\path{first_nonconstant_conjugator/verify_first_nonconstant_gauge.py},
+\path{first_nonconstant_conjugator/verify_exceptional_plane_fixed_j.py},
+and \path{first_nonconstant_conjugator/FIRST_NONCONSTANT_CERTIFICATE.json}.\\[0.5mm]
+Four-cycle and transvection gates&
+\path{char2_carry_switches/README.md},
+\path{char2_carry_switches/audit_four_cycle_and_carry_invariants.py},
+and \path{char2_carry_switches/audit_sparse_unitary_transvections.py}.\\[0.5mm]
+Next \(2\)-adic digit&
+\path{mod4_support_lift/README.md},
+\path{mod4_support_lift/audit_char2_witness_mod4.py}, and
+\path{mod4_support_lift/audit_mod4_carry_chart.cpp}.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection{Minimal replay}
+
+The package-level certificate check uses only the Python standard library
+and is independent of the caller's working directory:
+\begin{lstlisting}
+python3 hadamard_668_search/papers/semiregular_c37_conference/verify_package.py
+\end{lstlisting}
+
+From the repository root:
+\begin{lstlisting}
+python3 hadamard_668_search/conference_334_z37_lift/verify_z37_lift_frontier.py
+python3 hadamard_668_search/conference_334_z37_lift/verify_rank_two_conjugation_obstruction.py
+python3 hadamard_668_search/conference_334_z37_lift/verify_rank_two_jordan_obstruction.py
+python3 hadamard_668_search/conference_334_z37_lift/char2_support_realization/verify_all_char2_support.py
+python3 hadamard_668_search/conference_334_z37_lift/first_nonconstant_conjugator/verify_first_nonconstant_gauge.py
+python3 hadamard_668_search/conference_334_z37_lift/first_nonconstant_conjugator/verify_exceptional_plane_fixed_j.py
+\end{lstlisting}
+
+The exhaustive quotient replay is:
+\begin{lstlisting}
+clang++ -O3 -std=c++20 \
+  hadamard_668_search/conference_334_z37_lift/census_z37_quotients.cpp \
+  -o /tmp/census_z37_quotients
+
+/tmp/census_z37_quotients --dump-canonical \
+  > /tmp/z37_625_canonical_final.txt
+\end{lstlisting}
+Its output must match the packaged dump with SHA-256
+\begin{center}
+\small
+\texttt{c5d8765da49deb39c2ff3407b9d0f265e3ca56c1015d5b0075355c53ca60fb5b}.
+\end{center}
+
+The enumerator takes roughly \(45\) seconds and \(60\) MB on an Apple M1
+Pro.  The constant-rank-three fixed-\(J\) replay is the longest promoted
+single audit, taking about \(5.5\) minutes and \(61\) MB on the same
+machine.
+
+The immutable archival location for this package is
+\begin{center}
+\small
+\url{https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0}.
+\end{center}
+\section{Conclusion and open boundary}
+\label{sec:conclusion}
+
+The semiregular \(C_{37}\) lane survives all quotient-level necessary
+conditions and survives characteristic two even after exact margins and
+the full \(6/3\) diagonal law are imposed.  This is simultaneously
+positive and cautionary.  It produces a sharply defined modular frontier,
+but it also shows that characteristic two is not an obstruction.
+
+The stated bounded quotient system has \(625\) permutation classes, two
+parity types up to complement, and no zero-diagonal class.  The finite-field
+relaxations and the characteristic-\(37\) formal completion explain large
+parts of the algebra.  Constant generators through rank three and two
+natural first-nonconstant rank-two families cannot realize the binary
+diagonal alphabet.  Small local switching also fails on the two frozen
+modular supports.
+
+What remains is not a flat search.  The best retained support still has
+\(672/1503\) nonzero next-digit carries, and the normalized
+characteristic-two relaxation alone is larger than \(2^{720}\).
+Any successful continuation needs a global mechanism that couples
+physical margins with higher \(2\)-adic carries, or a new obstruction that
+acts on the two unitary parity types.
+
+We emphasize the exact endpoint:
+\begin{center}
+\fbox{\parbox{0.84\textwidth}{\centering
+No conference graph or \(H(668)\) is constructed.  Neither the
+semiregular \(C_{37}\) lane nor unrestricted existence is excluded.}}
+\end{center}
+
+\section*{Computational and AI assistance}
+
+The derivations, programs, certificates, literature audit, and manuscript
+were developed with heavy assistance from ChatGPT 5.6 Sol under Alec
+Kriebel's direction.  Alec Kriebel is the named human author and describes
+himself as a non-specialist who cannot independently certify every
+derivation or implementation.  All promoted claims are tied to explicit
+local artifacts and exact replay programs listed in
+Section~\ref{sec:reproducibility}.  Those artifacts strengthen
+auditability; they do not replace expert review, establish priority, or
+constitute a proof-assistant formalization.  No external communication was
+made in preparing this draft.
+
+{\footnotesize
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0.25em}
+
+\bibitem{behbahani-lam}
+M.~Behbahani and C.~Lam,
+\newblock Strongly regular graphs with non-trivial automorphisms,
+\newblock \emph{Discrete Mathematics} \textbf{311} (2011), 132--144.
+\newblock \url{https://doi.org/10.1016/j.disc.2010.10.005}.
+
+\bibitem{brouwer-srg}
+A.~E.~Brouwer,
+\newblock Parameters of strongly regular graphs, \(v=301,\ldots,350\),
+\newblock online table, accessed 25 July 2026.
+\newblock \url{https://aeb.win.tue.nl/graphs/srg/srgtab301-350.html}.
+
+\bibitem{cati-pasechnik}
+M.~Cati and D.~V.~Pasechnik,
+\newblock A database of constructions of Hadamard matrices,
+\newblock arXiv:2411.18897, 2024; revised 2025.
+\newblock \url{https://arxiv.org/abs/2411.18897}.
+
+\bibitem{epoch-hadamard}
+Epoch AI,
+\newblock Hadamard matrix existence,
+\newblock FrontierMath open-problem record, accessed 25 July 2026.
+\newblock \url{https://epoch.ai/frontiermath/open-problems/hadamard}.
+
+\bibitem{goethals-seidel}
+J.~M.~Goethals and J.~J.~Seidel,
+\newblock Orthogonal matrices with zero diagonal,
+\newblock \emph{Canadian Journal of Mathematics} \textbf{19} (1967),
+1001--1010.
+\newblock \url{https://doi.org/10.4153/CJM-1967-091-8}.
+
+\bibitem{martinez}
+L.~Mart\'inez,
+\newblock Strongly regular \(m\)-Cayley circulant graphs and digraphs,
+\newblock \emph{Ars Mathematica Contemporanea} \textbf{8} (2015),
+195--213.
+\newblock
+\url{https://www.dlib.si/details/URN:NBN:SI:doc-TCR0ZT1K?language=eng}.
+
+\bibitem{mathon}
+R.~Mathon,
+\newblock Symmetric conference matrices of order \(pq^2+1\),
+\newblock \emph{Canadian Journal of Mathematics} \textbf{30} (1978),
+321--331.
+\newblock \url{https://doi.org/10.4153/CJM-1978-029-1}.
+
+\bibitem{mckay}
+B.~D.~McKay,
+\newblock Isomorph-free exhaustive generation,
+\newblock \emph{Journal of Algorithms} \textbf{26} (1998), 306--324.
+\newblock \url{https://doi.org/10.1006/jagm.1997.0898}.
+
+\bibitem{ramos-hulak-queiroz}
+A.~F.~Ramos, D.~B.~Hulak, and R.~J.~G.~B.~de~Queiroz,
+\newblock Multiplier obstructions for Legendre pairs of length \(333\),
+\newblock arXiv:2607.20765, submitted 22 July 2026.
+\newblock \url{https://arxiv.org/abs/2607.20765}.
+
+\bibitem{taylor-classical-groups}
+D.~E.~Taylor,
+\newblock \emph{The Geometry of the Classical Groups},
+\newblock Sigma Series in Pure Mathematics, vol.~9, Heldermann Verlag,
+Berlin, 1992.
+\newblock \url{https://www.maths.usyd.edu.au/u/don/papers/gcg.pdf}.
+
+\end{thebibliography}
+}
+
+\end{document}

@@ -24,14 +24,19 @@ This removes all `2^39` endpoint orientations from the first exact test.  The
 instances, because the 18 short pairs occur in nine identical mirrored
 pairs.
 
-An exact SAT census of those 30 binary instances is in progress.  At present,
-the long `q` instance with representative 0 is **certified UNSAT** even
-without either root profile.  A standalone CaDiCaL run emitted a binary DRAT
-proof that passed independent `drat-trim` replay.  Long representative 2 was
-also solver-reported UNSAT, but currently has only one run and no checked
-proof, so it remains an observation rather than a theorem.  The other 28
-instances are UNKNOWN.  This closes one of the 30 anti-fold support
-instances; no general distance-42 theorem is claimed.
+The completed certificate status is now:
+
+- the long `q` instance with representative 0 is **certified UNSAT** even
+  without either root profile; a standalone CaDiCaL run emitted a binary
+  DRAT proof that passed independent `drat-trim` replay;
+- all nine canonical short instances `S02,S04,...,S18` are excluded by a
+  complete exact-integer census; and
+- the other twenty long instances remain open.
+
+Long representative 2 was solver-reported UNSAT in one historical run but
+has no checked proof, so it remains an observation rather than a theorem.
+Thus ten of the thirty anti-fold support instances are closed.  No theorem
+excluding all distance-41 repairs is claimed.
 
 The dependency-free checker `verify_eliahou_antifold42.py` verifies the
 mathematical reduction.  The separate exploratory encoder
@@ -245,12 +250,19 @@ layer is derived from the exact integer equations, its addition preserves
 every support solution.  The verified UNSAT result therefore excludes the
 entire index-0 support instance, not merely one root profile.
 
-The next canonical instance, long `q` index 2, was solver-reported UNSAT in
+All nine canonical short instances have since been exhaustively excluded.
+Their complete production certificate records
+`3,710,853,316,608` modular join rows, `88,927,740` exact integer and
+physical survivor replays, and zero exact supports; see
+`eliahou_short_block_census/NINE_CASE_COMPLETION_CERTIFICATE.json`.
+
+The next canonical long instance, `q` index 2, was solver-reported UNSAT in
 1218.051 seconds (33,553 variables and 104,689 clauses).  This is a single
-unproved observation.  Interrupted longer runs on other instances yield no
-mathematical information and are recorded as UNKNOWN.  The machine-readable
-status file `ELIAHOU_ANTIFOLD42_CENSUS.json` gives exact formula hashes and
-resumption commands.
+unproved observation.  Interrupted runs on other long instances yield no
+mathematical information.  The historical
+`ELIAHOU_ANTIFOLD42_CENSUS.json` ledger preserves formula hashes and
+resumption commands, but its old short-case UNKNOWN statuses are superseded
+by the exact nine-case certificate.
 
 ## Reproduction
 

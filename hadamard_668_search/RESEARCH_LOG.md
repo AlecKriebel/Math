@@ -2675,3 +2675,27 @@ proof-assistant-level theorem.
   base sequence, or conference graph was found.  The exact mathematics is
   being frozen into three scoped papers and a public reproducibility page.
   Resume only under the triggers in `H668_PAUSE_DECISION_2026_07_25.md`.
+
+## 25 July 2026: paper and reproducibility audit
+
+- Completed three standalone provisional manuscripts: Eliahou repair
+  obstructions, the fixed-compression `LP(333)` chart, and semiregular
+  `C37` conference lifts.
+- Independent red-team review found no fatal mathematical contradiction but
+  required several publication corrections.  The final papers now label
+  computer-assisted theorems, narrow their scopes, give immutable
+  claim-to-artifact links, include PDF metadata, and state that no
+  `H(668)` has been found or excluded.
+- Closed the two largest reproducibility gaps.  The Eliahou release archive
+  contains all 2,304 retained production ranges.  The dense-shell archive
+  contains all 729 production shards plus the manifest, aggregate,
+  enumerator, and detached replay code; a fresh extraction reproduces the
+  aggregate SHA-256 byte-for-byte.
+- Added the canonical 625-class semiregular quotient dump and a
+  dependency-free verifier.  Its digest is
+  `c5d8765da49deb39c2ff3407b9d0f265e3ca56c1015d5b0075355c53ca60fb5b`.
+- Recompiled all three PDFs without TeX warnings, rendered all 52 pages,
+  and visually inspected every page for clipping, overlap, broken glyphs,
+  tables, and URLs.
+- Prepared a public pause-checkpoint page, three paper pages, a tagged
+  release manifest, and exact PDF hashes.  No outside person was contacted.
