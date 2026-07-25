@@ -101,13 +101,15 @@ new route.
 Targeted searches found no published occurrence of all of the following
 specific items:
 
-- the displayed feasible nine-orbit quotient for
-  `srg(333,166,82,83)`;
+- the complete 625-class integral nine-orbit quotient census for
+  `srg(333,166,82,83)`, including its three parity types;
 - the quotient-specific `6/3` diagonal incidence law;
 - the rank-16 characteristic-37 first-moment calculation;
+- the exact characteristic-two unitary-projection and
+  characteristic-three Hermitian-square-zero relaxation censuses;
 - the trace-corrected full formal completion for every admissible first
   moment; or
-- the constant-generator diagonal and rank-one no-go results.
+- the constant-generator no-go results through rank two.
 
 This is evidence for possible novelty, not proof of novelty.  The
 conference, regular-two-graph, association-scheme, and `m`-Cayley
@@ -115,17 +117,24 @@ literatures are large, and some sources are not publicly searchable.
 
 ## Publication verdict at this checkpoint
 
-The quotient and specialized obstructions are credible, mechanically
-checkable research progress.  They are not yet a Wikipedia-level discovery
-and, on the current audit, are not strong enough for a standalone paper.
-The best publication threshold would be one of:
+The earlier paper threshold of an exhaustive nine-orbit quotient
+classification has now been met: the exact census has 625 permutation
+classes, its parity layer has only three types, and the trace, finite-field,
+and constant-rank-two consequences are mechanically certified and
+independently replayed.  Bundled together, this is now a plausible focused
+computational-combinatorics note rather than merely a private checkpoint.
+
+It is still not a Wikipedia-level discovery, because it neither constructs
+nor excludes the conference graph or `H(668)`.  A paper claim also remains
+conditional on a broader expert literature audit and human review of the
+orderly-enumeration proof.  The strongest next thresholds are:
 
 1. an exact conference graph, hence `H(668)`;
-2. an exhaustive classification of all feasible nine-orbit quotients;
-3. a general theorem for conference `m`-Cayley graphs that contains the
-   trace/moment phenomena; or
-4. a substantially stronger binary-support obstruction that reduces the
-   remaining family to a genuinely finite, feasible census.
+2. a general theorem for conference `m`-Cayley graphs that contains the
+   trace and finite-field phenomena; or
+3. a binary-support obstruction that reduces the two unitary parity types
+   to a genuinely feasible exact census.
 
-Until then, retain the result as a well-certified research checkpoint and
-keep all novelty language provisional.
+Retain all novelty language as provisional, but preserve the quotient
+classification as a paper project even if the construction lane later
+closes.

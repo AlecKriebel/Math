@@ -58,7 +58,12 @@ report:
    coupled `<121>/<211>` lanes share a separate exact 1,296-word boundary;
 9. the safe-prime Sidelnikov calculation gives an exact prime-83 PAF identity
    and a 41-bit inverse-pair orientation obstruction that closes its
-   degree-two independently decimated extension.
+   degree-two independently decimated extension;
+10. the new semiregular-`C37` conference lane completely classifies its
+    zero-frequency layer into 625 permutation classes, collapses all of
+    them to two parity types up to complement, counts the full
+    characteristic-two relaxation below `2^721`, and excludes every
+    constant formal generator through rank two across the quotient census.
 
 These results are worth preserving as a compact internal manuscript. Nothing
 will be circulated, submitted, posted, or sent by this project. The
@@ -900,7 +905,47 @@ minimality in explicitly defined move graphs.  They are useful validation
 data and negative search evidence, not evidence that `LP(333)` is globally
 impossible.
 
+## I. Semiregular \(C_{37}\) conference quotient classification
+
+**Priority assessment: plausible standalone computational note; strongest
+new construction-theoretic program, but not an existence result.**
+
+A normalized symmetric conference matrix of order 334 would immediately
+produce `H(668)`.  Requiring a semiregular `C37` action on the 333-vertex
+core leaves nine circulant fibers and is not covered by the earlier
+group-developed obstruction.
+
+The exact quotient system has 625 classes under fiber permutation, 314
+after global sign, and 196,560,000 labeled matrices.  There are 111
+diagonal multisets and no all-zero diagonal, so the quadratic-class trace
+law is universally `6/3`.  All 625 quotients reduce to three parity types,
+or two after complement.  The exact 625-class trace-law union has
+base-two logarithm `1307.10873431446430`, falling to
+`1223.75748046440094` after the exact `37^16` first-moment reduction.
+Unitary finite-field geometry gives a stronger symmetry-reduced
+all-quotient characteristic-two upper bound between `2^720` and `2^721`.
+
+The trace-corrected characteristic-37 family formally integrates every
+admissible first moment, but constant symmetric generators of ranks zero,
+one, and two are impossible across the complete quotient census.  The last
+rank-two Jordan cases reduce to a seven-dimensional affine code with no
+binary word at either genuine trace orientation.
+
+The result reaches the earlier internal threshold of a complete
+nine-orbit quotient classification and is mechanically replayable in under
+a minute, with independent canonical and modular audits.  It does not
+construct or exclude a graph: higher-`y` conjugators and general binary
+support realization remain open.  No exact occurrence of this
+classification was found in the targeted literature search, but novelty
+remains provisional.
+
 ## Recommended paper and release plan
+
+The semiregular conference result supersedes the earlier recommendation to
+stop all headline `H(668)` work absent a new construction principle: that
+new principle has now appeared and passed its outer-layer gate.  Continued
+work should remain algebraic and attack the two parity types, not enumerate
+the roughly `2^721` modular relaxation.
 
 The completed higher-digit gate does not justify continued headline search
 on the five shell-two placement cubes.  The strongest publication path from
@@ -951,11 +996,20 @@ only a prescribed-compression slice of open public subgroup ID3.  A scoped
 title would be *Compressed-profile classifications in a length-333
 Legendre-pair uncompression problem*.
 
-Paper A is presently the more coherent specialty-journal candidate.  Paper
-B has a genuine classification nucleus but needs a lean theorem statement,
-an independent production rerun, and another targeted priority check before
-submission.  The prime-83, comb-packing, Sidelnikov, and local-search lanes
-should not be added merely to enlarge either manuscript.
+**Paper C — semiregular conference quotients at order 334.**  Center it on
+the 625-class quotient theorem, the three parity types, universal `6/3`
+trace law, exact unitary finite-field censuses, and constant-rank-two
+closure.  State prominently that no conference graph is constructed or
+excluded.  A scoped title would be *Semiregular cyclic quotient constraints
+for a conference graph on 333 vertices*.
+
+Paper C is now the cleanest finite classification package and the most
+directly connected to `H(668)`, while Paper A remains the strongest
+seed-repair obstruction package.  Paper B has a genuine classification
+nucleus but needs a lean theorem statement, an independent production
+rerun, and another targeted priority check before submission.  The
+prime-83, comb-packing, Sidelnikov, and local-search lanes should not be
+added merely to enlarge any manuscript.
 
 Neither paper may imply a nonexistence theorem for `H(668)`, `BS(84,83)`, or
 unrestricted `LP(333)`.

@@ -74,6 +74,51 @@
   five zero-lag diagonal coefficients remain nonbinary.  A viable constant
   generator in this family must therefore be genuinely nondiagonal and
   have rank at least two; higher-`y` conjugators are not excluded.
+- Counted the complete fixed-quotient finite-field relaxations.  In
+  characteristic three the two degree-18 unitary factors are Hermitian
+  square-zero matrices, giving an exact binary upper bound between
+  `2^1141` and `2^1142`.  In characteristic two the unique degree-36
+  factor becomes a unitary projection problem over `F_(2^18)`.  The trace
+  orientation forces rank four, and the exact Grassmannian count lies
+  between `2^719` and `2^720`.  This is the strongest complete modular
+  census at this checkpoint, not an integral graph count.
+- Reduced the group-ring characteristic identity modulo two to
+  `det(lambda I+D)=lambda^9+C*(lambda^8+lambda^4+1)+lambda^5+lambda`,
+  equivalently `e1=e5=e9=C`, `e4=e8=delta`, and all other intermediate
+  elementary-minor coefficients zero.
+- Excluded every constant symmetric rank-two generator in the same formal
+  family.  The exact companion verifier covers all split, irreducible, and
+  Jordan types.  Its universal diagonal over-code permits only the QR/NR
+  words of weight 18 in the irreducible and pure nilpotent cases, and only
+  weights 16 through 20 in the remaining Jordan cases, while the quotient
+  requires weight 10.  Independent review caught and corrected both a
+  duplicated square and a missing modular reduction in the preliminary
+  split check; the corrected computation still has zero survivors.  The
+  conclusion is limited to one constant rank-two generator.
+- Exhausted the complete integral zero-frequency quotient system by orderly
+  augmentation.  There are exactly 625 classes under fiber permutation,
+  314 after global sign, and 196,560,000 fully labeled matrices.  Independent
+  canonicalization reproduced the class and automorphism counts.  None has
+  an all-zero diagonal, so the `6/3` trace branch is universal across this
+  semiregular lane.
+- Reduced all 625 adjacency quotients modulo two.  They collapse to three
+  permutation classes and two after complement, with integral-class
+  preimages `206,213,206`.  Combining this with the unitary-projection
+  count bounds the complete symmetry-reduced all-quotient mod-two
+  relaxation between `2^720` and `2^721`.
+- Counted the exact trace-law ambient space for every quotient class.  The
+  per-class exponents range from `1297.60492221007667` to
+  `1297.90621474626255`; the 625-class canonical union has exponent
+  `1307.10873431446430`.  Exact division by `37^16` gives post-first-moment
+  exponent `1223.75748046440094`.
+- The original rank-two diagonal over-code excluded 623 quotient classes
+  and left one sign-class.  Restoring the fixed coefficient
+  `eta=+/-1` of `z^18*J` gives a seven-dimensional affine diagonal code for
+  both remaining Jordan types.  Its exact 64-assignment coset census has
+  binary words only at the inadmissible coefficients `eta=+/-3`, and none
+  at `eta=+/-1`.  Together with the other similarity types, this excludes
+  every constant symmetric rank-two generator for every one of the 625
+  quotient classes.  Higher-`y` conjugators remain open.
 - Derived the conditional group-ring characteristic identity
   `det(YI-D)=(Y^2+Y-83)^4*(Y-(4+tr(D)))`, including explicit second-minor
   and determinant convolution identities for future pruning.
@@ -82,7 +127,8 @@
   near-match but requires `p=q+2`, so it does not cover `37*3^2+1=334`.
   The 22 July 2026 multiplier paper concerns common-multiplier Legendre
   pairs and does not subsume this conference route.  No occurrence of the
-  particular quotient or its trace/moment/formal results was located, but
+  particular quotient or its trace/moment/formal/finite-field results was
+  located, but
   the audit is not exhaustive and priority remains provisional.
 - The general semiregular `C37` lift is still open.  Any successful lift of
   this quotient must break the regular symmetry of the four paired fibers.

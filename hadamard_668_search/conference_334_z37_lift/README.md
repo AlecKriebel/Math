@@ -116,6 +116,39 @@ B^2+B=83I_9+83\cdot37J_9.
 
 Thus the new conference lane survives its first exact necessary condition.
 
+## Complete classification of the quotient layer
+
+The zero-frequency system is now exhausted, rather than represented by one
+seed.  An orderly exact enumeration gives
+
+```text
+196,560,000 fully labeled matrices;
+625 classes under simultaneous row/column permutation;
+314 classes after also identifying global sign.
+```
+
+The enumeration starts from all 411 possible unordered row types, or
+2,109,524 ordered rows, and directly rechecks the full square equation for
+every terminal matrix.  Independent canonicalization reproduces all 625
+classes and the labeled total by orbit-stabilizer.
+
+There are 111 diagonal multisets, but no quotient has all nine diagonal
+entries zero.  This closes the alternative `(0,9)` trace branch globally:
+up to residue/nonresidue interchange, every lift of every feasible quotient
+must obey the `6/3` diagonal-incidence law derived below.  The displayed
+`1+4+4` quotient and its negative are the unique maximally symmetric
+sign-class, with automorphism order 24.
+
+Modulo two, the 625 integral quotient classes collapse to only three
+adjacency-quotient types under fiber permutation, and only two after
+complement.  Their integral preimage counts are `206,213,206`; the binary
+automorphism orders are `24,20,24`.  This collapse is what makes the
+all-quotient characteristic-two bound nearly as small as the fixed-seed
+bound.
+
+The exact theorem, exceptional representatives, parity graphs, asserted
+enumerator, and independent audits are recorded in `QUOTIENT_CENSUS.md`.
+
 ## Three exact lift obstructions
 
 ### Paley three-class blocks
@@ -203,15 +236,10 @@ g(t)=\frac{9\pm3(2m-9)}2
 on the two nonzero quadratic classes.  The bounds \(0\leq g(t)\leq9\)
 first leave only \(m=3,4,5,6\), hence incidence pairs `(0,9)` or `(3,6)`.
 The `(0,9)` branch would make every diagonal block one complete quadratic
-class and give all nine diagonal degrees equal to 18.  The certified
-degrees are
-
-```text
-18, 20, 18, 20, 18, 20, 18, 20, 10,
-```
-
-so that branch is impossible.  After swapping residues and nonresidues if
-necessary, every candidate lift must therefore obey
+class and hence force all nine entries of \(T\)'s diagonal to be zero.
+The complete 625-class quotient census proves that no such quotient
+exists.  Therefore, after swapping residues and nonresidues if necessary,
+every candidate lift of every feasible quotient must obey
 
 ```text
 each nonzero quadratic residue occurs in exactly 6 diagonal blocks;
@@ -238,10 +266,107 @@ ambient space still lies between
 2^{1297}\quad\hbox{and}\quad2^{1298}.
 \]
 
-This is an exact combinatorial census before the nonzero Fourier equations,
-not an estimate of the number of actual conference graphs.  It rules out
-direct enumeration as a serious strategy: further mathematics must couple
-the blocks before any bounded solver is useful.
+The all-quotient audit performs the same exact count for every one of the
+625 permutation classes.  The individual trace-law exponents range only
+from `1297.60492221007667` to `1297.90621474626255`.  Summing one canonical
+search space per quotient class gives
+
+```text
+log2(all 625 trace-law spaces) = 1307.10873431446430.
+```
+
+The rank-16 first-moment law below divides each class by exactly \(37^{16}\),
+so the corresponding all-quotient union has logarithm
+`1223.75748046440094`.  These are exact combinatorial censuses before the
+remaining Fourier equations, not estimates of the number of conference
+graphs.  They rule out direct enumeration as a serious strategy: further
+mathematics must couple the blocks before any bounded solver is useful.
+
+## Exact finite-field relaxation censuses
+
+Characteristics two and three turn the nonzero Fourier equations into
+finite classical-geometry problems that can be counted exactly.
+
+In characteristic two,
+
+\[
+\mathbf F_2[C_{37}]\cong \mathbf F_2\times\mathbf F_{2^{36}},
+\]
+
+and inversion on the field factor is the unitary involution over
+\(q=2^{18}\).  The nontrivial Fourier component satisfies
+
+\[
+D^2+D=I.
+\]
+
+For a primitive \(\omega\in\mathbf F_4\) in the fixed field,
+\(E=D+\omega^2I\) is a Hermitian idempotent.  It is therefore the orthogonal
+projection onto a nondegenerate subspace of a nine-dimensional unitary
+space.  The `6/3` trace orientation forces its rank to be four; the opposite
+orientation has rank five and the same count.  Hence the complete
+orientation-fixed mod-two relaxation has exactly
+
+\[
+\frac{|U(9,q)|}{|U(4,q)|\,|U(5,q)|}
+\]
+
+points.  This is a 217-digit integer with logarithm
+\(719.9999944965866\) base two, so it lies strictly between \(2^{719}\)
+and \(2^{720}\).  Fixing the quotient modulo two—the trivial Fourier
+factor—and the degree-36 field component determines all 37 binary
+coefficients by the Chinese remainder theorem.  Thus every integral lift
+of the exact quotient injects into this counted set, although most counted
+points have the wrong integer block margins.  It is an exact modular
+relaxation, not a count of conference graphs.
+
+The complete quotient census shows that only two trivial-factor parity
+types remain after fiber permutation and complement.  Consequently every
+integral lift in the entire 625-class lane injects, up to those
+equivalences, into at most twice the fixed-type count.  The complete
+all-quotient modular upper bound is therefore
+
+\[
+2^{720}<2\,\frac{|U(9,q)|}{|U(4,q)|\,|U(5,q)|}<2^{721}.
+\]
+
+This is the requested complete remaining-search estimate at the strongest
+currently counted relaxation.  It is still an upper bound, not an exact
+integral candidate count.
+
+Reducing the group-ring characteristic identity modulo two also gives the
+support identity
+
+\[
+\det(\lambda I+D(x))
+=\lambda^9+C(x)(\lambda^8+\lambda^4+1)+\lambda^5+\lambda,
+\]
+
+where \(C\) is the oriented quadratic-class indicator.  Equivalently,
+
+\[
+e_1=e_5=e_9=C,\qquad e_4=e_8=\delta,\qquad
+e_2=e_3=e_6=e_7=0.
+\]
+
+Characteristic three gives an independent, weaker audit.  Here
+
+\[
+\mathbf F_3[C_{37}]
+\cong\mathbf F_3\times\mathbf F_{3^{18}}\times\mathbf F_{3^{18}},
+\]
+
+and each degree-18 factor is unitary over \(q=3^9\).  On either factor
+\(N=D-I\) is a Hermitian square-zero matrix.  Its rank is at most four, and
+the rank-\(r\) count is the product of the number of totally isotropic
+\(r\)-spaces and the number of nonsingular Hermitian forms on such a space.
+Squaring the sum over \(r=0,\ldots,4\) gives the exact ternary relaxation,
+between \(2^{1141}\) and \(2^{1142}\).
+
+The characteristic-two census is the strongest complete bound currently
+known for this lane.  It cuts the fixed-quotient frontier by roughly 578
+further bits beyond the trace-only census, but even the symmetry-reduced
+all-quotient bound near \(2^{721}\) rules out flat enumeration.
 
 ## A characteristic-37 moment filtration
 
@@ -346,7 +471,7 @@ does not classify all formal solutions.  The hard remaining condition is
 simultaneous realizability of those coefficients by actual `0/1` block
 supports.
 
-## Constant-generator diagonal and rank-one families are impossible
+## Constant-generator families through rank two are impossible
 
 The formal solution is not automatically close to a binary lift.  Two of
 its simplest subfamilies can now be excluded exactly.
@@ -408,10 +533,67 @@ which is already nonbinary in five positions.
 
 Thus every constant diagonal generator and every constant symmetric
 rank-one generator in the displayed exponential family is impossible.
-Any binary point in this constant-\(A\) family must use a genuinely
-coordinate-mixing symmetric \(A\) of rank at least two.  This does not
-exclude higher-\(y\) conjugators, and it is not an obstruction to the
-general semiregular \(C_{37}\) lift.
+
+The rank-two case is also closed across the complete quotient census, but
+needs a different finite classification.  Split semisimple generators are
+excluded independently of the quotient by checking all 35 projective
+eigenvalue ratios and all \(37^2\) local projector-coordinate triples.  The
+remaining rational/Jordan types are:
+
+1. an irreducible quadratic block;
+2. a nonzero \(J_2\) block;
+3. a nonzero eigenline together with \(J_2(0)\);
+4. \(J_3(0)\); and
+5. \(J_2(0)\oplus J_2(0)\).
+
+For each type, the companion verifier constructs the similarity-invariant
+over-code
+
+\[
+W(A)=V(A)+z^{18}V(A),
+\]
+
+where \(V(A)\) spans products of entries of \(e^{-zA}\) and \(e^{zA}\).
+Every possible diagonal correction lies in this over-code, even after
+forgetting the special matrices \(N_0,J\) and symmetry constraints.  Its
+exact intersection with
+\(\{0\}\times\{18,19\}^{36}\) is computed from information coordinates.
+All 19 irreducible projective classes and both pure nilpotent types yield
+only the QR/NR words of weight 18.  Since the quotient census has no
+all-zero diagonal, these types fail for every quotient.  The two remaining
+Jordan families yield weights only from 16 through 20.  Exactly two of the
+625 quotient classes meet that necessary condition; they are negatives of
+one another and form one sign-class with diagonal profile
+
+```text
+(-4,-4,0,0,0,0,0,4,4).
+```
+
+Restoring information deliberately forgotten by \(W(A)\) closes this last
+case.  After normalizing the nonzero eigenvalue, both a nonzero \(J_2\)
+block and a nonzero eigenline plus \(J_2(0)\) have
+\(A=P+N\), where \(P^2=P\), \(N^2=0\), and either \(PN=N\) or \(PN=0\).
+For every symmetric constant matrix \(M\), the diagonal of
+\(e^{-zA}Me^{zA}\) lies in a five-function space.  The full reduced
+diagonal word must consequently lie in
+
+\[
+\eta z^{18}+U,\qquad \eta\in\{1,-1\},
+\]
+
+where \(U\) is an explicit seven-dimensional cyclic code.  Its information
+coordinates are `0,...,6`, so each affine coset needs only 64 assignments.
+Exhausting all 37 possible coefficients finds binary words only in the
+spurious cosets \(\eta=3\) and \(\eta=-3\); both genuine trace orientations
+\(\eta=\pm1\) are empty.  No off-diagonal test is needed.
+
+Consequently any binary point in this single-constant-\(A\) exponential
+family must use a genuinely coordinate-mixing symmetric generator of rank
+at least three.  This does not exclude a higher-\(y\) conjugator, a more
+general formal parametrization, or the general semiregular \(C_{37}\) lift.
+The complete proofs and scopes are in
+`RANK_TWO_CONJUGATION_OBSTRUCTION.md` and
+`RANK_TWO_JORDAN_OBSTRUCTION.md`.
 
 ## A group-ring characteristic identity
 
@@ -441,17 +623,23 @@ solver.
 
 The result is mixed but useful:
 
-- a genuinely nongroup-developed \(C_{37}\)-orbit quotient exists;
+- the entire zero-frequency layer is classified into 625 permutation
+  classes, with a genuinely nongroup-developed quotient available;
 - three natural Paley or pair-symmetric lifts are exactly impossible; and
 - every general lift obeys the exact `6/3` diagonal-incidence law; and
 - every general lift obeys 16 independent mod-37 first-moment equations;
   and
+- every lift in the full quotient census injects, up to fiber permutation
+  and complement, into an all-quotient characteristic-two relaxation
+  between \(2^{720}\) and \(2^{721}\);
+  and
 - all later mod-37 matrix equations are formally integrable, isolating
   exact `0/1` support realizability as the remaining modular difficulty;
   and
-- constant diagonal and all constant symmetric rank-one generators in the
-  explicit exponential family are impossible, so a viable constant
-  generator must genuinely mix coordinates and have rank at least two;
+- constant diagonal and all constant symmetric generators of ranks one and
+  two in the explicit exponential family are impossible across all 625
+  quotient classes, so a viable constant generator must genuinely mix
+  coordinates and have rank at least three;
   and
 - a lift with the displayed quotient must break every paired-label
   transposition, every paired-label 3-cycle, and all regular order-four
@@ -468,4 +656,10 @@ Run the dependency-free verification from this folder:
 
 ```text
 python3 verify_z37_lift_frontier.py
+python3 verify_rank_two_conjugation_obstruction.py
+python3 verify_rank_two_jordan_obstruction.py
 ```
+
+The complete quotient replay additionally compiles
+`census_z37_quotients.cpp`; see `QUOTIENT_CENSUS.md` for the exact commands
+and the two independent audit programs.

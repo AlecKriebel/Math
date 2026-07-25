@@ -22,6 +22,7 @@ from collections import Counter
 from fractions import Fraction
 from functools import lru_cache
 import hashlib
+import importlib.util
 from itertools import combinations, combinations_with_replacement
 import json
 from math import comb, factorial
@@ -31,6 +32,10 @@ from typing import Iterable, Sequence
 
 HERE = Path(__file__).resolve().parent
 CERTIFICATE = HERE / "Z37_LIFT_FRONTIER_CERTIFICATE.json"
+RANK_TWO_VERIFIER = HERE / "verify_rank_two_conjugation_obstruction.py"
+RANK_TWO_JORDAN_VERIFIER = (
+    HERE / "verify_rank_two_jordan_obstruction.py"
+)
 N = 9
 P = 37
 V = 333
@@ -68,6 +73,63 @@ def semantic_sha256(record: dict[str, object]) -> str:
     payload = dict(record)
     payload.pop("semantic_sha256", None)
     return hashlib.sha256(canonical_bytes(payload)).hexdigest()
+
+
+def verify_constant_rank_two_companion() -> dict[str, object]:
+    """Load and replay the exact companion obstruction."""
+
+    spec = importlib.util.spec_from_file_location(
+        "h668_rank_two_companion", RANK_TWO_VERIFIER
+    )
+    require(
+        spec is not None and spec.loader is not None,
+        "could not load the rank-two companion verifier",
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    report = module.verify_rank_two_conjugation_obstruction()
+    require(isinstance(report, dict), "rank-two companion returned no report")
+    return report
+
+
+def verify_rank_two_jordan_companion() -> dict[str, object]:
+    """Replay the affine-code closure of the two residual Jordan types."""
+
+    spec = importlib.util.spec_from_file_location(
+        "h668_rank_two_jordan_companion", RANK_TWO_JORDAN_VERIFIER
+    )
+    require(
+        spec is not None and spec.loader is not None,
+        "could not load the rank-two Jordan companion verifier",
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    report = module.verify()
+    affine = report["affine_diagonal_obstruction"]
+    return {
+        "status": report["status"],
+        "family_scope": report["family_scope"],
+        "excluded_normalized_jordan_types": (
+            affine["excluded_normalized_jordan_types"]
+        ),
+        "formal_trace_orientations": (
+            affine["formal_trace_orientations"]
+        ),
+        "actual_orientation_binary_word_counts": (
+            affine["actual_orientation_binary_word_counts"]
+        ),
+        "homogeneous_affine_code_dimension": (
+            affine["homogeneous_affine_code_dimension"]
+        ),
+        "uses_fixed_J_coefficient": report["uses_fixed_J_coefficient"],
+        "off_diagonal_binary_conditions_needed": (
+            report["off_diagonal_binary_conditions_needed"]
+        ),
+        "higher_y_conjugators": report["higher_y_conjugators"],
+        "general_semiregular_C37_lift": (
+            report["general_semiregular_C37_lift"]
+        ),
+    }
 
 
 def sylvester_h8() -> list[list[int]]:
@@ -999,6 +1061,397 @@ def verify_mod37_first_moment_reduction(
     }
 
 
+def verify_mod3_unitary_square_zero_census(
+    adjacency_quotient_matrix: Sequence[Sequence[int]],
+) -> dict[str, object]:
+    """Count the complete characteristic-three matrix relaxation.
+
+    The nontrivial part of F_3[C_37] is the product of two copies of
+    K=F_(3^18).  Since 3^9=-1 mod 37, inversion acts on each copy as the
+    Hermitian involution over its fixed field F_(3^9).
+
+    At either nontrivial factor the SRG equation is
+
+        D^2+D=-I,
+
+    so N=D-I is Hermitian and square-zero.  Its image is totally isotropic,
+    hence has rank at most four in the nine-dimensional unitary space.
+
+    A rank-r Hermitian square-zero map is determined by its totally
+    isotropic image U and a nonsingular Hermitian form on U.  This gives an
+    exact finite count.  Fixing the trivial factor to the certified quotient,
+    CRT then makes the pair of nontrivial factors an exact parametrization
+    of all ternary group-ring solutions.  Binary lifts inject into this
+    relaxation.
+    """
+
+    prime = 3
+    cyclic_order = 37
+    quotient = [list(row) for row in adjacency_quotient_matrix]
+
+    multiplicative_order = next(
+        exponent
+        for exponent in range(1, cyclic_order)
+        if pow(prime, exponent, cyclic_order) == 1
+    )
+    require(
+        multiplicative_order == 18,
+        "the order of 3 modulo 37 changed",
+    )
+    require(
+        pow(prime, multiplicative_order // 2, cyclic_order)
+        == cyclic_order - 1,
+        "inversion is not the middle Frobenius on the degree-18 factors",
+    )
+    factor_degrees = [1, multiplicative_order, multiplicative_order]
+    require(
+        sum(factor_degrees) == cyclic_order,
+        "the characteristic-three cyclic algebra factor degrees changed",
+    )
+
+    # Check the fixed trivial factor directly modulo three.
+    quotient_square_plus = matrix_multiply(quotient, quotient)
+    for i in range(N):
+        for j in range(N):
+            quotient_square_plus[i][j] += quotient[i][j]
+            expected = -1 - (1 if i == j else 0)
+            require(
+                quotient_square_plus[i][j] % prime == expected % prime,
+                "the quotient fails the characteristic-three trivial factor",
+            )
+
+    fixed_field_order = prime ** (multiplicative_order // 2)
+
+    def isotropic_line_count(dimension: int, q: int) -> int:
+        numerator = (
+            (q**dimension - (-1) ** dimension)
+            * (q ** (dimension - 1) - (-1) ** (dimension - 1))
+        )
+        denominator = q * q - 1
+        require(
+            numerator % denominator == 0,
+            "the unitary isotropic-line formula is not integral",
+        )
+        return numerator // denominator
+
+    def isotropic_subspace_count(
+        dimension: int, subspace_dimension: int, q: int
+    ) -> int:
+        if subspace_dimension == 0:
+            return 1
+        numerator = 1
+        denominator = 1
+        for step in range(subspace_dimension):
+            remaining_dimension = dimension - 2 * step
+            numerator *= (
+                q**remaining_dimension - (-1) ** remaining_dimension
+            ) * (
+                q ** (remaining_dimension - 1)
+                - (-1) ** (remaining_dimension - 1)
+            )
+            denominator *= q ** (2 * (step + 1)) - 1
+        require(
+            numerator % denominator == 0,
+            "the isotropic-subspace formula is not integral",
+        )
+        return numerator // denominator
+
+    def general_linear_group_order(dimension: int, q_squared: int) -> int:
+        result = 1
+        for index in range(dimension):
+            result *= q_squared**dimension - q_squared**index
+        return result
+
+    def unitary_group_order(dimension: int, q: int) -> int:
+        result = q ** (dimension * (dimension - 1) // 2)
+        for index in range(1, dimension + 1):
+            result *= q**index - (-1) ** index
+        return result
+
+    def invertible_hermitian_form_count(dimension: int, q: int) -> int:
+        if dimension == 0:
+            return 1
+        numerator = general_linear_group_order(dimension, q * q)
+        denominator = unitary_group_order(dimension, q)
+        require(
+            numerator % denominator == 0,
+            "the nonsingular Hermitian-form count is not integral",
+        )
+        return numerator // denominator
+
+    # Two small formula controls.
+    require(
+        isotropic_subspace_count(2, 1, 3) == 4,
+        "the Hermitian-line control changed",
+    )
+    require(
+        (
+            1
+            + isotropic_subspace_count(2, 1, 3)
+            * invertible_hermitian_form_count(1, 3)
+        )
+        == 9,
+        "the 2-dimensional square-zero Hermitian control changed",
+    )
+
+    maximum_rank = N // 2
+    rank_counts: list[int] = []
+    for rank in range(maximum_rank + 1):
+        rank_counts.append(
+            isotropic_subspace_count(N, rank, fixed_field_order)
+            * invertible_hermitian_form_count(rank, fixed_field_order)
+        )
+    expected_rank_counts = [
+        1,
+        507503002232698042520164657904684461980837932687954151553149180647840,
+        1716066552267619019147177081694608943917121182433897698503810004479887810080079645103857546091399120867152259271006117760,
+        38660232935186096217045535192076547262813119047119025653096244035225175109223919582330533607062778417610946501409228010606543791090262371348542507287398400,
+        5802693547926785607597280188525334492854288288177154897952399003392102868219219820508053813487742551986476081624215060078870599748668011755886883753223463680082071680552960,
+    ]
+    require(
+        rank_counts == expected_rank_counts,
+        "the characteristic-three Hermitian rank census changed",
+    )
+
+    one_factor_count = sum(rank_counts)
+    two_factor_count = one_factor_count * one_factor_count
+    require(
+        2**1141 < two_factor_count < 2**1142,
+        "the characteristic-three relaxation exponent changed",
+    )
+
+    return {
+        "status": "exact_ternary_relaxation_and_binary_upper_bound",
+        "coefficient_algebra": (
+            "F_3[C_37] = F_3 x F_(3^18) x F_(3^18)"
+        ),
+        "nontrivial_factor_count": 2,
+        "involution_on_each_nontrivial_factor": "a -> a^(3^9)",
+        "fixed_field_order": fixed_field_order,
+        "shifted_nontrivial_factor_equation": "(D-I)^2=0",
+        "matrix_type": "9x9 Hermitian square-zero",
+        "maximum_rank": maximum_rank,
+        "rank_counts_per_factor": [str(count) for count in rank_counts],
+        "one_factor_count": str(one_factor_count),
+        "fixed_quotient_two_factor_count": str(two_factor_count),
+        "fixed_quotient_two_factor_decimal_digits": len(
+            str(two_factor_count)
+        ),
+        "fixed_quotient_two_factor_bit_length": (
+            two_factor_count.bit_length()
+        ),
+        "binary_lifts_inject_into_ternary_relaxation": True,
+        "binary_candidate_upper_bound_between_powers_of_two": [1141, 1142],
+        "comparison_scope": (
+            "This is an upper bound, not an exact binary candidate count "
+            "and not an independent factor to multiply by the mod-37 cut."
+        ),
+    }
+
+
+def verify_mod2_unitary_projection_census(
+    adjacency_quotient_matrix: Sequence[Sequence[int]],
+) -> dict[str, object]:
+    """Count the exact trace-oriented characteristic-two relaxation.
+
+    Since ord_37(2)=36, the nontrivial part of F_2[C_37] is the field
+    K=F_(2^36).  Inversion is its unitary involution over q=2^18.
+    At that factor the adjacency equation is D^2+D=I.  If omega is a
+    primitive element of F_4 contained in the fixed field, then
+
+        E=D+omega^2 I
+
+    is a Hermitian idempotent.  Such idempotents are exactly orthogonal
+    projections onto nondegenerate subspaces of K^9.
+
+    The integral 3/6 trace law fixes, up to nonresidue decimation, whether
+    the projection rank is four or five.  The two counts agree.  Fixing the
+    trivial factor to the quotient makes CRT injective on binary block
+    coefficients, so the rank-four Grassmannian count is the exact mod-two
+    relaxation size and an upper bound for integral lifts.
+    """
+
+    prime = 2
+    cyclic_order = 37
+    quotient = [list(row) for row in adjacency_quotient_matrix]
+
+    multiplicative_order = next(
+        exponent
+        for exponent in range(1, cyclic_order)
+        if pow(prime, exponent, cyclic_order) == 1
+    )
+    require(
+        multiplicative_order == 36,
+        "the order of 2 modulo 37 changed",
+    )
+    require(
+        pow(prime, multiplicative_order // 2, cyclic_order)
+        == cyclic_order - 1,
+        "inversion is not the middle Frobenius in characteristic two",
+    )
+
+    quotient_square_plus = matrix_multiply(quotient, quotient)
+    for i in range(N):
+        for j in range(N):
+            quotient_square_plus[i][j] += quotient[i][j]
+            expected = 1 + (1 if i == j else 0)
+            require(
+                quotient_square_plus[i][j] % prime == expected % prime,
+                "the quotient fails the characteristic-two trivial factor",
+            )
+
+    fixed_field_order = prime ** (multiplicative_order // 2)
+
+    def unitary_group_order(dimension: int, q: int) -> int:
+        result = q ** (dimension * (dimension - 1) // 2)
+        for index in range(1, dimension + 1):
+            result *= q**index - (-1) ** index
+        return result
+
+    full_unitary_order = unitary_group_order(N, fixed_field_order)
+    nondegenerate_subspace_counts: list[int] = []
+    for rank in range(N + 1):
+        denominator = (
+            unitary_group_order(rank, fixed_field_order)
+            * unitary_group_order(N - rank, fixed_field_order)
+        )
+        require(
+            full_unitary_order % denominator == 0,
+            "the nondegenerate unitary Grassmannian count is not integral",
+        )
+        nondegenerate_subspace_counts.append(
+            full_unitary_order // denominator
+        )
+    require(
+        nondegenerate_subspace_counts
+        == list(reversed(nondegenerate_subspace_counts)),
+        "orthogonal-complement symmetry changed",
+    )
+
+    equation_only_count = sum(nondegenerate_subspace_counts)
+    expected_equation_only_count = int(
+        "110312624454378135900494123395877225100668163797665042624530"
+        "276771420970534000637601545399102746523662295662400815392908"
+        "277937703542088546985339645162047419452355861692719571474969"
+        "11519740822915310176590188854829383682"
+    )
+    require(
+        equation_only_count == expected_equation_only_count,
+        "the characteristic-two idempotent census changed",
+    )
+
+    trace_oriented_rank = 4
+    trace_oriented_count = nondegenerate_subspace_counts[
+        trace_oriented_rank
+    ]
+    expected_trace_oriented_count = int(
+        "551563122271890679502353818945122439606707834803655394954315"
+        "122159180394447886772272418760047160827998324232089268367637"
+        "738317600407827077923537098327313139812096622447821925068883"
+        "0428316119340007747562318510765899776"
+    )
+    require(
+        trace_oriented_count == expected_trace_oriented_count,
+        "the trace-oriented characteristic-two census changed",
+    )
+    require(
+        2**719 < trace_oriented_count < 2**720,
+        "the trace-oriented characteristic-two exponent changed",
+    )
+
+    # Verify the complete determinant/minor identity in F_4[lambda].
+    # Elements are a+b*omega encoded by a+2b, with omega^2=omega+1.
+    def f4_multiply(left: int, right: int) -> int:
+        left_zero, left_one = left & 1, (left >> 1) & 1
+        right_zero, right_one = right & 1, (right >> 1) & 1
+        constant = left_zero * right_zero ^ left_one * right_one
+        omega_coefficient = (
+            left_zero * right_one
+            ^ left_one * right_zero
+            ^ left_one * right_one
+        )
+        return constant | (omega_coefficient << 1)
+
+    def polynomial_multiply_f4(
+        left: Sequence[int], right: Sequence[int]
+    ) -> list[int]:
+        result = [0] * (len(left) + len(right) - 1)
+        for i, first in enumerate(left):
+            for j, second in enumerate(right):
+                result[i + j] ^= f4_multiply(first, second)
+        return result
+
+    def polynomial_power_f4(
+        base: Sequence[int], exponent: int
+    ) -> list[int]:
+        result = [1]
+        for _ in range(exponent):
+            result = polynomial_multiply_f4(result, base)
+        return result
+
+    quadratic_period = 2  # omega
+    conjugate_period = f4_multiply(
+        quadratic_period, quadratic_period
+    )
+    require(
+        conjugate_period == 3,
+        "the F4 quadratic periods changed",
+    )
+    # Choose the trace orientation C=omega^2.  Then D has eigenvalue omega
+    # four times and omega^2 five times, so E=D+omega^2 I has rank four.
+    characteristic_polynomial = polynomial_multiply_f4(
+        polynomial_power_f4([quadratic_period, 1], 4),
+        polynomial_power_f4([conjugate_period, 1], 5),
+    )
+    require(
+        characteristic_polynomial
+        == [conjugate_period, 1, 0, 0, conjugate_period,
+            1, 0, 0, conjugate_period, 1],
+        "the characteristic-two determinant identity changed",
+    )
+
+    return {
+        "status": "exact_trace_oriented_mod2_relaxation",
+        "coefficient_algebra": "F_2[C_37] = F_2 x F_(2^36)",
+        "involution_on_nontrivial_factor": "a -> a^(2^18)",
+        "fixed_field_order": fixed_field_order,
+        "nontrivial_factor_equation": "D^2+D=I",
+        "projection_shift": "E=D+omega^2*I",
+        "projection_type": (
+            "orthogonal projection onto a nondegenerate subspace "
+            "of a 9-dimensional unitary space"
+        ),
+        "equation_only_rank_counts": [
+            str(count) for count in nondegenerate_subspace_counts
+        ],
+        "equation_only_projection_count": str(equation_only_count),
+        "trace_oriented_projection_rank": trace_oriented_rank,
+        "opposite_orientation_projection_rank": N - trace_oriented_rank,
+        "trace_oriented_projection_count": str(trace_oriented_count),
+        "trace_oriented_projection_decimal_digits": len(
+            str(trace_oriented_count)
+        ),
+        "trace_oriented_projection_bit_length": (
+            trace_oriented_count.bit_length()
+        ),
+        "binary_lifts_inject_into_mod2_relaxation": True,
+        "binary_candidate_upper_bound_between_powers_of_two": [719, 720],
+        "determinant_identity": (
+            "det(lambda*I+D)=lambda^9+C*(lambda^8+lambda^4+1)"
+            "+lambda^5+lambda"
+        ),
+        "elementary_minor_identities": (
+            "e1=e5=e9=C; e4=e8=delta; "
+            "e2=e3=e6=e7=0"
+        ),
+        "comparison_scope": (
+            "This is the exact trace-oriented mod-2 solution count for "
+            "the quotient's parity factor; exact integer margins and the "
+            "integral conference equation are not imposed."
+        ),
+    }
+
+
 def verify_three_layer_moment_witness(
     adjacency_quotient_matrix: Sequence[Sequence[int]],
 ) -> dict[str, object]:
@@ -1813,6 +2266,20 @@ def main() -> None:
         first_moment_report == record["mod37_first_moment_reduction"],
         "mod-37 first-moment record changed",
     )
+    mod3_report = verify_mod3_unitary_square_zero_census(
+        orbit_report["adjacency_quotient"]
+    )
+    require(
+        mod3_report == record["mod3_unitary_square_zero_census"],
+        "mod-3 unitary square-zero census changed",
+    )
+    mod2_report = verify_mod2_unitary_projection_census(
+        orbit_report["adjacency_quotient"]
+    )
+    require(
+        mod2_report == record["mod2_unitary_projection_census"],
+        "mod-2 unitary projection census changed",
+    )
     moment_witness_report = verify_three_layer_moment_witness(
         orbit_report["adjacency_quotient"]
     )
@@ -1835,6 +2302,18 @@ def main() -> None:
         == record["low_rank_formal_conjugation_obstructions"],
         "low-rank formal conjugation obstruction record changed",
     )
+    rank_two_report = verify_constant_rank_two_companion()
+    require(
+        rank_two_report
+        == record["constant_rank_two_conjugation_obstruction"],
+        "constant rank-two conjugation obstruction record changed",
+    )
+    rank_two_jordan_report = verify_rank_two_jordan_companion()
+    require(
+        rank_two_jordan_report
+        == record["rank_two_jordan_affine_obstruction"],
+        "rank-two Jordan affine obstruction record changed",
+    )
     characteristic_report = verify_group_ring_characteristic_identity()
     require(
         characteristic_report
@@ -1854,9 +2333,16 @@ def main() -> None:
             "natural_mixed_order_10_order_38_conference_product": (
                 "impossible"
             ),
+            "mod3_unitary_square_zero_relaxation": (
+                "necessary_for_any_lift"
+            ),
+            "mod2_unitary_projection_relaxation": (
+                "necessary_for_any_lift"
+            ),
             "formal_diagonal_conjugation_family": "impossible",
             "formal_symmetric_rank_one_conjugation_family": "impossible",
-            "formal_symmetric_rank_at_least_two_family": "open",
+            "formal_symmetric_rank_two_conjugation_family": "impossible",
+            "formal_symmetric_rank_at_least_three_family": "open",
         },
         "certificate scope changed",
     )
@@ -1869,7 +2355,8 @@ def main() -> None:
         "mixed_product=IMPOSSIBLE "
         "transposition=IMPOSSIBLE three_cycle=IMPOSSIBLE "
         "diagonal_trace=3/6 moment_rank=16 ambient_bits=1215 "
-        "moment_lift=y3 first_fail=y4 formal_rank1=IMPOSSIBLE "
+        "mod3_upper_bits=1142 mod2_upper_bits=720 "
+        "moment_lift=y3 first_fail=y4 formal_rank2=IMPOSSIBLE "
         "general_lift=OPEN"
     )
     print(f"semantic_sha256={digest}")

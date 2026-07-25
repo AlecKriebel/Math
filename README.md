@@ -52,10 +52,14 @@ current mechanically checked progress includes the fixed-`q` obstruction,
 exhaustive variable-`q` margin decomposition, independent Legendre-pair and
 cyclic-SDS lanes, a bounded exclusion of every exact `BS(84,83)` within raw
 Hamming distance 18 of Eliahou's published seed, and a new semiregular
-`C37` conference-core lane with an explicit feasible nine-orbit quotient.
-The latter has exact trace and moment laws and an explicit full
-characteristic-37 completion for every admissible first moment, but this is
-not a classification of all formal solutions and its binary-support problem
+`C37` conference-core lane whose 625 integral nine-orbit quotient classes
+are now classified exactly.  The latter has exact trace and moment laws and
+an explicit full
+characteristic-37 completion for every admissible first moment.  Its exact
+all-quotient characteristic-two relaxation is bounded between `2^720` and
+`2^721` modulo natural equivalences, and constant formal generators through
+rank two are excluded across the quotient census, but this is not a
+classification of all formal solutions and its binary-support problem
 remains open.
 A result counts only if an explicit `668 x 668` matrix passes exact full
 verification.

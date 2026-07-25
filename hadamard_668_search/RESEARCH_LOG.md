@@ -2461,6 +2461,41 @@ proof-assistant-level theorem.
   five nonbinary zero-lag diagonal coefficients.  Any viable constant
   generator must be genuinely nondiagonal and have rank at least two;
   higher-`y` conjugators are not excluded.
+- Counted exact finite-field relaxations of the full fixed-quotient
+  group-ring equation.  Characteristic three gives two Hermitian
+  square-zero factors and an upper bound between `2^1141` and `2^1142`.
+  Characteristic two gives a rank-four unitary projection over
+  `F_(2^18)` and an exact orientation-fixed modular count between `2^719`
+  and `2^720`.  Every binary lift injects into the latter set, but most
+  modular points need not satisfy the integral margins or support
+  conditions.
+- Excluded every constant symmetric rank-two generator in the
+  trace-corrected exponential family by exhausting all rational/Jordan
+  types.  Independent review found two implementation defects in the
+  preliminary split check; both were corrected, the result remained zero
+  survivors, and a separate universal-code computation corroborates the
+  split conclusion.  A viable single constant generator must now have rank
+  at least three.  Higher-`y` conjugators and general lifts remain open.
+- Completed the exact outer classification of the semiregular quotient:
+  625 permutation classes, 314 permutation/sign classes, and 196,560,000
+  labeled matrices.  No class has an all-zero diagonal, making the `6/3`
+  trace law universal.  Independent orderly, canonical, automorphism, and
+  modular-rank audits passed.
+- The 625 integral quotients reduce to only three adjacency-quotient parity
+  types, or two up to complement.  Combined with the unitary-projection
+  theorem, every lift in the complete quotient lane injects modulo natural
+  equivalences into an all-quotient mod-two relaxation between `2^720`
+  and `2^721`.
+- The exact trace-law union over all 625 canonical quotient classes has
+  base-two logarithm `1307.10873431446430`; after the exact `37^16`
+  first-moment reduction it is `1223.75748046440094`.
+- Refined the constant-rank-two obstruction across the complete quotient
+  census.  Only one quotient sign-class survives the coarse diagonal
+  weight code.  For its two remaining Jordan types, restoring the fixed
+  `z^18*J` coefficient yields a seven-dimensional affine code with no
+  binary word at either genuine orientation `eta=+/-1`.  Therefore no
+  constant symmetric rank-two generator works for any of the 625 quotient
+  classes.  This still says nothing about higher-`y` conjugators.
 - The literature audit confirms that orbit matrices and semiregular cyclic
   blocks are standard.  Mathon's apparently matching `p*q^2+1` construction
   requires `p=q+2` and therefore does not cover `37*3^2+1=334`; the 22 July
