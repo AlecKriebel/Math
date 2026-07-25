@@ -19,7 +19,9 @@ campaign claim.
 
 **Proof.**  Partitioning the cycle into three edges and one singleton gives
 \(\theta(C_7)\leq4\), so the standard clique-cover strategy gives
-\(\gamma^\infty(C_7)\leq4\).  It remains to rule out three guards.
+\(\gamma^\infty(C_7)\leq4\).  Also
+\(\alpha(C_7)=3\leq\gamma^\infty(C_7)\) by the parameter chain.  It remains
+to rule out three guards.
 
 For a dominating triple on a cycle, record the three numbers of unoccupied
 vertices in the cyclic gaps between consecutive guards.  On \(C_7\) these

@@ -15,3 +15,15 @@ unlabeled graph generation and canonicalization.
 Run `./tools/bootstrap_nauty.sh` from any directory. The downloaded archive,
 expanded source, objects, and binaries are ignored by Git; the versioned
 bootstrap recipe is the reproducible record.
+
+## Proof-producing SAT tools
+
+`bootstrap_sat.sh` installs CaDiCaL 3.0.1 at commit
+`c60730422e758ef1cebe7aeddf2dda31c996bf04` and the independently developed
+DRAT-trim checker at commit
+`2e5e29cb0019d5cfd547d4208dca1b3ec290349f`. Both downloaded archives are
+checked against hard-coded SHA-256 digests before extraction. Builds use at
+most two parallel compiler processes.
+
+The solver and checker are separate trust components: an `UNSAT` result is
+not accepted unless the saved proof replays successfully with DRAT-trim.

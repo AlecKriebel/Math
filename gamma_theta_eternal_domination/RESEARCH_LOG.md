@@ -140,3 +140,57 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   the general odd-cycle value and attributes it to Burger et al.  The cycle
   value is therefore classical; only the complement-side synthesis
   combination is treated as a campaign contribution.
+
+### 15:10 — Complete one-vertex-extension kill test
+
+- Exhausted all 110,537 nonempty one-vertex extensions of the 55 published
+  near-miss hosts. Global canonicalization reduced these to 54,216 graphs.
+  The search found no graph with the required equality.
+- Exactly 391 canonical graphs reached the closest static target
+  `gamma=alpha=3`; both original one-guard implementations rejected every
+  one at three guards. The remaining graphs split into 52,447 with
+  `gamma<3` and 1,378 with `alpha=4`.
+- A separately written coverage checker reconstructed every host and
+  neighborhood mask, independently proved each raw-to-canonical isomorphism,
+  and reconciled all 110,537 origins and 54,216 multiplicities. Its passed
+  report cryptographically binds the production database and exports.
+
+### 15:20 — Independent per-row mathematical certificates
+
+- A third implementation, importing neither search code nor evaluator A/B,
+  generated and replayed a certificate for every canonical extension row.
+- It supplied explicit domination witnesses for all 52,447 `gamma<3` rows,
+  exhaustive pair/five-set streams plus witnesses for all 1,378
+  `gamma=3, alpha=4` rows, and full greatest-fixed-point deletion traces for
+  all 391 `gamma=alpha=3` rows.
+- Those 391 traces delete all 46,898 dominating triples in two through seven
+  simultaneous rounds, using only unoccupied attacks and exactly one
+  edge-moving guard. No candidate survives this delimited universe.
+- This is a certificate-backed finite result about extensions of the
+  published hosts, not an enumeration of all order-12 graphs and not a
+  resolution of the universal conjecture.
+
+### 15:25 — Proof-producing synthesis toolchain and first consistency check
+
+- Pinned and locally built CaDiCaL 3.0.1 and the independently developed
+  DRAT-trim checker from content-hashed source archives. A bundled
+  pigeonhole-instance proof passed an end-to-end `s VERIFIED` smoke test.
+- Implemented the initial order-12, parameter-three complement CNF for the
+  four certified SPGT templates. The three odd-hole base instances are
+  satisfiable before coloring cuts; the induced `complement(C7)` base
+  instance is already UNSAT, with a DRAT-trim-verified temporary proof.
+- The latter result is presently a consistency check only. The CNF generator
+  and template encoding remain under hostile review, and no synthesis
+  negative result has been promoted.
+
+### 15:34 — Hostile pre-launch checks remain effective
+
+- The edge-toggle engine covers the bounded next universe of 391 seeds and
+  25,641 single-edge toggles, but its first hostile review found a real
+  nondefault output-path collision capable of replacing an SQLite file with
+  JSON. Production launch was correctly blocked.
+- The engine author repaired the derived checkpoint-path validation and
+  added exact overwrite, nesting, and symlink regressions. A separate
+  re-review is in progress; no edge-toggle production run has started.
+- The synthesis generator audit independently found unsafe output/input path
+  aliases. Those are also launch-blocking until repaired and re-reviewed.

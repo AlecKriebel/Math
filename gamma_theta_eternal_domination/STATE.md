@@ -1,5 +1,92 @@
 # Campaign State
 
+## Checkpoint 003 — 2026-07-25 15:35 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `e99bd46e` (full hash recorded in Git).
+- Shared-main HEAD observed at checkpoint creation:
+  `2360a0ce46bce55988a2beff084e7248a15bbec5`.
+- Completion estimate for the campaign work plan: **30%**.
+- Completion estimate toward an actual universal resolution: **6%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25, including a targeted novelty search for
+  the parameter-three odd-wheel/odd-antihole restrictions.
+
+### Verified facts and artifacts
+
+- The complete one-vertex-extension production ledger contains all 110,537
+  nonempty extensions of the 55 MMV near-miss hosts and 54,216 unique
+  canonical graphs. No candidate indicator occurs.
+- The independent coverage checker passed on every origin and canonical
+  multiplicity. Its report, state database, input hashes, exact-isomorphism
+  receipts, and origin-chain hash are recorded in manifest ART-046--048.
+- A third, mathematically independent checker passed all 54,216 rows and
+  emitted 7.36 MB of replayable per-row certificates. It proves:
+  52,447 rows have `gamma<3`; 1,378 have `gamma=3, alpha=4`; and the closest
+  391 have `gamma=alpha=3` but empty one-guard three-state greatest fixed
+  point. No counterexample survives this delimited extension universe.
+- The parameter-three odd-antihole elimination is accepted and promoted as
+  claim C-017. Its one low-severity omitted lower-bound sentence was repaired,
+  and the final hostile review plus independent C7 probe are manifest-bound.
+- CaDiCaL 3.0.1 and DRAT-trim are content-pinned and locally built. A
+  solver/checker smoke proof passed.
+
+### Claim and review boundary
+
+- The extension result is fully bound by independent coverage and
+  mathematical certificates. Promotion to `CLAIMS.md` awaits the final
+  hostile audit of the frozen coverage package.
+- The initial order-12 CNF is exploratory until its hostile review closes.
+  Its induced `complement(C7)` base template produced a verified temporary
+  UNSAT proof consistent with the human theorem; the proof is not yet a
+  campaign negative certificate.
+- The one-edge-toggle engine has not run. Its first hostile review found a
+  real nondefault path collision; a repair is under independent re-review.
+- No result at this checkpoint resolves the universal conjecture or raises
+  the complete all-graph order frontier beyond the published order 11.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | Current refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain gaps |
+| Exact evaluators/certificates | complete-for-current-artifacts | A/B, theta traces, order-9, extension coverage, and third mathematical replay passed |
+| MMV one-vertex extensions | complete-review-pending | Search and two independent audits passed; final hostile coverage report pending |
+| Single-edge toggles of closest seeds | repair-re-review | Exact 25,641-origin engine built; launch blocked until repaired path validator is accepted |
+| Direct synthesis `(12,3)` | active-prelaunch | Four exact base encodings built; generator path safety and clause semantics under hostile review |
+| Structural `k=3` lane | active | Three-template theorem accepted as C-017; cautious novelty assessment remains search-limited |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- No long-running production computation is active.
+- The extension search and both independent replays are complete and
+  immutable at the hashes in manifest ART-042--051.
+- Active work consists of bounded hostile reviews and source repair. No
+  edge-toggle database or production synthesis checkpoint exists.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Extension search: 140.45 seconds wall, 36.06 MiB peak RSS.
+- Independent coverage replay: 71.94 seconds wall, 40.63 MiB peak RSS.
+- Independent mathematical certificate generation plus two replays:
+  40.23 seconds wall, 28.59 MiB peak RSS; separate verify-only replay passed.
+- Free disk is approximately 9.7 GiB. No more than two heavy jobs remain
+  permitted; current jobs are low-memory reviews/tests.
+
+### Next three highest-value actions
+
+1. Close and archive the hostile coverage and odd-antihole reviews, then
+   promote the extension result with an exactly delimited claim.
+2. Repair and re-review the synthesis generator and edge-toggle path gates;
+   launch the 25,641-toggle search only after acceptance.
+3. Complete the proof-audited CEGAR orchestrator and begin the three
+   hub-free odd-hole branches for the full `(n,k)=(12,3)` slice.
+
 ## Checkpoint 002 — 2026-07-25 14:56 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.
