@@ -203,3 +203,20 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   environment and reproduced the artifacts byte-for-byte. The base encoding
   and generator are accepted; the resumable CEGAR orchestrator remains to be
   built and reviewed.
+
+### 16:00 — Complete single-edge-toggle production ledger
+
+- Exhausted every unordered-pair edge toggle of the 391 closest canonical
+  extension seeds: 25,641 raw seed/pair origins and 19,136 global canonical
+  graphs. Every graph is connected and no candidate was frozen.
+- The search implementations classify every row by strict
+  `gamma < gamma-infinity`. The unique/raw parameter distribution is:
+  8,587/12,225 with `(gamma,alpha,gamma-infinity,theta)=(3,3,4,4)`;
+  6,751/8,615 with `(2,3,4,4)`; 2,615/3,488 with `(3,4,4,4)`;
+  1,143/1,246 with `(2,3,3,3)`; and 40/67 with `(2,3,3,4)`.
+- Runtime was 724.27 seconds wall and 709.44 seconds CPU; peak resident
+  memory was 75.92 MiB. The database, checkpoint, provenance and unique
+  exports are hash-bound in manifest ART-066--069.
+- This remains an unpromoted finite search result until a standalone checker
+  independently reconstructs all toggles and a third mathematical
+  implementation certifies `gamma < gamma-infinity` on every canonical row.

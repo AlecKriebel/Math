@@ -37,16 +37,17 @@
 ### Claim and review boundary
 
 - The extension result is fully bound by independent coverage and
-  mathematical certificates. Promotion to `CLAIMS.md` awaits the final
-  hostile audit of the frozen coverage package.
+  mathematical certificates, and the frozen coverage package passed a full
+  hostile replay. It is promoted as exactly delimited claim C-018.
 - The initial order-12 CNF, all four template/relabeling arguments, coloring
   cuts, exact coloring oracle, strict generator, and replay manifest are
   hostile-review accepted. The induced `complement(C7)` base template
   produced a verified temporary UNSAT proof consistent with the human
   theorem; that temporary proof is not yet a promoted finite certificate.
-- The one-edge-toggle engine has not run. Its first hostile review found a
-  real nondefault path collision; the repair passed independent re-review,
-  including the exact former SQLite-overwrite geometry.
+- The one-edge-toggle production run is complete: 25,641 origins, 391 seeds,
+  and 19,136 canonical connected graphs, with no candidate. Every stored row
+  has strict `gamma < gamma-infinity`; independent coverage and mathematical
+  audits are running before claim promotion.
 - No result at this checkpoint resolves the universal conjecture or raises
   the complete all-graph order frontier beyond the published order 11.
 
@@ -56,19 +57,20 @@
 |---|---|---|
 | Literature/status audit | active-weekly | Current refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain gaps |
 | Exact evaluators/certificates | complete-for-current-artifacts | A/B, theta traces, order-9, extension coverage, and third mathematical replay passed |
-| MMV one-vertex extensions | complete-review-pending | Search and two independent audits passed; final hostile coverage report pending |
-| Single-edge toggles of closest seeds | accepted-launch | Exact 25,641-origin engine and repaired path validator accepted; production paths remain absent |
+| MMV one-vertex extensions | complete-certified | Exact search, independent coverage, hostile full-ledger replay, and third mathematical certificates support C-018 |
+| Single-edge toggles of closest seeds | complete-audit-pending | 25,641 origins and 19,136 canonical graphs complete; independent coverage and third mathematical replay running |
 | Direct synthesis `(12,3)` | active-orchestrator | Exact base encodings and generator accepted; resumable proof-producing CEGAR orchestration is the remaining launch gate |
 | Structural `k=3` lane | active | Three-template theorem accepted as C-017; cautious novelty assessment remains search-limited |
 | General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
 
 ### Running jobs and resume state
 
-- No long-running production computation is active.
+- No search process is active; the single-edge-toggle production run
+  completed in 724.27 seconds.
 - The extension search and both independent replays are complete and
   immutable at the hashes in manifest ART-042--051.
-- Active work consists of bounded hostile reviews and source repair. No
-  edge-toggle database or production synthesis checkpoint exists.
+- Active work consists of bounded post-run audits and CEGAR-orchestrator
+  construction. No production synthesis checkpoint exists.
 
 ### Resource usage
 
@@ -82,8 +84,8 @@
 
 ### Next three highest-value actions
 
-1. Close and archive the hostile coverage and odd-antihole reviews, then
-   promote the extension result with an exactly delimited claim.
+1. Finish the independent coverage and mathematical audits of the completed
+   25,641-origin single-edge-toggle search.
 2. Launch and independently audit the now-accepted 25,641-toggle search while
    closing the still-pending synthesis-generator repairs.
 3. Complete the proof-audited CEGAR orchestrator and begin the three
