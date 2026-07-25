@@ -213,11 +213,13 @@ The fixed-divisor coverage is now more precise.
   H_4=h(p,q)\operatorname{Ver}(p,q),
   \]
   equivalently \(\iota_kB_h=0\) for the quotient source direction \(k\).
-  It does not exclude the whole taxonomy row.  The remaining fixed-factor
+  The remaining fixed-factor
   normal forms are
   \[
   r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2.
   \]
+  `WORKING_NONBINARY_FIXED_CONIC_ROW.md` excludes all five, so the entire
+  fixed-divisor conic taxonomy row is closed.
 - The cuspidal cubic and the other \(e>0\) rows remain uncovered except
   where a separate component or rank-one exit theorem applies.
 

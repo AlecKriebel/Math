@@ -45,7 +45,9 @@ form \(h\).  The hypothesis in (1) is
 \boxed{\iota_kB_h=0.}
 \tag{2}
 \]
-Section 9 records the five nonbinary normal forms that remain open.
+Section 9 records the five nonbinary normal forms outside this theorem.
+The subsequent nonbinary note excludes all five and closes the complete
+fixed-divisor conic taxonomy row.
 
 ## 2. Top two determinant identities
 
@@ -387,7 +389,7 @@ of degree at most four.  The unconditional plane degree bound implies that
 of \(r\) plus a polynomial in \(p,q\); hence \(F\) is an automorphism.
 This closes every branch in (9) and proves the theorem.
 
-## 9. The exact remaining fixed-conic frontier
+## 9. Completion by the nonbinary theorem
 
 For a general quadratic fixed divisor write
 \[
@@ -408,9 +410,15 @@ following complete list outside the binary condition (2).
   pr,\qquad pr+q^2.
   \]
 
-These five nonbinary strata remain open.  Therefore the theorem excludes a
-complete invariant subrow, but not yet the full
-\((e,a,b,\delta,\nu)=(2,1,2,2,1)\) taxonomy row.
+These five forms are outside the theorem proved in this note.  The subsequent
+`WORKING_NONBINARY_FIXED_CONIC_ROW.md` excludes all five by one general
+degree-eight tangent reduction followed by exact affine normalizations and
+degree-six singular-linear-part exits.  Combining the two notes excludes the
+full
+\[
+(e,a,b,\delta,\nu)=(2,1,2,2,1)
+\]
+taxonomy row.
 
 ## 10. Verification boundary and disclosure
 

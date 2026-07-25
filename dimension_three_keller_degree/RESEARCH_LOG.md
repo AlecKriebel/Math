@@ -551,3 +551,41 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The source-specific priority sweep found no exact overlap.  It is not a
   guarantee of worldwide priority.  The universal certified floor remains
   total degree \(4\).
+
+## 2026-07-25T04:03:51Z — Complete fixed-divisor conic row excluded
+
+- For
+  \[
+  H_4=h(p,q,r)(p^2,pq,q^2)^T
+  \]
+  with nonbinary quadratic \(h\), the degree-eight adjugate identity reduces
+  to
+  \[
+  4Hn_s=3H_sn.
+  \]
+  A logarithmic valuation at every \(s\)-dependent irreducible factor of
+  \(H\) forces \(n=0\), so \(H_3\) lies in the Veronese tangent module.
+- The parabolic group preserving \(\langle p,q\rangle\) has exactly five
+  nonbinary normal forms:
+  \[
+  r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2.
+  \]
+  Affine translations remove the apparent cubic tangent moduli.  The
+  complete degree-seven quadratic kernel followed by a triangular
+  degree-six subsystem forces the linear part to be singular in every
+  branch.
+- A draft homogeneous-orbit modulus was rejected during audit: translations
+  in \(r\) add its scalar part, while translations in \(p,q\) remove the
+  remaining tangent parameters.  Retaining affine rather than homogeneous
+  equivalence is essential.
+- The two exact implementations pass, and a final independent raw-system
+  audit reconstructed the seven-form taxonomy, compatibility radicals,
+  affine signs, complete kernels, and singular exits.  Combining this with
+  the audited binary theorem excludes the entire fixed-divisor conic row
+  \[
+  (e,a,b,\delta,\nu)=(2,1,2,2,1).
+  \]
+- The source-specific priority sweep found no exact checked overlap.  This
+  is not a guarantee of worldwide priority.  The result is an unreviewed
+  stratum theorem and does not raise the universal certified floor above
+  total degree \(4\).

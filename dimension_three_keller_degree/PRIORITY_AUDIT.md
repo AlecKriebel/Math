@@ -361,3 +361,25 @@ against this exact statement.  This is source-specific negative evidence
 only, not a guarantee of worldwide priority.  The theorem is unreviewed,
 does not exclude the five nonbinary fixed factors, and does not raise the
 certified universal total-degree floor above \(4\).
+
+### 2026-07-25T04:03Z — complete fixed-conic-row overlap check
+
+After closing the five nonbinary forms, exact searches combined “Keller map
+dimension three degree four” with “fixed divisor”, “Veronese conic”,
+“quadratic normal form”, and the displayed leading form
+\(h(p,q,r)(p^2,pq,q^2)\).  Separate searches covered arXiv, MathOverflow,
+Tao's blog, Secret Blogging Seminar, and read-only X/Twitter results.
+
+The checked results again included Shaska's graded-map paper, Migus's
+generic-degree paper, de Bondt's homogeneous low-rank classifications, and
+unrelated Veronese and fixed-divisor geometry.  None states the general
+adjugate/logarithmic-valuation reduction, the five nonbinary affine
+normalizations, or an exclusion of the complete taxonomy row
+\[
+(e,a,b,\delta,\nu)=(2,1,2,2,1).
+\]
+The exact-phrase searches for “fixed-divisor conic” and for
+\(h(p,q,r)(p^2,pq,q^2)\) found no checked mathematical overlap.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The theorem remains unreviewed and does not raise the certified
+universal total-degree floor above \(4\).

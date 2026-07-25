@@ -42,10 +42,12 @@ The first audited quartic working lemmas now constrain:
   excluded by exact degree-seven-through-five identities, while the
   scalar-aligned branch collapses to a degree-at-most-four plane Keller
   block plus a shear; and
-- the complete binary fixed-divisor conic subrow
-  \(H_4=h(p,q)\operatorname{Ver}(p,q)\): all seven residual tangent-field
-  branches either contradict the Keller condition or collapse to a plane
-  Keller block plus a shear.
+- the complete fixed-divisor conic row
+  \(H_4=h(p,q,r)\operatorname{Ver}(p,q)\): the two binary normal forms
+  either contradict the Keller condition or collapse to a plane Keller
+  block plus a shear, while all five nonbinary normal forms are impossible
+  by exact logarithmic-valuation, affine-translation, and degree-six
+  obstructions.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -56,13 +58,9 @@ The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
 \((2,2)\) stratum, the conic double-cover locus, the cuspidal cubic,
 ramified birational quartic parametrizations, and the other leading maps
-with a fixed divisor.  In the fixed-divisor conic row, the exact remaining
-normal forms are
-\[
-r^2,\quad r^2+p^2,\quad r^2+pq,\quad pr,\quad pr+q^2
-\]
-for the quadratic fixed factor.  In the rank-one stratum, fixed-component
-projected cubic pencils and a binary common-ramification locus remain.  The
-universal certified floor remains \(4\).
+with a fixed divisor.  The fixed-divisor conic row is closed.  In the
+rank-one stratum, fixed-component projected cubic pencils and a binary
+common-ramification locus remain.  The universal certified floor remains
+\(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

@@ -312,8 +312,9 @@ certificates, the semisimple system's constant \(9\times9\) minor \(32768\),
 and the nilpotent branch in which two columns of \(L_0\) become
 proportional.  The audit's crucial correction was one of scope, not algebra:
 the proof excludes precisely the binary condition
-\(\iota_kB_h=0\), rather than every quadratic fixed divisor.  The five
-nonbinary parabolic normal forms remain open.
+\(\iota_kB_h=0\), rather than every quadratic fixed divisor.  The companion
+nonbinary theorem below subsequently closes the other five parabolic normal
+forms.
 
 ### Unique-double-line line charts
 
@@ -327,6 +328,40 @@ carry relative-position parameters.  The note now retains the calculations
 only as conditional charts and records an exact missed configuration with
 vanishing degrees eight and seven.  No exclusion of the remaining
 unique-double-line line locus is claimed.
+
+### Complete fixed-divisor conic row
+
+At 2026-07-25T04:03:51Z the complete nonbinary regression passed with
+
+```text
+/usr/bin/python3 verify_nonbinary_fixed_conic_sympy.py
+gp -q verify_nonbinary_fixed_conic_pari.gp
+```
+
+The binary companion regressions were rerun in the same clean state:
+
+```text
+/usr/bin/python3 verify_fixed_conic_row_sympy.py
+gp -q verify_fixed_conic_row_pari.gp
+```
+
+The nonbinary SymPy implementation checks the general adjugate and kernel
+identities, all five raw degree-seven compatibility systems, their
+translation-normalized tangent forms and complete quadratic kernels, and
+the division-free degree-six singular-linear-part exits.  PARI/GP
+independently re-expands the same determinant identities.
+
+A separate adversarial audit reconstructed the parabolic classification
+into exactly seven normal forms, independently checked the three final raw
+radicals and their converses, verified every affine translation sign and
+the reused six-parameter quadratic kernel, and reproduced each triangular
+degree-six table.  It also confirmed the scope distinction: the five
+nonbinary branches admit no Keller map, while the binary theorem says
+Keller implies automorphism.  Together the two notes exclude the entire
+fixed-divisor conic row
+\[
+(e,a,b,\delta,\nu)=(2,1,2,2,1).
+\]
 
 ## Scope
 
