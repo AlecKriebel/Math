@@ -181,6 +181,34 @@ independent exact-determinant cross-check under 50 MB. The proof is published
 separately in `w4_search/RESULT.md`; it is not folded into the level-three
 paper.
 
+## Separate level-five certificate, 25 July 2026
+
+A depth-agnostic rank-\(81\) quotient-tower evaluator found a smaller
+good-reduction certificate at \(p=23,s=3\).  The five discriminant norms are
+
+```text
+(10,22,10,4,0),
+```
+
+all leading and reconstruction guards are units, and the deepest norm has
+derivative \(16\) modulo \(23\).  The unique rational vanishing path is
+`(10,22,13,1)` and its direct sheet discriminant derivative is `18`.
+
+A hostile implementation imported none of the quotient-vector arithmetic.
+It rebuilt the ranks \(1,3,9,27,81\) with block regular-representation
+matrices, checked every forward reconstruction and resolvent recovery, and
+replayed the localization, norm-valuation, tame-inertia, and group steps.
+Twelve fail-closed mutations passed.  The resulting single bottom
+transposition, all-level \(243\)-cycle, and proved \(W_4\) quotient generate
+the kernel \(S_3^{81}\), hence
+
+```text
+Mon_C(F^5) = W_5.
+```
+
+The proof is in `w5_search/RESULT.md`.  This is another finite-level theorem;
+the all-iterate wreath equality remains open.
+
 ## Initial exact evidence
 
 For each target below, the degree-nine polynomial is irreducible over `Q` and

@@ -677,8 +677,9 @@ exact second- and third-iterate results and the specific realizations
 The natural stronger question is whether every iterate `F^m` has the full
 iterated wreath product. Full-cycle inertia is proved above, but this paper
 does not produce the required new single transposition at every level. The
-separate certificate in `w4_search/RESULT.md` settles `W_4`; the full
-arboreal statement remains open.
+separate certificates in `w4_search/RESULT.md` and `w5_search/RESULT.md`
+settle `W_4` and `W_5`, respectively; the full arboreal statement remains
+open.
 
 ## References and public comparison points
 
