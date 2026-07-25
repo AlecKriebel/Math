@@ -250,3 +250,34 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   respectively, at their separate 90-second gates without a terminal.
   These probes retained no proof logs and support no mathematical claim;
   production awaits the audited resumable orchestrator.
+
+### 16:52 — Online two-step obstruction proved and measured
+
+- Proved that the descending online transition kernels stabilize at the
+  greatest eternal family.  When `alpha=gamma-infinity=k`, every maximum
+  independent `k`-set must survive two adaptive attacks.  A failed first
+  attack, together with a named second attack defeating every legal first
+  response, is a compact private-region certificate that
+  `gamma-infinity>=k+1`.
+- The theorem is strictly stronger than the prior one-step condition:
+  `C7` passes security at every maximum independent triple but a specified
+  first attack has no secure successor.  An independent hostile review
+  accepted the proof, complement translation, certificate checker, and
+  model semantics with no critical, high, or medium finding.
+- On the 8,587 closest edge-toggle rows with
+  `(gamma,alpha,gamma-infinity,theta)=(3,3,4,4)`, one step rejects 4,169,
+  the second step rejects 3,892 more, and only 526 survive.  The same filter
+  rejects all 5, 78, and 1,569 static `gamma=alpha=3<theta` targets at
+  connected-unlabeled orders 7, 8, and 9.  A standalone implementation
+  reproduced every count; they remain observations, not an order-bounded
+  nonexistence certificate.
+- A terminology refresh located and archived Burger et al.'s 2004 finite-
+  and infinite-order papers.  Their finite smart-\(q\) definition is
+  offline: the full attack sequence is known before the defender sequence
+  is chosen.  The campaign kernel is adaptive online, with alternating
+  attack/response quantifiers.  The note now cites this predecessor,
+  states the distinction explicitly, and makes no categorical general
+  novelty claim.
+- The proof-producing `(12,3)` CEGAR runner passed 15 focused tests and the
+  full 195-test campaign suite.  Its independent hostile pre-launch audit is
+  still active; no production synthesis run has been launched.

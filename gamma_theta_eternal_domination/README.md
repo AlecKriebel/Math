@@ -117,3 +117,17 @@ The first command reconstructs all 25,641 labeled toggles and verifies their
 19,136 canonical-class mappings.  The second independently proves
 `gamma < gamma-infinity` for every class from the installed domination and
 one-guard fixed-point certificates.
+
+Claim C-020 gives a stronger local obstruction: when
+`alpha=gamma-infinity=k`, every maximum independent set must survive two
+adaptive attacks, not merely one.  Its compact private-region certificate
+and the C-021 pruning measurements can be independently replayed with:
+
+```text
+PYTHONWARNINGS=error python3 reviews/two_step_transition_hostile_probe.py
+```
+
+That read-only probe imports no campaign evaluator.  It reconstructs the
+8,587 selected edge-toggle rows and streams the complete connected-unlabeled
+orders 5 through 9.  The resulting counts are labeled `OBSERVED`; they do
+not exclude all graphs of order 10 or higher.

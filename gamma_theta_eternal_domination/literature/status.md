@@ -51,6 +51,29 @@ only after checking which section and symbol is involved. Eviction, total,
 connected, foolproof, directed, distance, and all-guards Cayley results are
 outside scope unless independently reproved for the one-guard definition.
 
+There is also a finite-horizon terminology trap. Burger et al., *Finite
+Order Domination in Graphs* (2004), define smart \(q\)-secure domination
+with quantifiers
+
+\[
+ \forall(r_1,\ldots,r_q)\ \exists(u_1,\ldots,u_q).
+\]
+
+Their conclusion explicitly says that the complete problem sequence is known
+to the strategist in advance. This is an offline condition. By contrast, a
+two-ply truncation of the eternal game has adaptive-online quantifiers
+
+\[
+ \forall r_1\ \exists u_1\ \forall r_2\ \exists u_2.
+\]
+
+Klostermeyer-Mynhardt's 2016 survey makes the taxonomy explicit: the
+adaptive-online problem is eternal domination, while an offline predefined
+attack sequence can require fewer guards. The campaign's transition kernels
+therefore are not being identified with smart finite-order domination,
+although that work is an essential predecessor and is cited wherever the
+finite-horizon viewpoint is used.
+
 ## 3. Correct origin and attribution
 
 The historical chain is more subtle than a simple conjecture citation.
@@ -172,7 +195,7 @@ Therefore:
 
 | Class | Exact result | Source status | Consequence for a counterexample |
 |---|---|---|---|
-| Perfect graphs | Every perfect graph is maximum-demand. | Original Burger et al. 2004 theorem consistently restated in inspected 2015, 2016, 2022, and 2024 sources; original text not yet archived. | It is imperfect. |
+| Perfect graphs | Every perfect graph is maximum-demand. | Burger et al.'s official scanned 2004 infinite-order paper is now archived and its independence lower bound and clique-partition upper bound were visually inspected; the conclusion is also consistently restated for one-guard eternal domination in inspected 2015, 2016, 2022, and 2024 sources. | It is imperfect. |
 | Circular-arc graphs | Every circular-arc graph is maximum-demand. | Attributed to Regan's 2007 Bonn thesis by inspected primary sources; thesis not yet obtained. | It is not circular-arc. |
 | `K4`-minor-free graphs | Every `K4`-minor-free graph is maximum-demand. | Anderson et al. 2007, cross-checked in 2016 and 2024; original text not yet obtained. | It has a `K4` minor. |
 | Series-parallel graphs | Covered by the exact `K4`-minor-free statement under the standard definition. | Same source. | It is not series-parallel. |

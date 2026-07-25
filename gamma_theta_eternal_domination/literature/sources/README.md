@@ -18,6 +18,8 @@ PDF text.
 | `taletskii2024_src/GammaThetav2.tex` | Extracted primary TeX used to check the planar theorem and the `C4`-free citation status | `d9ecc1529c91f3857136e8709a7233a02f08f9a528a783744ed419db3870fdc1` |
 | `kimura2026.pdf` | Open-access Discrete Mathematics Letters article, DOI 10.47443/dml.2025.208 | `fc1c83b913c8b84349ace44427381e01a990f3191b09c5a3bfb394692d71c610` |
 | `goddard_hedetniemi_2005.pdf` | Author-hosted copy of Goddard--Hedetniemi--Hedetniemi, JCMCC 52 (2005), used to verify the one-guard odd-cycle formula | `46cf4f4516105514ddc362b77c3401f468b27505a7165aec0280e0983183ff7c` |
+| `burger_et_al_2004_finite_order.pdf` | Author-hosted primary paper, JCMCC 49 (2004), 159--175; used to check the offline smart-\(q\) definition and its stated one-at-a-time-revelation follow-up | `e53407dc8342485872f06a71d3788d6c4e6851d5e5b57b6c074188575d4fa2a5` |
+| `burger_et_al_2004_infinite_order.pdf` | Official Combinatorial Press scan of JCMCC 50 (2004), 179--194; used to inspect the historical infinite-order formulation and the independence/clique-partition bounds | `63f9caf133e99cf88db194a858a9d3155a95ed7f43315bd043265d7c0523324a` |
 
 The extracted source directories are retained beside their archives. The
 arXiv MMV package contains only `EternalDomination.tex` and

@@ -1,5 +1,99 @@
 # Campaign State
 
+## Checkpoint 005 — 2026-07-25 16:52 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `d4e08098` (full hash recorded in Git).
+- Shared-main HEAD observed during checkpoint preparation:
+  `0addfeed` (unrelated research advanced `main` after the last campaign
+  commit).
+- Completion estimate for the campaign work plan: **41%**.
+- Completion estimate toward an actual universal resolution: **10%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25.  The audit was refreshed out of cycle
+  for finite-order, infinite-order, offline, and adaptive-online terminology.
+
+### Verified facts and artifacts
+
+- Claim C-020 is proved and hostile-review accepted.  The finite transition
+  kernels descend to the greatest eternal family, and equality
+  `alpha=gamma-infinity=k` forces every maximum independent `k`-set into
+  the second online kernel.  The resulting two-ply private-region
+  obstruction is a compact lower-bound certificate.
+- The `C7` example proves strict separation from the earlier one-step
+  condition.  Six focused tests compare the implementation with a
+  transparent second-kernel oracle on every labeled graph through order 5;
+  the complete campaign suite passes 195 of 195 tests.
+- Claim C-021 records the filter measurement conservatively as `OBSERVED`.
+  Of 8,587 selected edge-toggle near-misses, 8,061 fail within two steps and
+  526 survive.  A fresh ordinary-set implementation independently reproduced
+  these counts and the complete connected-unlabeled order-5-through-9
+  measurements.
+- Burger et al.'s 2004 finite- and infinite-order primary papers are locally
+  archived and hash-bound as ART-081--082.  The finite smart-\(q\) model has
+  offline quantifiers with the complete attack sequence known in advance;
+  the campaign kernels are adaptive online.  The theorem note and hostile
+  review explicitly preserve that distinction and make no broad novelty
+  claim.
+- The theorem, implementation, tests, measurement, hostile review, standalone
+  replay, and mutation suite are bound as ART-083--089.
+
+### Claim and review boundary
+
+- C-020 is a universal necessary condition, not a proof of the
+  Gamma-Theta Conjecture and not a sufficient characterization of eternal
+  domination.
+- C-021 measures fixed recorded populations.  It does not prove a complete
+  nonexistence result for order 10 or above, and the 526 survivors have not
+  been classified by the two-step test.
+- The proof-producing `(n,k)=(12,3)` runner is implemented and passes 15
+  focused tests plus the 195-test full suite, but it remains under an
+  independent hostile pre-launch audit.  No production CEGAR run or proof
+  package exists yet.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | Offline/online finite-horizon refresh complete; unavailable `C4`-free manuscript and general well-covered generators remain gaps |
+| Exact evaluators/certificates | complete-for-current-artifacts | A/B plus independent finite-search and two-step hostile replays passed |
+| MMV one-vertex extensions | complete-certified | C-018 covers 110,537 origins and 54,216 canonical graphs |
+| Single-edge toggles of closest seeds | complete-certified | C-019 covers 25,641 origins and 19,136 canonical graphs |
+| Direct synthesis `(12,3)` | active-hostile-prelaunch | Runner built and tested; proof/cut/resume/path/resource audit must accept its exact hash before production |
+| Structural `k=3` lane | active-high-yield | C-020 removes 93.9% of the selected hardest near-misses within two plies; analyze the 526 survivors or a third kernel round |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- No production search or solver process is active.
+- The independent CEGAR-runner hostile audit is active.  No
+  `results/synthesis_k3_runs/` production checkpoint exists.
+- The two-step source-bound measurement and independent replay are complete
+  at the hashes in ART-086 and ART-088.  Reproduction commands are recorded
+  in `README.md`.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Two-step measurement: 94.03 seconds wall, 91.91 seconds CPU, 25.06 MiB
+  peak RSS.  Independent replay: 61.71 seconds wall, 25.11 MiB peak RSS.
+- CEGAR focused tests and full campaign suite: 21 of 21 and 195 of 195
+  passed in 4.29 and 16.01 seconds.
+- Free disk is approximately 8.4 GiB.  The CEGAR runner defaults to a 4 GiB
+  do-not-use reserve and permits only one solver/checker child at a time.
+
+### Next three highest-value actions
+
+1. Finish the independent hostile audit of the CEGAR runner and close every
+   critical, high, and medium pre-launch finding.
+2. Commit the accepted runner, launch one proof-producing `C9` iteration,
+   inspect it, and then resume to a verified terminal before `C7` and `C5`.
+3. Analyze the 526 depth-two survivors for a third-ply obstruction or a
+   human-readable parameter-three structural lemma.
+
 ## Checkpoint 004 — 2026-07-25 16:24 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.
