@@ -681,6 +681,11 @@ worldwide priority.  The result is unreviewed, identifies rather than
 excludes the final two lower-identity frontiers, and leaves the certified
 universal floor at \(4\).
 
+The two canonical pencils also occur in the genuine \(e=0\)
+line-\((2,2)\) row, but the fixed-divisor theorem concerns the distinct
+\(e=2\) leading form \(H_4=(p^2,pq,0)\).  No priority or coverage claim
+is transferred between those rows.
+
 ### 2026-07-25T08:39Z — rank-one exceptional-orbit audit delta
 
 The current-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,

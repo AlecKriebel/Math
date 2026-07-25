@@ -306,8 +306,11 @@ The fixed-divisor coverage is now more precise.
   Every such minimal quadratic pencil is exactly
   \(\langle x^2,yz\rangle\) or
   \(\langle x^2,y^2+xz\rangle\).  Thus the full all-vertical top frontier
-  is now identified with the two unique-double-line line-\((2,2)\)
-  mechanisms already under lower-identity analysis.
+  has two canonical quadratic pencils.  This remains the separate
+  fixed-divisor row \(e=2\), with leading form
+  \(H_4=(p^2,pq,0)\) after a pencil change; the genuine \(e=0\)
+  outer-double-cover packages for the same pencils do not exclude it.
+  Its lower identities remain active.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 

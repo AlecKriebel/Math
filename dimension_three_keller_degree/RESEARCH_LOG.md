@@ -955,8 +955,10 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   Characteristics \(5\) and \(11\) were discarded after producing
   spurious modular kernels; modulo \(101\) and all fault tests pass.
 - This identifies the sole all-vertical top frontier with the two
-  unique-double-line line-\((2,2)\) pencils.  It does not yet exclude both
-  lower-identity frontiers, so the universal floor remains \(4\).
+  canonical unique-double-line quadratic pencils.  It is still the
+  separate \(e=2\) fixed-divisor form \(H_4=(p^2,pq,0)\), not the
+  genuine \(e=0\) outer double cover on the same pencil.  Its two lower
+  frontiers remain active, so the universal floor remains \(4\).
 
 ## 2026-07-25T08:32:00Z — Rank-one unmarked triple \(c=0\) excluded
 
