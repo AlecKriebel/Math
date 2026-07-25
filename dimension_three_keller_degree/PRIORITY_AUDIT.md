@@ -271,3 +271,49 @@ source excludes the full genuine conic-image \((2,2)\) quartic stratum or
 states its two canonical degree-five certificate.  This is source-specific
 negative evidence only, not a guarantee of worldwide priority.  The theorem
 is unreviewed and does not exclude every total-degree-four Keller map.
+
+### 2026-07-25T01:46Z — rank-one quotient-pencil overlap check
+
+Exact web and arXiv searches combined “quartic Keller map”, “rank one
+leading homogeneous part”, “projected cubic pencil”, “triple-line fibre”,
+“Hilbert--Burch”, and “dimension three”.  The checked results included:
+
+- Shaska,
+  [*Graded Keller maps and the Jacobian Conjecture*](https://arxiv.org/abs/2607.20210),
+  whose current full text treats equivariant maps and the announced
+  degree-seven counterexample, not total-degree-four leading-form strata;
+- de Bondt's classifications of homogeneous polynomial maps of low Jacobian
+  rank, which supply general factorization and triangularization inputs but
+  do not state the mixed \(H_2+H_3+H_4\) quotient-pencil exits; and
+- general Jacobian-rank and homogeneous-cubic classifications, none of whose
+  checked statements gives the degree-\((3,4)\) vertical-divisor
+  classification or the corrected lower-identity exits recorded here.
+
+No checked source states that a primitive projected cubic pencil is
+impossible for a rank-one-leading quartic Keller counterexample, or that the
+fixed-component-free composite case must have a common factor in
+\[
+J(P,Q),\quad J(P,h),\quad J(Q,h).
+\]
+This is source-specific negative evidence only and is not a guarantee of
+worldwide priority.  Both results remain unreviewed working theorems.
+
+### 2026-07-25T02:04Z — curve-taxonomy and nodal-cubic overlap check
+
+The same-day required-channel sweep was rechecked with exact combinations
+of “quartic Keller”, “leading projective cubic”, “nodal cubic”,
+“fixed divisor”, “minimal pair”, and “degree four dimension three”.
+De Bondt's
+[*Rational maps \(H\) for which \(K(tH)\) has transcendence degree 2 over
+\(K\)*](https://arxiv.org/abs/1501.06046)
+contains the general factorization theorem used here, but not the
+degree-four thirteen-row specialization or any Keller lower-identity
+exclusion.  The recent graded-map, automorphism-locus, and announced-map
+papers checked earlier do not state a transverse nodal-cubic leading-stratum
+theorem.
+
+No checked source contains the degree-seven-through-five factorization that
+forces the nodal branch's linear part to be singular.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The taxonomy and nodal exclusion remain unreviewed working
+theorems, and they do not exclude all total-degree-four counterexamples.

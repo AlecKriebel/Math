@@ -375,3 +375,111 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   lines are nonminimal and reclassify into type \((1,4)\).
 - The universal certified degree floor remains \(4\); this is not yet a
   complete quartic exclusion.
+
+## 2026-07-25T01:46:16Z — Primitive rank-one quotient pencils excluded
+
+- For a rank-one quartic leading part, homogeneous rank one gives
+  \(H_4=ah\) with a constant target line.  Projecting the cubic part modulo
+  that line produces a cubic pencil \(\langle P,Q\rangle\).
+- The degree-seven Keller identity is exactly
+  \[
+  \operatorname{Jac}(P,Q,h)=0.
+  \]
+  If the pencil is primitive and its generic member is geometrically
+  integral, the degree-\((3,4)\) first-integral divisor has degree four.
+  It forces a unique triple-line member and the exact exceptional form
+  \[
+  P=L^3,\qquad h=L(\alpha P+\beta Q).
+  \]
+- In that form, degree six gives a quintic first integral.  When
+  \(\beta\ne0\), its degree-five base divisor forces \(L^2\) to divide the
+  quadratic part of the \(P\)-component.  In the pure \(h=L^4\) case,
+  degree five gives a quartic first integral and forces one factor \(L\).
+- The selected full component is therefore
+  \[
+  f=L^3+LM+\ell.
+  \]
+  Its nowhere-vanishing differential makes it an explicit degree-three
+  polynomial coordinate.  Straightening \(f\) leaves plane Keller fibres
+  of degree at most \(4\cdot3=12\); the unconditional plane bound,
+  fibrewise injectivity, and Ax--Grothendieck make the original map an
+  automorphism.
+- The independent audit caught an omitted
+  \(6\Delta(L_0,JH_3,JH_4)\) term in the pure-power degree-five equation.
+  The corrected first integral is
+  \[
+  9L^2U-2\mu S^2-12\mu L^3\ell_0.
+  \]
+  It has the same reduction modulo \(L\), so the theorem survives.  Both
+  exact systems pass with arbitrary \(L_0\).
+- If the projected cubic pencil has no fixed component but is
+  nonprimitive, generalized Lüroth forces it to be a binary cubic pencil.
+  On the gcd-one locus for
+  \[
+  J(P,Q),\quad J(P,h),\quad J(Q,h),
+  \]
+  Hilbert--Burch kills all third-variable nonlinear dependence and the map
+  is a plane automorphism plus a shear.  The audit again caught the missing
+  arbitrary-linear-part contribution; correctly retained, it is a
+  total-degree-five syzygy and also forces the first two entries of
+  \(L_0(\partial_z)\) to vanish.
+- Thus a rank-one-leading quartic counterexample must now have either a
+  fixed component in its projected cubic pencil or a nonconstant binary
+  common-ramification factor.  This is a structural stratum theorem, not a
+  universal quartic exclusion.  The certified floor remains \(4\).
+
+## 2026-07-25T02:04:55Z — Curve taxonomy and nodal-cubic row
+
+- Every rank-two quartic leading map with projective curve image has the
+  minimal-pair form
+  \[
+  H_4=hA(p,q),\qquad e+ab=4,\qquad b=\delta\nu.
+  \]
+  Here \(e=\deg h\), \(a=\deg p=\deg q\), \(b=\deg A\),
+  \(\delta\) is the image-curve degree, and \(\nu\) is the normalization
+  cover degree.
+- Enumerating these two exact equations gives thirteen rows.  The audit
+  checked the de Bondt specialization, fixed divisor, base-scheme support,
+  and every row.  It also corrected earlier coverage language: several
+  line rows are only constrained, not excluded.
+- The taxonomy exposes a previously hidden conic double-cover row
+  \[
+  H_4\sim\operatorname{Ver}(p^2,q^2),
+  \]
+  as well as all fixed-divisor rows \(e>0\).  The genuine conic
+  \((2,2)\) theorem does not exclude this nonminimal two-double-line row.
+- In the transverse nodal-cubic row, the degree-eight identity first gives
+  \[
+  H_3=A_p(\ell+\alpha r)+A_q(m+\beta r).
+  \]
+  The degree-seven normal minor factors as
+  \[
+  6(p^3+q^3)
+  \bigl(cp^2+(d-a)pq-bq^2\bigr)^2,
+  \]
+  forcing \(H_3=\lambda A+r(\alpha A_p+\beta A_q)\).
+- The full degree-seven and degree-six systems have ranks sixteen and nine:
+  \[
+  H_2=\frac13(uA_p+vA_q)+\frac r2D^2A,
+  \qquad
+  \det L_0=
+  \frac49(\alpha^3+\beta^3)(\alpha v-\beta u)^2.
+  \]
+  Degree five is the square
+  \[
+  \frac49(p^3+q^3)
+  \bigl((3\beta\lambda-v)p+(u-3\alpha\lambda)q\bigr)^2.
+  \]
+  Its vanishing makes \(\alpha v-\beta u=0\), contradicting invertibility
+  of \(L_0\).  Therefore the entire transverse nodal-cubic leading row is
+  empty.
+- An independent raw coefficient solve and SymPy/PARI regressions reproduce
+  all ranks, signs, and factors.  The cuspidal and scalar-aligned cubic
+  branches remain.
+- Separately, the unique-double-line line-\((2,2)\) audit caught a false
+  simultaneous-normalization claim.  Its degree-seven equations and kernel
+  computations are correct only on conditional charts; the outer critical
+  pair and companion conic carry cross-ratio parameters.  The note now
+  records an exact missed configuration and makes no exhaustive claim.
+- These are structural stratum results, not a universal quartic exclusion.
+  The certified floor remains \(4\).

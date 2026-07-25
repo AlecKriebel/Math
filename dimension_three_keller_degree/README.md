@@ -23,7 +23,9 @@ The first audited quartic working lemmas now constrain:
 - generic-line defect and genus;
 - the conductor divisor on coprime-leading \((4,4)\) closures;
 - primitive line-valued leading quartic pencils; and
-- rank-one quartic Jacobian parts in two substantial subcases;
+- rank-one leading quartics: the entire primitive projected-cubic-pencil
+  locus is excluded, and a fixed-component-free composite pencil must have
+  an explicit common binary ramification factor;
 - every quartic map having a target-linear component of degree at most two;
 - genuine line-image \((2,2)\) pencils without a double-line fibre;
 - the genuine line-image \((1,4)\) stratum, whose common-ramification locus
@@ -33,7 +35,11 @@ The first audited quartic working lemmas now constrain:
   excluded, including the unique-double-line exceptional branch; and
 - birationally parametrized rational-quartic leading curves, whose
   basepoint-free parametrization must have a nonconstant normal-minor
-  ramification divisor.
+  ramification divisor;
+- the complete thirteen-row taxonomy of rank-two quartic leading maps with
+  projective curve image; and
+- the full transverse nodal-cubic fixed-divisor row, which is excluded by
+  exact degree-seven-through-five identities.
 
 These are structural lemmas, not a complete degree-four exclusion.  Exact
 counterexamples to two tempting overclaims are retained in the notes and
@@ -42,7 +48,10 @@ hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
-\((2,2)\) stratum, and ramified birational quartic parametrizations.  The
-universal certified floor remains \(4\).
+\((2,2)\) stratum, the conic double-cover locus, ramified birational quartic
+parametrizations, and leading maps with a fixed divisor.  In the rank-one
+stratum, fixed-component projected cubic pencils and a binary
+common-ramification locus remain.  The universal certified floor remains
+\(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

@@ -1,7 +1,8 @@
 # Verification record for the quartic working lemmas
 
-**Verification timestamps:** 2026-07-24T23:43:08Z and
-2026-07-25T00:10:26Z.
+**Verification timestamps:** 2026-07-24T23:43:08Z,
+2026-07-25T00:10:26Z, 2026-07-25T01:40:55Z, and
+2026-07-25T02:04:55Z.
 
 These results are not peer reviewed.  Exact computer checks are evidence
 about the algebra encoded in the scripts; they are not evidence that every
@@ -24,6 +25,16 @@ gp -q verify_quartic_constraints_pari.gp
 gp -q verify_quartic_strata_pari.gp
 /usr/bin/python3 verify_conic_doubleline_sympy.py
 gp -q verify_conic_doubleline_pari.gp
+/usr/bin/python3 verify_rank_one_quotient_sympy.py
+gp -q verify_rank_one_quotient_pari.gp
+/usr/bin/python3 verify_rank_one_primitive_exit_sympy.py
+gp -q verify_rank_one_primitive_exit_pari.gp
+/usr/bin/python3 verify_rank_one_composite_exit_sympy.py
+gp -q verify_rank_one_composite_exit_pari.gp
+gp -q verify_quartic_curve_taxonomy_pari.gp
+/usr/bin/python3 verify_nodal_cubic_exit_sympy.py
+gp -q verify_nodal_cubic_exit_pari.gp
+/usr/bin/python3 verify_line22_doubleline_sympy.py
 ```
 
 The SymPy and PARI/GP implementations independently expand:
@@ -121,6 +132,33 @@ the block factorization of \(JF\).  The explicit two-shear example was
 checked in both systems and proves that a global simultaneous-triangularization
 strategy is false.
 
+The quotient-cubic extension treats arbitrary \(H_2\).  Its first exact pair
+checks that the degree-seven coefficient is
+\(\operatorname{Jac}(P,Q,h)\) and that the exceptional
+\(P=L^3,\ h=L(\alpha P+\beta Q)\) form satisfies it.  The primitive-exit
+pair then checks the generic degree-six identity
+\[
+D(K)=3x^2E_6
+\]
+and the corrected pure-power degree-five identity
+\[
+D(9x^2U-2\mu S^2-12\mu x^3\ell_0)=9x^2E_5
+\]
+with an arbitrary linear part.  The composite-exit pair checks the binary
+degree-six syzygy and the corrected degree-five syzygy
+\[
+a v_1-b v_2+cU_z=0.
+\]
+
+An independent adversarial derivation reconstructed the field, divisor,
+Hilbert--Burch, coordinate, plane-fibre, and Ax--Grothendieck steps.  It
+caught two genuine arbitrary-linear-part omissions: the
+\(-12\mu x^3\ell_0\) correction in the primitive pure-power branch and the
+\((v_1,v_2)\) terms in the composite branch.  Both corrections were encoded
+before promotion.  Under a primitive projected cubic pencil, the complete
+rank-one-leading stratum is now excluded; for a fixed-component-free
+nonprimitive pencil, only the explicit common-ramification locus remains.
+
 ### Quadratic-component exit and rational-curve strata
 
 The quadratic-coordinate lemma was derived from the kernel and image of the
@@ -194,6 +232,51 @@ degree-eight and degree-seven identities, arbitrary-linear-part reduction,
 and ramified sharpness example.  It found no mathematical correction; the
 scope wording was tightened to a birationally parametrized plane quartic and
 to the ramification divisor of the displayed basepoint-free parametrization.
+
+### Curve-image taxonomy and transverse nodal cubic
+
+The curve-image taxonomy was reconstructed independently from de Bondt's
+minimal-pair factorization.  The audit checked the fixed polynomial gcd,
+equal-degree homogeneous minimal pair, relation \(e+ab=4\), every
+factorization \(b=\delta\nu\), and the composed base scheme.  It found no
+missing row.  It corrected overstatements about which earlier line rows had
+been excluded and identified the conic double-cover row with the
+two-double-line form
+\[
+\operatorname{Ver}(p^2,q^2).
+\]
+The PARI regression checks only the displayed nodal representative,
+adjugate, degree-eight tangent form, and degree-seven normal minor; the
+taxonomy audit is the independent method.
+
+For the transverse nodal cubic, the SymPy and PARI regressions expand the
+entire determinant through degree five.  A separate adversarial calculation
+started with a general eighteen-coefficient \(H_2\) and general nine-entry
+\(L_0\), rather than substituting the claimed answer.  It independently
+found ranks sixteen and nine and reproduced
+\[
+H_2=\frac13(uA_p+vA_q)+\frac r2D^2A,
+\]
+\[
+\det L_0=\frac49(\alpha^3+\beta^3)(\alpha v-\beta u)^2,
+\]
+and the square factor in degree five.  The latter forces
+\((u,v)=3\lambda(\alpha,\beta)\), hence makes the displayed determinant
+zero.  This excludes the full transverse nodal branch; the cuspidal and
+scalar-aligned branches remain.
+
+### Unique-double-line line charts
+
+The focused SymPy regression checks the conditional degree-seven equations
+for both canonical quadratic pencils, both displayed outer double-cover
+charts, and both cubic branches.  The adversarial audit confirmed every
+sign, kernel, and image calculation but disproved exhaustiveness of the
+simultaneous normalization.  For
+\(\langle x^2,yz\rangle\), the outer critical pair and the companion conic
+carry relative-position parameters.  The note now retains the calculations
+only as conditional charts and records an exact missed configuration with
+vanishing degrees eight and seven.  No exclusion of the remaining
+unique-double-line line locus is claimed.
 
 ## Scope
 
