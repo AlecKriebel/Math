@@ -290,8 +290,8 @@ no-low-syzygy statement then forces \(\partial_rH_2=0\).  The audit
 independently checked the omitted \(h=q\) chart and the final
 degree-at-most-four plane Keller block plus shear.  No scope correction was
 needed.  Combining this with the transverse calculation excludes the
-entire nodal row.  The transverse cuspidal branch is treated separately
-below; its scalar-aligned branch remains.
+entire nodal row.  The two cuspidal placements are treated separately
+below and are now both closed.
 
 ### Binary fixed-divisor conic
 
@@ -390,7 +390,35 @@ three compatibility entries, the four-dimensional kernel, the degree-six
 rank \(8\), its one-dimensional linear-part nullspace, and the degree-five
 and degree-three factors.  It also checked the PARI source for reserved
 symbols and false-pass paths.  The conclusion excludes exactly the
-transverse cuspidal branch; the scalar-aligned branch remains open.
+transverse cuspidal branch.  The following independently audited theorem
+closes the complementary scalar-aligned branch.
+
+### Scalar-aligned cuspidal cubic
+
+At 2026-07-25T04:36:50Z both exact regressions passed:
+
+```text
+/usr/bin/python3 verify_scalar_aligned_cusp_sympy.py
+gp -q verify_scalar_aligned_cusp_pari.gp
+```
+
+The SymPy regression reconstructs the three raw degree-seven systems and
+their branch radicals, all complete tangent-leaf quadratic families, the
+binary-leaf degree-six ranks \(7,6,7\), and every constant obstruction.
+PARI/GP independently expands the normalized leaves and reproduces the
+same lower coefficients.
+
+The adversarial audit independently proved that the embedded cusp's
+stabilizer is diagonal and has exactly the cusp, flex, and general
+marked-point orbits.  It printed the raw compatibility systems, verified
+every forcing order and converse, checked the quadratic-kernel dimensions,
+and reproduced the constants
+\[
+-12,\qquad -48,\qquad 12,\qquad 24.
+\]
+No specialization or relative-position modulus is omitted.  Together with
+the transverse theorem, this excludes the entire cuspidal-cubic taxonomy
+row.
 
 ## Scope
 

@@ -222,8 +222,9 @@ The fixed-divisor coverage is now more precise.
   fixed-divisor conic taxonomy row is closed.
 - In the cuspidal cubic row,
   `WORKING_CUSPIDAL_CUBIC_CURVE_EXIT.md` excludes the transverse fixed-factor
-  branch.  Only the scalar-aligned branch \(h\in\langle p,q\rangle\)
-  remains.
+  branch, while `WORKING_SCALAR_ALIGNED_CUSPIDAL_CUBIC_EXIT.md` excludes
+  the three scalar-aligned marked-point orbits.  Thus the entire cuspidal
+  row is closed.
 - The other \(e>0\) rows remain uncovered except where a separate component
   or rank-one exit theorem applies.
 
@@ -394,7 +395,9 @@ By contrast, the cuspidal parametrization
 has a nonconstant common factor in its derivative minors and lies on the
 ramified branch.  The audited cuspidal note carries that branch through the
 lower identities when the fixed linear divisor is transverse to
-\(\langle p,q\rangle\); only the scalar-aligned placement remains.
+\(\langle p,q\rangle\).  The scalar-aligned companion note independently
+handles the cusp, flex, and general marked-point positions, so no cuspidal
+placement remains.
 
 Every irreducible nodal plane cubic over \(\mathbb C\) is projectively
 equivalent to (18).  The two audited lower-identity calculations in

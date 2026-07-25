@@ -616,3 +616,33 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   cuspidal branch remains active.  The source-specific priority sweep found
   no exact checked overlap, which is not a guarantee of worldwide priority.
   The universal certified floor remains total degree \(4\).
+
+## 2026-07-25T04:36:50Z — Complete cuspidal-cubic row excluded
+
+- The stabilizer of the embedded cuspidal parametrization
+  \((p^2q,p^3,q^3)\) is diagonal, not the full
+  \(\operatorname{PGL}_2\).  A scalar-aligned fixed linear divisor therefore
+  has exactly three marked-point orbits:
+  \[
+  h=p,\qquad h=q,\qquad h=p+q,
+  \]
+  marking the cusp, the smooth flex, and a general smooth point.
+- The common reduced normal has Hilbert--Burch generators of coefficient
+  degrees one and two.  Each raw degree-seven system has rank \(8\), and
+  its division-free compatibility tree leaves only binary cubic branches
+  plus three explicit nonzero tangent branches.
+- Binary branches with zero quadratic tangent force the third column of
+  \(L_0\) to vanish.  Nonzero quadratic tangent gives degree-six ranks
+  \(7,6,7\) and the parameter-free degree-five obstruction \(24\).
+  The three nonzero cubic tangent leaves have degree-six constants
+  \(-12,-48,12\).
+- Exact SymPy and independent PARI/GP regressions pass.  A separate audit
+  reconstructed the stabilizer, all raw radicals and converses, every
+  kernel dimension, and all constants.  Combining this theorem with the
+  transverse cusp theorem excludes the complete cuspidal row
+  \[
+  (e,a,b,\delta,\nu)=(1,1,3,3,1).
+  \]
+- The source-specific priority sweep found no exact checked overlap.  This
+  is not a guarantee of worldwide priority.  The universal certified floor
+  remains total degree \(4\).

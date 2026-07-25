@@ -42,9 +42,10 @@ The first audited quartic working lemmas now constrain:
   excluded by exact degree-seven-through-five identities, while the
   scalar-aligned branch collapses to a degree-at-most-four plane Keller
   block plus a shear; and
-- the transverse cuspidal-cubic fixed-divisor branch, where the ramified
-  Hilbert--Burch normal and the degree-seven-through-three identities force
-  the linear part to be singular; and
+- the entire cuspidal-cubic fixed-divisor row: the transverse branch forces
+  the linear part to be singular, while the three scalar-aligned
+  cusp/flex/general marked-point orbits end in exact constant
+  obstructions; and
 - the complete fixed-divisor conic row
   \(H_4=h(p,q,r)\operatorname{Ver}(p,q)\): the two binary normal forms
   either contradict the Keller condition or collapse to a plane Keller
@@ -59,11 +60,11 @@ hypothesis audit.
 
 The remaining rational-image frontier consists of the common-ramification
 locus in type \((1,4)\), the unique-double-line locus in the line-image
-\((2,2)\) stratum, the conic double-cover locus, the scalar-aligned
-cuspidal cubic, ramified birational quartic parametrizations, and the other
-leading maps with a fixed divisor.  The fixed-divisor conic row is closed.
-In the rank-one stratum, fixed-component projected cubic pencils and a
-binary common-ramification locus remain.  The universal certified floor
-remains \(4\).
+\((2,2)\) stratum, the conic double-cover locus, ramified birational quartic
+parametrizations, and the other leading maps with a fixed divisor.  The
+nodal-cubic, cuspidal-cubic, and fixed-divisor conic rows are closed.  In
+the rank-one stratum, fixed-component projected cubic pencils and a binary
+common-ramification locus remain.  The universal certified floor remains
+\(4\).
 
 First research timestamp: 2026-07-24T22:30:00Z.

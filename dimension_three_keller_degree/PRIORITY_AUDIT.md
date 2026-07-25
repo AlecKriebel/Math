@@ -403,3 +403,22 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The theorem remains unreviewed, leaves the
 scalar-aligned cusp locus open, and does not raise the certified universal
 total-degree floor above \(4\).
+
+### 2026-07-25T04:36Z — complete cuspidal-row overlap check
+
+After closing the scalar-aligned branch, exact searches combined “Keller
+map dimension three degree four” with “cuspidal cubic”, “scalar aligned”,
+“fixed divisor”, “cusp”, “flex”, and the parametrization
+\((p^2q,p^3,q^3)\).  Separate searches covered arXiv, MathOverflow, Tao's
+blog, Secret Blogging Seminar, and read-only X/Twitter results.
+
+The checked results concerned the announced map, generic degree, graded
+maps, or unrelated cuspidal-curve geometry.  None states the diagonal
+stabilizer's three marked-point Keller systems, their raw degree-seven
+branch trees, or an exclusion of the complete cuspidal fixed-divisor row.
+Exact-phrase searches for “scalar-aligned cuspidal Keller” and the displayed
+parametrization found no checked overlap.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The theorem is unreviewed and does not raise the
+certified universal total-degree floor above \(4\).
