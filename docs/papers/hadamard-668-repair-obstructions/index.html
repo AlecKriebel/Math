@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A provisional 16-page paper proving exact local repair obstructions around Eliahou's 64-modular Hadamard matrix of order 668.">
+  <meta name="author" content="Alec Kriebel, with substantial assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="Exact repair obstructions around a 64-modular Hadamard matrix of order 668">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-25">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Exact repair obstructions around a 64-modular Hadamard matrix of order 668">
+  <meta property="og:description" content="Distance 80/41, a fixed-q obstruction, ten exact minimum-boundary exclusions, and twenty open long cases. No H(668).">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/">
+  <meta property="og:image" content="https://aleckriebel.github.io/Math/assets/hadamard-668-og.png">
+  <meta property="og:image:width" content="1728">
+  <meta property="og:image:height" content="910">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Exact repair obstructions at Hadamard order 668">
+  <meta name="twitter:description" content="Provisional paper · Ten minimum-boundary cases excluded · Twenty remain open">
+  <meta name="twitter:image" content="https://aleckriebel.github.io/Math/assets/hadamard-668-og.png">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/">
+  <title>Exact repair obstructions at Hadamard order 668 · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Exact repair obstructions around a 64-modular Hadamard matrix of order 668",
+    "description": "A provisional exact study of fixed-q repair, the distance-80/41 frontier, ten minimum-boundary exclusions, and the twenty open long cases.",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-25",
+    "dateModified": "2026-07-25",
+    "url": "https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {"@type": "WebSite", "name": "Alec's Math Explorations", "url": "https://aleckriebel.github.io/Math/"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#results">Results</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#scope">Scope</a>
+        <a href="../../research/hadamard-matrix-order-668/">Research page</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Research paper · Provisional · Not peer reviewed</p>
+      <h1>Exact repair obstructions around a \(64\)-modular Hadamard matrix of order \(668\)</h1>
+      <p class="byline">Alec Kriebel, with substantial assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">First public paper edition: <time datetime="2026-07-25">25 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>This paper does not solve or exclude \(H(668)\).</h2>
+        <p>It proves local results around one structured modular seed. Twenty minimum-boundary long cases remain open, and repairs at larger distance are not excluded. The paper is AI-assisted, unreviewed, and requires independent expert checking.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="../../research/hadamard-matrix-order-668/">Plain-language research page</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0">Research release v1.0.0</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/hadamard_668_search/papers/eliahou_repair_obstructions/eliahou_repair_obstructions.tex">Manuscript source</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Eliahou constructed a \(64\)-modular Hadamard matrix of order \(668\) from a special binary quadruple of length \(167\). We prove exact obstructions and reductions around that seed.</p>
+        <p>Holding the published sequence \(q\) fixed is impossible through a reduction to the empty class \(\operatorname{TU}(41)\). An adjacent-\(42\) fold then proves that an exact repair changes at least \(80\) base signs and at least \(41\) signs in the special \((s,q)\) coordinates. At equality, the problem reduces to thirty orientation-free support cases: one proof-certified long case and all nine short cases are excluded, while twenty long cases remain open.</p>
+      </section>
+
+      <section id="results">
+        <h2>Main results</h2>
+        <div class="theorem-block">
+          <p><strong>Fixed-\(q\) theorem.</strong> No binary sequence \(s\) makes Eliahou's special quadruple exact while the published \(q=(+^{83},-^2,+^{81},-)\) is held fixed.</p>
+          <p><strong>Distance theorem.</strong> Every exact base sequence differs from the published labelled base quadruple in at least \(80\) of \(334\) signs. Every exact special pair differs in at least \(41\) of its \(334\) \((s,q)\)-coordinates.</p>
+          <p><strong>Minimum-boundary theorem.</strong> A distance-\(41\) repair, if one exists, has exactly \(39\) \(s\)-only changes and two \(q\)-only changes forming a reciprocal pair.</p>
+        </div>
+        <p>Root filters reduce the equality frontier to \(21\) long and \(18\) short reciprocal pairs. The anti-fold pairs the short instances, giving thirty canonical support problems. Case \(L0\) is unsatisfiable by a checked DRAT proof; the nine short cases are excluded by an exact streamed census.</p>
+        <p>For the twenty remaining long cases, the paper gives an exact endpoint-orientation cascade through moduli \(8\), \(16\), and \(32\), plus the forty-one causal equations needed to recover aperiodic rather than merely cyclic complementarity.</p>
+      </section>
+
+      <section id="evidence">
+        <h2>Claim-to-evidence map</h2>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <thead><tr><th scope="col">Claim</th><th scope="col">Evidence</th></tr></thead>
+            <tbody>
+              <tr><td>Fixed-\(q\) reduction</td><td>Symbolic verifier and reduction to \(\operatorname{TU}(41)\)</td></tr>
+              <tr><td>Empty \(\operatorname{TU}(41)\)</td><td>Published classification plus independent 461-shard replay with 57,543,021 nodes</td></tr>
+              <tr><td>Distance \(80/41\)</td><td>Exact adjacent-fold identities and dependency-free reconstruction</td></tr>
+              <tr><td>Case \(L0\)</td><td>39,580-variable CNF, compressed DRAT proof, and independent <code>drat-trim</code> replay</td></tr>
+              <tr><td>Nine short cases</td><td>2,304 published range manifests, 3,710,853,316,608 join rows, zero exact supports</td></tr>
+              <tr><td>Long-case cascade</td><td>Primary and separate red-team implementations</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The release includes the 2,304 range manifests as a compact hash-addressed archive, so the complete frozen production ledger can be audited without the exploratory output tree.</p>
+      </section>
+
+      <section id="scope">
+        <h2>Novelty and scope</h2>
+        <p>The known emptiness of \(\operatorname{TU}(41)\), the special-form/base-sequence translation, and a weaker public distance bound are not claimed as new. The candidate contributions are the distance-\(80/41\) fold, the exact equality classification, the orientation-free support reduction and certificates, and the long-case cascade. The priority search was necessarily incomplete and cannot establish worldwide novelty.</p>
+        <p>No timeout or uncertified solver status is used as a theorem. The full nine-case census remains a large trusted computation even though its manifests, hashes, semantics, bounded independent replays, and physical witness checks are public.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The mathematical exploration, program development, certificate analysis, manuscript drafting, and publication materials used substantial assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Alec Kriebel is a non-specialist and cannot independently certify every derivation or implementation. Exact artifacts improve auditability; they are not peer review or proof-assistant formalization.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with substantial assistance from ChatGPT 5.6 Sol, “Exact repair obstructions around a 64-modular Hadamard matrix of order 668,” provisional research paper, 25 July 2026. <a href="https://aleckriebel.github.io/Math/papers/hadamard-668-repair-obstructions/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">16 pages · prepared 25 July 2026 · source, certificates, and verification instructions are public.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="../../research/hadamard-matrix-order-668/">Research checkpoint</a> · <a href="https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0">Research release</a>
+  </footer>
+</body>
+</html>
