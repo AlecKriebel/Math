@@ -112,3 +112,25 @@ the two \(e=2\) forms with \(R=xq\).
 - The rank-two canonical pencil is now completely excluded for both
   cubic companion orbits.  The rank-one triple companion is the sole
   remaining fixed-divisor \(e=2\) lower frontier.
+
+## 2026-07-25T10:48:53Z — entire fixed-divisor \(e=2\) row closed
+
+- The remaining rank-one triple package
+  \[
+  H_4=(x^4,x^2(y^2+xz),0),\qquad(H_3)_3=x^3
+  \]
+  passed its primary exact certificate, independent \(A=0\) and
+  \(A\ne0\) PARI/GP reconstructions, and a separate hostile replay.
+- Hostile review found a hidden \(a_3=0\) specialization under an
+  \(a_3^4\)-supported \(E_4\) pivot.  The leaf was rebuilt with an
+  \(s^8\)-supported pivot and again forces \(\det L=0\).  It also
+  corrected the axis-gauge explanation to use an \(x\)-translation plus
+  free-\(V\)-tail relabeling.
+- All strict transcripts and fault injections pass.  No theorem leaf
+  survives.
+- The top theorem gives exactly two canonical pencils and two cubic
+  companion orbits for each.  The mixed package and the two triple
+  packages now exclude all four.  Hence the entire all-vertical
+  fixed-divisor \(e=2\) quadratic-pencil row is closed.
+- This removes a quartic taxonomy row but does not exclude all quartic
+  leading forms.  The universal total-degree floor remains \(4\).

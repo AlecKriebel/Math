@@ -1,10 +1,11 @@
-# Two mixed-companion exits in the fixed-divisor \(e=2\) row
+# The complete fixed-divisor \(e=2\) quadratic-pencil row
 
 ## Status
 
-**Audited theorem.**  The exact SymPy certificate and a
-methodologically independent PARI/GP reconstruction both pass, together
-with fail-closed injection tests.
+**Audited row theorem.**  The mixed-companion certificate, both
+triple-companion certificates, and their methodologically independent
+PARI/GP reconstructions all pass, together with hostile audits and
+fail-closed injection tests.
 
 This note is not peer reviewed.  The exact checks certify the algebra encoded
 in the accompanying scripts; they are evidence, not peer review.  AI systems
@@ -12,7 +13,44 @@ assisted with the symbolic exploration, case organization, proof drafting,
 and verification code.  Every asserted identity below is intended to have an
 exact, fail-closed certificate.
 
-## Theorem
+## Complete row theorem
+
+Let \(K\) be a field of characteristic zero.  Suppose a degree-four
+polynomial map has reached the all-vertical fixed-divisor frontier
+\[
+H_4=(p^2,pq,0),\qquad
+\langle p,q\rangle\in
+\left\{\langle x^2,yz\rangle,\,
+\langle x^2,y^2+xz\rangle\right\},
+\]
+and its nonzero cubic normal component lies in the complete top kernel
+\[
+(H_3)_3\in x\langle p,q\rangle .
+\]
+Then its Jacobian determinant cannot be a nonzero constant.
+
+If \((H_3)_3=0\), the third component has degree at most two and the
+banked quadratic-component theorem already gives a polynomial
+automorphism.  Thus a counterexample on this frontier would necessarily
+have the nonzero cubic component assumed above.
+
+A target pencil shear reduces every nonzero cubic normal component to
+exactly one of
+\[
+(H_3)_3=xq\qquad\hbox{or}\qquad (H_3)_3=xp=x^3.
+\]
+The mixed orbit is excluded for both pencils below.  The triple orbit for
+\(\langle x^2,yz\rangle\) is excluded in
+`ranktwo_triple/NOTE.md`, and the triple orbit for
+\(\langle x^2,y^2+xz\rangle\) is excluded in
+`rankone_triple/NOTE.md`.  Thus all four lower-identity packages are
+closed.
+
+This is the complete remaining row identified by the audited
+all-vertical top-obstruction theorem.  It is distinct from the genuine
+\(e=0\) line-\((2,2)\) row.
+
+## Mixed-companion theorem
 
 Let \(K\) be a field of characteristic zero.  Write a degree-four polynomial
 map, after translating away its constant term, as
@@ -42,7 +80,7 @@ H_4=(p^2,pq,0),\qquad
 \tag{2}
 \]
 
-The theorem concerns the separate fixed-divisor row \(e=2\).  It is not an
+This mixed theorem concerns the separate fixed-divisor row \(e=2\).  It is not an
 assertion about the genuine \(e=0\) line-\((2,2)\) outer-cover packages.
 
 ## Weighted Jacobian identities
@@ -210,11 +248,11 @@ But
 Both products on the right vanish by (15), so \(\det L=0\).  This
 contradicts (3) and completes the proof.
 
-## What this does and does not close
+## Row closure and remaining global scope
 
-The mixed companion \(R=xq\) is now excluded for the two canonical
-fixed-divisor \(e=2\) pencils.  The triple
-companion \(R=xp=x^3\) remains a separate lower-identity problem for each
-pencil.  Consequently this note does not yet close the full
-fixed-divisor \(e=2\) row and does not change the current universal
-total-degree lower bound by itself.
+The mixed calculation in this note and the two audited triple packages
+exclude every companion orbit, so the fixed-divisor \(e=2\)
+quadratic-pencil row is closed.  This is a structural exclusion inside
+the quartic curve-image taxonomy, not a complete exclusion of all
+degree-four leading forms.  The current universal total-degree lower
+bound therefore remains \(4\).

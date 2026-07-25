@@ -764,3 +764,29 @@ six fail-closed mutations.
 This is source-specific negative evidence only, not a guarantee of worldwide
 priority. The theorem is AI-assisted and unreviewed. Closing this taxonomy
 row does not yet raise the universal total-degree floor above \(4\).
+
+### 2026-07-25T10:46Z — complete fixed-divisor \(e=2\) row audit delta
+
+The current-day sweep was rerun against the assembled all-vertical theorem
+for
+\[
+H_4=(p^2,pq,0),\qquad
+\langle p,q\rangle=
+\langle x^2,yz\rangle\qquad\hbox{or}\qquad
+\langle x^2,y^2+xz\rangle ,
+\]
+including both mixed and triple cubic companions.  Queries covered current
+arXiv Keller/Jacobian listings, MathOverflow, Terence Tao's blog, the
+Secret Blogging Seminar, and publicly indexed X/Twitter material.  Exact
+searches included `x^2(y^2+xz)`, “fixed divisor”, “quadratic pencil”, and
+the rank-one triple companion.
+
+The checked results concern the announced degree-seven counterexample,
+generic-degree constructions, graded maps, the plane problem, or unrelated
+quadratic pencils.  No checked source states this complete row exclusion.
+The final rank-one package passed a separate hostile reconstruction after
+the audit found and repaired a hidden \(a_3=0\) pivot drop.
+
+This is source-specific negative evidence only, not a guarantee of worldwide
+priority.  The theorem is AI-assisted and unreviewed.  Closing this row does
+not yet raise the universal total-degree floor above \(4\).

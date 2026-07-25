@@ -1109,3 +1109,28 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - A fresh source-specific web sweep found no checked collision. This is
   not a worldwide-priority guarantee, and the result is not peer reviewed.
   The universal total-degree floor remains \(4\).
+
+## 2026-07-25T10:48:53Z — Entire fixed-divisor \(e=2\) row closed
+
+- The all-vertical top theorem leaves precisely
+  \[
+  H_4=(p^2,pq,0),\qquad
+  \langle p,q\rangle=\langle x^2,yz\rangle
+  \ \hbox{or}\ \langle x^2,y^2+xz\rangle,
+  \]
+  with cubic normal component in \(x\langle p,q\rangle\).
+- A pencil shear gives exactly the mixed orbit \(xq\) and the triple
+  orbit \(x^3\).  The previously audited mixed package closes both
+  pencils, the rank-two triple package closes \(\langle x^2,yz\rangle\),
+  and the new rank-one triple package closes
+  \(\langle x^2,y^2+xz\rangle\).
+- The last hostile audit found a hidden \(a_3=0\) specialization beneath
+  an \(a_3^4\)-supported pivot.  A fresh \(s^8\)-pivot solve closes the
+  leaf; it also corrected the legal axis gauge to an \(x\)-translation
+  plus free-tail relabeling.  Three independent exact implementations,
+  strict transcripts, and mutation guards now pass.
+- A targeted arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, and
+  publicly indexed X/Twitter sweep found no checked collision.  This is
+  source-specific only and not a worldwide-priority guarantee.
+- This closes a second full quartic line-image taxonomy row today.  Other
+  quartic rows remain, so the universal certified floor remains \(4\).

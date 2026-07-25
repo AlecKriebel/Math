@@ -968,6 +968,31 @@ and no-double-line packages, these checks exhaust both canonical
 unique-double-line pencils. Hence the entire genuine
 \((e,a,b,\delta,\nu)=(0,2,2,1,2)\) taxonomy row is excluded.
 
+### Completion of the fixed-divisor \(e=2\) quadratic-pencil row
+
+At 2026-07-25T10:48:53Z the remaining rank-one triple package and its
+external hostile reconstruction passed:
+
+```text
+cd fixed_divisor_e2_quadratic_pencils/rankone_triple
+./verify_all_strict.sh
+```
+
+The aggregate runner executes the primary exact SymPy proof, independent
+PARI/GP reconstructions of both \(A=0\) and \(A\ne0\), a separate
+hostile \(A=0\) reconstruction, all strict-transcript guards, and every
+fault injection.  Hostile review found a hidden
+\(D\ne0,a_3=0\) specialization beneath an \(a_3^4\)-supported pivot.
+The repaired proof rebuilds that chart with an \(s^8\)-supported pivot
+and again forces \(\det L=0\).  The audit also verifies the legal
+\(q\)-shear compensation by an \(x\)-translation and free-tail
+relabeling.
+
+Together with the mixed package and rank-two triple package recorded
+above, this covers the two cubic companion orbits for both canonical
+all-vertical pencils.  Hence the entire fixed-divisor \(e=2\)
+quadratic-pencil row is excluded.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

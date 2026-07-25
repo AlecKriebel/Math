@@ -86,6 +86,12 @@ The first audited quartic working lemmas now constrain:
   \((H_3)_3\in\ell\langle p,q\rangle\); its pencil is exactly
   \(\langle x^2,yz\rangle\) or
   \(\langle x^2,y^2+xz\rangle\); and
+- the complete lower-identity exclusion of that fixed-divisor \(e=2\)
+  frontier.  A pencil shear leaves exactly the mixed companion \(xq\)
+  and triple companion \(x^3\); exact, specialization-safe determinant
+  trees exclude both companions for both canonical pencils.  Independent
+  hostile audits repaired four hidden pivot drops across the two triple
+  packages and found no surviving leaf; and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are
@@ -135,10 +141,10 @@ locus in type \((1,4)\), ramified birational quartic parametrizations, the
 binary fixed-quadratic line double-cover locus,
 the binary fixed-linear line triple-cover locus, and the other leading maps
 with a fixed divisor, including the vertical part of the primitive
-cubic-pencil row and the two unique-double-line quadratic-pencil
-frontiers identified above.
+cubic-pencil row.
 The genuine line-\((2,2)\), nodal-cubic, cuspidal-cubic, fixed-divisor
-conic, and conic-double-cover rows are closed. In the rank-one stratum,
+conic, conic-double-cover, and fixed-divisor \(e=2\) quadratic-pencil rows
+are closed. In the rank-one stratum,
 fixed-component projected cubic pencils and a binary common-ramification
 locus remain. The universal certified floor remains \(4\).
 
