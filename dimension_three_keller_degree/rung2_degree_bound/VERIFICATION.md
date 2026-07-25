@@ -881,6 +881,32 @@ verified that cross-multiplication preserves the two polynomial syzygies
 at the apparent \(w_4=C\) denominator resonance.  The theorem is scoped
 only to the two fixed-divisor \(e=2\) mixed companions.
 
+### Rank-one marked triple orbit
+
+At 2026-07-25T09:19:25Z the repaired primary certificate and independent
+hostile reconstruction passed:
+
+```text
+cd line22_rankone_restriction/marked_triple_orbit
+./verify_marked_triple_sympy_strict.sh
+./verify_marked_triple_sympy_fail_closed.sh
+./audit_hostile/independent/verify_marked_triple_pari_strict.sh
+./audit_hostile/independent/verify_fail_closed.sh
+```
+
+For \(p=x^2,q=y^2+xz\), the marked pair
+\(H_4=(p^2,q^2,0)\) with triple companion \(R=x^3\) has a complete
+rank-eight raw kernel and five legal gauge directions.  The exact
+degree-six ideal splits every lower branch.  Fresh solves cover the three
+specialization hazards found by hostile review, including the
+free-\(\ell_{13}\) and exceptional \(V=Czq\) leaves, and force
+\(\det L=0\).
+
+The independent PARI/GP audit reconstructs the algebra rather than
+replaying the SymPy row reductions.  Both backends have targeted
+fail-closed tests.  This theorem concerns only the genuine marked
+\(e=0\) orbit, not either fixed-divisor \(e=2\) triple companion.
+
 ## Scope
 
 None of these checks excludes every total-degree-four Keller

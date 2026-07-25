@@ -193,10 +193,11 @@ The common-factor-free rows have the following exact or partial coverage.
    `line22_rankone_restriction/unmarked_triple_c0/NOTE.md` excludes
    \(c=0\), while
    `line22_rankone_restriction/marked_mixed_orbits/NOTE.md` excludes the
-   two marked mixed companions \(xq\) and \(x(p-q)\).  The audited
-   frontier is therefore the marked triple and unmarked
-   \(c^2=9,\infty\); each has a separate provisional exact calculation
-   awaiting or undergoing hostile audit.
+   two marked mixed companions \(xq\) and \(x(p-q)\), and
+   `line22_rankone_restriction/marked_triple_orbit/NOTE.md` excludes the
+   marked triple \(x^3\).  The audited frontier is therefore the two
+   unmarked strata \(c^2=9,\infty\); each has a separate provisional
+   exact calculation awaiting hostile audit.
 3. The \((0,1,4)\) line is partially constrained by
    `WORKING_LINE_TYPE_14.md` and
    `WORKING_LINE_TYPE_14_RAMIFICATION.md`: the gcd-one locus is excluded

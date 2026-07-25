@@ -702,3 +702,23 @@ Independent hostile PARI reconstructions passed for both the unmarked
 triple and both marked mixed rows.  This source-specific negative evidence
 is not a guarantee of worldwide priority.  The results remain unreviewed
 and do not raise the universal certified floor above \(4\).
+
+### 2026-07-25T09:19Z — marked-triple repair/audit delta
+
+The same current-day source sweep was compared with the marked triple
+orbit
+\[
+H_4=(p^2,q^2,0),\qquad (H_3)_3=x^3,\qquad
+p=x^2,\ q=y^2+xz.
+\]
+No checked arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+Gallagher, or publicly indexed X/Twitter source states its rank-eight
+degree-seven kernel, the exact \(K=4w_3-3A\) compatibility tree, or the
+specialization-safe lower exits.
+
+Hostile review found and repaired three gaps in the provisional proof.
+The corrected SymPy certificate and an independently implemented PARI/GP
+reconstruction now pass, including targeted fault injection.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The theorem remains unreviewed and does not raise the
+universal certified floor above \(4\).

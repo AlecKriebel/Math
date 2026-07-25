@@ -109,3 +109,20 @@ is not a guarantee of worldwide priority.
   \(L\) to vanish.
 - A hostile PARI audit reconstructed the orbit ledger, all gauges,
   converses, and the collision specialization.  Verdict: PASS.
+
+## 2026-07-25T09:19:25Z — marked triple orbit repaired and excluded
+
+- For \(H_4=(p^2,q^2,0)\) and \((H_3)_3=x^3\), the raw \(E_7\)
+  matrix has rank \(8\), with a complete five-gauge/thirteen-normal
+  kernel.
+- The degree-six compatibility ideal splits into the \(K\ne0\),
+  \(K=0,A\ne0\), and \(K=A=0\) branches.  Fresh solves at every rank
+  drop, including the free-\(\ell_{13}\) and exceptional \(V=Czq\)
+  leaves, force a singular linear part.
+- Hostile review found three specialization defects in the provisional
+  proof.  The corrected SymPy certificate and an independent PARI/GP
+  reconstruction now cover each leaf and pass targeted corruption tests.
+  Verdict: PASS.
+- The remaining genuine rank-one line-\((2,2)\) frontier is unmarked
+  \(c^2=9\) and the unmarked companion at infinity.  The universal
+  total-degree floor remains \(4\).

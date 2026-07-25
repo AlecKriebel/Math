@@ -1015,3 +1015,22 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   resonance, and every determinant exit.  Fault injections pass.
 - Only the triple companion \(R=x^3\) remains for each \(e=2\) pencil.
   The universal total-degree floor remains \(4\).
+
+## 2026-07-25T09:19:25Z — Rank-one marked triple orbit excluded
+
+- In the genuine \(e=0\) line-\((2,2)\) stratum with
+  \(p=x^2,q=y^2+xz\), the marked leading pair
+  \(H_4=(p^2,q^2,0)\) and triple companion \((H_3)_3=x^3\) are
+  incompatible with the Keller condition.
+- The raw \(E_7\) kernel has rank profile \(8/18\) and a complete
+  five-gauge/thirteen-normal decomposition.  The exact \(E_6\) ideal and
+  lower identities close all \(K\ne0\), \(K=0,A\ne0\), and \(K=A=0\)
+  leaves by square, minor, or singular-column exits.
+- Hostile review rejected the first proof at three specialization
+  points.  After repair, the primary SymPy certificate and a separately
+  implemented PARI/GP reconstruction both pass, together with injected
+  failures aimed at each repaired leaf.
+- This is scoped to the genuine marked triple orbit and does not concern
+  the separate fixed-divisor \(e=2\) triple problem.  The genuine
+  rank-one frontier is now only unmarked \(c^2=9\) and the unmarked
+  companion at infinity.  The universal total-degree floor remains \(4\).
