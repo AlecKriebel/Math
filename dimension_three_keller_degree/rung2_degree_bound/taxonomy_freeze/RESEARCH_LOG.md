@@ -1,5 +1,20 @@
 # Taxonomy-freeze research log
 
+## 2026-07-25T20:24:52Z — version-one denominator frozen
+
+- A blinded derivation and reconciliation independently recovered one
+  rank-one and thirteen canonical rank-two leading leaves.
+- The historical 68-bucket proposal was rejected because it was not disjoint
+  or independently complete; it is not part of the denominator.
+- The first hostile replay found no missing leaf but blocked the release
+  artifact on proof compression, terminology, and fail-closed verification.
+- After correction, the hostile re-audit passed the normalization, rank-one
+  cone argument, relative-closure pencil, polynomial factorization,
+  canonicity, tuple enumeration, and 45-piece pivot partition.
+- Mandatory SHA-256 hashes and the repaired verifier pass.  Version one is
+  frozen at 14 inclusive leaves.  The seven exclusion status labels remain
+  logically separate from this completeness certificate.
+
 ## 2026-07-25T19:30:28Z — freeze gate opened
 
 - Halted the active doubled-nonbranch leaf calculation and all other
