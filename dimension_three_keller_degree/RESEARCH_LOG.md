@@ -1186,3 +1186,52 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   have doubled nonbranch fixed divisor \(h=(p+q)^2\).
 - Hostile audit remains pending; the universal certified floor stays
   \(4\).
+
+## 2026-07-25T20:15:16Z — Symmetric monodromy banked for every weighted lift
+
+- For an arbitrary admissible Gallagher seed \(p\) of degree \(d-1\), exact
+  elimination gives the inverse polynomial
+  \[
+  \Phi(T)-PT+cQ
+  \]
+  and rational recovery of every source coordinate from a generic root.
+  The derivative at the source root is \(-c\gamma\), which certifies that
+  denominator clearing has not supplied an extra generic branch.
+- Brink's theorem for a monic polynomial with independent linear and
+  constant coefficients gives geometric Galois group \(S_d\).  Therefore
+  every admissible weighted lift has geometric monodromy \(S_d\), and every
+  \(S_d\), \(d\ge3\), is realized by a dimension-three Keller
+  counterexample.
+- An independent hostile audit passed.  Exact SymPy and PARI/GP checks cover
+  the uniform formulas and finite rows used as regression tests.
+- The priority record credits the public \(3\le d\le13\) computation in
+  MathOverflow answer 513470 and its linked Note 19.  The candidate addition
+  is only the all-degree, all-admissible-seed combination of Gallagher's
+  construction with Brink's classical theorem.  It is unreviewed and does
+  not change the total-degree floor.
+
+## 2026-07-25T20:24:52Z — Quartic denominator frozen at fourteen leaves
+
+- Replaced the drifting and overlapping 68-bucket proposal by fourteen
+  disjoint inclusive leading leaves: one rank-one leaf and thirteen
+  rank-two relative-closure tuples satisfying
+  \[
+  e+ab=4,\qquad b=\delta\nu.
+  \]
+- A blinded derivation, reconciliation, hostile replay, corrected re-audit,
+  machine-readable manifest, and fail-closed checksums all pass.  The fixed
+  boundary device has 45 first-nonzero coefficient strata in every leaf.
+- This certifies F1/F2 and the denominator only.  It does not certify any
+  exclusion.  A fresh hostile bridge audit is checking whether each older
+  normal-form proof either covers the frozen coefficient partition or is
+  genuinely division-free.
+- The completed hostile bridge audit gives the fail-closed verdict
+  \[
+  0/14\text{ frozen-certified},\qquad
+  7/14\text{ provisional legacy exclusions},\qquad
+  7/14\text{ open}.
+  \]
+  No mathematical error was found in the seven old packages, but none yet
+  connects its normal-form atlas to the frozen coefficient cover.  Those
+  labels are now treated as algebraic evidence, not global progress, until
+  explicit bridges are written.

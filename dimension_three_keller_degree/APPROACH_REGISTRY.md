@@ -2,6 +2,22 @@
 
 Status labels: **active**, **blocked**, **banked**, **reopen condition**.
 
+## Governing freeze status (2026-07-25)
+
+The global quartic denominator is now frozen at **14 canonical inclusive
+leading leaves**: `Q1` and the thirteen relative-closure tuples in
+`rung2_degree_bound/taxonomy_freeze/FROZEN_TAXONOMY_v1.md`.  The historical
+68-bucket refinement was rejected because it was neither disjoint nor
+complete.
+
+The mechanism-level status entries below record algebraic work inside those
+leaves; they do **not** by themselves certify a frozen leaf.  A leaf counts as
+excluded only after its normal-form proof is mapped to all relevant frozen
+coefficient-pivot strata, or is shown to be division-free.  A hostile
+row-by-row bridge audit returned **0/14 frozen-certified, 7/14 provisional
+legacy exclusions, and 7/14 open**.  The fail-closed numerator is therefore
+zero until explicit post-freeze bridges are certified.
+
 | Family | Mechanism | Status | Decisive gap or target |
 |---|---|---|---|
 | Quadratic Galois theorem | Apply Campbell--Razar--Wright to a separable degree-two extension | **banked; priority occupied** | Gives the universal exclusion immediately; not new |
@@ -33,9 +49,15 @@ Status labels: **active**, **blocked**, **banked**, **reopen condition**.
 | Fixed-linear primitive cubic pencil | Put \(H_4=h(p,q,0)\) with a minimal cubic pair; descend \(G^4/(hp)^d\) to \(\mathbb C(p/q)\) and take the \(h\)-valuation | **horizontal locus excluded; audited; vertical locus active** | If no pencil member contains \(h\), then \(4v_h(G)=d\) kills the degree-two and degree-three normal components.  When \(p=h^m r\), the base valuation absorbs the mismatch and explicit primitive top-identity witnesses survive |
 | Fixed-divisor verticality in primitive line pencils | For \(H_4=h(p,q,0)\), \(\deg h+\deg p=4\), descend \(G_3^4/(hp)^3\), compare valuations in one pencil fibre, and use divisor parity | **audited; \(e=3\) and the all-vertical \(e=2\) row closed** | Every prime of \(h\) is vertical.  Same-fibre congruences leave only \(p=h\), a unique double member \(\ell^2\), \(G_3\in\ell\langle p,q\rangle\), and the two canonical pencils; the lower-identity family below excludes every remaining companion |
 | Fixed-divisor \(e=2\) quadratic-pencil lower identities | Normalize \(H_4=(p^2,pq,0)\), quotient the cubic kernel \(x\langle p,q\rangle\), and solve \(E_7,\ldots,E_1\) with specialization-safe pivots | **entire row excluded; audited** | A pencil shear leaves exactly \(R=xq\) and \(R=x^3\).  Both are impossible for both \(\langle x^2,yz\rangle\) and \(\langle x^2,y^2+xz\rangle\); hostile audits found and repaired all parameter-dependent pivot drops |
+| Frozen quartic denominator | Canonical relative algebraic closure of the leading pencil, followed by the arithmetic \(e+ab=4,\ b=\delta\nu\) | **banked; F1/F2 certified** | Fourteen disjoint inclusive leaves, with 45 fixed first-nonzero coefficient strata per leaf; exclusions are being re-audited against this denominator |
+| Frozen-exclusion bridges | Map each historical normal-form/orbit proof to the frozen coefficient partition, or replace it by a division-free proof | **active; 0/14 certified** | Seven legacy exclusions are provisional; the conic-double-cover row is the cheapest first promotion target |
+| Regular monodromy obstruction | Translate Campbell--Razar--Wright using the point stabilizer in the Galois closure | **banking; priority occupied** | Regular geometric monodromy is equivalent to the original function-field extension being Galois, hence is impossible for a Keller counterexample |
+| Weighted-lift symmetric monodromy | Recover the source from the inverse root \(w\), then apply Brink's two-free-coefficient theorem to \(\Phi(T)-PT+cQ\) | **banked; hostile-audited** | Every admissible Gallagher seed of generic degree \(d\ge3\) has geometric monodromy \(S_d\); finite degrees \(3\)--\(13\) were already public |
+| Monodromy realizability table | Enumerate transitive groups by degree and mark regular exclusions, symmetric realizations, and certified wreath realizations | **active** | Complete exact table through degree ten and separate group-theoretic translation from genuinely new family realizations |
 | Quartic Newton/tropical infinity | Analyze common leading-form zeros and divisorial valuations of a total-degree-four map | **queued** | Need a three-variable invariant strong enough to replace the plane Newton polygon |
 | Graded sparse families | Enumerate exact weighted supports and solve the determinant identities with certificates | **queued / priority-sensitive** | Social-media rigidity claims cover only a construction class and require independent certification |
 | Symmetric-multiplication deformation | Vary Tao's slice and normalization in the \(\mathrm{Sym}^1\times\mathrm{Sym}^2\to\mathrm{Sym}^3\) model | **queued for Rung 3** | Determine whether the degree-seven presentation can cancel to total degree six or lower |
+| Tao affine-miracle geometry | Explain the two-coincident-root affine slice in the symmetric-multiplication model | **killed by amended allocation** | Do not reopen during the 27-day program; low comparative advantage and no movement |
 | Arithmetic reduction | Spread a hypothetical quartic map out and study good reductions/Frobenius | **reopen condition** | Reopen only with a characteristic-\(p\) invariant that survives inseparability and bad primes |
 | Plane degeneration | Slice or degenerate a threefold map to a two-variable Keller-type map | **blocked** | Generic slices do not preserve a square Keller map; no valid transfer theorem is known |
 
