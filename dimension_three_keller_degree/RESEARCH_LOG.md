@@ -1170,3 +1170,19 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - Together with the \(K=0\) package, this provisionally excludes the
   entire unmarked-double exact-\(\delta=2\) locus in the fixed-linear
   row.  The universal certified floor remains \(4\).
+
+## 2026-07-25T19:02:24Z — Fixed-quadratic thirteenth \(\{1,1\}\) leaf closed
+
+- The squarefree-interior two-ramification-contact leaf now has a
+  complete generic/alternate contact atlas.
+- Exact algebraic-field pivots route every sextic, octic, quartic, and
+  \(P_{16}\) projection factor.  The sole exact-open lift at
+  \(w^2=-1,a=0\) survives top-only \(E_5\), but the full lower chain
+  forces the first and third columns of the linear part to be
+  proportional.
+- Exact SymPy and independently reconstructed PARI/GP suites pass.
+  Thirteen of fifteen fixed-quadratic exact-\(\delta=2,\{1,1\}\)
+  leaves are now provisionally closed.  The two remaining leaves both
+  have doubled nonbranch fixed divisor \(h=(p+q)^2\).
+- Hostile audit remains pending; the universal certified floor stays
+  \(4\).

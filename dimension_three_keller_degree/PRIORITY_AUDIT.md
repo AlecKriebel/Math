@@ -823,3 +823,17 @@ No checked source contains this component exclusion or the assembled
 full unmarked-double theorem.  This remains source-specific negative
 evidence, not a worldwide-priority guarantee.  Hostile audit is
 pending, and the result is AI-assisted and unreviewed.
+
+### 2026-07-25T19:02Z — fixed-quadratic two-contact audit delta
+
+The current-day source sweep was compared with the squarefree-interior
+two-ramification-contact leaf in the fixed-quadratic line-double-cover
+row.  Exact searches included its cross-ratio normal form, reciprocal
+sextic/octic factors, the degree-16 reciprocal projection factor, and
+the \(w^2=-1,a=0\) lower-chain endpoint.
+
+No checked arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, or
+publicly indexed X/Twitter source contains this contact atlas or its
+proportional-column obstruction.  This is source-specific negative
+evidence only, not a worldwide-priority guarantee.  The candidate is
+AI-assisted, unreviewed, and awaiting hostile audit.
