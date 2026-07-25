@@ -126,3 +126,17 @@ is not a guarantee of worldwide priority.
 - The remaining genuine rank-one line-\((2,2)\) frontier is unmarked
   \(c^2=9\) and the unmarked companion at infinity.  The universal
   total-degree floor remains \(4\).
+
+## 2026-07-25T09:55:40Z — unmarked \(c^2=9\) resonance audited
+
+- An independent hostile PARI/GP reconstruction confirmed raw rank
+  \(14\), the complete twelve-dimensional kernel and legal gauge, and a
+  constant rank-eight \(E_6\) floor through every specialization.
+- The successive augmented ranks certify exactly the four square
+  compatibilities, while constant \(E_5\) pivots and two literal \(E_4\)
+  coefficients exhaust the remaining resonance branch.
+- The source/target conjugacy between \(c=3\) and \(c=-3\) was checked
+  exactly, including its nonzero Jacobian scaling. Verdict: PASS.
+- The unmarked companion at infinity is now the sole genuine
+  rank-one-restriction line-\((2,2)\) frontier. The universal
+  total-degree floor remains \(4\).

@@ -1053,3 +1053,21 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   \(\langle x^2,yz\rangle\).  The rank-one triple is the sole remaining
   fixed-divisor \(e=2\) orbit.  The universal total-degree floor remains
   \(4\).
+
+## 2026-07-25T09:55:40Z — Unmarked finite resonance \(c^2=9\) excluded
+
+- For the genuine \(e=0\) rank-one-restriction pencil
+  \(p=x^2,q=y^2+xz\), the unmarked joint orbit
+  \[
+  H_4=((p-q)^2,(p+q)^2,0),\qquad(H_3)_3=x(p\mp3q)
+  \]
+  is incompatible with the Keller condition.
+- Four division-free \(E_6\) squares reduce to a constant-rank lower
+  system.  The only \(E_5\) resonance has a constant pivot, and two
+  literal \(E_4\) coefficients close its nonzero-column branch.
+- A hostile PARI/GP audit independently reconstructed every raw rank,
+  specialization, lower converse, and the \(c=3\leftrightarrow-3\)
+  symmetry. Strict and fault-injection tests pass. Verdict: PASS.
+- The unmarked companion at infinity is the sole remaining genuine
+  rank-one line-\((2,2)\) orbit. The universal total-degree floor remains
+  \(4\).
