@@ -717,3 +717,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   source first, regenerate retained packages from the committed snapshot,
   and require `runtime_sources_match_head=true` before novel `hole7` or
   `hole5` production.
+
+### 20:39 — retained packages accepted; provisional `hole7` UNSAT
+
+- Committed and pushed the exact bank implementation at `2e68a639`, then
+  regenerated `hole9`, `hole7`, and `hole5` packages.  All manifests bind
+  that commit with `runtime_sources_match_head=true` and no mismatch.
+- An author audit and a separate standard-library production audit
+  reconstructed every bank and CNF byte and exhausted all \(3^{12}\)
+  colorings per template.  The independent verdict on all three retained
+  packages is `ACCEPT`.
+- The first bounded complete-bank `hole7` run returned solver-level UNSAT in
+  11.381 seconds and produced a 35,285,574-byte proof.  The integrated
+  checker stopped with exit 80 before `s VERIFIED` because `-W` treats a
+  deletion-related forward-checking warning as terminal.  The preserved run
+  therefore remains an explicit nonclaim.
+- A diagnostic replay without `-W` verified the proof, reporting zero RAT
+  lemmas.  Independent work is now producing an addition-only proof and
+  requiring warning-free `-I -f -W -U` replay.  No `hole7` mathematical
+  exclusion is accepted before that artifact and the graph-to-CNF bridge
+  pass hostile review.

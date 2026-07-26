@@ -1,5 +1,74 @@
 # Campaign State
 
+## Checkpoint 024 — 2026-07-25 20:39 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- The three retained complete-bank input packages passed the independent
+  production audit.  Their exact bytes, exhaustive coloring semantics,
+  manifest bindings, Git-object source bindings, paths, link counts, and
+  combined nine-file tree were reconstructed without importing the author
+  implementation.  Verdict: `ACCEPT`.
+- A bounded seed-0 `hole7` production run terminated UNSAT after 11.381
+  seconds using 43.44 MiB peak RSS and wrote a 35,285,574-byte ASCII proof
+  with SHA-256 `7ceb4a63...`.
+- The integrated strict checker exited 80 before verification because its
+  forward-mode `-W` policy stops at a warning associated with the
+  deletion-bearing proof.  The run therefore correctly records
+  `UNSAT_UNVERIFIED_CHECKER_EXIT` and `NO_MATHEMATICAL_CLAIM`.
+- A read-only diagnostic replay without the stop-on-warning flag reached
+  exactly one `s VERIFIED` in 18.127 seconds and reported 220,217 core
+  lemmas, 9,087,640 resolution steps, and zero RAT lemmas.  This is strong
+  evidence but is not promoted: an independent reviewer is stripping only
+  deletion lines and requiring warning-free `-I -f -W -U` replay against
+  the frozen CNF.
+
+### Publication and next gate
+
+- Commit and push the accepted retained input packages, pinned-tool smoke,
+  production hostile review, and this explicit provisional boundary.
+- Preserve the original `hole7` run byte-for-byte.  Promote nothing until
+  the addition-only proof, graph-to-CNF implication, and independent replay
+  are accepted and hash-bound.
+- Then recheck the single-heavy-child resource gate and run the complete
+  `hole5` package under the same bounded nonclaim protocol.  No campaign
+  solver or checker is active at this checkpoint.
+
+## Checkpoint 023 — 2026-07-25 20:34 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Commit `2e68a6396735381ee634a572dda409610b40891f` is pushed to
+  `origin/main` and freezes the accepted exact coloring-bank theorem,
+  generator, focused tests, and two independent reviews.
+- Retained packages were generated from that commit for `hole9`, `hole7`,
+  and `hole5`.  Their manifest SHA-256 values are respectively
+  `e36e7ab0...`, `7c46b015...`, and `99a56197...`; each records
+  `runtime_sources_match_head=true` and an empty mismatch list.
+- Root exhaustive package audit passed all \(3^{12}\) labeled color
+  assignments per template.  The retained CNF SHA-256 values are
+  `baea7205...` (`hole9`), `6a011e68...` (`hole7`), and `76bf36e...`
+  (`hole5`).
+- A retained pinned-tool smoke run checked both an exact SAT model and a
+  warning-free DRAT proof.  CaDiCaL and DRAT-trim hashes remain
+  `51c3c82b...` and `31df522b...`.
+
+### Bounded production launch
+
+- Independent retained-package and `hole9` proof-replay audits are running;
+  they are read-only with respect to the three packages.
+- Subject to those fail-closed audits, the next single heavy child is a
+  `hole7` complete-bank solve with seed 0, 600-second solver and checker
+  bounds, 2,048 MiB child-memory bounds, a 512 MiB file bound, and a
+  4,096 MiB disk reserve.  At this checkpoint the machine has 10 CPU cores,
+  16 GiB physical RAM, approximately 4.16 GB immediately available memory,
+  and approximately 10.3 GiB free disk.  No campaign solver or proof checker
+  is active.
+- Any timeout or resource limit is an explicit nonclaim.  A SAT result must
+  pass independent graph-parameter verification; an UNSAT result must pass
+  an independent graph-to-CNF audit and warning-free proof replay before
+  promotion.
+- After `hole7`, run the same bounded gate on `hole5`; then update the claim
+  boundary, manifest, research log, and source checkpoint before publishing.
+
 ## Checkpoint 022 — 2026-07-25 20:24 PDT
 
 - Campaign day: 1 of 27; branch `main`.
