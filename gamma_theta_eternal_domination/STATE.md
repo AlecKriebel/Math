@@ -1,5 +1,29 @@
 # Campaign State
 
+## Checkpoint 017 — 2026-07-25 19:05 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this batch: `c64779c1`.
+- `hole7` has reached 256 complete SAT/coloring attempts and cuts, with
+  checkpoint SHA-256
+  `d3dd1138286340b7ec9667596b98998d17ea9937b332e8dfa1b1dcb81e4f4ca6`.
+  Its status is still `running`; there is no terminal or resource event.
+- Deep read-only reconstruction preserved the 1,795-file, 8,907,069-byte
+  tree at SHA-256
+  `e699cfa165062acf890be869beaf97dadf3a1b90ff1bb58cab2bd57df00ca1e3`.
+- The `hole9` author package and two narrow provenance/prose errata are
+  frozen.  The independent hostile audit, including a fresh RUP
+  implementation, is still running.
+- No heavy child was active at checkpoint creation.
+
+### Claim boundary and next actions
+
+- A 256-cut prefix remains only resumable search progress.
+- Publish it, continue `hole7` with another bounded batch, and retain the
+  4 GiB disk reserve.
+- Do not promote `hole9` before the hostile audit accepts the proof package
+  and both errata.
+
 ## Checkpoint 016 — 2026-07-25 19:02 PDT
 
 - Campaign day: 1 of 27; branch `main`.
