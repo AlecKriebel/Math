@@ -1,5 +1,58 @@
 # Campaign State
 
+## Checkpoint 025 — 2026-07-25 21:11 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Claim C-030 is accepted as `CERTIFIED-FINITE`: no connected 12-vertex
+  graph with
+  \(\gamma=\alpha=\gamma^\infty=3<\theta\) has a complement containing a
+  hub-free induced \(C_7\).  Relative to C-014, C-017, and C-028, the
+  hub-free induced-\(C_5\) branch is now the only surviving branch of the
+  exhaustive \((12,3)\) split.
+- The accepted `hole7` certificate binds the exact 6,886-variable,
+  21,718-clause full-bank CNF and an 18,093,724-byte addition-only RUP proof.
+  The proof contains 284,317 additions and passed two strict pinned
+  DRAT-trim replays with `-I -f -W -U`, exit zero, one warning-free
+  `s VERIFIED`, and zero RAT lemmas.  A separate auditor reconstructed the
+  formula, stripped exactly 263,162 deletion records, rejected ten proof
+  mutations, and audited the graph-to-CNF implication.
+- The original `hole7` solve remains byte-for-byte preserved with its
+  correct nonclaim outcome.  Its checker exit 80 came from DRAT-trim's
+  documented forward-mode handling of a pseudo-unit reason deletion, not
+  from a failed inference.  Only the separately sealed `_v2` recovery is
+  authoritative.
+- The retained complete `hole9` formula also received a direct,
+  warning-free replay of the already accepted 4,705-addition proof.  The
+  independent audit proved exact clause-multiset inclusion of the earlier
+  formula and all 170 cuts, with exactly 595 new clauses.  This strengthens
+  the artifact binding for C-028 without changing its scope.
+
+### Remaining `hole5` branch
+
+- The first full-bank proof-producing run hit its exact 512 MiB ASCII proof
+  cap after 153.478 seconds and 67.77 MiB peak RSS.  No result file or
+  checker run exists, so its status is
+  `INCONCLUSIVE_SOLVER_FILE_LIMIT`.
+- A controlled proofless default run returned `c UNKNOWN` at 600.027
+  seconds and 65.25 MiB peak RSS.  A second proofless run using CaDiCaL's
+  UNSAT preset returned `c UNKNOWN` at 300.025 seconds and 62.52 MiB peak
+  RSS.  An earlier shell-controlled probe was interrupted after macOS
+  rejected the requested virtual-memory limit; it is recorded as an
+  aborted control event, not a search result.
+- Binary proof encoding is approximately 2.60 times smaller on the frozen
+  512 MiB prefix, but the proofless timeout shows that format alone will not
+  terminate the same seed/configuration.
+- Measured next route: prove and append 315 auxiliary-free clauses sorting
+  the six external vertices \(6,\ldots,11\) by their six-bit adjacency
+  signatures to the fixed core \(0,\ldots,5\).  The full `hole5` formula is
+  invariant under this \(S_6\) relabeling, so every model has a sorted
+  representative.  Exhaustively audit every comparator and all generating
+  transpositions before production.  If that parent remains hard, split it
+  into the seven exhaustive assignments to \(e_{25},e_{35},e_{45}\) other
+  than `111`, with a separate checked proof per leaf.
+- No campaign solver or checker is active.  Approximately 10 GiB disk is
+  free; every next run retains the 4 GiB reserve and one-heavy-child rule.
+
 ## Checkpoint 024 — 2026-07-25 20:39 PDT
 
 - Campaign day: 1 of 27; branch `main`.

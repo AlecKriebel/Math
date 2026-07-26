@@ -737,3 +737,38 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   requiring warning-free `-I -f -W -U` replay.  No `hole7` mathematical
   exclusion is accepted before that artifact and the graph-to-CNF bridge
   pass hostile review.
+
+### 21:11 — `hole7` excluded; only `hole5` remains for \((12,3)\)
+
+- Promoted C-030 to `CERTIFIED-FINITE`.  The exact complete-bank `hole7`
+  formula is UNSAT: its 18,093,724-byte addition-only proof contains 284,317
+  RUP additions and passed two warning-fatal, RUP-only DRAT-trim replays.
+  The independent audit also reconstructed all 1,701 bank clauses,
+  exhausted \(3^{12}\) colorings, checked the graph-to-CNF implication, and
+  rejected ten proof mutations.
+- Diagnosed the original checker exit 80 exactly.  A source proof line asks
+  to delete a clause currently retained as a pseudo-unit reason; forward
+  checking safely ignores that optimization, while `-W` turns the resulting
+  implementation warning into exit 80.  Removing all deletion records is
+  monotone for RUP and the resulting proof passed strict checking directly.
+- Directly replayed the accepted `hole9` 4,705-addition proof against the
+  retained 20,795-clause full-bank formula.  The replay was warning-free and
+  an independent multiset audit proved the older 20,200 clauses are an exact
+  subset with 595 added bank clauses.
+- The complete-bank `hole5` run hit a 512 MiB ASCII-proof limit after
+  153.478 seconds without a solver result.  Controlled proofless trials
+  using the default configuration for 600 seconds and the UNSAT preset for
+  300 seconds both returned `c UNKNOWN`, using less than 66 MiB peak RSS.
+  The branch remains open.
+- A hostile symmetry audit refuted the tempting shortcut of retaining one
+  coloring clause per template-coloring orbit: 442 of the 448 historical
+  candidates satisfy all 72 representatives, with an explicit candidate
+  and missed coloring retained.  Color-orbit representatives cannot be
+  chosen independently of a single graph relabeling.
+- Selected a sound stronger mechanism instead.  The full `hole5` CNF is
+  exactly invariant under permutations of the six unmarked vertices
+  \(6,\ldots,11\).  Sorting their adjacency signatures to fixed vertices
+  \(0,\ldots,5\) uses 315 auxiliary-free comparator clauses and preserves a
+  representative of every model.  Implementation, exhaustive comparator
+  testing, covariance audit, and written proof are the next production
+  gates.

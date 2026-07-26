@@ -1,0 +1,125 @@
+{
+  "schema": "gamma-theta-hole5-full-bank-trials-checkpoint-v1",
+  "schema_version": 1,
+  "created_at": "2026-07-25T21:10:00-07:00",
+  "status": "INCONCLUSIVE",
+  "claim_status": "NO_MATHEMATICAL_CLAIM",
+  "claim_boundary": "No trial found a SAT model or produced a complete checked UNSAT proof. The hole5 branch and the complete order-12 parameter-three slice remain open.",
+  "input": {
+    "package_manifest_path": "results/synthesis_k3_template_bank_packages/hole5/manifest.json",
+    "package_manifest_sha256": "99a56197074ad3373691578527e41baff4d76eb1e86141366c4edf8bc5871402",
+    "cnf_path": "results/synthesis_k3_template_bank_packages/hole5/instance.cnf",
+    "cnf_sha256": "76bf36ecb663cd37272acded2208206fdba6aa571dd5f2e757cc132bd533e0b7",
+    "variable_count": 6886,
+    "clause_count": 23653,
+    "literal_count": 188959
+  },
+  "tool": {
+    "name": "CaDiCaL",
+    "version": "3.0.1",
+    "commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+    "sha256": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6"
+  },
+  "trials": [
+    {
+      "id": "ascii-proof-seed0-600s",
+      "kind": "certificate-producing",
+      "directory": "results/synthesis_k3_template_bank_runs/hole5_seed0_600s",
+      "outcome_path": "results/synthesis_k3_template_bank_runs/hole5_seed0_600s/outcome.json",
+      "outcome_sha256": "667cdc2d57f580aa226c2ea853ccc871225996fe0f982d0a4943312690013224",
+      "run_config_sha256": "470c7bc1cfa94ec852380c7abadc868b2df2cc6ed1f47aef97183a7ee870125a",
+      "command_sha256": "0affaf2417ad1560ef982a7e9f74272f962c8a83059d18d9a1c5de85587d1869",
+      "configuration": {
+        "seed": 0,
+        "solver_wall_limit_seconds": 600,
+        "memory_limit_mib": 2048,
+        "file_limit_mib": 512,
+        "disk_reserve_mib": 4096,
+        "ascii_proof": true
+      },
+      "result": {
+        "status": "INCONCLUSIVE_SOLVER_FILE_LIMIT",
+        "exit_code": -25,
+        "termination_signal": 25,
+        "wall_seconds": 153.4779406660091,
+        "user_cpu_seconds": 140.993656,
+        "system_cpu_seconds": 3.009876,
+        "maximum_resident_set_size_bytes": 71057408,
+        "proof_size_bytes": 536870912,
+        "proof_sha256": "d7a46742b65766959935551e8807a1c3e6b8a9dca26e2f232640767d5008df38",
+        "solver_result_present": false,
+        "checker_launched": false
+      }
+    },
+    {
+      "id": "shell-memory-limit-refusal",
+      "kind": "aborted exploratory control check",
+      "directory": "results/synthesis_k3_template_bank_exploratory/hole5_seed0_noproof_600s",
+      "result": {
+        "status": "ABORTED_CONTROL_PREFLIGHT",
+        "reason": "macOS rejected the requested shell virtual-address-space limit; root interrupted the resulting solver child rather than continue without the advertised hard controller",
+        "wall_seconds_before_interrupt": 39.36,
+        "maximum_resident_set_size_bytes": 69992448,
+        "signal": 2,
+        "solver_result_present": false
+      }
+    },
+    {
+      "id": "default-seed0-proofless-600s",
+      "kind": "exploratory",
+      "directory": "results/synthesis_k3_template_bank_exploratory/hole5_seed0_noproof_bounded_600s",
+      "command_sha256": "e71a8033f27c76000e99bb8d62973c2de7fef5e1d5a957ba1a94e806623ac8bd",
+      "configuration": {
+        "seed": 0,
+        "preset": "default",
+        "solver_internal_time_limit_seconds": 600,
+        "monitored_wall_limit_seconds": 600,
+        "memory_limit_mib": 2048,
+        "file_limit_mib": 16,
+        "proof_requested": false
+      },
+      "result": {
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "wall_seconds": 600.0272540419974,
+        "user_cpu_seconds": 562.658806,
+        "system_cpu_seconds": 3.103086,
+        "maximum_resident_set_size_bytes": 68419584,
+        "memory_limit_exceeded": false,
+        "solver_result_sha256": "8fba55cea0f98be36fab7b65349dda867a58aabfcf974a46098f5123830ac5cb",
+        "solver_result_text": "c UNKNOWN"
+      }
+    },
+    {
+      "id": "unsat-preset-seed0-proofless-300s",
+      "kind": "exploratory",
+      "directory": "results/synthesis_k3_template_bank_exploratory/hole5_seed0_unsat_noproof_bounded_300s",
+      "command_sha256": "fd2ed75e7375ea7859c10b26a7932dfe2d8f2e9144554c5111a26f6e5520bea6",
+      "configuration": {
+        "seed": 0,
+        "preset": "unsat",
+        "solver_internal_time_limit_seconds": 300,
+        "monitored_wall_limit_seconds": 300,
+        "memory_limit_mib": 2048,
+        "file_limit_mib": 16,
+        "proof_requested": false
+      },
+      "result": {
+        "status": "UNKNOWN",
+        "exit_code": 0,
+        "wall_seconds": 300.0252678329998,
+        "user_cpu_seconds": 283.420746,
+        "system_cpu_seconds": 1.3504,
+        "maximum_resident_set_size_bytes": 65552384,
+        "memory_limit_exceeded": false,
+        "solver_result_sha256": "8fba55cea0f98be36fab7b65349dda867a58aabfcf974a46098f5123830ac5cb",
+        "solver_result_text": "c UNKNOWN"
+      }
+    }
+  ],
+  "measured_next_step": {
+    "selected_route": "prove and encode the S6 external-vertex signature-order symmetry breaker before another monolithic run",
+    "reason": "The default and UNSAT-targeted proofless configurations did not terminate, while the six unmarked vertices 6 through 11 admit a proved 720-fold relabeling action. Sorting their six-bit adjacency signatures to fixed vertices 0 through 5 uses 315 auxiliary-free clauses and preserves at least one labeling of every model.",
+    "fallback": "If the symmetry-broken parent remains hard, partition it into the seven exhaustive assignments to edge variables e25, e35, and e45 other than 111, and certify every leaf independently."
+  }
+}
