@@ -130,3 +130,19 @@
 - Therefore \(3/26\) frozen high-incidence main families are certified
   excluded.  The containing global row is still open, so no global
   \(4/14\) status or degree-floor number changes.
+
+## 2026-07-26T04:53:56Z — `D4-SF-20CC` certified excluded
+
+- For the isolated \(\kappa=16/5\) orbit, the full \(E_6\) contact
+  projection is one affine line.  A clean-room normalization identifies
+  the chosen \(\mathbb Q(i)\) representative with the frozen canonical
+  family.
+- The nonzero chart has rank six and a nonzero cubic \(E_5\)
+  obstruction.  A fresh rank-five origin solve gives two independent
+  \(E_4\) squares and the unconditional binary-plane exit.
+- Independent SymPy and PARI/GP reconstructions, an optimized-Python
+  guard, and a mutated-obstruction guard pass under
+  `D4_SF_20CC_FULL_STRICT_PASS`.
+- The high-incidence fine denominator is now \(4/26\) certified
+  excluded.  This still does not close the fixed-quadratic row or alter
+  the global degree floor.

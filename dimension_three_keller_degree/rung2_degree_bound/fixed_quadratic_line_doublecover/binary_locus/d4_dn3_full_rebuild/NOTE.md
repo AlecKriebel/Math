@@ -1,8 +1,9 @@
 # Full-lower \(E_6\) rebuild for `D4-DN-3`
 
 **First banked:** `2026-07-26T04:19:22Z`
-**Status:** exact contact-locus theorem; not a Keller exclusion; not peer
-reviewed.
+**Status:** certified exact contact-locus theorem with dual exact
+implementations and an independent hostile reconstruction; not a Keller
+exclusion and not peer reviewed.
 
 ## Result
 

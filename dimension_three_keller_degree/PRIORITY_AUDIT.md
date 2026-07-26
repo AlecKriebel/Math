@@ -886,3 +886,28 @@ worldwide priority.  The candidate is AI-assisted, unreviewed, and remains
 provisional until hostile mathematical reconstruction.  Even if promoted,
 it excludes only one of 26 internal high-incidence families and does not
 raise the universal degree floor.
+
+### 2026-07-26T04:55Z — daily current-listing and four-family audit
+
+The `math.AG`, `math.AC`, `math.CO`, and `math.NT` recent-submission
+listings were swept through the Friday 24 July arXiv release.  Searches
+also covered MathOverflow, Terence Tao's blog, the Secret Blogging
+Seminar, and publicly indexed X/Twitter material for dimension-three
+Keller degree bounds, quartic leading forms, contact loci, and geometric
+monodromy.
+
+The newly identified current-listing paper Z. Jelonek, *On mappings with
+Jacobian one*, arXiv:2607.20597, proves that bounded-degree polynomial
+automorphisms with Jacobian one form a Zariski-closed locus and describes
+irreducible components of the full bounded-degree Keller parameter space.
+Its theorem does not classify quartic leading orbits, compute the
+`D4-DN-3` contact locus, or state the weighted-lift symmetric-monodromy
+realization theorem.
+
+No checked source states any of the four certified family exclusions
+`D4-SF-11CC`, `D4-SF-21C`, `D4-SF-20CC`, or `D4-DN-1CC`, nor the exact
+two-plane full-lower `D4-DN-3` contact theorem.  This remains
+source-specific negative evidence, not a worldwide-priority guarantee.
+All five results are AI-assisted and not peer reviewed; four are
+family-level exclusions and one is only a contact-locus theorem.  None
+changes the global \(4/14\) quartic-row count or the degree floor four.

@@ -1464,3 +1464,18 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   exclusions.  The parent fixed-quadratic row remains open, so the frozen
   global count remains \(4/14\) certified, \(4/14\) provisional,
   \(6/14\) open, and the universal total-degree floor remains four.
+
+## 2026-07-26T04:53:56Z — fourth high-incidence family certified
+
+- The isolated exact-\(\delta=4\), \(\kappa=16/5\) family
+  `D4-SF-20CC` is excluded.  Its normalized representative lies over
+  \(\mathbb Q(i)\).
+- A primary exact SymPy derivation and a clean-room PARI/GP reconstruction
+  independently recover the complete contact line while retaining all 18
+  lower variables.  The nonzero line dies at \(E_5\); the origin reaches
+  two independent \(E_4\) squares and becomes a binary triangular lift.
+- The combined fail-closed wrapper ends with
+  `D4_SF_20CC_FULL_STRICT_PASS`.
+- The fine count is now \(4/26\) certified family-level exclusions.  The
+  containing row and the global \(4/14,4/14,6/14\) denominator do not
+  change, so the universal degree floor remains four.

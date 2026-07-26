@@ -1,8 +1,10 @@
 #!/bin/sh
 set -eu
 
+certificate_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 python_bin=${KELLER_DN3_PYTHON:-/Users/alec/Documents/Math/.venv/bin/python}
 test -x "$python_bin"
+cd "$certificate_dir"
 "$python_bin" verify_full_e6_elimination.py
 
 pari_output=$(mktemp "${TMPDIR:-/tmp}/d4-dn3-pari.XXXXXX")
