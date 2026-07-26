@@ -1,0 +1,116 @@
+{
+  "schema": "gamma-theta-order12-k4-v3-committed-hostile-review-v1",
+  "schema_version": 1,
+  "claim_status": "ENGINEERING_NO_MATHEMATICAL_CLAIM",
+  "reviewed_commit": "f4ccb1672e8e540bfe57f8472e44b4b3184a7b69",
+  "branch": "main",
+  "verdict": "ACCEPTED_ENGINEERING_DESIGN_NO_MATHEMATICAL_CLAIM",
+  "production_order12_solver_launched": false,
+  "frozen_v2_mutated": false,
+  "retained_leaf_promoted": false,
+  "committed_bytes": {
+    "working_bytes_equal_git_blobs": true,
+    "unmocked_runtime_source_set_sha256": "4c8988b1e7967e2e4d59f73e0b6323900266c5b23fc94e0e19fc5a68fbc2921e",
+    "files": {
+      "README.md": {
+        "git_blob": "fb2d9fd41e0ecaafe9658f098765af424dbd22f1",
+        "sha256": "f571844872dd65b2cfe30b6b3c7229bbb13cc1eb8cc7271f41de45235c51066e"
+      },
+      "math/lemmas/order12_k4_partition_plan.md": {
+        "git_blob": "8680df36ae90c6be335124cebf35a17d59bfbe78",
+        "sha256": "f49a7ddfc3e7845b59fd9aa2f2938e0802f0d100241819b8b24953d8009b9ad4"
+      },
+      "src/search/k4_production/normalize_bdrat.py": {
+        "git_blob": "77a987d3c9c6d558b9d7185638cf2b9e6baccc65",
+        "sha256": "07229fce9293a05fed3fa6ef3f96415eb48ea4b0cdd8e9a329620017d2bced99"
+      },
+      "src/search/k4_production/runner.py": {
+        "git_blob": "dd4a7b37c040dd70596d75ce9b51301c8cb0905d",
+        "sha256": "39d690edc72d852b36b637497ef44463ebd80a51d3b13479d96e31becb939cfb"
+      },
+      "tests/test_k4_production.py": {
+        "git_blob": "999df7f3161e973589fec32c72e7100ddf3e0bb0",
+        "sha256": "4f2fa849a60bc3acb4038e5dac0ee3d34fad997fd9de7c1e37922e88ee4fd7fc"
+      }
+    }
+  },
+  "committed_test_replay": {
+    "command": [
+      "env",
+      "PYTHONHASHSEED=0",
+      "PYTHONPATH=src",
+      "/usr/bin/time",
+      "-p",
+      "python3",
+      "-m",
+      "unittest",
+      "tests.test_k4_production",
+      "-v"
+    ],
+    "exit_code": 0,
+    "tests_run": 29,
+    "unittest_elapsed_seconds": 131.929,
+    "status": "OK",
+    "process_time_seconds": {
+      "real": 132.07,
+      "user": 127.70,
+      "system": 2.26
+    },
+    "order12_production_solver_used": false
+  },
+  "closed_design_findings": {
+    "exact_v3_outcome_and_certificate_schemas": true,
+    "decisive_outcome_details_bound_to_certificate_and_six_children": true,
+    "six_child_commands_limits_accounting_paths_and_hashes_checked": true,
+    "six_resource_reports_semantically_checked": true,
+    "strict_unsat_solver_result_reparsed": true,
+    "exact_decisive_inventory_and_aggregate_boundary": true,
+    "independent_binary_drat_scan_binds_normalization": true,
+    "warning_output_rejected": true,
+    "v2_refused_before_lock_or_write": true,
+    "atomic_final_file_publication": true,
+    "atomic_preconfiguration_crash_states_recoverable_as_nonclaims": true,
+    "six_successful_children_required_for_leaf_status": true
+  },
+  "retained_v2_case1111_temp_copy_diagnostic": {
+    "performed": true,
+    "source_inputs_unchanged_before_and_after": true,
+    "command_exit_codes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "input_sha256": {
+      "instance.cnf": "aafc85341993ed030fe72ba222a4efaa5a02f6ea6fa95519a9dd2ed755b94d1f",
+      "proof.raw.bdrat": "a50b814d857e29b5b5556308911c6d1ea119356beb9213ab1a062d1da3caa5ba"
+    },
+    "raw_binary_drat_scan": {
+      "total_records": 16646,
+      "addition_records": 9690,
+      "deletion_records": 6956,
+      "post_empty_deletion_records": 3,
+      "literal_count": 145507,
+      "empty_addition_record_index": 16643,
+      "maximum_variable_observed": 18352
+    },
+    "output_sha256": {
+      "proof.normalized.rup.bdrat": "f3401ad850f65db8808cd0949e6899ba6b6718902f83a289225c7f5b6390302d",
+      "proof.converted.lrat": "90787a09742237e3c38c8b4f36916b2d0ccbd37be3920feb16ddb3306ec228d0"
+    },
+    "output_size_bytes": {
+      "proof.normalized.rup.bdrat": 106318,
+      "proof.converted.lrat": 692139
+    },
+    "promotion_status": "NEVER_PROMOTED_REPLAY_ONLY"
+  },
+  "mandatory_next_gate": {
+    "audit_run_freshly_replays_lrat": false,
+    "separate_aggregate_verifier_required": true,
+    "requirements": [
+      "freshly replay every bound LRAT against its bound leaf CNF",
+      "independently verify Boolean partition coverage"
+    ]
+  }
+}
