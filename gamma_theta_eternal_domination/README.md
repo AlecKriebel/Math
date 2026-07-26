@@ -290,8 +290,8 @@ python3 -B reviews/order12_k4_synthesis_target_hostile_probe.py
 
 The retained full CNF has 18,381 variables, 114,742 clauses, and SHA-256
 `adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac`.
-It is accepted exact formula infrastructure with
-`NO_MATHEMATICAL_CLAIM`: no \(k=4\) SAT/UNSAT result exists yet.
+It is accepted exact formula infrastructure.  The full parent remains open;
+one of its 16 Boolean-cube leaves is now certified UNSAT as C-042 below.
 
 Claim C-038 sharpens the order-12 parameter-four structural frontier.
 If \(H=\overline G\) contains an induced hole, at least four vertices lie
@@ -343,14 +343,14 @@ python3 reviews/order12_k4_candidate_verifier_hostile_probe.py
 No candidate currently exists.
 
 The proof-producing runner's exact 16-cube partition covers the anchored
-parent.  Its version-three author candidate uses six separately bounded
-processes: CaDiCaL binary-DRAT production, raw forward verification, strict
-addition-only normalization, normalized RUP-only forward verification,
-RUP-only backward LRAT conversion, and fresh `lrat-check` replay.  The
-normalization step makes no proof claim; the two fresh RUP-only checks and
-LRAT replay are mandatory.  The runner preserves interrupted or rejected
-attempts as retryable nonclaims and aggregates even sixteen locally verified
-leaves only as
+parent.  Its accepted version-three implementation uses six separately
+bounded processes: CaDiCaL binary-DRAT production, raw forward verification,
+strict addition-only normalization, normalized RUP-only forward
+verification, RUP-only backward LRAT conversion, and fresh `lrat-check`
+replay.  The normalization step makes no proof claim; the two fresh RUP-only
+checks and LRAT replay are mandatory.  The runner preserves interrupted or
+rejected attempts as retryable nonclaims and aggregates even sixteen locally
+verified leaves only as
 `ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT`.
 
 ```text
@@ -365,19 +365,29 @@ defect found by the first real initializer are documented in
 failed before creating a run directory or starting a solver; both Git lookup
 sites and an unmocked regression are accepted.
 
-The subsequent real smoke test of leaf `1111` found a sixth protocol defect
-and failed closed.  CaDiCaL returned UNSAT and the retained 215,475-byte
-binary proof passed warning-fatal forward replay, but backward LRAT conversion
-rejected CaDiCaL's deletion of a pseudo-unit clause and emitted an empty LRAT.
-The durable status remains `LRAT_CONVERSION_REJECTED_NONCLAIM`; no leaf is
-certified.  The version-three author candidate now implements strict
-addition-only normalization, fresh warning-fatal RUP-only verification,
-RUP-only backward conversion, and independent replay.  It still requires
-independent hostile review and a new source-bound production directory; the
-frozen failed attempt is neither rewritten nor promoted.
+The historical v2 smoke test of leaf `1111` found a sixth protocol defect and
+failed closed.  It remains frozen at
+`results/order12_k4_production_seed0` with status
+`LRAT_CONVERSION_REJECTED_NONCLAIM`; it was neither rewritten nor promoted.
 
 The v3 runner deliberately rejects every v2 run manifest before acquiring a
 run lock, including through its ordinary read-only audit command.  Historical
 v2 attempt 1 remains auditable with the source-bound v2 verifier at commit
 `9b24d9ff74b2bf9278d45f9bfdf08fcb7a31c800`; v3 never interprets a v2
 attempt, outcome, or certificate under its newer schemas.
+
+Claim C-042 certifies exactly the new v3 `1111` leaf, with cube units
+`4,14,23,31`, and nothing larger.  Its 18,381-variable, 114,746-clause CNF
+has SHA-256
+`aafc85341993ed030fe72ba222a4efaa5a02f6ea6fa95519a9dd2ed755b94d1f`.
+The retained raw proof was normalized to an addition-only RUP stream and
+converted to LRAT; an independent postrun review reconstructed the leaf CNF
+byte-for-byte and freshly replayed the LRAT on private copies.  The preserved
+package is commit `92f5ed2b6db1e88ac5776bdb60ebcb6490b85c8d`.
+
+The current exact histogram is one `UNSAT_LRAT_VERIFIED` leaf and fifteen
+`PENDING` leaves, so the aggregate status is `INCOMPLETE_NONCLAIM`.  This is
+not an exclusion of the connected \((12,4)\) parent, the order-12
+parameter-four slice, or the universal conjecture.  The earlier aggregate
+checker prototype was tied to the rejected v2 schemas and is not accepted
+for v3; its v3 repair and independent audit are in progress.

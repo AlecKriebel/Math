@@ -1148,3 +1148,37 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   subbranch exclusion.  The full anti-\(C_7\) branch and the order-12
   parameter-four slice remain open, and no novelty claim is made before a
   literature comparison.
+
+### 2026-07-26 04:30 — v3 case `1111` certified as one exact leaf
+
+- The v3 author candidate passed 29/29 tests, including the real tiny
+  six-stage proof chain, binary-normalizer hostile inputs, interruption
+  recovery, v2 refusal, provenance mutations, and unmocked Git binding.
+  Exact committed bytes at `f4ccb167...` then received the independent
+  verdict `ACCEPTED_ENGINEERING_DESIGN_NO_MATHEMATICAL_CLAIM`; the committed
+  hostile replay independently passed 29/29 tests.
+- A new immutable source-bound run was initialized at
+  `results/order12_k4_production_v3_seed0`.  Only case `1111` was authorized.
+  Its exact leaf appends units \(4,14,23,31\) to the C-037 parent and has
+  18,381 variables, 114,746 clauses, 1,180,020 literals, and SHA-256
+  `aafc85341993ed030fe72ba222a4efaa5a02f6ea6fa95519a9dd2ed755b94d1f`.
+- All six production children completed successfully: solver, raw forward
+  proof check, strict normalization, normalized RUP-only forward check,
+  RUP-only LRAT conversion, and fresh LRAT replay.  The retained raw proof is
+  `a50b814d...`, the exact addition-only stream is `f3401ad8...`, and the
+  converted LRAT is `90787a09...`.  Outcome `00e3c191...` and certificate
+  `7c9705f5...` record `UNSAT_LRAT_VERIFIED`.
+- A separate postrun reviewer reconstructed the leaf CNF byte-for-byte
+  without importing runner transition or proof logic, independently rescanned
+  the binary streams, and freshly replayed the LRAT on private copies under
+  the campaign lock.  No solver was launched and no retained byte changed.
+  Verdict: `CERTIFICATE_REPLAY_PASSED_ONE_LEAF_ONLY`.
+- This promotes C-042 as `CERTIFIED-FINITE` for **exactly cube `1111`**.
+  Fifteen cubes remain `PENDING`, the aggregate remains
+  `INCOMPLETE_NONCLAIM`, and neither the full connected parent, the
+  \((12,4)\) slice, nor the universal conjecture is settled.  Commit
+  `92f5ed2b...` preserves the production package.
+- The earlier aggregate-checker prototype was bound to the rejected v2
+  schemas and is not accepted for this package.  Its v3 repair is in
+  progress; it must freshly replay completed LRATs and independently verify
+  partition coverage before any aggregate theorem is possible.

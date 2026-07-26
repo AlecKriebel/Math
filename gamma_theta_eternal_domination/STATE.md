@@ -1,5 +1,71 @@
 # Campaign State
 
+## Checkpoint 037 — 2026-07-26 04:30 PDT
+
+- Campaign day: 2 of 27; branch `main`; exact one-leaf production package
+  preserved at `HEAD` `92f5ed2b6db1e88ac5776bdb60ebcb6490b85c8d`.
+- **New certified finite result (C-042):** exact parent cube `1111`, with
+  units \(4,14,23,31\), is UNSAT.  The independently reconstructed leaf has
+  18,381 variables, 114,746 clauses, 1,180,020 literals, and SHA-256
+  `aafc85341993ed030fe72ba222a4efaa5a02f6ea6fa95519a9dd2ed755b94d1f`.
+- The accepted v3 chain retained raw binary DRAT `a50b814d...`, exact
+  addition-only RUP stream `f3401ad8...`, and converted LRAT `90787a09...`.
+  The durable outcome `00e3c191...` and certificate `7c9705f5...` both record
+  `UNSAT_LRAT_VERIFIED` for this leaf and no aggregate claim.
+- An independent postrun review imported no runner transition or proof logic,
+  reconstructed the leaf CNF byte-for-byte, rescanned both binary proofs, and
+  freshly replayed the retained LRAT with the pinned checker on private
+  copies.  It launched no solver and changed no production, runtime-source,
+  v2, or provisional byte.  Verdict:
+  `CERTIFICATE_REPLAY_PASSED_ONE_LEAF_ONLY`.
+- The current exact boundary is **one verified leaf and 15 pending leaves**;
+  the run aggregate is `INCOMPLETE_NONCLAIM`.  The connected parent, complete
+  order-12 \(k=4\) slice, order-12 \(k=5\) slice, and universal conjecture
+  remain open.
+- Before production, the v3 author suite passed 29/29 tests and the exact
+  committed bytes received hostile engineering acceptance at commit
+  `f4ccb167...`.  The source-bound run was initialized under that commit and
+  the one-leaf package was preserved at `92f5ed2b...`.
+- The aggregate checker's v2-bound prototype is rejected for this v3 package.
+  Repair against the v3 schemas is in progress and remains unaccepted; no
+  aggregate theorem may use it.
+- No campaign solver or proof checker is running.  At checkpoint time the
+  Apple M1 Pro has 10 logical CPUs and 16 GiB RAM, load averages
+  1.65/2.16/2.15, and about 24 GiB free disk.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active-one-of-sixteen | C-042 certifies `1111`; 15 cubes pending |
+| Order-12 \(k=4\) structural lane | active | C-041 removes the four/five-near-hub anti-\(C_7\) subbranch |
+| Proof-producing runner v2 | rejected-superseded | Frozen failed-closed forensic run preserved |
+| Proof-producing runner v3 | accepted-production | One exact leaf completed and independently replayed |
+| Aggregate negative-result audit | repairing-v3 | v2-bound prototype rejected; v3 schema repair and hostile audit required |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- Preserve both production directories unchanged.  Never resume the v2
+  directory `results/order12_k4_production_seed0`.
+- The v3 directory
+  `results/order12_k4_production_v3_seed0` is resumable, but no second leaf
+  should launch until the current package/documentation integration and
+  repaired aggregate-checker gate are reviewed.
+
+### Next three highest-value actions
+
+1. Repair and hostile-review the independent aggregate checker against the
+   exact v3 schemas; require it to return an incomplete nonclaim on the
+   current one-of-16 package while freshly replaying the completed LRAT.
+2. After that gate, authorize one additional partition leaf under the
+   existing resource limits and checkpoint discipline.
+3. Continue the C-041 anti-\(C_7\) structural lane in parallel without
+   claiming a full-template exclusion.
+
 ## Checkpoint 036 — 2026-07-26 03:12 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
