@@ -1,5 +1,26 @@
 # Campaign State
 
+## Checkpoint 015 — 2026-07-25 18:58 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this batch: `f7994c26`.
+- `hole7` now has 128 complete SAT/coloring attempts and 128 globally sound
+  cuts.  Its checkpoint SHA-256 is
+  `37eb33e4d35084d8a7e930b88be94d71e3b602f8f4ed10c2e7b2e5fbecf5afe2`;
+  status remains `running`.
+- Deep reconstruction passed and preserved the 899-file, 4,456,636-byte
+  tree at SHA-256
+  `b8f038f5bdebde5d457b785bc38339c11e3e2f658d8a3f262a9b7dd30a6a8231`.
+- No timeout, unknown outcome, memory event, candidate, or UNSAT terminal
+  occurred.  No heavy child was active when this checkpoint was written.
+
+### Claim boundary and next actions
+
+- The branch is healthy but still proves no nonexistence statement.
+- Publish the 128-cut prefix, then run another bounded `hole7` batch.
+- Continue the independent `hole9` recovery audit concurrently; retain the
+  original runner and run directories byte-for-byte.
+
 ## Checkpoint 014 — 2026-07-25 18:54 PDT
 
 - Campaign day: 1 of 27; branch `main`.

@@ -501,3 +501,21 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `6ce2af652b3bcd91184ec2d3cef73822b9de226bff0979ed7e444ba810c149ee`
   before and after replay.  The branch remains open; this prefix proves no
   nonexistence result.
+
+### 18:58 — `hole7` production reaches 128 cuts
+
+- Resumed the published 64-cut checkpoint for 64 more iterations.  Every
+  child again returned a complete SAT assignment and a directly checked
+  proper complement three-coloring, yielding 64 new distinct sound cuts.
+- The new solver children used 3.2106 seconds total wall time and
+  2.0567 seconds total CPU.  The slowest child took 0.0707 seconds and peak
+  RSS stayed below 6.9 MB.  There was no timeout, unknown result, memory
+  event, candidate, or UNSAT terminal.
+- The 128-cut checkpoint has SHA-256
+  `37eb33e4d35084d8a7e930b88be94d71e3b602f8f4ed10c2e7b2e5fbecf5afe2`
+  and history head
+  `237a3e6d8d8dd7f38c4ba6a7c73f1969352866d02ec4713338c65c5b6a430154`.
+- Deep read-only reconstruction passed and left the 899-file,
+  4,456,636-byte tree unchanged at SHA-256
+  `b8f038f5bdebde5d457b785bc38339c11e3e2f658d8a3f262a9b7dd30a6a8231`.
+  The template remains open.
