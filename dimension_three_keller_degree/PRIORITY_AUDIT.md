@@ -988,3 +988,28 @@ This is source-specific negative evidence, not a worldwide-priority
 guarantee.  All three results are AI-assisted and unreviewed.  The global
 promotion moves the frozen score to \(5/14\), but it does not raise the
 universal total-degree floor above four.
+
+### 2026-07-26T10:02Z — rational-plane-cubic row promotion
+
+The current-day sweep was compared with the frozen exclusion of leading
+maps of the form
+\[
+H_4=\ell A(p,q),
+\]
+where \(A\) parametrizes an irreducible nodal or cuspidal plane cubic.
+Queries covered quartic three-variable Keller maps, nodal/cuspidal leading
+images, rational-plane-cubic leading forms, and fixed-linear-factor
+normal forms.
+
+The closest current public records found were Gallagher's weighted-lift
+family, Shaska's arXiv:2607.20210 graded-map analysis, Jelonek's
+arXiv:2607.20597 bounded-degree parameter-space result, and de Bondt's
+arXiv:1609.09753 homogeneous-\(x+H\) classification.  None of the checked
+arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, publicly indexed
+X/Twitter, or general-web records states the four-way node/cusp and
+aligned/transverse exclusion with arbitrary quadratic and cubic lower
+terms.
+
+This is source-specific negative evidence only, not a worldwide-priority
+guarantee.  The row theorem and its exact checks are AI-assisted,
+unreviewed, and do not by themselves raise the universal degree floor.

@@ -1641,3 +1641,27 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The row stays provisional.  The smallest repair is now fixed: solve the
   full \(E_7\) system and certify the universal \(E_6\) compatibility and
   tangent-orbit list without generic-rank division.
+
+## 2026-07-26T10:02:40Z — rational-plane-cubic row certified
+
+- A clean-room post-freeze derivation recovered the intrinsic form
+  \(H_4=\ell M B_\tau(p,q)\), where \(\tau\) is nodal or cuspidal, and
+  the exhaustive aligned/transverse incidence split for the fixed line.
+- Every nonempty frozen coefficient pivot lies in `C00`--`C14` and routes
+  by explicit division-free coefficient polynomials.  `C15`--`C44` are
+  empty because each target component of the leading map is nonzero.
+- All four SymPy/PARI proof pairs passed.  The audit found one retained
+  provenance gap in the transverse nodal branch and repaired it from a
+  general 30-coefficient \(H_3\), general 18-coefficient \(H_2\), and
+  arbitrary nine-entry linear part.  The exact ranks are \(24,16,9\);
+  the terminal \(E_5\) square was reproduced.
+- A separate lower-term scope audit reached the same verdict.  The strict
+  wrapper passed three deliberate mutations and the optimized-Python
+  guard with marker `Q2_E1_A1_B3_D3_N1_STRICT_PASS_V1`.
+- The frozen global score is now
+  \[
+  6/14\text{ certified},\qquad2/14\text{ provisional},\qquad
+  6/14\text{ open}.
+  \]
+  The universal total-degree floor remains four; no numerical table rung
+  is closed.
