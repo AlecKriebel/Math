@@ -421,3 +421,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `9f0b91e483f255f2e18b7383811cf4e2937b76d0590be4e9dc5cfcb36dcc51f1`.
 - The healthy scaling justifies one more 64-iteration batch after
   publication.  A running prefix still proves no nonexistence statement.
+
+### 18:27 — `hole9` reaches a candidate UNSAT formula; checker fails closed
+
+- The next session committed 41 more colorable attempts, reaching an audited
+  checkpoint of 170 cuts.  The following solver call returned `UNSAT` twice
+  and wrote a 512,071-byte ASCII DRAT proof, but the configured
+  `DRAT-trim -I -f -W` call exited 80.  The runner raised an exception,
+  wrote no attempt manifest or terminal marker, and did not advance the
+  checkpoint.  No UNSAT claim is accepted.
+- The exact cause is compatibility, not a timeout or memory event.
+  Verbose bounded replay shows the hard warning at pinned
+  `drat-trim.c:809--811`: forward mode ignores a pseudo-unit deletion
+  instruction, and `-W` exits immediately on that otherwise optional
+  deletion warning.
+- Bounded read-only diagnostics show that the unchanged CNF/proof verifies
+  with exit zero and exactly one `s VERIFIED` when either the hard-warning
+  policy is removed or `-p` is added to ignore all deletion information.
+  The latter retains `-W` and emitted no warning, but it is outside the
+  frozen protocol and therefore remains only a recovery candidate pending
+  independent soundness and implementation review.
+- The clean committed checkpoint has SHA-256
+  `9cc9cdee08fb1fcd7a8772b09cdf9ba9ced802cb0b31be35ab292244e5f286b7`.
+  A deep read-only audit passed and preserved the 1,205-file,
+  6,946,580-byte tree at SHA-256
+  `bd13c4fdc3629ee02fa510eda09bd503234daf4318a33c562e0ab3427d89fd8b`.
+- Froze the unreferenced candidate proof, both UNSAT result files, CNF,
+  cuts, generator manifest, and failed checker logs.  A separately written
+  recovery verifier and an independent plain-mode audit are now active.

@@ -1,5 +1,45 @@
 # Campaign State
 
+## Checkpoint 012 — 2026-07-25 18:27 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this session: `2c935e45`.
+- The clean `hole9` checkpoint has 170 complete SAT/coloring attempts and
+  170 globally sound cuts.  SHA-256:
+  `9cc9cdee08fb1fcd7a8772b09cdf9ba9ced802cb0b31be35ab292244e5f286b7`.
+- The next formula returned `UNSAT` twice and has a nonempty DRAT proof, but
+  the frozen production checker exited 80 on a hard warning.  The runner
+  failed closed: there is no terminal, no referenced attempt 170, and no
+  accepted UNSAT claim.
+- Verbose bounded diagnosis identifies a pseudo-unit deletion warning in
+  pinned DRAT-trim forward mode.  Adding documented plain mode `-p` causes
+  the unchanged proof to verify with exit zero, exactly one `s VERIFIED`,
+  and no warning, but this route is not trusted until separately audited.
+- Deep audit of the committed prefix passed.  The preserved 1,205-file,
+  6,946,580-byte tree has SHA-256
+  `bd13c4fdc3629ee02fa510eda09bd503234daf4318a33c562e0ab3427d89fd8b`.
+  ART-115 binds the incident and every decisive orphan-artifact hash.
+
+### Active gate and claim boundary
+
+- `hole9` production is paused.  Retrying the unchanged frozen runner would
+  only reproduce the same warning and is not useful.
+- A separately written recovery verifier must reconstruct the exact
+  base-plus-170-cut CNF, verify both UNSAT result files and all hashes, and
+  replay the pinned proof under a hostile-reviewed deletion policy.
+- An independent reviewer is auditing the mathematical soundness of ignoring
+  DRAT deletion instructions.  Until both reviews accept, the proof remains
+  a candidate artifact and the `hole9` template remains open.
+- No solver/checker child was active when this checkpoint was written.
+
+### Next three highest-value actions
+
+1. Commit and push the 170-cut checkpoint and frozen failed terminal attempt.
+2. Complete and hostile-review the independent terminal-recovery verifier;
+   accept or reject the candidate proof without changing the frozen runner.
+3. In parallel, finish the portable induced-failure-core theorem and its
+   exact two-core certificates.
+
 ## Checkpoint 011 — 2026-07-25 18:21 PDT
 
 - Campaign day: 1 of 27; branch `main`.
