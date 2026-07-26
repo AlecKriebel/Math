@@ -1,5 +1,61 @@
 # Campaign State
 
+## Checkpoint 021 — 2026-07-25 19:52 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint: `07683181`.
+- `hole5` advanced from 192 to 448 complete attempts and globally valid
+  coloring cuts.  Its status remains `running`, with no candidate, UNSAT
+  terminal, timeout, unknown result, or memory event.
+- The new `hole5` checkpoint SHA-256 is
+  `ca4556b6d8b931d71b7b143d1e8b7c3aab4475fa1edae90a83c7acb107100b55`;
+  its history head is
+  `70f446f1b7e14b863a64108bfffe519a3ffb58c6e45c45f1c77e967dba6c3baf`.
+  Frozen deep reconstruction and a separate standard-library audit passed,
+  preserving the exact 3,139-file, 15,610,294-byte tree at SHA-256
+  `cf12c4c0a7923a849d837ddaaabc186e688f2f5368e858d6fa5bb4b8a2b445b4`.
+- The 256 new solver children used 16.6234 seconds total wall time and
+  12.7135 seconds total CPU.  Maximum child wall time was 0.1514 seconds and
+  maximum RSS was 17,399,808 bytes.  No heavy campaign child was active at
+  checkpoint creation.
+
+### Measured strategy pivot
+
+- Two independent read-only trajectory analyses found that the odd-hole
+  template units reduce the complete three-coloring universe to exactly
+  3,645 partitions for `hole5`, 1,701 for `hole7`, and 765 for `hole9`.
+  Relative to each template, adjoining the ordinary same-color clause for
+  every compatible partition is exactly equivalent to
+  \(\chi(\overline G)>3\); incompatible partitions already violate a forced
+  template edge.
+- The exact count is
+  \[
+    M_\ell=(2^\ell-2)3^{11-\ell}/6
+    \quad(\ell\in\{5,7,9\}).
+  \]
+  The forced odd cycle has \(2^\ell-2\) labeled proper colorings, the
+  external common neighbor of rim edge \(01\) is forced to the third color,
+  the other \(11-\ell\) vertices are free, and the forced triangle makes
+  division by all six color-name permutations exact.
+- The current one-cut-at-a-time route is sound but inefficient.  At the
+  published prefixes, the 192 `hole5` cuts occupy only 31 template-symmetry
+  orbits and the 384 `hole7` cuts only 59.  Orbit closure covers respectively
+  2,832 of 3,645 and 986 of 1,701 compatible partitions.
+- Further unchanged CEGAR production is therefore suspended while a new,
+  separately audited proof-producing template-bank path is implemented.
+  The append-only CEGAR runs remain frozen and resumable as corroborating
+  evidence.
+
+### Claim boundary and next actions
+
+- The 448-cut `hole5` prefix is not a mathematical nonexistence result.
+- The coloring-bank theorem and implementation are not promoted until a
+  self-contained proof, deterministic generator, independent enumerator,
+  mutation audit, and proof-producing trial all pass.
+- Publish this checkpoint.  Then complete the independent bank audits and
+  run bounded full-bank instances, freezing any SAT candidate and requiring
+  a fresh independently checked RUP/DRAT proof for every UNSAT result.
+
 ## Checkpoint 020 — 2026-07-25 19:24 PDT
 
 - Campaign day: 1 of 27; branch `main`.

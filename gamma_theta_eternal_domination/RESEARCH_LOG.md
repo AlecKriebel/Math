@@ -637,3 +637,51 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   rerun in one invocation and passed all 238 tests in 57.44 seconds, with
   peak RSS 115,965,952 bytes.  The earlier refusal remains part of the
   resource log because it confirms that the production guard failed closed.
+
+### 19:49 — `hole5` reaches 448 cuts
+
+- One bounded 256-iteration resume added 256 complete SAT/coloring attempts,
+  bringing `hole5` to 448 distinct globally valid cuts.  The branch remains
+  `running`; there was no terminal, candidate, timeout, unknown result, or
+  memory event.
+- The new checkpoint SHA-256 is
+  `ca4556b6d8b931d71b7b143d1e8b7c3aab4475fa1edae90a83c7acb107100b55`,
+  with history head
+  `70f446f1b7e14b863a64108bfffe519a3ffb58c6e45c45f1c77e967dba6c3baf`.
+- Frozen deep reconstruction and a separate standard-library audit checked
+  all 448 chronology, artifact, command, limit, and compact-prefix records.
+  The exact 3,139-file, 15,610,294-byte run tree remained at SHA-256
+  `cf12c4c0a7923a849d837ddaaabc186e688f2f5368e858d6fa5bb4b8a2b445b4`.
+- The 256 solver children used 16.6234 seconds total wall time and
+  12.7135 seconds total CPU; maximum child wall time was 0.1514 seconds and
+  maximum RSS was 17,399,808 bytes.
+
+### 19:52 — exact template-coloring bank identified
+
+- Independent read-only analyses of the published `hole5` and `hole7`
+  trajectories derived the exact number of nontrivial three-coloring cuts
+  compatible with each forced odd-hole template:
+  \[
+    M_\ell=(2^\ell-2)3^{11-\ell}/6.
+  \]
+  The resulting counts are 3,645 for `hole5`, 1,701 for `hole7`, and 765
+  for `hole9`.
+- The proof uses only the forced template: an odd \(C_\ell\) has
+  \(2^\ell-2\) labeled proper three-colorings; the external common neighbor
+  of rim edge \(01\) is forced to the third color; the remaining vertices
+  are free; and the forced triangle makes the six color-name permutations
+  act freely.
+- Adjoining the standard positive same-color edge clause for every
+  compatible partition is exactly equivalent, relative to the template
+  units, to requiring \(\chi(H)>3\).  Thus the full `hole5` and `hole7`
+  formulas have only 23,653 and 21,718 clauses respectively.
+- The existing adaptive cuts are highly symmetry-redundant.  The first
+  192 `hole5` cuts occupy 31 template-symmetry orbits whose closures contain
+  2,832 of all 3,645 compatible partitions.  The 384 `hole7` cuts occupy 59
+  orbits covering 986 of 1,701 partitions.  Individual candidate graphs
+  generally have only one or two proper colorings, so enumerating more
+  colorings of the same candidate is not the useful batching mechanism.
+- Measured gate decision: preserve and pause the append-only CEGAR prefixes,
+  implement a deterministic full-bank generator, independently enumerate
+  and audit its universe, and compare proof-producing one-shot SAT runs.
+  No bank theorem or finite exclusion is claimed before those gates pass.
