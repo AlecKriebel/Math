@@ -1665,3 +1665,28 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   \]
   The universal total-degree floor remains four; no numerical table rung
   is closed.
+
+## 2026-07-26T10:15:00Z — disputed fixed-conic top bridge repaired
+
+- Two independent exact calculations, one in SymPy and one rebuilt in
+  PARI/GP, start with the complete degree-eight cubic normal, all twelve
+  binary-cubic coefficients, all eighteen quadratic coefficients, and an
+  arbitrary nine-entry linear part.
+- In both binary divisor types \(h=pq\) and \(h=p^2\), the degree-seven
+  matrix in the quadratic coefficients has constant rank seven and an
+  eleven-parameter affine fibre.  The PARI constant pivot determinant is
+  \(-2^{19}\), so no parameter-dependent rank division is hidden.
+- On the full fibres, the universal degree-six \(r^2\) coefficients are
+  exactly
+  \[
+  12p^2q^2(a-d)^2(a+d),\qquad
+  24dp^2(cp+(d-a)q)^2.
+  \]
+  Their radicals recover precisely the legacy tangent-orbit list,
+  including all zero and rank-jump intersections.  Polynomial sections
+  certify equality of the tangent-elimination ideals.
+- This repairs the precise gap found at equations (7)--(9), but does not
+  yet certify the global row: the later branch families (13)--(36) still
+  must be rederived as complete descendants of these full fibres.  The
+  fixed-conic row therefore remains provisional and the global score
+  stays \(6/14,2/14,6/14\).
