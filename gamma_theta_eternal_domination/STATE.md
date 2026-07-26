@@ -1,5 +1,73 @@
 # Campaign State
 
+## Checkpoint 040 — 2026-07-26 05:25 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `b96bac9b54a1fc2087fce28081413aa843ca9aa9`.
+- **New proved symmetry reduction (C-045):** the exact anchored connected
+  order-12 parameter-four parent is equisatisfiable with its DoubleLex
+  strengthening, which sorts both the eight four-bit outer rows and the four
+  eight-bit anchor columns of the anchor--outer adjacency matrix.
+- The proof chooses the row-major least image in the full
+  \(S_8\times S_4\) orbit.  Any row inversion or adjacent column inversion
+  can be swapped to produce a strictly smaller image.  The simultaneous
+  anchor/color action preserves the complete normalized coloring bank.
+- Independent hostile review checked all ten adjacent group generators
+  against the exact 18,381-variable, 114,637-clause pre-sort formula,
+  exhausted all 65,536 assignments for an eight-bit comparator, and
+  reproduced the suffix and full formula byte-for-byte.  Verdict:
+  `ACCEPT EQUISATISFIABLE DOUBLELEX STRENGTHENING`.
+- The exact suffix has 765 clauses, 10,758 literals, 37,710 bytes, and
+  SHA-256 `328eeeaa...`.  The exact strengthened CNF has 18,381 variables,
+  115,507 clauses, 1,190,774 literals, 4,030,657 bytes, and SHA-256
+  `14284db1...`.
+- **Exploratory outcome only:** CaDiCaL seed 0 returned UNSAT on those exact
+  DoubleLex bytes in under one minute and retained a 32,987,136-byte raw
+  binary proof (`ed3975c5...`).  No proof certificate has yet been accepted,
+  so this is not a finite exclusion claim.
+- The separately authorized canonical production leaf `0111` returned
+  `RAW_FORWARD_REJECTED_NONCLAIM`: the solver exited UNSAT in 3.316 seconds,
+  but warning-fatal raw forward checking exited 80.  A strict diagnostic
+  parser found one complete proof ending in a unique empty clause; its exact
+  deletion-free 158,688-addition stream passed forward RUP checking.  A
+  sealed recovery certificate is under construction, but the production
+  histogram remains one verified, one retryable nonclaim, and 14 pending.
+- No solver is running.  Two bounded certificate-construction lanes are
+  active: one for the preserved `0111` attempt and one for the DoubleLex
+  raw proof.  Neither may promote a claim without separate hostile replay.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active-certificate-critical | DoubleLex equisatisfiability accepted; solver UNSAT still uncertified |
+| Canonical leaf `0111` | recovery-in-progress | Normalized proof passed RUP; LRAT package and hostile replay pending |
+| DoubleLex proof | certification-in-progress | Raw UNSAT proof retained; strict normalization/RUP/LRAT chain pending |
+| Aggregate negative-result audit | accepted-incomplete | Production still exactly 1/16 verified |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No CaDiCaL process is running.
+- Do not retry `0111` through the unchanged v3 raw-forward stage; preserve
+  its failed-closed attempt and use only the separate recovery package.
+- Do not launch another leaf or DoubleLex solver seed while the two proof
+  packages are being built and reviewed.
+- If the DoubleLex proof receives independent LRAT acceptance, combine it
+  with C-037 and C-045 to assess the complete connected \((12,4)\) slice.
+
+### Next three highest-value actions
+
+1. Complete strict normalization, forward RUP, LRAT conversion, and fresh
+   replay for the exact DoubleLex proof; then obtain a separate hostile
+   formula-and-proof audit.
+2. Complete and independently audit the preserved `0111` recovery package
+   as a useful cross-check and canonical-leaf certificate.
+3. If DoubleLex UNSAT is certified, assemble and adversarially review the
+   exact mathematical implication to a complete \((n,k)=(12,4)\) exclusion.
+
 ## Checkpoint 039 — 2026-07-26 05:15 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`

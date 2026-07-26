@@ -1253,3 +1253,39 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - With this gate closed, the next authorized production action is one bounded
   attempt on canonical leaf `0111`.  Its outcome must be preserved and
   independently replayed before any further leaf is launched.
+
+### 2026-07-26 05:25 — DoubleLex accepted; two UNSAT proofs enter certification
+
+- The DoubleLex theorem was hostile-reviewed against exact source bytes.
+  Choose the row-major least image of the \(8\times4\) anchor--outer matrix
+  under the full \(S_8\times S_4\) action.  A row inversion or adjacent
+  column inversion strictly decreases that image, so the same representative
+  has both sorted rows and sorted columns.
+- The independent probe checked all 18,381 semantic-variable actions and all
+  114,637 pre-sort clauses under the ten adjacent group generators.  It
+  independently regenerated the three eight-bit comparators, exhausted all
+  65,536 assignments, and matched the exact output bytes.
+- The accepted DoubleLex suffix has 765 clauses, 10,758 literals, and SHA-256
+  `328eeeaadc688bbce63fd3ffd952f86a4eb9209e6d0abf5542979fe54ebdbbe0`.
+  The exact strengthened formula has 18,381 variables, 115,507 clauses,
+  1,190,774 literals, and SHA-256 `14284db1...`.  This is C-045, a proved
+  equisatisfiable strengthening and not an UNSAT result.
+- The authorized production attempt on canonical cube `0111` then returned
+  solver UNSAT in 3.316 seconds, but the raw warning-fatal forward checker
+  exited 80 without a success marker.  The runner preserved outcome
+  `1aaba96b...` as `RAW_FORWARD_REJECTED_NONCLAIM`, leaving that production
+  leaf retryable.
+- A separate strict diagnostic scan accepted the complete 6,481,140-byte raw
+  stream: 158,688 additions, 232,381 deletions, and one empty addition as the
+  final record.  The exact 2,632,766-byte deletion-free stream (`b1bc9b3a...`)
+  passed warning-fatal forward RUP checking in 28.406 seconds.  This strongly
+  localizes the failure to the raw checker's deletion handling, but no leaf
+  claim is made until a sealed LRAT recovery and hostile replay pass.
+- CaDiCaL seed 0 was also run once on the exact accepted DoubleLex formula.
+  It returned UNSAT in under one minute and retained a 32,987,136-byte raw
+  binary proof with SHA-256 `ed3975c5...`.  This is an exploratory candidate
+  result only.  A second bounded lane is building its strict
+  normalization/RUP/LRAT certificate without rerunning the solver.
+- If the DoubleLex proof certifies, C-037 and C-045 would turn it into a
+  complete connected order-12 parameter-four exclusion.  That implication
+  remains pending and must receive its own adversarial audit.
