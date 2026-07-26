@@ -120,9 +120,9 @@ L=K(w).
 \tag{10}
 \]
 If \(\deg p=d-1\), then \(\deg\Phi=d\).  Equation (6) is irreducible over
-\(\mathbb C(P,Q)\): after viewing it as a polynomial in \(Q\), it is
-linear with nonzero constant coefficient \(c\), and Gauss's lemma
-applies.  Therefore \([L:K]=d\).
+\(\mathbb C(P,Q)\): in \(\mathbb C[P,T][Q]\) it is linear in \(Q\)
+with unit leading coefficient \(c\), hence prime; it is primitive as a
+polynomial in \(T\), so Gauss's lemma applies.  Therefore \([L:K]=d\).
 
 ## 2. Brink's theorem and family-wide monodromy
 

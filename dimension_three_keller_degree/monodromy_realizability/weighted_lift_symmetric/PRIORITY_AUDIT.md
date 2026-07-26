@@ -85,3 +85,26 @@ presented as a new attributed Brink--Gallagher corollary, not as a new
 Galois theorem.
 
 The absence of a hit is not proof of novelty.
+
+## 2026-07-26T03:49Z — source-and-scope re-audit
+
+A second hostile audit read Gallagher's full PDF and the full text around
+Brink's Theorem 13.  Gallagher's Theorem 1 is uniform over exactly the
+displayed admissible seeds, and Proposition 1 proves generic degree
+\(\deg p+1\).  Brink's theorem applies verbatim to the normalized inverse
+pencil over \(\mathbb C(P,Q)\).  No correctness or scope defect was found.
+
+Two newly visible records were checked:
+
+- *Exact Fibers, Image, and Geometry at Infinity of the Marked-Root Keller
+  Family*, GitLab snippet 6012790, studies a different
+  \(\mathbb C^n\)-family of generic degree \(n(n-2)\);
+- F. Santibañez-Leal, *The Jacobian counterexample, validated and
+  extended*, Zenodo record 21579022, contains no monodromy or Galois
+  calculation.
+
+Neither collides with the all-seed Brink--Gallagher corollary.  Fresh
+site-restricted searches again found the already credited finite
+\(3\le d\le13\) computation, but no public all-degree, all-admissible-seed
+statement.  This remains source-specific evidence, not a guarantee of
+worldwide priority.
