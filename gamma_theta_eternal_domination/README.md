@@ -304,6 +304,18 @@ boundary and one-guard probe is:
 python3 reviews/order12_k4_structural_split_hostile_probe.py
 ```
 
+Claim C-039 adds necessary hub constraints to those three templates.  Hubs
+of an induced odd hole are independent in \(H\); with \(r\ge2\) outside
+vertices, at most \(r-2\) are hubs.  An induced
+\(\overline{C_7}\) has no outside hub at all.  Thus the order-12
+\(C_5,C_7,\overline{C_7}\) templates permit respectively at most five,
+at most three, and zero hubs.  These statements do not exclude a template.
+Their clean-room regression is:
+
+```text
+python3 reviews/order12_k4_hub_constraints_hostile_probe.py
+```
+
 The standalone decoded-candidate verifier is also accepted.  It imports no
 synthesis or prior verifier core and conditionally proves
 \(\gamma=\gamma^\infty=4<\theta\) from an explicit graph, literal eternal
@@ -316,7 +328,23 @@ PYTHONPATH=src python3 -m unittest -v \
 python3 reviews/order12_k4_candidate_verifier_hostile_probe.py
 ```
 
-No candidate currently exists.  The proof-producing \(k=4\) runner remains
-outside the accepted source set while hostile-review findings in its
-proof-conversion and interruption-recovery boundaries are repaired.  No
-order-12 \(k=4\) solver run has been launched.
+No candidate currently exists.
+
+The repaired proof-producing runner is accepted as production engineering,
+not as a mathematical result.  Its exact 16-cube partition covers the
+anchored parent.  Every UNSAT leaf must pass four separate processes:
+CaDiCaL binary-DRAT production, forward binary-DRAT verification, backward
+LRAT conversion, and fresh `lrat-check` replay.  The runner preserves
+interrupted attempts as retryable nonclaims and aggregates even sixteen
+locally verified leaves only as
+`ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT`.
+
+```text
+PYTHONPATH=src python3 -m unittest -v tests.test_k4_production
+
+python3 reviews/order12_k4_production_hostile_probe.py
+```
+
+The first rejected runner and all four defects remain documented in
+`reviews/order12_k4_production_hostile_review.md`.  No order-12 \(k=4\)
+production leaf has yet been launched, and no SAT or UNSAT result is claimed.

@@ -1032,3 +1032,41 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   The next real proof job will therefore wait.  Once the repaired runner is
   committed and independently accepted, the trivially inconsistent `1111`
   Boolean leaf is the first low-cost end-to-end production target.
+
+### 2026-07-26 02:30 — hub theorem and repaired \(k=4\) runner accepted
+
+- Proved C-039 as a structural necessary condition.  For
+  \(\gamma=\gamma^\infty=4\), the vertices complete in the complement to an
+  induced odd-hole rim form an independent set.  The three-set witness
+  property further bounds their number by \(r-2\) when the hole has \(r\ge2\)
+  outside vertices.  An induced complement \(\overline{C_7}\) has no outside
+  hub.  The order-12 \(C_5,C_7,\overline{C_7}\) bounds are therefore
+  respectively five, three, and zero.
+- The hostile proof review returned `ACCEPT_WITHOUT_SCOPE_INFLATION`.  A
+  clean-room one-guard implementation checked the value-one lemma,
+  induced-subgraph monotonicity on 32,767 pairs, component additivity on 121
+  pairs, P3 equivalence, the cycle/anticycle inputs, and all fixed-\(C_5\)
+  extensions at \(r=2,3\), including 262,144 graphs in the latter layer.
+  The theorem remains a necessary filter and does not exclude a branch.
+- The rejected production runner was repaired without launching the
+  order-12 solver.  Its final protocol uses four distinct children:
+  CaDiCaL binary-DRAT production, warning-fatal forward raw verification,
+  backward LRAT conversion, and fresh `lrat-check` replay.  The two former
+  crash windows now reconcile append-only to retryable nonclaims; the
+  attempt-config hash is enforced; the public injectable child hook is gone.
+- Independent hostile review returned
+  `ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM`.  It reconstructed
+  all 16 Boolean leaves, matched every CNF hash, reran the real tiny
+  four-stage proof chain, preserved the old broken combined `-f -L` mode as
+  a rejection regression, and exercised both crash windows and binding
+  mutations.  Root independently reran all 17 tests in 56.974 seconds and
+  the hostile probe in 23.95 seconds; both passed.
+- The claim boundary is unchanged: zero production leaves have run and no
+  order-12 \(k=4\) SAT or UNSAT result exists.  Even 16 runner-level verified
+  leaves would remain pending a separate aggregate checker with fresh LRAT
+  replay.
+- At 02:27 the Apple M1 Pro had load averages 2.80/3.46/3.90, 16 GiB physical
+  memory, about 4.73 GB reclaimable by the runner probe, and about 26.4 GiB
+  free disk.  This is adequate for a conservative 3 GiB child plus 1 GiB
+  reserve gate, but source bytes must first be committed and the aggregate
+  checker remains under independent development.

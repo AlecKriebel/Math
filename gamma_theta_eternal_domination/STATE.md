@@ -1,5 +1,84 @@
 # Campaign State
 
+## Checkpoint 033 — 2026-07-26 02:30 PDT
+
+- Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
+  `HEAD` `b3e251efaac169ec5583e0083b6d7095e9c9a31a`.
+- **Certified frontier preserved:** C-035 still excludes the complete
+  order-12, parameter-three slice, including disconnected graphs.  The
+  universal conjecture and both remaining order-12 parameters \(k=4,5\)
+  remain open.
+- **New proved necessary conditions (C-039):** for
+  \(\gamma=\gamma^\infty=4\), complement-side hubs of an induced odd hole
+  are independent, and P3 bounds their number by \(r-2\) when \(r\ge2\)
+  vertices lie outside the rim.  An induced \(\overline{C_7}\) has no
+  outside hub.  Thus the surviving order-12
+  \(C_5,C_7,\overline{C_7}\) templates permit at most five, three, and zero
+  hubs respectively.  The hostile proof verdict is
+  `ACCEPT_WITHOUT_SCOPE_INFLATION`; no branch exclusion is claimed.
+- The independent hub probe checked 1,099 labeled graphs through order five,
+  32,767 induced-subgraph pairs, 121 component pairs, 1,096 P3-equivalence
+  graphs, the exact cycle/anticycle inputs, 2,048 \(r=2\) and 262,144
+  \(r=3\) fixed-\(C_5\) extensions.  Root replay passed in 2.20 seconds at
+  20,283,392 bytes maximum RSS.
+- **Repaired runner accepted as engineering only:** the frozen 16-leaf
+  workflow now separates CaDiCaL binary-DRAT production, forward raw proof
+  verification, backward LRAT conversion, and fresh `lrat-check` replay.
+  Both previously fatal crash windows reconcile append-only to retryable
+  nonclaims; attempt configurations are hash-bound; the public child
+  injection hook is absent.
+- The runner hostile verdict is
+  `ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM`.  It independently
+  reconstructed all 16 leaf CNFs and exercised the real four-stage tiny
+  proof, old combined-mode rejection, crash recovery, resource, mutation,
+  and provenance boundaries.  Root reran 17/17 tests in 56.974 seconds at
+  117,882,880 bytes maximum RSS and the hostile probe in 23.95 seconds at
+  134,938,624 bytes.
+- **No production leaf has run.**  The exact \((12,4)\) parent remains
+  unsolved.  Even 16 runner-level `UNSAT_LRAT_VERIFIED` leaves would be only
+  `ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT`.
+- The separate aggregate auditor has independent parsing, parent/leaf
+  reconstruction, checkpoint-chain checks, and fresh replay logic in
+  development.  It is not yet tested, accepted, or usable for a mathematical
+  claim.
+- Resource observation at 02:27: Apple M1 Pro, 10 logical CPUs, 16 GiB
+  physical RAM, load averages 2.80/3.46/3.90, about 4.73 GB reclaimable by
+  the runner probe, and about 26.4 GiB free disk.  A conservative 3 GiB child
+  plus 1 GiB reserve configuration presently fits, but it is not frozen
+  until the accepted runtime sources are committed.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; all-guards Cayley result quarantined |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 remains accepted |
+| Order-12 \(k=4\) exact target | active | Parent C-037 accepted; zero leaf outcomes |
+| Order-12 \(k=4\) structural lane | active | C-038/C-039 leave \(C_5,C_7,\overline{C_7}\) with new hub filters |
+| Decoded candidate verification | accepted-ready | Conditional verifier accepted; no candidate exists |
+| Proof-producing runner | accepted-engineering | Must be committed before immutable initialization; makes no aggregate claim |
+| Aggregate negative-result audit | active-development | Exact runner hash now frozen; tests and independent acceptance still required |
+| Order-12 \(k=5\) | pending | Begins after the \(k=4\) production gate is stable or measured evidence redirects effort |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- The accepted runner, partition proof, hub theorem, and both hostile packages
+  are ready for exact-file integration.
+- The aggregate auditor is being completed against runner SHA-256
+  `4e65bc62...`; it must return an incomplete nonclaim for any proper subset
+  of the 16 leaves.
+
+### Next three highest-value actions
+
+1. Commit and push the exact accepted runner/hub bytes and checkpoint
+   metadata without staging provisional proof artifacts or unrelated work.
+2. Initialize the immutable 16-leaf run with committed source bindings and,
+   if the live gate still passes, certify only the trivially inconsistent
+   `1111` leaf as a real end-to-end pipeline test.
+3. Finish and hostile-review the separate aggregate auditor; use it to audit
+   the one-leaf run while retaining `INCOMPLETE_NO_MATHEMATICAL_CLAIM`.
+
 ## Checkpoint 032 — 2026-07-26 02:00 PDT
 
 - Campaign day: 2 of 27; branch `main`; shared-repository pre-integration

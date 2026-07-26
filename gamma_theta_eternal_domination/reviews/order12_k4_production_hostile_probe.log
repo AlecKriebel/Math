@@ -1,0 +1,81 @@
+order12_k4_production repaired-runner hostile audit
+date: 2026-07-26 America/Los_Angeles
+cwd: /Users/alec/Documents/Math-kissing5
+
+FINAL FROZEN AUTHOR BYTES
+  src/search/k4_production/runner.py
+    4e65bc62df18e9bd3a7b17810da00f472a1afda21c6d87c1f13a0d06dba635af
+  tests/test_k4_production.py
+    bc386ad5d3759a67eaf735b396ef9461001a403843410f3c1de8d625ffa0ad2a
+  math/lemmas/order12_k4_partition_plan.md
+    132a1d41c11466b7f4af641049dd7ff10c4622f055d315831254da9978ee1578
+  src/search/k4_production/__init__.py
+    d217fa6af4e7273a80cc63ee8ac812e83b6ce8ed64585fef6d2ef8a371dd2c67
+  src/search/k4_production/__main__.py
+    a5d3245ca5614aa7b566a1a182d03b48fbc3c40c3ade4d56d9d8114b5dcb432d
+
+HOSTILE PROBE
+  reviews/order12_k4_production_hostile_probe.py
+    6187ea1d663525169097b74a15512ea0b63583d49fddae790b3244c86a75253c
+  command:
+    python3 gamma_theta_eternal_domination/reviews/order12_k4_production_hostile_probe.py
+  exit: 0
+  wall: 24.26 s
+
+  clean-room parent:
+    sha256 adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac
+    18,381 variables; 114,742 clauses; 1,180,016 literals
+  exact Boolean partition:
+    16 assignments; assignment hit histogram {1: 16}
+    variables 4,14,23,31 = e_0_4,e_1_4,e_2_4,e_3_4
+    all 16 independently reconstructed leaf hashes matched
+  partition tampering rejected:
+    dropped case, duplicate cube, flipped literal, replaced leaf hash
+  SAT/output tampering rejected:
+    incomplete model, falsifying model, duplicate status,
+    converter warning/duplicate/stderr,
+    LRAT NOT VERIFIED/duplicate/stderr
+  binding/provenance:
+    direct file tamper ValueError
+    tool-record tamper ValueError
+    completed LRAT tamper ValueError
+    public child_runner injection TypeError
+    active attempt-config tamper audit ValueError
+    active attempt-config tamper recovery ValueError
+  real two-variable UNSAT chain:
+    exits [20,0,0,0]
+    CaDiCaL --binary proof sha256
+      6e8f3aa6e5cd1134ac162f6ccd0be67a9459a4b2fffe7e618a0a5ba50e0ae807
+    forward raw replay: -i -f -W, no -L
+    backward LRAT conversion: -i -W -L, no -f
+    LRAT sha256
+      11fae57fd8e8c4c1234067c683dc2ea7721064a6886298f023496a132692a715
+    independent lrat-check VERIFIED
+    truncated LRAT rejected
+    empty binary DRAT rejected
+    legacy combined -f -L LRAT still rejected (regression preserved)
+  crash reconciliation:
+    orphan before reservation:
+      ORPHAN_ATTEMPT_RECONCILED_NONCLAIM; final read-only audit PASS
+    outcome before completion checkpoint:
+      OUTCOME_CHECKPOINT_RECONCILED_NONCLAIM; final read-only audit PASS
+  aggregate:
+    ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT
+    proofs_freshly_replayed remains false in ordinary read-only audit
+
+AUTHOR TEST SUITE, INDEPENDENT RERUN BY HOSTILE REVIEWER
+  command:
+    /usr/bin/time -lp python3 -m unittest -v
+      gamma_theta_eternal_domination/tests/test_k4_production.py
+  result: 17/17 PASS
+  unittest wall: 57.809 s
+  process wall: 57.98 s
+  user CPU: 55.60 s
+  system CPU: 0.74 s
+  maximum resident set size: 117,784,576 bytes
+  peak memory footprint: 107,938,296 bytes
+
+VERDICT
+  ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM
+  No order-12 leaf was run in production by this audit.
+  No finite or universal mathematical claim follows from this verdict.
