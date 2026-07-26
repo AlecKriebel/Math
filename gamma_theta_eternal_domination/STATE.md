@@ -1,5 +1,45 @@
 # Campaign State
 
+## Checkpoint 027 — 2026-07-25 21:52 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Commit `10acf379329411d9d05267b3411d6703047e705e` froze and
+  published the `hole5` \(S_6\) theorem, generator, tests, and independent
+  mathematical and binary-proof audits.
+- A postcommit reviewer bound all four author artifacts to their Git objects
+  at that revision.  Its independent comparator stream is byte-identical to
+  the author stream at SHA-256 `ddd32969...`; both constructions give the
+  exact 754,323-byte derived CNF at SHA-256 `c6a0811c...`.  All five
+  covariance generators and all 20,480 comparator assignments pass.
+- The retained package
+  `results/synthesis_k3_hole5_signature_package/` was generated from
+  committed sources at revision `126071c7...`.  It has exactly three
+  regular, single-link files and tree SHA-256 `dd9ac46f...`; its manifest
+  SHA-256 is `da33bc17...` and records
+  `runtime_sources_match_head=true`.
+- A second clean-room package auditor imported no author or synthesis code
+  and reconstructed the source body, 315-clause suffix, final CNF, complete
+  manifest, Git bindings, and package tree byte-for-byte.  Its verdict is
+  `ACCEPT` as exact formula infrastructure.
+- Claim C-031 is now `PROVED`: the original complete-bank `hole5` formula is
+  satisfiable exactly when this signature-sorted formula is satisfiable.
+  This is a semantic symmetry theorem, not a SAT/UNSAT result.
+
+### Production gate
+
+- The package remains correctly solve-disabled.  A new binary-proof runner
+  is being implemented separately and must be committed, source-bound, and
+  hostile-tested before launch.
+- A production UNSAT result must preserve the raw binary proof, pass the
+  independent canonical parser at maximum variable 6,886, produce and
+  reparse a new addition-only artifact, and replay warning-free with pinned
+  DRAT-trim under `-i -f -W -U`.  Any failed gate remains an explicit
+  nonclaim.
+- The machine remains an Apple M1 Pro with 10 CPU cores and 16 GiB physical
+  RAM.  Approximately 10 GiB disk is free.  No campaign heavy child is
+  active; the next run retains the one-heavy-child rule and 4 GiB disk
+  reserve.
+
 ## Checkpoint 026 — 2026-07-25 21:30 PDT
 
 - Campaign day: 1 of 27; branch `main`.

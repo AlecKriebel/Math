@@ -802,3 +802,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Root passed 8 focused tests and all 258 campaign tests.  Freeze and publish
   the source/audits next; production generation remains closed until the
   committed Git bytes are rebound.
+
+### 21:52 — committed binding and retained `hole5` signature package accepted
+
+- Commit `10acf379329411d9d05267b3411d6703047e705e` froze and
+  published the signature theorem and implementation.  A postcommit
+  clean-room binding audit confirmed that the author note, source, tests,
+  and validation log are byte-identical to their Git objects.
+- The author's 11,424-byte comparator stream exactly equals the independent
+  stream at SHA-256 `ddd32969...`.  Independent and author constructions
+  produce the same 754,323-byte CNF at SHA-256 `c6a0811c...`, with 6,886
+  variables, 23,968 clauses, and 192,169 literals.
+- Generated the retained three-file package from committed sources.  The
+  manifest SHA-256 is `da33bc17...`, the tree SHA-256 is `dd9ac46f...`,
+  and all six runtime sources match the recorded Git revision.
+- A separate standard-library auditor reconstructed the entire package
+  byte-for-byte without importing the author or synthesis modules.  It
+  accepted the source-body prefix, exact 315-clause suffix, manifest, Git
+  bindings, filesystem constraints, and replay of the independent \(S_6\)
+  probe.
+- Promoted C-031 as `PROVED`, with the explicit boundary that
+  equisatisfiability is only a sound reduction.  No `hole5` SAT/UNSAT claim
+  exists.
+- The next gate is to freeze and hostile-test a binary-proof runner, then
+  launch one bounded seed-0 solve against this exact package.  A residual
+  rim-reflection reduction is being audited independently as a fallback if
+  the sorted parent remains hard.
