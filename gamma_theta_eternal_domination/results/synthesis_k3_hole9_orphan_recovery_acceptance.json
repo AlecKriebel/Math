@@ -1,0 +1,150 @@
+{
+  "schema": "gamma-theta-hole9-orphan-recovery-acceptance-v1",
+  "created_at": "2026-07-25T19:24:00-07:00",
+  "status": "accepted_with_two_validated_errata",
+  "claim_id": "C-028",
+  "claim_classification": "CERTIFIED-FINITE",
+  "mathematical_claim": "There is no connected 12-vertex graph G such that gamma(G)=alpha(G)=gamma_infinity(G)=3<theta(G) and complement(G) contains a hub-free induced C9.",
+  "safe_corollary": "By C-014, a surviving order-12 parameter-three counterexample complement contains no induced C9 at all; by C-017 it must contain a hub-free induced C5 or C7.",
+  "claim_boundary": "This is a recovered exact-CNF certificate for the hole9 branch. It is not a CEGAR terminal, does not exclude hole5 or hole7, does not certify the complete (n,k)=(12,3) slice, and does not resolve the gamma-theta conjecture.",
+  "source_run": {
+    "path": "results/synthesis_k3_runs/hole9",
+    "checkpoint_status": "running",
+    "terminal_marker": null,
+    "committed_attempt_count": 170,
+    "committed_cut_count": 170,
+    "checkpoint_sha256": "9cc9cdee08fb1fcd7a8772b09cdf9ba9ced802cb0b31be35ab292244e5f286b7",
+    "history_chain_sha256": "f174e43a531f4a1fbd857ab334d2ec4f7fa3c9b4c2cd0902eb37d887ccc51c99",
+    "run_tree": {
+      "algorithm": "SHA256(sorted files; u64be path length; UTF-8 relative path; u64be byte length; bytes)",
+      "file_count": 1205,
+      "total_file_bytes": 6946580,
+      "sha256": "bd13c4fdc3629ee02fa510eda09bd503234daf4318a33c562e0ab3427d89fd8b"
+    },
+    "unreferenced_orphan_directory": "attempts/000170.akmx9xl0"
+  },
+  "formula": {
+    "template": "hole9",
+    "order": 12,
+    "guard_parameter": 3,
+    "variable_count": 6886,
+    "base_clause_count": 20030,
+    "cut_clause_count": 170,
+    "total_clause_count": 20200,
+    "total_literal_count": 117841,
+    "cnf_sha256": "2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d",
+    "cuts_sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b",
+    "byte_identical_independent_reconstruction": true,
+    "globally_valid_coloring_cuts": true
+  },
+  "proof": {
+    "original_proof_sha256": "3cdd686fb2af82e41ff06aa13901d4706618170eb1dc4e74a870831e7fbde8ef",
+    "original_line_count": 16388,
+    "deletion_count_stripped": 11683,
+    "addition_only_proof_sha256": "24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab",
+    "addition_count": 4705,
+    "all_additions_independently_rup_verified": true,
+    "final_addition_is_empty_clause": true,
+    "rat_lemmas_used": 0,
+    "hostile_mutations_rejected": 11
+  },
+  "package": {
+    "path": "certificates/synthesis_k3_hole9_orphan_000170_recovery",
+    "tree_algorithm": "SHA256(sorted files; u64be path length; UTF-8 relative path; u64be byte length; bytes)",
+    "file_count": 23,
+    "total_file_bytes": 1486583,
+    "tree_sha256": "dab03e8f53ae975cfa0da32433df9c0838f8c279b9f756be59637017d0cd69b2",
+    "outer_certificate_path": "certificates/synthesis_k3_hole9_orphan_000170_recovery/certificate.json",
+    "outer_certificate_sha256": "1a2d4f7fd3efe0138bb7a7a7f0975d3c60a7ed4d6f994157c5383f18e4b5806c",
+    "sealed_note_sha256": "3c341560cb46e8a10ad0eb89ea8aa0e7e4131ea8c6d1dbaf7f1634282a2fa4bc"
+  },
+  "errata": [
+    {
+      "path": "results/logs/synthesis-k3-hole9-batch-004-checker-incident-erratum.json",
+      "sha256": "6bfb1cc799977d96fe5058b13c1dd08e8c0cbb8b86c3a58a30c3c9a6233ee135",
+      "correction": "Restores the final hexadecimal digit b omitted from ART-115's manually transcribed cuts.json SHA-256.",
+      "original_artifact_preserved": true
+    },
+    {
+      "path": "results/logs/synthesis-k3-hole9-recovery-soundness-erratum.json",
+      "sha256": "f6135a4121cafaca5275d1f1f707e7c82626d61caec94d908704aaec92400e90",
+      "correction": "Clarifies that the runner generated the exact CNF once and ran two solver passes against that path.",
+      "sealed_package_preserved": true
+    }
+  ],
+  "hostile_review": {
+    "review_path": "reviews/hole9_orphan_recovery_hostile/HOSTILE_REVIEW.md",
+    "review_sha256": "4a8bba44ea71090652a5cfbc2b54565594fdb945dfe109193e9921157ffd563c",
+    "verdict": "ACCEPT WITH TWO VALIDATED ERRATA",
+    "standalone_probe_path": "reviews/hole9_orphan_recovery_hostile/probe.py",
+    "standalone_probe_sha256": "cf4d6e261787d1130a139ecd5cb89db81a71c6e61a0a1a06624a7b481653c49b",
+    "probe_log_path": "reviews/hole9_orphan_recovery_hostile/probe_log.json",
+    "probe_log_sha256": "01137765e25408c16e8228ec8629d497f5e3a09cba5439b56ecbd006108167ca",
+    "implementation_boundary": "Python standard library in isolated mode; imports neither recovery verifier nor synthesis encoding/search code.",
+    "chronology_links_checked": 170,
+    "artifact_bindings_checked": 2210,
+    "recorded_wall_seconds": 4.5,
+    "recorded_peak_rss_bytes": 74285056
+  },
+  "root_replay": {
+    "package_audit": {
+      "command": "python3 certificates/synthesis_k3_hole9_orphan_000170_recovery/repro/hole9_orphan_recovery.py audit --package /Users/alec/Documents/Math-kissing5/gamma_theta_eternal_domination/certificates/synthesis_k3_hole9_orphan_000170_recovery --drat-trim /Users/alec/Documents/Math-kissing5/gamma_theta_eternal_domination/tools/drat_trim_2023_05_22/drat-trim",
+      "exit_code": 0,
+      "checker_exact_verified_line_count": 1,
+      "checker_warning_count": 0
+    },
+    "focused_tests": {
+      "command": "PYTHONPATH=src python3 -m unittest -v tests.test_hole9_orphan_recovery",
+      "passed": 12,
+      "failed": 0,
+      "errors": 0
+    },
+    "standalone_hostile_probe": {
+      "command": "/usr/bin/time -lp python3 -I reviews/hole9_orphan_recovery_hostile/probe.py --compact",
+      "exit_code": 0,
+      "status": "accepted_with_validated_errata",
+      "all_4705_additions_rup": true,
+      "mutations_rejected": 11
+    },
+    "full_suite_resource_event": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error /usr/bin/time -lp python3 -m unittest discover -s tests -v",
+      "total_tests": 238,
+      "passed": 227,
+      "assertion_failures": 0,
+      "errors": 11,
+      "error_class": "all 11 synthesis smoke-test starts were refused by the intended disk preflight gate",
+      "observed_free_bytes_range": [
+        6480416768,
+        6481465344
+      ],
+      "required_bytes_range": [
+        6729760768,
+        6733955072
+      ],
+      "interpretation": "Not recorded as a passing full suite. The focused recovery tests and both decisive proof replays passed; the resource-gated smoke tests did not execute."
+    },
+    "full_suite_clean_replay": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error /usr/bin/time -lp python3 -m unittest discover -s tests -v",
+      "total_tests": 238,
+      "passed": 238,
+      "failed": 0,
+      "errors": 0,
+      "wall_seconds": 57.44,
+      "maximum_resident_set_size_bytes": 115965952,
+      "interpretation": "After unrelated local activity released disk space, the unchanged suite passed in one complete invocation. The earlier preflight refusal remains recorded as a valid fail-closed resource event."
+    }
+  },
+  "acceptance_dependencies": [
+    "C-001",
+    "C-013",
+    "C-014",
+    "C-017",
+    "ART-061",
+    "ART-062",
+    "ART-103",
+    "ART-106",
+    "both errata above",
+    "outer certificate above",
+    "hostile review and standalone probe above"
+  ]
+}

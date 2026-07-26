@@ -1,5 +1,62 @@
 # Campaign State
 
+## Checkpoint 020 — 2026-07-25 19:24 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint: `1119231a`.
+- Claim C-028 is now accepted as `CERTIFIED-FINITE`: no connected
+  12-vertex graph with
+  \(\gamma=\alpha=\gamma^\infty=3<\theta\) has a complement containing a
+  hub-free induced \(C_9\).  By C-014 this removes induced \(C_9\) entirely
+  from a surviving order-12 parameter-three counterexample complement; by
+  C-017, only the overlapping hub-free \(C_5\) and \(C_7\) branches remain.
+  The self-contained graph-to-CNF implication received a separate
+  line-by-line hostile `ACCEPT` review.
+- The accepted recovery binds the exact 6,886-variable, 20,200-clause CNF,
+  170 globally valid coloring cuts, and a deletion-free proof of 4,705 RUP
+  additions ending in the empty clause.  A fresh standard-library checker
+  independently replayed all additions, all 170 chronology links, and 2,210
+  artifact bindings and rejected 11 hostile mutations.
+- The original `hole9` checkpoint deliberately remains `running`; no
+  terminal marker was retroactively created.  The recovered certificate,
+  two validated documentation errata, sealed package, outer certificate,
+  hostile review, and standalone probe are bound together in
+  `results/synthesis_k3_hole9_orphan_recovery_acceptance.json`.
+- `hole5` advanced cleanly from 64 to 192 attempts/cuts.  Its checkpoint
+  SHA-256 is
+  `1596f9194d44b90be5a1ec583f68e8da8a3050aa0a584fc733ce920ccd441b89`;
+  deep audit preserved the 1,347-file, 6,688,922-byte tree at SHA-256
+  `143a09afb4124c8ad4580f7a38bb3bd9312f2a99e89649cba28d99fe5eec050c`.
+  The branch remains open.  `hole7` remains open at 384 cuts.
+
+### Verification and resource event
+
+- Root replayed the sealed-package audit, all 12 focused recovery tests, and
+  the independent hostile RUP probe successfully.
+- A new full-suite invocation ran 238 tests: 227 passed and 11 synthesis
+  smoke tests did not execute because their intended disk preflight gate
+  rejected the current free-space envelope.  There were zero assertion
+  failures.  This first invocation is not recorded as a passing full suite.
+- After unrelated local activity released disk space, free space rebounded
+  to approximately 9.9 GB.  The unchanged full suite was rerun in one
+  complete invocation and passed all 238 tests in 57.44 seconds, with peak
+  RSS 115,965,952 bytes.  The earlier refusal remains recorded as evidence
+  that the fail-closed resource gate worked.
+- No campaign solver or proof-checker child was active at checkpoint
+  creation.
+
+### Claim boundary and next actions
+
+- C-028 excludes one of the three exhaustive order-12 parameter-three
+  branches.  It does not exclude `hole5` or `hole7`, does not certify the
+  complete \((12,3)\) slice, and does not resolve the conjecture.
+- Commit and push the complete accepted `hole9` recovery bundle and the
+  resumable 192-cut `hole5` checkpoint.
+- After publication, continue human-readable structural analysis and
+  proof-extraction from the remaining \(C_5/C_7\) cut populations.  Resume
+  bounded production only when each fresh resource preflight passes and
+  continues to preserve the 4 GiB reserve.
+
 ## Checkpoint 019 — 2026-07-25 19:12 PDT
 
 - Campaign day: 1 of 27; branch `main`.

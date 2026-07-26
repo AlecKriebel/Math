@@ -1,0 +1,107 @@
+{
+  "chronology": {
+    "committed_attempt_count": 170,
+    "committed_cut_count": 170,
+    "history_chain_sha256": "f174e43a531f4a1fbd857ab334d2ec4f7fa3c9b4c2cd0902eb37d887ccc51c99",
+    "orphan_unreferenced": true,
+    "present_artifact_hash_checks": 2210
+  },
+  "command": [
+    "/usr/bin/time",
+    "-lp",
+    "python3",
+    "-I",
+    "reviews/hole9_orphan_recovery_hostile/probe.py",
+    "--compact"
+  ],
+  "corrected_findings": [
+    {
+      "actual": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b",
+      "artifact": "results/logs/synthesis-k3-hole9-batch-004-checker-incident.json",
+      "field": "unreferenced_attempt.artifacts.cuts.json.sha256",
+      "finding": "ART-115 omitted the final hexadecimal digit `b`",
+      "recorded": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193",
+      "recorded_length": 63,
+      "status": "corrected_by_bound_erratum"
+    },
+    {
+      "artifact": "math/lemmas/hole9_orphan_drat_recovery.md and sealed package copy",
+      "finding": "prose conflated two solver passes with two generator passes",
+      "status": "corrected_by_bound_erratum"
+    }
+  ],
+  "errata": {
+    "both_validated": true,
+    "incident_erratum_sha256": "6bfb1cc799977d96fe5058b13c1dd08e8c0cbb8b86c3a58a30c3c9a6233ee135",
+    "soundness_erratum_sha256": "f6135a4121cafaca5275d1f1f707e7c82626d61caec94d908704aaec92400e90"
+  },
+  "formula": {
+    "base_clause_count": 20030,
+    "base_literal_count": 114619,
+    "byte_identical_reconstruction": true,
+    "cut_clause_count": 170,
+    "total_clause_count": 20200,
+    "total_literal_count": 117841,
+    "variable_count": 6886
+  },
+  "hashes": {
+    "addition_only_proof_sha256": "24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab",
+    "certificate_sha256": "1a2d4f7fd3efe0138bb7a7a7f0975d3c60a7ed4d6f994157c5383f18e4b5806c",
+    "checkpoint_sha256": "9cc9cdee08fb1fcd7a8772b09cdf9ba9ced802cb0b31be35ab292244e5f286b7",
+    "cnf_sha256": "2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d",
+    "cuts_sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b",
+    "incident_erratum_sha256": "6bfb1cc799977d96fe5058b13c1dd08e8c0cbb8b86c3a58a30c3c9a6233ee135",
+    "incident_sha256": "8677b4a80a05c982cc365267933521771ea726766f162d9c487584a46aa3890c",
+    "original_proof_sha256": "3cdd686fb2af82e41ff06aa13901d4706618170eb1dc4e74a870831e7fbde8ef",
+    "package_tree_sha256": "dab03e8f53ae975cfa0da32433df9c0838f8c279b9f756be59637017d0cd69b2",
+    "run_manifest_sha256": "73869e60bdefc547a91139ab3bfb0673ee8168acada62485089eb371a9d7c15d",
+    "run_tree_sha256": "bd13c4fdc3629ee02fa510eda09bd503234daf4318a33c562e0ab3427d89fd8b",
+    "soundness_erratum_sha256": "f6135a4121cafaca5275d1f1f707e7c82626d61caec94d908704aaec92400e90"
+  },
+  "mutations": {
+    "count": 11,
+    "all_rejected_as_expected": true,
+    "names": [
+      "wrong_cnf_drop_clause_-67_or_2",
+      "wrong_first_addition_-66",
+      "wrong_original_proof_byte_valid_syntax",
+      "wrong_stored_addition_only_proof",
+      "missing_final_empty_clause",
+      "instruction_after_empty_clause",
+      "malformed_deletion_missing_zero",
+      "malformed_deletion_duplicate",
+      "malformed_deletion_empty",
+      "malformed_deletion_extra_zero",
+      "malformed_deletion_double_space"
+    ]
+  },
+  "proof": {
+    "addition_count": 4705,
+    "all_additions_rup": true,
+    "assignment_enqueues": 7546525,
+    "comment_count": 0,
+    "deletion_count": 11683,
+    "empty_addition_count": 1,
+    "final_addition_empty": true,
+    "maximum_trail": 6160,
+    "original_line_count": 16388,
+    "watched_clause_visits": 4988551
+  },
+  "read_only_tree_check": {
+    "package_file_count": 23,
+    "package_total_file_bytes": 1486583,
+    "run_file_count": 1205,
+    "run_total_file_bytes": 6946580,
+    "unchanged": true
+  },
+  "resources": {
+    "maximum_resident_set_size_bytes": 74285056,
+    "rup_replay_seconds": 2.8788422499928856,
+    "total_internal_seconds": 4.4118908749951515,
+    "wall_seconds": 4.50
+  },
+  "schema": "hole9-orphan-recovery-hostile-probe-log-v1",
+  "standalone_import_boundary": "Python isolated mode and standard library only; no project module imported",
+  "status": "accepted_with_validated_errata"
+}
+

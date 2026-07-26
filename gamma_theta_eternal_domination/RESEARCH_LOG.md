@@ -590,3 +590,50 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   2,224,274-byte tree at SHA-256
   `73384b72019434b9d1a60aab38773257035e4e7464a3ea9088d31941e6f57b55`.
   This is a running prefix, not a template result.
+
+### 19:22 — `hole5` production reaches 192 cuts
+
+- A bounded 128-iteration resume added 128 complete SAT/coloring attempts,
+  taking `hole5` from 64 to 192 distinct globally valid cuts.  There was no
+  terminal, timeout, unknown result, or memory-limit event.
+- New solver children used 9.1903 seconds total wall time and 6.7850 seconds
+  total CPU.  Maximum child wall time was 0.2007 seconds and maximum RSS was
+  11,894,784 bytes.
+- The checkpoint SHA-256 is
+  `1596f9194d44b90be5a1ec583f68e8da8a3050aa0a584fc733ce920ccd441b89`,
+  with history head
+  `8dce61c5d51502476c454bc5c29ea685a28a7f5d19b504ba065a4e42c4b5033e`.
+- Frozen deep reconstruction and a separate read-only audit both passed,
+  preserving the exact 1,347-file, 6,688,922-byte tree at SHA-256
+  `143a09afb4124c8ad4580f7a38bb3bd9312f2a99e89649cba28d99fe5eec050c`.
+  This branch remains open.
+
+### 19:24 — recovered `hole9` certificate accepted
+
+- Promoted the recovered exact-CNF result to claim C-028 after a fresh
+  independent mathematical-scope audit and an `ACCEPT WITH TWO VALIDATED
+  ERRATA` hostile verdict.
+- The exact formula has 6,886 variables, 20,030 base clauses, and 170
+  globally valid coloring cuts.  Its 4,705-addition deletion-free proof ends
+  in the empty clause.  The independent standard-library checker replayed
+  every addition as RUP, all 170 checkpoint/cut chronology links, and 2,210
+  artifact bindings; it rejected 11 decisive mutations.
+- The result excludes every connected 12-vertex graph with
+  \(\gamma=\alpha=\gamma^\infty=3<\theta\) whose complement contains a
+  hub-free induced \(C_9\).  By the accepted odd-wheel theorem, a survivor
+  has no induced \(C_9\) at all; it must lie in the remaining hub-free
+  \(C_5\) or \(C_7\) branches.
+- The source run remains byte-identical with checkpoint status `running` and
+  no terminal marker.  The recovery is publication-bound as a separate
+  certificate, not represented as a retroactive terminal.
+- Root replayed the sealed-package audit, all 12 focused tests, and the
+  independent hostile proof checker successfully.  A full 238-test replay
+  had 227 passes and 11 resource-gate errors: all 11 synthesis smoke tests
+  refused admission because current free disk was below their conservative
+  reserve-plus-session requirement.  There were no assertion failures, and
+  that first invocation is not labeled passing.
+- Free space then rebounded from approximately 6.3 GB to 9.9 GB when
+  unrelated local activity released storage.  The unchanged full suite was
+  rerun in one invocation and passed all 238 tests in 57.44 seconds, with
+  peak RSS 115,965,952 bytes.  The earlier refusal remains part of the
+  resource log because it confirms that the production guard failed closed.

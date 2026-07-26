@@ -187,19 +187,39 @@ The two core profiles, ranked attack DAGs, six embeddings, and exact
 distinct canonical keys were not independently proved nonisomorphic.
 
 The direct order-12, parameter-three CEGAR runner is frozen and
-hostile-review accepted for bounded production.  Its acceptance is an
-engineering gate, not a mathematical nonexistence result.  The read-only
-hostile probe is:
+hostile-review accepted for bounded production.  Its engineering audit is
+replayed with:
 
 ```text
 PYTHONPATH=src PYTHONWARNINGS=error \
   python3 reviews/synthesis_k3_cegar_hostile_probe.py
 ```
 
-Each required `hole5`, `hole7`, and `hole9` branch must separately reach a
-verified terminal before the slice can be excluded.  For any terminal
-`UNSAT`, the publication audit must use both deep reconstruction and a fresh
-proof-checker invocation:
+Claim C-028 now certifies that the `hole9` branch is empty.  The production
+runner failed closed before writing a terminal marker, so this is explicitly
+a recovered exact-CNF certificate rather than a retroactive CEGAR terminal.
+The installed package and the independently written standard-library RUP
+checker are replayed with:
+
+```text
+python3 \
+  certificates/synthesis_k3_hole9_orphan_000170_recovery/repro/hole9_orphan_recovery.py \
+  audit \
+  --package certificates/synthesis_k3_hole9_orphan_000170_recovery \
+  --drat-trim tools/drat_trim_2023_05_22/drat-trim
+
+python3 -I reviews/hole9_orphan_recovery_hostile/probe.py --compact
+```
+
+The accepted result binds two non-destructive documentation errata, the
+sealed 23-file package, the outer certificate, and the hostile review in
+`results/synthesis_k3_hole9_orphan_recovery_acceptance.json`.  The original
+170-cut checkpoint remains `running` and byte-identical.
+
+The `hole5` and `hole7` branches remain open.  Both must separately acquire
+accepted negative certificates before the complete \((12,3)\) slice can be
+excluded.  For an ordinary terminal `UNSAT`, the publication audit must use
+both deep reconstruction and a fresh proof-checker invocation:
 
 ```text
 PYTHONPATH=src PYTHONWARNINGS=error python3 -m synthesis_k3.cegar \

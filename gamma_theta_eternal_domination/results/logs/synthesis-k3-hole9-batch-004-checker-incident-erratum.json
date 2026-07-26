@@ -1,0 +1,60 @@
+{
+  "schema": "gamma-theta-k3-cegar-checker-incident-erratum-v1",
+  "created_at": "2026-07-25T19:00:01-07:00",
+  "status": "ERRATUM",
+  "superseded_artifact": {
+    "artifact_id": "ART-115",
+    "path": "results/logs/synthesis-k3-hole9-batch-004-checker-incident.json",
+    "sha256": "8677b4a80a05c982cc365267933521771ea726766f162d9c487584a46aa3890c"
+  },
+  "error": {
+    "json_pointer": "/unreferenced_attempt/artifacts/cuts.json/sha256",
+    "recorded_value": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193",
+    "recorded_length": 63,
+    "correct_value": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b",
+    "correct_length": 64,
+    "cause": "manual transcription omitted the final hexadecimal digit `b`"
+  },
+  "independent_bindings": [
+    {
+      "role": "live orphan cuts",
+      "path": "results/synthesis_k3_runs/hole9/attempts/000170.akmx9xl0/cuts.json",
+      "size_bytes": 4422,
+      "sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b"
+    },
+    {
+      "role": "atomic checkpoint cuts_payload_sha256",
+      "path": "results/synthesis_k3_runs/hole9/checkpoint.json",
+      "container_sha256": "9cc9cdee08fb1fcd7a8772b09cdf9ba9ced802cb0b31be35ab292244e5f286b7",
+      "sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b"
+    },
+    {
+      "role": "orphan generator colorings_sha256",
+      "path": "results/synthesis_k3_runs/hole9/attempts/000170.akmx9xl0/generator.json",
+      "container_sha256": "e492e06a0265f176df9a3e76f15b14a17f9873354dc9b6da4020347e1c95dbb4",
+      "sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b"
+    },
+    {
+      "role": "sealed recovery-package cuts",
+      "path": "certificates/synthesis_k3_hole9_orphan_000170_recovery/source/orphan-attempt-000170/cuts.json",
+      "package_tree_sha256": "dab03e8f53ae975cfa0da32433df9c0838f8c279b9f756be59637017d0cd69b2",
+      "sha256": "a3c7bd3591b71c310cfe0bd5711b8e672b75136f3598bb1505ae11cda3c2193b"
+    }
+  ],
+  "scope": {
+    "affected": [
+      "ART-115's statement that it binds every decisive orphan-artifact hash",
+      "the single malformed cuts.json hash string in ART-115"
+    ],
+    "unaffected": [
+      "the live cuts.json bytes",
+      "the atomic checkpoint and its 170-cut chronology",
+      "the generator manifest",
+      "the reconstructed CNF",
+      "the original and addition-only proofs",
+      "both UNSAT result files",
+      "the recovery package and its checker replays"
+    ]
+  },
+  "claim_boundary": "This erratum corrects one provenance string. It does not accept a CEGAR terminal or make a new mathematical claim."
+}
