@@ -1,0 +1,179 @@
+{
+  "artifacts": {
+    "instance.cnf": {
+      "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "size_bytes": 1168197
+    },
+    "lrat-check.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "lrat-check.stdout": {
+      "sha256": "fd25ec6c40a42285e9587bc5cf5d24e17b6cf979ac8e6c382d62c3a348023695",
+      "size_bytes": 207
+    },
+    "lrat-convert.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "lrat-convert.stdout": {
+      "sha256": "c2d628bd94b2f5f66256680170575dcd5299bec4c291eb715aea1b6caf59c2a5",
+      "size_bytes": 455
+    },
+    "normalization-report.json": {
+      "sha256": "2f42101814db2bf41eda8a13962e688d5bf450000bf6e7d735335bc4d903aa8c",
+      "size_bytes": 957
+    },
+    "normalizer.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "normalizer.stdout": {
+      "sha256": "563d9b200fa218f21d5cbf356e57661c9f5575c9ee18679ad4eb908b4a114d51",
+      "size_bytes": 13
+    },
+    "proof.lrat": {
+      "sha256": "f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805",
+      "size_bytes": 8546664
+    },
+    "proof.normalized.bdrat": {
+      "sha256": "af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f",
+      "size_bytes": 742337
+    },
+    "proof.raw.bdrat": {
+      "sha256": "ecfb35ba56b5ce2a04437f381e357525581f3bcb6403290272984700d805dbeb",
+      "size_bytes": 1900168
+    },
+    "raw-hardwarning.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "raw-hardwarning.stdout": {
+      "sha256": "c1a6b880e24f9e4c4ba42d0bea4f886438347ea75ddbbe052a3e8c44556bdc3e",
+      "size_bytes": 19259
+    },
+    "rup-forward.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "rup-forward.stdout": {
+      "sha256": "7c40c11e40b31ac2ce7aa756b422c299ec7b13347d48b405460e20ec86154757",
+      "size_bytes": 477
+    },
+    "solver.result": {
+      "sha256": "bde6e1eede96772c07c8ce29fd18088863815bd043aa59a06f11f5838cf8a162",
+      "size_bytes": 16
+    }
+  },
+  "certificate_status": "CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT",
+  "claim_boundary": "The retained deletion-free RUP proof and LRAT replay are candidate evidence for UNSAT of the exact hole9 CNF only. Until an independently written verifier and hostile review accept the frozen bundle and its mathematical construction bindings, no template exclusion, order-13 exclusion, or universal claim is made.",
+  "commands": {
+    "lrat_check": [
+      "tools/drat_trim_2023_05_22/lrat-check",
+      "certificates/order13_k3_hole9_attempt000001_lrat/instance.cnf",
+      "certificates/order13_k3_hole9_attempt000001_lrat/proof.lrat"
+    ],
+    "lrat_conversion": [
+      "tools/drat_trim_2023_05_22/drat-trim",
+      "certificates/order13_k3_hole9_attempt000001_lrat/instance.cnf",
+      "certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat",
+      "-i",
+      "-W",
+      "-U",
+      "-L",
+      "<FRESH_LRAT_OUTPUT>",
+      "-t",
+      "1800"
+    ],
+    "normalization": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "-m",
+      "search.order13_k3.normalize_bdrat",
+      "--input",
+      "certificates/order13_k3_hole9_attempt000001_lrat/proof.raw.bdrat",
+      "--output",
+      "<FRESH_NORMALIZED_OUTPUT>",
+      "--report",
+      "<FRESH_REPORT_OUTPUT>",
+      "--max-variable",
+      "9802"
+    ],
+    "rup_forward": [
+      "tools/drat_trim_2023_05_22/drat-trim",
+      "certificates/order13_k3_hole9_attempt000001_lrat/instance.cnf",
+      "certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat",
+      "-i",
+      "-f",
+      "-W",
+      "-U",
+      "-t",
+      "1800"
+    ]
+  },
+  "created_at": "2026-07-26T11:36:00-07:00",
+  "formula": {
+    "clauses": 32108,
+    "coloring_rows": 2295,
+    "literals": 281028,
+    "order": 13,
+    "parameter": 3,
+    "template": "hole9",
+    "variables": 9802
+  },
+  "normalization": {
+    "addition_records": 45281,
+    "deletion_records_removed": 72645,
+    "empty_addition_record_index": 117926,
+    "max_variable_observed": 9802,
+    "policy": "canonical-additions-only-unique-final-empty-v1",
+    "post_empty_deletions": 0,
+    "total_records": 117926
+  },
+  "production_attempt_provenance": {
+    "attempt_config_sha256": "980c8819492c87e97abfbed6e35979e46b7bb5ea692eebc3df38b393ca98dc18",
+    "attempt_number": 1,
+    "child_solver_sha256": "af4656fa6c0773a5183905745b1716f921c78e7098b2f8cb22351e28bba12d0a",
+    "original_outcome": "RETRYABLE_NONCLAIM",
+    "original_outcome_sha256": "aa943916e4bb3e46cc2dd2d00f0593f959ad52e45c14202c497f968cd0ab915f",
+    "original_phase_status": "RAW_FORWARD_REJECTED_NONCLAIM",
+    "raw_checker_diagnostic": "The warning-fatal forward checker exited 80 when drat-trim ignored a deletion of a pseudo-unit clause. The original run correctly made no claim. The separately frozen additions-only proof contains no deletions and is checked independently in RUP-only mode.",
+    "run_manifest_sha256": "40fe9e77e4da79e8b70f3d3f836d3a595e1d3b8bae25c4c607a2e1f63dc4be54",
+    "solver_exit_code": 20,
+    "solver_result": "s UNSATISFIABLE"
+  },
+  "proof_results": {
+    "fresh_lrat_check_exit_code": 0,
+    "fresh_lrat_check_marker": "c VERIFIED",
+    "fresh_lrat_conversion_exit_code": 0,
+    "fresh_lrat_conversion_marker": "s VERIFIED",
+    "fresh_rup_forward_exit_code": 0,
+    "fresh_rup_forward_marker": "s VERIFIED",
+    "normalized_core_rat_lemmas": 0
+  },
+  "schema": "gamma-theta-order13-k3-hole9-lrat-candidate-v1",
+  "schema_version": 1,
+  "source_bindings": {
+    "constructor_acceptance_evidence": {
+      "path": "reviews/order13_k3_constructor_acceptance/evidence.json",
+      "sha256": "8318d036867da89c2b2b7b9599bde17f50e160731d21243584609d34a515ec74"
+    },
+    "graph_to_cnf_theorem": {
+      "path": "math/lemmas/order13_k3_synthesis_target.md",
+      "sha256": "7bec13620961adeaf61c60e88c8bc9366beecab7387e40c80083fe702484ab39"
+    },
+    "live_package_preflight_evidence": {
+      "path": "reviews/order13_k3_hole9_preflight_constructor/evidence.json",
+      "sha256": "2687e1f893f85b64c83fdfe86cfcbd2eb7670a3307cc23f0cc999c999a422de9"
+    },
+    "normalizer": {
+      "path": "src/search/order13_k3/normalize_bdrat.py",
+      "sha256": "a09f67d39932b6c3bb19b31a0792e4f47f515820c642e9418d3e374f555de18c"
+    }
+  },
+  "tool_sha256": {
+    "cadical": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6",
+    "drat_trim": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+    "lrat_check": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+    "normalizer_python": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf"
+  }
+}

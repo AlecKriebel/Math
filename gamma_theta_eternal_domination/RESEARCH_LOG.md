@@ -1555,3 +1555,55 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   load ceiling 7.5.  The reduced file ceiling preserves the 8-GiB safety
   reserve on the 96%-used local volume.  No SAT, UNSAT, or finite exclusion
   is claimed at initialization.
+
+### 2026-07-26 11:42 — first `hole9` attempt fails closed; LRAT candidate recovered
+
+- The prelaunch checkpoint was committed and pushed as
+  `a3af5a7de4d32f8421011334b6f2e013fea8d2d5`.  An immediate source, package,
+  tool, load, disk, memory, and lock check passed, and the runner durably wrote
+  `RUN_STARTED` before launching its only child.
+- CaDiCaL returned exit 20 in 0.999 seconds with 0.943 user CPU seconds,
+  0.014 system CPU seconds, and 24,920,064 bytes maximum RSS.  The strict
+  result is `s UNSATISFIABLE`; the retained 1,900,168-byte binary proof has
+  SHA-256
+  `ecfb35ba56b5ce2a04437f381e357525581f3bcb6403290272984700d805dbeb`.
+  These facts alone remain an observation.
+- The raw forward checker then returned exit 80 in 0.124 seconds.  The
+  orchestrator durably recorded
+  `RETRYABLE_NONCLAIM` / `RAW_FORWARD_REJECTED_NONCLAIM`, outcome SHA-256
+  `aa943916e4bb3e46cc2dd2d00f0593f959ad52e45c14202c497f968cd0ab915f`,
+  and terminal checkpoint SHA-256
+  `be3aa0a50f31a61ba7655c5795f21b4e88468eacd348183ada2f2a6e38c368d4`.
+  A read-only final-v3 audit accepts the exact nonclaim tree.
+- Two independent read-only diagnoses found the same cause.  drat-trim's
+  `-W` option maps any warning to exit 80.  Immediately after adding unit
+  `-954`, the proof asks to delete a clause used as its current propagation
+  reason; drat-trim deliberately ignores that pseudo-unit deletion, then
+  aborts solely because warnings are fatal.  A complete verbose replay found
+  2,604 warnings, all this exact class, zero failed additions or other
+  warnings, and otherwise verified the proof.
+- In a private fresh directory, the accepted strict normalizer consumed the
+  entire canonical stream: 117,926 records, 45,281 additions total (45,280
+  nonempty plus one final empty), 72,645 deletions, maximum variable 9,802,
+  and no later record.  The exact additions-only output is 742,337 bytes with
+  SHA-256
+  `af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f`.
+- A new warning-fatal forward process checked that output with `-U` and
+  returned `s VERIFIED`; its core used zero RAT lemmas.  A separate backward
+  RUP-only conversion returned `s VERIFIED` and produced an 8,546,664-byte
+  LRAT file with SHA-256
+  `f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805`.
+  The separately compiled pinned lrat-check then returned exact
+  `c VERIFIED` with empty stderr.
+- These bytes are copied into
+  `certificates/order13_k3_hole9_attempt000001_lrat` with a candidate-only
+  manifest.  The original attempt remains untouched and remains a nonclaim.
+  An independently written standalone verifier and hostile mathematical
+  coverage review are mandatory before promoting exact-formula UNSAT to a
+  certified `hole9` template exclusion.
+- The narrow prospective runner repair is a deletion-agnostic first replay:
+  `drat-trim instance raw -i -f -p -W -U -t 1800`.  It checks all additions
+  as warning-fatal RUP while ignoring deletion hints, and the exact retained
+  proof passes.  The existing strict normalization, second RUP replay, LRAT
+  conversion, and lrat-check remain unchanged.  Focused tests pass 24/24,
+  but the repair is unaccepted until the v4 hostile regression completes.

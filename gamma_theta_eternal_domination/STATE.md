@@ -1,5 +1,101 @@
 # Campaign State
 
+## Checkpoint 046 — 2026-07-26 11:42 PDT
+
+- Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
+  both `a3af5a7de4d32f8421011334b6f2e013fea8d2d5`.  This commit freezes the
+  exact `hole9` package and zero-attempt production initialization.
+- **Attempt 1 is a correctly preserved nonclaim:** the resource gate passed,
+  CaDiCaL returned exit 20 in 0.999 seconds, wrote strict
+  `s UNSATISFIABLE`, and produced a 1,900,168-byte raw binary proof with
+  SHA-256
+  `ecfb35ba56b5ce2a04437f381e357525581f3bcb6403290272984700d805dbeb`.
+  The first drat-trim phase exited 80, so the durable outcome is exactly
+  `RETRYABLE_NONCLAIM` / `RAW_FORWARD_REJECTED_NONCLAIM`.  The current
+  runner has not and must not promote that attempt.
+- **The failure mechanism is exact:** two independent diagnoses found that
+  `-W` made drat-trim abort on its own ignored pseudo-unit-deletion warning.
+  The first event follows unit addition `-954` and deletes a clause currently
+  used as its propagation reason.  A complete verbose replay found 2,604
+  warnings, all in this single class, with no failed addition, tautology,
+  RAT, parse, or resource warning.
+- **A certificate candidate has been frozen separately:** the strict binary
+  normalizer consumed all 117,926 records, removed 72,645 deletions, and
+  retained 45,280 nonempty additions followed by one unique empty addition,
+  for 45,281 additions total.
+  The 742,337-byte additions-only proof has SHA-256
+  `af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f`.
+  Warning-fatal RUP-only forward checking passed with zero RAT lemmas; fresh
+  backward conversion produced an 8,546,664-byte LRAT file with SHA-256
+  `f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805`;
+  the separately compiled pinned `lrat-check` returned `c VERIFIED`.
+- The candidate is frozen under
+  `certificates/order13_k3_hole9_attempt000001_lrat`, but remains
+  `CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT`.  A successful proof replay
+  establishes only exact-formula UNSAT; the accepted graph-to-CNF and
+  template-coverage bindings must also be checked before the `hole9` branch
+  can be labeled `CERTIFIED-FINITE`.
+- A proposed runner repair changes the first raw phase to
+  deletion-agnostic, warning-fatal, RUP-only checking with
+  `-i -f -p -W -U`.  The exact retained proof passes this command and the
+  focused suite passes 24/24.  These bytes are uncommitted and unauthorized
+  until the independent v4 hostile review accepts them.
+
+### Evidentiary boundary
+
+- There is still no accepted `hole9` exclusion at this checkpoint.  Solver
+  exit 20, the original runner nonclaim, and a privately replayed candidate
+  do not by themselves change the mathematical frontier.
+- Attempt 1 is immutable evidence of a fail-closed production rejection.  Its
+  raw proof is copied, not moved or edited, into the candidate bundle.
+- No order-13 \(k=3\), \(k=4\), or \(k=5\) slice is complete, and the
+  universal conjecture remains open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; novelty of C-053/C-056 remains explicitly unclaimed |
+| Order-12 frontier | exhausted-certified | C-050 release and manuscript are committed and pushed |
+| Order-13 \(k=3\) mathematics/constructor | accepted-proved-two-independent | C-053--C-055 and exact live package remain unchanged |
+| Order-13 `hole9` production attempt 1 | exhausted-retryable-nonclaim | Warning-fatal raw checker rejects pseudo-unit deletion hints |
+| Order-13 `hole9` certificate recovery | candidate-hostile-audit | RUP and LRAT replays pass; independent standalone verifier and coverage binding pending |
+| Order-13 production runner v4 | proposed-under-review | Plain RUP-only raw phase must survive all prior hostile regressions |
+| Order-13 \(k=4\) | pending-second | Begin after the first accepted \(k=3\) production result |
+| Order-13 \(k=5\) structure | accepted-proved-C056 | Canonical ten-vertex-kernel and attachment enumeration remains unimplemented |
+
+### Running jobs and resume state
+
+- No SAT solver or memory-heavy child is running.
+- An independent standalone certificate verifier is being written against the
+  frozen candidate without importing the search or runner core.
+- The production referee is hostile-testing the proposed v4 raw-gate repair
+  against the exact retained proof and every prior provenance/crash mutation.
+- Do not rerun the old production tree.  Its unchanged command will fail
+  deterministically, and modifying the current runner invalidates that run's
+  source binding.  The final-v3 structural audit is frozen in
+  `results/order13_k3_hole9_attempt1_audit_v3.json`.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 17,960,432 KiB, approximately 17.13 GiB; volume
+  usage is 96%.  Load averages: 1.93, 2.47, 2.78.
+- Attempt 1 peaked at 24.9 MiB for CaDiCaL and 57.5 MiB for the rejecting
+  raw checker.  The frozen candidate bundle occupies about 12 MiB; the LRAT
+  replay is therefore inexpensive on this host.  Local disk remains the
+  likely constraint for larger templates.
+
+### Next three highest-value actions
+
+1. Bind, commit, and push the immutable attempt-1 nonclaim and candidate
+   certificate bytes without staging the unreviewed runner patch.
+2. Complete the independently written standalone formula/RUP/LRAT verifier
+   and a separate hostile coverage/certificate review.
+3. If and only if both reviews accept, register the `hole9` exclusion as
+   `CERTIFIED-FINITE`; separately accept and version the runner repair before
+   any fresh production run.
+
 ## Checkpoint 045 — 2026-07-26 11:19 PDT
 
 - Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
