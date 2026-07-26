@@ -95,3 +95,22 @@
   `D4_SF_11CC_FULL_STRICT_PASS`.
 - Hostile mathematical audit is pending, so the family is provisional and
   no parent-row or global count is changed.
+
+## 2026-07-26T03:34:51Z — `D4-SF-21C` candidate closed
+
+- The second isolated exact-\(\delta=4\) family tested is
+  `D4-SF-21C`, with
+  \(s^2=-5,\ h=(p-sq)(sp-q),\ R=(p-sq)^2(sp-q)\) and
+  \(\kappa=-16/5\).
+- Four explicit compatibility equations force the complete \(E_6\)
+  contact plane with arbitrary binary lower summands retained.
+- The lower matrix has generic rank seven, rank six at the two directions
+  \((m,n)\sim(1,3),(-1,6)\), and rank five at the origin.  The generic
+  chart is killed by two \(E_5\) cubics with pure-power resultants, the two
+  boundary charts by the same nonzero \(E_5\) constant, and the origin by
+  two successive \(E_4\) squares before the unconditional plane exit.
+- Independent SymPy and direct PARI/GP reconstructions pass with terminal
+  marker `D4_SF_21C_FULL_STRICT_PASS`, including a fail-closed mutation.
+- This is the second of 26 canonical main families with a provisional full
+  exclusion.  Hostile audit is pending; the parent row and the global
+  \(4/14\) count remain unchanged.

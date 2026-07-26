@@ -72,3 +72,23 @@ parts retained here.
 This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The candidate is AI-assisted and unreviewed; hostile
 audit is pending, and the parent quartic row remains open.
+
+## 2026-07-26T03:34Z — `D4-SF-21C` candidate exclusion
+
+The current-day source sweep was compared with the second isolated
+squarefree exact-\(\delta=4\) family,
+\[
+s^2=-5,\qquad h=(p-sq)(sp-q),\qquad
+R=(p-sq)^2(sp-q),\qquad \kappa=-16/5.
+\]
+Searches covered current arXiv listings, MathOverflow, Terence Tao's blog,
+the Secret Blogging Seminar, and publicly indexed X/Twitter material.
+Exact terms included `D4-SF-21C`, the displayed normal form, and
+\(\kappa=-16/5\).
+
+No checked source states this exclusion.  The adjacent de Bondt
+homogeneous-quartic classification does not retain arbitrary quadratic
+and cubic lower terms.  This is source-specific negative evidence only,
+not a guarantee of worldwide priority.  The candidate is AI-assisted and
+unreviewed; hostile audit is pending, and neither the parent-row status nor
+the universal degree floor changes.
