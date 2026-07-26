@@ -1903,3 +1903,21 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   global coloring obstruction.  The next universal route must compare lists
   across different maximum independent states or introduce a genuinely
   dynamic invariant.
+
+### 2026-07-26 15:34 — proof-pivot package and live workstream update released
+
+- The accepted C-058--C-062 package was committed, rebased over two
+  unrelated concurrent `main` commits, replayed, and pushed as
+  `7a0c926ef7ef7d0dab8cb8aabcdbd7a8d4e2494d`.
+- GitHub Pages run `30223360034` completed successfully.  A cache-busted
+  HTTPS fetch of the active gamma-theta workstream page is byte-identical to
+  `docs/research/gamma-theta-conjecture/index.html`, with SHA-256
+  `cad4d253d6196b994416d229753a481ac6132db69043be321e4b486f98849717`.
+- The live page gives Alec Kriebel's attribution, the exact unoccupied-attack
+  one-guard model, the order-12 finite frontier, the restoration/Hall and
+  shared-response-core progress, the line-graph and Schläfli stress tests,
+  and the explicit unresolved boundary.
+- The already tagged order-12 frontier paper remains the only current paper.
+  No second paper was issued from the proof-pivot results at this stage.
+- Exact deployment and live-byte evidence are frozen in
+  `results/proof_pivot_public_workstream_acceptance.json`.
