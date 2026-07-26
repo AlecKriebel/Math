@@ -1,0 +1,38 @@
+2026-07-26 PDT
+
+FINITE OBSERVATION; NOT A COVERAGE CERTIFICATE.
+
+Command:
+(tools/nauty2_9_3/geng -cq 7; tools/nauty2_9_3/geng -cq 8; tools/nauty2_9_3/geng -cq 9) | PYTHONPATH=src python3 math/working/k3_mixed_p4_probe.py
+
+Output:
+{
+  "equality_graph_count": 1536,
+  "graph_count": 273050,
+  "status": "FINITE_OBSERVATION",
+  "witness_count": 0,
+  "witnesses": []
+}
+
+Per-order reruns:
+n=7: 853 connected unlabeled graphs; 16 with gamma=alpha=gamma_infinity=3; 0 witnesses.
+n=8: 11,117 connected unlabeled graphs; 140 with gamma=alpha=gamma_infinity=3; 0 witnesses.
+n=9: 261,080 connected unlabeled graphs; 1,380 with gamma=alpha=gamma_infinity=3; 0 witnesses.
+
+Local named-vertex consistency command:
+PYTHONPATH=src python3 math/working/k3_mixed_p4_probe.py --local-model
+
+Local summary:
+36 optional S-to-core masks survive the inherited alpha<=3 and shared-vertex filters.
+Four masks (46, 47, 62, 63) admit a dominating, named-attack-closed family after the six forbidden direct swaps are removed.
+All four require c-x0, b-x1, a-x2, and c-x3.
+
+Independent exact near-realization check:
+Graph6 FDzro has (gamma,alpha,gamma_infinity,theta)=(2,3,3,3).
+Verifier B accepts the displayed 21-state family in results/k3_mixed_p4_probe.json.
+At S={0,1,2}, its exact lists on 3,4,5,6 are {0},{0,2},{1,2},{1}.
+The complement induced by 3,4,5,6 is exactly the path 3-4-5-6.
+
+Hashes at execution:
+a7f0f367e38dc51436614048d107af139b68d2cefd2c170f6c6d06c0b7f0c31c  math/working/k3_mixed_p4_probe.py
+588052a87e5313f331aa145a0a641702b6c13b6e2387dd3c4807bf7f49fdaca1  tools/nauty2_9_3/geng

@@ -1,5 +1,94 @@
 # Campaign State
 
+## Checkpoint 053 — 2026-07-26 16:46 PDT
+
+- Campaign day: 2 of 27.  The proof-first lane has produced two further
+  analytic mechanisms, now registered as C-063 and C-064.  The universal
+  conjecture remains unresolved, the accepted lower frontier remains 13,
+  and **no order-14 computation has begun**.
+- **Frozen-color projection (C-063).**  Relative to an independent state
+  \(S\) in any eternal \(k\)-family, freezing \(u\in S\) and retaining the
+  other anchors plus all attacks whose response list omits \(u\) gives a
+  literal eternal \((k-1)\)-family on an induced graph \(Q_u\).  Under
+  \(\gamma(G)=k\),
+  \[
+    \gamma(Q_u)=\alpha(Q_u)=\gamma^\infty(Q_u)=k-1.
+  \]
+  This is a genuine parameter induction step.  For \(k=3\), the accepted
+  parameter-two theorem makes every missing-color complement projection
+  bipartite.  Therefore the tight odd response-core cycle with one common
+  two-color list—the principal unresolved 2-connected branch at checkpoint
+  052—is impossible.
+- The exact remaining \(k=3\) obstruction is a mixed three-color cut or
+  high-degree core.  The abstract complement path with lists
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\) is vertex-minimal uncolorable while every
+  single-color deletion is colorable.  The graph `FDzro` realizes these
+  lists in a checked proper 21-state eternal family, with
+  \(\gamma=2<\alpha=\gamma^\infty=\theta=3\); hence the existing dynamic
+  lemmas alone cannot exclude it.  In an equality realization, however, the
+  middle path pair forces an external clique \(W\) of independent family
+  states, with unique moves and ridge covariance across \(W\).  A bounded
+  probe of every connected unlabeled graph through order nine found no
+  realization in any **greatest** equality family, but that is `OBSERVED`
+  evidence only and says nothing about every proper subfamily.
+- **Cross-state exchange (C-064).**  Any two independent family states
+  admit a retained monotone path for every adversarial ordering of the
+  target positions.  Across a ridge, the exchanged-vertex transposition
+  transports every family-response list exactly; a closed ridge path
+  therefore acts by an automorphism of the response-incidence relation.
+  This does not force trivial holonomy.
+- Two exact falsifiers prevent overreach (C-065).  A twelve-state
+  expansion/restoration system on \(K_{3,3}\) minus one edge is not
+  base-orderable but has \(\gamma=2<\alpha=3\).  The equality graph
+  `FCXfO` has an explicit sixteen-state eternal family that refutes pairwise
+  exchange reciprocity while retaining a base ordering.  Whether equality
+  forces the existence of some base ordering remains open.
+- The frozen-projection proof received an independent exact-model
+  `ACCEPT`, including a required warning: a projected family need not be
+  the greatest family downstairs (`FCZbg` is the strict witness).  Root
+  cleanly replayed both bounded probes into fresh temporary paths; after
+  deleting only resource-usage metadata, the normalized JSON was
+  byte-identical.  The cross-state proof, rank-three obstruction, all 100
+  displayed response obligations, and exact OPEN boundary received a clean
+  hostile `ACCEPT`.  A third hostile audit accepted the corrected mixed-path
+  note after distinguishing its proper family from the greatest family.
+- The complete campaign test suite passes: 398 tests in 373.148 seconds.
+  Exact artifact bindings are frozen in
+  `results/cross_state_proof_acceptance.json`.
+- The targeted literature refresh found no exact match for either theorem,
+  but the directly relevant 2018 manuscript remains unavailable.  No
+  novelty or priority claim is made.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Frozen-color parameter induction | active-primary | Prove compatibility of the three valid two-color projections on the mixed cut/high-degree core; the projected family need not be greatest |
+| Mixed \(k=3\) response core | active-independent | `FDzro` realizes the proper-family pattern with \(\gamma=2\); exploit the external covariant witness clique forced specifically by \(\gamma=3\) |
+| Cross-state ridge covariance | closed-proved C-064 | Exact incidence transport is proved; nontrivial response automorphisms prevent a path-independence conclusion |
+| Base-orderability | open-delimited | Abstract and ordinary-family versions are false; equality-family existence of some base ordering is neither proved nor refuted |
+| Single-reference shared core | superseded by C-063 | Common-two-list odd cycles are now excluded; repeating static list coloring without a gluing mechanism is blocked |
+| Order-13 finite synthesis | frozen fallback | C5/C7 at \(k=3\) and \(k=4,5\) remain open; no solver is running |
+| Order-14 computation | not started | Deliberately deferred while the universal proof lane continues to produce mechanisms |
+
+### Running jobs and resources
+
+- No SAT solver, proof checker, graph generator, or other campaign process is
+  running.  The bounded through-order-nine mixed-core probe has completed.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The data volume has
+  approximately 19 GiB free and is 96% used, so no large certificate or
+  enumeration job should be launched before a storage audit.
+
+### Next three highest-value actions
+
+1. Use attacks at the external witness clique forced by the mixed path and
+   \(\gamma=3\) to derive a new allowed response color or a contradiction.
+2. Test whether every pair of independent triples in an equality eternal
+   family has at least one Boolean exchange subcube, using external
+   undominated witnesses rather than the refuted reciprocity shortcut.
+3. Develop a gluing invariant for the three frozen two-color projections;
+   retain order-13 C5/C7 synthesis only as a resumable fallback.
+
 ## Checkpoint 052 — 2026-07-26 15:34 PDT
 
 - Commit `7a0c926ef7ef7d0dab8cb8aabcdbd7a8d4e2494d` integrated and pushed the

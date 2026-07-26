@@ -1921,3 +1921,73 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   No second paper was issued from the proof-pivot results at this stage.
 - Exact deployment and live-byte evidence are frozen in
   `results/proof_pivot_public_workstream_acceptance.json`.
+
+### 2026-07-26 16:31 — frozen-color induction and cross-state exchange gate
+
+- The cross-state lane proved that any two independent \(k\)-states in the
+  same eternal family admit a retained monotone path for every ordering of
+  the target positions.  If two states share \(k-1\) vertices, transposing
+  the exchanged positions transports the complete family-response incidence
+  system exactly.  A closed ridge path therefore induces an automorphism of
+  that incidence relation, not necessarily the identity.
+- The strongest new mechanism is the frozen-color projection.  Fixing an
+  independent family state \(S\) and one position \(u\), retain the other
+  anchors and the attacks whose family or static response lists omit \(u\).
+  The states which keep \(u\) occupied project to a literal eternal
+  \((k-1)\)-family on the retained induced graph.  If
+  \(\gamma(G)=\gamma^\infty(G)=k\), then the projected graph satisfies
+  \[
+    \gamma=\alpha=\gamma^\infty=k-1.
+  \]
+  Thus the conjecture has an exact parameter-induction interface.
+- At \(k=3\), the already accepted parameter-two theorem applies
+  unconditionally to every frozen projection.  Each corresponding
+  complement is bipartite, which eliminates an odd response-core cycle
+  whose lists share one omitted color.  In particular, the formerly live
+  tight common-two-list odd-cycle branch of C-059 is now closed.
+- An independent hostile review re-derived every one-guard obligation and
+  returned `ACCEPT` after one important scope correction.  On `FCZbg`, the
+  frozen family has four states while the greatest projected family has six.
+  Therefore a lower-parameter family state cannot automatically be lifted
+  into the original family-response lists.  The static clique-partition lift
+  remains valid.
+- The residual obstruction is sharply delimited by the abstract complement
+  path with lists
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\).  It is minimally uncolorable although
+  every missing-color projection is colorable.  The exact graph `FDzro`
+  realizes those lists in a proper 21-state one-guard eternal family and has
+  \(\gamma=2<\alpha=\gamma^\infty=\theta=3\).  Thus restoration, tight
+  states, co-state closure, and ridge covariance do not eliminate the
+  pattern without using \(\gamma=3\).  In an equality realization, the
+  middle pair forces an external clique \(W\) of maximum-independent family
+  states with unique moves and exact ridge covariance.  A lightweight
+  exhaustive probe over all connected unlabeled graphs through order nine
+  found no realization in a **greatest** eternal equality family.  This is
+  evidence, not a finite theorem about all orders or a statement about every
+  proper subfamily.
+- Two falsifiers stopped stronger exchange claims.  The smallest abstract
+  non-base-orderable expansion/restoration system has rank three and twelve
+  states; it is realized as a genuine eternal family on \(K_{3,3}\) minus an
+  edge, but there \(\gamma=2<\alpha=3\).  The exact equality graph `FCXfO`
+  refutes pairwise reciprocity in an arbitrary eternal family, although its
+  displayed family still has a base ordering.  Existence of some base
+  ordering under equality remains open.
+- Root replayed the through-order-eight cross-state and frozen-color probes
+  from frozen sources into fresh temporary directories.  After removing
+  only nondeterministic resource metadata, the normalized result hashes were
+  respectively
+  `b37e94d86f0ad4755a1dff4e6edf2f3f9b46bc23ca94fd212d0faa849d70653a`
+  and
+  `0c792c200c319c1c23ed8a314076ba4de066416185cf1fa2c6b5571fb7230b4c`.
+- No order-14 work, SAT production, or memory-heavy job ran.  The laptop has
+  approximately 19 GiB free, so the proof lane remains preferable both
+  mathematically and operationally.
+- The final cross-state hostile review returned clean `ACCEPT` after
+  re-deriving the endpoint-reversal duality, checking 100 displayed
+  state/attack obligations, and independently exhausting all 5,653 valid
+  labeled rank-three abstract systems.  A separate mixed-path audit checked
+  all 84 obligations of the `FDzro` family and caught the proper-versus-
+  greatest-family scope distinction before acceptance.
+- The full campaign regression suite passed all 398 tests in 373.148
+  seconds.  The claim boundary and exact artifact hashes are frozen in
+  `results/cross_state_proof_acceptance.json`.

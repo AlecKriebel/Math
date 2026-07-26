@@ -1,0 +1,1993 @@
+{
+  "analytic_deductions": [
+    {
+      "name": "frozen_color_projection",
+      "proof_audit_summary": "If u answered an attack inside Q_u, the successor would omit u while every outside position also omitted u from its family list, contradicting restoration. Hence u is frozen and another guard supplies literal projected closure. The independent anchors give alpha at least k-1, while the projected family gives gamma^infinity at most k-1. A smaller dominating set in Q_u together with u would dominate G, proving the gamma equality under gamma(G)=k.",
+      "source": "math/working/k3_cross_state_attack.md",
+      "statement": "For u in an independent eternal k-state S, let W_u be the outside vertices whose family or static response list omits u, Q_u=G[(S-u) union W_u], and P_u={A: |A|=k-1 and {u} union A lies in F}. Then P_u is an eternal dominating (k-1)-family on Q_u, alpha(Q_u)=gamma^infinity(Q_u)=k-1, and gamma(Q_u)=k-1 if gamma(G)=k.",
+      "status": "PROVED_PENDING_INTEGRATION_REVIEW"
+    },
+    {
+      "name": "full_edge_row_coverage",
+      "proof": "The full list puts S-{u}+{x} in F. Attack y. The guard at x cannot respond because xy is a nonedge, so closure moves some v in S-{u} to y and produces the displayed two-swap state.",
+      "statement": "Let F be an eternal three-family, S an independent three-state, and x,y outside S with L_F,S(x)=L_F,S(y)=S and xy not an edge of G. For every u in S there is v in S-{u} such that S-{u,v}+{x,y} belongs to F.",
+      "status": "PROVED"
+    },
+    {
+      "name": "full_triangle_forced_states",
+      "proof": "The triple is an independent set of size alpha=3, so the independent-state forcing lemma puts it in the family. Alternatively its response-list union is S and has the same cardinality as the triple, so the tight-Hall endpoint theorem forces every ordered attack path to end there. Finally attack u from {x,y,z}; closure moves one of x,y,z to u and retains u with the other two.",
+      "statement": "If x,y,z are pairwise nonadjacent full-list vertices, then {x,y,z} belongs to every eternal three-family. Attacking them from S in any order, with any retained responses, ends at that state. Moreover, for each u in S at least one of {u,x,y}, {u,x,z}, {u,y,z} belongs to the family.",
+      "status": "PROVED"
+    },
+    {
+      "name": "frozen_projection_equivalence",
+      "proof": "The deleted colors are exactly those forbidden by edges from a residual vertex to already colored full-list vertices. Restriction and union with f give the two inverse implications.",
+      "statement": "For any proper coloring f of H[F3], delete F3 and remove f(x) from the list of every residual H-neighbor of x. The coloring f extends to the original list instance iff this projected residual instance is list-colorable.",
+      "status": "PROVED"
+    }
+  ],
+  "claims": {
+    "F3_H_bipartite": {
+      "description": "The complement-induced graph H[F3] is bipartite.",
+      "first_counterexample": {
+        "F3": [
+          3,
+          4,
+          5
+        ],
+        "H_triangles": [
+          [
+            3,
+            4,
+            5
+          ]
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "gamma": 2,
+        "graph6": "EFz_",
+        "list_kind": "static",
+        "n": 6,
+        "response_lists": {
+          "3": [
+            0,
+            1,
+            2
+          ],
+          "4": [
+            0,
+            1,
+            2
+          ],
+          "5": [
+            0,
+            1,
+            2
+          ]
+        },
+        "scope": "gamma_low_control",
+        "shared_vertices": [
+          3,
+          4,
+          5
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 13883,
+      "violations": 232
+    },
+    "F3_H_independent": {
+      "description": "The complement-induced graph H[F3] is independent.",
+      "first_counterexample": {
+        "F3": [
+          3,
+          4
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "first_H_edge": [
+          3,
+          4
+        ],
+        "gamma": 2,
+        "graph6": "DFw",
+        "list_kind": "static",
+        "n": 5,
+        "response_lists": {
+          "3": [
+            0,
+            1,
+            2
+          ],
+          "4": [
+            0,
+            1,
+            2
+          ]
+        },
+        "scope": "gamma_low_control",
+        "shared_vertices": [
+          3,
+          4
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 13883,
+      "violations": 2526
+    },
+    "F3_H_three_colorable": {
+      "description": "The graph H[F3] is 3-colorable.",
+      "first_counterexample": null,
+      "mathematical_status": "OBSERVED_ONLY",
+      "tests": 13883,
+      "violations": 0
+    },
+    "K0_projection_H_Q_bipartite_without_full_closure": {
+      "description": "If full closure is replaced by K0 in a near miss, every analogous static projected complement remains bipartite.",
+      "first_counterexample": {
+        "H_Q_bipartite": false,
+        "P_u": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "Q_u": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "W_u": [
+          4,
+          5,
+          6
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "frozen_color_u": 0,
+        "gamma_G": 3,
+        "graph6": "FCQb_",
+        "list_kind": "static_K0_negative_control",
+        "n": 7,
+        "outside_response_lists": {
+          "3": [
+            0
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            2
+          ],
+          "6": [
+            2
+          ]
+        },
+        "scope": "near_miss"
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 2193,
+      "violations": 1676
+    },
+    "K0_projection_closed_without_full_closure": {
+      "description": "If the eternal family is replaced by all dominating triples K0 in a near miss, the analogous static projection is still closed.",
+      "first_counterexample": {
+        "P_u": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "Q_u": [
+          1,
+          2,
+          4,
+          5,
+          6
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "W_u": [
+          4,
+          5,
+          6
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "first_closure_failure": {
+          "adjacent_guards": [
+            1
+          ],
+          "attack": 4,
+          "state": [
+            1,
+            5
+          ]
+        },
+        "frozen_color_u": 0,
+        "gamma_G": 3,
+        "graph6": "FCQb_",
+        "list_kind": "static_K0_negative_control",
+        "n": 7,
+        "outside_response_lists": {
+          "3": [
+            0
+          ],
+          "4": [
+            1
+          ],
+          "5": [
+            2
+          ],
+          "6": [
+            2
+          ]
+        },
+        "scope": "near_miss"
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 2193,
+      "violations": 1726
+    },
+    "equality_family_projection_equals_greatest_two_family": {
+      "description": "In the equality population, the family-list frozen projection P_u equals the greatest eternal two-family of Q_u.",
+      "first_counterexample": {
+        "P_u": [
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "Q_graph6_labeled_in_Q_order": "Cr",
+        "Q_u": [
+          0,
+          3,
+          5,
+          6
+        ],
+        "S": [
+          0,
+          4,
+          6
+        ],
+        "W_u": [
+          3,
+          5
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "frozen_color_u": 4,
+        "gamma_G": 3,
+        "graph6": "FCZbg",
+        "greatest_two_family": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "greatest_two_family_size": 6,
+        "list_kind": "family",
+        "n": 7,
+        "outside_response_lists": {
+          "1": [
+            4,
+            6
+          ],
+          "2": [
+            4,
+            6
+          ],
+          "3": [
+            0
+          ],
+          "5": [
+            6
+          ]
+        },
+        "projected_family_size": 4,
+        "scope": "equality",
+        "states_in_greatest_not_projected": [
+          [
+            0,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "states_projected_not_in_greatest": []
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 4059,
+      "violations": 14
+    },
+    "equality_static_projection_equals_greatest_two_family": {
+      "description": "In the equality population, the static-list frozen projection P_u equals the greatest eternal two-family of Q_u.",
+      "first_counterexample": {
+        "P_u": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "Q_graph6_labeled_in_Q_order": "C]",
+        "Q_u": [
+          1,
+          2,
+          5,
+          6
+        ],
+        "S": [
+          0,
+          5,
+          6
+        ],
+        "W_u": [
+          1,
+          2
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [
+            4,
+            6
+          ]
+        ],
+        "frozen_color_u": 0,
+        "gamma_G": 3,
+        "graph6": "FCpbo",
+        "greatest_two_family": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "greatest_two_family_size": 6,
+        "list_kind": "static",
+        "n": 7,
+        "outside_response_lists": {
+          "1": [
+            5,
+            6
+          ],
+          "2": [
+            5,
+            6
+          ],
+          "3": [
+            0,
+            6
+          ],
+          "4": [
+            0,
+            6
+          ]
+        },
+        "projected_family_size": 4,
+        "scope": "equality",
+        "states_in_greatest_not_projected": [
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "states_projected_not_in_greatest": []
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 4059,
+      "violations": 34
+    },
+    "every_frozen_F3_coloring_extends": {
+      "description": "Every proper coloring of H[F3] has a list-colorable frozen projection on the residual shared graph.",
+      "first_counterexample": {
+        "F3": [
+          5
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "extendable_F3_colorings": 2,
+        "first_failure": {
+          "frozen_F3_coloring": {
+            "5": 1
+          },
+          "projected_lists": {
+            "4": []
+          }
+        },
+        "gamma": 2,
+        "graph6": "ECro",
+        "list_kind": "static",
+        "n": 6,
+        "proper_F3_colorings": 3,
+        "response_lists": {
+          "4": [
+            1
+          ],
+          "5": [
+            0,
+            1,
+            2
+          ]
+        },
+        "scope": "gamma_low_control",
+        "shared_vertices": [
+          4,
+          5
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 48662,
+      "violations": 5836
+    },
+    "family_F3_empty_in_equality_scope_through_eight": {
+      "description": "In the enumerated equality scope through order eight, every greatest-family full-list set F3 is empty.",
+      "first_counterexample": null,
+      "mathematical_status": "OBSERVED_ONLY",
+      "tests": 1353,
+      "violations": 0
+    },
+    "full_edge_all_two_swap_states": {
+      "description": "For each full-list H-edge x,y, all three states {s,x,y}, s in S, belong to the family.",
+      "first_counterexample": {
+        "F3": [
+          4,
+          5
+        ],
+        "H_edge": [
+          4,
+          5
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "gamma": 2,
+        "graph6": "EEz_",
+        "list_kind": "family",
+        "n": 6,
+        "response_lists": {
+          "3": [
+            0,
+            1
+          ],
+          "4": [
+            0,
+            1,
+            2
+          ],
+          "5": [
+            0,
+            1,
+            2
+          ]
+        },
+        "scope": "gamma_low_control",
+        "shared_vertices": [
+          3,
+          4,
+          5
+        ],
+        "two_swap_states_by_remaining_color": {
+          "0": {
+            "in_family": true,
+            "state": [
+              0,
+              4,
+              5
+            ]
+          },
+          "1": {
+            "in_family": true,
+            "state": [
+              1,
+              4,
+              5
+            ]
+          },
+          "2": {
+            "in_family": false,
+            "state": [
+              2,
+              4,
+              5
+            ]
+          }
+        }
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 1628,
+      "violations": 400
+    },
+    "full_edge_row_coverage": {
+      "description": "Each full-list H-edge has a family two-swap successor covering every prescribed first removed color.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 4884,
+      "violations": 0
+    },
+    "full_triangle_all_orders_endpoint": {
+      "description": "All attack orders and retained response paths through a full-list H-triangle end at that triangle.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 116,
+      "violations": 0
+    },
+    "full_triangle_all_two_swap_states": {
+      "description": "Every state retaining one color and any two vertices of a full-list H-triangle belongs to the family.",
+      "first_counterexample": null,
+      "mathematical_status": "OBSERVED_ONLY",
+      "tests": 116,
+      "violations": 0
+    },
+    "full_triangle_each_color_two_swap": {
+      "description": "For each full-list H-triangle and each u in S, some state retaining u and two triangle vertices belongs to the family.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 348,
+      "violations": 0
+    },
+    "full_triangle_state": {
+      "description": "Every full-list H-triangle itself belongs to the family.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 116,
+      "violations": 0
+    },
+    "projection_H_Q_bipartite": {
+      "description": "At k=3 the complement induced on Q_u is bipartite.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "projection_alpha_two": {
+      "description": "The exact independence number of Q_u is two.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "projection_equals_greatest_two_family": {
+      "description": "The frozen projected family P_u equals the greatest eternal two-family of the induced graph Q_u.",
+      "first_counterexample": {
+        "P_u": [
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "Q_graph6_labeled_in_Q_order": "Bo",
+        "Q_u": [
+          0,
+          3,
+          5
+        ],
+        "S": [
+          3,
+          4,
+          5
+        ],
+        "W_u": [
+          0
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "frozen_color_u": 4,
+        "gamma_G": 2,
+        "graph6": "ECZ_",
+        "greatest_two_family": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "greatest_two_family_size": 3,
+        "list_kind": "static",
+        "n": 6,
+        "outside_response_lists": {
+          "0": [
+            3,
+            5
+          ],
+          "1": [
+            4,
+            5
+          ],
+          "2": [
+            4,
+            5
+          ]
+        },
+        "projected_family_size": 2,
+        "scope": "gamma_low_control",
+        "states_in_greatest_not_projected": [
+          [
+            0,
+            3
+          ]
+        ],
+        "states_projected_not_in_greatest": []
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 141600,
+      "violations": 4668
+    },
+    "projection_eternal_two_certified": {
+      "description": "The explicit nonempty dominating closed P_u certifies gamma^infinity(Q_u)=2.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "projection_gamma_two_under_gamma_three": {
+      "description": "When gamma(G)=3, the exact domination number of Q_u is two.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 8118,
+      "violations": 0
+    },
+    "projection_gamma_two_without_original_gamma_three": {
+      "description": "The projected graph still has gamma=2 when the original gamma=3 hypothesis is removed.",
+      "first_counterexample": {
+        "P_u": [
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "Q_u": [
+          1,
+          2,
+          4
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "W_u": [
+          4
+        ],
+        "alpha_G": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            2,
+            4
+          ]
+        ],
+        "frozen_color_u": 0,
+        "gamma_G": 2,
+        "gamma_Q": 1,
+        "graph6": "DCw",
+        "list_kind": "static",
+        "n": 5,
+        "outside_response_lists": {
+          "3": [
+            0
+          ],
+          "4": [
+            1,
+            2
+          ]
+        },
+        "scope": "gamma_low_control"
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 133482,
+      "violations": 44698
+    },
+    "projection_literal_one_guard_closure": {
+      "description": "For every P_u state and every unoccupied Q_u attack, one guard in that state moves along one edge to another P_u state.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "projection_nonempty": {
+      "description": "The frozen-color projected two-family P_u is nonempty.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "projection_states_dominate_Q": {
+      "description": "Every state of P_u dominates the induced projected graph Q_u.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 141600,
+      "violations": 0
+    },
+    "raw_residual_list_colorable": {
+      "description": "After deleting F3, the unprojected shared response-list instance is list-colorable.",
+      "first_counterexample": {
+        "F3": [],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "gamma": 3,
+        "graph6": "FCQb_",
+        "list_kind": "static",
+        "n": 7,
+        "raw_residual_coloring": null,
+        "residual_vertices": [
+          5,
+          6
+        ],
+        "response_lists": {
+          "5": [
+            2
+          ],
+          "6": [
+            2
+          ]
+        },
+        "scope": "near_miss",
+        "shared_vertices": [
+          5,
+          6
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 48662,
+      "violations": 1462
+    },
+    "some_frozen_F3_coloring_extends": {
+      "description": "Some proper coloring of H[F3] has a list-colorable frozen projection on the residual shared graph.",
+      "first_counterexample": {
+        "F3": [],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            4
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "extendable_F3_colorings": 0,
+        "first_failure": {
+          "frozen_F3_coloring": {},
+          "projected_lists": {
+            "5": [
+              2
+            ],
+            "6": [
+              2
+            ]
+          }
+        },
+        "first_success": null,
+        "gamma": 3,
+        "graph6": "FCQb_",
+        "list_kind": "static",
+        "n": 7,
+        "proper_F3_colorings": 1,
+        "response_lists": {
+          "5": [
+            2
+          ],
+          "6": [
+            2
+          ]
+        },
+        "scope": "near_miss",
+        "shared_vertices": [
+          5,
+          6
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 48662,
+      "violations": 1462
+    },
+    "static_F3_empty_under_gamma_alpha_three": {
+      "description": "If gamma=alpha=3, every maximum-independent reference has empty static full-list set F3.",
+      "first_counterexample": {
+        "F3": [
+          3
+        ],
+        "S": [
+          0,
+          1,
+          2
+        ],
+        "alpha": 3,
+        "distinguished_full_list_vertex": 3,
+        "edges_G": [
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            1,
+            5
+          ],
+          [
+            1,
+            7
+          ],
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            2,
+            4
+          ],
+          [
+            2,
+            6
+          ],
+          [
+            2,
+            7
+          ],
+          [
+            2,
+            8
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            4,
+            7
+          ],
+          [
+            4,
+            8
+          ],
+          [
+            5,
+            7
+          ],
+          [
+            6,
+            8
+          ],
+          [
+            6,
+            9
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            9
+          ]
+        ],
+        "gamma": 3,
+        "graph6": "IFjLBXiow",
+        "greatest_eternal_3_family_size": 0,
+        "greatest_eternal_4_family_size": 170,
+        "list_kind": "static",
+        "n": 10,
+        "response_lists": {
+          "3": [
+            0,
+            1,
+            2
+          ],
+          "4": [
+            0,
+            2
+          ],
+          "5": [
+            0,
+            1
+          ],
+          "6": [
+            0,
+            2
+          ],
+          "7": [
+            1,
+            2
+          ],
+          "8": [
+            1,
+            2
+          ],
+          "9": [
+            0,
+            1
+          ]
+        },
+        "scope": "named_order10_gamma_alpha_near_miss",
+        "shared_vertices": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "mathematical_status": "REFUTED_IN_TESTED_POPULATION",
+      "tests": 2085,
+      "violations": 1
+    },
+    "static_deletion_list_colorable_under_gamma_three": {
+      "description": "For static omission W_u under gamma(G)=3, H[W_u] is colorable from the original static lists with u deleted.",
+      "first_counterexample": null,
+      "mathematical_status": "PROVED",
+      "tests": 4059,
+      "violations": 0
+    },
+    "static_deletion_list_colorable_without_original_gamma_three": {
+      "description": "Static deletion-coloring remains valid after removing the original gamma=3 hypothesis.",
+      "first_counterexample": null,
+      "mathematical_status": "OBSERVED_ONLY",
+      "tests": 66741,
+      "violations": 0
+    }
+  },
+  "implementation": {
+    "geng": "tools/nauty2_9_3/geng",
+    "geng_sha256": "588052a87e5313f331aa145a0a641702b6c13b6e2387dd3c4807bf7f49fdaca1",
+    "ordinary_set_base": "math/working/cross_state_response_probe.py",
+    "ordinary_set_base_sha256": "e335e60e958a2520398a10b7614c346f81cc3dd000963c38678f4460d363a6ff",
+    "python": "3.14.6",
+    "script": "math/working/k3_full_list_residual_probe.py",
+    "script_sha256": "b7805ef0fa63744ea97060d72d2ef697d3dfca3ed4d06bddf9304f7bdee5a50a"
+  },
+  "interpretation": [
+    "The target equality and near-miss populations contain no static F3 vertices in the completed scope; their F3 geometry tests are therefore vacuous.",
+    "The separately supplied and independently replayed order-10 negative control has gamma=alpha=3, empty eternal three-family, and a nonempty static F3. Thus the order-eight observation does not generalize from gamma=alpha alone.",
+    "The gamma-low control population is reported separately and cannot refute a claim that essentially uses gamma=alpha=3.",
+    "A zero-violation claim labeled OBSERVED_ONLY is finite evidence, not a theorem.",
+    "Frozen-projection existence is exactly the original list-coloring question after choosing colors on F3; it is not an independent resolution mechanism.",
+    "The separately reported greatest-family comparison tests whether P_u is all of the greatest two-family of Q_u; failure means that arbitrary lower-parameter eternal states cannot automatically be lifted while preserving the frozen guard."
+  ],
+  "named_order10_static_full_list_control": {
+    "S": [
+      0,
+      1,
+      2
+    ],
+    "adjacency_sha256": "51bff18f2a2db8c97638bb47eca4c616e2e0655c8e6be233fba49f7a92066ac4",
+    "alpha": 3,
+    "edges_G": [
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        6
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        8,
+        9
+      ]
+    ],
+    "gamma": 3,
+    "graph6_labeled": "IFjLBXiow",
+    "greatest_eternal_3_family_size": 0,
+    "greatest_eternal_4_family_size": 170,
+    "interpretation": "This order-10 graph proves that the through-order-8 empty-F3 observation does not follow from gamma=alpha=3 without full eternal equality.",
+    "static_F3": [
+      3
+    ],
+    "static_response_lists": {
+      "3": [
+        0,
+        1,
+        2
+      ],
+      "4": [
+        0,
+        2
+      ],
+      "5": [
+        0,
+        1
+      ],
+      "6": [
+        0,
+        2
+      ],
+      "7": [
+        1,
+        2
+      ],
+      "8": [
+        1,
+        2
+      ],
+      "9": [
+        0,
+        1
+      ]
+    },
+    "status": "VERIFIED_NEGATIVE_CONTROL"
+  },
+  "near_miss_reference_deepest_kernel_round_histogram": {
+    "0": 344,
+    "1": 385,
+    "2": 2
+  },
+  "orders": [
+    {
+      "complete": true,
+      "connected_graphs": 1,
+      "graph6_stream_sha256": "ecf5de1a2ecc66a1876a832804c64f6b5125784e94c82285d9720621c613ab46",
+      "order": 1
+    },
+    {
+      "complete": true,
+      "connected_graphs": 1,
+      "graph6_stream_sha256": "fae4bfc454bd04363dcd5222772f2973b1193e1ff6f676e822a427323a677ef9",
+      "order": 2
+    },
+    {
+      "complete": true,
+      "connected_graphs": 2,
+      "graph6_stream_sha256": "5966edf890849db6cb03626431916231a81a30c9db9a4781a4a8f2e5dc7e6129",
+      "order": 3
+    },
+    {
+      "complete": true,
+      "connected_graphs": 6,
+      "gamma_low_control_family_F3_H_edges": 0,
+      "gamma_low_control_family_F3_H_triangles": 0,
+      "gamma_low_control_family_F3_vertices": 1,
+      "gamma_low_control_family_extendable_F3_colorings": 3,
+      "gamma_low_control_family_frozen_projections": 3,
+      "gamma_low_control_family_projected_family_states": 3,
+      "gamma_low_control_family_proper_F3_colorings": 3,
+      "gamma_low_control_family_raw_residual_colorable_references": 1,
+      "gamma_low_control_family_references_with_F3": 1,
+      "gamma_low_control_family_shared_vertices": 1,
+      "gamma_low_control_family_triangle_attack_orders": 0,
+      "gamma_low_control_graphs": 1,
+      "gamma_low_control_references": 1,
+      "gamma_low_control_static_F3_H_edges": 0,
+      "gamma_low_control_static_F3_H_triangles": 0,
+      "gamma_low_control_static_F3_vertices": 1,
+      "gamma_low_control_static_extendable_F3_colorings": 3,
+      "gamma_low_control_static_frozen_projections": 3,
+      "gamma_low_control_static_projected_family_states": 3,
+      "gamma_low_control_static_proper_F3_colorings": 3,
+      "gamma_low_control_static_raw_residual_colorable_references": 1,
+      "gamma_low_control_static_references_with_F3": 1,
+      "gamma_low_control_static_shared_vertices": 1,
+      "graph6_stream_sha256": "d7da485669f2dc74b81c02f18774a07430937684896833d59f138b10debb5005",
+      "order": 4
+    },
+    {
+      "complete": true,
+      "connected_graphs": 21,
+      "gamma_low_control_family_F3_H_edges": 1,
+      "gamma_low_control_family_F3_H_triangles": 0,
+      "gamma_low_control_family_F3_vertices": 8,
+      "gamma_low_control_family_extendable_F3_colorings": 31,
+      "gamma_low_control_family_frozen_projections": 30,
+      "gamma_low_control_family_projected_family_states": 54,
+      "gamma_low_control_family_proper_F3_colorings": 31,
+      "gamma_low_control_family_raw_residual_colorable_references": 10,
+      "gamma_low_control_family_references_with_F3": 6,
+      "gamma_low_control_family_shared_vertices": 16,
+      "gamma_low_control_family_triangle_attack_orders": 0,
+      "gamma_low_control_graphs": 8,
+      "gamma_low_control_references": 10,
+      "gamma_low_control_static_F3_H_edges": 1,
+      "gamma_low_control_static_F3_H_triangles": 0,
+      "gamma_low_control_static_F3_vertices": 8,
+      "gamma_low_control_static_extendable_F3_colorings": 31,
+      "gamma_low_control_static_frozen_projections": 30,
+      "gamma_low_control_static_projected_family_states": 54,
+      "gamma_low_control_static_proper_F3_colorings": 31,
+      "gamma_low_control_static_raw_residual_colorable_references": 10,
+      "gamma_low_control_static_references_with_F3": 6,
+      "gamma_low_control_static_shared_vertices": 16,
+      "graph6_stream_sha256": "8169b01acd1570bf0d464cb7b4cf17ebb263035dc664de84ce41b8dd9618e301",
+      "order": 5
+    },
+    {
+      "complete": true,
+      "connected_graphs": 112,
+      "equality_family_F3_H_edges": 0,
+      "equality_family_F3_H_triangles": 0,
+      "equality_family_F3_vertices": 0,
+      "equality_family_extendable_F3_colorings": 9,
+      "equality_family_frozen_projections": 27,
+      "equality_family_projected_family_states": 108,
+      "equality_family_proper_F3_colorings": 9,
+      "equality_family_raw_residual_colorable_references": 9,
+      "equality_family_references_with_F3": 0,
+      "equality_family_shared_vertices": 11,
+      "equality_family_triangle_attack_orders": 0,
+      "equality_graphs": 2,
+      "equality_references": 9,
+      "equality_static_F3_H_edges": 0,
+      "equality_static_F3_H_triangles": 0,
+      "equality_static_F3_vertices": 0,
+      "equality_static_extendable_F3_colorings": 9,
+      "equality_static_frozen_projections": 27,
+      "equality_static_projected_family_states": 108,
+      "equality_static_proper_F3_colorings": 9,
+      "equality_static_raw_residual_colorable_references": 9,
+      "equality_static_references_with_F3": 0,
+      "equality_static_shared_vertices": 11,
+      "gamma_low_control_family_F3_H_edges": 15,
+      "gamma_low_control_family_F3_H_triangles": 2,
+      "gamma_low_control_family_F3_vertices": 72,
+      "gamma_low_control_family_extendable_F3_colorings": 316,
+      "gamma_low_control_family_frozen_projections": 354,
+      "gamma_low_control_family_projected_family_states": 1030,
+      "gamma_low_control_family_proper_F3_colorings": 322,
+      "gamma_low_control_family_raw_residual_colorable_references": 118,
+      "gamma_low_control_family_references_with_F3": 51,
+      "gamma_low_control_family_shared_vertices": 248,
+      "gamma_low_control_family_triangle_attack_orders": 12,
+      "gamma_low_control_graphs": 61,
+      "gamma_low_control_references": 118,
+      "gamma_low_control_static_F3_H_edges": 15,
+      "gamma_low_control_static_F3_H_triangles": 2,
+      "gamma_low_control_static_F3_vertices": 74,
+      "gamma_low_control_static_extendable_F3_colorings": 317,
+      "gamma_low_control_static_frozen_projections": 354,
+      "gamma_low_control_static_projected_family_states": 1012,
+      "gamma_low_control_static_proper_F3_colorings": 326,
+      "gamma_low_control_static_raw_residual_colorable_references": 118,
+      "gamma_low_control_static_references_with_F3": 53,
+      "gamma_low_control_static_shared_vertices": 248,
+      "graph6_stream_sha256": "9fd4d2161400fc5f302fe1adc8c2b1230c312a15b15d0e2a343a02d75dd5cbfa",
+      "order": 6
+    },
+    {
+      "complete": true,
+      "connected_graphs": 853,
+      "equality_family_F3_H_edges": 0,
+      "equality_family_F3_H_triangles": 0,
+      "equality_family_F3_vertices": 0,
+      "equality_family_extendable_F3_colorings": 103,
+      "equality_family_frozen_projections": 309,
+      "equality_family_projected_family_states": 1631,
+      "equality_family_proper_F3_colorings": 103,
+      "equality_family_raw_residual_colorable_references": 103,
+      "equality_family_references_with_F3": 0,
+      "equality_family_shared_vertices": 174,
+      "equality_family_triangle_attack_orders": 0,
+      "equality_graphs": 16,
+      "equality_references": 103,
+      "equality_static_F3_H_edges": 0,
+      "equality_static_F3_H_triangles": 0,
+      "equality_static_F3_vertices": 0,
+      "equality_static_extendable_F3_colorings": 103,
+      "equality_static_frozen_projections": 309,
+      "equality_static_projected_family_states": 1582,
+      "equality_static_proper_F3_colorings": 103,
+      "equality_static_raw_residual_colorable_references": 103,
+      "equality_static_references_with_F3": 0,
+      "equality_static_shared_vertices": 174,
+      "gamma_low_control_family_F3_H_edges": 124,
+      "gamma_low_control_family_F3_H_triangles": 10,
+      "gamma_low_control_family_F3_vertices": 648,
+      "gamma_low_control_family_extendable_F3_colorings": 3287,
+      "gamma_low_control_family_frozen_projections": 4104,
+      "gamma_low_control_family_projected_family_states": 17437,
+      "gamma_low_control_family_proper_F3_colorings": 3420,
+      "gamma_low_control_family_raw_residual_colorable_references": 1368,
+      "gamma_low_control_family_references_with_F3": 450,
+      "gamma_low_control_family_shared_vertices": 3604,
+      "gamma_low_control_family_triangle_attack_orders": 60,
+      "gamma_low_control_graphs": 494,
+      "gamma_low_control_references": 1368,
+      "gamma_low_control_static_F3_H_edges": 132,
+      "gamma_low_control_static_F3_H_triangles": 11,
+      "gamma_low_control_static_F3_vertices": 742,
+      "gamma_low_control_static_extendable_F3_colorings": 3345,
+      "gamma_low_control_static_frozen_projections": 4104,
+      "gamma_low_control_static_projected_family_states": 16666,
+      "gamma_low_control_static_proper_F3_colorings": 3632,
+      "gamma_low_control_static_raw_residual_colorable_references": 1368,
+      "gamma_low_control_static_references_with_F3": 532,
+      "gamma_low_control_static_shared_vertices": 3604,
+      "graph6_stream_sha256": "eca7b9f61b5f54fe98f23f8b4e2baf77be08cd392911e0655fc8b7a72640fae1",
+      "near_miss_K0_projection_bipartite_failures": 71,
+      "near_miss_K0_projection_closure_failures": 71,
+      "near_miss_finite_horizon_F3_H_edges": 0,
+      "near_miss_finite_horizon_F3_H_triangles": 0,
+      "near_miss_finite_horizon_F3_vertices": 0,
+      "near_miss_finite_horizon_extendable_F3_colorings": 0,
+      "near_miss_finite_horizon_proper_F3_colorings": 33,
+      "near_miss_finite_horizon_raw_residual_colorable_references": 0,
+      "near_miss_finite_horizon_references_with_F3": 0,
+      "near_miss_finite_horizon_shared_vertices": 66,
+      "near_miss_graphs": 5,
+      "near_miss_kernel_rounds_total": 10,
+      "near_miss_references": 33,
+      "near_miss_static_F3_H_edges": 0,
+      "near_miss_static_F3_H_triangles": 0,
+      "near_miss_static_F3_vertices": 0,
+      "near_miss_static_extendable_F3_colorings": 0,
+      "near_miss_static_proper_F3_colorings": 33,
+      "near_miss_static_raw_residual_colorable_references": 0,
+      "near_miss_static_references_with_F3": 0,
+      "near_miss_static_shared_vertices": 66,
+      "order": 7
+    },
+    {
+      "complete": true,
+      "connected_graphs": 11117,
+      "equality_family_F3_H_edges": 0,
+      "equality_family_F3_H_triangles": 0,
+      "equality_family_F3_vertices": 0,
+      "equality_family_extendable_F3_colorings": 1241,
+      "equality_family_frozen_projections": 3723,
+      "equality_family_projected_family_states": 25450,
+      "equality_family_proper_F3_colorings": 1241,
+      "equality_family_raw_residual_colorable_references": 1241,
+      "equality_family_references_with_F3": 0,
+      "equality_family_shared_vertices": 2627,
+      "equality_family_triangle_attack_orders": 0,
+      "equality_graphs": 140,
+      "equality_references": 1241,
+      "equality_static_F3_H_edges": 0,
+      "equality_static_F3_H_triangles": 0,
+      "equality_static_F3_vertices": 0,
+      "equality_static_extendable_F3_colorings": 1241,
+      "equality_static_frozen_projections": 3723,
+      "equality_static_projected_family_states": 24523,
+      "equality_static_proper_F3_colorings": 1241,
+      "equality_static_raw_residual_colorable_references": 1241,
+      "equality_static_references_with_F3": 0,
+      "equality_static_shared_vertices": 2627,
+      "gamma_low_control_family_F3_H_edges": 1488,
+      "gamma_low_control_family_F3_H_triangles": 104,
+      "gamma_low_control_family_F3_vertices": 7615,
+      "gamma_low_control_family_extendable_F3_colorings": 42856,
+      "gamma_low_control_family_frozen_projections": 62250,
+      "gamma_low_control_family_projected_family_states": 364710,
+      "gamma_low_control_family_proper_F3_colorings": 46088,
+      "gamma_low_control_family_raw_residual_colorable_references": 20750,
+      "gamma_low_control_family_references_with_F3": 5214,
+      "gamma_low_control_family_shared_vertices": 67858,
+      "gamma_low_control_family_triangle_attack_orders": 624,
+      "gamma_low_control_graphs": 5339,
+      "gamma_low_control_references": 20750,
+      "gamma_low_control_static_F3_H_edges": 1912,
+      "gamma_low_control_static_F3_H_triangles": 146,
+      "gamma_low_control_static_F3_vertices": 10624,
+      "gamma_low_control_static_extendable_F3_colorings": 44840,
+      "gamma_low_control_static_frozen_projections": 62250,
+      "gamma_low_control_static_projected_family_states": 332566,
+      "gamma_low_control_static_proper_F3_colorings": 53774,
+      "gamma_low_control_static_raw_residual_colorable_references": 20750,
+      "gamma_low_control_static_references_with_F3": 7569,
+      "gamma_low_control_static_shared_vertices": 67858,
+      "graph6_stream_sha256": "37010dfb9ca35c86bcbfd488c3e4cadcb3e918dc8c6acebd81ea966e79c35a84",
+      "near_miss_K0_projection_bipartite_failures": 1605,
+      "near_miss_K0_projection_closure_failures": 1655,
+      "near_miss_finite_horizon_F3_H_edges": 0,
+      "near_miss_finite_horizon_F3_H_triangles": 0,
+      "near_miss_finite_horizon_F3_vertices": 0,
+      "near_miss_finite_horizon_extendable_F3_colorings": 0,
+      "near_miss_finite_horizon_proper_F3_colorings": 698,
+      "near_miss_finite_horizon_raw_residual_colorable_references": 0,
+      "near_miss_finite_horizon_references_with_F3": 0,
+      "near_miss_finite_horizon_shared_vertices": 1710,
+      "near_miss_graphs": 78,
+      "near_miss_kernel_rounds_total": 156,
+      "near_miss_references": 698,
+      "near_miss_static_F3_H_edges": 0,
+      "near_miss_static_F3_H_triangles": 0,
+      "near_miss_static_F3_vertices": 0,
+      "near_miss_static_extendable_F3_colorings": 0,
+      "near_miss_static_proper_F3_colorings": 698,
+      "near_miss_static_raw_residual_colorable_references": 0,
+      "near_miss_static_references_with_F3": 0,
+      "near_miss_static_shared_vertices": 1710,
+      "order": 8
+    }
+  ],
+  "resource_usage": {
+    "elapsed_seconds": 15.965037,
+    "maximum_resident_set_bytes": 30769152
+  },
+  "schema": "k3-full-list-residual-probe-v1",
+  "scope": {
+    "F3": "shared vertices whose tested response list equals S",
+    "H": "the complement of G",
+    "connected_unlabeled_only": true,
+    "order_14_used": false,
+    "orders": [
+      1,
+      8
+    ],
+    "populations": {
+      "equality": "gamma=alpha=gamma^infinity=3",
+      "gamma_low_control": "alpha=gamma^infinity=3 and gamma<3; falsification control only",
+      "near_miss": "gamma=alpha=3 with empty greatest eternal three-family"
+    },
+    "shared_vertices": "vertices outside S adjacent in G to at least two members of S",
+    "solver": "none; exact ordinary-set enumeration and backtracking only",
+    "wall_clock_gate_seconds": 60.0
+  },
+  "status": "COMPLETE",
+  "totals": {
+    "connected_graphs": 12113,
+    "equality_family_F3_H_edges": 0,
+    "equality_family_F3_H_triangles": 0,
+    "equality_family_F3_vertices": 0,
+    "equality_family_extendable_F3_colorings": 1353,
+    "equality_family_frozen_projections": 4059,
+    "equality_family_projected_family_states": 27189,
+    "equality_family_proper_F3_colorings": 1353,
+    "equality_family_raw_residual_colorable_references": 1353,
+    "equality_family_references_with_F3": 0,
+    "equality_family_shared_vertices": 2812,
+    "equality_family_triangle_attack_orders": 0,
+    "equality_graphs": 158,
+    "equality_references": 1353,
+    "equality_static_F3_H_edges": 0,
+    "equality_static_F3_H_triangles": 0,
+    "equality_static_F3_vertices": 0,
+    "equality_static_extendable_F3_colorings": 1353,
+    "equality_static_frozen_projections": 4059,
+    "equality_static_projected_family_states": 26213,
+    "equality_static_proper_F3_colorings": 1353,
+    "equality_static_raw_residual_colorable_references": 1353,
+    "equality_static_references_with_F3": 0,
+    "equality_static_shared_vertices": 2812,
+    "gamma_low_control_family_F3_H_edges": 1628,
+    "gamma_low_control_family_F3_H_triangles": 116,
+    "gamma_low_control_family_F3_vertices": 8344,
+    "gamma_low_control_family_extendable_F3_colorings": 46493,
+    "gamma_low_control_family_frozen_projections": 66741,
+    "gamma_low_control_family_projected_family_states": 383234,
+    "gamma_low_control_family_proper_F3_colorings": 49864,
+    "gamma_low_control_family_raw_residual_colorable_references": 22247,
+    "gamma_low_control_family_references_with_F3": 5722,
+    "gamma_low_control_family_shared_vertices": 71727,
+    "gamma_low_control_family_triangle_attack_orders": 696,
+    "gamma_low_control_graphs": 5903,
+    "gamma_low_control_references": 22247,
+    "gamma_low_control_static_F3_H_edges": 2060,
+    "gamma_low_control_static_F3_H_triangles": 159,
+    "gamma_low_control_static_F3_vertices": 11449,
+    "gamma_low_control_static_extendable_F3_colorings": 48536,
+    "gamma_low_control_static_frozen_projections": 66741,
+    "gamma_low_control_static_projected_family_states": 350301,
+    "gamma_low_control_static_proper_F3_colorings": 57766,
+    "gamma_low_control_static_raw_residual_colorable_references": 22247,
+    "gamma_low_control_static_references_with_F3": 8161,
+    "gamma_low_control_static_shared_vertices": 71727,
+    "near_miss_K0_projection_bipartite_failures": 1676,
+    "near_miss_K0_projection_closure_failures": 1726,
+    "near_miss_finite_horizon_F3_H_edges": 0,
+    "near_miss_finite_horizon_F3_H_triangles": 0,
+    "near_miss_finite_horizon_F3_vertices": 0,
+    "near_miss_finite_horizon_extendable_F3_colorings": 0,
+    "near_miss_finite_horizon_proper_F3_colorings": 731,
+    "near_miss_finite_horizon_raw_residual_colorable_references": 0,
+    "near_miss_finite_horizon_references_with_F3": 0,
+    "near_miss_finite_horizon_shared_vertices": 1776,
+    "near_miss_graphs": 83,
+    "near_miss_kernel_rounds_total": 166,
+    "near_miss_references": 731,
+    "near_miss_static_F3_H_edges": 0,
+    "near_miss_static_F3_H_triangles": 0,
+    "near_miss_static_F3_vertices": 0,
+    "near_miss_static_extendable_F3_colorings": 0,
+    "near_miss_static_proper_F3_colorings": 731,
+    "near_miss_static_raw_residual_colorable_references": 0,
+    "near_miss_static_references_with_F3": 0,
+    "near_miss_static_shared_vertices": 1776
+  }
+}

@@ -162,6 +162,38 @@ coincide, leaving \(R\cong K_2+2K_1\).  This sharply delimits a canonical
 kernel-and-mask enumeration; that enumeration has not yet been run and the
 \((13,5)\) slice remains open.
 
+Claims C-063--C-068 record the next proof-first advance.  Freezing any one
+response color at an independent family state produces a literal eternal
+family with one fewer guard on an induced subgraph.  Under
+\(\gamma=\gamma^\infty=k\), that projected graph again satisfies
+\[
+  \gamma=\alpha=\gamma^\infty=k-1.
+\]
+This is a genuine induction mechanism.  At \(k=3\), the already proved
+parameter-two case makes every missing-color complement projection bipartite.
+It follows that the formerly live tight odd-cycle obstruction with one common
+two-color list cannot occur.  What remains is precisely a mixed three-color
+cut/high-degree core; the abstract four-vertex path
+\(\{a\},\{a,c\},\{b,c\},\{b\}\) shows why the three valid deletion colorings
+do not automatically glue.  The exact graph `FDzro` realizes that path in a
+proper one-guard eternal three-family while
+\(\gamma=2<\alpha=\gamma^\infty=\theta=3\), proving that the current dynamic
+lemmas alone cannot exclude it.  Under the missing equality \(\gamma=3\),
+the middle path pair instead forces an external clique of maximum-independent
+family states with exact ridge covariance.  Exploiting that witness clique is
+the next live proof mechanism.
+
+The same iteration proved exact response-list covariance between
+ridge-adjacent maximum independent states and family-supported monotone
+exchange paths between arbitrary independent states.  Hostile examples
+delimit the theorem sharply: expansion/restoration alone is not
+base-orderability, and even equality does not force individual exchanges to
+be reciprocal in an arbitrary eternal subfamily.  Thus the current proof
+target is no longer a generic list-coloring assertion; it is to show that the
+mixed three-color core cannot be realized by the full one-guard dynamics
+under the equality target \(\gamma=\alpha=\gamma^\infty=3\).  The conjecture
+remains unresolved, and no order-14 computation has begun.
+
 ## Trust architecture
 
 - `src/verifier_a/`: bitset greatest-fixed-point implementation.
