@@ -354,3 +354,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   terminal `UNSAT` must still undergo a read-only
   `--deep-reconstruct --verify-terminal-proof` audit, and all three accepted
   hole templates are required for a finite `(n,k)=(12,3)` conclusion.
+
+### 18:12 — First production `hole9` cut committed and deeply audited
+
+- Launched exactly one iteration from pushed commit `149378de` under seed
+  zero, 60-second and 2,048 MiB child limits, a 4,096 MiB disk reserve, a
+  256 MiB child-file cap, and a 1 MiB retained-attempt cap.
+- CaDiCaL returned a complete SAT assignment in 0.028558 seconds using about
+  4.86 MiB peak RSS.  The runner directly checked every CNF clause, decoded
+  graph/family condition, proper complement three-coloring, and falsity of
+  the resulting 19-literal same-color cut.  The cut was atomically
+  committed.
+- The checkpoint now has one attempt, one cut, status `running`, and no
+  terminal.  Its SHA-256 is
+  `075bdb8e168d1b6edeca6470a56fdc00be4624adaa7f80433b053306b49eb90e`.
+- A separate `--audit-only --deep-reconstruct` run returned
+  `running_audit_passed`.  The complete ten-file run tree had SHA-256
+  `691838bced032e72ab037d13f547c2dbfe9eb4351c8c486814c166a8feb7c847`
+  both before and after audit.  The retained tree is 39,706 file bytes.
+- This is a production-integrity milestone only.  One coloring cut proves
+  no template-level or graph-level nonexistence statement.

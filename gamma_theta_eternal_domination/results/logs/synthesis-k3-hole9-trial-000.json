@@ -1,0 +1,91 @@
+{
+  "schema": "gamma-theta-k3-cegar-trial-audit-v1",
+  "created_at": "2026-07-25T18:12:02-07:00",
+  "repository_commit_before_launch": "149378de",
+  "template": "hole9",
+  "command": [
+    "PYTHONPATH=src",
+    "PYTHONWARNINGS=error",
+    "python3",
+    "-m",
+    "synthesis_k3.cegar",
+    "--validation-gate-open",
+    "--template",
+    "hole9",
+    "--run-dir",
+    "results/synthesis_k3_runs/hole9",
+    "--max-iterations",
+    "1",
+    "--seed",
+    "0",
+    "--solver-wall-seconds",
+    "60",
+    "--solver-memory-mib",
+    "2048",
+    "--checker-wall-seconds",
+    "60",
+    "--checker-memory-mib",
+    "2048",
+    "--session-wall-seconds",
+    "7200",
+    "--disk-reserve-mib",
+    "4096",
+    "--child-file-limit-mib",
+    "256",
+    "--retained-attempt-limit-mib",
+    "1"
+  ],
+  "outcome": {
+    "status": "iteration_budget_exhausted",
+    "attempt_count": 1,
+    "cut_count": 1,
+    "terminal_path": null
+  },
+  "checkpoint": {
+    "path": "results/synthesis_k3_runs/hole9/checkpoint.json",
+    "sha256": "075bdb8e168d1b6edeca6470a56fdc00be4624adaa7f80433b053306b49eb90e",
+    "configuration_sha256": "91b1257afd83f8b574229ebf9a1b8f673bd69b93ca7b72286ba90da6ee38fdd8",
+    "run_manifest_sha256": "73869e60bdefc547a91139ab3bfb0673ee8168acada62485089eb371a9d7c15d",
+    "history_chain_sha256": "b9900030ceffed89cd9e9c9c674a0a861af236cc7885e84af38eb0a19b18719a"
+  },
+  "attempt": {
+    "index": 0,
+    "outcome": "coloring_cut_committed",
+    "manifest_path": "results/synthesis_k3_runs/hole9/attempts/000000.ukvtpu8_/attempt.json",
+    "manifest_sha256": "3b35d83c4c5c82a3aa11c53110b10a88a89c98ee2581ffd095a93edf1bd56ca0",
+    "complete_model": true,
+    "all_clauses_satisfied": true,
+    "decoded_candidate_directly_validated": true,
+    "proper_three_coloring_directly_validated": true,
+    "cut_false_in_current_model": true,
+    "cut_clause_length": 19,
+    "solver_exit_code": 10,
+    "solver_wall_seconds": 0.02855799999088049,
+    "solver_user_cpu_seconds": 0.007056,
+    "solver_system_cpu_seconds": 0.00328,
+    "solver_peak_rss_bytes": 5095424,
+    "available_memory_before_bytes": 3686137856
+  },
+  "disk_preflight": {
+    "available_free_bytes": 8902217728,
+    "required_free_bytes": 6728712192,
+    "disk_reserve_bytes": 4294967296,
+    "passed": true
+  },
+  "read_only_deep_audit": {
+    "command_suffix": [
+      "--audit-only",
+      "--deep-reconstruct"
+    ],
+    "status": "running_audit_passed",
+    "checkpoint_sha256": "075bdb8e168d1b6edeca6470a56fdc00be4624adaa7f80433b053306b49eb90e",
+    "tree_digest_algorithm": "SHA256 over sorted files, with 8-byte big-endian path length, UTF-8 relative path, 8-byte big-endian byte length, and file bytes",
+    "tree_sha256_before": "691838bced032e72ab037d13f547c2dbfe9eb4351c8c486814c166a8feb7c847",
+    "tree_sha256_after": "691838bced032e72ab037d13f547c2dbfe9eb4351c8c486814c166a8feb7c847",
+    "file_count_before": 10,
+    "file_count_after": 10,
+    "total_file_bytes": 39706,
+    "byte_tree_unchanged": true
+  },
+  "claim_boundary": "This trial commits one globally sound coloring cut. It is neither a template-level UNSAT result nor a counterexample."
+}

@@ -1,5 +1,66 @@
 # Campaign State
 
+## Checkpoint 008 — 2026-07-25 18:12 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Accepted runner commit: `149378de`, pushed before launch.
+- Completion estimate for the campaign work plan: **47%**.
+- Completion estimate toward an actual universal resolution: **10%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+
+### Verified production state
+
+- The first bounded `hole9` production iteration is committed and
+  read-only-audited.  It produced one complete SAT model, one proper
+  complement three-coloring, and one globally sound 19-literal coloring
+  cut.
+- Checkpoint SHA-256:
+  `075bdb8e168d1b6edeca6470a56fdc00be4624adaa7f80433b053306b49eb90e`.
+  Run-manifest SHA-256:
+  `73869e60bdefc547a91139ab3bfb0673ee8168acada62485089eb371a9d7c15d`.
+- The exact ten-file run tree contains 39,706 bytes.  Its canonical
+  length-prefixed SHA-256 was
+  `691838bced032e72ab037d13f547c2dbfe9eb4351c8c486814c166a8feb7c847`
+  both before and after `--audit-only --deep-reconstruct`.
+- The solver child took 0.028558 seconds and about 4.86 MiB peak RSS.  The
+  checkpoint remains `running`, with one attempt, one cut, and no terminal.
+  ART-108--111 bind the trial log, run manifest, checkpoint, and attempt.
+
+### Claim boundary
+
+- A colorable SAT iteration only supplies a globally sound cut.  It excludes
+  neither the `hole9` template nor any graph class.
+- No proof-producing UNSAT or candidate exists yet.
+- Every future resume must use the immutable accepted configuration.  Any
+  terminal UNSAT still requires deep reconstruction and a fresh pinned DRAT
+  replay before it can support a claim.
+
+### Running jobs and resume command
+
+- No synthesis child was active when this checkpoint was written.
+- Resume from cut 1 with:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error python3 -m synthesis_k3.cegar \
+  --validation-gate-open --template hole9 \
+  --run-dir results/synthesis_k3_runs/hole9 \
+  --max-iterations 32 --seed 0 \
+  --solver-wall-seconds 60 --solver-memory-mib 2048 \
+  --checker-wall-seconds 60 --checker-memory-mib 2048 \
+  --session-wall-seconds 7200 --disk-reserve-mib 4096 \
+  --child-file-limit-mib 256 --retained-attempt-limit-mib 1
+```
+
+### Next three highest-value actions
+
+1. Commit and push this first production checkpoint before resuming.
+2. Resume `hole9` in a bounded 32-iteration batch, then deep-audit and
+   checkpoint regardless of terminal status.
+3. Continue the independent induced-subgraph analysis of the eight deepest
+   transition-kernel near-misses.
+
 ## Checkpoint 007 — 2026-07-25 18:07 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.
