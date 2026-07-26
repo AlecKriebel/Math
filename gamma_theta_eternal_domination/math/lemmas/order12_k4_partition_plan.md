@@ -96,32 +96,48 @@ resource-limited attempt.  No previous raw artifact is overwritten.
    `drat-trim` first verifies the retained raw binary DRAT proof under
    `-i -f -W`.  This is a warning-fatal **forward** proof check and does not
    request or produce LRAT.
-4. A fresh pinned `drat-trim` process then reads the same leaf CNF and raw
-   binary proof under `-i -W -L`, without `-f`.  This separate **backward**
-   pass must itself return exactly one clean `s VERIFIED` and produce a
-   nonempty `proof.converted.lrat`.
-5. A separately pinned `lrat-check` executable replays that exact LRAT file
+4. A separately bounded, source-bound normalizer parses the complete binary
+   proof with canonical bounded varints.  It requires exactly one empty
+   addition, permits only deletions after that record, strips all deletions,
+   and writes `proof.normalized.rup.bdrat` plus an exact hash-and-count report.
+   This transformation by itself makes no proof claim: retaining a deleted
+   clause can make a later RAT step fail.
+5. A fresh pinned `drat-trim` process verifies the normalized addition-only
+   stream under `-i -f -W -U`.  The explicit `-U` makes every retained
+   addition pass the stronger RUP-only check, closing the soundness gap in
+   deletion stripping.
+6. Another fresh pinned `drat-trim` process reads the same leaf CNF and
+   normalized stream under `-i -W -U -L`, without `-f`.  This separate
+   **backward** pass must itself return exactly one clean `s VERIFIED` and
+   produce a nonempty `proof.converted.lrat`.
+7. A separately pinned `lrat-check` executable replays that exact LRAT file
    against that exact leaf CNF.  Only then may the leaf status become
    `UNSAT_LRAT_VERIFIED`.
-6. Timeouts, signals, malformed output, missing files, warnings, hash
+8. Timeouts, signals, malformed output, missing files, warnings, hash
    changes, and resource-gate failures are nonclaims.
 
-The distinction between steps 3 and 4 is essential for the pinned tools.
+The distinction between forward verification and backward conversion is
+essential for the pinned tools.
 On a real two-variable UNSAT regression, LRAT emitted by the combined
 forward `-f -L` mode is rejected by the pinned `lrat-check`, whereas the
 separate backward conversion is accepted.  The production protocol is
 therefore identified as
-`binary-drat-forward-check-backward-lrat-v2`.
+`binary-drat-raw-forward-normalize-rup-forward-backward-lrat-v3`.
 
 The decisive leaf inventory binds the exact files
-`instance.cnf`, `solver.result`, `proof.raw.bdrat`,
+`instance.cnf`, `solver.result`, `solver.stdout`, `solver.stderr`,
+`proof.raw.bdrat`,
 `raw-forward.stdout`, `raw-forward.stderr`,
+`normalizer.stdout`, `normalizer.stderr`,
+`normalization-report.json`, `proof.normalized.rup.bdrat`,
+`normalized-forward.stdout`, `normalized-forward.stderr`,
 `lrat-conversion.stdout`, `lrat-conversion.stderr`,
 `proof.converted.lrat`, `lrat-check.stdout`, `lrat-check.stderr`,
-the four per-phase resource reports, `attempt-config.json`, and
+the six per-phase resource reports, `attempt-config.json`, and
 `certificate.json`.  The attempt outcome binds every retained file by path,
-size, and SHA-256.  The certificate separately binds both drat-trim child
-records and logs; neither successful pass substitutes for the other.
+size, and SHA-256.  The certificate separately binds all six child records,
+resource reports, decisive proof artifacts, and logs; no successful phase
+substitutes for another.
 
 Even if all 16 leaf statuses become `UNSAT_LRAT_VERIFIED`, the workflow
 labels the aggregate only
@@ -133,8 +149,9 @@ manifest.
 ## Resume and resource discipline
 
 The immutable run manifest binds the exact parent bytes, parent generator
-manifest, runtime-source Git blobs and SHA-256 values, three executable
-hashes, tool-source archives, hardware report, fixed seeds, and limits.
+manifest, runtime-source Git blobs and SHA-256 values, the three proof-tool
+executables, the Python normalizer runtime, tool-source archives, hardware
+report, fixed seeds, and limits.
 The partition is immutable.  State changes are new numbered checkpoint
 files linked by SHA-256; no checkpoint is overwritten.
 

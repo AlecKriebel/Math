@@ -8,19 +8,22 @@ There are deliberately three separate operations:
 
 ``run-next``
     Run at most one leaf through the solver, an independent forward replay
-    of the raw binary DRAT proof, a separate backward LRAT conversion, and
-    LRAT replay.  An explicit production gate is required.
+    of the raw binary DRAT proof, strict addition-only normalization, a fresh
+    RUP-only replay, a separate RUP-only backward LRAT conversion, and LRAT
+    replay.  An explicit production gate is required.
 
 ``audit``
     Rehash immutable inputs, tools, sources, checkpoints, and attempts without
     starting a solver.
 
-SAT is always candidate-only.  A leaf is called ``UNSAT_LRAT_VERIFIED`` only
-after warning-fatal drat-trim first verifies the raw binary DRAT proof in
-forward mode, a second warning-fatal drat-trim process converts the same raw
-proof to LRAT in backward mode, and the resulting LRAT is replayed by the
-separately pinned lrat-check binary.  Even sixteen such leaves remain pending
-an independent aggregate coverage audit.
+SAT is always candidate-only.  Normalization itself makes no proof claim:
+retaining deleted clauses can invalidate later RAT steps.  A leaf is called
+``UNSAT_LRAT_VERIFIED`` only after warning-fatal drat-trim verifies both the
+raw binary DRAT proof and the normalized addition-only proof, the latter in
+RUP-only mode, another warning-fatal RUP-only process converts that normalized
+proof to LRAT, and the resulting LRAT is replayed by the separately pinned
+lrat-check binary.  Even sixteen such leaves remain pending an independent
+aggregate coverage audit.
 """
 
 from __future__ import annotations
@@ -38,6 +41,7 @@ import signal
 import stat
 import subprocess
 import sys
+import tempfile
 import time
 from dataclasses import asdict
 from itertools import combinations, product
@@ -48,16 +52,31 @@ from synthesis_k3.cegar import (
     ChildResult,
     RunLock,
     _available_memory_bytes,
+    _command_sha256,
     parse_dimacs_bytes,
     parse_solver_result_bytes,
     run_bounded_child,
     validate_model_satisfies_cnf,
     verify_pinned_tools,
 )
+from search.k4_production.normalize_bdrat import (
+    NORMALIZATION_POLICY,
+    NORMALIZATION_SCHEMA,
+)
 
 
 SCHEMA_VERSION = 1
-PROOF_PIPELINE_ID = "binary-drat-forward-check-backward-lrat-v2"
+PROOF_PIPELINE_ID = (
+    "binary-drat-raw-forward-normalize-rup-forward-backward-lrat-v3"
+)
+ATTEMPT_CONFIG_SCHEMA = "gamma-theta-order12-k4-attempt-config-v3"
+ATTEMPT_CONFIG_SCHEMA_VERSION = 3
+ATTEMPT_OUTCOME_SCHEMA = "gamma-theta-order12-k4-attempt-outcome-v2"
+ATTEMPT_OUTCOME_SCHEMA_VERSION = 2
+LEAF_CERTIFICATE_SCHEMA = (
+    "gamma-theta-order12-k4-leaf-lrat-certificate-v3"
+)
+LEAF_CERTIFICATE_SCHEMA_VERSION = 3
 EXPECTED_PARENT_CNF_SHA256 = (
     "adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac"
 )
@@ -125,6 +144,16 @@ RETRYABLE_OUTCOMES = frozenset(
         "RAW_FORWARD_FILE_LIMIT_NONCLAIM",
         "RAW_FORWARD_SIGNAL_NONCLAIM",
         "RAW_FORWARD_REJECTED_NONCLAIM",
+        "NORMALIZER_TIMEOUT_NONCLAIM",
+        "NORMALIZER_MEMORY_LIMIT_NONCLAIM",
+        "NORMALIZER_FILE_LIMIT_NONCLAIM",
+        "NORMALIZER_SIGNAL_NONCLAIM",
+        "NORMALIZER_REJECTED_NONCLAIM",
+        "NORMALIZED_FORWARD_TIMEOUT_NONCLAIM",
+        "NORMALIZED_FORWARD_MEMORY_LIMIT_NONCLAIM",
+        "NORMALIZED_FORWARD_FILE_LIMIT_NONCLAIM",
+        "NORMALIZED_FORWARD_SIGNAL_NONCLAIM",
+        "NORMALIZED_FORWARD_REJECTED_NONCLAIM",
         "LRAT_CONVERSION_TIMEOUT_NONCLAIM",
         "LRAT_CONVERSION_MEMORY_LIMIT_NONCLAIM",
         "LRAT_CONVERSION_FILE_LIMIT_NONCLAIM",
@@ -143,6 +172,7 @@ RETRYABLE_OUTCOMES = frozenset(
 RUNTIME_SOURCE_RELATIVE_PATHS = (
     "src/search/k4_production/__init__.py",
     "src/search/k4_production/__main__.py",
+    "src/search/k4_production/normalize_bdrat.py",
     "src/search/k4_production/runner.py",
     "src/synthesis_k3/cegar.py",
     "src/synthesis_k3/coloring.py",
@@ -164,7 +194,7 @@ MAX_WALL_SECONDS = 21_600
 MAX_FILE_LIMIT_MIB = 4_096
 MIN_DISK_RESERVE_MIB = 4_096
 MIN_MEMORY_RESERVE_MIB = 512
-WORST_CASE_LIVE_FILE_SLOTS = 11
+WORST_CASE_LIVE_FILE_SLOTS = 17
 DISK_METADATA_ALLOWANCE_MIB = 64
 
 
@@ -258,27 +288,79 @@ def _assert_regular_single_link(path: Path, role: str) -> None:
         raise ValueError(f"{role} has {information.st_nlink} hard links: {path}")
 
 
+def _write_staging_directory(path: Path) -> Path:
+    destination_device = path.parent.stat().st_dev
+    run_root: Path | None = None
+    for candidate in (path.parent, *path.parents):
+        if (
+            (candidate / CHECKPOINT_DIRECTORY_NAME).is_dir()
+            and (candidate / CASE_DIRECTORY_NAME).is_dir()
+        ):
+            run_root = candidate
+            break
+    if run_root is None:
+        run_root = path.parent
+    token = sha256_bytes(str(run_root.resolve()).encode("utf-8"))[:16]
+    staging = run_root.parent / f".gamma-theta-k4-staging-{token}"
+    _assert_no_symlink_components(staging.parent)
+    try:
+        os.mkdir(staging, 0o700)
+        _fsync_directory(staging.parent)
+    except FileExistsError:
+        pass
+    information = os.lstat(staging)
+    if (
+        not stat.S_ISDIR(information.st_mode)
+        or information.st_uid != os.getuid()
+        or information.st_mode & 0o077
+        or information.st_dev != destination_device
+    ):
+        raise ValueError("atomic-write staging directory is unsafe")
+    return staging
+
+
 def _write_exclusive(path: Path, payload: bytes) -> None:
-    """Create one durable regular file without following or replacing links."""
+    """Durably publish an absent target by one same-filesystem rename."""
 
     _assert_no_symlink_components(path.parent)
     path.parent.mkdir(parents=True, exist_ok=True)
-    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL
-    if hasattr(os, "O_NOFOLLOW"):
-        flags |= os.O_NOFOLLOW
-    descriptor = os.open(path, flags, 0o600)
+    if path.exists() or path.is_symlink():
+        raise FileExistsError(f"exclusive output already exists: {path}")
+    staging = _write_staging_directory(path)
+    descriptor, temporary_raw = tempfile.mkstemp(
+        prefix=f"{path.name}.",
+        suffix=".partial",
+        dir=staging,
+    )
+    temporary = Path(temporary_raw)
     try:
         with os.fdopen(descriptor, "wb") as handle:
             handle.write(payload)
             handle.flush()
             os.fsync(handle.fileno())
+        if temporary.stat().st_dev != path.parent.stat().st_dev:
+            raise ValueError("atomic-write staging crossed filesystems")
+        if path.exists() or path.is_symlink():
+            raise FileExistsError(f"exclusive output appeared: {path}")
+        # The run/attempt directory is private and this function is called
+        # under its exclusive construction or RunLock protocol.  The second
+        # absence guard makes os.replace an exclusive atomic publication.
+        os.replace(temporary, path)
+        _assert_regular_single_link(path, "atomically published artifact")
+        _fsync_directory(path.parent)
     except BaseException:
         try:
-            os.unlink(path)
+            temporary.unlink()
         except FileNotFoundError:
             pass
         raise
-    _fsync_directory(path.parent)
+    finally:
+        try:
+            staging.rmdir()
+        except OSError:
+            # A real power loss may leave unrelated external staging bytes.
+            # They are outside the immutable run and never enter its audit.
+            pass
 
 
 def _file_binding(path: Path, role: str) -> dict[str, object]:
@@ -495,6 +577,7 @@ def _tool_bindings() -> dict[str, object]:
     cadical_path = root / "tools/cadical_3_0_1/build/cadical"
     drat_trim_path = root / "tools/drat_trim_2023_05_22/drat-trim"
     lrat_check_path = root / "tools/drat_trim_2023_05_22/lrat-check"
+    python_path = Path(sys.executable).resolve()
     cadical, drat_trim = verify_pinned_tools(cadical_path, drat_trim_path)
     if cadical.sha256 != CADICAL_BINARY_SHA256:
         raise ValueError("CaDiCaL hash differs from the production pin")
@@ -512,6 +595,9 @@ def _tool_bindings() -> dict[str, object]:
         or sha256_file(archive) != DRAT_TOOL_ARCHIVE_SHA256
     ):
         raise ValueError("DRAT tool source archive differs from the pin")
+    _assert_regular_single_link(python_path, "normalizer Python runtime")
+    if not os.access(python_path, os.X_OK):
+        raise ValueError("normalizer Python runtime is not executable")
     return {
         "cadical": asdict(cadical),
         "drat_trim": asdict(drat_trim),
@@ -524,11 +610,23 @@ def _tool_bindings() -> dict[str, object]:
             "commit": drat_trim.commit,
             "version": None,
         },
+        "normalizer_python": {
+            "role": "normalizer-python-runtime",
+            "path": str(python_path),
+            "sha256": sha256_file(python_path),
+            "implementation": platform.python_implementation(),
+            "version": platform.python_version(),
+        },
     }
 
 
 def _verify_tool_bindings(bindings: Mapping[str, object]) -> None:
-    if set(bindings) != {"cadical", "drat_trim", "lrat_check"}:
+    if set(bindings) != {
+        "cadical",
+        "drat_trim",
+        "lrat_check",
+        "normalizer_python",
+    }:
         raise ValueError("tool binding roles differ")
     expected = {
         "cadical": (CADICAL_BINARY_SHA256, CADICAL_ARCHIVE_SHA256),
@@ -551,13 +649,32 @@ def _verify_tool_bindings(bindings: Mapping[str, object]) -> None:
         _assert_regular_single_link(archive, f"{role} source archive")
         if (
             not os.access(path, os.X_OK)
-            or
-            record.get("sha256") != expected_hash
+            or record.get("sha256") != expected_hash
             or sha256_file(path) != expected_hash
             or record.get("source_archive_sha256") != expected_archive
             or sha256_file(archive) != expected_archive
         ):
             raise ValueError(f"{role} tool binding changed")
+    python_record = bindings["normalizer_python"]
+    if not isinstance(python_record, dict) or set(python_record) != {
+        "role",
+        "path",
+        "sha256",
+        "implementation",
+        "version",
+    }:
+        raise ValueError("normalizer Python tool record is malformed")
+    python_path = Path(str(python_record.get("path")))
+    _assert_regular_single_link(python_path, "normalizer Python runtime")
+    if (
+        python_record.get("role") != "normalizer-python-runtime"
+        or not os.access(python_path, os.X_OK)
+        or python_record.get("sha256") != sha256_file(python_path)
+        or python_record.get("implementation")
+        != platform.python_implementation()
+        or python_record.get("version") != platform.python_version()
+    ):
+        raise ValueError("normalizer Python tool binding changed")
 
 
 def _validate_parent(
@@ -1392,14 +1509,6 @@ def _checkpoint_attempt_event_index(
     }
 
 
-def _path_within(path: Path, directory: Path) -> bool:
-    try:
-        path.resolve().relative_to(directory.resolve())
-    except ValueError:
-        return False
-    return True
-
-
 def _artifact_inventory(
     attempt_directory: Path,
     *,
@@ -1444,6 +1553,7 @@ def _audit_decisive_outcome(
     outcome: Mapping[str, object],
     attempt_directory: Path,
     attempt_config: Mapping[str, object],
+    manifest: Mapping[str, object],
     case_id: str,
 ) -> None:
     status = outcome.get("status")
@@ -1474,47 +1584,249 @@ def _audit_decisive_outcome(
         return
     if status != "UNSAT_LRAT_VERIFIED":
         return
+    expected_inventory = {
+        "attempt-config.json",
+        "instance.cnf",
+        "resource-solver.json",
+        "solver.stdout",
+        "solver.stderr",
+        "solver.result",
+        "proof.raw.bdrat",
+        "resource-raw-forward.json",
+        "raw-forward.stdout",
+        "raw-forward.stderr",
+        "resource-normalizer.json",
+        "normalizer.stdout",
+        "normalizer.stderr",
+        "proof.normalized.rup.bdrat",
+        "normalization-report.json",
+        "resource-normalized-forward.json",
+        "normalized-forward.stdout",
+        "normalized-forward.stderr",
+        "resource-lrat-conversion.json",
+        "lrat-conversion.stdout",
+        "lrat-conversion.stderr",
+        "proof.converted.lrat",
+        "resource-lrat-check.json",
+        "lrat-check.stdout",
+        "lrat-check.stderr",
+        "certificate.json",
+    }
+    inventory = outcome.get("artifact_inventory")
+    if not isinstance(inventory, dict) or set(inventory) != expected_inventory:
+        raise ValueError("decisive UNSAT artifact inventory differs")
+    expected_detail_keys = {
+        "certificate",
+        "solver",
+        "raw_forward",
+        "normalizer",
+        "normalized_forward",
+        "lrat_conversion",
+        "lrat_check",
+    }
+    if set(details) != expected_detail_keys:
+        raise ValueError("decisive UNSAT outcome details differ")
     certificate_path = attempt_directory / "certificate.json"
     certificate = _strict_json_file(certificate_path)
+    expected_certificate_keys = {
+        "schema",
+        "schema_version",
+        "proof_pipeline",
+        "leaf_status",
+        "aggregate_status",
+        "case_id",
+        "cube_literals",
+        "case_cnf",
+        "raw_solver_result",
+        "raw_binary_drat",
+        "normalized_binary_rup",
+        "normalization_report",
+        "converted_lrat",
+        "solver_resource",
+        "raw_forward_resource",
+        "normalizer_resource",
+        "normalized_forward_resource",
+        "lrat_conversion_resource",
+        "lrat_check_resource",
+        "solver",
+        "raw_forward",
+        "normalizer",
+        "normalized_forward",
+        "lrat_conversion",
+        "lrat_check",
+        "solver_stdout",
+        "solver_stderr",
+        "raw_forward_stdout",
+        "raw_forward_stderr",
+        "normalizer_stdout",
+        "normalizer_stderr",
+        "normalized_forward_stdout",
+        "normalized_forward_stderr",
+        "lrat_conversion_stdout",
+        "lrat_conversion_stderr",
+        "lrat_check_stdout",
+        "lrat_check_stderr",
+    }
     if (
         not isinstance(certificate, dict)
-        or certificate.get("schema")
-        != "gamma-theta-order12-k4-leaf-lrat-certificate-v2"
-        or certificate.get("schema_version") != SCHEMA_VERSION
+        or set(certificate) != expected_certificate_keys
+        or certificate.get("schema") != LEAF_CERTIFICATE_SCHEMA
+        or certificate.get("schema_version")
+        != LEAF_CERTIFICATE_SCHEMA_VERSION
         or certificate.get("proof_pipeline") != PROOF_PIPELINE_ID
         or certificate.get("leaf_status") != "UNSAT_LRAT_VERIFIED"
+        or certificate.get("aggregate_status")
+        != "NO_AGGREGATE_CLAIM_PENDING_INDEPENDENT_COVERAGE_AUDIT"
         or certificate.get("case_id") != case_id
         or certificate.get("cube_literals")
         != attempt_config.get("cube_literals")
     ):
         raise ValueError("leaf LRAT certificate is malformed")
-    for key, role in (
-        ("case_cnf", "certificate case CNF"),
-        ("raw_solver_result", "certificate raw result"),
-        ("raw_binary_drat", "certificate raw DRAT"),
-        ("converted_lrat", "certificate LRAT"),
-        ("raw_forward_stdout", "certificate raw forward stdout"),
-        ("raw_forward_stderr", "certificate raw forward stderr"),
+    certificate_binding = _file_binding(
+        certificate_path, "leaf certificate"
+    )
+    if details.get("certificate") != certificate_binding:
+        raise ValueError("decisive UNSAT outcome certificate binding differs")
+    for child_key in expected_detail_keys - {"certificate"}:
+        if details.get(child_key) != certificate.get(child_key):
+            raise ValueError(
+                f"decisive UNSAT outcome {child_key} record differs"
+            )
+    solver_status, solver_candidate = classify_solver_result(
+        (attempt_directory / "instance.cnf").read_bytes(),
+        (attempt_directory / "solver.result").read_bytes(),
+    )
+    if solver_status != "UNSAT" or solver_candidate is not None:
+        raise ValueError("retained solver result is not strict UNSAT")
+    for key, filename, role in (
+        ("case_cnf", "instance.cnf", "certificate case CNF"),
+        ("raw_solver_result", "solver.result", "certificate raw result"),
+        ("raw_binary_drat", "proof.raw.bdrat", "certificate raw DRAT"),
+        (
+            "normalized_binary_rup",
+            "proof.normalized.rup.bdrat",
+            "certificate normalized binary RUP proof",
+        ),
+        (
+            "normalization_report",
+            "normalization-report.json",
+            "certificate normalization report",
+        ),
+        ("converted_lrat", "proof.converted.lrat", "certificate LRAT"),
+        (
+            "solver_resource",
+            "resource-solver.json",
+            "certificate solver resource report",
+        ),
+        (
+            "raw_forward_resource",
+            "resource-raw-forward.json",
+            "certificate raw forward resource report",
+        ),
+        (
+            "normalizer_resource",
+            "resource-normalizer.json",
+            "certificate normalizer resource report",
+        ),
+        (
+            "normalized_forward_resource",
+            "resource-normalized-forward.json",
+            "certificate normalized forward resource report",
+        ),
+        (
+            "lrat_conversion_resource",
+            "resource-lrat-conversion.json",
+            "certificate LRAT conversion resource report",
+        ),
+        (
+            "lrat_check_resource",
+            "resource-lrat-check.json",
+            "certificate lrat-check resource report",
+        ),
+        (
+            "solver_stdout",
+            "solver.stdout",
+            "certificate solver stdout",
+        ),
+        (
+            "solver_stderr",
+            "solver.stderr",
+            "certificate solver stderr",
+        ),
+        (
+            "raw_forward_stdout",
+            "raw-forward.stdout",
+            "certificate raw forward stdout",
+        ),
+        (
+            "raw_forward_stderr",
+            "raw-forward.stderr",
+            "certificate raw forward stderr",
+        ),
+        (
+            "normalizer_stdout",
+            "normalizer.stdout",
+            "certificate normalizer stdout",
+        ),
+        (
+            "normalizer_stderr",
+            "normalizer.stderr",
+            "certificate normalizer stderr",
+        ),
+        (
+            "normalized_forward_stdout",
+            "normalized-forward.stdout",
+            "certificate normalized forward stdout",
+        ),
+        (
+            "normalized_forward_stderr",
+            "normalized-forward.stderr",
+            "certificate normalized forward stderr",
+        ),
         (
             "lrat_conversion_stdout",
+            "lrat-conversion.stdout",
             "certificate LRAT conversion stdout",
         ),
         (
             "lrat_conversion_stderr",
+            "lrat-conversion.stderr",
             "certificate LRAT conversion stderr",
         ),
-        ("lrat_check_stdout", "certificate lrat-check stdout"),
-        ("lrat_check_stderr", "certificate lrat-check stderr"),
+        (
+            "lrat_check_stdout",
+            "lrat-check.stdout",
+            "certificate lrat-check stdout",
+        ),
+        (
+            "lrat_check_stderr",
+            "lrat-check.stderr",
+            "certificate lrat-check stderr",
+        ),
     ):
         binding = certificate.get(key)
         if not isinstance(binding, dict):
             raise ValueError(f"{role} binding is malformed")
         _verify_file_binding(binding, role)
-        if not _path_within(Path(str(binding["path"])), attempt_directory):
-            raise ValueError(f"{role} escapes the attempt directory")
+        expected_path = (attempt_directory / filename).resolve()
+        if Path(str(binding["path"])) != expected_path:
+            raise ValueError(f"{role} path differs")
     _strict_converter_success(
         (attempt_directory / "raw-forward.stdout").read_bytes(),
         (attempt_directory / "raw-forward.stderr").read_bytes(),
+    )
+    _strict_normalizer_success(
+        (attempt_directory / "normalizer.stdout").read_bytes(),
+        (attempt_directory / "normalizer.stderr").read_bytes(),
+    )
+    _validate_normalization_report(
+        attempt_directory / "normalization-report.json",
+        attempt_directory / "proof.raw.bdrat",
+        attempt_directory / "proof.normalized.rup.bdrat",
+    )
+    _strict_converter_success(
+        (attempt_directory / "normalized-forward.stdout").read_bytes(),
+        (attempt_directory / "normalized-forward.stderr").read_bytes(),
     )
     _strict_converter_success(
         (attempt_directory / "lrat-conversion.stdout").read_bytes(),
@@ -1524,23 +1836,140 @@ def _audit_decisive_outcome(
         (attempt_directory / "lrat-check.stdout").read_bytes(),
         (attempt_directory / "lrat-check.stderr").read_bytes(),
     )
-    child_expectations = (
-        ("solver", "solver_command", 20),
-        ("raw_forward", "raw_forward_command", 0),
-        ("lrat_conversion", "lrat_conversion_command", 0),
-        ("lrat_check", "lrat_check_command", 0),
+    limits = manifest.get("limits")
+    if not isinstance(limits, dict):
+        raise ValueError("run limits are malformed")
+    resource_expectations = (
+        ("solver", int(limits["solver_memory_mib"])),
+        ("raw-forward", int(limits["postprocess_memory_mib"])),
+        ("normalizer", int(limits["postprocess_memory_mib"])),
+        ("normalized-forward", int(limits["postprocess_memory_mib"])),
+        ("lrat-conversion", int(limits["postprocess_memory_mib"])),
+        ("lrat-check", int(limits["postprocess_memory_mib"])),
     )
-    for child_key, command_key, exit_code in child_expectations:
+    for phase, memory_limit_mib in resource_expectations:
+        _validate_passing_resource_report(
+            attempt_directory / f"resource-{phase}.json",
+            phase=phase,
+            memory_limit_mib=memory_limit_mib,
+            limits=limits,
+        )
+    child_expectations = (
+        (
+            "solver",
+            "solver_command",
+            "solver",
+            20,
+            int(limits["solver_wall_seconds"]),
+            int(limits["solver_memory_mib"]),
+        ),
+        (
+            "raw_forward",
+            "raw_forward_command",
+            "raw-forward",
+            0,
+            int(limits["converter_wall_seconds"]),
+            int(limits["postprocess_memory_mib"]),
+        ),
+        (
+            "normalizer",
+            "normalizer_command",
+            "normalizer",
+            0,
+            int(limits["converter_wall_seconds"]),
+            int(limits["postprocess_memory_mib"]),
+        ),
+        (
+            "normalized_forward",
+            "normalized_forward_command",
+            "normalized-forward",
+            0,
+            int(limits["converter_wall_seconds"]),
+            int(limits["postprocess_memory_mib"]),
+        ),
+        (
+            "lrat_conversion",
+            "lrat_conversion_command",
+            "lrat-conversion",
+            0,
+            int(limits["converter_wall_seconds"]),
+            int(limits["postprocess_memory_mib"]),
+        ),
+        (
+            "lrat_check",
+            "lrat_check_command",
+            "lrat-check",
+            0,
+            int(limits["checker_wall_seconds"]),
+            int(limits["postprocess_memory_mib"]),
+        ),
+    )
+    for (
+        child_key,
+        command_key,
+        log_stem,
+        exit_code,
+        wall_limit_seconds,
+        memory_limit_mib,
+    ) in child_expectations:
         child = certificate.get(child_key)
+        expected_command = attempt_config.get(command_key)
+        if not isinstance(expected_command, list) or any(
+            not isinstance(argument, str) for argument in expected_command
+        ):
+            raise ValueError(f"certificate {child_key} command is malformed")
+        stdout_path = (attempt_directory / f"{log_stem}.stdout").resolve()
+        stderr_path = (attempt_directory / f"{log_stem}.stderr").resolve()
+        executable_hash = sha256_file(Path(expected_command[0]))
+        numeric_metrics = (
+            child.get("wall_seconds") if isinstance(child, dict) else None,
+            child.get("user_cpu_seconds") if isinstance(child, dict) else None,
+            child.get("system_cpu_seconds")
+            if isinstance(child, dict)
+            else None,
+            child.get("maximum_resident_set_size_mib")
+            if isinstance(child, dict)
+            else None,
+            child.get("peak_polled_resident_set_size_mib")
+            if isinstance(child, dict)
+            else None,
+        )
         if (
             not isinstance(child, dict)
-            or child.get("command") != attempt_config.get(command_key)
+            or set(child) != set(ChildResult.__dataclass_fields__)
+            or child.get("command") != expected_command
+            or child.get("command_sha256")
+            != _command_sha256(expected_command)
+            or child.get("executable_sha256_before") != executable_hash
+            or child.get("executable_sha256_after") != executable_hash
             or child.get("exit_code") != exit_code
             or child.get("timed_out") is not False
             or child.get("memory_limit_exceeded") is not False
             or child.get("termination_signal") is not None
-            or child.get("executable_sha256_before")
-            != child.get("executable_sha256_after")
+            or child.get("wall_limit_seconds") != wall_limit_seconds
+            or child.get("memory_limit_mib") != memory_limit_mib
+            or child.get("file_limit_mib") != limits["file_limit_mib"]
+            or child.get("stdout_path") != str(stdout_path)
+            or child.get("stdout_sha256") != sha256_file(stdout_path)
+            or child.get("stderr_path") != str(stderr_path)
+            or child.get("stderr_sha256") != sha256_file(stderr_path)
+            or type(child.get("started_unix_ns")) is not int
+            or int(child["started_unix_ns"]) <= 0
+            or type(child.get("finished_unix_ns")) is not int
+            or int(child["finished_unix_ns"])
+            < int(child["started_unix_ns"])
+            or any(
+                type(value) is not float
+                or not math.isfinite(value)
+                or value < 0
+                for value in numeric_metrics
+            )
+            or type(child.get("maximum_resident_set_size_raw")) is not int
+            or int(child["maximum_resident_set_size_raw"]) < 0
+            or child.get("maximum_resident_set_size_raw_unit")
+            != ("bytes" if sys.platform == "darwin" else "KiB")
+            or type(child.get("available_memory_before_bytes")) is not int
+            or int(child["available_memory_before_bytes"]) <= 0
         ):
             raise ValueError(f"certificate {child_key} record is malformed")
 
@@ -1639,13 +2068,30 @@ def _audit_attempts(
                 continue
             _assert_regular_single_link(outcome_path, "attempt outcome")
             outcome = _strict_json_file(outcome_path)
+            expected_outcome_keys = {
+                "schema",
+                "schema_version",
+                "proof_pipeline",
+                "case_id",
+                "attempt_number",
+                "status",
+                "mathematical_claim",
+                "aggregate_claim",
+                "details",
+                "artifact_inventory",
+                "finished_unix_ns",
+            }
             if (
                 not isinstance(outcome, dict)
-                or outcome.get("schema")
-                != "gamma-theta-order12-k4-attempt-outcome-v1"
-                or outcome.get("schema_version") != SCHEMA_VERSION
+                or set(outcome) != expected_outcome_keys
+                or outcome.get("schema") != ATTEMPT_OUTCOME_SCHEMA
+                or outcome.get("schema_version")
+                != ATTEMPT_OUTCOME_SCHEMA_VERSION
+                or outcome.get("proof_pipeline") != PROOF_PIPELINE_ID
                 or outcome.get("case_id") != case_id
                 or outcome.get("attempt_number") != attempt_number
+                or type(outcome.get("finished_unix_ns")) is not int
+                or int(outcome["finished_unix_ns"]) <= 0
             ):
                 raise ValueError(f"case {case_id} attempt outcome differs")
             outcome_status = outcome.get("status")
@@ -1674,6 +2120,7 @@ def _audit_attempts(
                 outcome=outcome,
                 attempt_directory=attempt_directory,
                 attempt_config=config,
+                manifest=manifest,
                 case_id=case_id,
             )
             last_outcome_hash = sha256_file(outcome_path)
@@ -1716,13 +2163,37 @@ def _load_run_manifest(run_directory: Path) -> tuple[dict[str, object], str]:
     manifest = _strict_json_file(path)
     if not isinstance(manifest, dict):
         raise ValueError("run manifest is not an object")
+    expected_keys = {
+        "schema",
+        "schema_version",
+        "proof_pipeline",
+        "claim_status",
+        "run_directory",
+        "campaign_root",
+        "original_parent_cnf",
+        "original_parent_generator_manifest",
+        "retained_parent_cnf",
+        "retained_parent_generator_manifest",
+        "partition",
+        "base_seed",
+        "limits",
+        "hardware",
+        "runtime_sources",
+        "tools",
+        "normalized_resume_invocation",
+        "created_unix_ns",
+    }
     if (
-        manifest.get("schema") != "gamma-theta-order12-k4-production-run-v1"
+        set(manifest) != expected_keys
+        or manifest.get("schema")
+        != "gamma-theta-order12-k4-production-run-v1"
         or manifest.get("schema_version") != SCHEMA_VERSION
         or manifest.get("proof_pipeline") != PROOF_PIPELINE_ID
         or manifest.get("claim_status") != "NO_SAT_OR_UNSAT_CLAIM"
         or manifest.get("run_directory") != str(run_directory)
         or manifest.get("campaign_root") != str(campaign_root().resolve())
+        or type(manifest.get("created_unix_ns")) is not int
+        or int(manifest["created_unix_ns"]) <= 0
     ):
         raise ValueError("run manifest header differs")
     return manifest, sha256_file(path)
@@ -1842,6 +2313,14 @@ def audit_run(
         "attempts": attempts,
         "runtime_sources_verified": verify_runtime_sources,
         "proofs_freshly_replayed": False,
+        "retained_lrat_semantics_reestablished": False,
+        "retained_leaf_status_scope": (
+            "RECORDED_EXECUTION_STATUS_ONLY_NOT_A_FRESH_AUDIT_CLAIM"
+        ),
+        "required_next_action": (
+            "A separate aggregate verifier must freshly replay every LRAT "
+            "against its bound leaf CNF before any mathematical claim."
+        ),
         "claim_status": "NO_MATHEMATICAL_CLAIM",
     }
 
@@ -1909,6 +2388,84 @@ def _resource_report(
     }
 
 
+def _validate_passing_resource_report(
+    path: Path,
+    *,
+    phase: str,
+    memory_limit_mib: int,
+    limits: Mapping[str, object],
+) -> dict[str, object]:
+    _assert_regular_single_link(path, f"{phase} resource report")
+    payload_bytes = path.read_bytes()
+    report = _strict_json_bytes(payload_bytes)
+    expected_keys = {
+        "schema",
+        "phase",
+        "checked_unix_ns",
+        "load_average_one_minute",
+        "load_ceiling",
+        "available_memory_bytes",
+        "required_memory_bytes",
+        "free_disk_bytes",
+        "required_free_disk_bytes",
+        "worst_case_live_file_slots",
+        "checks",
+        "probe_errors",
+        "passed",
+    }
+    if (
+        not isinstance(report, dict)
+        or set(report) != expected_keys
+        or canonical_json_bytes(report) != payload_bytes
+    ):
+        raise ValueError(f"{phase} resource report has the wrong shape")
+    memory_reserve = limits.get("memory_reserve_mib")
+    file_limit = limits.get("file_limit_mib")
+    disk_reserve = limits.get("disk_reserve_mib")
+    load_ceiling = limits.get("load_max")
+    if (
+        type(memory_reserve) is not int
+        or type(file_limit) is not int
+        or type(disk_reserve) is not int
+        or type(load_ceiling) not in (int, float)
+    ):
+        raise ValueError("stored resource limits are malformed")
+    expected_memory = (memory_limit_mib + memory_reserve) << 20
+    expected_disk = (
+        disk_reserve
+        + WORST_CASE_LIVE_FILE_SLOTS * file_limit
+        + DISK_METADATA_ALLOWANCE_MIB
+    ) << 20
+    observed_load = report.get("load_average_one_minute")
+    available_memory = report.get("available_memory_bytes")
+    free_disk = report.get("free_disk_bytes")
+    checks = report.get("checks")
+    if (
+        report.get("schema") != "gamma-theta-k4-resource-gate-v1"
+        or report.get("phase") != phase
+        or type(report.get("checked_unix_ns")) is not int
+        or int(report["checked_unix_ns"]) <= 0
+        or type(observed_load) not in (int, float)
+        or not math.isfinite(float(observed_load))
+        or observed_load < 0
+        or report.get("load_ceiling") != load_ceiling
+        or observed_load > float(load_ceiling)
+        or type(available_memory) is not int
+        or available_memory < expected_memory
+        or report.get("required_memory_bytes") != expected_memory
+        or type(free_disk) is not int
+        or free_disk < expected_disk
+        or report.get("required_free_disk_bytes") != expected_disk
+        or report.get("worst_case_live_file_slots")
+        != WORST_CASE_LIVE_FILE_SLOTS
+        or checks != {"load": True, "memory": True, "disk": True}
+        or report.get("probe_errors") != []
+        or report.get("passed") is not True
+    ):
+        raise ValueError(f"{phase} resource report was not a clean pass")
+    return dict(report)
+
+
 def _solver_command(
     manifest: Mapping[str, object],
     case: Mapping[str, object],
@@ -1959,6 +2516,67 @@ def _raw_forward_command(
     )
 
 
+def _normalizer_command(
+    manifest: Mapping[str, object],
+    attempt_directory: Path,
+) -> tuple[str, ...]:
+    tools = manifest["tools"]
+    if not isinstance(tools, dict):
+        raise ValueError("run tool binding is malformed")
+    python = tools["normalizer_python"]
+    if not isinstance(python, dict):
+        raise ValueError("normalizer Python binding is malformed")
+    return (
+        str(python["path"]),
+        str(
+            (
+                campaign_root()
+                / "src/search/k4_production/normalize_bdrat.py"
+            ).resolve()
+        ),
+        "--input",
+        str((attempt_directory / "proof.raw.bdrat").resolve()),
+        "--output",
+        str(
+            (
+                attempt_directory / "proof.normalized.rup.bdrat"
+            ).resolve()
+        ),
+        "--report",
+        str((attempt_directory / "normalization-report.json").resolve()),
+        "--max-variable",
+        str(EXPECTED_VARIABLE_COUNT),
+    )
+
+
+def _normalized_forward_command(
+    manifest: Mapping[str, object],
+    attempt_directory: Path,
+) -> tuple[str, ...]:
+    tools = manifest["tools"]
+    limits = manifest["limits"]
+    if not isinstance(tools, dict) or not isinstance(limits, dict):
+        raise ValueError("run tool or limit binding is malformed")
+    converter = tools["drat_trim"]
+    if not isinstance(converter, dict):
+        raise ValueError("drat-trim binding is malformed")
+    return (
+        str(converter["path"]),
+        str((attempt_directory / "instance.cnf").resolve()),
+        str(
+            (
+                attempt_directory / "proof.normalized.rup.bdrat"
+            ).resolve()
+        ),
+        "-i",
+        "-f",
+        "-W",
+        "-U",
+        "-t",
+        str(limits["converter_wall_seconds"]),
+    )
+
+
 def _lrat_conversion_command(
     manifest: Mapping[str, object],
     attempt_directory: Path,
@@ -1973,9 +2591,14 @@ def _lrat_conversion_command(
     return (
         str(converter["path"]),
         str((attempt_directory / "instance.cnf").resolve()),
-        str((attempt_directory / "proof.raw.bdrat").resolve()),
+        str(
+            (
+                attempt_directory / "proof.normalized.rup.bdrat"
+            ).resolve()
+        ),
         "-i",
         "-W",
+        "-U",
         "-L",
         str((attempt_directory / "proof.converted.lrat").resolve()),
         "-t",
@@ -2000,6 +2623,57 @@ def _lrat_check_command(
     )
 
 
+def _attempt_config_payload(
+    *,
+    manifest: Mapping[str, object],
+    manifest_hash: str,
+    partition_hash: str,
+    case: Mapping[str, object],
+    attempt_number: int,
+    attempt_directory: Path,
+    created_unix_ns: int,
+    construction_status: str,
+) -> dict[str, object]:
+    if construction_status not in {
+        "ORIGINAL_PRE_RESERVATION",
+        "RECOVERED_AFTER_ATOMIC_CONFIG_ABSENCE",
+    }:
+        raise ValueError("attempt configuration construction status differs")
+    return {
+        "schema": ATTEMPT_CONFIG_SCHEMA,
+        "schema_version": ATTEMPT_CONFIG_SCHEMA_VERSION,
+        "proof_pipeline": PROOF_PIPELINE_ID,
+        "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+        "construction_status": construction_status,
+        "case_id": case["case_id"],
+        "attempt_number": attempt_number,
+        "seed": case["seed"],
+        "cube_literals": case["cube_literals"],
+        "case_cnf_sha256": case["cnf_sha256"],
+        "run_manifest_sha256": manifest_hash,
+        "partition_sha256": partition_hash,
+        "solver_command": list(
+            _solver_command(manifest, case, attempt_directory)
+        ),
+        "raw_forward_command": list(
+            _raw_forward_command(manifest, attempt_directory)
+        ),
+        "normalizer_command": list(
+            _normalizer_command(manifest, attempt_directory)
+        ),
+        "normalized_forward_command": list(
+            _normalized_forward_command(manifest, attempt_directory)
+        ),
+        "lrat_conversion_command": list(
+            _lrat_conversion_command(manifest, attempt_directory)
+        ),
+        "lrat_check_command": list(
+            _lrat_check_command(manifest, attempt_directory)
+        ),
+        "created_unix_ns": created_unix_ns,
+    }
+
+
 def _validate_attempt_config(
     config: object,
     *,
@@ -2015,6 +2689,7 @@ def _validate_attempt_config(
         "schema_version",
         "proof_pipeline",
         "claim_status",
+        "construction_status",
         "case_id",
         "attempt_number",
         "seed",
@@ -2024,6 +2699,8 @@ def _validate_attempt_config(
         "partition_sha256",
         "solver_command",
         "raw_forward_command",
+        "normalizer_command",
+        "normalized_forward_command",
         "lrat_conversion_command",
         "lrat_check_command",
         "created_unix_ns",
@@ -2031,11 +2708,15 @@ def _validate_attempt_config(
     if not isinstance(config, dict) or set(config) != expected_keys:
         raise ValueError("attempt configuration has the wrong shape")
     if (
-        config.get("schema")
-        != "gamma-theta-order12-k4-attempt-config-v1"
-        or config.get("schema_version") != SCHEMA_VERSION
+        config.get("schema") != ATTEMPT_CONFIG_SCHEMA
+        or config.get("schema_version") != ATTEMPT_CONFIG_SCHEMA_VERSION
         or config.get("proof_pipeline") != PROOF_PIPELINE_ID
         or config.get("claim_status") != "NO_SAT_OR_UNSAT_CLAIM"
+        or config.get("construction_status")
+        not in {
+            "ORIGINAL_PRE_RESERVATION",
+            "RECOVERED_AFTER_ATOMIC_CONFIG_ABSENCE",
+        }
         or config.get("case_id") != case.get("case_id")
         or config.get("attempt_number") != attempt_number
         or config.get("seed") != case.get("seed")
@@ -2047,6 +2728,10 @@ def _validate_attempt_config(
         != list(_solver_command(manifest, case, attempt_directory))
         or config.get("raw_forward_command")
         != list(_raw_forward_command(manifest, attempt_directory))
+        or config.get("normalizer_command")
+        != list(_normalizer_command(manifest, attempt_directory))
+        or config.get("normalized_forward_command")
+        != list(_normalized_forward_command(manifest, attempt_directory))
         or config.get("lrat_conversion_command")
         != list(_lrat_conversion_command(manifest, attempt_directory))
         or config.get("lrat_check_command")
@@ -2110,6 +2795,274 @@ def _strict_converter_success(stdout: bytes, stderr: bytes) -> None:
         raise ValueError("drat-trim did not produce one clean VERIFIED status")
 
 
+def _strict_normalizer_success(stdout: bytes, stderr: bytes) -> None:
+    if stderr:
+        raise ValueError("binary DRAT normalizer wrote to stderr")
+    if stdout != b"s NORMALIZED\n":
+        raise ValueError(
+            "binary DRAT normalizer did not produce its exact success status"
+        )
+
+
+def _encode_binary_drat_unsigned(value: int) -> bytes:
+    encoded = bytearray()
+    while True:
+        byte = value & 0x7F
+        value >>= 7
+        if value:
+            encoded.append(byte | 0x80)
+        else:
+            encoded.append(byte)
+            return bytes(encoded)
+
+
+def _scan_binary_drat(path: Path) -> dict[str, object]:
+    """Independently reparse a complete canonical binary DRAT stream."""
+
+    _assert_regular_single_link(path, "binary DRAT stream")
+    total = 0
+    additions = 0
+    deletions = 0
+    post_empty_deletions = 0
+    literals = 0
+    addition_literals = 0
+    maximum_variable = 0
+    addition_maximum_variable = 0
+    empty_record: int | None = None
+    addition_digest = hashlib.sha256()
+    addition_size = 0
+    maximum_code = 2 * EXPECTED_VARIABLE_COUNT + 1
+    with path.open("rb", buffering=1 << 20) as source:
+        while True:
+            prefix = source.read(1)
+            if not prefix:
+                break
+            total += 1
+            if prefix not in {b"a", b"d"}:
+                raise ValueError(
+                    f"binary DRAT record {total} has an invalid prefix"
+                )
+            is_addition = prefix == b"a"
+            encoded_clause = bytearray()
+            clause_length = 0
+            while True:
+                encoded = bytearray()
+                value = 0
+                shift = 0
+                while True:
+                    byte = source.read(1)
+                    if not byte:
+                        raise ValueError(
+                            f"binary DRAT record {total} has an "
+                            "unterminated varint"
+                        )
+                    encoded.append(byte[0])
+                    if len(encoded) > 10:
+                        raise ValueError(
+                            f"binary DRAT record {total} has an "
+                            "oversized varint"
+                        )
+                    value |= (byte[0] & 0x7F) << shift
+                    if byte[0] < 0x80:
+                        break
+                    shift += 7
+                if bytes(encoded) != _encode_binary_drat_unsigned(value):
+                    raise ValueError(
+                        f"binary DRAT record {total} has a "
+                        "noncanonical varint"
+                    )
+                if value > maximum_code:
+                    raise ValueError(
+                        f"binary DRAT record {total} exceeds the "
+                        "variable bound"
+                    )
+                encoded_clause.extend(encoded)
+                if value == 0:
+                    break
+                if value == 1:
+                    raise ValueError(
+                        f"binary DRAT record {total} contains negative zero"
+                    )
+                variable = value >> 1
+                maximum_variable = max(maximum_variable, variable)
+                if is_addition:
+                    addition_literals += 1
+                    addition_maximum_variable = max(
+                        addition_maximum_variable, variable
+                    )
+                literals += 1
+                clause_length += 1
+            if is_addition:
+                additions += 1
+                if empty_record is not None:
+                    raise ValueError(
+                        "binary DRAT contains an addition after its "
+                        "empty addition"
+                    )
+                payload = prefix + bytes(encoded_clause)
+                addition_digest.update(payload)
+                addition_size += len(payload)
+                if clause_length == 0:
+                    empty_record = total
+            else:
+                deletions += 1
+                if clause_length == 0:
+                    raise ValueError(
+                        f"binary DRAT record {total} is an empty deletion"
+                    )
+                if empty_record is not None:
+                    post_empty_deletions += 1
+    if total == 0:
+        raise ValueError("binary DRAT stream is empty")
+    if empty_record is None:
+        raise ValueError("binary DRAT has no empty addition")
+    return {
+        "record_counts": {
+            "total": total,
+            "additions": additions,
+            "deletions": deletions,
+            "post_empty_deletions": post_empty_deletions,
+            "literals": literals,
+        },
+        "addition_literal_count": addition_literals,
+        "max_variable_observed": maximum_variable,
+        "addition_max_variable_observed": addition_maximum_variable,
+        "empty_addition_record_index": empty_record,
+        "addition_stream_sha256": addition_digest.hexdigest(),
+        "addition_stream_size_bytes": addition_size,
+    }
+
+
+def _validate_normalization_report(
+    report_path: Path,
+    raw_proof_path: Path,
+    normalized_proof_path: Path,
+) -> dict[str, object]:
+    _assert_regular_single_link(report_path, "normalization report")
+    payload_bytes = report_path.read_bytes()
+    report = _strict_json_bytes(payload_bytes)
+    expected_keys = {
+        "schema",
+        "schema_version",
+        "policy",
+        "claim_status",
+        "max_variable_allowed",
+        "max_variable_observed",
+        "record_counts",
+        "empty_addition_record_index",
+        "input",
+        "output",
+    }
+    if not isinstance(report, dict) or set(report) != expected_keys:
+        raise ValueError("normalization report has the wrong shape")
+    if canonical_json_bytes(report) != payload_bytes:
+        raise ValueError("normalization report is not canonical JSON")
+    counts = report.get("record_counts")
+    input_binding = report.get("input")
+    output_binding = report.get("output")
+    if (
+        report.get("schema") != NORMALIZATION_SCHEMA
+        or report.get("schema_version") != 1
+        or report.get("policy") != NORMALIZATION_POLICY
+        or report.get("claim_status")
+        != "TRANSFORMATION_ONLY_NO_PROOF_CLAIM"
+        or report.get("max_variable_allowed") != EXPECTED_VARIABLE_COUNT
+        or type(report.get("max_variable_observed")) is not int
+        or not isinstance(counts, dict)
+        or set(counts)
+        != {
+            "total",
+            "additions",
+            "deletions",
+            "post_empty_deletions",
+            "literals",
+        }
+        or not isinstance(input_binding, dict)
+        or set(input_binding) != {"path", "sha256", "size_bytes"}
+        or not isinstance(output_binding, dict)
+        or set(output_binding) != {"path", "sha256", "size_bytes"}
+    ):
+        raise ValueError("normalization report is malformed")
+    numeric_counts = tuple(counts.values())
+    if (
+        any(type(value) is not int or value < 0 for value in numeric_counts)
+        or type(report.get("empty_addition_record_index")) is not int
+        or counts["total"] != counts["additions"] + counts["deletions"]
+        or counts["additions"] < 1
+        or counts["total"] < 1
+        or counts["post_empty_deletions"] > counts["deletions"]
+        or counts["additions"]
+        > int(report["empty_addition_record_index"])
+        or int(report["empty_addition_record_index"])
+        + counts["post_empty_deletions"]
+        != counts["total"]
+        or counts["literals"] < counts["total"] - 1
+        or not 1
+        <= int(report["empty_addition_record_index"])
+        <= int(counts["total"])
+        or not 0
+        <= int(report["max_variable_observed"])
+        <= EXPECTED_VARIABLE_COUNT
+        or (
+            (counts["literals"] == 0)
+            != (report["max_variable_observed"] == 0)
+        )
+    ):
+        raise ValueError("normalization report counts are inconsistent")
+    expected_input = _file_binding(raw_proof_path, "raw binary DRAT proof")
+    expected_output = _file_binding(
+        normalized_proof_path, "normalized binary RUP proof"
+    )
+    for observed, expected, role in (
+        (input_binding, expected_input, "normalization input"),
+        (output_binding, expected_output, "normalization output"),
+    ):
+        if (
+            observed.get("path") != expected["path"]
+            or observed.get("sha256") != expected["sha256"]
+            or observed.get("size_bytes") != expected["size_bytes"]
+        ):
+            raise ValueError(f"{role} binding differs")
+    if expected_output["size_bytes"] == 0:
+        raise ValueError("normalized binary RUP proof is empty")
+    raw_scan = _scan_binary_drat(raw_proof_path)
+    normalized_scan = _scan_binary_drat(normalized_proof_path)
+    if (
+        raw_scan["record_counts"] != counts
+        or raw_scan["max_variable_observed"]
+        != report["max_variable_observed"]
+        or raw_scan["empty_addition_record_index"]
+        != report["empty_addition_record_index"]
+        or raw_scan["addition_stream_sha256"]
+        != expected_output["sha256"]
+        or raw_scan["addition_stream_size_bytes"]
+        != expected_output["size_bytes"]
+    ):
+        raise ValueError(
+            "normalization report does not match the raw proof structure"
+        )
+    normalized_counts = normalized_scan["record_counts"]
+    raw_counts = raw_scan["record_counts"]
+    if (
+        not isinstance(normalized_counts, dict)
+        or not isinstance(raw_counts, dict)
+        or normalized_counts["total"] != raw_counts["additions"]
+        or normalized_counts["additions"] != raw_counts["additions"]
+        or normalized_counts["deletions"] != 0
+        or normalized_counts["post_empty_deletions"] != 0
+        or normalized_counts["literals"]
+        != raw_scan["addition_literal_count"]
+        or normalized_scan["max_variable_observed"]
+        != raw_scan["addition_max_variable_observed"]
+        or normalized_scan["empty_addition_record_index"]
+        != raw_counts["additions"]
+    ):
+        raise ValueError(
+            "normalized proof structure differs from the raw additions"
+        )
+    return dict(report)
+
+
 def _strict_lrat_success(stdout: bytes, stderr: bytes) -> None:
     if stderr:
         raise ValueError("lrat-check wrote to stderr")
@@ -2122,6 +3075,7 @@ def _strict_lrat_success(stdout: bytes, stderr: bytes) -> None:
     lowered = "\n".join(lines).lower()
     if (
         lines.count("c VERIFIED") != 1
+        or "warning" in lowered
         or "error" in lowered
         or "not verified" in lowered
     ):
@@ -2211,8 +3165,9 @@ def _write_outcome(
     }:
         raise ValueError(f"unknown attempt outcome status {status}")
     payload = {
-        "schema": "gamma-theta-order12-k4-attempt-outcome-v1",
-        "schema_version": SCHEMA_VERSION,
+        "schema": ATTEMPT_OUTCOME_SCHEMA,
+        "schema_version": ATTEMPT_OUTCOME_SCHEMA_VERSION,
+        "proof_pipeline": PROOF_PIPELINE_ID,
         "case_id": case_id,
         "attempt_number": attempt_number,
         "status": status,
@@ -2472,6 +3427,10 @@ def _execute_attempt(
     raw_forward_command = _raw_forward_command(
         manifest, attempt_directory
     )
+    normalizer_command = _normalizer_command(manifest, attempt_directory)
+    normalized_forward_command = _normalized_forward_command(
+        manifest, attempt_directory
+    )
     lrat_conversion_command = _lrat_conversion_command(
         manifest, attempt_directory
     )
@@ -2679,6 +3638,207 @@ def _execute_attempt(
             },
         )
 
+    normalizer_resource = _write_phase_resource(
+        run_directory,
+        attempt_directory,
+        phase="normalizer",
+        memory_limit_mib=int(limits["postprocess_memory_mib"]),
+        limits=limits,
+    )
+    if normalizer_resource["passed"] is not True:
+        return (
+            "RESOURCE_GATE_FAILED_NONCLAIM",
+            {
+                "failed_phase": "normalizer",
+                "resource_report": normalizer_resource,
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+            },
+        )
+    _verify_committed_source_binding(sources)
+    _verify_tool_bindings(tools)
+    normalizer_stdout = attempt_directory / "normalizer.stdout"
+    normalizer_stderr = attempt_directory / "normalizer.stderr"
+    normalizer = run_bounded_child(
+        command=normalizer_command,
+        cwd=campaign_root(),
+        stdout_path=normalizer_stdout,
+        stderr_path=normalizer_stderr,
+        wall_limit_seconds=int(limits["converter_wall_seconds"]),
+        memory_limit_mib=int(limits["postprocess_memory_mib"]),
+        file_limit_mib=int(limits["file_limit_mib"]),
+        readonly_paths={
+            "raw binary DRAT proof": proof_path,
+            "normalizer source": (
+                campaign_root()
+                / "src/search/k4_production/normalize_bdrat.py"
+            ),
+        },
+    )
+    _verify_child_artifacts(normalizer, normalizer_command)
+    _verify_committed_source_binding(sources)
+    _verify_file_binding(case_binding, "case CNF")
+    _verify_file_binding(proof_binding, "raw binary DRAT proof")
+    normalizer_failure = _child_failure_status(normalizer, "normalizer")
+    if normalizer_failure is not None:
+        return (
+            normalizer_failure,
+            {
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+            },
+        )
+    normalized_proof_path = (
+        attempt_directory / "proof.normalized.rup.bdrat"
+    )
+    normalization_report_path = (
+        attempt_directory / "normalization-report.json"
+    )
+    normalized_proof_binding = _optional_file_binding(
+        normalized_proof_path, "normalized binary RUP proof"
+    )
+    normalization_report_binding = _optional_file_binding(
+        normalization_report_path, "normalization report"
+    )
+    try:
+        if normalizer.exit_code != 0:
+            raise ValueError(
+                f"binary DRAT normalizer exit code {normalizer.exit_code}"
+            )
+        _strict_normalizer_success(
+            normalizer_stdout.read_bytes(),
+            normalizer_stderr.read_bytes(),
+        )
+        if normalized_proof_binding is None:
+            raise ValueError("normalized binary RUP proof is absent")
+        if normalization_report_binding is None:
+            raise ValueError("normalization report is absent")
+        _validate_normalization_report(
+            normalization_report_path,
+            proof_path,
+            normalized_proof_path,
+        )
+    except (ValueError, OSError) as error:
+        return (
+            "NORMALIZER_REJECTED_NONCLAIM",
+            {
+                "reason": f"{type(error).__name__}: {error}",
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
+            },
+        )
+
+    normalized_forward_resource = _write_phase_resource(
+        run_directory,
+        attempt_directory,
+        phase="normalized-forward",
+        memory_limit_mib=int(limits["postprocess_memory_mib"]),
+        limits=limits,
+    )
+    if normalized_forward_resource["passed"] is not True:
+        return (
+            "RESOURCE_GATE_FAILED_NONCLAIM",
+            {
+                "failed_phase": "normalized-forward",
+                "resource_report": normalized_forward_resource,
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
+            },
+        )
+    _verify_committed_source_binding(sources)
+    _verify_tool_bindings(tools)
+    normalized_forward_stdout = (
+        attempt_directory / "normalized-forward.stdout"
+    )
+    normalized_forward_stderr = (
+        attempt_directory / "normalized-forward.stderr"
+    )
+    normalized_forward = run_bounded_child(
+        command=normalized_forward_command,
+        cwd=campaign_root(),
+        stdout_path=normalized_forward_stdout,
+        stderr_path=normalized_forward_stderr,
+        wall_limit_seconds=int(limits["converter_wall_seconds"]),
+        memory_limit_mib=int(limits["postprocess_memory_mib"]),
+        file_limit_mib=int(limits["file_limit_mib"]),
+        readonly_paths={
+            "case CNF": case_cnf,
+            "normalized binary RUP proof": normalized_proof_path,
+        },
+    )
+    _verify_child_artifacts(
+        normalized_forward, normalized_forward_command
+    )
+    _verify_file_binding(case_binding, "case CNF")
+    _verify_file_binding(proof_binding, "raw binary DRAT proof")
+    if normalized_proof_binding is None:
+        raise AssertionError("normalized proof binding disappeared")
+    if normalization_report_binding is None:
+        raise AssertionError("normalization report binding disappeared")
+    _verify_file_binding(
+        normalized_proof_binding, "normalized binary RUP proof"
+    )
+    _verify_file_binding(
+        normalization_report_binding, "normalization report"
+    )
+    normalized_forward_failure = _child_failure_status(
+        normalized_forward, "normalized_forward"
+    )
+    if normalized_forward_failure is not None:
+        return (
+            normalized_forward_failure,
+            {
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
+            },
+        )
+    try:
+        if normalized_forward.exit_code != 0:
+            raise ValueError(
+                "normalized RUP-only forward verifier exit code "
+                f"{normalized_forward.exit_code}"
+            )
+        _strict_converter_success(
+            normalized_forward_stdout.read_bytes(),
+            normalized_forward_stderr.read_bytes(),
+        )
+    except (ValueError, OSError) as error:
+        return (
+            "NORMALIZED_FORWARD_REJECTED_NONCLAIM",
+            {
+                "reason": f"{type(error).__name__}: {error}",
+                "solver": _child_record(solver),
+                "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
+                "raw_result": result_binding,
+                "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
+            },
+        )
+
     conversion_resource = _write_phase_resource(
         run_directory,
         attempt_directory,
@@ -2694,8 +3854,12 @@ def _execute_attempt(
                 "resource_report": conversion_resource,
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
             },
         )
     _verify_committed_source_binding(sources)
@@ -2712,12 +3876,18 @@ def _execute_attempt(
         file_limit_mib=int(limits["file_limit_mib"]),
         readonly_paths={
             "case CNF": case_cnf,
-            "raw binary DRAT proof": proof_path,
+            "normalized binary RUP proof": normalized_proof_path,
         },
     )
     _verify_child_artifacts(conversion, lrat_conversion_command)
     _verify_file_binding(case_binding, "case CNF")
     _verify_file_binding(proof_binding, "raw binary DRAT proof")
+    _verify_file_binding(
+        normalized_proof_binding, "normalized binary RUP proof"
+    )
+    _verify_file_binding(
+        normalization_report_binding, "normalization report"
+    )
     conversion_failure = _child_failure_status(
         conversion, "lrat_conversion"
     )
@@ -2727,9 +3897,13 @@ def _execute_attempt(
             {
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "lrat_conversion": _child_record(conversion),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
             },
         )
     lrat_path = attempt_directory / "proof.converted.lrat"
@@ -2752,9 +3926,13 @@ def _execute_attempt(
                 "reason": f"{type(error).__name__}: {error}",
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "lrat_conversion": _child_record(conversion),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
                 "converted_lrat": lrat_binding,
             },
         )
@@ -2774,9 +3952,13 @@ def _execute_attempt(
                 "resource_report": checker_resource,
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "lrat_conversion": _child_record(conversion),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
                 "converted_lrat": lrat_binding,
             },
         )
@@ -2800,6 +3982,12 @@ def _execute_attempt(
     _verify_child_artifacts(checker, checker_command)
     _verify_file_binding(case_binding, "case CNF")
     _verify_file_binding(proof_binding, "raw binary DRAT proof")
+    _verify_file_binding(
+        normalized_proof_binding, "normalized binary RUP proof"
+    )
+    _verify_file_binding(
+        normalization_report_binding, "normalization report"
+    )
     if lrat_binding is None:
         raise AssertionError("LRAT binding disappeared")
     _verify_file_binding(lrat_binding, "converted LRAT proof")
@@ -2810,10 +3998,14 @@ def _execute_attempt(
             {
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "lrat_conversion": _child_record(conversion),
                 "lrat_check": _child_record(checker),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
                 "converted_lrat": lrat_binding,
             },
         )
@@ -2830,17 +4022,21 @@ def _execute_attempt(
                 "reason": f"{type(error).__name__}: {error}",
                 "solver": _child_record(solver),
                 "raw_forward": _child_record(raw_forward),
+                "normalizer": _child_record(normalizer),
+                "normalized_forward": _child_record(normalized_forward),
                 "lrat_conversion": _child_record(conversion),
                 "lrat_check": _child_record(checker),
                 "raw_result": result_binding,
                 "raw_proof": proof_binding,
+                "normalized_proof": normalized_proof_binding,
+                "normalization_report": normalization_report_binding,
                 "converted_lrat": lrat_binding,
             },
         )
 
     certificate_payload = {
-        "schema": "gamma-theta-order12-k4-leaf-lrat-certificate-v2",
-        "schema_version": SCHEMA_VERSION,
+        "schema": LEAF_CERTIFICATE_SCHEMA,
+        "schema_version": LEAF_CERTIFICATE_SCHEMA_VERSION,
         "proof_pipeline": PROOF_PIPELINE_ID,
         "leaf_status": "UNSAT_LRAT_VERIFIED",
         "aggregate_status": (
@@ -2851,16 +4047,62 @@ def _execute_attempt(
         "case_cnf": case_binding,
         "raw_solver_result": result_binding,
         "raw_binary_drat": proof_binding,
+        "normalized_binary_rup": normalized_proof_binding,
+        "normalization_report": normalization_report_binding,
         "converted_lrat": lrat_binding,
+        "solver_resource": _file_binding(
+            attempt_directory / "resource-solver.json",
+            "solver resource report",
+        ),
+        "raw_forward_resource": _file_binding(
+            attempt_directory / "resource-raw-forward.json",
+            "raw forward resource report",
+        ),
+        "normalizer_resource": _file_binding(
+            attempt_directory / "resource-normalizer.json",
+            "normalizer resource report",
+        ),
+        "normalized_forward_resource": _file_binding(
+            attempt_directory / "resource-normalized-forward.json",
+            "normalized forward resource report",
+        ),
+        "lrat_conversion_resource": _file_binding(
+            attempt_directory / "resource-lrat-conversion.json",
+            "LRAT conversion resource report",
+        ),
+        "lrat_check_resource": _file_binding(
+            attempt_directory / "resource-lrat-check.json",
+            "lrat-check resource report",
+        ),
         "solver": _child_record(solver),
         "raw_forward": _child_record(raw_forward),
+        "normalizer": _child_record(normalizer),
+        "normalized_forward": _child_record(normalized_forward),
         "lrat_conversion": _child_record(conversion),
         "lrat_check": _child_record(checker),
+        "solver_stdout": _file_binding(
+            solver_stdout, "solver stdout"
+        ),
+        "solver_stderr": _file_binding(
+            solver_stderr, "solver stderr"
+        ),
         "raw_forward_stdout": _file_binding(
             raw_forward_stdout, "raw forward stdout"
         ),
         "raw_forward_stderr": _file_binding(
             raw_forward_stderr, "raw forward stderr"
+        ),
+        "normalizer_stdout": _file_binding(
+            normalizer_stdout, "normalizer stdout"
+        ),
+        "normalizer_stderr": _file_binding(
+            normalizer_stderr, "normalizer stderr"
+        ),
+        "normalized_forward_stdout": _file_binding(
+            normalized_forward_stdout, "normalized forward stdout"
+        ),
+        "normalized_forward_stderr": _file_binding(
+            normalized_forward_stderr, "normalized forward stderr"
         ),
         "lrat_conversion_stdout": _file_binding(
             conversion_stdout, "LRAT conversion stdout"
@@ -2887,6 +4129,8 @@ def _execute_attempt(
             ),
             "solver": _child_record(solver),
             "raw_forward": _child_record(raw_forward),
+            "normalizer": _child_record(normalizer),
+            "normalized_forward": _child_record(normalized_forward),
             "lrat_conversion": _child_record(conversion),
             "lrat_check": _child_record(checker),
         },
@@ -2903,6 +4147,9 @@ def run_next_case(
 
     _require_gate(production_gate_open, "production")
     run_directory = run_directory.resolve(strict=True)
+    # Reject legacy or foreign proof pipelines before even acquiring the run
+    # lock.  The full audit is repeated under the lock to close the race.
+    _load_run_manifest(run_directory)
     with RunLock(run_directory):
         audit_run(run_directory)
         (
@@ -2934,32 +4181,16 @@ def run_next_case(
             raise ValueError("materialized case CNF differs from partition")
         case_cnf_path = attempt_directory / "instance.cnf"
         _write_exclusive(case_cnf_path, case_bytes)
-        attempt_config = {
-            "schema": "gamma-theta-order12-k4-attempt-config-v1",
-            "schema_version": SCHEMA_VERSION,
-            "proof_pipeline": PROOF_PIPELINE_ID,
-            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
-            "case_id": selected_id,
-            "attempt_number": attempt_number,
-            "seed": case["seed"],
-            "cube_literals": case["cube_literals"],
-            "case_cnf_sha256": case["cnf_sha256"],
-            "run_manifest_sha256": manifest_hash,
-            "partition_sha256": partition_hash,
-            "solver_command": list(
-                _solver_command(manifest, case, attempt_directory)
-            ),
-            "raw_forward_command": list(
-                _raw_forward_command(manifest, attempt_directory)
-            ),
-            "lrat_conversion_command": list(
-                _lrat_conversion_command(manifest, attempt_directory)
-            ),
-            "lrat_check_command": list(
-                _lrat_check_command(manifest, attempt_directory)
-            ),
-            "created_unix_ns": time.time_ns(),
-        }
+        attempt_config = _attempt_config_payload(
+            manifest=manifest,
+            manifest_hash=manifest_hash,
+            partition_hash=partition_hash,
+            case=case,
+            attempt_number=attempt_number,
+            attempt_directory=attempt_directory,
+            created_unix_ns=time.time_ns(),
+            construction_status="ORIGINAL_PRE_RESERVATION",
+        )
         _write_exclusive(
             attempt_directory / "attempt-config.json",
             canonical_json_bytes(attempt_config),
@@ -3099,6 +4330,9 @@ def recover_interrupted_attempt(
 
     _require_gate(recovery_gate_open, "interrupted-attempt recovery")
     run_directory = run_directory.resolve(strict=True)
+    # Legacy proof pipelines are read-only under their own source-bound
+    # verifier.  Refuse them before recovery can create a lock or artifact.
+    _load_run_manifest(run_directory)
     with RunLock(run_directory):
         audit_passed = False
         audit_error: ValueError | None = None
@@ -3201,9 +4435,51 @@ def recover_interrupted_attempt(
             raise RuntimeError(
                 "refusing recovery because a process still names the "
                 f"attempt directory: {live}"
-            )
+        )
         case = _case_by_id(partition, case_id)
+        case_cnf_path = attempt_directory / "instance.cnf"
+        case_cnf_reconstructed = False
+        if (
+            not case_cnf_path.exists()
+            and not case_cnf_path.is_symlink()
+            and mode == "ORPHAN_BEFORE_RESERVATION"
+        ):
+            parent_bytes = (run_directory / PARENT_COPY_NAME).read_bytes()
+            reconstructed_case = _case_cnf_bytes(
+                parent_bytes, case["cube_literals"]
+            )
+            if (
+                sha256_bytes(reconstructed_case) != case["cnf_sha256"]
+                or len(reconstructed_case) != case["cnf_size_bytes"]
+            ):
+                raise ValueError("reconstructed orphan case CNF differs")
+            _write_exclusive(case_cnf_path, reconstructed_case)
+            case_cnf_reconstructed = True
         config_path = attempt_directory / "attempt-config.json"
+        config_reconstructed = False
+        if (
+            not config_path.exists()
+            and not config_path.is_symlink()
+            and mode == "ORPHAN_BEFORE_RESERVATION"
+        ):
+            reconstructed_config = _attempt_config_payload(
+                manifest=manifest,
+                manifest_hash=manifest_hash,
+                partition_hash=partition_hash,
+                case=case,
+                attempt_number=attempt_number,
+                attempt_directory=attempt_directory,
+                created_unix_ns=max(
+                    1, attempt_directory.stat().st_ctime_ns
+                ),
+                construction_status=(
+                    "RECOVERED_AFTER_ATOMIC_CONFIG_ABSENCE"
+                ),
+            )
+            _write_exclusive(
+                config_path, canonical_json_bytes(reconstructed_config)
+            )
+            config_reconstructed = True
         _validate_attempt_config(
             _strict_json_file(config_path),
             manifest=manifest,
@@ -3288,6 +4564,8 @@ def recover_interrupted_attempt(
                     status="INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM",
                     details={
                         "reconciliation_mode": mode,
+                        "case_cnf_reconstructed": case_cnf_reconstructed,
+                        "attempt_config_reconstructed": config_reconstructed,
                         "live_process_matches": live,
                         "action": (
                             "Preserve every byte and retry only in a new "

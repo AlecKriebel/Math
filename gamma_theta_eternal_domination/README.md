@@ -343,11 +343,14 @@ python3 reviews/order12_k4_candidate_verifier_hostile_probe.py
 No candidate currently exists.
 
 The proof-producing runner's exact 16-cube partition covers the anchored
-parent.  Its version-two protocol required four separate processes:
-CaDiCaL binary-DRAT production, forward binary-DRAT verification, backward
-LRAT conversion, and fresh `lrat-check` replay.  It preserves interrupted or
-rejected attempts as retryable nonclaims and aggregates even sixteen locally
-verified leaves only as
+parent.  Its version-three author candidate uses six separately bounded
+processes: CaDiCaL binary-DRAT production, raw forward verification, strict
+addition-only normalization, normalized RUP-only forward verification,
+RUP-only backward LRAT conversion, and fresh `lrat-check` replay.  The
+normalization step makes no proof claim; the two fresh RUP-only checks and
+LRAT replay are mandatory.  The runner preserves interrupted or rejected
+attempts as retryable nonclaims and aggregates even sixteen locally verified
+leaves only as
 `ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT`.
 
 ```text
@@ -366,9 +369,15 @@ The subsequent real smoke test of leaf `1111` found a sixth protocol defect
 and failed closed.  CaDiCaL returned UNSAT and the retained 215,475-byte
 binary proof passed warning-fatal forward replay, but backward LRAT conversion
 rejected CaDiCaL's deletion of a pseudo-unit clause and emitted an empty LRAT.
-The durable status is `LRAT_CONVERSION_REJECTED_NONCLAIM`; no leaf is
-certified.  A temporary experiment shows that strict addition-only
-normalization followed by forward RUP checking, backward LRAT conversion,
-and fresh replay can work, but this is only a v3 design observation until
-implemented, independently reviewed, and rerun in a new source-bound
-production directory.
+The durable status remains `LRAT_CONVERSION_REJECTED_NONCLAIM`; no leaf is
+certified.  The version-three author candidate now implements strict
+addition-only normalization, fresh warning-fatal RUP-only verification,
+RUP-only backward conversion, and independent replay.  It still requires
+independent hostile review and a new source-bound production directory; the
+frozen failed attempt is neither rewritten nor promoted.
+
+The v3 runner deliberately rejects every v2 run manifest before acquiring a
+run lock, including through its ordinary read-only audit command.  Historical
+v2 attempt 1 remains auditable with the source-bound v2 verifier at commit
+`9b24d9ff74b2bf9278d45f9bfdf08fcb7a31c800`; v3 never interprets a v2
+attempt, outcome, or certificate under its newer schemas.
