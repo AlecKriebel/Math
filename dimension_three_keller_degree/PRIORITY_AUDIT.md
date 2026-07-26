@@ -911,3 +911,23 @@ source-specific negative evidence, not a worldwide-priority guarantee.
 All five results are AI-assisted and not peer reviewed; four are
 family-level exclusions and one is only a contact-locus theorem.  None
 changes the global \(4/14\) quartic-row count or the degree floor four.
+
+### 2026-07-26T07:25Z — exact-\(\delta=4\) structural-theorem delta
+
+The current-day arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar,
+and publicly indexed X/Twitter sweep was compared with the assembled
+six-family theorem in the binary fixed-quadratic line-double-cover locus.
+Exact searches included the six canonical IDs, the three exceptional
+squarefree moduli \(-16/5,16/5,16\), the three doubled-root signatures,
+and “exact gcd degree four” for quartic three-dimensional Keller maps.
+
+No checked source states the six-orbit classification together with
+arbitrary-lower-term exclusions of all six.  The nearest public records
+concern the announced counterexample, graded constructions, generic-degree
+realizability, monodromy, or bounded-degree Keller parameter spaces.
+
+The final canonical bridge and all lower descents passed two full aggregate
+replays and a hostile assembly audit.  This remains source-specific negative
+evidence, not a guarantee of worldwide priority.  The theorem is AI-assisted,
+unreviewed, confined to one sublocus of one open global row, and does not
+raise the universal degree floor above four.

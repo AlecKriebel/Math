@@ -1498,3 +1498,24 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   exact-\(\delta=4\) family.  Its complete \(E_7/E_6\) contact atlas is
   already frozen as two conjugate planes with ranks \(7,7,6,5\); lower
   descent is active and no exclusion is yet claimed.
+
+## 2026-07-26T07:25:07Z — exact-\(\delta=4\) structural theorem certified
+
+- The final family `D4-DN-2C` is excluded with arbitrary quadratic and
+  cubic lower terms retained.  Primary SymPy and direct PARI/GP
+  reconstructions independently recover its full \(E_7\) kernel, the two
+  \(E_6\) contact planes, all four rank charts, and the complete
+  \(E_5/E_4/E_3\) descent.
+- The canonical \(19+6+1\) denominator proves that the exact-\(\delta=4\)
+  stratum is precisely the six now-excluded families.  The dynamic aggregate
+  and a separate hostile assembly wrapper both pass; seven mutations of the
+  canonical bridge are rejected.
+- Therefore no quartic Keller counterexample in the frozen binary
+  fixed-quadratic line-double-cover locus has
+  \(\deg\gcd(J(Q,R),-J(P,R),J(P,Q))=4\).
+- This is a certified structural theorem and moves the fine denominator to
+  \(6/26\).  It does **not** close the containing global row, so the honest
+  global count remains \(4/14\) certified, \(4/14\) provisional,
+  \(6/14\) open and the universal total-degree floor remains four.
+- Independent and hostile audits of the exceptional power fibre began
+  immediately.

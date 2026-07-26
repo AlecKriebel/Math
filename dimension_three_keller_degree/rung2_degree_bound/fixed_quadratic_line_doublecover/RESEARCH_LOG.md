@@ -166,3 +166,19 @@
   is five of the six isolated exact-\(\delta=4\) families.  The parent row,
   global \(4/14,4/14,6/14\) count, and universal degree floor four remain
   unchanged.
+
+## 2026-07-26T07:25:07Z — all six exact-\(\delta=4\) families excluded
+
+- `D4-DN-2C` passed a full arbitrary-lower-term descent by independent
+  SymPy and PARI/GP routes.  The direct PARI route reconstructs the contact
+  atlas from raw top forms rather than importing the primary atlas.
+- The canonical six-family bridge was then replayed twice and hostile
+  audited against the blinded \(19+6+1\) denominator.  All seven bridge
+  mutations fail as required.
+- The entire exact-\(\delta=4\) binary sublocus is therefore excluded,
+  moving the fine denominator to \(6/26\).
+- The containing fixed-quadratic row remains open: the 19
+  exact-\(\delta=3\) families, exceptional power fibre, lower-incidence
+  certification, and the frozen 45-pivot bridge still prevent row
+  promotion.  The global \(4/14,4/14,6/14\) count and degree floor four
+  do not change.

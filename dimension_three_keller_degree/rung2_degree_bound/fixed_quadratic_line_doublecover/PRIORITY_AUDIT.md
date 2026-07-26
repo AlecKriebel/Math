@@ -113,3 +113,17 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The result is AI-assisted and unreviewed.  It is the
 fifth of 26 frozen high-incidence family exclusions, not a parent-row
 closure or a new universal degree bound.
+
+## 2026-07-26T07:25Z — exact-\(\delta=4\) stratum exclusion
+
+The daily source sweep was compared with the complete six-family
+exact-\(\delta=4\) statement, including the three squarefree exceptional
+moduli and the three doubled-root signatures.  No checked arXiv,
+MathOverflow, Tao-blog, Secret Blogging Seminar, or publicly indexed
+X/Twitter source contains this classification-and-exclusion theorem.
+
+The six canonical families and their arbitrary lower terms passed a hostile
+assembly audit and two complete aggregate replays.  This is source-specific
+negative evidence only, not a worldwide-priority guarantee or peer review.
+The result closes \(6/26\) fine high-incidence families, not the parent row
+or the universal quartic problem.

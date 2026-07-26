@@ -1,0 +1,348 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\A}{\mathbb A}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\Span}{\operatorname{span}}
+
+\title{\textbf{Excluding the exact-\(\delta=4\) stratum}\\
+\large in a quartic three-dimensional Keller leading family}
+\author{Independent AI-assisted research program}
+\date{First release: 26 July 2026 (UTC)}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let \(F:\A^3_{\C}\to\A^3_{\C}\) be a polynomial map of total degree
+four with nonzero constant Jacobian.  We consider the frozen
+fixed-quadratic line-double-cover leading family
+\[
+H_4=(h(p,q)p^2,h(p,q)q^2,0),
+\]
+where \(h\) is a binary quadratic.  If \(R=(H_3)_3\), set
+\[
+\alpha=J(Q,R),\quad \beta=-J(P,R),\quad \gamma=J(P,Q),\quad
+\delta=\deg\gcd(\alpha,\beta,\gamma).
+\]
+We prove that no Keller counterexample in this family has
+\(\delta=4\).  A Hilbert--Burch and incidence calculation gives exactly
+six normal-form orbits at \(\delta=4\).  Full lower-term determinant
+descents exclude all six, with specialization-safe boundary charts.
+The result is a structural exclusion inside one frozen quartic row.  It
+does not prove a universal quartic exclusion and does not improve the
+known total-degree floor four.
+\end{abstract}
+
+\noindent\textbf{Verification and review status.}
+The proof and programs were produced with substantial language-model
+assistance.  The work is not peer reviewed.  Exact symbolic checks certify
+the encoded algebra, not the correctness of an unreviewed mathematical
+model or worldwide priority.
+
+\section{Scope and weighted determinant equations}
+
+Write a degree-four map, after subtracting its constant term, as
+\[
+F=L(p,q,r)^t+H_2+H_3+H_4,
+\]
+where \(L\in\operatorname{GL}_3(\C)\) and \(H_i\) is homogeneous of
+ordinary degree \(i\).  Introduce
+\[
+\Delta(w)=\det\left(L+wJH_2+w^2JH_3+w^3JH_4\right)
+          =\sum_{j=0}^9 E_jw^j.
+\]
+The Keller condition is equivalent to
+\[
+E_0=\det L\ne0,\qquad E_j=0\quad(1\le j\le9).
+\tag{1}
+\]
+We work only in the binary fixed-quadratic line-double-cover row
+\[
+H_4=(P,Q,0),\qquad P=hp^2,\qquad Q=hq^2,\qquad
+h\in\C[p,q]_2,
+\tag{2}
+\]
+and write \(R=(H_3)_3\in\C[p,q]_3\).  The top identity \(E_7=0\)
+is controlled by the binary minors
+\[
+\alpha=J(Q,R),\qquad \beta=-J(P,R),\qquad \gamma=J(P,Q).
+\tag{3}
+\]
+Here \(J\) denotes the two-variable Jacobian in \(p,q\).
+
+\begin{theorem}\label{thm:main}
+In the family \emph{(2)}, there is no quartic Keller counterexample for
+which
+\[
+\delta:=\deg\gcd(\alpha,\beta,\gamma)=4.
+\]
+\end{theorem}
+
+\begin{remark}
+The theorem concerns one leading-shape stratum.  Other strata in the same
+fixed-quadratic row remain open.  In particular, Theorem~\ref{thm:main}
+does not imply that every dimension-three Keller counterexample has total
+degree at least five.  The existing universal floor four is due to the
+degree-three theorem known from Moh--Sathaye, for which Vistoli gave a short
+conceptual proof \cite{Vistoli1999}.
+\end{remark}
+
+\section{Why exactly six families occur}
+
+Put \(g=\gcd(\alpha,\beta,\gamma)\) and \(d=5-\delta\).  After dividing
+by \(g\), the three generator degrees are
+\[
+(d,d,d+1).
+\tag{4}
+\]
+The following bound makes the high-incidence enumeration finite.
+
+\begin{lemma}[Hilbert--Burch deficit bound]\label{lem:hb}
+Assume the reduced minor row has height two and its first two entries are
+constant-linearly independent.  If \(e_1,e_2\) are its two minimal
+syzygy degrees, then
+\[
+e_1+e_2=3d+1.
+\]
+The two gradient columns of \((P,Q,R)\) give syzygies of degree \(d+3\).
+If \(k_i=d+3-e_i\), then
+\[
+0\le k_i\le2,\qquad k_1+k_2=\delta.
+\tag{5}
+\]
+Consequently \(\delta\le4\); when \(\delta=4\), one has
+\((k_1,k_2)=(2,2)\).
+\end{lemma}
+
+\begin{proof}
+Hilbert--Burch applied to a height-two row of degrees \((d,d,d+1)\)
+gives \(e_1+e_2=3d+1\).  Express the two gradient syzygies in a minimal
+syzygy basis.  Their \(2\times2\) coefficient determinant is a nonzero
+scalar multiple of \(g\): wedging the gradient columns gives
+\((\alpha,\beta,\gamma)\), while wedging a minimal basis gives the reduced
+row.  The coefficient degrees are \(k_i=d+3-e_i\).  They are nonnegative,
+their sum is \(\deg g=\delta\), and the degree pattern in (4) bounds each
+by two.  This proves (5) and the conclusions.
+\end{proof}
+
+Since
+\[
+\gamma=J(hp^2,hq^2)=8h^2pq,
+\tag{6}
+\]
+the divisor \(g\) is selected from a finite list of exponent vectors on
+the roots of \(h\), together with \(p=0\) and \(q=0\).  Divisibility of
+\(J(Q,R)\) and \(J(P,R)\) gives a finite linear system for the four
+coefficients of \(R\).  Solving those systems and quotienting by the
+stabilizer of the double cover gives the following proposition.
+
+\begin{proposition}[Exact-\(\delta=4\) incidence atlas]\label{prop:atlas}
+Up to the frozen cover stabilizer, the independent exact-\(\delta=4\)
+locus in \emph{(2)} is the disjoint union of the following six orbits.
+\end{proposition}
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\ttfamily}l p{0.55\textwidth} l@{}}
+\toprule
+\normalfont ID & \normalfont Normal form or modulus & \normalfont \(g\)\\
+\midrule
+D4-SF-21C  & \(h=XY,\ R=X^2Y,\ \kappa=-16/5\) & \(pX^2Y\)\\
+D4-SF-20CC & squarefree \(h\), two fixed contacts, \(\kappa=16/5\)
+            & \(pqX^2\)\\
+D4-SF-11CC & squarefree \(h\), \(R=h(p+q)\), \(\kappa=16\)
+            & \(pqh\)\\
+D4-DN-3    & \(h=L^2,\ R=L^3\), \(L=p+q\) & \(L^4\)\\
+D4-DN-2C   & \(h=L^2,\ R=L^2(p-2q)\), \(L=p+q\) & \(pL^3\)\\
+D4-DN-1CC  & \(h=L^2,\ R=L(2p^2+pq+2q^2)\), \(L=p+q\)
+            & \(pqL^2\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proof}
+Factor \(h\) either as two distinct roots or as \(L^2\).  Equation (6)
+bounds the exponent of every possible prime factor of \(g\).  For each
+bounded exponent vector of total degree four, impose
+\[
+g\mid J(Q,R),\qquad g\mid J(P,R)
+\tag{7}
+\]
+on a general binary cubic \(R\).  Empty systems are discarded; systems
+whose actual gcd is larger or smaller are routed to the corresponding
+exact stratum.  In the doubled-root chart, (7) leaves the three displayed
+normal forms.  In the squarefree chart, the reciprocal and branch-swap
+symmetries identify the surviving parameter values into the three
+displayed orbits.  The exact enumeration checks all bounded exponent
+vectors and all exit values before quotienting.
+
+Two independent ledgers implement this calculation.  The primary ledger
+has \(17+6+1\) high-incidence entries; a blinded reconstruction refines
+the exact-\(\delta=3\) part and gives the canonical \(19+6+1\) ledger.
+They agree on all six exact-\(\delta=4\) orbits.  The machine-readable
+denominators, boundary routing, and strict reconciliation checks accompany
+this paper.
+\end{proof}
+
+\section{The six lower-term exclusions}
+
+For every orbit in Proposition~\ref{prop:atlas}, the calculation begins
+with the complete \(E_7\) kernel, forms the full \(E_6\) system with every
+lower coefficient present, and covers each rank or pivot boundary
+separately.  The terminal mechanisms are summarized below.
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\ttfamily}l p{0.69\textwidth}@{}}
+\toprule
+\normalfont Family & \normalfont Complete descent\\
+\midrule
+D4-SF-21C &
+The \(E_6\) contact locus is a plane.  A rank-seven open chart and its
+rank-six directions fail at \(E_5\); the rank-five origin loses all
+nonbinary nonlinear coefficients and exits through a plane Keller map.\\
+D4-SF-20CC &
+The \(r^2\)-contact coordinates vanish and \(E_6\) leaves one contact
+line.  Its nonzero chart fails at \(E_5\); the origin collapses at \(E_4\)
+and exits through a plane Keller map.\\
+D4-SF-11CC &
+The complete contact plane splits into specialization-safe rank charts.
+The nonzero charts fail in \(E_5,E_4\); the zero chart gives the same
+unconditional plane exit.\\
+D4-DN-3 &
+The contact radical is two conjugate planes.  Their interiors fail at
+\(E_5\), their punctured intersection forces \(\det L=0\), and the origin
+collapses to the plane exit.\\
+D4-DN-2C &
+The contact radical is again two conjugate planes.  Their interiors fail
+at \(E_5\).  On the punctured intersection, the full \(E_5\) residual
+ideal splits into two branches; one forces \(\det L=0\), while the other
+has a nonzero \(E_3\) residual.  The origin collapses to the plane exit.\\
+D4-DN-1CC &
+\(E_6\) leaves one contact line.  Its nonzero chart is inconsistent at
+\(E_4\); at zero contact every nonlinear term is binary and the plane exit
+applies.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For completeness, we record the decisive identities in the last new
+family.  On either transverse plane, with \(\eta^2=-2\), two
+lower-variable-free \(E_5\) coefficients are
+\[
+\frac{(2k+3s)Q_1(k,s)}{162},\qquad
+\frac{(2k+3s)Q_2(k,s)}{243},
+\tag{8}
+\]
+and an exact Bezout identity shows that \(Q_1(1,t),Q_2(1,t)\) are
+coprime.  Their common line is \(2k+3s=0\).  On its punctured part
+\(k\ne0\), the full \(E_5\) residual ideal is
+\[
+\langle {\cal Q},{\cal A}{\cal B}\rangle.
+\tag{9}
+\]
+The \(r^2\)-part of \(E_4\) forces \({\cal S}=0\), after which
+\({\cal Q}={\cal D}^2\).  On \({\cal B}=0\), the remaining
+compatibility is \({\cal A}{\cal F}_B=0\); the
+\({\cal F}_B=0\) branch has \(\det L=0\), and
+\({\cal A}=0\) is the other branch.  There,
+\[
+\det L=\frac{{\cal F}_A{\cal H}_A}{1152}.
+\tag{10}
+\]
+If \({\cal F}_A\ne0\), two \(E_3\) equations have pivot
+\[
+\frac{k^2{\cal F}_A^2}{144},
+\]
+while each remaining equation reduces to
+\[
+\frac{k{\cal F}_A^2}{288}\ne0.
+\tag{11}
+\]
+At the origin, a fresh constant \(E_6\) pivot gives
+\[
+[p^3r]E_4=-3b_{qr}^2,\qquad
+[q^3r]E_4=\frac23(3b_{qr}+2\ell_8)^2.
+\tag{12}
+\]
+Thus all six nonbinary quadratic coefficients vanish.
+
+Whenever a zero-contact chart leaves only binary nonlinear terms, a
+linear target normalization separates a two-variable Keller map of
+degree at most four and a triangular \(r\)-coordinate.  Moh's
+unconditional plane theorem for degree below \(100\)
+\cite{BiggersMohFried1983} makes that plane map an automorphism.  This is
+a proved bounded-degree theorem, not an assumption of the open plane
+Jacobian conjecture.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:atlas} is exhaustive and disjoint.  The complete
+lower-term descents summarized above exclude each of its six terminal
+orbits.  Therefore no exact-\(\delta=4\) leading point in (2) can belong
+to a quartic Keller counterexample.
+\end{proof}
+
+\section{Exact certificates and limitations}
+
+The aggregate verifier performs the following checks.
+\begin{enumerate}[leftmargin=2em]
+\item It compares a six-entry proof manifest with the canonical blinded
+      \(19+6+1\) denominator.
+\item It deletes one family and requires the bridge verification to fail.
+\item It reruns the primary enumeration, blinded denominator,
+      reconciliation, and frozen hashes.
+\item It obtains the execution plan from the validated manifest and runs
+      six distinct fail-closed family wrappers.
+\item Each family wrapper requires exact terminal markers from symbolic
+      algebra and an independently implemented replay, and contains
+      deliberate coefficient mutations that must fail.
+\item A separate hostile assembly wrapper reruns the complete aggregate,
+      verifies that the containing global row remains open, and rejects
+      mutations of the canonical ID, alias, proof path, terminal marker,
+      denominator source, theorem scope, and advertised counts.
+\end{enumerate}
+The terminal assembly marker is
+\[
+\texttt{EXACT\_DELTA4\_SIX\_FAMILY\_EXCLUSION\_STRICT\_PASS}.
+\]
+The hostile assembly terminates with
+\[
+\texttt{EXACT\_DELTA4\_HOSTILE\_UMBRELLA\_AUDIT\_STRICT\_PASS}.
+\]
+
+These checks are reproducible evidence for the stated stratum theorem.
+They do not constitute peer review.  In particular, they do not close the
+remaining exact-\(\delta=3\), lower-incidence, or power-fibre families,
+the parent fixed-quadratic row, or the global quartic denominator.
+
+\begin{thebibliography}{9}
+
+\bibitem{BiggersMohFried1983}
+R. Biggers, T. T. Moh, and M. Fried,
+\emph{On the Jacobian conjecture and the configurations of roots},
+J. Reine Angew. Math. \textbf{340} (1983), 140--213.
+
+\bibitem{Vistoli1999}
+A. Vistoli,
+\emph{The Jacobian conjecture in dimension 3 and degree 3},
+J. Pure Appl. Algebra \textbf{142} (1999), 79--89.
+
+\end{thebibliography}
+
+\end{document}
