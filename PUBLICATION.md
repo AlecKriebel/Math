@@ -120,6 +120,33 @@ focused search found no prior public resolution as of 25 July 2026, but this
 does not establish absolute priority. No researcher was contacted, and the
 note remains unreviewed.
 
+## Exact cyclic Bell Tsirelson bound
+
+The proof package for “The exact quantum value of a cyclic Bell operator”
+first entered `main` in commit
+[`bb9ee199662fc7ce5490299f5ece8e1371bd7072`](https://github.com/AlecKriebel/Math/commit/bb9ee199662fc7ce5490299f5ece8e1371bd7072)
+at **26 July 2026, 20:37:23 UTC** (**26 July 2026, 13:37:23 PDT**).
+
+The note proves Conjecture 1 of Perito, D'Avino, Jung, Mironowicz, Acín, and
+Augusiak:
+\[
+\beta_{\mathrm Q}(\mathcal I_d)
+=2\csc\!\left(\frac{\pi}{2d}\right)
+\quad(d\ge2).
+\]
+The originating authors introduced the Bell family, conjectured the formula,
+and provided the admissible attaining strategy and matching lower bound. The
+candidate contribution is the missing dimension-independent analytic upper
+bound, strengthened to arbitrary unitary observables. The public package
+includes the analytic manuscript, exact positive-factor certificate, complete
+order-\(d\) argument, symbolic and matrix checks, a machine-readable claim
+ledger, release hashes, and a focused priority audit.
+
+A public search found no earlier proof, but this establishes only a release
+timestamp—not correctness or absolute priority. The note does not claim
+uniqueness, self-testing, or all-dimensional maximal randomness. No researcher
+was contacted, and the note remains unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
