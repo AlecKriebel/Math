@@ -1,5 +1,29 @@
 # Campaign State
 
+## Checkpoint 014 — 2026-07-25 18:54 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint: `2c6ce8da`.
+- The new `hole7` production run has 64 complete SAT/coloring attempts and
+  64 globally sound cuts.  Its checkpoint SHA-256 is
+  `5677bd2323dca1f78c330555d0e2ed443d5993f63c546ad0d22479de5c886a2f`;
+  status remains `running`, with no terminal or resource event.
+- Deep read-only reconstruction passed and preserved the exact 451-file,
+  2,233,086-byte run tree at SHA-256
+  `6ce2af652b3bcd91184ec2d3cef73822b9de226bff0979ed7e444ba810c149ee`.
+- The accepted portable-core package is pushed.  The separate `hole9`
+  recovery package remains pending an independent hostile audit.
+- No solver or proof-checker child was active when this checkpoint was
+  written.
+
+### Claim boundary and next actions
+
+- Sixty-four valid coloring cuts do not exclude the `hole7` template.
+- Publish this resumable prefix before another bounded batch.
+- Continue `hole7`; in parallel, finish the independent `hole9` RUP audit.
+  Start `hole5` after a published checkpoint or a terminal, subject to the
+  4 GiB disk reserve.
+
 ## Checkpoint 013 — 2026-07-25 18:50 PDT
 
 - Campaign day: 1 of 27; branch `main`.

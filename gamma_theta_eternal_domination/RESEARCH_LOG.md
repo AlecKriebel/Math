@@ -478,3 +478,26 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - In parallel, the independently written `hole9` recovery verifier produced
   a deletion-free 4,705-addition RUP package and passed its author audit.
   It remains pending a new hostile review and supports no claim yet.
+
+### 18:54 — `hole7` production reaches 64 cuts
+
+- Launched the second required order-12 parameter-three template from pushed
+  commit `2c6ce8da`, using the frozen seed-zero configuration, 60-second and
+  2,048 MiB child bounds, 4 GiB disk reserve, 256 MiB child-file cap, and
+  1 MiB retained-attempt limit.
+- All 64 iterations returned complete SAT assignments, directly validated
+  candidate semantics and proper complement three-colorings, and atomically
+  committed 64 distinct globally sound coloring cuts.  There was no timeout,
+  unknown outcome, memory event, candidate, or UNSAT terminal.
+- Solver children used 2.9442 seconds total wall time; the slowest took
+  0.0693 seconds and the largest peak RSS was 6,733,824 bytes.  The complete
+  batch spanned about 33.76 seconds.
+- The checkpoint has SHA-256
+  `5677bd2323dca1f78c330555d0e2ed443d5993f63c546ad0d22479de5c886a2f`
+  and history head
+  `72021c3740968419ba495565f59cb8e2ce1d0a64925379ad1c9e4076136aeada`.
+- A separate deep read-only audit passed.  The 451-file, 2,233,086-byte run
+  tree retained SHA-256
+  `6ce2af652b3bcd91184ec2d3cef73822b9de226bff0979ed7e444ba810c149ee`
+  before and after replay.  The branch remains open; this prefix proves no
+  nonexistence result.
