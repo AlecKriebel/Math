@@ -4,6 +4,8 @@
 
 - Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
   `HEAD` `069b06ed2801e72cf3c9e53fc8a29e15415f657a`.
+- The complete checkpoint was integrated and pushed in commit
+  `9f192cb85866b06811a970c9b7b346ee06f5554e`.
 - **Certified frontier unchanged and preserved:** C-035 excludes the complete
   order-12, parameter-three counterexample slice, including disconnected
   graphs.  The universal conjecture remains open.
