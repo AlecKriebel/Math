@@ -1991,3 +1991,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The full campaign regression suite passed all 398 tests in 373.148
   seconds.  The claim boundary and exact artifact hashes are frozen in
   `results/cross_state_proof_acceptance.json`.
+
+### 2026-07-26 16:57 — cross-state proof package and public page released
+
+- The independently accepted C-063--C-068 package was committed and pushed
+  to `main` as `224af249d423419a887e737e6941b58f512c82a4`.
+- GitHub Pages run `30226281225` completed successfully.  The cache-busted
+  live active-workstream page is byte-identical to the committed source,
+  SHA-256
+  `0254ec939c9359dee80bf0db321ea4ce3781a7cd1993c74d5c98ab2beccee209`.
+- The public page preserves Alec Kriebel's authorship and research
+  leadership, the exact one-guard definition, the existing order-12
+  frontier, and the explicit statement that the universal conjecture is
+  unresolved.  It now records the frozen-color induction, cross-state
+  covariance, the proper-family `FDzro` falsifier, and the equality-only
+  external witness clique.
+- The order-12 frontier paper remains the only current paper.  These
+  universal structural lemmas are public research artifacts but are not yet
+  issued as a second manuscript.
+- Deployment and live-byte evidence are frozen in
+  `results/cross_state_public_workstream_acceptance.json`.
