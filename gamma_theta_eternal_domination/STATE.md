@@ -1,5 +1,95 @@
 # Campaign State
 
+## Checkpoint 045 — 2026-07-26 11:19 PDT
+
+- Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
+  both `20eca759c2b0919366c2355d859e62a0933542dd`.  This is the released
+  checkpoint containing C-053--C-056, the accepted final-v3 runner, its two
+  preserved rejection histories, and the 389-test regression.
+- **Exact live `hole9` package generated and audited:** the dedicated
+  constructor regenerated 9,802 variables, 32,108 clauses, 281,028 literals,
+  and all 2,295 first-use-canonical coloring obstructions.  The formula
+  SHA-256 is
+  `3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea`,
+  exactly the byte string previously reproduced by both independent
+  constructors.  The exhaustive package audit accepted all three exclusive
+  entries.  A fresh private-archive reconstruction then compared all three
+  live files byte-for-byte and returned
+  `ACCEPT_LIVE_HOLE9_PACKAGE_PREFLIGHT`; root reproduced its read-only
+  evidence exactly.  No solver ran.
+- **Durable production initialization accepted:** the run is frozen at
+  `results/order13_k3_hole9_production` with zero attempts and status
+  `PENDING`.  The run manifest SHA-256 is
+  `40fe9e77e4da79e8b70f3d3f836d3a595e1d3b8bae25c4c607a2e1f63dc4be54`;
+  checkpoint zero is
+  `106afa51de8197303dbd762a4d234dd0a5bb32b687bb5d655848687f5027358e`.
+  A separate read-only production audit accepts the exact initialized tree.
+- The first attempt is deliberately not launched in this checkpoint.  Its
+  explicit limits are one child, seed 0, 1,800 seconds for the solver and
+  each postprocessing phase, 2,048 MiB memory per child, 1,024 MiB per file,
+  8,192 MiB retained free disk, 2,048 MiB reclaimable-memory reserve, and
+  load ceiling 7.5.
+
+### Evidentiary boundary
+
+- This checkpoint makes no SAT or UNSAT claim.  It excludes no `hole9`
+  instance, no order-13 slice, and no graph.
+- Constructor acceptance proves exact graph-to-CNF construction and complete
+  coloring-obstruction coverage only.  Production initialization proves only
+  that the accepted tools, sources, inputs, resource limits, and restart
+  metadata are frozen consistently.
+- The conjecture remains open.  The live order-13 \(k=3\) union is still
+  `hole5`, `hole7`, and `hole9`; the \(k=4,5\) slices also remain open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; novelty of C-053/C-056 remains explicitly unclaimed |
+| Order-12 frontier | exhausted-certified | C-050 release and manuscript are committed and pushed |
+| Order-13 \(k=3\) mathematics | accepted-proved | C-053--C-055; live cover reduced to \(C_5,C_7,C_9\) |
+| Order-13 \(k=3\) constructor | accepted-two-independent | Exact live `hole9` package matches the independently reconstructed bytes |
+| Order-13 production runner | accepted-final-v3 | Two historical rejections preserved; final hostile evidence reproduced |
+| Order-13 live `hole9` production | initialized-pending-launch | Freeze and push checkpoint 045 before the first bounded child |
+| Order-13 \(k=4\) | pending-second | Begin after the first bounded accepted \(k=3\) production result |
+| Order-13 \(k=5\) structure | accepted-proved-C056 | Canonical ten-vertex-kernel and attachment enumeration remains unimplemented |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, graph generator, or memory-heavy child is
+  running at this checkpoint.
+- The exact initialized tree audits with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3
+  -m search.order13_k3.production audit --run-directory
+  results/order13_k3_hole9_production`.
+- After this checkpoint is committed and pushed, the first production attempt
+  launches with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3
+  -m search.order13_k3.production run --run-directory
+  results/order13_k3_hole9_production --production-gate`.
+- If process loss leaves a nonterminal attempt and no old child remains, use
+  the same command with `--recover-interrupted` first.  Never edit an attempt
+  tree manually.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 18,272,488 KiB, approximately 17.43 GiB; volume
+  usage is 96%.  Load averages: 3.50, 2.68, 2.44.
+- The 1-GiB ceiling makes the conservative prechild disk requirement about
+  13.06 GiB, leaving roughly 4.37 GiB of headroom at initialization.  A proof
+  exceeding 1 GiB will terminate as a bounded nonclaim.  More local storage
+  remains the useful hardware upgrade if that occurs.
+
+### Next three highest-value actions
+
+1. Complete the independent exact-package and launch-configuration preflight,
+   then bind this package, checkpoint, and prelaunch record in the manifest.
+2. Commit and push checkpoint 045 on `main`, excluding all provisional
+   certificates, replay locks, and unrelated research.
+3. Launch the one bounded `hole9` attempt, monitor its durable checkpoints,
+   and independently audit any terminal result without overstating it.
+
 ## Checkpoint 044 — 2026-07-26 11:05 PDT
 
 - Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`

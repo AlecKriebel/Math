@@ -1517,3 +1517,41 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   192,397,312 bytes.  The retained log SHA-256 is
   `97aa30c0c233c0bcb29ddb50ddab157fb0a20a7cb38b2b387b6ac171c3b323ff`;
   the separate JSON binding recomputed the hash, count, and terminal result.
+
+### 2026-07-26 11:19 — exact `hole9` production tree initialized
+
+- The accepted checkpoint was committed and pushed on `main` as
+  `20eca759c2b0919366c2355d859e62a0933542dd`.  Staged-scope review found only
+  the 73 intended campaign paths; all 55 new manifest hashes reproduced from
+  the staged bytes.  Provisional certificates, replay locks, and unrelated
+  research remained untracked and outside the commit.
+- The dedicated order-13 constructor generated
+  `instances/order13_k3_hole9` from fresh bytes.  Its exhaustive
+  reconstruction reports 9,802 variables, 32,108 clauses, 281,028 literals,
+  and 2,295 complete coloring-obstruction rows.  Formula SHA-256
+  `3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea`,
+  coloring-bank SHA-256
+  `a0f47a0aaa3be4659ce483f27a963d351f3a13424cac6a6a99ef6ac9e0c872f1`,
+  and constructor-manifest SHA-256
+  `8f55019121df7280368528c1b7c0808d3cc06e7bd0f871be516057763c87ad5b`
+  exactly match the previously accepted independent-constructor evidence.
+- A fresh clean `git archive` of exact commit `20eca759` independently
+  reconstructed the package in private storage and compared all three live
+  files byte-for-byte.  The package-set binding is
+  `ba05d99b67816c1f1eeac2569b694ec1fc4412a584e95f359452bdfe12eaad6a`;
+  verdict `ACCEPT_LIVE_HOLE9_PACKAGE_PREFLIGHT`.  Root reproduced the
+  retained read-only audit output exactly.
+- The final-v3 runner initialized
+  `results/order13_k3_hole9_production` exclusively and launched no child.
+  Run manifest SHA-256 is
+  `40fe9e77e4da79e8b70f3d3f836d3a595e1d3b8bae25c4c607a2e1f63dc4be54`;
+  checkpoint-zero SHA-256 is
+  `106afa51de8197303dbd762a4d234dd0a5bb32b687bb5d655848687f5027358e`.
+  Its read-only structural audit returns `accepted=true`, `status=PENDING`,
+  and `attempt_count=0`.
+- The frozen limits are seed 0; one child; 1,800 seconds for the solver and
+  every postprocessing child; 2,048 MiB child memory; 1,024 MiB per output
+  file; 8,192 MiB disk reserve; 2,048 MiB reclaimable-memory reserve; and
+  load ceiling 7.5.  The reduced file ceiling preserves the 8-GiB safety
+  reserve on the 96%-used local volume.  No SAT, UNSAT, or finite exclusion
+  is claimed at initialization.
