@@ -553,3 +553,20 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   8,907,069-byte tree at SHA-256
   `e699cfa165062acf890be869beaf97dadf3a1b90ff1bb58cab2bd57df00ca1e3`.
   The branch remains open and another bounded batch is warranted.
+
+### 19:09 — `hole7` production reaches 384 cuts
+
+- A larger 128-iteration resume added 128 complete, directly validated
+  SAT/coloring attempts.  There is still no terminal or resource event.
+- The 128 solver children used 6.5493 seconds total wall time and
+  4.8789 seconds total CPU.  The maximum child wall time was 0.0943 seconds
+  and maximum RSS was 7,864,320 bytes.
+- The checkpoint SHA-256 is
+  `81f62e83cf6a910c6b9baabe0edff7ab26543e787cad91a7e261323ae52e18c6`,
+  with history head
+  `92eeecdbd46e9fcb151f398a073f1275929df589a06a60a07fc882c88f8cdc6a`.
+- Deep read-only reconstruction passed and preserved the 2,691-file,
+  13,353,372-byte tree at SHA-256
+  `43ca4d29ea369900480d5cf90ab52e53b77b5600d03d4d0d5eba37402f1a7b3c`.
+  The branch is taking more coloring cuts than `hole9`, but per-child cost
+  remains tiny and no scaling gate has fired.

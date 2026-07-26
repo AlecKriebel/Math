@@ -1,5 +1,31 @@
 # Campaign State
 
+## Checkpoint 018 — 2026-07-25 19:09 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this batch: `58d3b363`.
+- `hole7` has 384 complete SAT/coloring attempts and globally valid cuts,
+  checkpoint SHA-256
+  `81f62e83cf6a910c6b9baabe0edff7ab26543e787cad91a7e261323ae52e18c6`,
+  and status `running`.
+- Deep reconstruction preserved the 2,691-file, 13,353,372-byte tree at
+  SHA-256
+  `43ca4d29ea369900480d5cf90ab52e53b77b5600d03d4d0d5eba37402f1a7b3c`.
+- The branch has required more cuts than `hole9`, but all 128 new solver
+  children remained below 0.095 seconds and 7.9 MB RSS.
+- The `hole9` recovery and its explicit ART-115/prose errata remain under
+  independent hostile review.  No heavy child was active at checkpoint
+  creation.
+
+### Claim boundary and next actions
+
+- The 384-cut `hole7` prefix proves no template nonexistence.
+- Publish this checkpoint.  Continue with another bounded batch while
+  monitoring cut yield and audit time; stop or redesign only at a measured
+  scaling gate.
+- Integrate `hole9` only after the independent RUP replay returns a final
+  verdict.
+
 ## Checkpoint 017 — 2026-07-25 19:05 PDT
 
 - Campaign day: 1 of 27; branch `main`.
