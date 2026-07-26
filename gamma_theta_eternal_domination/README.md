@@ -316,6 +316,18 @@ Their clean-room regression is:
 python3 reviews/order12_k4_hub_constraints_hostile_probe.py
 ```
 
+Claim C-041 resolves the next incidence layer in the
+\(\overline{C_7}\) template.  Outside vertices adjacent in \(H\) to exactly
+six antihole vertices are pairwise nonadjacent in \(H\), all miss the same
+rim vertex, and there are at most three of them.  Hence the subbranch with
+four or five such near-hubs is empty, although the full
+\(\overline{C_7}\) template remains open.  An independent
+configuration-digraph implementation checks all local cases:
+
+```text
+python3 reviews/order12_k4_antihole_near_hubs_hostile_probe.py
+```
+
 The standalone decoded-candidate verifier is also accepted.  It imports no
 synthesis or prior verifier core and conditionally proves
 \(\gamma=\gamma^\infty=4<\theta\) from an explicit graph, literal eternal

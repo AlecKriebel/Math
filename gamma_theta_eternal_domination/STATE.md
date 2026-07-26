@@ -1,5 +1,61 @@
 # Campaign State
 
+## Checkpoint 036 — 2026-07-26 03:12 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `dd6cd3f83b83d5726d4f743a009bbc8d30e23a87`.
+- **New proved local restriction (C-041):** in the order-12 parameter-four
+  target, if \(H=\overline G\) contains an induced
+  \(\overline{C_7}\), all outside vertices adjacent in \(H\) to exactly six
+  rim vertices are pairwise nonadjacent in \(H\), miss the same rim vertex,
+  and number at most three.
+- The proof combines a definition-level two-attack obstruction on a
+  nine-vertex induced \(C_7\) extension with the accepted P3 and no-hub
+  properties.  Four near-hubs force the unique fifth outside vertex to be a
+  forbidden full hub; five near-hubs violate P3 immediately.
+- Independent hostile review returned
+  `ACCEPT_PROVED_LOCAL_LEMMAS_WITHOUT_SCOPE_INFLATION`.  Its separate
+  `frozenset` configuration-digraph evaluator checked all 98 two-spoke
+  graphs, all 49 stable-triple cases, the three attack tables, and all 896
+  P3-cap cases.  The author regression and hostile replay both pass.
+- This excludes only the anti-\(C_7\) incidence subbranch with four or five
+  near-hubs.  It does not exclude the full template, settle the
+  \((12,4)\) slice, establish novelty, or resolve the universal conjecture.
+- The immutable v2 failed-closed run was committed and pushed as
+  `dd6cd3f8...`.  Version-three proof-pipeline implementation is active; no
+  new solver or checker has been launched and no \(k=4\) leaf is certified.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active | Parent accepted; zero certified leaves |
+| Order-12 \(k=4\) structural lane | active | C-041 removes the four/five-near-hub anti-\(C_7\) subbranch |
+| Proof-producing runner v2 | rejected-superseded | Frozen failed-closed forensic run preserved |
+| Proof-producing runner v3 | active-implementation | Normalizer and five-stage certificate bindings still under construction |
+| Aggregate negative-result audit | paused-schema | Resume only after v3 source and schema freeze |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- The v3 author is changing only its new source files and tests.  It must
+  pass hostile review before a new immutable production directory is
+  initialized.
+- Preserve `results/order12_k4_production_seed0` unchanged and never resume
+  its v2 `run-next`.
+
+### Next three highest-value actions
+
+1. Freeze and independently review the v3 strict binary normalizer and
+   normalized-RUP/LRAT/replay pipeline.
+2. Initialize a new source-bound v3 run and certify the deliberately trivial
+   `1111` smoke leaf before authorizing any other leaf.
+3. Use C-041 as a proved filter in the anti-\(C_7\) structural branch while
+   the exact certificate lane runs.
+
 ## Checkpoint 035 — 2026-07-26 02:56 PDT
 
 - Campaign day: 2 of 27; branch `main`; shared-repository pre-integration

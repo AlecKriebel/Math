@@ -1127,3 +1127,24 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   RUP, convert that stream to LRAT, and freshly replay it.  This observation
   is not a certified `1111` result until the transformation, pipeline,
   schemas, and independent aggregate checker are implemented and reviewed.
+
+### 2026-07-26 03:12 — anti-\(C_7\) near-hub restriction accepted
+
+- A local two-spoke theorem was proved directly from the one-guard
+  definition.  If two vertices outside an induced \(C_7\) each have exactly
+  one cycle neighbor and the ambient graph has
+  \(\gamma^\infty\leq4\), then the outside pair is adjacent and their cycle
+  neighbors coincide.
+- In the complement target, vertices adjacent to exactly six vertices of an
+  induced \(\overline{C_7}\) are therefore mutually nonadjacent and share
+  one missing rim vertex.  Three P3 test triples then show that order 12
+  permits at most three such near-hubs: four force the sole remaining
+  outside vertex to be a forbidden hub, and five violate P3 directly.
+- The independent reviewer checked the exact one-guard attack table,
+  complement direction, and scope, and independently enumerated all 98
+  two-spoke cases, 49 deleted-pair cases, and 896 cap cases.  Verdict:
+  `ACCEPT_PROVED_LOCAL_LEMMAS_WITHOUT_SCOPE_INFLATION`.
+- This is C-041, a proved necessary condition and precise incidence
+  subbranch exclusion.  The full anti-\(C_7\) branch and the order-12
+  parameter-four slice remain open, and no novelty claim is made before a
+  literature comparison.
