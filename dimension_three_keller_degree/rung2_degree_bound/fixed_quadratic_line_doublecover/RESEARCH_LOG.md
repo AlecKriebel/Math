@@ -54,3 +54,28 @@
 - Optimized-Python and GP-diagnostic fault injection both fail closed.
 - Verdict: PASS.  The nonbinary subrow is promoted; the binary locus
   remains open.
+
+## 2026-07-26T01:31:00Z — canonical \(\delta\ge3\) denominator frozen
+
+- A primary saturation-safe enumeration and a clean-room reconstruction
+  independently classified the formerly untouched high-gcd binary locus.
+- The primary package froze before reconciliation at
+  \(17\) exact-\(\delta=3\) families, \(6\) exact-\(\delta=4\)
+  families, and one dependent power fibre.
+- The blinded audit obtained \(19+6+1=26\).  Reconciliation showed that
+  the count difference is exactly two branch-square torus endpoint splits,
+  but also found two substantive primary guard errors:
+  `D3-DN-L3` overlapped two \(\delta=4\) contact points, and the
+  oriented `D3-SF-2C` family incorrectly identified the reciprocal
+  \(z\)-sheets and omitted the exact-\(\delta=3\) point \(z=-1/5\).
+- The blinded \(19+6+1\) ledger is canonical.  Its exact local-valuation
+  proof and dependency-free replay are reconciled with the primary
+  SymPy/PARI saturation calculation.
+- Twelve retained pivots and twenty-four exit arrows now have separate
+  stable F1 identifiers.  They certify boundary coverage without changing
+  the main count twenty-six.
+- The complete reconciliation replay ends with
+  `DELTA_GE3_RECONCILIATION_STRICT_PASS_26`.
+- This freezes the incidence search space only.  The parent quartic row
+  remains open, the global count remains \(4/14\) certified, and the
+  universal total-degree floor remains four.

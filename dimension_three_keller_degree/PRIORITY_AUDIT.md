@@ -837,3 +837,27 @@ publicly indexed X/Twitter source contains this contact atlas or its
 proportional-column obstruction.  This is source-specific negative
 evidence only, not a worldwide-priority guarantee.  The candidate is
 AI-assisted, unreviewed, and awaiting hostile audit.
+
+### 2026-07-26T01:35Z — high-incidence fixed-quadratic denominator delta
+
+The current-day sweep was compared with the frozen high-incidence
+denominator for the binary fixed-quadratic line-double-cover row:
+19 exact-\(\delta=3\) families, 6 exact-\(\delta=4\) families, and the
+dependent power fibre.  Queries covered current arXiv Keller/Jacobian
+listings, MathOverflow, Terence Tao's blog, the Secret Blogging Seminar,
+and publicly indexed X/Twitter material, with exact searches for quartic
+dimension-three degree bounds, fixed-quadratic line double covers, and
+Keller generic-degree monodromy.
+
+The checked arXiv results included Migus, arXiv:2607.21572, on generic
+degrees of real Keller maps with non-dense image, and Shaska,
+arXiv:2607.20210, on graded Keller maps.  Neither contains this
+fixed-quadratic incidence denominator.  A public GitLab package titled
+*Exact Fiber Geometry for the Marked-Root Keller Family* concerns the
+Gallagher/marked-root family and is adjacent to Track B, not this quartic
+leading-shape classification.
+
+No checked source states the 26-family denominator or its boundary-chart
+registry.  This is source-specific negative evidence only, not a guarantee
+of worldwide priority.  The classification is AI-assisted, unreviewed,
+and is not yet a Keller exclusion or a new numerical degree bound.

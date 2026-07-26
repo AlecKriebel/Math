@@ -27,3 +27,27 @@ worldwide priority.  The theorem was promoted after hostile audit at
 2026-07-25T05:38:33Z but remains unreviewed; its binary fixed-quadratic
 locus remains open, and it does not raise the universal certified
 total-degree floor above \(4\).
+
+## 2026-07-26T01:35Z — high-incidence binary-locus denominator
+
+The current-day sweep was compared specifically with the independently
+reconstructed high-incidence classification for this row: 19
+exact-\(\delta=3\) families, 6 exact-\(\delta=4\) families, one dependent
+power fibre, 12 retained degeneration pivots, and 24 exit arrows.  Searches
+covered current arXiv Keller/Jacobian listings, MathOverflow, Terence Tao's
+blog, the Secret Blogging Seminar, and publicly indexed X/Twitter material.
+Exact terms included “fixed quadratic line double cover”, “quartic Keller
+map dimension three”, and the special squarefree moduli
+\(\kappa=-16/5,16/5,16\).
+
+The checked current papers on real generic degrees (Migus,
+arXiv:2607.21572) and graded Keller maps (Shaska, arXiv:2607.20210) do not
+state this incidence atlas.  The public GitLab package *Exact Fiber
+Geometry for the Marked-Root Keller Family* concerns a different
+generic-degree construction.
+
+No checked source states this denominator or boundary registry.  This is
+source-specific negative evidence only, not a guarantee of worldwide
+priority.  The atlas is AI-assisted and unreviewed; it freezes the search
+space but does not exclude any of the 26 families from the Keller
+equations.

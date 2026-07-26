@@ -1405,3 +1405,24 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The highest-information next experiment is a saturation-safe primary
   decomposition of the universal \(\deg\gcd(\alpha,\beta,\gamma)\ge3\)
   locus, separating the \(\delta=3,\delta=4\), and power-fibre components.
+
+## 2026-07-26T01:31:00Z — high-incidence denominator certified
+
+- The fixed-quadratic line-double-cover row now has a canonical fine
+  denominator for its previously untouched high-gcd strata:
+  \[
+  19\text{ exact-}\delta=3+
+  6\text{ exact-}\delta=4+
+  1\text{ dependent power fibre}.
+  \]
+- The primary calculation froze independently at \(17+6+1\).  The
+  blinded reconstruction both refined two residual-torus endpoint unions
+  and caught two real primary defects: an overlapping doubled-nonbranch
+  exact open and an invalid reciprocal quotient that deleted the
+  \(z=-1/5\) exact-\(\delta=3\) orbit.
+- Reconciliation adopts the clean-room \(19+6+1\) ledger, supplies an
+  exact ID migration map, and assigns stable IDs to all twelve retained
+  pivots and twenty-four exit arrows.  The aggregate strict replay passes.
+- No Keller exclusion follows yet.  The frozen global status is still
+  \(4/14\) certified, \(4/14\) provisional, \(6/14\) open, and the
+  certified total-degree floor remains four.

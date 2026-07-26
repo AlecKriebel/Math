@@ -1,0 +1,427 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "scope": "binary (h,R), exact delta>=3 incidence denominator only",
+  "counts": {
+    "delta3_independent": 19,
+    "delta4_independent": 6,
+    "dependent_power_fibre": 1,
+    "total": 26
+  },
+  "global_quotients": {
+    "joint_stabilizer": "(C^*)^2 semidirect <p<->q>",
+    "squarefree_root_cover": "X=p-rq, Y=p-r^(-1)q, z=r^2, kappa=z+2+z^(-1)",
+    "squarefree_identifications": [
+      "r<->-r is induced by a branch sign and gives z=r^2",
+      "p<->q exchanges both branch points and X,Y",
+      "families with no relative fixed-root/branch orientation descend further by z<->z^(-1), hence have modulus kappa",
+      "D3-SF-20C remembers the relative orientation, so z and z^(-1) are distinct generic orbits on one z-curve",
+      "at z=-1 (kappa=0) the extra sign stabilizer identifies those two generic orientations"
+    ],
+    "doubled_nonbranch": "L=p+q; residual involution p<->q"
+  },
+  "families": [
+    {
+      "id": "D3-BS-N2-Z",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "branch_square",
+      "normal_form": {"h": "p^2", "R": "p^2 q"},
+      "parameter_space": "point",
+      "quotient": "residual diagonal torus; zero/nonzero p^3-tail is invariant",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-BS-N2-NZ",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "branch_square",
+      "normal_form": {"h": "p^2", "R": "p^2(p+q)"},
+      "parameter_space": "point after torus quotient",
+      "quotient": "all nonzero p^3/p^2q ratios are one complex-torus orbit",
+      "guards": ["both residual coefficients nonzero"],
+      "retained_pivots": [
+        {"condition": "p^3 coefficient -> 0", "destination": "D3-BS-N2-Z"}
+      ],
+      "exit_boundaries": [
+        {"condition": "p^2q coefficient -> 0", "destination": "PF-BRANCH-FOURTH-THIRD"}
+      ]
+    },
+    {
+      "id": "D3-BS-N1-BR2",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "branch_square",
+      "normal_form": {"h": "p^2", "R": "p q^2"},
+      "parameter_space": "point",
+      "quotient": "residual diagonal torus",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-BS-N1-CONTACT",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "branch_square",
+      "normal_form": {"h": "p^2", "R": "p(p^2+q^2)"},
+      "parameter_space": "point after torus quotient",
+      "quotient": "all nonzero ratios in p(ap^2+cq^2) are one complex-torus orbit",
+      "guards": ["a*c != 0"],
+      "retained_pivots": [
+        {"condition": "a -> 0", "destination": "D3-BS-N1-BR2"}
+      ],
+      "exit_boundaries": [
+        {"condition": "c -> 0", "destination": "PF-BRANCH-FOURTH-THIRD"}
+      ]
+    },
+    {
+      "id": "D3-BB-30",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "two_branch",
+      "normal_form": {"h": "pq", "R": "p^3"},
+      "parameter_space": "point",
+      "quotient": "p<->q identifies p^3 with q^3",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-BB-21",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "two_branch",
+      "normal_form": {"h": "pq", "R": "p^2q"},
+      "parameter_space": "point",
+      "quotient": "p<->q identifies p^2q with pq^2",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-300",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "p^3"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-210",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "p^2(p+q)"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-120",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "p(p+q)^2"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-20C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "p^2(4p+3q)"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-11C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "p(p+q)(q-4p)"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-OB-02C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "one_branch",
+      "normal_form": {"h": "p(p+q)", "R": "(p+q)^2(5q-4p)"},
+      "parameter_space": "point",
+      "quotient": "the branch swap supplies the equivalent q(q+p) chart; no internal stabilizer remains",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D3-SF-21",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "X^2Y"},
+      "parameter_space": "kappa-line minus {4,-16/5} (with infinity an exit)",
+      "quotient": "X<->Y and p<->q identify the reciprocal presentations, so z<->z^(-1) and the modulus is kappa",
+      "guards": ["kappa != 4", "kappa != -16/5"],
+      "retained_pivots": [
+        {"condition": "kappa=0", "destination": "same family; stabilizer jumps"}
+      ],
+      "exit_boundaries": [
+        {"condition": "kappa=4", "destination": "D4-DN-3"},
+        {"condition": "kappa=-16/5", "destination": "D4-SF-21C"},
+        {"condition": "kappa=infinity", "destination": "D3-BB-21"}
+      ]
+    },
+    {
+      "id": "D3-SF-20C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "X^2((5-3z)p+4rq)"},
+      "parameter_space": "z in C^* minus {1,-5, roots(5z^2-6z+5)}",
+      "quotient": "r<->-r only, hence z=r^2; z and z^(-1) are distinct generic relative-orientation orbits in this one family",
+      "guards": ["z != 0", "z != 1", "z != -5", "5z^2-6z+5 != 0"],
+      "retained_pivots": [
+        {"condition": "z=-1 (kappa=0)", "destination": "same family; extra stabilizer identifies the two orientations"},
+        {"condition": "z=-1/5 (kappa=-16/5)", "destination": "same exact-delta3 family; the reciprocal z=-5 orbit jumps instead"},
+        {"condition": "z=3 (kappa=16/3)", "destination": "same family with residual line X, so R=X^3"},
+        {"condition": "z=1/3 (kappa=16/3)", "destination": "same family; distinct reciprocal sheet, regular normal form"}
+      ],
+      "exit_boundaries": [
+        {"condition": "z=1", "destination": "D4-DN-2C"},
+        {"condition": "z=-5", "destination": "D4-SF-21C"},
+        {"condition": "5z^2-6z+5=0", "destination": "D4-SF-20CC"},
+        {"condition": "z->0", "destination": "D3-BB-30"},
+        {"condition": "z->infinity", "destination": "D3-BB-21"}
+      ]
+    },
+    {
+      "id": "D3-SF-11C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "h((z+1)p+4rq)"},
+      "parameter_space": "kappa-line minus {4,-16/5,16} (with infinity an exit)",
+      "quotient": "the fixed roots are unordered and the one contacted branch is exchanged by p<->q, so the modulus is kappa",
+      "guards": ["kappa != 4", "kappa != -16/5", "kappa != 16"],
+      "retained_pivots": [
+        {"condition": "kappa=0", "destination": "same family; stabilizer jumps"}
+      ],
+      "exit_boundaries": [
+        {"condition": "kappa=4", "destination": "D4-DN-2C"},
+        {"condition": "kappa=-16/5", "destination": "D4-SF-21C"},
+        {"condition": "kappa=16", "destination": "D4-SF-11CC"},
+        {"condition": "kappa=infinity", "destination": "D3-BB-21"}
+      ]
+    },
+    {
+      "id": "D3-SF-10CC",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {
+        "h": "XY",
+        "R": "X(Ap^2+Bpq+Cq^2)",
+        "relations": ["(z-3)A=4rB", "(1-3z)C=4rB"]
+      },
+      "parameter_space": "kappa-line minus {4,16/5,16} (with infinity an exit)",
+      "quotient": "p<->q exchanges X,Y while preserving the two-contact condition, so reciprocal z-presentations give one kappa-orbit",
+      "guards": ["kappa != 4", "kappa != 16/5", "kappa != 16"],
+      "retained_pivots": [
+        {"condition": "kappa=0", "destination": "same family; stabilizer jumps"},
+        {"condition": "z=3 or z=1/3 (kappa=16/3)", "destination": "same family; use [A:B:C]=[1:0:0] or [0:0:1] instead of dividing by z-3 or 1-3z"}
+      ],
+      "exit_boundaries": [
+        {"condition": "kappa=4", "destination": "D4-DN-1CC"},
+        {"condition": "kappa=16/5", "destination": "D4-SF-20CC"},
+        {"condition": "kappa=16", "destination": "D4-SF-11CC"},
+        {"condition": "kappa=infinity", "destination": "D3-BB-21"}
+      ]
+    },
+    {
+      "id": "D3-DN-2",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "L^2(up+vq)"},
+      "parameter_space": "P^1_[u:v] minus three boundary points",
+      "quotient": "[u:v]<->[v:u]",
+      "guards": ["u-v != 0", "2u+v != 0", "u+2v != 0"],
+      "retained_pivots": [
+        {"condition": "[u:v]=[1:-1]", "destination": "same family; fixed point of projective swap"}
+      ],
+      "exit_boundaries": [
+        {"condition": "u=v", "destination": "D4-DN-3"},
+        {"condition": "2u+v=0 or u+2v=0", "destination": "D4-DN-2C"}
+      ]
+    },
+    {
+      "id": "D3-DN-1C",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "L(Ap^2+Bpq+2Bq^2)"},
+      "parameter_space": "P^1_[A:B] minus two points, in the contact-at-p chart",
+      "quotient": "no internal quotient on the p-contact chart; p<->q supplies the equivalent q-contact chart",
+      "guards": ["A+B != 0", "A-2B != 0"],
+      "retained_pivots": [],
+      "exit_boundaries": [
+        {"condition": "A=-B", "destination": "D4-DN-2C"},
+        {"condition": "A=2B", "destination": "D4-DN-1CC"}
+      ]
+    },
+    {
+      "id": "D3-DN-0CC",
+      "coarse": "delta3_independent",
+      "delta": 3,
+      "hb_deficits": [2, 1],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "ap^3+(3a/2)p^2q+(3d/2)pq^2+dq^3"},
+      "parameter_space": "P^1_[a:d] minus the diagonal point",
+      "quotient": "[a:d]<->[d:a]",
+      "guards": ["a-d != 0"],
+      "retained_pivots": [
+        {"condition": "[a:d]=[1:-1]", "destination": "same family; fixed point of projective swap"}
+      ],
+      "exit_boundaries": [
+        {"condition": "a=d", "destination": "D4-DN-1CC"}
+      ]
+    },
+    {
+      "id": "D4-SF-21C",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "X^2Y", "condition": "z=-5, kappa=-16/5"},
+      "parameter_space": "point",
+      "quotient": "the reciprocal z=-1/5 presentation uses the other fixed root/contacted branch and is the same orbit",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D4-SF-20CC",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "X^2((5-3z)p+4rq)", "condition": "5z^2-6z+5=0, kappa=16/5"},
+      "parameter_space": "one orbit on the reciprocal two-point algebraic locus",
+      "quotient": "z<->z^(-1) exchanges the two roots; both branch contacts make them one orbit",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D4-SF-11CC",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "squarefree_no_branch",
+      "normal_form": {"h": "XY", "R": "h((z+1)p+4rq)", "condition": "kappa=16"},
+      "parameter_space": "point",
+      "quotient": "the reciprocal z-roots are exchanged by p<->q and give one orbit",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D4-DN-3",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "L^3"},
+      "parameter_space": "point",
+      "quotient": "fixed by p<->q",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D4-DN-2C",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "L^2(p-2q)"},
+      "parameter_space": "point",
+      "quotient": "p<->q identifies the p-contact and q-contact presentations",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "D4-DN-1CC",
+      "coarse": "delta4_independent",
+      "delta": 4,
+      "hb_deficits": [2, 2],
+      "h_chart": "doubled_nonbranch",
+      "normal_form": {"h": "L^2", "R": "L(2p^2+pq+2q^2)"},
+      "parameter_space": "point",
+      "quotient": "fixed by p<->q",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    },
+    {
+      "id": "PF-BRANCH-FOURTH-THIRD",
+      "coarse": "dependent_power_fibre",
+      "delta": 5,
+      "hb_deficits": null,
+      "h_chart": "branch_square",
+      "normal_form": {"h": "p^2", "R": "p^3"},
+      "parameter_space": "point",
+      "quotient": "p<->q identifies the q^2,q^3 presentation",
+      "guards": [],
+      "retained_pivots": [],
+      "exit_boundaries": []
+    }
+  ],
+  "special_value_identities": {
+    "kappa=4": "(z-1)^2=0",
+    "kappa=0": "(z+1)^2=0",
+    "kappa=-16/5": "5z^2+26z+5=0",
+    "kappa=16/5": "5z^2-6z+5=0",
+    "kappa=16/3": "(3z-1)(z-3)=0",
+    "kappa=16": "z^2-14z+1=0"
+  }
+}
