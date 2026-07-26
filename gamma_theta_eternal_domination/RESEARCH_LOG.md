@@ -982,3 +982,53 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   local work held load averages above 20 and free disk space near 18 GiB, so
   the full proof replay and any heavy \(k=4\) solve were deferred by their
   resource gates.
+
+### 2026-07-26 02:00 — structural \(k=4\) reduction and candidate verifier accepted
+
+- Proved and independently accepted C-038.  If
+  \(H=\overline G\) satisfies the complement-side three-set witness property
+  forced by \(\gamma(G)=4\), and \(G\) is connected, every induced hole in
+  \(H\) leaves at least four vertices outside it.  The proof handles
+  \(r=0,1,2,3\) separately and uses connectedness at the exact complement
+  sign.
+- At order 12 this eliminates induced \(C_9\) and \(C_{11}\) holes.  SPGT,
+  the clique-number bound on antiholes, and the accepted one-guard cycle
+  values leave exactly three overlapping complement templates:
+  \(C_5,C_7,\overline{C_7}\).  This is a structural reduction, not a
+  \((12,4)\) exclusion.
+- A clean-room probe exhausted every fixed induced-\(C_5\) graph with at most
+  three outside vertices.  The \(r=3\) layer contained 262,144 graphs; all
+  274 satisfying P3 had a hub and none had connected complement.  A separate
+  literal one-guard fixed-point implementation reproduced the cycle and
+  anticycle values used in the proof.
+- Built a standard-library-only decoded-candidate verifier.  Acceptance is
+  based only on graph identity, exact \(\gamma=4\), a literal nonempty
+  one-guard eternal family, and exhaustive failure of all 65,536
+  anchor-normalized complement four-colorings.  Connectedness,
+  \(\alpha=i=4\), well-coveredness, class restrictions, a Wagner minor, and
+  an odd-hole/antihole witness are independently checked but cannot erase a
+  definition-level counterexample.
+- The hostile verifier audit ran thousands of independent graph, parameter,
+  transition, coloring, and trace comparisons.  It found a deeply nested
+  valid-JSON input that escaped the documented malformed-input exit path.
+  The loader now translates that exact recursion failure into a structured
+  error; the 1,000,001-byte reproducer and all 13 authored tests pass.
+- The compressed literature refresh found no direct resolution.  It
+  confirmed that the 2026 Cayley paper uses the all-guards-move parameter:
+  one guard reaches the attacked vertex while every remaining guard may also
+  move.  Its results were kept only in the variant ledger.
+- A draft 16-leaf proof runner was deliberately rejected before source
+  freeze.  A real two-variable proof showed that forward-mode `drat-trim`
+  verification cannot simultaneously be trusted to emit LRAT accepted by
+  the pinned `lrat-check`.  The same hostile pass found two unrecoverable
+  crash windows, an unchecked attempt-config hash, and a production API test
+  hook capable of fabricating child results.
+- None of those runner defects affects C-035, C-037, C-038, or the candidate
+  verifier, and no \(k=4\) solver was launched.  The required repair is a
+  four-stage solver/forward-DRAT/backward-LRAT/LRAT-replay pipeline with
+  exact crash reconciliation and no injectable production child.
+- At the checkpoint resource probe, load and disk passed but reclaimable
+  memory did not meet the conservative 4 GiB child plus 2 GiB reserve gate.
+  The next real proof job will therefore wait.  Once the repaired runner is
+  committed and independently accepted, the trivially inconsistent `1111`
+  Boolean leaf is the first low-cost end-to-end production target.

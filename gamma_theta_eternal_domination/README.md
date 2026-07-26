@@ -292,3 +292,31 @@ The retained full CNF has 18,381 variables, 114,742 clauses, and SHA-256
 `adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac`.
 It is accepted exact formula infrastructure with
 `NO_MATHEMATICAL_CLAIM`: no \(k=4\) SAT/UNSAT result exists yet.
+
+Claim C-038 sharpens the order-12 parameter-four structural frontier.
+If \(H=\overline G\) contains an induced hole, at least four vertices lie
+outside that hole.  Together with the Strong Perfect Graph Theorem and the
+accepted one-guard cycle values, every surviving \(H\) therefore contains
+an induced \(C_5\), \(C_7\), or \(\overline{C_7}\).  The independent
+boundary and one-guard probe is:
+
+```text
+python3 reviews/order12_k4_structural_split_hostile_probe.py
+```
+
+The standalone decoded-candidate verifier is also accepted.  It imports no
+synthesis or prior verifier core and conditionally proves
+\(\gamma=\gamma^\infty=4<\theta\) from an explicit graph, literal eternal
+family, and complete 65,536-row complement-coloring trace:
+
+```text
+PYTHONPATH=src python3 -m unittest -v \
+  tests.test_verifier_k4_candidate
+
+python3 reviews/order12_k4_candidate_verifier_hostile_probe.py
+```
+
+No candidate currently exists.  The proof-producing \(k=4\) runner remains
+outside the accepted source set while hostile-review findings in its
+proof-conversion and interruption-recovery boundaries are repaired.  No
+order-12 \(k=4\) solver run has been launched.

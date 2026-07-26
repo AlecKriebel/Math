@@ -281,6 +281,12 @@ still obtain and audit:
 | Eviction `e-infinity` | Attacks and forced departures differ from standard eternal domination. | Out of scope. |
 | Total, connected, foolproof, directed, distance, fractional, vertex-cover variants | Alter domination, legal configurations, attacks, or movement. | Out of scope unless reproved from the campaign definition. |
 
+The current arXiv paper *Eternal Domination in Cayley Graphs*
+(`arXiv:2607.04024`) explicitly uses
+\(\gamma_{\mathrm{all}}^\infty\): after one guard moves to the attacked
+vertex, every remaining guard may also move.  Its Cayley-graph equality and
+gap theorems therefore supply no result in the one-guard campaign model.
+
 ## 9. Immediate literature follow-ups
 
 1. Obtain and inspect the Klostermeyer-Krop-MacGillivray 2018 `C4`-free

@@ -1,5 +1,91 @@
 # Campaign State
 
+## Checkpoint 032 — 2026-07-26 02:00 PDT
+
+- Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
+  `HEAD` `1775c93345559d005eca19acd23eabec5f1a0538`.
+- **Certified frontier preserved:** C-035 still excludes the complete
+  order-12, parameter-three slice, including disconnected graphs.  The
+  universal conjecture remains open, and no order-12 parameter-four SAT or
+  UNSAT result is claimed.
+- **New proved structural reduction (C-038):** for connected
+  \(\gamma=\gamma^\infty=4\), every induced hole in the complement leaves at
+  least four outside vertices.  Thus an order-12 parameter-four target has an
+  induced \(C_5\), \(C_7\), or \(\overline{C_7}\) in its complement; the
+  former \(C_9\) branch and \(C_{11}\) are impossible.  An independent
+  proof review returned
+  `ACCEPT_PROVED_RELATIVE_TO_STATED_ACCEPTED_INPUTS`.
+- The clean-room structural probe exhausted every fixed-induced-\(C_5\)
+  incidence graph with zero through three outside vertices.  In the largest
+  \(r=3\) layer it checked all 262,144 graphs; 274 satisfy P3, all 274 have a
+  hub, and none has connected complement.  It independently reproduced
+  \(\gamma^\infty(C_n)=3,4,5,6\) and
+  \(\gamma^\infty(\overline{C_n})=3\) for
+  \(n=5,7,9,11\).
+- The independent decoded \((12,4)\) candidate verifier is accepted.  Its
+  definition-level core checks exact \(\gamma=4\), a literal nonempty
+  one-guard eternal four-family, and every one of the 65,536
+  anchor-normalized colorings of the complement.  Ancillary restrictions
+  cannot erase a definition-level witness.
+- Thirteen authored tests pass.  The hostile verifier audit separately
+  checked 2,048 Graph6 cases, 256 static-parameter cases, 4,096 literal
+  one-guard families, 64 coloring cases, 131,072 trace rows, and the complete
+  decisive/ancillary truth table.  It found one malformed-deep-JSON CLI
+  defect; the exact 1,000,001-byte reproducer is now a regression that exits
+  2 with a structured error.  Final verdict: `ACCEPT`.
+- The current literature refresh has 38 model-tagged rows and found no
+  universal proof or certified counterexample.  The July 2026 Cayley paper
+  is explicitly \(\gamma_{\mathrm{all}}^\infty\), where other guards may
+  also move, and supplies no theorem in the campaign's one-guard model.
+- **Draft runner rejected before launch:** a real two-variable proof probe
+  showed that the pinned `drat-trim -i -f -W -L` combination emits LRAT that
+  the pinned `lrat-check` rejects.  The audit also found two crash-recovery
+  windows, a missing attempt-configuration recheck, and an overpowered
+  injectable test hook.  All findings are confined to uncommitted,
+  unlaunched production infrastructure.  The repair must separate raw
+  forward DRAT verification, backward LRAT conversion, and fresh LRAT
+  replay.
+- A separate aggregate verifier is being written without importing the
+  production runner.  It will reconstruct all 16 leaves, audit Boolean
+  coverage, and freshly replay every LRAT before any complete-slice claim.
+- Resource observation at 02:00: Apple M1 Pro, 10 logical CPUs, 16 GiB
+  physical RAM, one-minute load about 3.55, and about 26.9 GiB free disk.
+  The production gate still refused because only about 4.54 GB was
+  reclaimable against a 6 GiB child-plus-reserve requirement.  No heavy
+  solver was launched.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | Current refresh complete; no direct resolution found; all-guards Cayley result quarantined |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 remains accepted |
+| Order-12 \(k=4\) exact target | active | Parent C-037 accepted; no SAT/UNSAT result |
+| Order-12 \(k=4\) structural lane | active | C-038 reduces SPGT obstruction to \(C_5,C_7,\overline{C_7}\) |
+| Decoded candidate verification | accepted-ready | Conditional verifier and hostile audit accepted; no candidate exists |
+| Proof-producing runner | rejected-repairing | Four concrete pre-launch findings must be closed and re-audited |
+| Aggregate negative-result audit | active-development | Must remain implementation-independent and bind repaired final schema |
+| Order-12 \(k=5\) | pending | Begins after the \(k=4\) production gate is stable or measured evidence redirects effort |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- The runner repair and its hostile review are active against the four exact
+  reproducer classes listed above.
+- The independent aggregate auditor is active but must fail closed until the
+  repaired certificate schema is frozen.
+
+### Next three highest-value actions
+
+1. Freeze and publish C-038, the candidate verifier, their independent
+   audits, and this explicit rejection record without staging any draft
+   runner or provisional proof artifact.
+2. Repair and cross-audit the four-stage proof pipeline and both interruption
+   windows; require exact current-byte hashes before source freeze.
+3. After a committed source-binding gate and a safe memory window, initialize
+   the immutable 16-leaf run and certify the trivial `1111` leaf first as a
+   real, low-resource end-to-end proof-pipeline test.
+
 ## Checkpoint 031 — 2026-07-26 01:05 PDT
 
 - Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
