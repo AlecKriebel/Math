@@ -1,0 +1,292 @@
+{
+  "canonical_encoding": {
+    "literal_map": "2*abs(literal)+(1 iff literal<0)",
+    "maximum_supported_uvarint": 9223372036854775807,
+    "maximum_varint_bytes": 9,
+    "negative_zero_rejected": true,
+    "record_prefixes_hex": {
+      "addition": "61",
+      "deletion": "64"
+    },
+    "terminator_hex": "00",
+    "varint": "unsigned little-endian base-128, minimal bytes"
+  },
+  "deletion_strip": {
+    "addition_only_hex": "610200610306006100",
+    "addition_only_stats": {
+      "addition_count": 3,
+      "addition_literal_count": 3,
+      "addition_stream_sha256": "d3d175eb7a18bc2cf3c1b49db6c957bbe3bceb112bd63fcc7342fc2d8c8c9d19",
+      "addition_stream_size_bytes": 9,
+      "byte_count": 9,
+      "deletion_count": 0,
+      "deletion_literal_count": 0,
+      "deletion_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deletion_stream_size_bytes": 0,
+      "empty_addition_count": 1,
+      "final_empty_record": 3,
+      "first_deletion_record": null,
+      "maximum_clause_length": 2,
+      "maximum_variable": 3,
+      "proof_sha256": "d3d175eb7a18bc2cf3c1b49db6c957bbe3bceb112bd63fcc7342fc2d8c8c9d19",
+      "record_count": 3
+    },
+    "byte_exact": true,
+    "source_hex": "61020064040061030600640906006100",
+    "source_stats": {
+      "addition_count": 3,
+      "addition_literal_count": 3,
+      "addition_stream_sha256": "d3d175eb7a18bc2cf3c1b49db6c957bbe3bceb112bd63fcc7342fc2d8c8c9d19",
+      "addition_stream_size_bytes": 9,
+      "byte_count": 16,
+      "deletion_count": 2,
+      "deletion_literal_count": 3,
+      "deletion_stream_sha256": "45caf4709d768e326bb814aba78ca30985bd5ac193099438617f0e1c372058de",
+      "deletion_stream_size_bytes": 7,
+      "empty_addition_count": 1,
+      "final_empty_record": 5,
+      "first_deletion_record": 2,
+      "maximum_clause_length": 2,
+      "maximum_variable": 4,
+      "proof_sha256": "124bc07da2d54da484b0ddebcf937dde19f024460b1df171a463b56f45fff33c",
+      "record_count": 5
+    }
+  },
+  "mutations": {
+    "attempted": 20,
+    "rejected": [
+      {
+        "mutation": "empty_proof",
+        "rejected_as": "empty_proof"
+      },
+      {
+        "mutation": "wrong_prefix",
+        "rejected_as": "wrong_prefix"
+      },
+      {
+        "mutation": "prefix_eof",
+        "rejected_as": "truncated_varint"
+      },
+      {
+        "mutation": "truncated_varint",
+        "rejected_as": "truncated_varint"
+      },
+      {
+        "mutation": "unterminated_record",
+        "rejected_as": "truncated_varint"
+      },
+      {
+        "mutation": "truncated_after_record",
+        "rejected_as": "truncated_varint"
+      },
+      {
+        "mutation": "noncanonical_zero",
+        "rejected_as": "noncanonical_varint"
+      },
+      {
+        "mutation": "noncanonical_literal",
+        "rejected_as": "noncanonical_varint"
+      },
+      {
+        "mutation": "negative_zero",
+        "rejected_as": "negative_zero"
+      },
+      {
+        "mutation": "varint_overflow",
+        "rejected_as": "varint_overflow"
+      },
+      {
+        "mutation": "literal_range",
+        "rejected_as": "literal_range"
+      },
+      {
+        "mutation": "duplicate_literal",
+        "rejected_as": "duplicate_literal"
+      },
+      {
+        "mutation": "tautological_clause",
+        "rejected_as": "tautological_clause"
+      },
+      {
+        "mutation": "empty_deletion",
+        "rejected_as": "empty_deletion"
+      },
+      {
+        "mutation": "nonfinal_empty",
+        "rejected_as": "record_after_empty"
+      },
+      {
+        "mutation": "double_empty",
+        "rejected_as": "record_after_empty"
+      },
+      {
+        "mutation": "missing_final_empty",
+        "rejected_as": "missing_final_empty"
+      },
+      {
+        "mutation": "deletion_only",
+        "rejected_as": "missing_final_empty"
+      },
+      {
+        "mutation": "deletion_forbidden",
+        "rejected_as": "deletion_forbidden"
+      },
+      {
+        "mutation": "raw_literal_after_record",
+        "rejected_as": "wrong_prefix"
+      }
+    ]
+  },
+  "probe_sha256": "02c3c00faf7afb91a3217f5b738d0dacf7699875928162d01ce2df97e600007d",
+  "production_gate": {
+    "expected_max_var": 6886,
+    "parse_before_checker": true,
+    "reparse_addition_only": true,
+    "require_exactly_one_verified": true,
+    "require_warning_free": true,
+    "require_zero_rat": true,
+    "strict_checker_flags": [
+      "-i",
+      "-f",
+      "-W",
+      "-U"
+    ],
+    "strip_all_deletions": true
+  },
+  "production_variable_boundary": {
+    "maximum_variable": 6886,
+    "negative_literal_hex": "cd6b",
+    "positive_literal_hex": "cc6b",
+    "proof_hex": "61cc6b0061cd6b006100",
+    "stats": {
+      "addition_count": 3,
+      "addition_literal_count": 2,
+      "addition_stream_sha256": "9d27e68e32c6cb644efb1fa209f9dbd53ffee7ac41c20b5559997273b6a9cf60",
+      "addition_stream_size_bytes": 10,
+      "byte_count": 10,
+      "deletion_count": 0,
+      "deletion_literal_count": 0,
+      "deletion_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deletion_stream_size_bytes": 0,
+      "empty_addition_count": 1,
+      "final_empty_record": 3,
+      "first_deletion_record": null,
+      "maximum_clause_length": 1,
+      "maximum_variable": 6886,
+      "proof_sha256": "9d27e68e32c6cb644efb1fa209f9dbd53ffee7ac41c20b5559997273b6a9cf60",
+      "record_count": 3
+    }
+  },
+  "readme_fixture": {
+    "decoded_records": [
+      [
+        "d",
+        [
+          -63,
+          -8193
+        ],
+        "647f83800100"
+      ],
+      [
+        "a",
+        [
+          129,
+          -8191
+        ],
+        "618202ff7f00"
+      ],
+      [
+        "a",
+        [],
+        "6100"
+      ]
+    ],
+    "proof_hex": "647f83800100618202ff7f006100",
+    "stats": {
+      "addition_count": 2,
+      "addition_literal_count": 2,
+      "addition_stream_sha256": "68945d84bffff3d9f72414bb1a16d5c4a2d63b8afc0afa32cf98781406aeac7c",
+      "addition_stream_size_bytes": 8,
+      "byte_count": 14,
+      "deletion_count": 1,
+      "deletion_literal_count": 2,
+      "deletion_stream_sha256": "f79ea8341e4c458681e6ad6eb294e8393312db0b7407d6d2bc0709d6a847c658",
+      "deletion_stream_size_bytes": 6,
+      "empty_addition_count": 1,
+      "final_empty_record": 3,
+      "first_deletion_record": 1,
+      "maximum_clause_length": 2,
+      "maximum_variable": 8193,
+      "proof_sha256": "77a08b024c291a13ab3e0b860ede2468fca68c8cae65bb994dafcf27a80da5cc",
+      "record_count": 3
+    }
+  },
+  "schema": "gamma-theta-hole5-binary-drat-hostile-probe-v1",
+  "schema_version": 1,
+  "status": "PASS",
+  "strict_pinned_checker_smoke": {
+    "addition_only_proof_hex": "6102006103006100",
+    "addition_only_proof_sha256": "01e30eecffa40b9b4e4fbe9f7dea1efb89f730337b02ec87901f2cf2f92fb7bf",
+    "checker_sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+    "checker_source_sha256": "f7619bdc338bc8151b2f6bb87488052795c926b048d5040cf165742eb1ba9a26",
+    "cnf_sha256": "d9231948f3910d44b0069f2e1bda8b5908ed956d408461c20be7a9eea5c7f9ab",
+    "exit_code": 0,
+    "normalized_command": [
+      "$CHECKER",
+      "$CNF",
+      "$ADDITION_ONLY_BINARY_PROOF",
+      "-i",
+      "-f",
+      "-W",
+      "-U",
+      "-t",
+      "10"
+    ],
+    "source_proof_hex": "610200640204006103006100",
+    "source_proof_sha256": "232e460762c14c1599fabc9fff6466efcba52f5846754bd817314f383f9efb36",
+    "stable_stdout_sha256": "28feef3747c341713589315e32b3cfeecb70b6ef3ce020121465fe6be7dc45d9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "transformation": {
+      "addition_only": {
+        "addition_count": 3,
+        "addition_literal_count": 2,
+        "addition_stream_sha256": "01e30eecffa40b9b4e4fbe9f7dea1efb89f730337b02ec87901f2cf2f92fb7bf",
+        "addition_stream_size_bytes": 8,
+        "byte_count": 8,
+        "deletion_count": 0,
+        "deletion_literal_count": 0,
+        "deletion_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "deletion_stream_size_bytes": 0,
+        "empty_addition_count": 1,
+        "final_empty_record": 3,
+        "first_deletion_record": null,
+        "maximum_clause_length": 1,
+        "maximum_variable": 1,
+        "proof_sha256": "01e30eecffa40b9b4e4fbe9f7dea1efb89f730337b02ec87901f2cf2f92fb7bf",
+        "record_count": 3
+      },
+      "all_addition_bytes_preserved_in_order": true,
+      "source": {
+        "addition_count": 3,
+        "addition_literal_count": 2,
+        "addition_stream_sha256": "01e30eecffa40b9b4e4fbe9f7dea1efb89f730337b02ec87901f2cf2f92fb7bf",
+        "addition_stream_size_bytes": 8,
+        "byte_count": 12,
+        "deletion_count": 1,
+        "deletion_literal_count": 2,
+        "deletion_stream_sha256": "aa58319d3cb1e718cddad797a26bc3556005bb54133f84da999ab589f6a1daf5",
+        "deletion_stream_size_bytes": 4,
+        "empty_addition_count": 1,
+        "final_empty_record": 4,
+        "first_deletion_record": 2,
+        "maximum_clause_length": 2,
+        "maximum_variable": 2,
+        "proof_sha256": "232e460762c14c1599fabc9fff6466efcba52f5846754bd817314f383f9efb36",
+        "record_count": 4
+      }
+    },
+    "verified_line_count": 1,
+    "warning_free": true,
+    "zero_rat_lemmas_in_core": true
+  }
+}

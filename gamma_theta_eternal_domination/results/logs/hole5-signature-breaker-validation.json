@@ -1,0 +1,133 @@
+{
+  "schema": "gamma-theta-hole5-signature-breaker-validation-v1",
+  "schema_version": 1,
+  "created_at": "2026-07-25T21:30:00-07:00",
+  "status": "ACCEPT_FOR_COMMIT_AND_POSTCOMMIT_BINDING",
+  "claim_status": "NO_HOLE5_SAT_OR_UNSAT_CLAIM",
+  "author_artifacts": {
+    "theorem_note": {
+      "path": "math/lemmas/hole5_signature_symmetry.md",
+      "sha256": "8f8192774c3de65c2468115cc2d4aadd392fa7a1f73261c23fa49886d9c183e8"
+    },
+    "generator": {
+      "path": "src/synthesis_k3/hole5_signature_breaker.py",
+      "sha256": "cc1dc4249dc20f78e8eff4de14ffdca632da1e9455a381000786faa28c950c77"
+    },
+    "tests": {
+      "path": "tests/test_hole5_signature_breaker.py",
+      "sha256": "cd73ae2275d1d08363a1ed7db5990ad294952270e449d5cec8229312d738a892"
+    }
+  },
+  "formula": {
+    "source_cnf_sha256": "76bf36ecb663cd37272acded2208206fdba6aa571dd5f2e757cc132bd533e0b7",
+    "source_counts": {
+      "variables": 6886,
+      "clauses": 23653,
+      "literals": 188959
+    },
+    "signature_breaker": {
+      "variables": 0,
+      "clauses": 315,
+      "literals": 3210,
+      "header_free_dimacs_stream_size_bytes": 11424,
+      "header_free_dimacs_stream_sha256": "ddd32969558030c22b7b4f182dfd9f96b65bb572a7e240957d202fb32b0158c6",
+      "json_size_bytes": 38296,
+      "json_sha256": "62ce8f60ecfe74f58bcd113166009637f854d7d663aea2e59395ae224682d18a"
+    },
+    "derived_counts": {
+      "variables": 6886,
+      "clauses": 23968,
+      "literals": 192169
+    },
+    "derived_cnf_size_bytes": 754323,
+    "derived_cnf_sha256": "c6a0811c718ff8e9352f253e4ce225ce2826def9c3e4a9cd55f0b0152703d104",
+    "root_stream_matches_independent_stream": true
+  },
+  "tests": {
+    "focused": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error python3 -m unittest -v tests.test_hole5_signature_breaker",
+      "passed": 8,
+      "failed": 0,
+      "wall_seconds": 26.44,
+      "user_cpu_seconds": 25.35,
+      "system_cpu_seconds": 0.44,
+      "maximum_resident_set_size_bytes": 87228416
+    },
+    "full_campaign": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error python3 -m unittest discover -s tests",
+      "passed": 258,
+      "failed": 0,
+      "wall_seconds": 157.41,
+      "user_cpu_seconds": 141.78,
+      "system_cpu_seconds": 5.87,
+      "maximum_resident_set_size_bytes": 115818496
+    },
+    "py_compile": true,
+    "git_diff_check": true
+  },
+  "independent_symmetry_audit": {
+    "verdict": "ACCEPT_SIGNATURE_BREAKER_REJECT_SHORTCUTS",
+    "probe": {
+      "path": "reviews/hole5_signature_symmetry_hostile_probe.py",
+      "sha256": "3515adc846e961738b86c572a90aa0f42945cfa6794e3700986c392999c4ab66"
+    },
+    "log": {
+      "path": "reviews/hole5_signature_symmetry_hostile_probe_log.json",
+      "sha256": "f1d8f6d8d6f85bdffadcf39e5d4c4504b9cf0d1b8a609d8e5fe540523091b9de"
+    },
+    "review": {
+      "path": "reviews/hole5_signature_symmetry_hostile_review.md",
+      "sha256": "169b99e083fe2079b3957de3095591142162aca76a10b42f9bb61266775ef223"
+    },
+    "imports_author_code": false,
+    "author_note_read_at_audit_start": false,
+    "adjacent_s6_generators_checked": 5,
+    "semantic_variable_roles_transported": [
+      "edge",
+      "witness",
+      "family",
+      "move",
+      "coloring_bank"
+    ],
+    "comparator_assignments_checked": 20480,
+    "semantic_mismatches": 0,
+    "hostile_shortcuts_rejected": [
+      "coordinatewise ordering",
+      "one-sided prefix literals",
+      "edge-only variable transport",
+      "unsorted witness-pair transport",
+      "one coloring-cut representative per graph-label orbit"
+    ]
+  },
+  "independent_binary_drat_audit": {
+    "verdict": "ACCEPT_INDEPENDENT_PARSER_SUBJECT_TO_PRODUCTION_GATES",
+    "probe": {
+      "path": "reviews/hole5_binary_drat_hostile_probe.py",
+      "sha256": "02c3c00faf7afb91a3217f5b738d0dacf7699875928162d01ce2df97e600007d"
+    },
+    "log": {
+      "path": "reviews/hole5_binary_drat_hostile_probe_log.json",
+      "sha256": "2674cf53eecd881535c6bc4bc2732d669562d7a86816e7bc9057222aadeb3ca8"
+    },
+    "review": {
+      "path": "reviews/hole5_binary_drat_hostile_review.md",
+      "sha256": "d2abc28ad804e8bb5a675ad0bb5a6f5f08f8fd51482d7be1953d0fb31aff41fe"
+    },
+    "mutations_rejected": 20,
+    "tiny_strict_checker_smoke": {
+      "flags": "-i -f -W -U -t 10",
+      "exit_code": 0,
+      "verified_line_count": 1,
+      "warning_count": 0,
+      "rat_lemma_count": 0
+    },
+    "mandatory_production_intake": "clean-room parse with max-var 6886; require one final empty addition; emit and reparse exact addition-only bytes; hash-bind; then strict pinned replay"
+  },
+  "remaining_gates": [
+    "commit and push the author and independent-audit artifacts",
+    "bind the author bytes and generated comparator multiset from Git objects",
+    "regenerate a retained derived package with runtime_sources_match_head=true",
+    "add or use a separately audited bounded binary-proof runner",
+    "independently parse, strip, reparse, and strictly check any terminal proof"
+  ]
+}

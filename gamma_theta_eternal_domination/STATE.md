@@ -1,5 +1,49 @@
 # Campaign State
 
+## Checkpoint 026 — 2026-07-25 21:30 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- The last open \((12,3)\) branch now has a proved and independently
+  reconstructed \(S_6\) label-symmetry reduction.  Vertices
+  \(6,\ldots,11\) are undistinguished in the complete `hole5` formula.
+  Sorting their six-bit \(H\)-adjacency signatures to fixed vertices
+  \(0,\ldots,5\) preserves at least one labeling of every model.
+- The auxiliary-free encoding has exactly 315 clauses and 3,210 literals.
+  It strengthens the retained formula from
+  \((6{,}886,23{,}653,188{,}959)\) to
+  \((6{,}886,23{,}968,192{,}169)\).  The independently generated clause
+  stream and author stream agree at SHA-256 `ddd32969...`; the deterministic
+  derived CNF is 754,323 bytes at SHA-256 `c6a0811c...`.
+- A clean-room standard-library probe reconstructed all 6,886 semantic
+  variables and proved exact full-CNF covariance under the five adjacent
+  transpositions generating \(S_6\).  It checked all 20,480 signature-pair
+  assignments with zero mismatch and rejected coordinatewise ordering,
+  one-sided prefix clauses, edge-only transport, unsorted witness keys, and
+  the unsound coloring-orbit-representative shortcut.
+- The focused author suite passed 8 of 8 tests in 26.44 seconds.  A fresh
+  root full-suite run passed all 258 tests in 157.41 seconds with peak RSS
+  115,818,496 bytes.
+- A second clean-room audit accepted canonical binary-DRAT parsing and
+  deletion stripping after rejecting 20 malformed-proof mutations.  It
+  found that pinned DRAT-trim alone is too permissive at malformed varint and
+  variable-range boundaries.  Production must therefore preparse with
+  maximum variable 6,886, preserve the immutable raw proof, emit and reparse
+  an exact addition-only artifact, and only then require strict
+  `-i -f -W -U` replay.
+
+### Production gate
+
+- The theorem note, generator, tests, and both independent audit stacks are
+  accepted for commit.  No `hole5` SAT/UNSAT claim exists.
+- Commit and push these frozen files.  Then bind their Git-object bytes,
+  regenerate a retained derived package with
+  `runtime_sources_match_head=true`, and keep its production solve gate
+  closed until the binary runner and parser invocation are source-bound.
+- The rejected `hole7` v1 recovery and the incomplete 512 MiB `hole5` proof
+  remain local and must not be staged as accepted artifacts.
+- No campaign solver or checker is active.  The next production run remains
+  one heavy child with a 4 GiB disk reserve.
+
 ## Checkpoint 025 — 2026-07-25 21:11 PDT
 
 - Campaign day: 1 of 27; branch `main`.

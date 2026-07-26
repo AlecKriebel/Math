@@ -772,3 +772,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   representative of every model.  Implementation, exhaustive comparator
   testing, covariance audit, and written proof are the next production
   gates.
+
+### 21:30 — `hole5` signature symmetry accepted for source freeze
+
+- Proved that the retained complete-bank `hole5` formula is invariant under
+  the full \(S_6\) action on vertices \(6,\ldots,11\), including transport
+  of edge, witness, eternal-family, and move variables.  Sorting the six
+  core-adjacency signatures therefore preserves a model in every labeled
+  orbit and is an equisatisfiable symmetry breaker.
+- Derived the exact auxiliary-free comparator: 63 clauses and 642 literals
+  per adjacent signature pair, hence 315 clauses and 3,210 literals total.
+  The strengthened formula has 6,886 variables, 23,968 clauses, and 192,169
+  literals.
+- The author generator retains the complete source CNF body byte-for-byte
+  after the changed header, appends only the breaker stream, refuses
+  overwrite, binds exact retained-package hashes, audits all 20,480
+  comparator assignments, and checks covariance under all five generating
+  transpositions.
+- A clean-room reviewer independently reconstructed the full variable
+  allocation, base, bank, \(S_6\) action, and comparator.  Its header-free
+  stream SHA-256 `ddd32969...` equals the author stream.  The review also
+  retained a concrete countermodel showing why one coloring cut per
+  graph-label orbit would be unsound.
+- A separate clean-room binary-DRAT audit rejected 20 malformed streams and
+  accepted exact deletion stripping plus strict `-i -f -W -U` smoke.  It
+  found malformed-varint and literal-range gaps in the pinned checker
+  boundary, so independent canonical preparse with maximum variable 6,886
+  is mandatory for any production proof.
+- Root passed 8 focused tests and all 258 campaign tests.  Freeze and publish
+  the source/audits next; production generation remains closed until the
+  committed Git bytes are rebound.
