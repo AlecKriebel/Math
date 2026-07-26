@@ -1,0 +1,659 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xurl}
+
+\geometry{margin=1in}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\gaminf}{\gamma^{\infty}}
+\newcommand{\E}{E}
+\newcommand{\V}{V}
+\newcommand{\CNF}{\mathsf{CNF}}
+\newcommand{\sha}{\operatorname{SHA256}}
+
+\title{Certified Exclusion of Order-Twelve, Parameter-Three\\
+Counterexamples to the \texorpdfstring{$\gamma$--$\theta$}{gamma--theta}
+Conjecture}
+\author{Author metadata to be supplied before submission}
+\date{July 25, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the one-guard-moves eternal domination game, an attack is made at an
+unoccupied vertex and exactly one guard moves along one edge to the attacked
+vertex.  The $\gamma$--$\theta$ conjecture asserts that
+\(\gamma(G)=\gaminf(G)\) implies \(\gamma(G)=\theta(G)\).
+We establish the following certificate-backed finite result:
+no finite simple graph \(G\) on 12 vertices satisfies
+\[
+  \gamma(G)=\gaminf(G)=3<\theta(G).
+\]
+The result includes disconnected graphs.  The mathematical reduction sends
+any putative graph to one of three overlapping cases in which
+\(\overline G\) contains a hub-free induced \(C_5\), \(C_7\), or \(C_9\).
+Each case is represented by a byte-bound propositional formula encoding the
+graph, a nonempty closed family of dominating triples, and valid coloring
+clauses implied by the obstruction to a three-clique partition.  Addition-only
+reverse-unit-propagation refutations of all three formulas were replayed
+independently.  We give the
+coverage proof, exact formula and proof hashes, and reproduction commands.
+This does not exclude parameter \(k\geq4\) at order 12, does not exclude
+larger-order counterexamples, and does not resolve the universal conjecture.
+\end{abstract}
+
+\section{Introduction}
+
+For a finite simple graph \(G\), let \(\gamma(G)\) be its domination number
+and let \(\theta(G)\) be the minimum number of cliques in a partition of
+\(\V(G)\).  In the standard one-guard eternal domination game, guards occupy
+a dominating set, an attacker selects an unoccupied vertex, and the defender
+moves one adjacent guard to the attacked vertex while retaining a dominating
+configuration.  The least number of guards permitting defense against every
+finite adaptive attack sequence is denoted by \(\gaminf(G)\).
+
+Klostermeyer and MacGillivray stated the implication
+\(\gamma=\gaminf\Rightarrow\gamma=\theta\), with a proof that was later
+found to be incomplete \cite{KlostermeyerMacGillivray2009,
+KlostermeyerMynhardt2015}.  Klostermeyer and Mynhardt consequently posed the
+existence of a graph with
+\[
+  \gamma(G)=\gaminf(G)<\theta(G)
+\tag{1.1}
+\]
+as an open problem \cite{KlostermeyerMynhardt2015,
+KlostermeyerMynhardt2016}.  This is now commonly called the
+\(\gamma\)--\(\theta\) conjecture.  MacGillivray, Mynhardt, and Virgile
+reported an exhaustive search finding no counterexample through order 11
+\cite{MacGillivrayMynhardtVirgile2022}.  Several proper graph classes are
+also known, but those results do not settle (1.1) universally; see, for
+example, the recent planar result \cite{Taletskii2024}.
+
+Our main result is one precisely delimited slice at the next order.
+
+\begin{theorem}\label{thm:main}
+There is no finite simple graph \(G\) with \(|\V(G)|=12\) such that
+\[
+  \gamma(G)=\gaminf(G)=3<\theta(G).
+\]
+\end{theorem}
+
+Theorem~\ref{thm:main} is not the assertion that there is no counterexample
+of order 12: the common value in (1.1) could be at least four.  It is also
+not an extension of the published all-parameter enumeration through order
+11.  Its proof combines graph-theoretic reductions with exact finite
+certificates.  Section~\ref{sec:reductions} gives the reductions,
+Section~\ref{sec:split} proves that three complement templates are
+exhaustive, Section~\ref{sec:encoding} gives the graph-to-formula coverage
+argument, and Section~\ref{sec:certificates} records the checked
+refutations.  Appendix~\ref{app:repro} gives the reproducibility record.
+
+\section{Definitions and elementary reductions}\label{sec:reductions}
+
+All graphs are finite, simple, and undirected.  For \(v\in\V(G)\), let
+\(N(v)\) and \(N[v]\) denote its open and closed neighborhoods.  A set
+\(D\subseteq\V(G)\) dominates \(G\) when
+\(\bigcup_{v\in D}N[v]=\V(G)\).  Let \(\alpha(G)\) be the independence
+number, and let \(i(G)\) be the minimum cardinality of a maximal independent
+set.  The identity
+\[
+  \theta(G)=\chi(\overline G)
+\tag{2.1}
+\]
+will be used throughout.
+
+\begin{definition}
+An \emph{eternal dominating family of size \(k\)} is a nonempty family
+\(\mathcal D\subseteq\binom{\V(G)}k\) such that every
+\(D\in\mathcal D\) dominates \(G\), and for every \(D\in\mathcal D\) and
+every attacked vertex \(r\notin D\), there is some
+\(u\in D\cap N(r)\) for which
+\[
+  (D-\{u\})\cup\{r\}\in\mathcal D.
+\tag{2.2}
+\]
+The minimum such \(k\) is \(\gaminf(G)\).
+\end{definition}
+
+Thus attacks at occupied vertices are not part of the model, and (2.2)
+moves exactly one guard along one edge.  No all-guards-move parameter is used
+in this paper.
+
+\begin{lemma}[independent-set forcing]\label{lem:forcing}
+Let \(\mathcal D\) be an eternal dominating family of \(k\)-sets, and let
+\(I\) be independent.  From every \(D\in\mathcal D\), attacks at currently
+unoccupied vertices of \(I\) force a member \(D'\in\mathcal D\) with
+\[
+  |D'\cap I|=\min\{|I|,k\}.
+\]
+In particular, if \(|I|=k\), then \(I\in\mathcal D\).
+\end{lemma}
+
+\begin{proof}
+Attack a vertex \(r\in I-D\).  A responding guard cannot move from another
+vertex of \(I\), since \(I\) is independent.  The response therefore
+increases \(|D\cap I|\) by one.  Repeat until either all guards or all
+vertices of \(I\) are occupied.
+\end{proof}
+
+\begin{proposition}[parameter chain]\label{prop:chain}
+For every nonempty graph \(G\),
+\[
+  \gamma(G)\leq i(G)\leq\alpha(G)\leq\gaminf(G)\leq\theta(G).
+\tag{2.3}
+\]
+Consequently, if \(\gamma(G)=\gaminf(G)=k\), then
+\[
+  \gamma(G)=i(G)=\alpha(G)=\gaminf(G)=k.
+\tag{2.4}
+\]
+\end{proposition}
+
+\begin{proof}
+Every maximal independent set dominates, and a maximum independent set is
+maximal, proving the first two inequalities.  If an eternal family has
+\(k<\alpha(G)\) guards, Lemma~\ref{lem:forcing} places all guards in a
+maximum independent set while leaving another vertex of that set
+unoccupied; the next attack there has no adjacent guard.  Hence
+\(\alpha\leq\gaminf\).
+
+For a partition of \(\V(G)\) into \(t\) cliques, place one guard in each
+part.  An attack is answered by moving the guard within the attacked
+vertex's clique, so \(\gaminf\leq t\).  Minimizing gives the final
+inequality.  Equality (2.4) follows by squeezing.
+\end{proof}
+
+We need three further standard consequences.  Proofs are included because
+they determine the exact search universe.
+
+\begin{lemma}[induced-subgraph monotonicity]\label{lem:induced}
+If \(J\) is a nonempty induced subgraph of \(G\), then
+\(\gaminf(J)\leq\gaminf(G)\).
+\end{lemma}
+
+\begin{proof}
+Let \(\mathcal D\) be an eternal family in \(G\), and among its configurations
+retain those maximizing the number \(m\) of guards in \(\V(J)\).  Project
+these configurations to \(\V(J)\).  For an attack inside \(J\), a response
+moving a guard from outside \(J\) would increase the number of guards in
+\(\V(J)\), contradicting maximality.  Hence every response stays inside
+\(J\).  Because \(J\) is induced, it uses an edge of \(J\), preserves the
+maximum \(m\), and projects to the required one-guard successor.
+
+The same response argument shows that every projected state dominates
+\(J\): each unoccupied vertex of \(J\) has the responding guard as a
+neighbor in the projected state.  If \(m=0\), an attack at any vertex of
+the nonempty graph \(J\) would necessarily move a guard into \(J\), again
+contradicting maximality.  Thus \(m\geq1\), and the projected family is a
+nonempty eternal family of \(m\)-sets.
+\end{proof}
+
+\begin{lemma}[component additivity]\label{lem:additivity}
+If \(G_1,\ldots,G_t\) are the nonempty components of \(G\), then
+\[
+ \gamma(G)=\sum_j\gamma(G_j),\qquad
+ \gaminf(G)=\sum_j\gaminf(G_j),\qquad
+ \theta(G)=\sum_j\theta(G_j).
+\tag{2.5}
+\]
+\end{lemma}
+
+\begin{proof}
+The assertions for \(\gamma\) and \(\theta\) follow by restriction to
+components and union of componentwise solutions.  Products of eternal
+families give the upper bound for \(\gaminf\).
+
+For the reverse bound, choose one guard-count vector
+\((|D\cap\V(G_1)|,\ldots,|D\cap\V(G_t)|)\) occurring in an eternal family,
+and retain only configurations with that vector.  A legal move cannot cross
+components, so this subfamily is closed under all attacks.  Its projection
+to \(G_j\) is an eternal family with \(|D\cap\V(G_j)|\) guards.  Summing the
+componentwise lower bounds proves equality.
+\end{proof}
+
+\begin{lemma}\label{lem:odd-antihole}
+For odd \(n\geq5\),
+\[
+  \gaminf(\overline{C_n})=3.
+\tag{2.6}
+\]
+\end{lemma}
+
+\begin{proof}
+The upper bound follows from
+\(\theta(\overline{C_n})=\chi(C_n)=3\).  For the lower bound, label \(C_n\)
+cyclically by \(0,\ldots,n-1\).  A pair fails to dominate
+\(\overline{C_n}\) exactly when its two vertices have cyclic distance two.
+If an eternal two-family existed, Lemma~\ref{lem:forcing} would put
+\(\{0,1\}\) in it.  From \(\{0,d\}\), for odd
+\(1\leq d\leq n-6\), attack \(d+2\).  Moving the guard at \(0\) leaves the
+nondominating pair \(\{d,d+2\}\), so closure forces
+\(\{0,d+2\}\).  Iteration reaches \(\{0,n-4\}\).  An attack at \(n-2\)
+leaves a pair at cyclic distance two whichever guard moves, a
+contradiction.  For \(n=5\), this final attack applies to the initial pair.
+\end{proof}
+
+This value is classical \cite{GoddardHedetniemiHedetniemi2005}; the argument
+above fixes the convention used here.  We also need the following small
+cycle value.
+
+\begin{lemma}\label{lem:c7}
+\(\gaminf(C_7)=4\).
+\end{lemma}
+
+\begin{proof}
+A partition into three edges and one singleton gives the upper bound four.
+Suppose an eternal family of dominating triples exists.  A dominating triple
+has cyclic gap multiset \(\{2,1,1\}\) or \(\{2,2,0\}\).  Every triple of the
+second type is equivalent to \(\{0,1,4\}\); attacking \(3\) forces the move
+from \(4\), after which vertex \(5\) is undominated.  Thus no second-type
+triple belongs to the family.
+
+The maximum independent set \(\{0,2,4\}\) belongs to the family by
+Lemma~\ref{lem:forcing}.  Attack \(1\).  Moving the guard at \(0\) leaves
+vertex \(6\) undominated; moving the guard at \(2\) produces the forbidden
+second-type triple \(\{0,1,4\}\).  This contradiction proves the lower
+bound.
+\end{proof}
+
+\begin{lemma}[minimum counterexample parameter]\label{lem:min-k}
+Every graph satisfying (1.1) has common value
+\[
+  \gamma(G)=\alpha(G)=\gaminf(G)\geq3.
+\]
+\end{lemma}
+
+\begin{proof}
+Equality follows from Proposition~\ref{prop:chain}.  Common value one makes
+\(G\) complete.  Suppose the common value is two and
+\(\theta(G)>2\).  For \(H=\overline G\),
+\(\omega(H)=2<\chi(H)\).  The Strong Perfect Graph Theorem
+\cite{ChudnovskyRobertsonSeymourThomas2006} gives an odd hole or odd
+antihole in \(H\).  An odd hole in \(H\) gives an induced odd antihole in
+\(G\), contradicting Lemmas~\ref{lem:induced} and
+\ref{lem:odd-antihole}.  An odd antihole in \(H\) gives an odd hole in
+\(G\).  At length at least seven this contradicts \(\alpha(G)=2\), and at
+length five it again contradicts Lemma~\ref{lem:odd-antihole}, because
+\(C_5\) is self-complementary.
+\end{proof}
+
+\section{The exhaustive three-template split}\label{sec:split}
+
+Call a vertex outside an induced cycle a \emph{hub} if it is adjacent to
+every vertex of the cycle.  A cycle is \emph{hub-free} if it has no hub.
+
+\begin{proposition}\label{prop:connected}
+If a graph \(G\) satisfies the hypothesis of Theorem~\ref{thm:main}, then
+\(G\) is connected.
+\end{proposition}
+
+\begin{proof}
+Let \(G_1,\ldots,G_t\) be its components and put
+\(a_j=\gamma(G_j)\), \(b_j=\gaminf(G_j)\), and
+\(c_j=\theta(G_j)\).  By (2.3) and (2.5),
+\(\sum a_j=\sum b_j=3<\sum c_j\).  Nonnegativity of
+\(b_j-a_j\) forces \(a_j=b_j\) for every \(j\), while the strict inequality
+gives a component \(G_q\) with \(b_q<c_q\).  This component is itself a
+counterexample, so Lemma~\ref{lem:min-k} gives \(a_q\geq3\).  Since all
+nonempty components have positive domination number and \(\sum a_j=3\),
+\(G_q=G\).
+\end{proof}
+
+\begin{proposition}[odd-wheel obstruction]\label{prop:wheel}
+If \(\gaminf(G)=3\), then \(\overline G\) contains no induced odd wheel.
+\end{proposition}
+
+\begin{proof}
+If \(\overline G\) induces \(K_1\vee C_{2q+1}\), then \(G\) induces
+\(K_1\mathbin{\dot\cup}\overline{C_{2q+1}}\).  Lemmas
+\ref{lem:additivity} and \ref{lem:odd-antihole} give eternal domination
+number four for that induced subgraph, contradicting
+Lemma~\ref{lem:induced}.
+\end{proof}
+
+\begin{theorem}[template split]\label{thm:split}
+Let \(G\) satisfy the hypothesis of Theorem~\ref{thm:main}, and put
+\(H=\overline G\).  Then \(H\) contains a hub-free induced
+\(C_\ell\) for some
+\[
+  \ell\in\{5,7,9\}.
+\tag{3.1}
+\]
+\end{theorem}
+
+\begin{proof}
+Proposition~\ref{prop:chain} gives
+\[
+  \omega(H)=\alpha(G)=3<\chi(H)=\theta(G).
+\tag{3.2}
+\]
+Thus \(H\) is imperfect, and the Strong Perfect Graph Theorem supplies an
+induced odd hole or odd antihole.  If an odd antihole has length \(2q+1\),
+then \(q=\omega(\overline{C_{2q+1}})\leq3\).  It therefore has length five
+or seven.  The five-antihole is \(C_5\).  An induced
+\(\overline{C_7}\) in \(H\) would induce \(C_7\) in \(G\), contradicting
+Lemmas~\ref{lem:induced} and \ref{lem:c7}.  Hence \(H\) contains an odd
+hole.
+
+The hole is hub-free by Proposition~\ref{prop:wheel}.  Moreover, because
+\(\gamma(G)=3\), no pair dominates \(G\).  Equivalently, every pair of
+vertices of \(H\) has a common \(H\)-neighbor.  The endpoints of a rim edge
+of an induced hole have no common neighbor on the rim, so every rim edge has
+a common neighbor outside the hole.  If exactly one vertex were outside,
+that vertex would be adjacent to both endpoints of every rim edge, hence
+would be a hub.  At least two vertices are therefore outside the hole.
+Since \(|\V(H)|=12\), its odd length is at most ten, proving (3.1).
+\end{proof}
+
+\section{Exact finite encoding and coverage}\label{sec:encoding}
+
+We now describe the formulas used to exclude the three cases in
+Theorem~\ref{thm:split}.  The description is part of the coverage proof:
+unsatisfiability of a formula is useful only after every graph in the
+claimed branch is shown to produce a satisfying assignment.
+
+Fix \(\ell\in\{5,7,9\}\).  Label an induced cycle of \(H=\overline G\) by
+\(0,\ldots,\ell-1\) cyclically.  The endpoints \(0,1\) have a common
+\(H\)-neighbor outside the rim; label one such vertex \(\ell\).  The
+remaining vertices receive arbitrary labels.  The template fixes the cycle,
+the edges \(0\ell,1\ell\), and a clause forbidding each outside vertex from
+being a hub.
+
+All three formulas use the same 6,886 Boolean variables:
+\[
+\begin{array}{rcll}
+66   &:& e_{uv} & (uv\in E(H)),\\
+660  &:& w_{ab,c} & (c\text{ witnesses a common }H\text{-neighbor of }a,b),\\
+220  &:& f_D & (D\in\binom{[12]}3\text{ is in the eternal family}),\\
+5,940&:& m_{D,r,u} & (u\in D\text{ responds to }r\notin D).
+\end{array}
+\tag{4.1}
+\]
+The base clauses assert:
+
+\begin{enumerate}
+\item no four vertices form a clique in \(H\);
+\item every vertex pair has a common \(H\)-neighbor, with each true witness
+      implying its two incident \(H\)-edges;
+\item the labeled induced, hub-free \(C_\ell\) template;
+\item every proper cut has a crossing \(G\)-edge, encoded as a negative
+      \(H\)-edge;
+\item every selected triple dominates \(G\);
+\item at least one triple is selected;
+\item for every selected \(D\) and every \(r\notin D\), at least one
+      \(m_{D,r,u}\) is true, and every true move requires
+      \(ur\in E(G)\) and selects the successor
+      \((D-\{u\})\cup\{r\}\); and
+\item every triangle of \(H\) is selected.
+\end{enumerate}
+
+The last clauses are redundant but sound: a triangle of \(H\) is an
+independent triple of \(G\), so it lies in every eternal three-family by
+Lemma~\ref{lem:forcing}.  Notice also that a legal move is encoded by
+\(\neg e_{ur}\), because the edge variables describe \(H\), not \(G\).
+The successor's family variable invokes the same domination clauses, so
+every resulting configuration dominates.
+
+To encode \(\chi(H)>3\), let \(c:[12]\to\{0,1,2\}\) be a coloring proper on
+the forced template edges, and append
+\[
+  C_c=\bigvee_{\substack{u<v\\c(u)=c(v)}}e_{uv}.
+\tag{4.2}
+\]
+This clause is false exactly when \(c\) is a proper coloring of \(H\).
+Color names are canonicalized by first use.  A complete bank for the
+\(\ell\)-template has
+\[
+  \frac{(2^\ell-2)3^{11-\ell}}{6}
+\tag{4.3}
+\]
+rows: first color the odd rim, force the distinguished common neighbor to
+use the third color, color the remaining vertices freely, and divide by the
+free action of the six color permutations.
+
+The \(C_5\) formula has one further, sound symmetry breaker.  For
+\(v\in\{6,\ldots,11\}\), form the core signature
+\[
+  s(v)=(e_{0v},e_{1v},\ldots,e_{5v}).
+\]
+The complete formula is invariant under every permutation of these six
+vertices, provided graph, witness, family, and move variables are all
+relabelled.  Hence every model has an orbit representative satisfying
+\[
+  s(6)\leq_{\mathrm{lex}}s(7)\leq_{\mathrm{lex}}\cdots
+  \leq_{\mathrm{lex}}s(11).
+\tag{4.4}
+\]
+Each adjacent comparison is encoded by 63 clauses, one for every possible
+first differing coordinate and common prefix, for 315 clauses in total.
+Thus (4.4) is an equisatisfiable orbit restriction, not a logical
+consequence silently added to the formula.
+
+\begin{lemma}[graph-to-formula coverage]\label{lem:coverage}
+Suppose that \(G\) is a connected 12-vertex graph with
+\[
+  \gamma(G)=\alpha(G)=\gaminf(G)=3<\theta(G)
+\tag{4.5}
+\]
+and that \(\overline G\) contains a hub-free induced \(C_\ell\), where
+\(\ell\in\{5,7,9\}\).  Then the graph and an eternal three-family induce a
+satisfying assignment of the exact formula for that branch in
+Table~\ref{tab:certificates}.
+\end{lemma}
+
+\begin{proof}
+Use the labeling above and set \(e_{uv}\) from the actual edges of
+\(H=\overline G\).  Equation (4.5) gives \(\omega(H)=3\), so the no-\(K_4\)
+clauses hold.  Since no pair dominates \(G\), select an actual common
+\(H\)-neighbor for every pair and set the corresponding witness variable.
+Connectedness and hub-freeness satisfy the cut and template clauses.
+
+Set \(f_D\) true exactly on an actual nonempty eternal three-family.  For
+every selected \(D\) and \(r\notin D\), select one guard promised by (2.2).
+This satisfies the domination, response, legal-edge, and successor clauses.
+Lemma~\ref{lem:forcing} satisfies the triangle-selection clauses.
+
+Finally, \(\theta(G)=\chi(H)>3\), so \(H\) fails every three-coloring.  It
+therefore satisfies every appended clause (4.2), whether the branch uses a
+complete bank or only a recorded subset.  For \(\ell=5\), permute the six
+undistinguished outer vertices, together with all auxiliary variables, to
+obtain an orbit-equivalent assignment satisfying (4.4).
+\end{proof}
+
+\begin{remark}
+The \(C_5\) and \(C_7\) formulas use complete coloring banks of respectively
+3,645 and 1,701 clauses.  The \(C_9\) certificate arose after 170 coloring
+clauses in a counterexample-guided run.  Completeness of that 170-row list is
+neither claimed nor needed: a target with \(\chi(H)>3\) satisfies every
+valid clause (4.2), including those 170.
+\end{remark}
+
+\section{Proof certificates and the finite theorem}\label{sec:certificates}
+
+A clause is a reverse-unit-propagation (RUP) consequence of a formula if
+unit propagation after adjoining the negation of that clause derives a
+contradiction.  Appending a RUP consequence preserves satisfiability.
+Therefore an addition-only sequence of RUP consequences ending in the empty
+clause is a checkable unsatisfiability certificate
+\cite{WetzlerHeuleHunt2014}.
+
+Table~\ref{tab:certificates} binds each formula and its accepted
+addition-only proof.  Hashes are SHA-256.  The \(C_5\) proof is in binary
+DRAT format; the other two are in ASCII DRAT format.  In every case the
+accepted replay used only RUP: the checker reported zero RAT lemmas.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Exact branch formulas and accepted addition-only RUP proofs.}
+\label{tab:certificates}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & \(C_5\) & \(C_7\) & \(C_9\)\\
+\midrule
+variables & 6,886 & 6,886 & 6,886\\
+clauses & 23,968 & 21,718 & 20,200\\
+literals & 192,169 & 148,551 & 117,841\\
+CNF bytes & 754,323 & 621,864 & 530,053\\
+proof additions & 247,981 & 284,317 & 4,705\\
+proof bytes & 6,337,621 & 18,093,724 & 65,906\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The formula hashes, in \(C_5,C_7,C_9\) order, are
+\begin{align*}
+&\texttt{c6a0811c718ff8e9352f253e4ce225ce2826def9c3e4a9cd55f0b0152703d104},\\
+&\texttt{6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7},\\
+&\texttt{2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d}.
+\end{align*}
+The corresponding proof hashes are
+\begin{align*}
+&\texttt{c6c24853e30073e66fb396441edb176a0160d062a8558e25fa18a955f33927c3},\\
+&\texttt{e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9},\\
+&\texttt{24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab}.
+\end{align*}
+
+For \(C_5\), an independent parser verified that the retained proof is
+exactly the addition subsequence of the raw binary proof, with 245,439
+deletions removed, and that its last addition is the empty clause.  A fresh
+warning-fatal, forward, RUP-only replay used 10,912,555 resolution steps and
+ended in \texttt{s VERIFIED}.  For \(C_7\), two strict warning-free RUP-only
+replays accepted the 284,317-addition proof.  For \(C_9\), a separately
+written standard-library checker validated all 4,705 RUP additions and the
+final empty clause; a pinned external checker independently agreed.
+The exact paths, checker hash, acceptance records, and commands appear in
+Appendix~\ref{app:repro}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose \(G\) satisfies the displayed hypothesis.  By
+Proposition~\ref{prop:connected}, \(G\) is connected, and by
+Proposition~\ref{prop:chain} it satisfies (4.5).
+Theorem~\ref{thm:split} gives a hub-free induced \(C_5\), \(C_7\), or
+\(C_9\) in \(\overline G\).  Lemma~\ref{lem:coverage} then gives a model of
+the exact corresponding formula in Table~\ref{tab:certificates}.  The
+accepted RUP refutation proves that formula unsatisfiable, a contradiction.
+\end{proof}
+
+\begin{remark}[scope]
+The theorem certifies the complete \((n,k)=(12,3)\) counterexample slice,
+including disconnected graphs.  It does not certify the \(n=12,k\geq4\)
+slices, any order \(n\geq13\), absence of counterexamples through order 12,
+or the universal conjecture.
+\end{remark}
+
+\section{Research and verification provenance}
+
+This manuscript and the associated research artifacts were produced with
+substantial assistance from autonomous AI systems.  No mathematical claim
+is accepted on model output alone.  The structural lemmas were subjected to
+separate adversarial mathematical reviews; the exact formulas were
+independently reconstructed; and the decisive proof streams were parsed and
+replayed by programs that do not import the search implementation's
+transition or encoding core.  Two independent reviews audited the final
+composition from the three branch certificates to
+Theorem~\ref{thm:main}.  Human authors remain responsible for the submitted
+version and for inspecting the archived evidence.
+
+\section*{Data availability}
+
+The archive accompanying this manuscript contains the formulas, proofs,
+standalone auditors, acceptance records, and exact hashes described below.
+A permanent public archive identifier is to be inserted before submission.
+
+\appendix
+
+\section{Reproducibility and exact artifact bindings}\label{app:repro}
+
+All paths below are relative to the campaign archive root
+\texttt{gamma\_theta\_eternal\_domination/}.  The claim-level acceptance
+record is
+\begin{center}
+\texttt{results/order12\_k3\_exclusion\_acceptance.json}.
+\end{center}
+The theorem and its two independent coverage reviews are
+\begin{center}
+\begin{minipage}{0.94\linewidth}
+\texttt{math/lemmas/order12\_k3\_exclusion.md}\\
+\texttt{reviews/order12\_k3\_exclusion\_hostile\_review.md}\\
+\texttt{reviews/order12\_k3\_exclusion\_second\_review.md}.
+\end{minipage}
+\end{center}
+
+The exact formulas are:
+\begin{center}
+\begin{minipage}{0.94\linewidth}
+\texttt{results/synthesis\_k3\_hole5\_signature\_package/instance.cnf}\\
+\texttt{results/synthesis\_k3\_template\_bank\_packages/hole7/instance.cnf}\\
+\texttt{certificates/synthesis\_k3\_hole9\_orphan\_000170\_recovery/}\\
+\hspace*{1em}\texttt{source/orphan-attempt-000170/instance.cnf}.
+\end{minipage}
+\end{center}
+The accepted proofs are:
+\begin{center}
+\begin{minipage}{0.94\linewidth}
+\texttt{results/synthesis\_k3\_hole5\_signature\_seed0\_600s\_binary/}\\
+\hspace*{1em}\texttt{proof.additions.bdrat}\\
+\texttt{certificates/synthesis\_k3\_hole7\_full\_bank\_seed0\_addition\_only\_v2/}\\
+\hspace*{1em}\texttt{proof/addition-only.rup.drat}\\
+\texttt{certificates/synthesis\_k3\_hole9\_orphan\_000170\_recovery/}\\
+\hspace*{1em}\texttt{proof/addition-only.rup.drat}.
+\end{minipage}
+\end{center}
+
+The pinned \texttt{drat-trim} executable has SHA-256
+\[
+\texttt{31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb}.
+\]
+The \(C_5\) source/run-gate revision is
+\texttt{6f3ef0a0970b7214c34018fe32ea1ceeb5764d17}; its 12 run artifacts were
+frozen without payload changes at
+\texttt{dff45f4239e4acabc461533a0a213beec18ec56d}.  The complete C-035
+acceptance package was committed at
+\texttt{36d8191a}.
+
+From the campaign archive root, one fail-closed command performs the
+claim-level replay:
+\begin{verbatim}
+python3 -I -B repro/c035/replay.py --mode full \
+  --output /fresh/path/c035-full-replay.json
+\end{verbatim}
+
+The wrapper first validates 91 exact file bindings, accepted Git objects,
+branch activations, theorem scope, and manifest rows.  It then creates
+fresh private temporary directories and sequentially runs the two
+independent \(C_5\) audits, the sealed \(C_7\) proof replay, and the sealed
+\(C_9\) proof replay.  It accepts only exact warning-free status records and
+rehashes every input afterward.  A successful result has status
+\texttt{PASS\_FULL\_C035\_REPLAY},
+\texttt{claim\_status=CERTIFIED-FINITE}, and
+\texttt{proofs\_freshly\_replayed=true}.  Time, memory, disk, and live-load
+gates reject rather than weaken a run.  The fast mode validates metadata
+only and explicitly reports
+\texttt{NO\_MATHEMATICAL\_\allowbreak CLAIM}.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

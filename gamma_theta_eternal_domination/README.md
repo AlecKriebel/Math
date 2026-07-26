@@ -257,3 +257,38 @@ The complete implication from the three branch certificates to C-035 is in
 mathematical reviews.  This is a `CERTIFIED-FINITE` parameter slice.  It
 does not exclude order-12 counterexamples with common parameter at least
 four and does not resolve the universal conjecture.
+
+The claim-level replay wrapper checks all accepted C5/C7/C9 bindings and,
+when the live resource gates permit, freshly replays all three proof
+branches:
+
+```text
+python3 -I -B repro/c035/replay.py --mode fast
+
+python3 -I -B repro/c035/replay.py --mode full \
+  --output /fresh/path/c035-full-replay.json
+```
+
+Fast mode is metadata-only and explicitly returns
+`NO_MATHEMATICAL_CLAIM`.  Full mode promotes C-035 only after four exact
+independent audit children succeed.  It refuses to launch under excessive
+CPU load, low memory, or low disk space.
+
+Claim C-036 gives the classical half-order reduction
+\(n\geq2k+1\) for a connected counterexample.  Thus, after C-035, only
+connected \(k=4,5\) remain at order 12.  Claim C-037 supplies the exact
+connected \(k=4\) parent formula:
+
+```text
+PYTHONPATH=src python3 -B -m synthesis_k4.generate \
+  --mode full \
+  --output instances/order12_k4_connected_parent/instance.cnf \
+  --manifest instances/order12_k4_connected_parent/manifest.json
+
+python3 -B reviews/order12_k4_synthesis_target_hostile_probe.py
+```
+
+The retained full CNF has 18,381 variables, 114,742 clauses, and SHA-256
+`adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac`.
+It is accepted exact formula infrastructure with
+`NO_MATHEMATICAL_CLAIM`: no \(k=4\) SAT/UNSAT result exists yet.

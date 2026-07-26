@@ -940,3 +940,45 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   proof.  The audit stack also caught and forced repair of a missing
   dependency binding and a nondeterministic temporary-path leak before
   acceptance.
+
+### 2026-07-26 01:05 — manuscript/replay package and exact \(k=4\) frontier
+
+- Converted C-035 into a nine-page submission-oriented manuscript with the
+  exact coverage proof, branch formula and RUP-proof hashes, explicit
+  one-guard convention, disconnected reduction, finite-scope warning, and a
+  one-command replay appendix.  A final wording audit caught and repaired an
+  abstract overstatement: the \(C_9\) instance contains 170 valid coloring
+  clauses implied by non-three-colorability, not a complete coloring bank.
+- Built the corrected manuscript twice from clean directories under the
+  fixed epoch.  Both PDFs are byte-identical at SHA-256 `f84430ee...`; the
+  final source is `dddf4a1b...`, the document has nine US-Letter pages, and
+  the logs contain no actual warnings, unresolved references, or bad boxes.
+  Author metadata and a permanent archive identifier remain explicit
+  pre-submission placeholders.
+- Added a fail-closed C-035 replay wrapper.  It binds the exact theorem,
+  three accepted formula/proof branches, reviews, checker programs, and Git
+  objects.  Fast mode is explicitly metadata-only.  Full mode is sequential,
+  resource-gated, cleans up timed-out process groups, and accepts only after
+  every independent branch audit succeeds.  Fifteen bounded tests and a
+  hostile mutation/resource review passed.
+- Proved C-036 from the classical Payan--Xuong/Fink--Jacobson--Kinch--Roberts
+  half-order characterization: a connected counterexample satisfies
+  \(n\geq2k+1\).  At order 12 this removes \(k=6\); combined with C-035 it
+  leaves only \(k=4,5\).  The note and hostile review make no novelty claim
+  for this classical corollary.
+- Derived and implemented the exact connected order-12 \(k=4\) complement
+  target C-037.  The permanent anchored parent has 18,381 variables, 114,742
+  clauses, 1,180,016 literals, and SHA-256 `adbe0c01...`.  Its complete
+  anchored four-coloring bank has 65,536 rows, and the sound \(S_8\) outer
+  signature ordering has 105 clauses.
+- A clean-room hostile probe reconstructed the entire \(k=4\) formula
+  byte-for-byte without importing the synthesis core, checked every
+  coloring-bank row and comparator case, exhausted a 512-graph small-model
+  universe, killed seven deliberate mutations, and reproduced the
+  permanent package.  Nine focused constructor tests passed.  No solver was
+  invoked, so this is exact target infrastructure rather than a \(k=4\)
+  existence or exclusion result.
+- The machine remained deliberately unsaturated by this campaign.  Other
+  local work held load averages above 20 and free disk space near 18 GiB, so
+  the full proof replay and any heavy \(k=4\) solve were deferred by their
+  resource gates.

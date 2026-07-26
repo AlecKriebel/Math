@@ -1,5 +1,61 @@
 # Campaign State
 
+## Checkpoint 031 — 2026-07-26 01:05 PDT
+
+- Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
+  `HEAD` `069b06ed2801e72cf3c9e53fc8a29e15415f657a`.
+- **Certified frontier unchanged and preserved:** C-035 excludes the complete
+  order-12, parameter-three counterexample slice, including disconnected
+  graphs.  The universal conjecture remains open.
+- **New proved search reduction (C-036):** the classical characterization of
+  graphs with domination number half their order implies that every connected
+  counterexample with order \(n\) and common parameter \(k\) satisfies
+  \(n\geq2k+1\).  Thus \(k=6\) is impossible at order 12; after C-035, only
+  connected \(k=4,5\) remain there.  This is explicitly recorded as a
+  classical corollary, not a novelty claim.
+- **New exact order-12, parameter-four target (C-037):** the connected
+  anchored parent CNF has 18,381 variables, 114,742 clauses, 1,180,016
+  literals, and SHA-256 `adbe0c01...`.  A clean-room implementation imports
+  neither synthesis core, reconstructs every clause byte-for-byte, checks all
+  65,536 coloring-bank rows and all 1,792 comparator cases, exhausts a
+  512-graph small anchored universe, and rejects seven deliberate mutations.
+  The accepted boundary is exact formula infrastructure only: no solver has
+  been invoked and no \(k=4\) SAT/UNSAT result is claimed.
+- A fail-closed one-command replay package for C-035 now binds 91 exact files
+  and 87 accepted Git objects.  Its bounded 15-test suite passes.  Fast mode
+  is metadata-only and returns `NO_MATHEMATICAL_CLAIM`; full mode runs the
+  independent \(C_5,C_7,C_9\) proof audits sequentially and promotes C-035
+  only after all succeed.
+- A nine-page submission-oriented C-035 manuscript has been built
+  deterministically.  The final source SHA-256 is `dddf4a1b...` and two clean
+  builds give the same PDF SHA-256 `f84430ee...`.  The abstract now says
+  accurately that the formulas contain valid coloring clauses implied by
+  non-three-colorability; it does not imply that the 170-row \(C_9\) subset
+  is a complete coloring bank.  The only external-submission blockers are
+  the deliberately visible author-metadata and permanent-archive-ID
+  placeholders.
+- The exact \(k=4\) implementation passed all 9 focused tests.  Its
+  independent hostile probe reran in 13.60 seconds, 13.42 CPU seconds, with
+  peak RSS 129,581,056 bytes and byte-identical canonical output.
+- No new heavy solve or full C-035 proof replay was launched.  At this
+  checkpoint the one-minute load average was about 20.6 because other local
+  campaigns were active; physical memory is 16 GiB and free disk space is
+  about 18 GiB.  The replay and solver gates correctly refuse to compete for
+  the machine in this state.
+- Approach registry: order-12 \(k=3\) **exhausted and certified empty**;
+  order-12 \(k=4\) **exact target ready, unsolved**; order-12 \(k=5\)
+  **active but not yet encoded**; half-order \(k=6\) **proved impossible**;
+  structural and literature lanes **active**; universal resolution
+  **open**.
+- Next three highest-value actions:
+  1. integrate and push the manuscript, replay wrapper, half-order reduction,
+     and exact \(k=4\) parent with their independent reviews;
+  2. write an independent decoded-candidate verifier and a proof-producing,
+     resumable partition plan for the \(k=4\) parent;
+  3. when the load and disk gates permit, run a bounded exploratory \(k=4\)
+     probe, then freeze either a candidate for independent verification or
+     proof-producing subinstances—never an unlogged solver assertion.
+
 ## Checkpoint 030 — 2026-07-25 23:27 PDT
 
 - Campaign day: 1 of 27; branch `main`; pre-integration repository `HEAD`
