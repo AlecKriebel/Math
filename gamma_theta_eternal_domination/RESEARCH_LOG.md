@@ -1761,3 +1761,38 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   source, accepted-chain, formula, bank, or manifest drift. The deterministic
   preflight replay passes after this correction; no solver or proof checker
   ran.
+
+### 2026-07-26 14:08 — order-12 frontier publicly released and live-verified
+
+- A concurrent cyclic-Bell publication moved `origin/main` four commits
+  during the final audit. The accepted gamma-theta commit was first frozen
+  locally, then rebased onto that remote tip. The only conflicts were the
+  repository README, Pages homepage, and sitemap; the resolution preserved
+  both publications, raised the visible current-paper count to eight, and
+  produced 19 unique sitemap locations.
+- The independent site auditor rechecked the integrated bytes, including both
+  paper cards and both new publication packages, and again returned
+  `ACCEPT_SITE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH`. All decisive
+  C-050, C-057, `hole7` preflight, manuscript, site, XML, and byte-equality
+  replays then passed on rebased commit
+  `16dd2a7803d21fda02fa28e26561d652b7f3b595`.
+- The annotated tag
+  `gamma-theta-order12-frontier-v1.0.0` was created only after those checks.
+  Both release audits verified the exact tagged tree and promoted their local
+  verdicts to `ACCEPT_RELEASE_BYTES_TAG_BOUND` and
+  `ACCEPT_SITE_BYTES_TAG_BOUND`. Commit and tag were pushed atomically.
+- The public GitHub release was published at `2026-07-26T21:04:57Z` with the
+  exact PDF and checksum assets. Their server-reported and downloaded
+  SHA-256 values are
+  `b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2`
+  and
+  `184df74e9e4d5dc3165ef807fde9f1fa35831b2c0aad325397fea1d40c74faeb`.
+- GitHub Pages build `1116371323` completed from the tagged commit with no
+  error. Fresh HTTPS downloads of the homepage, workstream page, paper page,
+  PDF, checksum file, sitemap, and release PDF all matched the accepted local
+  bytes exactly. Verdict:
+  `ACCEPT_PUBLIC_ORDER12_FRONTIER_RELEASE_AND_LIVE_BYTES`.
+- The finite result remains conditional on the published through-order-11
+  premise and does not resolve the universal conjecture. With publication
+  complete, the campaign now executes the proof-first pivot before any
+  order-14 work.

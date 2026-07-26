@@ -1,5 +1,71 @@
 # Campaign State
 
+## Checkpoint 049 — 2026-07-26 14:08 PDT
+
+- Campaign day: 2 of 27. The certified order-12 frontier is now publicly
+  released from commit
+  `16dd2a7803d21fda02fa28e26561d652b7f3b595` under annotated tag
+  `gamma-theta-order12-frontier-v1.0.0`.
+- **The complete publication chain is accepted.** The commit and tag were
+  pushed atomically. The GitHub release is public, non-draft, and
+  non-prerelease; its PDF and checksum assets report and download with the
+  accepted hashes. GitHub Pages build `1116371323` completed from the exact
+  tagged commit with no error.
+- **The live bytes were independently bound end to end.** HTTPS downloads of
+  the integrated homepage, active workstream, paper page, 17-page PDF,
+  checksum sidecar, 19-location sitemap, and release PDF all compare
+  byte-for-byte with the accepted local artifacts. The paper PDF SHA-256 is
+  `b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2`.
+  The post-tag manuscript and site audits return
+  `ACCEPT_RELEASE_BYTES_TAG_BOUND` and `ACCEPT_SITE_BYTES_TAG_BOUND`.
+- A concurrent cyclic-Bell publication advanced `main` during the release
+  audit. The gamma-theta commit was rebased without losing either
+  publication; the independent site auditor then reaccepted the integrated
+  eight-paper homepage and 19-location sitemap before tagging.
+- **The theorem boundary is unchanged:** relative explicitly to
+  MacGillivray--Mynhardt--Virgile's published through-order-11 computation,
+  every counterexample has order at least 13. This is not a universal proof,
+  a counterexample, a lower bound of 14, or a campaign-only enumeration
+  through order 11.
+- **Portfolio pivot now takes effect.** No order-13 solver is running and no
+  move to order 14 is authorized. The primary research lane is a universal
+  minimum-counterexample argument; two independent structural proof attacks
+  will run alongside one adversarial falsification/referee lane. The frozen
+  `hole7` input is retained only as a bounded fallback and lemma testbed.
+
+### Public artifacts
+
+- Workstream:
+  `https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/`
+- Paper:
+  `https://aleckriebel.github.io/Math/papers/gamma-theta-order-12-frontier/`
+- Release:
+  `https://github.com/AlecKriebel/Math/releases/tag/gamma-theta-order12-frontier-v1.0.0`
+- Exact external-state acceptance:
+  `results/order12_frontier_public_release_acceptance.json`
+- Publication summary: `PUBLICATION.md`
+
+### Running jobs and resources
+
+- No SAT solver, proof checker, graph generator, or memory-heavy campaign
+  process is running.
+- Host remains an Apple M1 Pro with 10 CPU cores and 16 GiB physical RAM.
+- The release replays stayed far below the campaign memory ceiling and
+  invoked no SAT solver.
+
+### Next three highest-value actions
+
+1. Attack the universal conjecture through the complement formulation:
+   locally balanced pure clique complexes, common-neighbor domination
+   constraints, and whether eternal transitions force a global \(k\)-coloring.
+2. Independently analyze private neighborhoods and the directed transition
+   graph of a minimum eternal family, with an explicit stop gate against
+   merely reformulating the original conjecture.
+3. Use exact small graphs and the frozen order-13 templates only to kill false
+   global lemmas and extract minimal obstruction mechanisms; resume finite
+   certificate production only after the proof lanes reach their declared
+   two-iteration gate.
+
 ## Checkpoint 048 — 2026-07-26 13:17 PDT
 
 - Campaign day: 2 of 27, approximately 24 hours after launch; branch `main`;
