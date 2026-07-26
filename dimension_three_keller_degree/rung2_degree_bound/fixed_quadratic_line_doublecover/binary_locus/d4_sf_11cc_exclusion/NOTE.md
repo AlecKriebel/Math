@@ -1,7 +1,7 @@
 # Exclusion of the isolated squarefree \(\kappa=16\) family
 
-**Status:** candidate theorem with two exact algebraic implementations;
-hostile mathematical audit pending.
+**Status:** certified family-level exclusion.  Two exact algebraic
+implementations and an independent hostile reconstruction pass.
 
 **First banked (UTC):** 2026-07-26.
 
@@ -26,7 +26,7 @@ h=p^2-4pq+q^2,\qquad
 R:=(H_3)_3=h(p+q).                                  \tag{1}
 \]
 
-### Candidate theorem
+### Theorem
 
 No Keller counterexample has leading data (1).  More precisely, every
 degree-four Keller map whose leading data belongs to the
@@ -222,8 +222,8 @@ H_i=H_i(p,q).                                       \tag{14}
 
 ## 5. The unconditional plane exit
 
-Because a Keller map has invertible linear part, postcompose by
-\(L_0^{-1}\).  Equation (14) gives
+First subtract the constant value \(F(0)\).  Because a Keller map has
+invertible linear part, postcompose by \(L_0^{-1}\).  Equation (14) gives
 \[
 (p,q,r)\longmapsto
 \bigl(p+A(p,q),\ q+B(p,q),\ r+C(p,q)\bigr).         \tag{15}
@@ -233,11 +233,11 @@ Its Jacobian determinant is the Jacobian determinant of the plane map
 (p,q)\longmapsto(p+A(p,q),q+B(p,q)).
 \]
 This plane Keller map has degree at most four.  Moh's unconditional
-plane theorem through degree \(100\) makes it a polynomial automorphism;
-no assumption of the plane Jacobian Conjecture is used.  The third
-component in (15) is then a triangular lift, so the original
+plane theorem for degree strictly less than \(100\) makes it a polynomial
+automorphism; no assumption of the plane Jacobian Conjecture is used.
+The third component in (15) is then a triangular lift, so the original
 three-dimensional map is a polynomial automorphism.  This proves the
-candidate theorem, subject to the pending hostile audit.
+theorem.
 
 ## 6. Exact verification
 
@@ -267,7 +267,8 @@ mathematical review.
 
 ## Reference
 
-T.-T. Moh, “On the Jacobian conjecture and the configurations of roots,”
+R. Biggers, T.-T. Moh, and M. Fried, “On the Jacobian conjecture and the
+configurations of roots,”
 *Journal für die reine und angewandte Mathematik* **340** (1983),
-140--212,
+140--213,
 [doi:10.1515/crll.1983.340.140](https://doi.org/10.1515/crll.1983.340.140).

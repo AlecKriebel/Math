@@ -25,6 +25,11 @@
   \(\mathbb Q(\sqrt{-5})\), including explicit left-kernel vectors and
   fresh solves in every chart.
 - Terminal marker: `D4_SF_21C_FULL_STRICT_PASS`.
-- Status remains candidate until a hostile agent independently checks
-  orbit normalization, completeness of the contact plane, boundary
-  coverage, and the precise Moh plane exit.
+- A clean-room hostile audit independently reconstructed the orbit
+  normalization, complete contact plane, both rank-drop directions,
+  generic and boundary obstructions, origin collapse, and Moh exit.
+  Markers `D4_SF_21C_CLEANROOM_LOWER_PASS` and
+  `D4_SF_21C_CLEANROOM_TOP_PASS` pass.
+- Promoted to a certified family-level exclusion.  This is one of the
+  26 frozen high-incidence families, not a parent-row closure or a new
+  universal degree bound.

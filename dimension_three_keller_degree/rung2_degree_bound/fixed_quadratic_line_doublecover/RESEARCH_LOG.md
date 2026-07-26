@@ -114,3 +114,19 @@
 - This is the second of 26 canonical main families with a provisional full
   exclusion.  Hostile audit is pending; the parent row and the global
   \(4/14\) count remain unchanged.
+
+## 2026-07-26T04:36:36Z — hostile promotions and full `D4-DN-3` contact atlas
+
+- Clean-room hostile audits promote `D4-SF-11CC` and `D4-SF-21C` from
+  candidate to certified family-level exclusions.
+- `D4-DN-1CC` also has a complete dual-CAS descent and an independent
+  hostile replay.  The exact nonzero-contact obstruction is
+  \(16\kappa^4/135\); the origin exits through a binary plane block.
+- The first `D4-DN-3` computation was only a zero-binary slice and is
+  retained as a bounded negative audit.  The corrected full-lower
+  elimination retains all 18 lower variables and gives precisely two
+  conjugate affine contact planes with four specialization-safe rank
+  charts.
+- Therefore \(3/26\) frozen high-incidence main families are certified
+  excluded.  The containing global row is still open, so no global
+  \(4/14\) status or degree-floor number changes.

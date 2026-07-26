@@ -1441,3 +1441,26 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The candidate remains provisional until hostile reconstruction.  It
   changes neither the frozen \(4/14,4/14,6/14\) global count nor the
   degree floor four.
+
+## 2026-07-26T04:36:36Z — three high-incidence families certified; `D4-DN-3` rebuilt
+
+- Independent clean-room hostile reconstructions passed for
+  `D4-SF-11CC` and `D4-SF-21C`, covering orbit normalization, the full
+  contact loci, every generic and rank-drop chart, the lower
+  obstructions, the zero-contact collapses, and Moh's unconditional
+  degree-\(<100\) plane exits.
+- A third complete family exclusion, `D4-DN-1CC`, was derived with
+  independent SymPy/PARI checks and then reconstructed by a hostile
+  auditor.  Its full contact locus is one affine line; the nonzero chart
+  has obstruction \(16\kappa^4/135\), and the origin becomes a binary
+  triangular lift.
+- The earlier `D4-DN-3` zero-binary slice was explicitly demoted after a
+  scope audit found eleven omitted lower coefficients.  A fresh
+  all-18-variable elimination now proves that the actual complete
+  \(E_6\) contact locus is exactly two conjugate affine planes.  A
+  four-chart rank atlas covers their interiors, intersection, and
+  origin.  This is a denominator theorem, not yet an exclusion.
+- The fine high-incidence status is now \(3/26\) certified family-level
+  exclusions.  The parent fixed-quadratic row remains open, so the frozen
+  global count remains \(4/14\) certified, \(4/14\) provisional,
+  \(6/14\) open, and the universal total-degree floor remains four.

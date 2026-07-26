@@ -1,7 +1,7 @@
 # Exclusion of the isolated squarefree \(\kappa=-16/5\) family
 
-**Status:** candidate theorem with two exact algebraic implementations;
-hostile mathematical audit pending.
+**Status:** certified family-level exclusion.  Two exact algebraic
+implementations and an independent clean-room hostile reconstruction pass.
 
 **First banked (UTC):** 2026-07-26.
 
@@ -27,7 +27,7 @@ The corresponding modulus is
 \kappa=-5+2-\frac15=-\frac{16}{5}.
 \]
 
-### Candidate theorem
+### Theorem
 
 No Keller counterexample over \(\mathbb C\) has leading data in the
 `D4-SF-21C` orbit.  More precisely, every degree-four Keller map with
@@ -179,20 +179,20 @@ H_i=H_i(p,q).                                      \tag{14}
 
 ## 5. The unconditional plane exit
 
-The Keller condition makes \(L_0\) invertible.  After postcomposing by
-\(L_0^{-1}\), equation (14) has triangular-lift form
+First subtract the constant value \(F(0)\).  The Keller condition makes
+\(L_0\) invertible.  After postcomposing by \(L_0^{-1}\), equation (14)
+has triangular-lift form
 \[
 (p,q,r)\longmapsto
 \bigl(p+A(p,q),\ q+B(p,q),\ r+C(p,q)\bigr).         \tag{15}
 \]
 The first two coordinates form a plane Keller map of degree at most
-four.  Moh's unconditional plane theorem through degree \(100\) makes
-that plane map a polynomial automorphism; this does not assume the
-plane Jacobian Conjecture.  Equation (15) is then a triangular lift of
-an automorphism, hence is itself a polynomial automorphism.
+four.  Moh's unconditional plane theorem for degree strictly less than
+\(100\) makes that plane map a polynomial automorphism; this does not
+assume the plane Jacobian Conjecture.  Equation (15) is then a triangular
+lift of an automorphism, hence is itself a polynomial automorphism.
 
-This proves the candidate theorem subject to hostile reconstruction of
-the normalization, contact completeness, rank split, and plane exit.
+This proves the theorem.
 
 ## 6. Exact verification
 
@@ -224,7 +224,8 @@ mathematical review.
 
 ## Reference
 
-T.-T. Moh, “On the Jacobian conjecture and the configurations of roots,”
+R. Biggers, T.-T. Moh, and M. Fried, “On the Jacobian conjecture and the
+configurations of roots,”
 *Journal für die reine und angewandte Mathematik* **340** (1983),
-140--212,
+140--213,
 [doi:10.1515/crll.1983.340.140](https://doi.org/10.1515/crll.1983.340.140).

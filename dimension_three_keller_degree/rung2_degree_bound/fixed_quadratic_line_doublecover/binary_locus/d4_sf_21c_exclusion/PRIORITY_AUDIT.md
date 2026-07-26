@@ -25,6 +25,7 @@ state the contact-chart exclusion encoded here.
 
 No checked source states the isolated `D4-SF-21C` exclusion.  This is
 source-specific negative evidence only, not a guarantee of worldwide
-priority.  The candidate was produced with substantial AI assistance,
-is not peer reviewed, and remains provisional pending hostile
-mathematical reconstruction.
+priority.  The result was produced with substantial AI assistance and
+is not peer reviewed.  An independent clean-room hostile reconstruction
+now passes, but exact checks remain evidence about the encoded algebra
+and are not peer review.

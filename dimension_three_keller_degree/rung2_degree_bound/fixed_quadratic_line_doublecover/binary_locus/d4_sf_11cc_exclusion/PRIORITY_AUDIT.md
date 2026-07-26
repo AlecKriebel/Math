@@ -25,6 +25,7 @@ realizability rather than quartic leading-shape exclusions.
 
 No checked source states this isolated \(\kappa=16\) exclusion.  This is
 source-specific negative evidence only, not a guarantee of worldwide
-priority.  The candidate was produced with substantial AI assistance, is
-not peer reviewed, and remains provisional pending hostile mathematical
-reconstruction.
+priority.  The result was produced with substantial AI assistance and is
+not peer reviewed.  An independent hostile mathematical reconstruction
+now passes, but exact checks are evidence about the encoded algebra and
+are not peer review.
