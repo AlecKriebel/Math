@@ -406,3 +406,18 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   checkpoint SHA-256 is
   `2f092df32138fa14bc2c97cf2ec819a38064d050325eff018cd1b5ef657dcd87`.
 - This remains a running proof-search prefix, not a nonexistence result.
+
+### 18:21 — `hole9` bounded batch 003 reaches 129 cuts
+
+- Added 64 further complete, directly validated SAT/coloring attempts.  The
+  run now contains 129 distinct sound cuts and no terminal or resource
+  event.
+- The batch took about 30.00 seconds end to end.  Solver children used 2.66
+  seconds total wall time; the maximum child peak RSS was 6,225,920 bytes.
+- Deep read-only reconstruction passed and preserved the 906-file,
+  4,475,400-byte tree at SHA-256
+  `f844ead52f7e719b9ec23b74165ee5a3f31ce4b55cc6b1a433533df4be79c85e`.
+  Checkpoint SHA-256 is
+  `9f0b91e483f255f2e18b7383811cf4e2937b76d0590be4e9dc5cfcb36dcc51f1`.
+- The healthy scaling justifies one more 64-iteration batch after
+  publication.  A running prefix still proves no nonexistence statement.
