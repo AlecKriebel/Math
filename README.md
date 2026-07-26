@@ -22,6 +22,17 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**A ten-vertex graph with
+\(\gamma^\infty(G)<\vartheta(G)\)** is a short exact graph-theory note. For
+the graph with graph6 record
+`IEhbtj{ro`, it verifies
+\(\gamma^\infty(G)=3<7593/2500\leq\vartheta(G)\). The theta certificate uses
+exact rational arithmetic, and a separate state-space verifier independently
+recomputes the standard one-guard game. The minimum-order conclusion uses the
+published exhaustive classification through order nine. See the
+[paper page](https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/)
+and [source package](eternal_domination_lovasz_theta/).
+
 **A 14-variable unipotent Keller map and every-order image and vanishing
 obstructions** is Discovery 07, the repository's canonical consequence paper.
 It isolates one inverse-series mechanism behind the strongest parts of
@@ -110,6 +121,6 @@ global gaps.
   construction. It is superseded and absorbed through Discoveries 03 and 07.
 
 The archive remains public to preserve provenance rather than rewrite history.
-Discovery 04 and Discovery 07 are the two current canonical discovery papers;
-the three H(668) papers are separately labeled provisional pause-checkpoint
-research.
+The Lovász-theta note is a separate current graph-theory paper. Discovery 04
+and Discovery 07 are the two current canonical discovery papers; the three
+H(668) papers are separately labeled provisional pause-checkpoint research.

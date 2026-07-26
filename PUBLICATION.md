@@ -86,6 +86,32 @@ SHA-256
 Version v1.0 remains mathematically valid as a fresh archive, but v1.0.1
 supersedes it for repeat-run and source-checkout reproducibility.
 
+## Eternal domination and Lovász theta
+
+The exact proof package for “A ten-vertex graph with
+\(\gamma^\infty(G)<\vartheta(G)\)” first entered `main` in commit
+[`64fbcd1ab5d6c4d86272985c202699009e1217ce`](https://github.com/AlecKriebel/Math/commit/64fbcd1ab5d6c4d86272985c202699009e1217ce)
+at **26 July 2026, 05:46:55 UTC** (**25 July 2026, 22:46:55 PDT**).
+
+For the graph with graph6 record `IEhbtj{ro`, the note proves exactly
+\[
+\gamma^\infty(G)=3
+<\frac{7593}{2500}
+\leq\vartheta(G).
+\]
+The rational Lovász-theta certificate and the one-guard eternal-domination
+fixed point are verified using Python's standard library, without an SDP
+solver. The conclusion that order ten is minimum additionally uses the
+published exhaustive order-at-most-nine computation of MacGillivray,
+Mynhardt, and Virgile.
+
+The graph and its eternal domination value are due to those authors. The
+candidate contribution is the exact Lovász-theta certificate and the
+resulting negative answer to the publicly recorded lower-bound question. A
+focused search found no prior public resolution as of 25 July 2026, but this
+does not establish absolute priority. No researcher was contacted, and the
+note remains unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**

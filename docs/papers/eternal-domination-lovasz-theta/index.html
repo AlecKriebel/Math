@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An exact ten-vertex graph whose eternal domination number is below its Lovász theta value.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="A ten-vertex graph with γ∞(G) &lt; ϑ(G)">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-25">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A ten-vertex graph with γ∞(G) &lt; ϑ(G)">
+  <meta property="og:description" content="A solver-free exact certificate for a minimum-order ten-vertex counterexample.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">
+  <title>A ten-vertex graph with γ∞(G) &lt; ϑ(G) · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "A ten-vertex graph with γ∞(G) < ϑ(G)",
+    "description": "An exact ten-vertex counterexample to a proposed Lovász-theta lower bound for the one-guard eternal domination number.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT 5.6 Sol"
+    },
+    "datePublished": "2026-07-25",
+    "dateModified": "2026-07-25",
+    "url": "https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#theorem">Theorem</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#scope">Scope</a>
+        <a href="#paper">PDF</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Short research note · Exact certificate · Not peer reviewed</p>
+      <h1>A ten-vertex graph with \(\gamma^\infty(G)&lt;\vartheta(G)\)</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">First public edition: <time datetime="2026-07-25">25 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Read this as a provisional research note.</h2>
+        <p>The exact certificate and finite game computation are solver-free, but the note has not been peer reviewed. The minimum-order statement also uses a published exhaustive computation through order nine. Alec Kriebel is a complete amateur and cannot independently validate the mathematics.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/eternal_domination_lovasz_theta/verify_all.py">Exact verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/eternal_domination_lovasz_theta/certificates/lovasz_theta_primal.json">Theta certificate</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/eternal_domination_lovasz_theta/PRIORITY_AUDIT.md">Priority audit</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/eternal_domination_lovasz_theta">Source package</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">The proposed inequality \(\gamma^\infty(G)\geq\vartheta(G)\) is false for the standard one-guard eternal domination number.</p>
+        <p>For the ten-vertex graph with graph6 record <code>IEhbtj{ro</code>, an exact rational feasible matrix for the standard Lovász-theta semidefinite program has objective \(7593/2500=3.0372\), while the eternal domination number is exactly three.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Order</strong><span>10 vertices</span></div>
+          <div class="fact"><strong>Eternal domination</strong><span>\(\gamma^\infty(G)=3\)</span></div>
+          <div class="fact"><strong>Theta certificate</strong><span>\(\vartheta(G)\geq3.0372\)</span></div>
+        </div>
+      </section>
+
+      <section id="theorem">
+        <h2>Main theorem</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> Let \(G\) have graph6 record <code>IEhbtj{ro</code>. Then</p>
+          <div class="equation">\[
+            \gamma^\infty(G)=3
+            &lt;\frac{7593}{2500}
+            \leq\vartheta(G).
+          \]</div>
+          <p>Therefore the eternal domination number is not universally bounded below by the Lovász theta function.</p>
+        </div>
+        <p>The graph itself and the equality \(\gamma^\infty(G)=3\) were published by MacGillivray, Mynhardt, and Virgile in 2022 in their work on a different parameter: clique-cover number. The new observation is the exact Lovász-theta separation.</p>
+      </section>
+
+      <section id="evidence">
+        <h2>Exact evidence</h2>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <thead>
+              <tr><th scope="col">Claim</th><th scope="col">Check</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Graph identity</td><td>Two independent graph6 decoders, a frozen 26-edge list, and a nauty cross-check</td></tr>
+              <tr><td>Theta feasibility</td><td>Trace one, all 26 edge entries zero, and ten positive exact rational \(LDL^{\mathsf T}\) pivots</td></tr>
+              <tr><td>Theta objective</td><td>Exact entry sum \(30372/10000=7593/2500\)</td></tr>
+              <tr><td>Eternal domination</td><td>Greatest fixed-point sizes \(0,0,86\) for one, two, and three guards</td></tr>
+              <tr><td>Three-guard defense</td><td>All 602 configuration-attack pairs checked in an 86-state closed family</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The verifier uses only exact integer and rational arithmetic in Python's standard library. No numerical SDP solver is part of the proof.</p>
+      </section>
+
+      <section id="minimum-order">
+        <h2>Minimum order</h2>
+        <p>MacGillivray, Mynhardt, and Virgile computationally verified that every graph on at most nine vertices satisfies \(\gamma^\infty(G)=\operatorname{cc}(G)\). The theta sandwich inequality gives</p>
+        <div class="equation">\[
+          \vartheta(G)\leq\chi(\overline G)=\operatorname{cc}(G).
+        \]</div>
+        <p>Consequently no graph of order at most nine can violate the proposed inequality, and this ten-vertex graph has minimum possible order. This corollary relies on their published exhaustive computation; the local package does not re-enumerate every smaller graph.</p>
+      </section>
+
+      <section id="scope">
+        <h2>Attribution, novelty, and scope</h2>
+        <p>A focused search found no prior public source connecting this graph to Lovász theta or resolving the recorded question as of 25 July 2026. The result therefore appears novel, but the search cannot establish absolute priority or exclude an unindexed or differently phrased antecedent.</p>
+        <p>No external expert was contacted or has reviewed the note. The graph and its eternal-domination value are correctly attributed to the 2022 authors; the candidate contribution is the theta certificate and its consequence.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The observation, exact certificates, independent verifiers, literature review, proof drafting, and publication materials were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. Passing the supplied checks is not peer review.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “A ten-vertex graph with \(\gamma^\infty(G)&lt;\vartheta(G)\),” provisional research note, 25 July 2026. <a href="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">Four pages · prepared 25 July 2026 · exact source, certificates, tests, and priority audit are public.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/eternal_domination_lovasz_theta">Source package</a>
+  </footer>
+</body>
+</html>
