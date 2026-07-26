@@ -1070,3 +1070,25 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   free disk.  This is adequate for a conservative 3 GiB child plus 1 GiB
   reserve gate, but source bytes must first be committed and the aggregate
   checker remains under independent development.
+
+### 2026-07-26 02:46 — real initializer finds and closes Git-path defect
+
+- After checkpoint 033 was committed, the first real production initializer
+  failed closed during source provenance binding.  No run directory was
+  created and no solver process was started.
+- The campaign lives in a subdirectory of the Git worktree.  The runner used
+  `git rev-parse HEAD:src/...`, which Git interprets from the repository
+  root.  The command returned 128 before initialization.  Both creation and
+  verification now use the campaign-relative revision form
+  `HEAD:./src/...`.
+- Added an unmocked regression that creates and rechecks a real committed
+  source binding from the campaign directory.  Root reran 18/18 tests in
+  57.058 seconds and the updated hostile probe in 24.31 seconds.
+- A different hostile reviewer reproduced the old exit 128, matched the
+  corrected revision blob to the worktree blob, and reran 18/18 tests plus
+  the complete tiny-proof, crash, mutation, and provenance probe.  Verdict:
+  `ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM`.
+- The corrected runner itself must now be committed byte-for-byte.  Until
+  then, the same provenance gate intentionally refuses initialization
+  because the reviewed worktree blob differs from `HEAD`.  Zero production
+  leaves have run, so the exact order-12 parameter-four status is unchanged.

@@ -419,7 +419,10 @@ def _committed_source_binding() -> dict[str, object]:
         path = campaign_root() / relative
         _assert_regular_single_link(path, f"runtime source {relative}")
         worktree_blob = _git_output(("hash-object", "--", relative))
-        head_blob = _git_output(("rev-parse", f"HEAD:{relative}"))
+        # Revision paths are repository-root-relative unless ``./`` is used.
+        # Git runs from the campaign subdirectory, so retain that prefix
+        # instead of accidentally looking for ``src/...`` at the repo root.
+        head_blob = _git_output(("rev-parse", f"HEAD:./{relative}"))
         if worktree_blob != head_blob:
             raise ValueError(
                 f"runtime source is not committed byte-for-byte: {relative}"
@@ -481,7 +484,7 @@ def _verify_committed_source_binding(binding: Mapping[str, object]) -> None:
             or sha256_file(path) != record["sha256"]
             or _git_output(("hash-object", "--", relative))
             != record["git_blob"]
-            or _git_output(("rev-parse", f"HEAD:{relative}"))
+            or _git_output(("rev-parse", f"HEAD:./{relative}"))
             != record["git_blob"]
         ):
             raise ValueError(f"runtime source binding changed: {relative}")

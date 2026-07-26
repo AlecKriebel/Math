@@ -1,5 +1,61 @@
 # Campaign State
 
+## Checkpoint 034 — 2026-07-26 02:46 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `e3c85a891231038b22ac8727f0434c8c8d05037b`.
+- The first real \(k=4\) initializer failed closed before creating its run
+  directory or launching any solver.  The exact cause was a provenance-only
+  path error: from the campaign subdirectory, `git rev-parse HEAD:src/...`
+  searches the repository root rather than the campaign tree.
+- Both source-binding creation and later reverification now use
+  `HEAD:./src/...`.  An unmocked regression proves the corrected lookup
+  equals `git hash-object` and successfully creates and rechecks a real
+  committed binding.
+- New frozen runner SHA-256 is `8c1939ed...`; new 18-test SHA-256 is
+  `87250792...`.  Root passed 18/18 in 57.058 seconds at 117,653,504 bytes
+  maximum RSS and passed the updated hostile probe in 24.31 seconds at
+  141,410,304 bytes.
+- Independent hostile review reproduced the old exit 128 and the corrected
+  exit zero, reran 18/18 tests in 58.132 seconds, and reran the full hostile
+  probe including the real tiny proof.  Verdict remains
+  `ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM`.
+- **Operational gate:** the corrected runner/test bytes are deliberately
+  uncommitted at this pre-integration checkpoint, so full initialization
+  still refuses.  They must be committed exactly before retry.
+- **Mathematical frontier unchanged:** zero production leaves have run; no
+  order-12 \(k=4\) SAT or UNSAT result exists; the universal conjecture
+  remains open.  C-035 and C-039 are unaffected.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active | Parent accepted; zero leaf outcomes |
+| Order-12 \(k=4\) structural lane | active | C-038/C-039 accepted; anti-\(C_7\) near-hub lemma proposed and unreviewed |
+| Proof-producing runner | accepted-engineering-pending-commit | Narrow Git-path repair accepted; exact reviewed bytes must enter `HEAD` |
+| Aggregate negative-result audit | active-development | Being repinned to repaired runner SHA `8c1939ed...` |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- No `results/order12_k4_production_seed0` directory exists.
+- After the repair commit, rerun the exact conservative initializer from
+  checkpoint 033, audit its immutable manifest, and recheck live resources
+  before authorizing only case `1111`.
+
+### Next three highest-value actions
+
+1. Commit and push the exact Git-path repair, updated hostile package, and
+   this no-outcome incident record.
+2. Retry initialization and read-only audit; run `1111` only if the 3 GiB
+   child plus 1 GiB reserve gate still passes.
+3. Independently review the proposed anti-\(C_7\) near-hub lemma and complete
+   the aggregate auditor against the final runner hash.
+
 ## Checkpoint 033 — 2026-07-26 02:30 PDT
 
 - Campaign day: 2 of 27; branch `main`; shared-repository pre-integration

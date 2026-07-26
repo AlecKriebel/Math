@@ -4,9 +4,9 @@ cwd: /Users/alec/Documents/Math-kissing5
 
 FINAL FROZEN AUTHOR BYTES
   src/search/k4_production/runner.py
-    4e65bc62df18e9bd3a7b17810da00f472a1afda21c6d87c1f13a0d06dba635af
+    8c1939ed18a89f0afd735958da1a84dbaece1ac4507a5b3dcccf84cbb019642e
   tests/test_k4_production.py
-    bc386ad5d3759a67eaf735b396ef9461001a403843410f3c1de8d625ffa0ad2a
+    87250792bd9a588b9e1c9403c2b124092c368aec570d525045c2a46c2bb0107c
   math/lemmas/order12_k4_partition_plan.md
     132a1d41c11466b7f4af641049dd7ff10c4622f055d315831254da9978ee1578
   src/search/k4_production/__init__.py
@@ -16,11 +16,31 @@ FINAL FROZEN AUTHOR BYTES
 
 HOSTILE PROBE
   reviews/order12_k4_production_hostile_probe.py
-    6187ea1d663525169097b74a15512ea0b63583d49fddae790b3244c86a75253c
+    720e78ac264b3a79f99351e18b84d4284bf702fd0c16fc69a4cf9b079738729e
   command:
     python3 gamma_theta_eternal_domination/reviews/order12_k4_production_hostile_probe.py
   exit: 0
-  wall: 24.26 s
+  wall: 23.795 s
+  stdout sha256:
+    418784405f845e65d38d22a8e47a1859119048a2c73da5df6f10d8efe8c76531
+
+  Git campaign-subdirectory binding:
+    campaign is a strict subdirectory of Git worktree: true
+    old HEAD:src/... exit: 128
+    old stderr sha256:
+      a1e1048d67959abb3b75c9831b65cbbaabb11123030dc3500f24c0e41d6b921c
+    corrected HEAD:./src/... exit: 0
+    corrected and worktree blob:
+      56f40a4e3716c9bd19880b9a507a37865a65e6d7
+    real create-and-verify source binding: PASS
+    mandatory commit gate at review time: CLOSED
+    runner HEAD blob:
+      3e1ba20e16287e497a303316dafd5757058b631d
+    runner reviewed worktree blob:
+      1360c9351c59cb1cc317f1222c2065efa57bd71d
+    full initializer failure before commit:
+      ValueError: runtime source is not committed byte-for-byte:
+      src/search/k4_production/runner.py
 
   clean-room parent:
     sha256 adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac
@@ -67,15 +87,17 @@ AUTHOR TEST SUITE, INDEPENDENT RERUN BY HOSTILE REVIEWER
   command:
     /usr/bin/time -lp python3 -m unittest -v
       gamma_theta_eternal_domination/tests/test_k4_production.py
-  result: 17/17 PASS
-  unittest wall: 57.809 s
-  process wall: 57.98 s
-  user CPU: 55.60 s
-  system CPU: 0.74 s
-  maximum resident set size: 117,784,576 bytes
-  peak memory footprint: 107,938,296 bytes
+  result: 18/18 PASS
+  unittest wall: 58.132 s
+  process wall: 58.25 s
+  user CPU: 56.00 s
+  system CPU: 0.75 s
+  maximum resident set size: 117,981,184 bytes
+  peak memory footprint: 106,152,464 bytes
 
 VERDICT
   ACCEPT_PRODUCTION_READY_ENGINEERING_NO_AGGREGATE_CLAIM
+  Operational prerequisite: commit the exact reviewed runner/test bytes;
+  the provenance gate intentionally refuses uncommitted runtime sources.
   No order-12 leaf was run in production by this audit.
   No finite or universal mathematical claim follows from this verdict.

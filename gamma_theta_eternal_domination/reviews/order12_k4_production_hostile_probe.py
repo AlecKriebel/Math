@@ -39,9 +39,9 @@ FROZEN = {
     "src/search/k4_production/__main__.py":
         "a5d3245ca5614aa7b566a1a182d03b48fbc3c40c3ade4d56d9d8114b5dcb432d",
     "src/search/k4_production/runner.py":
-        "4e65bc62df18e9bd3a7b17810da00f472a1afda21c6d87c1f13a0d06dba635af",
+        "8c1939ed18a89f0afd735958da1a84dbaece1ac4507a5b3dcccf84cbb019642e",
     "tests/test_k4_production.py":
-        "bc386ad5d3759a67eaf735b396ef9461001a403843410f3c1de8d625ffa0ad2a",
+        "87250792bd9a588b9e1c9403c2b124092c368aec570d525045c2a46c2bb0107c",
 }
 
 
@@ -55,6 +55,116 @@ def expect_error(action) -> str:
     except BaseException as error:
         return type(error).__name__
     raise AssertionError("hostile mutation was unexpectedly accepted")
+
+
+def git_subdirectory_binding_probe() -> dict[str, object]:
+    """Reproduce the old failure and the campaign-relative Git lookup."""
+
+    relative = "src/synthesis_k3/coloring.py"
+    old = subprocess.run(
+        ("git", "rev-parse", f"HEAD:{relative}"),
+        cwd=CAMPAIGN,
+        env={},
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=10,
+    )
+    corrected = subprocess.run(
+        ("git", "rev-parse", f"HEAD:./{relative}"),
+        cwd=CAMPAIGN,
+        env={},
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=10,
+    )
+    worktree = subprocess.run(
+        ("git", "hash-object", "--", relative),
+        cwd=CAMPAIGN,
+        env={},
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=10,
+    )
+    if (
+        old.returncode == 0
+        or corrected.returncode != 0
+        or corrected.stderr
+        or worktree.returncode != 0
+        or worktree.stderr
+        or corrected.stdout.strip() != worktree.stdout.strip()
+    ):
+        raise AssertionError("campaign-relative Git lookup regression")
+    with patch.object(
+        production,
+        "RUNTIME_SOURCE_RELATIVE_PATHS",
+        (relative,),
+    ):
+        binding = production._committed_source_binding()
+        production._verify_committed_source_binding(binding)
+
+    runner_relative = "src/search/k4_production/runner.py"
+    runner_head = subprocess.run(
+        ("git", "rev-parse", f"HEAD:./{runner_relative}"),
+        cwd=CAMPAIGN,
+        env={},
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=10,
+    )
+    runner_worktree = subprocess.run(
+        ("git", "hash-object", "--", runner_relative),
+        cwd=CAMPAIGN,
+        env={},
+        stdin=subprocess.DEVNULL,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+        timeout=10,
+    )
+    if (
+        runner_head.returncode != 0
+        or runner_worktree.returncode != 0
+        or runner_head.stderr
+        or runner_worktree.stderr
+    ):
+        raise AssertionError("runner commit-gate probe failed")
+    return {
+        "campaign_is_git_subdirectory": (
+            CAMPAIGN != Path(
+                subprocess.run(
+                    ("git", "rev-parse", "--show-toplevel"),
+                    cwd=CAMPAIGN,
+                    env={},
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    check=True,
+                    timeout=10,
+                ).stdout.decode("utf-8", "strict").strip()
+            )
+        ),
+        "old_repository_root_relative_lookup_exit": old.returncode,
+        "old_lookup_stderr_sha256": sha256(old.stderr).hexdigest(),
+        "corrected_campaign_relative_lookup_exit": corrected.returncode,
+        "corrected_blob": corrected.stdout.decode("ascii", "strict").strip(),
+        "worktree_blob": worktree.stdout.decode("ascii", "strict").strip(),
+        "binding_create_and_verify": "PASS",
+        "runner_commit_gate_open": (
+            runner_head.stdout.strip() == runner_worktree.stdout.strip()
+        ),
+        "runner_head_blob": runner_head.stdout.decode("ascii", "strict").strip(),
+        "runner_worktree_blob": (
+            runner_worktree.stdout.decode("ascii", "strict").strip()
+        ),
+    }
 
 
 def parse_dimacs_clean(payload: bytes) -> tuple[int, tuple[tuple[int, ...], ...]]:
@@ -749,6 +859,7 @@ def main() -> int:
     report = {
         "schema": "order12-k4-production-hostile-probe-v2",
         "author_hashes": observed,
+        "git_subdirectory_binding": git_subdirectory_binding_probe(),
         "clean_room_partition": clean_partition_probe(),
         "author_partition_mutations": author_partition_mutations(),
         "strict_output_mutations": strict_output_mutations(),

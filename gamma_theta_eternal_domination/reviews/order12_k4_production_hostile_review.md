@@ -12,15 +12,15 @@ during this review.
 
 | author artifact | SHA-256 |
 |---|---|
-| `src/search/k4_production/runner.py` | `4e65bc62df18e9bd3a7b17810da00f472a1afda21c6d87c1f13a0d06dba635af` |
-| `tests/test_k4_production.py` | `bc386ad5d3759a67eaf735b396ef9461001a403843410f3c1de8d625ffa0ad2a` |
+| `src/search/k4_production/runner.py` | `8c1939ed18a89f0afd735958da1a84dbaece1ac4507a5b3dcccf84cbb019642e` |
+| `tests/test_k4_production.py` | `87250792bd9a588b9e1c9403c2b124092c368aec570d525045c2a46c2bb0107c` |
 | `math/lemmas/order12_k4_partition_plan.md` | `132a1d41c11466b7f4af641049dd7ff10c4622f055d315831254da9978ee1578` |
 | `src/search/k4_production/__init__.py` | `d217fa6af4e7273a80cc63ee8ac812e83b6ce8ed64585fef6d2ef8a371dd2c67` |
 | `src/search/k4_production/__main__.py` | `a5d3245ca5614aa7b566a1a182d03b48fbc3c40c3ade4d56d9d8114b5dcb432d` |
 
 The final hostile probe is
 `reviews/order12_k4_production_hostile_probe.py`, SHA-256
-`6187ea1d663525169097b74a15512ea0b63583d49fddae790b3244c86a75253c`.
+`720e78ac264b3a79f99351e18b84d4284bf702fd0c16fc69a4cf9b079738729e`.
 
 ## Defect history and repair verification
 
@@ -47,6 +47,26 @@ The final bytes repair all four:
 - every attempt configuration is reconstructed and checked against its
   checkpoint digest;
 - `run_next_case` has no public child-runner injection parameter.
+
+After that engineering acceptance, a real initializer exposed a fifth,
+narrow integration defect in runner
+`4e65bc62df18e9bd3a7b17810da00f472a1afda21c6d87c1f13a0d06dba635af`.
+The campaign is a subdirectory of a larger Git worktree, but both runtime
+source lookups used `HEAD:src/...`, which Git interprets from the repository
+root.  The old command returned 128 and Git itself suggested the correct
+campaign-relative spelling `HEAD:./src/...`.  Frozen runner
+`8c1939ed18a89f0afd735958da1a84dbaece1ac4507a5b3dcccf84cbb019642e`
+uses that spelling at both creation and verification sites.  The clean-room
+probe reproduced the old failure, matched the corrected revision blob to
+`git hash-object`, and successfully created and reverified a real source
+binding without mocking Git.  The new unmocked regression does the same.
+
+This repair preserves the intended provenance gate: the runner's own new
+bytes must be committed before full initialization can succeed.  At review
+time `HEAD` still named blob `3e1ba20e...` while the reviewed runner named
+worktree blob `1360c935...`, so full initialization correctly failed with
+“runtime source is not committed byte-for-byte.”  This is a mandatory staging
+prerequisite, not a logic defect in the repaired lookup.
 
 The final clean-room crash probes reproduce each old interruption point.  The
 first now ends as `ORPHAN_ATTEMPT_RECONCILED_NONCLAIM`; the second ends as
@@ -131,10 +151,10 @@ grandchild timeout regression passed.
 
 ## Test and probe results
 
-I independently reran the frozen author suite: **17/17 passed** in 57.809
-seconds of unittest wall time (57.98 seconds process wall), with maximum RSS
-117,784,576 bytes and peak memory footprint 107,938,296 bytes.  The separate
-hostile probe completed in 24.26 seconds.  Exact commands and outcomes are in
+I independently reran the frozen author suite: **18/18 passed** in 58.132
+seconds of unittest wall time (58.25 seconds process wall), with maximum RSS
+117,981,184 bytes and peak memory footprint 106,152,464 bytes.  The separate
+hostile probe completed in 23.795 seconds.  Exact commands and outcomes are in
 `reviews/order12_k4_production_hostile_probe.log`.
 
 ## Mandatory claim boundary

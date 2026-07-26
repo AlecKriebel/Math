@@ -345,6 +345,9 @@ PYTHONPATH=src python3 -m unittest -v tests.test_k4_production
 python3 reviews/order12_k4_production_hostile_probe.py
 ```
 
-The first rejected runner and all four defects remain documented in
-`reviews/order12_k4_production_hostile_review.md`.  No order-12 \(k=4\)
-production leaf has yet been launched, and no SAT or UNSAT result is claimed.
+The four pre-launch defects and a fifth campaign-subdirectory Git-binding
+defect found by the first real initializer are documented in
+`reviews/order12_k4_production_hostile_review.md`.  The initializer failed
+before creating a run directory or starting a solver; both Git lookup sites
+and an unmocked regression are now accepted.  No order-12 \(k=4\) production
+leaf has yet been launched, and no SAT or UNSAT result is claimed.

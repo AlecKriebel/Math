@@ -216,6 +216,23 @@ class FakeProofPipeline:
 
 
 class K4ProductionTests(unittest.TestCase):
+    def test_real_git_binding_resolves_campaign_subdirectory(self) -> None:
+        # Deliberately do not mock Git.  Without the campaign-relative ``./``
+        # prefix, revision lookup incorrectly searches for ``src/...`` at
+        # the repository root and makes initialization impossible.
+        relative = "src/synthesis_k3/coloring.py"
+        with patch.object(
+            production,
+            "RUNTIME_SOURCE_RELATIVE_PATHS",
+            (relative,),
+        ):
+            binding = production._committed_source_binding()
+            production._verify_committed_source_binding(binding)
+        self.assertEqual(
+            [record["path"] for record in binding["records"]],
+            [relative],
+        )
+
     def initialize(self, directory: Path) -> Path:
         run = directory / "run"
         with patched_production_environment():
