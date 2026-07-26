@@ -165,17 +165,38 @@ identical to the frozen release artifact.
 The note proves Conjecture 1 of Perito, D'Avino, Jung, Mironowicz, Acín, and
 Augusiak:
 \[
-\beta_{\mathrm Q}(\mathcal I_d)
+\beta_q(\mathcal I_d)
+=\beta_{qa}(\mathcal I_d)
+=\beta_{qc}(\mathcal I_d)
 =2\csc\!\left(\frac{\pi}{2d}\right)
 \quad(d\ge2).
 \]
 The originating authors introduced the Bell family, conjectured the formula,
 and provided the admissible attaining strategy and matching lower bound. The
 candidate contribution is the missing dimension-independent analytic upper
-bound, strengthened to arbitrary unitary observables. The public package
-includes the analytic manuscript, exact positive-factor certificate, complete
-order-\(d\) argument, symbolic and matrix checks, a machine-readable claim
-ledger, release hashes, and a focused priority audit.
+bound, strengthened to arbitrary cross-party commuting unitary observables.
+The public package includes the analytic manuscript, exact positive-factor
+certificate, complete order-\(d\) argument, symbolic and matrix checks, a
+machine-readable claim ledger, release hashes, and a focused priority audit.
+
+An adversarial-feedback revision entered `main` in commit
+[`21126e384677d8bb5ebb796c695ce48904fd5e72`](https://github.com/AlecKriebel/Math/commit/21126e384677d8bb5ebb796c695ce48904fd5e72)
+at **26 July 2026, 22:00:27 UTC** (**26 July 2026, 15:00:27 PDT**).
+GitHub Pages reported that exact commit built at
+**26 July 2026, 22:01:22 UTC**. The served eight-page PDF had SHA-256
+`c4e80e0956595c28cbf0323639dcf5b84f5ffbd0785362cc4233e2c19812b96f`,
+identical to the frozen revision artifact.
+
+The revision records rather than silently accepts the feedback. Its alleged
+phase-function error was not present in the initial release: that source
+defined \(q(z)=(1+\overline z)/|1+z|\), for which
+\(Q_y=q(W_y)Z^\dagger\) is correct. The revised notation uses the equivalent
+\(p(z)=(1+z)/|1+z|\) and \(Q_y=p(W_y)^\dagger Z^\dagger\) to eliminate the
+ambiguity and pins the convention with a dedicated regression check. Valid
+feedback led to the commuting-operator strengthening, explicit source
+Fourier and qutrit checks, clearer residue reindexing, and expanded
+related-work coverage. The equality above concerns the three optimal values;
+it does not claim equality of the underlying correlation sets.
 
 A public search found no earlier proof, but this establishes only a release
 timestamp—not correctness or absolute priority. The note does not claim
