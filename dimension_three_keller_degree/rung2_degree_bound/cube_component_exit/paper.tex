@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\hypersetup{hidelinks}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\A}{\mathbf A}
+\newcommand{\C}{\mathbf C}
+
+\title{A Cube-Component Exit for Three-Dimensional Keller Maps}
+\author{Author information withheld pending priority review}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let \(k\) be an algebraically closed field of characteristic zero.  We
+establish the following structural constraint: a polynomial
+\[
+f=C+\ell^3+Q_2+L_1\in k[x,y,z],
+\]
+where \(\ell\ne0\) is linear and \(Q_2,L_1\) are homogeneous of degrees
+two and one, is a polynomial coordinate whenever it has no critical
+point.  The proof is an elementary rank classification of the
+quadratic form transverse to \(\ell\), and gives a coordinate
+automorphism and inverse of degree at most three.  Over \(\C\), a
+Keller map of degree \(d\) having such a target-linear combination of
+its components therefore reduces
+fibrewise to plane Keller maps of degree at most \(3d\).  Using the
+reported plane counterexample floor \(108\), this proves invertibility
+for \(d\le35\); Moh's classical range gives the conservative fallback
+\(d\le33\).  We record only a finite, machine-checked application to a
+fixed denominator and make no global Jacobian or denominator-row
+claim.
+\end{abstract}
+
+\noindent\textbf{Draft freeze (UTC):} 2026-07-26T07:53:50Z.
+\par\noindent
+\textbf{First public release (UTC):}
+\texttt{2026-07-26T08:13:13Z}.
+
+\section{The coordinate theorem}
+
+Recall that \(f\in k[x,y,z]\) is a \emph{coordinate} if there are
+\(g,h\in k[x,y,z]\) with \(k[f,g,h]=k[x,y,z]\).  We call \(f\)
+\emph{nonsingular} if its three partial derivatives have no common
+zero in \(k^3\).
+
+\begin{theorem}[Cube-component coordinate theorem]\label{thm:coordinate}
+Let \(k\) be algebraically closed of characteristic zero.  Let
+\(\ell\) be a nonzero linear form, let \(Q_2,L_1\) be homogeneous of
+degrees two and one, and let \(C\in k\).  If
+\[
+f=C+\ell^3+Q_2+L_1
+\]
+is nonsingular, then \(f\) is a coordinate of \(k[x,y,z]\).  It can be
+included in a polynomial coordinate system whose forward and inverse
+maps both have degree at most three.
+\end{theorem}
+
+\begin{proof}
+A linear source change sends \(\ell\) to \(x\).  A constant translation
+removes \(C\).  With \(Y=(y,z)^t\), write
+\begin{equation}\label{eq:normal}
+ f=x^3+A x^2+x\,c^tY+\frac12Y^tMY+a x+d^tY,
+\end{equation}
+where \(M=M^t\in M_2(k)\) and \(c,d\in k^2\).  Then
+\begin{equation}\label{eq:gradient}
+ \nabla_Yf=MY+cx+d,\qquad
+ f_x=3x^2+2Ax+c^tY+a.
+\end{equation}
+We split by the rank of \(M\).
+
+\smallskip
+\noindent\emph{Rank two.}
+If \(M\) is invertible, \(\nabla_Yf=0\) has the unique solution
+\[
+Y=-M^{-1}(cx+d).
+\]
+After this substitution, \(f_x\) is the explicit univariate quadratic
+\begin{equation}\label{eq:ranktworesidual}
+3x^2+\bigl(2A-c^tM^{-1}c\bigr)x+
+       \bigl(a-c^tM^{-1}d\bigr).
+\end{equation}
+Its leading coefficient is \(3\), so it has a root \(x_0\in k\).
+Taking \(Y_0=-M^{-1}(cx_0+d)\) makes every derivative in
+\eqref{eq:gradient} vanish.  Thus this rank is impossible.
+
+\smallskip
+\noindent\emph{Rank one.}
+By a constant linear change in \(Y\), equation~\eqref{eq:normal} becomes
+\begin{equation}\label{eq:rankone}
+f=g(x)+x(\beta u+\gamma v)+\frac m2u^2+\varepsilon u+\eta v,
+\qquad m\ne0.
+\end{equation}
+Here \(g(x)=x^3+Ax^2+ax\).  If \(\gamma\ne0\), the explicit point
+\begin{equation}\label{eq:rankonewitness}
+x_0=-\frac{\eta}{\gamma},\qquad
+u_0=-\frac{\beta x_0+\varepsilon}{m},\qquad
+v_0=-\frac{g'(x_0)+\beta u_0}{\gamma}
+\end{equation}
+satisfies \(f_v=f_u=f_x=0\), in that order.  Suppose \(\gamma=0\).
+If also \(\eta=0\), put
+\[
+u(x)=-\frac{\beta x+\varepsilon}{m}.
+\]
+Then \(f_u=f_v=0\), while
+\begin{equation}\label{eq:rankoneflat}
+f_x\bigl(x,u(x),v\bigr)
+=3x^2+\left(2A-\frac{\beta^2}{m}\right)x
+  +\left(a-\frac{\beta\varepsilon}{m}\right).
+\end{equation}
+Choose a root \(x_0\), set \(u_0=u(x_0)\), and take \(v_0=0\).
+This is a critical point.  Nonsingularity therefore forces
+\(\gamma=0,\eta\ne0\).  In this last case
+\[
+f=\eta v+R(x,u),\qquad
+R=g(x)+\beta xu+\frac m2u^2+\varepsilon u.
+\]
+The coordinate map \((x,u,v)\mapsto(x,u,f)\) has inverse
+\begin{equation}\label{eq:rankoneinverse}
+(x,u,w)\longmapsto
+\left(x,u,\frac{w-R(x,u)}{\eta}\right).
+\end{equation}
+
+\smallskip
+\noindent\emph{Rank zero.}
+Write the rank-zero expression with scalar coefficients as
+\begin{equation}\label{eq:rankzero}
+ f=g(x)+x(by+cz)+ey+hz.
+\end{equation}
+Put \(\Delta=bh-ce\).  If \(\Delta\ne0\), use
+\[
+u=by+cz,\qquad v=ey+hz.
+\]
+Then
+\[
+f=g(x)+xu+v,\qquad v=f-g(x)-xu,
+\]
+and recover the original transverse variables by
+\begin{equation}\label{eq:rankzerolinearinverse}
+y=\frac{hu-cv}{\Delta},\qquad
+z=\frac{-eu+bv}{\Delta}.
+\end{equation}
+Thus \((x,u,f)\) is a coordinate system with a degree-three inverse.
+
+Assume \(\Delta=0\).  First suppose \((b,c)=(0,0)\).  If
+\((e,h)\ne(0,0)\), take \(v=ey+hz\) and a complementary coordinate.
+When \(e\ne0\), choose \(u=z\), so
+\[
+z=u,\qquad y=\frac{v-hu}{e};
+\]
+when \(e=0\), necessarily \(h\ne0\), and one may choose \(u=y\), so
+\[
+y=u,\qquad z=\frac vh.
+\]
+In both subcharts
+\[
+f=g(x)+v,\qquad v=f-g(x).
+\]
+If also \((e,h)=(0,0)\), choose a root \(x_0\) of \(g'\) and set
+\(y_0=z_0=0\); this is a critical point.
+
+Finally suppose \((b,c)\ne(0,0)\).  Since \(\Delta=0\), there is
+\(\delta\in k\) with \((e,h)=\delta(b,c)\).  This assertion involves
+no hidden division: use \(\delta=e/b\) on \(b\ne0\), and
+\(\delta=h/c\) on the boundary \(b=0,c\ne0\).  At \(x_0=-\delta\),
+both transverse derivatives vanish.  If \(b\ne0\), take
+\[
+y_0=-\frac{g'(x_0)}b,\qquad z_0=0;
+\]
+if \(b=0,c\ne0\), take
+\[
+y_0=0,\qquad z_0=-\frac{g'(x_0)}c.
+\]
+Then \(f_x=0\) as well, giving a critical point.
+
+The only nonsingular cases are therefore the explicit coordinate cases
+above.  Their formulas, together with the initial linear changes, have
+degree at most three in both directions.
+\end{proof}
+
+\begin{remark}[Pivot completeness]
+For
+\(
+M=\left(\begin{smallmatrix}m_{11}&m_{12}\\m_{12}&m_{22}\end{smallmatrix}\right)
+\),
+the rank-one chart \(m_{11}\ne0\) uses the null vector
+\((-m_{12},m_{11})\); explicitly, the quadratic part is
+\[
+\frac{m_{11}}2\left(y+\frac{m_{12}}{m_{11}}z\right)^2.
+\]
+On the boundary \(m_{11}=0=\det M\), one has
+\(m_{12}=0\), and rank one is exactly \(m_{22}\ne0\).  The remaining
+boundary is \(M=0\).  In rank zero, \(\det[c\ d]\ne0\) is the
+independent chart.  Its zero boundary splits into \(c=0,d\ne0\),
+\(c=d=0\), and \(c\ne0,d=\delta c\); the last is covered by the two
+ordinary pivots on the components of \(c\).  Thus no coefficient is
+divided by without its zero locus being included.
+\end{remark}
+
+\section{The Keller exit over \(\C\)}
+
+\begin{lemma}[Fibre reduction]\label{lem:fibre}
+Let \(F:\C^3\to\C^3\) have constant nonzero Jacobian and degree \(d\).
+Suppose one component of \(F\) is a coordinate belonging to a
+coordinate automorphism whose inverse has degree at most \(e\).  If
+every complex plane Keller map of degree at most \(ed\) is an
+automorphism, then \(F\) is an automorphism.
+\end{lemma}
+
+\begin{proof}
+Permute the target components and precompose by the coordinate inverse
+to obtain
+\[
+G=(G_1(u,v,w),G_2(u,v,w),w).
+\]
+Its Jacobian determinant is a nonzero constant, and expansion along the
+last row gives
+\[
+\frac{\partial(G_1,G_2)}{\partial(u,v)}\in\C^\times.
+\]
+Moreover, \(\deg G_i\le ed\).  For every \(w_0\in\C\), the specialized
+pair \((G_1(u,v,w_0),G_2(u,v,w_0))\) is therefore a plane Keller map in
+the assumed range and hence an automorphism.  Thus \(G\) is injective
+fibre by fibre.  Ax--Grothendieck implies that the injective polynomial
+self-map \(G\) of \(\A^3_\C\) is surjective.  The Keller condition makes
+\(G\) étale.  An injective étale morphism over an algebraically closed
+field is universally injective and hence an open immersion
+\cite{StacksEtale}; surjectivity makes that open immersion an
+isomorphism.  Thus \(G\), and therefore \(F\), is an automorphism.
+\end{proof}
+
+\begin{corollary}[Degree \(35\), using the plane floor \(108\)]
+\label{cor:35}
+Let \(F:\C^3\to\C^3\) be a Keller map of degree \(d\).  Suppose there is
+a nonzero target covector \(\alpha\in(\C^3)^*\) such that
+\[
+\alpha\!\cdot\!F=C+\ell^3+Q_2+L_1
+\]
+with \(\ell\ne0\) linear.  If the plane Keller conclusion is valid for
+maximum degree \(<108\), then \(F\) is an automorphism for \(d\le35\).
+\end{corollary}
+
+\begin{proof}
+Extend \(\alpha\) to a matrix \(T\in\mathrm{GL}_3(\C)\), and replace
+\(F\) by \(TF\), placing \(\alpha\!\cdot\!F\) in the third component.
+The new determinant is
+\[
+\det J(TF)=(\det T)(\det JF)\in\C^\times.
+\]
+Consequently the gradient of \(\alpha\!\cdot\!F\), now the third row of
+an everywhere invertible Jacobian matrix, is nowhere zero.  Apply
+Theorem~\ref{thm:coordinate} with \(e=3\), then
+Lemma~\ref{lem:fibre}.  For \(d\le35\),
+\[
+ed\le3\cdot35=105<108.
+\]
+\end{proof}
+
+The plane input in Corollary~\ref{cor:35} is the lower floor reported
+in~\cite{GGHV}.  We verified the numerical claim in the primary
+preprint; a peer-reviewed journal version was not located.
+
+\begin{corollary}[Conservative Moh fallback]
+Under the hypotheses of Corollary~\ref{cor:35}, \(F\) is an
+automorphism for \(d\le33\) using only the classical plane range
+\(<100\).
+\end{corollary}
+
+\begin{proof}
+Here \(3d\le99<100\), so the same fibre argument applies with
+Moh's low-degree result~\cite{Moh}.
+\end{proof}
+
+\section{Finite denominator application}
+
+The theorem is applied only to the entries in Table~\ref{tab:bridge}.
+The table is machine-checked against a frozen denominator containing
+exactly \(26\) families.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lll}
+\toprule
+Identifier & Cube component & Status here\\
+\midrule
+\texttt{PF-BRANCH-FOURTH-THIRD} & \(R=p^3\) & newly excluded\\
+\texttt{D3-BB-30} & \(R=p^3\) & newly excluded\\
+\texttt{D3-OB-300} & \(R=p^3\) & newly excluded\\
+\texttt{D4-DN-3} & \(R=L^3\) & already excluded\\
+\texttt{D3-SF-20C}, \(z=3\) only & \(R=X^3\) &
+newly excluded pivot only\\
+\bottomrule
+\end{tabular}
+\caption{Exact scope of the frozen denominator bridge.}
+\label{tab:bridge}
+\end{table}
+
+The generic \texttt{D3-SF-20C} normal form is
+\[
+R=X^2((5-3z)p+4rq).
+\]
+Accordingly, neither that whole family nor its reciprocal \(z=1/3\)
+sheet is claimed.  No quartic row, other denominator family, or global
+degree bound follows from this finite bridge.  The three newly excluded
+whole families move the frozen fine count from \(6/26\) to \(9/26\).
+The containing row remains open, the global quartic status remains
+\(4/14\) certified, \(4/14\) provisional, and \(6/14\) open, and the
+universal total-degree floor remains four.
+
+\section{Reproducibility and priority}
+
+The dependency-free exact verifier checks the critical-point witnesses,
+all coordinate inverses, the degree boundaries
+\[
+3\cdot35=105<108,\quad 3\cdot36=108,\quad
+3\cdot33=99<100,
+\]
+and the exact denominator bridge.  The primary strict wrapper
+\texttt{verify\_strict.sh} requires deliberate mutations of each of
+these claims to fail and prints
+\texttt{CUBE\_COMPONENT\_EXIT\_STRICT\_PASS}.  The aggregate wrapper
+\texttt{verify\_all\_strict.sh} additionally requires the independently
+implemented hostile audit and prints
+\texttt{CUBE\_COMPONENT\_ALL\_STRICT\_PASS} only after both suites pass.
+
+The precise coordinate lemma was not located in the limited literature
+search accompanying this draft.  Related work includes classifications
+of cubic polynomials at infinity~\cite{Ribeiro}, broad criteria for
+polynomial variables~\cite{Kaliman}, Vistoli's theorem for entire
+degree-three Keller maps~\cite{Vistoli}, and the classification of
+degree-three automorphisms by Blanc and van Santen~\cite{BlancVanSanten}.
+None was found to state the present component criterion.  Worldwide
+novelty and priority remain unresolved.
+
+\section*{Status and disclosure}
+
+This is an AI-assisted research draft and has not been peer reviewed.
+The exact primary and hostile verification suites check the rank atlas,
+inverse formulas, degree arithmetic, and frozen-data bridge encoded in
+the accompanying scripts.  Those checks are evidence about the encoded
+algebra, not peer review, and do not mechanically verify the external
+plane-degree theorem, Ax--Grothendieck, or worldwide priority.  The
+separate hostile algebra audit and hypothesis/reference audit are
+included in the release directory.
+
+\begin{thebibliography}{9}
+
+\bibitem{Ax}
+J.~Ax,
+\newblock Injective endomorphisms of varieties and schemes,
+\newblock \emph{Pacific J. Math.} 31 (1969), 1--7.
+
+\bibitem{BlancVanSanten}
+J.~Blanc and I.~van Santen,
+\newblock Automorphisms of the affine 3-space of degree 3,
+\newblock \emph{Indiana Univ. Math. J.} 71 (2022), 857--912.
+
+\bibitem{GGHV}
+J.~A. Guccione, J.~J. Guccione, R.~Horruitiner, and C.~Valqui,
+\newblock Increasing the degree of a possible counterexample to the
+Jacobian Conjecture from 100 to 108,
+\newblock arXiv:2204.14178 (2022),
+\newblock \url{https://arxiv.org/abs/2204.14178}.
+
+\bibitem{Kaliman}
+S.~Kaliman,
+\newblock Polynomials with general \(\C^2\)-fibers are variables. I,
+\newblock arXiv:math/9912058,
+\newblock \url{https://arxiv.org/abs/math/9912058}.
+
+\bibitem{Moh}
+T.~T. Moh,
+\newblock On the Jacobian conjecture and the configurations of roots,
+\newblock \emph{J. Reine Angew. Math.} 340 (1983), 140--212.
+
+\bibitem{Ribeiro}
+N.~R. Ribeiro,
+\newblock Classification at infinity of degree-three polynomials in
+three variables,
+\newblock arXiv:2201.11026,
+\newblock \url{https://arxiv.org/abs/2201.11026}.
+
+\bibitem{StacksEtale}
+The Stacks Project Authors,
+\newblock Étale and universally injective morphisms are open immersions,
+\newblock Tag 025G,
+\newblock \url{https://stacks.math.columbia.edu/tag/025G}.
+
+\bibitem{Vistoli}
+A.~Vistoli,
+\newblock The Jacobian conjecture in dimension 3 and degree 3,
+\newblock \emph{J. Pure Appl. Algebra} 142 (1999), 79--89.
+
+\end{thebibliography}
+
+\end{document}

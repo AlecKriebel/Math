@@ -127,3 +127,12 @@ assembly audit and two complete aggregate replays.  This is source-specific
 negative evidence only, not a worldwide-priority guarantee or peer review.
 The result closes \(6/26\) fine high-incidence families, not the parent row
 or the universal quartic problem.
+
+## 2026-07-26T08:09Z — cube-component bridge
+
+The cube-leading coordinate theorem and its exact denominator bridge were
+compared with the same daily source sweep.  No checked source states the
+component criterion or its applications to `PF-BRANCH-FOURTH-THIRD`,
+`D3-BB-30`, and `D3-OB-300`.  The internal fine count is now \(9/26\).
+This is source-specific negative evidence only, not a worldwide-priority
+guarantee, parent-row closure, universal degree bound, or peer review.

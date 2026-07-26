@@ -931,3 +931,39 @@ replays and a hostile assembly audit.  This remains source-specific negative
 evidence, not a guarantee of worldwide priority.  The theorem is AI-assisted,
 unreviewed, confined to one sublocus of one open global row, and does not
 raise the universal degree floor above four.
+
+### 2026-07-26T08:09Z — cube-component exit delta
+
+The current-day source sweep was compared with the theorem that every
+nonsingular
+\[
+C+\ell^3+Q_2+L_1\in k[x,y,z]
+\]
+over an algebraically closed characteristic-zero field is a polynomial
+coordinate admitting a degree-at-most-three inverse.  Searches covered
+current arXiv listings, MathOverflow, Tao's blog, the Secret Blogging
+Seminar, publicly indexed X/Twitter results, and exact phrases around
+unimodular gradients, cubic polynomial submersions, and cube-leading
+coordinates.
+
+The full texts of Ribeiro, arXiv:2201.11026, and
+Guccione--Guccione--Horruitiner--Valqui, arXiv:2204.14178, were checked.
+Adjacent primary literature includes Vistoli's full degree-three Keller
+theorem, Kaliman's general-\(\mathbf A^2\)-fibre variable theorem,
+Blanc--van Santen's degree-three automorphism classification, and
+Shpilrain--Yu on polynomial retracts and unimodular gradients.  No
+checked source states the exact cube-leading component criterion or the
+degree-three inverse ceiling.
+
+The structural Keller corollary is conditional only on established
+bounded-degree plane theorems, not on the open plane Jacobian
+Conjecture: the public 108-floor preprint gives the endpoint \(d\le35\),
+and the conservative Moh input gives \(d\le33\).  The frozen quartic
+bridge closes three additional whole fine families, moving the internal
+count from \(6/26\) to \(9/26\), but it closes no global row and leaves
+the universal total-degree floor at four.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The result is AI-assisted, not peer reviewed, and
+requires specialist database and affine-fibration review before any
+novelty claim.

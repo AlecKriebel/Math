@@ -1519,3 +1519,36 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   \(6/14\) open and the universal total-degree floor remains four.
 - Independent and hostile audits of the exceptional power fibre began
   immediately.
+
+## 2026-07-26T08:09:09Z — cube-component exit certified
+
+- Proved an elementary coordinate theorem over every algebraically
+  closed field of characteristic zero:
+  \[
+  \nabla(C+\ell^3+Q_2+L_1)\ne0
+  \Longrightarrow C+\ell^3+Q_2+L_1
+  \text{ is a coordinate}.
+  \]
+  A completing coordinate automorphism and its inverse have degree at
+  most three.  The division-safe proof exhausts the ranks \(2,1,0\) of
+  the quadratic block transverse to \(\ell\).
+- Two independent hostile audits reconstructed the algebra and the
+  geometric implication.  A dependency-free exact suite and an
+  independent PARI/GP suite both pass, including required-failure
+  mutations.  The geometry audit repaired the shorthand at the final
+  step: Ax--Grothendieck gives surjectivity, while injective étale gives
+  an open immersion, hence an isomorphism.
+- If a complex Keller map of degree \(d\) has this shape as any nonzero
+  target-linear combination of its components, it is an automorphism
+  for \(d\le35\), using the plane safe range \(<108\) from
+  arXiv:2204.14178.  The conservative Moh fallback is \(d\le33\).
+  No plane Jacobian-Conjecture assumption is used.
+- The exact bridge closes `PF-BRANCH-FOURTH-THIRD`, `D3-BB-30`, and
+  `D3-OB-300`, reproves `D4-DN-3`, and closes only the retained \(z=3\)
+  pivot inside `D3-SF-20C`.  Thus the fine denominator moves from
+  \(6/26\) to \(9/26\); the containing row remains open.
+- The global quartic status remains \(4/14\) certified,
+  \(4/14\) provisional, \(6/14\) open.  The certified universal
+  total-degree floor remains four.  No exact prior-art collision was
+  located, but worldwide novelty is unresolved and no novelty claim is
+  made.

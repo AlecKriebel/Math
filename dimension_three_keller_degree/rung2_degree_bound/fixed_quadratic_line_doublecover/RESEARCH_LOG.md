@@ -182,3 +182,14 @@
   certification, and the frozen 45-pivot bridge still prevent row
   promotion.  The global \(4/14,4/14,6/14\) count and degree floor four
   do not change.
+
+## 2026-07-26T08:09:09Z — cube-component exit moves fine count to \(9/26\)
+
+- The coordinate theorem for nonsingular
+  \(C+\ell^3+Q_2+L_1\) excludes the exceptional power fibre and the
+  exact-\(\delta=3\) families `D3-BB-30` and `D3-OB-300`.
+- It also reproves `D4-DN-3` and excludes only the retained \(z=3\)
+  pivot, not the generic `D3-SF-20C` family or its \(z=1/3\) sheet.
+- Seventeen exact-\(\delta=3\) whole families remain.  The containing
+  row, global \(4/14,4/14,6/14\) count, and universal floor four remain
+  unchanged.
