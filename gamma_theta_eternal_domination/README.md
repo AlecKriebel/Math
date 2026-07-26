@@ -330,13 +330,12 @@ python3 reviews/order12_k4_candidate_verifier_hostile_probe.py
 
 No candidate currently exists.
 
-The repaired proof-producing runner is accepted as production engineering,
-not as a mathematical result.  Its exact 16-cube partition covers the
-anchored parent.  Every UNSAT leaf must pass four separate processes:
+The proof-producing runner's exact 16-cube partition covers the anchored
+parent.  Its version-two protocol required four separate processes:
 CaDiCaL binary-DRAT production, forward binary-DRAT verification, backward
-LRAT conversion, and fresh `lrat-check` replay.  The runner preserves
-interrupted attempts as retryable nonclaims and aggregates even sixteen
-locally verified leaves only as
+LRAT conversion, and fresh `lrat-check` replay.  It preserves interrupted or
+rejected attempts as retryable nonclaims and aggregates even sixteen locally
+verified leaves only as
 `ALL_LEAVES_VERIFIED_PENDING_INDEPENDENT_COVERAGE_AUDIT`.
 
 ```text
@@ -347,7 +346,17 @@ python3 reviews/order12_k4_production_hostile_probe.py
 
 The four pre-launch defects and a fifth campaign-subdirectory Git-binding
 defect found by the first real initializer are documented in
-`reviews/order12_k4_production_hostile_review.md`.  The initializer failed
-before creating a run directory or starting a solver; both Git lookup sites
-and an unmocked regression are now accepted.  No order-12 \(k=4\) production
-leaf has yet been launched, and no SAT or UNSAT result is claimed.
+`reviews/order12_k4_production_hostile_review.md`.  The latter initializer
+failed before creating a run directory or starting a solver; both Git lookup
+sites and an unmocked regression are accepted.
+
+The subsequent real smoke test of leaf `1111` found a sixth protocol defect
+and failed closed.  CaDiCaL returned UNSAT and the retained 215,475-byte
+binary proof passed warning-fatal forward replay, but backward LRAT conversion
+rejected CaDiCaL's deletion of a pseudo-unit clause and emitted an empty LRAT.
+The durable status is `LRAT_CONVERSION_REJECTED_NONCLAIM`; no leaf is
+certified.  A temporary experiment shows that strict addition-only
+normalization followed by forward RUP checking, backward LRAT conversion,
+and fresh replay can work, but this is only a v3 design observation until
+implemented, independently reviewed, and rerun in a new source-bound
+production directory.

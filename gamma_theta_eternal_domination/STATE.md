@@ -1,5 +1,67 @@
 # Campaign State
 
+## Checkpoint 035 — 2026-07-26 02:56 PDT
+
+- Campaign day: 2 of 27; branch `main`; shared-repository pre-integration
+  `HEAD` `ffd414254e5f0a1e8e5636449b38753dd8483091`.
+- The exact \(k=4\) run initialized successfully under source commit
+  `9b24d9ff...`.  Its manifest is `782862eb...`, its exact 16-leaf partition
+  is `0cf81297...`, and its source-set binding is `ea6d74e6...`.
+- **First production attempt failed closed:** case `1111` attempt one returned
+  `LRAT_CONVERSION_REJECTED_NONCLAIM`.  CaDiCaL exited 20 in 0.062 seconds;
+  its 215,475-byte raw binary proof (`a50b814d...`) passed the separate
+  warning-fatal forward proof check.
+- Backward `drat-trim -i -W -L` exited 80 when it encountered deletion of
+  pseudo-unit clause 14 and wrote an empty LRAT.  The runner retained all
+  artifacts, checkpointed the outcome `0a8789b6...`, and did not launch
+  `lrat-check` or promote the leaf.
+- A post-attempt read-only audit passed: 15 leaves are pending, `1111` is a
+  retryable nonclaim, zero attempts are active, and the aggregate remains
+  `INCOMPLETE_NONCLAIM`.
+- A temporary feasibility experiment, explicitly not a certificate, parsed
+  the raw proof into 9,690 additions and 6,956 deletions.  Only three unit
+  deletions follow the unique empty addition.  An exact 106,318-byte
+  addition-only stream passed forward RUP checking, backward LRAT conversion,
+  and fresh `lrat-check`.  This establishes a concrete v3 repair direction,
+  not an accepted leaf result.
+- The v2 run is frozen.  A v3 pipeline needs a bounded strict normalizer,
+  addition-only forward RUP replay, backward LRAT conversion, and fresh LRAT
+  replay, all with new source/schema bindings and hostile review.  The
+  aggregate auditor is paused until that schema freezes.
+- **Mathematical frontier unchanged:** no \(k=4\) leaf is certified, the
+  order-12 \(k=4,5\) cases remain open, C-035/C-039 remain accepted, and the
+  universal conjecture remains open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active | Parent accepted; `1111` is a nonclaim only |
+| Order-12 \(k=4\) structural lane | active | Anti-\(C_7\) near-hub theorem proposed; independent review pending |
+| Proof-producing runner v2 | rejected-superseded | Backward converter rejects raw pseudo-unit deletions |
+| Proof-producing runner v3 | active-design | Strict normalization plus addition-only RUP and LRAT chain demonstrated only in temporary experiment |
+| Aggregate negative-result audit | paused-schema | Must bind and independently replay final v3 artifacts |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- Preserve `results/order12_k4_production_seed0` unchanged as the v2 forensic
+  run.  Do not invoke `run-next` on it.
+- Version-three implementation and a separate anti-\(C_7\) proof review are
+  active.  No heavy computation is authorized before both relevant gates.
+
+### Next three highest-value actions
+
+1. Commit and push the exact v2 initialization, failed attempt, hash manifest,
+   and explicit nonclaim diagnostic.
+2. Implement and hostile-review the bounded v3 normalization/RUP/LRAT
+   pipeline, then initialize a new immutable run rather than mutating v2.
+3. Hostile-review the proposed anti-\(C_7\) near-hub branch exclusion and
+   resume the aggregate auditor only after v3 schema freeze.
+
 ## Checkpoint 034 — 2026-07-26 02:46 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`

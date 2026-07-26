@@ -1092,3 +1092,38 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   then, the same provenance gate intentionally refuses initialization
   because the reviewed worktree blob differs from `HEAD`.  Zero production
   leaves have run, so the exact order-12 parameter-four status is unchanged.
+
+### 2026-07-26 02:56 — `1111` smoke test exposes LRAT conversion gap
+
+- Committed source binding succeeded under exact campaign commit
+  `9b24d9ff...`.  The immutable run
+  `results/order12_k4_production_seed0` initialized all 16 leaves with source
+  set SHA-256 `ea6d74e6...`, partition `0cf81297...`, and initial checkpoint
+  `0355d092...`.  A read-only audit returned 16 pending leaves and
+  `INCOMPLETE_NONCLAIM`.
+- Authorized only case `1111`, the deliberately retained anchored
+  complement-\(K_5\) contradiction.  CaDiCaL returned exit 20 in 0.062
+  seconds and retained a 215,475-byte binary DRAT proof.  Warning-fatal
+  forward replay returned exactly one `s VERIFIED`.
+- The separate backward converter then exited 80 on
+  `backward mode ignores deletion of (pseudo) unit clause [0] 14 0` and
+  emitted an empty LRAT.  The runner preserved every byte, appended its
+  completion checkpoint, made the leaf retryable, and returned
+  `LRAT_CONVERSION_REJECTED_NONCLAIM`.  No checker ran and no leaf UNSAT
+  status was promoted.
+- Post-attempt read-only audit passed with 15 pending leaves, one retryable
+  nonclaim, zero active attempts, and one completed attempt.  The v2 run is
+  now frozen for diagnosis; it will not be retried under changed source
+  bytes.
+- A strict exploratory parse found 9,690 additions and 6,956 deletions.  The
+  unique empty addition is record 16,643; the only later records delete unit
+  clauses 14, 23, and 31.  In a temporary, explicitly non-certificate
+  experiment, truncating logically after the empty clause and stripping
+  deletions produced a 106,318-byte addition-only stream.  It passed forward
+  `-U`, backward LRAT conversion, and fresh `lrat-check`; the temporary LRAT
+  hash was `90787a09...`.
+- Version three must therefore retain the raw proof, normalize it with a
+  separately bounded strict parser, verify the exact addition-only stream as
+  RUP, convert that stream to LRAT, and freshly replay it.  This observation
+  is not a certified `1111` result until the transformation, pipeline,
+  schemas, and independent aggregate checker are implemented and reviewed.
