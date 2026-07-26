@@ -1,0 +1,923 @@
+{
+  "checks": {
+    "adjacent_output_crosslink_matrix": {
+      "case_count": 4,
+      "cases": {
+        "normalization_report_exact_shape": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "normalization report semantics differ"
+        },
+        "normalizer_output_to_forward_check": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "normalized_forward phase input/output bindings differ"
+        },
+        "solver_raw_to_raw_forward": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "raw_forward phase input/output bindings differ"
+        },
+        "solver_result_semantic_replay": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "successful attempt solver result is not UNSAT"
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "rejected_count": 4
+    },
+    "binary_proof_normalization": {
+      "exact_addition_stream": "6104006100",
+      "failed_cases_left_no_outputs": true,
+      "input_record_counts": {
+        "additions": 2,
+        "deletions": 2,
+        "literals": 3,
+        "post_empty_deletions": 1,
+        "total": 4
+      },
+      "malformed_case_count": 10,
+      "malformed_cases_rejected": 10,
+      "real_solver_or_checker_executions": 0
+    },
+    "crash_during_orphan_quarantine": {
+      "cases": {
+        "after_directory_move_before_record": {
+          "audit_after_crash": {
+            "accepted": true,
+            "proof_freshly_replayed": false,
+            "status": "PENDING"
+          },
+          "checkpoint_zero_unchanged": true,
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 1,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "safe_continuation": "move_already_restored_run_tree",
+          "unrecorded_quarantine_directory_count": 1
+        },
+        "after_directory_record_before_return": {
+          "audit_after_crash": {
+            "accepted": true,
+            "proof_freshly_replayed": false,
+            "status": "PENDING"
+          },
+          "checkpoint_zero_unchanged": true,
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 1,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "safe_continuation": "move_already_restored_run_tree",
+          "unrecorded_quarantine_directory_count": 0
+        },
+        "before_directory_move": {
+          "audit_after_crash": {
+            "accepted": false,
+            "exception_type": "ValueError",
+            "message": "attempt directory count differs from checkpoint"
+          },
+          "checkpoint_zero_unchanged": true,
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 1,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "safe_continuation": "explicit_recovery_retried",
+          "unrecorded_quarantine_directory_count": 0
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "safe_continuation_count": 3,
+      "stage_count": 3
+    },
+    "crash_during_quarantine": {
+      "cases": {
+        "after_move_before_record": {
+          "audit_after_crash": {
+            "accepted": true,
+            "proof_freshly_replayed": false,
+            "status": "RUNNING_UNFINISHED_NONCLAIM"
+          },
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 2,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "retry_recovery_status": "RETRYABLE_NONCLAIM",
+          "terminal_checkpoint_absent_at_crash": true,
+          "unrecorded_quarantine_directory_count": 1
+        },
+        "after_record_before_recovery_outcome": {
+          "audit_after_crash": {
+            "accepted": true,
+            "proof_freshly_replayed": false,
+            "status": "RUNNING_UNFINISHED_NONCLAIM"
+          },
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 2,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "retry_recovery_status": "RETRYABLE_NONCLAIM",
+          "terminal_checkpoint_absent_at_crash": true,
+          "unrecorded_quarantine_directory_count": 0
+        },
+        "after_recovery_outcome_before_checkpoint": {
+          "audit_after_crash": {
+            "accepted": false,
+            "exception_type": "ValueError",
+            "message": "running attempt unexpectedly has an outcome"
+          },
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 2,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 2,
+          "retry_recovery_status": "RETRYABLE_NONCLAIM",
+          "terminal_checkpoint_absent_at_crash": true,
+          "unrecorded_quarantine_directory_count": 0
+        },
+        "before_move": {
+          "audit_after_crash": {
+            "accepted": false,
+            "exception_type": "ValueError",
+            "message": "running attempt unexpectedly has an outcome"
+          },
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "child_launched": false,
+          "crash_observed": true,
+          "fresh_retry_attempt_number": 2,
+          "opaque_original_bytes_preserved": true,
+          "quarantine_directory_count": 1,
+          "retry_recovery_status": "RETRYABLE_NONCLAIM",
+          "terminal_checkpoint_absent_at_crash": true,
+          "unrecorded_quarantine_directory_count": 0
+        }
+      },
+      "process_crash_boundary": "A process loss immediately after os.replace but before the quarantine record can leave an intact, unrecorded sibling quarantine directory. The main run remains a nonclaim and explicit recovery remains retryable. Hardware power-loss durability before the subsequent directory fsync was not simulated.",
+      "real_solver_or_checker_executions": 0,
+      "safe_retry_count": 4,
+      "stage_count": 4
+    },
+    "malformed_metadata_v1_regressions": {
+      "case_count": 6,
+      "cases": {
+        "cadical_binding_not_linked_to_policy": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "cadical binding is not linked to its accepted hash"
+        },
+        "external_checkpoint_path_and_count": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "path is not the canonical run-local path"
+        },
+        "interrupted_recovery_status_promotion": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "recovery checkpoint transition differs"
+        },
+        "normalizer_python_not_current_interpreter": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "normalizer Python is not the current bound interpreter"
+        },
+        "retryable_claim_label": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "attempt outcome semantics differ"
+        },
+        "sat_candidate_metadata_and_semantics": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "SAT candidate bindings or header differ"
+        }
+      },
+      "neutral_classification": "malformed-metadata regression cases",
+      "real_solver_or_checker_executions": 0,
+      "rejected_count": 6
+    },
+    "malformed_symlink_extra_orphans": {
+      "case_count": 6,
+      "cases": {
+        "orphan_while_latest_is_RUNNING": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "attempt directory count differs from checkpoint"
+        },
+        "orphan_while_latest_is_frozen": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "attempt directory count differs from checkpoint"
+        },
+        "regular_file_instead_of_directory": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "precheckpoint orphan attempt differs"
+        },
+        "symlink_instead_of_directory": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "precheckpoint orphan attempt differs"
+        },
+        "two_extra_attempt_entries": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "attempt directory count differs from checkpoint"
+        },
+        "wrong_next_number": {
+          "durable_tree_unchanged": true,
+          "quarantine_created": false,
+          "rejected": true,
+          "stable_message_fragment": "precheckpoint orphan attempt differs"
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "rejected_count": 6
+    },
+    "opaque_orphan_contents": {
+      "assessment": "Opaque non-destructive quarantine is sufficient here because the canonical directory is atomically removed from the trusted run tree before retry, no contained bytes are interpreted, and all claim-bearing run state remains checkpoint-audited.",
+      "contents_parsed_or_trusted": false,
+      "fresh_retry_attempt_number": 1,
+      "malformed_nested_JSON_preserved": true,
+      "nested_symlink_preserved_without_following_target": true,
+      "ordinary_audit_rejected": true,
+      "ordinary_run_rejected": true,
+      "post_recovery_audit_status": "PENDING",
+      "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+      "real_solver_or_checker_executions": 0,
+      "recovery_child_launched": false,
+      "recovery_status": "RETRYABLE_NONCLAIM",
+      "structural_envelope_only": "exactly one extra, exact next-numbered canonical path, real directory, latest status RUNNABLE",
+      "unknown_binary_preserved": true
+    },
+    "ordinary_interruption_recovery_and_fresh_restart": {
+      "audited_attempt_count": 2,
+      "fresh_retry_attempt_number": 2,
+      "fresh_retry_status": "RETRYABLE_NONCLAIM",
+      "real_solver_or_checker_executions": 0,
+      "recovery_child_launched": false,
+      "recovery_status": "RETRYABLE_NONCLAIM",
+      "silent_resume_rejected": true,
+      "synthetic_retry_child_calls": 1
+    },
+    "partial_and_complete_opaque_outcomes": {
+      "case_count": 2,
+      "cases": {
+        "complete_success_outcome": {
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "fresh_retry_attempt_number": 2,
+          "input_kind": "complete_success",
+          "opaque_bytes_preserved": true,
+          "ordinary_audit_rejected": true,
+          "ordinary_run_rejected": true,
+          "post_recovery_audit_status": "RETRYABLE_NONCLAIM",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "real_solver_or_checker_executions": 0,
+          "recovery_child_launched": false,
+          "uncheckpointed_success_never_promoted": true
+        },
+        "partial_malformed_outcome": {
+          "canonical_recovery": {
+            "checkpoint_event": "INTERRUPTED_RECOVERED",
+            "checkpoint_status": "RETRYABLE_NONCLAIM",
+            "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+          },
+          "fresh_retry_attempt_number": 2,
+          "input_kind": "partial_JSON",
+          "opaque_bytes_preserved": true,
+          "ordinary_audit_rejected": true,
+          "ordinary_run_rejected": true,
+          "post_recovery_audit_status": "RETRYABLE_NONCLAIM",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "real_solver_or_checker_executions": 0,
+          "recovery_child_launched": false,
+          "uncheckpointed_success_never_promoted": false
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "recovered_count": 2
+    },
+    "positive_phase_records": {
+      "lrat_conversion_checker_certificate_crosslink": true,
+      "phase_count": 6,
+      "phases": {
+        "lrat_check": {
+          "before_equals_after": true,
+          "produced_roles": [],
+          "readonly_roles": [
+            "LRAT",
+            "instance"
+          ]
+        },
+        "lrat_conversion": {
+          "before_equals_after": true,
+          "produced_roles": [
+            "converted_lrat"
+          ],
+          "readonly_roles": [
+            "instance",
+            "normalized proof"
+          ]
+        },
+        "normalized_forward": {
+          "before_equals_after": true,
+          "produced_roles": [],
+          "readonly_roles": [
+            "instance",
+            "normalized proof"
+          ]
+        },
+        "normalizer": {
+          "before_equals_after": true,
+          "produced_roles": [
+            "normalization_report",
+            "normalized_binary_rup"
+          ],
+          "readonly_roles": [
+            "normalizer source",
+            "raw proof"
+          ]
+        },
+        "raw_forward": {
+          "before_equals_after": true,
+          "produced_roles": [],
+          "readonly_roles": [
+            "instance",
+            "raw proof"
+          ]
+        },
+        "solver": {
+          "before_equals_after": true,
+          "produced_roles": [
+            "raw_binary_drat",
+            "solver_result"
+          ],
+          "readonly_roles": [
+            "instance"
+          ]
+        }
+      },
+      "real_solver_or_checker_executions": 0
+    },
+    "pre_RUN_STARTED_crash_windows": {
+      "all_windows_claim_safe_and_freshly_retryable": true,
+      "cases": {
+        "after_attempt_config_durable_write": {
+          "audit_rejected_orphan": true,
+          "checkpoint_zero_unchanged": true,
+          "durable_attempt_entries": [
+            "attempt-config.json",
+            "instance.cnf"
+          ],
+          "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+          "fresh_retry_attempt_number": 1,
+          "fresh_retry_status": "RETRYABLE_NONCLAIM",
+          "injection_observed": true,
+          "instance_and_config_fsync_call_count": 3,
+          "ordinary_run_rejected_orphan": true,
+          "post_recovery_audit_status": "PENDING",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "quarantine_tree_byte_and_mode_preserved": true,
+          "recovery_child_launched": false
+        },
+        "after_attempt_mkdir": {
+          "audit_rejected_orphan": true,
+          "checkpoint_zero_unchanged": true,
+          "durable_attempt_entries": [],
+          "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+          "fresh_retry_attempt_number": 1,
+          "fresh_retry_status": "RETRYABLE_NONCLAIM",
+          "injection_observed": true,
+          "instance_and_config_fsync_call_count": 0,
+          "ordinary_run_rejected_orphan": true,
+          "post_recovery_audit_status": "PENDING",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "quarantine_tree_byte_and_mode_preserved": true,
+          "recovery_child_launched": false
+        },
+        "after_instance_copy_and_fsync": {
+          "audit_rejected_orphan": true,
+          "checkpoint_zero_unchanged": true,
+          "durable_attempt_entries": [
+            "instance.cnf"
+          ],
+          "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+          "fresh_retry_attempt_number": 1,
+          "fresh_retry_status": "RETRYABLE_NONCLAIM",
+          "injection_observed": true,
+          "instance_and_config_fsync_call_count": 1,
+          "ordinary_run_rejected_orphan": true,
+          "post_recovery_audit_status": "PENDING",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "quarantine_tree_byte_and_mode_preserved": true,
+          "recovery_child_launched": false
+        },
+        "immediately_before_RUN_STARTED_append": {
+          "audit_rejected_orphan": true,
+          "checkpoint_zero_unchanged": true,
+          "durable_attempt_entries": [
+            "attempt-config.json",
+            "instance.cnf"
+          ],
+          "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+          "fresh_retry_attempt_number": 1,
+          "fresh_retry_status": "RETRYABLE_NONCLAIM",
+          "injection_observed": true,
+          "instance_and_config_fsync_call_count": 3,
+          "ordinary_run_rejected_orphan": true,
+          "post_recovery_audit_status": "PENDING",
+          "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+          "quarantine_tree_byte_and_mode_preserved": true,
+          "recovery_child_launched": false
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "recovered_count": 4,
+      "window_count": 4
+    },
+    "pre_RUN_STARTED_orphan_after_RETRYABLE": {
+      "fresh_retry_attempt_number": 2,
+      "latest_status_before_orphan": "RETRYABLE_NONCLAIM",
+      "opaque_bytes_preserved": true,
+      "ordinary_audit_rejected": true,
+      "post_recovery_attempt_count": 1,
+      "post_recovery_status": "RETRYABLE_NONCLAIM",
+      "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+      "real_solver_or_checker_executions": 0,
+      "recovery_child_launched": false
+    },
+    "readonly_complete_chain_audit": {
+      "accepted": true,
+      "durable_tree_unchanged": true,
+      "proof_freshly_replayed": false,
+      "real_solver_or_checker_executions": 0,
+      "run_result_status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "synthetic_child_phases": [
+        "solver",
+        "raw_forward",
+        "normalizer",
+        "normalized_forward",
+        "lrat_conversion",
+        "lrat_check"
+      ]
+    },
+    "resource_limits_and_prelaunch_gate": {
+      "failed_gate_child_launched": false,
+      "failed_gate_status": "RETRYABLE_NONCLAIM",
+      "invalid_limit_cases_rejected": {
+        "disk_reserve_floor": true,
+        "file_ceiling": true,
+        "parallel_count": true,
+        "postprocess_memory_ceiling": true,
+        "solver_memory_ceiling": true,
+        "wall_ceiling": true
+      },
+      "real_solver_or_checker_executions": 0
+    },
+    "runtime_source_binding": {
+      "audit_rejected_source_mutation": true,
+      "real_solver_or_checker_executions": 0,
+      "restored_bytes_audit_accepted": true,
+      "run_rejected_before_child": true
+    },
+    "sat_candidate_semantic_replay": {
+      "cnf_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "model falsifies CNF clause"
+      },
+      "complete_assignment_replayed_against_frozen_cnf": true,
+      "direct_graph_game_semantics_replayed": true,
+      "phase_record_shape_and_bindings_accepted_before_semantics": true,
+      "real_solver_or_checker_executions": 0,
+      "semantic_rejection_after_cnf_stage_instrumented": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "eternal family is empty"
+      }
+    }
+  },
+  "final_frozen_file_sha256": {
+    "src/search/order13_k3/PRODUCTION_PROTOCOL.md": "f5b6aa63c36fae363fdc2b0c6663f207bab09ad9bf70c525eb75fc4fc3805a34",
+    "src/search/order13_k3/normalize_bdrat.py": "a09f67d39932b6c3bb19b31a0792e4f47f515820c642e9418d3e374f555de18c",
+    "src/search/order13_k3/production.py": "e7052cd2d758ac653948c2231d3c556dcff822b1a511299ae43026a1de55e811",
+    "tests/test_order13_k3_production.py": "99308d0002712b91427f655d46b1a7f93d467bf63af28b218644df64f38557a5"
+  },
+  "preserved_v1_v2_artifact_sha256": {
+    "ADDENDUM.md": "9c450c0a37e96d191bf5e9534babd418da44e0a76133bad7e3ba4dab80993f17",
+    "RESEARCH_LOG.md": "6c02761363fe8420b300f4f0c8764d478c93df9c85398684be6d22bf8b21647b",
+    "RESEARCH_LOG_V2.md": "5c91df7c1ee62b96291682fc850012dfbe6b7632aa1f42c7bc512417e3626d19",
+    "REVIEW.md": "81773a5295046a7e37eaf16897edfe710aff7f1ae873402cda64da9d5e32131f",
+    "evidence.json": "3d849ca9493dba7786a899ce9a0cf7c35101b7f342d531103cbc65c510db29fe",
+    "evidence_v2.json": "f9e1ad4fcc5e7ddaa8c446a7b28527622b0f78d790d2b15746668462400d489b",
+    "referee_regressions.py": "5681a4672abf882b408de287ef781b72063915d31e6d068cef143face119e1f8",
+    "referee_regressions_v2.py": "aa69db3f287fea20fa9de426e406c8843f47abd65a94fa09966bd6333e841fa7",
+    "run_readonly_upstream_tests.py": "713ec705aa77aa7f316ef7357473d7466fd00fdd82f84aff799fbc97f882b022",
+    "run_readonly_upstream_tests_v2.py": "07029364acff8acca83918841db82ad66951e419e93c2e3fee609b23b3a90bc4"
+  },
+  "quarantine_crash_observation": "All injected process-loss prefixes remained nonclaims and were explicitly recoverable on retry. A loss after rename but before record creation can leave preserved bytes in an unrecorded sibling quarantine; it cannot promote a claim or block recovery.",
+  "real_solver_or_proof_checker_execution_count": 0,
+  "repaired_findings": {
+    "F1_attempt_formula_content_equality": {
+      "all_phase_instance_bindings_coherently_refreshed": true,
+      "attempt_instance_equals_frozen_run_instance": false,
+      "attempt_instance_sha256": "ac42a371b5a124286c410ed5dfa2e3be7ee7d5b1feac6f08e7e1715f0c3669a8",
+      "exact_attack_rejected": true,
+      "frozen_run_instance_sha256": "1ab880e6d2cf9014e70362437b530c8d534fe57db7620029d06bc3ed9afee901",
+      "real_solver_or_checker_executions": 0,
+      "rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "attempt configuration differs from frozen inputs"
+      }
+    },
+    "F2_phase_input_output_crosslinks": {
+      "after_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "lrat_check phase input/output bindings differ"
+      },
+      "before_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "lrat_check phase input/output bindings differ"
+      },
+      "conversion_output_refresh_still_caught_by_checker_input": true,
+      "downstream_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "lrat_check phase input/output bindings differ"
+      },
+      "exact_postcheck_substitution_rejected": true,
+      "exact_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "lrat_conversion phase input/output bindings differ"
+      },
+      "forged_readonly_after_rejected": true,
+      "forged_readonly_before_rejected": true,
+      "real_solver_or_checker_executions": 0,
+      "substituted_lrat_sha256": "e88838645bee3060eb28b1cdab1a8bb4b71dbda072a46a86a871e3a8b59b2edb"
+    },
+    "F3_exact_certificate_and_details_shape": {
+      "case_count": 3,
+      "cases": {
+        "claim_boundary": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "template certificate bindings differ"
+        },
+        "extra_key": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "template certificate bindings differ"
+        },
+        "outcome_details": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "successful outcome does not bind its certificate"
+        }
+      },
+      "real_solver_or_checker_executions": 0,
+      "rejected_count": 3
+    },
+    "F4_all_adjacent_interruption_windows": {
+      "crash_during_orphan_quarantine": {
+        "cases": {
+          "after_directory_move_before_record": {
+            "audit_after_crash": {
+              "accepted": true,
+              "proof_freshly_replayed": false,
+              "status": "PENDING"
+            },
+            "checkpoint_zero_unchanged": true,
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 1,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "safe_continuation": "move_already_restored_run_tree",
+            "unrecorded_quarantine_directory_count": 1
+          },
+          "after_directory_record_before_return": {
+            "audit_after_crash": {
+              "accepted": true,
+              "proof_freshly_replayed": false,
+              "status": "PENDING"
+            },
+            "checkpoint_zero_unchanged": true,
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 1,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "safe_continuation": "move_already_restored_run_tree",
+            "unrecorded_quarantine_directory_count": 0
+          },
+          "before_directory_move": {
+            "audit_after_crash": {
+              "accepted": false,
+              "exception_type": "ValueError",
+              "message": "attempt directory count differs from checkpoint"
+            },
+            "checkpoint_zero_unchanged": true,
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 1,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "safe_continuation": "explicit_recovery_retried",
+            "unrecorded_quarantine_directory_count": 0
+          }
+        },
+        "real_solver_or_checker_executions": 0,
+        "safe_continuation_count": 3,
+        "stage_count": 3
+      },
+      "crash_during_outcome_quarantine": {
+        "cases": {
+          "after_move_before_record": {
+            "audit_after_crash": {
+              "accepted": true,
+              "proof_freshly_replayed": false,
+              "status": "RUNNING_UNFINISHED_NONCLAIM"
+            },
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 2,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "retry_recovery_status": "RETRYABLE_NONCLAIM",
+            "terminal_checkpoint_absent_at_crash": true,
+            "unrecorded_quarantine_directory_count": 1
+          },
+          "after_record_before_recovery_outcome": {
+            "audit_after_crash": {
+              "accepted": true,
+              "proof_freshly_replayed": false,
+              "status": "RUNNING_UNFINISHED_NONCLAIM"
+            },
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 2,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "retry_recovery_status": "RETRYABLE_NONCLAIM",
+            "terminal_checkpoint_absent_at_crash": true,
+            "unrecorded_quarantine_directory_count": 0
+          },
+          "after_recovery_outcome_before_checkpoint": {
+            "audit_after_crash": {
+              "accepted": false,
+              "exception_type": "ValueError",
+              "message": "running attempt unexpectedly has an outcome"
+            },
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 2,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 2,
+            "retry_recovery_status": "RETRYABLE_NONCLAIM",
+            "terminal_checkpoint_absent_at_crash": true,
+            "unrecorded_quarantine_directory_count": 0
+          },
+          "before_move": {
+            "audit_after_crash": {
+              "accepted": false,
+              "exception_type": "ValueError",
+              "message": "running attempt unexpectedly has an outcome"
+            },
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "child_launched": false,
+            "crash_observed": true,
+            "fresh_retry_attempt_number": 2,
+            "opaque_original_bytes_preserved": true,
+            "quarantine_directory_count": 1,
+            "retry_recovery_status": "RETRYABLE_NONCLAIM",
+            "terminal_checkpoint_absent_at_crash": true,
+            "unrecorded_quarantine_directory_count": 0
+          }
+        },
+        "process_crash_boundary": "A process loss immediately after os.replace but before the quarantine record can leave an intact, unrecorded sibling quarantine directory. The main run remains a nonclaim and explicit recovery remains retryable. Hardware power-loss durability before the subsequent directory fsync was not simulated.",
+        "real_solver_or_checker_executions": 0,
+        "safe_retry_count": 4,
+        "stage_count": 4
+      },
+      "partial_and_complete_outcomes": {
+        "case_count": 2,
+        "cases": {
+          "complete_success_outcome": {
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "fresh_retry_attempt_number": 2,
+            "input_kind": "complete_success",
+            "opaque_bytes_preserved": true,
+            "ordinary_audit_rejected": true,
+            "ordinary_run_rejected": true,
+            "post_recovery_audit_status": "RETRYABLE_NONCLAIM",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "real_solver_or_checker_executions": 0,
+            "recovery_child_launched": false,
+            "uncheckpointed_success_never_promoted": true
+          },
+          "partial_malformed_outcome": {
+            "canonical_recovery": {
+              "checkpoint_event": "INTERRUPTED_RECOVERED",
+              "checkpoint_status": "RETRYABLE_NONCLAIM",
+              "claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+              "outcome_status": "INTERRUPTED_ATTEMPT_RECOVERED_NONCLAIM"
+            },
+            "fresh_retry_attempt_number": 2,
+            "input_kind": "partial_JSON",
+            "opaque_bytes_preserved": true,
+            "ordinary_audit_rejected": true,
+            "ordinary_run_rejected": true,
+            "post_recovery_audit_status": "RETRYABLE_NONCLAIM",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "real_solver_or_checker_executions": 0,
+            "recovery_child_launched": false,
+            "uncheckpointed_success_never_promoted": false
+          }
+        },
+        "real_solver_or_checker_executions": 0,
+        "recovered_count": 2
+      },
+      "pre_RUN_STARTED": {
+        "all_windows_claim_safe_and_freshly_retryable": true,
+        "cases": {
+          "after_attempt_config_durable_write": {
+            "audit_rejected_orphan": true,
+            "checkpoint_zero_unchanged": true,
+            "durable_attempt_entries": [
+              "attempt-config.json",
+              "instance.cnf"
+            ],
+            "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+            "fresh_retry_attempt_number": 1,
+            "fresh_retry_status": "RETRYABLE_NONCLAIM",
+            "injection_observed": true,
+            "instance_and_config_fsync_call_count": 3,
+            "ordinary_run_rejected_orphan": true,
+            "post_recovery_audit_status": "PENDING",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "quarantine_tree_byte_and_mode_preserved": true,
+            "recovery_child_launched": false
+          },
+          "after_attempt_mkdir": {
+            "audit_rejected_orphan": true,
+            "checkpoint_zero_unchanged": true,
+            "durable_attempt_entries": [],
+            "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+            "fresh_retry_attempt_number": 1,
+            "fresh_retry_status": "RETRYABLE_NONCLAIM",
+            "injection_observed": true,
+            "instance_and_config_fsync_call_count": 0,
+            "ordinary_run_rejected_orphan": true,
+            "post_recovery_audit_status": "PENDING",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "quarantine_tree_byte_and_mode_preserved": true,
+            "recovery_child_launched": false
+          },
+          "after_instance_copy_and_fsync": {
+            "audit_rejected_orphan": true,
+            "checkpoint_zero_unchanged": true,
+            "durable_attempt_entries": [
+              "instance.cnf"
+            ],
+            "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+            "fresh_retry_attempt_number": 1,
+            "fresh_retry_status": "RETRYABLE_NONCLAIM",
+            "injection_observed": true,
+            "instance_and_config_fsync_call_count": 1,
+            "ordinary_run_rejected_orphan": true,
+            "post_recovery_audit_status": "PENDING",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "quarantine_tree_byte_and_mode_preserved": true,
+            "recovery_child_launched": false
+          },
+          "immediately_before_RUN_STARTED_append": {
+            "audit_rejected_orphan": true,
+            "checkpoint_zero_unchanged": true,
+            "durable_attempt_entries": [
+              "attempt-config.json",
+              "instance.cnf"
+            ],
+            "explicit_recovery_status": "RETRYABLE_NONCLAIM",
+            "fresh_retry_attempt_number": 1,
+            "fresh_retry_status": "RETRYABLE_NONCLAIM",
+            "injection_observed": true,
+            "instance_and_config_fsync_call_count": 3,
+            "ordinary_run_rejected_orphan": true,
+            "post_recovery_audit_status": "PENDING",
+            "quarantine_record_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+            "quarantine_tree_byte_and_mode_preserved": true,
+            "recovery_child_launched": false
+          }
+        },
+        "real_solver_or_checker_executions": 0,
+        "recovered_count": 4,
+        "window_count": 4
+      }
+    }
+  },
+  "schema": "order13-k3-production-independent-referee-evidence-v3",
+  "scope": "Final-v3 frozen local bytes; synthetic fixtures only; no real SAT solver or proof checker executed.",
+  "tool_evidence": {
+    "binary_sha256": {
+      "cadical": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6",
+      "drat_trim": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "lrat_check": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2"
+    },
+    "distinct_single_link_executable_roles": true,
+    "executables_invoked": 0,
+    "frozen_human_identity": {
+      "cadical": {
+        "commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+        "name": "CaDiCaL",
+        "version": "3.0.1"
+      },
+      "drat_trim": {
+        "commit": "2e5e29cb0019d5cfd547d4208dca1b3ec290349f",
+        "name": "drat-trim",
+        "version": "2023-05-22 campaign build"
+      },
+      "lrat_check": {
+        "commit": "2e5e29cb0019d5cfd547d4208dca1b3ec290349f",
+        "name": "lrat-check",
+        "version": "2023-05-22 campaign build"
+      }
+    },
+    "normalizer_python_current_interpreter_relation_enforced": true,
+    "source_archive_sha256": {
+      "cadical": "2dccd6ecc1878348dd70194d51df6b69006bf86439b5b3c395a5c5dd8863201e",
+      "drat_trim_lrat_check": "2ac28cd9e38e050b4f78fbff0efd4a1aa2349d157aef08c9b1fb6c7139949108"
+    }
+  },
+  "verdict": "ACCEPT"
+}

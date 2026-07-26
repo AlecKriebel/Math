@@ -1,0 +1,192 @@
+{
+  "checks": {
+    "binary_proof_normalization": {
+      "exact_addition_stream": "6104006100",
+      "failed_cases_left_no_outputs": true,
+      "input_record_counts": {
+        "additions": 2,
+        "deletions": 2,
+        "literals": 3,
+        "post_empty_deletions": 1,
+        "total": 4
+      },
+      "malformed_case_count": 10,
+      "malformed_cases_rejected": 10,
+      "real_solver_or_checker_executions": 0
+    },
+    "interruption_recovery_and_fresh_restart": {
+      "audited_attempt_count": 2,
+      "fresh_retry_attempt_number": 2,
+      "fresh_retry_status": "RETRYABLE_NONCLAIM",
+      "real_solver_or_checker_executions": 0,
+      "recovery_child_launched": false,
+      "recovery_status": "RETRYABLE_NONCLAIM",
+      "silent_resume_rejected": true,
+      "synthetic_retry_child_calls": 1
+    },
+    "malformed_metadata_v1_regressions": {
+      "case_count": 6,
+      "cases": {
+        "cadical_binding_not_linked_to_policy": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "cadical binding is not linked to its accepted hash"
+        },
+        "external_checkpoint_path_and_count": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "path is not the canonical run-local path"
+        },
+        "interrupted_recovery_status_promotion": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "recovery checkpoint transition differs"
+        },
+        "normalizer_python_not_current_interpreter": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "normalizer Python is not the current bound interpreter"
+        },
+        "retryable_claim_label": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "attempt outcome semantics differ"
+        },
+        "sat_candidate_metadata_and_semantics": {
+          "exception_type": "ValueError",
+          "rejected": true,
+          "stable_message_fragment": "SAT candidate bindings or header differ"
+        }
+      },
+      "neutral_classification": "malformed-metadata regression cases",
+      "real_solver_or_checker_executions": 0,
+      "rejected_count": 6
+    },
+    "readonly_complete_chain_audit": {
+      "accepted": true,
+      "durable_tree_unchanged": true,
+      "proof_freshly_replayed": false,
+      "real_solver_or_checker_executions": 0,
+      "run_result_status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "synthetic_child_phases": [
+        "solver",
+        "raw_forward",
+        "normalizer",
+        "normalized_forward",
+        "lrat_conversion",
+        "lrat_check"
+      ]
+    },
+    "resource_limits_and_prelaunch_gate": {
+      "failed_gate_child_launched": false,
+      "failed_gate_status": "RETRYABLE_NONCLAIM",
+      "invalid_limit_cases_rejected": {
+        "disk_reserve_floor": true,
+        "file_ceiling": true,
+        "parallel_count": true,
+        "postprocess_memory_ceiling": true,
+        "solver_memory_ceiling": true,
+        "wall_ceiling": true
+      },
+      "real_solver_or_checker_executions": 0
+    },
+    "runtime_source_binding": {
+      "audit_rejected_source_mutation": true,
+      "real_solver_or_checker_executions": 0,
+      "restored_bytes_audit_accepted": true,
+      "run_rejected_before_child": true
+    },
+    "sat_candidate_semantic_replay": {
+      "cnf_rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "model falsifies CNF clause"
+      },
+      "complete_assignment_replayed_against_frozen_cnf": true,
+      "direct_graph_game_semantics_replayed": true,
+      "real_solver_or_checker_executions": 0,
+      "semantic_rejection_after_cnf_stage_instrumented": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "eternal family is empty"
+      }
+    }
+  },
+  "decisive_false_acceptance_count": 3,
+  "findings": {
+    "F1_attempt_instance_not_bound_to_frozen_run_instance": {
+      "accepted_after_substitution": true,
+      "attempt_instance_equals_frozen_run_instance": false,
+      "frozen_run_instance_sha256": "1ab880e6d2cf9014e70362437b530c8d534fe57db7620029d06bc3ed9afee901",
+      "real_solver_or_checker_executions": 0,
+      "reported_status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "substituted_instance_sha256": "ac42a371b5a124286c410ed5dfa2e3be7ee7d5b1feac6f08e7e1715f0c3669a8"
+    },
+    "F2_lrat_bytes_not_bound_to_recorded_checker_child": {
+      "accepted_after_substitution": true,
+      "child_record_binds_lrat_sha256": false,
+      "lrat_sha256_changed_after_recorded_check": true,
+      "real_solver_or_checker_executions": 0,
+      "reported_status": "UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT",
+      "substituted_lrat_sha256": "e88838645bee3060eb28b1cdab1a8bb4b71dbda072a46a86a871e3a8b59b2edb"
+    },
+    "F3_success_certificate_accepts_extra_claim_metadata": {
+      "accepted_after_extra_claim_metadata": true,
+      "audit_report_proof_freshly_replayed": false,
+      "certificate_extra_claim_preserved": true,
+      "real_solver_or_checker_executions": 0
+    },
+    "F4_durable_outcome_before_checkpoint_is_not_recoverable": {
+      "durable_outcome_exists_without_terminal_checkpoint": true,
+      "explicit_recovery_rejected": true,
+      "real_solver_or_checker_executions": 0,
+      "rejection": {
+        "exception_type": "ValueError",
+        "rejected": true,
+        "stable_message_fragment": "running attempt unexpectedly has an outcome"
+      }
+    }
+  },
+  "frozen_file_sha256": {
+    "src/search/order13_k3/PRODUCTION_PROTOCOL.md": "077b3328da5eab7645bafde079e0334c09b0e696179c9df893a0364a2d053de8",
+    "src/search/order13_k3/normalize_bdrat.py": "a09f67d39932b6c3bb19b31a0792e4f47f515820c642e9418d3e374f555de18c",
+    "src/search/order13_k3/production.py": "38beae789c25228f2411463f004645711821d340c16c6020fe22d2157b7de142",
+    "tests/test_order13_k3_production.py": "46c8574a7a16a605784a24e8f8351b770e8e06ffd9202cd20b57f21ef5bb414a"
+  },
+  "real_solver_or_proof_checker_execution_count": 0,
+  "schema": "order13-k3-production-independent-referee-evidence-v1",
+  "scope": "Frozen local bytes; synthetic fixtures only; no real SAT solver or proof checker executed.",
+  "tool_evidence": {
+    "binary_sha256": {
+      "cadical": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6",
+      "drat_trim": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "lrat_check": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2"
+    },
+    "distinct_single_link_executable_roles": true,
+    "executables_invoked": 0,
+    "frozen_human_identity": {
+      "cadical": {
+        "commit": "c60730422e758ef1cebe7aeddf2dda31c996bf04",
+        "name": "CaDiCaL",
+        "version": "3.0.1"
+      },
+      "drat_trim": {
+        "commit": "2e5e29cb0019d5cfd547d4208dca1b3ec290349f",
+        "name": "drat-trim",
+        "version": "2023-05-22 campaign build"
+      },
+      "lrat_check": {
+        "commit": "2e5e29cb0019d5cfd547d4208dca1b3ec290349f",
+        "name": "lrat-check",
+        "version": "2023-05-22 campaign build"
+      }
+    },
+    "normalizer_python_current_interpreter_relation_enforced": true,
+    "source_archive_sha256": {
+      "cadical": "2dccd6ecc1878348dd70194d51df6b69006bf86439b5b3c395a5c5dd8863201e",
+      "drat_trim_lrat_check": "2ac28cd9e38e050b4f78fbff0efd4a1aa2349d157aef08c9b1fb6c7139949108"
+    }
+  },
+  "verdict": "REJECT"
+}

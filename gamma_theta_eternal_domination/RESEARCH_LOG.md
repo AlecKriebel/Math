@@ -1382,3 +1382,138 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   peaked at 148,242,432 bytes RSS, and is frozen in
   `results/logs/full-regression-checkpoint042.{log,json}`.  No solver or
   checker remains running.
+
+### 2026-07-26 08:48 — near-spanning odd-hole mechanism found
+
+- Clause-family ablation on the exact proposed order-13 `hole11` semantics
+  remained satisfiable through all static graph, domination, and coloring
+  constraints, but became UNSAT only when the one-guard transition closure
+  was added.  This is an exploratory mechanism probe, not a certified
+  formula result.
+- A direct structural analysis then removed the solver from the argument.
+  If \(H=\overline G\) consists of an induced odd rim \(C_\ell\), for odd
+  \(\ell\geq5\), plus exactly two outside vertices \(x,y\), hub-freeness
+  makes their rim nonneighborhoods \(X,Y\) nonempty.  The failure of every
+  two-set to dominate \(G\) forces every cross pair in \(X\times Y\) to be
+  at rim distance two.  Up to swapping \(x,y\) and dihedral rim symmetry,
+  this leaves only
+  \(X=\{0\},Y=\{2\}\) and
+  \(X=\{0\},Y=\{-2,2\}\).  The bound
+  \(\alpha(G)\leq\gamma^\infty(G)=3\) forces \(xy\notin E(H)\), except for
+  one \(\ell=5\) pattern that is eliminated by a separate one-step attack.
+- For odd \(\ell\geq9\), both patterns admit the same short one-guard attack
+  argument.  Every
+  eternal three-family must contain the independent state
+  \(\{4,5,x\}\).  Attack 0.  One successor dies immediately at attack 2;
+  the other is forced through states \(\{0,j,x\}\) with odd
+  \(j=5,7,\ldots,\ell-4\), attacking \(j+2\) each time, until both final
+  moves leave an explicit rim vertex undominated.  Complete short attack
+  trees handle every \(\ell=5,7\) pattern.
+- At \(\ell=11\), the two resulting graphs \(G\) have Graph6 strings
+  `LUzvvz}~r~O?G@` and `LUzvvz}~r~O?GD`.  Independent evaluator A reports
+  \(\gamma=i=\alpha=3\) and
+  \(\gamma^\infty=\theta=4\) for each.  Their empty three-guard fixed
+  points have round profiles \(27+37+36\) and \(31+38+41\), respectively.
+- Structurally independent evaluator B, using an explicit colored
+  configuration digraph and ordinary set-valued neighborhoods, reproduced
+  both Graph6 strings, all five parameters, well-coveredness, and the empty
+  three-guard family.
+- The clean-room hostile audit independently checked the two-pattern
+  classification for all odd lengths through 51, every uniform attack
+  transition through length 201, all five exceptional small attack trees,
+  the exact infinite-family parameters, every abstract CNF clause family,
+  and twelve deliberate model mutations.  Its revised-byte verdict is
+  `ACCEPT_REVISED_BYTES_MATHEMATICS_UNCHANGED`.
+- Claims C-053--C-055 now record the accepted structural theorem, the two
+  infinite exact near-miss families, and the abstract order-13 graph-to-CNF
+  equivalence.  Novelty and priority remain explicitly unresolved, and no
+  live order-13 branch is yet excluded.
+
+### 2026-07-26 09:40 — proof-runner hostile audit rejects before launch
+
+- A dedicated order-13 constructor and a clean-room constructor independently
+  generated identical DIMACS bytes for all four templates, identical complete
+  coloring banks, and identical clause-family streams.  The final integration
+  audit rejected formula, bank, source-binding, package-exclusivity, and
+  run-plan mutations.  It launched no solver.
+- The first production runner added exclusive attempts, source/tool/formula
+  bindings, one-child resource limits, raw binary DRAT checking,
+  addition-only normalization, RUP-only forward checking, LRAT conversion,
+  and a separate LRAT replay.  Before any real use, root noticed and repaired
+  missing transitive-source bindings and missing human-readable tool
+  identities.
+- The independent hostile runner review then produced a decisive false
+  acceptance.  It appended two checkpoints to a real initialized run but
+  pointed their bindings at malformed files outside the run tree.  With
+  `attempts/` still empty and no child or proof, the read-only audit reported
+  `UNSAT_LRAT_VERIFIED_PENDING_HOSTILE_AUDIT`.  The defect was an absent
+  checkpoint-to-attempt path/count crosslink.
+- A second exploit rebound the manifest's CaDiCaL role to arbitrary executable
+  bytes while leaving the accepted policy mapping unchanged.  Because the
+  loader did not compare the tool binding back to the policy hash and the
+  displayed identity was static, the audit still labeled and accepted the
+  fake executable as the pinned CaDiCaL build.
+- A third status-transition defect allowed an interrupted-recovery event to
+  carry a success or SAT-candidate status instead of a mandatory nonclaim.
+- The runner is rejected until all three exploits and the broader coordinated
+  mutation suite fail closed on revised bytes.  No SAT solver, DRAT checker,
+  or LRAT checker was launched.  The defects affect only prospective
+  production infrastructure; they do not affect C-053--C-055 or any accepted
+  earlier certificate.
+
+### 2026-07-26 10:41 — second runner revision rejected on restartability
+
+- A new independent referee, without changing the original rejection bundle,
+  verified that the repaired runner closed four further defects: an
+  attempt-local formula could no longer differ from the frozen run formula;
+  every proof producer/consumer edge was hash-crosslinked before and after
+  each child; certificate and outcome shapes were exact; and a durable
+  uncheckpointed outcome could never be promoted.
+- The referee then injected process loss at four adjacent prefixes before the
+  durable `RUN_STARTED` checkpoint: after attempt-directory creation, after
+  formula copy and fsync, after attempt-config write, and immediately before
+  the checkpoint append.  All four states failed closed, but audit, ordinary
+  retry, and explicit recovery all rejected the orphan attempt.  Manual tree
+  editing was the only continuation.
+- Because the campaign requires every computation to restart safely after an
+  interruption, this narrower gap was treated as a decisive rejection even
+  though it could not forge a claim.  Again no real solver or checker ran.
+
+### 2026-07-26 11:05 — final runner accepted; parameter-five reduction accepted
+
+- Final runner revision v3 adds non-destructive opaque recovery.  Explicit
+  recovery recognizes only one exact next-numbered real attempt directory
+  when the previous state is runnable, moves the entire untrusted directory
+  intact into an exclusive sibling quarantine, launches no child, and leaves
+  the run auditable for a fresh attempt with the correct number.  Partial or
+  complete uncheckpointed outcome bytes receive the same opaque treatment and
+  are replaced by a canonical recovered nonclaim.
+- The independent v3 referee injected all four pre-`RUN_STARTED` crashes,
+  partial and success-shaped outcomes, seven crashes during quarantine, six
+  malformed structural envelopes, all six original metadata attacks, and all
+  four adjacent producer/consumer mutations.  Every unsafe case rejected or
+  recovered as a retryable nonclaim; a success-shaped uncheckpointed outcome
+  was never promoted.  The 22-test read-only suite passed.
+- Root independently reran the final v3 evidence generator.  Its output was
+  byte-identical with SHA-256
+  `7e86ee0692125e6782e4a9e7c5ff673f6a0dc92bdb73cae52aa7f8329b75a23f`,
+  and root separately reproduced all 22 read-only tests.  Verdict:
+  `ACCEPT_FINAL_V3_PRODUCTION_RUNNER`.  This authorizes bounded production;
+  it is not a template UNSAT result, and the review launched no real solver or
+  proof checker.
+- The independent parameter-five lane also closed.  Relative to C-050,
+  C-048, and C-051, every order-13 parameter-five counterexample has a
+  degree-two root, a ten-vertex equality kernel, two bounded attachment masks,
+  and a parameter-three common-nonneighbor kernel.  Exact clique insertion,
+  707 domination tests, full independent-anchor projections, and forced-state
+  response filters were proved.  The strongest new pruning is
+  \(|A|=|B|=6\Rightarrow A=B\), with
+  \(R\cong K_2+2K_1\).  Two hostile replays accepted the final bytes as C-056.
+- C-056 is a structural reduction and coverage design only.  No canonical
+  ten-vertex kernel enumeration was executed, so the \((13,5)\) slice remains
+  open.  No novelty or priority claim is made.
+- The complete warning-fatal campaign regression then passed 389 of 389 tests
+  in 360.213 test seconds and 360.56 wall seconds, with peak RSS
+  192,397,312 bytes.  The retained log SHA-256 is
+  `97aa30c0c233c0bcb29ddb50ddab157fb0a20a7cb38b2b387b6ac171c3b323ff`;
+  the separate JSON binding recomputed the hash, count, and terminal result.

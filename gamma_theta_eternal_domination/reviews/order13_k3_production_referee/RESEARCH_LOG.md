@@ -17,3 +17,33 @@
 - Initial source/protocol reading is complete.  No real SAT solver or proof
   checker has been launched.
 - Best-guess completion: 20%.
+
+## 2026-07-26T17:10:08Z — synthetic replay complete
+
+- The deterministic referee harness ran twice with identical
+  `evidence.json` SHA-256
+  `3d849ca9493dba7786a899ce9a0cf7c35101b7f342d531103cbc65c510db29fe`.
+  No real solver or proof checker was executed.
+- Positive controls passed for the six-phase synthetic chain, read-only audit
+  honesty, SAT assignment/CNF replay, direct graph/game semantic replay,
+  pinned binary/archive hashes, resource ceilings and prelaunch refusal,
+  interruption recovery followed by a fresh attempt, strict binary-proof
+  normalization, and runtime-source mutation refusal in an isolated mirror.
+- All six cases preserved under `rejected_v1` were rejected by the frozen
+  revision.  They are classified in the evidence as malformed-metadata
+  regression cases.
+- Decisive negative results:
+  1. a terminal success still audited as accepted after its attempt-local CNF
+     was replaced by bytes unequal to the frozen run CNF;
+  2. a terminal success still audited as accepted after the LRAT bytes were
+     replaced following the recorded checker child;
+  3. a success certificate with extra global/fresh-verification claim metadata
+     still audited as accepted;
+  4. the durable-outcome/before-terminal-checkpoint interruption window could
+     not be recovered with the explicit recovery command.
+- Sixteen frozen tests that do not edit repository sources passed.  The one
+  upstream test that temporarily edits implementation sources was deliberately
+  excluded under the referee's read-only implementation constraint; the same
+  source-binding behavior was tested against an isolated source mirror.
+- Verdict fixed at **REJECT**.
+- Best-guess completion: 100%.

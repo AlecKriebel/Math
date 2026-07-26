@@ -76,12 +76,42 @@ The deterministic 17-page submission-oriented manuscript is in
 hashes, visual-QA boundary, and the two submission placeholders that only the
 human author can complete.
 
-Claim C-052 opens the order-13 lane without inflating it into a finite
+Claims C-052--C-055 open the order-13 lane without inflating it into a finite
 result.  Relative to C-050, an order-13 counterexample is connected with
-common parameter \(3,4,\) or \(5\).  For \(k=3\), its complement belongs to
-the exhaustive union of hub-free induced-\(C_5,C_7,C_9,C_{11}\) templates.
-The retained `hole11` proofless pilot is only `OBSERVED`; its historical
-metadata omissions are explicit, and no order-13 branch is certified yet.
+common parameter \(3,4,\) or \(5\).  At \(k=3\), a new direct theorem shows
+that every induced odd hole in the complement of an equality graph must
+leave at least three vertices outside it.  The \(C_{11}\) branch is therefore
+impossible, reducing the exhaustive live union to hub-free induced
+\(C_5,C_7,C_9\) templates.  The same classification gives two exact infinite
+families, for every odd \(\ell\ge5\), with
+\(\gamma=i=\alpha=3\) and \(\gamma^\infty=\theta=4\).
+
+The abstract graph-to-CNF equivalence for all four templates has passed
+hostile mathematical review, and two independent constructors reproduce all
+formula bytes and complete coloring banks exactly.  This is proof-production
+infrastructure, not a finite exclusion: none of the three live order-13
+branches is yet certified UNSAT, and the \(k=4,5\) slices remain open.  The
+historical proofless `hole11` solver return remains only `OBSERVED`; the
+accepted \(C_{11}\) exclusion is the human proof in
+`math/lemmas/order13_k3_hole11_exclusion.md`, not that solver output.
+
+The fail-closed order-13 proof runner has now passed its third independent
+review cycle.  The two earlier `REJECT` reports and their concrete exploits
+remain preserved.  The accepted final revision binds every formula, source,
+tool, phase input/output, certificate, and resource limit, and it safely
+quarantines every tested interruption window without promoting a claim.
+Review acceptance authorizes bounded proof production only: it excludes no
+template, and no live order-13 solver or proof-checker result is claimed here.
+
+The parameter-five lane now has the accepted structural reduction C-056.
+Any order-13 counterexample at \(k=5\) must be reconstructed from a
+ten-vertex equality kernel \(Q\), two bounded attachment masks, and a
+parameter-three common-nonneighbor kernel.  The reduction supplies an exact
+clique-insertion criterion, 707 local domination tests, and one-guard response
+filters.  Its strongest new pruning says that two size-six masks must
+coincide, leaving \(R\cong K_2+2K_1\).  This sharply delimits a canonical
+kernel-and-mask enumeration; that enumeration has not yet been run and the
+\((13,5)\) slice remains open.
 
 ## Trust architecture
 

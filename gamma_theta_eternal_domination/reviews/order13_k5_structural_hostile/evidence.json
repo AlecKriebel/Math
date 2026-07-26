@@ -1,0 +1,107 @@
+{
+  "audit_scope": {
+    "broad_enumeration_performed": false,
+    "eternal_domination_evaluated": false,
+    "network_required_for_replay": false,
+    "target_modified": false
+  },
+  "checks": {
+    "attachment_enumeration_template_covers_distinguished_degree_two_normal_form": "PASS_WITHOUT_EXCLUSION_CLAIM",
+    "c048_uses": "PASS",
+    "c050_uses": "PASS_RELATIVE_TO_ACCEPTED_FRONTIER",
+    "c051_q_projection": "PASS",
+    "c051_q_minus_closed_neighborhood_projection": "PASS",
+    "c051_r_projection": "PASS_AFTER_ATTACHMENT_NOTATION_IS_MADE_EXPLICIT",
+    "clique_cover_obstruction": "PASS",
+    "eternal_attack_observation": "PASS_AS_NECESSARY_FILTER_ONLY",
+    "reed_bound_hypotheses": "PASS",
+    "set_identities": "PASS",
+    "theta_g_equals_6": "PASS"
+  },
+  "dependencies": {
+    "literature/sources/henning_schiermeyer_yeo_2011_p12.pdf": {
+      "sha256": "418199b3a9f9c92974046a6c92b0b11b24cdec51e034f5aa23168c4bdfbb4285",
+      "size_bytes": 347893
+    },
+    "math/lemmas/independent_antineighborhood_projection.md": {
+      "sha256": "543df545dea27669645979ce61451091140d4621f1e11cfdeeaa33437f4b5620",
+      "size_bytes": 6735
+    },
+    "math/lemmas/order12_frontier.md": {
+      "sha256": "adb27204d33feb47933f2a4b1e381485b2e1b80c22b56a67b18586c4933c2b75",
+      "size_bytes": 8120
+    },
+    "math/lemmas/simplicial_neighborhood_reduction.md": {
+      "sha256": "87cdebc4177bf7703a53892f84d436c0a52eb5444a6b0ac14663284c0351b25a",
+      "size_bytes": 6559
+    },
+    "results/independent_antineighborhood_projection_acceptance.json": {
+      "sha256": "791de946d25442b02ada35f950cd20d5abe3497141224e340364c30818a1b5a2",
+      "size_bytes": 3308
+    },
+    "results/order12_frontier_acceptance.json": {
+      "sha256": "e3b093085bafd124c228a29ef98c86341a45316dc02e11b565a138afe983d57a",
+      "size_bytes": 7726
+    },
+    "reviews/general_neighborhood_projection_independent/REVIEW.md": {
+      "sha256": "4da9ddf1b9d1f4087e5617dc6f6ae2428c0dd1ec576b8f89a3166418e4b7f7cb",
+      "size_bytes": 18548
+    },
+    "reviews/order12_frontier_second_review/REVIEW.md": {
+      "sha256": "875447d219e5670d66be7d6e4b7ec9f9b3b03bba4d2b169b836706b624a92926",
+      "size_bytes": 5039
+    },
+    "reviews/simplicial_neighborhood_reduction_hostile/REVIEW.md": {
+      "sha256": "2c8553a28affd20ce44cedb1f860e218b1f6c175f5aec7cb8bb0c8bccb7ac821",
+      "size_bytes": 17599
+    }
+  },
+  "generated_at_utc": "2026-07-26T17:28:38Z",
+  "notation_caveat": {
+    "impact": "documentation_only",
+    "issue": "The symbols N_Q(a) and N_Q(b) are formally undefined because a and b are outside V(Q).",
+    "required_definition": "N_Q(a) := N_G(a) intersect V(Q), and symmetrically for b."
+  },
+  "replay": {
+    "command": "python3 reviews/order13_k5_structural_hostile/audit.py",
+    "expected": {
+      "broad_enumeration_performed": false,
+      "dependency_count": 9,
+      "network_access_required": false,
+      "schema": "gamma-theta-order13-k5-structural-hostile-replay-v1",
+      "synthetic_attachment_cases": 4,
+      "target": {
+        "sha256": "1761c537ce293f1d7e36fd32786ffad0a67f2f7fe9dd4af6aceed346ccec6d37",
+        "size_bytes": 11188
+      },
+      "verdict": "ACCEPT_BOUNDED_STRUCTURAL_REDUCTION_WITH_ATTACHMENT_NOTATION_CAVEAT"
+    },
+    "script": {
+      "path": "reviews/order13_k5_structural_hostile/audit.py",
+      "sha256": "125ed608ce6d624aeb758ad272b8dae1195290ce9ef5b59150a4023ea3ae283e",
+      "size_bytes": 9295
+    }
+  },
+  "schema": "gamma-theta-order13-k5-structural-hostile-evidence-v1",
+  "source_audit": {
+    "authoritative_restatement": {
+      "claim": "Theorem 2 states that a graph of order n and minimum degree at least 3 has domination number at most 3n/8.",
+      "local_path": "literature/sources/henning_schiermeyer_yeo_2011_p12.pdf",
+      "sha256": "418199b3a9f9c92974046a6c92b0b11b24cdec51e034f5aa23168c4bdfbb4285"
+    },
+    "caveat": "The full Reed article was not retained locally; the exact statement was verified from the publisher's official abstract and the retained official open-access journal restatement.",
+    "reed": {
+      "citation": "B. Reed, Paths, Stars and the Number Three, Combinatorics, Probability and Computing 5(3) (1996), 277-295",
+      "doi": "10.1017/S0963548300002042",
+      "official_url": "https://www.cambridge.org/core/journals/combinatorics-probability-and-computing/article/paths-stars-and-the-number-three/6BDDD72CC73D2F579000429D47F22FD4",
+      "verified_hypothesis": "minimum degree at least 3",
+      "verified_result": "gamma(G) <= 3|V(G)|/8"
+    }
+  },
+  "target": {
+    "path": "math/working/order13_k5_structural.md",
+    "sha256": "1761c537ce293f1d7e36fd32786ffad0a67f2f7fe9dd4af6aceed346ccec6d37",
+    "size_bytes": 11188
+  },
+  "verdict": "ACCEPT_BOUNDED_STRUCTURAL_REDUCTION_WITH_ATTACHMENT_NOTATION_CAVEAT"
+}

@@ -1,5 +1,212 @@
 # Campaign State
 
+## Checkpoint 044 — 2026-07-26 11:05 PDT
+
+- Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
+  both `a0e3543b22e2a6e7d74f322ab5a8ba80313825a9`.  This commit contains
+  the production-referee intake log only.  The accepted order-13 theorem,
+  constructor, final runner, and parameter-five artifacts remain uncommitted
+  until the full regression and manifest freeze below.
+- **C-053--C-055 remain accepted:** the near-spanning odd-hole theorem removes
+  the order-13 \(C_{11}\) branch at \(k=3\), the two canonical patterns form
+  exact infinite near-miss families, and the dedicated 9,802-variable
+  graph-to-CNF realization is exact.  The live exhaustive \(k=3\) union is
+  `hole5`, `hole7`, and `hole9`.
+- **Final-v3 production runner accepted:** two earlier frozen revisions remain
+  preserved as `REJECT`.  The final revision passed every original
+  provenance/claim attack, all four pre-`RUN_STARTED` process-loss windows,
+  partial and success-shaped uncheckpointed outcomes, seven interruptions
+  during quarantine, and malformed structural envelopes.  Root reproduced
+  the deterministic evidence byte-for-byte at SHA-256
+  `7e86ee0692125e6782e4a9e7c5ff673f6a0dc92bdb73cae52aa7f8329b75a23f`
+  and separately reproduced 22/22 read-only tests.  No real solver or proof
+  checker ran during review.
+- **New accepted parameter-five reduction (C-056):** every order-13
+  parameter-five counterexample has a degree-two root, a ten-vertex kernel
+  with all four parameters equal to four, a parameter-three common-nonneighbor
+  kernel, and two bounded attachment masks satisfying exact projection,
+  clique-insertion, domination, nonsimplicial, and one-guard response filters.
+  If both masks have size six, they must coincide and
+  \(R\cong K_2+2K_1\).  Both final-byte hostile replays pass.  This is not a
+  \((13,5)\) exclusion.
+- **Release regression passed:** all 389 tests passed with warnings fatal in
+  360.213 test seconds and 360.56 wall seconds.  Peak RSS was 192,397,312
+  bytes.  The retained log has SHA-256
+  `97aa30c0c233c0bcb29ddb50ddab157fb0a20a7cb38b2b387b6ac171c3b323ff`;
+  its machine binding independently reports
+  `FULL_REGRESSION_LOG_BINDING_PASS`.
+
+### Evidentiary boundary
+
+- No counterexample, universal proof, or verified prior universal resolution
+  has been obtained.  The conjecture remains open.
+- C-053 and C-054 are theorems within their stated hypotheses; C-055 is an
+  exact construction/coverage theorem; C-056 is a conditional structural
+  normal form and finite enumeration design.
+- Acceptance of the runner proves only that the production workflow fails
+  closed under the audited attacks.  It proves no template UNSAT and does not
+  replace a fresh real proof-checker replay.
+- The order-13 \(k=3\) branches `hole5`, `hole7`, `hole9`, and the complete
+  \(k=4,5\) slices remain open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; novelty of C-053/C-056 remains explicitly unclaimed |
+| Order-12 frontier | exhausted-certified | C-050 release and manuscript are committed and pushed |
+| Order-13 \(k=3\) mathematics | accepted-proved | C-053--C-055; live cover reduced to \(C_5,C_7,C_9\) |
+| Order-13 \(k=3\) constructor | accepted-two-independent | Four exact formulas and complete banks agree byte for byte |
+| Order-13 production runner | accepted-final-v3 | Two historical rejections preserved; final evidence reproduced by root |
+| Order-13 live `hole9` production | pending-release-gate | Full regression passed; requires manifest/commit/push, then exact package initialization |
+| Order-13 \(k=4\) | pending-second | Begin after first bounded accepted \(k=3\) production result |
+| Order-13 \(k=5\) structure | accepted-proved-C056 | Canonical ten-vertex-kernel and attachment enumeration remains unimplemented |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, graph generator, or memory-heavy child is
+  running.
+- Final runner evidence replays with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3
+  reviews/order13_k3_production_referee/referee_regressions_v3.py
+  --output reviews/order13_k3_production_referee/evidence_v3.json`.
+- Its independent read-only tests replay with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python3
+  reviews/order13_k3_production_referee/run_readonly_upstream_tests_v3.py`.
+- The two C-056 hostile replays are
+  `python3 -B -W error
+  reviews/order13_k5_structural_hostile/revised_bytes/audit.py` and
+  `python3 -B -W error
+  reviews/order13_k5_structural_hostile/followup_hostile/audit.py`.
+- There is no live solver resume command yet because the first production run
+  has not been initialized.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 18,316,088 KiB, approximately 17.47 GiB; volume
+  usage is 96%.  Load averages: 1.85, 2.34, 2.69.
+- The default 2-GiB output ceiling would conservatively require about
+  18.06 GiB free before every child and would now refuse safely.  The first
+  bounded `hole9` attempt will retain the 8-GiB reserve but use a reviewed
+  1-GiB per-file ceiling, reducing the prelaunch requirement to about
+  13.06 GiB.  If proofs exceed that ceiling, additional local storage is the
+  useful hardware upgrade; CPU is not the present bottleneck.
+
+### Next three highest-value actions
+
+1. Freeze C-053--C-056, constructor, runner history/final verdict, both
+   acceptance bindings, and the 389-test resource log in
+   `results/manifest.csv`.
+2. Commit and push the exact checkpoint on `main`, excluding all known
+   provisional certificates, replay locks, and unrelated research.
+3. Generate, independently audit, and initialize the exact `hole9` package,
+   then launch one 30-minute, 2-GiB-memory, 1-GiB-file bounded production
+   attempt with the 8-GiB disk reserve.
+
+## Checkpoint 043 — 2026-07-26 09:40 PDT
+
+- Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
+  both `2d6fd801b3e380ec973c852629e775f3a35b2509`.  The order-13 artifacts
+  described here are not yet committed.
+- **New accepted structural theorem (C-053):** if an odd induced hole in
+  \(\overline G\) has exactly two outside vertices, is hub-free, and
+  \(\gamma(G)\ge3\), then \(\gamma^\infty(G)\ge4\).  Hence every complement
+  odd hole in a graph with \(\gamma=\gamma^\infty=3\) has at least three
+  outside vertices.  The order-13 \(C_{11}\) branch is therefore empty by a
+  human one-guard proof, leaving only \(C_5,C_7,C_9\) in the live
+  parameter-three cover.
+- **New exact families (C-054):** for every odd \(\ell\ge5\), the two
+  canonical near-spanning-hole complements have
+  \(\gamma=i=\alpha=3\) and \(\gamma^\infty=\theta=4\).  These are infinite
+  near-miss families, not counterexamples.  No novelty or priority claim is
+  made.
+- **Exact order-13 realization (C-055):** the four abstract
+  9,802-variable formulas have a proved graph/CNF equivalence, and relative
+  to C-050 they cover the complete order-13 \(k=3\) target before C-053
+  removes `hole11`.  Two independent constructors reproduce all four
+  formulas and complete coloring banks byte for byte.  Final integration
+  verdict: `ACCEPT_CONSTRUCTOR_A_FOR_PROOF_PRODUCTION_INPUTS`.
+- The hostile mathematical audit used no campaign implementation.  It
+  checked the outside-vertex classification through odd length 51, the
+  uniform attack indices through odd length 201, every exceptional
+  \(\ell=5,7\) attack tree, both infinite-family parameter proofs, all CNF
+  clause signs and quantifiers, and twelve deliberate mutations.  Its
+  revised-byte verdict is
+  `ACCEPT_REVISED_BYTES_MATHEMATICS_UNCHANGED`; root reproduced both
+  deterministic evidence streams.
+- **Proof runner remains rejected and unused.**  Hostile review of the first
+  frozen runner found three decisive fail-closed defects:
+  1. external checkpoint bindings could forge `FINAL_SUCCESS` while
+     `attempts/` was empty;
+  2. a rebound arbitrary executable could retain the static accepted
+     CaDiCaL identity because tool bindings were not linked back to the
+     pinned hash policy; and
+  3. `INTERRUPTED_RECOVERED` could be relabeled as success or a SAT
+     candidate.
+  The reviewer preserved concrete exploits.  Repairs and new mutation tests
+  are in progress; no production run is authorized until the revised bytes
+  pass the same independent review.
+
+### Evidentiary boundary
+
+- C-053 and C-054 are universal within their stated hypotheses, and C-055 is
+  an exact realization/coverage theorem.  None is a universal resolution of
+  the \(\gamma\)--\(\theta\) conjecture.
+- The campaign has not excluded any of the live order-13 \(C_5,C_7,C_9\)
+  branches and has not completed the order-13 \(k=4,5\) slices.
+- The historical proofless `hole11` solver return remains `OBSERVED` and is
+  not used by C-053.  No counterexample, universal proof, or verified prior
+  universal resolution has been obtained.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution or exact prior near-spanning-hole theorem found; negative search is not a novelty proof |
+| Order-12 frontier | exhausted-certified | C-050 release and manuscript are committed and pushed |
+| Order-13 \(k=3\) mathematics | accepted-proved | C-053--C-055 and revised-byte hostile audit accepted |
+| Order-13 \(k=3\) constructor | accepted-two-independent | All four exact formulas and banks agree byte for byte; no heuristic symmetry |
+| Order-13 proof runner | rejected-repairing | Three concrete false-acceptance/provenance exploits must reject after repair and independent replay |
+| Order-13 live proof production | blocked-by-runner-gate | First intended live branch is `hole9`; no solver launch before runner acceptance |
+| Order-13 \(k=4\) | pending-second | Begin after the first accepted \(k=3\) production case |
+| Order-13 \(k=5\) | active-structural | Bounded near-extremal domination and projection analysis is in progress |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, graph generator, or memory-heavy process is
+  running.
+- The accepted constructor integration replays with
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONWARNINGS=error python3 -W error
+  reviews/order13_k3_constructor_acceptance/audit.py`.
+- The accepted mathematical audit and revised-byte addendum replay from
+  `reviews/order13_k3_math_hostile/audit.py` and
+  `reviews/order13_k3_math_hostile/addendum_audit.py`.
+- There is deliberately no solver resume command yet.  The rejected runner
+  may not be used to initialize or execute a production case.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 19,870,372 KiB, approximately 18.95 GiB; volume
+  usage is 96%.
+- Load averages near checkpoint: 1.64, 2.20, 2.81.
+- The proposed runner retains a one-child, 2-GiB ceiling and an 8-GiB free
+  disk reserve.  With current disk headroom, a large proof may trigger a
+  safe retryable refusal.  More local disk, rather than more CPU, is the
+  first hardware resource likely to matter.
+
+### Next three highest-value actions
+
+1. Finish the runner repair and require the hostile review to replay every
+   preserved exploit plus coordinated path, tool, status, proof, and
+   resource mutations.
+2. If and only if that review accepts, generate and initialize the exact
+   live `hole9` package and begin one bounded proof-producing attempt.
+3. Freeze C-053--C-055, all constructor/math-review artifacts, and the
+   runner verdict in the manifest; run regression, commit, and push before
+   any long proof job.
+
 ## Checkpoint 042 — 2026-07-26 08:15 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
