@@ -76,3 +76,31 @@ All timestamps use America/Los_Angeles.
   normalization, adjoints, transpose conventions, singular polar factors,
   scalar equality cases, and the weighted-shift proof of \(B_y^d=I\). No
   mathematical blocker or hidden admissibility assumption was found.
+
+### Post-publication feedback audit
+
+- **14:52 PDT - Adversarial review of external feedback.** Three independent
+  checks compared every suggested correction with the released source.
+- Rejected the claimed mathematical error in the phase function: the released
+  manuscript already defined
+  \(q(z)=(1+\overline z)/|1+z|\), so
+  \(Q_y=q(W_y)Z^\dagger\) was correct. The counterexample in the feedback used
+  the different function \((1+z)/|1+z|\). The revision nevertheless adopts
+  the clearer equivalent notation
+  \(p(z)=(1+z)/|1+z|\) and
+  \(Q_y=p(W_y)^\dagger Z^\dagger\), with a dedicated regression check.
+- Accepted the commuting-operator strengthening after re-deriving the polar
+  identity in commuting operator algebras. The certificate bounds
+  \(\beta_{qc}\); the finite attaining strategy and
+  \(\mathcal Q_q\subseteq\mathcal Q_{qa}\subseteq\mathcal Q_{qc}\) give
+  equality of all three values for this functional.
+- Confirmed directly from Appendix A.2, Proposition 3, of the originating
+  paper that its general bound is \(d\sqrt2\).
+- Accepted the convention, exposition, and verification improvements:
+  explicit source Fourier constraints, the qutrit Bob formula, an explanation
+  of the roots-of-unity reindexing, the odd-parity boundary identity, and the
+  count \(\sum_{d=2}^{12}d=77\).
+- Expanded the related-work coverage after checking the primary records for
+  Buhrman--Massar, SATWAP, the modified Buhrman--Massar SOS family, CHSH mod 3,
+  and the contemporaneous randomness and high-dimensional SOS papers. None
+  was found to contain the present all-\(d\) bound.

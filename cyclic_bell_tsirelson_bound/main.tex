@@ -64,9 +64,10 @@ Tsirelson bound is
 \)
 for every integer \(d\geq2\).  We prove the conjecture.  In fact, the
 operator upper bound holds after relaxing every observable to an arbitrary
-unitary; the order-\(d\) relations are not needed.  The proof combines an
-exact positive-factor identity from polar decomposition with the sharp scalar
-formula
+unitary and even in the commuting-operator model; the order-\(d\) relations
+and tensor-product representation are not needed for the upper bound.  The
+proof combines an exact positive-factor identity from polar decomposition with
+the sharp scalar formula
 \[
   \max_{\lvert z\rvert=1}\sum_{y=0}^{d-1}\lvert1+\e^{2\pi i y/d}z\rvert
   =2\csc\!\left(\frac{\pi}{2d}\right).
@@ -106,12 +107,25 @@ A_x^d=B_y^d=\Id
 \).
 The originating paper constructs a \(d\)-dimensional strategy with value
 \begin{equation}
-  \lambda_d=2\csc\!\left(\frac{\pi}{2d}\right),
-  \label{eq:lambda}
+  \tau_d=2\csc\!\left(\frac{\pi}{2d}\right),
+  \label{eq:tau}
 \end{equation}
 and conjectures that this is optimal.  It proves the weaker general upper
-bound \(d\sqrt2\), and reports numerical tightness of
-\eqref{eq:lambda} through \(d=6\).
+bound \(d\sqrt2\) in Appendix A.2, Proposition 3, and reports numerical
+tightness of \eqref{eq:tau} through \(d=6\) using the NPA hierarchy
+\cite{NPA2007,NPA2008}.
+
+The \(d=3\) member has the structure of the Buhrman--Massar functional
+\cite{BuhrmanMassar2005} with one Alice setting removed
+\cite{PeritoEtAl2026}.  Nearby exact-bound constructions include the
+SATWAP family tailored to maximally entangled states
+\cite{SalavrakosEtAl2017}, a modified Buhrman--Massar family with an
+SOS certificate and mutually unbiased bases \cite{KaniewskiEtAl2019},
+and a recent exact certificate and robust self-test for the original
+CHSH mod 3 functional \cite{KlepEtAl2026}.  Recent contemporaneous work
+on global randomness \cite{FarkasEtAl2026,DavinoEtAl2026} and a general
+SOS framework for high-dimensional Bell inequalities
+\cite{CocciaEtAl2026} does not supply the bound proved here.
 
 Our contribution is the missing analytic upper bound.  The essential point is
 that the Bob operators can be optimized term by term by polar decomposition
@@ -119,28 +133,36 @@ without destroying the coupling between \(A_0\) and \(A_1\).  That coupling is
 then entirely encoded by the relative unitary \(A_0^\dagger A_1\), reducing
 the problem to a scalar trigonometric extremum on the unit circle.
 
-\begin{theorem}[Sharp arbitrary-unitary bound]
+\begin{theorem}[Sharp commuting-operator bound]
 \label{thm:main}
-Let \(d\geq2\).  On arbitrary complex Hilbert spaces, let
-\(A_0,A_1,B_0,\ldots,B_{d-1}\) be unitaries, with the Alice and Bob
-operators acting on separate tensor factors.  Then
+Let \(d\geq2\).  On an arbitrary complex Hilbert space, let
+\(A_0,A_1,B_0,\ldots,B_{d-1}\) be unitaries such that
+\([A_x,B_y]=0\) for every \(x,y\), and interpret
+\(\cI_d\) by replacing \(A_x\otimes B_y\) in \eqref{eq:bell} with
+\(A_xB_y\).  Then
 \begin{equation}
   \cI_d\ \leq\ 2\csc\!\left(\frac{\pi}{2d}\right)\Id
   \label{eq:operator-bound}
 \end{equation}
-as an operator inequality.  Consequently, when the order-\(d\) relations are
-imposed,
+as an operator inequality.  Consequently, with the order-\(d\) relations
+imposed, the finite-dimensional tensor-product, approximate, and
+commuting-operator values all coincide:
 \[
   \boxed{\displaystyle
-  \beta_{\mathrm Q}(\cI_d)
+  \beta_q(\cI_d)=\beta_{qa}(\cI_d)=\beta_{qc}(\cI_d)
   =2\csc\!\left(\frac{\pi}{2d}\right)}
   \qquad(d\geq2).
 \]
 \end{theorem}
 
-The upper bound therefore holds on a strict relaxation of the original
-optimization problem.  It is nevertheless tight because the attaining
-strategy of Ref.~\cite{PeritoEtAl2026} satisfies the order-\(d\) constraints.
+Here \(q\) denotes the finite-dimensional tensor model, \(qa\) its closure,
+and \(qc\) the commuting-operator model.  We use the standard inclusions
+\[
+  \mathcal Q_q\subseteq\mathcal Q_{qa}\subseteq\mathcal Q_{qc}.
+\]
+Together with the finite-dimensional attaining strategy, they give the
+equality of the three values.  Thus both relaxing the order relations and
+passing to commuting operators leave the optimum unchanged.
 
 \section{A polar-decomposition identity}
 
@@ -155,21 +177,22 @@ and
 
 \begin{lemma}[Polar positive-factor identity]
 \label{lem:polar}
-Let \(C\) be a bounded operator on \(\cH_A\), let
-\(C=V\absop C\) be its polar decomposition, and let \(B\) be unitary on
-\(\cH_B\).  Define
+Let \(\mathcal A,\mathcal B\subseteq\mathcal B(\cH)\) be commuting
+unital \(*\)-algebras, let \(C\in\mathcal A\), let
+\(C=V\absop C\) be its polar decomposition, and let \(B\in\mathcal B\)
+be unitary.  Define
 \[
   P_{C,B}
   =
-  \absop{C^\dagger}^{1/2}\otimes\Id
+  \absop{C^\dagger}^{1/2}
   -
-  V\absop C^{1/2}\otimes B .
+  V\absop C^{1/2}B .
 \]
 Then
 \begin{equation}
-  \frac{\absop C+\absop{C^\dagger}}2\otimes\Id
+  \frac{\absop C+\absop{C^\dagger}}2
   -
-  \Reop(C\otimes B)
+  \Reop(CB)
   =
   \frac12 P_{C,B}^\dagger P_{C,B}.
   \label{eq:polar-sos}
@@ -190,20 +213,26 @@ Polar functional calculus also gives
   \qquad
   \absop{C^\dagger}^{1/2}V\absop C^{1/2}=C.
 \]
-Expanding \(P_{C,B}^\dagger P_{C,B}\) and using \(B^\dagger B=\Id\)
-therefore yields
+The polar operators belong to the von Neumann algebra generated by
+\(\mathcal A\), so they commute with \(B\).  Expanding with all factors
+displayed gives
 \[
-  \absop C+\absop{C^\dagger}
-  -C\otimes B-C^\dagger\otimes B^\dagger,
+  P_{C,B}^\dagger P_{C,B}
+  =
+  \absop{C^\dagger}
+  +B^\dagger\absop C^{1/2}V^\dagger V\absop C^{1/2}B
+  -CB-B^\dagger C^\dagger
+  =
+  \absop C+\absop{C^\dagger}-CB-(CB)^\dagger .
 \]
-with identity operators on the omitted tensor factors.  Dividing by two
-proves \eqref{eq:polar-sos}.
+Dividing by two proves \eqref{eq:polar-sos}.
 \end{proof}
 
 \begin{remark}
 No invertibility or finite-dimensional unitary extension of \(V\) is needed.
 This is useful because some of the operators \(A_0+\omega^yA_1\) may be
-singular for general strategies.
+singular for general strategies.  The tensor-product identity follows by
+representing \(C\) as \(C\otimes\Id\) and \(B\) as \(\Id\otimes B\).
 \end{remark}
 
 \section{The scalar roots-of-unity extremum}
@@ -239,9 +268,10 @@ Then the left side of \eqref{eq:scalar} is \(2G_d(s)\), where
 \]
 The function \(G_d\) has period \(h\).
 
-First suppose \(d=2m+1\) is odd.  We may take \(-a\leq s\leq a\)
-and reindex the summands by \(k=-m,\ldots,m\).  Every angle
-\(s+kh\) lies in \([-\pi/2,\pi/2]\), hence
+First suppose \(d=2m+1\) is odd.  We may take \(-a\leq s\leq a\),
+an interval of length \(2a=h\), and reindex the summands by
+\(k=-m,\ldots,m\).  Every angle \(s+kh\) lies in
+\([-\pi/2,\pi/2]\), since \(a+mh=\pi/2\), hence
 \[
   G_d(s)
   =
@@ -305,7 +335,7 @@ Define
 The continuous functional calculus for the unitary \(U\), together with
 Lemma~\ref{lem:scalar}, yields
 \begin{equation}
-  0\leq F_d(U)\leq\lambda_d\Id.
+  0\leq F_d(U)\leq\tau_d\Id.
   \label{eq:F-bound}
 \end{equation}
 
@@ -315,15 +345,16 @@ and use \eqref{eq:moduli}:
   \cI_d
   &\leq
   \frac12\sum_{y=0}^{d-1}
-       \bigl(\absop{C_y}+\absop{C_y^\dagger}\bigr)\otimes\Id\\
+       \bigl(\absop{C_y}+\absop{C_y^\dagger}\bigr)\\
   &=
   \frac12
-  \bigl(F_d(U)+A_0F_d(U)A_0^\dagger\bigr)\otimes\Id\\
-  &\leq \lambda_d\Id.
+  \bigl(F_d(U)+A_0F_d(U)A_0^\dagger\bigr)\\
+  &\leq \tau_d\Id.
 \end{align*}
-This proves the operator upper bound.  The matching order-\(d\) strategy is
-recalled and independently checked in Proposition~\ref{prop:lower}, completing
-the proof of the equality.
+This proves the commuting-operator upper bound.  Proposition~\ref{prop:lower}
+gives a matching finite-dimensional tensor-product strategy.  The inclusions
+of correlation sets stated after Theorem~\ref{thm:main} complete the proof of
+all three equalities.
 \end{proof}
 
 \subsection{An explicit positive-factor certificate}
@@ -333,25 +364,24 @@ The preceding proof can be packaged as a single exact identity.  Let
 \begin{align*}
   P_y
   &=
-  \absop{C_y^\dagger}^{1/2}\otimes\Id
+  \absop{C_y^\dagger}^{1/2}
   -
-  V_y\absop{C_y}^{1/2}\otimes B_y,\\
+  V_y\absop{C_y}^{1/2}B_y,\\
   G
   &=
-  \bigl(\lambda_d\Id-F_d(U)\bigr)^{1/2}.
+  \bigl(\tau_d\Id-F_d(U)\bigr)^{1/2}.
 \end{align*}
 Then
 \begin{equation}
 \boxed{
 \begin{aligned}
-  \lambda_d\Id-\cI_d
+  \tau_d\Id-\cI_d
   &=
   \frac12\sum_{y=0}^{d-1}P_y^\dagger P_y\\
   &\quad+
-  \frac12(G\otimes\Id)^\dagger(G\otimes\Id)\\
+  \frac12G^\dagger G\\
   &\quad+
-  \frac12(GA_0^\dagger\otimes\Id)^\dagger
-              (GA_0^\dagger\otimes\Id).
+  \frac12(GA_0^\dagger)^\dagger(GA_0^\dagger).
 \end{aligned}
 }
 \label{eq:certificate}
@@ -393,7 +423,7 @@ For \(0\leq y<d\), put
 \end{align}
 Then every \(B_y\) is unitary, \(B_y^d=\Id\), and
 \[
-  \langle\Phi_d\vert\cI_d\vert\Phi_d\rangle=\lambda_d.
+  \langle\Phi_d\vert\cI_d\vert\Phi_d\rangle=\tau_d.
 \]
 \end{proposition}
 
@@ -403,7 +433,7 @@ The action of \(W_y\) is a weighted cyclic shift:
 \[
   W_y\lvert j\rangle
   =
-  \omega^{\,y-(j+1\bmod d)}\lvert j+1\bmod d\rangle.
+  \omega^{\,y-j-1}\lvert j+1\bmod d\rangle.
 \]
 Hence
 \begin{equation}
@@ -432,35 +462,43 @@ is its polar decomposition.  Thus \(Q_y=V_y^\dagger\), proving that
 It remains to prove the order relation.  On the spectrum in
 \eqref{eq:W-spectrum}, define
 \[
-  q(z)=\frac{1+\overline z}{\lvert1+z\rvert}.
+  p(z)=\frac{1+z}{\lvert1+z\rvert}.
 \]
-Then \(Q_y=q(W_y)Z^\dagger\).  Since
+Then
+\[
+  Q_y=p(W_y)^\dagger Z^\dagger;
+\]
+the adjoint is essential because \eqref{eq:Bob} contains
+\(\Id+W_y^\dagger\).  Since
 \(
 Z^\dagger W_yZ=\omega^{-1}W_y
 \),
 \begin{equation}
   Q_y^d
   =
-  \prod_{r=0}^{d-1}q(\omega^{-r}W_y).
+  \prod_{r=0}^{d-1}p(\omega^{-r}W_y)^\dagger.
   \label{eq:Q-product}
 \end{equation}
 For every eigenvalue \(\lambda\) of \(W_y\), the corresponding scalar in
 \eqref{eq:Q-product} equals
 \begin{align*}
-  \prod_{r=0}^{d-1}q(\omega^{-r}\lambda)
+  \prod_{r=0}^{d-1}\overline{p(\omega^{-r}\lambda)}
   &=
-  \frac{\prod_{r=0}^{d-1}(1+\omega^r\overline\lambda)}
-       {\prod_{r=0}^{d-1}\lvert1+\omega^{-r}\lambda\rvert}\\
+  \overline{
+  \frac{\prod_{r=0}^{d-1}(1+\omega^{-r}\lambda)}
+       {\prod_{r=0}^{d-1}\lvert1+\omega^{-r}\lambda\rvert}}\\
   &=
-  \frac{1-(-\overline\lambda)^d}
-       {\lvert1-(-\lambda)^d\rvert}
+  \overline{
+  \frac{1-(-\lambda)^d}
+       {\lvert1-(-\lambda)^d\rvert}}
   =\frac2{2}=1,
 \end{align*}
 where we used
 \(
 \prod_{r=0}^{d-1}(1+a\omega^r)=1-(-a)^d
 \)
-and \(\lambda^d=(-1)^{d-1}\).  Therefore \(Q_y^d=\Id\) and
+after noting that \(r\mapsto-r\) permutes the residues modulo \(d\), and
+used \(\lambda^d=(-1)^{d-1}\).  Therefore \(Q_y^d=\Id\) and
 \(B_y^d=\Id\).  In fact, \(Q_y\) is a nonzero weighted \(d\)-cycle in
 an eigenbasis of \(W_y\), so its characteristic polynomial is
 \(t^d-1\); every \(d\)-th root occurs.
@@ -487,12 +525,12 @@ For any \(\lambda_0^d=(-1)^{d-1}\),
   =
   \sum_{r=0}^{d-1}\lvert1+\omega^r\lambda_0\rvert
   =
-  \lambda_d
+  \tau_d
 \]
 by the equality case of Lemma~\ref{lem:scalar}.  Summing over \(y\)
 therefore gives
 \(
-d^{-1}\sum_y\Tr(H_y)=\lambda_d
+d^{-1}\sum_y\Tr(H_y)=\tau_d
 \),
 as claimed.
 \end{proof}
@@ -503,8 +541,26 @@ polar bound fixes \(B_y^T\) to be \(V_y^\dagger\).  The Bob observables in
 \eqref{eq:Bob} therefore give a polar-decomposition representation of an
 attaining strategy.  The strategy in Ref.~\cite{PeritoEtAl2026} reaches the
 sum of these termwise trace bounds, so the same equality condition identifies
-its Bob observables with this polar form.  No new lower-bound strategy is
-claimed here.
+its Bob observables with this polar form.  A direct convention check gives
+\begin{equation}
+  \sum_{y=0}^{d-1}B_y=\alpha_dZ^\dagger,
+  \qquad
+  \sum_{y=0}^{d-1}\omega^yB_y=\alpha_dX,
+  \qquad
+  \alpha_d=\csc\!\left(\frac{\pi}{2d}\right),
+  \label{eq:source-fourier}
+\end{equation}
+which are Eqs.~(14)--(17) of Ref.~\cite{PeritoEtAl2026}; in particular,
+\(\tau_d=2\alpha_d\).  For \(d=3\), \eqref{eq:Bob} reduces exactly to
+\[
+  B_y=\frac13\left(
+       2Z^2+2\omega^{2y}X-\omega^{y+1}X^2Z
+       \right),
+\]
+the explicit formula in that reference, with \(\alpha_3=2\).  The two
+Fourier constraints in \eqref{eq:source-fourier} alone leave the remaining
+Fourier component undetermined; the termwise saturation condition supplies
+the identification.  No new lower-bound strategy is claimed here.
 \end{remark}
 
 \section{Consequences and scope}
@@ -517,9 +573,14 @@ With the convention
   =
   \cI_d+\Reop(A_0\otimes B_d),
 \]
-where \(B_d\) is a further unitary, its quantum value is
+where \(B_d\) is a further unitary (and tensor product is replaced by
+operator product in the commuting model), its three quantum values are
 \[
-  \beta_{\mathrm Q}(\overline{\cI}_d)
+  \beta_q(\overline{\cI}_d)
+  =
+  \beta_{qa}(\overline{\cI}_d)
+  =
+  \beta_{qc}(\overline{\cI}_d)
   =
   2\csc\!\left(\frac{\pi}{2d}\right)+1.
 \]
@@ -528,9 +589,10 @@ where \(B_d\) is a further unitary, its quantum value is
 \begin{proof}
 Theorem~\ref{thm:main} and
 \(
-\Reop(A_0\otimes B_d)\leq\Id
+\Reop(A_0B_d)\leq\Id
 \)
-give the upper bound.  Proposition~\ref{prop:lower}, augmented by
+give the commuting-operator upper bound.  Proposition~\ref{prop:lower},
+augmented by
 \(
 B_d=Z^\dagger
 \),
@@ -546,7 +608,7 @@ For the first five dimensions, Theorem~\ref{thm:main} gives
 \[
 \begin{array}{c@{\qquad}c}
 \toprule
-d&\beta_{\mathrm Q}(\cI_d)\\
+d&\beta_q(\cI_d)\\
 \midrule
 2&2\sqrt2\\
 3&4\\
@@ -570,9 +632,17 @@ The accompanying source package contains:
   \item matrix checks of the Weyl spectrum, Bob unitarity and order,
         saturation, and the operator certificate over a documented range of
         dimensions;
+  \item direct-sum commuting-operator certificate checks, plus explicit
+        checks of the phase adjoint, both Fourier constraints in
+        \eqref{eq:source-fourier}, and the displayed qutrit formula;
   \item a machine-readable claim and dependency ledger; and
   \item SHA-256 hashes for the released sources and rendered paper.
 \end{itemize}
+The default strategy sweep covers all
+\(
+\sum_{d=2}^{12}d=77
+\)
+Bob observables in that range.
 These checks are secondary validation of the analytic proof.  They are not a
 formal proof assistant verification of the all-dimensional theorem, and the
 floating-point matrix tests cannot substitute for the arguments above.
@@ -583,8 +653,8 @@ The Bell family, the conjectured formula, the Weyl construction, the
 admissible Bob observables, and the matching lower bound are due to Perito,
 D'Avino, Jung, Mironowicz, Acin, and Augusiak
 \cite{PeritoEtAl2026}.  The narrow contribution claimed here is the analytic
-upper bound, including its arbitrary-unitary strengthening and the associated
-operator certificate.
+upper bound, including its commuting-operator strengthening and the associated
+exact certificate.
 
 As of 26 July 2026, a focused search found no public proof of Conjecture~1 and
 no older theorem located in that search that directly supplies this bound.
@@ -597,7 +667,7 @@ literature audit were developed with heavy assistance from ChatGPT 5.6 Sol
 under Alec Kriebel's direction.  No originating author or other researcher was
 contacted.  The work is public to enable checking and remains unrefereed.
 
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{PeritoEtAl2026}
 I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
@@ -605,6 +675,51 @@ I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
   certification,
 \newblock \emph{arXiv:2606.21362v3} (2026),
 \newblock \url{https://arxiv.org/abs/2606.21362}.
+
+\bibitem{BuhrmanMassar2005}
+H. Buhrman and S. Massar,
+\newblock Causality and Tsirelson's bounds,
+\newblock \emph{Physical Review A} \textbf{72}, 052103 (2005),
+\newblock \url{https://doi.org/10.1103/PhysRevA.72.052103}.
+
+\bibitem{SalavrakosEtAl2017}
+A. Salavrakos, R. Augusiak, J. Tura, P. Wittek, A. Ac\'in, and S. Pironio,
+\newblock Bell inequalities tailored to maximally entangled states,
+\newblock \emph{Physical Review Letters} \textbf{119}, 040402 (2017),
+\newblock \url{https://doi.org/10.1103/PhysRevLett.119.040402}.
+
+\bibitem{KaniewskiEtAl2019}
+J. Kaniewski, I. \v{S}upi\'c, J. Tura, F. Baccari, A. Salavrakos,
+and R. Augusiak,
+\newblock Maximal nonlocality from maximal entanglement and mutually unbiased
+bases, and self-testing of two-qutrit quantum systems,
+\newblock \emph{Quantum} \textbf{3}, 198 (2019),
+\newblock \url{https://doi.org/10.22331/q-2019-10-24-198}.
+
+\bibitem{KlepEtAl2026}
+I. Klep, N. Leijenhorst, and V. Magron,
+\newblock Robust self-testing with CHSH mod 3,
+\newblock \emph{arXiv:2604.03700v1} (2026),
+\newblock \url{https://arxiv.org/abs/2604.03700}.
+
+\bibitem{FarkasEtAl2026}
+M. Farkas, P. Mironowicz, and R. Augusiak,
+\newblock Maximal global device-independent randomness from projective
+measurements in every dimension,
+\newblock \emph{arXiv:2606.21369v2} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21369}.
+
+\bibitem{DavinoEtAl2026}
+R. D'Avino, I. Perito, P. Mironowicz, A. Ac\'in, and R. Augusiak,
+\newblock Noise robustness of three outcome Bell certified quantum randomness,
+\newblock \emph{arXiv:2606.21371v2} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21371}.
+
+\bibitem{CocciaEtAl2026}
+L. Coccia, M. Padovan, and G. Vallone,
+\newblock Systematic derivation of Tsirelson bounds in arbitrary dimensions,
+\newblock \emph{arXiv:2606.21626v1} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21626}.
 
 \bibitem{Tsirelson1980}
 B. S. Tsirelson,

@@ -4,7 +4,9 @@ This package gives an analytic proof of Conjecture 1 in
 [Perito et al., arXiv:2606.21362v3](https://arxiv.org/abs/2606.21362):
 
 \[
-\beta_{\mathrm Q}(\mathcal I_d)
+\beta_q(\mathcal I_d)
+=\beta_{qa}(\mathcal I_d)
+=\beta_{qc}(\mathcal I_d)
 =2\csc\!\left(\frac{\pi}{2d}\right)
 \qquad(d\ge 2).
 \]
@@ -12,17 +14,20 @@ This package gives an analytic proof of Conjecture 1 in
 The originating paper introduced the Bell family, conjectured the formula,
 and constructed the attaining order-\(d\) strategy. The contribution claimed
 here is the missing analytic upper bound. It is stronger than required: it
-holds when every observable is an arbitrary unitary, without imposing its
-\(d\)-th power to be the identity.
+holds for arbitrary commuting unitary observables, without imposing their
+\(d\)-th powers or a tensor-product representation. Because the value is
+attained by the finite \(d\)-dimensional strategy, the finite-dimensional
+tensor, approximate, and commuting-operator values coincide.
 
 The key exact identity is
 
 \[
-\frac{|C|+|C^\dagger|}{2}\otimes I-\operatorname{Re}(C\otimes B)
+\frac{|C|+|C^\dagger|}{2}-\operatorname{Re}(CB)
 =\frac12P^\dagger P,
 \]
 
-combined with the scalar extremum
+for \(C\) and \(B\) in commuting operator algebras, combined with the scalar
+extremum
 
 \[
 \max_{|z|=1}\sum_{y=0}^{d-1}|1+\omega^yz|
@@ -32,7 +37,9 @@ combined with the scalar extremum
 The paper also includes the equality cases, a full proof that the polar-form
 Bob observables have order \(d\), and the exact value
 \[
-\beta_{\mathrm Q}(\overline{\mathcal I}_d)
+\beta_q(\overline{\mathcal I}_d)
+=\beta_{qa}(\overline{\mathcal I}_d)
+=\beta_{qc}(\overline{\mathcal I}_d)
 =2\csc\!\left(\frac{\pi}{2d}\right)+1
 \]
 for the corresponding barred functional. This value result does **not** prove

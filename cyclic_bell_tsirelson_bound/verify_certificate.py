@@ -73,6 +73,23 @@ def random_unitary(rng: np.random.Generator, dimension: int) -> np.ndarray:
     return q * phases
 
 
+def block_diagonal(blocks: list[np.ndarray]) -> np.ndarray:
+    """Assemble a square block-diagonal matrix without SciPy."""
+
+    require(bool(blocks), "at least one block is required")
+    sizes = [block.shape[0] for block in blocks]
+    require(
+        all(block.shape == (size, size) for block, size in zip(blocks, sizes)),
+        "all blocks must be square",
+    )
+    result = np.zeros((sum(sizes), sum(sizes)), dtype=complex)
+    offset = 0
+    for block, size in zip(blocks, sizes):
+        result[offset : offset + size, offset : offset + size] = block
+        offset += size
+    return result
+
+
 def fixed_rank_matrix(
     rng: np.random.Generator, dimension: int, rank: int
 ) -> np.ndarray:
@@ -111,7 +128,7 @@ def unitary_polar_data(
 
 def load_certificate(path: Path = CERTIFICATE_PATH) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
-    require(data.get("schema_version") == 1, "unsupported certificate schema")
+    require(data.get("schema_version") == 2, "unsupported certificate schema")
     disclaimer = data["executable_verification"]["disclaimer"].lower()
     require("not a formal machine proof" in disclaimer, "scope disclaimer missing")
     require(
@@ -366,6 +383,145 @@ def check_global_certificate_random(
     }
 
 
+def check_commuting_certificate_random(
+    *,
+    seed: int = 2606213641,
+    min_d: int = 2,
+    max_d: int = 5,
+    trials_per_d: int = 2,
+    tolerance: float = 2e-10,
+) -> dict[str, float | int]:
+    """Test the certificate in non-factor commuting representations.
+
+    Each representation is a direct sum of tensor blocks with unequal local
+    dimensions.  Alice and Bob commute globally, but the total representation
+    is not presented as one fixed tensor product.
+    """
+
+    require(2 <= min_d <= max_d, "invalid commuting-certificate d range")
+    rng = np.random.default_rng(seed)
+    max_commutator_residual = 0.0
+    max_factorization_residual = 0.0
+    smallest_lhs_eigenvalue = math.inf
+    checks = 0
+    blocks_checked = 0
+
+    for d in range(min_d, max_d + 1):
+        omega = np.exp(2j * np.pi / d)
+        bound = 2 / math.sin(math.pi / (2 * d))
+        for trial in range(trials_per_d):
+            shapes = [
+                (2 + ((d + trial) % 2), 2),
+                (1 + (trial % 2), 3),
+            ]
+            a_zero_blocks: list[np.ndarray] = []
+            a_one_blocks: list[np.ndarray] = []
+            bob_blocks: list[list[np.ndarray]] = [[] for _ in range(d)]
+
+            for alice_dimension, bob_dimension in shapes:
+                identity_a = np.eye(alice_dimension, dtype=complex)
+                identity_b = np.eye(bob_dimension, dtype=complex)
+                a_zero_local = random_unitary(rng, alice_dimension)
+                a_one_local = random_unitary(rng, alice_dimension)
+                a_zero_blocks.append(np.kron(a_zero_local, identity_b))
+                a_one_blocks.append(np.kron(a_one_local, identity_b))
+                for y in range(d):
+                    b_local = random_unitary(rng, bob_dimension)
+                    bob_blocks[y].append(np.kron(identity_a, b_local))
+                blocks_checked += 1
+
+            a_zero = block_diagonal(a_zero_blocks)
+            a_one = block_diagonal(a_one_blocks)
+            observables_b = [
+                block_diagonal(blocks_y) for blocks_y in bob_blocks
+            ]
+            dimension = a_zero.shape[0]
+            identity = np.eye(dimension, dtype=complex)
+            relative_unitary = dagger(a_zero) @ a_one
+
+            bell = np.zeros_like(identity)
+            functional_sum = np.zeros_like(identity)
+            polar_factors: list[np.ndarray] = []
+
+            for y, b_y in enumerate(observables_b):
+                commutator = relative_residual(a_zero @ b_y, b_y @ a_zero)
+                commutator = max(
+                    commutator,
+                    relative_residual(a_one @ b_y, b_y @ a_one),
+                )
+                max_commutator_residual = max(
+                    max_commutator_residual, commutator
+                )
+                require(
+                    commutator <= tolerance,
+                    f"commuting representation failed at d={d}, trial={trial}",
+                )
+
+                n_y = identity + omega**y * relative_unitary
+                functional_sum += matrix_absolute(n_y)
+                c_y = a_zero + omega**y * a_one
+                term = c_y @ b_y
+                bell += (term + dagger(term)) / 2
+
+                (
+                    polar,
+                    _,
+                    _,
+                    root_abs_c,
+                    root_abs_c_adjoint,
+                ) = unitary_polar_data(c_y)
+                p_y = (
+                    root_abs_c_adjoint
+                    - polar @ root_abs_c @ b_y
+                )
+                polar_factors.append(p_y)
+
+            functional_deficit = bound * identity - functional_sum
+            functional_deficit = (
+                functional_deficit + dagger(functional_deficit)
+            ) / 2
+            g = psd_sqrt(functional_deficit)
+
+            rhs = sum(
+                (dagger(p_y) @ p_y for p_y in polar_factors),
+                start=np.zeros_like(identity),
+            ) / 2
+            q_two = g @ dagger(a_zero)
+            rhs += (dagger(g) @ g + dagger(q_two) @ q_two) / 2
+
+            lhs = bound * identity - bell
+            lhs = (lhs + dagger(lhs)) / 2
+            factorization_residual = relative_residual(lhs, rhs)
+            lhs_minimum = float(np.linalg.eigvalsh(lhs)[0])
+            max_factorization_residual = max(
+                max_factorization_residual, factorization_residual
+            )
+            smallest_lhs_eigenvalue = min(
+                smallest_lhs_eigenvalue, lhs_minimum
+            )
+            checks += 1
+
+            require(
+                factorization_residual <= tolerance,
+                f"commuting certificate failed at d={d}, trial={trial}: "
+                f"{factorization_residual:.3e}",
+            )
+            require(
+                lhs_minimum >= -tolerance,
+                f"commuting Bell deficit is not positive at d={d}, "
+                f"trial={trial}: {lhs_minimum:.3e}",
+            )
+
+    return {
+        "checks": checks,
+        "blocks": blocks_checked,
+        "dimensions_d": max_d - min_d + 1,
+        "max_commutator_residual": max_commutator_residual,
+        "max_factorization_residual": max_factorization_residual,
+        "smallest_lhs_eigenvalue": smallest_lhs_eigenvalue,
+    }
+
+
 def scalar_sum(d: int, z: complex) -> float:
     omega = np.exp(2j * np.pi / d)
     return float(sum(abs(1 + omega**y * z) for y in range(d)))
@@ -480,6 +636,9 @@ def check_weyl_and_bob(
     max_matrix_residual = 0.0
     max_spectrum_residual = 0.0
     max_originating_strategy_residual = 0.0
+    max_phase_orientation_residual = 0.0
+    max_fourier_constraint_residual = 0.0
+    max_qutrit_formula_residual = 0.0
     min_h_eigenvalue = math.inf
     bob_observables = 0
 
@@ -600,6 +759,21 @@ def check_weyl_and_bob(
                 f"B_y lacks the complete d-th-root spectrum at d={d}, y={y}",
             )
 
+            # Pin the adjoint convention in the manuscript:
+            # p(z)=(1+z)/|1+z| and B_y^T=p(W_y)^* Z^*.
+            w_y = omega**y * w
+            h_y = matrix_absolute(identity + w_y)
+            phase_y = (identity + w_y) @ np.linalg.inv(h_y)
+            q_expected = dagger(phase_y) @ dagger(z)
+            phase_orientation = relative_residual(b_y.T, q_expected)
+            max_phase_orientation_residual = max(
+                max_phase_orientation_residual, phase_orientation
+            )
+            require(
+                phase_orientation <= matrix_tolerance,
+                f"phase orientation failed at d={d}, y={y}",
+            )
+
             # Compare with Eqs. (15) and (45) of arXiv:2606.21362v3.
             paper_b_y = np.zeros((d, d), dtype=complex)
             for k in range(d):
@@ -624,6 +798,46 @@ def check_weyl_and_bob(
                 f"d={d}, y={y}",
             )
 
+            if d == 3:
+                qutrit_b_y = (
+                    2 * np.linalg.matrix_power(z, 2)
+                    + 2 * omega ** (2 * y) * x
+                    - omega ** (y + 1)
+                    * np.linalg.matrix_power(x, 2)
+                    @ z
+                ) / 3
+                qutrit_residual = relative_residual(b_y, qutrit_b_y)
+                max_qutrit_formula_residual = max(
+                    max_qutrit_formula_residual, qutrit_residual
+                )
+                require(
+                    qutrit_residual <= spectrum_tolerance,
+                    f"explicit d=3 formula failed at y={y}",
+                )
+
+        alpha_d = 1 / math.sin(math.pi / (2 * d))
+        fourier_zero = sum(
+            observables_b, start=np.zeros((d, d), dtype=complex)
+        )
+        fourier_one = sum(
+            (
+                omega**y * b_y
+                for y, b_y in enumerate(observables_b)
+            ),
+            start=np.zeros((d, d), dtype=complex),
+        )
+        fourier_residual = max(
+            relative_residual(fourier_zero, alpha_d * dagger(z)),
+            relative_residual(fourier_one, alpha_d * x),
+        )
+        max_fourier_constraint_residual = max(
+            max_fourier_constraint_residual, fourier_residual
+        )
+        require(
+            fourier_residual <= spectrum_tolerance,
+            f"originating Fourier constraints failed at d={d}",
+        )
+
     return {
         "dimensions": max_d - 1,
         "bob_observables": bob_observables,
@@ -632,6 +846,9 @@ def check_weyl_and_bob(
         "max_originating_strategy_residual": (
             max_originating_strategy_residual
         ),
+        "max_phase_orientation_residual": max_phase_orientation_residual,
+        "max_fourier_constraint_residual": max_fourier_constraint_residual,
+        "max_qutrit_formula_residual": max_qutrit_formula_residual,
         "smallest_checked_H_eigenvalue": min_h_eigenvalue,
     }
 
@@ -706,6 +923,10 @@ def run_all(max_d: int | None = None) -> dict[str, dict[str, float | int]]:
         ),
         "global_certificate": check_global_certificate_random(
             seed=int(config["random_seed"]) + 9,
+            tolerance=float(tolerances["matrix"]),
+        ),
+        "commuting_certificate": check_commuting_certificate_random(
+            seed=int(config["random_seed"]) + 20,
             tolerance=float(tolerances["matrix"]),
         ),
         "scalar": check_scalar_maximum(

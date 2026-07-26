@@ -42,6 +42,15 @@ class CertificateTests(unittest.TestCase):
             result["smallest_functional_deficit_eigenvalue"], -2e-10
         )
 
+    def test_commuting_operator_certificate(self) -> None:
+        result = verifier.check_commuting_certificate_random()
+        self.assertEqual(result["dimensions_d"], 4)
+        self.assertEqual(result["checks"], 8)
+        self.assertEqual(result["blocks"], 16)
+        self.assertLessEqual(result["max_commutator_residual"], 2e-10)
+        self.assertLessEqual(result["max_factorization_residual"], 2e-10)
+        self.assertGreaterEqual(result["smallest_lhs_eigenvalue"], -2e-10)
+
     def test_scalar_maximum_and_all_equality_roots(self) -> None:
         result = verifier.check_scalar_maximum(self.max_d)
         expected_points = sum(range(2, self.max_d + 1))
@@ -57,6 +66,9 @@ class CertificateTests(unittest.TestCase):
         self.assertLessEqual(
             result["max_originating_strategy_residual"], 2e-9
         )
+        self.assertLessEqual(result["max_phase_orientation_residual"], 2e-10)
+        self.assertLessEqual(result["max_fourier_constraint_residual"], 2e-9)
+        self.assertLessEqual(result["max_qutrit_formula_residual"], 2e-9)
         self.assertGreater(result["smallest_checked_H_eigenvalue"], 0)
 
     def test_bell_values(self) -> None:

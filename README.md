@@ -25,16 +25,19 @@ that the interpretation or literature claims are correct.
 **The exact quantum value of a cyclic Bell operator** proves Conjecture 1 of
 Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak:
 \[
-\beta_{\mathrm Q}(\mathcal I_d)
+\beta_q(\mathcal I_d)
+=\beta_{qa}(\mathcal I_d)
+=\beta_{qc}(\mathcal I_d)
 =2\csc\!\left(\frac{\pi}{2d}\right)
 \quad(d\ge2).
 \]
 Their paper introduced the Bell family, conjectured the formula, and supplied
 the attaining strategy and lower bound. The candidate contribution is the
-dimension-independent analytic upper bound, which remains valid when all
-observables are relaxed to arbitrary unitaries. The proof uses an exact polar
-positive-factor identity and a sharp scalar roots-of-unity extremum. It does
-not prove uniqueness, self-testing, or all-dimensional randomness. See the
+dimension-independent analytic upper bound, which remains valid for arbitrary
+unitary Alice and Bob observables satisfying cross-party commutation, without
+order relations or a tensor-product representation. The proof uses an exact
+polar positive-factor identity and a sharp scalar roots-of-unity extremum. It
+does not prove uniqueness, self-testing, or all-dimensional randomness. See the
 [paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/)
 and [source package](cyclic_bell_tsirelson_bound/).
 

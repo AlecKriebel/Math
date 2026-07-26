@@ -5,7 +5,9 @@
 For every integer \(d\ge 2\),
 
 \[
-\beta_{\mathrm Q}(\mathcal I_d)
+\beta_q(\mathcal I_d)
+=\beta_{qa}(\mathcal I_d)
+=\beta_{qc}(\mathcal I_d)
 =2\csc\!\left(\frac{\pi}{2d}\right).
 \]
 
@@ -20,7 +22,9 @@ dependencies are:
 ## Scope
 
 - **Proved:** a dimension-independent operator upper bound for arbitrary
-  unitary observables.
+  commuting unitary observables.
+- **Proved:** equality of the finite-dimensional tensor-product, approximate,
+  and commuting-operator values.
 - **Proved:** exact quantum value under the original order-\(d\) constraints.
 - **Proved:** exact value of the barred functional after adding one aligned
   unitary correlator.

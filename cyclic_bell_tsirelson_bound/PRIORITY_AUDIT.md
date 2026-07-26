@@ -13,7 +13,7 @@ strongest defensible statement is:
 > Conjecture 1. The originating authors introduced the Bell family, conjectured
 > the value, and supplied the attaining strategy and matching lower bound. The
 > contribution here is the analytic upper bound, including its
-> arbitrary-unitary strengthening.
+> commuting-operator strengthening.
 
 This cannot exclude unpublished work, an unindexed manuscript, a concurrent
 discovery, or an older theorem whose relevance was missed.
@@ -28,7 +28,7 @@ discovery, or an older theorem whose relevance was missed.
   \(2\csc(\pi/(2d))\).
 - The paper already gives the Weyl-based attaining strategy and admissible Bob
   observables.
-- Appendix A.2 proves only
+- Appendix A.2, Proposition 3, proves only
   \(\beta_{\mathrm Q}(\mathcal I_d)\le d\sqrt2\), says the bound is generally
   non-tight, and reports NPA tightness through \(d=6\).
 
@@ -45,10 +45,20 @@ arXiv:2606.21369](https://arxiv.org/html/2606.21369). It does not analyze
   to this operator or formula was found.
 - [Salavrakos et al.,
   arXiv:1607.04578](https://arxiv.org/abs/1607.04578): a distinct Bell family
-  tailored to maximally entangled states.
+  tailored to maximally entangled states, with an exact SOS bound.
 - [Buhrman and Massar, *Physical Review A* 72,
   052103](https://journals.aps.org/pra/abstract/10.1103/PhysRevA.72.052103):
-  generalized CHSH games, but not this operator or bound.
+  the qutrit functional whose structure is recovered by
+  \(\mathcal I_3\) after removing one Alice setting, but not this reduced
+  operator or its all-\(d\) bound.
+- [Kaniewski et al.,
+  arXiv:1807.03332](https://arxiv.org/abs/1807.03332): a distinct modified
+  Buhrman--Massar family for prime dimensions, with an exact SOS bound and
+  mutually unbiased attaining strategy.
+- [Klep, Leijenhorst, and Magron,
+  arXiv:2604.03700](https://arxiv.org/abs/2604.03700): an exact rounded
+  certificate and robust self-test for the original CHSH mod 3 functional,
+  not the reduced family studied here.
 - [Barizien, Sekatski, and Bancal,
   arXiv:2308.08601](https://arxiv.org/abs/2308.08601): general SOS construction
   methods, with no direct derivation located for this family.
@@ -57,7 +67,8 @@ arXiv:2606.21369](https://arxiv.org/html/2606.21369). It does not analyze
   optimization for fixed Bell operators, not the required all-strategy bound.
 - [Noise-robustness companion,
   arXiv:2606.21371v2](https://arxiv.org/html/2606.21371v2): numerical
-  three-outcome randomness results, not an all-\(d\) proof.
+  comparison of three-outcome randomness inequalities, not an all-\(d\)
+  proof.
 
 Searches included the arXiv identifier and title, the exact trigonometric
 formula and common variants, “cyclic Bell operator,” Conjecture 1, Tsirelson
@@ -69,7 +80,9 @@ repository text.
 1. Conjecture 1 is about \(\mathcal I_d\), not the barred functional.
 2. The value of the barred functional follows as a one-line corollary:
    \[
-   \beta_{\mathrm Q}(\overline{\mathcal I}_d)
+   \beta_q(\overline{\mathcal I}_d)
+   =\beta_{qa}(\overline{\mathcal I}_d)
+   =\beta_{qc}(\overline{\mathcal I}_d)
    =2\csc\!\left(\frac{\pi}{2d}\right)+1.
    \]
 3. Exact values alone do not prove the separate uniqueness, self-testing, or

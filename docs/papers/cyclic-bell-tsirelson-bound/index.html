@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An analytic proof that the cyclic Bell operator of Perito et al. has Tsirelson bound 2 csc(pi/2d) in every dimension.">
+  <meta name="description" content="An analytic commuting-operator proof that the cyclic Bell operator of Perito et al. has Tsirelson bound 2 csc(pi/2d) in every dimension.">
   <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
   <meta name="citation_title" content="The exact quantum value of a cyclic Bell operator">
   <meta name="citation_author" content="Alec Kriebel">
@@ -11,7 +11,7 @@
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/paper.pdf">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The exact quantum value of a cyclic Bell operator">
-  <meta property="og:description" content="A sharp polar-decomposition certificate proves Conjecture 1 of Perito et al. for every d.">
+  <meta property="og:description" content="A sharp commuting-operator polar certificate proves Conjecture 1 of Perito et al. for every d.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/">
   <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/">
   <title>Exact cyclic Bell Tsirelson bound · Alec's Math Explorations</title>
@@ -80,10 +80,10 @@
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak introduced a family of cyclic Bell operators and conjectured its exact Tsirelson bound. This note supplies the missing analytic upper bound for every dimension. The proof is dimension independent and, more strongly, does not use the order-\(d\) relations for the upper bound.</p>
+        <p class="lede" itemprop="abstract">Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak introduced a family of cyclic Bell operators and conjectured its exact Tsirelson bound. This note supplies the missing analytic upper bound for every dimension. The proof is dimension independent and, more strongly, works for commuting unitary observables without the order-\(d\) relations or a tensor-product representation.</p>
         <div class="fact-grid">
           <div class="fact"><strong>Exact value</strong><span>\(2\csc(\pi/(2d))\) for every \(d\ge2\)</span></div>
-          <div class="fact"><strong>Stronger scope</strong><span>Upper bound for arbitrary unitary observables</span></div>
+          <div class="fact"><strong>Stronger scope</strong><span>Exact finite, approximate, and commuting-operator value</span></div>
           <div class="fact"><strong>Certificate</strong><span>Exact operator identity plus finite independent checks</span></div>
         </div>
       </section>
@@ -98,11 +98,11 @@
           \]
         </div>
         <div class="theorem-block">
-          <p><strong>Theorem.</strong> If \(A_0,A_1,B_0,\ldots,B_{d-1}\) are arbitrary unitaries on arbitrary Hilbert spaces, then</p>
+          <p><strong>Theorem.</strong> If \(A_0,A_1,B_0,\ldots,B_{d-1}\) are arbitrary commuting Alice–Bob unitaries on an arbitrary Hilbert space, then</p>
           <div class="equation">\[\mathcal I_d\le 2\csc\!\left(\frac{\pi}{2d}\right)I.\]</div>
-          <p>Because the order-\(d\) strategy constructed in the originating paper attains equality, this proves its Conjecture 1.</p>
+          <p>Because the finite order-\(d\) strategy constructed in the originating paper attains equality, \(\beta_q=\beta_{qa}=\beta_{qc}=2\csc(\pi/(2d))\), proving its Conjecture 1.</p>
         </div>
-        <p>The Bell family, formula, Weyl strategy, admissible Bob observables, and matching lower bound are all due to the originating authors. The claimed contribution is the analytic upper bound and its arbitrary-unitary strengthening.</p>
+        <p>The Bell family, formula, Weyl strategy, admissible Bob observables, and matching lower bound are all due to the originating authors. The claimed contribution is the analytic upper bound and its commuting-operator strengthening.</p>
       </section>
 
       <section id="proof">
@@ -112,9 +112,9 @@
         <p>If \(C=V|C|\) is a polar decomposition and \(B\) is unitary, then the polar factor \(V\) may remain a partial isometry and</p>
         <div class="equation equation-wide">
           \[
-          \frac{|C|+|C^\dagger|}{2}\otimes I-\operatorname{Re}(C\otimes B)
+          \frac{|C|+|C^\dagger|}{2}-\operatorname{Re}(CB)
           =\frac12P^\dagger P,\qquad
-          P=|C^\dagger|^{1/2}\otimes I-V|C|^{1/2}\otimes B.
+          P=|C^\dagger|^{1/2}-V|C|^{1/2}B.
           \]
         </div>
 
@@ -136,7 +136,7 @@
           \le 2\csc\!\left(\frac{\pi}{2d}\right)I.
           \]
         </div>
-        <p>Summing the polar identities yields the claimed operator inequality. The manuscript also records the complete positive-factor certificate for the residual operator.</p>
+        <p>Summing the polar identities yields the claimed commuting-operator inequality. The manuscript also records the complete positive-factor certificate for the residual operator.</p>
 
         <h3>Why the lower strategy is admissible</h3>
         <p>The full write-up does not stop at the two facts \( (Z^\dagger X)^d=(-1)^{d-1}I \) and \(\prod_r(1+a\omega^r)=1-(-a)^d\). It supplies the missing link: in the eigenbasis of \(Z^\dagger X\), the polar Bob unitary is a weighted cyclic shift. Conjugation generates its full orbit, and the product identity makes the accumulated phase exactly one. Hence every \(B_y^d=I\), with the full \(d\)-th-root spectrum.</p>
@@ -147,7 +147,9 @@
         <p>For the related operator \(\overline{\mathcal I}_d=\mathcal I_d+\operatorname{Re}(A_0\otimes B_d)\), the same strategy aligns the extra correlator and gives</p>
         <div class="equation">
           \[
-          \beta_{\mathrm Q}(\overline{\mathcal I}_d)
+          \beta_q(\overline{\mathcal I}_d)
+          =\beta_{qa}(\overline{\mathcal I}_d)
+          =\beta_{qc}(\overline{\mathcal I}_d)
           =2\csc\!\left(\frac{\pi}{2d}\right)+1.
           \]
         </div>
@@ -162,7 +164,7 @@
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_bell_tsirelson_bound/certificate.json"><code>certificate.json</code></a> — machine-readable theorem, formulas, proof dependencies, and verification boundary.</li>
           <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_bell_tsirelson_bound/MANIFEST.md"><code>MANIFEST.md</code></a> — claim-to-artifact map and explicit nonclaims.</li>
         </ul>
-        <p class="fine-print">Default checks cover \(d=2,\ldots,12\), including all 77 Bob observables in that range, and deterministic random singular matrices. These finite checks support the analytic argument; they do not quantify over all \(d\).</p>
+        <p class="fine-print">Default checks cover \(d=2,\ldots,12\), including all \(\sum_{d=2}^{12}d=77\) Bob observables, deterministic random singular matrices, direct-sum commuting representations, phase orientation, Fourier constraints, and the explicit qutrit formula. These finite checks support the analytic argument; they do not quantify over all \(d\).</p>
       </section>
 
       <section id="scope">
