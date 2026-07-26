@@ -1,5 +1,76 @@
 # Campaign State
 
+## Checkpoint 030 — 2026-07-25 23:27 PDT
+
+- Campaign day: 1 of 27; branch `main`; pre-integration repository `HEAD`
+  `7cece508d9b2a179324624a40c393460bd440847`.
+- **New certified finite theorem (C-035).**  No finite simple graph \(G\) on
+  12 vertices satisfies
+  \[
+  \gamma(G)=\gamma^\infty(G)=3<\theta(G).
+  \]
+  This is the complete \((n,k)=(12,3)\) slice, including disconnected
+  graphs.  It does **not** exclude order-12 counterexamples with \(k\geq4\),
+  any higher-order counterexample, or resolve the universal conjecture.
+- The last open structural branch, a hub-free induced \(C_5\) in
+  \(\overline G\), is empty (C-034).  The exact retained
+  \(F_5\land S\) instance has 6,886 variables, 23,968 clauses, 192,169
+  literals, and SHA-256 `c6a0811c...`.  CaDiCaL returned exact
+  `s UNSATISFIABLE` in 6.151 seconds at 59.66 MiB peak RSS.
+- The preserved addition-only binary proof is 6,337,621 bytes at SHA-256
+  `c6c24853...`; it has 247,981 additions, 4,372,774 addition literals,
+  maximum variable 6,886, and a final empty clause.  Strict pinned
+  DRAT-trim replay under `-i -f -W -U` returned exactly one
+  `s VERIFIED`, zero RAT lemmas, and 10,912,555 resolution steps in
+  57.729 seconds at 81.5 MiB peak RSS.
+- The run used the exact audited source commit
+  `6f3ef0a0970b7214c34018fe32ea1ceeb5764d17` and was frozen untouched at
+  commit `dff45f4239e4acabc461533a0a213beec18ec56d`.  Its Git tree is
+  `aaef13bb...`, and its length-delimited payload tree hash is
+  `16f7e62e...`.
+- Two clean-room post-run audits independently reconstructed the exact CNF,
+  parsed the raw and addition-only binary proofs, checked deletion stripping,
+  bound 23 runtime sources and both pinned tools, and freshly replayed the
+  strict checker.  Three complete package-auditor runs were byte-identical.
+  The accepted verdicts are
+  `ACCEPT_C5_UNSAT_CERTIFICATE_FOR_C033` and
+  `PASS_EXACT_RETAINED_PACKAGE`.
+- The full slice implication is written in
+  `math/lemmas/order12_k3_exclusion.md`.  It combines the previously
+  accepted \(C_7\) and \(C_9\) certificates with the new \(C_5\)
+  certificate, the SPGT-based structural split, and an explicit component
+  argument.  Two independent mathematical reviews returned
+  `ACCEPT_COMPLETE_ORDER12_K3_EXCLUSION` and `ACCEPT_NO_BLOCKER`.
+- The decisive efficiency discovery was the proved 315-clause \(S_6\)
+  signature-ordering symmetry break: the unsorted run had hit a 512 MiB
+  proof-file cap without a result, whereas the sound strengthened instance
+  solved in 6.151 seconds and yielded a 6.34 MiB checked proof.
+- Audit work also caught two real infrastructure defects before acceptance:
+  an incomplete runtime import-closure binding and nondeterministic temporary
+  paths in a draft audit.  Both were repaired and regression-tested before
+  the certified run was promoted.
+- Current exhaustive frontier: connected unlabeled graphs through order 9;
+  the published order-at-most-11 near-miss catalog; all one-vertex extensions
+  of its 55 closest hosts; their complete one-edge-toggle neighborhood; and
+  now the complete order-12, parameter-three slice.  No counterexample has
+  been found.
+- Resource state: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, about
+  23 GiB filesystem space free.  Other research programs currently have
+  several CPU-heavy jobs active, so no new campaign-heavy solve is being
+  launched at this checkpoint.  The completed gamma-theta run remained far
+  below the 75% memory ceiling.
+- Approach registry: `hole5`/`hole7`/`hole9` template split **exhausted and
+  certified empty** for \((12,3)\); near-miss extension/toggle lane
+  **exhausted at its declared radii**; direct synthesis **active**, next at
+  \((12,4)\); structural proof lane **active**; literature/reproducibility
+  lane **active**.  The universal conjecture remains open.
+- Next three highest-value actions:
+  1. freeze this theorem, acceptance record, manifest, and checkpoint in Git;
+  2. prepare a compact arXiv-ready manuscript and one-command certificate
+     replay for C-035;
+  3. design and gate the \((12,4)\) synthesis/structural program, using
+     partitioned proof-producing cases rather than blind enumeration.
+
 ## Checkpoint 029 — 2026-07-25 22:36 PDT
 
 - Campaign day: 1 of 27; branch `main`.

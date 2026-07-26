@@ -216,16 +216,44 @@ sealed 23-file package, the outer certificate, and the hostile review in
 `results/synthesis_k3_hole9_orphan_recovery_acceptance.json`.  The original
 170-cut checkpoint remains `running` and byte-identical.
 
-The `hole5` and `hole7` branches remain open.  Both must separately acquire
-accepted negative certificates before the complete \((12,3)\) slice can be
-excluded.  For an ordinary terminal `UNSAT`, the publication audit must use
-both deep reconstruction and a fresh proof-checker invocation:
+Claims C-030 and C-034 now certify that the `hole7` and `hole5` branches are
+empty; together with C-017 and C-028, this proves C-035:
 
 ```text
-PYTHONPATH=src PYTHONWARNINGS=error python3 -m synthesis_k3.cegar \
-  [the exact immutable production configuration] \
-  --audit-only --deep-reconstruct --verify-terminal-proof
+No graph G on 12 vertices satisfies
+gamma(G) = gamma-infinity(G) = 3 < theta(G).
 ```
 
-The exact production and resume protocol, resource gates, trusted hashes,
-and claim boundaries are recorded in `math/synthesis_k3_cegar_protocol.md`.
+The exact `hole5` run is frozen at commit `dff45f42`.  Its clean-room
+post-run audit imports neither the production runner nor the synthesis core,
+reconstructs the strengthened CNF, parses both binary proofs, strips
+deletions byte-for-byte, and freshly invokes the pinned warning-fatal,
+forward, RUP-only checker:
+
+```text
+PYTHONWARNINGS=error \
+  python3 reviews/hole5_binary_production_postrun_hostile_probe.py \
+  | shasum -a 256
+
+# Expected canonical-output SHA-256:
+# bd7693fdad225f733c0d2e704c4de45186324cc62ffdec09a112836ceec014e5
+```
+
+A separate package audit binds all 12 run files, the 23 runtime sources at
+commit `6f3ef0a0`, both pinned tools and source archives, and the immutable
+Git subtree:
+
+```text
+PYTHONWARNINGS=error \
+  python3 reviews/hole5_binary_run_package_auditor.py \
+  | shasum -a 256
+
+# Expected canonical-output SHA-256:
+# 470f58bf532ae8ff68ac3b8f096ba20166e6bcd91bee4924c1f924e276fea2cb
+```
+
+The complete implication from the three branch certificates to C-035 is in
+`math/lemmas/order12_k3_exclusion.md` and received two independent
+mathematical reviews.  This is a `CERTIFIED-FINITE` parameter slice.  It
+does not exclude order-12 counterexamples with common parameter at least
+four and does not resolve the universal conjecture.

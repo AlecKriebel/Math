@@ -893,3 +893,50 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   committed on `main`, pushed, and replayed against the exact current Git
   `HEAD`; a fresh resource/lock gate is also mandatory before the bounded
   seed-0 attempt.
+
+### 23:27 — complete order-12, parameter-three slice certified empty
+
+- Committed and pushed the exact accepted binary-production source at
+  `6f3ef0a0`, passed its mandatory current-`HEAD` and resource gates, and
+  ran one seed-0 production attempt against the retained
+  signature-sorted `hole5` package.  The untouched 12-file result directory
+  is frozen at commit `dff45f42`.
+- The exact 6,886-variable, 23,968-clause CNF returned
+  `s UNSATISFIABLE` in 6.151 seconds.  The raw binary proof was
+  12,524,020 bytes; independent canonical parsing removed 245,439 deletion
+  records and retained 247,981 additions in a 6,337,621-byte
+  addition-only proof.
+- Pinned DRAT-trim accepted that proof under warning-fatal, forward,
+  RUP-only checking (`-i -f -W -U`) in 57.729 seconds.  It reported exactly
+  one `s VERIFIED`, zero RAT lemmas, and 10,912,555 resolution steps.
+  Root independently repeated the parser and checker replay before
+  promotion.
+- A clean-room post-run probe reconstructed the exact CNF without importing
+  either the production runner or synthesis core, parsed both binary
+  streams, confirmed exact deletion stripping, bound the source and frozen
+  artifact commits, and performed another strict replay.  Its verdict was
+  `ACCEPT_C5_UNSAT_CERTIFICATE_FOR_C033`.  A second clean-room package
+  auditor bound all 12 run files, 23 runtime sources, both pinned tools,
+  exact Git trees, and three byte-identical complete replays.
+- Promoted C-034: the hub-free induced-\(C_5\) branch of the order-12,
+  parameter-three search is empty.  This fills the separate certificate
+  premise in the already proved graph-to-\(F_5\) realization theorem C-033.
+- Wrote the complete slice theorem and closed the disconnected case
+  explicitly using additivity and the minimum-parameter theorem.  Together
+  with the accepted \(C_7\) and \(C_9\) branch certificates and the
+  SPGT-based structural split, this proves C-035:
+  \[
+  \nexists\,G,\ |V(G)|=12,\qquad
+  \gamma(G)=\gamma^\infty(G)=3<\theta(G).
+  \]
+  Two independent mathematical reviewers returned
+  `ACCEPT_COMPLETE_ORDER12_K3_EXCLUSION` and `ACCEPT_NO_BLOCKER`.
+- This is a substantial `CERTIFIED-FINITE` campaign result, not a universal
+  resolution.  The order-12 \(k\geq4\) slice and all larger orders remain
+  open.
+- The main practical discovery was that a proved 315-clause \(S_6\)
+  signature ordering transformed the last branch from a 512 MiB
+  proof-file-cap failure into a 6.151-second solve with a compact checked
+  proof.  The audit stack also caught and forced repair of a missing
+  dependency binding and a nondeterministic temporary-path leak before
+  acceptance.
