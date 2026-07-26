@@ -45,3 +45,19 @@ then publish the scoped files from `main`.
 
 Next checkpoint: publish the proof package, integrate and validate the Pages
 entry, then confirm the deployed page and PDF.
+
+## 25 July 2026, 22:53 PDT - public deployment verified
+
+**Best-guess completion: 100%.**
+
+- Published the exact proof package to `main` in commit
+  `64fbcd1ab5d6c4d86272985c202699009e1217ce`.
+- Published the paper page and homepage integration in commit
+  `2696384cd82d524c770f6cf30000e1448eb340f5`.
+- GitHub Pages reported the site commit as built at 05:52:40 UTC on
+  26 July 2026.
+- Retrieved the permanent page and PDF over HTTPS. The deployed PDF is
+  byte-identical to the visually audited source artifact, with SHA-256
+  `af507ce272e39e3b101b59a5198c2d41adee7b95c6c608bccdf07dd4dc66615a`.
+- Confirmed that the public homepage links to the new paper.
+- No researcher or other outside individual was contacted.

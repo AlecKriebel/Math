@@ -92,6 +92,14 @@ The exact proof package for “A ten-vertex graph with
 \(\gamma^\infty(G)<\vartheta(G)\)” first entered `main` in commit
 [`64fbcd1ab5d6c4d86272985c202699009e1217ce`](https://github.com/AlecKriebel/Math/commit/64fbcd1ab5d6c4d86272985c202699009e1217ce)
 at **26 July 2026, 05:46:55 UTC** (**25 July 2026, 22:46:55 PDT**).
+The public paper page entered `main` in commit
+[`2696384cd82d524c770f6cf30000e1448eb340f5`](https://github.com/AlecKriebel/Math/commit/2696384cd82d524c770f6cf30000e1448eb340f5)
+at **26 July 2026, 05:51:56 UTC** (**25 July 2026, 22:51:56 PDT**).
+GitHub Pages reported that exact commit built at
+**26 July 2026, 05:52:40 UTC**, after which both the
+[paper page](https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/)
+and [PDF](https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/paper.pdf)
+were retrieved successfully.
 
 For the graph with graph6 record `IEhbtj{ro`, the note proves exactly
 \[
