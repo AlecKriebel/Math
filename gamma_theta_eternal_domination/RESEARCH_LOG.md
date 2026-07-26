@@ -570,3 +570,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `43ca4d29ea369900480d5cf90ab52e53b77b5600d03d4d0d5eba37402f1a7b3c`.
   The branch is taking more coloring cuts than `hole9`, but per-child cost
   remains tiny and no scaling gate has fired.
+
+### 19:12 — `hole5` production reaches 64 cuts
+
+- Opened the third and final structural template from pushed commit
+  `eea8aece` under the same frozen seed-zero resource configuration.
+- All 64 iterations returned complete SAT assignments and directly
+  validated complement three-colorings, committing 64 distinct globally
+  sound cuts.  There was no terminal, timeout, unknown result, or memory
+  event.
+- Solver children used 4.1468 seconds total wall time and 3.1141 seconds
+  total CPU.  Maximum child wall time was 0.0940 seconds and maximum RSS was
+  8,159,232 bytes.
+- The checkpoint SHA-256 is
+  `02bbf56a292c734fcd886af55b9482439e29a263c8acc1e904883242da5e12dc`,
+  with history head
+  `ad645794d30eff7a425bb1b898a07c1321dce3012ae38a5392dfa65b408d6a76`.
+- Deep read-only reconstruction passed and preserved the exact 451-file,
+  2,224,274-byte tree at SHA-256
+  `73384b72019434b9d1a60aab38773257035e4e7464a3ea9088d31941e6f57b55`.
+  This is a running prefix, not a template result.

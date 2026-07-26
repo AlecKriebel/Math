@@ -1,5 +1,30 @@
 # Campaign State
 
+## Checkpoint 019 — 2026-07-25 19:12 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint: `eea8aece`.
+- All three required direct-synthesis templates now have production
+  artifacts: `hole9` has a candidate recovered terminal under review,
+  `hole7` is running at 384 cuts, and `hole5` is running at 64 cuts.
+- The new `hole5` checkpoint SHA-256 is
+  `02bbf56a292c734fcd886af55b9482439e29a263c8acc1e904883242da5e12dc`.
+  Deep reconstruction preserved its 451-file, 2,224,274-byte tree at
+  SHA-256
+  `73384b72019434b9d1a60aab38773257035e4e7464a3ea9088d31941e6f57b55`.
+- No timeout, unknown result, candidate, UNSAT terminal, or resource event
+  occurred in the 64 `hole5` attempts.  No heavy child was active at
+  checkpoint creation.
+
+### Claim boundary and next actions
+
+- Neither open prefix is a mathematical result, and `hole9` is not accepted
+  before hostile review.
+- Publish the first `hole5` checkpoint.  Continue both open branches in
+  measured batches, prioritizing the branch with the faster terminal yield.
+- Complete and integrate the independent `hole9` RUP audit and both explicit
+  errata without changing the frozen source run.
+
 ## Checkpoint 018 — 2026-07-25 19:09 PDT
 
 - Campaign day: 1 of 27; branch `main`.
