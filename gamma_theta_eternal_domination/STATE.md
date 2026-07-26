@@ -4,6 +4,9 @@
 
 - Campaign day: 1 of 27; branch `main`; pre-integration repository `HEAD`
   `7cece508d9b2a179324624a40c393460bd440847`.
+- The complete theorem, acceptance record, manifest, and audit stack were
+  integrated and pushed in commit
+  `36d8191ac72c4c04291184f2a6854fa76e181712`.
 - **New certified finite theorem (C-035).**  No finite simple graph \(G\) on
   12 vertices satisfies
   \[
