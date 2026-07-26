@@ -101,6 +101,29 @@ GitHub Pages reported that exact commit built at
 and [PDF](https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/paper.pdf)
 were retrieved successfully.
 
+The strengthened edition, “Eternal domination and the Lovász theta function:
+an unbounded separation and a smallest counterexample,” entered `main` in
+commit
+[`54ce65e75ca86a5e439915cae644e1eda46b1fa1`](https://github.com/AlecKriebel/Math/commit/54ce65e75ca86a5e439915cae644e1eda46b1fa1)
+at **26 July 2026, 21:53:06 UTC** (**26 July 2026, 14:53:06 PDT**).
+GitHub Pages reported that exact commit built at
+**26 July 2026, 21:55:27 UTC** (**26 July 2026, 14:55:27 PDT**).
+The live page, homepage, sitemap, and PDF were then retrieved successfully;
+the served five-page PDF had SHA-256
+`edd6d182a0c8473320eecbc8e8c036565d7dabe2c750cb7953d8f6a479bee625`,
+identical to the frozen source artifact.
+
+The strengthened edition first records a direct consequence of published
+results of Alon and of Goddard, Hedetniemi, and Hedetniemi: there is an
+explicit family \((H_k)\) with
+\[
+2\leq\gamma^\infty(H_k)\leq3,
+\qquad
+\vartheta(H_k)=\Theta\!\left(|V(H_k)|^{1/3}\right).
+\]
+Thus \(\vartheta/\gamma^\infty\) is unbounded. This is a synthesis of cited
+results, not a new graph construction.
+
 For the graph with graph6 record `IEhbtj{ro`, the note proves exactly
 \[
 \gamma^\infty(G)=3
@@ -114,11 +137,12 @@ published exhaustive order-at-most-nine computation of MacGillivray,
 Mynhardt, and Virgile.
 
 The graph and its eternal domination value are due to those authors. The
-candidate contribution is the exact Lovász-theta certificate and the
-resulting negative answer to the publicly recorded lower-bound question. A
-focused search found no prior public resolution as of 25 July 2026, but this
-does not establish absolute priority. No researcher was contacted, and the
-note remains unreviewed.
+candidate contribution is recognizing the published asymptotic connection,
+the exact ten-vertex Lovász-theta certificate, and the resulting negative
+answer and minimum-order identification. A focused search found no prior
+public source explicitly making these connections as of 26 July 2026, but
+this does not establish absolute priority. No researcher was contacted, and
+the note remains unreviewed.
 
 ## Exact cyclic Bell Tsirelson bound
 

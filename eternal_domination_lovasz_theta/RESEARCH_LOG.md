@@ -106,3 +106,19 @@ updated public page, then publish the strengthened edition from `main`.
 
 Next checkpoint: publish from `main`, wait for GitHub Pages to build the
 pushed revision, and verify the live page and PDF.
+
+## 26 July 2026, 14:56 PDT - strengthened deployment verified
+
+**Best-guess completion: 100%.**
+
+- Published the strengthened manuscript, proof package, and Pages content to
+  `main` in commit
+  `54ce65e75ca86a5e439915cae644e1eda46b1fa1`.
+- GitHub Pages reported that exact commit built at 21:55:27 UTC on
+  26 July 2026.
+- Retrieved the live paper page, homepage, sitemap, and PDF over HTTPS; each
+  returned successfully and displayed the strengthened edition.
+- The served five-page PDF is byte-identical to the visually audited frozen
+  artifact, with SHA-256
+  `edd6d182a0c8473320eecbc8e8c036565d7dabe2c750cb7953d8f6a479bee625`.
+- No researcher or other outside individual was contacted.
