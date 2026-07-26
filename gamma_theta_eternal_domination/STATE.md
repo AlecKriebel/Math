@@ -1,5 +1,67 @@
 # Campaign State
 
+## Checkpoint 039 — 2026-07-26 05:15 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `173323a5770049b19735e51ff7669db30653cf29`.
+- **Independent aggregate-verifier gate accepted.**  The final verifier
+  source set `9ea4397d...` passed 18/18 author tests and 18/18 independent
+  hostile tests.  It imports only its own clean-room parent reconstruction
+  and the Python standard library.
+- The verifier reconstructed the exact `adbe0c01...` parent byte-for-byte,
+  derived cube variables \(4,14,23,31\), reconstructed all 16 leaves, checked
+  all 16 coverage assignments and all 120 pairwise cube conflicts, and
+  validated every retained v3 binding for the sole completed leaf.
+- In a new external `0700` ledger bound directly to the current source set,
+  the hostile reviewer launched exactly one bounded private-copy
+  `lrat-check`; it exited zero with `c VERIFIED`.  A second invocation
+  launched no child and resumed the unchanged record.  No CaDiCaL process
+  ran, and production content and metadata digests were unchanged.
+- Final hostile verdict:
+  `PASS_EXACT_INCOMPLETE_SCOPE_NO_AGGREGATE_CLAIM`.  The exact returned status
+  remains `INCOMPLETE_1_OF_16_VERIFIED_NONCLAIM`, with CLI exit 3 and 15
+  pending leaves.  This strengthens the independent verification of C-042
+  but creates no aggregate result.
+- C-043/C-044 remain the mathematical coverage optimization: only canonical
+  leaves `0000`, `0001`, `0011`, and `0111` need to be decided.  The
+  immutable production histogram itself remains one verified and 15 pending.
+- The proposed 765-clause DoubleLex strengthening and its separate generator
+  are under hostile review and support no claim yet.
+- No campaign solver is running.  The v3 production tree passed a fresh
+  read-only audit after the verifier replay.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active-four-canonical-leaves | C-043/C-044 accepted; next target `0111` |
+| Order-12 \(k=4\) structural lane | active | DoubleLex note/source under hostile review |
+| Proof-producing runner v3 | accepted-production | One verified leaf; next bounded leaf may launch after this source checkpoint |
+| Aggregate negative-result audit | accepted-incomplete | Exact current status 1/16; designed to extend append-only |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- Preserve the v2 run and all provisional \(k=3\) artifacts unchanged.
+- After the exact accepted aggregate-verifier bytes are committed, the v3
+  runner may authorize only canonical case `0111`, with its frozen 1,800
+  second, 3 GiB solver and 768 MiB file limits.
+- Whether `0111` returns SAT, verified UNSAT, or a bounded nonclaim, preserve
+  the attempt before deciding the next canonical leaf.
+
+### Next three highest-value actions
+
+1. Commit and push the accepted aggregate verifier, author evidence, hostile
+   current-source replay, and this checkpoint.
+2. Run exactly one bounded v3 attempt on canonical leaf `0111`, then invoke
+   the independent aggregate verifier against a fresh or resumed external
+   ledger.
+3. Complete hostile review of the DoubleLex reduction and compare its exact
+   strengthened formula with measured `0111` behavior.
+
 ## Checkpoint 038 — 2026-07-26 05:00 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`

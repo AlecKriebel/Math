@@ -1219,3 +1219,37 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   least \(S_8\times S_4\) anchor--outer matrix, which has both sorted rows
   and sorted eight-bit columns.  The proposed auxiliary-free strengthening
   adds 765 clauses and 10,758 literals.  It is not yet reviewed or used.
+
+### 2026-07-26 05:15 — independent v3 aggregate-verifier gate accepted
+
+- The repaired verifier independently reconstructs the exact
+  18,381-variable, 114,742-clause parent without importing the search,
+  synthesis, production-runner, or earlier verifier cores.  It derives cube
+  variables \(4,14,23,31\), reconstructs all 16 leaf bytes, enumerates the
+  16 coverage assignments, and checks all 120 pairwise cube conflicts.
+- Its static audit additionally validates the complete immutable v3 layout:
+  run and tool bindings, checkpoint chain, exact attempt inventories,
+  schemas, raw and normalized binary-DRAT structure, normalization report,
+  six child records and resource reports, outcome, certificate, and retained
+  aggregate boundary.
+- After a hostile wording finding, the incomplete report was repaired to say
+  explicitly that it makes no aggregate claim and validates exactly one of
+  16 leaves.  Final source set `9ea4397d...` and test source `f7489c39...`
+  passed 18/18 author tests; root independently reproduced 18/18.
+- The author then performed one authorized checker-only replay from private
+  CNF, LRAT, and checker copies.  Its current-source manifest is
+  `9039e2b6...`, record `5ec39210...`, and final report `b526a205...`.
+  Resume launched zero children and recovered the same record.
+- A hostile reviewer started from another new empty external ledger.  The
+  current-source manifest is `da860fd3...` and record `0a7e6d41...`.
+  Exactly one bounded `lrat-check` child exited zero with `c VERIFIED`;
+  the next invocation resumed without a child.  No CaDiCaL process launched,
+  and whole-production-tree content and metadata digests remained unchanged.
+- Verdict:
+  `PASS_EXACT_INCOMPLETE_SCOPE_NO_AGGREGATE_CLAIM`.  The result remains
+  exactly `INCOMPLETE_1_OF_16_VERIFIED_NONCLAIM`, with 15 pending leaves and
+  CLI exit 3.  This is an accepted verification gate and a second independent
+  replay of C-042, not a parent UNSAT result.
+- With this gate closed, the next authorized production action is one bounded
+  attempt on canonical leaf `0111`.  Its outcome must be preserved and
+  independently replayed before any further leaf is launched.

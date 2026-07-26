@@ -388,9 +388,34 @@ package is commit `92f5ed2b6db1e88ac5776bdb60ebcb6490b85c8d`.
 The current exact histogram is one `UNSAT_LRAT_VERIFIED` leaf and fifteen
 `PENDING` leaves, so the aggregate status is `INCOMPLETE_NONCLAIM`.  This is
 not an exclusion of the connected \((12,4)\) parent, the order-12
-parameter-four slice, or the universal conjecture.  The earlier aggregate
-checker prototype was tied to the rejected v2 schemas and is not accepted
-for v3; its v3 repair and independent audit are in progress.
+parameter-four slice, or the universal conjecture.
+
+The independent v3 aggregate verifier is now accepted for that exact
+incomplete scope.  It imports no search, synthesis, runner, or earlier
+transition core; reconstructs the 3,992,947-byte parent and all 16 leaves;
+checks the 16 coverage rows and 120 pairwise conflicts; validates the exact
+v3 schemas and retained proof chain; and freshly replays each completed LRAT
+from private copies under an external append-only ledger.  Both author and
+hostile ledgers return exactly
+`INCOMPLETE_1_OF_16_VERIFIED_NONCLAIM`.  The hostile replay used the current
+source set, launched one bounded `lrat-check` child and no CaDiCaL process,
+then resumed without launching another child.
+
+```text
+PYTHONPATH=src python3 -m unittest -v \
+  tests.test_verifier_k4_aggregate
+
+PYTHONPATH=src python3 -B -m verifier_k4_aggregate \
+  --run-dir results/order12_k4_production_v3_seed0 \
+  --replay-dir /fresh/external/replay-ledger \
+  --memory-mib 512 \
+  --memory-reserve-mib 512
+```
+
+An incomplete audit deliberately exits with status 3.  Only a future
+16-of-16 current-bound replay may return aggregate success, and the
+mathematical parent-encoding theorem remains a separate obligation even
+then.
 
 Claims C-043 and C-044 give two independent hand reductions of that same
 parent without rewriting the immutable production record.  Connectedness
