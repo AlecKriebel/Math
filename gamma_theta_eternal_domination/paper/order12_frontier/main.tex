@@ -1,0 +1,1263 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xurl}
+
+\geometry{margin=1in}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\gaminf}{\gamma^{\infty}}
+\newcommand{\V}{V}
+\newcommand{\CNF}{\mathsf{CNF}}
+\newcommand{\sha}{\operatorname{SHA256}}
+\newcommand{\filehash}[1]{\nolinkurl{#1}}
+
+\title{A Certified Order-Twelve Extension of the
+\texorpdfstring{$\gamma$--$\theta$}{gamma--theta} Frontier\\
+in One-Guard Eternal Domination}
+\author{Author metadata to be supplied before submission}
+\date{July 26, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the one-guard-moves eternal domination game, each attack is made at an
+unoccupied vertex and exactly one adjacent guard moves to the attacked
+vertex.  The $\gamma$--$\theta$ conjecture asserts that
+\(\gamma(G)=\gaminf(G)\) implies \(\gamma(G)=\theta(G)\).
+MacGillivray, Mynhardt, and Virgile reported an exhaustive computation
+excluding counterexamples through order 11.  We extend that published
+frontier by proving that no counterexample has order 12.  The order-12
+proof has three separately delimited parts: an independently replayed
+three-template certificate excludes common parameter \(3\); an exact
+18,381-variable formula and a 228,381,671-byte LRAT refutation exclude
+connected graphs with common parameter \(4\); and a simplicial
+closed-neighborhood reduction, combined with the McCuaig--Shepherd
+domination bound, excludes common parameter \(5\).  A classical half-order
+characterization proves that these are the only possible parameters.
+Consequently, subject explicitly to the published through-order-11
+computation, every counterexample has at least 13 vertices.  The campaign
+has not independently reproduced the all-graph coverage at orders 10 and
+11.  As a structural byproduct, we give an unrestricted, family-level
+generalization of a planar independent-antineighborhood lemma of Taletskii.
+This finite result neither proves the universal conjecture nor constructs a
+counterexample.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let \(G\) be a finite simple graph.  The domination number \(\gamma(G)\)
+is the minimum size of a set whose closed neighborhood is all of
+\(\V(G)\), and the clique cover number \(\theta(G)\) is the minimum number
+of parts in a partition of \(\V(G)\) into cliques.  In the standard
+one-guard eternal domination game, guards initially occupy a dominating
+set.  After an attack at an unoccupied vertex, exactly one adjacent guard
+moves to the attacked vertex, and the new guard set must again be capable
+of defending every future attack.  The least sufficient number of guards
+is \(\gaminf(G)\).
+
+Klostermeyer and MacGillivray stated the implication
+\[
+  \gamma(G)=\gaminf(G)\quad\Longrightarrow\quad
+  \gamma(G)=\theta(G),
+\tag{1.1}
+\]
+with a proof that was later found to be incomplete
+\cite{KlostermeyerMacGillivray2009,KlostermeyerMynhardt2015}.
+Klostermeyer and Mynhardt subsequently formulated the question as the
+existence problem
+\[
+  \gamma(G)=\gaminf(G)<\theta(G)
+\tag{1.2}
+\]
+\cite{KlostermeyerMynhardt2015,KlostermeyerMynhardt2016}.  We call (1.1)
+the \(\gamma\)--\(\theta\) conjecture.
+
+MacGillivray, Mynhardt, and Virgile reported an exhaustive computation
+finding no counterexample through order 11
+\cite[Observation 5.6]{MacGillivrayMynhardtVirgile2022}.  Their paper also
+catalogs all 56 graphs of order at most 11 for which
+\(\gaminf<\theta\).  The present work independently reproduced the
+parameters of that catalog and independently enumerated connected graphs
+through order 9, but it did not repeat the original cluster-scale
+all-graph enumeration at orders 10 and 11.  We therefore keep the
+published lower-order computation visible as an explicit premise.
+
+\begin{theorem}[order-12 frontier]\label{thm:frontier}
+Assume the published exhaustive result of MacGillivray, Mynhardt, and
+Virgile that no counterexample to \emph{(1.1)} has order at most \(11\).
+Then no finite simple graph \(G\) of order at most \(12\) satisfies
+\[
+  \gamma(G)=\gaminf(G)<\theta(G).
+\]
+Equivalently, every counterexample, if one exists, has order at least \(13\).
+\end{theorem}
+
+The order-12 extension in Theorem~\ref{thm:frontier} is assembled from the
+following results.
+
+\begin{enumerate}
+\item A complete, certificate-backed exclusion of all 12-vertex graphs with
+      \(\gamma=\gaminf=3<\theta\) (Theorem~\ref{thm:k3}).
+\item A complete, certificate-backed exclusion of connected 12-vertex
+      graphs with \(\gamma=\gaminf=4<\theta\)
+      (Theorem~\ref{thm:k4}).
+\item A structural theorem for simplicial vertices
+      (Theorem~\ref{thm:simplicial}) and the McCuaig--Shepherd bound, which
+      exclude the order-12 parameter-five case relative to the same
+      published lower-order premise (Corollary~\ref{cor:k5}).
+\item A classical half-order characterization, which shows that a connected
+      order-12 counterexample has common parameter only \(3,4,\) or \(5\)
+      (Corollary~\ref{cor:parameters}).
+\item An independent-antineighborhood projection theorem for arbitrary
+      equality graphs and arbitrary eternal families
+      (Theorem~\ref{thm:antineighborhood}), recorded as a generalization of
+      Taletskii's planar minimum-counterexample lemma rather than as a
+      wholly new antineighborhood idea.
+\end{enumerate}
+
+Every computational implication is separated into a graph-to-formula
+coverage theorem, an exact byte binding, a proof-certificate replay, and an
+independent audit.  Section~\ref{sec:basic} fixes the model and elementary
+reductions.  Section~\ref{sec:simplicial} proves the structural reduction.
+Sections~\ref{sec:k3} and \ref{sec:k4} give the two certified slices.
+Section~\ref{sec:assemble} assembles the frontier, and
+Section~\ref{sec:repro} gives reproduction details.
+
+\begin{remark}[scope]\label{rem:scope-intro}
+Theorem~\ref{thm:frontier} is a finite extension of a published
+computational frontier.  It is not a campaign-only exhaustive enumeration
+through order 12, it says nothing about orders at least 13, and it does not
+resolve the universal conjecture.  We also make no literature-novelty claim
+for the simplicial reduction; one potentially relevant 2018 manuscript
+could not be obtained during the audit.  The antineighborhood theorem below
+has direct accessible overlap with Taletskii's Lemma 13
+\cite{Taletskii2024}, and its prior-art boundary is stated explicitly.
+\end{remark}
+
+\section{Model and elementary reductions}\label{sec:basic}
+
+All graphs in this paper are finite, simple, and undirected.  For
+\(v\in\V(G)\), write \(N(v)\) and \(N[v]\) for its open and closed
+neighborhoods.  A set \(D\subseteq\V(G)\) is dominating if
+\(N[D]=\V(G)\).  Let \(\alpha(G)\) denote the independence number and
+\(i(G)\) the minimum size of a maximal independent set.  We use
+\[
+  \theta(G)=\chi(\overline G).
+\tag{2.1}
+\]
+
+\begin{definition}\label{def:eternal}
+An \emph{eternal dominating family of size \(k\)} is a nonempty family
+\(\mathcal D\subseteq\binom{\V(G)}k\) such that:
+\begin{enumerate}
+\item every \(D\in\mathcal D\) dominates \(G\); and
+\item for every \(D\in\mathcal D\) and every unoccupied attacked vertex
+      \(r\in\V(G)-D\), there is a guard \(u\in D\cap N(r)\) for which
+      \[
+        (D-\{u\})\cup\{r\}\in\mathcal D.
+      \tag{2.2}
+      \]
+\end{enumerate}
+The minimum such \(k\) is \(\gaminf(G)\).
+\end{definition}
+
+Thus attacks at occupied vertices are not required, and a response in
+(2.2) moves exactly one guard along exactly one edge.  No all-guards-move
+parameter is used anywhere in this paper.
+
+\begin{lemma}[independent-set forcing]\label{lem:forcing}
+Let \(\mathcal D\) be an eternal dominating family of \(k\)-sets, and let
+\(I\) be an independent set.  Starting from any state in \(\mathcal D\),
+successive attacks at unoccupied vertices of \(I\) force a state \(D'\) with
+\[
+  |D'\cap I|=\min\{|I|,k\}.
+\]
+In particular, every independent \(k\)-set belongs to every eternal
+\(k\)-family.
+\end{lemma}
+
+\begin{proof}
+When an unoccupied \(r\in I\) is attacked, no guard already on \(I\) can
+respond because \(I\) is independent.  Every legal response therefore
+increases the number of guards on \(I\) by one.  Repeat until no further
+such attack is possible.
+\end{proof}
+
+\begin{proposition}[parameter chain]\label{prop:chain}
+For every nonempty graph \(G\),
+\[
+  \gamma(G)\leq i(G)\leq\alpha(G)\leq\gaminf(G)\leq\theta(G).
+\tag{2.3}
+\]
+Consequently, if \(\gamma(G)=\gaminf(G)=k\), then
+\[
+  \gamma(G)=i(G)=\alpha(G)=\gaminf(G)=k,
+\tag{2.4}
+\]
+and \(G\) is well-covered.
+\end{proposition}
+
+\begin{proof}
+Every maximal independent set dominates, and every maximum independent set
+is maximal.  If an eternal family used fewer than \(\alpha(G)\) guards,
+Lemma~\ref{lem:forcing} would put all guards on a maximum independent set
+while leaving another vertex of it unoccupied; an attack there would have
+no adjacent guard.  Thus \(\alpha\leq\gaminf\).
+
+Given a clique partition, place one guard in each part.  An attack is
+answered by moving the unique guard within the attacked vertex's clique.
+This proves \(\gaminf\leq\theta\).  The equality collapse and
+well-coveredness follow by squeezing.
+\end{proof}
+
+\begin{lemma}[induced-subgraph monotonicity]\label{lem:induced}
+If \(J\) is a nonempty induced subgraph of \(G\), then
+\(\gaminf(J)\leq\gaminf(G)\).
+\end{lemma}
+
+\begin{proof}
+Fix an eternal family in \(G\), let \(m\) be the maximum number of guards
+that any family state places in \(\V(J)\), and retain the states attaining
+\(m\).  An attack inside \(J\) cannot be answered by moving a guard from
+outside \(J\), since the successor would contain more than \(m\) guards in
+\(J\).  Thus every response stays within \(J\), preserves \(m\), and
+projects to a legal response in the induced graph \(J\).  The projected
+states dominate \(J\): each unoccupied vertex has an adjacent responding
+guard in \(J\), while occupied vertices dominate themselves.  Also
+\(m>0\), since otherwise any attack in the nonempty graph \(J\) would force
+a guard into \(J\).  The projections therefore form an eternal family in
+\(J\).
+\end{proof}
+
+\begin{lemma}[component additivity]\label{lem:additivity}
+If \(G_1,\ldots,G_t\) are the nonempty components of \(G\), then
+\[
+ \gamma(G)=\sum_j\gamma(G_j),\qquad
+ \gaminf(G)=\sum_j\gaminf(G_j),\qquad
+ \theta(G)=\sum_j\theta(G_j).
+\tag{2.5}
+\]
+\end{lemma}
+
+\begin{proof}
+The assertions for \(\gamma\) and \(\theta\) follow by restriction and
+union.  Products of componentwise eternal families prove the upper bound
+for \(\gaminf\).
+
+For the reverse bound, fix a guard-count vector
+\((|D\cap\V(G_1)|,\ldots,|D\cap\V(G_t)|)\) occurring in an eternal family
+and retain all states with that vector.  A one-edge move cannot cross
+components, so this subfamily remains closed.  Projection to each component
+is an eternal family with the corresponding number of guards.  Summing the
+componentwise lower bounds proves equality.
+\end{proof}
+
+\begin{corollary}[connected reduction]\label{cor:connected}
+If a counterexample to \emph{(1.1)} exists, then a connected counterexample
+exists.  Every minimum-order counterexample is connected.
+\end{corollary}
+
+\begin{proof}
+If \(\gamma(G)=\gaminf(G)\), additivity and
+\(\gamma(G_j)\leq\gaminf(G_j)\) force equality on every component.  If also
+\(\gaminf(G)<\theta(G)\), at least one component has the same strict gap.
+\end{proof}
+
+We next record why the common parameter of a counterexample is at least
+three.  The following two small values use exactly the model of
+Definition~\ref{def:eternal}.
+
+\begin{lemma}\label{lem:odd-antihole}
+For every odd \(\ell\geq5\),
+\[
+  \gaminf(\overline{C_\ell})=3.
+\tag{2.6}
+\]
+\end{lemma}
+
+\begin{proof}
+Since \(\theta(\overline{C_\ell})=\chi(C_\ell)=3\), the upper bound follows
+from (2.3).  Label \(C_\ell\) cyclically by \(0,\ldots,\ell-1\).
+A pair fails to dominate \(\overline{C_\ell}\) exactly when its vertices
+have cyclic distance two.
+
+Suppose an eternal two-family existed.  The independent pair \(\{0,1\}\)
+belongs to it by Lemma~\ref{lem:forcing}.  From \(\{0,d\}\), for odd
+\(1\leq d\leq\ell-6\), attack \(d+2\).  Moving the guard at \(0\) leaves
+the nondominating pair \(\{d,d+2\}\), so closure forces
+\(\{0,d+2\}\).  Iteration reaches \(\{0,\ell-4\}\).  Attacking
+\(\ell-2\) then leaves a cyclic-distance-two pair whichever guard moves.
+For \(\ell=5\), this last attack applies to the initial pair.
+\end{proof}
+
+\begin{lemma}\label{lem:c7}
+\(\gaminf(C_7)=4\).
+\end{lemma}
+
+\begin{proof}
+A partition into three edges and one singleton gives the upper bound four.
+Suppose an eternal family of dominating triples existed.  A dominating
+triple has cyclic gap multiset \(\{2,1,1\}\) or \(\{2,2,0\}\).  A triple of
+the second type is equivalent to \(\{0,1,4\}\); attacking \(3\) forces the
+guard at \(4\) to move, after which vertex \(5\) is undominated.  Hence no
+second-type triple belongs to the family.
+
+The maximum independent set \(\{0,2,4\}\) belongs to the family by
+Lemma~\ref{lem:forcing}.  Attack \(1\).  Moving the guard at \(0\) leaves
+vertex \(6\) undominated, while moving the guard at \(2\) produces the
+forbidden triple \(\{0,1,4\}\), a contradiction.
+\end{proof}
+
+\begin{proposition}[minimum parameter]\label{prop:min-k}
+Every counterexample satisfies
+\[
+  \gamma(G)=\alpha(G)=\gaminf(G)\geq3.
+\tag{2.7}
+\]
+\end{proposition}
+
+\begin{proof}
+The equalities follow from Proposition~\ref{prop:chain}.  Common value one
+forces \(\alpha=1\), so \(G\) is complete and \(\theta=1\).
+
+Suppose the common value is two and put \(H=\overline G\).  Then
+\(\omega(H)=2<\chi(H)\).  By the Strong Perfect Graph Theorem
+\cite{ChudnovskyRobertsonSeymourThomas2006}, \(H\) contains an induced odd
+hole or odd antihole.  An odd hole in \(H\) induces an odd antihole in
+\(G\), contradicting Lemmas~\ref{lem:induced} and
+\ref{lem:odd-antihole}.  An odd antihole in \(H\) induces an odd hole in
+\(G\).  At length at least seven this contradicts \(\alpha(G)=2\); at
+length five it again contradicts Lemma~\ref{lem:odd-antihole}, since
+\(C_5\) is self-complementary.
+\end{proof}
+
+\subsection{The half-order restriction}
+
+We use the characterization, due independently to Payan--Xuong and to
+Fink--Jacobson--Kinch--Roberts, of graphs without isolated vertices whose
+domination number is half their order
+\cite{PayanXuong1982,FinkJacobsonKinchRoberts1985}: every component is
+either \(C_4\) or a corona \(F\circ K_1\), where one leaf is attached to
+each vertex of a connected graph \(F\).
+
+\begin{proposition}\label{prop:half-order}
+If \(G\) has no isolated vertices and
+\(\gamma(G)=|\V(G)|/2\), then \(\gamma(G)=\theta(G)\).
+\end{proposition}
+
+\begin{proof}
+For \(C_4\), both parameters are two.  If \(Q=F\circ K_1\) and
+\(|\V(F)|=m\), every dominating set must contain a member of each
+support--leaf pair, while all supports form a dominating \(m\)-set.
+Hence \(\gamma(Q)=m\).  The \(m\) support--leaf edges partition \(Q\) into
+cliques, so \(\theta(Q)\leq m\), while the \(m\) leaves are independent and
+give \(\theta(Q)\geq m\).  Thus the two parameters agree on every component
+in the characterization, and additivity completes the proof.
+\end{proof}
+
+\begin{corollary}\label{cor:half-order}
+If a connected graph \(G\) of order \(n\geq2\) is a counterexample with
+common parameter \(k\), then
+\[
+  n\geq2k+1.
+\tag{2.8}
+\]
+\end{corollary}
+
+\begin{proof}
+A spanning tree of \(G\) is bipartite, and its smaller color class is a
+dominating set of the tree and hence of \(G\).  Thus
+\(\gamma(G)\leq n/2\).  Equality would contradict
+Proposition~\ref{prop:half-order}, so \(k<n/2\).  Integrality gives (2.8).
+\end{proof}
+
+\begin{corollary}\label{cor:parameters}
+A connected order-12 counterexample has common parameter
+\[
+  k\in\{3,4,5\}.
+\tag{2.9}
+\]
+\end{corollary}
+
+\begin{proof}
+Proposition~\ref{prop:min-k} gives \(k\geq3\), and
+Corollary~\ref{cor:half-order} gives \(12\geq2k+1\), hence \(k\leq5\).
+\end{proof}
+
+\section{The simplicial closed-neighborhood reduction}
+\label{sec:simplicial}
+
+A vertex \(v\) is \emph{simplicial} if \(N[v]\) is a clique.  The next
+theorem strengthens the leaf reduction needed later.  Its proof is included
+both for completeness and to expose where the one-guard dynamics enter.
+
+\begin{theorem}[simplicial reduction]\label{thm:simplicial}
+Let \(G\) satisfy
+\[
+  \gamma(G)=\gaminf(G)=k,
+\]
+let \(v\) be simplicial, and suppose \(Q=G-N[v]\) is nonempty.  Then \(Q\)
+is well-covered and
+\[
+  \gamma(Q)=\alpha(Q)=\gaminf(Q)=k-1,
+\tag{3.1}
+\]
+while
+\[
+  \theta(G)=\theta(Q)+1.
+\tag{3.2}
+\]
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:chain}, \(G\) is well-covered with
+\(\gamma(G)=\alpha(G)=k\).  If \(I\) is a maximal independent set of \(Q\),
+then \(I\cup\{v\}\) is a maximal independent set of \(G\): the vertex \(v\)
+blocks \(N(v)\), and \(I\) blocks \(Q-I\).  Hence every maximal independent
+set of \(Q\) has size \(k-1\), and
+\[
+  i(Q)=\alpha(Q)=k-1.
+\tag{3.3}
+\]
+In particular, \(\gamma(Q)\leq k-1\).  If a set \(A\) of size at most
+\(k-2\) dominated \(Q\), then \(A\cup\{v\}\) would dominate \(G\),
+contradicting \(\gamma(G)=k\).  Therefore
+\(\gamma(Q)=k-1\).
+
+Fix an eternal \(k\)-family \(\mathcal D\) in \(G\), and choose a maximum
+independent set \(I\) of \(Q\).  Lemma~\ref{lem:forcing} places
+\(I\cup\{v\}\) in \(\mathcal D\).  Define
+\[
+  \mathcal E=\{D-\{v\}:D\in\mathcal D,\ v\in D\}.
+\tag{3.4}
+\]
+This family is nonempty.  No state \(D\in\mathcal D\) containing \(v\) can
+also contain a vertex \(u\in N(v)\).  If it did, \(D-\{v\}\) would still
+dominate \(G\): because \(N[v]\) is a clique, \(u\) dominates everything
+that \(v\) could dominate, while \(v\) has no neighbor in \(Q\).  This
+would contradict \(\gamma(G)=k\).
+
+Thus each member of \(\mathcal E\) is a \((k-1)\)-subset of \(Q\), and it
+dominates \(Q\).  Let \(B=D-\{v\}\in\mathcal E\) and attack
+\(r\in\V(Q)-B\).  In \(D=B\cup\{v\}\), the responding guard cannot be
+\(v\), since \(v\) has no neighbor in \(Q\).  The response therefore keeps
+\(v\) occupied and projects to
+\[
+  (B-\{u\})\cup\{r\}\in\mathcal E.
+\]
+Consequently \(\mathcal E\) is an eternal \((k-1)\)-family in \(Q\).
+Together with (3.3) and \(\alpha\leq\gaminf\), this proves (3.1).
+
+The clique \(N[v]\), together with a minimum clique partition of \(Q\),
+gives \(\theta(G)\leq\theta(Q)+1\).  Conversely, start with a minimum
+clique partition of \(G\).  Replace all parts meeting \(N[v]\) by the
+single clique \(N[v]\) and the nonempty remainders after deleting \(N[v]\).
+The old part containing \(v\) has empty remainder, so the replacement does
+not increase the number of parts.  By minimality it is again a minimum
+partition.  Deleting its \(N[v]\) part leaves a partition of \(Q\) into
+\(\theta(G)-1\) cliques.  Hence
+\(\theta(Q)\leq\theta(G)-1\), proving (3.2).
+\end{proof}
+
+\begin{corollary}[counterexample preservation]\label{cor:simp-preserve}
+Under the hypotheses of Theorem~\ref{thm:simplicial}, if
+\[
+  \gamma(G)=\gaminf(G)=k<\theta(G),
+\]
+then \(Q=G-N[v]\) is a smaller counterexample with common parameter \(k-1\).
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:simplicial} gives
+\(\gamma(Q)=\gaminf(Q)=k-1\) and
+\(\theta(Q)=\theta(G)-1\geq k\).
+\end{proof}
+
+\begin{corollary}[leaf--support reduction]\label{cor:leaf}
+Let \(x\) be a leaf with unique neighbor \(y\), and suppose
+\(G-\{x,y\}\) is nonempty.  If
+\(\gamma(G)=\gaminf(G)=k\), then \(G-\{x,y\}\) is well-covered,
+\[
+ \gamma(G-\{x,y\})=\alpha(G-\{x,y\})
+ =\gaminf(G-\{x,y\})=k-1,
+\]
+and
+\[
+ \theta(G)=\theta(G-\{x,y\})+1.
+\]
+A strict \(\gamma\)--\(\theta\) gap is preserved.
+\end{corollary}
+
+\begin{proof}
+The leaf \(x\) is simplicial and \(N[x]=\{x,y\}\), so this is
+Theorem~\ref{thm:simplicial} and
+Corollary~\ref{cor:simp-preserve}.
+\end{proof}
+
+\begin{corollary}\label{cor:no-simplicial}
+Every minimum-order counterexample is connected, has no simplicial vertex,
+and has minimum degree at least two.  Moreover, the two neighbors of every
+degree-two vertex are nonadjacent.
+\end{corollary}
+
+\begin{proof}
+Connectedness is Corollary~\ref{cor:connected}.  A simplicial vertex would
+give a smaller counterexample by Corollary~\ref{cor:simp-preserve}, unless
+\(G-N[v]\) were empty; in that case \(G=N[v]\) would be complete.  Hence
+there is no simplicial vertex.  In a connected nontrivial graph, a leaf is
+simplicial, so the minimum degree is at least two.  A degree-two vertex
+whose neighbors are adjacent is also simplicial.
+\end{proof}
+
+McCuaig and Shepherd proved that every connected \(n\)-vertex graph \(R\)
+with \(\delta(R)\geq2\), except for seven graphs of orders four and seven,
+satisfies
+\[
+  \gamma(R)\leq\frac{2n}{5}
+\tag{3.5}
+\]
+\cite{McCuaigShepherd1989}.  The exception inventory is explicitly
+restated as \(\mathcal F_4\cup\mathcal F_7\) by Henning, Schiermeyer, and
+Yeo \cite[Theorem 1]{HenningSchiermeyerYeo2011}.
+
+\begin{theorem}[minimum-order bound]\label{thm:five-halves}
+Assume the published absence of counterexamples through order \(11\).
+If \(G\) is a minimum-order counterexample of order \(n\), with
+\[
+  k=\gamma(G)=\gaminf(G),
+\]
+then
+\[
+  n\geq\left\lceil\frac{5k}{2}\right\rceil.
+\tag{3.6}
+\]
+\end{theorem}
+
+\begin{proof}
+The published premise gives \(n\geq12\), so \(G\) is not one of the seven
+exceptions of orders four and seven.  Corollary~\ref{cor:no-simplicial}
+gives connectedness and minimum degree at least two.  Apply (3.5) and
+rearrange:
+\[
+  k=\gamma(G)\leq\frac{2n}{5}.
+\]
+Integrality gives (3.6).
+\end{proof}
+
+\begin{corollary}[parameter five at order 12]\label{cor:k5}
+Assume the published absence of counterexamples through order \(11\).
+There is no order-12 graph satisfying
+\[
+  \gamma(G)=\gaminf(G)=5<\theta(G).
+\]
+\end{corollary}
+
+\begin{proof}
+Such a graph would have minimum possible order, so
+Theorem~\ref{thm:five-halves} would give
+\[
+  12\geq\left\lceil\frac{25}{2}\right\rceil=13,
+\]
+a contradiction.
+\end{proof}
+
+\subsection{A general independent-antineighborhood projection}
+
+The simplicial hypothesis is needed for the clique-cover identity (3.2),
+but not for projecting the three equality parameters or the one-guard
+strategy.  For \(A\subseteq\V(G)\), write
+\[
+  N[A]=\bigcup_{a\in A}N[a].
+\]
+
+\begin{theorem}[independent-antineighborhood projection]
+\label{thm:antineighborhood}
+Let \(\gamma(G)=\gaminf(G)=k\), let \(A\) be an independent set of size
+\(t<k\), and put \(Q=G-N[A]\).  Then \(Q\) is nonempty and well-covered,
+and
+\[
+  \gamma(Q)=\alpha(Q)=\gaminf(Q)=k-t.
+\tag{3.7}
+\]
+Moreover, every eternal \(k\)-family on \(G\) has an explicit restricted
+slice that is an eternal \((k-t)\)-family on \(Q\).
+\end{theorem}
+
+\begin{proof}
+By Proposition~\ref{prop:chain}, every maximal independent set of \(G\)
+has size \(k\).  If \(I\) is any maximal independent set of \(Q\), then
+\(I\cup A\) is maximal in \(G\): \(A\) blocks \(N[A]-A\), and \(I\)
+blocks \(Q-I\).  Hence every maximal independent set of \(Q\) has size
+\(k-t\).  Thus \(Q\) is nonempty and well-covered, with
+\[
+  i(Q)=\alpha(Q)=k-t.
+\tag{3.8}
+\]
+If \(B\) dominated \(Q\) with at most \(k-t-1\) vertices, then
+\(A\cup B\) would dominate \(G\) with at most \(k-1\) vertices.
+Consequently \(\gamma(Q)=k-t\).
+
+Fix an arbitrary eternal \(k\)-family \(\mathcal D\) on \(G\).  Choose a
+maximum independent set \(I\) of \(Q\).  Lemma~\ref{lem:forcing} gives
+\(A\cup I\in\mathcal D\), so
+\[
+ \mathcal E=
+ \{D-A:D\in\mathcal D,\ A\subseteq D,\ D-A\subseteq\V(Q)\}
+\tag{3.9}
+\]
+is nonempty.  If \(C\in\mathcal E\), then \(A\cup C\) dominates \(G\).
+No member of \(A\) has a neighbor in \(Q\), so \(C\) dominates \(Q\).
+
+For an arbitrary unoccupied attack \(r\in\V(Q)-C\), closure of
+\(\mathcal D\) supplies a guard \(u\in(A\cup C)\cap N(r)\) whose one-edge
+move to \(r\) stays in \(\mathcal D\).  Again no member of \(A\) is
+adjacent to \(r\), so \(u\in C\); the successor retains \(A\) and all
+other guards remain in \(Q\).  It therefore projects to
+\[
+  (C-\{u\})\cup\{r\}\in\mathcal E.
+\]
+This proves the exact
+\(\forall C\,\forall r\,\exists u\) closure condition on \(Q\), using one
+guard and one edge.  Hence \(\gaminf(Q)\leq k-t\), while
+\(\alpha(Q)\leq\gaminf(Q)\) and (3.8) give equality.
+\end{proof}
+
+\begin{corollary}\label{cor:antineighborhood-minimal}
+If \(G\) is a minimum-order counterexample with common parameter \(k\), then
+for every nonempty independent \(t\)-set \(A\), \(t<k\),
+\[
+ \gamma(G-N[A])=\alpha(G-N[A])=\gaminf(G-N[A])
+ =\theta(G-N[A])=k-t.
+\tag{3.10}
+\]
+Equivalently, if \(H=\overline G\), then for every \(t\)-clique \(A\) of
+\(H\),
+\[
+ \chi\!\left(H[N_H(A)]\right)
+ =\omega\!\left(H[N_H(A)]\right)=k-t,
+\tag{3.11}
+\]
+where \(N_H(A)=\bigcap_{a\in A}N_H(a)\).
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:antineighborhood} gives every equality in (3.10) except
+the one involving \(\theta\).  If
+\(\theta(G-N[A])>k-t\), the proper induced graph \(G-N[A]\) would be a
+smaller counterexample.  Minimality gives equality.  Complementation
+translates \(G-N[A]\) to \(H[N_H(A)]\), proving (3.11).
+\end{proof}
+
+\begin{remark}[prior-art and strength boundary]\label{rem:projection-prior}
+Taletskii's Lemma 13 already proves essentially (3.10) for a minimum-order
+planar counterexample \cite{Taletskii2024}.  Theorem
+\ref{thm:antineighborhood} removes planarity and
+the hypothesis that the graph is a minimum counterexample from the
+\(\gamma,\alpha,\gaminf\) projection and explicitly projects every eternal
+family.  It is therefore presented as an unrestricted, family-level
+generalization, not as a wholly new antineighborhood idea.  Its full
+independent set form is also obtained by iterating the \(t=1\) case.
+For \(k=3\), (3.11) is exactly local bipartiteness together with the
+well-covered clique structure, so it gives no new pruning beyond the
+odd-wheel obstruction already used in the parameter three analysis.
+Novelty relative to the unavailable 2018 manuscript remains unresolved.
+\end{remark}
+
+\section{The certified order-12 parameter-three slice}\label{sec:k3}
+
+\begin{theorem}\label{thm:k3}
+There is no finite simple graph \(G\) of order \(12\) satisfying
+\[
+  \gamma(G)=\gaminf(G)=3<\theta(G).
+\tag{4.1}
+\]
+This assertion includes disconnected graphs.
+\end{theorem}
+
+We summarize the complete coverage proof and exact certificates.  Full
+proof details and all bindings are in the accompanying archive.
+
+\subsection{The exhaustive complement split}
+
+Call a vertex outside an induced cycle a \emph{hub} if it is adjacent to
+every rim vertex.  A cycle is \emph{hub-free} if it has no hub.
+
+\begin{proposition}[odd-wheel obstruction]\label{prop:wheel}
+If \(\gaminf(G)=3\), then \(\overline G\) contains no induced odd wheel.
+\end{proposition}
+
+\begin{proof}
+If \(\overline G\) induces \(K_1\vee C_{2q+1}\), then \(G\) induces
+\(K_1\mathbin{\dot\cup}\overline{C_{2q+1}}\).
+Lemmas~\ref{lem:additivity} and \ref{lem:odd-antihole} give eternal
+domination number four for this induced subgraph, contradicting
+Lemma~\ref{lem:induced}.
+\end{proof}
+
+\begin{proposition}[three-template split]\label{prop:k3-split}
+If \(G\) satisfies (4.1), then \(G\) is connected and
+\(H=\overline G\) contains a hub-free induced \(C_\ell\) for some
+\[
+  \ell\in\{5,7,9\}.
+\tag{4.2}
+\]
+\end{proposition}
+
+\begin{proof}
+If \(G\) were disconnected, component additivity would give a
+counterexample component.  Proposition~\ref{prop:min-k} says that component
+has parameter at least three, so it consumes the entire domination budget;
+hence \(G\) is connected.
+
+Proposition~\ref{prop:chain} gives
+\[
+  \omega(H)=\alpha(G)=3<\chi(H)=\theta(G).
+\tag{4.3}
+\]
+The Strong Perfect Graph Theorem supplies an induced odd hole or odd
+antihole.  An odd antihole of length \(2q+1\) has clique number \(q\), so
+its length is five or seven.  The five-antihole is \(C_5\).  An induced
+\(\overline{C_7}\) in \(H\) induces \(C_7\) in \(G\), contradicting
+Lemmas~\ref{lem:induced} and \ref{lem:c7}.  Thus \(H\) contains an odd hole.
+
+It is hub-free by Proposition~\ref{prop:wheel}.  Since no pair dominates
+\(G\), every pair in \(H\) has a common \(H\)-neighbor.  The endpoints of
+a rim edge have no common neighbor on an induced rim, so they have one
+outside it.  If only one vertex lay outside the hole, it would be a hub.
+At least two vertices therefore lie outside, and the odd rim has length at
+most ten.  This gives (4.2).
+\end{proof}
+
+\subsection{Exact formulas and coverage}
+
+Fix \(\ell\in\{5,7,9\}\), label an induced cycle of
+\(H=\overline G\) by \(0,\ldots,\ell-1\), and label one common
+\(H\)-neighbor of rim edge \(01\) as vertex \(\ell\).  The formula has
+6,886 variables:
+\[
+\begin{array}{rcll}
+66   &:& e_{uv} & (uv\in E(H)),\\
+660  &:& w_{ab,c} & (c\text{ witnesses a common }H\text{-neighbor of }a,b),\\
+220  &:& f_D & (D\in\binom{[12]}3\text{ is selected}),\\
+5,940&:& m_{D,r,u} & (u\in D\text{ responds to }r\notin D).
+\end{array}
+\tag{4.4}
+\]
+The clauses assert: no \(K_4\) in \(H\); a common \(H\)-neighbor for every
+pair; the labeled hub-free cycle template; connectedness of \(G\); a
+nonempty selected family of dominating triples; one legal successor for
+every selected state and every unoccupied attack; and selection of every
+\(H\)-triangle.  In particular, a move literal implies
+\(\neg e_{ur}\), because a legal move uses an edge of \(G\), not \(H\).
+It also selects the state \((D-\{u\})\cup\{r\}\), whose own clauses require
+domination.
+
+For every normalized map \(c:[12]\to\{0,1,2\}\) proper on the forced
+template, the coloring obstruction is
+\[
+  C_c=\bigvee_{\substack{u<v\\c(u)=c(v)}}e_{uv}.
+\tag{4.5}
+\]
+It is false exactly when \(c\) is a proper coloring of \(H\).
+The \(C_5\) and \(C_7\) formulas contain complete banks of respectively
+3,645 and 1,701 such clauses.  The \(C_9\) formula contains 170 valid
+coloring clauses obtained during counterexample-guided refinement.  No
+completeness claim is needed for that subset: every graph with
+\(\chi(H)>3\) satisfies every clause (4.5).
+
+The \(C_5\) branch also lexicographically orders the six undistinguished
+outer signatures.  The formula is invariant under their full permutation
+group, so every model has an orbit representative satisfying the order.
+
+\begin{lemma}[parameter-three graph-to-formula coverage]
+\label{lem:k3-coverage}
+Every graph satisfying (4.1) induces a satisfying assignment of at least
+one of the three exact formulas in Table~\ref{tab:k3}.
+\end{lemma}
+
+\begin{proof}
+Use Proposition~\ref{prop:k3-split} and label the resulting template as
+above.  Set edge and witness variables from \(H\).
+Equation (4.3) supplies the no-\(K_4\) and coloring clauses; failure of every
+pair to dominate supplies the common-neighbor clauses; and connectedness
+and hub-freeness supply the corresponding template clauses.
+
+Set \(f_D\) on an actual nonempty eternal three-family and choose one
+one-guard response for each selected state and unoccupied attack.
+Lemma~\ref{lem:forcing} selects every \(H\)-triangle.  If \(\ell=5\),
+permute undistinguished vertices and all associated semantic variables to
+satisfy the signature order.  Thus the exact branch formula is satisfied.
+\end{proof}
+
+\subsection{Certificates}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Exact parameter-three branch formulas and accepted
+addition-only RUP proofs.}
+\label{tab:k3}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+ & \(C_5\) & \(C_7\) & \(C_9\)\\
+\midrule
+variables & 6,886 & 6,886 & 6,886\\
+clauses & 23,968 & 21,718 & 20,200\\
+literals & 192,169 & 148,551 & 117,841\\
+CNF bytes & 754,323 & 621,864 & 530,053\\
+proof additions & 247,981 & 284,317 & 4,705\\
+proof bytes & 6,337,621 & 18,093,724 & 65,906\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In \(C_5,C_7,C_9\) order, the formula SHA-256 values are
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\filehash{c6a0811c718ff8e9352f253e4ce225ce2826def9c3e4a9cd55f0b0152703d104}\\
+\filehash{6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7}\\
+\filehash{2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d}
+\end{minipage}
+\end{center}
+The corresponding addition-only proof SHA-256 values are
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\filehash{c6c24853e30073e66fb396441edb176a0160d062a8558e25fa18a955f33927c3}\\
+\filehash{e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9}\\
+\filehash{24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab}
+\end{minipage}
+\end{center}
+
+Each proof is an addition-only sequence of reverse-unit-propagation (RUP)
+consequences ending in the empty clause, so it is a directly checkable
+unsatisfiability certificate \cite{WetzlerHeuleHunt2014}.  Strict replays
+reported zero RAT lemmas.  The \(C_5\) binary proof was independently
+parsed and replayed; the \(C_7\) proof passed two warning-fatal RUP-only
+replays; and the \(C_9\) proof passed both a separately written
+standard-library checker and a pinned external checker.  Two independent
+reviews audited the three-branch coverage theorem.
+
+\begin{proof}[Proof of Theorem~\ref{thm:k3}]
+A putative graph gives a satisfying assignment of one exact formula by
+Lemma~\ref{lem:k3-coverage}.  The corresponding accepted RUP refutation
+proves that formula unsatisfiable, a contradiction.
+\end{proof}
+
+\section{The certified connected order-12 parameter-four slice}
+\label{sec:k4}
+
+\begin{theorem}\label{thm:k4}
+There is no connected finite simple graph \(G\) of order \(12\) satisfying
+\[
+  \gamma(G)=\gaminf(G)=4<\theta(G).
+\tag{5.1}
+\]
+\end{theorem}
+
+Put \(H=\overline G\), and let \(e_{uv}=1\) mean \(uv\in E(H)\).
+Equality collapse gives
+\[
+  \gamma(G)=\alpha(G)=\gaminf(G)=4<\theta(G).
+\tag{5.2}
+\]
+
+\subsection{An exact anchored synthesis formula}
+
+\begin{proposition}[static characterization]\label{prop:k4-static}
+Up to relabeling vertices, \(\gamma(G)=\alpha(G)=4\) if and only if:
+\begin{enumerate}
+\item \(A=\{0,1,2,3\}\) is a \(K_4\) in \(H\);
+\item \(H\) has no \(K_5\); and
+\item every three-set \(S\) has a common \(H\)-neighbor outside \(S\).
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+If \(\gamma=\alpha=4\), label a maximum independent four-set of \(G\) as
+\(A\).  It is a \(K_4\) of \(H\), and \(\alpha(G)=4\) forbids a \(K_5\)
+in \(H\).  No three-set dominates \(G\), so every three-set has a vertex
+adjacent in \(G\) to none of it, equivalently a common \(H\)-neighbor.
+
+Conversely, the anchor and no-\(K_5\) clauses give \(\alpha(G)=4\).
+The common-neighbor condition says that no three-set dominates \(G\), so
+\(\gamma(G)\geq4\).  The independent four-set \(A\) is maximum and hence
+maximal, so it dominates \(G\) and \(\gamma(G)\leq4\).
+\end{proof}
+
+The exact formula uses the following 18,381 variables.
+\[
+\begin{array}{@{}lrr@{}}
+\toprule
+\text{role} & \text{family} & \text{count}\\
+\midrule
+\text{complement edges} & e_{uv},\ u<v & 66\\
+\text{triple common-neighbor witnesses}
+  & w_{S,x},\ |S|=3,\ x\notin S & 1,980\\
+\text{selected guard states} & f_D,\ |D|=4 & 495\\
+\text{one-guard responses}
+  & m_{D,r,u},\ r\notin D,\ u\in D & 15,840\\
+\midrule
+\text{total}&&18,381\\
+\bottomrule
+\end{array}
+\tag{5.3}
+\]
+Its static clauses encode Proposition~\ref{prop:k4-static} and
+connectedness of \(G\).  For every nonempty proper cut \(S\) containing
+vertex \(0\), the connectedness clause is
+\[
+  \bigvee_{\substack{u\in S\\v\notin S}}\neg e_{uv},
+\tag{5.4}
+\]
+where a negative \(H\)-edge is a \(G\)-edge.
+
+For each four-set \(D\) and \(x\notin D\), domination is
+\[
+  \neg f_D\ \vee\ \bigvee_{u\in D}\neg e_{ux}.
+\tag{5.5}
+\]
+At least one \(f_D\) is true.  For each selected \(D\) and unoccupied
+attack \(r\notin D\), the clauses require at least one \(m_{D,r,u}\), and
+each true response implies
+\[
+  \neg e_{ur}
+  \quad\text{and}\quad
+  f_{(D-\{u\})\cup\{r\}}.
+\tag{5.6}
+\]
+Thus the encoded quantifier is exactly
+\[
+  \forall D\in\mathcal D\ \forall r\notin D\ \exists u\in D,
+\]
+with one named guard moving along one \(G\)-edge to a selected successor.
+Every \(H\)-\(K_4\) is also selected, a sound strengthening by
+Lemma~\ref{lem:forcing}.
+
+The anchored \(K_4\) fixes four distinct colors in any proper
+four-coloring of \(H\).  Normalize them by \(c(j)=j\) for \(j\in A\).
+For each of the \(4^8=65,536\) colorings of the remaining vertices, append
+\[
+  C_c=\bigvee_{\substack{u<v\\c(u)=c(v)}}e_{uv}.
+\tag{5.7}
+\]
+The full bank is equivalent to \(\chi(H)>4\), hence to \(\theta(G)>4\).
+
+Finally, lexicographically order the four-bit anchor signatures
+\[
+  (e_{0v},e_{1v},e_{2v},e_{3v}),\qquad v=4,\ldots,11.
+\tag{5.8}
+\]
+Permuting the eight outer vertices and all semantic variables preserves
+the base formula and permutes the complete coloring bank, so every orbit
+has an ordered representative.
+
+\begin{proposition}[parent coverage]\label{prop:k4-parent}
+The resulting anchored parent formula is satisfiable if and only if, up to
+relabeling one maximum independent four-set, there is a connected
+12-vertex graph satisfying (5.2).
+\end{proposition}
+
+\begin{proof}
+Given such a graph, Proposition~\ref{prop:k4-static} supplies the static
+assignment, an actual eternal family supplies (5.5)--(5.6), and
+\(\chi(H)>4\) supplies (5.7).  Relabel outer vertices to satisfy (5.8).
+
+Conversely, the static clauses give \(\gamma=\alpha=4\), the selected-state
+clauses give an eternal four-family and hence \(\gaminf=4\), the cut
+clauses give connectedness, and the complete bank gives \(\theta>4\).
+\end{proof}
+
+The exact parent DIMACS file has
+\[
+\begin{array}{rcl}
+\text{variables}&=&18,381,\\
+\text{clauses}&=&114,742,\\
+\text{literal occurrences}&=&1,180,016,\\
+\text{bytes}&=&3,992,947.
+\end{array}
+\tag{5.9}
+\]
+Its SHA-256 is
+\begin{center}
+\filehash{adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac}.
+\end{center}
+
+\subsection{DoubleLex orbit reduction}
+
+Form the \(8\)-by-\(4\) anchor--outer incidence matrix
+\[
+  M_{v,j}=e_{jv},\qquad v\in\{4,\ldots,11\},\ j\in A.
+\tag{5.10}
+\]
+The group \(S_8\times S_4\) permutes its rows and columns.  Relabeling
+vertices simultaneously in all graph, witness, family, and move variables
+preserves the formula.  Under an anchor permutation, permuting the four
+color names restores the normalized anchor colors, so the complete bank is
+also invariant.
+
+\begin{proposition}[DoubleLex equisatisfiability]
+\label{prop:doublelex}
+The parent formula is satisfiable if and only if it has a model in which
+both the rows and columns of \(M\) are lexicographically nondecreasing.
+\end{proposition}
+
+\begin{proof}
+Choose, among the finite \(S_8\times S_4\) orbit of a parent model, an
+image whose row-major matrix word is lexicographically least.  If an
+earlier row exceeded a later row, swapping those rows would decrease the
+word.  Hence the rows are ordered.  If adjacent columns were inverted,
+swap them.  At their first differing row, the row-major word changes from
+\(1\) to \(0\), with all earlier entries fixed, again a contradiction.
+Thus the same least image has both orders.  The reverse implication is
+immediate.
+\end{proof}
+
+Three auxiliary-free eight-bit comparators impose the column order.  They
+add 765 clauses and 10,758 literals.  The exact strengthened formula \(D\)
+therefore has
+\[
+\begin{array}{rcl}
+\text{variables}&=&18,381,\\
+\text{clauses}&=&115,507,\\
+\text{literal occurrences}&=&1,190,774,\\
+\text{bytes}&=&4,030,657.
+\end{array}
+\tag{5.11}
+\]
+The exact SHA-256 binding is
+\begin{center}
+\filehash{14284db1f0b9cfb37b91d834fbabac1d0ca06d36e0d2782683e35cbd04a976e7}.
+\end{center}
+An independent reconstruction reproduced both the complete parent prefix
+and the 37,710-byte comparator suffix byte for byte.  Exhaustive comparator
+tests and semantic mutation tests checked the symmetry and one-guard
+encoding.
+
+\subsection{The exact LRAT refutation}
+
+A complete solver proof was normalized to an addition-only RUP stream of
+15,783,377 bytes with SHA-256
+\begin{center}
+\filehash{2741335a5ed9af769f0db4bd0c03a70e414d0568681d5b8261a5667ed30b6686}.
+\end{center}
+Warning-fatal forward and backward replays both verified the stream and
+reported zero RAT lemmas.  Conversion produced a 228,381,671-byte LRAT
+certificate with SHA-256
+\begin{center}
+\filehash{0e04eb639a3f7f7d335126d56040abb4ef11e8548770262c316a608390659263}.
+\end{center}
+The pinned, separately checked \texttt{lrat-check} executable accepted it.
+
+The independent hostile audit reconstructed \(D\) and the normalized proof
+byte for byte, reran both RUP directions, generated a fresh byte-identical
+LRAT, replayed both retained and fresh LRATs, and rejected six mutated
+artifacts.  Its exact verdict was
+\begin{center}
+\nolinkurl{ACCEPT_EXACT_DOUBLELEX_CNF_UNSAT_ONLY}.
+\end{center}
+A separate implication audit checked the transfer from exact \(D\)-UNSAT through
+Propositions~\ref{prop:k4-parent} and \ref{prop:doublelex}.
+
+\begin{proof}[Proof of Theorem~\ref{thm:k4}]
+If a connected graph satisfied (5.1), equality collapse would give (5.2),
+and Proposition~\ref{prop:k4-parent} would give a parent model.
+Proposition~\ref{prop:doublelex} would then give a model of \(D\).
+The accepted LRAT certificate proves \(D\) unsatisfiable, a contradiction.
+\end{proof}
+
+\begin{remark}[connected scope]\label{rem:k4-connected}
+Theorem~\ref{thm:k4} is a connected exclusion.  It does not, by itself,
+exclude every disconnected parameter-four graph of order 12.  In the
+proof of Theorem~\ref{thm:frontier}, the published absence of smaller
+counterexamples makes a putative order-12 counterexample minimum-order, and
+Corollary~\ref{cor:connected} then supplies connectedness.
+\end{remark}
+
+\section{Assembly of the order-12 frontier}\label{sec:assemble}
+
+\begin{proof}[Proof of Theorem~\ref{thm:frontier}]
+Orders at most 11 are excluded by the explicitly assumed published
+computation.  Suppose an order-12 counterexample \(G\) exists.  It then has
+minimum possible order and is connected by
+Corollary~\ref{cor:connected}.  Put
+\[
+  k=\gamma(G)=\gaminf(G).
+\]
+Corollary~\ref{cor:parameters} leaves exactly
+\[
+  k\in\{3,4,5\}.
+\]
+Theorem~\ref{thm:k3} excludes \(k=3\);
+Theorem~\ref{thm:k4} excludes the connected \(k=4\) case; and
+Corollary~\ref{cor:k5} excludes \(k=5\).  No parameter remains.
+\end{proof}
+
+\begin{remark}[evidentiary boundary]
+The \(k=3\) and connected \(k=4\) order-12 slices are backed by campaign
+certificates and independent replays.  The \(k=5\) slice is analytic,
+relative to the classical McCuaig--Shepherd theorem and the published
+through-order-11 computation.  The all-parameter statement through order
+12 additionally imports that published computation at orders at most 11.
+The campaign's audit of the published 56-graph appendix is a regression
+check, not a replacement for the original all-graph coverage.
+\end{remark}
+
+\section{Certificates, reproduction, and provenance}\label{sec:repro}
+
+All paths below are relative to the archive root
+\texttt{gamma\_theta\_eternal\_domination/}.
+
+\subsection{Parameter-three replay}
+
+The accepted theorem note and its two independent composition reviews are:
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\texttt{math/lemmas/order12\_k3\_exclusion.md}\\
+\texttt{reviews/order12\_k3\_exclusion\_hostile\_review.md}\\
+\texttt{reviews/order12\_k3\_exclusion\_second\_review.md}.
+\end{minipage}
+\end{center}
+The claim-level acceptance record is
+\begin{center}
+\texttt{results/order12\_k3\_exclusion\_acceptance.json}.
+\end{center}
+From the archive root, the fail-closed full replay is:
+\begin{verbatim}
+python3 -I -B repro/c035/replay.py --mode full \
+  --output /fresh/path/c035-full-replay.json
+\end{verbatim}
+It validates exact source, formula, proof, checker, review, and manifest
+bindings before running the three proof replays in fresh private
+directories.  A successful record says
+\texttt{PASS\_FULL\_C035\_REPLAY} and
+\texttt{proofs\_freshly\_replayed=true}.  The fast mode checks metadata
+only and explicitly returns no mathematical claim.
+
+\subsection{Parameter-four replay}
+
+The compact publication package is
+\begin{center}
+\texttt{certificates/order12\_k4\_doublelex\_seed0\_lrat\_publication/}.
+\end{center}
+It contains the 64,288,636-byte compressed LRAT with SHA-256
+\begin{center}
+\filehash{edc0f6b76bc96b2b26677f399566ae437cc47a6fc0cc921eaff81d77b72a50da}.
+\end{center}
+Decompression is accepted only if the result has the size and hash in
+Section~\ref{sec:k4}.  From the archive root, the one-command replay is:
+\begin{verbatim}
+python3 \
+  certificates/order12_k4_doublelex_seed0_lrat_publication/\
+verify_publication.py
+\end{verbatim}
+The verifier hashes the formula, package metadata, compressed and recovered
+proofs, checker, author package, and independent review before invoking
+\texttt{lrat-check}.  Its accepted terminal verdict is
+\texttt{VERIFIED\_EXACT\_DOUBLELEX\_CNF\_UNSAT\_ONLY}.  The graph transfer
+is separately recorded in:
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\texttt{math/lemmas/order12\_k4\_synthesis\_target.md}\\
+\texttt{math/lemmas/order12\_k4\_doublelex.md}\\
+\texttt{reviews/order12\_k4\_doublelex\_conditional\_implication\_audit/}\\
+\hspace*{1em}\texttt{REVIEW.md}.
+\end{minipage}
+\end{center}
+
+\subsection{Frontier and structural reviews}
+
+The assembled theorem and the hash-bound independent review are:
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\texttt{math/lemmas/order12\_frontier.md}\\
+\texttt{reviews/order12\_frontier\_second\_review/REVIEW.md}.
+\end{minipage}
+\end{center}
+Their SHA-256 values are respectively
+\begin{center}
+\filehash{adb27204d33feb47933f2a4b1e381485b2e1b80c22b56a67b18586c4933c2b75}
+\end{center}
+and
+\begin{center}
+\filehash{875447d219e5670d66be7d6e4b7ec9f9b3b03bba4d2b169b836706b624a92926}.
+\end{center}
+The review's exact verdict is
+\texttt{ACCEPT\_ORDER12\_FRONTIER\_WITH\_EXPLICIT\_PUBLISHED\_PREMISE}.
+The simplicial theorem was separately audited in
+\begin{center}
+\texttt{reviews/simplicial\_neighborhood\_reduction\_hostile/}.
+\end{center}
+That review found no mathematical defect and exhaustively tested the
+reduction on all 13,598 graphs in the retained small-graph universe through
+order 8.  Finite testing is supporting regression evidence; the proof of
+Theorem~\ref{thm:simplicial} is the mathematical evidence.
+
+The independent-antineighborhood theorem, its exact prior-art audit, and
+its clean-room falsification probe are:
+\begin{center}
+\begin{minipage}{0.95\linewidth}
+\texttt{math/lemmas/independent\_antineighborhood\_projection.md}\\
+\texttt{reviews/general\_neighborhood\_projection\_independent/REVIEW.md}\\
+\texttt{reviews/general\_neighborhood\_projection\_independent/probe.py}.
+\end{minipage}
+\end{center}
+The probe imports no campaign evaluator and checks all 13,598 unlabeled
+graphs through order 8, including 14,421 eligible independent sets and
+56,166 one-guard attack obligations.  Its role is falsification and
+regression; the proof of Theorem~\ref{thm:antineighborhood} is the
+unbounded-order evidence.
+
+\subsection{Research and verification provenance}
+
+This manuscript and the associated research artifacts were produced with
+substantial assistance from autonomous AI systems.  No theorem or finite
+claim was accepted on model output alone.  Mathematical reductions were
+assigned to separate adversarial proof reviews; exact formulas were
+independently reconstructed; proof streams were replayed by checkers that
+do not import the search implementation's graph-transition core; and
+mutation tests were used to detect complement-sign, occupied-attack,
+all-guards-move, missing-successor, and malformed-certificate errors.
+These procedures reduce, but do not eliminate, the need for human
+inspection.  Human authors remain responsible for any submitted version
+and for the archived evidence.
+
+\section*{Data availability}
+
+The accompanying archive contains the formulas, proofs, verifiers,
+manifests, reviews, literature-source identifiers, and exact hashes cited
+above.  A permanent public archive identifier is to be inserted before
+submission.
+
+\section*{Acknowledgment of limitations}
+
+No external expert was contacted during this independent campaign.  The
+universal conjecture remains open in this work.  The strongest conclusion
+is the explicitly delimited order-12 frontier theorem, and its lower-order
+part relies on the published computation of
+MacGillivray--Mynhardt--Virgile.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

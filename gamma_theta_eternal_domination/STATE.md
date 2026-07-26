@@ -1,5 +1,208 @@
 # Campaign State
 
+## Checkpoint 042 — 2026-07-26 08:15 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `9df3a414e6ba9f631ff68bff69d5ab0a37048f5e`.
+- **C-050 wrapper independently accepted:** a new private-copy hostile audit
+  checked all 21 unique theorem, source, formula, proof, and review bindings,
+  reran metadata and full-LRAT modes, reconstructed the exact DIMACS census,
+  and rejected seven of seven corruptions plus duplicate-key and nonfinite
+  JSON.  Verdict: `ACCEPT_EXACT_FROZEN_C050_WRAPPER`; blocking defects zero.
+- Root independently reran the C-050 audit program and both direct replay
+  modes.  Full mode again returned
+  `VERIFIED_ORDER12_FRONTIER_BINDINGS_AND_EXACT_LRAT` without launching a SAT
+  solver.
+- **Order-12 manuscript independently accepted:** the deterministic
+  17-page manuscript has source SHA-256 `5437afac...` and PDF SHA-256
+  `1084efc8...`.  Two clean Tectonic 0.16.9 builds reproduced the BBL and PDF
+  byte for byte.  Two separate complete visual passes and the independent
+  audit found no mathematical, scope, certificate, bibliography, build, or
+  rendering defect.  Verdict:
+  `ACCEPT_FROZEN_MANUSCRIPT_WITH_EXPLICIT_PRESUBMISSION_PLACEHOLDERS`.
+  Human author metadata and a permanent archive identifier remain the only
+  external-submission gates.
+- **New proved order-13 reduction (C-052):** relative to C-050's explicit
+  published lower-order premise, every order-13 counterexample is
+  minimum-order, connected, and has common parameter \(k\in\{3,4,5\}\).
+  For \(k=3\), its complement belongs to the exhaustive union of hub-free
+  induced-\(C_5,C_7,C_9,C_{11}\) templates.  This is a coverage theorem, not
+  an order-13 exclusion.
+- The independent order-13 strategy audit reconstructed all four exploratory
+  \(k=3\) formulas byte for byte and reproduced every template, coloring,
+  signature-breaker, and generic \(k=3,4,5\) census.  Its revised-byte verdict
+  is `ACCEPT_FINAL_REVISED_BYTES_AND_UNCHANGED_STRATEGY_CONTENT`; its
+  final-byte replay reproduces the retained evidence exactly.
+- The historical `hole11` solver return remains strictly `OBSERVED` and
+  `UNSAT_UNCERTIFIED`.  Its corrected ledger explicitly records that exact
+  argv, CPU time, and transcripts were not retained and were not
+  reconstructed.  No production run may repeat that metadata failure.
+- The complete campaign regression suite passed 359 of 359 tests twice with
+  warnings treated as errors.  The retained second run took 331.489 test
+  seconds and 331.78 wall seconds, peaked at 148,242,432 bytes RSS, and is
+  bound by log SHA-256 `1b0bd7df...`.
+
+### Evidentiary boundary
+
+- C-050 is a certified extension of the published through-order-11 frontier,
+  not a campaign-only enumeration at orders 10 and 11.
+- C-052 proves only the order-13 parameter/template cover.  No order-13
+  template has a retained checked UNSAT proof, and no order-13 graph is
+  excluded.
+- No counterexample, universal proof, or prior universal resolution has been
+  obtained.  The conjecture remains open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; C-051 novelty remains delimited by Taletskii and the unavailable 2018 manuscript |
+| Order-12 frontier | exhausted-certified | C-050 wrapper and manuscript both independently accepted |
+| Independent-antineighborhood projection | accepted-structural | C-051 proof/review/probe frozen; use mainly for \(k\geq4\) |
+| Order-13 parameter/template cover | accepted-proved | C-052 gives \(k=3,4,5\) and the four exact \(k=3\) templates |
+| Order-13 \(k=3\) implementation | pending-two-constructor-gate | Dedicated deterministic constructor and clean-room reconstruction must replace the historical runtime parameterization |
+| Order-13 `hole11` certificate | pending-after-implementation-audit | Proofless 0.0202-second UNSAT observation is not evidence |
+| Order-13 \(k=4\) | pending-second | Start only after the \(k=3\) constructor/certificate gate |
+| Order-13 \(k=5\) | structural-first | Audit near-extremal domination refinements before building the 59,280-variable direct target |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, enumerator, or other memory-heavy process is
+  running.
+- The accepted frontier metadata replay is
+  `python3 repro/c050/replay.py`; full LRAT replay adds `--full`.
+- The manuscript build is documented in `paper/order12_frontier/README.md`;
+  its machine QA binding is `paper/order12_frontier/qa.json`.
+- Do not use the historical in-memory order-13 pilot bytes for a decisive
+  run.  Build and independently reconstruct a dedicated checked-in
+  constructor first.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Free data-volume space: approximately 20 GiB.
+- Load averages near checkpoint: 2.19, 2.79, 3.26.
+- The 64,288,636-byte compressed LRAT remains below the repository's
+  100-MiB single-file limit.  The ignored 228,381,671-byte decompressed copy
+  is reconstructed only for checking.
+
+### Next three highest-value actions
+
+1. Validate the final manifest and staged scope, commit, and push the frozen
+   order-12 frontier, manuscript, C-051, and C-052 checkpoint.
+2. Implement a dedicated deterministic order-13 \(k=3\) constructor and a
+   structurally independent clean-room reconstructor; prove and mutation-test
+   every formula and symmetry binding.
+3. After that gate, produce, normalize, convert, and independently replay a
+   bounded `hole11` LRAT before attempting the other three templates.
+
+## Checkpoint 041 — 2026-07-26 07:10 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `9df3a414e6ba9f631ff68bff69d5ab0a37048f5e`.
+- **Accepted exact-CNF result (C-046):** the DoubleLex formula
+  `14284db1...` is UNSAT.  Its 228,381,671-byte LRAT (`0e04eb63...`)
+  passed author forward/backward/fresh checks and an independent hostile
+  reconstruction and replay.  The publication-sized 64,288,636-byte zstd
+  package (`edc0f6b...`) passed a separate V2 hostile review with 13
+  fail-closed mutation probes.
+- **Accepted connected order-12 parameter-four exclusion (C-047):** C-037,
+  C-045, equality collapse, exact formula UNSAT, and the separately reviewed
+  graph implication leave no connected order-12 graph with
+  \(\gamma=\gamma^\infty=4<\theta\).
+- **Accepted structural reduction (C-048):** deleting the closed
+  neighborhood of a simplicial vertex lowers
+  \(\gamma,\alpha,\gamma^\infty\) by exactly one and lowers \(\theta\) by
+  exactly one.  Hence a minimum counterexample has no simplicial vertex,
+  has minimum degree at least two, and has no degree-two vertex in a
+  triangle.  An independent proof review and exhaustive probe of 13,598
+  graphs through order eight passed.  Novelty remains explicitly unresolved.
+- **Accepted parameter-five exclusion (C-049):** relative to the published
+  absence through order 11, McCuaig--Shepherd plus C-048 gives
+  \(n\geq\lceil5k/2\rceil\) for a minimum counterexample, so \(n=12,k=5\)
+  is impossible.
+- **Accepted order-12 frontier (C-050):** C-035, C-047, and C-049 exhaust
+  \(k=3,4,5\), the only possible order-12 parameters.  Relative explicitly
+  to MacGillivray--Mynhardt--Virgile's published through-order-11
+  computation, every counterexample has order at least 13.
+- The frozen frontier theorem `adb27204...` received verdict
+  `ACCEPT_ORDER12_FRONTIER_WITH_EXPLICIT_PUBLISHED_PREMISE` from one complete
+  independent audit; a second hostile audit remains active.  The
+  machine-readable acceptance record has SHA-256 `e3b09308...`.
+- Root reran both `python3 repro/c050/replay.py` and its `--full` mode.
+  Metadata mode verified 21 bound artifacts and the exact DIMACS census;
+  full mode decompressed and replayed the LRAT and returned
+  `VERIFIED_ORDER12_FRONTIER_BINDINGS_AND_EXACT_LRAT`.
+- The complete campaign regression suite passed 359 of 359 tests in
+  345.862 seconds with warnings treated as errors.
+- **Accepted projection theorem (C-051):** for every independent \(t\)-set
+  \(A\) in any equality graph, \(G-N[A]\) is a nonempty well-covered equality
+  graph with \(\gamma=\alpha=\gamma^\infty=k-t\), and every eternal family
+  has an explicit restricted slice.  A clean-room probe passed on all 13,598
+  unlabeled graphs through order eight, 14,421 eligible independent sets,
+  and 56,166 attack obligations.  Taletskii's planar
+  minimum-counterexample Lemma 13 already contains essentially the local
+  minimum-counterexample conclusion, so C-051 is framed only as an
+  unrestricted family-level generalization; its full-\(A\) form iterates
+  the vertex case and gives no new \(k=3\) pruning.  The unavailable 2018
+  manuscript remains an additional novelty caveat.  The exact theorem,
+  review, probe, and Taletskii source bindings are frozen in acceptance
+  record `791de946...`.
+
+### Evidentiary boundary
+
+- The campaign independently certifies the complete order-12 \(k=3\) and
+  connected \(k=4\) slices and proves the \(k=5\) exclusion from accepted
+  theorems.
+- The campaign has not reproduced the billion-scale all-graph coverage at
+  orders 10 and 11.  C-050 cites the published computation as a premise and
+  must never be described as a campaign-only enumeration through order 12.
+- No counterexample, universal proof, or statement about order at least 13
+  has been obtained.  The conjecture remains unresolved.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; projection novelty lowered by Taletskii Lemma 13 and unavailable 2018 manuscript |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 |
+| Order-12 \(k=4\) | exhausted-certified | Complete connected slice C-047; older 1/16 leaf run retained as historical incomplete nonclaim |
+| Order-12 \(k=5\) | exhausted-proved | C-049 excludes the slice analytically |
+| Order-12 frontier | accepted-packaging | One independent frontier review accepted; second review and manuscript packaging active |
+| Independent-antineighborhood projection | accepted-structural | C-051 proved; exploit only for \(k\ge4\), with Taletskii overlap and unavailable-2018 novelty caveats |
+| Order-13 search/proof lane | pending-next | Open only after the accepted order-12 checkpoint is committed and the highest-yield parameter/template split is written |
+
+### Running jobs and resume state
+
+- No SAT solver, enumerator, or other memory-heavy process is running.
+- Two review agents are active on the order-12 frontier and its acceptance
+  wrapper; one manuscript agent is compiling and rendering a separate
+  order-12 paper.
+- Metadata replay:
+  `python3 repro/c050/replay.py`.
+- Full exact proof replay:
+  `python3 repro/c050/replay.py --full`.
+- Do not resume the superseded v3 leaf search or the rejected `0111`
+  recovery path merely to duplicate the accepted whole-formula proof.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Free data-volume space: approximately 23 GiB.
+- Load averages at 07:10 PDT: 1.96, 1.94, 2.09.
+- The full frontier replay completed in 4.1 seconds locally and used no SAT
+  solver.  No current process threatens the 75% memory ceiling.
+
+### Next three highest-value actions
+
+1. Freeze the second frontier audit and a hostile audit of the C-050
+   acceptance/replay wrapper, then commit and push the exact checkpoint.
+2. Complete and visually inspect the order-12 manuscript, including the
+   exact Taletskii prior-art boundary for C-051.
+3. Open a
+   structurally restricted, resumable order-13 lane rather than blind graph
+   enumeration.
+
 ## Checkpoint 040 — 2026-07-26 05:25 PDT
 
 - Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`

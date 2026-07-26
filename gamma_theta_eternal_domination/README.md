@@ -22,6 +22,67 @@ Finite verification or a graph-class theorem is a partial result, not a
 resolution. A resolution requires a universal proof, a fully certified
 counterexample, or a verified prior resolution.
 
+## Current frontier
+
+The campaign has advanced the published finite frontier by one order:
+
+```text
+Relative to MacGillivray--Mynhardt--Virgile's published computation
+through order 11, every counterexample, if one exists, has order at least 13.
+```
+
+This is claim C-050.  At order 12, C-035 excludes the complete \(k=3\)
+slice, C-047 excludes the complete connected \(k=4\) slice using an exact
+LRAT refutation, and C-049 excludes \(k=5\) analytically.  The standard
+half-order and minimum-parameter reductions show that these are all possible
+parameters.  The campaign has not independently reproduced the published
+all-graph enumeration at orders 10 and 11, so that premise remains explicit.
+This finite result does not resolve the universal conjecture.
+
+The complete claim-level metadata replay is:
+
+```text
+python3 repro/c050/replay.py
+```
+
+To decompress and independently check the accepted 228,381,671-byte LRAT
+as well:
+
+```text
+python3 repro/c050/replay.py --full
+```
+
+The commands invoke no SAT solver.  Exact scope, hashes, case coverage, and
+the published-computation boundary are frozen in
+`results/order12_frontier_acceptance.json`.
+
+Claim C-051 supplies a recursive structural tool.  If
+\(\gamma(G)=\gamma^\infty(G)=k\), \(A\) is an independent \(t\)-set with
+\(t<k\), and \(Q=G-N[A]\), then
+
+\[
+\gamma(Q)=\alpha(Q)=\gamma^\infty(Q)=k-t,
+\]
+
+and \(Q\) is nonempty and well-covered.  Every eternal family on \(G\)
+projects to an explicit family on \(Q\).  For a minimum counterexample,
+minimality also gives \(\theta(Q)=k-t\).  This is an unrestricted,
+family-level generalization of Taletskii's planar minimum-counterexample
+Lemma 13, not a claim that the antineighborhood idea itself is wholly new;
+the full independent-set form iterates the vertex case.
+
+The deterministic 17-page submission-oriented manuscript is in
+`paper/order12_frontier/`.  Its README gives the fixed-epoch build, exact
+hashes, visual-QA boundary, and the two submission placeholders that only the
+human author can complete.
+
+Claim C-052 opens the order-13 lane without inflating it into a finite
+result.  Relative to C-050, an order-13 counterexample is connected with
+common parameter \(3,4,\) or \(5\).  For \(k=3\), its complement belongs to
+the exhaustive union of hub-free induced-\(C_5,C_7,C_9,C_{11}\) templates.
+The retained `hole11` proofless pilot is only `OBSERVED`; its historical
+metadata omissions are explicit, and no order-13 branch is certified yet.
+
 ## Trust architecture
 
 - `src/verifier_a/`: bitset greatest-fixed-point implementation.
@@ -275,9 +336,9 @@ independent audit children succeed.  It refuses to launch under excessive
 CPU load, low memory, or low disk space.
 
 Claim C-036 gives the classical half-order reduction
-\(n\geq2k+1\) for a connected counterexample.  Thus, after C-035, only
-connected \(k=4,5\) remain at order 12.  Claim C-037 supplies the exact
-connected \(k=4\) parent formula:
+\(n\geq2k+1\) for a connected counterexample.  At that intermediate stage,
+after C-035, only connected \(k=4,5\) remained at order 12.  Claim C-037
+supplies the exact connected \(k=4\) parent formula:
 
 ```text
 PYTHONPATH=src python3 -B -m synthesis_k4.generate \
@@ -290,8 +351,10 @@ python3 -B reviews/order12_k4_synthesis_target_hostile_probe.py
 
 The retained full CNF has 18,381 variables, 114,742 clauses, and SHA-256
 `adbe0c01614bae6cd3aed4ccdcd45a757ca56e7ef9c4f2f280f2d8ef200e40ac`.
-It is accepted exact formula infrastructure.  The full parent remains open;
-one of its 16 Boolean-cube leaves is now certified UNSAT as C-042 below.
+It is accepted exact formula infrastructure.  The historical leaf route
+certified one of its 16 Boolean-cube leaves as C-042; the later whole-formula
+DoubleLex certificate C-046 and transfer theorem C-047 supersede that
+incomplete route for the complete slice exclusion.
 
 Claim C-038 sharpens the order-12 parameter-four structural frontier.
 If \(H=\overline G\) contains an induced hole, at least four vertices lie
@@ -434,8 +497,9 @@ The exact coloring-bank covariance was checked for all
 checked all 319,770 admissible eight-signature multisets.  Thus the parent is
 satisfiable iff at least one of those four canonical cube leaves is
 satisfiable.  The other four `0***` leaves are orbit-redundant rather than
-individually certified UNSAT.  None of the four canonical leaves has yet
-received a SAT or UNSAT certificate.
+individually certified UNSAT.  No separate certificate was produced for
+each canonical leaf; the later single whole-formula certificate proves all
+four impossible simultaneously.
 
 ```text
 python3 reviews/order12_k4_minimum_signature_hostile_probe.py
@@ -463,5 +527,20 @@ PYTHONPATH=src python3 -m unittest -v tests.test_k4_doublelex
 python3 reviews/order12_k4_doublelex_hostile_probe.py
 ```
 
-This is accepted equisatisfiable formula infrastructure.  By itself it is
-not a SAT/UNSAT result and does not exclude the \((12,4)\) slice.
+Claim C-045 itself is only accepted equisatisfiable formula infrastructure.
+Claim C-046 now supplies the separate exact UNSAT certificate, and C-047
+uses the independently audited graph-to-formula implication to exclude the
+connected \((12,4)\) slice.
+
+The compact certificate package is replayed directly with:
+
+```text
+python3 \
+  certificates/order12_k4_doublelex_seed0_lrat_publication/verify_publication.py
+```
+
+It checks the exact formula and compressed proof hashes, recovers the
+accepted 228,381,671-byte LRAT, and requires one successful marker from the
+hash-pinned independent checker.  Its narrow verdict is
+`VERIFIED_EXACT_DOUBLELEX_CNF_UNSAT_ONLY`; the graph-slice transfer remains a
+separately reviewed mathematical theorem.

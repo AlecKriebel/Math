@@ -1289,3 +1289,96 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - If the DoubleLex proof certifies, C-037 and C-045 would turn it into a
   complete connected order-12 parameter-four exclusion.  That implication
   remains pending and must receive its own adversarial audit.
+
+### 2026-07-26 07:10 — exact order-12 frontier accepted and replayed
+
+- The complete DoubleLex certificate chain closed.  Strict normalization
+  produced a 15,783,377-byte addition-only RUP stream (`2741335a...`).
+  Warning-fatal forward and backward checks passed with zero RAT lemmas, and
+  the resulting 228,381,671-byte LRAT (`0e04eb63...`) passed a separate
+  checker.
+- An independent hostile reviewer reconstructed the exact
+  18,381-variable, 115,507-clause formula and normalized proof byte for
+  byte, ran both proof directions, produced a fresh identical LRAT, replayed
+  retained and fresh copies, and killed six proof/formula mutations.  Its
+  verdict is `ACCEPT_EXACT_DOUBLELEX_CNF_UNSAT_ONLY`.
+- A publication-sized V2 package stores the same LRAT as a
+  64,288,636-byte zstd stream (`edc0f6b...`).  Its one-command verifier binds
+  the exact formula, compressed and recovered proof, checker, author
+  certificate, and hostile evidence.  A separate V2 package review replayed
+  it privately and killed 13 mutations, including both metadata-integrity
+  regressions found in V1.
+- The separately reviewed C-037/C-045 transfer turns exact formula UNSAT
+  into the complete connected order-12 \(k=4\) exclusion C-047.  It does
+  not assert a disconnected, higher-order, or universal result by itself.
+- A simplicial closed-neighborhood theorem and its leaf specialization
+  passed independent proof review and exhaustive testing through order
+  eight.  A minimum counterexample has no simplicial vertex and hence
+  minimum degree at least two.  McCuaig--Shepherd then gives
+  \(n\geq\lceil5k/2\rceil\) outside its order-four and order-seven
+  exceptions, excluding order-12 \(k=5\).
+- The only possible order-12 parameters are \(3,4,5\).  C-035, C-047, and
+  the analytic \(k=5\) exclusion exhaust them.  The assembled theorem
+  `adb27204...` therefore advances the published counterexample frontier to
+  order 12, retaining MacGillivray--Mynhardt--Virgile's through-order-11
+  computation as an explicit published premise.  One independent review
+  returned `ACCEPT_ORDER12_FRONTIER_WITH_EXPLICIT_PUBLISHED_PREMISE` with no
+  blocking defect; a second remains active.
+- The machine-readable C-050 acceptance record (`e3b09308...`) binds 21
+  theorem, source, review, formula, and proof artifacts.  Root replayed both
+  metadata and full-LRAT modes; full mode returned
+  `VERIFIED_ORDER12_FRONTIER_BINDINGS_AND_EXACT_LRAT` in 4.1 seconds without
+  launching a SAT solver.
+- The complete campaign regression suite then passed 359 of 359 tests in
+  345.862 seconds with `PYTHONWARNINGS=error`.
+- The independent-antineighborhood projection theorem passed its complete
+  quantifier audit and a clean-room probe of all 13,598 unlabeled graphs
+  through order eight, including 14,421 eligible independent sets and 56,166
+  one-guard attack obligations.  The literature lane found important overlap:
+  Taletskii's planar minimum-counterexample Lemma 13 already contains
+  essentially the local minimum-counterexample conclusion.  The campaign
+  theorem is therefore accepted only as a general
+  equality-graph/arbitrary-eternal-family extension, with low-to-moderate
+  novelty confidence and the unavailable 2018 manuscript caveat.
+
+### 2026-07-26 08:15 — frontier wrapper, manuscript, and order-13 plan sealed
+
+- A new C-050 wrapper reviewer copied the decisive artifacts into a private
+  tree, checked all 21 unique bindings and the exact DIMACS census, ran
+  metadata and full-LRAT modes, and required seven corruptions plus
+  duplicate-key and nonfinite JSON to reject.  Verdict:
+  `ACCEPT_EXACT_FROZEN_C050_WRAPPER`; no blocking defect.
+- Root reran that audit program and both direct C-050 modes.  The exact
+  228,381,671-byte LRAT again passed after decompression; no SAT solver was
+  launched.
+- The order-12 manuscript was rebuilt with
+  `SOURCE_DATE_EPOCH=1785074656`.  Two independent clean builds under
+  Tectonic 0.16.9 produced identical BBL and PDF bytes.  The final PDF has 17
+  pages, 130,406 bytes, and SHA-256 `1084efc8...`.
+- The first complete visual pass found no layout defect but exposed an
+  incorrectly parsed BibTeX suffix for Warren A. Hunt, Jr.  The entry was
+  corrected, the manuscript was rebuilt deterministically, and the changed
+  bibliography page was re-inspected at full resolution.
+- A fresh independent manuscript audit checked the theorem transfers,
+  published-premise boundary, one-guard quantifiers, complement signs,
+  certificate counts/hashes/commands, bibliography, disclosures, two clean
+  builds, and all 17 rendered pages.  Verdict:
+  `ACCEPT_FROZEN_MANUSCRIPT_WITH_EXPLICIT_PRESUBMISSION_PLACEHOLDERS`.
+  Only human author metadata and a permanent archive identifier remain
+  before external submission.
+- The bounded order-13 strategy passed a separate clean-room audit.  It
+  independently reconstructed the proposed `hole5`, `hole7`, `hole9`, and
+  `hole11` formula bytes and all generic \(k=3,4,5\) counts.  The corrected
+  proved reduction is C-052: an order-13 counterexample is connected with
+  \(k\in\{3,4,5\}\), and at \(k=3\) its complement lies in the hub-free
+  \(C_5,C_7,C_9,C_{11}\) union.
+- The historical proofless `hole11` run remains only `OBSERVED`.  Its v2
+  record now says explicitly that argv, CPU time, and transcripts were not
+  retained, cannot be reconstructed, and make the historical invocation
+  nonreplayable.  The later byte reconstruction is recorded without
+  promoting its UNSAT return.
+- Two fresh full campaign runs passed all 359 tests with warnings fatal.
+  The retained second run took 331.489 test seconds and 331.78 wall seconds,
+  peaked at 148,242,432 bytes RSS, and is frozen in
+  `results/logs/full-regression-checkpoint042.{log,json}`.  No solver or
+  checker remains running.
