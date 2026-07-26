@@ -1796,3 +1796,110 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   premise and does not resolve the universal conjecture. With publication
   complete, the campaign now executes the proof-first pivot before any
   order-14 work.
+
+### 2026-07-26 15:02 — first universal-proof portfolio gate
+
+- Three independent proof attacks reached their declared two-iteration
+  gates.  None resolved the universal conjecture, but all produced concrete
+  definition-level mathematics and explicit counterexamples to tempting
+  shortcuts.
+- The transition/private-neighborhood lane proved a restoration lemma and
+  the viable-list Hall theorem: relative to an independent eternal
+  \(k\)-state \(S\), every independent outside set \(X\) satisfies
+  \[
+    \left|\bigcup_{x\in X}L_S(x)\right|\geq |X|.
+  \]
+  It also proved the exact equivalence between a \(k\)-clique partition and
+  a compatible viable-list clique-fiber coloring.  A separate hostile proof
+  review returned `ACCEPT_MATHEMATICS`.  The ordinary-set replay through
+  order nine reproduced 3,585 equality graphs, 37,358 reference states, and
+  zero Hall violations.  Root accidentally rewrote the evidence's
+  nondeterministic elapsed-time field by replaying to its default path; the
+  mathematical payload remained identical, and the official log was rebound
+  to the resulting frozen JSON SHA-256
+  `771738d7f2d3b0f384c2276f4ac4bb7fc1da18c285f169f7c606184539f09841`.
+- The complement/private-block lane independently found the same Hall
+  mechanism and then sharpened it.  Private blocks are cliques, shared
+  vertices carry exact family-response lists, collision transfer prevents an
+  edge conflict from being trapped between two identical singleton lists,
+  and any counterexample has a connected minimal uncolorable response-list
+  core with degree, leaf, clique-Hall, and collision restrictions.  For the
+  greatest eternal family, colorability of this core is equivalent to the
+  desired clique partition.  The clean-room hostile audit returned `ACCEPT`
+  and reproduced 6,605 Hall and 312 collision obligations.
+- The local-balance/holonomy referee constructed an infinite stress-test
+  family.  For every simple triangle-free cubic class-II graph \(F\), all
+  dominating triples of \(\overline{L(F)}\) form a one-guard eternal family,
+  yet
+  \[
+    \gamma=2<i=\alpha=\gamma^\infty=3<\theta=4.
+  \]
+  A diameter-two classification shows that the only cubic host in this
+  family with \(\gamma=3\) is \(K_{3,3}\), which has no coloring gap.
+  Independent proof and evaluator reviews accepted the result.  The sole
+  typographical defect was corrected and the review rebound to note SHA-256
+  `382f7af69da1f0d2c81faaa4fe0569c6b3c54529580b3ddb001fe0850664b198`.
+- The proof lanes also refuted raw response territories being cliques,
+  physical guard-label invariance, simple connectivity of the complement
+  clique complex, and facet-only path independence.  The exact remaining
+  obstruction is global compatibility across overlapping response-list
+  cliques.  Treating that compatibility as an assumption would simply rename
+  the original conjecture, so the general lanes stop there.
+- A structured follow-up checked the 27-vertex Schläfli graph, whose
+  complement is the point graph of \(GQ(2,4)\).  Preliminary exact data give
+  the static near-miss \(\gamma=i=\alpha=3<\theta=6\), with 1,125 dominating
+  triples, 45 secure line triples, and an empty second kernel.  A separate
+  bounded audit is preparing the human two-attack obstruction.  Until that
+  artifact is accepted, this remains `OBSERVED` and is not promoted to the
+  claim registry.
+- No SAT solver, proof-production runner, order-13 synthesis job, or
+  order-14 computation ran during this proof interval.
+
+### 2026-07-26 15:22 — Schläfli stress test accepted and proof-first gate frozen
+
+- The bounded \(GQ(2,4)\) lane reconstructed the 27-vertex Schläfli graph
+  \(G\) from the 27-line intersection graph
+  \(H=\operatorname{srg}(27,10,1,5)\).
+- A self-contained proof gives
+  \(\gamma(G)=i(G)=\alpha(G)=3\).  It classifies the 1,125 dominating
+  triples as the 45 \(H\)-triangles and 1,080 induced \(H\)-paths.  Every
+  path has four immediately lethal attacks, while every legal dominating
+  response from a triangle is a path.  Therefore every three-guard strategy
+  loses within two attacks and \(\gamma^\infty(G)>3\).
+- Independent bit-mask and ordinary-set implementations reproduced the
+  synchronous kernel sizes \(1125\to45\to0\).  Their frozen outputs have
+  SHA-256 values
+  `d50d01db88689bee6ef42e30ca3ad8062031813eabe19a551a2d1f5859de4cc5`
+  and
+  `7c1af42d52293409158543809799ce62f1885cf587bad12ebf6b605b1853ff34`.
+- Two independent complete coloring searches give
+  \(\theta(G)=6\): an 8,003-node DSATUR rejection of five colors and a
+  separate stable-set coverage proof over 72 stable six-sets and 756
+  disjoint pairs.  Because no SAT proof log is supplied, the exact finite
+  coloring result is registered as `CERTIFIED-FINITE`, separately from the
+  human two-attack theorem.
+- The accepted result is a high-value near-miss diagnosis, not a
+  counterexample: it meets every static equality and has a large
+  clique-cover gap, but fails precisely at the one-guard eternal equality.
+- A disposable stdin prototype accidentally called a brute-force
+  order-27 independence routine and remained CPU-bound after a blank yielded
+  cell.  Root found and terminated PID `33724` after about 57 minutes.  The
+  process produced no accepted artifact; the frozen replacements each finish
+  in under one second, and a final process scan was clean.
+- The literature ledger now records targeted no-match searches for the
+  restoration/Hall theorem, the cubic line-graph-complement family, and the
+  Schläfli two-attack result.  These do not establish novelty or priority.
+- Claims C-061 and C-062, the acceptance binding, state, and manuscript
+  registry were updated.  Order 14 remains unstarted; the universal
+  shared-response-core lane stays primary.
+- The bounded \(k=3\) static-list follow-up reached its stop gate.  Applying
+  the classical degree-choosability/Gallai-tree structure to a minimal
+  uncolorable core shows that tight blocks are cliques or odd cycles; in the
+  entirely tight 2-connected case, clique-Hall excludes the triangle and the
+  remaining obstruction is an odd cycle with a common two-color list.
+  High-degree and cut-block cores remain, and local closure did not eliminate
+  the odd cycle.  No new claim is promoted from this observation: another
+  single-reference static-list iteration would be equivalent to the original
+  global coloring obstruction.  The next universal route must compare lists
+  across different maximum independent states or introduce a genuinely
+  dynamic invariant.

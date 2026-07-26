@@ -1,5 +1,161 @@
 # Campaign State
 
+## Checkpoint 051 — 2026-07-26 15:22 PDT
+
+- Campaign day: 2 of 27.  Alec Kriebel's order-12 frontier paper and active
+  workstream page remain publicly released and byte-verified.  In accordance
+  with the proof-first portfolio decision, **order 14 has not begun** and the
+  universal conjecture remains the primary lane.
+- Claims C-058--C-060 are frozen under
+  `results/universal_proof_pivot_acceptance.json`.  The accepted universal
+  progress is the restoration/Hall theorem and the exact shared-response
+  list-core reduction.  The remaining gap is still global compatibility of
+  response colors across overlapping cliques; assuming that compatibility
+  would be circular.
+- Claims C-061 and C-062 now accept the Schläfli graph as a structured,
+  independently replayed stress test:
+  \[
+    \gamma=i=\alpha=3<\theta=6,\qquad \gamma^\infty>3.
+  \]
+  The human proof classifies all 1,125 dominating triples and shows that
+  every three-guard strategy loses within two attacks.  The synchronous
+  kernels are \(1125\to45\to0\).  Two separate complete coloring searches
+  give \(\theta=6\); this finite value has no SAT proof log and is labeled
+  accordingly.
+- A targeted current-literature refresh found no exact match for the
+  restoration/Hall theorem, the cubic line-graph-complement family, or the
+  Schläfli two-attack calculation.  These are negative searches, not priority
+  proofs; no novelty claim is made, especially while the directly relevant
+  2018 manuscript remains unavailable.
+- One disposable Schläfli prototype accidentally invoked a brute-force
+  order-27 independence routine and consumed one CPU core for about 57
+  minutes after its yielded tool cell appeared blank.  Root identified and
+  terminated PID `33724`.  It produced no accepted artifact.  The frozen
+  replacement replays finish in approximately 0.3 and 0.8 seconds and match
+  the recorded output hashes.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Universal shared-response core | active-primary | Find a new monotone or exchange mechanism that forces list compatibility; simply asserting colorability is equivalent to the unresolved target |
+| Parameter-three static response lists | blocked as stated | The tight part reduces by the classical degree-choosability theorem to Gallai-tree blocks; an entirely tight 2-connected core is an odd cycle with a common two-color list, while high-degree and cut-block cores remain. Local closure alone did not eliminate them, so another static-list iteration would restate the coloring obstruction |
+| Cross-state response compatibility | active-new-mechanism | Compare response lists from several maximum independent states in the same eternal family; this is not captured by the single-reference C-059 core |
+| Schläfli / \(GQ(2,4)\) stress test | closed-proved C-061/C-062 | Static target holds, but the eternal equality fails after two attacks |
+| Facet holonomy / fixed physical labels | exhausted | Explicit equality graphs refute path independence, label invariance, and simple-connectivity shortcuts |
+| Regular line-graph hosts | closed-proved C-060 | Class-II cubic hosts fail \(\gamma=\alpha\); higher regular degree fails earlier |
+| Order-13 finite synthesis | frozen fallback | C5/C7 at \(k=3\) and the \(k=4,5\) slices remain open; no solver is running |
+| Order-14 computation | not started | Deliberately deferred while the universal proof lane has measurable yield |
+
+### Running jobs and resources
+
+- No SAT solver, graph generator, eternal-kernel job, or unbounded Python
+  process is running for this campaign.
+- Host remains an Apple M1 Pro with 10 CPU cores and 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Compare the C-059 response lists associated with different maximum
+   independent states in the same eternal family, seeking a consistency law
+   that cannot be expressed inside one static list instance.
+2. Search for a family-level potential or exchange invariant preserved by
+   all one-guard transitions and forced to decrease around a hypothetical
+   odd response-list obstruction.
+3. Keep the accepted order-13 packages as a resumable fallback, but do not
+   move to order 14 unless the universal lanes reach their explicit stop
+   gates without a new mechanism.
+
+## Checkpoint 050 — 2026-07-26 15:02 PDT
+
+- Campaign day: 2 of 27.  The proof-first pivot has completed three serious
+  independent passes.  **The universal conjecture remains unresolved**, but
+  the passes produced three adversarially accepted structural results rather
+  than only failed proof sketches.
+- **C-058 is a campaign-proved universal Hall obstruction.**  Relative to any
+  independent \(k\)-state \(S\) in an eternal \(k\)-family, necessarily
+  \(k=\alpha=\gamma^\infty\), and the legal dominating
+  replacement lists satisfy Hall's inequality on every independent outside
+  set.  The stronger restoration lemma applies to every family state.  A
+  static Hall violation at \(k=\alpha\) therefore certifies
+  \(\gamma^\infty\geq\alpha+1\) without a fixed-point calculation.  The proof
+  was independently accepted in the exact one-guard model; an ordinary-set
+  replay checked 3,585 equality graphs and 37,358 maximum-independent
+  references through order nine with no violation.
+- **C-059 localizes the remaining universal gap exactly.**  A maximum
+  independent state splits the graph into private cliques and shared
+  vertices with concrete response lists.  A proper coloring from those
+  lists gives the desired clique partition, and for the greatest eternal
+  family the list-coloring condition is equivalent to
+  \(\theta=\gamma^\infty\).  Collision transfer and minimal-uncolorable-core
+  lemmas now force connectedness, degree/list bounds, safe singleton classes,
+  clique-wise Hall, and a constrained cycle/tree obstruction.  A clean-room
+  hostile audit accepted every proof and replayed 6,605 Hall and 312
+  collision-transfer obligations.
+- **C-060 closes a major false universal shortcut and a natural host
+  family.**  For every simple triangle-free cubic class-II graph \(F\),
+  \[
+    \gamma(\overline{L(F)})=2
+    <i=\alpha=\gamma^\infty=3
+    <\theta=4.
+  \]
+  All dominating triples are a genuine one-guard eternal family.  Thus local
+  balance plus the eternal equality still permits global coloring
+  obstruction; this entire family is excluded specifically by the missing
+  equality \(\gamma=\alpha\).  The all-\(q\) response proof, the
+  diameter-two classification, and the exact evaluator evidence received an
+  independent `ACCEPT`.
+- Several attractive shortcuts were killed before promotion: physical guard
+  labels can acquire nontrivial holonomy even in equality graphs; raw
+  response territories need not be cliques; simple connectivity of the
+  complement clique complex is not forced; and clique-wise Hall does not by
+  itself solve the global list-coloring problem.  These refutations prevent a
+  circular or false “proof.”
+- A structured 27-vertex stress test is in independent audit: the Schläfli
+  graph satisfies the static target
+  \(\gamma=i=\alpha=3<\theta=6\), while both exact three-guard evaluators
+  currently reject it after two synchronous transition levels.  This is an
+  `OBSERVED` diagnostic until its separate note and audit are frozen; it is
+  not an order frontier or a counterexample.
+- Repository base examined at this checkpoint:
+  `06230d40f25f186e7f92857209546f694a864ba6`.  Concurrent unrelated
+  publications have continued to advance `origin/main`; the gamma-theta
+  artifacts will be integrated without altering those releases.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Universal response-list core | active-primary | Prove that the C-059 minimal uncolorable shared core cannot occur; asking for a coloring without a new monotone mechanism is exactly equivalent to the original conjecture |
+| Parameter-three list/core proof | active-independent | Exploit three-color list-critical structure, local bipartite links, all-pairs common neighbors, and full transition closure; test every lemma first on `J@l\|bfNuVK_` |
+| Facet holonomy / guard labels | exhausted as stated | \(C_7\), \(C_4\), and `FCpbO` refute path independence, physical-label invariance, and simple-connectivity shortcuts |
+| Regular line-graph hosts | closed-proved C-060 | Class-II cubic hosts satisfy the one-guard equality but fail \(\gamma=\alpha\); degree at least four fails even earlier |
+| Schläfli / \(GQ(2,4)\) stress test | active-light-audit | Extract a human-readable two-attack obstruction from the exact \(K_0,K_1,K_2\) profile; no high-\(k\) kernel or broad enumeration |
+| Order-13 finite synthesis | frozen fallback | `hole7` input remains preflighted; no solver is running and no move to order 14 is authorized |
+
+### Running jobs and resources
+
+- One light, bounded Schläfli/generalized-quadrangle audit is running.  It
+  uses only 27 vertices and the three-guard kernel.
+- No SAT solver, LRAT/DRAT checker, order-13 production runner, or graph
+  generator is active.  Two exploratory exponential invariant calls on the
+  27-vertex graph were interrupted after roughly 30 seconds rather than
+  allowed to consume laptop time; the targeted kernel computations completed
+  in under a second.
+- Host remains an Apple M1 Pro with 10 CPU cores and 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Attack the \(k=3\) minimal uncolorable response-list core using its
+   list-critical blocks together with local bipartite links and full
+   transition closure; stop immediately if the next assertion is merely
+   “the lists are colorable.”
+2. Finish and adversarially check the Schläfli two-attack obstruction, then
+   decide whether it generalizes to the complete \(GQ(2,t)\) stress-test
+   class or only supplies a falsification target.
+3. Run a focused prior-art audit for the restoration/Hall and line-graph
+   lemmas before making any novelty claim, while preserving the frozen
+   order-13 packages as finite fallback only.
+
 ## Checkpoint 049 — 2026-07-26 14:08 PDT
 
 - Campaign day: 2 of 27. The certified order-12 frontier is now publicly

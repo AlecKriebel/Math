@@ -76,6 +76,32 @@ family-level generalization of Taletskii's planar minimum-counterexample
 Lemma 13, not a claim that the antineighborhood idea itself is wholly new;
 the full independent-set form iterates the vertex case.
 
+The current primary lane is universal rather than a march to order 14.
+Claims C-058--C-062 record the first proof-first portfolio gate:
+
+- legal dominating replacement lists from any maximum independent eternal
+  state satisfy a universal Hall condition;
+- private neighborhoods reduce the unresolved part exactly to a
+  shared-vertex response-list core, with collision-transfer and
+  minimal-uncolorable-core restrictions; and
+- complements of triangle-free cubic class-II line graphs form an infinite
+  stress-test family with
+  \(\gamma=2<i=\alpha=\gamma^\infty=3<\theta=4\), showing that local
+  balance and the one-guard equality alone do not replace the essential
+  condition \(\gamma=\alpha\); and
+- the 27-vertex Schläfli graph is a fully checked static near-miss with
+  \(\gamma=i=\alpha=3<\theta=6\), but every three-guard strategy loses
+  within two attacks, so \(\gamma^\infty>3\).
+
+These results have independent proof or finite-replay audits.  They materially sharpen
+the universal target but do not resolve it: the remaining obstruction is
+global compatibility of the response lists across overlapping complement
+cliques.  Several attractive shortcuts—static physical guard labels, raw
+response territories, simple connectivity, and facet-only holonomy—have
+explicit counterexamples and are not being reused.  The exact acceptance
+boundary and hashes are in
+`results/universal_proof_pivot_acceptance.json`.
+
 The deterministic 17-page public-edition manuscript is in
 `paper/order12_frontier/`.  Its README gives the fixed-epoch build, exact
 hashes, visual-QA boundary, Alec Kriebel authorship, and the tagged public
