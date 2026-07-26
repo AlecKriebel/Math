@@ -1,5 +1,60 @@
 # Campaign State
 
+## Checkpoint 009 — 2026-07-25 18:15 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest pushed campaign checkpoint before this batch: `2e144ffb`.
+- Completion estimate for the campaign work plan: **47%**.
+- Completion estimate toward an actual universal resolution: **10%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+
+### Verified production state
+
+- `hole9` batch 001 added 32 validated coloring cuts.  The run now contains
+  33 complete SAT/coloring attempts and 33 distinct globally sound cuts.
+- Live checkpoint SHA-256:
+  `0bf9fabdaf6d69974b698e66fdb731a19a04ed64f4d0bdbda878ce6dc2cb624c`;
+  history-chain SHA-256:
+  `37497c92f25530c1955c614d94ed5d7069a258de77a78620c5acfab90189eafa`.
+- A deep read-only audit passed.  The 234-file, 1,146,858-byte run tree had
+  SHA-256
+  `32418469c3c2e6ea5e5b1895e6dbf268092ceb4d2231a1774212957c3326ee73`
+  both before and after audit.
+- Batch wall time was 16.9724 seconds.  No solver child exceeded 0.030
+  seconds or 5.08 MiB peak RSS; no timeout, unknown outcome, memory event,
+  candidate, or UNSAT terminal occurred.
+- ART-112 binds the batch.  The original one-cut checkpoint is now preserved
+  immutably as ART-110 rather than pointing at the advancing live file.
+
+### Claim boundary and active routes
+
+- The 33 cuts are each sound, but a running CEGAR prefix proves no
+  nonexistence result.
+- The direct synthesis route remains active and healthy; another bounded
+  batch is justified after publishing this checkpoint.
+- The structural lane has provisionally found that seven of the eight
+  deepest transition-kernel rows contain one common induced 11-vertex
+  obstruction, while the deepest row is a second vertex-minimal core.
+  Exact embeddings, proof wording, and independent artifacts remain under
+  preparation; no new claim has yet been registered.
+
+### Running jobs and resume state
+
+- No synthesis child was active when this checkpoint was written.
+- Resume `hole9` from cut 33 using the immutable configuration and a
+  32-iteration budget.  The full command is identical to Checkpoint 008
+  except for the already advanced checkpoint.
+
+### Next three highest-value actions
+
+1. Commit and push the 33-cut production checkpoint and batch audit.
+2. Resume another bounded `hole9` batch, deep-audit it, and continue until a
+   terminal or a measured yield/resource gate.
+3. Freeze and hostile-review the induced-obstruction lifting lemma and the
+   exact two-core explanation of the eight deepest near-misses.
+
 ## Checkpoint 008 — 2026-07-25 18:12 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.
