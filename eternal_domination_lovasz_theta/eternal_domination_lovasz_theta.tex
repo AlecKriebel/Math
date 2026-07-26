@@ -1,0 +1,275 @@
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={A ten-vertex graph with eternal domination number below its Lovasz theta value},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={An exact ten-vertex counterexample},
+  pdfkeywords={eternal domination, Lovasz theta function, graph theory, semidefinite programming}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\cc}{\operatorname{cc}}
+
+\title{A ten-vertex graph with
+\texorpdfstring{$\gamma^\infty(G)<\vartheta(G)$}{gamma-infinity(G) < vartheta(G)}}
+\author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
+\date{Research note prepared 25 July 2026\\Not peer reviewed}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We answer negatively a publicly recorded question asking whether the standard
+one-guard eternal domination number satisfies
+\(\gamma^\infty(G)\geq\vartheta(G)\) for every graph.  Let \(G\) be the
+ten-vertex graph with graph6 record \texttt{IEhbtj\{ro}.  MacGillivray,
+Mynhardt, and Virgile proved that \(\gamma^\infty(G)=3\).  We give an exact
+rational feasible matrix for the standard Lov\'asz-theta semidefinite program
+with objective
+\[
+ \frac{7593}{2500}=3.0372.
+\]
+Thus \(\gamma^\infty(G)<\vartheta(G)\).  Their exhaustive result through order
+nine, together with the theta sandwich inequality, shows that ten is the
+minimum possible order of a counterexample.  A solver-free verifier checks the
+theta certificate and independently recomputes the eternal-domination game.
+\end{abstract}
+
+\noindent\textbf{Verification disclaimer.}
+This is an unreviewed AI-assisted research note released for independent
+checking.  Exact computation verifies the encoded finite statements; it is
+not peer review and does not establish literature priority.
+
+\section{Introduction and conventions}
+
+In the one-guard eternal domination game on a finite simple graph \(G\), at
+most one guard occupies each vertex and the occupied vertices form a
+dominating set.  At each turn an unoccupied vertex is attacked, and exactly
+one guard must move along an edge to the attacked vertex so that the new guard
+set is again dominating.  The minimum number of guards that can defend
+indefinitely is \(\gamma^\infty(G)\)~\cite{burger}.
+
+West's problem page asks whether \(\gamma^\infty\) is bounded below by the
+Lov\'asz theta function~\cite{west}.  There is a potential notation trap.
+Work on eternal domination often writes \(\theta(G)\) for the clique-cover
+number.  Here we instead write
+\[
+ \cc(G)=\chi(\overline G)
+\]
+for clique cover and reserve \(\vartheta(G)\) for the Lov\'asz theta function.
+With the convention of Alon and Kahale~\cite{alon-kahale},
+\begin{equation}\label{eq:theta}
+ \vartheta(G)=
+ \max\left\{\langle J,X\rangle:
+ X\succeq0,\ \operatorname{Tr}(X)=1,\
+ X_{ij}=0\text{ for }ij\in E(G)\right\}.
+\end{equation}
+It satisfies the familiar sandwich
+\begin{equation}\label{eq:sandwich}
+ \alpha(G)\leq\vartheta(G)\leq\chi(\overline G)=\cc(G).
+\end{equation}
+
+MacGillivray, Mynhardt, and Virgile found two smallest graphs for which
+\(\gamma^\infty<\cc\)~\cite{mmv}.  Their Table~9 records the graph6 strings
+\texttt{IEhbtj\{ro} and \texttt{IEhbtn\{ro}; their Fact~5.1 and
+Proposition~5.1 give eternal domination number three and clique-cover number
+four.  The observation here is that the 26-edge member of that pair is
+already a counterexample to the proposed Lov\'asz-theta lower bound.
+
+\section{The exact counterexample}
+
+Let \(G\) be the graph on vertices \(0,\ldots,9\) whose graph6 record is
+\[
+ \texttt{IEhbtj\{ro}.
+\]
+For complete independence from graph6 software, its edge set is
+\begin{align*}
+E(G)=\{&
+03,04,07,08,09,\,
+13,15,16,18,19,\,
+24,25,26,27,28,\\
+&36,37,38,\,
+46,48,49,\,
+57,58,59,\,
+69,79\},
+\end{align*}
+where \(ij\) denotes the unordered edge \(\{i,j\}\).
+
+\begin{theorem}\label{thm:counterexample}
+The graph \(G\) satisfies
+\[
+ \gamma^\infty(G)=3
+ <\frac{7593}{2500}
+ \leq\vartheta(G).
+\]
+Consequently, the inequality
+\(\gamma^\infty(H)\geq\vartheta(H)\) does not hold for all graphs \(H\).
+\end{theorem}
+
+\begin{proof}
+The equality \(\gamma^\infty(G)=3\) is Proposition~5.1 of
+MacGillivray, Mynhardt, and Virgile~\cite{mmv}.  We also independently verify
+it by exact state enumeration in Section~\ref{sec:verification}.
+
+For the theta bound, define \(X=M/10000\), where
+\begingroup
+\scriptsize
+\[
+M=\begin{pmatrix}
+1170&576&621&0&0&576&621&0&0&0\\
+576&1172&621&0&576&0&0&621&0&0\\
+621&621&1025&335&0&0&0&0&0&512\\
+0&0&335&1025&621&621&0&0&0&512\\
+0&576&0&621&1172&576&0&621&0&0\\
+576&0&0&621&576&1172&621&0&0&0\\
+621&0&0&0&0&621&1025&335&512&0\\
+0&621&0&0&621&0&335&1025&512&0\\
+0&0&0&0&0&0&512&512&607&196\\
+0&0&512&512&0&0&0&0&196&607
+\end{pmatrix}.
+\]
+\endgroup
+The matrix is symmetric, its diagonal entries sum to \(10000\), and direct
+inspection against the displayed edge list gives \(M_{ij}=0\) for every
+\(ij\in E(G)\).
+
+It remains to verify positive semidefiniteness without numerical
+approximation.  Exact Gaussian elimination gives the following diagonal
+pivots in an \(LDL^{\mathsf T}\) factorization of \(M\):
+\[
+\begin{gathered}
+1170,\quad
+\frac{57748}{65},\quad
+\frac{33696545}{57748},\quad
+\frac{5611637865}{6739309},\quad
+\frac{5875307251}{81328085},\\
+\frac{147954747608}{2670594205},\quad
+\frac{774768046339541}{1627502223688},\quad
+\frac{47387055721842240}{774768046339541},\\
+\frac{1491051941429}{39596916715},\quad
+\frac{50290089836283}{1491051941429}.
+\end{gathered}
+\]
+Every pivot is positive, so \(M\), and hence \(X\), is positive definite.
+Thus \(X\) is feasible in~\eqref{eq:theta}.  Finally, the sum of all entries
+of \(M\) is \(30372\), and therefore
+\[
+ \langle J,X\rangle
+ =\frac{30372}{10000}
+ =\frac{7593}{2500}
+ >3.
+\]
+Feasibility gives the asserted lower bound for \(\vartheta(G)\), and the
+strict separation follows.
+\end{proof}
+
+\begin{corollary}\label{cor:minimal}
+The minimum order of a graph \(H\) satisfying
+\(\gamma^\infty(H)<\vartheta(H)\) is ten.
+\end{corollary}
+
+\begin{proof}
+MacGillivray, Mynhardt, and Virgile computationally verified that every graph
+of order at most nine satisfies
+\(\gamma^\infty(H)=\cc(H)\)~\cite[Proposition~5.2]{mmv}.  By
+\eqref{eq:sandwich}, every such graph satisfies
+\[
+ \vartheta(H)\leq\cc(H)=\gamma^\infty(H).
+\]
+Theorem~\ref{thm:counterexample} supplies a counterexample of order ten.
+\end{proof}
+
+\section{Independent exact verification}\label{sec:verification}
+
+The accompanying verifier uses Python's standard library and no SDP solver.
+It parses the graph6 record independently in two implementations and compares
+the result with the frozen edge list above.  For the theta certificate it
+checks symmetry, trace, all 26 edge zeros, the exact entry sum, and the ten
+rational \(LDL^{\mathsf T}\) pivots.
+
+For the eternal-domination game, let \(\mathcal D_k\) be the dominating
+\(k\)-subsets of \(V(G)\).  Starting with
+\(\mathcal F_0=\mathcal D_k\), repeatedly set
+\[
+\mathcal F_{t+1}=
+\left\{S\in\mathcal F_t:
+\begin{array}{l}
+\text{for every }v\notin S\text{ there is }u\in S\cap N(v)\\
+\text{such that }(S\setminus\{u\})\cup\{v\}\in\mathcal F_t
+\end{array}
+\right\}.
+\]
+Because the state space is finite, this deletion process reaches the greatest
+closed family.  A nonempty closed family is equivalent to an eternal defense:
+it supplies a response after every attack, while the reachable states of any
+successful defense form such a family.
+
+The exact fixed-point sizes for \(k=1,2,3\) are
+\[
+ 0,\quad 0,\quad 86.
+\]
+There are 86 dominating triples, all of which survive the fixed point.
+The saved certificate lists them and the verifier checks a legal successor
+inside the family for all \(86(10-3)=602\) configuration-attack pairs.  This
+independently reproduces \(\gamma^\infty(G)=3\).
+
+\section{Attribution, novelty, and scope}
+
+The graph and its eternal-domination value are not new; they are due to
+MacGillivray, Mynhardt, and Virgile~\cite{mmv}.  The candidate contribution is
+the connection to Lov\'asz theta, the exact rational certificate, and the
+resulting negative answer to West's question.  A focused search through
+notation variants, the 2022 paper's citation graph, recent related papers,
+public problem pages, arXiv, and scholarly indexes found no prior public
+resolution as of 25 July 2026.  That search cannot establish worldwide
+priority: an unindexed, unpublished, or differently phrased antecedent may
+exist.
+
+The counterexample theorem is an exact finite result.  The minimum-order
+corollary additionally relies on the published exhaustive computation through
+order nine.  No numerical estimate of the optimum theta value is needed.
+
+\section*{AI-assistance and authorship disclosure}
+
+The observation, exact certificates, independent verifiers, literature
+review, proof drafting, and publication materials were developed with heavy
+assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction.  Alec Kriebel
+is the named human author.  No external expert was contacted or has reviewed
+this note.  Passing the supplied checks is not peer review.
+
+\clearpage
+\begin{thebibliography}{9}
+
+\bibitem{alon-kahale}
+N.~Alon and N.~Kahale,
+\newblock Approximating the independence number via the
+\(\theta\)-function,
+\newblock \emph{Mathematical Programming} 80 (1998), 253--264.
+\newblock \url{https://doi.org/10.1007/BF01581168}
+
+\bibitem{burger}
+A.~P. Burger, E.~J. Cockayne, W.~R. Grundlingh, C.~M. Mynhardt,
+J.~H. van Vuuren, and W.~Winterbach,
+\newblock Infinite order domination in graphs,
+\newblock \emph{Journal of Combinatorial Mathematics and Combinatorial
+Computing} 50 (2004), 179--194.
+
+\bibitem{mmv}
+G.~MacGillivray, C.~M. Mynhardt, and V.~Virgile,
+\newblock Eternal domination and clique covering,
+\newblock \emph{Electronic Journal of Graph Theory and Applications}
+10 (2022), 603--624.
+\newblock \url{https://doi.org/10.5614/ejgta.2022.10.2.19}
+
+\bibitem{west}
+D.~B. West,
+\newblock Eternal domination number,
+\newblock Research problems webpage, accessed 25 July 2026.
+\newblock \url{https://dwest.web.illinois.edu/regs/eterndom.html}
+
+\end{thebibliography}
+
+\end{document}
