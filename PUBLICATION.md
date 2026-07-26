@@ -126,6 +126,17 @@ The proof package for “The exact quantum value of a cyclic Bell operator”
 first entered `main` in commit
 [`bb9ee199662fc7ce5490299f5ece8e1371bd7072`](https://github.com/AlecKriebel/Math/commit/bb9ee199662fc7ce5490299f5ece8e1371bd7072)
 at **26 July 2026, 20:37:23 UTC** (**26 July 2026, 13:37:23 PDT**).
+The public paper page entered `main` in commit
+[`20cf4b2c7ed821ccf2d55c09f10bcce9a0e74356`](https://github.com/AlecKriebel/Math/commit/20cf4b2c7ed821ccf2d55c09f10bcce9a0e74356)
+at **26 July 2026, 20:38:50 UTC** (**26 July 2026, 13:38:50 PDT**).
+GitHub Pages reported that exact commit built at
+**26 July 2026, 20:41:03 UTC** (**26 July 2026, 13:41:03 PDT**), after which
+the
+[paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/)
+and [PDF](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/paper.pdf)
+were retrieved successfully. The served PDF had SHA-256
+`947b601903de18ea6ffbd8e49ba2bfe261c32342c4d1a71dd96ed9f283ec6c94`,
+identical to the frozen release artifact.
 
 The note proves Conjecture 1 of Perito, D'Avino, Jung, Mironowicz, Acín, and
 Augusiak:
