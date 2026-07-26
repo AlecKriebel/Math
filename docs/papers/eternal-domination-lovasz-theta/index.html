@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An exact ten-vertex graph whose eternal domination number is below its Lovász theta value.">
+  <meta name="description" content="An explicit unbounded Lovász-theta separation for eternal domination, together with an exact smallest ten-vertex counterexample.">
   <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
-  <meta name="citation_title" content="A ten-vertex graph with γ∞(G) &lt; ϑ(G)">
+  <meta name="citation_title" content="Eternal domination and the Lovász theta function: an unbounded separation and a smallest counterexample">
   <meta name="citation_author" content="Alec Kriebel">
   <meta name="citation_publication_date" content="2026-07-25">
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/paper.pdf">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="A ten-vertex graph with γ∞(G) &lt; ϑ(G)">
-  <meta property="og:description" content="A solver-free exact certificate for a minimum-order ten-vertex counterexample.">
+  <meta property="og:title" content="Eternal domination and the Lovász theta function: an unbounded separation and a smallest counterexample">
+  <meta property="og:description" content="An explicit Θ(n^(1/3)) separation and a solver-free exact certificate for a minimum-order ten-vertex counterexample.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">
   <meta name="twitter:card" content="summary">
   <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">
-  <title>A ten-vertex graph with γ∞(G) &lt; ϑ(G) · Alec's Math Explorations</title>
+  <title>Eternal domination and the Lovász theta function · Alec's Math Explorations</title>
   <link rel="stylesheet" href="../../assets/style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "A ten-vertex graph with γ∞(G) < ϑ(G)",
-    "description": "An exact ten-vertex counterexample to a proposed Lovász-theta lower bound for the one-guard eternal domination number.",
+    "headline": "Eternal domination and the Lovász theta function: an unbounded separation and a smallest counterexample",
+    "description": "An explicit unbounded Lovász-theta separation for one-guard eternal domination, together with an exact smallest ten-vertex counterexample.",
     "author": {
       "@type": "Person",
       "name": "Alec Kriebel",
@@ -33,7 +33,7 @@
       "name": "ChatGPT 5.6 Sol"
     },
     "datePublished": "2026-07-25",
-    "dateModified": "2026-07-25",
+    "dateModified": "2026-07-26",
     "url": "https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/",
     "encoding": {
       "@type": "MediaObject",
@@ -58,17 +58,18 @@
       <a class="brand" href="../../">Alec's Math Explorations</a>
       <div class="nav-links">
         <a href="#abstract">Abstract</a>
-        <a href="#theorem">Theorem</a>
+        <a href="#unbounded">Unbounded separation</a>
+        <a href="#smallest">Smallest example</a>
         <a href="#evidence">Evidence</a>
         <a href="#scope">Scope</a>
         <a href="#paper">PDF</a>
       </div>
     </nav>
     <div class="paper-hero"><div class="inner">
-      <p class="paper-status">Short research note · Exact certificate · Not peer reviewed</p>
-      <h1>A ten-vertex graph with \(\gamma^\infty(G)&lt;\vartheta(G)\)</h1>
+      <p class="paper-status">Research note · Unbounded separation · Exact smallest counterexample · Not peer reviewed</p>
+      <h1>Eternal domination and the Lovász theta function: an unbounded separation and a smallest counterexample</h1>
       <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
-      <p class="release">First public edition: <time datetime="2026-07-25">25 July 2026</time></p>
+      <p class="release">First public edition: <time datetime="2026-07-25">25 July 2026</time> · Strengthened edition: <time datetime="2026-07-26">26 July 2026</time></p>
     </div></div>
   </header>
 
@@ -77,7 +78,7 @@
       <div class="notice-mark">!</div>
       <div>
         <h2>Read this as a provisional research note.</h2>
-        <p>The exact certificate and finite game computation are solver-free, but the note has not been peer reviewed. The minimum-order statement also uses a published exhaustive computation through order nine. Alec Kriebel is a complete amateur and cannot independently validate the mathematics.</p>
+        <p>The ten-vertex certificate and finite game computation are solver-free, while the unbounded-family theorem and minimum-order statement use cited published results. The note has not been peer reviewed. Alec Kriebel is a complete amateur and cannot independently validate the mathematics.</p>
       </div>
     </div>
 
@@ -92,17 +93,32 @@
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">The proposed inequality \(\gamma^\infty(G)\geq\vartheta(G)\) is false for the standard one-guard eternal domination number.</p>
-        <p>For the ten-vertex graph with graph6 record <code>IEhbtj{ro</code>, an exact rational feasible matrix for the standard Lovász-theta semidefinite program has objective \(7593/2500=3.0372\), while the eternal domination number is exactly three.</p>
+        <p class="lede" itemprop="abstract">The Lovász theta function can exceed the standard one-guard eternal domination number by an unbounded factor.</p>
+        <p>Combining Alon's explicit Ramsey graphs with a theorem of Goddard, Hedetniemi, and Hedetniemi gives an explicit family \((H_k)\) with \(2\leq\gamma^\infty(H_k)\leq3\) and \(\vartheta(H_k)=\Theta(|V(H_k)|^{1/3})\).</p>
+        <p>The smallest counterexample has ten vertices. For the graph with graph6 record <code>IEhbtj{ro</code>, an exact rational feasible matrix for the standard Lovász-theta semidefinite program has objective \(7593/2500=3.0372\), while the eternal domination number is exactly three.</p>
         <div class="fact-grid">
-          <div class="fact"><strong>Order</strong><span>10 vertices</span></div>
-          <div class="fact"><strong>Eternal domination</strong><span>\(\gamma^\infty(G)=3\)</span></div>
-          <div class="fact"><strong>Theta certificate</strong><span>\(\vartheta(G)\geq3.0372\)</span></div>
+          <div class="fact"><strong>Asymptotic ratio</strong><span>\(\Theta(n^{1/3})\)</span></div>
+          <div class="fact"><strong>Minimum order</strong><span>10 vertices</span></div>
+          <div class="fact"><strong>Exact witness</strong><span>\(3&lt;3.0372\leq\vartheta(G)\)</span></div>
         </div>
       </section>
 
-      <section id="theorem">
-        <h2>Main theorem</h2>
+      <section id="unbounded">
+        <h2>An explicit unbounded separation</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> For integers \(k\geq2\) with \(3\nmid k\), put \(n_k=2^{3k}\). There is an explicit graph \(H_k\) on \(n_k\) vertices satisfying</p>
+          <div class="equation">\[
+            \alpha(H_k)=2,\qquad
+            2\leq\gamma^\infty(H_k)\leq3,\qquad
+            \vartheta(H_k)=\Theta(n_k^{1/3}).
+          \]</div>
+          <p>Consequently \(\vartheta(H_k)/\gamma^\infty(H_k)=\Theta(n_k^{1/3})\), so there is not even a constant-factor universal lower bound.</p>
+        </div>
+        <p><a href="https://doi.org/10.37236/1192">Alon's 1994 construction</a> supplies explicit triangle-free Cayley graphs whose complements have theta value \(\Theta(n^{1/3})\). <a href="https://combinatorialpress.com/jcmcc-articles/volume-052/eternal-security-in-graphs/">Goddard, Hedetniemi, and Hedetniemi</a> proved that independence number two forces \(\gamma^\infty\leq3\). The theorem is their direct combination, not a new graph construction.</p>
+      </section>
+
+      <section id="smallest">
+        <h2>A smallest counterexample</h2>
         <div class="theorem-block">
           <p><strong>Theorem.</strong> Let \(G\) have graph6 record <code>IEhbtj{ro</code>. Then</p>
           <div class="equation">\[
@@ -110,9 +126,9 @@
             &lt;\frac{7593}{2500}
             \leq\vartheta(G).
           \]</div>
-          <p>Therefore the eternal domination number is not universally bounded below by the Lovász theta function.</p>
+          <p>No graph on fewer than ten vertices satisfies \(\gamma^\infty(G)&lt;\vartheta(G)\).</p>
         </div>
-        <p>The graph itself and the equality \(\gamma^\infty(G)=3\) were published by MacGillivray, Mynhardt, and Virgile in 2022 in their work on a different parameter: clique-cover number. The new observation is the exact Lovász-theta separation.</p>
+        <p>The graph itself and the equality \(\gamma^\infty(G)=3\) were published by MacGillivray, Mynhardt, and Virgile in 2022 in their work on a different parameter: clique-cover number. The finite contribution here is the exact Lovász-theta certificate and the minimum-order connection.</p>
       </section>
 
       <section id="evidence">
@@ -131,7 +147,7 @@
             </tbody>
           </table>
         </div>
-        <p>The verifier uses only exact integer and rational arithmetic in Python's standard library. No numerical SDP solver is part of the proof.</p>
+        <p>The verifier uses only exact integer and rational arithmetic in Python's standard library. No numerical SDP solver is part of the finite proof. It does not reconstruct Alon's asymptotic family, which is taken from the cited literature.</p>
       </section>
 
       <section id="minimum-order">
@@ -145,8 +161,9 @@
 
       <section id="scope">
         <h2>Attribution, novelty, and scope</h2>
-        <p>A focused search found no prior public source connecting this graph to Lovász theta or resolving the recorded question as of 25 July 2026. The result therefore appears novel, but the search cannot establish absolute priority or exclude an unindexed or differently phrased antecedent.</p>
-        <p>No external expert was contacted or has reviewed the note. The graph and its eternal-domination value are correctly attributed to the 2022 authors; the candidate contribution is the theta certificate and its consequence.</p>
+        <p>The ingredients of the unbounded-family theorem are established results. The point here is their immediate combination in connection with West's recorded question. The ten-vertex graph and its eternal-domination value are also prior work; the candidate finite contribution is the theta certificate and minimum-order identification.</p>
+        <p>A focused search found no prior public source explicitly making either connection as of 26 July 2026. The connections therefore appear unrecorded, but the search cannot establish absolute priority or exclude an unindexed or differently phrased antecedent.</p>
+        <p>No external expert was contacted or has reviewed the note.</p>
       </section>
 
       <section id="disclosure">
@@ -156,7 +173,7 @@
 
       <section id="suggested-citation">
         <h2>Suggested citation</h2>
-        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “A ten-vertex graph with \(\gamma^\infty(G)&lt;\vartheta(G)\),” provisional research note, 25 July 2026. <a href="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">Permanent page</a>.</p>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “Eternal domination and the Lovász theta function: an unbounded separation and a smallest counterexample,” revised provisional research note, first published 25 July 2026 and revised 26 July 2026. <a href="https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/">Permanent page</a>.</p>
       </section>
     </article>
 
@@ -165,7 +182,7 @@
       <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
         <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
       </object>
-      <p class="fine-print">Four pages · prepared 25 July 2026 · exact source, certificates, tests, and priority audit are public.</p>
+      <p class="fine-print">Five pages · revised 26 July 2026 · exact source, certificates, tests, and priority audit are public.</p>
     </section>
   </main>
 

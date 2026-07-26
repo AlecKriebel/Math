@@ -61,3 +61,48 @@ entry, then confirm the deployed page and PDF.
   `af507ce272e39e3b101b59a5198c2d41adee7b95c6c608bccdf07dd4dc66615a`.
 - Confirmed that the public homepage links to the new paper.
 - No researcher or other outside individual was contacted.
+
+## 26 July 2026, 14:35 PDT - asymptotic strengthening verified
+
+**Best-guess completion: 90%.**
+
+- Audited external feedback against the published journal version and the
+  rendered note. The published numbering Fact 5.1 and Propositions 5.1-5.2 is
+  correct; the conflicting numbers belong only to the arXiv version.
+- Verified from primary sources that Alon's explicit Cayley graphs, combined
+  with Theorem 4 of Goddard, Hedetniemi, and Hedetniemi, give an explicit
+  family with
+  \(\vartheta/\gamma^\infty=\Theta(n^{1/3})\).
+- Confirmed that the proposed dismissal of Mycielski complements was false;
+  it is omitted from the focused revision rather than replaced by a
+  distracting secondary family.
+- Revised the paper's planned scope so the literature-derived unbounded
+  separation comes first and the exact ten-vertex certificate remains the
+  sharp minimum-order theorem.
+- Rechecked the rendered complement notation and corrected the precise
+  attribution of the published ten-vertex value.
+- No researcher or other outside individual was contacted.
+
+Next checkpoint: rebuild and visually inspect the revised PDF, validate the
+updated public page, then publish the strengthened edition from `main`.
+
+## 26 July 2026, 14:47 PDT - strengthened edition ready for publication
+
+**Best-guess completion: 95%.**
+
+- Built the strengthened five-page note without typesetting warnings or
+  overflow reports, rendered every page, and visually inspected the complete
+  artifact.
+- Re-ran the exact graph, certificate, and eternal-domination verifiers and
+  all nine semantic tests successfully.
+- Updated the public paper page, homepage, metadata, citation text, and
+  sitemap; parsed the structured data and checked all local links.
+- Confirmed that the public PDF copy is byte-identical to the audited source
+  artifact, with SHA-256
+  `edd6d182a0c8473320eecbc8e8c036565d7dabe2c750cb7953d8f6a479bee625`.
+- A final scoped audit found only the twelve intended tracked publication
+  files modified; unrelated research files remain untouched.
+- No researcher or other outside individual was contacted.
+
+Next checkpoint: publish from `main`, wait for GitHub Pages to build the
+pushed revision, and verify the live page and PDF.

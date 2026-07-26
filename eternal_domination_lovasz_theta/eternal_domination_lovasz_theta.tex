@@ -3,9 +3,9 @@
 \usepackage{amsmath,amssymb,amsthm,booktabs,microtype,xurl}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
-  pdftitle={A ten-vertex graph with eternal domination number below its Lovasz theta value},
+  pdftitle={Eternal domination and the Lovasz theta function: an unbounded separation and a smallest counterexample},
   pdfauthor={Alec Kriebel},
-  pdfsubject={An exact ten-vertex counterexample},
+  pdfsubject={An unbounded separation and an exact smallest counterexample},
   pdfkeywords={eternal domination, Lovasz theta function, graph theory, semidefinite programming}
 }
 
@@ -13,29 +13,36 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newcommand{\cc}{\operatorname{cc}}
 
-\title{A ten-vertex graph with
-\texorpdfstring{$\gamma^\infty(G)<\vartheta(G)$}{gamma-infinity(G) < vartheta(G)}}
+\title{Eternal domination and the Lov\'asz theta function:\\
+an unbounded separation and a smallest counterexample}
 \author{Alec Kriebel\\[2pt]\large with heavy assistance from ChatGPT 5.6 Sol}
-\date{Research note prepared 25 July 2026\\Not peer reviewed}
+\date{First prepared 25 July 2026\\Revised 26 July 2026\\Not peer reviewed}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We answer negatively a publicly recorded question asking whether the standard
-one-guard eternal domination number satisfies
-\(\gamma^\infty(G)\geq\vartheta(G)\) for every graph.  Let \(G\) be the
-ten-vertex graph with graph6 record \texttt{IEhbtj\{ro}.  MacGillivray,
-Mynhardt, and Virgile proved that \(\gamma^\infty(G)=3\).  We give an exact
-rational feasible matrix for the standard Lov\'asz-theta semidefinite program
-with objective
+We show that the Lov\'asz theta function can exceed the standard one-guard
+eternal domination number by an unbounded factor.  Combining results of Alon
+and of Goddard, Hedetniemi, and Hedetniemi gives an explicit infinite family
+\((H_k)\) with
+\[
+ 2\leq\gamma^\infty(H_k)\leq3
+ \quad\text{and}\quad
+ \vartheta(H_k)=\Theta\!\left(|V(H_k)|^{1/3}\right).
+\]
+Thus the ratio \(\vartheta/\gamma^\infty\) is unbounded.  Second, let \(G\)
+be the ten-vertex graph with graph6 record \texttt{IEhbtj\{ro}.
+MacGillivray, Mynhardt, and Virgile proved that
+\(\gamma^\infty(G)=3\).  We give an exact rational feasible matrix for the
+standard Lov\'asz-theta semidefinite program with objective
 \[
  \frac{7593}{2500}=3.0372.
 \]
-Thus \(\gamma^\infty(G)<\vartheta(G)\).  Their exhaustive result through order
-nine, together with the theta sandwich inequality, shows that ten is the
-minimum possible order of a counterexample.  A solver-free verifier checks the
-theta certificate and independently recomputes the eternal-domination game.
+Their exhaustive result through order nine, together with the theta sandwich
+inequality, shows that \(G\) has minimum possible order among counterexamples.
+A solver-free verifier checks the finite theta certificate and independently
+recomputes the eternal-domination game.
 \end{abstract}
 
 \noindent\textbf{Verification disclaimer.}
@@ -51,6 +58,11 @@ dominating set.  At each turn an unoccupied vertex is attacked, and exactly
 one guard must move along an edge to the attacked vertex so that the new guard
 set is again dominating.  The minimum number of guards that can defend
 indefinitely is \(\gamma^\infty(G)\)~\cite{burger}.
+The elementary bounds for this game are
+\begin{equation}\label{eq:guard-bounds}
+ \alpha(G)\leq\gamma^\infty(G)\leq\cc(G),
+\end{equation}
+where \(\cc(G)\) denotes the clique-cover number~\cite[Theorem~1]{ghh}.
 
 West's problem page asks whether \(\gamma^\infty\) is bounded below by the
 Lov\'asz theta function~\cite{west}.  There is a potential notation trap.
@@ -60,7 +72,8 @@ number.  Here we instead write
  \cc(G)=\chi(\overline G)
 \]
 for clique cover and reserve \(\vartheta(G)\) for the Lov\'asz theta function.
-With the convention of Alon and Kahale~\cite{alon-kahale},
+Lov\'asz introduced the function in 1979~\cite{lovasz}.  With the standard
+convention used by Alon and Kahale~\cite{alon-kahale},
 \begin{equation}\label{eq:theta}
  \vartheta(G)=
  \max\left\{\langle J,X\rangle:
@@ -72,14 +85,69 @@ It satisfies the familiar sandwich
  \alpha(G)\leq\vartheta(G)\leq\chi(\overline G)=\cc(G).
 \end{equation}
 
+We give two complementary forms of the negative answer.  Section~2 records
+an unbounded polynomial separation that follows directly from established
+results.  Section~3 gives an exact smallest counterexample, together with a
+solver-free certificate.
+
+\section{An explicit unbounded separation}
+
+Alon's explicit Ramsey construction and a theorem on eternal security combine
+to give considerably more than a single counterexample.
+
+\begin{theorem}\label{thm:unbounded}
+For every integer \(k\geq2\) not divisible by three, put \(n_k=2^{3k}\).
+There is an explicit graph \(H_k\) on \(n_k\) vertices such that
+\[
+ \alpha(H_k)=2,\qquad
+ 2\leq\gamma^\infty(H_k)\leq3,
+ \qquad
+ \vartheta(H_k)=\Theta(n_k^{1/3}),
+\]
+and hence
+\[
+ \frac{\vartheta(H_k)}{\gamma^\infty(H_k)}
+ =\Theta(n_k^{1/3}).
+\]
+In particular, \(\vartheta/\gamma^\infty\) is unbounded, and there is no
+constant \(C\) such that
+\(\vartheta(H)\leq C\gamma^\infty(H)\) for every graph \(H\).
+\end{theorem}
+
+\begin{proof}
+Alon explicitly constructs a
+\(2^{k-1}(2^{k-1}-1)\)-regular triangle-free Cayley graph \(F_k\) on
+\(n_k\) vertices whose complement satisfies
+\[
+ \vartheta(\overline{F_k})=\Theta(n_k^{1/3})
+\]
+as \(k\) ranges over these values~\cite[Corollary~2.3]{alon-ramsey}.  Set
+\(H_k=\overline{F_k}\).  Since \(k\geq2\), the graph \(F_k\) has an edge,
+and triangle-freeness gives
+\[
+ \alpha(H_k)=\omega(F_k)=2.
+\]
+Goddard, Hedetniemi, and Hedetniemi proved that every graph with independence
+number two has one-guard eternal domination number at most
+three~\cite[Theorem~4]{ghh}.  Their notation \(\sigma_1\) denotes the
+parameter written \(\gamma^\infty\) here.  Equation~\eqref{eq:guard-bounds}
+therefore gives
+\[
+ 2\leq\gamma^\infty(H_k)\leq3.
+\]
+Dividing Alon's theta estimate by a quantity bounded between two and three
+gives the asserted ratio.
+\end{proof}
+
+\section{A smallest counterexample}
+
 MacGillivray, Mynhardt, and Virgile found two smallest graphs for which
 \(\gamma^\infty<\cc\)~\cite{mmv}.  Their Table~9 records the graph6 strings
-\texttt{IEhbtj\{ro} and \texttt{IEhbtn\{ro}; their Fact~5.1 and
-Proposition~5.1 give eternal domination number three and clique-cover number
-four.  The observation here is that the 26-edge member of that pair is
-already a counterexample to the proposed Lov\'asz-theta lower bound.
-
-\section{The exact counterexample}
+\texttt{IEhbtj\{ro} and \texttt{IEhbtn\{ro}.  Their Fact~5.1 gives
+clique-cover number four, while Proposition~5.1 and its proof give eternal
+domination number three.  The observation here is that the 26-edge member of
+that pair is already a counterexample to the proposed Lov\'asz-theta lower
+bound.
 
 Let \(G\) be the graph on vertices \(0,\ldots,9\) whose graph6 record is
 \[
@@ -110,9 +178,10 @@ Consequently, the inequality
 \end{theorem}
 
 \begin{proof}
-The equality \(\gamma^\infty(G)=3\) is Proposition~5.1 of
-MacGillivray, Mynhardt, and Virgile~\cite{mmv}.  We also independently verify
-it by exact state enumeration in Section~\ref{sec:verification}.
+The equality \(\gamma^\infty(G)=3\) is established in Proposition~5.1 and
+its proof by MacGillivray, Mynhardt, and Virgile~\cite{mmv}.  We also
+independently verify it by exact state enumeration in
+Section~\ref{sec:verification}.
 
 For the theta bound, define \(X=M/10000\), where
 \begingroup
@@ -218,19 +287,27 @@ independently reproduces \(\gamma^\infty(G)=3\).
 
 \section{Attribution, novelty, and scope}
 
-The graph and its eternal-domination value are not new; they are due to
-MacGillivray, Mynhardt, and Virgile~\cite{mmv}.  The candidate contribution is
-the connection to Lov\'asz theta, the exact rational certificate, and the
-resulting negative answer to West's question.  A focused search through
-notation variants, the 2022 paper's citation graph, recent related papers,
-public problem pages, arXiv, and scholarly indexes found no prior public
-resolution as of 25 July 2026.  That search cannot establish worldwide
-priority: an unindexed, unpublished, or differently phrased antecedent may
-exist.
+The ingredients of Theorem~\ref{thm:unbounded} are established results:
+Alon supplies the explicit theta construction, and Goddard, Hedetniemi, and
+Hedetniemi supply the constant eternal-domination bound.  The theorem is a
+direct synthesis, not a new graph construction.  Likewise, the ten-vertex
+graph and its eternal-domination value are due to MacGillivray, Mynhardt, and
+Virgile~\cite{mmv}.  The candidate contribution is recognizing that these
+results answer West's Lov\'asz-theta question, together with the exact
+rational certificate and minimum-order identification.
+
+A focused search through notation variants, the cited papers' reference and
+citation graphs, recent related papers, public problem pages, arXiv, and
+scholarly indexes found no prior public source explicitly making either
+eternal-domination connection as of 26 July 2026.  That search cannot
+establish worldwide priority: an unindexed, unpublished, or differently
+phrased antecedent may exist.
 
 The counterexample theorem is an exact finite result.  The minimum-order
 corollary additionally relies on the published exhaustive computation through
-order nine.  No numerical estimate of the optimum theta value is needed.
+order nine.  The unbounded-family theorem relies on the cited published
+results.  No numerical estimate of the optimum theta value of the ten-vertex
+graph is needed.
 
 \section*{AI-assistance and authorship disclosure}
 
@@ -243,6 +320,13 @@ this note.  Passing the supplied checks is not peer review.
 \clearpage
 \begin{thebibliography}{9}
 
+\bibitem{alon-ramsey}
+N.~Alon,
+\newblock Explicit Ramsey graphs and orthonormal labelings,
+\newblock \emph{Electronic Journal of Combinatorics} 1 (1994),
+Research Paper 12, 8 pages.
+\newblock \url{https://doi.org/10.37236/1192}
+
 \bibitem{alon-kahale}
 N.~Alon and N.~Kahale,
 \newblock Approximating the independence number via the
@@ -251,11 +335,25 @@ N.~Alon and N.~Kahale,
 \newblock \url{https://doi.org/10.1007/BF01581168}
 
 \bibitem{burger}
-A.~P. Burger, E.~J. Cockayne, W.~R. Grundlingh, C.~M. Mynhardt,
+A.~P. Burger, E.~J. Cockayne, W.~R. Gr\"undlingh, C.~M. Mynhardt,
 J.~H. van Vuuren, and W.~Winterbach,
 \newblock Infinite order domination in graphs,
 \newblock \emph{Journal of Combinatorial Mathematics and Combinatorial
 Computing} 50 (2004), 179--194.
+\newblock \url{https://combinatorialpress.com/jcmcc-articles/volume-050/infinite-order-domination-in-graphs/}
+
+\bibitem{ghh}
+W.~Goddard, S.~M. Hedetniemi, and S.~T. Hedetniemi,
+\newblock Eternal security in graphs,
+\newblock \emph{Journal of Combinatorial Mathematics and Combinatorial
+Computing} 52 (2005), 169--180.
+\newblock \url{https://combinatorialpress.com/jcmcc-articles/volume-052/eternal-security-in-graphs/}
+
+\bibitem{lovasz}
+L.~Lov\'asz,
+\newblock On the Shannon capacity of a graph,
+\newblock \emph{IEEE Transactions on Information Theory} 25 (1979), 1--7.
+\newblock \url{https://doi.org/10.1109/TIT.1979.1055985}
 
 \bibitem{mmv}
 G.~MacGillivray, C.~M. Mynhardt, and V.~Virgile,
@@ -267,7 +365,7 @@ G.~MacGillivray, C.~M. Mynhardt, and V.~Virgile,
 \bibitem{west}
 D.~B. West,
 \newblock Eternal domination number,
-\newblock Research problems webpage, accessed 25 July 2026.
+\newblock Research problems webpage, accessed 26 July 2026.
 \newblock \url{https://dwest.web.illinois.edu/regs/eterndom.html}
 
 \end{thebibliography}

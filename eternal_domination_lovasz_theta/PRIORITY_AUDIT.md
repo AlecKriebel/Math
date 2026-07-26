@@ -1,6 +1,6 @@
 # Priority and literature audit
 
-**Audit date:** 25 July 2026
+**Audit date:** 26 July 2026
 
 ## Question and notation
 
@@ -18,12 +18,39 @@ This note avoids the collision:
 
 ## Known graph-theoretic input
 
+Noga Alon, “Explicit Ramsey graphs and orthonormal labelings,” *Electronic
+Journal of Combinatorics* 1 (1994), Research Paper 12, DOI
+[`10.37236/1192`](https://doi.org/10.37236/1192):
+
+- Corollary 2.3 gives explicit triangle-free Cayley graphs \(F_k\) on
+  \(n_k=2^{3k}\) vertices, for \(k\geq2\) not divisible by three, with
+  \(\vartheta(\overline{F_k})=\Theta(n_k^{1/3})\).
+- Setting \(H_k=\overline{F_k}\) gives \(\alpha(H_k)=2\).
+
+Wayne Goddard, Sandra M. Hedetniemi, and Stephen T. Hedetniemi, “Eternal
+security in graphs,” *Journal of Combinatorial Mathematics and Combinatorial
+Computing* 52 (2005), 169-180:
+
+- Theorem 4 proves that \(\alpha(G)=2\) implies
+  \(\gamma^\infty(G)\leq3\).
+- Together with \(\alpha\leq\gamma^\infty\), this turns Alon's family into an
+  explicit unbounded separation:
+  \[
+  \frac{\vartheta(H_k)}{\gamma^\infty(H_k)}
+  =\Theta(n_k^{1/3}).
+  \]
+
+This is a direct synthesis of established theorems, not a new graph
+construction.
+
 Gary MacGillivray, C. M. Mynhardt, and Virgélot Virgile, “Eternal domination
 and clique covering,” *Electronic Journal of Graph Theory and Applications*
 10(2) (2022), 603-624, DOI
 [`10.5614/ejgta.2022.10.2.19`](https://doi.org/10.5614/ejgta.2022.10.2.19):
 
-- Proposition 5.1 proves that the two listed ten-vertex graphs have
+- Fact 5.1 gives independence number three and clique-cover number four for
+  the two listed graphs.
+- Proposition 5.1 and its proof establish
   \(\gamma^\infty=3<4=\operatorname{cc}\).
 - Proposition 5.2 reports a computer verification that every graph of order
   at most nine satisfies \(\gamma^\infty=\operatorname{cc}\).
@@ -34,8 +61,12 @@ and clique covering,” *Electronic Journal of Graph Theory and Applications*
 The paper uses \(\theta\) for clique-cover number and does not state a
 Lovász-theta calculation for this graph.
 
-For the theta convention and sandwich inequality, the audit used Noga Alon
-and Nabil Kahale, “Approximating the independence number via the
+For the origin of the theta function and its semidefinite formulation, the
+audit used László Lovász, “On the Shannon capacity of a graph,” *IEEE
+Transactions on Information Theory* 25 (1979), 1-7, DOI
+[`10.1109/TIT.1979.1055985`](https://doi.org/10.1109/TIT.1979.1055985).
+For the modern convention and sandwich inequality, the audit also used Noga
+Alon and Nabil Kahale, “Approximating the independence number via the
 \(\theta\)-function,” *Mathematical Programming* 80 (1998), 253-264, DOI
 [`10.1007/BF01581168`](https://doi.org/10.1007/BF01581168). It gives the
 same primal semidefinite program used in the certificate and states
@@ -50,6 +81,8 @@ The audit searched combinations and notation variants including:
 - `eternal domination` with `Lovász number`, `Lovasz theta`, `vartheta`,
   `theta function`, `gamma infinity`, and `eternal security`;
 - the 2022 paper's forward citation graph and related recent papers;
+- sources citing Alon's 1994 construction and the 2005 eternal-security
+  result, including searches for the two results in combination;
 - arXiv, journal pages, general scholarly indexes, dissertations, and public
   problem lists.
 
@@ -59,12 +92,13 @@ The arXiv record for the 2022 paper was also checked: its latest revision is
 ## Conclusion
 
 No indexed paper, preprint, thesis, or public webpage found in this search
-states the exact counterexample or resolves the Lovász-theta question.
-Accordingly, the defensible language is:
+explicitly combines the Alon and Goddard--Hedetniemi--Hedetniemi results to
+answer the Lovász-theta question. No source found states the exact
+ten-vertex certificate. Accordingly, the defensible language is:
 
-> As of 25 July 2026, no prior public resolution was found in the sources
-> searched. The observation appears novel, but this is not an absolute
-> priority claim.
+> As of 26 July 2026, no prior public resolution was found in the sources
+> searched. The connections and exact certificate appear unrecorded, but this
+> is not an absolute priority claim.
 
 A literature search cannot exclude unindexed code, private observations, or
 an antecedent phrased in different language. No outside researcher was
@@ -81,3 +115,9 @@ author.
   <https://www.ejgta.org/index.php/ejgta/article/view/1525>
 - arXiv record:
   <https://arxiv.org/abs/2110.09732>
+- Alon, “Explicit Ramsey graphs and orthonormal labelings”:
+  <https://doi.org/10.37236/1192>
+- Goddard-Hedetniemi-Hedetniemi, “Eternal security in graphs”:
+  <https://combinatorialpress.com/jcmcc-articles/volume-052/eternal-security-in-graphs/>
+- Lovász, “On the Shannon capacity of a graph”:
+  <https://doi.org/10.1109/TIT.1979.1055985>

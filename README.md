@@ -51,14 +51,17 @@ the [active research page](https://aleckriebel.github.io/Math/research/gamma-the
 the [tagged reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/gamma-theta-order12-frontier-v1.0.0),
 and the [source package](gamma_theta_eternal_domination/).
 
-**A ten-vertex graph with
-\(\gamma^\infty(G)<\vartheta(G)\)** is a short exact graph-theory note. For
-the graph with graph6 record
-`IEhbtj{ro`, it verifies
-\(\gamma^\infty(G)=3<7593/2500\leq\vartheta(G)\). The theta certificate uses
-exact rational arithmetic, and a separate state-space verifier independently
-recomputes the standard one-guard game. The minimum-order conclusion uses the
-published exhaustive classification through order nine. See the
+**Eternal domination and the Lovász theta function** gives an explicit family
+with
+\(\vartheta(G)/\gamma^\infty(G)=\Theta(|V(G)|^{1/3})\), by combining
+published results of Alon and of Goddard, Hedetniemi, and Hedetniemi. It also
+gives the sharp smallest example: the graph with graph6 record `IEhbtj{ro`
+satisfies
+\(\gamma^\infty(G)=3<7593/2500\leq\vartheta(G)\).
+The finite theta certificate uses exact rational arithmetic, and a separate
+state-space verifier independently recomputes the standard one-guard game.
+The minimum-order conclusion uses the published exhaustive classification
+through order nine. See the
 [paper page](https://aleckriebel.github.io/Math/papers/eternal-domination-lovasz-theta/)
 and [source package](eternal_domination_lovasz_theta/).
 
