@@ -861,3 +861,28 @@ No checked source states the 26-family denominator or its boundary-chart
 registry.  This is source-specific negative evidence only, not a guarantee
 of worldwide priority.  The classification is AI-assisted, unreviewed,
 and is not yet a Keller exclusion or a new numerical degree bound.
+
+### 2026-07-26T02:11Z — isolated \(\kappa=16\) exclusion candidate
+
+The current-day source sweep was compared with the candidate exclusion of
+the single canonical family
+\[
+h=p^2-4pq+q^2,\qquad R=h(p+q).
+\]
+Exact and structural searches covered current arXiv Keller/Jacobian
+listings, MathOverflow, Terence Tao's blog, the Secret Blogging Seminar,
+and publicly indexed X/Twitter material.
+
+The nearest older result found was de Bondt's arXiv:1609.09753, which
+classifies maps \(x+H\) with a homogeneous quartic \(H\) in dimension at
+most three; it does not treat a general quartic map with arbitrary
+quadratic and cubic lower parts as in this candidate.  Current
+MathOverflow discussion concerns generic-degree realizability, not this
+leading-shape exclusion.  No checked source states the \(\kappa=16\)
+contact-plane, conic-pivot, or \(E_4\) square argument.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The candidate is AI-assisted, unreviewed, and remains
+provisional until hostile mathematical reconstruction.  Even if promoted,
+it excludes only one of 26 internal high-incidence families and does not
+raise the universal degree floor.

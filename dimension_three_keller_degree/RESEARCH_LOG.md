@@ -1426,3 +1426,18 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - No Keller exclusion follows yet.  The frozen global status is still
   \(4/14\) certified, \(4/14\) provisional, \(6/14\) open, and the
   certified total-degree floor remains four.
+
+## 2026-07-26T02:11:00Z — first canonical high-incidence exclusion candidate
+
+- The isolated squarefree \(\kappa=16\) family `D4-SF-11CC` now has a
+  complete candidate lower-identity exclusion.
+- A first restricted solve was deliberately withheld after it omitted
+  arbitrary binary lower summands.  The full recomputation retained those
+  summands and exposed an additional pivot factor
+  \(m^2-4mn+n^2\).
+- Fresh generic, conic-boundary, and zero-contact charts now close at
+  \(E_5,E_5,E_4\), respectively.  Exact SymPy and independently rebuilt
+  PARI/GP implementations pass.
+- The candidate remains provisional until hostile reconstruction.  It
+  changes neither the frozen \(4/14,4/14,6/14\) global count nor the
+  degree floor four.

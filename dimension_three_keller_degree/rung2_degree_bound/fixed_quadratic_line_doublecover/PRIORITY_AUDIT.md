@@ -51,3 +51,24 @@ source-specific negative evidence only, not a guarantee of worldwide
 priority.  The atlas is AI-assisted and unreviewed; it freezes the search
 space but does not exclude any of the 26 families from the Keller
 equations.
+
+## 2026-07-26T02:11Z — `D4-SF-11CC` candidate exclusion
+
+The same current-day sweep was compared with the isolated squarefree
+\(\kappa=16\) family, in the rational representative
+\[
+h=p^2-4pq+q^2,\qquad R=h(p+q).
+\]
+Exact searches included the displayed pair, \(\kappa=16\), the contact
+rank-drop factor \(m^2-4mn+n^2\), and the two \(E_4\) square
+obstructions.
+
+No checked arXiv, MathOverflow, Tao-blog, Secret Blogging Seminar, or
+publicly indexed X/Twitter source states this exclusion.  The adjacent
+homogeneous-quartic classification arXiv:1609.09753 concerns \(x+H\)
+with \(H\) homogeneous and does not cover the arbitrary lower homogeneous
+parts retained here.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The candidate is AI-assisted and unreviewed; hostile
+audit is pending, and the parent quartic row remains open.

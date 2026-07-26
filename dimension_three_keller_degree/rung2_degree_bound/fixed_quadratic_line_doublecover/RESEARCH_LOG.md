@@ -79,3 +79,19 @@
 - This freezes the incidence search space only.  The parent quartic row
   remains open, the global count remains \(4/14\) certified, and the
   universal total-degree floor remains four.
+
+## 2026-07-26T02:11:00Z — `D4-SF-11CC` candidate closed
+
+- The first canonical family tested after the high-incidence freeze is the
+  isolated squarefree point \(\kappa=16\), with rational representative
+  \(h=p^2-4pq+q^2,\ R=h(p+q)\).
+- The full \(E_6\) contact locus is a two-parameter plane even after
+  arbitrary binary lower summands are restored.
+- The lower solve has three necessary charts: generic,
+  \(m^2-4mn+n^2=0\) nonzero, and zero contact.  These fail at
+  \(E_5,E_5,E_4\), respectively; the zero chart becomes binary and exits
+  by the unconditional plane low-degree theorem.
+- Independent SymPy and PARI/GP replays pass with terminal marker
+  `D4_SF_11CC_FULL_STRICT_PASS`.
+- Hostile mathematical audit is pending, so the family is provisional and
+  no parent-row or global count is changed.
