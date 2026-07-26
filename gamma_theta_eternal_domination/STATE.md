@@ -1,5 +1,33 @@
 # Campaign State
 
+## Checkpoint 016 — 2026-07-25 19:02 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this batch: `5d0a13f8`.
+- `hole7` now has 192 complete SAT/coloring attempts and globally sound
+  cuts.  Its checkpoint SHA-256 is
+  `70ed71127081efae5e9e85f3bd9c6a2ddefcccf3db992d416d795f3edd1f6d84`;
+  status remains `running`.
+- Deep read-only reconstruction preserved the exact 1,347-file,
+  6,685,492-byte run tree at SHA-256
+  `8ccae877b89b167a859bdd7f6dcd42937110fe7a0b725c0425fe2e24c15dd800`.
+- The `hole9` recovery author package is frozen and has passed 12 focused
+  and 238 full-suite tests, but independent review remains active.  That
+  review found a one-digit truncation in ART-115's manually transcribed
+  `cuts.json` hash; the immutable log is retained and a narrow machine-
+  readable erratum now supplies the correct binding.
+- No heavy child was active when this checkpoint was written.
+
+### Claim boundary and next actions
+
+- Neither the 192-cut `hole7` prefix nor the author-verified `hole9`
+  recovery is yet a template-level theorem.
+- Publish this prefix.  Continue `hole7` in bounded batches while the fresh
+  independent RUP implementation and erratum audit finish.
+- Accept or reject `hole9` only on the final hostile verdict; if accepted,
+  register it as one of three required overlapping templates, not as the
+  complete \((12,3)\) slice.
+
 ## Checkpoint 015 — 2026-07-25 18:58 PDT
 
 - Campaign day: 1 of 27; branch `main`.
