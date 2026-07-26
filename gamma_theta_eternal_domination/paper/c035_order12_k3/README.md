@@ -1,5 +1,9 @@
 # C-035 manuscript package
 
+> **Archival component draft.**  The complete order-12 frontier manuscript in
+> `paper/order12_frontier/` subsumes this parameter-three paper.  This draft is
+> retained for provenance and is not a separate current publication.
+
 This directory contains the submission-oriented manuscript for the exact
 `CERTIFIED-FINITE` claim:
 
@@ -25,8 +29,7 @@ Tectonic produce byte-identical `main.pdf`.
 The checked research artifacts are not duplicated into the paper directory;
 Appendix A binds their exact paths and SHA-256 hashes in the campaign archive.
 
-## Submission placeholders
+## Archival status
 
-Before external submission, replace the author line and add the permanent
-archive identifier in the data-availability section.  No external
-communication or publication has been performed.
+The author and archive placeholders remain deliberately visible because this
+superseded component draft is not being issued as a separate paper.

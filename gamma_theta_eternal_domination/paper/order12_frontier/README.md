@@ -22,15 +22,17 @@ SOURCE_DATE_EPOCH=1785074656 \
 
 The epoch is the creation time of the frozen C-050 acceptance record,
 `2026-07-26T14:04:16Z`.  With Tectonic 0.16.9, two clean builds produced
-byte-identical `main.bbl` and `main.pdf` files.
+byte-identical `main.bbl` and `main.pdf` files.  The public edition identifies
+**Alec Kriebel** as author and binds data availability to the tagged
+reproducibility release.
 
 The retained submission files have these SHA-256 values:
 
 ```text
-5437afac6f3c3e5ee291e7389939bc6708d20521524bce700eba26e051fbf0b5  main.tex
+44e49d6dbf90174ca27f5b65e99e55a9852fb6deafb0ba3dd78770c53e0faa9e  main.tex
 8471090ae03babda7794aea6bbcbc6fbcb36ffa8a859a86005bbb0b7ae2f9ec6  references.bib
 f9789755c4ec0c83b1e2493f5301e7d4d4dfaa4398810aa9e28d22148da4849a  main.bbl
-1084efc8372a5615dca68bc0f80a4fad88557ebfed8930a655126246de5cd8fc  main.pdf
+b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2  main.pdf
 ```
 
 The exact research artifacts are not duplicated into this directory.
@@ -49,8 +51,9 @@ Text extraction found no replacement characters.
 The machine-readable QA record and the separate hostile manuscript review
 are retained beside the campaign reviews.
 
-## Submission placeholders
+## Public edition
 
-Before external submission, the human author must replace the author line
-and insert a permanent archive identifier in the data-availability section.
-No external communication or publication has been performed.
+The manuscript has no remaining publication placeholder.  It is the current
+paper for the complete order-12 frontier.  The earlier
+`paper/c035_order12_k3/` manuscript is retained only as an archival component
+draft because its parameter-three theorem is subsumed here.

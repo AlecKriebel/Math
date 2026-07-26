@@ -1,5 +1,12 @@
 {
+  "schema": "gamma-theta-order12-frontier-publication-qa-v2",
+  "schema_version": 2,
+  "created_at": "2026-07-26T20:51:12Z",
   "artifacts": {
+    "README_md": {
+      "sha256": "5dd9578ca712c5449a6146544b4002f5aefb73b055cba405f9388b9065394cc0",
+      "size_bytes": 2351
+    },
     "main_bbl": {
       "sha256": "f9789755c4ec0c83b1e2493f5301e7d4d4dfaa4398810aa9e28d22148da4849a",
       "size_bytes": 2484
@@ -9,20 +16,26 @@
       "size_bytes": 191
     },
     "main_log": {
-      "sha256": "1ab785384e3e14b5cbc7c7358ee6cd2c32f8f1aff123f7e7d12b868b7b7757d5",
+      "sha256": "645879feb11804aaffd0e18c617c4616d4fdd6d39014197f795c753aa2110ac0",
       "size_bytes": 12311
     },
     "main_pdf": {
-      "sha256": "1084efc8372a5615dca68bc0f80a4fad88557ebfed8930a655126246de5cd8fc",
-      "size_bytes": 130406
+      "sha256": "b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2",
+      "size_bytes": 130163
     },
     "main_tex": {
-      "sha256": "5437afac6f3c3e5ee291e7389939bc6708d20521524bce700eba26e051fbf0b5",
-      "size_bytes": 48398
+      "sha256": "44e49d6dbf90174ca27f5b65e99e55a9852fb6deafb0ba3dd78770c53e0faa9e",
+      "size_bytes": 48891
     },
     "references_bib": {
       "sha256": "8471090ae03babda7794aea6bbcbc6fbcb36ffa8a859a86005bbb0b7ae2f9ec6",
       "size_bytes": 4534
+    },
+    "public_paper_pdf": {
+      "path": "docs/papers/gamma-theta-order-12-frontier/paper.pdf",
+      "sha256": "b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2",
+      "size_bytes": 130163,
+      "byte_identical_to_main_pdf": true
     }
   },
   "build": {
@@ -30,23 +43,17 @@
     "command": "SOURCE_DATE_EPOCH=1785074656 tectonic --keep-logs --keep-intermediates main.tex",
     "main_bbl_byte_identical": true,
     "main_pdf_byte_identical": true,
+    "retained_outputs_equal_fresh_build": true,
     "source_date_epoch": 1785074656,
     "tectonic_version": "0.16.9"
   },
   "claim_boundary": {
+    "published_through_order_11_premise_explicit": true,
+    "order_12_frontier_is_conditional_on_that_premise": true,
     "campaign_only_enumeration_through_12_claimed": false,
     "counterexample_claimed": false,
-    "published_through_11_premise_explicit": true,
+    "lower_bound_14_claimed": false,
     "universal_resolution_claimed": false
-  },
-  "created_at": "2026-07-26T15:14:55Z",
-  "independent_review": {
-    "blocking_defects": 0,
-    "evidence_path": "reviews/order12_frontier_manuscript_second/evidence.json",
-    "evidence_sha256": "2d158338fea8160373d69501bb8ee6aa95526b27d1095c7a4c82df6aaabb990b",
-    "review_path": "reviews/order12_frontier_manuscript_second/REVIEW.md",
-    "review_sha256": "0153270f29657052b1bcffff17adb618819d118e5a0d6b1e18e92c88a7454d7c",
-    "verdict": "ACCEPT_FROZEN_MANUSCRIPT_WITH_EXPLICIT_PRESUBMISSION_PLACEHOLDERS"
   },
   "log_checks": {
     "bibtex_or_tex_warnings": 0,
@@ -56,17 +63,36 @@
     "undefined_citations_or_references": 0
   },
   "pdf": {
+    "title": "A Certified Order-Twelve Extension of the gamma\u2013theta Frontier in One-Guard Eternal Domination",
+    "author": "Alec Kriebel",
+    "subject": "One-guard eternal domination and clique covering",
     "encrypted": false,
     "forms": "none",
     "page_height_points": 792,
     "page_width_points": 612,
     "pages": 17,
+    "publication_placeholders": 0,
     "replacement_characters_in_extracted_text": 0
   },
-  "presubmission_gates": [
-    "Replace the author-metadata placeholder with human-supplied metadata.",
-    "Insert a permanent public archive identifier in Data availability."
-  ],
+  "review": {
+    "presubmission": {
+      "evidence_path": "reviews/order12_frontier_manuscript_second/evidence.json",
+      "evidence_sha256": "2d158338fea8160373d69501bb8ee6aa95526b27d1095c7a4c82df6aaabb990b",
+      "review_path": "reviews/order12_frontier_manuscript_second/REVIEW.md",
+      "review_sha256": "0153270f29657052b1bcffff17adb618819d118e5a0d6b1e18e92c88a7454d7c",
+      "verdict": "ACCEPT_FROZEN_MANUSCRIPT_WITH_EXPLICIT_PRESUBMISSION_PLACEHOLDERS"
+    },
+    "final_release": {
+      "audit_path": "reviews/order12_frontier_release_final/audit.py",
+      "audit_sha256": "49c9d9f5551140b31d2403348b1f705ec9a95f037eea12a82dacc95f6d353b71",
+      "evidence_path": "reviews/order12_frontier_release_final/evidence.json",
+      "evidence_sha256": "01921b1f7abf4b78b526cbd368aa35d4af9772509e6887c8c1a39d259b288086",
+      "findings_source": "independent final-release auditor",
+      "review_path": "reviews/order12_frontier_release_final/REVIEW.md",
+      "review_sha256": "cd1b46f193dad04f6cb4a05ff40a9f6d95fdda84cac5259ec828e10bc52d734d",
+      "verdict": "ACCEPT_RELEASE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH"
+    }
+  },
   "rendering": {
     "all_pages_inspected": true,
     "defects": [],
@@ -74,6 +100,14 @@
     "page_count_rendered": 17,
     "poppler_pdftoppm_version": "26.05.0"
   },
-  "schema": "gamma-theta-order12-frontier-manuscript-qa-v1",
-  "schema_version": 1
+  "publication": {
+    "author_metadata_complete": true,
+    "current_campaign_paper_count": 1,
+    "presubmission_gates": [],
+    "project_page": "https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/",
+    "paper_page": "https://aleckriebel.github.io/Math/papers/gamma-theta-order-12-frontier/",
+    "release_tag": "gamma-theta-order12-frontier-v1.0.0",
+    "release_url": "https://github.com/AlecKriebel/Math/releases/tag/gamma-theta-order12-frontier-v1.0.0",
+    "tag_status_at_qa_creation": "pending_atomic_push"
+  }
 }

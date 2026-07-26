@@ -1695,3 +1695,69 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   bytes and the 61,124-byte log SHA-256 is
   `2e7f27c39d91f12b8196db7a26a2d1ac6d7e92ab19ade30d76e4ca2bf5e375bd`.
   No campaign worker remains active.
+
+### 2026-07-26 13:17 — `hole7` frozen; order-12 release and universal-proof pivot
+
+- The exact order-13 parameter-three `hole7` package was generated from
+  accepted C-055 sources but deliberately not given to a SAT solver.  Its
+  1,372,338-byte formula has 9,802 variables, 34,903 clauses, 349,248
+  literal occurrences, and SHA-256
+  `3e1c86ccbcfc1e04b3ec4de29ec5b7d342cf909553655f959b1c35de0a36c340`.
+  The complete 5,103-row coloring bank has SHA-256
+  `efafa89d6096d81bc0ae5a1860be4d0ce69b56f4e4957c8bd307316c121e692d`.
+- An independent preflight reconstructed the package once from clean
+  committed constructor bytes and once with a separate clean-room
+  constructor.  Both matched exactly.  It bound the C-055 mathematics,
+  re-enumerated the coloring bank, checked the strict DIMACS census and
+  rejected ten package/source/symlink/hardlink mutations.  Verdict:
+  `ACCEPT_EXACT_HOLE7_PACKAGE_PREFLIGHT`.  This is input integrity, not an
+  UNSAT result or mathematical exclusion.
+- The order-12 frontier manuscript was converted from its accepted
+  presubmission state to a public edition.  The sole author is Alec Kriebel;
+  the exact release and human-readable project URLs replace the two
+  placeholders.  Two fresh Tectonic 0.16.9 builds are byte-identical.  The
+  17-page PDF is 130,163 bytes with SHA-256
+  `b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2`.
+  Every page was rendered and inspected, including the revised title and
+  data-availability page.  The embedded author, title, subject, and keyword
+  metadata were then checked explicitly; all 17 final rendered page images
+  remained pixel-identical to the inspected layout.
+- Fresh C-050 full-LRAT and C-057 RUP/LRAT/coverage replays both passed,
+  invoking no SAT solver.  The public research page and paper page were then
+  prepared as static GitHub Pages artifacts.  Local serving returned exact
+  source bytes for the home page, both new pages, the PDF, and CSS; all local
+  links and IDs and both JSON-LD blocks passed, and the sitemap is valid XML.
+  Public commit, tag, release, Pages build, and live-byte verification remain
+  gated on independent final audits.
+- Portfolio decision: no solver launch follows the successful preflight.
+  Before proceeding to order 14, the campaign gives primary effort to a
+  universal minimum-counterexample argument centered on the C-051 projection,
+  exact eternal-family transitions, and private-neighborhood structure.
+  Order-13 synthesis remains a bounded fallback and a source of
+  counterexamples to proposed lemmas.
+
+### 2026-07-26 13:51 — final release-byte and site audits accepted
+
+- The independent final manuscript audit reproduced two clean deterministic
+  Tectonic builds, the warning-free logs, the 17-page rendering inspection,
+  Alec Kriebel metadata, exact public-PDF equality, and the restricted
+  source diff from the accepted presubmission manuscript. Verdict:
+  `ACCEPT_RELEASE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH`.
+- The independent final public-site audit strictly parsed both JSON-LD
+  documents and the XML sitemap, checked all local references and fragments,
+  found no duplicate IDs or unexpected package entry, and accepted the exact
+  one-guard model, clique-cover notation, authorship, and conditional claim
+  scope. Verdict:
+  `ACCEPT_SITE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH`.
+- Both retained audit scripts now have a post-publication mode that verifies
+  the accepted bytes directly from the annotated release tag. The sole
+  remaining publication condition is an atomic push of the release commit
+  and `gamma-theta-order12-frontier-v1.0.0`, followed by live Pages and
+  release-asset byte verification.
+- The `hole7` preflight was made durable across documentation-only branch-tip
+  changes: its checker continues to bind constructor and C-055 source bytes
+  to frozen baseline commit
+  `b9b74a38415dac6ef11bb7cbc55badf224affadd`, while still rejecting any live
+  source, accepted-chain, formula, bank, or manifest drift. The deterministic
+  preflight replay passes after this correction; no solver or proof checker
+  ran.

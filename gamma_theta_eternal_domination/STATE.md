@@ -1,5 +1,110 @@
 # Campaign State
 
+## Checkpoint 048 — 2026-07-26 13:17 PDT
+
+- Campaign day: 2 of 27, approximately 24 hours after launch; branch `main`;
+  published `HEAD` and `origin/main` are both
+  `b9b74a38415dac6ef11bb7cbc55badf224affadd`.
+- **The campaign priority is again the universal conjecture.**  The next
+  order-13 finite package is frozen but no solver is being launched.  Before
+  any move to order 14, the primary lane is a decisive minimum-counterexample
+  proof or a counterexample mechanism.  Order-13 synthesis remains a bounded
+  fallback and lemma generator, not the definition of campaign success.
+- **The order-12 paper is in final release audit.**  The 17-page manuscript
+  now identifies Alec Kriebel as sole author, keeps the published
+  through-order-11 premise explicit, and binds data availability to the
+  intended tagged release
+  `gamma-theta-order12-frontier-v1.0.0`.  Two fresh clean Tectonic 0.16.9
+  builds are byte-identical.  The final PDF is 130,163 bytes with SHA-256
+  `b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2`;
+  all 17 rendered pages passed visual inspection and the TeX/BibTeX logs have
+  no actual warning or box defect.  Its embedded PDF metadata names Alec
+  Kriebel as author and records the paper title and clique-cover subject.
+- **Fresh decisive replays passed without a SAT solver.**  The C-050 full
+  replay returned
+  `VERIFIED_ORDER12_FRONTIER_BINDINGS_AND_EXACT_LRAT` in 4.19 seconds with
+  maximum RSS 49,987,584 bytes.  The C-057 replay returned
+  `VERIFIED_C057_HOLE9_TEMPLATE_EXCLUSION_BINDINGS_AND_PROOFS` in 15.37
+  seconds with maximum RSS 79,036,416 bytes.
+- **The active public workstream is independently accepted locally, not yet
+  published.**
+  The new research page and paper page distinguish clique-cover
+  \(\theta=\chi(\overline G)\) from Lovász \(\vartheta\), state the exact
+  one-guard model, and make the unresolved universal status prominent.  A
+  local static-server replay byte-matched the home page, both new pages, the
+  PDF, and shared CSS; every internal reference resolved and the sitemap
+  parsed.  The separate final manuscript and public-site auditors found no
+  blocking byte, layout, link, attribution, notation, or claim-scope defect.
+  Their verdicts are respectively
+  `ACCEPT_RELEASE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH` and
+  `ACCEPT_SITE_BYTES_CONDITIONAL_ONLY_ON_ATOMIC_TAG_PUSH`; atomic commit/tag
+  publication and live-byte verification are the sole remaining gates.
+- **The exact order-13 `hole7` input is safely frozen without a computation.**
+  Its formula has 9,802 variables, 34,903 clauses, and 349,248 literal
+  occurrences; SHA-256 is
+  `3e1c86ccbcfc1e04b3ec4de29ec5b7d342cf909553655f959b1c35de0a36c340`.
+  A clean committed-source reconstruction and a separate clean-room
+  constructor both reproduced the bytes, the complete 5,103-row coloring
+  bank was re-enumerated, and 10/10 hostile mutations were rejected.  Verdict:
+  `ACCEPT_EXACT_HOLE7_PACKAGE_PREFLIGHT`.  No SAT solver or proof checker ran.
+
+### Evidentiary boundary
+
+- The mathematical frontier remains C-050: relative to the published
+  through-order-11 computation, every counterexample has order at least 13.
+  The release changes authorship, availability, and public presentation; it
+  does not create a stronger theorem.
+- C-057 excludes only the order-13 parameter-three complement-\(C_9\)
+  template.  The overlapping \(C_5,C_7\) templates and the order-13
+  parameter-four and parameter-five slices remain open.
+- A preflighted CNF is not a finite result.  The `hole7` package currently
+  proves construction and coverage integrity only.
+- No universal proof, certified counterexample, prior resolution, or lower
+  bound of 14 has been obtained.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Universal minimum-counterexample proof | active-primary | Turn C-051's recursive independent-antineighborhood projection and eternal-family constraints into a global contradiction; stop any lemma that merely restates the conjecture |
+| Structural parameter-three proof | active-independent | Seek a human exclusion of the remaining \(C_5,C_7\) mechanisms and generalize any transition lemma beyond order 13 |
+| Order-12 publication | accepted-prepush | Both final independent audits pass; atomically publish the exact commit and tag, create the GitHub release, and verify deployed Pages/PDF bytes |
+| Order-13 \(k=3\) `hole7` | frozen-preflight-only | Exact input accepted; solver launch deliberately paused during the proof-first interval |
+| Order-13 \(k=3\) `hole5` | pending-computational-fallback | Accepted order-12 signature sorter is promising, but no order-13 proof package is authorized |
+| Order-13 \(k=4\) | pending-third | Parent formula has higher proof/storage risk and is not the next lane |
+| Order-13 \(k=5\) structure | accepted-proved-C056 | Finite kernel enumeration remains an efficient fallback because \(\gamma=\theta\) collapses the parameter chain on kernels |
+| Literature/status audit | active-weekly | No direct resolution found; next compressed refresh due by day 7 or new terminology |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, graph generator, local web server, or
+  memory-heavy campaign process is running.
+- Recheck the order-12 frontier with
+  `python3 -I -B repro/c050/replay.py --full`.
+- Recheck C-057 with
+  `python3 -I -B -W error repro/c057/replay.py`.
+- Do not initialize or launch the `hole7` production runner until the
+  proof-first portfolio gate is explicitly reviewed.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 14,560,608 KiB, approximately 13.89 GiB; volume
+  usage rounds to 97%.
+- The two fresh decisive replays remained below 76 MiB maximum RSS.  No
+  campaign worker is active.
+
+### Next three highest-value actions
+
+1. Atomically commit, push, and tag the accepted release bytes; create the
+   GitHub release and verify the exact GitHub Pages deployment.
+2. Split the universal lane into independent minimum-counterexample,
+   eternal-family transition, and private-neighborhood proof attacks with
+   explicit two-iteration stop gates.
+3. Use the frozen order-13 packages only to falsify proposed global lemmas or
+   extract small obstruction cores; resume a certificate-producing finite run
+   only if the proof lane reaches its declared gate without a new mechanism.
+
 ## Checkpoint 047 — 2026-07-26 12:37 PDT
 
 - Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`

@@ -9,6 +9,11 @@ Here \(\gamma^\infty\) always means the standard **one-guard-moves** eternal
 domination number: attacks occur only at unoccupied vertices and exactly one
 guard traverses one edge to the attacked vertex.
 
+The dated public workstream and current order-12 paper are available at:
+
+- <https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/>
+- <https://aleckriebel.github.io/Math/papers/gamma-theta-order-12-frontier/>
+
 ## Campaign dates
 
 - Day 1: 2026-07-25
@@ -71,10 +76,11 @@ family-level generalization of Taletskii's planar minimum-counterexample
 Lemma 13, not a claim that the antineighborhood idea itself is wholly new;
 the full independent-set form iterates the vertex case.
 
-The deterministic 17-page submission-oriented manuscript is in
+The deterministic 17-page public-edition manuscript is in
 `paper/order12_frontier/`.  Its README gives the fixed-epoch build, exact
-hashes, visual-QA boundary, and the two submission placeholders that only the
-human author can complete.
+hashes, visual-QA boundary, Alec Kriebel authorship, and the tagged public
+archive identifier.  The earlier parameter-three manuscript is retained as a
+superseded component draft rather than issued as a second paper.
 
 Claims C-052--C-055 open the order-13 lane without inflating it into a finite
 result.  Relative to C-050, an order-13 counterexample is connected with

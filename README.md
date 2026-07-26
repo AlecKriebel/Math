@@ -38,6 +38,19 @@ not prove uniqueness, self-testing, or all-dimensional randomness. See the
 [paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/)
 and [source package](cyclic_bell_tsirelson_bound/).
 
+**A Certified Order-Twelve Extension of the \(\gamma\)--\(\theta\) Frontier
+in One-Guard Eternal Domination** combines a complete order-12 parameter
+split—exact proof certificates for common parameters three and four, and a
+structural argument for parameter five—with
+MacGillivray--Mynhardt--Virgile's published exhaustive computation through
+order 11. Relative to that published premise, every counterexample now has at
+least 13 vertices. This is a finite, unreviewed result and does not resolve
+the universal conjecture. See the
+[paper page](https://aleckriebel.github.io/Math/papers/gamma-theta-order-12-frontier/),
+the [active research page](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/),
+the [tagged reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/gamma-theta-order12-frontier-v1.0.0),
+and the [source package](gamma_theta_eternal_domination/).
+
 **A ten-vertex graph with
 \(\gamma^\infty(G)<\vartheta(G)\)** is a short exact graph-theory note. For
 the graph with graph6 record
@@ -80,6 +93,18 @@ construct nor exclude `H(668)`. See the
 [public research checkpoint](https://aleckriebel.github.io/Math/research/hadamard-matrix-order-668/)
 and tagged
 [reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/h668-research-checkpoint-v1.0.0).
+
+## Active research
+
+[`gamma_theta_eternal_domination/`](gamma_theta_eternal_domination/) is a
+27-day campaign to prove or disprove the one-guard \(\gamma\)--\(\theta\)
+conjecture. The conjecture remains open. The campaign has certified the
+order-12 frontier, reduced the order-13 parameter-three slice to two
+overlapping odd-hole templates, and is now prioritizing a universal
+minimum-counterexample proof before proceeding to order 14. The
+[public workstream](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/)
+is a dated snapshot; `STATE.md` and `CLAIMS.md` in the source package are the
+live records.
 
 ## Paused H(668) research
 
