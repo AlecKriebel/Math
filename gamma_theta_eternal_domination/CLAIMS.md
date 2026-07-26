@@ -48,11 +48,14 @@ Every mathematical or computational assertion must use exactly one status:
 | C-040 | OBSERVED | In the first exact `1111` production smoke test, CaDiCaL returned UNSAT and its retained binary proof passed forward verification, but warning-fatal backward LRAT conversion rejected a pseudo-unit deletion. The durable leaf status is therefore only `LRAT_CONVERSION_REJECTED_NONCLAIM`. A temporary strict addition-only normalization then passed forward RUP checking, backward LRAT conversion, and fresh replay, demonstrating a concrete v3 repair route but not certifying the leaf. | `results/order12_k4_production_seed0/`; `results/logs/order12-k4-seed0-attempt1-diagnostic.json`; exact 22-file hash manifest; post-attempt read-only audit |
 | C-041 | PROVED | Let \(G\) be a connected order-12 parameter-four target, put \(H=\overline G\), and let \(H[A]\cong\overline{C_7}\). Outside vertices adjacent in \(H\) to exactly six vertices of \(A\) are pairwise nonadjacent in \(H\), have the same unique nonneighbor in \(A\), and number at most three. Thus the incidence subbranch with four or five such near-hubs is empty. This does not exclude the full \(\overline{C_7}\) template, certify the \((12,4)\) slice, or make a novelty claim. | `math/lemmas/order12_k4_antihole_near_hubs.md`; verdict `ACCEPT_PROVED_LOCAL_LEMMAS_WITHOUT_SCOPE_INFLATION` in `reviews/order12_k4_antihole_near_hubs_hostile_review.md`; independent explicit configuration-digraph and 896-case P3-cap probe |
 | C-042 | CERTIFIED-FINITE | The exact case-`1111` Boolean-cube leaf of the anchored connected order-12 parameter-four parent, obtained by adjoining units \(4,14,23,31\), is UNSAT.  Its exact CNF has 18,381 variables, 114,746 clauses, 1,180,020 literals, and SHA-256 `aafc8534...`.  This certifies only that one leaf: the other 15 cubes remain pending, so neither the parent, the \((12,4)\) slice, nor the universal conjecture is settled. | Preserved v3 package at commit `92f5ed2b...`; outcome `00e3c191...`; leaf certificate `7c9705f5...`; LRAT `90787a09...`; independent byte reconstruction and fresh private replay accepted in `reviews/order12_k4_v3_case1111_attempt1_postrun_review.md` and its JSON record |
+| C-043 | PROVED | In every model of the exact connected anchored order-12 parameter-four parent, the lexicographically minimum outer signature has first bit zero: \(e_{0,4}=0\). Consequently all eight Boolean cubes `1***` are logically UNSAT and only the eight `0***` cubes can contain a model. This is a hand reduction and does not change the immutable production histogram. | `math/lemmas/order12_k4_minimum_signature.md`; verdict `ACCEPT EXACT LOGICAL REDUCTION` in `reviews/order12_k4_minimum_signature_hostile_review.md`; independent exact-parent comparator and 490,314-signature-sequence probe |
+| C-044 | PROVED | Up to simultaneous permutation of the four anchor vertices and color names followed by re-sorting the eight outer signatures, every model of the exact order-12 parameter-four parent has minimum signature in exactly one of the four canonical patterns `0000`, `0001`, `0011`, or `0111`. Thus the parent is satisfiable iff at least one of those four cube leaves is satisfiable. The four other `0***` leaves are orbit-redundant, not individually proved UNSAT. | `math/lemmas/order12_k4_anchor_signature_symmetry.md`; verdict `ACCEPT EXACT FOUR-CUBE ORBIT REDUCTION` in `reviews/order12_k4_anchor_signature_symmetry_hostile_review.md`; exact 65,536-row bank covariance over 24 anchor actions and exhaustive 319,770-multiset orbit probe |
 
 No claim above resolves the \(\gamma\)–\(\theta\) conjecture. Claims C-007–C-009,
 C-011–C-012, C-018–C-019, C-023, C-026, C-028, C-030, C-034, C-035, and
-C-042 are finite validation results, not universal proofs.  C-031 and C-032 are
-sound symmetry reductions, and C-033 is a conditional realization theorem.
+C-042 are finite validation results, not universal proofs.  C-031, C-032,
+and C-044 are sound symmetry reductions, C-043 is a logical parent
+reduction, and C-033 is a conditional realization theorem.
 The independently checked C-034 certificate fills C-033's separate UNSAT
 premise, excludes the last `hole5` branch, and yields the complete
 \((n,k)=(12,3)\) exclusion C-035.  Parameter \(k\geq4\) at order 12 and all
@@ -62,4 +65,8 @@ computational outcome.  C-038 and C-039 narrow the surviving structural
 templates but do not exclude the \((12,4)\) slice.  C-040 is an engineering
 observation and explicitly supplies no \(k=4\) leaf result.  C-041 excludes
 only one incidence subbranch of the surviving \(\overline{C_7}\) template.
-C-042 certifies one of 16 exact parent cubes; the other 15 remain pending.
+C-042 certifies one of 16 exact production cubes; the immutable run still
+records the other 15 as pending.  Independently, C-043 proves all eight
+`1***` leaves impossible and C-044 reduces satisfiability of the parent to
+the four canonical leaves `0000`, `0001`, `0011`, and `0111`.  None of
+those four has yet been certified UNSAT or SAT.

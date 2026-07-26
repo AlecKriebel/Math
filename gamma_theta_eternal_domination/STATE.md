@@ -1,5 +1,75 @@
 # Campaign State
 
+## Checkpoint 038 — 2026-07-26 05:00 PDT
+
+- Campaign day: 2 of 27; branch `main`; pre-integration `HEAD`
+  `f1ccd179fd83992136b7ec98b6d967c5e64d6d5a`.
+- **New proved logical reduction (C-043):** connectedness and the accepted
+  outer-signature ordering force \(e_{0,4}=0\) in every model of the exact
+  order-12 parameter-four parent.  Hence all eight `1***` cubes are
+  logically UNSAT.  An independent probe checked the exact comparator and
+  all 490,314 nondecreasing eight-signature sequences; hostile verdict:
+  `ACCEPT EXACT LOGICAL REDUCTION`.
+- **New proved orbit reduction (C-044):** simultaneous permutation of the
+  four anchor vertices and four color names, followed by the accepted outer
+  re-sorting, gives every model a representative whose first signature is
+  one of `0000`, `0001`, `0011`, or `0111`.  Therefore those four cubes
+  cover parent satisfiability.
+- The independent review regenerated the complete 65,536-row coloring bank,
+  checked all 1,572,864 anchor-permutation/color-row actions, checked all
+  458,752 adjacent outer actions on the bank, and exhaustively audited all
+  319,770 admissible eight-signature multisets.  Verdict:
+  `ACCEPT EXACT FOUR-CUBE ORBIT REDUCTION`.
+- The four discarded `0***` leaves are orbit-redundant, not individually
+  proved UNSAT.  The immutable v3 run remains exactly one
+  `UNSAT_LRAT_VERIFIED` leaf (`1111`) and 15 `PENDING` leaves; its checkpoint
+  and aggregate status were not rewritten.
+- The repaired independent v3 aggregate verifier has passed its author gate:
+  18/18 tests, exact clean-room parent reconstruction, static one-of-16
+  audit, and a fresh private LRAT replay under an external append-only
+  ledger.  It correctly returned
+  `INCOMPLETE_1_OF_16_VERIFIED_NONCLAIM`.  Those exact source and replay
+  bytes are now under separate hostile review and are not yet accepted.
+- A stronger DoubleLex strengthening, which also sorts the four complete
+  eight-bit anchor columns, is proposed in
+  `math/lemmas/order12_k4_doublelex.md`.  It has not yet passed hostile
+  review and supports no claim.
+- No solver is running.  At checkpoint time the Apple M1 Pro has 10 logical
+  CPUs, 16 GiB RAM, and approximately 24 GiB free disk.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found |
+| Order-12 \(k=3\) | exhausted-certified | Complete slice C-035 preserved |
+| Order-12 \(k=4\) exact target | active-four-canonical-leaves | C-043/C-044 reduce coverage to `0000`, `0001`, `0011`, `0111`; none yet decided |
+| Order-12 \(k=4\) structural lane | active | C-041, C-043, and C-044 accepted; DoubleLex pending review |
+| Proof-producing runner v3 | accepted-production | Immutable histogram remains one verified and 15 pending |
+| Aggregate negative-result audit | hostile-review | Author gate passed; independent exact-byte verdict required |
+| Order-12 \(k=5\) | pending | No encoding or outcome yet |
+
+### Running jobs and resume state
+
+- No campaign solver or proof checker is running.
+- Preserve both production directories unchanged.  Never resume the v2
+  directory `results/order12_k4_production_seed0`.
+- The v3 directory
+  `results/order12_k4_production_v3_seed0` is resumable.  Do not authorize a
+  second leaf until the aggregate verifier receives hostile acceptance.
+- If that gate passes, target canonical case `0111` rather than any `1***`
+  case; C-043 already disposes of the latter analytically.
+
+### Next three highest-value actions
+
+1. Complete hostile review of the independent aggregate verifier and its
+   fresh case-`1111` replay ledger.
+2. Hostile-review and, if accepted, implement the 765-clause DoubleLex
+   strengthening as a separate source-bound formula without altering v3.
+3. Authorize one bounded proof-producing attempt on canonical leaf `0111`
+   after the aggregate gate, then use its measured behavior to choose
+   between the four-leaf and DoubleLex routes.
+
 ## Checkpoint 037 — 2026-07-26 04:30 PDT
 
 - Campaign day: 2 of 27; branch `main`; exact one-leaf production package

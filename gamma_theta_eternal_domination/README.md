@@ -391,3 +391,29 @@ not an exclusion of the connected \((12,4)\) parent, the order-12
 parameter-four slice, or the universal conjecture.  The earlier aggregate
 checker prototype was tied to the rejected v2 schemas and is not accepted
 for v3; its v3 repair and independent audit are in progress.
+
+Claims C-043 and C-044 give two independent hand reductions of that same
+parent without rewriting the immutable production record.  Connectedness
+and the accepted outer-signature order force \(e_{0,4}=0\), so all eight
+`1***` leaves are logically impossible.  The full anchor \(S_4\) action,
+including the matching color-name action on the complete coloring bank,
+then shows that every remaining orbit has a sorted representative whose
+first signature is one of
+
+```text
+0000  0001  0011  0111
+```
+
+The exact coloring-bank covariance was checked for all
+\(24\cdot65,536=1,572,864\) anchor/color actions, and an independent probe
+checked all 319,770 admissible eight-signature multisets.  Thus the parent is
+satisfiable iff at least one of those four canonical cube leaves is
+satisfiable.  The other four `0***` leaves are orbit-redundant rather than
+individually certified UNSAT.  None of the four canonical leaves has yet
+received a SAT or UNSAT certificate.
+
+```text
+python3 reviews/order12_k4_minimum_signature_hostile_probe.py
+
+python3 reviews/order12_k4_anchor_signature_symmetry_hostile_probe.py
+```

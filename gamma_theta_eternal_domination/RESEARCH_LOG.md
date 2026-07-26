@@ -1182,3 +1182,40 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   schemas and is not accepted for this package.  Its v3 repair is in
   progress; it must freshly replay completed LRATs and independently verify
   partition coverage before any aggregate theorem is possible.
+
+### 2026-07-26 05:00 — exact \(k=4\) parent reduced to four canonical cubes
+
+- Connectedness gives every anchor vertex a \(G\)-neighbor outside the
+  anchored independent four-set.  For anchor 0 this supplies an outer
+  signature whose first \(H\)-adjacency bit is zero; the accepted
+  lexicographic outer ordering therefore forces \(e_{0,4}=0\).
+- This short argument logically excludes all eight `1***` leaves.  The
+  hostile reviewer parsed the exact parent, exhaustively checked all
+  comparator truth rows and all 490,314 nondecreasing eight-signature
+  sequences, and returned `ACCEPT EXACT LOGICAL REDUCTION`.
+- A second argument uses the full anchor \(S_4\) action.  Relabel an anchor
+  permutation together with every semantic variable and the four color
+  names, then re-sort the outer signatures.  Choose the lexicographically
+  least concatenated signature word in this orbit.  An adjacent `10`
+  inversion in its first signature could be swapped to `01`, contradicting
+  minimality.  No-\(K_5\) then leaves exactly `0000`, `0001`, `0011`, and
+  `0111`.
+- The independent review regenerated and matched the exact 65,536-clause
+  coloring bank, checked all \(24\cdot65,536=1,572,864\) anchor/color
+  actions, all 458,752 adjacent outer actions on the bank, and all 319,770
+  admissible signature multisets.  Verdict:
+  `ACCEPT EXACT FOUR-CUBE ORBIT REDUCTION`.
+- These are C-043 and C-044.  They do not change the immutable production
+  histogram: case `1111` remains the sole certified leaf and the other 15
+  remain recorded as pending.  Mathematically, however, deciding the exact
+  parent now requires only the four canonical leaves.  The discarded
+  zero-first leaves are orbit-redundant, not individually UNSAT.
+- The independent aggregate verifier simultaneously passed its author gate:
+  18/18 tests and a fresh private replay of case `1111`, correctly returning
+  a one-of-16 incomplete nonclaim under an external append-only ledger.
+  Hostile exact-byte review remains mandatory before a second production
+  leaf.
+- A further DoubleLex idea was frozen as a proposal: choose the row-major
+  least \(S_8\times S_4\) anchor--outer matrix, which has both sorted rows
+  and sorted eight-bit columns.  The proposed auxiliary-free strengthening
+  adds 765 clauses and 10,758 literals.  It is not yet reviewed or used.
