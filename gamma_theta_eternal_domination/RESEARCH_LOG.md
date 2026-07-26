@@ -309,3 +309,19 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   work.  That is an operational/provenance defect rather than a flaw in the
   globally sound coloring cuts, and a second repair round is active before
   launch.
+
+### 17:43 — Radius-two robustness of the deepest local near-miss
+
+- Exhausted the exact edge-toggle ball of radius at most two around
+  `Kun_w{vRrblV`: \(1+66+\binom{66}{2}=2,212\) labeled origins and 1,076
+  pinned-`labelg` canonical classes, with all multiplicities retained.
+- Evaluators A and B agree on \(\gamma,i,\alpha,\gamma^\infty,\theta\), the
+  eternal decisions, and normalized winning families for every class.
+  There is no candidate.  All 411 classes with \(\gamma=3\) still have
+  \(\gamma^\infty=4\); 354 have \(\alpha=3\), and 57 have \(\alpha=4\).
+- A root-run deep audit repeated live canonicalization and complete
+  two-stack evaluation and matched the frozen 1.9 MB result.  The 35.98
+  second run used about 36.2 MB peak RSS.
+- The claim remains `OBSERVED`: the same implementation generates and
+  audits coverage, and no proof-producing coloring traces were retained.
+  The search stopped at the preset radius-two yield gate.

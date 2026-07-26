@@ -152,3 +152,19 @@ PYTHONPATH=src PYTHONWARNINGS=error \
 
 These claims concern a precisely delimited edge-toggle-derived population.
 They are not an exhaustive order-11 or order-12 nonexistence result.
+
+The separate C-024 robustness observation exhausts the edge-toggle ball of
+radius at most two around `Kun_w{vRrblV`.  Its read-only deep replay reruns
+the pinned canonicalizer and both exact evaluator stacks on all 1,076
+canonical classes:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 -m search.deep_survivor_radius2 \
+  --audit-result results/deep_survivor_radius2_measurement.json \
+  --deep --labelg tools/nauty2_9_3/labelg
+```
+
+The result is intentionally labeled `OBSERVED`: the generator and coverage
+audit are source-bound but not independently implemented, and the coloring
+conclusions do not have SAT proof logs.
