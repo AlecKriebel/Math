@@ -325,3 +325,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The claim remains `OBSERVED`: the same implementation generates and
   audits coverage, and no proof-producing coloring traces were retained.
   The search stopped at the preset radius-two yield gate.
+
+### 18:07 — Proof-producing CEGAR launch gate accepted
+
+- Froze the repaired order-12, parameter-three CEGAR runner at SHA-256
+  `411fffff34c0122d679ee710aff0e3856a7ff166bff30c69edb1f0044defce8c`,
+  with protocol SHA-256
+  `c51db6d865557f4dcc3147772dbaa1c86d3c6c6d3544ab0090f0f89267a9de31`
+  and complete runtime-source-set SHA-256
+  `8c4e811bc4250c3e2b0b7edeb8afd07f7509ebda3cbae3db1b3ca82c07b35299`.
+- The final independent hostile audit returned `ACCEPT for bounded
+  production`.  It rejected the original SAT-to-fabricated-UNSAT exploit,
+  six rebound cross-field mutations, and a later-checkpoint chronology
+  forgery; it also checked read-only audit behavior, global and per-run
+  locking, synchronous signal cleanup, exact linear history counters, and a
+  live pinned DRAT replay.
+- A separate mathematical reviewer accepted the complement direction,
+  static constraints, online one-guard closure, and global validity of every
+  coloring cut.  The candidate path remains quarantined and is not treated
+  as a clique-cover certificate.
+- The focused suite passed 23 of 23 tests.  The independent root run of the
+  complete campaign suite passed 218 of 218 tests in 27.156 seconds.
+- One low operational caveat remains documented: the session-wall setting
+  is a conservative admission budget over Python-side overhead rather than
+  a preemptive deadline.  Every solver/checker child remains hard-bounded,
+  and the campaign's external sprint supervision remains mandatory.
+- No production synthesis run had been launched at this freeze.  Any
+  terminal `UNSAT` must still undergo a read-only
+  `--deep-reconstruct --verify-terminal-proof` audit, and all three accepted
+  hole templates are required for a finite `(n,k)=(12,3)` conclusion.

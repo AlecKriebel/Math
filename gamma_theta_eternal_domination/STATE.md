@@ -1,5 +1,99 @@
 # Campaign State
 
+## Checkpoint 007 — 2026-07-25 18:07 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `52ba220e` (full hash recorded in Git).
+- Completion estimate for the campaign work plan: **46%**.
+- Completion estimate toward an actual universal resolution: **10%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25.  No prior resolution has been found;
+  exact first-use wording in the unavailable 2020 chapter remains pending.
+
+### Verified facts and artifacts
+
+- The order-12, parameter-three proof-producing CEGAR runner is frozen and
+  independently accepted for bounded production.  The source, 23 focused
+  tests, protocol, hostile review, and independent mutation probe are bound
+  as ART-103--107.
+- The frozen CEGAR source SHA-256 is
+  `411fffff34c0122d679ee710aff0e3856a7ff166bff30c69edb1f0044defce8c`;
+  its complete runtime-source-set SHA-256 is
+  `8c4e811bc4250c3e2b0b7edeb8afd07f7509ebda3cbae3db1b3ca82c07b35299`.
+- The independent hostile audit rejected the former fabricated-UNSAT
+  exploit, all six rebound field mutations, and a later-checkpoint forgery.
+  It verified exact outcome schemas, chronological predecessor digests,
+  read-only audits, linear history work, crash markers, per-run/global
+  locks, synchronous signal cleanup, resource gates, and a live pinned DRAT
+  proof.
+- A separate mathematical audit accepted the complement/static/game/cut
+  semantics.  Root independently reran the complete campaign suite:
+  218 of 218 tests passed in 27.156 seconds.
+- Previously published C-022--C-024 remain unchanged.  This launch
+  acceptance is not itself a new mathematical claim or a finite
+  nonexistence result.
+
+### Claim and review boundary
+
+- No production template has yet reached a terminal.  An accepted runner
+  does not exclude even one graph or template.
+- A template-level `UNSAT` is acceptable only after exact final-CNF
+  reconstruction and a fresh pinned proof replay with
+  `--deep-reconstruct --verify-terminal-proof`.
+- Excluding the complete `(n,k)=(12,3)` slice requires verified terminals
+  for all three accepted `hole5`, `hole7`, and `hole9` branches together
+  with the already reviewed structural coverage theorem.
+- A DSATUR no-color model is only a quarantined candidate; it requires the
+  campaign's entirely separate counterexample certificate workflow.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | 2020 chapter text, unavailable `C4`-free manuscript, and general constructive well-covered generators remain gaps |
+| Exact evaluators/certificates | complete-for-current-artifacts | A/B, full fixed-point traces, recursive trees, and proof-producing synthesis audit accepted |
+| MMV one-vertex extensions | complete-certified | C-018 covers 110,537 origins and 54,216 canonical graphs |
+| Single-edge toggles of closest seeds | complete-certified | C-019 covers 25,641 origins and 19,136 canonical graphs |
+| Direct synthesis `(12,3)` | active-production-open | Runner accepted; exact one-iteration `hole9` trial and read-only audit are next |
+| Structural `k=3` lane | active-high-yield | Eight deep transition graphs are under common-structure analysis |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- No production solver or search process was active when this checkpoint was
+  written.
+- The next run directory is
+  `results/synthesis_k3_runs/hole9`; it does not yet exist.
+- The accepted one-iteration launch uses seed 0, 60-second
+  solver/checker child limits, 2,048 MiB child ceilings, a 7,200-second
+  session admission budget, a 4,096 MiB disk reserve, a 256 MiB child-file
+  cap, and a 1 MiB retained-attempt cap.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Root full campaign suite: 218 of 218 tests in 27.156 seconds.
+- Final hostile probe: 9.895 seconds; focused suite: 23 of 23 in 14.908
+  seconds.
+- Free disk is approximately 8.3 GiB.  Production retains a 4 GiB reserve,
+  permits only one heavy child globally, and requires the child ceiling plus
+  512 MiB of currently reclaimable memory.
+- The session wall is an admission budget over local orchestration overhead;
+  individual solver/checker children have hard wall and memory limits.
+
+### Next three highest-value actions
+
+1. Commit and push the accepted frozen runner and audit artifacts before
+   creating any production directory.
+2. Run exactly one `hole9` CEGAR iteration, inspect every generated role,
+   then perform a separate read-only deep audit.
+3. If clean, resume `hole9` in bounded batches to a candidate or
+   proof-verified terminal while continuing structural analysis of the eight
+   deepest near-misses.
+
 ## Checkpoint 006 — 2026-07-25 17:35 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.

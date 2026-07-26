@@ -168,3 +168,27 @@ PYTHONPATH=src PYTHONWARNINGS=error \
 The result is intentionally labeled `OBSERVED`: the generator and coverage
 audit are source-bound but not independently implemented, and the coloring
 conclusions do not have SAT proof logs.
+
+The direct order-12, parameter-three CEGAR runner is frozen and
+hostile-review accepted for bounded production.  Its acceptance is an
+engineering gate, not a mathematical nonexistence result.  The read-only
+hostile probe is:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 reviews/synthesis_k3_cegar_hostile_probe.py
+```
+
+Each required `hole5`, `hole7`, and `hole9` branch must separately reach a
+verified terminal before the slice can be excluded.  For any terminal
+`UNSAT`, the publication audit must use both deep reconstruction and a fresh
+proof-checker invocation:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error python3 -m synthesis_k3.cegar \
+  [the exact immutable production configuration] \
+  --audit-only --deep-reconstruct --verify-terminal-proof
+```
+
+The exact production and resume protocol, resource gates, trusted hashes,
+and claim boundaries are recorded in `math/synthesis_k3_cegar_protocol.md`.
