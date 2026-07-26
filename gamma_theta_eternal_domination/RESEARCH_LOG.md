@@ -828,3 +828,68 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   launch one bounded seed-0 solve against this exact package.  A residual
   rim-reflection reduction is being audited independently as a fallback if
   the sorted parent remains hard.
+
+### 22:12 — residual reflection and conditional `hole5` coverage accepted
+
+- Independently reconstructed the residual rim reflection
+  \(\rho=(0\ 1)(2\ 4)\) on all 6,886 edge, common-neighbor, family, and
+  move variables.  It is a role-preserving involution and preserves the
+  exact base, complete coloring bank, and full \(F_5\) clause multisets.
+- Proved C-032:
+  \[
+  F_5\text{ is satisfiable}\iff F_5\land S\land T\text{ is satisfiable},
+  \qquad T=(-24,39).
+  \]
+  If \(T\) fails, reflection swaps \(e_{25}\) and \(e_{45}\); sorting the
+  outer vertices afterward preserves \(T\) because the outer \(S_6\) action
+  fixes the six core vertices.
+- The source units \(e_{05}=e_{15}=1\), the vertex-5 no-hub clause, and
+  \(T\) leave exactly five exhaustive
+  \((e_{25},e_{35},e_{45})\) representatives:
+  `000`, `001`, `010`, `011`, and `101`.
+- The canonical exact \(F_5\land S\land T\) construction has 6,886
+  variables, 23,969 clauses, 192,171 literals, 754,332 bytes, and SHA-256
+  `441e54c28fdf6005f0f17fb951bf37c7ff46e222f3e605b7e715fabeec8f64d4`.
+- Proved C-033 as a conditional realization statement.  A connected
+  order-12 parameter-three counterexample whose complement contains a
+  hub-free induced \(C_5\) supplies explicit assignments satisfying every
+  clause of the exact retained \(F_5\): graph edges, one common-neighbor
+  witness per pair, a nonempty one-guard eternal family, one legal response
+  per selected state and unoccupied attack, connected cuts, and all complete
+  coloring-bank clauses.  Accepted symmetry supplies strengthened models.
+- The certificate premise remains explicitly unfilled: there is no accepted
+  checked proof here that the exact strengthened CNF is UNSAT.  Therefore
+  no `hole5` exclusion and no \((12,3)\) slice claim were made.  No solver,
+  checker, or runner was invoked for this checkpoint.
+
+### 22:36 — fail-closed binary production runner accepted for source freeze
+
+- Froze a bounded binary-proof runner for the exact retained
+  signature-sorted `hole5` package.  It preserves the raw CaDiCaL proof,
+  invokes the independent binary parser under isolated Python, verifies the
+  canonical addition-only stream, and accepts UNSAT only after a strict,
+  warning-fatal, RUP-only DRAT-trim replay.  SAT is deliberately retained as
+  a candidate rather than a mathematical claim.
+- The first hostile audit accepted the proof/result/resource/post-write
+  boundary, but a second independent auditor found that `cegar.py` imported
+  `coloring.py` and `generate.py` outside the declared Git-bound runtime
+  source set.  This was a real pre-launch provenance defect, so the solve
+  remained stopped.
+- The repaired runner binds the exact eight-module local import closure and
+  carries a recursive AST closure regression.  It also recomputes the exact
+  hashes of both pinned executables and both source archives through a
+  separately bound hashing implementation.  Eight independent tool/archive
+  mutations and the original dependency-gap construction are rejected.
+- Final hashes are runner `02e8a13d...`, tests `e622ef08...`, hostile probe
+  `06261bbc...`, canonical hostile log `f9ca64c9...`, and hostile review
+  `63af7f25...`.  The primary verdict is
+  `ACCEPT_FOR_COMMIT_WITH_MANDATORY_POSTCOMMIT_HEAD_GATE`; the second audit is
+  `ACCEPT_NO_BLOCKER`.
+- Root passed 30 focused tests and all 271 campaign tests.  The full run took
+  204.18 seconds, 194.10 CPU seconds, and at most 115,851,264 bytes RSS.
+  Manifest ART-199--204 binds the source, tests, hostile artifacts, and
+  validation record.
+- No production solver was launched.  The audited bytes must first be
+  committed on `main`, pushed, and replayed against the exact current Git
+  `HEAD`; a fresh resource/lock gate is also mandatory before the bounded
+  seed-0 attempt.

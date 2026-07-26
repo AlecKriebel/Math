@@ -1,5 +1,84 @@
 # Campaign State
 
+## Checkpoint 029 — 2026-07-25 22:36 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- The exact bounded binary-proof runner for the retained `hole5`
+  signature-sorted package is accepted for source freeze, but its mandatory
+  post-commit `HEAD` gate is not yet satisfied.  No production solver was
+  launched at this checkpoint.
+- A second independent audit found a genuine pre-launch defect in the first
+  frozen version: `cegar.py` executed local dependencies `coloring.py` and
+  `generate.py` that were absent from the runtime-source manifest.  The
+  runner now binds the complete eight-module local import closure, a recursive
+  AST regression test enforces that closure, and a separate exact hash gate
+  recomputes the CaDiCaL and DRAT-trim binary and source-archive hashes.
+- The final runner SHA-256 is `02e8a13d...`; its test SHA-256 is
+  `e622ef08...`.  The independent probe, canonical log, and review have
+  hashes `06261bbc...`, `f9ca64c9...`, and `63af7f25...`.
+  The primary verdict is
+  `ACCEPT_FOR_COMMIT_WITH_MANDATORY_POSTCOMMIT_HEAD_GATE`; a second auditor
+  reports `ACCEPT_NO_BLOCKER`.
+- The runner preserves the raw binary proof, runs the already accepted parser
+  in isolated bounded mode, reparses the addition-only stream, and promotes
+  UNSAT only after warning-fatal `drat-trim -i -f -W -U` replay.  SAT remains
+  candidate-only.  Every timeout, resource limit, malformed artifact,
+  mutation, or incomplete phase is an explicit nonclaim.
+- Root replay passed 30 focused runner, breaker, and encoding tests in
+  95.08 seconds with peak RSS 82,886,656 bytes.  The full campaign suite
+  passed 271 of 271 tests in 204.18 seconds with peak RSS 115,851,264 bytes.
+  Exact validation evidence is manifest ART-199--204.
+- Current pre-freeze repository `HEAD` is
+  `7bfd268c4b0dd24c4207645d66373c47278e10cf`.  The launch gate requires a
+  new commit containing the exact audited bytes, an exact current-`HEAD`
+  runtime-source replay, and a fresh resource check.  This checkpoint does
+  not satisfy that gate.
+- The next actions are: commit and push only the accepted campaign files;
+  replay the post-commit source/tool/package bindings; then, only if the
+  machine is responsive and the campaign-global heavy-child lock is free,
+  launch one bounded seed-0 production attempt into a new `results/`
+  directory.
+
+## Checkpoint 028 — 2026-07-25 22:12 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Claim C-032 is `PROVED`.  For the retained complete-bank `hole5` formula
+  \(F_5\), the residual rim reflection
+  \(\rho=(0\ 1)(2\ 4)\) was reconstructed on all 6,886 semantic variables
+  and preserves the exact base, bank, and full clause multisets.  It swaps
+  \(e_{25}\) and \(e_{45}\), while the accepted outer \(S_6\) action fixes
+  both.
+- Consequently
+  \(F_5\) is satisfiable if and only if
+  \(F_5\land S\land T\) is satisfiable for
+  \(T=(-24,39)\): reflect first if \(T\) fails, then sort the outer
+  signatures.  The exact strengthened formula has
+  \((6{,}886,23{,}969,192{,}171)\), is 754,332 bytes, and has SHA-256
+  `441e54c2...`.
+- The source units \(e_{05}=e_{15}=1\), the vertex-5 no-hub clause, and
+  \(T\) reduce the exhaustive
+  \((e_{25},e_{35},e_{45})\) representatives to exactly
+  `000`, `001`, `010`, `011`, and `101`.
+- Claim C-033 is `PROVED` only as a conditional realization theorem.  Any
+  connected order-12 parameter-three counterexample whose complement has a
+  hub-free induced \(C_5\) produces a satisfying assignment of the exact
+  retained \(F_5\), including explicit common-neighbor, nonempty
+  one-guard-family, and move witnesses; accepted symmetry then supplies
+  models of the strengthened formulas.
+- The separate premise “the exact strengthened CNF is UNSAT by an accepted,
+  independently checked certificate” is **unfilled**.  No `hole5` exclusion,
+  no \((12,3)\) slice result, and no SAT/UNSAT result is recorded at this
+  checkpoint.
+- Exact evidence is in
+  `reviews/hole5_rim_reflection_coverage_hostile_probe.py`,
+  `reviews/hole5_rim_reflection_coverage_hostile_probe_log.json`,
+  `reviews/hole5_rim_reflection_coverage_hostile_review.md`,
+  `math/lemmas/hole5_template_exclusion_conditional.md`, and
+  `reviews/hole5_template_exclusion_conditional_hostile_review.md`.
+  Manifest rows ART-194–198 bind all five files.
+- No solver or proof checker was run for these results.  No campaign heavy
+  child is active, and runner files were outside this integration.
+
 ## Checkpoint 027 — 2026-07-25 21:52 PDT
 
 - Campaign day: 1 of 27; branch `main`.
