@@ -104,8 +104,11 @@ Accordingly, the safe attribution is:
 > question/problem; later Klostermeyer-Mynhardt work formulated it as the
 > Gamma-Theta Conjecture.
 
-The 2020 chapter itself was not obtained during this compressed checkpoint,
-so an assertion about the first literal use of the name remains pending.
+The authors' University of North Florida institutional record now verifies
+the 2020 chapter's bibliographic metadata and its general open-problem scope,
+but its “full text” link resolves to the publisher DOI rather than a deposited
+copy.  The chapter text therefore remains unobtained, and an assertion about
+the first literal use of the name remains pending.
 
 ## 4. MMV 2022 appendix and computation
 
