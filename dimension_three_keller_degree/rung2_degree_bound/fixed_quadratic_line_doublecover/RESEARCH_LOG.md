@@ -146,3 +146,23 @@
 - The high-incidence fine denominator is now \(4/26\) certified
   excluded.  This still does not close the fixed-quadratic row or alter
   the global degree floor.
+
+## 2026-07-26T05:40:00Z — `D4-DN-3` certified excluded
+
+- The previously certified two-plane \(E_6\) contact atlas was descended
+  through all four specialization-safe charts.
+- On each transverse plane, two lower-variable-free \(E_5\) squares force
+  incompatible values of the remaining contact parameter.
+- On the punctured plane intersection, the complete \(E_6/E_5/E_4\)
+  descent forces \(\det L=0\).  Both a global pivot and an independent
+  clean-room split of its apparent pivot boundary were checked.
+- At the origin, two \(E_4\) squares force all nonlinear
+  \(r\)-dependence to vanish, followed by Moh's unconditional low-degree
+  plane exit.
+- Independent clean-room SymPy and direct PARI/GP reconstructions,
+  optimized-Python rejection, and three required-failure mutations pass
+  under `D4_DN3_FULL_FAMILY_EXCLUSION_STRICT_PASS`.
+- The fine count is now \(5/26\) certified family-level exclusions.  This
+  is five of the six isolated exact-\(\delta=4\) families.  The parent row,
+  global \(4/14,4/14,6/14\) count, and universal degree floor four remain
+  unchanged.

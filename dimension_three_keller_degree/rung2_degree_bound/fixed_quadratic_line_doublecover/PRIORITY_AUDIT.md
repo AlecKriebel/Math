@@ -92,3 +92,24 @@ and cubic lower terms.  This is source-specific negative evidence only,
 not a guarantee of worldwide priority.  The candidate is AI-assisted and
 unreviewed; hostile audit is pending, and neither the parent-row status nor
 the universal degree floor changes.
+
+## 2026-07-26T05:40Z — `D4-DN-3` family exclusion
+
+The current-day sweep was repeated against the completed exclusion of
+\[
+h=(p+q)^2,\qquad (P,Q,R)=\bigl(hp^2,hq^2,(p+q)^3\bigr).
+\]
+Exact searches used `D4-DN-3`, the displayed normal form, the two-plane
+contact equation, and “doubled nonbranch quartic Keller”.  Structural
+searches covered current arXiv listings, MathOverflow, Terence Tao's blog,
+the Secret Blogging Seminar, and publicly indexed X/Twitter material.
+
+No checked source states the two-plane contact atlas or the
+\(E_5/E_4\) descent excluding all four of its charts.  The nearest current
+records concern generic-degree realizations, monodromy, or bounded-degree
+Keller parameter spaces rather than quartic leading-shape exclusions.
+
+This is source-specific negative evidence only, not a guarantee of
+worldwide priority.  The result is AI-assisted and unreviewed.  It is the
+fifth of 26 frozen high-incidence family exclusions, not a parent-row
+closure or a new universal degree bound.

@@ -1479,3 +1479,22 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The fine count is now \(4/26\) certified family-level exclusions.  The
   containing row and the global \(4/14,4/14,6/14\) denominator do not
   change, so the universal degree floor remains four.
+
+## 2026-07-26T05:40:00Z — fifth high-incidence family certified
+
+- Frozen family `D4-DN-3`, with
+  \(h=(p+q)^2\) and \(R=(p+q)^3\), is fully excluded.
+- Its complete \(E_6\) contact locus is two conjugate affine planes.  The
+  two transverse charts fail at \(E_5\); the punctured intersection forces
+  \(\det L=0\); and the origin collapses to an unconditional Moh
+  triangular exit.
+- Independent clean-room SymPy and direct PARI/GP implementations cover
+  every chart and required pivot boundary.  The aggregate verifier ends
+  with `D4_DN3_FULL_FAMILY_EXCLUSION_STRICT_PASS`.
+- This moves only the frozen fine denominator to \(5/26\).  The global
+  quartic status remains \(4/14\) certified, \(4/14\) provisional,
+  \(6/14\) open, and the universal degree floor remains four.
+- Work began immediately on `D4-DN-2C`, the sole remaining isolated
+  exact-\(\delta=4\) family.  Its complete \(E_7/E_6\) contact atlas is
+  already frozen as two conjugate planes with ranks \(7,7,6,5\); lower
+  descent is active and no exclusion is yet claimed.
