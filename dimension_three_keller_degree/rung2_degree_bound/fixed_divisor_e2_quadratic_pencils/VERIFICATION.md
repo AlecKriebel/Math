@@ -2,8 +2,33 @@
 
 ## Current status
 
-The SymPy certificate, independent hostile PARI/GP reconstruction, strict
-runner, and fail-closed injections all pass.
+The full frozen row is certified excluded.  Its strict aggregate combines
+the fixed-divisor verticality theorem, all-vertical top obstruction,
+marked-equal lower packages, the frozen thirteen-stratum marked-distinct
+taxonomy, uniform and endpoint checks, both discrete `CO` calculations, and
+the clean-room post-freeze bridge.
+
+Run
+
+```sh
+./verify_full_row_strict.sh
+```
+
+The unique final marker is
+
+```text
+Q2_E2_A2_B1_D1_N1_FULL_ROW_STRICT_PASS_4D95A1
+```
+
+The clean-room bridge has its own dependency-free exact engine and ends
+with
+
+```text
+AUDIT_BRIDGE_Q2_E2_STRICT_PASS_D9347B
+```
+
+These exact checks establish facts about the encoded algebra and coverage
+ledger.  They are not peer review.
 
 ## Exact SymPy certificate
 

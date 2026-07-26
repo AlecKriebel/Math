@@ -23,12 +23,13 @@ nonproperness routes independent.
 The immutable post-freeze denominator has fourteen inclusive leading-shape
 rows.  The current certified status is
 \[
-3/14\text{ excluded},\qquad5/14\text{ provisional},\qquad6/14\text{ open}.
+4/14\text{ excluded},\qquad4/14\text{ provisional},\qquad6/14\text{ open}.
 \]
-In particular, the complete fixed-linear primitive-cubic-pencil row
-`Q2-E1-A3-B1-D1-N1` is now certified excluded by a post-freeze bridge and
-an independent 48-atom hostile replay.  This is a structural row theorem,
-not yet an improvement of the universal floor.
+The complete fixed-linear primitive-cubic-pencil row
+`Q2-E1-A3-B1-D1-N1` and the fixed-quadratic primitive-pencil row
+`Q2-E2-A2-B1-D1-N1` are now certified by post-freeze bridges and
+independent hostile replays.  These are structural row theorems, not yet an
+improvement of the universal floor.
 
 The first audited quartic working lemmas now constrain:
 
@@ -110,9 +111,11 @@ The first audited quartic working lemmas now constrain:
   \(\mathbb P(\ell\langle h,s\rangle)\) can remain inequivalent.  Two
   clean-room reconstructions now freeze the corrected internal quotient as
   \(3+\mathbb P^1+3\), with thirteen stable strata and a genuine
-  cross-ratio parameter in the middle family.  Every parameter value
-  survives through \(E_6\), so the next valid target is a uniform \(E_5\)
-  calculation.  The parent \(e=2\) row remains provisional; and
+  cross-ratio parameter in the middle family.  A uniform \(E_5\)
+  calculation excludes the entire punctured projective family and fresh
+  boundary solves exclude all six endpoints; the two remaining discrete
+  orbits also force a singular linear part.  A dependency-free clean-room
+  replay certifies the complete parent \(e=2\) row; and
 - in the unique-double-line line-\((2,2)\) pencil
   \(p=x^2,q=yz\), the complete joint-moduli chart in which both critical
   points of the outer double cover and the mixed cubic companion are

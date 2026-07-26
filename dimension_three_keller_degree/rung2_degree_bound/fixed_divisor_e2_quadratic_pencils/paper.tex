@@ -1,0 +1,471 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.02in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{array,booktabs,longtable}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Exclusion of the fixed-quadratic primitive-pencil quartic row}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\A}{\mathbb A}
+\newcommand{\C}{\mathbb C}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Jac}{\operatorname{Jac}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\ord}{\operatorname{ord}}
+
+\title{\bfseries Exclusion of the fixed-quadratic primitive-pencil
+quartic row\\[3pt]
+\large A frozen-case structural theorem for Keller maps in dimension three}
+\author{Alec Kriebel\\with substantial AI assistance}
+\date{First public repository release (UTC):
+  \texttt{\detokenize{2026-07-26T00:45:00Z}}}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\fcolorbox{black!45}{yellow!8}{%
+\begin{minipage}{0.91\textwidth}
+\small
+\textbf{Review, priority, and verification notice.}
+This manuscript is not peer reviewed.  Exact computer algebra checks the
+identities and finite case ledgers encoded in the accompanying repository;
+it is evidence, not peer review.  Substantial AI assistance was used in the
+mathematical exploration, proof organization, software, hostile internal
+audits, and exposition.  No claim of worldwide priority is made.  The result
+excludes one of fourteen frozen quartic leading-form rows; it does not prove
+the full degree-four case.
+\end{minipage}}
+\end{center}
+
+\begin{abstract}
+Let $F:\A^3_\C\to\A^3_\C$ be a polynomial map of total degree four with
+nonzero constant Jacobian.  We prove that $F$ is an automorphism when its
+quartic homogeneous part has a fixed quadratic component and a primitive
+quadratic line pencil.  In the program's canonical notation, the excluded
+row is
+\[
+(\rank JH_4,e,a,b,\delta,\nu)=(2,2,2,1,1,1).
+\]
+The proof first gives a coefficient-independent normalization
+$H_4=(hp,hq,0)$ and uses valuations of homogeneous first integrals to reduce
+to a unique-double-line frontier.  Keeping separate the fixed quadratic
+$h$, the double member $s$, and the cubic companion produces a genuine
+$3+\PP^1+3$ orbit space, rather than a finite companion list.  Exact
+weighted-Jacobian identities exclude the whole projective family, its six
+endpoints, and two discrete open orbits.  A clean-room dependency-free
+reconstruction verifies the frozen coefficient routing and the two discrete
+calculations.  The universal certified total-degree floor remains four.
+\end{abstract}
+
+\section{Invariant statement}
+
+Translate the source and target so that
+\begin{equation}
+F=LX+H_2+H_3+H_4,\qquad L\in\operatorname{GL}_3(\C),
+\label{eq:F}
+\end{equation}
+where $H_i$ is homogeneous of degree $i$.  Suppose that
+$\rank JH_4=2$.  Extract
+\[
+h=\gcd(H_{4,1},H_{4,2},H_{4,3}),\qquad e=\deg h,
+\qquad G=H_4/h.
+\]
+Let $E_G$ be the relative algebraic closure of
+$\C(G_i/G_j)$ in $\C(\PP^2)$.  It is rational, so
+$E_G=\C(p/q)$ for a coprime homogeneous pair of least common degree $a$.
+If the induced binary target triple has degree $b$, the reduced image has
+degree $\delta$, and the map to its normalization has degree $\nu$, then
+\[
+e+ab=4,\qquad b=\delta\nu.
+\]
+
+\begin{theorem}[Fixed-quadratic primitive-pencil exclusion]
+\label{thm:main}
+Let $F$ be as in \eqref{eq:F}, over $\C$, of exact total degree four.
+Suppose
+\[
+(\rank JH_4,e,a,b,\delta,\nu)=(2,2,2,1,1,1).
+\]
+If $F$ has nonzero constant Jacobian determinant, then $F$ is a polynomial
+automorphism.
+\end{theorem}
+
+\begin{corollary}
+No degree-four Keller counterexample belongs to frozen row
+\texttt{Q2-E2-A2-B1-D1-N1}.
+\end{corollary}
+
+The fourteen-row frozen denominator currently has
+\[
+4/14\ \text{certified excluded},\qquad
+4/14\ \text{provisional},\qquad
+6/14\ \text{open}.
+\]
+This bookkeeping is not a statement about the other rows.
+
+\section{Normalization and weighted identities}
+
+\begin{proposition}\label{prop:normal}
+After an invertible target change,
+\begin{equation}
+H_4=(hp,hq,0),                                      \label{eq:normal}
+\end{equation}
+where $h,p,q$ are quadratic, $\gcd(p,q)=1$, and
+$\C(p/q)$ is relatively algebraically closed in $\C(\PP^2)$.
+Every frozen coefficient chart is covered without dividing by its first
+nonzero quartic coefficient.
+\end{proposition}
+
+\begin{proof}
+The canonical factorization is $H_4=hA(p,q)$, where
+$A(u,v)=\mathbf a u+\mathbf b v$ and $\mathbf a,\mathbf b\in\C^3$ are
+independent.  Complete them to a target basis.  This gives
+\eqref{eq:normal} and transports all lower jets bijectively.
+
+For a division-free coverage statement, write the coefficients of the
+primitive quadratic triple as a $3\times6$ matrix $B$.  Its rank is two.
+Order its $45=3\binom62$ minors and choose the first nonzero one.  The
+corresponding two target rows span the third, and the cleared row relation
+has determinant equal, up to sign, to the selected minor.  Thus it gives
+\eqref{eq:normal}.  Among the frozen first-nonzero coefficient guards,
+\texttt{C00}--\texttt{C29} reach this minor router.  The guards
+\texttt{C30}--\texttt{C44} make the first two target components zero, so
+$\rank JH_4\le1$; they are empty in the present row.
+\end{proof}
+
+Put
+\[
+\mathcal J(w)=L+wJH_2+w^2JH_3+w^3JH_4,\qquad
+E_j=[w^j]\det\mathcal J(w).
+\]
+The Keller condition gives
+\begin{equation}
+E_9=\cdots=E_1=0,\qquad\det L\ne0.                  \label{eq:weighted}
+\end{equation}
+Writing $P=hp$, $Q=hq$, and $R=(H_3)_3$, the zero third row of $JH_4$
+gives
+\begin{equation}
+E_8=\Jac(P,Q,R)=0.                                  \label{eq:E8}
+\end{equation}
+
+\section{The top-identity frontier}
+
+\begin{lemma}[First-integral descent]\label{lem:descent}
+If $0\ne T$ is homogeneous of degree $d$ and
+$\Jac(P,Q,T)=0$, then
+\[
+\frac{T^4}{P^d}=\mathcal R(q/p)
+\]
+for some $\mathcal R\in\C(t)$.
+\end{lemma}
+
+\begin{proof}
+The Jacobian identity makes $T$ algebraic over $\C(P,Q)$.  The displayed
+quotient has degree zero, hence lies in $\C(\PP^2)$.  Separating the scaling
+coordinate shows that it is algebraic over $\C(q/p)$.  Relative algebraic
+closure of the minimal pencil field then places it in $\C(q/p)$.
+\end{proof}
+
+A prime factor $f$ of $h$ is called horizontal if it is not contained in a
+pencil fibre.  Taking $v_f$ in Lemma~\ref{lem:descent}, with $d=3$, gives
+\[
+4v_f(R)=3v_f(h).
+\]
+Since $v_f(h)$ is one or two, this is impossible for nonzero $R$.  Thus a
+horizontal component forces $R=0$.
+
+For the all-vertical case, comparing two reduced components of one pencil
+fibre removes the unknown order of $\mathcal R$.  This yields the following
+exact reduction.
+
+\begin{proposition}[All-vertical reduction]\label{prop:vertical}
+If every component of $h$ is vertical and \eqref{eq:E8} has a nonzero
+cubic solution, then, after source and pencil changes,
+\begin{equation}
+H_4=(h^2,hs,0),\qquad s=\ell^2,\qquad
+R=\ell r,\quad [r]\in\PP\langle h,s\rangle,          \label{eq:frontier}
+\end{equation}
+where $s$ is the pencil's unique double-line member.
+The underlying pencil is one of
+\[
+\langle x^2,yz\rangle,\qquad
+\langle x^2,y^2+xz\rangle.
+\]
+\end{proposition}
+
+\begin{proof}
+If $h=\ell^2$ and a vertical member is $\ell m$ with
+$m\not\sim\ell$, comparison of the two components of that fibre gives
+$4N=6$.  If $h=\ell_1\ell_2$ and the vertical members are distinct, the
+same argument gives $4N=3$ unless both members are squares; the latter
+would make $p/q$ a quadratic function of a linear pencil and contradict
+minimality.
+
+The remaining shape has one pencil member equal to $h$.  Then
+\[
+\Jac(h^2,hq,R)=2h^2\Jac(h,q,R).
+\]
+First-integral descent gives $R^2/h^3=S(q/h)$.  If every conic fibre were
+reduced, all finite orders of $S$ would be even and the order at the
+$h$-fibre odd, contradicting degree zero of a principal divisor on
+$\PP^1$.  Hence the pencil contains a double line $s=\ell^2$.
+Two distinct double members would again violate minimality, so $s$ is
+unique.  Direct calculation gives the complete cubic kernel
+$\ell\langle h,s\rangle$.
+
+Put $s=x^2$.  The restriction of another member to $x=0$ has rank two or
+one.  Completing cross terms gives respectively
+$\langle x^2,yz\rangle$ and
+$\langle x^2,y^2+xz\rangle$.  This proves the claim.
+\end{proof}
+
+\begin{lemma}[Quadratic-component exit]\label{lem:exit}
+If a degree-at-most-four Keller map of $\A^3_\C$ has a nonzero
+target-linear component of degree at most two, it is an automorphism.
+\end{lemma}
+
+\begin{proof}
+A quadratic polynomial with nowhere-vanishing gradient can be straightened
+to a coordinate by a polynomial automorphism of degree at most two.
+The transformed map is $(F_1,F_2,z)$.  On every $z$-fibre the first two
+components form a plane etale map of degree at most eight.  Moh's
+unconditional bounded plane theorem, in the degree-at-most-twelve form
+quoted by Vistoli, makes every fibre map an automorphism
+\cite{Moh,Vistoli}.  Hence the threefold map is injective and therefore an
+automorphism.
+\end{proof}
+
+Consequently every branch with $R=0$ exits the counterexample locus by
+Lemma~\ref{lem:exit}.  It is important that this is an automorphism
+conclusion, not a contradiction to the existence of a constant Jacobian.
+
+\section{The marked companion quotient}
+
+The frontier \eqref{eq:frontier} has three pieces of intrinsic data:
+the pencil, its double member $[s]$, the fixed gcd $[h]$, and the companion
+$[r]$.  The loci $h=s$ and $h\ne s$ must be treated separately.
+
+When $h=s$, the two canonical pencils above have exactly two nonzero
+companion orbits:
+\[
+R=x^3,\qquad R=xq.
+\]
+Exact weighted-determinant eliminations exclude both orbits for both
+pencils.  These four calculations are the marked-equal ancillary packages.
+
+For $h\ne s$, the marked pair and companion have exactly the following
+thirteen stable strata.
+
+\begin{longtable}{lll}
+\toprule
+marked pair $(s,h)$ & companion suffix & representative or guard\\
+\midrule
+\endhead
+$(x^2,yz)$ & C0 & $R=0$\\
+            & CH & $r=h$\\
+            & CS & $r=s$\\
+            & CO & $r\notin\{h,s\}$\\[2pt]
+$(x^2,x^2+yz)$ & C0 & $R=0$\\
+            & CH & $r=h$\\
+            & CT & $r=yz$\\
+            & CS & $r=s$\\
+            & CTAU & $r=h+ks,\ k\ne0,-1$\\[2pt]
+$(x^2,y^2+xz)$ & C0 & $R=0$\\
+            & CH & $r=h$\\
+            & CS & $r=s$\\
+            & CO & $r\notin\{h,s\}$\\
+\bottomrule
+\end{longtable}
+
+The middle stabilizer fixes its pencil line pointwise, so CTAU is a genuine
+one-parameter orbit family.  The projective values $0,-1,\infty$ are,
+respectively, CH, CT, and CS; none may be removed by a generic calculation.
+Two independent stabilizer reconstructions certify the count
+\[
+4+5+4=13,\qquad\text{nonzero orbit-space shorthand }3+\PP^1+3.
+\]
+
+\section{Uniform exclusion of the projective family}
+
+On the finite chart put
+\[
+h=x^2+yz,\quad s=x^2,\quad r=h+ks,\quad k\ne0.
+\]
+The complete $E_7$ normal form, modulo two target shears and three source
+translations, is
+\[
+H_3=(Ax^3,Bx^3,x(h+ks)),\qquad (H_2)_3=Tx^2.
+\]
+Two $E_7$ pivots cover every finite $k$ because
+\[
+\frac12(9k^2+6k-1)-\frac32(k+1)(3k-1)=1.
+\]
+
+Write the first two quadratic components in monomial order
+$(x^2,xy,xz,y^2,yz,z^2)$ with coefficients $a_i,b_i$, and put
+$L=(\ell_0,\ldots,\ell_8)$ by rows.  The $E_6$ chains give
+\[
+\begin{aligned}
+b_1&=2\ell_7,&a_1&=-12k\ell_7,&-36k^2\ell_7&=0,\\
+b_2&=2\ell_8,&a_2&=-12k\ell_8,& 36k^2\ell_8&=0,
+\end{aligned}
+\]
+together with $a_3=a_5=b_3=b_5=0$.  Since $k\ne0$,
+\[
+a_1=a_2=a_3=a_5=b_1=b_2=b_3=b_5=\ell_7=\ell_8=0.
+\]
+Six literal $E_5$ coefficients then include
+\[
+-2\ell_4,\quad2\ell_5,\quad
+-\ell_1-(6k+4)\ell_4,\quad
+\ell_2+(6k+4)\ell_5,
+\]
+so $\ell_1=\ell_2=\ell_4=\ell_5=0$.  The last two columns of $L$
+vanish, contrary to \eqref{eq:weighted}.  This uniformly excludes CTAU
+and the finite CT boundary $k=-1$.
+
+\section{Six endpoints and two discrete orbits}
+
+The six CH/CS endpoint normal forms have four $E_6$ compatibility ideals:
+\[
+\begin{array}{c|l}
+\text{type}&I_6\\ \hline
+\mathrm{RT/H}&(AC,AD,AE,AF,CE,DF,E^2,F^2)\\
+\mathrm{RT/S}&(C^2,D^2)\\
+\mathrm{RO/H}&(AC,AD,AE,AF,CF+DE,EF,2DF-E^2,F^2)\\
+\mathrm{RO/S}&(CD,D^2).
+\end{array}
+\]
+Global $E_5$ syzygies and fresh solves on every pivot divisor force a
+singular $L$ in five endpoint slices.  The sixth, RO/H, has a genuine
+invertible survivor through $E_5$ on
+\[
+A=C=D=E=F=0,\qquad T\ne0.
+\]
+After the complete $E_6/E_5$ solve, two $E_4$ coefficients are
+\[
+[xyz^2]E_4=-8\ell_8^2,\qquad
+[x^2yz]E_4=-4\bigl(2(b_0-\ell_6)\ell_8-\ell_7^2\bigr).
+\]
+They give $\ell_8=\ell_7=0$, while $\det L$ is divisible by $\ell_7$.
+Thus all six endpoints close.
+
+It remains to record the two outer CO calculations.  For
+\[
+(h,r)=(yz,x^2+yz)
+\]
+the raw $E_7$ matrix has rank $18$, with five legal gauge directions and
+complete normal complement
+\[
+(x^3,0,0),\quad(0,x^3,0),\quad(0,0,x^2).
+\]
+The $E_6$ equations force
+\[
+a_1=a_2=a_3=a_5=b_1=b_2=b_3=b_5=\ell_7=\ell_8=0,
+\]
+and $E_5$ forces
+$\ell_1=\ell_2=\ell_4=\ell_5=0$.
+
+For
+\[
+(h,r)=(y^2+xz,x^2+y^2+xz)
+\]
+the complete normal complement is
+\[
+(x^3,0,0),\quad(0,x^3,0),\quad
+(2z(y^2+xz),x^2z,xz).
+\]
+If $C$ is the last normal parameter, the $E_6$ equations give
+\[
+a_1=a_4=b_1=b_4=b_5=\ell_7=\ell_8=0,\quad
+a_2=a_3,\quad a_5=C^2,\quad b_2=b_3.
+\]
+Then $E_5$ gives
+\[
+\ell_1=\ell_4=0,\qquad
+\ell_2=Ca_3,\qquad\ell_5=Cb_3.
+\]
+The second column of $L$ is zero.  This calculation includes $C=0$ and
+uses no localization.
+
+\section{Assembly of the proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Proposition~\ref{prop:normal} covers every frozen coefficient guard.
+If $h$ has a horizontal component, the valuation congruence forces $R=0$,
+and Lemma~\ref{lem:exit} gives an automorphism.  If every component is
+vertical, Proposition~\ref{prop:vertical} either gives the same exit or
+reaches \eqref{eq:frontier}.
+
+On the frontier, $R=0$ again gives an automorphism.  For $R\ne0$, the
+marked-equal packages or exactly one of the thirteen marked-distinct
+strata applies.  The four marked-equal nonzero orbits, the uniform
+projective family, all six endpoints, and both discrete CO orbits force
+$\det L=0$.  This contradicts the constant term of the Keller determinant.
+No Keller counterexample remains in the row.
+\end{proof}
+
+\section{Verification and audit}
+
+The aggregate command
+\begin{verbatim}
+./verify_full_row_strict.sh
+\end{verbatim}
+runs exact SymPy, independent PARI/GP, and dependency-free checks for the
+top reduction, all lower packages, and the post-freeze bridge.  Its final
+marker is
+\begin{verbatim}
+Q2_E2_A2_B1_D1_N1_FULL_ROW_STRICT_PASS_4D95A1
+\end{verbatim}
+
+The clean-room bridge auditor did not read the candidate bridge, the root
+exploration scripts, or the primary CO and endpoint verifiers.  Its
+standard-library sparse-polynomial engine independently reconstructs:
+\[
+30\text{ rank-two-possible frozen pivots},\quad
+15\text{ empty pivots},\quad45\text{ intrinsic minor charts},
+\]
+the $4+5+4$ marked ledger, both raw CO quotients, their lower exits, and the
+uniform finite chart.  Its marker is
+\begin{verbatim}
+AUDIT_BRIDGE_Q2_E2_STRICT_PASS_D9347B
+\end{verbatim}
+
+The audit found and corrected two draft errors: C0 is an automorphism exit
+rather than a blanket determinant contradiction, and
+\texttt{C30}--\texttt{C44} are empty rather than entering the minor router.
+Exact checks verify the encoded algebra; they are not peer review.
+
+\begin{thebibliography}{9}
+
+\bibitem{Moh}
+T.-T. Moh,
+\emph{On the Jacobian conjecture and the configurations of roots},
+J. Reine Angew. Math. \textbf{340} (1983), 140--212.
+
+\bibitem{Vistoli}
+Angelo Vistoli,
+\emph{The Jacobian conjecture in dimension 3 and degree 3},
+J. Pure Appl. Algebra \textbf{142} (1999), 79--89.
+
+\end{thebibliography}
+
+\end{document}

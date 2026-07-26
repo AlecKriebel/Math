@@ -1,11 +1,20 @@
-# The complete fixed-divisor \(e=2\) quadratic-pencil row
+# The marked-double-member sublocus of the fixed-divisor \(e=2\) row
 
 ## Status
 
-**Audited row theorem.**  The mixed-companion certificate, both
+**Audited sublocus theorem; former row-closure claim retracted.**  The mixed-companion certificate, both
 triple-companion certificates, and their methodologically independent
 PARI/GP reconstructions all pass, together with hostile audits and
 fail-closed injection tests.
+
+The post-freeze bridge audit found that the proof below silently identifies
+the marked fixed quadratic gcd \(h\) with the pencil's unique double-line
+member \(s\).  It therefore proves exactly the sublocus \(h=s\), not the
+whole frozen row.  The distinct-marked-member locus \(h\ne s\) is governed
+by the separately frozen \(3+\mathbb P^1+3\) companion quotient in
+`marked_h_distinct/`.  No parent-row closure is claimed by this sublocus
+note alone; the later full-row theorem is certified in
+`../taxonomy_freeze/BRIDGE_Q2_E2_A2_B1_D1_N1_v1.md`.
 
 This note is not peer reviewed.  The exact checks certify the algebra encoded
 in the accompanying scripts; they are evidence, not peer review.  AI systems
@@ -13,7 +22,7 @@ assisted with the symbolic exploration, case organization, proof drafting,
 and verification code.  Every asserted identity below is intended to have an
 exact, fail-closed certificate.
 
-## Complete row theorem
+## Marked-equal sublocus theorem
 
 Let \(K\) be a field of characteristic zero.  Suppose a degree-four
 polynomial map has reached the all-vertical fixed-divisor frontier
@@ -27,6 +36,9 @@ and its nonzero cubic normal component lies in the complete top kernel
 \[
 (H_3)_3\in x\langle p,q\rangle .
 \]
+Here the fixed quadratic component gcd is \(p=x^2\), which is also the
+unique double-line member of the pencil.  This is precisely the marked
+sublocus \(h=s\).
 Then its Jacobian determinant cannot be a nonzero constant.
 
 If \((H_3)_3=0\), the third component has degree at most two and the
@@ -46,9 +58,9 @@ The mixed orbit is excluded for both pencils below.  The triple orbit for
 `rankone_triple/NOTE.md`.  Thus all four lower-identity packages are
 closed.
 
-This is the complete remaining row identified by the audited
-all-vertical top-obstruction theorem.  It is distinct from the genuine
-\(e=0\) line-\((2,2)\) row.
+This is the complete \(h=s\) descendant of the audited all-vertical
+top-obstruction theorem.  It is distinct from both the genuine
+\(e=0\) line-\((2,2)\) row and the marked-distinct \(h\ne s\) descendant.
 
 ## Mixed-companion theorem
 
@@ -248,11 +260,12 @@ But
 Both products on the right vanish by (15), so \(\det L=0\).  This
 contradicts (3) and completes the proof.
 
-## Row closure and remaining global scope
+## Sublocus closure and remaining global scope
 
 The mixed calculation in this note and the two audited triple packages
-exclude every companion orbit, so the fixed-divisor \(e=2\)
-quadratic-pencil row is closed.  This is a structural exclusion inside
-the quartic curve-image taxonomy, not a complete exclusion of all
-degree-four leading forms.  The current universal total-degree lower
-bound therefore remains \(4\).
+exclude every companion orbit on the marked-equal locus \(h=s\).
+They do not, by themselves, close the fixed-divisor \(e=2\) row: the
+marked-distinct locus \(h\ne s\) requires its frozen thirteen-stratum
+exclusion and a fresh post-freeze bridge.  Those separate packages now pass
+and certify the parent row.  The current universal total-degree lower bound
+remains \(4\).

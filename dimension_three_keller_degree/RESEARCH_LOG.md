@@ -1359,3 +1359,49 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
 - The next authorized high-information experiment is the homogeneous
   \([u:v]\) uniform \(E_5\) compatibility ideal, with the frozen boundary
   divisor \(uv(u+v)=0\) handled explicitly.
+
+## 2026-07-26T00:31:14Z — fixed-quadratic primitive-pencil row certified
+
+- The uniform finite chart excludes every nonzero middle-family parameter,
+  including the `CT` boundary at \(k=-1\).  Six fresh endpoint solves cover
+  \(k=0,\infty\) in all three marked-pair types.  One rank-one smooth
+  endpoint has a genuine invertible survivor through \(E_5\) and closes
+  only at \(E_4\).
+- Complete raw \(E_7\) quotients and exhaustive \(E_6/E_5\) solves exclude
+  the two discrete `CO` orbits.  The primary exact aggregate and its
+  independent PARI endpoint/uniform reconstructions pass.
+- A clean-room hostile auditor, barred from the candidate bridge and the
+  root `CO`/endpoint verifiers, independently reconstructed both `CO`
+  quotients and lower exits with a dependency-free sparse-polynomial
+  engine.
+- The auditor found two scope/coverage defects in the release draft before
+  promotion: zero companions give automorphism exits rather than blanket
+  determinant contradictions, and frozen pivots `C30`--`C44` are empty in
+  the rank-two row rather than entering the intrinsic-minor router.  Both
+  were corrected and encoded as hard guards.
+- The complete row aggregate ends with
+  `Q2_E2_A2_B1_D1_N1_FULL_ROW_STRICT_PASS_4D95A1`; the clean-room bridge
+  ends with `AUDIT_BRIDGE_Q2_E2_STRICT_PASS_D9347B`.
+- The honest frozen count is now
+  \[
+  \boxed{4/14\text{ certified},\quad
+         4/14\text{ provisional},\quad
+         6/14\text{ open}.}
+  \]
+  The certified universal total-degree floor remains four.
+
+## 2026-07-26T00:32:00Z — next-row readiness result banked
+
+- A fresh readiness audit, recorded at 00:25:06Z, of
+  `Q2-E2-A1-B2-D1-N2` derives nine stable
+  internal strata before reading the existing status labels: three
+  covered, three provisional, and three open.
+- The exact-\(\delta=2\) incidence atlas has eighteen chart families.
+  Existing artifacts provisionally cover all three \(\{2,0\}\) families
+  and fourteen of fifteen \(\{1,1\}\) families.
+- The row is not close to promotion: \(\delta=3,4\) have no incidence
+  atlas or lower analysis, and the provisional packages lack hostile
+  replays and a 45-pivot bridge.
+- The highest-information next experiment is a saturation-safe primary
+  decomposition of the universal \(\deg\gcd(\alpha,\beta,\gamma)\ge3\)
+  locus, separating the \(\delta=3,\delta=4\), and power-fibre components.

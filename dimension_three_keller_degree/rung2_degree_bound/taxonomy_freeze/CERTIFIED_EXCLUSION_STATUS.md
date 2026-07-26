@@ -1,6 +1,6 @@
 # Certified exclusion status against frozen taxonomy v1
 
-**Updated (UTC):** 2026-07-25T22:53:24Z.
+**Updated (UTC):** 2026-07-26T00:31:14Z.
 
 This is the mutable status ledger for the immutable fourteen-leaf denominator
 in `FROZEN_TAXONOMY_v1.md`.  Historical status strings in the hashed manifest
@@ -8,8 +8,8 @@ are not certification.  A row is promoted here only after a post-freeze
 coverage bridge and an independent hostile replay both pass.
 
 \[
-\boxed{3/14\text{ certified excluded},\quad
-       5/14\text{ provisional legacy exclusions},\quad
+\boxed{4/14\text{ certified excluded},\quad
+       4/14\text{ provisional legacy exclusions},\quad
        6/14\text{ open}.}
 \]
 
@@ -25,7 +25,7 @@ coverage bridge and an independent hostile replay both pass.
 | `Q2-E1-A3-B1-D1-N1` | **certified excluded** | `BRIDGE_Q2_E1_A3_B1_D1_N1_v1.md`; `audit_bridge_q2_e1_a3_b1_d1_n1_v1/REPORT.md` |
 | `Q2-E1-A1-B3-D1-N3` | open | -- |
 | `Q2-E1-A1-B3-D3-N1` | provisional | -- |
-| `Q2-E2-A2-B1-D1-N1` | provisional | -- |
+| `Q2-E2-A2-B1-D1-N1` | **certified excluded** | `BRIDGE_Q2_E2_A2_B1_D1_N1_v1.md`; `audit_bridge_q2_e2_v1/REPORT.md` |
 | `Q2-E2-A1-B2-D1-N2` | open | -- |
 | `Q2-E2-A1-B2-D2-N1` | provisional | -- |
 | `Q2-E3-A1-B1-D1-N1` | **certified excluded** | `BRIDGE_Q2_E3_A1_B1_D1_N1_v1.md`; `HOSTILE_BRIDGE_AUDIT_Q2_E3_A1_B1_D1_N1_v1.md` |
@@ -48,6 +48,15 @@ division to the intrinsic horizontal/unique-vertical split, while
 expands the route into 48 disjoint atoms and 15 terminal groups, all with
 independent PASS reports.  It also repaired the formerly aggregate-only
 provenance of the unconditional quadratic-component exit.
+
+For `Q2-E2-A2-B1-D1-N1`, `C00`--`C29` refine into 45 ordered intrinsic
+rank-two minor charts, while `C30`--`C44` are empty by rank at most one.
+The marked-equal branch and all thirteen frozen marked-distinct strata are
+covered.  The independent bridge replay reconstructs both discrete `CO`
+quotients and their lower exits with dependency-free exact arithmetic.
+Three zero-companion terminals use the quadratic-component automorphism
+theorem; the ten nonzero marked-distinct terminals force a singular linear
+part.
 
 This status record and its certificates were produced with substantial AI
 assistance.  They are not peer review.  Exact checks are evidence about the

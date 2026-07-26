@@ -134,3 +134,36 @@ the two \(e=2\) forms with \(R=xq\).
   fixed-divisor \(e=2\) quadratic-pencil row is closed.
 - This removes a quartic taxonomy row but does not exclude all quartic
   leading forms.  The universal total-degree floor remains \(4\).
+
+## 2026-07-25T22:53:24Z — prior row-closure claim retracted
+
+The post-freeze bridge audit found that the preceding conclusion was too
+strong.  The four lower packages identify the marked component gcd \(h\)
+with the pencil's unique double-line member \(s\).  They therefore close
+only the marked-equal sublocus \(h=s\).  The marked-distinct locus
+\(h\ne s\) has a genuine \(3+\mathbb P^1+3\) nonzero companion quotient
+and was not covered.  The parent note has been corrected, and the frozen
+row remains provisional while that quotient is treated.
+
+This is a scope failure, not an extra frozen row.  In accordance with the
+freeze protocol, all former language saying that the entire row was closed
+is historical and superseded by this entry.
+
+## 2026-07-26T00:19:51Z — marked-distinct candidate closure
+
+The thirteen marked-distinct strata now have exact candidate routes:
+
+- three zero companions use the independently audited
+  quadratic-component automorphism exit;
+- a single calculation over the punctured projective parameter line
+  excludes `CTAU` and its finite `CT` boundary;
+- six `CH/CS` endpoints have fresh exact solves, including one genuine
+  invertible survivor through \(E_5\) that is killed only by \(E_4\);
+- the two discrete `CO` orbits have complete raw \(E_7\) quotients and
+  exhaustive \(E_6/E_5\) determinant exits.
+
+The strict candidate aggregate passes.  A fresh clean-room bridge auditor
+has independently reconstructed the 45 coefficient-chart routing, the
+thirteen-stratum denominator, and both `CO` computations.  Promotion is
+withheld until that auditor finishes the localization guards and executable
+coverage ledger.
