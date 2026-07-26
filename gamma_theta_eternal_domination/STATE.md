@@ -1,5 +1,91 @@
 # Campaign State
 
+## Checkpoint 006 — 2026-07-25 17:35 PDT
+
+- Campaign day: 1 of 27; 26 campaign days remain.
+- Repository branch: `main`.
+- Latest published campaign commit before this checkpoint:
+  `7215b4db` (full hash recorded in Git).
+- Completion estimate for the campaign work plan: **44%**.
+- Completion estimate toward an actual universal resolution: **10%**.
+  The conjecture remains unresolved; neither estimate is a mathematical
+  probability.
+- Literature audit date: 2026-07-25.  The University of North Florida
+  institutional record now verifies the 2020 chapter metadata, but no
+  lawful full text was obtained; exact first use of the name
+  “Gamma-Theta Conjecture” remains pending.
+
+### Verified facts and artifacts
+
+- Claim C-022 is proved and hostile-review accepted.  Recursive online
+  survival and failure trees exactly characterize every finite kernel
+  \(\mathcal K_h\), and one finite failure tree at a forced maximum
+  independent state proves a strict eternal-domination lower bound.
+- The \(C_{15}\) certificate proves strict separation:
+  \((|K_0|,|K_1|,|K_2|,|K_3|)=(765,120,15,0)\).  Its positive \(K_2\)
+  tree has 73 nodes and its negative \(K_3\) tree has eight.
+- Claim C-023 is a certificate-backed finite result on the exact 526
+  edge-toggle rows surviving \(K_2\).  Direct third-ply trees eliminate
+  518.  Seven remaining graphs first lose a forced triple at \(K_5\), one
+  at \(K_6\), and all full kernels are empty by \(K_7\).
+- The 518 serialized trees total 5,540 nodes and 3,174 leaves.  A fully
+  separate frozenset verifier replayed them all, independently recomputed
+  all 8,587 source profiles and 64,893 selected configuration ranks, checked
+  exact 518-plus-8 coverage, and rejected 14 decisive mutations.
+- The theorem, source, tests, result, two certificate files, hostile review,
+  independent probe, and probe log are bound as ART-090--098.
+
+### Claim and review boundary
+
+- C-022 is a universal certificate theorem and necessary condition, not a
+  universal proof of the Gamma-Theta Conjecture.
+- C-023 covers only the recorded edge-toggle-derived family.  It does not
+  enumerate all graphs of order 11 or 12 and does not raise the published
+  global order frontier.
+- The proof-producing `(n,k)=(12,3)` runner remains blocked from production.
+  Its repaired security paths pass 21 focused and 208 full-suite tests, but
+  hostile re-audit identified remaining quadratic historical cut replay and
+  two provenance checks requiring a second repair and re-audit.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | 2020 institutional metadata improved; chapter text, unavailable `C4`-free manuscript, and general well-covered generators remain gaps |
+| Exact evaluators/certificates | complete-for-current-artifacts | A/B, full fixed-point traces, and recursive-tree hostile replay accepted |
+| MMV one-vertex extensions | complete-certified | C-018 covers 110,537 origins and 54,216 canonical graphs |
+| Single-edge toggles of closest seeds | complete-certified | C-019 covers 25,641 origins and 19,136 canonical graphs |
+| Direct synthesis `(12,3)` | active-hostile-repair | Security blockers closed; ordinary history audit must become linear and provenance chronology must be exact before production |
+| Structural `k=3` lane | active-high-yield | C-023 removes 98.5% of the 526 two-ply survivors at the third ply; eight deep graphs retained for structure/local robustness |
+| General well-covered generation | blocked | No audited complete constructive generator/catalog for orders 12--16 |
+
+### Running jobs and resume state
+
+- No production solver or search process is active.
+- The CEGAR second repair/re-audit round is active.  There is still no
+  `results/synthesis_k3_runs/` production checkpoint.
+- A small deterministic radius-two toggle-ball measurement around the
+  deepest graph is being packaged separately as an observation.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 cores, 16 GiB RAM.
+- Third-ply production measurement: 23.77 seconds wall, 23.69 seconds CPU,
+  about 53.4 MiB peak RSS.  Independent complete replay: 13.10 seconds.
+- CEGAR repaired focused suite: 21 of 21 in 12.79 seconds; the author's full
+  repository run passed 208 of 208 in 24.70 seconds.
+- Free disk is approximately 8.7 GiB.  Production retains a 4 GiB reserve,
+  a campaign-global heavy-child lock, and a current-memory headroom gate.
+
+### Next three highest-value actions
+
+1. Close the linear-history and provenance findings, obtain a final hostile
+   acceptance on frozen CEGAR bytes, and commit the runner before launch.
+2. Run and inspect exactly one proof-producing `C9` iteration, then resume
+   bounded batches to a terminal and independently replay any DRAT proof.
+3. Complete the bounded radius-two robustness measurement and analyze the
+   eight deep transition graphs for a human-readable parameter-three lemma.
+
 ## Checkpoint 005 — 2026-07-25 16:52 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.

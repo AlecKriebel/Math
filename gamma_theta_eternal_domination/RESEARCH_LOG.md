@@ -281,3 +281,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The proof-producing `(12,3)` CEGAR runner passed 15 focused tests and the
   full 195-test campaign suite.  Its independent hostile pre-launch audit is
   still active; no production synthesis run has been launched.
+
+### 17:35 — Recursive horizon certificates and the third-ply kill test
+
+- Proved the exact recursive duality between finite online-kernel membership
+  and survival/failure trees.  A finite failure tree rooted at one forced
+  maximum independent \(k\)-set is a direct certificate that no eternal
+  \(k\)-family exists.
+- The hierarchy does not collapse at two plies.  On \(C_{15}\), all 15
+  maximum independent 7-sets survive two attacks but fail by the third.
+  The frozen witness contains a 73-node positive tree and an eight-node,
+  four-leaf negative tree with a short human-readable attack strategy.
+- Of the 526 hardest edge-toggle rows surviving the two-ply test, 518 fail
+  at a forced triple in \(\mathcal K_3\).  Seven of the remaining eight first
+  fail in \(\mathcal K_5\), and the deepest first fails in
+  \(\mathcal K_6\); every complete three-guard kernel is empty by
+  \(\mathcal K_7\).
+- Stored 518 recursive failure trees totaling 5,540 nodes and 3,174
+  non-domination leaves.  A fresh frozenset implementation imported no
+  campaign module, replayed every tree, recomputed all 8,587 source
+  profiles, checked all 64,893 selected deletion ranks, and rejected 14
+  decisive mutations.  The independent hostile verdict is accepted with no
+  critical, high, or medium issue.
+- The repaired CEGAR runner reached 21 focused and 208 full-suite tests, but
+  production remains blocked.  Re-audit found that historical auxiliary
+  model checks still replayed every prior cut, leaving quadratic resume
+  work.  That is an operational/provenance defect rather than a flaw in the
+  globally sound coloring cuts, and a second repair round is active before
+  launch.

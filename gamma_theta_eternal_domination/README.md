@@ -131,3 +131,24 @@ That read-only probe imports no campaign evaluator.  It reconstructs the
 8,587 selected edge-toggle rows and streams the complete connected-unlabeled
 orders 5 through 9.  The resulting counts are labeled `OBSERVED`; they do
 not exclude all graphs of order 10 or higher.
+
+Claims C-022 and C-023 extend this to arbitrary finite online horizons and
+to direct recursive third-ply certificates.  The independent replay below
+imports no campaign module, checks all 518 failure trees, recomputes all
+8,587 source profiles, and verifies the strict \(K_2/K_3\) witness on
+\(C_{15}\):
+
+```text
+PYTHONWARNINGS=error python3 reviews/three_step_kernel_hostile_probe.py
+```
+
+To regenerate the source-bound measurement, the 518-tree stream, and the
+\(C_{15}\) witness into their default paths, use:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 -m search.three_step_kernel
+```
+
+These claims concern a precisely delimited edge-toggle-derived population.
+They are not an exhaustive order-11 or order-12 nonexistence result.
