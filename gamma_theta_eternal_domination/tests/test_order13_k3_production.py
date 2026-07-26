@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -114,6 +115,40 @@ class Order13K3ProductionTests(unittest.TestCase):
             expected,
         )
 
+    def test_repository_hole9_raw_proof_passes_plain_rup_gate(self) -> None:
+        certificate = (
+            CAMPAIGN
+            / "certificates/order13_k3_hole9_attempt000001_lrat"
+        )
+        command = [
+            str(CAMPAIGN / "tools/drat_trim_2023_05_22/drat-trim"),
+            str(certificate / "instance.cnf"),
+            str(certificate / "proof.raw.bdrat"),
+            "-i",
+            "-f",
+            "-p",
+            "-W",
+            "-U",
+            "-t",
+            "30",
+        ]
+        completed = subprocess.run(
+            command,
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=40,
+        )
+        self.assertEqual(completed.returncode, 0)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stdout = root / "stdout"
+            stderr = root / "stderr"
+            stdout.write_bytes(completed.stdout)
+            stderr.write_bytes(completed.stderr)
+            _strict_verified(stdout, stderr, "s VERIFIED")
+        self.assertIn(b"0 RAT lemmas in core", completed.stdout)
+
     def test_initialize_is_generic_over_all_four_templates(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary).resolve()
@@ -140,6 +175,22 @@ class Order13K3ProductionTests(unittest.TestCase):
                 report = audit(run_directory)
                 self.assertEqual(report["template"], template)
                 self.assertEqual(report["status"], "PENDING")
+
+    def test_raw_forward_command_is_plain_warning_fatal_rup_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary).resolve()
+            run_directory, _ = self._initialize(root)
+            manifest, _, _, _ = _load_run(run_directory)
+            command = _commands(manifest, root / "fresh-attempt")[
+                "raw_forward"
+            ]
+            self.assertEqual(
+                command[-7:],
+                ["-i", "-f", "-p", "-W", "-U", "-t", "2"],
+            )
+            self.assertEqual(command.count("-p"), 1)
+            self.assertEqual(command.count("-W"), 1)
+            self.assertEqual(command.count("-U"), 1)
 
     def _initialize(
         self, root: Path

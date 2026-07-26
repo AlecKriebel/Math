@@ -88,20 +88,37 @@ families, for every odd \(\ell\ge5\), with
 
 The abstract graph-to-CNF equivalence for all four templates has passed
 hostile mathematical review, and two independent constructors reproduce all
-formula bytes and complete coloring banks exactly.  This is proof-production
-infrastructure, not a finite exclusion: none of the three live order-13
-branches is yet certified UNSAT, and the \(k=4,5\) slices remain open.  The
-historical proofless `hole11` solver return remains only `OBSERVED`; the
-accepted \(C_{11}\) exclusion is the human proof in
+formula bytes and complete coloring banks exactly.  Claim C-057 now supplies
+the first accepted order-13 proof certificate: the exact `hole9` CNF is
+UNSAT, with independently replayed addition-only RUP and LRAT proofs.  A
+clean-room audit reconstructed the 9,802-variable formula byte for byte and
+enumerated all \(3^{13}\) named colorings to verify the complete 2,295-row
+coloring bank.  Thus the live order-13 parameter-three cover is reduced
+further to the overlapping hub-free \(C_5\) and \(C_7\) branches.
+
+C-057 is a certified finite template exclusion, not a complete
+\((n,k)=(13,3)\) result.  The \(C_5,C_7\) branches and the complete
+\(k=4,5\) slices remain open, so the global lower bound remains 13 rather
+than 14.  The historical proofless `hole11` solver return remains only
+`OBSERVED`; the accepted \(C_{11}\) exclusion is the human proof in
 `math/lemmas/order13_k3_hole11_exclusion.md`, not that solver output.
 
-The fail-closed order-13 proof runner has now passed its third independent
-review cycle.  The two earlier `REJECT` reports and their concrete exploits
-remain preserved.  The accepted final revision binds every formula, source,
-tool, phase input/output, certificate, and resource limit, and it safely
-quarantines every tested interruption window without promoting a claim.
-Review acceptance authorizes bounded proof production only: it excludes no
-template, and no live order-13 solver or proof-checker result is claimed here.
+The complete C-057 promotion, including the preserved candidate/nonclaim
+boundary, is replayed with:
+
+```text
+python3 repro/c057/replay.py
+```
+
+The fail-closed order-13 proof runner has now passed a fourth independent
+review cycle.  The first real `hole9` attempt correctly remained
+`RETRYABLE_NONCLAIM` when its raw checker rejected harmless
+pseudo-unit-deletion warnings.  The accepted v4 repair checks the unchanged
+raw stream in deletion-agnostic, warning-clean, RUP-only mode and passed all
+25 current hostile regressions, including the exact retained proof.  The
+original run remains immutable; C-057 instead uses a separately frozen
+addition-only proof and independent acceptance chain.  Runner acceptance
+authorizes future bounded proof production but is not itself a graph result.
 
 The parameter-five lane now has the accepted structural reduction C-056.
 Any order-13 counterexample at \(k=5\) must be reconstructed from a

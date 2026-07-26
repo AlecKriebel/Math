@@ -1,0 +1,201 @@
+{
+  "artifact_bindings": [
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/instance.cnf",
+      "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "size_bytes": 1168197
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/proof.lrat",
+      "sha256": "f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805",
+      "size_bytes": 8546664
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat",
+      "sha256": "af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f",
+      "size_bytes": 742337
+    },
+    {
+      "path": "instances/order13_k3_hole9/instance.cnf",
+      "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "size_bytes": 1168197
+    },
+    {
+      "path": "reviews/order13_k3_hole9_certificate_verifier_b/evidence.json",
+      "sha256": "3de45d16b906e52c3960e4b2e75604908c8cacf356b84d7337db721f4fa49af8",
+      "size_bytes": 15105
+    },
+    {
+      "path": "reviews/order13_k3_hole9_certificate_verifier_b/external_code_audit/replay.py",
+      "sha256": "e7627c21fa588ec4b1efd2438d6666acf6f437bbed6dcff7ebe5b592fe38e66f",
+      "size_bytes": 21785
+    },
+    {
+      "path": "reviews/order13_k3_hole9_certificate_verifier_b/tool-source-provenance.json",
+      "sha256": "95702f678c8fbbde5f733e121105d59b2c3890821b1195300d7ec5f03cefa275",
+      "size_bytes": 2518
+    },
+    {
+      "path": "src/verifier_b/order13_k3_hole9_certificate.py",
+      "sha256": "4adf3691f438c03b230ff323ea5f7c180db9b5c8cd895b6f31327f5e154a97ee",
+      "size_bytes": 39193
+    },
+    {
+      "path": "tests/test_order13_k3_hole9_certificate_verifier_b.py",
+      "sha256": "2ca00e46efee4597fcc532ffe9e8d9fc61c73631def42011d26ab7a3cf516fc5",
+      "size_bytes": 3826
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/Makefile",
+      "sha256": "1f3c7128b1dd739723257edd95cc28a2ee747779ca01ae80ed9252f02ec5149d",
+      "size_bytes": 493
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/drat-trim",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "size_bytes": 70088
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/drat-trim.c",
+      "sha256": "f7619bdc338bc8151b2f6bb87488052795c926b048d5040cf165742eb1ba9a26",
+      "size_bytes": 59498
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/lrat-check",
+      "sha256": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+      "size_bytes": 36520
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/lrat-check.c",
+      "sha256": "05b3c92f6734fdfc9ee5c72217c9935540c1255b58bc9bdc134b6b26f5b43c9f",
+      "size_bytes": 17332
+    }
+  ],
+  "audit_scope": {
+    "bdrat_decoding_and_canonicality": true,
+    "candidate_only_claim_boundary": true,
+    "checker_flags_and_transcript_acceptance": true,
+    "corruption_tests_fail_closed": true,
+    "dimacs_counting": true,
+    "path_and_race_handling": true,
+    "source_and_review_binding_sufficiency": true
+  },
+  "caveats": [
+    {
+      "blocking": false,
+      "id": "focused-test-coverage",
+      "statement": "The focused unit test exercises the 18 base hostile mutations, while the six decisive-payload bit flips and complete private-checker integration are exercised by the full verifier replay. The retained full replay rejects all 24."
+    },
+    {
+      "blocking": false,
+      "id": "runtime-source-authentication",
+      "statement": "The verifier's before/after source self-hash establishes provenance only, not authentication of already-loaded interpreter state. This external audit supplies the required exact-byte binding to verifier SHA-256 4adf3691f438c03b230ff323ea5f7c180db9b5c8cd895b6f31327f5e154a97ee."
+    },
+    {
+      "blocking": false,
+      "id": "platform-portability",
+      "statement": "Exact clean-build executable equality was reproduced with Apple clang 21.0.0 for arm64-apple-darwin25.5.0. A different platform may produce different executable bytes and should use trusted locally built proof checkers; this verifier fails closed rather than silently broadening acceptance."
+    }
+  ],
+  "checker_source_build": {
+    "commands": [
+      "cc drat-trim.c -std=c99 -O2 -o drat-trim",
+      "cc lrat-check.c -std=c99 -DLONGTYPE -O2 -o lrat-check"
+    ],
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "drat_trim": {
+      "clean_build_matches_retained_executable": true,
+      "exit_code": 0,
+      "marker": "s VERIFIED",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "stderr_empty": true,
+      "zero_rat_lemmas_in_core": true
+    },
+    "lrat_check": {
+      "clean_build_matches_retained_executable": true,
+      "exit_code": 0,
+      "marker": "c VERIFIED",
+      "sha256": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+      "stderr_empty": true
+    },
+    "target": "arm64-apple-darwin25.5.0"
+  },
+  "claim_boundary": "Accepts only the exact SHA-256-bound order-13, k=3, hole9 DIMACS formula as UNSAT. Mathematical and constructor source/review bindings are retained for a separate integration audit. This review makes no order-13-wide or universal gamma-theta claim.",
+  "focused_test": {
+    "exit_code": 0,
+    "passed": 7,
+    "sha256": "2ca00e46efee4597fcc532ffe9e8d9fc61c73631def42011d26ab7a3cf516fc5"
+  },
+  "independent_censuses": {
+    "formula": {
+      "clauses": 32108,
+      "comments": 0,
+      "empty_clauses": 0,
+      "literals": 281028,
+      "maximum_clause_size": 286,
+      "maximum_variable_observed": 9802,
+      "variables": 9802
+    },
+    "normalized_binary_proof": {
+      "addition_records": 45281,
+      "deletion_records": 0,
+      "empty_addition_record": 45281,
+      "empty_additions": 1,
+      "literals": 410400,
+      "maximum_clause_size": 284,
+      "maximum_variable_observed": 9802,
+      "post_empty_records": 0
+    }
+  },
+  "no_soundness_blocker": true,
+  "provenance_repair": {
+    "corrected_final_sha256": "95702f678c8fbbde5f733e121105d59b2c3890821b1195300d7ec5f03cefa275",
+    "initial_sha256": "1408a61aa5858512fe68dc27a4058099995ff2e3b1b32b420299a5d6c31a6737",
+    "issue": "The initial source-provenance JSON recorded clean-build executable hashes 717fb77e... and 44b1cdc9..., which did not follow from its stated commands and exact sources.",
+    "resolution": "The exact stated builds were independently rerun and produced 31df522b... and 5d7d77a5..., byte-identical to the retained decisive executables. The source-provenance JSON was corrected and the corrected final bytes were re-audited.",
+    "soundness_impact": "None. The exact decisive executables, proofs, formula, and successful checker replays were unchanged; the repaired defect was supporting build provenance."
+  },
+  "retained_verifier_evidence": {
+    "byte_identical_fresh_replay": true,
+    "exit_code": 0,
+    "hostile_mutations_all_rejected": true,
+    "hostile_mutations_count": 24,
+    "sha256": "3de45d16b906e52c3960e4b2e75604908c8cacf356b84d7337db721f4fa49af8",
+    "size_bytes": 15105,
+    "stderr_empty": true,
+    "verdict": "VERIFIED_EXACT_HOLE9_CNF_UNSAT_CANDIDATE_ONLY_PENDING_HOSTILE_ACCEPTANCE"
+  },
+  "reviewed_at_utc": "2026-07-26T19:05:31Z",
+  "schema": "gamma-theta-order13-k3-hole9-external-code-audit-v1",
+  "schema_version": 1,
+  "source_review_chain": {
+    "assessment": "Sufficient for the exact-CNF candidate-only verdict. The verifier binds the C-055 theorem, two-stage mathematical hostile review, constructor acceptance, exact live-hole9 preflight, constructor formula, coloring bank, both certificates, and both checkers. Semantic promotion beyond exact-CNF UNSAT remains explicitly deferred to a separate integration audit.",
+    "full_frozen_binding_count": 23,
+    "review_verdicts_bound": 4
+  },
+  "transcript_validation": {
+    "drat_trim": {
+      "flags": [
+        "-i",
+        "-f",
+        "-W",
+        "-U",
+        "-t",
+        "1800"
+      ],
+      "requires_empty_stderr": true,
+      "requires_exact_line_grammar": true,
+      "requires_exit_zero": true,
+      "requires_unique_verified_marker": true,
+      "requires_zero_rat_core": true
+    },
+    "lrat_check": {
+      "requires_empty_stderr": true,
+      "requires_exact_clause_totals": true,
+      "requires_exact_line_grammar": true,
+      "requires_exit_zero": true,
+      "requires_unique_verified_marker": true
+    }
+  },
+  "verdict": "ACCEPT_WITH_CAVEATS_NO_SOUNDNESS_BLOCKER"
+}

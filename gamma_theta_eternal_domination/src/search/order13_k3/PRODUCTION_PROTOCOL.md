@@ -115,18 +115,35 @@ The only successful chain is:
 
 1. CaDiCaL returns exit 20, writes strict `s UNSATISFIABLE`, and retains a
    nonempty raw binary DRAT stream.
-2. drat-trim checks that raw stream forward with `-i -f -W`; stderr must be
-   empty and stdout must contain exactly one clean `s VERIFIED`.
+2. drat-trim reinterprets the raw stream in deletion-agnostic plain mode and
+   checks every addition forward with `-i -f -p -W -U`.  Thus pseudo-unit
+   deletion hints cannot create checker-specific warnings, while every
+   retained addition must be RUP.  The `-W` flag requests warning-fatal
+   checking, and the runner independently rejects nonzero exit, any stderr,
+   any warning or error text, or anything other than exactly one clean
+   `s VERIFIED`.
 3. The bound normalizer parses the entire canonical binary stream, requires a
    unique empty addition and no later additions, strips deletions, and emits
    the exact addition stream whose final record is the unique empty addition.
 4. A fresh drat-trim process checks the normalized stream forward with
-   `-i -f -W -U`, making the retained stream warning-fatal and RUP-only.
+   `-i -f -W -U`, making the retained stream RUP-only and subject to the same
+   independent clean-output policy.
 5. A separate drat-trim process performs backward RUP-only LRAT conversion
    with `-i -W -U -L`; the LRAT file must be nonempty.
 6. The separately hash-bound lrat-check executable replays the LRAT against
    the frozen formula; stderr must be empty and stdout must contain exactly one
    clean `c VERIFIED`.
+
+The soundness of plain mode here does not depend on the semantic validity of
+any deletion hint.  Ignoring every deletion defines a new proof sequence
+consisting of the original formula followed by the additions in their original
+order.  With `-U`, drat-trim requires each such addition to be RUP relative to
+the original formula and all preceding retained additions.  Every RUP addition
+preserves satisfiability, and the final empty addition therefore proves the
+original formula unsatisfiable.  The strict normalizer independently emits
+that exact addition sequence, and phase 4 checks it again.  Hence an ignored
+pseudo-unit deletion cannot weaken the checked formula or create an accepted
+lemma.
 
 Each child is retained inside an exact-shape phase record.  In addition to the
 child argv, executable, resource, and stdout/stderr data, that record binds

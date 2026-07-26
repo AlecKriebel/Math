@@ -1,5 +1,112 @@
 # Campaign State
 
+## Checkpoint 047 — 2026-07-26 12:37 PDT
+
+- Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`
+  both `d19aa5e75f53cf45d4243cf6ec5821fdb4388298`.  That published base
+  freezes the first `hole9` attempt as a nonclaim and its separately copied
+  RUP/LRAT candidate.  The accepted C-057 promotion and runner-v4 repair are
+  complete locally and await this checkpoint's scoped release commit.
+- **C-057 is accepted `CERTIFIED-FINITE`:** relative to C-050 and the
+  accepted inputs of C-055, no order-13 parameter-three counterexample has a
+  complement containing a hub-free induced \(C_9\).  Together with the
+  human C-053 \(C_{11}\) exclusion, the live overlapping parameter-three
+  cover is now exactly `hole5` and `hole7`.
+- **The exact Boolean proof is independently replayed:** the formula has
+  9,802 variables, 32,108 clauses, 281,028 literal occurrences, and SHA-256
+  `3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea`.
+  Its deletion-free binary RUP proof has 45,280 nonempty additions followed
+  by one unique empty addition, SHA-256
+  `af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f`.
+  The separate 8,546,664-byte LRAT has SHA-256
+  `f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805`.
+- **Three independent acceptance layers close the proof-to-graph chain:**
+  verifier B rejects 24/24 corruptions and freshly obtains one exact RUP and
+  LRAT verified marker; the external exact-byte code audit rebuilds both
+  checkers from retained C sources and reports no soundness blocker; and the
+  mathematical coverage audit reconstructs the complete CNF byte for byte,
+  enumerates all \(3^{13}=1,594,323\) named colorings, and accepts the exact
+  template implication.  Root reproduced every retained audit output.
+- **The promotion wrapper is hostile-accepted:** the immutable candidate
+  manifest remains `CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT`, and the
+  original attempt remains `RETRYABLE_NONCLAIM` /
+  `RAW_FORWARD_REJECTED_NONCLAIM`.  The separate acceptance record promotes
+  only C-057.  Its one-command replay checks 25 exact artifact paths and
+  reruns the proof and coverage chain; an external audit rejected 13/13
+  coordinated mutations with verdict
+  `ACCEPT_EXACT_C057_ACCEPTANCE_WRAPPER`.
+- **Production runner v4 is accepted:** raw binary proof checking now uses
+  deletion-agnostic, warning-clean, RUP-only forward verification.  The exact
+  attempt-one raw stream passes that gate, while every inherited provenance,
+  crash, quarantine, and source-mutation regression remains fail-closed.
+  The referee and root each reproduced all 25 v4 tests.  The historic v3
+  attempt is not rewritten or re-audited under the new source.
+- **Release regression passed 398/398 tests** with warnings fatal in 375.163
+  test seconds and 375.48 wall seconds.  Peak resident memory was
+  189,136,896 bytes.  The log has SHA-256
+  `2e7f27c39d91f12b8196db7a26a2d1ac6d7e92ab19ade30d76e4ca2bf5e375bd`;
+  its separate JSON binding recomputes the hash, count, terminal `OK`, and
+  resource census.
+
+### Evidentiary boundary
+
+- C-057 excludes one exact order-13 parameter-three template.  It does not
+  exclude `hole5`, `hole7`, the complete \((13,3)\) slice, either
+  \((13,4)\) or \((13,5)\), all order-13 graphs, or any larger order.
+- The global finite frontier therefore remains order at least 13 relative to
+  the published through-order-11 premise.  It is not advanced to 14.
+- No counterexample, universal proof, or verified prior universal resolution
+  has been obtained.  No novelty or priority claim is made pending the next
+  literature update.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Literature/status audit | active-weekly | No direct resolution found; compressed update due by day 7 or on new terminology |
+| Order-12 frontier | exhausted-certified | C-050 release and manuscript remain unchanged |
+| Order-13 \(k=3\) `hole11` | exhausted-proved | C-053 human theorem |
+| Order-13 \(k=3\) `hole9` | exhausted-certified | C-057 exact RUP/LRAT and mathematical coverage chain accepted |
+| Order-13 \(k=3\) `hole5`,`hole7` | active-next | These two overlapping templates are the complete remaining parameter-three cover |
+| Order-13 production runner v4 | accepted | Safe to initialize a new run only after the exact v4 bytes are committed and pushed |
+| Order-13 \(k=4\) | pending-second | Begin after the next bounded \(k=3\) production result or timeout |
+| Order-13 \(k=5\) structure | accepted-proved-C056 | Canonical ten-vertex-kernel and attachment enumeration remains unimplemented |
+
+### Running jobs and resume state
+
+- No SAT solver, proof checker, graph generator, or memory-heavy child is
+  running.
+- Replay C-057 without a SAT solver using
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONWARNINGS=error python3 -B -W error
+  repro/c057/replay.py`.
+- Replay the wrapper's coordinated-mutation audit using
+  `PYTHONDONTWRITEBYTECODE=1 PYTHONWARNINGS=error python3 -I -B -W error
+  reviews/c057_acceptance_wrapper_hostile/audit.py`.
+- Do not rerun or edit
+  `results/order13_k3_hole9_production/attempts/attempt-000001`; its exact
+  nonclaim history is now part of the accepted audit chain.
+
+### Resource usage
+
+- Host: MacBookPro18,1, Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+- Free data-volume space: 17,593,264 KiB, approximately 16.78 GiB; volume
+  usage rounds to 97%.  Load averages after the regression were 2.41, 3.70,
+  and 3.82.
+- The release regression peaked below 181 MiB resident memory.  There is no
+  active campaign worker.  Proof-file growth, not RAM, remains the likely
+  local bottleneck for the remaining templates.
+
+### Next three highest-value actions
+
+1. Commit and push the exact C-057, wrapper-audit, runner-v4, regression, and
+   checkpoint bytes on `main`, excluding all provisional and unrelated paths.
+2. Generate and independently preflight the exact order-13 `hole7` package,
+   initialize a fresh v4 production tree, and launch one bounded resumable
+   attempt only after its source/input checkpoint is published.
+3. In parallel with `hole7`, prepare the first exact order-13 parameter-four
+   parent or implement the finite C-056 ten-vertex-kernel enumeration,
+   choosing between them from measured formula/generator size.
+
 ## Checkpoint 046 — 2026-07-26 11:42 PDT
 
 - Campaign day: 2 of 27; branch `main`; committed `HEAD` and `origin/main`

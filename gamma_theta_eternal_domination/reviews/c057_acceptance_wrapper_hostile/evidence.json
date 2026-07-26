@@ -1,0 +1,211 @@
+{
+  "acceptance": {
+    "claim_id": "C-057",
+    "claim_status": "CERTIFIED-FINITE",
+    "exact_byte_trust_root": true,
+    "promotion_record_is_separate_from_candidate": true,
+    "recursive_artifact_bindings": 25,
+    "recursive_paths_unique": true,
+    "scope_exclusions_exact": true,
+    "sha256": "f9ee1ce8657206a23353f52cc64210fb015149f12fdb3f7eeeac11a6948c32b7",
+    "status": "ACCEPTED_EXACT_HOLE9_TEMPLATE_EXCLUSION",
+    "verdict": "ACCEPT_CERTIFIED_FINITE_ORDER13_K3_HOLE9_TEMPLATE_EXCLUSION"
+  },
+  "caveats": [
+    {
+      "blocking": false,
+      "id": "loaded-code-self-authentication",
+      "statement": "The wrapper cannot authenticate a malicious replacement of its own already-loaded bytes. This external review supplies the exact replay.py and acceptance-record trust root."
+    },
+    {
+      "blocking": false,
+      "id": "static-symlink-toctou",
+      "statement": "The target rejects static symlink components but uses Path checks followed by read_bytes rather than descriptor-stable O_NOFOLLOW reads. A concurrent local filesystem attacker is outside the campaign replay threat model; this audit uses descriptor-stable reads."
+    },
+    {
+      "blocking": false,
+      "id": "environment-isolation",
+      "statement": "The README command and target child commands omit Python -I and inherit the caller environment. The accepted fresh replay passed both the documented invocation and an isolated-mode invocation under a minimal environment. Adding isolated-mode child launches would improve defense in depth."
+    }
+  ],
+  "coordinated_mutation_boundary": {
+    "acceptance_plus_bound_artifact": "rejected by immutable acceptance SHA-256 in exact wrapper",
+    "acceptance_plus_wrapper": "rejected by this external audit's exact target bindings; no running program can authenticate maliciously replaced code solely by that code's own constants",
+    "false_acceptance_found_in_exact_bytes": false
+  },
+  "direct_guard_tests": {
+    "absolute_path": true,
+    "boolean_size": true,
+    "duplicate_json": true,
+    "embedded_parent_path": true,
+    "empty_path": true,
+    "final_symlink": true,
+    "nonfinite_json": true,
+    "parent_path": true
+  },
+  "fresh_full_replay": {
+    "documented_command_passed": true,
+    "documented_command_result": {
+      "acceptance_sha256": "f9ee1ce8657206a23353f52cc64210fb015149f12fdb3f7eeeac11a6948c32b7",
+      "bound_artifacts_checked": 25,
+      "candidate_status_preserved": "CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT",
+      "claim_id": "C-057",
+      "external_code_audit_verdict": "ACCEPT_WITH_CAVEATS_NO_SOUNDNESS_BLOCKER",
+      "hostile_mutations_rejected": 24,
+      "mathematical_coverage_verdict": "ACCEPT_EXACT_HOLE9_TEMPLATE_EXCLUSION_AND_C5_C7_REDUCTION",
+      "original_production_status_preserved": "RETRYABLE_NONCLAIM",
+      "remaining_live_parameter3_templates": [
+        "hole5",
+        "hole7"
+      ],
+      "sat_solver_invoked": false,
+      "schema": "gamma-theta-c057-replay-v1",
+      "schema_version": 1,
+      "verdict": "VERIFIED_C057_HOLE9_TEMPLATE_EXCLUSION_BINDINGS_AND_PROOFS"
+    },
+    "isolated_command_passed": true,
+    "isolated_command_result_byte_identical": true
+  },
+  "hostile_mutations": {
+    "all_rejected": true,
+    "count": 13,
+    "tests": [
+      {
+        "name": "acceptance_bit_flip",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "acceptance_scope_overclaim",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "acceptance_duplicate_json_key",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "acceptance_nonfinite_json",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "bound_formula_bit_flip",
+        "reason": "REJECT: binding mismatch at $.exact_boolean_object.formula: instances/order13_k3_hole9/instance.cnf, size=1168197, sha256=1250108c22c7f7e1a1d18b7fd7f70ddcb1a0464cbbb5560731d33bbbe0d6cff4",
+        "rejected": true
+      },
+      {
+        "name": "bound_math_evidence_bit_flip",
+        "reason": "REJECT: binding mismatch at $.hostile_mathematical_coverage_audit.evidence: reviews/order13_k3_hole9_math_coverage/evidence.json, size=13539, sha256=389ae7972147ee6ed5ea907494865e86b9cad386c9691ca622273255a5bf6382",
+        "rejected": true
+      },
+      {
+        "name": "candidate_status_rewrite",
+        "reason": "REJECT: binding mismatch at $.certificate.immutable_candidate_manifest: certificates/order13_k3_hole9_attempt000001_lrat/candidate-manifest.json, size=6953, sha256=85cf202d0378f6f641f7f9ad5085f1dd525a3013098e77e84dbe6e14a6657c32",
+        "rejected": true
+      },
+      {
+        "name": "production_nonclaim_rewrite",
+        "reason": "REJECT: binding mismatch at $.production_history_boundary.original_outcome: results/order13_k3_hole9_production/attempts/attempt-000001/outcome.json, size=3977, sha256=afa30f53dd49f055afdc5da42e211b3a52135bcf69ac3a14b6645c184ebb83d1",
+        "rejected": true
+      },
+      {
+        "name": "external_verdict_rewrite",
+        "reason": "REJECT: binding mismatch at $.external_exact_byte_code_audit.evidence: reviews/order13_k3_hole9_certificate_verifier_b/external_code_audit/evidence.json, size=8482, sha256=aa0ec9ead968cbed95d27419b0e5c07d6cdc016927cfd5197f1102788b632f52",
+        "rejected": true
+      },
+      {
+        "name": "bound_formula_symlink",
+        "reason": "REJECT: symlink rejected in bound path: instances/order13_k3_hole9/instance.cnf",
+        "rejected": true
+      },
+      {
+        "name": "coordinated_formula_and_acceptance_mutation",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "acceptance_final_symlink",
+        "reason": "REJECT: acceptance record exact-byte binding mismatch",
+        "rejected": true
+      },
+      {
+        "name": "coordinated_wrapper_and_acceptance_attack",
+        "reason": "rejected by this external audit's exact replay.py SHA-256 binding; the target cannot authenticate altered code after that code has already been loaded",
+        "rejected": true
+      }
+    ]
+  },
+  "nested_boundaries": {
+    "candidate_status": "CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT",
+    "external_code_audit": "ACCEPT_WITH_CAVEATS_NO_SOUNDNESS_BLOCKER",
+    "mathematical_coverage": "ACCEPT_EXACT_HOLE9_TEMPLATE_EXCLUSION_AND_C5_C7_REDUCTION",
+    "original_attempt_audit_status": "RETRYABLE_NONCLAIM",
+    "original_outcome_claim_status": "NO_SAT_OR_UNSAT_CLAIM",
+    "original_outcome_status": "RETRYABLE_NONCLAIM",
+    "verifier_verdict": "VERIFIED_EXACT_HOLE9_CNF_UNSAT_CANDIDATE_ONLY_PENDING_HOSTILE_ACCEPTANCE"
+  },
+  "no_sat_solver": {
+    "fresh_replay_invoked_sat_solver": false,
+    "static_exact_call_graph_audited": true,
+    "transitive_children": [
+      "/usr/bin/cc",
+      "private SHA-bound drat-trim",
+      "private SHA-bound lrat-check"
+    ]
+  },
+  "schema": "gamma-theta-c057-acceptance-wrapper-hostile-audit-v1",
+  "schema_version": 1,
+  "scope_exclusions": [
+    "This does not exclude the order-13 parameter-three hole5 branch.",
+    "This does not exclude the order-13 parameter-three hole7 branch.",
+    "This is not a complete order-13 parameter-three exclusion.",
+    "This says nothing decisive about the order-13 parameter-four or parameter-five slices.",
+    "This does not exclude every order-13 counterexample or raise the global lower bound to 14.",
+    "This is not a counterexample or a universal proof of the gamma-theta conjecture.",
+    "No novelty or priority claim is made."
+  ],
+  "subprocess_surface": {
+    "direct_children": [
+      "exact verifier-B Python source",
+      "exact external code-audit replay",
+      "exact mathematical coverage audit"
+    ],
+    "direct_subprocess_run_sites": 1,
+    "sat_solver_in_call_graph": false,
+    "shell_used": false,
+    "stdin_closed": true,
+    "timeouts_seconds": [
+      180,
+      240,
+      120
+    ],
+    "transitive_non_python_children": [
+      "/usr/bin/cc",
+      "private SHA-bound drat-trim",
+      "private SHA-bound lrat-check"
+    ]
+  },
+  "target_bindings": [
+    {
+      "path": "repro/c057/README.md",
+      "role": "C-057 reproduction instructions",
+      "sha256": "abd3fcf4df966645d2c3c9585e6667e36307ed2a127376535f5e667ec83a74e4",
+      "size_bytes": 1183
+    },
+    {
+      "path": "repro/c057/replay.py",
+      "role": "one-command C-057 replay",
+      "sha256": "83497204ee32158f123a873d2b682373c04d5dd63999fdcfcad2e85197301d88",
+      "size_bytes": 13150
+    },
+    {
+      "path": "results/order13_k3_hole9_certificate_acceptance.json",
+      "role": "sole C-057 promotion record",
+      "sha256": "f9ee1ce8657206a23353f52cc64210fb015149f12fdb3f7eeeac11a6948c32b7",
+      "size_bytes": 8249
+    }
+  ],
+  "verdict": "ACCEPT_EXACT_C057_ACCEPTANCE_WRAPPER"
+}

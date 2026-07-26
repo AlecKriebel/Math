@@ -1607,3 +1607,91 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   proof passes.  The existing strict normalization, second RUP replay, LRAT
   conversion, and lrat-check remain unchanged.  Focused tests pass 24/24,
   but the repair is unaccepted until the v4 hostile regression completes.
+
+### 2026-07-26 12:05 — verifier B and runner v4 independently accepted
+
+- A structurally separate 39,193-byte verifier B was written without
+  importing the constructor, search, runner, normalizer, or candidate-manifest
+  logic.  It independently parses the exact DIMACS and binary RUP stream,
+  checks byte equality with the accepted constructor formula, copies both
+  proofs and proof checkers into a fresh private directory, and requires
+  strict warning-clean RUP and LRAT transcript grammars.
+- The retained evidence is deterministic at SHA-256
+  `3de45d16b906e52c3960e4b2e75604908c8cacf356b84d7337db721f4fa49af8`.
+  It rejects 24/24 deliberate corruptions, including formula and proof bit
+  flips, binary encoding errors, deletions, early or post-empty records,
+  checker changes, a RAT core, and mathematical-source or constructor-review
+  changes.  Root reproduced the complete evidence and all seven focused
+  tests.
+- An external exact-byte code audit independently rebuilt `drat-trim` and
+  `lrat-check` from the retained C sources.  The fresh executables are
+  byte-identical to the decisive retained binaries and both proofs verify.
+  The audit found that an initial supporting source-provenance JSON had two
+  stale clean-build hashes.  The exact rebuild values were corrected to
+  `31df522b...` and `5d7d77a5...`; formula, proofs, decisive binaries, and
+  successful proof checks were unchanged.  Final verdict:
+  `ACCEPT_WITH_CAVEATS_NO_SOUNDNESS_BLOCKER`.
+- The independent production referee accepted v4.  Its formal
+  deletion-agnostic RUP argument is that every retained addition follows from
+  the original formula plus previous retained additions, so discarding
+  deletions preserves the model set inductively.  The exact attempt-one raw
+  proof passes; all inherited provenance, crash, quarantine, and
+  producer/consumer mutations remain rejected.  Referee and root each
+  reproduced 25/25 tests.  This accepts future runner bytes only; the v3
+  attempt remains its original nonclaim.
+
+### 2026-07-26 12:18 — C-057 mathematical implication accepted
+
+- A clean-room mathematical audit reconstructed all 9,802 variables and
+  every clause family of the exact `hole9` formula.  Its ordered DIMACS bytes
+  exactly equal the certified formula, so no signature sort, reflection,
+  DoubleLex, unrelated anchor, or other unsafe graph symmetry is hidden in
+  the instance.
+- The audit enumerated all \(3^{13}=1,594,323\) named colorings.  Exactly
+  13,770 respect the forced template edges, and quotienting the free
+  six-element color-name action gives exactly the retained 2,295
+  first-use-canonical rows.  Thus the non-three-colorability bank is
+  complete and imposes no vertex symmetry.
+- It separately rechecked the complement signs, external pair witnesses,
+  connected-cut encoding, domination clauses, attacks only on unoccupied
+  vertices, exactly one guard traversing one \(G\)-edge, and successor-family
+  closure.  The named triangle \(\{0,1,9\}\) follows from the chosen rim edge
+  and a guaranteed external common neighbor; it is a relabeling, not an
+  automorphism assumption.
+- Verdict:
+  `ACCEPT_EXACT_HOLE9_TEMPLATE_EXCLUSION_AND_C5_C7_REDUCTION`.
+  Relative to C-050 and C-055, no order-13 parameter-three counterexample has
+  a hub-free induced complement \(C_9\).  Combining this with C-053 leaves
+  only the overlapping `hole5` and `hole7` branches.  No complete
+  parameter-three, order-13, lower-bound-14, or universal claim follows.
+
+### 2026-07-26 12:37 — C-057 promotion wrapper and release regression accepted
+
+- The immutable candidate manifest remains
+  `CANDIDATE_PENDING_INDEPENDENT_HOSTILE_AUDIT`; the original production
+  outcome remains `RETRYABLE_NONCLAIM` and
+  `RAW_FORWARD_REJECTED_NONCLAIM`.  A new 8,249-byte acceptance record,
+  SHA-256
+  `f9ee1ce8657206a23353f52cc64210fb015149f12fdb3f7eeeac11a6948c32b7`,
+  is the sole promotion to C-057.
+- The one-command C-057 replay checks 25 distinct exact artifact paths, runs
+  verifier B, rebuilds and replays both proof checkers through the external
+  audit, reconstructs the formula and coloring bank through the mathematical
+  audit, and explicitly reports that no SAT solver ran.  Root reproduced its
+  terminal verdict
+  `VERIFIED_C057_HOLE9_TEMPLATE_EXCLUSION_BINDINGS_AND_PROOFS`.
+- A separate wrapper audit used descriptor-stable reads in private mutation
+  copies and rejected 13/13 attacks: acceptance and artifact bit flips,
+  scope overclaim, duplicate/nonfinite JSON, candidate and production-status
+  rewrites, symlink substitution, and coordinated acceptance/artifact or
+  acceptance/wrapper changes.  Verdict:
+  `ACCEPT_EXACT_C057_ACCEPTANCE_WRAPPER`.  Its three caveats—loaded-code
+  self-authentication, static-path races under a concurrent local attacker,
+  and inherited Python environment—are nonblocking under the campaign's
+  quiescent single-user replay model; isolated minimal-environment replay
+  also passes.
+- The complete warning-fatal release regression passed 398/398 tests in
+  375.163 test seconds and 375.48 wall seconds.  Maximum RSS was 189,136,896
+  bytes and the 61,124-byte log SHA-256 is
+  `2e7f27c39d91f12b8196db7a26a2d1ac6d7e92ab19ade30d76e4ca2bf5e375bd`.
+  No campaign worker remains active.

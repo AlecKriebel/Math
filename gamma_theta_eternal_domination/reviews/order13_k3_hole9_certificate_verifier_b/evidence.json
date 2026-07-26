@@ -1,0 +1,372 @@
+{
+  "candidate_manifest_policy": {
+    "claims_used_for_decision": false,
+    "interpretation": "The candidate manifest is hash-bound provenance only. Every formula, proof, source, tool, parser census, and checker condition is established independently here."
+  },
+  "candidate_readme_census_matches_parser": true,
+  "checkers": {
+    "drat_trim": {
+      "command": [
+        "drat-trim",
+        "instance.cnf",
+        "proof.normalized.bdrat",
+        "-i",
+        "-f",
+        "-W",
+        "-U",
+        "-t",
+        "1800"
+      ],
+      "exit_code": 0,
+      "marker": "s VERIFIED",
+      "marker_count": 1,
+      "rat_lemmas_in_core": 0,
+      "stable_stdout_lines": [
+        "c turning on binary mode checking",
+        "c parsing input formula with 9802 variables and 32108 clauses",
+        "c finished parsing, read 742337 bytes from proof file",
+        "c start forward verification",
+        "c 18845 of 32108 clauses in core",
+        "c 22233 of 45282 lemmas in core using 2046297 resolution steps",
+        "c 0 RAT lemmas in core; 0 redundant literals in core lemmas",
+        "c optimized proofs are not supported for forward checking",
+        "s VERIFIED"
+      ],
+      "stderr_empty": true
+    },
+    "fresh_private_directory": true,
+    "inputs_and_executables_unchanged_after_checks": true,
+    "lrat_check": {
+      "command": [
+        "lrat-check",
+        "instance.cnf",
+        "proof.lrat"
+      ],
+      "exit_code": 0,
+      "marker": "c VERIFIED",
+      "marker_count": 1,
+      "stable_stdout_lines": [
+        "c parsed a formula with 9802 variables and 32108 clauses",
+        "c VERIFIED",
+        "c allocated 1024 487639 98020",
+        "c Added clauses = 57299.  Deleted clauses = 57168.  Max live clauses = 32108"
+      ],
+      "stderr_empty": true
+    },
+    "timeouts_seconds": {
+      "drat_trim": 120,
+      "lrat_check": 120
+    }
+  },
+  "claim_boundary": "Certifies UNSAT only for the exact SHA-256-bound order-13, k=3, hole9 DIMACS formula. The C-055 and constructor bindings are frozen for a later integration audit. This verifier makes no order-13-wide or universal gamma-theta claim.",
+  "formula": {
+    "certificate_equals_constructor_byte_for_byte": true,
+    "clauses": 32108,
+    "comments": 0,
+    "empty_clauses": 0,
+    "literals": 281028,
+    "maximum_clause_size": 286,
+    "maximum_variable_observed": 9802,
+    "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+    "size_bytes": 1168197,
+    "variables": 9802
+  },
+  "frozen_bindings": [
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/README.md",
+      "role": "corrected candidate claim boundary and proof census",
+      "sha256": "456d100f2bff91084f7eb6d89ed7c62255caf4abe40c6bc40c63930e75f29c53",
+      "size_bytes": 2915
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/candidate-manifest.json",
+      "role": "untrusted metadata retained only for provenance",
+      "sha256": "2c27a98e6a3a4ca66fdfedac4c3ae6839b11d0008ed63a1d8999b24c3f917fa1",
+      "size_bytes": 6953
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/instance.cnf",
+      "role": "certificate formula",
+      "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "size_bytes": 1168197
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/proof.lrat",
+      "role": "independent LRAT certificate",
+      "sha256": "f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805",
+      "size_bytes": 8546664
+    },
+    {
+      "path": "certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat",
+      "role": "addition-only binary RUP proof",
+      "sha256": "af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f",
+      "size_bytes": 742337
+    },
+    {
+      "path": "instances/order13_k3_hole9/coloring-bank.json",
+      "role": "complete coloring obstruction bank",
+      "sha256": "a0f47a0aaa3be4659ce483f27a963d351f3a13424cac6a6a99ef6ac9e0c872f1",
+      "size_bytes": 227208
+    },
+    {
+      "path": "instances/order13_k3_hole9/constructor-manifest.json",
+      "role": "accepted constructor manifest",
+      "sha256": "8f55019121df7280368528c1b7c0808d3cc06e7bd0f871be516057763c87ad5b",
+      "size_bytes": 5408
+    },
+    {
+      "path": "instances/order13_k3_hole9/instance.cnf",
+      "role": "accepted constructor formula",
+      "sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "size_bytes": 1168197
+    },
+    {
+      "path": "math/lemmas/order13_k3_synthesis_target.md",
+      "role": "C-055 exact graph-to-CNF realization theorem",
+      "sha256": "7bec13620961adeaf61c60e88c8bc9366beecab7387e40c80083fe702484ab39",
+      "size_bytes": 26303
+    },
+    {
+      "path": "reviews/order13_k3_constructor_acceptance/REVIEW.md",
+      "role": "constructor integration review",
+      "sha256": "7d05355fdc92db4ccbb4a6254934015ddc89f216392fad341cff0bdb82f5e428",
+      "size_bytes": 6905
+    },
+    {
+      "path": "reviews/order13_k3_constructor_acceptance/audit.py",
+      "role": "constructor integration audit",
+      "sha256": "cd421fb8c58035c2fdfad84811c2922e702c1dbe24d7d7d791242ed85721d0a6",
+      "size_bytes": 37091
+    },
+    {
+      "path": "reviews/order13_k3_constructor_acceptance/evidence.json",
+      "role": "constructor integration evidence",
+      "sha256": "8318d036867da89c2b2b7b9599bde17f50e160731d21243584609d34a515ec74",
+      "size_bytes": 7248
+    },
+    {
+      "path": "reviews/order13_k3_hole9_preflight_constructor/REVIEW.md",
+      "role": "exact live-hole9 package review",
+      "sha256": "70e870564eca1c2ccb53f4db8607c52218e237637ec54ad183f442f5fc8e2548",
+      "size_bytes": 4352
+    },
+    {
+      "path": "reviews/order13_k3_hole9_preflight_constructor/audit.py",
+      "role": "exact live-hole9 package audit",
+      "sha256": "53c9153d5c89408db7bd5705589ef7bffec67d0205d290ef9fc0f7f6a8530e79",
+      "size_bytes": 15394
+    },
+    {
+      "path": "reviews/order13_k3_hole9_preflight_constructor/evidence.json",
+      "role": "exact live-hole9 package evidence",
+      "sha256": "2687e1f893f85b64c83fdfe86cfcbd2eb7670a3307cc23f0cc999c999a422de9",
+      "size_bytes": 2183
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/ADDENDUM.md",
+      "role": "revised-byte mathematical acceptance",
+      "sha256": "42fbc74ad916757a35df8bf5cbc6c4ab5205ae5f5d34abf915cff6bbb2203bd7",
+      "size_bytes": 2415
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/REVIEW.md",
+      "role": "original hostile mathematical review",
+      "sha256": "284ec751a215e499de2adfa2f2b377d1a700a27a8b3e96964067c53f652698d8",
+      "size_bytes": 15021
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/addendum_audit.py",
+      "role": "revised-byte mathematical acceptance audit",
+      "sha256": "51f070e3ecb653a3381603a09f78e5ce43540eac49a3d95e0ec106e789ea8cc2",
+      "size_bytes": 12336
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/addendum_evidence.json",
+      "role": "revised-byte mathematical acceptance evidence",
+      "sha256": "e45d99d880af6350034d7ee9a4b83acb30cc4706c9aa4445d97a07a272d3dc14",
+      "size_bytes": 3456
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/audit.py",
+      "role": "original hostile mathematical audit",
+      "sha256": "35d405424127c1a28742ade277fd5c5add0a109749ccc51ab6d622740371241b",
+      "size_bytes": 47177
+    },
+    {
+      "path": "reviews/order13_k3_math_hostile/evidence.json",
+      "role": "original hostile mathematical evidence",
+      "sha256": "8c1f5b3fe4511a4d19efdc224a7ea6b10b38eac06275ddce615bd73949d22af1",
+      "size_bytes": 20660
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/drat-trim",
+      "role": "pinned warning-fatal RUP checker",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "size_bytes": 70088
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/lrat-check",
+      "role": "pinned LRAT checker",
+      "sha256": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+      "size_bytes": 36520
+    }
+  ],
+  "frozen_inputs_unchanged_pre_post": true,
+  "hostile_mutations": {
+    "all_rejected": true,
+    "count": 24,
+    "tests": [
+      {
+        "name": "formula_sha256_bit_flip",
+        "reason": "SHA-256 mismatch for mutated formula: f365e9306069d1b8d46db7fe12f2a4e0bb426cfba053106eb0ac01dedbdbd33a != 3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+        "rejected": true
+      },
+      {
+        "name": "dimacs_unterminated_clause",
+        "reason": "unterminated final DIMACS clause",
+        "rejected": true
+      },
+      {
+        "name": "dimacs_declared_clause_count_mismatch",
+        "reason": "DIMACS clause count mismatch: 1 != 2",
+        "rejected": true
+      },
+      {
+        "name": "dimacs_out_of_range_variable",
+        "reason": "DIMACS variable 2 exceeds header bound 1",
+        "rejected": true
+      },
+      {
+        "name": "binary_deletion_record",
+        "reason": "deletion record at binary proof record 1",
+        "rejected": true
+      },
+      {
+        "name": "binary_post_empty_record",
+        "reason": "post-empty binary proof data starts at byte 742337",
+        "rejected": true
+      },
+      {
+        "name": "binary_early_empty_record",
+        "reason": "post-empty binary proof data starts at byte 2",
+        "rejected": true
+      },
+      {
+        "name": "binary_variable_above_9802",
+        "reason": "binary proof variable 9803 exceeds 9802",
+        "rejected": true
+      },
+      {
+        "name": "binary_noncanonical_varint",
+        "reason": "noncanonical varint in binary proof record 1",
+        "rejected": true
+      },
+      {
+        "name": "binary_truncated_varint",
+        "reason": "truncated varint in binary proof record 1",
+        "rejected": true
+      },
+      {
+        "name": "binary_invalid_record_prefix",
+        "reason": "invalid binary proof prefix 0x78 at record 1",
+        "rejected": true
+      },
+      {
+        "name": "drat_nonzero_exit",
+        "reason": "drat-trim exit code is 1, expected 0",
+        "rejected": true
+      },
+      {
+        "name": "drat_missing_verified_marker",
+        "reason": "unexpected drat-trim stdout line count 9",
+        "rejected": true
+      },
+      {
+        "name": "drat_nonempty_stderr",
+        "reason": "drat-trim wrote to stderr",
+        "rejected": true
+      },
+      {
+        "name": "drat_rat_core",
+        "reason": "unexpected drat-trim stdout line 7: 'c 1 RAT lemmas in core; 0 redundant literals in core lemmas'",
+        "rejected": true
+      },
+      {
+        "name": "lrat_nonzero_exit",
+        "reason": "lrat-check exit code is 1, expected 0",
+        "rejected": true
+      },
+      {
+        "name": "lrat_missing_verified_marker",
+        "reason": "unexpected lrat-check stdout line count 4",
+        "rejected": true
+      },
+      {
+        "name": "lrat_nonempty_stderr",
+        "reason": "lrat-check wrote to stderr",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat",
+        "reason": "SHA-256 mismatch for mutated certificates/order13_k3_hole9_attempt000001_lrat/proof.normalized.bdrat: f321baf51736aed65ca49fe27b4313780f6915871039a0a321d8264379737c91 != af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:certificates/order13_k3_hole9_attempt000001_lrat/proof.lrat",
+        "reason": "SHA-256 mismatch for mutated certificates/order13_k3_hole9_attempt000001_lrat/proof.lrat: f2518e3f0fb00c9cbb33ad7d49475a3bd327dfd7effa90aaa3cab1627753bea2 != f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:tools/drat_trim_2023_05_22/drat-trim",
+        "reason": "SHA-256 mismatch for mutated tools/drat_trim_2023_05_22/drat-trim: 0b0a4a794ea9e08fda73e027243811e448d483de8810148841870a5b8904aeec != 31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:tools/drat_trim_2023_05_22/lrat-check",
+        "reason": "SHA-256 mismatch for mutated tools/drat_trim_2023_05_22/lrat-check: 1b1400ba29b59c3556e1417d39ba9776c235ce8f7c08be9502d60f3a09363fae != 5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:math/lemmas/order13_k3_synthesis_target.md",
+        "reason": "SHA-256 mismatch for mutated math/lemmas/order13_k3_synthesis_target.md: 0f3b3c344a2a372a54f422d1f161ece3da8778834f5af7235b5401972aa4ba49 != 7bec13620961adeaf61c60e88c8bc9366beecab7387e40c80083fe702484ab39",
+        "rejected": true
+      },
+      {
+        "name": "decisive_sha256_bit_flip:reviews/order13_k3_constructor_acceptance/evidence.json",
+        "reason": "SHA-256 mismatch for mutated reviews/order13_k3_constructor_acceptance/evidence.json: 7bc0ddc8e4e4d66e727e58aa4f6045086aacd1cf4b963ae64c08157491055f8a != 8318d036867da89c2b2b7b9599bde17f50e160731d21243584609d34a515ec74",
+        "rejected": true
+      }
+    ]
+  },
+  "normalized_binary_proof": {
+    "addition_records": 45281,
+    "deletion_records": 0,
+    "empty_addition_record": 45281,
+    "empty_additions": 1,
+    "literals": 410400,
+    "maximum_clause_size": 284,
+    "maximum_variable_observed": 9802,
+    "nonempty_additions": 45280,
+    "policy": "strict canonical binary additions only; unique final empty; no post-empty bytes",
+    "post_empty_records": 0,
+    "sha256": "af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f",
+    "size_bytes": 742337
+  },
+  "review_verdicts_bound": {
+    "reviews/order13_k3_constructor_acceptance/evidence.json": "ACCEPT_CONSTRUCTOR_A_FOR_PROOF_PRODUCTION_INPUTS",
+    "reviews/order13_k3_hole9_preflight_constructor/evidence.json": "ACCEPT_LIVE_HOLE9_PACKAGE_PREFLIGHT",
+    "reviews/order13_k3_math_hostile/addendum_evidence.json": "ACCEPT_REVISED_BYTES_MATHEMATICS_UNCHANGED",
+    "reviews/order13_k3_math_hostile/evidence.json": "ACCEPT_MATHEMATICS_WITH_NONMATHEMATICAL_WORDING_GAPS"
+  },
+  "schema": "gamma-theta-order13-k3-hole9-certificate-verifier-b-v1",
+  "schema_version": 1,
+  "source": {
+    "binding_scope": "The source file was identical before and after this run. This self-observation is provenance, not authentication of already-loaded interpreter state; the external hostile review must bind these exact bytes.",
+    "path": "src/verifier_b/order13_k3_hole9_certificate.py",
+    "runtime_dependencies": "Python standard library plus two exact SHA-256-pinned Mach-O proof checker executables",
+    "sha256": "4adf3691f438c03b230ff323ea5f7c180db9b5c8cd895b6f31327f5e154a97ee",
+    "size_bytes": 39193,
+    "source_file_unchanged_during_verification": true
+  },
+  "verdict": "VERIFIED_EXACT_HOLE9_CNF_UNSAT_CANDIDATE_ONLY_PENDING_HOSTILE_ACCEPTANCE"
+}

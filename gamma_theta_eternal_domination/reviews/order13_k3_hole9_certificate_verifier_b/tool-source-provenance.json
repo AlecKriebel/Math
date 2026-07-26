@@ -1,0 +1,78 @@
+{
+  "build_environment": {
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "target": "arm64-apple-darwin25.5.0"
+  },
+  "claim_boundary": "Source and clean-rebuild portability record only. The verifier's decisive checker bindings remain the exact retained executable hashes.",
+  "clean_rebuild": {
+    "commands": [
+      "cc drat-trim.c -std=c99 -O2 -o drat-trim",
+      "cc lrat-check.c -std=c99 -DLONGTYPE -O2 -o lrat-check"
+    ],
+    "executables": [
+      {
+        "name": "drat-trim",
+        "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb"
+      },
+      {
+        "name": "lrat-check",
+        "sha256": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2"
+      }
+    ],
+    "replay": {
+      "drat_trim": {
+        "command_flags": [
+          "-i",
+          "-f",
+          "-W",
+          "-U",
+          "-t",
+          "1800"
+        ],
+        "exit_code": 0,
+        "marker": "s VERIFIED",
+        "stderr_empty": true,
+        "zero_rat_lemmas_in_core": true
+      },
+      "formula_sha256": "3fff100cbfe66b422f9148fda66b6d1ccf6060a4ffbcdb37a54bde415e95e9ea",
+      "lrat_check": {
+        "exit_code": 0,
+        "marker": "c VERIFIED",
+        "stderr_empty": true
+      },
+      "lrat_proof_sha256": "f6ef614f2acee4cf43aa3b75372b354912c50248a13c3f863479cdc49b061805",
+      "normalized_proof_sha256": "af216ef2d7698db2b1d1c55411bc05025bfe25f10c16f2e85c5301f7a88bdd5f"
+    }
+  },
+  "retained_build_inputs": [
+    {
+      "path": "tools/drat_trim_2023_05_22/Makefile",
+      "sha256": "1f3c7128b1dd739723257edd95cc28a2ee747779ca01ae80ed9252f02ec5149d",
+      "size_bytes": 493
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/drat-trim.c",
+      "sha256": "f7619bdc338bc8151b2f6bb87488052795c926b048d5040cf165742eb1ba9a26",
+      "size_bytes": 59498
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/lrat-check.c",
+      "sha256": "05b3c92f6734fdfc9ee5c72217c9935540c1255b58bc9bdc134b6b26f5b43c9f",
+      "size_bytes": 17332
+    }
+  ],
+  "retained_executables": [
+    {
+      "path": "tools/drat_trim_2023_05_22/drat-trim",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+      "size_bytes": 70088
+    },
+    {
+      "path": "tools/drat_trim_2023_05_22/lrat-check",
+      "sha256": "5d7d77a57457db82e57f2505ea9d0267ff0bceff197235b6edfc8fda1f26c7a2",
+      "size_bytes": 36520
+    }
+  ],
+  "schema": "gamma-theta-order13-k3-hole9-checker-source-provenance-v1",
+  "schema_version": 1
+}

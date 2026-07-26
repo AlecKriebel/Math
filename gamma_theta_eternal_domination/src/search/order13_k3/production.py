@@ -9,8 +9,9 @@ Operations are deliberately separate:
 ``run``
     Execute at most one attempt, with a checkpoint before the first child and
     another after a durable outcome.  The six sequential phases are solver,
-    raw forward DRAT check, strict normalization, RUP-only forward check,
-    backward LRAT conversion, and independently pinned LRAT replay.
+    deletion-agnostic raw RUP check, strict normalization, a second RUP-only
+    forward check, backward LRAT conversion, and independently pinned LRAT
+    replay.
 
 ``audit``
     Read-only structural and cryptographic audit.  It never launches a child.
@@ -71,7 +72,8 @@ from .normalize_bdrat import SCHEMA as NORMALIZATION_SCHEMA
 
 SCHEMA_VERSION = 1
 PIPELINE = (
-    "raw-binary-drat-forward-normalize-rup-forward-backward-lrat-replay-v1"
+    "raw-binary-drat-plain-rup-forward-normalize-rup-forward-"
+    "backward-lrat-replay-v2"
 )
 RUN_MANIFEST_NAME = "run-manifest.json"
 LOCK_NAME = "run.lock"
@@ -1610,7 +1612,9 @@ def _commands(
             raw,
             "-i",
             "-f",
+            "-p",
             "-W",
+            "-U",
             "-t",
             str(limits["postprocess_wall_seconds"]),
         ],
