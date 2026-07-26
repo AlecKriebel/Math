@@ -1,0 +1,114 @@
+{
+  "schema": "gamma-theta-template-color-bank-validation-v1",
+  "created_at": "2026-07-25T20:23:44-07:00",
+  "precommit_head": "f667fb289fed6c9cfe380645140133ecb4a29b14",
+  "status": "ACCEPT_FOR_COMMIT_AND_POSTCOMMIT_PACKAGE_GENERATION",
+  "author_freeze": {
+    "mathematical_note": {
+      "path": "math/lemmas/template_coloring_bank.md",
+      "sha256": "abc9568d70eee6b792e4220b58c12f5e7c069a13e37dbd3265025abe02cd6f50"
+    },
+    "source": {
+      "path": "src/synthesis_k3/template_color_bank.py",
+      "sha256": "dc69687f01e85bea643b73f713b1afca51b3911b3fee4a857da3fb07cc979838"
+    },
+    "tests": {
+      "path": "tests/test_template_color_bank.py",
+      "sha256": "cc89c89133593a986a77d683ec253bf7db49e53f3ba27ede03e4fcee89fccdf7"
+    }
+  },
+  "exact_counts": {
+    "hole5": {
+      "bank_count": 3645,
+      "variable_count": 6886,
+      "base_clause_count": 20008,
+      "base_literal_count": 114601,
+      "complete_clause_count": 23653,
+      "complete_literal_count": 188959,
+      "bank_sha256": "b3c24db61e7a33c3d8803e2bbadcdda92b950fb04445e59e7930330e92b74a00",
+      "cnf_sha256": "76bf36ecb663cd37272acded2208206fdba6aa571dd5f2e757cc132bd533e0b7"
+    },
+    "hole7": {
+      "bank_count": 1701,
+      "variable_count": 6886,
+      "base_clause_count": 20017,
+      "base_literal_count": 114612,
+      "complete_clause_count": 21718,
+      "complete_literal_count": 148551,
+      "bank_sha256": "371ab3b01ce2add1138e0c0c78d267a796bcc536c79f95050face4bfcd4d11a7",
+      "cnf_sha256": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7"
+    },
+    "hole9": {
+      "bank_count": 765,
+      "variable_count": 6886,
+      "base_clause_count": 20030,
+      "base_literal_count": 114619,
+      "complete_clause_count": 20795,
+      "complete_literal_count": 129559,
+      "bank_sha256": "d4361c57730765112c80e9348561a063a2ad7eae9ad00d3986dcb111446b5ef7",
+      "cnf_sha256": "baea72050aaec8f41bad4e245fff8409489a9270f76ab0ffc97f0271f49dca01"
+    }
+  },
+  "root_replays": {
+    "focused_suite": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error /usr/bin/time -lp python3 -m unittest -v tests.test_template_color_bank",
+      "tests": 12,
+      "passed": 12,
+      "elapsed_seconds": 62.578,
+      "maximum_resident_set_size_bytes": 61865984
+    },
+    "full_suite": {
+      "command": "PYTHONPATH=src PYTHONWARNINGS=error /usr/bin/time -lp python3 -m unittest discover -s tests -v",
+      "tests": 250,
+      "passed": 250,
+      "elapsed_seconds": 121.953,
+      "maximum_resident_set_size_bytes": 106971136
+    },
+    "standalone_hostile_self_test": {
+      "command": "/usr/bin/time -lp python3 -I reviews/template_coloring_bank_hostile_probe.py self-test",
+      "status": "PASS",
+      "elapsed_seconds": 8.43,
+      "maximum_resident_set_size_bytes": 50593792,
+      "assignments_per_template": 531441,
+      "mutations_rejected": 8
+    },
+    "independent_development_fixture_audits": {
+      "hole5": "PASS",
+      "hole7": "PASS",
+      "hole9": "PASS",
+      "manifest_gate": "EXPECTED_REJECTION_UNCOMMITTED_RUNTIME_SOURCES"
+    }
+  },
+  "reviews": {
+    "theorem": {
+      "status": "ACCEPT",
+      "path": "reviews/template_coloring_bank_theorem_review.md",
+      "sha256": "2fa68d7c36598c73ca0f27a83ec3904e1bca7e2ce6d9c927b52c7cce0a6a79c7"
+    },
+    "hostile": {
+      "status": "ACCEPT_FOR_COMMIT_AND_POSTCOMMIT_PACKAGE_GENERATION",
+      "path": "reviews/template_coloring_bank_hostile_review.md",
+      "sha256": "859fda55424a1bd83d48d7774a41fbd1b1d4adc262b280977cb6562c6433cecd",
+      "probe_path": "reviews/template_coloring_bank_hostile_probe.py",
+      "probe_sha256": "0a55ea60334be110b4b45998078d0050e726f7b1ff223a6d87250778bbe1cb26",
+      "probe_log_path": "reviews/template_coloring_bank_hostile_probe_log.json",
+      "probe_log_sha256": "89af794e95d590294657ca5df819f7b86f67945ce83271ac68597f10a265ec72"
+    }
+  },
+  "hole9_regression": {
+    "legacy_cut_count": 170,
+    "complete_bank_count": 765,
+    "all_legacy_cuts_are_exact_bank_members": true,
+    "legacy_cnf_is_clause_subset": true,
+    "legacy_cnf_sha256": "2845f242a094484a8d114e70ca1a8678dfcff79fadd56bd57813e25c2e49523d",
+    "addition_only_proof_sha256": "24c5647d3a57f2de221fba96747c618575a3aba086c5e4bca17aade55ce7d4ab",
+    "addition_count": 4705,
+    "stronger_formula_checker_replay": {
+      "checker_exit_code": 0,
+      "status_line": "s VERIFIED",
+      "warning_free": true,
+      "elapsed_seconds": 0.083
+    }
+  },
+  "claim_boundary": "The exact coloring-bank theorem is proved and the implementation is accepted for committed package generation. This log does not claim hole5 or hole7 UNSAT. Development manifests correctly fail the production source-to-HEAD gate and must not be used for production."
+}

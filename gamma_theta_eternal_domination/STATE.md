@@ -1,5 +1,42 @@
 # Campaign State
 
+## Checkpoint 022 — 2026-07-25 20:24 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint at validation start:
+  `f667fb289fed6c9cfe380645140133ecb4a29b14`.
+- Claim C-029 is accepted as `PROVED`: relative to each forced odd-hole
+  template, the complete first-use coloring bank is exactly equivalent to
+  \(\chi(\overline G)>3\), with exact sizes 3,645 (`hole5`), 1,701
+  (`hole7`), and 765 (`hole9`).
+- The frozen generator, theorem note, and focused tests are bound at
+  SHA-256 values `dc69687f...`, `abc9568d...`, and `cc89c891...`.
+  Independent theorem and implementation reviews both returned `ACCEPT`.
+- Root replay passed 12 of 12 focused tests in 62.578 seconds and all 250
+  campaign tests in 121.953 seconds.  The independent standard-library
+  probe exhausted all \(3^{12}\) labeled assignments for every template,
+  independently reconstructed every one of the 6,886 variables and every
+  base-plus-bank clause, and rejected eight semantic mutations.
+- All 170 accepted `hole9` cuts are exact members of the complete 765-row
+  bank.  The prior 20,200-clause formula is a clause subset of the complete
+  20,795-clause formula, so its accepted addition-only RUP proof remains
+  valid under strengthening.  Pinned DRAT-trim directly replayed that proof
+  against the complete development formula, exiting zero with one
+  warning-free `s VERIFIED`.
+
+### Production gate
+
+- Disposable development packages for all three templates passed independent
+  bank and CNF reconstruction, but correctly record that the new runtime
+  source was not present at their precommit `HEAD`.  They are not production
+  artifacts.
+- Commit and push the frozen source and reviews.  Then regenerate retained
+  packages from that `HEAD`, require
+  `runtime_sources_match_head=true`, preserve a retained `hole9` proof replay,
+  and only then launch bounded proof-producing `hole7` and `hole5` work.
+- No `hole5` or `hole7` UNSAT claim, counterexample, or complete
+  \((12,3)\) result exists at this checkpoint.
+
 ## Checkpoint 021 — 2026-07-25 19:52 PDT
 
 - Campaign day: 1 of 27; branch `main`.

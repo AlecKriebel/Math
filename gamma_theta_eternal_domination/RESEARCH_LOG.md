@@ -685,3 +685,35 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   implement a deterministic full-bank generator, independently enumerate
   and audit its universe, and compare proof-producing one-shot SAT runs.
   No bank theorem or finite exclusion is claimed before those gates pass.
+
+### 20:24 — exact coloring-bank theorem and implementation accepted
+
+- Proved and independently reviewed the exact template-coloring-bank theorem.
+  Relative to the forced positive `hole5`, `hole7`, and `hole9` template
+  edges, the complete first-use bank is equivalent to
+  \(\chi(\overline G)>3\).  Exact bank sizes are 3,645, 1,701, and 765.
+- Froze a deterministic generator and bounded proof-runner.  It refuses
+  overwrite, symlinked and protected paths, unpinned tools, excessive
+  resource requests, and missing validation gates.  Every launched solver or
+  checker failure produces an explicit nonclaim outcome.  A SAT model is
+  checked directly against the exact CNF and decoded graph/family semantics;
+  UNSAT is promoted only after a nonempty proof receives one warning-free
+  `s VERIFIED` from pinned DRAT-trim.
+- Two independent reviewers accepted the frozen theorem and implementation.
+  The standalone reviewer imports no campaign module, exhausts all
+  \(3^{12}=531{,}441\) assignments for each template, reconstructs all 6,886
+  variables and every base-plus-bank clause independently, and rejects eight
+  semantic mutations.
+- Root replay passed 12 focused tests in 62.578 seconds with peak RSS
+  61,865,984 bytes, and all 250 campaign tests in 121.953 seconds with peak
+  RSS 106,971,136 bytes.
+- All 170 accepted `hole9` cuts are exact members of the 765-row complete
+  bank.  The accepted 4,705-addition RUP proof therefore remains valid under
+  the 595 extra axioms.  Pinned DRAT-trim replayed it directly against the
+  complete development formula in 0.083 seconds, with one warning-free
+  `s VERIFIED`.
+- Development bank/CNF fixtures passed independent reconstruction but
+  correctly fail the production source-to-`HEAD` gate.  Publish the frozen
+  source first, regenerate retained packages from the committed snapshot,
+  and require `runtime_sources_match_head=true` before novel `hole7` or
+  `hole5` production.
