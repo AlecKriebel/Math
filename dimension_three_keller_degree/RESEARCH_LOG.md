@@ -1690,3 +1690,27 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   must be rederived as complete descendants of these full fibres.  The
   fixed-conic row therefore remains provisional and the global score
   stays \(6/14,2/14,6/14\).
+
+## 2026-07-26T10:26:30Z — quadratic-pencil line-double-cover row certified
+
+- A blinded post-freeze reconstruction classified the primitive pencils of
+  ternary quadrics into five symmetric-pencil charts, with all singular,
+  gcd, rank-drop, and canonical-degree-drop boundaries routed back into
+  the frozen taxonomy.
+- The exact first-integral maps \(D:S_2\to S_3\) have
+  rank/kernel/cokernel \(4/2/6\) on all five charts.  The maps
+  \(D:S_3\to S_4\) have \(10/0/5\) on the three no-double-line charts and
+  \(8/2/7\) on the two unique-double-line charts.
+- A polynomial convolution formula routes every original coefficient point
+  to `C00`--`C44` without dividing by a normalization minor.  SymPy and a
+  dependency-free rational RREF reconstruction agree.
+- Every primary and hostile terminal package for the two surviving pencil
+  charts, including infinity, resonance, marked, and unmarked boundaries,
+  replayed successfully.  The strict terminal is
+  `PASS: strict post-freeze Q2-E0-A2-B2-D1-N2 bridge and full legacy replay`.
+- The global frozen score is now
+  \[
+  7/14\text{ certified},\qquad1/14\text{ provisional},\qquad
+  6/14\text{ open}.
+  \]
+  The universal degree floor remains four.

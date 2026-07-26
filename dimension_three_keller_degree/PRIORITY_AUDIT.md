@@ -1013,3 +1013,23 @@ terms.
 This is source-specific negative evidence only, not a worldwide-priority
 guarantee.  The row theorem and its exact checks are AI-assisted,
 unreviewed, and do not by themselves raise the universal degree floor.
+
+### 2026-07-26T10:26Z — quadratic-pencil line-double-cover row promotion
+
+The current-day sweep was compared with the exclusion of the frozen
+quadratic-pencil line-double-cover row.  Searches included “quartic
+Keller quadratic pencil,” “Keller line double cover,” pencils of ternary
+quadrics, and degree-four three-variable leading-shape classifications.
+
+No checked current arXiv listing, MathOverflow page, Tao-blog post, Secret
+Blogging Seminar page, publicly indexed X/Twitter result, or general-web
+result states the five-chart pencil classification together with
+arbitrary-lower-term Keller exclusions and the division-free frozen-pivot
+assembly.  The closest current papers concern graded maps, generic degree,
+bounded-degree parameter spaces, or homogeneous \(x+H\) maps rather than
+this leading-shape theorem.
+
+This is source-specific negative evidence only, not a worldwide-priority
+guarantee.  The theorem and its exact checks are AI-assisted and
+unreviewed.  The promotion moves the structural score to \(7/14\), but
+does not raise the universal total-degree floor.

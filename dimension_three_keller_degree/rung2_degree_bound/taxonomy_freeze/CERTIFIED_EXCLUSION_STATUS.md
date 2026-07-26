@@ -1,6 +1,6 @@
 # Certified exclusion status against frozen taxonomy v1
 
-**Updated (UTC):** 2026-07-26T10:02:40Z.
+**Updated (UTC):** 2026-07-26T10:26:30Z.
 
 This is the mutable status ledger for the immutable fourteen-leaf denominator
 in `FROZEN_TAXONOMY_v1.md`.  Historical status strings in the hashed manifest
@@ -8,8 +8,8 @@ are not certification.  A row is promoted here only after a post-freeze
 coverage bridge and an independent hostile replay both pass.
 
 \[
-\boxed{6/14\text{ certified excluded},\quad
-       2/14\text{ provisional legacy exclusions},\quad
+\boxed{7/14\text{ certified excluded},\quad
+       1/14\text{ provisional legacy exclusion},\quad
        6/14\text{ open}.}
 \]
 
@@ -17,7 +17,7 @@ coverage bridge and an independent hostile replay both pass.
 |---|---|---|
 | `Q1` | open | -- |
 | `Q2-E0-A4-B1-D1-N1` | open | -- |
-| `Q2-E0-A2-B2-D1-N2` | provisional | -- |
+| `Q2-E0-A2-B2-D1-N2` | **certified excluded** | `audit_bridge_q2_e0_a2_b2_d1_n2_v1/REPORT.md` |
 | `Q2-E0-A2-B2-D2-N1` | **certified excluded** | `BRIDGE_Q2_E0_A2_B2_D2_N1_v1.md`; `audit_bridge_q2_e0_a2_b2_d2_n1_v1/REPORT.md` |
 | `Q2-E0-A1-B4-D1-N4` | open | -- |
 | `Q2-E0-A1-B4-D2-N2` | **certified excluded** | `BRIDGE_Q2_E0_A1_B4_D2_N2_v1.md`; `HOSTILE_BRIDGE_AUDIT_Q2_E0_A1_B4_D2_N2_v1.md` |
@@ -42,6 +42,14 @@ double-line pencil members, leaving the zero- and unique-double-line
 branches.  The hostile replay independently reconstructs the missing
 exact ranks, kernels, cokernels, compatibility ideals, and full affine
 solution spaces in both lower branches.
+
+For `Q2-E0-A2-B2-D1-N2`, a blinded symmetric-pencil classification gives
+five primitive quadratic-pencil charts and routes all degenerations to
+other frozen rows.  The exact first-integral maps have ranks
+\(4,10\) on the three no-double-line charts and \(4,8\) on the two
+unique-double-line charts.  A polynomial 45-coefficient convolution map
+covers every frozen pivot without division, and fresh replay of every
+primary and hostile legacy terminal passes.
 
 For `Q2-E3-A1-B1-D1-N1`, `C00`--`C29` route pointwise through a uniform
 normal form to an intrinsic binary/nonbinary split, while `C30`--`C44`
