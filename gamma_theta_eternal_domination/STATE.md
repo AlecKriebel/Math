@@ -1,5 +1,22 @@
 # Campaign State
 
+## Checkpoint 010 — 2026-07-25 18:18 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this batch: `f8a53384`.
+- `hole9` now has 65 complete SAT/coloring attempts and 65 globally sound
+  cuts.  Checkpoint SHA-256:
+  `2f092df32138fa14bc2c97cf2ec819a38064d050325eff018cd1b5ef657dcd87`.
+- A separate deep read-only audit passed and preserved the exact 458-file,
+  2,257,731-byte tree, SHA-256
+  `3e763ccd9d833f8c4b6deb492ec2bc2ccdf87c777e3cfe86ccc8096d17b48bc5`.
+- No terminal, timeout, unknown result, or resource event occurred.  The
+  conjecture and the `hole9` template both remain unresolved.
+- No synthesis child was active when this checkpoint was written.
+- Next actions: publish this checkpoint; resume a bounded 64-iteration
+  batch; independently freeze and review the portable induced-obstruction
+  lemma emerging from the two deep local cores.
+
 ## Checkpoint 009 — 2026-07-25 18:15 PDT
 
 - Campaign day: 1 of 27; 26 campaign days remain.

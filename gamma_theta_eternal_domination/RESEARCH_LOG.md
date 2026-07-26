@@ -392,3 +392,17 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Preserved the old one-cut checkpoint as an immutable snapshot because the
   live transactional checkpoint advances on every resume.  Batch 001 still
   proves no nonexistence statement; it records 32 additional sound cuts.
+
+### 18:18 — `hole9` bounded batch 002 reaches 65 cuts
+
+- Added and directly validated 32 further SAT/coloring cuts.  The run now
+  contains 65 attempts and 65 cuts with no timeout, unknown outcome, memory
+  event, candidate, or UNSAT terminal.
+- Batch wall time was 17.5134 seconds.  The largest solver child took 0.055
+  seconds and used 5,423,104 bytes peak RSS.
+- Deep read-only reconstruction passed.  The 458-file, 2,257,731-byte tree
+  retained SHA-256
+  `3e763ccd9d833f8c4b6deb492ec2bc2ccdf87c777e3cfe86ccc8096d17b48bc5`;
+  checkpoint SHA-256 is
+  `2f092df32138fa14bc2c97cf2ec819a38064d050325eff018cd1b5ef657dcd87`.
+- This remains a running proof-search prefix, not a nonexistence result.
