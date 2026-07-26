@@ -30,4 +30,3 @@ The supplied `MANIFEST.sha256` has SHA-256
    arbitrary-unitary strengthening.
 6. Separate Conjecture 1 (the value of \(\mathcal I_d\)) from unresolved
    uniqueness, self-testing, and all-dimensional randomness claims.
-

@@ -1,0 +1,627 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\definecolor{deepblue}{HTML}{173B57}
+\definecolor{warmgray}{HTML}{5E646A}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  citecolor=deepblue,
+  urlcolor=deepblue,
+  pdftitle={The exact quantum value of a cyclic Bell operator},
+  pdfauthor={Alec Kriebel}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Exact cyclic Bell bound}}
+\fancyhead[R]{\small\textsc{A. Kriebel}}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\Reop}{\operatorname{Re}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\e}{\mathrm e}
+\newcommand{\bbC}{\mathbb C}
+\newcommand{\bbZ}{\mathbb Z}
+\newcommand{\absop}[1]{\lvert #1\rvert}
+
+\title{\vspace{-1.4cm}\textbf{The exact quantum value of a cyclic Bell operator}\\[0.45em]
+\large A sharp polar-decomposition certificate for all dimensions}
+\author{Alec Kriebel\\
+\small with heavy assistance from ChatGPT 5.6 Sol}
+\date{26 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Perito, D'Avino, Jung, Mironowicz, Acin, and Augusiak recently
+introduced a cyclic family of Bell operators and conjectured that its
+Tsirelson bound is
+\(
+2\csc(\pi/(2d))
+\)
+for every integer \(d\geq2\).  We prove the conjecture.  In fact, the
+operator upper bound holds after relaxing every observable to an arbitrary
+unitary; the order-\(d\) relations are not needed.  The proof combines an
+exact positive-factor identity from polar decomposition with the sharp scalar
+formula
+\[
+  \max_{\lvert z\rvert=1}\sum_{y=0}^{d-1}\lvert1+\e^{2\pi i y/d}z\rvert
+  =2\csc\!\left(\frac{\pi}{2d}\right).
+\]
+We characterize equality in the scalar formula, give an explicit
+functional-calculus certificate for the operator inequality, and include a
+self-contained verification that the known \(d\)-dimensional strategy is
+admissible and saturates the bound.  This determines the quantum value only;
+it does not establish uniqueness, self-testing, or all-dimensional
+randomness certification.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Status.}
+This is an unrefereed, AI-assisted research note.  The analytic argument is
+accompanied by symbolic and numerical checks, but has not received independent
+expert review.
+
+\section{Introduction}
+
+Let \(d\geq2\) and \(\omega=\e^{2\pi i/d}\).  For unitary observables
+\(A_0,A_1\) for Alice and \(B_0,\ldots,B_{d-1}\) for Bob, Perito et
+al.~\cite{PeritoEtAl2026} consider
+\begin{equation}
+  \cI_d
+  =
+  \frac12\sum_{x=0}^{1}\sum_{y=0}^{d-1}
+       \omega^{xy} A_x\otimes B_y+\mathrm{h.c.}
+  =
+  \sum_{y=0}^{d-1}
+       \Reop\!\left((A_0+\omega^yA_1)\otimes B_y\right).
+  \label{eq:bell}
+\end{equation}
+In the Bell scenario the observables obey
+\(
+A_x^d=B_y^d=\Id
+\).
+The originating paper constructs a \(d\)-dimensional strategy with value
+\begin{equation}
+  \lambda_d=2\csc\!\left(\frac{\pi}{2d}\right),
+  \label{eq:lambda}
+\end{equation}
+and conjectures that this is optimal.  It proves the weaker general upper
+bound \(d\sqrt2\), and reports numerical tightness of
+\eqref{eq:lambda} through \(d=6\).
+
+Our contribution is the missing analytic upper bound.  The essential point is
+that the Bob operators can be optimized term by term by polar decomposition
+without destroying the coupling between \(A_0\) and \(A_1\).  That coupling is
+then entirely encoded by the relative unitary \(A_0^\dagger A_1\), reducing
+the problem to a scalar trigonometric extremum on the unit circle.
+
+\begin{theorem}[Sharp arbitrary-unitary bound]
+\label{thm:main}
+Let \(d\geq2\).  On arbitrary complex Hilbert spaces, let
+\(A_0,A_1,B_0,\ldots,B_{d-1}\) be unitaries, with the Alice and Bob
+operators acting on separate tensor factors.  Then
+\begin{equation}
+  \cI_d\ \leq\ 2\csc\!\left(\frac{\pi}{2d}\right)\Id
+  \label{eq:operator-bound}
+\end{equation}
+as an operator inequality.  Consequently, when the order-\(d\) relations are
+imposed,
+\[
+  \boxed{\displaystyle
+  \beta_{\mathrm Q}(\cI_d)
+  =2\csc\!\left(\frac{\pi}{2d}\right)}
+  \qquad(d\geq2).
+\]
+\end{theorem}
+
+The upper bound therefore holds on a strict relaxation of the original
+optimization problem.  It is nevertheless tight because the attaining
+strategy of Ref.~\cite{PeritoEtAl2026} satisfies the order-\(d\) constraints.
+
+\section{A polar-decomposition identity}
+
+For a bounded operator \(C\), write
+\(
+\absop{C}=(C^\dagger C)^{1/2}
+\)
+and
+\(
+\absop{C^\dagger}=(CC^\dagger)^{1/2}
+\).
+
+\begin{lemma}[Polar positive-factor identity]
+\label{lem:polar}
+Let \(C\) be a bounded operator on \(\cH_A\), let
+\(C=V\absop C\) be its polar decomposition, and let \(B\) be unitary on
+\(\cH_B\).  Define
+\[
+  P_{C,B}
+  =
+  \absop{C^\dagger}^{1/2}\otimes\Id
+  -
+  V\absop C^{1/2}\otimes B .
+\]
+Then
+\begin{equation}
+  \frac{\absop C+\absop{C^\dagger}}2\otimes\Id
+  -
+  \Reop(C\otimes B)
+  =
+  \frac12 P_{C,B}^\dagger P_{C,B}.
+  \label{eq:polar-sos}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The polar factor \(V\) may be a partial isometry.  Its initial projection is
+the support projection of \(\absop C\), so
+\[
+  \absop C^{1/2}V^\dagger V\absop C^{1/2}=\absop C.
+\]
+Polar functional calculus also gives
+\[
+  \absop{C^\dagger}^{1/2}V
+  =
+  V\absop C^{1/2},
+  \qquad
+  \absop{C^\dagger}^{1/2}V\absop C^{1/2}=C.
+\]
+Expanding \(P_{C,B}^\dagger P_{C,B}\) and using \(B^\dagger B=\Id\)
+therefore yields
+\[
+  \absop C+\absop{C^\dagger}
+  -C\otimes B-C^\dagger\otimes B^\dagger,
+\]
+with identity operators on the omitted tensor factors.  Dividing by two
+proves \eqref{eq:polar-sos}.
+\end{proof}
+
+\begin{remark}
+No invertibility or finite-dimensional unitary extension of \(V\) is needed.
+This is useful because some of the operators \(A_0+\omega^yA_1\) may be
+singular for general strategies.
+\end{remark}
+
+\section{The scalar roots-of-unity extremum}
+
+\begin{lemma}[Sharp scalar bound and equality set]
+\label{lem:scalar}
+For every \(d\geq2\) and every \(z\in\bbC\) with \(\lvert z\rvert=1\),
+\begin{equation}
+  \sum_{y=0}^{d-1}\lvert1+\omega^y z\rvert
+  \leq
+  2\csc\!\left(\frac{\pi}{2d}\right).
+  \label{eq:scalar}
+\end{equation}
+Equality holds if and only if
+\begin{equation}
+  z^d=(-1)^{d-1}.
+  \label{eq:equality-set}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write \(z=\e^{2is}\), put
+\(
+h=\pi/d
+\)
+and
+\(
+a=h/2=\pi/(2d)
+\).
+Then the left side of \eqref{eq:scalar} is \(2G_d(s)\), where
+\[
+  G_d(s)=\sum_{y=0}^{d-1}\lvert\cos(s+yh)\rvert.
+\]
+The function \(G_d\) has period \(h\).
+
+First suppose \(d=2m+1\) is odd.  We may take \(-a\leq s\leq a\)
+and reindex the summands by \(k=-m,\ldots,m\).  Every angle
+\(s+kh\) lies in \([-\pi/2,\pi/2]\), hence
+\[
+  G_d(s)
+  =
+  \sum_{k=-m}^{m}\cos(s+kh)
+  =
+  \frac{\sin(dh/2)}{\sin(h/2)}\cos s
+  =
+  \csc(a)\cos s.
+\]
+The maximum is \(\csc(a)\), attained exactly when
+\(s\equiv0\pmod h\).  Equivalently, \(z^d=1=(-1)^{d-1}\).
+
+Now suppose \(d=2m\) is even.  Take \(0\leq s\leq h\).  The first
+\(m\) cosines are nonnegative and the last \(m\) are nonpositive, so
+the finite cosine-sum formula gives
+\begin{align*}
+  G_d(s)
+  &=
+  \sum_{y=0}^{m-1}\cos(s+yh)
+  -
+  \sum_{y=m}^{2m-1}\cos(s+yh)\\
+  &=
+  \csc(a)\cos(s-a).
+\end{align*}
+Its maximum is attained exactly at
+\(s\equiv a\pmod h\).  This is equivalent to \(z^d=-1\), again
+giving \eqref{eq:equality-set}.  Multiplying the maximum of \(G_d\)
+by two proves \eqref{eq:scalar}.
+\end{proof}
+
+\section{Proof of the upper bound}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Set
+\[
+  C_y=A_0+\omega^yA_1,
+  \qquad
+  U=A_0^\dagger A_1,
+  \qquad
+  M_y=\Id+\omega^yU.
+\]
+Then \(C_y=A_0M_y\).  The operator \(M_y\) is normal, since
+\[
+  M_y^\dagger M_y=M_yM_y^\dagger
+  =
+  2\Id+\omega^yU+\omega^{-y}U^\dagger.
+\]
+It follows that
+\begin{equation}
+  \absop{C_y}=\absop{M_y},
+  \qquad
+  \absop{C_y^\dagger}
+  =
+  A_0\absop{M_y}A_0^\dagger.
+  \label{eq:moduli}
+\end{equation}
+Define
+\[
+  F_d(U)=\sum_{y=0}^{d-1}\absop{\Id+\omega^yU}.
+\]
+The continuous functional calculus for the unitary \(U\), together with
+Lemma~\ref{lem:scalar}, yields
+\begin{equation}
+  0\leq F_d(U)\leq\lambda_d\Id.
+  \label{eq:F-bound}
+\end{equation}
+
+Apply Lemma~\ref{lem:polar} to \(C_y\) and \(B_y\), sum over \(y\),
+and use \eqref{eq:moduli}:
+\begin{align*}
+  \cI_d
+  &\leq
+  \frac12\sum_{y=0}^{d-1}
+       \bigl(\absop{C_y}+\absop{C_y^\dagger}\bigr)\otimes\Id\\
+  &=
+  \frac12
+  \bigl(F_d(U)+A_0F_d(U)A_0^\dagger\bigr)\otimes\Id\\
+  &\leq \lambda_d\Id.
+\end{align*}
+This proves the operator upper bound.  The matching order-\(d\) strategy is
+recalled and independently checked in Proposition~\ref{prop:lower}, completing
+the proof of the equality.
+\end{proof}
+
+\subsection{An explicit positive-factor certificate}
+
+The preceding proof can be packaged as a single exact identity.  Let
+\(C_y=V_y\absop{C_y}\) be the polar decomposition, and set
+\begin{align*}
+  P_y
+  &=
+  \absop{C_y^\dagger}^{1/2}\otimes\Id
+  -
+  V_y\absop{C_y}^{1/2}\otimes B_y,\\
+  G
+  &=
+  \bigl(\lambda_d\Id-F_d(U)\bigr)^{1/2}.
+\end{align*}
+Then
+\begin{equation}
+\boxed{
+\begin{aligned}
+  \lambda_d\Id-\cI_d
+  &=
+  \frac12\sum_{y=0}^{d-1}P_y^\dagger P_y\\
+  &\quad+
+  \frac12(G\otimes\Id)^\dagger(G\otimes\Id)\\
+  &\quad+
+  \frac12(GA_0^\dagger\otimes\Id)^\dagger
+              (GA_0^\dagger\otimes\Id).
+\end{aligned}
+}
+\label{eq:certificate}
+\end{equation}
+The square roots in \eqref{eq:certificate} are ordinary positive square roots
+from functional calculus.  Thus \eqref{eq:certificate} is an exact
+operator-level positive-factor certificate, not a finite-level NPA
+approximation.
+
+\section{Tightness and the order-\(d\) strategy}
+
+The lower bound and the Weyl-based strategy are due to Perito et
+al.~\cite{PeritoEtAl2026}.  For completeness, this section records a compact
+polar form of the same saturating choice and proves directly that its Bob
+operators satisfy the order relation.  This also makes the equality mechanism
+in Lemma~\ref{lem:scalar} transparent.
+
+\begin{proposition}[Self-contained lower certificate]
+\label{prop:lower}
+On \(\bbC^d\), let
+\[
+  Z\lvert j\rangle=\omega^j\lvert j\rangle,
+  \qquad
+  X\lvert j\rangle=\lvert j+1\bmod d\rangle,
+\]
+and use
+\[
+  A_0=Z,\qquad A_1=X,\qquad
+  \lvert\Phi_d\rangle
+  =
+  \frac1{\sqrt d}\sum_{j=0}^{d-1}\lvert j,j\rangle.
+\]
+For \(0\leq y<d\), put
+\begin{align}
+  W_y&=\omega^yZ^\dagger X,\qquad
+  H_y=\absop{\Id+W_y},\label{eq:WH}\\
+  Q_y&=H_y^{-1}(\Id+W_y^\dagger)Z^\dagger,\qquad
+  B_y=Q_y^T. \label{eq:Bob}
+\end{align}
+Then every \(B_y\) is unitary, \(B_y^d=\Id\), and
+\[
+  \langle\Phi_d\vert\cI_d\vert\Phi_d\rangle=\lambda_d.
+\]
+\end{proposition}
+
+\begin{proof}
+The Weyl relations give \(Z^d=X^d=\Id\) and \(ZX=\omega XZ\).
+The action of \(W_y\) is a weighted cyclic shift:
+\[
+  W_y\lvert j\rangle
+  =
+  \omega^{\,y-(j+1\bmod d)}\lvert j+1\bmod d\rangle.
+\]
+Hence
+\begin{equation}
+  W_y^d=(-1)^{d-1}\Id,
+  \qquad
+  \spec(W_y)=
+  \{\lambda:\lambda^d=(-1)^{d-1}\}.
+  \label{eq:W-spectrum}
+\end{equation}
+Indeed, the first \(d\) orbit vectors of \(\lvert0\rangle\) are nonzero
+multiples of the standard basis vectors.  Thus the minimal polynomial has
+degree \(d\); because it divides
+\(t^d-(-1)^{d-1}\), whose roots are distinct, the displayed spectrum is
+simple and complete.
+In particular, \(-1\notin\spec(W_y)\), so \(H_y\) is invertible.
+
+Let \(C_y=Z+\omega^yX=Z(\Id+W_y)\).  Since \(W_y\) is normal,
+\[
+  C_y
+  =
+  \underbrace{Z(\Id+W_y)H_y^{-1}}_{V_y}\,H_y
+\]
+is its polar decomposition.  Thus \(Q_y=V_y^\dagger\), proving that
+\(Q_y\), and hence \(B_y\), is unitary.
+
+It remains to prove the order relation.  On the spectrum in
+\eqref{eq:W-spectrum}, define
+\[
+  q(z)=\frac{1+\overline z}{\lvert1+z\rvert}.
+\]
+Then \(Q_y=q(W_y)Z^\dagger\).  Since
+\(
+Z^\dagger W_yZ=\omega^{-1}W_y
+\),
+\begin{equation}
+  Q_y^d
+  =
+  \prod_{r=0}^{d-1}q(\omega^{-r}W_y).
+  \label{eq:Q-product}
+\end{equation}
+For every eigenvalue \(\lambda\) of \(W_y\), the corresponding scalar in
+\eqref{eq:Q-product} equals
+\begin{align*}
+  \prod_{r=0}^{d-1}q(\omega^{-r}\lambda)
+  &=
+  \frac{\prod_{r=0}^{d-1}(1+\omega^r\overline\lambda)}
+       {\prod_{r=0}^{d-1}\lvert1+\omega^{-r}\lambda\rvert}\\
+  &=
+  \frac{1-(-\overline\lambda)^d}
+       {\lvert1-(-\lambda)^d\rvert}
+  =\frac2{2}=1,
+\end{align*}
+where we used
+\(
+\prod_{r=0}^{d-1}(1+a\omega^r)=1-(-a)^d
+\)
+and \(\lambda^d=(-1)^{d-1}\).  Therefore \(Q_y^d=\Id\) and
+\(B_y^d=\Id\).  In fact, \(Q_y\) is a nonzero weighted \(d\)-cycle in
+an eigenbasis of \(W_y\), so its characteristic polynomial is
+\(t^d-1\); every \(d\)-th root occurs.
+
+Finally,
+\[
+  \langle\Phi_d\vert M\otimes N\vert\Phi_d\rangle
+  =
+  \frac1d\Tr(MN^T).
+\]
+Since \(B_y^T=Q_y=V_y^\dagger\),
+\[
+  \langle\Phi_d\vert C_y\otimes B_y\vert\Phi_d\rangle
+  =
+  \frac1d\Tr(C_yV_y^\dagger)
+  =
+  \frac1d\Tr(H_y),
+\]
+which is real and nonnegative.  Multiplication by \(\omega^y\) permutes
+the spectrum in \eqref{eq:W-spectrum}, so every \(H_y\) has the same trace.
+For any \(\lambda_0^d=(-1)^{d-1}\),
+\[
+  \Tr(H_0)
+  =
+  \sum_{r=0}^{d-1}\lvert1+\omega^r\lambda_0\rvert
+  =
+  \lambda_d
+\]
+by the equality case of Lemma~\ref{lem:scalar}.  Summing over \(y\)
+therefore gives
+\(
+d^{-1}\sum_y\Tr(H_y)=\lambda_d
+\),
+as claimed.
+\end{proof}
+
+\begin{remark}
+Because \(C_y\) is invertible in this construction, equality in the trace
+polar bound fixes \(B_y^T\) to be \(V_y^\dagger\).  The Bob observables in
+\eqref{eq:Bob} therefore give a polar-decomposition representation of an
+attaining strategy.  The strategy in Ref.~\cite{PeritoEtAl2026} reaches the
+sum of these termwise trace bounds, so the same equality condition identifies
+its Bob observables with this polar form.  No new lower-bound strategy is
+claimed here.
+\end{remark}
+
+\section{Consequences and scope}
+
+\begin{corollary}[The barred functional]
+\label{cor:barred}
+With the convention
+\[
+  \overline{\cI}_d
+  =
+  \cI_d+\Reop(A_0\otimes B_d),
+\]
+where \(B_d\) is a further unitary, its quantum value is
+\[
+  \beta_{\mathrm Q}(\overline{\cI}_d)
+  =
+  2\csc\!\left(\frac{\pi}{2d}\right)+1.
+\]
+\end{corollary}
+
+\begin{proof}
+Theorem~\ref{thm:main} and
+\(
+\Reop(A_0\otimes B_d)\leq\Id
+\)
+give the upper bound.  Proposition~\ref{prop:lower}, augmented by
+\(
+B_d=Z^\dagger
+\),
+saturates the extra term on \(\lvert\Phi_d\rangle\).
+\end{proof}
+
+This corollary determines a Bell value.  It does not prove uniqueness of the
+maximizing correlation, self-testing, or the maximal-global-randomness claim
+posed separately in Ref.~\cite{PeritoEtAl2026}.  Those questions require
+additional rigidity information not supplied by the value alone.
+
+For the first five dimensions, Theorem~\ref{thm:main} gives
+\[
+\begin{array}{c@{\qquad}c}
+\toprule
+d&\beta_{\mathrm Q}(\cI_d)\\
+\midrule
+2&2\sqrt2\\
+3&4\\
+4&2\sqrt{4+2\sqrt2}\\
+5&2(1+\sqrt5)\\
+6&2(\sqrt6+\sqrt2)\\
+\bottomrule
+\end{array}
+\]
+The \(d=2\) case is the usual CHSH value; the theorem supplies one uniform
+argument for all \(d\).
+
+\section{Verification artifacts}
+
+The accompanying source package contains:
+\begin{itemize}[leftmargin=1.5em]
+  \item a deterministic verifier for the finite-dimensional matrix identities,
+        including deliberately singular polar factors;
+  \item exact symbolic checks of the displayed low-dimensional radical values
+        and finite trigonometric identities;
+  \item matrix checks of the Weyl spectrum, Bob unitarity and order,
+        saturation, and the operator certificate over a documented range of
+        dimensions;
+  \item a machine-readable claim and dependency ledger; and
+  \item SHA-256 hashes for the released sources and rendered paper.
+\end{itemize}
+These checks are secondary validation of the analytic proof.  They are not a
+formal proof assistant verification of the all-dimensional theorem, and the
+floating-point matrix tests cannot substitute for the arguments above.
+
+\section*{Priority, attribution, and disclosure}
+
+The Bell family, the conjectured formula, the Weyl construction, the
+admissible Bob observables, and the matching lower bound are due to Perito,
+D'Avino, Jung, Mironowicz, Acin, and Augusiak
+\cite{PeritoEtAl2026}.  The narrow contribution claimed here is the analytic
+upper bound, including its arbitrary-unitary strengthening and the associated
+operator certificate.
+
+As of 26 July 2026, a focused search found no public proof of Conjecture~1 and
+no older theorem located in that search that directly supplies this bound.
+Because the conjecture is recent, that search cannot rule out unindexed,
+unpublished, or concurrent work.  Any priority statement is therefore made
+only ``to the best of our knowledge.''
+
+The proof architecture, derivations, manuscript, verification code, and
+literature audit were developed with heavy assistance from ChatGPT 5.6 Sol
+under Alec Kriebel's direction.  No originating author or other researcher was
+contacted.  The work is public to enable checking and remains unrefereed.
+
+\begin{thebibliography}{9}
+
+\bibitem{PeritoEtAl2026}
+I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
+\newblock Bell inequalities tailored to optimal global randomness
+  certification,
+\newblock \emph{arXiv:2606.21362v3} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21362}.
+
+\bibitem{Tsirelson1980}
+B. S. Tsirelson,
+\newblock Quantum generalizations of Bell's inequality,
+\newblock \emph{Letters in Mathematical Physics} \textbf{4}, 93--100 (1980).
+
+\bibitem{NPA2007}
+M. Navascu\'es, S. Pironio, and A. Ac\'in,
+\newblock Bounding the set of quantum correlations,
+\newblock \emph{Physical Review Letters} \textbf{98}, 010401 (2007).
+
+\bibitem{NPA2008}
+M. Navascu\'es, S. Pironio, and A. Ac\'in,
+\newblock A convergent hierarchy of semidefinite programs characterizing the
+  set of quantum correlations,
+\newblock \emph{New Journal of Physics} \textbf{10}, 073013 (2008).
+
+\end{thebibliography}
+
+\end{document}

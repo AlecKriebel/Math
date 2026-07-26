@@ -45,3 +45,34 @@ All timestamps use America/Los_Angeles.
   earliest summary are not by themselves a proof, so the full conjugation and
   product argument will appear in the manuscript.
 
+### Verification and manuscript checkpoint
+
+- **13:22 PDT - Analytic manuscript compiled.** Produced a seven-page
+  self-contained note with the arbitrary-unitary theorem, scalar equality
+  cases, exact positive-factor certificate, complete order-\(d\) proof, barred
+  functional corollary, attribution, and explicit nonclaims.
+- Rendered all seven pages to images and visually checked every page. One
+  transcription defect in the boxed global certificate (missing displayed
+  plus signs) was found and corrected before release.
+- The deterministic verifier passed:
+  - exact low-dimensional radical identities;
+  - 21 polar-factor trials, including 15 singular cases;
+  - 10 complete global-certificate trials with arbitrary unitaries and varied
+    Alice/Bob dimensions;
+  - every scalar equality root and all 77 Bob observables for
+    \(d=2,\ldots,12\);
+  - Bell saturation and top-eigenvalue checks; and
+  - direct agreement of the polar Bob observables with Eqs. (15) and (45) of
+    the originating paper.
+- An extended non-default sweep through \(d=20\) also passed. These are finite
+  sanity checks; the all-dimensional theorem rests on the analytic proof.
+- The public-prior-art audit found no proof of Conjecture 1. It confirmed that
+  the v3 note added cites a different randomness construction and that the
+  nearest concurrent general SOS framework treats other Bell families.
+  Priority remains explicitly provisional because public searches cannot rule
+  out unpublished, unindexed, or simultaneous work.
+- **13:35 PDT - Independent audit accepted the corrected proof.** A separate
+  line-by-line adversarial review returned an accept verdict after checking
+  normalization, adjoints, transpose conventions, singular polar factors,
+  scalar equality cases, and the weighted-shift proof of \(B_y^d=I\). No
+  mathematical blocker or hidden admissibility assumption was found.

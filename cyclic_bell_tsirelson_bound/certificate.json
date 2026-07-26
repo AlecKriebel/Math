@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "title": "Certificate data for the cyclic Bell Tsirelson bound",
+  "theorem": {
+    "bell_operator": "I_d = sum_{y=0}^{d-1} Re((A_0 + omega^y A_1) tensor B_y), omega = exp(2 pi i/d)",
+    "value": "beta_Q(I_d) = 2 csc(pi/(2d)) for every integer d >= 2",
+    "upper_bound_scope": "The upper bound holds for arbitrary unitary A_0, A_1, B_0, ..., B_{d-1}; the order-d relations are not used.",
+    "lower_bound_scope": "The explicit Weyl strategy is d-dimensional and its observables satisfy the required order-d relations."
+  },
+  "analytic_upper_certificate": {
+    "relative_unitary": "U = A_0^* A_1",
+    "normal_summands": "N_y = I + omega^y U is normal because N_y^* N_y = N_y N_y^* = 2I + omega^y U + omega^(-y) U^*",
+    "polar_sos": "If C = V|C| is the polar decomposition (V may be a partial isometry) and B is unitary, then (|C|+|C^*|)/2 tensor I - Re(C tensor B) = P^*P/2, where P = |C^*|^(1/2) tensor I - V|C|^(1/2) tensor B.",
+    "scalar_inequality": "For |z|=1, sum_y |1+omega^y z| <= lambda_d, lambda_d = 2/sin(pi/(2d)).",
+    "scalar_equality": "Equality holds exactly when z^d = (-1)^(d-1).",
+    "functional_calculus": "F_d(U) = sum_y |I+omega^y U| <= lambda_d I.",
+    "global_sos": "With G=(lambda_d I-F_d(U))^(1/2), lambda_d I-I_d = (1/2)sum_y P_y^*P_y + (1/2)(G tensor I)^*(G tensor I) + (1/2)(G A_0^* tensor I)^*(G A_0^* tensor I)."
+  },
+  "analytic_lower_certificate": {
+    "weyl_pair": "Z|j> = omega^j|j>, X|j> = |j+1 mod d>",
+    "state": "Phi_d = d^(-1/2) sum_j |j,j>",
+    "relative_unitary": "W = Z^* X, W^d = (-1)^(d-1) I",
+    "maximizing_spectrum": "The spectrum of W consists of all d roots of lambda^d=(-1)^(d-1), hence every eigenvalue is a scalar maximizer.",
+    "alice_observables": "A_0=Z, A_1=X",
+    "polar_observables": "N_y=I+omega^y W, H_y=|N_y|, V_y=Z N_y H_y^(-1), B_y=(V_y^*)^T",
+    "invertibility": "Every H_y is invertible: -omega^(-y) is not a root of lambda^d=(-1)^(d-1).",
+    "order_argument": "V_y=Z^y V_0 Z^(-y). In a W-eigenbasis V_0=Z g(W), g(lambda)=(1+lambda)/|1+lambda|, is a cyclic weighted shift. Thus V_0^d=prod_lambda g(lambda) I=I because prod_lambda(1+lambda)=2>0. Hence B_y^d=I.",
+    "value": "<Phi_d|I_d|Phi_d> = (1/d) sum_y Tr|Z+omega^y X| = lambda_d."
+  },
+  "executable_verification": {
+    "disclaimer": "The executable checks are finite exact symbolic checks and finite floating-point sanity checks. They are not a formal machine proof of the all-dimensional theorem; the all-dimensional result rests on the analytic argument.",
+    "default_max_d": 12,
+    "exact_symbolic_checks": [
+      "closed forms for d=2,...,6",
+      "finite instances d=2,...,12 of the roots-of-unity product polynomial",
+      "finite integer parity identities used in the Weyl power calculation"
+    ],
+    "floating_point_checks": [
+      "random polar SOS identities, including zero and rank-deficient C",
+      "complete global SOS certificate for random arbitrary unitaries and varied Alice/Bob dimensions",
+      "scalar bound and every equality root",
+      "Weyl commutation, power, spectrum, and functional-calculus equality",
+      "invertibility and normality of N_y",
+      "unitarity, order d, and complete d-th-root spectrum of every B_y",
+      "agreement of the polar B_y with Eqs. (15) and (45) of the originating paper",
+      "weighted-shift phase product and y-conjugacy",
+      "Bell expectation, maximizing eigenvector residual, and top eigenvalue"
+    ],
+    "random_seed": 2606213621,
+    "tolerances": {
+      "matrix": 2e-10,
+      "scalar": 2e-10,
+      "spectrum": 2e-9
+    }
+  }
+}
