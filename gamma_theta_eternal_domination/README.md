@@ -169,6 +169,23 @@ The result is intentionally labeled `OBSERVED`: the generator and coverage
 audit are source-bound but not independently implemented, and the coloring
 conclusions do not have SAT proof logs.
 
+Claims C-025--C-027 package two small induced one-guard failure cores and
+their exact role in the 526-row deep population.  The installed
+certificate, result, and one-vertex-extension table are checked with:
+
+```text
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 -m search.portable_failure_core audit
+
+PYTHONPATH=src PYTHONWARNINGS=error \
+  python3 -m unittest -v tests.test_portable_failure_core
+```
+
+The two core profiles, ranked attack DAGs, six embeddings, and exact
+37-of-526 occurrence statement are `CERTIFIED-FINITE`.  The broader
+623-key one-vertex-extension classification remains `OBSERVED` because its
+distinct canonical keys were not independently proved nonisomorphic.
+
 The direct order-12, parameter-three CEGAR runner is frozen and
 hostile-review accepted for bounded production.  Its acceptance is an
 engineering gate, not a mathematical nonexistence result.  The read-only

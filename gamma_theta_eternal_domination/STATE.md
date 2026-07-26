@@ -1,5 +1,42 @@
 # Campaign State
 
+## Checkpoint 013 — 2026-07-25 18:50 PDT
+
+- Campaign day: 1 of 27; branch `main`.
+- Latest pushed campaign checkpoint before this checkpoint: `31586830`.
+- The portable-failure-core package is independently accepted.  Root reran
+  its installed audit and all eight focused tests successfully.
+- Two finite obstruction cores, `J@l|bfNuVK_` and `Kun_w{vRrblV`, have
+  independently replayed three-guard failure DAGs and stable four-guard
+  kernels.  They compress the eight deepest C-023 failures to two induced
+  cores; exactly 37 of the fixed 526 rows contain induced `J`.
+- The 623-key one-vertex-extension sweep over `J` is retained only as
+  `OBSERVED`; it does not raise the exhaustive order frontier.
+- A separate `hole9` recovery package has been produced and passes its author
+  audit.  It binds a 4,705-addition deletion-free RUP proof, but remains
+  outside the claim registry while a fresh independent implementation and
+  hostile review are running.
+- No synthesis solver or proof-checker child was active at checkpoint
+  creation.  Approximately 8.2 GiB of disk remained, including the campaign's
+  4 GiB do-not-use reserve.
+
+### Active gate and claim boundary
+
+- Claims C-025--C-027 delimit the portable-core theorem, exact finite core
+  facts, and the broader observation respectively.  None resolves the
+  conjecture or proves an order bound.
+- The original `hole9` runner still has status `running`; its orphan proof is
+  not retroactively promoted.  Only a separately frozen recovery certificate
+  may support a template-level claim, and only after hostile acceptance.
+
+### Next three highest-value actions
+
+1. Commit and push the accepted portable-core package.
+2. Complete the independent `hole9` RUP replay and hostile audit; accept or
+   reject the template certificate without modifying the frozen run.
+3. If accepted, launch separate bounded `hole7` and `hole5` production runs
+   under the same immutable resource discipline.
+
 ## Checkpoint 012 — 2026-07-25 18:27 PDT
 
 - Campaign day: 1 of 27; branch `main`.

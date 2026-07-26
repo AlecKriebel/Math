@@ -449,3 +449,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Froze the unreferenced candidate proof, both UNSAT result files, CNF,
   cuts, generator manifest, and failed checker logs.  A separately written
   recovery verifier and an independent plain-mode audit are now active.
+
+### 18:50 — Two portable failure cores accepted
+
+- Proved the certificate-level lifting rule: a ranked attack DAG rooted at
+  any independent \(k\)-set remains valid in every induced supergraph.  This
+  is a portable finite witness formulation of the already accepted
+  independent-set forcing and induced-subgraph monotonicity results.
+- The 11-vertex graph `J@l|bfNuVK_` has three-guard kernel profile
+  `110,105,100,88,64,10,0`; the 12-vertex graph `Kun_w{vRrblV` has profile
+  `147,143,136,128,119,93,28,0`.  Direct ranked attack DAGs and nonempty
+  stable four-guard kernels certify
+  \((\gamma,\alpha,\gamma^\infty)=(3,3,4)\) for both.
+- Six explicit order-12 embeddings show that the other six rows in the
+  previously measured eight-row deep tail contain induced `J`.  A separate
+  raw-Graph6/frozenset replay found induced `J` in exactly 37 of the fixed
+  526 C-023 graphs: 30 fail at rank three and seven at rank five.  The
+  second core is the sole remaining row beyond rank three.
+- The complete 2,047-neighborhood one-vertex extension sweep over `J`
+  reports 623 pinned-`labelg` keys and no rank beyond five.  This broader
+  classification remains `OBSERVED`, because the independent audit checks
+  every raw-to-key isomorphism but does not itself prove distinct-key
+  nonisomorphism.
+- Root replayed the installed deterministic audit and all eight focused
+  tests.  The separate hostile review found and closed two low-level parser
+  gaps before freezing the package, and accepted it with no unresolved
+  critical, high, or medium defect.
+- In parallel, the independently written `hole9` recovery verifier produced
+  a deletion-free 4,705-addition RUP package and passed its author audit.
+  It remains pending a new hostile review and supports no claim yet.
