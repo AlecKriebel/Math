@@ -967,3 +967,24 @@ This is source-specific negative evidence only, not a guarantee of
 worldwide priority.  The result is AI-assisted, not peer reviewed, and
 requires specialist database and affine-fibration review before any
 novelty claim.
+
+### 2026-07-26T09:43Z — two fine exclusions and conic-row promotion
+
+The current-day sweep was compared with the complete `D3-BB-21` and
+`D3-BS-N2-Z` descents and with the frozen quadratic-pencil conic-embedding
+row.  Exact searches included the two internal IDs, their decisive
+\(E_5/E_3\) coefficients, “quartic Keller conic image,” “quadratic
+pencil Keller map,” and double-line/relative-closure formulations.
+
+No checked current arXiv listing, MathOverflow page, Tao-blog post, Secret
+Blogging Seminar page, or publicly indexed X/Twitter result states either
+fine-family exclusion or the row-sized conic-embedding exclusion.  The
+nearest public records remain Jelonek, arXiv:2607.20597, on bounded-degree
+Keller parameter spaces; Shaska, arXiv:2607.20210, on graded maps; Migus,
+arXiv:2607.21572, on real-image generic degree; and de Bondt,
+arXiv:1609.09753, on the homogeneous \(x+H\) scope.
+
+This is source-specific negative evidence, not a worldwide-priority
+guarantee.  All three results are AI-assisted and unreviewed.  The global
+promotion moves the frozen score to \(5/14\), but it does not raise the
+universal total-degree floor above four.

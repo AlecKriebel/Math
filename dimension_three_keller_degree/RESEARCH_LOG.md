@@ -1552,3 +1552,92 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   total-degree floor remains four.  No exact prior-art collision was
   located, but worldwide novelty is unresolved and no novelty claim is
   made.
+
+## 2026-07-26T09:05:00Z — two provisional exact-\(\delta=3\) descents
+
+- For frozen family `D3-BB-21`,
+  \(h=pq,\ R=p^2q\), the complete \(E_7\) syzygy has
+  \[
+  T_r=ap+bq+cr,\quad
+  U_r=\frac85pT_r-\frac15kp^2,\quad
+  V_r=kq^2.
+  \]
+  With all eleven binary integration constants retained, \(E_6\)
+  forces \(c=b=0\),
+  \(12a^2-8ak+3k^2=0\),
+  \(v_0(3a-k)=0\), and \(u_3(2k-a)=0\).
+  On every nonzero conic point the raw lower-independent coefficient is
+  \[
+  [p^2qr^2]E_5=\frac25ak(8a-k)\ne0.
+  \]
+  At the origin, \(E_6\) leaves
+  \(A_r=\frac85\ell_{33}p,\ B_r=0\).  The two
+  \(\ell_{33}\)-charts exit to unconditional bounded-degree plane
+  automorphisms.  This is a full-family exclusion candidate, not yet
+  certified.
+- A separate root derivation provisionally closes
+  `D3-BS-N2-Z`, \(h=p^2,\ R=p^2q\).  Its complete \(E_7\)
+  parameterization is
+  \[
+  U_r=-2kp^2,\quad
+  V_r=2q(ap+bq+cr)+kq^2,\quad
+  T_r=ap+bq+cr.
+  \]
+  The \(E_6/E_5\) identities first force
+  \(c=0,\ b+k=0,\ a^2b=0,\ bu_2+6au_3=0\).
+  Besides the origin, source scaling of \(r\) gives two charts:
+  \(a=1,b=k=0,u_3=0\), and
+  \(a=0,b=1,k=-1,u_2=0\).
+  In the first chart \(E_5/E_4\) forces \(v_3=0\) and then
+  \(\det L=0\).  In the second chart, the \(u_3\ne0\) branch
+  forces the first and third columns of \(L\) to be proportional;
+  for \(u_3=0\), putting \(d=t_1-v_2\), the \(d\ne0\) branch has
+  \([q^2r]E_3=12d^3\), while the \(d=0\) branch has an \(E_3\)
+  square forcing a factor of \(\det L\) to vanish.  Its origin has
+  \(A_r=0,\ B_r=2\ell_{33}q\) and the same plane exits.
+  This second candidate has not yet received an independent
+  reconstruction and is not certified.
+- If both candidates survive the required independent audits, the frozen
+  fine count will move from \(9/26\) to \(11/26\).  Neither changes the
+  global \(4/14,4/14,6/14\) status or the total-degree floor four.
+
+## 2026-07-26T09:43:40Z — two fine families and one global row certified
+
+- `D3-BB-21` survived a dependency-free sparse-\(\mathbb Q\) hostile
+  reconstruction after two completeness repairs: the zero \(r^2\)
+  \(E_7\) kernel and explicit \(E_9/E_8\) replay.  Its strict terminal
+  marker is `D3_BB21_HOSTILE_RELEASE_AUDIT_PASS`.
+- `D3-BS-N2-Z` survived a fresh direct PARI/GP reconstruction of the
+  complete tangent space, both nonzero charts, every lower boundary, and
+  the origin.  Its fail-closed wrapper caught a real GP parse-error
+  transcript that also printed a success marker; after repair the marker
+  is `D3_BS_N2_Z_HOSTILE_STRICT_PASS`.
+- These two results move the frozen high-incidence fine count from
+  \(9/26\) to \(11/26\).  They do not close the fixed-quadratic parent
+  row.
+- Independently, the post-freeze bridge for
+  `Q2-E0-A2-B2-D2-N1` was derived blind and passed.  The auditor then
+  found that the legacy lower scripts checked displayed solution families
+  but not their exhaustiveness, and repaired that gap with exact ranks,
+  kernels, cokernels, compatibility ideals, and full-solution checks.
+- The global frozen quartic score is now
+  \[
+  5/14\text{ certified},\qquad3/14\text{ provisional},\qquad
+  6/14\text{ open}.
+  \]
+  The universal total-degree floor remains four; no numerical table rung
+  is closed.
+
+## 2026-07-26T09:45:00Z — fixed-conic row held fail-closed
+
+- A blind bridge audit independently certified the uniform leading form
+  \(LX+H_2+H_3+h(x^2,xy,y^2)\), the `C00`--`C14` routing, and the
+  emptiness of `C15`--`C44`.
+- It then found the first retained-evidence gap in the legacy binary
+  proof: equations (7)--(9) are replayed only after setting the arbitrary
+  binary cubic \(V\) to zero and choosing one special \(H_2\).  Neither
+  legacy CAS script proves that those \(E_6\) factors are necessary on
+  the full \(12+18\)-coefficient lower solution space.
+- The row stays provisional.  The smallest repair is now fixed: solve the
+  full \(E_7\) system and certify the universal \(E_6\) compatibility and
+  tangent-orbit list without generic-rank division.

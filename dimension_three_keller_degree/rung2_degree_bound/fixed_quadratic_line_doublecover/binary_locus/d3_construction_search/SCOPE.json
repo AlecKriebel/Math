@@ -1,0 +1,63 @@
+{
+  "schema": "d3-construction-search-scope-v1",
+  "denominator": {
+    "relative_path": "../../audit_delta_ge3_denominator/DENOMINATOR.json",
+    "sha256": "440df4694f98b1b361a09e136afb4365c3aa302c5532e5291f4b76a2a068c65a",
+    "family_count": 26
+  },
+  "targets": {
+    "D3-BB-21": {
+      "h": "pq",
+      "R": "p^2q"
+    },
+    "D3-BS-N2-Z": {
+      "h": "p^2",
+      "R": "p^2 q"
+    }
+  },
+  "exact_obstructions": [
+    {
+      "id": "ZERO-BINARY-NONLINEAR",
+      "targets": ["D3-BB-21", "D3-BS-N2-Z"],
+      "ansatz": "U=V=T=0; A and B are arbitrary ternary quadratics; L is arbitrary",
+      "stage": "E4 after the complete E6/E5 solve"
+    },
+    {
+      "id": "BS-Y1-NONZERO-TANGENT",
+      "targets": ["D3-BS-N2-Z"],
+      "ansatz": "U=0, V=2k*p*q*r, T=k*p*r with k nonzero; A and B are arbitrary ternary quadratics; L is arbitrary; binary U0,V0,T0 are zero",
+      "stage": "E4 after the complete E6/E5 solve localized at k"
+    },
+    {
+      "id": "BB-FULL-NONZERO-E7",
+      "targets": ["D3-BB-21"],
+      "ansatz": "the full E7 parameterization S=a*p+b*q+c*r, U_r=p*(8*S-k*p)/5, V_r=k*q^2, T_r=S; all eleven binary coefficients of U0,V0,T0 are arbitrary; A and B are arbitrary ternary quadratics; L is arbitrary",
+      "stage": "E6 forces c=b=0 and the conic C=0; after the complete E6 pivots, a fixed E5 coefficient meets C only at a=k=0"
+    },
+    {
+      "id": "BS-FULL-NONZERO-E7",
+      "targets": ["D3-BS-N2-Z"],
+      "ansatz": "the full E7 parameterization S=a*p+b*q+c*r, U_r=-2*k*p^2, V_r=2*q*S+k*q^2, T_r=S; all eleven binary coefficients of U0,V0,T0 are arbitrary; A and B are arbitrary ternary quadratics; L is arbitrary",
+      "stage": "E6/E5 force c=0, b+k=0, a^2*b=0, and b*u2+6*a*u3=0; the two normalized nonzero charts are excluded by exact E4/E3 descent"
+    }
+  ],
+  "full_counterexample_exclusions": ["D3-BB-21", "D3-BS-N2-Z"],
+  "structural_origin_exit": {
+    "targets": ["D3-BB-21", "D3-BS-N2-Z"],
+    "scope": "the E7 origin with arbitrary binary U0,V0,T0 and arbitrary A,B,L",
+    "result": "E6 gives either an all-binary nonlinear map or a degree-at-most-three coordinate component; the plane low-degree exit makes every Keller map in this locus an automorphism"
+  },
+  "modular_reconnaissance": {
+    "default_primes": [23, 29],
+    "seed": 20260726,
+    "binary_coefficients_sampled": "all 4+4+3 binary coefficients of U0,V0,T0",
+    "warning": "absence of a modular hit is not an obstruction"
+  },
+  "not_claimed": [
+    "no claim that either excluded stratum contains no Keller automorphisms",
+    "no quartic-row exclusion",
+    "no characteristic-zero Keller counterexample",
+    "no noninjectivity witness",
+    "no BCW reduction"
+  ]
+}
