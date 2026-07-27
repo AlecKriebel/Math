@@ -2071,3 +2071,28 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Order 14 remains unstarted.  The universal proof lane now targets the
   compatibility of an inconsistent 2-SAT bicycle with its forced hub-free
   \(C_5\) and \(W,Y_w,Z\) witness systems, plus the separate full-list slice.
+
+### 2026-07-26 18:05 — mixed-core package and public workstream released
+
+- Claims C-069--C-071, their independent reviews, exact evidence, failed-cap
+  boundary, claim registry, checkpoint, and active-workstream update were
+  committed and pushed to `main` as
+  `edc9c248baa08fd999dc8318b10ad58ab95d09eb`.
+- GitHub Pages run `30228901346` completed successfully.  A cache-busted
+  HTTPS fetch of the active gamma-theta page is byte-identical to the
+  committed source, SHA-256
+  `55e39483236d6d9fb6dd0babdbecd7735f8ecaa3667416aef470e274b76e02ae`.
+- The live page identifies Alec Kriebel as author and research lead,
+  discloses heavy AI assistance, preserves the exact unoccupied-attack
+  one-guard model, and states prominently that the universal conjecture
+  remains unresolved.  It records the exact 2-SAT gluing theorem and forced
+  hub-free complement \(C_5\), while labelling the order-eight/order-nine
+  proper-family scans as bounded evidence.
+- The certified order-12 frontier paper remains the sole current paper.
+  These new structural results are public source artifacts, but a second
+  manuscript would be premature before they close the \(k=3\) case or form a
+  more self-contained class theorem.
+- Exact source, deployment, live-byte, attribution, scope, and sole-paper
+  evidence is frozen in
+  `results/mixed_core_public_workstream_acceptance.json`.  Order 14 remains
+  unstarted.
