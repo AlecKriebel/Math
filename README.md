@@ -23,10 +23,11 @@ that the interpretation or literature claims are correct.
 ## Current papers
 
 **Maximal violation without maximal global randomness in a cyclic Bell
-family** gives exact counterexamples to the maximal-randomness assertion in
-Conjecture 2 of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for
-every \(d\ge4\). Sparse weighted-shift observables attain the exact augmented
-maximum \(2\csc(\pi/(2d))+1\), but the designated joint output distribution is
+family** gives exact counterexamples to the Bell-value reading of Conjecture 2
+of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for every \(d\ge4\),
+after correcting an internal normalization typo in its printed value. Sparse
+weighted-shift observables attain the exact augmented maximum
+\(2\csc(\pi/(2d))+1\), but the designated joint output distribution is
 nonuniform even with trivial Eve:
 \[
 G(AB\mid1,d,E)
@@ -35,7 +36,9 @@ G(AB\mid1,d,E)
 >\frac1{d^2}.
 \]
 Both local marginals remain uniform. At \(d=4\), an exact
-\(\mathbb Q(\zeta_{16})\) certificate gives \(G=3/32>1/16\). See the
+\(\mathbb Q(\zeta_{16})\) certificate gives \(G=3/32>1/16\). This does not
+challenge the separate numerical certificate for the fixed canonical full
+behavior. See the
 [paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/)
 and [source package](cyclic_randomness_counterexample/).
 

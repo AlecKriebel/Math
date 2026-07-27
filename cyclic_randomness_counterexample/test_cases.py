@@ -7,6 +7,7 @@ certificate is checked separately by verify_exact.py.
 """
 from __future__ import annotations
 
+import itertools
 import math
 
 import numpy as np
@@ -115,12 +116,20 @@ def d4_table_test() -> None:
     print("PASS d=4 sparse witness: alternating table and G=3/32")
 
 
+def small_dimension_ordering_test() -> None:
+    for d in (2, 3):
+        for order_tuple in itertools.permutations(range(d)):
+            check_strategy(d, list(order_tuple), expect_uniform=True)
+        print(f"PASS d={d}: every root ordering has a uniform target table")
+
+
 def main() -> None:
     for d in range(2, 13):
         canonical_test(d)
     for d in range(4, 13):
         counterexample_test(d)
     d4_table_test()
+    small_dimension_ordering_test()
 
 
 if __name__ == "__main__":

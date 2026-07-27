@@ -4,12 +4,13 @@
 
 | Assumption | Status and use |
 |---|---|
-| Hilbert spaces are finite-dimensional complex spaces. | Assumed for the counterexample and the structural appendix. |
+| Hilbert spaces are finite-dimensional complex spaces. | Assumed for the explicit counterexample, value-conditioned guessing quantity, and structural appendix. The unaugmented operator upper bound is separately proved for bounded tensor-product operators on arbitrary Hilbert spaces. |
 | Alice and Bob observables are unitary and satisfy `A_x^d=B_y^d=I`. | Assumed for admissible strategies and proved for every constructed observable. The unaugmented upper bound uses only unitarity. |
 | Alice and Bob act on separate tensor factors. | Assumed by the stated Bell model. |
 | Outputs are the spectral labels `omega^a` and `omega^b`. | Assumed exactly as in the originating functional and used in the projector/Fourier calculation. |
 | Exact augmented maximality holds in the structural appendix. | Assumed there; proved for the explicit counterexample family. |
 | Eve may hold arbitrary finite-dimensional quantum side information. | Part of the conjectured statement. The counterexample takes `dim H_E=1`. |
+| “Maximal violation certifies randomness” is read as a universal implication from the Bell value. | This is the reading refuted and is supported by the source's abstract, introduction, and uniqueness argument. The separate claim that the fixed canonical full behavior has maximal randomness is not refuted. |
 
 ## Proved rather than assumed
 
@@ -40,8 +41,9 @@
 - Strict positivity of the two exact `d=4` polar lengths uses the elementary
   real inequalities `2*cos(pi/8)>0` and `2*cos(3*pi/8)>0`; the verifier
   checks their exact field expressions.
-- `cycle_family.py`, `test_cases.py`, and `discovery_search.py` use floating
-  point. They are secondary checks or historical discovery tools.
+- `cycle_family.py`, `test_cases.py`, `compare_reference_behavior.py`, and
+  `discovery_search.py` use floating point. They are secondary checks or
+  historical discovery tools.
 - `family_certificate.json` records all-dimensional symbolic formulas but is
   not a formal proof object. The all-dimensional result rests on the
   manuscript.

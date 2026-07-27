@@ -56,8 +56,8 @@
 \begin{abstract}
 Perito, D'Avino, Jung, Mironowicz, Acin, and Augusiak conjectured that
 maximal violation of an augmented cyclic Bell functional certifies
-\(2\log_2d\) bits of global randomness.  We disprove the
-maximal-randomness assertion for every \(d\geq4\).  For each such \(d\), a
+\(2\log_2d\) bits of global randomness.  We disprove this Bell-value-based
+assertion for every \(d\geq4\).  For each such \(d\), a
 sparse weighted-shift strategy on
 \(\bbC^d\otimes\bbC^d\), with no adversarial side information, attains the
 exact Bell maximum
@@ -76,7 +76,10 @@ joint randomness rather than a local-output bias.  At \(d=4\), a compact
 certificate over \(\mathbb Q(\zeta_{16})\) gives probabilities \(1/32\) and
 \(3/32\), hence \(G=3/32>1/16\).  We reproduce the exact Bell upper
 certificate, prove the infinite counterexample family from first principles,
-and provide an exact-arithmetic verifier for the finite witness.
+and provide an exact-arithmetic verifier for the finite witness.  The
+construction does not challenge the separate numerical certificate for the
+fixed canonical full behavior, and every root ordering in this family is
+uniform at \(d=2,3\).
 \end{abstract}
 
 \medskip
@@ -131,7 +134,39 @@ probability is
 Maximal private global randomness would require
 \(\sigma_E^{ab}=\rho_E/d^2\), and hence \(G=1/d^2\).
 
-\begin{theorem}[Failure of maximal global randomness]\label{thm:main}
+For clarity, Conjecture~2 of Ref.~\cite{PeritoEtAl2026} is printed as follows:
+\begin{quote}
+\small\itshape
+``The maximal violation of
+\(\langle\overline{\mathcal I}_d\rangle\), which is equal to
+\(2[d\sin(\pi/(2d))]^{-1}+1\), certifies \(2\log d\) bits of randomness
+for settings \(x=1\) and \(y=d\).''
+\end{quote}
+
+\begin{remark}[Normalization and scope of the refutation]
+\label{rem:interpretation}
+The displayed functional \eqref{eq:Ibar} equals
+\(\cI_d+\Reop(A_0\otimes B_d)\).  Equation~(17) of
+Ref.~\cite{PeritoEtAl2026} gives \(M_d\) for its canonical unaugmented
+strategy, and \(B_d=Z^\dagger\) makes the added term equal to one.  The same
+paper states the resulting \(d=3\) value as \(5=M_3+1\), whereas its printed
+Conjecture~2 formula gives \(7/3\).  Thus the factor \(d\) in the printed
+denominator is an internal normalization typo; the evidently intended
+maximum is \(M_d+1\).
+
+The precise assertion refuted below is the Bell-value implication
+\begin{equation}
+  \langle\overline{\cI}_d\rangle=M_d+1
+  \quad\Longrightarrow\quad
+  G(AB\mid1,d,E)=\frac1{d^2}.
+  \label{eq:value-implication}
+\end{equation}
+This is the reading supported by the paper's abstract, introduction, and
+uniqueness-based symmetry argument.  A narrower claim about the randomness
+of only the canonical \emph{full behavior} is not refuted.
+\end{remark}
+
+\begin{theorem}[Nonuniform exact maximizers]\label{thm:main}
 For every integer \(d\geq4\), there is an explicit admissible strategy on
 \(\bbC^d\otimes\bbC^d\), with \(\cH_E=\bbC\), such that
 \[
@@ -150,16 +185,56 @@ violation does not force maximal observed joint uniformity, and therefore
 cannot force maximal private global randomness.
 \end{theorem}
 
-Under the operator definitions \eqref{eq:I}--\eqref{eq:Ibar}, the maximum in
-Theorem~\ref{thm:main} is fixed by \eqref{eq:bar-bound} and an attaining
-strategy.  Equation~(17) of Ref.~\cite{PeritoEtAl2026} likewise gives
-\(M_d\) for the unaugmented strategy, and its \(d=3\) discussion gives the
-augmented value \(5=M_3+1\).  The sentence preceding Conjecture~2 and the
-conjecture itself print an additional factor \(d\) in the first term.  We
-therefore treat the displayed operators and Eq.~(17) as authoritative.  The
-counterexample addresses the conjecture's substantive assertion that
-\emph{maximal violation} of the first augmented family certifies
-\(2\log_2d\) random bits.
+\begin{corollary}[Failure of Bell-value certification]\label{cor:value}
+Let \(\mathsf S\) range over finite-dimensional strategies, including
+arbitrary quantum side information, and define
+\[
+  G_{\rm val}(d)
+  =
+  \sup_{\mathsf S:\,
+  \langle\overline{\cI}_d\rangle_{\mathsf S}=M_d+1}
+  G_{\mathsf S}(AB\mid1,d,E).
+\]
+For every \(d\geq4\),
+\begin{equation}
+  G_{\rm val}(d)
+  \geq
+  \frac1{d^2}
+  +
+  \frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+  >\frac1{d^2}.
+  \label{eq:value-corollary}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The strategy in Theorem~\ref{thm:main} is feasible in the displayed
+supremum.  Eve may ignore her system and always guess a most likely pair, so
+even guessing conditioned on that strategy's full observed behavior is at
+least \(\max_{a,b}p(a,b\mid1,d)\), which obeys
+\eqref{eq:guess-gap}.
+\end{proof}
+
+The apparent tension with the \(d=4\) calculation in
+Ref.~\cite{PeritoEtAl2026} is resolved by conditioning.  Its Appendix~B.1
+fixes the full canonical behavior before optimizing Eve's guessing
+probability.  Our strategy gives a different full behavior at the same
+maximum:
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+\toprule
+ &\text{canonical behavior}&\text{root-swapped behavior}\\
+\midrule
+\langle\overline{\cI}_4\rangle&M_4+1&M_4+1\\
+\text{Bell-visible first harmonics}&\text{identical}&\text{identical}\\
+p(a,b\mid1,4)&1/16\ \text{for all }a,b&
+  1/32\ (a+b\ {\rm even}),\ 3/32\ (a+b\ {\rm odd})\\
+\bottomrule
+\end{array}
+\]
+The equality of all correlators used by the Bell functional is proved in
+Corollary~\ref{cor:visible}.  Thus the originating fixed-behavior SDP may be
+correct while maximal Bell value alone fails to certify maximal randomness.
 
 \section{The exact Bell upper certificate}\label{sec:upper}
 
@@ -171,8 +246,9 @@ counterexample.  Write
 \]
 
 \begin{lemma}[Polar positive-factor identity]\label{lem:polar}
-Let \(C=V\absop C\) be the polar decomposition of a finite-dimensional
-operator; \(V\) may be a partial isometry.  If \(B\) is unitary, then
+Let \(C=V\absop C\) be the polar decomposition of a bounded operator on a
+Hilbert space; \(V\) may be a partial isometry.  If \(B\) is unitary on
+another Hilbert space, then
 \[
   P=\absop{C^\dagger}^{1/2}\otimes\Id
     -V\absop C^{1/2}\otimes B
@@ -269,8 +345,9 @@ exact gap decomposition
 \label{eq:gap}
 \end{equation}
 Every term is positive.  This proves
-\(\cI_d\leq M_d\Id\) for arbitrary unitaries, even without the order
-relations, and \eqref{eq:bar-bound} follows from
+\(\cI_d\leq M_d\Id\) for arbitrary tensor-product unitaries on arbitrary
+Hilbert spaces, even without the order relations, and
+\eqref{eq:bar-bound} follows from
 \(\Reop(A_0\otimes B_d)\leq\Id\).
 
 \section{Weighted-shift maximizers}\label{sec:family}
@@ -367,6 +444,53 @@ correlator equals one.  The upper bound \eqref{eq:bar-bound} proves global
 optimality.
 \end{proof}
 
+\begin{corollary}[The Bell-visible correlators do not see the root ordering]
+\label{cor:visible}
+Every ordering \(\kappa\) in Proposition~\ref{prop:maximizer} gives the same
+complex first-harmonic correlators occurring in
+\(\overline{\cI}_d\).
+\end{corollary}
+
+\begin{proof}
+For \(0\leq y<d\), the maximally entangled trace identity gives
+\[
+\begin{aligned}
+ \langle A_0\otimes B_y\rangle_\kappa
+ &=\frac1d\Tr\!\left((S_y^\kappa)^\dagger\right),\\
+ \langle A_1\otimes B_y\rangle_\kappa
+ &=\frac1d\Tr\!\left(
+ Z_\kappa(S_y^\kappa)^\dagger\right).
+\end{aligned}
+\]
+Both traces are sums over the complete, unordered root set and hence are
+independent of \(\kappa\).  More explicitly, the root set is invariant under
+conjugation and
+\[
+  s_{0,k}+\overline{s_{0,k}}=\lvert1+z_k\rvert.
+\]
+Lemma~\ref{lem:scalar} therefore gives
+\(\sum_k s_{0,k}=\sum_k\overline{s_{0,k}}
+=\csc(\pi/(2d))\).  Reindexing the roots for general \(y\), and using
+\(z_k\overline{s_{y,k}}=\omega^{-y}s_{y,k}\), yields
+\begin{equation}
+\begin{aligned}
+ \langle A_0\otimes B_y\rangle_\kappa
+ &=\frac1{d\sin(\pi/(2d))},\\
+ \langle A_1\otimes B_y\rangle_\kappa
+ &=\frac{\omega^{-y}}{d\sin(\pi/(2d))}.
+\end{aligned}
+\label{eq:visible-correlators}
+\end{equation}
+These agree with the reference canonical strategy (only the \(k=d-1\) and
+\(k=0\) terms, respectively, survive the trace in its Eq.~(45)).  The added
+correlator
+\(\langle A_0\otimes B_d\rangle_\kappa=1\) is also independent of the
+ordering, while
+\(\langle A_1\otimes B_d\rangle_\kappa=d^{-1}\Tr Z_\kappa=0\).
+Thus even the first harmonic of the unused target-setting pair is identical;
+all conjugate first harmonics are identical as well.
+\end{proof}
+
 \section{The designated output distribution}
 
 The eigenvectors of \(A_0=X\) and \(A_1=XZ_\kappa\) can be written
@@ -454,6 +578,21 @@ pair, so
 Substitution of \eqref{eq:C2} proves \eqref{eq:guess-gap} and
 Theorem~\ref{thm:main}.
 
+\begin{remark}[Why this mechanism begins at \(d=4\)]
+Every root ordering in Proposition~\ref{prop:maximizer} has a flat target
+table for \(d=2,3\).  For \(d=2\), one has
+\(q=(1,\pm i)\), whose two Fourier magnitudes squared both equal \(2\).
+For \(d=3\), write an arbitrary root ordering as \((a,b,c)\).  Since
+\(abc=1\) and \(a+b+c=0\), the sequence \(q=(1,a,ab)\) has nontrivial
+cyclic autocorrelation
+\[
+  a+b+\overline{ab}=a+b+c=0
+\]
+and its conjugate also vanishes.  Hence all three Fourier magnitudes squared
+equal \(3\).  This family therefore leaves the \(d=2,3\) maximizing faces
+unresolved.
+\end{remark}
+
 \section{A sparse exact four-outcome certificate}\label{sec:d4}
 
 Let \(\zeta=\e^{\pi i/8}\), so
@@ -515,50 +654,62 @@ The independent verifier reconstructs the observables from the displayed
 exponents and checks, using exact rational arithmetic modulo \(x^8+1\),
 all unitarity and fourth-order relations, all polar factorizations, the
 original Bell expression, both probability calculations, uniform marginals,
-and the strict guessing gap.
+the strict guessing gap, and the exact equality of every first harmonic for
+all settings between the cyclic and root-swapped \(d=4\) strategies.
 
 \section{Consequences, verification, and scope}
 
 \begin{enumerate}[leftmargin=1.55em]
-  \item The maximal-randomness assertion in Conjecture~2 of
-  Ref.~\cite{PeritoEtAl2026}, interpreted for its displayed first augmented
-  Bell family, is false for every \(d\geq4\).
+  \item After correcting the normalization typo described in
+  Remark~\ref{rem:interpretation}, the Bell-value reading of Conjecture~2 of
+  Ref.~\cite{PeritoEtAl2026} is false for every \(d\geq4\).
   \item The obstruction needs neither a direct sum nor an Eve-held flag.
   It occurs on one \(d\times d\) block, on a maximally entangled state, while
   both local marginals remain uniform.
   \item The Bell maximum does not determine a unique target behavior in these
-  dimensions.  In particular, the first augmented family cannot self-test a
-  unique maximizing correlation.
-  \item No universal near-maximal bound converging to \(1/d^2\) as the Bell
-  deficit tends to zero can hold for this family when \(d\geq4\), because the
-  exact maximizing face already contains nonuniform behaviors.
+  dimensions.  Hence the uniqueness premise of the paper's symmetry argument
+  fails, and the first augmented family cannot self-test a unique maximizing
+  correlation.
+  \item No upper bound based only on the Bell value or Bell deficit can
+  converge to \(1/d^2\) as the deficit tends to zero.  Indeed, if
+  \(G_{\rm val}(d,\varepsilon)\) is the supremum of the guessing probability
+  over strategies with
+  \(\langle\overline{\cI}_d\rangle\geq M_d+1-\varepsilon\), the exact witness
+  is feasible for every \(\varepsilon\geq0\), so the lower bound in
+  \eqref{eq:value-corollary} holds for every \(\varepsilon\).  Bounds using
+  additional observed statistics are not excluded.
   \item The complete maximizing face, its worst guessing probability, and the
   maximal-violation randomness question for \(d=2,3\) remain unresolved here.
   The Appendix proves only a multiplicity restriction, not a classification.
 \end{enumerate}
 
-The source preprint's Appendix B.1 fixes the \emph{full canonical
-probability distribution} before running its NPA guessing-probability
-calculation.  That calculation can support randomness of the fixed canonical
-behavior without excluding another behavior at the same Bell maximum.  The
-strategy above supplies exactly such a behavior.  This note does not dispute
-the separate protocols of Farkas, Mironowicz, and Augusiak
+The general SDP discussion in the source preprint permits either a full target
+distribution or a Bell constraint, but its Appendix~B.1 calculation fixes the
+\emph{full canonical probability distribution}.  That calculation can
+support randomness of the fixed canonical behavior without excluding another
+behavior at the same Bell maximum.  The strategy above supplies exactly such
+a behavior, and its own full behavior is nonuniform.  This note does not
+dispute the separate protocols of Farkas, Mironowicz, and Augusiak
 \cite{FarkasEtAl2026}, nor the distinct three-outcome robustness study of
 D'Avino et al.~\cite{DavinoEtAl2026}.
 
 The accompanying package contains the TeX source, the exact
 \(\mathbb Q(\zeta_{16})\) verifier, a compact machine-readable certificate,
 the all-dimensional constructor and symbolic family certificate, floating
-point regressions for \(d=2,\ldots,12\), historical discovery code, claims and
-assumptions ledgers, failed approaches, a research log, and SHA-256 hashes.
+point regressions for \(d=2,\ldots,12\), a direct source-convention
+full-behavior comparison, historical discovery code, claims and assumptions
+ledgers, failed approaches, a research log, and SHA-256 hashes.
 The finite programs support the proof but do not formally quantify over all
 \(d\).
 
 A targeted search on 26 July 2026 found no public equivalent of the
 weighted-shift counterexample.  This does not establish absolute novelty:
 unindexed, unpublished, or concurrent work may exist.  The appropriate
-priority wording is therefore ``to the best of our knowledge.''  No
-originating author or other researcher was contacted.
+priority wording is therefore ``to the best of our knowledge.''  No external
+contact occurred during the derivation or priority audit.  Alec Kriebel
+reports that he previously emailed Ignacio Perito about the companion
+Conjecture~1 result; no reply had been received when this revision was
+prepared.
 
 The proof architecture, derivations, manuscript, verification code, and
 literature audit were developed with heavy assistance from ChatGPT 5.6 Sol
@@ -582,9 +733,19 @@ then \(n\leq dr\).
 \end{lemma}
 
 \begin{proof}
-Expanding the second product and using \(T^d=\Id\) expresses \(-\Id\) as a
-product of \(d\) conjugates of the reflection \(\Id-2E\).  For arbitrary
-operators \(R_1,\ldots,R_d\),
+Put \(R=\Id-2E\).  The ordered product is
+\[
+  (TR)^d
+  =
+  T^d
+  \bigl(T^{-(d-1)}RT^{d-1}\bigr)
+  \cdots
+  \bigl(T^{-1}RT\bigr)R.
+\]
+Thus \(-\Id=R_{d-1}\cdots R_0\), where
+\(R_j=T^{-j}RT^j\).  Each defect
+\(\Id-R_j=2T^{-j}ET^j\) has rank \(r\).  For arbitrary operators
+\(R_1,\ldots,R_d\),
 \[
   \operatorname{rank}(\Id-R_1\cdots R_d)
   \leq\sum_{j=1}^d\operatorname{rank}(\Id-R_j),
@@ -687,15 +848,35 @@ It follows that \(U=\omega^{-y}S_y^2\) preserves \(K\).  We may now let
 
 Put \(\eta=\e^{\pi i/d}\), and read \(y+1\) modulo \(d\), so
 \(S_d=S_0\) and \(V_d=V_0\) in the next relation.  Comparing adjacent
-half-angle phases shows that for each \(y\) exactly one equality root crosses
-the sign cut:
+half-angle phases can be done explicitly.  For residues
+\([r]_d\in\{0,\ldots,d-1\}\), put
 \[
-  \frac{1+w}{\lvert1+w\rvert}=\e^{i\theta/2}
-  \quad\text{when }w=\e^{i\theta},\ -\pi<\theta<\pi.
+  r_*=\left\lfloor\frac{d-1}{2}\right\rfloor,\qquad
+  \epsilon_r=
+  \begin{cases}
+    +1,&2r+\delta_d<d,\\
+    -1,&2r+\delta_d>d.
+  \end{cases}
 \]
-Multiplication by \(\omega\) advances the half-angle by \(\pi/d\); among the
-equally spaced equality roots, exactly one principal argument wraps across
-\(\pi\), contributing an additional minus sign.  Thus
+Equality cannot occur in this definition.  Since
+\(\omega^yz_k=z_{[k+y]_d}\) and
+\[
+  \frac{1+z_r}{\lvert1+z_r\rvert}
+  =
+  \epsilon_r
+  \exp\!\left(\frac{\pi i(2r+\delta_d)}{2d}\right),
+\]
+direct division of adjacent phases, including the wrap from \(d-1\) to \(0\),
+gives
+\[
+  \overline{s_y(z_k)}\,s_{y+1}(z_k)
+  =
+  \begin{cases}
+    -\eta,&[k+y]_d=r_*,\\
+    \eta,&[k+y]_d\neq r_*.
+  \end{cases}
+\]
+Consequently, with \(k(y)=[r_*-y]_d\),
 \begin{equation}
   S_y^\dagger S_{y+1}
   =\eta(\Id-2E_{k(y)}),
@@ -739,8 +920,8 @@ I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
 A. Kriebel,
 \newblock The exact quantum value of a cyclic Bell operator,
 \newblock provisional AI-assisted research note (2026),
-\newblock \href{https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/}
-  {public paper page}.
+\newblock public note and source package:
+\url{https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/}.
 
 \bibitem{FarkasEtAl2026}
 M. Farkas, P. Mironowicz, and R. Augusiak,

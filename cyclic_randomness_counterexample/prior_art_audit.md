@@ -14,8 +14,11 @@ randomness certification*, arXiv:2606.21362v3.
 
 The preprint's Eq. (10) defines the first augmented cyclic family, Eq. (11)
 defines its unaugmented part, Eq. (17) gives the canonical unaugmented value
-`2*csc(pi/(2d))`, and Conjecture 2 asserts that maximal violation certifies
-`2 log_2 d` bits for settings `x=1,y=d`.
+`2*csc(pi/(2d))`, and Conjecture 2 prints:
+
+> “The maximal violation of \(\langle\bar{\mathcal I}_d\rangle\), which is
+> equal to \(2[d\sin(\pi/(2d))]^{-1}+1\), certifies \(2\log d\) bits of
+> randomness for settings \(x=1\) and \(y=d\).”
 
 ## Normalization discrepancy
 
@@ -26,27 +29,41 @@ The sentence preceding Conjecture 2 and the conjecture itself print
 ```
 
 This is inconsistent with the displayed operator, Eq. (17), and the paper's
-own `d=3` value `5`. For the displayed operator, the companion upper bound and
-the explicit attaining strategy give
+own `d=3` value `5`: the printed formula gives `7/3` at `d=3`. For the
+displayed operator, the companion upper bound and the explicit attaining
+strategy give
 
 ```text
 2*csc(pi/(2d)) + 1.
 ```
 
-The present result uses the operator definitions directly and refutes the
-substantive maximal-randomness assertion at the actual maximum.
+The factor `d` is therefore an internal normalization typo. The present result
+uses the operator definitions directly and refutes the Bell-value implication
+at the actual maximum:
+
+```text
+<bar(I_d)>=2*csc(pi/(2d))+1  ==>  G(AB|1,d,E)=1/d^2.
+```
+
+That implication is the natural reading of the abstract, introduction, and
+the uniqueness-based symmetry argument immediately preceding Conjecture 2.
 
 ## Why the reported NPA calculation does not exclude the counterexample
 
-Appendix B.1 states that its guessing-probability table is computed while the
-**full probability distribution** of the canonical strategy is fixed. That is
-different from constraining only the Bell value to be maximal. The fixed
-canonical behavior may have maximal randomness even though another behavior
-at the same Bell maximum does not.
+The general SDP discussion permits either a full target distribution or a
+Bell-value constraint. Appendix B.1 specifically states that its
+guessing-probability table is computed while the **full probability
+distribution** of the canonical strategy is fixed. That is different from
+constraining only the Bell value to be maximal. The fixed canonical behavior
+may have maximal randomness even though another behavior at the same Bell
+maximum does not.
 
 The weighted-shift family supplies such alternative behaviors for every
-`d>=4`. At `d=4`, the exact table has guessing probability `3/32`, whereas
-the canonical table has `1/16`.
+`d>=4`. Every root ordering has the same first-harmonic correlators that occur
+in the Bell functional, but higher Fourier components and full behaviors can
+differ. At `d=4`, the exact table has guessing probability `3/32`, whereas
+the canonical table has `1/16`. This does not allege that the Appendix B.1
+calculation for the canonical behavior is wrong.
 
 ## Related contemporaneous papers checked
 
@@ -90,4 +107,6 @@ unpublished, or simultaneous work may exist. The defensible wording is:
 > cycle-permutation) counterexample for this Bell family.
 
 Independent specialist review would materially improve confidence. No
-external contact was made during this audit.
+external contact was made during this audit. Alec Kriebel reports that he
+previously emailed Ignacio Perito about the companion Conjecture 1 result; no
+reply had been received when the revision audit was recorded.

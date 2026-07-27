@@ -5,12 +5,19 @@ PASS: sparse exact Q(zeta_16) certificate verified
   <I_4>=2*csc(pi/8) and <overline(I)_4>=2*csc(pi/8)+1
   projector and Fourier calculations give 1/32,3/32 alternating
   both local marginals are uniform, while G=3/32>1/16
+  cyclic and root-swapped maximizers have identical first harmonics
+  their exact target tables differ: 1/16 versus 1/32,3/32
 PASS canonical d=2,...,12
 PASS nonuniform d=4,...,12
 PASS d=4 sparse witness: alternating table and G=3/32
+PASS d=2,3: every root ordering has a uniform target table
+PASS source comparison d=2,...,12
+  cyclic ordering reproduces the reference full behavior
+  root swapping preserves every Bell-visible first harmonic
+  root swapping changes the full behavior for d=4,...,12
 PASS: every file listed in MANIFEST.sha256 matches its release hash
 
-The detailed per-dimension lines are recorded in test_output.txt. This
-transcript was produced by:
+The detailed per-dimension lines are recorded in test_output.txt and
+comparison_output.txt. This transcript was produced by:
 
     PYTHON_BIN=.venv/bin/python ./run_all.sh

@@ -15,5 +15,6 @@ echo "PASS: certificate.json regenerates byte-for-byte"
 
 "$PYTHON_BIN" verify_exact.py
 "$PYTHON_BIN" test_cases.py
+"$PYTHON_BIN" compare_reference_behavior.py
 "$PYTHON_BIN" cycle_family.py 4
 shasum -a 256 -c MANIFEST.sha256

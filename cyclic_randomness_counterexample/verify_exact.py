@@ -359,12 +359,74 @@ def main() -> None:
     if guessing != Fraction(3, 32) or guessing <= Fraction(1, 16):
         raise AssertionError("strict guessing-probability gap failed")
 
+    # Exact d=4 comparison with the cyclic root ordering.  The two strategies
+    # have identical first harmonics in every Bell term but different full
+    # target tables.
+    canonical_A1 = weighted_shift([2, 6, 10, 14])
+    canonical_V = [
+        weighted_shift(row)
+        for row in [
+            [1, 3, 13, 15],
+            [3, 13, 15, 1],
+            [13, 15, 1, 3],
+            [15, 1, 3, 13],
+        ]
+    ]
+    canonical_B = [entrywise_conjugate(observable) for observable in canonical_V]
+    for y in range(DIMENSION):
+        for label, canonical_alice, swapped_alice in [
+            ("A0", A0, A0),
+            ("A1", canonical_A1, A1),
+        ]:
+            canonical_correlator = trace(
+                multiply(canonical_alice, transpose(canonical_B[y]))
+            ).scale(QUARTER)
+            swapped_correlator = trace(
+                multiply(swapped_alice, transpose(B[y]))
+            ).scale(QUARTER)
+            if canonical_correlator != swapped_correlator:
+                raise AssertionError(
+                    f"{label},B{y}: Bell-visible first harmonic changed"
+                )
+    for label, canonical_alice, swapped_alice in [
+        ("A0", A0, A0),
+        ("A1", canonical_A1, A1),
+    ]:
+        canonical_correlator = trace(
+            multiply(canonical_alice, transpose(B4))
+        ).scale(QUARTER)
+        swapped_correlator = trace(
+            multiply(swapped_alice, transpose(B4))
+        ).scale(QUARTER)
+        if canonical_correlator != swapped_correlator:
+            raise AssertionError(f"{label},B4: first harmonic changed")
+
+    canonical_probabilities: list[list[Fraction]] = []
+    for a in range(DIMENSION):
+        alice = projector(canonical_A1, a)
+        row = []
+        for b in range(DIMENSION):
+            bob = projector(B4, b)
+            probability = trace(multiply(alice, transpose(bob))).scale(QUARTER)
+            row.append(probability.as_fraction())
+        canonical_probabilities.append(row)
+    if any(
+        probability != Fraction(1, 16)
+        for row in canonical_probabilities
+        for probability in row
+    ):
+        raise AssertionError("cyclic-order canonical target table is not uniform")
+    if canonical_probabilities == probabilities:
+        raise AssertionError("canonical and root-swapped target tables coincide")
+
     print("PASS: sparse exact Q(zeta_16) certificate verified")
     print("  A0,A1,B0,...,B4 are unitary and fourth order")
     print("  all C_y=V_y H_y use the two analytically positive exact lengths")
     print("  <I_4>=2*csc(pi/8) and <overline(I)_4>=2*csc(pi/8)+1")
     print("  projector and Fourier calculations give 1/32,3/32 alternating")
     print("  both local marginals are uniform, while G=3/32>1/16")
+    print("  cyclic and root-swapped maximizers have identical first harmonics")
+    print("  their exact target tables differ: 1/16 versus 1/32,3/32")
 
 
 if __name__ == "__main__":

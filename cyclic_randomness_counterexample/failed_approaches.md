@@ -30,7 +30,11 @@ The reflection-product argument proves a strong dimension/multiplicity restricti
 
 ## 8. Robust maximal-randomness theorem
 
-An estimate converging to `1/d^2` at zero error is impossible at `d=4`, because an exact maximizer already has guessing probability `3/32`. Robustness may still be studied relative to a different baseline: the worst guessing probability over the entire exact maximizing face.
+An estimate based only on Bell deficit and converging to `1/d^2` at zero
+error is impossible at `d=4`, because an exact maximizer already has guessing
+probability `3/32`. Additional full-behavior constraints may yield stronger
+bounds. Robustness may also be studied relative to a different baseline: the
+worst guessing probability over the entire exact maximizing face.
 
 ## 9. Treating the `d=4` obstruction as isolated
 
@@ -54,3 +58,11 @@ The scalar gap places `K` inside the equality spectral subspace of
 then proves `A0` and `V_y` preserve `K`, and only then obtains
 `U=omega^(-y)S_y^2` on `K`. Spectral projections of `U|_K` are introduced
 after that step.
+
+## 12. Conflating Bell-value and fixed-behavior certification
+
+Appendix B.1 of the originating paper fixes the full canonical behavior,
+whereas Conjecture 2 and its uniqueness argument are naturally phrased as a
+consequence of maximal Bell value. The counterexample refutes the latter but
+does not challenge the former numerical calculation. Keeping these two
+conditioning models separate resolves the apparent `d=4` conflict.

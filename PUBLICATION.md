@@ -222,9 +222,12 @@ The note gives explicit order-\(d\) weighted-shift strategies for every
 \(d\ge4\) that attain the exact maximum of the first augmented cyclic Bell
 family while producing a nonuniform designated joint-output distribution.
 Eve is one-dimensional and both local marginals remain uniform. Thus the
-counterexamples disprove the maximal-randomness assertion under the displayed
-operator normalization more directly than an Eve-held classical flag would.
-At \(d=4\), an exact certificate over \(\mathbb Q(\zeta_{16})\) gives
+counterexamples disprove the Bell-value reading of the maximal-randomness
+assertion under the displayed operator normalization more directly than an
+Eve-held classical flag would. The printed Conjecture 2 value contains an
+internal factor-\(d\) normalization typo; the displayed operator, Eq. (17),
+and the paper's stated \(d=3\) value identify the intended maximum. At
+\(d=4\), an exact certificate over \(\mathbb Q(\zeta_{16})\) gives
 \(G=3/32>1/16\).
 
 The release includes a complete analytic manuscript, independent exact
@@ -233,8 +236,12 @@ checks through \(d=12\), claims and assumptions ledgers, failed approaches,
 and a focused source audit. A targeted search found no prior public equivalent
 of this weighted-shift construction, but this does not establish absolute
 novelty. The cases \(d=2,3\), the complete maximizing face, and its exact
-worst-case guessing probability remain unresolved. No researcher was
-contacted, and the note remains unreviewed.
+worst-case guessing probability remain unresolved. The originating paper's
+separate numerical certificate for its fixed canonical full behavior is not
+challenged. No external contact occurred during the derivation or priority
+audit. Alec reports that he previously emailed Ignacio Perito about the
+companion Conjecture 1 result; no reply had been received when the revision
+was prepared. The note remains unreviewed.
 
 ## Authorship and status
 

@@ -1,8 +1,9 @@
 # Maximal violation without maximal global randomness
 
-This package gives an exact counterexample to the maximal-randomness assertion
-in Conjecture 2 of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for
-their first augmented cyclic Bell family.
+This package gives exact counterexamples to the Bell-value reading of
+Conjecture 2 of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for
+their first augmented cyclic Bell family. It does not challenge their
+separate numerical certificate for one fixed canonical full behavior.
 
 ## Result
 
@@ -35,6 +36,27 @@ p(a,b|1,4) = 1/32  when a+b is even,
 ```
 
 Thus `G=3/32>1/16`, with strict gap `1/32`.
+
+## What is refuted
+
+The originating paper prints the maximum in Conjecture 2 as
+
+```text
+2/[d*sin(pi/(2d))] + 1.
+```
+
+That factor `d` is internally inconsistent with its displayed augmented
+operator, its Eq. (17), and its stated `d=3` value `5`; the intended value is
+`2*csc(pi/(2d))+1`. This package disproves the implication
+
+```text
+maximal Bell value  ==>  G(AB|1,d,E)=1/d^2
+```
+
+for the corrected displayed functional. Appendix B.1 of the originating paper
+instead fixes the canonical full behavior. That narrower calculation may
+remain correct: the counterexample has the same first-harmonic correlators
+seen by the Bell functional but a different full probability behavior.
 
 ## Mathematical mechanism
 
@@ -87,7 +109,10 @@ checks in `Q(zeta_16)=Q[x]/(x^8+1)`:
 - the full projector-derived probability table;
 - an independent finite Fourier derivation;
 - uniform local marginals; and
-- `G=3/32>1/16`.
+- `G=3/32>1/16`;
+- equality of every first harmonic for all settings of the cyclic and
+  root-swapped maximizers; and
+- their distinct exact target tables (`1/16` versus `1/32,3/32`).
 
 Secondary all-family tests require NumPy. The historical discovery search also
 requires SciPy:
@@ -105,8 +130,13 @@ and is not used by `run_all.sh` or by any proof claim.
 The regression suite checks the canonical family for `d=2,...,12`, the
 nonuniform family for `d=4,...,12`, the polar factorizations, order relations,
 Bell values, Fourier formula, uniform marginals, autocorrelation identity, and
-the explicit lower bound. These finite checks support the analytic proof; they
-are not an all-dimensional formal verification.
+the explicit lower bound. It also exhausts all root orderings at `d=2,3`.
+`compare_reference_behavior.py` separately
+implements Eqs. (13), (15), and (45) of the originating paper and confirms
+through `d=12` that the cyclic ordering reproduces its canonical full
+behavior, while the root-swapped behavior preserves every Bell-visible first
+harmonic and changes the full behavior. These finite checks support the
+analytic proof; they are not an all-dimensional formal verification.
 
 ## Files
 
@@ -118,6 +148,8 @@ are not an all-dimensional formal verification.
 - `family_certificate.json` — machine-readable all-dimensional formulas.
 - `cycle_family.py` — transparent numerical constructor and evaluator.
 - `test_cases.py` — independent floating-point regressions.
+- `compare_reference_behavior.py` — direct source-convention comparison of
+  first harmonics and full behaviors.
 - `discovery_search.py` — historical numerical falsifier; not part of the
   proof.
 - `claims_ledger.md`, `assumptions_ledger.md`,
@@ -144,9 +176,14 @@ This package does not determine:
 - the worst guessing probability among all exact maximizers; or
 - robustness relative to that correct worst-case baseline.
 
+Every root ordering in this particular family has a uniform target table for
+`d=2,3`, so its nonuniform mechanism begins exactly at `d=4`.
+
 ## Status and disclosure
 
 This is an unrefereed, AI-assisted research artifact by Alec Kriebel, with
 heavy assistance from ChatGPT 5.6 Sol. Alec Kriebel cannot independently
-validate the mathematical claims. No originating author or outside researcher
-was contacted. Independent expert review is required.
+validate the mathematical claims. No external contact occurred during the
+derivation or priority audit. Alec reports that he previously emailed Ignacio
+Perito about the companion Conjecture 1 result; no reply had been received
+when this revision was prepared. Independent expert review is required.

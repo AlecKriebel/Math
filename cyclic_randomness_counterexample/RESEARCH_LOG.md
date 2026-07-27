@@ -10,7 +10,8 @@ All timestamps use America/Los_Angeles.
   Opened separate first-principles audits of the all-dimensional cycle
   construction, the claimed structure theorem for every maximizer, and the
   exact/numerical verification package. No mathematical claim has yet been
-  accepted for publication, and no outside researcher has been contacted.
+  accepted for publication, and no outside researcher has been contacted by
+  this counterexample workstream.
 
 - **18:12 PDT - Core theorem independently validated and simplified (55% complete).**
   Separate proof audits confirmed the all-dimensional counterexample,
@@ -41,7 +42,7 @@ All timestamps use America/Los_Angeles.
   as authoritative. Related same-day papers concern different protocols or a
   three-outcome robustness study. No equivalent public counterexample was
   found in the targeted search; absolute novelty remains unestablished. No
-  outside researcher was contacted.
+  outside researcher was contacted as part of this audit.
 
 - **18:26 PDT - Manuscript, exact package, and presentation audit complete
   (90% complete).**
@@ -65,5 +66,34 @@ All timestamps use America/Los_Angeles.
   `73c2e2ab39de79357d7b441a2a4c30f901a13e99e15bf086540783041f7d6051`,
   identical to the frozen artifact. The public record preserves the
   unreviewed and AI-assisted status, the qualified novelty language, and the
-  unresolved cases and classification questions. No outside researcher was
-  contacted.
+  unresolved cases and classification questions. The counterexample note was
+  not sent to an outside researcher by this workstream.
+
+- **21:03 PDT - Post-release framing and proof audit opened.**
+  Adversarial feedback prompted three independent checks: the exact wording
+  and conditioning of Conjecture 2, the reflection-product and adjacent-phase
+  Appendix arguments, and a direct full-behavior comparison with Eqs. (13),
+  (15), and (45) of the originating preprint. The construction and strict
+  counterexamples remain valid. The source supports a Bell-value reading of
+  Conjecture 2, but Appendix B.1 separately fixes the canonical full behavior.
+  The revision will state that distinction near the theorem, reproduce the
+  printed conjecture and prove its factor-\(d\) normalization inconsistency,
+  and qualify robustness claims as Bell-value-only. Alec reports that he
+  previously emailed Ignacio Perito about the companion Conjecture 1 result
+  and had received no reply by this checkpoint; the counterexample note had
+  not yet been sent.
+
+- **21:18 PDT - Adversarial-feedback revision verified (95% complete).**
+  The construction survived the review. The revised twelve-page manuscript
+  now distinguishes the Bell-value implication from the narrower
+  fixed-canonical-full-behavior calculation, reproduces the printed
+  conjecture and documents its internal normalization mismatch, and places
+  the exact \(d=4\) behavior comparison next to the theorem. The polar
+  certificate is stated for bounded operators on arbitrary Hilbert spaces;
+  the reflection-product and adjacent-phase computations are written out;
+  and the robustness conclusion is explicitly limited to Bell-value-only
+  bounds. A new exact \(d=4\) check and a direct implementation of the
+  originating paper's formulas confirm that the canonical and root-swapped
+  maximizers have identical Bell-visible first harmonics but different full
+  behaviors. All exact, numerical, JSON, syntax, PDF, and local-site checks
+  pass. Public revision hashes and deployment remain to be frozen.
