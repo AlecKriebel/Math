@@ -2154,3 +2154,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   research lead, disclose heavy AI assistance, state the exact one-guard
   model, and keep both the universal conjecture and order-13 residual slices
   explicitly open.  Order 14 remains unstarted.
+
+### 2026-07-26 19:41 — global-2-SAT localization package released
+
+- Claims C-072--C-077, their three hostile reviews, independent finite
+  replays, machine acceptance record, claim registry, checkpoint, and active
+  page update were committed and pushed to `main` as
+  `018101d4c53cf4a8a3619c3a8b72fadd8f74277b`.
+- GitHub Pages run `30232689337` completed successfully.  A cache-busted
+  HTTPS fetch of the active workstream is byte-identical to the committed
+  page, SHA-256
+  `fedda36619dd1fb3878547f1c5df021a312c46d5ed557ee749e76da8c51c0508`.
+- The live page retains Alec Kriebel's exact authorship and research-lead
+  attribution, heavy-AI disclosure, the standard unoccupied-attack
+  one-guard model, and a prominent unresolved-conjecture notice.  It does not
+  claim a lower bound of 14, a complete order-13 exclusion, or a universal
+  proof.
+- The order-12 frontier paper remains the sole current paper.  The new
+  structural proof notes are public and independently auditable, but the
+  longer global implication connectors remain open, so no second manuscript
+  was issued.
+- Exact source, deployment, live-byte, attribution, scope, and sole-paper
+  evidence is frozen in
+  `results/k3_global_2sat_public_workstream_acceptance.json`.  No campaign
+  job is running.
