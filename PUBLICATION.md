@@ -243,6 +243,27 @@ audit. Alec reports that he previously emailed Ignacio Perito about the
 companion Conjecture 1 result; no reply had been received when the revision
 was prepared. The note remains unreviewed.
 
+An adversarial-feedback revision entered `main` in commit
+[`0055250a009b5f7f0a8283cba4e8813c98b700f8`](https://github.com/AlecKriebel/Math/commit/0055250a009b5f7f0a8283cba4e8813c98b700f8)
+at **27 July 2026, 04:20:34 UTC** (**26 July 2026, 21:20:34 PDT**).
+GitHub Pages reported that exact commit deployed successfully at
+**27 July 2026, 04:21:25 UTC**. The served twelve-page PDF had SHA-256
+`3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975`,
+identical to the frozen revision artifact.
+
+The revision preserves the exact counterexample while sharpening its scope:
+it refutes randomness certification from the maximal Bell value alone, not
+the narrower numerical claim for the fixed canonical full behavior. It
+reproduces the printed conjecture, documents the source's internal
+normalization mismatch, places the exact \(d=4\) canonical/root-swapped
+comparison next to the theorem, and defines the corresponding
+value-conditioned guessing probability. It also expands the polar,
+reflection-product, and adjacent-phase arguments and qualifies the
+near-maximal conclusion as Bell-value-only. A new direct implementation of
+the source formulas confirms through \(d=12\) that root swapping preserves
+all Bell-visible first harmonics while changing the full behavior for
+\(d\ge4\). Every ordering in this construction remains uniform at \(d=2,3\).
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**

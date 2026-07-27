@@ -97,3 +97,14 @@ All timestamps use America/Los_Angeles.
   maximizers have identical Bell-visible first harmonics but different full
   behaviors. All exact, numerical, JSON, syntax, PDF, and local-site checks
   pass. Public revision hashes and deployment remain to be frozen.
+
+- **21:21 PDT - Adversarial-feedback revision published (100% complete).**
+  Published commit
+  `0055250a009b5f7f0a8283cba4e8813c98b700f8` to public `main`. GitHub Pages
+  deployed that exact revision successfully. The live paper page exposes the
+  narrowed Bell-value claim and the new source-comparison verifier. The served
+  twelve-page PDF SHA-256 is
+  `3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975`,
+  identical to the frozen local manuscript. The construction remains exact;
+  the revision changes framing, proof exposition, and verification coverage,
+  not the counterexample family.
