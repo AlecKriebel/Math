@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exact weighted-shift maximizers disprove maximal global randomness for the first augmented cyclic Bell family of Perito et al. in every dimension d at least 4.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="Maximal violation without maximal global randomness in a cyclic Bell family">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-26">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Maximal violation without maximal global randomness">
+  <meta property="og:description" content="An exact counterexample family for every d at least 4, with trivial Eve and uniform local marginals.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/">
+  <title>Maximal violation without maximal global randomness · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Maximal violation without maximal global randomness in a cyclic Bell family",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-26",
+    "dateModified": "2026-07-26",
+    "url": "https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/",
+    "isBasedOn": "https://arxiv.org/abs/2606.21362",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/paper.pdf",
+      "encodingFormat": "application/pdf"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#result">Result</a>
+        <a href="#construction">Construction</a>
+        <a href="#certificate">Certificate</a>
+        <a href="#scope">Scope</a>
+        <a href="https://github.com/AlecKriebel/Math/tree/main/cyclic_randomness_counterexample">Source</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Quantum information · Counterexample to Conjecture 2 · Not peer reviewed</p>
+      <h1>Maximal violation without maximal global randomness</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Research note prepared: <time datetime="2026-07-26">26 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Independent expert verification is still required.</h2>
+        <p>This is an unrefereed, AI-assisted counterexample. The analytic proof, exact finite witness, source, and audit trail are public, but neither passing the verifier nor the internal adversarial review is peer review.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/manuscript.tex">TeX manuscript</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/verify_exact.py">Exact verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/certificate.json">Certificate</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/prior_art_audit.md">Source audit</a>
+      <a class="button secondary" href="https://arxiv.org/abs/2606.21362">Originating paper</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Perito, D’Avino, Jung, Mironowicz, Acín, and Augusiak conjectured that maximal violation of their first augmented cyclic Bell family certifies \(2\log_2d\) bits of global randomness. This note gives exact maximizing strategies with nonuniform designated joint outputs for every \(d\ge4\). Eve can be trivial and both local marginals remain uniform.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Dimensions</strong><span>Exact counterexamples for every \(d\ge4\)</span></div>
+          <div class="fact"><strong>Bell value</strong><span>\(2\csc(\pi/(2d))+1\), the exact maximum</span></div>
+          <div class="fact"><strong>Strong failure</strong><span>Observed joint nonuniformity with trivial Eve</span></div>
+        </div>
+      </section>
+
+      <section id="result">
+        <h2>1. Result</h2>
+        <p>For the designated settings \(x=1,y=d\), the explicit family satisfies</p>
+        <div class="equation equation-wide">
+          \[
+          G(AB\mid1,d,E)
+          \ge \frac1{d^2}
+          +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+          >\frac1{d^2}.
+          \]
+        </div>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> For every \(d\ge4\), admissible order-\(d\) observables on \(\mathbb C^d\otimes\mathbb C^d\) and the state \(\lvert\Phi_d\rangle\), with one-dimensional Eve, attain the global operator maximum while violating maximal joint uniformity. Both one-party marginals are exactly \(1/d\).</p>
+        </div>
+        <p>This refutes the maximal-randomness assertion more directly than an Eve-flag construction would: the observed output table itself is nonuniform.</p>
+      </section>
+
+      <section id="construction">
+        <h2>2. One sparse construction</h2>
+        <p>Let \(X\lvert j\rangle=\lvert j+1\bmod d\rangle\), and let \(z_k\) be the \(d\) roots of \(z^d=(-1)^{d-1}\). For any ordering \(\kappa\), set</p>
+        <div class="equation equation-wide">
+          \[
+          \begin{gathered}
+          A_0=X,\qquad A_1=X\,\mathrm{diag}(z_{\kappa_j}),\\
+          V_y=X\,\mathrm{diag}\!\left(\frac{1+\omega^yz_{\kappa_j}}{|1+\omega^yz_{\kappa_j}|}\right),\qquad
+          B_y=\overline{V_y}\ (y<d),\qquad B_d=X.
+          \end{gathered}
+          \]
+        </div>
+        <p>The phase products equal one, so the weighted-shift power identity proves every order-\(d\) relation. Also \(A_0+\omega^yA_1=V_yH_y\) with \(H_y>0\), making \(V_y\) the exact polar unitary. This saturates every term of the sharp Bell certificate.</p>
+
+        <h3>Why the outputs change</h3>
+        <p>Define \(q_0=1\), \(q_{j+1}=z_{\kappa_j}q_j\), and \(\widehat q_m=\sum_jq_j\omega^{mj}\). Then</p>
+        <div class="equation">
+          \[
+          p(a,b\mid1,d)=\frac{|\widehat q_{-(a+b)}|^2}{d^3}.
+          \]
+        </div>
+        <p>Choosing \(\kappa=(0,1,\ldots,d-3,d-1,d-2)\) makes the second cyclic autocorrelation</p>
+        <div class="equation equation-wide">
+          \[
+          C_2=(z_{d-1}-z_{d-2})(z_{d-3}-z_0),\qquad
+          |C_2|=4\sin(\pi/d)\sin(3\pi/d)>0.
+          \]
+        </div>
+        <p>Fourier inversion, Parseval, and a mean-zero \(\ell_1\) estimate produce the displayed strict guessing gap.</p>
+      </section>
+
+      <section id="certificate">
+        <h2>3. Exact \(d=4\) certificate</h2>
+        <p>With \(\zeta=e^{\pi i/8}\) and \(\kappa=(0,1,3,2)\), the entire witness consists of sparse monomial weighted shifts over \(\mathbb Q(\zeta_{16})\). Its Fourier sequence has</p>
+        <div class="equation">
+          \[
+          \bigl(|\widehat q_m|^2\bigr)_{m=0}^3=(2,6,2,6),
+          \]
+        </div>
+        <p>and therefore</p>
+        <div class="equation equation-wide">
+          \[
+          p(a,b\mid1,4)=
+          \begin{cases}
+          1/32,&a+b\ \text{even},\\
+          3/32,&a+b\ \text{odd},
+          \end{cases}
+          \qquad
+          G=\frac3{32}>\frac1{16}.
+          \]
+        </div>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/verify_exact.py"><code>verify_exact.py</code></a> — reconstructs the JSON witness and checks it in \(\mathbb Q[x]/(x^8+1)\), without floating-point equality.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/generate_certificate.py"><code>generate_certificate.py</code></a> — independently regenerates the compact certificate byte for byte.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/test_cases.py"><code>test_cases.py</code></a> — regression checks through \(d=12\), secondary to the proof.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/cyclic_randomness_counterexample/family_certificate.json"><code>family_certificate.json</code></a> — symbolic all-dimensional specification, not a formal proof object.</li>
+        </ul>
+      </section>
+
+      <section id="source-note">
+        <h2>4. Source normalization and numerical evidence</h2>
+        <p>The originating preprint’s displayed operator and Eq. (17) give the unaugmented value \(2\csc(\pi/(2d))\), and its \(d=3\) augmented value is \(5\). The line stating Conjecture 2 prints an apparent extra factor \(d\) in the denominator. This note follows the displayed operator definitions and proves their actual maximum directly.</p>
+        <p>Appendix B.1 of the preprint fixes the <em>full canonical probability behavior</em> before computing a guessing bound. That can certify the canonical behavior numerically, but it does not exclude other behaviors on the same maximizing face. No claim is made that the originating SDP is erroneous.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Novelty and unresolved questions</h2>
+        <p>A targeted search found no prior public equivalent of this weighted-shift counterexample. The defensible statement is only “to the best of our knowledge”; unindexed, unpublished, or concurrent work may exist.</p>
+        <p>The result does not settle \(d=2,3\), classify the complete maximizing face, or determine its worst guessing probability. A supplementary appendix proves equal multiplicities of the allowed relative-unitary eigenvalues on the state-supported Alice space, but this is not a self-testing theorem.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The proof architecture, derivations, manuscript, verification programs, and literature audit were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel’s direction. Alec Kriebel is the named human author and cannot independently validate the claims. No originating author or outside researcher was contacted.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “Maximal violation without maximal global randomness in a cyclic Bell family,” provisional research note, 26 July 2026. <a href="https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The TeX source, exact verifier, compact certificate, all-dimensional formulas, audit ledgers, research log, and release hashes are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>

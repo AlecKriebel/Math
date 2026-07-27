@@ -1,0 +1,167 @@
+{
+  "schema": "cyclic-bell-randomness-counterexample/v2",
+  "claim": {
+    "dimension": 4,
+    "augmented_bell_value": "2*csc(pi/8)+1",
+    "target_settings": {
+      "alice": 1,
+      "bob": 4
+    },
+    "guessing_probability": "3/32",
+    "uniform_benchmark": "1/16",
+    "strict_gap": "1/32"
+  },
+  "field": {
+    "name": "Q(zeta_16)",
+    "generator": "zeta",
+    "interpretation": "zeta=exp(pi*i/8)",
+    "minimal_polynomial": "zeta^8+1"
+  },
+  "spaces": {
+    "H_A": 4,
+    "H_B": 4,
+    "H_E": 1
+  },
+  "state": {
+    "name": "Phi_4",
+    "formula": "(1/2)*sum_{j=0}^3 |j,j>"
+  },
+  "weighted_shift_encoding": {
+    "convention": "X|j>=|j+1 mod 4>; X*diag(zeta^e_j) has weight exponents e_j",
+    "phase_order_kappa": [
+      0,
+      1,
+      3,
+      2
+    ],
+    "equality_phase_exponents_in_kappa_order": [
+      2,
+      6,
+      14,
+      10
+    ],
+    "A0_weight_exponents": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "A1_weight_exponents": [
+      2,
+      6,
+      14,
+      10
+    ],
+    "V_y_weight_exponents": [
+      [
+        1,
+        3,
+        15,
+        13
+      ],
+      [
+        3,
+        13,
+        1,
+        15
+      ],
+      [
+        13,
+        15,
+        3,
+        1
+      ],
+      [
+        15,
+        1,
+        13,
+        3
+      ]
+    ],
+    "B_y_weight_exponents": [
+      [
+        15,
+        13,
+        1,
+        3
+      ],
+      [
+        13,
+        3,
+        15,
+        1
+      ],
+      [
+        3,
+        1,
+        13,
+        15
+      ],
+      [
+        1,
+        15,
+        3,
+        13
+      ]
+    ],
+    "B4_weight_exponents": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "fourier_certificate": {
+    "q_exponents": [
+      0,
+      2,
+      8,
+      6
+    ],
+    "definition": "q_0=1; q_{j+1}=z_{kappa_j} q_j",
+    "qhat_definition": "qhat_m=sum_j q_j*i^(m*j)",
+    "qhat_squared_magnitudes": [
+      2,
+      6,
+      2,
+      6
+    ]
+  },
+  "target_probability_table": [
+    [
+      "1/32",
+      "3/32",
+      "1/32",
+      "3/32"
+    ],
+    [
+      "3/32",
+      "1/32",
+      "3/32",
+      "1/32"
+    ],
+    [
+      "1/32",
+      "3/32",
+      "1/32",
+      "3/32"
+    ],
+    [
+      "3/32",
+      "1/32",
+      "3/32",
+      "1/32"
+    ]
+  ],
+  "checks_required": [
+    "A0,A1,B0,...,B4 are unitary",
+    "A0^4=A1^4=B0^4=...=B4^4=I",
+    "A0+i^y*A1=V_y*H_y with H_y strictly positive",
+    "the original Bell expression equals 2*csc(pi/8)+1 on Phi_4",
+    "the projector calculation equals the displayed rational probability table",
+    "the independent Fourier calculation has squared magnitudes 2,6,2,6",
+    "both one-party marginals equal 1/4",
+    "the optimal trivial-Eve guess is 3/32>1/16"
+  ],
+  "verifier": "verify_exact.py"
+}

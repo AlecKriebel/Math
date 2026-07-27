@@ -22,6 +22,23 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Maximal violation without maximal global randomness in a cyclic Bell
+family** gives exact counterexamples to the maximal-randomness assertion in
+Conjecture 2 of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for
+every \(d\ge4\). Sparse weighted-shift observables attain the exact augmented
+maximum \(2\csc(\pi/(2d))+1\), but the designated joint output distribution is
+nonuniform even with trivial Eve:
+\[
+G(AB\mid1,d,E)
+\ge\frac1{d^2}
++\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+>\frac1{d^2}.
+\]
+Both local marginals remain uniform. At \(d=4\), an exact
+\(\mathbb Q(\zeta_{16})\) certificate gives \(G=3/32>1/16\). See the
+[paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/)
+and [source package](cyclic_randomness_counterexample/).
+
 **The exact quantum value of a cyclic Bell operator** proves Conjecture 1 of
 Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak:
 \[

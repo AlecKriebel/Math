@@ -1,0 +1,52 @@
+{
+  "schema": "cyclic-bell-weighted-shift-family/v2",
+  "scope": "Every integer d>=2 and every ordering kappa of the d equality phases; a nonuniform maximizing family for every d>=4",
+  "parameters": {
+    "omega": "exp(2*pi*i/d)",
+    "delta_d": "0 when d is odd and 1 when d is even",
+    "z_k": "exp(pi*i*(2*k+delta_d)/d), k=0,...,d-1",
+    "s_yk": "(1+omega^y*z_k)/abs(1+omega^y*z_k)",
+    "X": "X|j>=|j+1 mod d>"
+  },
+  "strategy_for_an_ordering_kappa": {
+    "H_A": "C^d",
+    "H_B": "C^d",
+    "H_E": "C",
+    "state": "Phi_d=(1/sqrt(d))*sum_j |j,j>",
+    "Z_kappa": "diag(z_{kappa_0},...,z_{kappa_{d-1}})",
+    "S_y_kappa": "diag(s_{y,kappa_0},...,s_{y,kappa_{d-1}})",
+    "H_y_kappa": "diag(abs(1+omega^y*z_{kappa_0}),...,abs(1+omega^y*z_{kappa_{d-1}}))",
+    "A_0": "X",
+    "A_1": "X*Z_kappa",
+    "V_y": "X*S_y_kappa",
+    "B_y": "entrywise_conjugate(V_y), y=0,...,d-1",
+    "B_d": "X"
+  },
+  "exact_identities": [
+    "product_k z_k=1",
+    "product_k (1+omega^y*z_k)=2",
+    "product_k s_yk=1",
+    "(X*diag(t_0,...,t_{d-1}))^d=(product_j t_j)*I",
+    "A_0^d=A_1^d=V_y^d=B_y^d=B_d^d=I",
+    "A_0+omega^y*A_1=V_y*H_y_kappa",
+    "<Phi_d|I_d|Phi_d>=2*csc(pi/(2*d))",
+    "<Phi_d|overline(I)_d|Phi_d>=2*csc(pi/(2*d))+1"
+  ],
+  "target_distribution": {
+    "q_0": "1",
+    "q_{j+1}": "z_{kappa_j}*q_j",
+    "qhat_m": "sum_j q_j*omega^(m*j)",
+    "formula": "p(a,b|1,d)=abs(qhat_{-(a+b)})^2/d^3",
+    "local_marginals": "sum_b p(a,b)=sum_a p(a,b)=1/d"
+  },
+  "counterexample_for_d_ge_4": {
+    "phase_order": "(0,1,...,d-3,d-1,d-2)",
+    "second_autocorrelation": "C_2=(z_{d-1}-z_{d-2})*(z_{d-3}-z_0)",
+    "autocorrelation_magnitude": "abs(C_2)=4*sin(pi/d)*sin(3*pi/d)>0",
+    "guessing_bound": "G(AB|1,d,E_trivial)>=1/d^2+2*sin(pi/d)*sin(3*pi/d)/(d^2*(d-1))>1/d^2"
+  },
+  "finite_exact_certificate": "certificate.json",
+  "analytic_proof": "manuscript.pdf",
+  "numeric_evaluator": "cycle_family.py",
+  "verification_boundary": "The JSON records symbolic formulas. The all-d claim rests on the analytic proof; finite programs are secondary checks."
+}

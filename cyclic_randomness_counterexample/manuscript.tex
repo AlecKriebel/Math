@@ -1,0 +1,760 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.02in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\definecolor{deepblue}{HTML}{173B57}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  citecolor=deepblue,
+  urlcolor=deepblue,
+  pdftitle={Maximal violation without maximal global randomness in a cyclic Bell family},
+  pdfauthor={Alec Kriebel}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Cyclic Bell maximizers}}
+\fancyhead[R]{\small\textsc{A. Kriebel}}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\Reop}{\operatorname{Re}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\bbC}{\mathbb C}
+\newcommand{\absop}[1]{\lvert #1\rvert}
+
+\title{\vspace{-1.4cm}\textbf{Maximal violation without maximal global randomness}\\[0.25em]
+\textbf{in a cyclic Bell family}\\[0.45em]
+\large Exact counterexamples in every dimension \(d\geq4\)}
+\author{Alec Kriebel\\
+\small with heavy assistance from ChatGPT 5.6 Sol}
+\date{26 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Perito, D'Avino, Jung, Mironowicz, Acin, and Augusiak conjectured that
+maximal violation of an augmented cyclic Bell functional certifies
+\(2\log_2d\) bits of global randomness.  We disprove the
+maximal-randomness assertion for every \(d\geq4\).  For each such \(d\), a
+sparse weighted-shift strategy on
+\(\bbC^d\otimes\bbC^d\), with no adversarial side information, attains the
+exact Bell maximum
+\[
+  2\csc\!\left(\frac{\pi}{2d}\right)+1
+\]
+while the designated joint output distribution is nonuniform.  Quantitatively,
+\[
+  G(AB\mid1,d,E)
+  \geq\frac1{d^2}
+  +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+  >\frac1{d^2}.
+\]
+Both one-party marginals remain uniform, so the obstruction concerns global
+joint randomness rather than a local-output bias.  At \(d=4\), a compact
+certificate over \(\mathbb Q(\zeta_{16})\) gives probabilities \(1/32\) and
+\(3/32\), hence \(G=3/32>1/16\).  We reproduce the exact Bell upper
+certificate, prove the infinite counterexample family from first principles,
+and provide an exact-arithmetic verifier for the finite witness.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Status.}
+This is an unrefereed, AI-assisted research note.  Its proof and exact
+certificate are public for audit but have not received independent expert
+review.
+
+\section{Definitions and result}
+
+Fix \(d\geq2\) and \(\omega=\e^{2\pi i/d}\).  Alice has order-\(d\)
+unitaries \(A_0,A_1\), Bob has order-\(d\) unitaries
+\(B_0,\ldots,B_d\), and
+\begin{align}
+  \cI_d
+  &=
+  \frac12\sum_{x=0}^{1}\sum_{y=0}^{d-1}
+  \left(
+    \omega^{xy}A_x\otimes B_y+
+    \omega^{-xy}A_x^\dagger\otimes B_y^\dagger
+  \right),\label{eq:I}\\
+  \overline{\cI}_d
+  &=
+  \cI_d+
+  \frac12\left(
+    A_0\otimes B_d+A_0^\dagger\otimes B_d^\dagger
+  \right).\label{eq:Ibar}
+\end{align}
+These are Eqs.~(11) and (10), respectively, of
+Ref.~\cite{PeritoEtAl2026}.  Put
+\begin{equation}
+  M_d=2\csc\!\left(\frac{\pi}{2d}\right).
+  \label{eq:Md}
+\end{equation}
+The exact operator bound
+\(\cI_d\leq M_d\Id\), proved in a companion note
+\cite{KriebelBound2026}, gives
+\begin{equation}
+  \overline{\cI}_d\leq(M_d+1)\Id.
+  \label{eq:bar-bound}
+\end{equation}
+Section~\ref{sec:upper} recalls a self-contained proof.
+
+For the output settings \(x=1,y=d\), let
+\(\sigma_E^{ab}\) be Eve's subnormalized conditional states.  Their guessing
+probability is
+\[
+  G(AB\mid1,d,E)
+  =
+  \max_{\{Q_{ab}\}}\sum_{a,b}\Tr(Q_{ab}\sigma_E^{ab}).
+\]
+Maximal private global randomness would require
+\(\sigma_E^{ab}=\rho_E/d^2\), and hence \(G=1/d^2\).
+
+\begin{theorem}[Failure of maximal global randomness]\label{thm:main}
+For every integer \(d\geq4\), there is an explicit admissible strategy on
+\(\bbC^d\otimes\bbC^d\), with \(\cH_E=\bbC\), such that
+\[
+  \langle\overline{\cI}_d\rangle=M_d+1
+\]
+but
+\begin{equation}
+  G(AB\mid1,d,E)
+  \geq\frac1{d^2}
+  +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+  >\frac1{d^2}.
+  \label{eq:guess-gap}
+\end{equation}
+For the same strategy, each Alice and Bob marginal is uniform.  Thus maximal
+violation does not force maximal observed joint uniformity, and therefore
+cannot force maximal private global randomness.
+\end{theorem}
+
+Under the operator definitions \eqref{eq:I}--\eqref{eq:Ibar}, the maximum in
+Theorem~\ref{thm:main} is fixed by \eqref{eq:bar-bound} and an attaining
+strategy.  Equation~(17) of Ref.~\cite{PeritoEtAl2026} likewise gives
+\(M_d\) for the unaugmented strategy, and its \(d=3\) discussion gives the
+augmented value \(5=M_3+1\).  The sentence preceding Conjecture~2 and the
+conjecture itself print an additional factor \(d\) in the first term.  We
+therefore treat the displayed operators and Eq.~(17) as authoritative.  The
+counterexample addresses the conjecture's substantive assertion that
+\emph{maximal violation} of the first augmented family certifies
+\(2\log_2d\) random bits.
+
+\section{The exact Bell upper certificate}\label{sec:upper}
+
+We reproduce the argument because global optimality is essential to the
+counterexample.  Write
+\[
+  C_y=A_0+\omega^yA_1,\qquad U=A_0^\dagger A_1,\qquad
+  F_d(U)=\sum_{y=0}^{d-1}\absop{\Id+\omega^yU}.
+\]
+
+\begin{lemma}[Polar positive-factor identity]\label{lem:polar}
+Let \(C=V\absop C\) be the polar decomposition of a finite-dimensional
+operator; \(V\) may be a partial isometry.  If \(B\) is unitary, then
+\[
+  P=\absop{C^\dagger}^{1/2}\otimes\Id
+    -V\absop C^{1/2}\otimes B
+\]
+satisfies
+\begin{equation}
+  \frac{\absop C+\absop{C^\dagger}}2\otimes\Id
+  -\Reop(C\otimes B)
+  =\frac12P^\dagger P.
+  \label{eq:polar}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The initial projection \(V^\dagger V\) is the support projection of
+\(\absop C\), while polar functional calculus gives
+\(\absop{C^\dagger}^{1/2}V=V\absop C^{1/2}\).  Consequently,
+\[
+\begin{aligned}
+ P^\dagger P
+ &=
+ \absop{C^\dagger}\otimes\Id+
+ \absop C^{1/2}V^\dagger V\absop C^{1/2}\otimes B^\dagger B\\
+ &\quad-C\otimes B-C^\dagger\otimes B^\dagger\\
+ &=
+ (\absop C+\absop{C^\dagger})\otimes\Id
+ -C\otimes B-C^\dagger\otimes B^\dagger.
+\end{aligned}
+\]
+This also shows explicitly why no invertibility assumption is needed.
+\end{proof}
+
+\begin{lemma}[Sharp scalar bound]\label{lem:scalar}
+For \(\lvert z\rvert=1\),
+\begin{equation}
+  \sum_{y=0}^{d-1}\lvert1+\omega^yz\rvert\leq M_d,
+  \label{eq:scalar}
+\end{equation}
+with equality exactly when
+\begin{equation}
+  z^d=(-1)^{d-1}.
+  \label{eq:equality-roots}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Write \(z=\e^{2is}\), \(h=\pi/d\), and \(a=h/2\).  Half the left side is
+\[
+  G_d(s)=\sum_{y=0}^{d-1}\lvert\cos(s+yh)\rvert,
+\]
+which has period \(h\).
+
+If \(d=2m+1\), take \(-a\leq s\leq a\) and reindex by
+\(k=-m,\ldots,m\).  Every \(s+kh\) lies in
+\([-\pi/2,\pi/2]\), since \(a+mh=\pi/2\), and the finite cosine sum gives
+\[
+  G_d(s)=\sum_{k=-m}^{m}\cos(s+kh)=\csc(a)\cos s.
+\]
+Its maximum occurs exactly at \(s\equiv0\pmod h\), equivalently \(z^d=1\).
+
+If \(d=2m\), take \(0\leq s\leq h\).  The first \(m\) cosines are
+nonnegative and the last \(m\) nonpositive; endpoints cause no ambiguity
+because the boundary cosine vanishes.  Two finite cosine sums give
+\[
+  G_d(s)
+  =
+  \sum_{y=0}^{m-1}\cos(s+yh)
+  -\sum_{y=m}^{2m-1}\cos(s+yh)
+  =\csc(a)\cos(s-a).
+\]
+Its maximum occurs exactly at \(s\equiv a\pmod h\), equivalently \(z^d=-1\).
+Multiplying by two proves both claims.
+\end{proof}
+
+Because \(\Id+\omega^yU\) is normal,
+\[
+  \absop{C_y}=\absop{\Id+\omega^yU},\qquad
+  \absop{C_y^\dagger}
+  =A_0\absop{\Id+\omega^yU}A_0^\dagger.
+\]
+Functional calculus and Lemma~\ref{lem:scalar} give
+\(F_d(U)\leq M_d\Id\).  Summing Lemma~\ref{lem:polar} therefore yields the
+exact gap decomposition
+\begin{equation}
+\boxed{
+\begin{aligned}
+ M_d\Id-\cI_d
+ ={}&\frac12\sum_{y=0}^{d-1}P_y^\dagger P_y\\
+ &+\frac12\left[
+ M_d\Id-F_d(U)
+ +A_0\bigl(M_d\Id-F_d(U)\bigr)A_0^\dagger
+ \right]\otimes\Id.
+\end{aligned}}
+\label{eq:gap}
+\end{equation}
+Every term is positive.  This proves
+\(\cI_d\leq M_d\Id\) for arbitrary unitaries, even without the order
+relations, and \eqref{eq:bar-bound} follows from
+\(\Reop(A_0\otimes B_d)\leq\Id\).
+
+\section{Weighted-shift maximizers}\label{sec:family}
+
+Let
+\[
+  X\lvert j\rangle=\lvert j+1\bmod d\rangle,\qquad
+  \delta_d=\begin{cases}0,&d\text{ odd},\\1,&d\text{ even},\end{cases}
+\]
+and enumerate the equality roots from Lemma~\ref{lem:scalar} by
+\begin{equation}
+  z_k=\exp\!\left(\frac{\pi i(2k+\delta_d)}d\right),
+  \qquad k=0,\ldots,d-1.
+  \label{eq:zk}
+\end{equation}
+For any ordering
+\(\kappa=(\kappa_0,\ldots,\kappa_{d-1})\) of these roots, define
+\begin{align*}
+ Z_\kappa&=\operatorname{diag}
+ (z_{\kappa_0},\ldots,z_{\kappa_{d-1}}),\\
+ s_{y,k}&=\frac{1+\omega^yz_k}{\lvert1+\omega^yz_k\rvert},\\
+ S_y^\kappa&=\operatorname{diag}
+ (s_{y,\kappa_0},\ldots,s_{y,\kappa_{d-1}}),\\
+ H_y^\kappa&=\operatorname{diag}
+ (\lvert1+\omega^yz_{\kappa_0}\rvert,\ldots,
+  \lvert1+\omega^yz_{\kappa_{d-1}}\rvert).
+\end{align*}
+The denominators never vanish because \(-1\) is not a root of
+\(t^d-(-1)^{d-1}\).
+
+\begin{proposition}[Every root ordering gives a maximizer]
+\label{prop:maximizer}
+On \(\bbC^d\otimes\bbC^d\), set
+\begin{equation}
+\begin{aligned}
+ A_0&=X,& A_1&=XZ_\kappa,\\
+ V_y&=XS_y^\kappa,& B_y&=\overline{V_y}\quad(0\leq y<d),\\
+ && B_d&=X,
+\end{aligned}
+\label{eq:strategy}
+\end{equation}
+and use
+\[
+  \lvert\Phi_d\rangle
+  =\frac1{\sqrt d}\sum_{j=0}^{d-1}\lvert j,j\rangle.
+\]
+All observables are unitary, all have \(d\)-th power \(\Id\), and
+\[
+  \langle\Phi_d\vert\overline{\cI}_d\vert\Phi_d\rangle=M_d+1.
+\]
+\end{proposition}
+
+\begin{proof}
+The \(z_k\) are all roots of \(t^d-(-1)^{d-1}\).  Comparing the constant
+term and evaluating the polynomial at \(-1\) give
+\begin{equation}
+  \prod_kz_k=1,\qquad
+  \prod_k(1+\omega^yz_k)=2.
+  \label{eq:products}
+\end{equation}
+Multiplication by \(\omega^y\) merely permutes the roots.  The second product
+is real and positive, so
+\[
+  \prod_ks_{y,k}=1.
+\]
+For arbitrary weights \(t_j\),
+\begin{equation}
+  \left(X\operatorname{diag}(t_0,\ldots,t_{d-1})\right)^d
+  =\left(\prod_jt_j\right)\Id.
+  \label{eq:shift-power}
+\end{equation}
+Equations \eqref{eq:products}--\eqref{eq:shift-power} prove every order
+relation in \eqref{eq:strategy}; unitarity is immediate.
+
+Moreover,
+\[
+  A_0+\omega^yA_1
+  =X(\Id+\omega^yZ_\kappa)
+  =V_yH_y^\kappa,
+\]
+which is its polar decomposition.  The maximally entangled trace identity
+\[
+  \langle\Phi_d\vert R\otimes S\vert\Phi_d\rangle
+  =\frac1d\Tr(RS^T)
+\]
+and \(B_y^T=V_y^\dagger\) give
+\[
+  \langle\cI_d\rangle
+  =\frac1d\sum_{j,y}\lvert1+\omega^yz_{\kappa_j}\rvert
+  =\frac1d\sum_jM_d=M_d.
+\]
+Finally, \(X\otimes X\) fixes \(\lvert\Phi_d\rangle\), so the added
+correlator equals one.  The upper bound \eqref{eq:bar-bound} proves global
+optimality.
+\end{proof}
+
+\section{The designated output distribution}
+
+The eigenvectors of \(A_0=X\) and \(A_1=XZ_\kappa\) can be written
+\[
+  u_c=\frac1{\sqrt d}\sum_{j=0}^{d-1}\omega^{-cj}\lvert j\rangle,
+  \qquad
+  v_a=\frac1{\sqrt d}\sum_{j=0}^{d-1}q_j\omega^{-aj}\lvert j\rangle,
+\]
+where
+\begin{equation}
+  q_0=1,\qquad q_{j+1}=z_{\kappa_j}q_j.
+  \label{eq:q}
+\end{equation}
+The sequence is cyclic because \(\prod_kz_k=1\).  Put
+\[
+  \widehat q_m=\sum_{j=0}^{d-1}q_j\omega^{mj}.
+\]
+The transpose of the outcome-\(b\) projector of \(B_d=X\) is the
+outcome-\((-b)\) projector of \(A_0\).  Hence
+\begin{equation}
+  p(a,b\mid1,d)
+  =\frac1d\lvert\langle u_{-b},v_a\rangle\rvert^2
+  =\frac{\lvert\widehat q_{-(a+b)}\rvert^2}{d^3}.
+  \label{eq:probability}
+\end{equation}
+Parseval gives
+\(\sum_m\lvert\widehat q_m\rvert^2=d^2\).  As \(a+b\) traverses all
+residues when either output is fixed, \eqref{eq:probability} immediately
+implies
+\begin{equation}
+  \sum_bp(a,b\mid1,d)=\sum_ap(a,b\mid1,d)=\frac1d.
+  \label{eq:marginals}
+\end{equation}
+
+For \(d\geq4\), choose
+\begin{equation}
+  \kappa=(0,1,\ldots,d-3,d-1,d-2),
+  \label{eq:bad-order}
+\end{equation}
+the canonical ordering with its final two entries exchanged.  Consider the
+second cyclic autocorrelation
+\[
+  C_2=\sum_jq_{j+2}\overline{q_j}
+  =\sum_jz_{\kappa_j}z_{\kappa_{j+1}}.
+\]
+For the canonical ordering this sum vanishes.  Exchanging the last two
+entries changes only the affected summands and gives
+\begin{equation}
+  C_2=(z_{d-1}-z_{d-2})(z_{d-3}-z_0),
+  \qquad
+  \lvert C_2\rvert
+  =4\sin(\pi/d)\sin(3\pi/d)>0.
+  \label{eq:C2}
+\end{equation}
+Thus the Fourier magnitudes cannot all equal \(d\), so the joint table is
+not uniform.
+
+For the quantitative gap, put
+\[
+  x_m=\lvert\widehat q_m\rvert^2-d,\qquad
+  \Delta=\max_mx_m.
+\]
+Then \(\sum_mx_m=0\), and Fourier inversion at lag two gives
+\[
+  C_2=\frac1d\sum_mx_m\omega^{-2m}.
+\]
+Here the subtracted constant contributes zero because \(d\geq4\) and
+\(\sum_m\omega^{-2m}=0\).
+The nonzero mean-zero sequence \(x_m\) has at most \(d-1\) positive entries.
+Therefore
+\[
+  \sum_m\lvert x_m\rvert
+  =2\sum_{x_m>0}x_m
+  \leq2(d-1)\Delta,
+\]
+and
+\[
+  \Delta\geq\frac{d\lvert C_2\rvert}{2(d-1)}.
+\]
+With trivial Eve, the optimal guessing strategy selects a most likely output
+pair, so
+\[
+  G=\max_{a,b}p(a,b\mid1,d)=\frac{d+\Delta}{d^3}.
+\]
+Substitution of \eqref{eq:C2} proves \eqref{eq:guess-gap} and
+Theorem~\ref{thm:main}.
+
+\section{A sparse exact four-outcome certificate}\label{sec:d4}
+
+Let \(\zeta=\e^{\pi i/8}\), so
+\(\mathbb Q(\zeta)\cong\mathbb Q[x]/(x^8+1)\).  At \(d=4\), choose
+\(\kappa=(0,1,3,2)\).  Proposition~\ref{prop:maximizer} becomes
+\[
+  A_0=X,\qquad
+  A_1=X\operatorname{diag}(\zeta^2,\zeta^6,\zeta^{14},\zeta^{10}),
+  \qquad B_4=X.
+\]
+The four polar unitaries
+\(
+V_y=X\operatorname{diag}(\zeta^{e_{y,0}},\ldots,\zeta^{e_{y,3}})
+\)
+are encoded by
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad}c}
+\toprule
+y&e_{y,0}&e_{y,1}&e_{y,2}&e_{y,3}\\
+\midrule
+0&1&3&15&13\\
+1&3&13&1&15\\
+2&13&15&3&1\\
+3&15&1&13&3\\
+\bottomrule
+\end{array}
+\qquad B_y=\overline{V_y}.
+\]
+These sparse monomial formulas are exact matrices over
+\(\mathbb Q(\zeta_{16})\); no numerical polar decomposition is part of the
+certificate.
+
+The sequence \eqref{eq:q} is
+\[
+  q=(1,\zeta^2,-1,\zeta^6).
+\]
+With \(\omega=i\), direct finite Fourier transformation gives
+\[
+  \widehat q=(i\sqrt2,\ 2+i\sqrt2,\ -i\sqrt2,\ 2-i\sqrt2),
+  \qquad
+  \bigl(\lvert\widehat q_m\rvert^2\bigr)_m=(2,6,2,6).
+\]
+Equation~\eqref{eq:probability} therefore gives
+\begin{equation}
+  p(a,b\mid1,4)=
+  \begin{cases}
+    1/32,&a+b\text{ even},\\
+    3/32,&a+b\text{ odd}.
+  \end{cases}
+  \label{eq:d4-table}
+\end{equation}
+Consequently,
+\[
+  G(AB\mid1,4,E)=\frac3{32}>\frac1{16},
+  \qquad
+  H_{\min}(AB\mid E)=5-\log_2 3<4.
+\]
+The independent verifier reconstructs the observables from the displayed
+exponents and checks, using exact rational arithmetic modulo \(x^8+1\),
+all unitarity and fourth-order relations, all polar factorizations, the
+original Bell expression, both probability calculations, uniform marginals,
+and the strict guessing gap.
+
+\section{Consequences, verification, and scope}
+
+\begin{enumerate}[leftmargin=1.55em]
+  \item The maximal-randomness assertion in Conjecture~2 of
+  Ref.~\cite{PeritoEtAl2026}, interpreted for its displayed first augmented
+  Bell family, is false for every \(d\geq4\).
+  \item The obstruction needs neither a direct sum nor an Eve-held flag.
+  It occurs on one \(d\times d\) block, on a maximally entangled state, while
+  both local marginals remain uniform.
+  \item The Bell maximum does not determine a unique target behavior in these
+  dimensions.  In particular, the first augmented family cannot self-test a
+  unique maximizing correlation.
+  \item No universal near-maximal bound converging to \(1/d^2\) as the Bell
+  deficit tends to zero can hold for this family when \(d\geq4\), because the
+  exact maximizing face already contains nonuniform behaviors.
+  \item The complete maximizing face, its worst guessing probability, and the
+  maximal-violation randomness question for \(d=2,3\) remain unresolved here.
+  The Appendix proves only a multiplicity restriction, not a classification.
+\end{enumerate}
+
+The source preprint's Appendix B.1 fixes the \emph{full canonical
+probability distribution} before running its NPA guessing-probability
+calculation.  That calculation can support randomness of the fixed canonical
+behavior without excluding another behavior at the same Bell maximum.  The
+strategy above supplies exactly such a behavior.  This note does not dispute
+the separate protocols of Farkas, Mironowicz, and Augusiak
+\cite{FarkasEtAl2026}, nor the distinct three-outcome robustness study of
+D'Avino et al.~\cite{DavinoEtAl2026}.
+
+The accompanying package contains the TeX source, the exact
+\(\mathbb Q(\zeta_{16})\) verifier, a compact machine-readable certificate,
+the all-dimensional constructor and symbolic family certificate, floating
+point regressions for \(d=2,\ldots,12\), historical discovery code, claims and
+assumptions ledgers, failed approaches, a research log, and SHA-256 hashes.
+The finite programs support the proof but do not formally quantify over all
+\(d\).
+
+A targeted search on 26 July 2026 found no public equivalent of the
+weighted-shift counterexample.  This does not establish absolute novelty:
+unindexed, unpublished, or concurrent work may exist.  The appropriate
+priority wording is therefore ``to the best of our knowledge.''  No
+originating author or other researcher was contacted.
+
+The proof architecture, derivations, manuscript, verification code, and
+literature audit were developed with heavy assistance from ChatGPT 5.6 Sol
+under Alec Kriebel's direction.  Alec Kriebel is the named human author but
+cannot independently validate the mathematical claims.  Independent expert
+checking remains necessary.
+
+\appendix
+\section{A support-level multiplicity restriction}\label{app:multiplicity}
+
+This appendix records a structural consequence that is not needed for the
+counterexample.
+
+\begin{lemma}[Reflection-product rank bound]\label{lem:reflection}
+Let \(T\) be a unitary on an \(n\)-dimensional space and let \(E\) be an
+orthogonal projection of rank \(r\).  If
+\[
+  T^d=\Id,\qquad \bigl(T(\Id-2E)\bigr)^d=-\Id,
+\]
+then \(n\leq dr\).
+\end{lemma}
+
+\begin{proof}
+Expanding the second product and using \(T^d=\Id\) expresses \(-\Id\) as a
+product of \(d\) conjugates of the reflection \(\Id-2E\).  For arbitrary
+operators \(R_1,\ldots,R_d\),
+\[
+  \operatorname{rank}(\Id-R_1\cdots R_d)
+  \leq\sum_{j=1}^d\operatorname{rank}(\Id-R_j),
+\]
+by repeatedly using
+\(\Id-AB=(\Id-A)+A(\Id-B)\).  Each reflected defect has rank \(r\);
+the left side is \(\operatorname{rank}(2\Id)=n\).
+\end{proof}
+
+\begin{proposition}[Equal supported multiplicities]\label{prop:multiplicity}
+Let a finite-dimensional admissible strategy and state
+\(\lvert\Psi\rangle_{ABE}\) attain
+\(\langle\overline{\cI}_d\rangle=M_d+1\).  Put
+\[
+  \rho_A=\Tr_{BE}\lvert\Psi\rangle\!\langle\Psi\rvert,\qquad
+  K=\supp\rho_A,\qquad U=A_0^\dagger A_1.
+\]
+On \(K\), all \(d\) roots of \(z^d=(-1)^{d-1}\) occur as eigenvalues of
+\(U\) with the same multiplicity.  In particular,
+\[
+  d\mid\dim K.
+\]
+No statement is made about unused sectors orthogonal to \(K\).
+\end{proposition}
+
+\begin{proof}
+Equality in the two bounds
+\(\langle\cI_d\rangle\leq M_d\) and
+\(\langle\Reop(A_0\otimes B_d)\rangle\leq1\) is forced separately.
+Every positive term in \eqref{eq:gap} therefore vanishes on the state:
+\begin{align}
+  P_y\lvert\Psi\rangle&=0,\label{eq:Py0}\\
+  \bigl(M_d\Id-F_d(U)\bigr)\otimes\Id\lvert\Psi\rangle&=0,\label{eq:Q0}\\
+  (A_0\otimes B_d\otimes\Id_E)\lvert\Psi\rangle&=\lvert\Psi\rangle.
+  \label{eq:A0stab}
+\end{align}
+The last implication uses
+\(\Id-\Reop W=\frac12(\Id-W)^\dagger(\Id-W)\) for unitary \(W\).
+
+For any Alice operator \(R\),
+\begin{equation}
+  (R\otimes\Id)\lvert\Psi\rangle=0
+  \quad\Longleftrightarrow\quad R|_K=0,
+  \label{eq:support}
+\end{equation}
+as follows from a Schmidt decomposition across \(A:(BE)\).
+Thus \eqref{eq:Q0} places \(K\) inside the equality spectral subspace
+\[
+  L=\operatorname{ran}\mathbf1_{\mathcal Z_d}(U),
+  \qquad
+  \mathcal Z_d=\{z:\lvert z\rvert=1,\ z^d=(-1)^{d-1}\}.
+\]
+Equation~\eqref{eq:A0stab} gives \(A_0K=K\).
+
+We next justify a cancellation in \eqref{eq:Py0} without assuming that a
+polar factor is globally invertible.  Let \(C_y=V_y\absop{C_y}\) be the
+canonical polar decomposition, let
+\[
+  E_y^{\rm bad}=\mathbf1_{\{-\omega^{-y}\}}(U),\qquad
+  F_y=\supp\absop{C_y^\dagger}
+  =A_0(\Id-E_y^{\rm bad})A_0^\dagger.
+\]
+The bad phase is not in \(\mathcal Z_d\), so \(E_y^{\rm bad}K=0\).
+Together with \(A_0K=K\), this gives \(F_y|_K=\Id_K\).  Also
+\(F_yV_y=V_y\), because \(F_y\) is the final support of the polar partial
+isometry.  Since
+\[
+  P_y=
+  (\absop{C_y^\dagger}^{1/2}\otimes\Id)
+  (\Id-V_y\otimes B_y),
+\]
+the vector
+\[
+  q_y=(\Id-V_y\otimes B_y\otimes\Id_E)\lvert\Psi\rangle
+\]
+belongs to \(\operatorname{ran}F_y\otimes\cH_{BE}\).
+Equation~\eqref{eq:Py0} places the same vector in the kernel of
+\(\absop{C_y^\dagger}^{1/2}\otimes\Id\), which is orthogonal to that range.
+Hence \(q_y=0\), or
+\begin{equation}
+  (V_y\otimes B_y\otimes\Id_E)\lvert\Psi\rangle=\lvert\Psi\rangle.
+  \label{eq:Vstab}
+\end{equation}
+
+The space \(K\) lies in the initial support of \(V_y\), so the polar factor
+is an isometry there.  Tracing \eqref{eq:Vstab} over \(BE\) gives
+\(\rho_A=V_y\rho_AV_y^\dagger\), and therefore \(V_yK=K\).  Hence
+\[
+  S_y=A_0^\dagger V_y
+\]
+preserves \(K\).  On \(L\), functional calculus gives
+\[
+  S_y=s_y(U),\qquad
+  s_y(z)=\frac{1+\omega^yz}{\lvert1+\omega^yz\rvert},
+  \qquad s_y(z)^2=\omega^yz.
+\]
+It follows that \(U=\omega^{-y}S_y^2\) preserves \(K\).  We may now let
+\(E_k\) denote the spectral projections of \(U|_K\) for the \(d\) roots in
+\(\mathcal Z_d\).
+
+Put \(\eta=\e^{\pi i/d}\), and read \(y+1\) modulo \(d\), so
+\(S_d=S_0\) and \(V_d=V_0\) in the next relation.  Comparing adjacent
+half-angle phases shows that for each \(y\) exactly one equality root crosses
+the sign cut:
+\[
+  \frac{1+w}{\lvert1+w\rvert}=\e^{i\theta/2}
+  \quad\text{when }w=\e^{i\theta},\ -\pi<\theta<\pi.
+\]
+Multiplication by \(\omega\) advances the half-angle by \(\pi/d\); among the
+equally spaced equality roots, exactly one principal argument wraps across
+\(\pi\), contributing an additional minus sign.  Thus
+\begin{equation}
+  S_y^\dagger S_{y+1}
+  =\eta(\Id-2E_{k(y)}),
+  \qquad
+  V_{y+1}=\eta V_y(\Id-2E_{k(y)}),
+  \label{eq:adjacent}
+\end{equation}
+and \(y\mapsto k(y)\) is a permutation of the \(d\) root labels.
+Raising \eqref{eq:Vstab} to the \(d\)-th power, using \(B_y^d=\Id\), and
+applying \eqref{eq:support} gives \(V_y^d=\Id\) on \(K\).
+Since \(\eta^d=-1\), equation~\eqref{eq:adjacent} gives
+\[
+  \bigl(V_y(\Id-2E_{k(y)})\bigr)^d=-\Id.
+\]
+Lemma~\ref{lem:reflection}, with \(n=\dim K\), yields
+\[
+  n\leq d\,\operatorname{rank}E_k
+\]
+for every \(k\).  But the \(E_k\) sum to \(\Id_K\), so their ranks sum to
+\(n\).  Every inequality must therefore be an equality:
+\(\operatorname{rank}E_k=n/d\) for all \(k\).
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:multiplicity} is restricted to exact maximizers of the
+\emph{augmented} functional because the proof uses the \(A_0\)-\(B_d\)
+stabilizer.  Equal multiplicities do not imply a Weyl representation,
+uniqueness, or self-testing; the weighted-shift family is the obstruction.
+\end{remark}
+
+\begin{thebibliography}{9}
+
+\bibitem{PeritoEtAl2026}
+I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
+\newblock Bell inequalities tailored to optimal global randomness
+  certification,
+\newblock \emph{arXiv:2606.21362v3} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21362}.
+
+\bibitem{KriebelBound2026}
+A. Kriebel,
+\newblock The exact quantum value of a cyclic Bell operator,
+\newblock provisional AI-assisted research note (2026),
+\newblock \href{https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/}
+  {public paper page}.
+
+\bibitem{FarkasEtAl2026}
+M. Farkas, P. Mironowicz, and R. Augusiak,
+\newblock Maximal global device-independent randomness from projective
+  measurements in every dimension,
+\newblock \emph{arXiv:2606.21369v2} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21369}.
+
+\bibitem{DavinoEtAl2026}
+R. D'Avino, I. Perito, P. Mironowicz, A. Ac\'in, and R. Augusiak,
+\newblock Noise robustness of three outcome Bell certified quantum randomness,
+\newblock \emph{arXiv:2606.21371v2} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21371}.
+
+\end{thebibliography}
+
+\end{document}
