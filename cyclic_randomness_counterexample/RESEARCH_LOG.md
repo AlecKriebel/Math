@@ -55,3 +55,15 @@ All timestamps use America/Los_Angeles.
   corrected, and the page, PDF, homepage, and sitemap return the expected
   content types. Exact and numerical suites pass. Publication hashes and the
   public timestamp remain to be frozen.
+
+- **18:34 PDT - Public release verified (100% complete).**
+  Released the complete note, source package, exact certificate, and paper
+  page to public `main` in commit
+  `e188fca8fb6f19a30e5c18363cf9b78ddc5ed312`. GitHub Pages successfully built
+  and deployed that exact revision. Retrieved the live page, source path, and
+  ten-page PDF; the served PDF SHA-256 is
+  `73c2e2ab39de79357d7b441a2a4c30f901a13e99e15bf086540783041f7d6051`,
+  identical to the frozen artifact. The public record preserves the
+  unreviewed and AI-assisted status, the qualified novelty language, and the
+  unresolved cases and classification questions. No outside researcher was
+  contacted.

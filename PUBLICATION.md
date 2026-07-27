@@ -203,6 +203,39 @@ timestamp—not correctness or absolute priority. The note does not claim
 uniqueness, self-testing, or all-dimensional maximal randomness. No researcher
 was contacted, and the note remains unreviewed.
 
+## Cyclic Bell maximal-randomness counterexamples
+
+“Maximal violation without maximal global randomness in a cyclic Bell family”
+first entered `main` in commit
+[`e188fca8fb6f19a30e5c18363cf9b78ddc5ed312`](https://github.com/AlecKriebel/Math/commit/e188fca8fb6f19a30e5c18363cf9b78ddc5ed312)
+at **27 July 2026, 01:31:35 UTC** (**26 July 2026, 18:31:35 PDT**).
+The GitHub Pages workflow for that exact commit completed successfully at
+**27 July 2026, 01:32:41 UTC**. The
+[paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/),
+[PDF](https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/paper.pdf),
+and [source package](https://github.com/AlecKriebel/Math/tree/main/cyclic_randomness_counterexample)
+were then retrieved successfully. The served ten-page PDF had SHA-256
+`73c2e2ab39de79357d7b441a2a4c30f901a13e99e15bf086540783041f7d6051`,
+identical to the frozen release artifact.
+
+The note gives explicit order-\(d\) weighted-shift strategies for every
+\(d\ge4\) that attain the exact maximum of the first augmented cyclic Bell
+family while producing a nonuniform designated joint-output distribution.
+Eve is one-dimensional and both local marginals remain uniform. Thus the
+counterexamples disprove the maximal-randomness assertion under the displayed
+operator normalization more directly than an Eve-held classical flag would.
+At \(d=4\), an exact certificate over \(\mathbb Q(\zeta_{16})\) gives
+\(G=3/32>1/16\).
+
+The release includes a complete analytic manuscript, independent exact
+certificate generator and verifier, all-dimensional formulas, regression
+checks through \(d=12\), claims and assumptions ledgers, failed approaches,
+and a focused source audit. A targeted search found no prior public equivalent
+of this weighted-shift construction, but this does not establish absolute
+novelty. The cases \(d=2,3\), the complete maximizing face, and its exact
+worst-case guessing probability remain unresolved. No researcher was
+contacted, and the note remains unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
