@@ -1,5 +1,90 @@
 # Campaign State
 
+## Checkpoint 055 — 2026-07-26 18:00 PDT
+
+- Campaign day: 2 of 27.  The universal conjecture remains unresolved, the
+  accepted lower frontier remains 13, and **no order-14 computation has
+  begun**.  The proof-first lane remains primary.
+- **Exact projection gluing (C-069).**  In the \(k=3\) slice with no full
+  family-response list, the three valid frozen-color bipartitions glue
+  exactly when an explicit 2-CNF formula is satisfiable.  Its Boolean
+  variables orient bipartite components; singleton lists give parity units;
+  and complement edges between different two-lists give the cross-projection
+  clauses.  A successful gluing transports across independent-family ridges
+  without changing the unlabelled clique partition.  The mixed path
+  \[
+    \{a\},\ \{a,c\},\ \{b,c\},\ \{b\}
+  \]
+  is the inclusion-minimal two-unit/one-clause obstruction.  Full-list
+  vertices remain a separate unresolved slice.
+- **Equality-specific mixed-path saturation (C-070).**  For an arbitrary
+  specified eternal family with
+  \(\gamma=\alpha=\gamma^\infty=3\), the mixed path forces both endpoint
+  colors and both endpoint adjacencies at every middle-pair witness, the
+  middle color sees both path ends, and three family states share the end
+  ridge.  The common complement neighborhood \(Z\) of that ridge is a
+  nonempty external clique.  Every \(z\in Z\) closes the path to an induced
+  \(C_5\) in the complement; by the accepted odd-wheel theorem, this
+  \(C_5\) is hub-free.  A second external co-state clique \(Y_w\) is forced
+  for each original witness \(w\).
+- Both symbolic advances survived independent hostile review.  The
+  projection review exhaustively compared the exact Boolean construction
+  with direct list colorings on 40,113 bipartite abstract systems and
+  replayed the named one-guard families.  The mixed-path review audited the
+  arbitrary-family attack tree and independently checked all 330 obligations
+  in the gamma-two boundary graph `HFzvvf]`.  The boundary remains explicit:
+  these theorems force a richer obstruction but do not yet contradict it.
+- Commit `a997ced324d130d2b26fcfda8a05febafd9d4d96` froze a complementary
+  exact local synthesis.  Two independent implementations exhaustively
+  scanned all \(2^{11}=2,048\) order-eight and
+  \(2^{19}=524,288\) order-nine labelled completions of the distinguished
+  mixed template.  No \(\gamma=\alpha=3\) graph admits an arbitrary proper
+  eternal family with the exact six positive and six negative swaps.  This
+  is C-071 `OBSERVED`: it is not an order-nine frontier theorem and says
+  nothing about order ten or higher.
+- The local-synthesis hostile audit reproduced every mask count, retained
+  mask digest, safe-kernel extinction profile, checkpoint field, bounded
+  base-orderability CEGAR count, and named graph replay.  Its two
+  documentation findings were corrected and reaccepted unconditionally.
+- A separate fixed-cap extension sketch was deliberately **not** promoted.
+  Independent reconstruction exposed that its provisional 239-type count
+  lacked a frozen admissibility predicate; the all-safe-family filter would
+  also be too strong for an arbitrary specified family.  The count is
+  superseded, and no order-13 exclusion is inferred from it.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Frozen-color parameter induction and 2-SAT gluing | active-primary | Eliminate every inconsistent 2-SAT bicycle under domination equality; full-list vertices are not represented in the three projections |
+| Mixed \(k=3\) response core | active-independent | Combine the forced hub-free complement \(C_5\), end-ridge clique \(Z\), original witness clique \(W\), and co-state cliques \(Y_w\) to force a new response color or a dominating pair |
+| Cross-state ridge covariance | active-supporting | Transport is exact and preserves successful clique partitions, but the current gamma-two unsatisfiable countermodels have no nontrivial independent ridge pair |
+| Bounded mixed-template synthesis | closed-observed C-071 | Orders 8 and 9 are empty for the exact arbitrary-proper-family pattern; no higher-order or universal inference |
+| Fixed-cap extension sketch | superseded | Provisional type count was not bound to a sound arbitrary-family predicate; retained only as a failed-approach warning |
+| Order-13 finite synthesis | frozen fallback | C5/C7 at \(k=3\) and \(k=4,5\) remain open; no solver is running |
+| Order-14 computation | not started | Deliberately deferred while the proof lane continues to yield new mechanisms |
+
+### Running jobs and resources
+
+- No SAT solver, proof checker, graph generator, or production enumeration is
+  running.  Only bounded repository regression and publication checks are
+  permitted at this checkpoint.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The data volume has
+  approximately 16 GiB free and is 97% used.  No large certificate or
+  enumeration should be launched before a storage audit.
+
+### Next three highest-value actions
+
+1. Propagate response obligations around the forced induced \(C_5\) and the
+   \(W,Y_w,Z\) clique system, looking specifically for a new 2-SAT unit,
+   a forbidden cross-clause, or a dominating pair.
+2. Attack the full-list slice: determine whether domination equality forces
+   a full-list vertex into a controlled ridge network or permits it to be
+   eliminated while preserving the three frozen projections.
+3. Extract a family-independent contradiction criterion for a minimal
+   unsatisfiable 2-SAT bicycle; retain the prepared order-13 C5/C7
+   computation only as a resumable fallback.
+
 ## Checkpoint 054 — 2026-07-26 16:57 PDT
 
 - Commit `224af249d423419a887e737e6941b58f512c82a4` integrated and pushed the

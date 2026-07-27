@@ -107,7 +107,12 @@ and tagged
 conjecture. The conjecture remains open. The campaign has certified the
 order-12 frontier, reduced the order-13 parameter-three slice to two
 overlapping odd-hole templates, and is now prioritizing a universal
-minimum-counterexample proof before proceeding to order 14. The
+minimum-counterexample proof before proceeding to order 14.  The current
+proof lane reduces no-full-list projection compatibility exactly to 2-SAT
+and proves that its minimal mixed-path obstruction, if realized under
+domination equality, forces an external clique of induced hub-free
+complement-\(C_5\) closers.  This is a structural advance, not a resolution.
+The
 [public workstream](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/)
 is a dated snapshot; `STATE.md` and `CLAIMS.md` in the source package are the
 live records.

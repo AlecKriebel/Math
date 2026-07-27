@@ -180,8 +180,32 @@ proper one-guard eternal three-family while
 \(\gamma=2<\alpha=\gamma^\infty=\theta=3\), proving that the current dynamic
 lemmas alone cannot exclude it.  Under the missing equality \(\gamma=3\),
 the middle path pair instead forces an external clique of maximum-independent
-family states with exact ridge covariance.  Exploiting that witness clique is
-the next live proof mechanism.
+family states with exact ridge covariance.
+
+Claims C-069 and C-070 push this mechanism further.  In the no-full-list
+\(k=3\) slice, orienting the three frozen two-color projections is exactly a
+2-SAT problem: singleton lists give parity units, and complement edges
+between distinct two-lists give the cross-projection clauses.  The mixed
+four-vertex path is the inclusion-minimal two-unit/one-clause obstruction.
+For an arbitrary specified eternal family under
+\(\gamma=\alpha=\gamma^\infty=3\), that path now forces:
+
+- both endpoint colors and both endpoint adjacencies at every middle-pair
+  witness;
+- three family states on the common end ridge;
+- a nonempty external clique of uniquely interchangeable end-ridge
+  witnesses; and
+- an induced hub-free \(C_5\) in the complement through every vertex of that
+  clique.
+
+Thus the live proof target is no longer the abstract mixed path.  It is the
+compatibility of the minimal inconsistent 2-SAT pattern with its forced
+hub-free \(C_5\) and external witness-clique systems.  Exact gamma-two
+countermodels show that neither full local closure nor the first two witness
+layers suffice without domination equality.  Independent labelled searches
+also find no exact realization at orders eight or nine even for arbitrary
+proper eternal subfamilies; those bounded counts remain `OBSERVED` and do not
+raise the finite frontier.
 
 The same iteration proved exact response-list covariance between
 ridge-adjacent maximum independent states and family-supported monotone

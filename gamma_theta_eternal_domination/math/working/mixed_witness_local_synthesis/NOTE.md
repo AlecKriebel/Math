@@ -102,7 +102,7 @@ nine.  The program checks every mask in
 | \(\gamma=\alpha=3\) and all required states dominate | 0 | 96 |
 | unrestricted eternal-equality graphs in the structural pool | 9 | 1,150 |
 | unrestricted greatest family contains all six positive swaps | 0 | 0 |
-| nonempty safe family after all six negative swaps are banned | 0 | 0 |
+| nonempty safe family after all six negative swaps are banned, within the \(\gamma=\alpha=3\) frontier | 0 | 0 |
 | exact mixed-list realizations | **0** | **0** |
 
 At order eight the static requirements already contradict \(\gamma=3\):
@@ -278,8 +278,9 @@ python3 math/working/mixed_witness_local_synthesis/mixed_witness_local_synthesis
 
 The checkpoint files contain the next mask, all counters, and all retained
 mask lists.  `--resume` continues a run whose source hash and mask interval
-match.  A completed-checkpoint resume was tested and reproduced identical
-output bytes.
+match.  A completed-checkpoint resume reproduced every mathematical field;
+only the regenerated `completed_at` timestamp changed, so the output bytes
+and file hash changed accordingly.
 
 | artifact | SHA-256 |
 |---|---|

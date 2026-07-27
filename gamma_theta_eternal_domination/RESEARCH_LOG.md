@@ -2011,3 +2011,63 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   issued as a second manuscript.
 - Deployment and live-byte evidence are frozen in
   `results/cross_state_public_workstream_acceptance.json`.
+
+### 2026-07-26 18:00 — exact 2-SAT gluing and forced-\(C_5\) proof gate
+
+- The three frozen-color projections at \(k=3\) were glued exactly.  When
+  every family-response list has size one or two, choosing the orientation
+  of each non-anchor bipartite component is equivalent to solving a
+  specifically constructed 2-CNF formula.  Singleton lists impose parity
+  units, while complement edges between distinct two-lists impose the
+  clauses that forbid their shared-color collision.  Satisfiability is
+  equivalent to a compatible anchored coloring of the complement, hence to
+  the desired three-clique partition.
+- The mixed response-list path
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\) is the smallest obstruction of the form
+  two forced orientations plus one conflicting clause.  Successful
+  colorings transport across independent-state ridges with their unlabelled
+  clique partition literally unchanged.  The exact gamma-two families
+  `FDzro` and `HDzruf]` show that full closure and two witness layers do not
+  force the formula satisfiable; neither contains a nontrivial independent
+  ridge pair, so they do not nonvacuously test covariance on an
+  unsatisfiable instance.  Full-list vertices are invisible to the three
+  projections and remain a separate obstruction.
+- A second analytic pass used the missing equality \(\gamma=3\) directly.
+  For every middle-pair witness \(w\), both endpoint colors occur in its
+  response list and \(w\) sees both path ends.  The middle color also sees
+  both ends.  Three forced family states then share the end ridge
+  \(\{x_0,x_3\}\).  Since that pair cannot dominate, its common complement
+  neighborhood \(Z\) is a nonempty external clique; unique one-guard
+  responses force every \(z\in Z\) to close
+  \(x_0x_1x_2x_3\) to an induced complement \(C_5\).  The accepted
+  odd-wheel theorem makes each such \(C_5\) hub-free.  Each original witness
+  also forces a second external co-state clique \(Y_w\).
+- Independent hostile reviews accepted both proofs.  The projection review
+  checked all 46,656 three-outside-vertex abstract list systems, with exact
+  direct-coloring agreement on all 40,113 systems whose frozen projections
+  are bipartite.  It also replayed every named graph and family.  The
+  mixed-witness review independently checked the nine-vertex gamma-two
+  diagnostic `HFzvvf]`, its parameters, 55 retained states, all 330
+  unoccupied attack obligations, and the exact response lists.
+- A complementary exact synthesis enumerated all 2,048 and 524,288 labelled
+  completions of the distinguished order-eight and order-nine templates.
+  Among 62 and 8,985 graphs with \(\gamma=\alpha=3\), respectively, none
+  admits an arbitrary proper eternal family with the prescribed six positive
+  and six negative direct swaps.  A clean-room implementation reproduced
+  every count, mask digest, checkpoint field, fixed-point profile, and
+  bounded base-orderability CEGAR result.  This is C-071 `OBSERVED`, not an
+  order-nine frontier theorem or a higher-order exclusion.
+- The hostile synthesis review found two wording defects: a completed resume
+  changes only the regenerated `completed_at` field rather than reproducing
+  byte-identical JSON, and the zero banned-state-kernel count applies only
+  inside the \(\gamma=\alpha=3\) frontier.  Both were corrected; the reviewer
+  rebound the new hashes and returned an unconditional pass.
+- A provisional fixed 10-vertex cap extension count was rejected rather than
+  promoted.  The independent reconstruction verified the cap itself but
+  exposed that the 239-type exploratory count had no frozen admissibility
+  predicate.  Filtering against the entire 75-state cap kernel would be
+  unsoundly strong for an arbitrary specified family.  No order-13 result is
+  claimed from this lane.
+- Order 14 remains unstarted.  The universal proof lane now targets the
+  compatibility of an inconsistent 2-SAT bicycle with its forced hub-free
+  \(C_5\) and \(W,Y_w,Z\) witness systems, plus the separate full-list slice.

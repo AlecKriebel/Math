@@ -71,7 +71,7 @@ The decisive stage counts are:
 |---|---:|---:|
 | \(\gamma=\alpha=3\) | 62 | 8,985 |
 | all required states also dominate | 0 | 96 |
-| nonempty safe family after six bans | 0 | 0 |
+| nonempty safe family after six bans, within the \(\gamma=\alpha=3\) frontier | 0 | 0 |
 
 At order nine, 42 of the 96 static candidates have an unrestricted eternal
 family, but closure retains at most four of the six required positive
