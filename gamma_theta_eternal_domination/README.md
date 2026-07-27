@@ -207,6 +207,29 @@ also find no exact realization at orders eight or nine even for arbitrary
 proper eternal subfamilies; those bounded counts remain `OBSERVED` and do not
 raise the finite frontier.
 
+Claims C-072--C-076 sharpen both sides of this target.  In the exact mixed
+path, two additional end-edge witness cliques are forced, they are disjoint
+from one another and from every co-state witness clique, and the resulting
+five external witnesses prove that this exact pattern needs at least twelve
+vertices.  For the formerly separate full-list branch, a full response
+vertex forces three disjoint clique spokes, a second external clique layer,
+and an isolate-free bipartite complement link.  Ridge covariance puts
+different spoke types on opposite sides, so every possible color of the full
+vertex passes the complete local link test.  Coloring the full-list core
+first and extending the remainder is exactly the earlier 2-SAT construction
+with added units.
+
+The remaining obstruction is therefore global: one must show that at least
+one augmented 2-SAT instance is satisfiable.  An inclusion-minimal
+unsatisfiable instance is now classified into a two-unit chain, one-unit
+lollipop, or unit-free bicycle.  Full one-guard closure excludes the exact
+shortest lollipop and two-variable bicycle, but not arbitrary subdivisions or
+longer component connectors.  The order-12 graph `K{eYptMJynEn` is an
+important positive control: it has
+\(\gamma=\alpha=\gamma^\infty=\theta=3\), a genuine full greatest-family
+list, and a unique compatible anchored coloring.  Thus eliminating full
+lists would be false; the proof must select a globally compatible color.
+
 The same iteration proved exact response-list covariance between
 ridge-adjacent maximum independent states and family-supported monotone
 exchange paths between arbitrary independent states.  Hostile examples

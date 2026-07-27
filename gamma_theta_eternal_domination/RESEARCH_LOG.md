@@ -2096,3 +2096,61 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   evidence is frozen in
   `results/mixed_core_public_workstream_acceptance.json`.  Order 14 remains
   unstarted.
+
+### 2026-07-26 19:35 — mixed-path floor, full-list link, and 2-SAT terminal gate
+
+- A third attack pass on the exact mixed response path forced nonempty
+  end-edge common-complement cliques \(P_L,P_R\).  Ridge covariance and
+  restoration prove \(P_L\cap P_R=\varnothing\), and a two-ridge transport
+  proves that every co-state witness clique \(Y_w\) is disjoint from both.
+  Choosing one vertex from each of \(W,Z,P_L,P_R,Y_w\) gives five pairwise
+  distinct external witnesses beyond the seven reference/path vertices.
+  Thus this exact arbitrary-family equality pattern has order at least 12.
+  A hostile reviewer reconstructed every move, covariance permutation,
+  restoration exclusion, and the \(7+5\) count and returned `PASS`.
+- The separate full-family-list branch is now exact.  Avoiding a vertex in
+  the graph and family preserves an eternal triple-family and every other
+  response list.  After the full vertices are colored, extension over the
+  non-full vertices is precisely the accepted projection-gluing formula with
+  added units.  A single full vertex therefore leaves exactly three
+  augmented 2-SAT tests.
+- A full target forces three nonempty disjoint clique spokes, forced spoke
+  states, and a second external clique layer.  Its complement link is
+  bipartite without isolates.  Response covariance makes each spoke
+  side-pure in every link component; a longer ridge transport proves that
+  different spoke types cannot occupy the same side.  Consequently every one
+  of the three colors is locally feasible.  The unresolved issue is global
+  extension through the residual implication core.
+- An independent ordinary-set implementation replayed all 273,193 connected
+  unlabeled graphs through order 9.  All nine graph-stream hashes and every
+  count match the target scan.  There are 24 static-full incidences inside 15
+  equality graphs, zero greatest-family-full incidences, and all 24 bounded
+  lists have size one.  This narrow connected-unlabeled predicate is
+  `CERTIFIED-FINITE`; it is not a new counterexample frontier.
+- The order-12 positive control with canonical graph6
+  `K{eYptMJynEn` independently has
+  \((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\), all 127 dominating
+  triples in its greatest eternal family, 1,143 obligations, one genuine full
+  response list, and exactly one compatible anchored coloring.  It refutes
+  every proposed universal no-full-list shortcut while showing the local
+  link theorem on the positive side.
+- Inclusion-minimal unsatisfiable 2-CNF formulas were classified into a
+  two-unit chain, one-unit lollipop, or unit-free opposite-path bicycle.
+  Projection implication paths expand into alternating complement edges and
+  parity-prescribed frozen-component connectors.  Full one-guard closure
+  excludes the canonical shortest one-unit tail-triangle and canonical
+  two-variable bicycle.  A clean-room audit checked all 512 and 256
+  unspecified-edge completions, respectively, with zero surviving exact
+  safe kernels.
+- The graph `GFznc{` supplies the exact gamma-two boundary: its 35-state
+  family meets all 175 obligations, both ridge-end response formulas are
+  unsatisfiable, and covariance is nonvacuous.  Its parameters are
+  \((2,3,3,3)\), so it is not a counterexample.  A separate order-exactly-8
+  scan was independently reproduced with zero unit-free obstructions in the
+  tested slices; that scan remains `OBSERVED`.
+- A publication-scope audit recommends a public active-workstream update but
+  no second paper.  The order-12 frontier paper remains the sole current
+  manuscript.  The page continues to attribute Alec Kriebel as author and
+  research lead, disclose heavy AI assistance, state the exact one-guard
+  model, and keep both the universal conjecture and order-13 residual slices
+  explicitly open.  Order 14 remains unstarted.

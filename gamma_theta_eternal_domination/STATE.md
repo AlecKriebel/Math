@@ -1,5 +1,89 @@
 # Campaign State
 
+## Checkpoint 057 — 2026-07-26 19:35 PDT
+
+- Campaign day: 2 of 27, approximately 24 hours after launch.  The universal
+  conjecture remains unresolved, the certified finite frontier remains 13,
+  and **no order-14 computation has begun**.  The proof-first lane remains
+  primary.
+- **Exact mixed-pattern order floor (C-072).**  In every equality realization
+  of the minimal mixed response path, two additional nonempty end-edge
+  witness cliques are forced.  They are disjoint from one another and from
+  every co-state witness clique.  Together with the already forced \(W,Z\)
+  and \(Y_w\), five pairwise distinct witnesses lie outside the seven
+  reference/path vertices, so this exact response pattern requires at least
+  12 vertices.  This is not a counterexample-order frontier and does not
+  eliminate the pattern at order 12 or above.
+- **Full-list branch localized (C-073--C-074).**  Coloring the full-list core
+  first and extending the non-full vertices is exactly projection gluing with
+  added 2-SAT units.  One full vertex therefore yields three augmented
+  formulas.  It forces three disjoint clique spokes, external witness
+  cliques, and an isolate-free bipartite complement link.  Ridge covariance
+  makes each spoke side-pure and separates different spoke types across the
+  two link sides; hence every prescribed color passes the complete local link
+  test.  The remaining obstruction is global satisfiability of one augmented
+  formula.
+- A clean-room connected-unlabeled replay matched all nine graph-stream
+  hashes and every count through order 9.  It certifies zero full
+  greatest-family lists in the bounded equality universe.  The order-12
+  positive control `K{eYptMJynEn` independently checks
+  \[
+    (\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3),
+  \]
+  all 127 dominating triples survive, its full target has 1,143 literal
+  obligations, and exactly one compatible anchored coloring exists.  Thus a
+  universal no-full-list shortcut is false.
+- **Minimal 2-SAT terminals (C-075--C-077).**  Inclusion-minimal
+  unsatisfiable 2-CNF instances split into a two-unit chain, a one-unit
+  lollipop, or a unit-free bicycle.  Projection paths have an exact
+  complement-edge/component-parity expansion.  Full one-guard closure
+  excludes the canonical shortest lollipop and canonical two-variable
+  bicycle.  Longer connectors and subdivisions remain open.  The exact
+  gamma-two graph `GFznc{` confirms nonvacuously that ridge covariance alone
+  does not remove the obstruction.
+- Three independent hostile reviews returned `PASS`: the mixed-pattern
+  \(7+5\) count was reconstructed line by line; the full-list proof and all
+  273,193 connected graphs through order 9 were independently replayed; and
+  the 2-SAT logic, 512 lollipop completions, 256 bicycle completions, named
+  control, and bounded order-8 scan were rechecked.  No mathematical
+  correction was required.
+- The active public page is updated in the pending integration bytes with
+  Alec Kriebel as author and research lead, explicit heavy-AI disclosure,
+  and the unresolved status prominent.  The certified order-12 frontier
+  paper remains the sole current paper; these structural lemmas do not yet
+  warrant a second manuscript.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Full-list augmented 2-SAT | active-primary | Prove at least one of the three global formulas is satisfiable; every local link orientation is already feasible |
+| Longer minimal 2-SAT connectors | active-independent | Extend the canonical lollipop/bicycle attack trees through arbitrary bipartite component paths |
+| Exact mixed path | active-supporting | Five external witnesses and \(n\ge12\) are proved; no contradiction is known at \(n\ge12\) |
+| Full-list elimination | refuted | `K{eYptMJynEn` has equality, a genuine full greatest-family list, and \(\theta=3\) |
+| Order-13 finite synthesis | frozen fallback | \(C_5,C_7\) at \(k=3\) and \(k=4,5\) remain open; no solver is running |
+| Order-14 computation | not started | Deliberately deferred while the universal proof lane continues to yield exact mechanisms |
+
+### Running jobs and resources
+
+- No SAT solver, graph generator, proof checker, or campaign enumeration is
+  running.  All bounded proof probes and hostile replays have completed.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  16 GiB of disk remains free; no large proof or enumeration launch is
+  authorized without another storage audit.
+
+### Next three highest-value actions
+
+1. Relate full-link response signatures to the three augmented implication
+   graphs and force one globally safe color, using the vertex-deletion
+   dichotomy as the first case split.
+2. Generalize the accepted canonical lollipop and bicycle attack trees to
+   parity-prescribed component connectors, extracting a human contradiction
+   or an explicit smallest equality control.
+3. Use the order-12 positive full-list graph and the gamma-two ridge control
+   as mandatory regression targets for every proposed strengthening; retain
+   order-13 \(C_5/C_7\) synthesis only as a bounded fallback.
+
 ## Checkpoint 056 — 2026-07-26 18:05 PDT
 
 - Commit `edc9c248baa08fd999dc8318b10ad58ab95d09eb` integrated and pushed the

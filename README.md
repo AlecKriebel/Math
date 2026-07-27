@@ -128,7 +128,13 @@ minimum-counterexample proof before proceeding to order 14.  The current
 proof lane reduces no-full-list projection compatibility exactly to 2-SAT
 and proves that its minimal mixed-path obstruction, if realized under
 domination equality, forces an external clique of induced hub-free
-complement-\(C_5\) closers.  This is a structural advance, not a resolution.
+complement-\(C_5\) closers.  The same exact pattern now requires at least
+twelve vertices and five separated external witnesses.  The complementary
+full-response-list branch has also been reduced to three augmented 2-SAT
+tests: ridge covariance removes every local link-coloring obstruction, while
+the two shortest non-chain unsatisfiable geometries are dynamically
+impossible.  Longer global implication connectors remain open.  These are
+structural advances, not a resolution.
 The
 [public workstream](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/)
 is a dated snapshot; `STATE.md` and `CLAIMS.md` in the source package are the
