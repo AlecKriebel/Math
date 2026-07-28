@@ -3566,3 +3566,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   by a second implementation.  Exact totals and all sixteen partition
   hashes are frozen in
   `math/working/reciprocity_order10_probe/aggregate.json`.
+
+## 2026-07-28 11:51 PDT — exact static mixed \(P_4\) excluded universally
+
+- Promoted C-148 after an unconditional clean-room hostile audit.  Under
+  \(\gamma=\alpha=\gamma^\infty=3\), an independent retained root cannot
+  have an induced complement \(P_4\) with exact static swap lists
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\).
+- C-121 and C-070 supply one endpoint defect \(d\).  The resulting
+  eight-vertex incidence ledger is complete: 14 forced graph edges,
+  9 forced nonedges, and 5 optional pairs.  All 32 completions have empty
+  greatest core-dominating, restoration-compatible one-guard kernels.
+- The local exclusion is an all-order theorem, not a bounded census.
+  External vertices cannot repair it because every displayed attack from
+  a displayed triple has only displayed-triple successors.  The hostile
+  reviewer independently derived the ledger, remapped all optional bits,
+  and reproduced every deletion trace.
+- `HCOceRy` prevents an invalid singleton-cascade proof, while `FDzro`
+  shows why exact family lists alone are insufficient when the static
+  lists are larger.  Longer chains, lollipops, bicycles, the full-list
+  branch, and complete \(k=3\) remain open.
+- Candidate/review manifests:
+  `7729b8f1e1d41e58f45a13f68e126d8427d082d902687e7ad203be47bd51438d`,
+  `a53d30e2955adaf773055af9acc5a3b89df39c730151a968e56e8140aa8024ff`.
+  Lead replay matched the ordinary-set, bitset, and hostile evidence.

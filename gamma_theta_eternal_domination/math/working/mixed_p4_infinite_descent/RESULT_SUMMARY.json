@@ -1,0 +1,46 @@
+{
+  "schema": "mixed-p4-infinite-descent-result-summary-v1",
+  "date": "2026-07-28",
+  "status": "FROZEN_CANDIDATE_AWAITING_HOSTILE_REVIEW",
+  "model": "one guard moves along one graph edge to an unoccupied attacked vertex",
+  "candidate_theorem": "Under gamma(G)=alpha(G)=gamma_infinity(G)=3, an independent retained triple cannot have an induced complement P4 with exact static response lists {a},{a,c},{b,c},{b}.",
+  "scope_exclusions": [
+    "No exclusion of the family-list pattern when static lists may be larger.",
+    "No exclusion of arbitrary longer unit chains, lollipops, or residual bicycles.",
+    "No complete k=3 theorem.",
+    "No resolution of the universal gamma-theta conjecture."
+  ],
+  "core": {
+    "order": 8,
+    "fixed_graph_edges": 14,
+    "fixed_graph_nonedges": 9,
+    "optional_graph_edges": 5,
+    "completion_count": 32,
+    "empty_terminal_local_kernels": 32,
+    "ordinary_rows_sha256": "fc651faaafbad68117b54c6844f3b54ef4e7fc7bc28443cbda0c1ac01cd13d96",
+    "bitset_records_sha256": "e8bb348772fabde98bd7d87933226a538adfa88f177d1d9fa6907214fce27018"
+  },
+  "ordinary_set_replay": {
+    "command": "python3 -I -B -W error math/working/mixed_p4_infinite_descent/verify.py",
+    "stdout_sha256": "9205772909698ba5aa21f05a3d6ac20a9911543160703157a54d0db0425ef9dc",
+    "verdict": "PASS",
+    "controls": {
+      "FDzro": {
+        "parameters": [2, 2, 3, 3, 3],
+        "constrained_family_states": 21,
+        "boundary": "exact family mixed-P4, strictly larger static lists"
+      },
+      "HCOceRy": {
+        "parameters": [3, 3, 3, 3, 3],
+        "greatest_family_states": 24,
+        "boundary": "two adjacent pure same-color singleton vertices"
+      }
+    }
+  },
+  "bitset_replay": {
+    "command": "python3 -I -B -W error math/working/mixed_p4_infinite_descent/verify_bitset.py",
+    "stdout_sha256": "9e5f6003aeb212a17ba80c7eab5204c9ae1a9c67479701bb8050c043c0f80f11",
+    "verdict": "PASS"
+  },
+  "guardrail": "HCOceRy proves that singleton purity and same-color clique structure alone do not iterate. The local contradiction uses the full mixed-P4 incidence and response system."
+}

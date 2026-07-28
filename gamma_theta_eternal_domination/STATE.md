@@ -1,5 +1,52 @@
 # Campaign State
 
+## Checkpoint 101 — 2026-07-28 11:52 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `47656d4f`.
+- **The exact static mixed \(P_4\) is universally impossible at
+  \(k=3\) (C-148).**  One endpoint defect reduces the canonical shortest
+  two-unit 2-SAT obstruction to an eight-vertex local core with exactly
+  five optional adjacencies.  Three independent implementations obtain
+  empty compatible one-guard kernels in all 32 completions.
+- The proof is globally sound despite being local: every displayed attack
+  from a displayed state has only displayed-state successors, so no
+  outside vertex or configuration can repair the kernel.  The hostile
+  audit independently checked the C-070/C-121 dependencies, defect
+  distinctness, complete pair ledger, model, and scope.
+- This closes C-121's exact static pattern at every order, but not a
+  family-only mixed \(P_4\) with enlarged static lists or arbitrary longer
+  chains.  The multi-hit reciprocity and full-list safe-color lanes remain
+  active.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact static mixed \(P_4\) | closed-proved C-148 | Family-only enlargement and longer unit chains remain |
+| Dynamic equality reciprocity | active-primary, C-145/C-146 | Genuine multi-hit blocker collision |
+| Full-list future-safe color | active-independent | Select a future-stable color despite reverse false positives |
+| Fresh-component singleton chain | active | Longer outside-ridge return or family-only terminal |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent lanes are attacking the C-146 multi-hit collision and the
+  full-list safe-color selection problem.  No memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Resolve or sharply normalize the multi-hit collision at a minimum-rank
+   reverse endpoint.
+2. Prove or refute future-stable color selection in the full-list branch.
+3. Lift C-148 from the exact static \(P_4\) to family-only or longer unit
+   chains without treating dynamic omissions as graph nonedges.
+
 ## Checkpoint 100 — 2026-07-28 11:30 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

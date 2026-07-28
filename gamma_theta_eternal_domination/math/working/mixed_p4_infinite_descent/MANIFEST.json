@@ -1,0 +1,95 @@
+{
+  "schema": "mixed-p4-candidate-freeze-manifest-v1",
+  "frozen_at_utc": "2026-07-28T18:24:16Z",
+  "status": "FROZEN_CANDIDATE_AWAITING_HOSTILE_REVIEW",
+  "repository_base_commit": "95e2be7ba5acb0dfd8e5058f728cd07bda1d560a",
+  "model": {
+    "name": "standard one-guard-moves eternal domination",
+    "attack_rule": "Only an unoccupied vertex is attacked.",
+    "move_rule": "Exactly one guard moves along one graph edge to the attacked vertex.",
+    "closure_rule": "The successor configuration belongs to the same eternal family and dominates the graph."
+  },
+  "candidate_theorem": {
+    "hypotheses": "gamma(G)=alpha(G)=gamma_infinity(G)=3; S={a,b,c} is an independent member of an eternal family F; H=complement(G).",
+    "conclusion": "H has no induced path x0-x1-x2-x3 whose exact static dominating-swap lists at S are {a}, {a,c}, {b,c}, {b}.",
+    "proof_type": "Human reduction to a complete finite local kernel over all five undecided core adjacencies.",
+    "accepted_dependencies": [
+      "C-121 static-to-family rigidity and arbitrary-state restoration",
+      "C-070 endpoint saturation"
+    ]
+  },
+  "scope_exclusions": [
+    "The exact family-list mixed P4 is not excluded when one or more static lists are larger.",
+    "Arbitrary longer two-unit chains and one-unit lollipops are not excluded.",
+    "Unit-free bicycles are not excluded.",
+    "The full-response-list branch is not excluded.",
+    "The complete k=3 case is not proved.",
+    "The universal gamma-theta conjecture is not resolved.",
+    "No literature-priority claim is made."
+  ],
+  "core_coverage": {
+    "vertices": [
+      "a",
+      "b",
+      "c",
+      "x0",
+      "x1",
+      "x2",
+      "x3",
+      "d"
+    ],
+    "pair_count": 28,
+    "fixed_graph_edges": 14,
+    "fixed_graph_nonedges": 9,
+    "optional_graph_pairs": 5,
+    "coverage_identity": "14+9+5=28",
+    "completion_count": 32,
+    "empty_terminal_local_kernels": 32,
+    "reference_state_deleted_in_every_completion": true
+  },
+  "replays": {
+    "ordinary_set": {
+      "command": "python3 -I -B -W error math/working/mixed_p4_infinite_descent/verify.py",
+      "expected_stdout_sha256": "9205772909698ba5aa21f05a3d6ac20a9911543160703157a54d0db0425ef9dc",
+      "expected_internal_rows_sha256": "fc651faaafbad68117b54c6844f3b54ef4e7fc7bc28443cbda0c1ac01cd13d96"
+    },
+    "packed_bitset": {
+      "command": "python3 -I -B -W error math/working/mixed_p4_infinite_descent/verify_bitset.py",
+      "expected_stdout_sha256": "9e5f6003aeb212a17ba80c7eab5204c9ae1a9c67479701bb8050c043c0f80f11",
+      "expected_internal_records_sha256": "e8bb348772fabde98bd7d87933226a538adfa88f177d1d9fa6907214fce27018"
+    }
+  },
+  "controls": {
+    "FDzro": {
+      "parameters_gamma_i_alpha_gamma_infinity_theta": [
+        2,
+        2,
+        3,
+        3,
+        3
+      ],
+      "constrained_family_state_count": 21,
+      "purpose": "Shows that an exact family-list mixed P4 can coexist with larger static lists and gamma=2."
+    },
+    "HCOceRy": {
+      "parameters_gamma_i_alpha_gamma_infinity_theta": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "greatest_family_state_count": 24,
+      "purpose": "Shows that two adjacent pure same-color singleton vertices do not by themselves force an infinite cascade."
+    }
+  },
+  "guardrail": "The contradiction uses the complete mixed-P4 incidence and exact static-list system. Singleton purity plus same-color clique structure alone is compatible with equality.",
+  "files_sha256": {
+    "NOTE.md": "c58271538d6253ec4ac56d8df7edb7a067d67453dcf8393352a5bf394ed71d34",
+    "RESEARCH_LOG.md": "dff14dc1990b67a542a2eb8550dffded4d12af102b01c8489469aa1e31dd2047",
+    "RESULT_SUMMARY.json": "2af0b6048347f8dcb612c1256081a5a4c3ec667f4ac543eced18646d76c13ea3",
+    "probe_static_gamma_core.py": "1dbfa8fde2bf072a4938c1406f073a55c56bca4bbdef48b63ca43f51fe640a8c",
+    "verify.py": "527b15ce630e9466acd8241f0edbb3f74a25f67a4cdf9985ff8f88871346a4de",
+    "verify_bitset.py": "b428401b7f48bd7027b1054c37748bbca779f445389aa6d4b80138264ce28692"
+  }
+}
