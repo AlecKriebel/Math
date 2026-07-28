@@ -3922,3 +3922,35 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **83%** for the 27-day campaign deliverable,
   **50%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 16:50 PDT — completion layers and trapped transfers are controlled
+
+- Promoted C-170 after an unconditional clean-room hostile review.
+  Every common nonneighbor \(d\) of a full target \(x\) and rank-zero
+  corridor terminal \(r\) has a nonempty retained two-state completion
+  split.  A retained secondary branch must meet its private witness in
+  the closed neighborhood and uniquely returns at the attack \(x\) to
+  the independent completion \(\{x,r,d\}\).  With two secondary colors,
+  their two closed witness neighborhoods cover the whole completion
+  clique.
+- The review identified and preserved an important terminology boundary:
+  a named branch state can belong to the greatest family even when the
+  corresponding terminal entry edge is absent.  The theorem concerns
+  retained states; only at least one branch is forced as a physical
+  response to the terminal attack.
+- Promoted C-171 after a separate unconditional clean-room hostile review.
+  If a rank-zero corridor witness lies inside
+  \(B=N_{\overline G}(x)\), the other physical alternate is
+  nondominating and every missed witness forces a retained unbanned
+  source-color root state outside \(B\).  At a full terminal, the two
+  secondary witness sets cannot both intersect \(B\).
+- The controls sharply block a premature safe-color proof.  The equality
+  graph `OYifur}UO]}iTij]tpo]v` has a unique completion return that raises
+  source rank from \(0\) to \(3\).  MMV-027 `JEhbtnm~D]_` has all three
+  restricted kernels empty and source/escape rank \(0/0\), but exact
+  vector \((2,2,3,3,4)\).  Thus the surviving theorem must use the full
+  no-dominating-pair condition to eliminate rank-preserving cycles rather
+  than assert monotone descent.
+- Best-guess completion: **84%** for the 27-day campaign deliverable,
+  **53%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.

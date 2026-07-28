@@ -1,5 +1,74 @@
 # Campaign State
 
+## Checkpoint 112 — 2026-07-28 16:50 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and the \(k=3\) slice at order
+  13.  Repository base before this checkpoint:
+  `7374e2e05c96053fe48e841ed325b9c06da0bf7f`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **84%**.  Best-guess completion toward a complete parameter-three
+  theorem: **53%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities.
+- **Every rank-zero corridor completion has a controlled family layer
+  (C-170).**  For every common nonneighbor \(d\) of the full target \(x\)
+  and terminal \(r\), eternal closure retains at least one of the two
+  possible branch states.  Any retained secondary branch meets its
+  private witness in the closed neighborhood and has a unique
+  attack-at-\(x\) return to the independent completion \(\{x,r,d\}\).
+  With two secondary colors, their closed witness neighborhoods cover
+  the entire completion clique.  The formal statement allows a branch
+  state to be retained even when that branch is not a physical entry
+  move from the terminal.
+- **A transfer trapped in the ban must escape (C-171).**  If a C-168
+  rank-zero corridor witness lies in \(B=N_{\overline G}(x)\), the other
+  physical alternate is nondominating and every one of its missed
+  witnesses lies outside \(B\), receives the source-color edge, and
+  creates a retained unbanned source-color root state.  At a full
+  terminal, the two secondary missed-witness sets cannot both meet
+  \(B\).
+- **Neither theorem yet supplies the missing descent.**  An equality
+  control makes a unique completion return raise restricted rank from
+  \(0\) to \(3\).  MMV-027 has all three restricted kernels empty and a
+  trapped escape with source rank \(0\) before and after, but
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,4)\).  These exact
+  controls rule out both a naive rank inequality and a local
+  safe-color conclusion.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167/C-169 | Use non-domination of pairs wholly outside the distinguished endpoint; the fixed-anchor and fresh-witness descents are refuted |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168/C-170/C-171 | Trapped rank-zero transfers now escape and completion states are covered; prove that an equality-compatible rank-preserving escape cycle is impossible, or obtain a global safe color without rank comparison |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the current universal-proof iterations reach their stated termination gates |
+
+### Running jobs and resources
+
+- One proof lane is using the full non-domination of auxiliary pairs in
+  the canonical QQ1 branch.  The two full-list candidates have completed
+  unconditional clean-room hostile reviews and are now accepted.
+- No campaign solver or memory-heavy enumeration is running.  Host:
+  Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, with approximately
+  11 GiB disk space free.  The machine remains responsive, although a
+  separate research program is using one CPU core.
+
+### Next three highest-value actions
+
+1. Analyze rank-preserving C-171 escape cycles under \(\gamma=3\), using
+   the forced common nonneighbor of the independent pair \(\{q,w\}\)
+   rather than assuming a fresh witness.
+2. Combine the C-170 completion cover across the three primary colors
+   and test whether the equality condition forces a safe restricted
+   kernel.
+3. Continue the all-pairs QQ1 lane; if both universal iterations expose
+   only repeatable controls, rebalance the bounded fallback toward
+   order 14.
+
 ## Checkpoint 111 — 2026-07-28 16:31 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
