@@ -368,3 +368,43 @@ All timestamps use America/Los_Angeles.
   three-syndrome-value strata uniformly.  The only cancellation occurs for
   a constant nonzero syndrome at odd length, where the value is exactly
   zero.  A nine-state integer transfer independently audited the formulas.
+
+## 2026-07-28 15:05--15:20 PDT — global Gram frontier and a second graph theorem
+
+- Polarized the four-party homogeneous functional completely.  For
+  \(H=\lambda|u\rangle\langle u|+\mu|v\rangle\langle v|\), its two
+  diagonal coefficients are sums of six double-antisymmetrizer squares.
+  The remaining assertion is exactly the one-sided \(2\times2\)
+  copositivity bound on the cross coefficient.
+- Rewrote that cross bound as the single direct-sum Pluecker inequality
+  \[
+  \|r(u,v)\|^2\leq
+  \|s(u,v)\|^2+\|q(u)\|\,\|q(v)\|,
+  \]
+  where all six physical pairs are retained in one norm.  Proved it when
+  one eigenvector is fully product, for every one-site logical-flag code,
+  and whenever the operator has a common pure physical factor.  Exact
+  examples disprove both pairwise Cauchy--Schwarz and positivity of the
+  full spectral Gram matrix, so the six pairs cannot be separated.
+- Derived the full local-filter Euler and Hessian conditions at a putative
+  negative four-party minimum.  A Haar rank-two qutrit filter gives the
+  exact average \((5c+T_\ell)/12\), quantifying the remaining
+  dimension-reduction obstruction.  The resulting linear swap constraints
+  are still compatible with a negative formal sector table.
+- In the all-qubit specialization, reduced the homogeneous target exactly
+  to \(B_2+6B_0\geq3A_1\) in Pauli weights.  Subset-resolved complement and
+  spin-shadow constraints admit an exact rational negative formal model,
+  proving that nonlinear pure-state information is still essential.
+- Found an exact qutrit equality state
+  \(|GHZ_3\rangle_{123}\otimes|\Phi_2\rangle_{K4}\) whose first three
+  one-site marginals are full rank.  Hence no positive lower bound by a
+  sum of local marginal determinants can prove the four-party inequality.
+- Independently audited the complete-graph all-copy proof from its defining
+  character sum; no gap was found.
+- Proved a second structured all-copy theorem: for every qutrit cycle
+  graph with constant nonzero syndrome, every logical rank-two plane is
+  endpoint-nonnegative at every length \(n\geq3\), with equality only at
+  \(n=3\).  The proof uses exact nine-state transfers, degree-five
+  characteristic polynomials, rational root-modulus certificates, and
+  finitely many exact base cases.  The standard-library verifier replayed
+  every finite certificate.
