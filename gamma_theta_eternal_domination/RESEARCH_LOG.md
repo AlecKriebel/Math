@@ -2964,3 +2964,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   review caught an omitted immediate false-constant branch in its Boolean
   taxonomy.  The underlying graph-game theorem and controls passed, and a
   corrected package is in progress.
+
+## 2026-07-28 06:18 PDT — singleton cap/buffer theorem repaired and accepted
+
+- Promoted C-119 after the candidate and clean-room hostile verifiers both
+  returned `PASS` on the exact revised bytes.
+- The response 2-CNF taxonomy now has an exhaustive three-way split:
+  immediate false constants from fixed projection components; propagated
+  one-/two-unit contradictions; and a unit-free residual bicycle on unpinned
+  variables.  This corrects the sole defect found by the first hostile audit.
+- Under \(\gamma(G)=3\), a sealed exact-two positive cap forces an explicit
+  singleton buffer.  Every dynamic exact-two port in the no-full branch
+  creates such a sealed cap, which is therefore either itself a singleton or
+  is screened by the forced buffer.
+- The independent checker reconstructed both equality controls, recomputed
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)\), and replayed all 1,444
+  unoccupied one-guard attack obligations.  It also rebuilt the exact
+  response lists, projection components, cap/buffer incidences, and list
+  colorings.
+- Accepted note SHA-256:
+  `4f6244214e125a31d4237a7e8f59e20266c15374be4d54c2e23bfbb061e313c5`.
+  Candidate manifest SHA-256:
+  `b563aa466cc9798c270e954de914e143427e0048663ca7ccc3d3ea547b4831b0`.
+  Hostile output SHA-256:
+  `8a5ef8879edc31ab91d0b7f7097a6683c51687e9d5870f1206a367b49d5f2e74`.
+  Hostile manifest SHA-256:
+  `21f781200ac64609eb552e047490150692e9d2dcd50d4a8b621f8515b7c164b8`.
+- The singleton branch remains open.  Exact unresolved cases are immediate
+  fixed parity/collision certificates, separated one-/two-unit chains, and
+  residual unit-free bicycles with original clause edges preserved.

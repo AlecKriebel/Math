@@ -1,5 +1,68 @@
 # Campaign State
 
+## Checkpoint 081 — 2026-07-28 06:18 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The certified finite frontier is unchanged:
+  all orders through 12 are excluded, and only \(k=3\) is excluded at order
+  13.  Repository base before this checkpoint: `27ed6ef7`.
+- **The repaired singleton cap/buffer theorem is accepted (C-119).**  Its
+  exact Boolean inventory now separates the previously omitted immediate
+  false-constant branch from one-/two-unit implication chains and a unit-free
+  residual bicycle.
+- In the no-full \(k=3\) branch, every dynamic exact-two port creates a
+  sealed positive cap.  Such a cap is either a singleton of the recovered
+  color or is screened by an explicitly forced singleton buffer of its other
+  color.  This identifies the mechanism that prevents the all-exact-two
+  physicality theorem C-111 from extending to singleton lists.
+- Candidate and clean-room hostile verifiers both return `PASS`.  They
+  independently check the equality controls `EEv?` and `LFzJbZYhdrDZdM`,
+  all 1,444 one-guard attack obligations, exact response lists, greatest
+  kernels, projection components, sealed caps, singleton buffers, and
+  response-list colorings.
+- Accepted source SHA-256:
+  `4f6244214e125a31d4237a7e8f59e20266c15374be4d54c2e23bfbb061e313c5`.
+  Candidate manifest:
+  `b563aa466cc9798c270e954de914e143427e0048663ca7ccc3d3ea547b4831b0`.
+  Hostile output:
+  `8a5ef8879edc31ab91d0b7f7097a6683c51687e9d5870f1206a367b49d5f2e74`.
+  Hostile manifest:
+  `21f781200ac64609eb552e047490150692e9d2dcd50d4a8b621f8515b7c164b8`.
+- This is a structural advance, not branch closure.  Immediate
+  fixed-component certificates, arbitrary separated one-/two-unit chains,
+  and unit-free residual bicycles remain.  The full-list route still has the
+  separate inactive-set precoloring/gluing obstruction.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact-two-list \(k=3\) branch | closed-proved C-116 | Every all-exact-two response instance is three-colorable |
+| Singleton-list cap/buffer structure | closed-proved C-119 | Dynamic ports terminate in singleton or singleton-buffered sealed caps |
+| Singleton immediate fixed certificates | active-primary | Convert every fixed parity/collision failure into a literal one-guard contradiction |
+| Singleton separated unit chains | active-primary | Eliminate arbitrary separated-port one-/two-unit chains under \(\gamma=3\) |
+| Singleton residual bicycles | active-secondary | Shorten while preserving the original supporting complement edges |
+| Full-list inactive odd cycles | active-primary | Seek an arbitrary-length parity theorem; bipartiteness alone is insufficient for global precoloring |
+| Dynamic palette gluing \(\mathsf{GL}(k)\) | active-long-range | Pure list conditions are insufficient by C-118; full one-guard dynamics are needed |
+| Complete \(k=3\) theorem | active | Singleton and full exceptional-response regimes remain |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One inactive-odd-cycle induction lane is active.  No broad enumeration or
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Audit the inactive-odd-cycle induction and promote only a genuinely
+   arbitrary-length theorem; retain the global coloring gap explicitly.
+2. Attack the singleton immediate fixed-certificate branch, where the new
+   terminal split removes all Boolean ambiguity.
+3. Test whether multi-state dynamics exclude the abstract \(Y_k\) gluing
+   obstruction, starting at \(k=3\), before attempting general induction.
+
 ## Checkpoint 080 — 2026-07-28 06:10 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
