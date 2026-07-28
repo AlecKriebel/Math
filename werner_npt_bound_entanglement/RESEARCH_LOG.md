@@ -361,3 +361,10 @@ All timestamps use America/Los_Angeles.
   physical-rank-two tensors, every commuting \(D=2\) tensor (including its
   Jordan case), and orthogonal diagonal \(D=3\) tensors.  No negative MPS
   family was found.
+- Proved an additional all-copy graph-code theorem.  For the qutrit complete
+  graph at every length, every rank-two plane in every three-dimensional
+  graph orbit is endpoint-nonnegative.  The proof reduces the signed coset
+  sums to a 27-term character formula and handles the one-, two-, and
+  three-syndrome-value strata uniformly.  The only cancellation occurs for
+  a constant nonzero syndrome at odd length, where the value is exactly
+  zero.  A nine-state integer transfer independently audited the formulas.
