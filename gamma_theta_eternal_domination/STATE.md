@@ -1,5 +1,55 @@
 # Campaign State
 
+## Checkpoint 065 — 2026-07-28 02:41 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  the certified global frontier remains 13.  The newly published theorem is
+  exactly the order-13 common-parameter-three exclusion; parameters four and
+  five at that order remain open.
+- **Public release complete.**  Source commit
+  `883e796cb163f360d8052e94ae507d3cbb3e6599` and annotated tag
+  `gamma-theta-order13-k3-v1.0.0` were pushed atomically.  The GitHub release
+  is live with the reviewed PDF, checksum, theorem acceptance record, and
+  publication QA record.  Every release-asset digest matches its local
+  audited byte stream.
+- GitHub Pages run `30347479445` built and deployed the same source commit.
+  Cache-bypassed downloads proved byte identity for the home page, active
+  workstream, paper page, checksum file, and PDF.  The live PDF SHA-256 is
+  `6768cecf0d46672f7d56cbda2715b49ef18470e5d60b3c7912fc9999843ae5a4`.
+  The live paper page also passed a final desktop rendering and browser-console
+  check.
+- The complete machine-readable deployment ledger is
+  `results/order13_k3_publication_acceptance.json`.  Public release does not
+  upgrade C-097 into a universal theorem, an all-order \(k=3\) theorem, a
+  complete order-13 exclusion, or a lower bound of 14.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Order-13 \(k=3\) theorem release | closed-published | Tagged source, release assets, Pages deployment, and live bytes all verified |
+| Universal no-full \(k=3\) proof | active-primary | Minimal odd signed cycle through at least three tight gates |
+| Order-13 \(k=4,5\) slices | active-fallback | Only remaining order-13 parameters; no complete exclusion |
+| General order-14 computation | deferred | No blind order-14 search before the current proof gate is evaluated |
+
+### Running jobs and resources
+
+- One bounded proof agent is attacking the three-gate odd-holonomy target.
+  Two additional manuscript auditors remain nonblocking independent checks.
+  No broad graph enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remained responsive throughout release replay and deployment.
+
+### Next three highest-value actions
+
+1. Complete the three-or-more-gate odd-cycle proof attempt and adversarially
+   audit any lemma or countercontrol it produces.
+2. Convert a successful gate lemma into the full no-full \(k=3\) theorem,
+   then close the separate full-list extension branch; otherwise record the
+   exact failure mechanism.
+3. If the proof lane reaches its termination gate, resume one focused
+   order-13 \(k=4\) or \(k=5\) slice rather than beginning blind order 14.
+
 ## Checkpoint 064 — 2026-07-28 02:38 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

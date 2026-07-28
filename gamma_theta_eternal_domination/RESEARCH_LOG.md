@@ -2555,3 +2555,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Only the commit/tag/release/Pages/live-byte gates remain.  A bounded proof
   lane has simultaneously resumed at the exact universal target left by
   C-103: a minimal odd signed cycle through at least three tight gates.
+
+## 2026-07-28 02:41 PDT — tagged release and live Pages bytes verified
+
+- Committed the audited 119-file release bundle as
+  `883e796cb163f360d8052e94ae507d3cbb3e6599`.  Unrelated dirty research
+  files, transient TeX auxiliaries, exploratory certificates, and lock files
+  were not staged.
+- Created annotated tag `gamma-theta-order13-k3-v1.0.0` and pushed `main`
+  plus the tag atomically.  The peeled tag points to the exact audited
+  commit.
+- Published the GitHub release with the PDF, checksum, C-097 acceptance
+  record, and publication QA record.  GitHub's reported SHA-256 digest for
+  every asset matches the local file.
+- The legacy Pages webhook did not enqueue automatically after the large
+  atomic push, so an explicit Pages build was requested through GitHub's
+  build endpoint.  Actions run `30347479445` completed successfully on the
+  tagged commit.
+- Cache-bypassed downloads of the home page, active workstream, paper page,
+  checksum, and PDF are byte-identical to the repository source.  The live
+  PDF retains SHA-256
+  `6768cecf0d46672f7d56cbda2715b49ef18470e5d60b3c7912fc9999843ae5a4`.
+  A final live browser rendering is clean and produces no console warning or
+  error.
+- Publication changes only availability, not mathematical scope: order-13
+  parameters four and five, arbitrary-order parameter three, and the
+  universal conjecture remain open.
