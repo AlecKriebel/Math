@@ -140,3 +140,21 @@ All timestamps use America/Los_Angeles.
   \(2\times2\) simultaneous-nonnormal cores and identified broad exact
   equality families.  The genuinely three-dimensional simultaneous
   nonnormal case remains open.
+- Derived the exact even-reduction identity
+  \[
+  {\cal L}^{\otimes n}-2^{1-n}{\cal L}_{\rm grouped}
+  =2^{1-n}\sum_{\substack{|S|\ {\rm even}\\|S|\ge2}}{\cal R}_S.
+  \]
+  For positive rank-two matrices, the grouped quadratic form is exactly
+  \(2^{-n}(\lambda_1-\lambda_2)^2\).  Thus the sharp positive-matrix
+  conjecture is equivalent to nonnegativity of one cyclic sum of even
+  partial reductions.  At two copies it is the proved double-reduction
+  sum of squares; at three copies its individual terms can be negative, so
+  the cyclic sum cannot be split cut by cut.
+- Added a discovery-only optimizer for real permutation-symmetric qutrit
+  codes.  It uses the exact hypergeometric decomposition of normalized
+  occupation states, so all \(2^n\) partial traces collapse to \(n+1\)
+  reduced matrices.  Searches through \(n=14\) found no negative value:
+  odd copy counts approached boundary values and the sampled even copy
+  counts remained positive.  These floating-point observations are not
+  used as mathematical evidence.
