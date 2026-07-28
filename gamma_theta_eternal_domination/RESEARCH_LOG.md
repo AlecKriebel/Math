@@ -2687,3 +2687,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   responder-color intersection target but does not prove that the
   intersection exists, the complete \(k=3\) theorem, or the universal
   conjecture.
+
+## 2026-07-28 03:54 PDT — local paired-repair descent refuted
+
+- The exact oriented replacement calculation shows that two almost-cap
+  arms replace \(d\) implication arcs by two.  Strict descent occurs only
+  for \(d>2\); shortest contradiction paths do not force this.
+- A new 19-vertex gamma-two control realizes the failure physically.  Its
+  703-state eternal family has only exact two-lists and three tight gates
+  of odd holonomy.  The selected dynamic almost-cap subdivides an already
+  essential clause: the unique minimum unit-free core grows from 9 to 10
+  clauses and one marked path grows from 4 to 5 arcs while the reverse
+  path remains length 5.
+- The independent hostile checker reconstructed the graph6 record,
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,3)\), all 11,248
+  obligations, the complete response formula, both unique cores,
+  chirality, resolvent orientation, and path lengths, returning
+  unconditional `PASS`.  This promotes C-107.
+- Because the control has a dominating pair, it leaves a narrower
+  gamma-three route: witnesses must be applied at several critical pairs
+  and forced either to grow indefinitely, collide into an excluded
+  geometry, or expose a dominating pair.  Bounded all-pairs probes are
+  encouraging but remain `OBSERVED`.
+- The universal conjecture, the complete \(k=3\) case, and the complete
+  order-13 exclusion remain open.

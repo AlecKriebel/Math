@@ -1,5 +1,63 @@
 # Campaign State
 
+## Checkpoint 070 — 2026-07-28 03:54 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified frontier remains a
+  complete order-12 exclusion plus the parameter-three slice at order 13.
+- **Local paired repair is refuted (C-107).**  Replacing a marked segment
+  of \(d\) implication arcs by an almost-cap's two arms changes its length
+  by \(2-d\).  Choosing shortest contradiction paths does not force
+  \(d>2\), and resolution-derived endpoint units need not be literal unit
+  clauses, singleton response lists, or physical C-079 terminals.
+- The hostile audit independently reconstructed the exact 19-vertex
+  gamma-two control, its 703-state eternal family, all 11,248 one-guard
+  obligations, exact two-lists, seven-variable response formula, unique
+  9-clause minimum core, unique smallest 10-clause arm core, and marked
+  path change \(4/5\to5/5\).  It returned unconditional `PASS`.
+- The control has \(\gamma=2\), so it does not refute a proof that applies
+  the no-dominating-pair condition globally.  The no-full lane has
+  therefore moved to simultaneous common-neighbor witnesses at all
+  critical pairs.  A bounded shortest-geometry probe finds the three local
+  witnesses compatible when gamma is dropped, while all tested formulas
+  with global gamma-pair obligations are UNSAT through 18 vertices.  This
+  is `OBSERVED` discovery evidence only.
+- The full-target lane has an exact inactive-set coloring reformulation and
+  a sharp static \((3,3,3,4,4)\) control frozen for hostile review.
+  Separately, the C-106 forced-attack proof has been generalized on paper
+  to arbitrary guard number \(k\); that generalization is under hostile
+  review and is not yet an accepted claim.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Local no-full shortening | closed-refuted C-105/C-107 | One selected almost-cap can preserve or lengthen a unit-free bicycle |
+| Global no-full witness cascade | active-primary | Convert all-pairs \(\gamma\ge3\) witnesses into an injection, collision, or finite recurrence theorem |
+| Full-list inactive-set bridge | active-review | Common responder color iff a deletion coloring omits one color on the inactive set; multi-step closure is the missing mechanism |
+| All-\(k\) response propagation | active-review | Proposed generalization of C-106's exchange and component-color theorem |
+| Order-13 \(k=4,5\) slices | deferred-fallback | Resume if the global proof lanes reach explicit termination gates |
+
+### Running jobs and resources
+
+- One agent is extracting the global witness cascade from the shortest
+  three-gate formula.  One independent reviewer is auditing the proposed
+  all-\(k\) propagation theorem.  No broad enumeration or memory-heavy
+  solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Identify the minimal set of global pair-witness obligations that closes
+   the shortest three-gate geometry, then translate it into an arbitrary-
+   order collision or growth lemma.
+2. Accept, repair, or reject the proposed all-\(k\) response-propagation
+   theorem under hostile audit.
+3. Hostile-review the inactive-set identity and sharp static control, then
+   attempt a genuinely multi-step closure theorem for an inactive odd
+   cycle.
+
 ## Checkpoint 069 — 2026-07-28 03:38 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
