@@ -114,3 +114,15 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     archival step.
   - The complete decision record is `REVISION_AUDIT.md`.  No external contact
     occurred.
+- **21:10:58** -- Published the version 1.1.0 archival release.
+  - Annotated tag `exceptional-ybe-d4-v1.1.0` resolves to artifact commit
+    `e2669c5b2f99338c79381dc42bdbc61ee8b963c3`.
+  - The GitHub release contains the paper PDF, a curated source-and-verifier
+    archive, and a checksum file.
+  - The PDF asset has SHA-256
+    `af4ff57c4b8c5cd37f47f8a6da880b4f93b9c22d6e2908a3ef1f6ebf5fb1d049`;
+    the curated source archive has SHA-256
+    `099995bdfd446169caab2e458e74b9808d0b02134708486bded4e3623459f45d`.
+  - The release is public and non-draft. It is an ordinary annotated release,
+    not a cryptographically signed release, and no DOI is claimed.
+  - No external contact occurred.
