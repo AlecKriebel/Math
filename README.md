@@ -22,6 +22,27 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Permutation-blind Bell scores and obstructions to maximal global
+randomness** proves a positive-factor theorem for a broad first-harmonic
+polar-linear design class. Under explicit weighted-cycle hypotheses, every
+ordering of the same scalar equality spectrum gives an order-\(d\) maximizer
+with identical Bell-visible first harmonics, while the target distribution
+may change. The construction supplies nonuniform exact maximizers for both
+augmented cyclic Bell families of Perito et al. for every \(d\ge4\):
+\[
+G(AB\mid E)
+\ge\frac1{d^2}
++\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+>\frac1{d^2}.
+\]
+An independent \(d=4\) verifier works exactly in
+\(\mathbb Q(\zeta_{16})\). The note also proves a one-input locality baseline
+and exact obstructions to two natural low-setting repair strategies. It does
+not determine whether some other \(2\times2\) or \(2\times3\) projective
+single-score protocol works for every \(d\). See the
+[paper page](https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/)
+and [source package](minimum_bell_randomness/).
+
 **An exceptional four-dimensional unitary Hecke Yang--Baxter operator**
 gives an exact representative of the previously unresolved class
 \[
