@@ -1,5 +1,68 @@
 # Campaign State
 
+## Checkpoint 090 — 2026-07-28 08:47 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `c11180ea`.
+- **The first genuinely multi-step full-response restriction is now proved
+  and independently accepted (C-132).**  From a retained independent triple
+  with all three responses at \(x\), every physical complement-neighbor
+  \(b\in B=N_{\overline G}(x)\) has at least two retained anchor roles.
+  Its own spoke role is mandatory, and every retained role forbids
+  complement adjacency back into the corresponding spoke.
+- Consequently the three physical spokes are independent.  If the C-127
+  target condition supplies no isolates in \(\overline G[B]\) and there are
+  no anchorless vertices of \(B\), every component uses exactly two spokes
+  as its bipartition sides.  Each component therefore carries a canonical
+  local two-color palette.
+- This dynamic theorem rejects both sharp static controls C-123 and C-128
+  at their first failed second attack.  An equality control realizes two
+  different component signatures, so the remaining issue is genuinely
+  global synchronization rather than local bipartiteness.
+- During lead replay, a harmless reproducibility wording error was corrected:
+  the hostile checker prints the exact JSON followed by one hash line,
+  rather than producing byte-identical complete standard output.  The
+  mathematical verdict and result bytes are unchanged.
+- C-132 accepted note/candidate manifest:
+  `8bd29c18bfe2ed33862b8ae17489fbee29410a1bbc5ef1d729d848037fd99190`,
+  `fc35e58e2d96f9a7dc96d359fa601dc6083932ca8d899256db629e57869fb705`.
+  Hostile result/corrected manifest:
+  `f7a5dd5de678431e3c99709ac370c8fb48bbd88f680da9730e3a2ad9b57d1b75`,
+  `66378f9565c4cd4dbdc513495a1aa0685bcc98fe7e38cb9bc962c5a54a1fa26e`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Full-list two-attack polarization | closed-proved C-132 | Physical inactive spokes and retained palettes are locally polarized |
+| Full-list anchorless vertices | active-primary | C-132 gives \(|P(b)|\ge2\), but no root spoke label |
+| Full-list residual \(R_x-B\) | active-primary | Dynamically inactive despite a physical move edge |
+| Component-palette synchronization | active-primary | Equality control realizes distinct local signatures |
+| First odd–odd singleton clause | active-hostile-review | Candidate turns simultaneous anchor-only ridges into a retained shared-color bridge |
+| Greatest-family response reciprocity | active-exploratory | Strong finite signal; theorem mechanism not yet proved |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One hostile audit is checking the anchor-only singleton bridge, one proof
+  lane is testing greatest-family reciprocity, and one new proof lane is
+  attacking anchorless physical inactive vertices.  No memory-heavy solver
+  is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The C-132
+  clean-room replay completes in under a second and leaves the machine
+  responsive.
+
+### Next three highest-value actions
+
+1. Finish the anchor-only bridge audit and feed any accepted bridge into
+   longer singleton chains.
+2. Prove, refute, or sharply delimit greatest-family exchange reciprocity.
+3. Eliminate anchorless \(B\)-vertices or derive the next exact retained
+   palette constraint needed for global synchronization.
+
 ## Checkpoint 089 — 2026-07-28 08:37 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

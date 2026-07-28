@@ -3258,3 +3258,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile checker output/manifest:
   `a328c98d91337e4d1cfd061e5f19abc283d1ad03a379fe01c8b68ddc8fc3609f`,
   `96d7363152b43edbb846af142b90c5647a5c9f1be606feaa6361d3edc22c53a5`.
+
+## 2026-07-28 08:47 PDT — first full-list multi-step theorem
+
+- Promoted C-132 after unconditional hostile review.  At a full-response
+  independent triple, a second attack at any physical
+  complement-neighbor \(b\) of the target forces at least two retained
+  anchor roles.  A spoke vertex retains its own role, and every retained
+  role is anticomplete in the complement to that spoke.
+- Hence all three physical spokes are independent.  Under the C-127
+  no-isolate condition and in the absence of anchorless vertices, every
+  component of the physical inactive graph uses exactly two spokes as its
+  bipartition sides and has a canonical local two-color palette.
+- The C-123 and C-128 static controls fail this theorem at the second
+  attack.  A separate equality control realizes two different component
+  signatures, demonstrating that global palette synchronization is still a
+  real obstruction.
+- Lead replay corrected one documentation-only error: the clean-room
+  checker prints the exact result JSON and then a separate SHA-256 line.
+  It does not make the entire standard output byte-identical to the JSON
+  file.  The proof, computed data, and hostile verdict are unchanged.
+- Accepted note/candidate manifest:
+  `8bd29c18bfe2ed33862b8ae17489fbee29410a1bbc5ef1d729d848037fd99190`,
+  `fc35e58e2d96f9a7dc96d359fa601dc6083932ca8d899256db629e57869fb705`.
+  Hostile result/corrected manifest:
+  `f7a5dd5de678431e3c99709ac370c8fb48bbd88f680da9730e3a2ad9b57d1b75`,
+  `66378f9565c4cd4dbdc513495a1aa0685bcc98fe7e38cb9bc962c5a54a1fa26e`.
+- Scope remains strict: anchorless \(B\)-vertices, \(R_x-B\), intercomponent
+  palette synchronization, complete \(k=3\), and the universal conjecture
+  are still open.

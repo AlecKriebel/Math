@@ -1,0 +1,79 @@
+{
+  "schema": "full-list-multistep-bridge-candidate-manifest-v1",
+  "frozen_at": "2026-07-28T08:34:12-07:00",
+  "status": "CANDIDATE_FOR_HOSTILE_REVIEW",
+  "model": {
+    "attacks": "unoccupied vertices only",
+    "movement": "exactly one guard along one G-edge",
+    "retained_state_requirement": "every retained state dominates G"
+  },
+  "accepted_dependencies": [
+    "C-108 target-response propagation",
+    "C-122 inactive bipartiteness",
+    "C-127 exact gamma=3 target translation",
+    "C-128 exact static boundary control"
+  ],
+  "claim_boundary": {
+    "two_step_spoke_polarization": "PROVED_IN_NOTE",
+    "two_spoke_component_theorem": "PROVED_IN_NOTE",
+    "C123_static_control_survives_new_condition": false,
+    "C128_static_control_survives_new_condition": false,
+    "component_palette_synchronization": "OPEN",
+    "anchorless_physical_inactive_case": "OPEN",
+    "complete_full_list_branch": false,
+    "complete_k3_theorem": false,
+    "universal_conjecture_resolved": false
+  },
+  "proved_claims": [
+    {
+      "name": "two-step retained-palette theorem",
+      "statement": "At a full-response independent triple S={s0,s1,s2}, put B=N_complement(G)(x), Bi=B intersect N_complement(G)(si), and P(b)={i:{x,si,b} is retained}. Then the Bi are disjoint, |P(b)|>=2, b in Bq implies q in P(b), and i in P(b) implies b has no complement neighbor in Bi. Hence every Bi is independent and every B-vertex has complement neighbors in at most one root spoke."
+    },
+    {
+      "name": "two-spoke component theorem",
+      "statement": "If H[B] has no isolated vertex and every B-vertex belongs to a root spoke, every connected component of H[B] uses exactly two spoke classes, which are its bipartition sides. Each component therefore has a canonical local two-color palette compatible with the root triangle."
+    },
+    {
+      "name": "exact first-layer boundary",
+      "statement": "The C-123 and C-128 controls both fail the new second-attack condition. In C-128, B8={1,5} contains a complement edge, Q(1)={4}, Q(5)={0}, and four root-successor/physical-inactive attack pairs have no legal dominating response."
+    }
+  ],
+  "rigorous_files": [
+    {
+      "path": "math/working/full_list_multistep_bridge/NOTE.md",
+      "sha256": "8bd29c18bfe2ed33862b8ae17489fbee29410a1bbc5ef1d729d848037fd99190"
+    },
+    {
+      "path": "math/working/full_list_multistep_bridge/RESEARCH_LOG.md",
+      "sha256": "d96572a3102484e7c8da1e7822110f4e0ba736cc22ec39f829a6aa649f8016de"
+    },
+    {
+      "path": "math/working/full_list_multistep_bridge/verify_bridge.py",
+      "sha256": "1ade814b98b2bf9d4eec8e5aba5c4be9290fa20af76054bda4e950d0d7fbdcfb"
+    },
+    {
+      "path": "math/working/full_list_multistep_bridge/verification.json",
+      "sha256": "f95a64833985d7c2bca3c4290bafbd979f2f01c6ad913d49a713b3ec1a14f92d"
+    }
+  ],
+  "observed_discovery_files": [
+    {
+      "path": "math/working/full_list_multistep_bridge/probe_lk33_extensions.py",
+      "sha256": "0dda059a4cea2cd6d33d835378fd87f3ba8f250d978fad2fc7078b5465a09efe"
+    },
+    {
+      "path": "math/working/full_list_multistep_bridge/lk33_probe.json",
+      "sha256": "236dab998540bc3d3c7c74899dacafdc8e8ddda3c7085c69e39e1b0304c36baf"
+    }
+  ],
+  "observed_family_sweep": {
+    "universe": "all 524288 labeled two-vertex extensions of the fixed L(K3,3) deletion control",
+    "static_layer_rows": 72,
+    "rows_with_some_full_root_passing_all_physical-inactive_second_attacks": 0,
+    "claim_status": "OBSERVED_ONLY"
+  },
+  "reproduction": [
+    "python3 -I -B -W error math/working/full_list_multistep_bridge/verify_bridge.py --output math/working/full_list_multistep_bridge/verification.json",
+    "python3 -I -B -W error math/working/full_list_multistep_bridge/probe_lk33_extensions.py --output math/working/full_list_multistep_bridge/lk33_probe.json"
+  ]
+}
