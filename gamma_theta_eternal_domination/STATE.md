@@ -1,5 +1,66 @@
 # Campaign State
 
+## Checkpoint 066 — 2026-07-28 02:58 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified global frontier remains
+  13: C-097 excludes only the common-parameter-three slice at order 13,
+  while parameters four and five remain open.
+- **Two further independent release audits passed unconditionally.**  One
+  reviewer rebuilt and checked the tagged ten-page manuscript, every human
+  one-guard argument, the certificate-to-theorem binding, both equality
+  controls, attribution, disclosure, and all rendered pages.  A second
+  reviewer independently checked the tagged source, release hashes,
+  deterministic PDF, exact claim limitations, and public artifact binding.
+  Neither found an additional blocker.  Their reports are in
+  `reviews/order13_k3_manuscript_hostile/` and
+  `reviews/order13_k3_release_hostile_b/`.
+- **Three-gate parity is a live discovery observation, not yet a theorem.**
+  Direct one-guard formulas for cyclic tight-gate boundary systems were
+  UNSAT in every tested case with odd total connector parity and
+  \(\gamma\ge3\), including three-, four-, and five-gate systems and tested
+  subdivisions.  Even-total controls are SAT, and a shortest odd system
+  becomes SAT when the no-dominating-pair condition is removed.  The exact
+  proof gap is a finite-descent lemma: a common complement-neighbor must
+  either shorten the odd boundary cycle, create a previously excluded
+  boundary state, or expose a dominating pair.  No bounded probe is being
+  promoted to a claim.
+- The actual unit-free/no-full branch supplies a useful additional fact:
+  every outside vertex has an exact two-element response list and therefore
+  a unique omitted-anchor type.  Two proof lanes are exploiting this
+  partition in a witness-type case analysis.  A separate lane has resumed
+  the full-response extension problem.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Order-13 \(k=3\) theorem release | closed-published-audited | Tagged and live; three independent hostile audits now pass |
+| Universal no-full \(k=3\) proof | active-primary | Prove finite descent for an odd signed cycle through at least three tight gates |
+| Universal full-list \(k=3\) proof | active-independent | Extend a locally admissible full-response core through its residual two-list instance |
+| Order-13 \(k=4,5\) slices | deferred-fallback | No proof-lane termination gate has been reached |
+| General order-14 computation | deferred | No blind order-14 search |
+
+### Running jobs and resources
+
+- Two bounded proof agents are attacking the odd-cycle descent from
+  independent angles, and one bounded agent is auditing the full-list
+  extension branch.  Root is reconstructing the shortest core and its
+  common-neighbor cascade.  No broad enumeration or memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The short SAT
+  discovery probes complete in well under a second and the machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Prove or refute the typed common-neighbor finite-descent lemma for a
+   minimal odd tight-gate cycle, with arbitrary outside vertices and edges.
+2. Subject any proposed all-length parity theorem to an independent hostile
+   audit and sharp SAT controls before promoting it.
+3. In parallel, isolate the exact full-list extension obstruction needed to
+   turn a no-full theorem into the complete all-order \(k=3\) theorem.
+
 ## Checkpoint 065 — 2026-07-28 02:41 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

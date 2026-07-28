@@ -2581,3 +2581,34 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Publication changes only availability, not mathematical scope: order-13
   parameters four and five, arbitrary-order parameter three, and the
   universal conjecture remain open.
+
+## 2026-07-28 02:58 PDT — release cross-audits and three-gate proof target
+
+- Two additional independent hostile audits of the tagged order-13
+  parameter-three release returned unconditional `PASS`.  The first checked
+  every manuscript proof, one-guard move, certificate statistic, coverage
+  count, graph6 control, citation, disclosure, and rendered page.  The
+  second independently rebuilt the deterministic PDF and checked the tagged
+  source and release hashes.  No additional publication blocker was found.
+- A direct boundary-cycle formula was built only as a proof-discovery tool.
+  It encodes an arbitrary eternal family of triples, an independent retained
+  anchor state, three or more tight-gate dead boundaries, and connector paths
+  in the appropriate omitted-color projections.  With
+  \(\gamma(G)\ge3\), all tested odd-total connector parities are UNSAT for
+  three, four, and five gates; tested even totals are SAT.  The shortest odd
+  system is SAT when the \(\gamma\ge3\) condition is dropped.  These are
+  `OBSERVED` controls, not a finite theorem or universal proof.
+- The smallest proof core exposes the intended mechanism.  Without spare
+  vertices a particular pair of gate ports has no common complement
+  neighbor and therefore dominates.  A spare common neighbor can postpone
+  that contradiction, but one-guard closure forces a new deficient pair.
+  Larger cores continue this witness cascade.  The required human step is
+  to prove that the cascade is a genuine finite descent rather than infer it
+  from bounded UNSAT.
+- In the actual unit-free/no-full 2-SAT branch, every outside vertex has a
+  nonempty proper nonsingleton response list, hence an exact two-list and a
+  unique omitted-anchor type.  This turns the possible common-neighbor
+  witnesses into a three-case analysis and is now the primary proof
+  simplification.
+- A separate bounded proof lane resumed the full-response-list extension
+  problem.  No order-14 computation has begun.
