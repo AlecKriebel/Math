@@ -158,3 +158,37 @@ All timestamps use America/Los_Angeles.
   odd copy counts approached boundary values and the sampled even copy
   counts remained positive.  These floating-point observations are not
   used as mathematical evidence.
+- Completed an exact projector-induction audit.  The full parity formula is
+  \[
+  Q_n(P)=2^{-n}\sum_{j\ge1}(3^{2j}-1)
+  (e_{2j}-3o_{2j+1}),
+  \]
+  but its individual brackets can be negative even for two product
+  codewords.  The common-isometry block recursion retains the projection
+  identities \(\sum_kP_{ik}P_{kj}=P_{ij}\); scalar rank induction loses
+  precisely these relations.  The exact code
+  \(P=Q_1\otimes|\Phi_2\rangle\langle\Phi_2|_{23}\) has even-reduction
+  contributions \((-1,-1,2)\), proving that only the cyclic sum can be
+  controlled.
+- Reduced the full three-copy projector problem to the exact crossed-purity
+  inequality
+  \[
+  \sum_i(2y_i-x_i)\le\frac{e(u)+e(v)}2.
+  \]
+  An orthogonal four-term pair gives cross-sector deficit \(-3/8\), while
+  the two diagonal terms compensate exactly and the code has \(Q_3=0\).
+  A separate rational sparse pair disproves a proposed holomorphic
+  concurrence bridge.  These are exact obstructions, not numerical
+  evidence.
+- Proved the sharp positive-rank-two inequality for a non-product
+  two-parameter parity family at every copy number.  At odd \(n\) its
+  defect is an explicit sum of two squares; at even \(n\) the remaining
+  \(2\times2\) copositivity determinant is positive by a quadratic with
+  negative discriminant.  This family includes a rational example where a
+  mixed subprojection derivative is negative although the full strong
+  determinant is positive.
+- Proved the strong three-copy inequality on common local qubit supports
+  via six covers by nine pairwise anticommuting observables.  Averaging
+  qutrit-to-qubit compressions reaches sector coefficient \(2\), whereas
+  the qutrit target needs \(3\); the exact factor loss rules out that
+  isotropic compression argument.
