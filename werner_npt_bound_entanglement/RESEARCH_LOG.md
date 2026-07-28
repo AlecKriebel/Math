@@ -192,3 +192,59 @@ All timestamps use America/Los_Angeles.
   qutrit-to-qubit compressions reaches sector coefficient \(2\), whereas
   the qutrit target needs \(3\); the exact factor loss rules out that
   isotropic compression argument.
+
+## 2026-07-28 12:17--12:42 PDT — full three-copy theorem and recursion audit
+
+- Proved, without a local-dimension restriction, the sharp strong
+  three-copy theorem
+  \[
+  Q_3(H)\geq\frac18\left(2\operatorname{Tr}H^2
+  -(\operatorname{Tr}H)^2\right)
+  \qquad(H\succeq0,\ \operatorname{rank}H\leq2).
+  \]
+  In particular every rank-two code projection has \(Q_3(P)\geq0\).
+  The proof purifies \(H\) with a logical qubit, assigns the three logical
+  Pauli directions bijectively to the three physical sites, and chooses
+  the sign of each reduced encoded Pauli as the physical observable.
+  The resulting observables anticommute.  The two elementary estimates
+  \[
+  \sum_j\langle O_j\rangle^2\leq1,\qquad
+  2\|X\|_2^2\leq\|X\|_1^2+(\operatorname{Tr}X)^2
+  \]
+  give the theorem after averaging the six assignments.  All normalization
+  identities were independently rederived from complementary purities.
+- Extended the same sign-frame argument to arbitrary mixed states with a
+  maximally mixed logical-qubit marginal.  This proves the exact
+  fixed-marginal support-function bound and explains why the earlier
+  unrestricted operator-norm relaxation lost the sharp constant.
+- Extracted all-\(n\) consequences by grouping sites into three blocks and
+  by positive rank-one conditioning.  These consequences do not close:
+  exact rational formal sector tables at \(n=4\) and \(n=5\) satisfy every
+  grouped one-, two-, and three-block inequality, sector positivity, and
+  the logical even/odd trace identities, yet have negative singleton
+  endpoint functionals.  The tables are nonrealizability obstructions,
+  not physical witnesses.
+- Completed the sequential-sector audit.  The exact Abel-tail formula is
+  \[
+  D(3)=8\sum_{j\geq1}9^{j-1}T_j.
+  \]
+  Product equality codes make every fixed-depth initial window negative
+  when their Hamming distance is sufficiently large.  Scalar prefix
+  masses therefore cannot furnish a bounded-memory induction; the first
+  closed recursion state is matrix-valued and retains the common-isometry
+  relations.
+- Completed the reduction-map algebra audit.  Although
+  \({\cal R}^2={\cal R}+2I\) and
+  \({\cal R}^{-1}=({\cal R}-I)/2\), the natural inverse-image cone,
+  complement-pair inequalities, and orbit-moment cone are all refuted by
+  exact rank-two equality codes.  These failures locate the missing
+  information in the tensor-square/Plücker structure rather than the
+  reduction algebra alone.
+- Ran a discovery-only real optimization over the asymmetric parity family
+  \[
+  u=a_0|1^n\rangle+\sum_i a_i|e_i\rangle,\qquad
+  v=b_0|0^n\rangle+\sum_i b_i|\overline e_i\rangle
+  \]
+  for \(3\leq n\leq12\).  No reliable negative value appeared.  Values
+  near zero were treated as boundary/roundoff observations and are not
+  mathematical evidence.
