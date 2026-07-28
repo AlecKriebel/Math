@@ -1,0 +1,65 @@
+{
+  "schema": "rank-one-ur1-normalization-candidate-v1",
+  "date": "2026-07-28",
+  "status": "CANDIDATE_AWAITING_HOSTILE_REVIEW",
+  "candidate_claims": [
+    "Every rank-one AQ1 collision under gamma=alpha=gamma_infinity=3 produces a rank-one QQ1 collision on S={a,p,q}, where a is the private witness of the u-successor.",
+    "In the canonical QQ1/AQ1 normalization, ab, ac, bc, xb, xc, up, and uq are graph edges, with a=x in QQ1.",
+    "The normalized orientation satisfies u active toward a and a inactive toward u.",
+    "The common-nonneighbor set of {a,r} is a nonempty graph clique complete to {p,q}."
+  ],
+  "proved_dependencies": [
+    "equality collapse i=alpha=3",
+    "accepted C-010 maximum-independent-state retention",
+    "accepted C-064 exact ridge response covariance",
+    "accepted C-108 active-star transport",
+    "accepted C-150 rank-one private-witness rule and QQ1/AQ1 row table"
+  ],
+  "scope_exclusions": [
+    "elimination of the canonical rank-one QQ1 normal form",
+    "any higher-rank collision",
+    "greatest-family reciprocity",
+    "the complete k=3 case",
+    "the gamma-theta conjecture",
+    "minimum-order status for the Hslaghb boundary control"
+  ],
+  "collision_guardrail": "In QQ1 the u-successor witness may equal x; the proof makes the canonical choice a=x and audits this collision explicitly. Fresh-y_u QQ1 SAT probes do not cover the full row and are not used.",
+  "boundary_control": {
+    "graph6": "Hslaghb",
+    "graph6_ascii_sha256": "21adf1cd976e314bd1c56c50c61b68f159cddfe457447ec04146ee7fc914bfec",
+    "parameters": {
+      "n": 9,
+      "m": 17,
+      "gamma": 3,
+      "i": 3,
+      "alpha": 3,
+      "gamma_infinity": 4,
+      "theta": 4
+    },
+    "classification": "FIXED_GRAPH_BOUNDARY_CONTROL_NOT_COUNTEREXAMPLE"
+  },
+  "proof_artifacts": {
+    "NOTE.md": "4983d87b0af8cec7ca06aa7a0a12b96bb480b8dbe4c886773770046b9b4090d6",
+    "RESEARCH_LOG.md": "2321e32049de10822e48b61a2416b7558d10061487f6291c224412cb4bd6653c",
+    "verify_implication.py": "c7d89a82c16f6010719bcb604a4c21533613e85c3033c93d99c139f95affad7e",
+    "expected_result.json": "838dfd712a406c5c0a07bebe3ef48bc30833bf3b43011992a1da470cc08ca088",
+    "verify_control.py": "368f82ffb87ffabda215b3da210c187deab65025048d30a072a68469c5d184ab",
+    "expected_control_result.json": "453d04b7488634c09f1ab3cd1496150e7b1c11523c205a4b1dfaa2bf5ee32473",
+    "verify_strict.sh": "6d9ae279056c606b9c5a593375e2b1c85fcc8fa418f5c1c1af95e1fb9183e5b1"
+  },
+  "discovery_only_artifacts": {
+    "cegar_pairs.py": "a3f9492ac8bde68ca6eaa1ad08ec23cd1b11848503d49076235ea61c00752292",
+    "static_probe.py": "3d26a5468ad82557df38913136815fcd82431b50514bd737bf8c1a08dde77586",
+    "named_kernel_probe.py": "17f265448f29c63e07b493199e20dce55df4e1b701c2920e70d96e870474cb13"
+  },
+  "control_evaluator_dependencies": {
+    "src/verifier_a/core.py": "f43860bb3048b39f6cb99aba75b60cdfe7c77e0dc1c0489c17851b061fd91af1",
+    "src/verifier_a/cli.py": "5cc434da90658daeb9e45d3479f216738f96c0b0cf8bcaf6525c506459354a52",
+    "src/verifier_b/graph.py": "12b77a569e16eb8d7aa94ecb0f37800944effb7e9d8b73814adc1ec9a1777237",
+    "src/verifier_b/invariants.py": "6dc2ce5544bfa364a3381e06e91c15864aca6dfd693978e177f8921df432258e",
+    "src/verifier_b/eternal.py": "cdb8b053416e74e8508d9c3b4e0a373c0b7c68ecbdac9a512b50803295c322d2",
+    "src/verifier_b/cli.py": "f620f3060007a1fb3c9269c70e5860e8c328d6141391dbe69c5e66c100ba9c3b"
+  },
+  "strict_reproduction": "sh math/working/rank_one_ur1_endgame/verify_strict.sh",
+  "strict_expected_stdout": "rank-one ur=1 normalization audit: PASS"
+}
