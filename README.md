@@ -22,6 +22,22 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**An exceptional four-dimensional unitary Hecke Yang--Baxter operator**
+gives an exact representative of the previously unresolved class
+\[
+\left[e^{i\pi/3},\frac12,4\right].
+\]
+Its five-word Pauli formula is a Hermitian involution selected from a
+one-parameter reflection circle by the braid relation. The \((-1)\)-spectral
+projection has rank eight and both partial traces \(2I_4\), yielding faithful
+embeddings of every \(H_n(3,6)\) and an ordinary unitary localization of the
+\(\mathcal C(\mathfrak{sl}_3,6)\) Jones--Wenzl tower. The note proves local
+dimension four is minimal and records a \((3,2)\)-generalized active form.
+The public priority audit found no earlier ordinary four-dimensional
+localization, but absolute novelty is not claimed. See the
+[paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/)
+and [source package](exceptional_ybe_d4/).
+
 **Maximal violation without maximal global randomness in a cyclic Bell
 family** gives exact counterexamples to the Bell-value reading of Conjecture 2
 of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for every \(d\ge4\),

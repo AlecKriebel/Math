@@ -1,0 +1,66 @@
+== dependency-free exact matrix verifier ==
+[ok] H is Hermitian
+[ok] H^2 = I_16
+[ok] Tr(H) = 0
+[ok] cubic reflection identity on 64 dimensions
+[ok] P^2 = P
+[ok] P is Hermitian
+[ok] Tr(P) = rank(P) = 8
+[ok] R is unitary
+[ok] (R + I)(R - qI) = 0
+[ok] Tr(R) = 8(q - 1) = -4 + 4i*sqrt(3)
+[ok] direct 64x64 Yang--Baxter equation for R
+[ok] Tr_right(P) = 2 I_4
+[ok] Tr_left(P) = 2 I_4
+[ok] exceptional trace norm of the d=3 TL obstruction = 1/18
+[ok] sitewise-swapped H factors as I_2 tensor K_H
+[ok] active 8x8 operator is unitary
+[ok] standard (3,2)-generalized Yang--Baxter equation
+[ok] (3,2)-gYB far commutativity
+
+All dependency-free exact checks passed.
+base dimension: 4
+matrix size: 16 x 16
+rank of the (-1)-spectral projection: 8
+normalized spectral trace eta: 1/2
+standard active form: unitary (3,2)-gYB operator on three qubits
+
+== abstract tensor-word verifier ==
+[ok] ZIZZ^2 = I
+[ok] ZIJJ^2 = I
+[ok] JIZJ^2 = I
+[ok] JIJZ^2 = I
+[ok] XIXX^2 = I
+[ok] ZIZZ commutes with ZIJJ
+[ok] ZIZZ commutes with JIZJ
+[ok] ZIJJ commutes with JIZJ
+[ok] D = ABC
+[ok] E anticommutes with ZIZZ
+[ok] E anticommutes with ZIJJ
+[ok] E anticommutes with JIZJ
+[ok] E anticommutes with JIJZ
+[ok] H(alpha,beta)^2 = (alpha^2 + beta^2) I
+[ok] the cubic residual has exactly the printed 18-word certificate
+[ok] all 18 coefficients vanish for alpha^2=2/3, beta^2=1/3
+
+The 18 surviving words and their coefficients are:
+  -1/2*alpha*beta^2 + 1/6*alpha                           : IIJIJZ, JIZJII, ZIJJII, ZIZZII
+  1/2*alpha*beta^2 + -1/6*alpha                           : IIJIZJ, IIZIJJ, IIZIZZ, JIJZII
+  -1*alpha^2*beta + 1*beta^3 + 1/3*beta                   : IIXIXX
+  1/2*alpha^3 + -1*alpha*beta^2                           : JIJZXX, JIZJXX, XIJXZJ, ZIZZXX
+  -1/2*alpha^3 + 1*alpha*beta^2                           : XIJXJZ, XIZXJJ, XIZXZZ, ZIJJXX
+  1*alpha^2*beta + -1*beta^3 + -1/3*beta                  : XIXXII
+
+All tensor-word checks passed.
+On alpha^2 + beta^2 = 1, the only nondegenerate obstruction is
+3 beta^2 - 1; hence beta^2 = 1/3 and alpha^2 = 2/3.
+
+== preserved SymPy verifier ==
+All exact checks passed.
+base dimension = 4
+matrix size = 16 x 16
+rank of (-1)-spectral projection = 8
+normalized spectral trace eta = 1/2
+q = 1/2 + sqrt(3)*I/2
+
+All three verification routes passed.

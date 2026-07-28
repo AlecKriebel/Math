@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An exact 16 by 16 unitary Yang–Baxter operator fills the first unresolved exceptional Hecke class and gives a minimal ordinary localization for the C(sl3,6) Jones–Wenzl representations.">
+  <meta name="author" content="Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol">
+  <meta name="citation_title" content="An exceptional four-dimensional unitary Hecke Yang–Baxter operator">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-27">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="An exceptional four-dimensional unitary Hecke Yang–Baxter operator">
+  <meta property="og:description" content="A five-word exact matrix in the previously unresolved class [exp(iπ/3), 1/2, 4].">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/">
+  <title>Exceptional four-dimensional Hecke Yang–Baxter operator · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "An exceptional four-dimensional unitary Hecke Yang–Baxter operator",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT 5.6 Sol"},
+    "datePublished": "2026-07-27",
+    "dateModified": "2026-07-27",
+    "url": "https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/",
+    "isBasedOn": [
+      "https://arxiv.org/abs/2603.20158",
+      "https://doi.org/10.1093/imrn/rnr269"
+    ],
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/paper.pdf",
+      "encodingFormat": "application/pdf"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#result">Result</a>
+        <a href="#construction">Construction</a>
+        <a href="#localization">Localization</a>
+        <a href="#certificate">Verification</a>
+        <a href="#scope">Scope</a>
+        <a href="https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4">Source</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Mathematical physics · Yang–Baxter equation · Not peer reviewed</p>
+      <h1>An exceptional four-dimensional unitary Hecke Yang–Baxter operator</h1>
+      <p class="byline">Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol</p>
+      <p class="release">Research note prepared: <time datetime="2026-07-27">27 July 2026</time></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Independent expert verification is still required.</h2>
+        <p>This is an unrefereed, AI-assisted candidate result. Three exact verification routes pass, but code is not peer review and the localization and priority interpretations require qualified checking.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/main.tex">TeX manuscript</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verify_exact.py">Exact matrix verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verify_tensor_words.py">Word certificate</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/PRIORITY_AUDIT.md">Priority audit</a>
+      <a class="button secondary" href="https://arxiv.org/abs/2603.20158">Classification preprint</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">A five-word Pauli formula gives an exact \(16\times16\) unitary Yang–Baxter operator in the class \([e^{i\pi/3},1/2,4]\). This was the first unresolved dimension of the exceptional family isolated in Lechner's 2026 classification. Its spectral projection has the partial traces needed for the full \(\eta=1/2\) Markov-trace argument, yielding a faithful ordinary localization of the \(\mathcal C(\mathfrak{sl}_3,6)\) Jones–Wenzl tower.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Local space</strong><span>\(\mathbb C^4\), so \(R\) is \(16\times16\)</span></div>
+          <div class="fact"><strong>Spectrum</strong><span>\(-1\) and \(e^{i\pi/3}\), eight times each</span></div>
+          <div class="fact"><strong>Verification</strong><span>Direct exact matrices and an independent 18-word certificate</span></div>
+        </div>
+      </section>
+
+      <section id="result">
+        <h2>1. Result</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> The exceptional class is nonempty:
+          \[
+            \left[e^{i\pi/3},\frac12,4\right]\ne\varnothing.
+          \]
+          The induced maps \(H_n(3,6)\to\operatorname{End}((\mathbb C^4)^{\otimes n})\) are faithful for every \(n\). Consequently the Jones–Wenzl braid representations associated with \(\mathcal C(\mathfrak{sl}_3,6)\) have an ordinary unitary localization of minimum local dimension four.</p>
+        </div>
+        <p>Galindo, Hong, and Rowell studied this representation sequence in 2012. They ruled out ordinary local dimension two and supplied quasi- and \((3,1)\)-generalized localizations. In March 2026, Lechner's two-eigenvalue classification left \([e^{i\pi/3},1/2,2d]\) as its one unresolved family and identified base dimension four as the first open case.</p>
+      </section>
+
+      <section id="construction">
+        <h2>2. The exact construction</h2>
+        <p>On \(V\otimes V\cong(\mathbb C^2)^{\otimes4}\), use
+        \(I,X,Z\) and \(J=XZ\), with a four-letter word denoting a tensor product. Set</p>
+        <div class="equation equation-wide">
+          \[
+          \begin{aligned}
+          H={}&amp;-\frac{ZIZZ+ZIJJ+JIZJ-JIJZ}{\sqrt6}
+                -\frac{XIXX}{\sqrt3},\\
+          R={}&amp;\frac{q-1}{2}I_{16}+\frac{q+1}{2}H,
+          \qquad q=e^{i\pi/3}.
+          \end{aligned}
+          \]
+        </div>
+        <p>The first four Pauli words combine into one reflection
+        \[
+          M=\frac{-ZIZZ-ZIJJ-JIZJ+JIJZ}{2},
+        \]
+        while \(E=XIXX\) is an anticommuting reflection. Thus
+        \(H(\alpha,\beta)=\alpha M+\beta E\) is an involution on the circle
+        \(\alpha^2+\beta^2=1\). The complete Pauli expansion shows that the braid relation selects exactly
+        \(\beta^2=1/3\), \(\alpha^2=2/3\). The coefficients are forced; the only search-discovered ingredient was the sparse five-word support.</p>
+        <div class="equation equation-wide">
+          \[
+          H_1H_2H_1-H_2H_1H_2=\frac13(H_1-H_2),
+          \qquad
+          \frac{q-1}{q+1}=\frac{i}{\sqrt3}.
+          \]
+        </div>
+        <p>These two identities immediately give the Yang–Baxter equation for \(R\).</p>
+      </section>
+
+      <section id="localization">
+        <h2>3. Why this is a full localization</h2>
+        <p>The \((-1)\)-spectral projection is \(P=(I-H)/2\). Exact calculation gives</p>
+        <div class="equation">
+          \[
+          P^2=P=P^*,\qquad \operatorname{rank}P=8,\qquad
+          \operatorname{Tr}_1P=\operatorname{Tr}_2P=2I_4.
+          \]
+        </div>
+        <p>For normalized matrix traces \(\tau_n=4^{-n}\operatorname{Tr}\), the partial trace is precisely the Markov step</p>
+        <div class="equation equation-wide">
+          \[
+          \tau_{n+1}\!\left((\rho_n(x)\otimes I_4)P_n\right)
+          =\frac12\tau_n(\rho_n(x)).
+          \]
+        </div>
+        <p>Therefore \(\tau_n\circ\rho_n\) is the Markov trace defining \(H_n(3,6)\). Faithfulness of ordinary matrix trace makes the representation kernel equal to the trace annihilator, so the induced quotient representation is injective.</p>
+        <p>Dimension one cannot carry the generator, dimension two is excluded by the 2012 theorem, and in dimension three the only allowed Markov parameters force a Temperley–Lieb or complementary Temperley–Lieb quotient rather than the full \(H_3(3,6)\). Hence four is minimal.</p>
+      </section>
+
+      <section id="certificate">
+        <h2>4. Independent exact verification</h2>
+        <ul class="certificate-list">
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verify_exact.py"><code>verify_exact.py</code></a> — standard-library arithmetic in \(\mathbb Q(\sqrt2,\sqrt3,i)\); checks the complete \(16\times16\), \(32\times32\), and \(64\times64\) identities exactly.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verify_tensor_words.py"><code>verify_tensor_words.py</code></a> — no matrices; checks all 18 surviving generic six-letter Pauli words and their polynomial coefficients.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verify_supplied.py"><code>verify_supplied.py</code></a> — the original SymPy verifier, preserved byte for byte for provenance.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/exceptional_ybe_d4/verification_output.txt"><code>verification_output.txt</code></a> — frozen output from the successful release run.</li>
+        </ul>
+        <p>After swapping the two qubits inside every ququart, one qubit is a global spectator and the active \(8\times8\) operator satisfies the standard \((3,2)\)-generalized Yang–Baxter equation. The global conjugacy shows that this generalized representation has the same kernel as the faithful ordinary one, so it also gives a faithful \((3,2)\)-localization. No equivalence with the earlier quaternionic \((3,1)\) operator is asserted.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Priority and open scope</h2>
+        <p>A focused primary-source, scholarly-index, web, and exact-code search found no earlier ordinary four-dimensional localization or equivalent Pauli formula. The result therefore appears new and appears to answer the open class in arXiv:2603.20158. Absolute priority cannot be proved: differently normalized, unindexed, unpublished, paywalled, or concurrent work may exist.</p>
+        <p>Tensoring with identities gives examples in every base dimension \(4m\). It does not settle dimensions \(6,10,14,\ldots\), classify all solutions, prove uniqueness within the Pauli ansatz, or identify a tower intertwiner with the older quaternionic construction. No outside researcher was contacted during the audit.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The proof architecture, exact programs, manuscript, and literature audit were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction. The sparse support came from an AI-assisted numerical search whose original code and seeds were not retained; no mathematical claim relies on that search. Alec Kriebel is the named human author and cannot independently validate the result.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol, “An exceptional four-dimensional unitary Hecke Yang–Baxter operator,” provisional research note, 27 July 2026. <a href="https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The TeX source, three exact verifiers, coefficient certificate, priority audit, source snapshot, research log, and release hashes are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>

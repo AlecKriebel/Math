@@ -298,7 +298,7 @@ def ybe_residual(left, right):
 
 
 def main():
-    i4, i8, i16 = eye(4), eye(8), eye(16)
+    i2, i4, i8, i16 = eye(2), eye(4), eye(8), eye(16)
     h = build_h(TERMS)
 
     assert_equal("H is Hermitian", adjoint(h), h)
@@ -353,16 +353,33 @@ def main():
         expected_partial,
     )
 
+    p1, p2 = kron(p, i4), kron(i4, p)
+    tl_obstruction = matrix_sub(
+        matmul(matmul(p1, p2), p1),
+        scalar_mul(Fraction(1, 3), p1),
+    )
+    tl_norm = trace(matmul(adjoint(tl_obstruction), tl_obstruction)) / 64
+    assert tl_norm == CQ23(Fraction(1, 18))
+    print("[ok] exceptional trace norm of the d=3 TL obstruction = 1/18")
+
     # Remove the spectator second qubit, then exchange the last two active
     # coordinates.  This gives the standard (3,2)-gYB ordering
     # (a_i, b_{i+1}, a_{i+1}).
     active_terms = []
+    swapped_two_site_terms = []
     for word, coefficient in TERMS:
         assert word[1] == "I"
         active = word[0] + word[2] + word[3]
         standard_order = active[0] + active[2] + active[1]
         active_terms.append((standard_order, coefficient))
+        swapped_two_site_terms.append(("I" + standard_order, coefficient))
     k_h = build_h(tuple(active_terms))
+    swapped_two_site_h = build_h(tuple(swapped_two_site_terms))
+    assert_equal(
+        "sitewise-swapped H factors as I_2 tensor K_H",
+        swapped_two_site_h,
+        kron(i2, k_h),
+    )
     k_r = matrix_add(scalar_mul(a, i8), scalar_mul(b, k_h))
     assert_equal("active 8x8 operator is unitary", matmul(adjoint(k_r), k_r), i8)
 

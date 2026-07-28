@@ -42,3 +42,49 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
 - Corrected the provenance copy of the supplied verifier to be byte-for-byte
   identical to the download.  SHA-256:
   `df5ccbc8807c20a2f782762681100e3ad06cb95a750b7e052839584006fe3677`.
+- **19:56:20** -- First complete nine-page manuscript compiled successfully.
+  The paper turns the five terms into two anticommuting reflections, prints
+  the entire 18-word generic cubic certificate, proves the partial-trace
+  Markov property and faithfulness on \(H_n(3,6)\), proves minimal local
+  dimension four, and gives the correctly reordered \((3,2)\)-generalized
+  active form.
+- **20:00:04** -- All three release verification routes passed in one run.
+  The dependency-free direct checker and abstract word checker are independent
+  of the preserved SymPy attachment.  The successful output was frozen in
+  `verification_output.txt`.
+- **20:01:12** -- Focused priority audit checkpoint completed.
+  - Galindo--Hong--Rowell (advance publication 14 February 2012) supplied the
+    broad open localization question, the two-dimensional nonexistence result,
+    and the quaternionic \((3,1)\)-generalized operator, but no ordinary
+    four-dimensional operator.
+  - Lechner v1 (20 March 2026, 17:34:47 UTC) explicitly left
+    \([e^{i\pi/3},1/2,2d]\) unresolved and identified the two-dimensional
+    member as empty.
+  - Searches of primary sources, scholarly indexes, general web results,
+    public code, exact Pauli-word pairs, and the preprint identifier found no
+    earlier ordinary representative of the four-dimensional class.
+  - The approved conclusion is “appears new”; absolute priority, uniqueness,
+    and inequivalence to the older quaternionic tower are not claimed.
+  - No external contact occurred.  Comparison with unpublished expert notes
+    is recorded only as a limitation.
+- **20:13:12** -- Independent adversarial audits closed.
+  - A separate Pauli-word implementation reproduced the involution and cubic
+    identities exactly and confirmed the tensor ordering.
+  - The partial-trace argument was audited against the precise localization
+    definition: the pulled-back normalized matrix trace is the
+    \(\eta=1/2\) Markov trace, and its trace-form radical equals the matrix
+    kernel by positivity.
+  - The dimension-three minimality step was strengthened.  A
+    Temperley--Lieb candidate kills
+    \(T=P_1P_2P_1-P_1/3\), whereas the exceptional trace gives
+    \(\operatorname{tr}(T^*T)=1/18\); the complementary case is analogous.
+  - The earlier speculative retraction of the \((3,2)\) interpretation was
+    rejected.  After swapping the two qubits in every ququart, the active
+    order is \(a_i,b_{i+1},a_{i+1}\), one global qubit is a spectator, and
+    the standard \((3,2)\) equation holds exactly.  The global conjugacy also
+    makes the generalized localization faithful.
+  - GHR Example 3.14 is a prior \((3,2)\) operator, so that label alone is
+    not novel.  Its projective eigenvalue ratio is \(i\); the present active
+    operator has ratio \(-e^{i\pi/3}\), excluding unitary conjugacy up to
+    phase.  No equivalence with GHR's category-specific \((3,1)\) tower is
+    claimed.
