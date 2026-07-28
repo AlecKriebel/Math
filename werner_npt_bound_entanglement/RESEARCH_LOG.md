@@ -121,3 +121,22 @@ All timestamps use America/Los_Angeles.
 - At the \(d=3\) endpoint, obtained the explicit finite flag bound:
   if \(q=Q_n(D)<0\), any \(m\) with \(2^{-m}<-q/4\) makes the flagged
   rank-two projection negative.
+- Developed the complete scalar and logical-Pauli swap enumerators of a
+  two-dimensional code.  For \(n=3\), projector positivity is exactly the
+  Pauli broadcast monogamy inequality
+  \[
+  Q_3(P)=\tfrac32-\tfrac14\sum_{i=1}^3
+  \sum_{a=1}^3\|\mathcal N_i(\sigma_a)\|_2^2\ge0,
+  \]
+  equivalently \(E_2\ge3p_{\{1,2,3\}}\) in local swap sectors.
+- Constructed exact negative pseudo-enumerators satisfying sector
+  positivity, every complement/Lorentz/Pauli-Gram identity, the full
+  logical sector-POVM relaxation, and natural nesting bounds.  They are
+  rigorously nonrealizable.  Thus any proof must use nonlinear common-code
+  (Plücker/tensor-square) compatibility, not only linear enumerator data.
+- Proved the full \(d=3,n=2\) dual Ky--Fan inequality when either one of
+  the two \(3\times3\) summands is normal, with the other arbitrary and
+  with the scalar term present.  Also proved all embedded traceless
+  \(2\times2\) simultaneous-nonnormal cores and identified broad exact
+  equality families.  The genuinely three-dimensional simultaneous
+  nonnormal case remains open.
