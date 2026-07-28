@@ -3527,3 +3527,42 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `f3109fcbc5c712f359c309800c62214511c1c3d55a3ec17032f7f916195a9054`.
   The external-blocker descent remains incomplete; no reciprocity or
   conjecture resolution is claimed.
+
+## 2026-07-28 11:28 PDT — finite-horizon rank transport accepted
+
+- Promoted C-146 after an unconditional hostile audit.  The C-108
+  transport sequence works quantitatively at every kernel horizon:
+  exchanging \(m\) vertices between independent endpoint states costs at
+  most \(m\) deletion rounds.  Finite deletion rank is therefore
+  \(1\)-Lipschitz along every maximum-independent ridge.
+- Combining that theorem with C-143 gives an exact descent rule.  If a
+  deleting attack at a reverse endpoint hits only one member of its
+  independent endpoint, the corresponding adjacent reverse endpoint has
+  rank exactly one lower.  Hence a rank-one or globally minimum-rank
+  blocker must hit at least two endpoint guards.
+- The hostile reviewer checked synchronous horizon indexing, ranks zero
+  and infinity, arbitrary overlap, unoccupied targets, legal one-edge
+  moves, and the C-108/C-143 dependency boundary.  Its clean-room bitmask
+  implementation exhausted all 33,867 labeled graphs through order six,
+  1,918,272 star comparisons, and 10,919,952 directed horizon tests with
+  no failure.
+- Candidate/review manifests:
+  `ccdbe024d0886d34ecd2785535005a30fa1792e54ecfa6474d941b1a7fd5def1`,
+  `85f8dbb2c9a8a7fc8ec70c417e08c7865c2f9c4d46af56704dabfbe66f61e340`.
+  The multi-hit collision branch remains open.
+
+## 2026-07-28 11:29 PDT — order-ten reciprocity discovery scan complete
+
+- Logged C-147 as `OBSERVED`.  All sixteen deterministic `geng`
+  partitions completed, totaling 11,716,571 connected unlabeled
+  order-ten graphs.  A separate count-only invocation reported the same
+  total.
+- The scan found 61,366 static equality graphs, 17,671 with nonempty
+  greatest eternal triple kernels, and 458,696 active orientations.
+  None was asymmetric.
+- This strengthens the empirical case for equality-specific
+  greatest-family reciprocity but is not yet a finite theorem.  The
+  order-ten checker adaptation and split coverage have not been replayed
+  by a second implementation.  Exact totals and all sixteen partition
+  hashes are frozen in
+  `math/working/reciprocity_order10_probe/aggregate.json`.

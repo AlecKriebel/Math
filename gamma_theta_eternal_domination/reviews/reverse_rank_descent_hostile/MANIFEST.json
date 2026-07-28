@@ -1,0 +1,54 @@
+{
+  "schema": "reverse-rank-descent-hostile-manifest-v1",
+  "status": "PASS",
+  "date": "2026-07-28",
+  "candidate_inputs": {
+    "math/working/reverse_rank_descent/NOTE.md": "3481a7dcc650a83d3994ff4bfdfb7789a520bb6a29dc57b51c1a84d549fd5b77",
+    "math/working/reverse_rank_descent/RESEARCH_LOG.md": "8664d89caa287adaee0e92e615c3c5245dc0f2ae32171d282135b509d4f75f3c",
+    "math/working/reverse_rank_descent/expected_result.json": "4d9b0094e18d6af5f401391bb7a04fba7b09e7bc6067b99a741b0225d67ed868",
+    "math/working/reverse_rank_descent/verify_controls.py": "5a02183c178c772ad7cc9301c8b60c2ff9d8cbc72f4eb51bf2163f8ba1c9eb97"
+  },
+  "accepted_dependencies": {
+    "math/lemmas/general_target_response_propagation.md": "d6a0ec8a7daff1cca0094e1929134507364cea3c2c8781fbe24956a3238048d8",
+    "math/working/reverse_state_domination/NOTE.md": "3255bcc3d75b8538d6c8e3288f8106b553194bbac1fc3ac590d18ba6d6f81de3"
+  },
+  "review_artifacts": {
+    "REVIEW.md": "51df49e6e51082abcd04df8f1162c07b1e8513111437db3bf65c305933122123",
+    "RESEARCH_LOG.md": "638d9d975d17fbe597a5e18d0150c9816cc5b846b9c05fe683f15e327096161b",
+    "independent_checker.py": "a1a94ad1d3d6424fa7914b267a12c9a1bf44dc1c2cbcd944f70ccbf681454077",
+    "result.json": "a61fdc09f9935a4fbe865a617c08cf193b83b9dffe95f959f6fd96b902c4a68b"
+  },
+  "replay": [
+    "python3 -I -B -W error reviews/reverse_rank_descent_hostile/independent_checker.py",
+    "python3 -I -B -W error reviews/reverse_rank_descent_hostile/independent_checker.py | cmp - reviews/reverse_rank_descent_hostile/result.json",
+    "python3 -I -B -W error math/working/reverse_rank_descent/verify_controls.py | cmp - math/working/reverse_rank_descent/expected_result.json"
+  ],
+  "coverage": {
+    "labeled_graphs_through_order": 6,
+    "labeled_graphs": 33867,
+    "guard_sizes": 202013,
+    "star_comparisons": 1918272,
+    "directed_horizon_tests": 10919952,
+    "fixed_graph6_controls": [
+      "HCOe`Z{",
+      "HCRdnat",
+      "HEjejrr",
+      "GEjbug"
+    ]
+  },
+  "scope": {
+    "accepted": [
+      "finite-horizon vertex-star transport",
+      "star-Lipschitz extended deletion rank",
+      "reverse-rank Lipschitz potential under C-143",
+      "exact unit descent at a single-hit deleting attack",
+      "rank-one and minimum-rank blockers are multi-hit collisions"
+    ],
+    "open": [
+      "survivor reciprocity",
+      "elimination of the multi-hit collision branch",
+      "a complete parameter case",
+      "the gamma-theta conjecture"
+    ]
+  }
+}

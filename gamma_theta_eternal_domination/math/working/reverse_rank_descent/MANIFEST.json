@@ -1,0 +1,34 @@
+{
+  "schema": "reverse-rank-descent-candidate-manifest-v1",
+  "status": "CANDIDATE_PENDING_HOSTILE_REVIEW",
+  "date": "2026-07-28",
+  "artifacts": {
+    "NOTE.md": "3481a7dcc650a83d3994ff4bfdfb7789a520bb6a29dc57b51c1a84d549fd5b77",
+    "RESEARCH_LOG.md": "8664d89caa287adaee0e92e615c3c5245dc0f2ae32171d282135b509d4f75f3c",
+    "expected_result.json": "4d9b0094e18d6af5f401391bb7a04fba7b09e7bc6067b99a741b0225d67ed868",
+    "verify_controls.py": "5a02183c178c772ad7cc9301c8b60c2ff9d8cbc72f4eb51bf2163f8ba1c9eb97"
+  },
+  "accepted_dependencies": {
+    "C-108 general_target_response_propagation.md": "d6a0ec8a7daff1cca0094e1929134507364cea3c2c8781fbe24956a3238048d8",
+    "C-143 reverse_state_domination/NOTE.md": "3255bcc3d75b8538d6c8e3288f8106b553194bbac1fc3ac590d18ba6d6f81de3"
+  },
+  "replay": [
+    "python3 -I -B -W error math/working/reverse_rank_descent/verify_controls.py",
+    "python3 -I -B -W error math/working/reverse_rank_descent/verify_controls.py | cmp - math/working/reverse_rank_descent/expected_result.json"
+  ],
+  "scope": {
+    "candidate_theorems": [
+      "finite-horizon vertex-star transport",
+      "star-Lipschitz extended deletion rank",
+      "reverse-rank Lipschitz potential under C-143",
+      "exact unit descent at a single-hit deleting attack",
+      "rank-one and minimum-rank blockers are multi-hit collisions"
+    ],
+    "not_claimed": [
+      "survivor-to-survivor reciprocity",
+      "elimination of the multi-hit collision branch",
+      "a complete parameter case",
+      "the gamma-theta conjecture"
+    ]
+  }
+}

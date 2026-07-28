@@ -1,5 +1,55 @@
 # Campaign State
 
+## Checkpoint 100 — 2026-07-28 11:30 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `95e2be7b`.
+- **Finite-horizon response transport now gives exact rank descent
+  (C-146).**  Across an independent-endpoint exchange of distance \(m\),
+  a response state loses at most \(m\) kernel horizons.  Finite reverse
+  deletion rank is \(1\)-Lipschitz along facet ridges.
+- C-143 closes rank zero, and C-146 now closes every single-hit minimum
+  obstruction: if a deleting attack hits exactly one endpoint guard, it
+  produces an adjacent reverse endpoint of rank exactly one less.
+  Therefore every rank-one or globally minimum blocker must be a genuine
+  multi-hit collision.
+- **The complete order-ten reciprocity discovery scan found no
+  asymmetry (C-147, `OBSERVED`).**  All 11,716,571 connected unlabeled
+  graphs were streamed; 17,671 eternal-equality graphs supplied 458,696
+  active orientations, all reciprocal.  Independent order-ten
+  reconstruction is still required before certification.
+- The exact static mixed-\(P_4\) lane has a frozen candidate local
+  exclusion awaiting hostile audit.  The full-list future-safe-color lane
+  remains active.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-146 | Genuine multi-hit blocker collision |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Exact static mixed \(P_4\) | candidate awaiting hostile audit | Verify 8-vertex, 32-mask local exclusion and external scope |
+| Fresh-component singleton chain | active | Family-only or longer outside-ridge return |
+| Full-list future-safe color | active-independent | Select a future-stable color despite reverse false positives |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One independent lane is freezing the mixed-\(P_4\) package and another
+  is testing the full-list safe-color lemma.  No memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The completed
+  order-ten scan used one CPU and about 27 MB resident memory.
+
+### Next three highest-value actions
+
+1. Hostilely audit the exact static mixed-\(P_4\) local exclusion.
+2. Attack the C-146 multi-hit collision without deleting a genuine
+   adjacency.
+3. Prove or refute future-stable color selection in the full-list branch.
+
 ## Checkpoint 099 — 2026-07-28 11:07 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
