@@ -3678,3 +3678,49 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   The family-only pattern and universal conjecture remain open; the exact
   next target is a well-founded rank recurrence or a multi-hit
   contradiction.
+
+## 2026-07-28 13:16 PDT — four structural reductions promoted
+
+- Promoted C-153 after an unconditional hostile audit.  In rank-one XQ1,
+  the C-150 witness ladder and two in-scope C-064 ridge transports make
+  the mixed state \(\{x,y_p,q\}\) an exact omitted response.  Extending
+  \(\{u,y_p\}\) to a maximum independent triple and transporting
+  \(u\triangleright x\) forces that same state, directly when the third
+  vertex is \(q\) and by one unique unoccupied attack otherwise.
+  The review checked all named collisions and 128 external-completion
+  patterns.  Candidate and review manifests are
+  `856470d7742221146ac845ff102644a732d10ae4115a1c7441e3829507edb34b`
+  and
+  `56f28a144532a8eff7e51c34076b7d70240a98f775cbc80b394d9ac433bbd490`.
+- Promoted C-154.  If all three C-149 restricted kernels are empty, three
+  selected terminal traces cannot all end at their own singleton root
+  palettes.  The two-case attack tree uses only positive retained states
+  and root-independence nonedges, and therefore covers all 27
+  corridor/diamond/restoration gate labels.  The hostile review rebuilt
+  all 512 local completions and the exact equality control.  This removes
+  one terminal class but does not prove a surviving color.
+- Promoted corrected C-155.  Every single-hit deleting attack on a
+  family-only mixed-\(P_4\) endpoint row transports the complete exact
+  list system to an independent ridge-neighbor root and lowers rank by
+  exactly one.  Rank zero is the accepted C-151/C-148 one-defect
+  contradiction, so finite descent reaches a genuine multi-hit row.
+  The first hostile review found missing C-064, C-058, and C-151 proof
+  bindings but no mathematical flaw; the revised bytes and manifest
+  passed the focused re-audit.  The eight-cell multi-hit continuation
+  remains open.
+- Promoted C-156 after an unconditional hostile audit.  In rank-one QQ0
+  or AQ0, private-witness transfer forces
+  \(M_q=\{x,p,y_q\}\) into the greatest family.  At the attack \(y_p\),
+  all three possible responders fail: one successor misses \(q\), and
+  the other two can answer a subsequent attack at \(u\) only by landing
+  in \(\{u,y_p,y_q\}\), which misses \(r\).  A clean-room audit scanned
+  all \(2^{21}\) named graphs, recovered exactly 32 QQ0 and 32 AQ0
+  hypothesis assignments, and found zero failures.  Candidate/review
+  manifests are
+  `a25f9f2d8c0fae1500e5455ac369cdf5784e76ba053f82ce462db1efa7006bf7`
+  and
+  `12890813d7624f2a80479eda32b0faa2c6b79b599c7bebc61d4859bc46841cb3`.
+- C-150, C-153, and C-156 now eliminate XQ0, XQ1, QQ0, and AQ0 at
+  rank one.  QQ1 and AQ1 are the only rank-one collision rows left.
+  Higher-rank multi-hit collisions, complete \(k=3\), and the universal
+  conjecture remain open.

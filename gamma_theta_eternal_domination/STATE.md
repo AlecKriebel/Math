@@ -1,5 +1,62 @@
 # Campaign State
 
+## Checkpoint 105 — 2026-07-28 13:16 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `40a9b6de`.
+- **Four of the six rank-one collision rows are now impossible
+  (C-150, C-153, C-156).**  The new C-153 completion argument closes
+  XQ1.  A separate private-witness transfer and three-response attack
+  closes QQ0 and AQ0.  Together with C-150's XQ0 theorem, only QQ1 and
+  AQ1 remain at rank one.
+- **Every single-hit family-only mixed-\(P_4\) deletion descends exactly
+  (C-155).**  The entire exact response-list system transports to an
+  independent ridge-neighbor root while endpoint rank drops by one.
+  Rank zero is the accepted C-151/C-148 defect contradiction, so every
+  realization must eventually enter a genuine multi-hit row.  The
+  hostile review found only missing dependency bindings; the corrected
+  bytes passed without broadening the theorem.  The fresh multi-hit
+  eight-cell table is reduced but not closed.
+- **Three empty full-list kernels cannot all have own-color-singleton
+  terminals (C-154).**  The attack proof covers every direct corridor,
+  nonroot diamond, and anchor-restoration label triple.  It does not
+  prove that a kernel survives; the all-nonsingleton terminal class is
+  the exact remaining gate on that side.
+- The imported external-AI report remains an audited idea source only.
+  Its unsupported order-12 computation and holonomy language were not
+  promoted.  The useful warning—never infer a graph nonedge from a
+  missing family response—was enforced in every new proof and review.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-146/C-150/C-153/C-156 | Rank-one QQ1/AQ1, then higher-rank multi-hit collisions |
+| Family-only mixed \(P_4\) | active-primary, C-151/C-152/C-155 | Close the surviving fresh multi-hit cells; solver data through order 22 remains observed |
+| Full-list future-safe color | active-primary, C-149/C-154 | All-nonsingleton terminal triples, then residual exact 2-SAT |
+| Exact static mixed \(P_4\) | closed-proved C-148 | Superseded by the stronger family-only rank boundary |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Universal parameter lifting | active-long-range | Requires the dynamic palette-gluing statement after \(k=3\) |
+
+### Running jobs and resources
+
+- One bounded proof lane is attacking rank-one QQ1/AQ1, and one is
+  analyzing the all-nonsingleton full-list terminal class.  No
+  memory-heavy solver or census job is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The exploratory
+  finite-core minimizer was stopped after it ceased to be a responsive
+  proof-extraction tool; no result was claimed from that partial run.
+
+### Next three highest-value actions
+
+1. Close rank-one QQ1 and AQ1, or prove their exact dominating-pair exit.
+2. Convert the C-155 multi-hit table into a lower-rank endpoint row,
+   a C-148 defect, or a dominating-pair contradiction in every cell.
+3. Eliminate the C-154 all-nonsingleton terminal class or construct a
+   sharp equality control that redirects the full-list proof.
+
 ## Checkpoint 104 — 2026-07-28 12:34 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
