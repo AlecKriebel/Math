@@ -3442,3 +3442,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `cc75898604e02eedda4b0ff7c5fd212af02459839c2b618fbde9eaf91b07388d`.
   The full-list theorem now needs a future-stable reverse color and a
   global coloring extraction; one-step reverse incidence is insufficient.
+
+## 2026-07-28 10:34 PDT — all-parameter reverse domination theorem
+
+- Promoted C-143 after an unconditional hostile audit.  For arbitrary
+  \(k\), \(i=\alpha=k\), and any eternal \(k\)-family, one active exchange
+  \(u\to x\) makes every complementary reverse maximum-independent
+  endpoint \(J-x+u\) a dominating set.
+- The proof is a strict one-guard counting argument.  If the reverse state
+  misses \(r\), extend the independent pair \(\{u,r\}\) to
+  \(\{u,r\}\cup A\), transport the active move with C-108, and attack the
+  still-unoccupied vertices of \(Q=J-\{x\}\).  With
+  \(t=|A\cap Q|\), there are \(k-1-t\) targets but only \(k-2-t\)
+  possible mobile guards; all installed \(Q\)-guards are permanently
+  unable to answer later \(Q\)-attacks.
+- The hostile reviewer separately checked \(k=1\), the immediate \(k=2\)
+  boundary, every overlap \(A\cap Q\), target occupancy, outside
+  responders, guard conservation, and adaptive branching.  A clean
+  arithmetic replay covered all 32,640 overlap cases through \(k=256\);
+  the universal theorem rests on the symbolic count, not that finite loop.
+- Under campaign equality, a one-sided reverse endpoint can therefore
+  never have deletion rank zero.  This does not prove greatest-family
+  retention or reciprocity; it reduces every possible failure to survivor
+  versus positive finite rank.
+- Candidate/review manifests:
+  `0f559e88be7653879bb0c7acdc1db6b572e5b96f6819162a9cffe021d1f63375`,
+  `f0132adb90f2cf0fab6acd20a09d4cdbb7e08f4c54c4a1ffc7e1e1c21eccf692`.
+  Lead hostile replay took 0.09 seconds at about 20 MB peak RSS.  The
+  earlier parameter-three draft and review are explicitly superseded.

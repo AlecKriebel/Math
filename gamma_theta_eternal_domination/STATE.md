@@ -1,5 +1,56 @@
 # Campaign State
 
+## Checkpoint 097 — 2026-07-28 10:39 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `b39f5ee7`.
+- **Every active exchange has dominating reverse endpoints at every
+  parameter (C-143).**  If \(i(G)=\alpha(G)=k\), \(\mathcal F\) is any
+  eternal \(k\)-family, and \(u\) can replace \(x\) from a maximum
+  independent state, then \(J-x+u\) dominates for every maximum
+  independent \(J\) containing \(x\).
+- The proof is an exact one-guard exhaustion.  A missed reverse endpoint
+  would yield a retained state with \(k-1-t\) unoccupied independent
+  targets but only \(k-2-t\) guards capable of answering.  Guards already
+  installed on the target independent set cannot move again.
+- Under \(\gamma=\gamma^\infty=k\), every omitted complementary reverse
+  endpoint therefore has positive finite deletion rank.  A reciprocity
+  failure can no longer be static; it must be survivor versus a genuinely
+  dynamic finite-rank loss.
+- The hostile audit explicitly checked \(k=1\), \(k=2\), arbitrary
+  \(A\cap Q\), target occupancy, guard conservation, and adaptive
+  response branching.  Lead replay passed in 0.09 seconds at about 20 MB
+  peak RSS.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Reverse endpoint domination | closed-proved all-\(k\), C-143 | Rank zero eliminated; retention remains dynamic |
+| Dynamic equality reciprocity | active-primary | Repair-square/blocker candidate awaits hostile audit |
+| Fresh-component singleton chain | active-hostile-review | Same-hub return excluded; separated-source return remains |
+| Full-list future-safe color | active-primary | Global nonempty reverse set has false positives |
+| Complete \(k=3\) theorem | active | Arbitrary singleton return and future-stable full color remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One independent reviewer is auditing the fresh-component chain theorem.
+  The coinductive repair-square package is frozen for a separate hostile
+  review.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Use C-143 to generalize the positive-rank blocker analysis beyond
+   shared-pivot reverse states.
+2. Hostilely audit the repair-square and minimum-rank blocker package.
+3. Finish the fresh-component reentry audit and attack the exact
+   \(\gamma=3\) same-color separated-source return.
+
 ## Checkpoint 096 — 2026-07-28 10:12 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

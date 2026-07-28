@@ -1,0 +1,94 @@
+{
+  "accepted_dependency_hashes": {
+    "general_target_response_propagation.md": "d6a0ec8a7daff1cca0094e1929134507364cea3c2c8781fbe24956a3238048d8"
+  },
+  "all_k_counting": {
+    "boundary_examples": [
+      {
+        "case": "The active source singleton {u} is maximal independent and hence dominating; no counting sequence is needed.",
+        "k": 1
+      },
+      {
+        "guards_before_final_attack": 2,
+        "k": 2,
+        "mobile_guards_in_A_minus_Q": 0,
+        "overlap_t": 0,
+        "targets_in_Q_minus_A": 1
+      },
+      {
+        "guards_before_final_attack": 3,
+        "k": 3,
+        "mobile_guards_in_A_minus_Q": 1,
+        "overlap_t": 0,
+        "targets_in_Q_minus_A": 2
+      },
+      {
+        "guards_before_final_attack": 3,
+        "k": 3,
+        "mobile_guards_in_A_minus_Q": 0,
+        "overlap_t": 1,
+        "targets_in_Q_minus_A": 1
+      },
+      {
+        "guards_before_final_attack": 256,
+        "k": 256,
+        "mobile_guards_in_A_minus_Q": 254,
+        "overlap_t": 0,
+        "targets_in_Q_minus_A": 255
+      },
+      {
+        "guards_before_final_attack": 256,
+        "k": 256,
+        "mobile_guards_in_A_minus_Q": 0,
+        "overlap_t": 254,
+        "targets_in_Q_minus_A": 1
+      }
+    ],
+    "checked_overlap_cases_for_k_at_least_2": 32640,
+    "classification": "BOUNDED_ARITHMETIC_SANITY_CHECK",
+    "k1_handled_separately": true,
+    "k2_is_immediate_no_responder_case": true,
+    "range": "1 <= k <= 256",
+    "scope_guardrail": "The finite range checks implementation arithmetic only; the symbolic counting proof establishes the all-k result.",
+    "symbolic_identity": "|Q-A|=(k-1-t)=|A-Q|+1"
+  },
+  "candidate_hashes": {
+    "MANIFEST.json": "0f559e88be7653879bb0c7acdc1db6b572e5b96f6819162a9cffe021d1f63375",
+    "NOTE.md": "3255bcc3d75b8538d6c8e3288f8106b553194bbac1fc3ac590d18ba6d6f81de3",
+    "RESEARCH_LOG.md": "108c2d4bf3845ac08dccac45a01b77b99f64023f1c174135167d151d00685c2d",
+    "local_core_result.json": "56db84dcc286534db3a45e72ede337d3cc97e8e865d950a68c9f80650ccda984",
+    "verify_local_core.py": "8b8cbb82b6290a4702295d3ed53f9456eaddd8081e86dd4990053e777b891b32"
+  },
+  "classification": "CLEAN_ROOM_PROOF_SANITY_CHECKS",
+  "conclusion": "The independent k=3 local enumeration has no survivor, and the all-k target count always exceeds the available mobile-guard count by exactly one.",
+  "k3_local_graph_cases": [
+    {
+      "acceptable_responder_histogram_after_D_domination": {},
+      "base_local_hypotheses": 2,
+      "completion_identity": "p",
+      "one_guard_closure_at_unoccupied_p_can_dominate_q": 0,
+      "retained_D_can_dominate_p_and_q": 0,
+      "simple_graphs": 1024
+    },
+    {
+      "acceptable_responder_histogram_after_D_domination": {},
+      "base_local_hypotheses": 2,
+      "completion_identity": "q",
+      "one_guard_closure_at_unoccupied_p_can_dominate_q": 0,
+      "retained_D_can_dominate_p_and_q": 0,
+      "simple_graphs": 1024
+    },
+    {
+      "acceptable_responder_histogram_after_D_domination": {
+        "NONE": 8
+      },
+      "base_local_hypotheses": 32,
+      "completion_identity": "A",
+      "one_guard_closure_at_unoccupied_p_can_dominate_q": 0,
+      "retained_D_can_dominate_p_and_q": 8,
+      "simple_graphs": 32768
+    }
+  ],
+  "schema": "reverse-state-domination-hostile-audit-v2",
+  "scope_guardrail": "These bounded checks audit identity, response, and arithmetic bookkeeping.  The all-graph, all-k claim rests on the reviewed proof."
+}
