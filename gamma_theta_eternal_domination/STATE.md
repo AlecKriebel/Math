@@ -1,5 +1,67 @@
 # Campaign State
 
+## Checkpoint 077 — 2026-07-28 05:23 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The certified finite frontier is unchanged:
+  all orders through 12 are excluded and only \(k=3\) is excluded at order 13.
+- **Arbitrary exact-two-list \(k=3\) bicycles now shorten to five finite
+  signed skeletons (C-114).**  C-111 physicality and \(\gamma=3\) give every
+  port a same-type complement mate.  C-079 then makes side-purity universal,
+  and every cross-type complement edge completes to a literal transversal
+  triangle.
+- Proper three-coloring of the complement is therefore exactly a signed
+  two-coloring of the outside graph: same-type edges flip chirality and
+  cross-type edges preserve it.  A genuine gamma-supplied two-edge path
+  shortens every unbalanced cycle of length at least six.
+- Up to type permutation and dihedral symmetry, the only remaining
+  unbalanced type skeletons are
+  \[
+    0012,\qquad00011,\qquad00101,\qquad00102,\qquad00121.
+  \]
+  This is a rigorous global shortening theorem, not a contraction of a
+  dynamic implication path.
+- The hostile reviewer returned unconditional `PASS` against note hash
+  `b282d96e1582ff9100bbdf6a81d9f1b29d2d76a3565e4a0d3cfbbb08886d0d91`
+  and candidate manifest hash
+  `039637c213d3236fa630df0223f3ef320f150b571c4fa15049ee034384317873`.
+  Its independent checker reconstructed both controls, all exact parameters,
+  the 163-state eternal family and 1,467 obligations of the gamma-two
+  control, the empty three-guard kernel and deletion rounds of the
+  gamma-three static control, the signed-coloring dictionary, and every word
+  orbit.  Review manifest:
+  `e36be4199046511aadac22e5ffff493bb487e41a5288120b55429ff23684a0f5`.
+- The five residual skeletons are not promoted as excluded in C-114.  Exact
+  attack trees for them are now the primary audit target.  Independently,
+  the inactive-\(C_7\) certificate lane is awaiting hostile review.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Arbitrary exact-two-list bicycle shortening | closed-proved C-114 | Every inconsistency has one of five length-\(\le5\) skeletons |
+| Five residual signed skeletons | active-primary | Freeze and hostile-audit literal one-guard attack trees |
+| Inactive induced \(C_7\) | active-hostile-review | Audit 877 witness partitions represented by 93 dihedral orbits |
+| Inactive odd cycles of length at least nine | active | Find a length-independent attack or isolate the next parity boundary |
+| All-\(k\) local-to-global gluing | active | C-112 settles each inactive suspension separately, not their synchronization |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Three bounded proof/audit lanes are active.  No broad enumeration or
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Complete and independently audit the five residual attack exclusions; if
+   all survive review, promote the complete exact-two-list \(k=3\) branch.
+2. Complete the independent \(C_7\) certificate replay and then seek the
+   length-independent inactive odd-cycle mechanism.
+3. Use the two closed branches to attack singleton-list and full-list targets
+   without returning to order-14 enumeration.
+
 ## Checkpoint 076 — 2026-07-28 04:53 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified

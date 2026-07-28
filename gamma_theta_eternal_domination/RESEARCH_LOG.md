@@ -2845,3 +2845,34 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The clean-room parity control verifies an inactive induced \(C_4\) in a
   16-vertex equality graph.  C-113 therefore raises the remaining odd-cycle
   length to at least seven but does not prove bipartiteness.
+
+## 2026-07-28 05:23 PDT — arbitrary bicycles shorten to five skeletons
+
+- C-111 physicality turns the no-full exact-two-list response system into a
+  literal typed complement graph.  The no-dominating-pair condition gives
+  every port a same-type mate; accepted C-079 side-purity is consequently
+  available at every outside hub and every type component.
+- A common complement neighbor of a cross-type edge cannot have either
+  endpoint type without seeing both sides of a same-type edge.  It must have
+  the third type.  Thus every cross edge lies in a literal transversal
+  triangle and imposes a two-sided chirality equality.
+- The resulting coloring problem is an exact signed graph: same-type edges
+  flip chirality and cross-type edges preserve it.  For any unbalanced cycle
+  of length at least six, \(\gamma=3\) supplies a literal two-edge shortcut
+  between two different-type vertices whose two cyclic distances are at
+  least three.  One of the two shorter cycles remains unbalanced.
+- Frozen bipartiteness and universal side-purity reduce the complete
+  length-at-most-five word list to `0012`, `00011`, `00101`, `00102`, and
+  `00121`.  The theorem does not yet declare those five patterns impossible.
+- The hostile reviewer returned unconditional `PASS`.  Its clean-room
+  implementation checked both Graph6 controls, all five parameters, exact
+  eternal kernels and deletion rounds, all 1,467 obligations of the
+  gamma-two family, physical response lists, universal side-purity,
+  transversal completion, the signed-coloring bijection, and the complete
+  word-orbit enumeration.  C-114 is promoted with candidate note hash
+  `b282d96e1582ff9100bbdf6a81d9f1b29d2d76a3565e4a0d3cfbbb08886d0d91`
+  and hostile manifest hash
+  `e36be4199046511aadac22e5ffff493bb487e41a5288120b55429ff23684a0f5`.
+- This closes the arbitrary-length shortening obstacle, not the entire
+  parameter-three case or the universal conjecture.  Literal attack trees
+  for the five residual skeletons are the next promotion gate.
