@@ -1,5 +1,67 @@
 # Campaign State
 
+## Checkpoint 085 — 2026-07-28 07:35 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and the \(k=3\) slice at order 13.
+  Repository base before this checkpoint: `be72e017`.
+- **Bipartiteness of the inactive graph is not, by itself, the missing
+  global coloring mechanism (C-123).**  The exact marked deletion graph
+  \(H'=L(K_{3,3})\) has static equality, pure maximal triangles, every-pair
+  common neighbors, a full active root, and inactive graph \(C_4\), but every
+  deletion three-coloring uses all three colors on that \(C_4\).
+- This is a useful negative discovery: the full-list proof must exploit
+  genuine multi-step family closure, the target-extension condition
+  \(\gamma=3\), or nonvacuous ridge connectivity.  The displayed extension
+  fails exactly at those stronger hypotheses: it has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,4,4)\), and its full root
+  is defeated by a literal adaptive two-attack tree.
+- Candidate and clean-room hostile checkers independently reconstruct the
+  graphs, all five parameters, the 48-state deletion family, both colorings,
+  the marking, the unique dominating pair, and the two-attack failure.
+- Accepted note:
+  `c9f5dd3d0b80149113642b3c898f7310dc8369995aa004f7b4f225caaf1040a7`.
+  Candidate manifest:
+  `c4d13fbd5834f261e786d9088843ef3e40ef9a90e552d565417ae2df87a51d4a`.
+  Hostile result:
+  `600e152878fc7670b4fe3822cdcb6017d85d80bc3e768aa7a4f6300905c6beed`.
+  Hostile manifest:
+  `3a9c212822298929208704ef3eaca02fea697262acb7876c2372b9135d535ddd`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Inactive odd cycles at \(k=3\) | closed-proved C-122 | All odd lengths excluded by witnessed-path parity |
+| Static inactive bipartite gluing | closed-refuted C-123 | \(L(K_{3,3})\) uses all three colors on inactive \(C_4\) |
+| Equality-specific full-list gluing | active-primary | Use \(\gamma=3\), multi-step closure, or nonvacuous ridge transport |
+| Free singleton components | active-hostile-review | Candidate polarization theorem is under independent audit |
+| Longer cross-component unit chains | active-primary | Preserve literal ports through positive-length implication paths |
+| Singleton residual bicycles | active-secondary | Dynamic ports can remain singleton-buffered |
+| All-\(k\) \(Y_k\) lift | active-hostile-review | Candidate conditional projection/counting theorem is under audit |
+| Complete \(k=3\) theorem | active | Cross-component chains/bicycles and dynamic full-list gluing remain |
+| Universal parameter lifting | active-long-range | Requires the still-open palette-gluing theorem \(\mathsf{GL}(k)\) |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Two light clean-room reviews are auditing the free-unit polarization and
+  all-\(k\) \(Y_k\) lift candidates.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Current work is
+  proof-oriented and keeps the machine responsive.
+
+### Next three highest-value actions
+
+1. Finish both hostile audits and promote only the exact theorem scopes that
+   survive.
+2. In the full-list branch, derive a dynamic consequence unavailable in the
+   \(L(K_{3,3})\) control—preferably from \(\gamma=3\) or a retained
+   multi-attack state.
+3. In the singleton branch, extend component polarization across the first
+   genuine binary clause without contracting away its physical response
+   ports.
+
 ## Checkpoint 084 — 2026-07-28 07:06 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved and no

@@ -1,0 +1,55 @@
+{
+  "schema": "inactive-bipartite-gluing-package-v1",
+  "frozen_at": "2026-07-28T07:21:00-07:00",
+  "model": "standard one-guard-moves eternal domination; attacks only at unoccupied vertices",
+  "claims": [
+    {
+      "label": "PROVED",
+      "statement": "The explicit marked graph H'=HEhbtjK satisfies static deletion equality, every-pair common-neighbor, pure maximal triangles, C-108 ridge covariance, a full active root, and bipartite H'[R], while every proper three-coloring uses all three colors on R."
+    },
+    {
+      "label": "PROVED",
+      "statement": "The target extension has labeled complement/guard strings IEhbtjKe_ and IxU[ISrXW, parameters (gamma,i,alpha,gamma_infinity,theta)=(2,3,3,4,4), unique dominating pair {5,9}, all prescribed one-step target successors dominating, and an adaptive two-attack refutation of full root {1,5,8}."
+    },
+    {
+      "label": "OBSERVED",
+      "statement": "The canonical discovery search found no smaller static marked control through H' order eight."
+    },
+    {
+      "label": "OBSERVED",
+      "statement": "The gamma=3-strengthened canonical discovery search found no marked control through H' order ten."
+    },
+    {
+      "label": "OPEN",
+      "statement": "Whether the equality-specific one-guard hypotheses force a three-coloring using at most two colors on R."
+    }
+  ],
+  "witness": {
+    "H_prime_graph6": "HEhbtjK",
+    "H_with_target_graph6_labeled": "IEhbtjKe_",
+    "G_with_target_graph6_labeled": "IxU[ISrXW",
+    "active_A": [1, 2, 5, 7, 8],
+    "inactive_R": [0, 3, 4, 6],
+    "full_active_root": [1, 5, 8]
+  },
+  "files_sha256": {
+    "NOTE.md": "c9f5dd3d0b80149113642b3c898f7310dc8369995aa004f7b4f225caaf1040a7",
+    "RESEARCH_LOG.md": "794813a3756d60dd543883b6334dcd3f174bb09837bfc6d460aafc84908d749d",
+    "verify_countermodel.py": "fc24d27636819e4c7393b4ff8900ab8282c6fbf4fece1f06224a092c5945bda6",
+    "countermodel_verification.json": "014315e1ca9c189a3be550b588ba84006d8f7b15e131931778a691f0b672eaa4",
+    "search_static.py": "ad53c0ec91cd3805bf3228b090e9e94634082aa0b50a2629a558ec02ce5571c0",
+    "search_6_9.json": "180174f252bf6b8fd8fdd7ec78e5033c137f84cd61546893df603c923e3fc5ef",
+    "search_layers.py": "2e13964d89f619f60f1b6989348761bef33c26d7de7fa99bb3e6cf7129b1fa63",
+    "gamma3_result.json": "4f6ec23ba0b3accc3b46ef87b35429f2de0dd88b45b972325345413430acfa00"
+  },
+  "external_generator": {
+    "name": "nauty geng 2.9.3",
+    "path_from_campaign_root": "tools/nauty2_9_3/geng",
+    "sha256": "588052a87e5313f331aa145a0a641702b6c13b6e2387dd3c4807bf7f49fdaca1"
+  },
+  "reproduction": [
+    "python3 -I -B -W error math/working/inactive_bipartite_gluing/verify_countermodel.py",
+    "python3 -I -B -W error math/working/inactive_bipartite_gluing/search_static.py --min-order 6 --max-order 9 --output math/working/inactive_bipartite_gluing/search_6_9.json",
+    "python3 -I -B -W error math/working/inactive_bipartite_gluing/search_layers.py --layer gamma3 --min-order 6 --max-order 10 --output math/working/inactive_bipartite_gluing/gamma3_result.json"
+  ]
+}

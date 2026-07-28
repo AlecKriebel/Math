@@ -3101,3 +3101,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   not choose a global deletion three-coloring that uses only its two
   bipartition colors.  Full-list gluing, complete \(k=3\), and the
   universal conjecture remain open.
+
+## 2026-07-28 07:35 PDT — static bipartite gluing shortcut refuted
+
+- Promoted C-123 after an unconditional clean-room hostile review.
+  The marked graph \(H'=L(K_{3,3})\), graph6 `HEhbtjK`, has every-pair
+  common neighbors, only maximal triangles, a full active root, and an
+  inactive induced \(C_4\).  Its complement has all five relevant
+  parameters equal to three.
+- Up to permuting color names, \(H'\) has exactly two proper
+  three-colorings, and both use all three colors on the inactive \(C_4\).
+  Hence inactive bipartiteness plus the currently extracted static
+  conditions cannot synchronize the deletion palette.
+- The scope warning is mathematically decisive: ridge covariance is
+  vacuous in this example, and the target extension has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,4,4)\).  Its full active
+  root passes every prescribed one-step domination response but loses to
+  an explicit adaptive two-attack tree.  Therefore equality-specific
+  dynamic gluing remains a viable theorem.
+- Candidate verifier and independent reviewer reconstructed all parameters,
+  the 48-state deletion kernel, both colorings, the marking, the unique
+  dominating pair, and the exact two-attack failure.
+- Accepted note:
+  `c9f5dd3d0b80149113642b3c898f7310dc8369995aa004f7b4f225caaf1040a7`.
+  Candidate manifest:
+  `c4d13fbd5834f261e786d9088843ef3e40ef9a90e552d565417ae2df87a51d4a`.
+  Hostile result:
+  `600e152878fc7670b4fe3822cdcb6017d85d80bc3e768aa7a4f6300905c6beed`.
+  Hostile manifest:
+  `3a9c212822298929208704ef3eaca02fea697262acb7876c2372b9135d535ddd`.
