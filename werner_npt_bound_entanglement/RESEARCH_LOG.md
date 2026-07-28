@@ -106,3 +106,18 @@ All timestamps use America/Los_Angeles.
   \(\operatorname{Tr}(M)I-M=\sum_kA_kM^TA_k^\dagger\).  Its partial
   tensor expansion is not termwise positive; a sparse exact \(n=3\)
   certificate saturates the resulting copositivity obstruction.
+- Proved the projection-reduction theorem.  For every
+  \(-1<\alpha<0\), any finite-copy negative rank-two witness first doubles
+  to an equal-singular-value partial isometry \(D\), then finitely many
+  orthogonal product flags turn it into a negative orthogonal rank-two
+  projection.  The exact flagged expectation is
+  \[
+  2Q(D)+(1+\alpha)^m\{Q(P_R)+Q(P_L)\}
+  +2\alpha^m\operatorname{Re}\mathcal B(P_R,P_L).
+  \]
+  The nuisance terms vanish while \(2Q(D)<0\) remains fixed.  Hence the
+  complete all-copy endpoint question is equivalent to nonnegativity on
+  two-dimensional code projectors at every copy number.
+- At the \(d=3\) endpoint, obtained the explicit finite flag bound:
+  if \(q=Q_n(D)<0\), any \(m\) with \(2^{-m}<-q/4\) makes the flagged
+  rank-two projection negative.
