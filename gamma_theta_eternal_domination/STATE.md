@@ -1,5 +1,52 @@
 # Campaign State
 
+## Checkpoint 098 — 2026-07-28 10:51 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `0d010a0c`.
+- **The first fresh-component return now has a proved local gate
+  (C-144).**  The physical bridge that enters a fresh frozen-projection
+  component is side-pure toward every such component and cannot make the
+  opposite-side return itself.  Its turning ridge also lies outside every
+  free component of that projection.
+- A shortest trace is component-simple before its first actual component
+  re-entry.  For a binary exact-two-list return, the two terminal
+  list/color directions are exhaustive.  A return through a second member
+  of the original bridge ridge forces at least one retained C-103 boundary
+  state, so a fully dead return must use a genuinely outside-ridge source.
+- The hostile review caught an overbroad terminal-clause formulation:
+  singleton sources and separately pinned two-unit endings require their
+  own analysis.  The corrected bytes and the equality/\(\gamma=2\)
+  controls passed three byte-identical replays.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Fresh-component singleton chain | closed-proved local C-144; global branch active | Outside-ridge same-color return at \(\gamma=3\) |
+| Dynamic equality reciprocity | active-hostile-review | Repair-square/blocker candidate under independent audit |
+| Reverse rank descent | active-independent | Convert every positive-rank blocker into strict descent or a dominating pair |
+| Full-list future-safe color | active-primary | Global reverse set has false positives; select a surviving feasible color |
+| Complete \(k=3\) theorem | active | Outside-ridge singleton return and future-stable full color |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent hostile review of the repair-square package and a separate
+  all-parameter reverse-rank descent attempt are active.  No memory-heavy
+  solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Finish the repair-square audit and attack its exact blocker adjacency
+   types using C-143.
+2. Prove or refute the \(\gamma=3\) outside-ridge same-color return.
+3. Seek a future-stable color theorem in the full-response branch.
+
 ## Checkpoint 097 — 2026-07-28 10:39 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

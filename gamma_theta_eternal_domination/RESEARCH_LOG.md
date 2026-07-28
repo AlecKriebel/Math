@@ -3470,3 +3470,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `f0132adb90f2cf0fab6acd20a09d4cdbb7e08f4c54c4a1ffc7e1e1c21eccf692`.
   Lead hostile replay took 0.09 seconds at about 20 MB peak RSS.  The
   earlier parameter-three draft and review are explicitly superseded.
+
+## 2026-07-28 10:50 PDT — fresh-component return gate accepted
+
+- Promoted C-144 after a hostile review required and then verified strict
+  scope corrections.  One physical C-133 bridge hub is side-pure toward
+  every later component of the relevant frozen projection, so it cannot
+  both enter a component and make an opposite-side return.  Its C-140
+  turning ridge is disjoint from every free component of that projection.
+- The first-reentry normalization now explicitly applies only when an
+  implication trace returns to a previously visited component.  Its
+  two-row terminal classification is restricted to binary cross clauses
+  between exact-two-list endpoints; singleton-source and separately
+  pinned two-unit terminals are not covered.
+- A return through a second exact \(\{u,w\}\)-vertex of the original
+  bridge ridge activates C-103: the two boundary states cannot both be
+  absent.  A fully dead return must therefore leave the original bridge
+  ridge, but one retained boundary is not itself a contradiction.
+- The hostile checker independently rebuilt `HEhbtjK` with all five
+  parameters equal to three, its 48-state greatest family, and all 288
+  obligations.  It also rebuilt the 52-state restricted family on
+  `HFzvvn{`, all 312 obligations, and its 26 dominating pairs.  The latter
+  realizes a genuine separated same-color return but has \(\gamma=2\).
+- Candidate/review manifests:
+  `4283d307f241520c3d50a444d18cfa382504fd031f5568d3a8a105474edeeeb2`,
+  `eead86da4a1e4c3a6c8fe4a8d0d8c1cfca28bba39670dd38a91eb33338250317`.
+  Lead replays matched all three frozen results in 0.09 seconds total at
+  most about 21 MB resident memory.  The \(\gamma=3\) outside-ridge
+  separated-source return remains the exact singleton-chain gate.
