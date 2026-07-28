@@ -2612,3 +2612,34 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   simplification.
 - A separate bounded proof lane resumed the full-response-list extension
   problem.  No order-14 computation has begun.
+
+## 2026-07-28 03:23 PDT — canonical three-gate witness theorem accepted
+
+- Two explicit symmetric one-guard attack trees now prove that any
+  nondisplayed common complement neighbor of a critical pair in the
+  canonical length-one three-gate boundary contains both colors of the
+  third response type.  In the unit-free no-full branch it is therefore an
+  exact third-type almost-cap.
+- The hostile reviewer identified a real scope omission before acceptance:
+  \(\gamma\ge3\) guarantees a common complement neighbor but does not make
+  it external to the displayed boundary.  A new collision lemma exhausts
+  all twelve displayed candidates.  Anchors and endpoints cannot witness;
+  displayed third-type vertices are already physical caps; two unused
+  wrong-type caps are handled by the original trees; and the two genuine
+  endpoint collisions have separate three-attack contradictions.
+- After that repair, the hostile review returned unconditional `PASS`.
+  Its clean-room bitmask/queue implementation reconstructs the control
+  `KBn]r]vj]lnZ`, exact parameters
+  \((2,2,3,3,3)\), all 181 greatest-family states, 1,629 unoccupied
+  attacks, 2,934 legal moves, response lists, dead boundaries, dominating
+  pairs, graph6 round-trip, and both frozen hashes.  This promotes C-104.
+- A separate Boolean obstruction audit proves that the two physical arms
+  of the forced almost-cap resolve to only one endpoint implication.  They
+  do not supply the reverse implication needed for tight-gate chirality
+  equality, so a raw gate-count or connector-length shortening is unsound.
+  The remaining no-full target is an oriented paired-repair lemma that
+  tracks both contradiction paths in a minimal unsatisfiable 2-CNF.
+- The full-list lane independently derived a propagation theorem along
+  ridge-connected maximum-independent triples and is testing its exact
+  global consequence.  No universal theorem, counterexample, complete
+  order-13 exclusion, or order-14 bound is claimed.

@@ -1,5 +1,64 @@
 # Campaign State
 
+## Checkpoint 067 — 2026-07-28 03:23 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified global frontier remains
+  13, with only the \(k=3\) slice excluded at that order.  This checkpoint
+  is based on repository commit `629bd49d` and awaits its own research
+  commit.
+- **Canonical three-gate witness type proved (C-104).**  In the shortest
+  three-gate odd boundary, an external common complement neighbor of a
+  critical cross-gate pair is forced by two explicit finite attack trees to
+  have the exact third two-list type in the unit-free no-full branch.  A
+  reviewer caught and closed the only scope gap before acceptance:
+  \(\gamma\ge3\) can supply a displayed rather than external witness.
+  The revised collision lemma exhausts all twelve displayed candidates;
+  every one is impossible or is already a literal physical cap.
+- The independent hostile audit returned unconditional `PASS`.  Its
+  clean-room verifier reconstructs the sharp gamma-two control
+  `KBn]r]vj]lnZ` with
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,3)\), 181 greatest
+  triple states, 1,629 attack obligations, 2,934 legal responses, the exact
+  response lists, all three dead boundaries, and all three critical
+  dominating pairs.
+- **The next naive descent is unsound.**  A separate exact Boolean audit
+  shows that a forced third-type almost-cap supplies only one oriented
+  endpoint clause, not the two implications of a tight-gate equality.
+  Thus it cannot simply replace a gate or justify decreasing raw gate count
+  or connector length.  This obstruction note is in hostile review.  The
+  live target is an oriented paired-repair lemma that preserves both paths
+  of a minimal unsatisfiable 2-CNF.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Canonical three-gate witness theorem | closed-proved C-104 | Hostile audit and sharp gamma-two control pass |
+| Universal no-full \(k=3\) proof | active-primary | Oriented paired repair for a dynamic almost-cap; raw chord descent is unsound |
+| Universal full-list \(k=3\) proof | active-independent | Fullness propagates along a facet-ridge component; global bridge consequence under test |
+| Order-13 \(k=4,5\) slices | deferred-fallback | Proof lanes have not reached their termination gates |
+| General order-14 computation | deferred | No blind order-14 search |
+
+### Running jobs and resources
+
+- One bounded agent is attacking the oriented paired-repair lemma.  One
+  agent is completing the full-list facet-ridge iteration, and one hostile
+  reviewer is auditing the one-sided-chord obstruction.  No broad
+  enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Determine whether the one-sided almost-cap implication shortens one
+   marked contradiction path while preserving the other, or yields an
+   already excluded lollipop/two-unit chain.
+2. Finish and audit the full-list ridge-propagation theorem and delimit the
+   surviving global component-holonomy obstruction.
+3. If both universal lanes hit their explicit gates, resume a focused
+   order-13 \(k=4\) or \(k=5\) slice rather than order 14.
+
 ## Checkpoint 066 — 2026-07-28 02:58 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
