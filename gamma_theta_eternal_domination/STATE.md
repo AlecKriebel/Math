@@ -1,5 +1,66 @@
 # Campaign State
 
+## Checkpoint 111 — 2026-07-28 16:31 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier is unchanged: all orders through 12 and the \(k=3\) slice at
+  order 13.  Repository base before this checkpoint:
+  `4600d52b9159f4d3c2a8f3a87735a4c3d0ff747a`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **83%**.  Best-guess completion toward a complete parameter-three
+  theorem: **50%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities.
+- **The fixed-anchor QQ1 ladder shortcut is refuted (C-169).**  An exact
+  18-vertex graph realizes the complete named QQ1, C-166, and C-167
+  local dynamics and has no dominating pair incident with the
+  distinguished independent triple \(T=\{x,p,q\}\), but it still has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\).
+  All thirty dominating pairs lie outside \(T\).  A clean-room hostile
+  review independently reconstructed the graph, parameters, greatest
+  kernels, ranks, activity roots, singleton completion sets, all local
+  obligations, and the complete dominating-pair list.
+- **This is a boundary result, not a conjecture counterexample.**  It
+  refutes only the proposed inference from protecting the distinguished
+  anchors to \(\gamma=3\).  The control also contains three exact
+  two-cycles of common-nonneighbor witnesses, so a proof cannot assume
+  that an iterated witness construction always supplies fresh vertices.
+- The imported external-AI report remains an audited idea source only.
+  Its static reductions duplicate accepted work, its order-12 horizon
+  assertions lack the required certificate package, and no imported
+  computational claim has been promoted.  Its warning against treating
+  a missing family response as a graph nonedge remains actively enforced.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167/C-169 | The fixed-anchor descent is refuted: any continuation must use non-domination of pairs wholly outside \(T\), or a different global equality invariant |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168 | Prove the trapped-transfer escape theorem under hostile review, then determine whether its unbanned successor gives a rank or global-color contradiction |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the current universal-proof iterations reach their stated termination gates |
+
+### Running jobs and resources
+
+- One proof lane is packaging the cross-ban trapped-witness escape and its
+  sharp equality control.  A second is testing the independent
+  completion-layer response forced from a full-list corridor.
+- No campaign solver or memory-heavy enumeration is running.  Host:
+  Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, with approximately
+  12 GiB disk space free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Independently hostile-review the trapped-transfer escape theorem and
+   determine whether it supplies more than an equal-rank successor.
+2. Finish the full-list completion-layer argument and combine it with
+   C-168 without inferring nonedges from omitted responses.
+3. If neither full-list continuation yields a global invariant, return
+   to the QQ1 lane using all non-dominating pairs outside \(T\), or
+   rebalance to the bounded order-14 fallback.
+
 ## Checkpoint 110 — 2026-07-28 16:11 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

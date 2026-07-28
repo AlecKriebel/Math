@@ -3894,3 +3894,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **82%** for the 27-day campaign deliverable,
   **50%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 16:31 PDT — the fixed-anchor QQ1 descent is refuted
+
+- Promoted C-169 as a deliberately narrow `REFUTED` proof route after an
+  unconditional hostile review.  The exact canonical 18-vertex graph
+  `QpMu]qnvvJb~Tz]mnx~nnZ~|~~W` has 114 edges and
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\), with greatest
+  eternal triple-family size 473.
+- The graph realizes all named QQ1, C-166, and C-167 local obligations.
+  Its five relevant completion and witness sets are singletons, so the
+  universal local conclusions are not being weakened to selected
+  representatives.  No dominating pair touches
+  \(T=\{x,p,q\}\), yet exactly thirty dominating pairs occur wholly
+  outside \(T\).
+- The hostile verifier independently decoded both graph6 records, checked
+  exact isomorphism and canonicalization, recomputed every parameter and
+  kernel, reconstructed the activity roots and local retained states,
+  enumerated all thirty dominating pairs, and verified three literal
+  common-nonneighbor two-cycles.  Strict replay passed.
+- The mathematical lesson is precise: protecting distinguished anchors
+  and repeatedly requesting new pair witnesses is not an all-order
+  descent, because witnesses can recycle and domination can migrate to
+  pairs in the auxiliary layer.  This does not challenge the conjecture;
+  it terminates one proof mechanism before it can enter a manuscript as
+  a false lemma.
+- Best-guess completion: **83%** for the 27-day campaign deliverable,
+  **50%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.
