@@ -51,18 +51,22 @@ Never infer a graph nonedge from an omitted family response.
   \(S-c+r\), which survives.
 - Hence the unique root neighbor is \(g\in\{a,b\}\).  Then
   \(S'=S-g+r\) is an independent ridge neighbor of \(S\).  C-108
-  transports the two shared response roles, while the exchanged roles
-  have literally identical direct successor states.  Thus the entire
-  exact mixed-\(P_4\) list system transports from \(S\) to \(S'\) under
-  \(g\leftrightarrow r\).
+  transports the two shared response roles, and C-064 Theorem 3.1
+  transports the exchanged roles.  Explicitly, their direct successor is
+  the common state \(S-g+x_j=S'-r+x_j\).  If retained, it must dominate
+  the opposite exchanged vertex: independence of \(S'\) forces
+  \(rx_j\in E(G)\), and independence of \(S\) forces
+  \(gx_j\in E(G)\).  Thus the entire exact mixed-\(P_4\) list system
+  transports under \(g\leftrightarrow r\).
 - The legal deleting successor
   \[
   Q_i-g+r=S'-c+x_i
   \]
   is the corresponding endpoint row.  Its rank is \(<h\), and C-146's
   unit ridge Lipschitz bound makes its rank exactly \(h-1\).
-- If \(h-1=0\), this is the transported C-148 endpoint domination-defect
-  core.  If \(h-1>0\), it is a strictly lower positive-rank copy.
+- If \(h-1=0\), accepted C-151 Lemma 1.1 identifies this as the
+  family-list form of the C-148 endpoint domination-defect core.  If
+  \(h-1>0\), it is a strictly lower positive-rank copy.
 - Therefore every failure of the proposed recurrence is forced into the
   genuine multi-hit branch \(|N(r)\cap S|\ge2\).
 - Named-collision and occupancy audit: a single-hit target cannot be a
@@ -112,3 +116,27 @@ endpoint copy, a C-148 defect, or a dominating pair.  Omitted roles at
   range now covers every order \(7,\ldots,22\).
 - This remains **OBSERVED** only.  No proof certificate or independent
   encoding audit is packaged, and none of these rows is used above.
+
+## 2026-07-28 13:05 PDT — hostile proof-binding revision
+
+- Read the exact hostile review of the frozen recurrence candidate.
+  It found no substantive mathematical counterexample and requested only
+  dependency and proof bindings.
+- Read accepted C-064 and its hostile review in full.  Bound source
+  SHA-256
+  `e30a0ac4e028deefbf4c4533646ff934b617d8ff61dce38ec2389a50d622d8e7`
+  and review SHA-256
+  `bc5011d85d333fb66fce3ea563e4cc80cf016090cc3427e44187b2e40fb5f9f8`.
+  Lemma 2.1 now invokes C-064 Theorem 3.1 and records the opposite-vertex
+  domination argument forcing both exchanged move edges.
+- Read accepted C-058 and its hostile review in full.  Bound source
+  SHA-256
+  `71384d66373ab4cbffa7ced60973971cf39b72a0315eac31ad522abd1afa2f47`
+  and review SHA-256
+  `4369b3b85912e3e9a534ea2a63c9cc12ab06cb701cd2227ea77c912665c51d45`.
+  The named-target audit now identifies C-058 Theorem 3.1 and explicitly
+  uses the family-state construction in its restoration proof.
+- The rank-zero terminal now cites accepted C-151 Lemma 1.1 as the exact
+  family-response-list one-defect form of the C-148 kernel.
+- No theorem was broadened or weakened; the full eight-cell recurrence
+  remains open.

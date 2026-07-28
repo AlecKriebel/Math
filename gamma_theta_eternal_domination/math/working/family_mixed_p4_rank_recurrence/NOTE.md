@@ -91,16 +91,23 @@ For either shared root vertex \(v\in S\cap S'\), accepted C-108 applies
 to the independent triples \(S,S'\), which both avoid \(x_j\), and
 makes the \(v\)-response status identical at the two roots.
 
-For the exchanged positions, the two possible direct successors are
-literally the same triple:
+For the exchanged positions, accepted C-064 Theorem 3.1 applies to the
+retained independent ridge states \(S,S'\): its ridge transposition fixes
+\(x_j\) and transports the exchanged response roles.  Concretely, the two
+possible direct successors are literally the same triple:
 
 \[
 S-g+x_j=S'-r+x_j.
 \tag{2.2}
 \]
 
-Thus the \(g\)-role occurs at \(S\) exactly when the \(r\)-role occurs at
-\(S'\).  This proves the complete relabeling. \(\square\)
+The move edges required by those roles are also forced.  If the common
+triple in (2.2) is retained, it dominates \(r\); every shared root vertex
+misses \(r\) because \(S'\) is independent, so \(rx_j\in E(G)\).
+Conversely, domination of \(g\), together with independence of \(S\),
+forces \(gx_j\in E(G)\).  Thus the \(g\)-role occurs at \(S\) exactly when
+the \(r\)-role occurs at \(S'\).  This proves the complete relabeling.
+\(\square\)
 
 This is a family statement.  In particular, a negative role means only
 that the direct successor in (2.2) is absent from \(\mathcal K\); it is
@@ -218,8 +225,9 @@ even when the finite rank \(\rho(Q')\) is zero.  Combining
 If \(h\ge2\), then \(\rho(Q')>0\), yielding item 1.  If \(h=1\), then
 \(\rho(Q')=0\), so \(Q'\) misses a vertex.  Lemma 2.1 supplies the exact
 relabeled family lists and accepted C-070 supplies the relabeled endpoint
-edge.  These are exactly the one-defect hypotheses isolated from C-148,
-giving item 2. \(\square\)
+edge.  These are exactly the hypotheses of accepted C-151 Lemma 1.1, the
+family-response-list one-defect form of the C-148 local kernel, giving
+item 2. \(\square\)
 
 ### Corollary 3.2 (exact obstruction boundary) — PROVED
 
@@ -342,8 +350,10 @@ The move \(c\to x_1\) gives
 
 If the optional edge \(bx_1\) is absent, (4.3) is the unique possible
 response.  If \(bx_1\) is present, the other successor
-\(\{c,x_0,x_1\}\) is excluded by accepted arbitrary-state restoration:
-its missing root positions are \(a,b\), whereas
+\(D=\{c,x_0,x_1\}\) is excluded by accepted C-058 Theorem 3.1,
+arbitrary-state restoration.  Its proof constructs the restoring swaps
+inside the specified family, so it applies to the family-response lists
+here.  Indeed, \(S-D=\{a,b\}\) and \(D-S=\{x_0,x_1\}\), whereas
 
 \[
 L_S(x_0)\cup L_S(x_1)=\{a,c\}
