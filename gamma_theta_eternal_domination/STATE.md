@@ -1,5 +1,67 @@
 # Campaign State
 
+## Checkpoint 110 — 2026-07-28 16:11 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier is unchanged: all orders through 12 and the \(k=3\) slice at
+  order 13.  Repository base before this checkpoint:
+  `ccb57def6b8c417449b76cd37066c7511ef1a52c`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **82%**.  Best-guess completion toward a complete parameter-three
+  theorem: **50%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities.
+- **Rank-zero corridor witnesses now transfer colors (C-168).**  Every
+  secondary color forces two retained witness states and must reappear at
+  the corridor mover or its missed witness.  Three nonsingleton
+  rank-zero rows reduce to a directed 3-cycle or a 2-cycle with a tail.
+  The hostile reviewer independently reconstructed all attacks, palettes,
+  ranks, restricted kernels, and both controls.
+- **The transfer-cycle reduction is not yet a safe-color proof.**  The
+  equality control has cyclic palettes and two transfers but restricted
+  kernels \(0,150,0\).  MMV-001 realizes all three transfers with three
+  empty kernels but has \(\gamma=2\).  The exact open statement is a
+  cross-ban rank inequality or a domination argument for transfer
+  endpoints lying inside the ban.
+- **The apparent QQ1 anchor--auxiliary obstruction at orders 16 and 17
+  is false at order 18.**  A discovery model satisfies the proposed
+  \(\{u,x\}\) and all \(p/q\)-to-auxiliary non-domination constraints.
+  Both campaign evaluators independently give
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\).
+  This fixed control is being packaged and hostile-reviewed before any
+  ledger promotion.  A broader order-18 CEGAR attempt was stopped at its
+  five-minute gate without a result and creates no claim.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167 | The order-16/17 anchor-core pattern is refuted at 18; identify a size-independent invariant using all no-dominating-pair obligations, or close the bounded lane |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168 | Compare recipient ranks across different color bans or force a safe kernel when a transfer endpoint lies inside the ban |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the universal lanes reach their stated termination gates |
+
+### Running jobs and resources
+
+- One lane is independently packaging the order-18 QQ1 boundary control
+  and locating its first remaining dominating-pair escape.
+- One lane is attacking the C-168 cross-ban rank gate.  No solver or
+  memory-heavy enumeration is running after the capped order-18 probe.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space is free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Freeze and independently verify the order-18 QQ1 boundary control,
+   then decide whether its next escape yields a size-independent rule or
+   terminates this iteration.
+2. Prove or refute a strict cross-ban rank comparison around the C-168
+   three-color transfer cycles.
+3. Rebalance toward the bounded order-14 fallback only if both universal
+   lanes complete their current iterations without another mechanism.
+
 ## Checkpoint 109 — 2026-07-28 16:01 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

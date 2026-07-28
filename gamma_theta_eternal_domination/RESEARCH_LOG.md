@@ -3867,3 +3867,30 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **81%** for the 27-day campaign deliverable,
   **49%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 16:11 PDT — corridor colors transfer; the finite QQ1 pattern breaks
+
+- Promoted C-168 after an unconditional hostile review.  A secondary
+  color in a rank-zero nonroot corridor forces two unique retained
+  witness states and the exact transfer \(v\in Q(q)\cup Q(w)\).  Three
+  nonsingleton rows have only the directed-3-cycle and
+  2-cycle-with-tail color maps.
+- The equality control has two sharp transfers and restricted kernels
+  \(0,150,0\); MMV-001 has all three transfers and all three kernels
+  empty, but its unique dominating pair gives \(\gamma=2\).  Thus color
+  incidence alone is insufficient.  The live gate is a strict rank
+  comparison across different bans, including endpoints inside the ban.
+- The order-16/17 QQ1 anchor--auxiliary pattern was immediately tested
+  one order higher and refuted.  The 18-vertex graph
+  `QslallyN\~Y^v^|^z~~V|ve~^}G` satisfies the proposed \(\{u,x\}\) and
+  all \(p/q\)-auxiliary non-domination obligations, while independent
+  evaluators A and B agree on
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\), order 18,
+  size 114.  This is an exact fixed discovery control awaiting a
+  standalone package and hostile review, not yet an accepted claim.
+- A broader CEGAR iteration exposed 32 pair constraints and then reached
+  a hard instance.  It was stopped at the five-minute wall gate; the
+  interrupted run has no status and creates no claim.
+- Best-guess completion: **82%** for the 27-day campaign deliverable,
+  **50%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.
