@@ -2711,3 +2711,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   encouraging but remain `OBSERVED`.
 - The universal conjecture, the complete \(k=3\) case, and the complete
   order-13 exclusion remain open.
+
+## 2026-07-28 04:03 PDT — target-response propagation generalized to every \(k\)
+
+- The two-attack vertex-star mechanism from C-106 was recognized as an
+  arbitrary-\(k\) exchange theorem.  Starting at \(T-v+x\), attack the
+  vertices of \(T'-T\) in sequence.  A guard already in \(T'\) has no move
+  edge, while moving \(x\) leaves every guard nonadjacent to \(v\);
+  closure therefore replaces one old vertex at each step and ends at
+  \(T'-v+x\).
+- Under equality this defines a global, family-relative active set meeting
+  every maximum independent \(k\)-set.  Proper deletion \(k\)-colorings
+  give componentwise responder-color sets and exact inactive-set color
+  identities.  The inactive complement is \(K_k\)-free, a common responder
+  color extends over the target, and a critical full target forces at
+  least three ridge components.
+- An independent hostile reviewer checked all proof dependencies and edge
+  cases, including \(k=1\), arbitrary rather than greatest families, and
+  overlapping states.  A clean-room enumeration of all labeled graphs
+  through order five, all guard numbers, 60,011 eternal subfamilies,
+  57,622 forced paths, and 336,298 colorings found zero failures.
+- The unconditional `PASS` promotes C-108.  This is the first campaign
+  structural theorem here stated uniformly for every \(k\), but it leaves
+  the global responder-color intersection open and does not resolve the
+  conjecture.

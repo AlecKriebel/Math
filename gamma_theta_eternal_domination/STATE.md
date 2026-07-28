@@ -1,5 +1,68 @@
 # Campaign State
 
+## Checkpoint 071 — 2026-07-28 04:03 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The finite frontier is unchanged:
+  order 12 is excluded completely and only \(k=3\) is excluded at order
+  13.
+- **Target-response propagation is now an all-\(k\) theorem (C-108).**
+  For any two retained independent \(k\)-states sharing a guard \(v\), the
+  ability of \(v\) to answer a fixed target is state-independent.  A forced
+  sequence of symmetric-difference attacks transports one response state
+  to the other; the proof uses an arbitrary eternal family, not a greatest
+  kernel.
+- Under equality this defines a global active set meeting every maximum
+  independent \(k\)-set.  In a deletion \(k\)-coloring, active responder
+  colors are constant on ridge components.  The exact inactive-set
+  identity is
+  \[
+    A_C^\kappa=[k]\setminus
+      \kappa(R_x\cap\operatorname{supp}C),
+    \qquad
+    \bigcap_C A_C^\kappa=[k]\setminus\kappa(R_x)
+  \]
+  when the supports cover.  The inactive deletion complement is
+  \(K_k\)-free.
+- A common responder color extends the coloring over the target.  Thus at
+  every \(k\), a critical full target in a hypothetical counterexample
+  requires at least three ridge components whose nonempty responder-color
+  sets have empty total intersection.
+- The hostile audit returned unconditional `PASS`.  Its clean-room
+  exhaustive checker covered all 1,099 labeled graphs through order five,
+  every \(k=1,\ldots,n\), all 60,011 arbitrary eternal subfamilies,
+  57,622 forced transport paths, 336,298 coloring instances, and 339,838
+  inactive-component identity checks with zero failures.
+- This is a universal structural theorem, not a universal proof: it does
+  not establish that the component color sets must intersect.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| All-\(k\) response propagation | closed-proved C-108 | Global active set and exact color identities; common-color existence remains open |
+| Global no-full \(k=3\) cascade | active-primary | Turn simultaneous gamma witnesses into collision, growth, or dominating-pair contradiction |
+| Full-list inactive-set closure | active-review | Static equality and covariance admit an inactive odd cycle; multi-step closure must eliminate it |
+| Order-13 \(k=4,5\) slices | deferred-fallback | No complete exclusion |
+
+### Running jobs and resources
+
+- One agent is extracting a minimal global gamma-witness core in the
+  shortest three-gate geometry.  One hostile reviewer is checking the
+  inactive-set control.  No broad enumeration or memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Translate the minimal global witness core into a human all-order
+   collision or recurrence lemma for the no-full \(k=3\) branch.
+2. Finish the inactive-set bridge audit and test whether multi-step closure
+   forbids an inactive induced odd cycle.
+3. Use C-108 to revisit the general-\(k\) full-target deletion branch
+   without assuming ridge connectivity or a canonical holonomy.
+
 ## Checkpoint 070 — 2026-07-28 03:54 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
