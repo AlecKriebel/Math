@@ -1,5 +1,59 @@
 # Campaign State
 
+## Checkpoint 075 — 2026-07-28 04:50 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The finite frontier is unchanged.
+- **Inactive vertices now force an all-\(k\) target-link suspension theorem
+  (C-112).**  In a minimum counterexample, if \(r\) is inactive at target
+  \(x\), then every frozen projection at \(r\) has all four equality
+  parameters and clique-cover number \(k-1\).  It contains
+  \(\{x\}\cup N_{\overline G}(r)\), so
+  \[
+    \chi\!\left(\overline G[\{x\}\cup N_{\overline G}(r)]\right)
+    =
+    \omega\!\left(\overline G[\{x\}\cup N_{\overline G}(r)]\right)
+    =k-1.
+  \]
+- This is genuinely stronger than the ordinary face-link theorem when
+  \(rx\in E(G)\): the target is outside the complement link, yet dynamic
+  inactivity still permits adjoining it without another color.
+- The hostile reviewer returned unconditional `PASS` against candidate hash
+  `1edb9fb1aa0f3865bbb8906ca86ea11cbc897d28e9e703083ee384f2931b4ad0`
+  and manifest hash
+  `c99b154ed344c7efd076e5115e6d64eed9e9d8eeff6d28810889b405cb39874f`.
+  Its clean-room control replay confirms exact full and deletion parameters,
+  kernels of 127 and 101 triples, all 1,143 full-family obligations, and the
+  exact six-versus-six split among the 12 deletion colorings.
+- The theorem exhausts the available local induction information but does
+  not glue the independently chosen local colorings.  That global
+  synchronization remains the full-list branch's exact obstruction.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| All-\(k\) inactive-link projection | closed-proved C-112 | Every inactive target-link suspension is exactly \((k-1)\)-colorable |
+| Full-list coloring synchronization | active-primary | Glue the local suspension colorings or force one deletion coloring omitting an inactive color |
+| Exact-two-list signed balance | active-primary | Rule out an odd signed cycle after C-111 physicalizes every literal |
+| Inactive induced \(C_5\) | passed-awaiting-promotion | Complete 52-case certificate and hostile audit |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Three bounded structural proof lanes are active; no broad enumeration or
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Promote the hostile-accepted inactive induced-\(C_5\) certificate theorem
+   with its exact 52-case scope.
+2. Prove signed balance of the fully physical exact-two-list graph, or isolate
+   the smallest remaining odd signed cycle.
+3. Generalize the inactive \(C_5\) attack to arbitrary induced odd cycles.
+
 ## Checkpoint 074 — 2026-07-28 04:43 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified

@@ -2802,3 +2802,24 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - C-111 is a universal structural theorem for the exact-two-list \(k=3\)
   branch.  It does not yet prove that the response 2-CNF is satisfiable or
   settle the complete \(k=3\) case.
+
+## 2026-07-28 04:50 PDT — all-\(k\) inactive-link suspension accepted
+
+- For an inactive vertex \(r\) at target \(x\), the frozen projection at
+  \(r\) contains \(\{x\}\cup N_{\overline G}(r)\).  Minimum-counterexample
+  minimality gives the frozen projection clique-cover number \(k-1\), while
+  its retained \(T-\{r\}\) supplies the matching clique lower bound.
+- Therefore the complete target-link suspension has
+  \(\chi=\omega=k-1\).  The dynamic case \(rx\in E(G)\) is the new content:
+  \(x\) lies outside the ordinary complement link but can still be adjoined
+  without increasing its chromatic number.
+- The hostile reviewer audited the frozen-family hypotheses, proper-induced
+  minimality argument, chromatic lower bound, and every claimed scope
+  boundary, returning unconditional `PASS`.
+- Its clean-room checker reconstructed the 12-vertex equality control
+  ``Ksv`f\knJVis``, the 127-state full kernel, the 101-state deletion kernel,
+  all active incidences and facets, and all 12 deletion colorings.  Exactly
+  six colorings use two inactive colors and six use all three.
+- C-112 identifies a strong local induction theorem but also a real gluing
+  boundary.  It does not synchronize the local color permutations or prove
+  the global coloring needed to extend over the target.
