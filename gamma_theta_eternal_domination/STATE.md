@@ -1,5 +1,76 @@
 # Campaign State
 
+## Checkpoint 107 — 2026-07-28 14:55 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `69897a6c`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **78%**.  Best-guess completion toward a complete parameter-three
+  theorem: **45%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities,
+  and may move non-monotonically as the residual gates change.
+- **Fixed-pivot holonomy is now completely controlled (C-161).**  Every
+  one-sided active exchange separates its endpoints in every shared-pivot
+  complement link, and the two selected bipartite components have a
+  forced checkerboard orientation.  The omitted repair corner is the same
+  literal state after the orientation flip, so local repair does not
+  lower rank.  The remaining holonomy problem must couple different link
+  components globally.
+- **The canonical QQ1 completion has no cold witness (C-162).**  Every
+  completion hits \(p,q,b,c\), and \(\{u,x,d\}\) dominates.  The
+  no-dominating-pair condition now forces a genuinely external hot witness
+  hitting \(x,r\) and at least one side witness.  When \(ud\) is absent,
+  this layer recreates the asymmetric repair square with the same omitted
+  corner.  The completion rank is at most three, with exact top diamond
+  \((1,2,2,3)\).  The hot layer remains open.
+- **Positive-rank full-list terminals are normalized (C-163).**  Every
+  positive-rank terminal has a dominating unbanned alternate of lower
+  restricted rank.  Minimum-rank selection eliminates nonsingleton
+  direct-root terminals at all ranks, but forces the alternate outside the
+  unrestricted greatest family rather than retaining it.  Together with
+  C-154/C-157, the simultaneous all-empty branch now has four precise
+  nonroot-corridor/anchor-restoration cases.
+- The imported external-AI report supplied a useful direction, not a
+  result.  Its “global holonomy” suggestion has now led to C-161, while
+  its unsupported finite claims remain unpromoted and obsolete relative
+  to the campaign's certified order-12 theorem.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-146/C-150/C-153/C-156/C-158/C-161/C-162 | Eliminate the QQ1 external hot layer; higher-rank multi-hit collisions remain afterward |
+| Global complement holonomy | active-primary | Couple the separated components of different vertex links, or produce a sharp static/dynamic control |
+| Full-list future-safe color | active-primary, C-149/C-154/C-157/C-163 | Eliminate the four minimum-terminal cases and then the residual exact 2-SAT obstruction |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Requires the dynamic palette-gluing statement even after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the universal lanes stall at their explicit gates |
+
+### Running jobs and resources
+
+- Two bounded proof lanes are active: one attacks the QQ1 hot-witness
+  layer, and one tests whether the static locally bipartite complement
+  conditions already force three-colorability or require a genuinely
+  dynamic global theorem.  No census or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  One bounded
+  static probe currently uses one CPU core and negligible memory; about
+  11 GiB disk space remains free.  The machine is responsive.
+
+### Next three highest-value actions
+
+1. Decide the \(ud\in E(G)\) and \(ud\notin E(G)\) QQ1 hot-witness
+   branches, seeking a dominating pair, strict rank descent, or an
+   infinite-distinctness contradiction.
+2. Prove or refute the static global-holonomy implication
+   (pairwise common neighbor plus bipartite isolate-free links implies
+   three-colorability); if false, isolate the missing eternal-family
+   condition exactly.
+3. Use C-163 to eliminate rank-zero anchor restoration or prove that a
+   compulsory nonretained lower-rank alternate creates a smaller
+   unrestricted reverse obstruction.
+
 ## Checkpoint 106 — 2026-07-28 14:25 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

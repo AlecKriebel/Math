@@ -3766,3 +3766,36 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   squares appear to force the endpoints of an asymmetric active edge
   into different connected components of every shared-pivot complement
   link.  It remains a candidate until independent hostile review.
+
+## 2026-07-28 14:55 PDT — local holonomy, QQ1 completions, and positive-rank terminals
+
+- Promoted C-161 after an unconditional hostile review.  A shortest-path
+  iteration of C-145 proves that the endpoints of every one-sided active
+  exchange lie in different connected components of each shared-pivot
+  complement link.  Synchronized walks force a checkerboard orientation
+  across the two selected bipartite components.  The tracked omitted
+  repair corner is literally the same state after the orientation flip,
+  so its deletion rank is conserved.  The clean-room audit covered 66,968
+  oriented roots and 87,888 synchronized-walk endpoint pairs.
+- Promoted C-162 after an independent hostile reconstruction of every
+  one-guard branch.  In canonical QQ1, every \(x,r\)-completion hits
+  \(p,q,b,c\), and \(\{u,x,d\}\) dominates.  Thus \(\gamma=3\) forces an
+  external hot witness for \(\{u,d\}\), adjacent to \(x,r\) and at least
+  one of \(b,c\).  All 64 cold-witness incidence assignments fail.  The
+  completion reverse endpoint has rank at most three, with unique top
+  rank vector \((1,2,2,3)\); in the \(ud\)-nonedge branch, the hot witness
+  recreates the same-rank repair square instead of descending.
+- Promoted C-163 after an unconditional hostile review.  Positive
+  restricted rank at either C-149 terminal gate forces a dominating
+  unbanned alternate of smaller restricted rank.  At a minimum-rank
+  retained terminal that alternate is not in the unrestricted greatest
+  family.  Nonsingleton direct-root terminals are eliminated at every
+  rank, and the all-three-empty full-list branch is reduced to four exact
+  nonroot-corridor/anchor-restoration cases.
+- The imported report's unsupported order-12 and depth-horizon claims
+  remain excluded.  Its global-holonomy intuition has now generated one
+  accepted theorem, but neither C-161 nor the two new normal forms prove
+  reciprocity, complete \(k=3\), or the universal conjecture.
+- Best-guess completion: **78%** for the 27-day campaign deliverable,
+  **45%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.
