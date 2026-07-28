@@ -2876,3 +2876,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - This closes the arbitrary-length shortening obstacle, not the entire
   parameter-three case or the universal conjecture.  Literal attack trees
   for the five residual skeletons are the next promotion gate.
+
+## 2026-07-28 05:35 PDT — inactive induced \(C_7\) excluded
+
+- Extended the C-113 local inactive-rim encoding from length five to length
+  seven.  Equality among the seven edge witnesses has 877 patterns; the
+  dihedral action on the rim reduces them to 93 representative formulas.
+- Every representative has a DRAT refutation.  The hostile checker used a
+  separate set-partition generator, independently derived the \(D_7\) edge
+  action, checked an explicit local-hypothesis isomorphism for every one of
+  the 877 patterns, rebuilt all 93 DIMACS files byte for byte, and replayed
+  every proof.
+- The accepted inventory contains 1,418,936 reconstructed clauses,
+  1,739,039 proof bytes, and exactly 373 manifest-bound case files.  The
+  candidate certificate manifest is
+  `d5187e0a35595865f79063b02f74e6fa819aa5b0fe0b78c2c09bbdb15d148ee4`;
+  the hostile manifest is
+  `1a98b4b231d2c9b961886ab79faa84588e305fe2352f5274edab1a50a5686162`.
+- Under \(\alpha=\gamma^\infty=3\) and \(\gamma(G-x)\ge3\), an inactive
+  induced \(C_7\) supplies exactly the certified local configuration.
+  Together with the accepted triangle and \(C_5\) exclusions, the remaining
+  inactive odd-hole length is at least nine.
+- The package also proves an arbitrary-\(k\) private-star response
+  propagation lemma and a distance-two inactive-state exclusion.  Independent
+  bounded falsification covered all 60,011 arbitrary eternal subfamilies
+  through labeled order five with zero failures.
+- Even \(C_4,C_6,C_8\) product-family controls pass, so parity is essential.
+  No \(C_9\) or all-odd theorem is claimed; one all-distinct \(C_9\) UNSAT
+  probe remains observation-only.  C-115 is promoted after unconditional
+  hostile `PASS`.

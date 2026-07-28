@@ -1,5 +1,64 @@
 # Campaign State
 
+## Checkpoint 078 — 2026-07-28 05:35 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The finite order frontier is unchanged.
+- **The inactive complement cannot contain an induced \(C_7\) (C-115).**
+  The local theorem allows every possible coincidence among the seven
+  edge-witness vertices.  Its 877 equality patterns reduce to 93 dihedral
+  orbits, all certified UNSAT.
+- The hostile checker independently generated all 877 set partitions,
+  derived the \(D_7\) action, verified an explicit hypothesis isomorphism
+  for every orbit member, rebuilt all 93 representative formulas byte for
+  byte, and replayed all 93 DRAT proofs.  It reconstructed 1,418,936
+  clauses, checked 1,739,039 proof bytes, and verified the exact 373-file
+  inventory.
+- The review returned unconditional `PASS` against note hash
+  `59b328983b2d240ec2b7aa078a474d9d4a1c18c307ceefd5a0c64da161997883`,
+  certificate-manifest hash
+  `d5187e0a35595865f79063b02f74e6fa819aa5b0fe0b78c2c09bbdb15d148ee4`,
+  and hostile-manifest hash
+  `1a98b4b231d2c9b961886ab79faa84588e305fe2352f5274edab1a50a5686162`.
+- In the equality-critical target branch, C-108 already excludes inactive
+  triangles and C-113 excludes inactive induced \(C_5\).  C-115 raises the
+  shortest surviving inactive odd hole to length at least nine.
+- A separate human lemma in the accepted package propagates a private
+  guard's response from one retained \(k\)-state to any independent
+  \(k\)-state containing it.  Its distance-two corollary explains the first
+  parity step on inactive paths.  It does not yet supply the arbitrary-path
+  induction.
+- Explicit product-family controls realize the even \(C_4,C_6,C_8\)
+  analogues.  The single all-distinct \(C_9\) discovery run remains
+  `OBSERVED` only; the other 21,146 witness partitions were not covered.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Inactive induced \(C_7\) | closed-proved C-115 | All 877 witness-identification patterns certified impossible |
+| Inactive odd cycles of length at least nine | active-primary | Prove arbitrary inactive-path parity; \(C_9\) is not certified |
+| Exact-two-list signed balance | active-hostile-review | Five residual attack trees frozen; await independent verdict |
+| Singleton-list no-full branch | active | Classify unit chains without importing C-111 outside its hypotheses |
+| All-\(k\) local-to-global gluing | active | C-112 settles each inactive suspension separately, not their synchronization |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Two hostile reviews and one bounded structural lane are active.  No broad
+  enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Complete the independent audit of the exact-two-list signed-balance
+   theorem and promote it only if all five attack trees survive.
+2. Derive the length-independent inactive-path parity recurrence suggested
+   by the \(C_5\) and \(C_7\) certificates.
+3. Close the remaining singleton-list no-full branch, then combine it with
+   the full-list active/inactive split.
+
 ## Checkpoint 077 — 2026-07-28 05:23 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
