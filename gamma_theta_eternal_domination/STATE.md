@@ -1,5 +1,76 @@
 # Campaign State
 
+## Checkpoint 108 — 2026-07-28 15:31 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier is unchanged: all orders through 12 and the \(k=3\) slice at
+  order 13.  Repository base before this checkpoint:
+  `1bc21304234e3a08e40b67e53578c198cc8ea110`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **80%**.  Best-guess completion toward a complete parameter-three
+  theorem: **47%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities,
+  and may move non-monotonically.
+- **The static global-holonomy shortcut is refuted (C-164).**  The already
+  accepted control \(H=\overline{C_7}\) is \(K_4\)-free, every pair has a
+  common neighbor, and every vertex link is a connected \(P_4\), yet
+  \(\chi(H)=4\).  Its pure flag clique complex is the seven-vertex
+  Möbius band.  A clean-room enumeration of all 33,867 labeled graphs
+  through order six makes order seven minimal for this exact static
+  implication.  This is a refuted proof route, not a conjecture
+  counterexample; \(C_7\) has \(\gamma^\infty=4\).
+- **Rank-zero anchor restoration has an exact palette split (C-165).**
+  A nonsingleton terminal palette either contains the attacked anchor or
+  is exactly the selected/shared pair, in which case restoration forces
+  the attacked anchor into the mover palette.  The legal unbanned
+  alternate must be nondominating and its missed witness gives a forced
+  two-attack transfer.  The equality control
+  `OYifur}UO]}iTij]tpo]v` shows the sharp limit: a legal dominating banned
+  alternate can still be absent from the unrestricted greatest family.
+  Therefore the remaining proof must couple all three color traces.
+- **The canonical QQ1 hot layer is now outer-saturated (C-166).**
+  Every completion state \(\{u,x,d\}\), every one of the five
+  non-omitted inner corners, and every outer completion bow-tie
+  \(\{s,w,t\}\) is retained.  All nondegenerate outer edges are reciprocal.
+  The hostile review explicitly covered the occupied-side collisions
+  \(s=b,c\) and endpoint degeneracies \(s=d,t=u\).  Both inner
+  \(ud\)-subcases remain open, so this is a substantial local saturation
+  theorem rather than an exclusion of QQ1.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166 | Couple the saturated QQ1 layer to the simultaneous \(\{u,x\}\) and \(\{u,d\}\) pair witnesses; both inner \(ud\)-subcases remain |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Full-list future-safe color | active-primary, C-149/C-154/C-157/C-163/C-165 | Couple three minimum-rank color traces; a single dominating banned alternate need not survive |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the universal lanes reach their stated termination gates |
+
+### Running jobs and resources
+
+- One bounded QQ1 SAT/CEGAR probe is testing the simultaneous
+  non-dominating-pair obligations omitted by the sharp \(\gamma=2\)
+  controls.  It uses one CPU core and about 50 MiB resident memory.
+- A separate proof lane is coupling all three full-list terminal traces.
+  No census or memory-heavy proof-production job is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  14 GiB disk space is free.  Campaign compute remains within one light
+  solver process and the machine is responsive.
+
+### Next three highest-value actions
+
+1. Decide whether the simultaneous witnesses for the original pair
+   \(\{u,x\}\) and hot pair \(\{u,d\}\) contradict the retained QQ1
+   inner geometry; otherwise isolate the next forced pair witness.
+2. Couple the three C-165 palette transfers and C-163 minimum-rank traces
+   in the simultaneous all-empty full-list branch.
+3. If both dynamic lanes reach their explicit second-iteration gates
+   without a new mechanism, rebalance toward the bounded order-14
+   fallback rather than launching a blind census.
+
 ## Checkpoint 107 — 2026-07-28 14:55 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

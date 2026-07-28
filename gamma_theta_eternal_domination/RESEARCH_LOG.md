@@ -3799,3 +3799,43 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **78%** for the 27-day campaign deliverable,
   **45%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 15:31 PDT — static holonomy refuted; QQ1 outer layer saturated
+
+- Promoted C-164 as a deliberately `REFUTED` proof route.  The accepted
+  \(C_7\) control already satisfies the proposed stronger static
+  complement conditions: \(H=\overline{C_7}\) is \(K_4\)-free and
+  four-chromatic, every pair has a common neighbor, and every vertex link
+  is a connected \(P_4\).  Its pure flag clique complex is the
+  seven-vertex Möbius band.  A clean-room enumeration of all 33,867
+  labeled graphs through order six proves order seven minimal for this
+  exact static implication.  The review explicitly credits the earlier
+  C-020 attack tree and C-064 facet loop and rejects any hereditary use of
+  the control.
+- Promoted C-165 after an unconditional hostile review.  Rank-zero
+  anchor restoration now has an exact attacked-anchor/shared-anchor
+  palette split.  In the shared case, arbitrary-state restoration forces
+  the attacked anchor into the mover palette; a nondominating legal
+  alternate supplies a two-attack witness transfer.  The new equality
+  control `OYifur}UO]}iTij]tpo]v` has greatest-family size 304 and
+  restricted-kernel sizes \(0,150,0\), yet a legal dominating banned
+  alternate is absent from the greatest family.  Thus a local
+  alternate-retention proof is impossible; the remaining target must
+  couple all three colors simultaneously.
+- Promoted C-166 after the initial proof was caught attempting an attack
+  at an occupied side witness.  The repaired argument treats
+  \(s=b,c\) by skipping that attack: the opposite side guard moves
+  directly into the common state.  A clean-room audit then exhausted all
+  16 alias branches, including \(s=d\) and \(t=u\), and gave an
+  unconditional pass.  Every canonical QQ1 hot witness now has five
+  retained inner corners, a clique of hot witnesses, and a completely
+  retained outer bow-tie layer with reciprocal outer activity.  Neither
+  inner \(ud\)-subcase is eliminated.
+- The new \(\gamma=2\) edge-branch control has 439 retained triples but
+  still makes the original pair \(\{u,x\}\) dominating.  The live QQ1
+  continuation is therefore testing the simultaneous global obligations
+  that both \(\{u,x\}\) and \(\{u,d\}\) have missed vertices under
+  \(\gamma=3\).  Order-14 enumeration remains deferred.
+- Best-guess completion: **80%** for the 27-day campaign deliverable,
+  **47%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.
