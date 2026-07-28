@@ -3389,3 +3389,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `774a774e93850c1403cf5bc53c1f0a4bd8a216e1445aa26df7112cbc1098db00`.
   The order-10 census and toggle probe remain `OBSERVED`; no full-list or
   complete-\(k=3\) conclusion is claimed.
+
+## 2026-07-28 09:44 PDT — bridge propagation and turning ridge accepted
+
+- Promoted C-140 after a final unconditional hostile audit.  The C-133
+  bridge is side-pure toward both original supporting components and is
+  \(G\)-adjacent to every distinct vertex on their opposite sides,
+  including both original ports.  An active next shared-color clause must
+  therefore enter a fresh free component.
+- Any exact two-list bridge has a nonempty retained common-nonneighbor ridge
+  when \(\gamma=3\), since the empty-ridge alternative is a dominating
+  pair.  The ridge is a \(G\)-clique with unique one-guard exchanges.  Its
+  exact outside lists are the singleton or opposite two-list alternatives,
+  so the forced ridge edges turn away from the incoming shared color.
+- The hostile audit rejected the first bytes because equation (2.2)
+  accidentally included the self-pair \(q=z\), then found the same
+  ambiguity in one informal summary sentence.  The final note excludes the
+  self-pair everywhere and separately proves that a bridge cannot equal
+  either original port.  No substantive theorem was weakened.
+- Lead replay regenerated clean-room result SHA-256
+  `22c54839e890e85e8169df66158f8d952615592e69198d641000189d9628ab13`
+  in 0.05 seconds at about 21 MB maximum resident memory.
+- Final candidate/review manifests:
+  `29c526ad5f10b659b936ade59b58a449a4fb440f9fff98bd3474c976fe13cea5`,
+  `8f245b959c83305c414179c3672dcb53219a44baf652ce98ad366bc642cd351a`.
+  Arbitrary fresh-component continuations, unit chains, lollipops,
+  bicycles, complete \(k=3\), and the universal conjecture remain open.

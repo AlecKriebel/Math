@@ -1,5 +1,60 @@
 # Campaign State
 
+## Checkpoint 095 — 2026-07-28 09:44 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `76d052ea`.
+- **The forced singleton bridge now has a proved next-step gate (C-140).**
+  Every bridge vertex is side-pure toward both original supporting
+  components and is \(G\)-adjacent to every distinct vertex on their
+  opposite sides, including both original ports.  Therefore an active
+  shared-color clause cannot feed back through either original component;
+  a genuine propagation must enter a fresh free component.
+- Every exact two-list bridge also has a nonempty retained turning ridge
+  under \(\gamma=3\), or else its defining pair would dominate.  The ridge
+  is a \(G\)-clique with unique exchanges.  Its outside lists are exactly
+  the singleton or opposite two-list alternatives, so its forced edges are
+  inactive under the incoming bridge color.
+- The hostile review caught and corrected two instances of a self-pair
+  ambiguity before acceptance.  The final distinct-vertex theorem and
+  summary replay unconditionally.  Lead replay matched clean-room result
+  SHA-256
+  `22c54839e890e85e8169df66158f8d952615592e69198d641000189d9628ab13`
+  in 0.05 seconds at about 21 MB RSS.
+- The exact remaining singleton mechanism is a separated continuation
+  through a fresh component.  C-140 does not yet rule out a longer return,
+  lollipop, or bicycle.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| First bridge propagation | closed-proved C-140 | Cannot return through either original component; turning ridge forced |
+| Fresh-component chain | active-primary | Need a monotone component invariant or dominating-pair contradiction |
+| Full-list global synchronization | active-primary | Reverse-color/deletion-coloring probe in progress |
+| Dynamic equality reciprocity | active-primary, C-138 finite support | Coinduction or dominating-pair contradiction |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent proof lanes are testing the full-star reverse-color route and
+  equality-specific coinductive reciprocity.  No memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  13 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Determine whether a fresh bridge component can ever re-enter an earlier
+   component after more than one clause.
+2. Test whether a global reverse color forces a deletion coloring omitting
+   that color on the physical link.
+3. Prove or refute the coinductive dominating-pair alternative for
+   asymmetric active responses.
+
 ## Checkpoint 094 — 2026-07-28 09:34 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
