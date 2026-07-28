@@ -3287,3 +3287,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Scope remains strict: anchorless \(B\)-vertices, \(R_x-B\), intercomponent
   palette synchronization, complete \(k=3\), and the universal conjecture
   are still open.
+
+## 2026-07-28 08:51 PDT — anchor-only odd defects become a bridge
+
+- Promoted C-133 after a hostile audit with two clarifying corrections.
+  In C-129's odd–odd first-clause geometry, simultaneous anchor-only
+  terminal ridges force the retained state containing both terminals and
+  the shared third anchor.
+- The terminals' nonempty common missed set is then a retained \(G\)-clique
+  ridge.  Every ridge vertex carries the shared third response color, every
+  ridge exchange is retained, and the three possible exact response lists
+  have precise locations in the two frozen supporting components.
+- The audit made the legal direct-swap meaning of response-list membership
+  explicit and recorded why the terminals are distinct before the first
+  attack.  It independently checked restoration, unoccupied attacks,
+  unique one-guard responses, collisions, list trichotomy, and component
+  locations.
+- Scope is deliberately narrow.  Ridge vertices need not be new; they may
+  be existing ports or supports.  Thus C-133 converts the last anchor-only
+  escape into structured retained data but does not eliminate the first
+  clause, add an order floor, complete \(k=3\), or resolve the conjecture.
+- Corrected note/candidate manifest:
+  `6e1d4a866889538324faeef4a0d6713577042a660a72d266bf5c79bf51069fa1`,
+  `fe0d52a955d3a98ef98454b63ddc8ae129713e574b6063a91d28f25c66f3f005`.
+  Hostile result/manifest:
+  `284a08dca64862d0595874873d899324e2bf13ddf749920f629937a741819303`,
+  `f9429c9096b0628a5395da0047c4257067958489cfb0f3f191f73e1c909b0dc8`.

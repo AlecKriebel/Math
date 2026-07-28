@@ -1,0 +1,65 @@
+{
+  "schema": "anchor-only-bridge-hostile-review-manifest-v1",
+  "frozen_at": "2026-07-28T08:48:44-07:00",
+  "verdict": "PASS_AFTER_CLARIFYING_CORRECTIONS",
+  "model": "one guard moves along one graph edge to an unoccupied attacked vertex",
+  "candidate": {
+    "initial_manifest_sha256": "6874f6611930e8abf9e0fad001548f5452822157a86f119544e36b2913239f60",
+    "corrected_manifest": "math/working/anchor_only_bridge_ridge/MANIFEST.json",
+    "corrected_manifest_sha256": "fe0d52a955d3a98ef98454b63ddc8ae129713e574b6063a91d28f25c66f3f005",
+    "note_sha256": "6e1d4a866889538324faeef4a0d6713577042a660a72d266bf5c79bf51069fa1",
+    "corrections": [
+      "Restated that a family-response list records both the move edge and the retained direct swap.",
+      "Made the s != t collision exclusion explicit before attacking t from a state containing s."
+    ]
+  },
+  "accepted_claims": {
+    "common_terminal_state_retained": "PROVED",
+    "bridge_set_nonempty_and_outside_named_vertices": "PROVED",
+    "shared_anchor_move_and_bridge_states_retained": "PROVED",
+    "bridge_family_lists_contain_shared_anchor": "PROVED",
+    "bridge_is_G_clique_with_unique_exchanges": "PROVED",
+    "exact_bridge_list_trichotomy": "PROVED",
+    "bridge_frozen_component_locations": "PROVED"
+  },
+  "unpromoted_claims": {
+    "bridge_vertices_are_new": "NOT_CLAIMED",
+    "first_cross_clause_excluded": "OPEN",
+    "even_arms": "OPEN",
+    "longer_chains_and_bicycles": "OPEN",
+    "complete_k3": "OPEN",
+    "universal_gamma_theta": "OPEN"
+  },
+  "audit_checks": {
+    "C129_hypotheses": "PASS",
+    "arbitrary_state_restoration_quantifiers": "PASS",
+    "all_attacks_unoccupied": "PASS",
+    "exactly_one_adjacent_guard_moves": "PASS",
+    "forced_u_to_t": "PASS_AFTER_DEFINITION_CLARIFICATION",
+    "forced_w_to_z": "PASS",
+    "anchor_only_use_for_wz": "PASS",
+    "retention_and_G_clique_exchange": "PASS",
+    "exact_list_trichotomy": "PASS",
+    "component_locations": "PASS",
+    "s_t_and_named_vertex_collisions": "PASS_AFTER_EXPLICIT_S_NE_T_LINE",
+    "missing_st_assumption": "NO_ASSUMPTION_NEEDED",
+    "family_vs_static_lists": "PASS",
+    "new_vertex_or_order_overclaim": "ABSENT"
+  },
+  "dependencies": {
+    "C129_note_sha256": "d845635c3df454f7809dde5b6dc089e4c9a7076b106cf19c264d62998e311413",
+    "C129_manifest_sha256": "2e157de3ce02eda7eee2cff65d2af064eb7b9103a6f2b3d16772ede44d4e86b0",
+    "restoration_source_sha256": "3e87ca4e7c04987c2f56576c4e8b0f28113e254fdb1a024b4da7a3e0d6bf4c68"
+  },
+  "reproduction": {
+    "working_directory": "gamma_theta_eternal_domination",
+    "command": "python3 -I -B -W error reviews/anchor_only_bridge_hostile/independent_checker.py",
+    "generated_result": "reviews/anchor_only_bridge_hostile/independent_result.json",
+    "generated_result_sha256": "284a08dca64862d0595874873d899324e2bf13ddf749920f629937a741819303"
+  },
+  "files": {
+    "reviews/anchor_only_bridge_hostile/REVIEW.md": "944b6aef35e36fcc097d75d56f1e21ca777a3c50ec4cd09f2e0dc74d34b4cb7a",
+    "reviews/anchor_only_bridge_hostile/independent_checker.py": "5e48c84f54228451426bc6f61e103f7d4832c35ef95270dd01e6506768f6c3ca",
+    "reviews/anchor_only_bridge_hostile/independent_result.json": "284a08dca64862d0595874873d899324e2bf13ddf749920f629937a741819303"
+  }
+}

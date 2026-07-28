@@ -1,5 +1,64 @@
 # Campaign State
 
+## Checkpoint 091 — 2026-07-28 08:51 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `ea1de81c`.
+- **The simultaneous anchor-only escape in the first singleton cross clause
+  now has forced retained structure (C-133).**  In the odd–odd type, eternal
+  closure first retains the common terminal state and then forces the
+  nonempty common missed set to become a retained \(G\)-clique ridge.
+- Every bridge vertex carries the shared third response color.  Its exact
+  possible list is \(\{w\}\), \(\{u,w\}\), or \(\{v,w\}\), and these three
+  types have exact locations in the two frozen supporting components.
+- The hostile audit caught two formal ambiguities before acceptance:
+  response-list membership now explicitly includes the move edge, and the
+  two attacked terminals are explicitly proved distinct.  All family,
+  restoration, unoccupied-attack, collision, and component-location
+  quantifiers then pass.
+- This is a structural conversion rather than a contradiction.  A bridge
+  vertex may coincide with an existing port or support vertex, so no new
+  order bound or exclusion of the first clause follows yet.
+- C-133 corrected note/candidate manifest:
+  `6e1d4a866889538324faeef4a0d6713577042a660a72d266bf5c79bf51069fa1`,
+  `fe0d52a955d3a98ef98454b63ddc8ae129713e574b6063a91d28f25c66f3f005`.
+  Hostile result/manifest:
+  `284a08dca64862d0595874873d899324e2bf13ddf749920f629937a741819303`,
+  `f9429c9096b0628a5395da0047c4257067958489cfb0f3f191f73e1c909b0dc8`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Odd–odd anchor-only ridges | closed-proved C-133 | Force a retained shared-color bridge ridge |
+| Bridge propagation | active-primary | Determine its effect at the next clause or implication return |
+| Even/coincident singleton arms | active-secondary | Unique third-anchor response is unavailable |
+| Full-list anchorless vertices | active-primary | C-132 gives palette size but no spoke label |
+| Full-list palette synchronization | active-primary | Local two-color component palettes need a global match |
+| Greatest-family response reciprocity | active-exploratory | Equality signal remains strong; \(\gamma=2\) sharp control found |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One proof lane is propagating the new bridge through longer singleton
+  chains, one is attacking anchorless full-response vertices, and one is
+  packaging the greatest-family reciprocity boundary.  No memory-heavy
+  solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The C-133
+  symbolic replay is effectively instantaneous.
+
+### Next three highest-value actions
+
+1. Test whether the shared-color bridge shortens or closes the next
+   implication segment, or instead produces a dominating pair.
+2. Finish the greatest-family reciprocity boundary and decide whether the
+   equality-specific conjecture deserves a dedicated proof attack.
+3. Eliminate or classify anchorless vertices in C-132's physical inactive
+   graph.
+
 ## Checkpoint 090 — 2026-07-28 08:47 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
