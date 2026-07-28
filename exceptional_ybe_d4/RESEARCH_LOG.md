@@ -88,3 +88,10 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     operator has ratio \(-e^{i\pi/3}\), excluding unitary conjugacy up to
     phase.  No equivalence with GHR's category-specific \((3,1)\) tower is
     claimed.
+- **20:16:22** -- The reviewed paper, three exact verification routes,
+  priority audit, source package, and GitHub Pages files entered `main` in
+  commit `f81879a1547f779dc29d7bf094e503c7641c9801`.
+- **20:17:09** -- GitHub Pages reported that exact commit built successfully.
+  The live paper page and PDF were retrieved. The served PDF SHA-256 was
+  `3295256c746f5f011f18af2eff8537de88b9a592a44dcd50989efb3a315174a9`,
+  exactly matching both frozen repository copies.

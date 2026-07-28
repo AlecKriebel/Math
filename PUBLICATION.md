@@ -264,6 +264,46 @@ the source formulas confirms through \(d=12\) that root swapping preserves
 all Bell-visible first harmonics while changing the full behavior for
 \(d\ge4\). Every ordering in this construction remains uniform at \(d=2,3\).
 
+## Exceptional four-dimensional Hecke Yang--Baxter localization
+
+“A minimal unitary localization of the
+\(\mathcal C(\mathfrak{sl}_3,6)\) Jones--Wenzl representations” first entered
+`main` in commit
+[`f81879a1547f779dc29d7bf094e503c7641c9801`](https://github.com/AlecKriebel/Math/commit/f81879a1547f779dc29d7bf094e503c7641c9801)
+at **28 July 2026, 03:16:22 UTC** (**27 July 2026, 20:16:22 PDT**).
+GitHub Pages reported that exact commit built successfully at
+**28 July 2026, 03:17:09 UTC** (**27 July 2026, 20:17:09 PDT**). The
+[paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/),
+[PDF](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/paper.pdf),
+and [source package](https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4)
+were then retrieved successfully. The served nine-page PDF had SHA-256
+`3295256c746f5f011f18af2eff8537de88b9a592a44dcd50989efb3a315174a9`,
+identical to both frozen repository copies.
+
+The note gives an explicit \(16\times16\) unitary Yang--Baxter operator in
+Lechner's exceptional class
+\([e^{i\pi/3},\tfrac12,4]\). Exact calculations establish the Yang--Baxter,
+Hecke, unitarity, spectrum, trace, and partial-trace identities. The partial
+traces identify the required Markov trace and make the resulting ordinary
+localization faithful on the full \(H_n(3,6)\) tower. Combining the
+construction with the known two-dimensional obstruction and a
+three-dimensional trace-quotient obstruction proves that the minimum ordinary
+local dimension is four. A sitewise qubit swap also exposes a faithful
+\((3,2)\)-generalized localization, while tensor amplification gives ordinary
+examples in every local dimension divisible by four. The even dimensions
+congruent to two modulo four remain open.
+
+The release contains three exact verification routes: a dependency-free
+matrix checker over \(\mathbb Q(\sqrt2,\sqrt3,i)\), an abstract tensor-word
+checker with a printed 18-word coefficient certificate, and the preserved
+independent SymPy verifier supplied with the proposed witness. A focused
+priority audit found no earlier ordinary four-dimensional representative.
+The result is therefore described only as apparently new; the audit does not
+establish absolute priority, uniqueness, or inequivalence of the complete
+braid tower from the older quaternionic \((3,1)\)-generalized localization.
+No researcher or other outside individual was contacted, and the paper
+remains unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
