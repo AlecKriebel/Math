@@ -1,0 +1,82 @@
+{
+  "schema": "multi-hit-collision-endgame-hostile-v1",
+  "status": "PASS",
+  "frozen_candidate": {
+    "NOTE.md_sha256": "acfbc262877c08f9e4b38aa38931c3b95699b50073aa9a67d8ac3f80ba9ba3fd",
+    "MANIFEST.json_sha256": "a7d29adbdcd44d8a2d157a731e84fc09f7d4d2c2175be3a02eb42179cc884636"
+  },
+  "audit_history": {
+    "initial_NOTE.md_sha256": "ef0635065dcbffa900b3f991fd17cb3c1aa7b1a6ba84334de19a67da0e743a7e",
+    "initial_MANIFEST.json_sha256": "262364b4561c85df34c9e1bcda682c3ad549c5f777b26bb90ba9bd6bee6bb8e1",
+    "initial_verdict": "REVISE_LOCAL_ERRATA",
+    "intermediate_NOTE.md_sha256": "dd90daba2f44d5dbd85b956e9c6323a44f78a2cb429bc00eb619b9fc97acb786",
+    "intermediate_issue": "the lead-in before Theorem 2.1 still lacked multi-hit scope",
+    "final_verdict": "PASS"
+  },
+  "symbolic_verdict": {
+    "six_case_table": "PASS",
+    "XQ0_exact_rank_h_minus_one": "PASS",
+    "XQ0_q_u_reciprocity": "PASS",
+    "XQ0_response_square": "PASS",
+    "rank_one_XQ0_impossibility": "PASS",
+    "private_witness_rule_and_distinctness": "PASS",
+    "rank_one_QQ0_AQ0_paired_ridge": "PASS",
+    "rank_one_XQ1_independent_ladder": "PASS",
+    "QQ_completion_clique": "PASS",
+    "model": "PASS",
+    "scope": "PASS"
+  },
+  "applied_errata": [
+    {
+      "location": "Theorem 2.1",
+      "issue": "The displayed global hypotheses do not imply that an arbitrary deleting attack is multi-hit.",
+      "repair": "Applied: Theorem 2.1 and its lead-in are explicitly subject to |N(r) intersect T| >= 2."
+    },
+    {
+      "location": "equation (4.2)",
+      "issue": "The literal set builder includes x and r themselves in a finite simple graph, making its clique assertion false.",
+      "repair": "Applied: C_xr excludes x and r."
+    }
+  ],
+  "proof_clarification": {
+    "location": "Lemma 3.1",
+    "repair": "Applied: y_g != g is explicit because gr is an edge while y_g r is a nonedge."
+  },
+  "clean_room_controls": {
+    "checker_output_sha256": "81e97358596fd0f4228912e5970c27308afbf7a0eb87d414151efd7d0730ecb5",
+    "GEjbug": {
+      "parameters": [2, 2, 3, 3],
+      "triple_kernel_size": 41,
+      "reverse_rank": 1,
+      "row": "QQ1",
+      "successor_ranks": [0, 0, 0],
+      "common_nonneighbors_xr_excluding_endpoints": [],
+      "xr_dominates": true,
+      "p_q_forward_active_reverse_inactive": true
+    },
+    "GCOedo": {
+      "parameters": [3, 3, 3, 4],
+      "triple_kernel_size": 0,
+      "reverse_rank": 1,
+      "row": "XQ0",
+      "unique_successor_rank": 0,
+      "unique_successor_missed_vertex": 5,
+      "failed_forward_state": [0, 5, 7],
+      "failed_forward_missed_vertex": 1
+    }
+  },
+  "remaining_cases": [
+    "XQ0 at rank at least two",
+    "rank-one XQ1 after the forced independent ladder",
+    "QQ with a reciprocal r-edge",
+    "QQ with a full-hit completion clique",
+    "AQ0 and AQ1 beyond the rank-one local normal forms",
+    "all higher-rank multi-hit successors, where private witnesses need not exist"
+  ],
+  "not_established": [
+    "elimination of every multi-hit collision",
+    "greatest-family reciprocity",
+    "the complete k=3 case",
+    "the gamma-theta conjecture"
+  ]
+}

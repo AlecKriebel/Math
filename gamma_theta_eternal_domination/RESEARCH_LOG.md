@@ -3618,3 +3618,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   The clean-room audit checked the clique-fiber converse, 1,728 exact
   2-CNF/domain instances, all equality-control descent starts and terminal
   gates, and the fixed 581-incidence catalog.
+
+## 2026-07-28 12:23 PDT — one rank-one multi-hit collision excluded
+
+- Promoted C-150 after a hostile audit and two byte-specific scope
+  corrections.  A multi-hit deleting attack at a \(k=3\) reverse endpoint
+  has exactly six adjacency rows, up to exchanging the two unaffected
+  endpoint labels.
+- In the XQ0 row, the deleting attack has one legal successor of exact
+  rank \(h-1\), forces a reciprocal \(q\leftrightarrow u\) exchange, and
+  sits in an exact response square.  At \(h=1\), the successor's private
+  witness produces a retained state with no guard adjacent to the other
+  endpoint, so this row is impossible.
+- The other rank-one rows are not excluded.  The \(ur=0\) QQ/AQ rows
+  force two distinct private witnesses, an independent ridge, and two
+  forced paths back to the original endpoint.  XQ1 forces a four-facet
+  independent ladder.  QQ also has a nonempty external completion clique;
+  absent reverse activity, every completion must hit both endpoint
+  vertices.
+- The reviewer caught an omitted multi-hit hypothesis in the initial
+  six-row statement, an endpoint collision in the completion-set
+  notation, and then one residual unscoped lead-in sentence.  All were
+  corrected before the final `PASS`.
+- Candidate/review manifests:
+  `a7d29adbdcd44d8a2d157a731e84fc09f7d4d2c2175be3a02eb42179cc884636`,
+  `146ea579ee944d94d635063ee820975eab1a69849ca1e139fe1a7beb57609bb4`.
+  Lead replay reproduced the candidate and clean-room outputs
+  `b4988316...` and `81e97358...`.
+- This is a strict local reduction, not greatest-family reciprocity.  The
+  surviving rank-one rows and all higher-rank multi-hit collisions remain
+  active.

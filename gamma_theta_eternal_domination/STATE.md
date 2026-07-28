@@ -1,5 +1,54 @@
 # Campaign State
 
+## Checkpoint 103 — 2026-07-28 12:23 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `c5150c6f`.
+- **The first genuine rank-one multi-hit collision is impossible
+  (C-150).**  In the XQ0 neighborhood row, the unique deleting successor
+  has exact rank \(h-1\), forces a reciprocal exchange and a response
+  square; at rank one its private witness creates a retained state with no
+  legal responder.
+- The other multi-hit rows now have exact normal forms.  Rank-one QQ/AQ
+  rows with \(ur\) absent force a paired-private-witness ridge; XQ1 forces
+  a four-facet independent ladder; QQ forces a nonempty external
+  completion clique with a reciprocal-edge or full-hit alternative.
+- The hostile review required two rounds of claim-boundary correction
+  before issuing `PASS`.  Candidate and clean-room fixed-control replays
+  match their frozen hashes.
+- The family-only mixed-\(P_4\) endpoint reduction is frozen under an
+  independent hostile audit.  Its bounded order-12--22 solver table
+  remains discovery evidence only.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-146/C-150 | Rank-one XQ1, QQ/AQ alternatives, and higher-rank multi-hit collisions |
+| Full-list future-safe color | active-primary, C-149 | Prove one cumulative kernel survives, or eliminate its terminal gates |
+| Family-only mixed \(P_4\) | candidate under hostile audit | Descend from two dominating omitted endpoint states |
+| Exact static mixed \(P_4\) | closed-proved C-148 | Family-only enlargement and longer unit chains remain |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One independent lane is auditing the family-only mixed-\(P_4\)
+  reduction, and another is attacking its exact deletion-rank recurrence.
+  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Close a second rank-one multi-hit row or turn it into a dominating
+   pair.
+2. Derive the family-only mixed-\(P_4\) rank recurrence without treating
+   omitted family responses as graph nonedges.
+3. Eliminate the three interlocking C-149 terminal gates or prove one
+   cumulative restricted kernel survives.
+
 ## Checkpoint 102 — 2026-07-28 12:07 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
