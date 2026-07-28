@@ -304,6 +304,47 @@ braid tower from the older quaternionic \((3,1)\)-generalized localization.
 No researcher or other outside individual was contacted, and the paper
 remains unreviewed.
 
+## Permutation-blind Bell scores and setting-complexity obstructions
+
+The complete source package for “Permutation-blind Bell scores and
+obstructions to maximal global randomness” first entered `main` in commit
+[`0590ed4268c9fc9abfeca569d397a67ccfe1b1ac`](https://github.com/AlecKriebel/Math/commit/0590ed4268c9fc9abfeca569d397a67ccfe1b1ac)
+at **28 July 2026, 05:10:44 UTC** (**27 July 2026, 22:10:44 PDT**). The
+dedicated public page entered `main` in commit
+[`e3ae7a1ac175071b14f2f5c83ddc86149c366da5`](https://github.com/AlecKriebel/Math/commit/e3ae7a1ac175071b14f2f5c83ddc86149c366da5)
+at **28 July 2026, 05:15:04 UTC** (**27 July 2026, 22:15:04 PDT**). GitHub
+Pages reported that exact commit built successfully at
+**28 July 2026, 05:15:56 UTC**. The
+[paper page](https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/),
+[PDF](https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/paper.pdf),
+and [source package](https://github.com/AlecKriebel/Math/tree/main/minimum_bell_randomness)
+were retrieved successfully. The served thirteen-page PDF had SHA-256
+`2c9e4d864f5b617f0d99c1b199f8b3546e3d3aa27ac96356e399a860fd1263c3`,
+identical to the frozen manuscript and Pages copy.
+
+The note proves an exact positive-factor permutation-blindness theorem for a
+specified first-harmonic polar-linear class. Under explicit weighted-cycle
+hypotheses, reordering one scalar equality spectrum preserves admissibility,
+the maximum Bell score, and all first-harmonic Bell data while potentially
+changing the target distribution. The construction yields exact nonuniform
+maximizers for both augmented cyclic Bell families of Perito et al. for every
+\(d\ge4\). For the second family it supplies an exact Fourier phase, order-\(d\)
+Alice observables, and annihilation of every published SOS factor. A separate
+number-field verifier checks the complete \(d=4\) second-family certificate in
+\(\mathbb Q(\zeta_{16})\), including values \(4\) and \(5\) and the target
+probabilities \(1/32\) and \(3/32\).
+
+The same note establishes a standard one-input locality lower bound, audits
+the four ideal tables of the standard two-setting Fourier-phase qudit
+self-test, and rules out a coefficientwise separately bounded third-setting
+term that tries to expose its common computational MUB. These are
+architecture-specific obstructions. The paper neither constructs nor rules
+out a general all-dimensional \(2\times2\) or \(2\times3\) projective
+single-score protocol. The minimum-setting problem remains open for
+\(d\ge3\). A targeted source audit found no such constant-setting theorem,
+but that does not establish absolute novelty or priority. The note remains
+unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
