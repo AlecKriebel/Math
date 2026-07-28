@@ -3201,3 +3201,30 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile result/manifest:
   `7525ba43235069e7bd8c346c61dee73373e305eafb92d012cf131c8067df84e9`,
   `42e8ffd2e25407322bcd22fcc31addb5c9707927d44dd5bd9c6e72f491035f96`.
+
+## 2026-07-28 08:29 PDT — first genuine cross-clause geometry
+
+- Promoted C-129 after a strict-scope hostile review.  A selected
+  unit–clause–unit core has exactly four physical parity types.  The two
+  free support components intersect only in shared-color singleton
+  vertices, and the shared anchor is \(G\)-complete to both components.
+- In the odd–odd type, each singleton terminal forces a nonempty
+  common-nonneighbor \(G\)-clique ridge, every ridge exchange is retained,
+  and the two ridges are disjoint.  A common member would make the two
+  opposite singleton pins same-side in one frozen bipartite component,
+  contradicting the accepted component-coherence theorems.
+- The exact stopping point is important.  A ridge can still be its omitted
+  anchor alone, and even arms do not have the forced occupied third guard
+  used by the odd proof.  The one-edge/one-edge family pattern is C-121's
+  static \(Y_3\) only with separately proved inducedness and exact static
+  lists.
+- The independent checker reconstructed both controls without importing
+  campaign code: `FDzro` has parameters \((2,2,3,3,3)\), a 21-state
+  specified family and anchor-only ridges; `FCZbg` has all five parameters
+  equal to three and realizes the retained ridge-exchange mechanism.
+- Accepted note/candidate manifest:
+  `d845635c3df454f7809dde5b6dc089e4c9a7076b106cf19c264d62998e311413`,
+  `2e157de3ce02eda7eee2cff65d2af064eb7b9103a6f2b3d16772ede44d4e86b0`.
+  Hostile result/manifest:
+  `e87a5da31085cb0ccf9797eab65ee51850ea32c6591b3992d60a3d79b4f1be2f`,
+  `e2825b2df47c31e97426d211b91d1871917dcb1dad1bf51fd7c837831deeef52`.

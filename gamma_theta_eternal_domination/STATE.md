@@ -1,5 +1,68 @@
 # Campaign State
 
+## Checkpoint 088 — 2026-07-28 08:29 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `70927b7c`.
+- **The first genuine cross-component singleton clause now has an exact
+  physical classification (C-129).**  The two arm parities give four
+  terminal types.  Supporting components can meet only at shared-color
+  singleton vertices, so odd pins cannot coincide, and the shared anchor is
+  \(G\)-complete to both arms.
+- In the odd–odd case, each terminal forces a nonempty retained
+  common-nonneighbor \(G\)-clique ridge.  The two ridges are disjoint; a
+  proposed common member would put the two opposite singleton pins on the
+  same side of one frozen bipartite component, contradicting C-120/C-124.
+- This is a strict reduction, not a branch closure.  Either ridge can still
+  be its omitted anchor alone.  Even arms do not trigger the same forced
+  response, and the literal four family lists invoke C-121 only when
+  inducedness and exact static lists are separately present.
+- The hostile checker independently reconstructed `FDzro`, with
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,3)\), 21 specified
+  family states and 84 obligations, and the equality control `FCZbg`, with
+  all five parameters equal to three, 18 states and 72 obligations.
+- C-129 accepted note/candidate manifest:
+  `d845635c3df454f7809dde5b6dc089e4c9a7076b106cf19c264d62998e311413`,
+  `2e157de3ce02eda7eee2cff65d2af064eb7b9103a6f2b3d16772ede44d4e86b0`.
+  Hostile result/manifest:
+  `e87a5da31085cb0ccf9797eab65ee51850ea32c6591b3992d60a3d79b4f1be2f`,
+  `e2825b2df47c31e97426d211b91d1871917dcb1dad1bf51fd7c837831deeef52`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Zero-clause singleton terminal | closed-proved C-124 | Component polarization makes its units coherent |
+| First odd–odd cross clause | reduced C-129 | Two disjoint retained defect ridges |
+| Anchor-only odd defects | active-primary | Equality has not yet forced an external ridge member |
+| Even/coincident first-clause arms | active-secondary | Unique third-anchor response is unavailable |
+| Longer singleton chains/lollipops | active | Preserve physical ports and control ridge recurrence |
+| Equality-specific full-list gluing | active-primary | Must use multi-step three-guard closure beyond C-128 |
+| Clean exact \(Y_k\) strengthening | active-hostile-review | Dirty-carrier inference is being removed; clean count under audit |
+| Greatest-family response reciprocity | active-exploratory | Strong finite signal; arbitrary-family version is false |
+| Complete \(k=3\) theorem | active | Singleton and dynamic full-list branches remain |
+| Universal parameter lifting | active-long-range | Requires the still-open palette-gluing theorem \(\mathsf{GL}(k)\) |
+
+### Running jobs and resources
+
+- One hostile audit is narrowing the all-\(k\) \(Y_k\) candidate, one proof
+  lane is extracting a genuinely multi-step full-list invariant, and one
+  proof lane is testing greatest-family response reciprocity.  No
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The C-129
+  candidate and clean-room control replays complete essentially
+  instantaneously.
+
+### Next three highest-value actions
+
+1. Decide whether an odd terminal's defect ridge can remain anchor-only
+   under the full first-clause equality hypotheses.
+2. Extract and apply a retained multi-step condition absent from C-128.
+3. Determine whether greatest-family exchange reciprocity has a
+   fixed-point proof; if so, feed it into both remaining \(k=3\) branches.
+
 ## Checkpoint 087 — 2026-07-28 08:14 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
