@@ -3567,7 +3567,7 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   hashes are frozen in
   `math/working/reciprocity_order10_probe/aggregate.json`.
 
-## 2026-07-28 11:51 PDT — exact static mixed \(P_4\) excluded universally
+## 2026-07-28 11:38 PDT — exact static mixed \(P_4\) excluded universally
 
 - Promoted C-148 after an unconditional clean-room hostile audit.  Under
   \(\gamma=\alpha=\gamma^\infty=3\), an independent retained root cannot
