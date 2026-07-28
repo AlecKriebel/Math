@@ -3839,3 +3839,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **80%** for the 27-day campaign deliverable,
   **47%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 16:01 PDT — the two QQ1 witness layers are coupled
+
+- Promoted C-167 after an unconditional hostile review.  For every
+  canonical completion \(d\), every common nonneighbor \(w\) of
+  \(\{u,d\}\), and every common nonneighbor \(z\) of \(\{u,x\}\), the
+  bridge state \(\{u,w,z\}\) is retained.  If it were omitted, the attack
+  at \(z\) would force \(\{u,d,z\}\), whose attack at \(r\) has only the
+  omitted reverse state \(\{u,d,r\}\) or a state missing \(x\).
+- The bridge makes \(w,z\) jointly cover both side witnesses.  In the
+  \(ud\)-edge branch, the cross edge \(wz\) gives the induced cycle
+  \(u-d-z-w-x-u\); without that edge, the bridge is independent.
+- Two exact 16-vertex controls delimit the advance.  Both have
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\) and greatest
+  triple-family sizes 371 and 347.  The first fails at the dominating
+  pair \(\{p,w\}\); the second repairs that pair but has 21 other
+  dominating pairs.  Thus the next theorem must constrain the entire
+  finite auxiliary layer rather than choose one further pair.
+- Repeated order-16 and order-17 CEGAR runs leave the same discovery-only
+  pattern: \(\{u,x\}\) plus all \(p\)- and \(q\)-pairs with the unnamed
+  auxiliary vertices.  This is not a theorem or certified finite result;
+  it is now the statement being attacked all-order.
+- A separate full-list candidate proves a two-state rank-zero corridor
+  witness ladder and a three-color transfer-cycle reduction.  It remains
+  outside the ledger pending hostile review.
+- Best-guess completion: **81%** for the 27-day campaign deliverable,
+  **49%** toward a complete parameter-three theorem, and **18%** toward a
+  universal resolution.  These are workload estimates, not probabilities.

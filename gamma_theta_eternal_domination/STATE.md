@@ -1,5 +1,66 @@
 # Campaign State
 
+## Checkpoint 109 — 2026-07-28 16:01 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier is unchanged: all orders through 12 and the \(k=3\) slice at
+  order 13.  Repository base before this checkpoint:
+  `5961af2a907184a67301d393f4abbbb8a4efcf11`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **81%**.  Best-guess completion toward a complete parameter-three
+  theorem: **49%**.  Best-guess completion toward an actual universal
+  resolution: **18%**.  These are workload estimates, not probabilities.
+- **The two equality-forced QQ1 witness layers are pointwise coupled
+  (C-167).**  For every hot witness \(w\) of \(\{u,d\}\) and every
+  original witness \(z\) of \(\{u,x\}\), the state \(\{u,w,z\}\) is
+  retained.  It jointly covers both side witnesses.  In the \(ud\)-edge
+  branch its cross edge either creates an induced \(C_5\), or its absence
+  makes the bridge a maximum independent state.  The hostile review
+  independently reconstructed every attack, parameter, rank, witness
+  set, clique partition, and dominating pair.
+- **The first two global witness obligations still do not close QQ1.**
+  Two exact 16-vertex controls have
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\).  One makes
+  \(\{p,w\}\) dominating; repairing that pair leaves 21 different
+  dominating pairs.  Therefore a proof must control the full finite
+  auxiliary layer rather than iterate an arbitrarily selected pair.
+- A separate full-list candidate proves a rank-zero corridor witness
+  ladder and reduces three nonsingleton terminal rows to a directed
+  3-cycle or a 2-cycle with tail on the root colors.  It is awaiting
+  independent hostile review and is not yet in the accepted ledger.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167 | Prove or refute the all-order anchor--auxiliary witness obstruction suggested by the order-16/17 diagnostics; both inner \(ud\)-subcases remain |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Full-list future-safe color | active-primary, candidate after C-149/C-157/C-165 | Hostile-review the corridor transfer, then obtain a strict cross-ban rank inequality or handle transfer endpoints inside the ban |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the universal lanes reach their stated termination gates |
+
+### Running jobs and resources
+
+- One proof lane is testing the all-order QQ1 anchor--auxiliary witness
+  obstruction.  The order-16 and order-17 solver patterns are discovery
+  evidence only and are not finite or universal claims.
+- One independent hostile review is auditing the full-list corridor
+  transfer candidate.  No memory-heavy enumeration or solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space is free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Prove the finite anchor--auxiliary witness obstruction behind the
+   repeated QQ1 solver cores, or produce an exact larger control that
+   refutes it.
+2. Finish the independent full-list corridor-transfer review and, if it
+   passes, attack the exact cross-ban rank-comparison gate.
+3. Rebalance toward the bounded order-14 fallback only if both universal
+   lanes complete another serious iteration without a new mechanism.
+
 ## Checkpoint 108 — 2026-07-28 15:31 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
