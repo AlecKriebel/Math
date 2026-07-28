@@ -3339,3 +3339,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile result/manifest:
   `ddd0271c4965cd45cfeeb04d3d4ea7c483a01faa914ef8823c8da837aba523a6`,
   `793b38b380670fbbddb620c83d31f9a24d2a7ae5cd0b39732e52b872e3fec3f5`.
+
+## 2026-07-28 09:27 PDT — complete order-nine reciprocity-rank audit
+
+- Promoted the simultaneous-survival census to C-138
+  `CERTIFIED-FINITE` after a clean-room hostile audit.  The independent
+  checker generated all 274,668 unlabeled order-nine graphs, independently
+  derived that count by Burnside's lemma, derived 261,080 connected graphs
+  by Euler inversion, verified distinct canonical representatives, and
+  matched a direct connected stream.
+- A separate adjacency-set and tuple-state colored-kernel implementation
+  exactly reproduced 2,949 static equality graphs, 1,380 eternal equality
+  graphs, 35,299 greatest-family states, 90,103 independent-state pairs,
+  392,155 complementary exchanges, and zero one-sided survivors.
+- Promoted two negative mechanism results.  C-136 refutes static
+  complementary domination under full equality via `HCOceRy`; C-137
+  refutes equal finite deletion ranks via graph6 `HCOe`Z{`.  The universal
+  reciprocity target is therefore a simultaneous-infinite-survival
+  statement requiring coinduction or a dominating-pair contradiction.
+- Lead replay reproduced the hostile output byte-for-byte in 18.43 seconds
+  with approximately 104 MB maximum resident memory.
+- Candidate manifest:
+  `cec46895a94ead868ddec0169515142b18e8938081bd14c2a2e81c554d754ada`.
+  Hostile review manifest:
+  `96a018f5da767ea1a132a85559334c91cbe40c754b1929f899de7f61efff6fa2`.

@@ -1,5 +1,64 @@
 # Campaign State
 
+## Checkpoint 093 — 2026-07-28 09:27 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `39d2be56`.
+- **The reciprocity signal has survived a complete independent order-nine
+  audit (C-138).**  Across every connected unlabeled order-nine graph with
+  \(\gamma=\alpha=\gamma^\infty=3\), all 392,155 complementary exchanges
+  have simultaneous greatest-family survival.  There is no one-sided
+  survivor.
+- The hostile checker reconstructed the full 274,668-graph universe,
+  independently derived its Burnside count and the 261,080 connected count,
+  verified distinct canonical labels and exact agreement with direct
+  connected generation, and then used a separate adjacency-set,
+  tuple-state colored-kernel implementation.  It exactly reproduced 2,949
+  static equality graphs, 1,380 eternal equality graphs, 35,299 surviving
+  states, 90,103 independent-state pairs, and the complete rank table.
+- **Two simpler proof mechanisms are now decisively closed.**  Static
+  complementary domination is false under equality (C-136): `HCOceRy`
+  has one non-dominating mixed state and one rank-one mixed state.  Equal
+  finite deletion ranks are also false (C-137): graph6 `HCOe`Z{` has paired
+  ranks two and one.  Thus a universal proof must be genuinely coinductive
+  or convert one-sided infinite survival into a dominating pair.
+- Lead replay regenerated the hostile result byte-for-byte in 18.43 seconds,
+  peaking near 104 MB RSS.  Candidate/review manifests are
+  `cec46895a94ead868ddec0169515142b18e8938081bd14c2a2e81c554d754ada`
+  and
+  `96a018f5da767ea1a132a85559334c91cbe40c754b1929f899de7f61efff6fa2`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Static exchange reciprocity | closed-refuted C-136 | `HCOceRy` under full equality |
+| Equal deletion-rank induction | closed-refuted C-137 | Graph6 `HCOe`Z{` has ranks two and one |
+| Dynamic equality reciprocity | active-primary, C-138 finite support | Must use coinduction or derive a dominating pair from one-sided survival |
+| Bridge propagation | active-hostile-review | Candidate forces fresh-component entry and a turning ridge |
+| Full-list anchorless vertices | active-hostile-review | Candidate gives palette rigidity, external layers, and a conditional order floor |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Fresh hostile audits are reconstructing the anchorless full-list theorem
+  and bridge-propagation candidate.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  13 GiB disk space is free; the accepted order-nine replay used one core
+  and about 104 MB peak RSS.
+
+### Next three highest-value actions
+
+1. Prove or refute the coinductive statement that a one-sided surviving
+   complementary exchange yields a dominating pair.
+2. Close the anchorless full-list and bridge-propagation hostile audits and
+   feed only accepted lemmas into the global \(k=3\) gluing argument.
+3. Combine the resulting full-list and singleton mechanisms into a finite
+   obstruction taxonomy before returning to higher-order enumeration.
+
 ## Checkpoint 092 — 2026-07-28 09:13 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
