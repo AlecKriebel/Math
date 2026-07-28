@@ -1,5 +1,58 @@
 # Campaign State
 
+## Checkpoint 072 — 2026-07-28 04:04 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The finite frontier is unchanged.
+- **The inactive-set coloring target is exact, but static closure is
+  insufficient (C-109).**  C-108 already gives
+  \[
+    \bigcap_C A_C^\kappa=[3]\setminus\kappa(R)
+  \]
+  in the \(k=3\) equality deletion branch.  Thus the active-set route
+  succeeds exactly when some deletion coloring uses at most two colors on
+  the inactive set \(R\), and \(H'[R]\) is necessarily triangle-free.
+- The sharp deletion control `JUZeppVvS^_` has all five parameters equal
+  to three and a covariant inactive \(C_5\); every one of its 12 deletion
+  colorings uses all three colors on \(R\).  After adding the full static
+  target, `KUZeppVvS^_~` has parameters \((3,3,3,4,4)\).  Every prescribed
+  one-step successor dominates, but the eternal triple-kernel is empty;
+  the four-guard kernel has 427 states.
+- The independent hostile audit returned unconditional `PASS`, checking
+  both graph6 records, all parameters, kernel sizes \(72,0,427\), all
+  colorings, ridge components, active identities, static lists, and
+  successor deletion ranks.  The control is not a conjecture
+  counterexample.
+- Therefore the full-target lane has reached a clean dynamic gate:
+  multi-step one-guard closure must rule out a covariant inactive odd cycle
+  or otherwise produce a deletion coloring omitting one inactive color.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| All-\(k\) propagation | closed-proved C-108 | Exact active/inactive color identities |
+| Full-list static shortcut | closed-refuted C-109 | Covariant inactive \(C_5\) survives all one-step tests but not eternal closure |
+| Full-list dynamic closure | active-independent | Exclude inactive odd cycles using multi-step attacks |
+| No-full global witness cascade | active-primary | Extract an all-order recurrence from simultaneous gamma witnesses |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One bounded proof agent is minimizing the global gamma-witness core.  No
+  broad enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Finish the minimal global witness extraction and seek a collision or
+   injection theorem in the no-full branch.
+2. Attack a shortest induced odd cycle in the inactive set using actual
+   multi-step one-guard closure, with C-109 as the sharp static boundary.
+3. Update the public workstream page with C-104--C-109 and the unchanged
+   unresolved status.
+
 ## Checkpoint 071 — 2026-07-28 04:03 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

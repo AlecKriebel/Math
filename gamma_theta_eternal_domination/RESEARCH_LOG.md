@@ -2735,3 +2735,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   structural theorem here stated uniformly for every \(k\), but it leaves
   the global responder-color intersection open and does not resolve the
   conjecture.
+
+## 2026-07-28 04:04 PDT — inactive-set identity sharpened and static shortcut refuted
+
+- Specialized C-108's exact inactive-color identity to the critical
+  \(k=3\) deletion: a common responder color exists exactly when a
+  deletion coloring uses at most two colors on the inactive set.  The
+  inactive complement is triangle-free.
+- The 11-vertex equality graph `JUZeppVvS^_` supplies a sharp covariant
+  inactive \(C_5\).  Adding one target produces `KUZeppVvS^_~`, in which a
+  full static root and every prescribed one-step response are legal and
+  dominating, yet the three-guard eternal kernel is empty and the exact
+  parameters are \((3,3,3,4,4)\).
+- A clean-room hostile checker independently reconstructed both graph6
+  records, parameters, all 12 deletion colorings, eight facets and six
+  ridge components, component/global identities, the inactive \(C_5\),
+  all static successor states, and the \(72,0,427\) kernel sizes.  Its
+  unconditional `PASS` promotes C-109.
+- The control refutes only the static/one-step shortcut.  It identifies
+  multi-step eternal closure as the indispensable remaining mechanism and
+  is not a gamma--theta counterexample.
