@@ -2379,3 +2379,21 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The universal conjecture remains unresolved; no counterexample has been
   found, the complete order-13 search is unfinished, and the global
   certificate-backed frontier remains 13.
+
+## 2026-07-28 00:18 PDT — checkpoint 061 public release
+
+- The 66-file, strict-whitelist checkpoint was committed on `main` as
+  `8bae62baaa6b1c496c88ef741d6973f5ad824a58` and pushed to `origin/main`.
+  The final staging audit excluded every retracted `tight-*`/`six-*`
+  no-full formula, every nonexhaustive `a4-*` control, active proof drafts,
+  caches, legacy partial certificates, and unrelated workstream files.
+- GitHub Pages run `30337777612` completed successfully.  A cache-bypassed
+  download of the live active-workstream page is byte-for-byte equal to the
+  accepted local page; both have SHA-256
+  `f13ecdfd470ab112d3ac1d65084e8c8ae82178227e03c547971673109a445086`.
+- The existing order-12 frontier paper remains the sole issued paper.  Its
+  live PDF still has SHA-256
+  `b35d4bd795ddfbfa61be18bdd60ddb6d23492b0a63a7449e2ec0190170e6e9d2`.
+  No second paper was created for the conditional order-13 branch result.
+- Frozen deployment provenance:
+  `results/day3_full_response_no_full_public_workstream_acceptance.json`.

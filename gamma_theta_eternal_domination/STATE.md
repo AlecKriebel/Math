@@ -4,9 +4,9 @@
 
 - Campaign day: 3 of 27.  The universal conjecture remains unresolved, no
   counterexample has been found, and the certified global frontier remains
-  13 relative to the published through-order-11 computation.  The repository
-  base before this pending integration is
-  `21f5042e6a010db53f759177a0f36d90016cc0ba`.
+  13 relative to the published through-order-11 computation.  This checkpoint
+  was integrated at
+  `8bae62baaa6b1c496c88ef741d6973f5ad824a58`.
 - **Terminal localization (C-085--C-086).**  If all three colors of one
   full target fail, fixed inclusion-minimal cores confine the obstruction to
   at most six terminals with a rainbow-transversal property.  The terminal
@@ -79,11 +79,14 @@
   without returning SAT or UNSAT.  This is a nonclaim.  Its useless 389 MiB
   partial proof stream was deleted; the deterministic generator, 4.6 MiB
   instance, timeout record, and resume command remain.
-- The public active-workstream page has been updated in pending source bytes
-  with Alec Kriebel as research lead, heavy-AI disclosure, the unresolved
-  status, C-090's conditional branch boundary, and the exact \(n\ge15\)
-  pattern theorem.  The order-12 frontier paper remains the sole current
-  paper; no second manuscript is warranted yet.
+- The public active-workstream page is deployed with Alec Kriebel as research
+  lead, heavy-AI disclosure, the unresolved status, C-090's conditional
+  branch boundary, the C-093 no-full census, and the exact \(n\ge15\) pattern
+  theorem.  GitHub Pages run `30337777612` succeeded, and the cache-bypassed
+  live page is byte-identical to the accepted source at SHA-256
+  `f13ecdfd470ab112d3ac1d65084e8c8ae82178227e03c547971673109a445086`.
+  The order-12 frontier paper remains the sole current paper; its live PDF
+  hash remains `b35d4bd...09d2`, and no second manuscript was issued.
 
 ### Approach registry
 
