@@ -17,4 +17,17 @@
 - Literature statements supplied in the research prompt are context, not
   mathematical evidence. Core derivations are reconstructed independently
   before any targeted priority audit.
-
+- In the weighted-shift constructions, \(X|j\rangle=|j+1\bmod d\rangle\),
+  \(\omega=e^{2\pi i/d}\), and an order-\(d\) observable has spectral
+  convention \(O=\sum_a\omega^a\Pi_a\).  Complex conjugation is always in
+  that displayed computational basis.
+- The augmentation of either cyclic family is interpreted as the Hermitian
+  term \(\operatorname{Re}(A_0\otimes B_d)\).  A source expression lacking
+  “h.c.” cannot itself be a real Bell operator.
+- “Failure to certify from the Bell value” means that one exact maximizing
+  quantum realization already violates the desired conditional-state
+  conclusion.  It does not contradict a randomness bound conditioned on a
+  different, fully specified behavior.
+- The finite verification programs are supporting checks.  The claims for
+  every \(d\) depend on the written symbolic proof, not extrapolation from
+  tested dimensions.

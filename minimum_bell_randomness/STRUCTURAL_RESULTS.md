@@ -1,75 +1,46 @@
-# Structural results under audit
+# Structural results
 
-These statements are written in proof-ready form but remain provisional until
-the independent verification track is complete.
+The claims ledger records which statements have received an independent
+derivation or finite check.  These results remain unreviewed mathematics.
 
 ## 1. Exact one-wing one-input impossibility
 
 Let \(p(a,b|y)\) be any finite-dimensional quantum behavior in which Alice
-has exactly one \(d\)-outcome projective input and Bob has any finite number
-of \(d\)-outcome projective inputs.  Fix a target \(y_*\).  Then the same full
-behavior has a compatible pure realization for which
-
+has exactly one \(d\)-outcome input and Bob has finitely many
+\(d\)-outcome inputs.  Nonsignalling makes
+\(p(a)=\sum_b p(a,b|y)\) independent of \(y\).  For \(p(a)>0\), put
 \[
-G(AB|0,y_*,E)
-\geq
-\sum_a\max_b p(a,b|y_*)
-\geq \frac1d.
+r_y(b|a)=\frac{p(a,b|y)}{p(a)};
 \]
-
-To prove this, start from any realization
-\(\rho_{AB},\{P_a\},\{Q_{b|y}\}\) and define the subnormalized states
-
+choose an arbitrary distribution for a zero-probability \(a\).  Define
 \[
-\rho_B^a
-=
-\operatorname{Tr}_A\!\left[
-(P_a\otimes I)\rho_{AB}(P_a\otimes I)
-\right].
+\lambda=(a,b_1,\ldots,b_{m_B}),\qquad
+\mu(\lambda)=p(a)\prod_y r_y(b_y|a).
 \]
+Alice outputs \(a\), while Bob outputs the stored \(b_y\) on input \(y\).
+Marginalizing the unused \(b_{y'}\)'s reproduces every \(p(a,b|y)\).
 
-Choose subnormalized purifications
-\(|\phi_a\rangle_{BE_0}\) of the \(\rho_B^a\), all in one finite-dimensional
-space, and set
-
+This deterministic local model has a pure projective realization
 \[
 |\Psi'\rangle
 =
-\sum_a
-|a\rangle_{A'}|\phi_a\rangle_{BE_0}|a\rangle_{E_1}.
+\sum_\lambda\sqrt{\mu(\lambda)}
+|\lambda\rangle_A|\lambda\rangle_B|\lambda\rangle_E,
 \]
-
-Alice uses the computational rank-one PVM and Bob retains every
-\(Q_{b|y}\).  This reproduces every probability \(p(a,b|y)\), while
-
+with Alice's and Bob's PVMs grouping computational labels according to
+\(a\) and \(b_y\).  Eve measures the same label and guesses both outputs
+perfectly.  Hence
 \[
-\sigma_{E_0E_1}^{ab|y}
-=
-\operatorname{Tr}_B\!\left[
-(Q_{b|y}\otimes I)|\phi_a\rangle\langle\phi_a|
-\right]\otimes |a\rangle\langle a|_{E_1}.
+G(AB|0,y,E)=1
 \]
+for every \(y\).  The symmetric statement holds if Bob has one input and
+Alice has arbitrarily many.
 
-The Eve supports for distinct \(a\) are orthogonal.  After reading \(a\),
-Eve guesses a value \(b_a\) maximizing \(p(a,b|y_*)\), which gives the first
-bound.  The second follows from
-\(\max_b p(a,b|y_*)\geq p(a)/d\).  If \(p(a)=0\), take
-\(|\phi_a\rangle=0\); zero-probability outcomes and zero projectors cause no
-difficulty.
-
-The symmetric statement holds if Bob has one input and Alice has arbitrarily
-many:
-
-\[
-G(AB|x_*,0,E)
-\geq
-\sum_b\max_a p(a,b|x_*,0)
-\geq\frac1d.
-\]
-
-Thus \(m_A,m_B\geq2\) is necessary even when the complete behavior, rather
-than only one score, is known.  This must not be confused with using one
-designated generation setting per party inside a larger Bell test.
+Thus \(m_A,m_B\geq2\) is necessary for any private randomness at all, even
+when the complete behavior, rather than only one score, is known.  This is
+the standard fact that a bipartite nonsignalling behavior with one input on
+one wing is local.  It must not be confused with using one designated
+generation setting per party inside a larger Bell test.
 
 ## 2. Private-MUB composition lemma
 
@@ -364,7 +335,8 @@ third basis, or a different two-input self-test.
 
 ## 6. Polar-linear permutation-blindness theorem
 
-Fix complex coefficients \(\alpha_r,\beta_r\) and put
+Fix \(d\geq2\), a finite coefficient index set, and complex numbers
+\(\alpha_r,\beta_r\).  Put
 
 \[
 g_r(z)=\alpha_r+\beta_rz,\qquad
@@ -372,41 +344,145 @@ f(z)=\sum_r|g_r(z)|,\qquad
 M=\max_{|z|=1}f(z).
 \]
 
-Assume unit phases \(z_0,\ldots,z_{d-1}\) satisfy:
-
-- \(f(z_j)=M\) for every \(j\);
-- \(\prod_jz_j=1\);
-- for each \(r\), phases \(s_r(z_j)\) can be chosen with
-  \(s_r(z_j)|g_r(z_j)|=g_r(z_j)\) and
-  \(\prod_js_r(z_j)=1\).
-
-The last formulation includes singular values \(g_r(z_j)=0\), where the
-unitary polar-extension phase is free.
-
-For the score
+For arbitrary unitaries define
 
 \[
 \mathcal J
 =
 \sum_r\operatorname{Re}
 \bigl[(\alpha_rA_0+\beta_rA_1)\otimes B_r\bigr]
-+\operatorname{Re}(A_0\otimes B_*),
++\operatorname{Re}(A_0\otimes B_*).
 \]
 
-the arbitrary-unitary upper bound is \(M+1\). Every permutation \(\kappa\)
-of the \(z_j\) gives an order-\(d\) maximizer by setting
+Let \(U=A_0^\dagger A_1\),
+\(C_r=A_0g_r(U)=V_r|C_r|\) be the canonical polar decomposition, and set
+
+\[
+\begin{aligned}
+P_r&=
+|C_r^\dagger|^{1/2}\otimes I
+-V_r|C_r|^{1/2}\otimes B_r,\\
+G&=MI-f(U),\\
+R_*&=I-A_0\otimes B_*.
+\end{aligned}
+\]
+
+Because \(g_r(U)\) is normal,
+
+\[
+|C_r|=|g_r(U)|,\qquad
+|C_r^\dagger|=A_0|g_r(U)|A_0^\dagger.
+\]
+
+Functional calculus gives \(G\geq0\), and the exact positive-factor
+certificate is
+
+\[
+\boxed{
+(M+1)I-\mathcal J
+=
+\frac12\sum_rP_r^\dagger P_r
++\frac12R_*^\dagger R_*
++\frac12\bigl(G+A_0GA_0^\dagger\bigr)\otimes I.
+}
+\]
+
+The polar identity remains valid when \(C_r\) is singular, with \(V_r\) a
+partial isometry.  Thus \(\mathcal J\leq(M+1)I\) for arbitrary unitaries,
+without finite-order assumptions.
+
+Now let \(\omega=e^{2\pi i/d}\), let
+\(X|j\rangle=|j+1\bmod d\rangle\), and suppose there are labeled phases
+\(z_j,s_{rj}\in\mathbb T\) such that
+
+\[
+f(z_j)=M,\qquad
+\prod_jz_j=1,
+\]
+
+\[
+s_{rj}|g_r(z_j)|=g_r(z_j),\qquad
+\prod_js_{rj}=1.
+\]
+
+If \(g_r(z_j)=0\), the corresponding \(s_{rj}\) is a freely chosen unitary
+polar-extension phase.  The labels matter: a permutation moves each paired
+datum \((z_j,(s_{rj})_r)\).
+
+For every permutation \(\kappa\), define
+
+\[
+Z_\kappa=\operatorname{diag}(z_{\kappa_j}),\qquad
+S_{r,\kappa}=\operatorname{diag}(s_{r,\kappa_j}),
+\]
 
 \[
 A_0=X,\quad
-A_1=X\operatorname{diag}(z_{\kappa_j}),\quad
-B_r=\overline{X\operatorname{diag}(s_r(z_{\kappa_j}))},\quad
-B_*=X.
+A_1=XZ_\kappa,\quad
+B_r=\overline{XS_{r,\kappa}},\quad
+B_*=X,
 \]
 
-All first-harmonic data used by the score are permutation invariant. For the
-target \((A_1,B_*)\), put \(q_0=1\),
-\(q_{j+1}=z_{\kappa_j}q_j\), and
-\(\widehat q_m=\sum_jq_j\omega^{mj}\). Then
+where the bar is taken in the displayed computational basis.  With
+
+\[
+|\Phi_d\rangle=d^{-1/2}\sum_j|j,j\rangle,
+\]
+
+this is a maximizing strategy satisfying \(O^d=I\) for every observable.
+Indeed,
+
+\[
+\bigl(X\operatorname{diag}(t_j)\bigr)^d
+=
+\left(\prod_jt_j\right)I,
+\]
+
+and
+
+\[
+C_r
+=
+X\operatorname{diag}(g_r(z_{\kappa_j}))
+=
+XS_{r,\kappa}
+\operatorname{diag}(|g_r(z_{\kappa_j})|).
+\]
+
+The maximally entangled trace identity gives value \(M+1\).
+
+More strongly, the entire first-harmonic correlator matrix is permutation
+invariant:
+
+\[
+\langle A_0\otimes B_r\rangle
+=
+\frac1d\sum_j\overline{s_{rj}},
+\qquad
+\langle A_1\otimes B_r\rangle
+=
+\frac1d\sum_jz_j\overline{s_{rj}},
+\]
+
+\[
+\langle A_0\otimes B_*\rangle=1,\qquad
+\langle A_1\otimes B_*\rangle=\frac1d\sum_jz_j.
+\]
+
+All local first moments vanish.  This invariance does not extend in general
+to higher harmonics or the full behavior.
+
+Use the spectral convention
+\(O=\sum_a\omega^a\Pi_a\).  At the target \((A_1,B_*)\), set
+
+\[
+q_0=1,\qquad
+q_{j+1}=z_{\kappa_j}q_j,\qquad
+\widehat q_m=\sum_jq_j\omega^{mj}.
+\]
+
+The product condition gives \(q_d=q_0\), and a direct eigenvector
+calculation yields
 
 \[
 p_\kappa(a,b|1,*)
@@ -414,6 +490,275 @@ p_\kappa(a,b|1,*)
 \frac{|\widehat q_{-(a+b)}|^2}{d^3}.
 \]
 
-Therefore the score cannot certify maximal global randomness whenever an
-admissible permutation has nonconstant Fourier magnitudes. Permutation
-freedom alone is insufficient: special cases can remain Fourier-flat.
+Parseval gives \(\sum_m|\widehat q_m|^2=d^2\).  Therefore, if the Fourier
+magnitudes are nonconstant, the same trivial-Eve maximizer has
+
+\[
+G(AB|1,*,E)
+\geq
+\frac{\max_m|\widehat q_m|^2}{d^3}
+>
+\frac1{d^2}.
+\]
+
+This is an exact no-go for Bell-value or first-harmonic-conditioned maximal
+randomness under the displayed hypotheses.  Permutation freedom alone is
+not sufficient: all orderings remain Fourier-flat in some small cases.
+
+The cyclic family is the special case
+
+\[
+g_y(z)=1+\omega^yz,\qquad
+z_k=\exp\!\left(\frac{\pi i(2k+\delta_d)}d\right),
+\quad
+\delta_d=
+\begin{cases}
+0,&d\ \text{odd},\\
+1,&d\ \text{even}.
+\end{cases}
+\]
+
+Here
+
+\[
+\prod_kz_k=1,\qquad
+\prod_k(1+\omega^yz_k)=2>0,
+\]
+
+so every hypothesis holds with the nonsingular polar phases.  Swapping the
+last two roots gives nonconstant Fourier magnitudes for every \(d\geq4\);
+for \(d=2,3\), every root ordering remains flat.
+
+## 7. The second cyclic family has the same obstruction
+
+The phase permutation also survives the exact SOS of the second family
+\(\mathcal F_d\) in arXiv:2606.21362.
+
+Let
+
+\[
+\eta=e^{\pi i/d},\qquad
+\delta=
+\begin{cases}
+0,&d\ \text{odd},\\
+1,&d\ \text{even},
+\end{cases}
+\qquad
+z_r=\eta^{2r+\delta}.
+\]
+
+For a permutation \(\kappa\), retain the first-family Bob observables
+
+\[
+B_y
+=
+\overline{
+X\operatorname{diag}
+\left(
+\frac{1+\omega^yz_{\kappa_j}}
+{|1+\omega^yz_{\kappa_j}|}
+\right)_j
+}.
+\]
+
+Define their Fourier transforms
+
+\[
+C_\ell=\sum_{y=0}^{d-1}\omega^{\ell y}B_y.
+\]
+
+With
+
+\[
+\lambda_\ell=\lambda_{0,\ell-1}
+\]
+
+in the originating paper's indexing, a finite geometric-sum calculation
+gives the exact identity
+
+\[
+C_\ell=d\lambda_\ell D_\ell,
+\]
+
+where
+
+\[
+D_\ell
+=
+q_\ell X\operatorname{diag}(\omega^{-\ell\kappa_j}),
+\qquad
+q_\ell=\eta^{-\ell(\ell-1+\delta)}.
+\]
+
+One direct derivation uses
+
+\[
+s_0(z_r)
+=
+\varepsilon_r\eta^{r+\delta/2},
+\qquad
+\varepsilon_r=
+\begin{cases}
++1,&2r+\delta<d,\\
+-1,&2r+\delta>d,
+\end{cases}
+\]
+
+and
+
+\[
+s_y(z_r)=s_0(z_{r+y\bmod d}).
+\]
+
+Hence
+
+\[
+\sum_y\omega^{\ell y}\overline{s_y(z_r)}
+=
+\omega^{-\ell r}
+\sum_t\omega^{\ell t}\overline{s_0(z_t)}.
+\]
+
+Evaluating the two geometric blocks produces
+
+\[
+\sum_t\omega^{\ell t}\overline{s_0(z_t)}
+=
+d\lambda_\ell q_\ell.
+\]
+
+Every \(D_\ell\) is unitary and satisfies the \(d\)-th-power relation.
+Indeed, \(\sum_j\kappa_j=d(d-1)/2\), so
+
+\[
+D_\ell^d
+=
+q_\ell^d
+\omega^{-\ell\sum_j\kappa_j}I
+=
+(-1)^{
+\ell(\ell-1+\delta)+\ell(d-1)
+}I
+=I.
+\]
+
+The last exponent is even: \(d-2+\delta\) is odd, so
+\(\ell(\ell+d-2+\delta)\) is even.
+
+Now define all \(d\) Alice observables by
+
+\[
+A_\ell=\overline{D_\ell}.
+\]
+
+The second-family Bell functional and SOS factors are
+
+\[
+\mathcal F_d
+=
+\frac12\sum_\ell
+\lambda_\ell^*A_\ell\otimes C_\ell+\mathrm{h.c.},
+\]
+
+\[
+P_\ell=d\lambda_\ell I-A_\ell\otimes C_\ell,
+\qquad
+dI-\mathcal F_d
+=
+\frac1{2d}\sum_\ell P_\ell^\dagger P_\ell.
+\]
+
+Since
+
+\[
+(\overline{D_\ell}\otimes D_\ell)|\Phi_d\rangle
+=
+|\Phi_d\rangle,
+\]
+
+every \(P_\ell\) annihilates \(|\Phi_d\rangle\).  Thus every permutation
+attains the exact value
+
+\[
+\langle\mathcal F_d\rangle=d.
+\]
+
+Adding \(B_d=X=\overline{A_0}\) saturates the extra Hermitian correlation
+term and gives the exact augmented value \(d+1\).
+
+Crucially,
+
+\[
+A_0=X,\qquad
+A_1
+=
+X\operatorname{diag}(z_{\kappa_j}).
+\]
+
+Therefore the target pair \((A_1,B_d)\) is literally the same target pair
+as in Section 6, with
+
+\[
+p_\kappa(a,b|1,d)
+=
+\frac{|\widehat q_{-(a+b)}|^2}{d^3}.
+\]
+
+For the final-two swap, this table is nonuniform for every \(d\geq4\).
+Consequently the augmented second family also fails to certify
+\(2\log_2d\) bits from its maximal Bell score in those dimensions, even
+with trivial Eve.  This does not challenge the private randomness of the
+canonical full behavior, and \(d=3\) remains Fourier-flat, consistently
+with the known qutrit self-test.
+
+The quantitative lower bound from Section 6 carries over unchanged:
+
+\[
+G(AB|1,d,E)
+\geq
+\frac1{d^2}
++
+\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+>
+\frac1{d^2}
+\qquad(d\geq4).
+\]
+
+At \(d=4\), the exact table is
+
+\[
+p(a,b|1,4)=
+\begin{cases}
+1/32,&a+b\ \text{even},\\
+3/32,&a+b\ \text{odd},
+\end{cases}
+\]
+
+so the actual trivial-Eve guessing probability is \(3/32>1/16\).
+
+## 8. Resource-law status
+
+The results above do not determine the minimum all-dimensional setting
+pair.  They establish:
+
+\[
+m_A\geq2,\qquad m_B\geq2
+\]
+
+for every protocol, even one conditioned on the full behavior; exact
+attainment by \(2\times2\) when \(d=2\); and no-go results for several
+natural all-dimensional constructions when \(d\geq3\).  The targeted
+literature audit located a rigorous \(2\times(d^2+1)\) all-dimensional
+single-score construction, but no \(2\times2\) or \(2\times3\) construction
+and no stronger universal lower bound.
+
+Accordingly, for \(d\geq3\), both
+
+\[
+(2,2)\in\mathfrak M_d
+\quad\text{and}\quad
+(2,3)\in\mathfrak M_d
+\]
+
+remain open here.  The exact obstruction in Section 6 is class-specific and
+must not be promoted to a universal \(2\times2\) impossibility theorem.

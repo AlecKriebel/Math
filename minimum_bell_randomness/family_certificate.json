@@ -1,0 +1,54 @@
+{
+  "schema": "minimum-bell-randomness-family-certificate-v1",
+  "status": "analytic theorem with finite supporting checks",
+  "dimension": "integer d >= 4",
+  "roots": {
+    "eta": "exp(pi*i/d)",
+    "delta": "0 if d is odd, 1 if d is even",
+    "z_r": "eta^(2*r+delta), r=0,...,d-1",
+    "ordering": "[0,1,...,d-3,d-1,d-2]"
+  },
+  "common_target": {
+    "X_action": "X|j> = |j+1 mod d>",
+    "A_0": "X",
+    "A_1": "X diag(z_{ordering[j]})",
+    "B_d": "X",
+    "state": "|Phi_d> = d^(-1/2) sum_j |j,j>",
+    "q_0": "1",
+    "q_recurrence": "q_(j+1)=z_(ordering[j])*q_j",
+    "probability": "p(a,b|1,d)=|sum_j q_j*omega^(-j*(a+b))|^2/d^3",
+    "guessing_lower_bound": "1/d^2 + 2 sin(pi/d) sin(3pi/d)/(d^2(d-1))"
+  },
+  "first_family": {
+    "B_y": "conjugate(X diag((1+omega^y z_ordered)/|1+omega^y z_ordered|))",
+    "maximum": "2 csc(pi/(2d)) + 1",
+    "certificate": "polar positive-factor identity"
+  },
+  "second_family": {
+    "C_l": "sum_y omega^(l*y) B_y",
+    "lambda_l": "(-1)^(l-1) eta^(l(l-1))/(d sin(pi(l-1/2)/d))",
+    "q_l": "eta^(-l(l-1+delta))",
+    "D_l": "q_l X diag(omega^(-l*ordering[j]))",
+    "identity": "C_l=d lambda_l D_l",
+    "A_l": "conjugate(D_l)",
+    "order_identity": "D_l^d=(-1)^(l(l-1+delta)+l(d-1)) I=I",
+    "sos_factor": "P_l=d lambda_l I-A_l tensor C_l",
+    "sos": "d I-F_d=(1/(2d)) sum_l P_l^dagger P_l",
+    "maximum": "d+1 after adding Re(A_0 tensor B_d)"
+  },
+  "d4": {
+    "field": "Q(zeta_16), zeta_16^8=-1",
+    "ordering": [0, 1, 3, 2],
+    "target_probabilities": {
+      "a_plus_b_even": "1/32",
+      "a_plus_b_odd": "3/32"
+    },
+    "guessing_probability": "3/32"
+  },
+  "scope": [
+    "disproves maximal-global-randomness certification from either augmented cyclic Bell value for d>=4",
+    "does not challenge the canonical full behavior",
+    "does not settle d=2 or d=3",
+    "does not determine the universal minimum setting pair"
+  ]
+}

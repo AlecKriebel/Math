@@ -1,0 +1,1147 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.02in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\definecolor{deepblue}{HTML}{173B57}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  citecolor=deepblue,
+  urlcolor=deepblue,
+  pdftitle={Permutation-blind Bell scores and obstructions to maximal global randomness},
+  pdfauthor={Alec Kriebel}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Permutation-blind Bell scores}}
+\fancyhead[R]{\small\textsc{A. Kriebel}}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cF}{\mathcal F}
+\newcommand{\cJ}{\mathcal J}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\bbC}{\mathbb C}
+\newcommand{\e}{\mathrm e}
+\newcommand{\Reop}{\operatorname{Re}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\absop}[1]{\lvert #1\rvert}
+
+\title{\vspace{-1.35cm}
+\textbf{Permutation-blind Bell scores and obstructions}\\[-0.05em]
+\textbf{to maximal global randomness}\\[0.45em]
+\large Exact maximizers for two cyclic families and setting-complexity consequences}
+\author{Alec Kriebel\\
+\small with heavy assistance from ChatGPT 5.6 Sol}
+\date{27 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study how many measurement settings are needed for one Bell score to
+certify \(2\log_2d\) private random bits from projective \(d\)-outcome
+measurements.  We do not determine the all-dimensional minimum, but prove
+four exact structural results.  First, if either party has only one input,
+the complete behavior is local and has a compatible pure realization in
+which Eve guesses every joint output perfectly; thus both parties need at
+least two inputs.  Second, we give a positive-factor theorem for a broad
+first-harmonic polar-linear class.  Under explicit phase-product hypotheses,
+every permutation of the scalar maximizing phases produces an admissible
+order-\(d\) maximizer with the same Bell-visible correlators, although its
+full target distribution can change.  Third, the phase-permutation
+counterexamples previously found for the first cyclic family of Perito
+et al.\ also annihilate the sum-of-squares certificate of their second
+family.  For both augmented families and every \(d\geq4\), an exact
+maximizer with trivial Eve obeys
+\[
+G(AB|E)\geq
+\frac1{d^2}+
+\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
+>\frac1{d^2}.
+\]
+At \(d=4\), an exact \(\mathbb Q(\zeta_{16})\) certificate gives
+\(G=3/32>1/16\).  Finally, we compute all four ideal tables of the standard
+two-input qudit self-test and prove that a natural separately bounded
+third-setting repair cannot expose its common computational mutually
+unbiased basis.  These results explain why several efficient designs fail,
+but they neither rule out nor construct an all-dimensional \(2\times2\) or
+\(2\times3\) protocol.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Status.}
+This is an unrefereed, AI-assisted research note.  The symbolic proof,
+discovery code, exact finite certificate, and independent checks are public
+for audit.  The author is an independent amateur and cannot personally
+validate every technical step; expert review is required.
+
+\section{Framework and results}
+
+Fix an integer \(d\geq2\).  Alice has projective measurements
+\(\{M^x_a\}_{a\in\mathbb Z_d}\), Bob has
+\(\{N^y_b\}_{b\in\mathbb Z_d}\), and Eve purifies their finite-dimensional
+state \(\lvert\Psi\rangle_{ABE}\).  For a designated pair
+\((x_*,y_*)\), write
+\[
+\sigma_E^{ab}
+=
+\Tr_{AB}\!\left[
+(M^{x_*}_a\otimes N^{y_*}_b\otimes\Id)
+\lvert\Psi\rangle\langle\Psi\rvert
+\right].
+\]
+Maximal global private randomness means
+\begin{equation}
+\sigma_E^{ab}=\rho_E/d^2
+\quad\text{for every }a,b,
+\qquad
+\rho_E=\sum_{a,b}\sigma_E^{ab}.
+\label{eq:private}
+\end{equation}
+This is stronger than the scalar equality
+\(p(a,b|x_*,y_*)=1/d^2\).
+
+Let \(\mathfrak M_d\) denote the setting pairs for which one real linear
+Bell functional has a quantum maximum whose every realizing strategy
+satisfies \eqref{eq:private}.  Our universal lower bound is:
+
+\begin{theorem}[One-input impossibility]\label{thm:oneinput}
+For every \(d\geq2\) and every finite \(m\),
+\[
+(1,m)\notin\mathfrak M_d,
+\qquad
+(m,1)\notin\mathfrak M_d.
+\]
+In fact, if Alice has one input, every complete nonsignalling behavior has a
+compatible pure projective realization satisfying
+\[
+G(AB|0,y,E)=1
+\]
+for each Bob input \(y\).  The symmetric statement holds when Bob has one
+input.
+\end{theorem}
+
+For \(d=2\), the lower bound is tight.  The binary score
+\[
+A_0B_0-2A_0B_1+2A_1B_0+2A_1B_1
+\]
+has maximum \(3\sqrt3\) and certifies two private joint bits at
+\((0,0)\).  This is the \(\delta=\pi/6\) case, up to an output flip, of
+Wooltorton, Brown, and Colbeck~\cite{WooltortonEtAl2022}; Appendix
+\ref{app:binary} records a short independent SOS check.
+
+For \(d\geq3\), the exact minimum remains open.  The strongest
+all-dimensional single-score construction located in our targeted audit has
+two Alice settings and \(d^2+1\) Bob settings
+\cite{FarkasMironowiczAugusiak2026}.  Thus the rigorous setting bounds
+recorded here are
+\[
+2\leq m_A,\qquad 2\leq m_B,
+\]
+with no claim that the known upper construction is minimal.
+
+\section{Proof of the one-input impossibility}
+
+\begin{proof}[Proof of Theorem~\ref{thm:oneinput}]
+Nonsignalling makes
+\(p(a)=\sum_b p(a,b|y)\) independent of \(y\).  For \(p(a)>0\), set
+\[
+r_y(b|a)=\frac{p(a,b|y)}{p(a)};
+\]
+for \(p(a)=0\), choose \(r_y(\,\cdot\,|a)\) arbitrarily.  Introduce the
+finite hidden variable
+\[
+\lambda=(a,b_1,\ldots,b_{m_B}),\qquad
+\mu(\lambda)=p(a)\prod_y r_y(b_y|a).
+\]
+Alice outputs the stored \(a\), and Bob outputs the stored \(b_y\) on input
+\(y\).  Summing over the other entries gives
+\[
+\sum_{\lambda:\lambda_A=a,\lambda_y=b}\mu(\lambda)
+=p(a)r_y(b|a)=p(a,b|y),
+\]
+so this deterministic local model reproduces the complete behavior.
+
+It has a finite-dimensional pure projective realization:
+\[
+\lvert\Psi'\rangle
+=
+\sum_\lambda\sqrt{\mu(\lambda)}
+\lvert\lambda\rangle_A\lvert\lambda\rangle_B
+\lvert\lambda\rangle_E,
+\]
+where Alice's and Bob's PVMs group the computational labels by \(a\) and
+\(b_y\).  Eve reads \(\lambda\) and knows both outputs for every target
+input, so \(G=1\).  Exchanging Alice and Bob proves the symmetric claim.
+\end{proof}
+
+\begin{remark}
+The theorem concerns the total number of test inputs.  It does not say that a
+larger Bell test cannot use one designated generation input on each wing.
+It is the standard locality fact for a scenario with one input on one wing,
+written here because it gives the exact resource baseline.  It is stronger
+than a one-score obstruction because the flagged realization reproduces the
+entire behavior.
+\end{remark}
+
+\section{A polar-linear permutation theorem}
+
+For an operator \(C\), write
+\(\absop C=(C^\dagger C)^{1/2}\) and
+\(\Reop T=(T+T^\dagger)/2\).
+
+\begin{lemma}[Polar positive factor]\label{lem:polar}
+Let \(C=V\absop C\) be the canonical polar decomposition and let \(B\) be
+unitary.  Then
+\[
+\frac{\absop C+\absop{C^\dagger}}2\otimes\Id
+-\Reop(C\otimes B)
+=\frac12P^\dagger P,
+\]
+where
+\[
+P=
+\absop{C^\dagger}^{1/2}\otimes\Id
+-V\absop C^{1/2}\otimes B.
+\]
+\end{lemma}
+
+\begin{proof}
+The polar partial isometry satisfies
+\(V^\dagger V=s(\absop C)\) and
+\(\absop{C^\dagger}^{1/2}V=V\absop C^{1/2}\).  Consequently
+\[
+\absop{C^\dagger}^{1/2}V\absop C^{1/2}=V\absop C=C,
+\]
+while
+\[
+\absop C^{1/2}V^\dagger V\absop C^{1/2}=\absop C.
+\]
+Expanding \(P^\dagger P\), with all tensor factors displayed, gives
+\[
+\absop C\otimes\Id+\absop{C^\dagger}\otimes\Id
+-C\otimes B-C^\dagger\otimes B^\dagger.
+\]
+No inverse and no extension of \(V\) to a unitary is used.
+\end{proof}
+
+Fix finitely many coefficient pairs
+\(\alpha_r,\beta_r\in\bbC\), and set
+\[
+g_r(z)=\alpha_r+\beta_rz,\qquad
+f(z)=\sum_r\absop{g_r(z)},\qquad
+M=\max_{|z|=1}f(z).
+\]
+For unitaries \(A_0,A_1,B_r,B_*\), define
+\begin{equation}
+\cJ
+=
+\sum_r\Reop\!\left[
+(\alpha_rA_0+\beta_rA_1)\otimes B_r
+\right]
++\Reop(A_0\otimes B_*).
+\label{eq:polar-linear}
+\end{equation}
+
+\begin{theorem}[Exact certificate and permutation blindness]
+\label{thm:permutation}
+Put \(U=A_0^\dagger A_1\),
+\(C_r=A_0g_r(U)=V_r\absop{C_r}\), and
+\(f(U)=\sum_r\absop{g_r(U)}\).  Set
+\[
+\begin{aligned}
+P_r&=
+\absop{C_r^\dagger}^{1/2}\otimes\Id
+-V_r\absop{C_r}^{1/2}\otimes B_r,\\
+G&=M\Id-f(U),\\
+R_*&=\Id-A_0\otimes B_*.
+\end{aligned}
+\]
+Then
+\begin{equation}
+\boxed{
+(M+1)\Id-\cJ
+=
+\frac12\sum_rP_r^\dagger P_r
++\frac12R_*^\dagger R_*
++\frac12\bigl(G+A_0GA_0^\dagger\bigr)\otimes\Id .
+}
+\label{eq:polar-certificate}
+\end{equation}
+
+Now let \(\omega=\e^{2\pi i/d}\).  Suppose there are labeled phases
+\(z_j,s_{rj}\in\mathbb T\) satisfying
+\[
+f(z_j)=M,\qquad
+\prod_jz_j=1,
+\]
+\[
+s_{rj}\absop{g_r(z_j)}=g_r(z_j),
+\qquad
+\prod_js_{rj}=1.
+\]
+At a zero of \(g_r\), \(s_{rj}\) may be any unitary polar-extension
+phase.  For every permutation \(\kappa\) of the labels, the strategy
+\begin{equation}
+\begin{aligned}
+A_0&=X,&
+A_1&=X\operatorname{diag}(z_{\kappa_j}),\\
+B_r&=\overline{
+X\operatorname{diag}(s_{r,\kappa_j})},&
+B_*&=X
+\end{aligned}
+\label{eq:permuted-strategy}
+\end{equation}
+on
+\(\lvert\Phi_d\rangle=d^{-1/2}\sum_j\lvert j,j\rangle\)
+attains \(M+1\), and every displayed observable has \(d\)-th power
+\(\Id\).  All local first moments and the entire first-harmonic correlator
+matrix of \eqref{eq:polar-linear} are independent of \(\kappa\).
+\end{theorem}
+
+\begin{proof}
+Since \(g_r(U)\) is normal,
+\[
+\absop{C_r}=\absop{g_r(U)},\qquad
+\absop{C_r^\dagger}
+=A_0\absop{g_r(U)}A_0^\dagger.
+\]
+Functional calculus gives \(G\geq0\).  Sum
+Lemma~\ref{lem:polar} over \(r\) and use
+\[
+\Id-\Reop(A_0\otimes B_*)=\tfrac12R_*^\dagger R_*
+\]
+to obtain \eqref{eq:polar-certificate}.
+
+For arbitrary weights \(t_j\),
+\begin{equation}
+\left(X\operatorname{diag}(t_j)\right)^d
+=\left(\prod_jt_j\right)\Id.
+\label{eq:weighted-cycle}
+\end{equation}
+The two product hypotheses therefore prove every order relation in
+\eqref{eq:permuted-strategy}.  Moreover,
+\[
+\alpha_rA_0+\beta_rA_1
+=
+X\operatorname{diag}(g_r(z_{\kappa_j}))
+\]
+has polar factor
+\(X\operatorname{diag}(s_{r,\kappa_j})\).
+At a zero of \(g_r\), this is a unitary extension of the canonical partial
+isometry; it agrees on the support of \(\absop{C_r}\), which is all that the
+positive factor uses.
+The maximally entangled trace identity
+\[
+\langle\Phi_d|R\otimes S|\Phi_d\rangle
+=d^{-1}\Tr(RS^T)
+\]
+then proves equality in every positive factor.
+
+Finally,
+\[
+\begin{aligned}
+\langle A_0\otimes B_r\rangle
+&=\frac1d\sum_j\overline{s_{rj}},\\
+\langle A_1\otimes B_r\rangle
+&=\frac1d\sum_jz_j\overline{s_{rj}},\\
+\langle A_0\otimes B_*\rangle&=1,\qquad
+\langle A_1\otimes B_*\rangle=\frac1d\sum_jz_j.
+\end{aligned}
+\]
+These are symmetric sums of the labeled data.  Every local observable is a
+weighted shift and hence has zero trace.
+\end{proof}
+
+\begin{corollary}[Exact randomness obstruction]\label{cor:target}
+Use the spectral convention
+\(O=\sum_a\omega^a\Pi_a\).  For the target
+\((A_1,B_*)\), define
+\[
+q_0=1,\qquad q_{j+1}=z_{\kappa_j}q_j,\qquad
+\widehat q_m=\sum_{j=0}^{d-1}q_j\omega^{mj}.
+\]
+Then
+\begin{equation}
+p_\kappa(a,b|1,*)
+=
+\frac{\absop{\widehat q_{-(a+b)}}^2}{d^3}.
+\label{eq:target-table}
+\end{equation}
+If the Fourier magnitudes are not constant, the trivial-Eve realization
+obeys
+\[
+G(AB|1,*,E)
+\geq
+\frac{\max_m\absop{\widehat q_m}^2}{d^3}
+>\frac1{d^2}.
+\]
+\end{corollary}
+
+\begin{proof}
+Equation \eqref{eq:weighted-cycle} gives \(q_d=q_0\).  The eigenvectors of
+\(A_0=X\) and
+\(A_1=X\operatorname{diag}(z_{\kappa_j})\) are respectively
+\[
+u_c=d^{-1/2}\sum_j\omega^{-cj}\lvert j\rangle,
+\qquad
+v_a=d^{-1/2}\sum_jq_j\omega^{-aj}\lvert j\rangle.
+\]
+The transpose of Bob's outcome-\(b\) projector is Alice's
+outcome-\((-b)\) projector for \(X\).  Taking their overlap proves
+\eqref{eq:target-table}.  Parseval gives
+\(\sum_m\absop{\widehat q_m}^2=d^2\); nonconstancy therefore forces one
+magnitude squared to exceed \(d\).
+\end{proof}
+
+\section{Both cyclic families admit biased maximizers}
+
+\subsection{The first polar-linear family}
+
+Let
+\[
+z_k=\exp\!\left(\frac{\pi i(2k+\delta_d)}d\right),
+\qquad
+\delta_d=
+\begin{cases}
+0,&d\text{ odd},\\
+1,&d\text{ even}.
+\end{cases}
+\]
+These are exactly the roots of \(z^d=(-1)^{d-1}\).
+
+\begin{lemma}[Sharp scalar sum]\label{lem:scalar-sum}
+\begin{equation}
+\max_{|z|=1}
+\sum_{y=0}^{d-1}\absop{1+\omega^yz}
+=2\csc\!\left(\frac{\pi}{2d}\right)
+\label{eq:scalar}
+\end{equation}
+has equality precisely when \(z^d=(-1)^{d-1}\).
+\end{lemma}
+
+\begin{proof}
+Write \(z=\e^{2is}\), \(h=\pi/d\), and \(a=h/2\).  Then the sum in
+\eqref{eq:scalar} is
+\[
+2G_d(s),\qquad
+G_d(s)=\sum_{y=0}^{d-1}\absop{\cos(s+yh)},
+\]
+and \(G_d\) has period \(h\).
+
+If \(d=2m+1\), take \(-a\leq s\leq a\) and reindex by
+\(k=-m,\ldots,m\).  Every \(s+kh\) lies in
+\([-\pi/2,\pi/2]\), because \(a+mh=\pi/2\).  Hence
+\[
+G_d(s)=\sum_{k=-m}^m\cos(s+kh)=\csc(a)\cos s.
+\]
+Its maximum is attained exactly at \(s\equiv0\pmod h\), which is equivalent
+to \(z^d=1\).
+
+If \(d=2m\), take \(0\leq s\leq h\).  The first \(m\) cosines are
+nonnegative and the last \(m\) are nonpositive; an endpoint term may vanish.
+The two finite sums give
+\[
+G_d(s)
+=
+\sum_{y=0}^{m-1}\cos(s+yh)
+-\sum_{y=m}^{2m-1}\cos(s+yh)
+=\csc(a)\cos(s-a).
+\]
+Its maximum is attained exactly at \(s\equiv a\pmod h\), equivalently
+\(z^d=-1\).  Multiplying by two proves the result.
+\end{proof}
+
+Apply Theorem~\ref{thm:permutation} with
+\[
+g_y(z)=1+\omega^yz.
+\]
+The polynomial \(t^d-(-1)^{d-1}\) gives
+\[
+\prod_kz_k=1,\qquad
+\prod_k(1+\omega^yz_k)=2>0.
+\]
+Thus the polar phases
+\[
+s_{y,k}=\frac{1+\omega^yz_k}{\absop{1+\omega^yz_k}}
+\]
+have product one, and every root ordering is an order-\(d\) maximizer of
+\[
+\overline{\cI}_d
+=
+\sum_{y=0}^{d-1}
+\Reop\!\left[(A_0+\omega^yA_1)\otimes B_y\right]
++\Reop(A_0\otimes B_d)
+\]
+with exact value
+\[
+2\csc\!\left(\frac{\pi}{2d}\right)+1.
+\]
+This recovers, in the general language above, the first-family
+counterexamples of Ref.~\cite{KriebelCounterexample2026}.
+
+\subsection{The target bias}
+
+For \(d\geq4\), choose the final-two swap
+\begin{equation}
+\kappa=(0,1,\ldots,d-3,d-1,d-2).
+\label{eq:bad-order}
+\end{equation}
+The second cyclic autocorrelation of the sequence in
+Corollary~\ref{cor:target} is
+\[
+C_2=\sum_jq_{j+2}\overline{q_j}
+=\sum_jz_{\kappa_j}z_{\kappa_{j+1}}.
+\]
+It vanishes in the canonical order, whereas \eqref{eq:bad-order} gives
+\begin{equation}
+C_2=(z_{d-1}-z_{d-2})(z_{d-3}-z_0),
+\qquad
+\absop{C_2}
+=4\sin(\pi/d)\sin(3\pi/d)>0.
+\label{eq:C2}
+\end{equation}
+Hence the target table is nonuniform.
+
+For a quantitative bound, put
+\[
+x_m=\absop{\widehat q_m}^2-d,\qquad
+\Delta=\max_mx_m.
+\]
+Then \(\sum_mx_m=0\), and Fourier inversion at lag two gives
+\[
+C_2=\frac1d\sum_mx_m\omega^{-2m}.
+\]
+The nonzero mean-zero sequence \(x_m\) has at most \(d-1\) positive entries,
+so
+\[
+d\absop{C_2}\leq\sum_m\absop{x_m}
+=2\sum_{x_m>0}x_m\leq2(d-1)\Delta.
+\]
+Substitution in \eqref{eq:target-table} proves
+\begin{equation}
+G(AB|1,d,E)
+\geq
+\frac1{d^2}
++
+\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}.
+\label{eq:gap}
+\end{equation}
+At \(d=2,3\), every root ordering in this particular family is
+Fourier-flat.
+
+\subsection{The second SOS-certified family}
+
+We now show that the same Bob observables maximize the second family of
+Ref.~\cite{PeritoEtAl2026}.  Put
+\(\eta=\e^{\pi i/d}\), so \(\omega=\eta^2\), and let
+\[
+\lambda_\ell
+=
+\frac{(-1)^{\ell-1}\eta^{\ell(\ell-1)}}
+{d\sin(\pi(\ell-\tfrac12)/d)},
+\qquad 0\leq\ell<d.
+\label{eq:lambda}
+\]
+This is \(\lambda_{0,\ell-1}\) in the source's cyclic indexing; the formula
+at \(\ell=0\) is read literally with \((-1)^{-1}=-1\).
+For Bob's first-family observables, define
+\[
+C_\ell=\sum_{y=0}^{d-1}\omega^{\ell y}B_y.
+\]
+The Hermitian Bell functional is
+\begin{equation}
+\cF_d
+=
+\sum_{\ell=0}^{d-1}
+\Reop\!\left(
+\overline{\lambda_\ell}A_\ell\otimes C_\ell
+\right).
+\label{eq:second-functional}
+\end{equation}
+
+\begin{theorem}[Permutation maximizers of the second family]
+\label{thm:second}
+For every permutation \(\kappa\), define
+\[
+q_\ell=\eta^{-\ell(\ell-1+\delta_d)},\qquad
+D_\ell
+=q_\ell X\operatorname{diag}
+\left(\omega^{-\ell\kappa_j}\right)_j,
+\qquad
+A_\ell=\overline{D_\ell}.
+\]
+Then every \(A_\ell\) and \(B_y\) has \(d\)-th power \(\Id\), and
+\[
+C_\ell=d\lambda_\ell D_\ell.
+\]
+The strategy on \(\lvert\Phi_d\rangle\) attains
+\[
+\langle\cF_d\rangle=d.
+\]
+With \(B_d=X\), the augmented Hermitian functional
+\[
+\overline{\cF}_d
+=\cF_d+\Reop(A_0\otimes B_d)
+\]
+has value \(d+1\).  For the ordering \eqref{eq:bad-order}, its target
+\((A_1,B_d)\) has exactly the distribution
+\eqref{eq:target-table}, and hence obeys the strict gap
+\eqref{eq:gap} for every \(d\geq4\).  Its complete matrix of complex
+first-harmonic correlators is independent of \(\kappa\).
+\end{theorem}
+
+\begin{proof}
+For \(z_r=\eta^{2r+\delta_d}\), write
+\[
+s_0(z_r)
+=\varepsilon_r\eta^{r+\delta_d/2},\qquad
+\varepsilon_r=
+\begin{cases}
++1,&2r+\delta_d<d,\\
+-1,&2r+\delta_d>d.
+\end{cases}
+\]
+There is no equality case.  Also
+\(s_y(z_r)=s_0(z_{r+y\bmod d})\).  Therefore the diagonal weight of
+\(C_\ell\) at a label \(r\) is
+\[
+\sum_y\omega^{\ell y}\overline{s_y(z_r)}
+=
+\omega^{-\ell r}S_\ell,
+\qquad
+S_\ell=
+\sum_t\omega^{\ell t}\overline{s_0(z_t)}.
+\]
+Let
+\[
+n=\frac{d+1-\delta_d}{2},\qquad
+r_\ell=\eta^{2\ell-1}.
+\]
+The first \(n\) signs \(\varepsilon_t\) are positive and the rest are
+negative, while \(r_\ell^d=-1\).  Two geometric sums give
+\[
+\begin{aligned}
+S_\ell
+&=\eta^{-\delta_d/2}
+\left(\sum_{t=0}^{n-1}r_\ell^t
+-\sum_{t=n}^{d-1}r_\ell^t\right)\\
+&=-\frac{2\eta^{-\delta_d/2}r_\ell^n}{1-r_\ell}\\
+&=
+\frac{(-1)^{\ell-1}\eta^{-\ell\delta_d}}
+{\sin(\pi(\ell-\tfrac12)/d)}
+=d\lambda_\ell q_\ell.
+\end{aligned}
+\]
+This proves \(C_\ell=d\lambda_\ell D_\ell\), including its phase.
+
+The weighted-cycle identity \eqref{eq:weighted-cycle} and
+\(\sum_j\kappa_j=d(d-1)/2\) give
+\[
+D_\ell^d
+=
+q_\ell^d\omega^{-\ell\sum_j\kappa_j}\Id
+=
+(-1)^{
+\ell(\ell-1+\delta_d)+\ell(d-1)
+}\Id
+=\Id.
+\]
+Indeed,
+\(\ell(\ell+d-2+\delta_d)\) is even because
+\(d-2+\delta_d\) is odd.  Thus the Alice observables are admissible.
+
+For completeness, the coefficient identity
+\[
+\sum_\ell\absop{\lambda_\ell}^2=1
+\]
+follows from
+\[
+\sum_{\ell=0}^{d-1}
+\csc^2\!\left(\frac{\pi(\ell-\tfrac12)}d\right)=d^2,
+\]
+the derivative of the finite cotangent-sum identity.  Fourier orthogonality
+and \(B_y^\dagger B_y=\Id\) give
+\[
+\sum_\ell C_\ell^\dagger C_\ell=d^2\Id.
+\]
+Consequently, for arbitrary admissible observables,
+\[
+P_\ell=d\lambda_\ell\Id-A_\ell\otimes C_\ell
+\]
+satisfies the exact SOS
+\begin{equation}
+d\Id-\cF_d
+=\frac1{2d}\sum_{\ell=0}^{d-1}P_\ell^\dagger P_\ell.
+\label{eq:second-sos}
+\end{equation}
+For our strategy,
+\[
+P_\ell|\Phi_d\rangle
+=d\lambda_\ell
+\bigl[\Id-\overline{D_\ell}\otimes D_\ell\bigr]
+|\Phi_d\rangle=0.
+\]
+Hence \(\langle\cF_d\rangle=d\).  Since \(A_0=X\) and
+\((X\otimes X)|\Phi_d\rangle=|\Phi_d\rangle\), the augmentation contributes
+one.  Finally,
+\[
+A_1
+=
+\overline{\eta^{-\delta_d}
+X\operatorname{diag}(\omega^{-\kappa_j})}
+=X\operatorname{diag}(\eta^{2\kappa_j+\delta_d})
+=X\operatorname{diag}(z_{\kappa_j}),
+\]
+where the first equality is read entrywise in the weighted shift.  Thus the
+target pair is literally the one in Corollary~\ref{cor:target}.  Moreover,
+\[
+\langle A_\ell\otimes B_y\rangle
+=
+\frac{\overline{q_\ell}}d
+\sum_{r=0}^{d-1}
+\omega^{\ell r}\overline{s_y(z_r)},
+\]
+and \(\langle A_\ell\otimes B_d\rangle\) is obtained by deleting the
+\(\overline{s_y(z_r)}\) factor.  These are symmetric sums over the complete
+root set, so every complex first harmonic is permutation-independent even
+though higher harmonics and the full target behavior need not be.
+\end{proof}
+
+\begin{remark}[Source conventions]
+Equations \eqref{eq:second-functional}--\eqref{eq:second-sos} match
+Eqs.~(19), (22), and (23) of Ref.~\cite{PeritoEtAl2026}.  Its nearby
+Eq.~(20) omits \(d\lambda_\ell\), and the prose there omits Alice's complex
+conjugation, which its theorem restores.  We use a real part in the
+augmentation so that the Bell operator is Hermitian.
+\end{remark}
+
+\subsection{An exact four-outcome certificate}
+
+At \(d=4\), set \(\zeta=\e^{\pi i/8}\) and
+\(\kappa=(0,1,3,2)\).  Then
+\[
+A_0=X,\qquad
+A_1=X\operatorname{diag}
+(\zeta^2,\zeta^6,\zeta^{14},\zeta^{10}),
+\qquad B_4=X.
+\]
+The sequence in Corollary~\ref{cor:target} is
+\[
+q=(1,\zeta^2,-1,\zeta^6),
+\qquad
+\left(\absop{\widehat q_m}^2\right)_{m=0}^3=(2,6,2,6).
+\]
+Thus, for both augmented cyclic families,
+\[
+p(a,b|1,4)=
+\begin{cases}
+1/32,&a+b\text{ even},\\
+3/32,&a+b\text{ odd},
+\end{cases}
+\qquad
+G(AB|1,4,E)=\frac3{32}>\frac1{16}.
+\]
+The accompanying verifier works exactly in
+\(\mathbb Q[x]/(x^8+1)\), reconstructs the published \(\lambda\)'s, checks
+\(C_\ell=4\lambda_\ell D_\ell\), every fourth-power relation, the full SOS
+operator identity, both Bell values, and the displayed table.
+
+\begin{corollary}[Value-only robustness is impossible]
+For either augmented cyclic family and every \(d\geq4\), no valid
+value-only bound
+\[
+G(AB|E)\leq\frac1{d^2}+f_d(\varepsilon),
+\qquad f_d(\varepsilon)\longrightarrow0
+\]
+can hold for all strategies with Bell deficit at most \(\varepsilon\).
+\end{corollary}
+
+\begin{proof}
+The exact biased maximizer is feasible for every \(\varepsilon\geq0\) and
+has the positive gap \eqref{eq:gap}.  This says nothing against bounds that
+condition on additional observed statistics.
+\end{proof}
+
+\section{Why the standard
+\texorpdfstring{\(2\times2\)}{2 x 2} qudit route does not immediately work}
+
+The standard two-input self-test of a maximally entangled qudit
+\cite{SarkarEtAl2021} uses Fourier-phase bases.  Directly from the geometric
+amplitude on \(\lvert\Phi_d\rangle\), its four joint tables have the form
+\begin{equation}
+p(a,b|x,y)
+=
+\frac{\sin^2(\pi\delta_{xy})}
+{d^3\sin^2(\pi(a-b+\delta_{xy})/d)},
+\qquad
+(\delta_{xy})=
+\begin{pmatrix}
+1/4&3/4\\
+-1/4&1/4
+\end{pmatrix},
+\label{eq:satwap-table}
+\end{equation}
+up to input swaps, conjugation, transposition, and output relabeling.
+Therefore every table has
+\[
+p_{\max}
+=
+\frac1{2d^3\sin^2(\pi/(4d))}
+>\frac1{d^2}.
+\]
+None of the four setting pairs is uniform, for any \(d\geq2\).  Its ideal
+joint min-entropy is
+\[
+\log_2\!\left(2d^3\sin^2\frac{\pi}{4d}\right)
+=\log_2d+\log_2\frac{\pi^2}{8}+o(1).
+\]
+The existing self-test certifies \(\log_2d\) local bits, not the desired
+\(2\log_2d\) global bits.
+
+Suppose a third Bob setting is perfectly correlated with either one of
+Alice's two ideal bases by a separately bounded term.  Its cross table with
+Alice's other basis has half-step offset:
+\[
+p_{\max}^{\mathrm{cross}}
+=
+\frac1{d^3\sin^2(\pi/(2d))}
+>\frac1{d^2}
+\quad(d\geq3).
+\]
+Thus the direct ``self-test plus perfect anchor'' composition already has a
+nonuniform ideal maximizer.  The qubit exception is exactly the case in
+which the two Alice bases are mutually unbiased.
+
+The following proposition rules out a broader version of the same
+coefficientwise construction.  Let \(F\) be the Fourier matrix,
+\(\rho=\e^{\pi i/d}\), and
+\[
+R=\operatorname{diag}(1,\rho,\ldots,\rho^{d-1}).
+\]
+The real Hermitian operator system generated by the two ideal Alice PVMs is
+\[
+\cS
+=
+\left\{
+F\operatorname{diag}(x)F^\dagger
++RF\operatorname{diag}(y)F^\dagger R^\dagger:
+x,y\in\mathbb R^d
+\right\}.
+\]
+
+\begin{proposition}[Computational-MUB exposure obstruction]
+\label{prop:mub-obstruction}
+If \(K\in\cS\) has a computational vector \(e_r\) as an eigenvector with
+eigenvalue \(\kappa\), then either \(K=\kappa\Id\), or \(\kappa\) is neither
+the largest nor the smallest eigenvalue of \(K\).
+
+Consequently no nontrivial third-setting term
+\[
+\mathcal L=\sum_bK_b\otimes Q_b,\qquad K_b\in\cS,
+\]
+can expose the computational PVM on the maximally entangled strategy through
+the common coefficientwise bound \(K_b\leq\Lambda\Id\).
+\end{proposition}
+
+\begin{proof}
+Write \(K=C+RC'R^\dagger\), where \(C,C'\) are Hermitian circulants:
+\[
+C_{jk}=c_{[j-k]},\qquad C'_{jk}=c'_{[j-k]}.
+\]
+The eigenvector equations in column \(r\) are
+\[
+c_m+\rho^{\nu_r(m)}c'_m=0,
+\]
+where \(\nu_r(m)\in[-r,d-1-r]\) is congruent to \(m\pmod d\).
+Comparing each equation with its Hermitian conjugate forces
+\[
+c_m=c'_m=0
+\quad\text{unless}\quad
+m\in\{1,\ldots,s\}\cup\{d-s,\ldots,d-1\},
+\qquad
+s=\min(r,d-1-r).
+\]
+For the surviving modes, the ordinary and wrapped diagonals cancel except
+in the upper-right and lower-left \(s\times s\) corners.  After grouping the
+first \(s\), middle \(d-2s\), and last \(s\) coordinates,
+\[
+K-\kappa\Id
+=
+\begin{pmatrix}
+0&0&T\\
+0&0&0\\
+T^\dagger&0&0
+\end{pmatrix},
+\]
+where \(T\) is upper-triangular Toeplitz.  Its nonzero eigenvalues are
+\(\pm\sigma_j(T)\).  Hence a nonscalar \(K\) has spectrum on both sides of
+\(\kappa\).
+
+For the resulting bound \(\mathcal L\leq\Lambda\Id\) to be saturated on
+\(\lvert\Phi_d\rangle\) with computational \(Q_b\), every computational
+outcome has nonzero weight and the corresponding \(e_b\) must be a maximal
+eigenvector of \(K_b\).  The first part makes this impossible unless all
+relevant \(K_b\) are scalar, in which case the term constrains no
+measurement.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:mub-obstruction} is deliberately narrow.  It does not
+rule out a joint SOS, a different common MUB, a different two-input
+self-test, or an arbitrary \(2\times3\) Bell functional.
+\end{remark}
+
+\section{A sufficient private-MUB composition lemma}
+
+The preceding obstruction identifies a design route that fails, not the
+property a successful construction would need.  The latter has a short
+operator-valued formulation.
+
+\begin{lemma}[Private-MUB composition]\label{lem:private-mub}
+Let \(\{P_b\}\) and \(\{R_a\}\) be Alice PVMs and let
+\(\{Q_{\pi(b)}\}\) be a Bob PVM.  Suppose, on a purification
+\(\lvert\Psi\rangle_{ABE}\),
+\begin{enumerate}[label=(\roman*),leftmargin=1.7em]
+\item the Eve state conditioned on \(P_b\) equals \(\rho_E/d\);
+\item \(Q_{\pi(b)}|\Psi\rangle=P_b|\Psi\rangle\);
+\item
+\(P_bR_aP_b|\Psi\rangle=d^{-1}P_b|\Psi\rangle\).
+\end{enumerate}
+Then the target pair \((R,Q)\) satisfies
+\[
+\sigma_E^{a,\pi(b)}=\rho_E/d^2
+\]
+for every \(a,b\).
+\end{lemma}
+
+\begin{proof}
+For every Hermitian test operator \(T_E\), conditions (ii), cross-party
+commutation, and the projector relations give
+\[
+\begin{aligned}
+\Tr(T_E\sigma_E^{a,\pi(b)})
+&=
+\langle\Psi|R_aQ_{\pi(b)}T_EQ_{\pi(b)}R_a|\Psi\rangle\\
+&=
+\langle\Psi|P_bR_aP_bT_E|\Psi\rangle\\
+&=
+\frac1d\langle\Psi|P_bT_E|\Psi\rangle
+=\frac1{d^2}\Tr(T_E\rho_E).
+\end{aligned}
+\]
+Equality against every Hermitian \(T_E\) proves the operator identity.
+\end{proof}
+
+Thus a purification-stable self-test that yields a private reference basis
+and the state-supported MUB sandwich, plus a compatible third-setting
+equality condition, would solve the \(2\times3\) problem.  State extraction
+alone, average scalar overlaps, and observed uniformity are insufficient.
+
+\section{Status of the measurement-resource problem}
+
+The exact conclusions of this note are summarized in
+Table~\ref{tab:status}.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}
+>{\raggedright\arraybackslash}p{0.29\linewidth}
+>{\raggedright\arraybackslash}p{0.64\linewidth}@{}}
+\toprule
+Scenario or design & Rigorous status\\
+\midrule
+\(1\times m\) or \(m\times1\)
+& Impossible even when the complete behavior is fixed
+  (Theorem~\ref{thm:oneinput}).\\
+\(2\times2,\ d=2\)
+& Achievable and therefore setting-minimal; the score is known
+  \cite{WooltortonEtAl2022}.\\
+\(2\times2,\ d\geq3\)
+& Open here.  The standard ideal qudit strategy has no uniform pair.\\
+\(2\times3,\ d\geq3\)
+& Open here.  The direct perfect-anchor composition fails, and
+  Proposition~\ref{prop:mub-obstruction} rules out one broader exposure
+  route.\\
+All-dimensional upper benchmark
+& \(2\times(d^2+1)\) settings in
+  Ref.~\cite{FarkasMironowiczAugusiak2026}; the first \(d^2\) Bob
+  measurements have three outcomes and may be zero-padded when \(d\geq3\).\\
+First-harmonic polar-linear class
+& Exact conditional permutation obstruction under the hypotheses of
+  Theorem~\ref{thm:permutation}.\\
+Two augmented cyclic families
+& Fail value-based maximal global randomness for every \(d\geq4\).\\
+\bottomrule
+\end{tabular}
+\caption{What is proved, and what remains open.}
+\label{tab:status}
+\end{table}
+
+No universal impossibility theorem for \(2\times2\) at \(d>2\) is proved.
+In particular, the spectrum-permutation theorem is class-specific.  Nor do
+the negative ideal-strategy calculations preclude a different
+constant-setting self-test.  The minimum-setting law requested at the start
+of this program therefore remains unresolved.
+
+The useful positive outcome is a sharper design criterion: a successful
+Bell score must constrain operator-valued higher information, not merely an
+unordered relative spectrum or first-harmonic correlators.  One exact route
+would be to prove the hypotheses of Lemma~\ref{lem:private-mub}; another
+would be a direct operator-valued Fourier cancellation proof requiring less
+than full self-testing.
+
+\section{Verification and scope}
+
+The public package contains:
+\begin{itemize}[leftmargin=1.5em]
+\item this analytic manuscript and a machine-readable family certificate;
+\item independent, dependency-free checks of the binary SOS and standard
+  qudit probability tables;
+\item discovery code for the second-family Fourier construction through
+  \(d=12\);
+\item an independent exact \(\mathbb Q(\zeta_{16})\) verifier for \(d=4\);
+\item claims and assumptions ledgers, failed approaches, a research log, and
+  a targeted prior-art audit.
+\end{itemize}
+The programs are secondary checks and do not formally quantify over every
+\(d\).
+
+A targeted primary-source search found no all-dimensional \(2\times2\) or
+\(2\times3\) single-score protocol with the required projective
+\(d\)-outcome global-private conclusion, and no equivalent published
+permutation theorem for the second cyclic family.  This is not proof of
+worldwide priority.  Unindexed, unpublished, or concurrent work may exist.
+The standard two-input self-test itself identifies global \(2\log_2d\)
+randomness as an open direction~\cite{SarkarEtAl2021}.
+
+The derivations, manuscript, code, and literature audit were produced with
+heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction.  No
+AI system is an author or bears responsibility for the claims.  Alec Kriebel
+is the named human author and takes responsibility for releasing the
+artifacts, while explicitly requesting independent expert validation.
+
+\appendix
+
+\section{Binary benchmark}\label{app:binary}
+
+For binary Hermitian unitaries, set
+\[
+\mathcal W_2
+=A_0B_0-2A_0B_1+2A_1B_0+2A_1B_1.
+\]
+The exact identity
+\[
+\begin{aligned}
+3\sqrt3\Id-\mathcal W_2
+={}&
+\frac1{2\sqrt3}
+\bigl(\sqrt3 A_0-B_0+2B_1\bigr)^2\\
+&+
+\frac1{\sqrt3}
+\bigl(\sqrt3 A_1-B_0-B_1\bigr)^2
+\end{aligned}
+\]
+proves the maximum \(3\sqrt3\), with cross-party tensor identities
+suppressed only in this display.  Equality yields
+\[
+(B_0-2B_1)|\Psi\rangle=\sqrt3A_0|\Psi\rangle,
+\qquad
+(B_0+B_1)|\Psi\rangle=\sqrt3A_1|\Psi\rangle.
+\]
+Putting \(X_A=(A_0+2A_1)/\sqrt3\) and
+\(Z_B=(B_0-2B_1)/\sqrt3\) gives, on the state,
+\[
+B_0=X_A,\quad Z_B=A_0,\quad
+\{A_0,X_A\}=0,\quad\{Z_B,B_0\}=0.
+\]
+The two associated cross-party stabilizers make
+\(\langle A_0T_E\rangle\),
+\(\langle B_0T_E\rangle\), and
+\(\langle A_0B_0T_E\rangle\) vanish for every Hermitian \(T_E\).
+These are exactly the three nontrivial binary operator-valued Fourier
+coefficients, so \(\sigma_E^{ab}=\rho_E/4\).
+
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{PeritoEtAl2026}
+I. Perito, R. D'Avino, M. Jung, P. Mironowicz, A. Ac\'in, and R. Augusiak,
+\newblock Bell inequalities tailored to optimal global randomness
+certification,
+\newblock \emph{arXiv:2606.21362v3} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21362}.
+
+\bibitem{FarkasMironowiczAugusiak2026}
+M. Farkas, P. Mironowicz, and R. Augusiak,
+\newblock Maximal global device-independent randomness from projective
+measurements in every dimension,
+\newblock \emph{arXiv:2606.21369} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21369}.
+
+\bibitem{SarkarEtAl2021}
+S. Sarkar, D. Saha, J. Kaniewski, and R. Augusiak,
+\newblock Self-testing quantum systems of arbitrary local dimension with
+minimal number of measurements,
+\newblock \emph{npj Quantum Information} \textbf{7}, 151 (2021),
+\newblock \url{https://doi.org/10.1038/s41534-021-00490-3}.
+
+\bibitem{WooltortonEtAl2022}
+L. Wooltorton, P. Brown, and R. Colbeck,
+\newblock Tight analytic bound on the trade-off between
+device-independent randomness and nonlocality,
+\newblock \emph{Physical Review Letters} \textbf{129}, 150403 (2022),
+\newblock \url{https://doi.org/10.1103/PhysRevLett.129.150403}.
+
+\bibitem{KriebelBound2026}
+A. Kriebel,
+\newblock The exact quantum value of a cyclic Bell operator,
+\newblock provisional AI-assisted research note (2026),
+\newblock \url{https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/}.
+
+\bibitem{KriebelCounterexample2026}
+A. Kriebel,
+\newblock Maximal violation without maximal global randomness in a cyclic
+Bell family,
+\newblock provisional AI-assisted research note (2026),
+\newblock \url{https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/}.
+
+\bibitem{KaniewskiEtAl2019}
+J. Kaniewski, I. \v{S}upi\'c, J. Tura, F. Baccari, A. Salavrakos, and
+R. Augusiak,
+\newblock Maximal nonlocality from maximal entanglement and mutually
+unbiased bases, and self-testing of two-qutrit quantum systems,
+\newblock \emph{Quantum} \textbf{3}, 198 (2019),
+\newblock \url{https://doi.org/10.22331/q-2019-10-24-198}.
+
+\bibitem{CocciaEtAl2026}
+E. Coccia, S. Padovan, and G. Vallone,
+\newblock Systematic derivation of Tsirelson bounds in arbitrary dimensions,
+\newblock \emph{arXiv:2606.21626} (2026),
+\newblock \url{https://arxiv.org/abs/2606.21626}.
+
+\end{thebibliography}
+
+\end{document}
