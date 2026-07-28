@@ -1,5 +1,72 @@
 # Campaign State
 
+## Checkpoint 084 — 2026-07-28 07:06 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved and no
+  certified counterexample has been found.  The certified finite frontier
+  is unchanged: all orders through 12, plus \(k=3\) at order 13.
+  Repository base before this checkpoint: `0773ae53`.
+- **Every inactive odd cycle is now excluded at \(k=3\) (C-122).**  A
+  length-independent five-layer induction proves an odd witnessed-path
+  endpoint theorem for arbitrary one-guard eternal triple-families.
+  Combining it with the accepted distance-two inactive-state theorem gives
+  \[
+    \overline{G-x}[R_x]\ \text{bipartite}
+  \]
+  whenever \(\alpha(G)=\gamma^\infty(G)=3\) and
+  \(\gamma(G-x)\ge3\).
+- The proof handles arbitrary collisions among the edge witnesses by an
+  exact adjacent-true-twin lift of both graph and eternal family.  The
+  hostile reviewer audited the arbitrary-length induction line by line,
+  checked all 935 witness partitions through odd path length seven, and
+  replayed 1,444 true-twin lifts.
+- This closes the local inactive-odd-cycle route, replacing the previous
+  separate \(C_5\) and \(C_7\) certificates by a human all-length theorem.
+  It does **not** finish the full-list branch: one must still choose a
+  global deletion coloring that uses only two colors on this bipartite
+  inactive set.
+- Accepted note:
+  `ca8f655573575fefc1eb6e343950658c970e638aa66c62015647c784699a8d02`.
+  Candidate manifest:
+  `eb37d2df4e00fe9e6278d1a843d7b96c6d918924d7f89b7e6bf3775452763a09`.
+  Hostile result:
+  `64ac68cda2f5e72278cae9670882df737abcd0152e4092e8f228f25e93b0a39d`.
+  Hostile manifest:
+  `53e049c4b53daa986e65846ed850bb51408572f4280b8d257ca128aa7c84067e`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Inactive odd cycles at \(k=3\) | closed-proved C-122 | All odd lengths excluded by witnessed-path parity induction |
+| Full-list inactive precoloring | active-primary | Extend some bipartition of \(R_x\) through all of \(\overline{G-x}\) |
+| Exact static \(Y_3=P_4\) below order 14 | closed-proved C-121 | Static rigidity plus two disjoint defect vertices |
+| Longer free singleton-unit chains | active-primary | Preserve physical ports; implication-path contraction is unsound |
+| Singleton residual bicycles | active-secondary | Dynamic ports can remain singleton-buffered |
+| Complete \(k=3\) theorem | active | No-full free chains/bicycles and full-list synchronization remain |
+| Universal parameter lifting | active-long-range | Requires the still-open global palette-gluing theorem \(\mathsf{GL}(k)\) |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Two light lanes are now testing free singleton-unit chains and whether
+  bipartite inactive-set structure already forces the required global
+  precoloring.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The all-length
+  candidate and hostile replays completed locally with the machine
+  responsive.
+
+### Next three highest-value actions
+
+1. Decide the inactive bipartite precoloring statement: prove it under
+   exact ridge covariance or exhibit the smallest static countermodel and
+   identify the missing one-guard condition.
+2. Extend the C-121 defect mechanism from the canonical \(Y_3\) to longer
+   free unit chains, or find an exact equality control delimiting it.
+3. If both \(k=3\) branches close, immediately audit the complete
+   parameter-three theorem and then return to the all-\(k\) gluing step;
+   do not mistake a \(k=3\) theorem for a universal resolution.
+
 ## Checkpoint 083 — 2026-07-28 07:00 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

@@ -3061,3 +3061,43 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The exact unresolved branch is longer free unit propagation, residual
   unit-free bicycles, and the separately reviewed full-list gluing
   problem.  No universal or complete \(k=3\) conclusion is claimed.
+
+## 2026-07-28 07:06 PDT — all inactive odd cycles excluded
+
+- Promoted C-122 after unconditional hostile review.  For an odd witnessed
+  path in the complement, retained independent edge-witness triples with
+  both target endpoint responses absent force the endpoint state containing
+  the target to be retained.
+- The proof is length-independent.  A five-layer leaf induction shows that
+  every retained local triple meets both rim parity classes.  A neutral
+  replacement lemma then propagates one absent endpoint state across all
+  neutral witnesses and both parity classes until it contradicts every
+  named edge state.
+- Arbitrary witness collisions are handled by replacing repeated witnesses
+  with adjacent true-twin fibers and lifting the entire eternal family.
+  The reviewer verified domination, unoccupied-sibling attacks, one-edge
+  moves, injective projection, and projection back to the original graph.
+- Applying the accepted private-star distance-two exclusion to the last
+  rim vertex of an odd cycle gives the endpoint state that the new path
+  theorem forces.  Therefore, under
+  \(\alpha(G)=\gamma^\infty(G)=3\) and \(\gamma(G-x)\ge3\),
+  \[
+    \overline{G-x}[R_x]\text{ is bipartite}.
+  \]
+- Candidate and hostile checkers independently support the proof.  The
+  hostile audit covered all 935 witness partitions at odd path lengths
+  \(1,3,5,7\), even controls through length eight, all 361 arbitrary
+  eternal triple-families on the 64 labeled graphs of order four, and
+  1,444 adjacent-true-twin lifts.
+- Accepted note:
+  `ca8f655573575fefc1eb6e343950658c970e638aa66c62015647c784699a8d02`.
+  Candidate manifest:
+  `eb37d2df4e00fe9e6278d1a843d7b96c6d918924d7f89b7e6bf3775452763a09`.
+  Hostile result:
+  `64ac68cda2f5e72278cae9670882df737abcd0152e4092e8f228f25e93b0a39d`.
+  Hostile manifest:
+  `53e049c4b53daa986e65846ed850bb51408572f4280b8d257ca128aa7c84067e`.
+- Scope remains strict: bipartiteness of the inactive induced graph does
+  not choose a global deletion three-coloring that uses only its two
+  bipartition colors.  Full-list gluing, complete \(k=3\), and the
+  universal conjecture remain open.
