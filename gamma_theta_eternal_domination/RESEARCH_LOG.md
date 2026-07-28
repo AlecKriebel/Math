@@ -3130,3 +3130,44 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `600e152878fc7670b4fe3822cdcb6017d85d80bc3e768aa7a4f6300905c6beed`.
   Hostile manifest:
   `3a9c212822298929208704ef3eaca02fea697262acb7876c2372b9135d535ddd`.
+
+## 2026-07-28 07:47 PDT — free components and the all-\(k\) \(Y_k\) lift
+
+- Promoted C-124 after unconditional hostile review.  In any free component
+  of a frozen bipartite projection, one singleton family-response marker
+  propagates its orientation to every vertex.  A second one-guard attack
+  proves that every complement edge in the component lifts to a retained
+  triple.
+- All singleton markers in one component are parity-coherent.  This
+  eliminates the zero-binary-clause two-unit terminal from the exact
+  C-119/C-120 response formula.  Every remaining unit contradiction must
+  traverse at least one genuine cross-type binary clause.
+- The equality control `FCZbg` has all five parameters equal to three,
+  18 greatest-family states, and 72 obligations.  Its family lists are
+  strict subsets of its static legal lists, confirming that the proof uses
+  missing responses only as family absence.
+- Promoted C-125 after a separate hostile review.  For an exact static
+  \(Y_k=K_{k-3}\vee P_4\), eternal closure installs all singleton vertices
+  simultaneously and forces the original base family lists to be exact
+  \(Y_3\).  Dirty installation produces a private buffer.  Clean
+  installation yields an equality-three projection, and C-072 gives the
+  conditional order floor \(n\ge2k+6\).
+- If every projected static defect survives, C-121 improves the count to
+  \(n\ge2k+8\).  This extra hypothesis cannot be dropped formally:
+  C-126's seven-vertex control shows that a clean replacement can repair
+  an original static defect and enlarge the projected static list.
+- These are pattern theorems, not a counterexample-order frontier.  They do
+  not exclude all \(Y_k\), prove \(\mathsf{GL}(k)\), complete \(k=3\), or
+  resolve the universal conjecture.
+- C-124 note/candidate manifest:
+  `3dbccd2aa69cfc45b1c5e518e05165594e27f06b1741fcd1ec7a2b8b0d02fb39`,
+  `2d87b2b440c33574da4546f298864d33cc19ff8e6ebdc1d7541cff980bc8350e`.
+  Hostile result/manifest:
+  `af8231b6ccf7e4ecd7942002b1ca25e6efffdf83080ac06457b7cc673129aef4`,
+  `2f2ac88f29107dc1bd625bae02741f1aee10c9a559072ef1fa638c8408a07400`.
+- C-125 note/candidate manifest:
+  `98a56786a8db1f78c4f6328871b1926795928997389f441e4637e6e3d801d6e0`,
+  `ae7ec69d98efa2386704912782b3c61083ec2d29c493eb1b38327e696a812e98`.
+  Hostile stdout/manifest:
+  `158e5c607b931ea302e8c2c508610dff32426d84bcf007eddab2959e9a7833f0`,
+  `868b4861546c26442034bda769d8f50e5fdd4027b727407eb2c770769e0f24ef`.

@@ -1,5 +1,78 @@
 # Campaign State
 
+## Checkpoint 086 — 2026-07-28 07:47 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  is unchanged: all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `071c4e65`.
+- **Free singleton components are polarized and family-saturated (C-124).**
+  One singleton family marker fixes the response orientation of its whole
+  frozen bipartite component, and every complement edge in that component
+  lifts to an actual retained triple.  Two singleton units on one projection
+  variable are therefore always parity-compatible.
+- The zero-binary-clause two-unit contradiction is eliminated.  Every
+  remaining unit obstruction must cross a genuine binary clause between
+  distinct free components.  The exact family/static distinction was audited
+  on the equality control `FCZbg`.
+- **The all-\(k\) obstruction \(Y_k\) now has an exact dynamic dichotomy
+  (C-125–C-126).**  Its singleton clique can always be installed
+  simultaneously and carries an exact family \(Y_3\) on the three base
+  colors.  A dirty installation forces a private buffer; a clean installation
+  projects to equality three and yields the conditional floor
+  \(n\ge2k+6\).
+- The stronger \(n\ge2k+8\) count requires projected static defects to
+  survive.  That requirement is real: a seven-vertex control shows that
+  clean replacement can repair a failed static swap.  Neither count is a
+  global counterexample-order frontier.
+- C-124 accepted note/manifest:
+  `3dbccd2aa69cfc45b1c5e518e05165594e27f06b1741fcd1ec7a2b8b0d02fb39`,
+  `2d87b2b440c33574da4546f298864d33cc19ff8e6ebdc1d7541cff980bc8350e`.
+  Hostile result/manifest:
+  `af8231b6ccf7e4ecd7942002b1ca25e6efffdf83080ac06457b7cc673129aef4`,
+  `2f2ac88f29107dc1bd625bae02741f1aee10c9a559072ef1fa638c8408a07400`.
+- C-125 accepted note/candidate manifest:
+  `98a56786a8db1f78c4f6328871b1926795928997389f441e4637e6e3d801d6e0`,
+  `ae7ec69d98efa2386704912782b3c61083ec2d29c493eb1b38327e696a812e98`.
+  Hostile stdout/manifest:
+  `158e5c607b931ea302e8c2c508610dff32426d84bcf007eddab2959e9a7833f0`,
+  `868b4861546c26442034bda769d8f50e5fdd4027b727407eb2c770769e0f24ef`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Free singleton component interiors | closed-proved C-124 | Polarized, edge-saturated, and unit-coherent |
+| Zero-clause two-unit terminal | closed-proved C-124 | Opposite units on one variable are impossible |
+| Positive-length unit chains/lollipops | active-primary | Cross at least one genuine binary clause between free components |
+| Singleton residual bicycles | active-secondary | Dynamic ports can remain singleton-buffered |
+| Inactive odd cycles at \(k=3\) | closed-proved C-122 | All odd lengths excluded |
+| Static inactive bipartite gluing | closed-refuted C-123 | Bipartiteness alone does not synchronize colors |
+| Equality-specific full-list gluing | active-primary | Use \(\gamma=3\), multi-step closure, or nonvacuous ridge transport |
+| Clean exact static \(Y_k\) | closed-conditional C-125 | Gives \(n\ge2k+6\) |
+| Projected static-defect survival | active-long-range | Needed for conditional \(n\ge2k+8\); not automatic by C-126 |
+| Complete \(k=3\) theorem | active | Cross-component chains/bicycles and dynamic full-list gluing remain |
+| Universal parameter lifting | active-long-range | Requires the still-open palette-gluing theorem \(\mathsf{GL}(k)\) |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One light proof/search lane is testing the \(\gamma=3\) strengthening of
+  inactive bipartite gluing.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Both independent
+  candidate replays complete locally with the machine responsive.
+
+### Next three highest-value actions
+
+1. Push component polarization through the first cross-type binary clause,
+   preserving both physical response ports.
+2. Decide whether the \(\gamma=3\) common-neighbor condition missing from
+   C-123 forces a deletion coloring using only two colors on the inactive
+   set.
+3. Determine whether equality itself forces cleanliness or static-defect
+   survival in an exact \(Y_k\), which would turn C-125 into a stronger
+   unconditional obstruction.
+
 ## Checkpoint 085 — 2026-07-28 07:35 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
