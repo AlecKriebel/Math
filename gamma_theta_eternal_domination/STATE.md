@@ -1,5 +1,65 @@
 # Campaign State
 
+## Checkpoint 083 — 2026-07-28 07:00 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and the \(k=3\) slice at order
+  13.  Repository base before this checkpoint: `9fa1db65`.
+- **The shortest static gluing obstruction now has a conditional
+  order floor of 14 (C-121).**  Exact static \(Y_3=P_4\) response lists
+  force the same exact family-response lists.  Under equality, its two
+  endpoint static defects require two distinct new vertices beyond the
+  five external witness systems already separated in C-072.
+- The rigidity proof is human and the only finite theorem component is a
+  16-completion eight-vertex local kernel.  A clean-room reviewer also
+  replayed 576 rigidity subpatterns, all 84 obligations of the sharp
+  \(\gamma=2\) control, and the four-round negative control.
+- C-121 explains why the canonical two-free-unit obstruction cannot occur
+  at order 13, but it is not a global order-14 frontier: longer unit
+  chains, lollipops, residual bicycles, and the full-list branch remain.
+- Accepted note:
+  `ff559cb949c5427bc33e75a43deba38a8284e78c380a01bb97488a82a59798f9`.
+  Candidate manifest:
+  `c9f274cfae2b4404826fe65e1098d795409a437498abeb23ae9bcfe1572a2525`.
+  Hostile output:
+  `ecce123e4fa79e2cf4092acd6b75a9b3dceddccaa46ed315a90d27245fd0e994`.
+  Hostile manifest:
+  `637e916e3bafc36a6f9275d97fe8489f312d3cf0013610c5d136e8e9a6bbb4ac`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact static \(Y_3=P_4\) below order 14 | closed-proved C-121 | Static rigidity plus two disjoint defect vertices |
+| Longer free singleton-unit chains | active-primary | Preserve physical ports; implication-path contraction is unsound |
+| Singleton residual bicycles | active-secondary | Dynamic ports can remain singleton-buffered |
+| Full-list inactive odd cycles | active-hostile-review | Candidate all-length induction is not yet accepted |
+| Inactive bipartite precoloring | active-exploratory | Determine whether static ridge covariance suffices or needs another game lemma |
+| Complete \(k=3\) theorem | active | No-full free chains/bicycles and full-list synchronization remain |
+| Universal parameter lifting | active-long-range | Requires the still-open global palette-gluing theorem \(\mathsf{GL}(k)\) |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One hostile audit is checking the arbitrary-length inactive-cycle
+  induction.  Two light proof/search lanes are testing free unit chains
+  and bipartite inactive-set gluing.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Current work
+  uses at most three light single-core jobs and leaves the machine
+  responsive.
+
+### Next three highest-value actions
+
+1. Complete the hostile audit of the claimed all-length inactive-cycle
+   theorem and accept it only if repeated witnesses and the parity
+   induction survive.
+2. Decide whether bipartite inactive-set structure plus ridge covariance
+   already forces a two-color restriction, or exhibit the smallest exact
+   static countermodel.
+3. Generalize the C-121 defect mechanism from the canonical \(Y_3\) to
+   longer free unit chains without contracting logical connectors.
+
 ## Checkpoint 082 — 2026-07-28 06:45 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified

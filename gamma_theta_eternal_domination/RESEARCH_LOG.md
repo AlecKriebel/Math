@@ -3027,3 +3027,37 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The primary literature refresh records the exact localizable-graph
   reformulation and the known hardness of static recognition at
   independence number three.  Neither supplies an eternal-domination result.
+
+## 2026-07-28 07:00 PDT — exact static \(Y_3\) forced above order 13
+
+- Promoted C-121 after unconditional hostile review.  For an independent
+  retained triple, the exact static response-list pattern
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\) on an induced complement \(P_4\)
+  forces the same exact family-response pattern.  Thus this shortest
+  static gluing obstruction cannot evade the dynamic analysis by shrinking
+  one of its internal lists.
+- Under \(\gamma=\alpha=\gamma^\infty=3\), the two omitted-\(c\)
+  endpoint swaps have nonempty static-defect sets.  A complete local
+  kernel over the 16 possible remaining core adjacencies proves that the
+  two defect sets are disjoint.
+- Combining those two new vertices with the five pairwise separated
+  external witness systems of C-072 gives
+  \[
+    |V(G)|\ge14
+  \]
+  for every embedded exact static \(Y_3=P_4\).  This is a floor for one
+  conditional pattern, not an order-14 counterexample frontier.
+- The clean-room audit replayed 576 rigidity subpatterns, all 16
+  double-defect completions, the 21-state \(\gamma=2\) boundary family and
+  all 84 of its obligations, and the exact four-round negative kernel.
+- Accepted note:
+  `ff559cb949c5427bc33e75a43deba38a8284e78c380a01bb97488a82a59798f9`.
+  Candidate manifest:
+  `c9f274cfae2b4404826fe65e1098d795409a437498abeb23ae9bcfe1572a2525`.
+  Hostile output:
+  `ecce123e4fa79e2cf4092acd6b75a9b3dceddccaa46ed315a90d27245fd0e994`.
+  Hostile manifest:
+  `637e916e3bafc36a6f9275d97fe8489f312d3cf0013610c5d136e8e9a6bbb4ac`.
+- The exact unresolved branch is longer free unit propagation, residual
+  unit-free bicycles, and the separately reviewed full-list gluing
+  problem.  No universal or complete \(k=3\) conclusion is claimed.
