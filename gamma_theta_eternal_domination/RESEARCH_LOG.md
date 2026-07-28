@@ -2779,3 +2779,26 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   parameter-three theorem.  The next no-full target is to extend the
   forced-type/physical-witness mechanism to arbitrary connector
   subdivisions or cycles with at least four gates.
+
+## 2026-07-28 04:43 PDT — every exact-two-list port is physical
+
+- The general dynamic-type lane strengthened unexpectedly: under
+  \(\gamma=3\), one sealed same-color positive cap is already impossible.
+  Applying the no-dominating-pair condition to two pairs exhausts both
+  outside witnesses and all three anchors.
+- If an exact-two-list port were dynamically adjacent to its omitted anchor,
+  C-094 supplies a mixed connector edge, C-082 supplies a same-color positive
+  cap, and C-079 seals that cap.  The single-cap contradiction therefore
+  rules out every dynamic port, not merely three simultaneous dynamic types.
+- Consequently, at every independent retained triple in the unit-free
+  no-full branch,
+  \(L_S(t)=N_G(t)\cap S\).  This removes the response/nonedge ambiguity that
+  blocked the earlier proposed bicycle-shortening argument.
+- The hostile reviewer returned unconditional `PASS`, explicitly auditing
+  every adjacency direction and dependency scope.  Its clean-room checker
+  reconstructed the six-vertex sharpness control `EFnG`, parameters
+  \((2,2,3,3,3)\), the 12-state family, all 36 attack obligations, and the
+  18-state greatest triple kernel.
+- C-111 is a universal structural theorem for the exact-two-list \(k=3\)
+  branch.  It does not yet prove that the response 2-CNF is satisfiable or
+  settle the complete \(k=3\) case.

@@ -1,5 +1,65 @@
 # Campaign State
 
+## Checkpoint 074 — 2026-07-28 04:43 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The certified finite frontier is unchanged:
+  all orders through 12 are excluded, and only the parameter-three slice is
+  excluded at order 13.
+- **Every exact-two-list port is now physical when \(\gamma=3\) (C-111).**
+  For any retained independent triple \(S\), response membership is exactly
+  adjacency to the three anchors:
+  \[
+    L_S(t)=N_G(t)\cap S.
+  \]
+  In particular, the unique missing response is now a literal complement
+  edge, not merely a dynamic failure elsewhere in the eternal family.
+- The proof first excludes even one sealed same-color positive cap by two
+  applications of the no-dominating-pair condition.  C-094 turns any dynamic
+  port into a mixed connector, C-082 supplies a positive cap, and C-079 seals
+  it, so a dynamic port is impossible.
+- An independent hostile audit returned unconditional `PASS` against source
+  hash
+  `f3309daa2497a10c978fac28286959d6ec2fb52e8438c727cdf2eafce89aa1a7`.
+  Its clean-room checker also reconstructs the sharp six-vertex
+  \(\gamma=2\) control `EFnG`, all exact parameters, all 36 selected-family
+  attack obligations, and the 18-state greatest triple kernel.
+- The imported external-AI report has been audited.  Its static reductions
+  agree with accepted campaign results, but its stated order-12 attack-depth
+  exclusions lack the proof-log and coverage artifacts needed for promotion.
+  Its warning about dynamic response omissions was valuable; C-111 now
+  removes that obstacle in the exact-two-list branch.
+- C-111 does not itself color the response 2-CNF.  The primary no-full target
+  is now the arbitrary minimal bicycle with fully physical literals; the
+  full-list \(C_5\) exclusion and an all-\(k\) inactive-link theorem are under
+  separate hostile audit.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact-two-list response physicality | closed-proved C-111 | Every omitted response is a literal complement edge |
+| Arbitrary subdivided/minimal 2-SAT bicycle | active-primary | Use physical literals to rule out all global odd holonomy or force a dominating pair |
+| Full-list dynamic closure | active-hostile-review | Candidate exclusion of an inactive induced \(C_5\) from genuine eternal closure |
+| All-\(k\) inactive-link projection | active-hostile-review | Candidate perfect \((k-1)\)-colorable link around every inactive vertex |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Three bounded proof/audit lanes are active.  No broad enumeration,
+  memory-heavy SAT search, or uncheckpointed long process is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Rebuild the arbitrary unit-free 2-SAT bicycle argument using C-111's exact
+   physical anchor incidences.
+2. Complete the independent certificate audit of the inactive induced
+   \(C_5\) exclusion and promote it only if coverage and replay both pass.
+3. Complete the all-\(k\) inactive-link audit and test whether its local
+   colorings can be glued globally.
+
 ## Checkpoint 073 — 2026-07-28 04:25 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
