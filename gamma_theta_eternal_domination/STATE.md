@@ -1,5 +1,69 @@
 # Campaign State
 
+## Checkpoint 092 — 2026-07-28 09:13 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `1eb1809a`.
+- **Greatestness alone does not force exchange reciprocity (C-134).**
+  The exact graph `GEjbug` has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,3)\), a 41-state
+  literal greatest triple-family, and one genuinely asymmetric
+  complementary exchange.  The reverse state dominates but loses
+  immediately to a displayed one-guard attack.
+- The control is sharp for the intended route: it retains maximum
+  independent endpoints and the greatest family, but fails exactly
+  \(\gamma=\alpha\).  Thus an equality-specific proof cannot be replaced by
+  a generic fixed-point maximality argument.
+- **The payoff of equality reciprocity is now exact (C-135).**  If the open
+  reciprocity statement holds, the global C-108 active-response relation is
+  undirected.  For disjoint triples it also upgrades the accepted response
+  matching to a complete eight-state family cube.
+- A clean-room reviewer independently rebuilt all parameters, the 41-state
+  kernel, all 205 attack obligations, and the failed attack.  It also
+  replayed the complete 131,072 fixed induced two-vertex extensions:
+  36 equality repairs and 3,136 independent-state pairs have no violation.
+  That extension census remains `OBSERVED`; random and proofless SAT
+  evidence remains `EXPLORATORY`.
+- C-134/C-135 note/candidate manifest:
+  `4e195ff3ba8375a0319efd7a8362c5c09bc7fe9ec1970460d57721911ee1ef9f`,
+  `3fcd40c6589b4faa525ee8337d798a8ac144d7e40d00eeaf8c375a71585a4b2e`.
+  Hostile result/manifest:
+  `ddd0271c4965cd45cfeeb04d3d4ea7c483a01faa914ef8823c8da837aba523a6`,
+  `793b38b380670fbbddb620c83d31f9a24d2a7ae5cd0b39732e52b872e3fec3f5`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Greatestness-only reciprocity | closed-refuted C-134 | Exact \(\gamma=2\) greatest-family control |
+| Equality-specific reciprocity | active-primary | Must use no dominating \((k-1)\)-set, not maximality alone |
+| Reciprocity payoff | closed-conditional C-135 | Active relation becomes undirected; rank-three matching gives full cube |
+| Deletion-rank mechanism | active-hostile-review | Static reciprocity and equal-rank induction are false; simultaneous survival persists through order nine |
+| Bridge propagation | active-primary | Shared-color ridge must interact with the next clause |
+| Full-list anchorless vertices | active-primary | Conditional cube information has been fed into this lane |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One fresh hostile audit is independently reconstructing the order-nine
+  deletion-rank anatomy, while the bridge and anchorless full-list proof
+  lanes continue.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The exact
+  `GEjbug` audit plus its complete extension-class replay takes about three
+  seconds; the order-nine single-core discovery census takes about
+  seventeen seconds.
+
+### Next three highest-value actions
+
+1. Determine whether the no-dominating-pair condition yields a coinductive
+   simulation between complementary exchange states.
+2. Apply the conditional full eight-state cube to the anchorless
+   full-response geometry, while keeping the reciprocity premise explicit.
+3. Propagate C-133's retained bridge through the next singleton clause.
+
 ## Checkpoint 091 — 2026-07-28 08:51 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

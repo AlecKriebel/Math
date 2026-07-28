@@ -3313,3 +3313,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile result/manifest:
   `284a08dca64862d0595874873d899324e2bf13ddf749920f629937a741819303`,
   `f9429c9096b0628a5395da0047c4257067958489cfb0f3f191f73e1c909b0dc8`.
+
+## 2026-07-28 09:13 PDT — greatest-family reciprocity boundary
+
+- Promoted C-134 after a clean-room hostile audit.  `GEjbug` has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,2,3,3,3)\), but its literal
+  41-state greatest eternal triple-family has a one-sided complementary
+  exchange between its two maximum independent triples.
+- The absent reverse state is not merely non-dominating.  It dominates and
+  is deleted because attack 7 has three legal moves whose successors miss
+  4, 6, and 2.  Thus maximality of the fixed point cannot replace the
+  missing \(\gamma=\alpha\) argument.
+- Promoted C-135 as an exact conditional theorem.  Equality-specific
+  reciprocity would make the global active-response relation undirected.
+  For disjoint triples, the accepted response Hall matching would then be
+  mutual and fill an entire eight-state family base-ordering cube.
+- The audit distinguishes pairwise reciprocity, mutual matching, family
+  base orderability, and matroid exchange.  It independently replayed the
+  41-state kernel and all 131,072 fixed induced two-vertex extensions.
+  The 36 equality repairs show no reciprocity violation, but this remains
+  an `OBSERVED` extension-class result rather than a theorem.
+- Note/candidate manifest:
+  `4e195ff3ba8375a0319efd7a8362c5c09bc7fe9ec1970460d57721911ee1ef9f`,
+  `3fcd40c6589b4faa525ee8337d798a8ac144d7e40d00eeaf8c375a71585a4b2e`.
+  Hostile result/manifest:
+  `ddd0271c4965cd45cfeeb04d3d4ea7c483a01faa914ef8823c8da837aba523a6`,
+  `793b38b380670fbbddb620c83d31f9a24d2a7ae5cd0b39732e52b872e3fec3f5`.
