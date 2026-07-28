@@ -1,5 +1,69 @@
 # Campaign State
 
+## Checkpoint 106 — 2026-07-28 14:25 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `a60cc04e`.
+- **Rank one now has one canonical collision core (C-158).**  The
+  independently audited normalization forces the complete named
+  saturation in QQ1/AQ1 and proves that every AQ1 collision recreates
+  QQ1 on a new independent root with the same reverse state, deletion
+  rank, blocker, and private witnesses.  Every completion of the forced
+  independent pair \(\{x,r\}\) lies in a nonempty \(G\)-clique complete
+  to both unaffected root guards.  This normalizes rather than excludes
+  the final QQ1 core.
+- **Rank-zero nonsingleton full-list terminals now carry exact witnesses
+  (C-157).**  A direct-root corridor at rank zero must have a singleton
+  terminal palette.  Every secondary color in a rank-zero nonroot
+  corridor instead forces an unbanned non-dominating response and a
+  locally collision-free private missed witness.  The theorem is
+  conditional on the final predecessor having rank zero and does not
+  handle anchor restoration.
+- **Two exact \(\gamma=2\) controls reject the easiest QQ1 exits
+  (C-159).**  Repairing only the original asymmetric pair can preserve
+  the canonical collision and transfer the asymmetry to a reverse corner
+  of rank three.  Thus neither “the original pair dominates” nor
+  monotone rank descent is a valid universal shortcut.  The collision
+  solver table through order 16 remains `OBSERVED` only (C-160).
+- The imported external-AI report remains an audited idea source rather
+  than evidence.  Its useful global-holonomy intuition is now being
+  tested through the exact complement link of a shared repair pivot;
+  no imported computational claim has been promoted.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-146/C-150/C-153/C-156/C-158 | Eliminate the sole canonical rank-one QQ1 core, then higher-rank multi-hit collisions |
+| Complement-link repair holonomy | active-candidate | Prove asymmetric endpoints occupy distinct pivot-link components and turn that separation into a global contradiction |
+| Full-list future-safe color | active-primary, C-149/C-154/C-157 | Positive-rank terminal entries, anchor restoration, then simultaneous all-empty kernels/residual exact 2-SAT |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the surviving fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Requires the dynamic palette-gluing statement after complete \(k=3\) |
+
+### Running jobs and resources
+
+- Two bounded proof lanes are active: one is attacking the canonical QQ1
+  completion clique, and one is formalizing the complement-link
+  separation forced by repeated repair squares.  No census or
+  memory-heavy solver job is running; an exploratory order-17 SAT job was
+  stopped after its 50-second time box.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive and no process currently uses the campaign solver.
+
+### Next three highest-value actions
+
+1. Hostilely audit the complement-link separation theorem and test
+   whether its component checkerboard forces QQ1 or full reciprocity to
+   close.
+2. Use the C-158 full-hit completion clique together with the global
+   no-dominating-pair condition; reject any argument already refuted by
+   the exact \(\gamma=2\) controls.
+3. Extend C-157 from rank-zero corridor predecessors to positive-rank
+   entries or eliminate anchor restoration in the simultaneous
+   all-empty-kernel branch.
+
 ## Checkpoint 105 — 2026-07-28 13:16 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

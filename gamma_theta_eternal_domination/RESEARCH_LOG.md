@@ -3724,3 +3724,45 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   rank one.  QQ1 and AQ1 are the only rank-one collision rows left.
   Higher-rank multi-hit collisions, complete \(k=3\), and the universal
   conjecture remain open.
+
+## 2026-07-28 14:25 PDT — rank one normalized to one core
+
+- Promoted C-157 after an unconditional hostile audit.  At a rank-zero
+  C-149 corridor predecessor, a direct-root terminal has singleton root
+  palette.  In a nonroot corridor, every secondary terminal color forces
+  a legal response outside the ban which must be non-dominating, and
+  therefore supplies a private missed witness outside every named local
+  role.  The result does not make a positive-rank final predecessor rank
+  zero and does not cover anchor restoration.
+- The equality control `OQifur}UO]}iTij]tpo}v` was independently
+  reconstructed with
+  \((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\).  It has three
+  cyclic doubleton corridor rows, but restricted-kernel sizes
+  \(0,150,0\).  This is a sharp warning: the static three-corridor
+  picture cannot eliminate the simultaneous all-empty branch.
+- Promoted C-158 after an unconditional hostile audit.  All 32 QQ1 and
+  128 AQ1 named-incidence assignments were reconstructed independently.
+  The proof forces the complete named saturation, treats the literal
+  \(a=x\) collision in QQ1, and turns every AQ1 row into QQ1 on
+  \(S=\{a,p,q\}\) without changing the reverse state, rank, blocker, or
+  witnesses.  Only one canonical rank-one QQ1 normal form remains.
+- The same proof shows that every common nonneighbor of the canonical
+  \(\{x,r\}\) pair is adjacent to both unaffected root guards, and that
+  all such completions form a nonempty \(G\)-clique.  The static control
+  `Hslaghb` has exact
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\), so the
+  saturated core alone is not contradictory.
+- Logged the exact C-159 boundary controls.  The 14-vertex control makes
+  the original asymmetric pair dominating.  The 15-vertex control repairs
+  that pair but transfers the asymmetry to an omitted corner of rank
+  three; both have
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(2,3,3,3,3)\).  Hence neither
+  a one-pair exit nor monotone repair-square rank descent is valid.
+- Logged C-160 only as `OBSERVED`: the collision-specific solver reports
+  full-\(\gamma\) `UNSAT` through order 16, but no proof logs or
+  independent formula reconstruction exist.  A capped order-17
+  exploratory solve was stopped after 50 seconds and produces no claim.
+- A new universal lead is being frozen separately: repeated C-145 repair
+  squares appear to force the endpoints of an asymmetric active edge
+  into different connected components of every shared-pivot complement
+  link.  It remains a candidate until independent hostile review.
