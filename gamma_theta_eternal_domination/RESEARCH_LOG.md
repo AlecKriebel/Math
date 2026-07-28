@@ -3171,3 +3171,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile stdout/manifest:
   `158e5c607b931ea302e8c2c508610dff32426d84bcf007eddab2959e9a7833f0`,
   `868b4861546c26442034bda769d8f50e5fdd4027b727407eb2c770769e0f24ef`.
+
+## 2026-07-28 08:14 PDT — exact gamma-three boundary and static control
+
+- Promoted C-127 after an unconditional clean-room hostile review.  For
+  \(H=\overline G\), \(H'=H-x\), and \(B=N_H(x)\), once every pair in
+  \(H'\) has a common \(H'\)-neighbor, the target condition
+  \(\gamma(G)\ge3\) is exactly total domination of \(H'\) by \(B\).
+  In the C-108 family marking \(B\subseteq R_x\).
+- A full root with all three target swaps dominating forces three nonempty,
+  pairwise-disjoint anchor-pure spokes in \(B\), and total domination makes
+  \(H'[B]\) isolate-free.
+- Promoted C-128 as a sharp boundary result.  The 11-vertex deletion
+  complement `JEhbtjKk@o_` has an inactive \(P_4\), nonvacuous ridge
+  covariance, pure maximal triangles, every-pair common neighbors, and a
+  full active root.  Its complement has all five parameters equal to three
+  and a 48-state eternal family.
+- After adjoining the target with \(B=R_x\), all 18 marked one-step
+  successors dominate and \(\gamma=3\), but the unique deletion
+  three-coloring uses all three colors on \(R_x\).  The target has
+  \((3,3,3,4,4)\), and the full root loses only through an explicit
+  rank-three adaptive attack tree.  Therefore the control refutes the
+  strengthened static shortcut but leaves multi-step equality gluing open.
+- Accepted note/candidate manifest:
+  `230ab6a24897d65d97ae49109660e28cd6db38aefc423539f6e8bc380c4a6fb6`,
+  `89edc267a7ec289de682b78428a0d20237e9ba9081c2289593547679301bc08b`.
+  Candidate result:
+  `73338afed9c006fae80fc8cfc9f73da7cd029691e5b7b44d011e2b0b66f9881d`.
+  Hostile result/manifest:
+  `7525ba43235069e7bd8c346c61dee73373e305eafb92d012cf131c8067df84e9`,
+  `42e8ffd2e25407322bcd22fcc31addb5c9707927d44dd5bd9c6e72f491035f96`.

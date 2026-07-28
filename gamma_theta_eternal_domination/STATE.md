@@ -1,5 +1,72 @@
 # Campaign State
 
+## Checkpoint 087 — 2026-07-28 08:14 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `24134aaa`.
+- **The missing \(\gamma=3\) target condition has an exact complement
+  translation (C-127).**  With \(H=\overline G\), \(H'=H-x\), and
+  \(B=N_H(x)\), assuming every deletion pair has a common \(H'\)-neighbor,
+  \(\gamma(G)\ge3\) holds exactly when \(B\) totally dominates \(H'\).
+  In the family marking \(B\subseteq R_x\).
+- At a full root, the target condition forces three nonempty pairwise
+  disjoint anchor-pure spokes inside \(B\), and \(H'[B]\) has no isolated
+  vertex.  These are useful dynamic-boundary constraints, but they still do
+  not choose a globally compatible deletion coloring.
+- **Even this strengthened static gluing shortcut is false (C-128).**
+  An exact 12-vertex control has target parameters
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\), with
+  \(B=R_x\), inactive \(P_4\), nonvacuous ridge covariance, pure triangle
+  geometry, and all 18 marked one-step target successors dominating.
+  Nevertheless every deletion three-coloring uses all three colors on
+  \(R_x\).
+- The control is defeated only after an adaptive three-attack tree, while
+  four guards form a 404-state fixed family.  This cleanly identifies the
+  missing mechanism: a successful full-list proof must exploit genuine
+  multi-step three-guard closure rather than any currently extracted static
+  condition.
+- C-127/C-128 accepted note/candidate manifest:
+  `230ab6a24897d65d97ae49109660e28cd6db38aefc423539f6e8bc380c4a6fb6`,
+  `89edc267a7ec289de682b78428a0d20237e9ba9081c2289593547679301bc08b`.
+  Candidate result:
+  `73338afed9c006fae80fc8cfc9f73da7cd029691e5b7b44d011e2b0b66f9881d`.
+  Hostile result/manifest:
+  `7525ba43235069e7bd8c346c61dee73373e305eafb92d012cf131c8067df84e9`,
+  `42e8ffd2e25407322bcd22fcc31addb5c9707927d44dd5bd9c6e72f491035f96`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact \(\gamma=3\) target translation | closed-proved C-127 | Physical nonneighbors of \(x\) totally dominate the deletion complement |
+| Full-root physical spokes | closed-proved C-127 | Three disjoint anchor-pure spokes; no isolates in \(H'[B]\) |
+| Static \(\gamma=3\) full-list gluing | closed-refuted C-128 | Exact 12-vertex control survives every marked one-step test |
+| Equality-specific full-list gluing | active-primary | Must use multi-step three-guard closure |
+| Positive-length unit chains/lollipops | active-primary | Cross at least one genuine binary clause between free components |
+| Clean exact \(Y_k\) strengthening | active-hostile-review | Candidate contamination/defect count under independent audit |
+| Complete \(k=3\) theorem | active | Cross-component chains/bicycles and dynamic full-list gluing remain |
+| Universal parameter lifting | active-long-range | Requires the still-open palette-gluing theorem \(\mathsf{GL}(k)\) |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One hostile audit is checking the all-\(k\) \(Y_k\) strengthening, and one
+  light proof lane is classifying the first genuine cross-component clause.
+  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Candidate and
+  hostile C-127/C-128 replays completed locally with the machine responsive.
+
+### Next three highest-value actions
+
+1. Extract a retained two- or three-step consequence that fails in the
+   C-128 control, and use it against full-list palette holonomy.
+2. Finish the hostile audit of the stronger clean \(Y_k\) count and accept
+   only the exact hypotheses that survive.
+3. Complete the first cross-clause singleton classification, preserving
+   physical response ports and the no-dominating-pair witnesses.
+
 ## Checkpoint 086 — 2026-07-28 07:47 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

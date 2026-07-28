@@ -1,0 +1,36 @@
+{
+  "schema": "gamma3-bipartite-gluing-hostile-review-manifest-v1",
+  "frozen_at": "2026-07-28T08:11:21-07:00",
+  "verdict": "PASS",
+  "candidate_binding": {
+    "path": "math/working/gamma3_bipartite_gluing/MANIFEST.json",
+    "sha256": "89edc267a7ec289de682b78428a0d20237e9ba9081c2289593547679301bc08b",
+    "listed_file_hashes_verified": 11
+  },
+  "review_files": [
+    {
+      "path": "reviews/gamma3_bipartite_gluing_hostile/REVIEW.md",
+      "sha256": "27f120be3d2e9799486d720cb2080579451e8859c95cc54c53c65fd5ad5ee60c"
+    },
+    {
+      "path": "reviews/gamma3_bipartite_gluing_hostile/independent_checker.py",
+      "sha256": "f4b74636a962393b7b56b2810af5ca57b45e63bcb8f4916fe1a65d2a432ffd85"
+    },
+    {
+      "path": "reviews/gamma3_bipartite_gluing_hostile/independent_result.json",
+      "sha256": "7525ba43235069e7bd8c346c61dee73373e305eafb92d012cf131c8067df84e9"
+    }
+  ],
+  "reproduction": [
+    "python3 -I -B -W error reviews/gamma3_bipartite_gluing_hostile/independent_checker.py",
+    "python3 -I -B -W error reviews/gamma3_bipartite_gluing_hostile/independent_checker.py | diff -u reviews/gamma3_bipartite_gluing_hostile/independent_result.json -"
+  ],
+  "claim_boundary": {
+    "exact_gamma3_target_translation": "PROVED",
+    "full_root_anchor_pure_witnesses": "PROVED",
+    "static_gamma3_gluing_implication": "REFUTED",
+    "dynamic_equality_gluing_implication": "OPEN",
+    "complete_k3_case": "OPEN",
+    "universal_gamma_theta_conjecture": "OPEN"
+  }
+}
