@@ -321,3 +321,43 @@ All timestamps use America/Los_Angeles.
   \]
   Thus coherent repetition does not activate the negative three-point
   Gram direction of the local endpoint kernel.
+
+## 2026-07-28 14:20--15:35 PDT — exact rank cutoff at the four-copy frontier
+
+- The Clifford-frame audit proved a sharp commuting/anticommuting
+  covariance lemma but also an unavoidable additive gap in the natural
+  normalized-Pauli proof.  An exact qutrit code saturates the obstructing
+  constant.  The simple three-replica lift likewise has an admissible
+  invariant block of value \(-4\).
+- A refined tensor-cube calculation showed that this bad block is genuinely
+  populated by an exact qutrit code.  A second, larger negative
+  three-standard block is populated simultaneously; positive Young
+  sectors compensate in the full value.  Thus removing one bad
+  representation sector cannot prove the inequality.
+- Derived the exact homogeneous four-copy target
+  \[
+  {\cal B}(H)=6\operatorname{Tr}H^2+
+  \sum_{|S|=2}\|\operatorname{Tr}_S H\|_2^2
+  -3\sum_{|S|=1}\|\operatorname{Tr}_S H\|_2^2\ge0
+  \]
+  for positive \(H\) of rank at most two.  Its purification is the
+  qubit-reference inequality already isolated above.
+- Proved that the rank cutoff is essential: for
+  \(|\Phi_3\rangle_{K4}\otimes|GHZ_3\rangle_{123}\), the reference has
+  dimension three, the physical marginal has rank three, and the exact
+  value is \(-2/3\).
+- Reduced the missing rank-two assertion to a \(2\times2\) copositivity
+  inequality after diagonalizing \(H\).  Its two diagonal entries are
+  nonnegative by a direct sum of six linear-entropy subadditivity squares;
+  only the lower bound on the off-diagonal entry remains.
+- Direct homogeneous searches with qubit reference and physical dimensions
+  two through four again approached zero without a resolved negative.  The
+  qutrit zero points had numerically rank-deficient one-site marginals,
+  consistent with the common-local-qubit equality boundary.  This is
+  discovery information only.
+- Derived a Gram-corrected transfer-matrix formula for translation-invariant
+  two-dimensional MPS codes.  It gives an exact constant-coefficient
+  recurrence of order at most \(D^8\).  Proved all-copy positivity for
+  physical-rank-two tensors, every commuting \(D=2\) tensor (including its
+  Jordan case), and orthogonal diagonal \(D=3\) tensors.  No negative MPS
+  family was found.
