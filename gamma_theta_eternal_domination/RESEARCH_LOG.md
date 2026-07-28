@@ -2823,3 +2823,25 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - C-112 identifies a strong local induction theorem but also a real gluing
   boundary.  It does not synchronize the local color permutations or prove
   the global coloring needed to extend over the target.
+
+## 2026-07-28 04:53 PDT — inactive induced \(C_5\) excluded by certificates
+
+- A local one-guard theorem now excludes an induced complement \(C_5\) whose
+  five rim edges each lie in a retained independent witness triple and whose
+  ten endpoint responses at one target are absent.  The five witnesses may
+  coincide in any pattern.
+- There are exactly 52 equality patterns among five witnesses.  The
+  certificate generator discharged all of them; the hostile checker
+  independently reconstructed 215,100 clauses, verified the complete
+  208-file inventory, and replayed every DRAT proof.
+- The larger-graph restriction is sound because template attacks have both
+  their attacked vertex and moving guard inside the template.  Omitting
+  outside attacks and vertices only weakens the finite formula.
+- Under \(\alpha=\gamma^\infty=3\) and \(\gamma(G-x)\ge3\), each rim edge of
+  an inactive induced \(C_5\) has the required deletion witness, every
+  witness triangle belongs to every optimal family, and C-108 supplies the
+  ten absent endpoint successors.  Hence the inactive complement has no
+  induced \(C_5\).
+- The clean-room parity control verifies an inactive induced \(C_4\) in a
+  16-vertex equality graph.  C-113 therefore raises the remaining odd-cycle
+  length to at least seven but does not prove bipartiteness.

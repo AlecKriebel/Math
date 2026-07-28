@@ -1,5 +1,58 @@
 # Campaign State
 
+## Checkpoint 076 — 2026-07-28 04:53 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The finite order frontier is unchanged.
+- **The inactive complement cannot contain an induced \(C_5\) (C-113).**
+  The universal local configuration consists of an induced five-cycle, one
+  retained independent witness triple over each rim edge, and inactivity of
+  both rim endpoints at the target.  All 52 possible equality patterns among
+  the five witnesses are impossible.
+- The certificate bundle covers template orders 7 through 11.  Its independent
+  checker regenerated 215,100 clauses byte for byte, verified the exact
+  208-file case inventory and every hash, and replayed all 52 DRAT proofs with
+  the pinned checker.  The hostile review returned unconditional `PASS`
+  against note hash
+  `5ccd88e833db4794a834000a3f72e8ca32efbb339559800728ab0ef196861393`
+  and manifest hash
+  `3260bd78dd4a8726b2b16f92fcc3dfafc8309531133c3ae34f0f0d3ba24193d7`.
+- In the C-108 equality-critical deletion branch, the inactive complement was
+  already triangle-free.  C-113 now raises the shortest possible inactive
+  odd cycle from five to at least seven.
+- The 16-vertex equality control `OQifur}UO]}iTij]tpo}v` has full and deletion
+  parameters all equal to three and a genuine inactive induced \(C_4\), so
+  acyclicity is false and parity is essential.
+- This is a certified local theorem, not inactive bipartiteness.  Induced
+  \(C_7\) and longer odd cycles remain the exact full-list obstruction.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Inactive induced \(C_5\) | closed-proved C-113 | All 52 witness-identification patterns certified impossible |
+| Inactive longer odd cycles | active-primary | Find a length-independent attack or isolate a \(C_7\) control |
+| Exact-two-list signed balance | active-primary | Cross edges appear to force rainbow gates; exclude odd signed cycles |
+| All-\(k\) local-to-global gluing | active | C-112 settles each inactive suspension separately, not their synchronization |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Three bounded proof lanes are active; no broad enumeration or memory-heavy
+  solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Prove that C-111 plus \(\gamma=3\) forces every cross-type complement edge
+   into a rainbow response triangle, then audit the resulting signed-balance
+   formulation.
+2. Generalize C-113 from \(C_5\) to every induced odd cycle, or produce an
+   exact \(C_7\) boundary model.
+3. Seek a global compatibility invariant that synchronizes the C-112 local
+   \((k-1)\)-colorings.
+
 ## Checkpoint 075 — 2026-07-28 04:50 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
