@@ -2930,3 +2930,37 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   not a finite search.  It leaves exactly the singleton-list and full-list
   regimes as the parameter-three proof frontier; complete \(k=3\) and the
   universal conjecture remain open.
+
+## 2026-07-28 06:10 PDT — multi-anchor projection and exact induction gap
+
+- Promoted C-117 after an unconditional hostile audit.  Any nonempty proper
+  anchor face \(A\) can be frozen directly, for either family or static
+  response lists, producing an equality projection with \(k-|A|\) guards.
+  This does not iterate single-anchor projections or assume response-list
+  functoriality.
+- In a minimum counterexample every proper static response-palette slice has
+  a list-respecting coloring.  A jointly inactive face also forces the
+  target together with its common complement link to have
+  \(\chi=\omega=k-|A|\).
+- The exact induction statement is
+  \(\mathsf P(k-1)+\mathsf{GL}(k)\Rightarrow\mathsf P(k)\).  Current results
+  supply the lower-parameter slice colorings, but not their globally
+  compatible choice.
+- Promoted C-118 as a refutation of pure list gluing.  Uniform abstract
+  instances \(Y_k=K_{k-3}\vee P_4\) are connected, vertex-minimal
+  uncolorable, no-full-list systems with every proper-palette slice
+  colorable and every accepted Hall/degree/collision condition satisfied.
+  They are not asserted to be eternal-graph realizations.
+- The hostile checker covered 1,099 labeled graphs through order five, 663
+  optimal eternal families, 12,960 frozen projections, 6,480 palette
+  colorings, 6,710 inactive suspensions, and \(Y_k\) through \(k=11\).
+  Candidate checker output SHA-256:
+  `163cfe56c205cd55b4e3e65efd9d6221cd259cde1b427387d4de3ebb26760219`.
+  Hostile checker output SHA-256:
+  `f1ebdf6b71dc6f2dfd12730c82d93916893862f4bb81de9236f6bf774889b480`.
+  Hostile manifest SHA-256:
+  `7ce488ed625705b405326427578608d17e6efc7a4f1f263451b63a20d1ea549c`.
+- A separate singleton cap/buffer candidate was not promoted: hostile
+  review caught an omitted immediate false-constant branch in its Boolean
+  taxonomy.  The underlying graph-game theorem and controls passed, and a
+  corrected package is in progress.

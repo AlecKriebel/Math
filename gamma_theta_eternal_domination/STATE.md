@@ -1,5 +1,71 @@
 # Campaign State
 
+## Checkpoint 080 — 2026-07-28 06:10 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The certified finite frontier is unchanged.
+- **Simultaneous multi-anchor projection is proved for every \(k\)
+  (C-117).**  Freezing any nonempty proper anchor face \(A\) in one step
+  produces an exact equality instance with \(k-|A|\) guards.  In a minimum
+  counterexample, every proper static response-palette slice has a
+  list-respecting coloring.
+- If the frozen face is jointly inactive at a target, its entire complement
+  link together with that target has
+  \(\chi=\omega=k-|A|\).  This strictly generalizes the one-inactive-guard
+  suspension C-112 and avoids an unsound assumption that response lists
+  survive iterated projection unchanged.
+- The exact remaining parameter-lifting statement is now explicit:
+  \[
+    \mathsf P(k-1)+\mathsf{GL}(k)\Longrightarrow\mathsf P(k),
+  \]
+  where \(\mathsf{GL}(k)\) asks the individually colorable omission slices
+  to glue into one global static response-list coloring.
+- **Pure list gluing is refuted (C-118).**  The uniform abstract instance
+  \(Y_k=K_{k-3}\vee P_4\) passes every currently available proper-palette,
+  Hall, degree, collision-transfer, no-full-list, and minimality condition,
+  but remains globally uncolorable.  It is not claimed to arise from an
+  eternal equality graph; it proves that additional multi-state dynamics
+  are indispensable.
+- The hostile checker returned unconditional `PASS`.  It independently
+  exhausted 1,099 labeled graphs through order five, 663 optimal eternal
+  families, 12,960 frozen projections, 6,480 static palette colorings,
+  6,710 inactive suspensions, and the abstract family through \(k=11\).
+  Review manifest:
+  `7ce488ed625705b405326427578608d17e6efc7a4f1f263451b63a20d1ea549c`.
+- A separate singleton-list candidate remains **unaccepted** after its
+  hostile audit caught one omitted false-constant/parity branch in the
+  Boolean taxonomy.  Its graph-game cap lemma and controls passed; the
+  statement is being repaired before any promotion.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Multi-anchor frozen projection | closed-proved C-117 | Exact simultaneous \(k\mapsto k-|A|\) reduction |
+| Automatic parameter induction | blocked-refuted C-118 | Proper-palette list colorings do not glue abstractly |
+| Dynamic palette gluing \(\mathsf{GL}(k)\) | active-long-range | Must use full one-guard dynamics or no-\((k-1)\)-dominating-set structure |
+| Singleton-list no-full branch | active-correction | Restore the omitted false-constant branch, then re-audit the cap/buffer theorem |
+| Full-list inactive odd cycles | active-primary | Seek a sound arbitrary-length dynamic parity mechanism; bipartiteness alone would still not solve precoloring |
+| Complete \(k=3\) theorem | active | Singleton and full exceptional-response regimes remain |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One singleton correction, one inactive-path proof lane, and one completed
+  parameter-lifting audit are active or being packaged.  No broad
+  enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Re-audit and promote the corrected singleton cap/buffer theorem only if
+   its Boolean terminal split is exhaustive.
+2. Finish or refute the arbitrary inactive-path parity recurrence, while
+   preserving the separate global precoloring gap.
+3. Use the new joint-face theorem to search for a genuinely dynamic proof
+   of \(\mathsf{GL}(k)\), rather than a pure list-coloring argument.
+
 ## Checkpoint 079 — 2026-07-28 05:39 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and no
