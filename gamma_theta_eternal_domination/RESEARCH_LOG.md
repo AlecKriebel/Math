@@ -3415,3 +3415,30 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `8f245b959c83305c414179c3672dcb53219a44baf652ce98ad366bc642cd351a`.
   Arbitrary fresh-component continuations, unit chains, lollipops,
   bicycles, complete \(k=3\), and the universal conjecture remain open.
+
+## 2026-07-28 10:12 PDT — global reverse colors and their exact limit
+
+- Promoted C-141 after an unconditional clean-room hostile audit.  At a
+  full-response \(k=3\) target, C-108 transports each reverse anchor role
+  across every physical-link edge, even between different link
+  components.  The family-response Hall theorem makes the resulting
+  global reverse set nonempty.
+- The exact three-position response row over every link edge is now
+  expressed by that global reverse set and the two endpoint palettes.  For
+  the literal greatest family, every genuinely feasible target color lies
+  in the reverse set and passes the corresponding restricted greatest
+  kernel.
+- Promoted C-142 as a sharp refutation of both converses.  The order-12
+  equality graph ``Ksv`f\knJVis`` has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,3,3)\), a 127-state
+  greatest family, and all three global reverse colors, but only color 2
+  is feasible and safe.  The other two restricted kernels are empty.
+- The hostile checker independently rebuilt the graph6 decoder, all
+  parameters, greatest family, response rows, deletion colorings, and
+  restricted kernels.  Lead replay matched the frozen result in 11.53
+  seconds at about 52 MB maximum resident memory.
+- Candidate/review manifests:
+  `8afaeec6e181535ddeaf7925420ef73d7abba444f8ec7e887a6b4fc802d5d467`,
+  `cc75898604e02eedda4b0ff7c5fd212af02459839c2b618fbde9eaf91b07388d`.
+  The full-list theorem now needs a future-stable reverse color and a
+  global coloring extraction; one-step reverse incidence is insufficient.

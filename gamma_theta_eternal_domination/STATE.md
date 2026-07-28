@@ -1,5 +1,56 @@
 # Campaign State
 
+## Checkpoint 096 — 2026-07-28 10:12 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `c3fe7f0e`.
+- **A full target now has one nonempty global reverse-color set (C-141).**
+  The set is independent of the physical-link edge even across disconnected
+  link components, and the complete response row over every edge has an
+  exact formula in terms of this global set and the endpoint palettes.
+- For the literal greatest family, every genuinely feasible target color
+  lies in the reverse set and survives the corresponding greatest kernel
+  after the exact root-swap states through the physical link are banned.
+  This is a necessary future-stability gate, not a coloring construction.
+- **Both natural converses are false even under full equality (C-142).**
+  The order-12 graph ``Ksv`f\knJVis`` has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,3,3)\), all three
+  reverse colors, but only one feasible and restricted-kernel-safe color.
+  Thus one-step reverse incidence cannot choose the global coloring.
+- A clean-room hostile checker reconstructed all parameters, the 127-state
+  greatest family, exact rows, deletion colorings, and all three restricted
+  kernels.  Lead replay matched in 11.53 seconds at about 52 MB peak RSS.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Full-list reverse signal | closed-proved C-141/C-142 boundary | Global nonempty signal; false positives require future-stable selection |
+| Dynamic equality reciprocity | active-primary | Repair-square and minimum-rank blocker candidate awaiting hostile audit |
+| Reverse-state domination | active-independent | Prove or refute the missing general domination lemma |
+| Fresh-component singleton chain | active-primary | Side-pure hub theorem and first-reentry normal form being packaged |
+| Complete \(k=3\) theorem | active | Future-stable full color and arbitrary singleton return remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent lanes are finishing a coinductive repair-square reduction,
+  testing domination of arbitrary omitted reverse states, and classifying
+  the first fresh-component return.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Hostilely audit the coinductive repair-square and minimum-rank blocker
+   lemmas, then attack the remaining blocker adjacency types.
+2. Decide the arbitrary reverse-state domination lemma; it would restore a
+   stronger rank descent and may close exchange reciprocity.
+3. Finish the fresh-component reentry normal form and combine it with
+   C-103/C-140 before any higher-order enumeration.
+
 ## Checkpoint 095 — 2026-07-28 09:44 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
