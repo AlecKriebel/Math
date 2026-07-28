@@ -3228,3 +3228,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Hostile result/manifest:
   `e87a5da31085cb0ccf9797eab65ee51850ea32c6591b3992d60a3d79b4f1be2f`,
   `e2825b2df47c31e97426d211b91d1871917dcb1dad1bf51fd7c837831deeef52`.
+
+## 2026-07-28 08:37 PDT — clean all-parameter \(Y_k\) gates
+
+- Promoted the corrected clean theorem as C-130.  Every installed
+  singleton in an exact static \(Y_k\) has a wrong-role original-anchor
+  neighbor, and each such incidence forces a closed-private buffer.  The
+  base-clean \(Y_4\) case is therefore impossible.
+- For base-clean \(k\ge5\), a directed singleton-contamination cycle
+  forces two distinct buffers outside the clean equality-three projection.
+  One original endpoint defect counts as a further vertex whether it
+  survives in the projection or is repaired outside it.  The resulting
+  conditional pattern floor is \(n\ge2k+9\), or \(n\ge2k+10\) when the two
+  endpoint defect sets have at least two distinct members.
+- The hostile reviewer found an unsupported dirty-branch inference before
+  promotion.  The original argument re-based independent-state restoration
+  at a shifted carrier that need not be independent through its edges to
+  the installed singleton set.
+- Recorded the corrected boundary as C-131.  Exact endpoints and all
+  intended graph incidences remain proved, and the complete shifted
+  dynamic \(Y_3\) follows when the carrier is independent from the
+  singletons.  Without that hypothesis, a nine-vertex symbolic control has
+  a 34-state kernel and 136 valid one-guard obligations but omits one
+  intended middle role.  This refutes the inference, not a theorem under
+  the full original \(Y_k\) setup.
+- Revised note/candidate manifest:
+  `9c874711a469eca96d790b9680c975f143bede945ee6624ebc9fc860b9f3a785`,
+  `3f44e5aae91b014d884d88e54ad98110ecda6beb3f6a8a42a4fc85262b5649ea`.
+  Hostile checker output/manifest:
+  `a328c98d91337e4d1cfd061e5f19abc283d1ad03a379fe01c8b68ddc8fc3609f`,
+  `96d7363152b43edbb846af142b90c5647a5c9f1be606feaa6361d3edc22c53a5`.

@@ -1,5 +1,70 @@
 # Campaign State
 
+## Checkpoint 089 — 2026-07-28 08:37 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `3e9a3020`.
+- **The clean all-\(k\) \(Y_k\) gate is substantially tighter (C-130).**
+  Every installed singleton must have a wrong-role graph neighbor among the
+  original anchors, and that edge forces a closed-private buffer.  A
+  base-clean exact \(Y_4\) is therefore impossible.
+- For clean \(k\ge5\), the mandatory contamination digraph contains a
+  directed cycle, which forces at least two distinct external buffers.
+  An original endpoint defect supplies another vertex whether it remains a
+  defect in the equality-three projection or is repaired outside it.  This
+  proves the conditional pattern floor \(n\ge2k+9\), strengthened to
+  \(n\ge2k+10\) when the endpoint defect union has at least two vertices.
+- The hostile audit found and corrected one real gap (C-131).  A dirty
+  shifted carrier need not inherit every middle \(Y_3\) family role merely
+  from retained caps and restoration: the carrier may be nonindependent
+  through singleton edges.  A clean-room nine-vertex symbolic kernel has 34
+  states and 136 valid obligations while omitting one intended role.
+- The dirty-carrier theorem is now exact: endpoints and intended graph
+  edges survive; the complete shifted \(Y_3\) follows when the carrier is
+  independent from the installed singletons.  The symbolic control refutes
+  the old inference only, not the full original-\(Y_k\) dirty branch.
+- C-130/C-131 revised note/candidate manifest:
+  `9c874711a469eca96d790b9680c975f143bede945ee6624ebc9fc860b9f3a785`,
+  `3f44e5aae91b014d884d88e54ad98110ecda6beb3f6a8a42a4fc85262b5649ea`.
+  Hostile checker output/manifest:
+  `a328c98d91337e4d1cfd061e5f19abc283d1ad03a379fe01c8b68ddc8fc3609f`,
+  `96d7363152b43edbb846af142b90c5647a5c9f1be606feaa6361d3edc22c53a5`.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Base-clean exact \(Y_4\) | closed-proved C-130 | Mandatory singleton contamination has nowhere to go |
+| Base-clean exact \(Y_k,\ k\ge5\) | reduced C-130 | Conditional floor \(n\ge2k+9\) |
+| Clean two-endpoint-defect case | reduced C-130 | Conditional floor \(n\ge2k+10\) |
+| Dirty independent shifted carrier | reduced C-130 | Exact dynamic \(Y_3\) follows |
+| Dirty nonindependent carrier | active-primary | Caps do not force middle-role exactness (C-131) |
+| First singleton cross clause | active-primary | C-129 leaves anchor-only and even-arm escapes |
+| Equality-specific full-list gluing | active-hostile-review | New two-attack palette theorem under audit |
+| Greatest-family response reciprocity | active-exploratory | Strong finite signal; arbitrary-family version is false |
+| Complete \(k=3\) theorem | active | Singleton and dynamic full-list branches remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- A fresh hostile audit is checking the new full-list two-attack palette
+  theorem, while a separate proof lane tests greatest-family response
+  reciprocity.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The all-\(k\)
+  hostile symbolic replay completes immediately and leaves the machine
+  responsive.
+
+### Next three highest-value actions
+
+1. Finish the hostile audit of the first genuinely multi-step full-list
+   constraint and identify the residual global synchronization problem.
+2. Push C-129's anchor-only escape through the no-dominating-pair witness
+   of its two odd terminals.
+3. Prove or refute greatest-family response reciprocity and feed any valid
+   result into both surviving \(k=3\) branches.
+
 ## Checkpoint 088 — 2026-07-28 08:29 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
