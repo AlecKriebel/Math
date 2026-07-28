@@ -1,0 +1,43 @@
+{
+  "schema": "full-list-cross-ban-rank-observed-v1",
+  "classification": "OBSERVED",
+  "date": "2026-07-28",
+  "not_used_in_proof": true,
+  "catalog_scan": {
+    "generator": "scan_catalog.py",
+    "scope": "fixed 55-graph MMV 2022 Table 9 catalog plus two accepted equality controls",
+    "totals": {
+      "graphs": 57,
+      "full_incidences": 614,
+      "rank_zero_corridors": 2764,
+      "secondary_rows": 2811,
+      "witness_transfers": 2004,
+      "witness_transfers_inside_B": 2,
+      "recipient_banned": 2,
+      "recipient_rank_zero": 1895,
+      "recipient_rank_positive": 848,
+      "recipient_kernel": 117
+    },
+    "inside_B_host": {
+      "catalog_id": "MMV-027",
+      "graph6": "JEhbtnm~D]_"
+    }
+  },
+  "single_trap_search": {
+    "generator": "search_single_trapped_transfer.py",
+    "solver": "CaDiCaL 3.0.1",
+    "encoding": "one named rank-zero trapped-witness corridor, alpha at most 3, gamma at least 3, and an explicit one-guard eternal triple-family; no clique-cover condition and no proof logs",
+    "runs": [
+      {"order": 8, "variables": 1092, "clauses": 3714, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 9, "variables": 1884, "clauses": 6494, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 10, "variables": 3045, "clauses": 10607, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 11, "variables": 4675, "clauses": 16422, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 12, "variables": 6886, "clauses": 24353, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 13, "variables": 9802, "clauses": 34859, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 14, "variables": 13559, "clauses": 48444, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 15, "variables": 18305, "clauses": 65657, "status": "UNSAT_NO_PROOF_LOG"},
+      {"order": 16, "variables": 24200, "clauses": 87092, "status": "TIMEOUT_NO_RESULT"}
+    ],
+    "termination_gate": "The order-16 run was stopped at five minutes; no order above 16 was attempted."
+  }
+}
