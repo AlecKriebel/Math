@@ -20,7 +20,7 @@ check_hash \
     6368b2d1d4735d5846f32653eff299587d265487a3bf5a2bafb9ed37b3627884 \
     "$artifact_dir/RESEARCH_LOG.md"
 check_hash \
-    7a924cc03fa0c56886fd1237d59193adee751b81dfd28f3f382b22846fb9fb58 \
+    11b7f63545ad020ed58292e394fc8f0131948dfb1f01bbc8c707ae6da7e14424 \
     "$artifact_dir/probe_positive_rank.py"
 
 python3 -I -B -W error \

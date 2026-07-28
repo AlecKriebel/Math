@@ -180,7 +180,7 @@ def audit_control(
                             )
                             alternates.append(
                                 {
-                                    "secondary": secondary,
+                                    "guard": secondary,
                                     "state": vertices(alternate),
                                     "dominates": dominates(rows, alternate),
                                     "rank": ranks.get(alternate),
@@ -199,7 +199,7 @@ def audit_control(
                             )
                             alternates.append(
                                 {
-                                    "secondary": attacked,
+                                    "guard": terminal_vertex,
                                     "state": vertices(alternate),
                                     "dominates": dominates(rows, alternate),
                                     "rank": ranks.get(alternate),
@@ -491,7 +491,7 @@ def scan_mmv_catalog() -> None:
                             categories.append("corridor_nonretained_lower")
                     elif record["gate"] == "anchor_restoration":
                         if not alternates:
-                            categories.append("anchor_secondary_not_attacked")
+                            categories.append("anchor_no_graph_alternate")
                         if any(
                             not alternate["dominates"]
                             for alternate in alternates
@@ -619,7 +619,7 @@ def verify_named_controls() -> None:
         and equality_record["palette"] == (1, 2)
         and equality_record["alternates"] == [
             {
-                "secondary": 2,
+                "guard": 8,
                 "state": (2, 3, 5),
                 "dominates": True,
                 "rank": 0,
@@ -657,7 +657,7 @@ def verify_named_controls() -> None:
         and nonretained_record["palette"] == (4, 5)
         and nonretained_record["alternates"] == [
             {
-                "secondary": 5,
+                "guard": 5,
                 "state": (0, 9, 10),
                 "dominates": True,
                 "rank": 1,
@@ -694,7 +694,7 @@ def verify_named_controls() -> None:
         and irrelevant_record["attacked_anchor_in_palette"] is False
         and irrelevant_record["alternates"] == [
             {
-                "secondary": 4,
+                "guard": 10,
                 "state": (4, 6, 7),
                 "dominates": True,
                 "rank": 0,
