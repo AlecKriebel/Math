@@ -126,3 +126,13 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
   - The release is public and non-draft. It is an ordinary annotated release,
     not a cryptographically signed release, and no DOI is claimed.
   - No external contact occurred.
+- **21:12:37** -- GitHub Pages completed deployment of publication commit
+  `c1dc7a02f91645e4edee059092a622c9eac7ac01`.
+  - The live project index and paper page display version 1.1.0, the artifact
+    commit, publication time, and PDF checksum.
+  - Fresh downloads of the Pages PDF and GitHub release PDF both have
+    SHA-256
+    `af4ff57c4b8c5cd37f47f8a6da880b4f93b9c22d6e2908a3ef1f6ebf5fb1d049`,
+    identical to the frozen repository copy.
+  - A live browser rendering showed no horizontal overflow at desktop width.
+    The complete ten-page PDF had already passed page-by-page visual review.
