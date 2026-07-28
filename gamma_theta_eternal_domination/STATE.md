@@ -1,5 +1,56 @@
 # Campaign State
 
+## Checkpoint 099 — 2026-07-28 11:07 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `14fef0e1`.
+- **Every \(k=3\) reciprocity failure now has a rigid positive-rank normal
+  form (C-145).**  A one-sided active edge produces a shared-pivot repair
+  square with five surviving states, an induced four-cycle, one opposite
+  asymmetric edge, and two reciprocal edges.  Its omitted corner
+  dominates by C-143 and can fail only dynamically.
+- A first deleting attack has an exact two-branch response-list
+  classification and three minimum-rank adjacency caps.  In the
+  nonadjacent-pivot paired-singleton branch, a third independent base
+  appears and makes four surrounding active pairs reciprocal.  This
+  sharply localizes, but does not close, the coinductive descent.
+- A resumable order-ten falsification probe has started.  Its first of
+  sixteen discovery partitions checked 602,072 connected unlabeled graphs,
+  found 289 eternal-equality graphs and 8,668 active orientations, and
+  found no asymmetric active orientation.  This is `OBSERVED`, not a
+  certified order-ten theorem.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145 | Shared-pivot blocker and adjacent-pivot paired singleton |
+| Order-ten reciprocity falsification | active-resumable, observed only | One of 16 partitions complete; independent coverage not yet done |
+| Reverse rank descent | active-independent | Turn every blocker branch into strict descent or a dominating pair |
+| Mixed \(P_4\) singleton obstruction | active-independent | Test whether forced witness systems iterate to contradiction |
+| Fresh-component singleton chain | active | Outside-ridge same-color return at \(\gamma=3\) |
+| Full-list future-safe color | active | Global reverse set has false positives |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent reverse-rank and mixed-\(P_4\) proof lanes are active.  The
+  order-ten probe uses one CPU core in short deterministic partitions and
+  about 27 MB peak resident memory.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  12 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Complete the bounded order-ten reciprocity falsification probe and
+   independently replay any witness immediately.
+2. Close one external-blocker adjacency branch using the third-base
+   reciprocal completion.
+3. Decide whether the exact mixed-\(P_4\) witness cascade is an infinite
+   descent or merely another gluing boundary.
+
 ## Checkpoint 098 — 2026-07-28 10:51 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

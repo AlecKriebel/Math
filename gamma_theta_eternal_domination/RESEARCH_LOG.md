@@ -3498,3 +3498,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   Lead replays matched all three frozen results in 0.09 seconds total at
   most about 21 MB resident memory.  The \(\gamma=3\) outside-ridge
   separated-source return remains the exact singleton-chain gate.
+
+## 2026-07-28 11:06 PDT — coinductive repair-square normal form accepted
+
+- Promoted C-145 after a final hostile audit.  Any hypothetical
+  greatest-family reciprocity failure at \(k=3\) has a shared-pivot
+  five-state repair square: a common-nonneighbor ridge, an induced
+  four-cycle, the same asymmetry on opposite edges, and reciprocity on the
+  other two edges.
+- C-143 closes the static base case for every reverse endpoint.  The
+  omitted corner is dominating and has positive deletion rank.  Its first
+  deleting attack has an exact shared-pivot/paired-singleton list
+  dichotomy, and minimum-rank choice forces three adjacency caps without
+  assuming the false equality of complementary finite ranks.
+- In the paired-singleton branch where the blocker misses the shared
+  pivot, a third maximum independent base \(U=\{r,w,c\}\) is forced.
+  Two more attacks retain \(\{u,w,c\}\) and \(\{z,w,c\}\), so
+  \(r\leftrightarrow u,z\) and \(c\leftrightarrow a,x\) are all genuine
+  reciprocal C-108 active pairs.  The hostile review checked all eight
+  directions from the maximum independent bases \(S,T,U\).
+- The clean-room checker independently reproduced `FCXfO`, `GEjbug`,
+  `HCOeuqr`, ``HCOe`Z{``, and the complete order-nine totals: 4,108
+  failures of the false whole-kernel transform, 422 failures of the
+  inactive-only shared-minimum surrogate, and zero actual one-sided
+  survivors.
+- Candidate/review manifests:
+  `9f3c4c1a102ecc0a9af38b4e3be59423fa1e44b38ab21c4a2786bbe5404c4251`,
+  `f3109fcbc5c712f359c309800c62214511c1c3d55a3ec17032f7f916195a9054`.
+  The external-blocker descent remains incomplete; no reciprocity or
+  conjecture resolution is claimed.
