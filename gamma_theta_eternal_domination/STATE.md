@@ -1,5 +1,121 @@
 # Campaign State
 
+## Checkpoint 059 — 2026-07-27 21:46 PDT
+
+- Campaign day: 3 of 27.  The universal conjecture remains unresolved, the
+  certified finite frontier remains 13, and **no order-14 computation has
+  begun**.  Repository base before this integration is
+  `0aaa4375fb0debda3366e4aba591513ee80ab255`.
+- The resumed external-AI report was audited claim by claim.  It supplied no
+  source, graph, proof, or certificate artifact.  Its order-12 account is
+  obsolete relative to C-050, its \(n=2k\) explanation contains an invalid
+  independence assertion although the conclusion is already C-036, and its
+  15-vertex 395-state near-miss is exactly the accepted Petersen member of
+  C-060.  No imported computation was promoted.  A current resolution
+  refresh found no universal proof or certified counterexample.
+- **Adjacent true-twin reduction (C-078).**  Under
+  \(\gamma=\gamma^\infty\), deleting either adjacent true twin preserves
+  \(\gamma,\alpha,\gamma^\infty,\theta\).  Hence a minimum counterexample
+  has no adjacent true twins.  A hostile proof audit passed and a clean-room
+  scan found zero failures among 6,279 twin-pair incidences through connected
+  order eight.
+- **Odd physical connectors (C-079).**  The canonical one-unit lollipop
+  attack tree now excludes every odd vertex-distinct connector lying in one
+  omitted-color projection when both terminal clauses use one common
+  complement port.  Extra complement edges are harmless, and no dynamic
+  family omission is treated as a graph nonedge.  Even, separated-port,
+  off-link-port, longer two-unit, and general bicycle geometries remain open.
+- **Single-full deletion reduction (C-080).**  Deleting a unique full-list
+  vertex from a minimum \(k=3\) counterexample gives a critical
+  three-colorable deletion or an inherited
+  \(\gamma=2,\alpha=\gamma^\infty=3<\theta\) near-miss.  Critical deletions
+  have all three pairwise link Kempe connections and force a cross-part
+  one-guard response in every three-clique partition.  A new augmented
+  obstruction is a marked lollipop or two-unit chain, not a newly created
+  unit-free bicycle.
+- **Automatic fan lifting refuted (C-081).**  The exact nine-vertex graph
+  `HFzvvn{` has a checked 65-state eternal family and a minimally
+  unsatisfiable augmented lollipop with separated physical ports, but no odd
+  fan embedding.  Its parameters are \((2,3,3,3)\), so it is a sharp
+  gamma-two boundary rather than a counterexample.  A clean-room replay
+  verified all 390 attack obligations and the exact formula.
+- **Gamma-three cap propagation (C-082--C-083).**  Under \(\gamma=3\), a
+  dynamic omitted-color complement edge has a nonempty \(G\)-clique of
+  triangle caps; every cap recovers the omitted response color and is
+  \(G\)-complete to every other vertex supporting that color.  In the exact
+  separated core, this forces a new positive residual cap \(z\), followed by
+  a new omitted-color link escape \(w\).  The escape cannot see both
+  connector endpoints without a complement \(K_4\).  Thus the exact pattern
+  has order at least 11 and enters a forced alternating cap-and-escape
+  ladder.  Two independent symbolic hostile reviews returned `PASS`.
+- **Bounded countermodel pressure (C-084, `OBSERVED`).**  Independent
+  implementations replayed all 512 one-vertex extensions, all
+  \(27\cdot512=13,824\) one-edge local variants, and all
+  \(2^{19}=524,288\) induced two-vertex extensions of the separated-port
+  control.  Every one of the 817 augmentation-sensitive cases in the first
+  two scopes has a dominating singleton or pair.  Exactly six two-vertex
+  extensions meet the static \(\gamma=\alpha=3\) target; every eternal
+  triple kernel is empty, with the reference state deleted in round two.
+  These are exact local diagnostics, not an unbounded theorem or frontier
+  increase.
+- A color-restricted safe-kernel diagnostic remains supporting only:
+  \(\theta=3\) proves the existence of a safe color, and the order-12
+  positive control selects exactly its unique compatible color, but
+  MMV-021 shows safe survival need not imply a compatible coloring once
+  \(\gamma=3\) is removed.
+- The certified order-12 frontier paper remains the sole current paper.
+  The new universal mechanisms are substantial active-workstream results
+  but do not yet form a complete \(k=3\) theorem.  The public page update
+  attributes Alec Kriebel as author and research lead, discloses heavy AI
+  assistance, and retains a prominent unresolved-status boundary.
+
+### Day-3 portfolio review
+
+Measured yield now favors the structural lane.  The order-12 finite
+frontier is already buttoned up, while three consecutive proof iterations
+have converted a vague global compatibility problem into an exact
+2-SAT terminal taxonomy, an infinite odd-connector exclusion, and a forced
+cap-and-escape recurrence under \(\gamma=3\).  The portfolio is therefore
+rebalanced to approximately 65% structural proof, 20% bounded
+countermodel/falsifier synthesis, and 15% verification, literature, and
+publication.  Order-13 synthesis remains a resumable fallback rather than
+the primary lane.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Cap-and-escape iteration at \(k=3\) | active-primary | Prove that finite iteration inside the bipartite full-vertex link creates an odd fan, complement \(K_4\), dominating pair, or a separately classifiable alternating cycle |
+| Single-full augmented 2-SAT | active-primary | Show one of three colors succeeds after the deletion/Kempe split; separated and off-link physical ports defeat automatic logical shortening |
+| No-full-list bicycles and two-unit chains | active-independent | Generalize the accepted dead-state attack trees beyond the odd hub-recurrent lollipop and canonical two-variable bicycle |
+| Safe-color restricted kernels | supporting | \(\theta=3\Rightarrow\) safe is proved, but MMV-021 shows safe survival alone is weaker than compatible coloring without \(\gamma=3\) |
+| Local separated-port extensions | closed-observed C-084 | Three exact bounded neighborhoods contain no equality repair; no unbounded inference |
+| Order-13 finite synthesis | frozen fallback | \(C_5,C_7\) at \(k=3\) and complete \(k=4,5\) remain open |
+| Order-14 computation | not started | Deliberately deferred while the universal proof lane continues to produce new mechanisms |
+
+### Running jobs and resources
+
+- No SAT solver, graph generator, proof checker, or campaign enumeration is
+  running.  All new bounded scans and hostile reviews have completed.
+- The release regression passed all 398 tests with warnings fatal in
+  403.477 seconds.  All 31 frozen artifact hashes, CSV/JSON records, Python
+  syntax trees, and public-page anchors/JSON-LD also passed their release
+  checks.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  20 GiB of disk is free.  The campaign used at most one single-core solver
+  or enumerator at a time in this checkpoint.
+
+### Next three highest-value actions
+
+1. Iterate the cap-and-escape step through the bipartite complement link and
+   classify the first repeated vertex/component; target an odd fan,
+   complement \(K_4\), or dominating-pair contradiction.
+2. Couple that iteration to the C-080 deletion/Kempe fork, especially the
+   distinction between spoke terminals and dynamic \(A_\ast\) terminals.
+3. Use bounded synthesis only to falsify the exact proposed recurrence
+   lemma or isolate its smallest alternating-cycle exception; keep the
+   order-13 and order-14 lanes frozen unless the proof yield drops.
+
 ## Checkpoint 058 — 2026-07-26 19:41 PDT
 
 - Commit `018101d4c53cf4a8a3619c3a8b72fadd8f74277b` integrated and pushed the

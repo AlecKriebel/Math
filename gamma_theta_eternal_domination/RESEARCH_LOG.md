@@ -2178,3 +2178,75 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   evidence is frozen in
   `results/k3_global_2sat_public_workstream_acceptance.json`.  No campaign
   job is running.
+
+### 2026-07-27 21:46 — resumed-report audit and cap-and-escape proof gate
+
+- The pasted external-AI report was treated as an intake lead rather than
+  evidence.  No underlying source, graph, solver proof, manifest, or checker
+  artifact was found.  Its order-12 narrative is obsolete relative to the
+  accepted complete C-050 frontier, and the reported 15-vertex 395-state
+  near-miss was identified exactly as the already accepted Petersen member
+  of C-060.  The imported half-order conclusion duplicates C-036, while its
+  assertion that the complement of a maximum independent set is forced
+  independent is invalid as written.  A current resolution refresh found no
+  universal proof or certified counterexample.
+- A fresh reduction proved that an adjacent true twin can be deleted from
+  any equality graph while preserving
+  \(\gamma,\alpha,\gamma^\infty,\theta\).  Maximum-independent-state forcing
+  guarantees that the restricted eternal family is nonempty.  A hostile
+  proof review passed, and an independent scan found zero failures among
+  6,279 twin-pair incidences through connected order eight.
+- The canonical one-unit lollipop attack tree was extended from its shortest
+  edge to every odd vertex-distinct connector inside one omitted-color
+  projection when both terminal clauses share one physical complement port.
+  The proof allows arbitrary extra complement edges and distinguishes
+  missing family membership from graph nonadjacency at every step.
+  Independent SAT controls were UNSAT for lengths one, three, and five, with
+  the terminal-edge relaxations SAT; the universal theorem rests on the
+  symbolic successor exhaustion.
+- The single-full branch now has an exact deletion trichotomy, pairwise
+  Kempe linkage in the critical deletion, a forced cross-part one-guard
+  response for every deletion clique partition, and an augmented-formula
+  fork that excludes a newly created unit-free bicycle.  Distinct-spoke
+  terminals either dominate the deletion or force a residual
+  common-complement-neighbor witness.  A separate hostile review replayed
+  the order-12 positive control and accepted every conditional statement.
+- Automatic lifting from a logical lollipop to the odd physical fan was
+  then refuted exactly.  The graph `HFzvvn{` has a 65-state proper eternal
+  family, all 390 one-guard obligations, a satisfiable base formula, and a
+  one-unit inclusion-minimal augmented obstruction.  Its terminal clauses
+  use separated vertices and no fan embedding exists.  Its parameter tuple
+  is \((2,3,3,3)\), so it isolates rather than removes the need for
+  domination equality.
+- The gamma-three mechanism was proved next.  Every dynamic omitted-color
+  connector edge acquires a nonempty \(G\)-clique of complement-triangle
+  caps; every cap recovers the omitted response color.  Applying the odd-fan
+  theorem at path length one makes each cap \(G\)-complete to all other
+  vertices supporting that color.  In the exact separated core this forces
+  a new positive residual cap and a further omitted-color link escape.  The
+  escape cannot see both connector endpoints without producing a complement
+  \(K_4\).  The two forced vertices give an exact-pattern order floor of 11.
+  Two independent symbolic reviewers returned `PASS`.
+- Three bounded extension universes were independently replayed.  The
+  512 one-vertex and 13,824 one-edge local scopes contain 817 exact
+  augmentation-sensitive cases, all with a dominating singleton or pair.
+  Among all 524,288 induced two-vertex extensions, only six reach the static
+  \(\gamma=\alpha=3\) target, and all six have empty eternal triple kernels
+  with the anchor state deleted in round two.  These data are C-084
+  `OBSERVED`, not a universal theorem or frontier increase.
+- A color-restricted safe-kernel probe proved
+  \(\theta=3\Rightarrow\) some safe full-target color and selected the unique
+  correct color in the order-12 equality control.  The MMV-021 near-miss has
+  a surviving safe kernel but no compatible coloring, proving that the
+  invariant alone is weaker than the desired conclusion when \(\gamma=3\)
+  is absent.
+- The day-3 portfolio review rebalanced the campaign toward structural
+  proof: approximately 65% proof, 20% exact countermodel synthesis, and 15%
+  audit/publication.  The primary target is now finite iteration of the
+  cap-and-escape ladder inside the bipartite full-vertex link.  Order 14
+  remains unstarted, and the certified order-12 frontier manuscript remains
+  the sole current paper.
+- Release validation at 22:04 PDT passed all 398 campaign tests with
+  warnings fatal in 403.477 seconds.  The 31-artifact acceptance hash audit,
+  CSV/JSON parsing, Python syntax parsing, and public-page anchor/JSON-LD
+  checks also passed.

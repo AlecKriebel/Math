@@ -207,7 +207,7 @@ also find no exact realization at orders eight or nine even for arbitrary
 proper eternal subfamilies; those bounded counts remain `OBSERVED` and do not
 raise the finite frontier.
 
-Claims C-072--C-076 sharpen both sides of this target.  In the exact mixed
+Claims C-072--C-081 sharpen both sides of this target.  In the exact mixed
 path, two additional end-edge witness cliques are forced, they are disjoint
 from one another and from every co-state witness clique, and the resulting
 five external witnesses prove that this exact pattern needs at least twelve
@@ -219,18 +219,62 @@ vertex passes the complete local link test.  Coloring the full-list core
 first and extending the remainder is exactly the earlier 2-SAT construction
 with added units.
 
-The remaining obstruction is therefore global: one must show that at least
-one augmented 2-SAT instance is satisfiable.  An inclusion-minimal
-unsatisfiable instance is now classified into a two-unit chain, one-unit
-lollipop, or unit-free bicycle.  Full one-guard closure excludes the exact
-shortest lollipop and two-variable bicycle, but not arbitrary subdivisions or
-longer component connectors.  The order-12 graph `K{eYptMJynEn` is an
-important positive control: it has
+An inclusion-minimal unsatisfiable instance is a two-unit chain, one-unit
+lollipop, or unit-free bicycle.  Full one-guard closure now excludes every
+odd physical subdivision of the canonical lollipop whose two terminal
+clauses use one common port in the full vertex's complement link and whose
+connector stays inside one omitted-color projection.  The attack proof
+allows arbitrary extra complement edges and never treats a dynamically
+missing family response as a graph nonedge.  It also excludes the canonical
+two-variable bicycle.  Even or multi-port connectors, longer two-unit chains,
+and general unit-free bicycles remain open.
+
+The single-full deletion branch is correspondingly sharper.  Deleting the
+full vertex gives either a three-colorable critical graph or an inherited
+\(\gamma=2,\alpha=\gamma^\infty=3<\theta\) near-miss.  In the critical
+branch every deletion coloring has three pairwise link Kempe connections,
+and every deletion clique partition forces a cross-part one-guard response.
+When the base projection formula is satisfiable, a failed color has a marked
+lollipop or two-unit chain rather than a newly created unit-free bicycle.
+
+The exact nine-vertex control `HFzvvn{` shows why this is not yet a proof.
+It has a 65-state one-guard family and a genuine augmentation-sensitive
+lollipop, but its outgoing and returning Boolean ports are different
+physical vertices; there is no odd fan embedding.  Its parameters are
+\((2,3,3,3)\), so it is not a counterexample.  It isolates the next required
+mechanism: use \(\gamma=3\) to identify or eliminate separated and off-link
+ports.
+
+Claims C-082 and C-083 supply the first such equality-specific propagation.
+Every complement connector edge whose endpoints dynamically omit one
+response color has a nonempty clique of triangle caps; every cap recovers
+the omitted response color and is \(G\)-complete to every other vertex
+supporting that color.  In the exact separated-port core this forces a new
+positive residual cap followed by a new omitted-color escape in the full
+vertex's complement link.  The escape cannot see both connector endpoints
+without creating a complement \(K_4\), so the exact core now needs at least
+11 vertices.  The remaining question is whether this alternating
+cap-and-escape ladder can close globally without producing an odd fan,
+\(K_4\), or dominating pair.
+
+Complete local diagnostics reinforce this target without proving it.  All
+512 one-vertex extensions, all \(27\cdot512\) extensions with one further
+non-core complement edge, and all \(2^{19}\) induced two-vertex extensions
+were independently replayed.  No tested graph preserves the obstruction
+with eternal equality at three guards.  These are C-084 `OBSERVED` data, not
+an unbounded theorem or a frontier increase.  The order-12 graph
+`K{eYptMJynEn` remains the positive full-list control: it has
 \(\gamma=\alpha=\gamma^\infty=\theta=3\), a genuine full greatest-family
 list, and a unique compatible anchored coloring.  Thus eliminating full
 lists would be false; the proof must select a globally compatible color.
 
-The same iteration proved exact response-list covariance between
+The same iteration also proves that a minimum counterexample has no adjacent
+true twins: deleting either one preserves
+\(\gamma,\alpha,\gamma^\infty,\theta\) under the equality hypothesis.  An
+independent clean-room scan found no failure among 6,279 true-twin incidences
+through connected order eight.
+
+Earlier iterations proved exact response-list covariance between
 ridge-adjacent maximum independent states and family-supported monotone
 exchange paths between arbitrary independent states.  Hostile examples
 delimit the theorem sharply: expansion/restoration alone is not
