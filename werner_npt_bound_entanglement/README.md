@@ -20,3 +20,12 @@ Schmidt-rank-two witness whenever it is not.
 - `notes/`: exact derivations and proof attempts.
 - `discovery/`: exploratory code and outputs; never treated as proof.
 - `verification/`: small deterministic exact verifiers for certified claims.
+
+## Current exact reductions
+
+The main proof notes establish the partial-trace formula, the sharp one-copy
+theorem, endpoint parameter monotonicity, several all-copy no-go classes, and
+an exact copy-doubling reduction showing that equal nonzero Schmidt
+coefficients suffice for the all-copy existence question.  The project has
+not yet established either all-copy undistillability or a finite-copy
+distillation witness; every note labels unresolved inequalities explicitly.

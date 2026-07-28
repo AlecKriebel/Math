@@ -68,3 +68,19 @@ All timestamps use America/Los_Angeles.
 - Validated the exact local-compression checker independently
   (\(2^nQ=31262\) by both contractions); all accompanying C++ discovery
   sources pass syntax-only compilation.
+- Proved an exact copy-doubling reduction: any negative rank-two witness at
+  \(n\) copies produces an equal-singular-value witness at \(2n\) copies by
+  antisymmetrizing its two SVD terms.  The doubled expectation is
+  \(2\det H<0\).  Therefore all-copy positivity is equivalent to positivity
+  on rank-two partial isometries at every copy number.
+- Exactly disproved a tempting stronger compression inequality at \(n=2\):
+  for explicit two-planes \(U,V\), the compression of
+  \(R_2=(I-\tfrac12F)^{\otimes2}\) has trace \(11/4\) and top eigenvalue
+  \((7+\sqrt{17})/8>11/8\).
+- Isolated the correct weaker compression target.  Only maximally entangled
+  vectors between the two code planes must be controlled:
+  \(2\omega_{\rm ME}(K)\le\operatorname{Tr}K\).  In Pauli coordinates this
+  is the exact \(3\times3\) inequality
+  \(s_1(M)+s_2(M)-\operatorname{sgn}(\det M)s_3(M)\le\operatorname{Tr}K\).
+  The explicit counterexample to the operator-norm strengthening saturates,
+  rather than violates, this live inequality.
