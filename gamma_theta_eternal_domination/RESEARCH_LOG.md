@@ -2905,3 +2905,28 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   No \(C_9\) or all-odd theorem is claimed; one all-distinct \(C_9\) UNSAT
   probe remains observation-only.  C-115 is promoted after unconditional
   hostile `PASS`.
+
+## 2026-07-28 05:39 PDT — exact-two-list \(k=3\) branch closed
+
+- Promoted C-116 after an unconditional hostile verdict.  Under
+  \(\gamma(G)=3\), an independent retained triple \(S\), and
+  \(|L_S(x)|=2\) for every \(x\notin S\), the complement is
+  three-colorable and hence \(\theta(G)=3\).
+- C-114 had reduced any signed inconsistency to five type skeletons.
+  Explicit adaptive attack trees now exclude `0012`, `00011`, `00102`,
+  `00121`, and both witness-collision branches of `00101`.
+- The independent audit checked attacks only at unoccupied vertices, exactly
+  one adjacent guard move, every family-membership premise, every displayed
+  domination miss, and the direction of every complement edge.  A
+  maximal-response reconstruction ensures that no omitted edge or response
+  is silently used.
+- Candidate checker output SHA-256:
+  `da17105109964985501a0bd36aef4013f90b01db2f88d1542d2ed9b18138015e`.
+  Hostile checker output SHA-256:
+  `e235d75088be80ca4ecd2a2f2bb58cab39bb538c8d0072a26ed1d92e84af78e7`.
+  Hostile manifest SHA-256:
+  `087a2758175cd329b4e211dbf1f582e09020ac70f3274dcc9cd62d7c4287f17f`.
+- This is a genuine all-order structural theorem for one response regime,
+  not a finite search.  It leaves exactly the singleton-list and full-list
+  regimes as the parameter-three proof frontier; complete \(k=3\) and the
+  universal conjecture remain open.

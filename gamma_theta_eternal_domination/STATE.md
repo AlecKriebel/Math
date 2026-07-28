@@ -1,5 +1,61 @@
 # Campaign State
 
+## Checkpoint 079 — 2026-07-28 05:39 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and no
+  counterexample has been found.  The certified finite frontier is unchanged:
+  all orders through 12 are excluded, and only \(k=3\) is excluded at order
+  13.
+- **The exact-two-response-list branch at \(k=3\) is now complete
+  (C-116).**  If an independent retained triple \(S\) has exactly two legal
+  direct responders for every outside vertex, then
+  \(\chi(\overline G)=\theta(G)=3\).
+- C-114 had reduced any coloring failure in this branch to the five signed
+  type skeletons `0012`, `00011`, `00101`, `00102`, and `00121`.  The
+  accepted C-116 package gives a literal adaptive attack contradiction for
+  each skeleton and handles both possible witness-collision branches.
+- The hostile checker independently rebuilt the signed-color dictionary,
+  type-word orbits, shortening constraints, witness collisions, and all six
+  attack cases under a maximal-response convention.  It returned
+  unconditional `PASS`; its 18,079-byte strict output has SHA-256
+  `e235d75088be80ca4ecd2a2f2bb58cab39bb538c8d0072a26ed1d92e84af78e7`.
+- The accepted note hash is
+  `fed9c26bd094347eb19f9cecc0f98aa29420a210a14e96b457ac106a47e59175`;
+  the hostile manifest hash is
+  `087a2758175cd329b4e211dbf1f582e09020ac70f3274dcc9cd62d7c4287f17f`.
+- Consequently, a putative \(k=3\) counterexample cannot be dynamically
+  uniform at any retained maximum independent state: every such state has
+  at least one outside vertex with a singleton or full response list.
+  Those two exceptional-list branches are now the exact proof frontier.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Exact-two-list signed balance | closed-proved C-116 | All five residual skeletons have audited attack contradictions |
+| Singleton-list no-full branch | active-primary | Derive a physical unit-chain obstruction without applying C-111 outside its hypotheses |
+| Full-list branch | active-primary | Synchronize the three frozen deletion colorings; inactive odd holes now have length at least nine |
+| Inactive odd cycles of length at least nine | active-support | Prove arbitrary inactive-path parity; \(C_9\) is not certified |
+| Complete \(k=3\) theorem | active | Combine the singleton and full exceptional-list branches |
+| All-\(k\) local-to-global gluing | active | C-112 settles each inactive suspension separately, not their synchronization |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- The exact-two-list and inactive-\(C_7\) hostile audits have completed.
+  One bounded singleton-list proof lane is active.  No broad enumeration or
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine remains
+  responsive.
+
+### Next three highest-value actions
+
+1. Classify and attack the singleton-list/no-full response branch.
+2. Prove a length-independent inactive-path parity theorem for the full-list
+   branch, using the certified \(C_5\) and \(C_7\) mechanisms.
+3. Publish C-114--C-116 and their one-command checkers on the public
+   workstream page, with the unresolved scope stated prominently.
+
 ## Checkpoint 078 — 2026-07-28 05:35 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
