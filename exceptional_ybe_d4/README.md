@@ -1,5 +1,7 @@
 # Exceptional four-dimensional Hecke Yang--Baxter operator
 
+Version 1.1.0 · [versioned release](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-d4-v1.1.0)
+
 ## Result
 
 This package gives an exact representative of the exceptional class
@@ -53,7 +55,8 @@ The \((-1)\)-spectral projection \(P=(I-H)/2\) has rank eight and
 
 The partial-trace identity identifies the normalized tensor-space trace with
 the \(\eta=1/2\) Markov trace. Its trace radical is exactly the kernel of the
-matrix representation, so the construction gives faithful embeddings
+unital \(*\)-representation, and the maps are compatible with the standard
+tower inclusions. Thus the construction gives faithful embeddings
 
 \[
 H_n(3,6)\hookrightarrow
@@ -63,6 +66,9 @@ H_n(3,6)\hookrightarrow
 for all \(n\). Thus it is an ordinary unitary localization of the
 \(\mathcal C(\mathfrak{sl}_3,6)\) Jones--Wenzl representation sequence.
 The paper also proves that four is the minimum possible local dimension.
+In dimension three, the Temperley--Lieb and complementary
+Temperley--Lieb obstructions both have nonzero exceptional trace norm
+\(1/18\).
 
 ## Simplified structure
 
@@ -119,7 +125,9 @@ python3 verify_supplied.py
 
 - `verify_exact.py` uses only the Python standard library and directly
   multiplies sparse exact matrices over
-  \(\mathbb Q(\sqrt2,\sqrt3,i)\).
+  \(\mathbb Q(\sqrt2,\sqrt3,i)\), including the two dimension-three
+  obstructions, the explicit sitewise-swap factorization, and the
+  generalized Yang--Baxter equation.
 - `verify_tensor_words.py` never constructs a matrix. It verifies the
   involution relations and all 18 coefficients of the generic cubic
   residual in the abstract Pauli algebra.
@@ -128,8 +136,9 @@ python3 verify_supplied.py
 - `verification_output.txt` is the frozen successful release run.
 
 The [typeset paper](output/pdf/exceptional_ybe_d4.pdf), [priority
-audit](PRIORITY_AUDIT.md), [source snapshot](SOURCE_SNAPSHOT.md), and
-[research log](RESEARCH_LOG.md) are included.
+audit](PRIORITY_AUDIT.md), [revision audit](REVISION_AUDIT.md), [source
+snapshot](SOURCE_SNAPSHOT.md), and [research log](RESEARCH_LOG.md) are
+included.
 
 With [Tectonic](https://tectonic-typesetting.github.io/) installed, rebuild
 the PDF with:
@@ -147,7 +156,8 @@ appears to answer the existence question in
 cannot be certified. It gives examples in all base dimensions \(4m\) after
 tensoring with identities; the dimensions \(6,10,14,\ldots\) remain open.
 
-Alec Kriebel is a complete amateur and cannot independently certify the
-mathematics. This is an AI-assisted research artifact requiring qualified
-expert review, not an established result. No outside researcher was
-contacted during the independent audit.
+Alec Kriebel is the named human author. He is not a specialist in this area
+and has not independently validated every argument without AI assistance.
+No independent specialist review has yet been obtained. This is an
+AI-assisted research artifact requiring qualified review, not an established
+result.

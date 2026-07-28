@@ -1,5 +1,8 @@
 # Release manifest
 
+This manifest describes version 1.1.0, tagged
+`exceptional-ybe-d4-v1.1.0`.
+
 ## Mathematical sources
 
 - `main.tex` — paper source.
@@ -7,6 +10,8 @@
 - `output/pdf/exceptional_ybe_d4.pdf` — typeset paper.
 - `README.md` — construction and reproducibility overview.
 - `PRIORITY_AUDIT.md` — primary-source novelty and equivalence audit.
+- `REVISION_AUDIT.md` — adjudication of the independent revision proposals.
+- `RELEASE_NOTES_v1.1.0.md` — version-specific change and scope record.
 - `SOURCE_SNAPSHOT.md` — provenance and hashes of supplied inputs.
 - `RESEARCH_LOG.md` — timestamped audit and publication log.
 

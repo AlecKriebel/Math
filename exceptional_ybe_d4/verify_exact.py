@@ -272,6 +272,25 @@ def tensor_word(word):
     return kron_all(*(PAULI[letter] for letter in word))
 
 
+def qubit_permutation(output_sources):
+    """Matrix sending |b_0...b_{n-1}> to |b_{p_0}...b_{p_{n-1}}>."""
+
+    n_qubits = len(output_sources)
+    assert sorted(output_sources) == list(range(n_qubits))
+    dimension = 2**n_qubits
+    out = zero_matrix(dimension)
+    for input_index in range(dimension):
+        bits = [
+            (input_index >> (n_qubits - 1 - position)) & 1
+            for position in range(n_qubits)
+        ]
+        output_index = 0
+        for source in output_sources:
+            output_index = 2 * output_index + bits[source]
+        out[output_index][input_index] = ONE
+    return out
+
+
 INV_SQRT_6 = Q23(0, 0, 0, Fraction(1, 6))
 INV_SQRT_3 = Q23(0, 0, Fraction(1, 3), 0)
 TERMS = (
@@ -362,25 +381,48 @@ def main():
     assert tl_norm == CQ23(Fraction(1, 18))
     print("[ok] exceptional trace norm of the d=3 TL obstruction = 1/18")
 
+    q_projection = matrix_sub(i16, p)
+    q1, q2 = kron(q_projection, i4), kron(i4, q_projection)
+    complementary_tl_obstruction = matrix_sub(
+        matmul(matmul(q1, q2), q1),
+        scalar_mul(Fraction(1, 3), q1),
+    )
+    complementary_tl_norm = (
+        trace(
+            matmul(
+                adjoint(complementary_tl_obstruction),
+                complementary_tl_obstruction,
+            )
+        )
+        / 64
+    )
+    assert complementary_tl_norm == CQ23(Fraction(1, 18))
+    print("[ok] exceptional trace norm of the complementary d=3 obstruction = 1/18")
+
     # Remove the spectator second qubit, then exchange the last two active
     # coordinates.  This gives the standard (3,2)-gYB ordering
     # (a_i, b_{i+1}, a_{i+1}).
     active_terms = []
-    swapped_two_site_terms = []
     for word, coefficient in TERMS:
         assert word[1] == "I"
         active = word[0] + word[2] + word[3]
         standard_order = active[0] + active[2] + active[1]
         active_terms.append((standard_order, coefficient))
-        swapped_two_site_terms.append(("I" + standard_order, coefficient))
     k_h = build_h(tuple(active_terms))
-    swapped_two_site_h = build_h(tuple(swapped_two_site_terms))
+    sitewise_swap = qubit_permutation((1, 0, 3, 2))
+    swapped_two_site_h = matmul(matmul(sitewise_swap, h), adjoint(sitewise_swap))
     assert_equal(
         "sitewise-swapped H factors as I_2 tensor K_H",
         swapped_two_site_h,
         kron(i2, k_h),
     )
     k_r = matrix_add(scalar_mul(a, i8), scalar_mul(b, k_h))
+    swapped_two_site_r = matmul(matmul(sitewise_swap, r), adjoint(sitewise_swap))
+    assert_equal(
+        "sitewise-swapped R factors as I_2 tensor K",
+        swapped_two_site_r,
+        kron(i2, k_r),
+    )
     assert_equal("active 8x8 operator is unitary", matmul(adjoint(k_r), k_r), i8)
 
     k1, k2 = kron(k_r, i4), kron(i4, k_r)

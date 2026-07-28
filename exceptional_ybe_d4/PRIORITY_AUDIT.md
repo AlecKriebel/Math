@@ -71,7 +71,7 @@ new \((3,2)\) active form has been established.
 - Theorem 3.4 restricts unitary two-eigenvalue Hecke operators to eight
   families.
 - Page 16 states that
-  \([e^{i\pi/3},1/2,2d]\) was unknown, cites the 2012 case study, and
+  \([e^{i\pi/3},1/2,2m]\) was unknown, cites the 2012 case study, and
   proves the \(d=1\) member (base dimension two) empty.
 
 The new matrix exactly answers the first unresolved member, base dimension

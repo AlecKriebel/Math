@@ -58,7 +58,7 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     and the quaternionic \((3,1)\)-generalized operator, but no ordinary
     four-dimensional operator.
   - Lechner v1 (20 March 2026, 17:34:47 UTC) explicitly left
-    \([e^{i\pi/3},1/2,2d]\) unresolved and identified the two-dimensional
+    \([e^{i\pi/3},1/2,2m]\) unresolved and identified the two-dimensional
     member as empty.
   - Searches of primary sources, scholarly indexes, general web results,
     public code, exact Pauli-word pairs, and the preprint identifier found no
@@ -95,3 +95,22 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
   The live paper page and PDF were retrieved. The served PDF SHA-256 was
   `3295256c746f5f011f18af2eff8537de88b9a592a44dcd50989efb3a315174a9`,
   exactly matching both frozen repository copies.
+- **20:50:36** -- Completed an independent audit of the post-publication
+  revision proposals.
+  - Accepted the explicit conjugate-linear \(*\)-structure, kernel formula,
+    quotient-tower compatibility, direct dimension-three argument, formal
+    sitewise-swap proposition, historical consequence, and
+    index-\(4\)/standard-braided consequence.
+  - The complementary Temperley--Lieb obstruction was independently checked
+    and added to the dependency-free exact verifier; its trace norm is also
+    \(1/18\).
+  - Corrected both unnumbered-display label defects.  The review mentioned
+    only the cubic identity; the Markov display had the same defect.
+  - Adopted human-only bibliographic authorship while retaining detailed AI
+    provenance and the lack of specialist review in the disclosure.
+  - Rejected a fabricated DOI, an unsupported cryptographic-signature claim,
+    self-referential PDF commit/checksum metadata, and an outreach invitation.
+    A normal annotated version tag and GitHub release are the appropriate
+    archival step.
+  - The complete decision record is `REVISION_AUDIT.md`.  No external contact
+    occurred.
