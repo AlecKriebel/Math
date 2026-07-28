@@ -248,3 +248,76 @@ All timestamps use America/Los_Angeles.
   for \(3\leq n\leq12\).  No reliable negative value appeared.  Values
   near zero were treated as boundary/roundoff observations and are not
   mathematical evidence.
+
+## 2026-07-28 12:42--14:20 PDT — four-copy frontier and nonlinear obstructions
+
+- Reduced the rank-two projector problem at four sites to
+  \[
+  Q_4(P)=\tfrac12(e_2-3o_3+10e_4).
+  \]
+  Isolated the sharper, sharp-coefficient conjecture
+  \(e_2+6e_4\ge3o_3\), which would imply
+  \(Q_4(P)\ge2e_4\).  Its equivalent purification form is
+  \[
+  6\operatorname{Tr}\rho_K^2+
+  \sum_{i<j}\operatorname{Tr}\rho_{ij}^2
+  -3\sum_i\operatorname{Tr}\rho_{Ki}^2\ge0.
+  \]
+- Proved that this four-copy candidate is exactly the difference between
+  the sum of six grouped strong three-copy defects and the sum of four
+  Haar-conditioned strong three-copy defects.  Exact formal sector models
+  show that separate nonnegativity of all currently known grouped,
+  conditioned, and Pauli-shadow inequalities does not prove the required
+  comparison.
+- Recorded exact counterfamilies to naive three-copy-defect tensorization,
+  pairwise sector sharing, scalar/Pauli decoupling, and orbitwise Hodge
+  injection.  These failures consistently show that the missing estimate
+  must retain global common-code compatibility.
+- Lifted the four-copy purity functional to three replicas.  Removing the
+  global alternating \(S_3\) sector, as forced by the rank-two condition,
+  is not by itself a positive certificate: the local representation type
+  (sign, sign, trivial, standard) gives the exact negative block \(-4I\)
+  while carrying no global sign representation.
+- Derived exact qutrit Hodge--Walsh orbit formulas and the pointwise
+  Pluecker identity tying the logical symmetric and exterior amplitudes.
+  An exact equality code has a strictly negative individual Hodge orbit,
+  proving that compensation must mix distinct unordered-pair orbits.
+- Proved a nonproduct all-copy flagged-GHZ subclass formula
+  \[
+  Q_{m+1}(P)=|a\bar b-c\bar d|^2+
+  2^{-m}(1-(-1)^m)(|a|^2-|c|^2)^2.
+  \]
+- Derived the exact Grassmann Euler equation
+  \([P,\Phi_n(P)]=0\) and full Hessian.  A nonfactor five-site equality
+  code supported on local qubit planes has a completely explicit
+  positive-semidefinite dyadic Hessian.  Thus a factor-only critical-point
+  classification is false, while the enlarged alternative “pure factor
+  or common local qubit supports” remains viable.
+- The proposed cumulative hierarchy
+  \[
+  \sum_{\ell\ge j}\binom{2\ell}{2j}e_{2\ell}
+  \ge3o_{2j+1}
+  \]
+  is false.  The exact five-site cyclic code has layer masses
+  \((9/8,15/16,15/8,0,0,1/16)\), hence its \(j=2\) expression is
+  \(-3/16\).  Pure spectator sites extend this obstruction to every
+  \(n\ge5\).
+- Completed an exact qutrit graph-code reduction: every arbitrary logical
+  two-plane in a graph-state orbit reduces to four logical Weyl eigenplanes.
+  Exhaustive integer enumeration of all 58,320 four-site graph/syndrome
+  cases gives nonnegative endpoint values; connected cases obey the sharp
+  bound \(Q_4\ge1/4\).  This is a large exact subclass, not a general
+  four-copy proof.
+- Proved all-copy positivity for every arbitrary two-plane in the
+  three-string qutrit repetition subspace.  If
+  \(P=I-|z\rangle\langle z|\) there and
+  \(s=\sum_a|z_a|^4\), then
+  \[
+  Q_n(P)=
+  \begin{cases}
+  (1-s)(1-2^{1-n}),&n\text{ odd},\\
+  1-s+2^{2-n},&n\text{ even}.
+  \end{cases}
+  \]
+  Thus coherent repetition does not activate the negative three-point
+  Gram direction of the local endpoint kernel.
