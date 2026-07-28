@@ -1,5 +1,56 @@
 # Campaign State
 
+## Checkpoint 102 — 2026-07-28 12:07 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `2a17b028`.
+- **Future-safe color is now exactly restricted-kernel nonemptiness
+  (C-149).**  Any nonempty eternal family avoiding the chosen root-swap
+  bans must retain the chosen target response; otherwise a frozen
+  two-guard projection contains a complement triangle.
+- One cumulative ban treats every full-list target at a root
+  simultaneously.  A clique partition exists exactly when some proper
+  full-core assignment leaves a nonempty cumulative kernel and its
+  residual exact list 2-CNF is satisfiable.
+- If a restricted kernel is empty, retained states descend by finite rank
+  to only two terminal gates: a corridor/diamond or anchor restoration.
+  The still-open full-list problem is therefore an exact dichotomy between
+  kernel annihilation and an ordinary singleton/lollipop/bicycle 2-SAT
+  obstruction.
+- The multi-hit collision candidate is under hostile audit.  The
+  family-only mixed-\(P_4\) lift has a rigorous two-dominating-endpoint
+  reduction and discovery UNSAT through order 22, but no theorem or
+  certificate is claimed from that scan.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Full-list future-safe color | active-primary, C-149 | Prove one cumulative kernel survives, or eliminate its terminal gates |
+| Dynamic equality reciprocity | active-hostile-review, C-145/C-146 | Remaining multi-hit blocker patterns |
+| Family-only mixed \(P_4\) | active-discovery | Both omitted endpoint swaps dominate; no dynamic witness theorem yet |
+| Exact static mixed \(P_4\) | closed-proved C-148 | Family-only enlargement and longer unit chains remain |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- Independent lanes are auditing the multi-hit collision endgame and
+  probing the family-only \(P_4\) lift.  No memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Finish the multi-hit collision audit and attack its surviving exact
+   neighborhood cases.
+2. Eliminate the three interlocking C-149 terminal-gate traces or prove
+   one restricted kernel survives.
+3. Convert the family-only \(P_4\) discovery pattern into a human
+   recurrence or a finite local certificate.
+
 ## Checkpoint 101 — 2026-07-28 11:39 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

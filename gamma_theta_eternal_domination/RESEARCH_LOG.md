@@ -3590,3 +3590,31 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `7729b8f1e1d41e58f45a13f68e126d8427d082d902687e7ad203be47bd51438d`,
   `a53d30e2955adaf773055af9acc5a3b89df39c730151a968e56e8140aa8024ff`.
   Lead replay matched the ordinary-set, bitset, and hostile evidence.
+
+## 2026-07-28 12:07 PDT — future-safe colors reduced to kernel nonemptiness
+
+- Promoted C-149 after a hostile audit of revised bytes.  If an eternal
+  triple-family avoids every root swap \(S-u+b\) over
+  \(b\in N_{\overline G}(x)\), it must retain \(S-u+x\).  Otherwise the
+  frozen-\(u\) projection contains a complement triangle, contradicting
+  the accepted parameter-two theorem.
+- Therefore a selected full-target color is safe exactly when its
+  restricted greatest kernel is nonempty.  This is an equivalence, not a
+  proof that one of the three kernels survives.
+- For an entire full core, one cumulative ban preserves all earlier color
+  decisions.  The exact remaining characterization is a proper full-core
+  assignment, a nonempty cumulative kernel, and a satisfiable ordinary
+  list-coloring 2-CNF on the residual vertices.
+- Empty restricted kernels have finite retained descent traces into the
+  ban.  Every final entry is a corridor or anchor restoration; a nonroot
+  corridor forces an induced \(G\)-diamond with the target--ban edge
+  missing.
+- The reviewer caught and repaired two formal defects before promotion:
+  complement-neighborhood anchors require a separate projection case, and
+  a direct root response need not have a singleton response list.
+- Candidate/review manifests:
+  `8a09e4c9c932caeebea257f7ac8c3e9ece51d1a4dbd444cfa562a55dc86de3f4`,
+  `129587b63b012058c8b6ac3ccd956455dccc578ecfd60d0c77c7a541e42a2e95`.
+  The clean-room audit checked the clique-fiber converse, 1,728 exact
+  2-CNF/domain instances, all equality-control descent starts and terminal
+  gates, and the fixed 581-incidence catalog.
