@@ -2755,3 +2755,27 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The control refutes only the static/one-step shortcut.  It identifies
   multi-step eternal closure as the indispensable remaining mechanism and
   is not a gamma--theta counterexample.
+
+## 2026-07-28 04:25 PDT — canonical complete three-gate obstruction closed
+
+- Proved a self-contained physical-witness exclusion for a critical pair
+  of two adjacent complete tight gates.  Combined with C-104's exact-type
+  and collision theorem, the three common-neighbor witnesses forced by
+  \(\gamma=3\) in the canonical length-\((1,1,1)\) boundary are distinct,
+  exact-type, and dynamic.
+- Applied C-082 and C-079 to turn each dynamic witness into a sealed
+  positive cap.  A new cross-color lemma proves that three such caps
+  cannot coexist in an exact-two-list family.  The proof separately
+  handles three distinct caps, one double collision, and one triple
+  collision.
+- A hostile reviewer audited every one-guard attack, the complete
+  displayed-collision map, all dependency hypotheses, the cap-collision
+  partition, and the exact scope.  Its clean-room checker reconstructed
+  the 21-vertex gamma-two boundary control, all five parameters, its
+  843-state family, 15,174 obligations, 25,764 legal retained responses,
+  114 dominating pairs, and the 1,237-state greatest triple kernel.
+  Verdict: unconditional `PASS`; C-110 is promoted.
+- This is the first global three-gate exclusion, not the complete
+  parameter-three theorem.  The next no-full target is to extend the
+  forced-type/physical-witness mechanism to arbitrary connector
+  subdivisions or cycles with at least four gates.

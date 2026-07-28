@@ -1,5 +1,53 @@
 # Campaign State
 
+## Checkpoint 073 — 2026-07-28 04:25 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The finite frontier is unchanged.
+- **The canonical complete three-gate obstruction is now excluded
+  (C-110).**  In the unit-free no-full exact-two-list branch with
+  \(\gamma=3\), every critical witness in the length-\((1,1,1)\) complete
+  boundary is forced to be dynamic.  Its ensuing positive cap is sealed
+  against all same-color positive vertices.  Three sealed caps of the
+  three colors contradict the no-dominating-pair condition, including
+  every possible cap collision.
+- The independent hostile audit returned unconditional `PASS` against
+  source hash
+  `1f0e2b5fce583dbc5a485ec7aa767204cd1c581a737cd6256e77224d4cdb2a32`.
+  It also reconstructed the sharp 21-vertex gamma-two control, its
+  843-state family, all 15,174 one-guard obligations, and its 1,237-state
+  greatest triple kernel.
+- This is a genuine all-order structural exclusion of one canonical
+  obstruction, not a universal proof.  Arbitrary subdivisions and cycles
+  with four or more gates remain open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Canonical complete three-gate cycle | closed-proved C-110 | Dynamic witnesses force three incompatible sealed caps |
+| Dynamic response-type sparsity | active-primary | Generalize the sealed-cap contradiction using C-094 physicalization |
+| Arbitrary subdivided/longer gate cycles | active-next | Extend forced-type and physical-witness attacks beyond length \((1,1,1)\) |
+| Full-list dynamic closure | active-independent | Decide whether eternal closure excludes an inactive odd cycle |
+| All-\(k\) extension bridge | active-independent | Test whether a favorable deletion coloring can always be selected |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- Three bounded proof/audit lanes are active; no broad enumeration or
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Promote or refute the general “at most two dynamic response types”
+   corollary of C-094 plus the sealed-cap lemma.
+2. Generalize the critical-witness attack from the canonical connector
+   lengths to arbitrary subdivisions and longer minimal bicycles.
+3. Finish the genuine eternal-closure audit of an inactive complement
+   odd cycle in the critical full-target branch.
+
 ## Checkpoint 072 — 2026-07-28 04:04 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
