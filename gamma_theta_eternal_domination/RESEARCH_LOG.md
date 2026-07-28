@@ -3648,3 +3648,33 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - This is a strict local reduction, not greatest-family reciprocity.  The
   surviving rank-one rows and all higher-rank multi-hit collisions remain
   active.
+
+## 2026-07-28 12:34 PDT — family-only mixed \(P_4\) reduced to dynamic rank
+
+- Promoted C-151 after a byte-specific hostile audit.  Exact family lists
+  \(\{a\},\{a,c\},\{b,c\},\{b\}\) on an induced complement \(P_4\)
+  force both omitted endpoint \(c\)-swaps to dominate.
+- The proof reuses C-148 only at its actual boundary.  If either endpoint
+  state had a missed vertex, the positive family incidences, C-070
+  endpoint saturation, and that one genuine defect reproduce the complete
+  \(14+9+5\) eight-vertex ledger.  All 32 local kernels are empty.  No
+  missing family response is treated as a graph nonedge.
+- In the unrestricted greatest family, each endpoint state is therefore
+  either a survivor or has positive finite deletion rank.  When the exact
+  lists are themselves greatest-family lists, both ranks are finite and
+  every deleting row points strictly downward.
+- Logged C-152 as `OBSERVED`.  A direct family/graph SAT encoding was
+  reported UNSAT at every order 12 through 22.  The hostile reviewer
+  derived the formula-size identities and regenerated all eleven rows,
+  but no proof logs or independent CNF/checker package exist, so no finite
+  exclusion is promoted.
+- The review caught two metadata-only imprecisions: the formula permits an
+  arbitrary, possibly proper family, and the JSON did not contain literal
+  command strings.  Both were corrected and reverse-reconstructed to the
+  original hashes before final `PASS`.
+- Candidate/review manifests:
+  `138cd94b0aae351c738100f92bbfb0851fe455d11bf0f79b324347c05e261604`,
+  `9172dc9ce7f31d798118f99b9c9ebc376e410e5c9b7d7e3cdfaa4c574f3d9c80`.
+  The family-only pattern and universal conjecture remain open; the exact
+  next target is a well-founded rank recurrence or a multi-hit
+  contradiction.

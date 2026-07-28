@@ -1,5 +1,53 @@
 # Campaign State
 
+## Checkpoint 104 — 2026-07-28 12:34 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `e9250561`.
+- **The family-only mixed \(P_4\) has no static endpoint defect
+  (C-151).**  Its two omitted middle-color endpoint states must dominate;
+  otherwise the accepted C-148 eight-vertex, 32-completion kernel gives a
+  contradiction.
+- In the greatest-family version, both omitted endpoint states have
+  positive finite deletion rank and strict lower-rank deleting rows.
+  This replaces the static defect with an exact dynamic-rank target
+  without inferring nonedges from missing family responses.
+- A direct SAT discovery encoding was replayed UNSAT for orders 12--22
+  (C-152), but remains `OBSERVED`: no proof logs or independent
+  CNF/checker package have been produced.
+- A provisional recurrence now closes every single-root-hit endpoint
+  deletion by strict rank descent into the C-148 base case.  That result
+  is awaiting completion and hostile review; only multi-hit endpoint rows
+  would remain if it passes.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Family-only mixed \(P_4\) | active-primary, C-151/C-152 | Provisional single-hit descent; multi-hit endpoint deletion remains |
+| Dynamic equality reciprocity | active-primary, C-145/C-146/C-150 | Rank-one XQ1, QQ/AQ alternatives, and higher-rank multi-hit collisions |
+| Full-list future-safe color | active-primary, C-149 | Prove one cumulative kernel survives, or eliminate its terminal gates |
+| Exact static mixed \(P_4\) | closed-proved C-148 | Superseded by the stronger C-151 endpoint-domination boundary |
+| Order-ten reciprocity falsification | complete-observed C-147 | Second implementation and split-coverage audit |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- One independent lane is completing the family-\(P_4\) deletion-rank
+  recurrence, and another is attacking the surviving rank-one XQ1
+  collision.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.
+
+### Next three highest-value actions
+
+1. Hostilely audit the single-hit family-\(P_4\) rank recurrence and
+   classify its multi-hit remainder.
+2. Close rank-one XQ1 or force a dominating-pair exit.
+3. Eliminate the C-149 corridor/diamond and anchor-restoration terminal
+   gates, or prove one cumulative restricted kernel survives.
+
 ## Checkpoint 103 — 2026-07-28 12:23 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
