@@ -3363,3 +3363,29 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   `cec46895a94ead868ddec0169515142b18e8938081bd14c2a2e81c554d754ada`.
   Hostile review manifest:
   `96a018f5da767ea1a132a85559334c91cbe40c754b1929f899de7f61efff6fa2`.
+
+## 2026-07-28 09:34 PDT — anchorless full-link structure accepted
+
+- Promoted C-139 after an unconditional hostile audit.  Retained palettes
+  are uniform on each bipartition side of every physical-link component.
+  Each side meets at most one root spoke; one spoke fixes the opposite
+  palette and two spokes fix both.
+- A color omitted by both side palettes forces the reverse
+  \(x\)-to-anchor state over every edge.  Under
+  \(\gamma(G-x)\ge3\), each retained color at an anchorless vertex forces
+  a nonempty external \(G\)-clique layer and every corresponding
+  third-attack state is retained.  The exact multiplicity argument and
+  C-089 give \(n\ge |B_*|+10\).
+- The hostile checker independently reconstructed the three candidate
+  controls and all 1,143, 54, and 60 one-guard obligations.  Its additional
+  `GCXfVg` scope control realizes the third-attack layer with
+  \(\gamma(G-x)=3\) but \(\gamma(G)=2\), confirming that the C-089 count
+  cannot be used after equality is dropped.
+- Lead replay reproduced result SHA-256
+  `96d3321f4997246c76db4f653e001e69cdefcfa1993c794db8d0f8b2b2deee88`
+  in 0.06 seconds at about 22 MB maximum resident memory.
+- Candidate/review manifests:
+  `d8f26d91e58f28289c4b38aafe6ca6f0a543b127822991a403ffdd2ae36a7033`,
+  `774a774e93850c1403cf5bc53c1f0a4bd8a216e1445aa26df7112cbc1098db00`.
+  The order-10 census and toggle probe remain `OBSERVED`; no full-list or
+  complete-\(k=3\) conclusion is claimed.

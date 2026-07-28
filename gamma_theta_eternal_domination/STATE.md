@@ -1,5 +1,60 @@
 # Campaign State
 
+## Checkpoint 094 — 2026-07-28 09:34 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite frontier
+  remains all orders through 12 and \(k=3\) at order 13.
+  Repository base before this checkpoint: `7c9b280f`.
+- **Anchorless vertices in a full-response physical link are now locally
+  classified (C-139).**  On each bipartition side of each component of
+  \(\overline G[N_{\overline G}(x)]\), all retained anchor palettes are
+  identical.  A side contains at most one root spoke, one spoke fixes the
+  opposite palette, and two spokes fix both palettes.
+- A color omitted on both sides forces the reverse \(x\)-to-anchor response
+  over every link edge.  In the deletion-critical branch, every retained
+  color at an anchorless vertex also installs a nonempty external
+  \(G\)-clique layer through a unique third attack.  These layers give the
+  conditional count \(n\ge |B_*|+10\).
+- The hostile reviewer reconstructed all dependencies and three controls,
+  verified 1,143, 54, and 60 one-guard obligations, and added a sharp
+  eight-vertex scope control for the third-attack mechanism.  Lead replay
+  matched result SHA-256
+  `96d3321f4997246c76db4f653e001e69cdefcfa1993c794db8d0f8b2b2deee88`
+  in 0.06 seconds at about 22 MB RSS.
+- This result does not eliminate anchorless vertices.  The order-10 scan
+  and radius-two toggle probe remain `OBSERVED`, and global palette
+  synchronization plus the residual inactive set remain open.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Full-list anchorless local structure | closed-proved C-139 | Side-rigid palettes, reverse states, external clique layers |
+| Full-list global synchronization | active-primary | Must couple components through external layers and \(R_x-B\) |
+| Dynamic equality reciprocity | active-primary, C-138 finite support | Coinduction or dominating-pair contradiction |
+| Bridge propagation | correction-required before promotion | One quantified loop case and a missing distinctness argument |
+| Complete \(k=3\) theorem | active | Singleton and full-response global gluing remain |
+| Universal parameter lifting | active-long-range | Requires \(\mathsf{GL}(k)\), including dirty \(Y_k\) |
+
+### Running jobs and resources
+
+- A fresh proof lane is testing whether global reverse colors force a
+  deletion coloring omitting that color on the full physical link.  A
+  separate lane attacks equality-specific coinductive reciprocity.  The
+  bridge candidate awaits a local correction and revised audit.  No
+  memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  13 GiB disk space remains free.
+
+### Next three highest-value actions
+
+1. Correct and re-audit the bridge-propagation quantifier before promotion.
+2. Test whether C-139's global reverse response can select a link-omitting
+   deletion coloring and close the full-list branch.
+3. Prove or refute the coinductive dominating-pair alternative behind
+   equality-specific reciprocity.
+
 ## Checkpoint 093 — 2026-07-28 09:27 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
