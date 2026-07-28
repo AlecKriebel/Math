@@ -480,13 +480,14 @@ It is therefore one of the following.
 
 #### Proof
 
-C-154 applies to every selection of one retained terminal trace per
-color, including the three minimum-rank choices, and says that their
-palettes cannot all be the respective own-color singletons.  Thus at
-least one is nonsingleton.  Corollary 3.1 excludes a direct-root corridor
-for every such entry.  Splitting the remaining two gate types by rank
-and applying Theorem 2.1, Corollary 3.1, and Theorem 4.1 gives the four
-exhaustive alternatives. \(\square\)
+Each selected successor is a retained ban state
+\(S-u+r_u\) with \(r_u\in B\) and \(u\in Q(r_u)\).  Theorem 3.1 of
+C-154 is predecessor-independent and rules out three such states with
+the respective palettes \(Q(r_u)=\{u\}\).  Thus at least one is
+nonsingleton.  Corollary 3.1 excludes a direct-root corridor for every
+such entry.  Splitting the remaining two gate types by rank and applying
+Theorem 2.1, Corollary 3.1, and Theorem 4.1 gives the four exhaustive
+alternatives. \(\square\)
 
 This replaces the open phrase “positive-rank predecessor” by four exact
 subbranches.  Rank alone closes none of them beyond the direct-root gate.
