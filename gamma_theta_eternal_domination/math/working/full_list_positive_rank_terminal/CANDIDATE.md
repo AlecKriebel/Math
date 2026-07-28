@@ -345,7 +345,9 @@ dominating smaller-rank alternate.  If that alternate also belonged to
 smaller terminal predecessor.  Hence every dominating alternate in the
 minimum-rank case is absent from \(\mathcal F^\star\).  If the predecessor
 has positive rank, Theorem 2.1(3) guarantees that at least one such
-dominating alternate exists. \(\square\)
+dominating alternate exists.  This last alternate need not be indexed by
+\(Q(r)\), but the same nonretention argument applies because it uses only
+that the state is retained, unbanned, and lower-rank. \(\square\)
 
 This is the strongest valid normalization supplied by rank alone.
 Direct-root nonsingleton entries disappear, but a dominating
@@ -606,7 +608,7 @@ next statement is one of:
 \begin{array}{l}
 \text{a compulsory dominating lower-rank alternate is retained;}\\
 \text{or it forces a dominating pair;}\\
-\text{or every minimum-rank anchor restoration has positive rank.}
+\text{or rank-zero anchor restoration is impossible.}
 \end{array}
 \]
 

@@ -14,7 +14,7 @@ check_hash() {
 }
 
 check_hash \
-    e69b6b6f8809608d72665870a2c0878ef68ec7724a99763d94074c5b647219d4 \
+    e25845bbf5e23886284f2046ac8c5c661b48176f4bef9fda5651f733d4a0edb0 \
     "$artifact_dir/CANDIDATE.md"
 check_hash \
     6368b2d1d4735d5846f32653eff299587d265487a3bf5a2bafb9ed37b3627884 \
