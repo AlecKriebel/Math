@@ -2250,3 +2250,18 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   warnings fatal in 403.477 seconds.  The 31-artifact acceptance hash audit,
   CSV/JSON parsing, Python syntax parsing, and public-page anchor/JSON-LD
   checks also passed.
+
+## 2026-07-27 22:06 PDT — public Day-3 proof checkpoint verified
+
+- Commit `716f17f557fb820057fdcc627264f1bcee1ffbbb` was rebased cleanly
+  over an unrelated concurrent research commit and pushed to `main`.
+- GitHub Pages run `30330574121` succeeded.  The cache-bypassed live
+  gamma--theta workstream page and committed HTML have identical SHA-256
+  `543884bdfc24d66b9ebedf4330b2b57d66d8d9d73f14d8e881118e70671974f5`.
+- Live attribution and scope were checked directly: Alec Kriebel is the
+  research lead; heavy AI assistance is disclosed; the universal conjecture
+  is unresolved; the finite frontier remains 13 relative to the published
+  through-order-11 premise; order 14 is unstarted; and the order-12
+  manuscript remains the sole current paper.
+- Frozen deployment provenance:
+  `results/day3_cap_escape_public_workstream_acceptance.json`.

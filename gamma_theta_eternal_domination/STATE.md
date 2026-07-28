@@ -1,5 +1,23 @@
 # Campaign State
 
+## Checkpoint 060 — 2026-07-27 22:06 PDT
+
+- Commit `716f17f557fb820057fdcc627264f1bcee1ffbbb` was pushed to
+  `main` after a clean rebase over the unrelated minimum-Bell-randomness
+  checkpoint.  No force-push or cross-workstream overwrite occurred.
+- GitHub Pages run
+  [`30330574121`](https://github.com/AlecKriebel/Math/actions/runs/30330574121)
+  completed successfully.  A cache-bypassed download of the public active
+  workstream page was byte-identical to the committed source, with SHA-256
+  `543884bdfc24d66b9ebedf4330b2b57d66d8d9d73f14d8e881118e70671974f5`.
+- The live page identifies Alec Kriebel as research lead, discloses heavy AI
+  assistance, and states prominently that the universal conjecture remains
+  unresolved.  It retains the relative order-13 frontier, says no order-14
+  work has begun, and links the order-12 frontier manuscript as the sole
+  current paper.
+- The machine-readable deployment record is
+  `results/day3_cap_escape_public_workstream_acceptance.json`.
+
 ## Checkpoint 059 — 2026-07-27 21:46 PDT
 
 - Campaign day: 3 of 27.  The universal conjecture remains unresolved, the
