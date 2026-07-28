@@ -2643,3 +2643,24 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   ridge-connected maximum-independent triples and is testing its exact
   global consequence.  No universal theorem, counterexample, complete
   order-13 exclusion, or order-14 bound is claimed.
+
+## 2026-07-28 03:31 PDT — one-sided almost-cap obstruction accepted
+
+- An independent reviewer reconstructed the exact chirality table for a
+  third-type almost-cap.  Its two complement arms existentially eliminate
+  to one oriented endpoint clause; they do not reproduce the two
+  implications of a tight-gate equality.  The displayed counterassignment
+  proves that raw chord substitution is logically unsound.
+- The first draft overstated what the accepted physicalization controls
+  proved.  It was repaired to distinguish C-095/C-099 incidence-transport
+  countercontrols from the conditional C-098 cap theorem and to make no
+  monotonicity claim for connector length or physicalization distance.  The
+  hostile re-audit then returned unconditional `PASS`, promoting C-105.
+- The remaining no-full proof target is narrower and oriented: preserve
+  both marked contradiction paths while repairing one-sided implications.
+  A shortest odd XOR triangle already ties rather than decreases clause
+  count, and resolution-derived logical units do not automatically become
+  singleton family-response lists.
+- The full-target facet-propagation note is frozen and under independent
+  hostile review.  No universal theorem, counterexample, complete
+  order-13 exclusion, or order-14 bound is claimed.

@@ -1,0 +1,108 @@
+{
+  "review": "dynamic almost-cap descent hostile audit",
+  "date": "2026-07-28",
+  "verdict": "PASS",
+  "completion_percent": 100,
+  "reviewed_source": {
+    "path": "math/working/odd_cycle_descent/NOTE.md",
+    "sha256": "72841488157389ce829ba42530015e1b263decb530619e8298649972de0981e3"
+  },
+  "accepted_dependencies": {
+    "C094_C095_note": {
+      "path": "math/working/physicalized_twosat_endgame/NOTE.md",
+      "sha256": "3a357c3c7ece9a0cf33f7b555cae21e629a19b9e2d86e6ebe6f5798b4f08e7df",
+      "independent_replay": "PASS"
+    },
+    "C098_C099_note": {
+      "path": "math/working/original_edge_core_incidence/NOTE.md",
+      "sha256": "36cb17f88c6a6bba5da710bd15e4ebc0c6145bcc5d464244e388c597154554c5",
+      "result_sha256": "dd473b421915adf6af5a5eb900a7561ee4efae44ce365233d9f738ae64ad0481",
+      "independent_replay": "PASS"
+    }
+  },
+  "coordinates": {
+    "cyclic_order": ["a", "b", "c"],
+    "x": {"type": "b", "zero": "a", "one": "c"},
+    "y": {"type": "c", "zero": "b", "one": "a"},
+    "q": {"type": "a", "zero": "c", "one": "b"}
+  },
+  "clauses": {
+    "xq_arm": "not X or Q",
+    "yq_arm": "Y or not Q",
+    "exact_existential_projection": "not X or Y",
+    "missing_endpoint_cross_clause": "X or not Y",
+    "tight_relation": "X equals Y"
+  },
+  "truth_table": [
+    {"X": 0, "Y": 0, "Q": 0, "xq": true,  "yq": true,  "resolvent": true,  "endpoint_cross": true},
+    {"X": 0, "Y": 0, "Q": 1, "xq": true,  "yq": false, "resolvent": true,  "endpoint_cross": true},
+    {"X": 0, "Y": 1, "Q": 0, "xq": true,  "yq": true,  "resolvent": true,  "endpoint_cross": false},
+    {"X": 0, "Y": 1, "Q": 1, "xq": true,  "yq": true,  "resolvent": true,  "endpoint_cross": false},
+    {"X": 1, "Y": 0, "Q": 0, "xq": false, "yq": true,  "resolvent": false, "endpoint_cross": true},
+    {"X": 1, "Y": 0, "Q": 1, "xq": true,  "yq": false, "resolvent": false, "endpoint_cross": true},
+    {"X": 1, "Y": 1, "Q": 0, "xq": false, "yq": true,  "resolvent": true,  "endpoint_cross": true},
+    {"X": 1, "Y": 1, "Q": 1, "xq": true,  "yq": true,  "resolvent": true,  "endpoint_cross": true}
+  ],
+  "projected_relations": {
+    "two_arms": [[0, 0], [0, 1], [1, 1]],
+    "two_arms_plus_endpoint_cross": [[0, 0], [1, 1]],
+    "displayed_counterassignment": {"X": 0, "Y": 1, "Q": 0, "valid": true}
+  },
+  "two_edge_control": {
+    "graph6": "MFzJbZYhlrDZdMhd_",
+    "cyclic_numeric_relabeling": {"a": 2, "b": 0, "c": 1},
+    "vertices": {"q": 3, "x": 4, "y": 9, "r": 8},
+    "lists_numeric": {
+      "q": [0, 1],
+      "x": [1, 2],
+      "y": [0, 2],
+      "r": [0, 1]
+    },
+    "incidences": {
+      "q_x": "H",
+      "q_y": "H",
+      "a_r": "H",
+      "r_x": "G",
+      "r_y": "G"
+    },
+    "anchor_H_neighbors": {
+      "q": [],
+      "x": [],
+      "y": [1],
+      "r": [2],
+      "cap_13": [1],
+      "cap_7": [0]
+    },
+    "caps": [
+      {"failed_pair": [8, 4], "vertex": 13, "list": [0, 2], "already_physical": true},
+      {"failed_pair": [8, 9], "vertex": 7, "list": [1, 2], "already_physical": true}
+    ],
+    "scope_facts": {
+      "representative_loses_both_named_original_edges": true,
+      "both_original_endpoints_are_physical": false,
+      "at_least_one_original_endpoint_is_physical": true,
+      "joint_physicalization_of_edge_qx_gives_H_edge_8_7": true,
+      "control_proves_all_four_descent_measures_nondecreasing": false
+    }
+  },
+  "repairs_verified": [
+    {
+      "kind": "hypotheses restored",
+      "location": "Section 2, application of C-098",
+      "detail": "The source now explicitly assumes gamma(G)=3 and says x and y have already been replaced by same-sign physical representatives."
+    },
+    {
+      "kind": "claim-number corrected",
+      "location": "status summary, Section 2, and final open-lemma paragraph",
+      "detail": "The two-specified-edge equality control is now cited as C-099, while C-098 is identified as the cap theorem."
+    },
+    {
+      "kind": "overgeneralization removed",
+      "location": "last paragraph of Section 2",
+      "detail": "The source no longer says all four quantities remain unchanged or increase; it states only the supported absence of a proved monotonicity theorem."
+    }
+  ],
+  "remaining_blockers": [],
+  "core_boolean_obstruction": "PASS",
+  "dependency_and_scope_audit": "PASS"
+}

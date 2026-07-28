@@ -1,5 +1,64 @@
 # Campaign State
 
+## Checkpoint 068 — 2026-07-28 03:31 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified frontier is unchanged:
+  order 12 is excluded completely, and only the \(k=3\) slice is excluded
+  at order 13.
+- **The naive almost-cap descent is rigorously refuted (C-105).**  The two
+  cap arms existentially project to one oriented endpoint clause, not the
+  two implications of a tight-gate equality.  An explicit Boolean
+  counterassignment survives both arms while violating the desired chord.
+  The hostile review independently reconstructed the chirality table and
+  truth relation and returned unconditional `PASS` after correcting the
+  dependency scope.
+- The accepted C-095/C-099 equality controls separately show that
+  same-sign physical representatives need not retain one or even two named
+  complement incidences.  C-098 repairs a failed physical incidence by a
+  cap dichotomy, but the exact third-type outcome can create another tight
+  gate.  No decreasing gate, connector, or physicalization measure follows.
+- The paired-repair lane has retained one limited logical fact: an
+  almost-cap implication can shorten one *oriented* marked contradiction
+  path while leaving the opposite path logically present.  A three-variable
+  odd XOR triangle is already a sharp no-strict-descent control, and the
+  resulting resolution units do not yet have literal response-list support.
+- A separate full-target proof note is frozen for hostile review.  Its
+  proposed new mechanism is vertex-star propagation of response membership
+  across maximum independent triples and a global responder-color
+  intersection criterion.  It is not accepted pending that review.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Canonical three-gate witness theorem | closed-proved C-104 | The witness type is forced; collision and gamma-two boundary audited |
+| Raw almost-cap descent | closed-refuted C-105 | Two arms give only one implication; no well-founded raw shortening |
+| Oriented paired repair | active-final-gate | Logical units lack proved physical response-list support; shortest XOR triangle ties rather than descends |
+| Universal full-list \(k=3\) proof | active-hostile-review | Proposed active-set/component-color theorem; global intersection remains open |
+| Order-13 \(k=4,5\) slices | deferred-fallback | Resume one focused slice if both proof lanes reach their gates |
+
+### Running jobs and resources
+
+- One bounded agent is completing the physical-support audit for oriented
+  paired repair, and one independent reviewer is auditing the full-target
+  facet-propagation note.  No broad enumeration or memory-heavy solver is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Decide whether resolution-derived endpoint units can be realized as
+   literal response units; otherwise freeze the exact obstruction and stop
+   this descent lane.
+2. Accept, repair, or reject the full-target active-set theorem under
+   independent hostile audit, then attack only its exact global
+   responder-color intersection gap.
+3. If both universal lanes terminate without a new mechanism, resume a
+   focused certified order-13 \(k=4\) or \(k=5\) exclusion rather than a
+   blind order-14 search.
+
 ## Checkpoint 067 — 2026-07-28 03:23 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
