@@ -84,3 +84,25 @@ All timestamps use America/Los_Angeles.
   \(s_1(M)+s_2(M)-\operatorname{sgn}(\det M)s_3(M)\le\operatorname{Tr}K\).
   The explicit counterexample to the operator-norm strengthening saturates,
   rather than violates, this live inequality.
+- Derived an adjoint-mixed copy-doubling construction.  A tempting block
+  swap makes the resulting coefficient matrix normal, but it also changes
+  the \(A_i:B_i\) copy pairing; an exact example reverses the expectation
+  from \(-2\) to \(+2\).  Thus negativity cannot be transferred to the
+  normal subclass by that relabeling.
+- Proved the sharp two-copy quantitative identity for every
+  \(H\succeq0\):
+  \[
+  Q_2(H)-\tfrac12\bigl(\operatorname{Tr}H^2
+  -\tfrac12(\operatorname{Tr}H)^2\bigr)
+  =2\operatorname{Tr}[(H\otimes H)\Pi_1^-\Pi_2^-]\ge0.
+  \]
+  For positive rank two this gives
+  \(Q_2(H)\ge(\lambda_1-\lambda_2)^2/4\).
+- Proved all-copy positivity, for arbitrary matrix rank, when the coefficient
+  matrix is supported on a common tensor product of local subspaces of
+  dimension at most two.  On that support the endpoint form is exactly the
+  squared norm of the component traceless on every two-dimensional site.
+- Derived the \(d=3\) Levi--Civita representation
+  \(\operatorname{Tr}(M)I-M=\sum_kA_kM^TA_k^\dagger\).  Its partial
+  tensor expansion is not termwise positive; a sparse exact \(n=3\)
+  certificate saturates the resulting copositivity obstruction.
