@@ -1,5 +1,125 @@
 # Campaign State
 
+## Checkpoint 061 — 2026-07-27 23:57 PDT
+
+- Campaign day: 3 of 27.  The universal conjecture remains unresolved, no
+  counterexample has been found, and the certified global frontier remains
+  13 relative to the published through-order-11 computation.  The repository
+  base before this pending integration is
+  `21f5042e6a010db53f759177a0f36d90016cc0ba`.
+- **Terminal localization (C-085--C-086).**  If all three colors of one
+  full target fail, fixed inclusion-minimal cores confine the obstruction to
+  at most six terminals with a rainbow-transversal property.  The terminal
+  cube forces a cross-label response at level two or three, and at least one
+  failed color contains a genuine marked lollipop or two-unit chain.  Kempe
+  connectors have an edge/odd-ear alternative, while positive hubs satisfy
+  side-purity inside each omitted-color component.
+- **Naive recurrence refuted and exact ladder sharpened (C-087--C-088).**
+  The equality graph `GCXfVG` closes one repeated cap harmlessly around an
+  omitted-color complement \(C_4\), proving that finiteness and cap identity
+  alone do not yield a contradiction.  A second omitted color nevertheless
+  forces two further distinct caps in the exact separated-port pattern,
+  first raising its human order floor to 13.
+- **Disjoint full-response witnesses (C-089).**  A literal one-guard attack
+  proves that every second-layer witness is anchor-pure and that witness
+  layers for different anchors are disjoint.  Each witness has both
+  cross-anchor responses.  Hence a full response forces three spokes and
+  three further witnesses outside \(S\cup Q_S\), giving
+  \[
+    |V-(S\cup Q_S)|\ge6,\qquad |V|\ge|Q_S|+9.
+  \]
+  This raises the exact separated-port floor to 15.
+- **Order-13 parameter-three full-response branch certified empty (C-090).**  There is no
+  13-vertex parameter-three counterexample with a full family-response target
+  at a maximum independent triple.  The full target need not be unique, and
+  connectivity is not assumed.  A clean-room generator reconstructed the
+  exact 9,802-variable, 85,409-clause formula byte for byte.  The 960-clause
+  \(S_9\) sorter passed all 2,048 local truth-table cases and a complete
+  orbit-coverage proof.  The 19,874,489-byte full DRAT and reduced core both
+  replayed `VERIFIED` in RUP-only mode.  The hostile checker now performs two
+  normalized internal rounds and is byte-deterministic across independent
+  reruns.
+- **Two-lists physicalized (C-091).**  Any neutral vertex with two positive
+  responses forces a pure two-vertex complement spoke and replicates its
+  response pair at a physical terminal whose omitted color is an actual graph
+  nonedge.  Thus every exact two-list type has a physical representative.
+  Two possibly equal neutral vertices with overlapping response pairs force
+  six nonneutral witnesses, proving the same exact separated-port
+  \(n\ge15\) floor even without its full target.
+- **Tight static boundary (C-092).**  The independently replayed graph
+  `MFzvvn{feBKbM{gZ_}` has
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\), satisfies the
+  displayed static/direct-list target, but loses all 200 dominating
+  three-sets in deletion rounds \(140,60\).  Four explicit first attacks
+  show why domination of selected swaps cannot replace literal closure.
+- **No-full response-type decomposition (C-093).**  A non-3-colorable
+  complement needs at least two exact two-list types.  Every type omitting
+  anchor \(i\) forces two distinct pure-\(i\)-signature vertices joined in
+  the complement, and every neutral vertex sees all three signature colors.
+  At order 13 this gives
+  \[
+    |A|\ge5,\quad |Q|\le5,
+  \]
+  improving to \(6,4\) when all three types occur.  In the tight \(5+5\)
+  case the fifth nonneutral vertex is complement-adjacent to every neutral
+  vertex and has a forced singleton response.  The earlier draft claim
+  \(|A|\ge7,|Q|\le3\) was false, was retracted before promotion, and is not
+  used.
+- **Literal physicalization proved; edge transport refuted
+  (C-094--C-095).**  Every exact two-list event has a representative with
+  the same list and Boolean sign, on an explicit length-two complement path
+  when the omission is dynamic.  The equality graph `LFzJbZYhdrDZdM`
+  nevertheless has a checked 142-state eternal family and
+  \((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\) in which the unique
+  same-sign representative loses the specified complement cross-edge.
+  Literal substitution is exact; physical clause-edge substitution is
+  false.
+- The exact complementary order-13 no-full-list formula has 9,802 variables
+  and 85,413 clauses.  A single CaDiCaL run reached its 120-second cap
+  without returning SAT or UNSAT.  This is a nonclaim.  Its useless 389 MiB
+  partial proof stream was deleted; the deterministic generator, 4.6 MiB
+  instance, timeout record, and resume command remain.
+- The public active-workstream page has been updated in pending source bytes
+  with Alec Kriebel as research lead, heavy-AI disclosure, the unresolved
+  status, C-090's conditional branch boundary, and the exact \(n\ge15\)
+  pattern theorem.  The order-12 frontier paper remains the sole current
+  paper; no second manuscript is warranted yet.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Physicalized no-full-list 2-SAT | active-primary | Literal transport is now exact, but C-095 refutes automatic edge transport; use the original cross-edge incidence pattern or force one representative to retain two specified core edges |
+| Order-13 no-full-list slice | active-supporting | C-093 reduces the census to the tight \(5+5\) normal form and the \(|A|\ge6\) residual branch; no solver timeout is a result |
+| Order-13 parameter-three full-response slice | closed-certified C-090 | Exact clean-room CNF reconstruction, sorter coverage, and deterministic RUP replays passed |
+| Exact separated-port pattern | closed through order 14 | C-091 proves \(n\ge15\); this is not a global order-14 exclusion |
+| Longer two-unit chains and unit-free bicycles | active-independent | Individual two-list omissions are now physical, but arbitrary cross-list connector edges are not yet known to move with their representatives |
+| General order-14 computation | not started | No blind or unrestricted order-14 enumeration or synthesis has begun |
+
+### Running jobs and resources
+
+- No SAT solver, graph generator, proof checker, or broad enumeration is
+  running.  The no-full decomposition and physicalized-literal control have
+  both passed independent hostile review.  Two fresh proof agents are now
+  attacking the tight \(5+5\) normal form and the original-edge incidence
+  structure of minimal unsatisfiable response cores.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  20 GiB of disk is free.  The only new solver run used one core, was capped
+  at 120 seconds, and its incomplete 389 MiB proof stream was removed.
+
+### Next three highest-value actions
+
+1. Use the original cross-edge incidences of an inclusion-minimal
+   unsatisfiable response 2-CNF to force one physical representative to
+   retain two specified clauses, or derive a dominating pair.
+2. Attack the tight order-13 \(5+5\) no-full normal form through its
+   universal complement hub and forced singleton response; partition the
+   residual branch by two versus three response types before another solver
+   launch.
+3. Complete the adversarial integration audit, freeze acceptance hashes,
+   commit and push only the gamma--theta/public-page artifacts, then verify
+   the live GitHub Pages bytes.
+
 ## Checkpoint 060 — 2026-07-27 22:06 PDT
 
 - Commit `716f17f557fb820057fdcc627264f1bcee1ffbbb` was pushed to

@@ -1,0 +1,168 @@
+{
+  "ablations": {
+    "no_sorter": "TIMEOUT in discovery run; treated as a nonclaim",
+    "omit_closure": {
+      "clauses": 65389,
+      "command": [
+        "tools/cadical_3_0_1/build/cadical",
+        "--quiet",
+        "--binary=false",
+        "<clean-room-minimal-without-closure.cnf>"
+      ],
+      "complete_model_independently_checked": true,
+      "log": "reviews/order13_full_target_hostile/ablation_omit_closure.log",
+      "log_sha256": "9dadc38eba03a82960b3f341b3c405f7e6ecdbb34f9245b79949c66c008c44eb",
+      "returncode": 10,
+      "status": "SAT"
+    },
+    "omit_theta_gap": {
+      "clauses": 26360,
+      "status": "SAT_MODEL_CHECKED"
+    },
+    "uniqueness_connectivity_witness_and_all_triangle_forcing": "absent from the decisive clean-room formula"
+  },
+  "artifacts": {
+    "minimal-core.cnf": {
+      "bytes": 184631,
+      "sha256": "dcba47ea9d60afc1cc86672498af39681c3acf02606c728f66cb84f47ee557e7"
+    },
+    "minimal-core.drat": {
+      "bytes": 915086,
+      "sha256": "83f73ee2c2a82ab0a228099f0354abf46e23f3e807561a6d665a43b86b1e273f"
+    },
+    "minimal-instance.cnf": {
+      "bytes": 4808845,
+      "sha256": "d5a2f17ad6e61cb7ca5cb9d2930b6a0738fec32ee1d9956207dc67bb297dcb13"
+    },
+    "minimal-proof.drat": {
+      "bytes": 19874489,
+      "sha256": "653b01e904b97c01bfa25fbbea29fbadee603918dbaff0ea41b7ad09460fb910"
+    },
+    "positive-model.out": {
+      "bytes": 57195,
+      "sha256": "91ed17277bfd4405f7e1dfdecc199bed2f9cdc788f1c59a15e7d3a55e8f79d8d"
+    }
+  },
+  "boundary": "This is only the full-response branch; the no-full-list order-13 branch and the universal conjecture remain open.",
+  "clean_room_formula": {
+    "byte_identical_to_frozen": true,
+    "clauses": 85409,
+    "normalized_core_is_submultiset": true,
+    "omitted_conditions": [
+      "connectivity",
+      "uniqueness of the full target",
+      "the five- or six-witness bound",
+      "forcing every H-triangle into the family",
+      "odd-hole/odd-antihole templates"
+    ],
+    "sha256": "d5a2f17ad6e61cb7ca5cb9d2930b6a0738fec32ee1d9956207dc67bb297dcb13",
+    "tag_counts": {
+      "anchor_h_triangle": 3,
+      "anchor_retained": 1,
+      "anchored_noncoloring": 59049,
+      "family_nonempty": 1,
+      "full_target_g_edge": 3,
+      "full_target_successor": 3,
+      "no_h_k4": 715,
+      "pair_witness_choice": 78,
+      "pair_witness_edge": 1716,
+      "response_successor_retained": 8580,
+      "response_traverses_g_edge": 8580,
+      "retained_dominates": 2860,
+      "retained_state_has_response": 2860,
+      "signature_sorter": 960
+    },
+    "variables": 9802
+  },
+  "date": "2026-07-27",
+  "determinism_regression": {
+    "external_audit_rounds": 2,
+    "normalized_outputs_byte_identical": true,
+    "volatile_timing_and_temporary_paths_serialized": false
+  },
+  "finite_theorem_certified": "No order-13 k=3 equality counterexample with theta>3 has a full family-response target at a maximum independent triple.",
+  "human_theorem_review": {
+    "anchor_pure_external_witnesses": "PASS",
+    "cross_response_lemma": "PASS",
+    "exact_separated_port_floor": 15,
+    "pairwise_disjoint_external_witness_layers": "PASS",
+    "six_non_neutral_vertices": "PASS"
+  },
+  "positive_control": {
+    "alpha": 3,
+    "dominating_triples": 157,
+    "full_targets_in_greatest_family_at_S": [
+      3
+    ],
+    "gamma": 3,
+    "gamma_infinity": 3,
+    "graph6_G": "LF\\|ul\\XzVsaqJ",
+    "greatest_eternal_family_states": 157,
+    "model_satisfies_clean_theta_ablation_clauses": true,
+    "model_selected_family_states": 157,
+    "proper_H_3_coloring": [
+      0,
+      2,
+      1,
+      0,
+      2,
+      1,
+      0,
+      0,
+      2,
+      1,
+      2,
+      1,
+      2
+    ],
+    "theta": 3,
+    "theta_ablation_clause_count": 26360
+  },
+  "proof_replays": {
+    "full_clean_room_instance": {
+      "command": [
+        "tools/drat_trim_2023_05_22/drat-trim",
+        "<clean-room-byte-identical-minimal-instance.cnf>",
+        "math/working/order13_single_full_squeeze/minimal-proof.drat",
+        "-U"
+      ],
+      "log": "reviews/order13_full_target_hostile/proof_replay_full.log",
+      "log_sha256": "01190f59c1d5b59d9adb2418f98c783f7ee569ae08a64ac7edba26ebc0a90cdb",
+      "returncode": 0
+    },
+    "reduced_core": {
+      "command": [
+        "tools/drat_trim_2023_05_22/drat-trim",
+        "math/working/order13_single_full_squeeze/minimal-core.cnf",
+        "math/working/order13_single_full_squeeze/minimal-core.drat",
+        "-U"
+      ],
+      "log": "reviews/order13_full_target_hostile/proof_replay_core.log",
+      "log_sha256": "e86ba95f53170ce51bd2e64846232479c8f5f2244affafa04ceedd260d3f505c",
+      "returncode": 0
+    }
+  },
+  "review_sources": {
+    "REVIEW.md": "d59a0b4663cbb7c4b56faaaad103dd0a2add80a0ebe3c42cc075fd3daf55a6ec",
+    "checker.py": "87f01851aef06da770373058e662fff11a273cfd51eb47251a6e60b6d812b95d",
+    "full_response_disjoint_witnesses/NOTE.md": "b5c845cee5d887596d1c26660fe741c5ef54763d87d42033c1826f341b4fe6e4",
+    "full_response_witness_bound/NOTE.md": "e491852cebec719d9296473ef3987298009d2759efab893865fb4d7e206666f1",
+    "order13_single_full_squeeze/NOTE.md": "35ddcf61f32723c94b8f0d2fc66aee54331d28dc6b0a372abdac542f41609487"
+  },
+  "schema": "order13-full-target-hostile-audit-v1",
+  "sorter_truth_table": {
+    "clauses": 960,
+    "signature_pairs_tested": 2048
+  },
+  "tools": {
+    "cadical": {
+      "path": "tools/cadical_3_0_1/build/cadical",
+      "sha256": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6"
+    },
+    "drat_trim": {
+      "path": "tools/drat_trim_2023_05_22/drat-trim",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb"
+    }
+  },
+  "verdict": "PASS"
+}

@@ -253,9 +253,7 @@ supporting that color.  In the exact separated-port core this forces a new
 positive residual cap followed by a new omitted-color escape in the full
 vertex's complement link.  The escape cannot see both connector endpoints
 without creating a complement \(K_4\), so the exact core now needs at least
-11 vertices.  The remaining question is whether this alternating
-cap-and-escape ladder can close globally without producing an odd fan,
-\(K_4\), or dominating pair.
+11 vertices.
 
 Complete local diagnostics reinforce this target without proving it.  All
 512 one-vertex extensions, all \(27\cdot512\) extensions with one further
@@ -267,6 +265,84 @@ an unbounded theorem or a frontier increase.  The order-12 graph
 \(\gamma=\alpha=\gamma^\infty=\theta=3\), a genuine full greatest-family
 list, and a unique compatible anchored coloring.  Thus eliminating full
 lists would be false; the proof must select a globally compatible color.
+
+Claims C-085--C-088 replace the naive ladder-iteration target with a more
+precise global one.  If the no-full-list base formula is satisfiable but all
+three colors of one full target fail, three fixed terminal sets of size at
+most two hit every compatible deletion coloring.  Every such coloring has a
+rainbow transversal in their six-vertex union, and the associated terminal
+cube forces a cross-label one-guard response at level two or three.  Three
+singleton blockers are impossible, so at least one failed color contains a
+genuine marked lollipop or two-unit chain.
+
+The physical geometry is now similarly bounded.  Every pairwise Kempe
+connection either supplies a link edge of the required two colors or closes
+with the full vertex to a hub-free induced odd hole.  C-079 also gives a
+side-purity theorem: once a hub has a positive-response complement neighbor,
+its neighbors in one omitted-color component occupy only one bipartition
+side.  A mixed-side two-list port can continue internally only through a
+singleton buffer.
+
+Two exact controls show why this still is not a proof.  The equality graph
+`GCXfVG` has a single positive cap repeated around an entire omitted-color
+complement \(C_4\), with no odd fan, complement \(K_4\), or dominating pair.
+Thus cap identity and finiteness alone do not force a contradiction.  In the
+exact separated-port branch, using the second omitted color forces two
+additional distinct caps.  The human attack proof raises that exact
+pattern's floor to 13 and shows that an order-13 realization would have to
+identify the two escape systems at one singleton-list vertex.  The
+gamma-two control `JFzvvn{~fM?` realizes the finite bow-tie return with a
+checked 109-state family, confirming that domination equality is the
+essential extra input.  None of these exact-pattern bounds changes the
+global finite frontier.
+
+Claims C-089--C-092 replace that provisional order-13 return with two
+stronger results.  At a full response, every external witness belongs to
+exactly one anchor layer, the three layers are pairwise disjoint, and each
+witness carries both cross-anchor responses.  Thus a full target forces six
+nonneutral vertices.  More generally, any neutral vertex with two positive
+responses forces a pure two-vertex complement spoke and replicates its
+two-list at a physical vertex whose omitted color is a genuine graph
+nonedge.  Two possibly distinct neutral vertices carrying overlapping
+two-lists again force six nonneutral vertices.  The exact separated-port
+pattern therefore requires at least 15 vertices, even if its full target is
+discarded.
+
+The order-13 parameter-three full-response branch is now certified empty.  A
+clean-room generator reconstructed the 9,802-variable, 85,409-clause
+full-response formula byte for byte; its \(S_9\) symmetry coverage was
+proved and truth-tabled, and independent RUP-only replays accepted both the
+full DRAT proof and reduced core.  Hence an order-13 parameter-three
+counterexample, if one exists, has no full family-response target at any
+maximum independent triple.  This is not a complete order-13 exclusion:
+the no-full-list 2-SAT branch remains open, as do the order-13
+parameter-four and parameter-five slices.  A first two-minute monolithic
+probe of that complementary branch timed out and is recorded as a
+nonclaim.
+
+Claims C-093--C-095 give the first sound census reduction inside that
+no-full branch and close one tempting but invalid proof shortcut.  A
+non-3-colorable complement must use at least two distinct exact two-list
+types.  Each type forces two pure-signature nonneutral vertices joined in
+the complement, while every neutral vertex forces the remaining anchor
+signatures to occur.  Consequently an order-13 no-full counterexample has
+at least five nonneutral vertices and at most five neutral vertices; if all
+three types occur, the bounds are six and four.  The tight \(5+5\) case has
+a rigid fifth vertex that is complement-adjacent to every neutral vertex and
+has a forced singleton response.
+
+Every exact two-list Boolean event can now be represented at a physical
+vertex on the same side of the relevant bipartite projection.  For a
+dynamic omission, the original port and its representative are joined by a
+length-two complement path, so substituting the representative in the
+2-SAT formula is logically exact.  However, the equality control
+`LFzJbZYhdrDZdM` has a checked 142-state eternal family and
+\((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\), yet the complement
+edge supporting one cross-clause disappears at the unique same-sign
+physical representative.  Thus literals physicalize, but clause edges do
+not.  A decisive proof must use the original incidence pattern or prove a
+stronger multi-edge representative theorem; simple connector transport is
+refuted.
 
 The same iteration also proves that a minimum counterexample has no adjacent
 true twins: deleting either one preserves
@@ -280,10 +356,17 @@ exchange paths between arbitrary independent states.  Hostile examples
 delimit the theorem sharply: expansion/restoration alone is not
 base-orderability, and even equality does not force individual exchanges to
 be reciprocal in an arbitrary eternal subfamily.  Thus the current proof
-target is no longer a generic list-coloring assertion; it is to show that the
-mixed three-color core cannot be realized by the full one-guard dynamics
-under the equality target \(\gamma=\alpha=\gamma^\infty=3\).  The conjecture
-remains unresolved, and no order-14 computation has begun.
+target is no longer a generic list-coloring assertion or an unqualified
+infinite cap descent.  It is to identify the fixed terminal-cube response
+with the original physical 2-SAT/Kempe incidence pattern, or to eliminate
+the tight \(5+5\), residual longer-chain, unit-free, and base-unsatisfiable
+branches under \(\gamma=\alpha=\gamma^\infty=3\).  Every two-list event now
+has a physical representative, and an exact equality control proves that
+arbitrary connector edges do not survive that replacement.  This is the
+precise universal gap.  The universal conjecture remains unresolved.  No general
+order-14 search has begun; higher-order runs made during this proof lane are
+restricted exact-pattern falsification probes and do not claim a frontier
+result.
 
 ## Trust architecture
 

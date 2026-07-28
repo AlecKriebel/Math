@@ -1,0 +1,94 @@
+{
+  "schema": "order13-single-full-squeeze-discovery-v1",
+  "date": "2026-07-27",
+  "claim_boundary": "Human anchor-purity/disjoint-witness theorem is proved. The order-13 full-response exclusion is certificate-backed discovery pending clean-room formula reconstruction and hostile coverage audit. It is not a global order-13 exclusion.",
+  "proposed_finite_theorem": "No order-13 graph with gamma=alpha=gamma_infinity=3<theta has an eternal triple-family containing a maximum independent triple S and a full family-response target x at S. Uniqueness of x and connectedness are not assumed.",
+  "formula": {
+    "variables": 9802,
+    "clauses": 85409,
+    "sha256": "d5a2f17ad6e61cb7ca5cb9d2930b6a0738fec32ee1d9956207dc67bb297dcb13",
+    "size_bytes": 4808845,
+    "path": "minimal-instance.cnf"
+  },
+  "proof": {
+    "format": "ASCII DRAT; independently accepted in RUP-only mode",
+    "sha256": "653b01e904b97c01bfa25fbbea29fbadee603918dbaff0ea41b7ad09460fb910",
+    "size_bytes": 19874489,
+    "path": "minimal-proof.drat"
+  },
+  "reduced_core": {
+    "input_clauses": 11846,
+    "lemmas": 8277,
+    "resolution_steps": 485709,
+    "rat_lemmas": 0,
+    "cnf_sha256": "dcba47ea9d60afc1cc86672498af39681c3acf02606c728f66cb84f47ee557e7",
+    "proof_sha256": "83f73ee2c2a82ab0a228099f0354abf46e23f3e807561a6d665a43b86b1e273f"
+  },
+  "tools": {
+    "cadical": {
+      "version": "3.0.1",
+      "sha256": "51c3c82b354f455c925fc60b37c701e8498afcf0f3bfab9a06e62149485df5f6"
+    },
+    "drat_trim": {
+      "identity": "campaign build from 2023-05-22",
+      "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb"
+    }
+  },
+  "solver_replay": {
+    "status": "UNSAT",
+    "real_seconds": 0.71,
+    "process_seconds": 0.70,
+    "max_rss_mb": 81.66,
+    "conflicts": 6634
+  },
+  "ablations": [
+    {
+      "name": "omit_unique_full",
+      "clauses": 89916,
+      "status": "UNSAT"
+    },
+    {
+      "name": "omit_old_witness_bound",
+      "clauses": 89799,
+      "status": "UNSAT"
+    },
+    {
+      "name": "minimal_all_redundancies_removed",
+      "clauses": 85409,
+      "status": "UNSAT_DRAT_VERIFIED"
+    },
+    {
+      "name": "minimal_without_sorter",
+      "clauses": 84449,
+      "status": "TIMEOUT_NONCLAIM",
+      "wall_limit_seconds": 120
+    },
+    {
+      "name": "omit_closure_default",
+      "clauses": 69905,
+      "status": "SAT"
+    },
+    {
+      "name": "omit_theta_gap_minimal",
+      "clauses": 26360,
+      "status": "SAT"
+    }
+  ],
+  "positive_control": {
+    "graph6_G": "LF\\|ul\\XzVsaqJ",
+    "parameters": {
+      "gamma": 3,
+      "alpha": 3,
+      "gamma_infinity": 3,
+      "theta": 3
+    },
+    "greatest_eternal_family_states": 157,
+    "greatest_family_equals_all_dominating_triples": true,
+    "reference": [
+      0,
+      1,
+      2
+    ],
+    "unique_full_target": 3
+  }
+}

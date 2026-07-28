@@ -2265,3 +2265,117 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   manuscript remains the sole current paper.
 - Frozen deployment provenance:
   `results/day3_cap_escape_public_workstream_acceptance.json`.
+
+## 2026-07-27 23:32 PDT — full-response squeeze and physical two-list gate
+
+- Three failed colors at one full target were confined to fixed
+  inclusion-minimal terminal sets of size at most two.  Their union has at
+  most six vertices and every compatible deletion coloring has a rainbow
+  transversal.  The terminal cube forces a cross-label response at level two
+  or three, while a three-singleton obstruction is impossible.  Independent
+  proof review accepted the fixed-core quantifiers and attack cases.
+- Kempe connectors were converted into an exact edge-or-hub-free-odd-ear
+  alternative.  A separate side-purity theorem confines all positive
+  neighbors of one hub in an omitted-color component to one bipartition
+  side.  The equality control `GCXfVG` then refuted the proposed shortcut
+  that a repeated cap alone must create an odd fan, complement \(K_4\), or
+  dominating pair: one cap closes consistently around an even complement
+  \(C_4\).
+- The exact two-color separated-port ladder was proved to require two
+  additional distinct caps.  This first raised its order floor to 13 and
+  forced a singleton identification in the tight order-13 case.  A
+  109-state gamma-two bow-tie control delimits exactly where domination
+  equality enters.
+- A 14-clause SAT core exposed a stronger human attack.  At a full response,
+  every second-layer witness is adjacent in the complement to exactly one
+  anchor; witness layers for distinct anchors are pairwise disjoint; and
+  each witness carries both cross-anchor responses.  Three spokes and three
+  second-layer witnesses are therefore distinct, proving
+  \(|V-(S\cup Q_S)|\ge6\) and raising the exact separated-port floor to 15.
+- A bounded order-13 full-response formula was then simplified by jointly
+  removing uniqueness of the full target, connectivity, the witness bound,
+  and redundant maximum-independent-state clauses.  The remaining exact
+  formula has 9,802 variables and 85,409 clauses and is UNSAT.
+  `drat-trim` accepted its 19,874,489-byte proof in RUP-only mode.
+- A hostile checker independently allocated every variable and reconstructed
+  all 85,409 clauses byte for byte.  It truth-tabled all 2,048 adjacent
+  signature pairs, proved the \(S_9\) sorter covers every orbit, replayed the
+  full proof and reduced core, and checked the SAT ablations.  A
+  reproducibility defect in its first result writer—temporary paths and
+  timing changed hashes—was caught on root replay.  The reviewer normalized
+  all volatile data, added two internal rounds and an external determinism
+  manifest, and the corrected artifacts now reproduce byte identically.
+  This promotes C-090:
+
+  \[
+  \text{no order-13 parameter-three counterexample has a full
+  family-response target at a maximum independent triple.}
+  \]
+
+  This is a conditional branch exclusion, not a complete order-13 theorem.
+- The theta-gap ablation produced the positive equality control
+  `LF\|ul\XzVsaqJ`.  Both independent evaluator stacks give
+  \((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\); all 157 dominating
+  triples survive and vertex 3 is the unique full target at the reference
+  state.  Thus the certified contradiction genuinely uses
+  non-3-colorability of the complement.
+- A broader human lemma now converts every neutral two-response vertex into
+  a pure two-vertex complement spoke and a physical terminal with the same
+  response pair and a genuine omitted-anchor graph nonedge.  Hence every
+  exact two-list has a physical representative.  Two possibly equal neutral
+  vertices with overlapping response pairs force six nonneutral witnesses,
+  proving the exact separated-port \(n\ge15\) floor without using the full
+  target.  A clean-room reviewer accepted the proof and independently
+  reproduced the 14-vertex static boundary graph
+  `MFzvvn{feBKbM{gZ_}` with
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\).
+- The exact complementary no-full-list order-13 formula has 9,802 variables
+  and 85,413 clauses.  One CaDiCaL run reached the 120-second cap without a
+  decision.  No claim is made.  Its 389 MiB incomplete proof stream was
+  deleted, while the generator, frozen instance, timeout record, and resume
+  command were retained.
+- The universal proof target is now narrower: a neutral two-list and its
+  physical representative are joined by an even complement path in the same
+  omitted-color component, so they represent the same Boolean sign.  What
+  remains is to transport or replace the physical cross-list connector
+  geometry needed by the one-guard attack, not merely its truth value.
+
+## 2026-07-27 23:57 PDT — sound no-full census and failed edge transport
+
+- The first no-full counting draft was challenged before promotion.  Its
+  assertion that every anchor pair forces an outside double-signature
+  witness was false because the third anchor already witnesses
+  nondomination.  The derived \(|A|\ge7,|Q|\le3\) bound was retracted and
+  does not appear in the accepted ledger or public result.
+- A corrected human decomposition proves that a non-3-colorable no-full
+  response system has at least two exact two-list types.  Each type omitting
+  anchor \(i\) forces two distinct pure-\(i\)-signature vertices joined in
+  the complement.  A neutral vertex forces complement neighbors covering
+  all three anchor signatures.  Therefore an order-13 no-full
+  counterexample has \(|A|\ge5,|Q|\le5\), improving to \(6,4\) for three
+  types.
+- In the tight \(5+5\) case, four nonneutral vertices are the two forced
+  pure-signature pairs.  The fifth has a two-anchor signature, is
+  complement-adjacent to every neutral vertex, and has the remaining
+  singleton response list.  This is C-093, a structural reduction rather
+  than an order-13 exclusion.
+- Literal physicalization was completed exactly.  Every exact two-list port
+  has a same-list representative on the same bipartition side of the
+  omitted-color projection; a dynamic omission gives an explicit
+  length-two complement path.  The two vertices therefore represent the
+  identical Boolean port event (C-094).
+- The stronger physical-edge inference is false.  The connected 13-vertex
+  equality graph `LFzJbZYhdrDZdM` has an explicit 142-state eternal family,
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,3,3)\), and no full list.
+  A complement cross-edge \(qv\) supports a response clause, but the unique
+  same-sign physical representative \(r\) of \(q\) has \(rv\in E(G)\).
+  The independent bit-mask reviewer reconstructed the graph, greatest
+  three-kernel, all 1,420 family obligations, all 78 pair-nondomination
+  witnesses, every response list, projection bipartiteness, and
+  representative uniqueness.  This refutes only automatic clause-edge
+  transport (C-095), not the gamma--theta conjecture.
+- The complete campaign test suite passed 398 of 398 tests in 385.723
+  seconds, with peak resident memory 185,417,728 bytes and no swaps.
+- The universal conjecture remains unresolved; no counterexample has been
+  found, the complete order-13 search is unfinished, and the global
+  certificate-backed frontier remains 13.
