@@ -2993,3 +2993,37 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The singleton branch remains open.  Exact unresolved cases are immediate
   fixed parity/collision certificates, separated one-/two-unit chains, and
   residual unit-free bicycles with original clause edges preserved.
+
+## 2026-07-28 06:45 PDT — fixed singleton certificates eliminated
+
+- Promoted C-120 after an unconditional hostile review.  In any eternal
+  dominating pair-family whose complement is bipartite, a retained pair in
+  one connected complement component must lie on opposite bipartition sides.
+  A shortest same-side even path gives a direct one-guard contradiction.
+- Applying the lemma to each frozen \(k=3\) projection shows that every
+  anchor-fixed singleton demand is automatically satisfied and every
+  exact-two response vertex lies in a free omitted-color component.
+- Consequently the immediate false-constant branch in C-119 is empty.
+  Fixed/free units, fixed/fixed collisions, and fixed tautologies also
+  disappear.  The singleton formula now has only free singleton pins and
+  binary clauses on two free variables.
+- The clean-room audit checked the human proof and independently covered
+  33,866 labeled graphs through order 6, 54,962 retained pairs, and 168
+  arbitrary eternal pair-families.
+- Accepted note SHA-256:
+  `25e775574caa48c719e3cf2949fe0ae29c23082b308f2f2002cb1ac2287fa95b`.
+  Candidate manifest:
+  `b9a1b1ff14416d979b1ca813d53e12889cae17bfe83d26e1aa3e449b40631e62`.
+  Hostile output:
+  `5f4463946704f3429320a6a6991a0746d99fe5adab7f05e0afc82f9ab40c4b31`.
+  Hostile manifest:
+  `a6ebf0088a22591b8e81a340ae1df7c9e4b6f40439b0240ba2fd779afbb84ade`.
+- A small proof-oriented scan of locally bipartite, all-pairs-common-neighbor
+  complement hosts found no eternal triple survivor through order 10.  It
+  also found a sharp warning against a fixed three-attack conjecture:
+  ``ICp`eik]_`` has a required maximum-independent triple deleted only at
+  synchronous round four.  This remains `OBSERVED` discovery evidence, not
+  a promoted finite theorem.
+- The primary literature refresh records the exact localizable-graph
+  reformulation and the known hardness of static recognition at
+  independence number three.  Neither supplies an eternal-domination result.

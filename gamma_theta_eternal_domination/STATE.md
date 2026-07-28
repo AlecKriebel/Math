@@ -1,5 +1,70 @@
 # Campaign State
 
+## Checkpoint 082 — 2026-07-28 06:45 PDT
+
+- Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
+  counterexample has been found.  The certified finite frontier is unchanged:
+  all orders through 12 are excluded, and only \(k=3\) is excluded at order
+  13.  Repository base before this checkpoint: `da66b09e`.
+- **The immediate fixed-component branch in the singleton regime is
+  eliminated (C-120).**  In an eternal pair-family with bipartite complement,
+  every retained pair in one component crosses its bipartition.  The proof is
+  a shortest-even-path one-guard attack, independent of computation.
+- Frozen \(k=3\) projections inherit the pair lemma.  Every anchor-fixed
+  singleton marker is automatically aligned, while every exact-two response
+  vertex lies in a free component of its omitted-color projection.  Therefore
+  fixed false constants, fixed/free units, fixed/fixed collisions, and fixed
+  tautologies cannot occur.
+- The singleton/no-full response formula now contains only free-component
+  singleton units and genuine binary clauses on two free variables.  Its exact
+  unresolved terminals are propagated one-/two-unit chains and unit-free
+  residual bicycles.
+- Candidate and clean-room hostile verifiers both return `PASS`.  The hostile
+  stress audit covered 33,866 labeled graphs through order 6, 54,962 retained
+  pairs, and 168 directly enumerated arbitrary eternal pair-families.
+- Accepted note:
+  `25e775574caa48c719e3cf2949fe0ae29c23082b308f2f2002cb1ac2287fa95b`.
+  Candidate manifest:
+  `b9a1b1ff14416d979b1ca813d53e12889cae17bfe83d26e1aa3e449b40631e62`.
+  Hostile output:
+  `5f4463946704f3429320a6a6991a0746d99fe5adab7f05e0afc82f9ab40c4b31`.
+  Hostile manifest:
+  `a6ebf0088a22591b8e81a340ae1df7c9e4b6f40439b0240ba2fd779afbb84ade`.
+- A literature terminology refresh confirms that the desired static
+  conclusion is localizability of the equality graph.  Recognition remains
+  hard even at fixed independence number three, so no generic well-covered
+  classification replaces the missing one-guard argument.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Singleton fixed-component certificates | closed-proved C-120 | Every fixed marker is aligned; every exact-two endpoint is free |
+| Singleton separated unit chains | active-primary | Eliminate free one-/two-unit chains while preserving literal supporting edges |
+| Singleton residual bicycles | active-secondary | Dynamic ports can still be singleton-buffered outside their unpinned components |
+| Full-list inactive odd cycles | active-review | A claimed all-length proof is being frozen; even bipartiteness would leave global precoloring |
+| Dynamic \(Y_3=P_4\) gluing obstruction | active-review | Exact family realization and order floor are being frozen; no global exclusion yet |
+| Dynamic palette gluing \(\mathsf{GL}(k)\) | active-long-range | Must exploit multi-state one-guard closure beyond static localizability |
+| Complete \(k=3\) theorem | active | Free unit chains, residual bicycles, and full-list synchronization remain |
+| Order-13 \(k=4,5\) | deferred-fallback | Still open |
+
+### Running jobs and resources
+
+- One inactive-odd-cycle theorem package and one dynamic \(Y_3\) package are
+  being frozen for hostile review.  No memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  A one-core
+  discovery scan of the strongly filtered local-bipartite order-10 universe
+  completed without affecting responsiveness.
+
+### Next three highest-value actions
+
+1. Hostile-audit the claimed arbitrary-length inactive-cycle theorem, keeping
+   its separate global precoloring gap explicit.
+2. Hostile-audit the exact dynamic \(Y_3\) realization/order-floor theorem and
+   use it to target free two-unit chains.
+3. Seek a graph-game shortening theorem for the remaining free unit chains;
+   do not return to the eliminated fixed-substitution cases.
+
 ## Checkpoint 081 — 2026-07-28 06:18 PDT
 
 - Campaign day: 4 of 27.  The conjecture remains unresolved; no certified
