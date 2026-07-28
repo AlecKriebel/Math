@@ -333,8 +333,8 @@ order six, a total of
 \tag{5.2}
 \]
 
-graphs, and finds no static non-three-colorable graph.  The exact static
-base counts at orders \(1,\ldots,6\) are
+graphs, and finds no static non-three-colorable graph.  The exact
+triangle-normalized static-base counts at orders \(1,\ldots,6\) are
 
 \[
  0,\ 0,\ 1,\ 6,\ 100,\ 2055,
