@@ -1,5 +1,63 @@
 # Campaign State
 
+## Checkpoint 069 — 2026-07-28 03:38 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified frontier remains a
+  complete order-12 exclusion plus the \(k=3\) slice at order 13.
+- **Full-target vertex-star propagation is proved (C-106).**  For a fixed
+  target \(x\), a physical vertex's ability to answer at \(x\) is invariant
+  across every pair of maximum independent triples containing that vertex.
+  The proof uses at most two literal one-guard attacks and applies to an
+  arbitrary eternal triple-family.
+- This gives a global active set meeting every deletion facet.  Under a
+  three-coloring of \(\overline{G-x}\), every ridge component has a
+  nonempty invariant responder-color set.  A color common to every
+  component extends over \(x\).
+- In the equality-critical full-target branch of a hypothetical \(k=3\)
+  counterexample, there must therefore be at least three ridge components.
+  The full-state component has all three responder colors and contains no
+  complement neighbor of \(x\); the nonroot sets are nonempty but have
+  empty total intersection.
+- The independent hostile audit returned unconditional `PASS`.  Its
+  clean-room checker exhausted 1,099 labeled graphs through order five,
+  9,021 arbitrary eternal triple-subfamilies, 19,006 target/family
+  instances, and 282,156 coloring instances with zero failures, and
+  independently replayed both exact controls.
+- The connected equality graph
+  \(\overline{L(K_{3,3})}\) has six isolated maximum-independent facets.
+  Thus connectedness and equality alone cannot close the global component
+  intersection gap.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Universal no-full \(k=3\) proof | active-final-gate | Oriented paired repair lacks literal physical support; raw descent is refuted by C-105 |
+| Universal full-list \(k=3\) proof | active-primary C-106 | Prove a common responder color for some deletion coloring across at least three components |
+| Full-target static simplification | active-bounded | Reformulate the intersection as a two-color condition on the inactive set and seek a sharp boundary |
+| Order-13 \(k=4,5\) slices | deferred-fallback | Resume one focused slice if both universal lanes reach explicit gates |
+| General order-14 computation | deferred | No blind enumeration |
+
+### Running jobs and resources
+
+- One bounded agent is completing the paired-repair physical-support test,
+  and another is sharpening C-106 through the inactive-set coloring
+  formulation.  No broad enumeration or memory-heavy solver is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  The machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Prove or refute that C-106's responder-color intersection is equivalent
+   to a deletion coloring using at most two colors on the inactive set,
+   then determine whether one-guard closure forces such a coloring.
+2. Freeze the exact paired-repair obstruction if resolution-derived units
+   cannot be given literal response-list support.
+3. If neither global \(k=3\) mechanism advances after this iteration,
+   pivot to a proof-producing \((n,k)=(13,4)\) or \((13,5)\) campaign
+   rather than order 14.
+
 ## Checkpoint 068 — 2026-07-28 03:31 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

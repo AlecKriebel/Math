@@ -2664,3 +2664,26 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - The full-target facet-propagation note is frozen and under independent
   hostile review.  No universal theorem, counterexample, complete
   order-13 exclusion, or order-14 bound is claimed.
+
+## 2026-07-28 03:38 PDT — full-target vertex-star propagation accepted
+
+- A two-attack argument proves that, for a fixed target, response
+  membership of a physical guard is invariant across any maximum
+  independent triples containing it, even when the triples share only that
+  one vertex.  This defines a global active set meeting every deletion
+  facet.
+- Proper three-colorings of the deletion complement turn the active set
+  into a nonempty responder-color set on each ridge component.  A common
+  color extends over the target.  Therefore the equality-critical
+  full-target branch requires at least three components with empty global
+  responder-color intersection, while the full-state component carries all
+  three colors and no complement neighbor of the target.
+- The hostile reviewer reconstructed every forced move and support-coverage
+  argument and returned unconditional `PASS`.  A clean-room exhaustive
+  audit of 9,021 arbitrary eternal subfamilies and 282,156 coloring
+  instances found zero failures; the order-12 full-list control and
+  \(\overline{L(K_{3,3})}\) boundary were independently replayed.
+- The accepted theorem is C-106.  It isolates a concrete global
+  responder-color intersection target but does not prove that the
+  intersection exists, the complete \(k=3\) theorem, or the universal
+  conjecture.
