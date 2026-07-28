@@ -98,6 +98,19 @@ does not prove uniqueness, self-testing, or all-dimensional randomness. See the
 [paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/)
 and [source package](cyclic_bell_tsirelson_bound/).
 
+**Excluding Parameter Three at Order Thirteen in the \(\gamma\)--\(\theta\)
+Conjecture** proves that no graph on 13 vertices satisfies
+\(\gamma(G)=\gamma^\infty(G)=3<\theta(G)\).  The argument splits at a
+maximum independent triple into full-response and no-full-response branches,
+then combines structural reductions with two independently reconstructed,
+deletion-free RUP certificates.  Exact orbit coverage, sharp satisfiable
+controls, hashes, and a compact replay wrapper accompany the paper.  This is
+a finite, unreviewed result: common parameters four and five remain open at
+order 13, and the universal conjecture is unresolved.  See the
+[paper page](https://aleckriebel.github.io/Math/papers/gamma-theta-order-13-k3/),
+the [active research page](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/),
+and the [source package](gamma_theta_eternal_domination/).
+
 **A Certified Order-Twelve Extension of the \(\gamma\)--\(\theta\) Frontier
 in One-Guard Eternal Domination** combines a complete order-12 parameter
 split—exact proof certificates for common parameters three and four, and a
@@ -162,19 +175,27 @@ and tagged
 [`gamma_theta_eternal_domination/`](gamma_theta_eternal_domination/) is a
 27-day campaign to prove or disprove the one-guard \(\gamma\)--\(\theta\)
 conjecture. The conjecture remains open. The campaign has certified the
-order-12 frontier, reduced the order-13 parameter-three slice to two
-overlapping odd-hole templates, and is now prioritizing a universal
-minimum-counterexample proof before proceeding to order 14.  The current
+order-12 frontier and now excluded the complete order-13 parameter-three
+slice; any order-13 counterexample must have common parameter four or five.
+The campaign is prioritizing a universal minimum-counterexample proof before
+proceeding to order 14.  The current
 proof lane reduces no-full-list projection compatibility exactly to 2-SAT
 and proves that its minimal mixed-path obstruction, if realized under
 domination equality, forces an external clique of induced hub-free
 complement-\(C_5\) closers.  The same exact pattern now requires at least
 twelve vertices and five separated external witnesses.  The complementary
-full-response-list branch has also been reduced to three augmented 2-SAT
-tests: ridge covariance removes every local link-coloring obstruction, while
-the two shortest non-chain unsatisfiable geometries are dynamically
-impossible.  Longer global implication connectors remain open.  These are
-structural advances, not a resolution.
+full-response-list branch is empty at order 13, and a second exact
+certificate closes the complementary no-full branch there.  Universally,
+failed physical connector incidence now reduces to a virtual-rainbow cap;
+exact third-color caps are the only locally unit-free gate, while global
+chains of those gates remain open.  A new direct attack rules out every
+shared-port odd return carried by one omitted-color projection, at every
+subdivision length.  A second parity theorem rules out every separated
+two-gate odd bigon through two free projections, leaving odd cycles through
+at least three tight gates as the exact holonomy target.  Independently, the
+finite order-13 contradiction is already forced at anchored radius two, but
+exact controls show that all three anchor slices are jointly necessary.
+These are finite and structural advances, not a resolution.
 The
 [public workstream](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/)
 is a dated snapshot; `STATE.md` and `CLAIMS.md` in the source package are the

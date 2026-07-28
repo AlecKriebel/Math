@@ -1,0 +1,805 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{xurl}
+
+\geometry{margin=1in}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue,
+  pdftitle={Excluding Parameter Three at Order Thirteen in the gamma--theta Conjecture},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={One-guard eternal domination and clique covering},
+  pdfkeywords={eternal domination, domination number, clique cover, gamma--theta conjecture, SAT certificates}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\gaminf}{\gamma^{\infty}}
+\newcommand{\V}{V}
+\newcommand{\F}{\mathcal F}
+\newcommand{\sha}{\operatorname{SHA256}}
+\newcommand{\filehash}[1]{\nolinkurl{#1}}
+
+\title{Excluding Parameter Three at Order Thirteen in the
+\texorpdfstring{$\gamma$--$\theta$}{gamma--theta} Conjecture\\
+for One-Guard Eternal Domination}
+\author{Alec Kriebel}
+\date{July 28, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In the one-guard-moves eternal domination game, attacks are made only at
+unoccupied vertices and exactly one adjacent guard moves to the attacked
+vertex.  The \(\gamma\)--\(\theta\) conjecture asserts that
+\(\gamma(G)=\gaminf(G)\) implies \(\gamma(G)=\theta(G)\).
+We prove the finite theorem that no graph on 13 vertices satisfies
+\[
+  \gamma(G)=\gaminf(G)=3<\theta(G).
+\]
+The proof fixes a maximum independent triple in an optimal eternal family
+and divides the search into full-response and no-full-response branches.
+The full-response branch is excluded by a 9,802-variable formula and an
+independently replayed RUP refutation.  In the no-full branch, human
+one-guard lemmas force two distinct response types and pure physical
+representatives.  A separate 1,222-variable certificate bounds the neutral
+vertices by three; a final 9,802-variable formula then covers all remaining
+signature multisets.  Its deletion-free proof has 156,205 RUP additions and
+zero RAT lemmas.  Independent checkers reconstruct the decisive formulas
+byte for byte, verify the symmetry and coverage arguments, replay the
+proofs, and check satisfiable ablations and sharp controls.  This result
+does not exclude parameters four or five at order 13 and does not resolve
+the universal conjecture.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+
+Let \(G\) be a finite simple graph.  The domination number \(\gamma(G)\)
+is the minimum size of a set whose closed neighborhood is all of
+\(\V(G)\).  The clique cover number \(\theta(G)\) is the minimum number of
+parts in a partition of \(\V(G)\) into cliques; equivalently,
+\[
+  \theta(G)=\chi(\overline G).
+\tag{1.1}
+\]
+In the standard one-guard eternal domination game, guards occupy a
+dominating set.  After an attack at an unoccupied vertex, exactly one
+adjacent guard moves to the attacked vertex.  The least number of guards
+that can answer every finite attack sequence is \(\gaminf(G)\).
+
+Klostermeyer and MacGillivray raised the implication
+\[
+  \gamma(G)=\gaminf(G)
+  \quad\Longrightarrow\quad
+  \gamma(G)=\theta(G)
+\tag{1.2}
+\]
+	\cite{KlostermeyerMacGillivray2009}.  Klostermeyer and Mynhardt later
+	identified a gap in that argument and reopened the implication as an
+	explicit question \cite{KlostermeyerMynhardt2015}.  Subsequent literature
+	refers to their conjectural formulation as the
+	\(\gamma\)--\(\theta\) conjecture
+	\cite{MacGillivrayMynhardtVirgile2022}.  MacGillivray, Mynhardt, and Virgile
+reported an exhaustive computation finding no counterexample through
+order 11 \cite{MacGillivrayMynhardtVirgile2022}.  A separate companion
+paper gives a certificate-backed exclusion at order 12.  The present paper
+advances one parameter slice at the next order.
+
+\begin{theorem}[order 13, parameter three]\label{thm:main}
+There is no finite simple graph \(G\) on 13 vertices such that
+\[
+  \gamma(G)=\gaminf(G)=3<\theta(G).
+\tag{1.3}
+\]
+\end{theorem}
+
+Theorem~\ref{thm:main} is unconditional on lower-order enumeration: it
+excludes exactly the displayed \((n,k)=(13,3)\) slice.  In combination with
+the preceding order-12 frontier and the standard structural bounds used
+there, a counterexample of order 13, if one exists, has common parameter
+four or five.  Neither statement proves the conjecture for all graphs.
+
+The proof is both mathematical and certificate-backed.  Section
+\ref{sec:model} fixes the exact game and derives the equality structure.
+Section \ref{sec:response} proves the response-list lemmas that cover the
+no-full branch.  Sections \ref{sec:full}--\ref{sec:residual} give the three
+finite certificates and their coverage arguments.  Section
+\ref{sec:assemble} assembles the theorem, and Section \ref{sec:repro}
+records exact hashes and reproduction instructions.
+
+\begin{remark}[status and priority]\label{rem:status}
+This manuscript and its computational artifacts were produced in an
+independent, AI-assisted research campaign and have not been externally
+peer reviewed.  The literature audit found no prior order-13,
+parameter-three exclusion, but no worldwide priority claim is made.
+\end{remark}
+
+\section{\hspace{0.5em}The exact model and equality structure}\label{sec:model}
+
+\begin{definition}\label{def:family}
+An \emph{eternal dominating family of size \(k\)} is a nonempty family
+\(\mathcal D\subseteq\binom{\V(G)}k\) such that:
+\begin{enumerate}
+\item every \(D\in\mathcal D\) dominates \(G\); and
+\item for every \(D\in\mathcal D\) and every \(r\in\V(G)-D\), there is a
+      guard \(u\in D\cap N_G(r)\) for which
+      \[
+        (D-\{u\})\cup\{r\}\in\mathcal D.
+      \tag{2.1}
+      \]
+\end{enumerate}
+The minimum such \(k\) is \(\gaminf(G)\).
+\end{definition}
+
+Thus no occupied-vertex attacks are imposed, and a legal response changes
+exactly one guard position along exactly one edge.  We do not use an
+all-guards-move, total, connected, eviction, or distance variant.
+
+\begin{proposition}[parameter chain]\label{prop:chain}
+For every nonempty graph,
+\[
+  \gamma(G)\leq i(G)\leq\alpha(G)\leq\gaminf(G)\leq\theta(G).
+\tag{2.2}
+\]
+Consequently, if \(\gamma(G)=\gaminf(G)=k\), then
+\[
+  \gamma(G)=i(G)=\alpha(G)=\gaminf(G)=k.
+\tag{2.3}
+\]
+\end{proposition}
+
+\begin{proof}
+Every maximal independent set dominates, and a maximum independent set is
+maximal.  To see \(\alpha\leq\gaminf\), attack successively at unoccupied
+vertices of a maximum independent set \(I\).  No guard already on \(I\)
+can answer another attack in \(I\), so every response increases the number
+of guards on \(I\).  Fewer than \(|I|\) guards eventually leave an
+unoccupied vertex of \(I\) with no possible response.
+
+Given a clique partition, place one guard in each part.  An attack is
+answered by moving the guard within the attacked vertex's clique.  This
+proves \(\gaminf\leq\theta\), and squeezing gives (2.3).
+\end{proof}
+
+The preceding attack argument also gives a fact used repeatedly below.
+
+\begin{lemma}[independent states are forced]\label{lem:independent-forced}
+Every independent \(k\)-set belongs to every eternal family of \(k\)-sets.
+\end{lemma}
+
+\begin{proof}
+Start from any family state and attack the unoccupied vertices of the
+independent \(k\)-set.  Each response increases its occupancy by one, so
+closure eventually reaches the whole set.
+\end{proof}
+
+We use two elementary eternal-domination facts and one standard
+small-parameter consequence in the complement.
+
+\begin{lemma}[induced-subgraph monotonicity]\label{lem:induced}
+If \(J\) is a nonempty induced subgraph of \(G\), then
+\[
+  \gaminf(J)\leq\gaminf(G).
+\tag{2.4}
+\]
+\end{lemma}
+
+\begin{proof}
+Fix an eternal family in \(G\), let \(m\) be the maximum number of guards
+that any family state places in \(V(J)\), and retain the states attaining
+\(m\).  An attack inside \(J\) cannot be answered by moving a guard from
+outside \(J\), since that would produce a family state with \(m+1\) guards
+in \(J\).  Hence every response stays inside \(J\) and preserves \(m\).
+Projecting the retained states to \(J\) gives a closed family of \(m\)-sets.
+Every projected state dominates \(J\): an unoccupied vertex has an
+adjacent responding guard in \(J\), while an occupied vertex dominates
+itself.  Also \(m>0\), since an attack in nonempty \(J\) would otherwise
+move a guard into \(J\).  Thus the projections form an eternal family in
+\(J\).
+\end{proof}
+
+\begin{lemma}[odd antiholes]\label{lem:antihole}
+For every odd \(\ell\geq5\),
+\[
+  \gaminf(\overline{C_\ell})=3.
+\tag{2.5}
+\]
+\end{lemma}
+
+\begin{proof}
+The upper bound follows from
+\(\theta(\overline{C_\ell})=\chi(C_\ell)=3\).
+Label the underlying cycle cyclically by \(0,\ldots,\ell-1\).  A pair
+fails to dominate \(\overline{C_\ell}\) exactly when its two vertices have
+cyclic distance two.
+
+Suppose an eternal two-family existed.  Its independent pair \(\{0,1\}\)
+belongs to the family by Lemma~\ref{lem:independent-forced}.  If
+\(\{0,d\}\) belongs to the family for odd
+\(1\leq d\leq\ell-6\), attack \(d+2\).  Moving the guard at \(0\), if
+legal, leaves the nondominating pair \(\{d,d+2\}\).  Closure therefore
+forces the other guard to move, and \(\{0,d+2\}\) belongs to the family.
+Iteration reaches \(\{0,\ell-4\}\).  Attacking \(\ell-2\) then leaves a
+cyclic-distance-two pair whichever guard moves.  For \(\ell=5\), this
+last attack applies directly to the initial pair.
+\end{proof}
+
+\begin{lemma}[parameter two]\label{lem:k2}
+If \(\alpha(J)=\gaminf(J)=2\), then \(\theta(J)=2\).
+\end{lemma}
+
+\begin{proof}
+Suppose \(\theta(J)>2\), and put \(K=\overline J\).  Then
+\(\omega(K)=2<\chi(K)\), so the Strong Perfect Graph Theorem
+\cite{ChudnovskyRobertsonSeymourThomas2006} supplies an induced odd hole
+or odd antihole.  An odd hole in \(K\) induces an odd antihole in \(J\),
+contradicting Lemmas~\ref{lem:antihole} and \ref{lem:induced}.  An odd
+antihole in \(K\) induces an odd hole in \(J\).  At length at least seven
+this contradicts \(\alpha(J)=2\); at length five,
+self-complementarity and Lemmas~\ref{lem:antihole} and
+\ref{lem:induced} again contradict \(\gaminf(J)=2\).
+Hence \(\chi(K)=2\).
+\end{proof}
+
+\begin{remark}
+Lemma~\ref{lem:k2} is used below only to turn an exact two-guard projection
+into a bipartite complement.
+\end{remark}
+
+\section{Response lists and the no-full decomposition}\label{sec:response}
+
+Assume for the remainder of Sections \ref{sec:response}--\ref{sec:residual}
+that a graph and family satisfy
+\[
+  |V(G)|=13,\qquad
+  \gamma(G)=\alpha(G)=\gaminf(G)=3<\theta(G).
+\tag{3.1}
+\]
+Put \(H=\overline G\), fix an eternal family \(\F\) of triples, and fix a
+maximum independent state
+\[
+  S=\{a,b,c\}\in\F
+\tag{3.2}
+\]
+using Lemma~\ref{lem:independent-forced}.  For \(x\notin S\), define its
+family-response list and anchor signature by
+\[
+  L(x)=\{u\in S:S-u+x\in\F\},
+  \qquad
+  \sigma(x)=N_H(x)\cap S.
+\tag{3.3}
+\]
+An attack at \(x\) from \(S\) proves \(L(x)\ne\varnothing\).  Moreover
+\[
+  L(x)\subseteq S-\sigma(x),
+\tag{3.4}
+\]
+because \(S-u+x\) must dominate the omitted anchor \(u\), while the other
+two anchors do not see \(u\).  Put
+\[
+  Q=\{x\notin S:\sigma(x)=\varnothing\},\qquad
+  A=(V(G)-S)-Q.
+\tag{3.5}
+\]
+The vertices in \(Q\) are \(G\)-complete to \(S\) and will be called
+\emph{neutral}.
+
+\subsection{Frozen projections and response types}
+
+For \(u\in S\), let
+\[
+  W_u=\{x\notin S:u\notin L(x)\}.
+\tag{3.6}
+\]
+
+\begin{lemma}[restoration]\label{lem:restoration}
+If \(D\in\F\) and \(u\in S-D\), then
+\[
+  u\in\bigcup_{x\in D-S}L(x).
+\tag{3.7}
+\]
+\end{lemma}
+
+\begin{proof}
+Starting afresh from \(D\), attack every vertex of
+\((S-D)-\{u\}\).  A guard already on \(S\) cannot answer another attack
+in \(S\), because \(S\) is independent.  These attacks therefore restore
+all missing anchors except \(u\) by moving guards from \(D-S\).  The
+resulting family state has the form \(S-u+x\) for some \(x\in D-S\), so
+\(u\in L(x)\).
+\end{proof}
+
+\begin{lemma}[frozen projection]\label{lem:frozen}
+The complement-induced graph
+\[
+  H[(S-\{u\})\cup W_u]
+\tag{3.8}
+\]
+is bipartite.
+\end{lemma}
+
+\begin{proof}
+Let \(R=(S-\{u\})\cup W_u\), and define
+\[
+ \mathcal P_u=
+ \{A\in\tbinom{R}{2}:\{u\}\cup A\in\F\}.
+\]
+This family is nonempty because \(S-\{u\}\in\mathcal P_u\).
+Take \(A\in\mathcal P_u\) and attack \(r\in R-A\) from
+\(\{u\}\cup A\).  If \(u\) answered, the successor \(A\cup\{r\}\)
+would omit \(u\), while every one of its outside vertices belongs to
+\(W_u\).  Lemma~\ref{lem:restoration} applied to that successor would
+force one of those outside vertices to have \(u\) in its response list,
+a contradiction.  Hence a guard in \(A\) moves, and the resulting
+two-set remains in \(\mathcal P_u\).  The same response supplies an
+adjacent guard for every unoccupied vertex of \(R\), so every member of
+\(\mathcal P_u\) dominates \(G[R]\).  The projected states therefore form
+an eternal two-family in the subgraph of \(G\) induced by \(R\).
+
+The set \(S-\{u\}\) is independent there, so that induced graph has
+\(\alpha=\gaminf=2\).  Lemma~\ref{lem:k2} gives clique cover number two;
+equivalently, (3.8) is bipartite.
+\end{proof}
+
+\begin{lemma}[singleton safety]\label{lem:singleton}
+If \(L(x)=L(y)=\{u\}\), then \(xy\in E(G)\).
+\end{lemma}
+
+\begin{proof}
+If \(xy\in E(H)\), attack \(y\) from \(S-u+x\).  The guard at \(x\) cannot
+move, so an anchor \(v\in S-\{u\}\) moves to \(y\), producing
+\(S-\{u,v\}+\{x,y\}\).  Attack the now-unoccupied \(u\).  No remaining
+anchor can answer.  A response by \(x\) or \(y\) produces a direct swap at
+the reference state and puts \(v\) into \(L(y)\) or \(L(x)\), contrary to
+both lists being \(\{u\}\).
+\end{proof}
+
+Say that \emph{type \(u\)} occurs if some vertex has the exact two-list
+\[
+  L(x)=S-\{u\}.
+\tag{3.9}
+\]
+
+\begin{lemma}[at least two types]\label{lem:two-types}
+If every outside list has size at most two, then at least two distinct
+two-list types occur.
+\end{lemma}
+
+\begin{proof}
+Suppose at most one type occurs, and choose \(c\in S\) so that the
+occurring type, if any, is type \(c\).  Every vertex outside
+\((S-\{c\})\cup W_c\) has \(c\in L(x)\).  Under the no-full hypothesis it
+must have singleton list \(\{c\}\), since any two-list containing \(c\)
+would have omitted color different from \(c\).  Therefore
+\[
+ V(H)=
+ \bigl((S-\{c\})\cup W_c\bigr)
+ \mathbin{\dot\cup}
+ \bigl(\{c\}\cup\{x:L(x)=\{c\}\}\bigr).
+\tag{3.10}
+\]
+The first induced part is bipartite by Lemma~\ref{lem:frozen}.  The second
+is independent in \(H\): response membership gives the edges \(cx\) in
+\(G\), and Lemma~\ref{lem:singleton} gives every edge between its outside
+vertices.  Thus \(H\) is 3-colorable, contradicting
+\(\theta(G)=\chi(H)>3\).
+\end{proof}
+
+\subsection{Physical representatives}
+
+\begin{lemma}[two-response replication]\label{lem:replication}
+Let \(x\in Q\) and suppose \(a,b\in L(x)\).  There is a vertex \(z\in A\)
+such that
+\[
+  L(z)=\{a,b\},\qquad \sigma(z)=\{c\}.
+\tag{3.11}
+\]
+\end{lemma}
+
+\begin{proof}
+Because \(\gamma(G)\geq3\), the pair \(\{c,x\}\) does not dominate.
+Choose \(y\in N_H(c)\cap N_H(x)\).  The retained states
+\(\{b,c,x\}\) and \(\{a,c,x\}\) both dominate \(y\), forcing
+\(ay,by\in E(G)\), hence \(\sigma(y)=\{c\}\).
+
+The pair \(\{c,y\}\) also fails to dominate, so choose
+\(z\in N_H(c)\cap N_H(y)\).  If \(z\) missed \(a\) in \(G\), domination
+of \(\{a,c,x\}\) would force \(xz\in E(G)\).  Attacking \(z\) from
+\(\{b,c,x\}\) would then leave no response: \(c\) cannot move; moving
+\(x\) leaves a state missing \(a\); and moving \(b\) leaves a state
+missing \(y\).  The case in which \(z\) misses \(b\) is symmetric.
+Therefore \(\sigma(z)=\{c\}\).
+
+Attack \(z\) from each of \(\{b,c,x\}\) and \(\{a,c,x\}\).  The guard at
+\(c\) cannot move, and moving the other anchor again leaves
+\(\{c,x,z\}\), which misses \(y\).  Closure forces the guard at \(x\) to
+move in both attacks.  Thus \(xz\in E(G)\) and both
+\(S-a+z,S-b+z\) belong to \(\F\).  Equation (3.4) excludes \(c\) from
+\(L(z)\), proving (3.11).
+\end{proof}
+
+\begin{corollary}[physical representative]\label{cor:physical}
+Every occurring type \(u\) has a representative \(z_u\) satisfying
+\[
+  L(z_u)=S-\{u\},\qquad \sigma(z_u)=\{u\}.
+\tag{3.12}
+\]
+\end{corollary}
+
+\begin{proof}
+Let \(t\) have list \(S-\{u\}\).  If \(ut\in E(H)\), take \(z_u=t\).
+Otherwise (3.4) shows that \(t\in Q\), and
+Lemma~\ref{lem:replication}, after relabeling the anchors, applies.
+\end{proof}
+
+\begin{lemma}[pure-signature doubling]\label{lem:doubling}
+For every occurring type \(u\), there are distinct vertices \(z_u,w_u\)
+such that
+\[
+ \sigma(z_u)=\sigma(w_u)=\{u\},
+ \qquad z_uw_u\in E(H),
+ \qquad L(z_u)=S-\{u\}.
+\tag{3.13}
+\]
+\end{lemma}
+
+\begin{proof}
+Take \(z_u\) from Corollary~\ref{cor:physical}.  Since \(\{u,z_u\}\) does
+not dominate, choose
+\(w_u\in N_H(u)\cap N_H(z_u)\).  It lies outside \(S\) and has \(u\) in
+its anchor signature.  If another anchor \(r\) also lay in
+\(\sigma(w_u)\), let \(h\) be the third anchor.  The retained state
+\(S-h+z_u=\{u,r,z_u\}\) would miss \(w_u\), a contradiction.
+Thus \(\sigma(w_u)=\{u\}\), and the chosen common-neighbor incidence gives
+the required \(H\)-edge.
+\end{proof}
+
+By Lemmas \ref{lem:two-types} and \ref{lem:doubling}, after permuting the
+three anchors and relabeling outside vertices, every no-full candidate has
+\[
+\begin{array}{c|c|c}
+\text{vertices}&\text{signature}&\text{additional condition}\\ \hline
+3,4&\{0\}&34\in E(H),\quad L(3)=\{1,2\},\\
+5,6&\{2\}&56\in E(H),\quad L(5)=\{0,1\}.
+\end{array}
+\tag{3.14}
+\]
+This is the structural input to the final certificates.
+
+\section{The full-response branch}\label{sec:full}
+
+A vertex \(x\notin S\) is a \emph{full target} if \(L(x)=S\).
+
+\begin{theorem}[certified full-response exclusion]\label{thm:full}
+No object satisfying (3.1) has a full target at \(S\).
+\end{theorem}
+
+\begin{proof}[Certificate and coverage proof]
+Relabel \(S=012\) and a specified full target as \(x=3\).  Edge variables
+encode \(H=\overline G\).  The formula has four variable families:
+\[
+\begin{array}{l|r}
+H\text{-edges}&78\\
+\text{pair common-neighbor selectors}&858\\
+\text{retained triples}&286\\
+\text{one-guard response selectors}&8,580\\ \hline
+\text{total}&9,802.
+\end{array}
+\tag{4.1}
+\]
+Its 85,409 clauses enforce: no \(K_4\) in \(H\); an outside common
+\(H\)-neighbor for every pair; domination of every retained triple; exact
+one-guard closure for each unoccupied attack; the independent retained
+anchor triangle and three full successors; and non-3-colorability of
+\(H\).
+
+The coloring block is complete.  A proper 3-coloring gives three distinct
+colors to the anchor triangle; permute their names to \(0,1,2\).  The
+formula blocks all \(3^{10}=59,049\) assignments on the remaining
+vertices by requiring a monochromatic \(H\)-edge in each assignment.
+
+Vertices \(4,\ldots,12\) are otherwise interchangeable.  Sort their
+four-bit \(H\)-adjacency signatures to \(0,1,2,3\).  The eight adjacent
+comparators use \(8\binom{16}{2}=960\) clauses.  Every nonsorter clause
+family is covariant under the full \(S_9\) action, including the complete
+coloring bank, so every unrestricted object has a sorted representative.
+An independent truth table checked all 2,048 local signature pairs.
+
+A clean-room generator reconstructed the 4,808,845-byte DIMACS file byte
+for byte.  Its SHA-256 is
+\begin{quote}\small
+\filehash{d5a2f17ad6e61cb7ca5cb9d2930b6a0738fec32ee1d9956207dc67bb297dcb13}.
+\end{quote}
+The 19,874,489-byte DRAT proof has SHA-256
+\begin{quote}\small
+\filehash{653b01e904b97c01bfa25fbbea29fbadee603918dbaff0ea41b7ad09460fb910}.
+\end{quote}
+Independent replay reported \texttt{s VERIFIED} and zero RAT lemmas; a
+separately retained reduced proof also replayed.  Since any hypothetical
+object maps to a model of the reconstructed formula, its certified
+unsatisfiability proves the theorem.
+\end{proof}
+
+Removing the 59,049 coloring clauses makes the formula satisfiable.  The
+decoded graph has graph6 record
+\verb!LF\|ul\XzVsaqJ! in the source
+archive, parameters
+\((\gamma,\alpha,\gaminf,\theta)=(3,3,3,3)\), and all 157 dominating
+triples in its greatest eternal family.  This positive control shows that
+the full-response and equality clauses are not intrinsically inconsistent.
+
+\section{Four neutral vertices are impossible}\label{sec:neutral}
+
+\begin{theorem}[four-neutral/two-port exclusion]\label{thm:four-neutral}
+On 13 vertices, there is no graph with \(\gamma(G)\geq3\), an independent
+retained triple \(S=\{h,i,j\}\), four distinct neutral vertices, and two
+further distinct vertices \(x,y\) satisfying
+\[
+  \{h,j\}\subseteq L(x),\qquad
+  \{h,i\}\subseteq L(y),
+\tag{5.1}
+\]
+that admits an eternal family of triples.
+\end{theorem}
+
+\begin{proof}[Certificate and scope proof]
+The formula deliberately does not impose a clique-cover gap,
+connectedness, no-full lists, negative response memberships, signatures of
+\(x,y\), or greatest-family status.  It uses 78 edge variables, 286 family
+variables, and 858 common-neighbor selectors.  Exact one-guard closure is
+expanded directly into eight clauses per retained-state/attack pair.  The
+total is
+\[
+  1,222\text{ variables},\qquad
+  24,694\text{ unique, nontautological clauses}.
+\tag{5.2}
+\]
+An independent reconstructor produced the exact 447,906-byte instance with
+SHA-256
+\begin{quote}\small
+\filehash{3d1a1379eb2a90ffd399e5a830b1a81881ed527c6e9db06574a390085cb5c1e0}.
+\end{quote}
+Its deletion-free proof contains 78,697 additions, ends in the empty
+clause, and has SHA-256
+\begin{quote}\small
+\filehash{c4f1989ac80474a86b75ba939e494bde5928b2727fd61297eb695f3937222eee}.
+\end{quote}
+Strict forward replay verified every addition by reverse unit propagation,
+reported zero RAT lemmas, and a fresh DRAT-to-LRAT conversion passed an
+independent LRAT checker.
+
+There is no symmetry assumption in this formula.  Any object in the
+theorem can be relabeled to its named anchors, ports, and four neutral
+vertices, so the certificate covers the stated universe directly.
+\end{proof}
+
+\begin{corollary}\label{cor:q3}
+Every no-full candidate satisfying (3.1) has
+\[
+  |Q|\leq3,\qquad |A|\geq7.
+\tag{5.5}
+\]
+\end{corollary}
+
+\begin{proof}
+Choose the two types and their distinct representatives in (3.14).  Their
+two response pairs overlap in one anchor.  If four neutral vertices
+existed, Theorem~\ref{thm:four-neutral} would apply after relabeling.
+There are ten vertices outside \(S\), so the bound on \(A\) follows.
+\end{proof}
+
+The neutral bound is sharp with respect to the certificate hypotheses.  A
+checked 13-vertex control has graph6 record
+\verb!LDZZa^g|fkw[iH!,
+\[
+  \gamma=i=\alpha=\gaminf=\theta=3,
+\tag{5.6}
+\]
+and a greatest eternal family of 139 triples.  It realizes three neutral
+vertices and both positive port pairs.
+
+\section{The residual no-full certificate}\label{sec:residual}
+
+\begin{theorem}[certified residual exclusion]\label{thm:residual}
+No no-full object satisfying (3.1) exists.
+\end{theorem}
+
+\begin{proof}[Formula coverage and certificate]
+Use the normalization (3.14).  Label the six interchangeable remaining
+vertices \(7,\ldots,12\).  Sort their three-bit anchor
+signatures in nondecreasing order.  Since the four named vertices are
+nonneutral, Corollary~\ref{cor:q3} leaves at most three neutral vertices
+among the six residual labels.  The fourth residual vertex, label 10,
+therefore has nonzero signature.
+
+This normalization covers every candidate.  There are six ordered choices
+of two distinct omitted colors, all transported to the named pair by one
+of the six anchor permutations.  For the residual vertices, sorting covers
+all
+\[
+  \binom{8+6-1}{6}=1,716
+\tag{6.1}
+\]
+signature multisets, including ties.  The label-10 condition is equivalent
+to the at-most-three-neutral bound in this sorted order.
+
+The exact formula again has 9,802 variables.  Its 84,614 clauses have the
+following independently reconstructed census:
+\[
+\begin{array}{l|r@{\qquad}l|r}
+\text{anchor \(H\)-triangle}&3&
+\text{anchor state retained}&1\\
+\text{no \(H\)-\(K_4\)}&715&
+\text{pair witness choice/edges}&78+1,716\\
+\text{selected-state domination}&2,860&
+\text{selected-state response}&2,860\\
+\text{move uses a \(G\)-edge}&8,580&
+\text{move reaches a retained state}&8,580\\
+\text{anchored non-3-colorability}&59,049&
+\text{no-full target clauses}&10\\
+\text{named lists, signatures, edges}&6+12+2&
+\text{residual signature sorter}&140\\
+\text{at most three neutral residuals}&1&
+\text{family nonempty}&1.
+\end{array}
+\tag{6.2}
+\]
+Response variables name one occupied guard and one unoccupied attack.
+Their implications require the corresponding \(G\)-edge and the unique
+one-guard successor.  Thus multiple true response variables represent
+alternative legal moves, never simultaneous guard motion.
+
+The clean-room reconstruction is byte-identical to the 4,784,714-byte
+DIMACS file.  Its SHA-256 is
+\begin{quote}\small
+\filehash{76ff2768c7afd95ee535f8684515b0b15319b1f5ca69085447a1f7eba66393e1}.
+\end{quote}
+The retained raw DRAT trace was replayed both with and without honoring
+deletion lines.  Removing those lines gives a proof containing exactly
+156,205 additions, 8,878,465 bytes, and SHA-256
+\begin{quote}\small
+\filehash{c985ce0a602a91a0d323594e3aeecf210fa5131027ef4b6c9b6e4d4b628f1848}.
+\end{quote}
+Strict forward, warning-fatal replay reported \texttt{s VERIFIED} and zero
+RAT lemmas.  The clean-room audit separately checked variable ranges,
+clause multiplicities, absence of duplicates and tautologies, all six
+anchor normalizations, all 1,716 signature multisets, and the exact
+sorter truth table.  Hence no normalized candidate survives.
+\end{proof}
+
+Removing the 59,049 clique-cover clauses makes the residual formula
+satisfiable, and the retained assignment satisfies every remaining
+clause.  Thus the certificate does not merely prove that the equality and
+structural normalization are inconsistent.
+
+\section{Assembly and exact scope}\label{sec:assemble}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose (1.3) holds.  Proposition~\ref{prop:chain} gives
+\[
+  \gamma=i=\alpha=\gaminf=3.
+\]
+Choose an optimal eternal family and a maximum independent triple \(S\).
+Every outside response list is nonempty.  If some list is full,
+Theorem~\ref{thm:full} is a contradiction.  Otherwise every list has size
+at most two, and Theorem~\ref{thm:residual} is a contradiction.  The two
+branches exhaust all possibilities.
+\end{proof}
+
+\begin{corollary}\label{cor:frontier}
+Relative to the published through-order-11 result and the separately
+certified order-12 theorem, a counterexample of order 13, if one exists,
+has common parameter four or five.
+\end{corollary}
+
+\begin{proof}
+The parameter chain and Lemma~\ref{lem:k2} give common parameter at least
+three; Theorem~\ref{thm:main} excludes three.  The no-simplicial-vertex
+theorem in the order-12 companion paper gives minimum degree at least two
+for a minimum counterexample.  The standard domination bound for connected
+minimum-degree-two graphs \cite{McCuaigShepherd1989} then gives
+\(\gamma(G)\leq\lfloor2|V(G)|/5\rfloor=5\) at order 13.  Thus only four
+and five remain.
+\end{proof}
+
+\begin{remark}[what has not been proved]
+Finite verification does not resolve (1.2).  In particular, this paper
+does not exclude order-13 parameters four or five, any parameter at order
+14, or parameter three at arbitrary order.  It supplies no counterexample
+and makes no claim about the all-guards-move model.
+\end{remark}
+
+\section{Reproduction and independent checks}\label{sec:repro}
+
+The source archive is
+\[
+\href{https://github.com/AlecKriebel/Math}
+     {\texttt{github.com/AlecKriebel/Math}},
+\]
+with frozen release tag
+\[
+\href{https://github.com/AlecKriebel/Math/releases/tag/gamma-theta-order13-k3-v1.0.0}
+     {\texttt{gamma-theta-order13-k3-v1.0.0}}.
+\]
+From the campaign directory, the compact aggregate replay is:
+\begin{quote}
+\small
+\texttt{python3 -I -B -W error repro/c097/replay.py}
+\end{quote}
+It binds the decisive hashes, replays the four-neutral and residual proofs,
+reconstructs both formulas, verifies the normalization counts, checks the
+sharp three-neutral equality control, and checks the satisfiable
+theta-gap ablation.
+
+The branch-specific independent checkers are:
+\begin{quote}
+\small
+\texttt{python3 -I -B -W error reviews/order13\_full\_target\_hostile/checker.py}
+
+\texttt{python3 -I -B -W error reviews/tight\_micro\_hostile\_review/checker.py}
+
+\texttt{python3 -I -B -W error reviews/order13\_no\_full\_a7\_hostile/checker.py}
+\end{quote}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{llll}
+\toprule
+Branch & variables & clauses & decisive proof type\\
+\midrule
+full response & 9,802 & 85,409 & RUP-only DRAT, plus reduced replay\\
+four neutral & 1,222 & 24,694 & 78,697 addition-only RUP steps\\
+residual no-full & 9,802 & 84,614 & 156,205 addition-only RUP steps\\
+\bottomrule
+\end{tabular}
+\caption{The three finite certificates used in the proof.}
+\end{table}
+
+The discovery generators do not serve as their own decisive validators.
+The review programs use separately written allocation and clause-generation
+logic, inspect the graph/complement direction, truth-table the closure and
+sorter gadgets, and replay pinned proof bytes with independently hashed
+checkers.  Satisfiable controls are checked by direct clause evaluation and,
+where graph parameters are reported, by a separate ordinary-set evaluator.
+
+\section*{AI-assistance and verification disclosure}
+
+The exploratory mathematics, programs, certificate design, adversarial
+audits, literature review, manuscript, and publication materials were
+developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's
+direction.  Alec Kriebel is the human author and project lead.  No outside
+individual was contacted for this project, and no external expert has
+reviewed the result.  No claim was accepted on model output alone: the
+finite statements are bound to exact formulas, proof objects, independent
+reconstructors, and direct controls.  Those checks are evidence about the
+encoded theorem; they are not peer review.
+
+\section*{Acknowledgment of prior work}
+
+The through-order-11 computation is due to Gary MacGillivray, C. M.
+Mynhardt, and V. Virgile.  The original question is due to William F.
+Klostermeyer and Gary MacGillivray, and its later formulation as the
+\(\gamma\)--\(\theta\) conjecture is due to William F. Klostermeyer and
+C. M. Mynhardt.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

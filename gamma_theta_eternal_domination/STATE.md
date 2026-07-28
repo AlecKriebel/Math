@@ -1,5 +1,239 @@
 # Campaign State
 
+## Checkpoint 064 — 2026-07-28 02:38 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  C-097 certifies only the order-13
+  common-parameter-three slice; parameters four and five remain open, so the
+  certified global frontier is still 13.
+- **Order-13 manuscript cleared for release.**  The final exact-byte hostile
+  audit returned unconditional `PASS` on `main.tex` SHA-256
+  `56afff0796fb602589d38714793e42b6864a5454d71d8da51b559daa3daea8f2`
+  and the ten-page PDF SHA-256
+  `6768cecf0d46672f7d56cbda2715b49ef18470e5d60b3c7912fc9999843ae5a4`.
+  The reviewer independently checked theorem scope, every human one-guard
+  argument, certificate headers and hashes, symmetry coverage, both equality
+  controls, bibliography, disclosure, two byte-identical builds, and all ten
+  rendered pages.
+- The review first found a historical-attribution defect: the 2015
+  Klostermeyer--Mynhardt paper identifies the gap and reopens the assertion as
+  Question 7.1, but does not itself use the gamma--theta name.  The manuscript
+  and public page were corrected to distinguish the 2009 assertion, the 2015
+  correction/question, and the terminology in subsequent literature.  The
+  hostile verdict applies to the corrected bytes.
+- The compact C-097 release replay passed again after staging.  It
+  reconstructed the C-096 and C-097 formulas byte for byte, replayed both
+  deletion-free proofs in strict RUP-only mode, verified all six anchor
+  normalizations and 1,716 residual signature multisets, checked the sharp
+  three-neutral equality control, and confirmed the theta-gap ablation is
+  satisfiable.
+- The public paper page passed desktop and 390-pixel mobile visual checks,
+  has no horizontal overflow or browser warnings, and passed its internal
+  link, JSON-LD, and sitemap checks.  The GitHub tag, release, and live Pages
+  deployment remain the only operational gates at this checkpoint.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Order-13 \(k=3\) theorem release | ready-to-publish | Exact-byte hostile `PASS`; commit, tag, release, Pages deployment, and live-byte check remain |
+| Universal no-full \(k=3\) proof | active-primary | Two-gate odd holonomy is excluded; a minimal odd signed cycle through at least three tight gates is the live obstruction |
+| Order-13 \(k=4,5\) slices | active-fallback | These remain the only order-13 parameters; no exclusion is claimed |
+| General order-14 computation | deferred | No blind order-14 enumeration or synthesis will begin before the proof gate is evaluated |
+
+### Running jobs and resources
+
+- One bounded proof agent is attacking the three-or-more-gate odd-holonomy
+  obstruction.  Two additional release auditors are still checking the
+  manuscript independently; publication no longer depends on them because
+  the exact-byte fast hostile audit has already returned unconditional
+  `PASS`.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  No broad graph
+  enumeration or memory-heavy solver is running.
+
+### Next three highest-value actions
+
+1. Commit the audited bundle, create and push
+   `gamma-theta-order13-k3-v1.0.0`, publish the release, and verify the live
+   page and PDF bytes.
+2. Prove or refute a shortening/attack lemma for a minimal odd signed cycle
+   through at least three tight gates.
+3. If that proof gate fails, choose a focused order-13 \(k=4\) or \(k=5\)
+   fallback from measured structure rather than beginning blind order 14.
+
+## Checkpoint 063 — 2026-07-28 01:46 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified global frontier remains
+  13 because the order-13 parameter-four and parameter-five slices are
+  still open.  This working checkpoint is based on repository commit
+  `535c9d9063a526fe4d753d9c4b45b9ca948e8c86` and awaits its publication
+  commit.
+- Literature/status audit refreshed through 2026-07-28.  No direct
+  resolution, counterexample, or prior order-13 parameter-three exclusion
+  was located; the manuscript therefore retains its no-priority disclaimer.
+- **Shared-port odd returns excluded universally (C-100).**  Tight
+  third-color gates have a canonical binary chirality, and a connector
+  inside one omitted-color projection changes chirality by its path parity.
+  A direct one-guard attack theorem excludes every odd two-cap fork in an
+  arbitrary eternal triple-family; \(\gamma=3\) is not needed.  Hence two
+  tight gates sharing the required physical port cannot carry an odd return
+  through one frozen projection, at any subdivision length.  A checked
+  14-vertex equality graph realizes the corresponding even return, so the
+  parity hypothesis is sharp.  Separated-port bicycles and odd holonomy
+  distributed among several projections remain open.
+- **Separated two-gate odd bigons also excluded (C-103).**  A second
+  arbitrary-length attack theorem synchronizes the parities of two
+  vertex-disjoint connector paths in different omitted-color projections
+  whenever the two endpoint boundary states are dead.  Tight gates supply
+  exactly those dead states.  In the unit-free no-full branch, free
+  components of different types are automatically disjoint, so no two-gate
+  odd-holonomy bigon survives even with four separated physical ports and
+  arbitrary subdivisions.  The hostile reviewer independently rebuilt four
+  equality controls, all 7,851 family obligations, and 878 qualifying path
+  pairs.  The live holonomy target is now an inclusion-minimal odd cycle
+  through at least three tight gates.
+- **The C-097 contradiction is radius-two and genuinely three-way
+  (C-101--C-102).**  In the structured residual branch, closure only at
+  retained triples meeting the reference state is already UNSAT.  The exact
+  9,802-variable, 76,214-clause formula is a strict 8,400-clause subset of
+  the C-097 residual formula, and its 168,880-line deletion-free proof
+  passed independent byte reconstruction and strict RUP-only replay with
+  zero RAT lemmas.  Radius one and every two-of-three anchor-slice
+  relaxation are SAT.  All three two-slice controls have
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\) and fail first in
+  the omitted slice.  Thus the finite mechanism gives a precise
+  three-projection gluing target, not an all-order proof.
+- **Publication package is in final hostile audit.**  The self-contained
+  ten-page order-13 parameter-three manuscript attributes Alec Kriebel as
+  author and project lead, states the one-guard model explicitly, records
+  the exact finite theorem and its \(k=4,5\) limitation, and discloses heavy
+  ChatGPT assistance.  Two fixed-epoch builds are byte-identical; all ten
+  rendered pages have been visually inspected with no defects; the TeX/Bib
+  logs are clean.  The paper, public page, release tag, and live deployment
+  remain pending until the independent manuscript audit and final replay
+  pass.
+- **Regression gate passed.**  The fresh aggregate C-097 replay passed every
+  formula, proof, coverage, ablation, and sharp-control check.  The complete
+  campaign suite then passed all 398 tests in 381.812 seconds with
+  182,550,528-byte maximum resident set size and zero swaps.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Complete order-13 \(k=3\) slice | closed-certified C-097 | Standalone paper and release package in final hostile audit |
+| Universal no-full \(k=3\) proof | active-primary | C-100 removes shared-port odd returns and C-103 removes separated two-gate odd bigons; an odd signed cycle through at least three tight gates is the live obstruction |
+| Radius-two humanization | closed-certified C-101/C-102 | All three depth-two anchor slices are necessary in the finite residual core; no short attack tree extracted |
+| Order-13 \(k=4,5\) slices | active-fallback | Only remaining order-13 parameters; no complete exclusion |
+| General order-14 computation | deferred | No blind or unrestricted order-14 search will begin before the current proof gate is evaluated |
+
+### Running jobs and resources
+
+- The separated two-gate holonomy theorem and its independent hostile audit
+  are complete.  One independent agent is auditing the frozen manuscript and
+  its certificate-to-theorem binding.  No broad graph enumeration is
+  running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  18 GiB of disk is free.  The current jobs are bounded and the machine
+  remains responsive.
+
+### Next three highest-value actions
+
+1. Close the hostile manuscript audit, replay the complete C-097 package,
+   and publish the paper, exact artifacts, source tag, and active-workstream
+   update.
+2. Prove or refute a shortening lemma for an inclusion-minimal odd signed
+   cycle through at least three tight gates.
+3. If that proof gate does not close, use the radius-two three-slice
+   mechanism to choose between a focused order-13 \(k=4,5\) fallback and a
+   bounded countermodel search—not a blind order-14 enumeration.
+
+## Checkpoint 062 — 2026-07-28 00:51 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no counterexample has been found.  The certified global frontier remains
+  13 because the order-13 parameter-four and parameter-five slices are
+  still open.  This working checkpoint is based on repository commit
+  `535c9d9063a526fe4d753d9c4b45b9ca948e8c86` and awaits its own publication
+  commit.
+- **Four-neutral obstruction certified (C-096).**  A small formula proves
+  that 13 vertices cannot support an independent retained triple, four
+  neutral vertices, two further ports with overlapping positive response
+  pairs, \(\gamma\ge3\), and an eternal triple-family.  The formula imposes
+  neither a theta gap nor no-full lists.  Its exact 1,222-variable,
+  24,694-clause DIMACS and 78,697-addition proof were reconstructed
+  independently.  Strict forward RUP, fresh LRAT, a 128-case closure truth
+  table, and the coverage map all passed.  A three-neutral equality graph
+  with 139 greatest-family states is a sharp SAT control.
+- **The earlier numerical bound is recovered by a different sound route.**
+  Combining C-096 with C-091 and C-093 now certifies
+  \[
+    |Q|\le3,\qquad |A|\ge7
+  \]
+  for an order-13 no-full candidate.  This is a dynamic finite certificate,
+  not the retracted false static argument recorded in Checkpoint 061; that
+  retraction remains valid and unchanged.
+- **Complete order-13 parameter-three slice excluded (C-097).**  The
+  residual \(7+3,8+2,9+1,10+0\) censuses are covered after naming two
+  pure-signature response-type pairs, applying the \(S_3\) anchor action,
+  sorting the six remaining signatures, and enforcing the C-096 cut.  The
+  exact residual formula has 9,802 variables and 84,614 clauses.  A
+  clean-room implementation reconstructed all bytes and proved the symmetry
+  coverage.  Its 156,205-addition deletion-free proof passed strict
+  warning-fatal RUP replay with zero RAT lemmas.  The full raw trace also
+  verifies in both deletion-aware and warning-fatal plain modes.  Removing
+  the theta-gap block yields SAT and its model satisfies every remaining
+  clause.
+- C-090 covers the complementary full-response branch.  Therefore
+  \[
+    \boxed{\text{no order-13 graph has }
+    \gamma=\gamma^\infty=3<\theta.}
+  \]
+  Any order-13 counterexample must have common parameter four or five.
+  This does not prove the complete all-order \(k=3\) case.
+- **Original-edge incidence localized (C-098--C-099).**  If two physical
+  representatives fail to retain an original cross-list complement edge,
+  domination equality forces a common complement cap.  Literal attacks make
+  the original edge and two cap edges a virtual rainbow triangle.  Every cap
+  list except the exact third two-list creates a local unit; exact
+  third-color caps are the sole locally unit-free gate in this gadget.
+  Two independently checked equality controls show that neither single- nor
+  double-edge transport follows even for greatest families.  The universal
+  target is now composition of tight third-color gates around a
+  minimal-unsatisfiable bicycle.
+- Public-page and manuscript updates have not yet been deployed at this
+  checkpoint.  The last live page still reports only C-090--C-095 and must
+  not be cited for C-096 or C-097 until the new release succeeds.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Complete order-13 \(k=3\) slice | closed-certified C-097 | Full-response C-090 plus four-neutral C-096 and independently reconstructed residual RUP certificate |
+| Order-13 \(k=4,5\) slices | active-supporting | These are now the only order-13 parameters; no complete exclusion yet |
+| Universal no-full \(k=3\) proof | active-primary | C-098 reduces failed incidence locally to exact third-color virtual-rainbow gates; global gate chains/bicycles remain |
+| Humanization of C-097 core | active-independent | Extract a parameter-general lemma or a short finite proof without weakening certificate scope |
+| General order-14 computation | not started | No blind or unrestricted order-14 enumeration or synthesis has begun |
+
+### Running jobs and resources
+
+- Two bounded proof agents are analyzing the C-097 core and compositions of
+  the C-098 tight gate.  No broad graph enumeration has started.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM.  Approximately
+  19 GiB of disk is free.  The accepted production runs each used one solver
+  core; the largest new retained decisive proof is 8,878,465 bytes.
+
+### Next three highest-value actions
+
+1. Publish the exact C-096/C-097 artifacts, acceptance record, live
+   workstream update, and a self-contained parameter-three order-13 note.
+2. Complete the tight-gate cycle analysis: either exclude every
+   inclusion-minimal unit-free bicycle or preserve an explicit equality
+   countercontrol to the proposed shortening lemma.
+3. Extract a human-readable mechanism from the C-097 core before deciding
+   whether to resume the order-13 \(k=4\) or \(k=5\) finite lanes.
+
 ## Checkpoint 061 — 2026-07-27 23:57 PDT
 
 - Campaign day: 3 of 27.  The universal conjecture remains unresolved, no

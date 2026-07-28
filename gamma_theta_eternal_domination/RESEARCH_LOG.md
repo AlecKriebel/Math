@@ -2397,3 +2397,161 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   No second paper was created for the conditional order-13 branch result.
 - Frozen deployment provenance:
   `results/day3_full_response_no_full_public_workstream_acceptance.json`.
+
+## 2026-07-28 00:51 PDT — order-13 parameter-three slice certified empty
+
+- The resumed audit of the tight \(5+5\) no-full form produced a much
+  smaller obstruction than the original structured formula.  On 13
+  vertices, literal one-guard closure, pair nondomination, one independent
+  retained triple, four neutral vertices, and two distinct ports carrying
+  overlapping positive response pairs are already inconsistent.
+- The production formula has 1,222 variables and 24,694 unique clauses.
+  Its DIMACS SHA-256 is
+  `3d1a1379eb2a90ffd399e5a830b1a81881ed527c6e9db06574a390085cb5c1e0`;
+  the 78,697-addition proof SHA-256 is
+  `c4f1989ac80474a86b75ba939e494bde5928b2727fd61297eb695f3937222eee`.
+  A hostile checker independently reconstructed every byte, exhaustively
+  truth-tabled the closure gadget, replayed strict forward RUP, generated
+  and checked fresh LRAT, and verified a sharp three-neutral SAT control.
+- C-093 gives at least two response types in the no-full theta-gap branch,
+  and C-091/C-093 supply distinct nonneutral physical representatives.
+  Therefore any candidate with four neutral vertices maps into the small
+  formula.  This certifies \(|Q|\le3,|A|\ge7\) at order 13 by a new dynamic
+  route.  It does not rehabilitate the earlier false static derivation,
+  whose retraction remains part of the record.
+- A structured residual formula then named pure-signature pairs for two
+  response types, sorted the other six anchor signatures, and encoded
+  \(|Q|\le3\) by requiring the fourth residual signature to be nonzero.
+  CaDiCaL returned UNSAT in about eleven seconds.  The formula has 9,802
+  variables, 84,614 clauses, no duplicates, no tautologies, and SHA-256
+  `76ff2768c7afd95ee535f8684515b0b15319b1f5ca69085447a1f7eba66393e1`.
+- The decisive deletion-free proof has 156,205 additions, 8,878,465 bytes,
+  and SHA-256
+  `c985ce0a602a91a0d323594e3aeecf210fa5131027ef4b6c9b6e4d4b628f1848`.
+  It passed strict `-I -f -W -U` replay with zero RAT lemmas.  A clean-room
+  generator reconstructed the complete formula byte for byte, checked all
+  six ordered anchor-type normalizations and all 1,716 sorted residual
+  signature sequences, and found a clause-satisfying SAT model when the
+  theta-gap block was removed.
+- Combining this residual certificate with the already certified C-090
+  full-response branch proves C-097:
+  \[
+    \text{no order-13 counterexample has common parameter three.}
+  \]
+  The global finite frontier remains 13 because parameter four and five at
+  order 13 remain open.  The all-order \(k=3\) theorem and the universal
+  conjecture also remain open.
+- Independently, original cross-edge analysis proved that every failed
+  physical incidence produces a virtual-rainbow cap.  The exact third-color
+  two-list is the sole cap list without a local unit consequence.  Two
+  equality controls with greatest eternal families refute both simultaneous
+  two-edge retention and joint-endpoint physicalization.  Thus the remaining
+  universal problem is genuinely global composition of tight third-color
+  gates inside an inclusion-minimal unsatisfiable response formula.
+
+## 2026-07-28 01:46 PDT — odd-return theorem and radius-two localization
+
+- The tight third-color gate now has an exact binary chirality.  Gate
+  constraints preserve chirality, while a same-type connector in one frozen
+  projection flips it exactly when its complement-path length is odd.  The
+  associated type-word calculation makes every literal-preserving closed
+  walk even and every physical closure of a path from a literal to its
+  complement odd.
+- A direct attack proof goes beyond the parity bookkeeping.  In an arbitrary
+  eternal triple-family, two tight caps sharing the required physical port
+  cannot be connected back by any odd path contained in one omitted-color
+  projection.  Every attack is unoccupied and moves exactly one adjacent
+  guard; the proof does not use \(\gamma=3\).  The hostile reviewer accepted
+  all odd subdivisions and independently checked the sharp even-return
+  equality control `MEXrtIdmdjLQqztC?`, whose 172-state greatest family
+  satisfies all 1,892 attack obligations.  This promotes C-100.
+- The theorem does not collapse an arbitrary unit-free 2-SAT bicycle:
+  physical ports may be separated and odd holonomy may be distributed
+  across multiple projection components.  That is now the primary universal
+  proof target.
+- Independently, the C-097 residual certificate was weakened from full
+  eternal closure to closure only at retained triples meeting the reference
+  independent state.  The resulting radius-two formula removes exactly
+  8,400 clauses, leaving 9,802 variables and 76,214 clauses.  Its
+  168,880-line deletion-free proof passed strict RUP-only replay with zero
+  RAT lemmas after clean-room byte reconstruction.  This promotes C-101.
+- Radius one and all three two-of-three single-anchor slice relaxations are
+  SAT.  Direct checkers ignore the SAT move variables, recompute every
+  partial one-guard response and exact graph parameter, and obtain
+  \((\gamma,i,\alpha,\gamma^\infty,\theta)=(3,3,3,4,4)\) in each
+  two-slice control.  Each fails in the omitted slice.  This refutes the
+  proposed two-projection shortcut (C-102) and shows that the finite
+  contradiction is genuinely three-way at depth two.
+- The order-13 parameter-three manuscript was strengthened by making
+  domination of each frozen projected state explicit.  Two fixed-epoch
+  builds are byte-identical, all ten rendered pages were visually inspected,
+  and the build logs are clean.  Publication remains gated on an independent
+  hostile manuscript audit and the final aggregate replay.
+- A compressed prepublication search across current arXiv, primary journal
+  records, author-index results, and citing papers located no universal
+  resolution, certified counterexample, or prior order-13 parameter-three
+  exclusion.  This is a search result, not proof of novelty; the manuscript
+  retains its explicit no-worldwide-priority disclaimer.
+- No universal proof, counterexample, complete order-13 exclusion, or
+  order-14 lower bound is claimed.
+
+## 2026-07-28 02:09 PDT — separated two-gate odd bigons excluded
+
+- A second arbitrary-length attack theorem synchronizes the parities of two
+  vertex-disjoint complement paths in different frozen projections.  If
+  \(P=x_0\ldots x_m\subseteq W_c\) and
+  \(Q=y_0\ldots y_n\subseteq W_a\), the initial responses are positive, and
+  the two boundary states \(\{b,x_0,y_0\}\) and
+  \(\{b,x_m,y_n\}\) are absent, then \(m\equiv n\pmod2\).
+  The proof launches two forced boundary states and propagates a retained
+  \(b\)-state two path edges at a time.  It needs no \(\gamma=3\) or
+  coloring hypothesis.
+- Two tight third-color gates supply the required absent boundary states
+  through their cap nonadjacencies.  In a unit-free no-full bicycle,
+  projection components of different types are physically disjoint: an
+  intersection omits two anchor colors and therefore has a singleton list,
+  creating a unit.  Hence every two-gate odd-holonomy bigon is impossible,
+  even with four separated ports and arbitrary subdivisions.
+- The hostile reviewer caught one finite-audit mismatch before acceptance:
+  the discovery checker had omitted length-zero paths while its prose said
+  all paths.  The checker was extended rather than the claim weakened.
+  Independent enumeration now checks \(86+150+246+396=878\) qualifying
+  path pairs across four equality controls, including length-zero cases,
+  with zero parity violations.  All 7,851 one-guard obligations in the four
+  controls were independently rebuilt.  Dropping either dead-boundary
+  hypothesis yields explicit opposite-parity controls.
+- The final hostile verdict is unconditional `PASS`, promoting C-103.  The
+  exact remaining tight-gate holonomy problem is an inclusion-minimal odd
+  signed cycle through at least three gates.  This is not yet the complete
+  \(k=3\) theorem.
+- The complete 398-test campaign suite passed in 381.812 seconds, with
+  maximum resident set size 182,550,528 bytes and zero swaps.
+
+## 2026-07-28 02:38 PDT — order-13 paper passes exact-byte release audit
+
+- A hostile prepublication audit found one genuine attribution defect before
+  release.  Klostermeyer--Mynhardt (2015) identifies the gap in the 2009
+  argument and reopens the assertion as an explicit question, but does not
+  itself use the gamma--theta name.  The paper and public page now distinguish
+  the 2009 assertion, the 2015 correction/question, and terminology used in
+  subsequent literature.
+- The corrected manuscript was rebuilt twice with fixed source epoch.  Both
+  builds are byte-identical; the final ten-page PDF has SHA-256
+  `6768cecf0d46672f7d56cbda2715b49ef18470e5d60b3c7912fc9999843ae5a4`.
+  Pages 1--2 were re-rendered after the correction, and the independent
+  reviewer rendered and inspected all ten current pages.
+- The exact-byte hostile release verdict is unconditional `PASS`.  It covers
+  theorem scope, the human one-guard arguments, C-090/C-096/C-097 binding,
+  certificate shapes and hashes, symmetry counts, controls, citations,
+  disclosure, deterministic build, and rendering.
+- The compact C-097 wrapper passed again from the staged package.  Formula
+  reconstruction, strict RUP-only replay, six anchor permutations, 1,716
+  residual signature multisets, the equality control, and the satisfiable
+  theta-gap ablation all passed.
+- Local web QA passed at desktop and 390-pixel mobile width.  The apparent
+  narrow full-page capture was isolated to screenshot stitching: DOM
+  measurements show full viewport width and no horizontal overflow, and the
+  ordinary viewport capture is correct.  The page has no browser warnings.
+- Only the commit/tag/release/Pages/live-byte gates remain.  A bounded proof
+  lane has simultaneously resumed at the exact universal target left by
+  C-103: a minimal odd signed cycle through at least three tight gates.

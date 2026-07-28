@@ -9,9 +9,10 @@ Here \(\gamma^\infty\) always means the standard **one-guard-moves** eternal
 domination number: attacks occur only at unoccupied vertices and exactly one
 guard traverses one edge to the attacked vertex.
 
-The dated public workstream and current order-12 paper are available at:
+The dated public workstream and current papers are available at:
 
 - <https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/>
+- <https://aleckriebel.github.io/Math/papers/gamma-theta-order-13-k3/>
 - <https://aleckriebel.github.io/Math/papers/gamma-theta-order-12-frontier/>
 
 ## Campaign dates
@@ -126,12 +127,13 @@ UNSAT, with independently replayed addition-only RUP and LRAT proofs.  A
 clean-room audit reconstructed the 9,802-variable formula byte for byte and
 enumerated all \(3^{13}\) named colorings to verify the complete 2,295-row
 coloring bank.  Thus the live order-13 parameter-three cover is reduced
-further to the overlapping hub-free \(C_5\) and \(C_7\) branches.
+at that stage to the overlapping hub-free \(C_5\) and \(C_7\) branches.
 
 C-057 is a certified finite template exclusion, not a complete
-\((n,k)=(13,3)\) result.  The \(C_5,C_7\) branches and the complete
-\(k=4,5\) slices remain open, so the global lower bound remains 13 rather
-than 14.  The historical proofless `hole11` solver return remains only
+\((n,k)=(13,3)\) result by itself.  The later C-097 certificate closes the
+complete parameter-three slice; the \(k=4,5\) slices remain open, so the
+global lower bound remains 13 rather than 14.  The historical proofless
+`hole11` solver return remains only
 `OBSERVED`; the accepted \(C_{11}\) exclusion is the human proof in
 `math/lemmas/order13_k3_hole11_exclusion.md`, not that solver output.
 
@@ -308,41 +310,68 @@ two-lists again force six nonneutral vertices.  The exact separated-port
 pattern therefore requires at least 15 vertices, even if its full target is
 discarded.
 
-The order-13 parameter-three full-response branch is now certified empty.  A
-clean-room generator reconstructed the 9,802-variable, 85,409-clause
-full-response formula byte for byte; its \(S_9\) symmetry coverage was
-proved and truth-tabled, and independent RUP-only replays accepted both the
-full DRAT proof and reduced core.  Hence an order-13 parameter-three
-counterexample, if one exists, has no full family-response target at any
-maximum independent triple.  This is not a complete order-13 exclusion:
-the no-full-list 2-SAT branch remains open, as do the order-13
-parameter-four and parameter-five slices.  A first two-minute monolithic
-probe of that complementary branch timed out and is recorded as a
-nonclaim.
+Claims C-090 and C-093--C-097 now close the complete order-13
+parameter-three slice.  C-090 first excludes every candidate having a full
+family-response target at a maximum independent triple.  In the
+complementary no-full branch, a non-3-colorable complement has at least two
+exact two-list types, and every type supplies a pure-signature
+complement-edge pair.  A small, stronger certificate then proves that four
+neutral vertices and two overlapping positive response pairs cannot coexist
+on 13 vertices.  Its 1,222-variable, 24,694-clause formula has an
+independently reconstructed 78,697-addition RUP proof, and three neutral
+vertices are realized by a checked equality control.
 
-Claims C-093--C-095 give the first sound census reduction inside that
-no-full branch and close one tempting but invalid proof shortcut.  A
-non-3-colorable complement must use at least two distinct exact two-list
-types.  Each type forces two pure-signature nonneutral vertices joined in
-the complement, while every neutral vertex forces the remaining anchor
-signatures to occur.  Consequently an order-13 no-full counterexample has
-at least five nonneutral vertices and at most five neutral vertices; if all
-three types occur, the bounds are six and four.  The tight \(5+5\) case has
-a rigid fifth vertex that is complement-adjacent to every neutral vertex and
-has a forced singleton response.
+Thus every remaining no-full candidate has \(|Q|\le3\) and \(|A|\ge7\).
+After anchor relabeling and sorting the other six signatures, one residual
+9,802-variable, 84,614-clause formula covers the \(7+3,8+2,9+1,10+0\)
+censuses.  A clean-room generator reproduced it byte for byte and a strict
+156,205-addition RUP proof excludes it.  Removing the theta-gap block is SAT,
+so the contradiction does not come from the structural bindings alone.
+Consequently
 
-Every exact two-list Boolean event can now be represented at a physical
-vertex on the same side of the relevant bipartite projection.  For a
-dynamic omission, the original port and its representative are joined by a
-length-two complement path, so substituting the representative in the
-2-SAT formula is logically exact.  However, the equality control
-`LFzJbZYhdrDZdM` has a checked 142-state eternal family and
-\((\gamma,\alpha,\gamma^\infty,\theta)=(3,3,3,3)\), yet the complement
-edge supporting one cross-clause disappears at the unique same-sign
-physical representative.  Thus literals physicalize, but clause edges do
-not.  A decisive proof must use the original incidence pattern or prove a
-stronger multi-edge representative theorem; simple connector transport is
-refuted.
+\[
+  \boxed{\text{no order-13 graph satisfies }
+  \gamma=\gamma^\infty=3<\theta.}
+\]
+
+This is C-097.  It is not an all-order parameter-three theorem, and
+parameters four and five at order 13 remain open.
+
+For the universal proof, every exact two-list Boolean event can be
+represented at a physical vertex on the same side of its bipartite
+projection, but connector edges need not survive that replacement.  C-098
+instead uses the original cross-edge: a failed physical incidence forces a
+common complement cap, and the original edge plus the two cap edges form a
+virtual rainbow triangle.  Every cap list except the exact third two-list
+creates a local unit and length-two implication arm.  Exact third-color
+caps are therefore the sole locally unit-free gate in this gadget.  The
+equality controls in C-099 show that failed one- and two-edge transport and
+the tight gate itself genuinely occur in colorable equality graphs.
+
+Claim C-100 now excludes an infinite part of the remaining bicycle
+universe.  Exact two-list ports have a binary chirality: tight third-color
+gates preserve it, while a connector in one omitted-color projection flips
+it according to path parity.  A direct one-guard attack rules out every
+odd two-cap fork, at any subdivision length and without assuming
+\(\gamma=3\).  A 14-vertex equality control realizes the corresponding
+even return.
+
+Claim C-103 closes the first separated case as well.  If two connector
+paths in different frozen projections have the dead boundary states supplied
+by two tight gates, one-guard closure forces the paths to have equal parity.
+In the unit-free branch their free components are automatically
+vertex-disjoint, so no two-gate odd bigon survives even with four separated
+ports and arbitrary subdivisions.  The unresolved holonomy case is therefore
+an inclusion-minimal odd signed cycle through at least three tight gates.
+
+Claims C-101--C-102 localize the finite C-097 mechanism independently.
+Closure only through triples retaining at least one original anchor already
+makes the structured residual formula UNSAT; closure after all three anchors
+have left is unnecessary.  However, radius one and every two-of-three
+depth-two anchor-slice relaxation are SAT, with exact
+\((3,3,3,4,4)\) controls.  The finite contradiction is genuinely a
+three-way depth-two interaction.  This is a useful universal-proof target,
+not an extension of the order frontier.
 
 The same iteration also proves that a minimum counterexample has no adjacent
 true twins: deleting either one preserves
@@ -357,16 +386,11 @@ delimit the theorem sharply: expansion/restoration alone is not
 base-orderability, and even equality does not force individual exchanges to
 be reciprocal in an arbitrary eternal subfamily.  Thus the current proof
 target is no longer a generic list-coloring assertion or an unqualified
-infinite cap descent.  It is to identify the fixed terminal-cube response
-with the original physical 2-SAT/Kempe incidence pattern, or to eliminate
-the tight \(5+5\), residual longer-chain, unit-free, and base-unsatisfiable
-branches under \(\gamma=\alpha=\gamma^\infty=3\).  Every two-list event now
-has a physical representative, and an exact equality control proves that
-arbitrary connector edges do not survive that replacement.  This is the
-precise universal gap.  The universal conjecture remains unresolved.  No general
-order-14 search has begun; higher-order runs made during this proof lane are
-restricted exact-pattern falsification probes and do not claim a frontier
-result.
+infinite cap descent.  It is to eliminate an inclusion-minimal odd signed
+cycle through at least three exact third-color virtual-rainbow gates.  The
+universal conjecture remains unresolved.  No general order-14 search has
+begun; higher-order runs made during this proof lane are restricted
+exact-pattern falsification probes and do not claim a frontier result.
 
 ## Trust architecture
 
