@@ -1,0 +1,66 @@
+{
+  "schema": "QQ1-inner-global-attack-candidate-v1",
+  "date": "2026-07-28",
+  "classification": {
+    "cross_layer_bridge": "PROVED_CANDIDATE",
+    "fixed_controls": "CERTIFIED_FINITE_CANDIDATE",
+    "sat_and_cegar_traces": "OBSERVED_DISCOVERY_ONLY"
+  },
+  "candidate_claims": [
+    "For every canonical QQ1 completion d, every common nonneighbor w of {u,d}, and every common nonneighbor z of {u,x}, the state {u,w,z} belongs to the literal greatest eternal triple family.",
+    "Every such bridge state makes {w,z} cover both side witnesses b and c.",
+    "In the ud-edge branch, wz an edge creates the induced cycle u-d-z-w-x-u, while wz a nonedge makes {u,w,z} independent.",
+    "The two fixed 16-vertex controls exactly refute the shortcut that simultaneous W_ux and W_ud witnesses, the retained bridge, the outer bow tie, and one further pair repair already force gamma=3."
+  ],
+  "dependencies": [
+    "accepted C-010 independent-state retention",
+    "accepted C-108 activity propagation and the inactive reverse endpoint",
+    "accepted C-143 reverse-state domination",
+    "accepted C-158 canonical rank-one QQ1 normal form"
+  ],
+  "controls": {
+    "two_witness": {
+      "graph6": "OslallyN]z~r|^{~|^|~^",
+      "graph6_sha256": "a449cbe74c7098383e8d39f8b883db2e80e649cdf0ddcf5b40470c7455c2702d",
+      "parameter_vector_gamma_i_alpha_ginf_theta": [
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "boundary_failure": "{p,w} dominates"
+    },
+    "repaired_pw": {
+      "graph6": "OslallyN]fv|y~v^}n}{n",
+      "graph6_sha256": "8614d9fa470c970f48a202642c4c3acae87bb45c3e6ad83961fe2d5f3537877d",
+      "parameter_vector_gamma_i_alpha_ginf_theta": [
+        2,
+        3,
+        3,
+        3,
+        3
+      ],
+      "pair_repair": "vertex 15 is the unique common nonneighbor of {p,w}",
+      "boundary_failure": "21 other dominating pairs remain, including {q,14}"
+    }
+  },
+  "scope_exclusions": [
+    "elimination of either QQ1 branch",
+    "a proof that any particular next dominating pair is universally forced",
+    "an infinite witness ladder",
+    "a certified finite UNSAT result",
+    "complete k=3",
+    "the gamma-theta conjecture"
+  ],
+  "files_sha256": {
+    "NOTE.md": "35c0805312433450a80ebedc33f49ff53d13c6220517639cf9d0f5fa72c84f90",
+    "RESEARCH_LOG.md": "a578f3dd4ea957fb456a438b1e589e9cddca474702fb20436ab4a090030174a5",
+    "cegar_pairs.py": "8fa814f4d9770678f6f2fd80ae185f81eb91169867d3be866ac45eb5000261e7",
+    "expected_result.json": "4b94edf8624bd941c7de6ab8a54e8737b0bd358f00e672adef5b68c6386b5152",
+    "probe_simultaneous.py": "907f0a9e1c31ceb02d4ba8f1eacc8e626e53840793e486fca847eae185c4be15",
+    "verify_controls.py": "cdb815e31fc3c6dba48fb3c8d48676e1747c33264c4cab7e89ef5b32e9117595",
+    "verify_strict.sh": "49d362a1c3661fba42384835b50d29b8bdbc336e7881370107ae375216ff1cfd"
+  },
+  "strict_reproduction": "sh math/working/qq1_inner_global_attack/verify_strict.sh"
+}
