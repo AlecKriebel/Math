@@ -1,0 +1,218 @@
+{
+  "accepted_dependencies": [
+    "C-010",
+    "C-064",
+    "C-108",
+    "C-150"
+  ],
+  "activity_and_AQ1_to_QQ1": {
+    "activity_assignments": [
+      {
+        "eligible": [
+          "b",
+          "x"
+        ],
+        "sa": false,
+        "sq": false
+      },
+      {
+        "eligible": [
+          "b",
+          "x"
+        ],
+        "sa": false,
+        "sq": true
+      },
+      {
+        "eligible": [
+          "b",
+          "s",
+          "x"
+        ],
+        "sa": true,
+        "sq": false
+      },
+      {
+        "eligible": [
+          "b",
+          "s",
+          "x"
+        ],
+        "sa": true,
+        "sq": true
+      }
+    ],
+    "blocker_movers": [
+      "p",
+      "q",
+      "u"
+    ],
+    "independent_completion_collision_check": "s is distinct from a,x,p,q,r,c after saturation",
+    "reduced_row": "QQ1",
+    "reverse_successor": [
+      "p",
+      "q",
+      "u"
+    ]
+  },
+  "boundary_control": {
+    "alpha": 3,
+    "core_G_edges": [
+      [
+        "b",
+        "c"
+      ],
+      [
+        "b",
+        "p"
+      ],
+      [
+        "b",
+        "x"
+      ],
+      [
+        "c",
+        "q"
+      ],
+      [
+        "c",
+        "x"
+      ],
+      [
+        "p",
+        "r"
+      ],
+      [
+        "p",
+        "u"
+      ],
+      [
+        "q",
+        "r"
+      ],
+      [
+        "q",
+        "u"
+      ],
+      [
+        "r",
+        "u"
+      ],
+      [
+        "u",
+        "x"
+      ]
+    ],
+    "core_labels": {
+      "b": 5,
+      "c": 6,
+      "p": 2,
+      "q": 3,
+      "r": 4,
+      "u": 0,
+      "x": 1
+    },
+    "gamma": 3,
+    "gamma_infinity_one_guard": 4,
+    "graph6": "Hslaghb",
+    "graph6_ascii_sha256": "21adf1cd976e314bd1c56c50c61b68f159cddfe457447ec04146ee7fc914bfec",
+    "i": 3,
+    "kernels_until_optimum": {
+      "3": {
+        "deletion_rounds": [
+          24,
+          21
+        ],
+        "final_kernel_size": 0,
+        "initial_dominating_states": 45
+      },
+      "4": {
+        "deletion_rounds": [
+          8,
+          1
+        ],
+        "final_kernel_size": 101,
+        "initial_dominating_states": 110
+      }
+    },
+    "m": 17,
+    "n": 9,
+    "theta": 4
+  },
+  "completion_quantifier_audit": {
+    "arbitrary_completion_incidence_cases": {
+      "dp=0,dq=0": "excluded: retained S would miss d",
+      "dp=0,dq=1": "excluded: p-at-b marker maps to r-at-b",
+      "dp=1,dq=0": "excluded: q-at-c marker maps to r-at-c",
+      "dp=1,dq=1": "only surviving incidence"
+    },
+    "clique_reason": "two nonadjacent completions with a,r would form an independent four-set",
+    "universality_reason": "the audit uses no property of d beyond ad=rd=0; after normalization such d cannot equal any named core vertex"
+  },
+  "named_incidence_audit": {
+    "AQ1": {
+      "assignments": 128,
+      "first_obstruction_counts": {
+        "AQ1_b_marker_covariance": 32,
+        "AQ1_c_marker_covariance": 32,
+        "C108_forces_excluded_W": 4,
+        "M_p_c_attack_forces_uq": 1,
+        "M_p_c_attack_forces_xc": 8,
+        "M_q_b_attack_forces_up": 2,
+        "M_q_b_attack_forces_xb": 16,
+        "R_misses_a": 32,
+        "normalized_survivor": 1
+      },
+      "normalized_survivors": 1
+    },
+    "QQ1": {
+      "assignments": 32,
+      "first_obstruction_counts": {
+        "C108_forces_excluded_W": 4,
+        "M_p_c_attack_forces_uq": 1,
+        "M_q_b_attack_forces_up": 2,
+        "QQ1_xb_marker_covariance": 8,
+        "QQ1_xc_marker_covariance": 8,
+        "R_misses_x": 8,
+        "normalized_survivor": 1
+      },
+      "normalized_survivors": 1
+    }
+  },
+  "ridge_direction_audit": {
+    "AQ1_T_to_S": {
+      "a": "x",
+      "x": "a"
+    },
+    "AQ1_b_branch": {
+      "a": "x",
+      "c": "q",
+      "p": "r",
+      "q": "c",
+      "r": "p",
+      "x": "a"
+    },
+    "AQ1_c_branch": {
+      "a": "x",
+      "b": "p",
+      "p": "b",
+      "q": "r",
+      "r": "q",
+      "x": "a"
+    },
+    "QQ1_xb_counterassumption": {
+      "b": "p",
+      "p": "b",
+      "q": "r",
+      "r": "q"
+    },
+    "QQ1_xc_counterassumption": {
+      "c": "q",
+      "p": "r",
+      "q": "c",
+      "r": "p"
+    }
+  },
+  "schema": "rank-one-ur1-normalization-hostile-clean-room-v1",
+  "verdict": "PASS"
+}
