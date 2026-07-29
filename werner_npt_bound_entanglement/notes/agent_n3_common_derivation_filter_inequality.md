@@ -282,3 +282,169 @@ commutator of the common degree-two tensor \(D\).  A useful next step
 would be an exact lower bound for the operator in (22) on the
 left/right common-centered hyperplanes, or an \(S_3\)-coupled
 certificate obtained from the cross-site identities (25).
+
+## 6. Exact obstruction: even the common derivations are insufficient
+
+The restrictions above are genuinely stronger than the scalar
+covariance identities, but they still do not by themselves close the
+problem.  This section constructs an exact formal critical model which
+has one physical degree-two operator \(D\), hence satisfies every
+derivation and integrability identity, while passing all pointwise
+filter inequalities and all earlier trace arithmetic for
+\[
+\boxed{\frac23\le f\le\frac{24}{31}.}                  \tag{26}
+\]
+The remaining nonphysical freedom lies only in the symmetric
+left/right residual sum.
+
+Let \(F_1,\ldots,F_8\) be a Hilbert--Schmidt orthonormal traceless
+Hermitian qutrit basis and put \(J=I/\sqrt3\).  Define the three
+orthogonal pair Casimirs
+\[
+\begin{aligned}
+\Omega_{12}&=\sum_aF_a\otimes F_a\otimes J,\\
+\Omega_{13}&=\sum_aF_a\otimes J\otimes F_a,\\
+\Omega_{23}&=\sum_aJ\otimes F_a\otimes F_a,
+\end{aligned}                                         \tag{27}
+\]
+and
+\[
+D_*=\frac16(\Omega_{12}+\Omega_{13}+\Omega_{23}).
+\tag{28}
+\]
+Each \(\Omega_{ij}\) has squared norm \(8\), so
+\[
+\|D_*\|_2^2=3\frac8{36}=\frac23.                      \tag{29}
+\]
+For the desired value of \(f\), scale
+\[
+D_f=\sqrt{\frac{3f}{2}}\,D_*.
+\]
+
+The qutrit adjoint Casimir identity is
+\[
+\sum_{a=1}^8
+\langle[A,F_a],[B,F_a]\rangle
+=6\langle A_0,B_0\rangle,\qquad
+A_0=A-\frac{\operatorname{Tr}A}{3}I.                 \tag{30}
+\]
+To check it directly, Hilbert--Schmidt completeness gives
+\[
+\sum_aF_aXF_a=\operatorname{Tr}(X)I-\frac13X,
+\qquad
+\sum_aF_a^2=\frac83I.
+\]
+Expanding the four terms in the two commutators then gives
+\[
+6\operatorname{Tr}(A^\dagger B)
+-2\overline{\operatorname{Tr}A}\operatorname{Tr}B
+=6\langle A_0,B_0\rangle.
+\]
+At a fixed site, two of the three orthogonal pair sectors in (27)
+are nontrivial.  Equations (28)--(30) therefore give the complete
+commutator Gram
+\[
+\boxed{
+\langle[A_i,D_f],[B_i,D_f]\rangle
+=\frac f2\langle A_0,B_0\rangle.}                     \tag{31}
+\]
+In particular, these are actual commuting local derivations of the
+one common physical tensor \(D_f\).
+
+Set the six formal one-site densities to
+\[
+\rho_i^L=\rho_i^R=\frac13I.                            \tag{32}
+\]
+The operator \(D_f\) is Hermitian, so the operator covariance
+condition involving \(\rho_i^L-\rho_i^R\) is satisfied.
+
+The operator Hilbert space \(M_{27}\) has dimension \(729\).  The
+span of \(D_f\) and the twenty-four commutator vectors
+\([F_a^{(i)},D_f]\) has dimension at most \(25\).  Choose twenty-four
+orthonormal vectors \(e_{ia}\) in its orthogonal complement, and
+define, on the traceless basis,
+\[
+Z_i(F_a)=\sqrt{\frac{5f}{72}}\,e_{ia},\qquad Z_i(I)=0. \tag{33}
+\]
+Now put
+\[
+\begin{aligned}
+X_i(A)&=Z_i(A_0)+\frac12[A_i,D_f],\\
+Y_i(A)&=Z_i(A_0)-\frac12[A_i,D_f],                    \tag{34}\\
+T_i^L(A)&=\frac{\operatorname{Tr}A}{3}D_f+X_i(A),\\
+T_i^R(A)&=\frac{\operatorname{Tr}A}{3}D_f+Y_i(A).
+\end{aligned}
+\]
+Then \(X_i,Y_i\perp D_f\), and
+\[
+T_i^L(A)-T_i^R(A)=[A_i,D_f].                          \tag{35}
+\]
+Thus all identities (6)--(10) and (21)--(25) hold exactly.
+
+For every traceless \(B\), equations (31), (33)--(34) give
+\[
+\|X_i(B)\|_2^2=\|Y_i(B)\|_2^2
+=\frac{7f}{36}\|B\|_2^2.                              \tag{36}
+\]
+Every complex traceless \(3\times3\) matrix obeys
+\[
+r(B)^2\le\frac23\|B\|_2^2.                            \tag{37}
+\]
+Indeed, choose a unit eigenvector of \(B\), extend it to an
+orthonormal basis, and repeat on the lower-right compression.  This
+inductively produces a unitary upper-triangular representation whose
+diagonal entries are the eigenvalues.  Hence
+\(\|B\|_2^2\ge\sum_j|\lambda_j|^2\).  If
+\(|\lambda_1|=r(B)\), then
+\(\lambda_2+\lambda_3=-\lambda_1\), so
+\[
+|\lambda_2|^2+|\lambda_3|^2\ge\frac12|\lambda_1|^2.
+\]
+This proves (37).
+
+Using (36)--(37), each canonical filter inequality follows from
+\[
+\frac{7f}{36}
++\frac23\left(f-\frac23\right)
+\le\frac29,
+\]
+which is exactly \(f\le24/31\).  Hence the full pointwise inequalities
+(1)--(3), not only their traces, hold throughout (26).
+
+Finally assign the formal sector masses
+\[
+(w_0,w_1,w_2,w_3)=(1-f,0,f,0).                        \tag{38}
+\]
+For every site,
+\[
+\operatorname{Tr}_{HS}(T_i^{L\dagger}T_i^L)
+=\operatorname{Tr}_{HS}(T_i^{R\dagger}T_i^R)
+=\frac{17f}{9},
+\]
+so the three-site trace is \(17f/3\), exactly the common-origin
+sector formula for (38).  Moreover
+\[
+\begin{aligned}
+\sum_i\|X_i\|_{HS}^2
+&=\sum_i\|Y_i\|_{HS}^2=\frac{14f}{3},\\
+\operatorname{Re}\sum_i\langle X_i,Y_i\rangle_{HS}
+&=-\frac{4f}{3},\\
+\sum_i\|X_i-Y_i\|_{HS}^2&=12f,
+\end{aligned}                                         \tag{39}
+\]
+which are exactly the earlier residual norm, cross-trace, and
+covariance identities at the maximally mixed densities.
+
+This model is not asserted to come from a rank-two \(C\).  Its
+importance is diagnostic: even an actual common \(D\), its complete
+commutator Gram, every derivation/integrability identity, every
+pointwise filter inequality, and all scalar sector arithmetic leave
+formal negative critical data through \(f=24/31\).  What remains
+unencoded is the symmetric part
+\[
+T_i^L(A)+T_i^R(A)
+=\Pi_2(A_iC+CA_i),
+\]
+which must arise, simultaneously at all sites, from one common
+rank-two \(C\).  That anticommutator/common-\(C\) geometry is the next
+strictly smaller target.

@@ -3801,3 +3801,49 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_common_derivation_filter_inequality.md`,
   `verification/verify_n3_common_derivation_filter_inequality.py`.
+
+## 2026-07-29 14:37 PDT — Pair-Casimir obstruction to derivation-only closure
+
+- Adversarially tested the new common-derivation inequalities and
+  constructed an exact formal model showing that they are still
+  insufficient.  Let
+  \[
+  D_*=\frac16(\Omega_{12}+\Omega_{13}+\Omega_{23}),
+  \qquad
+  \Omega_{ij}=\sum_{a=1}^8F_a^{(i)}F_a^{(j)}
+  \]
+  with the third site carrying the normalized scalar factor.  Then
+  \(D_*\) is a physical Hermitian degree-two qutrit operator with
+  \(\|D_*\|_2^2=2/3\).
+- The exact qutrit adjoint-Casimir identity makes every local
+  commutator Gram isotropic.  After scaling to norm squared \(f\),
+  \[
+  \langle[A_i,D_f],[B_i,D_f]\rangle
+  =\frac f2\langle A_0,B_0\rangle.
+  \]
+  Thus all same-site and cross-site integrability relations come from
+  one actual common \(D_f\).
+- Added abstract common residual-sum isometries \(Z_i\), orthogonal to
+  \(D_f\) and all commutator images, and set
+  \[
+  X_i=Z_i+\tfrac12[\cdot,D_f],\qquad
+  Y_i=Z_i-\tfrac12[\cdot,D_f].
+  \]
+  With \(\|Z_i(B)\|^2=(5f/72)\|B\|^2\) and all six densities \(I/3\),
+  every pointwise filter inequality holds for
+  \[
+  2/3\le f\le24/31.
+  \]
+  The sharp elementary input is
+  \(r(B)^2\le(2/3)\|B\|_2^2\) for every complex traceless qutrit
+  matrix.
+- The formal sector distribution
+  \((w_0,w_1,w_2,w_3)=(1-f,0,f,0)\) then satisfies exactly the
+  common-origin Gram trace, residual norms, cross trace, and total
+  covariance.  Hence even the full commutator Gram plus all
+  derivation identities and pointwise filters leave formal negative
+  critical data through \(f=24/31\).
+- The model is not asserted to arise from rank-two \(C\).  It isolates
+  the missing datum more sharply: the symmetric/anticommutator part
+  \(T_i^L+T_i^R=\Pi_2(A_iC+CA_i)\) must come simultaneously from one
+  common rank-two \(C\).
