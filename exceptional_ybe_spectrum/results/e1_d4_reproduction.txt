@@ -1,0 +1,64 @@
+Experiment: E1 — published d=4 exact verifier suite
+Start: 2026-07-28 21:36 PDT
+End: 2026-07-28 21:37 PDT
+Working directory: /Users/alec/Documents/Math-kissing5/exceptional_ybe_d4
+Command:
+  YBE_SYMPY_PYTHON=/Users/alec/Documents/Math/.venv/bin/python ./run_all.sh
+Seed: N/A
+Repository baseline: ed87345d726da7c542df833089c7b08b64c4fc32
+
+Verifier source SHA-256:
+  3b5a49d0d75c502cb750944f12d2acf48c7e36295d3cacebb36e46e6231dc106  verify_exact.py
+  1856d3e58dee77ca602ac2324bb4ed5eb9dfb0c41a5645a4ab5cdb5220f6a51a  verify_tensor_words.py
+  df5ccbc8807c20a2f782762681100e3ad06cb95a750b7e052839584006fe3677  verify_supplied.py
+  004b9fec8eb0552778dfb2aca2fda6402aabe557b81d26559813ae3dd5d4c456  run_all.sh
+
+Observed output summary:
+
+Dependency-free exact matrix verifier:
+  [ok] H is Hermitian
+  [ok] H^2 = I_16
+  [ok] Tr(H) = 0
+  [ok] cubic reflection identity on 64 dimensions
+  [ok] P^2 = P
+  [ok] P is Hermitian
+  [ok] Tr(P) = rank(P) = 8
+  [ok] R is unitary
+  [ok] (R + I)(R - qI) = 0
+  [ok] Tr(R) = 8(q - 1) = -4 + 4i*sqrt(3)
+  [ok] direct 64x64 Yang--Baxter equation for R
+  [ok] Tr_right(P) = 2 I_4
+  [ok] Tr_left(P) = 2 I_4
+  [ok] exceptional trace norm of the d=3 TL obstruction = 1/18
+  [ok] exceptional trace norm of the complementary d=3 obstruction = 1/18
+  [ok] sitewise-swapped H factors as I_2 tensor K_H
+  [ok] sitewise-swapped R factors as I_2 tensor K
+  [ok] active 8x8 operator is unitary
+  [ok] standard (3,2)-generalized Yang--Baxter equation
+  [ok] (3,2)-gYB far commutativity
+
+Abstract tensor-word verifier:
+  [ok] five defining words square to I
+  [ok] A, B, C commute and D = ABC
+  [ok] E anticommutes with A, B, C, D
+  [ok] H(alpha,beta)^2 = (alpha^2 + beta^2) I
+  [ok] the cubic residual has exactly the printed 18-word certificate
+  [ok] all coefficients vanish for alpha^2=2/3, beta^2=1/3
+  [ok] on the involution circle the nondegenerate obstruction is
+       3 beta^2 - 1
+
+Preserved SymPy verifier:
+  All exact checks passed.
+  base dimension = 4
+  matrix size = 16 x 16
+  rank of (-1)-spectral projection = 8
+  normalized spectral trace eta = 1/2
+  q = 1/2 + sqrt(3)*I/2
+
+Final runner output:
+  All three verification routes passed.
+
+Interpretation:
+  Gate 1's matrix-level reproduction passed exactly, including both partial
+  traces and the sitewise-swap (3,2)-generalized factorization.  This does not
+  establish any universal structural property for arbitrary solutions.
