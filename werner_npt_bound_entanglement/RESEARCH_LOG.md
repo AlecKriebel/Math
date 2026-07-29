@@ -4344,3 +4344,32 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_balanced_companion_stationarity.md`,
   `verification/verify_n3_balanced_companion_obstruction.py`, and
   `verification/verify_n3_full_lorentz_normal_form.py`.
+
+## 2026-07-29 15:48 PDT — Explicit quantitative high-AAA exclusion
+
+- Made the qualitative maximal-AAA neighborhood fully explicit:
+  \[
+  {\cal C}(Q_{(3)})>\frac8{27}-10^{-120}
+  \quad\Longrightarrow\quad
+  {\cal C}(Q_{(2)}+Q_{(3)})<\frac49.
+  \]
+  The constant is deliberately conservative but exact.
+- Used the lossless stable-frame deficits to prove quantitative
+  signal concentration on one physical qutrit.  If
+  \(h=1/6-\|D_t\|_{\rm op}^2\), the associated four-party
+  purification lies within \(23h^{1/8}\) of the classified
+  Bell-pair times maximally-entangled-qutrit orbit.
+- Combined the compression-determinant deficit with the exact
+  equality singular-value gap to pin both logical planes:
+  their squared leakage from the equality planes is less than
+  \(340\varepsilon^{1/8}\).
+- A self-contained square-root perturbation estimate then bounds the
+  two-skew concurrence by the available \(4/27\) margin.  This proves
+  a genuine non-chart neighborhood, rather than assuming exact
+  common-factor form.
+- The estimate is not invariant under arbitrarily ill-conditioned
+  logical Lorentz filters, so transfer to a uniform balanced-scalar
+  neighborhood remains open.
+- Proof and exact constant checker:
+  `notes/agent_n3_quantitative_high_aaa.md`,
+  `verification/verify_n3_quantitative_high_aaa.py`.
