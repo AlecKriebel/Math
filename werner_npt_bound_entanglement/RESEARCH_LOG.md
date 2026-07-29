@@ -3094,3 +3094,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_logical_block_gram_obstruction.md`.
   Exact checker:
   `verification/verify_n3_pair_sector_logical_block_gram_obstruction.py`.
+
+## 2026-07-29 — Logical spin-flip completion isolates the surviving common-frame channel
+
+- For the pair-sector deficit, put
+  \[
+  A_{ij}=(D_{\widehat i}V)^\dagger(D_{\widehat j}V),\qquad
+  {\mathbb N}_{ij}
+  =\delta_{ij}\|B_{\widehat i}\|_2^2I_2-A_{ij}.
+  \]
+  With the logical-qubit spin flip
+  \({\mathfrak s}(A)=(\operatorname{Tr}A)I_2-A\), proved the exact
+  identity
+  \[
+  M\otimes I_2={\mathbb N}+{\mathfrak s}_K({\mathbb N}).
+  \]
+  Thus the scalar \(3\times3\) determinant retains two correlated
+  logical channels; neither channel may be discarded.
+- Gave an exact physical qutrit code for which
+  \(\lambda_{\min}({\mathbb N})=-4/243\), while the true scalar
+  deficit has spectrum
+  \[
+  \{7/243,8/81,8/81\}.
+  \]
+  A second exact physical construction gives a \(-1\) principal minor
+  in the spin-flipped Gram.  These examples rule out proving the
+  determinant by separate positivity of either logical channel.
+- At the known all-three-component equality, the two logical
+  residual blocks are respectively a path Laplacian and a weighted
+  triangle Laplacian.  Both are positive, share the all-ones kernel,
+  and sum to a scalar deficit with spectrum \(\{0,3,6\}\).
+- The polarized \(2\times2\) Cayley--Hamilton identity rewrites the
+  cubic cycle phase in terms of common logical matrix traces.  This is
+  now the smallest exact phase-aware route still standing, but the
+  required global domination is not yet proved.
+- Exact note:
+  `notes/agent_n3_pair_sector_logical_spinflip_obstruction.md`.
+  Dependency-free checker:
+  `verification/verify_n3_pair_sector_logical_spinflip_obstruction.py`.
