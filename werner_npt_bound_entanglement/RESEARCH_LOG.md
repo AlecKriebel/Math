@@ -4590,6 +4590,20 @@ All timestamps use America/Los_Angeles.
   \sum_T[(I-P_U)T\overline U]^\dagger
          [(I-P_U)T\overline U]=\frac{25}{2}I_2.
   \]
+- With the physical Fierz weights, the two cross-plane leakage frames
+  satisfy the sharper lossless identities
+  \[
+  \sum_Tw_TX_T^\dagger X_T
+  =\frac{125}{8}I_2-\sum_Tw_TA_T^\dagger A_T
+  \]
+  and its right-plane analogue.  The spectral interval of the
+  positive parent gives the uniform bounds
+  \[
+  \frac{71}{8}I_2\preceq\sum_Tw_TX_T^\dagger X_T
+  \preceq\frac{123}{8}I_2.
+  \]
+  Thus the surviving obstruction is purely a signed fourth-moment
+  cancellation, not insufficient leakage mass.
 - Derived the exact critical Fierz colligation.  Its core
   reverse-Cauchy data are positive-weighted label correlations, while
   the right mixed and normal blocks retain the physical parity twist.
@@ -4599,3 +4613,109 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_coherent_hodge_leakage_obstruction.md` and
   `verification/verify_n3_coherent_hodge_leakage_obstruction.py`.
+
+## 2026-07-29 16:34 PDT — Normalized one-plane marginal frontier and exact core obstruction
+
+- Normalized the one-plane code purification to
+  \[
+  |\Psi\rangle=(v_0|0\rangle+v_1|1\rangle)/\sqrt2,
+  \qquad \rho_K^\Psi=I_2/2.
+  \]
+  For an arbitrary unit test vector, let \(s_r,a_r\) be its joint
+  physical exact-\(r\)-antisymmetric masses in the auxiliary symmetric
+  and antisymmetric sectors.  The pair-only theorem is losslessly
+  equivalent to
+  \[
+  d_2+5d_3\ge-1/4,\qquad d_r=s_r-a_r,
+  \]
+  and, using \(\sum a_r=1/4\), to
+  \[
+  a_0+a_1+s_2+5s_3\ge4a_3.
+  \]
+- Derived the exact common-state marginal operator
+  \[
+  4O_\Psi
+  =3I+2\sum_{i<j}\rho_{Kij}^\Psi
+       -3\sum_i\rho_{Ki}^\Psi-|\Psi\rangle\langle\Psi|.
+  \]
+  Thus pair-only positivity is exactly \(O_\Psi\succeq0\) for every
+  pure four-party state with maximally mixed auxiliary qubit.
+  Equivalently, the physical trace-replacement map
+  \[
+  \Theta
+  =2e_1e_2e_3-\sum_{i<j}e_ie_j
+       +(2/3)\sum_ie_i-\operatorname{id}/3
+  \]
+  is two-positive.
+- Isolated the rank-one Schur target.  With
+  \[
+  {\cal A}_\Psi
+  =3I+2\sum_{i<j}\rho_{Kij}^\Psi-3\sum_i\rho_{Ki}^\Psi,
+  \]
+  the remaining operator inequality is
+  \({\cal A}_\Psi-|\Psi\rangle\langle\Psi|\succeq0\), or,
+  when \({\cal A}_\Psi\succ0\),
+  \(\langle\Psi,{\cal A}_\Psi^{-1}\Psi\rangle\le1\).
+- Exactly disproved the tempting uncompensated core
+  \(s_2+a_1\ge4a_3\).  The binary-supported code
+  \[
+  v_0=(000+111)/\sqrt2,\qquad
+  v_1=(001+110)/\sqrt2
+  \]
+  and the explicit orthogonal companion in the note have
+  \[
+  (s_0,s_1,s_2,s_3)=(5/16,3/8,1/16,0),\qquad
+  (a_0,a_1,a_2,a_3)=(1/8,1/16,0,1/16).
+  \]
+  Hence the core is \(-1/8\), while the omitted \(a_0\) term repairs
+  the full target exactly to zero.  This is an obstruction to a
+  proof mechanism, not a pair-sector counterexample.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_pair_one_plane_marginal_frontier.md` and
+  `verification/verify_n3_pair_one_plane_marginal_frontier.py`.
+
+## 2026-07-29 16:34 PDT — Lossless coupled-skew exterior target
+
+- Collapsed the coherent two- and three-skew compensation before
+  applying any inequality:
+  \[
+  {\cal J}_2(C)+2{\cal J}_3(C)
+  =\|C\|_2^2-\frac94\|\Pi_2C\|_2^2.
+  \]
+  Consequently the full coupled feature-concurrence target is exactly
+  the single rank-two exterior inequality
+  \[
+  \|\Pi_2C\|_2^2
+  \leq\frac49\left(\|C\|_2^2+s_1(C)s_2(C)\right).
+  \]
+- In singular frames this is losslessly equivalent to the shifted
+  determinant
+  \[
+  |G_{12}|
+  \leq\frac29+
+  \sqrt{(4/9-G_{11})(4/9-G_{22})}.
+  \]
+  Thus the small counterpencil's triple-skew repair is an instance of
+  one global exterior correction, not a pencil-specific cancellation.
+- Disproved the most direct phase-covariant matched-Gram certificate.
+  On the canonical equality code, the complete positive feature
+  compression is
+  \[
+  \begin{pmatrix}
+  1/9&0&0&0\\
+  0&4/9&-1/3&0\\
+  0&-1/3&4/9&0\\
+  0&0&0&1/9
+  \end{pmatrix}.
+  \]
+  Its ordinary matched slack entry is zero, whereas the crossed entry
+  has magnitude \(1/3>2/9\).  Hence the missing \(2/9\) correction
+  must be a genuine Hodge/Pluecker compound term; it cannot be routed
+  through the ordinary matched positive-Gram entry.
+- Added an unrestricted complex discovery objective for the exact
+  shifted determinant.  Adversarial starts approached the known zero
+  manifold from below and produced no violation; this is discovery
+  evidence only.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_coupled_skew_exterior_target.md` and
+  `verification/verify_n3_coupled_skew_exterior_target.py`.
