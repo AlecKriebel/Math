@@ -249,7 +249,44 @@ Integrating the affine tent over this triangle gives
 \]
 Substitution of (27) into (22) proves (5).
 
-## 4. A global value refinement
+## 4. Completion away from the maximally mixed marginal
+
+The quantitative-isotropy theorem for the complete local form gives
+another bound which is weaker in constant but is positive on the
+balanced region unless the marginal is exactly maximally mixed:
+\[
+ \left\|
+ {\mathscr H}_i+\frac{2q}{3}{\cal L}
+ \right\|_{\rm op}
+ \leq360\sqrt{15}\sqrt{g_i}.
+ \tag{28}
+\]
+At a stationary point,
+\[
+ {\mathscr H}_i(I)=q\rho_i^L,\qquad
+ \frac{2q}{3}{\cal L}(I)=-\frac q3I.
+ \tag{29}
+\]
+Testing (28) on \(I/\sqrt3\) therefore gives
+\[
+\boxed{\qquad
+ g_i\geq
+ \frac{\delta^2}{5\,832\,000}
+ \left\|\rho_i^L-\frac13I\right\|_2^2.
+ \qquad}
+ \tag{30}
+\]
+The right-filter form gives the identical estimate for \(\rho_i^R\).
+Together, (5) and (30) give an explicit positive Haar bracket whenever
+at least one of the two site-\(i\) marginals either has
+\(\lambda_{\max}>1/2\) or differs from \(I/3\).  The only marginal
+geometry invisible to both estimates is
+\[
+ \rho_i^L=\rho_i^R=I/3.
+ \tag{31}
+\]
+
+## 5. A global value refinement
 
 Define
 \[
@@ -261,14 +298,14 @@ Define
  &\lambda_1>\frac12,\\[3mm]
  0,&\lambda_1\leq\frac12.
  \end{cases}
- \tag{28}
+ \tag{32}
 \]
 Because the same \(g_i\) is bounded using either the left or the right
 marginal, put
 \[
  S(C)=\sum_{i=1}^3
  \max\{F(\rho_i^L),F(\rho_i^R)\}.
- \tag{29}
+ \tag{33}
 \]
 If \(w_k\) denotes the total scalar/traceless sector mass of degree
 \(k\), direct elimination using \(\sum_kw_k=1\) gives
@@ -279,12 +316,12 @@ If \(w_k\) denotes the total scalar/traceless sector mass of degree
  &=\frac13-\frac{8\delta}{3}-\frac34w_1
  \leq\frac{1-8\delta}{3}.
 \end{aligned}
-\tag{30}
+\tag{34}
 \]
 On the other hand, summing (5) gives
 \[
  \sum_i g_i\geq\frac{16\delta}{15}S(C).
- \tag{31}
+ \tag{35}
 \]
 Combining (30)--(31) proves the explicit stationary-value bound
 \[
@@ -293,7 +330,7 @@ Combining (30)--(31) proves the explicit stationary-value bound
  \leq
  \frac1{8+\frac{16}{5}S(C)}.
  \qquad}
-\tag{32}
+\tag{36}
 \]
 Thus the universal lower bound \(-1/8\) improves strictly at every
 stationary point having an unbalanced marginal.  Approaching
@@ -301,7 +338,31 @@ stationary point having an unbalanced marginal.  Approaching
 \(1/2\).  Equation (32) does not prevent a negative value when all
 six marginals are balanced.
 
-## 5. What this does and does not control
+There is also a direct global form retaining the isotropy distance.
+Put
+\[
+ J_i(C)=
+ \max_{\chi\in\{L,R\}}
+ \max\left\{
+ \frac{16\delta}{15}F(\rho_i^\chi),
+ \frac{\delta^2}{5\,832\,000}
+ \left\|\rho_i^\chi-\frac13I\right\|_2^2
+ \right\}.
+ \tag{37}
+\]
+Then
+\[
+ \boxed{\qquad
+ \sum_{i=1}^3J_i(C)
+ \leq\frac{1-8\delta}{3}-\frac34w_1.
+ \qquad}
+ \tag{38}
+\]
+This makes the residual core precise: a stationary sequence can
+approach the formal value \(-1/8\) only if all six marginals approach
+\(I/3\), in addition to \(w_1\to0\).
+
+## 6. What this does and does not control
 
 The common-code equality analysis proves the stronger qualitative
 fact \(g_i>0\) at every negative stationary point, including the
@@ -320,13 +381,13 @@ h(A,B)
  2\delta\,{\cal N}(A,B)
  -3\delta\,
  \overline{{\cal N}(I,A)}{\cal N}(I,B).
- \tag{33}
+ \tag{39}
 \]
 It has \(h(A,I)=-\delta{\cal N}(A,I)\), is nonnegative for
 \(\operatorname{rank}A\leq2\) by the sharp rank-two overlap
 \[
  |{\cal N}(I,A)|^2\leq\frac23{\cal N}(A,A),
- \tag{34}
+ \tag{40}
 \]
 and satisfies \(h(P_z,P_z)=0\) for every \(z\).
 The missing quantitative input must see that all these filters arise

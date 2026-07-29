@@ -89,6 +89,10 @@ def main() -> None:
     grouped = F(1, 4) * w1 - w2 + 3 * w3
     assert grouped == F(1, 3) - F(8, 3) * delta - F(3, 4) * w1
 
+    # Quantitative-isotropy denominator:
+    # 3 * (360^2 * 15) because ||I||_HS^2=3.
+    assert 3 * 360 * 360 * 15 == 5_832_000
+
     print("verified: stationary Haar coefficients and marginal tent integral")
 
 
