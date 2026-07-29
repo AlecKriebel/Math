@@ -3954,3 +3954,32 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **84%** for the 27-day campaign deliverable,
   **53%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 17:02 PDT — pair repairs collapse to fans or reciprocity
+
+- Promoted C-172 after an unconditional hostile review.  For every edge
+  \(ab\) under parameter-three equality and every eternal triple-family,
+  the common-nonneighbor central states are uniform: either all are
+  retained, or all are omitted.  In the retained branch the witness set
+  is a \(G\)-clique and every witness attack uniquely exchanges the
+  central token.  In the omitted branch, independent completions force
+  the edge to be active in both directions.
+- The independent reviewer proved and audited the inclusive all-pairs
+  corollary.  A nonedge automatically has the retained central fan,
+  because each central state is a maximum independent triple.  Thus every
+  vertex pair has a retained interchangeable-token fan or is an adjacent
+  reciprocal edge.  Reciprocal retained-fan edges may satisfy both sides.
+- A clean-room neighbor-set implementation matched all 33,867 labeled
+  graphs through order six, 2,162 applicable greatest-family cases,
+  every applicable arbitrary eternal triple-subfamily through order
+  five, and the exact equality controls `EpQ?` and `D]?`.  These censuses
+  are regression and sharpness checks; the universal result rests on the
+  short attack proof.
+- This is the correct size-independent replacement for the C-169
+  fixed-anchor descent.  It permits witness reuse and never turns omitted
+  family membership into a graph nonedge.  It is not yet a contradiction:
+  the remaining QQ1 step must couple the fan/reciprocal alternative to
+  the accepted hot and cross-witness layers.
+- Best-guess completion: **85%** for the 27-day campaign deliverable,
+  **55%** toward a complete parameter-three theorem, and **19%** toward a
+  universal resolution.  These are workload estimates, not probabilities.

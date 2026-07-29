@@ -1,5 +1,66 @@
 # Campaign State
 
+## Checkpoint 113 — 2026-07-28 17:02 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and the \(k=3\) slice at order
+  13.  Repository base before this checkpoint:
+  `aaf1f894ca8ef5bc0b3464b7bc0c4bf88117c45b`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **85%**.  Best-guess completion toward a complete parameter-three
+  theorem: **55%**.  Best-guess completion toward an actual universal
+  resolution: **19%**.  These are workload estimates, not probabilities.
+- **Every adjacent pair has an exact repair dichotomy (C-172).**  Under
+  parameter-three equality and for any eternal triple-family, the common
+  nonneighbor set \(W_{ab}\) of a \(G\)-edge is nonempty.  Either every
+  central state \(\{a,b,w\}\), \(w\in W_{ab}\), is retained, in which
+  case \(W_{ab}\) is a clique whose witness tokens uniquely exchange; or
+  every central state is omitted and the edge is family-active in both
+  directions.  The alternatives concern fan membership; a retained-fan
+  edge may also be reciprocal.
+- **The audited all-pairs form is even cleaner.**  For a \(G\)-nonedge,
+  each central state is a maximum independent triple and is therefore
+  retained.  Consequently every vertex pair has a nonempty retained
+  central fan with a clique witness set and unique exchanges, or is an
+  adjacent reciprocal edge.  This inclusive alternative is valid for
+  arbitrary eternal triple-families, not only the greatest family.
+- The theorem replaces the failed fresh-witness iteration from C-169 by
+  a size-independent object.  It does not yet decide which branch occurs
+  at each QQ1 auxiliary repair, and both branches occur in exact equality
+  controls.  The discovery-only fixed-boundary `UNSAT` reports through
+  order 26 have no proof logs and remain unpromoted.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167/C-169/C-172 | Every auxiliary pair is now a retained central-token fan or a reciprocal edge; couple these finite objects to the saturated QQ1 hot/cross layers |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168/C-170/C-171 | Two forced completion fans break the MMV-027 rank-preserving control under \(\gamma=3\); determine whether they force descent or only another controlled layer |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only if the current universal-proof iterations reach their stated termination gates |
+
+### Running jobs and resources
+
+- One full-list lane is constructing the two equality-forced completion
+  fans absent from the MMV-027 rank-preserving control.  A second is
+  coupling the C-170 terminal branch spokes across primary colors.
+- No campaign solver or memory-heavy enumeration is running.  Host:
+  Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, with approximately
+  11 GiB disk space free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Couple the C-172 central-token fan/reciprocal alternatives to the
+   already saturated QQ1 hot and cross-witness layers.
+2. Complete the two full-list completion-fan iterations and test whether
+   the full \(\gamma=3\) hypothesis forbids a rank-preserving cycle.
+3. If these size-independent mechanisms stabilize without a
+   contradiction, record the exact obstruction and rebalance the bounded
+   fallback toward order 14.
+
 ## Checkpoint 112 — 2026-07-28 16:50 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
