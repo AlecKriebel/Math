@@ -931,3 +931,22 @@
   unrestricted OSR-four theorem. New open-ended spectrum searches were
   stopped; work now proceeds only toward the focused structural-frontier
   manuscript and its adversarial theorem audits.
+
+## 2026-07-29 — Bounded Task B and optimizer provenance closed
+
+- Completed the exact six-block formulation of the most general
+  one-sided \(4+2\) extension with the published \(d=4\) square block
+  fixed. No opposite-leg or complementary-square invariance was assumed.
+- Corrected an earlier numerical provenance error: the original
+  one-sided tangent search did not actually keep the \(WW\) block fixed.
+  A dedicated implementation now does, and a separate archive verifier
+  checks the source hashes, seeds, gradient guards, and run records.
+- The full block equations and corrected bounded search produced neither
+  a proof that the \(U\otimes U\) square reduces nor an exact \(d=6\)
+  witness. Under the mandated stop rule, this branch is recorded as an
+  open frontier rather than searched further.
+- Isolated an exact standard \(d=6\), OSR-four
+  shifted-anticommuting involution that is stationary for the restricted
+  numerical objective with normalized residual \(8/9\). This explains an
+  optimizer trap but is explicitly not a Yang--Baxter solution.
+- Added C64--C65 and E51--E52. No external communication occurred.

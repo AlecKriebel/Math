@@ -2034,3 +2034,81 @@ reproducible; only its final exact witness is reproducible.
     `ed238116f88becee95de50264967f79ff26222cd9c01df2fc696e928a42eca66`;
   - `results/osr4_joint_sandwich_degeneracy_exact.txt`:
     `9048cf909b12663a656a3279512c5e75cdd4a420fd95341e6c4a480d5af12faf`.
+
+## E51 — exact shifted-anticommuting OSR-four optimizer trap
+
+- Run and independent replay: 2026-07-29 PDT.
+- Constructed an exact \(d=6\) Hermitian OSR-four involution with zero
+  marginals and \(H_{12}H_{23}=-H_{23}H_{12}\).
+- Proved exactly that its exceptional residual has squared norm \(192\),
+  normalized value \(8/9\), and radial ambient gradient
+  \(64H/(9d^2)\). It is therefore stationary on the stated
+  Stiefel--Stiefel--sphere Schmidt parameter manifold.
+- Computed exact stacked joint-sandwich ranks \(5\) and \(4\), with
+  Hermitian kernel dimensions \(11\) and \(12\).
+- Scope:
+  this explains a recurrent optimizer endpoint. The model has cubic
+  coefficient \(1\), not \(1/3\), and is not an exceptional witness.
+- Randomness:
+  none.
+- Independent replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_osr4_shifted_anticommuting_trap.py`
+  (wall \(13.95\) seconds, maximum resident set size \(65{,}290{,}240\)
+  bytes). Its stdout was byte-identical to the retained output.
+- SHA-256:
+  - `notes/osr4_shifted_anticommuting_trap.md`:
+    `800fad20d72329ece4ea1080ea0f3611f066d0c59c51b013d67fa9f873dcf6e0`;
+  - `verifiers/verify_osr4_shifted_anticommuting_trap.py`:
+    `3eec4bf9898d6cca9fa1b00ce033bc87877e5230e77545c33b7efa1c8c9b55a7`;
+  - `results/osr4_shifted_anticommuting_trap_exact.txt`:
+    `d24cb2dee7596a5b358c948a3c1af7fed691ea17b0e457bbe1738ddf2667638d`.
+
+## E52 — bounded one-sided fixed-\(d=4\) extension audit
+
+- Run and archive replay: 2026-07-29 PDT.
+- Exact reduction:
+  - fixed the published \(d=4\) rank-eight square block \(Q\);
+  - parametrized the arbitrary rank-ten complement on
+    \(W\otimes U\oplus U\otimes W\oplus U\otimes U\);
+  - derived all six projection-block equations, all scalar-partial-trace
+    equations, and one formula exactly covering the \(64\) color blocks
+    of the ambient cubic;
+  - verified the leakage identity
+    \(\delta=\lVert X\rVert_{\mathrm{HS}}^2+
+    \lVert Y\rVert_{\mathrm{HS}}^2\).
+- Provenance correction:
+  the older `one_sided_4plus2` tangent implementation moved the purportedly
+  fixed \(WW\) block. The new implementation freezes it at every update,
+  and the archive verifier checks this distinction.
+- Numerical result:
+  15 frozen-block production runs and additional leakage-targeted runs
+  found no candidate; the best residual was
+  \(6.011210894660647\). Gradient checks were
+  \(4.040\times10^{-9}\) and \(6.372\times10^{-9}\).
+- Scope:
+  neither the exact block reduction nor the numerical archive proves that
+  one-sided square invariance forces complementary square invariance.
+- Randomness:
+  all seeds and commands are recorded in
+  `results/d6_fixed_h4_seed_manifest.json`.
+- Independent replay:
+  `verifiers/verify_one_sided_fixed_h4_color_blocks.py` took \(1.56\)
+  seconds and matched its retained output byte-for-byte;
+  `verifiers/verify_d6_fixed_h4_search_archive.py` took \(0.51\) seconds
+  and passed every source-hash, seed, residual, and gradient guard.
+- Core SHA-256:
+  - note:
+    `84b3b88e9d0a2449bb2d35003b9ccdc40540131fd3cb0f45cf9e5e3be04a3787`;
+  - exact verifier:
+    `32d46571cb22131f129e73f87c5c10ac76f09008e0f6864b266ca3282a382499`;
+  - exact output:
+    `6672f415b4f105097a12a63cd3d2cef2d8277bb4c744e11c0633056790cf149c`;
+  - base search:
+    `2efa4484dc0604347b153c92f9946ebd070b247a67a3896e4d130cb2b4968e57`;
+  - leakage-target search:
+    `b4720ed3f2e007ad3e2f556f1aec501a0f193f95b506c9233748df140e49f92f`;
+  - archive verifier:
+    `d188b87b6ba3d46d769b885e63f246e2afd066d96b4d57cf1a9611fd8a901f68`;
+  - seed manifest:
+    `88e74171cc105a93cd3b54840ab6addb2a27e7fff5a8040463fbc90df3f0bcfb`.

@@ -1,0 +1,72 @@
+{
+  "created_local_date": "2026-07-29",
+  "purpose": "Frozen published-WW one-sided 4+2 extension falsifier",
+  "script": "scripts/d6_one_sided_fixed_h4_search.py",
+  "script_sha256_before_runs": "2efa4484dc0604347b153c92f9946ebd070b247a67a3896e4d130cb2b4968e57",
+  "gradient_checks": [
+    {
+      "seed": 26073100,
+      "field": "complex",
+      "initial": "random",
+      "partial_trace_penalty": 0
+    },
+    {
+      "seed": 26073101,
+      "field": "complex",
+      "initial": "leakage_model",
+      "partial_trace_penalty": 10
+    }
+  ],
+  "production_runs": [
+    {
+      "seeds": [26073110, 26073111, 26073112, 26073113, 26073114, 26073115],
+      "field": "complex",
+      "initial": "random",
+      "partial_trace_penalty": 0,
+      "max_iterations": 800,
+      "output": "results/d6_fixed_h4_complex_runs.jsonl"
+    },
+    {
+      "seeds": [26073120],
+      "field": "complex",
+      "initial": "leakage_model",
+      "partial_trace_penalty": 0,
+      "max_iterations": 800,
+      "output": "results/d6_fixed_h4_leakage_start_runs.jsonl"
+    },
+    {
+      "seeds": [26073130, 26073131, 26073132],
+      "field": "complex",
+      "initial": "random",
+      "partial_trace_penalty": 10,
+      "max_iterations": 800,
+      "output": "results/d6_fixed_h4_pt10_runs.jsonl"
+    },
+    {
+      "seeds": [26073140, 26073141],
+      "field": "real",
+      "initial": "random",
+      "partial_trace_penalty": 0,
+      "max_iterations": 800,
+      "output": "results/d6_fixed_h4_real_runs.jsonl"
+    }
+  ],
+  "common_options": {
+    "progress_every": 800,
+    "save_threshold": 1e-6,
+    "candidate_directory": "results/d6_fixed_h4_candidates"
+  },
+  "leakage_target_search": {
+    "script": "scripts/d6_one_sided_fixed_h4_leakage_target_search.py",
+    "script_sha256_before_runs": "b4720ed3f2e007ad3e2f556f1aec501a0f193f95b506c9233748df140e49f92f",
+    "gradient_check_seed": 26073150,
+    "seeds": [26073151, 26073152, 26073153],
+    "field": "complex",
+    "initial": "random",
+    "target": 0.25,
+    "weight": 1000,
+    "max_iterations": 800,
+    "output": "results/d6_fixed_h4_leakage_target_runs.jsonl"
+  },
+  "interpretation": "Numerical failure is not a nonexistence certificate. Only a residual below threshold is archived as a candidate."
+}
