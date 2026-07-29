@@ -950,3 +950,32 @@
   numerical objective with normalized residual \(8/9\). This explains an
   optimizer trap but is explicitly not a Yang--Baxter solution.
 - Added C64--C65 and E51--E52. No external communication occurred.
+
+## 2026-07-29 07:15 PDT — Structural-frontier package drafted and exactly replayed
+
+- Applied the user-mandated stopping rules. The complete-spectrum attack is
+  closed: no exact \(d=6\) witness or universal four-divisibility theorem
+  was obtained, while C63 satisfies the successful stop condition requiring
+  an unrestricted operator-Schmidt-rank-four theorem that materially
+  reduces the surviving branch.
+- Drafted *Tensor-Local Constraints in the Exceptional Unitary Hecke
+  Yang--Baxter Class*. The manuscript states the complete spectrum as open
+  and packages automatic standardness, exact tower multiplicities and their
+  limitation, the OSR-\(\le3\) spectrum, the unrestricted OSR-four sandwich
+  reduction, square-restriction descent, the scalar common-leg intersection,
+  and the two broad model-class theorems.
+- Added C66 as the exact dimension-six frontier. Scope is explicit:
+  \(\mathcal C_L(P)\cap\mathcal C_R(P)=\mathbb CI_6\) does not imply
+  scalarity of either individual commutant, and a four-dimensional
+  one-sided square-invariant subspace remains open.
+- Added a theorem-dependency map, supplementary exact-ansatz catalogue,
+  verifier manifest, deterministic suite runner, and retained exact
+  transcript.
+- Independently reran all ten central exact verifiers. They passed 10/10
+  in approximately 51 seconds; fresh output was byte-identical to the
+  retained transcript.
+- Compiled the first 20-page PDF with deterministic Tectonic settings and
+  visually inspected page contacts plus the title and reference pages.
+  Final PDF publication remains pending the manuscript-wide hostile audit.
+- Updated the priority audit with targeted searches and retained
+  “apparently new” language. No external communication occurred.

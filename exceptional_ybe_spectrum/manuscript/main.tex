@@ -1,0 +1,1607 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1.02in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\definecolor{deepblue}{HTML}{173B57}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=deepblue,
+  citecolor=deepblue,
+  urlcolor=deepblue,
+  pdftitle={Tensor-local constraints in the exceptional unitary Hecke Yang--Baxter class},
+  pdfauthor={Alec Kriebel}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textsc{Exceptional Hecke constraints}}
+\fancyhead[R]{\small\textsc{A. Kriebel}}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Open problem}
+
+\newcommand{\Id}{\mathbf 1}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\OSR}{\operatorname{OSR}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\bbC}{\mathbb C}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cX}{\mathcal X}
+\newcommand{\cY}{\mathcal Y}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cE}{\mathscr E}
+\newcommand{\cS}{\mathfrak S}
+\newcommand{\HS}{\mathrm{HS}}
+
+\title{\vspace{-1.4cm}\textbf{Tensor-local constraints in the exceptional}\\[0.2em]
+\textbf{unitary Hecke Yang--Baxter class}}
+\author{Alec Kriebel\thanks{This work was developed with substantial
+assistance from OpenAI ChatGPT. The exact scope of that assistance is
+disclosed at the end of the paper.}}
+\date{Version 0.1.0 -- 29 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let \(q=e^{i\pi/3}\). The only existence family left unresolved by the
+classification of unitary two-eigenvalue Yang--Baxter matrices is
+\[
+  \left[q,\frac12,d\right],\qquad d>2\ \text{even}.
+\]
+An explicit solution is known in local dimension four and hence in every
+dimension divisible by four; the dimensions \(d\equiv2\pmod4\) remain open.
+We determine the exact structural frontier of this problem.
+
+First, every matrix in the exceptional class is automatically standard:
+both partial traces of its negative spectral projection equal
+\((d/2)\Id_d\). Its tensor-power representation therefore has the
+\(\eta=1/2\) Markov trace and is faithful after passage to the
+Jones--Wenzl trace quotient \(H_n(3,6)\). We compute every simple
+multiplicity in this representation:
+\[
+  m_{\lambda,n}=D_\lambda\left(\frac d2\right)^n,
+  \qquad D_\lambda\in\{1,2,3\}.
+\]
+Consequently the complete abstract Hecke-tower arithmetic permits every
+even \(d\); a four-divisibility obstruction must use strict tensor locality.
+
+We then prove that an exceptional reflection of operator-Schmidt rank at
+most three exists exactly when \(4\mid d\). At rank four, projecting the
+full cubic relation modulo the intrinsic Schmidt supports yields two
+joint-sandwich identities. If either associated sandwich map is injective,
+then \(4\mid d\); hence every rank-four candidate in
+\(d\equiv2\pmod4\) has nonzero Hermitian traceless common annihilators on
+both tensor legs.
+
+Finally, any hypothetical dimension-six solution is nonrestrictable,
+satisfies
+\[
+  \cC_L(P)\cap\cC_R(P)=\bbC\Id_6,
+\]
+and lies outside the primitive-Weyl Bell-diagonal and four-product
+Clifford-frame mechanisms. A four-dimensional one-sided square restriction
+is not excluded. Thus the complete spectrum remains open, but any
+dimension-six witness must be a high-Schmidt-rank, genuinely tensor-local
+object outside the standard construction mechanisms isolated here.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Status.}
+This is an unrefereed, AI-assisted research note. The proofs, exact
+verifiers, adversarial audits, and computational provenance are public.
+Priority claims are provisional and no specialist peer review is claimed.
+
+\section{Introduction and main results}\label{sec:intro}
+
+Let \(V\cong\bbC^d\). A unitary
+\(R\in\End(V\otimes V)\) is a Yang--Baxter operator when
+\begin{equation}
+  R_{12}R_{23}R_{12}=R_{23}R_{12}R_{23}
+  \quad\text{on }V^{\otimes3}.
+  \label{eq:YBE}
+\end{equation}
+Lechner~\cite{Lechner2026} classified the possible characters of unitary
+Yang--Baxter matrices with two eigenvalues, leaving one potentially empty
+family:
+\[
+  \left[e^{i\pi/3},\frac12,d\right],
+  \qquad d>2\text{ even}.
+\]
+The notation records the nonnegative Hecke phase, the normalized rank of
+the \((-1)\)-spectral projection, and the local dimension.
+
+The dimension-two class is empty. In~\cite{Kriebel2026d4} we constructed an
+exact \(16\times16\) unitary representative in local dimension four.
+Identity stabilization then gives representatives in every dimension
+divisible by four. The unresolved part of the spectrum is therefore
+\[
+  d=6,10,14,\ldots.
+  \label{eq:open-dims}
+\]
+This question is also the strict ordinary-localization problem associated
+with the \(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl braid representations
+studied by Galindo, Hong, and Rowell~\cite{GHR2013}.
+
+It is tempting to seek the missing factor of two in the representation
+theory of \(H_n(3,6)\). One of the main conclusions of this paper is that
+this cannot work at the level of abstract simple multiplicities, central
+ranks, or their branching recurrences: all of that arithmetic is compatible
+with every even local dimension. The extra restriction, if it exists, must
+come from realizing every adjacent Hecke generator by the two shifts of one
+common two-site matrix.
+
+We summarize the results in two theorems. Precise definitions appear in
+Section~\ref{sec:setup}.
+
+\begin{theorem}[Automatic tower structure and its limitation]
+\label{thm:tower-summary}
+Let \(P\in\End(V\otimes V)\) be an exceptional projection in local
+dimension \(d\). Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item
+\[
+  \Tr_1P=\Tr_2P=\frac d2\Id_d.
+\]
+No finite-dimensional irreducibility assumption is needed.
+\item The normalized tensor trace is the \(\eta=1/2\) Markov trace at
+every level, and the local Hecke representation induces an injection
+\[
+  H_n(3,6)\longrightarrow\End(V^{\otimes n}).
+\]
+Equivalently, the kernel of the raw Hecke representation is exactly the
+Markov-trace annihilator.
+\item If \(S_{\lambda,n}\) is a simple \(H_n(3,6)\)-module and
+\(D_\lambda\in\{1,2,3\}\) is the associated quantum dimension, then its
+tensor-space multiplicity is
+\[
+  m_{\lambda,n}=D_\lambda\left(\frac d2\right)^n.
+\]
+These multiplicities and all their restriction recurrences are integral
+exactly when \(d\) is even.
+\end{enumerate}
+Thus ordinary Hecke simple-block, central-rank, Markov-trace, and branching
+arithmetic cannot force \(4\mid d\).
+\end{theorem}
+
+\begin{theorem}[Tensor-local frontier]\label{thm:frontier-summary}
+Let \(H=\Id-2P\) be the reflection associated with an exceptional
+projection.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item If a rank-\(r\) projection belongs to either one-leg commutant of
+\(P\), then
+\[
+  8\mid rd^2.
+\]
+\item An exceptional reflection with \(\OSR(H)\le3\) exists in dimension
+\(d\) if and only if \(4\mid d\). Hence every hypothetical solution in
+\(d\equiv2\pmod4\) has \(\OSR(H)\ge4\).
+\item Suppose \(\OSR(H)=4\), with intrinsic Schmidt supports
+\(\cA,\cB\). If either joint-sandwich map
+\[
+  \cS_{\cB\mid\bbC\Id+\cA}
+  \quad\text{or}\quad
+  \cS_{\cA\mid\bbC\Id+\cB}
+\]
+is injective, then \(4\mid d\). Consequently, in
+\(d\equiv2\pmod4\), both maps have nonzero Hermitian traceless
+coefficient-matrix annihilators.
+\item Every square-invariant local subspace inherits a balanced
+exceptional solution and has even dimension. A least-dimensional solution
+with \(d\equiv2\pmod4\) is nonrestrictable. In particular, no
+dimension-six solution is restrictable.
+\item In dimension six,
+\[
+  \cC_L(P)\cap\cC_R(P)=\bbC\Id_6.
+\]
+This does not assert that either individual leg commutant is scalar.
+\item A primitive-Weyl Bell-diagonal exceptional reflection, and every
+reflection in the four-product Clifford-frame class defined in
+Section~\ref{sec:model-classes}, has \(4\mid d\).
+\end{enumerate}
+\end{theorem}
+
+Theorem~\ref{thm:frontier-summary}(iii) is the outcome of a final bounded
+attack on unrestricted operator-Schmidt rank four. It uses the full cubic,
+not a Clifford or symmetry ansatz. It does not prove that either sandwich
+map is always injective.
+
+The exact dimension-six conclusion is therefore narrower than
+``tensor-locally irreducible.'' A rank-two square-invariant subspace is
+impossible, while a rank-four one-sided square-invariant subspace remains
+possible in principle; if it exists, its two-dimensional orthogonal
+complement cannot also have invariant tensor square.
+
+\section{Exceptional projections and conventions}\label{sec:setup}
+
+Fix throughout
+\[
+  q=e^{i\pi/3}.
+\]
+An \emph{exceptional projection} is an orthogonal projection
+\[
+  P=P^*=P^2\in\End(V\otimes V),\qquad
+  \rank P=\frac{d^2}{2},
+  \label{eq:projection}
+\]
+such that, with \(P_1=P\otimes\Id\) and \(P_2=\Id\otimes P\),
+\begin{equation}
+  P_1P_2P_1-P_2P_1P_2=\frac13(P_1-P_2).
+  \label{eq:cubic-P}
+\end{equation}
+The associated reflection and unitary Hecke operator are
+\begin{equation}
+  H=\Id-2P,\qquad
+  R=q\Id-(1+q)P
+   =\frac{q-1}{2}\Id+\frac{q+1}{2}H.
+  \label{eq:H-R}
+\end{equation}
+A direct expansion shows that~\eqref{eq:cubic-P} is equivalent to
+\begin{equation}
+  H_1H_2H_1-H_2H_1H_2=\frac13(H_1-H_2),
+  \label{eq:cubic-H}
+\end{equation}
+and that~\eqref{eq:cubic-H} is equivalent to the Yang--Baxter equation
+for \(R\). Moreover,
+\[
+  H=H^*,\quad H^2=\Id,\quad\Tr H=0,
+\]
+and \(R\) is unitary with eigenvalues \(-1,q\), each of multiplicity
+\(d^2/2\).
+
+The operator-Schmidt rank of \(X\in M_d\otimes M_d\), denoted
+\(\OSR(X)\), is the least \(r\) for which
+\[
+  X=\sum_{j=1}^r A_j\otimes B_j.
+\]
+Our rank statements concern the reflection \(H\), not \(R\). Once
+automatic standardness is proved, the Schmidt supports of \(H\) consist of
+traceless matrices. Hence the identity term in~\eqref{eq:H-R} adds one
+independent Schmidt direction:
+\begin{equation}
+  \OSR(R)=\OSR(H)+1.
+  \label{eq:osr-shift}
+\end{equation}
+
+Define the two one-leg commutants
+\begin{equation}
+\begin{split}
+  \cC_L(P)&=\{x\in M_d:[x\otimes\Id,P]=0\},\\
+  \cC_R(P)&=\{x\in M_d:[\Id\otimes x,P]=0\}.
+\end{split}
+\label{eq:leg-commutants}
+\end{equation}
+These are two subalgebras of the same \(M_d\), after identifying the two
+copies of the local space. Their intersection is meaningful, but it must
+not be confused with either algebra individually.
+
+\begin{definition}\label{def:restrictable}
+A nonzero subspace \(W\subseteq V\) is \emph{square-invariant} when
+\[
+  R(W\otimes W)\subseteq W\otimes W.
+\]
+The solution is \emph{restrictable} when there is a proper nonzero
+\(W\subset V\) for which both \(W^{\otimes2}\) and
+\((W^\perp)^{\otimes2}\) are invariant.
+\end{definition}
+
+Because \(R\) is unitary, every invariant tensor square is automatically
+reducing. Definition~\ref{def:restrictable} agrees with the use in
+Conti--Lechner~\cite[\S6.1]{ContiLechner}.
+
+\section{Automatic standardness and the trace quotient}
+\label{sec:standardness}
+
+The first theorem removes a potentially serious hypothesis from the
+dimension problem.
+
+\begin{theorem}[Automatic standardness]\label{thm:standardness}
+Every exceptional projection satisfies
+\[
+  \Tr_1P=\Tr_2P=\frac d2\Id_d.
+  \label{eq:standardness}
+\]
+\end{theorem}
+
+\begin{proof}
+The Hecke operator \(R\) in~\eqref{eq:H-R} has spectrum
+\(\{-1,q\}\). It has no pair of opposite eigenvalues, since that would
+require \(q=1\). Lechner's no-opposite-spectrum theorem
+\cite[Proposition 2.4 and Lemma 3.1]{Lechner2026} therefore makes the
+associated braid character a Markov trace. This derives the needed
+subfactor irreducibility; it is not an assumption on the finite matrix
+representation.
+
+Lechner's partial-trace criterion
+\cite[Proposition 2.3]{Lechner2026} says that the Markov property is
+equivalent to
+\[
+  \varphi(R)=\tau(R)\Id_d,\qquad
+  \varphi=\frac1d(\Tr\otimes\operatorname{id}),
+\]
+where \(\tau\) is normalized matrix trace. Put
+\[
+  \eta=\tau(P)=\frac{\rank P}{d^2}=\frac12.
+\]
+Using \(R=q\Id-(1+q)P\) and \(1+q\ne0\), comparison gives
+\[
+  \varphi(P)=\eta\Id_d=\frac12\Id_d.
+\]
+This is the first identity in~\eqref{eq:standardness}.
+
+For completeness, apply the same argument to the tensor-flipped operator
+\(FRF\). Reversal of the three tensor positions preserves the Yang--Baxter
+equation, and \(FRF\) has the same spectrum. Its first partial trace is the
+second partial trace of \(R\), proving the second identity. One may instead
+use the equality of the two partial traces proved in
+\cite[Theorem 5.10]{ContiLechner}.
+\end{proof}
+
+\begin{corollary}\label{cor:zero-marginals}
+Every exceptional reflection satisfies
+\[
+  \Tr_1H=\Tr_2H=0.
+\]
+In every minimal Schmidt decomposition of \(H\), both intrinsic Schmidt
+supports consist of traceless matrices.
+\end{corollary}
+
+\begin{proof}
+The first claim follows from \(H=\Id-2P\). For the second, write
+\(H=\sum_jA_j\otimes B_j\) with each family linearly independent.
+Then
+\(\Tr_2H=\sum_j(\Tr B_j)A_j=0\), so every \(\Tr B_j=0\); the other
+leg is identical.
+\end{proof}
+
+Let \(H_n(q)\) be the specialized Hecke algebra generated by projections
+\(e_1,\ldots,e_{n-1}\), with braid generators
+\[
+  g_i=q\Id-(1+q)e_i.
+\]
+The local representation is
+\[
+  \rho_n:H_n(q)\longrightarrow\End(V^{\otimes n}),
+  \qquad e_i\longmapsto P_i.
+\]
+Write \(\tau_n=d^{-n}\Tr\) for normalized matrix trace.
+
+\begin{proposition}[Faithful trace quotient]\label{prop:trace-quotient}
+For every \(n\), \(\tau_n\circ\rho_n\) is the Markov trace
+\(\mu_{1/2}\). If
+\[
+  \Ann_n
+  =\{x\in H_n(q):\mu_{1/2}(yx)=0
+      \text{ for every }y\in H_n(q)\},
+\]
+then
+\[
+  \ker\rho_n=\Ann_n.
+\]
+Consequently \(\rho_n\) induces an injection
+\[
+  H_n(3,6)=H_n(q)/\Ann_n
+  \hookrightarrow\End(V^{\otimes n}).
+\]
+\end{proposition}
+
+\begin{proof}
+For \(x\in H_n(q)\), Theorem~\ref{thm:standardness} gives
+\[
+\begin{aligned}
+ \tau_{n+1}\!\left((\rho_n(x)\otimes\Id)P_n\right)
+ &=d^{-(n+1)}
+   \Tr\!\left(\rho_n(x)\Tr_{n+1}(P_n)\right)\\
+ &=\frac12\,\tau_n(\rho_n(x)).
+\end{aligned}
+\]
+Thus the Markov property holds at every level; it is not inferred merely
+from a two-strand trace coincidence. Uniqueness identifies this trace with
+\(\mu_{1/2}\).
+
+Wenzl's positive-trace parameter in the present convention is
+\[
+  \eta_{\ell,k}
+  =
+  \frac{\sin(\pi(k-1)/\ell)}
+       {2\cos(\pi/\ell)\sin(\pi k/\ell)}.
+\]
+At \((\ell,k)=(6,3)\), it is \(1/2\), identifying the quotient with
+\(H_n(3,6)\); see~\cite[Theorem 3.3]{Lechner2026} and
+\cite{Wenzl1988}.
+
+If \(x\in\Ann_n\), choose \(y=x^*\). Then
+\[
+  0=\mu_{1/2}(x^*x)
+  =\tau_n(\rho_n(x)^*\rho_n(x)).
+\]
+Faithfulness of ordinary matrix trace gives \(\rho_n(x)=0\). The reverse
+inclusion is immediate. This proves equality of the kernel and
+annihilator. Notice that the raw specialized Hecke representation need
+not be faithful; faithfulness is asserted only after passage to the trace
+quotient.
+\end{proof}
+
+\section{Complete tower multiplicities and their limitation}
+\label{sec:multiplicities}
+
+The simple \(H_n(3,6)\)-modules are indexed by admissible Young diagrams.
+Equivalently, after subtracting the third row, their labels lie in the
+ten-point alcove
+\[
+  (a,b),\qquad a,b\ge0,\quad a+b\le3.
+\]
+The associated quantum dimensions are
+\begin{equation}
+ D_{a,b}=
+ \frac{
+  \sin((a+1)\pi/6)\sin((b+1)\pi/6)
+  \sin((a+b+2)\pi/6)}
+ {\sin(\pi/6)^2\sin(2\pi/6)}.
+ \label{eq:quantum-dim}
+\end{equation}
+Their values are
+\[
+\begin{array}{c|c}
+D_{a,b}&(a,b)\\ \hline
+1&(0,0),(3,0),(0,3)\\
+3&(1,1)\\
+2&(1,0),(0,1),(2,0),(0,2),(2,1),(1,2).
+\end{array}
+\]
+Adding a box gives the usual alcove branching, and direct substitution
+in~\eqref{eq:quantum-dim} yields
+\begin{equation}
+  \sum_{\nu:\lambda\nearrow\nu}D_\nu=2D_\lambda.
+  \label{eq:PF}
+\end{equation}
+
+\begin{theorem}[All simple multiplicities]\label{thm:multiplicities}
+Decompose the tensor representation as
+\[
+  V^{\otimes n}
+  \cong
+  \bigoplus_\lambda
+  S_{\lambda,n}\otimes\bbC^{m_{\lambda,n}}.
+\]
+Then
+\[
+  \boxed{
+  m_{\lambda,n}
+  =D_\lambda\left(\frac d2\right)^n.}
+  \label{eq:multiplicity}
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(f_{\lambda,n}=\dim S_{\lambda,n}\). The Wenzl trace of a
+minimal projection in the \(\lambda\)-block is
+\[
+  t_{\lambda,n}=\frac{D_\lambda}{2^n};
+\]
+equivalently, this is the categorical trace under the identification
+\(H_n(3,6)\cong\End_{\cC}(X^{\otimes n})\) with
+\(\operatorname{FPdim}(X)=2\). The recursion for these weights is exactly
+\eqref{eq:PF} divided by \(2^{n+1}\).
+
+Under \(\rho_n\), a minimal projection in the \(\lambda\)-block has
+ordinary matrix rank \(m_{\lambda,n}\), hence normalized trace
+\(m_{\lambda,n}/d^n\). Proposition~\ref{prop:trace-quotient} equates this
+with \(D_\lambda/2^n\), proving~\eqref{eq:multiplicity}.
+\end{proof}
+
+\begin{corollary}[Exact arithmetic limitation]\label{cor:tower-limitation}
+All simple multiplicities, central-idempotent ranks, and represented
+restriction recurrences are integral if and only if \(d\) is even. In
+particular, this complete abstract tower arithmetic cannot distinguish
+\(d=6\) from \(d=4\).
+\end{corollary}
+
+\begin{proof}
+If \(d=2s\), formula~\eqref{eq:multiplicity} is
+\(m_{\lambda,n}=D_\lambda s^n\), an integer at every level. Moreover,
+\eqref{eq:PF} gives
+\[
+  \sum_{\nu:\lambda\nearrow\nu}m_{\nu,n+1}
+  =d\,m_{\lambda,n},
+\]
+which is exactly the tensor-space restriction recurrence. If \(d\) is
+odd, already the two-strand negative spectral rank \(d^2/2\) is not an
+integer.
+\end{proof}
+
+\begin{remark}[What the limitation proves]\label{rem:abstract-only}
+For \(d=2s\), the abstract modules
+\[
+  \bigoplus_\lambda
+  S_{\lambda,n}\otimes\bbC^{D_\lambda s^n}
+\]
+have the required dimensions, traces, and restriction multiplicities.
+At \(d=6\), the three-strand common-one, common-zero, and generic
+two-projection multiplicities are \(27,27,81\). Exact four-strand models
+also realize the expected simple corners and pairings with the odd
+multiplicity \(81\).
+
+These are abstract Hecke modules, not a Yang--Baxter matrix on
+\(\bbC^6\otimes\bbC^6\). They do not realize
+\(P_{12}=P\otimes\Id_6\) and \(P_{23}=\Id_6\otimes P\) for one common
+two-site projection. The insufficiency conclusion is therefore precisely
+that ordinary Hecke block data and their branching cannot prove
+four-divisibility; strict same-\(P\) tensor coherence remains available as
+an obstruction.
+\end{remark}
+
+\section{Two broad construction mechanisms}
+\label{sec:model-classes}
+
+We record two invariant model classes which are broad enough to include
+many natural roots-of-unity constructions, but which still force
+four-divisibility.
+
+\subsection{Primitive-Weyl Bell-diagonal reflections}
+
+Let
+\[
+ X|j\rangle=|j+1\rangle,\qquad
+ Z|j\rangle=\zeta^j|j\rangle,\qquad
+ \zeta=e^{2\pi i/d},
+\]
+and define the generalized Bell basis
+\[
+ |\Phi_{a,b}\rangle
+ =
+ \frac1{\sqrt d}\sum_{j\in\mathbb Z_d}
+ \zeta^{bj}|j,j+a\rangle.
+\]
+The pair \(X,Z\) is primitive: \(ZX=\zeta XZ\), and the displayed Bell
+lines are the simple joint eigenspaces of \(X\otimes X\) and
+\(Z^{-1}\otimes Z\).
+
+\begin{theorem}[Bell-diagonal divisibility]\label{thm:bell}
+Let
+\[
+ H=\sum_{a,b\in\mathbb Z_d}
+ h_{a,b}|\Phi_{a,b}\rangle\langle\Phi_{a,b}|,
+ \qquad h_{a,b}\in\{\pm1\},\quad
+ \sum_{a,b}h_{a,b}=0.
+\]
+If \(H\) satisfies the exceptional cubic, then \(4\mid d\).
+\end{theorem}
+
+\begin{proof}
+Each Bell line is maximally entangled, so the balance condition gives
+\(\Tr_1H=\Tr_2H=0\).
+Put
+\[
+ S=H_{12},\qquad T=H_{23},\qquad U=ST.
+\]
+The operator \(U\) commutes with
+\[
+ \mathsf X=X_1X_2X_3,\qquad
+ \mathsf Z=Z_1^{-1}Z_2Z_3^{-1}.
+\]
+These obey
+\[
+  \mathsf X\mathsf Z=\zeta\,\mathsf Z\mathsf X,
+  \qquad \mathsf X^d=\mathsf Z^d=\Id.
+\]
+Primitivity implies that their generated algebra is isomorphic to
+\(M_d(\bbC)\). One direct check is that the \(d^2\) monomials
+\(\mathsf X^r\mathsf Z^s\) are trace orthogonal. Its representation on
+the \(d^3\)-dimensional three-site space is therefore a direct sum of
+\(d^2\) copies of the unique \(d\)-dimensional simple module. Since \(U\)
+commutes with this algebra, every eigenvalue multiplicity of \(U\) is
+divisible by \(d\).
+
+Using \(S^2=T^2=\Id\), the exceptional cubic gives
+\[
+ (U-\Id)\left(U^2+\frac23U+\Id\right)=0.
+\]
+The roots are
+\[
+ 1,\qquad
+ \lambda_\pm=-\frac13\pm\frac{2\sqrt2}{3}i.
+\]
+Conjugation by \(S\) sends \(U\) to \(U^{-1}\), so the
+\(\lambda_+\)- and \(\lambda_-\)-multiplicities agree. Call the three
+multiplicities \(m_1,m,m\). The zero marginals give
+\[
+ \Tr(U)
+ =\Tr(H_{12}H_{23})=0.
+\]
+Since \(\lambda_++\lambda_-=-2/3\),
+\[
+  m_1-\frac23m=0,\qquad m_1+2m=d^3.
+\]
+Hence
+\[
+  m_1=\frac{d^3}{4},\qquad m=\frac{3d^3}{8}.
+\]
+Divisibility of \(m\) by \(d\) gives \(8\mid3d^2\), and therefore
+\(4\mid d\).
+\end{proof}
+
+\begin{corollary}
+The complete primitive-Weyl Bell-diagonal branch is empty in dimension
+six.
+\end{corollary}
+
+\begin{remark}
+Primitivity is essential: it is what makes the common three-site Weyl
+algebra a full matrix algebra. The theorem does not assert that an
+arbitrary exceptional reflection admits Bell stabilizers. A separate exact
+enumeration shows that all \(12{,}870\) balanced sign tables also fail in
+the fixed \(d=4\) Bell basis; that finite calibration is recorded in the
+supplement rather than used here.
+\end{remark}
+
+\subsection{Four-product Clifford frames}
+
+\begin{theorem}[Clifford-frame divisibility]\label{thm:clifford}
+Let \(d\) be even and suppose
+\[
+ H=\sum_{j=1}^4c_jA_j\otimes B_j,
+ \qquad c_j\in\mathbb R\setminus\{0\},
+\]
+where every \(A_j,B_j\) is a traceless Hermitian involution and the four
+\emph{product} involutions
+\[
+ A_j\otimes B_j
+\]
+anticommute pairwise. Then \(4\mid d\).
+\end{theorem}
+
+\begin{proof}
+For \(i\ne j\), product anticommutation says
+\[
+ (A_iA_j)\otimes(B_iB_j)
+ =-(A_jA_i)\otimes(B_jB_i).
+\]
+Equality of nonzero simple tensors gives a scalar \(\epsilon_{ij}\).
+Involutivity forces \(\epsilon_{ij}^2=1\). Thus each local pair commutes
+or anticommutes, and the choices on the two legs are complementary.
+
+Let \(G_A,G_B\) be the alternating \(4\times4\) binary matrices which
+record local anticommutation. If \(K_4\) denotes the adjacency matrix of
+the complete four-vertex graph, then
+\[
+  G_A+G_B=K_4
+  \quad\text{over }\mathbb F_2.
+\]
+If a family of Hermitian involutions has binary commutation matrix of
+rank \(2r\), symplectic Gram--Schmidt produces \(r\) mutually commuting
+Weyl pairs. They generate \(M_{2^r}(\bbC)\), so \(2^r\mid d\).
+
+Suppose \(d=2s\) with \(s\) odd. Neither \(G_A\) nor \(G_B\) can have
+rank four. Since \(K_4\) has binary rank four and alternating ranks are
+even, the rank inequality forces
+\[
+ \rank_{\mathbb F_2}G_A
+ =\rank_{\mathbb F_2}G_B=2.
+\]
+We use the following elementary four-vertex fact: if an alternating
+binary matrix \(G\) and its complement \(K_4+G\) both have rank two,
+then one of the two graphs has an isolated vertex. To see this, write the
+six edge variables as \(a,b,c,d,e,f\). Rank two gives
+\[
+ af+be+cd=0,
+\]
+and the complement gives
+\[
+ 1+(a+b+c+d+e+f)+(af+be+cd)=0.
+\]
+Thus \(G\) has an odd number of edges. A three-edge graph without an
+isolated vertex is a path or a star; the path has nonzero Pfaffian and the
+star has an isolated vertex in the complement. A five-edge graph has
+isolated vertices in its complement.
+
+Let \(U_0\) be an isolated generator on the resulting leg. The same
+rank-two graph contains an anticommuting pair \(C,D\). On
+\(\bbC^{2s}\), such a pair is unitarily equivalent to
+\[
+ C=Z\otimes\Id_s,\qquad D=X\otimes\Id_s.
+\]
+Since \(U_0\) commutes with both, \(U_0=\Id_2\otimes L\) for a Hermitian
+involution \(L\in M_s\). But \(s\) is odd, so
+\(\Tr L\ne0\), contradicting the assumed tracelessness of \(U_0\).
+\end{proof}
+
+\begin{remark}
+The load-bearing hypothesis is pairwise anticommutation of the four
+product terms. The theorem does not say that either local family is
+pairwise anticommuting, nor does it classify arbitrary
+operator-Schmidt-rank-four involutions. Their Schmidt factors need not be
+involutions and involutivity may result from cancellations among nonzero
+cross anticommutators.
+\end{remark}
+
+\section{Square restrictions and the dimension-six frontier}
+\label{sec:d6-frontier}
+
+The following four-strand calculation makes balance hereditary under a
+square restriction.
+
+\begin{lemma}[The two one-dimensional four-strand traces]
+\label{lem:four-strand-traces}
+Let \(\mu_\eta\) be the Hecke Markov trace with
+\(\mu_\eta(e_i)=\eta\), at \(q=e^{i\pi/3}\). If \(e_+\) and \(e_-\) are
+the four-strand \(q\)-symmetrizer and \(q\)-antisymmetrizer, then
+\begin{equation}
+\begin{split}
+ \mu_\eta(e_+)
+ &=\frac{(1-\eta)(2-3\eta)(1-2\eta)}2,\\
+ \mu_\eta(e_-)
+ &=\frac{\eta(3\eta-1)(2\eta-1)}2.
+\end{split}
+\label{eq:four-strand-traces}
+\end{equation}
+Their unique common zero is \(\eta=1/2\).
+\end{lemma}
+
+\begin{proof}
+Use braid generators satisfying
+\[
+ (g_i-q)(g_i+1)=0,\qquad
+ g_i^2=(q-1)g_i+q.
+\]
+For \(w\in S_4\), let \(g_w\) be a reduced product and
+\(\ell(w)\) its length. The two idempotents are
+\[
+ e_+
+ =\frac{\sum_{w\in S_4}g_w}
+        {\sum_{w\in S_4}q^{\ell(w)}},
+\qquad
+ e_-
+ =\frac{\sum_{w\in S_4}(-q^{-1})^{\ell(w)}g_w}
+        {\sum_{w\in S_4}q^{-\ell(w)}}.
+\]
+Their denominators are nonzero at the sixth root used here. Put
+\[
+ z=\mu_\eta(g_i)=q-(1+q)\eta.
+\]
+Reducing the \(24\) terms by the quadratic relation, cyclicity, and the
+Markov rule gives
+\[
+ \mu_\eta(e_+)
+ =
+ \frac{(z+1)((q+1)z+1)((q^2+q+1)z+1)}
+ {(q+1)^2(q^2+1)(q^2+q+1)},
+\]
+\[
+ \mu_\eta(e_-)
+ =
+ -\frac{(z-q)((q+1)z-q^2)
+ ((q^2+q+1)z-q^3)}
+ {(q+1)^2(q^2+1)(q^2+q+1)}.
+\]
+Substitute \(z=q-(1+q)\eta\) and use \(q^2-q+1=0\). This gives
+\eqref{eq:four-strand-traces}. The common-zero assertion is immediate
+from the displayed factors. The finite reduction is also replayed exactly
+by the accompanying verifier.
+\end{proof}
+
+\begin{theorem}[Square-restriction inheritance]
+\label{thm:square-inheritance}
+If \(0\ne W\subseteq V\) is square-invariant, then \(\dim W\) is even and
+the restricted operator satisfies
+\[
+  R|_{W\otimes W}\in
+  \left[e^{i\pi/3},\frac12,\dim W\right].
+\]
+In particular, the restriction is non-scalar.
+\end{theorem}
+
+\begin{proof}
+Square invariance makes \(W^{\otimes n}\) invariant under every local
+generator, at every \(n\). Proposition~\ref{prop:trace-quotient} and
+Lemma~\ref{lem:four-strand-traces} show that the ambient representation
+kills both \(e_+\) and \(e_-\), because their images are orthogonal
+projections of trace zero. Their restrictions to \(W^{\otimes4}\) also
+vanish.
+
+Put \(r=\dim W\) and let \(\eta_W\) be the normalized negative spectral
+rank of \(R|_{W\otimes W}\), allowing temporarily the scalar values zero
+and one. The restricted unitary again has no opposite eigenvalue pair, so
+its normalized tensor trace is Markov. Applying
+\eqref{eq:four-strand-traces} to the two zero restricted idempotents makes
+\(\eta_W\) a common zero of the displayed polynomials. Hence
+\(\eta_W=1/2\). Its negative spectral rank is \(r^2/2\), so \(r\) is even.
+\end{proof}
+
+\begin{corollary}[Restrictable descent]\label{cor:restrictable}
+If a solution in dimension \(d\equiv2\pmod4\) is restrictable, its two
+diagonal restrictions are balanced exceptional solutions of smaller even
+dimensions, exactly one of which is again congruent to \(2\pmod4\).
+Consequently a least-dimensional solution in the unresolved congruence
+class is nonrestrictable, and no dimension-six solution is restrictable.
+\end{corollary}
+
+\begin{proof}
+Apply Theorem~\ref{thm:square-inheritance} to \(W\) and \(W^\perp\).
+Their even dimensions sum to \(2\bmod4\), so exactly one is
+\(2\bmod4\). For \(d=6\), a proper even split is \(2+4\), but the
+dimension-two exceptional class is empty~\cite{Lechner2026}.
+\end{proof}
+
+\begin{remark}[The one-sided gap]\label{rem:one-sided-gap}
+Theorem~\ref{thm:square-inheritance} rules out a two-dimensional
+square-invariant subspace in \(d=6\), since it would inherit the empty
+dimension-two class. It does not rule out a four-dimensional
+square-invariant \(W\). Corollary~\ref{cor:restrictable} says only that,
+if such \(W\) exists, \((W^\perp)^{\otimes2}\) is not invariant.
+\end{remark}
+
+We now identify the precise common-leg algebra in dimension six.
+
+\begin{lemma}[No common rank-two projection]\label{lem:no-common-rank2}
+If \(d=6\), there is no rank-two projection in
+\(\cC_L(P)\cap\cC_R(P)\).
+\end{lemma}
+
+\begin{proof}
+Suppose \(z\) is such a projection and put \(W=zV\), so \(\dim W=2\).
+Both tensor legs reduce \(H\), and
+\[
+  K=H|_{W\otimes W}
+\]
+is a Hermitian involution satisfying the exceptional cubic on
+\(W^{\otimes3}\). Let \(Q=(\Id-K)/2\) and \(r=\rank Q\).
+
+Ranks \(r=1,3\) are impossible by a short determinant gap. In the
+rank-one case write
+\[
+ Q=|\operatorname{vec}S\rangle
+   \langle\operatorname{vec}S|,
+ \qquad \Tr(S^*S)=1.
+\]
+On \(\operatorname{ran}Q_{12}\), the two-projection relation makes the
+compression \(Q_{12}Q_{23}Q_{12}\) have eigenvalues in
+\(\{1,1/3\}\). Its determinant is therefore at least \(1/9\).
+Vectorization computes the same determinant as \(|\det S|^4\), while
+the arithmetic--geometric mean inequality gives
+\[
+ |\det S|^4\le\frac1{16}<\frac19.
+\]
+Complementation excludes rank three. Rank two would be a member of the
+empty balanced dimension-two class. Hence \(r=0\) or \(4\), and
+\[
+  K=\varepsilon\Id_{W\otimes W},
+  \qquad\varepsilon\in\{\pm1\}.
+\]
+
+Now restrict the cubic to \(W\otimes W\otimes V\). This space is invariant
+because \(z\) lies in both leg commutants. The first adjacent copy is
+\(X=\varepsilon\Id\); call the second \(Y\). Since \(X\) is scalar and
+\(Y^2=\Id\),
+\[
+ XYX-YXY=Y-X.
+\]
+The exceptional cubic instead makes this \((X-Y)/3\), so \(Y=X\).
+Therefore
+\[
+  H|_{W\otimes V}=\varepsilon\Id_{W\otimes V}.
+\]
+Taking the second partial trace contradicts
+Corollary~\ref{cor:zero-marginals}:
+\[
+  0=z(\Tr_2H)z=6\varepsilon\Id_W.
+\]
+\end{proof}
+
+\begin{theorem}[Scalar intersection of the two leg commutants]
+\label{thm:common-leg}
+Every dimension-six exceptional projection satisfies
+\[
+  \boxed{\cC_L(P)\cap\cC_R(P)=\bbC\Id_6.}
+\]
+\end{theorem}
+
+\begin{proof}
+A non-scalar finite-dimensional \(C^*\)-subalgebra of \(M_6\) contains a
+nontrivial projection. Theorem~\ref{thm:leg-projection} makes its rank
+even, hence two or four. In the latter case the complement has rank two.
+Both alternatives contradict Lemma~\ref{lem:no-common-rank2}.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:common-leg} concerns the intersection after identifying
+the two local copies of \(M_6\). It does not prove
+\(\cC_L(P)=\bbC\Id_6\) or \(\cC_R(P)=\bbC\Id_6\) separately.
+Exact relative-position models show that two non-scalar even-atom
+subalgebras of \(M_6\) may have scalar intersection, so this distinction
+is genuine.
+\end{remark}
+
+\section{The unrestricted Schmidt-rank-four reduction}
+\label{sec:osr4}
+
+Let \(H\) be an exceptional reflection with \(\OSR(H)=4\). Its intrinsic
+left and right Schmidt supports are the slice spaces
+\[
+\begin{split}
+ \cA&=\{(\operatorname{id}\otimes\omega)(H):
+                  \omega\in M_d^*\},\\
+ \cB&=\{(\omega\otimes\operatorname{id})(H):
+                  \omega\in M_d^*\}.
+\end{split}
+\]
+They are four-dimensional and independent of a chosen Schmidt
+decomposition. Put
+\[
+  \cO_{\cA}=\bbC\Id+\cA,\qquad
+  \cO_{\cB}=\bbC\Id+\cB.
+\]
+For \(T\in M_d\), write \([T]_{\cA}\) and \([T]_{\cB}\) for its
+cosets in \(M_d/\cO_{\cA}\) and \(M_d/\cO_{\cB}\), respectively.
+
+For subspaces \(\cX,\cY\subseteq M_d\), define the intrinsic
+\emph{joint-sandwich map}
+\begin{equation}
+ \cS_{\cY\mid\cX}:
+ \cY\otimes\cY\longrightarrow\operatorname{Hom}_{\bbC}(\cX,M_d),
+ \qquad
+ \sum_\ell y_\ell\otimes z_\ell
+ \longmapsto
+ \left[x\mapsto\sum_\ell y_\ell xz_\ell\right].
+ \label{eq:sandwich-map}
+\end{equation}
+
+Because \(H\) is Hermitian, a real singular-value decomposition in the
+real Hilbert spaces of Hermitian matrices gives
+\begin{equation}
+ H=\sum_{i=1}^4\sigma_iA_i\otimes B_i,
+ \qquad \sigma_i>0,
+ \label{eq:hermitian-schmidt}
+\end{equation}
+where \(A_i,B_i\) are Hermitian and Hilbert--Schmidt orthonormal.
+Corollary~\ref{cor:zero-marginals} makes every \(A_i,B_i\) traceless.
+Thus \(\cO_{\cA},\cO_{\cB}\) are five-dimensional operator systems.
+
+\begin{lemma}[Full-cubic quotient identities]\label{lem:quotient-identities}
+For every \(x\in\cO_{\cA}\) and \(y\in\cO_{\cB}\),
+\begin{equation}
+ \sum_{i,k}\sigma_i\sigma_k
+ [A_iA_k]_{\cA}\otimes B_i xB_k=0
+ \quad\text{in }
+ (M_d/\cO_{\cA})\otimes M_d,
+ \label{eq:quotient-A}
+\end{equation}
+\begin{equation}
+ \sum_{i,k}\sigma_i\sigma_k
+ A_i yA_k\otimes[B_iB_k]_{\cB}=0
+ \quad\text{in }
+ M_d\otimes(M_d/\cO_{\cB}).
+ \label{eq:quotient-B}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+It is clearest to begin with an arbitrary minimal factorization
+\[
+  H=\sum_{i=1}^4a_i\otimes b_i.
+\]
+The two cubic words expand as
+\[
+\begin{split}
+ H_{12}H_{23}H_{12}
+ &=\sum_{i,j,k}a_ia_k\otimes b_ia_jb_k\otimes b_j,\\
+ H_{23}H_{12}H_{23}
+ &=\sum_{i,j,k}a_j\otimes a_ib_ja_k\otimes b_ib_k.
+\end{split}
+\]
+Project the first tensor leg of~\eqref{eq:cubic-H} to
+\(M_d/(\bbC\Id+\cA)\). The second cubic word and both linear terms
+vanish there. Applying an arbitrary functional to the third leg, and
+using that the \(b_j\) and \(a_j\) are bases of the two Schmidt supports,
+gives
+\[
+  \sum_{i,k}[a_ia_k]_{\cA}\otimes b_i x b_k=0
+  \qquad(x\in\cA).
+\]
+Projecting the first leg of \(H^2=\Id\) supplies the same identity at
+\(x=\Id\). This proves the all-\(x\) statement on
+\(\cO_{\cA}\). Tensor reversal gives the symmetric identity.
+Substituting~\eqref{eq:hermitian-schmidt} yields
+\eqref{eq:quotient-A}--\eqref{eq:quotient-B}.
+\end{proof}
+
+\begin{theorem}[Joint-sandwich divisibility]\label{thm:sandwich}
+If either
+\[
+  \cS_{\cB\mid\cO_{\cA}}
+  \quad\text{or}\quad
+  \cS_{\cA\mid\cO_{\cB}}
+\]
+is injective, then \(4\mid d\).
+\end{theorem}
+
+\begin{proof}
+Suppose \(\cS_{\cB\mid\cO_{\cA}}\) is injective. Apply a linear
+functional \(\varphi\) on \(M_d/\cO_{\cA}\) to the first factor of
+\eqref{eq:quotient-A}. The coefficient matrix
+\[
+  c_{ik}=\sigma_i\sigma_k
+  \varphi([A_iA_k]_{\cA})
+\]
+satisfies
+\[
+  \sum_{i,k}c_{ik}B_i xB_k=0
+  \qquad(x\in\cO_{\cA}).
+\]
+Injectivity makes every \(c_{ik}\) zero. Since \(\varphi\) was arbitrary,
+\[
+  A_iA_k\in\bbC\Id+\cA
+  \quad\text{for all }i,k.
+\]
+Therefore the five-dimensional operator system
+\(\bbC\Id+\cA\) is closed under multiplication. It is a finite-dimensional
+\(C^*\)-subalgebra of \(M_d\).
+
+The only complex \(C^*\)-algebras of dimension five are
+\[
+  \bbC^5,\qquad M_2(\bbC)\oplus\bbC,
+\]
+because their dimensions are sums of squares. Every faithful unital
+concrete representation of either algebra has a rank-one projection in
+its commutant: take a rank-one subprojection in a nonzero multiplicity
+space, using the nonzero scalar summand in the second case.
+
+Independence of the \(B_i\) gives
+\[
+ [X\otimes\Id,H]=0
+ \quad\Longleftrightarrow\quad
+ [X,A_i]=0\ \text{for every }i.
+\]
+Thus this rank-one projection lies in \(\cC_L(P)\).
+Theorem~\ref{thm:leg-projection} forces \(8\mid d^2\), hence \(4\mid d\).
+The other sandwich map is handled with the legs exchanged.
+\end{proof}
+
+\begin{corollary}[Simultaneous rank-four degeneracy]
+\label{cor:sandwich-degeneracy}
+Suppose \(d\equiv2\pmod4\) and \(\OSR(H)=4\). Then both maps in
+Theorem~\ref{thm:sandwich} are noninjective. More precisely, in the
+Hermitian Schmidt gauge~\eqref{eq:hermitian-schmidt}, each kernel contains
+a nonzero tensor whose \(4\times4\) coefficient matrix is Hermitian and
+traceless.
+\end{corollary}
+
+\begin{proof}
+Neither \(\cO_{\cA}\) nor \(\cO_{\cB}\) can be an algebra, since the
+five-dimensional \(C^*\)-algebra argument in the preceding proof would
+again give a rank-one leg projection and contradict
+\(d\equiv2\pmod4\).
+
+The quotient-product span generated by
+\([A_iA_k]_{\cA}\) is therefore nonzero and is closed under adjoint.
+Choose a nonzero functional \(\varphi\) on this span satisfying
+\(\varphi(z^*)=\overline{\varphi(z)}\). Then
+\[
+  C_{ik}
+  =\sigma_i\sigma_k\varphi([A_iA_k]_{\cA})
+\]
+is a nonzero Hermitian coefficient matrix, and
+\eqref{eq:quotient-A} says
+\[
+  \sum_{i,k}C_{ik}B_i xB_k=0
+  \quad(x\in\cO_{\cA}).
+\]
+At \(x=\Id\), take ordinary trace. Hilbert--Schmidt orthonormality of the
+\(B_i\) gives
+\[
+  0=\sum_{i,k}C_{ik}\Tr(B_iB_k)=\Tr C.
+\]
+The symmetric argument gives the annihilator on the other leg.
+\end{proof}
+
+\begin{corollary}[A low-Kraus-rank boundary map]\label{cor:cp-boundary}
+Under the hypotheses of Corollary~\ref{cor:sandwich-degeneracy}, there is
+on each leg a unital completely positive map of Kraus rank at most three
+which acts as \(-1/3\) on the opposite four-dimensional Schmidt support.
+\end{corollary}
+
+\begin{proof}
+Let \(D=\operatorname{diag}(\sigma_1^2,\ldots,\sigma_4^2)>0\), and let
+\(C=C^*\ne0\) be a traceless annihilator from the preceding proof.
+Move from \(D\) along the line \(D+tC\) to a nonzero boundary point
+\[
+  G=D+t_*C\ge0,\qquad 1\le\rank G\le3.
+\]
+The endpoint cannot be zero, since that would make \(C\) proportional to
+the positive matrix \(D\), contradicting \(\Tr C=0\). Define
+\[
+  \Psi_B(x)
+  =\frac1d\sum_{i,k}G_{ik}B_i xB_k.
+\]
+Positivity of \(G\) makes this completely positive with Kraus rank at most
+three. The contraction of \(H^2=\Id\) gives
+\[
+  \frac1d\sum_i\sigma_i^2B_i^2=\Id,
+\]
+while a partial trace of the cubic gives
+\[
+  \frac1d\sum_i\sigma_i^2B_iA_jB_i=-\frac13A_j.
+\]
+The \(C\)-direction vanishes on \(\bbC\Id+\cA\), so \(\Psi_B\) has the
+same two actions. The other leg is identical.
+\end{proof}
+
+\begin{remark}
+The map in Corollary~\ref{cor:cp-boundary} is not automatically trace
+preserving. That would require the transpose coefficient direction to
+annihilate the identity as well. No such transpose invariance is assumed
+or proved.
+\end{remark}
+
+\section{Leg-commutant arithmetic and low Schmidt rank}
+\label{sec:low-osr}
+
+We first isolate the arithmetic consequence of a genuine one-leg
+projection. This is the bridge from tensor-local structure to
+four-divisibility.
+
+\begin{lemma}[Two exceptional projections]\label{lem:two-projections}
+Let \(a,b\) be projections on a \(D\)-dimensional Hilbert space such that
+\[
+  aba-bab=\frac13(a-b),
+\]
+\[
+  \rank a=\rank b=\frac D2,\qquad
+  \Tr(ab)=\frac D4.
+\]
+Then
+\[
+ \dim(\operatorname{ran}a\cap\operatorname{ran}b)
+ =
+ \dim(\ker a\cap\ker b)
+ =\frac D8.
+\]
+\end{lemma}
+
+\begin{proof}
+Put
+\[
+  z=aba-\frac13a=bab-\frac13b.
+\]
+Projection identities give \(az=za=z\) and \(bz=zb=z\). Thus the range
+of \(z\) lies in the common range of \(a,b\), where \(z=2\Id/3\).
+Self-adjointness therefore gives \(z=(2/3)e\), with \(e\) the
+common-range projection. Taking traces,
+\[
+  \Tr e
+  =\frac{\Tr(ab)-\frac13\Tr a}{2/3}
+  =\frac D8.
+\]
+Equal half ranks make the common-range and common-kernel dimensions equal;
+this also follows by applying the same argument to \(\Id-a,\Id-b\).
+\end{proof}
+
+\begin{theorem}[Invariant leg projection]\label{thm:leg-projection}
+If a rank-\(r\) projection \(z\) belongs to either
+\(\cC_L(P)\) or \(\cC_R(P)\), then
+\[
+  \boxed{8\mid rd^2.}
+  \label{eq:leg-divisibility}
+\]
+\end{theorem}
+
+\begin{proof}
+Suppose \(z\in\cC_L(P)\), put \(W=zV\), and let \(Q\) be the
+restriction of \(P\) to \(W\otimes V\). Theorem~\ref{thm:standardness}
+gives
+\[
+  \rank Q
+  =\Tr((z\otimes\Id)P)
+  =\Tr\!\left(z\,\Tr_2P\right)
+  =\frac{rd}{2}.
+\]
+Restrict \(P_1,P_2\) to \(W\otimes V\otimes V\). The resulting
+projections \(a=Q\otimes\Id\), \(b=\Id_W\otimes P\) act on a space of
+dimension \(D=rd^2\), obey the exceptional relation, and both have rank
+\(D/2\). Their overlap trace is
+\[
+\begin{aligned}
+ \Tr(ab)
+ &=\Tr_{W\otimes V}\!
+   \left[Q(\Id_W\otimes\Tr_2P)\right]\\
+ &=\frac d2\Tr Q=\frac{rd^2}{4}.
+\end{aligned}
+\]
+Lemma~\ref{lem:two-projections} makes their common-range dimension
+\(rd^2/8\), an integer. The right-leg case follows after tensor flip.
+\end{proof}
+
+\begin{corollary}\label{cor:odd-leg}
+If \(d\equiv2\pmod4\), every projection in either leg commutant has even
+rank. In particular, either leg containing a rank-one projection forces
+\(4\mid d\).
+\end{corollary}
+
+We next show that low operator-Schmidt rank supplies such a projection.
+The subtle point is that the known rank-two and rank-three unitary
+structure theorems use four independent local pre- and post-unitaries.
+That equivalence does not preserve the Yang--Baxter equation.
+
+\begin{theorem}[Twisted control]\label{thm:twisted-control}
+Let \(H\in\End(V\otimes V)\) be a Hermitian unitary which is locally
+equivalent, through independent product unitaries before and after, to a
+controlled bipartite unitary. Suppose
+\[
+  H_1H_2H_1-H_2H_1H_2=c(H_1-H_2)
+  \label{eq:general-cubic}
+\]
+with \(|c|\ne1\). Then one true one-leg commutant of \(H\) contains a
+rank-one projection.
+\end{theorem}
+
+\begin{proof}
+Assume first that the supplied control is on the first factor. There are
+unitaries \(Q,R,S,T\), rank-one coordinate projections \(E_i\), and
+unitaries \(U_i\) such that
+\[
+  H=(Q\otimes S)
+    \left(\sum_iE_i\otimes U_i\right)
+    (R\otimes T).
+  \label{eq:four-local}
+\]
+We do not insert the controlled operator in parentheses into
+\eqref{eq:general-cubic}. Instead, apply the valid same-site conjugacy
+\[
+  \widetilde H=(Q^*\otimes Q^*)H(Q\otimes Q).
+\]
+It preserves~\eqref{eq:general-cubic} and gives the twisted controlled
+form
+\begin{equation}
+  \widetilde H=\sum_iE_iK\otimes V_i,
+  \qquad K=RQ,\quad V_i=Q^*SU_iTQ.
+  \label{eq:twisted-form}
+\end{equation}
+
+The \(ij\) block of \(\widetilde H\) is \(K_{ij}V_i\). Hermiticity is
+therefore
+\begin{equation}
+  K_{ij}V_i=\overline{K_{ji}}V_j^*.
+  \label{eq:hermitian-block}
+\end{equation}
+In particular, the support graph of \(K\) is undirected, and along each
+edge the projective classes of the target unitaries alternate between
+\([W]\) and \([W^*]\).
+
+If a connected component of this graph is nonbipartite, an odd cycle
+identifies these two classes. On that component,
+\[
+  \widetilde H_C=A_C\otimes W
+\]
+for a unitary \(A_C\). A rank-one spectral projection of the normal
+matrix \(A_C\), extended by zero across the other graph components,
+commutes with the full \(\widetilde H\) on its first leg.
+
+Suppose instead that every component is bipartite. Unitarity of \(K\)
+shows that the two parts in each component have equal dimension.
+Absorbing phases and choosing matched orthonormal bases puts
+\(\widetilde H\) in the fixed-point-free form
+\begin{equation}
+  \widetilde H
+  =\sum_x|\bar x\rangle\langle x|\otimes U_x,
+  \qquad U_{\bar x}=U_x^*,
+  \label{eq:fixed-point-free}
+\end{equation}
+where \(x\mapsto\bar x\) is an involution without fixed points.
+
+Apply the first-leg functional
+\(\varphi_x(A)=\langle\bar x|A|x\rangle\) to
+\eqref{eq:general-cubic}. Products of two first-leg coefficients in
+\eqref{eq:fixed-point-free} are diagonal whenever nonzero. Hence the
+\(\widetilde H_1\widetilde H_2\widetilde H_1\) coefficient vanishes,
+whereas the other cubic word contributes
+\[
+  \widetilde H(U_x\otimes\Id)\widetilde H.
+\]
+The two linear terms contribute \(U_x\otimes\Id\) and zero. We obtain
+\[
+  -\widetilde H(U_x\otimes\Id)\widetilde H
+  =c(U_x\otimes\Id),
+\]
+which equates a unitary with an operator of norm \(|c|\ne1\), a
+contradiction. Thus a nonbipartite component exists and yields the claimed
+rank-one projection. Conjugating back preserves its rank.
+
+If the original controlled side is the second factor, tensor flip
+interchanges the two legs and preserves~\eqref{eq:general-cubic}; the same
+argument applies.
+\end{proof}
+
+Cohen--Yu prove that every bipartite unitary of operator-Schmidt rank two
+is locally equivalent to a controlled unitary~\cite[Theorem 6]{CohenYu}.
+Chen--Yu prove the analogous statement in rank three
+\cite[Theorem 11]{ChenYu}. Their hypotheses allow arbitrary finite
+bipartite dimensions and the four-local equivalence used in
+\eqref{eq:four-local}.
+
+\begin{theorem}[Complete low-Schmidt spectrum]\label{thm:low-osr}
+There exists an exceptional reflection with \(\OSR(H)\le3\) in local
+dimension \(d\) if and only if
+\[
+  \boxed{4\mid d.}
+\]
+\end{theorem}
+
+\begin{proof}
+For necessity, apply Theorem~\ref{thm:twisted-control} with \(c=1/3\)
+and then Corollary~\ref{cor:odd-leg}. Rank one is immediate, and ranks
+two and three are covered by the cited controlled-unitary theorems.
+
+For sufficiency, the published \(d=4\) reflection has
+operator-Schmidt rank three~\cite{Kriebel2026d4}. If \(d=4m\), identity
+stabilization replaces each Schmidt factor \(A_j,B_j\) by
+\(A_j\otimes\Id_m,B_j\otimes\Id_m\), preserving both the exceptional
+relations and Schmidt rank three.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:low-osr} does not claim that four-local equivalence
+preserves Yang--Baxter locality. The only such transformation used in the
+proof is the same-site conjugacy leading to~\eqref{eq:twisted-form}.
+Hermiticity and the cubic relation then provide the new argument.
+\end{remark}
+
+\section{The surviving dimension-six branch}
+\label{sec:surviving-branch}
+
+Combining the preceding results gives the promised exact frontier.
+
+\begin{corollary}[Exact dimension-six frontier]
+\label{cor:d6-frontier}
+Let \(P\) be an exceptional projection on
+\(\bbC^6\otimes\bbC^6\), let \(H=\Id-2P\), and let \(R\) be given
+by~\eqref{eq:H-R}. Then:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item
+\[
+  \OSR(H)\ge4,\qquad \OSR(R)\ge5.
+\]
+If \(\OSR(H)=4\), both intrinsic joint-sandwich maps in
+Theorem~\ref{thm:sandwich} are singular and have nonzero Hermitian
+traceless coefficient-matrix annihilators.
+\item \(R\) is nonrestrictable. It has no two-dimensional
+square-invariant local subspace.
+\item
+\[
+  \cC_L(P)\cap\cC_R(P)=\bbC\Id_6.
+\]
+\item \(H\) is not diagonal in a primitive generalized Bell basis and is
+not a four-product Clifford-frame reflection of
+Theorem~\ref{thm:clifford}.
+\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+Part (i) is Theorem~\ref{thm:low-osr},
+\eqref{eq:osr-shift}, and
+Corollary~\ref{cor:sandwich-degeneracy}. Part (ii) is
+Theorem~\ref{thm:square-inheritance} and
+Corollary~\ref{cor:restrictable}. Part (iii) is
+Theorem~\ref{thm:common-leg}. Part (iv) follows from
+Theorems~\ref{thm:bell} and~\ref{thm:clifford}.
+\end{proof}
+
+\begin{remark}[What ``primitive'' means here]
+\label{rem:primitive-word}
+Corollary~\ref{cor:d6-frontier} does not assert irreducibility in every
+tensor-local sense. It leaves open a four-dimensional square-invariant
+subspace \(W\), provided that the complementary square
+\((W^\perp)^{\otimes2}\) is not invariant. It also leaves open non-scalar
+individual algebras \(\cC_L(P)\) and \(\cC_R(P)\) with scalar
+intersection. Thus the safe summary is that a dimension-six solution
+would be \emph{nonrestrictable} and would have no common one-leg
+symmetry, in the precise senses of
+Definition~\ref{def:restrictable} and~\eqref{eq:leg-commutants}.
+\end{remark}
+
+\subsection{The bounded one-sided
+\texorpdfstring{\(4+2\)}{4+2} reduction}
+
+The remaining square-restriction possibility admits a finite exact block
+formulation. Write \(V=W\oplus U\), with
+\(\dim W=4\), \(\dim U=2\), and assume only that \(W^{\otimes2}\)
+reduces \(H\). By Theorem~\ref{thm:square-inheritance}, the diagonal
+\(W^{\otimes2}\) block is a balanced \(d=4\) exceptional reflection.
+Coloring the three tensor positions by \(W,U\) decomposes the cubic into
+all \(2^6=64\) input-output color blocks. Unitarity and the zero-marginal
+identities add exact quadratic and linear equations for the remaining
+blocks.
+
+This reduction has been written out and replayed symbolically in the
+supplement. It does \emph{not} force \(U^{\otimes2}\) to be invariant:
+the coefficient system still contains genuine leakage blocks. Frozen-core
+numerical searches found no solution, but those residuals carry no
+nonexistence content and are not used in any theorem. This is the precise
+point at which the bounded one-sided attack stopped.
+
+\subsection{A secondary four-dimensional sitewise orbit}
+
+The exact computations also produce a circle of \(d=4\) reflections in a
+three-term color/face form. Exact conjugation shows that this entire circle
+is one orbit under sitewise conjugacy \(H\mapsto(U\otimes U)H
+(U\otimes U)^*\). The invariant
+\[
+  \Tr((HF)^4),
+\]
+where \(F\) is tensor flip, equals \(-16/3\) on this orbit and \(16\) on
+the published five-Pauli witness. The two exhibited matrices are therefore
+not sitewise-unitarily conjugate. They are nevertheless equivalent under
+Lechner's broader braid-character relation, since they have the same
+triple \([q,\eta,d]\). This secondary result is documented in the
+supplement; it is not a classification of all \(d=4\) sitewise orbits and
+no separate novelty claim is made for it.
+
+\section{Dimension table and open problem}
+\label{sec:open-problem}
+
+The exact status after this work is:
+\[
+\begin{array}{c|c|l}
+\text{local dimension}&\text{status}&\text{reason}\\ \hline
+d\text{ odd}&\text{empty}&d^2/2\notin\mathbb Z\\
+2&\text{empty}&\text{Lechner's dimension-two exclusion}\\
+4m,\ m\ge1&\text{nonempty}&d=4\text{ witness and identity stabilization}\\
+4m+2,\ m\ge1&\text{open}&\text{no universal obstruction or exact witness}
+\end{array}
+\]
+
+\begin{problem}[Exceptional dimension spectrum]
+\label{prob:spectrum}
+Determine whether
+\[
+ \left[e^{i\pi/3},\frac12,d\right]\ne\varnothing
+ \quad\Longleftrightarrow\quad 4\mid d,
+\]
+or construct an exact solution in some dimension
+\(d\equiv2\pmod4\), beginning with \(d=6\).
+\end{problem}
+
+Theorem~\ref{thm:tower-summary} says that the abstract Jones--Wenzl tower
+cannot decide Problem~\ref{prob:spectrum} through simple multiplicities,
+central ranks, Markov weights, or their represented branching recurrences.
+Corollary~\ref{cor:d6-frontier} identifies what a first counterexample must
+avoid. The rank-four sandwich identities are the only result here which
+applies to unrestricted Schmidt supports at the first surviving rank; they
+leave open the simultaneous-degeneracy branch.
+
+\section{Exact verification and provenance}
+\label{sec:verification}
+
+All theorem statements have human-readable proofs above. Computation is
+used only to replay finite algebraic reductions, calibrate formulas, and
+document limitation models. The public repository contains:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item a theorem-dependency graph separating imported results, proved
+lemmas, and exact computational certificates;
+\item a verifier manifest specifying the claim, arithmetic domain, and
+scope of each program;
+\item a one-command exact verifier suite for the central results;
+\item a supplementary catalogue separating exact ansatz theorems from
+numerical evidence and failed construction mechanisms;
+\item seeds, commands, dependency information, raw outputs, and claim
+statuses for every new numerical experiment.
+\end{enumerate}
+
+The central exact programs independently replay the Hecke multiplicities,
+two-projection block arithmetic, invariant-leg divisibility, the
+low-Schmidt contraction identities, the unrestricted rank-four quotient
+identities, the four-strand restriction polynomials, the dimension-six
+commutant block analysis, primitive-Weyl coefficient formulas, and the
+four-product Clifford parity calculation. They are checks of finite
+identities, not substitutes for the logical implications proved here.
+
+The original numerical search which discovered the published \(d=4\)
+five-Pauli support was not preserved and is not described as reproducible.
+Every computation performed for the present paper has a retained source,
+command, seed when applicable, raw result, and commit history.
+
+\section*{Priority and limitations}
+
+Targeted searches covered unitary Hecke tensor-space representations,
+controlled bipartite unitaries of Schmidt ranks two and three, generalized
+Yang--Baxter operators, quaternionic and Clifford realizations, Ocneanu
+cell systems, and the operator-algebraic theory of Yang--Baxter
+endomorphisms. We found no prior statement of the automatic-standardness
+consequence in this exceptional matrix class, the exact all-level
+multiplicity limitation, the twisted-control four-divisibility theorem, or
+the joint-sandwich rank-four obstruction. These results should therefore
+be described as \emph{apparently new} pending specialist review.
+
+The paper does not settle Problem~\ref{prob:spectrum}, exclude the
+simultaneously singular rank-four branch, exclude a one-sided
+four-dimensional square restriction in \(d=6\), classify all
+operator-Schmidt-rank-four unitaries, or classify all \(d=4\) solutions.
+Negative numerical searches and the supplementary finite ansatz
+exclusions are not evidence of global nonexistence.
+
+\section*{AI-assistance disclosure}
+
+OpenAI language models were used extensively to propose proof routes,
+derive and check symbolic identities, write and review code, search the
+literature, draft prose, and conduct adversarial audits. The author directed
+the research program and accepts responsibility for every claim. Central
+results were rederived in human-readable form and, where finite algebra was
+involved, replayed by exact programs with retained outputs. No model
+residual, confidence score, or unsupported model assertion is treated as
+mathematical evidence. The complete work trace, including failed
+approaches and proof repairs, is published with the paper.
+
+\begin{thebibliography}{99}
+
+\bibitem{ChenYu}
+L.~Chen and L.~Yu,
+\newblock On the Schmidt-rank-three bipartite and multipartite unitary
+operator,
+\newblock \emph{Ann. Physics} \textbf{351} (2014), 682--703.
+\newblock \url{https://doi.org/10.1016/j.aop.2014.09.026}
+
+\bibitem{CohenYu}
+S.~M. Cohen and L.~Yu,
+\newblock All unitaries having operator Schmidt rank \(2\) are controlled
+unitaries,
+\newblock \emph{Phys. Rev. A} \textbf{87} (2013), 022329.
+\newblock \url{https://doi.org/10.1103/PhysRevA.87.022329}
+
+\bibitem{ContiLechner}
+R.~Conti and G.~Lechner,
+\newblock Yang--Baxter endomorphisms,
+\newblock \emph{J. London Math. Soc.} \textbf{103} (2021), 633--671.
+\newblock \url{https://doi.org/10.1112/jlms.12387}
+
+\bibitem{GHR2013}
+C.~Galindo, S.-M.~Hong, and E.~C.~Rowell,
+\newblock Generalized and quasi-localizations of braid group
+representations,
+\newblock \emph{Int. Math. Res. Not. IMRN} \textbf{2013}, no.~3,
+693--731.
+\newblock \url{https://doi.org/10.1093/imrn/rnr269}
+
+\bibitem{Kriebel2026d4}
+A.~Kriebel,
+\newblock A minimal unitary localization of the
+\(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl representations,
+\newblock unrefereed research note, 2026.
+\newblock
+\url{https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/}
+
+\bibitem{Lechner2026}
+G.~Lechner,
+\newblock The classification problem for unitary \(R\)-matrices with two
+eigenvalues,
+\newblock arXiv:2603.20158v1, 2026.
+\newblock \url{https://arxiv.org/abs/2603.20158}
+
+\bibitem{Wenzl1988}
+H.~Wenzl,
+\newblock Hecke algebras of type \(A_n\) and subfactors,
+\newblock \emph{Invent. Math.} \textbf{92} (1988), 349--383.
+\newblock \url{https://doi.org/10.1007/BF01404457}
+
+\end{thebibliography}
+
+\end{document}

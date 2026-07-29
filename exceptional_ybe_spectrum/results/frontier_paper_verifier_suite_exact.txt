@@ -1,0 +1,145 @@
+Exceptional YBE structural-frontier exact verifier suite
+Programs: 10
+[01/10] RUN  tower-multiplicities
+  stdout:
+    Exact H_n(3,6) low-strand arithmetic
+    levels: 0..12
+    [ok] admissible quantum-dimension recursion
+
+    n | lambda | simple_dim | qdim | minimal_trace | central_trace | required_multiplicity
+    --|--------|------------|------|---------------|---------------|----------------------
+    0 | (0, 0, 0) | 1 | 1 | 1 | 1 | 1*(d/2)^0
+    1 | (1, 0, 0) | 1 | 2 | 1 | 1 | 2*(d/2)^1
+    2 | (1, 1, 0) | 1 | 2 | 1/2 | 1/2 | 2*(d/2)^2
+    2 | (2, 0, 0) | 1 | 2 | 1/2 | 1/2 | 2*(d/2)^2
+    3 | (1, 1, 1) | 1 | 1 | 1/8 | 1/8 | 1*(d/2)^3
+    3 | (2, 1, 0) | 2 | 3 | 3/8 | 3/4 | 3*(d/2)^3
+    3 | (3, 0, 0) | 1 | 1 | 1/8 | 1/8 | 1*(d/2)^3
+    4 | (2, 1, 1) | 3 | 2 | 1/8 | 3/8 | 2*(d/2)^4
+    4 | (2, 2, 0) | 2 | 2 | 1/8 | 1/4 | 2*(d/2)^4
+    4 | (3, 1, 0) | 3 | 2 | 1/8 | 3/8 | 2*(d/2)^4
+    5 | (2, 2, 1) | 5 | 2 | 1/16 | 5/16 | 2*(d/2)^5
+    5 | (3, 1, 1) | 6 | 2 | 1/16 | 3/8 | 2*(d/2)^5
+    5 | (3, 2, 0) | 5 | 2 | 1/16 | 5/16 | 2*(d/2)^5
+    6 | (2, 2, 2) | 5 | 1 | 1/64 | 5/64 | 1*(d/2)^6
+    6 | (3, 2, 1) | 16 | 3 | 3/64 | 3/4 | 3*(d/2)^6
+    6 | (3, 3, 0) | 5 | 1 | 1/64 | 5/64 | 1*(d/2)^6
+    6 | (4, 1, 1) | 6 | 1 | 1/64 | 3/32 | 1*(d/2)^6
+    7 | (3, 2, 2) | 21 | 2 | 1/64 | 21/64 | 2*(d/2)^7
+    7 | (3, 3, 1) | 21 | 2 | 1/64 | 21/64 | 2*(d/2)^7
+    7 | (4, 2, 1) | 22 | 2 | 1/64 | 11/32 | 2*(d/2)^7
+    8 | (3, 3, 2) | 42 | 2 | 1/128 | 21/64 | 2*(d/2)^8
+    8 | (4, 2, 2) | 43 | 2 | 1/128 | 43/128 | 2*(d/2)^8
+    8 | (4, 3, 1) | 43 | 2 | 1/128 | 43/128 | 2*(d/2)^8
+    9 | (3, 3, 3) | 42 | 1 | 1/512 | 21/256 | 1*(d/2)^9
+    9 | (4, 3, 2) | 128 | 3 | 3/512 | 3/4 | 3*(d/2)^9
+    9 | (4, 4, 1) | 43 | 1 | 1/512 | 43/512 | 1*(d/2)^9
+    9 | (5, 2, 2) | 43 | 1 | 1/512 | 43/512 | 1*(d/2)^9
+    10 | (4, 3, 3) | 170 | 2 | 1/512 | 85/256 | 2*(d/2)^10
+    10 | (4, 4, 2) | 171 | 2 | 1/512 | 171/512 | 2*(d/2)^10
+    10 | (5, 3, 2) | 171 | 2 | 1/512 | 171/512 | 2*(d/2)^10
+    11 | (4, 4, 3) | 341 | 2 | 1/1024 | 341/1024 | 2*(d/2)^11
+    11 | (5, 3, 3) | 341 | 2 | 1/1024 | 341/1024 | 2*(d/2)^11
+    11 | (5, 4, 2) | 342 | 2 | 1/1024 | 171/512 | 2*(d/2)^11
+    12 | (4, 4, 4) | 341 | 1 | 1/4096 | 341/4096 | 1*(d/2)^12
+    12 | (5, 4, 3) | 1024 | 3 | 3/4096 | 3/4 | 3*(d/2)^12
+    12 | (5, 5, 2) | 342 | 1 | 1/4096 | 171/2048 | 1*(d/2)^12
+    12 | (6, 3, 3) | 341 | 1 | 1/4096 | 341/4096 | 1*(d/2)^12
+
+    [ok] central Markov weights sum to 1 at every level
+    [ok] block dimensions sum to d^n for d = 2, 4, 6
+    [ok] exact block multiplicities through d = 24 are integral exactly for even d
+    Conclusion: the full multiplicity formula imposes only 2 | d; it cannot force 4 | d at any strand.
+[01/10] PASS tower-multiplicities
+[02/10] RUN  two-projection-blocks
+  stdout:
+    [ok] exact generic block is a pair of projections
+    [ok] generic block satisfies the cubic projection relation
+    [ok] central element has the claimed value on all canonical blocks
+    [ok] Markov trace forces multiplicities a=b=D/8, c=3D/8
+[02/10] PASS two-projection-blocks
+[03/10] RUN  controlled-leg-divisibility
+  stdout:
+    PASS both controlled-leg compression orientations
+    PASS overlap D/4 and common-one/common-zero arithmetic D/8
+    PASS 8 | d^2 iff 4 | d for rank-one control
+    PASS d=6 requires every leg-commutant projection rank to be even
+    PASS four exact rank-one sectors of a V4 conference d=4 witness
+    PASS each d=4 restricted common-one/common-zero rank equals 2
+    PASS exact OSR-3 local-equivalence/commutant counter-audit
+    PASS OSR-3 counterexample cubic residual norm^2 = 512/3
+[03/10] PASS controlled-leg-divisibility
+[04/10] RUN  low-schmidt-obstruction
+  stdout:
+    PASS four-unitary equivalence -> valid sitewise twisted-control form
+    PASS mixed nonbipartite/bipartite graph: true control-leg rank-one symmetry
+    PASS fixed-point-free coefficient orientation; d=6 residual norm^2 = 512
+    PASS published five-Pauli witness: exact d=4 cubic, Schmidt rank 3, right-leg MASA
+    PASS C15 color/face representative: exact d=4 cubic, Schmidt rank 3, right-leg MASA
+    PASS exact low-operator-Schmidt obstruction certificate
+[04/10] PASS low-schmidt-obstruction
+[05/10] RUN  osr4-joint-sandwich
+  stdout:
+    PASS dimension-five C*-types: ((1, 1, 1, 1, 1), (2, 1))
+    PASS published d4 OSR3 sandwiches: ([7, 7, 4], 9, 9) ([7, 7, 4], 9, 9) closure (4, 4)
+    PASS C61 d4 OSR4 sandwiches: ([7, 7, 7, 7], 14, 16) ([7, 7, 7, 7], 14, 16) closure (11, 11)
+    PASS d6 controlled reflection: H*=H, H^2=I, trace and partial traces zero
+    PASS d6 controlled sandwiches: ([16, 14, 14, 16], 16, 16) ([15, 15, 12, 11], 16, 16) closure (6, 8)
+    PASS d6 controlled direct cubic nonzero entry: control 0 (0, 0, (83231*sqrt(3) + 498528)/72412707)
+    PASS d6 color reflection: H*=H, H^2=I, trace and partial traces zero
+    PASS d6 color sandwiches: ([4, 4, 4, 4], 4, 8) closure 8
+    PASS d6 color Schmidt singular values squared: {8: 2, 16: 1, 4: 1}
+    PASS d6 color cubic residual sectors: {256/9: 15, 64/9: 12} total 512
+    PASS four orthogonal balanced d6 reflections; statuses with U4: [(False, False), (False, False), (False, True)]
+    THEOREM if either OSR4 joint sandwich map on CI+support is injective, 4|d
+    NECESSARY d=2 mod 4 OSR4 candidates have nonzero common annihilators on both legs
+    SCOPE unrestricted OSR4 exceptional divisibility remains open
+[05/10] PASS osr4-joint-sandwich
+[06/10] RUN  restrictable-four-strand
+  stdout:
+    four-strand q-symmetrizer and q-antisymmetrizer: exact
+    arbitrary-eta trace factorizations and unique common zero: exact
+    Markov trace table at eta=0,1/3,1/2,2/3,1: exact
+    nine arbitrary operator-valued mixed-color equations: exact
+    restrictable d=6 and d=2 mod 4 descent arithmetic: exact
+    PASS
+[06/10] PASS restrictable-four-strand
+[07/10] RUN  d6-common-leg-intersection
+  stdout:
+    rank-one cell determinant gap: exact
+    shared scalar cell propagation: exact
+    d=2 rank-two emptiness: explicit external dependency
+    two-block relative intersections: scalar in all four pairs
+    endpoint cubic blocks for ab=1,2,4: exact
+    all four ordered algebra pairs: D=216, rank=108, common=27
+    PASS
+[07/10] PASS d6-common-leg-intersection
+[08/10] RUN  primitive-weyl-bell
+  stdout:
+    [ok] exact d=6 Bell basis and balanced reflection
+    [ok] zero Bell marginals and both two-site stabilizers
+    [ok] common three-site primitive Weyl algebra
+    [ok] cubic polynomial and inverse-paired roots
+    [ok] d=4 multiplicity calibration: (16, 24, 24)
+    [ok] d=6 contradiction: (54, 81, 81), with 6 not dividing 81
+    [scope] no Bell-diagonal d=4 witness is claimed
+    Weyl--Bell-diagonal divisibility verifier: PASS
+[08/10] PASS primitive-weyl-bell
+[09/10] RUN  fixed-d4-bell-exhaustion
+  stdout:
+    [ok] direct 64x64 matrix calibration of all reduced coefficients
+    [ok] balanced d=4 Bell sign tables checked exactly: 12870
+    [ok] exceptional cubic solutions found: 0
+    [scope] fixed generalized Bell basis of the stated Weyl pair
+    d=4 Bell-diagonal exhaustive verifier: PASS
+[09/10] PASS fixed-d4-bell-exhaustion
+[10/10] RUN  four-product-clifford-frame
+  stdout:
+    PASS four-vertex complement lemma: 64 graphs exhausted
+    PASS rank-two/rank-two cases checked: 20
+    PASS d=4 Clifford calibration: H*=H, H^2=I, trace and partial traces zero
+    PASS d=4 calibration: OSR 4 and both leg commutants scalar
+    PASS d=4 cubic residual: 38 words, squared norm 1376/9
+    SCOPE arbitrary OSR-4 exceptional solutions remain open
+[10/10] PASS four-product-clifford-frame
+SUITE PASS: 10 of 10 programs passed

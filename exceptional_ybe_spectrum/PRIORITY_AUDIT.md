@@ -197,3 +197,72 @@ extension remains scoped to orthogonal colors in the Theorem 2.7
 triangular geometry. Arbitrary colored mixed blocks outside that
 geometry, and a nonorthogonal algebraic color splitting, remain open
 construction mechanisms. No external communication occurred.
+
+## 2026-07-29 final bounded-paper audit
+
+### Automatic standardness and exact tower multiplicities
+
+Lechner's Propositions 2.3--2.4, Lemma 3.1, and Theorem 3.3 were checked
+against arXiv:2603.20158v1 in the paper's normalization. They supply the
+no-opposite-spectrum Markov property, the scalar partial-trace criterion,
+and the positive trace parameter
+\[
+\eta_{6,3}
+=\frac{\sin(2\pi/6)}
+       {2\cos(\pi/6)\sin(3\pi/6)}
+=\frac12.
+\]
+Conti--Lechner's partial-trace and restrictability conventions and
+Galindo--Hong--Rowell's trace-quotient localization definition were also
+checked. The paper's contributions are the explicit deduction that every
+matrix in the exceptional class is standard, the direct all-level
+faithfulness argument after quotienting by the trace annihilator, and the
+closed multiplicity formula
+\[
+m_{\lambda,n}=D_\lambda(d/2)^n.
+\]
+No source located in the targeted Hecke-localization literature states this
+package or its exact limitation consequence that all abstract tower
+arithmetic permits every even local dimension. Priority status:
+**apparently new deduction and limitation theorem; dependent on published
+source theorems and pending specialist review**.
+
+### Unrestricted operator-Schmidt rank four
+
+Targeted searches on 2026-07-29 combined the phrases “operator Schmidt
+rank four,” “Yang--Baxter,” “Hecke,” “sandwich map,” “coefficient
+algebra,” “leg commutant,” and “controlled unitary.” The search covered
+the Cohen--Yu and Chen--Yu controlled-unitary results, later operator
+Schmidt-rank existence work of Müller-Hermes--Nechita, Bytsko's
+tensor-space Hecke projection papers, Conti--Lechner's Yang--Baxter
+endomorphisms, and the generalized-localization literature. No source was
+found containing the full-cubic quotient identities or the joint-sandwich
+injectivity obstruction of C63.
+
+The C63 theorem is intrinsic and does not assume Clifford factors,
+pairwise anticommutation, finite symmetry, a controlled leg, or a
+particular Schmidt basis. It remains conditional on injectivity of one of
+the two sandwich maps and does not classify the simultaneously singular
+branch. Priority status: **apparently new unrestricted rank-four
+structural theorem; no claim of a complete rank-four classification**.
+
+### Tensor-local dimension-six frontier
+
+The \(D^{(6)}\) Ocneanu-cell and quaternionic generalized-localization
+literature was rechecked for a hidden ordinary
+\(\mathbb C^6\otimes\mathbb C^6\) witness. Those constructions use path
+spaces or generalized overlaps and do not provide the required repeated
+same-\(P\) tensor realization. The dimension-six statements in the paper
+are consequently framed only as necessary conditions:
+
+- nonrestrictability, not the exclusion of every one-sided square;
+- scalar \(\mathcal C_L(P)\cap\mathcal C_R(P)\), not scalarity of either
+  individual commutant;
+- \(\operatorname{OSR}(H)\ge4\), equivalently
+  \(\operatorname{OSR}(R)\ge5\), not a high-rank classification;
+- exclusion of primitive-Weyl Bell and explicitly defined
+  four-product Clifford frames, not all Weyl or Clifford mechanisms.
+
+No complete-spectrum, \(d=6\) nonexistence, or novelty claim for a
+dimension-six matrix is made. No external communication occurred during
+the audit.
