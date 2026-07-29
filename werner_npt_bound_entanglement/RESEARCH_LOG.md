@@ -3591,3 +3591,44 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_feature_concurrence_split.md`,
   `verification/verify_n3_pair_feature_concurrence_split.py`.
+
+## 2026-07-29 14:08 PDT — Cubic adapted-frame critical ceiling
+
+- Audited equations (26), (45), and (48) of the full-support filter
+  classification.  The proposed adapted-basis calculation is exact:
+  it gives
+  \[
+  32w_1+97f+6w_3\le78,\qquad f\le78/97.
+  \]
+- Found that this is not the best prover-chosen adapted basis.  For a
+  unit traceless Hermitian qutrit matrix \(F\), with
+  \(q(F)=\operatorname{Tr}(F^3)\),
+  \[
+  r(F)^2\ge\frac12+\frac{|q(F)|}{\sqrt6}
+  \ge\frac12+q(F)^2.
+  \]
+- For any distinguished unit direction \(n\), an exact Haar average
+  over orthonormal bases of \(n^\perp\) proves that some completion
+  satisfies
+  \[
+  \sum_{a=2}^8q(F_a)^2\ge\frac3{11}.
+  \]
+  The calculation uses the restricted cubic-tensor invariants
+  \[
+  \|T_{n^\perp}\|^2=\frac{14}{3}-q(n)^2,\qquad
+  \|\operatorname{tr}T_{n^\perp}\|^2=\frac16-q(n)^2.
+  \]
+- This adds \(3/11\) to the summed spectral-radius floor.  Consequently
+  every hypothetical normalized full-support pair-sector critical
+  point with \(f>2/3\) obeys
+  \[
+  352w_1+1121f+66w_3\le894,
+  \qquad
+  f\le\frac{894}{1121}=0.797502\ldots.
+  \]
+- The theorem remains short of the required \(f\le2/3\).  The exact
+  cubic-frame constant \(3/11\) is a guaranteed average, not claimed
+  optimal.
+- Exact note and checker:
+  `notes/agent_n3_critical_filter_trace_bound.md`,
+  `verification/verify_n3_critical_filter_trace_bound.py`.
