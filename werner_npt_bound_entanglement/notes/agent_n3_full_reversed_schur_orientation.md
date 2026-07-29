@@ -653,6 +653,267 @@ code bivectors \(\omega_U,\omega_V\).  A counterexample to (59) is
 exactly a physical unrestricted three-copy witness; a proof of (59)
 is exactly the desired theorem.
 
+## 8. Logical filtering invariance
+
+The remaining logical degrees of freedom can be removed exactly.
+For invertible \(R,S\in M_2\), put
+\[
+ K'=(R\otimes S)K(R\otimes S)^\dagger.
+\tag{60}
+\]
+Then
+\[
+\begin{aligned}
+ \det K'
+ &=|\det R|^4|\det S|^4\det K,\\
+ \det(K')^\Gamma
+ &=|\det R|^4|\det S|^4\det K^\Gamma.
+\end{aligned}
+\tag{61}
+\]
+The second identity follows because partial transpose merely
+conjugates one of the two local filters.  Therefore
+\[
+ \det(K')^\Gamma\geq0
+ \quad\Longleftrightarrow\quad
+ \det K^\Gamma\geq0.
+\tag{62}
+\]
+Equation (30) also shows that
+\[
+ \det T(\Lambda')
+ =|\det R|^4|\det S|^4\det T(\Lambda).
+\tag{63}
+\]
+
+At the level of physical data, (60) is only an invertible change of
+the two logical frames inside the same left and right two-planes.
+The new frames need not be isometric, but their common code bivectors
+are merely rescaled.  Thus logical filtering preserves the physical
+paired-Pluecker origin; it is not an abstract relaxation.
+
+## 9. A self-contained Bell normal form
+
+### Theorem 9.1
+
+Every strictly positive two-qubit operator \(K\) is locally
+filter-equivalent, up to a positive scalar, to
+\[
+ \boxed{\qquad
+ K_{\boldsymbol t}
+ =\frac14\left(
+ I\otimes I+
+ t_1X\otimes X+t_2Y\otimes Y+t_3Z\otimes Z
+ \right),
+ \qquad t_j\in\mathbb R.
+ \qquad}
+\tag{64}
+\]
+
+Every physical compression in this project is strictly positive:
+the four vectors \(u_a\otimes v_b\) are linearly independent, and
+\(Y^{\otimes3/2}\) is invertible.  Thus their Gram matrix \(K(U,V)\)
+has positive determinant.  No limiting argument is needed when
+applying Theorem 9.1 to a physical pair of code planes.
+
+### Proof
+
+We first make both marginals scalar.  Since \(K\succ0\), choose
+\(m>0\) with \(K\succeq mI\).  On pairs of positive matrices
+\(G,H\in M_2\) satisfying
+\[
+ \det G=\det H=1,
+\tag{65}
+\]
+minimize
+\[
+ f(G,H)=\operatorname{Tr}[K(G\otimes H)].
+\tag{66}
+\]
+The lower bound
+\[
+ f(G,H)\geq m\,\operatorname{Tr}G\,\operatorname{Tr}H
+\tag{67}
+\]
+makes this minimization coercive.  Indeed, a positive \(2\times2\)
+matrix of determinant one has eigenvalues
+\(\lambda,\lambda^{-1}\), and its trace tends to infinity at every
+escape to the boundary or to infinity.  Thus a minimizer exists in
+the positive interior.
+
+Put
+\[
+ \widetilde K
+ =(G^{1/2}\otimes H^{1/2})
+ K(G^{1/2}\otimes H^{1/2}).
+\tag{68}
+\]
+For every traceless Hermitian \(A\), the determinant-preserving
+variation
+\[
+ G(t)=G^{1/2}e^{tA}G^{1/2}
+\tag{69}
+\]
+gives
+\[
+ 0=\left.\frac d{dt}\right|_{t=0}f(G(t),H)
+ =\operatorname{Tr}\left[
+ A\,\operatorname{Tr}_2\widetilde K
+ \right].
+\tag{70}
+\]
+Hence \(\operatorname{Tr}_2\widetilde K\) is scalar.  Varying \(H\)
+gives the same result for \(\operatorname{Tr}_1\widetilde K\).
+After dividing by \(\operatorname{Tr}\widetilde K\), both marginals
+are \(I/2\).
+
+Expand the normalized operator as
+\[
+ \widetilde K
+ =\frac14\left(
+ I\otimes I+\sum_{j,k=1}^3c_{jk}\sigma_j\otimes\sigma_k
+ \right),
+\qquad C=(c_{jk})\in M_3(\mathbb R).
+\tag{71}
+\]
+There are no one-body Pauli terms because both marginals are scalar.
+Conjugation by a logical unitary rotates the Pauli triple by an
+element of \(SO(3)\).  A real singular-value decomposition, absorbing
+a possible reflection into the sign of one diagonal entry, gives
+\[
+ O_1CO_2^{\mathsf T}
+ =\operatorname{diag}(t_1,t_2,t_3),
+\qquad O_1,O_2\in SO(3).
+\tag{72}
+\]
+Every rotation in \(SO(3)\) is implemented by a two-dimensional
+unitary conjugation.  This can be checked directly from
+\[
+ (a_0I+i\,a\cdot\sigma)
+ (x\cdot\sigma)
+ (a_0I-i\,a\cdot\sigma),
+\qquad a_0^2+|a|^2=1,
+\tag{73}
+\]
+whose induced rotations include every axis and angle.  Applying the
+two unitaries associated with (72) proves (64).
+\(\square\)
+
+## 10. The exact octahedral frontier
+
+The four Bell eigenvalues of (64) are
+\[
+\begin{aligned}
+4\lambda_{\Phi^+}&=1+t_1-t_2+t_3,\\
+4\lambda_{\Phi^-}&=1-t_1+t_2+t_3,\\
+4\lambda_{\Psi^+}&=1+t_1+t_2-t_3,\\
+4\lambda_{\Psi^-}&=1-t_1-t_2-t_3.
+\end{aligned}
+\tag{74}
+\]
+They are all strictly positive because the original \(K\) was
+strictly positive.  Partial transpose changes \(t_2\) to \(-t_2\).
+Thus positivity of \(K\) supplies the four sign inequalities
+\[
+ 1+\epsilon_1t_1+\epsilon_2t_2+\epsilon_3t_3>0,
+ \qquad \epsilon_1\epsilon_2\epsilon_3=-1,
+\tag{75}
+\]
+while positivity of \(K^\Gamma\) supplies the complementary four
+inequalities with sign product \(+1\).
+
+All eight sign inequalities hold exactly when
+\[
+ \boxed{\qquad
+ |t_1|+|t_2|+|t_3|\leq1.
+ \qquad}
+\tag{76}
+\]
+Indeed, the smallest of the eight left sides is
+\[
+ 1-|t_1|-|t_2|-|t_3|.
+\tag{77}
+\]
+We have therefore proved another lossless form of the full endpoint.
+
+### Theorem 10.1 (canonical three-scalar reduction)
+
+Apply the constructive filtering of Theorem 9.1 to every physical
+compression \(K(U,V)\).  Unrestricted three-copy endpoint positivity
+is equivalent to (76) for every resulting physical canonical triple
+\((t_1,t_2,t_3)\).
+
+Equivalently, if the filtered Pauli transfer matrix is split as
+\[
+ T(\Lambda_{\rm can})
+ =
+ \begin{pmatrix}
+ s&0\\0&C_{\rm sp}
+ \end{pmatrix},
+\tag{78}
+\]
+then
+\[
+ s=\frac12,\qquad
+ \operatorname{spec}_{\rm sing}(C_{\rm sp})
+ =\frac12(|t_1|,|t_2|,|t_3|),
+\]
+and the remaining theorem is exactly
+\[
+ \boxed{\qquad
+ \|C_{\rm sp}\|_1\leq s.
+ \qquad}
+\tag{79}
+\]
+Before normalizing the filtered \(K\), the same homogeneous inequality
+holds with arbitrary \(s>0\).
+
+The scalar \(s\) and the spatial block have a direct common-code
+meaning:
+\[
+ T_{\mu\nu}
+ =
+ \left\langle
+ {\cal E}_V(e_\mu),\,
+ \Psi_3^{\otimes3}{\cal E}_{\overline U}(e_\nu)
+ \right\rangle.
+\tag{80}
+\]
+The normal-form conditions say that the time--space and space--time
+entries vanish.  Hence the unrestricted endpoint is reduced to a
+single trace-norm inequality for the \(3\times3\) crossed Pauli
+correlation block of two filtered rank-two code planes.
+
+For reference, in the normal form
+\[
+ \det T(\Lambda_{\rm can})
+ =-\frac1{16}t_1t_2t_3,
+\tag{81}
+\]
+and
+\[
+\det K_{\boldsymbol t}
+=\frac1{256}
+\prod_{\epsilon_1\epsilon_2\epsilon_3=-1}
+\left(
+1+\epsilon_1t_1+\epsilon_2t_2+\epsilon_3t_3
+\right).
+\tag{82}
+\]
+Equation (31) is therefore exactly the missing half of the
+octahedral condition (76), packaged as one determinant.
+
+The achievement of Theorem 10.1 is a reduction, not a sign proof.
+The surviving nonlinear realizability lemma is:
+
+> prove that every physically filtered map (48) with scalar input and
+> output logical marginals satisfies the Pauli correlation
+> trace-norm bound (79), or construct one exact physical map for which
+> it fails.
+
+This lemma retains the paired code-plane origin through (48)/(80) but
+has only a \(3\times3\) real matrix left at the logical level.
+
 ## Research log
 
 - **2026-07-29 15:20 PDT.** Reduced the full two-plane
@@ -667,3 +928,11 @@ is exactly the desired theorem.
   (50)/(53) of the common left and right code Pluecker vectors, and
   expressed \(\det K\) as the Gram-volume square (58).  The remaining
   theorem is the single physical paired-Pluecker inequality (59).
+- **2026-07-29 18:20 PDT.** Proved from first principles that every
+  strictly positive logical compression admits invertible local
+  filtering to the Bell normal form (64).  Logical filtering preserves
+  both the physical code-plane origin and the determinant inequality.
+  Reduced the full endpoint exactly to the octahedral condition
+  \(|t_1|+|t_2|+|t_3|\leq1\), equivalently the \(3\times3\) Pauli
+  correlation trace-norm inequality (79) under scalar filtered
+  marginals.
