@@ -2516,3 +2516,145 @@ All timestamps use America/Los_Angeles.
   well-conditioned near-six-uniform critical core has yet been
   resolved.  Therefore unrestricted three-copy positivity and the
   all-copy Werner question both remain open in this project.
+
+## 2026-07-29 — Mixed derivations: exact information and exact limit
+
+- For the pair-sector critical operator
+  \(D=\Pi_2C=\sum_kD_{\widehat k}\), mixed local derivations isolate
+  the common pair component:
+  \[
+  [A_i,[B_j,D]]
+  =[A_i,[B_j,D_{\widehat k}]]
+  \qquad(\{i,j,k\}=\{1,2,3\}).
+  \]
+  Their complete double-frame operator and Casimir identities are now
+  explicit, including
+  \[
+  \sum_{\mu,\nu}
+  \|[F_\mu^{(i)},[F_\nu^{(j)},D]]\|_2^2
+  =36\|D_{\widehat k}\|_2^2.
+  \]
+- An exact degree-two qutrit operator \(D_*\) shows the limitation:
+  every first-derivation map has full traceless rank eight, all
+  cross-site first-derivation Gram blocks vanish, and all mixed
+  Casimir/reconstruction identities hold.  Thus scalar commutator
+  moments cannot prove the sharp pair-sector bound.
+- The rank-two critical support equations have also been completely
+  classified.  If
+  \[
+  CD^\dagger=fCC^\dagger,\qquad
+  D^\dagger C=fC^\dagger C,
+  \]
+  then \(C\) is a scaled singular subsystem of \(D\), and necessarily
+  \[
+  s_1(D)^2+s_2(D)^2\ge f^2.
+  \]
+  This excludes \(D_*\) from the physical critical locus exactly:
+  its top-two singular mass is \(1/9\), whereas \(f=2/3\) would require
+  \(4/9\).
+- Exact note:
+  `notes/agent_n3_mixed_derivation_gram.md`.
+  Exact checker:
+  `verification/verify_n3_mixed_derivation_gram.py`.
+
+## 2026-07-29 — Quantitative slice-to-factor bridge
+
+- For a genuine \(2\times2\)-supported two-qutrit plane \({\cal U}\),
+  let \(H_{\cal U}\) be the fixed-left two-copy compression and let
+  \(M_{\cal U}\) be its intrinsic factor-plane Pluecker matrix.  The
+  complete qutrit operator, including the previously omitted outside
+  column sectors, satisfies
+  \[
+  \boxed{\lambda_2(H_{\cal U})
+  \ge\frac1{20}\|M_{\cal U}\|_F^2.}
+  \]
+  Moreover \(M_{\cal U}=0\) exactly on the two factor-plane rulings.
+- The bound yields the explicit two-slice implication
+  \[
+  \|M_{\cal U}\|_F^2
+  \le\frac{40B}{\kappa^2m}
+  \]
+  when two conditioned right slices have Gram floor \(m\), the left
+  factor has least singular value \(\kappa\), and their common
+  two-copy endpoint defect is at most \(B\).
+- Slice conditioning and projection have now been made quantitative.
+  If
+  \[
+  B\le\frac{\gamma m^2}{77\,760\,000},
+  \]
+  all six relevant slice factors have least singular value at least
+  \[
+  \frac{\sqrt\gamma\,m}{6750\sqrt6}.
+  \]
+  Almost-\(2\times2\) planes can be projected to the boundary with
+  controlled error, and on the whole boundary
+  \[
+  \boxed{\lambda_2(H_{\cal U})
+  \ge\frac1{1280}
+  \operatorname{dist}({\cal U},\mathrm{Factor})^4.}
+  \]
+- Exact notes:
+  `notes/agent_n2_qubit_support_second_kernel_gap.md` and
+  `notes/agent_n3_quantitative_slice_pencil_bridge.md`.
+  Exact checkers:
+  `verification/verify_n2_qubit_support_second_kernel_gap.py` and
+  `verification/verify_n3_quantitative_slice_pencil_bridge.py`.
+
+## 2026-07-29 — Sharp common-pencil product and marginal floor
+
+- If \(a(z)\) and \(b(z)\) are the two sums of squared quadratic
+  Pluecker minors detecting the two factor-plane rulings of one
+  contracted slice pencil, then their common quadratic origin gives
+  the sharp correlation inequality
+  \[
+  \boxed{\mathbb E[a(z)b(z)]
+  \ge\frac25\,\mathbb E a(z)\,\mathbb E b(z).}
+  \]
+  The constant \(2/5\) is sharp.
+- For an isometric plane tensor \(T\), the averaged minor mass on
+  either side has the exact marginal lower bound
+  \[
+  {\cal A}(T)
+  \ge
+  \frac{(\det\sigma_B\det\sigma_C)^2}{1\,269\,600}.
+  \]
+  Hence, if the relevant marginals satisfy
+  \(\sigma_B,\sigma_C\succeq mI\) and have trace two,
+  \[
+  {\cal A}(T)
+  \ge\frac{m^8(1-m)^4}{79\,350}.
+  \]
+  Combining the two sides with the sharp \(2/5\) correlation gives
+  \[
+  \mathbb E[a(z)b(z)]
+  \ge
+  \frac{m^{16}(1-m)^8}{15\,741\,056\,250}.
+  \]
+  An independent hostile audit checked the constants and all
+  determinant branches.
+- Exact note:
+  `notes/agent_n3_factor_pencil_product_gap.md`.
+  Exact checker:
+  `verification/verify_n3_factor_pencil_product_gap.py`.
+
+## 2026-07-29 — Current unrestricted three-copy bottleneck
+
+- The quantitative equality-exclusion chain is now complete on the
+  \(2\times2\) boundary and has explicit conditioning, projection,
+  no-switching, and marginal-floor estimates.
+- The remaining local theorem is sharply isolated: extend the quartic
+  second-kernel distance estimate
+  \[
+  \lambda_2(H_{\cal U})
+  \ge c\,\operatorname{dist}({\cal U},\mathrm{Factor})^4
+  \]
+  from the complete \(2\times2\) boundary to arbitrary complex
+  two-qutrit planes, for some explicit \(c>0\), or prove an equivalent
+  determinant modulus.  Qualitatively, compactness and the exact
+  nullity classification already give a non-explicit modulus; the
+  missing point is a usable global quantitative one.
+- This would finish the current local common-factor stability bridge,
+  but a final global inequality converting it into \(Q_3(C)\ge0\)
+  for every negative depth would still have to be written and checked.
+  No unrestricted three-copy theorem, three-copy counterexample, or
+  all-copy conclusion is claimed.
