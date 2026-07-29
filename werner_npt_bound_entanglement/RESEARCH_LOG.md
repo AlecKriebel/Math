@@ -3642,3 +3642,36 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_critical_filter_trace_bound.md`,
   `verification/verify_n3_critical_filter_trace_bound.py`.
+
+## 2026-07-29 14:17 PDT — Four-string square-zero falsifier closed exactly
+
+- Considered the direct nonnormal rank-two completion of a diagonal
+  inertia-\((2,2)\) Hermitian quadrature on four distinct computational
+  strings:
+  \[
+  H=\tfrac12(P_{p_0}+P_{p_1}-P_{n_0}-P_{n_1}),\qquad
+  B_U=\tfrac12\begin{pmatrix}0&U\\U^\dagger&0\end{pmatrix},
+  \quad U\in U(2).
+  \]
+  Then
+  \[
+  C_U=H+iB_U,\qquad C_U^2=0,\qquad \operatorname{rank}C_U=2.
+  \]
+- Proved the exact obstruction theorem
+  \[
+  Q_3(H)<0\quad\Longrightarrow\quad Q_3(C_U)\ge\frac14
+  \]
+  in arbitrary local dimensions.  The constant is sharp.
+- The proof classifies the local equality patterns of the four strings.
+  There are \(15\) set partitions per site and hence \(15^3\) cases.
+  Exactly \(294\) cases have \(Q_3(H)<0\), falling into ten integral
+  Gram types.  In every type the off-diagonal completion contributes
+  enough endpoint energy to overcompensate the negative Hermitian
+  quadrature.
+- This does not prove unrestricted three-copy positivity.  It rules out
+  a concrete exact falsifier mechanism; any negative nonnormal witness
+  must use entangled quadrature eigenvectors or a more general
+  unbalanced coupling.
+- Exact note and integer-only checker:
+  `notes/agent_n3_squarezero_string_completion.md`,
+  `verification/verify_n3_squarezero_string_completion.py`.
