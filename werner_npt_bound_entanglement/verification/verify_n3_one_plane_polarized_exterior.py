@@ -175,7 +175,71 @@ def h_eigenvalue(antisymmetric_count):
 
 assert [h_eigenvalue(count) for count in range(4)] == [2, 2, 6, 22]
 
+
+# ---------------------------------------------------------------------------
+# Five-versus-five Möbius identity
+# ---------------------------------------------------------------------------
+
+# A monomial is the commuting trace-replacement product e_S, encoded by
+# the bit mask S on (K,1,2,3).  Expand
+#
+#   M_T = (prod_{j in T}(e_j-I)) (prod_{j not in T} e_j)
+#
+# exactly in this basis.
+def mobius_term(mask):
+    complement = 15 ^ mask
+    out = {}
+    submask = mask
+    while True:
+        monomial = complement | submask
+        mask_size = bin(mask).count("1")
+        submask_size = bin(submask).count("1")
+        coefficient = F(-1 if (mask_size - submask_size) % 2 else 1)
+        out[monomial] = out.get(monomial, F(0)) + coefficient
+        if submask == 0:
+            break
+        submask = (submask - 1) & mask
+    return out
+
+
+def add_polynomial(target, source, scale=F(1)):
+    for monomial, coefficient in source.items():
+        target[monomial] = target.get(monomial, F(0)) + scale * coefficient
+        if target[monomial] == 0:
+            del target[monomial]
+
+
+K = 1
+physical = (2, 4, 8)
+pair_masks = tuple(
+    physical[first] | physical[second]
+    for first, second in combinations(range(3), 2)
+)
+physical_mask = 2 | 4 | 8
+
+five_by_five = {}
+add_polynomial(five_by_five, mobius_term(K), F(4))
+for mask in pair_masks:
+    add_polynomial(five_by_five, mobius_term(mask))
+add_polynomial(five_by_five, mobius_term(physical_mask))
+add_polynomial(five_by_five, mobius_term(0), F(-1))
+for mask in pair_masks:
+    add_polynomial(five_by_five, mobius_term(K | mask), F(-1))
+add_polynomial(five_by_five, mobius_term(K | physical_mask), F(-1))
+
+# The marginal form of 3(2I-S_V), before using Tr_phys R=I_K, is
+#
+#   3 e_all + 2 sum_i e_i - 3 sum_{i<j} e_i e_j - I.
+expected_defect = {15: F(3), 0: F(-1)}
+for mask in physical:
+    expected_defect[mask] = F(2)
+for mask in pair_masks:
+    expected_defect[mask] = F(-3)
+
+assert five_by_five == expected_defect
+
 print("verified: H has swap-sector eigenvalues 2,2,6,22")
+print("verified: five-versus-five Möbius expansion is exact")
 print("verified: triple-layer bound fails exactly by 1/6")
 print("verified: pair matched mass repairs the layer obstruction")
 print("verified: crossed Cauchy gives 4 while the sharp coherent value is 3")
