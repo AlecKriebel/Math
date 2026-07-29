@@ -2943,3 +2943,39 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_three_cycle_equality.md`.
   Exact checker:
   `verification/verify_n3_pair_sector_three_cycle_equality.py`.
+
+## 2026-07-29 — Exact same-code obstruction to local crossed-Hodge inertia
+
+- Interval-certified a real algebraic rank-two matrix
+  \(C=XY^{\mathsf T}\in M_{27}(\mathbb R)\) whose one-site block Gram
+  has the exact isotropic form
+  \[
+  \beta=B\left(I_9+\frac65|\operatorname{vec}I_3\rangle
+  \langle\operatorname{vec}I_3|\right),\qquad B>0,
+  \]
+  with both one-site marginals equal to \(I_3/3\).
+- Hence \(\beta\succ0\), both left and right stationarity equations
+  hold, and both separate local-filter Hessians have positive
+  traceless gap \(9B/5\).  Nevertheless,
+  \[
+  P_-\beta^{\Gamma_2}P_-=-\frac B5P_-,
+  \]
+  so its antisymmetric negative inertia is three, not at most one.
+- The square rational polynomial system has 56 free variables.  An
+  outward-rounded Krawczyk certificate isolates a unique algebraic
+  zero with contraction-factor upper bound
+  \(2.55451\cdot10^{-5}\) and strict inclusion margin
+  \(9.99396\cdot10^{-10}\).  Certified factor minors prove
+  \(\operatorname{rank}C=2\).
+- This exactly rules out deriving the desired inertia bound from
+  same-\(C\) origin, block-Gram positivity, balanced one-site
+  marginals, two-sided one-site stationarity, and the two separate
+  one-site Hessians.  It is not a negative Werner witness:
+  \(Q_3(C)=57B/10>0\).  A proof may still use \(Q_3(C)<0\), all sites,
+  or the full coupled rank-two Hessian.
+- Exact note:
+  `notes/agent_n3_isotropic_block_gram_stationary_counterexample.md`.
+  Rigorous verifier and isolating data:
+  `verification/verify_n3_isotropic_local_stationary_counterexample.py`
+  and
+  `verification/data/n3_isotropic_local_stationary.json`.
