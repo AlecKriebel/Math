@@ -24,3 +24,16 @@
   discovery-side; hostile review remains.  Estimated progress toward
   eliminating canonical QQ1: **70%** as a workload estimate, not a
   probability.
+
+## 2026-07-28 — finite-audit scope corrected after hostile review
+
+- Hostile review passed Theorem 1.1 and Corollaries 2.1 and 3.1, but
+  identified an exact overstatement in the census scope: the nonedge
+  \(H\)-by-\(Z\) branch counted cells without independently checking
+  C-177's activity hypotheses and polarized conclusions.
+- Narrowed both the note and machine-readable scope to what the
+  checker actually verifies: global transport, retained bridge
+  incidence, and the full supported-fan conclusions on edge cells.
+- The nonedge polarization remains a symbolic consequence of accepted
+  C-177.  The `FCQe_` example is now explicitly described only as a
+  transport control.

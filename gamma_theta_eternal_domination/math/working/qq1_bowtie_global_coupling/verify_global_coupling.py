@@ -401,7 +401,10 @@ def main() -> None:
                 "transport_control": transport_control(),
                 "scope": (
                     "The audit verifies the global C-by-H transport and "
-                    "H-by-Z cell normal form; it does not eliminate QQ1."
+                    "retained H-by-Z bridge incidence. Edge cells receive "
+                    "the full supported-fan audit; nonedge polarization is "
+                    "imported from C-177 and is not re-audited here. The "
+                    "audit does not eliminate QQ1."
                 ),
             },
             indent=2,

@@ -20,6 +20,13 @@ original edge \(ux\), prove complete parameter three, or resolve the
 gamma--theta conjecture.  No omitted family state is interpreted as a
 graph nonedge.
 
+The bounded census below directly audits the global \(C\)-by-\(H\)
+transport, the retained \(H\)-by-\(Z\) bridges, and the complete-fan
+conclusions for edge cells.  For nonedge cells, the polarized-bow-tie
+conclusion is the proved symbolic application of accepted C-177; the
+census counts those cells but does not independently re-audit C-177's
+activity hypotheses or conclusions.
+
 ## 1. A general clique-obstructed transport lemma
 
 Assume
@@ -269,7 +276,11 @@ orders three through six.  It finds 2,162 equality graphs and verifies
 \(|C|\ge2\) and 2,520 with \(|H|\ge2\).  It checks every attack,
 product state, clique conclusion, and collision directly from the
 literal greatest fixed point.  A further 10,320 bridge-product
-instances check 12,480 \(H\)-by-\(Z\) cells.
+instances check the retained bridges in 12,480 \(H\)-by-\(Z\) cells
+and apply the full supported-fan audit to edge cells.  The checker only
+counts nonedge cells; their C-177 polarization is not an independent
+output of this census.  The control `FCQe_` is a transport control, not
+a control for polarized nonedge cells.
 
 Run from the campaign root:
 
