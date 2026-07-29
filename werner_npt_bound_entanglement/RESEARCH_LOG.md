@@ -2806,3 +2806,34 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n2_factor_normal_hessian.md`.
   Exact checker:
   `verification/verify_n2_factor_normal_hessian.py`.
+
+## 2026-07-29 11:38 PDT — Positive-definite crossed-Hodge inertia obstruction
+
+- Falsified the proposed universal bound
+  \[
+  \operatorname{ind}_-(P_-\beta^\Gamma P_-)\leq1
+  \]
+  for the structured one-site two-copy block Gram of a rank-two
+  three-qutrit coefficient matrix.  The obstruction persists even
+  under the additional condition \(\beta\succ0\).
+- An explicit rational rank-two factorization gives all nine leading
+  principal minors of \(\beta\) strictly positive, while the normalized
+  antisymmetric compression is
+  \[
+  \begin{pmatrix}
+  1&0&1/8\\
+  0&-1/32&0\\
+  1/8&0&-5/32
+  \end{pmatrix},
+  \]
+  which has exactly two negative eigenvalues.
+- The example has \(Q_3(C)=801/256>0\).  It is not a distillation
+  witness; it proves that a Hodge/logical-\(\epsilon\) argument cannot
+  terminate in a universal PSD-minus-one-square formula, even after
+  assuming positivity of the full block Gram.  Exact stationarity,
+  exact isotropy, or a stronger multi-site common-\(C\) relation is
+  indispensable.
+- Exact note:
+  `notes/agent_n3_crossed_hodge_inertia_counterexample.md`.
+  Exact checker:
+  `verification/verify_n3_crossed_hodge_inertia_counterexample.py`.
