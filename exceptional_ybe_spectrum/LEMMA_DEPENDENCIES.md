@@ -612,3 +612,103 @@ matrices, indices, finite image, and first-cell biunitarity cannot force
 off-diagonal module data or an all-level flat connection from the
 repeated spatial placements of one common \(P\); that extension remains
 unproved.
+
+The quadratic-subproduct route separates as follows:
+
+```text
+exceptional P in local dimension d=2s
+        |
+        +--> common-one/common-zero dimensions
+        |       1, 2s, 2s^2, s^3, 0, ...
+        |
+        +--> 1/3-angle multiplicity 3s^3
+        |
+        +--> associated quadratic Hilbert series
+                1 + 2st + 2s^2t^2 + s^3t^3
+                |
+                +--> ordinary Koszul dual would have coefficients
+                |       1, 2s, 2s^2, s^3, 0, 0, s^6, ...
+                |       |
+                |       +-X impossible degree-four vanishing/reappearance
+                |
+                +--> ordinary graded Frobenius would be palindromic
+                        |
+                        +-X already false for the known s=2 witness
+```
+
+There is an exact one-sided-standard tensor-local quadratic subproduct
+system with the common-one dimensions above for every integer \(s\).
+There is separately a fully standard \(d=4\) rank-half projection with
+\(\dim E_3=2\) and \(E_4=0\). Both fail the exceptional cubic exactly.
+Thus the diagram closes rank, associativity, termination, ordinary
+Koszul, and ordinary Frobenius arguments. The only surviving version
+must use the exact \(1/3\)-angle maps together with repeated same-\(P\)
+tensor locality.
+
+The color/face amplification-cut theorem has the following independent
+finite chain:
+
+```text
+C15 exact color/face blocks
+        |
+        +--> H_(a,b) = sum_i A_i tensor B_i(a,b)
+        |       |
+        |       +--> A_i form a Clifford triple
+        |       +--> sqrt(3) B_i have tetrahedral joint signs
+        |               |
+        |               +--> nonzero pencil rank >= 2
+        |               +--> rank-at-most-two cone = six lines
+        |
+        +--> C=X tensor U_- commutes with every A_i
+        |       |
+        |       +--> exp(i theta C/2) rotates (a,b)
+        |               |
+        |               +--> the full C15 circle is one local-unitary orbit
+        |
+        +--> hypothetical codimension-two square cut
+                |
+                +--> leakage + six-line cone force two A-directions
+                +--> Q commutes with all A_i and B_i
+                +--> active joint algebra = M_4(C)
+                        |
+                        +--> rank(Q) divisible by 4
+                                |
+                                +-X rank(Q)=4m-2
+```
+
+No Yang--Baxter classification beyond the already certified C15 family is
+used in this chain. Its conclusion therefore excludes only restriction
+from these identity amplifications.
+
+The reversed diagonal-\(S_4\) heterogeneous exclusion has the following
+finite dependency chain:
+
+```text
+A=V3, B=V2
+        |
+        +--> character decomposition of A tensor B tensor A
+        |       1 + epsilon + 2 V2 + 2 V3 + 2 V3'
+        |               |
+        |               +--> full commutant C + C + M2 + M2 + M2
+        |               +--> exact multiplicity-space Pauli triples
+        |
+        +--> half-rank equation
+        |       r1 + r_epsilon + 2 k2 + 3 k3 + 3 k3' = 9
+        |               |
+        |               +--> exactly ten signatures
+        |               +--> five up to H -> -H
+        |
+        +--> exact shifted-cubic coordinate expansion
+                |
+                +--> generators scaled by 24 lie in Z[sqrt(3),i]
+                +--> selected real-rational coordinate rows
+                        |
+                        +--> row span contains constant polynomial 1
+                                |
+                                +-X every balanced equivariant branch
+```
+
+The signature enumeration and Pauli triples make the symmetry reduction
+complete.  The last step is an exact rational row-space certificate, not
+a numerical search.  The conclusion applies only to the diagonal
+\(S_4\)-equivariant \(V_3\otimes V_2\otimes V_3\) heterogeneous branch.

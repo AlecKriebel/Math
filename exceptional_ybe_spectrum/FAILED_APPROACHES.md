@@ -513,6 +513,77 @@ without symmetry constraints. Twelve predeclared reduced runs all
 settled at normalized squared commutator \(0.22729901088344\), and no
 candidate appeared.
 
-This is not an exact extension of C40. It leaves open other points of the
-circle, other \(d=4\) solutions, and the possibility that the optimizer
-missed a zero.
+E40 subsequently resolves the whole circle exactly.  The family has a
+uniform Clifford/tetrahedral three-term form and is one sitewise-unitary
+orbit.  Its right low-rank pencil contains no plane, so the C40 leakage
+argument extends to every point and every identity amplification:
+codimension-two square restriction is impossible.
+
+Thus the positive numerical endpoint is no longer needed to exclude this
+mechanism, although it has not been proved globally minimal. The fourth
+flip moment also proves this orbit is distinct from the published witness.
+Other \(d=4\) solutions and genuinely new \(d=6\) constructions remain open.
+See `notes/no_codimension_two_cut_color_face_family.md`.
+
+## Divisibility from the quadratic subproduct Hilbert function
+
+For an exceptional projection in dimension \(d=2s\), the common-one and
+common-zero intersections have dimensions
+\[
+1,\ 2s,\ 2s^2,\ s^3,\ 0,\ldots,
+\]
+and the \(1/3\)-angle half has dimension \(3s^3\). Divisibility of either
+three-site multiplicity by \(2s\) would force \(s\) even, but it is not a
+general subproduct-space principle.
+
+An exact one-sided-standard tensor-local projection has precisely the
+common-one dimensions above for every \(s\), including odd \(s\).
+Separately, an exact fully standard rank-half projection in local
+dimension four has
+\[
+\dim E_3=2,\qquad E_4=0,
+\]
+so even two scalar partial traces and degree-four termination do not make
+the common intersection rank a multiple of the local dimension.
+
+The associated exceptional quadratic algebra cannot be Koszul: its
+putative dual Hilbert series has coefficients
+\[
+1,\ 2s,\ 2s^2,\ s^3,\ 0,\ 0,\ s^6,\ldots,
+\]
+which vanish in degree four and reappear in degree six. Ordinary
+connected graded Frobeniusity is likewise incompatible with the known
+\(s=2\) Hilbert function. Thus none of associativity, ordinary Koszulity,
+ordinary Frobeniusity, scalar marginals, or termination supplies the
+parity.
+
+Both limitation projections fail the exceptional cubic by explicit
+nonzero residuals. A remaining divisibility theorem must use the exact
+\(1/3\)-angle maps together with repeated same-\(P\) tensor locality; this
+audit does not refute such a theorem. See
+`notes/subproduct_hilbert_parity_audit.md`.
+
+## Reversed diagonal \(S_4\) symmetry on the heterogeneous \((3,2,3)\) block
+
+The reversed assignment
+\[
+A=V_3,\qquad B=V_2
+\]
+gives an \(18\times18\) active heterogeneous operator and was not covered
+by the earlier \((2,3,2)\) calculation. Its full diagonal-\(S_4\)
+commutant is
+\[
+\mathbb C\oplus\mathbb C\oplus M_2(\mathbb C)^{\oplus3}.
+\]
+Exact rank arithmetic leaves ten half-rank signatures, or five up to
+complementation.
+
+This complete symmetry branch is now excluded. Exact residual-coordinate
+matrices for each complement representative have row spaces containing
+the constant polynomial \(1\), so the shifted cubic cannot vanish even
+before the Pauli-sphere constraints are imposed. The result is a full
+no-go within this symmetry class, not merely a failed optimizer.
+
+The exclusion does not apply to non-\(S_4\)-equivariant heterogeneous
+operators and gives no general \(d=6\) obstruction. See
+`notes/s4_reversed_equivariant_no_go.md`.

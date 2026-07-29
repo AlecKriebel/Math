@@ -70,3 +70,43 @@ literature. No novelty claim should be attached without an equivalence
 search.
 
 No external communication occurred during this audit.
+
+## 2026-07-29 internal equivalence audit
+
+### C15 color/face circle
+
+The apparent one-parameter family is not a continuous modulus under the
+originating classification's sitewise local-unitary equivalence.  Exact
+conjugation by
+\[
+\exp\!\left(\frac{i\theta}{2}X\otimes
+\frac{X-Y}{\sqrt2}\right)
+\]
+acts transitively on its parameter circle.  Any later classification
+claim must therefore count this as one orbit, not infinitely many
+inequivalent solutions.
+
+It is also not the already published five-Pauli orbit. If \(F\) is the
+tensor flip, then \(\operatorname{Tr}((HF)^4)\) is invariant under
+sitewise conjugacy and equals \(-16/3\) on the color/face orbit but \(16\)
+on the published witness. This is an exact internal inequivalence
+certificate; it is not yet a classification of all \(d=4\) orbits.
+
+The uniform no-codimension-two-cut theorem for its identity
+amplifications is an internal structural result. Its literature novelty
+has not been audited, and it is not a dimension-spectrum theorem. No
+external communication occurred.
+
+### Quadratic-subproduct limitation models
+
+The C52 constructions are elementary finite-dimensional countermodels
+used to audit assumptions. Neither satisfies the Yang--Baxter equation,
+and no novelty claim is made for the projections, their quadratic
+algebras, or the general fact that a quadratic Hilbert series need not
+control local-dimension divisibility.
+
+The exact non-Koszul conclusion is a consequence of the already-forced
+exceptional Hilbert polynomial, not a dimension-spectrum theorem.
+If it is used in a paper, its appropriate role is to rule out an invalid
+proof strategy, not to claim a new class of quadratic algebras. No
+external communication or separate literature priority search occurred.

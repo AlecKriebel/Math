@@ -616,3 +616,84 @@
   squared commutator \(0.22729901088344\); no invariant subspace appeared.
 - This remains numerical only. It does not extend the exact C40 no-go or
   support unrestricted \(d=6\) nonexistence.
+
+## 2026-07-29 04:13 PDT — Color/face circle and all its cuts resolved exactly
+
+- Extracted a uniform three-term operator-Schmidt form for the complete
+  C15 family. Its left coefficients are a Clifford triple, while its
+  right coefficients are commuting scaled involutions with the four
+  tetrahedral joint sign vectors.
+- Proved that the right low-rank pencil is parameter-independent: its
+  rank-at-most-two cone is exactly six real lines and contains no plane;
+  every nonzero pencil member has rank at least two.
+- Found the exact orbit generator \(C=X\otimes U_-\). The sitewise
+  unitary \(e^{i\theta C/2}\) fixes the left Clifford triple and rotates
+  the family parameter \((a,b)\). Hence the apparent C15 circle is one
+  local-unitary orbit, not a continuous modulus after the natural
+  equivalence.
+- Separated that orbit from the published five-Pauli witness by the
+  exact sitewise-conjugacy invariant
+  \(\operatorname{Tr}((HF)^4)\): its values are respectively
+  \(-16/3\) and \(16\), with \((H_{\rm pub}F)^4=I\).
+- Extended the C40 leakage argument exactly. A hypothetical
+  codimension-two square restriction forces commutation with the full
+  active \(M_4\), and therefore has rank divisible by four. No identity
+  amplification of any C15 point can be cut from \(4m\) to \(4m-2\).
+- Replayed coefficient extraction, joint projectors, six-line cone,
+  active algebra, and orbit identities independently in exact SymPy
+  arithmetic. This upgrades the equivalence speculation in E38, while
+  leaving its positive numerical objective value non-rigorous.
+- Scope guard: the result closes this broad construction mechanism but
+  neither classifies arbitrary \(d=4\) solutions nor resolves existence
+  in dimension six.
+
+## 2026-07-29 04:15 PDT — Quadratic-subproduct parity route audited exactly
+
+- Collected the full exceptional common-one/common-zero subproduct
+  dimensions
+  \[
+  1,\ 2s,\ 2s^2,\ s^3,\ 0,\ldots
+  \]
+  and the exact outer partial traces. The uncontracted middle marginal
+  remains a potentially nonscalar positive operator.
+- Verified that the \(1/3\)-angle half has dimension \(3s^3\). Abstract
+  multiplicity does not make this number divisible by \(d=2s\); any
+  positive parity theorem must use repeated same-\(P\) tensor placement.
+- Constructed an exact one-sided-standard tensor-local quadratic
+  subproduct system with the exceptional common-one dimensions for every
+  \(s\), including odd \(s\). Its base cubic residual squared is
+  \(13/36\), so it is explicitly not a Yang--Baxter witness.
+- Constructed a separate exact fully standard rank-half projection in
+  local dimension four with \(\dim E_3=2\not\equiv0\pmod4\) and
+  \(E_4=0\). Its cubic residual squared is \(95/36\). Thus standardness
+  and four-step termination alone do not force intersection-rank
+  divisibility.
+- Proved that the associated exceptional quadratic algebra cannot be
+  Koszul: its putative dual Hilbert series has zero degree-four and
+  degree-five terms but nonzero degree-six term \(s^6\). Ordinary
+  connected graded Frobeniusity is also not an automatic structure.
+- Scope guard: these results close the bare
+  subproduct/Hilbert/Koszul/Frobenius routes. They do not settle whether
+  the full exceptional cubic plus tensor locality forces \(2\mid s\).
+
+## 2026-07-29 04:18 PDT — Reversed \(S_4\) heterogeneous branch closed exactly
+
+- Audited the reversed spectator factorization
+  \(A=V_3,\ B=V_2\), which is not covered by the earlier
+  \(V_2\otimes V_3\otimes V_2\) theorem.
+- Proved the exact decomposition
+  \[
+  V_3\otimes V_2\otimes V_3
+  \cong1\oplus\epsilon\oplus2V_2\oplus2V_3\oplus2V_3'
+  \]
+  and constructed exact multiplicity-space Pauli triples spanning its
+  full \(14\)-dimensional commutant.
+- Enumerated all ten balanced rank-nine signatures and reduced them to
+  five complement representatives.
+- For each representative, extracted a finite set of exact
+  real-rational cubic-residual coordinates. Exact row reduction shows
+  that their coefficient span contains the constant polynomial \(1\);
+  the five certificate sizes are \(8,8,10,59,10\).
+- Therefore the complete diagonal-\(S_4\)-equivariant reversed
+  \((3,2,3)\) branch is empty. This remains a symmetry-scoped result and
+  does not settle arbitrary local dimension six.

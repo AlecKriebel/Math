@@ -1343,3 +1343,176 @@ reproducible; only its final exact witness is reproducible.
     `3e22d3e774a0f9d1d9c7dc37c6ea5dc355078e00e76e1af8d0deb2ac1c164c04`;
   - `results/d6_cut_from_color_face_d4_interior_reduced_runs.jsonl`:
     `0751036f72bac96cc3cc555f53f1aa8b8e0886363c73ec9e660bea03539c4762`.
+
+## E39 — exact quadratic-subproduct Hilbert and divisibility audit
+
+- Run: 2026-07-29 04:02--04:15 PDT.
+- Question:
+  whether the exceptional common-one/common-zero subproduct ranks,
+  quadratic-algebra associativity, Koszulity, Frobeniusity, or termination
+  at degree four force \(2\mid s=d/2\).
+- Universal exact result:
+  \[
+  \dim E_n=\dim F_n=(1,2s,2s^2,s^3,0,\ldots),
+  \]
+  and the \(1/3\)-angle multiplicity is \(3s^3\).  The exact outer
+  partial traces were collected, while the middle marginal was retained
+  as a nonscalar positive operator with fixed scalar marginals.
+- One-sided-standard limitation model:
+  the rank-two projection onto
+  \[
+  \operatorname{span}\{|0\rangle|1\rangle,\ |+\rangle|0\rangle\}
+  \]
+  has common-one dimensions \(1,2,2,1,0,\ldots\), one scalar partial
+  trace, and cubic residual squared \(13/36\).  Spectator amplification
+  gives \(1,2s,2s^2,s^3,0,\ldots\) for every \(s\), including odd \(s\).
+- Fully standard limitation model:
+  an exact color-controlled rank-eight projection on
+  \(\mathbb C^4\otimes\mathbb C^4\) has both partial traces \(2I_4\),
+  \(\dim E_3=2\not\equiv0\pmod4\), \(E_4=0\), and cubic residual squared
+  \(95/36\).
+- Koszul audit:
+  \[
+  \frac1{1-2st+2s^2t^2-s^3t^3}
+  =1+2st+2s^2t^2+s^3t^3+0t^4+0t^5+s^6t^6+\cdots.
+  \]
+  A degree-one-generated quadratic dual cannot vanish in degree four
+  and reappear in degree six, so the exceptional quadratic algebra is
+  never Koszul. Ordinary connected graded Frobeniusity is likewise not
+  automatic and is already incompatible with the known \(s=2\) Hilbert
+  function.
+- Scope:
+  neither limitation projection satisfies the exceptional cubic.  The
+  result closes rank/Hilbert/Koszul/ordinary-Frobenius arguments, not a
+  proof that full exceptional tensor locality permits odd \(s\).
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `33e4cb30`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_subproduct_hilbert_parity_audit.py`.
+- SHA-256:
+  - `notes/subproduct_hilbert_parity_audit.md`:
+    `f3e4d6d8d5da4d4b81c234a0a83dd15818a0bfe70ecfff1b14a0b494db2f6375`;
+  - `verifiers/verify_subproduct_hilbert_parity_audit.py`:
+    `a25b5a3292953c33d9000da2bce1f72deecc8b2ff870a5b89e0b35ea21fc54a3`;
+  - `results/subproduct_hilbert_parity_audit_exact.txt`:
+    `888e2b47bac05335b3714c9ffe29cf53f5870dfd5f7345823858ca023f3f56a6`.
+
+## E40 — exact orbit and amplification-cut theorem for the C15 circle
+
+- Run: 2026-07-29 04:07--04:13 PDT.
+- Question:
+  whether the exact C15 color/face family shares a common structural
+  form and whether any identity amplification admits a codimension-two
+  square-invariant local subspace.
+- Method:
+  exact Pauli coefficient extraction, polynomial reduction modulo
+  \(a^2+b^2-1\), tetrahedral joint-spectrum arithmetic, active-algebra
+  closure, and an independent exact sitewise rotation check.
+- Outcome:
+  \[
+  H_{a,b}=\sum_{i=1}^3 A_i\otimes B_i(a,b),
+  \]
+  where the \(A_i\) are a Clifford triple and the commuting
+  \(\sqrt3B_i\) have four one-dimensional joint eigenspaces with
+  tetrahedral sign vectors. The rank-at-most-two pencil is exactly six
+  lines and contains no plane. The active coefficient algebra is
+  \(M_4(\mathbb C)\), uniformly in \((a,b)\).
+- Exact orbit:
+  \(e^{i\theta(X\otimes U_-)/2}\) fixes every \(A_i\) and rotates
+  \((a,b)\), proving that the full circle is one sitewise-unitary orbit.
+- Orbit separation:
+  the exact fourth flip moments are \(-16/3\) on the color/face orbit
+  and \(16\) on the published witness, so the two are not
+  sitewise-unitarily equivalent.
+- Theorem:
+  every commuting local projection in an identity amplification has
+  rank divisible by four; in particular rank \(4m-2\) is impossible.
+- Relation to E38:
+  the equivalence of its three sampled landscapes is now proved. Its
+  positive optimizer endpoint remains numerical and no global lower
+  bound is claimed.
+- Scope:
+  this excludes amplification-and-cut constructions from the complete
+  C15 family. It neither classifies all \(d=4\) solutions nor excludes
+  a genuinely new \(d=6\) solution.
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `33e4cb30`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_no_codimension_two_cut_color_face_family.py`.
+- SHA-256:
+  - `notes/no_codimension_two_cut_color_face_family.md`:
+    `394e09ccae553c77e8792324e4c377f10285e92372cc8ef32506b916f46f1284`;
+  - `verifiers/verify_no_codimension_two_cut_color_face_family.py`:
+    `c78f158f8672208a6226849bdef723bebad5876c821fcd6a0e36baceeb77e670`;
+  - `results/no_codimension_two_cut_color_face_family_exact.txt`:
+    `b7e713bce4be061639ab985094a073d780241fc2696da2525297e2a17c9c420a`.
+
+## E41 — exact reversed \(S_4\)-equivariant heterogeneous no-go
+
+- Run: 2026-07-29 03:51--04:18 PDT.
+- Question:
+  whether the reversed heterogeneous factorization
+  \(A=V_3,\ B=V_2\) contains a diagonal-\(S_4\)-equivariant rank-nine
+  solution on \(A\otimes B\otimes A\).
+- Exact representation reduction:
+  \[
+  V_3\otimes V_2\otimes V_3
+  \cong1\oplus\epsilon\oplus2V_2\oplus2V_3\oplus2V_3',
+  \]
+  so the full equivariant commutant is
+  \(\mathbb C\oplus\mathbb C\oplus M_2(\mathbb C)^{\oplus3}\), of
+  dimension \(14\).
+- Complete half-rank coverage:
+  the rank-nine equation has exactly ten multiplicity signatures. They
+  pair into five representatives under complementation \(H\mapsto-H\).
+  Exact group-averaged intertwiners give a full Pauli-sphere
+  parametrization for every noncentral multiplicity-two block.
+- Exact cubic certificate:
+  after scaling each commutant generator by \(24\), the residual lies in
+  \(\mathbb Z[\sqrt3,i]\). For the five representatives, respectively
+  8, 8, 10, 59, and 10 selected real-rational residual coordinates have
+  coefficient row spaces containing the constant monomial \(1\).
+  Therefore no parameters, even complex and off the involution spheres,
+  can make all selected residual coordinates vanish.
+- Scope:
+  this closes the complete diagonal-\(S_4\)-equivariant reversed
+  \((3,2,3)\) heterogeneous branch. It does not exclude arbitrary
+  heterogeneous \(18\times18\) operators or arbitrary \(d=6\) solutions.
+- Discovery trace:
+  two ephemeral, non-evidentiary scratch probes used deterministic seeds
+  `123` and `26072901` to identify the branch as a likely no-go before
+  the exact coordinate reduction. Their optimizer output was not used
+  in any claim; the retained result is entirely deterministic and exact.
+- Randomness in retained certificate:
+  none.
+- Parent commit:
+  `a27246cc`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`, NumPy `2.0.2`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_s4_reversed_equivariant_no_go.py`.
+- SHA-256:
+  - `scripts/derive_s4_reversed_heterogeneous.py`:
+    `81253c0be3a711c4f61031cb738dd482365681c24c354c6b6c8b54cc9e6bc9a7`;
+  - `scripts/derive_s4_reversed_coordinate_ideals.py`:
+    `b04abdd497ca37830bd6242574fe566e66c78afdec76d76d640ce1a340f5cd07`;
+  - `notes/s4_reversed_equivariant_no_go.md`:
+    `e5e37b3c970a24729ba6fd0c9607f0c16357c72572af9d309b9325f39e0e18e1`;
+  - `verifiers/verify_s4_reversed_equivariant_no_go.py`:
+    `b688de1375f162debd0dbe4af67ebca68510eb0430cfd287e5108ee6a624c1c0`;
+  - `results/s4_reversed_equivariant_no_go_exact.txt`:
+    `cd925350f08cdfae630faee1d2c9b4608f5f94ab259c67633e346823d90c6db5`.
