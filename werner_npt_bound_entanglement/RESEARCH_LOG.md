@@ -4527,3 +4527,38 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_q2_concurrence_exterior_reduction.md` and
   `verification/verify_n3_q2_concurrence_exterior_reduction.py`.
+
+## 2026-07-29 16:06 PDT — Small counterpencil and exact coupled repair
+
+- Compressed the dense coherent-two-skew counterexample to the binary
+  corner \((\mathbb C^2)^{\otimes3}\), with a one-real-parameter
+  Gaussian-integer pencil
+  \[
+  C_t=xy^\dagger+tze_{000}^\dagger
+  \]
+  whose coefficients have modulus at most \(3\sqrt {10}\).
+- Its exact contractions are
+  \[
+  \begin{aligned}
+  4{\cal J}_2(C_t)&=20t^2-1980t+141,\\
+  8{\cal J}_3(C_t)&=4t^2-708t+5,\\
+  s_1(C_t)s_2(C_t)&=|t|\sqrt{806080}.
+  \end{aligned}
+  \]
+  At \(t=1\), the radical-free gap
+  \(1819^2-4(806080)=84441>0\) proves
+  \({\cal J}_2+s_1s_2/2<0\).
+- The omitted triple-skew sector repairs this entire pencil exactly:
+  \[
+  4({\cal J}_2+2{\cal J}_3+s_1s_2)
+  =24t^2-2688t+146+4|t|\sqrt{806080}>0
+  \]
+  for every real \(t\).  The original endpoint form also has the
+  completed-square certificate
+  \[
+  8Q_3(C_t)
+  =66\left(t-\frac{815}{33}\right)^2+\frac{2880700}{33}>0.
+  \]
+- Exact note and dependency-free checker:
+  `notes/agent_n3_q2_small_qubit_counterfamily.md` and
+  `verification/verify_n3_q2_small_qubit_counterfamily.py`.
