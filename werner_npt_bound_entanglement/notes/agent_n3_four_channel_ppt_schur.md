@@ -330,6 +330,74 @@ genuinely nonnormal.  In the Gram formulation it must violate the
 reversed contraction (26), despite satisfying the ordinary contraction
 (25).
 
+## 4.2 The reversed-Schur problem is an interior six-determinant problem
+
+The unrestricted qutrit two-copy theorem removes the whole
+local-support boundary of (26).  Let
+\[
+ {\cal U}=\operatorname{ran}C,\qquad
+ {\cal V}=\operatorname{ran}C^\dagger
+\]
+be the left and right singular planes of a rank-two matrix, and let
+\[
+ \rho_i^{\cal U}=\operatorname{Tr}_{\bar i}P_{\cal U},
+ \qquad
+ \rho_i^{\cal V}=\operatorname{Tr}_{\bar i}P_{\cal V}.
+\tag{33a}
+\]
+Then
+\[
+ \boxed{\qquad
+ Q_3(C)<0
+ \quad\Longrightarrow\quad
+ \det\rho_i^{\cal U}>0,\quad
+ \det\rho_i^{\cal V}>0
+ \quad(i=1,2,3).
+ \qquad}
+\tag{33b}
+\]
+
+Here is the exact mechanism.  If, for example,
+\(\operatorname{rank}\rho_1^{\cal U}\leq2\), the first physical
+row-support of \(C\) lies in a subspace \(W\subseteq\mathbb C^3\) of
+dimension at most two.  Compressing the first endpoint factor to that
+row-support gives
+\[
+ Z_W=(P_W\otimes I)X_3(P_W\otimes I).
+\tag{33c}
+\]
+This operator is separable across the first row/column pair.  For
+\(\dim W=2\), an explicit decomposition is
+\[
+\begin{aligned}
+ I_4-\frac12|\Phi_2\rangle\langle\Phi_2|
+ =\frac12\sum_{s=\pm1}\bigl(
+ &P_{x,s}\otimes P_{x,-s}
+ +P_{y,s}\otimes P_{y,s}\\
+ &+P_{z,s}\otimes P_{z,-s}\bigr),
+\end{aligned}
+\tag{33d}
+\]
+plus the manifest product term on the unused column direction.  The
+remaining operator \(X_3^{\otimes2}\) is two-block-positive by the
+unrestricted qutrit two-copy theorem.  A separable positive factor
+tensor a two-block-positive factor remains two-block-positive: after
+local square-root filtering, conditioning on a product basis of the
+separable factor leaves Schmidt-rank-at-most-two vectors for the second
+factor.  Hence \(Q_3(C)\geq0\).
+
+If instead a right singular plane has deficient local support, apply
+the same argument to \(C^\dagger\), using \(Q_3(C^\dagger)=Q_3(C)\).
+Since a positive qutrit reduction has rank at most two exactly when its
+determinant vanishes, (33b) follows.
+
+Thus the reversed Schur complement (26) only remains to be controlled
+for isometric anchors with all three local reductions positive definite,
+and a negative test vector would necessarily have a right singular
+plane with the same property.  The complete proof of the tensoring
+lemma and the compressed-factor decomposition is recorded in
+`agent_n3_local_support_boundary.md`.
+
 ## 5. Exact obstruction to a local-determinant spectral gap
 
 For qutrit local spaces, a natural attempted strengthening of (17) is

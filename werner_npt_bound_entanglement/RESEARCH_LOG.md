@@ -1288,3 +1288,95 @@ All timestamps use America/Los_Angeles.
   in this component integrates to an exact-zero curve, explaining the
   vanishing secondary Schur minimum to all orders.  The two
   \(27\)-dimensional formal quartic-flat components remain unclassified.
+
+## 2026-07-29 03:43 PDT — Full qutrit two-copy theorem and the three-copy local-support boundary
+
+- **The unrestricted qutrit two-copy endpoint is proved.**  For every
+  \(C\in M_9(\mathbb C)\) of rank at most two,
+  \[
+  Q_2(C)=\|C\|_2^2-\frac12\left(
+  \|\operatorname{Tr}_1C\|_2^2+
+  \|\operatorname{Tr}_2C\|_2^2\right)
+  \frac14|\operatorname{Tr}C|^2\geq0.
+  \]
+  The proof first establishes the independent qutrit rank-two
+  projector inequality
+  \[
+  P\preceq \rho_A\otimes I+I\otimes\rho_B
+  \qquad
+  (\operatorname{rank}P=2,\ P\subset\mathbb C^3\otimes\mathbb C^3).
+  \]
+  Testing against a Schmidt-diagonal vector reduces this to an exact
+  \(3\times3\) rank-one perturbation.  A Ky Fan argument and the
+  polynomial remainder
+  \[
+  \frac{
+  x_1(x_2-x_3)^2+2(x_2+x_3)^3
+  }{
+  (2x_1+x_2+x_3)(3x_2+x_3)(x_2+3x_3)
+  }\geq0
+  \]
+  prove the operator order.
+- In qutrit Hodge notation, the projector order gives
+  \[
+  {\cal C}_D{\cal C}_D^\dagger+
+  {\cal C}_Z{\cal C}_Z^\dagger\preceq2I
+  \]
+  for every Hilbert--Schmidt orthonormal pair \(D,Z\).  Completing the
+  reversed Hodge block then proves the stronger exact inequality
+  \[
+  \begin{aligned}
+  &\|y\|^2+\|w\|^2+\|y\times D\|^2+\|w\times Z\|^2
+  +2\operatorname{Re}\langle y\times Z,w\times D\rangle\\
+  &\hspace{25mm}\geq
+  \frac12|\langle D,y\rangle+\langle Z,w\rangle|^2.
+  \end{aligned}
+  \]
+  The coefficient \(1/2\) is exactly strong enough to restore the
+  scalar \(z/\sqrt6\) dual coordinate omitted by the traceless tangent
+  problem.  This closes the full two-copy theorem, not only its
+  tangent residual.  The dependency-free exact verifier checks the
+  polynomial identity, mixed-Hodge algebra, operator completion, and
+  scalar normalization.
+- **Same-copy three-copy boundary theorem.**  Let \(C\) have rank at
+  most two on three qutrits, with left and right singular planes
+  \(U=\operatorname{ran}C\) and
+  \(V=\operatorname{ran}C^\dagger\).  If any one-site code reduction
+  of either plane is singular, then
+  \[
+  Q_3(C)\geq0.
+  \]
+  Indeed, if the left plane has local support
+  \(W\subset\mathbb C^3\), \(\dim W\leq2\), the compressed one-site
+  endpoint factor is
+  \[
+  (P_W\otimes I)X_3(P_W\otimes I)
+  =
+  \left(I_W\otimes I_{\bar W}
+  -\frac12|\Phi_W\rangle\langle\Phi_W|\right)
+  P_W\otimes P_{\bar W^\perp}.
+  \]
+  Its \(2\times2\) block has an explicit six-product Pauli
+  decomposition and is separable.  Tensoring a separable positive
+  factor with the now-proved two-copy two-block-positive operator
+  preserves two-block positivity.  The right-plane case follows from
+  \(Q_3(C^\dagger)=Q_3(C)\).
+- Consequently, every qutrit three-copy counterexample must be
+  genuinely interior:
+  \[
+  \det\rho_i^U>0,\qquad\det\rho_i^V>0
+  \qquad(i=1,2,3).
+  \]
+  This is a nonlinear common-code restriction and uses no extra copy,
+  long flag, normality, reality, or equal-singular-value assumption.
+- The stronger conjectural cofactor gap
+  \(M_Q(P_U)\succeq2{\cal H}(U)\) is **not** claimed.  On a boundary
+  \(\det\rho_i=0\), it reduces to a quantitative determinant-weighted
+  two-copy lemma.  The theorem above proves only the unshifted
+  positivity needed for \(Q_3\geq0\).
+- Exact reversed-Schur audits also ruled out two tempting generic
+  closures: ordinary Gram positivity plus floors/unitality/Kadison
+  bounds does not imply the reversed Schur complement, and separate
+  sharp quaternion-channel multiplier norms cannot be combined
+  scalarly.  Any full three-copy proof must mix the common tensor-Fierz
+  channels coherently before taking norms.
