@@ -1910,7 +1910,7 @@ All timestamps use America/Los_Angeles.
   \[
   s_1(D)^2+s_2(D)^2
   \leq
-  24|c|^2+12\sum_i\|A_i\|_2^2
+  24|c|^2+12\sum_i\|A_i\|_2^2+
   2\sum_{i<j}\|B_{ij}\|_2^2.
   \]
 - Isolated the first sharp subproblem:
@@ -1965,3 +1965,44 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_dual_kyfan_pair_sector.md`.
   Dependency-free checker:
   `verification/verify_n3_dual_kyfan_pair_sector.py`.
+
+## 2026-07-29 — Pair-sector critical equations and boundary reduction
+
+- For a normalized rank-two local maximum, put
+  \(D=\Pi_2C\), \(f=\|D\|_2^2\), and
+  \(C=U\Sigma V^\dagger\).  The complete first-order system is
+  \[
+  D=fC+R,\qquad U^\dagger R=0,\qquad RV=0,
+  \]
+  equivalently
+  \(D^\dagger C=fC^\dagger C\) and
+  \(DC^\dagger=fCC^\dagger\).  The complementary critical block has
+  the exact norm
+  \[
+  \|R\|_2^2=f(1-f).
+  \]
+- The second variation along every rank-preserving local-filter line
+  gives
+  \[
+  \|\Pi_2(A_iC)\|_2^2\leq f\|A_iC\|_2^2,\qquad
+  \|\Pi_2(CB_i)\|_2^2\leq f\|CB_i\|_2^2.
+  \]
+  If \(A\) or \(B\) has rank at most two, the filtered matrix lies on
+  the established one-site-support boundary and satisfies the
+  sharper constant \(2/3\).
+- Therefore a hypothetical full-support critical point with
+  \(f>2/3\) induces, at every left and right site, a \(3\times3\)
+  local-filter quadratic form which is nonnegative on every
+  rank-at-most-two filter but negative at the full-rank identity
+  direction; the identity is also its generalized eigenvector.  This
+  is the remaining full-support critical lemma.
+- Unrestricted complex alternating critical iteration repeatedly
+  converged to \(f=2/3\).  Every generic limiting equality point
+  checked had rank-two one-site reductions at all three sites on both
+  singular planes.  Twenty random genuinely full-support right
+  planes had fixed-plane maxima only between approximately \(0.476\)
+  and \(0.530\).  These are discovery observations, not proof.
+- Exact derivation:
+  `notes/agent_n3_pair_sector_critical_boundary.md`.
+  Dependency-free checker:
+  `verification/verify_n3_pair_sector_critical_boundary.py`.
