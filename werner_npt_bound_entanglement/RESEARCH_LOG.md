@@ -3975,3 +3975,37 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_triple_skew_reduction.md`,
   `verification/verify_n3_triple_skew_reduction.py`.
+## 2026-07-29 16:42 PDT — Paired-Pluecker exterior determinant
+
+- Eliminated the remaining logical-vector optimization from the
+  corrected common-plane floor.  For the Slater vector
+  \(\Omega_{\cal L}\in\bigwedge^4{\cal K}\), let \(m_\nu\) be its
+  mass with \(\nu_k\) factors in sector \({\cal K}_k\).  Then the
+  sector traces and scalar shift are the first moments
+  \[
+  r_k=\sum_\nu\nu_km_\nu,\qquad
+  s=\frac12\sum_\nu(\nu_1-\nu_2+3\nu_3)m_\nu,
+  \]
+  while the exact determinant of the scaled floor is
+  \[
+  \sum_\nu m_\nu(1+s)^{\nu_0}(s-1)^{\nu_1}
+                 s^{\nu_2}(s+4)^{\nu_3}.
+  \]
+- Once the scalar trace bound \(s\ge0\) is proved, nonnegativity of
+  this single determinant is sufficient for the full matrix floor.
+  Strict block positivity handles \(s>0\); real-analytic continuity
+  handles its boundary.
+- Identified the exact remaining realizability input:
+  \(\Omega_{\cal L}\) is the fixed \((2,2)\)-Young image of the two
+  common decomposable bivectors \(\omega_U,\omega_V\).  Thus the
+  remaining statement is a paired Segre--Pluecker inequality, not an
+  inequality for arbitrary exterior occupation masses.
+- Constructed an exact relaxed obstruction.  Three sector-zero
+  directions and one sector-one maximally-entangled logical direction
+  give a block-positive compression \(I-2P_{\Phi_2}\), shift \(s=1/2\),
+  and floor spectrum \((-1/2,3/2,3/2,3/2)\).  Hence sector data,
+  ordinary four-plane decomposability, and block positivity are still
+  insufficient; the paired Pluecker relations are essential.
+- Exact note and checker:
+  `notes/agent_n3_pair_common_plane_exterior_determinant.md`,
+  `verification/verify_n3_pair_common_plane_exterior_determinant.py`.
