@@ -17,6 +17,14 @@
    \(SU(3)\) \(\mathcal{ADE}\) Graphs*, arXiv:0906.4307.
 7. L. Chen and L. Yu, *Nonlocal and controlled unitary operators of
    Schmidt rank three*, arXiv:1407.5464.
+8. R. Conti and G. Lechner, *Yang--Baxter endomorphisms*,
+   arXiv:1909.04127.
+9. A. Bytsko, *On orthogonal projections related to representations of
+   the Hecke algebra on a tensor space*, arXiv:2212.13116.
+10. A. Bytsko, *Two relations for the antisymmetrizer in the Hecke
+    algebra*, arXiv:2203.08664.
+11. R. Conti and F. Fidaleo, *Braided Endomorphisms of Cuntz Algebras*,
+    Math. Scand. 87 (2000), 93--114.
 
 ## Normalization notes requiring care
 
@@ -52,6 +60,31 @@
   post-unitaries. It cannot be converted into a one-leg-commutant MASA
   statement and therefore does not combine automatically with the new
   controlled-leg divisibility theorem.
+- Conti--Lechner identify the one-site algebraic fixed points with a leg
+  commutant, but distinguish this sharply from von Neumann ergodicity.
+  Their Proposition 7.8 gives the necessary ergodicity condition
+  \(\|\phi_R(R)\|_2^2=1/d^2\). Automatic standardness gives \(1/4\) in the
+  exceptional class, so every \(d>2\) exceptional solution is nonergodic.
+  Their box-sum examples show that nonergodicity can coexist with no
+  nontrivial algebraic fixed points. Thus it does not by itself supply a
+  leg-commutant projection.
+- Lechner's tensor-product operation multiplies dimensions and pairwise
+  multiplies spectra. The exceptional spectrum has trivial multiplicative
+  stabilizer, so this operation preserves the class only for an identity
+  spectator. The displayed definition and Proposition 3.6 were checked both
+  by extraction and by rendering pages 15--16 of arXiv:2603.20158v1.
+- In Bytsko's projection convention the exceptional relation has
+  \(Q=\sqrt3\) and Hecke phase \(e^{i\pi/6}\); multiplying his generator by
+  \(e^{i\pi/6}\) gives the present normalization. His parameter is
+  \(k=3d^3/8\), and his characteristic matrix has eigenvalues \(1\) and
+  \(1/3\) with multiplicities \(d^3/8\) and \(3d^3/8\). At \(d=6\) these
+  are \(27\) and \(81\), so the theorem contains no hidden even-degeneracy
+  obstruction. See `notes/bytsko_characteristic_matrix_audit.md`.
+- Conti--Fidaleo define and give sufficient criteria for standard braided
+  Cuntz endomorphisms, but the audited results do not classify all local
+  tensor realizations of statistical dimension two in arbitrary Cuntz
+  rank. The phrase “standard braided, index \(4\)” therefore does not by
+  itself impose \(4\mid d\).
 
 ## Open source-audit questions
 
@@ -63,3 +96,7 @@
 - Is the invariant odd-leg-projection divisibility lemma, or an equivalent
   restricted common-sector count, already recorded in subfactor,
   commuting-square, or biunitary-connection language?
+- Does finite depth of the \(H_n(3,6)\) braid subfactor add a hypothesis
+  strong enough to turn Conti--Lechner nonergodicity into an algebraic
+  fixed point? This implication is not in the audited source and must not
+  be assumed.

@@ -64,6 +64,139 @@ even-rank projections. A global spectrum theorem now requires either:
    commutants; or
 3. constructing a noncontrolled \(d\equiv2\pmod4\) solution.
 
+The current assumption audit further narrows what can supply item 1:
+
+```text
+all minimal leg projections even rank
+        |
+        +--> C_L = direct sum (M_m tensor I_(2a))
+        +--> C_R = direct sum (M_m~ tensor I_(2b))
+                       |
+                       +--> all central and endpoint transportation
+                            equations admit the product solution
+                            k_(alpha,beta,lambda,n)
+                            = a_alpha b_beta D_lambda s^(n-2)
+```
+
+Thus no remaining denominator can come from endpoint multiplicities.
+Any obstruction must use the relative position of the right leg algebra of
+\(P_{12}\) and the left leg algebra of \(P_{23}\) on the same middle site,
+or bypass leg commutants entirely.
+
+One even-block factor is now excluded spatially:
+
+```text
+M_m tensor I_2 contained in one leg commutant, d=2m and m odd
+        |
+        +--> H = I_m tensor K
+        +--> automatic standardness removes the scalar Pauli term of K
+        +--> K²=I forces the three Hermitian Pauli coefficients to commute
+                       |
+                       +--> simultaneous diagonalization gives rank-one
+                            projections in the opposite leg commutant
+                                      |
+                                      +--> 8 | d², contradiction
+```
+
+At \(d=6\), this removes \(M_3\otimes I_2\) from both endpoints. It does
+not remove the scalar algebra or the surviving block types
+\[
+\mathbb C I_4\oplus\mathbb C I_2,\qquad
+(M_2\otimes I_2)\oplus\mathbb C I_2,\qquad
+\mathbb C I_2\oplus\mathbb C I_2\oplus\mathbb C I_2.
+\]
+For the last type, exact enumeration shows that neither the nine two-site
+cell ranks nor the nine endpoint common ranks are forced to be uniform.
+Any further reduction must retain the actual cell operators and their
+relative \(U(6)\) position, not only transportation margins.
+
+Any shared endpoint atom is also excluded:
+
+```text
+one left and one right C³ rank-two atom span the same 2-space
+        |
+        +--> shared-cell restriction is a base-dimension-two cubic
+                       |
+                       +--> ranks 1,3: determinant gap
+                       +--> rank 2: known d=2 emptiness
+                       +--> ranks 0,4: scalar
+                                      |
+                                      +--> mixed colors propagate the scalar
+                                                   |
+                                                   +--> partial-trace contradiction
+```
+
+Thus only genuinely transverse relative positions, with no shared
+two-dimensional atom, remain in the three-atom/three-atom branch.
+
+The shared-atom argument in fact upgrades to the entire pair of leg
+commutants at \(d=6\):
+
+```text
+non-scalar C_L(P) intersection C_R(P)
+        |
+        +--> C17 gives only even-rank projections
+        +--> rank 4 replaced by its rank-2 complement
+                       |
+                       +--> common 2-space W
+                              |
+                              +--> H restricted to W tensor W is a d=2 cubic
+                                      |
+                                      +--> determinant gap + d=2 emptiness
+                                           force a scalar cell
+                                                  |
+                                                  +--> cubic propagates scalar
+                                                       to W tensor V
+                                                              |
+                                                              +--> partial-trace
+                                                                   contradiction
+```
+
+Therefore
+\[
+\mathcal C_L(P)\cap\mathcal C_R(P)=\mathbb C I_6.
+\]
+This excludes aligned and flip-symmetric even-block branches, but exact
+relative-position models show it does not exclude two transverse
+non-scalar leg algebras or scalar leg commutants.
+
+Two broad construction branches are now also closed:
+
+```text
+diagonal U(m) color equivariance, m odd
+        |
+        +--> A tensor P_sym + B tensor P_asym
+        +--> restriction to Sym^3(color) gives a d=2 cubic
+                       |
+                       +--> trace-zero case: known d=2 emptiness
+                       +--> trace +/-2 case: determinant 1/16 < 1/9
+
+crossed factorization d=3*2 or 2*3
+        |
+        +--> rank-three projection in one leg commutant
+                       |
+                       +--> controlled-leg theorem excludes d=6
+```
+
+The first new shifted-intersection relation is also now exact:
+
+```text
+three-site common projection e + Markov trace
+        |
+        +--> zero variance of e P_shift e
+                       |
+                       +--> e_123 e_234 e_123 = e_123 / 4
+                                      |
+                                      +--> d^4/8 generic blocks
+                                      +--> still only 2 | d
+```
+
+The accompanying \(d=6\) limitation countermodel proves that this
+marginal/angle package alone is insufficient. Any use of it in a spectrum
+proof must retain the fact that \(e\) is the entire common intersection of
+the original projections and must couple back to the generic
+squared-angle-\(1/3\) sector.
+
 ## Candidate construction chain
 
 ```text

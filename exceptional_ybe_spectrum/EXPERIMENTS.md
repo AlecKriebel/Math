@@ -310,3 +310,205 @@ reproducible; only its final exact witness is reproducible.
 - Interpretation:
   channel spectra and positivity cannot prove divisibility by four without
   using the shared involutive three-site realization.
+
+## E15 — Weyl cubic deformations and full-color equivariance
+
+- Runs: 2026-07-28
+- Exact cubic point:
+  \[
+  H_0=\frac{YY\otimes I_9+(XX+ZZ)\otimes F_3}{\sqrt3}
+  \]
+  satisfies the full cubic relation and has minimal polynomial
+  \(3x^2+2\sqrt3x-3\), hence is not an involution.
+- Exact equivariant theorem:
+  every diagonally \(U(m)\)-equivariant exceptional candidate on
+  \(\mathbb C^2\otimes\mathbb C^m\) is excluded when \(m\) is odd.
+  The final \(m=3\) signatures reduce to a rank-one two-qubit projection;
+  tensor overlap gives determinant at most \(1/16\), whereas the cubic
+  requires at least \(1/9\).
+- Exact pairing theorem:
+  all signed, permutation, and orthogonal pairings that preserve the two
+  nine-dimensional Weyl blocks, including a whole-block interchange, fail
+  involutivity.
+- Numerical deformation:
+  the cubic tangent Jacobian at \(H_0\) has numerical rank \(90\) and
+  nullity \(81\), matching a realified \(\mathfrak u(9)\) space. Seeded
+  optimization found no simultaneous cubic/involution point. These tangent
+  and optimization statements remain numerical only.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_weyl_h0_and_swap_block_no_go.py`.
+- Raw exact output:
+  `results/weyl_h0_swap_block_exact.txt`.
+
+## E16 — complete endpoint-commutant arithmetic audit
+
+- Run: 2026-07-28
+- Exact all-level result:
+  for \(d=2s\), minimal left/right leg atoms of ranks \(2a_\alpha\) and
+  \(2b_\beta\) admit the nonnegative integral endpoint multiplicities
+  \[
+  k_{\alpha\beta,\lambda,n}
+  =a_\alpha b_\beta D_\lambda s^{n-2}.
+  \]
+  They satisfy every row, column, total-dimension, and branching equation.
+- \(d=6\) exhaustion:
+  precisely five represented \(C^*\)-algebra types have only even-rank
+  minimal projections; all \(25\) ordered left/right pairs pass.
+- Assumption guards:
+  exact standard \(d=6\) reflections were built with scalar and
+  \(M_3\otimes I_2\) leg commutants. Exact nonzero cubic entries confirm
+  that neither guard is a Yang--Baxter witness.
+- Operator-algebra audit:
+  Conti--Lechner ergodicity is strictly stronger than having scalar
+  algebraic one-leg fixed points. The exceptional partial trace violates
+  their necessary ergodicity norm condition for every \(d>2\), but their
+  examples show that this does not force a finite-level fixed projection.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_leg_commutant_obstruction_audit.py`.
+- Raw output:
+  `results/leg_commutant_obstruction_audit_exact.txt`.
+
+## E17 — canonical intersection projections on four sites
+
+- Run: 2026-07-28
+- Universal theorem:
+  for the common-one projections \(E=e_{123}\) and \(F=e_{234}\),
+  \[
+  E P_{34}E=\frac12E,\qquad EFE=\frac14E,\qquad FEF=\frac14F.
+  \]
+  Common-zero projections satisfy the complementary formulas, and shifted
+  opposite signs are orthogonal.
+- Exact marginals:
+  \(\operatorname{Tr}_3e=dP_{12}/4\), the reversed formula holds on the
+  other endpoint, and every one-site marginal of \(e\) is \(d^2I/8\).
+  The uncontracted middle marginal remains generally nonscalar.
+- Arithmetic:
+  \(E,F\) have \(d^4/8\) generic angle-\(1/4\) blocks and a
+  \(3d^4/4\)-dimensional common kernel. At \(d=6\), the counts are \(162\)
+  and \(972\), so no new factor of two appears.
+- Hostile audit:
+  the canonical partial isometry has no intrinsic determinant or QCA index;
+  its full-space direct rotation has order three and determinant one on
+  every block. No Frobenius--Schur parity follows.
+- Limitation countermodel:
+  an exact GHZ-qubit construction stabilized by \(\mathbb C^3\) satisfies
+  the complete derived marginal and four-site angle package at \(d=6\)
+  while failing the original cubic/full-intersection condition.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_intersection_projection_structure.py`.
+- Raw output:
+  `results/intersection_projection_structure_exact.txt`.
+
+## E18 — tensor-product spectrum audit
+
+- Run: 2026-07-29
+- Source:
+  the tensor-product definition immediately before Lechner,
+  Proposition 3.6, checked by extraction and visual rendering of pages
+  15--16.
+- Exact result:
+  the only unitary scalar \(\mu\) satisfying
+  \[
+  \mu\{-1,e^{i\pi/3}\}
+  =\{-1,e^{i\pi/3}\}
+  \]
+  is \(\mu=1\). Hence a tensor-product factor preserving the exceptional
+  class must be an identity matrix.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_tensor_product_extension_no_go.py`.
+- Interpretation:
+  the standard operation gives exactly identity stabilization and cannot
+  turn the \(d=4\) witness into a \(d=6\) witness.
+
+## E19 — factor-leg no-go and full rank-two bookkeeping
+
+- Run: 2026-07-29
+- Exact theorem:
+  for \(d=2m\) with \(m\) odd, a unital
+  \(M_m(\mathbb C)\otimes I_2\) factor in either one-leg commutant is
+  impossible. Commutant reduction and standardness leave three Pauli
+  coefficients; involutivity makes them commute, producing rank-one
+  projections in the opposite leg commutant and contradicting
+  \(8\mid d^2\).
+- Exact assumption audit at \(d=6\):
+  the three-rank-two-atom branch admits 217 labelled cell-rank tables and
+  1540 labelled endpoint common-rank tables. Uniform ranks are therefore
+  not automatic. Exact cellwise-standard and abstract angle-\(1/3\) guards
+  exercise the nonuniform cases.
+- Exact shared-atom theorem:
+  the left and right three-atom color algebras cannot share even one
+  rank-two atom. A shared cell reduces to the base-\(2\) problem, becomes
+  scalar, propagates across its row, and contradicts the scalar partial
+  trace. Thus any surviving \(\mathbb C^3/\mathbb C^3\) branch has
+  genuinely transverse relative position in \(U(6)\).
+- Numerical falsifier:
+  a new all-rank-two-cell search allows the relative color decompositions
+  to vary over all of \(U(6)\), rather than only \(U(3)\otimes I_2\).
+  Four declared seeds had best residual \(6.010858542676606\). This is
+  negative evidence only and does not cover nonuniform cell ranks.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_factor_m3_opposite_control_no_go.py`.
+- Raw exact output:
+  `results/factor_m3_opposite_control_no_go_exact.txt`.
+
+## E20 — all nine three-color cell-rank orbits
+
+- Run: 2026-07-29
+- Scope:
+  the \(d=6\) branch in which both one-leg commutants contain three
+  rank-two central atoms.  The relative color position varies over all of
+  \(U(6)\), every four-dimensional cell is an arbitrary reflection of its
+  prescribed signature, and the nine canonical rank tables cover all
+  \(217\) labelled possibilities modulo the proved discrete symmetries.
+- Predeclaration:
+  `results/d6_threecolor_rankpattern_seed_manifest.json` fixes one seed
+  and 800 iterations for each of the nine rank-pattern orbits.
+- Gradient guard:
+  the combined cell-block/\(U(6)\) descent direction agrees with an
+  independently assembled central difference to relative error
+  \(7.013199327717132\times10^{-9}\).
+- Numerical outcome:
+  no run found a candidate.  The final cubic residuals ranged from
+  \(6.000000000000004\) to \(16.552374914369093\).
+- Interpretation:
+  NUMERICAL_EVIDENCE only.  One seed per orbit is not exhaustive and
+  proves no nonexistence statement, even inside this branch.
+- Replay:
+  `scripts/d6_threecolor_rankpattern_search.py` and
+  `scripts/check_d6_threecolor_rankpattern_gradient.py`.
+- Raw output:
+  `results/d6_threecolor_rankpattern_runs.jsonl`,
+  `results/d6_threecolor_rankpattern_summary.txt`, and
+  `results/d6_threecolor_rankpattern_gradient_check.txt`.
+
+## E21 — common-leg and two-block audit at \(d=6\)
+
+- Run: 2026-07-29
+- Universal exact theorem:
+  every hypothetical \(d=6\) exceptional projection satisfies
+  \[
+  \mathcal C_L(P)\cap\mathcal C_R(P)=\mathbb C I_6.
+  \]
+  A common rank-two subspace gives a base-\(2\) cubic cell; all non-scalar
+  ranks are excluded, scalar propagation then contradicts the vanishing
+  partial trace.  C17 turns every nontrivial common projection into a
+  rank-two one by complementation.
+- Consequences:
+  aligned and tensor-flip-symmetric realizations of
+  \(\mathbb C I_4\oplus\mathbb C I_2\) and
+  \((M_2\otimes I_2)\oplus\mathbb C I_2\) are impossible.
+- Hostile audit:
+  exact permutation conjugates put every ordered pair of those algebra
+  types in scalar relative intersection, and exact abstract
+  \(216\)-dimensional cubic blocks realize all endpoint multiplicities.
+  Thus neither algebra type is excluded in arbitrary transverse position.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_d6_two_block_leg_types.py`.
+- Raw output:
+  `results/d6_two_block_leg_types_exact.txt`.

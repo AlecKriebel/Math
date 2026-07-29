@@ -147,3 +147,120 @@
 - The unresolved problem is now sharply localized: construct or exclude a
   genuinely noncontrolled shared involutive realization whose two
   one-leg commutants contain only even-rank projections.
+
+## 2026-07-28 23:56 PDT — Full-color and endpoint arithmetic audited
+
+- Rewrote the Weyl channel countermodel as the exact cubic point
+  \[
+  H_0=(YY\otimes I_9+(XX+ZZ)\otimes F_3)/\sqrt3.
+  \]
+  Its wrong quadratic stratum is now certified without dense matrices.
+- Proved that no diagonally \(U(m)\)-equivariant exceptional solution exists
+  on \(\mathbb C^2\otimes\mathbb C^m\) for odd \(m\). The only unbalanced
+  \(m=3\) possibility is killed by the basis-free determinant gap
+  \(1/16<1/9\).
+- Exactly excluded all Weyl Schmidt pairings preserving or interchanging
+  the two nine-dimensional color blocks. General block-mixing deformations
+  remain numerical.
+- Exhausted all one-leg \(C^*\)-algebra types compatible with the
+  odd-leg-projection theorem at \(d=6\). Every one-sided and two-ended
+  central multiplicity equation has an explicit nonnegative integral
+  product solution; all \(25\) endpoint pairs pass.
+- Audited Conti--Lechner's distinction between algebraic fixed points and
+  von Neumann ergodicity. Exceptional solutions with \(d>2\) are
+  nonergodic, but that fact alone does not force a finite-level or one-site
+  fixed projection.
+- Observed that the complete crossed-factor face ansatz is already excluded
+  exactly by the rank-three leg projection on one side. The genuinely
+  surviving controlled \(d=6\) face branch has rank-two atoms on both
+  sides.
+- No complete spectrum theorem or \(d=6\) witness has yet been obtained.
+
+## 2026-07-29 00:04 PDT — Four-site intersection law proved
+
+- For arbitrary exceptional \(P\), proved by a faithful-trace
+  zero-variance argument that the shifted common-one projections satisfy
+  \(e_{123}e_{234}e_{123}=e_{123}/4\). Common-zero projections satisfy the
+  same relation, and opposite signs are orthogonal.
+- Derived all forced outer and one-site marginals of the common projections.
+  The middle two-site marginal is positive with maximally mixed one-site
+  marginals but need not be scalar.
+- Audited determinant, Clifford, QCA-index, Frobenius--Schur, and marginal
+  purity routes. The exact block count is \(d^4/8\) and still forces only
+  evenness.
+- Built an exact \(d=6\) GHZ-times-\(\mathbb C^3\) limitation model
+  satisfying the entire derived marginal/angle package while failing the
+  original cubic/full-intersection condition.
+- Independently replayed the universal scalar certificate, the dense exact
+  \(d=4\) witness over \(\mathbb Q(\sqrt2,\sqrt3)\), and the \(d=6\)
+  limitation model. All checks passed.
+
+## 2026-07-29 00:15 PDT — Standard tensor-product route closed
+
+- Re-audited the dimension-changing operation in Lechner's classification
+  from the source PDF, including a visual check of pages 15--16.
+- Proved that the multiplicative stabilizer of
+  \(\{-1,e^{i\pi/3}\}\) is trivial. Hence a tensor product remains in the
+  exceptional class only when its second factor is an identity spectator.
+- This rigorously explains why the published construction yields dimensions
+  \(4m\) but supplies no route to \(d=6\). Non-product gluing remains open.
+
+## 2026-07-29 00:35 PDT — Odd factor leg excluded; rank-two audit corrected
+
+- Proved for every \(d=2m\) with \(m\) odd that neither one-leg commutant
+  can contain \(M_m(\mathbb C)\otimes I_2\). Automatic standardness and
+  involutivity turn such a factor into rank-one control on the opposite
+  leg, contradicting the controlled-leg divisibility theorem.
+- Independently replayed the Pauli coefficient separation, factor-form
+  guard, opposite rank-one controls, and the \(8\nmid36\) contradiction.
+- Exhausted the integer bookkeeping for the remaining \(d=6\) branch with
+  three rank-two central atoms. The nine cell ranks and nine endpoint
+  intersection ranks are not forced to be uniform: 217 and 1540 labelled
+  tables survive, respectively.
+- Proved the stronger fact that left/right three-color decompositions
+  cannot share even one rank-two atom. The shared cell reduces to the
+  empty base-\(2\) problem or the rank-one determinant gap; scalar
+  propagation across its row then contradicts automatic standardness.
+  Any surviving three-color branch must therefore be genuinely transverse.
+- Broadened the all-rank-two numerical falsifier to arbitrary relative
+  \(U(6)\) position. Four reproducible runs found no candidate, but this
+  is neither a proof within that subansatz nor a test of the nonuniform
+  rank branches.
+- Audited Bytsko's \(Q=\sqrt3\) characteristic-matrix and
+  antisymmetrizer formulations. Their exact multiplicities are
+  \(d^3/8\) and \(3d^3/8\), so they recover the existing evenness
+  obstruction but contain no additional parity condition.
+
+## 2026-07-29 01:03 PDT — Every three-color rank orbit sampled
+
+- Extended the full-relative-\(U(6)\) falsifier from uniform
+  signature-\((2,2)\) cells to the nine canonical cell-rank patterns
+  representing all \(217\) standardness-compatible rank tables.
+- Predeclared one seed and 800 iterations per orbit before running them.
+  An accidental system-Python pilot was interrupted and retained
+  separately; the declared runs were restarted from the same seeds under
+  the project virtual environment.
+- Verified the combined block and relative-unitary gradient against an
+  independently assembled directional derivative with relative error
+  \(7.013199327717132\times10^{-9}\).
+- None of the nine runs approached a witness.  The smallest final cubic
+  residual was \(6.000000000000004\), in orbit \(7\).
+- Status remains NUMERICAL_EVIDENCE.  This closes a discrete coverage gap
+  in the falsifier but is not an exhaustive optimization certificate and
+  does not change the unresolved spectrum.
+
+## 2026-07-29 01:12 PDT — The two leg commutants have scalar intersection
+
+- Strengthened the shared-color-atom argument to a basis-free theorem:
+  every hypothetical \(d=6\) solution has
+  \(\mathcal C_L(P)\cap\mathcal C_R(P)=\mathbb C I_6\).
+- The controlled-leg theorem makes every common projection even-rank.
+  In six dimensions it therefore yields a rank-two projection after
+  complementation.  Its \(2\times2\) cubic cell is scalar; the cubic
+  propagates this scalar to a full row and contradicts automatic
+  standardness.
+- This excludes aligned and tensor-flip-symmetric versions of both
+  surviving two-block algebra types.
+- Independently checked the proof and exact verifier.  Exact permutation
+  and abstract-cubic countermodels show that arbitrary transverse
+  one-sided block types still survive the present invariants.

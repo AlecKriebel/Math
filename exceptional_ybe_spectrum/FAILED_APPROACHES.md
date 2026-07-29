@@ -136,3 +136,108 @@ Frobenius--Schur/Brauer arguments all permit \(d=2s\) with odd \(s\).
 Consequently none can prove \(4\mid d\) without an additional theorem using
 the simultaneous tensor placements \(P\otimes I\) and \(I\otimes P\).
 See `notes/track_coherence_parity.md`.
+
+## Full diagonal color symmetry and fixed Weyl pairings
+
+The exact Weyl cubic point does not deform to an involution within any
+pairing that preserves its two nine-dimensional color blocks. More broadly,
+Schur--Weyl reduction excludes every diagonally \(U(m)\)-equivariant
+exceptional solution on
+\(\mathbb C^2\otimes\mathbb C^m\) when \(m\) is odd.
+
+This closes the natural full-color mechanism in every unresolved
+dimension, but it does not cover smaller finite symmetries, arbitrary
+operator-Schmidt frames, or non-equivariant matrices. The general
+\(O(19)\) deformation search remains numerical outside the exactly excluded
+block-preserving subfamilies. See
+`notes/track_weyl_h0_deformation.md`.
+
+## Endpoint-commutant arithmetic and endomorphism ergodicity
+
+Once odd-rank leg projections are excluded, all remaining represented
+finite-dimensional \(C^*\)-algebra types pass the complete one-sided and
+two-ended multiplicity arithmetic. At \(d=6\), the scalar algebra,
+\(M_3\otimes I_2\), and all three even-atom direct-sum types survive every
+such test.
+
+The associated Yang--Baxter endomorphism is nonergodic for every exceptional
+solution with \(d>2\), but nonergodicity need not produce an algebraic or
+one-site fixed point. Therefore neither endpoint dimensions, Jones index,
+nor the currently available fixed-point theorem closes the scalar/even-atom
+branch. The missing datum is the relative position of the two endpoint
+algebras on the middle tensor factor. See
+`notes/leg_commutant_obstruction_audit.md`.
+
+## Crossed-factor versus equal-color face models
+
+The crossed-factor \(3\times2\) and \(2\times3\) face ansätze are now
+excluded exactly: one leg always has a rank-three control projection, so the
+controlled-leg divisibility theorem applies. This supersedes their negative
+numerical runs.
+
+The equal-size three-color model instead has rank-two atoms on both legs.
+Only its cyclic low-Schmidt subfamily is excluded exactly. The general
+relative-position and arbitrary-block problem remains open.
+
+## Four-site intersection parity
+
+The canonical common-one projection on three sites obeys a new shifted
+Temperley--Lieb-like relation with squared angle \(1/4\). Its exact
+four-site block count is \(d^4/8\), which is integral for every even \(d\).
+The induced partial isometry acts between two different subspaces and has
+no basis-independent determinant; the canonical full-space direct rotation
+has determinant one on each individual block.
+
+An exact \(d=6\) GHZ-times-spectator countermodel satisfies all marginals,
+same-sign \(1/4\)-angle relations, and opposite-sign orthogonality derived
+in this route while failing the original cubic because the chosen
+projection is not the full common intersection. Thus these consequences
+cannot be detached from the full-intersection/generic-\(1/3\)-sector data
+and used as a parity theorem. See
+`notes/intersection_projection_structure.md`.
+
+## Nontrivial tensor-product extensions
+
+Lechner's tensor product has product dimension and product spectrum. The
+multiplicative stabilizer of the exceptional spectrum
+\(\{-1,e^{i\pi/3}\}\) is only \(\{1\}\). Therefore an exceptional tensor
+product can use only an identity spectator factor. This recovers the known
+\(4m\) construction but cannot generate \(d=6\).
+
+The argument does not cover non-product colored gluing or off-diagonal
+couplings. See `notes/tensor_product_extension_no_go.md`.
+
+## Uniform rank-two cells and the odd factor branch
+
+The endpoint arithmetic initially made \(M_3\otimes I_2\) look viable at
+\(d=6\). It is now excluded by a genuinely spatial argument: factor
+commutation reduces one local leg to a scalar-free qubit Pauli expansion,
+and involutivity forces rank-one control on the opposite leg. This
+contradicts the controlled-leg divisibility theorem.
+
+That proof does **not** apply after weakening the factor to three central
+rank-two atoms. In the weakened branch, standardness permits 217 labelled
+two-site cell-rank tables, and the endpoint equations permit 1540 labelled
+common-rank tables. In particular, assuming nine rank-two cells or uniform
+endpoint multiplicity \(3\) is unjustified. The full-\(U(6)\) numerical
+search covers only the uniform-cell subansatz and is negative evidence,
+not a classification. See `notes/rank_two_leg_commutant_branches.md`.
+
+More is excluded exactly: the two three-atom decompositions cannot share
+even one rank-two atom. A shared cell becomes scalar by the base-\(2\)
+classification and determinant gap, and scalar propagation contradicts
+the partial trace. This still leaves genuinely transverse relative
+\(U(6)\) positions.
+
+The same proof now rules out *any* nontrivial intersection of the two
+leg commutants at \(d=6\), because every nontrivial common projection has
+rank two or has a rank-two complement.  This kills aligned and
+flip-symmetric versions of the two-block algebras as well.  It does not
+kill arbitrary relative position: explicit permutation conjugates of all
+remaining two-block algebra pairs have scalar intersection, and abstract
+three-strand cubic models realize their complete endpoint counts.
+
+The expanded numerical falsifier sampled all nine discrete cell-rank
+orbits in the three-color branch with an arbitrary relative \(U(6)\).
+Its best residual was \(6\), but one seed per orbit is not exhaustive and
+cannot be promoted to a no-go theorem.
