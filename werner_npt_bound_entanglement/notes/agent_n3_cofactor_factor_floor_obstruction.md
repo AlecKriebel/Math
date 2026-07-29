@@ -181,3 +181,89 @@ respectively.  Thus a general rank-one diagonalization must retain
 matrix-pencil information beyond the two local marginal spectra.
 This does not rule out a lower bound expressed only through marginal
 invariants; it rules out an exact spectral formula based only on them.
+
+## 4. The full endpoint operator repairs a sharp reduction-order zero
+
+The failure of a determinant floor for the intermediate reduction-order
+operator does not propagate to the full endpoint operator.  This can be
+seen exactly on the one-parameter family
+\[
+ D=E_{00},\qquad
+ Z=\sqrt a\,E_{11}+\sqrt{1-a}\,E_{22},
+ \qquad 0<a<1,                                            \tag{22}
+\]
+and
+\[
+ |U_a\rangle=|0\rangle_K|D\rangle\!\rangle+
+              |1\rangle_K|Z\rangle\!\rangle,\qquad
+ R_a=|U_a\rangle\langle U_a|.                             \tag{23}
+\]
+The two matrices \(D,Z\) are Hilbert--Schmidt orthonormal, so
+\(\operatorname{Tr}_{12}R_a=I_K\).  Both physical marginals equal
+\[
+ \rho_1=\rho_2=\operatorname{diag}(1,a,1-a).
+\tag{24}
+\]
+Put \(x=a(1-a)\).  Thus
+\[
+ \det\rho_1=\det\rho_2=x,\qquad
+ \delta:=\det\rho_1+\det\rho_2=2x.                        \tag{25}
+\]
+
+The only nondiagonal block of \(M_{Q,2}(R_a)\) is its restriction to
+\[
+ {\cal S}=\operatorname{span}\{
+ |0,0,0\rangle,\ |1,1,1\rangle,\ |1,2,2\rangle\}.
+\]
+In that ordered basis it is
+\[
+ H_a=
+ \begin{pmatrix}
+ 1&\sqrt a&\sqrt{1-a}\\
+ \sqrt a&4-3a&\sqrt{x}\\
+ \sqrt{1-a}&\sqrt{x}&1+3a
+ \end{pmatrix}.                                          \tag{26}
+\]
+Its characteristic polynomial factors as
+\[
+ \det(\lambda I-H_a)
+ =(\lambda-2)(\lambda^2-4\lambda+8x).                    \tag{27}
+\]
+Every eigenvalue off \({\cal S}\) is at least \(2\).  Consequently
+\[
+ \lambda_{\min}M_{Q,2}(R_a)
+ =2-2\sqrt{1-2x}
+ \ge 2x=\delta,                                          \tag{28}
+\]
+where the inequality is just
+\(\sqrt{1-2x}\le1-x\).
+
+This family contains the rank-one seed (4) at \(a=1/2\).  More
+importantly, it audits the exact zero in the simpler projector-order
+residual
+\[
+ \rho_1\otimes I+I\otimes\rho_2
+ -|D\rangle\!\rangle\langle\!\langle D|
+ -|Z\rangle\!\rangle\langle\!\langle Z|.
+\]
+That residual has a zero vector in
+\(\operatorname{span}\{|11\rangle,|22\rangle\}\) for every
+\(0<a<1\), even though both marginal determinants are positive.  The
+remaining reversed-Hodge and trace channels in \(M_{Q,2}\) lift this
+direction by exactly the eigenvalue in (28).
+
+The ratio in (28) obeys
+\[
+ \frac{\lambda_{\min}M_{Q,2}(R_a)}
+      {\det\rho_1+\det\rho_2}\longrightarrow1
+ \quad\text{as }a\downarrow0\text{ or }a\uparrow1.         \tag{29}
+\]
+Hence the numerically suggested stronger rank-one inequality
+\[
+ M_{Q,2}(|U\rangle\langle U|)
+ \stackrel{?}{\succeq}
+ \bigl(\det\rho_1+\det\rho_2\bigr)I                       \tag{30}
+\]
+would have sharp coefficient one.  Equation (28) proves (30) only for
+the family (22); (30) remains conjectural for a general complex
+orthonormal matrix pencil.

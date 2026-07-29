@@ -375,4 +375,72 @@ annihilator_c = polynomial_in_matrix(
 )
 assert annihilator_c == zeros(18, 18)
 
+# Sharp diagonal-pencil audit at a = 9/25.  This is the rational
+# Pythagorean specialization
+# D=E_00, Z=(3/5)E_11+(4/5)E_22.
+u_vector = [ZERO for _ in range(18)]
+u_vector[idx(0, 0, 0)] = ONE
+u_vector[idx(1, 1, 1)] = Qsqrt2(F(3, 5))
+u_vector[idx(1, 2, 2)] = Qsqrt2(F(4, 5))
+r_u = outer(u_vector)
+assert auxiliary_marginal(r_u) == identity(2)
+expected_u_marginal = [
+    [ONE, ZERO, ZERO],
+    [ZERO, Qsqrt2(F(9, 25)), ZERO],
+    [ZERO, ZERO, Qsqrt2(F(16, 25))],
+]
+assert physical_marginal(r_u, 1) == expected_u_marginal
+assert physical_marginal(r_u, 2) == expected_u_marginal
+
+m_u = endpoint(r_u)
+support = (idx(0, 0, 0), idx(1, 1, 1), idx(1, 2, 2))
+h_u = [[m_u[i][j] for j in support] for i in support]
+assert h_u == [
+    [ONE, Qsqrt2(F(3, 5)), Qsqrt2(F(4, 5))],
+    [Qsqrt2(F(3, 5)), Qsqrt2(F(73, 25)), Qsqrt2(F(12, 25))],
+    [Qsqrt2(F(4, 5)), Qsqrt2(F(12, 25)), Qsqrt2(F(52, 25))],
+]
+
+x_parameter = F(144, 625)
+assert polynomial_in_matrix(
+    h_u,
+    (
+        -16 * x_parameter,
+        8 + 8 * x_parameter,
+        -6,
+        1,
+    ),
+) == zeros(3, 3)
+
+delta = 2 * x_parameter
+h_shift = add(h_u, scale(-delta, identity(3)))
+leading_one = h_shift[0][0]
+leading_two = (
+    h_shift[0][0] * h_shift[1][1]
+    - h_shift[0][1] * h_shift[1][0]
+)
+leading_three = (
+    h_shift[0][0]
+    * (h_shift[1][1] * h_shift[2][2] - h_shift[1][2] * h_shift[2][1])
+    - h_shift[0][1]
+    * (h_shift[1][0] * h_shift[2][2] - h_shift[1][2] * h_shift[2][0])
+    + h_shift[0][2]
+    * (h_shift[1][0] * h_shift[2][1] - h_shift[1][1] * h_shift[2][0])
+)
+for principal_minor in (leading_one, leading_two, leading_three):
+    assert (
+        principal_minor.radical == 0
+        and principal_minor.rational > 0
+    )
+
+# Outside the displayed support block the endpoint is diagonal and its
+# entries are at least two, hence strictly exceed delta.
+complement = tuple(i for i in range(18) if i not in support)
+for i in complement:
+    for j in range(18):
+        if j != i:
+            assert m_u[i][j] == ZERO
+    assert m_u[i][i].radical == 0
+    assert m_u[i][i].rational >= 2 > delta
+
 print("exact cofactor factor-floor obstruction passed")

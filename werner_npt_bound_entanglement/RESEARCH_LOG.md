@@ -1575,6 +1575,108 @@ All timestamps use America/Los_Angeles.
   Dependency-free exact checker:
   `verification/verify_n3_intersection_sector_ppt_nogo.py`.
 
+## 2026-07-29 05:40 PDT — Exact common-origin moment constraint for intersection one
+
+- Encoded the two intersection-one planes simultaneously in one logical
+  qutrit isometry \(W|0\rangle=w\), with
+  \(W\operatorname{span}\{|1\rangle,|2\rangle\}=w^\perp\) on the
+  three-vector support.  With \(J=W\otimes W\), local replica swaps
+  \(F_i\), logical swap \(F\), and
+  \(R_i=J^\dagger F_iJ\), the entire three-copy endpoint compression
+  collapses exactly to
+  \[
+  K=I-\frac18F-\frac12(R_1+R_2+R_3)
+    +\frac14(R_1+R_2+R_3)F.
+  \]
+  This uses the complement identities
+  \(J^\dagger F_iF_jJ=R_kF\).
+- Derived the first nonlinear simultaneous-realizability constraint.
+  If \(Z_i=(I-JJ^\dagger)F_iJ\), then the \(3\times3\)
+  operator-valued leakage Gram is positive and has the intrinsic form
+  \[
+  {\mathfrak G}_{ii}=I-R_i^2,\qquad
+  {\mathfrak G}_{ij}=R_kF-R_iR_j.
+  \]
+  This relation is forced specifically by the common tensor-square
+  origin and is invisible when the three one-cut channels are treated
+  independently.
+- Proved that leakage positivity and a common commuting-symmetry
+  dilation alone are still insufficient.  Every abstract \(K\)
+  satisfying the sharp physical parity windows admits such a dilation
+  by an explicit eight-effect POVM.  The rational \(9\times9\) example
+  in the note has the correct windows and
+  \[
+  K_{00,00}K_{12,12}-|K_{02,10}|^2=-\frac{13}{320}.
+  \]
+  Thus the missing condition is genuinely the Veronese requirement
+  \(J=W\otimes W\), not merely a common first-moment dilation.
+- Proved the complementary no-go: three rational isometries
+  \(V_i:\mathbb C^3\to\mathbb C^2\otimes\mathbb C^2\) give three
+  individually legitimate one-cut swap moments and a formal endpoint
+  compression obeying every sharp parity window, but with crossed
+  minor
+  \[
+  -\frac{209202211}{4826809000}.
+  \]
+  They cannot have one common origin.  The minimal exact separator is
+  the leakage principal block
+  \[
+  \begin{pmatrix}0&135/169\\135/169&144/169\end{pmatrix},
+  \qquad \det=-\frac{18225}{28561}.
+  \]
+- These are mechanism no-go and nonlinear realizability results, not a
+  physical negative \(Q_3\) witness.  The remaining lemma is now the
+  crossed \(2\times2\) minor inequality for a triple of compressed
+  swaps which has both individual channel origin and one common
+  rank-one Stinespring tensor.
+- Strengthened the separation once more.  A single rational isometry
+  \(V:\mathbb C^3\to\mathbb C^3\otimes\mathbb C^2\), used for all
+  three formal one-cut moments, has symmetric swap spectrum
+  \[
+  \{0,1,1,1,153/169,3937/28561\}
+  \]
+  and antisymmetric spectrum
+  \(\{0,-7/169,-153/169\}\).  Hence the identical triple satisfies
+  the full leakage Gram condition and every moment separately has a
+  genuine tensor-square channel origin.  Its formal endpoint crossed
+  minor is nevertheless
+  \[
+  -\frac{50166283391}{161605221128}.
+  \]
+  Thus even the conjunction of separate channel origins, complement
+  moments, leakage positivity, and sharp parity windows is
+  insufficient.  The remaining constraint is specifically that the
+  three channels are compatible marginals of one common rank-one
+  Stinespring tensor.
+- Derived an exact rank-one-Stinespring compatibility inequality which
+  excludes that strongest formal model.  If \(y,z\) are orthonormal
+  three-party vectors and every one-site reduction of \(P_y\) is pure,
+  then
+  \[
+  2\sum_i\|\operatorname{Tr}_{\bar i}|z\rangle\langle y|\|_2^2
+  \leq
+  \sum_i\operatorname{Tr}(\rho_i^z\rho_i^y).
+  \]
+  It follows by diagonalizing
+  \(\sum_iP_i-2\sum_{i<j}P_iP_j\); its only negative sector is the
+  product line \(\mathbb Cy\).  For the identical-channel formal model,
+  the two sides are \(96/169\) and \(27/169\), respectively.  Hence no
+  common tripartite isometry realizes the formal moment tuple.  This is
+  a new exact nonlinear/common-marginal separator, but it presently
+  controls only the product-column boundary.
+- Audited the geometric scope: a generic intersection-one normal form
+  does **not** make the dyad vectors orthogonal to the Hermitian anchor.
+  The common-qutrit compression remains valid after taking
+  \(W|0\rangle=w\) and an orthonormal basis of
+  \(\operatorname{span}\{w,u,v\}\cap w^\perp\), but the original
+  \(u,v\) become arbitrary logical qutrit vectors.  All orthogonal
+  crossed minors in the no-go models are diagnostic slices only; the
+  final common-origin lemma is stated for arbitrary logical \(x,y\).
+- Full derivation:
+  `notes/agent_n3_intersection_common_origin_moment.md`.
+  Dependency-free exact checker:
+  `verification/verify_n3_intersection_common_origin_moment.py`.
+
 ## 2026-07-29 05:30 PDT — Weighted merged adaptive frames are insufficient separately
 
 - Applying the strong positive rank-two theorem to
@@ -1649,6 +1751,57 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_merged_adaptive_nogo.md`.
   Dependency-free checker:
   `verification/verify_n3_merged_adaptive_nogo.py`.
+
+## 2026-07-29 06:09 PDT — Exact \(3/4\) theorem on the flagged two-copy boundary
+
+- The numerically recurring orthogonal-triple ratio \(3/4\) is now
+  proved sharp, rather than merely observed.
+- For an arbitrary normalized two-qubit vector \(W\) and any
+  orthonormal maximally entangled pair \(U,V\), the exact inequality
+  \[
+  |{\cal B}_2(P_W,|U\rangle\langle V|)|^2
+  \leq
+  \frac34Q_2(P_W)Q_2(|U\rangle\langle V|)
+  \]
+  holds.
+- In the canonical Pauli frame
+  \(U=I/\sqrt2,V=X/\sqrt2\), write
+  \(W=(aI+bX+cY+dZ)/\sqrt2\), set
+  \(t=|\operatorname{Im}(\bar ab)|\) and
+  \(D=a^2-b^2-c^2-d^2\).  Then
+  \[
+  Q_2(P_W)=\frac14+\frac12|D|^2,\quad
+  Q_2(|U\rangle\langle V|)=\frac12,\quad
+  |{\cal B}_2|=t,
+  \]
+  while normalization forces the sharp determinant/interference
+  tradeoff
+  \[
+  |D|\geq\max(0,4t-1).
+  \]
+  The remaining scalar gap is exactly
+  \((8t-3)^2/32\).
+- Equality occurs at
+  \[
+  W=\frac1{\sqrt2}\left(
+  \sqrt{\frac38}I+i\sqrt{\frac38}X+\frac12Y\right).
+  \]
+  Adding orthogonal one-qubit flags gives mutually orthonormal
+  three-qubit vectors \(w,u,v\) with
+  \[
+  Q_3(P_w)=\frac3{16},\quad
+  Q_3(|u\rangle\langle v|)=\frac14,\quad
+  {\cal B}_3(P_w,|u\rangle\langle v|)=-\frac{3i}{16},
+  \]
+  and hence exact ratio \(3/4\).
+- This does not prove the unrestricted orthogonal-triple conjecture.
+  It proves that \(3/4\) is the optimal possible constant and
+  identifies the equality mechanism as a determinant/phase balance
+  on a locally flagged two-copy boundary.
+- Full proof:
+  `notes/agent_n3_orthogonal_triple_three_quarter_sharpness.md`.
+  Dependency-free exact checker:
+  `verification/verify_n3_orthogonal_triple_three_quarter_sharpness.py`.
 
 ## 2026-07-29 06:13 PDT — The full adaptive-frame support hierarchy is insufficient
 
