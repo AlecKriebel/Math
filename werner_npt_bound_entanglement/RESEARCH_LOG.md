@@ -2905,3 +2905,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_intersection_phase_nuclear_obstruction.md`.
   Exact checker:
   `verification/verify_n3_intersection_phase_nuclear_obstruction.py`.
+
+## 2026-07-29 — Exact all-component pair-cycle equality
+
+- Found an exact pair-sector equality with all three dual pair
+  components nonzero.  For
+  \[
+  V=\left(|000\rangle,\,
+  (|110\rangle+|012\rangle)/\sqrt2\right)
+  \]
+  and explicit sparse doubly-traceless pair coefficients, the residual
+  data are
+  \[
+  d=(5/2,4,5/2),\qquad
+  (c_{12},c_{23},c_{13})=(2,2,1/2).
+  \]
+  The full deficit matrix has the exact SOS
+  \[
+  M=
+  (1,-2,1)^T(1,-2,1)
+  +\frac32(1,0,-1)^T(1,0,-1),
+  \]
+  so its spectrum is \(\{0,3,6\}\) and its kernel is
+  \(\mathbb C(1,1,1)\).
+- Every \(2\times2\) principal determinant equals \(6\), but the full
+  determinant vanishes.  The example exactly falsifies the stronger
+  normalized row-contraction estimate: its middle normalized row sum
+  is \(4/\sqrt{10}>1\).
+- A six-parameter sparse cycle family factors as
+  \[
+  \det M=(d+z)\bigl(e(d-z)-2x^2\bigr),
+  \]
+  and the second factor is nonnegative by one local profile-overlap
+  Cauchy inequality.  This supplies a concrete cycle-SOS motif for the
+  remaining global determinant search.
+- Exact note:
+  `notes/agent_n3_pair_sector_three_cycle_equality.md`.
+  Exact checker:
+  `verification/verify_n3_pair_sector_three_cycle_equality.py`.
