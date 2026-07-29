@@ -2053,3 +2053,239 @@ All timestamps use America/Los_Angeles.
   Exact checkers:
   `verification/verify_n3_cut_projection_extension_obstruction.py` and
   `verification/verify_n3_pair_qubit_reduction_bridge.py`.
+
+## 2026-07-29 — Pair-boundary equality rigidity and feature no-go
+
+- On the established one-site-support boundary, pair-sector equality
+  \(w_2=2/3\) forces
+  \[
+  (w_0,w_1,w_2,w_3)=(0,0,2/3,1/3).
+  \]
+  Globally, every rank-two matrix with \(w_2=2/3\) satisfies
+  \[
+  Q_3(C)/\|C\|_2^2=-\frac98w_0-\frac34w_1.
+  \]
+  Thus a full-support equality with a nonzero low sector would already
+  be an exact negative three-copy witness.
+- Identified two inequivalent exact pair-equality mechanisms:
+  factor--Hodge matrices
+  \[
+  |a\rangle\langle b|_{12}\otimes P_W,\qquad
+  AB^\dagger=B^\dagger A=0,
+  \]
+  and trace-zero embedded three-qubit spin-flip partial isometries.
+- The complete pair-deficit Hessian at
+  \(C_0=|000\rangle\langle110|+|001\rangle\langle111|\) is exactly
+  positive semidefinite of rank \(165\) and nullity \(39\).  Of the
+  \(36\) left support-leakage coordinates, only the four common-plane
+  motions occur in its kernel.  The whole flat space is spanned by
+  the \(21\)-dimensional factor and \(35\)-dimensional
+  trace-zero-spin-flip flat tangents.
+- This outward rigidity has a sharp local determinant form.  If
+  \(\rho_3^U(t)\) and \(\rho_3^V(t)\) are the two singular-plane
+  reductions at the deficient third qutrit, then
+  \[
+  {\cal G}(C(t))\geq\frac29t^2\left(
+  [t^2]\det\rho_3^U(t)+[t^2]\det\rho_3^V(t)
+  \right)+O(t^3),
+  \]
+  where the bracketed notation denotes the corresponding quadratic
+  determinant coefficient before multiplication by \(t^2\).
+  Equivalently, the \(64\) genuine left/right support-opening
+  coordinates are isolated Hessian blocks with coefficients
+  \(2/9,1/3,\) or \(2/3\).  The constant \(2/9\) is attained.
+- Exactly disproved
+  \[
+  \lambda_{\max}(K_{\rm f})
+  \le\frac29+\lambda_{\min}(\operatorname{Tr}_2K_{\rm f}).
+  \]
+  The exact physical code
+  \(U=(|000\rangle,|222\rangle)\),
+  \(V=(|000\rangle,|100\rangle)\) has
+  \[
+  K_{\rm f}=\operatorname{diag}(0,0,4/9,4/9),
+  \quad
+  \operatorname{Tr}_2K_{\rm f}=\operatorname{diag}(0,8/9),
+  \]
+  giving the exact violation \(2/9\).  Its partial transpose remains
+  positive, so only the stronger sufficient condition fails.
+- Exact notes:
+  `notes/agent_n3_pair_boundary_equality_hessian.md` and
+  `notes/agent_n3_local_s4_recoupling_nogo.md`.
+  Exact checkers:
+  `verification/verify_n3_pair_boundary_hessian.py` and
+  `verification/verify_n3_local_s4_recoupling_nogo.py`.
+
+## 2026-07-29 — Exact recoupled product obstruction
+
+- The stronger claim that the recoupled operator
+  \[
+  {\cal B}=\widehat{\cal K}-L\widehat{\cal K}R
+  \]
+  is block positive across
+  \((L_1L_2):(R_1R_2)\) is false.
+- An exact site-factorized product has local left factors
+  \((|01\rangle,|00\rangle,\Phi_3)\) and local right factors
+  \((|01\rangle,|11\rangle,\Phi_3)\).  Its direct and crossed
+  contractions are respectively \(8/9\) and \(1\), giving
+  \[
+  \langle{\cal B}\rangle=-1/9.
+  \]
+- This sharpens the hierarchy of failed relaxations: the unrestricted
+  local-\(S_4\) ambient space is negative at \(-24\) with grouped
+  Schmidt rank \(64\); the new left--right product is negative at
+  \(-1/9\) with grouped ranks \(3,3\); the physical four-fold Segre
+  locus has grouped ranks \(1,1\) and remains unresolved.
+- Exact note:
+  `notes/agent_n3_recoupled_site_product_counterexample.md`.
+  Exact checker:
+  `verification/verify_n3_recoupled_site_product_counterexample.py`.
+
+## 2026-07-29 — Six-map covariance and the missing compatibility
+
+- At a critical point of the pair-sector functional, with
+  \(D=\Pi_2C\) and \(f=\|D\|_2^2\), the six left/right response maps
+  obey the exact sitewise identity
+  \[
+  T_i^L(A)-T_i^R(A)=[A_i,D].
+  \]
+  For a traceless orthonormal local basis \((F_\mu)_{\mu=1}^8\),
+  \[
+  \sum_\mu\|[F_\mu^{(i)},D]\|_2^2=6(f-p_i),
+  \qquad
+  \sum_{i,\mu}\|[F_\mu^{(i)},D]\|_2^2=12f,
+  \]
+  where \(p_i\) is the sector mass scalar at site \(i\).
+- The scalar covariance and norm identities are not sufficient. An
+  exact formal model with sectors
+  \((w_0,w_1,w_2,w_3)=(1/9,0,2/3,2/9)\) passes all of them while
+  giving formal value \(Q_3=-1/8\). It is not asserted to be a
+  physical rank-two matrix; in particular its \(w_0\) already exceeds
+  the elementary physical trace bound \(w_0\leq2/27\).
+- What scalar covariance discards is the common-origin Lie relation
+  \[
+  [A_i,[B_j,D]]=[B_j,[A_i,D]]
+  \qquad(i\ne j).
+  \]
+  Any successful six-map proof must retain this compatibility.
+- Exact note:
+  `notes/agent_n3_six_map_covariance.md`.
+  Exact checker:
+  `verification/verify_n3_six_map_covariance_obstruction.py`.
+
+## 2026-07-29 — Haar filters, equality forms, and a strict sector reduction
+
+- Averaging the deficient-support theorem over local rank-two filters
+  \(A_z=I-|z\rangle\langle z|\) gives the exact sitewise and pairwise
+  inequalities
+  \[
+  \frac14w_i-\frac12(w_{ij}+w_{ik})+w_{123}\geq0,
+  \qquad
+  w_{ij}\leq2w_{123}.
+  \]
+  Summing the first family yields
+  \[
+  w_2\leq\frac34-\frac34w_0-\frac{11}{16}w_1,
+  \qquad
+  Q_3(C)\geq-\frac18+\frac9{32}w_1.
+  \]
+  Consequently unrestricted three-copy positivity is proved
+  throughout the exact sector region \(w_1\geq4/9\).
+- Classified equality in the local Haar boundary form. If a Hermitian
+  sesquilinear form \(h\) on \(M_3\) is nonnegative on every singular
+  matrix and vanishes on every rank-two projection
+  \(I-|z\rangle\langle z|\), then
+  \[
+  h(A,B)=\gamma\left(
+  \langle A,B\rangle-\frac12\overline{\operatorname{Tr}A}
+  \operatorname{Tr}B\right),\qquad\gamma\geq0.
+  \]
+- Therefore any negative stationary point saturating the grouped Haar
+  inequality must have all six one-site singular-plane marginals
+  maximally mixed:
+  \[
+  \rho_i^L=\rho_i^R=I_3/3,\qquad i=1,2,3.
+  \]
+  This converts the previously diffuse full-support boundary into an
+  isotropic polynomial system.
+- At this boundary, the stronger fixed-support rank-two normal
+  equations also hold for every \(z\):
+  \[
+  C^\dagger A_zL_i(A_zE)=0,\qquad
+  A_zL_i(A_zE)C^\dagger=0,
+  \quad E=(L_j\otimes L_k)C.
+  \]
+  Extracting the nonconstant \(\mathbb{CP}^2\) harmonic components is
+  the current equality-track bottleneck.
+- Exact notes:
+  `notes/agent_n3_haar_boundary_filter_strengthening.md` and
+  `notes/agent_n3_boundary_zero_form_classification.md`.
+  Exact checkers:
+  `verification/verify_n3_haar_boundary_filter_strengthening.py` and
+  `verification/verify_n3_boundary_zero_form_classification.py`.
+
+## 2026-07-29 — True grouped rank-two Hessian and four-column reduction
+
+- After grouping the replicated variables, the rank-two factorization
+  reduces the recoupled remainder to an exterior \(4\times4\) Gram
+  tested only on positive product rays \(s\otimes t\), not on all
+  four-vectors.
+- At the rank-two boundary family \(\Phi_2\), the full constrained
+  Hessian, including the second fundamental form of the rank-two
+  variety, is positive semidefinite. Its real tangent dimension is
+  \(416\), rank \(354\), and nullity \(62\). Thus this exact zero is a
+  genuine quadratic local minimum; any violation must be higher-order
+  along a flat direction or lie away from this boundary.
+- For factorizations \(A=XY^\dagger\), \(B=UV^\dagger\), introduce
+  their four tensor-grid columns \(E,F\), put \(Z=2I-3\Pi_2\), and set
+  \[
+  G_E=E^\dagger ZE,\quad G_F=F^\dagger ZF,\quad H=E^\dagger Z\bar F.
+  \]
+  The target remainder is exactly
+  \[
+  R=\operatorname{Tr}(G_EG_F)-\|H\|_F^2+
+  \frac12\|H-H^T\|_F^2.
+  \]
+  Hence the surviving four-column lemma is
+  \[
+  \operatorname{Tr}(G_EG_F)+\|H_{\rm a}\|_F^2
+  \geq\|H_{\rm s}\|_F^2.
+  \]
+- Two natural strengthenings were disproved exactly. Ordinary
+  cross-Gram contraction fails by \(-4/9\), with the antisymmetric
+  term restoring a positive physical remainder \(4/3\). Moreover the
+  exterior Gram itself can have spectrum \((-2,2,4,4)\); its negative
+  eigenvector is not a permitted positive product ray. For the exact
+  common-origin example the required ray satisfies
+  \[
+  (s\otimes t)^TW(s\otimes t)
+  =4\left((s_1t_1)^2+(s_2t_2)^2+s_1s_2t_1t_2\right)\geq0.
+  \]
+  Thus the remaining statement is positive-Segre copositivity, not
+  positive semidefiniteness of an ambient Gram matrix.
+- Exact notes:
+  `notes/agent_n3_recoupled_grouped_rank2_boundary.md` and
+  `notes/agent_n3_recoupled_four_column_reduction.md`.
+  Exact checkers:
+  `verification/verify_n3_recoupled_rank2_boundary.py` and
+  `verification/verify_n3_recoupled_four_column_nogo.py`.
+
+## 2026-07-29 — Current unrestricted three-copy frontier
+
+- No exact rank-two matrix with \(Q_3(C)<0\) has been found.
+- No complete proof of unrestricted three-copy positivity has been
+  obtained.
+- The supplied positive-operator/Ky--Fan formulation and
+  deficient-local-support reduction are consistent with, and now
+  subsumed by, the current proof tracks.
+- Three lossless forms of the remaining common-origin obstruction are
+  being pursued:
+  1. the one-plane \(3\)-versus-\(1\) inequality for
+     \(H=2I+\sum_{i<j}(I-F_i)(I-F_j)+\prod_i(I-F_i)\), whose parity
+     eigenvalues are \(2,2,6,22\);
+  2. positive-Segre copositivity of the exterior four-column Gram;
+  3. the maximally-mixed-marginal fixed-support polynomial system at
+     Haar equality.
+- The four-copy projector and all-copy programs remain secondary.
+  Nothing in these three-copy reductions has yet been proved to
+  tensorize.
