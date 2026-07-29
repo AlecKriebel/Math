@@ -25,8 +25,11 @@ reproducible; only its final exact witness is reproducible.
 | E1 | Re-run the published \(d=4\) exact verifier suite. | Exact symbolic | N/A | PASSED |
 | E2 | Independently verify the abstract two-projection normal form. | Exact symbolic + proof | N/A | PASSED |
 | E3 | Enumerate admissible Hecke simples, branching, and central multiplicities through high levels. | Exact integer/rational | N/A | PASSED |
-| E4 | Structured \(d=6\) search, first ansatz family. | Numerical discovery only | To be recorded before run | PLANNED |
+| E4 | Unrestricted and structured \(d=6\) Grassmann and shifted-\(K\) searches. | Numerical discovery only, plus exact finite subfamilies | `results/d6_seed_manifest.json` | COMPLETED: no candidate |
 | E5 | Independent exact verification of any \(d=6\) candidate. | Exact algebraic | N/A | CONDITIONAL |
+| E6 | Exhaust the cyclic Gaussian functional ansatz at \(d=6\). | Exact cyclotomic | N/A | PASSED: zero candidates |
+| E7 | Controlled-reflection/face-model search, calibrated at \(d=4\) and then tested at \(d=6\). | Numerical discovery only | Predeclared in `results/d6_face_seed_manifest.json` | IN PROGRESS |
+| E8 | Equal-sector and crossed operator-valued color/face models. | Exact reduction and \(d=4\) family; numerical \(d=6\) search | Recorded in raw JSONL logs | COMPLETED: no \(d=6\) candidate |
 
 ## E1 — published \(d=4\) exact verifier suite
 
@@ -81,3 +84,73 @@ reproducible; only its final exact witness is reproducible.
   equivalent to even \(d\).
 - Interpretation: this closes the proposed central-idempotent arithmetic
   route.  It does not construct a local \(R\)-matrix for any new dimension.
+
+## E6 — cyclic Gaussian functional ansatz
+
+- Run: 2026-07-28 22:04 PDT
+- Command:
+  `/Users/alec/Documents/Math/.venv/bin/python scripts/search_gaussian_functional_d6.py`
+- Seed: N/A
+- Exact search space: all 20 trace-zero Hermitian involutions \(H=f(U)\)
+  for the order-six Gaussian generator.
+- Arithmetic: exact coefficients in \(\mathbb Q(i\sqrt3)\), reduced in the
+  36-dimensional twisted group algebra.
+- Result: no survivors.
+- Raw output:
+  `results/gaussian_functional_d6_exact.txt`
+- Interpretation: exact no-go for this finite ansatz only.
+
+## E4 — adversarial dimension-six falsifier
+
+- Runs: 2026-07-28
+- Search spaces:
+  - the full real and complex Grassmannians of signature-\((18,18)\)
+    involutions in \(M_{36}\);
+  - five independently defined symmetry families;
+  - a reduced heterogeneous signature-\((6,6)\) search in \(M_{12}\);
+  - a finite majority/transposition ansatz.
+- Seeds and commands:
+  `results/d6_seed_manifest.json` and
+  `notes/track_d6_falsifier.md`.
+- Raw output:
+  `results/d6_riemannian_runs.jsonl`,
+  `results/d6_shifted_runs.jsonl`, and
+  `results/d6_majority_transposition_exact.json`.
+- Calibration:
+  the full \(d=4\) search reached residual \(8.73\times10^{-11}\), and
+  direct insertion of the published active \(K_8\) gave residual
+  \(6.89\times10^{-16}\).
+- Result:
+  no \(d=6\) run approached zero.  The finite
+  majority/transposition search exhausted 291,840 signed candidates and
+  found zero exact solutions.
+- Interpretation:
+  the finite ansatz exclusion is exact at its stated scope.  All other
+  failures are only numerical landscape information and do not support a
+  global nonexistence claim.
+- Independent audit:
+  `notes/checkpoint2_independent_audit.md` replayed every exact certificate,
+  both analytic gradients, the calibrations, and the raw summaries.
+
+## E8 — operator-valued color/face models
+
+- Runs: 2026-07-28
+- Exact component:
+  reduced three-site equations were derived for equal-sector mixed colors
+  and crossed local factors.  The symbolic verifier proves an exact
+  one-parameter \(d=4\) family.
+- Numerical component:
+  39 complex \(d=6\) runs across the two ansätze; all seeds, options,
+  versions, and outputs are retained in `results/color_face_*.jsonl`.
+- Calibration:
+  both implementations recovered \(d=4\) points below residual
+  \(1.1\times10^{-10}\).
+- Result:
+  the best \(d=6\) residual was \(4.958747221723511\); no candidate was
+  found.
+- Scope:
+  neither continuous ansatz was exhausted.  The numerical failures are not
+  nonexistence evidence, even within the ansätze.
+- Details:
+  `notes/track_color_face_search.md` and
+  `results/color_face_hashes.txt`.

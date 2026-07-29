@@ -17,6 +17,12 @@ Statuses used here:
 | C7 | A \(d=6\) solution exists. | SPECULATION | Independent falsifier track. |
 | C8 | The complete spectrum is exactly \(4\mathbb N\). | SPECULATION | Primary candidate, not a working assumption. |
 | C9 | Every exceptional matrix-class solution faithfully represents \(H_n(3,6)\) for every \(n\). | PROVED | C5 identifies the trace; faithful matrix trace makes the representation kernel equal its trace radical. |
+| C10 | One-sided faithful tensor-tower representations with the required Markov character exist abstractly for every even \(d\); any stronger obstruction must use both spatial shifts. | PROVED | `notes/track_coherence_parity.md`, Proposition 1.1. |
+| C11 | No non-scalar monomial unitary Hecke Yang--Baxter matrix exists in any dimension. | PROVED | Cycle/minimal-polynomial reduction followed by the diagonal Yang--Baxter equation; `notes/track_additive_constructions.md`. |
+| C12 | A spectator-form \(d=6\) solution is equivalent to a rank-six \(12\times12\) heterogeneous shifted operator on \(\mathbb C^2\otimes\mathbb C^3\otimes\mathbb C^2\). | PROVED | Heterogeneous blocking lemma in `notes/track_additive_constructions.md`. |
+| C13 | The cyclic Gaussian-functional, scalar-cross gluing, controlled-middle, graph-phase/product-flip, diagonal \(SU(2)\), central \(S_4\), ice-rule, and monomial ansätze do not contain a \(d=6\) witness. | PROVED | Precisely scoped human proofs and exact verifiers in the additive and Gaussian notes. The noncentral \(S_4\) branch is excluded from this claim. |
+| C14 | Current unrestricted and structured \(d=6\) numerical searches produced no candidate. | NUMERICAL_EVIDENCE | Calibrated Grassmann and shifted-\(K\) searches in `notes/track_d6_falsifier.md`; this is not evidence of global nonexistence. |
+| C15 | The equal-sector color/face equations contain an exact one-parameter \(d=4\) family \(s^2+2t^2=1\). | EXACT_COMPUTATION | Human formula and symbolic factor certificate in `notes/track_color_face_search.md`; replayed by `scripts/verify_color_face_d4_family.py`. Equivalence and novelty are unaudited. |
 
 ## Rules
 

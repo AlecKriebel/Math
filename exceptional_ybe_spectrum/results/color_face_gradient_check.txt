@@ -1,0 +1,27 @@
+Command:
+An independent finite-difference directional-derivative check was run on a
+random complex mixed d=6 point with seed 26073199.
+
+Environment:
+Run date: 2026-07-28
+Python 3.9.6
+NumPy 2.0.2
+SciPy 1.13.1
+
+Output:
+
+blocks only:
+epsilon 1e-5: finite difference -2221.3522777519756, predicted -2222.214020529988
+epsilon 1e-6: finite difference -2221.3510258097813, predicted -2221.4371986934425
+epsilon 1e-7: finite difference -2221.3508987078967, predicted -2221.3595168998563
+
+blocks plus mixing:
+epsilon 1e-5: finite difference -4534.265679944838, predicted -4558.798980398064
+epsilon 1e-6: finite difference -4533.787596074035, predicted -4536.240889500117
+epsilon 1e-7: finite difference -4533.73971822657, predicted -4533.985047753251
+
+Interpretation:
+The first-order discrepancy decreases by a factor of approximately ten when
+epsilon decreases by a factor of ten, as expected for a forward difference.
+This validates both the reflection-block pullback and the 3x3 mixing-unitary
+pullback used by color_face_d6_search.py.
