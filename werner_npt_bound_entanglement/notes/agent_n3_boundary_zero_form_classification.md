@@ -195,3 +195,64 @@ remaining equality problem is to exclude (19) using the mixed
 two-site commutation/Pluecker identities, or to realize it by an
 exact rank-two matrix.
 
+## 3. A critical negative equality is locally maximally mixed
+
+There is a further exact consequence at a stationary point of the
+normalized endpoint functional.  Normalize \(\|C\|_2=1\) and put
+\[
+ q=Q_3(C).
+\]
+For a left local filter at site \(i\), define
+\[
+ n_i^L(A,I)
+ =\langle A^{(i)}C,C\rangle_{\rm HS}
+ =\overline{\operatorname{Tr}(A\rho_i^L)},
+\qquad
+ \rho_i^L=\operatorname{Tr}_{\widehat i}(CC^\dagger).
+                                                               \tag{20}
+\]
+Stationarity of
+\(Q_3(C)/\|C\|_2^2\) along
+\(C(t)=(I+tA^{(i)})C\), first for \(A\) and then for \(iA\), gives
+the polarized identity
+\[
+ h_i(A,I)=q\,n_i^L(A,I)
+ \quad\text{for every }A.                                  \tag{21}
+\]
+
+At a negative Haar equality, (17)--(18) give
+\[
+ q=-\frac32\gamma,\qquad
+ h_i(A,I)=-\frac\gamma2\,\overline{\operatorname{Tr}A}.
+                                                               \tag{22}
+\]
+Substitution in (21), and \(\gamma>0\), imply
+\[
+ \operatorname{Tr}(A\rho_i^L)=\frac13\operatorname{Tr}A
+ \quad\text{for every }A.
+\]
+Therefore
+\[
+ \rho_i^L=\frac13I_3.                                      \tag{23}
+\]
+Applying the same argument to right local filters gives
+\[
+ \boxed{\qquad
+ \rho_i^L=\rho_i^R=\frac13I_3
+ \quad(i=1,2,3)
+ \qquad}                                                    \tag{24}
+\]
+at every stationary negative Haar equality.
+
+Consequently, a global negative minimizer realizing the formal
+Haar-saturating point would have to satisfy simultaneously:
+
+1. the three exact local form identities \(h_i={\cal L}/12\);
+2. all six weighted one-site densities equal to \(I_3/3\);
+3. the rank-two singular-plane and mixed-site compatibility
+   identities.
+
+This is a finite exact critical-point system.  Its consistency is not
+settled here, but it is strictly smaller than the unrestricted
+rank-two search and exactly matches the marginal data of the formal
+norm-only obstruction.
