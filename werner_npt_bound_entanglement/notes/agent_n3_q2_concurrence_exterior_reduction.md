@@ -2,8 +2,8 @@
 
 ## Status
 
-This note gives an exact reduction, not a proof of the remaining
-inequality.  Let
+This note gives an exact reduction and an exact counterexample to the
+resulting inequality.  Let
 \[
  Q_{(2)}
  =\frac49\,W^\dagger
@@ -30,9 +30,11 @@ is exactly equivalent to the following single scalar theorem:
 \end{aligned}}                                          \tag{2}
 \]
 Thus all Takagi mixing and all three coherent pair channels collapse
-to one rank-two exterior correction \(2s_1s_2\).  Formula (2) is
-strictly smaller than the original logical optimization, but remains
-unproved.
+to one rank-two exterior correction \(2s_1s_2\).  The Gaussian-integer
+rank-two matrix in Section 5 violates (2).  Consequently the
+standalone coherent bound (1) is **false**.  This does not disprove
+the coupled bound for \(Q_{(2)}+Q_{(3)}\), because the omitted
+triple-skew feature can compensate.
 
 The dependency-free checker is
 `verification/verify_n3_q2_concurrence_exterior_reduction.py`.
@@ -235,3 +237,84 @@ Hence equality includes the broad common-origin locus
 \(\langle\overline x,y\rangle=0\); it is not confined to one
 computational-basis orbit.  Whether every full-support equality
 configuration reduces to this mechanism remains open.
+
+## 5. Exact counterexample
+
+Write \(X=(x_0,x_1)\) and \(Y=(y_0,y_1)\) as \(27\times2\)
+Gaussian-integer matrices.  In lexicographic qutrit-word order, their
+columns are
+\[
+\begin{aligned}
+x_0={}&(50+38i,-18-41i,43+i,-43-12i,21+20i,-31+10i,\\
+&7+i,-1+i,8-2i,115-6i,-183-12i,27+31i,-7+23i,\\
+&73-20i,28-25i,-92+3i,63-17i,-78+14i,111+3i,\\
+&-119+41i,93+26i,-42-21i,49-18i,-48-35i,\\
+&-43+63i,24-48i,-25+58i),\\
+x_1={}&(0,1-2i,-i,-1,0,i,1-i,-1+2i,1,0,-1-i,-1,\\
+&0,-i,-i,-1,1+2i,1+i,0,1-2i,-1-i,-1,-i,-1,\\
+&1-i,3i,2),\\[1mm]
+y_0={}&(4+2i,-3-2i,3+i,-3-i,2+i,-2,i,0,i,-6-24i,\\
+&2+17i,-10-16i,6+14i,-3-10i,8+9i,4-2i,-3+i,\\
+&3-2i,-14-5i,9+5i,-12,10+2i,-6-2i,7-i,1-3i,\\
+&2i,-2i),\\
+y_1={}&(6+5i,6-6i,8-6i,-11-i,1+5i,-8+8i,9-i,-5,\\
+&7-4i,4-6i,-13-3i,-7-2i,7+7i,10-6i,13-6i,\\
+&-12-5i,-3+7i,-13+7i,5+4i,3+2i,9,-6-7i,-2i,\\
+&-12-5i,3+8i,-4+3i,9+11i).
+\end{aligned}                                           \tag{13}
+\]
+Put \(C=XY^\dagger\).  It has rank at most two.  Direct
+Gaussian-integer contraction gives
+\[
+\begin{aligned}
+\|C\|_2^2&=369939292,\\
+\sum_i\|\operatorname{Tr}_iC\|_2^2&=842955888,\\
+\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2&=560431501.
+\end{aligned}                                           \tag{14}
+\]
+Therefore
+\[
+ 4{\cal J}(C)
+ =3\|C\|_2^2
+ -2\sum_i\|\operatorname{Tr}_iC\|_2^2
+ +\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2
+ =-15662399.                                            \tag{15}
+\]
+The two-by-two Gram determinants are
+\[
+ \det(X^\dagger X)=7849591,\qquad
+ \det(Y^\dagger Y)=6444692,
+\]
+so
+\[
+ \bigl(s_1(C)s_2(C)\bigr)^2
+ =50588196320972.                                       \tag{16}
+\]
+There is no numerical comparison in the certificate:
+\[
+\begin{aligned}
+(-15662399)^2
+ -4(50588196320972)
+ &=42957957151313>0,\\
+4{\cal J}(C)&<0.
+\end{aligned}                                           \tag{17}
+\]
+Equations (15)--(17) prove exactly that
+\[
+ {\cal J}(C)+\frac12s_1(C)s_2(C)<0.
+\]
+
+Normalize the determinant-one filtered companion by
+\(\sqrt{s_1s_2}\).  The filter formula (7)--(10) then gives an exact
+lower bound on the physical coherent two-skew concurrence:
+\[
+ {\cal C}(Q_{(2)})
+ \geq
+ \frac{15662399}
+ {9\sqrt{50588196320972}}
+ >\frac29,                                               \tag{18}
+\]
+where the final strict inequality is exactly (17).  Thus (13)
+defines an exact physical counterexample after taking orthonormal
+bases of the two column spaces and the positive algebraic
+determinant-one filters constructed in Section 3.
