@@ -1297,7 +1297,7 @@ All timestamps use America/Los_Angeles.
   Q_2(C)=\|C\|_2^2-\frac12\left(
   \|\operatorname{Tr}_1C\|_2^2+
   \|\operatorname{Tr}_2C\|_2^2\right)
-  \frac14|\operatorname{Tr}C|^2\geq0.
+  +\frac14|\operatorname{Tr}C|^2\geq0.
   \]
   The proof first establishes the independent qutrit rank-two
   projector inequality
@@ -1354,7 +1354,7 @@ All timestamps use America/Los_Angeles.
   =
   \left(I_W\otimes I_{\bar W}
   -\frac12|\Phi_W\rangle\langle\Phi_W|\right)
-  P_W\otimes P_{\bar W^\perp}.
+  +P_W\otimes P_{\bar W^\perp}.
   \]
   Its \(2\times2\) block has an explicit six-product Pauli
   decomposition and is separable.  Tensoring a separable positive
@@ -1380,3 +1380,197 @@ All timestamps use America/Los_Angeles.
   sharp quaternion-channel multiplier norms cannot be combined
   scalarly.  Any full three-copy proof must mix the common tensor-Fierz
   channels coherently before taking norms.
+
+## 2026-07-29 04:37 PDT — Exact sixth-order closure of the two 27-dimensional components
+
+- Completed the exact secondary Lyapunov--Schmidt calculation on both
+  unresolved 27-dimensional components \(L_2,L_3\) of the effective
+  quartic zero set at
+  \(C_0=|000\rangle\langle110|+|001\rangle\langle111|\).
+  The two components are related by swapping physical sites one and
+  two.
+- After quotienting fifteen local-unitary, local-plane, and phase
+  directions, the invariant first-order data are
+  \(z,d\in\mathbb C\) and \(w\in\mathbb R^6\).  With
+  \[
+  \xi=w_0+iw_1,\quad\beta=w_2+iw_3,\quad\chi=w_4+iw_5,
+  \]
+  \[
+  t=\frac54(|\xi|^2+2|\beta|^2+2|\chi|^2),\qquad
+  \eta=\frac14\xi^2+\beta\chi,\qquad
+  \Delta=t^2-|\eta|^2,
+  \]
+  the exact order-six Schur minimum is
+  \[
+  \sigma_6=
+  \frac{4t}{25\Delta}
+  \left[(3t^2-5|\eta|^2)|z|^2|d|^2
+  +2t\operatorname{Re}(\eta z^2d^2)\right].
+  \]
+- The original 177-variable rational minimization reduces exactly to
+  a two-variable core
+  \[
+  h^TKh+h^TLd+d^TJKJd,
+  \]
+  where
+  \[
+  K=\frac12\begin{pmatrix}t+\Re\eta&\Im\eta\\
+  \Im\eta&t-\Re\eta\end{pmatrix},
+  \quad
+  L=\begin{pmatrix}\Re\eta+t/5&-\Im\eta\\
+  \Im\eta&\Re\eta-t/5\end{pmatrix}.
+  \]
+- Triangle inequality and AM--GM give the sharp structural bound
+  \[
+  |\eta|\le t/5.
+  \]
+  This proves \(\sigma_6\ge0\), strictly when \(z,w,d\) are all
+  nonzero.  The complete secondary zero set is therefore
+  \(z=0\), \(w=0\), or \(d=0\).  The first two are the known
+  intersections with the exact-zero tangent components \(L_1,L_0\).
+  The branch \(d=0\), of dimension 25 in \(L_2\), initially appeared
+  to be the new higher-order local frontier.
+- The \(d=0\) branch in fact integrates to a new exact-zero family.
+  In canonical gauge, put
+  \[
+  B=\begin{pmatrix}-w_0+iw_1&w_2-iw_3\\w_4-iw_5&0\end{pmatrix},
+  \qquad D=B-(\operatorname{Tr}B)I=-\operatorname{adj}B,
+  \qquad A=D^\dagger.
+  \]
+  The raw frames factor across site one and have two-site factors
+  \((I,sB)^T\) and \((sA,I)^T\).  If \(M=B^\dagger B\), then
+  \(A^\dagger A=\operatorname{adj}M\), and
+  \[
+  (I+s^2M)(I+s^2\operatorname{adj}M)
+  =(1+s^2\operatorname{Tr}M+s^4\det M)I.
+  \]
+  Hence polar normalization changes their product only by a scalar.
+  The remaining two-copy coefficient matrix has site-two blocks
+  \(sD,I,s^2BD,sB\).  Cayley--Hamilton makes both off-diagonal
+  blocks and the diagonal difference scalar on site three, so its
+  fully traceless component vanishes exactly.  Therefore the whole
+  rank-two partial-isometry path has \(Q_3=0\) for every path
+  parameter.
+- All sixth-order zeros on \(L_2,L_3\) now integrate to exact-zero
+  families: \(z=0\) to spin flip, \(w=0\) to the factorized family,
+  and \(d=0\) to the new adjugate family.  Exact continuation code
+  independently returned zero coefficients through order twelve, but
+  the adjugate proof gives all-order vanishing.
+- The exact formula yields the uniform sector bound
+  \[
+  \sigma_6\ge\frac{12}{25}|z|^2\|w\|^2|d|^2.
+  \]
+  Hence every closed projective sector separated from the three
+  zero branches is genuinely locally nonnegative.  This is not yet a
+  full-neighborhood theorem: the bound degenerates at the exact-zero
+  branches, and simultaneous radial approach can shift the first
+  unresolved comparison to higher order.  A tubular normal-form or
+  finite blow-up estimate compatible at all intersections remains
+  necessary before claiming an entire neighborhood of \(C_0\).
+- The exact theorem and proof are in
+  `notes/agent_n3_boundary_l2_secondary_theorem.md`.  The
+  compact exact symbolic core check plus three comparisons against the
+  full 177-variable calculation are in
+  `verification/verify_n3_boundary_l2_secondary_core.py`; the
+  exact-family identities are checked in
+  `verification/verify_n3_boundary_l2_d0_exact_family.py`.
+
+## 2026-07-29 04:48 PDT — Exact audits of two proposed three-copy recursions
+
+- The partial anchored recursion
+  \[
+  (2E_2-I)(2E_3-I)(P)\stackrel{?}{\succeq}0
+  \]
+  is false.  For
+  \(u_0=\Omega_{12}|0\rangle_3\),
+  \(u_1=\Omega_{12}|2\rangle_3\), and the test column
+  \(b_0=\Omega_{12}|1\rangle_3\), complement reversal gives
+  \[
+  \langle{\cal B},(2E_2-I)(2E_3-I)(P){\cal B}\rangle
+  =4Q_2\!\left(\frac13I_3\otimes|0\rangle\langle1|\right)
+  =-\frac23.
+  \]
+  This does not contradict the rank-two two-copy theorem: tracing the
+  untouched site produces the displayed rank-three coefficient
+  matrix.  It exactly rules out iterating the two-copy result while
+  treating an untouched physical site as a harmless ancilla.
+- A proposed determinant-weighted two-site cofactor lemma also needs
+  the auxiliary normalization
+  \(\operatorname{Tr}_{12}R=I_K\).  Without it, the exact rank-two
+  projection
+  \(R=|0\rangle\langle0|_K\otimes
+  (P_{\Omega_0}+P_{\Omega_1})\), where
+  \(\Omega_0,\Omega_1\) are two orthogonal qutrit Bell shifts, has
+  maximally mixed physical marginals but an entire zero \(K=1\)
+  sector.  Hence no strictly positive scalar identity floor can hold
+  from rank, trace, and physical determinants alone.
+- Even with \(\operatorname{Tr}_{12}R=I_K\), the stronger factorized
+  floor
+  \[
+  M_{Q,2}(R)\succeq
+  6\det\rho_1\det\rho_2\,(2I-R)
+  \]
+  is false.  The rank-one balanced anchor
+  \[
+  |A\rangle=|0\rangle_K|00\rangle+
+  |1\rangle_K\frac{|11\rangle+|22\rangle}{\sqrt2}
+  \]
+  gives an exact negative eigenvalue
+  \((13-\sqrt{185})/8\) for the proposed residual, and a rational
+  rank-two continuation preserves the violation.  The weaker scalar
+  cofactor floor itself remains open.
+- These three failures are mechanism no-go results, not negative
+  rank-two witnesses for \(Q_3\).  Exact notes and independent
+  checkers are in
+  `notes/agent_n3_partial_recursion_counterexample.md`,
+  `notes/agent_n3_cofactor_boundary_condition_audit.md`,
+  `notes/agent_n3_cofactor_factor_floor_obstruction.md`, and their
+  correspondingly named files in `verification/`.
+
+## 2026-07-29 05:14 PDT — Quantitative-PPT and swap-sector Lorentz implication is false
+
+- The proposed abstract diagonal-to-dyad implication remains false even
+  after imposing the quantitative physical partial-transpose floor,
+  swap invariance, positivity on both sides of partial transpose, and
+  all known swap-sector spectral windows.
+- An exact rational counterexample is
+  \[
+  K=\frac25I+\frac25P_{\Phi^+},\qquad
+  G=K^\Gamma=\frac25I+\frac15F,\qquad
+  T=\frac35X,\qquad a=\frac35.
+  \]
+  The Bell eigenvalues of \(K\) are \(4/5,2/5,2/5\) on the symmetric
+  sector and \(2/5\) on the antisymmetric sector, so
+  \[
+  \frac18P_{\rm sym}\preceq K_{\rm sym}\preceq
+  \frac98P_{\rm sym},\qquad
+  \frac38P_{\rm asym}\preceq K_{\rm asym}\preceq
+  \frac{27}{8}P_{\rm asym}.
+  \]
+  Also \(K\succeq2I/5\), \(G\succ0\), and \([K,F]=0\).
+  Unlike the first unscaled version of the obstruction, these data
+  obey the elementary physical normalization windows:
+  \(a=3/5\in[1/8,5/8]\) and
+  \(g(P_x)\in[2/5,3/5]\) for every pure logical projector.  They also
+  obey the sharp self-adjoint singular-value bound and the known sharp
+  scalar projector-pair bounds (with the compatible formal overlap
+  profile \(r_x^2=(1+n_x)/2\)).
+- For every pure qubit projector with Bloch vector
+  \((n_x,n_y,n_z)\),
+  \[
+  a\,g(P_x)-|\operatorname{Tr}(TP_x)|^2
+  =\frac9{25}n_z^2+\frac6{25}n_y^2\ge0.
+  \]
+  Nevertheless, for \(D=|0\rangle\langle1|\),
+  \[
+  a\,g(D)-|\langle1|T|0\rangle|^2
+  =\frac6{25}-\frac9{25}=-\frac3{25}.
+  \]
+- This is a no-go for the abstract Lorentz/PPT-floor mechanism, not a
+  physical Werner witness.  The missing input must constrain the joint
+  common origin of \(G\) and \(T\), beyond their separate spectral and
+  diagonal-test properties.
+- Full derivation:
+  `notes/agent_n3_intersection_lorentz_nogo.md`.
+  Dependency-free exact checker:
+  `verification/verify_n3_intersection_sector_ppt_nogo.py`.

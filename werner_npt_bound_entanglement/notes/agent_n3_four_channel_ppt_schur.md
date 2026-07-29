@@ -311,7 +311,7 @@ matrix \(h=(h_{ab})\) is real symmetric.  If
 \[
  Q_3(C)
  =h_{11}r_1^2+h_{22}r_2^2
- 2h_{12}\operatorname{Re}(\overline\lambda_1\lambda_2).
+ +2h_{12}\operatorname{Re}(\overline\lambda_1\lambda_2).
                                                                \tag{32}
 \]
 For fixed \(r_1,r_2\), the minimum over the relative phase occurs at
