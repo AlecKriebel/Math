@@ -183,6 +183,58 @@ def choi_from_scalar_spatial_transfer(
     return result
 
 
+def choi_from_transfer(transfer: list[list[F]]) -> list[list[G]]:
+    """Build J = sum T_{mu,nu} e_nu^T tensor e_mu."""
+    paulis = [
+        [[ONE, ZERO], [ZERO, ONE]],
+        [[ZERO, ONE], [ONE, ZERO]],
+        [[ZERO, g(0, -1)], [g(0, 1), ZERO]],
+        [[ONE, ZERO], [ZERO, neg(ONE)]],
+    ]
+    result = [[ZERO for _ in range(4)] for _ in range(4)]
+    for row in range(4):
+        for column in range(4):
+            result = matrix_add(
+                result,
+                matrix_scale(
+                    g(transfer[row][column] / 2),
+                    kronecker(
+                        transpose(paulis[column]), paulis[row]
+                    ),
+                ),
+            )
+    return result
+
+
+def matrix_vector(
+    matrix: list[list[G]], vector: list[G]
+) -> list[G]:
+    return [
+        sum_g(mul(matrix[i][j], vector[j]) for j in range(len(vector)))
+        for i in range(len(matrix))
+    ]
+
+
+def inverse2(matrix: list[list[G]]) -> list[list[G]]:
+    determinant_value = add(
+        mul(matrix[0][0], matrix[1][1]),
+        neg(mul(matrix[0][1], matrix[1][0])),
+    )
+    denominator = (
+        determinant_value[0] ** 2 + determinant_value[1] ** 2
+    )
+    reciprocal = (
+        determinant_value[0] / denominator,
+        -determinant_value[1] / denominator,
+    )
+    return [
+        [mul(reciprocal, matrix[1][1]),
+         mul(reciprocal, neg(matrix[0][1]))],
+        [mul(reciprocal, neg(matrix[1][0])),
+         mul(reciprocal, matrix[0][0])],
+    ]
+
+
 def singlet_expectation(matrix: list[list[G]]) -> G:
     """Expectation on (|01>-|10>)/sqrt(2), without square roots."""
     return mul(
@@ -260,8 +312,57 @@ assert mul(g(2), singlet_expectation(generic_partial_transpose)) == g(
     minkowski_trace
 )
 
+# A symmetric Pauli transfer matrix makes the singlet an exact
+# eigenvector.  Determinant-one linked filters preserve that same
+# singlet, rather than merely preserving the sign of its expectation.
+symmetric_transfer = [
+    [F(2), F(1, 10), F(-1, 12), F(1, 14)],
+    [F(1, 10), F(1, 3), F(1, 20), F(-1, 18)],
+    [F(-1, 12), F(1, 20), F(-1, 5), F(1, 16)],
+    [F(1, 14), F(-1, 18), F(1, 16), F(1, 7)],
+]
+symmetric_choi = choi_from_transfer(symmetric_transfer)
+symmetric_partial_transpose = partial_transpose_first(symmetric_choi)
+singlet = [ZERO, ONE, neg(ONE), ZERO]
+singlet_eigenvalue = (
+    symmetric_transfer[0][0]
+    - sum(symmetric_transfer[j][j] for j in range(1, 4))
+) / 2
+assert matrix_vector(symmetric_partial_transpose, singlet) == [
+    mul(g(singlet_eigenvalue), value) for value in singlet
+]
+
+h = [[g(2), g(1)], [g(1), g(1)]]  # positive and determinant one
+linked_filter = kronecker(h, h)
+assert matrix_vector(linked_filter, singlet) == singlet
+linked_choi = matrix_multiply(
+    linked_filter, matrix_multiply(symmetric_choi, dagger(linked_filter))
+)
+linked_partial_transpose = partial_transpose_first(linked_choi)
+assert linked_partial_transpose == matrix_multiply(
+    linked_filter,
+    matrix_multiply(symmetric_partial_transpose, dagger(linked_filter)),
+)
+assert matrix_vector(linked_partial_transpose, singlet) == [
+    mul(g(singlet_eigenvalue), value) for value in singlet
+]
+
+# The determinant-critical core identity
+# A^* (C^+)^* B = M^{- *} is checked in a nontrivial complex frame.
+a_frame = [[g(2), g(1, 1)], [g(0, 1), g(3)]]
+b_frame = [[g(1), g(1, -1)], [g(2, 1), g(2)]]
+m_core = [[g(1, 1), g(2)], [g(-1), g(1, -1)]]
+c_matrix = matrix_multiply(
+    a_frame, matrix_multiply(m_core, dagger(b_frame))
+)
+n_matrix = dagger(inverse2(c_matrix))
+assert matrix_multiply(
+    dagger(a_frame), matrix_multiply(n_matrix, b_frame)
+) == dagger(inverse2(m_core))
+
 print(
     "verified exact Bell eigenvalues, partial-transpose determinant, "
     "octahedral trace-norm frontier, local-filter scaling, and fixed "
-    "Minkowski/singlet identity"
+    "Minkowski/singlet, linked-filter, and determinant-critical core "
+    "identities"
 )
