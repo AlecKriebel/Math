@@ -1608,6 +1608,39 @@ All timestamps use America/Los_Angeles.
   \leq1+\frac{2\sqrt2}{3}<2,
   \]
   whereas the formal model demands both expectations equal one.
+- More generally, if \({\cal M}_\pi,{\cal M}_\tau\) are the normalized
+  adaptive sign combinations for two permutations, their separate
+  anticommuting gaps satisfy the exact common-origin inequality
+  \[
+  \alpha_\pi+\alpha_\tau
+  \geq
+  T^2\left(
+  1-\frac12\|\{{\cal M}_\pi,{\cal M}_\tau\}\|
+  \right).
+  \]
+  This is the first finite nonlinear constraint coupling two adaptive
+  frames rather than bounding them independently.
+- The complete fifteen-pair orbit of this new separator still does not
+  close the formal relaxation.  A second exact rational model has
+  nonnegative self/crossed swap-sector masses, satisfies every
+  Hilbert--Schmidt Cauchy bound, all separate weighted merged
+  trace-norm inequalities, and all pairwise joint-frame constraints,
+  but gives
+  \[
+  D_0=\frac3{50},\qquad
+  E=-\frac{203}{200},\qquad
+  D=-\frac{191}{200},\qquad
+  Q_3^{\rm formal}=-\frac{191}{800}.
+  \]
+  For relative three-cycles its Pauli-frame anticommutator norm is
+  \(4\sqrt2/3\), and the required joint inequality reduces exactly to
+  \(2/25\ge1-2\sqrt2/3\); transposition pairs have the trivial norm
+  bound \(2\).
+- The remaining adaptive-frame lemma is therefore strictly smaller:
+  one must either couple at least three permutations in one Gram
+  constraint, or quantitatively tie the pairwise anticommutator norms
+  to the exterior overlaps.  Independent pair deficits can still float
+  too freely.
 - The live adaptive-frame problem is therefore smaller and nonlinear:
   couple the Gram matrices of different state-dependent sign frames
   and show that their joint incompatibility deficit absorbs the
@@ -1616,3 +1649,51 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_merged_adaptive_nogo.md`.
   Dependency-free checker:
   `verification/verify_n3_merged_adaptive_nogo.py`.
+
+## 2026-07-29 06:13 PDT — The full adaptive-frame support hierarchy is insufficient
+
+- The first genuinely three-frame constraint was evaluated exactly.
+  The six Pauli frames split into even and odd triples, and each
+  integer-Pauli triple sum has norm \(5\).  Hence a common equal frame
+  expectation \(m\) obeys \(m^2\leq25/27\).  This excludes the second
+  formal survivor, whose value is \(24/25\).
+- A third exact rational formal model passes that new bound, the
+  complete pair orbit, every separate weighted merged inequality,
+  exact sector positivity, and Cauchy constraints, yet has
+  \[
+  D_0=\frac3{25},\qquad E=-\frac{509}{500},\qquad
+  D=-\frac{449}{500},\qquad Q_3^{\rm formal}=-\frac{449}{2000}.
+  \]
+- Arbitrarily weighted triples and higher frame support functions do
+  not remove this survivor.  If
+  \(\widehat M_\pi=\sqrt3\,{\cal M}_\pi\) and
+  \(H=\sum_{\pi\in S_3}\widehat M_\pi\), exact Pauli algebra gives
+  \[
+  (H-10I)(H-6I)(H+2I)(H+6I)=0.
+  \]
+  The explicit orthonormal vectors
+  \[
+  u=(-e_1-e_2-e_4+3e_8)/\sqrt{12},\qquad
+  w=(e_5-e_6-e_9+e_{10})/2
+  \]
+  satisfy, for every frame,
+  \[
+  \langle u,\widehat M_\pi u\rangle=5/3,\quad
+  \langle w,\widehat M_\pi w\rangle=1,\quad
+  \langle u,\widehat M_\pi w\rangle=0.
+  \]
+  Therefore, with
+  \(t=3(\sqrt{69}-5)/10\), the exact pure state
+  \(\sqrt t\,u+\sqrt{1-t}\,w\) has all six normalized frame
+  expectations equal to \(\sqrt{23}/5\), precisely the third model's
+  value.
+- It follows that every real-weight support inequality over any subset
+  of the six frames, and the free covariance Gram completion, is
+  automatically satisfied by a genuine pure common state.  The
+  eigenvalue-\(10\) projector also gives a mixed realization of all
+  nine individual Pauli first moments.
+- This sharply redirects the adaptive approach: a successful
+  separator must retain pure common-marginal geometry of the nine
+  individual sign observables and relate it to the exterior overlaps.
+  No first-moment support function or Gram matrix with free cross
+  entries can suffice.

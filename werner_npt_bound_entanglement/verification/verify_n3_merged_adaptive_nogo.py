@@ -9,7 +9,7 @@ global realization.
 """
 
 from fractions import Fraction as F
-from itertools import product
+from itertools import permutations, product
 
 
 PARTIES = 4
@@ -40,6 +40,50 @@ def cross_profile() -> dict[int, F]:
     q[(1 << 0) | (1 << 1) | (1 << 3)] = F(0)
     q[(1 << 0) | (1 << 2) | (1 << 3)] = F(0)
     q[(1 << 1) | (1 << 2) | (1 << 3)] = F(0)
+    return q
+
+
+def second_self_profile() -> dict[int, F]:
+    a = {0: F(1), ALL: F(1), 1: F(1, 2), 14: F(1, 2)}
+    for i in (1, 2, 3):
+        a[1 << i] = F(53, 100)
+        a[ALL ^ (1 << i)] = F(53, 100)
+        a[1 | (1 << i)] = F(101, 200)
+        a[ALL ^ (1 | (1 << i))] = F(101, 200)
+    return a
+
+
+def second_cross_profile() -> dict[int, F]:
+    q = {0: F(1), ALL: F(0), 1: F(1, 2), 14: F(3, 200)}
+    for i in (1, 2, 3):
+        q[1 << i] = F(51, 100)
+        q[1 | (1 << i)] = F(99, 200)
+    for i in (1, 2, 3):
+        for j in range(i + 1, 4):
+            q[(1 << i) | (1 << j)] = F(101, 200)
+            q[1 | (1 << i) | (1 << j)] = F(1, 200)
+    return q
+
+
+def third_self_profile() -> dict[int, F]:
+    a = {0: F(1), ALL: F(1), 1: F(1, 2), 14: F(1, 2)}
+    for i in (1, 2, 3):
+        a[1 << i] = F(53, 100)
+        a[ALL ^ (1 << i)] = F(53, 100)
+        a[1 | (1 << i)] = F(99, 200)
+        a[ALL ^ (1 | (1 << i))] = F(99, 200)
+    return a
+
+
+def third_cross_profile() -> dict[int, F]:
+    q = {0: F(1), ALL: F(0), 1: F(1, 2), 14: F(9, 500)}
+    for i in (1, 2, 3):
+        q[1 << i] = F(253, 500)
+        q[1 | (1 << i)] = F(483, 1000)
+    for i in (1, 2, 3):
+        for j in range(i + 1, 4):
+            q[(1 << i) | (1 << j)] = F(99, 200)
+            q[1 | (1 << i) | (1 << j)] = F(0)
     return q
 
 
@@ -92,6 +136,18 @@ def multiply(a, b):
         tuple(sum(a[i][k] * b[k][j] for k in range(n))
               for j in range(n))
         for i in range(n)
+    )
+
+
+def trace_matrix(a):
+    return sum(a[i][i] for i in range(len(a)))
+
+
+def matrix_element(left, matrix, right):
+    return sum(
+        left[i].conjugate() * matrix[i][j] * right[j]
+        for i in range(len(left))
+        for j in range(len(right))
     )
 
 
@@ -200,10 +256,281 @@ def main() -> None:
         8, j_matrix
     )
 
+    # The second formal survivor, which passes the full pair orbit of the
+    # joint-frame separator.
+    a2 = second_self_profile()
+    b2 = second_self_profile()
+    q2 = second_cross_profile()
+    assert len(a2) == len(b2) == len(q2) == 16
+    assert all(a2[s] == a2[ALL ^ s] for s in range(16))
+    assert all(q2[s] * q2[s] <= a2[s] * b2[s] for s in range(16))
+    a2_sector = {r: walsh_sector(a2, r) for r in range(16)}
+    q2_sector = {r: walsh_sector(q2, r) for r in range(16)}
+    expected_a2 = {
+        0: F(921, 1600),
+        3: F(105, 1600), 5: F(105, 1600), 9: F(105, 1600),
+        6: F(93, 1600), 10: F(93, 1600), 12: F(93, 1600),
+        15: F(85, 1600),
+    }
+    expected_q2 = {
+        0: F(303, 800), 1: F(103, 800),
+        2: F(99, 800), 4: F(99, 800), 8: F(99, 800),
+        15: F(97, 800),
+    }
+    assert all(a2_sector[r] == expected_a2.get(r, F(0))
+               for r in range(16))
+    assert all(q2_sector[r] == expected_q2.get(r, F(0))
+               for r in range(16))
+
+    sum_q2_ki = sum(q2[1 | (1 << i)] for i in (1, 2, 3))
+    sum_q2_i = sum(q2[1 << i] for i in (1, 2, 3))
+    sum_q2_kij = sum(
+        q2[1 | (1 << i) | (1 << j)]
+        for i in (1, 2, 3)
+        for j in range(i + 1, 4)
+    )
+    d02 = 3 * q2[1] - 2 * sum_q2_ki + sum_q2_i
+    exterior2 = sum_q2_kij - sum_q2_i + F(1, 2)
+    defect2 = d02 + exterior2
+    formal_q32 = (
+        q2[1] - F(1, 2) * sum_q2_ki
+        + F(1, 4) * sum_q2_kij
+    )
+    assert d02 == F(3, 50)
+    assert exterior2 == F(-203, 200)
+    assert defect2 == F(-191, 200)
+    assert formal_q32 == F(-191, 800)
+
+    # Each original permutation has these exact adaptive gaps.
+    assert F(1, 2) - 3 * F(4, 25) == F(1, 50)
+    assert F(1) - 3 * F(8, 25) == F(1, 25)
+    assert F(8, 25) - 2 * F(4, 25) == 0
+
+    # Build all six normalized Pauli sign frames.  For relative
+    # three-cycles the exact numerator A=3{M,N} obeys A^3=32A, so
+    # ||{M,N}||=4 sqrt(2)/3.  Other pairs need only the universal bound 2.
+    frames = []
+    frame_labels = list(permutations((1, 2, 3)))
+    for assignment in frame_labels:
+        frame = zero()
+        for site, axis in enumerate(assignment, 1):
+            frame = add(frame, scale(-1, term(axis, site, axis)))
+        assert multiply(frame, frame) == scale(3, identity)
+        frames.append(frame)
+
+    def compose_inverse(left, right):
+        # Permutations are tuples of images of positions 0,1,2.
+        inverse = [0, 0, 0]
+        for position, image_value in enumerate(left):
+            inverse[image_value - 1] = position
+        return tuple(
+            inverse[right[position] - 1] for position in range(3)
+        )
+
+    low_pairs = 0
+    for first in range(6):
+        for second in range(first + 1, 6):
+            numerator = add(
+                multiply(frames[first], frames[second]),
+                multiply(frames[second], frames[first]),
+            )
+            relative = compose_inverse(
+                frame_labels[first], frame_labels[second]
+            )
+            is_three_cycle = all(relative[position] != position
+                                 for position in range(3))
+            if is_three_cycle:
+                assert multiply(
+                    multiply(numerator, numerator), numerator
+                ) == scale(32, numerator)
+                assert numerator != zero()
+                low_pairs += 1
+            else:
+                # For a relative transposition the exact spectrum of the
+                # numerator is contained in {-2,6}, and 6 occurs.
+                assert multiply(numerator, numerator) == add(
+                    scale(4, numerator), scale(12, identity)
+                )
+                assert numerator != scale(-2, identity)
+            # The pairwise separator for a three-cycle is
+            # 2/25 >= 1 - 2 sqrt(2)/3.  Squaring its positive radical
+            # comparison gives 5000 > 4761.
+    assert low_pairs == 6
+    assert F(8, 9) > F(529, 625)
+
+    # Coefficient checks for every weighted merged inequality.
+    # X/Y on the merged block:
+    assert F(1) - F(53, 100) == F(47, 100)
+    assert (
+        F(101, 100) + F(1, 100) - 2 * F(51, 100)
+    ) == 0
+    # Z on the merged block:
+    assert F(1) - F(101, 200) == F(99, 200)
+    assert 2 * F(99, 200) - 2 * F(1, 100) == F(97, 100)
+    # Every coefficient in the piecewise trace-norm gaps (58)--(59)
+    # is positive.
+    assert min(F(49, 25), F(47, 50), F(99, 25),
+               F(99, 100), F(194, 100)) > 0
+
+    # Exact three-frame Clifford certificate.  The even and odd
+    # integer-Pauli sums have norm 5; after dividing by sqrt(3), this
+    # gives the threshold m^2 <= 25/27.
+    for triple in ((0, 3, 4), (1, 2, 5)):
+        triple_sum = add(*(frames[index] for index in triple))
+        polynomial = identity
+        for root in (-3, -1, 3, 5):
+            polynomial = multiply(
+                polynomial, add(triple_sum, scale(-root, identity))
+            )
+        assert polynomial == zero()
+        # Exhibit a 5-eigenvector for the even triple.  The odd case is
+        # unitarily equivalent and has the same certified polynomial.
+        if triple == (0, 3, 4):
+            vector = [F(0) for _ in range(16)]
+            # Use the integer-scaled vector so that multiplication by the
+            # Gaussian-integer Pauli matrices remains exact in Python.
+            vector[8] = F(3)
+            vector[1] = vector[2] = vector[4] = F(-1)
+            product_vector = [
+                sum(triple_sum[row][column] * vector[column]
+                    for column in range(16))
+                for row in range(16)
+            ]
+            assert product_vector == [5 * value for value in vector]
+
+    # The second survivor is excluded, while the third survives:
+    assert F(24, 25) > F(25, 27)
+    assert F(23, 25) <= F(25, 27)
+
+    # The entire arbitrarily weighted six-frame support hierarchy also
+    # fails to exclude the third survivor.  The full integer-frame sum
+    # has exact spectrum contained in {-6,-2,6,10}.
+    full_sum = add(*frames)
+    polynomial = identity
+    for root in (-6, -2, 6, 10):
+        polynomial = multiply(
+            polynomial, add(full_sum, scale(-root, identity))
+        )
+    assert polynomial == zero()
+
+    # Explicit opposite-parity vectors u_raw and w_raw.  Their squared
+    # norms are 12 and 4, respectively.  For every integer frame their
+    # normalized expectations are 5/3 and 1, and all cross matrix
+    # elements vanish.
+    u_raw = [0 for _ in range(16)]
+    u_raw[1] = u_raw[2] = u_raw[4] = -1
+    u_raw[8] = 3
+    w_raw = [0 for _ in range(16)]
+    w_raw[5], w_raw[6], w_raw[9], w_raw[10] = 1, -1, -1, 1
+    assert sum(abs(value) ** 2 for value in u_raw) == 12
+    assert sum(abs(value) ** 2 for value in w_raw) == 4
+    assert sum(
+        left.conjugate() * right for left, right in zip(u_raw, w_raw)
+    ) == 0
+    for frame in frames:
+        assert matrix_element(u_raw, frame, u_raw) == 20
+        assert matrix_element(w_raw, frame, w_raw) == 4
+        assert matrix_element(u_raw, frame, w_raw) == 0
+
+    # t=3(sqrt(69)-5)/10 lies in (0,1), since 25<69 and 621<625.
+    # Substitution into (1+2t/3)/sqrt(3) gives sqrt(23)/5.
+    assert 25 < 69
+    assert 9 * 69 < 25 * 25
+    assert F(1, 3) * 23 == F(23, 3)
+
+    # The eigenvalue-10 spectral projection is P=projector_numerator/768.
+    # Its exact compression and trace identities certify both the
+    # three-dimensional top eigenspace and the symmetric mixed-state
+    # realization of all nine individual Pauli first moments.
+    projector_numerator = multiply(
+        multiply(
+            add(full_sum, scale(-6, identity)),
+            add(full_sum, scale(2, identity)),
+        ),
+        add(full_sum, scale(6, identity)),
+    )
+    assert multiply(
+        projector_numerator, projector_numerator
+    ) == scale(768, projector_numerator)
+    assert trace_matrix(projector_numerator) == 3 * 768
+    for frame in frames:
+        assert scale(
+            3,
+            multiply(
+                multiply(projector_numerator, frame),
+                projector_numerator,
+            ),
+        ) == scale(5 * 768, projector_numerator)
+    for axis in (1, 2, 3):
+        for site in (1, 2, 3):
+            pauli_correlator = scale(-1, term(axis, site, axis))
+            # Tr((P/3) O_{axis,site})=5/9.
+            assert trace_matrix(
+                multiply(projector_numerator, pauli_correlator)
+            ) == 1280
+
+    a3 = third_self_profile()
+    b3 = third_self_profile()
+    q3 = third_cross_profile()
+    assert len(a3) == len(b3) == len(q3) == 16
+    assert all(a3[s] == a3[ALL ^ s] for s in range(16))
+    assert all(q3[s] * q3[s] <= a3[s] * b3[s] for s in range(16))
+    a3_sector = {r: walsh_sector(a3, r) for r in range(16)}
+    q3_sector = {r: walsh_sector(q3, r) for r in range(16)}
+    expected_a3 = {
+        0: F(183, 320),
+        3: F(107, 1600), 5: F(107, 1600), 9: F(107, 1600),
+        6: F(19, 320), 10: F(19, 320), 12: F(19, 320),
+        15: F(79, 1600),
+    }
+    expected_q3 = {
+        0: F(597, 1600), 1: F(259, 2000),
+        2: F(247, 2000), 4: F(247, 2000), 8: F(247, 2000),
+        3: F(1, 1600), 5: F(1, 1600), 9: F(1, 1600),
+        6: F(17, 8000), 10: F(17, 8000), 12: F(17, 8000),
+        15: F(949, 8000),
+    }
+    assert all(a3_sector[r] == expected_a3.get(r, F(0))
+               for r in range(16))
+    assert all(q3_sector[r] == expected_q3.get(r, F(0))
+               for r in range(16))
+
+    sum_q3_ki = sum(q3[1 | (1 << i)] for i in (1, 2, 3))
+    sum_q3_i = sum(q3[1 << i] for i in (1, 2, 3))
+    sum_q3_kij = sum(
+        q3[1 | (1 << i) | (1 << j)]
+        for i in (1, 2, 3)
+        for j in range(i + 1, 4)
+    )
+    d03 = 3 * q3[1] - 2 * sum_q3_ki + sum_q3_i
+    exterior3 = sum_q3_kij - sum_q3_i + F(1, 2)
+    defect3 = d03 + exterior3
+    formal_q33 = (
+        q3[1] - F(1, 2) * sum_q3_ki
+        + F(1, 4) * sum_q3_kij
+    )
+    assert d03 == F(3, 25)
+    assert exterior3 == F(-509, 500)
+    assert defect3 == F(-449, 500)
+    assert formal_q33 == F(-449, 2000)
+
+    # Third-survivor adaptive and weighted-merged coefficient checks.
+    assert F(1, 2) - F(23, 50) == F(1, 25)
+    assert F(1) - 2 * F(23, 50) == F(2, 25)
+    assert F(23, 25) <= F(25, 27)
+    assert F(47, 100) > 0 and F(11, 500) > 0
+    assert F(101, 200) > 0 and F(483, 500) > 0
+    assert F(101, 50) > 0
+    assert F(47, 50) > 0 and F(11, 250) > 0
+
     print("verified exact merged-adaptive formal no-go")
     print("D0 =", d0, "E =", exterior, "D =", sharp_defect,
           "formal Q3 =", formal_q3)
     print("verified J^3 = 8 J, hence ||{M,N}|| <= 4 sqrt(2) / 3 < 2")
+    print("verified joint-orbit survivor: D =", defect2,
+          "formal Q3 =", formal_q32)
+    print("verified three-frame survivor: D =", defect3,
+          "formal Q3 =", formal_q33)
 
 
 if __name__ == "__main__":

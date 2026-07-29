@@ -449,15 +449,555 @@ joint-frame compatibility inequality
 \]
 The formal model asks for \(m=n=1\), so (37) separates it exactly.
 
-Equation (37) is information which none of the six adaptive
-inequalities contains separately.  It is the smallest live remnant
-exposed by this no-go: a successful proof through adaptive frames must
-control the joint Gram matrix of different state-dependent sign
-frames.  The remaining difficulty is to construct an analogue of
-(37) for arbitrary, noncommuting sign observables and to show that its
-aggregate deficit dominates the exterior correction in (29g).
+There is an exact state-dependent version of this separator.  Normalize
+an arbitrary adaptive-frame purification to trace one.  For a
+permutation \(\pi\), put
+\[
+ x_{\pi,i}=\|X_{\pi(i),i}\|_1,\qquad
+ s_\pi=\sum_i x_{\pi,i}^2=1-\alpha_\pi,
+\]
+and, when \(s_\pi>0\), define
+\[
+ {\mathcal M}_\pi
+ =\frac1{\sqrt{s_\pi}}\sum_i
+ x_{\pi,i}\,
+ \sigma_{\pi(i)}^{(K)}\otimes
+ \operatorname{sgn}(X_{\pi(i),i}).                         \tag{38}
+\]
+The summands within one frame anticommute, so
+\[
+ {\mathcal M}_\pi^2\preceq I,\qquad
+ \langle{\mathcal M}_\pi\rangle=\sqrt{s_\pi}.              \tag{39}
+\]
+For any two permutations \(\pi,\tau\), the variance inequality applied
+to
+\(\sqrt{s_\pi}{\mathcal M}_\pi+
+  \sqrt{s_\tau}{\mathcal M}_\tau\)
+therefore gives the universal joint-frame bound
+\[
+\boxed{\qquad
+ \alpha_\pi+\alpha_\tau
+ \geq
+ 1-\frac12
+ \left\|\{
+ {\mathcal M}_\pi,{\mathcal M}_\tau
+ \}\right\|.
+\qquad}                                                     \tag{40}
+\]
+For an unnormalized purification of trace \(T\), multiply the
+right-hand side by \(T^2\) and use the normalized \(x_{\pi,i}/T\).
 
-## 5. Exact scope
+For completeness, if \(G_i,H_i\) are the two local sign operators,
+the anticommutator in (40) contains only two types of terms.  When the
+same logical axis is assigned to different sites, it contains the
+product \(G_iH_j\).  When different logical axes are assigned to the
+same site, it contains the local commutator \([G_i,H_i]\), multiplied
+by the corresponding skew Pauli product on \(K\).  Thus (40) is an
+explicit finite Gram constraint on the common origin of two adaptive
+frames, not a new purity inequality.
+
+Equation (40) is information which none of the six adaptive
+inequalities contains separately.  In the formal model,
+\({\mathcal M}_\pi=M\), \({\mathcal M}_\tau=N\), and (40) is exactly
+the strict contradiction following (36).  This is the smallest live
+remnant exposed by the no-go: a successful proof through adaptive
+frames must bound the joint anticommutators of the state-dependent sign
+frames and show that their aggregate deficit dominates the exterior
+correction in (29g).
+
+## 5. The full joint-frame orbit still does not close
+
+The separator (40) kills the saturated model in Section 3, but adding
+its full permutation orbit still does not imply the desired exterior
+inequality.  Here is an exact second formal survivor.
+
+Keep \(T=1,h=0,p=1/2\).  Let the common self-purity profile be
+\[
+\begin{array}{c|c}
+R&a_R=b_R\\ \hline
+\varnothing,\ K123&1\\
+K,\ 123&1/2\\
+i,\ Kjk&53/100\\
+Ki,\ jk&101/200 ,
+\end{array}                                                  \tag{41}
+\]
+and let the crossed profile be
+\[
+\begin{array}{c|c}
+R&q_R\\ \hline
+\varnothing&1\\
+K&1/2\\
+i&51/100\\
+Ki&99/200\\
+ij&101/200\\
+Kij&1/200\\
+123&3/200\\
+K123&0 .
+\end{array}                                                  \tag{42}
+\]
+All displayed physical indices are distinct where appropriate.
+
+The self sector masses are
+\[
+\begin{array}{c|c}
+R&a_R^{\rm sec}\\ \hline
+\varnothing&921/1600\\
+Ki&105/1600\\
+ij&93/1600\\
+K123&85/1600,
+\end{array}                                                  \tag{43}
+\]
+and all others vanish.  The crossed sector masses are
+\[
+\begin{array}{c|c}
+R&q_R^{\rm sec}\\ \hline
+\varnothing&303/800\\
+K&103/800\\
+i&99/800\\
+K123&97/800,
+\end{array}                                                  \tag{44}
+\]
+with all others zero.  Thus exact sector positivity and every
+Hilbert--Schmidt Cauchy bound hold.
+
+### 5.1 Original adaptive frames and their complete pair orbit
+
+Choose the nine traceless Pauli reductions
+\[
+ X_{a,i}^{\cal A}=X_{a,i}^{\cal B}
+ =-\frac{\sqrt2}{5}\sigma_a.                               \tag{45}
+\]
+Their squared Hilbert--Schmidt and trace norms are
+\[
+ \|X_{a,i}\|_2^2=\frac4{25},\qquad
+ \|X_{a,i}\|_1^2=\frac8{25}.                               \tag{46}
+\]
+The two one-site density matrices may be chosen with Bloch vectors
+\[
+ r_{\cal A}=\left(0,0,\frac{\sqrt6}{10}\right),\qquad
+ r_{\cal B}=\left(\frac{2\sqrt3}{15},0,
+                        \frac{\sqrt6}{30}\right).          \tag{47}
+\]
+They have squared lengths \(3/50\) and mutual inner product \(1/50\),
+so (41)--(42) hold at levels \(i\) and \(Ki\).  The corresponding
+\(Ki\) block is positive; a simple lower bound for its least eigenvalue
+is
+\[
+ \frac14-\frac{\sqrt2}{10}-\frac{\sqrt6}{40}>0.            \tag{48}
+\]
+
+Every permutation now has
+\[
+ \delta_\pi=\frac1{50},\qquad
+ \alpha_\pi=\frac1{25},\qquad
+ \beta_{\pi,i}=0,\qquad
+ d_\pi=\frac1{50}.                                         \tag{49}
+\]
+For the six Pauli sign frames, direct multiplication shows
+\[
+ \|\{{\cal M}_\pi,{\cal M}_\tau\}\|
+ =
+ \begin{cases}
+ 4\sqrt2/3,&\pi^{-1}\tau\text{ is a three-cycle},\\
+ 2,&\pi^{-1}\tau\text{ is a transposition}.
+ \end{cases}                                                \tag{50}
+\]
+For a three-cycle, (40) becomes
+\[
+ \frac2{25}\geq1-\frac{2\sqrt2}{3},                        \tag{51}
+\]
+which is exact because \(5000>4761\).  For a transposition its
+right-hand side is zero.  Hence the entire fifteen-pair orbit of the
+joint-frame separator holds.
+
+### 5.2 The separate merged inequalities still hold with all weights
+
+The weighted merged inequalities (5)--(7) also admit exact local
+matrix data for (41)--(42).  On the merged block take
+\[
+ A_b=\frac1{20}\operatorname{diag}(11,9),\qquad
+ B_b=\frac1{20}\operatorname{diag}(9,11),
+\]
+\[
+ Z_b=e^{-i\pi/4}
+ \begin{pmatrix}0&11/20\\9/20&0\end{pmatrix}.              \tag{52}
+\]
+Then
+\[
+\begin{aligned}
+\|A_b\|_2^2=\|B_b\|_2^2&=\frac{101}{200},&
+\operatorname{Tr}(A_bB_b)&=\frac{99}{200},\\
+\|Z_b\|_2^2&=\frac{101}{200},&
+\|S_b\|_2^2=\|T_b\|_2^2&=\frac{101}{100},\\
+\|S_b\|_1^2=\|T_b\|_1^2&=\frac{101}{50}.
+\end{aligned}                                               \tag{53}
+\]
+On a singleton use the two density matrices with Bloch vectors (47)
+and
+\[
+ Z_s=e^{-i\pi/4}\frac1{20}\operatorname{diag}(1,-1).       \tag{54}
+\]
+Thus
+\[
+\begin{aligned}
+\|A_s\|_2^2=\|B_s\|_2^2&=\frac{53}{100},&
+\operatorname{Tr}(A_sB_s)&=\frac{51}{100},\\
+\|Z_s\|_2^2&=\frac1{200},&
+\|S_s\|_2^2=\|T_s\|_2^2&=\frac1{100},\\
+\|S_s\|_1^2=\|T_s\|_1^2&=\frac1{50}.
+\end{aligned}                                               \tag{55}
+\]
+Both local branch block matrices are positive.  For (52) this follows
+from the exact factorization
+\(Z_b=A_b^{1/2}(e^{-i\pi/4}X)B_b^{1/2}\).  For (54), the Schur
+contraction has norm strictly below one.
+
+By homogeneity set \(y=1\) and write \(x=r\geq0\).  If branch \(X\) or
+\(Y\) is assigned to the merged block, the Hilbert--Schmidt gap is
+\[
+ \delta_{X/Y}(r)=\frac{47}{100}(r^2+1).                    \tag{56}
+\]
+If branch \(Z\) is assigned there, it is
+\[
+ \delta_Z(r)=\frac{99}{200}(r^2+1)+\frac{97}{100}r.        \tag{57}
+\]
+The trace-norm gaps are also nonnegative for every \(r\).  For an
+\(X/Y\)-merged assignment,
+\[
+ \alpha_{X/Y}(r)=
+ \begin{cases}
+ \dfrac{49}{25}r,
+ &r\notin[r_-,r_+],\\[4pt]
+ \dfrac{47}{50}(r^2+1),
+ &r\in[r_-,r_+],
+ \end{cases}
+\quad
+ r_\pm=\frac{49\pm8\sqrt3}{47}.                            \tag{58}
+\]
+For a \(Z\)-merged assignment,
+\[
+ \alpha_Z(r)=
+ \begin{cases}
+ \dfrac{99}{25}r,
+ &r\notin[9/11,11/9],\\[4pt]
+ \dfrac{99r^2+194r+99}{100},
+ &r\in[9/11,11/9].
+ \end{cases}                                                \tag{59}
+\]
+Every \(\beta\) is nonnegative by the exact trace-norm lemma, and
+\(2\delta=\alpha+\sum\beta\).  Thus the full separate weighted
+merged-frame system survives.
+
+### 5.3 It remains formally negative
+
+The original adaptive part is now positive but too small:
+\[
+ D_0=3q_K-2\sum_iq_{Ki}+\sum_iq_i=\frac3{50}.              \tag{60}
+\]
+The exterior correction is
+\[
+ E=\sum_{i<j}q_{Kij}-\sum_iq_i+\frac12
+ =-\frac{203}{200}.                                        \tag{61}
+\]
+Therefore
+\[
+\boxed{\qquad
+ D=-\frac{191}{200},\qquad
+ Q_3^{\rm formal}=-\frac{191}{800}.
+\qquad}                                                     \tag{62}
+\]
+
+This second model is again nonphysical.  What it proves is more
+specific: even the complete pair orbit of the first joint-frame
+separator, together with every separate weighted merged inequality,
+does not dominate the exterior correction.
+
+The strictly smaller residual is now clear.  One needs either:
+
+1. a higher joint Gram constraint coupling at least three adaptive
+   permutations at once; or
+2. a quantitative inequality tying the anticommutator norms in (40)
+   to the transition/exterior overlaps in (29g).
+
+Allowing each pairwise anticommutator deficit to float independently is
+still insufficient.
+
+## 6. The first three-frame Clifford constraint and a third survivor
+
+The six Pauli frames split into the even and odd permutations.  Let
+\({\cal E}\) be the three even frames and \({\cal O}\) the three odd
+frames.  Exact Pauli multiplication gives
+\[
+ \left\|\sum_{\pi\in{\cal E}}{\cal M}_\pi\right\|
+ =\left\|\sum_{\pi\in{\cal O}}{\cal M}_\pi\right\|
+ =\frac5{\sqrt3}.                                          \tag{63}
+\]
+A compact exact certificate is obtained before dividing the frames by
+\(\sqrt3\): the two integer-Pauli sums have spectrum contained in
+\[
+ \{-3,-1,3,5\},
+\]
+and \(5\) occurs.  Thus any common state with equal frame expectation
+\(m\) must obey
+\[
+ 3m\leq\frac5{\sqrt3},\qquad m^2\leq\frac{25}{27}.         \tag{64}
+\]
+
+The second survivor has \(m^2=24/25\), so (64) excludes it:
+\[
+ \frac{24}{25}>\frac{25}{27}.
+\]
+However, the full even/odd orbit of (64) still does not close the
+formal relaxation.
+
+Take instead
+\[
+\begin{array}{c|c}
+R&a_R=b_R\\ \hline
+\varnothing,\ K123&1\\
+K,\ 123&1/2\\
+i,\ Kjk&53/100\\
+Ki,\ jk&99/200 ,
+\end{array}                                                  \tag{65}
+\]
+and
+\[
+\begin{array}{c|c}
+R&q_R\\ \hline
+\varnothing&1\\
+K&1/2\\
+i&253/500\\
+Ki&483/1000\\
+ij&99/200\\
+Kij&0\\
+123&9/500\\
+K123&0 .
+\end{array}                                                  \tag{66}
+\]
+The exact self sector masses are
+\[
+\begin{array}{c|c}
+R&a_R^{\rm sec}\\ \hline
+\varnothing&183/320\\
+Ki&107/1600\\
+ij&19/320\\
+K123&79/1600,
+\end{array}                                                  \tag{67}
+\]
+and the crossed masses are
+\[
+\begin{array}{c|c}
+R&q_R^{\rm sec}\\ \hline
+\varnothing&597/1600\\
+K&259/2000\\
+i&247/2000\\
+Ki&1/1600\\
+ij&17/8000\\
+K123&949/8000 .
+\end{array}                                                  \tag{68}
+\]
+All omitted masses vanish; in particular all sector and Cauchy
+constraints remain exact and nonnegative.
+
+Choose again aligned Pauli reductions, now with
+\[
+ \sum_a\|X_{a,i}\|_2^2=\frac{23}{50},\qquad
+ \sum_a\|X_{a,i}\|_1^2=\frac{23}{25}.                      \tag{69}
+\]
+For example, take
+\[
+ X_{a,i}^{\cal A}=X_{a,i}^{\cal B}
+ =-\sqrt{\frac{23}{300}}\,\sigma_a.                        \tag{70}
+\]
+The one-site Bloch vectors can have squared length \(3/50\) and mutual
+inner product \(3/250\); one exact choice is
+\[
+ r_{\cal A}=\left(0,0,\frac{\sqrt6}{10}\right),\qquad
+ r_{\cal B}=\left(\frac6{25},0,\frac{\sqrt6}{50}\right).
+                                                                    \tag{71}
+\]
+Consequently every original frame has
+\[
+ \delta_\pi=d_\pi=\frac1{25},\qquad
+ \alpha_\pi=\frac2{25},\qquad
+ \beta_{\pi,i}=0,\qquad
+ m^2=\frac{23}{25}.                                       \tag{72}
+\]
+All pairwise joint-frame bounds hold.  The three-frame constraint
+(64) also holds, now sharply close to its boundary:
+\[
+ \frac{23}{25}\leq\frac{25}{27}
+ \quad\Longleftrightarrow\quad
+ 621\leq625.                                               \tag{73}
+\]
+
+The separate weighted merged inequalities remain positive.  Their
+Hilbert--Schmidt gaps are, after setting \(y=1,x=r\),
+\[
+ \delta_{X/Y}(r)
+ =\frac{47}{100}(r^2+1)+\frac{11}{500}r,\qquad
+ \delta_Z(r)
+ =\frac{101}{200}(r^2+1)+\frac{483}{500}r.                 \tag{74}
+\]
+For the trace-norm part, an \(X/Y\)-merged assignment has transition
+contribution \(99r/50\).  The remaining two-dimensional Hermitian
+difference has squared trace norm either \((r-1)^2\), or
+\[
+ \frac3{50}(r^2+1)-\frac3{125}r
+\]
+in its indefinite interval.  Hence its \(\alpha\) gap is respectively
+\[
+ \frac{101}{50}r
+\quad\hbox{or}\quad
+ \frac{47}{50}(r^2+1)+\frac{11}{250}r,                    \tag{75}
+\]
+both nonnegative.  A \(Z\)-merged assignment has no singleton
+transition term, so
+\[
+ \alpha_Z(r)=(r+1)^2-\|rA_b-B_b\|_1^2\geq0                \tag{76}
+\]
+by the triangle inequality for density matrices.  As before, all
+\(\beta\)'s are automatically nonnegative.
+
+Nevertheless,
+\[
+\boxed{\begin{aligned}
+ D_0&=\frac3{25},&
+ E&=-\frac{509}{500},\\
+ D&=-\frac{449}{500},&
+ Q_3^{\rm formal}&=-\frac{449}{2000}.
+\end{aligned}}                                             \tag{77}
+\]
+This third model is formal and nonphysical.
+
+Thus the equal-weight three-frame Clifford constraint does expose
+genuinely new common-origin information, but it still does not settle
+the exterior inequality.
+
+## 7. The complete frame support hierarchy also survives
+
+In fact, arbitrarily weighting triples, quadruples, or all six frames
+cannot exclude the third model.  This is not merely another formal
+linear-program observation: the six requested frame expectations have
+an exact common **pure-state** realization.
+
+Write
+\[
+ \widehat M_\pi=\sqrt3\,{\cal M}_\pi,\qquad
+ H=\sum_{\pi\in S_3}\widehat M_\pi .                       \tag{78}
+\]
+Thus every \(\widehat M_\pi\) is the sum of three integer Pauli
+strings and \(\widehat M_\pi^2=3I\).  Direct Pauli multiplication gives
+the exact spectral certificate
+\[
+ (H-10I)(H-6I)(H+2I)(H+6I)=0.                             \tag{79}
+\]
+The eigenvalues \(10\) and \(6\) both occur.  In the computational
+basis numbered \(0,\ldots,15\), define the two unit vectors
+\[
+\begin{aligned}
+ u&=\frac{-e_1-e_2-e_4+3e_8}{\sqrt{12}},\\
+ w&=\frac{ e_5-e_6-e_9+e_{10}}{2}.
+\end{aligned}                                               \tag{80}
+\]
+They are orthogonal and an exact multiplication gives, for every
+\(\pi\in S_3\),
+\[
+\begin{aligned}
+ \langle u,\widehat M_\pi u\rangle&=\frac53,&
+ \langle w,\widehat M_\pi w\rangle&=1,&
+ \langle u,\widehat M_\pi w\rangle&=0.                    \tag{81}
+\end{aligned}
+\]
+The last equality is also immediate from parity: every frame preserves
+computational-basis parity, while \(u\) and \(w\) have opposite parity.
+
+Set
+\[
+ t=\frac{3(\sqrt{69}-5)}{10}.                              \tag{82}
+\]
+This lies strictly between zero and one: \(69>25\), while
+\(t<1\) is equivalent to \(621<625\).  The pure unit vector
+\[
+ \psi=\sqrt t\,u+\sqrt{1-t}\,w                            \tag{83}
+\]
+then obeys, for all six frames,
+\[
+\begin{aligned}
+ \langle\psi,{\cal M}_\pi\psi\rangle
+ &=\frac1{\sqrt3}\left(\frac53t+1-t\right)\\
+ &=\frac1{\sqrt3}\left(1+\frac23t\right)
+ =\frac{\sqrt{23}}5.                                      \tag{84}
+\end{aligned}
+\]
+Its squared expectation is exactly \(23/25\), which is the value
+required in (72).
+
+Consequently, for arbitrary real coefficients \(c_\pi\),
+\[
+ \frac{\sqrt{23}}5\sum_\pi c_\pi
+ =
+ \left\langle\psi,
+ \left(\sum_\pi c_\pi{\cal M}_\pi\right)\psi
+ \right\rangle
+ \leq
+ \lambda_{\max}\left(\sum_\pi c_\pi{\cal M}_\pi\right).
+                                                               \tag{85}
+\]
+Applying the same statement to the negative coefficients gives every
+operator-norm support inequality as well.  Thus all arbitrarily
+weighted triple, four-frame, five-frame, and six-frame first-moment
+constraints hold automatically.  The covariance/Gram matrix
+\[
+ G_{\pi\tau}
+ =
+ \left\langle
+ ({\cal M}_\pi-m)\psi,\,
+ ({\cal M}_\tau-m)\psi
+ \right\rangle,\qquad m=\frac{\sqrt{23}}5,                 \tag{86}
+\]
+is also manifestly positive semidefinite.  Hence an unrestricted
+six-frame Gram determinant with its unprescribed cross entries cannot
+separate the model either.
+
+There is an even stronger mixed-state observation at the level of the
+nine individual Pauli correlators.  Let \(P_{10}\) be the spectral
+projection of \(H\) at eigenvalue \(10\).  Polynomial interpolation
+from (79) gives
+\[
+ P_{10}
+ =
+ \frac{(H-6I)(H+2I)(H+6I)}
+ {(10-6)(10+2)(10+6)}.                                    \tag{87}
+\]
+It has trace three, and exact multiplication gives
+\[
+ P_{10}\widehat M_\pi P_{10}=\frac53P_{10}
+ \quad(\pi\in S_3).                                       \tag{88}
+\]
+By the site-and-axis permutation symmetry, the state \(P_{10}/3\)
+has expectation \(5/9\) on each of the nine Pauli strings entering the
+six frames.  Mixing it with \(I/16\) in the proportion
+\[
+ \frac{3\sqrt{69}}{25}
+\]
+therefore realizes the third model's individual value
+\(\sqrt{23/75}\) exactly.  This last state is mixed, so it does not
+settle the pure common-marginal problem; it shows that no linear
+support separation of the nine first moments is possible.
+
+The surviving obstruction is consequently finer than a support
+function or a free covariance Gram matrix.  It must retain at least
+one of:
+
+1. the purity/decomposability of the common vector together with all
+   nine individual sign observables;
+2. the actual one- and two-block marginals, not merely their six frame
+   sums;
+3. a direct nonlinear relation between those marginals and the
+   transition/exterior overlaps in (29g).
+
+## 8. Exact scope
 
 Established here:
 
@@ -466,11 +1006,21 @@ Established here:
 2. the smaller branch-marginal target (11);
 3. an exact enriched formal model proving that all separate original
    and merged adaptive inequalities are insufficient;
-4. an explicit common-origin separator (37).
+4. an explicit common-origin separator (37) and its general
+   state-dependent form (40);
+5. a second exact formal survivor showing that the complete pair orbit
+   of (40), plus all separate weighted merged inequalities, is still
+   insufficient;
+6. the first exact three-frame Clifford separator and a third formal
+   survivor showing that its equal-weight permutation orbit is still
+   insufficient;
+7. an exact pure common state proving that the entire arbitrarily
+   weighted six-frame support hierarchy and its free Gram completion
+   still do not exclude that third survivor.
 
 Not established:
 
 1. no physical pair \({\cal A},{\cal B}\) realizes the formal model;
 2. no rank-two matrix with negative \(Q_3\) is produced;
-3. (37) has not yet been generalized to the arbitrary adaptive signs
-   needed for a proof of unrestricted three-copy positivity.
+3. no finer pure common-marginal inequality coupling the nine sign
+   observables to the exterior overlaps has been proved.
