@@ -2837,3 +2837,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_crossed_hodge_inertia_counterexample.md`.
   Exact checker:
   `verification/verify_n3_crossed_hodge_inertia_counterexample.py`.
+
+## 2026-07-29 — Pair-sector frontier reduced to one \(3\times3\) determinant
+
+- The sharp two-site degree-one inequality
+  \[
+  \|\Pi_1^{(2)}C\|_2^2\leq\frac23\|C\|_2^2
+  \qquad(\operatorname{rank}C\leq2)
+  \]
+  follows exactly from the established two-copy endpoint theorem via
+  \[
+  \frac23\|C\|_2^2-\|\Pi_1^{(2)}C\|_2^2
+  =\frac23Q_2(C)+\frac12\|\Pi_0^{(2)}C\|_2^2.
+  \]
+- Expanding a three-copy matrix in spectator matrix units preserves
+  rank at most two blockwise.  Summing the two-site inequality and
+  then applying the remaining traceless projection proves the
+  three-copy pair-sector bound whenever any one of its three
+  components vanishes.
+- In the dual fixed-plane formulation, with
+  \(X_i=D_{\widehat i}V\),
+  \(d_i=2\|B_{\widehat i}\|_2^2-\|X_i\|_2^2\), and
+  \(c_{ij}=\langle X_i,X_j\rangle\), every \(2\times2\) principal
+  matrix
+  \[
+  \begin{pmatrix}d_i&-c_{ij}\\-\overline{c_{ij}}&d_j\end{pmatrix}
+  \]
+  is positive semidefinite.  Therefore the full pair-sector theorem
+  is now equivalent to the single remaining condition
+  \[
+  d_1d_2d_3-\sum_{\{i,j,k\}=\{1,2,3\}}d_i|c_{jk}|^2
+  -2\operatorname{Re}(c_{12}c_{23}\overline{c_{13}})\geq0.
+  \]
+  This is the common three-component Gram-compatibility obstruction;
+  separate pairwise estimates contain no further information.
+- Exact note:
+  `notes/agent_n3_pair_sector_three_component_determinant.md`.
+  Exact checker:
+  `verification/verify_n3_pair_sector_three_component_determinant.py`.
