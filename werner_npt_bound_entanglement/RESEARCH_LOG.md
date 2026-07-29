@@ -816,3 +816,204 @@ All timestamps use America/Los_Angeles.
   \]
   This is the smallest current intersection-one lemma: it preserves the
   state-dependent compensation that the false operator-norm bound discards.
+
+## 2026-07-28 — unrestricted \(n=3\) unshifted-minor falsifier
+
+- Identified the corrected exterior-sector target
+  \[
+  (0,1,4,13;\ 1,0,-3,-12)
+  \]
+  as exactly one half of the already proved strong positive-rank-two
+  defect kernel
+  \[
+  G_{\rm psd}
+  =F_K\prod_{i=1}^3(2I-F_i)-2F_K+I.
+  \]
+  The unresolved theorem is therefore crossed positivity
+  \(\langle A\otimes B,G_{\rm psd}A\otimes B\rangle\ge0\) for two
+  purifications with a common qubit marginal; the established theorem is
+  only its diagonal specialization \(B=A\).
+- Exactly ruled out a sector-diagonal certificate made from the three
+  natural grouped three-block defects plus nonnegative sector masses.
+  After physical symmetrization their \((k,r)=(1,1)\) coefficients are
+  \(2,3,2\), while the target coefficient is zero.  Nonnegative
+  multipliers must all vanish and therefore cannot generate the target's
+  negative \((1,2)\) and \((1,3)\) coefficients.
+- Exactly refuted the proof route “ordinary crossed Cauchy--Schwarz plus
+  energy Monge.”  At
+  \(u_1=v_1=|000\rangle,\ u_2=v_2=|111\rangle\), the true unshifted
+  determinant is equality, but the two crossed Cauchy diagonals have
+  product \(64\) while the matched product is \(1\).
+- Computed the full constrained Hessian at the canonical nonnormal zero
+  \[
+  C_0=|000\rangle\langle110|+|001\rangle\langle111|.
+  \]
+  In the \(204\)-real-dimensional qutrit partial-isometry chart it is
+  positive semidefinite of rank \(149\) and nullity \(55\), splitting
+  exactly into \(149\) rational positive rank-one blocks.  Exact
+  polarization verifies that every cubic Taylor coefficient on the
+  \(55\)-dimensional flat space vanishes.  Hence the first possible local
+  negative branch is one explicit quartic form; its sign remains open.
+  Exact finite cross-checks in local dimensions \(2,4,5\) likewise found
+  no negative Hessian direction, but no general dimension-compression
+  theorem is claimed.
+
+## 2026-07-28 23:43 PDT — exact SOS at the canonical nonnormal zero
+
+- Settled the first unresolved local term at
+  \[
+  C_0=|000\rangle\langle110|+|001\rangle\langle111|.
+  \]
+  The complete \(55\)-variable quartic on the constrained-Hessian kernel
+  is nonnegative and has an exact rational positive-Gram certificate.
+- The quartic's \(14\)-dimensional coordinate-sign symmetry splits the
+  Gram problem into \(192\) character blocks.  Exact zero-diagonal
+  elimination leaves \(969\) quadratic monomials; the reconstructed
+  rational minimal faces have total rank \(618\) and maximum block size
+  \(24\).
+- On those faces, coefficient matching is an exact sparse system of
+  \(3348\) equations in \(1894\) reduced Gram variables.  Its rational
+  rank is \(1361\).  An exact solution with \(533\) free rational
+  parameters makes every reduced Gram block positive definite.
+- Added the \(126\)-kilobyte certificate
+  `verification/certificates/n3_boundary_flat_quartic_sos.json` and the
+  independent verifier
+  `verification/verify_n3_boundary_flat_quartic_sos.py`.  Certificate
+  version 2 vendors the expanded exact quartic, so the verifier is
+  standard-library-only.  It checks exact positive \(LDL^T\) pivots for
+  all \(192\) blocks and matches all \(3348\) rational coefficients.
+- Hostile-review correction: this is the raw quartic restriction to the
+  Hessian kernel, not yet the Lyapunov--Schmidt effective quartic.
+  Positive-Hessian coordinates of order two can couple through mixed
+  cubic terms and subtract a Hessian-inverse square.  Therefore the
+  certificate alone does **not** prove quartic-order local stability.
+  Computing that exact Schur complement is the next local target.
+
+## 2026-07-29 00:02--00:38 PDT — effective quartic SOS and exact equality decomposition
+
+- Computed all \(149\) exact mixed-cubic quadratic forms at
+  \[
+  C_0=|000\rangle\langle110|+|001\rangle\langle111|
+  \]
+  and formed the genuine Lyapunov--Schmidt quartic
+  \[
+  q_{4,\mathrm{eff}}(k)
+  =q_{4,\mathrm{raw}}(k)
+   -\sum_{j=1}^{149}\frac{\ell_j(k)^2}{4h_j}.
+  \]
+  The forms contain \(544\) terms in total; the resulting effective
+  quartic has \(1448\) nonzero terms.
+- Found and reconstructed an exact rational positive Gram certificate
+  for \(q_{4,\mathrm{eff}}\).  Its \(30\)-dimensional sign symmetry gives
+  \(505\) quadratic monomials in \(158\) blocks of size at most \(24\).
+  The exact face rank is \(300\).  Coefficient matching has \(1759\)
+  equations and \(670\) reduced variables, exact rank \(555\), and
+  \(115\) free rational parameters.  Every nonzero reduced Gram is
+  positive definite; the smallest numerical eigenvalue is \(1/2\).
+- Hardened the verifier so that no Taylor coefficient is trusted.
+  `verification/derive_n3_boundary_effective_quartic.py` starts from
+  the definition of \(Q_3\) and the explicit polar chart, then
+  independently reconstructs the \(204\)-coordinate Hessian, its
+  \(55+149\) exact splitting, \(2446\) raw quartic terms, all mixed
+  forms, and the effective quartic using only Gaussian-rational
+  arithmetic.  The standard-library verifier
+  `verification/verify_n3_boundary_effective_quartic_sos.py` checks
+  this derivation, the Hessian-inverse subtraction, every exact
+  positive \(LDL^T\) pivot, and all Gram coefficients.
+- Classified the effective-SOS equality ideal exactly.  Its \(300\)
+  quadratic equations comprise \(278\) products using only \(36\)
+  independent linear forms and \(22\) ambiently irreducible quadrics.
+  The product graph has \(64\) maximal branches with size profile
+  \(2\times18,6\times10,56\times6\).  Recursive exact factorization
+  visits \(486\) rational linear states, has no nonlinear terminal
+  ideal, and reduces \(148\) leaves to four maximal linear components:
+  \[
+  \{q_{4,\mathrm{eff}}=0\}
+  =L_0\cup L_1\cup L_2\cup L_3,\qquad
+  \dim(L_0,L_1,L_2,L_3)=(37,37,27,27).
+  \]
+  Exact generic Jacobian ranks are \(18,18,28,28\).
+- Added a separate \(299\)-kilobyte finite branching certificate and
+  the standard-library verifier
+  `verification/verify_n3_boundary_effective_zero_decomposition.py`.
+  It reconstructs the \(300\) equations from the positive Gram
+  certificate, checks all \(278\) ambient factorizations, independently
+  enumerates the \(64\) initial branches, verifies every split in the
+  \(486\)-node DAG and all \(148\) leaves, and checks equality with the
+  asserted four-component union.  The complete exact check passes in
+  about \(17\) seconds.
+- Identified \(L_0\) intrinsically as the tangent space to the exact
+  zero manifold
+  \[
+  C=|a\rangle\langle b|_{12}\otimes P_W,\qquad\operatorname{rank}P_W=2.
+  \]
+  This explains its dimension \(16+16+4+1=37\) and exact vanishing.
+  The other three components are the now-isolated higher-order local
+  frontier.  Three exact rational Hessian-minimizing paths in each have
+  first nonzero coefficient at order six, positive in every sample;
+  this is discovery evidence, since secondary kernel and positive
+  corrections have not yet been eliminated.
+- Added the proof note
+  `notes/agent_n3_boundary_effective_quartic_sos.md`, the exact
+  equality-decomposition script
+  `discovery/decompose_n3_boundary_effective_zero_ideal.py`, and exact
+  higher-path probes.
+
+## 2026-07-28 — unrestricted \(n=3\) exterior/Koszul reduction
+
+- Recast the unshifted operator target
+  \[
+  M_Q(P)=\prod_{i=1}^3(2E_i-I)(P)\succeq0
+  \]
+  as the equal \(8\)-versus-\(8\) universal-inversion cube
+  \[
+  \sum_{S\subseteq[3]}M_{KS}(P)
+  \preceq\sum_{S\subseteq[3]}M_S(P).
+  \]
+  Every \(M_T(P)\) is independently positive and has an exact
+  antisymmetric-frame Gram representation.  The remaining issue is one
+  state-dependent contraction between the two cube analysis operators.
+- Proved by exact boundary tables that no contraction diagonal in the
+  subset label can work.  The spin-flip zero requires complement routing
+  \(m_{K,S}=m_{S^c}\), while the nilpotent zero requires a single-bit
+  translation \(m_{K,S}=m_{S\triangle\{1\}}\) on its nonzero cube face.
+  A valid incidence map must therefore mix cube vertices and vary with the
+  common anchor.
+- Derived the coupled Pauli--exterior formula, the sharper
+  \(15\)-frame Koszul target, the phase-superposition identity, and an
+  exact five-gamma inequality under a common-commutant hypothesis.
+  Exact rational examples refute the two tempting completions: a
+  conditional phase absorption and the use of individually optimal,
+  noncommuting Clifford signs.
+- Found an exact obstruction to the naive three-replica \(S_3\) Gram/SOS
+  route.  In the qutrit-only isotypic block
+  \[
+  [21]_K\otimes[111]_{H_1}\otimes[111]_{H_2}\otimes[21]_{H_3},
+  \]
+  the repeated-\(A\) compression of the lifted unshifted kernel is
+  \[
+  \frac94\begin{pmatrix}-5&-3\\-3&3\end{pmatrix},
+  \]
+  with exact eigenvalues \(9,-27/2\).  Hence no positive
+  three-replica permutation-algebra Gram operator, equivalently no
+  holomorphic cubic Hermitian SOS, can prove the theorem.  The negative
+  linear-span direction is not a physical Veronese tensor
+  \(A\otimes A\otimes B\), so this is a nonlinear-realizability
+  obstruction rather than a counterexample.
+- Added exact notes and standard-library verifiers:
+  `notes/agent_n3_exterior_koszul_recoupling.md`,
+  `verification/verify_n3_exterior_koszul_recoupling.py`,
+  `notes/agent_n3_three_replica_s3_obstruction.md`, and
+  `verification/verify_n3_three_replica_s3_obstruction.py`.
+- Exactly refuted positivity of the separated odd-parity anchor.  In
+  \(K=2\) and three qutrit physical spaces,
+  \[
+  {\cal A}=-|0000\rangle+|0120\rangle-|0210\rangle+|1120\rangle,
+  \quad
+  {\cal B}=|1000\rangle-|1120\rangle+|1210\rangle
+  \]
+  gives \(D_{\rm odd}=-1/2\).  This is not a three-copy witness:
+  \(D_{\rm even}=8\), \(D=15/2\), and \(Q_3=9/8\).  An exact rational
+  \(LDL^T\) certificate proves that the same anchor's full unshifted
+  operator \(M_Q(P_{\cal A})\) is positive definite.  Thus the two
+  parity halves must be coupled even away from the known zero manifolds.
