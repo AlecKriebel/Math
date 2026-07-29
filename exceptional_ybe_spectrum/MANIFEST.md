@@ -1,4 +1,4 @@
-# Version 1.0.0 release manifest
+# Version 1.0.1 release manifest
 
 ## Primary paper
 
@@ -22,11 +22,15 @@
 - `PRIORITY_AUDIT.md` — literature and novelty audit
 - `reviews/manuscript_final_hostile_audit.md` — final independent
   adversarial proof audit and repair record
+- `reviews/v1.0.1_correction_audit.md` — independent review of the
+  correction release
 - `CLAIMS.md` — claim-status ledger
 - `LEMMA_DEPENDENCIES.md` — full research dependency ledger
 - `EXPERIMENTS.md` — commands, seeds, environment, and outputs
 - `FAILED_APPROACHES.md` — retained unsuccessful approaches
 - `RESEARCH_LOG.md` — timestamped research history
+- `RELEASE_NOTES_v1.0.0.md` — preserved history of the original release
+- `RELEASE_NOTES_v1.0.1.md` — correction-release notes
 
 ## Reproduction
 

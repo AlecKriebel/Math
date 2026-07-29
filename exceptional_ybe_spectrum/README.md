@@ -2,20 +2,23 @@
 
 This package accompanies the unrefereed paper
 
-> Alec Kriebel, *Tensor-Local Constraints in the Exceptional Unitary
-> Hecke Yang--Baxter Class*, version 1.0.0, 29 July 2026.
+> Alec Kriebel, *Low-Schmidt Rigidity and Tensor-Local Constraints in the
+> Exceptional Unitary Hecke Yang--Baxter Class*, version 1.0.1,
+> 29 July 2026.
 
 The complete spectrum of the exceptional family
 \[
 \left[e^{i\pi/3},\frac12,d\right]
 \]
-remains open. The paper proves a structural frontier: abstract
+remains open. The paper establishes exact structural constraints:
+abstract
 Jones--Wenzl multiplicities permit every even \(d\), while any
 hypothetical \(d=6\) solution must have operator-Schmidt rank at least
 four, be nonrestrictable, have scalar intersection of its two leg
 commutants, and avoid the two broad construction classes isolated in the
-paper. At operator-Schmidt rank four, both intrinsic joint-sandwich maps
-must be singular.
+paper. For any candidate with \(d\equiv2\pmod4\) and
+\(\operatorname{OSR}(H)=4\), both intrinsic joint-sandwich maps must be
+singular.
 
 ## Read and verify
 

@@ -1,7 +1,7 @@
 # Supplementary exact constructions, exclusions, and bounded searches
 
-**Paper:** *Tensor-Local Constraints in the Exceptional Unitary Hecke
-Yang--Baxter Class*
+**Paper:** *Low-Schmidt Rigidity and Tensor-Local Constraints in the
+Exceptional Unitary Hecke Yang--Baxter Class*
 
 **Cutoff:** 2026-07-29
 

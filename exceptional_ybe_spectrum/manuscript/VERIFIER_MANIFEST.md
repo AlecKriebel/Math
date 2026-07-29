@@ -3,9 +3,10 @@
 ## Purpose and boundary
 
 This manifest identifies the deterministic exact-arithmetic programs used to
-replay the finite calculations supporting *Tensor-Local Constraints in the
-Exceptional Unitary Hecke Yang--Baxter Class*.  The manuscript proofs remain
-the primary mathematical arguments.  A successful replay means that the
+replay the finite calculations supporting *Low-Schmidt Rigidity and
+Tensor-Local Constraints in the Exceptional Unitary Hecke Yang--Baxter
+Class*.  The manuscript proofs remain the primary mathematical arguments.
+A successful replay means that the
 listed finite identities, ranks, enumerations, and calibration examples passed
 their assertions; it does **not** turn a scoped ansatz theorem into a theorem
 about arbitrary exceptional solutions.

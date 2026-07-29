@@ -1,7 +1,7 @@
 # Theorem dependency map
 
-**Paper:** *Tensor-Local Constraints in the Exceptional Unitary Hecke
-Yang--Baxter Class*
+**Paper:** *Low-Schmidt Rigidity and Tensor-Local Constraints in the
+Exceptional Unitary Hecke Yang--Baxter Class*
 
 **Audit date:** 2026-07-29
 

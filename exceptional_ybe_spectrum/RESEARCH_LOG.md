@@ -1018,3 +1018,25 @@
   layout defect found, horizontal overflow from the exact replay command on a
   narrow viewport; the final page has no mobile-width overflow or browser
   console warnings. No external communication occurred.
+
+## 2026-07-29 08:40 PDT — Version 1.0.1 correction audit completed
+
+- Independently checked proposed post-publication corrections against the
+  released source, PDF, public page, and Lechner's Propositions 2.3--2.4 and
+  Lemma 3.1. The review found no false central theorem, but confirmed a title
+  page version mismatch, seven malformed display labels, and two overbroad
+  public-page summaries.
+- Preserved the immutable version 1.0.0 release. Prepared version 1.0.1 with
+  genuine numbered equations for all referenced displays, a more precise
+  abstract, and a title foregrounding the exact low-Schmidt theorem.
+- Reordered the paper by logical dependency and moved the bounded one-sided
+  \(4+2\) calculation and secondary four-dimensional sitewise orbit out of
+  the main narrative while retaining both in the supplement.
+- Rebuilt the 20-page PDF with Tectonic 0.16.9. The build has no undefined
+  references or layout warnings. Rendered and visually inspected all pages;
+  no clipping, overlap, broken equations, or illegible references were found.
+- Replayed the deterministic exact suite from a fresh command invocation:
+  all 10 programs passed. No theorem relies on numerical evidence.
+- Recorded the correction audit and release notes, refreshed every release
+  checksum, and retained the original version 1.0.0 release notes and audit
+  history. No external communication occurred.
