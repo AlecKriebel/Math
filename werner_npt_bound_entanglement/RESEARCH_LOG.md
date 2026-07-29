@@ -1574,3 +1574,45 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_intersection_lorentz_nogo.md`.
   Dependency-free exact checker:
   `verification/verify_n3_intersection_sector_ppt_nogo.py`.
+
+## 2026-07-29 05:30 PDT — Weighted merged adaptive frames are insufficient separately
+
+- Applying the strong positive rank-two theorem to
+  \(x|{\cal A}\rangle\langle{\cal A}|+
+    y|{\cal B}\rangle\langle{\cal B}|\)
+  under each grouping \((Ki)|j|k\) gives eighteen exact weighted
+  per-permutation Gram inequalities.  Their full trace-norm
+  \(\alpha+\sum\beta\) resolutions have been derived for every
+  \(x,y\geq0\).
+- An exact enriched formal marginal model passes all eighteen weighted
+  inequalities, all six original adaptive inequalities, local
+  one-block positivity, Hilbert--Schmidt Cauchy, and nonnegative exact
+  self/crossed swap-sector masses, but has
+  \[
+  D_0=0,\qquad E=-1,\qquad
+  D=-1,\qquad Q_3^{\rm formal}=-\frac14.
+  \]
+  This is a mechanism no-go only: the formal marginals do not have a
+  common global realization and give no physical Werner witness.
+- The first violated common-origin condition is explicit.  Saturation
+  of two cyclic adaptive frames would require a common \(+1\)
+  eigenvector of Hermitian unitaries \(M,N\), while exact Pauli
+  multiplication gives
+  \[
+  \{M,N\}=\frac23J,\qquad J^3=8J,\qquad
+  \|\{M,N\}\|=\frac{4\sqrt2}{3}<2.
+  \]
+  Consequently every physical state obeys the joint-frame separator
+  \[
+  \langle M\rangle^2+\langle N\rangle^2
+  \leq1+\frac{2\sqrt2}{3}<2,
+  \]
+  whereas the formal model demands both expectations equal one.
+- The live adaptive-frame problem is therefore smaller and nonlinear:
+  couple the Gram matrices of different state-dependent sign frames
+  and show that their joint incompatibility deficit absorbs the
+  exterior correction.  Independent per-permutation gaps cannot do so.
+- Full derivation:
+  `notes/agent_n3_merged_adaptive_nogo.md`.
+  Dependency-free checker:
+  `verification/verify_n3_merged_adaptive_nogo.py`.
