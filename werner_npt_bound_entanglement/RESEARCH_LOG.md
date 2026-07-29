@@ -4050,3 +4050,46 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_reversed_schur_orientation.md`,
   `verification/verify_n3_full_reversed_schur_orientation.py`.
+
+## 2026-07-29 17:40 PDT — Full logical transfer/Pluecker identity
+
+- Identified the reversed-Schur orientation defect intrinsically.  If
+  \(K(U,V)\) is regarded as the Choi matrix of the physical logical
+  qubit map \(\Lambda_{U,V}\), with real Pauli transfer matrix \(T\),
+  then
+  \[
+  \det K(U,V)^\Gamma=\det K(U,V)-\det T(\Lambda_{U,V}).
+  \]
+  Hence full unrestricted three-copy positivity is exactly
+  \(\det T(\Lambda_{U,V})\le\det K(U,V)\) for all two code planes.
+- Wrote the physical map without logical coordinates:
+  \[
+  \Lambda_{U,V}
+  ={\cal E}_V^*\Psi_3^{\otimes3}{\cal E}_{\bar U},
+  \qquad
+  \Psi_3(R)=\operatorname{Tr}(R)I-\frac12R^{\mathsf T}.
+  \]
+  Its transfer determinant is the paired fourth-exterior contraction
+  \[
+  \det T(\Lambda_{U,V})
+  =
+  \langle\Omega_V,
+  (\bigwedge^4\Psi_3^{\otimes3})\Omega_{\bar U}\rangle.
+  \]
+  In an eigenbasis this is an explicit weighted sum of paired fourth
+  Pluecker coordinates of the two common code planes.
+- The positive comparison term is the exact Gram volume
+  \[
+  \det K(U,V)
+  =
+  \left\|
+  \bigwedge_{a,b=0}^1
+  Y^{1/2}(u_a\otimes v_b)
+  \right\|^2.
+  \]
+  Thus the remaining theorem is one lossless paired
+  Segre--Pluecker inequality in the common left/right bivectors, with
+  all scalar, one-body, and pair components retained.
+- Exact note and checker:
+  `notes/agent_n3_full_reversed_schur_orientation.md`,
+  `verification/verify_n3_full_transfer_plucker.py`.

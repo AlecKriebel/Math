@@ -337,6 +337,322 @@ a successful argument cannot use only:
 The remaining physical lemma is precisely to control the orientation
 defect in (18) using the shared three-fold tensor compression.
 
+## 6. The orientation defect is a logical transfer determinant
+
+The inverse-block expression has a basis-free channel interpretation.
+Let
+\[
+ e_0=\frac{I}{\sqrt2},\quad
+ e_1=\frac{X}{\sqrt2},\quad
+ e_2=\frac{Y}{\sqrt2},\quad
+ e_3=\frac{Z}{\sqrt2}
+\tag{27}
+\]
+be the oriented Hilbert--Schmidt orthonormal Hermitian Pauli basis.
+Regard \(K\) as the Choi matrix of the Hermiticity-preserving logical
+map
+\[
+ \Lambda:M_2\longrightarrow M_2,\qquad
+ J(\Lambda)=K.
+\tag{28}
+\]
+Its real Pauli transfer matrix is
+\[
+ T(\Lambda)_{\mu\nu}
+ =\operatorname{Tr}\bigl(e_\mu\Lambda(e_\nu)\bigr).
+\tag{29}
+\]
+
+### Theorem 6.1 (Choi-transfer determinant identity)
+
+For every Hermitian \(K\in M_2\otimes M_2\), with the Choi convention
+in (28),
+\[
+ \boxed{\qquad
+ \det K^\Gamma=\det K-\det T(\Lambda).
+ \qquad}
+\tag{30}
+\]
+Consequently the full unrestricted three-copy theorem is equivalent
+to
+\[
+ \boxed{\qquad
+ \det T(\Lambda_{U,V})\leq\det K(U,V)
+ \quad\hbox{for every physical pair }U,V.
+ \qquad}
+\tag{31}
+\]
+
+### Proof
+
+Use the block notation (3) and write
+\[
+ B=H+iG,\qquad H=H^\dagger,\quad G=G^\dagger.
+\tag{32}
+\]
+For a Hermitian \(2\times2\) matrix \(R\), write
+\[
+ R=r_0I+r_1X+r_2Y+r_3Z
+\tag{33}
+\]
+and denote its real coefficient row by \(r=(r_0,r_1,r_2,r_3)\).
+Let \(a,d,h,g\) be the rows belonging to \(A,D,H,G\), and put
+\[
+ \Delta=\det\begin{pmatrix}a\\d\\h\\g\end{pmatrix}.
+\tag{34}
+\]
+
+The square-root-free orientation formula (14), together with
+\[
+ \operatorname{adj}R=r_0I-r_1X-r_2Y-r_3Z,
+\tag{35}
+\]
+gives
+\[
+ \det K^\Gamma-\det K=8\Delta.
+\tag{36}
+\]
+Here is a direct audit of the only sign-sensitive step.  If
+\[
+ P=A^{-1},\qquad Q=D^{-1},
+\]
+then
+\[
+\begin{aligned}
+&\det A\det D\,
+ \operatorname{Tr}\!\left[
+ D^{-1}B^\dagger A^{-1}B
+ -D^{-1}BA^{-1}B^\dagger\right]\\
+&\qquad
+ =4\,\operatorname{Im}
+ \operatorname{Tr}\bigl(
+ \operatorname{adj}D\,G\,
+ \operatorname{adj}A\,H\bigr)
+ =8\Delta.
+\end{aligned}
+\tag{37}
+\]
+The last equality follows by multiplying Pauli matrices:
+\[
+ \operatorname{Im}\operatorname{Tr}(R_1R_2R_3R_4)
+ =
+ 2\left[
+ (r_{10}r_2+r_{20}r_1)\cdot(r_3\times r_4)
+ +(r_1\times r_2)\cdot(r_{30}r_4+r_{40}r_3)
+ \right],
+\tag{38}
+\]
+and then using the sign reversal in both adjugates (35).
+
+The four columns of \(T(\Lambda)\), expressed in the coefficient
+coordinates (33), are
+\[
+ a+d,\qquad 2h,\qquad2g,\qquad a-d,
+\tag{39}
+\]
+because
+\[
+\begin{aligned}
+\Lambda(I)&=A+D,&
+\Lambda(X)&=B+B^\dagger=2H,\\
+\Lambda(Y)&=i(B^\dagger-B)=2G,&
+\Lambda(Z)&=A-D.
+\end{aligned}
+\tag{40}
+\]
+The change of columns from \((a,d,h,g)\) to (39) has determinant
+\(-8\).  Therefore
+\[
+ \det T(\Lambda)=-8\Delta.
+\tag{41}
+\]
+Equations (36) and (41) prove (30).  Combining (30) with (5)--(6)
+proves (31).
+\(\square\)
+
+Thus the “orientation defect” is not an auxiliary coordinate
+quantity:
+\[
+ \boxed{\qquad
+ \det T(\Lambda)
+ =\det A\det D\bigl(\|Z\|_2^2-\|X\|_2^2\bigr).
+ \qquad}
+\tag{42}
+\]
+If the physical logical channel reverses orientation,
+\(\det T(\Lambda)\leq0\), endpoint positivity is automatic.  Only
+orientation-preserving physical compressions remain.
+
+## 7. Exact common-code Pluecker formula
+
+The channel in Theorem 6.1 is intrinsically the compression of one
+fixed three-fold physical map.  Define
+\[
+ \Psi_d(R)=\operatorname{Tr}(R)I_d-\frac12R^{\mathsf T}.
+\tag{43}
+\]
+Its Choi matrix is
+\[
+ J(\Psi_d)=I-\frac12F.
+\tag{44}
+\]
+For the three-copy qutrit problem put
+\[
+ \Psi=\Psi_3^{\otimes3}.
+\tag{45}
+\]
+Directly from the Choi matrix elements in (1),
+\[
+\boxed{\qquad
+ \Lambda_{U,V}(R)
+ =
+ V^\dagger\Psi\bigl(\overline U R U^{\mathsf T}\bigr)V.
+ \qquad}
+\tag{46}
+\]
+
+Let \({\mathfrak h}_m\) be the real Hilbert space of Hermitian
+\(m\times m\) matrices.  Define the isometric operator-system
+embeddings
+\[
+\begin{aligned}
+ {\cal E}_{\overline U}:{\mathfrak h}_2&\longrightarrow
+ {\mathfrak h}_{27},
+ &R&\longmapsto\overline U R U^{\mathsf T},\\
+ {\cal E}_{V}:{\mathfrak h}_2&\longrightarrow
+ {\mathfrak h}_{27},
+ &R&\longmapsto V R V^\dagger.
+\end{aligned}
+\tag{47}
+\]
+Compression is the adjoint of the second embedding, so (46) is
+\[
+ \Lambda_{U,V}
+ ={\cal E}_V^*\Psi{\cal E}_{\overline U}.
+\tag{48}
+\]
+
+Use the oriented Pauli basis (27) and set
+\[
+\begin{aligned}
+ \Omega_{\overline U}
+ &=
+ \bigwedge_{\mu=0}^3{\cal E}_{\overline U}(e_\mu),\\
+ \Omega_V
+ &=
+ \bigwedge_{\mu=0}^3{\cal E}_{V}(e_\mu).
+\end{aligned}
+\tag{49}
+\]
+These are unit decomposable four-vectors in
+\(\bigwedge^4{\mathfrak h}_{27}\).  The determinant of a matrix of
+pairings is an exterior pairing, so (48) gives the exact formula
+\[
+\boxed{\qquad
+ \det T(\Lambda_{U,V})
+ =
+ \left\langle
+ \Omega_V,\,
+ \bigl(\bigwedge\nolimits^4\Psi\bigr)
+ \Omega_{\overline U}
+ \right\rangle.
+ \qquad}
+\tag{50}
+\]
+
+In a fixed orthonormal Hermitian eigenbasis
+\((F_\alpha)\) of \(\Psi\), let
+\[
+ \Psi(F_\alpha)=\lambda_\alpha F_\alpha
+\tag{51}
+\]
+and define the fourth Pluecker coordinates
+\[
+ p_I(U)=
+ \det\left[
+ \left\langle
+ F_{\alpha_r},{\cal E}_U(e_\mu)
+ \right\rangle
+ \right]_{\substack{1\leq r\leq4\\0\leq\mu\leq3}},
+ \qquad
+ I=\{\alpha_1<\cdots<\alpha_4\}.
+\tag{52}
+\]
+Then (50) is the finite weighted paired-Pluecker sum
+\[
+\boxed{\qquad
+ \det T(\Lambda_{U,V})
+ =
+ \sum_{|I|=4}
+ \left(\prod_{\alpha\in I}\lambda_\alpha\right)
+ p_I(V)p_I(\overline U).
+ \qquad}
+\tag{53}
+\]
+All coordinates are real in the Hermitian basis, and
+\[
+ \sum_{|I|=4}p_I(U)^2=1
+\tag{54}
+\]
+because (47) is isometric.
+
+The vectors in (49) are much more special than arbitrary unit
+decomposable four-vectors.  The complexification of
+\(\operatorname{ran}{\cal E}_U\) is
+\[
+ \operatorname{ran}U\otimes
+ \overline{\operatorname{ran}U},
+\tag{55}
+\]
+so its top exterior vector is the paired Segre--Pluecker image of the
+single decomposable code bivector
+\[
+ \omega_U=u_0\wedge u_1.
+\tag{56}
+\]
+Thus (53) uses exactly the common left/right rank-two code geometry
+missing from the abstract block obstruction.
+
+The positive side of (31) has an equally intrinsic exterior form.
+Put
+\[
+ \phi_{ab}=Y^{1/2}(u_a\otimes v_b),
+\qquad a,b\in\{0,1\}.
+\tag{57}
+\]
+Their Gram matrix is \(K(U,V)\).  Hence Gram--Cauchy--Binet gives
+\[
+\boxed{\qquad
+ \det K(U,V)
+ =
+ \left\|
+ \phi_{00}\wedge\phi_{01}\wedge
+ \phi_{10}\wedge\phi_{11}
+ \right\|^2.
+ \qquad}
+\tag{58}
+\]
+
+Combining (31), (50), and (58) produces a single lossless,
+common-origin exterior inequality for the full three-copy endpoint:
+\[
+\boxed{
+\left\langle
+\Omega_V,\,
+\bigl(\bigwedge\nolimits^4\Psi\bigr)\Omega_{\overline U}
+\right\rangle
+\leq
+\left\|
+\bigwedge_{a,b=0}^1
+Y^{1/2}(u_a\otimes v_b)
+\right\|^2.}
+\tag{59}
+\]
+Unlike sector arithmetic, both sides in (59) arise from the same two
+code bivectors \(\omega_U,\omega_V\).  A counterexample to (59) is
+exactly a physical unrestricted three-copy witness; a proof of (59)
+is exactly the desired theorem.
+
 ## Research log
 
 - **2026-07-29 15:20 PDT.** Reduced the full two-plane
@@ -344,3 +660,10 @@ defect in (18) using the shared three-fold tensor compression.
   determinant minus one scalar reversed-coherence orientation defect.
   Isolated the exact inequality (18), its automatic charts, and the
   abstract spectral-interval obstruction (21)--(26).
+- **2026-07-29 17:40 PDT.** Identified the orientation defect with
+  the determinant of the physical logical Pauli transfer matrix,
+  proving \(\det K^\Gamma=\det K-\det T(\Lambda)\).
+  Expressed that determinant as the paired fourth-exterior contraction
+  (50)/(53) of the common left and right code Pluecker vectors, and
+  expressed \(\det K\) as the Gram-volume square (58).  The remaining
+  theorem is the single physical paired-Pluecker inequality (59).
