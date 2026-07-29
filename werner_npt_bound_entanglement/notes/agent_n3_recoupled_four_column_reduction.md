@@ -122,7 +122,7 @@ Equivalently,
  {\cal R}(A,B)
  =
  \left(\operatorname{Tr}(G_EG_F)-\|H\|_2^2\right)
- \frac12\|H-H^{\mathsf T}\|_2^2.
+ +\frac12\|H-H^{\mathsf T}\|_2^2.
  \tag{12}
 \]
 Formula (12) shows exactly what is lost by applying an ordinary
