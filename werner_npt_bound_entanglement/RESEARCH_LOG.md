@@ -2875,3 +2875,33 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_three_component_determinant.md`.
   Exact checker:
   `verification/verify_n3_pair_sector_three_component_determinant.py`.
+
+## 2026-07-29 — Phase--nuclear route fails on intersection-one
+
+- The tensor-independent phase-quadrature sufficient condition
+  \[
+  \inf_\theta\left(
+  \|\operatorname{Re}(e^{-i\theta}C)\|_1^2+
+  \|\operatorname{Im}(e^{-i\theta}C)\|_1^2
+  \right)\leq2\|C\|_2^2
+  \]
+  is false even for a rank-two matrix whose row and column planes
+  have one-dimensional intersection.
+- For \(C=E_{01}+E_{02}+E_{12}\), every Hermitian quadrature is
+  traceless with squared Hilbert--Schmidt norm \(3/2\), and its
+  determinant is \(\cos\theta/4\); the complementary quadrature has
+  determinant \(-\sin\theta/4\).
+- Inverting the exact cubic \(r^3-\frac34r-x=0\) and using convexity
+  of \(h(y)=y(y-\frac34)^2\) proves uniformly in the phase that
+  \[
+  \|A_\theta\|_1^2+\|B_\theta\|_1^2\geq7
+  >6=2\|C\|_2^2.
+  \]
+  The exact gap is one. This is not a negative Werner witness; it
+  proves that physical tensor geometry cannot be replaced by spectra
+  of the coupled Hermitian quadratures, even on the smallest genuinely
+  nonnormal support stratum.
+- Exact note:
+  `notes/agent_n3_intersection_phase_nuclear_obstruction.md`.
+  Exact checker:
+  `verification/verify_n3_intersection_phase_nuclear_obstruction.py`.
