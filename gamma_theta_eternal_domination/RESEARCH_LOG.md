@@ -3983,3 +3983,46 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **85%** for the 27-day campaign deliverable,
   **55%** toward a complete parameter-three theorem, and **19%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 17:42 PDT — trapped escapes rebound and supported fans cross
+
+- Promoted C-173 after an unconditional clean-room hostile review.  The
+  general Johnson-distance theorem gives
+  \(\rho(D)\ge\delta_{\mathcal B}(D)-1\) for every retained finite-rank
+  state at every guard number.  In the trapped rank-zero corridor,
+  \(\gamma=3\) forces two nonempty completion cliques absent from the
+  MMV-027 boundary.  Their independent completion states cannot have
+  rank zero, and a minimum-rank fan state cannot delete through another
+  member of its own fan.
+- The C-173 reviewer independently audited all 75 labeled graphs through
+  order four, 3,677 nonempty bans, 5,477 finite-rank incidences, every
+  collision in the two-state/four-state completion dynamics, and the
+  exact 13-vertex gamma-two control.
+- Promoted C-174 after a separate unconditional hostile review.  Every
+  pair co-occupied in a retained triple has its entire common-nonneighbor
+  fan retained.  Applied to C-170, each completion branch has a complete
+  supported fan and either a dominating cross state or a reciprocal
+  target--anchor edge.  A dominating cross state may still be retained
+  or omitted, so this is not a rank conclusion.
+- The C-174 clean-room census checked all 33,867 labeled graphs through
+  order six, 44,679 supported fans, 197 arbitrary eternal subfamilies
+  through order five, and all three exact equality control branches.
+- Promoted C-175 after a third unconditional hostile review.  Tight
+  states on the Johnson-distance floor descend by exactly one shell and
+  one rank at every retained response.  A minimum second-fan state of
+  rank one can therefore be deleted only at a fixed ban anchor.  The two
+  completion fans also split exactly between a dominating target-cross
+  triple and a reciprocal target hinge.
+- The exact 13-vertex gamma-two control has minimum completion rank two,
+  a nonanchor deleting attack, both cross triples dominating and
+  retained, and all three restricted kernels empty.  This makes the
+  rank-one qualification essential and keeps the next use of
+  \(\gamma=3\) explicit.
+- Two unpromoted candidates were packaged for the next review cycle.
+  The rank-one fan exit appears to funnel uniquely into the C-165
+  attacked-anchor restoration.  Independently, a supported asymmetric
+  QQ1 edge appears to force a polarized bow tie of retained and omitted
+  repair fans at every common nonneighbor.
+- Best-guess completion: **86%** for the 27-day campaign deliverable,
+  **60%** toward a complete parameter-three theorem, and **20%** toward a
+  universal resolution.  These are workload estimates, not probabilities.

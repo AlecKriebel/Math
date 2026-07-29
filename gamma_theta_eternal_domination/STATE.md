@@ -1,5 +1,78 @@
 # Campaign State
 
+## Checkpoint 114 — 2026-07-28 17:42 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier remains all orders through 12 and the \(k=3\) slice at order
+  13.  Repository base before this checkpoint:
+  `46ef6c6109bae195cfd20f6dfb394f5bd665b0ac`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **86%**.  Best-guess completion toward a complete parameter-three
+  theorem: **60%**.  Best-guess completion toward an actual universal
+  resolution: **20%**.  These are workload estimates, not probabilities.
+- **The trapped rank-zero escape now has a positive-rank completion
+  layer (C-173).**  A general all-\(k\) theorem bounds restricted
+  deletion rank below by Johnson distance to the ban minus one.  Under
+  \(\gamma=3\), the two pairs that dominate the old MMV-027 boundary
+  instead force nonempty clique completion fans.  Their independent
+  completion states are at least two Johnson steps from the ban and
+  therefore cannot have rank zero.  A minimum-rank fan state must leave
+  through an attack adjacent to its fixed independent ridge.
+- **Every supported pair carries its full repair fan (C-174).**  If a
+  pair occurs together in any retained triple, all of its common-
+  nonneighbor central states are retained, even when C-172 alone would
+  permit the omitted-fan/reciprocal branch.  Every C-170 completion
+  therefore has a supported fan whose natural cross state dominates or
+  whose target--anchor edge is reciprocal.
+- **The rank-one shell is exact (C-175).**  A state attaining the
+  Johnson-distance rank floor drops exactly one distance shell and one
+  rank at each retained response to a deleting attack.  A minimum
+  second-fan state of rank one can be deleted only at one of the two ban
+  anchors.  Each completion fan also has an exact target split:
+  complete adjacency to the target makes a cross triple dominate,
+  whereas a trapped fan vertex makes the corresponding target edge
+  reciprocal.
+- Three independent hostile reviews accepted these statements.  Their
+  clean-room audits cover 3,677 arbitrary bans through order four,
+  44,679 supported fans through order six, 15,013 small-graph
+  tight-shell ban instances, 12,172 anchored rank-one states, 499,398
+  target-fan incidences, and the sharp 13- and 16-vertex controls.
+- Two further statements remain candidates outside the accepted ledger:
+  the rank-one second-fan exit appears to force exactly the C-165
+  attacked-anchor restoration, and a supported one-sided QQ1 edge
+  appears to force a polarized two-sided bow tie at every common
+  nonneighbor.  Both are under independent review.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167/C-169/C-172/C-174 | Supported asymmetric edges now have finite fan/reciprocal objects; couple the candidate polarized bow ties across different QQ1 witnesses and completions |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168/C-170/C-171/C-173/C-175 | Rank-zero trapped escapes rebound; rank-one fan exits reduce to fixed anchors.  Eliminate the surviving attacked-anchor restoration or couple it across all three colors |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only when the current proof-first fan/restoration iterations reach their explicit gate |
+
+### Running jobs and resources
+
+- Two light hostile reviews are checking the rank-one anchor-restoration
+  exit and the supported-asymmetry bow tie.  No solver or memory-heavy
+  enumeration is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, with
+  approximately 13 GiB disk space free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Finish both hostile reviews and promote only unconditional passes.
+2. Couple the surviving rank-one attacked-anchor restoration across all
+   three full-list source colors.
+3. Couple the QQ1 polarized bow ties across distinct common
+   nonneighbors, completions, and hot witnesses; if both routes stabilize
+   without a contradiction, rebalance the bounded fallback toward order
+   14.
+
 ## Checkpoint 113 — 2026-07-28 17:02 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and
