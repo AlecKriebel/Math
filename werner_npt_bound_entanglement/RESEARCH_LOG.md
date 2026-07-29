@@ -3754,6 +3754,44 @@ All timestamps use America/Los_Angeles.
   square-zero falsifier, but does not address entangled quadrature
   eigenvectors.
 
+## 2026-07-29 15:22 PDT — Crossed-energy Cauchy bridge is exactly false
+
+- Tested the natural attempt to repair shifted Cauchy--Schwarz using
+  only the four rank-one energies \(e_{ab}\):
+  \[
+  (e_{01}-m)(e_{10}-m)
+  \stackrel?{\le}
+  \left(m+\sqrt{(e_{00}-m)(e_{11}-m)}\right)^2,\qquad
+  m=\frac18.
+  \]
+- Found an exact real qutrit counterfamily.  At its rational point
+  \(t=1\),
+  \[
+  e_{00}=e_{11}=\frac{11}{32},\qquad
+  e_{01}=e_{10}=\frac34,
+  \]
+  and the proposed right-minus-left defect is
+  \[
+  -\frac{279}{1024}.
+  \]
+- This is not a Werner witness: the true interference is only
+  \(-1/32\), and the associated rank-two matrix has
+  \(Q_3=5/8\).  For the full parameter family the false tradeoff defect
+  factors as
+  \[
+  \frac{t^2(t^2-10)(3t^4+26t^2+2)}
+       {64(1+t^2)^4},
+  \]
+  while the actual rank-two energy is
+  \(t^2(t^2+4)/(2(1+t^2)^2)\ge0\).
+- Therefore no proof can pass from ordinary shifted
+  Cauchy--Schwarz to the matched bound using only the four diagonal
+  rank-one energies.  The actual interference must remain coupled to
+  the common Pluecker geometry.
+- Exact note and dependency-free rational checker:
+  `notes/agent_n3_crossed_energy_tradeoff_obstruction.md`,
+  `verification/verify_n3_crossed_energy_tradeoff_obstruction.py`.
+
 ## 2026-07-29 14:31 PDT — Pointwise common-derivation filter inequality
 
 - Replaced the exhausted scalar trace route by an exact pointwise
