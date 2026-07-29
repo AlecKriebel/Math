@@ -425,8 +425,16 @@ with all of the following properties simultaneously:
 
 ### Proof
 
-Start with the minimizer from Theorem 5.1.  A determinant-one change
-of its two logical frames writes it in the form (40).  For a general
+Start with the minimizer from Theorem 5.1.  If
+\(C=U\Sigma V^\dagger\), then \(\det\Sigma=1\), and the explicit
+choice
+\[
+ A=U\Sigma\varepsilon^\dagger,\qquad B=V
+\]
+gives \(C=A\varepsilon B^\dagger\) and
+\(\det(A^\dagger A)=\det(B^\dagger B)=1\).  Reciprocal scalar
+rescaling of \(A,B\) gives the same conclusion for any initial
+full-frame factorization.  For a general
 factorization \(C=AMB^\dagger\), with
 \[
  G_A=A^\dagger A,\qquad G_B=B^\dagger B,
