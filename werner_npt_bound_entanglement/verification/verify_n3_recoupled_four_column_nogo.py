@@ -326,9 +326,61 @@ def main():
     assert normalized_direct_check == Q(1, 3)
     assert Q(4) * normalized_direct_check == Q(4, 3)
 
+    # Exact exterior Gram matrix which is product-positive but not PSD.
+    x_second = [
+        index((0, 2, 1)),
+        index((0, 1, 1)),
+    ]
+    y_second = [
+        index((0, 0, 1)),
+        index((0, 2, 1)),
+    ]
+    u_second = [
+        index((1, 1, 2)),
+        index((1, 2, 2)),
+    ]
+    v_second = [
+        index((1, 2, 2)),
+        index((1, 0, 2)),
+    ]
+    e_second = [
+        basis_operator(x_second[i], u_second[j])
+        for i, j in product(range(2), repeat=2)
+    ]
+    f_second = [
+        basis_operator(y_second[i], v_second[j])
+        for i, j in product(range(2), repeat=2)
+    ]
+    ge_second = gram(e_second, e_second)
+    gf_second = gram(f_second, f_second)
+    h_second = gram(e_second, f_second)
+    exterior = [
+        [
+            ge_second[i][j] * gf_second[j][i]
+            - h_second[i][j] * h_second[j][i]
+            for j in range(4)
+        ]
+        for i in range(4)
+    ]
+    expected_exterior = [
+        [4, 0, 0, 0],
+        [0, 0, 2, 0],
+        [0, 2, 0, 0],
+        [0, 0, 0, 4],
+    ]
+    assert exterior == expected_exterior
+    negative = [Q(0), Q(1), Q(-1), Q(0)]
+    assert [
+        sum(exterior[i][j] * negative[j] for j in range(4))
+        for i in range(4)
+    ] == [Q(-2) * value for value in negative]
+    # The negative coefficient vector reshapes to [[0,1],[-1,0]].
+    assert rational_rank([[0, 1], [-1, 0]]) == 2
+
     print(
         "verified: ranks=(2,2), stronger Gram residual=-4/9, "
-        "antisymmetric compensation=16/9, recoupled value=4/3"
+        "antisymmetric compensation=16/9, recoupled value=4/3; "
+        "exterior spectrum contains -2 only off the product ray"
     )
 
 

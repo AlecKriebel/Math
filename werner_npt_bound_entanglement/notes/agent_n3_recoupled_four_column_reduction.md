@@ -216,13 +216,91 @@ After normalizing both \(A\) and \(B\), the expectation is \(1/3\).
 Thus (14) is an exact obstruction to a proof strategy, not a negative
 recoupled witness.
 
-## 4. Remaining lemma
+## 4. The exterior Gram matrix need not be positive
+
+There is a second tempting strengthening of the true problem.  For
+orthonormal singular frames, define the \(4\times4\) exterior matrix
+\[
+ {\cal W}_{ij,kl}
+ =
+ \langle e_{ij}\wedge\overline f_{ij},
+ (Z\otimes Z)
+ (e_{kl}\wedge\overline f_{kl})\rangle.
+ \tag{21}
+\]
+The actual Schmidt coefficients test \({\cal W}\) only on vectors
+\[
+ (s_1,s_2)\otimes(t_1,t_2),\qquad s_i,t_j\geq0.
+ \tag{22}
+\]
+Requiring \({\cal W}\succeq0\) would be sufficient, but it is false.
+
+Use computational strings in site order \(1,2,3\), and take the four
+ordered two-frames
+\[
+\begin{aligned}
+ X&=(|021\rangle,|011\rangle),&
+ Y&=(|001\rangle,|021\rangle),\\
+ U&=(|112\rangle,|122\rangle),&
+ V&=(|122\rangle,|102\rangle).
+\end{aligned}
+ \tag{23}
+\]
+Direct exact contraction gives, in order \(00,01,10,11\),
+\[
+ \boxed{\qquad
+ {\cal W}=
+ \begin{pmatrix}
+ 4&0&0&0\\
+ 0&0&2&0\\
+ 0&2&0&0\\
+ 0&0&0&4
+ \end{pmatrix}.
+ \qquad}
+ \tag{24}
+\]
+Its eigenvalues are
+\[
+ -2,\quad2,\quad4,\quad4,
+ \tag{25}
+\]
+and a negative eigenvector is
+\[
+ (0,1,-1,0)^{\mathsf T}.
+ \tag{26}
+\]
+When reshaped as a \(2\times2\) coefficient matrix, (26) has rank
+two.  It is therefore not an admissible product of the two Schmidt
+coefficient vectors.
+
+Indeed, on the required product ray,
+\[
+\begin{aligned}
+ &\bigl((s_1,s_2)\otimes(t_1,t_2)\bigr)^{\mathsf T}
+ {\cal W}
+ \bigl((s_1,s_2)\otimes(t_1,t_2)\bigr)\\
+ &\qquad
+ =4\left(
+ s_1^2t_1^2+s_2^2t_2^2+s_1s_2t_1t_2
+ \right)\geq0.
+\end{aligned}
+ \tag{27}
+\]
+Thus ordinary matrix positivity loses exactly the surviving
+two-factor Segre constraint.
+
+## 5. Remaining lemma
 
 The grouped rank-two conjecture is now the explicit inequality (11).
 Any proof must retain the common tensor-grid origin (3) and the
 positive compensation \(\|H_{\rm a}\|_2^2\).  Neither a bound on the
 three Gram matrices independently nor the ordinary Frobenius
 cross-Gram contraction (18) can suffice.
+
+Equivalently, it is enough—and in the singular-frame formulation
+necessary—to prove positive-Segre copositivity of the exterior matrix
+\({\cal W}\).  Equations (24)--(27) show that replacing this by
+\({\cal W}\succeq0\) is invalid.
 
 At the canonical rank-two zero obtained by replacing \(D\) in (14)
 with \(P\), one has \(H_{\rm a}=0\) and equality in (18).  Hence both
