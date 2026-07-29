@@ -3642,6 +3642,23 @@ All timestamps use America/Los_Angeles.
   \(f<51/64\), while remaining short of the required \(f\le2/3\).
   No claim is made that the total adapted-frame spectral-radius
   constant \(4\) is optimal.
+- Proved an exact no-go for every scalar improvement of this frame
+  trace.  If \(K\) is any universal lower bound on the best
+  seven-frame spectral-radius sum, the argument can give at most
+  \[
+  16w_1+(17+9K)f+3w_3\le18+6K,\qquad
+  f\le\frac{18+6K}{17+9K}.
+  \]
+  The latter ceiling exceeds \(2/3\) by
+  \(20/[3(17+9K)]\).  Since every frame vector has
+  \(r(F)^2\le2/3\), even the impossible all-extremal ideal
+  \(K=14/3\) yields only
+  \[
+  f\le46/59>2/3.
+  \]
+  Therefore the scalar, separately summed trace route is structurally
+  incapable of closing the theorem; a continuation must retain
+  matrix-valued common-frame or cross-site information.
 - Exact note and checker:
   `notes/agent_n3_critical_filter_trace_bound.md`,
   `verification/verify_n3_critical_filter_trace_bound.py`.

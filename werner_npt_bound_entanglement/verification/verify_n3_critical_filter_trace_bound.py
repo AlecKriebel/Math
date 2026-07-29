@@ -136,7 +136,9 @@ def check_phase_orbit_identity():
 
 
 def check_final_constants():
-    f, p, w1, w3 = sp.symbols("f p w1 w3", real=True)
+    f, p, w1, w3, frame_sum = sp.symbols(
+        "f p w1 w3 frame_sum", real=True
+    )
     c = sp.Rational(2, 3)
     delta = f - c
 
@@ -161,6 +163,41 @@ def check_final_constants():
         sp.Eq(final_defect.subs({w1: 0, w3: 0}), 0), f
     ) == [sp.Rational(42, 53)]
 
+    # Exact no-go for every scalar adapted-frame trace improvement.
+    general_residual = sp.expand(
+        c * (3 - p) - delta * (frame_sum + p)
+    )
+    general_gram = sp.factor(f * p + general_residual)
+    assert sp.simplify(
+        general_gram - (2 + sp.Rational(2, 3) * frame_sum - frame_sum * f)
+    ) == 0
+    general_global_defect = sp.factor(
+        3 * (3 * general_gram - global_left)
+    )
+    assert sp.expand(
+        general_global_defect
+        - (
+            18
+            + 6 * frame_sum
+            - 16 * w1
+            - (17 + 9 * frame_sum) * f
+            - 3 * w3
+        )
+    ) == 0
+    scalar_ceiling = (18 + 6 * frame_sum) / (17 + 9 * frame_sum)
+    assert sp.simplify(
+        scalar_ceiling
+        - sp.Rational(2, 3)
+        - 20 / (3 * (9 * frame_sum + 17))
+    ) == 0
+    assert sp.simplify(
+        sp.diff(scalar_ceiling, frame_sum)
+        + 60 / (9 * frame_sum + 17) ** 2
+    ) == 0
+    ideal_sum = sp.Rational(14, 3)
+    assert scalar_ceiling.subs(frame_sum, ideal_sum) == sp.Rational(46, 59)
+    assert sp.Rational(46, 59) > sp.Rational(2, 3)
+
 
 def main():
     check_basis_and_weighted_identity()
@@ -169,7 +206,7 @@ def main():
     check_final_constants()
     print(
         "verified: three-extremal-direction construction and "
-        "critical bound f <= 42/53"
+        "critical bound f <= 42/53; scalar trace ceiling 46/59"
     )
 
 

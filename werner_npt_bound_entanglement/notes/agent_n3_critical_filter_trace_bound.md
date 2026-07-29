@@ -354,12 +354,53 @@ a trine in a complex two-dimensional support.  No claim is made that
 the total spectral-radius sum \(4\) in (22) is the best possible
 adapted-frame constant.
 
+There is, however, an exact obstruction to finishing the theorem by
+optimizing only this scalar frame sum.  Define
+\[
+K(n)=\sup_{\substack{F_2,\ldots,F_8\ {\rm ON}\\F_a\in n^\perp}}
+\sum_{a=2}^8r(F_a)^2,
+\qquad
+K_*=\inf_{\|n\|_2=1}K(n).                              \tag{27}
+\]
+Corollary 3.3 proves \(K_*\ge4\).  If a stronger universal constant
+\(K\le K_*\) were known, the calculation in Section 4 would give
+\[
+\operatorname{Tr}_{HS}{\cal G}
+\le2+\frac23K-Kf                                      \tag{28}
+\]
+and therefore
+\[
+\boxed{
+16w_1+(17+9K)f+3w_3\le18+6K.}                        \tag{29}
+\]
+After dropping \(w_1,w_3\), its scalar ceiling is
+\[
+B(K)=\frac{18+6K}{17+9K}.                              \tag{30}
+\]
+For every finite \(K\),
+\[
+B(K)-\frac23
+=\frac{20}{3(17+9K)}>0.                               \tag{31}
+\]
+In fact every unit traceless Hermitian qutrit has
+\(r(F)^2\le2/3\), so
+\[
+K_*\le7\left(\frac23\right)=\frac{14}{3}.             \tag{32}
+\]
+The function \(B(K)\) is decreasing.  Thus even granting the
+impossible ideal that all seven frame vectors are extremal gives only
+\[
+\boxed{f\le B(14/3)=\frac{46}{59}>\frac23.}           \tag{33}
+\]
+Consequently no improvement of the **scalar, separately summed**
+adapted-frame spectral-radius constant can prove the desired
+\(f\le2/3\).  A successful continuation must retain matrix-valued or
+cross-site information discarded by the trace.
+
 Further progress must therefore use at least one of:
 
-* a stronger guaranteed total spectral-radius sum allowing
-  non-extremal frame vectors;
 * correlations among the three site frames induced by the same
-  rank-two \(C\);
+  rank-two \(C\), before taking their traces;
 * simultaneous left/right density information;
 * positive \(w_1\) or \(w_3\) forced by full-support rank-two
   realizability.
