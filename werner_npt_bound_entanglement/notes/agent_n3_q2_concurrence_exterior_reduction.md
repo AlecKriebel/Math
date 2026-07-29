@@ -140,16 +140,16 @@ They need not be isometries, but
 \[
  \det(X^\dagger X)=\det(Y^\dagger Y)=1.                  \tag{8}
 \]
-Choose the harmless vectorization conjugation so that
+Choose the physical product-frame convention
 \[
- W|a,b\rangle=x_a\otimes\overline{y_b}.
+ W|a,b\rangle=x_a\otimes y_b.
 \]
 With
 \[
  C=XY^\dagger,
 \]
-the normalized logical maximally entangled vector is sent, after
-the logical partial transpose, to
+the swap/partial-transpose contraction sends the normalized logical
+maximally entangled vector to the coefficient vector
 \(\operatorname{vec}(C)/\sqrt2\).  Therefore
 \[
 \boxed{
