@@ -979,3 +979,25 @@
   Final PDF publication remains pending the manuscript-wide hostile audit.
 - Updated the priority audit with targeted searches and retained
   “apparently new” language. No external communication occurred.
+
+## 2026-07-29 07:25 PDT — Publication-gate hostile audit passed
+
+- A separate adversarial reviewer checked every central manuscript theorem
+  for hidden hypotheses, circular dependencies, invalid four-local
+  equivalences, and scope leaks.
+- No central theorem was refuted. The reviewer required three printed-proof
+  repairs: the bipartite partial-isometry step in the twisted-control
+  theorem, a local citation and normalization for the Wenzl minimal
+  projection weights, and narrower wording for the exact Hecke arithmetic
+  shown insufficient. All three were applied.
+- Also made explicit the star-real functional extension in C63 and narrowed
+  the verifier description to finite rank-four calibrations.
+- Rebuilt the final 20-page paper with Tectonic 0.16.9. The build log has no
+  warnings, the deterministic creation timestamp is 29 July 2026 at 12:00
+  PDT, and the PDF SHA-256 is
+  `4c339b1cd174097c6e32cdd08d36b75235bcee5251f4d6db4105327dbd04a890`.
+- Rendered all 20 final pages with Poppler and visually inspected four
+  five-page contact sheets plus the dense twisted-control pages. No clipping,
+  overlap, broken equations, or illegible references were found.
+- Added the release README, manifest, notes, dependency file, exact hashes,
+  and final hostile-audit report. No external communication occurred.
