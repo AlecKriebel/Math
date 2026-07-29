@@ -3618,27 +3618,30 @@ All timestamps use America/Los_Angeles.
   \|T_{n^\perp}\|^2=\frac{14}{3}-q(n)^2,\qquad
   \|\operatorname{tr}T_{n^\perp}\|^2=\frac16-q(n)^2.
   \]
-- Converting this cubic mass through the exact relation
+- Found a stronger explicit frame construction.  For every unit
+  traceless Hermitian qutrit direction \(n\), the hyperplane
+  \(n^\perp\) contains three Hilbert--Schmidt orthonormal matrices of
+  spectrum \((2,-1,-1)/\sqrt6\).  Diagonalizing \(n\), choose a
+  probability vector \(w\) with zero \(n\)-expectation and
+  \(\sum w_k^2=5/9\); the three phase-orbit vectors
+  \(z_j=(\sqrt{w_k}\omega^{jk})_k\) have pair overlaps squared \(1/3\),
+  and their centered rank-one projectors give the required triple.
+- Completing this triple to an adapted seven-frame gives the exact
+  spectral-radius sum
   \[
-  q(F)^2=9x^2(x+\tfrac12),\qquad x=r(F)^2-\tfrac12,
+  \sum_{a=2}^8r(F_a)^2\ge3(2/3)+4(1/2)=4.
   \]
-  gives a larger summed spectral-radius gain
-  \(\gamma_*=1/6+\xi=0.302776\ldots\), where
-  \(594\xi^3+297\xi^2-7=0\) and \(\xi\in(0,1/6)\).
   Consequently every hypothetical normalized full-support pair-sector
   critical point with \(f>2/3\) obeys
   \[
-  32w_1+(97+18\gamma_*)f+6w_3\le78+12\gamma_*,
+  16w_1+53f+3w_3\le42,
   \qquad
-  f\le0.7968114804\ldots<\frac{51}{64}.
+  f\le\frac{42}{53}=0.7924528301\ldots.
   \]
-- A simple rational consequence is
-  \[
-  80w_1+256f+15w_3\le204.
-  \]
-- The theorem remains short of the required \(f\le2/3\).  The exact
-  cubic-square frame constant \(3/11\) is a guaranteed average, not
-  claimed optimal.
+- This supersedes the intermediate cubic-Haar ceiling
+  \(f<51/64\), while remaining short of the required \(f\le2/3\).
+  No claim is made that the total adapted-frame spectral-radius
+  constant \(4\) is optimal.
 - Exact note and checker:
   `notes/agent_n3_critical_filter_trace_bound.md`,
   `verification/verify_n3_critical_filter_trace_bound.py`.
