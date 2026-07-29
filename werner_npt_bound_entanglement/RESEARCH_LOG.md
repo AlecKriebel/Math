@@ -3064,3 +3064,33 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_phase_erasure_obstruction.md`.
   Exact checker:
   `verification/verify_n3_pair_sector_phase_erasure_obstruction.py`.
+
+## 2026-07-29 — Exact obstruction to a logical block-Gram proof
+
+- Disproved the stronger \(6\times6\) logical block-Gram certificate
+  \[
+  [\,\delta_{ij}\|B_{\widehat i}\|_2^2I_2
+    -(D_{\widehat i}V)^\dagger(D_{\widehat j}V)\,]_{ij}
+  \succeq0
+  \]
+  by an exact example on
+  \(\operatorname{span}\{|000\rangle,|111\rangle\}\).
+- With three explicit rational doubly-traceless pair matrices and
+  independently selected logical vectors, the output-to-budget quotient is
+  exactly \(7/3\), so the proposed block quadratic form equals
+  \(-28/9\).
+- The same example has genuine scalar deficit matrix
+  \[
+  \begin{pmatrix}
+  1&0&0\\
+  0&8/9&-4/9\\
+  0&-4/9&8/9
+  \end{pmatrix}\succ0.
+  \]
+  Hence the obstruction is not a Werner witness; it proves that a successful
+  scalar determinant argument must retain the common logical-frame coupling
+  and cannot allow independent code vectors for the three pair components.
+- Exact note:
+  `notes/agent_n3_pair_sector_logical_block_gram_obstruction.md`.
+  Exact checker:
+  `verification/verify_n3_pair_sector_logical_block_gram_obstruction.py`.
