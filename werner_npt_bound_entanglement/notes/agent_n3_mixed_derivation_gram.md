@@ -445,12 +445,49 @@ The rank-\(r\) Ky--Fan variational principle bounds the left side by
 the sum of the \(r\) largest eigenvalues of \(D^\dagger D\), proving
 (35). \(\square\)
 
+The proof gives the complete solution set for a fixed \(D\).
+
+### Corollary 7.2 (classification for fixed \(D\))
+
+Normalized rank-\(r\) solutions of (33) are in one-to-one
+correspondence with \(r\)-dimensional singular subsystems
+\[
+ DV=U\Lambda,\qquad D^\dagger U=V\Lambda
+ \tag{36}
+\]
+such that
+\[
+ \operatorname{Tr}\Lambda^2=f^2.
+ \tag{37}
+\]
+The corresponding matrix is
+\[
+\boxed{\qquad C=\frac1fU\Lambda V^\dagger.\qquad}
+\tag{38}
+\]
+Conversely, (36)--(38) directly imply both equations in (33).  For a
+nondegenerate \(D^\dagger D\), this simply selects \(r\) singular
+triples of \(D\) whose squared singular values sum to \(f^2\).
+
+If in addition \(\|D\|_2^2=f\), every solution has the orthogonal
+singular-block decomposition
+\[
+\boxed{
+ D=fC+D_\perp,\qquad
+ D_\perp V=0,\quad D_\perp^\dagger U=0,\quad
+ \|D_\perp\|_2^2=f-f^2.
+}
+\tag{39}
+\]
+Thus the critical equations fix not just a lower bound on the
+top-two mass, but the complete singular block on which \(C\) lives.
+
 For \(D_*\), equations (30)--(31) give
 \[
  s_1(D_*)^2+s_2(D_*)^2=\frac19,
  \qquad
  f^2=\left(\frac23\right)^2=\frac49.
- \tag{36}
+ \tag{40}
 \]
 Thus no normalized rank-at-most-two \(C\) can satisfy (33) with
 \(D=D_*\) and \(f=2/3\).  This conclusion does not even require the
