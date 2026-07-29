@@ -4009,3 +4009,44 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_common_plane_exterior_determinant.md`,
   `verification/verify_n3_pair_common_plane_exterior_determinant.py`.
+
+## 2026-07-29 17:05 PDT — Full reversed-Schur orientation reduction
+
+- Returned from the pair-only frontier to the complete three-copy
+  logical compression
+  \(K=(U^\dagger\otimes V^\dagger)Y(U\otimes V)\).
+  Writing
+  \(K=\left(\begin{smallmatrix}A&B\\B^\dagger&D\end{smallmatrix}\right)\)
+  in \(2\times2\) logical blocks and setting
+  \[
+  X=A^{-1/2}BD^{-1/2},\qquad
+  Z=A^{-1/2}B^\dagger D^{-1/2},
+  \]
+  proved the exact determinant identity
+  \[
+  \frac{\det K^\Gamma}{\det A\det D}
+  =
+  \det(I-X^\dagger X)+\|X\|_2^2-\|Z\|_2^2.
+  \]
+- Since \(K\succ0\), \(X\) is a strict contraction.  Therefore full
+  unrestricted three-copy positivity is exactly the scalar orientation
+  inequality
+  \[
+  \|Z\|_2^2-\|X\|_2^2
+  \le(1-s_1(X)^2)(1-s_2(X)^2).
+  \]
+  The right side is the ordinary positive-Gram Schur slack; the left
+  side is the sole reversal defect.
+- Identified automatic charts \(A\propto D\) and
+  \(B=e^{i\theta}H\) with \(H=H^\dagger\), where the orientation defect
+  vanishes.
+- Gave an exact abstract obstruction
+  \(K_*=\frac12I+|\Phi_2\rangle\langle\Phi_2|\): it is positive and its
+  spectrum lies inside the physical filter interval, but its orientation
+  defect is \(32/9\), its ordinary Schur slack is \(5/9\), and
+  \(\det K_*^\Gamma=-27/16\).  Thus positivity, spectral bounds, and
+  the ordinary Schur contraction alone cannot prove the endpoint; the
+  common three-fold tensor origin must control the reversal.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_full_reversed_schur_orientation.md`,
+  `verification/verify_n3_full_reversed_schur_orientation.py`.
