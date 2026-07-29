@@ -598,3 +598,182 @@ All timestamps use America/Los_Angeles.
   choices on exact random integer decomposable bivectors, verified every
   sign and normalization in the Walsh reduction, and confirmed that the
   identity fails for a generic nondecomposable antisymmetric tensor.
+
+## 2026-07-28 20:35--21:48 PDT — unrestricted three-copy audit
+
+- Implemented an unrestricted fully complex rank-two search
+  \(C=U\operatorname{diag}(s_1,s_2)V^\dagger\) with independent complex
+  Stiefel frames.  In discovery arithmetic only, 1,000 general and 540
+  normal three-qutrit starts found no negative \(Q_3\).  At nine fixed
+  singular-value ratios, the minima matched
+  \(2^{-3}(s_1-s_2)^2\).  Zero minimizers collapsed to common local
+  two-dimensional supports.  These observations are not proof evidence.
+- Exactly refuted the proposed sufficient cyclic inequality
+  \[
+  E(C)=3\|C\|_2^2-2\sum_i\|\operatorname{Tr}_iC\|_2^2
+       +\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2\geq0.
+  \]
+  For
+  \[
+  C=\operatorname{diag}(1,1,0)\otimes|0\rangle\langle1|
+    \otimes|0\rangle\langle0|,
+  \]
+  the rank is two, the partial-trace norm layers are
+  \(2;(4,0,2);(0,4,0);0\), and \(E(C)=-2\).
+  Nevertheless \(Q_3(C)=0\), so the witness saturates rather than refutes
+  the sharp three-copy conjecture.
+- Isolated the exact repaired identity
+  \[
+  8Q_3(C)=2\|C\|_2^2-|\operatorname{Tr}C|^2+2E(C).
+  \]
+  Thus the sharp singular-value target is
+  \[
+  2E(C)+(s_1+s_2)^2-|\operatorname{Tr}C|^2\geq0.
+  \]
+- Put \(N=\bigotimes_i(2I-F_i)=8Y\), \(M=N-I\succeq0\).  For an SVD and
+  \(x_{ab}=u_a\otimes v_b\), the repaired theorem is exactly the
+  two-plane shifted minor
+  \[
+  |h|\leq1+\sqrt{g_1g_2},\qquad
+  g_a=\langle x_{aa},Mx_{aa}\rangle,\quad
+  h=\langle x_{12},Nx_{21}\rangle.
+  \]
+- Exactly ruled out routing this through the ordinary matched Gram entry
+  \(d=\langle x_{11},Nx_{22}\rangle\).  The basis grid
+  \(u_1=000,u_2=001,v_1=110,v_2=111\) has
+  \((g_1,g_2,h,d)=(3,3,-4,0)\): the live inequality is saturated, but
+  \(|h|\leq1+|d|\) fails maximally.
+- Added a dependency-free exact verifier and a detailed proof-layer note:
+  `verification/verify_n3_even_reduction_obstruction.py` and
+  `notes/agent_n3_shifted_minor_audit.md`.
+
+## 2026-07-28 20:40--22:05 PDT — exact-weight-three Lorentz determinant reduction
+
+- Expanded the four encoded logical Pauli operators in a local
+  identity/traceless Hilbert--Schmidt basis and introduced their
+  exact-support \(4\times4\) Gram matrices \(Z_R\).
+- Proved, using only the four singleton/triple balances, that
+  \[
+  \widehat\Gamma
+  =2I_4+63Z_0-\frac92Z_3,\qquad
+  Z_0=\frac4{81}E_{00}.
+  \]
+  Consequently
+  \[
+  18(\widehat\Gamma+2\eta)=128E_{00}-81Z_3.
+  \]
+- Thus the conjectural fixed Lorentz eigenvalue \(-2\) is exactly
+  equivalent to the single nonlinear common-code assertion
+  \[
+  \det(128E_{00}-81Z_3)=0.
+  \]
+  Its stronger spatial form is
+  \(\operatorname{rank}W_3\le2\), where \(W_3\) is the exact-weight-three
+  Gram of the encoded traceless Pauli operators.
+- Audited the hypotheses carefully: the determinant reduction uses only
+  the four singleton/triple equalities.  Uniformity of all eight odd
+  bivector sectors uses the stronger seven complement equalities, unless
+  one first proves the still-missing sharp nonlinear defect theorem.
+- Numerically restored balanced frames consistently have
+  \(\operatorname{rank}W_3\le2\).  Stronger seven-balanced frames also
+  show rank-three \(6\times27\) stacked flattenings at every site and
+  vanishing complementary cubic-moment defects.  These are recorded only
+  as discovery targets; no equality classification proving them is known.
+- The exact four-copy stopping point is therefore the determinant above.
+  It is a smaller explicit Pluecker-realizability lemma, but it remains
+  unproved; no four-copy theorem or counterexample is claimed.
+
+## 2026-07-28 22:05--22:28 PDT — the uncorrected \(n=3\) even-reduction conjecture is false
+
+- Found the exact rank-two integer matrix
+  \[
+  C=|0\rangle\langle1|\otimes|0\rangle\langle1|
+    \otimes(|0\rangle\langle0|+|1\rangle\langle1|).
+  \]
+  Its three cyclic even-reduction terms are exactly
+  \[
+  (2,-2,-2),
+  \]
+  so \(E(C)=-2\).  This disproves \(E(C)\ge0\) for arbitrary rank-two
+  coefficient matrices.
+- The witness has singular values \((1,1)\), trace zero, and
+  \(Q_3(C)=0\).  It is therefore an exact equality case of the desired
+  sharp endpoint bound, not a distillation witness.
+- Isolated the correct residual inequality:
+  \[
+  E(C)+\frac12\bigl((s_1+s_2)^2-|\operatorname{Tr}C|^2\bigr)\ge0.
+  \]
+  By the even-reduction identity this is exactly equivalent to
+  \(Q_3(C)\ge\frac18(s_1-s_2)^2\).
+- Extended the witness to the tensor family
+  \(C=A_1\otimes A_2\otimes H\), where the \(A_i\) are normalized
+  traceless rank-one matrices and \(\operatorname{rank}H\le2\), and
+  proved the corrected inequality exactly on that family.  Equality
+  requires equal singular values of \(H\) and saturation of its trace
+  norm bound.
+- Added a dependency-free exact integer verifier for rank, all three
+  reduction terms, the corrected defect, and \(Q_3\).
+
+## 2026-07-28 21:22--21:42 PDT — unrestricted \(n=3\): exact self-adjoint and normal frontier
+
+- Proved, in arbitrary finite local dimensions, the sharp bound
+  \[
+  Q_3(H)\ge\frac18(s_1(H)-s_2(H))^2
+  \]
+  for every self-adjoint rank-at-most-two \(H\).  The indefinite case
+  follows from the exact orthogonal-pure-state identity
+  \[
+  \frac18-\mathcal B_3(P_u,P_v)
+  =2\left\|\prod_i\frac{I-F_i}{2}(u\otimes v)\right\|^2
+   \frac14\sum_i\operatorname{Tr}(\rho_{\bar i}^u\rho_{\bar i}^v).
+  \]
+- Extended the same sharp singular-value bound to every normal rank-two
+  matrix.  More generally, \(Q_3(C)\ge0\) whenever the left and right
+  singular planes coincide, even if \(C\) is not normal.
+- Classified the remaining nonnormal locus by the principal geometry of
+  its left and right two-planes.  A one-dimensional intersection gives a
+  three-dimensional cubic normal form; transverse planes give
+  \[
+  C=A(I+iJ),\qquad J^\dagger A=AJ,\qquad J^2=-I,
+  \]
+  and reduce the target exactly to \(Q_3(A)+Q_3(AJ)\ge0\).
+- Eliminated the singular-value optimization at fixed planes.  For
+  \[
+  K(U,V)=(U^\dagger\otimes V^\dagger)
+  \bigotimes_i(I-\tfrac12F_i)(U\otimes V),
+  \]
+  unrestricted positivity is equivalent to the single invariant
+  determinant inequality
+  \[
+  \det K(U,V)^{\Gamma_2}\ge0.
+  \]
+  The equivalence is exact because a strictly block-positive two-qubit
+  Hermitian operator has at most one negative eigenvalue and cannot have
+  a negative and a zero eigenvalue simultaneously.
+- This reaches the requested “normal theorem plus precise remaining
+  nonnormal locus” checkpoint.  It does not settle the transverse
+  determinant inequality, so unrestricted three-copy positivity remains
+  open internally and no paper/site publication is authorized yet.
+- Sharpened the one-dimensional-intersection stratum further.  After one
+  scalar phase every such matrix has the exact form
+  \[
+  C=\gamma|w\rangle\langle w|+\delta|u\rangle\langle v|,
+  \qquad \gamma\in\mathbb R.
+  \]
+  Therefore this whole stratum is equivalent to the single three-vector
+  Gram inequality
+  \[
+  |\mathcal B_3(P_w,|u\rangle\langle v|)|^2
+  \le Q_3(P_w)Q_3(|u\rangle\langle v|).
+  \]
+  A direct determinant calculation shows why the self-adjoint rank-two
+  theorem cannot polarize this term: every nontrivial mixed Hermitian
+  quadrature has rank three.
+- Exactly refuted a tempting sufficient operator-norm bound for that Gram
+  inequality.  For the three-qubit GHZ vector \(w\),
+  \(Q_3(P_w)=1/2\) while
+  \(\|\mathcal L^{\otimes3}(P_w)\|_\infty=1/2\), violating the proposed
+  squared bound by a factor of four.  The actual Gram inequality is
+  saturated, not violated, by the corresponding opposite-phase GHZ
+  projector, so the state-dependent diagonal energy cannot be replaced by
+  its universal rank-one lower bound.

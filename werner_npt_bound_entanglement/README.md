@@ -29,3 +29,13 @@ an exact amplification theorem showing that orthogonal rank-two projections
 suffice for the all-copy existence question.  The project has not yet
 established either all-copy undistillability or a finite-copy distillation
 witness; every note labels unresolved inequalities explicitly.
+
+At three copies, the endpoint is now proved nonnegative for every
+self-adjoint or normal rank-at-most-two coefficient matrix, and more
+generally whenever the left and right singular planes coincide.  The
+remaining nonnormal problem has exact three- and four-dimensional canonical
+forms, recorded in `notes/agent_unrestricted_n3_selfadjoint.md`.  The
+intersection-one stratum is equivalent to one explicit three-vector Gram
+inequality; the transverse stratum is equivalent to a coupled
+pseudo-Hermitian complex-structure inequality.  Neither remaining inequality
+is presently claimed proved.
