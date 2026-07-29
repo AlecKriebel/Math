@@ -200,6 +200,37 @@ def main():
     )
     assert factor == direct == F(2640)
 
+    # Coordinate-free Gram remainder in the standard active plane:
+    # t=(a,b,c), z=(z0,z1,z2).
+    active_wedge = (a * z1 - b * z0) ** 2
+    q_t_p_z = 2 * c * c * (z0 * z0 + z1 * z1)
+    p_t_q_z = 2 * z2 * z2 * (a * a + b * b)
+    q_t_q_z = 4 * c * c * z2 * z2
+    delta = (
+        (a * a + b * b + 2 * c * c)
+        * (z0 * z0 + z1 * z1 + 2 * z2 * z2)
+        - (z0 * a + z1 * b) ** 2
+    )
+    assert delta == active_wedge + q_t_p_z + p_t_q_z + q_t_q_z
+
+    # Verify the coherent three-square completion at a rational lambda.
+    lam1, lam2, lam3 = F(2), F(-3), F(5)
+    left = (
+        d * lam1 * lam1
+        + middle * lam2 * lam2
+        + d * lam3 * lam3
+        - 2 * cross * lam1 * lam2
+        - 2 * outer_cross * lam1 * lam3
+        - 2 * cross * lam2 * lam3
+    )
+    right = (
+        (d + outer_cross) * (lam1 - lam3) ** 2 / 2
+        + middle
+        * (lam2 - cross * (lam1 + lam3) / middle) ** 2
+        + delta * (lam1 + lam3) ** 2 / middle
+    )
+    assert left == right
+
     print("three-cycle equality and sparse Cauchy factor: exact checks passed")
 
 

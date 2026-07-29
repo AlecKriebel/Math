@@ -241,7 +241,75 @@ The equality (3)--(4) is obtained from
 \]
 Both inequalities in (25) then saturate.
 
-## 5. Structural implication
+## 5. Coordinate-free local Gram map
+
+The Cauchy remainder in (24) has an invariant exterior form.  Let
+\({\cal E}\subset\mathbb C^3\) be the active two-plane, let \(P\) be
+its orthogonal projector, and put \(Q=I-P\).  For local profiles
+\(t,z\in\mathbb C^3\), define
+\[
+\begin{aligned}
+\Delta_{\cal E}(t,z)
+={}&
+\bigl(\|Pt\|^2+2\|Qt\|^2\bigr)
+\bigl(\|Pz\|^2+2\|Qz\|^2\bigr)\\
+&\quad-|\langle Pz,Pt\rangle|^2.                         \tag{27}
+\end{aligned}
+\]
+Then
+\[
+\boxed{
+\begin{aligned}
+\Delta_{\cal E}(t,z)
+={}&\|Pt\wedge Pz\|^2
++2\|Qt\otimes Pz\|^2
++2\|Pt\otimes Qz\|^2\\
+&\quad+4\|Qt\otimes Qz\|^2.
+\end{aligned}}                                           \tag{28}
+\]
+Thus (27) is the squared norm of the direct-sum Gram map
+\[
+ {\cal F}_{\cal E}(t,z)=
+ Pt\wedge Pz
+ \oplus\sqrt2\,Qt\otimes Pz
+ \oplus\sqrt2\,Pt\otimes Qz
+ \oplus2\,Qt\otimes Qz.                                  \tag{29}
+\]
+This description is independent of a basis inside \({\cal E}\).
+For the family (18), take
+\[
+ {\cal E}=\operatorname{span}\{|0\rangle,|1\rangle\},
+ \qquad t=(a,b,c),\quad z=(z_0,z_1,z_2).
+ \tag{30}
+\]
+Then the bracket in (24) is exactly
+\(\Delta_{\cal E}(t,z)\).
+
+The whole component quadratic form also completes coherently.  If
+\(e>0\), then for every \(\lambda\in\mathbb C^3\),
+\[
+\boxed{
+\begin{aligned}
+\lambda^\dagger M\lambda
+={}&\frac{d+z}{2}|\lambda_1-\lambda_3|^2\\
+&+e\left|
+\lambda_2-\frac{x}{e}(\lambda_1+\lambda_3)
+\right|^2\\
+&+\frac{\Delta_{\cal E}(t,z)}{e}
+|\lambda_1+\lambda_3|^2.
+\end{aligned}}                                           \tag{31}
+\]
+For \(e=0\), one has \(x=0\) and positivity is immediate from the
+outer \(2\times2\) block.  At the equality (26),
+\({\cal F}_{\cal E}(t,z)=0\); the first two lines of (31) reduce
+exactly to the two squares in (13).
+
+Equation (29) is the coordinate-free residual-vector representation
+suggested by the equality kernel.  The missing global step is to
+assemble these local active-plane fibers without choosing
+incompatible planes or phases on the three edges.
+
+## 6. Structural implication
 
 The two squares in (13) are a discrete second difference and an
 outer antisymmetric difference.  Formula (24) shows their origin:
