@@ -175,10 +175,36 @@ def main() -> None:
     factor = fixed_left_gram((0, 1))
     assert len(factor) - rational_rank(factor) == 3
 
+    # Coefficientwise audit of the critical trace-excess identity
+    #
+    # Tr(G_i) + 8q = (15/2) g_i.
+    # A Boolean sector is encoded by whether site i is traceless and by
+    # the endpoint eigenvalue on the other two sites.
+    for site_is_traceless in (False, True):
+        for other_traceless_count in range(3):
+            other_eigenvalue = (
+                Q(-1, 2) ** (2 - other_traceless_count)
+            )
+            local_eigenvalue = Q(1) if site_is_traceless else Q(-1, 2)
+            endpoint_eigenvalue = local_eigenvalue * other_eigenvalue
+            trace_h_coefficient = Q(5, 2) * other_eigenvalue
+            trace_g_plus_8q = (
+                trace_h_coefficient
+                - Q(3) * endpoint_eigenvalue
+                + Q(8) * endpoint_eigenvalue
+            )
+            haar_bracket_coefficient = (
+                other_eigenvalue if site_is_traceless else Q(0)
+            )
+            assert trace_g_plus_8q == (
+                Q(15, 2) * haar_bracket_coefficient
+            )
+
     print(
         "verified: the 81 block-coefficient equations are invertible and "
         "force beta = |vec(I_3)><vec(I_3)|; boundary kernel nullities "
-        "are 1 for support (2,2) and 3 for a fixed-factor plane"
+        "are 1 for support (2,2) and 3 for a fixed-factor plane; "
+        "the critical trace-excess identity holds coefficientwise"
     )
 
 

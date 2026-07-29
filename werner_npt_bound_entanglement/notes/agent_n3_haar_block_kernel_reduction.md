@@ -22,9 +22,11 @@ unrestricted qutrit three-copy endpoint.
     plane.  An exact linear-pencil classification then contradicts
     full local support.
 
-Consequently no physical rank-two matrix can realize the negative
-Haar-filter equality with \(\gamma>0\).  In particular, the formal
-Haar-saturating negative sector point is not rank-two realizable.
+Consequently no physical rank-two matrix can realize the isotropic
+local form with \(\gamma>0\) even at one site.  In particular, every
+sitewise Haar-filter inequality is strict at a hypothetical negative
+rank-two matrix, and the formal Haar-saturating negative sector point
+is not rank-two realizable.
 
 This is not yet a proof of unrestricted three-copy positivity: a
 negative matrix with strict Haar-filter slack is not excluded.  The
@@ -468,9 +470,9 @@ full-supported.
 ### Theorem 6
 
 No rank-two matrix on three qutrit copies can satisfy the isotropic
-local system (6) with \(\gamma>0\) simultaneously at all three sites.
-Consequently the formal negative Haar-filter equality is not
-physically realizable by a rank-two matrix.
+local system (6) with \(\gamma>0\) at even one site.  Consequently,
+if \(Q_3(C)<0\), then every one of the three sitewise Haar-filter
+inequalities is strict.
 
 ### Proof
 
@@ -552,9 +554,17 @@ the \(Y\)-pencil.
 
 Lemma 5 and Lemma 4 now imply that the full left singular plane
 \(\operatorname{ran}X\) has local support of dimension at most two on
-one of the remaining sites.  At that site its three slices are
-linearly dependent.  But the isotropic system at that site, by the
-same argument following (42), forces those slices to be independent.
+one of the remaining sites.  The established local-support boundary
+theorem therefore gives
+\[
+ Q_3(C)\geq0.
+ \tag{47}
+\]
+On the other hand, putting \(A=B=I_3\) in (6) gives
+\[
+ Q_3(C)=\gamma Q_1(I_3)=-\frac32\gamma<0.
+ \tag{48}
+\]
 This contradiction proves the theorem.  The same contradiction could
 equally be obtained from \(Y\). \(\square\)
 
@@ -564,3 +574,156 @@ the sharp formal sector point without imposing Hermiticity,
 normality, reality, or a tensor ansatz.  Its exact remaining
 limitation is strict Haar-filter slack: a negative point need not
 satisfy the isotropic system (6).
+
+## 7. Exact strict-slack and critical trace formulas
+
+For a normalized matrix \(C\), write
+\[
+ w_S=\|\Pi_SC\|_2^2
+ \qquad(S\subseteq\{1,2,3\}).
+ \tag{49}
+\]
+At site \(i\), with complementary sites \(j,k\), define the sitewise
+Haar bracket
+\[
+ g_i=
+ \frac14w_{\{i\}}
+ -\frac12\left(w_{\{i,j\}}+w_{\{i,k\}}\right)
+ +w_{\{1,2,3\}}.
+ \tag{50}
+\]
+The established boundary-filter identity says
+\[
+ {\mathbb E}_z\,
+ Q_3\left((I-|z\rangle\langle z|)^{(i)}C\right)
+ =\frac58g_i,
+ \qquad g_i\geq0.
+ \tag{51}
+\]
+
+### Corollary 7 (sitewise strictness)
+
+If \(\operatorname{rank}C\leq2\) and \(Q_3(C)<0\), then
+\[
+ \boxed{\qquad g_i>0\quad(i=1,2,3).\qquad}
+ \tag{52}
+\]
+
+### Proof
+
+If \(g_i=0\), the continuous nonnegative integrand in (51) vanishes
+for every \(z\).  The exact boundary-zero form classification then
+gives the isotropic identity (6), with
+\[
+ \gamma=-\frac23Q_3(C)>0.
+ \]
+This contradicts Theorem 6. \(\square\)
+
+The strictness has a uniform, although presently non-explicit,
+stability consequence.  For every \(\varepsilon>0\), compactness of
+\[
+ \left\{C:\operatorname{rank}C\leq2,\ \|C\|_2=1,\
+ Q_3(C)\leq-\varepsilon\right\}
+ \tag{53}
+\]
+and continuity of \(g_i\) give a number
+\(\eta(\varepsilon)>0\) such that
+\[
+ g_i(C)\geq\eta(\varepsilon)
+ \quad\text{for all three sites.}
+ \tag{54}
+\]
+Thus a sequence whose sitewise Haar slack tends to zero can remain
+negative only if its endpoint value tends to zero.  Formula (54) is
+qualitative; an explicit lower bound is still missing.
+
+There is also an exact critical-point interpretation of the slack.
+Suppose \(C\) is a normalized local minimum of the endpoint Rayleigh
+quotient on the rank-two variety, put
+\[
+ q=Q_3(C)<0,
+ \tag{55}
+\]
+and define the local endpoint and norm forms
+\[
+\begin{aligned}
+ h_i(A,B)&=
+ \left\langle A^{(i)}C,
+ {\cal L}^{\otimes3}(B^{(i)}C)\right\rangle_{\rm HS},\\
+ n_i(A,B)&=\langle A^{(i)}C,B^{(i)}C\rangle_{\rm HS},\\
+ G_i&=h_i-qn_i.
+\end{aligned}
+ \tag{56}
+\]
+Rank-preserving local-filter variations give
+\[
+ G_i\succeq0,\qquad G_i(I,A)=0\quad(A\in M_3).
+ \tag{57}
+\]
+
+### Proposition 8 (Haar slack is the local trace excess)
+
+With the ordinary Hilbert--Schmidt trace on forms on \(M_3\),
+\[
+ \boxed{\qquad
+ \operatorname{Tr}_{\rm HS}G_i
+8q
+ =\frac{15}{2}g_i
+ =12\,{\mathbb E}_z
+ Q_3\left((I-|z\rangle\langle z|)^{(i)}C\right)>0.
+ \qquad}
+ \tag{58}
+\]
+The same identity holds for right local filters.
+
+### Proof
+
+Split the endpoint expectation according to whether site \(i\) is
+locally scalar or traceless:
+\[
+ q=a_i+g_i.
+ \tag{59}
+\]
+Here
+\[
+ a_i=-\frac18w_\varnothing
+ +\frac14(w_{\{j\}}+w_{\{k\}})
+ -\frac12w_{\{j,k\}}.
+ \tag{60}
+\]
+For a Hilbert--Schmidt orthonormal matrix-unit basis,
+\[
+ \sum_{a,b}
+ \left\langle E_{ab}X,{\cal L}(E_{ab}X)\right\rangle_{\rm HS}
+ =\frac52\|X\|_2^2.
+ \tag{61}
+\]
+Indeed, the summed squared masses in the scalar and traceless output
+sectors are respectively \(\frac13\|X\|_2^2\) and
+\(\frac83\|X\|_2^2\).  The local endpoint eigenvalues
+\(-\frac12,1\) turn their sum into \(5\|X\|_2^2/2\).
+
+Removing the endpoint eigenvalue at site \(i\) changes the scalar
+contribution \(a_i\) by the factor \(-2\) and leaves the traceless
+contribution \(g_i\) unchanged.  Therefore
+\[
+ \operatorname{Tr}_{\rm HS}h_i
+ =\frac52(-2a_i+g_i)
+ =-5q+\frac{15}{2}g_i.
+ \tag{62}
+\]
+Likewise,
+\[
+ \operatorname{Tr}_{\rm HS}n_i=3\|C\|_2^2=3.
+ \tag{63}
+\]
+Subtracting \(q\operatorname{Tr}n_i\) proves the first equality in
+(58), and (51) proves the second.  Strict positivity follows from
+Corollary 7. \(\square\)
+
+Thus \(-8q\) is the sharp local trace floor for the positive critical
+form \(G_i\), and the Haar bracket is exactly its excess above that
+floor.  Equality at the floor is the isotropic form already excluded
+by Theorem 6.  The unresolved strict-slack problem is to turn this
+qualitative rigidity into an explicit common-origin lower bound strong
+enough to force \(q\geq0\).
