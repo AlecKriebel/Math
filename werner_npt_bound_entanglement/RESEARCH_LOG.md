@@ -3847,3 +3847,41 @@ All timestamps use America/Los_Angeles.
   the missing datum more sharply: the symmetric/anticommutator part
   \(T_i^L+T_i^R=\Pi_2(A_iC+CA_i)\) must come simultaneously from one
   common rank-two \(C\).
+## 2026-07-29 16:05 PDT — Conjugation-correct common-plane floor reduction
+
+- Derived the sufficient two-qubit matrix floor
+  \[
+  Q_{(2)}^\Gamma+
+  \left(\frac29-\frac12\operatorname{Tr}Q_{(3)}\right)I_4
+  \succeq0.
+  \]
+  It combines with the universal exact bound
+  \(R^\Gamma+\tfrac12\operatorname{Tr}(R)I_4\succeq0\) for positive
+  two-qubit \(R\), and therefore directly implies the shifted pair
+  theorem.
+- Corrected a crucial conjugation error in an earlier tentative
+  projection formulation.  On
+  \({\cal L}=\overline{\operatorname{ran}U}\otimes
+  \overline{\operatorname{ran}V}\), the floor is losslessly equivalent
+  to
+  \[
+  P_{\cal L}(P_0-P_1+4P_3)P_{\cal L}
+  +\frac12(r_1-r_2+3r_3)I_{\cal L}\succeq0.
+  \]
+  Here \(P_k\) is the sector with exactly \(k\) local maximally
+  entangled factors and \(r_k=\operatorname{Tr}(P_{\cal L}P_k)\).
+- Proved this corrected floor exactly on the common-factor chart
+  \(u_a=x\otimes e_a,\ v_a=y\otimes e_a\).  With
+  \(\eta_i=\langle\bar x\otimes y|{\mathsf A}_i|
+  \bar x\otimes y\rangle\), its least eigenvalue is
+  \[
+  \frac29(1-\eta_1-\eta_2)\ge0.
+  \]
+  The same chart obeys the stronger exact concurrence tradeoff
+  \({\cal C}(Q_{(2)})+{\cal C}(Q_{(3)})\le4/9\).
+- The reduction remains unproved for arbitrary complex singular
+  planes.  Numerical attacks have approached equality without a
+  violation; this is discovery evidence only.
+- Exact note and checker:
+  `notes/agent_n3_pair_common_plane_floor.md`,
+  `verification/verify_n3_pair_common_plane_floor.py`.
