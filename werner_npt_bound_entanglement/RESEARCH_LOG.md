@@ -3244,6 +3244,51 @@ All timestamps use America/Los_Angeles.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_residual_inertia_two.py`.
 
+## 2026-07-29 — Cayley residual factorization and exact termwise obstruction
+
+- Put \(E_i=b_iI_2-X_i^\dagger X_i\) and
+  \(\Delta_{ij}=\operatorname{Tr}(E_iE_j)-|c_{ij}|^2\).
+  Polarized \(2\times2\) Cayley--Hamilton gives the lossless identity
+  \[
+  \det M
+  =\sum_{\{i,j,k\}=\{1,2,3\}}d_k\Delta_{ij}
+   -2\operatorname{Re}\!\left[
+    \operatorname{Tr}(E_1E_2E_3)+c_{12}c_{23}c_{31}
+   \right].
+  \]
+- The scalar cycle was also rewritten exactly through the positive
+  physical residuals
+  \(R_i=b_iI-X_iX_i^\dagger\).  For
+  \[
+  g^{(i)}_{jk}
+  =\operatorname{Tr}(X_j^\dagger R_iX_k),
+  \]
+  each \(G^{(i)}=[g^{(i)}_{jk}]\) is a positive Gram matrix and
+  \[
+  g^{(i)}_{jk}
+  =b_ic_{jk}-\operatorname{Tr}(A_{ji}A_{ik}).
+  \]
+  Cayley--Hamilton expresses \(c_{12}c_{23}c_{31}\) through these
+  three Grams and the two ordered common-frame cubic contractions.
+- Exactly disproved the tempting termwise claim
+  \(\Delta_{ij}\geq0\).  For the code
+  \(V=(|000\rangle,|110\rangle)\) and sparse doubly-traceless rational
+  pair coefficients,
+  \[
+  \Delta_{12}=-\frac{14}{81}.
+  \]
+  This is not a pair-sector counterexample: the true scalar deficit
+  has spectrum \(\{2/9,2,2\}\) and
+  \[
+  \det M=\frac89>0.
+  \]
+  The positive amount missing from \(\Delta_{12}\) is exactly the
+  logical spin-flip term
+  \(\operatorname{Tr}(E_1{\mathfrak s}(E_2))\).
+- Exact note and dependency-free verifier:
+  `notes/agent_n3_pair_sector_cayley_residual_factor.md` and
+  `verification/verify_n3_pair_sector_cayley_residual_factor.py`.
+
 ## 2026-07-29 — Residual inertia cannot imply the scalar determinant
 
 - Exactly disproved the proposed algebraic implication
