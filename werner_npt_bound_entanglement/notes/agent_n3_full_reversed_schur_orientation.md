@@ -24,7 +24,7 @@ the exact form
  \frac{\det K^\Gamma}{\det A\det D}
  =
  \det(I-X^\dagger X)
- \|X\|_2^2-\|Z\|_2^2,
+ +\|X\|_2^2-\|Z\|_2^2,
  \quad}
 \]
 where
