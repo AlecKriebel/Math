@@ -1429,7 +1429,10 @@ reproducible; only its final exact witness is reproducible.
 - Orbit separation:
   the exact fourth flip moments are \(-16/3\) on the color/face orbit
   and \(16\) on the published witness, so the two are not
-  sitewise-unitarily equivalent.
+  sitewise-unitarily equivalent. This is a statement under the finer
+  sitewise-unitary relation only. Since both witnesses have the same
+  \([q,\eta,d]\), Lechner's two-eigenvalue classification identifies
+  them under his broader braid-representation equivalence.
 - Theorem:
   every commuting local projection in an identity amplification has
   rank divisible by four; in particular rank \(4m-2\) is impossible.
@@ -1453,7 +1456,7 @@ reproducible; only its final exact witness is reproducible.
   verifiers/verify_no_codimension_two_cut_color_face_family.py`.
 - SHA-256:
   - `notes/no_codimension_two_cut_color_face_family.md`:
-    `394e09ccae553c77e8792324e4c377f10285e92372cc8ef32506b916f46f1284`;
+    `98e083e3fd92568d154baf9300e0868e8928ea0b2ab99fc64f689a7097eeec70`;
   - `verifiers/verify_no_codimension_two_cut_color_face_family.py`:
     `c78f158f8672208a6226849bdef723bebad5876c821fcd6a0e36baceeb77e670`;
   - `results/no_codimension_two_cut_color_face_family_exact.txt`:

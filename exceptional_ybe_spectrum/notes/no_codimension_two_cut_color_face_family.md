@@ -46,7 +46,8 @@ This explains why the three numerical landscapes in E38 were identical
 to the reported precision.  Theorem 1 is exact and does not use that
 numerical observation.
 
-The orbit is not the published five-Pauli solution:
+The orbit is not sitewise-unitarily conjugate to the published
+five-Pauli solution:
 
 > **Proposition 3.**
 > No member of the C15 circle is sitewise-unitarily equivalent to the
@@ -164,6 +165,16 @@ Proposition 3.  The same fourth-power invariant is unchanged by
 \(H\mapsto-H\) and by tensor flip \(H\mapsto FHF\), so those elementary
 operations do not identify the two orbits either.
 
+This is deliberately a statement about the finer sitewise-unitary
+relation, not about the equivalence relation in Lechner's
+classification.  Lechner defines \(R\sim S\) by unitary equivalence of
+the full braid-representation towers and proves, in the non-involutive
+two-eigenvalue setting, that the class is determined by
+\([q,\eta,d]\).  The color/face and published witnesses have the same
+triple \([e^{i\pi/3},1/2,4]\), so they are equivalent in that broader
+sense.  The flip moment (9) is not asserted to be an invariant of that
+broader relation.
+
 ## 5. Leakage and the active algebra
 
 Amplify (1) by \(I_m\), absorbing the spectator identity into every
@@ -251,11 +262,13 @@ to \(\operatorname{rank}Q=4m-2\).  This proves Theorem 1.
 ## 6. Consequence and limitation
 
 C40 and Theorem 1 now exclude codimension-two square restriction from
-two distinct exact \(d=4\) mechanisms: the published five-Pauli witness
-and the complete color/face orbit.  Proposition 3 proves that these are
-genuinely different sitewise-unitary orbits.  They do not classify all
-four-dimensional exceptional solutions, and they do not constrain a
-genuinely new irreducible solution in dimension six.
+two exact \(d=4\) mechanisms: the published five-Pauli witness and the
+complete color/face orbit.  Proposition 3 proves that these lie in
+different sitewise-unitary orbits, while the preceding scope paragraph
+explains why they remain equivalent in Lechner's broader sense.  They
+do not classify all four-dimensional exceptional solutions up to
+sitewise-unitary conjugacy, and they do not constrain a genuinely new
+irreducible solution in dimension six.
 
 The exact orbit calculation supersedes the speculative interpretation
 in E38: equivalence of the three sampled color/face points is now

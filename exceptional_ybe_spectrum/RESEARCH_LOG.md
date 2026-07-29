@@ -629,8 +629,8 @@
 - Found the exact orbit generator \(C=X\otimes U_-\). The sitewise
   unitary \(e^{i\theta C/2}\) fixes the left Clifford triple and rotates
   the family parameter \((a,b)\). Hence the apparent C15 circle is one
-  local-unitary orbit, not a continuous modulus after the natural
-  equivalence.
+  sitewise-unitary orbit, not a continuous modulus under that finer
+  relation.
 - Separated that orbit from the published five-Pauli witness by the
   exact sitewise-conjugacy invariant
   \(\operatorname{Tr}((HF)^4)\): its values are respectively
@@ -646,6 +646,23 @@
 - Scope guard: the result closes this broad construction mechanism but
   neither classifies arbitrary \(d=4\) solutions nor resolves existence
   in dimension six.
+
+## 2026-07-29 04:41 PDT — Equivalence terminology corrected
+
+- Rechecked Lechner's Definition 1.1 and equation (2.12) against the
+  primary source. His equivalence relation is unitary equivalence of
+  the full braid-representation towers, equivalently equality of their
+  normalized braid characters together with equal local dimension.
+- In the non-involutive two-eigenvalue classification, the triple
+  \([q,\eta,d]\) determines this broad equivalence class. Therefore the
+  C15 color/face witness and the published five-Pauli witness are
+  equivalent in Lechner's sense, even though the fourth flip moment
+  proves they are not conjugate by any single sitewise unitary
+  \(U\otimes U\).
+- Corrected C15, C53, E40, and the structural note so the flip moment is
+  not misrepresented as an invariant of Lechner's broader relation.
+  This correction changes no matrix identity or amplification-cut
+  theorem.
 
 ## 2026-07-29 04:15 PDT — Quadratic-subproduct parity route audited exactly
 
