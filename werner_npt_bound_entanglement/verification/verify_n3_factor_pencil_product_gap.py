@@ -105,4 +105,17 @@ haar_f = F(1, dim_sym2)
 haar_g = F(1, dim_sym2)
 assert haar_product == F(2, 5) * haar_f * haar_g
 
-print("verified: sharp quadratic product gap with constant 2/5")
+# Audit all constants in the robust marginal-determinant estimate.
+assert 12 * 129**2 == 199692
+assert 199692 < 450**2
+assert 972 * F(1, 100) < 10
+assert 450 + 10 == 460
+assert F(460**2, 2) == 105800
+assert 6 * 211600 == 1269600
+assert F(1269600, 16) == 79350
+assert F(5 * 79350**2, 2) == F(15741056250)
+
+print(
+    "verified: sharp quadratic product gap and robust "
+    "marginal-determinant constants"
+)
