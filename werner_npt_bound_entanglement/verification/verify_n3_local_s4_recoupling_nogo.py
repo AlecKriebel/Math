@@ -317,7 +317,9 @@ def check_direct_three_site_contraction():
         return Q(numerator, norm_squared)
 
     coefficients = {
-        mask: (Q(2), Q(-1), Q(2, 3), Q(-1, 3))[mask.bit_count()]
+        mask: (Q(2), Q(-1), Q(2, 3), Q(-1, 3))[
+            bin(mask).count("1")
+        ]
         for mask in range(8)
     }
     h_value = sum(
