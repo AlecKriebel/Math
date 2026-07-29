@@ -1803,6 +1803,52 @@ All timestamps use America/Los_Angeles.
   Dependency-free exact checker:
   `verification/verify_n3_orthogonal_triple_three_quarter_sharpness.py`.
 
+## 2026-07-29 06:55 PDT — Pair-sector rank-one SOS and shifted Gram frontier
+
+- For every rank-one qutrit three-copy operator
+  \(C=|x\rangle\langle y|\), the sharp theorem
+  \[
+  \|\Pi_2C\|_2^2\le\frac49\|C\|_2^2
+  \]
+  follows from the exact local-swap sum of squares
+  \[
+  4\|C\|_2^2-9\|\Pi_2C\|_2^2
+  =
+  \sum_{i<j}\langle(I-F_i)(I-F_j)\rangle
+  +\langle\prod_i(I-F_i)\rangle.
+  \]
+  The constant is attained by product dyads.
+- If \(C_r=|x_r\rangle\langle y_r|\) are the two matched singular
+  dyads and
+  \(G_{rs}=\langle C_r,\Pi_2C_s\rangle\), then unrestricted
+  rank-two pair-sector positivity is exactly
+  \(G\preceq(2/3)I_2\).
+- The rank-one theorem gives
+  \(G_{11},G_{22}\le4/9\).  The only remaining condition is therefore
+  the shifted determinant
+  \[
+  (2/3-G_{11})(2/3-G_{22})\ge|G_{12}|^2.
+  \]
+- Partial transpose makes the missing exterior geometry explicit:
+  \[
+  \left(\frac23I-\Pi_2\right)^\Gamma
+  =\frac29I+\frac49\Pi_{q=2}^-+\frac{20}{9}\Pi_{q=3}^-.
+  \]
+  Orthogonality of both singular frames kills the identity term in
+  the off-diagonal entry.  The remaining lemma is a crossed
+  Cauchy inequality coupling the exactly-two and exactly-three local
+  exterior sectors of the same two decomposable planes.
+- The constant is sharp.  For
+  \(C_r=E_{01}\otimes E_{01}\otimes P_r\), \(r=0,1\),
+  \[
+  G=\frac13\begin{pmatrix}1&1\\1&1\end{pmatrix},
+  \]
+  so the shifted determinant vanishes.
+- Full derivation:
+  `notes/agent_n3_pair_sector_shifted_gram.md`.
+  Dependency-free exact checker:
+  `verification/verify_n3_pair_sector_shifted_gram.py`.
+
 ## 2026-07-29 06:13 PDT — The full adaptive-frame support hierarchy is insufficient
 
 - The first genuinely three-frame constraint was evaluated exactly.
@@ -1850,3 +1896,72 @@ All timestamps use America/Los_Angeles.
   individual sign observables and relate it to the exterior overlaps.
   No first-moment support function or Gram matrix with free cross
   entries can suffice.
+
+## 2026-07-29 07:05 PDT — Exact three-copy Ky--Fan dual and pair-sector frontier
+
+- Independently derived the unrestricted qutrit three-copy dual with
+  all constants fixed.  Every dual operator has the orthogonal form
+  \[
+  D=cI_{27}+\sum_iA_i^{(i)}+\sum_{i<j}B_{ij}^{(ij)},
+  \]
+  where the \(A_i\) are traceless and the \(B_{ij}\) have both
+  one-site traces zero.  Unrestricted rank-two endpoint positivity is
+  exactly equivalent to
+  \[
+  s_1(D)^2+s_2(D)^2
+  \leq
+  24|c|^2+12\sum_i\|A_i\|_2^2
+  2\sum_{i<j}\|B_{ij}\|_2^2.
+  \]
+- Isolated the first sharp subproblem:
+  \[
+  s_1\!\left(\sum_{i<j}B_{ij}^{(ij)}\right)^2+
+  s_2\!\left(\sum_{i<j}B_{ij}^{(ij)}\right)^2
+  \leq2\sum_{i<j}\|B_{ij}\|_2^2.
+  \]
+  It is exactly equivalent, without relaxation, to
+  \[
+  \|\Pi_2C\|_2^2\leq\frac23\|C\|_2^2
+  \qquad(\operatorname{rank}C\leq2),
+  \]
+  where \(\Pi_2\) is the sector with exactly two traceless local
+  factors.  Both constants are attained by explicit rank-two matrices.
+- The witness \(W=(2/3)I-\Pi_2\) has the exact positive partial
+  transpose
+  \[
+  W^\Gamma=\frac29I+\frac49E_2+\frac{20}{9}E_3.
+  \]
+  Hence an alleged violation has only one possible negative direction:
+  the crossed decomposable bivector arising from the two common
+  singular planes.
+- The same operator has the reciprocal two-atom decomposition
+  \[
+  W^\Gamma=\frac29\left[
+  p({\mathsf S}+t_+{\mathsf A})^{\otimes3}
+  +q({\mathsf S}+t_-{\mathsf A})^{\otimes3}\right],
+  \]
+  with \(t_\pm=2\pm\sqrt3\), \(t_+t_-=1\),
+  \(p=(\sqrt3-1)/(2\sqrt3)\), and
+  \(q=(\sqrt3+1)/(2\sqrt3)\).  The reciprocal pairing is exact, but
+  its two summands are not separately two-block-positive.
+- Eliminating the left singular plane gives one intrinsic code
+  inequality.  If \(V:\mathbb C^2\to(\mathbb C^3)^{\otimes3}\) is an
+  isometry,
+  \(R=|\boldsymbol V\rangle\langle\boldsymbol V|\), and
+  \({\cal R}_i(X)=I_i\otimes\operatorname{Tr}_iX-X/3\), the pair theorem
+  is equivalent to
+  \[
+  \sum_{i<j}{\cal R}_i{\cal R}_j(R)\preceq2I.
+  \]
+  This retains the common rank-one Stinespring origin and is strictly
+  smaller than the original two-plane optimization.
+- Two natural shortcuts are now excluded.  A termwise determinant
+  bound over Hodge Kraus operators fails by a factor two on the exact
+  equality code, and the stronger one-singular-value dual bound fails
+  for the exact diagonal choice
+  \(B_{ij}=(|0\rangle\langle0|-I/3)^{\otimes2}\).  The desired
+  top-two singular-value sum remains valid on that example.
+- Exact derivation:
+  `notes/agent_n3_dual_kyfan_pair_sector.md`.
+  Dependency-free checker:
+  `verification/verify_n3_dual_kyfan_pair_sector.py`.
