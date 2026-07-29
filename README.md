@@ -22,6 +22,24 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Tensor-local constraints in the exceptional unitary Hecke Yang--Baxter
+class** gives a definitive exact frontier for the remaining dimension-spectrum
+problem after the four-dimensional construction.  Every exceptional solution
+is automatically standard and faithfully represents the Jones--Wenzl trace
+quotient, while the complete simple-multiplicity, central-rank, Markov-weight,
+and branching arithmetic of that quotient permits every even local dimension.
+The note proves that exceptional reflections of operator-Schmidt rank at most
+three exist exactly when \(4\mid d\), and gives a new unrestricted rank-four
+obstruction: in dimensions \(d\equiv2\pmod4\), both intrinsic joint-sandwich
+maps must be singular.  It further proves that any hypothetical
+six-dimensional solution is nonrestrictable, has scalar intersection of its
+left and right leg commutants, and lies outside the primitive-Weyl
+Bell-diagonal and four-product Clifford-frame mechanisms.  The complete
+dimension spectrum remains open.
+See the
+[paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/)
+and [version 1.0.0 reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-constraints-v1.0.0).
+
 **Permutation-blind Bell scores and obstructions to maximal global
 randomness** proves a positive-factor theorem for a broad first-harmonic
 polar-linear design class. Under explicit weighted-cycle hypotheses, every

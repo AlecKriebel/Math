@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exact structural constraints on the unresolved exceptional unitary Hecke Yang–Baxter dimension spectrum, including automatic standardness, the complete low-Schmidt spectrum, and a tensor-local dimension-six frontier.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Tensor-local constraints in the exceptional unitary Hecke Yang–Baxter class">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-29">
+  <meta name="citation_version" content="1.0.0">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Tensor-local constraints in the exceptional unitary Hecke Yang–Baxter class">
+  <meta property="og:description" content="Abstract Hecke arithmetic permits every even dimension, but any d=6 witness must be high-Schmidt-rank, nonrestrictable, and outside broad standard mechanisms.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/">
+  <title>Tensor-local constraints in the exceptional Hecke Yang–Baxter class · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css?v=20260729-2">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Tensor-local constraints in the exceptional unitary Hecke Yang–Baxter class",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "contributor": {"@type": "SoftwareApplication", "name": "OpenAI ChatGPT"},
+    "datePublished": "2026-07-29",
+    "dateModified": "2026-07-29",
+    "url": "https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/",
+    "isBasedOn": [
+      "https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/",
+      "https://arxiv.org/abs/2603.20158",
+      "https://doi.org/10.1093/imrn/rnr269"
+    ],
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/paper.pdf",
+      "encodingFormat": "application/pdf"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#results">Results</a>
+        <a href="#rank-four">Rank four</a>
+        <a href="#dimension-six">Dimension six</a>
+        <a href="#verification">Verification</a>
+        <a href="#scope">Scope</a>
+        <a href="https://github.com/AlecKriebel/Math/tree/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum">Source</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Mathematical physics · Yang–Baxter equation · Structural frontier · Not peer reviewed</p>
+      <h1>Tensor-local constraints in the exceptional unitary Hecke Yang–Baxter class</h1>
+      <p class="byline">Alec Kriebel</p>
+      <p class="release">Version 1.0.0 · published <time datetime="2026-07-29">29 July 2026</time></p>
+      <p class="release"><a href="https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-constraints-v1.0.0">Versioned GitHub release</a><br>
+      Artifact commit: <a href="https://github.com/AlecKriebel/Math/commit/7e869406d3e02fc28cf426977bba6affcc70914a"><code class="release-hash">7e869406d3e02fc28cf426977bba6affcc70914a</code></a><br>
+      Committed <time datetime="2026-07-29T07:19:56-07:00">29 July 2026, 07:19 PDT</time><br>
+      Release published <time datetime="2026-07-29T07:20:42-07:00">29 July 2026, 07:20 PDT</time><br>
+      PDF SHA-256: <code class="release-hash">4c339b1cd174097c6e32cdd08d36b75235bcee5251f4d6db4105327dbd04a890</code></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>The complete dimension spectrum remains open.</h2>
+        <p>This is an unrefereed, AI-assisted structural paper. It proves exact restrictions on any missing solution but neither constructs a \(d=6\) matrix nor proves that \(4\mid d\) is necessary in general. Ten exact verification programs pass; code and model review are not specialist peer review.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-constraints-v1.0.0">Version 1.0.0 release</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/manuscript/main.tex">TeX manuscript</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/manuscript/THEOREM_DEPENDENCIES.md">Theorem dependencies</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/manuscript/VERIFIER_MANIFEST.md">Verifier manifest</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/verifiers/run_frontier_paper_verifiers.py">Exact suite</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/results/frontier_paper_verifier_suite_exact.txt">Passing transcript</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/manuscript/SUPPLEMENT.md">Supplement</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/PRIORITY_AUDIT.md">Priority audit</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/exceptional-ybe-constraints-v1.0.0/exceptional_ybe_spectrum/reviews/manuscript_final_hostile_audit.md">Hostile audit</a>
+      <a class="button secondary" href="../exceptional-ybe-d4/">First \(d=4\) paper</a>
+      <a class="button secondary" href="https://arxiv.org/abs/2603.20158">Classification preprint</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">The known four-dimensional witness proves existence whenever \(4\mid d\), while \(d=6,10,14,\ldots\) remain open. This paper shows that every exceptional matrix is automatically standard and faithfully represents the \(\eta=1/2\) Jones–Wenzl trace quotient. Surprisingly, the complete simple-multiplicity, central-rank, Markov-weight, and branching arithmetic permits every even \(d\); a missing parity obstruction must use strict repeated-\(P\) tensor locality. Low operator-Schmidt rank, square restrictions, leg commutants, primitive Weyl symmetry, and four-product Clifford frames are then classified or sharply constrained.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Complete low-rank spectrum</strong><span>\(\operatorname{OSR}(H)\le3\) exists exactly when \(4\mid d\)</span></div>
+          <div class="fact"><strong>Rank-four frontier</strong><span>Every \(d\equiv2\pmod4\) candidate has two intrinsic sandwich degeneracies</span></div>
+          <div class="fact"><strong>Exact suite</strong><span>10 deterministic verifiers, no numerical searches</span></div>
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>1. Automatic structure and the abstract limitation</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> Let \(P\) be the \((-1)\)-spectral projection of any matrix in the exceptional class \([e^{i\pi/3},1/2,d]\). Then
+          \[
+            \operatorname{Tr}_1P=\operatorname{Tr}_2P=\frac d2 I_d.
+          \]
+          The tensor-power representation has the \(\eta=1/2\) Markov trace and is faithful after passage to \(H_n(3,6)\). If \(S_{\lambda,n}\) is a simple quotient module, its tensor-space multiplicity is
+          \[
+            m_{\lambda,n}=D_\lambda\left(\frac d2\right)^n,
+            \qquad D_\lambda\in\{1,2,3\}.
+          \]</p>
+        </div>
+        <p>These formulas include every simple multiplicity, central-idempotent rank, Markov weight, and represented branching recurrence. They are integral for every even \(d\), including \(d=6\). Exact abstract \(d=6\) modules reproduce the relevant low-strand spectra and traces, but they do not realize \(P_{12}=P\otimes I_6\) and \(P_{23}=I_6\otimes P\) from one common two-site projection.</p>
+        <p>This is a limitation theorem: ordinary Hecke-tower arithmetic alone cannot prove four-divisibility. Any successful obstruction must see the spatial overlap of repeated copies of the same local matrix.</p>
+      </section>
+
+      <section id="low-rank">
+        <h2>2. The complete low-Schmidt spectrum</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> An exceptional reflection \(H=I-2P\) with operator-Schmidt rank at most three exists in local dimension \(d\) if and only if
+          \[
+            4\mid d.
+          \]</p>
+        </div>
+        <p>The proof uses the published rank-two and rank-three controlled-unitary classification theorems, but it does not treat arbitrary four-local equivalence as a Yang–Baxter symmetry. One valid same-site conjugacy produces a twisted controlled form. Hermiticity makes its support graph undirected: an odd component gives a true rank-one leg projection, while an all-bipartite support would make the cubic equate a unitary with one third of a unitary. A separate two-projection calculation then forces \(4\mid d\).</p>
+        <p>The published \(d=4\) reflection has rank three, and identity stabilization preserves that rank. For the unitary Hecke matrix itself,
+        \[
+          \operatorname{OSR}(R)=\operatorname{OSR}(H)+1,
+        \]
+        because automatic standardness makes both Schmidt supports of \(H\) traceless.</p>
+      </section>
+
+      <section id="rank-four">
+        <h2>3. The unrestricted rank-four reduction</h2>
+        <p>Let \(\mathcal A,\mathcal B\subset M_d\) be the intrinsic four-dimensional Schmidt supports of a rank-four exceptional reflection. Projecting an outer coefficient of the full cubic relation modulo \(\mathbb CI+\mathcal A\), and symmetrically modulo \(\mathbb CI+\mathcal B\), gives two all-input sandwich identities.</p>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> If either intrinsic joint-sandwich map
+          \[
+            \mathfrak S_{\mathcal B\mid\mathbb CI+\mathcal A}
+            \quad\text{or}\quad
+            \mathfrak S_{\mathcal A\mid\mathbb CI+\mathcal B}
+          \]
+          is injective, then \(4\mid d\). Consequently every rank-four candidate with \(d\equiv2\pmod4\) has nonzero Hermitian traceless coefficient-matrix annihilators on both legs.</p>
+        </div>
+        <p>Injectivity would close one five-dimensional operator system under multiplication. The only possible finite-dimensional \(C^*\)-algebra types are \(\mathbb C^5\) and \(M_2(\mathbb C)\oplus\mathbb C\); either supplies a rank-one leg-commutant projection and hence four-divisibility.</p>
+        <p>The theorem is unrestricted by Pauli, Clifford, symmetry, sparsity, or controlled-leg assumptions. Its limitation is equally important: simultaneous noninjectivity has not been contradicted. That branch is the surviving rank-four frontier.</p>
+      </section>
+
+      <section id="dimension-six">
+        <h2>4. The exact dimension-six frontier</h2>
+        <div class="theorem-block">
+          <p><strong>Corollary.</strong> Every hypothetical \(d=6\) exceptional solution satisfies all of the following:</p>
+          <ul>
+            <li>\(\operatorname{OSR}(H)\ge4\), equivalently \(\operatorname{OSR}(R)\ge5\);</li>
+            <li>it is nonrestrictable and has no two-dimensional square-invariant local subspace;</li>
+            <li>\(\mathcal C_L(P)\cap\mathcal C_R(P)=\mathbb CI_6\);</li>
+            <li>it is not diagonal in a primitive generalized Bell basis;</li>
+            <li>it is not a four-product Clifford-frame reflection with pairwise-anticommuting product terms;</li>
+            <li>if \(\operatorname{OSR}(H)=4\), both joint-sandwich maps are singular.</li>
+          </ul>
+        </div>
+        <p>The intersection statement does not prove either individual leg commutant scalar. Nonrestrictability does not exclude a four-dimensional one-sided square-invariant subspace; it says that the complementary two-dimensional square must then leak. The paper prints these distinctions because both stronger readings would be false inferences from the current arguments.</p>
+      </section>
+
+      <section id="spectrum">
+        <h2>5. Current dimension table</h2>
+        <div class="fact-grid">
+          <div class="fact"><strong>Odd \(d\)</strong><span>Impossible because \(d^2/2\) is not an integer</span></div>
+          <div class="fact"><strong>\(d=2\)</strong><span>Empty by the prior dimension-two exclusion</span></div>
+          <div class="fact"><strong>\(d=4m\)</strong><span>Nonempty by the exact \(d=4\) witness and identity stabilization</span></div>
+          <div class="fact"><strong>\(d=4m+2\), \(m\ge1\)</strong><span>Open; \(d=6\) is the first surviving case</span></div>
+        </div>
+        <p>The governing open problem is unchanged:
+        \[
+          \left[e^{i\pi/3},\frac12,d\right]\ne\varnothing
+          \quad\stackrel{?}{\Longleftrightarrow}\quad 4\mid d.
+        \]
+        An exact \(d=6\) witness would expose a new construction mechanism; a universal parity invariant would complete the remaining classification family.</p>
+      </section>
+
+      <section id="verification">
+        <h2>6. Exact verification and reproducibility</h2>
+        <p>The main proofs are human-readable. Ten deterministic exact programs independently replay the finite identities and calibrations supporting the paper:</p>
+        <ul class="certificate-list">
+          <li>all simple Hecke multiplicities and their branching arithmetic;</li>
+          <li>the canonical two-projection blocks and invariant-leg divisibility;</li>
+          <li>the low-Schmidt twisted-control coefficient identities;</li>
+          <li>finite calibrations of the unrestricted rank-four quotient and sandwich identities;</li>
+          <li>the four-strand square-restriction polynomials;</li>
+          <li>the dimension-six common-leg intersection calculation;</li>
+          <li>primitive-Weyl Bell arithmetic and a fixed-basis exact exhaustion;</li>
+          <li>the four-product Clifford graph parity calculation.</li>
+        </ul>
+        <h3>One-command central replay</h3>
+        <pre><code>cd exceptional_ybe_spectrum
+/Users/alec/Documents/Math/.venv/bin/python \
+  verifiers/run_frontier_paper_verifiers.py</code></pre>
+        <p>The release transcript ends <code>SUITE PASS: 10 of 10 programs passed</code>. The runner excludes random and numerical searches. The theorem-dependency map states which conclusions are human proofs, which depend on external theorems, and which finite steps have executable certificates.</p>
+      </section>
+
+      <section id="scope">
+        <h2>7. Priority, scope, and the stopped search</h2>
+        <p>A final bounded attack treated unrestricted operator-Schmidt rank four, the most general one-sided \(4+2\) extension with a fixed \(d=4\) square, and tensor-local parity candidates. It produced the joint-sandwich theorem but neither a universal parity invariant nor a \(d=6\) witness. The predetermined stop rules were then applied, ending further open-ended ansatz searches.</p>
+        <p>Targeted literature searches covered unitary Hecke tensor-space representations, controlled unitaries, generalized Yang–Baxter operators, quaternionic and Clifford realizations, Ocneanu cell systems, and Yang–Baxter endomorphisms. No prior statement of the central theorem package was located. The paper therefore uses “apparently new” pending specialist review and makes no claim of absolute priority.</p>
+        <p>The supplement records exact named construction exclusions and exact countermodels showing why several tempting invariants are insufficient. Numerical failures are kept separate and are not presented as nonexistence evidence.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance disclosure</h2>
+        <p>OpenAI language models were used extensively to propose proof routes, derive and check symbolic identities, write and review code, search literature, draft prose, and conduct adversarial audits. Alec Kriebel directed the program and is the named human author. Central results were rewritten as human-readable proofs and finite algebra was replayed by exact programs. No model residual, confidence score, or unsupported model assertion is treated as mathematical evidence. Independent specialist review has not been obtained.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, “Tensor-local constraints in the exceptional unitary Hecke Yang–Baxter class,” version 1.0.0, 29 July 2026. <a href="https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-constraints-v1.0.0">Versioned release</a> · <a href="https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/">Project page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">The TeX source, theorem dependency graph, exact verifier suite, retained transcript, supplementary catalogue, priority audit, hostile review, provenance logs, and release hashes are public in the repository.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>

@@ -1001,3 +1001,20 @@
   overlap, broken equations, or illegible references were found.
 - Added the release README, manifest, notes, dependency file, exact hashes,
   and final hostile-audit report. No external communication occurred.
+
+## 2026-07-29 07:28 PDT — Version 1.0.0 released and public page prepared
+
+- Committed the immutable paper artifact as
+  `7e869406d3e02fc28cf426977bba6affcc70914a`, created the annotated tag
+  `exceptional-ybe-constraints-v1.0.0`, and published the GitHub release with
+  the PDF, exact source archive, and checksum manifest.
+- Confirmed that the release PDF digest is
+  `4c339b1cd174097c6e32cdd08d36b75235bcee5251f4d6db4105327dbd04a890`
+  and that every entry in `SHA256SUMS` validates from the project directory.
+- Prepared a dedicated GitHub Pages paper page, embedded the byte-identical
+  PDF, added the paper to the research index and sitemap, and linked only to
+  immutable source-tag artifacts for reproducibility.
+- Checked the paper page in desktop and mobile renderings. Corrected the only
+  layout defect found, horizontal overflow from the exact replay command on a
+  narrow viewport; the final page has no mobile-width overflow or browser
+  console warnings. No external communication occurred.
