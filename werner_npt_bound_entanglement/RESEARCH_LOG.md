@@ -4562,3 +4562,40 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_q2_small_qubit_counterfamily.md` and
   `verification/verify_n3_q2_small_qubit_counterfamily.py`.
+
+## 2026-07-29 16:28 PDT — All coherent Hodge leakages can vanish
+
+- Strengthened the known full-support zero of the triple-Hodge vector.
+  For
+  \[
+  u_0=(|000\rangle+|111\rangle+|222\rangle)/\sqrt3,\qquad
+  u_1=(|012\rangle+|120\rangle+|201\rangle)/\sqrt3,
+  \]
+  the code projection has all three one-site marginals \(2I_3/3\),
+  but every local-transpose parity component of every logical matrix
+  reduces the code plane:
+  \[
+  (I-P_U)\Pi_R(UMU^\dagger)U=0
+  \quad(R\subseteq[3],\ M\in M_2).
+  \]
+  Thus coherent one-, two-, and three-skew Hodge plane leakages all
+  vanish simultaneously on a genuine full-support plane.
+- The parity pieces themselves are nonzero.  Exact normal--normal
+  masses include \(1/4,5/36,1/8,1/9,5/72\), so the failure is caused
+  by coherent cancellation into the normal block rather than absence
+  of exterior mass.
+- Retaining individual Fierz labels repairs nonvanishing exactly.
+  For either the full symmetric or full skew transpose-parity basis,
+  \[
+  \sum_T[(I-P_U)T\overline U]^\dagger
+         [(I-P_U)T\overline U]=\frac{25}{2}I_2.
+  \]
+- Derived the exact critical Fierz colligation.  Its core
+  reverse-Cauchy data are positive-weighted label correlations, while
+  the right mixed and normal blocks retain the physical parity twist.
+  Hence the remaining determinant-critical bridge is a signed
+  fourth-moment inequality for two linked tight frames; collapsing
+  labels to the eight parity sums is rigorously insufficient.
+- Exact note and checker:
+  `notes/agent_n3_coherent_hodge_leakage_obstruction.md` and
+  `verification/verify_n3_coherent_hodge_leakage_obstruction.py`.
