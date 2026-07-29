@@ -610,7 +610,7 @@ For the exceptional matrix,
 \left|\tau(R)\right|^2=\frac14.
 \tag{43}
 \]
-Conti--Lechner Proposition 7.8 proves that ergodicity forces
+Conti--Lechner Proposition 7.12 proves that ergodicity forces
 \[
 \|\phi_R(R)\|_2^2=\frac1{d^2}.
 \tag{44}
@@ -665,7 +665,7 @@ E_n(\mathcal N^{\lambda_R})
 \tag{50}
 \]
 then martingale convergence would make the von Neumann fixed algebra the
-weak closure of its algebraic fixed points.  Proposition 7.4 of
+weak closure of its algebraic fixed points.  Proposition 7.10 of
 Conti--Lechner would then imply
 \[
 \mathcal C_L=\mathbb C I
@@ -685,7 +685,7 @@ Conti--Lechner prove (50) for their special \(R_4\) example from an
 additional product-Pauli form; they do not claim it for arbitrary
 R-matrices.
 
-Accordingly, neither finite depth nor Proposition 7.4 presently upgrades
+Accordingly, neither finite depth nor Proposition 7.10 presently upgrades
 the nonalgebraic fixed point guaranteed by (46) to a finite-level
 projection.  Establishing (50), or a weaker exceptional-specific
 replacement, is a precise remaining route rather than an available
@@ -793,5 +793,5 @@ The retained output is
 R. Conti and G. Lechner,
 [Yang--Baxter endomorphisms](https://arxiv.org/abs/1909.04127),
 especially the distinction following Theorem 7.5 between one-site fixed
-points and von Neumann ergodicity, Proposition 7.8 on
+points and von Neumann ergodicity, Proposition 7.12 on
 \(\|\phi_R(R)\|_2^2\), and the index bounds in Section 6.

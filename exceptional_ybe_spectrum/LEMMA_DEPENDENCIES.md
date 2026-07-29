@@ -38,6 +38,25 @@ simple-block multiplicities, or Bratteli inclusion recurrences.  It must
 arise from strict tensor locality/coherence, or else a \(d\equiv2\pmod4\)
 construction exists.
 
+One complete finite-symmetry constructor branch is now closed:
+
+```text
+diagonal S4 action on V2 tensor V3 tensor V2
+        |
+        +--> commutant M2 + M2
+        +--> central balanced choices [previously empty]
+        +--> all noncentral balanced choices = S2 x S2
+                       |
+                       +--> 20 sparse cubic coordinates
+                       +--> seven exact branch relations
+                       +--> three killer coordinates
+                                      |
+                                      +--> no real solution
+```
+
+This exhausts that exact heterogeneous symmetry class but does not force
+an arbitrary \(d=6\) solution to be \(S_4\)-equivariant.
+
 The first genuinely local divisibility chain is:
 
 ```text
@@ -400,3 +419,134 @@ An exact \(d=6\) two-site model has \(\delta=1/2\) while preserving all
 two-site data and the full \(d=4\) restricted solution.  Hence the only
 remaining route to \(\delta=0\) is a genuinely mixed-sector consequence of
 the ambient three-site cubic.
+
+The first full-cubic color compression now has a sharp stopping point:
+
+```text
+genuine one-sided W tensor W restriction
+        |
+        +--> WWU and UWW boundary compressions of the cubic
+        |       |
+        |       +--> exact norms r^2 u / 4
+        |       +--> weighted leakage L* A_perp L
+        |               |
+        |               +--> does not determine L*L or delta
+        |
+        +--> abstract balanced H3 model with all eight color sectors
+                |
+                +--> exact tensor-sector dimensions and scalar traces
+                +--> spectator-color and WW-pair commutators vanish
+                +--> complementary UU-pair leakage remains 16/9
+                        |
+                        +--> full matrix-algebra spectator locality absent
+```
+
+Therefore an implication \(\delta=0\), if true, must use the common
+two-site factorization
+\[
+P_{12}=P\otimes I_d,\qquad P_{23}=I_d\otimes P
+\]
+beyond its restriction to the commutative color algebra.  The abstract
+model is not a Yang--Baxter witness and does not disprove the genuine-local
+implication.
+
+The balanced standard quantum-supergroup candidate is also closed:
+
+```text
+standard Manin GL(s|s) Hecke symmetry, q=t^2
+        |
+        +--> ordinary braid relation and roots {q,-1}
+        +--> multiplicities d^2/2 and d^2/2
+        |
+        +--> suppose T is unitary for G tensor G
+                |
+                +--> even |ii> and odd |aa> have different eigenvalues
+                |       |
+                |       +--> G_ia^2=0, so even and odd spaces are G-orthogonal
+                |
+                +--> mixed q-vector t|ia>+|ai>
+                +--> mixed -1-vector |ia>-t|ai>
+                        |
+                        +--> inner product = (conj(t)-t)G_ii G_aa != 0
+                                |
+                                +--> contradiction
+```
+
+This obstruction is uniform in \(s>0\), but it excludes only the standard
+one-parameter super-Hecke family and its local conjugates.  It is not an
+obstruction to arbitrary exceptional matrices or to unaudited
+multiparameter twists.
+
+The obvious positive-metric replacement also fails exactly:
+
+```text
+balanced GL(3|3) Manin (-1)-eigenspace
+        |
+        +--> orthogonal rank-18 projection P_orth
+                |
+                +--> H_orth = I - 2P_orth is Hermitian, H_orth^2 = I
+                        |
+                        +--> cubic residual squared norm = 140/3
+                        +--> each marginal deviation squared norm = 6
+                                |
+                                +--> not an exceptional solution
+```
+
+Nearby unrestricted Grassmann searches return numerically to this point,
+but that optimizer behavior supplies no nonexistence theorem.
+
+The binary-tetrahedral heterogeneous branch has a complete finite
+reduction:
+
+```text
+diagonal 2T invariance on A tensor B tensor A
+        |
+        +--> exact module decomposition 1+1'+1''+3+3+3
+                |
+                +--> balanced signatures only (3,1) and complement (0,2)
+                        |
+                        +--> K -> -K reduces all cases to CP^2
+                                |
+                                +--> F[2,2]=F[5,5]=0
+                                |       |
+                                |       +--> a^2=1/3 and Re(conj(z1)z2)=0
+                                |
+                                +--> |F[57,20]|^2=16/729
+                                        |
+                                        +--> contradiction
+```
+
+Thus this full symmetry branch supplies no \(d=6\) witness. The dependency
+chain uses diagonal \(2T\)-equivariance essentially and cannot be promoted
+to an unrestricted obstruction.
+
+The finite-image fixed-point route separates as follows:
+
+```text
+exceptional R
+        |
+        +--> factors through H_n(3,6)
+        |       |
+        |       +--> Rowell: every fixed-strand braid image is finite
+        |
+        +--> normalized partial trace = (q-1)I/2
+                |
+                +--> Conti--Lechner: nonergodic for d>2
+                        |
+                        +-X finite image + this trace alone do not force
+                            an algebraic fixed point or leg commutant
+```
+
+The exact countermodel
+\[
+(q-1)(I_m\boxplus I_m)
+\]
+has every property below the crossed arrow but scalar leg commutants.  It
+has an opposite eigenvalue pair.  Therefore the only surviving version of
+this route must use the exceptional no-opposite-spectrum consequence
+\[
+\varphi(\mathcal L_R)'\cap\mathcal L_R=\mathbb C
+\]
+to control the different, vertical algebra
+\(\mathcal L_R'\cap\mathcal N\). No such horizontal-to-vertical theorem is
+currently available.

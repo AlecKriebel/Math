@@ -1,0 +1,61 @@
+S4-EQUIVARIANT HETEROGENEOUS d=6 EXACT NO-GO
+================================================
+
+Status: PROVED
+Completed UTC: 2026-07-29T10:15:13Z
+Parent checkpoint at start: eac05ca051b0f990cc3500c0f0f265f8baf1b79f
+
+Scope
+-----
+The noncentral rank-(1,1) multiplicity branch of Hermitian,
+trace-zero, S4-equivariant involutions on
+
+    V_2 tensor V_3 tensor V_2
+
+for the heterogeneous (2,3,2) shifted cubic relation.  Together with
+the pre-existing exact rejection of the two central choices, this
+excludes the complete S4-equivariant rank-six branch.  It does not
+exclude arbitrary d=6 solutions.
+
+Command
+-------
+/Users/alec/Documents/Math/.venv/bin/python -u \
+  verifiers/verify_s4_equivariant_noncentral_no_go.py
+
+Exact verifier output
+---------------------
+Exact S4 multiplicity Pauli triples: verified.
+Selected cubic coordinates: 20 sparse + 3 branch killers.
+Seven branch consequences: exact Groebner reductions to zero.
+Full selected-coordinate ideal with sphere constraints: <1>.
+Human branch replay: A, B, and both C circles excluded exactly.
+Noncentral S4-equivariant rank-six branch: EMPTY.
+All assertions passed (rational/Gaussian-integer arithmetic).
+
+Environment
+-----------
+Platform: macOS-26.5.2-arm64-arm-64bit
+Python: 3.9.6 (Clang 21.0.0)
+NumPy: 2.0.2
+SymPy: 1.14.0
+
+SHA-256
+-------
+ad2fadf138809a126459cf64ec160f8785df5338c6eb46504b31f2d66436954e
+  verifiers/verify_s4_equivariant_noncentral_no_go.py
+ab0bb3b00c4e30b8c4c69a8edfd2e1aa7223863e3b6394482923215780db6bae
+  scripts/derive_s4_equivariant_certificate.py
+5f1a59ff04bbf09d9103c70e69c382c913f33b5111353bbaf45779bb7ebee71c
+  scripts/derive_s4_equivariant_objective.py
+4815b6379c650cdbaa79750c01ea1d03d5472062bc654c330d9394a97c1b9d1c
+  notes/s4_equivariant_exact_no_go.md
+
+Interpretation
+--------------
+Character decomposition gives 2 V_3 plus 2 V_3', so the noncentral
+rank-six branch is exactly S^2 times S^2.  An exact rational
+metric-Hermitian Pauli basis parameterizes it by real unit vectors
+(x,y,z) and (u,v,w).  Twenty sparse residual coordinates imply seven
+branch relations.  Three further coordinates reject every resulting
+real branch.  Independently, the 23 selected coordinates and the two
+sphere constraints generate the unit ideal over Q.

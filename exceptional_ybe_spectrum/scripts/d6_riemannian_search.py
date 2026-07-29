@@ -74,6 +74,45 @@ def random_unitary_involution(
     n = d * d
     h = np.zeros((n, n), dtype=np.complex128)
 
+    if initial == "manin_orthogonalized":
+        if d != 6 or field != "complex" or np.unique(labels).size != 1:
+            raise ValueError(
+                "manin_orthogonalized requires d=6, complex field, "
+                "and symmetry none"
+            )
+        # Orthogonally project onto the (-1)-eigenspace of the standard
+        # balanced GL(3|3) Manin Hecke operator at t=exp(i*pi/6).
+        # The algebraic Manin operator itself is nonnormal. Its (-1)
+        # eigenvectors nevertheless have disjoint supports:
+        # odd diagonals |aa>, and |ij>-t|ji> for every i<j.
+        t = np.exp(1j * np.pi / 6.0)
+        minus_vectors: list[np.ndarray] = []
+        for odd in range(3, 6):
+            vector = np.zeros(n, dtype=np.complex128)
+            vector[odd * d + odd] = 1.0
+            minus_vectors.append(vector)
+        for first in range(d):
+            for second in range(first + 1, d):
+                vector = np.zeros(n, dtype=np.complex128)
+                vector[first * d + second] = 1.0 / np.sqrt(2.0)
+                vector[second * d + first] = -t / np.sqrt(2.0)
+                minus_vectors.append(vector)
+        frame = np.column_stack(minus_vectors)
+        if frame.shape != (36, 18):
+            raise AssertionError(f"unexpected Manin frame {frame.shape}")
+        if np.linalg.norm(frame.conj().T @ frame - np.eye(18)) > 1e-12:
+            raise AssertionError("Manin (-1)-frame is not orthonormal")
+        projector = frame @ frame.conj().T
+        h = np.eye(n, dtype=np.complex128) - 2.0 * projector
+
+        # A small, fully recorded seed-dependent Grassmann perturbation
+        # avoids drawing a conclusion from one symmetry-stationary start.
+        skew_seed = rng.normal(size=(n, n)) + 1j * rng.normal(size=(n, n))
+        skew_seed = skew_seed - skew_seed.conj().T
+        skew_seed *= 0.05 / np.linalg.norm(skew_seed)
+        perturbation = expm(skew_seed)
+        return perturbation @ h @ perturbation.conj().T
+
     for label in np.unique(labels):
         indices = np.flatnonzero(labels == label)
         size = len(indices)
@@ -483,7 +522,11 @@ def parser() -> argparse.ArgumentParser:
         ),
         default="none",
     )
-    p.add_argument("--initial", choices=("random", "h4_block"), default="random")
+    p.add_argument(
+        "--initial",
+        choices=("random", "h4_block", "manin_orthogonalized"),
+        default="random",
+    )
     p.add_argument("--max-iterations", type=int, default=2000)
     p.add_argument("--progress-every", type=int, default=100)
     p.add_argument("--initial-step", type=float, default=0.02)

@@ -62,12 +62,23 @@
   controlled-leg divisibility theorem.
 - Conti--Lechner identify the one-site algebraic fixed points with a leg
   commutant, but distinguish this sharply from von Neumann ergodicity.
-  Their Proposition 7.8 gives the necessary ergodicity condition
+  Their Proposition 7.12 gives the necessary ergodicity condition
   \(\|\phi_R(R)\|_2^2=1/d^2\). Automatic standardness gives \(1/4\) in the
   exceptional class, so every \(d>2\) exceptional solution is nonergodic.
-  Their box-sum examples show that nonergodicity can coexist with no
-  nontrivial algebraic fixed points. Thus it does not by itself supply a
-  leg-commutant projection.
+  Their Propositions 7.10 and 7.12 and box-sum construction yield a sharp
+  countermodel: \((q-1)(I_m\boxplus I_m)\) has the exact same scalar
+  partial trace, finite braid images, scalar leg commutants, no algebraic
+  fixed points, and a nontrivial von Neumann fixed algebra. Thus finite
+  image and nonergodicity do not by themselves supply a leg-commutant
+  projection. The countermodel has an opposite eigenvalue pair, leaving
+  open a theorem that also uses the exceptional horizontal
+  braid-subfactor irreducibility.
+- Rowell, arXiv:1006.4808, proves more than finite dimensionality of the
+  Hecke quotient: his main theorem and quaternionic Lemmas 3.1--3.2 show
+  that the canonical subgroup generated inside \(H_n(3,6)\) is finite for
+  every fixed \(n\). Any exceptional tensor representation therefore has
+  finite finite-strand braid image. The groups grow with \(n\), and this
+  theorem does not make the global von Neumann fixed algebra algebraic.
 - Lechner's tensor-product operation multiplies dimensions and pairwise
   multiplies spectra. The exceptional spectrum has trivial multiplicative
   stabilizer, so this operation preserves the class only for an identity
@@ -95,6 +106,22 @@
   Combining this three-value list with the ambient rank equations gives
   the common-reduction descent theorem in
   `notes/common_reduction_general.md`.
+- Hai, arXiv:math/0502399, equations (1)--(4), treats the standard Manin
+  super family as an ordinary Hecke symmetry, but printed super-Hecke
+  formulas occur in multiple scalar/sign conventions.  The present audit
+  therefore defines the normalized block directly and verifies both
+  \((T+I)(T-qI)=0\) and the ordinary braid equation rather than importing
+  a display by notation alone.
+- Gurevich et al., *KZ equations and Bethe subalgebras in generalized
+  Yangians related to compatible \(R\)-matrices* (2019), §2, display the
+  standard \(GL(1|1)\) Hecke block with roots \(t,-t^{-1}\).  Multiplying
+  by \(t\) gives the \(\{t^2,-1\}\) normalization used here.
+- The balanced standard \(GL(s|s)\) symmetry has the correct equal
+  algebraic multiplicities for every even \(d=2s\), but exact
+  eigenspace-orthogonality rules out every positive tensor-square local
+  metric at \(t^2=e^{i\pi/3}\).  This is an ansatz-level unitarity
+  obstruction, not a classification of multiparameter or twisted
+  super-Hecke symmetries.
 
 ## Open source-audit questions
 
@@ -106,7 +133,9 @@
 - Is the invariant odd-leg-projection divisibility lemma, or an equivalent
   restricted common-sector count, already recorded in subfactor,
   commuting-square, or biunitary-connection language?
-- Does finite depth of the \(H_n(3,6)\) braid subfactor add a hypothesis
-  strong enough to turn Conti--Lechner nonergodicity into an algebraic
-  fixed point? This implication is not in the audited source and must not
-  be assumed.
+- Does the combination of no-opposite-spectrum (hence irreducibility of
+  \(\varphi(\mathcal L_R)\subset\mathcal L_R\)), finite depth, and the
+  special \((3,6)\) finite groups force the vertical fixed algebra
+  \(\mathcal L_R'\cap\mathcal N\) to contain an algebraic fixed point?
+  Finite image plus the exact partial trace alone does not; the stronger
+  implication is not in the audited sources and must not be assumed.

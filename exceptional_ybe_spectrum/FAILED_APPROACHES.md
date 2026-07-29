@@ -168,6 +168,20 @@ branch. The missing datum is the relative position of the two endpoint
 algebras on the middle tensor factor. See
 `notes/leg_commutant_obstruction_audit.md`.
 
+Finite braid image does not close this gap. Rowell does prove that every
+fixed-strand \((3,6)\) image is finite, but the growing sequence of finite
+groups supplies no global finite-group average. More sharply,
+\[
+S_m=(q-1)(I_m\boxplus I_m),\qquad d=2m\ge4,
+\]
+has finite braid images, finite-order generators, the exact exceptional
+scalar normalized partial trace, scalar one-leg commutants, no algebraic
+fixed points, and a nontrivial von Neumann fixed algebra. This exact family
+has an opposite eigenvalue pair, so it closes only the finite-image shortcut:
+an exceptional-specific bridge using no-opposite-spectrum and horizontal
+braid-subfactor irreducibility remains open. See
+`notes/finite_braid_image_fixed_point_audit.md`.
+
 ## Crossed-factor versus equal-color face models
 
 The crossed-factor \(3\times2\) and \(2\times3\) face ansätze are now
@@ -359,3 +373,68 @@ quaternionic parity cannot be assigned to a one-site or
 \(s=d/2\)-dimensional factor without a new compatible frame-selection or
 splitting theorem.  Fixed-level complex quaternion modules already exist
 for odd \(s\), so the ambient frame by itself supplies no divisibility.
+
+## Using the standard balanced \(GL(s|s)\) Manin Hecke symmetry
+
+After multiplication by \(t=e^{i\pi/6}\), the standard super-Hecke
+symmetry has exactly the exceptional roots \(\{q,-1\}\), satisfies the
+ordinary braid equation, and for superdimension \((s|s)\) has equal
+eigenspace dimensions \(2s^2=d^2/2\).  Thus it is a genuine algebraic
+all-even-dimension near miss, including a \(36\times36\) matrix at \(d=6\).
+
+It cannot be made unitary by any local change of basis.  If \(G>0\) were
+a local metric, the even diagonal \(q\)-eigenvectors and odd diagonal
+\((-1)\)-eigenvectors would force \(G_{ia}=0\) across the parity split.
+For a mixed even--odd pair, the two eigenvectors then have inner product
+\[
+(\bar t-t)G_{ii}G_{aa}\ne0,
+\]
+contradicting orthogonality for a unitary operator.  See
+`notes/manin_super_hecke_unitarity_no_go.md`.
+
+This rules out the standard one-parameter family and its local conjugates
+only.  Multiparameter super-Hecke symmetries and nonlocal twists have not
+been classified by this argument.
+
+Orthogonalizing the standard \(GL(3|3)\) \((-1)\)-eigenspace does produce
+a legitimate rank-eighteen projection, but not a Yang--Baxter solution.
+Its exact cubic squared residual is \(140/3\), and each marginal has
+squared scalar deviation \(6\). Sixteen predeclared unrestricted
+Grassmann runs, with and without a marginal penalty, returned to this same
+exact near miss. This identifies a numerical basin but proves neither
+local minimality nor nonexistence.
+
+## Diagonal \(S_4\) symmetry on the heterogeneous \((2,3,2)\) block
+
+The full \(S_4\)-equivariant active space
+\(V_2\otimes V_3\otimes V_2\) has commutant
+\(M_2(\mathbb C)\oplus M_2(\mathbb C)\). The two central balanced
+involutions were already excluded. The remaining branch is exactly
+\(S^2\times S^2\), not a smaller numerical ansatz. An exact rational
+Pauli parametrization, twenty sparse cubic coordinates, seven derived
+branch relations, and three final coordinates exclude every real branch;
+the selected-coordinate ideal is also the unit ideal over \(\mathbb Q\).
+Thus diagonal \(S_4\) symmetry supplies no \(d=6\) witness. This does not
+exclude other finite symmetries or an asymmetric solution. See
+`notes/s4_equivariant_exact_no_go.md`.
+
+## Diagonal binary-tetrahedral symmetry on the heterogeneous \((2,3,2)\) block
+
+For \(A=\mathbb C^2\) the defining binary-tetrahedral representation and
+\(B=\mathbb C^3\) its rotation representation, the complete active module
+decomposes as
+\[
+A\otimes B\otimes A
+\cong1\oplus1'\oplus1''\oplus3^{\oplus3}.
+\]
+Balanced equivariant involutions therefore form, up to complement, exactly
+one \(\mathbb{CP}^2\), rather than merely a selected numerical family.
+This whole branch is empty: two diagonal cubic coordinates force a
+codimension-two real condition, under which a third coordinate has
+\[
+|F_{57,20}|^2=16/729.
+\]
+The 64-seed full-complex search is retained only as provenance; the route
+is closed by the exact three-entry proof. This does not exclude other
+finite symmetries or an asymmetric \(d=6\) solution. See
+`notes/binary_tetrahedral_cp2_no_go.md`.

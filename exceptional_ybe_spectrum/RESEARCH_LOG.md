@@ -426,3 +426,131 @@
   compatible frame-selection or splitting theorem; it is not a
   consequence of the Hecke/Yang--Baxter relations.  This agrees with the
   exact fixed-level split-module models for odd \(s\).
+
+## 2026-07-29 03:06 PDT — Full-cubic color implication sharply limited
+
+- Derived the exact mixed-boundary consequences of the ambient cubic for a
+  one-sided balanced restriction:
+  \[
+  \|e_1e_2f_3P_{23}P_{12}\|_{\rm HS}^2
+  =\|f_1e_2e_3P_{12}P_{23}\|_{\rm HS}^2
+  =r^2u/4.
+  \]
+- Compressed the complete operator identity and located the obstruction:
+  it contains \(L^*P_{12,\perp}L\), whereas complementary invariance needs
+  the unweighted zero-variance statement \(L^*L=0\).
+- Constructed and exactly verified a \(216\)-dimensional abstract balanced
+  \(H_3\) model with the full \(d=6\) multiplicities, an inherited \(d=4\)
+  summand, all eight exact \(4+2\) color-sector ranks, scalar one-color
+  traces, and every color-level locality commutator.
+- Both abstract complementary-pair leakages remain exactly \(16/9\).
+  Hence no trace/SOS proof at the abstract cubic or commutative-color level
+  can force \(\delta=0\).
+- Scope guard: the model is not tensor-local and is not a \(d=6\)
+  Yang--Baxter witness.  The genuine implication remains open and can only
+  use the full spectator matrix algebras/common factorization
+  \(P_{12}=P\otimes I_6,\ P_{23}=I_6\otimes P\).
+
+## 2026-07-29 03:16 PDT — Standard balanced super-Hecke candidate excluded
+
+- Fixed the normalized standard Manin \(GL(r|s)\) formula directly in the
+  \((T+I)(T-qI)=0\) convention, avoiding a sign ambiguity among printed
+  conventions.
+- Proved with ordinary tensor placements that it obeys the braid relation.
+  For \(r=s\), the \(q\)- and \((-1)\)-eigenspaces both have dimension
+  \(d^2/2\), so the family has exactly the tempting algebraic data for all
+  even \(d\).
+- Proved that no positive local metric \(G\) can make it unitary at
+  \(q=e^{i\pi/3}\).  Even/odd diagonal eigenvectors first force the parity
+  spaces to be \(G\)-orthogonal; the mixed eigenvectors then have the
+  unavoidable nonzero overlap
+  \((\bar t-t)G_{ii}G_{aa}\).
+- Independently replayed the \(d=6\) formula over
+  \(\mathbb Q(\sqrt3,i)\): the complete \(216\times216\) ordinary braid
+  residual and \(36\times36\) Hecke residual vanish, both multiplicities
+  are \(18\), and the standard unitarity-defect norm squared is \(45\).
+- This closes only the standard one-parameter quantum-supergroup
+  construction and its local conjugates.  The unrestricted \(d=6\)
+  problem and multiparameter/twisted variants remain open.
+
+## 2026-07-29 03:20 PDT — Complete \(S_4\)-equivariant branch excluded
+
+- Reconstructed the exact rational \(S_4\) actions on \(V_2\) and \(V_3\)
+  and proved that the active commutant on
+  \(V_2\otimes V_3\otimes V_2\) is \(M_2\oplus M_2\).
+- Parametrized every noncentral trace-zero Hermitian involution by the
+  complete product of Bloch spheres \(S^2\times S^2\).
+- Extracted 20 sparse exact cubic coordinates. Exact Gröbner reductions
+  yield seven branch relations, and three additional coordinates exclude
+  the resulting real cases.
+- Independently checked that the selected 23 coordinates and the two
+  sphere equations generate the unit ideal over \(\mathbb Q\).
+- Combined with the prior central check, this proves the full
+  \(S_4\)-equivariant heterogeneous rank-six branch empty. The theorem is
+  symmetry-scoped and does not settle unrestricted \(d=6\).
+
+## 2026-07-29 03:24 PDT — Binary-tetrahedral \(\mathbb{CP}^2\) branch excluded
+
+- Verified exactly, on all 24 Hurwitz units, the decomposition
+  \[
+  A\otimes B\otimes A
+  \cong1\oplus1'\oplus1''\oplus3^{\oplus3}
+  \]
+  and commutant dimension \(12\).
+- Proved that the only balanced equivariant signatures are a
+  \(\mathbb{CP}^2\) rank-one multiplicity direction and its complement, so
+  the parameterization covers the complete branch.
+- Predeclared and completed 64 genuinely complex \(\mathbb{CP}^2\) runs.
+  No candidate appeared; the best observed normalized squared residual was
+  \(16/9\). The search is retained only as a falsifier.
+- Replaced the numerical evidence by an exact three-coordinate
+  certificate. Two residual entries force \(a^2=1/3\) and
+  \(\operatorname{Re}(\bar z_1z_2)=0\); under those conditions a third has
+  fixed squared modulus \(16/729\).
+- Concluded that the full balanced diagonal-\(2T\)-equivariant
+  heterogeneous branch is empty. This is symmetry-scoped and leaves the
+  unrestricted \(d=6\) problem open.
+
+## 2026-07-29 03:27 PDT — Finite-image fixed-point shortcut closed
+
+- Verified from Rowell's primary proof that the canonical braid subgroup
+  inside every \(H_n(3,6)\) is finite. Hence every exceptional localizer
+  has finite braid image at every fixed strand number; finite
+  dimensionality of the quotient alone would not have sufficed.
+- Rechecked Conti--Lechner's published numbering and corrected the earlier
+  citations: algebraic fixed points are Proposition 7.10 and the
+  partial-trace ergodicity obstruction is Proposition 7.12.
+- Constructed the exact family
+  \[
+  S_m=(q-1)(I_m\boxplus I_m),\qquad d=2m\ge4.
+  \]
+  It has \(|\rho_{S_m}(B_n)|\le3n!\), order-six local generators, exactly
+  the exceptional normalized partial trace \((q-1)I/2\), scalar left and
+  right leg commutants, no nontrivial algebraic fixed points, and a
+  nontrivial von Neumann fixed algebra.
+- Replayed the construction exactly at \(d=4\) and \(d=6\): all basis
+  braid identities hold, both commutant linear systems have nullity one,
+  and the normalized partial-trace norm squared is \(1/4\).
+- Scope guard: the family has an opposite eigenvalue pair. It disproves
+  the finite-image-plus-trace inference, not a stronger
+  exceptional-specific theorem using no-opposite-spectrum and the
+  resulting irreducibility of
+  \(\varphi(\mathcal L_R)\subset\mathcal L_R\). The audited sources contain
+  no bridge from that horizontal irreducibility to algebraicity of the
+  vertical fixed algebra \(\mathcal L_R'\cap\mathcal N\).
+
+## 2026-07-29 03:33 PDT — Orthogonalized Manin basin calibrated
+
+- Added a full-complex rank-eighteen Grassmann initializer built from the
+  orthogonal projection onto the balanced \(GL(3|3)\) Manin
+  \((-1)\)-eigenspace.
+- Predeclared and ran eight unrestricted seeds without marginal
+  regularization and eight with unit marginal penalty. All sixteen
+  returned numerically to the same nonstandard near miss.
+- Verified that point independently over
+  \(\mathbb Q(\sqrt3,i)\): the associated \(H\) is a trace-zero Hermitian
+  involution, while the cubic squared residual is \(140/3\) and each
+  partial-trace scalar-deviation squared norm is \(6\).
+- The unpenalized and penalized limiting objectives are therefore exactly
+  \(140/3\) and \(176/3\). This is a search calibration only; it is not a
+  local-minimum certificate or an unrestricted \(d=6\) obstruction.

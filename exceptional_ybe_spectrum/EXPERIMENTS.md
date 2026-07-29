@@ -855,3 +855,309 @@ reproducible; only its final exact witness is reproducible.
     `db35ceca9f6363e6894baaf8cf33e0f7941032396fa76d59f227a7a79ce24f29`;
   - `results/no_rank_six_subspace_of_d8_independent_exact.txt`:
     `65d2eaecd100351de8462cffcf87016d65fe2f71fd7a7864fc1db15cdfe4e33e`.
+
+## E30 — full-cubic one-sided color compression
+
+- Run: 2026-07-29 03:06 PDT.
+- Exact universal identities:
+  with \(A=P_{12}\), \(B=P_{23}\),
+  \(G_L=e_1e_2f_3\), and \(G_R=f_1e_2e_3\),
+  \[
+  \|G_LBA\|_{\rm HS}^2
+  =\|G_RAB\|_{\rm HS}^2
+  =\frac{r^2u}{4}.
+  \]
+  The complete \(G_L\)-corner is
+  \[
+  sTs-TsT-L^*A_\perp L=\frac13(s-T),
+  \qquad T^2+L^*L=T,
+  \]
+  so it controls an \(A_\perp\)-weighted leakage rather than the
+  zero-variance target \(L^*L=0\).
+- Exact limitation model:
+  a \(216\)-dimensional abstract \(H_3\) representation has the balanced
+  \(d=6\) multiplicities \(27,27,81\), contains the balanced \(d=4\)
+  multiplicities \(8,8,24\), and admits three commuting color projections
+  with joint ranks
+  \(64,32,32,32,16,16,16,8\).
+  All one-color \(A/B\) traces are \(72\), and all color-level locality
+  commutators vanish, while
+  \[
+  \frac12\|[A,F_{12}]\|_{\rm HS}^2
+  =\frac12\|[B,F_{23}]\|_{\rm HS}^2
+  =\frac{16}{9}.
+  \]
+- Scope:
+  this is an abstract three-strand limitation theorem, not a local
+  \(d=6\) witness.  It does not provide
+  \(A=P\otimes I_6,\ B=I_6\otimes P\) for a common two-site \(P\).
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `971f58d8`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_one_sided_cubic_abstract_countermodel.py`.
+- SHA-256:
+  - `notes/one_sided_full_cubic_color_compression.md`:
+    `0f78b8fce8183b152d1e86432fa8eb1de758ec44d223ea9c1ac8067c3b11d965`;
+  - `verifiers/verify_one_sided_cubic_abstract_countermodel.py`:
+    `f858cecea8a61bc88bd30b6fca38b63a9d38638ec2dd2cd5c9d3d383bfa99dbb`;
+  - `results/one_sided_cubic_abstract_exact.txt`:
+    `18e7daa9b14977764a367b33c39475a14d5be7e756d6ed044237bade394bf560`.
+
+## E31 — exact balanced Manin super-Hecke audit
+
+- Run: 2026-07-29 03:16 PDT.
+- Object:
+  the standard \(GL(3|3)\) Manin Hecke symmetry, multiplied by
+  \(t=e^{i\pi/6}\) so that its two eigenvalues are
+  \(q=t^2=e^{i\pi/3}\) and \(-1\).
+- Exact direct checks:
+  the \(36\times36\) matrix obeys
+  \((T+I)(T-qI)=0\), and ordinary Kronecker placements obey the complete
+  \(216\times216\) braid identity.  Both eigenspaces have dimension
+  \(18\), and \(\operatorname{Tr}T=18(q-1)\).
+- Exact unitarity audit:
+  the standard-metric defect has squared Frobenius norm \(45\).
+  More strongly, the human proof excludes every positive local metric
+  \(G\): diagonal even/odd eigenvectors force \(G_{ia}=0\), after which
+  the mixed \(q\)- and \((-1)\)-eigenvectors have inner product
+  \((\bar t-t)G_{ii}G_{aa}=-iG_{ii}G_{aa}\ne0\).
+- Scope:
+  this is a proved no-go only for the standard one-parameter Manin family
+  and its local-basis conjugates, not for arbitrary \(d=6\) solutions or
+  multiparameter super-Hecke symmetries.
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `eac05ca0`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_manin_super_hecke_d6.py`.
+- SHA-256:
+  - `notes/manin_super_hecke_unitarity_no_go.md`:
+    `4b7f90210f1e5bcfc680dea8182dc7af5a96b3596fa6c00c9d75ccaa7f68def4`;
+  - `verifiers/verify_manin_super_hecke_d6.py`:
+    `c99c457a28395dc4ba58d49380a1ac740b9051f533254718b2e21e0ed3862922`;
+  - `results/manin_super_hecke_d6_exact.txt`:
+    `af637465e3c5f38fc09fba110ff1c392125eaccf005aac986912004e2b2b884a`.
+
+## E32 — exact completion of the \(S_4\)-equivariant rank-six branch
+
+- Run: 2026-07-29 03:20 PDT.
+- Exact search space:
+  \[
+  V_2\otimes V_3\otimes V_2
+  \cong 2V_3\oplus2V_{3'},
+  \qquad
+  \operatorname{End}_{S_4}\cong M_2(\mathbb C)\oplus M_2(\mathbb C).
+  \]
+  After the two central choices already checked earlier, every remaining
+  trace-zero Hermitian involution is exactly a point of
+  \(S^2\times S^2\).
+- Certificate:
+  an exact rational model of \(V_2,V_3\) constructs metric-Hermitian
+  Pauli triples in both multiplicity summands. Twenty sparse cubic
+  coordinates imply seven branch relations by exact Gröbner reduction.
+  Three additional coordinates exclude all real branches. Independently,
+  the two sphere equations and all 23 coordinates generate the unit ideal
+  over \(\mathbb Q\).
+- Conclusion:
+  the complete \(S_4\)-equivariant heterogeneous \((2,3,2)\) rank-six
+  branch is empty. This is not an unrestricted \(d=6\) theorem.
+- Randomness:
+  none in the final certificate. The retained derivation helpers are
+  deterministic exact computations.
+- Parent commit:
+  `eac05ca0`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`, NumPy `2.0.2`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_s4_equivariant_noncentral_no_go.py`.
+- SHA-256:
+  - `notes/s4_equivariant_exact_no_go.md`:
+    `a8c14f5f4e2b4f173499f01eb3007883cddf98fd2b92b67c39d535198c43424a`;
+  - `verifiers/verify_s4_equivariant_noncentral_no_go.py`:
+    `ad2fadf138809a126459cf64ec160f8785df5338c6eb46504b31f2d66436954e`;
+  - `results/s4_equivariant_exact_no_go.txt`:
+    `b835e7732e26ffffe37cfc9de2cdc577f18e606efe500521613240ac8aa12562`;
+  - `scripts/derive_s4_equivariant_certificate.py`:
+    `ab0bb3b00c4e30b8c4c69a8edfd2e1aa7223863e3b6394482923215780db6bae`;
+  - `scripts/derive_s4_equivariant_objective.py`:
+    `5f1a59ff04bbf09d9103c70e69c382c913f33b5111353bbaf45779bb7ebee71c`.
+
+## E33 — exact completion of the binary-tetrahedral \(\mathbb{CP}^2\) branch
+
+- Run: 2026-07-29 03:02--03:24 PDT.
+- Exact search space:
+  \(A=\mathbb C^2\) is the defining \(2T\)-module and
+  \(B=\mathbb C^3\) its tetrahedral rotation module. Exact intertwiners for
+  all 24 Hurwitz units give
+  \[
+  A\otimes B\otimes A
+  \cong1\oplus1'\oplus1''\oplus3\oplus3\oplus3,
+  \qquad
+  \dim\operatorname{End}_{2T}=12.
+  \]
+  Balanced equivariant signatures are only \((s,r)=(3,1)\) and its
+  complement \((0,2)\). Thus \(K\mapsto-K\) reduces the complete branch to
+  one multiplicity line \([z]\in\mathbb{CP}^2\).
+- Predeclared falsifier:
+  all 64 full-complex seeds `26074001`--`26074064` were recorded before
+  objective evaluation; the analytic-gradient check had relative error
+  \(1.1647\cdot10^{-9}\). No candidate occurred. The smallest observed
+  normalized squared residual was \(16/9\), but no global-minimum claim is
+  based on this search.
+- Exact certificate:
+  with \(z=(a,b+ic,d+ie)\), normalization and two residual entries force
+  \(a^2=1/3\) and \(bd+ce=0\). Writing the two orthogonal real vectors as
+  \((b,c)=r(x,y)\) and \((d,e)=\varepsilon s(-y,x)\), a third residual
+  entry satisfies
+  \[
+  |F_{57,20}|^2=16/729.
+  \]
+  Hence the complete balanced \(2T\)-equivariant branch is empty.
+- Scope:
+  this is an exact symmetry-scoped no-go, not an unrestricted
+  \(d=6\) theorem.
+- Randomness:
+  only the retained numerical falsifier uses the predeclared seeds. The
+  decomposition and no-go certificates are deterministic exact SymPy
+  arithmetic.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`, NumPy `2.0.2`, SciPy `1.13.1`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  scripts/verify_binary_tetrahedral_cp2_ansatz.py` and
+  `/Users/alec/Documents/Math/.venv/bin/python
+  scripts/verify_binary_tetrahedral_cp2_no_go.py`.
+- SHA-256:
+  - `notes/binary_tetrahedral_cp2_no_go.md`:
+    `405cbac7ec9584df48b4d52d9fb65a6393a2bdf190091a98c62e274779af9269`;
+  - `scripts/verify_binary_tetrahedral_cp2_ansatz.py`:
+    `5064ea7b04eb231a9cb2239cff8afd0242909e124dcdedddced596130efd0133`;
+  - `scripts/verify_binary_tetrahedral_cp2_no_go.py`:
+    `cc0dc8795bdac0d0843eeedde05c19e4e15b28dfa72fa8a180edf6a8d1e2090f`;
+  - `scripts/d6_binary_tetrahedral_cp2_search.py`:
+    `3b7e4dc657983fba1888ae9879be9820eb70056355f02d4bbfbd083110881640`;
+  - `results/d6_binary_tetrahedral_cp2_runs.jsonl`:
+    `32340c32e710911ee36e3747cb76d204e27b3faf889b09de74257e964eb5f8b4`;
+  - `results/d6_binary_tetrahedral_cp2_seed_manifest.json`:
+    `98ff739b5208bd6086f44628ef5afe05c00117b57e016afd41efecfacbfda8d2`;
+  - `results/d6_binary_tetrahedral_decomposition_exact.txt`:
+    `2d169f71396f445b7676b4c7502c14f62f8c21120cb9157ec610c4c50fe8e079`;
+  - `results/d6_binary_tetrahedral_cp2_no_go_exact.txt`:
+    `8166b2267c16a2f4731f386581d27f69befe4024f07411da5f5fc2743103a4cf`.
+
+## E34 — finite-image fixed-point implication audit
+
+- Run: 2026-07-29 03:27 PDT.
+- Primary-source result:
+  Rowell's main theorem proves that the canonical braid group generated
+  inside \(H_n(3,6)\) is finite for every fixed \(n\). Every exceptional
+  tensor representation therefore has finite finite-strand braid image.
+  Conti--Lechner Proposition 7.12 and automatic standardness give
+  \(\|\phi_R(R)\|_2^2=1/4\ne1/d^2\), so every exceptional \(d>2\)
+  endomorphism is nonergodic.
+- Exact limitation family:
+  for \(d=2m\), \(m\ge2\), set
+  \[
+  S_m=(q-1)(I_m\boxplus I_m).
+  \]
+  The human proof gives
+  \[
+  |\rho_{S_m}(B_n)|\le3n!,\qquad
+  S_m^6=I,\qquad
+  d^{-1}\operatorname{Tr}_1S_m
+  =d^{-1}\operatorname{Tr}_2S_m
+  =\frac{q-1}{2}I_d.
+  \]
+  Both one-leg commutants are scalar. Conti--Lechner Proposition 7.10
+  then rules out all nontrivial algebraic fixed points, while Proposition
+  7.12 makes the von Neumann fixed algebra nontrivial.
+- Exact replay:
+  all basis states satisfy involutivity and the braid equation for
+  \(m=2,3\); both rational commutant systems have nullity one; the
+  normalized partial-trace norm squared is exactly \(1/4\).
+- Scope:
+  this disproves only an inference from finite image plus the listed
+  trace/locality data. The countermodel spectrum
+  \(\{q-1,1-q\}\) is antipodal, so it does not settle the sharpened route
+  using no-opposite-spectrum and horizontal braid-subfactor
+  irreducibility.
+- Randomness:
+  none.
+- Parent commit:
+  `eac05ca0`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_finite_braid_image_fixedpoint_countermodel.py`.
+- SHA-256:
+  - `notes/finite_braid_image_fixed_point_audit.md`:
+    `b1f79f224fb44dca707cc63013d0359c85a005e7b8a0066322a7037813b1e14d`;
+  - `verifiers/verify_finite_braid_image_fixedpoint_countermodel.py`:
+    `60162c9eddd8adb9d47cb331221ff9f51fada79c519e5f9548638105c0349cba`;
+  - `results/finite_braid_image_fixedpoint_countermodel_exact.txt`:
+    `10269895bf258544562a38df4fe67cdf4c629bd1eda2885316f75eda1cd1af00`.
+
+## E35 — unrestricted Grassmann search from the orthogonalized Manin point
+
+- Run: 2026-07-29 03:23--03:33 PDT.
+- Search space:
+  the full complex Grassmannian of rank-eighteen projections in
+  \(\mathbb C^{36}\), with no imposed symmetry. The initializer is the
+  orthogonal projection onto the standard balanced \(GL(3|3)\) Manin
+  \((-1)\)-eigenspace plus a seed-dependent small tangent perturbation.
+- Predeclaration:
+  seeds `26074101`--`26074108` used 500 iterations and no marginal
+  penalty; seeds `26074111`--`26074118` used 750 iterations and unit
+  penalty on both partial-trace scalar deviations. All seeds and settings
+  were written to the manifest before objective evaluation.
+- Numerical outcome:
+  all eight unpenalized runs returned to cubic squared residual
+  \(140/3\), and all eight penalized runs returned to objective
+  \(176/3\), to the displayed precision. The two marginal squared
+  deviations were \(6\) each.
+- Exact identification:
+  the unperturbed orthogonalized eigenspace projection has rank \(18\).
+  Its associated \(H\) is a trace-zero Hermitian involution, with cubic
+  residual squared norm \(140/3\) and both marginal squared deviations
+  exactly \(6\).
+- Scope:
+  this is a calibrated failed-construction certificate. It neither proves
+  the exact point is a local minimum nor supports unrestricted
+  nonexistence in \(d=6\).
+- Parent commit:
+  `eac05ca0`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  NumPy `2.0.2`, SciPy `1.13.1`, SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_orthogonalized_manin_near_miss.py`.
+- SHA-256:
+  - `scripts/d6_riemannian_search.py`:
+    `bc26c7b2d61ca5e3e94ce09c777c8e3faa77461fd7091399849ee0d84cd68b55`;
+  - `results/d6_manin_orthogonalized_seed_manifest.json`:
+    `4473d8cbcf7f3388f2965421107743db4d5a4dba0e07d1f8ef8b738442b56f1d`;
+  - `results/d6_manin_orthogonalized_runs.jsonl`:
+    `84c1f9e04583685289779da18056c2a9e394780f8fcd32c68b5770dce7bfa3f7`;
+  - `results/d6_manin_orthogonalized_penalty_runs.jsonl`:
+    `fd97394c7472bb383b7e7bd488b74cb401f3be262d4860837f2c82fd9693ec1b`;
+  - `verifiers/verify_orthogonalized_manin_near_miss.py`:
+    `b62a8e98b8c609affa00d741086644762eda4d0c730beb23c0002f76e85c76e0`;
+  - `results/orthogonalized_manin_d6_exact.txt`:
+    `0f58d8d722255813ebb91b591f425dc7dc5bae3c2975f7759ff3690e2a9ccd38`.
