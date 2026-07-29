@@ -249,7 +249,59 @@ Integrating the affine tent over this triangle gives
 \]
 Substitution of (27) into (22) proves (5).
 
-## 4. What this does and does not control
+## 4. A global value refinement
+
+Define
+\[
+ F(\rho)=
+ \begin{cases}
+ \displaystyle
+ \frac{(\lambda_1-\frac12)^3}
+ {(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)},
+ &\lambda_1>\frac12,\\[3mm]
+ 0,&\lambda_1\leq\frac12.
+ \end{cases}
+ \tag{28}
+\]
+Because the same \(g_i\) is bounded using either the left or the right
+marginal, put
+\[
+ S(C)=\sum_{i=1}^3
+ \max\{F(\rho_i^L),F(\rho_i^R)\}.
+ \tag{29}
+\]
+If \(w_k\) denotes the total scalar/traceless sector mass of degree
+\(k\), direct elimination using \(\sum_kw_k=1\) gives
+\[
+\begin{aligned}
+ \sum_{i=1}^3g_i
+ &=\frac14w_1-w_2+3w_3\\
+ &=\frac13-\frac{8\delta}{3}-\frac34w_1
+ \leq\frac{1-8\delta}{3}.
+\end{aligned}
+\tag{30}
+\]
+On the other hand, summing (5) gives
+\[
+ \sum_i g_i\geq\frac{16\delta}{15}S(C).
+ \tag{31}
+\]
+Combining (30)--(31) proves the explicit stationary-value bound
+\[
+\boxed{\qquad
+ -Q_3(C)=\delta
+ \leq
+ \frac1{8+\frac{16}{5}S(C)}.
+ \qquad}
+\tag{32}
+\]
+Thus the universal lower bound \(-1/8\) improves strictly at every
+stationary point having an unbalanced marginal.  Approaching
+\(-1/8\) forces all six largest marginal eigenvalues toward at most
+\(1/2\).  Equation (32) does not prevent a negative value when all
+six marginals are balanced.
+
+## 5. What this does and does not control
 
 The common-code equality analysis proves the stronger qualitative
 fact \(g_i>0\) at every negative stationary point, including the
@@ -263,18 +315,18 @@ filter inequality permits every \(P_z\) to lie on its boundary.
 At the central point \(\rho=I_3/3\), this is realized by the abstract
 Hermitian form
 \[
- h(A,B)
+h(A,B)
  =
  2\delta\,{\cal N}(A,B)
  -3\delta\,
  \overline{{\cal N}(I,A)}{\cal N}(I,B).
- \tag{28}
+ \tag{33}
 \]
 It has \(h(A,I)=-\delta{\cal N}(A,I)\), is nonnegative for
 \(\operatorname{rank}A\leq2\) by the sharp rank-two overlap
 \[
  |{\cal N}(I,A)|^2\leq\frac23{\cal N}(A,A),
- \tag{29}
+ \tag{34}
 \]
 and satisfies \(h(P_z,P_z)=0\) for every \(z\).
 The missing quantitative input must see that all these filters arise

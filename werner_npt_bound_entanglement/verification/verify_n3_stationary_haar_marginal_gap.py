@@ -79,6 +79,16 @@ def main() -> None:
     # The two positive parts differ by E(1-2r)=1/3.
     assert F(1) - 2 * F(1, 3) == F(1, 3)
 
+    # Global elimination:
+    # G=1/4 w1-w2+3w3
+    #  =1/3-8 delta/3-3 w1/4 at q=-delta.
+    w0, w1, w2 = F(1, 9), F(2, 9), F(1, 3)
+    w3 = 1 - w0 - w1 - w2
+    q = -F(1, 8) * w0 + F(1, 4) * w1 - F(1, 2) * w2 + w3
+    delta = -q
+    grouped = F(1, 4) * w1 - w2 + 3 * w3
+    assert grouped == F(1, 3) - F(8, 3) * delta - F(3, 4) * w1
+
     print("verified: stationary Haar coefficients and marginal tent integral")
 
 
