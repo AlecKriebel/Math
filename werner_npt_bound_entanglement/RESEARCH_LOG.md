@@ -3885,3 +3885,41 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_common_plane_floor.md`,
   `verification/verify_n3_pair_common_plane_floor.py`.
+
+## 2026-07-29 14:37 PDT — Sharp triple-skew stable-rank reduction
+
+- Isolated the sharp surviving triple-Hodge target
+  \[
+  \left\|\sum_{p,q,r}t_{pqr}A_p\otimes A_q\otimes A_r
+  \right\|_{\rm op}^2
+  \le\frac16\sum_{p,q,r}|t_{pqr}|^2.
+  \]
+  The statement remains unproved, but extensive unrestricted discovery
+  optimization has not violated it.
+- Proved the exact marginal identity
+  \[
+  8D_t^\dagger D_t
+  =I-\rho_A-\rho_B-\rho_C+\rho_{AB}+\rho_{AC}+\rho_{BC}-\rho,
+  \]
+  and reduced the stable-rank statement equivalently to a cross-marginal
+  purity inequality, a rank-two-code purity inequality, a decomposable
+  Hodge--Pluecker inequality, and a four-party collision-purity monogamy
+  inequality.
+- Identified the exact sharp equality orbit
+  \(t=\Phi_{AB}\otimes|0\rangle_C\),
+  \(x=\Phi_{AB}\otimes|2\rangle_C\).  It gives
+  \(D_t=3^{-1/2}(\sum_pA_p\otimes A_p)\otimes A_0\) and
+  \(\|D_t\|_{\rm op}^2=1/6\).
+- Disproved the naive two-site induction mechanism exactly.  For the
+  qutrit antisymmetric channel \({\cal W}\), the comparison map
+  \((1/3)\operatorname{Tr}(\cdot)I-{\cal W}^{\otimes2}\) is not even
+  two-positive: the sharp double-skew tensor has top-two squared
+  singular-value mass \(5/12\), producing Choi expectation at most
+  \(-1/12\).
+- Even a proof of the stable-rank target gives only the sharp component
+  bound \({\cal C}(Q_{(3)})\le8/27\), not the required coherent
+  \(4/9\) theorem.  Compensation from the two-skew component remains
+  essential.
+- Exact note and checker:
+  `notes/agent_n3_triple_skew_reduction.md`,
+  `verification/verify_n3_triple_skew_reduction.py`.
