@@ -4110,3 +4110,42 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_full_reversed_schur_orientation.md`,
   `verification/verify_n3_full_transfer_plucker.py`.
+## 2026-07-29 17:26 PDT — Two-column Hodge recursion and factor-plane theorem
+
+- Recast the scalar floor requirement
+  \(\operatorname{Tr}Q_{(3)}\le4/9\) as the exact two-column spectral
+  inequality
+  \[
+  \lambda_1(R_U)+\lambda_2(R_U)\le\frac12,\qquad
+  R_U=\sum_{a=0}^1T_{u_a}^\dagger T_{u_a}.
+  \]
+- Exactly disproved the tempting separate bound
+  \(\lambda_2(R_U)\le1/6\).  The canonical plane
+  \(U=\operatorname{span}\{|000\rangle,|001\rangle\}\) has four
+  eigenvalues \(1/4\).  The correct equality geometry includes both
+  the balanced spectrum \((1/4,1/4)\) and the spiked spectrum
+  \((1/3,1/6)\).
+- Proved the sharp double-Hodge inequalities
+  \[
+  \mu_1(D_x^\dagger D_x)\le\frac13,\qquad
+  \mu_1+\mu_2\le\frac12
+  \]
+  by reducing to the singular values of the two-qutrit coefficient
+  matrix, a \(3\times3\) weighted triangle block, and three elementary
+  \(2\times2\) blocks.
+- As a consequence, proved
+  \(\operatorname{Tr}Q_{(3)}\le4/9\) whenever one singular plane is
+  \(x\otimes W\) with \(\dim W=2\), while the other plane is completely
+  arbitrary.
+- For a general plane sliced as
+  \(u_a=\sum_rx_{ar}\otimes e_r\), derived the lossless common-Gram
+  recursion
+  \[
+  R_U=\frac12(G\otimes I-H^{\Gamma_3}),\qquad
+  H_{rs}=\sum_aD_{x_{ar}}^\dagger D_{x_{as}},\quad H\succeq0.
+  \]
+  The remaining scalar theorem is a Ky--Fan-two inequality for this
+  structured partial-transpose difference.
+- Exact note and checker:
+  `notes/agent_n3_triple_hodge_two_column_recursion.md`,
+  `verification/verify_n3_triple_hodge_two_column_recursion.py`.
