@@ -265,3 +265,25 @@ structured numerical or finite search at d=6
 
 No numerical candidate enters a theorem until exact recognition and exact
 verification are complete.
+
+The broadest retained Weyl-frame search currently separates into two
+near-miss mechanisms:
+
+```text
+all 361 real coefficients in retained Hermitian Weyl frame
+        |
+        +--> desired cubic exactly
+        |       |
+        |       +--> Weyl stratum
+        |               |
+        |               +--> wrong quadratic / signature 9+27
+        |
+        +--> balanced involution exactly
+                |
+                +--> adjacent anticommutation
+                        |
+                        +--> cubic coefficient 1, not 1/3
+```
+
+The second implication is exact; the observed separation of all forty
+search endpoints into these strata is numerical evidence only.

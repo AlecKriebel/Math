@@ -261,3 +261,19 @@ norm \(192\). Thus Brauer-style scalar closures, reshufflings, and
 cup-cap contractions cannot replace the operator-valued overlap
 identities in a parity proof. See
 `notes/permutation_contraction_audit.md`.
+
+## Full retained Weyl coefficient interpolation
+
+The Weyl-channel near-miss was broadened from a fixed Schmidt orbit to all
+\(361\) real coefficients in the retained traceless-Hermitian
+qubit--qutrit Weyl frame. Forty predeclared random, direct, continuation,
+and mixed-strata searches found no simultaneous involution/cubic point.
+
+The endpoints consistently returned to two algebraic strata. One is the
+known exact cubic with the wrong quadratic. The other consists of scaled
+adjacent-anticommuting involutions; exactly, such an involution obeys the
+cubic with coefficient \(1\), rather than the required \(1/3\). This is a
+useful structural explanation of the numerical basins, but the search is
+neither exhaustive within its \(361\)-dimensional linear subspace nor a
+test of all traceless Hermitian \(36\times36\) matrices. See
+`notes/d6_weyl_full_coefficient_search.md`.

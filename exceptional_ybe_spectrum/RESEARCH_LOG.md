@@ -298,3 +298,19 @@
 - This exhausts scalar permutation/Brauer contractions as a
   four-divisibility route. Any successful proof must preserve
   operator-valued spatial overlap data.
+
+## 2026-07-29 01:50 PDT — Full retained Weyl coefficient search completed
+
+- Expanded the \(d=6\) Weyl falsifier to all \(361\) real coefficient
+  entries in the retained traceless-Hermitian operator frame.
+- Calibrated its analytic gradient to \(1.38\times10^{-9}\) maximum
+  relative error and completed forty predeclared multistart,
+  continuation, direct-joint, and mixed-strata runs.
+- No run approached both equations. All endpoints normalize numerically
+  to either the exact Weyl cubic with the wrong quadratic or an
+  adjacent-anticommuting involution.
+- Proved exactly that the latter branch has cubic coefficient \(1\), not
+  \(1/3\), and independently replayed an integer \(d=6\) example and the
+  scalar objective law.
+- Status remains NUMERICAL_EVIDENCE for the search. It is not an
+  exhaustive no-go even inside the retained frame.

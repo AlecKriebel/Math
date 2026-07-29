@@ -571,3 +571,43 @@ reproducible; only its final exact witness is reproducible.
   verifiers/verify_permutation_contraction_audit.py`.
 - Raw output:
   `results/permutation_contraction_audit_exact.txt`.
+
+## E24 — full retained Weyl coefficient search at \(d=6\)
+
+- Run: 2026-07-29
+- Scope:
+  all \(361\) real coefficients in
+  \[
+  H(C)=\sum_{i,j=1}^{19}C_{ij}A_i\otimes A_j
+  \]
+  for the retained traceless-Hermitian qubit--qutrit Weyl frame. Unlike
+  the earlier deformation, no Schmidt values, frames, rank, block
+  support, or finite symmetry were fixed.
+- Predeclaration:
+  forty random, direct-joint, continuation, bidirectional, and
+  mixed-strata runs were fixed in
+  `results/d6_weyl_full_coeff_seed_manifest.json`.
+- Gradient guard:
+  the analytic gradient agrees with centered finite differences with
+  maximum relative error \(1.38\times10^{-9}\).
+- Numerical outcome:
+  no candidate was found. The best final residual pair was
+  \((3.5886268615,0.9034063467)\) for involutivity and the cubic.
+  Twenty-nine endpoints normalize to adjacent-anticommuting involutions;
+  eleven normalize to the Weyl cubic with its known wrong quadratic.
+- Exact branch theorem:
+  \(K^2=I\) and
+  \(\{K_{12},K_{23}\}=0\) imply
+  \[
+  K_{12}K_{23}K_{12}-K_{23}K_{12}K_{23}=K_{12}-K_{23},
+  \]
+  so this branch has coefficient \(1\), not \(1/3\).
+- Interpretation:
+  numerical evidence only for the \(361\)-parameter search; the
+  anticommuting-branch identity is exact. This proves neither
+  nonexistence inside the frame nor global \(d=6\) nonexistence.
+- Artifacts:
+  `notes/d6_weyl_full_coefficient_search.md`,
+  `results/d6_weyl_full_coeff_runs.jsonl`,
+  `results/d6_weyl_full_coeff_analysis.json`, and
+  `results/weyl_anticommuting_branch_exact.txt`.
