@@ -4370,6 +4370,15 @@ All timestamps use America/Los_Angeles.
 - The estimate is not invariant under arbitrarily ill-conditioned
   logical Lorentz filters, so transfer to a uniform balanced-scalar
   neighborhood remains open.
+- Nevertheless it gives an exact plane-invariant Lorentz consequence:
+  every hypothetical negative critical Bell representative, after
+  re-orthonormalizing its unchanged two physical planes, must satisfy
+  \[
+  {\cal C}(Q_{(3)})\leq8/27-10^{-120}.
+  \]
+  Hence the same high-AAA plane region is excluded from the balanced
+  frontier even though no direct margin in the filtered transfer
+  entries has yet been obtained.
 - Proof and exact constant checker:
   `notes/agent_n3_quantitative_high_aaa.md`,
   `verification/verify_n3_quantitative_high_aaa.py`.

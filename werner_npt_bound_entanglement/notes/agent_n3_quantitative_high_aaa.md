@@ -401,6 +401,20 @@ Theorem (1) is stated before nonunitary logical filtering, on the
 compact product of isometric code-plane frames.  It therefore gives
 an explicit high-AAA region for the feature/concurrence route.
 
+It also has an exact plane-invariant consequence for the balanced
+Lorentz program.  Logical filters change the two frames but not their
+physical two-planes, and they preserve the sign of the endpoint
+partial-transpose determinant.  Therefore every hypothetical
+negative critical Bell representative, when its two underlying
+planes are re-orthonormalized, must obey
+\[
+\boxed{
+ {\cal C}(Q_{(3)})\leq\frac8{27}-10^{-120}.
+}                                                        \tag{25}
+\]
+Thus the explicit theorem removes the same high-AAA set from the
+balanced scalar frontier.
+
 It does not by itself give a uniform neighborhood in the balanced
 Lorentz coordinates.  The filters that make both logical marginals
 scalar can have arbitrarily large condition number near the boundary,
