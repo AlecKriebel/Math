@@ -4243,3 +4243,19 @@ All timestamps use America/Los_Angeles.
 - Proof and exact checker:
   `notes/agent_n3_triple_skew_reduction.md`,
   `verification/verify_n3_triple_skew_reduction.py`.
+## 2026-07-29 17:44 PDT — Paired compression identity
+
+- Added the exact alternating-contraction identity
+  \[
+  P_UR_UP_U=p_UI_U,\qquad
+  p_U=\|T_{u_0}u_1\|^2\le1/6.
+  \]
+- The balanced and spiked scalar-equality spectra lie on the common
+  affine line
+  \[
+  (1/4+p_U/2,\ 1/4-p_U/2).
+  \]
+  This exposes the precise conjectural strengthening whose two
+  inequalities would imply the Ky--Fan-two target.  It is currently
+  supported only by discovery searches away from the two exact
+  endpoint families.

@@ -132,6 +132,16 @@ assert sorted(
     reverse=True,
 )[:2] == [F(1, 3), F(1, 6)]
 
+# The two exact branches fit (1/4+p/2,1/4-p/2).
+assert (
+    F(1, 4) + F(0, 1) / 2,
+    F(1, 4) - F(0, 1) / 2,
+) == (F(1, 4), F(1, 4))
+assert (
+    F(1, 4) + F(1, 6) / 2,
+    F(1, 4) - F(1, 6) / 2,
+) == (F(1, 3), F(1, 6))
+
 # Check the general block recursion on an arbitrary rational slice family.
 slices = [
     [

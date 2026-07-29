@@ -92,6 +92,41 @@ one finds
 \]
 Thus only the joint sum in (5) has the correct sharp geometry.
 
+There is an additional exact paired identity.  The triple-Hodge
+contraction is alternating:
+\[
+ T_uv=-T_vu,\qquad T_uu=0.                               \tag{6a}
+\]
+Put
+\[
+ p_U=\|T_{u_0}u_1\|^2.
+\]
+In the frame \(u_0,u_1\), equation (6a) gives
+\[
+\boxed{\qquad
+ P_UR_UP_U=p_UI_U,\qquad 0\leq p_U\leq\frac16.
+\qquad}                                                   \tag{6b}
+\]
+Indeed, the two diagonal entries both equal \(p_U\), while each
+off-diagonal entry contains a zero factor.  The last bound is the
+sharp single-column theorem applied to \(T_{u_0}u_1\).
+
+The two exact equality branches fit the affine spectral pattern
+\[
+ \left(\frac14+\frac{p_U}{2},
+       \frac14-\frac{p_U}{2}\right):
+\]
+the balanced branch has \(p_U=0\), while the spiked branch has
+\(p_U=1/6\).  This suggests the sharper paired inequalities
+\[
+\lambda_1(R_U)\stackrel?{\leq}\frac14+\frac{p_U}{2},
+\qquad
+\lambda_2(R_U)\stackrel?{\leq}\frac14-\frac{p_U}{2}.      \tag{6c}
+\]
+They would prove (5), but remain conjectural.  Unrestricted complex
+discovery searches have not violated them; that numerical observation
+is not used in any result of this note.
+
 ## 2. A sharp double-Hodge spectral lemma
 
 For a unit two-qutrit vector \(x=(x_{pq})\), put
