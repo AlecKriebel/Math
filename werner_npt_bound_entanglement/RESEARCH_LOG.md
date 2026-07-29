@@ -4185,3 +4185,32 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_reversed_schur_orientation.md`,
   `verification/verify_n3_full_lorentz_normal_form.py`.
+
+## 2026-07-29 — High-principal-overlap scalar region
+
+- Strengthened the sharp pointwise triple-skew estimate by retaining
+  its exact kernel:
+  \[
+  \langle t\otimes x,{\mathsf A}_1{\mathsf A}_2{\mathsf A}_3
+  (t\otimes x)\rangle
+  \leq\frac16\left(1-|\langle t,x\rangle|^2\right).
+  \]
+- Summing over two orthonormal frames \(U,V\) gives the global
+  principal-angle bound
+  \[
+  r_3(U,V)\leq
+  \frac{4-\operatorname{Tr}(P_UP_V)}6.
+  \]
+  Hence the scalar corrected-floor requirement
+  \(\operatorname{Tr}Q_{(3)}\leq4/9\) holds whenever
+  \(\operatorname{Tr}(P_UP_V)\geq1\), with exact margin
+  \[
+  \frac49-\operatorname{Tr}Q_{(3)}
+  \geq\frac4{27}\bigl(\operatorname{Tr}(P_UP_V)-1\bigr).
+  \]
+  Any failure of this scalar route is therefore confined to two
+  singular planes whose squared principal-angle cosines sum to less
+  than one.
+- Exact note and checker:
+  `notes/agent_n3_high_principal_overlap_scalar.md`,
+  `verification/verify_n3_high_principal_overlap_scalar.py`.
