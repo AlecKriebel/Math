@@ -3618,17 +3618,27 @@ All timestamps use America/Los_Angeles.
   \|T_{n^\perp}\|^2=\frac{14}{3}-q(n)^2,\qquad
   \|\operatorname{tr}T_{n^\perp}\|^2=\frac16-q(n)^2.
   \]
-- This adds \(3/11\) to the summed spectral-radius floor.  Consequently
-  every hypothetical normalized full-support pair-sector critical
-  point with \(f>2/3\) obeys
+- Converting this cubic mass through the exact relation
   \[
-  352w_1+1121f+66w_3\le894,
+  q(F)^2=9x^2(x+\tfrac12),\qquad x=r(F)^2-\tfrac12,
+  \]
+  gives a larger summed spectral-radius gain
+  \(\gamma_*=1/6+\xi=0.302776\ldots\), where
+  \(594\xi^3+297\xi^2-7=0\) and \(\xi\in(0,1/6)\).
+  Consequently every hypothetical normalized full-support pair-sector
+  critical point with \(f>2/3\) obeys
+  \[
+  32w_1+(97+18\gamma_*)f+6w_3\le78+12\gamma_*,
   \qquad
-  f\le\frac{894}{1121}=0.797502\ldots.
+  f\le0.7968114804\ldots<\frac{51}{64}.
+  \]
+- A simple rational consequence is
+  \[
+  80w_1+256f+15w_3\le204.
   \]
 - The theorem remains short of the required \(f\le2/3\).  The exact
-  cubic-frame constant \(3/11\) is a guaranteed average, not claimed
-  optimal.
+  cubic-square frame constant \(3/11\) is a guaranteed average, not
+  claimed optimal.
 - Exact note and checker:
   `notes/agent_n3_critical_filter_trace_bound.md`,
   `verification/verify_n3_critical_filter_trace_bound.py`.

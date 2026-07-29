@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact checks for the cubic-basis critical bound f <= 894/1121."""
+"""Exact checks for the cubic-basis critical bound f < 51/64."""
 
 import itertools
 
@@ -207,11 +207,40 @@ def check_spectral_cubic_relation():
         - sp.Rational(3, 11)
     ) == 0
 
+    # Exact conversion from total cubic-square mass 3/11 to
+    # spectral-radius gain.  The inverse of phi is concave because
+    # phi is increasing and convex.
+    spectral_excess = sp.symbols("spectral_excess", nonnegative=True)
+    phi = 9 * spectral_excess**2 * (
+        spectral_excess + sp.Rational(1, 2)
+    )
+    assert sp.expand(sp.diff(phi, spectral_excess)) == (
+        27 * spectral_excess**2 + 9 * spectral_excess
+    )
+    assert sp.expand(sp.diff(phi, spectral_excess, 2)) == (
+        54 * spectral_excess + 9
+    )
+    assert phi.subs(spectral_excess, sp.Rational(1, 6)) == sp.Rational(1, 6)
+    remainder_mass = sp.Rational(3, 11) - sp.Rational(1, 6)
+    assert remainder_mass == sp.Rational(7, 66)
+    root_polynomial = sp.expand(
+        66 * phi - 7
+    )
+    assert root_polynomial == (
+        594 * spectral_excess**3
+        + 297 * spectral_excess**2
+        - 7
+    )
+    assert phi.subs(
+        spectral_excess, sp.Rational(2, 15)
+    ) == sp.Rational(38, 375)
+    assert sp.Rational(38, 375) < sp.Rational(7, 66)
+
 
 def check_final_constants():
     f, p, w1, w3 = sp.symbols("f p w1 w3", real=True)
     c = sp.Rational(2, 3)
-    gamma = sp.Rational(3, 11)
+    gamma = sp.symbols("gamma", positive=True)
     delta = f - c
 
     residual_bound = sp.expand(
@@ -232,11 +261,38 @@ def check_final_constants():
         + w3
     )
     summed_local = 3 * gram_bound
-    final_defect = sp.factor(66 * (summed_local - global_left))
-    assert final_defect == 894 - 352 * w1 - 1121 * f - 66 * w3
+    final_defect = sp.factor(6 * (summed_local - global_left))
+    assert sp.expand(
+        final_defect
+        - (
+            78 + 12 * gamma
+            - 32 * w1
+            - (97 + 18 * gamma) * f
+            - 6 * w3
+        )
+    ) == 0
+    algebraic_ceiling = (78 + 12 * gamma) / (97 + 18 * gamma)
+    assert sp.factor(sp.diff(algebraic_ceiling, gamma)) == (
+        -240 / (18 * gamma + 97) ** 2
+    )
+
+    # The exact algebraic gain is gamma_*=1/6+xi, where
+    # 594 xi^3+297 xi^2-7=0 and xi>2/15.  The rational relaxation
+    # gamma>=3/10 gives the clean inequality
+    # 80 w1+256 f+15 w3 <=204 and f<=51/64.
+    rational_gamma = sp.Rational(3, 10)
+    rational_defect = sp.factor(
+        15 * (
+            summed_local.subs(gamma, rational_gamma)
+            - global_left
+        )
+    )
+    assert rational_defect == (
+        204 - 80 * w1 - 256 * f - 15 * w3
+    )
     assert sp.solve(
-        sp.Eq(final_defect.subs({w1: 0, w3: 0}), 0), f
-    ) == [sp.Rational(894, 1121)]
+        sp.Eq(rational_defect.subs({w1: 0, w3: 0}), 0), f
+    ) == [sp.Rational(51, 64)]
 
 
 def main():
@@ -246,7 +302,7 @@ def main():
     check_final_constants()
     print(
         "verified: cubic-frame invariant identities and "
-        "critical bound f <= 894/1121"
+        "critical bound f < 51/64"
     )
 
 

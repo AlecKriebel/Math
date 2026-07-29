@@ -12,14 +12,29 @@ Let
  f=\|\Pi _2C\|_2^2
 \]
 at a normalized rank-two critical point, and write \(w_k\) for the
-squared mass of \(C\) in local traceless degree \(k\).  If all one-site
-left and right densities are positive definite, then
+squared mass of \(C\) in local traceless degree \(k\).  Define
+\(\xi\) to be the unique root in \((0,1/6)\) of
 \[
-\boxed{352w_1+1121f+66w_3\le894,}                     \tag{1}
+594\xi^3+297\xi^2-7=0,
+\qquad
+\gamma_*=\frac16+\xi.                                 \tag{1}
 \]
-and consequently
+If all one-site left and right densities are positive definite, then
 \[
-\boxed{f\le\frac{894}{1121}=0.797502\ldots.}           \tag{2}
+\boxed{
+32w_1+(97+18\gamma_*)f+6w_3
+\le78+12\gamma_*.}                                    \tag{2}
+\]
+Consequently
+\[
+\boxed{
+f\le
+\frac{78+12\gamma_*}{97+18\gamma_*}
+=0.7968114804\ldots<\frac{51}{64}.}                   \tag{2a}
+\]
+The particularly simple rational relaxation is
+\[
+\boxed{80w_1+256f+15w_3\le204.}                       \tag{2b}
 \]
 
 The elementary adapted-basis argument proposed in the research log is
@@ -29,8 +44,10 @@ traceless-Hermitian cubic
 q(F)=\operatorname{Tr}(F^3)
 \]
 shows that one can choose the seven undistinguished basis vectors with
-a strictly larger total spectral-radius square.  The exact extra gain
-is \(3/11\) in the local spectral-radius sum, which yields (1).
+a strictly larger total spectral-radius square.  First an exact frame
+average forces cubic-square mass at least \(3/11\).  Optimizing the
+exact spectral-radius/cubic relation then gives the local gain
+\(\gamma_*=0.302776\ldots>3/10\), which yields (2)--(2b).
 
 This remains short of the required \(f\le2/3\), so it does not close
 the unrestricted three-copy theorem.  It is an exact nonlinear
@@ -171,11 +188,6 @@ Since \(3r/\sqrt6\le1\), equation (16) proves (14).  The maximum in
 (16) over this interval occurs at \(r^2=2/3\) and equals
 \(1/\sqrt6\), proving (15). \(\square\)
 
-An immediate consequence of (15) is
-\[
-\boxed{\frac{|q(F)|}{\sqrt6}\ge q(F)^2.}               \tag{17}
-\]
-
 ## 4. Cubic mass in an adapted seven-frame
 
 Let
@@ -295,62 +307,122 @@ where the last inequality uses \(q_n^2\le1/6\), from (15).
 At least one orthonormal basis attains at least its expectation,
 proving (25). \(\square\)
 
-Combining Lemma 3.1, (17), and Lemma 4.2, this completion satisfies
+The next lemma converts the cubic-square mass into the sharp
+spectral-radius gain obtainable from that information.
+
+### Lemma 4.3
+
+For the basis furnished by Lemma 4.2,
 \[
 \boxed{
 \sum_{a=2}^8r(F_a)^2
-\ge\frac72+\frac3{11}.}                               \tag{28}
+\ge\frac72+\gamma_*,}                                 \tag{28}
 \]
+where \(\gamma_*\) is defined in (1).  Moreover
+\[
+\gamma_*>\frac3{10}.                                  \tag{29}
+\]
+
+#### Proof
+
+Put
+\[
+z_a=q(F_a)^2,\qquad x_a=r(F_a)^2-\frac12.
+\]
+The exact identity (16) says
+\[
+z_a=\phi(x_a),\qquad
+\phi(x)=9x^2\left(x+\frac12\right),\qquad
+0\le x\le\frac16.                                     \tag{30}
+\]
+The function \(\phi\) is increasing and convex on this interval, so
+its inverse \(g\) is increasing and concave.  Also
+\[
+0\le z_a\le\frac16,\qquad
+\sum_{a=2}^8z_a\ge\frac3{11}.                          \tag{31}
+\]
+For a fixed sum of the \(z_a\), a sum of the concave function \(g\)
+is minimized by concentrating mass up to the cap \(1/6\).  This can
+also be seen directly: moving mass from a smaller non-extreme entry
+to a larger one cannot increase \(g(z_i)+g(z_j)\).  Since
+\[
+\frac16<\frac3{11}<\frac13,
+\]
+(31) gives
+\[
+\sum_{a=2}^8x_a
+\ge g\left(\frac16\right)
++g\left(\frac3{11}-\frac16\right)
+=\frac16+g\left(\frac7{66}\right).                    \tag{32}
+\]
+The second term in (32) is exactly \(\xi\): the equation
+\(\phi(\xi)=7/66\) is equivalent to the cubic in (1).  This proves
+(28).
+
+Finally
+\[
+\phi\left(\frac2{15}\right)
+=\frac{38}{375}<\frac7{66},
+\]
+so monotonicity gives \(\xi>2/15\) and hence
+\(\gamma_*>3/10\). \(\square\)
 
 ## 5. The improved one-site and global bounds
 
-For \(\sigma\ne0\), choose the completion in Lemma 4.2.  Equations
-(11) and (28) give
+For \(\sigma\ne0\), choose the completion in Lemmas 4.2--4.3.
+Equations (11) and (28) give
 \[
 \boxed{
 \sum_{a=1}^8r(B_a)^2
-\ge\frac72+p+\frac3{11}.}                             \tag{29}
+\ge\frac72+p+\gamma_*.}                               \tag{33}
 \]
 If \(\rho=I/3\), choose any unit \(F_1=n\) and then the completion of
-Lemma 4.2.  In that case \(B_a=F_a\) for every \(a\), and the extra
-bound \(r(F_1)^2\ge1/2>p=1/3\) proves (29) as well.
+Lemmas 4.2--4.3.  In that case \(B_a=F_a\) for every \(a\), and the
+extra bound \(r(F_1)^2\ge1/2>p=1/3\) proves (33) as well.
 
-Sum (4) over this basis.  Using (5), (7), and (29),
+Sum the residual inequality over this basis.  Using the one-site
+filter equations, the weighted identity, and (33),
 \[
 \begin{aligned}
 \operatorname{Tr}_{HS}{\cal G}
 &\le fp+\frac23(3-p)
- -(f-\tfrac23)\left(\frac72+p+\frac3{11}\right)\\
+ -(f-\tfrac23)\left(\frac72+p+\gamma_*\right)\\
 &=\boxed{
-\frac{13}{3}-\frac72f-\frac3{11}
-\left(f-\frac23\right).}
-\end{aligned}                                         \tag{30}
+\frac{13}{3}-\frac72f-\gamma_*
+\left(f-\frac23\right)}.
+\end{aligned}                                         \tag{34}
 \]
 All dependence on the one-site purity again cancels.
 
 The established common-origin identity for the three left sites is
 \[
 \sum_{i=1}^3\operatorname{Tr}_{HS}{\cal G}_i^L
-=\frac{16}{3}w_1+\frac{17}{3}f+w_3.                  \tag{31}
+=\frac{16}{3}w_1+\frac{17}{3}f+w_3.                  \tag{35}
 \]
-Summing (30) and comparing with (31) gives
+Summing (34) and comparing with this identity gives
 \[
 \frac{16}{3}w_1+\frac{17}{3}f+w_3
-\le13-\frac{21}{2}f-\frac9{11}\left(f-\frac23\right).
-\tag{32}
+\le13-\frac{21}{2}f-3\gamma_*
+\left(f-\frac23\right).                               \tag{36}
 \]
-Multiplication by \(66\) and collection of terms gives exactly
+Multiplication by six and collection of terms gives exactly
 \[
-352w_1+1121f+66w_3\le894,
+\boxed{
+32w_1+(97+18\gamma_*)f+6w_3
+\le78+12\gamma_*,}
 \]
-which is (1).  Since \(w_1,w_3\ge0\), (2) follows.  The right-site
-identities give the same scalar inequality.
+which is (2).  Since \(w_1,w_3\ge0\), the first inequality in (2a)
+follows.  The displayed upper bound is strictly decreasing as a
+function of \(\gamma_*\), and \(\gamma_*>3/10\); hence it is strictly
+less than \(51/64\).  Substituting the weaker
+\(\gamma_*\ge3/10\) and clearing denominators gives (2b).  The
+right-site identities give the same scalar inequality.
 
 ## 6. Exact audit of the elementary constants
 
 The elementary bound (12) can be attained by one particular adapted
-basis, even though another completion has the cubic improvement
-(28).  Take
+basis, even though another completion has the cubic improvement of
+Lemma 4.3.  Take
 \[
 \rho_*=\operatorname{diag}\left(\frac12,\frac14,\frac14\right),
 \qquad p_*=\frac38,
@@ -376,11 +448,13 @@ to do better.  Lemma 4.2 is precisely the missing optimization.
 
 ## 7. Remaining gap
 
-The cubic frame average lowers the critical ceiling from
+The cubic frame average and exact spectral conversion lower the
+critical ceiling from
 \[
 \frac{78}{97}=0.804123\ldots
 \quad\text{to}\quad
-\frac{894}{1121}=0.797502\ldots,
+\frac{78+12\gamma_*}{97+18\gamma_*}
+=0.7968114804\ldots,
 \]
 but still does not exclude \(f>2/3\).
 
@@ -388,8 +462,8 @@ Possible continuations of this route are now sharply separated:
 
 * determine the exact minimum, over \(n\in V\), of the maximum cubic
   mass \(\sum q(F_a)^2\) over orthonormal bases of \(n^\perp\);
-* replace the two relaxations in (14), (17) by the exact nonlinear
-  relation (16);
+* improve the guaranteed frame mass \(3/11\), which is only a Haar
+  average lower bound for the best completion;
 * retain correlations among the three site frames, or between the
   left and right site frames, induced by the common rank-two \(C\);
 * prove that full-support rank-two realizability forces positive
