@@ -3753,3 +3753,51 @@ All timestamps use America/Los_Angeles.
   fixed-pairing theorem, it substantially narrows the product-string
   square-zero falsifier, but does not address entangled quadrature
   eigenvectors.
+
+## 2026-07-29 14:31 PDT — Pointwise common-derivation filter inequality
+
+- Replaced the exhausted scalar trace route by an exact pointwise
+  coupling of the left and right residual maps.  For every local
+  \(A\), with weighted centerings \(B_L,B_R\),
+  \[
+  \begin{aligned}
+  &\|[A_i,D]\|_2^2-f|\ell(A)-r(A)|^2\\
+  &\quad+2(f-\tfrac23)
+    \bigl(r(B_L)^2+r(B_R)^2\bigr)\\
+  &\le\frac43\bigl(
+    {\cal N}_L(B_L,B_L)+{\cal N}_R(B_R,B_R)\bigr).
+  \end{aligned}
+  \]
+  An exact SOS identity shows that its slack is the sum of the two
+  filter slacks and
+  \(\|T_{0,L}(A)+T_{0,R}(A)\|_2^2\).
+- Proved the sharper square-root form obtained before the
+  parallelogram relaxation.  On the common-centered hyperplane it
+  specializes to
+  \[
+  \|[A_i,D]\|_2^2+4(f-\tfrac23)r(A)^2
+  \le\frac43\operatorname{Tr}
+  \bigl(A^\dagger A(\rho_i^L+\rho_i^R)\bigr).
+  \]
+- Computed the complete \(9\times9\) commutator Gram superoperator:
+  \[
+  {\mathscr C}_i^\dagger{\mathscr C}_i(A)
+  =A R_L+R_RA-\Phi_D(A)-\Psi_D(A),
+  \]
+  and
+  \[
+  (T_{0,L}-T_{0,R})^\dagger(T_{0,L}-T_{0,R})
+  ={\mathscr C}_i^\dagger{\mathscr C}_i
+   -f|\rho_i^L-\rho_i^R\rangle\!\rangle
+    \langle\!\langle\rho_i^L-\rho_i^R|.
+  \]
+- Recorded the exact Leibniz, same-site curvature, and cross-site
+  integrability identities obeyed by the three derivations
+  \(A\mapsto[A_i,D]\).  These are precisely the common-operator
+  polynomial constraints omitted by the earlier norm-only formal
+  six-map model.
+- This is a new necessary matrix-valued restriction, not yet an
+  exclusion of \(f>2/3\).
+- Exact note and checker:
+  `notes/agent_n3_common_derivation_filter_inequality.md`,
+  `verification/verify_n3_common_derivation_filter_inequality.py`.
