@@ -4476,12 +4476,15 @@ All timestamps use America/Los_Angeles.
   =42957957151313>0.
   \]
   Hence \({\cal J}(C)+s_1s_2/2<0\) exactly.
-- This is not a three-copy Werner counterexample.  Discovery-only
-  evaluation after orthonormalizing the two code planes gives
-  substantial positive triple-skew compensation and a positive full
-  endpoint margin.  The exact result rules out proving the endpoint
-  by imposing independent \(2/9\) budgets on the two- and three-skew
-  features.
+- This is not a three-copy Werner counterexample.  The same exact
+  contraction gives
+  \[
+  \operatorname{Tr}C=-6525+6981i,\qquad
+  8Q_3(C)=617243800,
+  \]
+  so \(Q_3(C)=77155475>0\).  The result rules out proving the
+  endpoint by imposing independent \(2/9\) budgets on the two- and
+  three-skew features.
 - Exact note and dependency-free checker:
   `notes/agent_n3_q2_concurrence_exterior_reduction.md` and
   `verification/verify_n3_q2_concurrence_exterior_reduction.py`.

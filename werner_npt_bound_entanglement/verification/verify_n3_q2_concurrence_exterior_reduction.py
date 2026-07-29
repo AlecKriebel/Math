@@ -198,7 +198,10 @@ pair_mass = sum(
     gmatrix_norm(gpartial_trace(CG, pair))
     for pair in ((0, 1), (0, 2), (1, 2))
 )
+full_trace = gpartial_trace(CG, (0, 1, 2))[0][0]
+full_trace_norm = gnorm(full_trace)
 four_J = 3 * N - 2 * single_mass + pair_mass
+eight_Q3 = 8 * N - 4 * single_mass + 2 * pair_mass - full_trace_norm
 
 
 def gram_determinant(z):
@@ -218,6 +221,10 @@ assert (N, single_mass, pair_mass) == (369939292, 842955888, 560431501)
 assert four_J == -15662399
 assert (det_x, det_y) == (7849591, 6444692)
 assert exterior_square == 50588196320972
+assert full_trace == (-6525, 6981)
+assert full_trace_norm == 91309986
+assert eight_Q3 == 617243800
+assert eight_Q3 // 8 == 77155475 > 0
 
 # J=four_J/4 is negative, and |J| exceeds sqrt(exterior_square)/2.
 # This is checked without radicals.

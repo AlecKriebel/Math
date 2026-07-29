@@ -304,6 +304,32 @@ Equations (15)--(17) prove exactly that
  {\cal J}(C)+\frac12s_1(C)s_2(C)<0.
 \]
 
+The same Gaussian-integer certificate also verifies directly that
+this is not a full three-copy endpoint witness.  Namely,
+\[
+ \operatorname{Tr}C=-6525+6981i,\qquad
+ |\operatorname{Tr}C|^2=91309986,
+\]
+and substitution in the full endpoint form gives
+\[
+\begin{aligned}
+ 8Q_3(C)
+ &=
+ 8\|C\|_2^2
+ -4\sum_i\|\operatorname{Tr}_iC\|_2^2\\
+ &\quad
+ +2\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2
+ -|\operatorname{Tr}C|^2\\
+ &=617243800.
+\end{aligned}
+\]
+Thus
+\[
+ \boxed{\qquad Q_3(C)=77155475>0.\qquad}
+\]
+The counterexample invalidates only the separated coherent
+two-skew budget.
+
 Normalize the determinant-one filtered companion by
 \(\sqrt{s_1s_2}\).  The filter formula (7)--(10) then gives an exact
 lower bound on the physical coherent two-skew concurrence:
