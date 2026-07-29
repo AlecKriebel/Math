@@ -2980,6 +2980,65 @@ All timestamps use America/Los_Angeles.
   and
   `verification/data/n3_isotropic_local_stationary.json`.
 
+## 2026-07-29 — Isotropic same-code target reduced to one Plücker norm and one Schmidt-number threshold
+
+- For an isotropic one-site block Gram
+  \[
+  \beta=A|\operatorname{vec}I_3\rangle
+  \langle\operatorname{vec}I_3|+BI_9,
+  \]
+  defined the invariant contractions
+  \[
+  T=\operatorname{Tr}\beta=\sum_{a,p}Q_2(C_{ap}),\qquad
+  S=\langle\operatorname{vec}I,\beta\operatorname{vec}I\rangle
+  =Q_2(\operatorname{Tr}_iC).
+  \]
+  Exact inversion gives
+  \[
+  A=\frac{3S-T}{24},\quad B=\frac{3T-S}{24},\quad
+  5B-A=\frac{2T-S}{3}.
+  \]
+- For a thin factorization \(C=XY^\dagger\), proved
+  \[
+  \beta^{\Gamma}=G_+-G_-,
+  \]
+  where \(G_+\) is the positive Gram of the three logical
+  symmetric-square companions and \(G_-\) is the positive Gram of the
+  unique mixed logical bivector
+  \(w=(x_0\otimes y_1-x_1\otimes y_0)/\sqrt2\).
+- If \(m_{\sigma,\tau}=\operatorname{Tr}(P_\sigma^A G_\tau)\), then
+  \[
+  3(5B-A)
+  =m_{+,+}+3m_{-,+}-m_{+,-}-3m_{-,-}.
+  \]
+  Thus physical isotropic positivity is exactly one weighted
+  symmetric-square-versus-exterior domination.  The exterior entries
+  retain the common Plücker factorization
+  \[
+  w_{\alpha\beta}w_{\gamma\delta}
+  -w_{\alpha\delta}w_{\gamma\beta}
+  =(x_0\wedge x_1)_{\alpha\gamma}
+   (y_0\wedge y_1)_{\beta\delta}.
+  \]
+- Proved a second exact equivalence: for \(A,B\geq0\), the isotropic
+  operator \(BI+A|\operatorname{vec}I\rangle
+  \langle\operatorname{vec}I|\) has Schmidt number at most two if and
+  only if \(A\leq5B\).  The boundary decomposition is
+  \[
+  I+5|\operatorname{vec}I\rangle\langle\operatorname{vec}I|
+  =12\,\mathbb E_P
+  |\operatorname{vec}P\rangle\langle\operatorname{vec}P|,
+  \]
+  over rank-two qutrit projections \(P\).
+- Therefore the remaining isotropic same-code lemma can be phrased
+  either as the weighted Plücker inequality or as proving that a
+  positive physically realizable isotropic block Gram has Schmidt
+  number at most two.  This is an exact smaller target, not yet its
+  proof.
+- Exact note and dependency-free rational checker:
+  `notes/agent_n3_isotropic_plucker_reduction.md` and
+  `verification/verify_n3_isotropic_plucker_reduction.py`.
+
 ## 2026-07-29 — Exact obstruction to erasing the pair-cycle phase
 
 - Constructed an exact algebraic two-dimensional code and explicit
