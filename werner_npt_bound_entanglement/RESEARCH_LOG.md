@@ -2006,3 +2006,50 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_critical_boundary.md`.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_critical_boundary.py`.
+
+## 2026-07-29 — Exact audit of the cut-projection bridge
+
+- The rank-two qutrit projection inequality
+  \[
+  P\preceq\rho_A\otimes I+I\otimes\rho_B
+  \]
+  does not extend to \(3\times m\).  An exact \(3\times4\)
+  counterexample has test-vector Schmidt weights
+  \((1/2,1/4,1/4)\); the violating rank-two plane is spanned by the
+  positive diagonal-block eigenvector and the unused-column vector
+  \(|3,4\rangle\).  Its exact violation is
+  \((\sqrt5-2)/4\).
+- The sharp dimension-free replacement for a rank-two projection on
+  \(\mathbb C^3\otimes\mathbb C^m\) is
+  \[
+  P\preceq\frac43
+  (\rho_A\otimes I+I\otimes\rho_B).
+  \]
+  The coefficient \(4/3\) is optimal for \(m\ge4\).  Sharpness follows
+  from the exact threshold determinant
+  \[
+  \det(H_c-c\varepsilon I)
+  =c\varepsilon(3c-4+3\varepsilon).
+  \]
+- Even formally granting coefficient one on every cut does not close
+  the pair-sector Ky--Fan estimate.  For the sharp operator
+  \(D=E_{01}\otimes E_{01}\otimes I_3\), each of the three right-plane
+  marginal majorants has trace pairing \(8\) with \(D^\dagger D\).
+  Their sum is \(24=8\operatorname{Tr}(D^\dagger D)\), not at most
+  \(2\operatorname{Tr}(D^\dagger D)\).  The left plane gives the same
+  obstruction.
+- The pair-sector logical Gram also admits the exact qubit spin-flip
+  reduction
+  \[
+  (mI+K_{\rm f})^{\Gamma_2}
+  =(mI+A)\otimes I-\widetilde K,\qquad m=2/9.
+  \]
+  On the sharp code, both the raw Gram and its feature part are
+  full-rank and non-idempotent, excluding a direct identification
+  with the rank-two projection in the qutrit theorem.
+- Exact notes:
+  `notes/agent_n3_cut_projection_extension_obstruction.md` and
+  `notes/agent_n3_pair_qubit_reduction_bridge.md`.
+  Exact checkers:
+  `verification/verify_n3_cut_projection_extension_obstruction.py` and
+  `verification/verify_n3_pair_qubit_reduction_bridge.py`.
