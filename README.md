@@ -179,23 +179,16 @@ order-12 frontier and now excluded the complete order-13 parameter-three
 slice; any order-13 counterexample must have common parameter four or five.
 The campaign is prioritizing a universal minimum-counterexample proof before
 proceeding to order 14.  The current
-proof lane reduces no-full-list projection compatibility exactly to 2-SAT
-and proves that its minimal mixed-path obstruction, if realized under
-domination equality, forces an external clique of induced hub-free
-complement-\(C_5\) closers.  The same exact pattern now requires at least
-twelve vertices and five separated external witnesses.  The complementary
-full-response-list branch is empty at order 13, and a second exact
-certificate closes the complementary no-full branch there.  Universally,
-failed physical connector incidence now reduces to a virtual-rainbow cap;
-exact third-color caps are the only locally unit-free gate, while global
-chains of those gates remain open.  A new direct attack rules out every
-shared-port odd return carried by one omitted-color projection, at every
-subdivision length.  A second parity theorem rules out every separated
-two-gate odd bigon through two free projections, leaving odd cycles through
-at least three tight gates as the exact holonomy target.  Independently, the
-finite order-13 contradiction is already forced at anchored radius two, but
-exact controls show that all three anchor slices are jointly necessary.
-These are finite and structural advances, not a resolution.
+proof lane has closed the exact-two-list branch at parameter three and
+reduced the residual singleton/full-list cases to explicit multi-step
+gates.  In the full-list lane, trapped rank-zero escapes force positive-rank
+completion fans; a rank-one fan exit is now exactly an attacked-anchor
+restoration, while higher-rank exits and cross-color coupling remain open.
+In the independent exchange lane, every supported one-sided edge forces a
+polarized bow tie of retained and omitted repair fans; the remaining QQ1
+obstruction is global coupling among those objects.  These are
+size-independent structural advances, not a complete parameter-three
+theorem or a resolution of the universal conjecture.
 The
 [public workstream](https://aleckriebel.github.io/Math/research/gamma-theta-conjecture/)
 is a dated snapshot; `STATE.md` and `CLAIMS.md` in the source package are the

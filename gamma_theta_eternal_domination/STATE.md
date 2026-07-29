@@ -1,5 +1,69 @@
 # Campaign State
 
+## Checkpoint 115 — 2026-07-28 17:55 PDT
+
+- Campaign day: 4 of 27.  The universal conjecture remains unresolved and
+  no certified counterexample has been found.  The certified finite
+  frontier is unchanged: all orders through 12 and the \(k=3\) slice at
+  order 13.  Repository base before this checkpoint:
+  `d6a49c4960ad363f9de37c4c33b509f8a1fffbc5`.
+- Best-guess completion of the 27-day publication-ready campaign:
+  **87%**.  Best-guess completion toward a complete parameter-three
+  theorem: **63%**.  Best-guess completion toward an actual universal
+  resolution: **21%**.  These are workload estimates, not probabilities.
+- **The rank-one completion exit is exactly anchor restoration
+  (C-176).**  The nominal exit through the secondary anchor is impossible:
+  its retained escape endpoint necessarily survives round one.  The only
+  deleting attack is at the other ban anchor, with a unique retained
+  response to a rank-zero state.  Its next deletion is forced back at the
+  first anchor, giving exactly the accepted C-165 attacked-anchor
+  restoration.  The alternate is either banned and accompanied by a
+  reciprocal target edge, or unbanned and explicitly nondominating.
+- **A supported asymmetric edge forces a polarized bow tie (C-177).**
+  For an arbitrary eternal triple-family, every common nonneighbor of a
+  supported one-sided active edge carries two nonempty, completely joined
+  clique sides.  One spoke family is reciprocal with omitted central
+  fans; the other is reciprocal with retained central fans; every cross
+  edge also has a retained fan.  In canonical QQ1 this normal form occurs
+  at every \(u,x\)-witness and couples exactly to every C-167 hot bridge.
+- Independent hostile reviews accepted both results unconditionally.
+  The C-176 pass rests on a complete symbolic proof audit, supplemented
+  by 162,122 generic ban instances and 83,600 rank-one deleting
+  witnesses; the bounded census contains no complete six-role C-171 row
+  and is not represented as direct theorem coverage.  The independent
+  C-177 census exhausts 1,096 labeled graphs through order five, 197
+  arbitrary eternal families, and all 120 applicable asymmetric
+  orientations.
+
+### Approach registry
+
+| Route | Status | Exact gate/obstruction |
+|---|---|---|
+| Dynamic equality reciprocity | active-primary, C-145/C-158/C-161/C-162/C-166/C-167/C-169/C-172/C-174/C-177 | Canonical QQ1 now carries polarized bow ties at every supported asymmetric-edge witness; couple them across distinct \(z,d,w\), or force reverse activity |
+| Full-list future-safe color | active-primary, C-149/C-157/C-165/C-168/C-170/C-171/C-173/C-175/C-176 | Rank-one fan exits are exactly attacked-anchor restorations.  Couple those rows across all three source colors and separately control minimum fan rank at least two |
+| Global complement holonomy | static version exhausted/refuted, C-164 | Any replacement must use literal eternal-family survival; connected physical links and pure flag topology are insufficient |
+| Family-only mixed \(P_4\) | active-secondary, C-151/C-152/C-155 | Close the fresh multi-hit cells; order-12--22 solver data remains observed |
+| Universal parameter lifting | active-long-range | Still requires the dynamic palette-gluing theorem after complete \(k=3\) |
+| Order-14 finite search | deliberately deferred | Resume only when the current proof-first restoration, higher-rank, and bow-tie coupling iterations reach their explicit gates |
+
+### Running jobs and resources
+
+- Three light proof tasks are active: QQ1 bow-tie coupling, cross-color
+  restoration coupling, and the higher-rank completion-fan branch.
+  No solver or memory-heavy enumeration is running.
+- Host: Apple M1 Pro, 10 CPU cores, 16 GiB physical RAM, with
+  approximately 13 GiB disk space free.  The machine remains responsive.
+
+### Next three highest-value actions
+
+1. Couple C-176 attacked-anchor restorations across the three source
+   colors without making an unproved cross-ban rank comparison.
+2. Determine whether a minimum completion-fan rank of at least two
+   forces a lower-rank fan return or a genuinely closed surviving cycle.
+3. Couple the C-177 polarized bow ties across distinct QQ1 witnesses and
+   hot bridges; resume bounded order-14 work only if these universal
+   mechanisms reach their declared stopping gates.
+
 ## Checkpoint 114 — 2026-07-28 17:42 PDT
 
 - Campaign day: 4 of 27.  The universal conjecture remains unresolved and

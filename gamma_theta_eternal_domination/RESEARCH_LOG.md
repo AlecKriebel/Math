@@ -4026,3 +4026,46 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
 - Best-guess completion: **86%** for the 27-day campaign deliverable,
   **60%** toward a complete parameter-three theorem, and **20%** toward a
   universal resolution.  These are workload estimates, not probabilities.
+
+## 2026-07-28 17:55 PDT — rank-one restoration and asymmetric bow ties accepted
+
+- Promoted C-176 after an unconditional hostile proof review.  A
+  minimum-rank second completion-fan state of rank one cannot delete
+  through the secondary ban anchor.  It exits uniquely through the other
+  anchor to rank zero, whose next deleting attack is forced back at the
+  first anchor.  This is exactly the C-165 attacked-anchor restoration:
+  its alternate is banned with a reciprocal \(xy\) hinge when the fan
+  vertex lies in \(B\), and otherwise is explicitly nondominating.
+- The C-176 reviewer checked every symbolic step, physical/retained
+  distinction, collision, and palette source.  The independent bounded
+  audit covered 162,122 generic ban instances, 42,724 rank-one
+  distance-two states, 83,600 deletion witnesses, 111,772 retained
+  tight-shell responses, and 657,436 survival barriers.  It found no
+  complete six-role C-171 row; the review records this explicitly and
+  rests the universal verdict on the complete symbolic audit rather than
+  misrepresenting bounded sampling as theorem coverage.
+- Promoted C-177 after a separate unconditional hostile review.  Every
+  supported one-sided active edge in an arbitrary eternal triple-family
+  forces a polarized bow tie at each common nonneighbor: two nonempty
+  disjoint clique sides with complete cross join, omitted central fans on
+  one reciprocal spoke family, and retained central fans on the other
+  reciprocal spoke family and every cross edge.
+- In canonical QQ1 the asymmetric edge \(ux\) is supported, so the bow
+  tie occurs at every \(z\in W_{ux}\).  Each C-167 hot bridge either
+  enters a polarized side or supports its own complete retained fan.
+  This is a size-independent coupling normal form, but it does not yet
+  force \(x\triangleright u\) or eliminate QQ1.
+- The C-177 clean-room census exhausts all 1,096 labeled graphs through
+  order five, all 197 applicable arbitrary eternal families, and all 120
+  supported asymmetric orientations/cells.  It also reconstructs the
+  `D]?` equality control and the exact order-18 gamma-two boundary, with
+  no inference from family omission to graph nonadjacency.
+- The next proof portfolio has three parallel gates: couple the
+  attacked-anchor restorations across source-color bans, control the
+  minimum completion-fan rank at least two, and couple the QQ1 polarized
+  bow ties across distinct witnesses and hot layers.  Order 14 remains
+  deferred while these size-independent mechanisms continue to produce
+  structure.
+- Best-guess completion: **87%** for the 27-day campaign deliverable,
+  **63%** toward a complete parameter-three theorem, and **21%** toward a
+  universal resolution.  These are workload estimates, not probabilities.
