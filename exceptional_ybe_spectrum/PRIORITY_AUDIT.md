@@ -59,6 +59,55 @@ common-sector divisibility statement in two-projection algebras, subfactor
 commuting squares, biunitary connections, and controlled Yang--Baxter
 operators.
 
+### Low operator-Schmidt obstruction
+
+Cohen--Yu (arXiv:1211.5201, Theorem 6) and Chen--Yu
+(arXiv:1407.5464, Theorem 11) are prior art for the local-equivalence-to-
+controlled statements in operator-Schmidt ranks two and three. Their
+notion permits four independent local pre/post unitaries and therefore does
+not by itself preserve the same-site Yang--Baxter equation. Those theorems
+must be cited as essential inputs, not presented as new.
+
+The new internal step is the Hermitian twisted-control graph argument:
+one valid sitewise conjugacy changes the four-unitary form to
+\(\sum_iE_iK\otimes V_i\); a nonbipartite support component gives a true
+rank-one leg symmetry, and an all-bipartite support is excluded by one
+off-diagonal shifted-cubic coefficient. Combined with the independently
+proved C17 arithmetic, this completes the exceptional spectrum within
+operator-Schmidt rank at most three.
+
+A targeted arXiv search on 2026-07-29 for Schmidt-rank-three,
+controlled-unitary, braid, and Yang--Baxter combinations returned the two
+Chen--Yu controlled-unitary papers and later controlled-gate
+characterizations, but no source stating this Hermitian-cubic conversion or
+the exceptional \(4\mid d\) consequence. Priority status is therefore:
+**apparently new theorem and proof combination; specialist/literature audit
+incomplete**. The exact claim should remain scoped to
+\(\operatorname{OSR}(H)\le3\); no general controlled-equivalence assertion
+is made in higher Schmidt rank. No external communication occurred.
+
+### Operator-Schmidt rank four and Clifford frames
+
+Rank four is already known to contain noncontrolled bipartite unitaries;
+the two-qubit swap gives the elementary exact example.  Accordingly, the
+general Chen--Yu controlled-unitary theorem genuinely stops at rank three,
+and four-local pre/post equivalence cannot be promoted to same-site
+Yang--Baxter conjugacy. Müller-Hermes--Nechita
+(arXiv:1612.07616) show that essentially every operator-Schmidt rank occurs
+in higher local dimensions, but do not give a controlled or
+block-controlled rank-four classification.
+
+The C61 statement is narrower and algebraic: four traceless Hermitian
+involutions on each leg whose four product terms anticommute pairwise
+force complementary binary commutation graphs, and their representation
+divisibility forces \(4\mid d\).  A targeted search found no prior source
+stating this four-vertex complement/odd-multiplicity trace obstruction in
+the exceptional Yang--Baxter setting.  Priority status:
+**apparently new conditional proof mechanism; broader Clifford and
+projective-representation literature audit incomplete**.  No claim is made
+that every OSR-four unitary, Hermitian involution, or exceptional solution
+has such a Clifford frame. No external communication occurred.
+
 ### Canonical-channel and cubic countermodels
 
 The exact \(d=6\) Weyl channel and the non-involutive cubic point \(H_0\)

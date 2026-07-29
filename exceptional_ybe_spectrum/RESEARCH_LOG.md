@@ -798,3 +798,93 @@
   C59/E46 and added an independent fast exact verifier and retained
   output. The logical conclusion is explicitly a reduction, not a new
   obstruction theorem.
+
+## 2026-07-29 05:41 PDT — Bell-diagonal \(d=6\) branch excluded uniformly
+
+- Derived a non-enumerative divisibility theorem for arbitrary balanced
+  reflections diagonal in a primitive generalized Bell basis.
+  The shifted product \(U=H_{12}H_{23}\) commutes with a common
+  three-site Weyl \(M_d\)-action, so each spectral multiplicity of \(U\)
+  is divisible by \(d\).
+- Combined this with the exact cubic polynomial, conjugacy
+  \(U\sim U^{-1}\), and the zero Bell marginals. The forced
+  multiplicities are
+  \((d^3/4,3d^3/8,3d^3/8)\); hence \(8\mid3d^2\) and \(4\mid d\).
+  At \(d=6\), the contradiction is \(6\nmid81\).
+- Independently built the \(d=6\) Bell basis, a balanced exact
+  reflection, both two-site stabilizers, and the common three-site Weyl
+  algebra over \(\mathbb Q(\sqrt{-3})\). The retained verifier is
+  byte-identical on replay.
+- Exhausted all \(12{,}870\) balanced sign tables in the fixed \(d=4\)
+  Bell basis over the Gaussian integers. A direct \(64\times64\) matrix
+  comparison verifies complete coefficient coverage; the exact
+  survivor count is zero.
+- Preserved the preliminary CP-SAT coefficient expansion and its two
+  `UNKNOWN` bounded runs as discovery provenance only. The theorem does
+  not depend on solver output.
+- Added C60/E47, a human proof, two exact verifiers, retained outputs,
+  commands, dependency versions, runtimes, and hashes. The scope is the
+  Weyl--Bell-covariant symmetry class; arbitrary \(d=6\) remains open.
+
+## 2026-07-29 05:40 PDT — Low operator-Schmidt spectrum completed
+
+- Combined Cohen--Yu Theorem 6 and Chen--Yu Theorem 11 with a new
+  Hermitian twisted-control graph argument. The cited theorems use four
+  independent local pre/post unitaries; they were not treated as
+  Yang--Baxter equivalences.
+- Starting from
+  \[
+  H=(Q\otimes S)\left(\sum_iE_i\otimes U_i\right)(R\otimes T),
+  \]
+  used only the valid same-site conjugacy \(Q^*\otimes Q^*\) to obtain
+  \[
+  \widetilde H=\sum_iE_i(RQ)\otimes(Q^*SU_iTQ).
+  \]
+  Hermiticity makes the support graph of \(RQ\) undirected.
+- Proved that a nonbipartite component factors as \(A_C\otimes W_C\);
+  the rank-one projection onto any eigenvector of the normal \(A_C\)
+  lies in the true first-leg commutant of the full operator, even when
+  target unitaries from other components do not commute.
+- Proved that an all-bipartite support gives a fixed-point-free form
+  \(H=\sum_x|\bar x\rangle\langle x|\otimes U_x\). The
+  \(\langle\bar x|\,\cdot\,|x\rangle\) coefficient of the exceptional
+  cubic would equate a unitary with \(1/3\) times a unitary, a norm
+  contradiction.
+- C17 therefore forces \(4\mid d\) for every exceptional solution of
+  operator-Schmidt rank at most three. The published rank-three
+  \(d=4\) witness and identity stabilization prove the converse in all
+  multiples of four. Any hypothetical \(d=4m+2\) witness must have
+  operator-Schmidt rank at least four.
+- Replayed the four-unitary normalization, a mixed-component
+  noncommuting-target stress test, all fixed-point-free coefficient
+  orientations in a fully standard \(d=6\) limitation involution, and
+  both exact \(d=4\) rank-three calibration orbits. The limitation
+  involution has cubic residual squared norm \(512\).
+- Added C55/E42, a human proof, exact verifier/output, dependency and
+  priority audits, and corrected the formerly stale Chen--Yu literature
+  note. No external communication occurred.
+
+## 2026-07-29 05:48 PDT — Rank-four Clifford-frame parity theorem
+
+- Audited the first Schmidt rank beyond C55. General controlled structure
+  fails sharply at rank four: the two-qubit swap is Hermitian, involutive,
+  OSR four, noncontrolled, and has scalar leg commutants. Four-local
+  pre/post equivalence was not confused with same-site Yang--Baxter
+  conjugacy.
+- Proved that every four-product Clifford frame with traceless Hermitian
+  involutory local factors has \(4\mid d\). The local commute/anticommute
+  graphs are complementary. In \(d=2s\), \(s\) odd, Clifford
+  representation divisibility makes both graph ranks two; a four-vertex
+  complement lemma supplies an isolated generator, whose trace cannot
+  vanish because it is \(I_2\otimes L\) on an odd multiplicity space.
+- Constructed an exact balanced \(d=4\) OSR-four Hermitian involution with
+  both leg commutants scalar. Its exceptional cubic residual has 38 Pauli
+  words and squared norm \(1376/9\). This proves that the two-site
+  hypotheses do not themselves supply a true one-leg control projection or
+  the cubic; no four-local-equivalence claim is used.
+- Added C61/E48, the human proof, a standard-library exact verifier,
+  byte-identical retained output, graph exhaustion, provenance, hashes,
+  literature/priority caveats, and dependency audit.
+- Scope remains explicit: arbitrary OSR-four exceptional solutions need
+  not possess a product Clifford frame and remain unresolved. No external
+  communication occurred.

@@ -83,6 +83,49 @@ even-rank projections. A global spectrum theorem now requires either:
    commutants; or
 3. constructing a noncontrolled \(d\equiv2\pmod4\) solution.
 
+C55 closes the complete low-operator-Schmidt branch:
+
+```text
+OSR(H) <= 3
+        |
+        +--> rank 1 immediate;
+        |    Cohen--Yu Theorem 6 in rank 2;
+        |    Chen--Yu Theorem 11 in rank 3
+        |
+        +--> four-unitary controlled equivalence
+                |
+                +--> one valid same-site conjugacy:
+                |       H = sum_i E_i K tensor V_i
+                |
+                +--> Hermiticity makes support(K) undirected
+                        |
+                        +--> nonbipartite component
+                        |       gives A_C tensor W_C
+                        |               |
+                        |               +--> true rank-one control projection
+                        |
+                        +--> all components bipartite
+                                |
+                                +--> fixed-point-free twisted control
+                                |       H=sum_x |bar x><x| tensor U_x
+                                |
+                                +-X off-diagonal cubic coefficient says
+                                    unitary = (1/3) unitary
+        |
+        +--> true rank-one leg projection
+                |
+                +--> C17: 8 | d^2
+                        |
+                        +--> 4 | d
+```
+
+The published rank-three \(d=4\) witness and identity stabilization give
+the converse in every \(d\in4\mathbb N\). Thus the low-Schmidt dimension
+spectrum is complete, and every hypothetical unresolved solution must have
+\(\operatorname{OSR}(H)\ge4\). The four-unitary controlled equivalence is
+not itself treated as a Yang--Baxter equivalence; the same-site conjugacy is
+the essential locality-preserving step.
+
 The current assumption audit further narrows what can supply item 1:
 
 ```text
@@ -779,6 +822,81 @@ metric and the complete operator-valued Theorem 2.7 architecture for
 orthogonal color summands.  It does not cover arbitrary colored mixed
 blocks outside that triangular form or a nonorthogonal algebraic color
 splitting.
+
+The Weyl--Bell-diagonal branch has a separate short obstruction:
+
+```text
+H diagonal in a primitive generalized Bell basis
+        |
+        +--> [H, X tensor X] = [H, Z^{-1} tensor Z] = 0
+        |
+        +--> balanced Bell signs give both partial traces of H equal zero
+        |
+        +--> U=H_12 H_23 commutes with
+        |       X_1 X_2 X_3 and Z_1^{-1} Z_2 Z_3^{-1}
+        |               |
+        |               +--> primitive Weyl algebra M_d on three sites
+        |                       |
+        |                       +--> d divides every U-eigenvalue multiplicity
+        |
+exceptional cubic
+        |
+        +--> (U-I)(U^2+(2/3)U+I)=0
+        |
+        +--> U is similar to U^{-1}, and Tr(U)=0
+                |
+                +--> multiplicities (d^3/4, 3d^3/8, 3d^3/8)
+                        |
+                        +--> d divides 3d^3/8
+                                |
+                                +-X 8 divides 3d^2, hence 4 divides d
+```
+
+C60 therefore excludes the complete balanced Bell-diagonal branch in
+every dimension \(d\equiv2\pmod4\), including all rank-eighteen choices
+at \(d=6\).  A separate exact Gaussian-integer enumeration finds zero
+solutions among all \(12{,}870\) balanced fixed-basis sign tables at
+\(d=4\).  Neither statement equips an arbitrary exceptional solution
+with Bell stabilizers, so the unrestricted spectrum remains open.
+
+The rank-four Clifford-frame branch has a separate parity obstruction:
+
+```text
+H=sum_{j=1}^4 c_j A_j tensor B_j
+with traceless Hermitian involutory A_j,B_j
+and pairwise-anticommuting product terms
+        |
+        +--> each local pair commutes or anticommutes
+        |       and the two local commutation graphs G_A,G_B
+        |       are complementary
+        |
+d=2s with s odd
+        |
+        +--> Clifford representation divisibility gives
+        |       rank_F2(G_A), rank_F2(G_B) <= 2
+        |
+        +--> rank_F2(K_4)=4 forces both ranks equal 2
+                |
+                +--> four-vertex complement lemma:
+                |       one graph has an isolated vertex
+                |
+                +--> isolated generator commutes with an
+                        anticommuting pair
+                                |
+                                +--> generator = I_2 tensor L
+                                        with L an involution on C^s
+                                                |
+                                                +-X s odd forces
+                                                    Tr(L) != 0
+```
+
+C61 therefore proves \(4\mid d\) throughout this precisely defined
+four-product Clifford-reflection ansatz.  It does not classify arbitrary
+operator-Schmidt-rank-four unitaries: their local Schmidt factors need not
+be involutions and their product terms need not pairwise anticommute.
+The exact balanced \(d=4\) limitation reflection has OSR four and scalar
+leg commutants but cubic residual norm squared \(1376/9\), so the two-site
+conditions do not repair that missing implication.
 
 The distinct two-site flip branch reduces exactly as follows:
 

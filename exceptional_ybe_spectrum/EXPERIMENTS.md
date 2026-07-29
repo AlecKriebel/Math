@@ -1520,6 +1520,82 @@ reproducible; only its final exact witness is reproducible.
   - `results/s4_reversed_equivariant_no_go_exact.txt`:
     `cd925350f08cdfae630faee1d2c9b4608f5f94ab259c67633e346823d90c6db5`.
 
+## E42 — exact low-operator-Schmidt obstruction
+
+- Run: 2026-07-29 04:10--05:40 PDT.
+- Question:
+  whether arbitrary exceptional Hermitian involutions of low
+  operator-Schmidt rank force \(4\mid d\), without assuming that the
+  independent local pre/post unitaries in a controlled-equivalence theorem
+  preserve Yang--Baxter locality.
+- Primary inputs:
+  Cohen--Yu Theorem 6 proves that every bipartite Schmidt-rank-two unitary
+  is locally equivalent to a controlled unitary; Chen--Yu Theorem 11 proves
+  the same for Schmidt rank three. Their equivalence permits four
+  independent local unitaries and is not itself inserted into the cubic.
+- Exact structural theorem:
+  one valid same-site conjugacy converts
+  \[
+  (Q\otimes S)\left(\sum_iE_i\otimes U_i\right)(R\otimes T)
+  \]
+  to
+  \[
+  \sum_iE_i(RQ)\otimes(Q^*SU_iTQ).
+  \]
+  Hermiticity makes the support graph of \(RQ\) undirected. A
+  nonbipartite component is a product block and supplies a genuine
+  rank-one projection in the full control-leg commutant, even when its
+  target unitary does not commute with targets from the other components.
+  If every component is bipartite, the same operator has a
+  fixed-point-free form
+  \[
+  H=\sum_x|\bar x\rangle\langle x|\otimes U_x.
+  \]
+  Its \(\langle\bar x|\,\cdot\,|x\rangle\) cubic coefficient would force
+  \[
+  -H(U_x\otimes I)H=\frac13(U_x\otimes I),
+  \]
+  contradicting operator norms.
+- Arithmetic conclusion:
+  C17 applies to the true rank-one leg projection, so every exceptional
+  solution of operator-Schmidt rank at most three has \(4\mid d\).
+  Conversely the published \(d=4\) rank-three witness and identity
+  stabilization give rank-three solutions for every \(d\in4\mathbb N\).
+  Thus any unresolved \(d=4m+2\) witness must have operator-Schmidt rank
+  at least four.
+- Independent exact replay:
+  the verifier checks the four-unitary normalization, a mixed
+  nonbipartite/bipartite stress test with noncommuting target unitaries,
+  all six off-diagonal coefficient orientations in a balanced fully
+  standard \(d=6\) fixed-point-free limitation model, and both tensor
+  orientations of the published and C15 exact \(d=4\) rank-three
+  witnesses. The limitation model has exact cubic residual squared norm
+  \(512\). The published right coefficient algebra is verified as a
+  rank-one MASA, separately from its left \(M_2\)-factor commutant.
+- Scope:
+  the result does not claim that arbitrary higher-Schmidt-rank unitaries
+  are locally equivalent to controlled gates. It therefore narrows but
+  does not settle the unrestricted dimension spectrum.
+- Randomness:
+  none.
+- Parent commit:
+  `9a90756b`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`; exact replay wall time approximately \(9.2\) seconds.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_low_schmidt_control_obstruction.py`.
+- Raw output:
+  `results/low_schmidt_control_obstruction_exact.txt`.
+- SHA-256:
+  - `notes/low_schmidt_control_obstruction.md`:
+    `c17378bac6808907921148604e743f89641aa149ada47a6f9ec24d3c5c4d3f8d`;
+  - `verifiers/verify_low_schmidt_control_obstruction.py`:
+    `ff650548358bc07d49ff2e012d5aa45aba71503a77aea57ce16253d0464a083d`;
+  - `results/low_schmidt_control_obstruction_exact.txt`:
+    `03c44cc6cfd58bea9cbe7ba6ef5f5cd61019904a12f4b24fc24fe7f2d8f5010b`.
+
 ## E43 — exact determinant-transport and spatial-pairing parity audit
 
 - Run: 2026-07-29 05:17--05:19 PDT.
@@ -1692,3 +1768,153 @@ reproducible; only its final exact witness is reproducible.
     `72240c78ce7082ea202700ee139fa6f7bb11f636e01c1c09b2b56975447f0331`;
   - `results/majid_markl_gluing_no_go_exact.txt`:
     `513bc6b8f2c7e56efa28ddf9b7c42396c31fb491e6cd332978bfe506d07aa823`.
+
+## E47 — Weyl--Bell-diagonal divisibility and exact \(d=4\) exhaustion
+
+- Run: 2026-07-29 05:24--05:41 PDT.
+- Question:
+  whether a rank-\(18\) projection diagonal in the generalized Bell
+  basis of \(\mathbb Z_6^2\) can satisfy the exceptional cubic, and
+  whether the analogous \(d=4\) symmetry class contains a calibration
+  witness.
+- Exact reduction:
+  every Bell-diagonal \(H\) commutes with \(X\otimes X\) and
+  \(Z^{-1}\otimes Z\). Thus \(U=H_{12}H_{23}\) commutes with the
+  primitive three-site Weyl pair
+  \[
+  X_1X_2X_3,\qquad Z_1^{-1}Z_2Z_3^{-1}.
+  \]
+  Its generated algebra is \(M_d\), represented with multiplicity
+  \(d^2\), so every \(U\)-eigenvalue multiplicity is divisible by \(d\).
+  The cubic polynomial, inverse pairing, and exact zero Bell marginals
+  force the multiplicities
+  \[
+  \left(\frac{d^3}{4},\frac{3d^3}{8},\frac{3d^3}{8}\right).
+  \]
+  Divisibility of the latter by \(d\) gives \(8\mid3d^2\), hence
+  \(4\mid d\).
+- \(d=6\) conclusion:
+  the forced triple is \((54,81,81)\), contradicting
+  \(6\mid81\). This uniformly excludes every one of the
+  \(\binom{36}{18}\) balanced sign tables; no enumeration is used in
+  the proof.
+- \(d=4\) exact calibration:
+  all \(\binom{16}{8}=12{,}870\) balanced sign tables were evaluated
+  over the Gaussian integers after clearing the cubic denominator.
+  A direct \(64\times64\) tensor-matrix replay first checked every
+  reduced coefficient and the translation coverage. Exact survivor
+  count: zero.
+- Preliminary Boolean search:
+  before the multiplicity proof was recognized, the full \(d=6\)
+  coefficient system was expanded to \(2{,}460\) integer equations in
+  36 sign variables and 7,140 exact cubic-parity variables. The
+  equation digest is
+  `21ed429bd4af28337132be68bc9b520aa637e7ed5a47060a95cac7b9a07e2410`.
+  Deterministic 5-second and 120-second CP-SAT limits both returned
+  `UNKNOWN`; they are retained only as discovery provenance and are
+  not evidence for the theorem. One earlier terminal-transport dry run
+  did not retain its final stdout and is likewise not used.
+- Randomness:
+  no theorem computation uses randomness. The unused CP-SAT driver
+  fixed seed `20260729` and one search worker.
+- Parent commit:
+  `553574d7`.
+- Machine/dependencies:
+  Apple arm64, macOS 26.5.2 (25F84); Python 3.9.6; SymPy 1.14.0;
+  OR-Tools 9.14.6206.
+- Exact replays:
+  - `/Users/alec/Documents/Math/.venv/bin/python
+    verifiers/verify_weyl_bell_diagonal_divisibility.py`
+    (wall \(30.95\) seconds, peak RSS \(59{,}818{,}368\) bytes);
+  - `/Users/alec/Documents/Math/.venv/bin/python
+    verifiers/verify_d4_bell_diagonal_exhaustive.py`
+    (wall \(0.96\) seconds, peak RSS \(43{,}745{,}640\) bytes).
+- Raw outputs:
+  - `results/weyl_bell_diagonal_divisibility_exact.txt`;
+  - `results/d4_bell_diagonal_exhaustive_exact.txt`;
+  - `results/d6_bell_diagonal_cpsat_5s.json`;
+  - `results/d6_bell_diagonal_cpsat_120s.json`.
+- SHA-256:
+  - `notes/weyl_bell_diagonal_divisibility.md`:
+    `41dcd73aa12f1d7f2cc4e562ed52056c9b81832c742c52bb78266c0404cebdb1`;
+  - `verifiers/verify_weyl_bell_diagonal_divisibility.py`:
+    `f7c5051985c5539f343af434fc7c221b39b3f8b249acff090af502ed5ffc9312`;
+  - `results/weyl_bell_diagonal_divisibility_exact.txt`:
+    `44d89c894393b689084793cb362d2fa22540acb6a4cf000543f08594edc9911d`;
+  - `verifiers/verify_d4_bell_diagonal_exhaustive.py`:
+    `f5b87f68489c7d0b772dbfc9be638bf9499a717f4e9ac93052569fa419285a0c`;
+  - `results/d4_bell_diagonal_exhaustive_exact.txt`:
+    `9928c6ebfb4c576d22ee02fb570c1abcfcd4191ea1c998cffedeee6b65719c4d`;
+  - `scripts/search_d6_bell_diagonal_cpsat.py`:
+    `e22cc2c0c8a8540dde786137a940b95da7bf9576e5a8f32f6f5df9836a457a51`;
+  - `results/d6_bell_diagonal_cpsat_5s.json`:
+    `9565936c73b202c60c7cc9eb5c53963ec3aec14814609cac516e47b03c7eee9a`;
+  - `results/d6_bell_diagonal_cpsat_120s.json`:
+    `c993a5f49516e6a566fe2e1c85ad52242eb42168edf45d592d5652f23997a0a1`.
+
+## E48 — operator-Schmidt-rank-four Clifford-frame parity audit
+
+- Run: 2026-07-29 05:41--05:47 PDT.
+- Question:
+  whether the rank-three controlled-unitary mechanism extends to arbitrary
+  operator-Schmidt rank four, and whether a broad exact rank-four branch
+  nevertheless forces \(4\mid d\).
+- Literature/assumption audit:
+  - Chen--Yu's rank-three theorem uses four independent local input/output
+    unitaries and has no rank-four extension.
+  - The two-qubit swap is an exact Hermitian involutive OSR-four unitary
+    with scalar leg commutants, so rank four is the sharp failure point of
+    controlled structure.
+  - Neither local equivalence nor the swap was treated as a Yang--Baxter
+    equivalence or an exceptional witness.
+- Exact theorem:
+  for a four-product Clifford frame
+  \[
+  H=\sum_{j=1}^4c_jA_j\otimes B_j
+  \]
+  with traceless Hermitian involutory local factors and pairwise-
+  anticommuting product terms, the local binary commutation graphs are
+  complementary.  If \(d=2s\), \(s\) odd, Clifford representation
+  divisibility forces both graph ranks to be two.  The four-vertex
+  complement lemma gives an isolated generator on one leg.  It commutes
+  with an anticommuting pair, so it has form \(I_2\otimes L\); odd \(s\)
+  makes its trace nonzero.  Thus \(4\mid d\).
+- Independent exact graph replay:
+  all 64 four-vertex graphs were enumerated; all 20 rank-two/rank-two
+  complementary cases have an isolated vertex on at least one side.
+- Exact limitation calibration:
+  \[
+  H_\star=\frac12(XI\otimes XI+IX\otimes ZI+ZI\otimes XZ+XZ\otimes ZY)
+  \]
+  is a \(d=4\) Hermitian trace-zero involution with both partial traces
+  zero, OSR four, and scalar leg commutants.  Its exceptional cubic
+  residual contains 38 Pauli words and has squared Hilbert--Schmidt norm
+  \(1376/9\).  Hence the two-site hypotheses do not supply a nontrivial
+  true one-leg control projection or the cubic; no four-local-equivalence
+  claim about this calibration is used.
+- Scope:
+  C61 excludes only the precisely defined four-product Clifford-frame
+  branch.  An arbitrary OSR-four Schmidt decomposition need not have
+  involutory local factors or pairwise-anticommuting product terms.  The
+  unrestricted OSR-four exceptional branch remains open.
+- Randomness:
+  none.
+- Initial parent commit:
+  `553574d7`; the shared branch advanced independently during the run.
+- Machine/dependencies:
+  Apple arm64, macOS 26.5.2; Python 3.9.6.  The verifier uses only the
+  Python standard library; SymPy 1.14.0 was present but unused.
+- Exact replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_osr4_clifford_frame_parity.py`
+  (wall \(0.05\) seconds, maximum resident set size \(11{,}370{,}496\)
+  bytes).
+- Raw output:
+  `results/osr4_clifford_frame_parity_exact.txt` (byte-identical on replay).
+- SHA-256:
+  - `notes/osr4_clifford_frame_parity_audit.md`:
+    `53a320f62ec689c29dae3fec14a256f03451d3baa66277b6b4373ec598ab6fb3`;
+  - `verifiers/verify_osr4_clifford_frame_parity.py`:
+    `661fdfd3efb72066c9218df556076c4282e28e5128de0669a61ef3bc19d1c5a9`;
+  - `results/osr4_clifford_frame_parity_exact.txt`:
+    `0ad7720f6f7f8c51fd1b44e27235c30415977e9454766b9b6103d5a6410da190`.

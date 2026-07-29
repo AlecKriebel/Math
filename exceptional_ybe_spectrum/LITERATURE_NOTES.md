@@ -17,6 +17,8 @@
    \(SU(3)\) \(\mathcal{ADE}\) Graphs*, arXiv:0906.4307.
 7. L. Chen and L. Yu, *On the Schmidt-rank-three bipartite and
    multipartite unitary operator*, arXiv:1407.5464.
+7a. S. M. Cohen and L. Yu, *All unitaries having operator Schmidt rank 2
+   are controlled unitaries*, arXiv:1211.5201.
 8. R. Conti and G. Lechner, *Yang--Baxter endomorphisms*,
    arXiv:1909.04127.
 9. A. Bytsko, *On orthogonal projections related to representations of
@@ -26,8 +28,12 @@
 11. R. Conti and F. Fidaleo, *Braided Endomorphisms of Cuntz Algebras*,
     Math. Scand. 87 (2000), 93--114.
 12. S. Majid and M. Markl, *Glueing operation for R-matrices, quantum
-    groups and link-invariants of Hecke type*, arXiv:hep-th/9308072;
-    Math. Proc. Cambridge Philos. Soc. 119 (1996), 139--166.
+   groups and link-invariants of Hecke type*, arXiv:hep-th/9308072;
+   Math. Proc. Cambridge Philos. Soc. 119 (1996), 139--166.
+13. A. Müller-Hermes and I. Nechita, *Restrictions on the Schmidt rank of
+   bipartite unitary operators beyond dimension two*, arXiv:1612.07616;
+   published as *Operator Schmidt ranks of bipartite unitary matrices*,
+   Linear Algebra Appl. 557 (2018), 174--187.
 
 ## Normalization notes requiring care
 
@@ -59,10 +65,33 @@
   the exact two-edge space has dimension 20, and the three-edge space has
   dimension 48. This is a relevant generalized/path realization but not an
   already-published ordinary \(d=6\) witness.
-- Chen--Yu's Schmidt-rank-three theorem uses independent local pre- and
-  post-unitaries. It cannot be converted into a one-leg-commutant MASA
-  statement and therefore does not combine automatically with the new
-  controlled-leg divisibility theorem.
+- Cohen--Yu Theorem 6 and Chen--Yu Theorem 11 use independent local pre-
+  and post-unitaries, so their controlled forms cannot themselves be
+  inserted into the Yang--Baxter equation.  For a **Hermitian** unitary
+  satisfying the exceptional shifted cubic, however, the exact twisted-
+  control graph argument in `notes/low_schmidt_control_obstruction.md`
+  closes this gap.  One valid sitewise conjugacy first converts the four-
+  unitary equivalence to \(\sum_iE_iK\otimes V_i\). Hermiticity makes the
+  support of \(K\) undirected. A nonbipartite component supplies a true
+  rank-one leg projection, while an all-bipartite support would force a
+  unitary to equal \(1/3\) times a unitary after taking one off-diagonal
+  cubic coefficient. Consequently every exceptional solution of operator-
+  Schmidt rank at most three has a rank-one projection in a true leg
+  commutant and hence \(4\mid d\). This is a qualified Hermitian-cubic
+  conversion, not a general claim that local equivalence preserves
+  Yang--Baxter locality.
+- Operator-Schmidt rank four is the sharp boundary of that controlled
+  structure: the two-qubit swap is a direct Hermitian-involutive OSR-four
+  counterexample with scalar leg commutants. No source found in the
+  targeted low-Schmidt literature gives a controlled or block-controlled
+  normal form for arbitrary rank-four bipartite unitaries.
+  Müller-Hermes--Nechita prove that, apart from the missing \(2\times2\)
+  rank three, every arithmetically possible operator-Schmidt rank occurs;
+  their result is a rank-existence theorem, not such a normal form. The
+  conditional theorem in `notes/osr4_clifford_frame_parity_audit.md`
+  instead assumes a four-product Clifford frame and proves \(4\mid d\) by
+  complementary binary commutation graphs. It must not be cited or used
+  as a classification of all OSR-four exceptional solutions.
 - Conti--Lechner identify the one-site algebraic fixed points with a leg
   commutant, but distinguish this sharply from von Neumann ergodicity.
   Their Proposition 7.12 gives the necessary ergodicity condition

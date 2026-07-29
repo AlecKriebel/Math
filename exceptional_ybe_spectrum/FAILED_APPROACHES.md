@@ -82,8 +82,13 @@ full diagonal-regular group-relative ansatz are excluded exactly.
 
 This does not rule out scalar one-leg commutants or finite-dimensional
 commutant representations whose minimal projection ranks are all even.
-The theorem therefore narrows the unresolved branch to genuinely
-noncontrolled solutions; it is not the desired global divisibility theorem.
+The subsequent twisted-control theorem in
+`notes/low_schmidt_control_obstruction.md` also excludes every exceptional
+solution of operator-Schmidt rank at most three, even when it is only
+locally equivalent through four independent pre/post unitaries to a
+controlled gate. The unresolved branch is therefore genuinely
+noncontrolled and has operator-Schmidt rank at least four; this is still not
+the desired unrestricted divisibility theorem.
 See `notes/controlled_leg_divisibility.md` and
 `notes/group_relative_ansatz_exact.md`.
 
@@ -656,3 +661,38 @@ standard balanced \(d=2\) limitation projection has odd nullity three,
 so standardness and the flip alone cannot complete the argument. The
 exceptional cubic would have to force even nullity by an additional
 operator-valued mechanism.
+
+## Direct CP-SAT enumeration of all \(d=6\) Bell sign tables
+
+The exact Bell coefficient system expands to \(2{,}460\) nonzero integer
+equations in 36 sign variables and 7,140 square-free cubic parity
+variables. Deterministic 5-second and 120-second one-worker runs both
+returned `UNKNOWN`; they do not constitute negative evidence.
+
+This computational route was superseded by C60. The common three-site
+primitive Weyl algebra forces every eigenvalue multiplicity of
+\(H_{12}H_{23}\) to be divisible by \(d\), whereas the cubic and zero
+marginals force \((d^3/4,3d^3/8,3d^3/8)\). This excludes every
+\(d\equiv2\pmod4\) Bell-diagonal table without enumeration. The driver,
+seed, exact equation digest, and raw bounded-run outputs are retained
+only as discovery provenance.
+
+## Promoting the rank-three controlled theorem to OSR four
+
+The controlled-unitary classification stops sharply at operator-Schmidt
+rank three. The two-qubit swap is already a Hermitian involutive
+OSR-four unitary with scalar one-leg commutants, so neither control nor a
+leg projection follows from rank four alone. Four-local pre/post
+equivalence is also not a same-site Yang--Baxter equivalence.
+
+C61 salvages only a precisely stated Clifford-frame branch. If four
+product involutions anticommute pairwise and every local factor is a
+traceless Hermitian involution, complementary binary commutation graphs
+force \(4\mid d\). An arbitrary Hermitian Schmidt decomposition need not
+have either property. The exact balanced \(d=4\) limitation involution
+has OSR four and scalar leg commutants but fails the cubic with squared
+residual \(1376/9\). Thus even a true one-leg control projection does not
+follow from the two-site conditions. The general OSR-four exceptional
+branch remains open; no numerical sample or rank-four literature statement
+has been treated as a classification. See
+`notes/osr4_clifford_frame_parity_audit.md`.
