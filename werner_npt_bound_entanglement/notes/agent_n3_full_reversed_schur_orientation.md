@@ -914,6 +914,121 @@ The surviving nonlinear realizability lemma is:
 This lemma retains the paired code-plane origin through (48)/(80) but
 has only a \(3\times3\) real matrix left at the logical level.
 
+## 11. The orientation-preserving locus is one linear inequality
+
+The trace norm in (79) can be removed without relaxation.  First,
+if
+\[
+ \det C_{\rm sp}\leq0,
+\tag{83}
+\]
+then
+\[
+ \det T=s\det C_{\rm sp}\leq0.
+\tag{84}
+\]
+Equation (30) gives
+\[
+ \det K^\Gamma=\det K-\det T>0,
+\tag{85}
+\]
+so this entire locus is automatically positive.
+
+Suppose therefore that \(\det C_{\rm sp}>0\).  For any real
+invertible \(3\times3\) matrix \(C\),
+\[
+ \|C\|_1
+ =\max_{O\in O(3)}\operatorname{Tr}(O^{\mathsf T}C).
+\tag{86}
+\]
+If \(C=U\Sigma V^{\mathsf T}\) is a real singular-value
+decomposition, a maximizer is \(O=UV^{\mathsf T}\), and
+\[
+ \det O=\operatorname{sign}\det C.
+\tag{87}
+\]
+Consequently, on the surviving positive-orientation locus,
+\[
+ \boxed{\qquad
+ \|C_{\rm sp}\|_1
+ =\max_{O\in SO(3)}
+ \operatorname{Tr}(O^{\mathsf T}C_{\rm sp}).
+ \qquad}
+\tag{88}
+\]
+
+Every \(O\in SO(3)\) is induced by a logical qubit unitary.  Rotating
+one of the two logical Pauli frames therefore:
+
+* preserves the two scalar-marginal conditions;
+* stays inside the same physical pair of code planes; and
+* replaces \(C_{\rm sp}\) by \(O^{\mathsf T}C_{\rm sp}\).
+
+We have proved the following exact residual form.
+
+### Theorem 11.1 (fixed Minkowski-trace reduction)
+
+The full unrestricted three-copy theorem is equivalent to the
+following assertion on physically filtered code frames:
+\[
+ \boxed{\qquad
+ T_{00}-T_{11}-T_{22}-T_{33}\geq0
+ \qquad}
+\tag{89}
+\]
+whenever
+\[
+ T_{0j}=T_{j0}=0\quad(1\leq j\leq3)
+\tag{90}
+\]
+and the spatial block has positive orientation.  Equivalently, it is
+enough to prove (89) after the spatial block has been made positive
+definite by an \(SO(3)\) polar rotation.
+
+This linear functional has a useful invariant interpretation.  From
+the Choi expansion
+\[
+ K=\sum_{\mu,\nu=0}^3
+ T_{\mu\nu}\,e_\nu^{\mathsf T}\otimes e_\mu
+\tag{91}
+\]
+and the Pauli correlations of the logical singlet,
+\[
+ \langle\Psi^-|e_\nu\otimes e_\mu|\Psi^-\rangle
+ =\frac12\operatorname{diag}(1,-1,-1,-1)_{\mu\nu},
+\tag{92}
+\]
+we get
+\[
+ \boxed{\qquad
+ T_{00}-T_{11}-T_{22}-T_{33}
+ =2\langle\Psi^-|K^\Gamma|\Psi^-\rangle.
+ \qquad}
+\tag{93}
+\]
+Thus every possible failure can be put, by physical logical filters
+and unitaries, into a single canonical Bell direction.  What remains
+nontrivial is that these filters change the lengths and angles of the
+two physical code frames; (93) is not reducible to positivity of
+\(K\).
+
+Using (80), the final scalar is the common-code contraction
+\[
+ \boxed{
+ \sum_{\mu=0}^3\eta_\mu
+ \left\langle
+ {\cal E}_V(e_\mu),\,
+ \Psi_3^{\otimes3}{\cal E}_{\overline U}(e_\mu)
+ \right\rangle,
+ \qquad
+ (\eta_0,\eta_1,\eta_2,\eta_3)=(1,-1,-1,-1).
+ }
+\tag{94}
+\]
+Equations (90) and positive spatial orientation are the exact
+nonlinear compatibility conditions that distinguish (94) from four
+independently chosen operator pairs.
+
 ## Research log
 
 - **2026-07-29 15:20 PDT.** Reduced the full two-plane
@@ -936,3 +1051,9 @@ has only a \(3\times3\) real matrix left at the logical level.
   \(|t_1|+|t_2|+|t_3|\leq1\), equivalently the \(3\times3\) Pauli
   correlation trace-norm inequality (79) under scalar filtered
   marginals.
+- **2026-07-29 19:05 PDT.** Split the trace-norm frontier by spatial
+  orientation.  Negative or zero orientation is automatic.  On the
+  only hard locus the polar factor lies in \(SO(3)\), so a physical
+  logical unitary reduces the endpoint to the single linear
+  Minkowski-trace inequality (89), equivalently the canonical singlet
+  expectation (93) or common-code contraction (94).

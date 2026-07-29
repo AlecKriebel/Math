@@ -125,6 +125,14 @@ def partial_transpose_second(matrix: list[list[G]]) -> list[list[G]]:
     return result
 
 
+def partial_transpose_first(matrix: list[list[G]]) -> list[list[G]]:
+    """Partial transpose in the first factor of a 2 x 2 system."""
+    result = [[ZERO for _ in range(4)] for _ in range(4)]
+    for a, b, c, d in product(range(2), repeat=4):
+        result[2 * c + b][2 * a + d] = matrix[2 * a + b][2 * c + d]
+    return result
+
+
 def bell_operator(t1: F, t2: F, t3: F) -> list[list[G]]:
     identity = [[ONE, ZERO], [ZERO, ONE]]
     pauli_x = [[ZERO, ONE], [ONE, ZERO]]
@@ -137,6 +145,51 @@ def bell_operator(t1: F, t2: F, t3: F) -> list[list[G]]:
             matrix_scale(g(t1), kronecker(pauli_x, pauli_x)),
             matrix_scale(g(t2), kronecker(pauli_y, pauli_y)),
             matrix_scale(g(t3), kronecker(pauli_z, pauli_z)),
+        ),
+    )
+
+
+def transpose(matrix: list[list[G]]) -> list[list[G]]:
+    return [
+        [matrix[j][i] for j in range(len(matrix))]
+        for i in range(len(matrix[0]))
+    ]
+
+
+def choi_from_scalar_spatial_transfer(
+    scalar: F, spatial: list[list[F]]
+) -> list[list[G]]:
+    """Build J = sum T_{mu,nu} e_nu^T tensor e_mu."""
+    paulis = [
+        [[ONE, ZERO], [ZERO, ONE]],
+        [[ZERO, ONE], [ONE, ZERO]],
+        [[ZERO, g(0, -1)], [g(0, 1), ZERO]],
+        [[ONE, ZERO], [ZERO, neg(ONE)]],
+    ]
+    result = matrix_scale(
+        g(F(scalar, 2)), kronecker(paulis[0], paulis[0])
+    )
+    for row in range(3):
+        for column in range(3):
+            result = matrix_add(
+                result,
+                matrix_scale(
+                    g(spatial[row][column] / 2),
+                    kronecker(
+                        transpose(paulis[column + 1]), paulis[row + 1]
+                    ),
+                ),
+            )
+    return result
+
+
+def singlet_expectation(matrix: list[list[G]]) -> G:
+    """Expectation on (|01>-|10>)/sqrt(2), without square roots."""
+    return mul(
+        g(F(1, 2)),
+        add(
+            add(matrix[1][1], matrix[2][2]),
+            neg(add(matrix[1][2], matrix[2][1])),
         ),
     )
 
@@ -192,7 +245,23 @@ assert determinant(filtered_partial_transpose) == g(
     scale * determinant(k_partial_transpose)[0]
 )
 
+# The fixed Minkowski trace is exactly twice the partially transposed
+# singlet expectation, including for a non-diagonal spatial block.
+scalar = F(7, 5)
+spatial = [
+    [F(1, 3), F(1, 11), F(-1, 13)],
+    [F(1, 7), F(-2, 9), F(1, 17)],
+    [F(1, 19), F(-1, 23), F(3, 10)],
+]
+generic_choi = choi_from_scalar_spatial_transfer(scalar, spatial)
+generic_partial_transpose = partial_transpose_first(generic_choi)
+minkowski_trace = scalar - sum(spatial[j][j] for j in range(3))
+assert mul(g(2), singlet_expectation(generic_partial_transpose)) == g(
+    minkowski_trace
+)
+
 print(
     "verified exact Bell eigenvalues, partial-transpose determinant, "
-    "octahedral trace-norm frontier, and local-filter scaling"
+    "octahedral trace-norm frontier, local-filter scaling, and fixed "
+    "Minkowski/singlet identity"
 )
