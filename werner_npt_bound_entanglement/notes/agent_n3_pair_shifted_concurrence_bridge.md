@@ -22,9 +22,8 @@ pair-sector conjecture
 Thus (1) does more than imply the unshifted \(2/3\) pair theorem.
 It proves the newly observed sharp singular-value interpolation.
 
-The note also proves (2) on the product-left and product-right parts
-of the exact rank-one-saturation boundary, using the previously
-proved saturation spectral gap.
+The note also proves (2) on the complete exact rank-one-saturation
+boundary, using the proved saturation spectral gap.
 
 The dependency-free exact checker is
 `verification/verify_n3_pair_shifted_concurrence_bridge.py`.
@@ -179,39 +178,38 @@ This is still unproved.  It is the invariant Hodge tensor inequality
 from the earlier Takagi note, not an abstract two-qubit consequence:
 arbitrary positive feature states need not satisfy (21).
 
-## 4. Exact product-saturation boundary
+## 4. The complete exact saturation boundary
 
-There is also a direct proof of (7) on one sharp part of the boundary.
+There is also a direct proof of (7) on the complete sharp boundary.
 Assume
 \[
  G_{11}=\frac49                                             \tag{22}
 \]
-and that the equality pair \(E_1=|u_1\rangle\langle v_1|\)
-has product left vector \(u_1\).  The exact rank-one-saturation
-classification then puts \(v_1\) in the Segre tangent space at
-\(u_1\), and the proved operator estimate for
+for the equality pair \(E_1=|u_1\rangle\langle v_1|\).  The complete
+rank-one-saturation classification and its spectral-gap theorem give,
+for
 \[
- E=\Pi _2E_1
+ E=\Pi _2E_1,
 \]
-is
+the identities
 \[
- E^\dagger E
- \preceq\frac4{81}I+\frac{12}{81}|v_1\rangle\langle v_1|.
-                                                               \tag{23}
+ Ev_1=\frac49u_1,\qquad E^\dagger u_1=\frac49v_1,
+ \qquad s_2(E)\leq\frac29.                              \tag{23}
 \]
-Because \(v_2\perp v_1\) and \(u_2\) is a unit vector,
+Because \(v_2\perp v_1\) and \(u_2\perp u_1\), the restriction of
+\(E\) from \(v_1^\perp\) to \(u_1^\perp\) has operator norm at most
+\(s_2(E)\).  Therefore
 \[
 \begin{aligned}
  |G_{12}|
  &=|\langle E,E_2\rangle_{\rm HS}|\\
  &=|\langle u_2,Ev_2\rangle|
- \leq\|Ev_2\|
+ \leq s_2(E)
  \leq\frac29.                                             \tag{24}
 \end{aligned}
 \]
-Here \(p=0\), so (24) is exactly (7).  Taking adjoints proves the
-same statement when the right equality vector is product.  Swapping
-the labels \(1,2\) handles saturation of \(G_{22}\).
+Here \(p=0\), so (24) is exactly (7).  Swapping the labels \(1,2\)
+handles saturation of \(G_{22}\).
 
 This boundary result is sharp.  For example,
 \[

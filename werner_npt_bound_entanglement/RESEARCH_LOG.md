@@ -3546,3 +3546,48 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_quantitative_stability_frontier.md`,
   `verification/verify_n3_pair_quantitative_stability_frontier.py`.
+
+## 2026-07-29 13:56 PDT — Symmetric Hodge split and exact component obstruction
+
+- Split the positive shifted-pair feature operator canonically as
+  \[
+  S=S_{(2)}+S_{(3)},\qquad
+  S_{(2)}=\frac49\sum_{i<j}{\mathsf A}_i{\mathsf A}_j,\qquad
+  S_{(3)}=\frac89{\mathsf A}_1{\mathsf A}_2{\mathsf A}_3,
+  \]
+  where \({\mathsf A}_i=(I-F_i)/2\).  Compression gives
+  \(Q=Q_{(2)}+Q_{(3)}\), and homogeneous concurrence is subadditive.
+  Hence
+  \[
+  {\cal C}(Q_{(2)})+{\cal C}(Q_{(3)})\le4/9
+  \]
+  is a smaller sufficient target for the shifted pair theorem.
+- Verified exact sharpness: the code
+  \(U=(000,001)\), \(V=(110,111)\) has concurrence \(2/9\) in each
+  component.
+- Disproved the tempting separate \(2/9\) component budgets by an
+  exact physical code.  For
+  \[
+  \Phi=(00+11+22)/\sqrt3,\quad
+  U=(-\Phi0,-\Phi2),\quad V=(\Phi2,-\Phi0),
+  \]
+  the exact component concurrences are
+  \[
+  {\cal C}(Q_{(3)})=8/27>2/9,\qquad {\cal C}(Q_{(2)})=0.
+  \]
+  Thus compensation between the two exterior degrees is essential.
+- The same code gives two exact no-go certificates for naive
+  triple-Hodge arguments:
+  \[
+  \sum_{pqr}|\det(U^{\mathsf T}
+    (A_p\otimes A_q\otimes A_r)V)|=1/6>1/8,
+  \]
+  and an explicit triple-skew tensor with
+  \(\|D\|_{\rm op}^2/\|D\|_2^2=1/6>1/8\).
+- Upgraded the shifted-Gram theorem on the boundary: the complete
+  rank-one equality classification gives \(s_2(\Pi_2E)\le2/9\), so
+  the shifted determinant bound holds on every saturation orbit, not
+  only the product-left/right strata.
+- Exact note and checker:
+  `notes/agent_n3_pair_feature_concurrence_split.md`,
+  `verification/verify_n3_pair_feature_concurrence_split.py`.
