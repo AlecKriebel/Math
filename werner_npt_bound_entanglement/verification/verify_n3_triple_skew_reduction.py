@@ -249,4 +249,88 @@ assert F(2, 9) * (1 - eta - eta) == F(2, 27)
 assert F(8, 9) * 2 * F(1, 6) == F(8, 27)
 assert F(8, 27) > F(2, 9)
 
+
+# Exact stable-rank deficit counting.  If delta=P+1/3-G, then the
+# six frame deficits sum to 4 delta, while 1/6-c=delta/8.
+delta = F(7, 60)
+stable_deficit = delta / 8
+sum_frame_deficits = 4 * delta
+assert stable_deficit == sum_frame_deficits / 32
+assert F(1, 6) - stable_deficit == (
+    1 + (F(37, 30) + F(1, 3) - delta) - F(37, 30)
+) / 8
+
+
+# A rational audit of the lossless per-frame gap decomposition
+# R-s=sum_i w_i[(R-r_i)+(r_i-e_i)]+variance/s.
+p_frame = [F(1, 2), F(2, 5), F(1, 3)]
+z2_frame = [F(1, 5), F(1, 4), F(1, 6)]
+e_frame = [F(9, 10), F(4, 5), F(4, 5)]
+s_frame = sum(z2_frame, F(0))
+r_frame = [F(2, 3) * (1 + p) for p in p_frame]
+R_frame = F(2, 9) + F(2, 3) * sum(p_frame, F(0))
+w_frame = [z2 / s_frame for z2 in z2_frame]
+variance_frame = (
+    sum((z2 * e for z2, e in zip(z2_frame, e_frame)), F(0))
+    - s_frame * s_frame
+)
+rhs_frame = sum(
+    (
+        w
+        * ((R_frame - r) + (r - e))
+        for w, r, e in zip(w_frame, r_frame, e_frame)
+    ),
+    F(0),
+) + variance_frame / s_frame
+assert variance_frame >= 0
+assert all(R_frame - r >= 0 for r in r_frame)
+assert all(r - e >= 0 for r, e in zip(r_frame, e_frame))
+assert R_frame - s_frame == rhs_frame
+
+
+# Exact local-frame gap formula (S4).
+p_local = F(1, 2)
+q_local = F(1, 4)
+g2_local = F(1, 9)
+r_local = F(2, 3) * (1 + p_local)
+e_local = 1 - (1 - g2_local) * q_local
+purity_residual = (
+    p_local - q_local * q_local - (1 - q_local) ** 2 / 2
+)
+local_gap_sos = (
+    F(2, 3) * purity_residual
+    + q_local * (q_local + F(1, 3) - g2_local)
+)
+assert purity_residual >= 0
+assert q_local + F(1, 3) - g2_local >= 0
+assert r_local - e_local == local_gap_sos
+
+
+# Takagi deficit splitting (S5), in the positive-concurrence regime.
+op2 = F(3, 20)
+det_compression = F(7, 50)
+residual_takagi = F(1, 50)
+triple_concurrence = F(16, 9) * det_compression - residual_takagi
+assert triple_concurrence > 0
+assert F(8, 27) - triple_concurrence == (
+    F(16, 9)
+    * ((F(1, 6) - op2) + (op2 - det_compression))
+    + residual_takagi
+)
+
+
+# Quantitative corrected-floor compensation on the common-factor
+# chart.  The extremal arithmetic gamma=3 tau_i makes the lower
+# bound m >= C(Q3)-2/9 sharp.
+tau1 = F(1, 6)
+tau2 = F(1, 6)
+gamma_overlap = F(1, 2)
+assert gamma_overlap <= 3 * tau1
+assert gamma_overlap <= 3 * tau2
+eta12 = (1 - tau1 - tau2 + gamma_overlap) / 4
+floor_margin = (tau1 + tau2) / 9
+common_chart_c3 = F(8, 9) * eta12
+assert floor_margin == common_chart_c3 - F(2, 9)
+assert floor_margin >= 0
+
 print("triple-skew reduction checks: exact")

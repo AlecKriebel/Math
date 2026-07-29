@@ -527,9 +527,179 @@ immediately.  The common-plane floor has least eigenvalue
 \]
 \(\square\)
 
-The corollary is an exact joint result on the maximal-AAA locus.  A
-quantitative stability version, controlling \(Q_{(2)}\) when
-\({\cal C}(Q_{(3)})\) is merely close to \(8/27\), remains open.
+The corollary is an exact joint result on the maximal-AAA locus.
+The next subsection gives an exact stable-rank deficit and a
+quantitative compensation theorem on the entire common-factor chart.
+A global conversion of that deficit into control of \(Q_{(2)}\)
+outside the chart remains open.
+
+### 5.3 Exact deficit and quantitative common-chart compensation
+
+The proof of (1) retains an exact sum of nonnegative gaps.  This
+strengthens the equality classification without using compactness.
+Let \(t,x\) be orthonormal, put
+\[
+ c=\|D_tx\|^2,\qquad
+ {\mathsf G}=\sum_{i=1}^3\sum_{a=1}^3\|X_{a,i}\|_2^2,
+ \qquad P_1=\sum_i p_i,
+\]
+and, for \(\pi\in S_3\), use the quantities in (T5):
+\[
+ s_\pi=\sum_i z_{\pi,i}^2
+ =2\sum_i\|X_{\pi(i),i}\|_2^2,\qquad
+ R=\frac29+\frac23P_1.
+\]
+Then
+\[
+\boxed{
+ \frac16-c
+ =\frac{P_1+1/3-{\mathsf G}}8
+ =\frac1{32}\sum_{\pi\in S_3}(R-s_\pi).
+}                                                         \tag{S1}
+\]
+
+Indeed, taking the expectation of (4) in \(x\), and using
+\(\langle t,x\rangle=0\), gives
+\[
+ 8c=1+\sum_i
+ \left[
+ \operatorname{Tr}(\rho_{\bar i}^t\rho_{\bar i}^x)
+ -\operatorname{Tr}(\rho_i^t\rho_i^x)
+ \right].
+\]
+The four-party purity identity used in (12) says that the sum in
+brackets is \({\mathsf G}-P_1\).  This proves the first equality in
+(S1).  Moreover,
+\[
+ \sum_{\pi\in S_3}s_\pi=4{\mathsf G},\qquad
+ 6R=4(P_1+1/3),
+\]
+which proves the second.
+
+Each summand in (S1) itself has a lossless nonnegative
+decomposition.  Fix \(\pi\), abbreviate \(s=s_\pi\), and suppose
+\(s>0\).  Define
+\[
+ w_i=\frac{z_i^2}{s},\qquad
+ e_i=\operatorname{Tr}(X_{0,i}G_i^2),\qquad
+ r_i=\frac23(1+p_i),
+\]
+and let
+\[
+ v_\pi=
+ \left\langle\left(\sum_i z_iO_i\right)^2\right\rangle_\Psi
+ -\left\langle\sum_i z_iO_i\right\rangle_\Psi^2
+ \geq0
+\]
+be the variance discarded in (T6).  Pairwise anticommutation gives
+\[
+ \left\langle\left(\sum_i z_iO_i\right)^2\right\rangle_\Psi
+ =\sum_i z_i^2e_i,
+\]
+and hence
+\[
+\boxed{
+ R-s
+ =\sum_iw_i\bigl[(R-r_i)+(r_i-e_i)\bigr]+\frac{v_\pi}{s}.
+}                                                         \tag{S2}
+\]
+All terms on the right are nonnegative.  The global-purity part is
+\[
+ R-r_i
+ =\frac23\sum_{j\ne i}\left(p_j-\frac13\right)\geq0.      \tag{S3}
+\]
+For the local eigenframe in Lemma 3.1, let \(q_i\) be the middle
+diagonal weight of \(X_{0,i}\), and let \(g_i\) be the middle
+eigenvalue of \(G_i\).  Direct subtraction of (L5) gives the exact
+local gap
+\[
+\boxed{
+\begin{aligned}
+ r_i-e_i={}&
+ \frac23\left[
+ p_i-q_i^2-\frac{(1-q_i)^2}{2}\right]\\
+ &+q_i\left(q_i+\frac13-g_i^2\right).
+\end{aligned}}                                           \tag{S4}
+\]
+The first term is nonnegative by (L6), and the second by (L3).
+For \(s=0\), \(R-s=R\geq0\) directly.  Equations (S1)--(S4)
+therefore give a compactness-free stability certificate: a small
+stable-rank deficit forces, in an averaged quantitative sense, all
+of the purity, local-frame, and variance equality conditions used
+in Theorem 5.1.
+
+There is a complementary exact deficit identity at the logical
+Takagi level.  Choose a coherent unit coefficient \(c_0\) attaining
+the leading Takagi value of \(Q_{(3)}\), put
+\[
+ M=U^{\mathsf T}D_{c_0}V,
+\]
+and let \(t_1\geq t_2\geq t_3\geq t_4\) be the Takagi values of
+\(Q_{(3)}\).  In the positive-concurrence regime,
+\[
+ t_1=\frac{16}{9}|\det M|,
+\]
+so
+\[
+\boxed{
+\begin{aligned}
+ \frac8{27}-{\cal C}(Q_{(3)})
+ =\frac{16}{9}\biggl[
+ &\left(\frac16-\|D_{c_0}\|_{\rm op}^2\right)\\
+ &+\left(\|D_{c_0}\|_{\rm op}^2-|\det M|\right)
+ \biggr]+t_2+t_3+t_4 .
+\end{aligned}}                                           \tag{S5}
+\]
+Every term on the right is nonnegative.  Thus the logical deficit
+separates exactly into the Hodge stable-rank deficit, a compression
+plane-misalignment deficit, and the residual Takagi mass.
+
+Finally, the two-skew compensation can be quantified on the full
+common-factor chart
+\[
+ u_a=x\otimes e_a,\qquad v_a=y\otimes e_a.
+\]
+For its two non-logical qutrit sites define
+\[
+ \tau_i=\operatorname{Tr}(\rho_i^{\bar x}\rho_i^y),
+ \qquad
+ \gamma=|\langle\bar x,y\rangle|^2.
+\]
+The swap contractions in (E10) give
+\[
+ \eta_i=\frac{1-\tau_i}{2},\qquad
+ 4\eta_{12}=1-\tau_1-\tau_2+\gamma.                       \tag{S6}
+\]
+The least eigenvalue of the corrected common-plane floor is
+\[
+ m=\frac29(1-\eta_1-\eta_2)
+ =\frac{\tau_1+\tau_2}{9}.                               \tag{S7}
+\]
+For either \(i\), apply
+\(|\operatorname{Tr}Z|^2\leq3\|Z\|_2^2\) to the one-qutrit
+operator obtained by tracing site \(i\) from
+\(|\bar x\rangle\langle y|\).  This gives
+\[
+ \gamma\leq3\tau_i.
+\]
+Writing \(s=\tau_1+\tau_2\), we have
+\(\gamma\leq3s/2\), and (S6) yields
+\[
+ 4\eta_{12}\leq1+\frac s2.
+\]
+Since \({\cal C}(Q_{(3)})=8\eta_{12}/9\) on this chart, (S7)
+proves the quantitative compensation law
+\[
+\boxed{
+ m\geq
+ \max\left\{0,\ {\cal C}(Q_{(3)})-\frac29\right\}.
+}                                                         \tag{S8}
+\]
+It interpolates between the zero-floor boundary at triple
+concurrence \(2/9\) and the strict margin \(2/27\) at the maximal
+triple concurrence \(8/27\).  What is still missing is an invariant
+replacement for (S8) when the two singular planes are not already
+in a common-factor chart.
 
 ## 6. Why the naive two-site induction fails
 

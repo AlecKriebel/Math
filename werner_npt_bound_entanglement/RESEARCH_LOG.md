@@ -4214,3 +4214,32 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_high_principal_overlap_scalar.md`,
   `verification/verify_n3_high_principal_overlap_scalar.py`.
+
+## 2026-07-29 15:11 PDT — Exact triple-skew deficit and chart compensation
+
+- Refined the sharp triple-skew theorem to the lossless stable-rank
+  deficit identity
+  \[
+  \frac16-\|D_tx\|^2
+  =\frac1{32}\sum_{\pi\in S_3}(R-s_\pi).
+  \]
+  Each frame gap \(R-s_\pi\) now has an explicit sum of nonnegative
+  global-purity, local qutrit-frame, and variance gaps.  This gives a
+  compactness-free quantitative form of the equality classification.
+- Split the logical AAA concurrence deficit exactly into three
+  nonnegative pieces: Hodge stable-rank deficit, compression-plane
+  misalignment, and residual Takagi mass.
+- On the entire common-factor singular-plane chart, proved the
+  quantitative corrected-floor compensation
+  \[
+  m\geq
+  \max\{0,\mathcal C(Q_{(3)})-2/9\}.
+  \]
+  It interpolates sharply from the zero-floor threshold to the
+  maximal-AAA equality orbit, where \(m=2/27\).
+- This does not yet extend the joint bound to arbitrary pairs of
+  singular planes.  The remaining problem is to convert the invariant
+  stable-rank deficit into a common-plane or reversed-Schur margin.
+- Proof and exact checker:
+  `notes/agent_n3_triple_skew_reduction.md`,
+  `verification/verify_n3_triple_skew_reduction.py`.
