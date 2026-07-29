@@ -2399,3 +2399,120 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_haar_fixed_support_normality.md`.
   Exact checker:
   `verification/verify_n3_haar_fixed_support_normality.py`.
+
+## 2026-07-29 — Sitewise strictness and quantitative Haar stability
+
+- The Haar-equality exclusion is sitewise.  If the single-site
+  bracket
+  \[
+  g_i=\frac14w_i-\frac12(w_{ij}+w_{ik})+w_{123}
+  \]
+  vanished at a negative rank-two matrix, the block collapse at that
+  one site would force a singular plane to have deficient support at
+  another site.  The one-sided local-support theorem would then give
+  \(Q_3(C)\ge0\).  Hence every hypothetical negative matrix obeys
+  \[
+  \boxed{g_i>0\quad(i=1,2,3).}
+  \]
+- At a normalized negative critical point \(q=Q_3(C)\), the positive
+  local Hessian form \(G_i=h_i-qn_i\) satisfies the exact trace
+  identity
+  \[
+  \operatorname{Tr}_{HS}G_i+8q
+  =\frac{15}{2}g_i
+  =12\,\mathbb E_zQ_3((I-|z\rangle\langle z|)^{(i)}C).
+  \]
+- A quantitative version of the determinantal equality
+  classification is now proved:
+  \[
+  \left\|{\mathscr H}_i+\frac{2q}{3}{\cal L}\right\|_{\rm op}
+  \le360\sqrt{15}\sqrt{g_i}.
+  \]
+  The proof uses the \(36\)-dimensional bidegree-\((2,2)\)
+  reproducing kernel on \(\mathbb {CP}^2\), positive-form
+  Cauchy--Schwarz on row/column singular subspaces, and an explicit
+  four-projection polarization.  Two independent hostile audits
+  found no gap.
+- Explicit inversion of the local block equations gives
+  \[
+  \left\|
+  \beta-\left(-\frac{2q}{3}\right)
+  |\operatorname{vec}I\rangle\langle\operatorname{vec}I|
+  \right\|_2
+  \le4752\sqrt{15}\sqrt{g_i}.
+  \]
+  Thus small Haar slack forces the entire common \(9\times9\) block
+  Gram, not merely its sector sums, close to the forbidden rank-one
+  collapse.
+- At a critical point \(q=-\delta<0\), stationarity gives the
+  complementary marginal estimate
+  \[
+  g_i\ge
+  \frac{\delta^2}{5\,832\,000}
+  \left\|\rho_i^{L,R}-\frac13I\right\|_2^2.
+  \]
+  Exact notes:
+  `notes/agent_n3_haar_block_kernel_reduction.md` and
+  `notes/agent_n3_stationary_haar_marginal_gap.md`.
+
+## 2026-07-29 — Quantitative interior reduction at a negative minimizer
+
+- If a normalized global rank-two minimizer had value
+  \(q=-\delta<0\), every one of its six one-site densities would obey
+  \[
+  \boxed{\rho_i^L,\rho_i^R
+  \succeq\frac{\delta}{1+2\delta}I_3.}
+  \]
+  For a rank-one filter \(P=|z\rangle\langle z|\) and its rank-two
+  complement \(I-P\), the critical Hessian gives equal quadratic
+  values.  Boundary positivity supplies the lower bound
+  \(\delta(1-r_z)\), while
+  \({\cal L}^{\otimes3}\preceq I\) supplies the upper bound
+  \((1+\delta)r_z\).
+- The same floor passes to the unweighted left and right singular
+  planes.  Their one-site determinants therefore satisfy
+  \[
+  \det\sigma_i^{U,V}\ge2m^2(1-m),
+  \qquad m=\frac{\delta}{1+2\delta}.
+  \]
+  This removes every locally degenerating sequence at fixed negative
+  depth.  Combined with the preceding stability theorem, the only
+  unresolved critical regime is a well-conditioned common-code core
+  with all six marginals nearly maximally mixed.
+- Exact note:
+  `notes/agent_n3_negative_minimizer_marginal_gap.md`.
+  Exact checker:
+  `verification/verify_n3_negative_minimizer_marginal_gap.py`.
+
+## 2026-07-29 — Lossless one-plane transition frontier
+
+- The pair-sector Ky--Fan problem is exactly equivalent to the single
+  transition contraction
+  \[
+  |\langle u\otimes v_1,E(w\otimes v_0)\rangle|^2
+  \le
+  (2+\langle u\otimes v_0,E(u\otimes v_0)\rangle)
+  (2+\langle w\otimes v_1,E(w\otimes v_1)\rangle),
+  \]
+  for all orthonormal \(v_0,v_1\) and unit \(u,w\), where
+  \[
+  E=\sum_{i<j}(I-F_i)(I-F_j)
+  +(I-F_1)(I-F_2)(I-F_3).
+  \]
+  Equivalently, one normalized \(27\times27\) off-diagonal block must
+  be a contraction.  A second exact form is a five-versus-five
+  exterior comparison coming from one common rank-one tensor.
+- The pair and triple layers cannot be bounded separately.  An exact
+  flagged maximally-entangled plane violates the triple-only estimate
+  by \(1/6\), with the pair matched mass repairing it.  Ordinary
+  crossed Cauchy--Schwarz is also too weak: on the canonical equality
+  plane it gives \(4\), while coherent common-plane geometry gives
+  the required sharp value \(3\).
+- Exact note:
+  `notes/agent_n3_one_plane_polarized_exterior.md`.
+  Exact checker:
+  `verification/verify_n3_one_plane_polarized_exterior.py`.
+- Neither the normalized transition contraction nor the remaining
+  well-conditioned near-six-uniform critical core has yet been
+  resolved.  Therefore unrestricted three-copy positivity and the
+  all-copy Werner question both remain open in this project.
