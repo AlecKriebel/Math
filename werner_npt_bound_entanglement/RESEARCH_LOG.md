@@ -4254,6 +4254,17 @@ All timestamps use America/Los_Angeles.
   \]
   It interpolates sharply from the zero-floor threshold to the
   maximal-AAA equality orbit, where \(m=2/27\).
+- Combined the complete equality classification with compactness to
+  prove an exact strict high-AAA exclusion band: there exists
+  \(\delta>0\) such that
+  \[
+  \mathcal C(Q_{(3)})>8/27-\delta
+  \quad\Longrightarrow\quad
+  \mathcal C(Q_{(2)}+Q_{(3)})<4/9.
+  \]
+  This removes a whole neighborhood of the maximal orbit from the
+  unresolved joint problem, although the present proof does not give
+  an explicit numerical value of \(\delta\).
 - This does not yet extend the joint bound to arbitrary pairs of
   singular planes.  The remaining problem is to convert the invariant
   stable-rank deficit into a common-plane or reversed-Schur margin.
@@ -4276,3 +4287,29 @@ All timestamps use America/Los_Angeles.
   inequalities would imply the Ky--Fan-two target.  It is currently
   supported only by discovery searches away from the two exact
   endpoint families.
+
+## 2026-07-29 15:26 PDT — Exact obstructions to separate-column Hodge bounds
+
+- Disproved the second proposed affine spectral bound
+  \[
+  \lambda_2(R_U)\leq\frac14-\frac12p_U
+  \]
+  exactly.  For
+  \(U=(|00\rangle+|11\rangle)/\sqrt2\otimes
+  \operatorname{span}\{|0\rangle,|1\rangle\}\), one has
+  \(p_U=1/8\) and \(\lambda_2(R_U)=1/4\), a gap of \(1/16\).
+  The actual Ky--Fan-two sum is still exactly \(1/2\).
+- Disproved the tempting separate-column operator-norm estimate
+  \[
+  \|D_{u_0}\|_{\rm op}^2+\|D_{u_1}\|_{\rm op}^2
+  \leq\frac14+\frac12p_U.
+  \]
+  Two orthogonal maximally entangled \(AB\) states with a common
+  one-site factor have \(p_U=0\), while both column norms equal
+  \(1/6\), giving an exact violation of \(1/12\).
+- These obstructions isolate the indispensable remaining datum:
+  the two Hodge columns must be tested on one common maximizing
+  two-plane.  Separate column maxima lose precisely that
+  compatibility.
+- Updated the dependency-free exact checker
+  `verification/verify_n3_triple_hodge_two_column_recursion.py`.

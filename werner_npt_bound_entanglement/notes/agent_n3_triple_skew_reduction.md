@@ -701,6 +701,49 @@ triple concurrence \(8/27\).  What is still missing is an invariant
 replacement for (S8) when the two singular planes are not already
 in a common-factor chart.
 
+The exact equality classification nevertheless removes a full
+neighborhood of the maximal-AAA locus, without assuming that a
+general nearby pair is already in that chart.
+
+### Corollary 5.3 (a strict high-AAA exclusion band)
+
+There is a constant \(\delta>0\) such that every pair of qutrit
+two-planes satisfying
+\[
+ {\cal C}(Q_{(3)})>\frac8{27}-\delta                     \tag{S9}
+\]
+also satisfies the strict joint feature bound
+\[
+\boxed{
+ {\cal C}(Q_{(2)}+Q_{(3)})<\frac49.
+}                                                         \tag{S10}
+\]
+
+#### Proof
+
+The product of the two qutrit Grassmannians is compact, and both
+concurrences in (S9)--(S10) are continuous functions on it.  By
+Theorem 5.1 and Corollary 5.2, the maximizer set
+\[
+ {\cal E}=
+ \left\{(U,V):
+ {\cal C}(Q_{(3)})=\frac8{27}\right\}
+\]
+is contained in the common-factor orbit and the joint concurrence
+equals \(8/27\) everywhere on \({\cal E}\).  Since
+\(8/27<4/9\), continuity gives an open neighborhood \({\cal N}\)
+of \({\cal E}\) on which (S10) holds.
+
+The compact complement of \({\cal N}\) contains no maximizer of
+\({\cal C}(Q_{(3)})\).  Its maximum is therefore
+\(8/27-\delta\) for some \(\delta>0\).  Condition (S9) forces the
+pair into \({\cal N}\), proving (S10). \(\square\)
+
+This is an exact global reduction, but it is qualitative: it does
+not provide a numerical value of \(\delta\).  Equations (S1)--(S5)
+identify the nonnegative deficits that an explicit quantitative
+version must convert into distance from the common-factor orbit.
+
 ## 6. Why the naive two-site induction fails
 
 The channel form suggests grouping two copies and trying to use the
