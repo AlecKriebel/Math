@@ -4445,3 +4445,43 @@ All timestamps use America/Los_Angeles.
 - Exact note and audit:
   `notes/agent_n3_reverse_cauchy_leakage_obstruction.md` and
   `verification/verify_n3_reverse_cauchy_leakage_obstruction.py`.
+
+## 2026-07-29 16:18 PDT — Standalone coherent two-skew bound disproved
+
+- First reduced the proposed logical inequality
+  \[
+  {\cal C}(Q_{(2)})\leq\frac29
+  \]
+  losslessly to the rank-two exterior inequality
+  \[
+  {\cal J}(C)+\frac12s_1(C)s_2(C)\geq0,
+  \]
+  where
+  \[
+  4{\cal J}(C)=
+  3\|C\|_2^2
+  -2\sum_i\|\operatorname{Tr}_iC\|_2^2
+  \sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2.
+  \]
+- Disproved this intermediate inequality with an exact
+  Gaussian-integer rank-two matrix \(C=XY^\dagger\).  Its certificate
+  is
+  \[
+  4{\cal J}(C)=-15662399,\qquad
+  (s_1s_2)^2=50588196320972,
+  \]
+  together with the radical-free comparison
+  \[
+  15662399^2-4(50588196320972)
+  =42957957151313>0.
+  \]
+  Hence \({\cal J}(C)+s_1s_2/2<0\) exactly.
+- This is not a three-copy Werner counterexample.  Discovery-only
+  evaluation after orthonormalizing the two code planes gives
+  substantial positive triple-skew compensation and a positive full
+  endpoint margin.  The exact result rules out proving the endpoint
+  by imposing independent \(2/9\) budgets on the two- and three-skew
+  features.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_q2_concurrence_exterior_reduction.md` and
+  `verification/verify_n3_q2_concurrence_exterior_reduction.py`.

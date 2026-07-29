@@ -40,7 +40,11 @@ Thus the triple-skew budget in (2) is false, and a successful proof
 must retain compensation between the two- and three-local-exterior
 pieces whenever the triple contribution exceeds \(2/9\).  The
 standalone two-skew bound
-\({\cal C}(Q_{(2)})\leq2/9\) is neither proved nor disproved here.
+\({\cal C}(Q_{(2)})\leq2/9\) was subsequently disproved exactly.
+See `agent_n3_q2_concurrence_exterior_reduction.md` for the lossless
+rank-two exterior reformulation and its Gaussian-integer
+counterexample.  Thus neither separate budget in (2) is valid; only a
+coupled two-/three-skew estimate can prove (1).
 
 The dependency-free exact checker is
 `verification/verify_n3_pair_feature_concurrence_split.py`.
