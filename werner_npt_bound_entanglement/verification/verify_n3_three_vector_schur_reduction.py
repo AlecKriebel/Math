@@ -151,9 +151,23 @@ def main():
     assert sharp_z == -sp.Rational(1, 8)
     assert sp.simplify(a * sharp_b - sharp_z**2) == 0
 
+    # Exact separable compression used in the one-site Schur boundary.
+    phi = sp.Matrix([1, 0, 0, 1])
+    local_compression = sp.eye(4) - HALF * phi * phi.T
+    separable = sp.zeros(4)
+    for phase in (1, sp.I, -1, -sp.I):
+        first = sp.Matrix([1, phase])
+        second = sp.Matrix([1, -sp.conjugate(phase)])
+        product = sp.kronecker_product(first, second) / 2
+        separable += HALF * product * product.conjugate().T
+    e01 = sp.Matrix([0, 1, 0, 0])
+    e10 = sp.Matrix([0, 0, 1, 0])
+    separable += HALF * (e01 * e01.T + e10 * e10.T)
+    assert sp.simplify(local_compression - separable) == sp.zeros(4)
+
     print(
         "verified: A/K contraction identities, exact Schur data, "
-        "and sharp product-anchor equality"
+        "sharp product-anchor equality, and one-site separable compression"
     )
 
 
