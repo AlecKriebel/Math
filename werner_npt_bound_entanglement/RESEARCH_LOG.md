@@ -3358,3 +3358,106 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_shifted_dual_band.md`,
   `verification/verify_n3_pair_shifted_dual_band.py`.
+
+## 2026-07-29 13:34 PDT — Complete rank-one saturation classification and uniform second-mode gap
+
+- Completely classified equality in the sharp rank-one pair-sector
+  estimate
+  \[
+  \|\Pi _2(|x\rangle\langle y|)\|_2^2\leq4/9.
+  \]
+  Up to swapping \(x,y\), every nonzero equality pair is either:
+
+  1. a product vector together with a tangent vector to the
+     product-vector variety; or
+  2. a common one-site factor together with two \(2\times2\)
+     coefficient matrices \(X,Y\) satisfying
+     \(\operatorname{Tr}(X^{-1}Y)=0\).
+- The proof uses the exact classification of the kernel of the
+  polarized \(2\times2\)-minor map.  It forces every local flattening
+  rank to be at most two.  In the full \((2,2,2)\) case the common
+  local traceless actions have equal determinants:
+
+  - the nonzero-determinant branch is a GHZ pair and is excluded by
+    its nonzero three-local-exterior component;
+  - the nilpotent branch is
+    \[
+    x=p|000\rangle+q(|100\rangle+|010\rangle+|001\rangle),
+    \qquad y=q|000\rangle,
+    \]
+    hence is the product/tangent mechanism with the orientation
+    reversed.
+- Proved the previously conjectural operator certificate throughout
+  the common-factor branch:
+  \[
+  E^\dagger E\preceq
+  \frac4{81}I+\frac{12}{81}|y\rangle\langle y|,
+  \qquad E=\Pi _2(|x\rangle\langle y|).
+  \]
+  The only nontrivial block reduces to an exact \(4\times4\)
+  determinant.  After setting \(d=a^2-b^2\), \(k=2ab\), its determinant
+  has a strictly positive lower bound away from \(d=0\) and \(z=0\);
+  both boundary sets have direct Cauchy--Schwarz proofs.
+- Combining this with the product-left certificate and its adjoint
+  gives the uniform complete-boundary spectral statement
+  \[
+  s_1(E)=\frac49,\qquad s_2(E)\leq\frac29.
+  \]
+  Thus every pair-only dual operator exposed at rank-one saturation
+  satisfies the strict estimate
+  \[
+  s_1(D)^2+s_2(D)^2\leq\frac53
+  \sum_{i<j}\|B_{ij}\|_2^2,
+  \]
+  leaving a \(1/3\) margin below the target constant \(2\).
+- This does not yet settle the unrestricted pair sector: the next
+  missing statement is a quantitative stability theorem keeping
+  near-saturating rank-one vectors near the two classified equality
+  varieties.
+- Exact note and checker:
+  `notes/agent_n3_pair_rankone_equality_classification.md`,
+  `verification/verify_n3_pair_rankone_equality_classification.py`.
+
+## 2026-07-29 — Feature concurrence implies the stronger shifted pair bound
+
+- Proved an exact bridge from the existing qutrit Hodge feature-state
+  target to the strengthened singular-value inequality.  If the positive
+  logical feature state \(Q\) has
+  \[
+  {\cal C}(Q)\leq\frac49,
+  \]
+  then a Takagi-optimal pure-column decomposition
+  \(Q=\sum_a|\operatorname{vec}M_a\rangle
+  \langle\operatorname{vec}M_a|\) has
+  \[
+  \sum_a|\det M_a|\leq\frac29.
+  \]
+  The elementary identity
+  \(m_{01}m_{10}=m_{00}m_{11}-\det M\), followed by
+  Cauchy--Schwarz, gives
+  \[
+  |G_{12}|
+  \leq\frac29+
+  \sqrt{\left(\frac49-G_{11}\right)
+        \left(\frac49-G_{22}\right)}.
+  \]
+- Substitution leaves the exact square
+  \[
+  \frac49(s_1^2+s_2^2+s_1s_2)-\|\Pi _2C\|_2^2
+  \geq
+  \left(
+  s_1\sqrt{\frac49-G_{11}}-
+  s_2\sqrt{\frac49-G_{22}}
+  \right)^2.
+  \]
+  Thus the unproved invariant Hodge concurrence bound implies the new
+  stronger pair theorem, not merely the old unshifted \(2/3\) theorem.
+- The shifted determinant is also proved exactly when one diagonal
+  rank-one slack vanishes through the already classified
+  product-left or product-right saturation mechanism.  The established
+  operator estimate on the projected dyad gives
+  \(|G_{12}|\leq2/9\), which is the exact boundary value.
+- The Hodge concurrence estimate itself remains unproved.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_pair_shifted_concurrence_bridge.md` and
+  `verification/verify_n3_pair_shifted_concurrence_bridge.py`.
