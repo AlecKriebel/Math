@@ -3461,3 +3461,30 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_pair_shifted_concurrence_bridge.md` and
   `verification/verify_n3_pair_shifted_concurrence_bridge.py`.
+
+## 2026-07-29 — Exact qutrit-GHZ no-go for a copositive Schur certificate
+
+- Recast the fixed-anchor intersection-one theorem exactly as positivity
+  of
+  \[
+  \Phi_w(V)=Q_3(P_w){\cal K}(V)-A_wVA_w.
+  \]
+  This suggested proving a stronger reflection certificate through the
+  partially transposed Choi matrix \(J(\Phi_w)^\Gamma\).
+- Disproved that strengthening exactly, already at the two-block level.
+  For the normalized qutrit GHZ anchor and
+  \[
+  q=|000,000\rangle+|111,111\rangle,
+  \qquad \operatorname{SR}(q)=2,
+  \]
+  direct rational calculation gives
+  \[
+  \langle q,J(\Phi_w)^\Gamma q\rangle=-\frac5{72}.
+  \]
+- This is only a no-go for complete-copositivity and
+  two-block-copositivity proof routes.  It is not a violation of
+  positivity of \(\Phi_w\), not a counterexample to the intersection-one
+  inequality, and not a Werner witness.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_intersection_cocopositive_obstruction.md` and
+  `verification/verify_n3_intersection_cocopositive_obstruction.py`.
