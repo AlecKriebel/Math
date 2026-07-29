@@ -554,3 +554,65 @@
 - The unpenalized and penalized limiting objectives are therefore exactly
   \(140/3\) and \(176/3\). This is a search calibration only; it is not a
   local-minimum certificate or an unrestricted \(d=6\) obstruction.
+
+## 2026-07-29 03:44 PDT — Overlap-space Kramers route audited
+
+- Classified every antiunitary symmetry of the generic
+  \(P_{12},P_{23}\) two-projection sector. A square-\(-1\) symmetry exists
+  exactly when its multiplicity \(k=3(d/2)^3\) is already even, so the
+  determinant argument is circular as a proof of four-divisibility.
+- The canonical normalized commutator does square to \(-I\), but it
+  exchanges the two \(k\)-dimensional generic halves rather than acting
+  on the \(1/3\)-eigenspace.
+- Reinterpreted Bytsko's characteristic matrix as a cyclic compression.
+  Its polar map connects two a priori different singular spaces.
+- On the published exact \(d=4\) witness, those rank-\(24\) spaces have
+  trace overlap \(18\), squared distance \(12\), and cyclic-compression
+  nonnormality \(16/3\). Adjoint/flip and outer reversal fail, while the
+  available real conjugation squares to \(+1\).
+- An exact balanced abstract \(d=6\) three-strand model has odd
+  multiplicity \(81\), confirming that the abstract overlap algebra and
+  Markov data contain no hidden Kramers parity. It is not tensor-local.
+- This closes the natural overlap/Kramers route only. A deeper
+  tensor-local alternating-form theorem remains open.
+
+## 2026-07-29 03:48 PDT — Commuting-square descent audited exactly
+
+- Proved that for every exceptional localizer the represented Hecke
+  algebra \(\mathcal A_n\) equals Conti--Lechner's full finite horizontal
+  relative commutant \(\mathcal L_{R,n}\). The key finite step is
+  \(E_n(xP_ny)=xy/2\), combined with the Hecke double-coset
+  decomposition and their commuting-square theorem.
+- Therefore the horizontal relative-commutant tower contains no hidden
+  blocks beyond \(H_n(3,6)\); finite braid image acts on the categorical
+  simple factors and identically on the forced
+  \(D_\lambda s^n\) multiplicities.
+- Constructed an exact first commuting square at formal local dimension
+  two. Its rank-four projections satisfy the exceptional cubic,
+  generate \(\mathbb C\oplus M_2\oplus\mathbb C\), and have the correct
+  normalized final-site expectation.
+- Verified the decisive scope defect:
+  \(p=p_0\otimes I_2\) but
+  \(\|q-I_2\otimes p_0\|_{\rm HS}^2=4\). Thus the model is not a
+  dimension-two ordinary localizer and does not contradict the known
+  nonexistence theorem.
+- Spectator amplification realizes the correct first inclusion square
+  for every \(s\), including odd \(s\). Hence inclusion matrices,
+  indices, finite image, and first-cell data cannot by themselves
+  descend the projective \(A_4\) algebra to dimension \(s\).
+- The viable remainder is an all-level flatness or module-extension
+  theorem that retains the repeated spatial placements of one common
+  two-site \(P\). No such theorem was found in the audited sources.
+
+## 2026-07-29 04:06 PDT — Amplified \(d=4\) family cut tested
+
+- Extended the codimension-two cut falsifier from the published witness
+  to three exact points of the C15 color/face circle.
+- Stopped the original 2000-iteration sweep after one completed seed
+  exposed excessive runtime; preserved its metadata/output and
+  predeclared a reduced protocol before further evaluation.
+- Ran twelve new unrestricted rank-six Grassmann searches. All three
+  family points and all seeds ended at the same displayed normalized
+  squared commutator \(0.22729901088344\); no invariant subspace appeared.
+- This remains numerical only. It does not extend the exact C40 no-go or
+  support unrestricted \(d=6\) nonexistence.

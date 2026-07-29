@@ -438,3 +438,81 @@ The 64-seed full-complex search is retained only as provenance; the route
 is closed by the exact three-entry proof. This does not exclude other
 finite symmetries or an asymmetric \(d=6\) solution. See
 `notes/binary_tetrahedral_cp2_no_go.md`.
+
+## Kramers degeneracy on the \(1/3\)-overlap space
+
+The generic two-projection sector has the exact form
+\[
+M_2(\mathbb C)\otimes I_k,\qquad k=3(d/2)^3.
+\]
+Its canonical normalized commutator squares to \(-I\), but exchanges the
+two \(k\)-dimensional halves. It therefore explains only the already
+visible even dimension \(2k\). A commuting or projection-swapping
+antiunitary of square \(-1\) exists precisely when \(k\) is even:
+after standard conjugation it has the form
+\((I_2\otimes u)C_0\), and its square is \(I_2\otimes u\bar u\).
+The determinant condition for \(u\bar u=-I_k\) is exactly the parity one
+wanted to prove.
+
+The tensor-local cyclic compression does not close this gap. On the
+published exact \(d=4\) witness, its left and right \(1/3\)-singular
+projections are different and the compression is nonnormal:
+\[
+\operatorname{Tr}(K_LK_R)=18<24,\qquad
+\|WW^*-W^*W\|_{\rm HS}^2=16/3.
+\]
+Reality supplies only conjugation of square \(+1\); adjoint closure, flip,
+and outer reversal all fail exactly. Hence no parity follows from these
+natural operations. A future proof would need an additional tensor-local
+closure or alternating form not present in the audited data. See
+`notes/overlap_kramers_parity_audit.md`.
+
+## Forcing projective \(A_4\) descent from commuting-square data
+
+For every exceptional localizer, the represented Hecke algebra
+\(\mathcal A_n\) is already the full finite horizontal relative
+commutant \(\mathcal L_{R,n}\). Normalized last-site trace gives
+\[
+E_n(\mathcal A_{n+1})=\mathcal A_n,
+\]
+so no extra finite horizontal algebra is available to act on the
+\(s=d/2\) multiplicity.
+
+Even the first nontrivial Markov commuting square exists exactly at
+formal local dimension two. There are rank-four projections
+\(p,q\in M_8\) satisfying the exceptional cubic, with
+\[
+\operatorname{alg}(p,q)\cong
+\mathbb C\oplus M_2(\mathbb C)\oplus\mathbb C
+\]
+and the correct partial-trace expectation onto
+\(\operatorname{alg}(p_0)\subset M_4\), but
+\[
+p=p_0\otimes I_2,\qquad
+\|q-I_2\otimes p_0\|_{\rm HS}^2=4.
+\]
+Thus a commuting square and its first connection cell forget the
+same-\(P\) tensor placement that fails in dimension two. Spectator
+amplification passes the low-level inclusion arithmetic for every
+integer \(s\).
+
+This closes parity arguments based only on horizontal relative
+commutants, inclusion matrices, indices, finite braid image, or a single
+commuting-square cell. It does not close an all-level flat-connection
+argument retaining the common two-site \(P\), nor a module-category
+argument preceded by a proved extension from diagonal endomorphism
+algebras to off-diagonal coherent morphisms. See
+`notes/commuting_square_projective_descent_audit.md`.
+
+## Cutting amplified noncanonical \(d=4\) representatives
+
+The exact C40 theorem applies to the published \(d=4\) witness. Three
+exact points of the separate C15 color/face circle were therefore
+amplified to \(d=8\), and rank-six square-invariant subspaces were sought
+without symmetry constraints. Twelve predeclared reduced runs all
+settled at normalized squared commutator \(0.22729901088344\), and no
+candidate appeared.
+
+This is not an exact extension of C40. It leaves open other points of the
+circle, other \(d=4\) solutions, and the possibility that the optimizer
+missed a zero.

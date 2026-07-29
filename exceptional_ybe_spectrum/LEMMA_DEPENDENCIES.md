@@ -550,3 +550,65 @@ this route must use the exceptional no-opposite-spectrum consequence
 to control the different, vertical algebra
 \(\mathcal L_R'\cap\mathcal N\). No such horizontal-to-vertical theorem is
 currently available.
+
+The overlap-space Kramers route separates as follows:
+
+```text
+generic sector of P12,P23
+        |
+        +--> C*(P12,P23) = M2(C) tensor I_k,  k=3(d/2)^3
+        |
+        +--> normalized commutator J^2=-I
+        |       |
+        |       +-X J exchanges the two k-dimensional halves
+        |
+        +--> commuting antiunitary Theta=(I2 tensor u)C0
+                |
+                +--> Theta^2=-I iff u conjugate(u)=-I_k
+                        |
+                        +--> determinant requires k even
+                                |
+                                +-X this is exactly the target parity
+```
+
+Tensor locality adds Bytsko's cyclic compression \(W=P_{12}LP_{12}\),
+but its polar unitary maps the right \(1/3\)-singular space to a generally
+different left one. The published exact witness has squared singular-space
+distance \(12\) and nonnormality \(16/3\), while conjugation has square
+\(+1\) and flip/reversal do not close the spaces. Thus any surviving
+overlap-parity theorem must construct new spatial closure data beyond all
+operations in this diagram.
+
+The commuting-square/projective-descent route now separates as follows:
+
+```text
+exceptional localizer P
+        |
+        +--> automatic Tr_last(P)=I/2
+        +--> H_(n+1)=H_n + H_n P_n H_n
+        |       |
+        |       +--> E_n(A_(n+1))=A_n
+        |               |
+        |               +--> Conti--Lechner E_n(L_R)=L_(R,n)
+        |                       |
+        |                       +--> L_(R,n)=A_n=H_n(3,6)
+        |                               |
+        |                               +-X no extra horizontal block
+        |                                   acts on the s-multiplicity
+        |
+        +--> first Markov commuting-square cell
+                |
+                +--> exact formal-d=2 model exists
+                +--> p=p0 tensor I2
+                +--> q != I2 tensor p0
+                        |
+                        +-X one cell does not encode same-P locality
+```
+
+The exact cell amplifies to every integer \(s\) and has the correct
+\(H_2\)-to-\(H_3\) inclusion multiplicities. Therefore inclusion
+matrices, indices, finite image, and first-cell biunitarity cannot force
+\(2\mid s\). A surviving projective-\(A_4\) proof must first construct
+off-diagonal module data or an all-level flat connection from the
+repeated spatial placements of one common \(P\); that extension remains
+unproved.

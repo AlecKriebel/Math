@@ -1161,3 +1161,185 @@ reproducible; only its final exact witness is reproducible.
     `b62a8e98b8c609affa00d741086644762eda4d0c730beb23c0002f76e85c76e0`;
   - `results/orthogonalized_manin_d6_exact.txt`:
     `0f58d8d722255813ebb91b591f425dc7dc5bae3c2975f7759ff3690e2a9ccd38`.
+
+## E36 — exact overlap-space Kramers parity audit
+
+- Run: 2026-07-29 03:36--03:44 PDT.
+- Universal generic-block calculation:
+  on the generic sector,
+  \[
+  C^*(P_{12},P_{23})=M_2(\mathbb C)\otimes I_k,\qquad
+  k=3(d/2)^3.
+  \]
+  Every antiunitary commuting with both projections is
+  \((I_2\otimes u)C_0\), and its square is
+  \(I_2\otimes u\bar u\). Thus square \(-1\) exists exactly when \(k\)
+  is even; the determinant argument is the parity to be proved, not an
+  independent source of it. The same classification holds for
+  antiunitaries interchanging the projections.
+- Canonical-complex-structure audit:
+  \[
+  \mathcal J=
+  \frac{P_{12}P_{23}-P_{23}P_{12}}{\sqrt2/3},
+  \qquad \mathcal J^2=-I
+  \]
+  on the full generic sector, but \(\mathcal J\) exchanges its two
+  \(k\)-dimensional halves. It does not act on the \(1/3\)-eigenspace
+  whose parity is needed.
+- Exact odd-multiplicity limitation:
+  \(27\) common-one blocks, \(27\) common-zero blocks, and \(81\)
+  generic blocks give an exact balanced \(216\)-dimensional abstract
+  \(H_3\) model with ranks \(108\), overlap trace \(54\), and odd
+  \(1/3\)-multiplicity \(81\).
+- Bytsko/cyclic stress test:
+  for cyclic rotation \(L\), the characteristic compression
+  \(W=P_{12}LP_{12}\) has
+  \(W^*W=P_{12}P_{23}P_{12}\), while \(WW^*\) uses the opposite cyclic
+  neighbor. On the exact published \(d=4\) witness, the two
+  \(1/3\)-singular projections have ranks \(24\), trace overlap \(18\),
+  squared distance \(12\), and
+  \[
+  \|WW^*-W^*W\|_{\rm HS}^2=16/3.
+  \]
+  The same witness has exact flip/adjoint defect \(8\), overlap-space
+  outer-reversal defect \(30\), and only a real antiunitary of square
+  \(+1\).
+- Scope:
+  this proves that the abstract pair, cyclic polar overlap, conjugation,
+  adjoint/transpose, and bare tensor reversal do not supply the proposed
+  Kramers parity. The odd-\(81\) model is not of the tensor-local form
+  \(P\otimes I_6,I_6\otimes P\). A deeper tensor-local alternating-form
+  theorem remains possible.
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `ab8fe351`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_overlap_kramers_parity.py`.
+- SHA-256:
+  - `notes/overlap_kramers_parity_audit.md`:
+    `7c092537b8cccf9c39afd5d9f4156d96901180faa3c8e0a0f37f1f07f3e3c15f`;
+  - `verifiers/verify_overlap_kramers_parity.py`:
+    `52117bec29cbdfefa2581248fbd0345181b84af73ebf1b758489110646da7d1b`;
+  - `results/overlap_kramers_parity_exact.txt`:
+    `089f81051c99e0f7483169097e904d3d08890f158c41538ead7cb843820049d9`.
+
+## E37 — exact commuting-square/projective-descent limitation
+
+- Run: 2026-07-29 03:35--03:48 PDT.
+- Universal finite-tower theorem:
+  if \(\mathcal A_n=C^*(P_1,\ldots,P_{n-1})\), the Hecke
+  double-coset decomposition and automatic scalar partial traces give
+  \[
+  E_n(\mathcal A_{n+1})=\mathcal A_n.
+  \]
+  Combining this with Conti--Lechner Theorem 3.8 proves
+  \[
+  \mathcal L_{R,n}=\mathcal A_n
+  \]
+  for every exceptional localizer and every \(n\). Thus the finite
+  horizontal relative-commutant tower contains no extra parity-bearing
+  blocks beyond \(H_n(3,6)\).
+- Exact first-cell limitation:
+  constructed rank-four projections \(p,q\in M_8\) over
+  \(\mathbb Q(\sqrt2,\sqrt3,i)\) with
+  \[
+  pqp-qpq=\frac13(p-q),\qquad
+  \dim\operatorname{alg}(p,q)=6.
+  \]
+  Here \(p=p_0\otimes I_2\), normalized last-qubit partial trace maps
+  \(\operatorname{alg}(p,q)\) onto
+  \(\operatorname{alg}(p_0)\), and
+  \(pqp\) has spectrum
+  \(0^{(4)},(1/3)^{(3)},1^{(1)}\).
+- Tensor-locality guard:
+  \[
+  \|q-I_2\otimes p_0\|_{\rm HS}^2=4.
+  \]
+  Hence this is an exact first Markov commuting square at formal
+  \(d=2\), not an ordinary \(d=2\) localizer. Spectator amplification
+  gives
+  \(Gm_3=(2s)m_2\) for every \(s\ge1\), including odd \(s\), but still
+  does not supply all-level same-\(P\) tensor placement.
+- Interpretation:
+  inclusion matrices, finite image, indices, and the first connection
+  cell cannot canonically descend
+  \(\mathbb C^\alpha[A_4]\) to an \(s\)-dimensional multiplicity space.
+  A global flatness/module-extension theorem using repeated tensor
+  placement remains possible and unproved.
+- Randomness:
+  none; deterministic exact SymPy arithmetic.
+- Parent commit:
+  `ab8fe351`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  SymPy `1.14.0`.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_d2_commuting_square_limitation.py`.
+- SHA-256:
+  - `notes/commuting_square_projective_descent_audit.md`:
+    `2ab68e2e9e1b0ef446ec4d321c2405d7b10e0b23a9e2679c2042f61b488e8666`;
+  - `verifiers/verify_d2_commuting_square_limitation.py`:
+    `f1210a674adc10f6711ea0e3027bd32a94ff4c54ef7f127efd4a3f15193cc105`;
+  - `results/d2_commuting_square_limitation_exact.txt`:
+    `9d35b97ad0075b0037734d484c6bb4dc2da3a392593c7a7323640372b60b3457`.
+
+## E38 — numerical codimension-two cuts of amplified \(d=4\) family points
+
+- Run: 2026-07-29 03:58--04:06 PDT.
+- Search space:
+  rank-six local projections \(Q\in M_8\), minimizing
+  \[
+  64^{-1}\|[H_4(s,t)\boxtimes I_2,Q\otimes Q]\|_{\rm HS}^2
+  \]
+  without symmetry constraints.
+- Exact source points:
+  three points on the C15 circle \(s^2+2t^2=1\):
+  \((1,0)\), \((0,1/\sqrt2)\), and \((1/\sqrt2,1/2)\).
+  The script checks the \(d=4\) involution and cubic before amplification.
+- Interrupted protocol:
+  a predeclared 24-run, 2000-iteration sweep was stopped during its
+  second seed for excessive runtime. Its one completed seed and the
+  interruption are retained explicitly.
+- Reduced predeclaration:
+  four new seeds per family point, `26074301`--`26074312`, with 400
+  iterations per seed.
+- Outcome:
+  all twelve reduced runs ended at normalized squared commutator
+  \(0.22729901088344\) to the displayed precision. No invariant
+  rank-six subspace was found.
+- Scope:
+  this is only a numerical falsifier for a construction mechanism.
+  It proves neither a positive lower bound nor the equivalence of the
+  three landscapes, covers only three points of the C15 circle, and
+  does not extend the exact C40 theorem.
+- Parent commit:
+  `ab8fe351`.
+- Machine/runtime:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`; Python `3.9.6`,
+  NumPy `2.0.2`, SciPy `1.13.1`.
+- Replay:
+  see `notes/d4_family_amplification_cut_falsifier.md` and
+  `results/d6_cut_from_color_face_d4_reduced_seed_manifest.json`.
+- SHA-256:
+  - `notes/d4_family_amplification_cut_falsifier.md`:
+    `7c4ff5ab93a0447aeec1f444063947b790775a81b41fecb759535a29245aaa88`;
+  - `scripts/search_d6_cut_from_color_face_d4.py`:
+    `8ec0e990c6cf91afeba7bfd577a1785a49efd76e8d595943b2612ee67eec7812`;
+  - `results/d6_cut_from_color_face_d4_seed_manifest.json`:
+    `38333d91274e2192acf3b87e09af89ca26715f1293572024e7b30ab283e4bb81`;
+  - `results/d6_cut_from_color_face_d4_aborted_calibration.jsonl`:
+    `c4f9c55e83a34e675c3b523f0327b115a2f806444d5e9e448d8b0dadc8afafc3`;
+  - `results/d6_cut_from_color_face_d4_reduced_seed_manifest.json`:
+    `8860a3e6c546fcdce4738e51e0f13ef4c9bd2e5e9277a8c431f70195fcf15a4e`;
+  - `results/d6_cut_from_color_face_d4_axis_s_reduced_runs.jsonl`:
+    `21a163a62b17479502c9dd4f1e4730125c867994b4e479a3cb7119c6837efb91`;
+  - `results/d6_cut_from_color_face_d4_axis_t_reduced_runs.jsonl`:
+    `3e22d3e774a0f9d1d9c7dc37c6ea5dc355078e00e76e1af8d0deb2ac1c164c04`;
+  - `results/d6_cut_from_color_face_d4_interior_reduced_runs.jsonl`:
+    `0751036f72bac96cc3cc555f53f1aa8b8e0886363c73ec9e660bea03539c4762`.

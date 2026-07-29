@@ -90,7 +90,12 @@
   \(k=3d^3/8\), and his characteristic matrix has eigenvalues \(1\) and
   \(1/3\) with multiplicities \(d^3/8\) and \(3d^3/8\). At \(d=6\) these
   are \(27\) and \(81\), so the theorem contains no hidden even-degeneracy
-  obstruction. See `notes/bytsko_characteristic_matrix_audit.md`.
+  obstruction. His \(W_{\mathcal T}\) is the cyclic compression
+  \(P_{12}LP_{12}\) after vectorization. The relation fixes its singular
+  values but not equality of its left and right singular spaces; the exact
+  published witness is nonnormal with squared defect \(16/3\). See
+  `notes/bytsko_characteristic_matrix_audit.md` and
+  `notes/overlap_kramers_parity_audit.md`.
 - Conti--Fidaleo define and give sufficient criteria for standard braided
   Cuntz endomorphisms, but the audited results do not classify all local
   tensor realizations of statistical dimension two in arbitrary Cuntz
@@ -122,6 +127,21 @@
   metric at \(t^2=e^{i\pi/3}\).  This is an ansatz-level unitarity
   obstruction, not a classification of multiparameter or twisted
   super-Hecke symmetries.
+- Conti--Lechner Theorem 3.8 identifies
+  \(\mathcal L_{R,n}=E_n(\mathcal L_R)\). In the exceptional class,
+  automatic standardness and the Hecke double-coset decomposition sharpen
+  this to
+  \(\mathcal L_{R,n}=\mathcal A_n\), the represented
+  \(H_n(3,6)\) algebra. Thus their finite commuting squares contain no
+  additional horizontal algebra beyond the already-audited Hecke tower.
+- Galindo--Hong--Rowell explicitly distinguish ordinary, quasi-, and weak
+  localizations in Definitions 4.16 and 4.20 and Remark 4.22. Their
+  Proposition 4.21 supplies a weak localization for any fusion category,
+  while Section 5.6 supplies a two-dimensional quasi-localization here.
+  Neither result converts diagonal algebra embeddings into the strict
+  same-\(P\) placements \(P\otimes I\), \(I\otimes P\). Consequently a
+  module-category or cell classification can constrain the present matrix
+  problem only after a separate extension theorem is proved.
 
 ## Open source-audit questions
 
@@ -139,3 +159,8 @@
   \(\mathcal L_R'\cap\mathcal N\) to contain an algebraic fixed point?
   Finite image plus the exact partial trace alone does not; the stronger
   implication is not in the audited sources and must not be assumed.
+- Can the repeated same-\(P\) tensor placements be upgraded to a finite
+  module category or globally flat connection whose projective
+  \(A_4\)-sector acts specifically on dimension \(s=d/2\)? The finite
+  horizontal relative commutants, their inclusion matrices, and the first
+  commuting-square cell do not perform this descent.
