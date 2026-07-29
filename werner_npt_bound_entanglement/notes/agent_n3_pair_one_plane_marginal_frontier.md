@@ -134,7 +134,7 @@ physical sites.  Expanding (5) gives
  ={}&
  \sum_{i=1}^3 \rho_{Ki}^\Psi
  -\frac23\sum_{1\leq i<j\leq3}\rho_{Kij}^\Psi
- \frac13R.                                               \tag{14}
+ {}+\frac13R.                                            \tag{14}
 \end{aligned}
 \]
 Here the first sum arises from \(e_je_k(R)\), and the second from
@@ -151,9 +151,9 @@ Equations (11)--(14) give the exact identity
  4O_\Psi
  =
  3I
-2\sum_{i<j}\rho_{Kij}^\Psi
--3\sum_i\rho_{Ki}^\Psi
--R.
+{}+2\sum_{i<j}\rho_{Kij}^\Psi
+{}-3\sum_i\rho_{Ki}^\Psi
+{}-R.
 }                                                       \tag{16}
 \]
 Thus the pair-sector theorem is precisely the four-party marginal
@@ -161,7 +161,7 @@ operator inequality
 \[
 \boxed{
  3I
-2\sum_{i<j}\rho_{Kij}^\Psi
+{}+2\sum_{i<j}\rho_{Kij}^\Psi
 \succeq
 3\sum_i\rho_{Ki}^\Psi+|\Psi\rangle\langle\Psi|,
 \qquad \rho_K^\Psi=I_2/2.
