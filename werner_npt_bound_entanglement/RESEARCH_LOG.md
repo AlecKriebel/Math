@@ -3962,6 +3962,23 @@ All timestamps use America/Los_Angeles.
   \(x=\Phi_{AB}\otimes|2\rangle_C\).  It gives
   \(D_t=3^{-1/2}(\sum_pA_p\otimes A_p)\otimes A_0\) and
   \(\|D_t\|_{\rm op}^2=1/6\).
+- Classified every nonzero equality case.  Equality in all six refined
+  sign frames forces the encoded Pauli information onto one qutrit,
+  makes the other two qutrit marginals maximally mixed, and then forces
+  a Bell pair on the logical qubit and the active qutrit.  The
+  complementary two-qutrit state is maximally entangled.  Hence the
+  displayed biseparable orbit is the complete equality locus.
+- Extracted an exact joint-compensation corollary.  If the logical
+  triple-skew feature reaches its sharp maximum
+  \({\cal C}(Q_{(3)})=8/27\), compression equality places both singular
+  planes on the common-factor top spaces above.  The exact common-plane
+  formulas then give
+  \[
+  {\cal C}(Q_{(2)})=0,\qquad
+  {\cal C}(Q_{(2)}+Q_{(3)})=8/27,
+  \]
+  and the corrected common-plane floor has strict margin \(2/27\).
+  Quantitative compensation away from this maximal locus remains open.
 - Disproved the naive two-site induction mechanism exactly.  For the
   qutrit antisymmetric channel \({\cal W}\), the comparison map
   \((1/3)\operatorname{Tr}(\cdot)I-{\cal W}^{\otimes2}\) is not even

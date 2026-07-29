@@ -230,6 +230,21 @@ assert (
 )
 
 
+# Equality-locus joint compensation.  At
+# eta_1=eta_2=eta_12=1/3, Q_(2)=a I+b A_L and Q_(3)=c A_L.
+eta = F(1, 3)
+a_scalar = F(4, 9) * eta
+b_two = F(4, 9) * (eta + eta)
+c_three = F(8, 9) * eta
+q2_takagi = [a_scalar + b_two] + [a_scalar] * 3
+qtotal_takagi = [a_scalar + b_two + c_three] + [a_scalar] * 3
+assert q2_takagi == [F(4, 9)] + [F(4, 27)] * 3
+assert q2_takagi[0] - sum(q2_takagi[1:], F(0)) == 0
+assert qtotal_takagi == [F(20, 27)] + [F(4, 27)] * 3
+assert qtotal_takagi[0] - sum(qtotal_takagi[1:], F(0)) == F(8, 27)
+assert F(2, 9) * (1 - eta - eta) == F(2, 27)
+
+
 # Arithmetic of the surviving concurrence implication.
 assert F(8, 9) * 2 * F(1, 6) == F(8, 27)
 assert F(8, 27) > F(2, 9)

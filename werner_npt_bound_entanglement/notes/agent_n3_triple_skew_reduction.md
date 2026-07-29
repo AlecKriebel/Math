@@ -368,6 +368,169 @@ gives
 Permuting the three sites and applying local unitaries gives the
 corresponding equality orbit.
 
+### Theorem 5.1 (complete equality classification)
+
+Conversely, every nonzero equality case in (1) belongs to the orbit
+just described.  More precisely, after normalizing \(t\), permuting
+the three sites, and applying local unitaries,
+\[
+ t=|\Phi\rangle_{AB}|0\rangle_C.                          \tag{E1}
+\]
+The two-dimensional top right and left singular spaces of \(D_t\)
+are the corresponding common-factor planes
+\[
+ |\Phi\rangle_{AB}\otimes |0\rangle_C^\perp,              \tag{E2}
+\]
+with the harmless conjugations dictated by the Hodge covariance.
+
+#### Proof
+
+Choose a unit vector \(x\) with
+\(\|D_tx\|^2=1/6\).  Since \(D_tt=0\), equality forces
+\(x\perp t\).  Use the purification and notation of Section 4, and
+write
+\[
+ h_{a,i}=\|X_{a,i}\|_2^2,\qquad
+ P_1=\sum_i p_i,\qquad
+ R=\frac29+\frac23P_1.
+\]
+Equality in (T4) implies equality in the sum of the six inequalities
+(T8).  Since each of them is bounded above by the same number \(R\),
+every permutation satisfies
+\[
+ 2\sum_i h_{\pi(i),i}=R.                                  \tag{E3}
+\]
+
+Suppose \(h_{a,i}>0\).  Choose a permutation with
+\(\pi(i)=a\).  Equality throughout (T6)--(T7) forces
+\[
+ \frac23(1+p_i)=R.
+\]
+Hence the other two physical marginals both have their minimum
+qutrit purity \(1/3\).  If nonzero encoded-Pauli signals occurred on
+two distinct sites, this argument would make all three marginals
+maximally mixed.  But for \(\sigma=I_3/3\), the contraction (L2)
+satisfies
+\[
+ \operatorname{Tr}(\sigma G^2)
+ =\frac{2+g^2}{3}<\frac89
+ =\frac23(1+\operatorname{Tr}\sigma^2),
+\]
+by (L3), contradicting equality in (T6).  Thus all encoded-Pauli
+signals occur on one physical site, say \(C\), and
+\[
+ p_A=p_B=\frac13.                                        \tag{E4}
+\]
+
+Equation (E3), applied to the two permutations assigning each Pauli
+axis to \(C\), now gives
+\[
+ h_{1,C}=h_{2,C}=h_{3,C}=\frac R2.                        \tag{E5}
+\]
+Equality in the proof of Lemma 3.1 forces the diagonal weight \(q\)
+in (L5) to vanish and forces equality in (L6).  Therefore
+\[
+ X_{0,C}=\frac12P_E                                      \tag{E6}
+\]
+for a two-dimensional subspace \(E\subset\mathbb C^3\), so
+\(p_C=1/2\) and \(R=1\).  The two physical output states
+\[
+ X_{0,C}\pm X_{a,C}
+\]
+are positive.  Their positivity on \(\ker P_E\) forces the middle
+eigenvalue \(b\) of every \(X_{a,C}\) to vanish.  Equations (E5)--(E6)
+then show that each \(X_{a,C}\) has eigenvalues
+\((1/2,0,-1/2)\) on the same support.
+
+Using (T3),
+\[
+ \operatorname{Tr}(\rho_{KC}^{\Psi})^2
+ =\frac12\left(\frac12+3\frac12\right)=1.
+\]
+Thus \(\rho_{KC}^{\Psi}\) is pure, and its two marginals are maximally
+mixed on two-dimensional supports.  The global purification factors
+as a Bell pair on \(K:C\) times a pure state on \(A:B\).  By (E4), the
+two qutrit marginals of that pure state are maximally mixed, so it is
+maximally entangled.  Expanding the Bell pair in the original logical
+basis proves (E1).  Formula (E2) follows directly from (14)--(15).
+\(\square\)
+
+### Corollary 5.2 (joint compensation at maximal triple skew)
+
+Let \(Q_{(2)},Q_{(3)}\) be the two positive logical feature operators
+for arbitrary qutrit singular planes, with
+\[
+ Q_{(3)}
+ =\operatorname{comp}\left[\frac89
+ {\mathsf A}_1{\mathsf A}_2{\mathsf A}_3\right],
+\qquad
+ Q_{(2)}
+ =\operatorname{comp}\left[\frac49
+ \sum_{i<j}{\mathsf A}_i{\mathsf A}_j\right].
+\]
+Then
+\[
+ {\cal C}(Q_{(3)})\leq\frac8{27}.                         \tag{E7}
+\]
+If equality holds in (E7), the two singular planes lie in the
+common-factor chart, and the compensation is exact:
+\[
+\boxed{
+ {\cal C}(Q_{(2)})=0,\qquad
+ {\cal C}(Q_{(2)}+Q_{(3)})=\frac8{27}.
+}                                                         \tag{E8}
+\]
+The corrected common-plane floor then has the strict margin \(2/27\).
+
+#### Proof
+
+For a coherent unit triple-skew coefficient vector \(c\), put
+\[
+ D_c=\sum_{p,q,r}c_{pqr}A_p\otimes A_q\otimes A_r.
+\]
+The Takagi variational formula for the polarized determinant matrix
+of \(Q_{(3)}\) gives
+\[
+ t_1
+ =\frac{16}{9}\max_{\|c\|=1}
+ \left|\det(U^{\mathsf T}D_cV)\right|
+ \leq\frac{16}{9}\max_{\|c\|=1}\|D_c\|_{\rm op}^2
+ \leq\frac8{27}.                                         \tag{E9}
+\]
+Since concurrence is at most the largest Takagi singular value, this
+proves (E7).
+
+Equality in (E7) forces equality in both inequalities in (E9).
+Theorem 5.1 classifies \(D_c\), while equality in the compression
+determinant places \(\overline{\operatorname{ran}U}\) and
+\(\operatorname{ran}V\) on its two-dimensional top singular spaces.
+Thus, after local and logical unitary changes,
+\[
+ u_a=x\otimes e_a,\qquad v_a=y\otimes e_a,
+\]
+where \(x,y\) are maximally entangled on the other two qutrits.
+
+For this chart direct swap contraction gives
+\[
+\begin{aligned}
+ Q_{(3)}&=\frac89\eta_{12}A_{\rm L},\\
+ Q_{(2)}&=\frac49\left[
+ \eta_{12}I_4+(\eta_1+\eta_2)A_{\rm L}\right].
+\end{aligned}                                             \tag{E10}
+\]
+Maximal entanglement gives \(\eta_1=\eta_2=1/3\), and equality in
+(E7) gives \(\eta_{12}=1/3\).  The two matrices in (E10) are invariant
+under logical spin flip, so their four Takagi values give (E8)
+immediately.  The common-plane floor has least eigenvalue
+\[
+ \frac29(1-\eta_1-\eta_2)=\frac2{27}.
+\]
+\(\square\)
+
+The corollary is an exact joint result on the maximal-AAA locus.  A
+quantitative stability version, controlling \(Q_{(2)}\) when
+\({\cal C}(Q_{(3)})\) is merely close to \(8/27\), remains open.
+
 ## 6. Why the naive two-site induction fails
 
 The channel form suggests grouping two copies and trying to use the
