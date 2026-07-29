@@ -4760,3 +4760,36 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_pair_critical_local_spectral_floor.md` and
   `verification/verify_n3_pair_critical_local_spectral_floor.py`.
+
+## 2026-07-29 16:57 PDT — Exact three-replica linear-relaxation no-go
+
+- Tested the direct \(S_3\) lift of the qutrit pair-sector witness
+  \(W=\frac23I-\Pi_2\).  On three replicas, every actual diagonal
+  cube of a rank-two coefficient vector is simultaneously
+  replica-symmetric and is annihilated by both the global row and
+  global column alternating projectors.
+- Proved that these three linear conditions are not sufficient.  Fix
+  \(E_{01}\) at the first two physical sites and, on the three
+  row/column replicas of the third site, put
+  \[
+  \zeta=\sum_{r\in\{0,1,2\}^3}|r\rangle_R|r\rangle_C,\qquad
+  \eta=\zeta-\frac16(\varepsilon_R\otimes\varepsilon_C).
+  \]
+  Then \(\eta\) is simultaneously symmetric and both row and column
+  three-antisymmetrizers kill it, but for
+  \(\overline W=(W^{(1)}+W^{(2)}+W^{(3)})/3\),
+  \[
+  \frac{\langle\eta,\overline W\eta\rangle}{\|\eta\|^2}
+  =-\frac{35}{117}.
+  \]
+  The exact arithmetic is
+  \(\|\eta\|^2=26\) and
+  \(\langle\eta,\Pi_2^{(r)}\eta\rangle=226/9\) for every
+  replica.
+- This is not a physical rank-two counterexample.  It rules out a
+  three-replica PSD/SOS proof modulo only the two linear
+  \(\bigwedge^3=0\) constraints.  Any successful replica proof must
+  retain the nonlinear diagonal-cube/Veronese relations.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_pair_three_replica_linear_nogo.md` and
+  `verification/verify_n3_pair_three_replica_linear_nogo.py`.
