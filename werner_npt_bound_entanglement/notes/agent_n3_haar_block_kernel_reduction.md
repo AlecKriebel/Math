@@ -667,7 +667,7 @@ With the ordinary Hilbert--Schmidt trace on forms on \(M_3\),
 \[
  \boxed{\qquad
  \operatorname{Tr}_{\rm HS}G_i
-8q
+ +8q
  =\frac{15}{2}g_i
  =12\,{\mathbb E}_z
  Q_3\left((I-|z\rangle\langle z|)^{(i)}C\right)>0.
@@ -727,3 +727,333 @@ floor.  Equality at the floor is the isotropic form already excluded
 by Theorem 6.  The unresolved strict-slack problem is to turn this
 qualitative rigidity into an explicit common-origin lower bound strong
 enough to force \(q\geq0\).
+
+## 8. An explicit local stability estimate
+
+The sitewise slack controls the distance of the complete local form
+from the forbidden isotropic form.  The constant below is deliberately
+elementary rather than optimized.
+
+Let \({\mathscr H}_i:M_3\to M_3\) represent \(h_i\):
+\[
+ h_i(A,B)=\langle A,{\mathscr H}_i(B)\rangle_{\rm HS}.
+ \tag{64}
+\]
+
+### Theorem 9 (quantitative isotropy)
+
+For every normalized rank-at-most-two \(C\), put \(q=Q_3(C)\).
+Then
+\[
+\boxed{\qquad
+ \left\|
+ {\mathscr H}_i+\frac{2q}{3}{\cal L}
+ \right\|_{\rm op}
+ \leq360\sqrt{15}\,\sqrt{g_i}.
+ \qquad}
+ \tag{65}
+\]
+Equivalently,
+\[
+ g_i\geq
+ \frac1{1\,944\,000}
+ \left\|
+ {\mathscr H}_i+\frac{2q}{3}{\cal L}
+ \right\|_{\rm op}^2.
+ \tag{66}
+\]
+Here the operator norm is for the Hilbert--Schmidt structure on
+\(M_3\).
+
+### Proof
+
+Write
+\[
+ A_z=I-|z\rangle\langle z|,
+ \qquad
+ f(z)=h_i(A_z,A_z),
+ \qquad
+ m={\mathbb E}_zf(z)=\frac58g_i.
+ \tag{67}
+\]
+The boundary theorem gives \(f\geq0\).  As a function on
+\(\mathbb {CP}^2\), \(f\) lies in the space of bidegree-\((2,2)\)
+functions, whose complex dimension is at most
+\[
+ \dim\operatorname{End}(\operatorname{Sym}^2\mathbb C^3)=36.
+ \tag{68}
+\]
+For Haar probability measure, the diagonal of the reproducing kernel
+of this space is constant and equals its dimension.  Therefore
+\[
+ \|f\|_\infty\leq6\|f\|_2.
+ \tag{69}
+\]
+Since \(f\geq0\),
+\[
+ \|f\|_2^2\leq\|f\|_\infty m.
+ \]
+Combining this with (69) gives the explicit bound
+\[
+ \boxed{\qquad \|f\|_\infty\leq36m.\qquad}
+ \tag{70}
+\]
+
+Fix \(z\).  The two linear spaces
+\[
+ {\cal R}_z=\{B:|z\rangle\langle z|B=0\},
+ \qquad
+ {\cal C}_z=\{B:B|z\rangle\langle z|=0\}
+ \tag{71}
+\]
+consist entirely of singular matrices and both contain \(A_z\).
+Thus \(h_i\) restricts to a positive semidefinite form on each.
+Moreover,
+\[
+ |h_i(B,B)|
+ \leq\|B^{(i)}C\|_2^2
+ \leq\|B\|_2^2,
+ \tag{72}
+\]
+because the endpoint superoperator has operator norm one.
+Positive-form Cauchy--Schwarz therefore gives
+\[
+ |h_i(B,A_z)|\leq\|B\|_2\sqrt{f(z)}
+ \quad(B\in{\cal R}_z\text{ or }B\in{\cal C}_z).
+ \tag{73}
+\]
+
+The tangent hyperplane to the determinant hypersurface at \(A_z\) is
+\[
+ {\cal T}_z=\{B:z^\dagger Bz=0\}.
+ \tag{74}
+\]
+Every \(B\in{\cal T}_z\) is an orthogonal sum of one member of
+\({\cal R}_z\) and one member of \({\cal C}_z\).  Hence (73) implies
+\[
+ |h_i(B,A_z)|
+ \leq\sqrt2\,\|B\|_2\sqrt{f(z)}
+ \quad(B\in{\cal T}_z).
+ \tag{75}
+\]
+The Hilbert--Schmidt orthogonal complement of \({\cal T}_z\) is
+\(\mathbb C|z\rangle\langle z|\).  Equations (70) and (75) consequently
+give scalars \(\lambda_z\) and errors \(e_z\) such that
+\[
+\begin{aligned}
+ {\mathscr H}_i(A_z)
+ &=\lambda_z|z\rangle\langle z|+e_z,\\
+ \|e_z\|_2&\leq\varepsilon,
+ \qquad
+ \varepsilon:=\sqrt{72m}.
+\end{aligned}
+ \tag{76}
+\]
+
+Put \(K={\mathscr H}_i(I)\).  For every orthonormal basis
+\((z_1,z_2,z_3)\), summing (76) and using
+\(\sum_aA_{z_a}=2I\) gives
+\[
+ 2K=\sum_a\lambda_{z_a}|z_a\rangle\langle z_a|+E,
+ \qquad \|E\|_2\leq3\varepsilon.
+ \tag{77}
+\]
+Thus, for every orthogonal pair of unit vectors \(x,y\),
+\[
+ |x^\dagger Ky|\leq\frac32\varepsilon.
+ \tag{78}
+\]
+An elementary two-vector rotation now makes \(K\) nearly scalar.
+Indeed, in a fixed basis (78) bounds every off-diagonal entry by
+\(\delta=3\varepsilon/2\).  Applying it also to
+\((e_a+e_b)/\sqrt2,(e_a-e_b)/\sqrt2\) bounds every diagonal
+difference by \(4\delta\).  Therefore, with
+\[
+ \kappa=\frac{\operatorname{Tr}K}{3}=\frac q3,
+ \tag{79}
+\]
+one has
+\[
+ \|K-\kappa I\|_2\leq8\delta=12\varepsilon.
+ \tag{80}
+\]
+Taking the \(z\)-diagonal entry in (77), with a basis containing \(z\),
+then yields
+\[
+ |\lambda_z-2\kappa|\leq27\varepsilon.
+ \tag{81}
+\]
+Equations (76), (80), and (81) give, for every rank-one projection
+\(P_z\),
+\[
+ \left\|
+ {\mathscr H}_i(P_z)-\kappa(I-2P_z)
+ \right\|_2
+ \leq40\varepsilon.
+ \tag{82}
+\]
+
+Finally, rank-one projections linearly span \(M_3\).  The diagonal
+matrix units are themselves projections.  For \(a\ne b\), the standard
+four-projection polarization writes \(E_{ab}\) as one half of a sum
+of four signed rank-one projections.  Hence (82) bounds the error on
+diagonal matrix units by \(40\varepsilon\) and on off-diagonal units
+by \(80\varepsilon\).  Taking the Hilbert--Schmidt norm of the
+superoperator gives
+\[
+ \left\|
+ {\mathscr H}_i-\kappa(\operatorname{Tr}(\,\cdot\,)I
+ -2\,\operatorname{id})
+ \right\|_{\rm op}
+ \leq120\sqrt3\,\varepsilon.
+ \tag{83}
+\]
+Since
+\[
+ \kappa(\operatorname{Tr}(A)I-2A)
+ =-\frac{2q}{3}{\cal L}(A),
+ \tag{84}
+\]
+and
+\[
+ 120\sqrt3\,\sqrt{72m}
+ =360\sqrt{15}\,\sqrt{g_i},
+ \tag{85}
+\]
+equation (83) is (65).  Squaring gives (66). \(\square\)
+
+The estimate is local and dimension-specific, but it is fully
+effective: any negative witness with small \(g_i\) must have its
+entire \(9\times9\) local-filter form close to the one-site isotropic
+boundary form.  The next missing step is a quantitative version of
+the common-factor contradiction in Sections 4--6 which converts the
+three local anisotropy distances into a lower bound incompatible with
+the sector identity
+\[
+ \sum_i g_i
+ =\frac13-\frac34w_1+\frac83q.
+ \tag{86}
+\]
+
+The coefficient inversion in Proposition 1 makes this stability
+visible directly in the common block Gram.  For an arbitrary local
+form matrix \(K_{ra,tb}\), the inverse of (8) is
+\[
+\boxed{
+\begin{aligned}
+ G_{ab}&=\frac25\sum_sK_{sa,sb},\\
+ \beta_{ar,bt}
+ &=\frac45\delta_{rt}\sum_sK_{sa,sb}-2K_{ra,tb}.
+\end{aligned}}
+ \tag{87}
+\]
+Indeed, summing \(K_{ra,rb}=G_{ab}-\beta_{ar,br}/2\) over \(r\)
+gives \(5G_{ab}/2\), and substitution gives the second line.
+
+For the Frobenius norms of the two \(9\times9\) coefficient arrays,
+(87) implies
+\[
+ \|\Delta\beta\|_2\leq\frac{22}{5}\|\Delta K\|_2.
+ \tag{88}
+\]
+To see this, Cauchy--Schwarz gives
+\[
+ \left\|\sum_s\Delta K_{sa,sb}\right\|_{a,b}^2
+ \leq3\|\Delta K\|_2^2;
+\]
+the two terms in the second line of (87) then have norms at most
+\(12\|\Delta K\|_2/5\) and \(2\|\Delta K\|_2\).
+
+Since a \(9\times9\) operator has Frobenius norm at most three times
+its operator norm, Theorem 9 yields the explicit block-Gram estimate
+\[
+\boxed{\quad
+ \left(
+ \sum_{a,p,b,q}
+ \left|
+ {\cal B}_2(C_{ap},C_{bq})
+ -\gamma\delta_{ap}\delta_{bq}
+ \right|^2
+ \right)^{1/2}
+ \leq4752\sqrt{15}\,\sqrt{g_i},
+ \quad
+ \gamma=-\frac{2q}{3}.
+ \quad}
+ \tag{89}
+\]
+Thus strict Haar slack is quantitatively equivalent, up to explicit
+constants in one direction, to failure of the rank-one block-Gram
+collapse.  In particular, for fixed \(r\), the \(2\times2\) Gram
+matrix indexed by \(p,q\ne r\) has norm at most the right side of
+(89).  The exact remaining stability lemma is to convert these three
+simultaneous near-kernel pairs into a lower bound for the local-support
+determinants of the common singular plane.
+
+At a stationary point, Theorem 9 immediately sees marginal
+nonuniformity.
+
+### Corollary 10 (critical marginal anisotropy)
+
+Suppose \(C\) is stationary under left and right local filters and
+\[
+ q=-\delta<0.
+ \tag{90}
+\]
+For the normalized one-site densities
+\[
+ \rho_i^L=\operatorname{Tr}_{\widehat i}(CC^\dagger),
+ \qquad
+ \rho_i^R=\operatorname{Tr}_{\widehat i}(C^\dagger C),
+ \tag{91}
+\]
+one has
+\[
+\boxed{
+\begin{aligned}
+ g_i&\geq
+ \frac{\delta^2}{5\,832\,000}
+ \left\|\rho_i^L-\frac13I\right\|_2^2,\\
+ g_i&\geq
+ \frac{\delta^2}{5\,832\,000}
+ \left\|\rho_i^R-\frac13I\right\|_2^2.
+\end{aligned}}
+ \tag{92}
+\]
+
+### Proof
+
+Stationarity gives
+\[
+ h_i(A,I)=q\,\operatorname{Tr}(A^\dagger\rho_i^L).
+ \tag{93}
+\]
+Therefore, for
+\[
+ \Delta_i={\mathscr H}_i+\frac{2q}{3}{\cal L},
+ \]
+the identity \({\cal L}(I)=-I/2\) gives
+\[
+ \Delta_i(I)=q\left(\rho_i^L-\frac13I\right).
+ \tag{94}
+\]
+Since \(\|I\|_2=\sqrt3\),
+\[
+ \|\Delta_i\|_{\rm op}
+ \geq\frac{\delta}{\sqrt3}
+ \left\|\rho_i^L-\frac13I\right\|_2.
+ \tag{95}
+\]
+Insert (95) in (66).  The right-filter proof is identical. \(\square\)
+
+Thus the only branch on which the explicit stability estimate can be
+small at fixed negative depth is simultaneously close to the six
+maximally mixed one-site marginals.  The marginal floor
+\[
+ \rho_i^{L,R}\succeq
+ \frac{\delta}{1+2\delta}I
+ \tag{96}
+\]
+at a negative global minimizer prevents degeneration in the opposite
+direction.  The remaining quantitative common-factor problem is
+therefore confined to a compact, well-conditioned, near-uniform
+marginal region.

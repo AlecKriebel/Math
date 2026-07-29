@@ -200,11 +200,61 @@ def main() -> None:
                 Q(15, 2) * haar_bracket_coefficient
             )
 
+    # Exact inverse of the local-form/block-Gram coefficient map.
+    sample_k = [Q(((17 * index + 5) % 23) - 11, 7) for index in range(size)]
+
+    def k_entry(r, a, t, b):
+        return sample_k[equation_index(r, a, t, b)]
+
+    gram_trace = [
+        [
+            Q(2, 5) * sum(k_entry(s, a, s, b) for s in range(D))
+            for b in range(D)
+        ]
+        for a in range(D)
+    ]
+    recovered_beta = [Q(0) for _ in range(size)]
+    for a in range(D):
+        for r in range(D):
+            for b in range(D):
+                for t in range(D):
+                    recovered_beta[beta_index(a, r, b, t)] = (
+                        Q(2) * (r == t) * gram_trace[a][b]
+                        - Q(2) * k_entry(r, a, t, b)
+                    )
+
+    for r in range(D):
+        for a in range(D):
+            for t in range(D):
+                for b in range(D):
+                    forward = (
+                        (r == t)
+                        * sum(
+                            recovered_beta[beta_index(a, p, b, p)]
+                            for p in range(D)
+                        )
+                        - Q(1, 2)
+                        * recovered_beta[beta_index(a, r, b, t)]
+                    )
+                    assert forward == k_entry(r, a, t, b)
+
+    # Exact arithmetic behind the quantitative constants:
+    # (360 sqrt(15))^2 and the extra ||I||_2^2=3 in the
+    # critical marginal corollary.
+    isotropy_constant_squared = 360 * 360 * 15
+    assert isotropy_constant_squared == 1_944_000
+    assert 3 * isotropy_constant_squared == 5_832_000
+    # Frobenius coefficient inversion costs (22/5)*sqrt(9);
+    # multiplying 360 by 66/5 gives 4752.
+    assert Q(22, 5) * 3 * 360 == 4752
+
     print(
         "verified: the 81 block-coefficient equations are invertible and "
         "force beta = |vec(I_3)><vec(I_3)|; boundary kernel nullities "
         "are 1 for support (2,2) and 3 for a fixed-factor plane; "
-        "the critical trace-excess identity holds coefficientwise"
+        "the critical trace-excess identity holds coefficientwise; "
+        "the general coefficient inverse reconstructs an exact sample; "
+        "all quantitative stability constants agree exactly"
     )
 
 
