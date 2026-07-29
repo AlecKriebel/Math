@@ -3168,3 +3168,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_marginal_schur_nogos.md`.
   Dependency-free checker:
   `verification/verify_n3_pair_marginal_schur_nogos.py`.
+
+## 2026-07-29 — The logical residual has physical negative index two
+
+- Exactly disproved the prospective common-frame inertia lemma
+  \(\operatorname{inertia}_-({\mathbb N})\leq1\), where
+  \[
+  {\mathbb N}_{ij}
+  =\delta_{ij}\|B_{\widehat i}\|_2^2I_2
+   -(D_{\widehat i}V)^\dagger(D_{\widehat j}V).
+  \]
+- For the GHZ code \(V=(|000\rangle,|111\rangle)\), constructed three
+  exact doubly-traceless pair coefficients for which
+  \[
+  {\mathbb N}\simeq H\oplus H,\qquad
+  H=
+  \begin{pmatrix}
+  1&-2/3&-2/3\\
+  -2/3&8/9&-4/9\\
+  -2/3&-4/9&8/9
+  \end{pmatrix}.
+  \]
+  The exact \(LDL^\dagger\) pivots of \(H\) are
+  \(1,4/9,-4/3\), so
+  \(\operatorname{inertia}({\mathbb N})=(4,2,0)\).
+- The second compound is also genuinely indefinite: its quadratic
+  value on an explicit decomposable bivector is \(-56/27\).
+  Therefore a proof based on
+  \(\bigwedge^2{\mathbb N}\succeq0\), or on a unique residual negative
+  direction repaired by the logical spin flip, is impossible.
+- This is not a pair-sector counterexample.  The true scalar deficit
+  is strictly positive, with spectrum
+  \(\{2,8/9,8/3\}\) and determinant \(128/27\).
+  Thus the spin-flip completion can cancel a two-dimensional negative
+  residual sector.
+- Exact note:
+  `notes/agent_n3_pair_sector_residual_inertia_two.md`.
+  Dependency-free checker:
+  `verification/verify_n3_pair_sector_residual_inertia_two.py`.
