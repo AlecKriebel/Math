@@ -4149,3 +4149,39 @@ All timestamps use America/Los_Angeles.
 - Exact note and checker:
   `notes/agent_n3_triple_hodge_two_column_recursion.md`,
   `verification/verify_n3_triple_hodge_two_column_recursion.py`.
+
+## 2026-07-29 18:35 PDT — Full logical filtering and octahedral frontier
+
+- Proved from first principles that every physical \(4\times4\)
+  two-plane compression is locally filter-equivalent to the
+  Bell-diagonal form
+  \[
+  K_{\boldsymbol t}=\frac14\left(
+  I\otimes I+t_1X\otimes X+t_2Y\otimes Y+t_3Z\otimes Z
+  \right).
+  \]
+  Strict positivity is automatic because the four product vectors
+  \(u_a\otimes v_b\) are independent and the physical operator
+  \(Y^{\otimes3}\) is invertible.
+- Local filtering preserves both \(\det K^\Gamma\ge0\) and the common
+  physical code-plane origin.  Positivity of \(K\) gives the four
+  Bell inequalities with sign product \(-1\); the desired partial
+  transpose positivity supplies the complementary four.  Together
+  they are exactly
+  \[
+  |t_1|+|t_2|+|t_3|\le1.
+  \]
+- Equivalently, after filtering the physical logical Pauli transfer
+  matrix has scalar marginals and block form
+  \[
+  T=\begin{pmatrix}s&0\\0&C_{\rm sp}\end{pmatrix},
+  \]
+  and the entire unrestricted three-copy endpoint is the single
+  \(3\times3\) trace-norm inequality
+  \[
+  \|C_{\rm sp}\|_1\le s.
+  \]
+  This is an exact reduction, not yet a proof of the inequality.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_full_reversed_schur_orientation.md`,
+  `verification/verify_n3_full_lorentz_normal_form.py`.
