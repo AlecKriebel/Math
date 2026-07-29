@@ -85,6 +85,16 @@
   tensor realizations of statistical dimension two in arbitrary Cuntz
   rank. The phrase “standard braided, index \(4\)” therefore does not by
   itself impose \(4\mid d\).
+- Lechner's positive-trace list at \(q=e^{2\pi i/6}\) permits normalized
+  negative ranks \(1/3,1/2,2/3\) for a non-scalar local compression; it is
+  not legitimate to assume a reducing cell is automatically balanced.
+  This use does not assume the compression has scalar partial traces:
+  Lechner's Lemma 3.1 makes the tensor-space trace Markov automatically
+  because the two eigenvalues are not opposite, and Theorem 3.4 then
+  applies.
+  Combining this three-value list with the ambient rank equations gives
+  the common-reduction descent theorem in
+  `notes/common_reduction_general.md`.
 
 ## Open source-audit questions
 

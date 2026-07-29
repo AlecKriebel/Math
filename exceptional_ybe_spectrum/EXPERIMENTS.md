@@ -512,3 +512,62 @@ reproducible; only its final exact witness is reproducible.
   verifiers/verify_d6_two_block_leg_types.py`.
 - Raw output:
   `results/d6_two_block_leg_types_exact.txt`.
+
+## E22 — common-reduction descent in every unresolved dimension
+
+- Run: 2026-07-29
+- Universal exact theorem:
+  if \(z\) is a nonzero proper projection common to both one-leg
+  commutants, the diagonal cells on \(zV\otimes zV\) and
+  \(z^\perp V\otimes z^\perp V\) are non-scalar cubic involutions.
+  Their normalized negative ranks are either both \(1/2\), or both
+  \(1/3\) with equal cell dimensions, or both \(2/3\) with equal cell
+  dimensions.
+- Unresolved congruence:
+  for \(d\equiv2\pmod4\), C17 excludes both unbalanced equal-dimension
+  branches.  The common reduction therefore yields two smaller balanced
+  exceptional solutions, one again in a \(2\bmod4\) dimension.
+- Consequences:
+  every least-dimensional \(2\bmod4\) solution is common-leg-irreducible;
+  the \(d=6\) scalar-intersection theorem is recovered; a common reduction
+  at \(d=10\) would imply a \(d=6\) solution.
+- Exact guard:
+  a dimension-three Gaussian projection and its complement verify that
+  the \(1/3\) and \(2/3\) diagonal alternatives are genuine and must not
+  be silently discarded.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_common_reduction_general.py`.
+- Raw output:
+  `results/common_reduction_general_exact.txt`.
+
+## E23 — permutation and partial-transpose contraction exhaustion
+
+- Run: 2026-07-29
+- Universal exact audit:
+  four of the six \(S_3\) scalar closures of the three-site cubic are
+  tautologies, while the remaining two are scalar functionals of the
+  already-known outer channel contractions.
+- New operator identity:
+  the middle contraction
+  \[
+  M=\operatorname{Tr}_2(P_{12}P_{23}P_{12})
+   =\operatorname{Tr}_2(P_{23}P_{12}P_{23})
+  \]
+  obeys \(dI/6\le M\le dI/2\), has trace \(d^3/4\), and has both
+  one-site marginals \(d^2I/4\).
+- Exact limitation:
+  \(M=(3/2)I_{36}\) satisfies all of these data at \(d=6\). Moreover,
+  \(H=(Z\otimes I_3)\otimes(X\otimes I_3)\) is a standard rank-half
+  involution for which every one of the 48 partially-transposed
+  permutation pairings vanishes exactly, although the cubic residual has
+  squared Hilbert--Schmidt norm \(192\).
+- Interpretation:
+  permutation/Brauer scalar shadows are exhausted and cannot prove
+  \(4\mid d\); a successful obstruction must retain operator-valued
+  overlap information.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_permutation_contraction_audit.py`.
+- Raw output:
+  `results/permutation_contraction_audit_exact.txt`.

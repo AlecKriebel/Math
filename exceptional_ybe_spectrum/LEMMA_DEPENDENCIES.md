@@ -160,6 +160,58 @@ This excludes aligned and flip-symmetric even-block branches, but exact
 relative-position models show it does not exclude two transverse
 non-scalar leg algebras or scalar leg commutants.
 
+The same mechanism gives a descent theorem in every unresolved dimension:
+
+```text
+common projection z of ranks r and s=d-r
+        |
+        +--> diagonal restrictions are non-scalar local cubic involutions
+        +--> positive Hecke traces give eta in {1/3,1/2,2/3}
+        +--> ambient standardness gives
+             a-r²/2 = e-s²/2
+                       |
+                       +--> either both eta=1/2
+                       +--> or r=s and both eta=1/3 or both eta=2/3
+                                      |
+                         d=2 mod 4 + C17 forces r even
+                                      |
+                                      +--> r=s=d/2 odd is impossible
+                                                   |
+                                                   +--> two smaller balanced
+                                                        exceptional cells
+```
+
+Thus a minimal \(d\equiv2\pmod4\) counterexample must have scalar common
+leg algebra.  This is a structural induction principle, not yet a global
+nonexistence theorem, because it does not exclude a common-leg-irreducible
+minimal solution.
+
+Scalar contraction closures do not strengthen this branch:
+
+```text
+three-site cubic residual
+        |
+        +--> close against C[S_3]
+        |       |
+        |       +--> four tautologies
+        |       +--> two shadows of outer channel contractions
+        |
+        +--> trace the middle site
+        |       |
+        |       +--> positive M with fixed scalar marginals and bounds
+        |       +--> exact scalar d=6 limitation model
+        |
+        +--> partially transpose all six permutations
+                |
+                +--> 48 scalar Brauer tests
+                +--> exact standard d=6 fake passes all 48
+                     while failing the cubic
+```
+
+Therefore any remaining parity mechanism must retain operator-valued
+spatial overlap data; scalar permutation, reshuffling, or cup-cap closures
+are insufficient.
+
 Two broad construction branches are now also closed:
 
 ```text

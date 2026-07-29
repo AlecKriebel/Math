@@ -264,3 +264,37 @@
 - Independently checked the proof and exact verifier.  Exact permutation
   and abstract-cubic countermodels show that arbitrary transverse
   one-sided block types still survive the present invariants.
+
+## 2026-07-29 01:25 PDT — Common reductions become an induction principle
+
+- Generalized the \(d=6\) common-leg proof to arbitrary dimension without
+  assuming that the diagonal compression is balanced.
+- Proved that the two diagonal normalized ranks can only be
+  \((1/2,1/2)\), or \((1/3,1/3)\) at equal complementary dimensions, or
+  \((2/3,2/3)\) at equal complementary dimensions.
+- In a \(d\equiv2\pmod4\) ambient solution, the controlled-leg
+  divisibility theorem makes every common projection even-rank, whereas
+  the unbalanced alternatives require rank \(d/2\), which is odd.
+  Therefore every common reduction splits off two balanced exceptional
+  solutions, one in a smaller unresolved dimension.
+- Exact qutrit Gaussian and complementary witnesses guard against the
+  false simplification that every local cubic compression is half-rank.
+- The theorem proves that a minimal \(2\bmod4\) solution must be
+  common-leg-irreducible.  It does not exclude such an irreducible
+  solution, so the complete spectrum remains open.
+
+## 2026-07-29 01:42 PDT — Scalar contraction routes exhausted
+
+- Reduced all six \(S_3\) scalar closures of the cubic exactly: four are
+  tautologies and two are only functionals of the known outer channel
+  identities.
+- Derived the remaining middle partial contraction, its exact positivity
+  bounds, total trace, and scalar one-site marginals.
+- Constructed an exact \(d=6\) scalar model satisfying all middle
+  contraction data.
+- More decisively, constructed a standard rank-half \(d=6\) involution
+  invisible to all 48 sitewise-partially-transposed permutation tests
+  while its cubic residual has squared norm \(192\).
+- This exhausts scalar permutation/Brauer contractions as a
+  four-divisibility route. Any successful proof must preserve
+  operator-valued spatial overlap data.

@@ -241,3 +241,23 @@ The expanded numerical falsifier sampled all nine discrete cell-rank
 orbits in the three-color branch with an arbitrary relative \(U(6)\).
 Its best residual was \(6\), but one seed per orbit is not exhaustive and
 cannot be promoted to a no-go theorem.
+
+## Scalar permutation, reshuffling, and cup-cap contractions
+
+All six closures of the three-site cubic against the permutation algebra
+\(\mathbb C[S_3]\) have now been reduced exactly. Four are tautologies,
+and the other two are scalar shadows of the known outer operator-valued
+channel identities. The middle ordinary partial contraction yields a
+positive operator with fixed trace, bounds, and scalar marginals, but
+those data have an exact scalar \(d=6\) model.
+
+The negative audit is stronger: the standard rank-half involution
+\[
+H=(Z\otimes I_3)\otimes(X\otimes I_3)
+\]
+annihilates all 48 scalar pairings obtained from the six permutations by
+arbitrary sitewise partial transposes, yet its cubic residual has squared
+norm \(192\). Thus Brauer-style scalar closures, reshufflings, and
+cup-cap contractions cannot replace the operator-valued overlap
+identities in a parity proof. See
+`notes/permutation_contraction_audit.md`.
