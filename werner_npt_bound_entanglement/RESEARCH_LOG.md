@@ -3326,3 +3326,35 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_inertia_completion_nogo.md`.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_inertia_completion_nogo.py`.
+
+## 2026-07-29 — Strengthened pair conjecture reduced to balanced spectra
+
+- Introduced the numerically sharp strengthening
+  \[
+  \|\Pi _2C\|_2^2\stackrel?{\leq}
+  \frac49\left(s_1^2+s_2^2+s_1s_2\right).
+  \]
+  It implies the unresolved pair-sector theorem.
+- Dualized its two-singular-value gauge exactly.  For a pair-sector
+  operator \(D\), with \(d_1\geq d_2\), the dual gauge is
+  \[
+  \begin{cases}
+  d_1^2,&d_1\geq2d_2,\\[1mm]
+  \frac43(d_1^2-d_1d_2+d_2^2),&d_1\leq2d_2.
+  \end{cases}
+  \]
+- The first branch is exactly the already proved sharp rank-one
+  operator-norm bound \(d_1^2\leq4\|D\|_2^2/9\).  Hence every
+  spectrally imbalanced case \(d_2\leq d_1/2\) is settled.
+- The sole remaining strengthened claim is the balanced tail-mass
+  inequality
+  \[
+  \sum_{j\geq3}d_j^2
+  \geq2d_1^2+2d_2^2-3d_1d_2,
+  \qquad d_1/2\leq d_2\leq d_1.
+  \]
+  This is strictly smaller than the original pair-sector problem and
+  makes the missing spectral-spreading mechanism explicit.
+- Exact note and checker:
+  `notes/agent_n3_pair_shifted_dual_band.md`,
+  `verification/verify_n3_pair_shifted_dual_band.py`.
