@@ -67,3 +67,61 @@ For example, taking \(u=v=w_-\) in (7) gives equality: the large
 negative eigenvalue in (6) is accompanied by
 \(Q_3(P_{w_-})=1/2\), rather than only the universal rank-one lower
 bound \(1/8\).  Any proof of (7) must retain this correlation.
+
+## Exact positive-map form of the surviving problem
+
+The correlation can be isolated without any optimization.  For a unit
+vector \(v\), define
+\[
+ K_v=\sum_{S\subseteq[3]}
+ \left(-\frac12\right)^{|S|}
+ \rho_S^v\otimes I_{\bar S},
+ \qquad
+ \rho_S^v=\operatorname{Tr}_{\bar S}P_v.
+\tag{8}
+\]
+For every \(u\),
+\[
+ \langle u,K_vu\rangle
+ =Q_3(|u\rangle\langle v|).
+\tag{9}
+\]
+Indeed, the term indexed by \(S\) in (9) is
+\[
+ \left\|\operatorname{Tr}_S|u\rangle\langle v|\right\|_2^2
+ =\operatorname{Tr}(\rho_S^u\rho_S^v).
+\tag{10}
+\]
+If \(a=Q_3(P_w)\), self-adjointness of \({\cal L}\) also gives
+\[
+ {\cal B}_3(P_w,|u\rangle\langle v|)
+ =\langle v,A_wu\rangle.
+\tag{11}
+\]
+Consequently the anchored Gram inequality for a fixed pair \(w,v\)
+is exactly the operator inequality
+\[
+ \boxed{\qquad
+ aK_v-A_wP_vA_w\succeq0.
+ \qquad}
+\tag{12}
+\]
+Equivalently, if
+\[
+ {\cal K}(V)=\sum_{S\subseteq[3]}
+ \left(-\frac12\right)^{|S|}
+ \operatorname{Tr}_{\bar S}(V)\otimes I_{\bar S},
+\tag{13}
+\]
+then the full anchored problem is positivity of
+\[
+ \Theta_w(V)=a{\cal K}(V)-A_wVA_w
+\tag{14}
+\]
+on every \(V\succeq0\).  It suffices to test rank-one \(V=P_v\).
+
+The universal replica bound only says \(K_v\succeq I/8\).  Replacing
+\(K_v\) by this state-independent lower bound turns (12) into the
+false estimate (1).  Thus (12), rather than an operator norm of
+\(A_w\), is the smallest surviving domination statement: it retains
+the necessary dependence on the second anchor \(v\).

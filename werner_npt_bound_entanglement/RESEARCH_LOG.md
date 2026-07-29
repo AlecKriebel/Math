@@ -680,10 +680,10 @@ All timestamps use America/Los_Angeles.
   vanishing complementary cubic-moment defects.  These are recorded only
   as discovery targets; no equality classification proving them is known.
 - The exact four-copy stopping point is therefore the determinant above.
-  It is a smaller explicit Pluecker-realizability lemma, but it remains
+  It is a smaller explicit Plücker-realizability lemma, but it remains
   unproved; no four-copy theorem or counterexample is claimed.
 
-## 2026-07-28 22:05--22:28 PDT — the uncorrected \(n=3\) even-reduction conjecture is false
+## 2026-07-28 21:25--21:41 PDT — the uncorrected \(n=3\) even-reduction conjecture is false
 
 - Found the exact rank-two integer matrix
   \[
@@ -714,6 +714,36 @@ All timestamps use America/Los_Angeles.
 - Added a dependency-free exact integer verifier for rank, all three
   reduction terms, the corrected defect, and \(Q_3\).
 
+## 2026-07-28 21:54--21:58 PDT — exact phase obstruction for the corrected \(n=3\) Gram route
+
+- Recast the surviving sharp target in the shifted-minor variables
+  \(g_1,g_2,h\).  A seemingly natural stronger certificate,
+  \[
+  |h+1|^2\le g_1g_2,
+  \]
+  is impossible because it is not covariant under the independent
+  phase of the second right singular flag.
+- The exact basis grid
+  \(u_1=000,u_2=001,v_1=110,v_2=111\) has
+  \((g_1,g_2,h)=(3,3,-4)\).  Replacing \(v_2\) by \(-v_2\)
+  leaves the diagonals fixed and gives \(h=4\), hence
+  \[
+  |h+1|^2=25>9=g_1g_2.
+  \]
+- The same grid saturates both phase-invariant live boundaries:
+  \[
+  |h|=1+\sqrt{g_1g_2}=4,\qquad
+  |h|^2=(1+g_1)(1+g_2)=16.
+  \]
+  Therefore a valid exterior Gram must either prove the weaker
+  determinant minor with diagonals \(1+g_a\), sufficient for
+  \(Q_3\ge0\), or supply a phase-covariant exterior vector of norm at
+  most one for the sharp shifted radius.  A fixed scalar correction
+  cannot work.
+- Added the exact audit to
+  `verification/verify_n3_even_reduction_obstruction.py` and the proof
+  discussion to `notes/agent_n3_shifted_minor_audit.md`.
+
 ## 2026-07-28 21:22--21:42 PDT — unrestricted \(n=3\): exact self-adjoint and normal frontier
 
 - Proved, in arbitrary finite local dimensions, the sharp bound
@@ -725,7 +755,7 @@ All timestamps use America/Los_Angeles.
   \[
   \frac18-\mathcal B_3(P_u,P_v)
   =2\left\|\prod_i\frac{I-F_i}{2}(u\otimes v)\right\|^2
-   \frac14\sum_i\operatorname{Tr}(\rho_{\bar i}^u\rho_{\bar i}^v).
+   +\frac14\sum_i\operatorname{Tr}(\rho_{\bar i}^u\rho_{\bar i}^v).
   \]
 - Extended the same sharp singular-value bound to every normal rank-two
   matrix.  More generally, \(Q_3(C)\ge0\) whenever the left and right
@@ -777,3 +807,12 @@ All timestamps use America/Los_Angeles.
   saturated, not violated, by the corresponding opposite-phase GHZ
   projector, so the state-dependent diagonal energy cannot be replaced by
   its universal rank-one lower bound.
+- For fixed anchors \(w,v\), reduced the surviving Gram inequality exactly
+  to the positive-map condition
+  \[
+  Q_3(P_w)K_v-A_wP_vA_w\succeq0,\qquad
+  K_v=\sum_{S\subseteq[3]}(-1/2)^{|S|}
+       \rho_S^v\otimes I_{\bar S}.
+  \]
+  This is the smallest current intersection-one lemma: it preserves the
+  state-dependent compensation that the false operator-norm bound discards.

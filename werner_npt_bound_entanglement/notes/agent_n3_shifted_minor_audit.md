@@ -190,3 +190,54 @@ they are not evidence in the proof layer.
 
 The exact conclusions of this note are only (3)--(4), the counterexample
 (5)--(7), the equivalence (12), and the obstruction (16)--(18).
+
+## 6. Exact phase obstruction to a fixed-center Gram certificate
+
+A tempting strengthening of (12) is the fixed-center disk
+\[
+ \boxed{\qquad |h+1|^2\leq g_1g_2. \qquad}                 \tag{19}
+\]
+If true, (19) would imply the live estimate by the triangle inequality.
+It is false for the simplest possible reason: it is not covariant under
+the independent phase freedom of the two singular flags.
+
+Use the exact basis grid (16)--(18), for which
+\[
+ (g_1,g_2,h)=(3,3,-4).
+\]
+Replace only the second right frame vector by
+\[
+ v_2'=-v_2.
+\]
+The pair \((v_1,v_2')\) is still orthonormal.  Both diagonal quantities
+\(g_1,g_2\) are unchanged, while the crossed entry changes sign:
+\[
+ (g_1',g_2',h')=(3,3,4).
+\]
+Consequently
+\[
+ |h'+1|^2=25>9=g_1'g_2'.                                  \tag{20}
+\]
+This is an exact counterexample to (19).  More generally,
+\(v_2\mapsto e^{i\theta}v_2\) rotates \(h\) while leaving \(g_1,g_2\)
+fixed.  Hence no Gram construction with a fixed scalar center can prove
+the phase-invariant target (12).
+
+The same grid simultaneously saturates both viable phase-covariant
+boundaries:
+\[
+ |h|=1+\sqrt{g_1g_2}=4,
+ \qquad
+ |h|^2=(1+g_1)(1+g_2)=16.                                 \tag{21}
+\]
+The second equality is the determinant-zero condition for
+\[
+ \begin{pmatrix}
+  1+g_1&h\\ \overline h&1+g_2
+ \end{pmatrix}.                                           \tag{22}
+\]
+Thus a proof of mere three-copy nonnegativity may target the weaker
+phase-covariant minor (22), whereas a proof of the sharp singular-value
+bound must retain the stronger radius \(1+\sqrt{g_1g_2}\).  In either
+case the exterior correction must transform with the phase of \(h\);
+a fixed \(+1\) cannot be the missing Plücker term.

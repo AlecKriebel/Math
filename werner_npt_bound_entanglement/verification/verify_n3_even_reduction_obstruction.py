@@ -140,6 +140,19 @@ matched = n_element(u1, v1, u2, v2)
 assert (g1, g2, h, matched) == (3, 3, -4, 0)
 assert abs(h) == 1 + 3  # 1 + sqrt(g1*g2)
 
+# A fixed-center disk |h+1|^2 <= g1*g2 is not phase covariant.  Rephasing
+# v2 by -1 preserves both orthonormal frames and the diagonal energies,
+# but changes h to -h.
+h_rephased = -h
+assert (g1, g2, h_rephased) == (3, 3, 4)
+assert (h_rephased + 1) ** 2 == 25
+assert g1 * g2 == 9
+assert (h_rephased + 1) ** 2 > g1 * g2
+
+# The exact grid saturates both viable phase-invariant boundaries.
+assert h * h == (1 + g1) * (1 + g2)
+assert abs(h) == 1 + 3  # sqrt(g1*g2) = 3
+
 print("verified exact n=3 even-reduction obstruction")
 print("rank=2, singular values=(1,1)")
 print("||C||^2 =", norm)
@@ -148,3 +161,4 @@ print("pair norms =", pairs)
 print("E(C) =", even_reduction)
 print("Q3(C) =", q3)
 print("shifted-minor obstruction (g1,g2,h,d) =", (g1, g2, h, matched))
+print("fixed-center phase obstruction h ->", h_rephased, ": 25 > 9")
