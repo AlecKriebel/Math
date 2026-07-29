@@ -3488,3 +3488,61 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_intersection_cocopositive_obstruction.md` and
   `verification/verify_n3_intersection_cocopositive_obstruction.py`.
+
+## 2026-07-29 13:51 PDT — Exact quantitative pair-frontier target, generic Hessian gaps, and quartic intersection
+
+- Rewrote the strengthened balanced pair-sector theorem exactly in
+  terms of the normalized rank-one slack
+  \[
+  \varepsilon=\frac49-d_1^2.
+  \]
+  Its remaining content is precisely
+  \[
+  (2d_2-d_1)^2\leq3\varepsilon.
+  \]
+  If \(d_2/d_1=1/2+t\), this is equivalently
+  \[
+  \varepsilon\geq\frac{16t^2}{27+36t^2}.
+  \]
+  This identifies the required rate and coefficient; qualitative
+  convergence to the equality locus is insufficient.
+- Derived the complete polynomial rank-one-slack Hessian and audited
+  exact generic representatives of both classified equality
+  components:
+
+  - at a generic product--tangent point, the complex \(54\times54\)
+    Hessian Gram has rank \(40\), nullity \(14\), and every nonzero
+    eigenvalue is \(>1/2\);
+  - at a generic common-factor point, it has rank \(41\), nullity
+    \(13\), and every nonzero eigenvalue is \(>2\).
+
+  The nullities equal the exact component dimensions, so both generic
+  strata have genuine local quadratic normal error bounds.
+- Found an exact obstruction to patching those Hessians uniformly.
+  At the spectrally sharp intersection
+  \[
+  x_0=|000\rangle,\qquad y_0=|100\rangle,
+  \]
+  the Hessian nullity jumps to \(18\).  Along
+  \[
+  x(t)=|000\rangle+t|101\rangle,\qquad
+  y(t)=|100\rangle+t|010\rangle,
+  \]
+  the exact homogeneous slack is
+  \[
+  \Delta(x(t),y(t))=4t^4,
+  \]
+  or \(4t^4/(1+t^2)^2\) after normalization.  Thus quartic
+  compatibility at component intersections is essential.
+- Proved a global compactness corollary for the original pair-sector
+  theorem: there exists \(\varepsilon_0>0\) such that
+  \(d_1^2\ge4/9-\varepsilon_0\) implies
+  \(d_1^2+d_2^2<2/3\).  Indeed exact saturation forces
+  \(D=(3/2)e^{i\theta}E\), and the complete equality classification
+  gives \(d_2^2\le1/9\), so the top-two sum is at most \(5/9\).
+- This is an exact qualitative exclusion, not an explicit numerical
+  value of \(\varepsilon_0\), and does not prove the sharp stability
+  inequality.
+- Exact note and checker:
+  `notes/agent_n3_pair_quantitative_stability_frontier.md`,
+  `verification/verify_n3_pair_quantitative_stability_frontier.py`.
