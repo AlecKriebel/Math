@@ -2289,3 +2289,113 @@ All timestamps use America/Los_Angeles.
 - The four-copy projector and all-copy programs remain secondary.
   Nothing in these three-copy reductions has yet been proved to
   tensorize.
+
+## 2026-07-29 — Haar block collapse and fixed-left kernel rigidity
+
+- Fixing one physical site and writing \(C=(C_{ap})_{a,p=0}^2\), put
+  \[
+  \beta_{ap,bq}
+  =
+  \left\langle C_{ap},L^{\otimes2}(C_{bq})\right\rangle .
+  \]
+  The polarized isotropic local form forced at a negative
+  Haar-filter equality determines all \(81\) entries uniquely:
+  \[
+  \boxed{\beta_{ap,bq}=\gamma\delta_{ap}\delta_{bq}.}
+  \]
+  Thus the full two-copy block Gram has rank one; the result is much
+  stronger than the previously known grouped sector equalities.
+- For a two-qutrit two-plane \(U\), let \(T_U\) be the positive
+  fixed-left compression
+  \[
+  \langle W,T_UW\rangle=Q_2(UW^\dagger).
+  \]
+  Equality in the exact two-copy completion has now been classified:
+  \[
+  \ker T_U\ne0
+  \quad\Longrightarrow\quad
+  U\subseteq E\otimes F,\qquad
+  \dim E,\dim F\le2.
+  \]
+  The proof keeps every equality condition in the reversed-Hodge
+  Schur chain.  The only apparent full-support alternative is,
+  up to local unitaries,
+  \[
+  U=\operatorname{span}\{aE_{11}+bE_{22},E_{33}\};
+  \]
+  direct substitution into the final equality equations excludes it.
+- The boundary kernel dimensions are exact:
+  \[
+  \dim\ker T_U=
+  \begin{cases}
+  1,&U\text{ has minimal support }(2,2),\\
+  3,&U\text{ has a fixed local factor }(1,2)\text{ or }(2,1).
+  \end{cases}
+  \]
+  Combining this with the preceding theorem proves the global
+  rigidity statement
+  \[
+  \boxed{\dim\ker T_U\ge2
+  \Longrightarrow U\text{ has a fixed local factor}.}
+  \]
+- Exact note:
+  `notes/agent_n3_haar_block_gram_collapse.md`.
+  Exact checker:
+  `verification/verify_n3_haar_block_gram_collapse.py`.
+
+## 2026-07-29 — The formal negative Haar equality is not physical
+
+- Write a rank-two factorization \(C=XY^\dagger\) and, at a selected
+  site,
+  \[
+  X=\sum_r|r\rangle X_r,\qquad
+  Y=\sum_p|p\rangle Y_p.
+  \]
+  The block collapse gives
+  \[
+  \left\langle X_rY_p^\dagger,
+  L^{\otimes2}(X_rY_q^\dagger)\right\rangle
+  =\gamma\delta_{rp}\delta_{rq}.
+  \]
+  Hence the two independent slices \(Y_p\), \(p\ne r\), lie in
+  \(\ker T_{\operatorname{ran}X_r}\).  Kernel rigidity forces every
+  generic contracted plane \(\operatorname{ran}X(\xi)\) to have a
+  fixed factor on one of the other two physical sites; the same holds
+  on the right.
+- The two possible fixed-factor types are closed determinantal
+  varieties.  Irreducibility of the contraction-parameter space
+  forces one type to hold identically.  A linear space of matrices
+  all of rank at most one has either a common image line or a common
+  row factor: for two decomposable tensors, rank one of every linear
+  combination forces one of their factors to be proportional.
+  Applied to the \(3\times6\) flattening of the slice pencil, this
+  makes one physical local support of the original singular plane
+  deficient.
+- A negative three-copy matrix cannot have such deficient support by
+  the established local-support theorem.  Therefore
+  \[
+  \boxed{\text{no rank-two three-qutrit matrix with }Q_3(C)<0
+  \text{ can saturate the sharp grouped Haar-filter bound}.}
+  \]
+  In particular, the formal negative sector point
+  \((w_0,w_1,w_2,w_3)=(1/9,0,2/3,2/9)\) is not physically realizable.
+- This is a nonlinear rank-two realizability theorem, but it is not
+  yet unrestricted three-copy positivity: a hypothetical negative
+  critical point with strict Haar slack remains to be excluded.
+
+## 2026-07-29 — Finite fixed-support normal equations
+
+- At Haar equality, every local rank-two filter
+  \(P_z=I-|z\rangle\langle z|\) obeys the exact normal equations
+  \[
+  X^\dagger N_i(z)=0,\qquad N_i(z)Y=0
+  \]
+  in a thin factorization \(C=XY^\dagger\).  Clearing the harmless
+  \(\|z\|^2\) denominator leaves only \(36\) coefficient matrices of
+  bidegree \((2,2)\) per site, together with a Haar-constant equation.
+  This independently converts the continuum of filtered equality
+  conditions into a finite polynomial system.
+- Exact note:
+  `notes/agent_n3_haar_fixed_support_normality.md`.
+  Exact checker:
+  `verification/verify_n3_haar_fixed_support_normality.py`.
