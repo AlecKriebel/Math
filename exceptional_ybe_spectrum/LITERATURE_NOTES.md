@@ -15,8 +15,8 @@
 5. Original Jones--Wenzl and Hecke-algebra sources used by the above papers.
 6. D. E. Evans and M. Pugh, *Ocneanu Cells and Boltzmann Weights for the
    \(SU(3)\) \(\mathcal{ADE}\) Graphs*, arXiv:0906.4307.
-7. L. Chen and L. Yu, *Nonlocal and controlled unitary operators of
-   Schmidt rank three*, arXiv:1407.5464.
+7. L. Chen and L. Yu, *On the Schmidt-rank-three bipartite and
+   multipartite unitary operator*, arXiv:1407.5464.
 8. R. Conti and G. Lechner, *Yang--Baxter endomorphisms*,
    arXiv:1909.04127.
 9. A. Bytsko, *On orthogonal projections related to representations of
@@ -25,6 +25,9 @@
     algebra*, arXiv:2203.08664.
 11. R. Conti and F. Fidaleo, *Braided Endomorphisms of Cuntz Algebras*,
     Math. Scand. 87 (2000), 93--114.
+12. S. Majid and M. Markl, *Glueing operation for R-matrices, quantum
+    groups and link-invariants of Hecke type*, arXiv:hep-th/9308072;
+    Math. Proc. Cambridge Philos. Soc. 119 (1996), 139--166.
 
 ## Normalization notes requiring care
 
@@ -127,6 +130,30 @@
   metric at \(t^2=e^{i\pi/3}\).  This is an ansatz-level unitarity
   obstruction, not a classification of multiparameter or twisted
   super-Hecke symmetries.
+- Majid--Markl Theorem 2.4 gives a canonical associative gluing
+  \(R\mathbin{\oplus_{\mathfrak q}}R'\). On every nonzero mixed pair its
+  matrix is
+  \[
+  \begin{pmatrix}
+  0&1\\
+  1&\mathfrak q-\mathfrak q^{-1}
+  \end{pmatrix}.
+  \]
+  At the exceptional normalization
+  \(\mathfrak q=e^{i\pi/6}\), the final entry is \(i\). For any positive
+  one-site metric, the two mixed simple tensors have a real cross inner
+  product, so the second column has twice the squared norm of its input.
+  Thus the canonical gluing cannot be made unitary, even after an
+  arbitrary one-site basis change. This identifies and closes a named
+  literature construction inside the earlier scalar-cross no-go.
+  Their more general Theorem 2.7 has mixed block
+  \(\left(\begin{smallmatrix}0&S\\U&T\end{smallmatrix}\right)\).
+  The Hecke polynomial forces \(T\) to equal the sum of its two roots,
+  while unitarity for orthogonal color summands forces \(T=0\).
+  Hence the full operator-valued gluing form is also excluded for the
+  exceptional non-opposite roots in the orthogonal Hilbert-direct-sum
+  setting. Arbitrary colored mixed blocks outside that form, or a
+  nonorthogonal algebraic color splitting, are not excluded.
 - Conti--Lechner Theorem 3.8 identifies
   \(\mathcal L_{R,n}=E_n(\mathcal L_R)\). In the exceptional class,
   automatic standardness and the Hecke double-coset decomposition sharpen

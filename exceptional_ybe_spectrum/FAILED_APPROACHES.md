@@ -587,3 +587,72 @@ no-go within this symmetry class, not merely a failed optimizer.
 The exclusion does not apply to non-\(S_4\)-equivariant heterogeneous
 operators and gives no general \(d=6\) obstruction. See
 `notes/s4_reversed_equivariant_no_go.md`.
+
+## Parity from the common-one determinant transport
+
+The shifted three-site common-one projections do define a canonical
+unitary
+\[
+W\otimes V\longrightarrow V\otimes W.
+\]
+After flipping the target order, its \(V\)-partial transpose is a scaled
+partial isometry of rank \(d^2/2=2s^2\), with constant nonzero singular
+value \(d/2\). Its polar part therefore acts between two support spaces
+of even dimension \(2s^2\), not on the determinant multiplicity
+\(\dim W=s^3\). It supplies no parity constraint on \(s\).
+
+The simplest spatial closure also fails exactly on the published
+\(d=4\) witness. Compressing the six three-site permutations to \(W\)
+gives rank eight for the identity, rank four for transpositions, and
+rank two for cycles. The two cycle compressions coincide, so the only
+real skew-adjoint group-algebra direction vanishes. Coordinate
+conjugation gives a square-\(+1\) real structure; all nonidentity
+permutation/conjugation maps are degenerate.
+
+Assuming a square-\(-1\) antiunitary directly on \(W\) would be circular:
+its determinant equation already forces \(\dim W=s^3\) even. The scalar
+abstract odd-\(s\) Hecke block does not require one. This closes the
+canonical transport, partial-transpose, bare spatial-pairing, and
+closed-Hecke-boundary variants only; a new operator-valued same-\(P\)
+spatial descent could still prove parity. See
+`notes/determinant_transport_parity_limitation.md`.
+
+## Additive construction by Majid--Markl Hecke gluing
+
+The canonical associative gluing has mixed block
+\[
+\begin{pmatrix}0&1\\1&i\end{pmatrix}
+\]
+at the exceptional phase. For every positive tensor-square local metric,
+the two mixed simple tensors have equal norm and real mutual inner
+product; the second column therefore doubles squared norm.
+
+The full operator-valued Theorem 2.7 form does not rescue an orthogonal
+color decomposition. Its mixed block is
+\[
+\begin{pmatrix}0&S\\U&T\end{pmatrix}.
+\]
+The Hecke polynomial forces \(T=(\lambda+\mu)I\), while unitarity forces
+\(T=0\). Only opposite roots are possible, contrary to the exceptional
+spectrum. This closes the named gluing architecture for the stated
+Hilbert-space geometries. It does not exclude arbitrary colored blocks
+outside the triangular form or a nonorthogonal algebraic color splitting.
+See `notes/majid_markl_gluing_unitarity_no_go.md`.
+
+The separate two-site flip product \(K=H\mathsf F\) gives a sharper
+equivalent target but no determinant obstruction. Universally,
+\[
+\ker(K+I)
+=(\operatorname{ran}P\cap\operatorname{Sym}^2V)
+\oplus(\ker P\cap\Lambda^2V)
+\]
+and
+\[
+\dim\ker(K+I)\equiv s\pmod2.
+\]
+Thus showing this kernel even would prove the desired parity, while its
+determinant formula already contains exactly the unknown bit. A fully
+standard balanced \(d=2\) limitation projection has odd nullity three,
+so standardness and the flip alone cannot complete the argument. The
+exceptional cubic would have to force even nullity by an additional
+operator-valued mechanism.

@@ -712,3 +712,109 @@ The signature enumeration and Pauli triples make the symmetry reduction
 complete.  The last step is an exact rational row-space certificate, not
 a numerical search.  The conclusion applies only to the diagonal
 \(S_4\)-equivariant \(V_3\otimes V_2\otimes V_3\) heterogeneous branch.
+
+The determinant-space transport parity audit has the following exact
+dependency chain:
+
+```text
+C27: E=e_123, F=e_234 satisfy EFE=E/4 and FEF=F/4
+        |
+        +--> U=2(I tensor i)^*(i tensor I)
+        |       is unitary W tensor V --> V tensor W
+        |
+        +--> outer marginals Tr_1(e)=dP/4=Tr_3(e)
+                |
+                +--> T^(Gamma_V)=2 A B
+                |       with A* A = B B* = dP/4
+                |               |
+                |               +--> rank = d^2/2
+                |               +--> nonzero singular value = d/2
+                |                       |
+                |                       +-X polar supports have size 2s^2,
+                |                           not determinant size s^3
+                |
+                +--> published d=4 exact S_3 compression audit
+                        |
+                        +--> transpositions have rank 4
+                        +--> cycles have rank 2 and coincide
+                                |
+                                +-X no nondegenerate alternating spatial
+                                    pairing on the determinant space
+```
+
+C39 independently makes every closed four- or five-site Hecke boundary
+word scalar on the determinant multiplicity.  The odd-\(s\) abstract
+\(H_3\) block is compatible with all these data, but is not a same-\(P\)
+tensor-local model.  Thus C56 closes the canonical
+transport/partial-transpose/spatial-permutation route only.  Any parity
+proof must still construct a genuinely operator-valued spatial descent.
+
+The Majid--Markl gluing no-go has two nested exact branches:
+
+```text
+Majid--Markl Theorem 2.4 mixed formula
+        |
+        +--> exceptional scaling gives q_M = exp(i*pi/6)
+        |       and mixed block [[0,1],[1,i]]
+        |               |
+        |               +--> every tensor-square local Gram has
+        |               |       equal diagonal and real cross term
+        |               |
+        |               +-X output norm squared is twice input norm squared
+        |                       for every positive one-site metric
+        |
+Majid--Markl Theorem 2.7 full mixed block [[0,S],[U,T]]
+        |
+        +--> two-root polynomial, with U,S invertible
+        |       forces T=(lambda+mu)I and SU=US=-lambda*mu I
+        |
+        +--> orthogonal-sector unitarity forces U* T=0
+                |
+                +-X T=0, hence lambda+mu=0
+                    contradicts the exceptional non-opposite roots
+```
+
+C58 therefore closes the canonical construction for every positive local
+metric and the complete operator-valued Theorem 2.7 architecture for
+orthogonal color summands.  It does not cover arbitrary colored mixed
+blocks outside that triangular form or a nonorthogonal algebraic color
+splitting.
+
+The distinct two-site flip branch reduces exactly as follows:
+
+```text
+K=H F, with H and F Hermitian involutions
+        |
+        +--> ker(K+I)=ker(H+F)
+        |       |
+        |       +--> kernel is H-invariant
+        |               |
+        |               +--> (ran P intersect Sym^2 V)
+        |                   direct-sum (ker P intersect Lambda^2 V)
+        |                               |
+        |                               +--> Grassmann dimension identity
+        |                                       |
+        |                                       +--> a-b=s and
+        |                                           nullity=s+2b
+        |
+        +--> F K F = K*
+        |       |
+        |       +--> nonreal eigenvalues occur in conjugate pairs
+        |               |
+        |               +--> det K=(-1)^(nullity(K+I))
+        |
+        +--> det H=1 and det F=(-1)^s
+                |
+                +--> nullity(K+I) = s mod 2
+                        |
+                        +-X this is equivalent to the missing parity,
+                            not a proof that the nullity is even
+```
+
+The published \(d=4\) witness has flip commutator rank eight, kernel
+dimensions \(3+1\), and the required even nullity.  A fully standard
+balanced \(d=2\) limitation projection has odd nullity three and fails
+the cubic.  C59 therefore identifies even flip-kernel nullity as exactly
+equivalent to the missing parity, not as an independent consequence.
+Any positive even-nullity theorem must use the exceptional cubic beyond
+balance and scalar partial traces.

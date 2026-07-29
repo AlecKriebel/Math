@@ -1519,3 +1519,176 @@ reproducible; only its final exact witness is reproducible.
     `b688de1375f162debd0dbe4af67ebca68510eb0430cfd287e5108ee6a624c1c0`;
   - `results/s4_reversed_equivariant_no_go_exact.txt`:
     `cd925350f08cdfae630faee1d2c9b4608f5f94ab259c67633e346823d90c6db5`.
+
+## E43 — exact determinant-transport and spatial-pairing parity audit
+
+- Run: 2026-07-29 05:17--05:19 PDT.
+- Question:
+  whether the rank-\(s^3\) common-one determinant space acquires a
+  canonical nondegenerate alternating or square-\(-1\) antiunitary form
+  from shifted tensor locality.
+- Universal theorem:
+  if \(e\) is the common-one three-site projection and
+  \(E=e_{123},F=e_{234}\), then \(EFE=E/4\) produces the unitary
+  \[
+  U=2(I_V\otimes i)^*(i\otimes I_V):
+  W\otimes V\longrightarrow V\otimes W.
+  \]
+  After the target flip, the \(V\)-partial transpose factors through
+  two copies of the original two-site projection. It has rank
+  \(d^2/2\), and every nonzero singular value equals \(d/2\).
+- Exact \(d=4\) spatial falsifier:
+  for all six \(\pi\in S_3\), the compressions \(eJ_\pi e\) have ranks
+  \(8\), \(4\), or \(2\) according as \(\pi\) is the identity, a
+  transposition, or a three-cycle. The two cycle compressions coincide,
+  so the only real skew-adjoint direction in \(\mathbb R[S_3]\)
+  compresses to zero. Coordinate conjugation alone squares to \(+I\);
+  every nonidentity permutation/conjugation compression is degenerate.
+- Odd-\(s\) limitation:
+  at \(s=3\), \(\dim W=27\), \(\dim(W\otimes V)=162\), and the
+  partial-transpose support rank is \(18\), with squared nonzero singular
+  value \(9\). An assumed antiunitary of square \(-1\) on \(W\) would
+  already encode the desired parity and cannot be imported from the
+  scalar abstract Hecke block.
+- Interpretation:
+  the canonical polar unitary acts between two \(2s^2\)-dimensional
+  support spaces, not on \(W\). Closed four- and five-site Hecke boundary
+  words act scalarly on the determinant multiplicity by C39. This closes
+  the audited transport/spatial-pairing route, not the arbitrary
+  same-\(P\) tensor-local problem.
+- Randomness:
+  none.
+- Parent commit:
+  `553574d7`.
+- Machine/runtime:
+  Apple arm64, macOS 26.5.2 (25F84); Python 3.9.6, SymPy 1.14.0;
+  exact replay wall time \(62.99\) seconds.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_determinant_transport_parity_limitation.py`.
+- Raw output:
+  `results/determinant_transport_parity_limitation_exact.txt`.
+- SHA-256:
+  - `notes/determinant_transport_parity_limitation.md`:
+    `79ec2758f32c65027cedcb51d986018b0328ba2550b346d96b3f72b618e29fd9`;
+  - `verifiers/verify_determinant_transport_parity_limitation.py`:
+    `498ae15ee531cbf9ad844dff194aba79a2f810bd6941c214038703363d5d0225`;
+  - `results/determinant_transport_parity_limitation_exact.txt`:
+    `8f1281ae47bf1d842c86e2558c24560df7ed6f0e63673bc64f37940019bc516e`.
+
+## E46 — exact two-site flip-kernel parity reduction
+
+- Run: 2026-07-29 05:16 PDT.
+- Question:
+  whether the two-site flip product
+  \(K=H\mathsf F\) gives a parity obstruction independent of the desired
+  conclusion \(2\mid s=d/2\).
+- Universal kernel theorem:
+  \[
+  \ker(K+I)
+  =(\operatorname{ran}P\cap\operatorname{Sym}^2V)
+   \oplus(\ker P\cap\Lambda^2V)
+  \]
+  without any assumption that \(H\) commutes with the flip. If the two
+  summand dimensions are \(a,b\), Grassmann's formula gives
+  \[
+  a-b=s,\qquad
+  \dim\ker(K+I)=a+b=s+2b.
+  \]
+- Determinant cross-check:
+  \(\mathsf F K\mathsf F=K^*\), so nonreal eigenvalues occur in
+  conjugate pairs and
+  \[
+  \det K=(-1)^{\dim\ker(K+I)}.
+  \]
+  Balance gives \(\det H=1\), while
+  \(\det\mathsf F=(-1)^s\). Therefore the determinant reproduces the
+  same parity and does not prove that the nullity is even.
+- Exact \(d=4\) calibration:
+  the published witness has
+  \(\operatorname{rank}[H,\mathsf F]=8\), so the kernel theorem does not
+  depend on flip invariance. Its summand dimensions are \(3\) and \(1\),
+  and
+  \[
+  \chi_K(x)=(x-1)^4(x+1)^4(x^2+1)^4.
+  \]
+- Exact limitation model:
+  the balanced fully standard projection
+  \(P_{\rm eq}=|00\rangle\langle00|+|11\rangle\langle11|\) in
+  \(d=2\) has summand dimensions \(2+1\) and odd nullity three. It is
+  not exceptional: its cubic residual has squared Hilbert--Schmidt norm
+  \(4/9\).
+- Interpretation:
+  even flip-kernel nullity is exactly equivalent to \(s\) even. Any
+  proof of it must use the exceptional cubic in a new operator-valued
+  way; balance, standardness, Grassmann arithmetic, and the determinant
+  do not advance the missing parity.
+- Randomness:
+  none.
+- Parent commit:
+  `553574d7`.
+- Machine/runtime:
+  Apple arm64, macOS 26.5.2 (25F84); Python 3.9.6, SymPy 1.14.0;
+  exact replay wall time \(9.81\) seconds.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_two_site_flip_parity_reduction.py`.
+- Raw output:
+  `results/two_site_flip_parity_reduction_exact.txt`.
+- SHA-256:
+  - `notes/determinant_transport_parity_limitation.md`:
+    `79ec2758f32c65027cedcb51d986018b0328ba2550b346d96b3f72b618e29fd9`;
+  - `verifiers/verify_two_site_flip_parity_reduction.py`:
+    `55b60226f20908dffa04b0cb3947941063910da3eb1f06f175e5c1dda1ebaf48`;
+  - `results/two_site_flip_parity_reduction_exact.txt`:
+    `9955756a1d9a64eebdc3d39f8f89e6d7f6402593ab79681e99df4e2562fc2df4`.
+
+## E45 — exact Majid--Markl gluing unitarity audit
+
+- Run: 2026-07-29 05:00--05:31 PDT.
+- Question:
+  whether the associative Hecke gluing of Majid--Markl, or its complete
+  operator-valued Theorem 2.7 form, can provide a hidden
+  \(4+2\to6\) exceptional unitary construction.
+- Primary-source normalization:
+  multiplying the exceptional roots
+  \(\{-1,e^{i\pi/3}\}\) by \(e^{-i\pi/6}\) gives
+  \(\{\mathfrak q,-\mathfrak q^{-1}\}\) with
+  \(\mathfrak q=e^{i\pi/6}\).
+- Canonical exact no-go:
+  the mixed block is
+  \(\left(\begin{smallmatrix}0&1\\1&i\end{smallmatrix}\right)\).
+  For every positive one-site metric, the two mixed simple tensors have
+  equal norm and real cross inner product, so the second column doubles
+  squared norm.
+- Operator-valued exact no-go:
+  on orthogonal mixed-color sectors the full Theorem 2.7 block is
+  \(\left(\begin{smallmatrix}0&S\\U&T\end{smallmatrix}\right)\).
+  Its two-root polynomial forces
+  \(T=(\lambda+\mu)I\) and \(SU=US=-\lambda\mu I\).
+  Unitarity forces \(T=0\), so only opposite roots are possible.
+- Interpretation:
+  the named associative construction is excluded for every positive
+  local metric, and the complete operator-valued architecture is
+  excluded for orthogonal color summands. Arbitrary colored mixed
+  blocks outside that triangular geometry, and a nonorthogonal
+  algebraic color splitting, remain outside the theorem.
+- Randomness:
+  none.
+- Parent commit:
+  `553574d7`.
+- Machine/runtime:
+  Apple arm64, macOS 26.5.2 (25F84); Python 3.9.6, SymPy 1.14.0;
+  exact replay wall time \(0.56\) seconds.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_majid_markl_gluing_no_go.py`.
+- Raw output:
+  `results/majid_markl_gluing_no_go_exact.txt`.
+- SHA-256:
+  - `notes/majid_markl_gluing_unitarity_no_go.md`:
+    `457fd6aadc50f10f9dcbd858c7e1d24370296c510119c1c9a1198398ef9082d6`;
+  - `verifiers/verify_majid_markl_gluing_no_go.py`:
+    `72240c78ce7082ea202700ee139fa6f7bb11f636e01c1c09b2b56975447f0331`;
+  - `results/majid_markl_gluing_no_go_exact.txt`:
+    `513bc6b8f2c7e56efa28ddf9b7c42396c31fb491e6cd332978bfe506d07aa823`.

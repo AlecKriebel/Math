@@ -76,21 +76,26 @@ No external communication occurred during this audit.
 ### C15 color/face circle
 
 The apparent one-parameter family is not a continuous modulus under the
-originating classification's sitewise local-unitary equivalence.  Exact
+finer relation of sitewise local-unitary conjugacy. Exact
 conjugation by
 \[
 \exp\!\left(\frac{i\theta}{2}X\otimes
 \frac{X-Y}{\sqrt2}\right)
 \]
-acts transitively on its parameter circle.  Any later classification
-claim must therefore count this as one orbit, not infinitely many
-inequivalent solutions.
+acts transitively on its parameter circle. Any later classification
+under sitewise conjugacy must therefore count this as one orbit, not
+infinitely many such orbits.
 
-It is also not the already published five-Pauli orbit. If \(F\) is the
-tensor flip, then \(\operatorname{Tr}((HF)^4)\) is invariant under
-sitewise conjugacy and equals \(-16/3\) on the color/face orbit but \(16\)
-on the published witness. This is an exact internal inequivalence
-certificate; it is not yet a classification of all \(d=4\) orbits.
+It is also not sitewise-unitarily conjugate to the already published
+five-Pauli witness. If \(F\) is the tensor flip, then
+\(\operatorname{Tr}((HF)^4)\) is invariant under sitewise conjugacy and
+equals \(-16/3\) on the color/face orbit but \(16\) on the published
+witness. This is an exact certificate only for that finer relation.
+Lechner's equivalence is instead unitary equivalence of the full
+braid-representation towers; his two-eigenvalue classification identifies
+both witnesses because they share \([q,\eta,d]\). The flip moment is not
+claimed to be invariant under Lechner's relation, and this is not yet a
+classification of all \(d=4\) sitewise-unitary orbits.
 
 The uniform no-codimension-two-cut theorem for its identity
 amplifications is an internal structural result. Its literature novelty
@@ -110,3 +115,36 @@ exceptional Hilbert polynomial, not a dimension-spectrum theorem.
 If it is used in a paper, its appropriate role is to rule out an invalid
 proof strategy, not to claim a new class of quadratic algebras. No
 external communication or separate literature priority search occurred.
+
+### Majid--Markl associative Hecke gluing
+
+The 1996 Majid--Markl construction is a genuine additive operation for
+Hecke Yang--Baxter operators and therefore had to be checked explicitly
+against the \(4+2\to6\) objective. Their Theorem 2.4 fixes the mixed
+block, independently of the two input operators. After translating the
+exceptional spectrum to their convention, its parameter is
+\(\mathfrak q=e^{i\pi/6}\) and the mixed block is
+\[
+\begin{pmatrix}0&1\\1&i\end{pmatrix}.
+\]
+It increases the squared norm of one mixed simple tensor by a factor of
+two for every positive tensor-square local metric. Hence the published
+associative gluing is not a hidden unitary \(d=6\) construction.
+
+The paper's more general Theorem 2.7 was also checked. Its full mixed
+block is
+\(\left(\begin{smallmatrix}0&S\\U&T\end{smallmatrix}\right)\), with
+\(U,S\) invertible. A two-root Hecke polynomial forces
+\(T=(\lambda+\mu)I\); unitarity for orthogonal color summands forces
+\(T=0\). Thus this entire operator-valued gluing form cannot realize a
+non-opposite unitary Hecke spectrum on an orthogonal Hilbert direct sum.
+
+This no-go is an elementary consequence of the old displayed formula;
+no novelty is claimed for the gluing operation or for observing its
+nonunitarity in the standard metric. The useful audited contribution is
+the stronger product-metric statement, the operator-block extension,
+and their exact normalization to the present exceptional class. The
+extension remains scoped to orthogonal colors in the Theorem 2.7
+triangular geometry. Arbitrary colored mixed blocks outside that
+geometry, and a nonorthogonal algebraic color splitting, remain open
+construction mechanisms. No external communication occurred.

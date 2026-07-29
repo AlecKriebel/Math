@@ -271,6 +271,41 @@ We have proved:
 
 This does not rule out operator-valued mixed blocks.
 
+### 3.3 Identification of the Majid--Markl gluing
+
+Majid--Markl's associative Hecke gluing
+\(\mathbin{\oplus_{\mathfrak q}}\) is a specific member of the preceding
+scalar-natural class. In their convention the roots are
+\(\{\mathfrak q,-\mathfrak q^{-1}\}\), and on
+\(\operatorname{span}\{x\otimes y,y\otimes x\}\) the mixed block is
+\[
+\begin{pmatrix}
+0&1\\
+1&\mathfrak q-\mathfrak q^{-1}
+\end{pmatrix}.
+\]
+The exceptional normalization corresponds to
+\(\mathfrak q=e^{i\pi/6}\), so the lower-right entry is \(i\).
+The independent norm proof in
+`notes/majid_markl_gluing_unitarity_no_go.md` shows that no positive
+one-site inner product can make this block unitary: the squared norm of
+the second mixed basis vector doubles. Thus this named literature
+gluing cannot produce a hidden \(d=6\) witness.
+
+The same note also audits the full operator-valued form of
+Majid--Markl Theorem 2.7 for an orthogonal Hilbert direct sum. If its
+mixed block
+\[
+\begin{pmatrix}0&S\\U&T\end{pmatrix}
+\]
+obeys a two-root polynomial with roots \(\lambda,\mu\), invertibility of
+\(U,S\) forces \(T=(\lambda+\mu)I\). Orthogonal-sector unitarity forces
+\(T=0\). Hence the complete Theorem 2.7 architecture is impossible for
+the exceptional non-opposite roots when its color summands are
+orthogonal. Arbitrary mixed blocks outside that triangular architecture,
+and algebraic color splittings that are nonorthogonal in the
+unitarizing local metric, remain outside the theorem.
+
 ## 4. Controlled qutrit middle factor (`PROVED` no-go)
 
 The heterogeneous \(12\times12\) target can still be simplified in a way

@@ -647,23 +647,6 @@
   neither classifies arbitrary \(d=4\) solutions nor resolves existence
   in dimension six.
 
-## 2026-07-29 04:41 PDT — Equivalence terminology corrected
-
-- Rechecked Lechner's Definition 1.1 and equation (2.12) against the
-  primary source. His equivalence relation is unitary equivalence of
-  the full braid-representation towers, equivalently equality of their
-  normalized braid characters together with equal local dimension.
-- In the non-involutive two-eigenvalue classification, the triple
-  \([q,\eta,d]\) determines this broad equivalence class. Therefore the
-  C15 color/face witness and the published five-Pauli witness are
-  equivalent in Lechner's sense, even though the fourth flip moment
-  proves they are not conjugate by any single sitewise unitary
-  \(U\otimes U\).
-- Corrected C15, C53, E40, and the structural note so the flip moment is
-  not misrepresented as an invariant of Lechner's broader relation.
-  This correction changes no matrix identity or amplification-cut
-  theorem.
-
 ## 2026-07-29 04:15 PDT — Quadratic-subproduct parity route audited exactly
 
 - Collected the full exceptional common-one/common-zero subproduct
@@ -714,3 +697,104 @@
 - Therefore the complete diagonal-\(S_4\)-equivariant reversed
   \((3,2,3)\) branch is empty. This remains a symmetry-scoped result and
   does not settle arbitrary local dimension six.
+
+## 2026-07-29 04:41 PDT — Equivalence terminology corrected
+
+- Rechecked Lechner's Definition 1.1 and equation (2.12) against the
+  primary source. His equivalence relation is unitary equivalence of
+  the full braid-representation towers, equivalently equality of their
+  normalized braid characters together with equal local dimension.
+- In the non-involutive two-eigenvalue classification, the triple
+  \([q,\eta,d]\) determines this broad equivalence class. Therefore the
+  C15 color/face witness and the published five-Pauli witness are
+  equivalent in Lechner's sense, even though the fourth flip moment
+  proves they are not conjugate by any single sitewise unitary
+  \(U\otimes U\).
+- Corrected C15, C53, E40, and the structural note so the flip moment is
+  not misrepresented as an invariant of Lechner's broader relation.
+  This correction changes no matrix identity or amplification-cut
+  theorem.
+
+## 2026-07-29 05:02 PDT — Canonical Hecke gluing excluded exactly
+
+- Audited Majid--Markl's associative Hecke gluing directly from their
+  Theorem 2.4. Translating
+  \(\{-1,e^{i\pi/3}\}\) to their roots
+  \(\{\mathfrak q,-\mathfrak q^{-1}\}\) gives
+  \(\mathfrak q=e^{i\pi/6}\).
+- On every nonzero mixed pair, the construction has the fixed block
+  \[
+  \begin{pmatrix}0&1\\1&i\end{pmatrix}.
+  \]
+  For an arbitrary positive one-site inner product, the mixed simple
+  tensors have equal squared norm and real cross inner product. The
+  second column therefore doubles squared norm. No local basis change or
+  positive tensor-square metric can make the glued operator unitary.
+- This identifies the named literature construction as a member of the
+  scalar-cross family already excluded abstractly, and closes it as a
+  possible \(4+2\to6\) mechanism.
+- Audited the full operator-valued mixed form of Majid--Markl
+  Theorem 2.7 as well. Its quadratic polynomial forces
+  \(T=(\lambda+\mu)I\), whereas unitarity on an orthogonal Hilbert direct
+  sum forces \(T=0\). Thus their entire gluing architecture is excluded
+  for non-opposite roots with orthogonal color summands. Arbitrary
+  mixed blocks outside that triangular geometry, and nonorthogonal
+  algebraic color splittings, remain outside the theorem.
+- Added a human proof, a separate exact symbolic verifier, retained
+  output, literature notes, and a priority-scope audit. No external
+  communication occurred.
+
+## 2026-07-29 05:03 PDT — Determinant-space transport parity route audited exactly
+
+- Starting from the universal shifted-intersection identity
+  \(e_{123}e_{234}e_{123}=e_{123}/4\), extracted the canonical unitary
+  transport
+  \[
+  2(I_V\otimes i)^*(i\otimes I_V):
+  W\otimes V\longrightarrow V\otimes W.
+  \]
+- Factored the \(V\)-partial transpose of the flipped transport as
+  \(2\mathsf A\mathsf B\). The exact outer marginals of \(e\) give
+  \(\mathsf A^*\mathsf A=\mathsf B\mathsf B^*=(d/4)P\), hence rank
+  \(d^2/2\) and constant nonzero singular value \(d/2\).
+- Identified the dimensional obstruction to the proposed parity
+  descent: the polar supports have dimension \(2s^2\), while the
+  determinant multiplicity has dimension \(s^3\). At the unresolved
+  test value \(s=3\), these are \(18\) and \(27\).
+- Reconstructed the published \(d=4\) witness exactly and compressed all
+  six spatial \(S_3\) operators to its common-one space. Transpositions
+  have rank four; cycles have rank two; the two cycle compressions
+  coincide. Thus the unique real skew-adjoint spatial direction
+  compresses to zero, and coordinate conjugation supplies only a
+  square-\(+1\) real structure.
+- Recorded the antiunitary circularity explicitly: a square-\(-1\)
+  antiunitary on the \(s^3\)-dimensional determinant multiplicity would
+  itself force \(s\) even by determinants. The abstract odd-\(s\) Hecke
+  block has no relation requiring such a form.
+- Added C56, E43, a human proof, a deterministic exact verifier, and
+  retained output. This closes the canonical shifted-transport,
+  partial-transpose, bare-spatial-pairing, and closed-boundary-word
+  routes only; it neither proves nor disproves four-divisibility.
+- Audited the separate two-site flip product \(K=H\mathsf F\).
+  Corrected the preliminary suspicion that its kernel decomposition
+  needed flip invariance: \(\ker(K+I)=\ker(H+\mathsf F)\) is
+  \(H\)-invariant, so the symmetric/antisymmetric intersection formula
+  holds for arbitrary \(H\).
+- Proved the sharp parity identity
+  \(\dim\ker(K+I)\equiv s\pmod2\) from
+  \(\mathsf F K\mathsf F=K^*\) and
+  \(\det K=(-1)^s\). Independently, Grassmann's dimension formula gives
+  \(a-b=s\) for the two summands in the kernel, hence nullity
+  \(a+b=s+2b\). This reduces four-divisibility exactly to evenness of the
+  flip kernel, but does not prove it.
+- Calibrated the reduction on the non-flip-invariant published witness:
+  \(\operatorname{rank}[H,\mathsf F]=8\), the two kernel summands have
+  dimensions \(3+1\), and
+  \(\chi_K=(x-1)^4(x+1)^4(x^2+1)^4\).
+  A fully standard \(d=2\) projection has odd flip nullity three but
+  fails the cubic with squared residual \(4/9\), showing that the cubic
+  must be used in any even-nullity proof.
+- Separated this sharper result from the determinant-transport claim as
+  C59/E46 and added an independent fast exact verifier and retained
+  output. The logical conclusion is explicitly a reduction, not a new
+  obstruction theorem.
