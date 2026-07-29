@@ -367,3 +367,62 @@
   boundary, angle, rank, and opposite-sign identities used by this
   route. The model is a limitation certificate, not a spatial
   \(36\times36\) witness.
+
+## 2026-07-29 02:15 PDT — Complementary invariance reduced to one variance
+
+- For a balanced square-invariant \(W\), isolated the exact obstruction to
+  invariance of \(U=W^\perp\):
+  \[
+  \delta=\frac{u^2}{2}-\operatorname{Tr}(K^2)
+  =\|P_{\rm mixed}PP_{U\otimes U}\|_{\rm HS}^2
+  =\frac12\|[P,P_{U\otimes U}]\|_{\rm HS}^2.
+  \]
+- Proved that \(\delta=0\) is equivalent to complementary square
+  invariance.
+- Built and independently verified an exact rank-18 \(d=6\) two-site
+  limitation model with scalar partial traces, the exact published
+  \(d=4\) restriction, and \(\delta=1/2\).  Its ambient cubic fails at
+  coefficient \(-\sqrt2/48\).
+- Concluded that the full mixed-sector cubic, not projection positivity or
+  marginal data, is essential to any proof that one-sided invariance
+  propagates to the complement.
+- Nine reproducible one-sided \(4+2\) numerical runs found no candidate;
+  this remains failed-search evidence only.
+
+## 2026-07-29 02:36 PDT — Identity-amplification cut-down ruled out
+
+- Calibrated a complex-Grassmann search for square-invariant subspaces of
+  the exact \(d=8\) identity amplification.  Four rank-four controls
+  reached zero to \(10^{-22}\), while all 32 predeclared rank-six runs
+  converged within \(9.58\cdot10^{-15}\) of \(23/96\).
+- Used the common numerical endpoint only for discovery.  The final proof
+  is exact and does not claim that \(23/96\) is a global minimum.
+- Rewrote every identity amplification as a three-term
+  operator-Schmidt sum.  The second-site pencil has an exact Bell-basis
+  rank-at-most-two cone consisting of six real lines.
+- Proved for every \(m\ge2\) that
+  \[
+  [H^{(4)}\boxtimes I_m,Q\otimes Q]=0
+  \quad\Longrightarrow\quad
+  \operatorname{rank}Q\ne4m-2.
+  \]
+  Corank-two leakage forces two independent Pauli commutants and hence the
+  full active \(M_4\), whose commuting projection ranks are multiples of
+  four.
+- A hostile independent audit reconstructed the Schmidt coefficients by
+  partial contraction and checked the active commutant by a separate
+  rank-15 linear system.  Both exact verifiers pass.
+- This closes the neighboring \(4m\to4m-2\) cut-down mechanism; it does not
+  exclude genuinely new unresolved-dimension solutions.
+
+## 2026-07-29 02:40 PDT — Quaternion-frame descent audited
+
+- At one bond, Rowell's braid generator determines only
+  \(K_i=u_i+v_i+u_iv_i=-2qR_i-1\) inside the two-dimensional algebra
+  \(\mathbb C[R_i]\).
+- The individual anticommuting quaternion generators live in the larger
+  ambient \(Q_n\) and are not recoverable as one-bond braid words.
+- Therefore quaternionic parity on an \(s=d/2\) factor requires a new
+  compatible frame-selection or splitting theorem; it is not a
+  consequence of the Hecke/Yang--Baxter relations.  This agrees with the
+  exact fixed-level split-module models for odd \(s\).

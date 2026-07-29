@@ -350,3 +350,53 @@ three-site invertible endpoint a
 Accordingly, any future parity mechanism must use data outside closed
 Hecke boundary words—for example a genuinely spatial identification not
 contained in the diagonal tower.
+
+The identity-amplification cut-down branch is now closed uniformly:
+
+```text
+published H4 boxtimes I_m and corank-two local Q
+        |
+        +--> leakage sum over three Schmidt coefficients
+                |
+                +--> if compressed B-span <= 1:
+                |       kernel contains a real plane
+                |       and m rank(B_tilde) <= 4
+                |               |
+                |               +--> m=2: six-line rank<=2 cone has no plane
+                |               +--> m>=3: no nonzero rank<=1 pencil element
+                |
+                +--> compressed B-span >= 2
+                        |
+                        +--> Q commutes with two Pauli directions
+                                |
+                                +--> Q commutes with full active M4
+                                        |
+                                        +--> rank Q divisible by 4
+                                                |
+                                                +--> rank 4m-2 impossible
+```
+
+This prevents \(4m\to4m-2\) by square restriction of the known identity
+amplification.  It does not constrain a genuinely new
+\((4m-2)\)-dimensional solution.
+
+One-sided square invariance has been reduced to one scalar target:
+
+```text
+balanced W tensor W restriction, U=W^perp
+        |
+        +--> K = compression of P to U tensor U
+        +--> Tr K = u^2/2
+        +--> K-K^2 = C* C
+                |
+                +--> delta = u^2/2-Tr(K^2)
+                          = ||C||_HS^2
+                          = (1/2)||[P,P_UU]||_HS^2
+                                |
+                                +--> delta=0 iff U tensor U invariant
+```
+
+An exact \(d=6\) two-site model has \(\delta=1/2\) while preserving all
+two-site data and the full \(d=4\) restricted solution.  Hence the only
+remaining route to \(\delta=0\) is a genuinely mixed-sector consequence of
+the ambient three-site cubic.

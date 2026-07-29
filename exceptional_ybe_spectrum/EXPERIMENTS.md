@@ -745,3 +745,113 @@ reproducible; only its final exact witness is reproducible.
     `071929457023770685052304636300cbb32b0862f3715bbc9a61de4c2f8c8cc7`;
   - `results/determinant_boundary_corner_exact.txt`:
     `d578c3722253638a291ddb55c0553469b058b8566ad654a79e2c7958ba5dabad`.
+
+## E28 — one-sided square-invariance reduction
+
+- Run: 2026-07-29.
+- Exact reduction:
+  for \(U=W^\perp\), complementary square invariance is equivalent to
+  \[
+  \delta=\frac{(\dim U)^2}{2}-\operatorname{Tr}(K^2)=0,
+  \qquad K=P_{U\otimes U}PP_{U\otimes U}.
+  \]
+  Projection block multiplication also gives
+  \[
+  \delta
+  =\|P_{\rm mixed}PP_{U\otimes U}\|_{\rm HS}^2
+  =\frac12\|[P,P_{U\otimes U}]\|_{\rm HS}^2.
+  \]
+- Exact limitation model:
+  a rank-18 projection in \(d=6\) has both partial traces \(3I_6\), an
+  exact published exceptional \(d=4\) restriction, and
+  \(\delta=1/2\), but fails the ambient cubic at the exact matrix
+  coefficient \(-\sqrt2/48\).
+- Interpretation:
+  every two-site positivity and marginal argument is insufficient;
+  proving \(\delta=0\) must use the mixed-sector ambient cubic.
+- Independent numerical falsifier:
+  nine seeded searches over the complete 20-dimensional orthogonal
+  complement of a fixed \(d=4\) square found no witness.  The smallest
+  cubic Frobenius residual was \(6.0108585346\ldots\).  This is negative
+  numerical evidence only.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_one_sided_square_invariance.py`.
+- Artifacts:
+  `notes/one_sided_square_invariance_audit.md`,
+  `results/one_sided_square_invariance_exact.txt`,
+  `results/d6_one_sided_4plus2_gradient_check.txt`,
+  `results/d6_one_sided_4plus2_runs.jsonl`, and
+  `results/d6_one_sided_4plus2_pt10_runs.jsonl`.
+
+## E29 — codimension-two cuts of the identity amplification
+
+- Run: 2026-07-29.
+- Predeclared Grassmann calibration:
+  four rank-four runs, seeds \(26072980,\ldots,26072983\), reached
+  normalized squared commutators between
+  \(6.70\cdot10^{-23}\) and \(1.47\cdot10^{-22}\).  The analytic
+  gradient check had relative error \(5.04\cdot10^{-11}\).
+- Predeclared production:
+  all 32 rank-six runs, seeds \(26072984,\ldots,26073015\), ended within
+  \(9.58\cdot10^{-15}\) of
+  \[
+  \frac{23}{96}=0.239583333333\ldots.
+  \]
+  No candidate approached zero.  Apparent optimality and the rational
+  value are not claimed.
+- Exact theorem discovered from the endpoint:
+  for every \(m\ge2\),
+  \[
+  [H^{(4)}\boxtimes I_m,Q\otimes Q]=0
+  \quad\Longrightarrow\quad
+  \operatorname{rank}Q\ne4m-2.
+  \]
+  The proof uses a three-coefficient Schmidt form, the exact six-line
+  rank-at-most-two Bell-pencil cone, and generation of
+  \(M_4(\mathbb C)\) on the active pair.
+- Independent audit:
+  the second verifier recovers the Schmidt coefficients by partial
+  contraction and obtains active-commutant equation rank \(15\), rather
+  than reusing the primary word-closure implementation.
+- Replays:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_no_rank_six_subspace_of_d8.py` and
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_no_rank_six_subspace_of_d8_independent.py`.
+- Raw numerical output:
+  `results/d6_subspace_of_d8_calibration.jsonl` and
+  `results/d6_subspace_of_d8_production.jsonl`.
+- Seed manifest and aggregate:
+  `results/d6_subspace_of_d8_seed_manifest.json` and
+  `results/d6_subspace_of_d8_search_summary.json`.
+
+### E28--E29 provenance
+
+- Parent commit:
+  `41b74cab`.
+- Machine:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`.
+- Runtime:
+  Python `3.9.6`, NumPy `2.0.2`, SciPy `1.13.1`, SymPy `1.14.0`.
+- New-search source SHA-256:
+  `1eb40dc66b34e2f5b5d88a325f23f97b0147aa7fd70e85d022a21b25b2da6db0`.
+- Exact artifact SHA-256:
+  - `notes/one_sided_square_invariance_audit.md`:
+    `ca2c18296c46d4a997edd9892f2a3ffdae505571270e671b78294d8a21418327`;
+  - `verifiers/verify_one_sided_square_invariance.py`:
+    `2bf2b4cf68755d81a03542a4e9efedf418b6c74fdfea9f6333452d2f13620a7c`;
+  - `results/one_sided_square_invariance_exact.txt`:
+    `1e48b4fbb264815fcaec8dd8cf5976f4ed5280eefb6b82c67f55c8a097823539`;
+  - `notes/no_rank_six_subspace_of_d8_amplification.md`:
+    `e8d45ae5ecc26556bda479b6adb606822c839a150ace4c1728ba3a0c5985e178`;
+  - `notes/no_rank_six_subspace_of_d8_amplification_audit.md`:
+    `ab8d8874e6edf80aa5dccf04e156d478bbd67d0ed66ae5169dcbb6476dd3e0d9`;
+  - `verifiers/verify_no_rank_six_subspace_of_d8.py`:
+    `cfbac4d195f6ef58555e5d0b56120fea2797919d1624a61054686b02028d2145`;
+  - `results/no_rank_six_subspace_of_d8_exact.txt`:
+    `cdf09475855627e1a054701478ae51579c0467be78ea964097e29be87d3a4ee5`;
+  - `verifiers/verify_no_rank_six_subspace_of_d8_independent.py`:
+    `db35ceca9f6363e6894baaf8cf33e0f7941032396fa76d59f227a7a79ce24f29`;
+  - `results/no_rank_six_subspace_of_d8_independent_exact.txt`:
+    `65d2eaecd100351de8462cffcf87016d65fe2f71fd7a7864fc1db15cdfe4e33e`.

@@ -310,3 +310,52 @@ factor, where its module multiplicity \(3s^6\) may be odd. Tensor reversal
 does not evade the theorem because it maps \(P\) to \(FPF\), not generally
 back to \(P\). See
 `notes/determinant_boundary_corner_factorization.md`.
+
+## Cutting unresolved dimensions out of identity amplifications
+
+The direct construction
+\[
+H^{(4)}\boxtimes I_m
+\quad\leadsto\quad
+\text{a square-invariant local }(4m-2)\text{-plane}
+\]
+is impossible for every \(m\ge2\).  A rank-\((4m-2)\) commuting local
+projection has two-dimensional complement.  Leakage through that complement
+forces a two-dimensional kernel in a three-operator Schmidt pencil, but the
+exact Bell-basis rank cone is only a union of six lines.  The remaining
+coefficients then force the full active \(M_4\), making the projection rank
+divisible by four.
+
+This is an exact no-go for a natural construction mechanism, not an
+unrestricted nonexistence theorem in dimension \(4m-2\).  See
+`notes/no_rank_six_subspace_of_d8_amplification.md`.
+
+## Inferring complementary invariance from two-site data
+
+If \(W\otimes W\) is invariant and balanced, invariance of
+\(W^\perp\otimes W^\perp\) is exactly the zero-variance condition
+\[
+\delta=\frac{u^2}{2}-\operatorname{Tr}(K^2)=0.
+\]
+An exact \(d=6\), \(4+2\) projection has all required two-site ranks,
+scalar partial traces, unitarity, Hecke polynomial, and the exact published
+\(d=4\) restriction, but \(\delta=1/2\).  It fails the ambient cubic.
+Therefore positivity, marginal, and multiplicative-domain arguments at two
+sites cannot prove complementary invariance.  The unresolved implication
+must use mixed-sector compressions of the full three-site cubic.  See
+`notes/one_sided_square_invariance_audit.md`.
+
+## Recovering Rowell's quaternion frame from the braid image
+
+At one bond, the two-eigenvalue braid generator determines only
+\[
+K_i=u_i+v_i+u_iv_i=-2qR_i-1
+\]
+inside the two-dimensional algebra
+\(\mathbb C[R_i]=\operatorname{span}\{1,K_i\}\).  The individual
+anticommuting generators \(u_i,v_i\) belong to the larger ambient
+quaternionic algebra and are not braid words on that bond.  Hence their
+quaternionic parity cannot be assigned to a one-site or
+\(s=d/2\)-dimensional factor without a new compatible frame-selection or
+splitting theorem.  Fixed-level complex quaternion modules already exist
+for odd \(s\), so the ambient frame by itself supplies no divisibility.

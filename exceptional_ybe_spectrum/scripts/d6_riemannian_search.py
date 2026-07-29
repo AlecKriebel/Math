@@ -8,7 +8,10 @@ Hermitian involution and minimizes the squared Frobenius norm of
     H_12 H_23 H_12 - H_23 H_12 H_23 - (H_12-H_23)/3.
 
 Several optional block symmetries test independent qubit-qutrit and
-4+2-sector ansatz families.  The analytic gradient is pulled back from the
+4+2-sector ansatz families.  ``one_sided_4plus2`` fixes only the
+16-dimensional W tensor W cell and leaves its 20-dimensional orthogonal
+complement fully mixed; unlike ``local_4plus2``, it does not assume that
+U tensor U is invariant.  The analytic gradient is pulled back from the
 three-site residual, projected to the appropriate symmetry commutant, and
 then projected to the Grassmann tangent space.
 """
@@ -52,6 +55,8 @@ def pair_labels(d: int, symmetry: str) -> np.ndarray:
                 label = 3 * ((ai + aj) % 2) + ((ri + rj) % 3)
             elif symmetry == "local_4plus2":
                 label = 2 * int(i >= 4) + int(j >= 4)
+            elif symmetry == "one_sided_4plus2":
+                label = int(not (i < 4 and j < 4))
             else:
                 raise ValueError(f"unknown symmetry {symmetry!r}")
             labels.append(label)
@@ -87,8 +92,17 @@ def random_unitary_involution(
         h[np.ix_(indices, indices)] = block
 
     if initial == "h4_block":
-        if d != 6 or not np.array_equal(labels, pair_labels(6, "local_4plus2")):
-            raise ValueError("h4_block requires d=6 and symmetry=local_4plus2")
+        allowed_labels = (
+            pair_labels(6, "local_4plus2"),
+            pair_labels(6, "one_sided_4plus2"),
+        )
+        if d != 6 or not any(
+            np.array_equal(labels, allowed) for allowed in allowed_labels
+        ):
+            raise ValueError(
+                "h4_block requires d=6 and symmetry local_4plus2 "
+                "or one_sided_4plus2"
+            )
         i2 = np.eye(2)
         x = np.array([[0.0, 1.0], [1.0, 0.0]])
         z = np.array([[1.0, 0.0], [0.0, -1.0]])
@@ -465,6 +479,7 @@ def parser() -> argparse.ArgumentParser:
             "z2_parity",
             "z2_z3",
             "local_4plus2",
+            "one_sided_4plus2",
         ),
         default="none",
     )

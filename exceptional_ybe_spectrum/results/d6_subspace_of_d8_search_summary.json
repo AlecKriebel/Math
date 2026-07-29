@@ -1,0 +1,36 @@
+{
+  "date": "2026-07-29",
+  "status": "NUMERICAL_EVIDENCE",
+  "objective": "squared Frobenius norm of [H8,Q tensor Q], divided by 64",
+  "gradient_check_relative_error": 5.038638950516372e-11,
+  "source_sha256": "1eb40dc66b34e2f5b5d88a325f23f97b0147aa7fd70e85d022a21b25b2da6db0",
+  "calibration": {
+    "rank": 4,
+    "runs": 4,
+    "seeds": [26072980, 26072981, 26072982, 26072983],
+    "minimum_objective": 6.702810184751428e-23,
+    "maximum_objective": 1.46709416327596e-22,
+    "outcome": "all four runs reached the zero-commutator locus to numerical precision"
+  },
+  "production": {
+    "rank": 6,
+    "runs": 32,
+    "seed_start": 26072984,
+    "seed_end": 26073015,
+    "outcome": "all 32 runs converged to the same positive stationary value within numerical precision",
+    "minimum_objective": 0.23958333333332377,
+    "maximum_objective": 0.2395833333333358,
+    "maximum_distance_from_23_over_96": 9.575673587391975e-15,
+    "common_objective_decimal": 0.2395833333333333,
+    "recognized_rational": "23/96",
+    "candidate_below_1e-20": false
+  },
+  "interpretation": "The numerical endpoint prompted an exact low-rank-pencil theorem. Numerical failure and the apparent global minimum 23/96 are not used as proof.",
+  "replay": {
+    "calibration_command": "/Users/alec/Documents/Math/.venv/bin/python scripts/search_d6_subspace_of_d8_amplification.py --rank 4 --seed-start 26072980 --runs 4 --maximum-iterations 2000 --tolerance 1e-24 --gradient-check",
+    "production_command": "/Users/alec/Documents/Math/.venv/bin/python scripts/search_d6_subspace_of_d8_amplification.py --rank 6 --seed-start 26072984 --runs 32 --maximum-iterations 3000 --tolerance 1e-24",
+    "seed_manifest": "results/d6_subspace_of_d8_seed_manifest.json",
+    "calibration_raw_output": "results/d6_subspace_of_d8_calibration.jsonl",
+    "production_raw_output": "results/d6_subspace_of_d8_production.jsonl"
+  }
+}
