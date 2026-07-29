@@ -3133,6 +3133,43 @@ All timestamps use America/Los_Angeles.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_logical_spinflip_obstruction.py`.
 
+## 2026-07-29 — Spectral gap at product saturation of the rank-one pair slack
+
+- Recast the pair-sector Ky--Fan target through
+  \[
+  K_D=\frac43S I-D^\dagger D,\qquad
+  S=\sum_{i<j}\|B_{ij}\|_2^2.
+  \]
+  The desired theorem is that every two-plane has \(K_D\)-trace at
+  least \(2S/3\).
+- Proved an exact boundary theorem.  If the sharp rank-one estimate
+  \(s_1(D)^2\leq4S/3\) is saturated through a product left vector,
+  then the exposing rank-one pair is product--tangent and
+  \[
+  s_2(D)^2\leq S/3,\qquad
+  s_1(D)^2+s_2(D)^2\leq5S/3.
+  \]
+  Equivalently, the two smallest eigenvalues of \(K_D\) sum to at
+  least \(S\), with one-third more slack than the global target
+  requires.
+- The core certificate is the operator inequality
+  \[
+  E^\dagger E\preceq
+  \frac4{81}I+\frac{12}{81}|y\rangle\langle y|,
+  \quad E=\Pi_2(|000\rangle\langle y|),
+  \]
+  for every normalized product-tangent vector
+  \(y=a|000\rangle+b|100\rangle+c|010\rangle+d|001\rangle\).
+  A complete \(4\times4\), \(3\times3\), and \(2\times2\) Schur-block
+  decomposition proves the certificate.  The \(S/3\) second-value
+  constant is attained.
+- This excludes one exact operator-norm boundary mechanism but does
+  not yet classify non-product rank-one saturation pairs or provide
+  the quantitative stability estimate needed away from saturation.
+- Exact note and symbolic checker:
+  `notes/agent_n3_pair_rankone_slack_saturation.md` and
+  `verification/verify_n3_pair_rankone_slack_saturation.py`.
+
 ## 2026-07-29 — One-plane marginal Schur and invariant-Gram no-gos
 
 - For the one-plane marginal defect
