@@ -1,9 +1,10 @@
-# The sharp triple-skew stable-rank reduction
+# The sharp triple-skew stable-rank theorem
 
 ## Status
 
-This note isolates an exact positive subproblem.  It does **not** prove
-unrestricted three-copy positivity.
+This note proves the sharp triple-skew stable-rank theorem.  It does
+**not** prove unrestricted three-copy positivity, because the full
+logical feature contains a coherently coupled two-skew component.
 
 Let
 \[
@@ -13,16 +14,16 @@ and, for \(t\in(\mathbb C^3)^{\otimes3}\), put
 \[
  D_t=\sum_{p,q,r}t_{pqr}A_p\otimes A_q\otimes A_r.
 \]
-The numerically supported sharp inequality
+The sharp inequality
 \[
  \boxed{\qquad
  \|D_t\|_{\rm op}^2\leq\frac16\|D_t\|_2^2
  =\frac16\|t\|^2
  \qquad}                                                   \tag{1}
 \]
-is equivalent to each of three elementary-looking nonlinear
-inequalities below.  It is still unproved.  The constant is forced by
-an exact biseparable equality orbit.
+is proved below.  It is equivalent to each of three elementary-looking
+nonlinear inequalities below.  The constant is forced by an exact
+biseparable equality orbit.
 
 The independent exact checker is
 `verification/verify_n3_triple_skew_reduction.py`.
@@ -159,11 +160,177 @@ to
  \right]\leq\frac16 .
  \qquad}                                                   \tag{12}
 \]
-Thus a qutrit antisymmetrizer identity, a collision-purity monogamy
-identity, or a Pluecker sum of squares proving any one of
-(5), (7), (9), (10), or (12) proves all of them.
+The next two sections prove (12), and hence all of (1), (5), (7),
+(9), (10), and (12).
 
-## 3. Exact equality orbit
+## 3. A refined qutrit sign-frame lemma
+
+The missing input is a state-dependent strengthening of the usual
+trace-norm sign argument.
+
+### Lemma 3.1
+
+Let \(X=X^\dagger\in M_3(\mathbb C)\) be traceless and let
+\(\sigma\) be a qutrit density operator.  There is a Hermitian
+contraction \(G\) such that
+\[
+\boxed{
+\operatorname{Tr}(XG)=\sqrt2\|X\|_2,\qquad
+\operatorname{Tr}(\sigma G^2)
+\leq\frac23\left(1+\operatorname{Tr}\sigma^2\right).
+}                                                         \tag{L1}
+\]
+
+#### Proof
+
+The case \(X=0\) is immediate with \(G=0\).  After possibly replacing
+\(X\) by \(-X\), its eigenvalues can be written
+\[
+ a,\quad b,\quad-a-b,\qquad a\geq b\geq0.
+\]
+Put \(S=a^2+ab+b^2\).  If \(b>0\), define
+\[
+ g=\frac{2\sqrt S-2a-b}{b};
+\]
+if \(b=0\), put \(g=0\).  In the displayed eigenbasis take
+\[
+ G=\operatorname{diag}(1,g,-1).                           \tag{L2}
+\]
+The inequalities
+\[
+ a+\frac b2\leq\sqrt S\leq a+b
+\]
+show \(0\leq g\leq1\).  More sharply, writing \(r=a/b\geq1\),
+\[
+ g=2\sqrt{r^2+r+1}-2r-1
+\]
+is strictly decreasing in \(r\), because
+\[
+ \frac{2r+1}{\sqrt{r^2+r+1}}<2.
+\]
+Hence
+\[
+ 0\leq g\leq2\sqrt3-3,\qquad g^2<\frac13.                 \tag{L3}
+\]
+The final strict inequality follows exactly from
+\[
+ (2\sqrt3-3)^2=21-12\sqrt3<\frac13;
+\]
+after moving the radical and squaring, this is \(3844<3888\).
+
+Since \(\|X\|_2^2=2S\), the choice (L2) gives
+\[
+\operatorname{Tr}(XG)
+=2a+b(1+g)=2\sqrt S=\sqrt2\|X\|_2.                        \tag{L4}
+\]
+
+Let \(q\) be the diagonal entry of \(\sigma\) on the
+\(b\)-eigenvector.  Then
+\[
+ \operatorname{Tr}(\sigma G^2)=1-(1-g^2)q.               \tag{L5}
+\]
+The diagonal entries of a density matrix are a probability vector,
+and off-diagonal entries only increase its Hilbert--Schmidt purity.
+Cauchy--Schwarz on the other two diagonal entries therefore gives
+\[
+ \operatorname{Tr}\sigma^2
+\geq q^2+\frac{(1-q)^2}{2}.                               \tag{L6}
+\]
+Combining (L3), (L5), and (L6),
+\[
+\begin{aligned}
+\frac23(1+\operatorname{Tr}\sigma^2)
+-\operatorname{Tr}(\sigma G^2)
+&\geq
+q\left(q+\frac13-g^2\right)\\
+&\geq0.
+\end{aligned}
+\]
+This proves the lemma. \(\square\)
+
+## 4. Proof of the stable-rank theorem
+
+It suffices, by Section 2, to prove (12).  For an orthonormal pair
+\(t,x\), expand its logical purification as
+\[
+ |\Psi\rangle\langle\Psi|
+ =\frac12\sum_{a=0}^3\sigma_a\otimes X_a,                 \tag{T1}
+\]
+where \(\sigma_0=I_2\) and \(\sigma_1,\sigma_2,\sigma_3\)
+are the Pauli matrices.  On physical site \(i\), put
+\[
+ X_{a,i}=\operatorname{Tr}_{\bar i}X_a,\qquad
+ p_i=\|X_{0,i}\|_2^2,\qquad P_1=p_1+p_2+p_3.              \tag{T2}
+\]
+Here \(X_{0,i}=\rho_i^\Psi\) is a qutrit density matrix, while
+every \(X_{a,i}\), \(a>0\), is Hermitian and traceless.
+Pauli orthogonality gives
+\[
+\operatorname{Tr}(\rho_{Ki}^{\Psi})^2
+=\frac12\sum_{a=0}^3\|X_{a,i}\|_2^2.                     \tag{T3}
+\]
+Thus (12) is exactly
+\[
+\sum_{i=1}^3\sum_{a=1}^3\|X_{a,i}\|_2^2
+\leq P_1+\frac13.                                        \tag{T4}
+\]
+
+Fix a permutation \(\pi\in S_3\).  Apply Lemma 3.1 to
+\((X_{\pi(i),i},X_{0,i})\), obtaining \(G_i\), and define
+\[
+ O_i=\sigma_{\pi(i)}^{(K)}\otimes G_i^{(i)}.
+\]
+The \(G_i\)'s act on distinct physical sites and commute, while the
+three distinct Pauli matrices anticommute.  Hence the \(O_i\)'s are
+pairwise anticommuting Hermitian contractions.  Set
+\[
+ z_i=\langle\Psi|O_i|\Psi\rangle
+=\sqrt2\|X_{\pi(i),i}\|_2,\qquad
+ s=\sum_i z_i^2.                                         \tag{T5}
+\]
+For \(O=\sum_i z_iO_i\), anticommutation and Cauchy--Schwarz in the
+state \(\Psi\) give
+\[
+\begin{aligned}
+s^2
+=|\langle O\rangle_\Psi|^2
+&\leq\langle O^2\rangle_\Psi\\
+&=\sum_i z_i^2
+  \operatorname{Tr}(X_{0,i}G_i^2)\\
+&\leq
+s\max_i\frac23(1+p_i).
+\end{aligned}                                             \tag{T6}
+\]
+Every qutrit density matrix has purity at least \(1/3\).  Therefore,
+for each \(i\),
+\[
+\frac23(1+p_i)
+\leq\frac29+\frac23P_1.                                  \tag{T7}
+\]
+Equations (T5)--(T7) prove, also when \(s=0\),
+\[
+ 2\sum_i\|X_{\pi(i),i}\|_2^2
+\leq\frac29+\frac23P_1.                                  \tag{T8}
+\]
+
+Sum (T8) over all six permutations.  Each ordered pair \((i,a)\)
+occurs twice, so
+\[
+4\sum_{i,a>0}\|X_{a,i}\|_2^2
+\leq\frac43+4P_1.
+\]
+This is (T4), and hence proves (12).
+
+Finally, for fixed normalized \(t\), the bilinear triple-skew
+contraction gives \(D_tt=0\).  Any unit \(y\) decomposes as
+\(y=\alpha t+\beta x\), where \(x\perp t\) is unit when
+\(\beta\ne0\).  The already proved orthogonal case gives
+\[
+\|D_ty\|^2=|\beta|^2\|D_tx\|^2\leq\frac16.
+\]
+Together with (3), this proves (1). \(\square\)
+
+## 5. Exact equality orbit
 
 Let
 \[
@@ -201,7 +368,7 @@ gives
 Permuting the three sites and applying local unitaries gives the
 corresponding equality orbit.
 
-## 4. Why the naive two-site induction fails
+## 6. Why the naive two-site induction fails
 
 The channel form suggests grouping two copies and trying to use the
 sharp double-skew estimate first.  The required comparison map would
@@ -242,12 +409,12 @@ Consequently
 \leq\frac13-\frac5{12}=-\frac1{12}.                       \tag{20}
 \]
 Thus neither a two-positive nor a three-positive induction through
-(17) can prove (1).  A proof must retain the three-site
+(17) can prove (1).  The proof above instead retains the three-site
 decomposability/monogamy constraint.
 
-## 5. Consequence and remaining compensation
+## 7. Consequence and remaining compensation
 
-If (1) is proved, the triple-skew logical feature obeys only
+The theorem (1) implies that the triple-skew logical feature obeys
 \[
  {\cal C}(Q_{(3)})\leq
  \frac89\cdot2\cdot\frac16=\frac8{27}.                    \tag{21}
@@ -265,5 +432,5 @@ already isolated elsewhere is the conjugation-correct floor
  \left(\frac29-\frac12\operatorname{Tr}Q_{(3)}\right)I_4
  \succeq0.                                                \tag{22}
 \]
-The stable-rank inequality (1) and the common-plane floor (22) are
-separate unresolved statements.
+The stable-rank theorem (1) does not imply the common-plane floor
+(22), which remains unresolved.

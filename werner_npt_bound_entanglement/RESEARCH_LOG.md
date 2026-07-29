@@ -3924,7 +3924,7 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_common_plane_floor.md`,
   `verification/verify_n3_pair_common_plane_floor.py`.
 
-## 2026-07-29 14:37 PDT — Sharp triple-skew stable-rank reduction
+## 2026-07-29 14:37 PDT — Sharp triple-skew stable-rank theorem
 
 - Isolated the sharp surviving triple-Hodge target
   \[
@@ -3932,8 +3932,7 @@ All timestamps use America/Los_Angeles.
   \right\|_{\rm op}^2
   \le\frac16\sum_{p,q,r}|t_{pqr}|^2.
   \]
-  The statement remains unproved, but extensive unrestricted discovery
-  optimization has not violated it.
+  This inequality is now proved exactly and is sharp.
 - Proved the exact marginal identity
   \[
   8D_t^\dagger D_t
@@ -3943,6 +3942,21 @@ All timestamps use America/Los_Angeles.
   purity inequality, a rank-two-code purity inequality, a decomposable
   Hodge--Pluecker inequality, and a four-party collision-purity monogamy
   inequality.
+- Proved the collision-purity form using a new state-dependent qutrit
+  sign frame.  For every traceless Hermitian \(X\in M_3\) and qutrit
+  state \(\sigma\), constructed a Hermitian contraction \(G\) such that
+  \[
+  \operatorname{Tr}(XG)=\sqrt2\|X\|_2,\qquad
+  \operatorname{Tr}(\sigma G^2)
+  \le\frac23(1+\operatorname{Tr}\sigma^2).
+  \]
+  Applying these contractions to the three reduced encoded Pauli
+  directions, anticommutation and the qutrit purity floor give
+  \[
+  \sum_{i,a>0}\|X_{a,i}\|_2^2
+  \le\sum_i\|X_{0,i}\|_2^2+\frac13,
+  \]
+  exactly the required Hodge inequality.
 - Identified the exact sharp equality orbit
   \(t=\Phi_{AB}\otimes|0\rangle_C\),
   \(x=\Phi_{AB}\otimes|2\rangle_C\).  It gives
@@ -3954,7 +3968,7 @@ All timestamps use America/Los_Angeles.
   two-positive: the sharp double-skew tensor has top-two squared
   singular-value mass \(5/12\), producing Choi expectation at most
   \(-1/12\).
-- Even a proof of the stable-rank target gives only the sharp component
+- The stable-rank theorem gives only the sharp component
   bound \({\cal C}(Q_{(3)})\le8/27\), not the required coherent
   \(4/9\) theorem.  Compensation from the two-skew component remains
   essential.
