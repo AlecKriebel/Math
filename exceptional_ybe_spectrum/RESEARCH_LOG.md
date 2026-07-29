@@ -888,3 +888,24 @@
 - Scope remains explicit: arbitrary OSR-four exceptional solutions need
   not possess a product Clifford frame and remain unresolved. No external
   communication occurred.
+
+## 2026-07-29 06:08 PDT — Four-strand nonreal-pairing route closed
+
+- Computed exact real models for every surviving \(H_4(3,6)\) simple and
+  compressed the fourth generator to the two nonreal spectral sectors of
+  \(H_{12}H_{23}\).
+- The same-sign corner is \(\mathbb C^3\), the paired-sign corner is
+  \(M_2(\mathbb C)^{\oplus3}\), and the canonical return compression has
+  branch scalars \((-1/2,1,-1/2)\), each with multiplicity \(2s^4\).
+- Proved that the polar linking antiunitary has square \(+1\), not
+  \(-1\). Normalized last-site trace of every Hecke word lands back in
+  \(\mathcal A_3\), where a chosen nonreal corner is scalar.
+- Built an exact \(s=3\) abstract four-strand module with the correct
+  restrictions, spectra, polynomial, and zero-last-trace identities but
+  odd three-strand multiplicity \(81\). It is deliberately not a
+  tensor-local \(d=6\) Yang--Baxter matrix.
+- Added C62/E49, a human-readable limitation proof, exact verifier, and
+  byte-identical retained output. The result shows that a successful
+  divisibility theorem must use flat same-\(H\) tensor coherence beyond
+  ordinary four-strand Hecke corners and closures. No external
+  communication occurred.

@@ -936,3 +936,41 @@ the cubic.  C59 therefore identifies even flip-kernel nullity as exactly
 equivalent to the missing parity, not as an independent consequence.
 Any positive even-nullity theorem must use the exceptional cubic beyond
 balance and scalar partial traces.
+
+The four-strand nonreal-pairing route closes as follows:
+
+```text
+U=H_12 H_23 has nonreal spectral lines Pi_+,Pi_-
+        |
+        +--> H_4(3,6)=M_3 + M_2 + M_3
+        |       and each simple contains the generic H_3 block once
+        |               |
+        |               +--> Pi_+ A_4 Pi_+ = C^3
+        |               +--> paired-sign corner = M_2^3
+        |
+        +--> B=Pi_+ H_12 H_34 Pi_+
+        |       has branch scalars (-1/2,1,-1/2)
+        |               |
+        |               +--> each branch multiplicity is 2s^4
+        |               +--> normalized last-site trace cancels to zero
+        |
+        +--> polar(Pi_+ H_34 Pi_-), with the real simple models
+        |       gives an antiunitary whose square is +1
+        |
+        +--> normalized last-site trace maps A_4 back to A_3
+                |
+                +--> chosen nonreal A_3 corner is scalar
+                        |
+                        +-X no action on multiplicity 3s^3
+```
+
+For \(s=3\), the exact abstract corner factors as
+\[
+I_{81}\otimes
+\operatorname{diag}(-1/2,-1/2,1,1,-1/2,-1/2),
+\]
+so every listed four-strand invariant coexists with odd multiplicity
+\(81\). C62 therefore rules out this parity mechanism, not a tensor-local
+\(d=6\) matrix. Any positive theorem must use the unresolved compatibility
+of the same two-site operator across all adjacent placements; see
+`notes/four_strand_nonreal_pairing_limitation.md`.

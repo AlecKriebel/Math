@@ -1918,3 +1918,73 @@ reproducible; only its final exact witness is reproducible.
     `661fdfd3efb72066c9218df556076c4282e28e5128de0669a61ef3bc19d1c5a9`;
   - `results/osr4_clifford_frame_parity_exact.txt`:
     `0ad7720f6f7f8c51fd1b44e27235c30415977e9454766b9b6103d5a6410da190`.
+
+## E49 — four-strand nonreal-pairing limitation audit
+
+- Run: 2026-07-29 05:48--06:08 PDT.
+- Question:
+  whether the fourth local generator, the nonreal spectral corners of
+  \(H_{12}H_{23}\), their polar intertwiners, or normalized last-site
+  trace canonically impose evenness on the multiplicity
+  \(3(d/2)^3\).
+- Exact simple-block audit:
+  - constructed real reflection models for all three surviving
+    \(H_4(3,6)\) simples \((31),(22),(211)\);
+  - checked the shifted cubic for both adjacent pairs, distant
+    commutation, irreducibility, and the two nonreal spectral projections;
+  - found
+    \[
+    \Pi_+H_{12}H_{34}\Pi_+
+      =-\tfrac12,\ 1,\ -\tfrac12
+    \]
+    on the three branches;
+  - verified that the corresponding polar fourth-generator link gives an
+    antiunitary of square \(+1\), branch by branch.
+- Exact algebraic conclusion:
+  \[
+  \Pi_+\mathcal A_4\Pi_+\cong\mathbb C^3,\qquad
+  (\Pi_++\Pi_-)\mathcal A_4(\Pi_++\Pi_-)
+     \cong M_2(\mathbb C)^{\oplus3}.
+  \]
+  The matrix factors pair the two spectral signs and do not act on the
+  tensor-space multiplicity. The Hecke double-coset decomposition and
+  scalar partial trace show that normalized last-site trace of every
+  four-strand Hecke word returns to \(\mathcal A_3\), whose chosen
+  nonreal corner is one-dimensional.
+- Exact odd-\(s\) limitation model:
+  at \(d=6\), \(s=3\), each four-strand branch has multiplicity \(162\);
+  on the \(\Pi_+\) corner,
+  \[
+  B=I_{81}\otimes
+    \operatorname{diag}(-\tfrac12,-\tfrac12,1,1,
+                        -\tfrac12,-\tfrac12).
+  \]
+  This has the universal corner polynomial and zero last-factor trace
+  while the original multiplicity \(81\) is odd.
+- Scope:
+  the \(d=6\) model is an abstract four-strand Hecke module with correct
+  restrictions, not a common tensor-local two-site matrix. It proves a
+  limitation of Hecke-corner, polar-pairing, trace-down, and bare
+  partial-transpose routes; it does not prove existence or nonexistence
+  in dimension six.
+- Randomness:
+  none.
+- Initial parent commit:
+  `11e91e65`; the shared branch advanced independently during the run.
+- Machine/dependencies:
+  Apple arm64, macOS 26.5.2; Python 3.9.6; SymPy 1.14.0.
+- Independent replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_four_strand_nonreal_pairing_limitation.py`
+  (wall \(0.58\) seconds, maximum resident set size \(52{,}609{,}024\)
+  bytes).
+- Raw output:
+  `results/four_strand_nonreal_pairing_limitation_exact.txt`
+  (byte-identical on two independent replays).
+- SHA-256:
+  - `notes/four_strand_nonreal_pairing_limitation.md`:
+    `2b7c6a1aa45fc299a872fd55b40c49359315d29af6005684e0a684c4619d429c`;
+  - `verifiers/verify_four_strand_nonreal_pairing_limitation.py`:
+    `9cad2932d79dce76f7803a16fc9e8e2f23ba8e67e143a6ecbf17c67f112f7582`;
+  - `results/four_strand_nonreal_pairing_limitation_exact.txt`:
+    `f9f535740d064cfbc0bc70a4ee93e8ae7225e5cec3c6e94b12e764dd079f37e8`.

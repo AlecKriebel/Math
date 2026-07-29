@@ -696,3 +696,28 @@ follow from the two-site conditions. The general OSR-four exceptional
 branch remains open; no numerical sample or rank-four literature statement
 has been treated as a classification. See
 `notes/osr4_clifford_frame_parity_audit.md`.
+
+## Four-strand pairing of the nonreal three-strand sector
+
+The fourth generator does not canonically place a symplectic structure on
+the odd-sensitive multiplicity \(3(d/2)^3\). Exact models for the three
+surviving four-strand simples show
+\[
+\Pi_+\mathcal A_4\Pi_+\cong\mathbb C^3,\qquad
+(\Pi_++\Pi_-)\mathcal A_4(\Pi_++\Pi_-)
+\cong M_2(\mathbb C)^{\oplus3}.
+\]
+The \(M_2\) factors pair the two nonreal spectral signs; they do not act on
+the tensor multiplicity. The polar fourth-generator link, combined with
+the exact real form, gives antiunitary square \(+1\). Normalized last-site
+trace returns every Hecke word to \(\mathcal A_3\), whose chosen nonreal
+corner is scalar.
+
+At \(d=6\), an exact abstract \(H_4(3,6)\)-module realizes all these corner
+polynomials and trace identities while the relevant multiplicity is the
+odd number \(81\). Bare partial transpose does not close the fourth leg
+without a noncanonical bilinear form. Thus Hecke corners, polar pairing,
+trace-down, and bare transpose cannot prove the desired parity. The
+remaining distinction is the global flat coherence requiring the same
+two-site \(H\) at every adjacent placement. See
+`notes/four_strand_nonreal_pairing_limitation.md`.
