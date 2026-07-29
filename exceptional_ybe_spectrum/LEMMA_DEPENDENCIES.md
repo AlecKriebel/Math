@@ -974,3 +974,42 @@ so every listed four-strand invariant coexists with odd multiplicity
 \(d=6\) matrix. Any positive theorem must use the unresolved compatibility
 of the same two-site operator across all adjacent placements; see
 `notes/four_strand_nonreal_pairing_limitation.md`.
+
+The unrestricted operator-Schmidt-rank-four reduction is:
+
+```text
+exceptional H with OSR(H)=4
+        |
+        +--> intrinsic Hermitian Schmidt supports A,B, dim A=dim B=4
+        |       and automatic standardness gives Tr(A)=Tr(B)=0
+        |
+        +--> project the first outer leg of the full cubic
+        |       modulo C I + A
+        |               |
+        |               +--> for every x in C I + A,
+        |                   sum [A_i A_k] tensor B_i x B_k = 0
+        |
+        +--> symmetric identity with A and B interchanged
+                |
+                +--> if either joint-sandwich map is injective,
+                |       then products of the opposite support lie in
+                |       its five-dimensional operator system
+                |               |
+                |               +--> finite C*-algebra of dimension five
+                |                       = C^5 or M_2(C) + C
+                |                               |
+                |                               +--> rank-one projection
+                |                                   in a true leg commutant
+                |                                           |
+                |                                           +--> C17
+                |                                               forces 4|d
+                |
+                +--> if d=2 mod 4, both maps are noninjective
+                        |
+                        +--> Hermitian traceless common sandwich
+                            annihilator on each leg
+```
+
+C63 uses the full tensor-local cubic and applies to arbitrary OSR-four
+Schmidt factors. It does not show that either sandwich map must be
+injective, so it narrows rather than closes the OSR-four branch.

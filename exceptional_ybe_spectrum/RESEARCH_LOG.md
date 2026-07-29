@@ -909,3 +909,25 @@
   divisibility theorem must use flat same-\(H\) tensor coherence beyond
   ordinary four-strand Hecke corners and closures. No external
   communication occurred.
+
+## 2026-07-29 — Final bounded attack stopped at a universal OSR-four reduction
+
+- Treated a completely arbitrary Hermitian operator-Schmidt-rank-four
+  exceptional reflection, with no Clifford, anticommutation, symmetry, or
+  control assumption.
+- Projecting an outer coefficient of the full three-site cubic modulo
+  \(\mathbb CI+\) the intrinsic Schmidt support produced a new
+  all-input joint-sandwich identity on each tensor leg.
+- Proved C63: injectivity of either joint-sandwich map forces the
+  corresponding five-dimensional operator system to be a \(C^*\)-algebra
+  and hence forces \(4\mid d\). Therefore every unresolved rank-four
+  \(d\equiv2\pmod4\) candidate has simultaneous nonzero Hermitian
+  traceless sandwich annihilators on both legs.
+- Replayed all exact calibrations independently and subjected the proof to
+  a hostile audit. The audit found no hidden irreducibility, Clifford, or
+  four-local-equivalence assumption and confirmed the trace-zero and
+  completely-positive-map scope guards.
+- This satisfies the user-mandated stopping condition for a material
+  unrestricted OSR-four theorem. New open-ended spectrum searches were
+  stopped; work now proceeds only toward the focused structural-frontier
+  manuscript and its adversarial theorem audits.

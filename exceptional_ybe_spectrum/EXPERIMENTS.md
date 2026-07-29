@@ -1988,3 +1988,49 @@ reproducible; only its final exact witness is reproducible.
     `9cad2932d79dce76f7803a16fc9e8e2f23ba8e67e143a6ecbf17c67f112f7582`;
   - `results/four_strand_nonreal_pairing_limitation_exact.txt`:
     `f9f535740d064cfbc0bc70a4ee93e8ae7225e5cec3c6e94b12e764dd079f37e8`.
+
+## E50 — operator-Schmidt-rank-four joint-sandwich degeneracy
+
+- Run and independent replay: 2026-07-29 PDT.
+- Question:
+  what coefficient identities the unrestricted exceptional cubic imposes
+  on an arbitrary Hermitian operator-Schmidt-rank-four decomposition.
+- Exact symbolic result:
+  - extracted both quotient identities from the full cubic without
+    assuming control, Clifford factors, finite symmetry, or
+    anticommutation;
+  - proved that injectivity of either intrinsic joint-sandwich map on
+    \(\mathbb CI+\) the opposite Schmidt support closes that
+    five-dimensional operator system under multiplication;
+  - classified the resulting five-dimensional finite \(C^*\)-algebra as
+    \(\mathbb C^5\) or \(M_2(\mathbb C)\oplus\mathbb C\);
+  - used its rank-one commutant projection and C17 to deduce \(4\mid d\);
+  - deduced that every \(d\equiv2\pmod4\) OSR-four candidate has a
+    nonzero Hermitian traceless common sandwich annihilator on each leg.
+- Exact calibrations:
+  the verifier checks the published rank-three witness, the C61
+  rank-four limitation model, a standard controlled \(d=6\) reflection,
+  and a standard four-term \(d=6\) color reflection. These calibrate
+  orientation, closure, stacked-map ranks, Schmidt singular values, and
+  direct nonzero cubic residuals; none is presented as a new exceptional
+  witness.
+- Scope:
+  the theorem is conditional on injectivity of one joint-sandwich map.
+  It supplies a universal two-sided degeneracy in the unresolved branch
+  but does not eliminate that branch.
+- Randomness:
+  none.
+- Machine/dependencies:
+  Apple arm64, macOS 26.5.2; Python 3.9.6; SymPy 1.14.0.
+- Independent replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_osr4_joint_sandwich_degeneracy.py`
+  (wall \(5.88\) seconds, maximum resident set size \(64{,}700{,}416\)
+  bytes). Its stdout was byte-identical to the retained output.
+- SHA-256:
+  - `notes/osr4_joint_sandwich_degeneracy.md`:
+    `4d6eb7f20a3f0b5322a543a9c2d40ac4d10c73a9e99fb89c5ddcae8be80a4d2b`;
+  - `verifiers/verify_osr4_joint_sandwich_degeneracy.py`:
+    `ed238116f88becee95de50264967f79ff26222cd9c01df2fc696e928a42eca66`;
+  - `results/osr4_joint_sandwich_degeneracy_exact.txt`:
+    `9048cf909b12663a656a3279512c5e75cdd4a420fd95341e6c4a480d5af12faf`.
