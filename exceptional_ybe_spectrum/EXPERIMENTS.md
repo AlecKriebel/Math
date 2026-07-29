@@ -611,3 +611,137 @@ reproducible; only its final exact witness is reproducible.
   `results/d6_weyl_full_coeff_runs.jsonl`,
   `results/d6_weyl_full_coeff_analysis.json`, and
   `results/weyl_anticommuting_branch_exact.txt`.
+
+## E25 — fusion anomaly and projective-\(A_4\) parity audit
+
+- Run: 2026-07-29
+- Exact fusion result:
+  the neutral \(SU(3)_3\) component is \(R(A_4)\), while the degree-one
+  component has the nontrivial projective \(A_4\) module rules.
+- Exact algebra:
+  the corresponding twisted algebra is
+  \[
+  \mathbb C^\alpha[A_4]\cong M_2(\mathbb C)^{\oplus3},
+  \]
+  verified through the binary tetrahedral quotient by a direct
+  \(12\times12\) map of determinant \(6^6\).
+- Conditional parity:
+  a unital action on a space of dimension \(s=d/2\) would force \(s\)
+  even. The natural projective action instead exists on
+  \(\mathbb C^2\otimes\mathbb C^s\) for every \(s\), so it recovers only
+  evenness of \(d\).
+- Exact assumption guards:
+  the generator is non-self-dual; determinant blocks have rank \(s^3\)
+  and scalar braid action; tensor reversal maps \(P\) to \(FPF\). For the
+  published \(d=4\) witness,
+  \(\|P-FPF\|_2^2=8\) and the three-site determinant projection has
+  reversal-defect norm squared \(14\).
+- Interpretation:
+  a new projective-descent theorem to an invariant \(s\)-dimensional
+  multiplicity space would prove \(4\mid d\), but it is not supplied by
+  the fusion tower, grading, FS data, determinant channels, or reversal.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_fusion_anomaly_parity.py`.
+- Raw output:
+  `results/fusion_anomaly_parity_exact.txt`.
+
+## E26 — four-strand obstruction to square restrictions
+
+- Run: 2026-07-29
+- Exact algebra:
+  constructed the \(24\)-element permutation basis of \(H_4(q)\) and
+  checked the \(q\)-symmetrizer \(e_+\) and \(q\)-antisymmetrizer
+  \(e_-\), including their idempotence and generator eigenrelations.
+- Exact Markov traces:
+  \[
+  \begin{array}{c|cc}
+  \eta&\mu_\eta(e_+)&\mu_\eta(e_-)\\ \hline
+  0&1&0\\
+  1/3&1/9&0\\
+  1/2&0&0\\
+  2/3&0&1/9\\
+  1&0&1
+  \end{array}
+  \]
+- Theorem:
+  if \(R(W^{\otimes2})\subseteq W^{\otimes2}\), the restricted tower
+  inherits the ambient annihilation of both idempotents. Their
+  arbitrary-\(\eta\) trace polynomials have the unique common zero
+  \(\eta_W=1/2\), without needing the discrete positive-trace
+  classification; therefore \(\dim W\) is even.
+- Consequences:
+  a least-dimensional \(d\equiv2\pmod4\) witness must be
+  non-restrictable, and no restrictable \(d=6\) witness exists.
+- Assumption guard:
+  the proof never assumes separate preservation of the mixed cells
+  \(A\otimes B\) and \(B\otimes A\). The replay also derives all nine
+  operator-valued mixed-color braid equations with unrestricted mixing.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_restrictable_four_strand_obstruction.py`.
+- Raw output:
+  `results/restrictable_four_strand_exact.txt`.
+
+## E27 — determinant boundary-corner factorization
+
+- Run: 2026-07-29
+- Exact all-boundary theorem:
+  for either three-site common-one/common-zero determinant projection
+  \(a\),
+  \[
+  (a\otimes I)\mathcal A_{m+3}(a\otimes I)
+  =a\otimes\mathcal A_m
+  \qquad(m\ge0).
+  \]
+  The proof uses the invertible fusion endpoints and equality of exact
+  path-corner dimensions with the injective disjoint \(\mathcal A_m\)
+  copy.
+- Consequence:
+  every boundary word closed back onto the determinant block is the
+  identity on its rank-\(s^3\) multiplicity. Endpoint traces and matrix
+  coefficients therefore yield only scalars there.
+- Exact low-level replay:
+  four-site scalar compression, the five-site identity
+  \(e h_3h_4h_3e=-e h_4/3\), and the six-site \(M_2\) Clifford block.
+  The latter acts on the added three-site path factor with multiplicity
+  \(3s^6\), not on the determinant multiplicity.
+- Limitation model:
+  an exact \(d=6\) abstract four-strand representation satisfies all
+  cubic, far-commutation, rank, shifted-angle, boundary-compression, and
+  opposite-sign identities used in this route.
+- Replay:
+  `/Users/alec/Documents/Math/.venv/bin/python
+  verifiers/verify_determinant_boundary_corner_factorization.py`.
+- Raw output:
+  `results/determinant_boundary_corner_exact.txt`.
+
+### E25--E27 exact-run provenance
+
+- Parent commit:
+  `03fe7083c280aef5e202f31ad1c326b5bca70540`.
+- Machine:
+  Apple arm64, `macOS-26.5.2-arm64-arm-64bit`.
+- Runtime:
+  Python `3.9.6`, SymPy `1.14.0`.
+- Randomness:
+  none; all three replays are deterministic exact calculations.
+- SHA-256:
+  - `notes/fusion_anomaly_parity_audit.md`:
+    `979cd06d20f0cb4c260979b5e3dd3948c672de403b43bfc5f83d0e78a35e4ab8`;
+  - `verifiers/verify_fusion_anomaly_parity.py`:
+    `1deb45cbd0c6c5a182f88ac642483d0a4ca3f7318732de0b216507134c9677c0`;
+  - `results/fusion_anomaly_parity_exact.txt`:
+    `dbf2365c9be68dc7ef63ac3193f5af4a20e09eaeac3002ab053bffd54e6b4209`;
+  - `notes/restrictable_four_strand_obstruction.md`:
+    `8280ad7b68ef98832466c12bad25d9fb7186f82309d0d3d6c1bfee67079f6285`;
+  - `verifiers/verify_restrictable_four_strand_obstruction.py`:
+    `7e51b5bcc4e5e337e8358a6af6bbf0c29fc1f8ab691c5681311af447ad9677d7`;
+  - `results/restrictable_four_strand_exact.txt`:
+    `34f37e4180707d74e51d0dcd9e69402ba2a0963bf6d111407fddcd3ebe88effc`;
+  - `notes/determinant_boundary_corner_factorization.md`:
+    `cdc874fd274a8c7b90c07d95032924b1f7549556f694c8bcf7e7b5c716c0fd0a`;
+  - `verifiers/verify_determinant_boundary_corner_factorization.py`:
+    `071929457023770685052304636300cbb32b0862f3715bbc9a61de4c2f8c8cc7`;
+  - `results/determinant_boundary_corner_exact.txt`:
+    `d578c3722253638a291ddb55c0553469b058b8566ad654a79e2c7958ba5dabad`.

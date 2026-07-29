@@ -277,3 +277,36 @@ useful structural explanation of the numerical basins, but the search is
 neither exhaustive within its \(361\)-dimensional linear subspace nor a
 test of all traceless Hermitian \(36\times36\) matrices. See
 `notes/d6_weyl_full_coefficient_search.md`.
+
+## Direct fusion-grading, Frobenius--Schur, and projective-\(A_4\) parity
+
+The neutral fusion component does expose a genuine parity-bearing algebra:
+the nontrivial twisted \(A_4\) algebra is
+\(M_2(\mathbb C)^{\oplus3}\). If it acted on an invariant
+\(s=d/2\)-dimensional multiplicity space, then \(s\) would be even.
+
+The direct argument stops at exactly that descent. The natural projective
+action is on the categorical two-dimensional factor of
+\(\mathbb C^2\otimes\mathbb C^s\) and exists for odd \(s\). The generator
+is non-self-dual, the determinant-channel braid action is scalar, and
+spatial reversal sends \(P\) to \(FPF\) rather than preserving a general
+solution. The published \(d=4\) witness has a nonzero exact reversal
+defect, so reflection cannot be silently used as an internal
+Frobenius--Schur operator. See
+`notes/fusion_anomaly_parity_audit.md`.
+
+## Closing determinant channels with boundary Hecke words
+
+The rank-\(s^3\) common-one and common-zero three-site blocks initially
+look like natural places to seek a parity-forcing complex or quaternionic
+structure. This route is now closed for every number of added boundary
+sites. The exact corner identity
+\[
+(a\otimes I)\mathcal A_{m+3}(a\otimes I)=a\otimes\mathcal A_m
+\]
+shows that the determinant multiplicity is always a spectator. Even the
+first \(M_2\) Clifford block at six sites acts on the newly added path
+factor, where its module multiplicity \(3s^6\) may be odd. Tensor reversal
+does not evade the theorem because it maps \(P\) to \(FPF\), not generally
+back to \(P\). See
+`notes/determinant_boundary_corner_factorization.md`.

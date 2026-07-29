@@ -287,3 +287,66 @@ all 361 real coefficients in retained Hermitian Weyl frame
 
 The second implication is exact; the observed separation of all forty
 search endpoints into these strata is numerical evidence only.
+
+The fusion-anomaly route now has a precise conditional endpoint:
+
+```text
+neutral SU(3)_3 fusion component
+        |
+        +--> R(A4)
+        +--> nontrivial degree-one projective class
+                |
+                +--> C^alpha[A4] = M2 + M2 + M2
+                        |
+                        +--> action on C^s would force 2 | s
+                        |
+                        +--> natural action is only on C^2 tensor C^s
+                                |
+                                +--> forces only 2 | d
+```
+
+A successful use of this mechanism requires a new spatial
+projective-descent theorem producing an invariant \(s\)-dimensional
+multiplicity factor. The diagonal tower, determinant channels, grading,
+FS data, and bare reversal do not construct it.
+
+The square-restriction branch now closes exactly at four strands:
+
+```text
+ambient balanced exceptional solution
+        |
+        +--> H4 q-symmetrizer = H4 q-antisymmetrizer = 0
+                |
+                +--> inherited by every W^tensor n restriction
+                        |
+                        +--> scalar / eta=1/3 / eta=2/3 excluded
+                                |
+                                +--> restriction has eta=1/2
+                                        |
+                                        +--> dim W is even
+```
+
+Thus every restrictable \(d=2\bmod4\) solution descends to a smaller
+balanced solution in the same congruence class. A minimal unresolved
+solution, if one exists, must have no proper local decomposition whose
+two diagonal tensor squares are invariant.
+
+The determinant-boundary route has an all-level stopping theorem:
+
+```text
+three-site invertible endpoint a
+        |
+        +--> simple-current path-count bijection
+                |
+                +--> dim(a A_(m+3) a) = dim(A_m)
+                        |
+                        +--> disjoint A_m copy fills the corner
+                                |
+                                +--> a A_(m+3) a = a tensor A_m
+                                        |
+                                        +--> no action on ran(a)
+```
+
+Accordingly, any future parity mechanism must use data outside closed
+Hecke boundary words—for example a genuinely spatial identification not
+contained in the diagonal tower.

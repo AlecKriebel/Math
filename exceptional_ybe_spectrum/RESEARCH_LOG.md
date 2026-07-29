@@ -314,3 +314,56 @@
   scalar objective law.
 - Status remains NUMERICAL_EVIDENCE for the search. It is not an
   exhaustive no-go even inside the retained frame.
+
+## 2026-07-29 02:02 PDT — Fusion anomaly isolated but does not descend
+
+- Identified the neutral \(SU(3)_3\) fusion component exactly with
+  \(R(A_4)\) and its degree-one module with the nontrivial projective
+  \(A_4\) class.
+- Verified directly that the twisted algebra is
+  \(M_2(\mathbb C)^{\oplus3}\); an action on an
+  \(s=d/2\)-dimensional space would prove the desired parity.
+- Proved that the currently natural action lives instead on the
+  \(2s\)-dimensional local space and therefore exists for odd \(s\).
+- Audited the determinant blocks, grading, non-self-duality, and
+  reflection mechanisms. The published exact \(d=4\) solution is not
+  flip- or determinant-reflection-invariant, so bare reversal cannot
+  supply the missing quaternionic action.
+- Recorded the precise remaining categorical target: construct an
+  invariant \(s\)-dimensional multiplicity space carrying the nontrivial
+  projective \(A_4\) algebra from the simultaneous spatial placements.
+
+## 2026-07-29 02:03 PDT — Restrictable dimension six ruled out exactly
+
+- Constructed the four-strand \(q\)-symmetrizer and
+  \(q\)-antisymmetrizer and derived their arbitrary-parameter trace
+  factorizations. Their unique common zero is \(\eta=1/2\).
+- Proved that the ambient balanced tower annihilates both idempotents,
+  while any square-invariant local restriction inherits that
+  annihilation.
+- The scalar, \(1/3\), and \(2/3\) restricted branches each detect one
+  of the two idempotents, so every nonzero square restriction is again
+  balanced and has even local dimension.
+- Concluded that every restrictable \(d=2\bmod4\) witness descends to a
+  smaller one in the same congruence class. In particular, no
+  restrictable \(d=6\) witness exists; any hypothetical witness must be
+  non-restrictable.
+- Replayed the Hecke calculation and the complete operator-valued
+  mixed-color equations exactly.
+
+## 2026-07-29 02:05 PDT — Determinant boundary route closed at all levels
+
+- Proved that either three-site determinant corner satisfies
+  \((a\otimes I)\mathcal A_{m+3}(a\otimes I)=a\otimes\mathcal A_m\)
+  for every number of added boundary sites.
+- The proof uses the simple-current fusion-graph automorphism and a
+  dimension comparison with the injective disjoint Hecke copy.
+- Therefore every closed boundary word and endpoint contraction is
+  scalar on the rank-\(s^3\) determinant multiplicity.
+- Located the apparent six-site Clifford pair exactly on the added
+  three-site \(M_2\) path factor; its module multiplicity \(3s^6\) may
+  be odd and supplies no parity of \(s\).
+- Replayed an exact \(d=6\) abstract four-strand model satisfying all
+  boundary, angle, rank, and opposite-sign identities used by this
+  route. The model is a limitation certificate, not a spatial
+  \(36\times36\) witness.
