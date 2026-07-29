@@ -2658,3 +2658,111 @@ All timestamps use America/Los_Angeles.
   for every negative depth would still have to be written and checked.
   No unrestricted three-copy theorem, three-copy counterexample, or
   all-copy conclusion is claimed.
+
+## 2026-07-29 — Exact obstruction to closing the large-slack branch
+
+- The current scalar, local-stationary, Hessian, marginal-floor,
+  quantitative-isotropy, block-Gram, and separately imposed
+  common-pencil inequalities are jointly insufficient.  For every
+  \(0<\delta<1/8\), there is exact abstract critical data with
+  \[
+  q=-\delta,\qquad
+  (w_0,w_1,w_2,w_3)
+  =\left(0,0,\frac{2(1+\delta)}3,
+  \frac{1-2\delta}3\right),
+  \qquad
+  g_i=\frac{1-8\delta}{9},
+  \]
+  balanced left and right marginals, a positive critical Hessian,
+  and the exact local block Gram
+  \[
+  \beta=
+  \left(\frac{2\delta}{3}+\frac{2t}{3}\right)
+  |\operatorname{vec}I\rangle\langle\operatorname{vec}I|
+  +\frac{2t}{15}I_9,\qquad
+  t=\frac{15g_i}{16}.
+  \]
+- The sector data obey the proved rank-two scalar-trace and
+  pair-sector ceilings.  The minor data can separately be realized
+  by a genuine balanced qutrit code with
+  \[
+  \mathbb Ea=\mathbb Eb=\frac5{36},\qquad
+  \mathbb E(ab)=\frac{47}{2430}.
+  \]
+  Thus the obstruction is not caused by replacing the common
+  quadratic minor pencil by arbitrary nonnegative numbers.
+- This is **not** a physical coefficient matrix.  It proves instead
+  that the missing large-slack ingredient must tie the block Gram
+  and the Pluecker/minor tensor to the same pair of singular planes.
+  Completing the local distance modulus alone cannot settle
+  unrestricted three-copy positivity.
+- Exact note:
+  `notes/agent_n3_large_slack_critical_data_obstruction.md`.
+  Exact checker:
+  `verification/verify_n3_large_slack_critical_data_obstruction.py`.
+
+## 2026-07-29 — Corrected global second-kernel target
+
+- For a two-qutrit plane \({\cal U}\) with projection \(P_{\cal U}\)
+  and one-body plane marginals \(\rho_L,\rho_R\), the distance to the
+  two fixed-factor rulings is exactly
+  \[
+  \operatorname{dist}_2({\cal U},{\sf Fac})^2
+  =4-2\max\{\lambda_{\max}(\rho_L),
+             \lambda_{\max}(\rho_R)\}.
+  \]
+- The fixed-left second eigenvalue has the exact augmented
+  tangent-map form
+  \[
+  \lambda_2(H_{\cal U})
+  =1-\frac12s_2(\widehat{\cal T}_{\cal U})^2.
+  \]
+  Hence the desired quartic modulus with constant \(1/1280\) is
+  equivalent to one explicit second-singular-value inequality for a
+  \(17\)-to-\(18\) dimensional map.
+- The tempting unaugmented replacement is false.  For
+  \({\cal U}=\operatorname{span}\{E_{11},E_{22}\}\),
+  \[
+  \chi_{H_{\cal U}}(x)=x(x-1)^8(x-\tfrac12)^9,\qquad
+  \chi_{S_{\cal U}}(x)=x^8(x-1)^8(x-2)^2.
+  \]
+  Thus the raw contraction has two saturated singular directions
+  even though the plane is a positive distance from both factor
+  rulings.  The scalar rank-one correction in the augmented map is
+  essential.
+- Exact note:
+  `notes/agent_n2_global_second_kernel_reduction.md`.
+  Exact checker:
+  `verification/verify_n2_global_second_kernel_reduction.py`.
+
+## 2026-07-29 — Lossless Schur reduction of the intersection-one stratum
+
+- The remaining three-vector inequality in the intersection-one
+  nonnormal stratum has been reduced without relaxation to two
+  vectors.  With
+  \[
+  A_w=L^{\otimes3}(P_w),\quad
+  K_u=M^{\otimes3}(P_u),\quad
+  a=Q_3(P_w),
+  \]
+  positivity for every third vector \(v\) is equivalent to
+  \[
+  aK_u-|A_wu\rangle\langle A_wu|\succeq0
+  \quad\Longleftrightarrow\quad
+  \langle A_wu,K_u^{-1}A_wu\rangle\le a.
+  \]
+  The exact floor \(K_u\succeq I/8\) is not strong enough; the full
+  state-dependent inverse is genuinely needed.
+- The Schur inequality is proved sharply for fully product anchors
+  in every copy number and arbitrary local dimensions.  It is also
+  proved whenever \(w,u\) have common qubit support at every site.
+  For three copies, the exact two-copy theorem strengthens this:
+  common support of dimension at most two at even one site suffices,
+  with no restriction on \(v\).
+- Consequently any violation of this reduced nonnormal inequality
+  must have combined local support dimension three at all three
+  sites.
+- Exact note:
+  `notes/agent_n3_three_vector_schur_reduction.md`.
+  Exact checker:
+  `verification/verify_n3_three_vector_schur_reduction.py`.
