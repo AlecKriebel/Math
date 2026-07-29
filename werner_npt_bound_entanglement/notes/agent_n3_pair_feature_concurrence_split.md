@@ -27,18 +27,20 @@ Consequently the strictly smaller sufficient target
 \]
 would prove the sharp shifted pair inequality.
 
-The constant in (1) is sharp.  However, the tempting two separate
-budgets
+The constant in (1) is sharp.  The tempting pair of separate budgets
 \[
  {\cal C}(Q_{(2)})\leq\frac29,\qquad
  {\cal C}(Q_{(3)})\leq\frac29                              \tag{2}
 \]
-are false: an exact physical code has
+cannot both be used as stated: an exact physical code has
 \[
  {\cal C}(Q_{(2)})=0,\qquad {\cal C}(Q_{(3)})=\frac8{27}.
 \]
-Thus a successful proof must retain compensation between the
-two- and three-local-exterior pieces.
+Thus the triple-skew budget in (2) is false, and a successful proof
+must retain compensation between the two- and three-local-exterior
+pieces whenever the triple contribution exceeds \(2/9\).  The
+standalone two-skew bound
+\({\cal C}(Q_{(2)})\leq2/9\) is neither proved nor disproved here.
 
 The dependency-free exact checker is
 `verification/verify_n3_pair_feature_concurrence_split.py`.
@@ -133,7 +135,7 @@ Hence
 \]
 The sufficient target (1), if true, is therefore sharp.
 
-## 3. Exact failure of the separate component budgets
+## 3. Exact failure of the separate triple-skew budget
 
 Let
 \[

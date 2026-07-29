@@ -4215,6 +4215,23 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_high_principal_overlap_scalar.md`,
   `verification/verify_n3_high_principal_overlap_scalar.py`.
 
+## 2026-07-29 — Adversarial correction to the split-budget record
+
+- Corrected an overstatement in
+  `notes/agent_n3_pair_feature_concurrence_split.md`.  The exact
+  common-factor countercode proves
+  \({\cal C}(Q_{(3)})=8/27>2/9\), but it has
+  \({\cal C}(Q_{(2)})=0\).  It therefore disproves only the proposed
+  standalone triple-skew budget, not the standalone two-skew bound.
+- The status of
+  \[
+  {\cal C}(Q_{(2)})\leq\frac29
+  \]
+  is now recorded correctly as conjectural: neither proved nor
+  disproved.  This distinction matters because that bound, combined
+  with a global version of the quantitative triple-skew compensation,
+  would directly imply the sufficient split target.
+
 ## 2026-07-29 15:11 PDT — Exact triple-skew deficit and chart compensation
 
 - Refined the sharp triple-skew theorem to the lossless stable-rank
