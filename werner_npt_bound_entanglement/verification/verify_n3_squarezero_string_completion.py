@@ -11,6 +11,7 @@ from __future__ import annotations
 import itertools
 from collections import Counter
 from collections import defaultdict
+from fractions import Fraction
 
 
 def restricted_growth_strings(length: int) -> list[tuple[int, ...]]:
@@ -206,6 +207,77 @@ def b_energy_numerator(profile: tuple[int, ...], t_numerator: int,
     return numerator, 16 * t_denominator
 
 
+def completion_real_matrix(
+    qh8: int, gram: tuple[tuple[int, ...], ...]
+) -> tuple[tuple[int, ...], ...]:
+    """Integer M with x^T M x = 32(Q(H)+Q(B_U)) for unitary U.
+
+    Real coordinates are Re(vec U), followed by Im(vec U).  The
+    coefficient vector before its factor 1/2 is (vec U, conjugate(vec U)).
+    """
+
+    coefficient_vectors: list[list[tuple[int, int]]] = []
+    for entry in range(4):
+        vector = [(0, 0)] * 8
+        vector[entry] = (1, 0)
+        vector[entry + 4] = (1, 0)
+        coefficient_vectors.append(vector)
+    for entry in range(4):
+        vector = [(0, 0)] * 8
+        vector[entry] = (0, 1)
+        vector[entry + 4] = (0, -1)
+        coefficient_vectors.append(vector)
+
+    output: list[tuple[int, ...]] = []
+    for row in range(8):
+        values: list[int] = []
+        for column in range(8):
+            # Real part of conjugate(a) b is ar*br + ai*bi.
+            value = sum(
+                gram[i][j]
+                * (
+                    coefficient_vectors[row][i][0]
+                    * coefficient_vectors[column][j][0]
+                    + coefficient_vectors[row][i][1]
+                    * coefficient_vectors[column][j][1]
+                )
+                for i in range(8)
+                for j in range(8)
+            )
+            value += 2 * qh8 * int(row == column)
+            values.append(value)
+        output.append(tuple(values))
+    matrix = tuple(output)
+    assert all(matrix[i][j] == matrix[j][i]
+               for i in range(8) for j in range(8))
+    return matrix
+
+
+def assert_positive_semidefinite(matrix: tuple[tuple[int, ...], ...]) -> None:
+    """Exact semidefinite LDL^T elimination over the rationals."""
+
+    work = [[Fraction(value) for value in row] for row in matrix]
+    dimension = len(work)
+    for pivot_index in range(dimension):
+        pivot = work[pivot_index][pivot_index]
+        assert pivot >= 0
+        if pivot == 0:
+            # A PSD matrix with a zero diagonal entry has a zero row.
+            assert all(
+                work[pivot_index][column] == 0
+                for column in range(pivot_index + 1, dimension)
+            )
+            continue
+        for row in range(pivot_index + 1, dimension):
+            for column in range(row, dimension):
+                work[row][column] -= (
+                    work[row][pivot_index]
+                    * work[pivot_index][column]
+                    / pivot
+                )
+                work[column][row] = work[row][column]
+
+
 def main() -> None:
     partitions = restricted_growth_strings(4)
     assert len(partitions) == 15
@@ -260,6 +332,17 @@ def main() -> None:
             assert 8 * numerator + qh8 * denominator >= 2 * denominator
 
     assert observed_profiles == EXPECTED_NEGATIVE_PROFILES
+
+    # Unconditional balanced-unitary theorem.  Homogenizing Q(H) by
+    # ||U||_HS^2=2 gives an exact real quadratic form.  Every distinct
+    # matrix is checked by rational LDL^T elimination.
+    completion_matrices = {
+        completion_real_matrix(qh8, gram)
+        for qh8, gram in all_patterns
+    }
+    assert len(completion_matrices) == 227
+    for matrix in completion_matrices:
+        assert_positive_semidefinite(matrix)
 
     # Arbitrary phases and unequal weights for the fixed-pairing
     # square-zero family.  A coefficient is stored as
@@ -318,7 +401,8 @@ def main() -> None:
 
     print(
         "verified: 15^3 equality patterns, ten negative-H Gram types, "
-        "Q3(H+iB_U)>=1/4 on the full negative-quadrature locus, and "
+        "227 unconditional balanced-completion Gram matrices, "
+        "Q3(H+iB_U)>=1/4 on the negative-quadrature locus, and "
         "thirteen nonnegative Laurent determinant types for arbitrary "
         "paired phases and weights"
     )

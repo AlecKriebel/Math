@@ -3722,3 +3722,34 @@ All timestamps use America/Los_Angeles.
   weights and arbitrary internal phases within the paired-product
   quadrature mechanism; it still does not cover entangled quadrature
   eigenvectors or arbitrary mixing between the two pairs.
+
+## 2026-07-29 14:48 PDT — Balanced string completion is unconditional
+
+- Removed the negative-quadrature hypothesis from the balanced-unitary
+  four-string theorem:
+  \[
+  C_U=\tfrac12
+  \begin{pmatrix}I&iU\\iU^\dagger&-I\end{pmatrix},
+  \quad U\in U(2)
+  \quad\Longrightarrow\quad
+  C_U^2=0,\ \operatorname{rank}C_U=2,\ Q_3(C_U)\ge0.
+  \]
+  The earlier sharp \(Q_3(C_U)\ge1/4\) conclusion remains valid when
+  the Hermitian quadrature itself has negative endpoint energy.
+- For each local equality pattern, homogenizing the constant
+  quadrature term with \(\|U\|_2^2=2\) produces an \(8\times8\) real
+  integer matrix \(M\) satisfying
+  \[
+  32Q_3(C_U)=x^{\mathsf T}Mx,\qquad
+  x=(\operatorname{Re}\operatorname{vec}U,
+     \operatorname{Im}\operatorname{vec}U).
+  \]
+  The \(2707\) valid partition triples give \(228\) full Gram types
+  and \(227\) distinct homogenized matrices.
+  Every matrix is positive semidefinite by exact rational
+  \(LDL^{\mathsf T}\) elimination.
+- This completes all unitary mixing at equal weights for product-string
+  quadrature eigenvectors.  Together with the phased unequal-weight
+  fixed-pairing theorem, it substantially narrows the product-string
+  square-zero falsifier, but does not address entangled quadrature
+  eigenvectors.

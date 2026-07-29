@@ -8,8 +8,7 @@ quadrature.  It also proves nonnegativity for every unequal-weight,
 arbitrarily phased paired four-string square-zero operator.
 
 Let \(p_0,p_1,n_0,n_1\) be four distinct computational-basis strings
-of length three, in arbitrary local dimensions, and suppose that the
-Hermitian operator \(H\) below has \(Q_3(H)<0\).  For \(U\in U(2)\), put
+of length three, in arbitrary local dimensions.  For \(U\in U(2)\), put
 \[
 \begin{aligned}
  H&=\frac12\left(P_{p_0}+P_{p_1}-P_{n_0}-P_{n_1}\right),\\
@@ -23,9 +22,13 @@ Hermitian operator \(H\) below has \(Q_3(H)<0\).  For \(U\in U(2)\), put
 Then
 \[
  \boxed{\quad \operatorname{rank}C_U=2,\qquad C_U^2=0,
- \qquad Q_3(C_U)\ge\frac14. \quad}                        \tag{2}
+ \qquad Q_3(C_U)\ge0. \quad}                              \tag{2}
 \]
-The constant is sharp.
+If \(Q_3(H)<0\), the stronger sharp estimate
+\[
+ \boxed{\qquad Q_3(C_U)\ge\frac14\qquad}                 \tag{2a}
+\]
+holds.
 
 Thus the most direct way of converting a negative diagonal
 inertia-\((2,2)\) direction into a rank-two nonnormal operator always
@@ -100,7 +103,49 @@ partitions of four labelled objects.  Hence all local dimensions are
 covered by the finite set of \(15^3\) triples of partitions.  We retain
 only triples for which the four resulting global strings are distinct.
 
-## 3. The ten negative-quadrature types
+## 3. The unconditional finite Gram certificate
+
+Write \(u=\operatorname{vec}U\in\mathbb C^4\) and
+\[
+ x=(\operatorname{Re}u,\operatorname{Im}u)\in\mathbb R^8.
+\]
+Let \({\cal R}:\mathbb R^8\to\mathbb C^8\) be the real-linear map
+\[
+ {\cal R}x=(u,\overline u).                              \tag{8a}
+\]
+For the eight forward and adjoint dyads used below, let \(G_B\) denote
+the integer Gram matrix \(8{\cal G}\), and put
+\[
+ q_H=8Q_3(H)\in\mathbb Z,\qquad
+ M=\operatorname{Re}({\cal R}^\dagger G_B{\cal R})
+   +2q_HI_8.                                             \tag{8b}
+\]
+Because \(\|U\|_2^2=2\), direct substitution of the coefficient vector
+\(\frac12(u,\overline u)\) gives
+\[
+ \boxed{\qquad
+ 32\bigl(Q_3(H)+Q_3(B_U)\bigr)=x^{\mathsf T}Mx.
+ \qquad}                                                 \tag{8c}
+\]
+
+The \(15^3\) equality-pattern enumeration gives \(2707\) valid triples
+(the four global strings must remain distinct) and only \(228\)
+distinct full Gram types, producing \(227\) distinct integer matrices
+\(M\).  Exact fraction-free construction
+followed by rational \(LDL^{\mathsf T}\) elimination gives nonnegative
+pivots for every one of them.  Hence
+\[
+ M\succeq0                                               \tag{8d}
+\]
+in every equality pattern.  Equations (5) and (8c)--(8d) prove the
+unconditional assertion \(Q_3(C_U)\ge0\).
+
+This is a finite exact certificate, not a floating-point eigenvalue
+test.  The checker constructs every set partition, builds each integer
+matrix \(M\), and performs the semidefinite \(LDL^{\mathsf T}\) test
+using rational arithmetic only.
+
+### 3.1 The ten negative-quadrature types
 
 Write
 \[
@@ -172,7 +217,7 @@ classification.  The checker constructs all fifteen local set
 partitions, enumerates their \(15^3\) triples, evaluates (6) using
 integers \(8{\cal G}\), and reproduces the ten displayed profiles.
 
-## 4. Positivity and equality
+## 4. The stronger bound on the negative-quadrature locus
 
 For types \(1\)--\(4\), the last column of (9) is at least \(3/8\).
 For type \(5\), it is \(1/2\).  Types \(6\)--\(10\) are also at least
@@ -282,9 +327,10 @@ This proves the theorem.
 
 ## 6. Scope
 
-These theorems do not prove unrestricted three-copy positivity, nor
-does the first assert a \(1/4\) lower bound when \(Q_3(H)\ge0\) (zero
-completions occur there).  They close two concrete falsifier mechanisms:
+These theorems do not prove unrestricted three-copy positivity, and
+the \(1/4\) lower bound is restricted to \(Q_3(H)<0\) (zero completions
+occur on the complementary locus).  They close two concrete falsifier
+mechanisms:
 every unitary balanced completion of a negative diagonal
 inertia-\((2,2)\) quadrature, and every unequal-weight, arbitrarily
 phased completion which retains a fixed pairing of four product
