@@ -3243,3 +3243,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_residual_inertia_two.md`.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_residual_inertia_two.py`.
+
+## 2026-07-29 — Residual inertia cannot imply the scalar determinant
+
+- Exactly disproved the proposed algebraic implication
+  \[
+  \operatorname{ind}_-{\mathbb N}\leq2,\quad
+  {\mathbb N}+{\mathfrak s}_K({\mathbb N})=M\otimes I_2,
+  \quad M[\{i,j\}]\succeq0
+  \ \Longrightarrow\ \det M\geq0.
+  \]
+  The obstruction already has \(\operatorname{ind}_-{\mathbb N}=1\).
+- Take the scalar matrix with diagonal \(1\) and every off-diagonal
+  entry \(-3/4\).  Its one- and two-dimensional principal minors are
+  \(1\) and \(7/16\), while
+  \[
+  \operatorname{spec}M=\{-1/2,7/4,7/4\},\qquad
+  \det M=-49/32.
+  \]
+  For \(P_0=|0\rangle\langle0|\), the logical residual
+  \({\mathbb N}=M\otimes P_0\) obeys the exact spin-flip identity and
+  has inertia \((2,1,3)\).
+- The no-go survives stronger formal constraints: every
+  two-component \(4\times4\) principal block of \({\mathbb N}\) is
+  positive semidefinite, and
+  \[
+  {\mathbb N}=\operatorname{diag}(2I_2,2I_2,2I_2)-G
+  \]
+  for one positive definite common Gram matrix \(G\), with each
+  diagonal Gram block bounded by its budget.
+- This construction is **formal, not physically realized** as
+  \(X_i=(I_i\otimes B_{\widehat i})V\).  It proves that even a future
+  physical negative-index-two theorem cannot finish the scalar
+  determinant without additional nonlinear common-code
+  realizability information.
+- Exact note:
+  `notes/agent_n3_pair_sector_inertia_completion_nogo.md`.
+  Dependency-free checker:
+  `verification/verify_n3_pair_sector_inertia_completion_nogo.py`.
