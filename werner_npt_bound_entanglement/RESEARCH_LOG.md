@@ -2979,3 +2979,29 @@ All timestamps use America/Los_Angeles.
   `verification/verify_n3_isotropic_local_stationary_counterexample.py`
   and
   `verification/data/n3_isotropic_local_stationary.json`.
+
+## 2026-07-29 — Exact obstruction to erasing the pair-cycle phase
+
+- Constructed an exact algebraic two-dimensional code and explicit
+  Gaussian-integer doubly-traceless \(B_{\widehat i}\) for which an
+  inconsistent \(e^{i\pi/4}\) twist of one component edge gives the
+  exact excess
+  \[
+  -\frac{1637114}{5}+232824\sqrt2>0
+  \]
+  over the pair-sector denominator.  The sign is certified by
+  \[
+  2(1164120)^2-(1637114)^2=30208499804>0.
+  \]
+- It follows that the phase-forgotten comparison matrix with
+  off-diagonal entries \(-|c_{ij}|\) is not always positive
+  semidefinite.  Thus absolute-value diagonal dominance and any proof
+  which optimizes the three edge phases independently are false.
+- For the same physical, untwisted triple, the genuine quadratic
+  deficit is \(375674/5>0\).  This is not a Werner witness; it isolates
+  the gauge-invariant phase of
+  \(c_{12}c_{23}\overline{c_{13}}\) as indispensable data.
+- Exact note:
+  `notes/agent_n3_pair_sector_phase_erasure_obstruction.md`.
+  Exact checker:
+  `verification/verify_n3_pair_sector_phase_erasure_obstruction.py`.
