@@ -3132,3 +3132,39 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_sector_logical_spinflip_obstruction.md`.
   Dependency-free checker:
   `verification/verify_n3_pair_sector_logical_spinflip_obstruction.py`.
+
+## 2026-07-29 — One-plane marginal Schur and invariant-Gram no-gos
+
+- For the one-plane marginal defect
+  \[
+  {\cal D}_V
+  =6I+2\sum_i e_i(R)-3\sum_{i<j}e_ie_j(R)-R,
+  \]
+  isolated its canonical three-term allocation
+  \[
+  {\cal D}_V=\sum_{i<j}
+  \left(2I+e_i(R)+e_j(R)-3e_ie_j(R)-R/3\right).
+  \]
+- On the sharp code
+  \(V=(|110\rangle,|111\rangle)\), the three summands have exact
+  negative Rayleigh quotients \(-4,-1,-1\).  Thus even the equality
+  plane requires compensation among all three physical pairs; a
+  termwise two-site Schur proof is impossible.
+- In the two-replica form, the physical swap polynomial has sector
+  values \(h=(2,2,6,22)\).  The scalar isometry relation is
+  \[
+  \langle F_K-\tfrac12I\rangle=0.
+  \]
+  Adding its most general scalar invariant multiplier produces
+  \(G_t=F_KH+t(F_K-I/2)\).  Positivity would require simultaneously
+  \(t\ge-4\) from the logical-symmetric/physical-\(r=0\) sector and
+  \(t\le-44/3\) from the logical-antisymmetric/physical-\(r=3\)
+  sector.  Hence no such invariant degree-\((2,2)\) Gram completion
+  exists.
+- These are proof-mechanism obstructions, not a negative Werner
+  witness.  Matrix-valued, higher-degree, or genuinely
+  Pluecker/Koszul use of the common code remains open.
+- Exact note:
+  `notes/agent_n3_pair_marginal_schur_nogos.md`.
+  Dependency-free checker:
+  `verification/verify_n3_pair_marginal_schur_nogos.py`.
