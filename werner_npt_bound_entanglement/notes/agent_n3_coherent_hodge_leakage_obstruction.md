@@ -278,6 +278,65 @@ particular the full-support plane of Theorem 2.1, despite (15), has
 individual-label leakage mass \(25/2\) in each global transpose
 parity.
 
+There is also a cross-plane version with the exact physical weights.
+Let \(U,V:\mathbb C^2\to{\cal H}\) be arbitrary isometries, and use
+the tensor labels and weights \(w_R\) from (22) below.  Put
+\[
+ A_T=U^\dagger T\overline V,\qquad
+ X_T=(I-P_U)T\overline V,\qquad
+ Z_T=(I-P_V)T\overline U.
+\tag{18a}
+\]
+Local completeness gives
+\[
+\sum_{R,\mu}w_RT_{R\mu}^\dagger T_{R\mu}
+=\left(
+ \frac12\frac{3+1}{2}
+ +\frac32\frac{3-1}{2}
+ \right)^3I_{27}
+=\frac{125}{8}I_{27}.
+\tag{18b}
+\]
+Consequently
+\[
+\boxed{
+\begin{aligned}
+ \sum_Tw_TX_T^\dagger X_T
+ &=\frac{125}{8}I_2-\sum_Tw_TA_T^\dagger A_T,\\
+ \sum_Tw_TZ_T^\dagger Z_T
+ &=\frac{125}{8}I_2-\sum_Tw_T\overline{A_T}A_T^{\mathsf T}.
+\end{aligned}}
+\tag{18c}
+\]
+Indeed, the second line uses
+\(V^\dagger T\overline U=(-1)^{|R|}A_T^{\mathsf T}\).
+
+The positive logical compression of
+\[
+ Y=(I-\tfrac12F)^{\otimes3}
+\]
+is
+\[
+ K=\sum_Tw_T|\operatorname{vec}A_T\rangle
+             \langle\operatorname{vec}A_T|.
+\]
+Since \(I/8\preceq K\preceq27I/8\), either logical marginal of \(K\)
+lies between \(I/4\) and \(27I/4\).  Equation (18c) therefore gives
+the uniform, plane-independent physical bounds
+\[
+\boxed{\qquad
+ \frac{71}{8}I_2
+ \preceq\sum_Tw_TX_T^\dagger X_T,\qquad
+          \sum_Tw_TZ_T^\dagger Z_T
+ \preceq\frac{123}{8}I_2.
+ \qquad}
+\tag{18d}
+\]
+Thus even after inserting the physical \(1,3,9,27\) parity weights,
+both individual-label leakage frames are uniformly far from zero.
+The remaining difficulty cannot be a shortage of leakage directions;
+it is cancellation in their common signed fourth moment.
+
 ## 4. Exact Fierz colligation at a critical point
 
 Choose real Hilbert--Schmidt orthonormal symmetric and skew qutrit

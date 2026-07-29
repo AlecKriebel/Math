@@ -256,8 +256,94 @@ for matrix in local_skew:
 endpoint = test_matrix - sp.trace(test_matrix) * sp.eye(3) / 2
 assert fierz.applyfunc(sp.simplify) == endpoint.applyfunc(sp.simplify)
 
+weighted_local_frame = sp.zeros(3)
+for matrix in local_symmetric:
+    weighted_local_frame += dagger(matrix) * matrix / 2
+for matrix in local_skew:
+    weighted_local_frame += 3 * dagger(matrix) * matrix / 2
+assert weighted_local_frame == 5 * sp.eye(3) / 2
+assert sp.Rational(5, 2) ** 3 == sp.Rational(125, 8)
+assert (
+    sp.Rational(125, 8) - sp.Rational(27, 4)
+    == sp.Rational(71, 8)
+)
+assert (
+    sp.Rational(125, 8) - sp.Rational(1, 4)
+    == sp.Rational(123, 8)
+)
+
+# Exact one-site block-colligation replay, including the parity sign
+# in the right mixed and normal blocks.  Tensoring the same algebra
+# gives equation (24) of the note.
+left_frame = sp.Matrix([[1, 0], [0, 1], [0, 0]])
+right_frame = sp.Matrix([[0, 0], [1, 0], [0, 1]])
+left_projection = left_frame * dagger(left_frame)
+right_projection = right_frame * dagger(right_frame)
+singular = sp.diag(2, sp.Rational(1, 2))
+coefficient = left_frame * singular * dagger(right_frame)
+local_endpoint = (
+    coefficient - sp.trace(coefficient) * sp.eye(3) / 2
+)
+
+core_sum = sp.zeros(2)
+left_sum = sp.zeros(3, 2)
+right_sum = sp.zeros(2, 3)
+normal_sum = sp.zeros(3)
+for basis, weight, parity in (
+    (local_symmetric, sp.Rational(1, 2), 1),
+    (local_skew, sp.Rational(3, 2), -1),
+):
+    for matrix in basis:
+        core = dagger(left_frame) * matrix * right_frame.conjugate()
+        left_leakage = (
+            (sp.eye(3) - left_projection)
+            * matrix
+            * right_frame.conjugate()
+        )
+        right_leakage = (
+            (sp.eye(3) - right_projection)
+            * matrix
+            * left_frame.conjugate()
+        )
+        core_sum += weight * core * singular * core.conjugate()
+        left_sum += (
+            weight
+            * left_leakage
+            * singular
+            * core.conjugate()
+        )
+        right_sum += (
+            parity
+            * weight
+            * core
+            * singular
+            * dagger(right_leakage)
+        )
+        normal_sum += (
+            parity
+            * weight
+            * left_leakage
+            * singular
+            * dagger(right_leakage)
+        )
+
+assert core_sum == dagger(left_frame) * local_endpoint * right_frame
+assert left_sum == (
+    (sp.eye(3) - left_projection) * local_endpoint * right_frame
+)
+assert right_sum == (
+    dagger(left_frame)
+    * local_endpoint
+    * (sp.eye(3) - right_projection)
+)
+assert normal_sum == (
+    (sp.eye(3) - left_projection)
+    * local_endpoint
+    * (sp.eye(3) - right_projection)
+)
+
 print(
     "verified full-support simultaneous parity-leakage zero, "
     "positive normal blocks, even/odd 25/2 tight frames, and the "
-    "local signed Fierz identity"
+    "signed/weighted local Fierz block identities"
 )
