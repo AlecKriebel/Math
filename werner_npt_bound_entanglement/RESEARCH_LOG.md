@@ -4417,3 +4417,31 @@ All timestamps use America/Los_Angeles.
 - Exact derivation and dependency-free audit:
   `notes/agent_n3_determinant_critical_hessian.md` and
   `verification/verify_n3_determinant_critical_hessian.py`.
+
+## 2026-07-29 16:06 PDT — Reverse-Cauchy/leakage bridge isolated
+
+- Proved that the singular-component reverse-Cauchy defect cannot be
+  recovered from the determinant-critical Hessian alone.  The exact
+  abstract form
+  \[
+  {\cal Q}(D)=\|D\|_2^2-\frac34|\operatorname{Tr}(PD)|^2
+  \]
+  has a strict rank-one floor and a negative global minimizer \(P\)
+  on the rank-two slice \(s_1s_2=1\).
+- At this minimizer, \(a=b=1/4\) and \(c=-3/4\), so
+  \(|c|^2-ab=1/2\), while the normal residual vanishes and every
+  paired leakage has \(p=q=0\).  Hence no abstract identity or bound
+  \(|c|\leq|p|+|q|\) follows from block positivity, criticality, or
+  the complete second variation.
+- Isolated a smallest sufficient physical bridge.  It would suffice
+  to produce physical leakage directions \(X,Z\) satisfying
+  \[
+  \frac{|p|+|q|}{\sqrt{A_XB_Z}}
+  \geq\frac{|c|}{\sqrt{a_0b_0}}.
+  \]
+  Criticality makes the right side strictly larger than one, while
+  the Hessian makes the left side at most one.  Any proof of this
+  bridge must use the explicit three-fold partial-trace structure.
+- Exact note and audit:
+  `notes/agent_n3_reverse_cauchy_leakage_obstruction.md` and
+  `verification/verify_n3_reverse_cauchy_leakage_obstruction.py`.
