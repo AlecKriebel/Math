@@ -2766,3 +2766,43 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_three_vector_schur_reduction.md`.
   Exact checker:
   `verification/verify_n3_three_vector_schur_reduction.py`.
+
+## 2026-07-29 — Exact factor-normal Hessian and qualitative global modulus
+
+- At either fixed-factor ruling, the complete normal Schur Hessian of
+  the fixed-left two-copy compression has been calculated exactly.
+  If \(V\) is a Grassmann-normal tangent of squared norm \(N\), its
+  three-dimensional effective matrix \({\cal M}(V)\) obeys
+  \[
+  \operatorname{Tr}{\cal M}
+  =N+\frac18(B_0+C_0),\qquad
+  0\preceq{\cal M}\preceq\frac N2I,
+  \]
+  and therefore
+  \[
+  \lambda_2({\cal M}(V))\ge\frac N4.
+  \]
+  Thus there are no quartically flat non-factor normal directions.
+- Taylor and Schur-complement estimates make the local statement
+  effective:
+  \[
+  d_{\rm Gr}({\cal U},{\sf Fac})\le\frac1{4096}
+  \quad\Longrightarrow\quad
+  \lambda_2(H_{\cal U})
+  \ge\frac1{10}d_{\rm Gr}({\cal U},{\sf Fac})^2
+  \ge\frac1{20}\operatorname{dist}_2({\cal U},{\sf Fac})^2.
+  \]
+- Combining this uniform tube with the exact nullity classification
+  and compactness proves an exact, but non-effective, global theorem:
+  there exists \(c_*>0\) such that
+  \[
+  \lambda_2(H_{\cal U})
+  \ge c_*\operatorname{dist}_2({\cal U},{\sf Fac})^2
+  \]
+  for every two-qutrit plane.  Hence a global quartic modulus exists
+  as well.  Effectivizing the far-region minimum, in particular proving
+  the proposed explicit \(1/1280\), remains open.
+- Exact note:
+  `notes/agent_n2_factor_normal_hessian.md`.
+  Exact checker:
+  `verification/verify_n2_factor_normal_hessian.py`.
