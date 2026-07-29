@@ -1,0 +1,59 @@
+Run date: 2026-07-28 (America/Los_Angeles)
+Platform: macOS-26.5.2-arm64-arm-64bit
+Python: 3.9.6
+SymPy: 1.14.0
+
+Command:
+/Users/alec/Documents/Math/.venv/bin/python verifiers/verify_channel_identities_d4.py
+
+Published sparse d=4 witness
+  spectrum(E_R) = spectrum(E_L) = {1^4, (1/3)^12}
+  tr_super(E_R) = tr_super(E_L) = 8
+  [E_L,E_R] = 0 exactly
+  paired joint-channel polynomial holds exactly
+  operator-Schmidt rank(H) = 3
+  crossed reshuffling intertwiner has rank 4
+Rational standardness guard
+  ||[E_L,E_R]||_F^2 = 12423168/244140625
+  tr_super(E_R^4)-tr_super(E_L^4) = 26496/390625
+  paired-polynomial residual norm^2 = 114672636256/494384765625
+  cubic residual is nonzero (this is not a YBE solution)
+  standardness alone therefore does not imply channel commutation
+[ok] exact canonical-channel certificates passed
+
+Command:
+/Users/alec/Documents/Math/.venv/bin/python verifiers/verify_channel_color_family.py
+
+Exact color/face d=4 family
+constraint: s^2 + 2 t^2 = 1
+nonzero symbolic entries in H^2-I before constraint: 16
+nonzero symbolic entries in cubic residual before constraint: 512
+[ok] every entry is divisible by s^2+2t^2-1
+[ok] H is Hermitian and traceless
+Exact canonical channels for the color/face d=4 family
+[ok] [E_L,E_R] = 0 identically in s,t
+[ok] the paired joint-channel polynomial holds on the solution circle
+[ok] E_L and E_R have the same symbolic characteristic polynomial
+[ok] on s^2+2t^2=1: spectrum = {1^4, (1/3)^12}
+
+Command:
+/Users/alec/Documents/Math/.venv/bin/python verifiers/verify_channel_d6_abstract_model.py
+
+Exact Weyl-diagonal d=6 canonical-channel countermodel
+  probabilities = {0^17, (1/27)^18, (1/3)^1}
+  spectrum(F) = {1^1, (1/3)^16, (-1/3)^19}
+  F=2E-id is CP, bistochastic, HS-self-adjoint, tr_super(F)=0
+  F has 19 traceless random-unitary Weyl Kraus operators
+  F also has 19 orthonormal traceless Hermitian Kraus directions
+  those 19 Hermitian Kraus directions span the 1/3-eigenspace of E
+  identity Schmidt pairing H_0 satisfies the cubic exactly
+  regrouped H_0=(YY tensor I_9 +(XX+ZZ) tensor F_3)/sqrt(3)
+  minpoly(H_0) = 3x^2+2sqrt(3)x-3
+  spectrum(H_0) = {(-sqrt(3))^9, (1/sqrt(3))^27}
+  (I+sqrt(3)H_0)/2 is a braid involution of trace 18, not 0
+  spectrum(E) = {1^1, (2/3)^16, (1/3)^19}
+  spectrum(U) = {1^1, (1/2)^16, 0^19}; U=(3E-id)/2 is CP
+  E_L=E_R, hence exact commutation and isospectrality
+  (E_L+E_R-4/3)(E_L-1/3)(E_R-1/3)=(8/27)Omega
+[ok] strengthened channel constraints still permit d=6
+[warning] this is not a projection and not a Yang--Baxter witness

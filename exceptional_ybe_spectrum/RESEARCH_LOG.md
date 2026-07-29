@@ -97,3 +97,53 @@
 - Completed 39 reproducible \(d=6\) runs in the two face models.  No
   residual approached zero; the best was \(4.958747221723511\).  This is
   retained as numerical falsifier evidence only.
+
+## 2026-07-28 22:42 PDT — Exact rank-one face no-go
+
+- Calibrated a separate rank-one controlled-reflection search at \(d=4\)
+  and completed four \(d=6\) production runs. No numerical candidate was
+  found.
+- Replaced that numerical evidence with a human proof covering the entire
+  continuous ansatz at \(d=6\).
+- The compressed cubic relation forces the six Bloch vectors to span
+  \(\mathbb R^3\), forces the control basis to be maximally entangled, and
+  then forces every off-diagonal Bloch inner product to equal \(-1/3\).
+  The resulting six-vector Gram matrix has eigenvalue \(-2/3\), a
+  contradiction.
+- An exact companion verifier checks the cubic normalization, all
+  compression signs, channel-leg orientation, Pauli algebra, and Gram
+  spectra.
+- The remaining predeclared numerical seeds were cancelled because the
+  exact theorem supersedes them. This is an ansatz-level no-go, not a
+  theorem for arbitrary \(d=6\) matrices.
+
+## 2026-07-28 23:25 PDT — Noncontrolled branch isolated
+
+- Proved the invariant controlled-leg divisibility theorem: every rank-\(r\)
+  projection in either one-leg commutant forces \(8\mid rd^2\), with
+  restricted common-one and common-zero multiplicities \(rd^2/8\).
+- Consequently, a hypothetical \(d\equiv2\pmod4\) solution has no odd-rank
+  leg-commutant projection. This exactly excludes every directly controlled
+  solution, every leg-commutant MASA, and the full diagonal-regular
+  group-relative ansatz.
+- Independently excluded the complete cyclic \(C_6\) group-relative ansatz
+  by dual Fourier support arithmetic and exactified the \(V_4\) calibration
+  as a skew-conference construction.
+- Completed an exact low-Schmidt three-color no-go and retained the
+  two-color \(d=4\) family as calibration.
+- Reconstructed the Evans--Pugh \(D^{(6)}\) connection from its published
+  cells in two independent exact implementations. It is an exceptional
+  \(20\times20\) path-space operator, not an ordinary \(36\times36\)
+  local matrix; the obvious zero and scalar completions fail.
+- Derived canonical completely positive channels for arbitrary solutions
+  and built an exact \(d=6\) Weyl countermodel satisfying every currently
+  isolated channel-level constraint. Thus channel spectral arithmetic
+  cannot prove \(4\mid d\) by itself.
+- Identity-pairing the Weyl Schmidt directions unexpectedly produced an
+  exact Hermitian traceless cubic solution \(H_0\), but its eigenvalue
+  multiplicities are \(9\) and \(27\) and it is not an involution. Its
+  affine involution has trace \(18\), so no \(d=6\) witness has yet been
+  obtained.
+- The unresolved problem is now sharply localized: construct or exclude a
+  genuinely noncontrolled shared involutive realization whose two
+  one-leg commutants contain only even-rank projections.
