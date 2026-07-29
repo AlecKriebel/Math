@@ -4719,3 +4719,44 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_coupled_skew_exterior_target.md` and
   `verification/verify_n3_coupled_skew_exterior_target.py`.
+
+## 2026-07-29 16:49 PDT — Quantitative six-marginal floor at a critical maximum
+
+- Let \(f=\|\Pi_2C\|_2^2/\|C\|_2^2\) at a smooth rank-two
+  pair-sector critical maximum.  Combining the exact local-filter
+  Hessian with the local-support-boundary theorem and the best
+  rank-two truncation of \(\rho_i^{1/2}\) gives, at every left and
+  right physical site,
+  \[
+  f\leq\frac{2}{3(1-\lambda_{\min}(\rho_i^{L,R}))}.
+  \]
+- Hence any hypothetical critical counterexample \(f>2/3\) must
+  satisfy the uniform six-marginal floor
+  \[
+  \lambda_{\min}(\rho_i^L),\lambda_{\min}(\rho_i^R)
+  \geq1-\frac{2}{3f},
+  \]
+  and therefore
+  \[
+  \det\rho_i^{L,R}
+  \geq\mu^2(1-2\mu),\qquad
+  \mu=1-\frac{2}{3f}.
+  \]
+  This quantitatively separates a counterexample from every
+  local-support boundary stratum.
+- The one-site argument is abstractly sharp.  For
+  \(\rho=\operatorname{diag}(1/2,1/4,1/4)\),
+  \[
+  H=\frac23I-\frac89
+  |\operatorname{vec}\sqrt\rho\rangle
+  \langle\operatorname{vec}\sqrt\rho|
+  \]
+  is nonnegative on all Schmidt-rank-at-most-two vectors, has the
+  full-rank eigenvector \(\operatorname{vec}\sqrt\rho\) with
+  eigenvalue \(-2/9\), and saturates the floor with \(f=8/9\).
+  Therefore a proof must couple the six physical local-filter forms;
+  no further independent one-site two-block-positive estimate can
+  suffice.
+- Exact note and checker:
+  `notes/agent_n3_pair_critical_local_spectral_floor.md` and
+  `verification/verify_n3_pair_critical_local_spectral_floor.py`.
