@@ -408,3 +408,193 @@ All timestamps use America/Los_Angeles.
   characteristic polynomials, rational root-modulus certificates, and
   finitely many exact base cases.  The standard-library verifier replayed
   every finite certificate.
+
+## 2026-07-28 16:24--18:24 PDT — correct filtering and nonlinear local kernels
+
+- Corrected the nonunitary-filter calculation for the genuine endpoint
+  form.  The filtered value is quadratic in the local effect, whereas the
+  projection-eliminated sector polynomial is not preserved by filtering.
+  The exact Haar identity is
+  \[
+  Q_4(H)=3\mathbb E_x\!\left[Q_4(H_{I-Q_x})-Q_4(H_{Q_x})\right].
+  \]
+- Proved that three traceless Hermitian qutrit matrices have a common pure
+  zero.  Consequently every rank-two code admits, at each physical site,
+  a line whose logical compression is scalar.  This gives exact
+  projection-preserving line/plane interpolation formulas at every
+  critical code.
+- Refuted the stronger balanced-orthonormal-basis conjecture by an exact
+  triple of qutrit observables and realized that triple as a genuine
+  rank-two code compression.  Thus a single balanced line cannot in
+  general be completed by an orthogonal balanced line.
+- Organized a hypothetical negative projection by the least number of
+  full qutrit supports.  At a minimal negative projection \(P\), every
+  full site has a real kernel
+  \[
+  {\cal K}_\ell=\{A=A^\dagger:U^\dagger A_\ell U=0\},
+  \qquad \dim{\cal K}_\ell\ge5,
+  \]
+  on which the exact local effect Hessian must satisfy
+  \[
+  {\cal N}_\ell(A)\ge -Q_4(P)\|A\|_{\rm op}^2.
+  \]
+  Hence one nonpositive kernel direction would give an exact
+  support-descending contradiction.
+- Derived basis-free pseudoinverse and bordered-determinant formulas for
+  the restricted Hessian.  Exact sparse codes refute universal signs for
+  its trace, its determinant, the proposed bound
+  \(\operatorname{tr}{\cal N}|_{\cal K}\le Q_4(P)/8\), and the full
+  nine-dimensional positive index.  A new standard-library rational
+  verifier checks these obstructions entry by entry.
+- Classified the rank-deficient local compression stratum: if the
+  compression rank is at most three, a complete orthonormal qutrit basis
+  of balanced lines exists.  For full compression rank, the complexified
+  five-dimensional kernel necessarily contains a rank-one matrix
+  \(Z=|x\rangle\langle y|\).  Its Hermitian quadratures lie in the real
+  kernel and have an exact paired Hessian formula with
+  \(V_x^\dagger V_y=0\).  The surviving four-copy target is to prove that
+  at least one common rank-one kernel point supplies a nonpositive paired
+  direction; individual points can have either sign.
+
+## 2026-07-28 18:05--19:45 PDT — coefficient-10 SOS and crossed-kernel obstructions
+
+- Isolated the actual four-copy projection target
+  \[
+  {\cal Q}=e_2-3e_3+10e_4\geq0
+  \]
+  as one global coefficient-\(10\) Pluecker norm inequality.  The extra
+  compensation over the homogeneous target is exactly \(8e_4\).
+- Proved that no local Hodge-orbit argument can establish this target:
+  an exact zero code contains an individual decomposable orbit of value
+  \(-1/2\), repaired only by cross-orbit compensation.
+- Proved a representation-theoretic no-go theorem for fixed quadratic
+  Gram/SOS certificates.  The quadratic covariant sectors are
+  multiplicity-free under \(U(3)^4\times U(2)\), while an exact rational
+  affine-rank computation shows that the only affine sector identities
+  on rank-two qutrit codes are the logical even/odd parity sums.  Those
+  identities are incompatible with a nonnegative Gram representation of
+  the coefficient vector \((0,0,1,-3,10)\).
+- At a hypothetical negative minimizer, the local-effect Hessian
+  \({\cal N}_\ell\) must be positive definite on the at-least
+  five-dimensional kernel of
+  \({\cal C}_\ell(A)=U^\dagger A_\ell U\).  Exact sparse examples refuted
+  three simpler replacements for this crossed-kernel assertion:
+  unrestricted positive inertia can be six; the kernel trace can be
+  positive and can exceed \(F(P)/8\); and the kernel determinant can be
+  positive with two negative directions.
+- The smallest determinant-sign obstruction uses only five basis terms:
+  \[
+  u=(-i|1212\rangle+|0010\rangle)/\sqrt2,\quad
+  v=(i|2212\rangle+(-1+i)|0111\rangle+(1-i)|1111\rangle)/\sqrt5.
+  \]
+  Its kernel spectrum is exactly
+  \((-7/160,-59/2400,1/400,1/400,3/160)\).
+- Despite these no-go results, every dense and sparse search still finds
+  at least one nonpositive crossed-kernel direction.  The direct assertion
+  \({\cal N}_\ell|_{\ker{\cal C}_\ell}\not\succ0\) remains a sharp,
+  finite-dimensional sufficient condition for the four-copy theorem.
+  A new possible route uses the six generic rank-one points in the
+  projective intersection
+  \(\mathbb P(\ker{\cal C}_\ell)\cap(\mathbb P^2\times\mathbb P^2)\);
+  no sign theorem for their common-code Hessian values is yet proved.
+
+## 2026-07-28 17:50--18:26 PDT — complement-balance spectral reduction
+
+- Under the four-site complement-balance hypothesis, reduced the proposed
+  sharp bound \(p_{1234}\geq1/8\) to a \(3\times3\) Pauli-Gram problem.
+  With
+  \[
+  D=\sum_{|T|=2}G_T-2\sum_{|T|=1}G_T,\qquad t=\operatorname{tr}D,
+  \]
+  the exact identities are
+  \[
+  16c_{1234}(x)=1+\frac{t-x^tDx}{4},\qquad
+  \operatorname{Re}E_{1234}
+  =\left(\frac18+\frac t{32}\right)I-\frac D{32},\qquad
+  p_{1234}=\frac{6+t}{16}.
+  \]
+  Hence \(\lambda_{\min}(D)\leq\operatorname{tr}D\), in particular
+  negative inertia at most one, would prove the sharp bound.
+- Proved the sharp bound on the boundary stratum where some antipodal
+  logical basis has orthogonal reductions at one physical site.
+- Applied the strong three-block theorem to every positive logical
+  filter and, independently, after conditioning each physical qutrit
+  on a Haar-random line.  This yields two exact families of Lorentz-cone
+  quadratic inequalities.
+- The formal symmetric target with isotropic Gram matrices satisfies all
+  those inequalities strictly while giving
+  \(D=-(26/15)I_3\).  Therefore quadratic Pauli-Gram consequences of
+  grouped and conditioned strong \(Q_3\) cannot establish the needed
+  inertia bound; a nonlinear common-isometry compatibility inequality is
+  essential.
+
+## 2026-07-28 18:52--19:11 PDT — exact Hodge-determinant obstruction
+
+- Refuted the proposed complement-balanced identity
+  \(\sum_k|\det S_k|=1\) with an exact four-qutrit graph code.  Its
+  proper nonempty swap moments are all \(4/3\), so it is
+  complement-balanced, while
+  \[
+  p_{1234}=\frac5{24},\qquad
+  \sum_k|\det S_k|=\frac{\sqrt{21}}3.
+  \]
+- More decisively, applying a qutrit Fourier transform on one physical
+  site preserves every \(A_T\) but changes the determinant sum to
+  \[
+  \sum_k|\det S_k|=\frac13.
+  \]
+  Hence even the proof-relevant lower bound
+  \(\sum_k|\det S_k|\ge1\) is false on the complement-balanced slice.
+- Gave sparse exact formulas for the rotated code.  Of the 81
+  determinants, 54 vanish and the other 27 have modulus \(1/81\).
+  A standard-library Eisenstein-integer verifier checks orthonormality,
+  all moments, \(p_{1234}=5/24\), and both determinant sums.
+- The exact swap-sector split is especially diagnostic:
+  \(d_{R,k}=\det S_k/8\) for every odd \(R\) and every \(k\).
+  Thus the eight sector contributions align phasewise, but each has
+  determinant \(\ell^1\) norm \(1/24\) despite sector mass \(1/8\).
+  The proposed sectorwise lower bound fails by exactly a factor of three.
+- The failure is caused by local-basis dependence: complement balance
+  and \(\sum_k\|S_k\|_F^2=16p_{1234}\) are local-unitary invariant, but
+  the fixed-coordinate determinant \(\ell^1\) norm is not.  Any surviving
+  Hodge-determinant proof must optimize over local frames or use an
+  invariant replacement.
+
+## 2026-07-28 19:06--19:18 PDT — universal odd-sector Pluecker identity
+
+- Proved a pointwise, basis-covariant nonlinear realizability identity
+  for the eight odd Hodge quadratics of every decomposable four-party
+  bivector:
+  \[
+  q_{\bar i}=\frac13q_i+h
+  \quad\text{for all four singleton masks }i,
+  \]
+  with one common scalar \(h\).  Equivalently,
+  \[
+  q_{11}-q_7=\frac{q_4-q_8}{3},\quad
+  q_{13}-q_7=\frac{q_2-q_8}{3},\quad
+  q_{14}-q_7=\frac{q_1-q_8}{3}.
+  \]
+- The proof reduces Walsh inversion to
+  \(2(m_i-m_j)=m_{ik}+m_{il}\).  Double antisymmetrization factors its
+  coefficient as a four-form; it annihilates
+  \(\omega\otimes\omega\) exactly because the common rank-two Pluecker
+  vector is decomposable and \(\omega\wedge\omega=0\).
+- This reduces the eight pointwise sector polynomials to five, but the
+  Fourier-rotated exact code proves that the missing magnitude estimate
+  does not follow: every odd sector has Hermitian mass \(1/8\) and Hodge
+  \(\ell^1\)-mass \(1/24\).
+- The strictly smaller surviving determinant lemma is therefore the
+  local-frame-optimized bound
+  \[
+  \sup_{g_1,\ldots,g_4\in U(3)}
+  \sum_k\left|\det\!\left[
+  U^T\bigotimes_i(g_i^TL_{k_i}g_i)U\right]\right|\ge1
+  \]
+  on the complement-balanced slice.  It remains conjectural.
+- A dependency-free exact verifier replays the epsilon factorization,
+  its alternating transformation laws, and all Walsh identities.
+- Two independent hostile audits checked the moment identity for all site
+  choices on exact random integer decomposable bivectors, verified every
+  sign and normalization in the Walsh reduction, and confirmed that the
+  identity fails for a generic nondecomposable antisymmetric tensor.
