@@ -4382,3 +4382,38 @@ All timestamps use America/Los_Angeles.
 - Proof and exact constant checker:
   `notes/agent_n3_quantitative_high_aaa.md`,
   `verification/verify_n3_quantitative_high_aaa.py`.
+
+## 2026-07-29 15:53 PDT — Complete determinant-critical Hessian
+
+- Starting from the simultaneous critical Bell representative, derived
+  the full second variation on the determinant-normalized rank-two
+  manifold, including arbitrary motion of both physical singular
+  planes.  If
+  \[
+  L^{\otimes3}(C)=\lambda U\Sigma^{-1}V^\dagger+R,
+  \qquad \lambda=Q_3(C)/2<0,
+  \]
+  then the constrained Hessian is the ambient quadratic form plus the
+  exact determinant correction, the two Stiefel curvature terms, and
+  the second-fundamental-form pairing with the normal residual \(R\).
+- Solved the full determinant-one problem inside the fixed logical
+  pencil.  Singlet minimality there is equivalent to
+  \(\lambda_j+\lambda_0\geq0\); these are exactly the strict physical
+  rank-one tests already implied by the positive logical Gram, so the
+  fixed pencil contains no additional obstruction.
+- The first genuinely physical frame condition comes from simultaneous
+  left/right leakage.  For every pair of leakage velocities, the exact
+  Hessian condition is
+  \[
+  a,b\geq0,\qquad (|p|+|q|)^2\leq ab,
+  \]
+  where \(p\) is the ordinary crossed response and \(q\) is the normal
+  residual paired with the second fundamental form.  The two responses
+  consume one common budget and cannot be bounded independently.
+- The first-order critical equations also force reciprocal rank-one
+  energies, \(b=r^4a\), the compact restriction \(1\leq r^4\leq27\),
+  and a strict reverse-Cauchy defect at every hypothetical negative
+  critical point.
+- Exact derivation and dependency-free audit:
+  `notes/agent_n3_determinant_critical_hessian.md` and
+  `verification/verify_n3_determinant_critical_hessian.py`.
