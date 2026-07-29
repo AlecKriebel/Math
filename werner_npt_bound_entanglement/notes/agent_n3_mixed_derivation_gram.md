@@ -389,3 +389,74 @@ operator-valued use of (10)--(11).  Such a use must exploit that
 must combine the double frames with the critical left/right support
 equations; replacing those frames by their traces loses all possible
 improvement.
+
+## 7. The critical equations exclude the obstruction
+
+The missing rank-two coupling immediately eliminates \(D_*\).  The
+reason is a general spectral-support lemma.
+
+### Lemma 7.1 (critical spectral support)
+
+Let \(C\) have rank \(r\), Hilbert--Schmidt norm one, and singular
+value decomposition
+\[
+ C=U\Sigma V^\dagger.
+ \tag{32}
+\]
+Suppose an arbitrary operator \(D\) and a real \(f>0\) obey
+\[
+ CD^\dagger=fCC^\dagger,\qquad
+ D^\dagger C=fC^\dagger C.
+ \tag{33}
+\]
+Then
+\[
+\boxed{
+\begin{aligned}
+ DV&=fU\Sigma,&D^\dagger U&=fV\Sigma,\\
+ D^\dagger DV&=f^2V\Sigma^2,&
+ DD^\dagger U&=f^2U\Sigma^2.
+\end{aligned}}
+\tag{34}
+\]
+Consequently
+\[
+\boxed{\qquad
+ s_1(D)^2+\cdots+s_r(D)^2\geq f^2.
+ \qquad}
+\tag{35}
+\]
+
+### Proof
+
+Left-multiply the first equation in (33) by \(U^\dagger\), cancel
+the invertible matrix \(\Sigma\) on its \(r\)-dimensional support,
+and take the adjoint.  This gives \(DV=fU\Sigma\).  Apply the second
+equation to \(V\) and cancel \(\Sigma\) to get
+\(D^\dagger U=fV\Sigma\).  Composition proves the second line of
+(34).
+
+Taking the trace of \(V^\dagger D^\dagger DV=f^2\Sigma^2\) gives
+\[
+ \operatorname{Tr}(V^\dagger D^\dagger DV)
+ =f^2\operatorname{Tr}\Sigma^2=f^2.
+ \]
+The rank-\(r\) Ky--Fan variational principle bounds the left side by
+the sum of the \(r\) largest eigenvalues of \(D^\dagger D\), proving
+(35). \(\square\)
+
+For \(D_*\), equations (30)--(31) give
+\[
+ s_1(D_*)^2+s_2(D_*)^2=\frac19,
+ \qquad
+ f^2=\left(\frac23\right)^2=\frac49.
+ \tag{36}
+\]
+Thus no normalized rank-at-most-two \(C\) can satisfy (33) with
+\(D=D_*\) and \(f=2/3\).  This conclusion does not even require the
+additional projection equation \(D_*=\Pi _2C\).
+
+The obstruction therefore separates the two logical layers cleanly:
+mixed-derivation compatibility alone admits \(D_*\), while the
+rank-two critical support equations reject it by an exact factor
+four in squared Ky--Fan mass.

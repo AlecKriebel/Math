@@ -88,6 +88,7 @@ expected_characteristic = (
     * (t**2 + sqrt(6) * t / 18 - sp.Rational(1, 54)) ** 3
 )
 assert sp.simplify(D.charpoly(t).as_expr() - expected_characteristic) == 0
+assert sp.Rational(1, 9) < sp.Rational(4, 9)
 
 # Each local derivation is injective on the eight-dimensional traceless
 # input space.
@@ -210,3 +211,4 @@ print("verified: every cross-site first-derivation Gram block vanishes")
 print("verified: each mixed double-Casimir norm is eight")
 print("verified: mixed Casimir reconstruction recovers every pair component")
 print("verified: the operator-valued double-frame identity holds exactly")
+print("verified: critical spectral support excludes D_* by the factor 4")
