@@ -984,6 +984,65 @@ state-dependent Hodge/Koszul map which can interpolate between distinct
 affine automorphisms of the cube while controlling the actual frame
 vectors, not only their eight squared norms.
 
+There is a precise obstruction even to the most natural scalar
+interpolation between these boundary routings.  The four translations
+which change physical parity are
+\[
+ {\cal O}=\{\{1\},\{2\},\{3\},\{1,2,3\}\}.
+\]
+Suppose that, for a fixed anchor \({\cal A}\), there were numbers
+\(\lambda_T\geq0\), \(\sum_{T\in{\cal O}}\lambda_T=1\), such that for
+every \({\cal B}\) and every cube vertex \(S\),
+\[
+ m_{KS}({\cal A},{\cal B})
+ \leq
+ \sum_{T\in{\cal O}}\lambda_T
+ m_{S\mathbin\triangle T}({\cal A},{\cal B}).             \tag{42ma}
+\]
+Summing over \(S\) would prove (42f), so (42ma) is the canonical convex
+translation ansatz.
+
+It is false already for the spin-flip anchor.  Evaluate (42ma) first on
+the spin-flip kernel vector giving table (42j).  The two row sums are
+equal.  Hence all eight inequalities must be equalities.  At
+\(S=\{2\}\), after subtracting one quarter of
+\(\sum_T\lambda_T=1\), equality reads
+\[
+ \frac34\lambda_{\{2\}}+\frac14\lambda_{\{3\}}=0.
+\]
+At \(S=\{3\}\) it similarly reads
+\[
+ \frac14\lambda_{\{2\}}+\frac34\lambda_{\{3\}}=0.
+\]
+Thus both coefficients vanish.  The equation at
+\(S=\{1,2,3\}\), together with normalization, then forces
+\[
+ \lambda_{\{1\}}=0,\qquad
+ \lambda_{\{1,2,3\}}=1.                                  \tag{42mb}
+\]
+In other words, saturation on the kernel uniquely forces pure
+complement routing.
+
+Keep the same anchor and instead take the computational-basis test vector
+\({\cal B}'=|0000\rangle_{K123}\).  Exact contraction gives
+\[
+\begin{array}{c|cc}
+ &m_\varnothing&m_{123}\\ \hline
+ {\cal B}'&1&\frac14
+\end{array},
+\qquad
+ m_K({\cal A},{\cal B}')=\frac12.                         \tag{42mc}
+\]
+Equations (42mb)--(42mc) make (42ma) at \(S=\varnothing\) read
+\(\frac12\leq\frac14\), a contradiction.
+
+Therefore a valid interpolation cannot be a convex mixture of scalar
+cube translations chosen from the anchor alone.  It must mix the actual
+exterior-frame vectors coherently and act differently on different input
+subspaces for the same anchor.  This leaves open an operator-valued
+Clifford/Koszul interpolation; it rules out the probability-mixture
+version exactly.
+
 ### 3.2 The odd-exterior anchor is not positive
 
 The phase split in Section 2.3 exposes a simpler-looking intermediate
@@ -1076,6 +1135,212 @@ The obstruction is consequently precise: the odd and even brackets
 must cancel.  Neither a universal positive odd anchor nor an independent
 odd-parity Plücker contraction can prove (42f).  The state-dependent
 eight-vertex Koszul map in (42i) remains the smaller viable target.
+
+### 3.3 State-dependent logical-skew recoupling
+
+There is an exact recoupling which explains both cube translations at
+the known boundaries.  The trace-only version is too small, but its
+failure identifies the necessary four-channel completion.
+
+After an invertible congruence on the auxiliary qubit, a full-rank
+anchor may be whitened, so write its two physical columns as a complex
+isometry
+\[
+ U:\mathbb C^2\longrightarrow H_1\otimes H_2\otimes H_3,
+ \qquad U^\dagger U=I_2.                                 \tag{42u}
+\]
+The test matrix \(V\) is arbitrary; it need not be isometric or have
+the same auxiliary marginal.  Put
+\[
+ \epsilon=\begin{pmatrix}0&1\\-1&0\end{pmatrix},\qquad
+ J=U\epsilon U^\dagger.                                  \tag{42v}
+\]
+For every weighted real Fierz frame \(R\), set
+\[
+ M_R=U^{\mathsf T}RV.
+\]
+Although \(J\) need not be transpose-skew when \(U\) is complex, the
+isometry identity gives \(U^{\mathsf T}\overline U=I_2\), and hence
+\[
+\boxed{\qquad
+ \operatorname{Tr}(U^{\mathsf T}J^{\mathsf T}RV)
+ =\operatorname{Tr}(-\epsilon M_R)
+ =(M_R)_{12}-(M_R)_{21}.
+\qquad}                                                   \tag{42w}
+\]
+Consequently
+\[
+ \|\operatorname{Alt}M_R\|_2^2
+ =\frac12\left|
+ \operatorname{Tr}(U^{\mathsf T}J^{\mathsf T}RV)
+ \right|^2.                                               \tag{42x}
+\]
+Thus the unique negative logical exterior channel is exactly a trace
+channel after state-dependent left multiplication by the physical
+logical skew \(J\).
+
+The trace channel alone is not contractive in the Fierz metric.  Let
+\[
+ \|X\|_{\mathcal W}^2
+ =\frac18\left\langle X,
+ \bigotimes_{i=1}^3(2I-\mathsf T_i)X\right\rangle_{\rm HS},
+                                                               \tag{42y}
+\]
+where \(\mathsf T_i\) transposes the row and column indices at site
+\(i\).  On three qubits take
+\[
+\begin{aligned}
+ u&=|000\rangle,\\
+ v&=\frac35|001\rangle+\frac45|010\rangle,\qquad
+ U=(u,v),\\
+ X&=|000\rangle\langle000|.
+\end{aligned}                                             \tag{42z}
+\]
+Then \(XJ^{\mathsf T}=-|000\rangle\langle v|\), and direct rational
+parity contraction gives
+\[
+ \boxed{\qquad
+ \|X\|_{\mathcal W}^2=\frac18,\qquad
+ \|XJ^{\mathsf T}\|_{\mathcal W}^2=\frac14.
+\qquad}                                                   \tag{42aa}
+\]
+Hence the trace-only multiplier amplifies squared norm by the exact
+factor two.
+
+The correct recoupling retains the following real logical quaternion
+frame, now acting on a complex logical plane:
+\[
+ \tau_0=I,\qquad\tau_1=X,\qquad\tau_2=Z,\qquad
+ \tau_3=\epsilon,\qquad J_\mu=U\tau_\mu U^\dagger.
+                                                               \tag{42ab}
+\]
+Define
+\[
+ E_\mu
+ =\sum_R\left|
+ \operatorname{Tr}(\tau_\mu^{\mathsf T}M_R)
+ \right|^2,                                               \tag{42ac}
+\]
+where the scalar weight (2) remains absorbed into \(R\).  Proposition
+1.1 becomes the exact equivalence
+\[
+\boxed{\qquad
+ 2Q_3(UV^\dagger)
+ =E_0+E_1+E_2-E_3.
+\qquad}                                                   \tag{42ad}
+\]
+Indeed, for an arbitrary complex \(2\times2\) matrix
+\(M=(m_{ab})\),
+\[
+\begin{aligned}
+ &|\operatorname{Tr}M|^2
+ +|\operatorname{Tr}(XM)|^2
+ +|\operatorname{Tr}(ZM)|^2
+ -|\operatorname{Tr}(\epsilon^{\mathsf T}M)|^2\\
+ &\hspace{35mm}
+ =2\left(\|\operatorname{Sym}M\|_2^2
+          -\|\operatorname{Alt}M\|_2^2\right).
+\end{aligned}                                             \tag{42ad'}
+\]
+Thus this is not a real-vector restriction.  Every complex
+rank-at-most-two matrix can be factored as \(UV^\dagger\) with \(U\)
+isometric and \(V\) arbitrary.  Unrestricted complex three-copy
+positivity is exactly
+\[
+ E_3\leq E_0+E_1+E_2.                                    \tag{42ae}
+\]
+When \(U\) is real, right multiplication by \(J\) acts on the four
+physical logical matrices by the signed permutation
+\[
+ (J_0,J_1,J_2,J_3)J^{\mathsf T}
+ \longleftrightarrow
+ (-J_3,J_2,-J_1,J_0).                                    \tag{42af}
+\]
+It is therefore an isometry only when all four channels are retained.
+Equation (42aa) shows exactly what is lost by keeping only
+\(J_0\leftrightarrow J_3\).
+
+There is a basis-free Gram form of the same statement.  Define the
+analysis map on physical test frames \(V:\mathbb C^2\to{\cal H}\) by
+\[
+ {\cal F}_U(V)_R=\operatorname{Tr}(U^{\mathsf T}RV),\qquad
+ G_U={\cal F}_U^\dagger{\cal F}_U\succeq0,                \tag{42ag}
+\]
+and let \({\cal R}_\tau V=V\tau^{\mathsf T}\).  Then
+\[
+ E_\tau
+ =\langle V,{\cal R}_\tau^\dagger G_U{\cal R}_\tau V\rangle.
+                                                               \tag{42ah}
+\]
+The four real matrices \(I,X,Z,\epsilon\) obey the exact Pauli twirl
+\[
+ \sum_{\tau\in\{I,X,Z,\epsilon\}}
+ {\cal R}_\tau^\dagger G_U{\cal R}_\tau
+ =2I_2\otimes\operatorname{Tr}_{\rm log}G_U.              \tag{42ai}
+\]
+Consequently the operator representing \(2Q_3\) is
+\[
+\begin{aligned}
+ {\cal D}_U
+ &=G_U+{\cal R}_X^\dagger G_U{\cal R}_X
+       +{\cal R}_Z^\dagger G_U{\cal R}_Z
+       -{\cal R}_\epsilon^\dagger G_U{\cal R}_\epsilon\\
+ &=2{\cal R}_\epsilon^\dagger
+ \left(I_2\otimes\operatorname{Tr}_{\rm log}G_U-G_U\right)
+ {\cal R}_\epsilon.                                      \tag{42aj}
+\end{aligned}
+\]
+For a two-dimensional logical system, reduction is unitarily
+congruent to logical partial transpose:
+\[
+ I_2\otimes\operatorname{Tr}_{\rm log}G_U-G_U
+ =(\epsilon\otimes I)\,G_U^{\Gamma_{\rm log}}\,
+   (\epsilon^{\mathsf T}\otimes I).                       \tag{42ak}
+\]
+Thus the unrestricted three-copy problem has the exact smallest-block
+form
+\[
+\boxed{\qquad
+ Q_3(UV^\dagger)\geq0\ \hbox{for every }V
+ \quad\Longleftrightarrow\quad
+ G_U^{\Gamma_{\rm log}}\succeq0.
+\qquad}                                                   \tag{42al}
+\]
+Writing
+\[
+ G_U=\begin{pmatrix}A&C\\ C^\dagger&B\end{pmatrix},
+\]
+this is the single coupled nonnormal block inequality
+\[
+ \begin{pmatrix}A&C^\dagger\\ C&B\end{pmatrix}\succeq0.   \tag{42am}
+\]
+When \(A\) is invertible it is equivalently
+\[
+ B-CA^{-1}C^\dagger\succeq0,                              \tag{42an}
+\]
+with the usual support-and-pseudoinverse formulation on the boundary.
+This is an equivalence, not yet a proof: ordinary Gram positivity gives
+the order \(C,C^\dagger\), whereas the endpoint problem asks for the
+transposed order \(C^\dagger,C\).
+
+For completeness, the blocks themselves have an intrinsic completely
+positive form.  If \(u_1,u_2\) are the columns of \(U\), then
+\[
+ (G_U)_{ab}
+ =\sum_R R^\dagger|\overline u_a\rangle
+       \langle\overline u_b|R
+ ={\cal K}^{\otimes3}
+   (|\overline u_a\rangle\langle\overline u_b|),           \tag{42ao}
+\]
+where on one site
+\[
+ {\cal K}(X)=\operatorname{Tr}(X)I-\frac12X^{\mathsf T}.  \tag{42ap}
+\]
+Hence (42am) says precisely that the Choi matrix of the restriction of
+\({\cal K}^{\otimes3}\) to the common two-plane
+\(\operatorname{ran}\overline U\) is PPT.  This exposes the remaining
+geometry without imposing normality, reality, or a relation between
+the left and right singular planes.
 
 ## 4. Boundary stress tests
 
@@ -1182,12 +1447,17 @@ What is proved here:
 9. the exact qutrit counterexample (42p)--(42q) to positivity of the
    separated odd-exterior anchor, together with an exact positive
    certificate for the full \(M_Q(P_{\cal A})\);
-10. exact compatibility with both transverse zero mechanisms.
+10. the fully complex logical-quaternion equivalence
+    (42ad)--(42ae), its exact reduction to the logical-PPT Gram block
+    (42al)--(42am), and the exact factor-two obstruction
+    (42z)--(42aa) to retaining only its trace channel;
+11. exact compatibility with both transverse zero mechanisms.
 
 What remains unproved is (29), equivalently (42).  A completion must use
 the fact that all fifteen exterior frames in (42) come from the same
 rank-one tensor \(P\); arbitrary positive operators with the same labels
 do not satisfy the inequality.  For mere nonnegativity, the smaller
-unproved target is (42f).  The exact counterexample (42p) shows that its
-odd-total-parity half is not positive by itself, even though the full
-operator is positive definite at that same anchor.
+unproved target is (42f), equivalently the PPT statement (42al) for
+every isometric left singular plane \(U\).  The exact counterexample
+(42p) shows that its odd-total-parity half is not positive by itself,
+even though the full operator is positive definite at that same anchor.

@@ -1017,3 +1017,274 @@ All timestamps use America/Los_Angeles.
   \(LDL^T\) certificate proves that the same anchor's full unshifted
   operator \(M_Q(P_{\cal A})\) is positive definite.  Thus the two
   parity halves must be coupled even away from the known zero manifolds.
+- Reduced the intersection-one three-vector inequality to the
+  four-replica expectation of
+  \[
+  {\cal O}=Y_{12}Y_{34}-Y_{14}Y_{23}F_{13}F_{24}
+  \]
+  on \(w^{\otimes2}\otimes u\otimes v\), and exactly ruled out proving it
+  from the linear symmetry \(F_{12}=+1\) alone.  In the qutrit-allowed
+  \([22]^{\otimes3}\) block, the rational \(F_{12}\)-even vector
+  \((-2,1,1,-1,1,-1,-1,1)\) has norm \(18\) and expectation
+  \(-891/8\).  Hence a proof must use the nonlinear repeated-\(w\)
+  Veronese equations, rather than a
+  positive \(S_4\)-algebra compression.  Added
+  `notes/agent_n3_intersection_one_s4_obstruction.md` and its exact
+  standard-library verifier.
+- The repeated-\(w\) restriction does not repair the bad block
+  separately.  The exact physical triple
+  \(w=|000\rangle,\ u=v=|111\rangle\) has local \([22]\)-projected
+  vector
+  \[
+  \tfrac13(|0011\rangle+|1100\rangle)
+  -\tfrac16(|0101\rangle+|0110\rangle+|1001\rangle+|1010\rangle),
+  \]
+  whose three-site block contribution is \(-19/96\).  Nevertheless the
+  full determinant is zero: \(a=b=1/8,\ z=-1/8\).  Thus even on the
+  physical Veronese variety an \(S_4\) proof must couple different local
+  isotypic blocks; blockwise positivity is exactly false.
+- For a real whitened anchor \(U\), introduced the physical logical
+  skew \(J=U\epsilon U^{\mathsf T}\).  It exactly converts the negative
+  Fierz coefficient into a trace coefficient:
+  \[
+  \operatorname{Tr}(U^{\mathsf T}J^{\mathsf T}RV)
+  =(U^{\mathsf T}RV)_{12}-(U^{\mathsf T}RV)_{21}.
+  \]
+  The complete logical quaternion frame gives the exact equivalent
+  target \(E_\epsilon\le E_I+E_X+E_Z\).  A trace-only recoupling is
+  rigorously too small: with
+  \(U=(|000\rangle,(3|001\rangle+4|010\rangle)/5)\) and
+  \(X=|000\rangle\langle000|\), its Fierz weighted squared norm grows
+  from \(1/8\) to \(1/4\).  Thus a one-site Hodge/Racah map must retain
+  all three positive logical channels.
+- Exactly ruled out a scalar convex interpolation of the two cube boundary
+  routings.  For the spin-flip anchor, suppose fixed nonnegative weights on
+  the four odd translations satisfied
+  \[
+  m_{KS}(A,B)\leq\sum_{T\ {\rm odd}}\lambda_Tm_{S\triangle T}(A,B)
+  \quad\text{for every }B,S.
+  \]
+  Saturation by the spin kernel uniquely forces
+  \(\lambda_{\{1,2,3\}}=1\), i.e. pure complement routing.  For the same
+  anchor and \(B=|0000\rangle\), however,
+  \(m_K=1/2>m_{123}=1/4\).  Hence any successful cube incidence map must
+  interpolate coherently at the vector level and distinguish input
+  subspaces for a fixed anchor; an anchor-dependent probability mixture
+  of cube translations is exactly insufficient.  The proof and rational
+  checks were added to the exterior/Koszul note and verifier.
+
+## 2026-07-29 01:40 PDT — Complex logical-quaternion/PPT reduction
+
+- Extended the logical-skew recoupling from real to fully complex
+  rank-two matrices.  For an isometry \(U:\mathbb C^2\to{\cal H}\), the
+  correct physical skew is \(J=U\epsilon U^\dagger\).  Although \(J\) is
+  not generally transpose-skew, \(U^{\mathsf T}\overline U=I_2\) gives
+  the exact identity
+  \[
+  \operatorname{Tr}(U^{\mathsf T}J^{\mathsf T}RV)
+  =(U^{\mathsf T}RV)_{12}-(U^{\mathsf T}RV)_{21}.
+  \]
+- Let \({\cal F}_U(V)_R=\operatorname{Tr}(U^{\mathsf T}RV)\) and
+  \(G_U={\cal F}_U^\dagger{\cal F}_U\).  The four-channel Pauli twirl and
+  the qubit reduction/partial-transpose identity prove the exact
+  equivalence
+  \[
+  Q_3(UV^\dagger)\ge0\ \text{for every }V
+  \quad\Longleftrightarrow\quad
+  G_U^{\Gamma_{\rm log}}\succeq0.
+  \]
+  In blocks \(G_U=\begin{psmallmatrix}A&C\\C^\dagger&B\end{psmallmatrix}\),
+  the entire unrestricted frontier is therefore the single coupled
+  inequality
+  \[
+  \begin{pmatrix}A&C^\dagger\\C&B\end{pmatrix}\succeq0,
+  \]
+  equivalently \(B-CA^{-1}C^\dagger\succeq0\) in the nonsingular case.
+  Ordinary Gram positivity has the opposite off-diagonal order, exactly
+  isolating the residual nonnormal geometry.
+- The blocks are intrinsic:
+  \[
+  (G_U)_{ab}={\cal K}^{\otimes3}
+  (|\overline u_a\rangle\langle\overline u_b|),\qquad
+  {\cal K}(X)=\operatorname{Tr}(X)I-\tfrac12X^{\mathsf T}.
+  \]
+  Thus the remaining assertion is that the Choi matrix of this
+  restriction to every common two-plane is PPT.  This is an exact
+  reduction, not yet a positivity proof.
+- Added exact rational coefficient checks of both the four-channel
+  Pauli twirl and the qubit reduction/partial-transpose congruence to
+  `verification/verify_n3_exterior_koszul_recoupling.py`.
+
+## 2026-07-29 01:42 PDT — Reversed Schur complement and normal locus
+
+- Strengthened the logical-PPT reduction to the direct four-channel
+  operator identity
+  \[
+  \Gamma_I+\Gamma_X+\Gamma_Z-\Gamma_\epsilon
+  =2G_U^{\Gamma_K}.
+  \]
+  Hence \(Q_3(UV^\dagger)=\langle V,G_U^{\Gamma_K}V\rangle\)
+  with no intervening relaxation or congruence.
+- Writing
+  \(G_U=\begin{psmallmatrix}A&B\\B^\dagger&D\end{psmallmatrix}\),
+  complete positivity gives
+  \(D-B^\dagger A^{-1}B\succeq0\), while the unrestricted endpoint is
+  exactly the reversed Schur inequality
+  \[
+  D-BA^{-1}B^\dagger\succeq0,
+  \qquad
+  \|A^{-1/2}B^\dagger D^{-1/2}\|\leq1.
+  \]
+  The rank-one lower bound gives \(A,D\succeq I/8\), so no
+  pseudoinverse is needed for a whitened two-column anchor.
+- Proved that no frame-element-by-frame-element PPT certificate can
+  establish this inequality.  Each Fierz Gram atom is a pure
+  bipartite projector; whenever its analysis matrix has rank two, its
+  logical partial transpose has eigenvalue
+  \(-s_1s_2\).  An invertible identity-frame atom always supplies such
+  a negative term for an isometric anchor.  Any proof must recouple
+  different physical frame elements.
+- Recorded the Gram reduction's compatibility with the already
+  established normal rank-two theorem.  In a spectral decomposition
+  \(C=\lambda_1P_1+\lambda_2P_2\), the two-by-two coefficient form is
+  real symmetric, and its minimum over the relative phase occurs at
+  phase \(0\) or \(\pi\), reducing directly to the self-adjoint
+  theorem.  Thus the reversed Schur inequality can fail, if at all,
+  only through genuinely nonnormal left/right-plane geometry.
+- Added
+  `notes/agent_n3_four_channel_ppt_schur.md` and the independent
+  standard-library exact verifier
+  `verification/verify_n3_four_channel_ppt_schur.py`.
+
+## 2026-07-29 01:57 PDT — Exact qutrit determinant-gap obstruction
+
+- Exactly disproved the proposed qutrit spectral strengthening
+  \[
+  M_Q(P_{\mathcal U})\succeq
+  \frac32\left(\sum_i\det\rho_i\right)I.
+  \]
+  The isometric code
+  \[
+  u_0=(|111\rangle+|222\rangle)/\sqrt2,\qquad
+  u_1=(|100\rangle+|200\rangle)/\sqrt2
+  \]
+  has local determinant vector \((0,1/4,1/4)\).
+- More generally, replacing the two equal superpositions by
+  \[
+  u_0(t)=\frac{|111\rangle+t|222\rangle}{\sqrt{1+t^2}},
+  \qquad
+  u_1(t)=\frac{|100\rangle+t|200\rangle}{\sqrt{1+t^2}}
+  \]
+  gives determinant sum \(2t^2/(1+t^2)^2\) and an exact eigenvalue
+  \(2-2\sqrt{1+t^4}/(1+t^2)\).  Their ratio tends to \(1\), already
+  excluding every constant greater than \(1\).  A separate symbolic
+  verifier checks the characteristic-polynomial factor and limit.
+- An invariant rational \(6\times6\) block of its exact anchored
+  operator has eigenvector
+  \[
+  (0,-1-\sqrt2,1,-1-\sqrt2,1,0)
+  \]
+  with eigenvalue \(2-\sqrt2\).  Its expectation is \(8\), whereas the
+  proposed lower bound gives \(6+3\sqrt2>8\).  Thus the exact ratio is
+  at most \(4-2\sqrt2<3/2\).
+- This is an exact counterexample only to the intermediate spectral-gap
+  claim: the eigenvalue remains positive and does not challenge
+  three-copy endpoint positivity.  Added the reconstruction and
+  algebraic certificate to
+  `verification/verify_n3_qutrit_det_gap_obstruction.py`.
+- The same proposed mechanism fails more strongly for every positive
+  coefficient.  The factorized isometric anchor
+  \[
+  |\mathcal U\rangle
+  =|\Omega_3\rangle_{12}\otimes
+   (|00\rangle+|11\rangle)_{K3}
+  \]
+  has local determinant vector \((8/27,8/27,0)\), but
+  \[
+  M_Q(P_{\mathcal U})
+  =\left(\frac83I+P_{\Omega_3}\right)
+   \otimes(2I-P_{\Phi_2})
+  \]
+  has an exact nonzero kernel.  Hence no inequality
+  \(M_Q\succeq c(\sum_i\det\rho_i)I\) can hold with \(c>0\).
+  The verifier reconstructs the full rational \(54\times54\) operator
+  and its kernel exactly.  Any viable determinant/Hodge correction
+  must vanish on tensor-factorized endpoint zeroes rather than merely
+  on the all-local-qubit boundary.
+- **Discovery-only next candidate.**  The operator-valued cofactor form
+  \[
+  {\cal H}(U)=
+  \sum_{\{i,j,k\}=\{1,2,3\}}
+  (\det\rho_j)(\det\rho_k)\,
+  [\operatorname{adj}(\rho_i)]_i\otimes I_{K\bar i}
+  \]
+  is kernel-compatible: on the factorized zero above, only the
+  \(i=3\) term survives and its adjugate projects onto the missing local
+  qutrit direction, annihilating the endpoint kernel.  Unrestricted
+  complex probes and transverse perturbations did not violate
+  \(M_Q\succeq2{\cal H}(U)\); the smallest generalized eigenvalues
+  approached roughly \(2.77\).  This is conjectural discovery evidence,
+  not a theorem.  Its value is structural: every factor is an exact
+  qutrit Hodge/cofactor Gram and it avoids the now-disproved scalar-gap
+  obstruction.
+
+## 2026-07-29 02:20 PDT — Exact two-copy pencil residual and second zero tangent
+
+- Put every qutrit two-plane into the singular-pencil gauge
+  \[
+  D=\operatorname{diag}(a,b,0),\qquad
+  Z=\begin{pmatrix}bc&p&q\\r&-ac&s\\t&u&d\end{pmatrix}.
+  \]
+  For
+  \[
+  {\cal S}_X(Y)=
+  \bigl((YX^\dagger)_0,(X^\dagger Y)_0\bigr),
+  \]
+  the complete qutrit two-copy inequality is exactly positivity of the
+  explicit \(9\times9\) Schur residual
+  \[
+  2I-{\cal S}_Z^\dagger{\cal S}_Z
+  -{\cal S}_Z^\dagger{\cal S}_D
+   (2I-{\cal S}_D^\dagger{\cal S}_D)^{-1}
+   {\cal S}_D^\dagger{\cal S}_Z.
+  \]
+  The pivot block is nonsingular, with
+  \[
+  \det(2I-{\cal S}_D^\dagger{\cal S}_D)
+  =\frac83(1+a^2b^2)(1+a^2)^2(1+b^2)^2.
+  \]
+  This is an exact finite reduction, not yet a proof of its positivity.
+  The accompanying dependency-free verifier reconstructs the tangent
+  maps, the singular-pencil relation, and the Schur complement exactly.
+- Discovery suggests the sharper flattening-volume bound
+  \[
+  2I-{\cal T}_X^\dagger{\cal T}_X
+  \succeq\frac{\det\rho_L+\det\rho_R}{2}I,
+  \]
+  but it remains conjectural.  An exact saturation example with
+  \(D=\operatorname{diag}(3/5,4/5,0)\) and
+  \(Z=\operatorname{diag}(4/5,-3/5,0)\) has
+  \(D\times Z=(7/25)E_{33}\ne0\), ruling out a gap based on the full
+  mixed Hodge cross product.  Any valid certificate must retain only
+  the transverse flattening volume.
+- Identified the second \(37\)-dimensional component of the exact
+  Lyapunov--Schmidt quartic zero set at
+  \[
+  C_0=|000\rangle\langle110|+|001\rangle\langle111|
+  \]
+  as precisely the tangent to the embedded local-qubit spin-flip family
+  \[
+  V=-\epsilon^{\otimes3}\overline U\,\epsilon.
+  \]
+  Every matrix in this family is an exact endpoint zero because, on
+  three qubit supports, \(Q_3(C)\) is the squared norm of the fully
+  traceless component, and that component vanishes by the
+  skew-versus-symmetric trace identity.
+- The family has \(28\) real Stiefel parameters and \(12\) local-plane
+  parameters, with exactly the expected three-dimensional logical
+  \(SU(2)\) gauge.  Exact row reduction gives differential rank \(37\);
+  its \(18\)-row annihilator agrees entry-for-entry with component \(1\)
+  of the certified quartic zero decomposition.  Hence every direction
+  in this component integrates to an exact-zero curve, explaining the
+  vanishing secondary Schur minimum to all orders.  The two
+  \(27\)-dimensional formal quartic-flat components remain unclassified.

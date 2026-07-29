@@ -550,14 +550,14 @@ for traced_mask in range(16):
     coefficient = F(0)
     for sector_mask in range(16):
         k = sector_mask & 1
-        r = (sector_mask >> 1).bit_count()
+        r = bin(sector_mask >> 1).count("1")
         target = (
             F((-1) ** k * (3**r - 2) + 1, 2)
             if (k + r) % 2
             else F(0)
         )
         coefficient += (
-            (-1) ** ((sector_mask & traced_mask).bit_count()) * target
+            (-1) ** bin(sector_mask & traced_mask).count("1") * target
         )
     odd_q_coefficients.append(coefficient / 16)
 
@@ -572,7 +572,7 @@ for reduction_mask in range(16):
 
 expected_odd_reduction_coefficients = [F(0)] * 16
 for mask in range(1, 16):
-    if mask.bit_count() in (1, 2) or mask == 15:
+    if bin(mask).count("1") in (1, 2) or mask == 15:
         expected_odd_reduction_coefficients[mask] = F(1, 2)
 expected_odd_reduction_coefficients[0b1110] = F(2)
 for mask in (0b0111, 0b1011, 0b1101):
@@ -668,6 +668,53 @@ assert sum(
     non_k - with_k for non_k, with_k in boundary_cube.values()
 ) == F(0)
 
+# No convex mixture of the four odd cube translations, fixed by the
+# spin-flip anchor, can dominate every input vertexwise.  On the kernel
+# vector, equality of the total row sums forces equality at every vertex.
+# The S={2},{3} equations have the following exact coefficient rows after
+# subtracting one quarter of the normalization equation:
+odd_translation_masks = (0b001, 0b010, 0b100, 0b111)
+boundary_non_k = []
+boundary_with_k = []
+for physical_mask in range(8):
+    subset = tuple(
+        site + 1 for site in range(3) if physical_mask >> site & 1
+    )
+    boundary_non_k.append(boundary_cube[subset][0])
+    boundary_with_k.append(boundary_cube[subset][1])
+assert [
+    boundary_non_k[0b010 ^ translation] - F(1, 4)
+    for translation in odd_translation_masks
+] == [F(0), F(3, 4), F(1, 4), F(0)]
+assert [
+    boundary_non_k[0b100 ^ translation] - F(1, 4)
+    for translation in odd_translation_masks
+] == [F(0), F(1, 4), F(3, 4), F(0)]
+# Nonnegative weights therefore have lambda_2=lambda_3=0.  The 123
+# equation and normalization then uniquely give lambda_1=0, lambda_123=1.
+assert [
+    boundary_non_k[0b111 ^ translation]
+    for translation in odd_translation_masks
+] == [F(1, 2), F(1, 4), F(1, 4), F(1)]
+assert boundary_with_k[0b111] == F(1)
+
+# Pure complement routing fails for a second input with the same anchor.
+boundary_basis_b = {(0, 0, 0, 0): F(1)}
+boundary_basis_sectors = sector_weights(
+    moment_table(boundary_a, boundary_basis_b, dims_boundary)
+)
+boundary_basis_m_empty = m_from_sectors(boundary_basis_sectors, ())
+boundary_basis_m_all = m_from_sectors(
+    boundary_basis_sectors, (1, 2, 3)
+)
+boundary_basis_m_k = m_from_sectors(boundary_basis_sectors, (0,))
+assert (
+    boundary_basis_m_empty,
+    boundary_basis_m_all,
+    boundary_basis_m_k,
+) == (F(1), F(1, 4), F(1, 2))
+assert boundary_basis_m_k > boundary_basis_m_all
+
 nilpotent_sectors = sector_weights(
     moment_table(nilpotent_a, nilpotent_b, dims_nilpotent)
 )
@@ -738,9 +785,136 @@ assert (
 )
 
 
+# Exact factor-two obstruction to routing the logical skew through only
+# the trace channel.  The Fierz coefficient metric on three real local
+# matrix factors is W=2^-3 product_i(2I-T_i).
+SparseMatrix = dict[tuple[tuple[int, ...], tuple[int, ...]], F]
+
+
+def sparse_matrix_linear_combination(
+    left: SparseMatrix,
+    right: SparseMatrix,
+    left_scale: F = F(1),
+    right_scale: F = F(1),
+) -> SparseMatrix:
+    out: SparseMatrix = {}
+    for entry in set(left) | set(right):
+        coefficient = (
+            left_scale * left.get(entry, F(0))
+            + right_scale * right.get(entry, F(0))
+        )
+        if coefficient:
+            out[entry] = coefficient
+    return out
+
+
+def local_matrix_transpose(matrix: SparseMatrix, site: int) -> SparseMatrix:
+    out: SparseMatrix = {}
+    for (row, column), coefficient in matrix.items():
+        new_row = list(row)
+        new_column = list(column)
+        new_row[site], new_column[site] = (
+            new_column[site],
+            new_row[site],
+        )
+        entry = (tuple(new_row), tuple(new_column))
+        out[entry] = out.get(entry, F(0)) + coefficient
+    return out
+
+
+def sparse_matrix_inner(left: SparseMatrix, right: SparseMatrix) -> F:
+    return sum(
+        coefficient * right.get(entry, F(0))
+        for entry, coefficient in left.items()
+    )
+
+
+def fierz_weighted_norm_squared(matrix: SparseMatrix) -> F:
+    image = matrix
+    for site in range(3):
+        image = sparse_matrix_linear_combination(
+            image,
+            local_matrix_transpose(image, site),
+            F(2),
+            F(-1),
+        )
+    return sparse_matrix_inner(matrix, image) / 8
+
+
+trace_only_x: SparseMatrix = {
+    ((0, 0, 0), (0, 0, 0)): F(1),
+}
+# For U=(|000>,(3|001>+4|010>)/5), the physical logical skew J obeys
+# X J^T=-|000><v|.
+trace_only_xj: SparseMatrix = {
+    ((0, 0, 0), (0, 0, 1)): F(-3, 5),
+    ((0, 0, 0), (0, 1, 0)): F(-4, 5),
+}
+assert fierz_weighted_norm_squared(trace_only_x) == F(1, 8)
+assert fierz_weighted_norm_squared(trace_only_xj) == F(1, 4)
+
+
+# Exact coefficient audit for the complex logical-quaternion reduction.
+# Linearity reduces the Pauli twirl and qubit reduction/partial-transpose
+# identity to the four rational 2-by-2 matrix units.
+logical_identity = [[F(1), F(0)], [F(0), F(1)]]
+logical_x = [[F(0), F(1)], [F(1), F(0)]]
+logical_z = [[F(1), F(0)], [F(0), F(-1)]]
+logical_epsilon = [[F(0), F(1)], [F(-1), F(0)]]
+logical_frame = (
+    logical_identity,
+    logical_x,
+    logical_z,
+    logical_epsilon,
+)
+
+for row in range(2):
+    for column in range(2):
+        matrix_unit = zero_matrix(2)
+        matrix_unit[row][column] = F(1)
+
+        twirl = zero_matrix(2)
+        for tau in logical_frame:
+            twirl = matrix_add(
+                twirl,
+                matrix_multiply(
+                    transpose(tau),
+                    matrix_multiply(matrix_unit, tau),
+                ),
+            )
+        expected_twirl = [
+            [
+                F(2) if row == column and i == j else F(0)
+                for j in range(2)
+            ]
+            for i in range(2)
+        ]
+        assert twirl == expected_twirl
+
+        reduction = [
+            [
+                (F(1) if row == column and i == j else F(0))
+                - matrix_unit[i][j]
+                for j in range(2)
+            ]
+            for i in range(2)
+        ]
+        epsilon_partial_transpose = matrix_multiply(
+            logical_epsilon,
+            matrix_multiply(
+                transpose(matrix_unit),
+                transpose(logical_epsilon),
+            ),
+        )
+        assert reduction == epsilon_partial_transpose
+
+
 print(
     "verified: Pauli/exterior and universal-inversion recouplings; "
     "spin-flip boundary (1-1=0); nilpotent boundary (all terms zero); "
     "weighted sharp relation; exact conditional-phase, odd-anchor, and "
-    "noncommuting-Clifford obstructions; full Q-anchor stays positive"
+    "noncommuting-Clifford obstructions; convex cube-translation no-go; "
+    "full Q-anchor stays positive; trace-only logical-skew recoupling "
+    "loses exact factor two; complex logical Pauli twirl reduces the "
+    "frontier exactly to a two-by-two PPT Gram block"
 )
