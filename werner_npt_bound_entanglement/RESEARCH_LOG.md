@@ -4500,7 +4500,7 @@ All timestamps use America/Los_Angeles.
   4{\cal J}(C)=
   3\|C\|_2^2
   -2\sum_i\|\operatorname{Tr}_iC\|_2^2
-  \sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2.
+  +\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2.
   \]
 - Disproved this intermediate inequality with an exact
   Gaussian-integer rank-two matrix \(C=XY^\dagger\).  Its certificate
@@ -4528,7 +4528,7 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_q2_concurrence_exterior_reduction.md` and
   `verification/verify_n3_q2_concurrence_exterior_reduction.py`.
 
-## 2026-07-29 16:06 PDT — Small counterpencil and exact coupled repair
+## 2026-07-29 16:24 PDT — Small counterpencil and exact coupled repair
 
 - Compressed the dense coherent-two-skew counterexample to the binary
   corner \((\mathbb C^2)^{\otimes3}\), with a one-real-parameter
