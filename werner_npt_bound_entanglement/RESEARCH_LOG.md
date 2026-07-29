@@ -4313,3 +4313,34 @@ All timestamps use America/Los_Angeles.
   compatibility.
 - Updated the dependency-free exact checker
   `verification/verify_n3_triple_hodge_two_column_recursion.py`.
+
+## 2026-07-29 20:10 PDT — Simultaneous critical Bell reduction
+
+- Translated the scalar logical-marginal equations into exact
+  cancellations among one physical rank-two matrix and its three
+  Pauli companions.  After spatial alignment the four matrices are
+  pairwise orthogonal for the full alternating partial-trace form and
+  share the product of their two nonzero singular values.
+- Proved that any negative witness would yield a negative global
+  minimizer under the normalization \(s_1(C)s_2(C)=1\).  This slice
+  is coercive, and its exact Euler--Lagrange equations are
+  \[
+  L^{\otimes3}(C)V=\lambda U\Sigma^{-1},\qquad
+  L^{\otimes3}(C)^\dagger U=\lambda V\Sigma^{-1},
+  \quad \lambda=Q_3(C)/2<0.
+  \]
+- Proved that the same physical critical matrix can be put into the
+  balanced Bell form without changing it.  Its projected critical
+  equation makes the logical Pauli transfer matrix symmetric.  A
+  determinant-one linked filter, obtained by minimizing
+  \(\operatorname{Tr}(P\Lambda(P))\), makes both marginals scalar;
+  its action on \(K^\Gamma\) is \(H\otimes H\), which fixes the
+  logical singlet exactly.
+- Gave an exact computational-basis balanced example whose two
+  singular values have ratio \(\sqrt2\).  Thus balance alone does not
+  imply equal singular values or the ordinary Frobenius critical
+  equations.
+- Exact note and checkers:
+  `notes/agent_n3_balanced_companion_stationarity.md`,
+  `verification/verify_n3_balanced_companion_obstruction.py`, and
+  `verification/verify_n3_full_lorentz_normal_form.py`.
