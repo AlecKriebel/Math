@@ -2,8 +2,8 @@
 
 ## Status
 
-This note proves two exact reductions for the unrestricted qutrit
-three-copy endpoint.
+This note proves an exact nonlinear exclusion theorem for the
+unrestricted qutrit three-copy endpoint.
 
 1.  At a negative Haar-filter equality, the complete \(9\times9\)
     matrix of two-copy pairings between the local blocks of one
@@ -13,33 +13,26 @@ three-copy endpoint.
       =\gamma\,\delta_{rp}\delta_{sq}.
       \tag{1}
     \]
-2.  The fixed-left two-copy kernel is classified completely whenever
-    the left two-plane has deficient local support.  A two-plane with
-    minimal support \(2\times2\) has kernel dimension one, whereas a
-    plane with a fixed local factor has kernel dimension three.
+2.  The fixed-left two-copy kernel is classified completely.  Its
+    nullity is \(0\) on a plane with a full local support, \(1\) on a
+    plane of minimal support \(2\times2\), and \(3\) on a plane with a
+    fixed local factor.
+3.  The block collapse and this nullity classification force every
+    generic one-site slice of both singular planes to be a factor
+    plane.  An exact linear-pencil classification then contradicts
+    full local support.
 
-Together these facts reduce exclusion of a negative Haar equality to
-one explicit interior rigidity lemma:
-\[
- \boxed{\quad
- \dim\ker {\cal H}_U\geq2
- \ \Longrightarrow\
- U\text{ has a fixed local factor}.
- \quad}
- \tag{2}
-\]
-Here \(U\subset\mathbb C^3\otimes\mathbb C^3\) is a two-plane and
-\({\cal H}_U\) is the fixed-left compression of the two-copy endpoint,
-defined precisely in Section 3.  This note proves (2) on every
-locally-support-deficient plane.  The only unproved part is the case
-in which at least one of the two local supports of \(U\) has dimension
-three.
+Consequently no physical rank-two matrix can realize the negative
+Haar-filter equality with \(\gamma>0\).  In particular, the formal
+Haar-saturating negative sector point is not rank-two realizable.
 
-Thus this is not a proof of unrestricted three-copy positivity.  It is
-a strict nonlinear reduction of the putative sharp negative equality.
-The independent exact checker
+This is not yet a proof of unrestricted three-copy positivity: a
+negative matrix with strict Haar-filter slack is not excluded.  The
+independent exact checker
 `verification/verify_n3_haar_block_collapse.py` verifies the full
-coefficient inversion leading to (1).
+coefficient inversion leading to (1).  The companion checker
+`verification/verify_n3_haar_block_gram_collapse.py` audits the
+canonical fixed-left nullities and the excluded split branch.
 
 ## 1. Block expansion of the isotropic local form
 
@@ -336,63 +329,238 @@ local-support boundary.  It also audits the two visible equality
 families exactly: a generic common \(2\times2\) support contributes
 one kernel line, while a fixed-factor plane contributes three.
 
-## 4. The remaining interior rigidity lemma
+## 4. Complete fixed-left nullity classification
 
-The exact missing statement is now:
+The missing interior implication has now been proved independently in
+`notes/agent_n3_haar_block_gram_collapse.md`:
 
-> **Two-copy kernel rigidity.**  If \(U\subset
+> **Fixed-left strictness theorem.**  If \(U\subset
 > \mathbb C^3\otimes\mathbb C^3\) is a two-plane and
-> \(\nu(U)\geq2\), then \(U=a\otimes W\) or \(U=W\otimes a\).
+> \(\ker{\cal H}_U\ne0\), then both minimal local supports of \(U\)
+> have dimension at most two.
 
-Numerical discovery tests find no exception.  They also suggest the
-stronger statement
+That proof uses the exact equality conditions in the completed
+two-copy reversed-Hodge inequality.  It classifies the kernel of the
+rank-two reduction gap into a common-\(2\times2\) branch and one
+apparent split full-support branch, then excludes the split branch by
+the remaining cross-product equality equations.  No numerical
+classification enters the argument.
+
+Combining that theorem with Theorem 2 gives the following exhaustive
+statement.
+
+### Corollary 3
+
+For every two-plane
+\(U\subset\mathbb C^3\otimes\mathbb C^3\),
 \[
- \nu(U)>0
- \quad\Longleftrightarrow\quad
- \dim\operatorname{supp}_1U\leq2
- \ \hbox{and}\
- \dim\operatorname{supp}_2U\leq2,
+ \boxed{
+ \nu(U)=
+ \begin{cases}
+ 0,&\text{if at least one minimal local support has dimension }3,\\
+ 1,&\text{if the minimal support dimensions are }(2,2),\\
+ 3,&\text{if \(U\) has a fixed local factor.}
+ \end{cases}}
  \tag{33}
 \]
-but only the nullity-at-least-two assertion is required here.
-Theorem 2 leaves only planes with a three-dimensional support on at
-least one side.
-
-## 5. Why the rigidity lemma would exclude the Haar equality
-
-Assume the rigidity lemma.  Equation (21), after arbitrary basis
-changes, says that every generic element of the linear space
+In particular,
 \[
- {\cal S}_X=\operatorname{span}\{X_0,X_1,X_2\}
- \subset
- \operatorname{Hom}(\mathbb C^2,
- \mathbb C^3\otimes\mathbb C^3)
+ \boxed{\quad
+ \nu(U)\geq2
+ \quad\Longleftrightarrow\quad
+ U=a\otimes W\ \hbox{or}\ U=W\otimes a .
+ \quad}
  \tag{34}
 \]
-has a fixed factor at one of the two remaining physical sites.
-The two possible factor conditions are closed determinantal
-varieties.  A complex linear space cannot be contained in their
-finite union without being contained in one of them.
 
-Finally, a linear space of matrices all having rank at most one has
-either a common image line or a common row factor.  This follows by
-applying the same rank-one sum argument used in the proof of
-Theorem 2.  Here the reshape is the \(3\times6\) flattening
+### Proof
+
+The fixed-left strictness theorem gives the first line.  Once both
+supports have dimension at most two, a two-plane has either minimal
+support \((2,2)\) or a fixed local factor; Theorem 2 gives nullity one
+and three, respectively.  These cases are exhaustive, since a
+two-dimensional plane cannot have minimal support \((1,1)\).
+\(\square\)
+
+## 5. Factor-plane pencils
+
+We record the two elementary algebraic facts needed to pass from
+slice-wise factorization to a statement about the full three-copy
+code.
+
+### Lemma 4 (upper-rank-one linear spaces)
+
+Let \({\cal V}\) be a complex linear space of matrices, every member
+of which has rank at most one.  Then either all members have image in
+one common line, or all members have row space in one common line.
+
+### Proof
+
+Choose a nonzero \(A=a\varphi^{\mathsf T}\in{\cal V}\).  For every
+rank-one \(B=b\psi^{\mathsf T}\in{\cal V}\), the condition
+\(\operatorname{rank}(A+B)\leq1\) implies
 \[
- X(z):\mathbb C^3\otimes\mathbb C^2\longrightarrow\mathbb C^3
+ a\wedge b=0\quad\hbox{or}\quad\varphi\wedge\psi=0.
  \tag{35}
 \]
-across one remaining physical site versus the other site together
-with the two-dimensional singular auxiliary space.  In the first
-case the full left singular plane has a
-one-dimensional local support.  In the second, the common row factor
-lies in \(\mathbb C^3\otimes\mathbb C^2\), so the corresponding
-physical local support of the full two-plane has dimension at most
-two.  Both conclusions contradict the positive-definite one-site
-reductions required at an interior negative critical point.
+If every \(b\) is proportional to \(a\), there is a common image
+line.  Otherwise choose \(B\) with \(a\wedge b\ne0\); then
+\(\psi\parallel\varphi\).  If some
+\(C=c\chi^{\mathsf T}\) had \(\chi\not\parallel\varphi\), (35) applied
+to \(A,C\) would force \(c\parallel a\), but then (35) applied to
+\(B,C\) would fail in both factors.  Thus every row factor is
+proportional to \(\varphi\). \(\square\)
 
-Hence the kernel-rigidity lemma would make the exact isotropic system
-(6) impossible for a rank-two matrix.  This excludes the formal
-Haar-saturating negative sector point without imposing Hermiticity,
-normality, reality, or a fixed tensor ansatz.  It does not by itself
-exclude a negative point which fails to saturate the Haar bound.
+### Lemma 5 (a pencil cannot switch factor side)
+
+Let
+\[
+ {\cal S}=\operatorname{span}\{X_0,X_1,X_2\}
+ \subset
+ \operatorname{Hom}(\mathbb C^2,
+ \mathbb C^3\otimes\mathbb C^3).
+ \tag{36}
+\]
+Suppose that, for generic \(z\in\mathbb C^3\), the two-plane
+\(\operatorname{ran}X(z)\), where
+\[
+ X(z)=z_0X_0+z_1X_1+z_2X_2,
+ \tag{37}
+\]
+has a fixed factor on one of the two qutrits.  Then one of the two
+physical flattenings of every member of \({\cal S}\) has matrix rank
+at most one.
+
+### Proof
+
+For \(j=2,3\), let \({\cal Z}_j\subset\mathbb P^2\) be the common zero
+set of the \(2\times2\) minors of the flattening
+\[
+ X(z):\mathbb C^3\otimes\mathbb C^2\longrightarrow
+ \mathbb C^3
+ \tag{38}
+\]
+with the \(j\)-th qutrit as output.  These are closed algebraic sets,
+and the hypothesis says that
+\({\cal Z}_2\cup{\cal Z}_3\) contains a dense open subset.  Hence this
+union is all of \(\mathbb P^2\).
+
+If both sets were proper, choose one nonzero minor polynomial \(f\)
+for the first flattening and one nonzero minor polynomial \(g\) for
+the second.  Their product would vanish for every \(z\), hence would
+be the zero polynomial.  This is impossible because
+\(\mathbb C[z_0,z_1,z_2]\) has no zero divisors.  Thus one
+\({\cal Z}_j\) is all of \(\mathbb P^2\), which is precisely the
+claim. \(\square\)
+
+If the flattening singled out by Lemma 5 always has rank at most one,
+Lemma 4 gives two alternatives.  A common image line makes the full
+three-copy code have one-dimensional support on that qutrit.  A
+common row factor lies in
+\(\mathbb C^3\otimes\mathbb C^2\); its qutrit support has dimension
+at most two because the auxiliary factor has dimension two.  It
+therefore makes the full code have support of dimension at most two
+on the other qutrit.  In either case the full code is not locally
+full-supported.
+
+## 6. Exclusion of a negative Haar equality
+
+### Theorem 6
+
+No rank-two matrix on three qutrit copies can satisfy the isotropic
+local system (6) with \(\gamma>0\) simultaneously at all three sites.
+Consequently the formal negative Haar-filter equality is not
+physically realizable by a rank-two matrix.
+
+### Proof
+
+Take a thin singular factorization
+\[
+ C=XSY^\dagger,\qquad
+ X^\dagger X=Y^\dagger Y=I_2,\qquad
+ S=\operatorname{diag}(s_1,s_2)>0,
+ \tag{39}
+\]
+and slice it at the selected site:
+\[
+ X=\sum_a|a\rangle\otimes X_a,\qquad
+ Y=\sum_b|b\rangle\otimes Y_b.
+ \tag{40}
+\]
+Then
+\[
+ C_{ab}=X_aS Y_b^\dagger.
+ \tag{41}
+\]
+The collapse (9) says
+\[
+ {\cal B}_2(X_aS Y_b^\dagger,X_cS Y_d^\dagger)
+ =\gamma\delta_{ab}\delta_{cd}.
+ \tag{42}
+\]
+
+The collapse itself makes the three slices \(X_a\) linearly
+independent, and likewise the three \(Y_b\).  Indeed, if
+\(\sum_b c_bY_b=0\), then for every fixed \(a\),
+\[
+ 0
+ =Q_2\left(\sum_b\overline{c_b}C_{ab}\right)
+ =\gamma|c_a|^2,
+ \tag{43}
+\]
+where (42) was used in the last equality.  Thus every \(c_a=0\).
+The proof for the \(X_a\) is the same, combining blocks down a fixed
+column.  In particular, none of the six slices is zero.
+
+Each off-diagonal block has zero two-copy energy.  The strict
+rank-one bound
+\[
+ Q_2(M)\geq\frac14\|M\|_2^2
+ \quad(\operatorname{rank}M=1)
+ \tag{44}
+\]
+therefore says that every off-diagonal block is either zero or has
+rank two.  At least one is nonzero: otherwise \(C\) would be block
+diagonal with three nonzero diagonal blocks, and hence would have
+rank at least three.
+
+Starting from one rank-two off-diagonal block, rank two propagates to
+all six factors \(X_a,Y_b\).  Indeed, the bipartite graph on the
+three \(X\)-vertices and three \(Y\)-vertices with the diagonal
+matching removed is connected.  Along an edge, if one factor is
+injective and the other is nonzero, their product in (41) is nonzero;
+it cannot have rank one by (44), so the other factor is injective.
+
+Fix \(r\).  Equation (42) gives
+\[
+ {\cal B}_2(X_rS Y_p^\dagger,X_rS Y_q^\dagger)=0
+ \qquad(p,q\ne r).
+ \tag{45}
+\]
+The two maps \(Y_p,Y_q\), \(p,q\ne r\), are independent.  After an
+invertible change of the two-dimensional auxiliary coordinate,
+(45) says
+\[
+ \nu(\operatorname{ran}X_r)\geq2.
+ \tag{46}
+\]
+Corollary 3 therefore makes \(\operatorname{ran}X_r\) a fixed-factor
+plane.  The same argument after an arbitrary local basis change shows
+that \(\operatorname{ran}X(z)\) is a fixed-factor plane for generic
+\(z\).  Applying the adjoint argument gives the same conclusion for
+the \(Y\)-pencil.
+
+Lemma 5 and Lemma 4 now imply that the full left singular plane
+\(\operatorname{ran}X\) has local support of dimension at most two on
+one of the remaining sites.  At that site its three slices are
+linearly dependent.  But the isotropic system at that site, by the
+same argument following (42), forces those slices to be independent.
+This contradiction proves the theorem.  The same contradiction could
+equally be obtained from \(Y\). \(\square\)
+
+The theorem uses the common origin of all nine block pairings; it
+does not bound polarized block contributions separately.  It excludes
+the sharp formal sector point without imposing Hermiticity,
+normality, reality, or a tensor ansatz.  Its exact remaining
+limitation is strict Haar-filter slack: a negative point need not
+satisfy the isotropic system (6).
