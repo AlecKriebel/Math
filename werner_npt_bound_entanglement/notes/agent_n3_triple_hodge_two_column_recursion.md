@@ -123,9 +123,72 @@ the balanced branch has \(p_U=0\), while the spiked branch has
 \qquad
 \lambda_2(R_U)\stackrel?{\leq}\frac14-\frac{p_U}{2}.      \tag{6c}
 \]
-They would prove (5), but remain conjectural.  Unrestricted complex
-discovery searches have not violated them; that numerical observation
-is not used in any result of this note.
+The second inequality in (6c) is false, while the first remains
+conjectural.  The exact obstruction is recorded next.  In particular,
+the two endpoint spectra do not lie on a universal affine spectral
+line.
+
+### Two exact obstructions to separate-column strengthening
+
+Let
+\[
+ x=\frac{|00\rangle+|11\rangle}{\sqrt2},\qquad
+ U=x\otimes\operatorname{span}\{|0\rangle,|1\rangle\}.
+                                                               \tag{6d}
+\]
+The double-Hodge spectrum from (9)--(10) is
+\[
+ \operatorname{spec}(D_x^\dagger D_x)
+ =\left(\frac14,\frac14,
+   \underbrace{\frac18,\ldots,\frac18}_{4},0,0,0\right).
+                                                               \tag{6e}
+\]
+Moreover
+\[
+ \|D_xx\|^2=\frac14,\qquad
+ \|A_0|1\rangle\|^2=\frac12,
+ \]
+and hence \(p_U=1/8\).  Formula (14) gives
+\[
+ \lambda_2(R_U)=\frac14
+ >\frac14-\frac{p_U}{2}=\frac3{16}.                      \tag{6f}
+\]
+Thus the second inequality in (6c) fails by \(1/16\), while the
+actual Ky--Fan target remains sharp:
+\(\lambda_1(R_U)+\lambda_2(R_U)=1/2\).
+
+There is also a simple exact obstruction to replacing the common
+two-plane Ky--Fan problem by the sum of the two separate column
+operator norms.  Put
+\[
+ \begin{aligned}
+ \Phi_0&=\frac{|00\rangle+|11\rangle+|22\rangle}{\sqrt3},\\
+ \Phi_1&=\frac{|01\rangle+|12\rangle+|20\rangle}{\sqrt3},\\
+ u_0&=\Phi_0\otimes|0\rangle,\qquad
+ u_1=\Phi_1\otimes|0\rangle .
+ \end{aligned}                                           \tag{6g}
+\]
+The two vectors are orthonormal and their common last factor gives
+\[
+ p_U=\|T_{u_0}u_1\|^2=0.                                 \tag{6h}
+\]
+Each \(u_a\) is a maximally entangled two-qutrit vector tensored with
+a one-site vector, so the sharp single-column theorem is saturated:
+\[
+ \|D_{u_0}\|_{\rm op}^2
+ =\|D_{u_1}\|_{\rm op}^2=\frac16.                        \tag{6i}
+\]
+Consequently the tempting sufficient estimate
+\[
+ \|D_{u_0}\|_{\rm op}^2+\|D_{u_1}\|_{\rm op}^2
+ \stackrel?{\leq}\frac14+\frac{p_U}{2}                   \tag{6j}
+\]
+fails by \(1/12\).
+
+This failure is informative: the two individual maxima in (6i) are
+attained on incompatible right planes.  The true target (5) asks for
+one common rank-two spectral subspace of \(R_U\), and that compatibility
+cannot be discarded.
 
 ## 2. A sharp double-Hodge spectral lemma
 

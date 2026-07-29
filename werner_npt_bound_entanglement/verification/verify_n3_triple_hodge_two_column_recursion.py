@@ -142,6 +142,82 @@ assert (
     F(1, 4) - F(1, 6) / 2,
 ) == (F(1, 3), F(1, 6))
 
+# Exact obstruction to the second affine bound.  For
+# x=(|00>+|11>)/sqrt(2), the diagonal Hodge block has singular
+# squares 1/4,1/4,0 and the four relevant off-diagonal squares are
+# 1/8.  In the one-factor plane U=x tensor span(e0,e1), one also has
+# p_U=||D_x x||^2 ||A_0 e_1||^2=(1/4)(1/2)=1/8.
+p_affine_obstruction = F(1, 8)
+lambda2_affine_obstruction = F(1, 4)
+assert lambda2_affine_obstruction > F(1, 4) - p_affine_obstruction / 2
+assert (
+    lambda2_affine_obstruction
+    - (F(1, 4) - p_affine_obstruction / 2)
+    == F(1, 16)
+)
+
+
+def matrix_vector(a, x):
+    return [
+        sum((a[i][j] * x[j] for j in range(len(x))), F(0))
+        for i in range(len(a))
+    ]
+
+
+def norm_square(x):
+    return sum((z * z for z in x), F(0))
+
+
+def triple_hodge_integer(coefficients):
+    """sum coefficients[p,q,r] E_p tensor E_q tensor E_r."""
+    out = [[F(0) for _ in range(27)] for _ in range(27)]
+    for p in range(3):
+        for q in range(3):
+            for r in range(3):
+                coefficient = coefficients[9 * p + 3 * q + r]
+                if coefficient:
+                    out = add(
+                        out,
+                        scale(coefficient, kron(kron(E[p], E[q]), E[r])),
+                    )
+    return out
+
+
+# Exact obstruction to summing separate column operator norms.
+# phi0 has AB support 00,11,22; phi1 has AB support 01,12,20.
+# Both share the last factor e0.  The displayed test vectors replace
+# e0 by e2 and attain the sharp single-column value 1/6.
+u0_integer = [F(0)] * 27
+u1_integer = [F(0)] * 27
+x0_integer = [F(0)] * 27
+x1_integer = [F(0)] * 27
+for a in range(3):
+    u0_integer[9 * a + 3 * a + 0] = F(1)
+    x0_integer[9 * a + 3 * a + 2] = F(1)
+    b = (a + 1) % 3
+    u1_integer[9 * a + 3 * b + 0] = F(1)
+    x1_integer[9 * a + 3 * b + 2] = F(1)
+
+assert sum((u0_integer[i] * u1_integer[i] for i in range(27)), F(0)) == 0
+T0_integer = triple_hodge_integer(u0_integer)
+T1_integer = triple_hodge_integer(u1_integer)
+
+# T_{u_a} x_a has scale 1/sqrt(72): 1/sqrt(24) from T_{u_a}
+# and 1/sqrt(3) from x_a.
+column0_energy = norm_square(matrix_vector(T0_integer, x0_integer)) / 72
+column1_energy = norm_square(matrix_vector(T1_integer, x1_integer)) / 72
+assert column0_energy == column1_energy == F(1, 6)
+
+# T_{u0}u1 vanishes already before normalization because E_0 e_0=0
+# on their common third factor.
+assert matrix_vector(T0_integer, u1_integer) == [F(0)] * 27
+p_op2_obstruction = F(0)
+assert (
+    column0_energy + column1_energy
+    - (F(1, 4) + p_op2_obstruction / 2)
+    == F(1, 12)
+)
+
 # Check the general block recursion on an arbitrary rational slice family.
 slices = [
     [
