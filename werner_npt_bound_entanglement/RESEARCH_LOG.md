@@ -4446,6 +4446,45 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_reverse_cauchy_leakage_obstruction.md` and
   `verification/verify_n3_reverse_cauchy_leakage_obstruction.py`.
 
+## 2026-07-29 16:10 PDT — Independent complex Hessian audit and Hodge obstruction
+
+- Re-derived the complete determinant-critical Hessian in a
+  nonisometric graph chart.  This independently confirms the factor
+  two in the normal-curvature term, its holomorphic
+  \(\alpha\beta\) phase law, the sesquilinear
+  \(\overline\alpha\beta\) law of the ordinary crossed response, and
+  the Bell-companion Schur denominators.
+- Constructed an exact strictly positive bipartite parent
+  \[
+  Y=P+3|\Phi\rangle\langle\Phi|+2(I-P)\succ0
+  \]
+  whose partial transpose has a negative determinant-critical
+  singlet and a positive-semidefinite complete rank-two Hessian.
+  Hence positivity before partial transpose, strict rank-one
+  positivity, and the full critical Hessian still do not contradict a
+  negative value without the special threefold qutrit contraction
+  identities.
+- Specialized the coupled leakage Hessian to the canonical qutrit
+  triple-Hodge normals
+  \[
+  h_U=\overline{D_{u_1}u_2},\qquad
+  h_V=\overline{D_{v_1}v_2},
+  \]
+  obtaining the exact two-direction test
+  \((|P_k|+|T_k|)^2\leq A_kB_k\).
+- Found an exact limitation of that test.  The full-local-support
+  plane
+  \[
+  u_0=(|000\rangle+|111\rangle+|222\rangle)/\sqrt3,\qquad
+  u_1=(|012\rangle+|120\rangle+|201\rangle)/\sqrt3
+  \]
+  has \(D_{u_0}u_1=0\).  Thus a complete Hodge leakage bridge must
+  couple the one-, two-, and three-skew sectors; the triple-skew
+  normal alone can be identically absent.
+- Exact note and independent complex checker:
+  `notes/agent_n3_critical_hessian_hostile_audit.md` and
+  `verification/verify_n3_critical_hessian_hostile_audit.py`.
+
 ## 2026-07-29 16:18 PDT — Standalone coherent two-skew bound disproved
 
 - First reduced the proposed logical inequality
