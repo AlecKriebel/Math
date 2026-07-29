@@ -35,6 +35,7 @@ def main() -> None:
     # Full-H second-kernel and min-max constants.
     assert 20 * 2 == 40
     assert F(40, 4) == 10
+    assert 20 * 64 == 1280
 
     print(
         "verified: robust-rank, propagation, projection, "

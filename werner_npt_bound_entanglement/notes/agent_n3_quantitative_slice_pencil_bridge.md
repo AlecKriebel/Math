@@ -378,6 +378,30 @@ If \(\mu>1/2\), the leakage from \({\cal L}\) to any rank-two
 factor plane is at most two.  Thus it is at most \(4\mu\), and the
 same projector-distance conclusion follows. \(\square\)
 
+Combining Lemma 4 with the exact second-kernel gap
+\[
+ \lambda_2(H_{\cal U})\geq\frac1{20}\|M_{\cal U}\|_2^2
+\]
+gives the intrinsic boundary inequality
+\[
+\boxed{\qquad
+ \lambda_2(H_{\cal U})
+ \geq
+ \frac1{1280}
+ \operatorname{dist}_2({\cal U},{\sf Fac})^4.
+ \qquad}                                                  \tag{34a}
+\]
+Here \({\sf Fac}\) is the union of the two fixed-factor rulings and
+distance means Frobenius distance between orthogonal projectors.
+Indeed, (26) gives
+\[
+ \operatorname{dist}_2({\cal U},{\sf Fac})^4
+ \leq64\|M_{\cal U}\|_2^2.
+\]
+Thus the quartic distance scale required by the global
+second-kernel route is already proved on the complete local-support
+boundary.
+
 ## 5. The complete almost-boundary bridge
 
 ### Theorem 5
