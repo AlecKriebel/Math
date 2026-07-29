@@ -4,7 +4,8 @@
 
 This note proves an exact three-copy theorem for the nonnormal
 square-zero construction which repairs an inertia-\((2,2)\) Hermitian
-quadrature.
+quadrature.  It also proves nonnegativity for every unequal-weight,
+arbitrarily phased paired four-string square-zero operator.
 
 Let \(p_0,p_1,n_0,n_1\) be four distinct computational-basis strings
 of length three, in arbitrary local dimensions, and suppose that the
@@ -188,13 +189,105 @@ Equality occurs in type \(5\) for every \(U\), and in types \(1\)--\(4\)
 at the appropriate endpoint \(t=0\) or \(t=1\).  Hence the constant
 \(1/4\) is sharp.
 
-## 5. Scope
+## 5. Unequal weights and arbitrary internal phases
 
-This theorem does not prove unrestricted three-copy positivity, nor
-does it assert a \(1/4\) lower bound when \(Q_3(H)\ge0\) (zero
-completions occur there).  It closes a concrete falsifier mechanism:
-four orthogonal product strings, a negative diagonal
-inertia-\((2,2)\) quadrature, and every unitary rank-two square-zero
-completion.  A negative nonnormal witness, if one exists, must use
-entangled quadrature eigenvectors or a non-unitary/non-balanced
-coupling not reducible to (1).
+There is a complementary theorem which removes both the equal-weight
+and fixed-phase restrictions, at the price of retaining a fixed pairing
+of the four product strings.  For two distinct basis strings \(p,n\)
+and a real phase \(\theta\), define
+\[
+ D_\theta(p,n)
+ =
+ \frac12
+ |p+e^{i\theta}n\rangle
+ \langle p-e^{i\theta}n|.
+                                                               \tag{14}
+\]
+Thus
+\[
+ D_\theta(p,n)
+ =\frac12\left(
+ P_p-P_n-e^{-i\theta}|p\rangle\langle n|
+ +e^{i\theta}|n\rangle\langle p|\right).                 \tag{15}
+\]
+The two vectors in (14) are orthogonal, so \(D_\theta(p,n)^2=0\).
+
+### Theorem
+
+Let \(p_0,p_1,n_0,n_1\) be four distinct computational-basis strings
+of length three, in arbitrary local dimensions.  For arbitrary
+\(\theta_0,\theta_1\in\mathbb R\) and
+\(c_0,c_1\in\mathbb C\), put
+\[
+ C=c_0D_{\theta_0}(p_0,n_0)
+   +c_1D_{\theta_1}(p_1,n_1).                            \tag{16}
+\]
+Then
+\[
+ \boxed{\qquad C^2=0,\qquad \operatorname{rank}C\le2,
+ \qquad Q_3(C)\ge0.\qquad}                               \tag{17}
+\]
+
+### Proof
+
+The four strings are orthogonal, so the two summands in (16) have
+mutually orthogonal initial and final supports.  This proves the first
+two assertions.
+
+Set \(z_r=e^{i\theta_r}\), and let
+\[
+ {\cal K}_{rs}
+ =
+ 32\langle D_{\theta_r}(p_r,n_r),
+ L^{\otimes3}D_{\theta_s}(p_s,n_s)\rangle .
+                                                               \tag{18}
+\]
+The same \(15^3\) equality-pattern enumeration used above gives
+\[
+ {\cal K}_{00},{\cal K}_{11}\in\{8,20\}.                 \tag{19}
+\]
+More importantly, its determinant is one of the following thirteen
+Laurent polynomials:
+\[
+\begin{gathered}
+48,\ 60,\ 64,\ 144,\ 156,\ 160,\ 384,\ 396,\ 400,\\
+32-16(w^2+w^{-2}),\\
+40-16(w+w^{-1})-4(w^2+w^{-2}),                           \tag{20}
+\end{gathered}
+\]
+where either \(w=z_0z_1\) or \(w=z_0/z_1\) in the last two lines.
+The list in (20) is a finite exact identity classification, reproduced
+by the integer/Laurent part of the checker.
+
+For \(|w|=1\), write \(x=\operatorname{Re}w\).  The two nonconstant
+expressions are
+\[
+\begin{aligned}
+32-16(w^2+w^{-2})
+ &=64(1-x^2),\\
+40-16(w+w^{-1})-4(w^2+w^{-2})
+ &=16(1-x)(3+x).
+\end{aligned}                                             \tag{21}
+\]
+They are nonnegative for \(-1\le x\le1\).  Equations (19)--(21) show
+that the \(2\times2\) Hermitian matrix \({\cal K}\) has nonnegative
+diagonal entries and determinant.  Hence \({\cal K}\succeq0\), and
+\[
+ Q_3(C)=\frac1{32}
+ \begin{pmatrix}\overline c_0&\overline c_1\end{pmatrix}
+ {\cal K}
+ \begin{pmatrix}c_0\\c_1\end{pmatrix}\ge0.               \tag{22}
+\]
+This proves the theorem.
+
+## 6. Scope
+
+These theorems do not prove unrestricted three-copy positivity, nor
+does the first assert a \(1/4\) lower bound when \(Q_3(H)\ge0\) (zero
+completions occur there).  They close two concrete falsifier mechanisms:
+every unitary balanced completion of a negative diagonal
+inertia-\((2,2)\) quadrature, and every unequal-weight, arbitrarily
+phased completion which retains a fixed pairing of four product
+strings.  A negative nonnormal witness, if one exists, must use
+entangled quadrature eigenvectors or coupling outside both
+classifications.

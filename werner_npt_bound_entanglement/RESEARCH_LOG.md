@@ -3678,3 +3678,30 @@ All timestamps use America/Los_Angeles.
 - Exact note and integer-only checker:
   `notes/agent_n3_squarezero_string_completion.md`,
   `verification/verify_n3_squarezero_string_completion.py`.
+
+## 2026-07-29 14:31 PDT — Phased unequal-weight string completions
+
+- Strengthened the four-string square-zero obstruction to the
+  fixed-pairing family
+  \[
+  C=c_0D_{\theta_0}(p_0,n_0)+c_1D_{\theta_1}(p_1,n_1),\qquad
+  D_\theta(p,n)=\tfrac12
+  |p+e^{i\theta}n\rangle\langle p-e^{i\theta}n|.
+  \]
+  For arbitrary complex weights and phases,
+  \[
+  C^2=0,\qquad\operatorname{rank}C\le2,\qquad Q_3(C)\ge0.
+  \]
+- The exact \(2\times2\) Gram determinant has only thirteen possible
+  Laurent types over all \(15^3\) local equality patterns: nine positive
+  constants and two phase-polynomial shapes, each with either
+  \(w=z_0z_1\) or \(w=z_0/z_1\).  The latter reduce to
+  \[
+  64(1-x^2),\qquad16(1-x)(3+x),\qquad x=\operatorname{Re}w,
+  \]
+  and are nonnegative on \([-1,1]\).
+- The integer-only checker now verifies the complete Laurent
+  classification and multiplicities.  This closes unequal singular
+  weights and arbitrary internal phases within the paired-product
+  quadrature mechanism; it still does not cover entangled quadrature
+  eigenvectors or arbitrary mixing between the two pairs.

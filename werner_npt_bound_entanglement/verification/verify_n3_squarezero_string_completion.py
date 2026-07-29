@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import itertools
 from collections import Counter
+from collections import defaultdict
 
 
 def restricted_growth_strings(length: int) -> list[tuple[int, ...]]:
@@ -81,6 +82,114 @@ EXPECTED_NEGATIVE_PROFILES = {
 }
 
 
+Laurent = dict[tuple[int, int], int]
+
+
+def laurent_add_term(
+    polynomial: defaultdict[tuple[int, int], int],
+    exponent: tuple[int, int],
+    coefficient: int,
+) -> None:
+    polynomial[exponent] += coefficient
+    if polynomial[exponent] == 0:
+        del polynomial[exponent]
+
+
+def laurent_gram(
+    left: dict[tuple[int, int], tuple[int, tuple[int, int]]],
+    right: dict[tuple[int, int], tuple[int, tuple[int, int]]],
+    words: list[tuple[int, ...]],
+) -> Laurent:
+    """Formal phase-dependent Gram as a Laurent polynomial.
+
+    The two exponents record powers of z_0 and z_1.  All scalar
+    coefficients are integral and real.
+    """
+
+    output: defaultdict[tuple[int, int], int] = defaultdict(int)
+    for (i, j), (coefficient_left, exponent_left) in left.items():
+        for (k, ell), (coefficient_right, exponent_right) in right.items():
+            exponent = (
+                exponent_right[0] - exponent_left[0],
+                exponent_right[1] - exponent_left[1],
+            )
+            laurent_add_term(
+                output,
+                exponent,
+                coefficient_left
+                * coefficient_right
+                * gram8(words[i], words[j], words[k], words[ell]),
+            )
+    return dict(output)
+
+
+def laurent_product(left: Laurent, right: Laurent) -> Laurent:
+    output: defaultdict[tuple[int, int], int] = defaultdict(int)
+    for exponent_left, coefficient_left in left.items():
+        for exponent_right, coefficient_right in right.items():
+            exponent = (
+                exponent_left[0] + exponent_right[0],
+                exponent_left[1] + exponent_right[1],
+            )
+            laurent_add_term(
+                output, exponent, coefficient_left * coefficient_right
+            )
+    return dict(output)
+
+
+def laurent_conjugate(polynomial: Laurent) -> Laurent:
+    return {
+        (-exponent[0], -exponent[1]): coefficient
+        for exponent, coefficient in polynomial.items()
+    }
+
+
+def laurent_difference(left: Laurent, right: Laurent) -> Laurent:
+    output: defaultdict[tuple[int, int], int] = defaultdict(int, left)
+    for exponent, coefficient in right.items():
+        laurent_add_term(output, exponent, -coefficient)
+    return dict(output)
+
+
+def canonical_laurent(polynomial: Laurent) -> tuple[
+    tuple[tuple[int, int], int], ...
+]:
+    return tuple(sorted(polynomial.items()))
+
+
+def constant_laurent(value: int) -> tuple[tuple[tuple[int, int], int], ...]:
+    return (((0, 0), value),)
+
+
+EXPECTED_PHASED_DETERMINANTS = Counter({
+    constant_laurent(48): 204,
+    constant_laurent(60): 588,
+    constant_laurent(64): 462,
+    constant_laurent(144): 132,
+    constant_laurent(156): 576,
+    constant_laurent(160): 408,
+    constant_laurent(384): 36,
+    constant_laurent(396): 156,
+    constant_laurent(400): 121,
+    (((-2, -2), -16), ((0, 0), 32), ((2, 2), -16)): 3,
+    (((-2, 2), -16), ((0, 0), 32), ((2, -2), -16)): 3,
+    (
+        ((-2, -2), -4),
+        ((-1, -1), -16),
+        ((0, 0), 40),
+        ((1, 1), -16),
+        ((2, 2), -4),
+    ): 9,
+    (
+        ((-2, 2), -4),
+        ((-1, 1), -16),
+        ((0, 0), 40),
+        ((1, -1), -16),
+        ((2, -2), -4),
+    ): 9,
+})
+
+
 def b_energy_numerator(profile: tuple[int, ...], t_numerator: int,
                        t_denominator: int) -> tuple[int, int]:
     """Return Q_3(B_U), with t=|U_01|^2, as an exact fraction.
@@ -107,6 +216,7 @@ def main() -> None:
     all_patterns: list[
         tuple[int, tuple[tuple[int, ...], ...]]
     ] = []
+    valid_words: list[list[tuple[int, ...]]] = []
 
     for site_patterns in itertools.product(partitions, repeat=3):
         words = [
@@ -118,6 +228,7 @@ def main() -> None:
         qh8 = diagonal_h_energy8(words)
         gram = b_gram(words)
         all_patterns.append((qh8, gram))
+        valid_words.append(words)
         if qh8 < 0:
             negative_types[(qh8, gram)] += 1
 
@@ -150,6 +261,44 @@ def main() -> None:
 
     assert observed_profiles == EXPECTED_NEGATIVE_PROFILES
 
+    # Arbitrary phases and unequal weights for the fixed-pairing
+    # square-zero family.  A coefficient is stored as
+    # (integer scalar, Laurent exponent in (z_0,z_1)).
+    first_dyad = {
+        (0, 0): (1, (0, 0)),
+        (0, 2): (-1, (-1, 0)),
+        (2, 0): (1, (1, 0)),
+        (2, 2): (-1, (0, 0)),
+    }
+    second_dyad = {
+        (1, 1): (1, (0, 0)),
+        (1, 3): (-1, (0, -1)),
+        (3, 1): (1, (0, 1)),
+        (3, 3): (-1, (0, 0)),
+    }
+    determinant_types: Counter[
+        tuple[tuple[tuple[int, int], int], ...]
+    ] = Counter()
+    for words in valid_words:
+        diagonal_first = laurent_gram(first_dyad, first_dyad, words)
+        diagonal_second = laurent_gram(second_dyad, second_dyad, words)
+        cross = laurent_gram(first_dyad, second_dyad, words)
+
+        assert canonical_laurent(diagonal_first) in {
+            constant_laurent(8), constant_laurent(20)
+        }
+        assert canonical_laurent(diagonal_second) in {
+            constant_laurent(8), constant_laurent(20)
+        }
+
+        determinant = laurent_difference(
+            laurent_product(diagonal_first, diagonal_second),
+            laurent_product(cross, laurent_conjugate(cross)),
+        )
+        determinant_types[canonical_laurent(determinant)] += 1
+
+    assert determinant_types == EXPECTED_PHASED_DETERMINANTS
+
     # The same exact endpoint test covers every nonnegative-H pattern.
     # It is enough because Q(B) is affine in t in every pattern.
     for qh8, gram in all_patterns:
@@ -169,7 +318,9 @@ def main() -> None:
 
     print(
         "verified: 15^3 equality patterns, ten negative-H Gram types, "
-        "and Q3(H+iB_U)>=1/4 on the full negative-quadrature locus"
+        "Q3(H+iB_U)>=1/4 on the full negative-quadrature locus, and "
+        "thirteen nonnegative Laurent determinant types for arbitrary "
+        "paired phases and weights"
     )
 
 
