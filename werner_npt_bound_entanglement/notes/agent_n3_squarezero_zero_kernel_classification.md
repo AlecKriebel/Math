@@ -73,8 +73,47 @@ spectral estimate
 for every orthonormal rank-one equality pair
 \({\cal T}(x,y)=0\).  This removes the complete diagonal-feature
 collapse locus from the unequal-kernel problem.  A hypothetical
-unequal-kernel zero must therefore have all four matched features
+unequal-kernel zero must therefore have both matched features
 nonzero.
+
+Two proposed extensions beyond this boundary have now been disposed
+of exactly.
+
+First, the tempting estimate
+\[
+ \left\|
+ P_{\{x,y\}^{\perp}}
+ L^{\otimes3}(|x\rangle\langle y|)
+ P_{\{x,y\}^{\perp}}
+ \right\|_{\rm op}
+ \stackrel{?}{\leq}Q_3(|x\rangle\langle y|)
+\tag{R1}
+\]
+for arbitrary orthonormal \(x,y\) is false.  Section 9 gives a
+one-parameter exact counterfamily.  On that family the more
+permissive interpolation
+\[
+ \left\|P_{\{x,y\}^{\perp}}
+ L^{\otimes3}(|x\rangle\langle y|)
+ P_{\{x,y\}^{\perp}}\right\|_{\rm op}
+ \stackrel{?}{\leq}
+ \frac14+\frac12\|{\cal T}(x,y)\|
+\tag{R2}
+\]
+is instead an equality.  Inequality (R2) remains conjectural.
+
+Second, an attempted reduction of the determinant-zero kernel
+equations to ordinary orthogonality of four Hodge feature vectors
+was an index error and is explicitly retracted in Section 10.  The
+correct irreducible equations are the \(2\times2\) matrix equation
+\[
+ \frac14D+\sum_\mu M_\mu D\overline{M_\mu}=0,
+ \qquad D=\operatorname{diag}(s,t),
+\tag{R3}
+\]
+or its four scalar entries.  In particular, the two off-diagonal
+entries of (R3) do not say that either crossed feature vector is
+orthogonal to \(s{\cal T}(u_0,w_0)+t{\cal T}(u_1,w_1)\).
 
 The abstract conditions in (2), rank three, and the sharp product
 margin do not force a balanced kernel.  An exact counterexample is
@@ -850,3 +889,191 @@ The theorem is a genuine physical restriction which the abstract
 unequal-kernel example (16) does not satisfy.  It also shows exactly
 where the remaining unequal-kernel problem lives: every matched
 rank-one transition has a strictly positive Hodge feature.
+
+## 9. Exact failure of the unrestricted spectral extension
+
+Lemma 8.1 uses the full equality hypothesis
+\({\cal T}(x,y)=0\).  It cannot be extended to arbitrary orthonormal
+pairs by replacing its right side \(1/4\) with the rank-one energy
+\(Q_3(|x\rangle\langle y|)\).
+
+Let \(a,b>0\), \(a^2+b^2=1\), and \(a^2>1/2\).  On two qutrits put
+\[
+ \xi=a|00\rangle+b|11\rangle,\qquad
+ \eta=b|00\rangle-a|11\rangle,
+\tag{54}
+\]
+and on three qutrits put
+\[
+ x=|0\rangle\otimes\xi,\qquad
+ y=|0\rangle\otimes\eta.
+\tag{55}
+\]
+The vectors \(x,y\) are orthonormal.  Write
+\[
+ E=|x\rangle\langle y|,\qquad
+ E_2=|\xi\rangle\langle\eta|.
+\]
+Both one-site partial traces of \(E_2\) equal
+\[
+ ab\,\operatorname{diag}(1,-1,0),
+\]
+and \(\operatorname{Tr}E_2=0\).  Therefore
+\[
+ Q_2(E_2)=1-2a^2b^2
+\]
+and tensor factorization gives
+\[
+ \boxed{\qquad
+ Q_3(E)=\frac12(1-2a^2b^2).
+ \qquad}                                                 \tag{56}
+\]
+
+Now put
+\[
+ A=L^{\otimes3}(E),\qquad
+ P=I-|x\rangle\langle x|-|y\rangle\langle y|.
+\]
+Since
+\[
+ L(|0\rangle\langle0|)
+ =\frac12\operatorname{diag}(1,-1,-1),
+\]
+one has
+\[
+ A=L(|0\rangle\langle0|)\otimes L^{\otimes2}(E_2).
+\tag{57}
+\]
+In the two-site computational basis, the only nonzero part relevant
+to the operator norm consists of
+\[
+\begin{aligned}
+ \langle00|L^{\otimes2}(E_2)|11\rangle&=-a^2,\\
+ \langle11|L^{\otimes2}(E_2)|00\rangle&=b^2,
+\end{aligned}
+\tag{58}
+\]
+together with four diagonal entries of modulus \(ab/2\).
+Consequently the nonzero singular values of
+\(L^{\otimes2}(E_2)\) are
+\[
+ a^2,\quad b^2,\quad
+ \frac{ab}{2},\frac{ab}{2},\frac{ab}{2},\frac{ab}{2}.
+\tag{59}
+\]
+Thus \(\|A\|_{\rm op}=a^2/2\).
+
+This norm survives the compression.  Indeed,
+\[
+ u=|100\rangle,\qquad v=|111\rangle
+\]
+belong to \(\{x,y\}^{\perp}\), and (57)--(58) give
+\[
+ |\langle u,Av\rangle|=\frac{a^2}{2}.
+\]
+It follows that
+\[
+ \boxed{\qquad
+ \|PAP\|_{\rm op}=\frac{a^2}{2}.
+ \qquad}                                                 \tag{60}
+\]
+If \(z=a^2\), then
+\[
+ \frac z2-Q_3(E)
+ =-(z-\tfrac12)(z-1)>0
+ \qquad(\tfrac12<z<1).
+\tag{61}
+\]
+This disproves (R1).  For example, at \(a^2=3/4\),
+\[
+ Q_3(E)=\frac5{16},\qquad
+ \|PAP\|_{\rm op}=\frac38.
+\tag{62}
+\]
+
+The same family identifies a sharp surviving target.  The rank-one
+feature identity gives
+\[
+ \|{\cal T}(x,y)\|^2
+ =Q_3(E)-\frac14
+ =(a^2-\tfrac12)^2.
+\tag{63}
+\]
+Hence every member with \(a^2\geq1/2\) saturates
+\[
+ \|PAP\|_{\rm op}
+ =
+ \frac14+\frac12\|{\cal T}(x,y)\|.
+\tag{64}
+\]
+This is consistent with Lemma 8.1 at feature norm zero, but no proof
+of the general inequality (R2) is presently known.  Moreover, scalar
+kernel arithmetic shows that (R2) alone would still permit some
+unequal singular-value ratios, so additional common-code geometry
+would remain necessary.
+
+## 10. Retraction and the corrected smallest kernel equations
+
+An earlier draft inferred ordinary feature-vector orthogonality from
+the transverse entries of the determinant-zero kernel equation.
+That inference is false because logical partial transpose crosses
+the indices.
+
+Choose an orthonormal basis \((e_\mu)\) in the direct-sum Hodge
+feature space and write the four feature coordinates as the
+\(2\times2\) matrices
+\[
+ M_\mu=
+ \begin{pmatrix}
+  a_\mu&b_\mu\\
+  c_\mu&d_\mu
+ \end{pmatrix},
+\qquad
+ (M_\mu)_{ij}
+ =\langle e_\mu,{\cal T}(u_i,w_j)\rangle.
+\tag{65}
+\]
+Then
+\[
+ K=\sum_\mu
+ |\operatorname{vec}M_\mu\rangle
+ \langle\operatorname{vec}M_\mu|.
+\]
+If the kernel matrix has been put in singular-value coordinates
+\[
+ D=\operatorname{diag}(s,t),\qquad s,t>0,
+\]
+the equation \(H\operatorname{vec}D=0\) is exactly
+\[
+ \boxed{\qquad
+ \frac14D+\sum_\mu M_\mu D\overline{M_\mu}=0.
+ \qquad}                                                 \tag{66}
+\]
+Here the final bar is entrywise conjugation, not the adjoint.
+Expanding (66) gives the corrected four scalar equations
+\[
+\begin{aligned}
+ \frac{s}{4}
+  +\sum_\mu(s|a_\mu|^2+t b_\mu\overline{c_\mu})&=0,\\
+ \sum_\mu(s a_\mu\overline{b_\mu}
+             +t b_\mu\overline{d_\mu})&=0,\\
+ \sum_\mu(s c_\mu\overline{a_\mu}
+             +t d_\mu\overline{c_\mu})&=0,\\
+ \frac{t}{4}
+  +\sum_\mu(s c_\mu\overline{b_\mu}+t|d_\mu|^2)&=0.
+\end{aligned}                                            \tag{67}
+\]
+For example, the first transverse equation in (67) contains
+\(b_\mu\overline{d_\mu}\), whereas ordinary orthogonality of
+\((b_\mu)_\mu\) to
+\((s a_\mu+t d_\mu)_\mu\) contains
+\(\overline{b_\mu}d_\mu\).  They are not the same scalar in
+general.  Thus no one-dimensional ``longitudinal'' feature reduction
+follows from (67).
+
+Equations (66)--(67), the scalar equality (3), and the condition that
+all four feature columns arise from one orthonormal physical
+four-frame are the smallest currently valid interior problem.  In
+particular, after Theorem 8.2 the only unresolved determinant-zero
+locus has both matched features nonzero; no valid further collapse
+of that locus has yet been proved.

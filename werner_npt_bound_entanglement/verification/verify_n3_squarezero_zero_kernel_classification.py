@@ -42,6 +42,23 @@ def diagonal(values):
     ]
 
 
+def gaussian(real=0, imag=0):
+    return (F(real), F(imag))
+
+
+def gaussian_add(x, y):
+    return (x[0] + y[0], x[1] + y[1])
+
+
+def gaussian_mul(x, y):
+    return (x[0] * y[0] - x[1] * y[1],
+            x[0] * y[1] + x[1] * y[0])
+
+
+def gaussian_conjugate(x):
+    return (x[0], -x[1])
+
+
 def partial_transpose_second(a):
     out = [[F(0) for _ in range(4)] for _ in range(4)]
     for first in range(2):
@@ -266,6 +283,101 @@ def check_restricted_rank_one_spectral_identity():
     assert ratio == 1
 
 
+def check_unrestricted_spectral_counterfamily():
+    # Rational member a=4/5, b=3/5 of
+    #
+    # xi = a|00> + b|11>, eta = b|00> - a|11>.
+    #
+    # All entries of the two-site transformed dyad are rational.
+    a, b = F(4, 5), F(3, 5)
+    assert a * a + b * b == 1
+    assert a * b + b * (-a) == 0
+
+    a2 = [[F(0) for _ in range(9)] for _ in range(9)]
+    index00, index11 = 0, 4
+    index02, index12, index20, index21 = 2, 5, 6, 7
+    a2[index00][index11] = -a * a
+    a2[index11][index00] = b * b
+    a2[index02][index02] = -a * b / 2
+    a2[index20][index20] = -a * b / 2
+    a2[index12][index12] = a * b / 2
+    a2[index21][index21] = a * b / 2
+
+    # The squared singular values are the diagonal entries of A2^T A2.
+    gram = matmul(transpose(a2), a2)
+    assert all(
+        gram[i][j] == 0
+        for i in range(9)
+        for j in range(9)
+        if i != j
+    )
+    singular_squares = sorted(
+        (gram[i][i] for i in range(9)),
+        reverse=True,
+    )
+    assert singular_squares == sorted(
+        [
+            a ** 4,
+            b ** 4,
+            a * a * b * b / 4,
+            a * a * b * b / 4,
+            a * a * b * b / 4,
+            a * a * b * b / 4,
+            F(0),
+            F(0),
+            F(0),
+        ],
+        reverse=True,
+    )
+
+    q3 = F(1, 2) * (1 - 2 * a * a * b * b)
+    compressed_norm = a * a / 2
+    assert q3 == F(337, 1250)
+    assert compressed_norm == F(8, 25)
+    assert compressed_norm > q3
+
+    feature_norm_squared = q3 - F(1, 4)
+    feature_norm = a * a - F(1, 2)
+    assert feature_norm_squared == feature_norm * feature_norm
+    assert compressed_norm == F(1, 4) + feature_norm / 2
+
+    # The algebraic point a^2=3/4 gives the especially short values
+    # Q3=5/16 and compressed norm 3/8.
+    z = F(3, 4)
+    q3_algebraic = F(1, 2) * (1 - 2 * z * (1 - z))
+    assert q3_algebraic == F(5, 16)
+    assert z / 2 == F(3, 8)
+    assert z / 2 > q3_algebraic
+
+
+def check_crossed_index_retraction():
+    # All numbers here are Gaussian integers.  For the one-coordinate
+    # feature matrix M=[[i,1],[0,i]] and D=I, the first transverse
+    # entry of M D conjugate(M) vanishes:
+    #
+    #   a conjugate(b) + b conjugate(d) = i-i = 0.
+    #
+    # But ordinary feature orthogonality would require
+    #
+    #   conjugate(b) (a+d) = 2i = 0,
+    #
+    # which is false.  This exactly checks the retracted index step.
+    zero = gaussian()
+    one = gaussian(1)
+    imag = gaussian(0, 1)
+    a, b, d = imag, one, imag
+    transverse = gaussian_add(
+        gaussian_mul(a, gaussian_conjugate(b)),
+        gaussian_mul(b, gaussian_conjugate(d)),
+    )
+    ordinary_inner_product = gaussian_mul(
+        gaussian_conjugate(b),
+        gaussian_add(a, d),
+    )
+    assert transverse == zero
+    assert ordinary_inner_product == gaussian(0, 2)
+
+
 def main():
     check_rational_obstruction()
     check_kernel_normal_form()
@@ -273,6 +385,8 @@ def main():
     check_rank_one_scalar_remainder()
     check_offdiagonal_shortcut_no_go()
     check_restricted_rank_one_spectral_identity()
+    check_unrestricted_spectral_counterfamily()
+    check_crossed_index_retraction()
     print("verified exact square-zero zero-kernel classification identities")
 
 
