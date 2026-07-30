@@ -537,6 +537,109 @@ basis of \({\bf1}^{\perp}\), the off-diagonal block is
 \]
 which is (10ac).
 
+#### Exact obstruction to a scalar critical proof
+
+Even the strict-PD circulation, all pair constraints, and the full
+Schur certificate (10z) do not force \(q\geq0\) without the common
+factorization \(C_{pq}=X_pY_q^\dagger\).  Here is an exact formal
+point in the strict interior.
+
+On the nine block labels \((p,q)\), define a positive semidefinite
+formal two-copy Gram tensor \(\Beta\) by
+\[
+\begin{aligned}
+ \Beta_{pp,rr}&=\frac23
+ &&(p,r=0,1,2),\\
+ \Beta_{pq,pq}&=\frac1{12}
+ &&(p\ne q),
+\end{aligned}
+\tag{10ae}
+\]
+with every other entry zero.  Its diagonal-index principal block is
+\((2/3)J_3\succeq0\), and its six remaining entries are positive
+one-dimensional blocks, so \(\Beta\succeq0\).
+
+Take the formal ordinary norm Gram diagonal, with
+\[
+ n_{pp}=\frac16,\qquad n_{pq}=\frac1{12}\quad(p\ne q),
+\tag{10af}
+\]
+and put
+\[
+ q=-\frac12.
+\]
+Then
+\[
+\begin{aligned}
+ r_{pp}&=\frac23,&r_{pq}&=\frac1{12}\quad(p\ne q),\\
+ W_{pp}&=r_{pp}-qn_{pp}=\frac34,&
+ W_{pq}&=r_{pq}-qn_{pq}=\frac18\quad(p\ne q).
+\end{aligned}
+\tag{10ag}
+\]
+The norm weights sum to one, every unshifted row and column Gram is
+\((5/6)I_3\), and every shifted row and column Gram is \(I_3\).
+Thus all are strictly positive definite and the shifted flow is
+balanced with \(d=(1,1,1)\).
+
+The diagonal-block form is
+\[
+ G=\frac23J_3,\qquad G{\bf1}=2{\bf1}.
+\tag{10ah}
+\]
+Moreover
+\[
+\begin{aligned}
+ L_W&=
+ \begin{pmatrix}
+ 1/2&-1/4&-1/4\\
+ -1/4&1/2&-1/4\\
+ -1/4&-1/4&1/2
+ \end{pmatrix},\\
+ P_*&=2I_3-\frac23J_3,\\
+ A_*&=P_*-L_W
+ =
+ \begin{pmatrix}
+ 5/6&-5/12&-5/12\\
+ -5/12&5/6&-5/12\\
+ -5/12&-5/12&5/6
+ \end{pmatrix}.
+\end{aligned}
+\tag{10ai}
+\]
+Here \(\tau=\sigma=0\).  Both real slacks are positive definite on
+\({\bf1}^{\perp}\), with eigenvalues \(2,2\) for \(P_*\) and
+\(5/4,5/4\) for \(A_*\).  Hence (10z) is satisfied strictly away
+from the unavoidable scalar kernel.  The pair bound (13c) below is
+also strict:
+\[
+ |G_{pr}|=\frac23
+ <
+ 2\sqrt{r_{pr}r_{rp}}+\sqrt{r_{pp}r_{rr}}
+ =\frac56
+ \qquad(p\ne r).
+\tag{10aj}
+\]
+
+Nevertheless,
+\[
+\begin{aligned}
+ \sum_{p,q}r_{pq}&=\frac52,\\
+ Q_2\left(\sum_pA_p\right)
+ &={\bf1}^\dagger G{\bf1}=6,
+\end{aligned}
+\]
+and the formal recursion gives
+\[
+ \frac52-\frac12\cdot6=-\frac12=q.
+\tag{10ak}
+\]
+Thus trace, determinant, pair, circulation, and Hessian arithmetic
+all permit an exact negative critical table with every block energy
+positive.  The table is not asserted to be realizable by six common
+two-column factors.  Excluding precisely that common-factor
+realization is the irreducible remaining lemma.
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[

@@ -412,6 +412,93 @@ cycle_cofactor = (
 assert cycle_cofactor == 3
 assert 3 * cycle_cofactor == 9
 
+# Exact strict-interior formal obstruction (10ae)--(10ak).
+formal_beta = [[F(0) for _ in range(9)] for _ in range(9)]
+diagonal_labels = [3 * p + p for p in range(3)]
+for left in diagonal_labels:
+    for right in diagonal_labels:
+        formal_beta[left][right] = F(2, 3)
+for p in range(3):
+    for r in range(3):
+        if p != r:
+            formal_beta[3 * p + r][3 * p + r] = F(1, 12)
+formal_r = [
+    [formal_beta[3 * p + r][3 * p + r] for r in range(3)]
+    for p in range(3)
+]
+formal_n = [
+    [F(1, 6) if p == r else F(1, 12) for r in range(3)]
+    for p in range(3)
+]
+formal_q = F(-1, 2)
+formal_W = [
+    [formal_r[p][r] - formal_q * formal_n[p][r] for r in range(3)]
+    for p in range(3)
+]
+assert sum(value for row in formal_n for value in row) == 1
+assert formal_W == [
+    [F(3, 4) if p == r else F(1, 8) for r in range(3)]
+    for p in range(3)
+]
+formal_row_gram = [
+    [
+        sum(
+            formal_beta[3 * p + column][3 * r + column]
+            for column in range(3)
+        )
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+formal_column_gram = [
+    [
+        sum(
+            formal_beta[3 * row + p][3 * row + r]
+            for row in range(3)
+        )
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+assert formal_row_gram == formal_column_gram == [
+    [F(5, 6) if p == r else F(0) for r in range(3)]
+    for p in range(3)
+]
+formal_G = [
+    [formal_beta[3 * p + p][3 * r + r] for r in range(3)]
+    for p in range(3)
+]
+assert formal_G == [[F(2, 3) for _ in range(3)] for _ in range(3)]
+assert [sum(row) for row in formal_G] == [F(2)] * 3
+formal_L = [
+    [F(1, 2) if p == r else F(-1, 4) for r in range(3)]
+    for p in range(3)
+]
+formal_P = [
+    [
+        (F(2) if p == r else F(0)) - formal_G[p][r]
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+formal_A = [
+    [formal_P[p][r] - formal_L[p][r] for r in range(3)]
+    for p in range(3)
+]
+assert formal_A == [
+    [F(5, 6) if p == r else F(-5, 12) for r in range(3)]
+    for p in range(3)
+]
+assert all(sum(row) == 0 for row in formal_P)
+assert all(sum(row) == 0 for row in formal_A)
+assert formal_P[0][0] * formal_P[1][1] - formal_P[0][1] ** 2 == F(4, 3)
+assert formal_A[0][0] * formal_A[1][1] - formal_A[0][1] ** 2 == F(25, 48)
+assert F(2, 3) < 2 * F(1, 12) + F(2, 3)
+formal_recursion = sum(value for row in formal_r for value in row) - F(
+    1, 2
+) * sum(sum(row) for row in formal_G)
+assert formal_recursion == formal_q
+
 # The singular-Gram theorem is sharp at the exact transverse
 # common-qubit spin-flip zero.  We omit normalization to stay over Q.
 anchor_u0 = [F(0)] * 27
@@ -515,6 +602,7 @@ print("verified: positive exact similarity Hessian", second_derivative_at_zero)
 print("verified: exact joint diagonal-filter Hessian", direct_hessian)
 print("verified: exact cyclic phase Hessian", full_phase_hessian)
 print("verified: exact three-cycle Schur penalty")
+print("verified: exact strict-interior formal obstruction")
 print("verified: sharp singular-Gram diagonal-collapse zero")
 print("verified: exact factor-plane kernel alignment")
 print("verified: balanced rank-four block obstruction")
