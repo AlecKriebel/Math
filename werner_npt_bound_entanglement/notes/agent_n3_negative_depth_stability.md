@@ -375,6 +375,63 @@ Moreover every \(u_i(C_z)=0\), hence every
 \(s_i(C_z)=3g_i(C_z)=0\).  This contradicts the fixed-left
 strictness theorem (5). \(\square\)
 
+There is also a useful individual-kernel strengthening.  Put
+\[
+ R_i=H_V+F_i=S_V-F_j-F_k,
+ \qquad \{i,j,k\}=\{1,2,3\}.
+\]
+The full two-pair theorem gives \(R_i\succeq0\).
+
+### Proposition 5.2
+
+For every code plane \(V\) and every site \(i\),
+\[
+\boxed{
+ \ker\left(H_V+\frac12F_i\right)
+ =
+ \ker(H_V+F_i)
+ =
+ \ker H_V\cap\ker F_i.
+}
+\tag{23k}
+\]
+
+### Proof
+
+Suppose first that \(z\in\ker K_i\).  Then
+\[
+ 0=\langle z,K_iz\rangle=u_i=\frac13r_i+\frac23s_i,
+\]
+so \(r_i=s_i=0\).  Put \(f_i=\langle z,F_iz\rangle\).  Since
+\[
+ \langle z,H_Vz\rangle=-\frac12f_i,
+\]
+the associated transition has \(Q_3(C_z)=-f_i/4\).  If \(f_i>0\),
+this transition is negative but has \(s_i=3g_i=0\), contradicting
+(5).  Hence \(f_i=0\).  Positivity of \(F_i\) gives \(F_iz=0\), and
+then \(K_iz=0\) gives \(H_Vz=0\).  Thus
+\[
+ \ker K_i\subseteq\ker H_V\cap\ker F_i.
+\]
+
+Conversely, suppose \(z\in\ker R_i\).  The exact equality
+classification of the full two-pair theorem forces
+\[
+ f_i=w_2(\operatorname{Tr}_iC_z)=0.
+\]
+Thus \(F_iz=0\), and \(R_iz=0\) gives \(H_Vz=0\).  The reverse
+inclusions are immediate, proving (23k). \(\square\)
+
+Thus replacing \(R_i=H+F_i\) by the sharper
+\(K_i=H+F_i/2\) creates no new kernel directions.  Every individual
+face kernel is already a global zero direction annihilated by its
+missing frame.  The remaining sign problem is quantitative:
+\[
+ \sum_iK_i
+ \stackrel{?}{\succeq}\frac12S_V,
+\]
+which is exactly \(H_V\succeq0\).
+
 The Stiefel manifold of isometries \(V\) is compact, while
 \(S_V\succeq5I/12\).  Hence the generalized face-sum gap
 \[

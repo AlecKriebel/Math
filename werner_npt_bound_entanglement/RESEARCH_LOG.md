@@ -5565,6 +5565,15 @@ All timestamps use America/Los_Angeles.
   Known zero transitions give \(\mu_*\leq1/2\); full unrestricted
   three-copy positivity is equivalent to the sharp evaluation
   \(\mu_*=1/2\).
+- Proved the individual strengthened-face kernel identity
+  \[
+  \ker(H+F_i/2)=\ker(H+F_i)=\ker H\cap\ker F_i.
+  \]
+  The forward implication uses strict Haar equality exclusion; the
+  reverse implication uses the exact two-pair equality
+  classification.  Thus sharpening a two-pair face creates no
+  spurious kernel directions.  The unresolved fusion-frame estimate
+  \(\sum_i(H+F_i/2)\succeq S/2\) is exactly \(H\succeq0\).
 - Defined finite compact semialgebraic stability constants
   \(\eta(a)>0\) and \(\kappa(a)>0\) on the shell
   \(\delta\geq a>0\), obtaining
