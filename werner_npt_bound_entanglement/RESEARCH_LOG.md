@@ -5838,3 +5838,34 @@ All timestamps use America/Los_Angeles.
   \]
 - Added `notes/agent_n3_high_aaa_face_fusion.md` and exact checker
   `verification/verify_n3_high_aaa_face_fusion.py`.
+
+## 2026-07-29 19:44 PDT — Spectral-plane upgrade of the high-AAA radius
+
+- Removed an avoidable square-root loss in the quantitative
+  high-triple-skew theorem.  Instead of estimating compression-plane
+  leakage directly from one Rayleigh quotient, first compare the top
+  two-dimensional singular subspaces of \(D\) and the equality-orbit
+  operator \(D_0\) by a Sylvester spectral-gap estimate, then compare
+  the physical compression plane to the top plane of \(D\) using the
+  determinant deficit.
+- If
+  \(\varepsilon=8/27-{\cal C}(Q_{(3)})\), the resulting compression
+  plane distance is \(O(\varepsilon^{1/8})\), rather than
+  \(O(\varepsilon^{1/16})\).  With audited conservative constants this
+  proves
+  \[
+  {\cal C}(Q_{(3)})>\frac8{27}-10^{-56}
+  \Longrightarrow
+  {\cal C}(Q_{(2)}+Q_{(3)})<\frac49.
+  \]
+- The fused complementary-branch depth bound can therefore replace
+  \(10^{-120}\) by \(10^{-56}\):
+  \[
+  \delta<
+  \frac{648+2187\cdot10^{-56}}
+       {5112+21141\cdot10^{-56}}
+  <\frac9{71}.
+  \]
+- Added `notes/agent_n3_high_aaa_radius_upgrade.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_high_aaa_radius_upgrade.py`.
