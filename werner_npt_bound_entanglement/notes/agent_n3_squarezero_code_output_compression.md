@@ -224,13 +224,59 @@ preservation of \(L^{\otimes3}\).  Applying the already proved result
 to \(C^\dagger=WB^\dagger U^\dagger\) proves the assertion when \(U\)
 is erasure decoupled.
 
+### 3.1 Dimension-uniform form
+
+The preceding gap mechanism is not special to qutrits.  Let
+\[
+ {\cal H}_d=(\mathbb C^d)^{\otimes3},\qquad d\geq3,
+\]
+retain
+\[
+ \Phi_d(A)=\operatorname{Tr}(A)I_d-\frac12A,
+\]
+and assume the dimension-\(d\) erasure condition
+\[
+ \operatorname{Tr}_{\widehat i}|w_a\rangle\langle w_b|
+ =\delta_{ab}\frac{I_d}{d}.
+\tag{19}
+\]
+The code-output identity (9), the inclusion-exclusion formula (13),
+and annihilation of the rank-one term on \(K\otimes W^\perp\) are
+unchanged.  Now each embedded one-site output equals \(I/d\), while
+the pair outputs remain positive.  Therefore
+\[
+\boxed{
+\begin{aligned}
+ P_\perp M_W^{(d)}P_\perp
+ &=
+ \left(1-\frac{3}{2d}\right)P_\perp\\
+ &\quad+\frac14\sum_{i<j}
+ P_\perp\bigl(\rho_{Kij}^W\otimes
+ I_{\widehat{\{i,j\}}}\bigr)P_\perp\\
+ &\succeq
+ \left(1-\frac{3}{2d}\right)P_\perp .
+\end{aligned}}
+\tag{20}
+\]
+Consequently, for every orthogonal two-code \(U\),
+\[
+\boxed{
+ G_d(U,W)\succeq
+ \left(1-\frac{3}{2d}\right)I_4.}
+\tag{21}
+\]
+At \(d=3\), this is exactly (4)--(5).  This dimension-uniform
+decomposition is potentially useful beyond the qutrit determinant
+program: its strict part is independent of the copywise pair-output
+geometry.
+
 ## 4. Product determinant consequence and equality
 
 Every \(\rho_i^U\) is positive and has trace two.  Arithmetic--geometric
 mean on its three eigenvalues gives
 \[
  \det\rho_i^U\leq\left(\frac23\right)^3=\frac8{27},
-\tag{19}
+\tag{22}
 \]
 with equality exactly when \(\rho_i^U=2I_3/3\).  The same holds for
 \(W\).  Therefore
@@ -241,7 +287,7 @@ with equality exactly when \(\rho_i^U=2I_3/3\).  The same holds for
  \frac{3^{18}}{2^{22}}
  \left(\frac8{27}\right)^6
  =\frac1{16}.
-\tag{20}
+\tag{23}
 \]
 Equation (5) now proves (6).
 
@@ -257,7 +303,7 @@ equivalent to all of the following:
    \bigl(\rho_{Kij}^W\otimes
    I_{\widehat{\{i,j\}}}\bigr)J_U=0
    \quad(i<j).
-   \tag{21}
+   \tag{24}
    \]
 
 Indeed, equality in (20) gives the balanced marginals.  Since every

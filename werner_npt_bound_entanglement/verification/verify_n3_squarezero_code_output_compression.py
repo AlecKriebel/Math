@@ -16,16 +16,18 @@ SparseVector = dict[Word, F]
 SparseMatrix = dict[tuple[tuple[int, ...], tuple[int, ...]], F]
 
 
-def diagonal_state(a: int, b: int) -> SparseVector:
-    """Unnormalized support of (1/sqrt(3)) sum_j |j,j+a,j+b>."""
+def diagonal_state(a: int, b: int, dimension: int = 3) -> SparseVector:
+    """Unnormalized support of a uniform cyclic Latin diagonal."""
     return {
-        (j, (j + a) % 3, (j + b) % 3): F(1)
-        for j in range(3)
+        (j, (j + a) % dimension, (j + b) % dimension): F(1)
+        for j in range(dimension)
     }
 
 
 def transition(
-    left: SparseVector, right: SparseVector, normalization: F = F(1, 3)
+    left: SparseVector,
+    right: SparseVector,
+    normalization: F = F(1, 3),
 ) -> SparseMatrix:
     """Normalized |left><right| for the Latin states used below."""
     return {
@@ -96,15 +98,21 @@ def determinant(matrix: list[list[F]]) -> F:
 
 
 def one_site_reduction(
-    left: SparseVector, right: SparseVector, site: int
+    left: SparseVector,
+    right: SparseVector,
+    site: int,
+    dimension: int = 3,
 ) -> list[list[F]]:
     reduced = partial_trace(
-        transition(left, right),
+        transition(left, right, F(1, dimension)),
         tuple(i for i in range(3) if i != site),
     )
     return [
-        [reduced.get(((a,), (b,)), F(0)) for b in range(3)]
-        for a in range(3)
+        [
+            reduced.get(((a,), (b,)), F(0))
+            for b in range(dimension)
+        ]
+        for a in range(dimension)
     ]
 
 
@@ -114,15 +122,16 @@ def pair_output_entry(
     w_left: SparseVector,
     w_right: SparseVector,
     retained: tuple[int, int],
+    dimension: int = 3,
 ) -> F:
     """<u_left|[(Tr_complement |w_left><w_right|) tensor I]|u_right>."""
     complement = next(i for i in range(3) if i not in retained)
     reduced = partial_trace(
-        transition(w_left, w_right),
+        transition(w_left, w_right, F(1, dimension)),
         (complement,),
     )
     answer = F(0)
-    # Each normalized u amplitude contributes 1/sqrt(3), hence 1/3
+    # Each normalized u amplitude contributes 1/sqrt(d), hence 1/d
     # for the bra-ket pair.
     for row, x in u_left.items():
         for col, y in u_right.items():
@@ -131,7 +140,7 @@ def pair_output_entry(
             pair_row = tuple(row[i] for i in retained)
             pair_col = tuple(col[i] for i in retained)
             answer += (
-                F(1, 3)
+                F(1, dimension)
                 * x
                 * y
                 * reduced.get((pair_row, pair_col), F(0))
@@ -249,3 +258,86 @@ print("verified: exact one-site erasure decoupling")
 print("verified: endpoint Gram and positive pair-output decomposition")
 print("verified: uniform one-half spectral gap")
 print("verified: product determinant bound on a full-rank rational code")
+
+
+# Dimension-uniform spot check at d=4.  The same two pairs of disjoint
+# Latin diagonals are erasure decoupled, now with output I_4/4.
+dimension = 4
+u4 = (
+    diagonal_state(0, 1, dimension),
+    diagonal_state(1, 0, dimension),
+)
+w4 = (
+    diagonal_state(0, 0, dimension),
+    diagonal_state(1, 2, dimension),
+)
+identity_over_four = [
+    [F(1, 4) if a == b else F(0) for b in range(4)]
+    for a in range(4)
+]
+zero_four = [[F(0)] * 4 for _ in range(4)]
+for code in (u4, w4):
+    for site in range(3):
+        for a in range(2):
+            for b in range(2):
+                expected = identity_over_four if a == b else zero_four
+                assert (
+                    one_site_reduction(
+                        code[a], code[b], site, dimension
+                    )
+                    == expected
+                )
+
+units4 = [
+    transition(u4[a], w4[b], F(1, dimension))
+    for a in range(2)
+    for b in range(2)
+]
+gram4 = [
+    [endpoint_bilinear(left, right) for right in units4]
+    for left in units4
+]
+pair_outputs4: list[list[list[F]]] = []
+for retained in combinations(range(3), 2):
+    block = [[F(0)] * 4 for _ in range(4)]
+    for a in range(2):
+        for b in range(2):
+            for c in range(2):
+                for d in range(2):
+                    block[2 * a + b][2 * c + d] = pair_output_entry(
+                        u4[a],
+                        u4[c],
+                        w4[b],
+                        w4[d],
+                        retained,
+                        dimension,
+                    )
+    pair_outputs4.append(block)
+
+dimension_four_gap = F(1) - F(3, 2 * dimension)
+assert dimension_four_gap == F(5, 8)
+reconstructed4 = [
+    [
+        (dimension_four_gap if row == col else F(0))
+        + F(1, 4) * sum(
+            block[row][col] for block in pair_outputs4
+        )
+        for col in range(4)
+    ]
+    for row in range(4)
+]
+assert reconstructed4 == gram4
+gap4 = [
+    [
+        gram4[row][col]
+        - (dimension_four_gap if row == col else F(0))
+        for col in range(4)
+    ]
+    for row in range(4)
+]
+for size in range(1, 5):
+    for subset in combinations(range(4), size):
+        principal = [[gap4[i][j] for j in subset] for i in subset]
+        assert determinant(principal) >= 0
+
+print("verified: dimension-four erasure gap 5/8")

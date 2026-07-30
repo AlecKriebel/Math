@@ -6527,6 +6527,20 @@ u_1u_1^\dagger\bigr].
   G(U,W)\succeq\frac12I_4
   \]
   for every \(U\perp W\).  The same holds with \(U,W\) reversed.
+- The same proof is dimension uniform.  On
+  \((\mathbb C^d)^{\otimes3}\), the erasure condition
+  \(\operatorname{Tr}_{\widehat i}|w_a\rangle\langle w_b|
+  =\delta_{ab}I_d/d\) gives the exact positive decomposition
+  \[
+  P_\perp M_W^{(d)}P_\perp
+  =
+  \left(1-\frac{3}{2d}\right)P_\perp
+  \frac14\sum_{i<j}P_\perp
+  (\rho_{Kij}^W\otimes I)P_\perp.
+  \]
+  Hence every orthogonal transition Gram has the strict lower bound
+  \(G_d(U,W)\succeq(1-3/(2d))I_4\).  The exact checker includes a
+  rational \(d=4\) spot check with gap \(5/8\).
 - As a consequence, the conjectured strengthening
   \[
   \det G\geq\frac{3^{18}}{2^{22}}
