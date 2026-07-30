@@ -197,6 +197,84 @@ coherences.  Thus a weights-only argument discards six real
 stationarity equations as well as the positive-semidefinite Gram
 constraints (10b).
 
+#### Rayleigh-critical version
+
+For a negative critical point of the homogeneous problem one must
+apply the moment equation to the Rayleigh quotient, rather than to
+the unnormalized quadratic form.  Normalize
+\[
+ \|C\|_2=1,\qquad q=Q_3(C)<0,
+\tag{10f}
+\]
+and define the shifted two-copy form
+\[
+ {\cal B}_{2,q}(A,B)
+ =
+ {\cal B}_2(A,B)-q\langle A,B\rangle_{\rm HS}.
+\tag{10g}
+\]
+Let \(R^{(q)},S^{(q)}\) be (10a) with
+\({\cal B}_2\) replaced by \({\cal B}_{2,q}\).  A normalized
+rank-two global minimizer with negative value has full local row and
+column support at every site, by the established local-support
+theorem.  Its exact similarity critical equations are
+\[
+\boxed{
+ S_i^{(q)}=\overline{R_i^{(q)}},
+ \qquad
+ R_i^{(q)}\succ0,\quad S_i^{(q)}\succ0
+ \quad(i=1,2,3).}
+\tag{10h}
+\]
+
+Indeed, stationarity of \(Q_3-q\|\cdot\|_2^2\) gives (10d) for the
+shifted form.  For every \(z\),
+\[
+\begin{aligned}
+ z^\dagger R^{(q)}z
+ &=
+ \sum_s\left[
+ Q_2\left(\sum_pz_pC_{ps}\right)
+ +|q|\left\|\sum_pz_pC_{ps}\right\|_2^2
+ \right].
+\end{aligned}
+\tag{10i}
+\]
+The first terms are nonnegative by the two-copy theorem.  Full local
+row support says that a nonzero \(z\) cannot annihilate every
+compressed block, so the second terms make (10i) strictly positive.
+The proof for \(S^{(q)}\) is identical.
+
+Writing
+\[
+ n_{pq}=\|C_{pq}\|_2^2,\qquad
+ \widetilde r_{pq}=r_{pq}-q n_{pq},
+\tag{10j}
+\]
+the diagonal part of (10h) says that the nonnegative shifted weights
+\(\widetilde r_{pq}\) form a circulation.  They also obey the exact
+trace identity
+\[
+\boxed{
+ Q_2\left(\sum_pC_{pp}\right)
+ =2\operatorname{Tr}R^{(q)}
+ =2\sum_{p,q}\widetilde r_{pq}>0.}
+\tag{10k}
+\]
+To prove this, use \(\sum n_{pq}=\|C\|_2^2=1\) and the recursion:
+\[
+\begin{aligned}
+ \operatorname{Tr}R^{(q)}
+ &=\sum_{p,q}r_{pq}-q\\
+ &=\frac12Q_2\left(\sum_pC_{pp}\right).
+\end{aligned}
+\]
+
+Thus any negative witness has a negative normalized global minimizer
+whose nonnormal geometry is encoded by three strictly positive
+matrix-valued shifted circulations satisfying (10h)--(10k).  At a
+zero, \(q=0\), these reduce to the unshifted equations (10e).
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[

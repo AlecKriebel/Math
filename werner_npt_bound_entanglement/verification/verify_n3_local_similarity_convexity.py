@@ -233,6 +233,14 @@ assert all(
     for r in range(3)
 )
 
+# The shifted-Rayleigh trace identity (10k) is algebraic and does
+# not require this sample itself to be critical.
+rayleigh_value = endpoint_q(C, 3) / norm_squared(C)
+shifted_trace = sum(value for row in weights for value in row) - (
+    rayleigh_value * norm_squared(C)
+)
+assert shifted_trace == F(1, 2) * endpoint_q(diagonal_sum, 2)
+
 # The singular-Gram theorem is sharp at the exact transverse
 # common-qubit spin-flip zero.  We omit normalization to stay over Q.
 anchor_u0 = [F(0)] * 27
