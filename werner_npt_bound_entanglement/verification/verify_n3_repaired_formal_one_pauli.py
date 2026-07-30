@@ -165,14 +165,38 @@ for p in range(3):
     norm_squared = nu * dot(a, a) * dot(b, b)
     assert energy * 20 == norm_squared
 
+# The global product-pencil floor 1/40 is sharp on every
+# two-coordinate Hadamard pair.  We use unnormalized +/- vectors to
+# keep the check rational.
+for p in range(3):
+    for r in range(p + 1, 3):
+        a = [F(0), F(0), F(0)]
+        b = [F(0), F(0), F(0)]
+        a[p] = a[r] = F(1)
+        b[p], b[r] = F(1), F(-1)
+        energy = target_energy(a, b)
+        norm_squared = nu * dot(a, a) * dot(b, b)
+        assert energy * 40 == norm_squared
+
 
 # Exact arithmetic in the singular-product lemma.
-x = F(2, 11)
-assert 22 * x * x - 15 * x + 2 == 0
-assert 22 * F(1, 2) ** 2 - 15 * F(1, 2) + 2 == 0
-assert x / (1 + x * x) == F(22, 125)
-off_product_floor = F(22, 125) * nu
-assert off_product_floor == F(22, 1125)
+# The small root of 19*x^2-20*x+4 is
+# (10-2*sqrt(6))/19.  It lies strictly above 2-sqrt(3):
+# evaluating the polynomial at 2-sqrt(3) gives
+# 97-56*sqrt(3)>0, and the squared integer gap is one.
+assert 97**2 - 3 * 56**2 == 1
+# At x=2-sqrt(3), x/(1+x^2)=1/4 exactly.
+# Algebraically, x^2-4*x+1=0 is equivalent to that identity.
+off_product_fraction = F(1, 4)
+off_product_floor = off_product_fraction * nu
+assert off_product_floor == F(1, 36)
+
+# At quotient 1/40 the singular-ratio polynomial has roots 1/3 and
+# 9/13, and the resulting determinant fraction is 3/10.
+assert 39 * F(1, 3) ** 2 - 40 * F(1, 3) + 9 == 0
+assert 39 * F(9, 13) ** 2 - 40 * F(9, 13) + 9 == 0
+assert F(1, 3) / (1 + F(1, 3) ** 2) == F(3, 10)
+assert F(3, 10) * nu == F(1, 30)
 
 
 # The determinant polynomial in equation (25).
@@ -191,13 +215,29 @@ for lam, norm_sq, t_value in [
     assert direct == expanded
 
 
-# The lambda restriction is exactly the sum of the three individual
-# determinant floors combined with Minkowski's determinant inequality.
+# The coordinate-pencil lambda restriction is the sum of the three
+# individual determinant floors combined with Minkowski's inequality.
 individual_floor_numerator = 3 * off_product_floor
-assert individual_floor_numerator == F(22, 375)
-assert 3 * individual_floor_numerator == F(22, 125)
+assert individual_floor_numerator == F(1, 12)
+assert 3 * individual_floor_numerator == F(1, 4)
+
+# The Hadamard pencils improve it.  Each B determinant square root is
+# at most sqrt(lambda(1-lambda))/3, so the product floor 1/30 forces
+# each A determinant square root to be at least
+# 1/(10 sqrt(lambda(1-lambda))).  There are two signs per pair and
+# three complementary pairs; their Minkowski sum is at most 2.
+hadamard_product_floor = F(1, 30)
+hadamard_alpha_floor_coefficient = 3 * hadamard_product_floor
+assert hadamard_alpha_floor_coefficient == F(1, 10)
+pair_floor_coefficient = 2 * hadamard_alpha_floor_coefficient
+assert pair_floor_coefficient == F(1, 5)
+lambda_sqrt_floor = 3 * pair_floor_coefficient / 2
+assert lambda_sqrt_floor == F(3, 10)
 
 print("verified: repaired formal Gram arithmetic")
 print("verified: exact polarized two-copy kernel")
-print("verified: quotient-1/20 singular-product floor 22/125")
-print("verified: one-Pauli determinant polynomial and lambda constant")
+print("verified: sharp global product-pencil quotient 1/40")
+print("verified: quotient-1/20 singular-product floor 1/4")
+print("verified: Hadamard-pencil singular-product floor 3/10")
+print("verified: one-Pauli determinant polynomial")
+print("verified: strengthened lambda interval [1/10, 9/10]")

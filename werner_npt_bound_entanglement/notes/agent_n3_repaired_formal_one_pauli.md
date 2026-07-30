@@ -198,6 +198,39 @@ two-copy bound gives quotient at least \(1/4\).  The argument with
 \tag{13a}
 \]
 
+The product-pencil quotient also has an exact global floor.  For unit
+\(a,b\), put
+\[
+ D=\sum_p|a_p|^2|b_p|^2,\qquad
+ O=|\langle b,a\rangle|^2.
+\]
+If \(z_p=a_p\overline{b_p}\), then
+\[
+ O=\left|\sum_pz_p\right|^2,\qquad
+ D=\sum_p|z_p|^2,\qquad
+ \sum_p|z_p|\le1.
+\]
+The triangle inequality gives
+\[
+ O\ge\max(0,2D-1).
+\]
+Substitution in (13), separately for \(D\le1/2\) and
+\(D\ge1/2\), proves
+\[
+\boxed{
+ Q_2(X(a)Y(b)^\dagger)
+ \ge\frac1{40}
+ \|X(a)Y(b)^\dagger\|_2^2.}
+\tag{13b}
+\]
+The constant is sharp.  For any \(p\ne r\), take
+\[
+ a=\frac{e_p+e_r}{\sqrt2},\qquad
+ b=\frac{e_p-e_r}{\sqrt2}.
+\tag{13c}
+\]
+Then \(D=1/2\), \(O=0\), and equality holds in (13b).
+
 For \(b_p=0\) and \(a=e_p\), this is exactly
 \[
  Q_2(X_pY(b)^\dagger)
@@ -225,9 +258,10 @@ Let \(M\) have rank at most two and nonzero singular values
 then
 \[
 \boxed{
-\frac{s_2}{s_1}\ge\frac2{11},
+\frac{s_2}{s_1}\ge
+\frac{10-2\sqrt6}{19},
 \qquad
-s_1s_2\ge\frac{22}{125}\|M\|_2^2.}
+s_1s_2\ge\frac14\|M\|_2^2.}
 \tag{16}
 \]
 
@@ -239,10 +273,10 @@ Hilbert--Schmidt norm, and put
  a=Q_2(E_1),\qquad b=Q_2(E_2),\qquad
  c={\cal B}_2(E_1,E_2).
 \]
-The rank-one replica operator
-\((I-F/2)^{\otimes2}\) has spectrum in \([1/4,9/4]\), so
+The strict rank-one theorem gives the lower bound \(1/4\), while
+\(L^{\otimes2}\preceq I\) gives the upper bound.  Hence
 \[
- \frac14\le a,b\le\frac94.
+ \frac14\le a,b\le1.
 \tag{17}
 \]
 Every linear combination of \(E_1,E_2\) has rank at most two.
@@ -258,26 +292,56 @@ Hence
 \end{aligned}
 \tag{18}
 \]
-Put \(x=s_2/s_1\).  If \(x\ge1/3\), the first inequality in
-(16) is immediate.  If \(x<1/3\), minimizing the right side of
+Put \(x=s_2/s_1\).  If \(x\ge1/2\), the first inequality in
+(16) is immediate.  If \(x<1/2\), minimizing the right side of
 (18) over (17) gives
 \[
- Q_2(M)\ge\frac14s_1^2(1-3x)^2.
+ Q_2(M)\ge s_1^2(1/2-x)^2.
 \]
 Using (15) yields
 \[
- \frac1{20}(1+x^2)\ge\frac14(1-3x)^2,
+ \frac1{20}(1+x^2)\ge(1/2-x)^2,
 \]
 or
 \[
- 22x^2-15x+2\le0.
+ 19x^2-20x+4\le0.
 \]
-Its roots are \(2/11\) and \(1/2\), proving \(x\ge2/11\).
-Finally \(x/(1+x^2)\) is increasing on \([0,1]\), and
+Its smaller root is
 \[
- \frac{(2/11)}{1+(2/11)^2}=\frac{22}{125}.
+ x_0=\frac{10-2\sqrt6}{19}.
+\]
+Moreover \(x_0>2-\sqrt3\).  One exact way to see this is that the
+quadratic on the left is decreasing below \(1/2\), while
+\[
+ 19(2-\sqrt3)^2-20(2-\sqrt3)+4
+ =97-56\sqrt3>0;
+\]
+the last inequality follows from \(97^2-(56\sqrt3)^2=1\).
+Thus \(x\ge2-\sqrt3\).  Since \(x/(1+x^2)\) is increasing on
+\([0,1]\),
+\[
+ \frac{x}{1+x^2}\ge
+ \frac{2-\sqrt3}{1+(2-\sqrt3)^2}=\frac14.
 \]
 This proves (16). \(\square\)
+
+The identical argument at the sharp quotient \(1/40\) gives
+\[
+\boxed{
+ Q_2(M)=\frac1{40}\|M\|_2^2
+ \Longrightarrow
+ \frac{s_2}{s_1}\ge\frac13,\qquad
+ s_1s_2\ge\frac3{10}\|M\|_2^2.}
+\tag{16a}
+\]
+Indeed, in the \(x<1/2\) branch the scalar inequality becomes
+\[
+ 39x^2-40x+9\le0,
+\]
+whose smaller root is \(1/3\), and
+\[
+ \frac{(1/3)}{1+(1/3)^2}=\frac3{10}.
+\]
 
 For \(M=X(a)Y(b)^\dagger\),
 \[
@@ -288,7 +352,7 @@ Applying Lemma 1 to (14) gives the nonlinear pencil condition
 \[
 \boxed{
 \sqrt{\det A(e_p)\det B(b)}
-\ge\frac{22}{1125}\|b\|^2
+\ge\frac1{36}\|b\|^2
 \qquad(b_p=0).}
 \tag{20}
 \]
@@ -296,10 +360,28 @@ The transposed version is
 \[
 \boxed{
 \sqrt{\det A(a)\det B(e_q)}
-\ge\frac{22}{1125}\|a\|^2
+\ge\frac1{36}\|a\|^2
 \qquad(a_q=0).}
 \tag{21}
 \]
+
+Applying (16a) to the three Hadamard pairs (13c) gives, for every
+\(p\ne r\),
+\[
+\boxed{
+\begin{aligned}
+ \sqrt{\det A\left(\frac{e_p+e_r}{\sqrt2}\right)
+       \det B\left(\frac{e_p-e_r}{\sqrt2}\right)}
+ &\ge\frac1{30},\\
+ \sqrt{\det A\left(\frac{e_p-e_r}{\sqrt2}\right)
+       \det B\left(\frac{e_p+e_r}{\sqrt2}\right)}
+ &\ge\frac1{30}.
+\end{aligned}}
+\tag{21a}
+\]
+These six inequalities couple the off-diagonal entries of \(h\) and
+\(Z\); they cannot be recovered from the nine individual block
+determinants.
 
 Write
 \[
@@ -313,7 +395,7 @@ Since
 (20) implies
 \[
  \alpha_p\ge
- \frac{22}{375\sqrt{\lambda(1-\lambda)}}.
+ \frac1{12\sqrt{\lambda(1-\lambda)}}.
 \tag{22}
 \]
 Minkowski's determinant inequality and
@@ -321,11 +403,65 @@ Minkowski's determinant inequality and
 \[
  \sum_p\alpha_p\le1.
 \]
-Therefore every realization must obey the exact interior restriction
+Therefore the coordinate pencils alone give the preliminary restriction
+\[
+\sqrt{\lambda(1-\lambda)}\ge\frac14.
+\]
+
+The Hadamard pencils improve this.  Put
+\[
+ \alpha_\pm^{pr}
+ =\sqrt{\det A\left(\frac{e_p\pm e_r}{\sqrt2}\right)},
+ \qquad
+ \beta_\pm^{pr}
+ =\sqrt{\det B\left(\frac{e_p\pm e_r}{\sqrt2}\right)}.
+\]
+Every normalized \(B(b)\) has trace \(1/3\), hence
+\[
+ \beta_\pm^{pr}\le
+ \frac{\sqrt{\lambda(1-\lambda)}}3.
+\]
+The two inequalities (21a) consequently imply
+\[
+ \alpha_+^{pr},\alpha_-^{pr}
+ \ge\frac1{10\sqrt{\lambda(1-\lambda)}}.
+\]
+Moreover,
+\[
+ A\left(\frac{e_p+e_r}{\sqrt2}\right)
+ +A\left(\frac{e_p-e_r}{\sqrt2}\right)
+ =A(e_p)+A(e_r).
+\]
+Minkowski's determinant inequality gives
+\[
+ \sqrt{\det(A(e_p)+A(e_r))}
+ \ge\frac1{5\sqrt{\lambda(1-\lambda)}}.
+\]
+Sum this over the three unordered pairs.  Since
+\(\sum_pA(e_p)=I_2\), the three matrices on the left are
+\(I_2-A(e_s)\).  The arithmetic--geometric mean inequality gives
+\[
+ \sum_s\sqrt{\det(I_2-A(e_s))}
+ \le\frac12\sum_s\operatorname{Tr}(I_2-A(e_s))
+ =2.
+\]
+Thus every realization obeys the stronger exact interior restriction
 \[
 \boxed{
-\sqrt{\lambda(1-\lambda)}\ge\frac{22}{125}.}
+\sqrt{\lambda(1-\lambda)}\ge\frac3{10}.}
 \tag{23}
+\]
+Equivalently,
+\[
+\boxed{\frac1{10}\le\lambda\le\frac9{10}.}
+\]
+In particular, the common Pauli direction is uniformly separated
+from both rank-drop faces.  This still does not exclude the branch:
+the symmetric point \(\lambda=1/2\) passes this scalar obstruction.
+
+For comparison, the weaker coordinate-only estimate was
+\[
+\sqrt{\lambda(1-\lambda)}\ge\frac14.
 \]
 
 There are also explicit principal-plane inequalities.  From (9) and
@@ -336,7 +472,7 @@ There are also explicit principal-plane inequalities.  From (9) and
  \le
  \left[
  \frac{\lambda(1-\lambda)}9
- -\left(\frac{22}{1125\alpha_p}\right)^2
+ -\left(\frac1{36\alpha_p}\right)^2
  \right]\|b\|^4.}
 \tag{24}
 \]
@@ -347,7 +483,7 @@ Similarly, putting \(t=a^\dagger ha\), (21) gives
 +\frac{1-2\lambda}{3}\|a\|^2t
 -\lambda(1-\lambda)t^2
 \ge
-\left(\frac{22}{1125\beta_q}\right)^2\|a\|^4
+\left(\frac1{36\beta_q}\right)^2\|a\|^4
 \quad(a_q=0).}
 \tag{25}
 \]

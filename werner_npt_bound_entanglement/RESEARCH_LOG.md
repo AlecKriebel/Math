@@ -7231,22 +7231,48 @@ u_1u_1^\dagger\bigr].
   injective.  Otherwise choosing an orthogonal coefficient on the
   other side gives quotient at most \(1/20\), contradicting the sharp
   rank-one two-copy floor \(1/4\).
+- The complete product-pencil quotient has the sharp exact lower bound
+  \[
+  \frac{Q_2(X(a)Y(b)^\dagger)}
+       {\|X(a)Y(b)^\dagger\|^2}\ge\frac1{40}.
+  \]
+  Equality occurs on each two-coordinate Hadamard pair
+  \(a=(e_p+e_r)/\sqrt2,\ b=(e_p-e_r)/\sqrt2\).  At quotient \(1/40\),
+  the same singular-value argument gives
+  \[
+  s_2/s_1\ge1/3,\qquad
+  s_1s_2\ge(3/10)\|M\|^2.
+  \]
+  This yields six additional determinant inequalities coupling the
+  off-diagonal entries of the common matrices \(h\) and \(Z\).
 - Proved an exact singular-product lemma using only the established
-  two-copy theorem and the rank-one spectrum
-  \([1/4,9/4]\):
+  two-copy theorem and the exact rank-one energy interval
+  \([1/4,1]\):
   \[
   Q_2(M)=\frac1{20}\|M\|^2
   \Longrightarrow
-  \frac{s_2}{s_1}\ge\frac2{11},\qquad
-  s_1s_2\ge\frac{22}{125}\|M\|^2.
+  \frac{s_2}{s_1}\ge\frac{10-2\sqrt6}{19},\qquad
+  s_1s_2\ge\frac14\|M\|^2.
   \]
   Applied to every coordinate off-diagonal pencil, this yields
   explicit determinant/numerical-radius inequalities on the common
   \(h,Z,\lambda\).
-- Minkowski's \(2\times2\) determinant inequality then gives the
-  exact interior restriction
+- Coordinate-pencil determinant inequalities and Minkowski's
+  \(2\times2\) determinant inequality first give
   \[
-  \sqrt{\lambda(1-\lambda)}\ge\frac{22}{125}.
+  \sqrt{\lambda(1-\lambda)}\ge\frac14.
+  \]
+- The six Hadamard-pencil inequalities sharpen this substantially.
+  For each unordered pair \(p\ne r\), they imply
+  \[
+  \sqrt{\det(A(e_p)+A(e_r))}
+  \ge\frac1{5\sqrt{\lambda(1-\lambda)}}.
+  \]
+  Summing over the three pairs and using
+  \(\sqrt{\det M}\le\operatorname{Tr}M/2\) yields the exact bound
+  \[
+  \sqrt{\lambda(1-\lambda)}\ge\frac3{10},
+  \qquad \frac1{10}\le\lambda\le\frac9{10}.
   \]
   Thus the formal point, if realizable, lies in a compact injective
   one-Pauli branch bounded away from every rank-drop face.
