@@ -5023,3 +5023,59 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_dual_low_sector_elimination.md` and
   `verification/verify_n3_full_dual_low_sector_elimination.py`.
+
+## 2026-07-29 18:23 PDT — Quantitative two-component reflection theorem
+
+- Proved an exact strengthened inequality on every two-component
+  pair face.  For
+  \(D=I_1\otimes B_{23}+I_2\otimes B_{13}\) and every isometry
+  \(V:\mathbb C^2\to(\mathbb C^3)^{\otimes3}\),
+  \[
+  \|DV\|_2^2+\frac1{34}
+  |\operatorname{Tr}(V^\dagger DV)|^2
+  \leq2(\|B_{23}\|_2^2+\|B_{13}\|_2^2).
+  \]
+  Equivalently, every \(2\times2\) principal block of the ordinary
+  deficit matrix remains positive after the rank-one subtraction
+  \(\tau\tau^\dagger/34\).  The reflection target requires
+  \(\tau\tau^\dagger/16\).
+- For the normalized code purification \(R=|\Psi\rangle\langle\Psi|\),
+  the common-site frame operator is
+  \[
+  T=({\cal E}_1{\cal E}_3+
+       {\cal E}_2{\cal E}_3)(R),
+  \qquad {\cal E}=e-\tfrac13\operatorname{id}.
+  \]
+  Proved the rank-one floor
+  \[
+  I-T\succeq\frac1{18}R
+  \]
+  from the exact map identity
+  \[
+  2e_1e_2e_3-{\cal E}_1{\cal E}_3-{\cal E}_2{\cal E}_3
+  -\frac1{18}\operatorname{id}
+  =
+  2e_3\Phi_1\Phi_2+
+  \frac13{\cal E}_1+\frac13{\cal E}_2+\frac16{\cal E}_3.
+  \]
+  Here \(\Phi=e-\operatorname{id}/2\);
+  \(\Phi_1\Phi_2\) is two-positive by the proved two-copy theorem,
+  while the \({\cal E}_i\) are completely positive.
+- A lossless frame Schur complement sends a rank-one floor
+  \(\lambda\) to the trace-deficit coefficient
+  \(\gamma=\lambda/[2(1-\lambda)]\), giving
+  \(1/18\mapsto1/34\).
+- The desired \(1/16\) pair theorem is now exactly the single positive
+  rank-one domination
+  \[
+  \left(
+  2e_3\Phi_1\Phi_2+
+  \frac13{\cal E}_1+\frac13{\cal E}_2+\frac16{\cal E}_3
+  \right)(R)
+  \succeq\frac1{18}R.
+  \]
+  Thus the remaining gap on every \(2\times2\) principal face is one
+  explicit factor of two in a positive marginal sum.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_reflection_two_component_quantitative.md` and
+  `verification/verify_n3_reflection_two_component_quantitative.py`.
