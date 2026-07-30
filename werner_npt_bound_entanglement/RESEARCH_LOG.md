@@ -5642,3 +5642,47 @@ All timestamps use America/Los_Angeles.
   constant.
 - Updated `notes/agent_n3_common_trace_slack_tradeoff.md` and its
   dependency-free exact checker.
+
+## 2026-07-29 19:32 PDT — Partial-contraction exterior elimination is scalar-redundant
+
+- For each one-site partial trace \(T_i=\operatorname{Tr}_iC\), kept
+  its second exterior nuclear mass
+  \(\pi_i=\|\wedge^2T_i\|_1\) instead of immediately using the crude
+  rank-six trace bound.  The exact trace inequality gives
+  \[
+  12r_i+2\pi_i\ge5\|T_i\|_2^2.
+  \]
+- Factored \(T_i=A_iB_i^\dagger\) through the two common singular
+  planes.  Exterior Hölder and the rank-six variance bound give
+  \[
+  \pi_i\le
+  \|\wedge^2A_i\|_2\|\wedge^2B_i\|_2
+  \le\frac5{12}(s_1+s_2)^2.
+  \]
+- Independent elimination of the three \(\pi_i\)'s yields
+  \[
+  1072R+20S\ge1260c+2835a+90\Delta.
+  \]
+  On the negative-depth simplex this is
+  \[
+  940\delta+177(1-5\delta)L+315a+10\Delta\le132.
+  \]
+- Proved that this last inequality is coefficientwise implied by the
+  common global trace bound.  After scaling the latter by \(11/18\),
+  its excess is exactly
+  \[
+  28\delta+\frac92(1-5\delta)L+\frac{63}{2}a+\Delta.
+  \]
+  Thus the partial exterior masses help only if their shared cyclic
+  qutrit Hodge alignment is retained.
+- Constructed an exact negative scalar model at
+  \[
+  \delta=L=\frac1{10},\qquad a=\frac1{24},\qquad\Delta=0
+  \]
+  satisfying all independently eliminated inequalities.  It is not a
+  physical rank-two matrix; it certifies the limitation of this
+  scalar route.
+- Added
+  `notes/agent_n3_partial_exterior_elimination_nogo.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_partial_exterior_elimination_nogo.py`.
