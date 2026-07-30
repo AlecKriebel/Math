@@ -5206,3 +5206,20 @@ All timestamps use America/Los_Angeles.
   specified three-copy sector has been added with a positive
   coefficient, but the remaining assertion still requires the
   common nonnormal rank-two geometry.
+# 2026-07-29 — Exact obstruction to an inertia-only compensated proof
+
+- Recorded an exact Hermitian rank-four operator
+  \[
+  H=|0\rangle\langle0|\otimes
+  (|0\rangle\langle0|\otimes I-I\otimes|0\rangle\langle0|)
+  \]
+  with inertia \((2,2)\) but
+  \[
+  2Q_3(H)+3w_{011}(H)=-2.
+  \]
+- Hence the full two-pair compensated residual cannot be proved by
+  splitting \(C=A+iB\) and retaining only the separate inertia bounds
+  on \(A\) and \(B\).  The coupled relation
+  \(\operatorname{rank}(A+iB)\le2\) is essential.
+- Added the dependency-free exact verifier
+  `verification/verify_n3_compensated_inertia_obstruction.py`.
