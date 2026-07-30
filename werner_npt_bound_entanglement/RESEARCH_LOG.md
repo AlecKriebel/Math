@@ -5868,6 +5868,43 @@ All timestamps use America/Los_Angeles.
   dependency-free exact checker
   `verification/verify_n3_quantitative_high_aaa_optimized.py`.
 
+## 2026-07-29 22:01 PDT — Normal residual reduced to one signed Fierz fourth moment
+
+- At a normalized negative rank-two endpoint minimizer, derived the
+  exact normal-residual identity
+  \[
+  \|W\|_2^2
+  =\frac5{48}-\frac{21}{8}q+\frac98G+\frac1{12}\Xi-q^2
+  >\frac5{48},
+  \qquad W={\cal L}(C)-qC.
+  \]
+  Thus a counterexample cannot be nearly reducing for the endpoint
+  superoperator.
+- Inserted the individual-label signed Fierz colligation into the
+  complete norm-constrained tangent Hessian.  If \(A_T,B_T\) are the
+  two one-sided Hessian energies, \(p_T\) the ordinary crossed
+  response, and \(w_T\) the positive Fierz weights, proved
+  \[
+  \|W\|_2^2+\sum_Tw_T|p_T|
+  \leq
+  \sqrt{\left(\sum_Tw_TA_T\right)
+        \left(\sum_Tw_TB_T\right)}.
+  \]
+- This identifies one explicit remaining signed fourth-moment lemma.
+  Proving
+  \[
+  \sqrt{(\sum wA)(\sum wB)}-\sum w|p|
+  \leq\frac5{48}+\frac98G+\frac1{12}\Xi-q^2
+  \]
+  at a negative critical point would force \(q\geq0\), equivalently
+  the exact \(204G+45a+16\Xi\) fusion.
+- Proved that discarding the ordinary crossed responses and retaining
+  only the universal tight-frame norms yields merely
+  \(\|W\|^2\le123(1-q)/8\), which is scalar-redundant.
+- Added `notes/agent_n3_normal_residual_fierz_hessian.md` and exact
+  sector checker
+  `verification/verify_n3_normal_residual_fierz_hessian.py`.
+
 ## 2026-07-29 19:44 PDT — Spectral-plane upgrade of the high-AAA radius
 
 - Removed an avoidable square-root loss in the quantitative
