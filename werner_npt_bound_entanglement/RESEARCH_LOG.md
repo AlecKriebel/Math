@@ -4890,3 +4890,41 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_scalar_reflection_frontier.md`,
   `verification/verify_n3_pair_scalar_reflection_frontier.py`, and
   `discovery/probe_n3_pair_marginal_schur.cpp`.
+
+## 2026-07-29 — Reconciliation with the supplied independent \(n=3\) report
+
+- The supplied positive-operator formulation
+  \(X^{\otimes3}=I-\frac32{\cal S}_3\) and its full
+  scalar/one-body/pair Ky--Fan dual agree with the project's exact
+  full-endpoint reductions.  They are reformulations, not proofs.
+- Its local-support theorem is subsumed by the stronger established
+  boundary theorem in `notes/agent_n3_local_support_boundary.md`:
+  positivity already follows if **either** the left or the right
+  singular plane has local support at most two at one site; simultaneous
+  deficiency of both planes is unnecessary.
+- The critical-point floor in
+  `notes/agent_n3_pair_critical_local_spectral_floor.md` quantitatively
+  complements that boundary theorem.  A hypothetical smooth
+  pair-sector counterexample with value \(f>2/3\) must have all six
+  one-site left/right marginals positive definite and satisfy
+  \[
+  \lambda_{\min}(\rho_i^{L,R})\ge 1-\frac{2}{3f}.
+  \]
+- The supplied pair-only inequality is the project's degree-two
+  frontier.  The case with at most two of its three pair components is
+  already proved exactly, leaving only the common three-component
+  determinant in
+  `notes/agent_n3_pair_sector_three_component_determinant.md`.
+- Exact scalar elimination in the stronger reflection frontier leaves
+  \[
+  \|BV\|_2^2+
+  \frac1{16}|\operatorname{Tr}(V^\dagger BV)|^2
+  \le\frac23\|B\|_2^2.
+  \]
+  The one-component case is proved.  The strengthened two-component
+  principal minors and then one three-component determinant remain.
+- None of these reductions proves unrestricted \(Q_3\ge0\), and no
+  exact negative rank-two witness has been found.  The full same-copy
+  endpoint remains equivalently the physical reversed-Schur
+  orientation inequality in
+  `notes/agent_n3_full_reversed_schur_orientation.md`.
