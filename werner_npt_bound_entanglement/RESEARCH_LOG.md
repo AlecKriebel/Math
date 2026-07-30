@@ -5111,3 +5111,51 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_reflection_two_component_quantitative.md` and
   `verification/verify_n3_reflection_two_component_quantitative.py`.
+
+## 2026-07-29 17:51 PDT — Full-dual single-pair residual certificate
+
+- Proved the exact full inverse-marginal residual whenever only one
+  pair coefficient is nonzero:
+  \[
+  \left\langle
+  (B_{12}\otimes I)V,S_V^{-1}(B_{12}\otimes I)V
+  \right\rangle
+  \leq2\|B_{12}\|_2^2.
+  \]
+  Permutation gives the other two pair positions.
+- With \(P=R_V/2\), \(q_i=e_i-\operatorname{id}/3\), the pair frame is
+  \(F_{12}=q_1q_2(P)\).  The residual has the exact positive
+  factorization
+  \[
+  S_V-F_{12}
+  ={\cal A}(e_3-\tfrac12\operatorname{id})(P)
+   +(\tfrac12{\cal A}-{\cal B})(P),
+  \]
+  where
+  \[
+  {\cal A}=2e_1e_2-\tfrac16\operatorname{id},\qquad
+  {\cal B}=(e_1-\tfrac16\operatorname{id})
+           (e_2-\tfrac16\operatorname{id}).
+  \]
+- Proved directly that \({\cal A}\) has the required
+  measure-and-prepare property.  Its Choi matrix is
+  \[
+  J_{\cal A}=\tfrac12I+\tfrac32(I-P_{\Phi_9}),
+  \]
+  and supplied an explicit finite product-projector decomposition of
+  \(I-P_{\Phi_n}\), valid for every \(n\geq2\).
+- Proved from a two-term Schmidt decomposition that
+  \(X\mapsto\operatorname{Tr}(X)I_3-X/2\) is positive with every
+  two-dimensional ancilla.  This makes the first residual summand
+  positive after the measure-and-prepare decomposition.
+- The second summand is completely positive with exact Choi matrix
+  \[
+  J_{\frac12{\cal A}-{\cal B}}
+  =\frac12(P_1Q_2+Q_1P_2)\succeq0.
+  \]
+- This supplies the three diagonal blocks for a polarized
+  three-component Gram attack.  The off-diagonal compatibility is the
+  next unresolved step.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_full_dual_single_pair_certificate.md` and
+  `verification/verify_n3_full_dual_single_pair_certificate.py`.
