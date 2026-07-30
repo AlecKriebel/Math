@@ -8,6 +8,38 @@ remaining polynomial realization system is infeasible.
 from fractions import Fraction as F
 
 
+def mq_add(left, right):
+    return tuple(x + y for x, y in zip(left, right))
+
+
+def mq_scale(scalar, value):
+    return tuple(scalar * x for x in value)
+
+
+def mq_mul(left, right, radicals):
+    """Multiply in Q(sqrt(radicals[0]),sqrt(radicals[1]))."""
+
+    out = [F(0) for _ in range(4)]
+    for left_mask, left_value in enumerate(left):
+        for right_mask, right_value in enumerate(right):
+            common = left_mask & right_mask
+            factor = F(1)
+            for bit, radicand in enumerate(radicals):
+                if common & (1 << bit):
+                    factor *= radicand
+            out[left_mask ^ right_mask] += (
+                left_value * right_value * factor
+            )
+    return tuple(out)
+
+
+MQ_ZERO = (F(0), F(0), F(0), F(0))
+MQ_ONE = (F(1), F(0), F(0), F(0))
+MQ_SQRT_FIRST = (F(0), F(1), F(0), F(0))
+MQ_SQRT_SECOND = (F(0), F(0), F(1), F(0))
+MQ_SQRT_PRODUCT = (F(0), F(0), F(0), F(1))
+
+
 def transpose(matrix):
     return [list(row) for row in zip(*matrix)]
 
@@ -179,24 +211,111 @@ for p in range(3):
         assert energy * 40 == norm_squared
 
 
-# Exact arithmetic in the singular-product lemma.
-# The small root of 19*x^2-20*x+4 is
-# (10-2*sqrt(6))/19.  It lies strictly above 2-sqrt(3):
-# evaluating the polynomial at 2-sqrt(3) gives
-# 97-56*sqrt(3)>0, and the squared integer gap is one.
-assert 97**2 - 3 * 56**2 == 1
-# At x=2-sqrt(3), x/(1+x^2)=1/4 exactly.
-# Algebraically, x^2-4*x+1=0 is equivalent to that identity.
-off_product_fraction = F(1, 4)
-off_product_floor = off_product_fraction * nu
-assert off_product_floor == F(1, 36)
+# Exact multiquadratic arithmetic in the two-sided compression lemma.
+# Coordinate-off quotient 1/20, in Q(sqrt(3),sqrt(19)).
+radicals_20 = (3, 19)
+x_20 = mq_scale(
+    F(1, 14),
+    mq_add(
+        mq_scale(F(5), MQ_SQRT_FIRST),
+        mq_scale(F(-1), MQ_SQRT_SECOND),
+    ),
+)
+gamma_20 = mq_scale(
+    F(1, 40),
+    mq_add(
+        mq_scale(F(9), MQ_SQRT_FIRST),
+        mq_scale(F(-1), MQ_SQRT_SECOND),
+    ),
+)
+x_20_squared = mq_mul(x_20, x_20, radicals_20)
+assert mq_add(
+    mq_add(
+        mq_scale(F(7), x_20_squared),
+        mq_scale(F(-5), mq_mul(MQ_SQRT_FIRST, x_20, radicals_20)),
+    ),
+    mq_scale(F(2), MQ_ONE),
+) == MQ_ZERO
+assert mq_mul(
+    gamma_20,
+    mq_add(MQ_ONE, x_20_squared),
+    radicals_20,
+) == x_20
+assert mq_scale(
+    F(1, 5), mq_add(MQ_ONE, x_20_squared)
+) == mq_mul(
+    mq_add(
+        MQ_ONE,
+        mq_scale(
+            F(-1), mq_mul(MQ_SQRT_FIRST, x_20, radicals_20)
+        ),
+    ),
+    mq_add(
+        MQ_ONE,
+        mq_scale(
+            F(-1), mq_mul(MQ_SQRT_FIRST, x_20, radicals_20)
+        ),
+    ),
+    radicals_20,
+)
 
-# At quotient 1/40 the singular-ratio polynomial has roots 1/3 and
-# 9/13, and the resulting determinant fraction is 3/10.
-assert 39 * F(1, 3) ** 2 - 40 * F(1, 3) + 9 == 0
-assert 39 * F(9, 13) ** 2 - 40 * F(9, 13) + 9 == 0
-assert F(1, 3) / (1 + F(1, 3) ** 2) == F(3, 10)
-assert F(3, 10) * nu == F(1, 30)
+# Hadamard quotient 1/40, in Q(sqrt(3),sqrt(13)); sqrt(39) is the
+# product of the two square roots.
+radicals_40 = (3, 13)
+x_40 = mq_scale(
+    F(1, 29),
+    mq_add(
+        mq_scale(F(10), MQ_SQRT_FIRST),
+        mq_scale(F(-1), MQ_SQRT_PRODUCT),
+    ),
+)
+gamma_40 = mq_scale(
+    F(1, 80),
+    mq_add(
+        mq_scale(F(19), MQ_SQRT_FIRST),
+        mq_scale(F(-1), MQ_SQRT_PRODUCT),
+    ),
+)
+x_40_squared = mq_mul(x_40, x_40, radicals_40)
+assert mq_mul(
+    gamma_40,
+    mq_add(MQ_ONE, x_40_squared),
+    radicals_40,
+) == x_40
+assert mq_scale(
+    F(1, 10), mq_add(MQ_ONE, x_40_squared)
+) == mq_mul(
+    mq_add(
+        MQ_ONE,
+        mq_scale(
+            F(-1), mq_mul(MQ_SQRT_FIRST, x_40, radicals_40)
+        ),
+    ),
+    mq_add(
+        MQ_ONE,
+        mq_scale(
+            F(-1), mq_mul(MQ_SQRT_FIRST, x_40, radicals_40)
+        ),
+    ),
+    radicals_40,
+)
+gamma_40_squared = mq_mul(gamma_40, gamma_40, radicals_40)
+assert gamma_40_squared == (
+    F(561, 3200),
+    F(0),
+    F(-57, 3200),
+    F(0),
+)
+# The claimed lambda half-width squares to 1/4-gamma_40^2.
+lambda_half_width_squared = (
+    F(239, 3200),
+    F(0),
+    F(57, 3200),
+    F(0),
+)
+assert mq_add(
+    gamma_40_squared, lambda_half_width_squared
+) == mq_scale(F(1, 4), MQ_ONE)
 
 
 # The determinant polynomial in equation (25).
@@ -215,29 +334,22 @@ for lam, norm_sq, t_value in [
     assert direct == expanded
 
 
-# The coordinate-pencil lambda restriction is the sum of the three
-# individual determinant floors combined with Minkowski's inequality.
-individual_floor_numerator = 3 * off_product_floor
-assert individual_floor_numerator == F(1, 12)
-assert 3 * individual_floor_numerator == F(1, 4)
-
-# The Hadamard pencils improve it.  Each B determinant square root is
-# at most sqrt(lambda(1-lambda))/3, so the product floor 1/30 forces
-# each A determinant square root to be at least
-# 1/(10 sqrt(lambda(1-lambda))).  There are two signs per pair and
-# three complementary pairs; their Minkowski sum is at most 2.
-hadamard_product_floor = F(1, 30)
-hadamard_alpha_floor_coefficient = 3 * hadamard_product_floor
-assert hadamard_alpha_floor_coefficient == F(1, 10)
-pair_floor_coefficient = 2 * hadamard_alpha_floor_coefficient
-assert pair_floor_coefficient == F(1, 5)
-lambda_sqrt_floor = 3 * pair_floor_coefficient / 2
-assert lambda_sqrt_floor == F(3, 10)
+# The six-vector Hadamard tight-frame calculation has the scalar
+# coefficients
+#
+#   6 * sqrt(gamma_40/9) = 2 sqrt(gamma_40),
+#   sqrt(det(2 I_2)) = 2,
+#   sqrt(det(2 B_sum)) = 2 sqrt(det(B_sum)).
+#
+# After squaring and cancelling four, it yields
+# sqrt(det(B_sum)) >= gamma_40 exactly.
+assert F(6) ** 2 / 9 == 4
 
 print("verified: repaired formal Gram arithmetic")
 print("verified: exact polarized two-copy kernel")
 print("verified: sharp global product-pencil quotient 1/40")
-print("verified: quotient-1/20 singular-product floor 1/4")
-print("verified: Hadamard-pencil singular-product floor 3/10")
+print("verified: exact two-sided compression constants")
+print("verified: quotient-1/20 singular-product gamma_20")
+print("verified: Hadamard singular-product gamma_40")
 print("verified: one-Pauli determinant polynomial")
-print("verified: strengthened lambda interval [1/10, 9/10]")
+print("verified: crossed-Gram determinant and lambda constants")

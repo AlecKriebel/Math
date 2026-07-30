@@ -7358,3 +7358,56 @@ u_1u_1^\dagger\bigr].
 - Therefore any counterexample to the coherent \(1/8\) crossed
   bound must have all three one-body marginals strictly positive
   definite.  The note and exact checker were extended accordingly.
+
+## 2026-07-30 — Two-sided compression sharpens the repaired formal obstruction
+
+- Strengthened the singular-product estimate used in the repaired
+  one-Pauli branch.  For the two singular dyads, the established
+  two-copy theorem gives a positive \(2\times2\) compression \(H\),
+  while \(L^{\otimes2}\preceq I\) gives \(H\preceq I\).  Together
+  with the rank-one diagonal floor \(H_{jj}\ge1/4\), exact
+  minimization yields
+  \[
+  Q_2(M)\ge
+  \frac{s_1^2}{4}\left(1-\sqrt3\,\frac{s_2}{s_1}\right)^2
+  \qquad(s_2/s_1\le1/2).
+  \]
+- At quotient \(1/20\), this improves the determinant fraction to
+  \[
+  \frac{s_1s_2}{\|M\|^2}\ge
+  \gamma_{20}:=\frac{9\sqrt3-\sqrt{19}}{40}
+  =0.280738\ldots.
+  \]
+  At the sharp Hadamard quotient \(1/40\), it improves the fraction
+  to
+  \[
+  \frac{s_1s_2}{\|M\|^2}\ge
+  \gamma_{40}:=\frac{19\sqrt3-\sqrt{39}}{80}
+  =0.333299\ldots.
+  \]
+- Summed all six Hadamard inequalities as one tight frame instead of
+  bounding the crossed Gram entries independently.  If
+  \[
+  B_\Sigma=\sum_qB(e_q)
+  =
+  \begin{pmatrix}
+  \lambda&\operatorname{Tr}Z\\
+  \overline{\operatorname{Tr}Z}&1-\lambda
+  \end{pmatrix},
+  \]
+  Cauchy--Schwarz and Minkowski's determinant inequality give
+  \[
+  \sqrt{\det B_\Sigma}\ge\gamma_{40}.
+  \]
+  Hence every realization of the repaired negative formal table must
+  obey
+  \[
+  \lambda(1-\lambda)-|\operatorname{Tr}Z|^2
+  \ge\frac{561-57\sqrt{13}}{3200},
+  \]
+  and in particular
+  \[
+  0.1272918\ldots\le\lambda\le0.8727081\ldots.
+  \]
+  This is a new exact nonlinear common-factor obstruction, but it
+  still does not exclude the symmetric interior branch.
