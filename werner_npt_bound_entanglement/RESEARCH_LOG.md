@@ -7311,3 +7311,29 @@ u_1u_1^\dagger\bigr].
 - The supplied local-support reduction is valid but is subsumed by
   the established one-sided theorem: deficient local support of
   either singular plane at any site already implies \(Q_3\geq0\).
+
+## 2026-07-30 00:46 PDT — Triple-Hodge Ky--Fan-four dual isolated
+
+- Proved that the open coherent orthogonal-fourframe estimate is
+  exactly equivalent to the paired singular-value inequality
+  \[
+  \sum_{j=1}^4s_j(D_t)^2\leq\frac12\|t\|^2
+  \]
+  for the triple-skew matrix
+  \(D_t=\sum t_{pqr}A_p\otimes A_q\otimes A_r\).
+- Dualized this to one intrinsic rank-four projector marginal
+  inequality:
+  \[
+  P+\sum_i\widehat{\operatorname{Tr}_{\widehat i}P}
+  -\sum_{i<j}\widehat{\operatorname{Tr}_{\widehat{ij}}P}
+  \succeq0 .
+  \]
+  This is false at rank one, so any proof must use the common
+  four-dimensional code range essentially.
+- Proved the sharp inequality on the full one-site-factor boundary.
+  Equality holds for \(t=a\otimes x\) whenever the two-qutrit tensor
+  \(x\) has Schmidt rank at most two.
+- Added
+  `notes/agent_n3_triple_hodge_kyfan4_duality.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_triple_hodge_kyfan4_duality.py`.
