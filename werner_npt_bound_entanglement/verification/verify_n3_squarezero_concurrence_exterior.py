@@ -192,7 +192,42 @@ assert 3 * n - 2 * s + p + 2 * s1 * s2 >= 0
 omega = [F(1), F(0), F(0), F(1)]
 assert matvec(H, omega) == [F(0)] * 4
 
+
+# Abstract obstruction: H >= 0, H^Gamma >= I/4 and the sharp product
+# margin do not force a maximally entangled kernel.
+psi = [F(4, 5), F(0), F(0), F(3, 5)]
+unit4 = [[F(row == column) for column in range(4)] for row in range(4)]
+h_abstract = [
+    [
+        F(25, 36) * (
+            unit4[row][column] - psi[row] * psi[column]
+        )
+        for column in range(4)
+    ]
+    for row in range(4)
+]
+assert matvec(h_abstract, psi) == [F(0)] * 4
+h_abstract_pt = partial_transpose_second(h_abstract)
+r_abstract = add(h_abstract_pt, [
+    [F(-(row == column), 4) for column in range(4)]
+    for row in range(4)
+])
+
+# R_abstract has the explicit nonnegative eigenvalues
+# 0, 7/36, 7/9, 1/9.
+assert matvec(r_abstract, e00) == [F(0)] * 4
+assert matvec(r_abstract, e11) == [F(7, 36) * x for x in e11]
+assert matvec(r_abstract, singlet) == [F(7, 9) * x for x in singlet]
+assert matvec(r_abstract, triplet) == [F(1, 9) * x for x in triplet]
+
+# The product margin follows from ||diag(4,3)||_op=4:
+# (25/36)(1-16/25)=1/4.  The unequal kernel violates the
+# quantitative estimate by 1/100.
+assert F(25, 36) * (1 - F(16, 25)) == F(1, 4)
+assert F(1, 4) * (F(4, 5) - F(3, 5)) ** 2 == F(1, 100)
+
 print("verified: swap-sector feature identity")
 print("verified: exact sharp feature concurrence and Loewner obstruction")
 print("verified: square-zero exterior equality")
 print("verified: determinant-one filtered quantitative identity")
+print("verified: abstract bare-versus-quantitative obstruction")

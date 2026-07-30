@@ -333,6 +333,55 @@ Two tempting shortcuts are ruled out by the same exact frame.
     \tag{35}
     \]
 
+There is also an exact abstract obstruction to deriving the
+quantitative estimate merely from the two already known logical
+operator properties
+\[
+ H\succeq0,\qquad H^{\Gamma_2}\succeq\frac14I_4.
+\tag{36}
+\]
+Put
+\[
+ |\psi\rangle=\frac45|00\rangle+\frac35|11\rangle,\qquad
+ H_*=\frac{25}{36}
+ \left(I_4-|\psi\rangle\langle\psi|\right).
+\tag{37}
+\]
+Then \(H_*\succeq0\) and \(H_*\psi=0\).  Moreover
+\[
+ H_*^{\Gamma_2}\succeq\frac14I_4.
+\tag{38}
+\]
+Indeed, the eigenvalues of
+\((|\psi\rangle\langle\psi|)^{\Gamma_2}\) are
+\[
+ \frac{16}{25},\quad\frac9{25},\quad
+ \frac{12}{25},\quad-\frac{12}{25},
+\]
+so (38) follows directly.  The sharp product margin also holds:
+for every logical product vector \(x\otimes y\),
+\[
+\begin{aligned}
+ \langle x\otimes y,H_*(x\otimes y)\rangle
+ &\geq
+ \frac{25}{36}\left(1-\frac{16}{25}\right)
+ \|x\|^2\|y\|^2\\
+ &=\frac14\|x\|^2\|y\|^2.
+\end{aligned}
+\tag{39}
+\]
+Nevertheless the kernel has unequal Schmidt coefficients, so
+\[
+ 0=\langle\psi,H_*\psi\rangle
+ <\frac14\left(\frac45-\frac35\right)^2=\frac1{100}.
+\tag{40}
+\]
+Thus bare positivity, positive shifted partial transpose, and the
+sharp product margin do **not** imply the quantitative square-zero
+bound for an abstract two-qubit Gram.  The common three-qutrit origin
+of \(R(U,W)\) is essential.  This does not give a physical
+square-zero counterexample.
+
 ## 5. Remaining equality-rigidity problem
 
 The quantitative route reduces the desired zero-rigidity statement
