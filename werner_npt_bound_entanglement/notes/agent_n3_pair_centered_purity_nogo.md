@@ -232,10 +232,14 @@ The weakest affine repair suggested by this example is
  \sum_{i,\bullet}\|X_i^\bullet\|_2^2
  \stackrel{?}{\geq}
  \frac73c^2-\frac12qc.
- \tag{24}
+\tag{24}
 \]
-The example saturates (24).  At present (24) is a candidate, not a
-theorem.
+The example saturates (24).  This replacement is also false: the
+exact opposite-tilt rank-two family in
+`notes/agent_n3_pair_centered_7over3_tilt_nogo.md` has negative
+constrained second variation for its left side.  That falsifier has
+\(Q_3>0\), so it does not contradict a refinement restricted to
+negative quotient-critical points.
 
 ## 2. Sharp lower envelope of the Haar functional
 
@@ -500,8 +504,8 @@ The example (3) lies in this balanced locus and has \(q=0\).  Thus:
   \]
   remains consistent and sharp, but is not proved here.
 
-Even if the repaired candidate (24) were true, in normalized form it
-would give only
+The now-refuted candidate (24) would in normalized form have given
+only
 \[
  \sum_{i,\bullet}\operatorname{Tr}(H_i^\bullet)^2
  \geq\frac73+\frac r2.
@@ -517,3 +521,167 @@ a coupled normal-space or second-variation inequality which:
 3. becomes strictly coercive when \(\lambda=q/c<0\).
 
 This is the zero-compatible residual problem.
+
+## 5. Exact local-filter coercivity on the flag--Bell orbit
+
+The endpoint zero (3) has a stronger zero-compatible property.  Let
+\(h_i^{L,R}\) and \(p_i^{L,R}\) be the local endpoint and pair forms
+of the global criticality theorem.  On either Bell site
+\(i\in\{1,3\}\), direct tensor factorization gives, for all
+\(A,B\in M_3\),
+\[
+\boxed{
+ h_i^{L,R}(A,B)=0,\qquad
+ p_i^{L,R}(A,B)=\frac{32}{81}\langle A,B\rangle_{\rm HS}.
+}
+\tag{57}
+\]
+Indeed, the endpoint form contains the factor
+\[
+ Q_1(P_2)=\|P_2\|_2^2-\frac12|\operatorname{Tr}P_2|^2=0.
+\tag{58}
+\]
+For the pair form, if
+\[
+ E_A=(A\otimes I)P_\Phi,
+\tag{59}
+\]
+then its two-site degree-one and degree-two masses are
+\[
+\begin{aligned}
+ \|\Pi_1E_A\|^2
+ &=\frac2{27}\|A\|^2-\frac2{81}|\operatorname{Tr}A|^2,\\
+ \|\Pi_2E_A\|^2
+ &=\frac7{27}\|A\|^2+\frac1{81}|\operatorname{Tr}A|^2.
+\end{aligned}
+\tag{60}
+\]
+Combining these with the scalar and traceless masses
+\(4/3\) and \(2/3\) of \(P_2\) cancels the trace terms and proves
+(57).  The right form is identical.
+
+On the flag site \(i=2\), put
+\[
+ M=AP_2,\quad N=BP_2
+\tag{61}
+\]
+for the left forms, and \(M=P_2A,\ N=P_2B\) for the right forms.
+Then
+\[
+\boxed{
+\begin{aligned}
+ h_2^{L,R}(A,B)
+ &=
+ \frac{11}{12}\left(
+ \langle M,N\rangle_{\rm HS}
+ -\frac12\overline{\operatorname{Tr}M}\operatorname{Tr}N
+ \right),\\
+ p_2^{L,R}(A,B)
+ &=\frac8{27}
+ \overline{\operatorname{Tr}M}\operatorname{Tr}N.
+\end{aligned}}
+\tag{62}
+\]
+Here \(Q_2(P_\Phi)=11/12\), while the only way to obtain total
+degree two from the flag factor is to combine its scalar component
+with the fully traceless \(P_\Phi\) component.
+
+Now take \(\lambda=-r<0\).  On the Bell sites,
+\[
+ (h_i-\lambda p_i)(A,A)
+ =\frac{32r}{81}\|A\|_2^2.
+\tag{63}
+\]
+On the flag site decompose
+\[
+ M=M_0+\frac{\operatorname{Tr}M}{2}P_2,
+ \qquad \operatorname{Tr}M_0=0.
+\tag{64}
+\]
+Equation (62) becomes
+\[
+\boxed{
+ (h_2-\lambda p_2)(A,A)
+ =
+ \frac{11}{12}\|M_0\|_2^2
+ +\frac{8r}{27}|\operatorname{Tr}M|^2.
+}
+\tag{65}
+\]
+It vanishes only when \(M=0\), which is exactly when the corresponding
+local-filter variation of \(C\) vanishes.  Thus the shifted local
+forms are strictly coercive on every nonzero actual filter variation
+for every \(r>0\).  At \(r=0\), they preserve precisely the necessary
+endpoint zero directions.
+
+These statements are invariant on the compact flag--Bell orbit
+\[
+ {\mathfrak O}=
+ \left\{
+ e^{i\theta}U C_0 U^\dagger:
+ U=U_1\otimes U_2\otimes U_3
+ \right\},
+\tag{66}
+\]
+together with permutations of the three sites.  Local conjugation
+commutes with every scalar/traceless sector projection, and simply
+rotates the filter variable \(A\).
+
+### A quantitative conical exclusion
+
+Normalize \(\|C\|_2=\sqrt2\), as on \({\mathfrak O}\), and let
+\[
+ \delta=\operatorname{dist}_{\rm HS}(C,{\mathfrak O}).
+\tag{67}
+\]
+Suppose \(C\) is a negative quotient-critical point with
+\(\lambda=-r\).  Align a closest orbit point \(C_\star\), choose
+either of its Bell sites, and set \(A=I/\sqrt3\).  The exact filter
+Euler equation gives
+\[
+ (h_C-\lambda p_C)(I,A)=0,
+\tag{68}
+\]
+whereas (57) gives
+\[
+ (h_{C_\star}-\lambda p_{C_\star})(I,A)
+ =\frac{32r}{27\sqrt3}.
+\tag{69}
+\]
+Both \(L^{\otimes3}\) and \(\Pi_2\) have Hilbert--Schmidt operator
+norm one, while left or right multiplication by \(A\) has norm at
+most one.  The elementary difference-of-quadratic-forms estimate
+therefore gives
+\[
+ \left|
+ (h_C-\lambda p_C)(I,A)
+ -(h_{C_\star}-\lambda p_{C_\star})(I,A)
+ \right|
+ \leq2\sqrt2(1+r)\delta.
+\tag{70}
+\]
+Combining (68)--(70) proves
+\[
+\boxed{
+ \delta\geq
+ \frac{16r}{27\sqrt6(1+r)}.
+}
+\tag{71}
+\]
+For a negative global quotient minimizer the fusion bound
+\(r\leq27/160\) sharpens this to
+\[
+ \boxed{
+ \delta\geq
+ \frac{2560}{5049\sqrt6}\,r.
+}
+\tag{72}
+\]
+
+Thus no negative critical point of fixed depth can enter a
+proportional tube around the entire invariant flag--Bell orbit.  This
+is a genuine neighborhood exclusion, but it is conical rather than
+absolute: it still permits a hypothetical branch with
+\(r=o(\delta)\).  Excluding such an arbitrarily shallow branch
+requires the higher-order critical normal equations on the
+\(\lambda=0\) Hessian kernel.  That is the remaining local lemma.

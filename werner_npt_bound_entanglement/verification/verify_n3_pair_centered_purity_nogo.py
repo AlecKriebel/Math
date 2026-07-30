@@ -177,6 +177,50 @@ def hermitian_part(matrix):
     return scale(F(1, 2), add(matrix, transpose(matrix)))
 
 
+def local_filter(matrix, local_matrix, site: int, side: str):
+    """Apply a local matrix to the row (left) or column (right) index."""
+
+    result = zero()
+    words = tuple(product(range(D_LOCAL), repeat=N_SITES))
+    for row_word in words:
+        for column_word in words:
+            value = F(0)
+            if side == "left":
+                for contracted in range(D_LOCAL):
+                    source_row = list(row_word)
+                    source_row[site] = contracted
+                    value += (
+                        local_matrix[row_word[site]][contracted]
+                        * matrix[
+                            basis_index(tuple(source_row))
+                        ][basis_index(column_word)]
+                    )
+            elif side == "right":
+                for contracted in range(D_LOCAL):
+                    source_column = list(column_word)
+                    source_column[site] = contracted
+                    value += (
+                        matrix[
+                            basis_index(row_word)
+                        ][basis_index(tuple(source_column))]
+                        * local_matrix[contracted][column_word[site]]
+                    )
+            else:
+                raise ValueError(side)
+            result[
+                basis_index(row_word)
+            ][basis_index(column_word)] = value
+    return result
+
+
+def pair_projection(matrix):
+    result = zero()
+    for mask in range(8):
+        if mask.bit_count() == 2:
+            result = add(result, sector_component(matrix, mask))
+    return result
+
+
 def flag_bell_projection():
     """Return |Phi_3><Phi_3| on sites 1,3 times P_{01} on site 2."""
 
@@ -195,6 +239,16 @@ def diagonal(values):
     for i, value in enumerate(values):
         result[i][i] = F(value)
     return result
+
+
+def matrix_units():
+    units = []
+    for row in range(D_LOCAL):
+        for column in range(D_LOCAL):
+            unit = zero(D_LOCAL, D_LOCAL)
+            unit[row][column] = F(1)
+            units.append(unit)
+    return units
 
 
 def check_exact_obstruction() -> None:
@@ -293,6 +347,56 @@ def check_exact_obstruction() -> None:
     assert multiply(AC, C) == zero()
 
 
+def check_zero_compatible_local_forms() -> None:
+    C = flag_bell_projection()
+    units = matrix_units()
+    P2 = diagonal((F(1), F(1), F(0)))
+
+    for side in ("left", "right"):
+        for site in range(N_SITES):
+            filtered = [
+                local_filter(C, unit, site, side)
+                for unit in units
+            ]
+            endpoint_images = [endpoint_operator(value) for value in filtered]
+            pair_images = [pair_projection(value) for value in filtered]
+
+            for row, A in enumerate(units):
+                for column, B in enumerate(units):
+                    h_value = hs_inner(filtered[row], endpoint_images[column])
+                    p_value = hs_inner(pair_images[row], pair_images[column])
+                    if site in (0, 2):
+                        assert h_value == 0
+                        assert p_value == F(32, 81) * hs_inner(A, B)
+                        continue
+
+                    if side == "left":
+                        M = multiply(A, P2)
+                        N = multiply(B, P2)
+                    else:
+                        M = multiply(P2, A)
+                        N = multiply(P2, B)
+                    common = hs_inner(M, N)
+                    trace_product = trace(M) * trace(N)
+                    assert h_value == F(11, 12) * (
+                        common - trace_product / 2
+                    )
+                    assert p_value == F(8, 27) * trace_product
+
+    # Coercivity constants for lambda=-r<0.
+    # On Bell sites the shifted form is (32r/81)||A||^2.
+    assert F(32, 81) > 0
+    # On the flag site, M=M_0+(Tr M/2)P_2 gives
+    # (11/12)||M_0||^2+(8r/27)|Tr M|^2.
+    assert F(11, 12) > 0
+    assert F(8, 27) > 0
+
+    # Critical conical exclusion:
+    # delta >= 16 r/[27 sqrt(6)(1+r)].  If r<=27/160,
+    # the rational coefficient before 1/sqrt(6) is 2560/5049.
+    assert F(16, 27) / (1 + F(27, 160)) == F(2560, 5049)
+
+
 def check_envelope_transition_arithmetic() -> None:
     # At P=3, the two envelope parametrizations meet at
     # alpha=1/2 and t=3/2 with rho=11/32.
@@ -320,5 +424,9 @@ def check_envelope_transition_arithmetic() -> None:
 
 if __name__ == "__main__":
     check_exact_obstruction()
+    check_zero_compatible_local_forms()
     check_envelope_transition_arithmetic()
-    print("verified: exact pair-centered purity obstruction and envelope constants")
+    print(
+        "verified: pair-purity obstruction, zero-compatible local forms, "
+        "and envelope constants"
+    )
