@@ -5686,3 +5686,36 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_partial_exterior_elimination_nogo.md` and the
   dependency-free exact checker
   `verification/verify_n3_partial_exterior_elimination_nogo.py`.
+
+## 2026-07-29 19:30 PDT — Triple-skew exterior tradeoff and depth \(9/71\)
+
+- Fed the proved sharp triple-skew stable-rank theorem back into the
+  common rank-two face variables without discarding the shared
+  exterior mass \(p=s_1s_2\).  The resulting exact inequality is
+  \[
+  128R+4S+96p\ge252c+243a.
+  \]
+  Equivalently, after \(2p=\|C\|_2^2-(s_1-s_2)^2\),
+  \[
+  320R+28S\ge468c+405a+144(s_1-s_2)^2.
+  \]
+- This is precisely
+  \({\cal J}_3(C)+s_1s_2/3\ge0\), the homogeneous consequence
+  of the triple-Hodge concurrence bound
+  \({\cal C}(Q_{(3)})\le8/27\).  Equality forces the classified
+  common-factor stable-rank orbit, which lies on the already positive
+  local-support boundary; hence the inequality is strict for a
+  negative endpoint transition.
+- In the exact negative-depth simplex it becomes
+  \[
+  2556\delta+459(1-5\delta)L
+  +405a+144(s_1-s_2)^2\le324.
+  \]
+  Since \(L>0\), every hypothetical negative direction obeys
+  \[
+  0<\delta<\frac9{71},
+  \]
+  improving the previous explicit ceiling \(3/22\).
+- Added `notes/agent_n3_triple_exterior_face_tradeoff.md` and
+  dependency-free exact checker
+  `verification/verify_n3_triple_exterior_face_tradeoff.py`.
