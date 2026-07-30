@@ -120,14 +120,29 @@ Differentiating (4) invariantly gives
  (AC^\dagger-C^\dagger A).
 \tag{8}
 \]
-Thus the Hermitian moment matrix at site \(i\) is
+Thus the moment matrix at site \(i\) is
 \[
 \boxed{
  \mu_i(C)=
- \operatorname{Herm}\operatorname{Tr}_{\widehat i}
+ \operatorname{Tr}_{\widehat i}
  (AC^\dagger-C^\dagger A).}
 \tag{9}
 \]
+This matrix is Hermitian.  In local blocks its complete entries are
+\[
+\boxed{
+ (\mu_i)_{pr}
+ =
+ \sum_q{\cal B}_2(C_{rq},C_{pq})
+ -\sum_q{\cal B}_2(C_{qp},C_{qr}).}
+\tag{9a}
+\]
+Hermiticity follows immediately by exchanging \(p,r\) and conjugating,
+since \({\cal B}_2\) is Hermitian.  Formula (9a) also follows directly
+by writing the \(pr\) block of \(AC^\dagger-C^\dagger A\); the local
+trace-subtraction terms in \(A=L_iL_{\widehat i}^{\otimes2}(C)\)
+cancel between the two products.
+
 Stationarity under every one-site positive similarity is exactly
 \[
  \mu_i(C)=0.

@@ -57,6 +57,14 @@ def endpoint_q(matrix, copies):
     return value
 
 
+def endpoint_b(left, right, copies):
+    return F(1, 2) * (
+        endpoint_q(add(left, right), copies)
+        - endpoint_q(left, copies)
+        - endpoint_q(right, copies)
+    )
+
+
 def outer(left, right):
     return [[a * b for b in right] for a in left]
 
@@ -161,6 +169,23 @@ second_derivative_at_zero = 4 * sum(
     if p != q
 )
 assert second_derivative_at_zero > 0
+
+# The full moment matrix (not only its diagonal flow equations) is
+# Hermitian.  This sample is real, so Hermitian means symmetric.
+moment = [[F(0) for _ in range(3)] for _ in range(3)]
+for p in range(3):
+    for r in range(3):
+        moment[p][r] = sum(
+            endpoint_b(blocks[r][q], blocks[p][q], 2)
+            - endpoint_b(blocks[q][p], blocks[q][r], 2)
+            for q in range(3)
+        )
+assert all(moment[p][r] == moment[r][p] for p in range(3) for r in range(3))
+assert all(
+    moment[p][p]
+    == sum(weights[p][q] - weights[q][p] for q in range(3))
+    for p in range(3)
+)
 
 # Exact rank-four obstruction from Section 5.
 P = [[F(int(i == j and i < 2)) for j in range(3)] for i in range(3)]
