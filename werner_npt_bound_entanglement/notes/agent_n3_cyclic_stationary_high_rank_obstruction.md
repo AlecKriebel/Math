@@ -324,3 +324,84 @@ must be coupled directly to the local multiplication maps.  Treating
 the determinantal condition and cyclic stationarity as separate
 constraints loses exactly the information needed to rule out
 \(C_\delta\).
+
+## 6. The first exterior contraction which detects the failure
+
+The local quadratic forms in (14) do not see the relative phase
+between the two orthogonal sectors.  Thus consider the full family
+\[
+ C_{\delta,\phi}
+ =
+ \alpha D_0+e^{i\phi}\beta E_0,\qquad
+ \alpha^2=\frac{c}{72}=\frac{1+\delta}{108},\qquad
+ \beta^2=\frac{3d}{80}=\frac{1-2\delta}{80}.
+\tag{25}
+\]
+Every member has exactly the same sector masses, local stationary
+forms, and Hessians.
+
+Let
+\[
+ e_r=|rrr\rangle,\qquad r=0,1,2.
+\tag{26}
+\]
+Each \(e_r\) is fixed by every tensor-factor permutation.  Hence the
+\(3\times3\) compression of (25) to
+\(\operatorname{span}\{e_0,e_1,e_2\}\) is
+\[
+ \left(\langle e_r,C_{\delta,\phi}e_s\rangle\right)_{r,s}
+ =
+ \left(2\alpha+\frac49e^{i\phi}\beta\right)I_3.
+\tag{27}
+\]
+The corresponding matrix coefficient of the third compound is
+\[
+\boxed{
+ \left\langle
+ e_0\wedge e_1\wedge e_2,\,
+ (\wedge^3 C_{\delta,\phi})
+ (e_0\wedge e_1\wedge e_2)
+ \right\rangle
+ =
+ \left(2\alpha+\frac49e^{i\phi}\beta\right)^3.
+ }
+\tag{28}
+\]
+
+If the rank were at most two, (28) would vanish.  Vanishing first
+requires equality of the two magnitudes:
+\[
+ 4\alpha^2=\frac{16}{81}\beta^2.
+\tag{29}
+\]
+Substitution of (25) reduces this to the scalar equation
+\[
+ \frac{1+\delta}{27}
+ =
+ \frac{1-2\delta}{405},
+\qquad\text{or equivalently}\qquad
+ 15(1+\delta)=1-2\delta.
+\tag{30}
+\]
+Its unique solution is
+\[
+ \delta=-\frac{14}{17},
+\tag{31}
+\]
+outside the negative-depth regime.  Therefore (28) is nonzero for
+every phase whenever \(0<\delta<1/8\).
+
+This is the lowest exterior-power obstruction: all quadratic
+one-site data and all cyclic identities survive, while one explicit
+coefficient of \(\wedge^3C\) already fails.  It suggests a finite
+rank-two replacement for the local trace route.  For a physical
+critical point one must retain at least one family of determinants
+\[
+ \det\left(
+ \langle x_r^{\otimes3},C\,y_s^{\otimes3}\rangle
+ \right)_{r,s=0}^2=0
+\tag{32}
+\]
+together with the local Hessian forms.  Averaging or polarizing (32)
+only after this coupling is imposed may convert the third-compound
+condition into the missing lower bound on \(a\).

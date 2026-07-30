@@ -253,8 +253,24 @@ assert depth_traceless > 0
 assert F(2) > 0
 assert F(4, 9) > 0
 
+# The first explicit third-compound coefficient cannot vanish, even
+# after an arbitrary relative phase between the two pure sectors.
+# Magnitude equality would be necessary for
+# 2 alpha + (4/9) exp(i phi) beta = 0.
+left_magnitude_squared = 4 * alpha_squared
+right_magnitude_squared = F(16, 81) * beta_squared
+assert left_magnitude_squared == (1 + delta) / 27
+assert right_magnitude_squared == (1 - 2 * delta) / 405
+assert left_magnitude_squared != right_magnitude_squared
+assert 15 * (1 + delta) != 1 - 2 * delta
+
+# Solving the equality gives delta=-14/17, outside 0<delta<1/8.
+formal_solution = F(-14, 17)
+assert 15 * (1 + formal_solution) == 1 - 2 * formal_solution
+assert formal_solution < 0
+
 print(
     "verified: one exact high-rank C_delta realizes the a=0 local "
-    "stationary forms and all cyclic multiplication identities; "
-    "the construction fails only the rank-two condition"
+    "stationary forms and all cyclic multiplication identities; its "
+    "first symmetric 3x3 minor is nonzero for every relative phase"
 )

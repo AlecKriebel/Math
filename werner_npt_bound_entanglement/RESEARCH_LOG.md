@@ -6082,3 +6082,30 @@ All timestamps use America/Los_Angeles.
   `verification/verify_n3_fierz_fourth_moment_zero_obstruction.py`;
   corrected the earlier normal-residual note so it no longer presents
   the disproved universal closure as an open lemma.
+
+## 2026-07-29 20:22 PDT — First third-compound separator for the cyclic model
+
+- Allowed an arbitrary relative phase between the pure degree-two and
+  degree-three tensors in the same-\(C\) cyclic obstruction.  This
+  phase leaves every sector mass, local stationary form, and Hessian
+  unchanged.
+- Identified one explicit coefficient of \(\wedge^3C\).  On
+  \(e_r=|rrr\rangle\), the relevant \(3\times3\) compression is
+  \[
+  \left(\langle e_r,C_{\delta,\phi}e_s\rangle\right)_{r,s}
+  =
+  \left(2\alpha+\frac49e^{i\phi}\beta\right)I_3.
+  \]
+  Rank at most two would force its determinant to vanish.
+- Cancellation for any phase would require
+  \[
+  4\alpha^2=\frac{16}{81}\beta^2,
+  \]
+  which reduces exactly to
+  \(15(1+\delta)=1-2\delta\).  Its only solution is
+  \(\delta=-14/17\), so the minor is nonzero throughout the
+  hypothetical positive-depth interval.
+- This is the first finite scalar identity that separates the
+  rank-two geometry from the fully cyclic, locally stationary model.
+  It points to polarized symmetric-product \(3\times3\) minors as the
+  smallest remaining same-\(C\) certificate.
