@@ -199,6 +199,53 @@ test vector is not an arbitrary member of \({\cal K}\), but the
 diagonal cube \(c^{\otimes3}\) of one common coefficient vector.
 Those Veronese relations are nonlinear and are not captured by (15).
 
+### 3.1 No degree-six Hermitian SOS modulo the cubic rank ideal
+
+The obstruction has a direct polynomial consequence.  For a
+coefficient vector \(c\), put
+\[
+ f(c)=\|c\|^4\langle c,Wc\rangle
+ =\langle c^{\otimes3},\overline Wc^{\otimes3}\rangle.
+                                                               \tag{17}
+\]
+The cubic \(3\times3\) minors of the coefficient matrix are exactly
+the linear functionals on \(\operatorname{Sym}^3\) carried by the
+row-sign/column-sign sector.  Thus (9) says that every cubic minor
+functional vanishes on \(\eta\).
+
+Suppose there were a homogeneous degree-six certificate
+\[
+ f(c)=
+ \sum_j|p_j(c)|^2+
+ \sum_\alpha
+ \operatorname{Re}\!\left(
+ q_\alpha(c)\overline{\Delta_\alpha(c)}\right),            \tag{18}
+\]
+where the \(p_j,q_\alpha\) are homogeneous cubics and the
+\(\Delta_\alpha\) are the \(3\times3\) minors.  Polarizing (18)
+produces a positive-semidefinite Gram form on
+\(\operatorname{Sym}^3\), plus cross terms containing one determinant
+functional.  Evaluating that polarized form on \(\eta\) kills every
+cross term by (9), while the Gram part is nonnegative.  This
+contradicts (7).
+
+Consequently,
+\[
+\boxed{\text{there is no degree-six Hermitian SOS certificate
+modulo the cubic rank-two determinantal ideal.}}           \tag{19}
+\]
+Higher-degree multipliers can impose additional Veronese relations
+and are not excluded by this argument.
+
+The same no-go applies to the stronger even-parity proposal
+\[
+ W_{\rm even}=\frac23I-(\Pi_0+\Pi_2).                     \tag{20}
+\]
+Indeed, the two fixed \(E_{01}\) factors make the degree-zero
+projection vanish identically on the constructed subspace.  Hence
+\(W_{\rm even}\) and \(W\) have the same Rayleigh quotient (7) on
+\(\eta\).
+
 ## 4. What remains open
 
 The construction is not of the form \(c^{\otimes3}\), and it does not

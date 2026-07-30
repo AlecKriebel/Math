@@ -4790,6 +4790,12 @@ All timestamps use America/Los_Angeles.
   three-replica PSD/SOS proof modulo only the two linear
   \(\bigwedge^3=0\) constraints.  Any successful replica proof must
   retain the nonlinear diagonal-cube/Veronese relations.
+- Polarization sharpens the obstruction: there is no homogeneous
+  degree-six Hermitian SOS certificate modulo the cubic rank-two
+  determinantal ideal.  The same vector also obstructs the stronger
+  even-parity witness
+  \(2I/3-(\Pi_0+\Pi_2)\), because its degree-zero component vanishes
+  on the fixed \(E_{01}\otimes E_{01}\) sector.
 - Exact note and dependency-free checker:
   `notes/agent_n3_pair_three_replica_linear_nogo.md` and
   `verification/verify_n3_pair_three_replica_linear_nogo.py`.
