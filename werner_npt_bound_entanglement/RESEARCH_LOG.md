@@ -5223,3 +5223,59 @@ All timestamps use America/Los_Angeles.
   \(\operatorname{rank}(A+iB)\le2\) is essential.
 - Added the dependency-free exact verifier
   `verification/verify_n3_compensated_inertia_obstruction.py`.
+
+## 2026-07-29 18:14 PDT — Exact full-dual two-pair theorem
+
+- Proved the full inverse-marginal residual when any two of the three
+  pair coefficients are present:
+  \[
+  \left\langle
+  (B_{12}^{(12)}+B_{13}^{(13)})V,\,
+  S_V^{-1}(B_{12}^{(12)}+B_{13}^{(13)})V
+  \right\rangle
+  \leq2(\|B_{12}\|_2^2+\|B_{13}\|_2^2).
+  \]
+  Permutation gives all coordinate planes.
+- For \(P=R_V/2\), the exact output residual is
+  \[
+  S_V-F_{12}-F_{13}
+  =
+  \left[
+  2e_1\Phi_2\Phi_3+\frac16(E_2+E_3)
+  -\frac1{36}\operatorname{id}
+  \right](P).
+  \]
+- Testing intrinsically converts this to the rank-two matrix
+  inequality
+  \[
+  {\cal F}(C)=2q-Q_2(T)+w_2(T)\geq0,
+  \quad
+  q=Q_{23}(C),\quad T=\operatorname{Tr}_1C.
+  \]
+- In an arbitrary site-1 basis, every \(9\times9\) block of \(C\)
+  has rank at most two, hence nonnegative two-copy energy.  The total
+  block energy is \(q\).  The exact qutrit fourth moment makes the
+  Haar-averaged diagonal energy
+  \[
+  \frac{q+Q_2(T)}4.
+  \]
+  Therefore the averaged off-diagonal energy is
+  \((3q-Q_2(T))/4\geq0\), so \(Q_2(T)\leq3q\).
+- The rank bound
+  \(\operatorname{rank}T\leq3\operatorname{rank}C\leq6\)
+  gives
+  \[
+  w_0(T)\leq2w_1(T)+2w_2(T),
+  \qquad
+  Q_2(T)\leq\frac32w_2(T).
+  \]
+  Splitting according to the sign of \(Q_2(T)\) completes the proof.
+- Equality is reduced exactly to
+  \[
+  Q_{23}(C)=Q_2(T)=w_2(T)=0.
+  \]
+  This supplies every \(2\times2\) principal face of the remaining
+  three-component Gram problem.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_full_dual_two_pair_theorem.md` and
+  `verification/verify_n3_full_dual_two_pair_theorem.py`.
