@@ -5,8 +5,8 @@
 We record the identities that make the projective bound independent of
 numerical optimization. For a pair involving auxiliary label \(2\), let
 \[
-A=\frac35D \Pi(\bm n)D,\qquad
-B=\frac45D \Pi(\bm m)D,
+K_{\bm n}=\frac35D \Pi(\bm n)D,\qquad
+K_{\bm m}=\frac45D \Pi(\bm m)D,
 \]
 where \(x=n_z\), \(y=m_z\), \(r=\bm n\cdot\bm m\), and
 \[
@@ -15,12 +15,16 @@ D=\operatorname{diag}\!\left(
 \]
 Direct expansion, using \(\|\bm n\|=\|\bm m\|=1\), gives
 \[
-\det(A-B)=-\frac3{50}(1-\eta^2)(1-r)\le0.
+\det(K_{\bm n}-K_{\bm m})
+=-\frac3{50}(1-\eta^2)(1-r)\le0.
 \]
-Thus \(A-B\) has eigenvalues of opposite signs, including a possible zero
-boundary eigenvalue, and the optimized complementary-projector score is
+Thus \(K_{\bm n}-K_{\bm m}\) has eigenvalues of opposite signs, including a
+possible zero boundary eigenvalue, and the optimized complementary-projector
+score is
 \[
-F_\eta=\frac{\Tr A+\Tr B+\|A-B\|_1}{2}.
+F_\eta=
+\frac{\Tr K_{\bm n}+\Tr K_{\bm m}
+      +\|K_{\bm n}-K_{\bm m}\|_1}{2}.
 \]
 Its discriminant yields
 \[
@@ -83,6 +87,17 @@ introduced by squaring.
 \section{The strengthened algebraic strategy}
 \label{app:strengthened}
 
+\begin{proposition}[Strengthened attained lower bound]
+\label{prop:strengthened-strategy}
+There is a fixed-qubit POVM strategy attaining
+\[
+L_1=\frac{16+8\sqrt{7813}}{25}>U.
+\]
+Thus \(L_1\) is an attained POVM lower bound. No global POVM optimality is
+asserted.
+\end{proposition}
+
+\begin{proof}
 Put
 \[
 q=\sqrt{7813},\qquad \eta=\frac1q,\qquad
@@ -130,19 +145,7 @@ T=\Tr\Gamma=\frac{16+4\eta}{25},
 10S+T=\frac{16+8q}{25}.
 \]
 
-Within this one-parameter family,
-\[
-f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
-\]
-has
-\[
-f'(\eta)=-\frac{20\eta}{\sqrt{2-\eta^2}}+\frac4{25},\qquad
-f''(\eta)=-\frac{40}{(2-\eta^2)^{3/2}}<0.
-\]
-Its unique critical point is \(\eta=1/\sqrt{7813}\). This is not a global
-POVM optimality claim.
-
-Finally,
+For the strict comparison with \(U\),
 \[
 (6+80\sqrt{7813})^2-2\cdot5003^2
 =-56782+960\sqrt{7813},
@@ -153,6 +156,22 @@ and
 \]
 Both sides being compared are positive, these two exact square comparisons
 prove \(L_1>U\).
+\end{proof}
+
+\begin{remark}[Scope of the strengthening]
+Within the one-parameter family used above,
+\[
+f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
+\]
+has
+\[
+f'(\eta)=-\frac{20\eta}{\sqrt{2-\eta^2}}+\frac4{25},\qquad
+f''(\eta)=-\frac{40}{(2-\eta^2)^{3/2}}<0.
+\]
+Its unique critical point is \(\eta=1/\sqrt{7813}\). This proves optimality
+only within that one-parameter family and is not a global POVM optimality
+claim.
+\end{remark}
 
 \section{Degenerate cases in the one-binary-party theorem}
 \label{app:binary-degeneracies}
@@ -233,8 +252,12 @@ gives \(\Gamma_\eps\ge K_j\), while separation and weak duality give
 \[
 V\le\Tr\Gamma_\eps<V+\eps.
 \]
-A bounded convergent subsequence as \(\eps\downarrow0\) yields dual
-attainment with \(\Tr\Gamma=V\).
+Fix one index \(j_0\). Since
+\(\Gamma_\eps-K_{j_0}\ge0\) and \(\Tr\Gamma_\eps<V+\eps\), the positive
+matrix \(\Gamma_\eps-K_{j_0}\) has uniformly bounded trace and hence uniformly
+bounded operator norm. Thus \(\Gamma_\eps\) is bounded. A convergent
+subsequence as \(\eps\downarrow0\) yields dual attainment with
+\(\Tr\Gamma=V\).
 
 At a primal optimum,
 \[
@@ -289,8 +312,22 @@ Let
 \[
 \mathcal N_g=\{[x]\in\mathbb{RP}^3:x^Tgx=0\}
 \]
-for a strict metric \eqref{eq:metric}, and write
-\(\Phi(x)=(A,B,C,D)\).
+for a strict metric \eqref{eq:metric}. To avoid collisions with the state and
+metric notation, write
+\[
+\Phi(x)=
+\bigl(\xi_0(x),\xi_1(x),\xi_2(x),\xi_3(x)\bigr),
+\]
+where
+\[
+\begin{aligned}
+\xi_0(x)&=x_2(x_0+x_3),&
+\xi_1(x)&=x_3(x_0+x_2),\\
+\xi_2(x)&=x_2(x_1+x_3),&
+\xi_3(x)&=x_3(x_1+x_2).
+\end{aligned}
+\]
+For a fixed target we suppress the argument \(x\).
 
 \subsection{Base locus and generic inverse}
 
@@ -307,20 +344,21 @@ rays.
 The identities
 \[
 \begin{aligned}
-A-B&=x_0(x_2-x_3),&
-C-D&=x_1(x_2-x_3),\\
-A-C&=x_2(x_0-x_1),&
-B-D&=x_3(x_0-x_1),\\
-AD-BC&=x_2x_3(x_0-x_1)(x_2-x_3)
+\xi_0-\xi_1&=x_0(x_2-x_3),&
+\xi_2-\xi_3&=x_1(x_2-x_3),\\
+\xi_0-\xi_2&=x_2(x_0-x_1),&
+\xi_1-\xi_3&=x_3(x_0-x_1),\\
+\xi_0\xi_3-\xi_1\xi_2
+&=x_2x_3(x_0-x_1)(x_2-x_3)
 \end{aligned}
 \]
 give
 \[
 \begin{pmatrix}
-(A-B)(A-C)(B-D)\\
-(C-D)(A-C)(B-D)\\
-(AD-BC)(A-C)\\
-(AD-BC)(B-D)
+(\xi_0-\xi_1)(\xi_0-\xi_2)(\xi_1-\xi_3)\\
+(\xi_2-\xi_3)(\xi_0-\xi_2)(\xi_1-\xi_3)\\
+(\xi_0\xi_3-\xi_1\xi_2)(\xi_0-\xi_2)\\
+(\xi_0\xi_3-\xi_1\xi_2)(\xi_1-\xi_3)
 \end{pmatrix}
 =\omega(x)x,
 \]
@@ -332,30 +370,60 @@ Hence \([x]\) is recovered from \([\Phi(x)]\) whenever \(\omega(x)\ne0\).
 
 \subsection[Exceptional divisor x2=0]{Exceptional divisor \(x_2=0\)}
 
-The target is \([0:B:0:D]\). On the direct branch, scale \(z_3=1\) and
-write \((z_0,z_1)=t(B,D)\). Nullness is
+Fix a nonbase source with \(x_2=0\). The base-locus analysis shows that
+\(x_3\ne0\), and its nonzero target has the form
+\([0:\xi_1:0:\xi_3]\). For a candidate preimage \(z\), the two target zeros
+give
 \[
-t^2BD+2t(bB+dD)=0.
+z_2(z_0+z_3)=z_2(z_1+z_3)=0.
 \]
-The root \(t=0\) is \(r_4\), leaving at most one nonbase root. On the cross
-branch \(z_2\ne0\), target zeros force \(z_0=z_1=-z_3\) and a nonzero target
-requires \(B=D\). With \(z_3=1,z_2=t\),
+
+On the direct branch \(z_2=0\), a nonzero target forces \(z_3\ne0\).
+Scale \(z_3=1\). Equality of target ratios then gives
+\((z_0,z_1)=t(\xi_1,\xi_3)\), and nullness is
+\[
+t^2\xi_1\xi_3+2t(b\xi_1+d\xi_3)=0.
+\]
+The root \(t=0\) is \(r_4\); after removing it, the remaining equation is
+linear in \(t\). It cannot vanish identically: if
+\(\xi_1\xi_3=0\), positivity of \(b,d\) and
+\((\xi_1,\xi_3)\ne(0,0)\) gives
+\(b\xi_1+d\xi_3\ne0\). Hence there is at most one nonbase direct preimage.
+
+On the cross branch \(z_2\ne0\), the target zeros force
+\(z_0=z_1=-z_3\). A nonzero target also forces \(z_3\ne0\), so scale
+\(z_3=1\) and write \(z_2=t\). The two nonzero target coordinates of this
+branch are equal, so a cross preimage can occur only if
+\(\xi_1=\xi_3\). Its null equation is
 \[
 z^Tgz=(1-2(b+d))(1-t).
 \]
-Strictness \(b+d<1/2\) gives only \(t=1\), the base ray \(-r_5\).
+Strictness \(b+d<1/2\) gives only \(t=1\), for which \(z=-r_5\) and
+\(\Phi(z)=0\). Thus the cross branch contributes no nonbase preimage.
 
 \subsection[Exceptional divisor x3=0]{Exceptional divisor \(x_3=0\)}
 
-The symmetric direct equation is
+Now fix a nonbase source with \(x_3=0\). Then \(x_2\ne0\) and the target is
+\([\xi_0:0:\xi_2:0]\). The target zeros give either the direct branch
+\(z_3=0\), or, when \(z_3\ne0\), the cross equations
+\(z_0=z_1=-z_2\).
+
+On the direct branch, a nonzero target permits the scale \(z_2=1\), and
+\((z_0,z_1)=t(\xi_0,\xi_2)\). Nullness is
 \[
-t^2AC+2t(aA+cC)=0,
+t^2\xi_0\xi_2+2t(a\xi_0+c\xi_2)=0.
 \]
-and the cross equation is
+As above, \(t=0\) is the base ray \(r_3\), and positivity of \(a,c\) excludes
+an identically zero residual linear equation. Thus there is at most one
+nonbase direct preimage.
+
+On the cross branch, scale \(z_2=1\) and write \(z_3=t\). Such a target must
+satisfy \(\xi_0=\xi_2\), and nullness becomes
 \[
 (1-2(a+c))(1-t)=0.
 \]
-Again there is at most one nonbase preimage.
+Strictness \(a+c<1/2\) again leaves only \(t=1\), the base ray \(-r_5\).
+Thus this cross branch also contributes no nonbase preimage.
 
 \subsection[Exceptional divisor x0=x1]{Exceptional divisor \(x_0=x_1\)}
 
@@ -364,22 +432,41 @@ the point is \(r_3\) or \(r_4\), hence in the base locus. A nonbase point may
 therefore be scaled to \(x_0=x_1=1\). Put \(p=x_2,q=x_3\). The null and
 target-ratio equations are
 \[
-N=1+2(a+c)p+2(b+d)q+2epq=0,
+N_{01}=1+2(a+c)p+2(b+d)q+2epq=0,
 \]
 \[
-R=Bp(1+q)-Aq(1+p)=0.
+R_{01}=\xi_1p(1+q)-\xi_0q(1+p)=0.
 \]
-Their exact resultant in \(p\) is
+Here the target is
+\([\xi_0:\xi_1:\xi_0:\xi_1]\) and is nonzero. Conversely, equality of the
+first and third, and of the second and fourth, target coordinates for a
+candidate \(z\) gives
 \[
-\operatorname{Res}_p(N,R)
+z_2(z_0-z_1)=z_3(z_0-z_1)=0.
+\]
+If \(z_0\ne z_1\), then \(z_2=z_3=0\), so nullness makes \(z\) a base ray and
+\(\Phi(z)=0\). Thus every nonbase candidate is on the direct branch
+\(z_0=z_1\), and the preceding zero-coordinate check justifies the scale
+\(z_0=z_1=1\).
+
+The exact resultant in \(p\) is
+\[
+\operatorname{Res}_p(N_{01},R_{01})
 =-(q+1)\left[
-B+q\bigl(A(2a+2c-1)+2B(b+d)\bigr)
+\xi_1+q\bigl(\xi_0(2a+2c-1)+2\xi_1(b+d)\bigr)
 \right].
 \]
-At \(q=-1\), strictness gives \(p=-1\), the base ray. The second factor is
-not identically zero: if \(B\ne0\) its constant term is nonzero; if \(B=0\),
-then \(A\ne0\) and \(2(a+c)-1\ne0\). Once \(q\) is fixed, \(N\) determines
-at most one \(p\). The only apparent failure would require
+At \(q=-1\),
+\[
+N_{01}=(1-2(b+d))(1+p),
+\]
+so strictness gives \(p=-1\), the base ray \(r_5\). The second resultant
+factor is not identically zero: if \(\xi_1\ne0\), its constant term is
+nonzero; if \(\xi_1=0\), then \(\xi_0\ne0\) and
+\(2(a+c)-1\ne0\). It therefore supplies at most one nonbase value of \(q\).
+
+For fixed \(q\), the null equation is linear in \(p\), with coefficient
+\(2(a+c)+2eq\) and constant term \(1+2(b+d)q\). Both could vanish only if
 \[
 2(a+c)(b+d)=a+b+c+d-\tfrac12,
 \]
@@ -388,6 +475,8 @@ equivalent to
 (2(a+c)-1)(2(b+d)-1)=0,
 \]
 which strictness excludes.
+Thus \(N_{01}\) determines at most one \(p\) for the remaining \(q\), proving
+uniqueness on this divisor.
 
 \subsection[Exceptional divisor x2=x3]{Exceptional divisor \(x_2=x_3\)}
 
@@ -395,25 +484,58 @@ If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence the base rays
 \(r_1,r_2\). For a nonbase point scale \(x_2=x_3=1\) and put
 \(p=x_0,q=x_1\). The equations are
 \[
-N=pq+2(a+b)p+2(c+d)q+2e=0,
+N_{23}=pq+2(a+b)p+2(c+d)q+2e=0,
 \]
 \[
-R=C(p+1)-A(q+1)=0.
+R_{23}=\xi_2(p+1)-\xi_0(q+1)=0.
 \]
-The exact resultant is
+The target is
+\([\xi_0:\xi_0:\xi_2:\xi_2]\) and is nonzero. A candidate with these equal
+coordinate pairs obeys
 \[
-\operatorname{Res}_p(N,R)
+z_0(z_2-z_3)=z_1(z_2-z_3)=0.
+\]
+The direct branch is \(z_2=z_3\), where the base-locus check above justifies
+the scale \(z_2=z_3=1\). On the cross branch \(z_2\ne z_3\), one has
+\(z_0=z_1=0\); nullness becomes \(2ez_2z_3=0\). Since \(e>0\), the candidate
+is \(r_3\) or \(r_4\) and has zero target. Hence no nonbase cross preimage
+exists.
+
+On the direct branch the exact resultant is
+\[
+\operatorname{Res}_p(N_{23},R_{23})
 =-(q+1)\left[
-Aq+2A(a+b)+2C(c+d)-C
+\xi_0q+2\xi_0(a+b)+2\xi_2(c+d)-\xi_2
 \right].
 \]
-At \(q=-1\), strictness gives \(p=-1\), the base ray. Strictness also excludes
-an identically vanishing second factor or an undetermined null equation.
+At \(q=-1\),
+\[
+N_{23}=(2(a+b)-1)(1+p),
+\]
+so strictness gives \(p=-1\), the base ray \(r_5\). The second factor is not
+identically zero: if \(\xi_0\ne0\), its coefficient of \(q\) is nonzero; if
+\(\xi_0=0\), then \(\xi_2\ne0\) and its constant term
+\(\xi_2(2(c+d)-1)\) is nonzero.
 
-For a possible cross-branch preimage with \(z_2\ne z_3\), equal target
-coordinates give \(z_0=z_1=0\); strict \(e>0\) and nullness then force
-\(z_2z_3=0\), again a base ray. These cases exhaust \(\omega=0\), proving
-projective injectivity away from the base locus.
+For fixed \(q\), \(N_{23}\) is linear in \(p\), with coefficient
+\(q+2(a+b)\) and constant term \(2(c+d)q+2e\). Both could vanish only if
+\[
+2(a+b)(c+d)=a+b+c+d-\tfrac12,
+\]
+equivalently
+\[
+(2(a+b)-1)(2(c+d)-1)=0,
+\]
+which strictness excludes. Thus there is at most one nonbase direct preimage.
+
+Finally, \(\omega(x)=0\) is exactly the union of the four divisors just
+treated. Their zero-coordinate intersections were included before each scale
+choice: \(x_2=x_3=0\) gives \(r_1,r_2\), while
+\(x_0=x_1=0\) gives \(r_3,r_4\). All other intersections remain within the
+direct/cross alternatives above; none of those arguments divides by a target
+coordinate, and the cases \(\xi_i=0\) were retained in the resultant
+analysis. The four analyses therefore exhaust every exceptional intersection
+and prove projective injectivity away from the five-ray base locus.
 
 \section{Bounded transportation and the rank-zero simulation}
 \label{app:transport}
@@ -482,7 +604,7 @@ The exact verifier checks:
 \item bounded-flow identities and an independent rank-zero simulation.
 \end{enumerate}
 
-The scripts do not replace the human arguments establishing compactness,
+The scripts do not replace the manuscript arguments establishing compactness,
 extremal reduction, cone circuits, physical completeness, multiplier signs,
 dimension bounds, or exhaustion of cases. Some symbolic checks are exact
 regression instances rather than formal proofs of general matrix identities;

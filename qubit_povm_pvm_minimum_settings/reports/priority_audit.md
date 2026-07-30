@@ -2,7 +2,7 @@
 
 **Audit date:** 2026-07-29  
 **Search cutoff:** 2026-07-29  
-**Verdict:** the universal two-input closure and the resulting
+**Verdict:** the universal convexified two-input equality and the resulting
 setting-minimality theorem are plausibly original, but the existence of a
 fixed-qubit POVM-over-PVM separation at \(3\times2\) settings is prior art.
 
@@ -11,15 +11,17 @@ fixed-qubit POVM-over-PVM separation at \(3\times2\) settings is prior art.
 The publication should separate three claims that have different priority
 status.
 
-1. **Universal \(2\times2\) closure.** No primary source located in this audit
+1. **Universal convexified \(2\times2\) equality.** No primary source located
+   in this audit
    states or proves
    \[
-   \mathcal Q^{\mathrm{POVM}}_2(2,2)
+   \overline{\mathcal Q}^{\mathrm{POVM}}_2(2,2)
    =
-   \mathcal Q^{\mathrm{PVM}}_2(2,2)
+   \overline{\mathcal Q}^{\mathrm{PVM}}_2(2,2)
    \]
-   for arbitrary finite output sets, local Hilbert spaces of dimension at most
-   two, and arbitrary shared classical randomness. This is the strongest
+   as an equality schema for arbitrary finite, input-dependent output sets,
+   local Hilbert spaces of dimension at most two on every shared-randomness
+   branch, and arbitrary shared classical randomness. This is the strongest
    plausible novelty claim.
 2. **Minimum input architecture.** No prior source located here establishes
    that \(3\times2\), up to exchanging the parties, is the minimum number of
@@ -35,6 +37,25 @@ The defensible wording is therefore “we prove” and, for the literature
 comparison, “to our knowledge, no previous work established.” The present
 search supports neither an unqualified “first” claim nor a claim that the
 problem was explicitly posed as a longstanding open problem.
+
+The historical and adjacent results must be kept distinct. Gisin asked an
+existence question about a Bell inequality and state for which POVMs are
+needed for optimal violation; he did not formulate the convexified two-input
+set equality. Vértesi and Bene answered that existence question in a
+\(3\times2\) two-qubit scenario. Cerf and Ollivier study local perturbations
+of raw fixed-dimensional sets with two settings per party and explicitly do
+not resolve their proposed POVM/PVM separation. Panahi et al., building on an
+intermediate reduction of Masanes and Schmidt compression, bound the Hilbert
+space dimension of extremal correlations when one party has two binary
+settings; they do not replace general qubit POVMs by PVMs.
+
+The recommended qualified novelty sentence is:
+
+> To our knowledge, the equality of the shared-randomness-convexified
+> fixed-qubit POVM and PVM behavior sets for all bipartite two-input
+> architectures with finite, input-dependent output alphabets, and the
+> resulting \(3\times2\) minimum-input classification, were not previously
+> known.
 
 ## Exact fingerprint of the new result
 
@@ -82,14 +103,19 @@ The audit used the following routes.
   combinations of “two settings,” “two inputs,” “arbitrary outcomes,” “qubit,”
   “POVM,” “PVM,” “projective,” “Bell behavior,” and “minimal settings.”
 - Full-text inspection of the primary sources closest in scenario or theorem
-  type: Masanes; Toner–Verstraete; Vértesi–Bene; Barra et al.; Oszmaniec et al.;
-  Guerini et al.; Gómez et al.; Schwarz et al. and its corrigendum; Rout et al.;
-  Coccia et al.; Brinster et al.; and Kotowski–Oszmaniec.
+  type: Gisin; Masanes; Toner–Verstraete; Vértesi–Bene; Barra et al.;
+  Oszmaniec et al.; Guerini et al.; Gómez et al.; Schwarz et al. and its
+  corrigendum; Panahi et al.; Rout et al.; Coccia et al.; Brinster et al.;
+  Kotowski–Oszmaniec; and Cerf–Ollivier.
 - Inspection of all records returned in the OpenAlex cited-by set for the
   Vértesi–Bene paper (54 records at the audit date), followed by verification
   of relevant claims against the primary papers rather than the index record.
 - DOI metadata checks through the publishers/Crossref and arXiv metadata checks
   through the official arXiv records.
+- A final 2025--2026 arXiv check for two-setting fixed-dimension work,
+  including the Panahi et al. dimension preprint and the Cerf--Ollivier
+  perturbative preprint. Neither official arXiv record listed a journal
+  reference at the search cutoff.
 
 This is a serious priority search, not a mathematical proof of absence.
 Unindexed theses, conference notes, unpublished manuscripts, differently
@@ -101,13 +127,16 @@ not.
 
 | Candidate claim | Closest prior primary source | What the source actually proves | Priority assessment | Safe manuscript language |
 |---|---|---|---|---|
+| Historical POVM/PVM existence question | [Gisin (2009; arXiv 2007)](https://doi.org/10.1007/978-1-4020-9107-0_9) | Gisin asked whether some Bell inequality requires POVMs for optimal violation on some state, observed that binary outcomes cannot furnish an example, and left larger outcome counts open. He did not ask the two-input convexified behavior-set question. | Historical motivation, not a prior formulation of the new theorem. | “Gisin asked whether some Bell inequality and state require POVMs for optimal violation.” |
 | Binary-output \(2\times2\) quantum correlations need only qubit PVMs | [Masanes (2005)](https://arxiv.org/abs/quant-ph/0512100) | For two **dichotomic** observables per party, every extreme quantum correlation is attained with a pure multiqubit state and projective observables. | Prior art; essential ancestor. | “Masanes proved the corresponding statement when every measurement is dichotomic.” |
 | Dimension reduction for two dichotomic observables per site | [Toner and Verstraete (2006)](https://arxiv.org/abs/quant-ph/0611001) | Bell-functional maxima with two two-outcome measurements at each site have qubit support, via the two-projector block decomposition. | Prior art; output restriction is decisive. | “Jordan-type block reduction handles the fully dichotomic case but not genuine ternary qubit POVMs.” |
+| Dimension reduction when one party has two binary settings | [Panahi et al. (2025)](https://arxiv.org/abs/2505.20519) and [Masanes (2005)](https://arxiv.org/abs/quant-ph/0512100) | Panahi et al. quote an intermediate reduction of Masanes showing that the two-setting binary-output party can be a qubit for every convexly extremal correlation. In the bipartite case Schmidt compression also makes the other party a qubit, even with arbitrary settings and outcomes. The latter party's measurements remain general POVMs. | Adjacent dimension-sufficiency result; it does not compare qubit POVM and PVM behavior sets. | “Panahi et al., building on Masanes and Schmidt compression, derived a two-qubit realization for these extremal correlations; this does not projectivize the arbitrary-output measurements.” |
 | Every binary qubit POVM is projectively simulable | [Oszmaniec et al. (2017)](https://doi.org/10.1103/PhysRevLett.119.190501) | Measurement-level characterization: qubit PM-simulable POVMs are the convex hull of two-outcome POVMs. Genuine extremal ternary and tetrahedral POVMs are not individually PM-simulable. | Prior art; does not imply the new behavior-level theorem. | “Individual genuine qubit POVMs remain non-projectively-simulable; our equality is instead at the level of finite Bell behaviors.” |
 | Fixed-qubit POVMs can beat fixed-qubit PVMs in a \(3\times2\) Bell scenario | [Vértesi and Bene (2010)](https://doi.org/10.1103/PhysRevA.82.062115) | Alice has two binary settings and one ternary setting; Bob has two binary settings. A ternary qubit POVM beats qubit PVMs. The arbitrary-two-qubit PVM comparison is supported by coincident numerical lower and NPA upper values. | Definitely prior art. | “Vértesi and Bene established the first known \(3\times2\) fixed-qubit separation.” |
 | Improved values and experimental analysis for \(I_{CH3}\) | [Barra et al. (2012)](https://doi.org/10.1103/PhysRevA.86.042114) | Numerical optimization of the same \(3\times2\) family for maximally and partially entangled states, plus detection-efficiency analysis. | Prior art; not a universal closure or setting lower bound. | Cite as refinement of the Vértesi–Bene construction. |
+| Two-setting perturbative approach to raw fixed-dimensional POVM/PVM sets | [Cerf and Ollivier (2026)](https://arxiv.org/abs/2603.26875) | For \((n,2,d)\), meaning \(n\) parties, two settings each, and uniformly \(d\) outcomes, they analyze second-order unitary perturbations near deterministic points and reduce the relevant variation to subset games. Their proved qubit flatness result is dichotomic and plane-local. They explicitly do not answer whether raw \(\mathcal Q_P(D)\) is strictly contained in raw \(\mathcal Q(D)\). | Closest current methodological neighbor, but neither a global equality nor a separation and not a convex-hull result. | “Cerf and Ollivier proposed, without resolving, a local perturbative route to distinguish raw fixed-dimensional POVM and projective sets.” |
 | Exact rational \(3\times2\) separator with a symbolic global PVM upper certificate | No matching prior certificate located | The new functional has rational coefficients; both the achieved values and the strict global PVM upper gap are proved algebraically. | Appears new, but is an exactification/strengthening of a known architecture, not a new existence phenomenon. | “We also provide an exact rational \(3\times2\) separation certificate.” |
-| Universal \(2\times2\) equality for arbitrary finite outputs | No matching prior theorem located | The new result closes the residual binary-plus-genuine-ternary architecture on both parties and then completes all boundaries by convex reduction. | Plausibly original and the principal priority claim. | “We prove that …”; optionally “To our knowledge, this arbitrary-output two-setting closure was not previously known.” |
+| Universal convexified \(2\times2\) equality for arbitrary finite outputs | No matching prior theorem located | The new result closes the residual binary-plus-genuine-ternary architecture on both parties and then completes all boundaries by convex reduction. | Plausibly original and the principal priority claim. | “To our knowledge, the equality of the shared-randomness-convexified fixed-qubit POVM and PVM behavior sets for all bipartite two-input architectures with finite, input-dependent output alphabets, and the resulting \(3\times2\) minimum-input classification, were not previously known.” |
 | \(3\times2\) is setting-minimal | No matching prior theorem located | One-input scenarios are local; the new theorem rules out \(2\times2\); the exact separator supplies \(3\times2\). | Plausibly original. | “Consequently, \(3\times2\), up to exchanging the parties, is the minimum input architecture.” |
 | Lorentz-incidence/rank-trichotomy proof mechanism | No matching construction located | A residual five-ray incidence model, positive local-dual multipliers, ambient inertia, exceptional fibers, and an explicit rank-zero PVM decomposition. | Appears methodologically new. | Present as the proof method; do not make a separate priority superlative unless needed. |
 
@@ -115,6 +144,17 @@ not.
 
 The closest historical source is not merely adjacent; it uses exactly the same
 input counts. It must be credited in the abstract or first page.
+
+Vértesi and Bene make two distinct comparisons. For a fixed maximally
+entangled two-qubit state they prove analytically that their POVM lower value
+beats every projective value when \(c>3\). They then set \(c=100\), allow an
+arbitrary state in the two-qubit state space, and report a projective maximum
+of \(21.06801\): the numerical lower values from real rank-one qubit
+projectors coincide, to the stated precision, with level-two NPA upper bounds
+for all six projective support cases. Their displayed POVM strategy gives the
+larger lower bound \(21.0895\). Thus the paper is not restricted to a Bell
+state, but its unrestricted-state comparison is numerical rather than an
+exact symbolic certificate.
 
 | Feature | Vértesi–Bene \(I_{CH3}\) | Present exact separator |
 |---|---|---|
@@ -135,6 +175,42 @@ certificate and uses it, together with the new \(2\times2\) lower bound, to
 obtain the first located minimum-setting classification.
 
 ## Related results that do not subsume the theorem
+
+### Historical question and recent two-setting neighbors
+
+[Gisin (2009; arXiv 2007)](https://arxiv.org/abs/quant-ph/0702021) asked
+whether any Bell inequality requires POVMs for optimal violation on some
+quantum state. He noted that POVMs cannot improve a binary-output optimum and
+left the larger-output existence question open. This is a historical ancestor
+of fixed-dimension POVM/PVM comparisons, but it is not the present
+two-input, arbitrary-output, convexified set-equality problem. Vértesi and
+Bene subsequently answered Gisin's existence question; the present theorem
+instead determines the minimum input architecture under its stated
+convexification convention.
+
+[Cerf and Ollivier (2026)](https://arxiv.org/abs/2603.26875) work in
+\((n,2,d)\) scenarios, where \(n\) counts parties, the middle entry means two
+settings per party, and every setting has \(d\) outputs. Their method studies
+second-order unitary perturbations near local deterministic correlations.
+Their subset-game reduction and dichotomic flatness theorem are local
+statements about raw strategies; the flatness statement is plane-wise, not an
+ambient neighborhood theorem. For the fixed-dimensional raw sets
+\(\mathcal Q_P(D)\subseteq\mathcal Q(D)\), they explicitly state that they do
+not answer whether the inclusion is strict and only propose a search route.
+The present convex-hull equality neither follows from nor rules out a
+difference between those raw sets: a POVM behavior could fail to be one raw
+PVM behavior while remaining a shared-randomness mixture of PVM behaviors.
+
+[Panahi et al. (2025)](https://arxiv.org/abs/2505.20519) address sufficient
+Hilbert-space dimension rather than measurement type. They quote an
+intermediate result of Masanes: for a convexly extremal correlation, a party
+with two binary settings may be represented on a qubit regardless of the
+other parties' settings and outcomes. In the bipartite case, Schmidt
+compression then permits the other party to be a qubit as well. The
+arbitrary-output party's measurements remain general POVMs, so this result
+does not give PVM equivalence. For nonextremal correlations Panahi et al.
+encode Carathéodory mixtures in larger local spaces; that convention differs
+from the present branchwise-qubit model with external shared randomness.
 
 ### Measurement-level projective simulability
 
@@ -200,11 +276,26 @@ for restrained novelty language and exact certificates.
 > makes \(3\times2\), up to exchange of the parties, the minimum setting
 > architecture.
 
+### Historical-context wording
+
+> Gisin asked whether some Bell inequality and state require POVMs for optimal
+> violation. Vértesi and Bene answered this existence question in a
+> \(3\times2\) two-qubit scenario, analytically for a maximally entangled
+> state and through a numerical NPA comparison over arbitrary two-qubit
+> states. More recently, Cerf and Ollivier proposed a local perturbative route
+> to distinguish raw fixed-dimensional POVM and projective sets with two
+> settings per party, but did not resolve it. Panahi et al., building on
+> Masanes and Schmidt compression, obtained adjacent qubit-dimension
+> reductions when one party has two binary settings; those reductions leave
+> general POVMs on the arbitrary-output party.
+
 ### Introduction-level novelty wording
 
-> To our knowledge, previous work did not determine whether genuine
-> multi-outcome qubit POVMs can separate the two behavior sets when each party
-> has only two inputs. We close this case for arbitrary finite outputs.
+> To our knowledge, the equality of the shared-randomness-convexified
+> fixed-qubit POVM and PVM behavior sets for all bipartite two-input
+> architectures with finite, input-dependent output alphabets, and the
+> resulting \(3\times2\) minimum-input classification, were not previously
+> known.
 
 ### Exact-certificate wording
 
@@ -226,6 +317,15 @@ for restrained novelty language and exact certificates.
 - “Dimension-independent equivalence.”
 - “First proof” or “longstanding open problem” without an additional
   author-conducted expert and thesis search.
+- “Gisin posed the present convexified two-input equality.” His question was
+  the broader existence question for a Bell inequality and a state.
+- “Cerf and Ollivier proved a two-input POVM/PVM equality or separation.”
+  Their fixed-dimensional comparison is a proposed raw-set direction, not a
+  completed global result.
+- “Panahi et al. projectivized the arbitrary-output party.” Their result
+  bounds Hilbert-space dimension and retains general measurements.
+- “Vértesi and Bene considered only a Bell state.” Their separate
+  arbitrary-two-qubit-state-space comparison is numerical but explicit.
 
 ## Remaining priority risks before submission
 
@@ -235,9 +335,9 @@ for restrained novelty language and exact certificates.
    merely the cited-by set of the latter.
 3. Search recent 2025–2026 preprints once more immediately before arXiv
    submission.
-4. Ask any independent human reader already within the project’s permitted
-   collaboration structure to flag remembered folklore results. This audit
-   does not authorize or initiate external outreach.
+4. Independent readers may be able to flag remembered folklore results if the
+   author later obtains such review. This audit does not authorize or initiate
+   external outreach.
 5. Preserve the exact public timestamp of the repository release, but do not
    describe a repository commit as peer review or as conclusive legal priority.
 
@@ -248,6 +348,7 @@ checked as follows.
 
 | Work | DOI | arXiv |
 |---|---|---|
+| Gisin (2009; preprint 2007) | [10.1007/978-1-4020-9107-0_9](https://doi.org/10.1007/978-1-4020-9107-0_9) | [quant-ph/0702021](https://arxiv.org/abs/quant-ph/0702021) |
 | Vértesi–Bene (2010) | [10.1103/PhysRevA.82.062115](https://doi.org/10.1103/PhysRevA.82.062115) | [1007.2578](https://arxiv.org/abs/1007.2578) |
 | Barra et al. (2012) | [10.1103/PhysRevA.86.042114](https://doi.org/10.1103/PhysRevA.86.042114) | [1207.0712](https://arxiv.org/abs/1207.0712) |
 | D’Ariano–Lo Presti–Perinotti (2005) | [10.1088/0305-4470/38/26/010](https://doi.org/10.1088/0305-4470/38/26/010) | [quant-ph/0408115](https://arxiv.org/abs/quant-ph/0408115) |
@@ -260,6 +361,8 @@ checked as follows.
 | Guerini et al. (2017) | [10.1063/1.4994303](https://doi.org/10.1063/1.4994303) | [1705.06343](https://arxiv.org/abs/1705.06343) |
 | Schwarz et al. corrigendum (2018) | [10.1088/1367-2630/aabe5c](https://doi.org/10.1088/1367-2630/aabe5c) | incorporated in [1511.05253v3](https://arxiv.org/abs/1511.05253) |
 | Rout et al. (2025) | [10.1088/1367-2630/adc0b4](https://doi.org/10.1088/1367-2630/adc0b4) | [2412.00213](https://arxiv.org/abs/2412.00213) |
+| Panahi et al. (2025 preprint) | [10.48550/arXiv.2505.20519](https://doi.org/10.48550/arXiv.2505.20519) | [2505.20519](https://arxiv.org/abs/2505.20519) |
 | Coccia et al. (2026) | [10.1038/s41534-025-01175-x](https://doi.org/10.1038/s41534-025-01175-x) | [2503.13282](https://arxiv.org/abs/2503.13282) |
 | Kotowski–Oszmaniec (2026) | [10.1109/TIT.2026.3678498](https://doi.org/10.1109/TIT.2026.3678498) | [2501.09339](https://arxiv.org/abs/2501.09339) |
 | Brinster et al. (2026) | [10.1103/nsjr-vnmg](https://doi.org/10.1103/nsjr-vnmg) | [2511.04446](https://arxiv.org/abs/2511.04446) |
+| Cerf–Ollivier (2026 preprint) | [10.48550/arXiv.2603.26875](https://doi.org/10.48550/arXiv.2603.26875) | [2603.26875](https://arxiv.org/abs/2603.26875) |

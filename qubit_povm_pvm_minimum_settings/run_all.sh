@@ -22,12 +22,14 @@ import sys
 import sympy
 
 expected_sympy = "1.14.0"
+reference_python = "3.14.6"
 if sympy.__version__ != expected_sympy:
     raise SystemExit(
         f"SymPy {expected_sympy} is required; found {sympy.__version__}"
     )
 
 print(f"Python {platform.python_version()}")
+print(f"Reference Python {reference_python} (pinned in .python-version)")
 print(f"SymPy {sympy.__version__}")
 print(f"Executable {sys.executable}")
 PY

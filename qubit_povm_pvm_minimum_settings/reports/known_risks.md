@@ -13,7 +13,7 @@ rechecked immediately before journal or arXiv submission.
 
 | Risk | Severity | Status | Required treatment |
 |---|---:|---|---|
-| Full human D1–D3 proofs originally came from a frozen Phase-I manuscript outside the publication folder | High | RESOLVED | The required D1–D3 arguments are incorporated into `paper/main.tex` and `paper/appendices.tex`; exact data are copied and hashed under `artifacts/three_by_two_separation/`. |
+| Complete prose D1–D3 proofs originally came from a frozen Phase-I manuscript outside the publication folder | High | RESOLVED | The required D1–D3 arguments are incorporated into `paper/main.tex` and `paper/appendices.tex`; exact data are copied and hashed under `artifacts/three_by_two_separation/`. |
 | Closure bundle originally contained only hashes of D2–D3 checkpoint files | High | REPAIRED mathematically | Exact preimages were recovered in `two_setting_qubit_checkpoint.zip`, and the full proofs occur in Phase-I §10. The publication bundle must include the proofs, not only hashes. |
 | PVM convention could be misunderstood | High | REPAIRED wording | State the formal definition from `proof_audit.md`, including branchwise dimension, zero projections, postprocessing, and shared randomness. |
 | D3 is theorem-sized and highly load-bearing | High | PASS, referee focus | Include the full common-span filtering and behavior-extremality proof in the paper. Do not summarize D3 as a frozen black box. |
@@ -28,8 +28,8 @@ rechecked immediately before journal or arXiv submission.
 | Legacy proof has malformed control-character LaTeX | Medium | RESOLVED | The malformed legacy file is excluded. The consolidated paper compiles without LaTeX warnings. |
 | Reproducible Python environment | Medium | RESOLVED | `requirements.txt` pins SymPy 1.14.0, `run_all.sh` checks the version and artifact hashes, and the recorded clean run passed from `/tmp`. |
 | Exploratory checkpoint code has hard-coded `/mnt/data` paths and a missing exploratory import | Low | ACCEPTED, nonproof | Label it exploratory and exclude it from the proof-critical execution path, or make it portable separately. |
-| Exact verifiers may be mistaken for full formal proofs | Medium | REPAIRED wording | State their precise coverage. D2, D3, compactness, sign implications, and quantified geometric conclusions remain human proofs. |
-| Closure Hessian verifier uses an exact test instance | Medium | PASS with disclosure | Retain the human general derivation; describe the executable as a regression check for order, transpose, and sign errors. |
+| Exact verifiers may be mistaken for full formal proofs | Medium | REPAIRED wording | State their precise coverage. D2, D3, compactness, sign implications, and quantified geometric conclusions remain manuscript proofs. |
+| Closure Hessian verifier uses an exact test instance | Medium | PASS with disclosure | Retain the manuscript's general derivation; describe the executable as a regression check for order, transpose, and sign errors. |
 | Closure pure-state Lorentz verifier uses one exact algebraic example | Low | PASS with disclosure | Retain the determinant/polarization proof in the paper. |
 | Rank-zero simulator tests one symmetric trine | Low | PASS with disclosure | Retain the general interval-intersection proof; present the simulator as an example constructor. |
 | Exceptional-fiber proof omits two zero-coordinate sentences | Medium | REPAIRED wording | Insert the two base-ray checks from `proof_audit.md` before scaling the exceptional planes. |
@@ -44,7 +44,7 @@ rechecked immediately before journal or arXiv submission.
 | Strengthened strategy is optimal only in a one-parameter family | Low | PASS with disclosure | Preserve the limitation stated in Phase-I §§4 and 11. |
 | Equality cases and maximizers of locking bounds are unclassified | Low | ACCEPTED scope | List as future work, not as part of the theorem. |
 | No bibliography in the frozen mathematical sources | High | RESOLVED | `paper/references.bib` contains audited primary-source records; every manuscript citation resolves and the BibTeX build passes. |
-| Independent peer review has not occurred | Medium | UNRESOLVED process | Seek mathematical referee review, focusing on D2, D3, and the positive-multiplier bridge. The independent-research policy forbids Codex from initiating contact. |
+| Independent peer review has not occurred | Medium | UNRESOLVED process | Independent mathematical review should focus on D2, D3, and the positive-multiplier bridge. Any external communication remains solely for the author. |
 
 ## Load-bearing proof risks
 
@@ -118,8 +118,9 @@ informal appendix summary.
 The internal self-contained-release conditions are satisfied. Before claiming
 independent verification or journal readiness:
 
-1. Obtain expert human scrutiny focused on D2, D3, the physical incidence
-   reconstruction, and the multiplier-sign bridge.
+1. Independent expert scrutiny remains desirable, focused on D2, D3, the
+   physical incidence reconstruction, and the multiplier-sign bridge; any
+   outreach must be undertaken by the author.
 2. Repeat the 2025--2026 preprint and citation search immediately before
    submission.
 3. Recheck the selected journal's current board, disclosure, source-archive,

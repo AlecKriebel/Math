@@ -2,8 +2,8 @@
 
 Dear Editors,
 
-Please consider the manuscript **“Minimum Input Complexity for Separating
-Qubit POVMs from Projective Measurements.”**
+Please consider the manuscript **“Minimum Bell-Setting Complexity for Qubit
+POVM–PVM Separation.”**
 
 The manuscript determines the minimum number of Bell inputs needed to
 separate generalized from projective measurements at fixed local dimension
@@ -24,12 +24,14 @@ extreme-behavior reduction excluding four-outcome POVMs, and an exact Lorentz
 incidence analysis whose rank trichotomy eliminates every residual strict
 maximizer. Exact symbolic certificates and machine-readable strategy data are
 included, while all convex-geometric and physical-completeness arguments are
-presented as human proofs.
+presented explicitly in the manuscript.
 
-Generative AI materially assisted exploration, proof development, code, and
-manuscript preparation. This is disclosed explicitly in the manuscript. The
-human author assumes responsibility for all claims and does not represent the
-work as independently expert-verified.
+Generative-AI systems were used substantively throughout exploration,
+derivation, adversarial proof analysis, software work, literature support,
+and manuscript preparation. This use is disclosed explicitly in the
+manuscript and submission statements. I assume responsibility for the
+submitted claims and do not represent the work as previously verified by
+independent experts.
 
 The manuscript is not under consideration elsewhere.
 
@@ -38,4 +40,3 @@ Sincerely,
 Alec Kriebel  
 Independent Researcher  
 `me@aleckriebel.com`
-

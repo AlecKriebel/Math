@@ -53,3 +53,27 @@
 - Built and clean-compiled `submission/arxiv_source.tar.gz`.
 - Overall release assessment: **READY, NEEDS EXPERT SCRUTINY**. No independent
   expert human review or journal/arXiv submission has yet occurred.
+
+## 2026-07-29 22:08 PDT — referee revision verified
+
+- Completed the requested referee-facing expansion while preserving the
+  theorem's exact scope: equality is asserted only for
+  shared-randomness-convexified two-input behavior sets, not for raw strategy
+  images or same-state simulations.
+- Added the page-one Main Theorem, explicit proof bridges for the
+  one-binary-party reduction, residual architecture, Lorentz incidence
+  reconstruction, determinant multipliers, second variation, projective
+  fibers, and rank-zero simulation, together with a theorem-to-artifact map.
+- Updated the literature discussion and retained only qualified novelty
+  language. The earlier \(3\times2\) phenomenon is identified as prior art.
+- Revised the AI-use disclosure to state substantive use across the research
+  workflow, the human-directed scope, author responsibility, independent
+  checkability, and the absence of prior independent expert verification.
+- Re-ran all exact checks under Python 3.14.6 and SymPy 1.14.0: eight artifact
+  hashes, the exact separation certificate, all 39 closure checks, and the
+  rank-zero simulator passed.
+- Built warning-free 34-page publication and line-numbered review PDFs.
+  Every publication page was rendered and inspected; representative first,
+  middle, and final review pages confirmed clear continuous line numbering.
+- Regenerated and clean-compiled the standalone arXiv source archive to the
+  same 34-page manuscript.

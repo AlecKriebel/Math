@@ -5,12 +5,21 @@ paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 cd "$paper_dir"
 
 if command -v tectonic >/dev/null 2>&1; then
-    exec tectonic main.tex --keep-logs
+    for source in main review; do
+        tectonic "$source.tex" --keep-logs
+        if grep -Eiq \
+            'warning:|invalid utf|undefined (citation|reference|control sequence)|overfull|underfull' \
+            "$source.log"; then
+            printf '%s\n' "LaTeX warning found in $source.log:" >&2
+            grep -Ein \
+                'warning:|invalid utf|undefined (citation|reference|control sequence)|overfull|underfull' \
+                "$source.log" >&2
+            exit 1
+        fi
+    done
+    printf '%s\n' 'Built warning-free main.pdf and review.pdf.'
+    exit 0
 fi
 
-if command -v latexmk >/dev/null 2>&1; then
-    exec latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-fi
-
-printf '%s\n' "Install Tectonic or latexmk to build paper/main.pdf." >&2
+printf '%s\n' "Install Tectonic to build paper/main.pdf and paper/review.pdf." >&2
 exit 1

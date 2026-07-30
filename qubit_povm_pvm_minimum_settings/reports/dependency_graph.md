@@ -70,7 +70,7 @@ D1: exact rational 3×2 separation                    Two-setting reduction
        │                              No strict residual separator
        │                                         │
        │                                         ▼
-       │                           Q₂^POVM(2,2) = Q₂^PVM(2,2)
+       │                    conv Q₂^POVM(2,2) = conv Q₂^PVM(2,2)
        │                                         │
        └─────────────────────────────┬───────────┘
                                      ▼

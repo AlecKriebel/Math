@@ -116,7 +116,7 @@ dual slack is a nonnegative multiple of the adjugate of the corresponding
 rank-one effect. Pullback through full-rank steering identifies
 
 \[
-4|\det C|^2\lambda_j=s_j\ge0.
+4|\det\Xi|^2\lambda_j=s_j\ge0.
 \]
 
 If `\(s_j=0\)`, replacing that complete input by a deterministic PVM
@@ -161,4 +161,3 @@ state-discrimination advantage. The projective upper bound controls Schmidt
 imbalance and Bob-axis nonorthogonality by the CHSH deficit, exhausts all
 ternary-PVM supports, and completes a square. This supplies the achieved
 `3 x 2` side of the minimum-setting classification.
-

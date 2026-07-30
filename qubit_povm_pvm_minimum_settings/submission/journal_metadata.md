@@ -2,17 +2,16 @@
 
 ## Manuscript
 
-- **Title:** Minimum Input Complexity for Separating Qubit POVMs from
-  Projective Measurements
+- **Title:** Minimum Bell-Setting Complexity for Qubit POVM--PVM Separation
 - **Author:** Alec Kriebel
 - **Affiliation:** Independent Researcher
 - **Corresponding author:** Alec Kriebel (`me@aleckriebel.com`)
 - **Manuscript type:** Regular research article
 - **Primary field:** Quantum information theory / quantum foundations
 - **Secondary field:** Mathematical physics
-- **Length:** 24 pages, including technical appendices and references
+- **Length:** 34 pages, including technical appendices and references
 - **Figures:** 3
-- **Tables:** 0
+- **Tables:** 2
 - **Supplementary material:** exact verification code and machine-readable
   certificates in the public repository
 

@@ -1,19 +1,19 @@
 Exact reproducibility verifier report
 =====================================
 
-Timestamp (UTC): 2026-07-30T03:16:42Z
+Timestamp (UTC): 2026-07-30T05:08:12Z
 Platform: macOS 26.5.2 (Darwin 25.5.0 arm64)
-Python: 3.9.6
+Python: 3.14.6
 SymPy: 1.14.0
-Python executable: /Users/alec/Documents/Math/.venv/bin/python
-Runner: ../run_all.sh
-Test working directory: /tmp
+Python executable: /Users/alec/Documents/Math-kissing5/.venv/bin/python
+Runner: ./run_all.sh
+Test working directory: package root
 Exit status: 0
 
 Invocation
 ----------
 
-/Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/run_all.sh
+/Users/alec/Documents/Math-kissing5/qubit_povm_pvm_minimum_settings/run_all.sh
 
 The runner performed no installation and made no network requests.
 
@@ -67,9 +67,9 @@ deterministic local/PVM components, each of weight 1/6.
 Runtime
 -------
 
-real 7.28 seconds
-user 6.40 seconds
-sys  0.25 seconds
+real 4.99 seconds
+user 4.54 seconds
+sys  0.21 seconds
 
 Verification boundary
 ---------------------
@@ -79,16 +79,23 @@ constructive rank-zero example. The universal convexity, duality,
 architecture-reduction, and rank-stratification arguments are supplied by the
 human-readable manuscript rather than inferred from finite tests.
 
-Final release recheck
----------------------
+Release and presentation checks
+-------------------------------
 
-Timestamp (UTC): 2026-07-30T03:44Z
+Timestamp (UTC): 2026-07-30T05:08Z
 
-The completed publication folder was archived, extracted into a fresh
-temporary directory, and checked again:
-
-- all files matched the root SHA-256 freeze manifest;
-- `run_all.sh` passed from the extracted copy with Python 3.9.6 and
-  SymPy 1.14.0;
-- the standalone arXiv source archive compiled to a 24-page PDF with no
-  unresolved references, citation warnings, or layout warnings.
+- The publication and line-numbered review PDFs were built with Tectonic
+  0.16.9. Both are 34-page letter-size documents, and both build logs contain
+  no unresolved references, citation warnings, UTF-8 warnings, or layout
+  warnings.
+- Every page of the publication PDF was rendered and visually inspected.
+  Representative first, middle, and final pages of the review PDF were
+  separately inspected for clear and continuous line numbering. No clipping,
+  overflow, overlap, broken page, missing glyph, malformed equation, or
+  table/figure boundary defect was found.
+- The standalone arXiv source archive was extracted into a fresh temporary
+  directory and compiled to the same 34-page manuscript with no reference,
+  citation, encoding, or layout warning.
+- After final freezing, every listed file was checked against the root
+  SHA-256 manifest, and `run_all.sh` passed from a fresh copy with Python
+  3.14.6 and SymPy 1.14.0.

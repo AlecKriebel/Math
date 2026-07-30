@@ -38,11 +38,15 @@ There is also an explicit rational `3 x 2` Bell functional
 with exact certified bounds
 
 \[
-\beta_{\rm POVM}\ge\frac{16+8\sqrt{7813}}{25}
+\beta_{\rm POVM}\ge20\sqrt2+\frac{16}{25}
 >
 20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}
 \ge\beta_{\rm PVM}.
 \]
+
+A stronger attained algebraic lower bound,
+\((16+8\sqrt{7813})/25\), is recorded separately in the manuscript appendix;
+neither lower bound is claimed to be the exact global POVM optimum.
 
 Therefore `3 x 2` is the minimum input architecture, up to exchanging the
 parties.
@@ -77,4 +81,3 @@ independent rational rank-zero simulation.
 
 Repository:
 <https://github.com/AlecKriebel/Math/tree/main/qubit_povm_pvm_minimum_settings>
-

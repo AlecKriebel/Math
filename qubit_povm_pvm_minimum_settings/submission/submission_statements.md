@@ -23,23 +23,22 @@ of the theorem-verification path.
 
 ## AI-assisted research and verification
 
-Generative-AI systems were used extensively during mathematical exploration,
-symbolic derivation, adversarial proof analysis, software development, and
-preparation of the manuscript in July 2026. The final arguments and
-computational artifacts were assembled under the responsibility of the human
-author, who takes full responsibility for all claims, proofs, citations, and
-released materials. Generative-AI systems are not listed as authors. Exact
-verification programs were implemented separately from several discovery
-calculations, but the work has not yet been independently verified by expert
-human referees.
+Generative-AI systems were used substantively throughout the research
+workflow, including mathematical exploration and derivation, adversarial
+proof analysis, symbolic and software work, literature support, and
+manuscript preparation. The work was developed through an iterative,
+human-directed research process. The author determined the scope and claims
+released here, curated the resulting package, and assumes responsibility for
+the submitted manuscript and public verification materials. The proof and
+exact artifacts are supplied to make the AI-mediated research independently
+checkable; no claim of prior independent expert human verification is made.
 
 ## Author contributions
 
-Alec Kriebel conceived and directed the research program, selected the
-mathematical problem and publication scope, curated the research artifacts,
-reviewed the resulting proof package, and assumes responsibility for the
-manuscript and released claims. Generative-AI assistance is disclosed
-separately and is not authorship.
+Alec Kriebel initiated and directed the research program, determined its
+problem and publication scope, curated the research artifacts, and assumes
+responsibility for the manuscript and released claims. Substantive
+generative-AI use is disclosed separately.
 
 ## Competing interests
 
@@ -60,4 +59,3 @@ No conflicts were identified from the supplied materials. Before submission,
 the human author must check every suggested editor and referee against any
 private collaboration, employment, financial, family, or adversarial
 relationship not visible in the research record.
-

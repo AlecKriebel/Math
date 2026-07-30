@@ -5,9 +5,9 @@
 For every fixed finite output architecture with two inputs per party, the
 paper proves
 \[
-\mathcal Q^{\mathrm{POVM}}_2(2,2)
+\overline{\mathcal Q}^{\mathrm{POVM}}_2(2,2)
 =
-\mathcal Q^{\mathrm{PVM}}_2(2,2).
+\overline{\mathcal Q}^{\mathrm{PVM}}_2(2,2).
 \]
 
 Here the subscript \(2\) is a **branchwise local Hilbert-space bound**:

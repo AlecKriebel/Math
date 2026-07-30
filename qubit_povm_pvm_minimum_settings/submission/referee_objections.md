@@ -91,8 +91,9 @@ minimum-input conclusion, not the broad existence of a qubit POVM advantage.
 
 ## 15. “What role did AI play?”
 
-Generative AI assisted exploration, proof development, code, audits, and
-manuscript drafting. The human author assumes responsibility. The release
-does not claim independent expert human verification; exact scripts verify
-encoded algebra and explicit constructions only.
-
+Generative-AI systems were used substantively throughout exploration,
+derivation, adversarial proof analysis, software work, literature support,
+and manuscript preparation. The author assumes responsibility for the
+released claims. The release does not claim prior independent expert human
+verification; exact scripts verify encoded algebra and explicit constructions
+only.
