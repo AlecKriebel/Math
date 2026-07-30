@@ -657,6 +657,200 @@ two-column factors \(C_{pq}=X_pY_q^\dagger\), realize \(N\) and
 \(\Beta\).  The next missing information is therefore nonlinear
 realizability, not further scalar sector arithmetic.
 
+#### A common-factor compression theorem for the repaired table
+
+The ordinary Gram condition \(N=\nu I_9\), \(\nu>0\), already has a
+strong consequence which is invisible in the scalar block weights.
+It reduces common-factor realizability to a one-Pauli branch.
+
+**Proposition.**  Let
+\[
+ C_{pq}=X_pY_q^\dagger,\qquad
+ X_p,Y_q:\mathbb C^2\longrightarrow{\cal K},
+\]
+and suppose
+\[
+ \langle C_{pq},C_{rs}\rangle_{\rm HS}
+ =\nu\,\delta_{pr}\delta_{qs}.
+\tag{10an}
+\]
+Define
+\[
+\begin{aligned}
+ {\cal A}_0&=
+ \operatorname{span}\left\{
+ X_p^\dagger X_r:p\ne r;\
+ X_p^\dagger X_p-X_r^\dagger X_r:p,r
+ \right\},\\
+ {\cal B}_0&=
+ \operatorname{span}\left\{
+ Y_s^\dagger Y_q:s\ne q;\
+ Y_q^\dagger Y_q-Y_s^\dagger Y_s:q,s
+ \right\}.
+\end{aligned}
+\tag{10ao}
+\]
+Then
+\[
+\boxed{\dim{\cal A}_0+\dim{\cal B}_0\leq3.}
+\tag{10ap}
+\]
+In particular, one of the two centered compression spaces has
+dimension at most one.
+
+If the full matrix \(C=XY^\dagger\) has rank two and
+\(\dim{\cal A}_0\leq1\), a logical gauge and a logical unitary put the
+left factors in the exact form
+\[
+ X_p^\dagger X_r
+ =\frac{\delta_{pr}}3I_2+h_{pr}H,
+\qquad
+ h=h^\dagger,\quad\operatorname{Tr}h=0,
+\tag{10aq}
+\]
+where either \(H=0\), or
+\[
+ H=\operatorname{diag}(\eta_0,\eta_1),
+\qquad \eta_0\ne\eta_1.
+\]
+Moreover
+\[
+ \operatorname{Tr}(Y_s^\dagger Y_q)
+ =3\nu\,\delta_{sq},
+\qquad
+ \operatorname{Tr}(H\,Y_s^\dagger Y_q)=0.
+\tag{10ar}
+\]
+Writing the columns of \(Y_q\) as \(y_{q0},y_{q1}\), the nonzero
+one-Pauli branch consequently satisfies
+\[
+\begin{aligned}
+ \langle y_{s0},y_{q0}\rangle
+ &=3\nu\lambda\,\delta_{sq},\\
+ \langle y_{s1},y_{q1}\rangle
+ &=3\nu(1-\lambda)\,\delta_{sq},
+\end{aligned}
+\qquad
+\lambda=\frac{-\eta_1}{\eta_0-\eta_1}\in[0,1].
+\tag{10as}
+\]
+There is a symmetric statement with \(X\) and \(Y\) exchanged.
+
+*Proof.*  Put
+\[
+ A_{pr}=X_p^\dagger X_r,\qquad
+ B_{sq}=Y_s^\dagger Y_q.
+\]
+Cyclicity of trace and (10an) give the exact rectangular pairing
+\[
+ \operatorname{Tr}(A_{pr}B_{sq})
+ =\nu\,\delta_{pr}\delta_{sq}.
+\tag{10at}
+\]
+Let
+\[
+ {\cal A}=\operatorname{span}\{A_{pr}:p,r=0,1,2\},
+ \qquad
+ {\cal B}=\operatorname{span}\{B_{sq}:s,q=0,1,2\}.
+\]
+Equation (10at) says
+\[
+ {\cal A}_0\perp{\cal B},\qquad
+ {\cal A}\perp{\cal B}_0
+\tag{10au}
+\]
+for the nondegenerate bilinear trace pairing on \(M_2\).
+Furthermore \(\sum_qB_{qq}\notin{\cal B}_0\): otherwise it would be
+orthogonal to \(\sum_pA_{pp}\) by the second relation in (10au),
+whereas (10at) gives
+\[
+ \operatorname{Tr}\left[
+ \left(\sum_pA_{pp}\right)
+ \left(\sum_qB_{qq}\right)\right]=9\nu>0.
+\]
+Thus
+\[
+ \dim{\cal B}=\dim{\cal B}_0+1.
+\]
+The first relation in (10au), inside the four-dimensional space
+\(M_2\), now gives
+\[
+ \dim{\cal A}_0+\dim{\cal B}_0+1\leq4,
+\]
+which is (10ap).
+
+For the canonical statement, rank two makes
+\(\sum_pX_p^\dagger X_p\) positive definite.  The common logical
+gauge
+\[
+ X_p\mapsto X_pR,\qquad
+ Y_q\mapsto Y_qR^{-\dagger}
+\]
+can therefore arrange
+\[
+ \sum_pX_p^\dagger X_p=I_2.
+\tag{10av}
+\]
+The space \({\cal A}_0\) is closed under adjoint.  If it is
+one-dimensional, it is spanned by a Hermitian \(H\); a logical
+unitary diagonalizes \(H\).  Every off-diagonal \(A_{pr}\) is then a
+multiple of \(H\), every difference \(A_{pp}-A_{rr}\) is a multiple
+of \(H\), and averaging the diagonal blocks using (10av) gives
+(10aq), with \(h=h^\dagger\) and \(\operatorname{Tr}h=0\).
+The zero-dimensional case is the same formula with \(H=0\).
+
+Taking \(A=\sum_pA_{pp}=I_2\) in (10at) gives the first identity in
+(10ar); taking \(A=H\in{\cal A}_0\) gives the second.  If \(H\ne0\),
+these are the two scalar equations
+\[
+\begin{aligned}
+ \langle y_{s0},y_{q0}\rangle+
+ \langle y_{s1},y_{q1}\rangle
+ &=3\nu\delta_{sq},\\
+ \eta_0\langle y_{s0},y_{q0}\rangle+
+ \eta_1\langle y_{s1},y_{q1}\rangle&=0.
+\end{aligned}
+\]
+Solving proves (10as).  Positivity of the two diagonal Gram matrices
+forces \(0\leq\lambda\leq1\). \(\square\)
+
+For the repaired point \(\nu=1/9\).  Hence any common-factor
+realization must lie, after perhaps interchanging left and right, in
+the explicit branch (10aq)--(10as): one factor plane has only a
+single nontrivial compressed Pauli direction, while the two logical
+column families on the opposite side are separately orthogonal
+qutrit triples.  Excluding this branch from the prescribed
+\({\cal B}_2\)-Gram matrix (10ag), or realizing it exactly, is a
+strictly smaller nonlinear problem than unrestricted nine-block
+factorization.
+
+There is also a finite determinantal form of the first common-factor
+constraint.  For an arbitrary Hilbert--Schmidt block Gram \(N\), form
+the reshuffling
+\[
+ \widehat N_{(p,r),(s,q)}=N_{pq,rs}.
+\tag{10aw}
+\]
+Then
+\[
+ \widehat N_{(p,r),(s,q)}
+ =
+ \operatorname{Tr}\left[
+ (X_p^\dagger X_r)(Y_s^\dagger Y_q)\right],
+\]
+so \(\widehat N\) factors through the four-dimensional space \(M_2\):
+\[
+ \boxed{\operatorname{rank}\widehat N\leq4.}
+\tag{10ax}
+\]
+Equivalently, all \(5\times5\) minors of \(\widehat N\) vanish.  This
+is a genuine polynomial identity of the common two-column
+factorization.  The repaired formal norm Gram does not violate it:
+for \(N=I_9/9\), the reshuffling \(\widehat N\) has rank one.  Thus
+the first Pluecker-type determinant test leads exactly to the
+one-Pauli compression theorem rather than separating the point by
+itself.
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[

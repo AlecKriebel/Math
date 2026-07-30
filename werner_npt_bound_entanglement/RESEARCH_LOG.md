@@ -7161,3 +7161,46 @@ u_1u_1^\dagger\bigr].
   scalar/Hessian constraints still permit a negative point.  What is
   not established is realization by actual blocks or by common
   two-column factors.
+
+## 2026-07-29 23:31 PDT — Orthogonal common blocks reduce to one Pauli direction
+
+- Derived a new exact common-factor theorem tailored to the repaired
+  formal point.  If
+  \[
+  C_{pq}=X_pY_q^\dagger,\qquad
+  \langle C_{pq},C_{rs}\rangle=\nu\delta_{pr}\delta_{qs},
+  \]
+  let \({\cal A}_0\) and \({\cal B}_0\) be the centered spans of the
+  \(2\times2\) compressed matrices \(X_p^\dagger X_r\) and
+  \(Y_s^\dagger Y_q\).  The rectangular identity
+  \[
+  \operatorname{Tr}(X_p^\dagger X_rY_s^\dagger Y_q)
+  =\nu\delta_{pr}\delta_{sq}
+  \]
+  implies
+  \[
+  {\cal A}_0\perp{\cal B},\qquad
+  {\cal A}\perp{\cal B}_0,
+  \qquad
+  \dim{\cal A}_0+\dim{\cal B}_0\le3.
+  \]
+  Thus one centered compression space has dimension at most one.
+- After whitening the corresponding full-rank factor and diagonalizing
+  its unique Hermitian direction, the complete branch is
+  \[
+  X_p^\dagger X_r=\frac{\delta_{pr}}3I+h_{pr}H,
+  \qquad H=\operatorname{diag}(\eta_0,\eta_1),
+  \]
+  while the opposite columns obey
+  \[
+  \langle y_{s0},y_{q0}\rangle=3\nu\lambda\delta_{sq},
+  \qquad
+  \langle y_{s1},y_{q1}\rangle
+  =3\nu(1-\lambda)\delta_{sq}.
+  \]
+  Hence the two logical column families on the opposite side are
+  separately orthogonal qutrit triples.
+- This is a genuine nonlinear reduction of the repaired table:
+  common-factor realizability is no longer unrestricted.  It remains
+  to exclude or realize the prescribed \({\cal B}_2\)-Gram inside this
+  one-Pauli branch.
