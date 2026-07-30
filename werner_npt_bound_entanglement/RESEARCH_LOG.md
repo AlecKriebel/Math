@@ -6159,3 +6159,41 @@ All timestamps use America/Los_Angeles.
   a coupled inequality among all six matrices.
 - Added `notes/agent_n3_symmetric_cube_minor_obstruction.md` and
   extended the exact cyclic-obstruction verifier.
+
+## 2026-07-29 21:18 PDT — Complete independent Latin--Segre minor orbit
+
+- Replaced symmetric cubes by the independently framed product triple
+  \[
+  p_r(U)=U_1|r\rangle\otimes U_2|r\rangle\otimes U_3|r\rangle.
+  \]
+  The determinant between one left and one right such triple is a
+  matrix coefficient of \(\wedge^3C\).
+- Computed the exact Haar frame spectrum on
+  \(\wedge^3((\mathbb C^3)^{\otimes3})\).  The 2925 dimensions split
+  into eleven \(S_3\)-types, the seed has positive mass in every type,
+  and
+  \[
+  \frac1{5760}I\preceq
+  {\mathbb E}_U|\eta_U\rangle\langle\eta_U|
+  \preceq\frac1{36}I.
+  \]
+  Consequently
+  \[
+  5760^{-2}\|\wedge^3C\|^2
+  \leq{\mathbb E}_{U,V}|\Delta_{U,V}(C)|^2
+  \leq36^{-2}\|\wedge^3C\|^2.
+  \]
+  The average vanishes exactly at rank at most two.
+- Calibrated the orbit on the cyclic obstruction \(C_\star\): one
+  explicit Latin minor equals
+  \((1+\sqrt{3/5})^3\).
+- Proved that this sixth-order invariant cannot be reconstructed from
+  \(q,c,G,a,\Xi\).  The rank-two zero
+  \(P_2\otimes E_{01}\otimes E_{01}\) and the high-rank invariant
+  \(D_0/\sqrt{54}+E_0/\sqrt{40}\) share
+  \[
+  (q,c,G,a,\Xi)=(0,4/3,2/3,0,1/2),
+  \]
+  but their Latin-minor averages are respectively zero and positive.
+- Added `notes/agent_n3_latin_segre_minor_orbit.md` and its exact
+  character-table verifier.
