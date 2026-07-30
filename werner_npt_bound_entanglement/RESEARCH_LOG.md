@@ -6004,3 +6004,38 @@ All timestamps use America/Los_Angeles.
   compatibility relation is essential.
 - Added `notes/agent_n3_stationary_one_body_obstruction.md` and
   `verification/verify_n3_stationary_one_body_obstruction.py`.
+
+## 2026-07-29 20:14 PDT — Same-\(C\) cyclic obstruction outside rank two
+
+- Strengthened the isotropic stationary obstruction from abstract
+  local forms to one actual Hermitian three-qutrit operator.  With
+  \(F_{ij}\) the flips and \(V\) the three-cycle, define
+  \[
+  D_0=F_{12}+F_{13}+F_{23}-I,\qquad
+  E_0=V+V^{-1}-\frac23\sum_{i<j}F_{ij}+\frac49I.
+  \]
+  These are pure degrees two and three, with exact norms
+  \(72\) and \(80/3\).
+- For every \(0<\delta<1/8\), the operator
+  \[
+  C_\delta=
+  \sqrt{\frac{2(1+\delta)}{216}}D_0+
+  \sqrt{\frac{1-2\delta}{80}}E_0
+  \]
+  has \(x=a=0\), norm one, and \(Q_3(C_\delta)=-\delta\).
+  Collective-unitary and site-permutation invariance makes all six
+  local forms isotropic, with exactly the endpoint, pair-sector, and
+  depth Euler/Hessian spectra of the formal obstruction.
+- Because all maps now arise from this one \(C_\delta\), every
+  left/right multiplication identity, common-derivation equation,
+  same-site Jacobi relation, and cross-site commutator identity holds
+  exactly.  Thus cyclic compatibility by itself does not supply the
+  proposed lower bound on the degree-one mass.
+- The construction is nonphysical for the Werner problem:
+  \(C_\delta\) has a positive eigenvalue on the ten-dimensional
+  symmetric tensor subspace, so its rank is at least ten.  This
+  isolates the next missing input as a direct coupling of
+  \(\wedge^3C=0\) to the local multiplication maps.
+- Added
+  `notes/agent_n3_cyclic_stationary_high_rank_obstruction.md` and its
+  exact verifier.
