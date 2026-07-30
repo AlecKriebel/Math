@@ -5469,3 +5469,61 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_triangle_face_polarization_obstruction.md` and the
   dependency-free verifier
   `verification/verify_n3_triangle_face_polarization_obstruction.py`.
+
+## 2026-07-29 19:18 PDT — Exact negative-depth simplex and physical gap below \(1/5\)
+
+- For a negative direction of the full three-pair Schur residual,
+  normalized by
+  \[
+  \delta=-\langle z,H_Vz\rangle/\langle z,S_Vz\rangle,
+  \]
+  combined the three sharp face identities into
+  \[
+  \frac12\langle F_i\rangle-\delta\langle S\rangle
+  =\frac13r_i+\frac23s_i,
+  \qquad
+  \sum_i\left(\frac13r_i+\frac23s_i\right)
+  =\frac12(1-5\delta)\langle S\rangle.
+  \]
+- Proved the exact sector identity \(s_i=3g_i\), where \(g_i\) is the
+  sitewise Haar bracket.  The fixed-left Haar-kernel classification
+  gives \(g_i>0\) at every hypothetical negative transition.
+  Consequently every negative depth satisfies the strict bound
+  \(0<\delta<1/5\).
+- Parametrized every negative scalar tuple by
+  \(\theta_i>0\), \(\sum_i\theta_i=1\), and
+  \(0<\lambda_i\leq1\):
+  \[
+  \begin{aligned}
+  \langle F_i\rangle/\langle S\rangle
+    &=2\delta+(1-5\delta)\theta_i,\\
+  r_i/\langle S\rangle
+    &=\tfrac32(1-5\delta)\theta_i(1-\lambda_i),\\
+  s_i/\langle S\rangle
+    &=\tfrac34(1-5\delta)\theta_i\lambda_i.
+  \end{aligned}
+  \]
+  Hence approaching depth \(1/5\) forces all three frames to
+  \(2S/5\) and all six face slacks to zero simultaneously.
+- Combined this with the explicit quantitative-isotropy theorem:
+  normalized local-filter forms and complete block Grams approach the
+  forbidden isotropic collapse at rate \(O(\sqrt{1-5\delta})\), with
+  audited constants.
+- Defined finite compact semialgebraic stability constants
+  \(\eta(a)>0\) and \(\kappa(a)>0\) on the shell
+  \(\delta\geq a>0\), obtaining
+  \[
+  \Delta_*\leq
+  \max\{a,\ 1/5-12\eta(a)/5\}
+  \]
+  and
+  \[
+  \Delta_*\leq
+  \max\{a,\ 1/5-\kappa(a)/810000\}<1/5.
+  \]
+  Evaluating these constants is now one explicit finite nonlinear
+  common-code problem.  This strict gap does not yet prove
+  \(\Delta_*=0\).
+- Added
+  `notes/agent_n3_negative_depth_stability.md` and exact checker
+  `verification/verify_n3_negative_depth_stability.py`.
