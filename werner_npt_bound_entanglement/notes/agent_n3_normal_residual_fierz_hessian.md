@@ -17,7 +17,7 @@ then
  \|W\|_2^2
  =
  \frac5{48}-\frac{21}{8}q
- \frac98G+\frac1{12}\Xi-q^2
+ +\frac98G+\frac1{12}\Xi-q^2
  >\frac5{48}.
  \qquad}                                                   \tag{1}
 \]
@@ -38,9 +38,9 @@ All quantities in (2) are defined below.  Every \(T\) is an
 individual tensor-Fierz label; the parity labels are not collapsed
 before applying the Hessian.
 
-Equations (1)--(2) reduce the second-variation route to one explicit
-weighted fourth-moment estimate.  The universal tight-frame bounds
-alone are far too weak.  A sufficient remaining lemma is
+Equations (1)--(2) suggested one explicit weighted fourth-moment
+estimate.  The universal tight-frame bounds alone are far too weak.
+The proposed sufficient lemma was
 \[
 \boxed{
  \sqrt{\left(\sum_Tw_T A_T\right)
@@ -56,9 +56,23 @@ desired
  204G+45\|\Pi_1C\|_2^2+16\Xi
  \geq108\|\Pi_2C\|_2^2.
 \]
-Inequality (3) remains unproved.  It is strictly smaller than the
-original rank-two optimization: it is a scalar inequality between
-two linked Fierz leakage frames at one critical point.
+The universal critical-point form of (3) is false.  At the exact
+nonnormal zero
+\[
+ C_0=|000\rangle\langle110|+|001\rangle\langle111|,
+\]
+which is itself norm-critical on the smooth rank-two stratum, the
+normalized left and right sides of (3) are respectively
+\[
+ \frac{649}{64}\quad\hbox{and}\quad\frac12.
+\]
+The failure is proved and audited in
+`notes/agent_n3_fierz_fourth_moment_zero_obstruction.md` and
+`verification/verify_n3_fierz_fourth_moment_zero_obstruction.py`.
+Thus (3) cannot be the missing boundary-stable lemma.  A condition
+peculiar to strictly negative minimizers is not logically excluded,
+but any such refinement must retain coherent cross-label
+interference rather than only the scalar label sums in (3).
 
 The exact sector arithmetic is checked by
 `verification/verify_n3_normal_residual_fierz_hessian.py`.  The
@@ -273,9 +287,10 @@ which is automatic throughout \(-1/2\leq q<0\) after comparison with
 (1).  Thus neither the tight-frame mass nor the normal Hessian term
 alone is sufficient.
 
-The remaining information is precisely the common signed fourth
-moment in (3): the ordinary crossed responses \(p_T\), the two
-one-sided Hessian energies, and the normal residual must be retained
-as blocks of the same tensor-Fierz labels.  This identifies the
-smallest missing second-variation lemma without introducing another
-unrestricted matrix variable.
+The exact zero obstruction shows that even the common scalar signed
+fourth moment in (3) is too coarse.  The ordinary crossed responses,
+the one-sided Hessian energies, and the normal residual must be
+retained as a full cross-label Gram object.  Equivalently, one should
+bound the coherent normal bilinear form directly in the two Hessian
+metrics, or bound the operator norm of the signed Fierz synthesis map
+without discarding its off-diagonal label Gram entries.

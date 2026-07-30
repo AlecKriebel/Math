@@ -6039,3 +6039,46 @@ All timestamps use America/Los_Angeles.
 - Added
   `notes/agent_n3_cyclic_stationary_high_rank_obstruction.md` and its
   exact verifier.
+
+## 2026-07-29 20:10 PDT — Exact zero obstruction to the scalar Fierz closure
+
+- Tested the proposed linked fourth-moment estimate at the canonical
+  nonnormal rank-two zero
+  \[
+  C_0=|000\rangle\langle110|+|001\rangle\langle111|.
+  \]
+  It is an exact norm-critical point:
+  \[
+  Q_3(C_0)=0,\qquad
+  L^{\otimes3}(C_0)=-|002\rangle\langle112|=:W_0,
+  \qquad\|W_0\|^2=1.
+  \]
+- Evaluated all \(729\) individual tensor-Fierz labels with rational
+  arithmetic.  In the unnormalized convention,
+  \[
+  \sum_Tw_TA_T=\sum_Tw_TB_T=\frac{649}{32},\quad
+  \sum_Tw_T|p_T|=0,
+  \]
+  while
+  \[
+  \sum_Tw_T|r_T|=2,\qquad
+  \sum_T\eta_Tw_Tr_T=1=\|W_0\|^2.
+  \]
+  Hence the scalar closure misses its residual target by \(617/32\)
+  (or \(617/64\) after normalizing \(C_0\)).
+- Isolated both losses: labelwise absolute values enlarge the signed
+  residual from \(1\) to \(2\), and diagonal Hessian budgets plus
+  Cauchy enlarge \(2\) to \(649/32\).  By contrast, one coherent
+  leakage channel has endpoint energies \(1,1\), ordinary cross term
+  \(0\), and normal pairing \(1\), exactly saturating the genuine
+  \(2\times2\) Hessian.
+- Therefore a sharper route must retain off-diagonal cross-label Gram
+  entries, equivalently the operator norm of the signed Fierz
+  synthesis map between the two Hessian metrics.  Scalar sums of
+  labelwise fourth moments cannot provide a boundary-stable closure.
+- Added
+  `notes/agent_n3_fierz_fourth_moment_zero_obstruction.md` and the
+  dependency-free exact verifier
+  `verification/verify_n3_fierz_fourth_moment_zero_obstruction.py`;
+  corrected the earlier normal-residual note so it no longer presents
+  the disproved universal closure as an open lemma.
