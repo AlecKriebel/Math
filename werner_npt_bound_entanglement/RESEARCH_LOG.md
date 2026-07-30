@@ -5424,3 +5424,48 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_sitewise_sharp_trace_reduction.md` and the
   dependency-free exact checker
   `verification/verify_n3_sitewise_sharp_trace_reduction.py`.
+## 2026-07-29 19:03 PDT — Polarized strict triangle and an exact face-feature no-go
+
+- Polarized the lossless triangle Schur pivot.  For the two
+  residualized face inputs \(b,b'\), the full defect pairing is
+  exactly
+  \[
+  \Delta(b,b')=-m.
+  \]
+  Expanding the two complete-square certificates cancels the pivot
+  feature and gives the symmetric missing-frame identity
+  \[
+  m=\langle T_2B_2,z'\rangle
+   =\langle z,T_3B_3\rangle .
+  \]
+  The diagonal Schur slacks retain the exact features
+  \[
+  \begin{aligned}
+  A&=2\|a_1\|^2+2\|a_2\|^2+\|T_3^\dagger z/2\|^2
+      +r_3/3+2s_3/3,\\
+  B&=2\|a'_1\|^2+2\|a'_3\|^2+\|T_2^\dagger z'/2\|^2
+      +r_2/3+2s_2/3.
+  \end{aligned}
+  \]
+  Thus the unresolved contraction is now explicitly cross-site: it
+  must identify complementary \(r/s\) feature spaces, rather than
+  pair the two missing-frame terms independently.
+- Proved an exact obstruction to any argument using only the three
+  independent face decompositions.  The scalar frame model
+  \[
+  S=1,\qquad F_1=F_2=F_3=2/5
+  \]
+  saturates every strengthened face identity
+  \(S-F_e-F_f=F_g/2\) with \(r_g=s_g=0\), but has full residual
+  \(-1/5\).  Its strict Schur data are
+  \[
+  A=B=2/3,\qquad m=4/3,\qquad |m|^2=4AB.
+  \]
+  This is not a physical rank-two counterexample.  It proves that an
+  additional cyclic common-code relation is logically necessary and
+  pinpoints the simultaneous abstract configuration which it must
+  exclude.
+- Added the exact note
+  `notes/agent_n3_triangle_face_polarization_obstruction.md` and the
+  dependency-free verifier
+  `verification/verify_n3_triangle_face_polarization_obstruction.py`.
