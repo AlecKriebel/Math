@@ -5300,3 +5300,61 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_dual_two_pair_theorem.md` and
   `verification/verify_n3_full_dual_two_pair_theorem.py`.
+
+## 2026-07-29 18:30 PDT — Sitewise sharp-trace reduction
+
+- Reorganized the full unrestricted three-copy target at one fixed
+  physical site.  If
+  \[
+  q_i=Q_{\widehat i}(C),\quad
+  T_i=\operatorname{Tr}_iC,\quad
+  t_i=Q_2(T_i),
+  \]
+  then the exact recursion is
+  \[
+  Q_3(C)=q_i-\frac12t_i.
+  \]
+  Hence the complete theorem is equivalent, for any one fixed site,
+  to the sharp common-block inequality
+  \[
+  Q_2(\operatorname{Tr}_iC)\leq2Q_{\widehat i}(C).
+  \]
+- In \(3\times3\) block notation this is
+  \[
+  Q_2\!\left(\sum_aC_{aa}\right)
+  \leq2\sum_{a,b}Q_2(C_{ab}),
+  \qquad \operatorname{rank}C\leq2.
+  \]
+  The established block-Haar argument has constant \(3\); the missing
+  theorem is exactly the improvement from \(3\) to the sharp constant
+  \(2\), using the common factorization \(C_{ab}=U_aV_b^\dagger\).
+- For the two existing slacks
+  \[
+  r_i=\frac32w_i-t_i,\qquad s_i=3q_i-t_i,\qquad w_i=3c_i,
+  \]
+  proved the sitewise identity
+  \[
+  2r_i+4s_i-9c_i=12Q_3(C).
+  \]
+  Summing sites is therefore unnecessary.
+- The exact GHZ projection has, at every site,
+  \[
+  (q_i,t_i,w_i,c_i,r_i,s_i)
+  =\left(\frac12,1,\frac{10}{9},\frac{10}{27},
+  \frac23,\frac12\right).
+  \]
+  It saturates the sharp constant while every two-pair face slack is
+  strictly positive.  Thus global equality cannot be forced into a
+  coordinate-face kernel.
+- Recorded an exact nonnormal isoclinic boundary equality
+  \[
+  C=|a\rangle\langle b|\otimes P_2,\quad
+  a=(|00\rangle+|11\rangle)/\sqrt2,\quad
+  b=(|00\rangle+|12\rangle)/\sqrt2,
+  \]
+  explaining the nonnormal locally rank-two numerical equality
+  attractors without treating them as evidence.
+- Added
+  `notes/agent_n3_sitewise_sharp_trace_reduction.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_sitewise_sharp_trace_reduction.py`.
