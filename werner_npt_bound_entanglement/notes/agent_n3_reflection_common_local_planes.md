@@ -17,7 +17,7 @@ dimension at most two, then
 \[
  \boxed{\qquad
  \langle C,{\mathfrak r}^{\otimes3}(C)\rangle_{\rm HS}
- \frac13\|C\|_2^2\geq0 .
+ +\frac13\|C\|_2^2\geq0 .
  \qquad}
  \tag{2}
 \]
