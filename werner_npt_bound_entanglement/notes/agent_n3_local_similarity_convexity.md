@@ -824,12 +824,46 @@ qutrit triples.  Excluding this branch from the prescribed
 strictly smaller nonlinear problem than unrestricted nine-block
 factorization.
 
+The repaired endpoint ratios sharpen the branch slightly.  Every
+\(X_p\) and every \(Y_q\) must be injective.  Indeed, otherwise some
+off-diagonal block \(X_pY_q^\dagger\), \(p\ne q\), would have rank at
+most one, while the strict rank-one two-copy bound would give
+\[
+ Q_2(X_pY_q^\dagger)
+ \geq\frac14\|X_pY_q^\dagger\|_2^2.
+\]
+The repaired table instead prescribes the ratio \(1/20\).
+Consequently, on the nonzero one-Pauli branch,
+\[
+ 0<\lambda<1.
+\tag{10aw}
+\]
+Using the reciprocal scaling freedom between \(h\) and \(H\), its
+eigenvalues can be normalized to
+\[
+ H=\operatorname{diag}(1-\lambda,-\lambda).
+\tag{10ax}
+\]
+Thus both conditional left Gram matrices
+\[
+ \frac13I_3+(1-\lambda)h,\qquad
+ \frac13I_3-\lambda h
+\tag{10ay}
+\]
+are positive definite, while the two opposite column triples have
+squared norms \(\lambda/3\) and \((1-\lambda)/3\), respectively.
+The zero-Pauli branch \(H=0\) is precisely one-site erasure
+decoupling of the whitened left two-code.  On the separate
+square-zero/orthogonal-plane problem it is already nonnegative by
+the established code-output erasure theorem; for an unrestricted
+nonnormal factorization it is not yet removed by that theorem.
+
 There is also a finite determinantal form of the first common-factor
 constraint.  For an arbitrary Hilbert--Schmidt block Gram \(N\), form
 the reshuffling
 \[
  \widehat N_{(p,r),(s,q)}=N_{pq,rs}.
-\tag{10aw}
+\tag{10az}
 \]
 Then
 \[
@@ -841,7 +875,7 @@ Then
 so \(\widehat N\) factors through the four-dimensional space \(M_2\):
 \[
  \boxed{\operatorname{rank}\widehat N\leq4.}
-\tag{10ax}
+\tag{10ba}
 \]
 Equivalently, all \(5\times5\) minors of \(\widehat N\) vanish.  This
 is a genuine polynomial identity of the common two-column
