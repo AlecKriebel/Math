@@ -1077,3 +1077,190 @@ four-frame are the smallest currently valid interior problem.  In
 particular, after Theorem 8.2 the only unresolved determinant-zero
 locus has both matched features nonzero; no valid further collapse
 of that locus has yet been proved.
+
+## 11. A corrected aggregate spin-flip identity
+
+Although the transverse equations in (67) do not give ordinary
+feature-vector orthogonality, the \(D\)-weighted trace of (66) does
+give one useful invariant identity.  Write
+\[
+ z_{00}=(a_\mu)_\mu,\quad z_{01}=(b_\mu)_\mu,\quad
+ z_{10}=(c_\mu)_\mu,\quad z_{11}=(d_\mu)_\mu
+\]
+and define the real spin-flip moment
+\[
+ \delta=
+ \operatorname{Re}\sum_\mu
+ (a_\mu\overline{d_\mu}-b_\mu\overline{c_\mu}).
+\tag{68}
+\]
+Multiply (66) on the left by \(D\), take the trace, and take real
+parts.  This gives
+\[
+ \sum_\mu\left(
+ s^2|a_\mu|^2+t^2|d_\mu|^2
+2st\operatorname{Re}(b_\mu\overline{c_\mu})
+ \right)
+ \frac{s^2+t^2}{4}=0.
+\tag{69}
+\]
+For every feature coordinate,
+\[
+\begin{aligned}
+ &s^2|a_\mu|^2+t^2|d_\mu|^2
+ 2st\operatorname{Re}(b_\mu\overline{c_\mu})\\
+ &\qquad =
+ |s a_\mu+t d_\mu|^2
+2st\operatorname{Re}
+ (b_\mu\overline{c_\mu}-a_\mu\overline{d_\mu}).
+\end{aligned}
+\tag{70}
+\]
+Substitution in (69) proves the exact identity
+\[
+ \boxed{\qquad
+ \delta=
+ \frac{s^2+t^2}{8st}
+ \frac{\|s z_{00}+t z_{11}\|^2}{2st}.
+ \qquad}
+\tag{71}
+\]
+Equivalently, if \(J=\epsilon\otimes\epsilon\) is the logical spin
+flip and \(K\) is the feature Gram, then
+\[
+ 2\delta=\operatorname{Tr}(KJ).
+\tag{72}
+\]
+No termwise reality of
+\(a_\mu\overline{d_\mu}-b_\mu\overline{c_\mu}\) is asserted; only
+the real aggregate enters.
+
+Formula (71) has two immediate consequences.  Every determinant-zero
+kernel obeys
+\[
+ \delta\geq\frac{s^2+t^2}{8st}\geq\frac14,
+\tag{73}
+\]
+and an unequal kernel makes the first inequality in (73) strict
+after comparison with \(1/4\), whether or not the matched feature
+combination vanishes.  More explicitly,
+\[
+ s\ne t\quad\Longrightarrow\quad \delta>\frac14.
+\tag{74}
+\]
+The balanced transverse spin-flip zero has
+\(z_{00}=z_{11}=0\) and \(\delta=1/4\), so (71) is sharp.
+
+It is sometimes convenient to absorb the kernel weights into the
+feature matrices:
+\[
+ N_\mu=D^{1/2}M_\mu D^{1/2}.
+\]
+Equation (66) is then equivalently
+\[
+ \boxed{\qquad
+ \sum_\mu N_\mu\overline{N_\mu}=-\frac14D^2.
+ \qquad}
+\tag{75}
+\]
+This is a compact corrected replacement for the retracted
+orthogonality reduction.  It is still not a classification: the
+abstract unequal-kernel example in (4)--(5) satisfies (71), with
+\[
+ (s,t)=(4,3),\qquad
+ \delta=\frac13,\qquad
+ \frac{\|s z_{00}+t z_{11}\|^2}{2st}=\frac7{96}.
+\tag{76}
+\]
+Thus the missing step remains a restriction on the common physical
+Hodge origin of the four columns.
+
+## 12. Exact obstruction to a pairwise spin-correlation proof
+
+There is a natural but false attempt to bound (72) one physical
+pair at a time.  The following exact common four-frame disproves the
+putative \(1/2\) bound for one pair.
+
+On two qutrits \(A,B\), put
+\[
+\begin{aligned}
+ x&=|00\rangle,\\
+ y&=\sqrt{\frac1{20}}|02\rangle
+   +\sqrt{\frac{27}{40}}|11\rangle
+   +\sqrt{\frac{11}{40}}|20\rangle,\\
+ p&=\frac{4|02\rangle+|11\rangle+2|20\rangle}{\sqrt{21}},
+ \qquad q=|21\rangle.
+\end{aligned}
+\tag{77}
+\]
+The two pairs \((x,y)\) and \((p,q)\) are orthonormal.  Attach
+\(|0\rangle_C\) to the first pair and \(|1\rangle_C\) to the second.
+The resulting four vectors are therefore an orthonormal physical
+four-frame in \((\mathbb C^3)^{\otimes3}\).
+
+Let
+\[
+ G=P_x-P_y,\qquad H=P_p-P_q,\qquad
+ {\mathsf A}_A=\frac{I-F_A}{2},\quad
+ {\mathsf A}_B=\frac{I-F_B}{2}.
+\]
+A direct swap contraction gives
+\[
+\begin{aligned}
+ &-\operatorname{Tr}\!\left[
+ {\mathsf A}_A{\mathsf A}_B(G\otimes H)\right]\\
+ &\quad=
+ \frac{299}{672}
+ \frac{\sqrt6}{140}
+ \frac{\sqrt{33}}{280}
+ \frac{\sqrt{22}}{210}\\
+ &\quad=
+ \frac12+
+ \frac{
+ 24\sqrt6+12\sqrt{33}+16\sqrt{22}-185
+ }{3360}
+>\frac12.
+\end{aligned}
+\tag{78}
+\]
+The last inequality is exact: use
+\[
+ \sqrt6>\frac{12}{5},\qquad
+ \sqrt{33}>\frac{57}{10},\qquad
+ \sqrt{22}>\frac{23}{5},
+\]
+whose squared forms are immediate.  The radical numerator in (78)
+is then greater than
+\[
+ \frac{998}{5}-185=\frac{73}{5}>0.
+\]
+
+For transparency, the only nontrivial calculation in (78) is a
+three-dimensional Rayleigh quotient.  On
+\(\operatorname{span}\{|02\rangle,|11\rangle,|20\rangle\}\),
+\(({\cal R}\otimes{\cal R})(G)\), where
+\({\cal R}(Z)=\operatorname{Tr}(Z)I-Z\), has matrix
+\[
+ \begin{pmatrix}
+ -19/20&-3\sqrt6/40&-\sqrt{22}/40\\
+ -3\sqrt6/40&27/40&-3\sqrt{33}/40\\
+ -\sqrt{22}/40&-3\sqrt{33}/40&-29/40
+ \end{pmatrix}.
+\tag{79}
+\]
+Its expectation on \((4,1,2)/\sqrt{21}\) is
+\[
+ -\frac{697}{840}
+ -\frac{\sqrt6}{35}
+ -\frac{2\sqrt{22}}{105}
+ -\frac{\sqrt{33}}{70},
+\tag{80}
+\]
+whereas its expectation on \(|21\rangle\) is \(19/20\).
+One quarter of their difference is (78).
+
+This example does not violate the global three-pair target and is
+not a negative endpoint witness.  It proves only that a valid global
+argument cannot bound the three polarized pair contributions
+independently by \(1/2\); their common origin and their compensation
+across the three physical pairs are essential.

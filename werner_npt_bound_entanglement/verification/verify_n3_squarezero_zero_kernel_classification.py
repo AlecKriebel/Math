@@ -378,6 +378,137 @@ def check_crossed_index_retraction():
     assert ordinary_inner_product == gaussian(0, 2)
 
 
+def quad4_add(x, y):
+    """Add coefficients in Q(sqrt(6),sqrt(22))."""
+    return tuple(x_i + y_i for x_i, y_i in zip(x, y))
+
+
+def quad4_scale(c, x):
+    return tuple(c * x_i for x_i in x)
+
+
+def quad4_mul(x, y):
+    """Basis order: 1, sqrt(6), sqrt(22), sqrt(33)."""
+    a, b, c, d = x
+    e, f, g, h = y
+    return (
+        a * e + 6 * b * f + 22 * c * g + 33 * d * h,
+        a * f + b * e + 11 * (c * h + d * g),
+        a * g + c * e + 3 * (b * h + d * f),
+        a * h + d * e + 2 * (b * g + c * f),
+    )
+
+
+def check_corrected_spinflip_identity():
+    # The balanced physical spin-flip feature Gram admits the rational
+    # three-column factorization
+    #
+    # M1=[[0,1/2],[-1/2,0]], M2=[[0,1/2],[0,0]],
+    # M3=[[0,0],[1/2,0]].
+    #
+    # For D=I, sum M D conjugate(M)=-I/4.  Its matched columns vanish,
+    # and delta=sum(a*d-b*c)=1/4.
+    matrices = [
+        [[F(0), F(1, 2)], [F(-1, 2), F(0)]],
+        [[F(0), F(1, 2)], [F(0), F(0)]],
+        [[F(0), F(0)], [F(1, 2), F(0)]],
+    ]
+    total = [[F(0), F(0)], [F(0), F(0)]]
+    delta = F(0)
+    for matrix in matrices:
+        total = matadd(total, matmul(matrix, matrix))
+        a, b = matrix[0]
+        c, d = matrix[1]
+        delta += a * d - b * c
+    assert total == scale(F(-1, 4), eye(2))
+    assert delta == F(1, 4)
+
+    # The abstract unequal-kernel obstruction has a feature
+    # factorization with b=2/3, c=-1/2 and matched d^2=7/36.
+    # It checks every scalar in (71) without requiring floating point.
+    s, t = F(4), F(3)
+    delta = F(1, 3)
+    baseline = (s * s + t * t) / (8 * s * t)
+    matched_term = (t * t * F(7, 36)) / (2 * s * t)
+    assert baseline == F(25, 96)
+    assert matched_term == F(7, 96)
+    assert delta == baseline + matched_term
+    assert delta > F(1, 4)
+
+
+def check_pairwise_spin_correlation_no_go():
+    # Matrix (79) in the exact biquadratic field
+    # Q(sqrt(6),sqrt(22)); sqrt(33)=sqrt(6)*sqrt(22)/2.
+    one = (F(1), F(0), F(0), F(0))
+    r6 = (F(0), F(1), F(0), F(0))
+    r22 = (F(0), F(0), F(1), F(0))
+    r33 = (F(0), F(0), F(0), F(1))
+    zero = quad4_scale(F(0), one)
+    block = [
+        [
+            quad4_scale(F(-19, 20), one),
+            quad4_scale(F(-3, 40), r6),
+            quad4_scale(F(-1, 40), r22),
+        ],
+        [
+            quad4_scale(F(-3, 40), r6),
+            quad4_scale(F(27, 40), one),
+            quad4_scale(F(-3, 40), r33),
+        ],
+        [
+            quad4_scale(F(-1, 40), r22),
+            quad4_scale(F(-3, 40), r33),
+            quad4_scale(F(-29, 40), one),
+        ],
+    ]
+    vector = [F(4), F(1), F(2)]
+    numerator = zero
+    for i in range(3):
+        for j in range(3):
+            numerator = quad4_add(
+                numerator,
+                quad4_scale(vector[i] * vector[j], block[i][j]),
+            )
+    rayleigh = quad4_scale(F(1, 21), numerator)
+    expected_rayleigh = (
+        F(-697, 840),
+        F(-1, 35),
+        F(-2, 105),
+        F(-1, 70),
+    )
+    assert rayleigh == expected_rayleigh
+
+    # One quarter of 19/20 minus this Rayleigh quotient is (78).
+    correlation = quad4_scale(
+        F(1, 4),
+        quad4_add(
+            quad4_scale(F(19, 20), one),
+            quad4_scale(F(-1), rayleigh),
+        ),
+    )
+    assert correlation == (
+        F(299, 672),
+        F(1, 140),
+        F(1, 210),
+        F(1, 280),
+    )
+
+    # A dependency-free rigorous positivity check for
+    # correlation-1/2.  Multiplying by 3360 gives
+    # 24 sqrt(6)+16 sqrt(22)+12 sqrt(33)-185.  The rational
+    # lower bounds below have strictly smaller squares.
+    assert F(12, 5) ** 2 < 6
+    assert F(23, 5) ** 2 < 22
+    assert F(57, 10) ** 2 < 33
+    radical_lower_bound = (
+        24 * F(12, 5)
+        + 16 * F(23, 5)
+        + 12 * F(57, 10)
+    )
+    assert radical_lower_bound == F(998, 5)
+    assert radical_lower_bound > 185
+
+
 def main():
     check_rational_obstruction()
     check_kernel_normal_form()
@@ -387,6 +518,8 @@ def main():
     check_restricted_rank_one_spectral_identity()
     check_unrestricted_spectral_counterfamily()
     check_crossed_index_retraction()
+    check_corrected_spinflip_identity()
+    check_pairwise_spin_correlation_no_go()
     print("verified exact square-zero zero-kernel classification identities")
 
 
