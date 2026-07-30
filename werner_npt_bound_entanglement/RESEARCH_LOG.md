@@ -6539,3 +6539,43 @@ u_1u_1^\dagger\bigr].
   `notes/agent_n3_squarezero_code_output_compression.md` and the
   dependency-free exact rational checker
   `verification/verify_n3_squarezero_code_output_compression.py`.
+
+## 2026-07-29 21:34 PDT — Sharp reciprocal-filter Hessian
+
+- For the full-local-rank GHZ four-frame
+  \[
+  U=(g_{0,0,0},g_{0,0,1}),\qquad
+  W=(g_{1,2,2},g_{2,1,2}),
+  \]
+  verified exactly that the square-zero endpoint Gram is \(I_4/2\)
+  and all six one-site plane marginals are \(2I_3/3\).  This frame
+  saturates
+  \[
+  \det H\geq\frac{3^{18}}{2^{22}}
+  \prod_i\det\rho_i^U\det\rho_i^W.
+  \]
+- Derived the exact first and second normalized-frame derivatives
+  under a reciprocal one-site filter
+  \(U\mapsto e^{tA}U\), \(W\mapsto e^{-tA}W\), followed by independent
+  logical whitening.
+- For
+  \[
+  {\cal R}=\log\det H-
+  \sum_i(\log\det\rho_i^U+\log\det\rho_i^W),
+  \]
+  proved at the sharp frame, on each of the three physical sites,
+  \[
+  {\cal R}'(0)=0,\qquad
+  {\cal R}''(0)
+  =9\|A_{\rm diag}\|_2^2+
+   \frac{104}{9}\|A_{\rm off}\|_2^2
+  \]
+  for every traceless Hermitian \(A\).
+- Thus the sharp frame is a strict local minimum on every one-site
+  nonunitary reciprocal-filter orbit.  This is local/orbit-only:
+  global convexity and the existence of balanced representatives on
+  arbitrary filter orbits remain unproved.
+- Added
+  `notes/agent_n3_squarezero_reciprocal_filter_hessian.md` and a
+  dependency-free exact \(\mathbb Q(\omega)\) checker,
+  `verification/verify_n3_squarezero_reciprocal_filter_hessian.py`.
