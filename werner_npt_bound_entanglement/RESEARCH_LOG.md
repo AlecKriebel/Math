@@ -5470,6 +5470,42 @@ All timestamps use America/Los_Angeles.
   dependency-free verifier
   `verification/verify_n3_triangle_face_polarization_obstruction.py`.
 
+## 2026-07-29 19:23 PDT — A common rank-two trace tradeoff excludes the isotropic face model
+
+- Converted the global rank-two trace deficit exactly into the six
+  two-face slacks.  If \(a,c\) are the total degree-one and degree-two
+  sector masses, and \(R=\sum_i r_i,\ S=\sum_i s_i\), then
+  \[
+  200R+4S-252c-567a
+  =18\left(2\|C\|_2^2-|\operatorname{Tr}C|^2\right)\ge0.
+  \]
+  This is a genuine common-\(C\) constraint absent from the three
+  separate face certificates.
+- It immediately excludes the abstract scalar-frame obstruction:
+  \(R=S=0\) forces \(a=c=0\).  A negative endpoint candidate is now
+  confined to the strict band
+  \[
+  \frac{27}{22}c+\frac{63}{22}a<R<\frac92c,
+  \qquad a<\frac87c.
+  \]
+- Equality in the new tradeoff forces
+  \(C=e^{i\theta}sP\), with \(P\) a rank-two orthogonal projection.
+  The established projector theorem makes that entire equality locus
+  nonnegative.
+- Retaining the global exterior mass
+  \(p=s_1(C)s_2(C)\) gives the sharper exact identity
+  \[
+  416R+4S+72p-576c-1215a
+  =36\left(\|C\|_2^2+2p-|\operatorname{Tr}C|^2\right)\ge0.
+  \]
+  Closing the remaining band requires coupling \(p\) to the three
+  partial-contraction exterior masses rather than replacing
+  \(2p\) by \(\|C\|_2^2\).
+- Added
+  `notes/agent_n3_common_trace_slack_tradeoff.md` and the
+  dependency-free checker
+  `verification/verify_n3_common_trace_slack_tradeoff.py`.
+
 ## 2026-07-29 19:18 PDT — Exact negative-depth simplex and physical gap below \(1/5\)
 
 - For a negative direction of the full three-pair Schur residual,
