@@ -149,6 +149,54 @@ Stationarity under every one-site positive similarity is exactly
 \tag{10}
 \]
 
+### 3.1 Matrix-valued circulation
+
+The off-diagonal entries of (10) have a positivity structure which is
+lost if one records only the scalar weights \(r_{pq}\).  Define
+\[
+\begin{aligned}
+ R_{pr}&=\sum_q{\cal B}_2(C_{pq},C_{rq}),\\
+ S_{pr}&=\sum_q{\cal B}_2(C_{qp},C_{qr}).
+\end{aligned}
+\tag{10a}
+\]
+Then
+\[
+\boxed{R\succeq0,\qquad S\succeq0.}
+\tag{10b}
+\]
+Indeed, for every \(z\in\mathbb C^3\),
+\[
+\begin{aligned}
+ z^\dagger Rz
+ &=\sum_qQ_2\left(\sum_pz_pC_{pq}\right)\geq0,\\
+ z^\dagger Sz
+ &=\sum_qQ_2\left(\sum_pz_pC_{qp}\right)\geq0.
+\end{aligned}
+\tag{10c}
+\]
+Each matrix inside either endpoint form is a one-sided local
+compression of \(C\), and therefore has rank at most two.  The
+inequalities in (10c) are precisely the unrestricted two-copy
+theorem.
+
+Formula (9a) is equivalently
+\[
+ \mu_i=\overline R-S.
+\tag{10d}
+\]
+Consequently the complete stationarity equation is the
+**matrix-valued circulation law**
+\[
+\boxed{S=\overline R,\qquad R,S\succeq0.}
+\tag{10e}
+\]
+The diagonal part of (10e) is (12) below.  Its off-diagonal part
+equates the three row coherences with the conjugate column
+coherences.  Thus a weights-only argument discards six real
+stationarity equations as well as the positive-semidefinite Gram
+constraints (10b).
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[
@@ -190,7 +238,7 @@ zero is a global minimum on each individual one-parameter local
 similarity geodesic.  Thus an endpoint-zero classification may
 restrict immediately to the common balanced system (9)--(13).
 
-### 3.1 Diagonal-filter capacity
+### 3.2 Diagonal-filter capacity
 
 The cycle decomposition has a second exact use.  For diagonal local
 filters \(D_x=\operatorname{diag}(x_0,x_1,x_2)\) and

@@ -65,6 +65,28 @@ def endpoint_b(left, right, copies):
     )
 
 
+def determinant3(matrix):
+    return (
+        matrix[0][0]
+        * (matrix[1][1] * matrix[2][2] - matrix[1][2] * matrix[2][1])
+        - matrix[0][1]
+        * (matrix[1][0] * matrix[2][2] - matrix[1][2] * matrix[2][0])
+        + matrix[0][2]
+        * (matrix[1][0] * matrix[2][1] - matrix[1][1] * matrix[2][0])
+    )
+
+
+def psd3(matrix):
+    assert all(matrix[p][r] == matrix[r][p] for p in range(3) for r in range(3))
+    assert all(matrix[p][p] >= 0 for p in range(3))
+    assert all(
+        matrix[p][p] * matrix[r][r] - matrix[p][r] ** 2 >= 0
+        for p in range(3)
+        for r in range(p + 1, 3)
+    )
+    assert determinant3(matrix) >= 0
+
+
 def outer(left, right):
     return [[a * b for b in right] for a in left]
 
@@ -185,6 +207,30 @@ assert all(
     moment[p][p]
     == sum(weights[p][q] - weights[q][p] for q in range(3))
     for p in range(3)
+)
+
+# The moment is the difference of two positive semidefinite Gram
+# matrices.  This is the matrix-valued refinement of flow balance.
+row_gram = [
+    [
+        sum(endpoint_b(blocks[p][q], blocks[r][q], 2) for q in range(3))
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+column_gram = [
+    [
+        sum(endpoint_b(blocks[q][p], blocks[q][r], 2) for q in range(3))
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+psd3(row_gram)
+psd3(column_gram)
+assert all(
+    moment[p][r] == row_gram[r][p] - column_gram[p][r]
+    for p in range(3)
+    for r in range(3)
 )
 
 # Exact rank-four obstruction from Section 5.
