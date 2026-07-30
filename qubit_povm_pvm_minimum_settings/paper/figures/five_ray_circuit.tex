@@ -1,0 +1,22 @@
+\begin{tikzpicture}[
+  ray/.style={circle,draw,minimum size=8mm,inner sep=0pt,fill=blue!5},
+  sum/.style={rectangle,draw,rounded corners=2pt,minimum width=12mm,
+    minimum height=8mm,fill=gray!8},
+  arr/.style={-{Latex[length=2mm]},thick}
+]
+\node[ray] (r1) at (-3,1.0) {\(r_1\)};
+\node[ray] (r2) at (-3,-1.0) {\(r_2\)};
+\node[sum] (u) at (0,0) {\(u\)};
+\node[ray] (r3) at (3,1.4) {\(r_3\)};
+\node[ray] (r4) at (3,0) {\(r_4\)};
+\node[ray] (r5) at (3,-1.4) {\(r_5\)};
+\draw[arr] (r1) -- (u);
+\draw[arr] (r2) -- (u);
+\draw[arr] (r3) -- (u);
+\draw[arr] (r4) -- (u);
+\draw[arr] (r5) -- (u);
+\node[align=center,font=\small] at (-3,-2.0) {binary PVM\\\(r_1+r_2=u\)};
+\node[align=center,font=\small] at (3,-2.35) {ternary rank-one POVM\\\(r_3+r_4+r_5=u\)};
+\node[align=center,font=\small] at (0,1.4) {the unique local circuit};
+\end{tikzpicture}
+
