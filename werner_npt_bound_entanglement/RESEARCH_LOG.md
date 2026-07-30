@@ -6651,3 +6651,40 @@ u_1u_1^\dagger\bigr].
   `notes/agent_n3_squarezero_filter_nonconvexity.md` and the
   dependency-free exact checker
   `verification/verify_n3_squarezero_filter_nonconvexity.py`.
+
+## 2026-07-29 21:56 PDT — Zero rigidity reduced to one interior lemma
+
+- Proved that the full-local-support space of ordered orthogonal
+  two-planes in \((\mathbb C^3)^{\otimes3}\) is path connected.  The
+  ambient orthogonal flag manifold has real dimension \(192\).  Each
+  one-plane, one-site deficient locus is a smooth compact image of
+  dimension at most
+  \[
+  4+64+92=160,
+  \]
+  and an explicit finite-dimensional path-avoidance lemma removes the
+  six deficient images simultaneously.
+- Consequently, the qualitative zero-rigidity statement
+  \[
+  \det H(U,W)=0
+  \Longrightarrow
+  \prod_i\det\rho_i^U\det\rho_i^W=0
+  \]
+  is sufficient for the complete square-zero theorem.  The deficient
+  boundary is already positive by the one-sided local-support
+  theorem; the connected interior would have the positive determinant
+  sign of the exact GHZ frame \(H=I_4/2\).
+- Derived the lossless first-order system at a normalized negative
+  global minimum.  With
+  \(C=UBW^\dagger\), \(A={\cal L}^{\otimes3}(C)\),
+  \(R=I-UU^\dagger-WW^\dagger\), and
+  \(\lambda=Q_3(C)<0\),
+  \[
+  U^\dagger AW=\lambda B,\qquad
+  RAW=RA^\dagger U=0,\qquad
+  W^\dagger AWB^\dagger=B^\dagger U^\dagger AU.
+  \]
+  The note explicitly does not impose these stationarity equations
+  on an arbitrary transverse determinant zero.
+- Added `notes/agent_n3_squarezero_zero_rigidity_reduction.md`.
+  The remaining lemma is still (ZR); it has not been proved.
