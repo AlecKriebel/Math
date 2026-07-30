@@ -6197,3 +6197,42 @@ All timestamps use America/Los_Angeles.
   but their Latin-minor averages are respectively zero and positive.
 - Added `notes/agent_n3_latin_segre_minor_orbit.md` and its exact
   character-table verifier.
+
+## 2026-07-29 20:31 PDT — Pair-centered purity obstruction and sharp Haar envelope
+
+- Falsified the proposed critical six-purity certificate exactly with
+  the rank-two orthogonal projection
+  \[
+  C=|\Phi_3\rangle\langle\Phi_3|_{13}
+    \otimes(|0\rangle\langle0|+|1\rangle\langle1|)_2.
+  \]
+  Its sector masses are
+  \[
+  (x,a,c,d)=(4,2,32,16)/27,\qquad Q_3(C)=0,
+  \]
+  and \(D=\Pi_2C\) obeys
+  \(CD=D C=(16/27)C\).
+- All six normalized pair-centered matrices are balanced:
+  \(H_1=H_3=I_3/3\) and \(H_2=P_2/2\), on both left and right.
+  Their total purity is \(7/3\).  The original certificate deficit is
+  \(-2048/2187\), while the doubled quartic deficit is
+  \(-4096/2187\).
+- Verified that this endpoint zero satisfies the complete rank-two
+  quotient Euler equations at \(\lambda=0\):
+  \(C L^{\otimes3}(C)=L^{\otimes3}(C)C=0\).  Thus any balanced
+  critical inequality must be zero-compatible with this orbit.
+- Proved the sharp fixed-purity lower envelope for the critical Haar
+  functional \({\cal R}(H)\).  It is zero through purity \(1/2\),
+  follows a repeated-top-eigenvalue branch through purity \(3\), and
+  then follows an interior two-active-eigenvalue branch.
+- Combining the envelope with the critical Haar inequalities and
+  triple-Hodge fusion gives
+  \[
+  -Q_3(C)/c\leq135/(800+272{\cal P}).
+  \]
+  This is sharp for the available scalar data but stays positive for
+  every finite \({\cal P}\), proving that a same-\(C\)
+  second-variation or normal-space relation is still required.
+- Added `notes/agent_n3_pair_centered_purity_nogo.md` and the
+  dependency-free exact verifier
+  `verification/verify_n3_pair_centered_purity_nogo.py`.
