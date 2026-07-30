@@ -6278,3 +6278,81 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_n3_pair_centered_7over3_tilt_nogo.md` and exact
   verifier
   `verification/verify_n3_pair_centered_7over3_tilt_nogo.py`.
+
+## 2026-07-29 20:45 PDT — Quotient criticality excludes the opposite tilt
+
+- Cleared the quotient denominator along the exact opposite-tilt path:
+  \[
+  S(t)=c(t)L^{\otimes3}(C(t))-Q_3(C(t))\Pi_2C(t).
+  \]
+  The single left/right Euler components are
+  \[
+  \begin{aligned}
+  \langle u_0+tx,S(t)x\rangle
+  &=(-56t-4t^3+2t^5)/81,\\
+  \langle x,S(t)(u_0-tx)\rangle
+  &=(56t+4t^3-2t^5)/81.
+  \end{aligned}
+  \]
+  Thus the quartic no-go path leaves the quotient-critical locus
+  transversely, with exact linear coefficient \(56/81\).
+- Decomposed its constrained quotient Hessian at the flag--Bell zero.
+  The left and right one-sided energies are \(2/9\), their ordinary
+  cross term is zero, and the normal second-fundamental-form pairing
+  is \(-1/36\).  Hence
+  \[
+  Q_3(C(t))=\frac7{18}t^2+\frac1{72}t^4.
+  \]
+  The negative pair-purity curvature is strictly positive for the
+  quotient itself.
+- Isolated the smallest zero-compatible critical Hessian object.  For
+  \({\cal W}_\lambda=L^{\otimes3}-\lambda\Pi_2\), normal residual
+  \(R={\cal W}_\lambda C\), coherent one-sided motions \(D_L,D_R\),
+  and common normal form \(N\), it is
+  \[
+  \langle D_L-D_R,{\cal W}_\lambda(D_L-D_R)\rangle
+  +2\operatorname{Re}\langle R,N\rangle\geq0,
+  \]
+  with phase-optimized determinant
+  \((|p|+|r|)^2\leq AB\).
+- Added `notes/agent_n3_pair_centered_tilt_critical_exclusion.md` and
+  exact verifier
+  `verification/verify_n3_pair_centered_tilt_critical_exclusion.py`.
+
+## 2026-07-29 20:41 PDT — Zero-compatible flag--Bell coercivity
+
+- Computed all six local endpoint and pair forms exactly on the
+  flag--Bell orbit.  On either Bell site,
+  \[
+  h_i^{L,R}=0,\qquad
+  p_i^{L,R}(A,B)=\frac{32}{81}\langle A,B\rangle_{\rm HS}.
+  \]
+- On the flag site, with \(M=AP_2\) on the left and \(M=P_2A\) on the
+  right,
+  \[
+  h_2(A,A)=\frac{11}{12}\left(
+  \|M\|^2-\frac12|\operatorname{Tr}M|^2\right),\qquad
+  p_2(A,A)=\frac8{27}|\operatorname{Tr}M|^2.
+  \]
+- Therefore the shifted critical form at \(\lambda=-r<0\) is strictly
+  coercive on every nonzero actual local-filter variation.  Its exact
+  Bell-site constant is \(32r/81\); on the flag site it is
+  \[
+  \frac{11}{12}\|M_0\|^2+
+  \frac{8r}{27}|\operatorname{Tr}M|^2.
+  \]
+  This is zero-compatible at \(r=0\) and becomes strict immediately
+  for negative quotient.
+- Made the calculation invariant under local conjugations and site
+  permutations, defining the full compact flag--Bell orbit.
+- Derived an explicit conical exclusion for a normalized negative
+  quotient-critical point at Hilbert--Schmidt orbit distance
+  \(\delta\):
+  \[
+  \delta\geq\frac{16r}{27\sqrt6(1+r)}.
+  \]
+  For a global minimizer, \(r\leq27/160\) gives
+  \(\delta\geq2560r/(5049\sqrt6)\).
+- The remaining local lemma is to exclude arbitrarily shallow
+  critical branches with \(r=o(\delta)\), using the higher-order
+  normal equations on the \(\lambda=0\) Hessian kernel.
