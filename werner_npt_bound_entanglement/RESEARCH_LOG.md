@@ -7337,3 +7337,24 @@ u_1u_1^\dagger\bigr].
   `notes/agent_n3_triple_hodge_kyfan4_duality.md` and the
   dependency-free exact checker
   `verification/verify_n3_triple_hodge_kyfan4_duality.py`.
+
+## 2026-07-30 01:19 PDT — Ky--Fan-four local-rank boundary proved
+
+- Proved the triple-Hodge Ky--Fan-four inequality whenever the
+  coefficient tensor has Schmidt rank at most two across any
+  one-site-versus-two-site cut.
+- After a local unitary, write
+  \(t=x_0\otimes|0\rangle+x_1\otimes|1\rangle\).  The triple-skew
+  matrix has the exact off-diagonal form
+  \[
+  D_t=2^{-1/2}\begin{pmatrix}0&C\\-C^{\mathsf T}&0\end{pmatrix},
+  \qquad C=(D_{x_1},D_{x_0})^{\mathsf T}.
+  \]
+  Hence its top-four singular-square sum is the top-two eigenvalue
+  sum of
+  \(D_{x_0}^\dagger D_{x_0}+D_{x_1}^\dagger D_{x_1}\).
+  Ky--Fan subadditivity and the sharp double-Hodge lemma bound this
+  by \((\|x_0\|^2+\|x_1\|^2)/2\).
+- Therefore any counterexample to the coherent \(1/8\) crossed
+  bound must have all three one-body marginals strictly positive
+  definite.  The note and exact checker were extended accordingly.

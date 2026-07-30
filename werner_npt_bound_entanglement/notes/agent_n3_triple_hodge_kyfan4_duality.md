@@ -48,8 +48,10 @@ are the distinct Takagi singular values, (1) is equivalently
 \]
 
 The conjecture is sharp.  Product tensors attain (1).  More generally,
-if \(t=a\otimes x\) across one site and the two-qutrit tensor \(x\)
-has Schmidt rank at most two, then equality holds.
+the inequality is proved here whenever \(t\) has Schmidt rank at most
+two across at least one one-site-versus-two-site cut.  If
+\(t=a\otimes x\) and the two-qutrit tensor \(x\) has Schmidt rank at
+most two, then equality holds.
 
 The dependency-free exact boundary checker is
 `verification/verify_n3_triple_hodge_kyfan4_duality.py`.
@@ -180,7 +182,92 @@ tensored with a one-site vector gives two eigenvalues \(-1/3\) in
 the left side of (2).  Thus a proof must use the common
 four-dimensional range of one orthogonal projection.
 
-## 3. Exact boundary family
+## 3. Exact deficient-local-rank theorem
+
+### Theorem
+
+Suppose \(t\in(\mathbb C^3)^{\otimes3}\) has Schmidt rank at most two
+across at least one one-site-versus-two-site cut.  Then
+\[
+ \boxed{\qquad
+ \sum_{j=1}^4s_j(D_t)^2\leq\frac12\|t\|^2 .
+ \qquad}                                                 \tag{15}
+\]
+
+### Proof
+
+It is enough to use the third site as the deficient site.  Hodge
+covariance under local qutrit unitaries lets us write
+\[
+ t=x_0\otimes|0\rangle+x_1\otimes|1\rangle,             \tag{16}
+\]
+where \(x_0,x_1\in(\mathbb C^3)^{\otimes2}\) and
+\[
+ \|x_0\|^2+\|x_1\|^2=\|t\|^2.                           \tag{17}
+\]
+Put
+\[
+ B_r=D_{x_r}
+ =\sum_{p,q}(x_r)_{pq}A_p\otimes A_q,\qquad r=0,1.
+\]
+Each \(B_r\) is complex symmetric, since it is a linear combination
+of tensor products of two skew-symmetric matrices.
+
+In the last-site basis, the explicit epsilon matrices put \(D_t\),
+up to harmless row and column signs, in the block form
+\[
+ D_t=\frac1{\sqrt2}
+ \begin{pmatrix}
+ 0&0&B_1\\
+ 0&0&B_0\\
+ -B_1&-B_0&0
+ \end{pmatrix}
+ =\frac1{\sqrt2}
+ \begin{pmatrix}
+ 0&C\\
+ -C^{\mathsf T}&0
+ \end{pmatrix},
+ \qquad
+ C=\begin{pmatrix}B_1\\B_0\end{pmatrix}.                \tag{18}
+\]
+The first displayed matrix has \(9\times9\) entries, while the second
+uses the \(18+9\) decomposition.
+
+The singular values of the off-diagonal matrix in (18) are the
+singular values of \(C\), each repeated twice.  Therefore
+\[
+ \sum_{j=1}^4s_j(D_t)^2
+ =\lambda_1(C^\dagger C)+\lambda_2(C^\dagger C),        \tag{19}
+\]
+where
+\[
+ C^\dagger C=B_0^\dagger B_0+B_1^\dagger B_1.          \tag{20}
+\]
+
+For positive matrices, the sum of the two largest eigenvalues is a
+subadditive norm.  The homogeneous sharp double-Hodge spectral lemma
+gives
+\[
+\begin{aligned}
+\lambda_1(C^\dagger C)+\lambda_2(C^\dagger C)
+&\leq
+\sum_{r=0}^1
+\left[
+\lambda_1(B_r^\dagger B_r)+
+\lambda_2(B_r^\dagger B_r)
+\right]\\
+&\leq\frac12\left(\|x_0\|^2+\|x_1\|^2\right)
+=\frac12\|t\|^2 .
+\end{aligned}                                           \tag{21}
+\]
+This proves the theorem. \(\square\)
+
+Consequently, a counterexample to (1), (2), or (9) must have all
+three one-body reduced density matrices of \(t\) positive definite.
+This is an exact nonlinear boundary exclusion, not a numerical
+rank assumption.
+
+## 4. Exact equality family
 
 Suppose
 \[
@@ -189,18 +276,18 @@ Suppose
 \]
 Hodge covariance lets us take \(a=|0\rangle\), and then
 \[
- D_t=A_0\otimes D_x.                                    \tag{15}
+ D_t=A_0\otimes D_x.                                    \tag{22}
 \]
 The nonzero squared singular values of \(A_0\) are
 \((1/2,1/2)\).  If
 \(\mu_1\geq\mu_2\geq\cdots\) are the squared singular values of
 \(D_x\), (15) gives
 \[
- \sum_{j=1}^4s_j(D_t)^2=\mu_1+\mu_2.                    \tag{16}
+ \sum_{j=1}^4s_j(D_t)^2=\mu_1+\mu_2.                    \tag{23}
 \]
 The established sharp double-Hodge spectral lemma gives
 \[
- \mu_1+\mu_2\leq\frac12.                                \tag{17}
+ \mu_1+\mu_2\leq\frac12.                                \tag{24}
 \]
 Thus (1) holds for every tensor with a one-site factor.
 
@@ -219,5 +306,5 @@ attains the constant \(1/2\) in (1).
 Unrestricted complex alternating maximization consistently reaches
 only this boundary value, and its converged equality tensors factor
 at one site.  That observation is discovery evidence only.  The
-unresolved theorem is precisely (2), or equivalently (1), for a
-full-support rank-four code.
+unresolved theorem is precisely (2), or equivalently (1), on the
+full-local-rank locus.

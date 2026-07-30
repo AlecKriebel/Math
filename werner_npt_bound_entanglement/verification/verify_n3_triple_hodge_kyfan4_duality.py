@@ -100,6 +100,31 @@ mu_1 = sigma_square_sum / 4
 mu_2 = sigma_square_sum / 4
 assert mu_1 + mu_2 == F(1, 2)
 
+# Deficient-site block recursion.  With t=x_0|0>+x_1|1>, the
+# unnormalized last-site epsilon matrices give the 18+9 block
+# [[0,C],[-C^T,0]], so C^T C is the sum of the two slice Grams.
+# Check the block identity exactly for two independent rational
+# symmetric 2-by-2 stand-ins; the tensor dimensions play no role.
+B0 = [[F(1), F(2)], [F(2), F(3)]]
+B1 = [[F(0), F(-1)], [F(-1), F(4)]]
+zero2 = [[F(0), F(0)], [F(0), F(0)]]
+block = [
+    zero2[0] + zero2[0] + B1[0],
+    zero2[1] + zero2[1] + B1[1],
+    zero2[0] + zero2[0] + B0[0],
+    zero2[1] + zero2[1] + B0[1],
+    [-x for x in B1[0]] + [-x for x in B0[0]] + zero2[0],
+    [-x for x in B1[1]] + [-x for x in B0[1]] + zero2[1],
+]
+gram = multiply(transpose(block), block)
+expected_left = multiply(B1, B1)
+expected_left = [
+    [expected_left[i][j] + multiply(B0, B0)[i][j] for j in range(2)]
+    for i in range(2)
+]
+assert [row[4:6] for row in gram[4:6]] == expected_left
+assert [row[:4] for row in gram[4:6]] == [[F(0)] * 4 for _ in range(2)]
+
 # A saturating rank-four spectral projection for t=|000>.
 P_words = {(1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 2, 2)}
 P = diagonal_projection(P_words)
@@ -124,3 +149,4 @@ assert sum(P[9 * a + 3 * b + c] for a in (1, 2) for b in (1, 2) for c in (1, 2))
 print("verified exact triple-Hodge Ky--Fan boundary data")
 print("product top-four singular-square sum = 1/2")
 print("rank-four marginal operator boundary eigenvalue = 0")
+print("deficient-site off-diagonal block recursion verified")
