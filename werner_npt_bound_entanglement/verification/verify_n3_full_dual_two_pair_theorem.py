@@ -228,7 +228,56 @@ assert one_diagonal_average == (q + t) / 12
 assert 3 * one_diagonal_average == (q + t) / 4
 assert q - 3 * one_diagonal_average == (3 * q - t) / 4
 
+# Audit the exact three-face slack identity on the same rank-two C.
+total_r = F(0)
+total_s = F(0)
+total_c = F(0)
+for retained_site in range(3):
+    other_sites = [
+        site for site in range(3) if site != retained_site
+    ]
+    q_i = (
+        hs_squared(C)
+        - F(1, 2)
+        * sum(
+            hs_squared(partial_trace(C, (3, 3, 3), (site,)))
+            for site in other_sites
+        )
+        + F(1, 4)
+        * hs_squared(
+            partial_trace(C, (3, 3, 3), tuple(other_sites))
+        )
+    )
+    t_i_matrix = partial_trace(
+        C, (3, 3, 3), (retained_site,)
+    )
+    t_i = q2(t_i_matrix)
+    trace_t_i = trace(t_i_matrix)
+    one_body_i = (
+        (
+            hs_squared(partial_trace(t_i_matrix, (3, 3), (0,)))
+            + hs_squared(partial_trace(t_i_matrix, (3, 3), (1,)))
+        )
+        / 3
+        - F(2, 9) * trace_t_i**2
+    )
+    scalar_i = trace_t_i**2 / 9
+    w_i = hs_squared(t_i_matrix) - scalar_i - one_body_i
+    c_i = w_i / 3
+    r_i = F(3, 2) * w_i - t_i
+    s_i = 3 * q_i - t_i
+    assert r_i >= 0
+    assert s_i >= 0
+    assert (
+        2 * q3(C) + 3 * c_i
+        == F(1, 2) * w_i + r_i / 3 + 2 * s_i / 3
+    )
+    total_r += r_i
+    total_s += s_i
+    total_c += c_i
+assert 36 * q3(C) == -9 * total_c + 2 * total_r + 4 * total_s
+
 print(
     "verified exact two-pair recursion, rank-six trace bound, "
-    "and d=3 block fourth-moment normalization"
+    "d=3 block fourth-moment normalization, and common-slack identity"
 )

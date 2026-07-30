@@ -275,6 +275,10 @@ Consequently
  \geq0.
 }                                                        \tag{31}
 \]
+In fact, the two cases together give the quantitative face bound
+\[
+\boxed{\qquad {\cal F}(C)\geq\frac12w_2(T).\qquad}       \tag{31a}
+\]
 This proves (16), hence (13), hence the operator inequality
 \[
  S_V-F_{12}-F_{13}\succeq0.
@@ -294,12 +298,84 @@ attempt to combine the three two-component faces only has to match
 their highly constrained common kernels; a generic full-support code
 has strict slack on every face.
 
+There is also an immediate global consequence.  Let
+\[
+ c_i=\|\Pi_{\{1,2,3\}\setminus\{i\}}C\|_2^2,\qquad
+ c=c_1+c_2+c_3=\|\Pi_2C\|_2^2 .
+\]
+For the face omitting the pair complementary to \(i\), equations
+(13), (15), and (31a) say
+\[
+ 2Q_3(C)+3c_i\geq\frac32c_i.
+\]
+Summing the three inequalities gives the new uniform estimate
+\[
+\boxed{\qquad
+ Q_3(C)\geq-\frac14\|\Pi_2C\|_2^2
+ \qquad(\operatorname{rank}C\leq2).
+\qquad}                                                  \tag{33a}
+\]
+In degree masses this is
+\[
+ -\frac18w_0+\frac14w_1-\frac14w_2+w_3\geq0.
+ \tag{33b}
+\]
+This does not by itself prove \(Q_3(C)\geq0\), but it is a nonlinear
+rank-two invariant inherited simultaneously from all three exact
+faces.
+
 ## 6. Remaining three-component frontier
+
+The proof has an exact slack form which exposes the next obstruction.
+For each \(i\), put
+\[
+\begin{aligned}
+ T_i&=\operatorname{Tr}_iC,&
+ t_i&=Q_2(T_i),&
+ w_i&=w_2(T_i)=3c_i,\\
+ q_i&=Q_{\{1,2,3\}\setminus\{i\}}(C),&
+ r_i&=\frac32w_i-t_i,&
+ s_i&=3q_i-t_i.
+\end{aligned}                                            \tag{34}
+\]
+The rank-six trace argument proves \(r_i\geq0\), while the averaged
+off-diagonal block argument proves \(s_i\geq0\).  Substituting
+\[
+ t_i=\frac32w_i-r_i,\qquad
+ q_i=\frac{s_i+t_i}{3}
+\]
+into the \(i\)-th face functional gives the exact identity
+\[
+\boxed{
+ 2Q_3(C)+3c_i
+ =\frac12w_i+\frac13r_i+\frac23s_i.
+}                                                        \tag{35}
+\]
+Summing (35) over the three sites, and writing
+\[
+ R=\sum_i r_i,\qquad S=\sum_i s_i,\qquad
+ c=\sum_i c_i,
+\]
+gives
+\[
+\boxed{\qquad
+ 36Q_3(C)=-9c+2R+4S.
+\qquad}                                                  \tag{36}
+\]
+Consequently unrestricted three-copy positivity is now exactly the
+common-slack inequality
+\[
+\boxed{\qquad 2R+4S\geq9c.\qquad}                       \tag{37}
+\]
+Separate nonnegativity of the six slacks proves all coordinate faces
+but not (37).  A successful triangle argument must use the fact that
+the three rank-six trace slacks and the three Haar off-diagonal
+two-copy slacks arise from the same rank-two matrix \(C\).
 
 The exact full residual is
 \[
  S_V-(F_{12}+F_{13}+F_{23})
- =2(\Phi_1\Phi_2\Phi_3)(P).                              \tag{34}
+ =2(\Phi_1\Phi_2\Phi_3)(P).                              \tag{38}
 \]
 The present theorem proves every \(2\times2\) principal face of its
 three-component coefficient Gram.  What remains is a single common

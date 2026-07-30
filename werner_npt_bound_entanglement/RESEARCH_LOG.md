@@ -5276,6 +5276,27 @@ All timestamps use America/Los_Angeles.
   \]
   This supplies every \(2\times2\) principal face of the remaining
   three-component Gram problem.
+- Isolated the exact common-slack triangle.  For each site let
+  \[
+  r_i=\frac32w_2(\operatorname{Tr}_iC)
+      -Q_2(\operatorname{Tr}_iC),\qquad
+  s_i=3Q_{\widehat i}(C)-Q_2(\operatorname{Tr}_iC).
+  \]
+  The rank-six and Haar arguments prove \(r_i,s_i\geq0\), and direct
+  substitution gives
+  \[
+  36Q_3(C)
+  =-9\|\Pi_2C\|_2^2
+   +2\sum_i r_i+4\sum_i s_i.
+  \]
+  Hence the full endpoint is now exactly the common-origin inequality
+  \(2\sum_i r_i+4\sum_i s_i\geq9\|\Pi_2C\|_2^2\).
+- Summing the quantitative face bounds also proves the new uniform
+  invariant
+  \[
+  Q_3(C)\geq-\frac14\|\Pi_2C\|_2^2
+  \qquad(\operatorname{rank}C\leq2).
+  \]
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_dual_two_pair_theorem.md` and
   `verification/verify_n3_full_dual_two_pair_theorem.py`.
