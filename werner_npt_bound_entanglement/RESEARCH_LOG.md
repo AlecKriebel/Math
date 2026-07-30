@@ -4841,3 +4841,52 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_pair_three_replica_linear_nogo.md` and
   `verification/verify_n3_pair_three_replica_linear_nogo.py`.
+
+## 2026-07-29 17:24 PDT — Scalar-reflection frontier and sharp Schur obstruction
+
+- The proposed strengthening
+  \({\cal A}_\Psi\succeq(3/2)|\Psi\rangle\langle\Psi|\) is false.
+  For
+  \[
+  \Psi=\Phi_3^{12}\otimes\Phi_2^{K3},
+  \]
+  the six marginals give
+  \[
+  {\cal A}_\Psi=2I+P_{\Phi_3}^{12}
+  -\frac53P_{\Phi_2}^{K3},\qquad
+  {\cal A}_\Psi\Psi=\frac43\Psi.
+  \]
+  Hence the proposed inequality fails in the \(\Psi\) direction by
+  exactly \(1/6\).
+- Isolated the corrected sharp candidate
+  \({\cal A}_\Psi\succeq(4/3)|\Psi\rangle\langle\Psi|\).
+  It is exactly equivalent, for every rank-two input rather than only
+  equal Schmidt coefficients, to all of:
+  \[
+  \sum_S(-2/3)^{|S|}\|\operatorname{Tr}_SC\|_2^2
+  \ge-\frac13\|C\|_2^2,
+  \]
+  \[
+  w_0+w_2\le\frac23\|C\|_2^2,
+  \]
+  and the Ky--Fan bound
+  \(s_1(D)^2+s_2(D)^2\le(2/3)\|D\|_2^2\)
+  on the scalar-plus-pair sector.
+  Its Choi operator has the parity form
+  \[
+  \frac32I+\frac92\prod_i(I-2P_i),
+  \]
+  with sector eigenvalues \((6,-3,6,-3)\).
+- The rank-two projection
+  \(C=P_{\Phi_3}^{12}\otimes
+  (|0\rangle\langle0|+|1\rangle\langle1|)_3\)
+  attains equality, so \(4/3\) cannot be increased.
+  The corrected inequality is proved exactly on the full factorized
+  chart \(\phi_{12}\otimes\Phi_2^{K3}\).
+- Unrestricted complex alternating discovery optimization converged to
+  zero and produced no negative value.  This is not mathematical
+  evidence; the corrected candidate remains unproved.
+- Exact note, checker, and discovery probe:
+  `notes/agent_n3_pair_scalar_reflection_frontier.md`,
+  `verification/verify_n3_pair_scalar_reflection_frontier.py`, and
+  `discovery/probe_n3_pair_marginal_schur.cpp`.
