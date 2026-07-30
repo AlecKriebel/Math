@@ -79,6 +79,22 @@ def check_constants() -> None:
     eta = F(1, 10_000)
     delta_bound = F(1, 5) - F(12, 5) * eta
     assert 3 * eta == F(1, 4) * (1 - 5 * delta_bound)
+    assert F(3564, 1584) == F(9, 4)
+    assert F(1188, 1584) == F(3, 4)
+    assert 1_944_000 * F(4, 9) == 864_000
+
+    # Formal common-trace endpoint.
+    delta_ct = F(3, 22)
+    gap_ct = 1 - 5 * delta_ct
+    p_i = gap_ct / 3
+    x = F(4, 99)
+    c_i = F(25, 198)
+    d = c_i
+    assert gap_ct == F(7, 22)
+    assert p_i == F(7, 66)
+    assert 3 * c_i == F(1, 3) * (1 + delta_ct)
+    assert 1584 * delta_ct == 216
+    assert x + 3 * c_i + d == F(6, 11)
 
 
 if __name__ == "__main__":

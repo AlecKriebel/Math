@@ -603,3 +603,82 @@ evaluating it is a finite nonlinear common-code problem, not another
 linear sector inequality.  A proof of unrestricted positivity still
 requires excluding every \(\delta>0\), not merely improving the
 universal upper bound \(1/5\).
+
+### 6.1 Combination with the common trace-slack theorem
+
+The subsequently established common rank-two trace tradeoff sharpens
+the numerical endpoint of this stability reduction.  In the present
+normalization it says
+\[
+ 1584\delta
+ +297(1-5\delta)L
+ +567a+18\Delta
+ \leq216,
+\tag{39}
+\]
+where
+\[
+ L=\sum_i\theta_i\lambda_i,\qquad
+ a=\|\Pi_1C\|_2^2,\qquad
+ \Delta=(s_1(C)-s_2(C))^2.
+\]
+Equation (13) identifies
+\[
+ (1-5\delta)L=4\sum_i g_i.
+\tag{40}
+\]
+Thus (39) is
+\[
+\boxed{
+ 1584\delta+1188\sum_i g_i+567a+18\Delta\leq216.
+}
+\tag{41}
+\]
+It immediately gives the explicit bound
+\[
+ \delta<\frac3{22}.
+\]
+To avoid confusing the shell threshold with the degree-one mass,
+write the former as \(\alpha\).  On the nonempty shell
+\({\cal K}_\alpha\), equations (24), (34), and (41) give
+\[
+\boxed{
+ \delta
+ \leq\frac3{22}-\frac94\eta(\alpha).
+}
+\tag{42}
+\]
+Using the anisotropy modulus (37) instead gives
+\[
+\boxed{
+ \delta
+ \leq\frac3{22}-\frac{\kappa(\alpha)}{864\,000}.
+}
+\tag{43}
+\]
+These improve (35) and (38), respectively.
+
+Formal equality at \(3/22\) would force
+\[
+ L=a=\Delta=0.
+\]
+The symmetric scalar sector data at that endpoint are
+\[
+\boxed{
+\begin{aligned}
+ \delta&=\frac3{22},&
+ 1-5\delta&=\frac7{22},\\
+ \theta_i&=\frac13,&
+ (1-5\delta)\theta_i&=\frac7{66},\\
+ x&=\frac4{99},&
+ c_i=d&=\frac{25}{198},&
+ a_i&=0.
+\end{aligned}}
+\tag{44}
+\]
+Here \(x\) is the scalar-sector mass, \(a_i\) the one-traceless
+masses, \(c_i\) the two-traceless masses, and \(d\) the fully
+traceless mass.  Since \(L=0\) would give every \(g_i=0\) at a
+negative transition, the fixed-left theorem excludes physical
+equality.  Compactness therefore gives a uniform, though not yet
+numerically evaluated, physical gap below \(3/22\).

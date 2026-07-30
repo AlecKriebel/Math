@@ -5589,6 +5589,21 @@ All timestamps use America/Los_Angeles.
   Evaluating these constants is now one explicit finite nonlinear
   common-code problem.  This strict gap does not yet prove
   \(\Delta_*=0\).
+- Combined the shell constants with the new common trace-slack
+  theorem:
+  \[
+  1584\delta+1188\sum_i g_i+567a+18\Delta\le216.
+  \]
+  Hence on \(\delta\geq a_0\),
+  \[
+  \delta\leq\frac3{22}-\frac94\eta(a_0),
+  \qquad
+  \delta\leq\frac3{22}-\frac{\kappa(a_0)}{864000}.
+  \]
+  Formal equality at \(3/22\) has the symmetric sector data
+  \(x=4/99\), \(a_i=0\), \(c_i=d=25/198\), and vanishing Haar
+  fraction.  Fixed-left strictness excludes physical equality, so
+  compactness gives a uniform unevaluated gap below \(3/22\).
 - Added
   `notes/agent_n3_negative_depth_stability.md` and exact checker
   `verification/verify_n3_negative_depth_stability.py`.
