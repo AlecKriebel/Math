@@ -6441,3 +6441,53 @@ u_1u_1^\dagger\bigr].
   contradiction to a negative critical value.  Rank one remains a
   singular differential stratum, and independent left/right Latin
   frames are essential.
+
+## 2026-07-29 21:19 PDT — Square-zero frontier reduced to one determinant
+
+- For orthogonal isometries \(U=(u_0,u_1)\), \(W=(w_0,w_1)\), formed
+  the complete endpoint Gram on
+  \(E_{ab}=|u_a\rangle\langle w_b|\):
+  \[
+  H_{ab,cd}={\cal B}_3(E_{ab},E_{cd}).
+  \]
+  Its logical partial transpose is the ordinary positive Gram
+  \[
+  (H^{\Gamma_2})_{ab,cd}
+  =\langle u_a\otimes w_b,\,
+    Y(u_c\otimes w_d)\rangle,\qquad
+  Y=\bigotimes_{i=1}^3(I-F_i/2).
+  \]
+- Proved the sharp orthogonal rank-one margin
+  \[
+  Q_3(|u\rangle\langle w|)
+  \geq\frac14\|u\|^2\|w\|^2\qquad(u\perp w)
+  \]
+  from the exact sector identity
+  \[
+  Y-\frac14I+\frac18F_1F_2F_3
+  =\Pi_{r=2}+3\Pi_{r=3}\succeq0.
+  \]
+  Hence \(H\) is strictly block positive with product margin \(1/4\).
+- Every complex two-dimensional subspace of
+  \(\mathbb C^2\otimes\mathbb C^2\) contains a product vector.
+  Therefore the nonpositive spectral subspace of \(H\) has dimension
+  at most one, and
+  \[
+  H\succeq0\quad\Longleftrightarrow\quad\det H\geq0.
+  \]
+  Thus the entire square-zero rank-two problem is losslessly reduced
+  to one invariant degree-sixteen crossed-Gram determinant on an
+  orthonormal four-frame.
+- Derived the separate auxiliary-parity balances and exact
+  compensation formula
+  \[
+  Q_3(C)=\frac14\|C\|_2^2
+  +(p_{0,2}-p_{1,2})+3(p_{0,3}-p_{1,3}).
+  \]
+- Recorded a physical exact zero and an abstract two-qubit matrix
+  showing that positivity of the crossed Gram plus the product margin
+  alone cannot determine the missing sign.  The common three-qutrit
+  origin remains essential.
+- Added `notes/agent_n3_squarezero_ppt_determinant.md` and the
+  dependency-free rational checker
+  `verification/verify_n3_squarezero_ppt_determinant.py`.
