@@ -5679,6 +5679,44 @@ All timestamps use America/Los_Angeles.
   dependency-free exact checker
   `verification/verify_n3_polar_alignment_depth_improvement.py`.
 
+## 2026-07-29 19:39 PDT — Exact fusion of strengthened faces and triple Hodge
+
+- Lifted the sharp triple-Hodge face theorem to the exact
+  common-code identity
+  \[
+  \begin{aligned}
+  \langle K\rangle-\frac{13}{71}\langle S\rangle
+  ={}&\frac{255}{142}\sum_i g_i
+      +\frac{225}{568}\|\Pi_1C\|_2^2
+      +\frac{10}{71}\Xi(C),\\
+  \Xi(C)&=\|C\|_2^2+6{\cal J}_3(C)\\
+        &=(s_1-s_2)^2+
+          6\left({\cal J}_3(C)+\frac13s_1s_2\right)\ge0.
+  \end{aligned}
+  \]
+- Consequently obtained the explicit operator bounds
+  \[
+  K(V)\succeq\frac{13}{71}S_V,\qquad
+  H_V\succeq-\frac9{71}S_V.
+  \]
+  Unlike a compactness modulus, the full positive remainder is
+  explicit.
+- Classified the new exterior boundary:
+  \(\Xi=0\) forces equal singular values and saturation of the sharp
+  triple-Hodge theorem, hence the common-factor/local-support orbit,
+  which is already endpoint-positive.  The boundary \(G=\sum_i g_i=0\)
+  is likewise sign-safe by fixed-left strictness.
+- Reduced unrestricted three-copy positivity exactly to the smaller
+  fusion inequality
+  \[
+  204\sum_i g_i(C)+45\|\Pi_1C\|_2^2+16\Xi(C)
+  \ge36\left(2Q_3(C)+3\|\Pi_2C\|_2^2\right).
+  \]
+  Known zero vectors make this sharp.  The remaining locus has
+  \(G>0\), \(\Xi>0\), and full local support.
+- Added `notes/agent_n3_triple_hodge_face_fusion.md` and exact checker
+  `verification/verify_n3_triple_hodge_face_fusion.py`.
+
 ## 2026-07-29 19:32 PDT — Partial-contraction exterior elimination is scalar-redundant
 
 - For each one-site partial trace \(T_i=\operatorname{Tr}_iC\), kept
