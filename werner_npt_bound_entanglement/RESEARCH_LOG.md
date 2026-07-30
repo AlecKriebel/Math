@@ -5301,6 +5301,55 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_full_dual_two_pair_theorem.md` and
   `verification/verify_n3_full_dual_two_pair_theorem.py`.
 
+## 2026-07-29 18:35 PDT — Full-dual triangle determinant and saturated-face theorem
+
+- Reduced the last full three-component inverse-marginal residual to
+  one exact \(3\times3\) Hermitian defect matrix
+  \[
+  G_{ii}=d_i=2\|B_i\|_2^2-\|S_V^{-1/2}B_iV\|_2^2,
+  \qquad
+  G_{ij}=-c_{ij},
+  \]
+  where
+  \(c_{ij}=\langle S_V^{-1/2}B_iV,S_V^{-1/2}B_jV\rangle\).
+  The proved one- and two-pair theorems give every proper principal
+  minor of \(G\).
+- Consequently unrestricted three-copy positivity is exactly
+  \[
+  \det G\geq0.
+  \]
+  When all \(d_i>0\), with
+  \(z_{ij}=c_{ij}/\sqrt{d_id_j}\), this is the normalized cyclic
+  Bargmann inequality
+  \[
+  |z_{23}+\overline{z_{12}}z_{13}|^2
+  \leq(1-|z_{12}|^2)(1-|z_{13}|^2).
+  \]
+- Proved a common-origin boundary theorem for the **full**
+  three-component residual.  If any diagonal or any \(2\times2\)
+  principal determinant of \(G\) vanishes, then \(G\succeq0\).
+  The key is the exact two-face equality classification: a saturated
+  pair has missing degree-two mass \(w_2=0\), so its transition vector
+  is annihilated by the missing pair frame.  This forces the cyclic
+  phase transport
+  \[
+  |z_{12}|=1
+  \quad\Longrightarrow\quad
+  z_{23}=-\overline{z_{12}}z_{13},
+  \]
+  and hence \(\det G=0\).
+- Therefore a full residual counterexample must lie in the strict
+  interior
+  \[
+  d_1d_2d_3>0,\qquad |z_{12}|,|z_{13}|,|z_{23}|<1.
+  \]
+  The remaining problem is a quantitative common-origin control of
+  the displacement from the Gram disc center, not an equality-kernel
+  classification.
+- Exact note and checker:
+  `notes/agent_n3_full_dual_triangle_determinant.md` and
+  `verification/verify_n3_full_dual_triangle_determinant.py`.
+
 ## 2026-07-29 18:30 PDT — Sitewise sharp-trace reduction
 
 - Reorganized the full unrestricted three-copy target at one fixed
