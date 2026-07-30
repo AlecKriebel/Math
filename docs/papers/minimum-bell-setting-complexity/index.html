@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An exact minimum-setting classification for fixed-qubit POVM–PVM Bell separation: two inputs per party never suffice after shared-randomness convexification, while an explicit rational 3×2 separation does.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-07-30">
+  <meta name="citation_version" content="1.1.0">
+  <meta name="citation_doi" content="10.5281/zenodo.21699161">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation">
+  <meta property="og:description" content="Two Bell inputs per party never separate convexified fixed-qubit POVM and PVM behaviors; an exact rational 3×2 witness proves that three settings versus two are sufficient and necessary.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/">
+  <title>Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css?v=20260730-3">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "datePublished": "2026-07-30",
+    "dateModified": "2026-07-30",
+    "version": "1.1.0",
+    "identifier": "https://doi.org/10.5281/zenodo.21699161",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "url": "https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/",
+    "encoding": [
+      {
+        "@type": "MediaObject",
+        "name": "Publication PDF",
+        "contentUrl": "https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/paper.pdf",
+        "encodingFormat": "application/pdf"
+      },
+      {
+        "@type": "MediaObject",
+        "name": "Line-numbered review PDF",
+        "contentUrl": "https://aleckriebel.github.io/Math/papers/minimum-bell-setting-complexity/review.pdf",
+        "encodingFormat": "application/pdf"
+      }
+    ],
+    "associatedMedia": [
+      "https://doi.org/10.5281/zenodo.21699069",
+      "https://doi.org/10.5281/zenodo.21699181",
+      "https://doi.org/10.5281/zenodo.21699205",
+      "https://doi.org/10.5281/zenodo.21699224"
+    ]
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#results">Results</a>
+        <a href="#proof">Proof</a>
+        <a href="#records">DOI records</a>
+        <a href="#verification">Verification</a>
+        <a href="#scope">Scope</a>
+        <a href="#paper">Paper</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Quantum information · Bell correlations · Exact minimum-setting theorem · Not peer reviewed</p>
+      <h1>Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation</h1>
+      <p class="byline">Alec Kriebel · Independent Researcher</p>
+      <p class="release">Version 1.1.0 · archived <time datetime="2026-07-30">30 July 2026</time><br>
+      Primary publication DOI: <a href="https://doi.org/10.5281/zenodo.21699161">10.5281/zenodo.21699161</a><br>
+      Immutable source: <a href="https://github.com/AlecKriebel/Math/tree/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings"><code>qubit-povm-pvm-minimum-settings-v1.1.0</code></a><br>
+      Source commit: <a href="https://github.com/AlecKriebel/Math/commit/773356a1de85290c3e85a361e0019f5f82b8e6d9"><code class="release-hash">773356a1de85290c3e85a361e0019f5f82b8e6d9</code></a><br>
+      Publication PDF SHA-256: <code class="release-hash">1a408e9d98f5166e8ffa6adf607413132facb51fa6f8d3108843b5f0280f2c66</code></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Exact and reproducible, but not yet independently peer reviewed.</h2>
+        <p>The theorem concerns shared-randomness convex hulls of fixed-qubit behaviors. It does not claim equality of the raw nonconvex strategy images, same-state simulation, or operator-level projective simulability of individual POVMs. Exact programs check the finite algebraic certificates; the universal convex-geometric arguments remain mathematical proofs requiring expert scrutiny.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open publication PDF</a>
+      <a class="button secondary" href="./review.pdf">Line-numbered review PDF</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21699161">Publication DOI</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21699224">Software DOI</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21699181">TeX archive DOI</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21699205">Checksum DOI</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings">Immutable source</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings/run_all.sh">One-command verifier</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">For every bipartite Bell architecture with two inputs per party and arbitrary finite, input-dependent output alphabets, the shared-randomness convex hull of fixed-qubit POVM behaviors equals the corresponding convex hull of fixed-qubit PVM behaviors. The paper also gives an explicit rational \(3\times2\) Bell functional, an exact qubit-POVM strategy, and a global analytic upper bound for every fixed-qubit PVM strategy with a strict exact gap. Hence, up to exchanging the parties, three inputs versus two are necessary and sufficient for a linear Bell-functional separation.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Two-input closure</strong><span>Every \(2\times2\) Bell support function has the same fixed-qubit POVM and PVM value after shared-randomness convexification</span></div>
+          <div class="fact"><strong>Exact separation</strong><span>A rational \(3\times2\) Bell functional has an explicit algebraic POVM value strictly above a global PVM upper bound</span></div>
+          <div class="fact"><strong>Minimum settings</strong><span>\(3\times2\), up to exchanging Alice and Bob; the notation counts measurement inputs, not outcomes</span></div>
+        </div>
+      </section>
+
+      <section id="results">
+        <h2>1. Main theorem</h2>
+        <p>Let \(\overline{\mathcal Q}^{\mathrm{POVM}}_2(\mathbf A,\mathbf B)\) and \(\overline{\mathcal Q}^{\mathrm{PVM}}_2(\mathbf A,\mathbf B)\) denote the shared-randomness convex hulls of behaviors generated on local Hilbert spaces of dimension at most two. Output sets may be finite and depend on the input. Zero projectors, deterministic relabelings, and stochastic output postprocessing are permitted; dimension-increasing Naimark dilations are not.</p>
+        <div class="theorem-block">
+          <p><strong>Universal two-input equality.</strong> For every finite output architecture with two inputs on each party,</p>
+          <div class="equation">
+          \[
+            \overline{\mathcal Q}^{\mathrm{POVM}}_2(\mathbf A,\mathbf B)
+            =
+            \overline{\mathcal Q}^{\mathrm{PVM}}_2(\mathbf A,\mathbf B).
+          \]
+          </div>
+          <p>Equivalently, no two-input linear Bell functional separates the two convexified fixed-qubit behavior sets.</p>
+        </div>
+        <div class="theorem-block">
+          <p><strong>Exact \(3\times2\) separation.</strong> For the rational Bell functional displayed in the paper,</p>
+          <div class="equation">
+          \[
+            \begin{aligned}
+            \beta_{\mathrm{POVM}}
+            &\ge 20\sqrt2+\frac{16}{25}\\
+            &>20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}\\
+            &\ge \beta_{\mathrm{PVM}}.
+            \end{aligned}
+          \]
+          </div>
+          <p>The certified gap is</p>
+          <div class="equation">
+          \[
+            \frac{3(2-\sqrt2)}{250}>0.
+          \]
+          </div>
+        </div>
+        <p>With one input on either party every nonsignaling behavior is local. Combining that fact, the universal two-input equality, and the exact \(3\times2\) witness proves the minimum-setting classification.</p>
+      </section>
+
+      <section id="proof">
+        <h2>2. Proof mechanism</h2>
+        <h3>One binary party</h3>
+        <p>When one party is binary on both inputs, every behavior admits one common shared-randomness decomposition into fixed-qubit PVM behaviors. The proof compresses steered qubit operators into a three-dimensional Lorentz cone, decomposes positive relations into two-versus-two circuits, and lifts each circuit to two projective decompositions of one qubit state.</p>
+        <h3>Only one residual architecture</h3>
+        <p>An extreme hypothetical separator reduces to a pure entangled state with one binary PVM and one extremal ternary rank-one POVM on each party. A common-span perturbation and the extremal qubit rank-square bound exclude four-outcome POVMs and all other architectures.</p>
+        <h3>Lorentz incidence and rank trichotomy</h3>
+        <p>The remaining strategy becomes a physically exact fourteen-dimensional Lorentz-incidence manifold. Finite POVM duality forces strictly positive determinant multipliers at a strict separator. The weighted incidence second form has ambient inertia \((4,12)\). The rank of its metric differential then yields an exhaustive trichotomy:</p>
+        <ul class="certificate-list">
+          <li><strong>Rank at least two:</strong> dimension forces a physical tangent with positive Bell second derivative, contradicting local maximality.</li>
+          <li><strong>Rank one:</strong> projective-fiber rigidity prevents the strictly positive multiplier required by a strict separator.</li>
+          <li><strong>Rank zero:</strong> the behavior has an explicit bounded-transportation decomposition into deterministic local, hence qubit-PVM, behaviors.</li>
+        </ul>
+        <p>No numerical Bell optimization, SDP bound, or finite POVM sampling is used in the closure theorem.</p>
+      </section>
+
+      <section id="records">
+        <h2>3. Permanent DOI records</h2>
+        <p>The publication and its verification materials are preserved as five public Zenodo records. The standard publication PDF is the primary citation object.</p>
+        <div class="table-wrap">
+          <table class="paper-table archive-table">
+            <caption>Version 1.1.0 archival records</caption>
+            <thead>
+              <tr><th>Object</th><th>DOI</th><th>Use</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Object">Publication PDF</td>
+                <td data-label="DOI"><a href="https://doi.org/10.5281/zenodo.21699161">10.5281/zenodo.21699161</a></td>
+                <td data-label="Use">Primary paper and citation record</td>
+              </tr>
+              <tr>
+                <td data-label="Object">Line-numbered PDF</td>
+                <td data-label="DOI"><a href="https://doi.org/10.5281/zenodo.21699069">10.5281/zenodo.21699069</a></td>
+                <td data-label="Use">Page and line references for expert review</td>
+              </tr>
+              <tr>
+                <td data-label="Object">LaTeX source archive</td>
+                <td data-label="DOI"><a href="https://doi.org/10.5281/zenodo.21699181">10.5281/zenodo.21699181</a></td>
+                <td data-label="Use">Preservation-friendly manuscript source</td>
+              </tr>
+              <tr>
+                <td data-label="Object">Integrity manifest</td>
+                <td data-label="DOI"><a href="https://doi.org/10.5281/zenodo.21699205">10.5281/zenodo.21699205</a></td>
+                <td data-label="Use">SHA-256 checksums for the publication artifacts</td>
+              </tr>
+              <tr>
+                <td data-label="Object">Verification software</td>
+                <td data-label="DOI"><a href="https://doi.org/10.5281/zenodo.21699224">10.5281/zenodo.21699224</a></td>
+                <td data-label="Use">Dependency-complete exact reproducibility package</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="verification">
+        <h2>4. Exact verification and reproducibility</h2>
+        <p>The software archive contains the paper source and rendered PDFs, exact Bell coefficients and strategies, two independent symbolic verifiers, an exact rank-zero simulator, proof and dependency audits, a theorem-to-artifact map, and a one-command offline runner.</p>
+        <ul class="certificate-list">
+          <li><a href="https://doi.org/10.5281/zenodo.21699224"><strong>Software archive</strong></a> — Python 3.14.6, SymPy 1.14.0, and Tectonic 0.16.9 reference environment.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings/artifacts/three_by_two_separation/verify_exact.py"><strong>\(3\times2\) verifier</strong></a> — exact effects, Bell values, dual certificates, robust inequalities, and strict gap.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings/artifacts/two_by_two_closure/verify_exact.py"><strong>\(2\times2\) closure verifier</strong></a> — 39 exact algebraic checks for the Lorentz metric, null-ray map, exceptional fibers, second variation, and bounded flow.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/qubit-povm-pvm-minimum-settings-v1.1.0/qubit_povm_pvm_minimum_settings/artifacts/two_by_two_closure/rank_zero_simulator.py"><strong>Rank-zero simulator</strong></a> — exact deterministic decomposition on the symmetric trine instance.</li>
+          <li><a href="./SHA256SUMS.txt"><strong>Website file hashes</strong></a> — checksums for the publication and line-numbered PDFs served here.</li>
+        </ul>
+        <p class="fine-print">The executable checks verify finite exact identities and explicit constructions. They do not replace the manuscript arguments establishing compactness, convexification, extremal reduction, physical reconstruction, multiplier signs, or exhaustion of the rank cases.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Scope and limitations</h2>
+        <ul>
+          <li>The equality is between shared-randomness convex hulls, not the raw fixed-dimensional strategy images.</li>
+          <li>No same-state or operator-level simulation of arbitrary POVMs by PVMs is claimed.</li>
+          <li>The \(3\times2\) construction proves a strict separation using lower and upper certificates; it does not determine either global optimum exactly.</li>
+          <li>The theorem is specific to local dimension at most two and to linear Bell-function optimization.</li>
+          <li>The paper was publicly archived before independent specialist peer review.</li>
+        </ul>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assisted research and verification</h2>
+        <p>Generative-AI systems were used substantively throughout the mathematical exploration, derivation, adversarial proof analysis, software development, literature support, and manuscript preparation. The work was developed through an iterative, human-directed research process. Alec Kriebel determined the released scope and claims, curated the package, and accepts responsibility for the manuscript and public verification materials. The complete proofs and exact artifacts are supplied to make the AI-mediated research independently checkable.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, “Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation,” version 1.1.0, Zenodo, 30 July 2026. <a href="https://doi.org/10.5281/zenodo.21699161">doi:10.5281/zenodo.21699161</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+      <p class="fine-print">For line-specific expert review, use the <a href="./review.pdf">line-numbered PDF</a>. The complete source and exact reproducibility package are preserved in the DOI records above.</p>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://doi.org/10.5281/zenodo.21699161">Publication DOI</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a></footer>
+</body>
+</html>
