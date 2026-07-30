@@ -233,6 +233,73 @@ assert all(
     for r in range(3)
 )
 
+# The singular-Gram theorem is sharp at the exact transverse
+# common-qubit spin-flip zero.  We omit normalization to stay over Q.
+anchor_u0 = [F(0)] * 27
+anchor_u1 = [F(0)] * 27
+anchor_w0 = [F(0)] * 27
+anchor_w1 = [F(0)] * 27
+anchor_u0[index((0, 0, 0))] = 1
+anchor_u0[index((0, 1, 1))] = 1
+anchor_u1[index((1, 0, 0))] = 1
+anchor_u1[index((1, 1, 1))] = -1
+anchor_w0[index((0, 1, 1))] = 1
+anchor_w0[index((0, 0, 0))] = -1
+anchor_w1[index((1, 0, 0))] = 1
+anchor_w1[index((1, 1, 1))] = 1
+anchor = add(outer(anchor_u0, anchor_w0), outer(anchor_u1, anchor_w1))
+assert endpoint_q(anchor, 3) == 0
+anchor_blocks = [
+    [local_block(anchor, p, q) for q in range(3)] for p in range(3)
+]
+anchor_weights = [
+    [endpoint_q(anchor_blocks[p][q], 2) for q in range(3)]
+    for p in range(3)
+]
+assert all(
+    anchor_weights[p][q] == 0
+    for p in range(3)
+    for q in range(3)
+    if p != q
+)
+anchor_row_gram = [
+    [
+        sum(
+            endpoint_b(anchor_blocks[p][q], anchor_blocks[r][q], 2)
+            for q in range(3)
+        )
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+assert anchor_row_gram == [
+    [F(2), F(0), F(0)],
+    [F(0), F(2), F(0)],
+    [F(0), F(0), F(0)],
+]
+
+# Exact factor-plane kernel alignment (Lemma 4).  On two qutrits,
+# Z has range |0> tensor span{|0>,|1>}; W has range
+# (|0>+2|1>+3|2>) tensor the same two-plane.  The nonorthonormal
+# logical columns audit the inverse-Gram factor in the proof.
+def index2(t):
+    return 3 * t[0] + t[1]
+
+
+z_column0 = [F(0)] * 9
+z_column1 = [F(0)] * 9
+w_column0 = [F(0)] * 9
+w_column1 = [F(0)] * 9
+z_column0[index2((0, 0))] = 1
+z_column1[index2((0, 1))] = 2
+for first, coefficient in enumerate((1, 2, 3)):
+    w_column0[index2((first, 0))] = F(coefficient)
+    w_column1[index2((first, 1))] = F(coefficient, 2)
+aligned_kernel = add(
+    outer(z_column0, w_column0), outer(z_column1, w_column1)
+)
+assert endpoint_q(aligned_kernel, 2) == 0
+
 # Exact rank-four obstruction from Section 5.
 P = [[F(int(i == j and i < 2)) for j in range(3)] for i in range(3)]
 Q = [[F(int(i == j and i > 0)) for j in range(3)] for i in range(3)]
@@ -266,4 +333,6 @@ assert endpoint_q(formal, 3) == F(-1, 2)
 
 print("verified: exact rank-two local-similarity recursion")
 print("verified: positive exact similarity Hessian", second_derivative_at_zero)
+print("verified: sharp singular-Gram diagonal-collapse zero")
+print("verified: exact factor-plane kernel alignment")
 print("verified: balanced rank-four block obstruction")

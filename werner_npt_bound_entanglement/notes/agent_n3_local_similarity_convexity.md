@@ -306,11 +306,243 @@ Summing (13c) yields the rigorous lower bound
 \tag{13d}
 \]
 In particular, a stationary block system is nonnegative whenever at
-most one diagonal two-copy energy \(r_{pp}\) is nonzero.  The only
-uncontrolled term in (13d) is the coherent interaction among two or
-three positive diagonal block energies.  Bounding the three
-\(g_{pq}\)'s independently is not expected to settle that case; their
-phases and magnitudes share the factorization in (15).
+most two diagonal two-copy energies \(r_{pp}\) are nonzero.  Indeed,
+if only \(r_{00}=a\) and \(r_{11}=b\) can be nonzero, the part of
+(13d) involving the diagonal energies is
+\[
+ \frac12(a+b)-\sqrt{ab}
+ =\frac12(\sqrt a-\sqrt b)^2\geq0.
+\tag{13e}
+\]
+The only uncontrolled case in (13d) therefore has all three
+diagonal block energies positive.  Bounding the three \(g_{pq}\)'s
+independently is not expected to settle that case; their phases and
+magnitudes share the factorization in (15).
+
+There is an invariant consequence which removes the entire singular
+Gram locus, without assuming stationarity.
+
+### Theorem 2 (a negative matrix has strict row and column Grams)
+
+For each site form the positive matrices \(R,S\) in (10a).  If
+\(\operatorname{rank}C\leq2\) and either \(R\) or \(S\) is singular
+at at least one site, then
+\[
+\boxed{Q_3(C)\geq0.}
+\tag{13f}
+\]
+Consequently every negative rank-two matrix must satisfy
+\[
+\boxed{R_i\succ0,\qquad S_i\succ0\quad(i=1,2,3).}
+\tag{13g}
+\]
+At a local-similarity stationary negative matrix, (10e) reduces these
+six strict conditions to the three common positive-definite
+matrix-valued circulations \(S_i=\overline{R_i}\).
+
+### Proof
+
+Under a local unitary similarity, \(R\) and \(S\) transform by
+unitary similarity (with the harmless conjugate representation on
+one of them).  Suppose first that \(R\) is singular and choose a
+local basis in which it is diagonal with, say, \(R_{22}=0\).  Since
+\[
+ R_{22}=\sum_qQ_2(C_{2q})=\sum_qr_{2q}
+\]
+and every summand is nonnegative, all \(r_{2q}\) vanish.  In
+particular \(r_{22}=0\), so at most two diagonal block energies are
+nonzero.  Equations (13d)--(13e) give \(Q_3(C)\geq0\).
+
+If \(S\) is singular, diagonalize it instead.  Then
+\[
+ S_{22}=\sum_qQ_2(C_{q2})=0,
+\]
+and the identical argument again gives \(r_{22}=0\) and
+nonnegativity.  This proves (13f), whose contrapositive is
+(13g).  Notice that neither stationarity nor \(S=\overline R\) was
+used: the pair estimate (13d) is unconditional. \(\square\)
+
+The strictness in (13g) is sharp.  The common-qubit spin-flip endpoint
+zeros have, in a support-adapted basis, a matrix-valued circulation
+of the form
+\[
+ R=S=\operatorname{diag}(a,a,0),\qquad a>0.
+\tag{13h}
+\]
+Thus the singular boundary contains genuine non-product zeros, while
+Theorem 2 says it contains no negative matrix.
+
+### 3.3 Exclusion of the diagonal-collapse core
+
+The formal rank-one block Gram
+\[
+ {\cal B}_2(C_{pq},C_{rs})
+ =\gamma\,\delta_{pq}\delta_{rs}
+\tag{13i}
+\]
+passes the matrix-valued circulation law with
+\(R=S=\gamma I_3\), but gives the negative value
+\(-3\gamma/2\).  It is not realizable by one rank-two matrix.  The
+following theorem excludes a substantially larger diagonal-collapse
+locus.
+
+### Theorem 3
+
+Suppose that, in some local basis at one site,
+\[
+ Q_2(C_{pq})=0\qquad(p\ne q).
+\tag{13j}
+\]
+Then every rank-two \(C\) satisfies
+\[
+\boxed{Q_3(C)\geq0.}
+\tag{13k}
+\]
+Consequently, in addition to (13g), a negative matrix must have a
+nonzero off-diagonal block energy at every site in every local basis.
+
+The proof uses the established exact fixed-left equality
+classification for the two-qutrit endpoint:
+
+> If a two-qutrit two-plane \(E\) has a fixed-left endpoint kernel of
+> dimension at least two, then \(E\) is a factor plane
+> \(a\otimes E_0\) or \(E_0\otimes a\).
+
+We first record the alignment information contained in that kernel.
+
+#### Lemma 4 (kernel alignment for a factor plane)
+
+Let \(Z:\mathbb C^2\to\mathbb C^3\otimes\mathbb C^3\) be injective
+with
+\[
+ \operatorname{ran}Z=a\otimes E,\qquad \dim E=2.
+\tag{13l}
+\]
+If \(W:\mathbb C^2\to\mathbb C^3\otimes\mathbb C^3\) obeys
+\[
+ Q_2(ZW^\dagger)=0,
+\tag{13m}
+\]
+then
+\[
+ \operatorname{ran}W=b\otimes E
+\tag{13n}
+\]
+for some \(b\in\mathbb C^3\).  The analogous statement holds with
+the two physical factors exchanged.
+
+#### Proof
+
+After a local unitary write \(a=|0\rangle\) and
+\(Z=|0\rangle\otimes Z_0\), where \(Z_0:\mathbb C^2\to E\) is
+injective.  Decompose
+\[
+ W=\sum_{\alpha=0}^2|\alpha\rangle\otimes W_\alpha.
+\]
+The one-copy block pairings
+\[
+ {\cal B}_1(|0\rangle\langle\alpha|,
+            |0\rangle\langle\beta|)
+ =
+ \delta_{\alpha\beta}
+ -\frac12\delta_{\alpha0}\delta_{\beta0}
+\]
+give
+\[
+ Q_2(ZW^\dagger)
+ =
+ \frac12Q_1(Z_0W_0^\dagger)
+ +\sum_{\alpha=1}^2Q_1(Z_0W_\alpha^\dagger).
+\tag{13o}
+\]
+Every summand is nonnegative.  The sharp one-copy equality
+classification says that equality forces
+\[
+ Z_0W_\alpha^\dagger=c_\alpha P_E.
+\]
+Since \(Z_0\) is injective, this is equivalent to
+\[
+ W_\alpha=\overline{c_\alpha}\,
+ Z_0(Z_0^\dagger Z_0)^{-1}.
+\]
+All three slices are therefore scalar multiples of one common
+injective map with range \(E\), proving (13n). \(\square\)
+
+#### Proof of Theorem 3
+
+Rank one is already covered by the strict all-copy rank-one theorem,
+so assume that \(C\) has rank exactly two.
+Take a thin factorization
+\[
+ C=\widehat X Y^\dagger,
+\qquad
+ \widehat X,Y:\mathbb C^2\to(\mathbb C^3)^{\otimes3}
+\tag{13p}
+\]
+with both maps injective, and slice it at the selected site:
+\[
+ C_{pq}=\widehat X_pY_q^\dagger.
+\tag{13q}
+\]
+If either singular plane has deficient local support at any site,
+the established one-sided local-support theorem already proves
+(13k).  We may therefore assume full local support.  In particular,
+the three maps \(\widehat X_p\) are linearly independent, as are the
+three maps \(Y_q\).
+
+We claim first that every \(\widehat X_p\) and every \(Y_q\) is
+injective.  A nonzero off-diagonal block in (13q) cannot have rank
+one, because the strict rank-one estimate
+\[
+ Q_2(M)\geq\frac14\|M\|_2^2
+\]
+would contradict (13j).  Hence every nonzero off-diagonal block has
+rank two.
+
+There is at least one such block.  Otherwise all six products
+\(\widehat X_pY_q^\dagger\), \(p\ne q\), vanish.  No slice can then
+be injective.  Write the nonzero rank-one slices as
+\[
+ \widehat X_p=x_p\alpha_p^\dagger,\qquad
+ Y_q=y_q\beta_q^\dagger.
+\]
+The six vanishing products say
+\[
+ \alpha_p^\dagger\beta_q=0\qquad(p\ne q).
+\]
+Since the auxiliary space is two-dimensional, these equations force
+all three \(\alpha_p\)'s to be proportional and all three
+\(\beta_q\)'s to lie in the common orthogonal line.  The full map
+\(\widehat X\) would then have rank one, a contradiction.
+
+Starting from one rank-two off-diagonal block, injectivity propagates
+along the connected bipartite graph on the three \(\widehat X_p\)'s
+and three \(Y_q\)'s with the diagonal matching removed.  Indeed, an
+injective endpoint composed with a nonzero adjacent slice gives a
+nonzero block of the same rank as that slice, and rank one has just
+been excluded.  This proves the claim.
+
+Fix \(p\).  The two independent maps \(Y_q\), \(q\ne p\), lie in the
+fixed-left kernel associated with \(\widehat X_p\).  Its nullity is
+at least two, so the fixed-left classification makes
+\(\operatorname{ran}\widehat X_p\) a factor plane.  Lemma 4 then says
+that both adjacent planes \(\operatorname{ran}Y_q\), \(q\ne p\),
+factor on the same one of the two remaining physical sites and share
+the same two-dimensional support on the other site.
+
+Apply this for \(p=0,1,2\).  A two-dimensional plane cannot
+simultaneously be a factor plane on opposite sides: the intersection
+of \(a\otimes\mathbb C^3\) and
+\(\mathbb C^3\otimes b\) is only the line
+\(\mathbb C(a\otimes b)\).  The overlaps of the three pairs
+\(\{Y_q:q\ne p\}\) therefore force the same factor side for every
+\(p\).  They also force one common two-dimensional support \(E\) on
+the other physical site.  Hence the full right singular plane
+\(\operatorname{ran}Y\) has local support contained in \(E\) at that
+site.  This contradicts the assumed full local support.
+
+Thus the full-support case is impossible, and the local-support
+theorem proves (13k) in every remaining case. \(\square\)
 
 ## 4. The exact remaining block inequality
 
