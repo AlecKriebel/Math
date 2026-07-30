@@ -412,34 +412,41 @@ cycle_cofactor = (
 assert cycle_cofactor == 3
 assert 3 * cycle_cofactor == 9
 
-# Exact strict-interior formal obstruction (10ae)--(10ak).
+# Corrected exact strict-interior formal obstruction
+# (10ae)--(10am).  The previous table was invalid because it
+# violated Beta <= N.
 formal_beta = [[F(0) for _ in range(9)] for _ in range(9)]
 diagonal_labels = [3 * p + p for p in range(3)]
 for left in diagonal_labels:
     for right in diagonal_labels:
-        formal_beta[left][right] = F(2, 3)
+        formal_beta[left][right] = F(1, 36)
 for p in range(3):
     for r in range(3):
         if p != r:
-            formal_beta[3 * p + r][3 * p + r] = F(1, 12)
+            formal_beta[3 * p + r][3 * p + r] = F(1, 180)
 formal_r = [
     [formal_beta[3 * p + r][3 * p + r] for r in range(3)]
     for p in range(3)
 ]
 formal_n = [
-    [F(1, 6) if p == r else F(1, 12) for r in range(3)]
+    [F(1, 9) for _ in range(3)]
     for p in range(3)
 ]
-formal_q = F(-1, 2)
+formal_q = F(-1, 120)
 formal_W = [
     [formal_r[p][r] - formal_q * formal_n[p][r] for r in range(3)]
     for p in range(3)
 ]
 assert sum(value for row in formal_n for value in row) == 1
 assert formal_W == [
-    [F(3, 4) if p == r else F(1, 8) for r in range(3)]
+    [F(31, 1080) if p == r else F(7, 1080) for r in range(3)]
     for p in range(3)
 ]
+# Exact spectral envelope -N/2 <= Beta <= N.  In the diagonal-label
+# sector the generalized eigenvalues are 3/4,0,0; the other six are
+# 1/20.
+assert 3 * F(1, 36) / F(1, 9) == F(3, 4)
+assert F(1, 180) / F(1, 9) == F(1, 20)
 formal_row_gram = [
     [
         sum(
@@ -461,22 +468,22 @@ formal_column_gram = [
     for p in range(3)
 ]
 assert formal_row_gram == formal_column_gram == [
-    [F(5, 6) if p == r else F(0) for r in range(3)]
+    [F(7, 180) if p == r else F(0) for r in range(3)]
     for p in range(3)
 ]
 formal_G = [
     [formal_beta[3 * p + p][3 * r + r] for r in range(3)]
     for p in range(3)
 ]
-assert formal_G == [[F(2, 3) for _ in range(3)] for _ in range(3)]
-assert [sum(row) for row in formal_G] == [F(2)] * 3
+assert formal_G == [[F(1, 36) for _ in range(3)] for _ in range(3)]
+assert [sum(row) for row in formal_G] == [F(1, 12)] * 3
 formal_L = [
-    [F(1, 2) if p == r else F(-1, 4) for r in range(3)]
+    [F(7, 270) if p == r else F(-7, 540) for r in range(3)]
     for p in range(3)
 ]
 formal_P = [
     [
-        (F(2) if p == r else F(0)) - formal_G[p][r]
+        (F(1, 12) if p == r else F(0)) - formal_G[p][r]
         for r in range(3)
     ]
     for p in range(3)
@@ -486,14 +493,14 @@ formal_A = [
     for p in range(3)
 ]
 assert formal_A == [
-    [F(5, 6) if p == r else F(-5, 12) for r in range(3)]
+    [F(4, 135) if p == r else F(-2, 135) for r in range(3)]
     for p in range(3)
 ]
 assert all(sum(row) == 0 for row in formal_P)
 assert all(sum(row) == 0 for row in formal_A)
-assert formal_P[0][0] * formal_P[1][1] - formal_P[0][1] ** 2 == F(4, 3)
-assert formal_A[0][0] * formal_A[1][1] - formal_A[0][1] ** 2 == F(25, 48)
-assert F(2, 3) < 2 * F(1, 12) + F(2, 3)
+assert formal_P[0][0] * formal_P[1][1] - formal_P[0][1] ** 2 == F(1, 432)
+assert formal_A[0][0] * formal_A[1][1] - formal_A[0][1] ** 2 == F(4, 6075)
+assert F(1, 36) < 2 * F(1, 180) + F(1, 36)
 formal_recursion = sum(value for row in formal_r for value in row) - F(
     1, 2
 ) * sum(sum(row) for row in formal_G)

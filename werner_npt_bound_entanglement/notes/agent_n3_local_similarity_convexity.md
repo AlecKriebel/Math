@@ -539,106 +539,123 @@ which is (10ac).
 
 #### Exact obstruction to a scalar critical proof
 
-Even the strict-PD circulation, all pair constraints, and the full
-Schur certificate (10z) do not force \(q\geq0\) without the common
-factorization \(C_{pq}=X_pY_q^\dagger\).  Here is an exact formal
-point in the strict interior.
-
-On the nine block labels \((p,q)\), define a positive semidefinite
-formal two-copy Gram tensor \(\Beta\) by
+There is one additional elementary constraint which must be imposed
+on any formal block Gram table.  On two qutrit copies the
+self-adjoint superoperator
 \[
-\begin{aligned}
- \Beta_{pp,rr}&=\frac23
- &&(p,r=0,1,2),\\
- \Beta_{pq,pq}&=\frac1{12}
- &&(p\ne q),
-\end{aligned}
+ {\cal L}_2=L^{\otimes2}
+\]
+has eigenvalues \(1,-1/2,1/4\).  Consequently
+\[
+ -\frac12N\preceq\Beta\preceq N,
+ \qquad
+ 0\leq r_{pq}\leq n_{pq},
 \tag{10ae}
 \]
-with every other entry zero.  Its diagonal-index principal block is
-\((2/3)J_3\succeq0\), and its six remaining entries are positive
-one-dimensional blocks, so \(\Beta\succeq0\).
+where \(N\) is the Hilbert--Schmidt Gram matrix and
+\(\Beta\) is the \({\cal B}_2\)-Gram matrix of the nine blocks.
+An earlier version of this note recorded a table violating
+\(r_{pp}\leq n_{pp}\); that table was invalid and is retracted.
+It also chose \(q=-1/2\), the spectral floor of
+\(L^{\otimes3}\), whose equality case would force support entirely
+in the degree-two sector.
 
-Take the formal ordinary norm Gram diagonal, with
+The corrected exact table below satisfies the full matrix envelope
+(10ae), has \(q>-1/2\), and still shows that the presently known
+scalar/Gram/Hessian constraints do not force \(q\geq0\).
+
+On the nine block labels \((p,q)\), take
 \[
- n_{pp}=\frac16,\qquad n_{pq}=\frac1{12}\quad(p\ne q),
+ N=\frac19I_9.
 \tag{10af}
 \]
-and put
+Define the positive semidefinite formal two-copy Gram tensor
+\(\Beta\) by
 \[
- q=-\frac12.
+\begin{aligned}
+ \Beta_{pp,rr}&=\frac1{36}
+ &&(p,r=0,1,2),\\
+ \Beta_{pq,pq}&=\frac1{180}
+ &&(p\ne q),
+\end{aligned}
+\tag{10ag}
+\]
+with every other entry zero.  Its eigenvalues relative to \(N\) are
+\[
+ \frac34,\quad 0,\quad 0,\quad
+ \underbrace{\frac1{20},\ldots,\frac1{20}}_{6\ {\rm times}}.
+\tag{10ah}
+\]
+Thus \(-N/2\preceq\Beta\preceq N\), in fact
+\(\Beta\succeq0\), and every block energy is strictly between zero
+and its norm square.
+
+Put
+\[
+ q=-\frac1{120}.
 \]
 Then
 \[
 \begin{aligned}
- r_{pp}&=\frac23,&r_{pq}&=\frac1{12}\quad(p\ne q),\\
- W_{pp}&=r_{pp}-qn_{pp}=\frac34,&
- W_{pq}&=r_{pq}-qn_{pq}=\frac18\quad(p\ne q).
-\end{aligned}
-\tag{10ag}
-\]
-The norm weights sum to one, every unshifted row and column Gram is
-\((5/6)I_3\), and every shifted row and column Gram is \(I_3\).
-Thus all are strictly positive definite and the shifted flow is
-balanced with \(d=(1,1,1)\).
-
-The diagonal-block form is
-\[
- G=\frac23J_3,\qquad G{\bf1}=2{\bf1}.
-\tag{10ah}
-\]
-Moreover
-\[
-\begin{aligned}
- L_W&=
- \begin{pmatrix}
- 1/2&-1/4&-1/4\\
- -1/4&1/2&-1/4\\
- -1/4&-1/4&1/2
- \end{pmatrix},\\
- P_*&=2I_3-\frac23J_3,\\
- A_*&=P_*-L_W
- =
- \begin{pmatrix}
- 5/6&-5/12&-5/12\\
- -5/12&5/6&-5/12\\
- -5/12&-5/12&5/6
- \end{pmatrix}.
+ r_{pp}&=\frac1{36},&
+ r_{pq}&=\frac1{180}\quad(p\ne q),\\
+ W_{pp}&=r_{pp}-q n_{pp}=\frac{31}{1080},&
+ W_{pq}&=r_{pq}-q n_{pq}=\frac7{1080}\quad(p\ne q).
 \end{aligned}
 \tag{10ai}
 \]
-Here \(\tau=\sigma=0\).  Both real slacks are positive definite on
-\({\bf1}^{\perp}\), with eigenvalues \(2,2\) for \(P_*\) and
-\(5/4,5/4\) for \(A_*\).  Hence (10z) is satisfied strictly away
-from the unavoidable scalar kernel.  The pair bound (13c) below is
-also strict:
+The norm weights sum to one.  Every unshifted row and column Gram is
+\((7/180)I_3\), and every shifted row and column Gram is
+\((1/24)I_3\).  Thus all are strictly positive definite and the
+shifted flow is balanced with \(D=(1/24)I_3\).
+
+The diagonal-block form is
 \[
- |G_{pr}|=\frac23
- <
- 2\sqrt{r_{pr}r_{rp}}+\sqrt{r_{pp}r_{rr}}
- =\frac56
- \qquad(p\ne r).
+ G=\frac1{36}J_3,\qquad
+ G{\bf1}=\frac1{12}{\bf1}=2D{\bf1}.
 \tag{10aj}
 \]
-
-Nevertheless,
+Here \(\tau=\sigma=0\).  The two real critical slacks are
 \[
 \begin{aligned}
- \sum_{p,q}r_{pq}&=\frac52,\\
+ P_*&=2D-G,\\
+ A_*&=2W-G=P_*-L_W.
+\end{aligned}
+\tag{10ak}
+\]
+Their nonzero eigenvalues are \(1/12,1/12\) for \(P_*\) and
+\(2/45,2/45\) for \(A_*\).  Hence the full Schur certificate (10z)
+is strict on \({\bf1}^{\perp}\).  The pair bound (13c) is also
+strict:
+\[
+ |G_{pr}|=\frac1{36}
+ <
+ 2\sqrt{r_{pr}r_{rp}}+\sqrt{r_{pp}r_{rr}}
+ =\frac7{180}
+ \qquad(p\ne r).
+\tag{10al}
+\]
+
+Finally,
+\[
+\begin{aligned}
+ \sum_{p,q}r_{pq}&=\frac7{60},\\
  Q_2\left(\sum_pA_p\right)
- &={\bf1}^\dagger G{\bf1}=6,
+ &={\bf1}^\dagger G{\bf1}=\frac14,
 \end{aligned}
 \]
 and the formal recursion gives
 \[
- \frac52-\frac12\cdot6=-\frac12=q.
-\tag{10ak}
+ \frac7{60}-\frac12\cdot\frac14=-\frac1{120}=q.
+\tag{10am}
 \]
-Thus trace, determinant, pair, circulation, and Hessian arithmetic
-all permit an exact negative critical table with every block energy
-positive.  The table is not asserted to be realizable by six common
-two-column factors.  Excluding precisely that common-factor
-realization is the irreducible remaining lemma.
+Thus even the full spectral Gram envelope, strict-PD circulation,
+pair inequalities, and the complete diagonal-filter Hessian permit
+an exact negative critical table.  This is only a formal table: it
+is not asserted that nine actual blocks, much less common
+two-column factors \(C_{pq}=X_pY_q^\dagger\), realize \(N\) and
+\(\Beta\).  The next missing information is therefore nonlinear
+realizability, not further scalar sector arithmetic.
 
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are

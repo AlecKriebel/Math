@@ -7119,3 +7119,45 @@ u_1u_1^\dagger\bigr].
   alone cannot close the proof.  The remaining issue is now precisely
   whether the formal block data can share one physical rank-two
   factorization \(C_{pq}=X_pY_q^\dagger\).
+
+## 2026-07-29 23:31 PDT — Formal critical table audited and repaired
+
+- Hostile review found that the numerical table originally recorded in
+  the preceding checkpoint violated the elementary two-copy spectral
+  envelope
+  \[
+  -\frac12N\preceq\Beta\preceq N.
+  \]
+  Indeed \(L^{\otimes2}\) has eigenvalues \(1,-1/2,1/4\), whereas the
+  old table had \(r_{pp}=2/3>n_{pp}=1/6\).  It also put
+  \(q=-1/2\), the spectral floor of \(L^{\otimes3}\), without imposing
+  the resulting degree-two equality support.  That table and the
+  associated overclaim are retracted.
+- Replaced it by the exact normalized formal data
+  \[
+  N=\frac19I_9,\qquad
+  \Beta_{pp,rr}=\frac1{36},\qquad
+  \Beta_{pq,pq}=\frac1{180}\quad(p\ne q),
+  \]
+  all other entries zero.  Relative to \(N\), the eigenvalues of
+  \(\Beta\) are
+  \[
+  3/4,\ 0,\ 0,\ 1/20,\ldots,1/20,
+  \]
+  so the full spectral envelope holds strictly at its upper and lower
+  ends.
+- This repaired table gives
+  \[
+  q=-\frac1{120},\quad
+  W_{pp}=\frac{31}{1080},\quad
+  W_{pq}=\frac7{1080},
+  \]
+  shifted row/column Gram \((1/24)I_3\), and
+  \(G=(1/36)J_3\).  The two Hessian slacks have nonzero eigenvalues
+  \(1/12\) and \(2/45\), and the pair inequality is strict:
+  \(1/36<7/180\).
+- Therefore the spectral audit repairs, rather than closes, the formal
+  obstruction: the full current Gram envelope and all critical
+  scalar/Hessian constraints still permit a negative point.  What is
+  not established is realization by actual blocks or by common
+  two-column factors.
