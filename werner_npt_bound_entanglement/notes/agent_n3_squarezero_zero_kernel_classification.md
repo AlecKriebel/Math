@@ -39,6 +39,20 @@ The main reductions are:
    full-local-support locus, of one crossed-Hodge Cauchy inequality
    displayed in (12) below.
 
+There is one further exact consequence on the balanced branch.  If
+the kernel matrix is proportional to a unitary, then the sharp
+rank-one product margin alone upgrades to the full quantitative
+two-by-two bound
+\[
+ \boxed{\qquad
+ \langle\operatorname{vec}X,H\operatorname{vec}X\rangle
+ \geq\frac14\bigl(s_1(X)-s_2(X)\bigr)^2 .
+ \qquad}                                                  \tag{B}
+\]
+Thus every balanced abstract zero already has feature concurrence
+exactly \(1/2\).  No physical Hodge input is needed for this
+particular implication.
+
 The abstract conditions in (2), rank three, and the sharp product
 margin do not force a balanced kernel.  An exact counterexample is
 \[
@@ -91,6 +105,11 @@ decomposition then imposes the explicit common-kernel equations
 \]
 after logical unitaries put the kernel at
 \(\operatorname{vec}I_2\).
+
+Finally, a simpler attempt to dominate the crossed coherence by the
+two off-diagonal feature norms is false on an exact physical
+spin-flip zero.  In that example the proposed inequality fails by a
+factor four even though the true crossed inequality is an equality.
 
 The dependency-free exact checker is
 `verification/verify_n3_squarezero_zero_kernel_classification.py`.
@@ -341,9 +360,9 @@ The left side of (20) is
 Now
 \[
 \begin{aligned}
- s^2|a|^2+t^2|d|^2
-2st\operatorname{Re}(b\overline c)
-2st|\det M|
+ &s^2|a|^2+t^2|d|^2
+ +2st\operatorname{Re}(b\overline c)
+ +2st|\det M|\\
  &\geq
  2st\bigl(|ad|-|bc|+|ad-bc|\bigr)\\
  &\geq0,
@@ -397,3 +416,160 @@ is precisely (8) for each term with nonzero determinant.
 
 This supplies a concrete equality system for a future physical
 Hodge-decomposition proof.
+
+## 6. A complete quantitative theorem for a balanced kernel
+
+The following elementary \(2\times2\) lemma turns out to be exactly
+adapted to the sharp product margin.
+
+### Lemma 6.1 (rank-one scalar remainder)
+
+For every \(X\in M_2(\mathbb C)\), choose either eigenvalue
+\(\lambda\) and put
+\[
+ R=X-\lambda I_2.
+\]
+Then \(\operatorname{rank}R\leq1\) and
+\[
+ \boxed{\qquad
+ \bigl(s_1(X)-s_2(X)\bigr)^2\leq\|R\|_2^2.
+ \qquad}                                                  \tag{24}
+\]
+If \(X\) is not scalar, equality holds precisely when its two
+eigenvalues lie on one closed ray from the origin (zero is allowed).
+
+#### Proof
+
+Put \(r=\operatorname{Tr}R\).  Since \(\det R=0\), the second
+eigenvalue of \(X\) is
+\[
+ \mu=\lambda+r,
+\]
+and
+\[
+ \det X=\lambda\mu.
+\]
+For a \(2\times2\) matrix,
+\[
+ \bigl(s_1(X)-s_2(X)\bigr)^2
+ =\|X\|_2^2-2|\det X|.
+\]
+Expanding \(X=\lambda I+R\) therefore gives the exact identity
+\[
+\begin{aligned}
+ &\|R\|_2^2-\bigl(s_1(X)-s_2(X)\bigr)^2\\
+ &\qquad
+ =2\left(
+ |\lambda|\,|\mu|-\operatorname{Re}(\overline\lambda\mu)
+ \right)\geq0.                                          \tag{25}
+\end{aligned}
+\]
+The last term vanishes exactly when \(\lambda\) and \(\mu\) have the
+same phase, with either one allowed to vanish.  This proves both
+claims. \(\square\)
+
+### Theorem 6.2 (balanced-kernel completion)
+
+Let \(H\) be a Hermitian form on \(M_2(\mathbb C)\) such that
+\[
+ H\,\operatorname{vec}I_2=0
+\tag{26}
+\]
+and, for every rank-at-most-one \(R\),
+\[
+ \langle\operatorname{vec}R,H\operatorname{vec}R\rangle
+ \geq\frac14\|R\|_2^2.                                  \tag{27}
+\]
+Then, for every \(X\in M_2(\mathbb C)\),
+\[
+ \boxed{
+ \langle\operatorname{vec}X,H\operatorname{vec}X\rangle
+ \geq\frac14\bigl(s_1(X)-s_2(X)\bigr)^2.}               \tag{28}
+\]
+In particular \(H\succeq0\).  The same conclusion holds when the
+kernel matrix is any scalar multiple of a unitary, after a logical
+unitary change of coordinates.
+
+#### Proof
+
+Choose an eigenvalue \(\lambda\) of \(X\) and put
+\(R=X-\lambda I\).  Equation (26) and Hermiticity give
+\[
+ \langle\operatorname{vec}X,H\operatorname{vec}X\rangle
+ =
+ \langle\operatorname{vec}R,H\operatorname{vec}R\rangle.
+\]
+Apply (27) and then Lemma 6.1.  Logical left and right unitaries
+preserve matrix rank, Frobenius norm, and singular values, so they
+reduce a unitary kernel matrix to \(I_2\). \(\square\)
+
+For a nonscalar \(X\), equality in (28) requires both:
+
+1. \(R=X-\lambda I\) saturates the rank-one product margin (27);
+2. the two eigenvalues of \(X\) lie on one closed ray.
+
+In the physical crossed Gram, the first condition is
+\({\cal T}(x,y)=0\) for the rank-one logical transition determined by
+\(R\).  The complete rank-one equality classification then puts that
+transition on the product--tangent or common-local-factor locus.
+The scalar kernel itself does not yield such a transition, so this
+observation does not yet prove zero rigidity.
+
+There is also a concise concurrence consequence.  For a physical
+balanced zero, Section 5 gives
+\({\cal C}(K)\geq1/2\).  The determinant-one filter formula, with
+(28) applied after every logical filter, gives the reverse inequality.
+Hence
+\[
+ \boxed{\qquad {\cal C}(K)=\frac12
+ \quad\hbox{for every balanced zero.}\qquad}             \tag{29}
+\]
+
+## 7. Exact failure of an off-diagonal norm shortcut
+
+A tempting strengthening of (12) is
+\[
+ K_{01,01}K_{10,10}
+ \stackrel{?}{\leq}
+ \left(\frac14+K_{00,00}\right)
+ \left(\frac14+K_{11,11}\right).                        \tag{30}
+\]
+Together with ordinary Cauchy--Schwarz, it would prove (12).
+It is false even at an exact physical endpoint zero.
+
+For the fully transverse spin-flip frame recorded in
+`agent_n3_transverse_anchor_boundary.md`, the crossed endpoint Gram
+is
+\[
+ H=
+ \begin{pmatrix}
+ 1/4&0&0&-1/4\\
+ 0&3/4&0&0\\
+ 0&0&3/4&0\\
+ -1/4&0&0&1/4
+ \end{pmatrix}.
+\tag{31}
+\]
+Therefore
+\[
+ K=H^{\Gamma_2}-\frac14I_4
+ =
+ \begin{pmatrix}
+ 0&0&0&0\\
+ 0&1/2&-1/4&0\\
+ 0&-1/4&1/2&0\\
+ 0&0&0&0
+ \end{pmatrix}.                                         \tag{32}
+\]
+The left side of (30) is \(1/4\), while its right side is
+\(1/16\).  Thus (30) fails by the exact factor four.  In contrast,
+the actual crossed term obeys
+\[
+ |K_{01,10}|^2=\frac1{16}
+ =
+ \left(\frac14+K_{00,00}\right)
+ \left(\frac14+K_{11,11}\right),
+\]
+so the physical target (12) is sharp.  Any proof must control the
+crossed coherence itself rather than replace it by the product of the
+two off-diagonal feature masses.
