@@ -6626,15 +6626,27 @@ u_1u_1^\dagger\bigr].
   {427988320182198573561}<0.
   \]
   Therefore global reciprocal-filter **log** convexity is false.
-- The failure does not damage the determinant conjecture.  On the
-  entire pencil the unlogged ratio satisfies
+- The failure does not damage the determinant conjecture.  Along the
+  diagonal reciprocal balancing path inside the pencil, the unlogged
+  ratio satisfies
   \[
   {\cal R}''=
   \frac{256}{59049z^2}
   \left[64(\dot s)^2+(32q+p)\ddot s\right]>0,
   \]
-  so raw-ratio convexity survives exactly.  At the hostile point the
-  normalized determinant defect also has positive curvature.
+  and the normalized determinant defect has positive curvature at
+  the hostile point.
+- Nevertheless global unlogged-ratio convexity is also false.  At the
+  rationally normalized point
+  \(x=40/399,\ y=400/39999\), the transverse flag generator
+  \(A=|0\rangle\langle2|+|2\rangle\langle0|\) gives
+  \[
+  {\cal R}''(0)=
+  -\frac{6776517939570790805454464}
+  {1342884260268994629375}<0.
+  \]
+  This second exact no-go leaves critical-point or zero-rigidity
+  arguments as the surviving filter-based routes.
 - Added
   `notes/agent_n3_squarezero_filter_nonconvexity.md` and the
   dependency-free exact checker

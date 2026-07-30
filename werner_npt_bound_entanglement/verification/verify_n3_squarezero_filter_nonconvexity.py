@@ -46,6 +46,18 @@ class O:
 
     __rmul__ = __mul__
 
+    def __truediv__(self, other):
+        other = O.make(other)
+        norm = (
+            other.a * other.a
+            - other.a * other.b
+            + other.b * other.b
+        )
+        if not norm:
+            raise ZeroDivisionError
+        numerator = self * O(other.a - other.b, -other.b)
+        return O(numerator.a / norm, numerator.b / norm)
+
     def conjugate(self):
         return O(self.a - self.b, -self.b)
 
@@ -457,7 +469,425 @@ expected_defect_second = F(
 assert defect_second == expected_defect_second
 assert defect_second > 0
 
+
+# A transverse reciprocal filter leaves the displayed two-parameter
+# pencil, and it also destroys convexity of the unlogged ratio.  The
+# following Pythagorean parameters keep the normalized frame inside
+# Q(omega):
+#
+#   x=40/399, sqrt(1+x^2)=401/399,
+#   y=400/39999, sqrt(1+y^2)=40001/39999.
+def pevaluate(polynomial, x_value, y_value):
+    return sum(
+        (
+            coefficient * x_value**i * y_value**j
+            for (i, j), coefficient in polynomial.items()
+        ),
+        ZERO,
+    )
+
+
+def oevaluate_vector(vector, x_value, y_value):
+    return {
+        position: pevaluate(value, x_value, y_value)
+        for position, value in vector.items()
+    }
+
+
+def oscale_vector(coefficient, vector):
+    coefficient = O.make(coefficient)
+    return {
+        position: coefficient * value
+        for position, value in vector.items()
+        if coefficient * value
+    }
+
+
+def oadd_vectors(*terms):
+    out = {}
+    for coefficient, vector in terms:
+        coefficient = O.make(coefficient)
+        for position, value in vector.items():
+            out[position] = out.get(position, ZERO) + coefficient * value
+            if not out[position]:
+                del out[position]
+    return out
+
+
+def oinner_vector(left, right):
+    return sum(
+        (
+            value.conjugate() * right.get(position, ZERO)
+            for position, value in left.items()
+        ),
+        ZERO,
+    )
+
+
+def oouter(left, right, coefficient=ONE):
+    coefficient = O.make(coefficient)
+    return {
+        (i, j): coefficient * a * b.conjugate()
+        for i, a in left.items()
+        for j, b in right.items()
+        if coefficient * a * b.conjugate()
+    }
+
+
+def oadd_sparse(*terms):
+    out = {}
+    for coefficient, matrix in terms:
+        coefficient = O.make(coefficient)
+        for key, value in matrix.items():
+            out[key] = out.get(key, ZERO) + coefficient * value
+            if not out[key]:
+                del out[key]
+    return out
+
+
+def opartial_trace(matrix, traced):
+    traced = set(traced)
+    remaining = [site for site in range(3) if site not in traced]
+    out = {}
+    for (row, column), value in matrix.items():
+        row_digits = digits(row)
+        column_digits = digits(column)
+        if any(row_digits[site] != column_digits[site] for site in traced):
+            continue
+        new_row = 0
+        new_column = 0
+        for site in remaining:
+            new_row = 3 * new_row + row_digits[site]
+            new_column = 3 * new_column + column_digits[site]
+        key = (new_row, new_column)
+        out[key] = out.get(key, ZERO) + value
+        if not out[key]:
+            del out[key]
+    return out
+
+
+def ohs_inner(left, right):
+    return sum(
+        (
+            value.conjugate() * right.get(key, ZERO)
+            for key, value in left.items()
+        ),
+        ZERO,
+    )
+
+
+def oendpoint_bilinear(left, right):
+    out = ZERO
+    for size in range(4):
+        for sites in combinations(range(3), size):
+            out += F(-1, 2) ** size * ohs_inner(
+                opartial_trace(left, sites),
+                opartial_trace(right, sites),
+            )
+    return out
+
+
+def odense_mul(left, right):
+    return [
+        [
+            sum(
+                (left[i][k] * right[k][j] for k in range(len(right))),
+                ZERO,
+            )
+            for j in range(len(right[0]))
+        ]
+        for i in range(len(left))
+    ]
+
+
+def odense_scale(coefficient, matrix):
+    coefficient = O.make(coefficient)
+    return [
+        [coefficient * value for value in row]
+        for row in matrix
+    ]
+
+
+def oapply_local(operator, vector, site):
+    out = {}
+    for old_index, value in vector.items():
+        old_digits = list(digits(old_index))
+        for new_symbol in range(3):
+            coefficient = operator[new_symbol][old_digits[site]]
+            if not coefficient:
+                continue
+            new_digits = old_digits[:]
+            new_digits[site] = new_symbol
+            new_index = index(new_digits)
+            out[new_index] = (
+                out.get(new_index, ZERO) + coefficient * value
+            )
+            if not out[new_index]:
+                del out[new_index]
+    return out
+
+
+def ocolumns_gram(frame, operator, site):
+    images = [oapply_local(operator, vector, site) for vector in frame]
+    return [
+        [oinner_vector(left, right) for right in images]
+        for left in frame
+    ]
+
+
+def ocolumns_right_multiply(frame, matrix):
+    return [
+        oadd_vectors(
+            *((matrix[k][j], frame[k]) for k in range(len(frame)))
+        )
+        for j in range(len(matrix[0]))
+    ]
+
+
+def oframe_derivatives(frame, operator, sign, site):
+    operator_squared = odense_mul(operator, operator)
+    a = odense_scale(F(1, 3), ocolumns_gram(frame, operator, site))
+    b = odense_scale(
+        F(1, 3), ocolumns_gram(frame, operator_squared, site)
+    )
+    acted = [oapply_local(operator, vector, site) for vector in frame]
+    acted_twice = [
+        oapply_local(operator_squared, vector, site) for vector in frame
+    ]
+    frame_a = ocolumns_right_multiply(frame, a)
+    first = [
+        oadd_vectors((sign, acted[j]), (-sign, frame_a[j]))
+        for j in range(2)
+    ]
+    a_squared = odense_mul(a, a)
+    correction = [
+        [3 * a_squared[i][j] - 2 * b[i][j] for j in range(2)]
+        for i in range(2)
+    ]
+    acted_a = ocolumns_right_multiply(acted, a)
+    frame_correction = ocolumns_right_multiply(frame, correction)
+    second = [
+        oadd_vectors(
+            (1, acted_twice[j]),
+            (-2, acted_a[j]),
+            (1, frame_correction[j]),
+        )
+        for j in range(2)
+    ]
+    return frame, first, second
+
+
+def osadd(left, right):
+    return tuple(left[i] + right[i] for i in range(3))
+
+
+def osscale(coefficient, series):
+    coefficient = O.make(coefficient)
+    return tuple(coefficient * value for value in series)
+
+
+def osmul(left, right):
+    return tuple(
+        sum(
+            (left[j] * right[i - j] for j in range(i + 1)),
+            ZERO,
+        )
+        for i in range(3)
+    )
+
+
+def osinv(series):
+    a, b, c = series
+    return (
+        ONE / a,
+        -b / (a * a),
+        b * b / (a * a * a) - c / (a * a),
+    )
+
+
+def oseries_matrix(value, first, second):
+    return [
+        [
+            (value[i][j], first[i][j], second[i][j] * F(1, 2))
+            for j in range(len(value[0]))
+        ]
+        for i in range(len(value))
+    ]
+
+
+def odeterminant_series(matrix):
+    size = len(matrix)
+    out = (ZERO, ZERO, ZERO)
+    for permutation in permutations(range(size)):
+        term = (ONE, ZERO, ZERO)
+        for row, column in enumerate(permutation):
+            term = osmul(term, matrix[row][column])
+        out = osadd(
+            out,
+            osscale(permutation_sign(permutation), term),
+        )
+    return out
+
+
+def oendpoint_derivative_matrices(u_levels, w_levels):
+    endpoint_levels = ([], [], [])
+    for a in range(2):
+        for b in range(2):
+            u0_level, u1_level, u2_level = (
+                levels[a] for levels in u_levels
+            )
+            w0_level, w1_level, w2_level = (
+                levels[b] for levels in w_levels
+            )
+            endpoint_levels[0].append(
+                oouter(u0_level, w0_level, F(1, 3))
+            )
+            endpoint_levels[1].append(
+                oadd_sparse(
+                    (F(1, 3), oouter(u1_level, w0_level)),
+                    (F(1, 3), oouter(u0_level, w1_level)),
+                )
+            )
+            endpoint_levels[2].append(
+                oadd_sparse(
+                    (F(1, 3), oouter(u2_level, w0_level)),
+                    (F(2, 3), oouter(u1_level, w1_level)),
+                    (F(1, 3), oouter(u0_level, w2_level)),
+                )
+            )
+    e0, e1, e2 = endpoint_levels
+    h0 = [[ZERO for _ in range(4)] for _ in range(4)]
+    h1 = [[ZERO for _ in range(4)] for _ in range(4)]
+    h2 = [[ZERO for _ in range(4)] for _ in range(4)]
+    for i in range(4):
+        for j in range(4):
+            h0[i][j] = oendpoint_bilinear(e0[i], e0[j])
+            h1[i][j] = (
+                oendpoint_bilinear(e1[i], e0[j])
+                + oendpoint_bilinear(e0[i], e1[j])
+            )
+            h2[i][j] = (
+                oendpoint_bilinear(e2[i], e0[j])
+                + 2 * oendpoint_bilinear(e1[i], e1[j])
+                + oendpoint_bilinear(e0[i], e2[j])
+            )
+    return h0, h1, h2
+
+
+def omarginal_derivative_series(levels):
+    f0, f1, f2 = levels
+    p0 = {}
+    p1 = {}
+    p2 = {}
+    for column in range(2):
+        p0 = oadd_sparse(
+            (1, p0), (F(1, 3), oouter(f0[column], f0[column]))
+        )
+        p1 = oadd_sparse(
+            (1, p1),
+            (F(1, 3), oouter(f1[column], f0[column])),
+            (F(1, 3), oouter(f0[column], f1[column])),
+        )
+        p2 = oadd_sparse(
+            (1, p2),
+            (F(1, 3), oouter(f2[column], f0[column])),
+            (F(2, 3), oouter(f1[column], f1[column])),
+            (F(1, 3), oouter(f0[column], f2[column])),
+        )
+    out = []
+    for site in range(3):
+        traced = tuple(i for i in range(3) if i != site)
+        reduced = [
+            opartial_trace(projector, traced)
+            for projector in (p0, p1, p2)
+        ]
+        dense = [
+            [
+                [
+                    reduced[level].get((i, j), ZERO)
+                    for j in range(3)
+                ]
+                for i in range(3)
+            ]
+            for level in range(3)
+        ]
+        out.append(oseries_matrix(*dense))
+    return out
+
+
+x_exact = F(40, 399)
+y_exact = F(400, 39999)
+u_exact = [
+    oevaluate_vector(u0, x_exact, y_exact),
+    oscale_vector(
+        F(399, 401), oevaluate_vector(u1, x_exact, y_exact)
+    ),
+]
+w_exact = [
+    oevaluate_vector(w0, x_exact, y_exact),
+    oscale_vector(
+        F(39999, 40001), oevaluate_vector(w1, x_exact, y_exact)
+    ),
+]
+assert all(
+    oinner_vector(u_exact[i], u_exact[j])
+    == (O(3) if i == j else ZERO)
+    for i in range(2)
+    for j in range(2)
+)
+assert all(
+    oinner_vector(w_exact[i], w_exact[j])
+    == (O(3) if i == j else ZERO)
+    for i in range(2)
+    for j in range(2)
+)
+assert all(
+    oinner_vector(left, right) == ZERO
+    for left in u_exact
+    for right in w_exact
+)
+
+off_diagonal_02 = [
+    [ZERO, ZERO, ONE],
+    [ZERO, ZERO, ZERO],
+    [ONE, ZERO, ZERO],
+]
+u_derivatives = oframe_derivatives(
+    u_exact, off_diagonal_02, 1, 1
+)
+w_derivatives = oframe_derivatives(
+    w_exact, off_diagonal_02, -1, 1
+)
+h_derivatives = oendpoint_derivative_matrices(
+    u_derivatives, w_derivatives
+)
+h_series = odeterminant_series(oseries_matrix(*h_derivatives))
+marginal_series = (
+    omarginal_derivative_series(u_derivatives)
+    + omarginal_derivative_series(w_derivatives)
+)
+marginal_product_series = (ONE, ZERO, ZERO)
+for matrix_series in marginal_series:
+    marginal_product_series = osmul(
+        marginal_product_series,
+        odeterminant_series(matrix_series),
+    )
+
+unscaled_ratio_series = osmul(
+    h_series, osinv(marginal_product_series)
+)
+normalized_ratio_series = osscale(
+    F(2**22, 3**18), unscaled_ratio_series
+)
+transverse_ratio_second = 2 * normalized_ratio_series[2]
+assert transverse_ratio_second.b == 0
+assert transverse_ratio_second.a < 0
+
 print("verified: exact flag--Bell endpoint Gram and determinant")
 print("verified: full-rank marginal product formula and strict scalar certificate")
 print("verified: exact negative reciprocal-filter log curvature")
-print("verified: unlogged ratio and determinant defect retain positive curvature")
+print("verified: positive diagonal-path ratio and defect curvature")
+print(
+    "verified: exact negative transverse unlogged-ratio curvature",
+    transverse_ratio_second.a,
+)

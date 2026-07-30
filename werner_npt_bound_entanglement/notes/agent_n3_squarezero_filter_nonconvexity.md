@@ -30,13 +30,24 @@ determinant inequality
     All six one-site plane marginals are positive definite there.
     Thus global reciprocal-filter log convexity cannot prove (1).
 
-The failure is specific to the logarithm.  On this entire pencil the
-unlogged determinant ratio is strictly convex along the same
-reciprocal-filter direction.  At the point in (3), the unlogged ratio
-and the normalized determinant defect both have positive curvature.
-Consequently this is an exact counterexample to an intermediate proof
-mechanism, **not** a negative square-zero matrix and not a
-counterexample to (1).
+3.  Convexity of the unlogged ratio survives the diagonal balancing
+    path within the pencil, but it also fails in general.  At the
+    rationally normalized point
+    \[
+      x=\frac{40}{399},\qquad y=\frac{400}{39999},
+    \]
+    the transverse reciprocal flag generator
+    \(A=|0\rangle\langle2|+|2\rangle\langle0|\) gives the exact
+    normalized-ratio curvature
+    \[
+     -\frac{6776517939570790805454464}
+             {1342884260268994629375}<0.                \tag{3a}
+    \]
+
+Consequently neither logarithmic nor unlogged global reciprocal
+convexity can prove (1).  Both failures are counterexamples to
+intermediate proof mechanisms, **not** negative square-zero matrices
+and not counterexamples to (1).
 
 The dependency-free exact checker is
 `verification/verify_n3_squarezero_filter_nonconvexity.py`.  It
@@ -303,7 +314,7 @@ The determinant inequality itself is very far from failing:
  =1345.3479949\ldots>1.                                 \tag{35}
 \]
 
-## 5. What survives the obstruction
+## 5. What survives on the diagonal balancing path
 
 The unlogged ratio has a better curvature identity.  From (29),
 \[
@@ -338,16 +349,60 @@ also has positive curvature at (30), namely
 Equation (39) is only a pointwise check; no global convexity of the
 normalized defect is claimed.
 
-The exact conclusion is therefore:
+The diagonal calculation alone shows:
 
 * a proof based on a globally positive Hessian of the **logarithmic**
   determinant ratio is impossible;
-* the unlogged ratio remains a viable convex quantity and survives
-  this exact hostile pencil;
+* the unlogged ratio is strictly convex along the diagonal balancing
+  path (26);
 * reciprocal filtering removes the imbalance \(x/y\), but preserves
   the orbit invariant \(z=xy\); the residual algebraic inequality in
   \(z\), not filter balancing alone, supplies the strict margin.
 
-The last point is the structural lesson for the unrestricted
-determinant problem.  Any global filter argument must retain and
-control the invariants of reciprocal-filter orbits after balancing.
+The next section shows that the second bullet does not extend to all
+reciprocal directions.
+
+## 6. Exact transverse failure of unlogged convexity
+
+Choose the Pythagorean rational parameters
+\[
+ x=\frac{40}{399},\qquad
+ \sqrt{1+x^2}=\frac{401}{399},\qquad
+ y=\frac{400}{39999},\qquad
+ \sqrt{1+y^2}=\frac{40001}{39999}.                       \tag{40}
+\]
+Thus every coefficient of the normalized frame (5) lies in
+\(\mathbb Q(\omega)\), and all six marginals remain positive
+definite.
+
+On flag site \(2\), use the traceless Hermitian generator
+\[
+ A=|0\rangle\langle2|+|2\rangle\langle0|.               \tag{41}
+\]
+Apply \(e^{tA}\) to \(U\), \(e^{-tA}\) to \(W\), and whiten both
+logical frames.  This path leaves the two-parameter normal form (5),
+because it coherently mixes the distinguished flag \(0\) with flag
+\(2\).
+
+The exact checker differentiates the normalized physical frame,
+constructs the endpoint Gram and all six marginal determinants to
+second order in \(\mathbb Q(\omega)[t]/(t^3)\), and obtains
+\[
+ \boxed{\quad
+ \left.\frac{d^2}{dt^2}{\cal R}\right|_{t=0}
+ =
+ -\frac{6776517939570790805454464}
+        {1342884260268994629375}<0.
+ \quad}                                                  \tag{42}
+\]
+This is a full-support, exact counterexample to global convexity of
+the unlogged side ratio.
+
+Combining (33) and (42), no universal Hessian sum-of-squares
+certificate exists for either \(\log{\cal R}\) or \({\cal R}\) on
+all one-site reciprocal-filter orbits.  The product determinant
+inequality itself remains strictly true on the base pencil by
+Section 3.  A viable global argument must instead use a weaker
+property—such as critical-point rigidity or zero-rigidity—or add an
+orbit invariant correction whose Hessian compensates the transverse
+direction (41).
