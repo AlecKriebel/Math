@@ -1,4 +1,4 @@
-# A full-support flag--Bell pencil falsifies reciprocal log convexity
+# A full-support flag--Bell pencil falsifies reciprocal filter convexity
 
 ## Status
 
@@ -44,8 +44,19 @@ determinant inequality
              {1342884260268994629375}<0.                \tag{3a}
     \]
 
-Consequently neither logarithmic nor unlogged global reciprocal
-convexity can prove (1).  Both failures are counterexamples to
+4.  Convexity of the unnormalized defect in (1) fails as well.  At
+    \(x=10,\ y=1/10\), the diagonal reciprocal flag filter has
+    \[
+      \left.\frac{d^2}{dt^2}\left(
+      \det G-\frac{3^{18}}{2^{22}}
+      \prod_i\det\rho_i^U\det\rho_i^W\right)\right|_{t=0}
+      =
+      -\frac{2904456294125}{85983132198681}<0.           \tag{3b}
+    \]
+    The defect itself is positive at the base point.
+
+Consequently none of logarithmic-ratio, unlogged-ratio, or raw-defect
+global reciprocal convexity can prove (1).  These failures are counterexamples to
 intermediate proof mechanisms, **not** negative square-zero matrices
 and not counterexamples to (1).
 
@@ -406,3 +417,46 @@ Section 3.  A viable global argument must instead use a weaker
 property—such as critical-point rigidity or zero-rigidity—or add an
 orbit invariant correction whose Hessian compensates the transverse
 direction (41).
+
+## 7. Exact failure of raw-defect convexity
+
+The remaining most direct convex quantity is the unnormalized
+right-minus-left defect
+\[
+ {\cal D}(x,y)
+ =
+ \det G-
+ \frac{3^{18}}{2^{22}}
+ \prod_i\det\rho_i^U\det\rho_i^W.                       \tag{43}
+\]
+It is not globally convex either.
+
+Take \(x=10,\ y=1/10\) and use the diagonal reciprocal flag filter
+\[
+ x_t=10e^{2t},\qquad y_t=\frac1{10}e^{-2t}.             \tag{44}
+\]
+All six marginal determinants are nonzero.  Substituting (14) and
+(17) into (43) gives, at the base point,
+\[
+ {\cal D}(0)=\frac{5797901743}{59938790976}>0,           \tag{45}
+\]
+whereas exact differentiation gives
+\[
+ \boxed{\quad
+ {\cal D}''(0)
+ =
+ -\frac{2904456294125}{85983132198681}<0.
+ \quad}                                                  \tag{46}
+\]
+For comparison, the unlogged normalized ratio is strongly convex in
+this same direction:
+\[
+ {\cal R}''(0)
+ =
+ \frac{3292929645568}{36905625}>0.                      \tag{47}
+\]
+Thus (46) is not inherited from the ratio counterexample in Section
+6.  The three elementary reciprocal-filter convexity candidates
+\(\log{\cal R}\), \({\cal R}\), and \({\cal D}\) fail at different
+full-support points or directions.  Any filtering proof must use a
+more structural monotonicity or rigidity statement.

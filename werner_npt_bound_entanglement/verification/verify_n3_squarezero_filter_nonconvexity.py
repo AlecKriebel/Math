@@ -470,6 +470,72 @@ assert defect_second == expected_defect_second
 assert defect_second > 0
 
 
+# Raw-defect convexity fails even along a diagonal reciprocal filter,
+# although the unlogged normalized ratio is convex there.  Here
+# x=10, y=1/10 and x_t=x exp(2t), y_t=y exp(-2t).
+x_defect = F(10)
+y_defect = F(1, 10)
+z_defect = x_defect * y_defect
+x2_defect_series = (
+    x_defect * x_defect,
+    4 * x_defect * x_defect,
+    8 * x_defect * x_defect,
+)
+y2_defect_series = (
+    y_defect * y_defect,
+    -4 * y_defect * y_defect,
+    8 * y_defect * y_defect,
+)
+s_defect_series = sadd(x2_defect_series, y2_defect_series)
+a_defect_series = sadd((F(1), F(0), F(0)), x2_defect_series)
+b_defect_series = sadd((F(1), F(0), F(0)), y2_defect_series)
+p_defect_series = sadd(
+    (
+        15 * z_defect * z_defect - 16 * z_defect,
+        F(0),
+        F(0),
+    ),
+    sscale(32, s_defect_series),
+)
+ab_defect_inverse = sinv(smul(a_defect_series, b_defect_series))
+det_defect_series = sscale(
+    F(1, 324),
+    smul(p_defect_series, ab_defect_inverse),
+)
+rhs_defect_series = sscale(
+    F(729, 1024) * z_defect * z_defect,
+    smul(ab_defect_inverse, ab_defect_inverse),
+)
+raw_defect_series = sadd(
+    det_defect_series,
+    sscale(-1, rhs_defect_series),
+)
+assert raw_defect_series[0] == F(5797901743, 59938790976)
+assert raw_defect_series[0] > 0
+raw_defect_second = 2 * raw_defect_series[2]
+assert raw_defect_second == F(
+    -2904456294125,
+    85983132198681,
+)
+assert raw_defect_second < 0
+
+s0_defect = x_defect * x_defect + y_defect * y_defect
+s1_defect = 4 * (x_defect * x_defect - y_defect * y_defect)
+s2_defect = 16 * (x_defect * x_defect + y_defect * y_defect)
+p0_defect = 15 * z_defect * z_defect - 16 * z_defect + 32 * s0_defect
+q0_defect = 1 + z_defect * z_defect + s0_defect
+ratio_defect_second = (
+    F(256, 59049)
+    / (z_defect * z_defect)
+    * (
+        64 * s1_defect * s1_defect
+        + (32 * q0_defect + p0_defect) * s2_defect
+    )
+)
+assert ratio_defect_second == F(3292929645568, 36905625)
+assert ratio_defect_second > 0
+
+
 # A transverse reciprocal filter leaves the displayed two-parameter
 # pencil, and it also destroys convexity of the unlogged ratio.  The
 # following Pythagorean parameters keep the normalized frame inside
@@ -887,6 +953,7 @@ print("verified: exact flag--Bell endpoint Gram and determinant")
 print("verified: full-rank marginal product formula and strict scalar certificate")
 print("verified: exact negative reciprocal-filter log curvature")
 print("verified: positive diagonal-path ratio and defect curvature")
+print("verified: exact negative diagonal raw-defect curvature")
 print(
     "verified: exact negative transverse unlogged-ratio curvature",
     transverse_ratio_second.a,
