@@ -6399,3 +6399,45 @@ u_1u_1^\dagger\bigr].
 - The remaining local lemma is to exclude arbitrarily shallow
   critical branches with \(r=o(\delta)\), using the higher-order
   normal equations on the \(\lambda=0\) Hessian kernel.
+
+## 2026-07-29 20:51 PDT — Complete Latin normal frame at rank two
+
+- Hostile-audited the differential of the full independently framed
+  Latin-minor orbit at
+  \(C=U\operatorname{diag}(s_1,s_2)V^\dagger\).  With
+  \(\delta=s_1s_2\),
+  \[
+  \|d(\wedge^3)_C[Z]\|_2^2
+  =\delta^2\|(I-UU^\dagger)Z(I-VV^\dagger)\|_2^2.
+  \]
+- Combined this identity with the exact Latin Haar spectrum to obtain
+  the complete conormal-frame bounds
+  \[
+  \frac{\delta^2}{5760^2}\|Z_\perp\|^2
+  \leq{\mathbb E}|d\Delta_C[Z]|^2
+  \leq\frac{\delta^2}{36^2}\|Z_\perp\|^2.
+  \]
+  Thus the common differential kernel is exactly the tangent space
+  of the smooth rank-two stratum.
+- At a pair-sector quotient-critical point, represented the normal
+  residual canonically as
+  \(R={\cal A}_C^\dagger\mu_C\), where
+  \(\mu_C={\cal A}_C({\cal A}_C^\dagger{\cal A}_C)^{-1}R\).
+- Fixed the constrained-Hessian sign and factor two.  For tangent
+  blocks \(Z=\left(\begin{smallmatrix}A&B\\D&0\end{smallmatrix}\right)\),
+  the exact rank-two graph has normal acceleration
+  \(2D\Sigma^{-1}B\) and
+  \(D^2\Delta_C[Z,Z]=-{\cal A}_C(2D\Sigma^{-1}B)\).  Hence the
+  half-Hessian contains
+  \[
+  +\,2\operatorname{Re}\langle R,D\Sigma^{-1}B\rangle.
+  \]
+  This term is complex-bilinear in the two leakages.
+- Added
+  `notes/agent_n3_latin_normal_frame_hessian.md` and the independent
+  Gaussian-rational checker
+  `verification/verify_n3_latin_normal_frame_hessian.py`.
+- This is a lossless nonlinear critical-point reduction, not yet a
+  contradiction to a negative critical value.  Rank one remains a
+  singular differential stratum, and independent left/right Latin
+  frames are essential.
