@@ -16,9 +16,16 @@ two-traceless sector masses of a rank-at-most-two coefficient matrix
 \(C\), then
 \[
 \boxed{\qquad
- 200R+4S\ \geq\ 252c+567a .
+ 200R+4S\ \geq\ 252c+567a+18\Delta ,
 \qquad}                                                   \tag{1}
 \]
+where
+\[
+ \Delta=(s_1(C)-s_2(C))^2
+\]
+(with \(s_2=0\) in the rank-one case).  More precisely, before
+discarding either the polar-alignment or singular-value-imbalance
+defect, the exact identity is
 More precisely, the difference in (1) is exactly eighteen times the
 global rank-two trace deficit:
 \[
@@ -39,17 +46,18 @@ face certificates do not imply it.
 Any negative endpoint candidate is confined to the strict band
 \[
 \boxed{\qquad
- \frac{27}{22}c+\frac{63}{22}a<R<\frac92c,
- \qquad a<\frac87c .
+ \frac{27}{22}c+\frac{63}{22}a+\frac1{11}\Delta
+ <R<\frac92c,
+ \qquad 63a+2\Delta<72c .
 \qquad}                                                   \tag{3}
 \]
-Equality in (1), for nonzero \(C\), forces
-\[
- C=e^{i\theta}sP
-\]
-with \(P\) a rank-two orthogonal projection.  Such matrices are
-already known to obey \(Q_3(C)\geq0\).  Hence every negative candidate
-would satisfy (1) strictly.
+Equality in the strengthened inequality (1), for nonzero \(C\),
+forces \(C\), up to scalar phase, to be positive semidefinite of rank
+at most two.  Such matrices are already known to obey the stronger
+estimate \(Q_3(C)\geq\Delta/8\).  Hence every negative candidate
+satisfies (1) strictly.  Equality in the weaker inequality obtained
+by omitting \(18\Delta\) further forces \(\Delta=0\), hence a scalar
+multiple of a rank-two orthogonal projection.
 
 The dependency-free exact checker is
 `verification/verify_n3_common_trace_slack_tradeoff.py`.
@@ -142,15 +150,24 @@ If \(\operatorname{rank}C\leq2\), then
 \[
  |\operatorname{Tr}C|
  \leq\|C\|_1
- \leq\sqrt2\,\|C\|_2.                                   \tag{14}
+ =s_1+s_2.                                               \tag{14}
 \]
-Thus the right side of (2) is nonnegative, proving (1).
+Writing \(N=\|C\|_2^2=s_1^2+s_2^2\), this gives
+\[
+\begin{aligned}
+ 2N-|\operatorname{Tr}C|^2
+ &=(N-2s_1s_2)
+   +(N+2s_1s_2-|\operatorname{Tr}C|^2)\\
+ &\geq(s_1-s_2)^2=\Delta.                               \tag{15}
+\end{aligned}
+\]
+Equations (2) and (15) prove (1).
 
 This implication is genuinely common-origin.  The individual
 nonnegative quantities \(r_i,s_i\) do not encode the global trace and
 norm in (14).  In particular, if \(R=S=0\), (1) forces
 \[
- c=a=0.                                                  \tag{15}
+ c=a=\Delta=0.                                          \tag{15a}
 \]
 Hence the nonzero scalar frame model with all six face slacks zero is
 not physically realizable by a rank-two coefficient matrix.
@@ -171,35 +188,45 @@ If \(Q_3(C)<0\), then
 \]
 Subtracting (17) from (1) gives
 \[
- 198R>243c+567a,
+ 198R>243c+567a+18\Delta,
 \]
 or
 \[
- R>\frac{27}{22}c+\frac{63}{22}a.                       \tag{18}
+ R>\frac{27}{22}c+\frac{63}{22}a+\frac1{11}\Delta.       \tag{18}
 \]
 Since \(S\geq0\), (17) also gives \(R<9c/2\).  Compatibility of
-these two strict bounds forces \(a<8c/7\).  This proves (3).
+these two strict bounds forces \(63a+2\Delta<72c\).  This
+proves (3).
 
 ## 4. Equality classification
 
-For nonzero rank-at-most-two \(C\), equality in (1) is equality in
-both inequalities in (14).  Equality in
-\(\|C\|_1\leq\sqrt2\|C\|_2\) forces rank exactly two with equal
-nonzero singular values.  Equality in
-\(|\operatorname{Tr}C|\leq\|C\|_1\) forces the polar partial isometry
-to be a common scalar phase on the support of \(|C|\).  Hence
+For nonzero rank-at-most-two \(C\), equality in the strengthened
+inequality (1) is equality in
+\(|\operatorname{Tr}C|\leq\|C\|_1\).  This forces the polar partial
+isometry to be a common scalar phase on the support of \(|C|\).
+Hence
 \[
- C=e^{i\theta}sP                                      \tag{19}
+ C=e^{i\theta}H,\qquad
+ H\succeq0,\quad\operatorname{rank}H\leq2.               \tag{19}
 \]
-for a rank-two orthogonal projection \(P\).
 
 Conversely every matrix (19) saturates (14), so it saturates (1).
 The established positive-semidefinite three-copy theorem gives
 \[
- Q_3(C)=s^2Q_3(P)\geq0.                                  \tag{20}
+ Q_3(C)=Q_3(H)
+ \geq\frac18\left(2\operatorname{Tr}H^2
+                  -(\operatorname{Tr}H)^2\right)
+ =\frac18\Delta\geq0.                                   \tag{20}
 \]
 Therefore equality in the new common-trace tradeoff is disjoint from
 the negative endpoint locus.
+
+Equality in the weaker version without \(18\Delta\) additionally
+requires \(\Delta=0\).  If \(C\ne0\), this is exactly
+\[
+ C=e^{i\theta}sP
+\]
+with \(P\) a rank-two orthogonal projection.
 
 ## 5. Sharper singular-value identity
 
@@ -219,9 +246,71 @@ has the exact slack conversion
  \geq0.
 \end{aligned}}                                           \tag{22}
 \]
-This refinement retains the global exterior mass \(p\).  Eliminating
-it only by \(2p\leq\|C\|_2^2\) recovers (1).  A further improvement
-therefore requires a common-code relation between \(p\) and the three
+This refinement retains the global exterior mass \(p\).  Substituting
+\[
+ 2p=\|C\|_2^2-\Delta
+\]
+recovers the strengthened inequality (1).  A further improvement
+requires a common-code relation between \(p\) and the three
 partial-contraction exterior masses; treating those masses
 independently cannot improve the coefficient in (1).
 
+## 6. An explicit improvement of the negative-depth bound
+
+The exact negative-depth simplex gives a particularly clean
+consequence of (1).  Normalize a negative direction by
+\[
+ \langle S_V\rangle=1,\qquad
+ \langle H_V\rangle=-\delta,\qquad \delta>0.
+\]
+Use its simplex coordinates
+\[
+ \theta_i>0,\qquad \sum_i\theta_i=1,\qquad
+ 0<\lambda_i\leq1,
+\]
+and put
+\[
+ L=\sum_i\theta_i\lambda_i.
+\]
+The established simplex identities are
+\[
+\begin{aligned}
+ c&=\frac{1+\delta}{3},\\
+ R&=\frac32(1-5\delta)(1-L),\\
+ S&=\frac34(1-5\delta)L.                                \tag{23}
+\end{aligned}
+\]
+Substitution in the strengthened common-trace inequality (1) gives
+\[
+\boxed{\qquad
+ (1-5\delta)(300-297L)
+ \geq84(1+\delta)+567a+18\Delta .
+\qquad}                                                  \tag{24}
+\]
+Equivalently,
+\[
+\boxed{\qquad
+ 1584\delta+297(1-5\delta)L+567a+18\Delta
+ \leq216 .
+\qquad}                                                  \tag{25}
+\]
+Every term after \(1584\delta\) is nonnegative.  Moreover \(L>0\)
+for every negative transition, while the previously established
+bound gives \(1-5\delta>0\).  Therefore
+\[
+\boxed{\qquad
+ 0<\delta<\frac3{22}.
+\qquad}                                                  \tag{26}
+\]
+This replaces the earlier explicit depth bound \(1/5\) by \(3/22\)
+without compactness or an unevaluated stability constant.  Equation
+(25) is stronger than the scalar bound: approaching \(3/22\) forces
+simultaneously
+\[
+ (1-5\delta)L\longrightarrow0,\qquad
+ a\longrightarrow0,\qquad
+ \Delta\longrightarrow0.
+\]
+The inequality still does not force \(\delta=0\); a further
+site-coupled exterior estimate is required inside the remaining
+depth interval.

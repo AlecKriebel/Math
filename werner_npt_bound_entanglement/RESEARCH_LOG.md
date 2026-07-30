@@ -5583,3 +5583,38 @@ All timestamps use America/Los_Angeles.
 - Added
   `notes/agent_n3_negative_depth_stability.md` and exact checker
   `verification/verify_n3_negative_depth_stability.py`.
+
+## 2026-07-29 19:27 PDT — Singular imbalance and an explicit depth bound \(3/22\)
+
+- Sharpened the common trace/slack theorem by retaining
+  \(\Delta=(s_1-s_2)^2\):
+  \[
+  200R+4S\ge252c+567a+18\Delta.
+  \]
+  Equality now has the complete classification
+  \(C=e^{i\theta}H\), \(H\succeq0\), \(\operatorname{rank}H\le2\);
+  the established PSD theorem gives \(Q_3(C)\ge\Delta/8\) there.
+- The hypothetical negative locus is correspondingly reduced to
+  \[
+  \frac{27}{22}c+\frac{63}{22}a+\frac1{11}\Delta
+  <R<\frac92c,\qquad 63a+2\Delta<72c.
+  \]
+- Inserted the exact negative-depth simplex
+  \(L=\sum_i\theta_i\lambda_i>0\):
+  \[
+  c=\frac{1+\delta}{3},\quad
+  R=\frac32(1-5\delta)(1-L),\quad
+  S=\frac34(1-5\delta)L.
+  \]
+  The common trace theorem becomes
+  \[
+  1584\delta+297(1-5\delta)L+567a+18\Delta\le216.
+  \]
+  Therefore every negative direction obeys the explicit strict bound
+  \[
+  0<\delta<\frac3{22},
+  \]
+  improving \(1/5\) without compactness or an unevaluated stability
+  constant.
+- Updated `notes/agent_n3_common_trace_slack_tradeoff.md` and its
+  dependency-free exact checker.
