@@ -4761,6 +4761,48 @@ All timestamps use America/Los_Angeles.
   `notes/agent_n3_pair_critical_local_spectral_floor.md` and
   `verification/verify_n3_pair_critical_local_spectral_floor.py`.
 
+## 2026-07-29 17:33 PDT — Exact scalar elimination in the reflection target
+
+- The reflection inequality
+  \[
+  \langle C,M^{\otimes3}C\rangle\geq-\|C\|^2/3
+  \]
+  is exactly the rank-two projection bound
+  \[
+  \|(\Pi_0+\Pi_2)C\|^2\leq2\|C\|^2/3.
+  \]
+  Its dual is the Ky--Fan-two bound on the scalar-plus-degree-two
+  operator space.
+- Writing the dual operator as \(D=cI_{27}+B\), with \(B\) of exact
+  degree two, and optimizing over \(c\) gives the lossless reduced
+  target
+  \[
+  \|BV\|^2+\frac1{16}|\operatorname{Tr}(V^\dagger BV)|^2
+  \leq\frac23\|B\|^2
+  \]
+  for every two-column isometry \(V\).  The \(1/16\) term is the exact
+  scalar Schur complement.
+- This strengthened inequality is proved when \(B=A\otimes I_3\) is
+  one pair component.  With
+  \(\rho=\operatorname{Tr}_{\rm spectator}(VV^\dagger)\), convexity
+  reduces to \(\rho=2|x\rangle\langle x|\).  The trace-zero identity
+  on the nine-dimensional two-qutrit space gives
+  \[
+  |\langle x,Ax\rangle|^2
+  \leq8(\|A\|^2-\|Ax\|^2),
+  \]
+  exactly proving the required constant.
+- The remaining global obstruction is now the explicit
+  three-component cyclic inequality (20) in
+  `notes/agent_n3_reflection_scalar_elimination.md`.
+- A projected nonlinear dual iteration was added as a discovery-only
+  adversarial check.  Random starts approached the sharp value
+  \(2/3\) from below and drove the scalar mass to zero; this numerical
+  observation is not used as evidence.
+- Exact note and checker:
+  `notes/agent_n3_reflection_scalar_elimination.md` and
+  `verification/verify_n3_reflection_scalar_elimination.py`.
+
 ## 2026-07-29 16:57 PDT — Exact three-replica linear-relaxation no-go
 
 - Tested the direct \(S_3\) lift of the qutrit pair-sector witness
