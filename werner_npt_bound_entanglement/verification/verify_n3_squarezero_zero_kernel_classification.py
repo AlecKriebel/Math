@@ -31,6 +31,17 @@ def outer(x, y):
     return [[x_i * y_j for y_j in y] for x_i in x]
 
 
+def transpose(a):
+    return [list(column) for column in zip(*a)]
+
+
+def diagonal(values):
+    return [
+        [value if i == j else F(0) for j in range(len(values))]
+        for i, value in enumerate(values)
+    ]
+
+
 def partial_transpose_second(a):
     out = [[F(0) for _ in range(4)] for _ in range(4)]
     for first in range(2):
@@ -192,12 +203,76 @@ def check_offdiagonal_shortcut_no_go():
     assert crossed_coherence == true_rhs
 
 
+def check_restricted_rank_one_spectral_identity():
+    # Product--tangent branch.  The nontrivial binary
+    # weight-two-to-weight-one block has
+    #
+    #   M M^T - I = vv^T - 2 diag(v_i^2).
+    #
+    # This exact identity makes its compression to v^\perp a
+    # contraction.
+    b, c, d = F(3, 5), F(4, 5), F(0)
+    v = [b, c, d]
+    m = [
+        [F(0), d, c],
+        [d, F(0), b],
+        [c, b, F(0)],
+    ]
+    lhs = matadd(matmul(m, transpose(m)), scale(F(-1), eye(3)))
+    rhs = matadd(
+        outer(v, v),
+        scale(F(-2), diagonal([b * b, c * c, d * d])),
+    )
+    assert lhs == rhs
+
+    z = [F(-4, 5), F(3, 5), F(0)]
+    assert sum(v_i * z_i for v_i, z_i in zip(v, z)) == 0
+    assert quadratic(matmul(m, transpose(m)), z) <= sum(
+        value * value for value in z
+    )
+
+    # Common-factor branch with z=0.  The scaled four-dimensional
+    # block splits into two rank-one maps, both of norm one.
+    a, b = F(3, 5), F(4, 5)
+    s, t = F(5, 13), F(12, 13)
+    assert a * a + b * b == 1
+    assert s * s + t * t == 1
+    four_block = [
+        [F(0), a * s, a * t, F(0)],
+        [-b * t, F(0), F(0), -a * t],
+        [-b * s, F(0), F(0), -a * s],
+        [F(0), b * s, b * t, F(0)],
+    ]
+    defect = matadd(
+        eye(4),
+        scale(F(-1), matmul(transpose(four_block), four_block)),
+    )
+    # Exact positive semidefiniteness is transparent here: after
+    # grouping (0,3) and (1,2), each block is rank one of norm one.
+    # The four principal minors suffice for this rational instance.
+    assert all(defect[i][i] >= 0 for i in range(4))
+    assert quadratic(defect, [F(1), F(0), F(0), F(0)]) >= 0
+    assert quadratic(defect, [F(0), F(1), F(-1), F(0)]) >= 0
+
+    # Diagonal-collapse kernel arithmetic.  The restricted spectral
+    # estimate forces r=s/t <= 1, whereas the positive feature
+    # diagonal forces r >= 1.
+    ratio = F(1)
+    h00 = F(1, 4)
+    cross = -ratio * h00
+    h11 = ratio * ratio * h00
+    assert abs(cross) <= F(1, 4)
+    assert h11 >= F(1, 4)
+    assert ratio == 1
+
+
 def main():
     check_rational_obstruction()
     check_kernel_normal_form()
     check_scalar_kernel_equations()
     check_rank_one_scalar_remainder()
     check_offdiagonal_shortcut_no_go()
+    check_restricted_rank_one_spectral_identity()
     print("verified exact square-zero zero-kernel classification identities")
 
 

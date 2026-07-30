@@ -53,6 +53,29 @@ Thus every balanced abstract zero already has feature concurrence
 exactly \(1/2\).  No physical Hodge input is needed for this
 particular implication.
 
+There is also a new converse on the diagonal-collapse boundary.  If
+either matched Hodge feature vanishes,
+\[
+ {\cal T}(u_0,w_0)=0
+ \quad\hbox{or}\quad
+ {\cal T}(u_1,w_1)=0,
+\]
+then every determinant-zero kernel is balanced.  In fact both
+matched features vanish.  The key input is the sharp restricted
+spectral estimate
+\[
+ \left\|
+ P_{\{x,y\}^{\perp}}
+ L^{\otimes3}(|x\rangle\langle y|)
+ P_{\{x,y\}^{\perp}}
+ \right\|_{\rm op}\leq\frac14
+\]
+for every orthonormal rank-one equality pair
+\({\cal T}(x,y)=0\).  This removes the complete diagonal-feature
+collapse locus from the unequal-kernel problem.  A hypothetical
+unequal-kernel zero must therefore have all four matched features
+nonzero.
+
 The abstract conditions in (2), rank three, and the sharp product
 margin do not force a balanced kernel.  An exact counterexample is
 \[
@@ -573,3 +596,257 @@ the actual crossed term obeys
 so the physical target (12) is sharp.  Any proof must control the
 crossed coherence itself rather than replace it by the product of the
 two off-diagonal feature masses.
+
+## 8. Diagonal feature collapse forces a balanced kernel
+
+We first isolate the spectral fact used in the kernel argument.
+
+### Lemma 8.1 (restricted endpoint norm at rank-one equality)
+
+Let \(x,y\in(\mathbb C^3)^{\otimes3}\) be orthonormal and suppose
+\[
+ {\cal T}(x,y)=0.
+\tag{33}
+\]
+Put
+\[
+ A=L^{\otimes3}(|x\rangle\langle y|),\qquad
+ P=I-|x\rangle\langle x|-|y\rangle\langle y|.
+\]
+Then
+\[
+ \boxed{\qquad \|PAP\|_{\rm op}\leq\frac14.\qquad}
+\tag{34}
+\]
+
+#### Proof
+
+The complete rank-one equality classification leaves, up to
+interchanging \(x,y\), two cases.
+
+In the product--tangent case, local unitaries and phases give
+\[
+\begin{aligned}
+ x&=|000\rangle,\\
+ y&=b|100\rangle+c|010\rangle+d|001\rangle,\\
+ b,c,d&\geq0,\qquad b^2+c^2+d^2=1.
+\end{aligned}
+\tag{35}
+\]
+The scalar term in the general tangent vector is absent because
+\(x\perp y\).  Write
+\[
+ Z=\operatorname{diag}(1,-1,-1),\qquad
+ f=|0\rangle\langle1|.
+\]
+Since
+\[
+ L(|0\rangle\langle0|)=\frac12Z,\qquad L(f)=f,
+\]
+one has
+\[
+ 4A=
+ b\,f\otimes Z\otimes Z+
+ c\,Z\otimes f\otimes Z+
+ d\,Z\otimes Z\otimes f=:D.
+\tag{36}
+\]
+
+Decompose the physical space according to the set of sites carrying
+the local symbol \(2\).  The operator \(D\) preserves every such
+summand.  On a nonempty-symbol-\(2\) summand at most two binary sites
+remain.  Direct decomposition by binary Hamming weight then gives
+\[
+ \|D\|\leq\sqrt{\sum_{i\ {\rm remaining}}b_i^2}\leq1,
+\tag{37}
+\]
+where \((b_1,b_2,b_3)=(b,c,d)\).
+
+It remains to treat the all-binary summand.  There \(D\) lowers
+Hamming weight by one.  The weight-one-to-zero block is killed by the
+left projection \(P\), and the weight-three-to-two block has norm
+\(\sqrt{b^2+c^2+d^2}=1\).  In the single-excitation basis and the
+complementary double-excitation basis, the remaining block is, up to
+irrelevant row and column signs,
+\[
+ M=
+ \begin{pmatrix}
+ 0&d&c\\
+ d&0&b\\
+ c&b&0
+ \end{pmatrix}.
+\tag{38}
+\]
+Let \(v=(b,c,d)^{\mathsf T}\).  A direct multiplication gives
+\[
+ MM^\dagger-I=vv^\dagger
+ -2\operatorname{diag}(b^2,c^2,d^2).
+\tag{39}
+\]
+Therefore, for every \(z\perp v\),
+\[
+ z^\dagger MM^\dagger z
+ =
+ \|z\|^2-2\sum_i b_i^2|z_i|^2
+ \leq\|z\|^2.
+\tag{40}
+\]
+The left projection \(P\) on the single-excitation space is exactly
+the projection onto \(v^\perp\).  Equations (37)--(40) prove
+\(\|PDP\|\leq1\), hence (34), in the first case.  Interchanging
+\(x,y\) replaces \(A\) by its adjoint and changes nothing.
+
+In the common-local-factor case, local unitaries give
+\[
+ x=|0\rangle\otimes\xi,\qquad
+ y=|0\rangle\otimes\eta,
+\tag{41}
+\]
+where, on two qutrits,
+\[
+\begin{aligned}
+ \xi&=a|00\rangle+b|11\rangle,\\
+ \eta&=az|00\rangle+s|01\rangle+t|10\rangle-bz|11\rangle,\\
+ a,b&\geq0,\quad a^2+b^2=1,\quad
+ |z|^2+|s|^2+|t|^2=1.
+\end{aligned}
+\tag{42}
+\]
+The polarized determinant equation is already incorporated in this
+form.  Orthogonality adds
+\[
+ (a^2-b^2)z=0.
+\tag{43}
+\]
+Put
+\[
+ A_2=L^{\otimes2}(|\xi\rangle\langle\eta|).
+\]
+We claim
+\[
+ \|A_2\|_{\rm op}\leq\frac12.
+\tag{44}
+\]
+
+For completeness, here is a direct block proof.  In a suitable
+computational-basis ordering, \(2A_2\) is the orthogonal direct sum
+of a zero scalar, two \(2\times2\) blocks, and the \(4\times4\)
+block
+\[
+ M=
+ \begin{pmatrix}
+ 0&a\bar s&a\bar t&-2ab\bar z\\
+ -b\bar t&0&0&-a\bar t\\
+ -b\bar s&0&0&-a\bar s\\
+ 2ab\bar z&b\bar s&b\bar t&0
+ \end{pmatrix}.
+\tag{45}
+\]
+The two small blocks are, up to interchanging \(s,t\),
+\[
+ \begin{pmatrix}
+ -a^2\bar z&-a\bar t\\
+ -b\bar s&b^2\bar z
+ \end{pmatrix}.
+\tag{46}
+\]
+Their squared Frobenius norms are at most
+\[
+ (a^4+b^4)|z|^2+a^2|t|^2+b^2|s|^2\leq1,
+\tag{47}
+\]
+and similarly for the other block.
+
+By (43), either \(z=0\) or \(a=b=1/\sqrt2\).  If \(z=0\),
+the block (45) splits, after grouping its first and fourth
+coordinates, into two rank-one blocks.  Their norms are
+\[
+ \|(a,b)\|\,\|(s,t)\|=1,\qquad
+ \|(b,a)\|\,\|(t,s)\|=1.
+\tag{48}
+\]
+If \(a=b=1/\sqrt2\), use the symmetric and antisymmetric
+combinations \(e_+,e_-\) of the first and fourth coordinates.
+Then the line \(\mathbb Ce_+\) is mapped into the orthogonal space
+\(\mathbb Ce_-\oplus\mathbb C^2\) by a column of squared norm
+\[
+ |z|^2+|s|^2+|t|^2=1,
+\]
+while \(\mathbb Ce_-\oplus\mathbb C^2\) is mapped back to
+\(\mathbb Ce_+\) by a row of the same squared norm.  Thus
+\(\|M\|\leq1\).  Equations (47)--(48) prove (44).
+
+Finally,
+\[
+ A=L(|0\rangle\langle0|)\otimes A_2,
+\]
+and \(\|L(|0\rangle\langle0|)\|_{\rm op}=1/2\).
+Therefore \(\|A\|\leq1/4\), which is stronger than (34).
+This completes the second case and the proof. \(\square\)
+
+### Theorem 8.2 (diagonal-collapse balance)
+
+Suppose \(\det H=0\), put its entangled kernel in singular-value
+coordinates
+\[
+ B=\operatorname{diag}(s,t),\qquad s,t>0,
+\tag{49}
+\]
+and assume
+\[
+ {\cal T}(u_0,w_0)=0
+\quad\hbox{or}\quad
+ {\cal T}(u_1,w_1)=0.
+\tag{50}
+\]
+Then
+\[
+ \boxed{\qquad s=t,\qquad
+ {\cal T}(u_0,w_0)={\cal T}(u_1,w_1)=0.\qquad}
+\tag{51}
+\]
+
+#### Proof
+
+It is enough to treat the first alternative in (50).  The
+\(00,11\) principal block of \(H\) is positive and annihilates
+\((s,t)^{\mathsf T}\).  Since the first diagonal feature vanishes,
+\[
+ H_{00,00}=\frac14.
+\]
+The two kernel equations therefore give
+\[
+ H_{00,11}=-\frac{s}{4t},\qquad
+ H_{11,11}=\frac{s^2}{4t^2}.
+\tag{52}
+\]
+But
+\[
+ H_{11,11}
+ =\frac14+\|{\cal T}(u_1,w_1)\|^2\geq\frac14,
+\]
+so \(s\geq t\).
+
+Let
+\[
+ A=L^{\otimes3}(|u_0\rangle\langle w_0|).
+\]
+All four frame vectors are orthonormal, so \(u_1,w_1\) belong to
+\(\{u_0,w_0\}^{\perp}\).  Self-adjointness of \(L^{\otimes3}\),
+Lemma 8.1, and (52) give
+\[
+ \frac{s}{4t}
+ =|H_{00,11}|
+ =|\langle u_1,Aw_1\rangle|
+ \leq\frac14.
+\tag{53}
+\]
+Thus \(s\leq t\), and hence \(s=t\).  Substitution into (52) gives
+\(H_{11,11}=1/4\), so
+\({\cal T}(u_1,w_1)=0\).  Interchanging the labels proves the other
+alternative. \(\square\)
+
+The theorem is a genuine physical restriction which the abstract
+unequal-kernel example (16) does not satisfy.  It also shows exactly
+where the remaining unequal-kernel problem lives: every matched
+rank-one transition has a strictly positive Hodge feature.
