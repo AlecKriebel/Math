@@ -5898,3 +5898,72 @@ All timestamps use America/Los_Angeles.
 - Added `notes/agent_n3_high_aaa_radius_upgrade.md` and the
   dependency-free exact checker
   `verification/verify_n3_high_aaa_radius_upgrade.py`.
+## 2026-07-29 19:54 PDT — Global quotient Euler system and pair-centered Haar obstruction
+
+- Proved that minimizing the strengthened-face quotient \(k/\sigma\)
+  is exactly equivalent to minimizing
+  \(Q_3(C)/\|\Pi_2C\|_2^2\); the two values are related by a strictly
+  increasing fractional-linear map.
+- Derived the complete \(V,z\) Euler system.  If
+  \(C=U\Sigma V^\dagger\), \(D=\Pi_2C\), and
+  \(\lambda=Q_3(C)/\|D\|^2\), then the shifted gradient
+  \(R=(L^{\otimes3}-\lambda\Pi_2)C\) satisfies
+  \(U^\dagger R=0\) and \(RV=0\).
+- Introduced six intrinsic pair-centered one-site matrices
+  \(H_i^{L,R}\), obtained from the Hermitian parts of
+  \(\operatorname{Tr}_{\widehat i}(CD^\dagger)/\|D\|^2\) and
+  \(\operatorname{Tr}_{\widehat i}(D^\dagger C)/\|D\|^2\).
+  At a negative global minimizer the exact critical Haar estimate is
+  \[
+  g_i\geq\frac{16(-Q_3(C))}{15}
+  \frac{(\nu_1-\frac12)_+^3}
+       {(\nu_1-\nu_2)(\nu_1-\nu_3)}
+  \]
+  on both the left and right.
+- In the fusion variables, with
+  \({\cal D}=108c-204G-45a-16\Xi=-640Q_3(C)>0\), this gives the new
+  nonlinear realizability condition
+  \[
+  600G\geq{\cal D}\sum_i
+  \max\{{\cal R}(H_i^L),{\cal R}(H_i^R)\}.
+  \]
+  The remaining critical locus is the balanced pair-centered regime
+  \(H_i^{L,R}\preceq I/2\), coupled across all sites by one common
+  pair \((C,\Pi_2C)\).
+- Added `notes/agent_n3_global_quotient_criticality.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_global_quotient_criticality.py`.
+
+## 2026-07-29 19:57 PDT — Exact obstruction to the stationary one-body lemma
+
+- Recast the proposed critical-point bound as the homogeneous
+  inequality
+  \[
+  a\geq\frac{2\delta}{3}\sigma+\frac49\Delta.
+  \]
+- Derived the exact traces of the complete local endpoint and
+  pair-sector filter forms:
+  \[
+  \sum_{i,\mu}h_i(F_\mu,F_\mu)
+  =\frac{15}{8}(x-a)+\frac{15}{2}d,\qquad
+  \sum_{i,\mu}k_i(F_\mu,F_\mu)
+  =\frac{16}{3}a+\frac{17}{3}c+d.
+  \]
+  In the normalized negative-depth simplex, the trace of the full
+  local depth Hessian is
+  \[
+  21\delta(1+\delta)
+  +\left(\frac{15}{4}+4\delta\right)u
+  +\frac{63}{4}\delta a,
+  \]
+  which is automatically positive and cannot force a lower bound on
+  \(a\).
+- Constructed, for every \(0<\delta<1/8\), exact isotropic critical
+  data with \(a=\Delta=0\) satisfying all six one-site Euler
+  equations and positive Hessians for the endpoint, pair-sector, and
+  negative-depth quotients simultaneously, together with the exact
+  common sector traces.  The data are not asserted to arise from a
+  physical rank-two \(C\); they prove that a same-\(C\), cross-site
+  compatibility relation is essential.
+- Added `notes/agent_n3_stationary_one_body_obstruction.md` and
+  `verification/verify_n3_stationary_one_body_obstruction.py`.
