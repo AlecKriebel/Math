@@ -175,6 +175,80 @@ zero is a global minimum on each individual one-parameter local
 similarity geodesic.  Thus an endpoint-zero classification may
 restrict immediately to the common balanced system (9)--(13).
 
+### 3.1 Diagonal-filter capacity
+
+The cycle decomposition has a second exact use.  For diagonal local
+filters \(D_x=\operatorname{diag}(x_0,x_1,x_2)\) and
+\(D_y=\operatorname{diag}(y_0,y_1,y_2)\), put
+\[
+ c_p=x_py_p,\qquad A_p=C_{pp}.
+\]
+The recursion gives
+\[
+\boxed{
+ Q_3(D_xCD_y)
+ =
+ \sum_{p,q}|x_p|^2|y_q|^2r_{pq}
+ -\frac12Q_2\left(\sum_pc_pA_p\right).}
+\tag{13a}
+\]
+If the balanced flow is written as in (13), weighted arithmetic--geometric
+mean on each cycle gives
+\[
+\boxed{
+\begin{aligned}
+ \sum_{p,q}|x_p|^2|y_q|^2r_{pq}
+ \geq{}&
+ \sum_pr_{pp}|c_p|^2
+2\sum_{p<q}a_{pq}|c_pc_q|\\
+&+3\tau|c_0c_1c_2|^{2/3}.
+\end{aligned}}
+\tag{13b}
+\]
+For a two-cycle this is the two-term arithmetic--geometric mean;
+for the oriented three-cycle, the product of the three summands is
+\(|c_0c_1c_2|^2\).  Equality holds at \(x_p=y_p=1\).
+
+There is also a useful exact two-coordinate consequence of the
+local-support boundary theorem.  Let
+\[
+ g_{pq}={\cal B}_2(A_p,A_q).
+\]
+Choose both diagonal filters to be supported on \(\{p,q\}\), and
+optimize their reciprocal magnitudes while keeping \(c_p,c_q\)
+fixed.  Boundary positivity and the binary copositivity criterion
+give
+\[
+\boxed{
+ |g_{pq}|
+ \leq
+ 2\sqrt{r_{pq}r_{qp}}+\sqrt{r_{pp}r_{qq}}.}
+\tag{13c}
+\]
+Indeed, the two crossed block terms have minimum
+\(2\sqrt{r_{pq}r_{qp}}|c_pc_q|\).  After choosing the adverse
+relative phase, the remaining binary quadratic has diagonal
+coefficients \(r_{pp}/2,r_{qq}/2\), which proves (13c).
+
+Summing (13c) yields the rigorous lower bound
+\[
+\boxed{
+\begin{aligned}
+ Q_3(C)\geq{}&
+ \frac12\sum_pr_{pp}
+ +\sum_{p<q}
+ \left(\sqrt{r_{pq}}-\sqrt{r_{qp}}\right)^2\\
+ &-\sum_{p<q}\sqrt{r_{pp}r_{qq}}.
+\end{aligned}}
+\tag{13d}
+\]
+In particular, a stationary block system is nonnegative whenever at
+most one diagonal two-copy energy \(r_{pp}\) is nonzero.  The only
+uncontrolled term in (13d) is the coherent interaction among two or
+three positive diagonal block energies.  Bounding the three
+\(g_{pq}\)'s independently is not expected to settle that case; their
+phases and magnitudes share the factorization in (15).
+
 ## 4. The exact remaining block inequality
 
 For a square-zero rank-two matrix write
