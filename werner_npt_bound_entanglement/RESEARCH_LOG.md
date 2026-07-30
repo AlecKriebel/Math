@@ -6491,3 +6491,51 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_n3_squarezero_ppt_determinant.md` and the
   dependency-free rational checker
   `verification/verify_n3_squarezero_ppt_determinant.py`.
+
+## 2026-07-29 21:31 PDT — Code-output compression and erasure-decoupled gap
+
+- For a fixed two-code \(W=(w_0,w_1)\), introduced the anchored output
+  \[
+  M_W=(\operatorname{id}_2\otimes\Phi^{\otimes3})
+  (|\Psi_W\rangle\langle\Psi_W|),\qquad
+  \Phi(A)=\operatorname{Tr}(A)I-\frac12A.
+  \]
+  Proved the exact identity
+  \[
+  \left\langle\sum_b|b\rangle z_b,\,
+  M_W\sum_b|b\rangle z_b\right\rangle
+  =Q_3\!\left(\sum_b|z_b\rangle\langle w_b|\right).
+  \]
+  Consequently the complete orthogonal-plane square-zero problem for
+  this \(W\) is equivalent to positivity of the single compression
+  \(P_{\mathbb C^2\otimes W^\perp}M_WP_{\mathbb C^2\otimes W^\perp}\).
+- On that complement, the rank-one output term vanishes and the exact
+  inclusion-exclusion operator is
+  \[
+  P_\perp\left[
+  I-\frac12\sum_i\rho_{Ki}^W\otimes I_{\widehat i}
+  +\frac14\sum_{i<j}\rho_{Kij}^W\otimes
+  I_{\widehat{\{i,j\}}}\right]P_\perp.
+  \]
+- If \(W\) is one-site erasure decoupled,
+  \(\operatorname{Tr}_{\widehat i}|w_a\rangle\langle w_b|
+  =\delta_{ab}I_3/3\), the identity and one-site terms reduce to
+  \(I/2\), while every pair term is positive.  This proves the strict
+  uniform gap
+  \[
+  P_\perp M_WP_\perp\succeq\frac12P_\perp,\qquad
+  G(U,W)\succeq\frac12I_4
+  \]
+  for every \(U\perp W\).  The same holds with \(U,W\) reversed.
+- As a consequence, the conjectured strengthening
+  \[
+  \det G\geq\frac{3^{18}}{2^{22}}
+  \prod_i\det\rho_i^U\det\rho_i^W
+  \]
+  is proved on the erasure-decoupled locus.  This uses only
+  \(\det\rho_i^{U,W}\leq(2/3)^3\).  It is not a proof of the general
+  square-zero determinant inequality.
+- Added
+  `notes/agent_n3_squarezero_code_output_compression.md` and the
+  dependency-free exact rational checker
+  `verification/verify_n3_squarezero_code_output_compression.py`.
