@@ -6990,3 +6990,132 @@ u_1u_1^\dagger\bigr].
 - Added
   `notes/agent_n3_nilpotent_two_skew_counterexample.md` and
   `verification/verify_n3_nilpotent_two_skew_counterexample.py`.
+
+## 2026-07-29 22:50 PDT — Principal-angle correction refuted exactly
+
+- Tested the first factorization-invariant full-overlap repair of the
+  failed coherent exterior inequality.  With
+  \(A=X^\dagger X\), \(B=Y^\dagger Y\), \(G=Y^\dagger X\), and
+  \[
+  \kappa=\operatorname{Tr}(A^{-1}G^\dagger B^{-1}G)
+  =\operatorname{Tr}(P_XP_Y),
+  \]
+  the proposed correction was
+  \[
+  3N-2S+P+2s_1s_2+\frac{s_1s_2}{4}\kappa\ge0.
+  \]
+- Reconstructed the numerical obstruction as Gaussian-integer
+  \(8\times2\) factors.  Their overlap is nonzero nilpotent:
+  \(\operatorname{Tr}G=\det G=0\), but \(\kappa>0\).
+- Exact partial contractions and one cleared-square comparison give a
+  positive 73-digit integer certificate that the corrected expression
+  is strictly negative.  This is not a Werner witness: it refutes only
+  the proposed intermediate repair.
+- Added
+  `notes/agent_n3_principal_overlap_correction_counterexample.md` and
+  `verification/verify_n3_principal_overlap_correction_counterexample.py`.
+
+## 2026-07-29 23:15 PDT — Diagonal Hodge collapse forces kernel balance
+
+- Proved a sharp restricted spectral lemma for every orthonormal
+  rank-one endpoint-equality pair:
+  \[
+  {\cal T}(x,y)=0
+  \quad\Longrightarrow\quad
+  \left\|
+  P_{\{x,y\}^{\perp}}
+  L^{\otimes3}(|x\rangle\langle y|)
+  P_{\{x,y\}^{\perp}}
+  \right\|_{\rm op}\le\frac14.
+  \]
+  The proof uses the complete product--tangent/common-factor
+  classification.  On the product--tangent branch it reduces to an
+  exact weighted cube-boundary contraction; on the common-factor
+  branch it reduces to explicit \(4\times4\) and \(2\times2\)
+  blocks of norm at most one after scaling.
+- Applied the lemma to the determinant-zero crossed Gram.  In kernel
+  singular-value coordinates \(B=\operatorname{diag}(s,t)\), if
+  \({\cal T}(u_0,w_0)=0\), the principal kernel equations give
+  \[
+  H_{00,11}=-\frac{s}{4t},\qquad
+  H_{11,11}=\frac{s^2}{4t^2}.
+  \]
+  Positivity gives \(s\ge t\), whereas the restricted spectral lemma
+  gives \(s\le t\).  Hence \(s=t\) and
+  \({\cal T}(u_1,w_1)=0\).  The same holds with the labels exchanged.
+- Therefore every unequal-kernel physical zero must have both
+  matched Hodge features strictly nonzero.  This removes the complete
+  diagonal-collapse boundary from the remaining zero-rigidity
+  problem.
+- Extended
+  `notes/agent_n3_squarezero_zero_kernel_classification.md` and its
+  dependency-free exact verifier.
+
+## 2026-07-29 23:16 PDT — Sharp \(C^2\) tangent and quartic obstruction
+
+- On the exact rank-two family
+  \[
+  C_t=|000\rangle\langle y|+
+      t|y\rangle\langle z|,
+  \]
+  with
+  \[
+  y=(|001\rangle+|010\rangle+|100\rangle)/\sqrt3,\qquad
+  z=(|011\rangle+|101\rangle+|110\rangle)/\sqrt3,
+  \]
+  proved
+  \[
+  \|C_t^2\|_2=t,\qquad
+  3N-2S+P+2s_1s_2
+  =\left(2-\frac4{\sqrt3}\right)t+\frac53t^2.
+  \]
+  Therefore any universal linear \(C^2\)-stability correction must
+  have coefficient at least \(4/\sqrt3-2\).  In particular the natural
+  coefficient \(1/4\) is false exactly.
+- Tested the radical-free replacement
+  \[
+  A^2\leq4D^2+4T^2,\qquad
+  A=3N-2S+P,\quad D=s_1s_2,\quad T=\|C^2\|_2,
+  \]
+  on the hard region \(A<0\).  A Gaussian-integer rank-two
+  factorization gives
+  \[
+  A=-3055374587,\quad
+  D^2=2244741487697917936,\quad
+  T^2=88764941278788546
+  \]
+  and
+  \[
+  A^2-4D^2-4T^2=1288150978594641>0.
+  \]
+  Its Werner endpoint value remains positive:
+  \(8Q_3=3852298452\).  Thus this is an exact obstruction to the
+  proposed proof certificate, not a distillation witness.
+- Added exact notes and dependency-free verifiers for both
+  obstructions.
+
+## 2026-07-29 23:16 PDT — Strict-interior critical system and its irreducible gap
+
+- At a hypothetical normalized negative global minimum
+  \(q=Q_3(C)<0\), the shifted block weights form a balanced
+  circulation and the complete diagonal left/right-filter Hessian is
+  a coupled \(6\times6\) positive semidefinite matrix.
+- Eliminating its skew circulation gives an explicit Schur penalty.
+  If the balanced three-edge circulation consists of symmetric
+  two-cycles plus an oriented cycle of mass \(\tau\), with undirected
+  weights \(x,y,z\), the correction is
+  \[
+  \frac{\tau^2}{xy+yz+zx}L,
+  \]
+  whose coefficient is at most \(1/3\).  Including complex phases
+  leaves one cyclic scalar \(\sigma\), bounded exactly by
+  \[
+  \sigma^4\leq
+  \operatorname{cof}(A_\ast)\operatorname{cof}(P_\ast).
+  \]
+- Constructed an exact strict-interior formal negative point satisfying
+  every current recursion, pair, positive-Gram, circulation, and full
+  real/complex Schur-Hessian constraint.  Hence those constraints
+  alone cannot close the proof.  The remaining issue is now precisely
+  whether the formal block data can share one physical rank-two
+  factorization \(C_{pq}=X_pY_q^\dagger\).
