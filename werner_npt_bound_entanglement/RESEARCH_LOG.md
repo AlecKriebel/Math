@@ -5839,6 +5839,35 @@ All timestamps use America/Los_Angeles.
 - Added `notes/agent_n3_high_aaa_face_fusion.md` and exact checker
   `verification/verify_n3_high_aaa_face_fusion.py`.
 
+## 2026-07-29 21:12 PDT — High-\(AAA\) radius enlarged to \(10^{-28}\)
+
+- Removed two avoidable square-root losses from the explicit
+  high-\(AAA\) stability proof.  Direct Schmidt-coefficient alignment
+  improves the equality-orbit vector distance from \(O(h^{1/8})\)
+  to \(O(h^{1/4})\).
+- Replaced the one-sided singular-space energy estimate by an
+  elementary spectral-projection argument across the exact
+  top/third gap \(1/8\).  This makes the compression-plane distance
+  linear in the Hodge perturbation.
+- Proved the explicit theorem
+  \[
+  {\cal C}(Q_{(3)})>\frac8{27}-10^{-28}
+  \quad\Longrightarrow\quad
+  {\cal C}(Q_{(2)}+Q_{(3)})<\frac49.
+  \]
+  The old exact radius was \(10^{-120}\).
+- Via the filter-invariant face bridge, every hypothetical negative
+  direction now obeys
+  \[
+  \delta<
+  \frac{648+2187\cdot10^{-28}}
+       {5112+21141\cdot10^{-28}}
+  <\frac9{71}.
+  \]
+- Added `notes/agent_n3_quantitative_high_aaa_optimized.md` and
+  dependency-free exact checker
+  `verification/verify_n3_quantitative_high_aaa_optimized.py`.
+
 ## 2026-07-29 19:44 PDT — Spectral-plane upgrade of the high-AAA radius
 
 - Removed an avoidable square-root loss in the quantitative
