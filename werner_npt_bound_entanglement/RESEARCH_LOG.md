@@ -6109,3 +6109,53 @@ All timestamps use America/Los_Angeles.
   rank-two geometry from the fully cyclic, locally stationary model.
   It points to polarized symmetric-product \(3\times3\) minors as the
   smallest remaining same-\(C\) certificate.
+
+## 2026-07-29 20:45 PDT — Exact obstruction to all symmetric-cube minors
+
+- The first symmetric \(3\times3\) minor detects the central invariant
+  obstruction, but the complete symmetric-cube family is still
+  insufficient.
+- Let \(\omega^3=1\), \(1+\omega+\omega^2=0\), and set
+  \[
+  A_2=(F_{12}-I/3)+\omega(F_{23}-I/3)
+      +\omega^2(F_{13}-I/3),\qquad
+  A_3=V-V^{-1}.
+  \]
+  The exact operator
+  \(C_\star=A_2+\sqrt{3/5}\,A_3\) has
+  \[
+  x=a=0,\quad c=72,\quad d=144/5,\quad
+  Q_3=-36/5,\quad \delta=1/14.
+  \]
+- All six one-site endpoint, pair-sector, and depth forms are
+  isotropic and site-independent.  Their traceless eigenvalues are
+  \(93/10\), \(76/5\), and \(1623/70\), respectively, so every local
+  Euler equation and Hessian positivity condition holds exactly.
+- Yet \(A_2\) and \(A_3\) both annihilate
+  \(\mathrm{Sym}^3(\mathbb C^3)\).  Therefore
+  \[
+  \langle x^{\otimes3},C_\star y^{\otimes3}\rangle=0
+  \]
+  for every \(x,y\), and every symmetric-cube \(3\times3\)
+  determinant, polarization, and frame average vanishes identically.
+- The next finite rank-two certificate must use independently
+  polarized product tensors on the three physical sites.  Restriction
+  to diagonal cubes probes only a 10-dimensional subspace of the
+  27-dimensional physical space.
+- The same \(C_\star\) has all six pair-centered matrices equal to
+  \(I/3\), so its normalized six-purity sum is \(2\), whereas the
+  proposed right side is \(3-\lambda/2=61/20\).  Thus the
+  symmetric-cube minors and local Hessians cannot imply the
+  six-purity candidate without the remaining rank-two minors.
+- A separate exact scalar family
+  \(H_t=\operatorname{diag}(1/2+t,1/2,-t)\) gives
+  \[
+  \frac{\operatorname{Tr}H_t^2-1/2}{{\cal R}(H_t)}
+  =\frac1{2t}+3+4t.
+  \]
+  Hence no universal linear constant controls positive
+  trace-one-Hermitian purity excess by the critical Haar functional
+  \({\cal R}\).  Such a closure needs either spectral conditioning or
+  a coupled inequality among all six matrices.
+- Added `notes/agent_n3_symmetric_cube_minor_obstruction.md` and
+  extended the exact cyclic-obstruction verifier.
