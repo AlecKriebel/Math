@@ -6236,3 +6236,45 @@ All timestamps use America/Los_Angeles.
 - Added `notes/agent_n3_pair_centered_purity_nogo.md` and the
   dependency-free exact verifier
   `verification/verify_n3_pair_centered_purity_nogo.py`.
+
+## 2026-07-29 20:37 PDT — Exact opposite-tilt no-go for the \(7/3\) repair
+
+- Corrected the live-candidate status of the zero-compatible
+  coefficient-\(7/3\) pair-centered inequality.  It is also false.
+- Starting at the flag--Bell critical zero, put
+  \[
+  \begin{aligned}
+  u_0&=|000\rangle+|101\rangle+|202\rangle,\\
+  u_1&=|010\rangle+|111\rangle+|212\rangle,\qquad
+  x=|021\rangle,\\
+  C(t)&=\frac13\bigl[(u_0+tx)(u_0-tx)^\dagger
+u_1u_1^\dagger\bigr].
+  \end{aligned}
+  \]
+  This has rank at most two for every \(t\).
+- For
+  \(\Delta_{7/3}={\cal X}-\frac73c^2+\frac12Q_3c\), exact expansion
+  gives
+  \[
+  \Delta_{7/3}(C(t))
+  =-\frac8{2187}t^2-\frac{118}{19683}t^4
+  +\frac{952}{19683}t^6+\frac{731}{78732}t^8.
+  \]
+  Hence the constrained second variation is negative.
+- At \(t=1/2\),
+  \[
+  Q_3=\frac{113}{1152}>0,\quad
+  c=\frac{401}{324},\quad
+  {\cal X}=\frac{61463}{17496},\quad
+  \Delta_{7/3}=-\frac{10021}{20155392}.
+  \]
+  The obstruction therefore does not rule out a strictly-negative,
+  quotient-critical refinement.
+- At the Hessian level the two one-sided curvatures are \(32/729\)
+  and the coherent cross curvature is \(100/2187\).  Their
+  opposite-tilt eigenvector has curvature \(-8/2187\), showing again
+  that separate left/right purity bounds lose the decisive common
+  origin.
+- Added `notes/agent_n3_pair_centered_7over3_tilt_nogo.md` and exact
+  verifier
+  `verification/verify_n3_pair_centered_7over3_tilt_nogo.py`.
