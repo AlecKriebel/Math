@@ -1,0 +1,21 @@
+\begin{tikzpicture}[
+  box/.style={draw,rounded corners=2pt,minimum width=5.1cm,
+    minimum height=1.35cm,align=center,fill=blue!4},
+  arr/.style={-{Latex[length=2.2mm]},thick},
+  note/.style={align=center,font=\small}
+]
+\node[box] (two) at (0,0) {
+  \(\mathbf{2\times2}\) inputs\\[1mm]
+  \(\overline{\mathsf Q}^{\rm POVM}_2
+    =\overline{\mathsf Q}^{\rm PVM}_2\)
+};
+\node[box,fill=orange!7] (three) at (7,0) {
+  \(\mathbf{3\times2}\) inputs\\[1mm]
+  \(\overline{\mathsf Q}^{\rm PVM}_2
+    \subsetneq\overline{\mathsf Q}^{\rm POVM}_2\)
+};
+\draw[arr] (two) -- node[above=4mm,note,fill=white,inner sep=2pt]
+  {one additional input\\reveals a strict advantage} (three);
+\node[note] at (0,-1.25) {arbitrary finite declared outputs};
+\node[note] at (7,-1.25) {explicit rational Bell functional};
+\end{tikzpicture}

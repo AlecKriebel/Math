@@ -1,0 +1,489 @@
+\section[Exact algebra for the 3-by-2 separation]
+{Exact algebra for the \(3\times2\) separation}
+\label{app:separation-algebra}
+
+We record the identities that make the projective bound independent of
+numerical optimization. For a pair involving auxiliary label \(2\), let
+\[
+A=\frac35D \Pi(\bm n)D,\qquad
+B=\frac45D \Pi(\bm m)D,
+\]
+where \(x=n_z\), \(y=m_z\), \(r=\bm n\cdot\bm m\), and
+\[
+D=\operatorname{diag}\!\left(
+\sqrt{\frac{1+\eta}{2}},\sqrt{\frac{1-\eta}{2}}\right).
+\]
+Direct expansion, using \(\|\bm n\|=\|\bm m\|=1\), gives
+\[
+\det(A-B)=-\frac3{50}(1-\eta^2)(1-r)\le0.
+\]
+Thus \(A-B\) has eigenvalues of opposite signs, including a possible zero
+boundary eigenvalue, and the optimized complementary-projector score is
+\[
+F_\eta=\frac{\Tr A+\Tr B+\|A-B\|_1}{2}.
+\]
+Its discriminant yields
+\[
+20F_\eta=
+7+\eta(3x+4y)+
+\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}.
+\]
+
+At \(\eta=0\),
+\[
+F_0(r)=\frac7{20}+\frac1{20}\sqrt{25-24r}.
+\]
+Set
+\[
+q=\sqrt{25-24r}\ge1,\qquad H=8-3x-4y\ge1.
+\]
+To prove \(F_\eta\le F_0(r)+2\eta/5\), it is enough to prove
+\[
+\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}
+\le q+\eta H.
+\]
+The right side is at least one, so squaring is valid. Using
+\(q^2=25-24r\), the squared difference is exactly
+\[
+\begin{aligned}
+2\eta\{&
+\eta[8(1-y)(4-3x)+12(1-r)]\\
+&+(q-1)(8-3x-4y)+8(1-y)\}.
+\end{aligned}
+\]
+Every factor is nonnegative on
+\[
+0\le\eta\le1,\qquad -1\le x,y,r\le1.
+\]
+No omitted compatibility condition among \(x,y,r\) can invalidate the
+estimate because it holds on the larger box.
+
+For \(u=|\bm b_0\cdot\bm b_1|\), both relevant pairs satisfy \(r\ge-u\).
+Moreover,
+\[
+(5+8u)^2-(25+24u)=8u(7+8u)\ge0,
+\]
+so
+\[
+F_0(r)\le\frac7{20}+\frac1{20}\sqrt{25+24u}
+\le\frac35+\frac{2u}{5}.
+\]
+
+For completeness, the scalar inequalities in the CHSH-deficit estimate have
+nonnegative squared differences
+\[
+\left(1-\frac{u^2}{2}\right)^2-(1-u^2)=\frac{u^4}{4},
+\]
+\[
+\left(2-\frac{u^2}{4}\right)^2-(4-u^2)=\frac{u^4}{16}.
+\]
+Their right sides are nonnegative on \(0\le u\le1\), so no sign reversal is
+introduced by squaring.
+
+\section{The strengthened algebraic strategy}
+\label{app:strengthened}
+
+Put
+\[
+q=\sqrt{7813},\qquad \eta=\frac1q,\qquad
+s=\sqrt{1-\eta^2}=\frac{6\sqrt{217}}q.
+\]
+Use
+\[
+|\psi_\eta\rangle=
+\sqrt{\frac{1+\eta}{2}}|00\rangle+
+\sqrt{\frac{1-\eta}{2}}|11\rangle,
+\]
+Bob observables \(B_0=X,B_1=Z\), and Alice observables
+\[
+A_0=\frac{6\sqrt{217}\,X+qZ}{125},\qquad
+A_1=\frac{6\sqrt{217}\,X-qZ}{125}.
+\]
+They square to the identity because
+\[
+36\cdot217+7813=125^2.
+\]
+The CHSH value is \(S=250/q\).
+
+Set
+\[
+k=\frac35\sqrt{\frac{q-1}{q+1}}
+\]
+and
+\[
+M_0=\frac12\begin{pmatrix}k^2&k\\k&1\end{pmatrix},\qquad
+M_1=\frac12\begin{pmatrix}k^2&-k\\-k&1\end{pmatrix},\qquad
+M_2=\begin{pmatrix}1-k^2&0\\0&0\end{pmatrix}.
+\]
+These are positive rank-one effects and sum to the identity. The diagonal
+dual operator
+\[
+\Gamma=
+\operatorname{diag}\!\left(
+\frac25(1+\eta),\frac6{25}(1-\eta)\right)
+\]
+dominates all three weighted steered score operators and annihilates the
+corresponding effect ranges. Hence
+\[
+T=\Tr\Gamma=\frac{16+4\eta}{25},
+\qquad
+10S+T=\frac{16+8q}{25}.
+\]
+
+Within this one-parameter family,
+\[
+f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
+\]
+has
+\[
+f'(\eta)=-\frac{20\eta}{\sqrt{2-\eta^2}}+\frac4{25},\qquad
+f''(\eta)=-\frac{40}{(2-\eta^2)^{3/2}}<0.
+\]
+Its unique critical point is \(\eta=1/\sqrt{7813}\). This is not a global
+POVM optimality claim.
+
+Finally,
+\[
+(6+80\sqrt{7813})^2-2\cdot5003^2
+=-56782+960\sqrt{7813},
+\]
+and
+\[
+960^2\cdot7813-56782^2=3\,976\,265\,276>0.
+\]
+Both sides being compared are positive, these two exact square comparisons
+prove \(L_1>U\).
+
+\section{Degenerate cases in the one-binary-party theorem}
+\label{app:binary-degeneracies}
+
+If \(B_0,B_1\) are nondegenerate and have linearly independent Bloch axes,
+\(\Phi_B\) maps the positive cone onto a three-dimensional Lorentz cone.
+An extreme ray of the image lies on the boundary ellipse. Its minimum-norm
+Bloch lift in the plane of the two axes has norm one; a perpendicular
+component would exceed the Bloch ball. Thus the positive lift in
+\(\operatorname{span}_{\R}\{\id,B_0,B_1\}\) is unique and rank one.
+
+If the Bloch axes are parallel or antiparallel, the image is the cone over an
+interval and has two extreme rays. Every positive relation reduces to
+one-versus-one cancellations or a two-versus-two relation with repeated
+zero-padded outcomes. The same purification construction applies.
+
+If one observable is scalar and the other nondegenerate, the image is again
+two-dimensional; the scalar input is deterministic and does not add a
+coordinate. If both are scalar, Bob is deterministic on both inputs and the
+behavior is local. A rank-deficient circuit sum \(\Omega\) forces all lifted
+rays to be collinear and is realized by a product purification. Zero effects
+receive zero projectors. These cases also show that circuit weights remain
+nonnegative and sum to one at the boundary.
+
+\section{Extremal qubit POVMs and the rank-square bound}
+\label{app:extremal-povm}
+
+Let \(M_a\) be the nonzero effects of a POVM. For each \(a\), let
+\(\mathcal V_a\) be the real vector space of Hermitian operators supported on
+\(\operatorname{ran}M_a\). It has dimension \(\rank(M_a)^2\).
+Consider the summation map
+\[
+\bigoplus_a\mathcal V_a\longrightarrow\Herm(2),\qquad
+(H_a)_a\longmapsto\sum_aH_a.
+\]
+If it has a nonzero kernel, then for sufficiently small \(\eps>0\),
+\(M_a\pm\eps H_a\ge0\), and the two perturbed tuples are distinct POVMs whose
+average is \(M\). Extremality therefore requires injectivity, giving
+\[
+\sum_a\rank(M_a)^2\le\dim_{\R}\Herm(2)=4.
+\]
+This necessary condition is all that is used in
+\cref{thm:residual-reduction}. Together with linear independence in a
+three-dimensional span, it leaves exactly three rank-one effects.
+
+\section{Finite-dimensional POVM duality}
+\label{app:duality}
+
+Let
+\[
+V=\max_{\substack{N_j\ge0\\\sum_jN_j=\id}}
+\sum_j\Tr(K_jN_j).
+\]
+Weak duality says that every \(\Gamma\ge K_j\) obeys
+\[
+\sum_j\Tr(K_jN_j)\le\Tr\Gamma.
+\]
+For the reverse direction, consider the closed cone
+\[
+\mathcal C=
+\left\{\left(\sum_jX_j,\sum_j\Tr(K_jX_j)-t\right):
+X_j\ge0,\ t\ge0\right\}
+\subset\Herm(2)\times\R.
+\]
+Closedness follows because convergence of \(\sum_jX_j\) bounds every
+\(0\le X_j\le\sum_kX_k\).
+
+The point \((\id,V+\eps)\) is outside \(\mathcal C\). Nearest-point
+separation provides a nonzero functional
+\[
+\ell(A,s)=\Tr(\Gamma_\eps A)+\gamma s
+\]
+nonnegative on \(\mathcal C\) and negative at that point. Since
+\((0,-t)\in\mathcal C\), \(\gamma\le0\). If \(\gamma=0\), positivity on all
+\((X,\Tr(K_jX))\) would give \(\Gamma_\eps\ge0\), contradicting
+\(\Tr\Gamma_\eps<0\). Normalize \(\gamma=-1\). Taking one nonzero \(X_j=X\)
+gives \(\Gamma_\eps\ge K_j\), while separation and weak duality give
+\[
+V\le\Tr\Gamma_\eps<V+\eps.
+\]
+A bounded convergent subsequence as \(\eps\downarrow0\) yields dual
+attainment with \(\Tr\Gamma=V\).
+
+At a primal optimum,
+\[
+0=\Tr\Gamma-\sum_j\Tr(K_jN_j)
+=\sum_j\Tr[(\Gamma-K_j)N_j].
+\]
+Each term is nonnegative, hence zero. For \(A,B\ge0\),
+\(\Tr(AB)=0\) implies \(A^{1/2}BA^{1/2}=0\), and therefore \(AB=0\).
+This proves complementary slackness.
+
+\section{Square completion for the incidence Hessian}
+\label{app:square-completion}
+
+Let \(x_j=Pr_j\), \(Q=g^{-1}\), and vary
+\[
+P(t)=P+t\delta P,\qquad g(t)=g+tH
+\]
+to first order. The inverse expansion is
+\[
+(g+tH)^{-1}
+=Q-tQHQ+t^2QHQHQ+O(t^3).
+\]
+Substitution in \(F_j=(P r_j)^TQ(P r_j)\) gives
+\[
+\begin{aligned}
+\frac12D^2F_j
+={}&(\delta P r_j)^TQ(\delta P r_j)
+-2(\delta P r_j)^TQHQ(Pr_j)\\
+&+(Pr_j)^TQHQHQ(Pr_j).
+\end{aligned}
+\]
+Writing
+\[
+\delta P=PW+HQ P
+\]
+turns the right side into
+\[
+(PWr_j)^TQ(PWr_j).
+\]
+Therefore
+\[
+\sum_j\lambda_jD^2F_j
+=2\sum_j\lambda_jr_j^TW^TP^TQPW r_j
+=2\Tr(SW\Lambda W^T).
+\]
+This expansion also fixes the sign convention used at a Bell maximum.
+
+\section{Projective fibers of the quadratic null-ray map}
+\label{app:fibers}
+
+Let
+\[
+\mathcal N_g=\{[x]\in\mathbb{RP}^3:x^Tgx=0\}
+\]
+for a strict metric \eqref{eq:metric}, and write
+\(\Phi(x)=(A,B,C,D)\).
+
+\subsection{Base locus and generic inverse}
+
+If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence \(r_1,r_2\).
+If exactly one of \(x_2,x_3\) vanishes, the remaining equations give
+\(r_3\) or \(r_4\). If \(x_2x_3\ne0\), all four components of \(\Phi\)
+vanish only when
+\[
+x_0=x_1=-x_2=-x_3,
+\]
+the ray \(r_5\). Thus the base locus consists exactly of the five coefficient
+rays.
+
+The identities
+\[
+\begin{aligned}
+A-B&=x_0(x_2-x_3),&
+C-D&=x_1(x_2-x_3),\\
+A-C&=x_2(x_0-x_1),&
+B-D&=x_3(x_0-x_1),\\
+AD-BC&=x_2x_3(x_0-x_1)(x_2-x_3)
+\end{aligned}
+\]
+give
+\[
+\begin{pmatrix}
+(A-B)(A-C)(B-D)\\
+(C-D)(A-C)(B-D)\\
+(AD-BC)(A-C)\\
+(AD-BC)(B-D)
+\end{pmatrix}
+=\omega(x)x,
+\]
+where
+\[
+\omega(x)=x_2x_3(x_2-x_3)(x_0-x_1)^2.
+\]
+Hence \([x]\) is recovered from \([\Phi(x)]\) whenever \(\omega(x)\ne0\).
+
+\subsection[Exceptional divisor x2=0]{Exceptional divisor \(x_2=0\)}
+
+The target is \([0:B:0:D]\). On the direct branch, scale \(z_3=1\) and
+write \((z_0,z_1)=t(B,D)\). Nullness is
+\[
+t^2BD+2t(bB+dD)=0.
+\]
+The root \(t=0\) is \(r_4\), leaving at most one nonbase root. On the cross
+branch \(z_2\ne0\), target zeros force \(z_0=z_1=-z_3\) and a nonzero target
+requires \(B=D\). With \(z_3=1,z_2=t\),
+\[
+z^Tgz=(1-2(b+d))(1-t).
+\]
+Strictness \(b+d<1/2\) gives only \(t=1\), the base ray \(-r_5\).
+
+\subsection[Exceptional divisor x3=0]{Exceptional divisor \(x_3=0\)}
+
+The symmetric direct equation is
+\[
+t^2AC+2t(aA+cC)=0,
+\]
+and the cross equation is
+\[
+(1-2(a+c))(1-t)=0.
+\]
+Again there is at most one nonbase preimage.
+
+\subsection[Exceptional divisor x0=x1]{Exceptional divisor \(x_0=x_1\)}
+
+If \(x_0=x_1=0\), nullness reduces to \(2e x_2x_3=0\). Since \(e>0\),
+the point is \(r_3\) or \(r_4\), hence in the base locus. A nonbase point may
+therefore be scaled to \(x_0=x_1=1\). Put \(p=x_2,q=x_3\). The null and
+target-ratio equations are
+\[
+N=1+2(a+c)p+2(b+d)q+2epq=0,
+\]
+\[
+R=Bp(1+q)-Aq(1+p)=0.
+\]
+Their exact resultant in \(p\) is
+\[
+\operatorname{Res}_p(N,R)
+=-(q+1)\left[
+B+q\bigl(A(2a+2c-1)+2B(b+d)\bigr)
+\right].
+\]
+At \(q=-1\), strictness gives \(p=-1\), the base ray. The second factor is
+not identically zero: if \(B\ne0\) its constant term is nonzero; if \(B=0\),
+then \(A\ne0\) and \(2(a+c)-1\ne0\). Once \(q\) is fixed, \(N\) determines
+at most one \(p\). The only apparent failure would require
+\[
+2(a+c)(b+d)=a+b+c+d-\tfrac12,
+\]
+equivalent to
+\[
+(2(a+c)-1)(2(b+d)-1)=0,
+\]
+which strictness excludes.
+
+\subsection[Exceptional divisor x2=x3]{Exceptional divisor \(x_2=x_3\)}
+
+If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence the base rays
+\(r_1,r_2\). For a nonbase point scale \(x_2=x_3=1\) and put
+\(p=x_0,q=x_1\). The equations are
+\[
+N=pq+2(a+b)p+2(c+d)q+2e=0,
+\]
+\[
+R=C(p+1)-A(q+1)=0.
+\]
+The exact resultant is
+\[
+\operatorname{Res}_p(N,R)
+=-(q+1)\left[
+Aq+2A(a+b)+2C(c+d)-C
+\right].
+\]
+At \(q=-1\), strictness gives \(p=-1\), the base ray. Strictness also excludes
+an identically vanishing second factor or an undetermined null equation.
+
+For a possible cross-branch preimage with \(z_2\ne z_3\), equal target
+coordinates give \(z_0=z_1=0\); strict \(e>0\) and nullness then force
+\(z_2z_3=0\), again a base ray. These cases exhaust \(\omega=0\), proving
+projective injectivity away from the base locus.
+
+\section{Bounded transportation and the rank-zero simulation}
+\label{app:transport}
+
+For three ternary labels, let \(c_{ij}=c_{ji}\ge0\), \(c_{ii}=0\), and assume
+\[
+\sum_{j\ne i}c_{ij}=a_i+b_i,\qquad
+\sum_i a_i=\sum_i b_i=\frac12.
+\]
+Seek \(q_{ij}\) with row sums \(b_i\), column sums \(a_j\), and
+\(0\le q_{ij}\le c_{ij}\). Put
+\[
+q_{ij}=\frac{c_{ij}}2+f_{ij},\qquad f_{ij}=-f_{ji},
+\]
+\[
+d_i=\frac{b_i-a_i}{2},\qquad d_1+d_2+d_3=0.
+\]
+Set
+\[
+f_{12}=t,\qquad f_{13}=d_1-t,\qquad f_{23}=d_2+t.
+\]
+The row and column equations are automatic. Capacity is equivalent to
+\[
+t\in I_{12}\cap I_{13}\cap I_{23},
+\]
+where
+\[
+\begin{aligned}
+I_{12}&=[-c_{12}/2,c_{12}/2],\\
+I_{13}&=[d_1-c_{13}/2,d_1+c_{13}/2],\\
+I_{23}&=[-d_2-c_{23}/2,-d_2+c_{23}/2].
+\end{aligned}
+\]
+The inequalities
+\[
+|d_i|\le\frac{a_i+b_i}{2}
+=\frac{c_{ij}+c_{ik}}2
+\]
+show that every pair of intervals intersects, including zero-capacity
+endpoints. Three closed intervals on the real line with pairwise
+intersections have a common point: the largest left endpoint does not exceed
+the smallest right endpoint. Any common \(t\) gives the required bounded
+transportation matrix.
+
+The deterministic branch construction in
+\cref{prop:rank-zero} then reproduces all four input blocks simultaneously.
+The supplied rational simulator independently checks the construction on an
+interior symmetric instance; generality follows from the interval proof, not
+from that one executable example.
+
+\section{Verification boundary}
+\label{app:verification}
+
+The exact verifier checks:
+\begin{enumerate}[leftmargin=*]
+\item dense and sparse Bell coefficients and both explicit strategies;
+\item POVM normalization, rank-one factorizations, exact Bell values, and
+  discrimination dual certificates;
+\item the determinant, discriminant, robust-comparison, deficit, and
+  complete-square identities in the projective bound;
+\item the Lorentz metric identities, quadratic map, generic inverse, all
+  exceptional resultants and factorizations;
+\item an exact pure-state conformal-Lorentz instance and the weighted Hessian
+  square completion;
+\item independence witnesses for the five incidence constraints;
+\item bounded-flow identities and an independent rank-zero simulation.
+\end{enumerate}
+
+The scripts do not replace the human arguments establishing compactness,
+extremal reduction, cone circuits, physical completeness, multiplier signs,
+dimension bounds, or exhaustion of cases. Some symbolic checks are exact
+regression instances rather than formal proofs of general matrix identities;
+the corresponding general identities are derived above.

@@ -1,0 +1,94 @@
+Exact reproducibility verifier report
+=====================================
+
+Timestamp (UTC): 2026-07-30T03:16:42Z
+Platform: macOS 26.5.2 (Darwin 25.5.0 arm64)
+Python: 3.9.6
+SymPy: 1.14.0
+Python executable: /Users/alec/Documents/Math/.venv/bin/python
+Runner: ../run_all.sh
+Test working directory: /tmp
+Exit status: 0
+
+Invocation
+----------
+
+/Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/run_all.sh
+
+The runner performed no installation and made no network requests.
+
+Artifact integrity
+------------------
+
+All 8 exact source artifacts matched artifacts/SHA256SUMS.txt:
+
+- 5 files for the exact 3x2 separation;
+- 3 files for the exact 2x2 closure and rank-zero construction.
+
+Exact 3x2 separation
+--------------------
+
+PASS: all exact certificate checks.
+
+Simple attained value:
+  L0 = 16/25 + 20*sqrt(2)
+
+Strengthened attained value:
+  L1 = 16/25 + 8*sqrt(7813)/25
+
+Global fixed-qubit PVM upper bound:
+  U = 77/125 + 5003*sqrt(2)/250
+
+Original certified gap:
+  L0-U = 3/125 - 3*sqrt(2)/250
+
+Strengthened certified gap:
+  L1-U = -5003*sqrt(2)/250 + 3/125 + 8*sqrt(7813)/25
+
+Exact 2x2 closure identities
+----------------------------
+
+PASS: all 39 reported symbolic checks, including:
+
+- local-metric and null-ray identities;
+- the metric differential and quadratic null-ray map;
+- generic inverse and exceptional-fiber resultants;
+- the pure-state conformal Lorentz test identity;
+- weighted Hessian square completion;
+- independence witnesses for the five rank-one constraints;
+- rank-zero flow and trine-cycle identities.
+
+Exact rank-zero construction
+----------------------------
+
+PASS: the rational symmetric-trine instance was decomposed into six
+deterministic local/PVM components, each of weight 1/6.
+
+Runtime
+-------
+
+real 7.28 seconds
+user 6.40 seconds
+sys  0.25 seconds
+
+Verification boundary
+---------------------
+
+These programs verify the finite exact algebraic certificates and the
+constructive rank-zero example. The universal convexity, duality,
+architecture-reduction, and rank-stratification arguments are supplied by the
+human-readable manuscript rather than inferred from finite tests.
+
+Final release recheck
+---------------------
+
+Timestamp (UTC): 2026-07-30T03:44Z
+
+The completed publication folder was archived, extracted into a fresh
+temporary directory, and checked again:
+
+- all files matched the root SHA-256 freeze manifest;
+- `run_all.sh` passed from the extracted copy with Python 3.9.6 and
+  SymPy 1.14.0;
+- the standalone arXiv source archive compiled to a 24-page PDF with no
+  unresolved references, citation warnings, or layout warnings.

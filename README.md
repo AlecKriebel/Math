@@ -22,6 +22,22 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Minimum Input Complexity for Separating Qubit POVMs from Projective
+Measurements** proves that, with two Bell inputs per party and arbitrary
+finite declared outputs, every fixed-qubit POVM behavior belongs to the
+shared-randomness convex hull of fixed-qubit PVM behaviors. It pairs that
+universal equality with an explicit rational \(3\times2\) Bell functional
+whose exact algebraic POVM value exceeds a global analytic PVM upper bound.
+Thus \(3\times2\), up to exchanging the parties, is the minimum input
+architecture. The qualitative \(3\times2\) phenomenon is prior art; the
+paper's contribution is the arbitrary-output \(2\times2\) closure and
+resulting minimum-setting classification, together with a self-contained
+proof, exact certificates, proof/priority audits, and a one-command verifier.
+The release remains unreviewed and is labeled **READY, NEEDS EXPERT
+SCRUTINY**. See the
+[paper PDF](qubit_povm_pvm_minimum_settings/paper/main.pdf) and
+[complete source and verification package](qubit_povm_pvm_minimum_settings/).
+
 **Low-Schmidt rigidity and tensor-local constraints in the exceptional
 unitary Hecke Yang--Baxter class** establishes exact structural constraints
 for the remaining dimension-spectrum problem after the four-dimensional
