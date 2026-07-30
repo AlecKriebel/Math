@@ -71,6 +71,10 @@ def check_simplex() -> None:
 
 def check_constants() -> None:
     assert F(12, 5) / 1_944_000 == F(1, 810_000)
+    # K/S = 1/2 + (5/2) H/S and delta = -H/S.
+    delta = F(3, 25)
+    mu = F(1, 2) - F(5, 2) * delta
+    assert delta == F(1, 5) - F(2, 5) * mu
     # If every g_i >= eta and sigma=1, the total-slack bound gives:
     eta = F(1, 10_000)
     delta_bound = F(1, 5) - F(12, 5) * eta

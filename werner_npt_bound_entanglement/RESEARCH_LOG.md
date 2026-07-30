@@ -5545,6 +5545,26 @@ All timestamps use America/Los_Angeles.
   normalized local-filter forms and complete block Grams approach the
   forbidden isotropic collapse at rate \(O(\sqrt{1-5\delta})\), with
   audited constants.
+- At operator level, defined the three positive strengthened-face
+  operators \(K_i=H+F_i/2\).  Their sum is
+  \[
+  K=\frac12S+\frac52H.
+  \]
+  The fixed-left strictness theorem excludes a common kernel, so
+  \(K(V)\succ0\) for every code plane.  Compactness gives the global
+  real-algebraic constant
+  \[
+  \mu_*=\min_{V,z}\frac{\langle z,K(V)z\rangle}
+                         {\langle z,S_Vz\rangle}>0.
+  \]
+  If \(\Delta_*\) is the maximal generalized violating depth, then
+  exactly
+  \[
+  \Delta_*=\frac15-\frac25\mu_*.
+  \]
+  Known zero transitions give \(\mu_*\leq1/2\); full unrestricted
+  three-copy positivity is equivalent to the sharp evaluation
+  \(\mu_*=1/2\).
 - Defined finite compact semialgebraic stability constants
   \(\eta(a)>0\) and \(\kappa(a)>0\) on the shell
   \(\delta\geq a>0\), obtaining

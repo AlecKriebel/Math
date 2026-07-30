@@ -39,8 +39,12 @@ isotropic forms classified in
 `agent_n3_haar_block_kernel_reduction.md`.  Thus the abstract scalar
 model \(S=1,F_i=2/5\) is not only nonphysical at equality: compactness
 gives a strict physical gap below \(1/5\).  The gap can be expressed as
-one finite semialgebraic stability constant.  This does not yet prove
-that the optimal depth is zero.
+one finite semialgebraic stability constant \(\mu_*>0\).  In fact,
+\[
+ \Delta_*=\frac15-\frac25\mu_*,
+\]
+and the unrestricted three-copy theorem is exactly the sharp
+evaluation \(\mu_*=1/2\).  This note does not prove that evaluation.
 
 The dependency-free exact checker is
 `verification/verify_n3_negative_depth_stability.py`.
@@ -322,7 +326,120 @@ Thus the exact fixed-left kernel obstruction is approached at an
 explicit square-root rate when the generalized negative depth
 approaches \(1/5\).
 
-## 5. A finite stability constant and a strict global gap
+## 5. The global face-sum gap
+
+The exact face identity has an operator-level consequence.  Define
+\[
+ K_i(V)=H_V+\frac12F_i.
+\tag{23a}
+\]
+For every \(z\),
+\[
+ \langle z,K_i(V)z\rangle=u_i(C_z)\geq0,
+\]
+so
+\[
+ K_i(V)\succeq0.
+\tag{23b}
+\]
+Their sum is
+\[
+\boxed{
+ K(V):=\sum_iK_i(V)
+ =\frac12S_V+\frac52H_V.
+}
+\tag{23c}
+\]
+
+### Proposition 5.1
+
+For every physical code plane \(V\),
+\[
+ \boxed{K(V)\succ0.}
+\tag{23d}
+\]
+
+### Proof
+
+If \(K(V)\) had a nonzero kernel vector \(z\), positivity of all three
+summands in (23b) would give
+\[
+ K_i(V)z=0\qquad(i=1,2,3).
+\]
+Equation (23c) would then give
+\[
+ H_Vz=-\frac15S_Vz,
+\]
+so the associated transition \(C_z\) would have \(Q_3(C_z)<0\).
+Moreover every \(u_i(C_z)=0\), hence every
+\(s_i(C_z)=3g_i(C_z)=0\).  This contradicts the fixed-left
+strictness theorem (5). \(\square\)
+
+The Stiefel manifold of isometries \(V\) is compact, while
+\(S_V\succeq5I/12\).  Hence the generalized face-sum gap
+\[
+\boxed{
+ \mu_*=
+ \min_{\substack{V^\dagger V=I_2\\z\ne0}}
+ \frac{\langle z,K(V)z\rangle}
+      {\langle z,S_Vz\rangle}
+}
+\tag{23e}
+\]
+is attained and satisfies
+\[
+ \boxed{\mu_*>0.}
+\tag{23f}
+\]
+It is a real-algebraic optimization constant: after fixing
+\(\langle z,S_Vz\rangle=1\) and splitting real and imaginary parts,
+both the compact constraint set and the objective are polynomial over
+\(\mathbb Q\).
+
+Define the largest generalized violating depth, allowing zero, by
+\[
+ \Delta_*=
+ \max_{\substack{V^\dagger V=I_2\\z\ne0}}
+ \left(
+ -\frac{\langle z,H_Vz\rangle}
+       {\langle z,S_Vz\rangle}
+ \right).
+\tag{23g}
+\]
+Equation (23c) gives the exact affine relation
+\[
+\boxed{
+ \mu_*=\frac12-\frac52\Delta_*,
+ \qquad
+ \Delta_*=\frac15-\frac25\mu_*.
+}
+\tag{23h}
+\]
+The known exact zero transitions have
+\(\langle z,H_Vz\rangle=0\), so \(\Delta_*\geq0\) and
+\(\mu_*\leq1/2\).  Consequently
+\[
+\boxed{
+ 0<\mu_*\leq\frac12,
+ \qquad
+ 0\leq\Delta_*<\frac15.
+}
+\tag{23i}
+\]
+Most importantly, unrestricted three-copy positivity is exactly
+\[
+\boxed{
+ Q_3(C)\geq0\text{ for every }\operatorname{rank}C\leq2
+ \quad\Longleftrightarrow\quad
+ \mu_*=\frac12.
+}
+\tag{23j}
+\]
+Thus the fixed-left classification proves strict positivity of the
+global face-sum gap.  The remaining theorem is the sharp evaluation
+of this one common-code constant, not merely its positivity.
+
+## 6. Shellwise effective constants
 
 The preceding endpoint exclusion can be made into one compact
 semialgebraic constant.  Fix a rational
