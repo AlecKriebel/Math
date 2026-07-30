@@ -225,42 +225,123 @@ Equations (15), (18), and (19) give
 \]
 which proves Theorem 1.
 
-## 4. The exact remaining factor
+## 4. The desired coefficient on the low-support boundary
+
+The desired coefficient \(1/16\) already follows from the same
+positive sum on a substantial intrinsic boundary.
+
+### Lemma 3
+
+Let \(\psi\in\mathbb C^3\otimes{\cal L}\) be a unit vector of
+Schmidt rank \(r\leq3\), let \(R_\psi=|\psi\rangle\langle\psi|\),
+and let \({\cal E}=e-\operatorname{id}/3\) act on the qutrit.
+Then
+\[
+\boxed{
+ {\cal E}(R_\psi)
+ \succeq
+ \frac{3-r}{3r}R_\psi .
+}                                                       \tag{20}
+\]
+
+#### Proof
+
+Put \(\rho=\operatorname{Tr}_{\mathbb C^3}R_\psi\).  On the support
+of \(\psi\),
+\[
+ e(R_\psi)=I_3\otimes\rho .
+\]
+In a Schmidt basis,
+\[
+ \langle\psi|
+ (I_3\otimes\rho)^+
+ |\psi\rangle=r.                                       \tag{21}
+\]
+The rank-one inverse formula therefore gives
+\[
+\left\langle\psi\left|
+\left(I_3\otimes\rho-\frac13R_\psi\right)^+
+\right|\psi\right\rangle
+=\frac{r}{1-r/3}
+=\frac{3r}{3-r}                                        \tag{22}
+\]
+when \(r<3\).  Taking the reciprocal proves (20).
+For \(r=3\), (20) is just complete positivity of \({\cal E}\).
+\(\square\)
+
+Let \(r_i\) be the Schmidt rank of the code purification \(\Psi\)
+across physical site \(i\) versus all remaining systems.  The
+positive operator \({\cal P}(R)\) defined below contains
+\[
+ \frac13{\cal E}_1(R),\qquad
+ \frac13{\cal E}_2(R),\qquad
+ \frac16{\cal E}_3(R).                                  \tag{23}
+\]
+Lemma 3 proves
+\[
+ {\cal P}(R)\succeq\frac1{18}R
+\]
+in each of the following cases:
+\[
+\boxed{\qquad
+ r_1\leq2,\quad\text{or}\quad r_2\leq2,
+ \quad\text{or}\quad r_3=1.
+\qquad}                                                  \tag{24}
+\]
+Indeed, for \(r=2\) the floor in (20) is \(1/6\), and
+\((1/3)(1/6)=1/18\); for \(r=1\) the floor is \(2/3\), and
+\((1/6)(2/3)=1/9\).
+
+Consequently the full reflection coefficient holds on these
+two-component faces:
+\[
+\boxed{
+ \|DV\|_2^2+\frac1{16}|\tau|^2
+ \leq
+ 2\bigl(\|B_{23}\|_2^2+\|B_{13}\|_2^2\bigr)
+}                                                       \tag{25}
+\]
+whenever (24) holds.  Any counterexample to the desired
+two-component principal minor must therefore have full qutrit
+support at both leaf sites and at least two-dimensional support at
+the common site.
+
+## 5. The exact remaining factor
 
 The coefficient \(1/16\) is equivalent, through the same frame
 calculation, to the sharper rank-one floor
 \[
 \boxed{\qquad
  I-T\succeq\frac19R.
-\qquad}                                                  \tag{20}
+\qquad}                                                  \tag{26}
 \]
 Indeed, for a scalar coefficient \(\gamma\) in
 \[
- \|DV\|^2+\gamma|\tau|^2\leq2\|b\|^2,                   \tag{21}
+ \|DV\|^2+\gamma|\tau|^2\leq2\|b\|^2,                   \tag{27}
 \]
 the corresponding rank-one floor is
 \[
- \lambda=\frac{2\gamma}{1+2\gamma}.                    \tag{22}
+ \lambda=\frac{2\gamma}{1+2\gamma}.                    \tag{28}
 \]
 Thus
 \[
  \gamma=\frac1{34}\longleftrightarrow\lambda=\frac1{18},
  \qquad
- \gamma=\frac1{16}\longleftrightarrow\lambda=\frac19.   \tag{23}
+ \gamma=\frac1{16}\longleftrightarrow\lambda=\frac19.   \tag{29}
 \]
 
 Identity (13) also exposes the missing amount exactly.  Put
 \[
  {\cal P}
  =2e_3\Phi_1\Phi_2
- \frac13{\cal E}_1+\frac13{\cal E}_2+\frac16{\cal E}_3 .
-                                                               \tag{24}
+ +\frac13{\cal E}_1+\frac13{\cal E}_2+\frac16{\cal E}_3 .
+                                                               \tag{30}
 \]
 Then
 \[
  I-T-\frac19R
  =
- {\cal P}(R)-\frac1{18}R.                               \tag{25}
+ {\cal P}(R)-\frac1{18}R.                               \tag{31}
 \]
 Hence the desired \(1/16\) two-component theorem is now equivalent
 to the single explicit rank-one domination
@@ -269,7 +350,7 @@ to the single explicit rank-one domination
  {\cal P}(R)\succeq\frac1{18}R
  \quad
  \text{for every code purification \(R\) in (9).}
-\qquad}                                                  \tag{26}
+\qquad}                                                  \tag{32}
 \]
 All terms in \({\cal P}(R)\) are already known positive.  What remains
 is not positivity of a complicated alternating expression, but the

@@ -85,7 +85,19 @@ assert F(2) * F(1, H - 1) == F(4, 34)
 # The desired floor differs from the certified floor by exactly 1/18.
 assert F(1, 9) - F(1, 18) == F(1, 18)
 
+# The exact one-site Schmidt-rank floors from Lemma 3.
+def trace_complement_floor(schmidt_rank):
+    return F(3 - schmidt_rank, 3 * schmidt_rank)
+
+
+assert trace_complement_floor(1) == F(2, 3)
+assert trace_complement_floor(2) == F(1, 6)
+assert trace_complement_floor(3) == 0
+assert F(1, 3) * trace_complement_floor(2) == F(1, 18)
+assert F(1, 6) * trace_complement_floor(1) == F(1, 9)
+
 print(
     "verified exact two-component map identity, the 1/18 rank-one "
-    "floor, and the induced 1/34 trace-deficit coefficient"
+    "floor, the induced 1/34 trace-deficit coefficient, and the "
+    "low-support 1/16 boundary constants"
 )

@@ -5087,6 +5087,17 @@ All timestamps use America/Los_Angeles.
   \]
   Thus the remaining gap on every \(2\times2\) principal face is one
   explicit factor of two in a positive marginal sum.
+- The desired \(1/16\) coefficient is proved when the normalized code
+  purification has local Schmidt rank at most two at either leaf site,
+  or local Schmidt rank one at the shared site.  The exact local
+  ingredient is
+  \[
+  {\cal E}_i(|\Psi\rangle\langle\Psi|)
+  \succeq\frac{3-r_i}{3r_i}
+  |\Psi\rangle\langle\Psi|.
+  \]
+  Thus a two-component counterexample must have full qutrit support at
+  both leaves and local support at least two at the shared site.
 - Exact note and dependency-free checker:
   `notes/agent_n3_reflection_two_component_quantitative.md` and
   `verification/verify_n3_reflection_two_component_quantitative.py`.
