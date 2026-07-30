@@ -79,6 +79,19 @@ schur_right = (
 )
 assert schur_left == schur_right
 
+# Audit the residualized-face coefficients in (29)--(30).
+lam = scale(F(1, 1) / d1, c12)
+pair_defect = (
+    abs2(lam) * d1 + d2
+    - 2 * mul(conj(lam), c12)[0]
+)
+A = d2 - abs2(c12) / d1
+m = add(c23, scale(F(1, 1) / d1, mul(conj(c12), c13)))
+assert pair_defect == A
+assert schur_right == d1**2 * (
+    A * (d3 - abs2(c13) / d1) - abs2(m)
+)
+
 # Audit exact saturated-face phase transport without square roots.
 # Take d1=1, d2=4, c12=2i.  Kernel transport requires
 # c23=-c13*conj(c12)/d1.

@@ -286,13 +286,107 @@ and (13) is an equality.  This is not a generic consequence of three
 pairwise positive \(2\times2\) matrices; it uses the vanishing
 \(w_2\)-term in the common two-face equality classification.
 
+### 4.2 Quantitative leakage toward the missing frame
+
+The same argument has a quantitative form.  For arbitrary
+\(b=(B_e,B_f)\), retain the notation
+\[
+ y=T_{ef}b,\qquad z=S^{-1}y
+\]
+and put
+\[
+ \delta_{ef}(b)
+ =
+ 2\|b\|^2-\langle y,S^{-1}y\rangle.                     \tag{26}
+\]
+Let \(g\) again denote the missing edge.  Equations (15) and the
+exact face-slack identity give
+\[
+\begin{aligned}
+ \delta_{ef}(b)
+ &\geq\langle z,(S-F_e-F_f)z\rangle\\
+ &=\frac12w_g(C_z)+\frac13r_g(C_z)+\frac23s_g(C_z)
+ \geq\frac12w_g(C_z),                                   \tag{27}
+\end{aligned}
+\]
+where \(r_g,s_g\geq0\) are respectively the rank-six trace slack and
+the Haar off-diagonal two-copy slack.  Since
+\[
+ w_g(C_z)=\langle z,F_gz\rangle
+ =\frac12\|T_g^\dagger z\|^2,
+\]
+we obtain the exact stability estimate
+\[
+\boxed{
+ \|T_g^\dagger S^{-1}T_{ef}b\|^2
+ \leq4\delta_{ef}(b).
+}                                                        \tag{28}
+\]
+Thus the missing-frame annihilation (21) is stable at square-root
+scale, with an explicit constant.
+
+This controls the displacement in the Bargmann disc directly.  Use
+edge \(1\) as a pivot and define the two Schur diagonal slacks
+\[
+\begin{aligned}
+ A&=d_2-\frac{|c_{12}|^2}{d_1},\\
+ B&=d_3-\frac{|c_{13}|^2}{d_1},
+\end{aligned}
+\qquad
+ m=c_{23}+\frac{\overline{c_{12}}c_{13}}{d_1}.           \tag{29}
+\]
+For the residualized pair input
+\[
+ b_{12}=\left(\frac{c_{12}}{d_1}B_1,B_2\right)
+\]
+one has
+\[
+ \delta_{12}(b_{12})=A,\qquad
+ m=\left\langle
+ S^{-1}T_{12}b_{12},T_3B_3
+ \right\rangle.                                         \tag{30}
+\]
+Equations (28), (30), and Cauchy--Schwarz give
+\[
+ |m|^2\leq4A\|B_3\|_2^2.                                \tag{31}
+\]
+Interchanging edges \(2,3\) gives the companion bound, hence
+\[
+\boxed{
+ |m|^2
+ \leq
+ 4\min\left\{
+ A\|B_3\|_2^2,\,
+ B\|B_2\|_2^2
+ \right\}.
+}                                                        \tag{32}
+\]
+In normalized variables this reads
+\[
+\boxed{
+\begin{aligned}
+ \left|z_{23}+\overline{z_{12}}z_{13}\right|^2
+ \leq4\min\Bigg\{&
+ (1-|z_{12}|^2)\frac{\|B_3\|_2^2}{d_3},\\
+ &(1-|z_{13}|^2)\frac{\|B_2\|_2^2}{d_2}
+ \Bigg\}.
+\end{aligned}}                                          \tag{33}
+\]
+This does not yet imply the sharp product on the right of (13):
+the raw coefficient norms in (32)--(33) are too large to replace by
+the complementary Schur slacks \(B,d_3(1-|z_{13}|^2)\).
+It does, however, identify the remaining quantitative step exactly.
+A strict-interior proof must upgrade the raw Cauchy--Schwarz norm in
+(31) to the defect norm of the other residualized face.  No equality
+classification is left hidden in that upgrade.
+
 ## 5. Strict-interior frontier
 
 The only remaining case has
 \[
 \boxed{
  d_1d_2d_3>0,\qquad |z_{12}|,|z_{13}|,|z_{23}|<1.
-}                                                        \tag{26}
+}                                                        \tag{34}
 \]
 There the complete unrestricted problem is exactly (13).  A negative
 determinant would have to violate the common Gram-disc condition
@@ -301,9 +395,9 @@ determinant would have to violate the common Gram-disc condition
  -\overline{z_{12}}z_{13}
  +
  \sqrt{(1-|z_{12}|^2)(1-|z_{13}|^2)}\,\overline{\mathbb D}.
- \tag{27}
+ \tag{35}
 \]
-The center in (27) is fixed by the same phase transport which becomes
+The center in (35) is fixed by the same phase transport which becomes
 exact on a saturated face.  The remaining task is quantitative:
 control the displacement from that center by the two strict
 two-face slacks without discarding their common rank-two transition

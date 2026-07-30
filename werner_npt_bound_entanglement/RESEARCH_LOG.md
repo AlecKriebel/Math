@@ -5346,6 +5346,23 @@ All timestamps use America/Los_Angeles.
   The remaining problem is a quantitative common-origin control of
   the displacement from the Gram disc center, not an equality-kernel
   classification.
+- Quantified the boundary mechanism.  For any two-edge input \(b\),
+  if \(z=S_V^{-1}T_{ef}b\) and \(\delta_{ef}(b)\) is its two-face
+  dual defect, then the missing pair-frame leakage obeys
+  \[
+  \|T_g^\dagger z\|^2\leq4\delta_{ef}(b).
+  \]
+  After Schur-residualizing edges \(2,3\) against edge \(1\), with
+  diagonal slacks
+  \(A=d_2-|c_{12}|^2/d_1\),
+  \(B=d_3-|c_{13}|^2/d_1\), and cyclic displacement
+  \(m=c_{23}+\overline{c_{12}}c_{13}/d_1\), this gives
+  \[
+  |m|^2\leq4\min\{A\|B_3\|_2^2,B\|B_2\|_2^2\}.
+  \]
+  The exact missing upgrade is now explicit: replace the raw norm of
+  the other edge by its complementary Schur defect.  This would turn
+  the estimate into \(|m|^2\leq AB\) and finish the theorem.
 - Exact note and checker:
   `notes/agent_n3_full_dual_triangle_determinant.md` and
   `verification/verify_n3_full_dual_triangle_determinant.py`.
