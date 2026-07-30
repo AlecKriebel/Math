@@ -4929,7 +4929,7 @@ All timestamps use America/Los_Angeles.
   orientation inequality in
   `notes/agent_n3_full_reversed_schur_orientation.md`.
 
-## 2026-07-29 17:27 PDT — Exact reflection theorem on tensor-product local two-planes
+## 2026-07-29 17:27 PDT — Exact reflection theorem on the mixed local-support boundary
 
 - Proved the corrected reflection inequality
   \[
@@ -4938,14 +4938,16 @@ All timestamps use America/Los_Angeles.
   {\mathfrak r}(A)=A-\frac23\operatorname{Tr}(A)I_3,
   \]
   whenever the row and column spaces of \(C\) are contained in tensor
-  products of local subspaces of dimension at most two.  The row and
-  column two-planes may differ, and the proof does not require
+  products of local subspaces \(E_i,F_i\) satisfying
+  \(\min(\dim E_i,\dim F_i)\leq2\) at every site.  Thus the deficient
+  side may alternate from site to site, and the proof does not require
   \(\operatorname{rank}C\leq2\).
 - If the local inclusions are \(J_i(A)=U_iAV_i^\dagger\), the exact
   compressed local form is
   \[
   K_i=I-\frac23|m_i\rangle\langle m_i|,\qquad
-  \|m_i\|^2=\|V_i^\dagger U_i\|_2^2\leq2.
+  \|m_i\|^2=\|V_i^\dagger U_i\|_2^2
+  \leq\min(\dim E_i,\dim F_i)\leq2.
   \]
   Hence
   \[
@@ -4957,8 +4959,8 @@ All timestamps use America/Los_Angeles.
   \(-1/3\).
 - Equality requires one local exceptional eigenvalue \(-1/3\) and
   two local eigenvalues \(1\).  The exceptional value occurs exactly
-  when the corresponding row and column supports are the same
-  two-plane.  With common two-planes at every site, the equality space
+  when the smaller support is two-dimensional and contained in the
+  larger one.  With common two-planes at every site, the equality space
   has one local scalar factor and two local traceless factors.
 - The explicit rank-two equality
   \[
@@ -4969,8 +4971,9 @@ All timestamps use America/Los_Angeles.
   has reflection quotient exactly \(-1/3\).  This identifies the
   mechanism of the broad boundary manifold reached by unrestricted
   discovery optimization.
-- This is a boundary theorem, not a dimension-reduction theorem.  It
-  does not exclude a genuinely full-qutrit-support counterexample.
+- This is a strict mixed-boundary reduction, not a complete
+  dimension-reduction theorem.  Any violation must have at least one
+  common site where both its row and column supports are full qutrits.
 - Exact note and dependency-free checker:
   `notes/agent_n3_reflection_common_local_planes.md` and
   `verification/verify_n3_reflection_common_local_planes.py`.

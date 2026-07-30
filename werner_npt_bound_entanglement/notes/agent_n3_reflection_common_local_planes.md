@@ -1,9 +1,9 @@
-# The reflection bound on tensor products of local two-planes
+# The reflection bound on the mixed local-support boundary
 
 ## Status
 
-This note proves the corrected three-copy reflection inequality on the
-complete tensor-product support boundary.  It also identifies the exact
+This note proves the corrected three-copy reflection inequality on a
+mixed tensor-product support boundary.  It also identifies the exact
 mechanism behind the large numerical equality manifold.
 
 Let
@@ -11,9 +11,10 @@ Let
  {\mathfrak r}(A)=A-\frac23\operatorname{Tr}(A)I_3 .
  \tag{1}
 \]
-If a coefficient matrix \(C\) has its row and column spaces contained
-in tensor products of (not necessarily equal) local subspaces of
-dimension at most two, then
+Suppose that the row and column spaces of a coefficient matrix \(C\)
+are contained in tensor products of local subspaces \(E_i,F_i\), and
+that at every site at least one of \(E_i,F_i\) has dimension at most
+two.  Then
 \[
  \boxed{\qquad
  \langle C,{\mathfrak r}^{\otimes3}(C)\rangle_{\rm HS}
@@ -21,7 +22,9 @@ dimension at most two, then
  \qquad}
  \tag{2}
 \]
-No rank assumption on \(C\) is needed in this theorem.
+No rank assumption on \(C\) is needed in this theorem.  In particular,
+a violation must have at least one physical site at which both the row
+and column supports are full qutrits.
 
 Equivalently, if \(w_k\) denotes the squared norm of the component with
 exactly \(k\) traceless qutrit factors, then
@@ -46,8 +49,8 @@ is an explicit equality point.
 
 The result explains why unrestricted descent for the reflection
 functional repeatedly reaches \(-1/3\) on local-support boundary
-planes.  It does not exclude a full-qutrit-support violation, so the
-unrestricted reflection inequality remains open.
+planes.  It does not exclude a violation having a common full-support
+site, so the unrestricted reflection inequality remains open.
 
 The dependency-free exact checker is
 `verification/verify_n3_reflection_common_local_planes.py`.
@@ -57,7 +60,8 @@ The dependency-free exact checker is
 For \(i=1,2,3\), let
 \[
  E_i,F_i\subseteq\mathbb C^3,\qquad
- p_i=\dim E_i\leq2,\quad q_i=\dim F_i\leq2.
+ p_i=\dim E_i,\quad q_i=\dim F_i,\qquad
+ \min(p_i,q_i)\leq2.
  \tag{5}
 \]
 Choose isometries
@@ -138,12 +142,13 @@ Moreover,
 \[
  \kappa_M=-\frac13
  \quad\Longleftrightarrow\quad
- p=q=2,\ \|V^\dagger U\|_2^2=2
- \quad\Longleftrightarrow\quad E=F.
+ \min(p,q)=2,\ \|V^\dagger U\|_2^2=2.
  \tag{16}
 \]
-The last equivalence follows because both singular values of the
-two-by-two contraction \(V^\dagger U\) must equal one.
+Equivalently, the smaller two-dimensional support is contained in the
+larger support.  Indeed, both singular values associated with that
+two-plane must equal one.  When \(p=q=2\), this specializes to
+\(E=F\).
 
 ## 3. Tensor-product proof
 
@@ -185,7 +190,9 @@ Let
 The local form \(K_{M_i}\) is \(1\) on \({\cal T}_i\) and
 \(\kappa_{M_i}\) on the at-most-one-dimensional space
 \({\cal S}_i\).  The eigenspace of (17) at \(-1/3\) is therefore the
-orthogonal direct sum, over sites \(i\) satisfying \(E_i=F_i\), of
+orthogonal direct sum, over sites \(i\) satisfying
+\(\min(p_i,q_i)=2\) and
+\(\|V_i^\dagger U_i\|_2^2=2\), of
 \[
  {\cal S}_i\otimes{\cal T}_j\otimes{\cal T}_k,
  \qquad \{i,j,k\}=\{1,2,3\}.
@@ -216,11 +223,13 @@ and (17) gives
 
 ## 5. Remaining frontier
 
-The theorem settles the entire tensor-product local-support boundary,
+The theorem settles the mixed tensor-product local-support boundary,
 including the observed equality manifold, but it does not provide a
-dimension reduction.  A hypothetical strict violation must escape
-the support hypothesis (7); in particular the common numerical
-boundary mechanism cannot yield one.
+complete dimension reduction.  A hypothetical strict violation must
+escape the support hypothesis (7).  Thus at some common physical site
+both its row and column local supports must be three-dimensional; in
+particular the numerical two-plane boundary mechanism cannot yield a
+violation.
 
 The unrestricted problem remains equivalently the scalar-eliminated
 three-component inequality
