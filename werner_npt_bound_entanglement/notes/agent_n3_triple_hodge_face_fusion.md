@@ -44,6 +44,25 @@ Every term on the right of (1) is nonnegative.  Consequently
 }
 \tag{3}
 \]
+Equivalently, in coefficient-matrix variables the same fusion is
+\[
+\boxed{
+ Q_3(C)+\frac{27}{160}\|\Pi_2C\|_2^2
+ =
+ \frac{51}{160}\sum_i g_i(C)
+ +\frac9{128}\|\Pi_1C\|_2^2
+ +\frac1{40}\Xi(C).
+}
+\tag{3a}
+\]
+Thus the previous estimate
+\(Q_3(C)\geq-\|\Pi_2C\|_2^2/4\) improves exactly to
+\[
+\boxed{
+ Q_3(C)\geq-\frac{27}{160}\|\Pi_2C\|_2^2.
+}
+\tag{3b}
+\]
 This is the operator form of the explicit generalized-depth bound
 \(\delta\leq9/71\), but (1) retains all of the coercive remainder.
 
@@ -293,7 +312,15 @@ the result, after multiplying by \(568\) and dividing by five, is
 }
 \tag{28}
 \]
-Thus (28) is equivalent to unrestricted three-copy positivity.  It
+Using (3a), the equivalent purely sector-normalized form is
+\[
+\boxed{
+ 204G+45a+16\Xi\geq108c.
+}
+\tag{29}
+\]
+Thus (28), equivalently (29), is equivalent to unrestricted
+three-copy positivity.  It
 has three useful features:
 
 1. all quantities on the left are exact nonnegative common-code
@@ -307,5 +334,5 @@ The unresolved region is therefore the strict interior
  G>0,\qquad \Xi>0,
 \]
 with genuinely full local support.  A completion must prove the
-quantitative lower bound (28), not merely exclude a common zero of
-its three terms.
+quantitative lower bound (28), equivalently (29), not merely exclude
+a common zero of its three terms.

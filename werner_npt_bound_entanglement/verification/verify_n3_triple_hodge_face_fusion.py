@@ -35,6 +35,15 @@ def verify_fusion() -> None:
         + 4320 * tau
     )
 
+    # Equivalent coefficient-matrix fusion.
+    q_shifted = q + F(27, 160) * c
+    primal_rhs = (
+        F(51, 160) * G
+        + F(9, 128) * a
+        + F(1, 40) * Xi
+    )
+    assert q_shifted == primal_rhs
+
 
 def verify_operator_constants() -> None:
     assert F(1, 2) - F(13, 71) == F(45, 142)
@@ -45,6 +54,7 @@ def verify_operator_constants() -> None:
     assert F(225, 568) * F(568, 5) == 45
     assert F(10, 71) * F(568, 5) == 16
     assert F(45, 142) * F(568, 5) == 36
+    assert F(27, 160) * 640 == 108
 
 
 if __name__ == "__main__":

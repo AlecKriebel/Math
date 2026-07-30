@@ -5701,6 +5701,17 @@ All timestamps use America/Los_Angeles.
   \]
   Unlike a compactness modulus, the full positive remainder is
   explicit.
+- Reexpressed the same fusion intrinsically as
+  \[
+  Q_3(C)+\frac{27}{160}\|\Pi_2C\|_2^2
+  =
+  \frac{51}{160}\sum_i g_i
+  +\frac9{128}\|\Pi_1C\|_2^2
+  +\frac1{40}\Xi(C).
+  \]
+  This improves the earlier shifted bound
+  \(Q_3(C)\geq-\|\Pi_2C\|_2^2/4\) to the certified coefficient
+  \(-27/160\).
 - Classified the new exterior boundary:
   \(\Xi=0\) forces equal singular values and saturation of the sharp
   triple-Hodge theorem, hence the common-factor/local-support orbit,
@@ -5710,7 +5721,7 @@ All timestamps use America/Los_Angeles.
   fusion inequality
   \[
   204\sum_i g_i(C)+45\|\Pi_1C\|_2^2+16\Xi(C)
-  \ge36\left(2Q_3(C)+3\|\Pi_2C\|_2^2\right).
+  \ge108\|\Pi_2C\|_2^2.
   \]
   Known zero vectors make this sharp.  The remaining locus has
   \(G>0\), \(\Xi>0\), and full local support.
