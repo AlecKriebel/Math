@@ -6593,3 +6593,49 @@ u_1u_1^\dagger\bigr].
   `notes/agent_n3_squarezero_reciprocal_filter_hessian.md` and a
   dependency-free exact \(\mathbb Q(\omega)\) checker,
   `verification/verify_n3_squarezero_reciprocal_filter_hessian.py`.
+
+## 2026-07-29 21:43 PDT — Exact failure of reciprocal log convexity
+
+- Isolated a two-parameter, full-local-support flag--Bell pencil and
+  computed its square-zero endpoint Gram exactly over
+  \(\mathbb Q(\omega)[x,y]\).  Its determinant-product ratio is
+  \[
+  {\cal R}(x,y)=
+  \frac{256(1+x^2)(1+y^2)
+  (15x^2y^2+32x^2-16xy+32y^2)}
+  {59049x^2y^2}.
+  \]
+- Proved the proposed determinant product bound strictly on the whole
+  pencil.  Its exact minimum is
+  \[
+  \gamma_*=
+  \frac{256}{59049}
+  \left(15z_*^2+78z_*+111+\frac{48}{z_*}\right)
+  =1.04708022452666\ldots,
+  \]
+  where \(z_*>0\) is the unique positive root of
+  \(5z^3+13z^2-8=0\).  This explains the recurrent numerical flag
+  weight \(z_*/(1+z_*)=0.410607747859283\ldots\).
+- Under the reciprocal flag filter
+  \(x_t=xe^{2t},\,y_t=ye^{-2t}\), found the exact full-support point
+  \(x=1/10,\ y=1/100\) at which
+  \[
+  \left.(\log{\cal R})''\right|_0
+  =
+  -\frac{9845853439120560320}
+  {427988320182198573561}<0.
+  \]
+  Therefore global reciprocal-filter **log** convexity is false.
+- The failure does not damage the determinant conjecture.  On the
+  entire pencil the unlogged ratio satisfies
+  \[
+  {\cal R}''=
+  \frac{256}{59049z^2}
+  \left[64(\dot s)^2+(32q+p)\ddot s\right]>0,
+  \]
+  so raw-ratio convexity survives exactly.  At the hostile point the
+  normalized determinant defect also has positive curvature.
+- Added
+  `notes/agent_n3_squarezero_filter_nonconvexity.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_squarezero_filter_nonconvexity.py`.
