@@ -139,7 +139,7 @@ target = {
 expanded = {mask: F(0) for mask in range(8)}
 expanded[0b111] += F(3, 2)
 for mask in range(8):
-    identity_count = 3 - mask.bit_count()
+    identity_count = 3 - bin(mask).count("1")
     expanded[mask] += F(9, 2) * F(-2, 3) ** identity_count
 assert expanded == target
 
