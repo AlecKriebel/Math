@@ -7374,14 +7374,14 @@ u_1u_1^\dagger\bigr].
   \]
 - At quotient \(1/20\), this improves the determinant fraction to
   \[
-  \frac{s_1s_2}{\|M\|^2}\ge
+  \frac{s_1s_2}{\|M\|^2}>
   \gamma_{20}:=\frac{9\sqrt3-\sqrt{19}}{40}
   =0.280738\ldots.
   \]
   At the sharp Hadamard quotient \(1/40\), it improves the fraction
   to
   \[
-  \frac{s_1s_2}{\|M\|^2}\ge
+  \frac{s_1s_2}{\|M\|^2}>
   \gamma_{40}:=\frac{19\sqrt3-\sqrt{39}}{80}
   =0.333299\ldots.
   \]
@@ -7397,8 +7397,23 @@ u_1u_1^\dagger\bigr].
   \]
   Cauchy--Schwarz and Minkowski's determinant inequality give
   \[
-  \sqrt{\det B_\Sigma}\ge\gamma_{40}.
+  \sqrt{\det B_\Sigma}>\gamma_{40}.
   \]
+- Excluded equality in the abstract \(2\times2\) compression bound.
+  Equality would force the compression
+  \[
+  \begin{pmatrix}1/4&\sqrt3/4\\
+  \sqrt3/4&3/4\end{pmatrix}.
+  \]
+  Rank-one equality puts the first singular dyad at
+  \(|00\rangle\langle00|\), while the \(1\)-eigenvector of this
+  compression would force both partial traces of the other dyad to
+  be \(-E_{00}/\sqrt3\).  Writing that dyad as
+  \(|U\rangle\langle V|\), the resulting equations
+  \(UV^\dagger=\kappa E_{00}\) and
+  \(U^\dagger V=\bar\kappa E_{00}\) contradict their lower-right
+  block factorization.  Thus all displayed determinant bounds are
+  strict for nonzero pencils.
   Hence every realization of the repaired negative formal table must
   obey
   \[

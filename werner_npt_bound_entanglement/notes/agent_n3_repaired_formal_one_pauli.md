@@ -263,18 +263,18 @@ Consequently,
 \begin{aligned}
  Q_2(M)=\frac1{20}\|M\|_2^2
  &\Longrightarrow
- \frac{s_2}{s_1}\ge
+ \frac{s_2}{s_1}>
  x_{20}:=\frac{5\sqrt3-\sqrt{19}}{14},\\
  &\hspace{18mm}
- s_1s_2\ge
+ s_1s_2>
  \gamma_{20}\|M\|_2^2,\qquad
  \gamma_{20}:=\frac{9\sqrt3-\sqrt{19}}{40},\\[1mm]
  Q_2(M)=\frac1{40}\|M\|_2^2
  &\Longrightarrow
- \frac{s_2}{s_1}\ge
+ \frac{s_2}{s_1}>
  x_{40}:=\frac{10\sqrt3-\sqrt{39}}{29},\\
  &\hspace{18mm}
- s_1s_2\ge
+ s_1s_2>
  \gamma_{40}\|M\|_2^2,\qquad
  \gamma_{40}:=\frac{19\sqrt3-\sqrt{39}}{80}.
 \end{aligned}}
@@ -356,6 +356,76 @@ direct simplification gives
 \]
 This proves (16). \(\square\)
 
+The inequalities in (16) are in fact strict for nonzero \(M\).
+Equality in (15) would force the compression in (17) to be
+\[
+ H_*=
+ \begin{pmatrix}
+ 1/4&\sqrt3/4\\
+ \sqrt3/4&3/4
+ \end{pmatrix}.
+\tag{18c}
+\]
+This abstract positive contraction cannot be the compression of
+\(L^{\otimes2}\) to two orthogonal singular dyads.
+
+Here is a direct proof.  Equality \(Q_2(E_1)=1/4\) in the rank-one
+theorem forces \(E_1\), up to a scalar phase and local unitaries, to
+be
+\[
+ E_1=|00\rangle\langle00|.
+\tag{18d}
+\]
+Indeed, in the rank-one replica proof both local swap factors must
+lie in their \(+1\) eigenspaces.  Full-replica symmetry first makes
+the two replica vectors proportional; either local swap symmetry
+then makes that common vector a product vector.
+
+The matrix \(H_*\) is the rank-one projection onto
+\((1/2,\sqrt3/2)\).  Hence
+\[
+ E_+=\frac12E_1+\frac{\sqrt3}{2}E_2
+\]
+would satisfy \(L^{\otimes2}(E_+)=E_+\).  The \(1\)-eigenspace of
+\(L^{\otimes2}\) is the fully traceless two-site sector, so
+\[
+ \operatorname{Tr}_1E_2
+ =\operatorname{Tr}_2E_2
+ =-\frac1{\sqrt3}|0\rangle\langle0|.
+\tag{18e}
+\]
+Write \(E_2=|u\rangle\langle v|\), and identify \(u,v\) with
+\(3\times3\) matrices \(U,V\).  Orthogonality of the two left and
+right singular vectors gives \(U_{00}=V_{00}=0\).  Equations (18e)
+become
+\[
+ UV^\dagger=\kappa E_{00},\qquad
+ U^\dagger V=\overline\kappa E_{00},
+ \qquad \kappa=-1/\sqrt3.
+\tag{18f}
+\]
+Block the matrices relative to
+\(\mathbb C e_0\oplus e_0^\perp\):
+\[
+ U=\begin{pmatrix}0&r\\c&A\end{pmatrix},
+ \qquad
+ V=\begin{pmatrix}0&s\\d&B\end{pmatrix}.
+\]
+The lower-right block of the first equation in (18f) and the
+lower-left block of the second give
+\[
+ AB^\dagger=-cd^\dagger,\qquad A^\dagger d=0.
+\]
+Since \(c^\dagger d=\overline\kappa\ne0\), the rank-one matrix
+\(cd^\dagger\) is nonzero.  Thus
+\[
+ c\in\operatorname{ran}(AB^\dagger)
+ \subseteq\operatorname{ran}A,
+\]
+whereas \(A^\dagger d=0\) says \(d\perp\operatorname{ran}A\).
+This contradicts \(c^\dagger d\ne0\).  Therefore (18c) is
+unrealizable, and equality cannot occur in either line of (16).
+
 For \(M=X(a)Y(b)^\dagger\),
 \[
  (s_1s_2)^2=\det A(a)\det B(b).
@@ -369,6 +439,7 @@ Applying Lemma 1 to (14) gives the nonlinear pencil condition
 \qquad(b_p=0).}
 \tag{20}
 \]
+The inequality is strict for \(b\ne0\).
 The transposed version is
 \[
 \boxed{
@@ -377,6 +448,7 @@ The transposed version is
 \qquad(a_q=0).}
 \tag{21}
 \]
+It is strict for \(a\ne0\).
 
 Applying (16) to the three Hadamard pairs (13c) gives, for every
 \(p\ne r\),
@@ -385,10 +457,10 @@ Applying (16) to the three Hadamard pairs (13c) gives, for every
 \begin{aligned}
  \sqrt{\det A\left(\frac{e_p+e_r}{\sqrt2}\right)
        \det B\left(\frac{e_p-e_r}{\sqrt2}\right)}
- &\ge\frac{\gamma_{40}}9,\\
+ &>\frac{\gamma_{40}}9,\\
  \sqrt{\det A\left(\frac{e_p-e_r}{\sqrt2}\right)
        \det B\left(\frac{e_p+e_r}{\sqrt2}\right)}
- &\ge\frac{\gamma_{40}}9.
+ &>\frac{\gamma_{40}}9.
 \end{aligned}}
 \tag{21a}
 \]
@@ -419,7 +491,7 @@ Minkowski's determinant inequality and
 \]
 Therefore the coordinate pencils alone give the preliminary restriction
 \[
-\sqrt{\lambda(1-\lambda)}\ge\gamma_{20}.
+\sqrt{\lambda(1-\lambda)}>\gamma_{20}.
 \]
 
 The Hadamard pencils improve this and also constrain the crossed Gram.
@@ -454,13 +526,13 @@ Writing
 \(\alpha_a=\sqrt{\det A(a)}\) and
 \(\beta_a=\sqrt{\det B(a)}\), equation (21a) says
 \[
- \alpha_a\beta_{\pi(a)}\ge\frac{\gamma_{40}}9.
+ \alpha_a\beta_{\pi(a)}>\frac{\gamma_{40}}9.
 \]
 Cauchy--Schwarz and Minkowski's determinant inequality give
 \[
 \begin{aligned}
 4\gamma_{40}
-&\le
+&<
 \left(\sum_{a\in{\cal H}}
  \sqrt{\alpha_a\beta_{\pi(a)}}\right)^2\\
 &\le
@@ -486,7 +558,7 @@ Thus every realization obeys the exact nonlinear restriction
 \[
 \boxed{
 \sqrt{\lambda(1-\lambda)-|\operatorname{Tr}Z|^2}
-\ge\gamma_{40}
+>\gamma_{40}
 =\frac{19\sqrt3-\sqrt{39}}{80}.}
 \tag{23}
 \]
@@ -494,13 +566,13 @@ In particular,
 \[
 \boxed{
 \frac12-\frac{\sqrt{478+114\sqrt{13}}}{80}
-\le\lambda\le
+<\lambda<
 \frac12+\frac{\sqrt{478+114\sqrt{13}}}{80}.}
 \tag{23a}
 \]
 Numerically this is
 \[
- 0.1272918\ldots\le\lambda\le0.8727081\ldots.
+ 0.1272918\ldots<\lambda<0.8727081\ldots.
 \]
 In particular, the common Pauli direction is uniformly separated
 from both rank-drop faces.  This still does not exclude the branch:
