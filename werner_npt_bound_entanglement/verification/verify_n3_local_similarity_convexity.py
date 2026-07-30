@@ -307,6 +307,70 @@ matrix_hessian = sum(
 )
 assert direct_hessian == matrix_hessian
 
+# Complex diagonal-product phases add the single cyclic imaginary
+# coherence from (10y).  Check its exact Hessian coupling.
+hessian_theta = [F(1), F(-1), F(2)]
+hessian_G_imaginary = [
+    [F(0), F(1), F(-1)],
+    [F(-1), F(0), F(1)],
+    [F(1), F(-1), F(0)],
+]
+phase_part = sum(
+    hessian_theta[p]
+    * (
+        (2 * hessian_d[p] if p == r else 0)
+        - hessian_G[p][r]
+    )
+    * hessian_theta[r]
+    for p in range(3)
+    for r in range(3)
+) + 2 * sum(
+    hessian_u[p]
+    * hessian_G_imaginary[p][r]
+    * hessian_theta[r]
+    for p in range(3)
+    for r in range(3)
+)
+full_phase_hessian = direct_hessian + phase_part
+positive_us_second = sum(
+    hessian_W[p][r]
+    * (
+        hessian_u[p]
+        + hessian_u[r]
+        + hessian_s[p]
+        - hessian_s[r]
+    )
+    ** 2
+    for p in range(3)
+    for r in range(3)
+)
+q_second = 2 * sum(
+    hessian_u[p]
+    * (
+        (2 * hessian_d[p] if p == r else 0)
+        + hessian_G[p][r]
+    )
+    * hessian_u[r]
+    for p in range(3)
+    for r in range(3)
+) + 2 * sum(
+    hessian_theta[p]
+    * (
+        hessian_G[p][r]
+        - (2 * hessian_d[p] if p == r else 0)
+    )
+    * hessian_theta[r]
+    for p in range(3)
+    for r in range(3)
+) - 4 * sum(
+    hessian_u[p]
+    * hessian_G_imaginary[p][r]
+    * hessian_theta[r]
+    for p in range(3)
+    for r in range(3)
+)
+assert full_phase_hessian == positive_us_second - F(1, 2) * q_second
+
 # For the oriented three-cycle in this W, x=y=z=tau=1, so the
 # exact Moore--Penrose Schur correction is L/3 (formula (10v)).
 cycle_L = [
@@ -339,6 +403,14 @@ cycle_correction = [
 assert cycle_correction == [
     [cycle_L[p][r] / 3 for r in range(3)] for p in range(3)
 ]
+# The two nonzero eigenvalues of this Laplacian are 3,3, while
+# every principal cofactor is 3: det_perp = 3 * cofactor.
+cycle_cofactor = (
+    cycle_L[0][0] * cycle_L[1][1]
+    - cycle_L[0][1] * cycle_L[1][0]
+)
+assert cycle_cofactor == 3
+assert 3 * cycle_cofactor == 9
 
 # The singular-Gram theorem is sharp at the exact transverse
 # common-qubit spin-flip zero.  We omit normalization to stay over Q.
@@ -441,6 +513,7 @@ assert endpoint_q(formal, 3) == F(-1, 2)
 print("verified: exact rank-two local-similarity recursion")
 print("verified: positive exact similarity Hessian", second_derivative_at_zero)
 print("verified: exact joint diagonal-filter Hessian", direct_hessian)
+print("verified: exact cyclic phase Hessian", full_phase_hessian)
 print("verified: exact three-cycle Schur penalty")
 print("verified: sharp singular-Gram diagonal-collapse zero")
 print("verified: exact factor-plane kernel alignment")

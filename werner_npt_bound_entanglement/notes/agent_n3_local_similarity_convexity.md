@@ -439,6 +439,104 @@ determinant is \(\Delta\), gives
 This proves (10v).  The disconnected cases follow by the same
 calculation on components or by continuity.
 
+The complex phases of the three diagonal blocks give one further
+joint constraint.  Write
+\[
+ G=G_{\mathbb R}+iG_{\mathbb I},
+\qquad
+ G_{\mathbb I}^{\mathsf T}=-G_{\mathbb I}.
+\tag{10x}
+\]
+Equation (10o) says \(G_{\mathbb I}{\bf1}=0\).  Hence, for three
+levels, there is one real scalar \(\sigma\) such that
+\[
+ G_{\mathbb I}
+ =
+ \sigma
+ \begin{pmatrix}
+ 0&1&-1\\
+ -1&0&1\\
+ 1&-1&0
+ \end{pmatrix}
+ =:\sigma K.
+\tag{10y}
+\]
+Allowing the product phases
+\(x_py_p=e^{u_p+i\theta_p}\) and differentiating (10n) gives, after
+the \(s\)-Schur complement,
+\[
+\boxed{
+ \begin{pmatrix}
+ A_*&G_{\mathbb I}\\
+ -G_{\mathbb I}&P_*
+ \end{pmatrix}\succeq0,}
+\tag{10z}
+\]
+where
+\[
+\begin{aligned}
+ A_*&=
+ W+W^{\mathsf T}-G_{\mathbb R}
+ -\frac{\tau^2}{\Delta}L_W,\\
+ P_*&=2D-G_{\mathbb R}.
+\end{aligned}
+\tag{10aa}
+\]
+Both matrices annihilate \({\bf1}\) and are positive semidefinite.
+The phase block alone also gives
+\[
+ P_*\succeq
+ \left(1+\frac{\tau^2}{\Delta}\right)L_W.
+\tag{10ab}
+\]
+
+Let \(\det_\perp\) denote determinant after restriction to the
+orthogonal complement of \({\bf1}\).  On that two-dimensional
+space, \(K\) is \(\sqrt3\) times an orthogonal complex structure.
+Taking the determinant consequence of the Schur complement in
+(10z) yields the explicit scalar obstruction
+\[
+\boxed{
+9\sigma^4
+\leq
+\det_\perp(A_*)\det_\perp(P_*).}
+\tag{10ac}
+\]
+Equivalently, because a real symmetric \(3\times3\) matrix \(H\)
+with \(H{\bf1}=0\) has
+\[
+ \det_\perp H=3\det H[\widehat p|\widehat p]
+ \qquad(p=0,1,2),
+\]
+where every principal cofactor is equal, (10ac) is the ordinary
+two-minor inequality
+\[
+\boxed{
+ \sigma^4
+ \leq
+ \det A_*[\widehat p|\widehat p]\,
+ \det P_*[\widehat p|\widehat p].}
+\tag{10ad}
+\]
+In particular, if either real critical slack has rank at most one,
+then the cyclic imaginary coherence \(\sigma\) must vanish.
+
+To check (10z), put \(z=u+i\theta\).  The second derivative of
+\(c^\dagger Gc\), \(c_p=e^{tz_p}\), at zero is
+\[
+ 2u^{\mathsf T}(2D+G_{\mathbb R})u
+ +2\theta^{\mathsf T}(G_{\mathbb R}-2D)\theta
+ -4u^{\mathsf T}G_{\mathbb I}\theta.
+\]
+Combining this with (10p) gives (10z).  Finally, in an orthonormal
+basis of \({\bf1}^{\perp}\), the off-diagonal block is
+\(\sqrt3\sigma J_2\).  Positivity implies
+\[
+ (3\sigma^2)^2
+ \leq\det_\perp(A_*)\det_\perp(P_*),
+\]
+which is (10ac).
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[
