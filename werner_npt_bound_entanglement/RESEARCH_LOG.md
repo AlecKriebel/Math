@@ -5643,6 +5643,42 @@ All timestamps use America/Los_Angeles.
 - Updated `notes/agent_n3_common_trace_slack_tradeoff.md` and its
   dependency-free exact checker.
 
+## 2026-07-29 19:42 PDT — Polar-alignment stability improves the depth to \(512/3755\)
+
+- Retained the polar-alignment defect
+  \[
+  E=(s_1+s_2)^2-|\operatorname{Tr}C|^2
+  \]
+  in the exact common trace-slack identity.
+- Proved that every rank-at-most-two \(C\) is within squared
+  Hilbert--Schmidt distance \(2E\) of a phase times a positive
+  semidefinite rank-at-most-two matrix with the same singular values.
+  The established PSD theorem and
+  \(\|{\cal L}^{\otimes3}\|_{\rm op}=1\) then give, for a normalized
+  negative direction,
+  \[
+  E\geq\frac{\delta^2}{32N},
+  \qquad N=\|C\|_2^2.
+  \]
+- Combined this with the exact identities
+  \[
+  \begin{aligned}
+  1584\delta+297y+567a+18\Delta+18E&=216,\\
+  N&=4\delta+\frac94a+\frac34y,
+  \end{aligned}
+  \]
+  where \(y=4\sum_i g_i>0\).  A one-variable exact minimization gives
+  \[
+  \boxed{
+  0<\delta<\frac{512}{3755}
+  =\frac3{22}-\frac1{82610}.
+  }
+  \]
+- Added
+  `notes/agent_n3_polar_alignment_depth_improvement.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_polar_alignment_depth_improvement.py`.
+
 ## 2026-07-29 19:32 PDT — Partial-contraction exterior elimination is scalar-redundant
 
 - For each one-site partial trace \(T_i=\operatorname{Tr}_iC\), kept
