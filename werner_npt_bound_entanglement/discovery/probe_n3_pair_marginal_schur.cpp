@@ -90,6 +90,17 @@ struct Probe {
     finish_code();
   }
 
+  void qutrit_ghz_phase_code() {
+    clear_code();
+    const C omega(-0.5, std::sqrt(3.0) / 2.0);
+    for (int a = 0; a < 3; ++a) {
+      frame[2 * hidx(a, a, a)] = 1.0 / std::sqrt(3.0);
+      frame[2 * hidx(a, a, a) + 1] =
+          std::pow(omega, a) / std::sqrt(3.0);
+    }
+    finish_code();
+  }
+
   C marginal_entry(int keep_mask, const std::array<int, 4>& row,
                    const std::array<int, 4>& col) const {
     // K is always kept.  keep_mask uses physical bits 0,1,2.
@@ -299,6 +310,11 @@ int main(int argc, char** argv) {
   for (double coefficient : coefficients)
     std::cout << " " << Probe::min_eigenvalue(probe.build(coefficient));
   std::cout << "\n";
+  probe.qutrit_ghz_phase_code();
+  std::cout << "Qutrit GHZ phase:";
+  for (double coefficient : coefficients)
+    std::cout << " " << Probe::min_eigenvalue(probe.build(coefficient));
+  std::cout << "\n";
   for (int trial = 0; trial < trials; ++trial) {
     probe.random_code();
     for (int j = 0; j < 5; ++j)
@@ -308,8 +324,11 @@ int main(int argc, char** argv) {
   std::cout << std::setprecision(16);
   for (int j = 0; j < 5; ++j)
     std::cout << "c=" << coefficients[j] << " min=" << minima[j] << "\n";
-  double optimized = 1e100;
-  for (int trial = 0; trial < std::max(1, trials / 10); ++trial)
-    optimized = std::min(optimized, probe.optimize(4.0 / 3.0, 250));
-  std::cout << "optimized c=4/3 min=" << optimized << "\n";
+  for (double coefficient : {0.0, 1.0, 4.0 / 3.0}) {
+    double optimized = 1e100;
+    for (int trial = 0; trial < std::max(1, trials / 10); ++trial)
+      optimized = std::min(optimized, probe.optimize(coefficient, 250));
+    std::cout << "optimized c=" << coefficient << " min=" << optimized
+              << "\n";
+  }
 }
