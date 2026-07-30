@@ -6198,6 +6198,49 @@ All timestamps use America/Los_Angeles.
 - Added `notes/agent_n3_latin_segre_minor_orbit.md` and its exact
   character-table verifier.
 
+## 2026-07-29 20:42 PDT — Common-plane plus square-zero cross reduction
+
+- Split every rank-two matrix canonically as
+  \[
+  C=N+S,\qquad
+  N=CP_U,\quad S=C(I-P_U),
+  \]
+  where \(N=P_UNP_U\), \(S=P_US(I-P_U)\), \(S^2=0\),
+  \(\operatorname{Tr}S=0\), and
+  \(\langle N,S\rangle=0\).
+- Computed the exact endpoint interference:
+  \[
+  {\cal B}_3(N,S)
+  =\frac34\left(
+  \langle\Pi_3N,\Pi_3S\rangle
+  -\langle\Pi_2N,\Pi_2S\rangle\right).
+  \]
+  The degree-one overlap cancels because the total sector overlap is
+  zero.
+- Reduced unrestricted three-copy positivity exactly to the
+  \(2\times2\) Gram condition
+  \[
+  \begin{pmatrix}
+  Q_3(N)&{\cal B}_3(N,S)\\
+  \overline{{\cal B}_3(N,S)}&Q_3(S)
+  \end{pmatrix}\succeq0.
+  \]
+  The common-plane diagonal is established.  The remaining statements
+  are general orthogonal-plane square-zero positivity and the single
+  cross determinant
+  \[
+  |{\cal B}_3(N,S)|^2\leq Q_3(N)Q_3(S).
+  \]
+- Exhibited an exact principal-overlap-one embedded-qubit spin-flip
+  zero with
+  \[
+  Q_3(N)=Q_3(S)=1/8,\qquad{\cal B}_3(N,S)=-1/8.
+  \]
+  Its rational four-sector table proves sharpness and shows that
+  separate degree-two/degree-three Cauchy bounds are far too weak.
+- Added `notes/agent_n3_common_squarezero_cross_reduction.md` and its
+  dependency-free exact verifier.
+
 ## 2026-07-29 20:31 PDT — Pair-centered purity obstruction and sharp Haar envelope
 
 - Falsified the proposed critical six-purity certificate exactly with
