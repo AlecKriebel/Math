@@ -1,0 +1,82 @@
+Zenodo upload preparation verification
+======================================
+
+Version: 1.1.0
+Source tag: qubit-povm-pvm-minimum-settings-v1.1.0
+Source commit: 773356a1de85290c3e85a361e0019f5f82b8e6d9
+Publication date: 2026-07-29
+
+Publication upload set
+----------------------
+
+PASS: exactly four files are present.
+
+PASS: the three content files match the publication SHA-256 manifest.
+
+PASS: the normal paper PDF and line-numbered review PDF are byte-identical to
+the corresponding files in the immutable source tag.
+
+PASS: both PDFs are 34-page letter-size documents.
+
+PASS: every page of the normal paper PDF was rendered and visually inspected.
+No clipping, overflow, overlap, broken pages, missing glyphs, or malformed
+tables or equations were found.
+
+PASS: the first, middle, and final pages of the line-numbered review PDF were
+rendered and visually inspected. Line numbering is clear and does not collide
+with the manuscript content.
+
+PASS: the renamed source tarball was extracted in a fresh directory and
+compiled with Tectonic 0.16.9 to a 34-page PDF without unresolved references,
+citation warnings, encoding warnings, overfull boxes, or underfull boxes.
+
+Software upload set
+-------------------
+
+PASS: exactly one ZIP file is present:
+
+kriebel-qubit-povm-pvm-reproducibility-v1.1.0.zip
+
+SHA-256:
+
+124bff9119fd028bef3f53628ea75099339de700524e608c26f69bef22e5a91e
+
+PASS: the ZIP contains 43 files under exactly one clean top-level directory:
+
+qubit-povm-pvm-minimum-settings-v1.1.0/
+
+PASS: the ZIP contains no submission directory, Git metadata, virtual
+environment, cache, macOS metadata, LaTeX intermediate, or private editorial
+file.
+
+PASS: the archive's internal SHA-256 manifest validates every other file.
+
+PASS: after fresh extraction, ./run_all.sh passed under Python 3.14.6 and
+SymPy 1.14.0:
+
+- 8 immutable exact artifacts matched their hashes;
+- the exact 3x2 separation checks passed;
+- all 39 exact 2x2 closure checks passed; and
+- the exact rank-zero simulator passed.
+
+PASS: after fresh extraction, ./paper/build.sh rebuilt both 34-page PDFs
+without LaTeX warnings.
+
+PASS: the archive-specific CITATION.cff parses as YAML and identifies software
+version 1.1.0.
+
+Independent archive audit
+-------------------------
+
+PASS: a separate read-only audit confirmed the version and tag identity,
+publication and software file counts, all manifests, safe ZIP paths, absence
+of excluded or private material, byte identity of every tag-derived file,
+metadata consistency, and PDF rendering. No blocking packaging issue was
+found.
+
+DOI and publication status
+--------------------------
+
+No Zenodo draft was created, no DOI was reserved, and no record was published
+during local preparation. The copy-ready metadata files retain explicit DOI
+placeholders for completion after the user reserves both draft DOIs.

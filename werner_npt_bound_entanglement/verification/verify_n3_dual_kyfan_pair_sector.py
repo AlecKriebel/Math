@@ -247,6 +247,27 @@ assert 2 * F(27, 1) / F(9, 4) == 24
 assert 2 * F(9, 1) / F(3, 2) == 12
 assert 2 * F(3, 1) / F(3, 1) == 2
 
+# Verify the equivalent dual marginal norm identity (14a) on a
+# rational low-sector operator with all three sector degrees present.
+dual_test = add(
+    add(scale(2, scalar), scale(3, one_body)),
+    scale(5, pair_body),
+)
+dual_weighted_norm = (
+    24 * F(2) ** 2
+    + 12 * F(3) ** 2
+    + 2 * F(5) ** 2
+)
+dual_marginal_norm = (
+    F(2, 9)
+    * sum(
+        hs_norm_squared(partial_trace(dual_test, (site,)))
+        for site in range(3)
+    )
+    - F(10, 243) * full_trace(dual_test) ** 2
+)
+assert dual_marginal_norm == dual_weighted_norm
+
 # Sharp primal rank-two example
 # C=E_01 tensor E_01 tensor (|0><0|+|1><1|).
 c_matrix = add(

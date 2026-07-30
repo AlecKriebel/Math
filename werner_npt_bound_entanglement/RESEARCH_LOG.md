@@ -7204,3 +7204,30 @@ u_1u_1^\dagger\bigr].
   common-factor realizability is no longer unrestricted.  It remains
   to exclude or realize the prescribed \({\cal B}_2\)-Gram inside this
   one-Pauli branch.
+
+## 2026-07-29 23:52 PDT — Dual marginal form reconciled exactly
+
+- Reconciled the independently supplied positive-operator and
+  Ky--Fan formulations with the existing exact three-copy dual.  The
+  constants agree with the previously derived theorem:
+  \[
+  s_1(D)^2+s_2(D)^2
+  \leq
+  24|c|^2+12\sum_i\|A_i\|_2^2+
+  2\sum_{i<j}\|B_{ij}\|_2^2 .
+  \]
+- Added the equivalent dual marginal identity
+  \[
+  24|c|^2+12\sum_i\|A_i\|_2^2+
+  2\sum_{i<j}\|B_{ij}\|_2^2
+  =
+  \frac29\sum_i\|\operatorname{Tr}_iD\|_2^2
+  -\frac{10}{243}|\operatorname{Tr}D|^2.
+  \]
+  It follows term by term from orthogonality of the scalar,
+  one-body, and two-body sectors.
+- Extended the dependency-free rational verifier with a mixed
+  low-sector test.  The check passes exactly.
+- The supplied local-support reduction is valid but is subsumed by
+  the established one-sided theorem: deficient local support of
+  either singular plane at any site already implies \(Q_3\geq0\).

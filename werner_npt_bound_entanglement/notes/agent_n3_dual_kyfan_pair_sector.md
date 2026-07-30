@@ -121,6 +121,38 @@ equivalence:
 \]
 This confirms all constants in the proposed dual statement.
 
+### 2.1 Equivalent dual marginal form
+
+The weighted norm on the right of (14) can also be read directly
+from one-site partial traces.  For every \(D\) of the form (9),
+orthogonality of its scalar, one-body, and two-body sectors gives
+\[
+\boxed{
+ 24|c|^2+12\sum_i\|A_i\|_2^2
+ +2\sum_{i<j}\|B_{ij}\|_2^2
+ =
+ \frac29\sum_{i=1}^3\|\operatorname{Tr}_iD\|_2^2
+ -\frac{10}{243}|\operatorname{Tr}D|^2.}
+\tag{14a}
+\]
+Indeed, the scalar term contributes \(243|c|^2\) to the sum of
+the three marginal norms and has
+\(|\operatorname{Tr}D|^2=729|c|^2\).  A fixed one-body term
+contributes \(54\|A_i\|_2^2\), and a fixed two-body term contributes
+\(9\|B_{ij}\|_2^2\).  All cross terms vanish by the trace conditions
+in (10).
+
+Thus the full three-copy endpoint theorem is equivalently
+\[
+\boxed{
+ s_1(D)^2+s_2(D)^2
+ +\frac{10}{243}|\operatorname{Tr}D|^2
+ \leq
+ \frac29\sum_{i=1}^3\|\operatorname{Tr}_iD\|_2^2}
+\tag{14b}
+\]
+for every \(D\) with no fully traceless three-body component.
+
 ## 3. The pair-only frontier
 
 Set \(c=0\) and \(A_i=0\).  The first unresolved dual subproblem is
