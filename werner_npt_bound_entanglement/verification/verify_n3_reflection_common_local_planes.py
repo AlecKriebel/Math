@@ -2,6 +2,7 @@
 """Dependency-free exact checks for the common-local-plane theorem."""
 
 from fractions import Fraction as F
+from itertools import product
 
 
 def zeros(rows, cols):
@@ -119,11 +120,18 @@ for numerator in range(0, 201):
     kappa = F(1) - F(2, 3) * x
     assert F(-1, 3) <= kappa <= F(1)
 
-# Enumerate all endpoint products of three intervals [-1/3,1].
-# A multilinear product reaches its minimum at interval endpoints.
+# Enumerate all endpoint products through eight copies.  A multilinear
+# product reaches its minimum at interval endpoints, and the symbolic
+# proof in the note handles arbitrary n by counting negative factors.
 endpoints = (F(-1, 3), F(1))
-products = [a * b * c for a in endpoints for b in endpoints for c in endpoints]
-assert min(products) == F(-1, 3)
+for copies in range(1, 9):
+    products_n = []
+    for factors in product(endpoints, repeat=copies):
+        value = F(1)
+        for factor in factors:
+            value *= factor
+        products_n.append(value)
+    assert min(products_n) == F(-1, 3)
 
 # Exact rank-two equality C=P_2 tensor E_01 tensor E_01.
 p2 = [[F(1), F(0), F(0)],
@@ -154,6 +162,6 @@ assert h01 * h01 == (h00 + F(1, 3)) * (h11 + F(1, 3))
 assert g01 * g10 - h01 * h01 == F(5, 9)
 
 print(
-    "verified exact compressed-spectrum interval, tensor-product floor, "
+    "verified exact compressed-spectrum interval, all-copy tensor floor, "
     "rank-two reflection equality, and crossed-assignment obstruction"
 )

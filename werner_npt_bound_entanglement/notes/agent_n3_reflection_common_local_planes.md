@@ -1,9 +1,10 @@
-# The reflection bound on the mixed local-support boundary
+# An all-copy reflection bound on the mixed local-support boundary
 
 ## Status
 
-This note proves the corrected three-copy reflection inequality on a
-mixed tensor-product support boundary.  It also identifies the exact
+This note proves a sharp all-copy qutrit reflection inequality on a
+mixed tensor-product support boundary.  Its three-copy specialization
+is the corrected reflection frontier, and it identifies the exact
 mechanism behind the large numerical equality manifold.
 
 Let
@@ -11,13 +12,13 @@ Let
  {\mathfrak r}(A)=A-\frac23\operatorname{Tr}(A)I_3 .
  \tag{1}
 \]
-Suppose that the row and column spaces of a coefficient matrix \(C\)
-are contained in tensor products of local subspaces \(E_i,F_i\), and
-that at every site at least one of \(E_i,F_i\) has dimension at most
-two.  Then
+Let \(n\geq1\).  Suppose that the row and column spaces of a coefficient
+matrix \(C\in M_{3^n}\) are contained in tensor products of local
+subspaces \(E_i,F_i\), and that at every site at least one of
+\(E_i,F_i\) has dimension at most two.  Then
 \[
  \boxed{\qquad
- \langle C,{\mathfrak r}^{\otimes3}(C)\rangle_{\rm HS}
+ \langle C,{\mathfrak r}^{\otimes n}(C)\rangle_{\rm HS}
  +\frac13\|C\|_2^2\geq0 .
  \qquad}
  \tag{2}
@@ -26,8 +27,8 @@ No rank assumption on \(C\) is needed in this theorem.  In particular,
 a violation must have at least one physical site at which both the row
 and column supports are full qutrits.
 
-Equivalently, if \(w_k\) denotes the squared norm of the component with
-exactly \(k\) traceless qutrit factors, then
+For \(n=3\), if \(w_k\) denotes the squared norm of the component with
+exactly \(k\) traceless qutrit factors, this is equivalently
 \[
  w_0+w_2\leq\frac23\|C\|_2^2.
  \tag{3}
@@ -36,8 +37,8 @@ exactly \(k\) traceless qutrit factors, then
 Equality is completely classified by the compressed local trace
 directions.  In particular, when the row and column support at every
 site is the same two-plane, equality consists of the components having
-one local scalar factor and two local traceless factors.  The rank-two
-matrix
+one local scalar factor and \(n-1\) local traceless factors.  At
+\(n=3\), the rank-two matrix
 \[
  C=
  (|0\rangle\langle0|+|1\rangle\langle1|)
@@ -57,7 +58,7 @@ The dependency-free exact checker is
 
 ## 1. Precise support hypothesis
 
-For \(i=1,2,3\), let
+For \(i=1,\ldots,n\), let
 \[
  E_i,F_i\subseteq\mathbb C^3,\qquad
  p_i=\dim E_i,\quad q_i=\dim F_i,\qquad
@@ -72,15 +73,15 @@ Choose isometries
 \]
 with ranges \(E_i,F_i\).  The hypothesis is
 \[
- C=(U_1\otimes U_2\otimes U_3)\,
+ C=(U_1\otimes\cdots\otimes U_n)\,
  C_0\,
- (V_1\otimes V_2\otimes V_3)^\dagger
+ (V_1\otimes\cdots\otimes V_n)^\dagger
  \tag{7}
 \]
 for some
 \[
  C_0\in
- \bigotimes_{i=1}^3 M_{p_i\times q_i}(\mathbb C).
+ \bigotimes_{i=1}^n M_{p_i\times q_i}(\mathbb C).
  \tag{8}
 \]
 Thus the left and right support planes may differ at every site.
@@ -150,27 +151,28 @@ larger support.  Indeed, both singular values associated with that
 two-plane must equal one.  When \(p=q=2\), this specializes to
 \(E=F\).
 
-## 3. Tensor-product proof
+## 3. All-copy tensor-product proof
 
-Applying (10) independently at the three sites shows that the
+Applying (10) independently at all \(n\) sites shows that the
 restriction of the quadratic form
-\({\mathfrak r}^{\otimes3}\) to the supported operator space (8) is
+\({\mathfrak r}^{\otimes n}\) to the supported operator space (8) is
 represented by
 \[
- K_{M_1}\otimes K_{M_2}\otimes K_{M_3},
+ \bigotimes_{i=1}^n K_{M_i},
  \qquad M_i=V_i^\dagger U_i.
  \tag{17}
 \]
-Every eigenvalue of (17) is a product of three numbers, each of which
+Every eigenvalue of (17) is a product of \(n\) numbers, each of which
 is either \(1\) or one of the \(\kappa_{M_i}\in[-1/3,1]\).
 
 If such a product is negative, it contains an odd number of negative
 factors.  With one negative factor its modulus is at most \(1/3\);
-with three negative factors its modulus is at most \(1/27\).  Hence
-every eigenvalue of (17) is at least \(-1/3\).  This proves (2).
+with three or more negative factors its modulus is at most \(1/27\).
+Hence every eigenvalue of (17) is at least \(-1/3\), independently of
+\(n\).  This proves (2).
 
-Because \({\mathfrak r}\) is \(-1\) on the scalar qutrit direction and
-\(+1\) on the traceless directions,
+For \(n=3\), because \({\mathfrak r}\) is \(-1\) on the scalar qutrit
+direction and \(+1\) on the traceless directions,
 \[
  \langle C,{\mathfrak r}^{\otimes3}(C)\rangle
  =\|C\|_2^2-2(w_0+w_2).
@@ -194,18 +196,19 @@ orthogonal direct sum, over sites \(i\) satisfying
 \(\min(p_i,q_i)=2\) and
 \(\|V_i^\dagger U_i\|_2^2=2\), of
 \[
- {\cal S}_i\otimes{\cal T}_j\otimes{\cal T}_k,
- \qquad \{i,j,k\}=\{1,2,3\}.
+ {\cal T}_1\otimes\cdots\otimes{\cal T}_{i-1}
+ \otimes{\cal S}_i\otimes
+ {\cal T}_{i+1}\otimes\cdots\otimes{\cal T}_n .
  \tag{20}
 \]
 Indeed, equality requires exactly one factor equal to \(-1/3\) and
-the other two factors equal to \(1\); three negative factors have
-product at least \(-1/27\).
+the other \(n-1\) factors equal to \(1\); three or more negative
+factors have product at least \(-1/27\).
 
 When all \(E_i=F_i\) are common two-planes, \(M_i\) is unitary.  After
 using compatible coordinates, \({\cal S}_i\) is the scalar direction
 and \({\cal T}_i\) is the traceless \(2\times2\) operator space.
-Thus (20) says exactly: one local scalar factor and two local
+Thus (20) says exactly: one local scalar factor and \(n-1\) local
 traceless factors.
 
 For (4), the first factor is scalar on the common two-plane and the
@@ -220,6 +223,13 @@ and (17) gives
  =-\frac13\|C\|_2^2.
  \tag{22}
 \]
+More generally,
+\[
+ C_n=(|0\rangle\langle0|+|1\rangle\langle1|)
+ \otimes(|0\rangle\langle1|)^{\otimes(n-1)}
+ \tag{22a}
+\]
+has rank two and attains the all-copy bound (2) for every \(n\geq1\).
 
 ## 5. Exact obstruction to crossed-energy assignment
 
@@ -307,13 +317,13 @@ diagonal energies.
 
 ## 6. Remaining frontier
 
-The theorem settles the mixed tensor-product local-support boundary,
-including the observed equality manifold, but it does not provide a
-complete dimension reduction.  A hypothetical strict violation must
-escape the support hypothesis (7).  Thus at some common physical site
-both its row and column local supports must be three-dimensional; in
-particular the numerical two-plane boundary mechanism cannot yield a
-violation.
+The theorem settles the mixed tensor-product local-support boundary
+for every copy number, including the observed three-copy equality
+manifold, but it does not provide a complete dimension reduction.  A
+hypothetical strict violation must escape the support hypothesis (7).
+Thus at some common physical site both its row and column local supports
+must be three-dimensional; in particular the numerical two-plane
+boundary mechanism cannot yield a violation.
 
 The unrestricted problem remains equivalently the scalar-eliminated
 three-component inequality

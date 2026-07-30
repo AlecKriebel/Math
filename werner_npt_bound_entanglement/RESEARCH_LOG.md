@@ -4929,11 +4929,11 @@ All timestamps use America/Los_Angeles.
   orientation inequality in
   `notes/agent_n3_full_reversed_schur_orientation.md`.
 
-## 2026-07-29 17:27 PDT — Exact reflection theorem on the mixed local-support boundary
+## 2026-07-29 17:27 PDT — Exact all-copy reflection theorem on the mixed local-support boundary
 
-- Proved the corrected reflection inequality
+- Proved, for every \(n\geq1\), the sharp reflection inequality
   \[
-  \langle C,{\mathfrak r}^{\otimes3}(C)\rangle
+  \langle C,{\mathfrak r}^{\otimes n}(C)\rangle
   \geq-\frac13\|C\|_2^2,\qquad
   {\mathfrak r}(A)=A-\frac23\operatorname{Tr}(A)I_3,
   \]
@@ -4955,8 +4955,10 @@ All timestamps use America/Los_Angeles.
   =\{1,\ 1-\tfrac23\|V_i^\dagger U_i\|_2^2\}
   \subseteq[-1/3,1].
   \]
-  The tensor-product spectrum is therefore bounded below by
-  \(-1/3\).
+  Every negative tensor-product eigenvalue has either one negative
+  factor, of magnitude at most \(1/3\), or at least three, of magnitude
+  at most \(1/27\).  The all-copy tensor-product spectrum is therefore
+  bounded below by \(-1/3\).
 - Equality requires one local exceptional eigenvalue \(-1/3\) and
   two local eigenvalues \(1\).  The exceptional value occurs exactly
   when the smaller support is two-dimensional and contained in the
@@ -4971,6 +4973,14 @@ All timestamps use America/Los_Angeles.
   has reflection quotient exactly \(-1/3\).  This identifies the
   mechanism of the broad boundary manifold reached by unrestricted
   discovery optimization.
+- More generally,
+  \[
+  C_n=(|0\rangle\langle0|+|1\rangle\langle1|)
+  \otimes(|0\rangle\langle1|)^{\otimes(n-1)}
+  \]
+  has rank two and attains \(-1/3\) for every \(n\).  Thus the
+  mixed-boundary theorem is tensor-stable and sharp at all copy
+  numbers.
 - The same equality gives an exact obstruction to replacing the actual
   interference by crossed diagonal energies.  For its singular frames,
   \[
