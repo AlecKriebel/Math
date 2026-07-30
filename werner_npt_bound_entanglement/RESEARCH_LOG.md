@@ -5159,3 +5159,50 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_full_dual_single_pair_certificate.md` and
   `verification/verify_n3_full_dual_single_pair_certificate.py`.
+
+## 2026-07-29 18:07 PDT — Exact two-pair residual and a separation no-go
+
+- For the two pair frames sharing site \(1\), direct expansion gives
+  the strictly smaller full-dual frontier
+  \[
+  S_V-F_{12}-F_{13}
+  =
+  \left[
+  2e_1\Phi_2\Phi_3+
+  \frac16({\cal E}_2+{\cal E}_3)
+  -\frac1{36}\operatorname{id}
+  \right](P),
+  \]
+  where \(\Phi=e-\operatorname{id}/2\),
+  \({\cal E}=e-\operatorname{id}/3\), and
+  \(P=|\boldsymbol V\rangle\langle\boldsymbol V|/2\).
+  The first summand is positive: \(e_1\) separates the first output,
+  after which the established unrestricted two-copy endpoint theorem
+  applies with the logical qubit as ancilla.
+- The remaining two-site term cannot be proved positive separately.
+  With \(Z=P_{\Omega_3}\) on sites \(2,3\),
+  \[
+  \langle\Omega_3|
+  \left[
+  \frac16({\cal E}_2+{\cal E}_3)
+  -\frac1{36}\operatorname{id}
+  \right](Z)
+  |\Omega_3\rangle=-\frac1{36}.
+  \]
+  Thus the positive \(2e_1\Phi_2\Phi_3\) term and the marginal
+  correction must be controlled jointly; a termwise proof is
+  impossible even at rank one.
+- In transition-matrix variables the coupled target is exactly
+  \[
+  2Q_3(C)+3w_{011}(C)\geq0,
+  \]
+  equivalently
+  \[
+  2Q_{23}(C)+\frac12w_1(\operatorname{Tr}_1C)
+  -\frac14w_0(\operatorname{Tr}_1C)\geq0,
+  \qquad \operatorname{rank}C\leq2.
+  \]
+  This is a genuine reduction of the unrestricted target: one
+  specified three-copy sector has been added with a positive
+  coefficient, but the remaining assertion still requires the
+  common nonnormal rank-two geometry.
