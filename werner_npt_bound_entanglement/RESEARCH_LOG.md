@@ -5755,3 +5755,37 @@ All timestamps use America/Los_Angeles.
 - Added `notes/agent_n3_triple_exterior_face_tradeoff.md` and
   dependency-free exact checker
   `verification/verify_n3_triple_exterior_face_tradeoff.py`.
+
+## 2026-07-29 19:48 PDT — Explicit high-AAA fusion below \(9/71\)
+
+- Closed the apparent logical-filter gap between the triple-Hodge face
+  deficit and the explicit high-AAA theorem.  If
+  \(e={\cal J}_3(C)+s_1s_2/3\) and \(p=s_1s_2\), determinant-one
+  covariance gives the exact unfiltered-plane lower bound
+  \[
+  {\cal C}(Q_{(3)})\ge\frac8{27}-\frac{8e}{9p}.
+  \]
+  No condition-number estimate is required.
+- If \(e<9\cdot10^{-120}p/8\), the established high-AAA theorem
+  proves the coupled shifted inequality.  Combining its face form
+  \[
+  42\delta+9u+27a>6+4\Delta
+  \]
+  with the triple-Hodge face tradeoff gives
+  \(\delta<13/107\).
+- In the complementary branch,
+  \(864e\ge972\cdot10^{-120}p\).  The exact face formulas give
+  \(p\ge(87\delta-9)/8\) above \(13/107\), hence
+  \[
+  \delta<
+  \frac{648+2187\cdot10^{-120}}
+       {5112+21141\cdot10^{-120}}
+  <\frac9{71}.
+  \]
+  The exact improvement below \(9/71\) is
+  \[
+  \frac{34992\cdot10^{-120}}
+       {71(5112+21141\cdot10^{-120})}.
+  \]
+- Added `notes/agent_n3_high_aaa_face_fusion.md` and exact checker
+  `verification/verify_n3_high_aaa_face_fusion.py`.
