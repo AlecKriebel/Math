@@ -144,7 +144,16 @@ assert hs_inner(p2, local_reflection(p2)) == -F(1, 3) * hs_inner(p2, p2)
 assert hs_inner(e01, local_reflection(e01)) == hs_inner(e01, e01)
 assert F(-1, 3) * F(1) * F(1) == F(-1, 3)
 
+# Exact crossed-energy obstruction from the same equality.
+h00 = F(1, 3)
+h11 = F(1, 3)
+h01 = -F(2, 3)
+g00, g01, g10, g11 = F(1, 3), F(1), F(1), F(1, 3)
+assert g01 * g10 > (g00 + F(1, 3)) * (g11 + F(1, 3))
+assert h01 * h01 == (h00 + F(1, 3)) * (h11 + F(1, 3))
+assert g01 * g10 - h01 * h01 == F(5, 9)
+
 print(
     "verified exact compressed-spectrum interval, tensor-product floor, "
-    "and rank-two reflection equality"
+    "rank-two reflection equality, and crossed-assignment obstruction"
 )

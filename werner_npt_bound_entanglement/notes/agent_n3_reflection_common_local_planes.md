@@ -221,7 +221,91 @@ and (17) gives
  \tag{22}
 \]
 
-## 5. Remaining frontier
+## 5. Exact obstruction to crossed-energy assignment
+
+The partial-transpose representation gives a tempting but false
+strengthening.  Put
+\[
+ Y=\bigotimes_{i=1}^3\left(I-\frac23F_i\right)\succeq0
+ \tag{23}
+\]
+and, for orthonormal frames \((u_0,u_1)\), \((v_0,v_1)\), define
+\[
+ g_{ab}=
+ \langle u_a\otimes v_b,Y(u_a\otimes v_b)\rangle.
+ \tag{24}
+\]
+If \(E_a=u_av_a^\dagger\) and
+\[
+ H_{ab}=
+ \langle E_a,{\mathfrak r}^{\otimes3}(E_b)\rangle,
+ \tag{25}
+\]
+then
+\[
+ H_{aa}=g_{aa},\qquad
+ H_{01}=
+ \langle u_0\otimes v_1,Y(u_1\otimes v_0)\rangle.
+ \tag{26}
+\]
+Positivity of \(Y\) gives only
+\[
+ |H_{01}|^2\leq g_{01}g_{10}.
+ \tag{27}
+\]
+It is tempting to finish the determinant of
+\(H+I_2/3\) by asserting
+\[
+ g_{01}g_{10}
+ \stackrel{?}{\leq}
+ (g_{00}+1/3)(g_{11}+1/3).
+ \tag{28}
+\]
+This assignment inequality is false, already at the elementary
+reflection equality (4).
+
+Indeed, use its singular frames
+\[
+\begin{aligned}
+ u_0&=|000\rangle,&u_1&=|100\rangle,\\
+ v_0&=|011\rangle,&v_1&=|111\rangle.
+\end{aligned}
+ \tag{29}
+\]
+Direct one-site contraction gives
+\[
+ H=
+ \begin{pmatrix}
+ 1/3&-2/3\\
+ -2/3&1/3
+ \end{pmatrix},
+ \qquad
+ \operatorname{spec}H=\{-1/3,1\}.
+ \tag{30}
+\]
+The four rank-one energies are instead
+\[
+ (g_{00},g_{01},g_{10},g_{11})
+ =\left(\frac13,1,1,\frac13\right).
+ \tag{31}
+\]
+Thus (28) would read
+\[
+ 1\leq\frac49,
+ \tag{32}
+\]
+while the actual determinant is exactly zero because
+\[
+ |H_{01}|^2=\frac49
+ =(H_{00}+1/3)(H_{11}+1/3).
+ \tag{33}
+\]
+The crossed Cauchy--Schwarz slack is \(1-4/9=5/9\), and it is
+essential.  Any full-support proof must control the actual common-plane
+interference in (26), not replace it by the product of the crossed
+diagonal energies.
+
+## 6. Remaining frontier
 
 The theorem settles the mixed tensor-product local-support boundary,
 including the observed equality manifold, but it does not provide a
@@ -253,7 +337,7 @@ three-component inequality
  \right|^2\\
  &\qquad\leq
  2\sum_{i<j}\|B_{ij}\|_2^2.
- \tag{23}
+ \tag{34}
 \end{aligned}
 \]
 The new equality classification says that any proof by critical-point

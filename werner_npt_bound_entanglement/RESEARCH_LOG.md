@@ -4971,6 +4971,17 @@ All timestamps use America/Los_Angeles.
   has reflection quotient exactly \(-1/3\).  This identifies the
   mechanism of the broad boundary manifold reached by unrestricted
   discovery optimization.
+- The same equality gives an exact obstruction to replacing the actual
+  interference by crossed diagonal energies.  For its singular frames,
+  \[
+  H=\begin{pmatrix}1/3&-2/3\\-2/3&1/3\end{pmatrix},
+  \qquad
+  (g_{00},g_{01},g_{10},g_{11})=(1/3,1,1,1/3).
+  \]
+  Hence the tempting assignment
+  \(g_{01}g_{10}\leq(g_{00}+1/3)(g_{11}+1/3)\) fails as
+  \(1>4/9\), even though the true determinant is exactly zero.
+  The crossed Cauchy--Schwarz slack is the essential \(5/9\).
 - This is a strict mixed-boundary reduction, not a complete
   dimension-reduction theorem.  Any violation must have at least one
   common site where both its row and column supports are full qutrits.
