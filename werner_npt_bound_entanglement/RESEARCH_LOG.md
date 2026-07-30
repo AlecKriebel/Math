@@ -7205,6 +7205,60 @@ u_1u_1^\dagger\bigr].
   to exclude or realize the prescribed \({\cal B}_2\)-Gram inside this
   one-Pauli branch.
 
+## 2026-07-30 00:07 PDT — Exact one-Pauli realization equations and determinant floor
+
+- Solved the ordinary-Gram part of the repaired \(q=-1/120\) formal
+  point explicitly.  In the nonzero one-Pauli branch,
+  \[
+  X_p^\dagger X_r=\frac{\delta_{pr}}3I+
+  h_{pr}\operatorname{diag}(1-\lambda,-\lambda),
+  \]
+  while the opposite logical-column triples have Grams
+  \(\lambda I_3/3\) and \((1-\lambda)I_3/3\).  Their only free
+  ordinary-Gram coupling is one crossed matrix
+  \(Z_{sq}=\langle y_{s0},y_{q1}\rangle\).
+- Derived the complete polarized two-copy endpoint kernel in
+  \(3\times3\) coefficient-matrix variables and wrote all 81 prescribed
+  \({\cal B}_2\)-Gram entries as an explicit finite polynomial system.
+  For product coefficients this collapses to
+  \[
+  Q_2(X(a)Y(b)^\dagger)
+  =\frac1{180}\left(\|a\|^2\|b\|^2-
+    \sum_p|a_p|^2|b_p|^2\right)
+   +\frac1{36}|\langle b,a\rangle|^2.
+  \]
+- Proved that every nonzero pencil map \(X(a)\) and \(Y(b)\) must be
+  injective.  Otherwise choosing an orthogonal coefficient on the
+  other side gives quotient at most \(1/20\), contradicting the sharp
+  rank-one two-copy floor \(1/4\).
+- Proved an exact singular-product lemma using only the established
+  two-copy theorem and the rank-one spectrum
+  \([1/4,9/4]\):
+  \[
+  Q_2(M)=\frac1{20}\|M\|^2
+  \Longrightarrow
+  \frac{s_2}{s_1}\ge\frac2{11},\qquad
+  s_1s_2\ge\frac{22}{125}\|M\|^2.
+  \]
+  Applied to every coordinate off-diagonal pencil, this yields
+  explicit determinant/numerical-radius inequalities on the common
+  \(h,Z,\lambda\).
+- Minkowski's \(2\times2\) determinant inequality then gives the
+  exact interior restriction
+  \[
+  \sqrt{\lambda(1-\lambda)}\ge\frac{22}{125}.
+  \]
+  Thus the formal point, if realizable, lies in a compact injective
+  one-Pauli branch bounded away from every rank-drop face.
+- Corrected an overstatement from the preceding checkpoint: \(H=0\)
+  gives erasure decoupling only at the selected site, whereas the
+  established code-output erasure theorem assumes the condition at
+  all three sites.  The zero-Pauli branch therefore remains live.
+- Added
+  `notes/agent_n3_repaired_formal_one_pauli.md` and the dependency-free
+  exact checker
+  `verification/verify_n3_repaired_formal_one_pauli.py`.
+
 ## 2026-07-29 23:52 PDT — Dual marginal form reconciled exactly
 
 - Reconciled the independently supplied positive-operator and

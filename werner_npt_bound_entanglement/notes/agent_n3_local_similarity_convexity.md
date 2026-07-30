@@ -853,10 +853,11 @@ Thus both conditional left Gram matrices
 are positive definite, while the two opposite column triples have
 squared norms \(\lambda/3\) and \((1-\lambda)/3\), respectively.
 The zero-Pauli branch \(H=0\) is precisely one-site erasure
-decoupling of the whitened left two-code.  On the separate
-square-zero/orthogonal-plane problem it is already nonnegative by
-the established code-output erasure theorem; for an unrestricted
-nonnormal factorization it is not yet removed by that theorem.
+decoupling of the whitened left two-code at the selected site.
+This must not be confused with the established code-output erasure
+theorem, whose hypothesis imposes the same decoupling at all three
+physical sites.  A single zero-Pauli site therefore does not by
+itself remove this branch, even on the square-zero locus.
 
 There is also a finite determinantal form of the first common-factor
 constraint.  For an arbitrary Hilbert--Schmidt block Gram \(N\), form
