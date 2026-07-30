@@ -4974,3 +4974,49 @@ All timestamps use America/Los_Angeles.
 - Exact note and dependency-free checker:
   `notes/agent_n3_reflection_common_local_planes.md` and
   `verification/verify_n3_reflection_common_local_planes.py`.
+
+## 2026-07-29 17:34 PDT — Lossless elimination of the full dual's low sectors
+
+- For a fixed right two-plane
+  \(V:\mathbb C^2\to(\mathbb C^3)^{\otimes3}\), eliminated the scalar
+  coefficient and all three one-body coefficients from the full
+  three-copy Ky--Fan dual exactly.
+- With
+  \[
+  |\boldsymbol V\rangle=\sum_{r=0}^1v_r\otimes|r\rangle_K,\qquad
+  R_V=|\boldsymbol V\rangle\langle\boldsymbol V|,\qquad
+  e_i(X)=I_i\otimes\operatorname{Tr}_iX,
+  \]
+  the full dual is equivalent to the pair-only residual
+  \[
+  \left\langle BV,S_V^{-1}BV\right\rangle
+  \leq2\sum_{i<j}\|B_{ij}\|_2^2,
+  \qquad
+  S_V=I-\frac1{12}\sum_i e_i(R_V)+\frac1{24}R_V .
+  \]
+  Here \(B=\sum_{i<j}B_{ij}^{(ij)}\), and each \(B_{ij}\) is doubly
+  traceless.
+- Proved the frame identity
+  \(S_V=I-L_VW^{-1}L_V^\dagger\) and the uniform estimate
+  \(S_V\succeq5I/12\).  Thus the inverse in the residual is always
+  well defined.
+- The uniquely optimal eliminated coefficients are, for
+  \(Z=S_V^{-1}BV\),
+  \[
+  c_*=\frac1{24}\operatorname{Tr}(V^\dagger Z),\qquad
+  A_{i,*}=\frac1{12}
+  \left(\operatorname{Tr}_{\widehat i}(ZV^\dagger)\right)_0 .
+  \]
+- An exact two-direction example on
+  \(V=(|000\rangle,|111\rangle)\) shows that this residual does not
+  reduce losslessly to the scalar-reflection target.  Two pair
+  coefficients have the same pair norm, output norm, and scalar
+  compression, while their \(S_V^{-1}\)-energies are respectively
+  \(12/11\) and \(1\).  One-body elimination is genuinely
+  anisotropic.
+- This is a strict reduction, not a proof of the residual inequality.
+  The unrestricted three-copy endpoint is now exactly the displayed
+  inverse-marginal pair lemma.
+- Exact note and dependency-free checker:
+  `notes/agent_n3_full_dual_low_sector_elimination.md` and
+  `verification/verify_n3_full_dual_low_sector_elimination.py`.
