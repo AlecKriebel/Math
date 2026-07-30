@@ -241,6 +241,105 @@ shifted_trace = sum(value for row in weights for value in row) - (
 )
 assert shifted_trace == F(1, 2) * endpoint_q(diagonal_sum, 2)
 
+# Exact algebra audit of the joint diagonal-filter Hessian (10p).
+# W is a nonsymmetric balanced flow and G has G*1=2d.
+hessian_W = [
+    [F(2), F(1), F(0)],
+    [F(0), F(3), F(1)],
+    [F(1), F(0), F(4)],
+]
+hessian_d = [sum(row) for row in hessian_W]
+assert hessian_d == [
+    sum(hessian_W[p][r] for p in range(3)) for r in range(3)
+]
+hessian_G = [
+    [F(3), F(1), F(2)],
+    [F(1), F(4), F(3)],
+    [F(2), F(3), F(5)],
+]
+assert [
+    sum(hessian_G[p][r] for r in range(3)) for p in range(3)
+] == [2 * value for value in hessian_d]
+hessian_u = [F(1), F(-2), F(3)]
+hessian_s = [F(2), F(1), F(-1)]
+direct_hessian = sum(
+    hessian_W[p][r]
+    * (
+        hessian_u[p]
+        + hessian_u[r]
+        + hessian_s[p]
+        - hessian_s[r]
+    )
+    ** 2
+    for p in range(3)
+    for r in range(3)
+) - F(1, 2) * sum(
+    hessian_G[p][r] * (hessian_u[p] + hessian_u[r]) ** 2
+    for p in range(3)
+    for r in range(3)
+)
+matrix_hessian = sum(
+    hessian_u[p]
+    * (
+        hessian_W[p][r]
+        + hessian_W[r][p]
+        - hessian_G[p][r]
+    )
+    * hessian_u[r]
+    for p in range(3)
+    for r in range(3)
+) + 2 * sum(
+    hessian_u[p]
+    * (hessian_W[r][p] - hessian_W[p][r])
+    * hessian_s[r]
+    for p in range(3)
+    for r in range(3)
+) + sum(
+    hessian_s[p]
+    * (
+        (2 * hessian_d[p] if p == r else 0)
+        - hessian_W[p][r]
+        - hessian_W[r][p]
+    )
+    * hessian_s[r]
+    for p in range(3)
+    for r in range(3)
+)
+assert direct_hessian == matrix_hessian
+
+# For the oriented three-cycle in this W, x=y=z=tau=1, so the
+# exact Moore--Penrose Schur correction is L/3 (formula (10v)).
+cycle_L = [
+    [F(2), F(-1), F(-1)],
+    [F(-1), F(2), F(-1)],
+    [F(-1), F(-1), F(2)],
+]
+cycle_B = [
+    [F(0), F(-1), F(1)],
+    [F(1), F(0), F(-1)],
+    [F(-1), F(1), F(0)],
+]
+cycle_L_plus = [
+    [F(2, 9) if p == r else F(-1, 9) for r in range(3)]
+    for p in range(3)
+]
+cycle_correction = [
+    [
+        sum(
+            cycle_B[p][a]
+            * cycle_L_plus[a][b]
+            * cycle_B[r][b]
+            for a in range(3)
+            for b in range(3)
+        )
+        for r in range(3)
+    ]
+    for p in range(3)
+]
+assert cycle_correction == [
+    [cycle_L[p][r] / 3 for r in range(3)] for p in range(3)
+]
+
 # The singular-Gram theorem is sharp at the exact transverse
 # common-qubit spin-flip zero.  We omit normalization to stay over Q.
 anchor_u0 = [F(0)] * 27
@@ -341,6 +440,8 @@ assert endpoint_q(formal, 3) == F(-1, 2)
 
 print("verified: exact rank-two local-similarity recursion")
 print("verified: positive exact similarity Hessian", second_derivative_at_zero)
+print("verified: exact joint diagonal-filter Hessian", direct_hessian)
+print("verified: exact three-cycle Schur penalty")
 print("verified: sharp singular-Gram diagonal-collapse zero")
 print("verified: exact factor-plane kernel alignment")
 print("verified: balanced rank-four block obstruction")

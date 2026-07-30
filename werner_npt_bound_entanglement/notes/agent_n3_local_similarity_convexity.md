@@ -275,6 +275,170 @@ whose nonnormal geometry is encoded by three strictly positive
 matrix-valued shifted circulations satisfying (10h)--(10k).  At a
 zero, \(q=0\), these reduce to the unshifted equations (10e).
 
+#### Joint diagonal-filter Schur certificate
+
+The global minimality of \(q\) gives more than the moment equation.
+Fix one site and retain the notation
+\[
+ W=(\widetilde r_{pq}),\qquad
+ d_p=\sum_qW_{pq}=\sum_qW_{qp},\qquad D=\operatorname{diag}(d),
+\tag{10l}
+\]
+where balance follows from (10h).  Put
+\[
+ A_p=C_{pp},\qquad
+ G_{pr}={\cal B}_2(A_p,A_r).
+\tag{10m}
+\]
+For arbitrary positive diagonal left and right filters write
+\[
+ x_p=e^{(u_p+s_p)/2},\qquad
+ y_p=e^{(u_p-s_p)/2}.
+\]
+Since \(q\) is the global rank-two Rayleigh minimum,
+\[
+\begin{aligned}
+ 0\leq{\cal F}(u,s)
+ :={}&Q_3(D_xCD_y)-q\|D_xCD_y\|_2^2\\
+ ={}&
+ \sum_{p,r}W_{pr}
+ e^{u_p+u_r+s_p-s_r}\\
+ &-\frac12Q_2\left(\sum_pe^{u_p}A_p\right).
+\end{aligned}
+\tag{10n}
+\]
+At \(u=s=0\), (10k) gives \({\cal F}=0\).  Its first derivatives,
+including diagonal phase filters, give the exact complex row-sum
+condition
+\[
+\boxed{G{\bf1}=2d.}
+\tag{10o}
+\]
+
+Let \(G_{\mathbb R}=\operatorname{Re}G\).  Direct differentiation of
+(10n) now gives the real magnitude Hessian
+\[
+\boxed{
+ {\cal H}_{\rm diag}=
+ \begin{pmatrix}
+ W+W^{\mathsf T}-G_{\mathbb R}&W^{\mathsf T}-W\\
+ W-W^{\mathsf T}&2D-W-W^{\mathsf T}
+ \end{pmatrix}
+ \succeq0.}
+\tag{10p}
+\]
+This is a joint constraint on all three polarized diagonal-block
+terms.  It does not bound them independently.
+
+For completeness, the four blocks follow from
+\[
+\begin{aligned}
+ \sum_{p,r}W_{pr}(u_p+u_r)^2
+ &=u^{\mathsf T}(2D+W+W^{\mathsf T})u,\\
+ \sum_{p,r}W_{pr}(s_p-s_r)^2
+ &=s^{\mathsf T}(2D-W-W^{\mathsf T})s,\\
+ \sum_{p,r}W_{pr}(u_p+u_r)(s_p-s_r)
+ &=u^{\mathsf T}(W^{\mathsf T}-W)s.
+\end{aligned}
+\tag{10q}
+\]
+The Hessian of the last term in (10n) is
+\(-2D-G_{\mathbb R}\), by (10o), which produces (10p).
+
+The lower-right block
+\[
+ L_W=2D-W-W^{\mathsf T}
+\tag{10r}
+\]
+is the undirected Laplacian of the balanced shifted flow.  Taking its
+Moore--Penrose inverse gives the equivalent Schur bound
+\[
+\boxed{
+ W+W^{\mathsf T}-G_{\mathbb R}
+ \succeq
+ (W^{\mathsf T}-W)L_W^+
+ (W-W^{\mathsf T}).}
+\tag{10s}
+\]
+The usual kernel compatibility is automatic on each connected
+component of a balanced flow.  Formula (10s) is the promised
+three-by-three joint Gram inequality.  It is necessary at a negative
+global minimizer; proving that no common rank-two block
+factorization can satisfy (10h), (10o), and (10s) would settle the
+remaining critical locus.
+
+For three local levels, the Schur correction in (10s) has a closed
+form.  Write the off-diagonal part of the balanced flow, after
+possibly reversing the cycle orientation, as
+\[
+\begin{array}{lll}
+ W_{01}=a+\tau,&W_{10}=a,\\
+ W_{12}=b+\tau,&W_{21}=b,\\
+ W_{20}=c+\tau,&W_{02}=c,
+\end{array}
+\qquad a,b,c,\tau\geq0,
+\tag{10t}
+\]
+and set
+\[
+ x=2a+\tau,\qquad y=2b+\tau,\qquad z=2c+\tau,\qquad
+ \Delta=xy+yz+zx.
+\tag{10u}
+\]
+When the underlying graph is connected, \(\Delta>0\), and
+\[
+\boxed{
+ (W^{\mathsf T}-W)L_W^+(W-W^{\mathsf T})
+ =
+ \frac{\tau^2}{\Delta}L_W.}
+\tag{10v}
+\]
+Thus the joint critical inequality becomes the explicit
+three-cycle-penalized bound
+\[
+\boxed{
+ W+W^{\mathsf T}-G_{\mathbb R}
+ \succeq
+ \frac{\tau^2}{xy+yz+zx}
+ (2D-W-W^{\mathsf T}).}
+\tag{10w}
+\]
+The coefficient is at most \(1/3\), with equality for a pure
+oriented three-cycle.
+
+To prove (10v), take \(u\perp{\bf1}\), put
+\[
+ \alpha=u_0-u_1,\qquad\beta=u_1-u_2,
+\]
+and parameterize a test vector \(s\) by
+\[
+ r=s_0-s_1,\qquad t=s_1-s_2.
+\]
+Then
+\[
+\begin{aligned}
+ s^{\mathsf T}L_Ws
+ &=xr^2+yt^2+z(r+t)^2,\\
+ u^{\mathsf T}(W^{\mathsf T}-W)s
+ &=\tau(\beta r-\alpha t).
+\end{aligned}
+\]
+The Schur quadratic is the maximum of
+\[
+ 2\tau(\beta r-\alpha t)
+ -xr^2-yt^2-z(r+t)^2
+\]
+over \(r,t\).  Inverting the displayed \(2\times2\) quadratic, whose
+determinant is \(\Delta\), gives
+\[
+ \frac{\tau^2}{\Delta}
+ \left[x\alpha^2+y\beta^2+z(\alpha+\beta)^2\right]
+ =
+ \frac{\tau^2}{\Delta}u^{\mathsf T}L_Wu.
+\]
+This proves (10v).  The disconnected cases follow by the same
+calculation on components or by continuity.
+
 In an eigenbasis of a diagonal test generator, the diagonal entries
 of (9) are
 \[
