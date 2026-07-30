@@ -37,4 +37,3 @@ be silently changed merely to print the newly reserved DOIs inside them.
 Cross-link the records through Zenodo metadata. If DOI text must be embedded
 inside the manuscript itself, make that change as a new version with a new
 tag and regenerated files.
-

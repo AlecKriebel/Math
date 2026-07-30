@@ -70,4 +70,3 @@ After both DOIs have been reserved:
 - Matching later arXiv identifier — **Is identical to**, only if it represents
   the same version
 - Later journal DOI — **Is preprint of**
-

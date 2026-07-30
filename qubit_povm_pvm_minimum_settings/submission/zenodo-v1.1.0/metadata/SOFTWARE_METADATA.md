@@ -80,4 +80,3 @@ After both DOIs have been reserved:
 - Immutable GitHub tag URL — **Is version of**
 - Matching later journal DOI — **Is supplement to**
 - Matching later arXiv identifier — **Is supplement to**
-

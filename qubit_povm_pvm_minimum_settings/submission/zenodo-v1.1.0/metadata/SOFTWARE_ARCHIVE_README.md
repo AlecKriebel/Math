@@ -61,4 +61,3 @@ Paper, reports, figures, and machine-readable mathematical data are under
 CC BY 4.0. Verification source code is under the MIT License. The bundled
 third-party `paper/lineno.sty` is under LPPL 1.3a or later as stated in that
 file. See `LICENSE`.
-
