@@ -6652,6 +6652,91 @@ u_1u_1^\dagger\bigr].
   dependency-free exact checker
   `verification/verify_n3_squarezero_filter_nonconvexity.py`.
 
+## 2026-07-29 22:05 PDT — Square-zero concurrence/exterior reduction
+
+- For orthogonal qutrit three-copy planes \(U,W\), let
+  \(V|ab\rangle=u_a\otimes w_b\) and
+  \[
+  R=V^\dagger\left[
+    \sum_{i<j}\frac{I-F_i}{2}\frac{I-F_j}{2}
+  \right]V.
+  \]
+  The exact swap-sector identity and \(U^\dagger W=0\) give
+  \[
+  H^{\Gamma_2}=\frac14I_4+R,\qquad
+  H=\frac14I_4+R^{\Gamma_2}
+  \]
+  for the square-zero endpoint Gram.
+- Using the determinant-one filter formula for homogeneous two-qubit
+  concurrence, proved the exact equivalence
+  \[
+  {\cal C}(R)\le\frac12\ \text{for every }U\perp W
+  \iff
+  Q_3(C)\ge\frac14(s_1-s_2)^2
+  \quad(C^2=0,\ \operatorname{rank}C\le2).
+  \]
+  The remaining scalar form is
+  \[
+  3\|C\|_2^2
+  -2\sum_i\|\operatorname{Tr}_iC\|_2^2
+  +\sum_{i<j}\|\operatorname{Tr}_{ij}C\|_2^2
+  +2s_1s_2\ge0,
+  \]
+  equivalently
+  \[
+  \|\Pi_2C\|_2^2-\|\Pi_3C\|_2^2
+  \le\frac23\|\wedge^2C\|_2.
+  \]
+  This is the earlier false unrestricted coherent two-skew inequality
+  with the essential additional relation \(C^2=0\).
+- This concurrence statement is equivalent to the stronger
+  quantitative estimate, and is sufficient for bare square-zero
+  positivity; no converse from bare positivity is claimed.
+  Equality forces equal singular values and feature concurrence
+  \(1/2\), reducing zero-rigidity to classification of the
+  concurrence boundary.
+- Ruled out the proposed shortcut \(R\preceq I/2\) exactly.  On
+  \(U=(|000\rangle,|001\rangle)\),
+  \(W=(|110\rangle,|111\rangle)\), the feature spectrum is
+  \((5/4,1/4,1/4,1/4)\), while concurrence is exactly \(1/2\).
+  Thus Takagi cancellation, rather than an operator-norm bound, is
+  indispensable.
+- The same equality proves that the positive part \(A_W\) of the
+  anchored code output cannot be universally positive definite.
+  Any future Schur complement must use a Moore--Penrose inverse.
+- Added `notes/agent_n3_squarezero_concurrence_exterior.md` and the
+  dependency-free rational checker
+  `verification/verify_n3_squarezero_concurrence_exterior.py`.
+
+## 2026-07-29 21:56 PDT — Exact failure of raw determinant-defect convexity
+
+- The normalized raw determinant defect is not globally convex under
+  reciprocal one-site filters either.  In the exact full-support
+  flag--Bell pencil, at \(x=10,\ y=1/10\), the diagonal path
+  \(x_t=10e^{2t},\,y_t=e^{-2t}/10\) has
+  \[
+  {\cal D}(0)=\frac{5797901743}{59938790976}>0,\qquad
+  {\cal D}''(0)=
+  -\frac{2904456294125}{85983132198681}<0,
+  \]
+  where
+  \[
+  {\cal D}=\det G-\frac{3^{18}}{2^{22}}
+  \prod_i\det\rho_i^U\det\rho_i^W.
+  \]
+- The unlogged side ratio remains strictly convex in this same
+  direction:
+  \[
+  {\cal R}''(0)=\frac{3292929645568}{36905625}>0.
+  \]
+  Hence the defect failure is distinct from the transverse raw-ratio
+  failure.  Log-ratio, raw-ratio, and raw-defect global convexity are
+  now all ruled out by exact full-support examples.
+- Extended
+  `verification/verify_n3_squarezero_filter_nonconvexity.py` and its
+  accompanying note with the exact certificate.  Critical-point or
+  zero-rigidity arguments remain the viable filter-based routes.
+
 ## 2026-07-29 21:56 PDT — Zero rigidity reduced to one interior lemma
 
 - Proved that the full-local-support space of ordered orthogonal
@@ -6688,3 +6773,220 @@ u_1u_1^\dagger\bigr].
   on an arbitrary transverse determinant zero.
 - Added `notes/agent_n3_squarezero_zero_rigidity_reduction.md`.
   The remaining lemma is still (ZR); it has not been proved.
+
+## 2026-07-29 22:18 PDT — Exact local-similarity convexity
+
+- Proved that \(Q_3\), unlike the determinant ratios studied above, is
+  convex along every one-site positive-similarity geodesic on the
+  rank-two variety.  In a local eigenbasis,
+  \[
+  Q_3(e^{tK_i}Ce^{-tK_i})
+  =
+  D+\sum_{p\ne q}
+  e^{2t(k_p-k_q)}Q_2(C_{pq}),
+  \]
+  and each coefficient is nonnegative by the exact unrestricted
+  two-copy theorem.
+- Derived the invariant moment matrices
+  \[
+  \mu_i(C)=\operatorname{Herm}\operatorname{Tr}_{\widehat i}
+  \left(L^{\otimes3}(C)C^\dagger
+  -C^\dagger L^{\otimes3}(C)\right).
+  \]
+  At a stationary point, the weights
+  \(r_{pq}=Q_2(C_{pq})\) form a balanced directed flow in every local
+  eigenbasis.  On three vertices this is exactly a sum of two-cycles
+  and one oriented three-cycle.
+- Reduced the balanced square-zero case to the explicit common-factor
+  inequality
+  \[
+  Q_2\left(\sum_pX_pY_p^\dagger\right)
+  \leq2\sum_{p,q}Q_2(X_pY_q^\dagger),
+  \qquad \sum_pY_p^\dagger X_p=0,
+  \]
+  with the circulation constraints inherited from the same six
+  \(9\times2\) slice factors.
+- Constructed an exact rank-four block obstruction showing that
+  coefficient nonnegativity and flow balance alone do not imply the
+  inequality: two diagonal \(Q_2\)-zero blocks have a sum of
+  \(Q_2\)-value \(1\), producing formal \(Q_3=-1/2\).  The obstruction
+  has rank four, so the common global rank-two factorization is the
+  indispensable missing input.
+- Added `notes/agent_n3_local_similarity_convexity.md` and
+  `verification/verify_n3_local_similarity_convexity.py`.
+
+## 2026-07-29 22:13 PDT — Trace zero is insufficient for the square-zero exterior bound
+
+- Exactly refuted the tempting relaxation of the new square-zero
+  exterior target from \(C^2=0\) to \(\operatorname{Tr}C=0\).
+  An explicit binary-supported factorization \(C=XY^\dagger\) has
+  rank two and trace zero, but
+  \[
+  3N-2S+P=-\frac{66914533}{61}<0
+  \]
+  and
+  \[
+  (3N-2S+P)^2-4(s_1s_2)^2
+  =\frac{283863875688505}{3721}>0.
+  \]
+  Hence
+  \[
+  3N-2S+P+2s_1s_2<0
+  \]
+  exactly.
+- The same certificate has
+  \[
+  4Q_3(C)=\frac{31026317}{61}>0,
+  \]
+  so it is not a Werner endpoint witness.  Its logical overlap
+  \(Y^\dagger X\) is nonzero even though its trace vanishes; therefore
+  \(C^2\ne0\).
+- This proves that a successful exterior/concurrence proof must use
+  the full orthogonal-plane equation \(Y^\dagger X=0\), rather than
+  merely deleting the scalar sector.
+- Added
+  `notes/agent_n3_tracezero_two_skew_counterexample.md` and the
+  dependency-free exact checker
+  `verification/verify_n3_tracezero_two_skew_counterexample.py`.
+
+## 2026-07-29 22:40 PDT — Zero kernel classified up to one crossed-Hodge equality
+
+- Strengthened the known logical PPT statement for an orthogonal
+  square-zero four-frame.  With
+  \[
+  {\mathsf A}_i=(I-F_i)/2,\qquad
+  R=\sum_{i<j}{\mathsf A}_i{\mathsf A}_j,
+  \]
+  exact sector arithmetic and \(U^\dagger W=0\) give
+  \[
+  H^{\Gamma_2}=\frac14I_4+
+  (U\otimes W)^\dagger R(U\otimes W)\succeq\frac14I_4.
+  \]
+- Used logical singular-value coordinates for the entangled kernel to
+  reduce \(\det H=0\) losslessly to one scalar equality:
+  \[
+  |K_{01,10}|^2
+  =
+  \left(\frac14+K_{00,00}\right)
+  \left(\frac14+K_{11,11}\right).
+  \]
+  Equivalently, zero rigidity is exactly the assertion that the
+  associated crossed-Hodge Cauchy inequality is strict whenever all
+  six one-site plane marginals are nonsingular.  This removes the
+  \(4\times4\) determinant and arbitrary logical kernel matrix from
+  the equality problem.
+- Proved that the abstract two-qubit conditions are insufficient.
+  The exact matrix
+  \[
+  H=\frac{25}{36}\left(
+  I-\left|\frac45\,00+\frac35\,11\right\rangle
+       \left\langle\frac45\,00+\frac35\,11\right|
+  \right)
+  \]
+  is positive of rank three, has sharp product margin \(1/4\), obeys
+  \(H^{\Gamma_2}\succeq I/4\), but has an invertible unequal-Schmidt
+  kernel.  Thus kernel balance cannot follow from abstract
+  PSD/PPT-floor data; the common three-qutrit compression origin is
+  essential.
+- Established the exact concurrence lower bound at a zero:
+  \[
+  {\cal C}(K)\geq
+  \frac{\|B\|_2^2}{4|\det B|}\geq\frac12 .
+  \]
+  Hence the surviving orthogonal-plane feature-concurrence conjecture
+  \({\cal C}(K)\leq1/2\) would force a balanced kernel.  At equality,
+  every determinantful column in an optimal decomposition obeys,
+  after logical normalization,
+  \(M\overline M=-|\det M|I_2\).
+- Added
+  `notes/agent_n3_squarezero_zero_kernel_classification.md` and
+  `verification/verify_n3_squarezero_zero_kernel_classification.py`.
+
+## 2026-07-29 22:41 PDT — Balanced zero completed abstractly; diagonal shortcut refuted physically
+
+- Proved an exact \(2\times2\) completion theorem.  If a Hermitian
+  logical form \(H\) annihilates \(\operatorname{vec}I_2\) and obeys
+  the sharp rank-one margin
+  \[
+  h(R)\geq\frac14\|R\|_2^2
+  \qquad(\operatorname{rank}R\leq1),
+  \]
+  then
+  \[
+  h(X)\geq\frac14\bigl(s_1(X)-s_2(X)\bigr)^2
+  \qquad(X\in M_2).
+  \]
+  The proof subtracts an eigenvalue:
+  \(R=X-\lambda I\) has rank one and \(h(X)=h(R)\).  If
+  \(\mu\) is the other eigenvalue, the exact remainder identity is
+  \[
+  \|R\|_2^2-\bigl(s_1(X)-s_2(X)\bigr)^2
+  =
+  2\left(|\lambda||\mu|
+  -\operatorname{Re}(\overline\lambda\mu)\right)\geq0.
+  \]
+- Consequently every balanced crossed-Gram zero already has
+  homogeneous feature concurrence exactly \(1/2\).  Equality away
+  from the scalar kernel requires both rank-one product-margin
+  saturation and the two eigenvalues of \(X\) to lie on one ray.
+- Exactly refuted the tempting shortcut
+  \[
+  K_{01,01}K_{10,10}\leq
+  (1/4+K_{00,00})(1/4+K_{11,11}).
+  \]
+  At the physical transverse spin-flip zero,
+  \[
+  K=
+  \begin{pmatrix}
+  0&0&0&0\\
+  0&1/2&-1/4&0\\
+  0&-1/4&1/2&0\\
+  0&0&0&0
+  \end{pmatrix}.
+  \]
+  The proposed left side is \(1/4\), four times the right side
+  \(1/16\), while the true crossed coherence
+  \(|K_{01,10}|^2=1/16\) exactly saturates the desired inequality.
+  Hence ordinary Cauchy--Schwarz through the two off-diagonal feature
+  norms loses an essential factor four.
+- Extended the zero-kernel note and its dependency-free exact checker
+  with both results.
+
+## 2026-07-29 22:44 PDT — Nilpotence is insufficient for the square-zero exterior bound
+
+- Strengthened the earlier trace-zero obstruction to an exact
+  rank-two nilpotent obstruction.  An explicit binary-supported
+  factorization \(C=XY^\dagger\) has
+  \[
+  C^3=0,\qquad C^2\ne0,
+  \]
+  while
+  \[
+  3N-2S+P=-61027569134160
+  \]
+  and
+  \[
+  (3N-2S+P)^2-4(s_1s_2)^2
+  =166702999029879870656948480>0.
+  \]
+  Hence the proposed coherent exterior inequality is negative
+  exactly, even though both nonzero spectral coefficients of \(C\)
+  vanish.
+- In thin-factor coordinates the logical overlap
+  \(G=Y^\dagger X\) is nonzero but obeys
+  \[
+  \operatorname{Tr}G=\det G=0,\qquad G^2=0.
+  \]
+  This proves that no relaxation retaining only the characteristic
+  invariants of \(G\) can replace the full square-zero equation
+  \(G=0\).  The distinction is nilpotency index two versus index
+  three.
+- The endpoint value remains positive:
+  \[
+  8Q_3(C)=88468928437952>0,
+  \]
+  so this is an exact counterexample to an intermediate inequality,
+  not a Werner witness.
+- Added
+  `notes/agent_n3_nilpotent_two_skew_counterexample.md` and
+  `verification/verify_n3_nilpotent_two_skew_counterexample.py`.
