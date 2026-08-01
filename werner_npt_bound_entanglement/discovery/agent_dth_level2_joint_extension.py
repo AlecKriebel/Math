@@ -119,7 +119,8 @@ def load_target(target):
     chart = decode_chart(certificate_coordinates()[target])
     moment = root @ chart @ root
     moment = (moment + moment.T) / 2.0
-    assert la.eigvalsh(moment)[0] > -2e-13
+    if moment.shape[0]:
+        assert la.eigvalsh(moment)[0] > -2e-13
     return qout, moment
 
 
@@ -215,10 +216,19 @@ def omega_output_rank(source):
     )
 
 
+@lru_cache(None)
+def post_omega_source_rank(source):
+    rank = CENSUS.kronecker_coefficient(
+        (3, 3), [BASE.S7[index] for index in source], 6
+    )
+    return rank - omega_output_rank(source)
+
+
 def candidate_sources(target_data):
     out = []
     for source in product(range(8), repeat=3):
-        if any(target_reachable(source, target) for target in TARGETS):
+        if (post_omega_source_rank(source) > 0
+                and any(target_reachable(source, target) for target in TARGETS)):
             out.append(source)
     return out
 
@@ -245,17 +255,24 @@ def construct_source_block(source, target_data):
             raw_dimension = embeddings[0].shape[0]
     assert raw_by_target and raw_dimension is not None
     qomega = omega_range(source, raw_dimension, omega_output_rank(source))
-    projected = {}
-    all_vectors = []
+    # Project all reachable target columns in one tensor pass.  This is a
+    # substantial speedup for the full 118-block marginal while preserving
+    # the separate Kraus-channel boundaries below.
+    layout = []
+    raw_columns = []
+    cursor = 0
     for target, embeddings in raw_by_target.items():
-        vectors = []
         for embedding in embeddings:
-            value = BASE.source_project(embedding, source)
-            value -= qomega @ (qomega.T @ value)
-            vectors.append(value)
-            all_vectors.append(value)
-        projected[target] = vectors
-    union, values = BASE.orthonormal_columns(np.hstack(all_vectors), tolerance=3e-9)
+            width = embedding.shape[1]
+            layout.append((target, cursor, cursor + width))
+            raw_columns.append(embedding)
+            cursor += width
+    all_vectors = BASE.source_project(np.hstack(raw_columns), source)
+    all_vectors -= qomega @ (qomega.T @ all_vectors)
+    projected = {target: [] for target in raw_by_target}
+    for target, start, stop in layout:
+        projected[target].append(all_vectors[:, start:stop])
+    union, values = BASE.orthonormal_columns(all_vectors, tolerance=3e-9)
     assert np.linalg.norm(BASE.source_project(union, source) - union) < 6e-8
     assert np.linalg.norm(BASE.omega_gram_action(union, source)) < 6e-8
     maps = {

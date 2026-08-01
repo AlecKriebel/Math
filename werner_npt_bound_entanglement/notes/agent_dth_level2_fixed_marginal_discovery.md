@@ -220,15 +220,73 @@ The corresponding 12 MB numerical CP-map cache is
 `discovery/dth_level2_negative_blocks.pkl`.  It is a disposable discovery
 artifact tied to NumPy 2.5 and is not an exact certificate.
 
-## 5. Consequence and remaining decision
+The enlarged common problem is also strictly feasible numerically.  Its
+affine normal operator has full rank 1199 and spectrum
+
+\[
+[81.7702866440,\ 483.3129456523].
+\tag{9}
+\]
+
+At common floor (t=10^{-13}), the shifted problem converged in 50
+over-relaxed iterations to
+
+\[
+\begin{aligned}
+\text{affine residual}&=1.23\times10^{-20},\\
+\text{PSD defect}&=0,\\
+\min_b\lambda_{\min}(Z_b)&=1.25\times10^{-15}.
+\end{aligned}
+\tag{10}
+\]
+
+Thus all 17 selected negative-sector outputs share a numerical Slater
+extension with minimum block eigenvalue at least
+
+\[
+1.0125\times10^{-13}.
+\tag{11}
+\]
+
+This closes the selected-negative-sector test at discovery precision.
+
+## 5. Complete marginal map
+
+The same generic builder was then run on every active five-replica output
+block.  It gives
+
+\[
+\boxed{
+\begin{aligned}
+\text{active ordered outputs}&=118,\\
+\text{raw target symmetric equations}&=4139,\\
+\text{source blocks}&=487,\\
+\text{marginal-relevant PSD rank}&=14511,\\
+\text{marginal-relevant symmetric variables}&=519434.
+\end{aligned}}
+\tag{12}
+\]
+
+The last three numbers agree exactly with the independent complete
+post-Omega S7 census.  In particular, after all 118 targets are included,
+the marginal-relevant compression recovers every post-Omega source direction;
+this is a strong independent completeness audit of the branch construction.
+
+The 48 MB disposable map cache is
+`discovery/dth_level2_full_blocks.pkl`.  It is intentionally not committed.
+Physical-site averaging reduces the 4139 raw target coordinates to the
+smaller invariant fixed-marginal decision now being solved independently.
+
+## 6. Consequence and remaining decision
 
 The most negative ratio sectors (444,333,433) do not expose a missing
 degree-three Veronese relation: they admit a common numerical Slater
-extension.  The selected-negative extension in (8) is the next finite test.
+extension.  The larger selected-negative extension (8) is also strictly
+feasible numerically.  Consequently no subset chosen merely by negative
+objective contribution has exposed the missing rank-one equation.
 
-Even if (8) is feasible, that does not extend the complete committed moment.
-An actual fixed extension must reproduce all nonzero output blocks, including
-the positive-objective sectors, and must eventually obey the prolonged mixed
-support and grouped-PPT equations.  No claim beyond the numerical marginal
-statements (4) and (6) is made here.
-
+The next finite decision is the complete site-averaged marginal built in
+(12), including positive-objective sectors.  Even a positive answer there
+would not yet enforce prolonged mixed support or grouped PPT at degree three.
+No claim beyond the numerical marginal statements (4), (6), and (10) is made
+here.
