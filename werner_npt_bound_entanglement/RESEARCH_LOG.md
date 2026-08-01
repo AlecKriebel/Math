@@ -8149,3 +8149,10 @@ u_1u_1^\dagger\bigr].
   Grassmann extension of the exact obstruction.
 - Added `notes/agent_dth_level2_s7_census.md` and the dependency-free exact
   verifier `verification/verify_dth_level2_s7_census.py`.
+- Recorded the exact prolonged density constraints in
+  `notes/agent_dth_level2_prolonged_constraints.md`.  Omega is a range
+  constraint on the holomorphic moment, whereas support is a range
+  constraint on a one-bivector partial transpose.  Both intertwine exactly
+  with the seven-to-five marginal.  At degree three, pair symmetry and cut
+  complementation reduce complete grouped PPT to the three representatives
+  \(\Gamma_A,\Gamma_z,\Gamma_{A_1A_2}\).
