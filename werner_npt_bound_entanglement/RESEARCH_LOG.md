@@ -8401,6 +8401,38 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_full_rank_euler.md` and the dependency-free exact
   verifier `verification/verify_dth_full_rank_euler.py`.
 
+## 2026-08-01 07:18 PDT — Exact degenerate product-corner cluster
+
+- Computed the complete eight-dimensional second-order spectral cluster at
+  the singular equality point `z=|000>`.
+- Proved that Hamming-support components polarize orthogonally.  Weight-one
+  effective blocks vanish; every weight-two block has top-four eigenvalue
+  sum zero; a weight-three block has top-four sum `-||delta_123||^2/4`.
+  Ky--Fan subadditivity therefore gives a nonpositive second cluster shift
+  in every direction.
+- Found an exact zero-Hessian direction outside the tangent cone of the
+  three physical equality branches:
+
+  \[
+  \delta_*=|110\rangle+|220\rangle+|101\rangle+|202\rangle.
+  \]
+
+  Its effective spectrum is
+  `(-1/2)^(4),(1/4)^(2),(-1/4)^(2)`.
+- Diagonalized the full one-parameter path exactly.  Its Ky--Fan-four value
+  is
+
+  \[
+  {2+8t^2+\sqrt{1+12t^2}+\sqrt{1+4t^2}\over8(1+4t^2)}
+  ={1\over2}-{5\over2}t^4+O(t^6).
+  \]
+
+  Thus the product corner has no quadratic escape, but its precise remaining
+  stability problem is quartic.
+- Added `notes/agent_dth_product_corner_cluster.md` and the dependency-free
+  bivariate-polynomial verifier
+  `verification/verify_dth_product_corner_cluster.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
