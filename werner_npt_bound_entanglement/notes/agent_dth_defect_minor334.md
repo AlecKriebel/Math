@@ -155,3 +155,78 @@ candidate are therefore integer.  One integer linear solve supplies an
 exact correction, with the common factors \(14400^3\) and the row scales
 cancelling from the homogeneous equations.
 
+## 5. Completed rational correction and full-face replay
+
+The integer correction solve has now produced an exact rational moment.  Its
+compact holomorphic certificate is
+
+```text
+/tmp/dth_exact_obstruction_v2.json.gz
+```
+
+with SHA-256
+
+```text
+707e183995f1963aebe9eef732530396b2baa53421aaa9fcbf9f5cb31c36e9da
+```
+
+The full-face verifier does not infer the remaining equations from the
+observed rank.  It rebuilds a primitive integer left kernel in every one of
+the 216 mixed blocks and checks all
+
+\[
+826573
+\]
+
+literal scalar membership equations.  After clearing the certificate
+denominators, the exact bounds are:
+
+\[
+\begin{array}{c|r}
+\text{quantity}&\text{bit length}\\
+\hline
+\text{global coordinate denominator}&1595\\
+\text{holomorphic numerator bound}&1617\\
+\text{maximum primitive face }\ell^1\text{ norm}&7\\
+\text{mixed-entry numerator bound}&1677\\
+\text{face-residual numerator bound}&1683.
+\end{array}
+\]
+
+Every equation vanishes modulo 85 deterministic primes.  Their product has
+bit length 1695, hence is larger than twice the residual bound.  Therefore
+every integer residual is exactly zero.  This proves, over
+\(\mathbb Q\), that the corrected holomorphic moment crosses into the exact
+2266-dimensional product face.
+
+The same CRT run reconstructs the 64900 entries in the mixed pivot-principal
+submatrices and hence all exact mixed face-coordinate matrices.  A direct
+independent scaling audit on blocks 222, 224, 242, 422, and 444 agrees with
+ordinary floating crossing to relative errors between \(1.4\cdot10^{-14}\)
+and \(2.1\cdot10^{-14}\).  As one exact PSD spot check, fraction-free
+Sylvester elimination proves the 42 by 42 block 224 positive definite; the
+calculation takes about 48 seconds and its final determinant has 108888
+bits.
+
+The exact mixed positivity audit has also passed.  Its dyadic reference and
+inverse-Cholesky certificate is
+
+```text
+verification/certificates/dth_mixed_pd_reference.json.gz
+```
+
+with SHA-256
+
+```text
+648186810cd9e9becc71eb6d319749c2a2c956d3f152f116ff17a1cdd1bcdf33
+```
+
+For each of the 198 nonzero blocks (total rank 2266, maximum dimension 53),
+the verifier proves an exact rational reference positive definite by a
+strictly diagonally dominant rational congruence, then transfers positivity
+to the reconstructed exact block using a rigorously bounded Frobenius
+perturbation.  The worst squared perturbation-to-gap ratio is approximately
+$2.692\cdot10^{-41}$, in block 144, and is checked as a strict rational
+inequality.  Consequently the corrected moment is a genuine exact feasible
+pseudomoment with negative objective in the complete corrected first-level
+DTH relaxation.  It is not a rank-one physical DTH vector.
