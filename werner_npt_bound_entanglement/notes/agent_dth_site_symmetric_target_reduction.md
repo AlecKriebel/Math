@@ -102,6 +102,15 @@ defect.  This is discovery evidence, not an exact extension certificate.  It
 shows that these five highest-negative target blocks do not furnish a facial
 obstruction, even jointly.
 
+The same reduction was then applied to all 17 ordered blocks in the six
+site orbits (444), (333), (433), (141), (331), and (321).  Their 1,199 raw
+equations reduce to 222 invariant equations.  The unaveraged enlarged problem
+also admitted a numerical common source floor (10^{-13}), with marginal
+residual (1.23\times10^{-20}) and zero PSD defect.  Thus every target orbit
+with the largest recorded negative witness contribution is jointly interior
+at this discovery precision.  Any degree-three obstruction must couple in at
+least one of the remaining 26 nonzero site-shape orbits.
+
 ## Verification
 
 `verification/verify_dth_site_symmetric_target_census.py` reconstructs all

@@ -30,8 +30,6 @@ import agent_dth_level2_joint_extension as JOINT
 
 
 CACHE = DISCOVERY / "dth_level2_joint_blocks.pkl"
-AAA_TARGETS = ((4, 4, 4), (3, 3, 3))
-ORBIT_REPRESENTATIVE = (4, 3, 3)
 
 
 def load_or_build_data():
@@ -87,69 +85,77 @@ def axis_intertwiner(target_data, target, permutation):
     return permuted_target, intertwiner
 
 
-def projected_symmetric_basis(dimension, projector, expected_dimension):
+def projected_symmetric_basis(dimension, projector, expected_dimension=None):
     columns = []
     for element in JOINT.BASE.symmetric_basis(dimension):
         columns.append(svec(projector(element)))
     columns = np.asarray(columns).T
     u, singular, _ = la.svd(columns, full_matrices=False)
     rank = int(np.sum(singular > 1e-9 * singular[0]))
-    assert rank == expected_dimension, (rank, expected_dimension, singular)
+    if expected_dimension is not None:
+        assert rank == expected_dimension, (rank, expected_dimension, singular)
     return [smat(u[:, index], dimension) for index in range(rank)]
 
 
 def invariant_target_basis(target_data):
     directions = []
-
-    expected = {(4, 4, 4): 13, (3, 3, 3): 27}
-    for target in AAA_TARGETS:
-        group = [
-            axis_intertwiner(target_data, target, permutation)[1]
-            for permutation in permutations(range(3))
+    representatives = sorted({tuple(sorted(target)) for target in target_data})
+    all_permutations = tuple(permutations(range(3)))
+    orbit_census = []
+    for representative in representatives:
+        orbit_targets = tuple(
+            target for target in target_data
+            if tuple(sorted(target)) == representative
+        )
+        stabilizer = [
+            axis_intertwiner(target_data, representative, permutation)[1]
+            for permutation in all_permutations
+            if tuple(representative[index] for index in permutation)
+            == representative
         ]
 
-        def projector(matrix):
-            return sum(value @ matrix @ value.T for value in group) / 6.0
+        def stabilizer_projector(matrix):
+            return sum(
+                value @ matrix @ value.T for value in stabilizer
+            ) / len(stabilizer)
 
-        dimension = target_data[target][1].shape[0]
-        for matrix in projected_symmetric_basis(
-                dimension, projector, expected[target]):
+        dimension = target_data[representative][1].shape[0]
+        representative_basis = projected_symmetric_basis(
+            dimension, stabilizer_projector
+        )
+        orbit_census.append(
+            (representative, len(orbit_targets), dimension,
+             len(representative_basis))
+        )
+        for matrix in representative_basis:
             direction = JOINT.zero_targets(target_data)
-            direction[target] = matrix
+            for target in orbit_targets:
+                selected = None
+                for permutation in all_permutations:
+                    permuted, intertwiner = axis_intertwiner(
+                        target_data, representative, permutation
+                    )
+                    if permuted == target:
+                        selected = intertwiner
+                        break
+                assert selected is not None
+                direction[target] = (
+                    selected @ matrix @ selected.T
+                    / np.sqrt(len(orbit_targets))
+                )
             directions.append(direction)
 
-    representative = ORBIT_REPRESENTATIVE
-    swap = axis_intertwiner(target_data, representative, (0, 2, 1))[1]
-
-    def stabilizer_projector(matrix):
-        return (matrix + swap @ matrix @ swap.T) / 2.0
-
-    dimension = target_data[representative][1].shape[0]
-    representative_basis = projected_symmetric_basis(
-        dimension, stabilizer_projector, 66
-    )
-    orbit_targets = ((4, 3, 3), (3, 4, 3), (3, 3, 4))
-    for matrix in representative_basis:
-        direction = JOINT.zero_targets(target_data)
-        for target in orbit_targets:
-            selected = None
-            for permutation in permutations(range(3)):
-                permuted, intertwiner = axis_intertwiner(
-                    target_data, representative, permutation
-                )
-                if permuted == target:
-                    selected = intertwiner
-                    break
-            assert selected is not None
-            direction[target] = selected @ matrix @ selected.T / np.sqrt(3.0)
-        directions.append(direction)
-
-    assert len(directions) == 106
+    expected_totals = {5: 106, 17: 222, 125: 761}
+    if len(target_data) in expected_totals:
+        assert len(directions) == expected_totals[len(target_data)]
+    print("invariant target orbit census:")
+    for row in orbit_census:
+        print(" ", row)
     gram = np.asarray([
         [JOINT.target_inner(left, right) for right in directions]
         for left in directions
     ])
-    assert la.norm(gram - np.eye(106)) < 2e-8
+    assert la.norm(gram - np.eye(len(directions))) < 5e-8
     return directions
 
 

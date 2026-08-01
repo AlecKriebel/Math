@@ -8261,6 +8261,27 @@ u_1u_1^\dagger\bigr].
   `verification/verify_dth_site_symmetric_census_arithmetic.py`, together
   with `discovery/agent_dth_level2_joint_symmetry.py`.
 
+## 2026-08-01 06:28 PDT — Largest negative target orbits extend jointly
+
+- Enlarged the common degree-three extension test to all 17 ordered blocks
+  in the site orbits 444, 333, 433, 141, 331, and 321.  These include every
+  target sector with the largest negative objective ratio or raw negative
+  contribution identified in the exact block audit.
+- The exact site-symmetry machinery reduces their 1,199 marginal equations
+  to 222 invariant equations.  The reduced operator has full rank 222 and
+  numerical spectrum in [83.4755,483.313].
+- The unaveraged 17-block system is numerically strictly feasible with a
+  common source floor (10^{-13}), marginal residual
+  (1.23\times10^{-20}), and zero PSD defect.  This is discovery evidence,
+  not an exact extension certificate.
+- Consequently no dual obstruction can be supported only on these six
+  highest-negative site orbits.  A complete degree-three decision must add
+  at least one of the remaining 26 nonzero target orbits; the full symmetric
+  decision has 761 equations.
+- Generalized `discovery/agent_dth_level2_joint_symmetry.py` to arbitrary
+  site-orbit-closed target sets and added
+  `discovery/agent_dth_level2_negative_symmetry.py`.
+
 ## 2026-08-01 06:05 PDT — Complete deficient-support equality classification
 
 - Classified equality in the sharp double-Hodge Ky--Fan-two inequality.
