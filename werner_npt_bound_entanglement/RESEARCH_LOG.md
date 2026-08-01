@@ -7683,9 +7683,85 @@ u_1u_1^\dagger\bigr].
 - This is a proof-complexity barrier, not a negative corrected pseudomoment
   and not a physical DTH counterexample.  The full affine/mixed-PPT block
   decision remains open.
+
+## 2026-07-31 — Exact local \(103\times103\) crossing bridge
+
+- Constructed a deterministic basis of \(103\) local covariant permutation
+  diagrams \(P_b\) and the matched mixed diagrams
+  \(D_b=\Theta_{12}(P_b)\). In these coordinates partial transpose and its
+  inverse are exactly \(I_{103}\).
+- Built exact rational highest-weight bases on both sides and the integer
+  restriction matrices
+  \[
+  h=Ax,\qquad m=Bx,
+  \]
+  with \(A,B\in M_{103}(\mathbb Z)\). Both matrices are nonsingular modulo
+  each of \(1000003,1000033,1000037\). Exact on-demand solves implement
+  \(m=BA^{-1}h\) and the inverse without allocating a dense rational inverse.
+- Independently reconstructed the full Hilbert--Schmidt Gram matrix from
+  every holomorphic block and every mixed block. Both reconstructions agree
+  coefficientwise with
+  \[
+  G_{ab}=3^{c(\pi_a^{-1}\pi_b)}.
+  \]
+  Its determinant is \(471279\pmod {1000003}\), so the selected diagram
+  family is exactly independent. All seventeen omitted permutations have
+  integral reduction coordinates.
+- The bridge is memory bounded and tensors over the three physical sites.
+  It gives exact diagram coordinates in which active Pluecker, Omega,
+  support, PPT-kernel, or witness-equality equations can be imposed by
+  modular elimination. The current numerical primal remains broad and its
+  apparent negative value moves toward zero as consistency improves, so no
+  pseudomoment has been reconstructed.
 - New exact artifacts:
+  notes/agent_dth_local_crossing_exact.md and
+  verification/agent_dth_local_crossing_exact.py.
+
+- Earlier exact artifacts for the preceding checkpoint:
   `notes/agent_dth_cross_carrier_twirling.md`,
   `verification/agent_dth_cross_carrier_twirling.py`, and
   `verification/agent_dth_quadratic_support_dual_no_go.py`.  The numerical
   discovery reconstruction is isolated in
   `discovery/agent_dth_quadratic_support_dual_probe.py`.
+## 2026-07-31 — Matrix-free full invariant DTH cone solver
+
+- Reduced the complete corrected first-degree DTH cone, after lossless local
+  \(U(3)^3\) twirling, to a tensor cube of one local \(103\times103\)
+  crossing.  In Hilbert--Schmidt normalized highest-weight coordinates the
+  local crossing is orthogonal; the independent exact diagram-basis
+  construction proves the same crossing without floating point.
+- The three-site problem is implemented by three mode products with
+  \(U^{\otimes3}\), never by a dense million-by-million matrix.  The
+  holomorphic range cone consists of 125 blocks with total supported
+  multiplicity dimension 768 and maximum block size 16.  The mixed cone
+  consists of 216 blocks; its support-kernel dimensions sum exactly to
+  \(9261-64=9197\), with maximum block size 216.
+- Audited two restricted dual families numerically.  The
+  \(C_{\rm supp}^\dagger T C_{\rm supp}\) family has best common margin about
+  \(-0.57485\).  The complete site-symmetric affine zero-on-kernel family
+  \(C_{\rm supp}^\dagger R+R^\dagger C_{\rm supp}\), parameterized by
+  \(\operatorname{Sym}^3(\mathbb R^{23})\) with 2300 real coefficients, has
+  best margin about \(-0.42245\).  These values refute only those restricted
+  certificate ansatzes; a general dual may be positive and nonzero on the
+  mixed support kernel.
+- Ran matrix-free ADMM on the full invariant primal.  As the exact
+  holomorphic--mixed residual decreases, the apparent negative objective
+  moves steadily toward zero.  At the latest saved iterate the objective is
+  \(-0.01257\) with consistency residual \(2.75\times10^{-5}\).  Its
+  simultaneously extracted mixed-dual normal is positive on every support
+  block to \(3.6\times10^{-14}\) and gives numerical lower margin
+  \(-0.00784\).  Physical equality points give the exact upper bound zero.
+  This is floating-point discovery evidence only, not an interval
+  certificate.
+- The active numerical primal is broad (118 of 125 ordered holomorphic
+  blocks), so there is no small negative pseudomoment to reconstruct.  The
+  trajectory instead points to optimum zero on a singular common face.
+  The next exact task is to reconstruct the limiting dual/facial-reduction
+  identity in the exact 103-diagram basis and rerun the cone on its kernels.
+- New discovery artifacts: agent_dth_invariant_crossing.py,
+  agent_dth_dual_sdp.py, agent_dth_affine_dual_sdp.py, and
+  agent_dth_primal_admm.py; explanatory note:
+  agent_dth_invariant_solver.md.
+- Resolution status remains unchanged: no exact constrained first-level
+  certificate, exact constrained pseudomoment, physical DTH counterexample,
+  or Werner theorem has been obtained.
