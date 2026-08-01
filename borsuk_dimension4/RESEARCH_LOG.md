@@ -115,3 +115,26 @@ Best-guess completion toward a full resolution: **6%**. Full simplex symmetry,
 broad bounded signed orbits, and whole antipodal transversals are now strongly
 disfavored. Partially symmetry-broken subsets and noncanonical multi-orbit
 alignments remain live.
+
+## 2026-08-01T16:26:00-07:00 — Explicit high-circumradius band
+
+- Quantified the compactness-only near-Jung argument: if the minimum enclosing
+  radius satisfies
+  `R^2 > (2/5 - 1/100000) D^2`, five nearest-contact-anchor cells all have
+  diameter strictly below `D`.
+- The Jung defect forces five positive contact weights and all ten normalized
+  squared anchor distances above `999/1000`. An entrywise Gram estimate then
+  gives a linear identification with the regular simplex having squared-norm
+  distortion below `1/125`.
+- Pulled the actual Voronoi cells back through that identification and enclosed
+  each in an explicit ball. The resulting certified contraction is
+  `Gamma^2 = (504/125)(12997/15500 - (4/5)sqrt(377/620)) < 1`.
+- An independent rational-arithmetic verifier checks every endpoint constant;
+  the decisive squared radical comparison has positive margin
+  `154363852991/3814209000000`.
+- A separate hostile audit found no hidden affine-independence, strictness,
+  compactness, or Voronoi tie-breaking assumption.
+
+Best-guess completion toward a full resolution: **7%**. The positive route now
+has exact low- and high-circumradius regimes, but a substantial middle shell
+and nonsmooth diameter-endpoint configurations remain unresolved.
