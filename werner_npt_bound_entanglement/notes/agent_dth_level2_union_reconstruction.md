@@ -65,7 +65,7 @@ orthonormal orientation is irrelevant to the resulting projector.
 For every reconstructed block the code checks
 
 \[
-UM=V,qquad U^{\mathsf T}V=M,qquad U^{\mathsf T}U=I,
+UM=V,\qquad U^{\mathsf T}V=M,\qquad U^{\mathsf T}U=I,
 \]
 
 as well as membership in the degree-three Grassmann range and annihilation
