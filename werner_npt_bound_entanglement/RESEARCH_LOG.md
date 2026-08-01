@@ -8454,3 +8454,27 @@ u_1u_1^\dagger\bigr].
 - Scope: this is numerical evidence only for the PSD fixed-marginal problem.
   The prolonged support face and grouped PPT constraints remain untested, so
   this is neither a complete degree-three extension nor a DTH result.
+
+## 2026-08-01 07:17 PDT — Sharpened smooth-critical purity threshold
+
+- Combined the exact equal-output-marginal Euler theorem with the
+  scalar-plus-one-body Hilbert--Schmidt projection bound for the normalized
+  bottom output state.
+- Proved that every smooth critical Ky--Fan-four violation must satisfy
+
+  \[
+  P_{\rm loc}(z)>\frac{29}{21},
+  \]
+
+  improving the unconditional output-spectrum threshold `15/11` on the
+  smooth critical locus.
+- The exact identity behind the improvement is
+
+  \[
+  {1+P_{\rm loc}\over32}
+  \ge {F^2\over4}
+   +(1-F)^2{1+3P_{\rm loc}\over108}.
+  \]
+
+- Added `notes/agent_dth_critical_purity_filter.md` and the dependency-free
+  exact verifier `verification/verify_dth_critical_purity_filter.py`.
