@@ -8433,6 +8433,31 @@ u_1u_1^\dagger\bigr].
   bivariate-polynomial verifier
   `verification/verify_dth_product_corner_cluster.py`.
 
+## 2026-08-01 07:31 PDT — Orthogonal equal-marginal purity threshold
+
+- Combined the smooth critical equal-marginal theorem with orthogonality of
+  the top and bottom spectral supports.  If `Q` is their common
+  scalar-plus-one-body projection, `L=||Q||_2^2=(1+3P_loc)/108`,
+  `A=Tr(tau^2)`, and `B=Tr(sigma^2)`, then
+
+  \[
+  (A-L)(B-L)\ge L^2,
+  \qquad B\ge {AL\over A-L}.
+  \]
+
+- Optimizing the exact output-purity identity over `F>1/2` and
+  `A>=1/4` proves the sharper necessary condition
+
+  \[
+  P_{\rm loc}>{23-\sqrt{193}\over6}
+  =1.5179260017\ldots
+  \]
+
+  for every smooth critical violation.  This supersedes the preceding
+  `29/21` critical threshold.
+- Added `notes/agent_dth_equal_marginal_orthogonality_filter.md` and
+  `verification/verify_dth_equal_marginal_orthogonality_filter.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
