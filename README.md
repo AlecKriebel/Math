@@ -22,6 +22,20 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**The Quantum Chromatic Number of the \(G_{19}\) Join Family** proves the
+finite-dimensional equality
+\[
+\chi_q(G_{19}\vee K_{n-3})=n+1\qquad(n\ge3).
+\]
+In particular, the 20-vertex apex graph \(G_{19}\vee K_1\) has quantum
+chromatic number five. The proof symmetrizes arbitrary ranks, rigidifies the
+13-vertex core by an exact rational SOS, classifies every higher-rank tail by
+a \(J\)-invariant plane, and finishes with a two-sector dimension-packing
+contradiction. Two independent standard-library verifiers and machine-readable
+certificates accompany the unreviewed note. See the
+[research-note page](https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/)
+and [frozen proof package](https://github.com/AlecKriebel/Math/tree/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring).
+
 **Minimum Input Complexity for Separating Qubit POVMs from Projective
 Measurements** proves that, with two Bell inputs per party and arbitrary
 finite declared outputs, every fixed-qubit POVM behavior belongs to the
