@@ -61,3 +61,32 @@
 - No external generator catalogue or specialized phylogenetic software was
   used.
 
+## 2026-08-01T15:10:38-07:00 — first exact JC atlas class completed
+
+- **EXACTLY COMPUTED:** the root-spanning simple four-leaf theta census has
+  112 raw port distributions, 27 unlabelled rooted networks, and 612
+  leaf-labelled rooted isomorphism classes.
+- **EXACTLY COMPUTED:** isolated census entries `0,4,13,22` with the stated
+  leaf assignments and proved that all six inherited JC equations vanish
+  identically on every complete parameterization.
+- **PROVED:** exact rank-eight minors and irreducibility of the positive
+  invariant locus imply that all four Zariski closures equal the inherited
+  eight-dimensional closure.
+- **EXACTLY COMPUTED / INTERVAL CERTIFIED:** extended the inherited quadratic
+  common point through one exact triangle redirection and two root
+  relocations.  All 64 zero-sum Fourier coordinates agree, every parameter is
+  strictly in `(0,1)`, and all four rank-eight minors are nonzero at that same
+  point.
+- **PROVED:** the inverse-function argument gives one common regular relative
+  open stochastic region of full dimension for all four models.
+- **EXACTLY COMPUTED:** the four rooted topologies form exactly two
+  semi-directed isomorphism classes, `{0,4}` and `{13,22}`.  The classes are
+  the inherited `Theta` pair after triangle redirection; each class's two
+  rooted representatives differ only by reversible root placement.
+- **PROVED:** JC root relocation preserves the complete stochastic image,
+  since a root-split edge enters the Fourier model only through the product of
+  its two multipliers and every effective multiplier has a rational open
+  split.
+- A pure-standard-library verifier independently checks the common quadratic
+  point and all four exact Jacobian determinants.  No literature search was
+  conducted.

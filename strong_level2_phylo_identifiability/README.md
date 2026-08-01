@@ -14,6 +14,13 @@ blob reduces to a cycle or theta template, and there are exactly five rooted
 orientation cores (one cycle and four theta).  See
 `notes/MILESTONE_2_GENERATOR_ATLAS.md`.
 
+Milestone 3A certifies the first complete closure class in the root-spanning
+four-leaf JC atlas.  Four nonisomorphic rooted networks have one common
+eight-dimensional regular stochastic region; they reduce to two
+Theta-related semi-directed topologies, with two reversible root placements
+each.  Thus this collision needs no new semi-directed move.  See
+`notes/MILESTONE_3A_JC_FOUR_NETWORK_CLASS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
