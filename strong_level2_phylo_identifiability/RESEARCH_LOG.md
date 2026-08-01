@@ -43,3 +43,21 @@
   through degree three coincide; separation first appeared in the searched
   multigraded degree-four space.  No minimal-degree theorem is claimed yet.
 
+## 2026-08-01T14:28:10-07:00 — reduced generator atlas completed
+
+- **PROVED:** every nontrivial level-2 blob has cyclomatic number equal to its
+  number of reticulations and reduces to either a cycle or a theta core.
+- **EXACTLY COMPUTED:** enumerated 24 valid rooted theta event orientations
+  before symmetry and four after quotienting by branch reversal and path
+  permutation.  Together with the unique cycle orientation, this gives five
+  complete orientation-core templates.
+- **PROVED:** parameterized every full ported blob by ordered chains of
+  ordinary tree port vertices on directed core segments.  This also explains
+  why fully port-labelled blobs are infinite even though the core atlas is
+  finite.
+- **EXACTLY COMPUTED:** obtained template automorphism orders and all minimum
+  segment-subdivision repairs enforcing strong tree-childness and the
+  no-reticulation-child clause.
+- No external generator catalogue or specialized phylogenetic software was
+  used.
+

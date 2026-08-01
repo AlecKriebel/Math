@@ -9,6 +9,11 @@ full-dimensional regular overlap under JC, but explicit quartic invariants
 generically separate the pair under K2P and K3P.  See
 `notes/MILESTONE_1_MODEL_ROBUSTNESS.md`.
 
+Milestone 2 is complete at the generator-core level: every nontrivial level-2
+blob reduces to a cycle or theta template, and there are exactly five rooted
+orientation cores (one cycle and four theta).  See
+`notes/MILESTONE_2_GENERATOR_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
@@ -26,5 +31,5 @@ python3 -m venv .venv
 Then run
 
 ```sh
-./run_milestone1.sh
+./run_all.sh
 ```

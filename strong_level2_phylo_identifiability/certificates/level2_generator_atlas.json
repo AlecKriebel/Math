@@ -1,0 +1,82 @@
+{
+  "status": "PROVED_AND_EXACTLY_COMPUTED",
+  "reduction_convention": {
+    "ordinary_side_vertex": "a degree-2-in-blob tree vertex carrying one outgoing cut-edge port",
+    "source_S": "the unique incoming-cut-edge tree vertex, or the global degree-2 root before semi-directed suppression",
+    "sink_X": "a degree-2-in-blob reticulation whose outgoing cut edge leaves the blob",
+    "branch_T": "a degree-3-in-blob tree vertex",
+    "branch_R": "a degree-3-in-blob reticulation"
+  },
+  "undirected_cores": [
+    {
+      "id": "cycle",
+      "cyclomatic_number": 1,
+      "description": "two distinguished event vertices S,X joined by two side paths",
+      "uncoloured_template_automorphism_order": 4
+    },
+    {
+      "id": "theta",
+      "cyclomatic_number": 2,
+      "description": "two branch vertices U,V joined by three side paths",
+      "uncoloured_template_automorphism_order": 12
+    }
+  ],
+  "orientation_cores": [
+    {
+      "id": "cycle-S-X",
+      "undirected_core": "cycle",
+      "branch_types_UV": [],
+      "path_event_sequences_U_to_V": [["directed S-to-X side"], ["directed S-to-X side"]],
+      "template_automorphism_order": 2,
+      "minimum_tree_port_subdivisions": 1,
+      "minimal_repair_rule": "subdivide either one of the two S-to-X sides"
+    },
+    {
+      "id": "theta-TT-nested",
+      "undirected_core": "theta",
+      "branch_types_UV": ["T", "T"],
+      "path_event_sequences_U_to_V": [[], ["S", "X"], ["X"]],
+      "template_automorphism_order": 1,
+      "minimum_tree_port_subdivisions": 1,
+      "minimal_repair_rule": "subdivide either one of the two V-to-X segments"
+    },
+    {
+      "id": "theta-TT-separated",
+      "undirected_core": "theta",
+      "branch_types_UV": ["T", "T"],
+      "path_event_sequences_U_to_V": [["S"], ["X"], ["X"]],
+      "template_automorphism_order": 4,
+      "minimum_tree_port_subdivisions": 2,
+      "minimal_repair_rule": "independently choose one U-to-X and one V-to-X segment"
+    },
+    {
+      "id": "theta-TR-nested",
+      "undirected_core": "theta",
+      "branch_types_UV": ["T", "R"],
+      "path_event_sequences_U_to_V": [[], [], ["S", "X"]],
+      "template_automorphism_order": 2,
+      "minimum_tree_port_subdivisions": 2,
+      "minimal_repair_rule": "subdivide one of the two U-to-R sides and the R-to-X segment"
+    },
+    {
+      "id": "theta-TR-separated",
+      "undirected_core": "theta",
+      "branch_types_UV": ["T", "R"],
+      "path_event_sequences_U_to_V": [[], ["S"], ["X"]],
+      "template_automorphism_order": 1,
+      "minimum_tree_port_subdivisions": 2,
+      "minimal_repair_rule": "subdivide either U-to-R or U-to-X, and always subdivide R-to-X"
+    }
+  ],
+  "theta_enumeration_counts": {
+    "raw_valid_orientations_before_isomorphism": 24,
+    "orientation_cores_after_branch_and_path_symmetry": 4
+  },
+  "expansion_rules": [
+    "Subdivide any directed segment by an arbitrary ordered chain of ordinary tree port vertices.",
+    "Every inserted port points by a cut edge to a tree vertex or labelled leaf in a leaf-containing component.",
+    "Choose subdivisions meeting one of the minimal strong-repair sets computed by the verifier.",
+    "Do not leave two distinct core sides as parallel arcs, and do not create an oppositely directed two-cycle.",
+    "Every binary strongly tree-child level-2 blob is obtained uniquely up to core automorphism and contraction of ordinary port chains."
+  ]
+}
