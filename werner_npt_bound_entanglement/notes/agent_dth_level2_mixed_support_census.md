@@ -167,14 +167,85 @@ face.  It does not prove feasibility or positivity of the complete
 constrained lift; it removes the need for a singular-value cutoff or a
 framewise support estimate when that lift is assembled.
 
-## 4. Verification scope
+## 4. Residual bivector-pair symmetry
+
+After partial transpose on the anchored bivector, interchange of the two
+unanchored bivectors remains an ordinary linear involution.  In the ordering
+used in (1), its local source permutation is
+
+\[
+(0,1,2,3,4,5,6)\longmapsto(0,1,4,5,2,3,6),
+\tag{13}
+\]
+
+and on the support target it is
+
+\[
+(0,1,2,3,4)\longmapsto(0,3,4,1,2).
+\tag{14}
+\]
+
+Exact restriction to the rational highest-weight bases gives the source
+traces
+
+\[
+\begin{array}{c|rrrrrrrrrr}
+(p,q)&(5,2)&(6,0)&(3,3)&(4,1)&(1,4)&(2,2)&(3,0)&(0,3)&(1,1)&(0,0)\\ \hline
+\operatorname{Tr}\tau_{2,5}&1&1&0&2&1&0&0&3&0&-1,
+\end{array}
+\tag{15}
+\]
+
+and the target traces
+
+\[
+\begin{array}{c|rrrrrr}
+(p,q)&(4,1)&(2,2)&(3,0)&(0,3)&(1,1)&(0,0)\\ \hline
+\operatorname{Tr}\tau_{1,4}&1&-1&0&2&0&-1.
+\end{array}
+\tag{16}
+\]
+
+The evaluation map intertwines these involutions.  Over the union of all
+three-site highest-weight multiplicity blocks, the exact dimensions of the
+global (+1) source, its support range, and its support kernel are therefore
+
+\[
+\boxed{1,024,363,\qquad4,631,\qquad1,019,732.}
+\tag{17}
+\]
+
+For example, the first number is
+
+\[
+\frac{127^3+7^3}{2},
+\]
+
+because the sum of source multiplicities is (127) and the sum of their
+swap traces is (7).  The range count is
+
+\[
+\frac{21^3+1^3}{2}.
+\]
+
+These are source-union counts, not the dimension of the crossed image of the
+post-Omega holomorphic cone.  The partial-transpose crossing still links the
+two cones and can impose a much smaller effective affine slice.
+
+## 5. Verification scope
 
 The verifier uses only exact rational sparse elimination.  It independently
 constructs every source and target highest-weight vector from the two
 raising equations, evaluates (1), checks all highest-weight ranks, and
 checks (9) on all (3^5) raw target words.
 
-This is an exact local representation theorem.  The remaining global task is
-to combine the crossed (2761)-coordinate operator bridge with the tensor
-product face (11), pair symmetry, the fixed five-replica marginal, and the
-other grouped PPT cuts.
+This is an exact local representation theorem.  For the actual fixed-marginal
+extension problem, the tensor-product face (11) need not be imposed as a
+separate constraint.  The theorem in
+`notes/agent_dth_prolonged_face_automatic.md` shows that, once the fixed
+five-replica marginal is already on its support face, positivity after
+\(\Gamma_A\) forces the prolonged support face automatically.  Operationally,
+the next global task is therefore to combine the crossed
+\(2761\)-coordinate bridge with the fixed marginal and the grouped PPT
+cones.  Equations (9)--(17) remain independent normalization and block-census
+audits of that crossing.

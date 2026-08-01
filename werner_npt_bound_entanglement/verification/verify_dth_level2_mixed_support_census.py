@@ -99,6 +99,100 @@ def sparse_rank(vectors):
     return rank
 
 
+def invert_matrix(matrix):
+    """Exact inverse of a small square Fraction matrix."""
+    size = len(matrix)
+    work = [
+        list(map(F, row)) + [F(i == j) for j in range(size)]
+        for i, row in enumerate(matrix)
+    ]
+    for column in range(size):
+        selected = next(
+            row for row in range(column, size) if work[row][column]
+        )
+        work[column], work[selected] = work[selected], work[column]
+        pivot = work[column][column]
+        work[column] = [value / pivot for value in work[column]]
+        for row in range(size):
+            if row == column:
+                continue
+            coefficient = work[row][column]
+            if coefficient:
+                work[row] = [
+                    value - coefficient * pivot_value
+                    for value, pivot_value in zip(work[row], work[column])
+                ]
+    return tuple(tuple(row[size:]) for row in work)
+
+
+def coordinate_solver(basis):
+    """Return pivot words and an exact inverse for coordinates in ``basis``."""
+    pivot_rows = {}
+    selected_words = []
+    for word in sorted(set().union(*(vector.keys() for vector in basis))):
+        row = {
+            column: vector.get(word, F(0))
+            for column, vector in enumerate(basis)
+            if vector.get(word, F(0))
+        }
+        reduced = dict(row)
+        while reduced:
+            pivot = min(reduced)
+            if pivot not in pivot_rows:
+                coefficient = reduced[pivot]
+                pivot_rows[pivot] = {
+                    key: value / coefficient
+                    for key, value in reduced.items()
+                }
+                selected_words.append(word)
+                break
+            coefficient = reduced[pivot]
+            reduced = add(reduced, pivot_rows[pivot], -coefficient)
+        if len(selected_words) == len(basis):
+            break
+    assert len(selected_words) == len(basis)
+    square = tuple(
+        tuple(vector.get(word, F(0)) for vector in basis)
+        for word in selected_words
+    )
+    return tuple(selected_words), invert_matrix(square)
+
+
+def coordinates(solver, vector):
+    words, inverse = solver
+    values = tuple(vector.get(word, F(0)) for word in words)
+    return tuple(
+        sum(inverse[row][column] * values[column]
+            for column in range(len(values)))
+        for row in range(len(values))
+    )
+
+
+def permute_word_vector(vector, permutation):
+    output = {}
+    for word, coefficient in vector.items():
+        changed = tuple(word[permutation[position]]
+                        for position in range(len(permutation)))
+        output[changed] = output.get(changed, F(0)) + coefficient
+    return clean(output)
+
+
+def restricted_trace(basis, permutation):
+    solver = coordinate_solver(basis)
+    trace = F(0)
+    for column, vector in enumerate(basis):
+        image = permute_word_vector(vector, permutation)
+        recovered = coordinates(solver, image)
+        # Audit that the recovered coordinates reconstruct the entire image,
+        # not just the chosen pivot entries.
+        reconstruction = {}
+        for coefficient, basis_vector in zip(recovered, basis):
+            reconstruction = add(reconstruction, basis_vector, coefficient)
+        assert reconstruction == image
+        trace += recovered[column]
+    return trace
+
+
 def mixed_weight(word, contravariant_legs):
     counts = [0, 0, 0]
     for position, value in enumerate(word):
@@ -230,6 +324,37 @@ def main():
         ranks[weight] = rank
         assert rank == expected_target.get(weight, 0)
 
+    source_pair_swap = (0, 1, 4, 5, 2, 3, 6)
+    target_pair_swap = (0, 3, 4, 1, 2)
+    source_traces = {
+        weight: restricted_trace(basis, source_pair_swap)
+        for weight, basis in source.items()
+    }
+    target_traces = {
+        weight: restricted_trace(basis, target_pair_swap)
+        for weight, basis in target.items()
+    }
+    assert source_traces == {
+        (5, 2): 1,
+        (6, 0): 1,
+        (3, 3): 0,
+        (4, 1): 2,
+        (1, 4): 1,
+        (2, 2): 0,
+        (3, 0): 0,
+        (0, 3): 3,
+        (1, 1): 0,
+        (0, 0): -1,
+    }
+    assert target_traces == {
+        (4, 1): 1,
+        (2, 2): -1,
+        (3, 0): 0,
+        (0, 3): 2,
+        (1, 1): 0,
+        (0, 0): -1,
+    }
+
     # Direct exact audit of E E^* = 3 I on the complete raw target basis.
     for word in product(range(D), repeat=5):
         basis_vector = {word: F(1)}
@@ -242,13 +367,34 @@ def main():
     assert total_rank == 3 ** 5
     assert 3 ** 7 - total_rank == 1944
 
+    # Across the three physical sites, the residual swap A_2 <-> A_3 is the
+    # tensor product of the three local swaps.  These two counts are the exact
+    # dimensions of its +1 source space and its +1 support range in the union
+    # of all local highest-weight multiplicity blocks.
+    source_sum = sum(expected_source.values())
+    source_trace_sum = sum(source_traces.values())
+    target_sum = sum(expected_target.values())
+    target_trace_sum = sum(target_traces.values())
+    pair_plus_source = (source_sum ** 3 + source_trace_sum ** 3) // 2
+    pair_plus_range = (target_sum ** 3 + target_trace_sum ** 3) // 2
+    pair_plus_kernel = pair_plus_source - pair_plus_range
+    assert (source_sum, source_trace_sum) == (127, 7)
+    assert (target_sum, target_trace_sum) == (21, 1)
+    assert (pair_plus_source, pair_plus_range, pair_plus_kernel) == (
+        1024363, 4631, 1019732
+    )
+
     print("exact degree-three mixed-support census passed")
     print("source weights/multiplicities:", expected_source)
     print("target weights/multiplicities:", expected_target)
     print("highest-weight support ranks:", ranks)
+    print("source residual-pair-swap traces:", source_traces)
+    print("target residual-pair-swap traces:", target_traces)
     print("commutant dimensions source/target: 2761 103")
     print("raw rank/kernel: 243 1944")
     print("E E^* = 3 I_243")
+    print("global pair+ source/range/kernel:",
+          pair_plus_source, pair_plus_range, pair_plus_kernel)
 
 
 if __name__ == "__main__":
