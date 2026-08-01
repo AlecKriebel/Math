@@ -99,3 +99,14 @@
   this maximal ideal with the conic prime.  The two primes are comaximal.
   Therefore the steady ideal itself is radical; over the algebraic closure the
   variety is the conic disjoint from 15 reduced isolated points.
+
+## 2026-08-01 16:47 PDT — Publication checkpoint
+
+- The complete package was committed locally as `ba89fcb6` after a final
+  hostile proof audit and exact verifier run.
+- The pre-existing working branch could not be pushed because its unrelated
+  unpublished ancestry contains certificate blobs larger than the remote's
+  object limit.  Those commits and files were not modified or discarded.
+- To publish only this research program, its two dedicated commits were
+  replayed onto the clean remote base and pushed as commit `42ee2ce6` on
+  `codex/weakly-reversible-continuum`.
