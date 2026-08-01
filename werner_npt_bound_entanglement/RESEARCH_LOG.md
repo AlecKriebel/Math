@@ -8714,3 +8714,31 @@ u_1u_1^\dagger\bigr].
   Gamma-A-PPT extension requires positivity of every mixed block, followed
   by the two remaining grouped PPT cut types and exact rational
   reconstruction.
+
+## 2026-08-01 09:30 PDT — Exact local crossings for Gamma-z and Gamma-AA
+
+- Completed exact highest-weight censuses for the two remaining grouped
+  degree-three PPT representatives.  The Gamma-z mixed multiplicities are
+  `(1,5,6,9,24,5,30,26,21)`; the Gamma-AA multiplicities are
+  `(1,3,2,2,12,18,9,33,24,23)`.  In both cases the exact local commutant
+  dimension is `2761`.
+- Proved that the four-replica Gamma-AA census is exactly contragredient to
+  the complementary three-replica Gamma-Az census, matching the full-
+  transpose equivalence of their spectra on a pair-symmetric source.
+- Added exact rational diagram oracles and checked trace and Hilbert--Schmidt
+  identities for the identity, all adjacent `S7` generators, and a
+  seven-cycle under Gamma-z, Gamma-AA, and Gamma-Az.
+- Built the full numerical local crossings.  Their weighted-isometry errors
+  are below `9.1e-15` and trace errors below `3.2e-15`.  The relative
+  Gamma-A to Gamma-Az bridge reconstructs the direct crossing to relative
+  error `3.61e-15`; all its nonzero local Choi blocks have numerical rank at
+  most two.
+- Crossed the round-four Gamma-A-corrected source.  It remains materially
+  NPT under both new cuts: Gamma-z has minimum `-3.48396e-10` in mixed block
+  `(0,5,7)` at cap 500, while the equivalent Gamma-Az complement has minimum
+  `-8.82804e-10` in block `(1,1,9)` at cap 100.  These are numerical defects
+  of that chosen extension, not exact infeasibility of the extension cone.
+- Added `notes/agent_dth_level2_other_ppt_crossings.md`, exact verifiers
+  `verification/verify_dth_level2_other_ppt_censuses.py` and
+  `verification/verify_dth_level2_other_local_crossings.py`, and streamed
+  discovery infrastructure for both crossings and the complement bridge.
