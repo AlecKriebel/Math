@@ -90,3 +90,28 @@ Best-guess completion toward a full resolution: **5%**. The remaining positive
 case includes a middle circumradius shell with nonsmooth diameter endpoints;
 the remaining negative case requires a K5-free graph surviving the new rank
 and cross-block screens.
+
+## 2026-08-01T16:11:35-07:00 — Symmetric-orbit checkpoint
+
+- Proved a conceptual five-coloring theorem for every finite
+  `A_5`-invariant set in the four-dimensional sum-zero representation. The
+  color is the first cyclic minimum-to-ascent coordinate, and an exact weak
+  order verifier checks all ordinary and parity-forced rearrangement cases.
+- Exhaustively generated 133,303 distinct exact signed-permutation point
+  orbits from all at-most-two-generated signed-permutation subgroups and
+  primitive canonical integer seeds of height at most six. Their exact
+  chromatic distribution was 161 one-color, 130,418 two-color, 2,584
+  three-color, and 140 four-color; none required five.
+- Checked 1,560,423 aligned radial two-orbit pairs, including 5,017 exact
+  triple upper-envelope ties, and 1,805 fully tied three-orbit events at the
+  next bounded level. Every surviving graph was at most four-colorable.
+- Eliminated all 4,096 transversals of the signed two-support roots and, by a
+  signed-cycle plus explicit projective coloring argument over
+  `Q(sqrt(5))`, all `2^60` transversals of a 120-vector golden-ratio family.
+- Reran all seven exact verifier modes, including the two approximately
+  22-second large enumerations, with the reported counts reproduced.
+
+Best-guess completion toward a full resolution: **6%**. Full simplex symmetry,
+broad bounded signed orbits, and whole antipodal transversals are now strongly
+disfavored. Partially symmetry-broken subsets and noncanonical multi-orbit
+alignments remain live.

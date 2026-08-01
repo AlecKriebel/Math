@@ -1,0 +1,61 @@
+Route A exact partial triple-layer probe
+Checkpoint: 2026-08-01
+
+No browsing or literature search was used.
+
+Activation pattern
+------------------
+One internal maximum I_A and all cross maxima C_AB,C_AC,C_BC are tied.
+Radii are 1,t,u.  With n_i the squared orbit norms, M_i the within-orbit
+diameter squares, and c_ij the cross minimum inner products:
+
+  M_A = n_A+n_B t^2-2c_AB t
+      = n_A+n_C u^2-2c_AC u
+      = n_B t^2+n_C u^2-2c_BC tu.
+
+  delta_B = c_AB^2-n_B(n_A-M_A)
+  delta_C = c_AC^2-n_C(n_A-M_A)
+  t = (c_AB +/- sqrt(delta_B))/n_B
+  u = (c_AC +/- sqrt(delta_C))/n_C
+
+After substitution, the last equality is
+
+  M_A-2n_A+2c_AB t+2c_AC u-2c_BC tu = 0.
+
+Exact method
+------------
+Squarefree-decompose delta_B and delta_C.  Expand the last expression in the
+Q-basis terms 1, sqrt(p), sqrt(q), sqrt(squarefree(pq)); combine coincident
+terms and require every rational coefficient to vanish.  Determine signs of
+A+B sqrt(p) by direct signs when A,B agree and by comparing A^2 with pB^2
+when they oppose.  This certifies t,u>0 and M_B t^2<=M_A,
+M_C u^2<=M_A exactly.
+
+Distinct canonical orbit directions, seed bound 2
+-------------------------------------------------
+usable noncentral groups:          882
+orbit triples:                  99,621
+algebraic tie incidences:          805
+rejected above upper envelope:     683
+upper-envelope incidences:         122
+active category counts:       {4: 114, 5: 8}
+verified coloring uppers:      {2: 49, 3: 48, 4: 25}
+
+The sole greedy-5 event was an exact three-colorable false alarm.  Its common
+group has order 6 and consists of an optional sign flip on coordinate 1 times
+the cyclic permutation of coordinates 2,3,4.  Seeds:
+
+  A=(0,0,1,2), B=(0,0,0,1), C=(1,1,1,2)
+  (n_A,M_A)=(5,6), (n_B,M_B)=(1,2), (n_C,M_C)=(7,6)
+  c_AB=0, c_AC=3, c_BC=1, t=u=1.
+
+The union has 12 vertices, 30 diameter edges, and exact chromatic number 3.
+
+Repeated-direction extension, seed bound 2
+------------------------------------------
+additional orbit multisets:             84,710
+upper-envelope incidences:              99,606
+active category counts: {4: 24, 5: 69,720, 6: 29,862}
+verified coloring uppers: {2: 82,442, 3: 10,957, 4: 6,207}
+
+Conclusion: no five- or six-chromatic candidate.  Bound 3 was not run.
