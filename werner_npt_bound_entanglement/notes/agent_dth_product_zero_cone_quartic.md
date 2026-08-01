@@ -211,7 +211,7 @@ Along the normalized straight ray,
 \[
 \boxed{
  \mathcal F(z(t))
- ={1\over2}-left[
+ ={1\over2}-\left[
  \sum_{e\in\mathcal E}\alpha_e^4
  +{1\over2}\sum_{e<f}\alpha_e^2\alpha_f^2
  \right]t^4+O(t^6).
