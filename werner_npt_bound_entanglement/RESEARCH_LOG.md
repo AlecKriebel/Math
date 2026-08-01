@@ -7925,3 +7925,29 @@ u_1u_1^\dagger\bigr].
   \((w\otimes w)\otimes z\) vector.  It does not refute DTH and does not
   settle square-zero positivity, unrestricted three-copy positivity, or the
   all-copy Werner problem.
+
+## 2026-08-01 — Complete tripartition-PPT strengthening isolated
+
+- Proved that pair exchange makes the second-bivector partial transpose
+  unitarily equivalent to the existing first-bivector partial transpose.
+  Complementary partial transposes differ by full transpose, which preserves
+  positive semidefiniteness.  Hence \(\Gamma_1\) and \(\Gamma_5\) are the
+  only independent PPT cuts of the physical tripartition \((w):(w):(z)\).
+  Adding final-slot PPT therefore gives the complete tripartition-PPT version
+  of the five-replica relaxation; it still does not impose separability or
+  the missing Veronese--Segre rank-one equations.
+- Computed the final-slot mixed local module exactly.  Its SU(3) labels,
+  multiplicities, and carrier dimensions are
+  \[
+    (00,3,1),\ (03,2,10),\ (11,8,8),\ (22,3,27),\
+    (30,4,10),\ (41,1,35).
+  \]
+  The carrier dimensions sum to 243 and the squared multiplicities sum to
+  103, so \(\Gamma_5\) is another local \(103\times103\) crossing.  Its
+  three-site PSD cone has 216 blocks, total reduced block dimension 9261,
+  and maximum block size 512.
+- A dependency-free rational raising-map verifier and proof note are
+  `verification/verify_dth_gamma5_census.py` and
+  `notes/agent_dth_complete_ppt_cuts.md`.  The finite decision now being run
+  is witness positivity on the simultaneous \(\Gamma_1\)- and
+  \(\Gamma_5\)-PPT cone.
