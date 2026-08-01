@@ -1,4 +1,4 @@
-# Lalonde 20-vertex quantum coloring
+# The quantum chromatic number of the G19 join family
 
 This folder is the self-contained research and publication package resolving
 the exact dichotomy
@@ -67,6 +67,8 @@ The proof has four exact steps:
 - `publication/assumptions_and_analysis.md`: conventions, equality,
   irreducibility, and minimal-dimension analysis.
 - `publication/priority_audit.md`: narrow post-proof literature audit.
+- `publication/reviewer_suggestion_audit.md`: itemized disposition of the
+  post-proof presentation suggestions.
 - `certificate/`: machine-readable exact obstruction certificates.
 - `verification/`: independent standard-library exact replay tools.
 - `src/graph_data.py`: canonical graph data and checksums.

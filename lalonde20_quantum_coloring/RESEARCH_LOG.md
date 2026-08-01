@@ -80,3 +80,21 @@
   resolution. This is not treated as an exhaustive priority guarantee.
 - No external communication was initiated. The next publication action, if
   desired, remains with the human author.
+
+## 2026-08-01T12:15:25-07:00 — adversarial-review presentation revision
+
+- Scrutinized seven post-proof presentation suggestions individually and
+  recorded their disposition in `publication/reviewer_suggestion_audit.md`.
+- Added named authorship and affiliation without inventing a public email;
+  adopted a more precise title; cited the projector/strategy equivalence;
+  expanded the tail-complement and final cross-color inner-product steps; and
+  added foundational and `G_13` references.
+- Renamed the joined family from the overloaded `G_n` to `J_n` inside this
+  note, reserving `G_19` for the fixed base graph.
+- Added an immutable pre-revision commit and both certificate hashes, plus an
+  explicit AI-assistance and non-peer-review disclosure.
+- Deliberately did not add a GitHub Action, following the author's instruction.
+  No workflow files were changed and no individual was contacted.
+- Replayed all three exact verifier commands. Both LaTeX documents compile;
+  the eight-page paper and two-page summary were rendered page by page and
+  visually inspected after correcting the only overfull hash lines.

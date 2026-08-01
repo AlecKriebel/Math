@@ -13,8 +13,9 @@ Spheres*](https://arxiv.org/abs/2606.10872), arXiv:2606.10872v1, submitted
 2026-06-09.
 
 The preprint records the exact graph6 string used here, defines
-$G_n=G_{19}\vee K_{n-3}$, proves the rank-one statement
-$\chi_q^{(1)}(G_n)=n+1$, and explicitly leaves the unrestricted equality as
+$G_n=G_{19}\vee K_{n-3}$ (the family denoted $J_n$ in the present note),
+proves the rank-one statement $\chi_q^{(1)}(G_n)=n+1$, and explicitly leaves
+the unrestricted equality as
 a conjecture. It also records $\chi_q(G_{19})=\chi(G_{19})=4$. These are the
 prior results to which the present theorem should be compared.
 

@@ -15,8 +15,8 @@
 \newcommand{\id}{I}
 \newcommand{\join}{\mathbin{\vee}}
 
-\title{The unrestricted quantum chromatic number of the Lalonde graph joins}
-\author{Independent research draft}
+\title{The quantum chromatic number of the $G_{19}$ join family}
+\author{Alec Kriebel\\{\small Independent Researcher}}
 \date{August 1, 2026}
 
 \begin{document}
@@ -24,12 +24,13 @@
 
 \begin{abstract}
 Let $G_{19}$ be the 19-vertex complex orthogonality graph introduced by
-Lalonde and put $G_n=G_{19}\join K_{n-3}$ for $n\geq3$.  It was known that
-$\chi_q^{(1)}(G_n)=n+1$ and conjectured that the same is true without a rank
-restriction.  We prove the conjecture in the finite-dimensional projector
-model:
+Lalonde and put $J_n=G_{19}\join K_{n-3}$ for $n\geq3$.  Lalonde proved the
+claimed value for color projectors of rank one~\cite[Theorem~1.5]{Lalonde2026}
+and conjectured the same value without a rank restriction
+\cite[discussion following Theorem~1.5]{Lalonde2026}.  We prove that
+conjecture in the finite-dimensional projector model:
 \[
-   \chi_q(G_n)=n+1\qquad(n\geq3).
+   \chi_q(J_n)=n+1\qquad(n\geq3).
 \]
 In particular, adjoining one apex to $G_{19}$ gives a 20-vertex graph $H$
 with $\chi_q(H)=5$.
@@ -64,11 +65,12 @@ The only triangles are
 \[
  T_0=123,\qquad T_1=189,\qquad T_2=345,\qquad T_3=267.
 \]
-For $n\geq3$, define
+Here $\join$ denotes graph join and $K_0$ is the empty graph.  For $n\geq3$,
+define
 \[
-   G_n=G_{19}\join K_{n-3}.
+   J_n=G_{19}\join K_{n-3}.
 \]
-Thus the graph in the question is $H=G_4$, with vertex 20 as the joined
+Thus the graph in the question is $H=J_4$, with vertex 20 as the joined
 apex.
 
 An $m$-coloring in the finite-dimensional projector model is a family of
@@ -82,6 +84,11 @@ such that
 The row orthogonality $P_{v,c}P_{v,c'}=0$ for $c\ne c'$ follows from, and may
 equivalently be included with, the assertion that the row is a projective
 partition of the identity.
+By the structure theorem recorded in~\cite[Theorem~2.19]{Lalonde2026},
+following Cameron--Montanaro--Newman--Severini--Winter~\cite{CameronEtAl2007},
+this projector formulation is equivalent to the standard finite-dimensional
+definition of $\chi_q$ by perfect entangled strategies for the graph-coloring
+game.
 
 \begin{theorem}[Main theorem]\label{thm:main}
 For every $n\geq3$,
@@ -98,7 +105,7 @@ v&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18&19\\ \hline
 \kappa(v)&1&2&3&2&1&3&1&2&3&2&4&3&1&1&2&1&3&3&3.
 \end{array}
 \]
-Giving the $n-3$ joined vertices fresh colors proves $\chi(G_n)\leq n+1$.
+Giving the $n-3$ joined vertices fresh colors proves $\chi(J_n)\leq n+1$.
 The work is to exclude a quantum $n$-coloring.  This also excludes every
 coloring with fewer than $n$ colors, since unused colors may be padded by
 zero projections.
@@ -123,7 +130,7 @@ in $M_d(\C)$ is the identity.
 \end{proof}
 
 \begin{lemma}[Color uniformization]\label{lem:uniform}
-If $G_n$ has a finite-dimensional quantum $n$-coloring, then it has one in a
+If $J_n$ has a finite-dimensional quantum $n$-coloring, then it has one in a
 dimension $D=nr$ for which every projector has the same positive rank $r$.
 \end{lemma}
 
@@ -326,7 +333,11 @@ $N_{17}=M_c^\perp$, $N_{15}=M_c$, $N_{18}=M_c^\perp$,
 $N_{16}=M_c$, and $N_{19}=M_c^\perp$.  The final entry says
 $J_cM_c^\perp=M_c^\perp$.  Because $J_c$ is unitary and $J_c^*=-J_c$,
 this is equivalent to $J_cM_c=M_c$.  The displayed frames are exactly
-\eqref{eq:tail-form}.  Reversing these equalities verifies the converse.
+\eqref{eq:tail-form}.  To make the complement equalities explicit, every
+edge first gives an orthogonality inclusion between two parameter planes.
+Each plane has dimension $r$ in the same $2r$-dimensional space, as does the
+orthogonal complement on the right, so every such inclusion is an equality.
+Reversing these equalities verifies the converse.
 \end{proof}
 
 \begin{remark}
@@ -376,7 +387,7 @@ Compressing \eqref{eq:skew-block} by the two-column frames in
 \[
  \Omega_YM_c\subseteq M_d^\perp,\qquad
  \Omega_ZM_c\subseteq M_d^\perp,\qquad
- \Omega_XM_c\subseteq M_d^\perp.
+ -\Omega_XM_c\subseteq M_d^\perp.
 \]
 Vertices $17,18,19$ give
 \[
@@ -422,7 +433,7 @@ with \eqref{eq:gamma-anti} gives
 We can now finish the proof.
 
 \begin{proof}[Proof of Theorem~\ref{thm:main}]
-Suppose that $G_n$ had a quantum $n$-coloring.  Uniformize it using
+Suppose that $J_n$ had a quantum $n$-coloring.  Uniformize it using
 Lemma~\ref{lem:uniform}, so the physical dimension is $D=nr$ and all ranks
 are $r>0$.  For each color $c$, apply Lemmas~\ref{lem:core} and
 \ref{lem:tail}, and define the physical sector subspace
@@ -431,7 +442,20 @@ are $r>0$.  For each color $c$, apply Lemmas~\ref{lem:core} and
        =W_c(E_{c,\sigma}\oplus E_{c,\sigma}\oplus E_{c,\sigma}).
 \]
 It has dimension $3e_{c,\sigma}$.  Equations
-\eqref{eq:skew-block} and \eqref{eq:sector-map} show that, for fixed
+\eqref{eq:skew-block} and \eqref{eq:sector-map} show the pairwise
+orthogonality directly.  For $c\ne d$, take
+$\xi=(\xi_1,\xi_2,\xi_3)\in E_{c,\sigma}^{\oplus3}$ and
+$\eta=(\eta_1,\eta_2,\eta_3)\in E_{d,\sigma}^{\oplus3}$.  Then
+\begin{align*}
+ \bigl\langle W_d\eta,W_c\xi\bigr\rangle
+ &=\bigl\langle\eta,T_{dc}\xi\bigr\rangle\\
+ &=\bigl\langle\eta_1,X\xi_2+Y\xi_3\bigr\rangle
+   +\bigl\langle\eta_2,-X\xi_1+Z\xi_3\bigr\rangle\\
+ &\qquad
+   +\bigl\langle\eta_3,-Y\xi_1-Z\xi_2\bigr\rangle=0.
+\end{align*}
+Every term vanishes by \eqref{eq:sector-map}: $\eta_j\in E_{d,\sigma}$,
+whereas $X\xi_k,Y\xi_k,Z\xi_k\in E_{d,\sigma}^{\perp}$.  Thus, for fixed
 $\sigma$, the $n$ subspaces $\mathcal H_{c,\sigma}$ are pairwise orthogonal
 in the common $nr$-dimensional physical space.  Therefore
 \[
@@ -457,19 +481,68 @@ SOS classifies the resulting fusion-frame core; and
 Lemma~\ref{lem:tail} treats every higher-rank tail, including non-graph and
 noncommuting branches.  Thus the obstruction applies to arbitrary finite
 dimension, zero projectors, nonuniform original ranks, reducible
-representations, and irreducible representations alike.
+representations, and irreducible representations alike.  The induced subgraph
+on vertices $1,\ldots,13$ is the Man\v{c}inska--Roberson graph $G_{13}$.  Their
+operator propagation proving $\chi_q(G_{13})=4$~\cite{MancinskaRoberson2016}
+is therefore a relevant earlier higher-rank rigidity precedent; the SOS and
+exhaustive invariant-plane tail classification here use the additional
+structure of the present 19-vertex graph.
 
-The machine-readable certificate and verifier distributed with this draft
-replay, using exact rational arithmetic, the free-algebra expansion of
-Lemma~\ref{lem:sos}, its reduction to the graph relations, all six tail
-compressions in Lemma~\ref{lem:cross}, and the final integer dimension
-arithmetic.  No numerical SDP output enters the theorem.
+The short verifier \nolinkurl{verify_obstruction_certificate.py} reads
+\nolinkurl{obstruction_certificate.json} and replays the paper's four-factor
+SOS, neighbor signs, six tail compressions, $J$ intertwining, and terminal
+dimension coefficients.  Independently,
+\nolinkurl{verify_lalonde_uniform_obstruction.py} reads
+\nolinkurl{lalonde_uniform_obstruction.json}, uses a distinct trace-SOS
+formulation, and additionally checks graph6 decoding, the clique-ideal
+witness, and row reduction of the cross-color kernel.  A separate
+\nolinkurl{verify_graph.py} checks the canonical graph data.  All arithmetic
+is exact and rational; no numerical SDP output enters the theorem.
+
+\paragraph{Artifact provenance.}
+The exact algebraic artifacts audited before these presentation revisions are
+frozen in an
+\href{https://github.com/AlecKriebel/Math/tree/b1944a23707eb69d2f9f25eda0bb73c32cd5500a/lalonde20_quantum_coloring}{immutable project snapshot} with full Git object name
+\begin{quote}\small
+\nolinkurl{b1944a23707eb69d2f9f25eda0bb73c32cd5500a}.
+\end{quote}
+Relative to that project root, the certificate payloads have SHA-256 digests
+\begin{quote}\footnotesize
+\nolinkurl{certificate/obstruction_certificate.json}:\\[-0.2ex]
+\nolinkurl{fdf2aff0df2902b08ad0363e6448e299c7b04d1437b329634c9d7a719376c76c}\\
+\nolinkurl{certificate/lalonde_uniform_obstruction.json}:\\[-0.2ex]
+\nolinkurl{e5e0a6126c1adc4088e090ea58ca194f8c2f0ce243f9cd9c4c151329e97a71e1}
+\end{quote}
+The final source commit and rendered-PDF digest are release metadata recorded
+after typesetting is frozen; omitting them here avoids a self-referential
+artifact hash.
+
+\paragraph{Research status and disclosure.}
+This independent research note has not been peer reviewed.  Generative-AI
+systems were used substantively in mathematical exploration, adversarial proof
+auditing, exact-verifier development, literature support, and manuscript
+preparation.  The named author selected the released claims and accepts
+responsibility for the note.  The exact programs replay encoded algebraic
+identities; they are neither foundational proof assistants nor a substitute
+for expert review of the mathematical argument.
 
 \begin{thebibliography}{9}
+\bibitem{CameronEtAl2007}
+P.~J. Cameron, A.~Montanaro, M.~W. Newman, S.~Severini, and A.~Winter,
+\emph{On the quantum chromatic number of a graph},
+Electron. J. Combin. \textbf{14} (2007), no.~1, R81,
+\href{https://doi.org/10.37236/999}{doi:10.37236/999}.
+
 \bibitem{Lalonde2026}
 O.~Lalonde,
 \emph{Quantum colorings of spheres},
 \href{https://arxiv.org/abs/2606.10872}{arXiv:2606.10872v1} (2026).
+
+\bibitem{MancinskaRoberson2016}
+L.~Man\v{c}inska and D.~E. Roberson,
+\emph{Oddities of quantum colorings},
+Baltic J. Modern Computing \textbf{4} (2016), no.~4, 846--859,
+\href{https://doi.org/10.22364/bjmc.2016.4.4.16}{doi:10.22364/bjmc.2016.4.4.16}.
 \end{thebibliography}
 
 \end{document}
