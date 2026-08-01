@@ -1,7 +1,7 @@
 # Lalonde 20-vertex quantum coloring
 
-This folder is the self-contained research and publication workspace for the
-exact dichotomy
+This folder is the self-contained research and publication package resolving
+the exact dichotomy
 
 \[
 \chi_q(G_{19}\vee K_1)\in\{4,5\}.
@@ -27,13 +27,73 @@ The base graph has vertex set `1,...,19` and edge set
 Its graph6 checksum is `RxLAKA@AgYAWDGO?O?@??A?W@@OC@_`.  Vertex 20 is
 adjacent to every base vertex.
 
-No numerical experiment is a resolution.  A final result must be either an
-exact finite-dimensional projector coloring with an exact verifier or a
-dimension-independent impossibility proof with a machine-checkable exact
-certificate.
+## Result
 
-## Current status
+The finite-dimensional unrestricted quantum chromatic number is
 
-Research initialized on 2026-08-01.  See [RESEARCH_LOG.md](RESEARCH_LOG.md)
-for timestamped checkpoints.  No side of the dichotomy has yet been claimed.
+\[
+\boxed{\chi_q(G_{19}\vee K_1)=5}.
+\]
 
+In fact, the proof establishes the full joined family
+
+\[
+\boxed{\chi_q(G_{19}\vee K_{n-3})=n+1\quad(n\ge3)}.
+\]
+
+The argument allows zero projectors, arbitrary original rank profiles,
+noncommuting apex/join projectors, reducible representations, and all finite
+dimensions. It does not use a numerical search result.
+
+The proof has four exact steps:
+
+1. color symmetrization converts any putative $n$-coloring to common rank
+   $r$ in dimension $nr$;
+2. an exact rational SOS rigidifies vertices $1,\ldots,13$ for each fixed
+   color;
+3. every higher-rank tail, including non-transverse branches, is classified
+   by a $J$-invariant $r$-plane in $K\oplus K$;
+4. cross-color orthogonality produces two sector packings whose dimension
+   inequalities sum to the contradiction $3nr\le2nr$.
+
+## Package
+
+- `publication/paper.tex` and `publication/build/paper.pdf`: self-contained
+  theorem and proof.
+- `publication/technical_summary.tex` and
+  `publication/build/technical_summary.pdf`: two-page technical synopsis.
+- `publication/nontechnical_150_words.md`: exactly 150 words.
+- `publication/author_handoff.md`: contribution and novelty handoff.
+- `publication/assumptions_and_analysis.md`: conventions, equality,
+  irreducibility, and minimal-dimension analysis.
+- `publication/priority_audit.md`: narrow post-proof literature audit.
+- `certificate/`: machine-readable exact obstruction certificates.
+- `verification/`: independent standard-library exact replay tools.
+- `src/graph_data.py`: canonical graph data and checksums.
+- `src/search_*.py`: exploratory counterexample searches; these are not used
+  by the proof.
+
+## Exact verification
+
+From this folder, run
+
+```sh
+python3 verification/verify_graph.py
+python3 verification/verify_obstruction_certificate.py
+python3 verification/verify_lalonde_uniform_obstruction.py \
+  certificate/lalonde_uniform_obstruction.json
+```
+
+All verification arithmetic is exact. The two obstruction verifiers use only
+the Python standard library. See `verification/README.md` for their precise
+coverage and the elementary finite-dimensional semantic bridges retained in
+the human proof.
+
+To rebuild the paper with Tectonic:
+
+```sh
+tectonic --outdir publication/build publication/paper.tex
+```
+
+See [RESEARCH_LOG.md](RESEARCH_LOG.md) for timestamped checkpoints and audit
+history.

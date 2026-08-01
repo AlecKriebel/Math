@@ -1,0 +1,175 @@
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=0.68in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\pagestyle{plain}
+
+\begin{document}
+\begin{center}
+{\Large\bfseries Technical summary: the unrestricted Lalonde coloring}\\[-1pt]
+{\small August 1, 2026}
+\end{center}
+\vspace{-6pt}
+\fontsize{10.1}{11.9}\selectfont
+
+\textbf{Result.}
+Let $G_n=G_{19}\vee K_{n-3}$ for $n\ge3$, with $G_{19}$ given by graph6
+string \texttt{RxLAKA@AgYAWDGO?O?@??A?W@@OC@\_}.  In the unrestricted
+finite-dimensional projector model,
+\[
+ \boxed{\chi_q(G_n)=n+1\quad(n\ge3).}
+\]
+In particular, for the one-apex graph $H=G_4$, $\chi_q(H)=5$.  Zero
+projectors, nonuniform original ranks, arbitrary finite dimension, and
+noncommuting projectors are all allowed.
+
+\textbf{Uniformization and clique saturation.}
+Suppose $G_n$ has a quantum $n$-coloring in dimension $d$.  Direct-sum over
+all color permutations:
+\[
+ \widetilde P_{v,c}=\bigoplus_{\pi\in S_n}P_{v,\pi(c)}.
+\]
+The new dimension is $D=n!d=nr$, and every projector has common positive
+rank $r=(n-1)!d$.  Thus uniformity is a theorem-level reduction, not an
+ansatz.  For an $n$-clique, each fixed-color column consists of pairwise
+orthogonal projections.  Its trace is at most $D$; summing over all colors
+and using the row partitions makes all $n$ inequalities equalities.  Hence
+every clique column sums to $I_D$.
+
+Fix a color $c$.  Let $R_c$ be the sum of its projections on the joined
+clique and $Q_c=I-R_c$.  Each of $123$, $189$, $345$, and $267$, joined with
+$K_{n-3}$, is an $n$-clique.  Therefore
+\[
+ \dim Q_c=3r,\qquad \sum_{v\in T_j}P_{v,c}=Q_c.
+\]
+On $Q_c$, write $e_v=P_{v,c}|_{Q_c}$.  These are rank-$r$ projections giving
+a projective orthogonal representation of $G_{19}$.
+
+\textbf{Exact core SOS.}
+Set $X=e_{10}+e_{11}+e_{12}+e_{13}$,
+\[
+\begin{aligned}
+H_1&=e_{10}+e_{11}-e_{12}-e_{13},\\
+H_2&=e_{10}-e_{11}+e_{12}-e_{13},\\
+H_3&=e_{10}-e_{11}-e_{12}+e_{13},
+\end{aligned}
+\qquad
+(d_1,d_2,d_3)=(e_5-e_4,e_7-e_6,e_9-e_8).
+\]
+Projection, edge, and triangle relations give
+\[
+ \sum_i d_i^2=2I,\qquad X^2+\sum_iH_i^2=4X,
+ \qquad\sum_i\{d_i,H_i\}=-4X.
+\]
+The final identity is graph-specific: for each $j=10,\ldots,13$, the
+positive Walsh signs select exactly the three neighbors of $j$ among
+$4,\ldots,9$.  Expanding the following factors now gives the exact rational
+identity
+\[
+ \frac43I-X=\sum_{j=0}^3f_j^*f_j,
+ \quad f_0=\frac12\left(X-\frac43I\right),
+ \quad f_i=\frac23d_i+\frac12H_i.
+\]
+Both sides have trace zero, since $\dim Q_c=3r$ and each $e_j$ has rank $r$.
+Faithfulness of finite matrix trace forces every $f_j=0$.
+
+\newpage
+Put $A=e_4-e_5$, $B=e_6-e_7$, and $C=e_8-e_9$.  Walsh inversion and
+$e_j^2=e_j$ yield
+\[
+ \{B,C\}=A,\qquad\{A,C\}=B,\qquad\{A,B\}=C.
+\]
+Relative to $Q_c=\operatorname{ran}e_1\oplus\operatorname{ran}e_2
+\oplus\operatorname{ran}e_3$, support restrictions put $A,B,C$ on coordinate
+pairs $12,13,23$.  The anticommutator equations kill their diagonal blocks;
+the remaining blocks are unitaries with one cocycle relation.  A
+block-diagonal gauge makes all three blocks $I_r$.  Thus vertices
+$1,\ldots,13$ are exactly the scalar sign-vector core tensored with a
+multiplicity space $K_c\cong\mathbb C^r$.
+
+\textbf{Exhaustive tail.}
+The remaining ranges are encoded by an arbitrary $r$-plane
+$M_c\subset K_c\oplus K_c$ invariant under
+$J_c=\left(\begin{smallmatrix}0&I\\-I&0\end{smallmatrix}\right)$:
+\[
+\begin{array}{c|ccc}
+v&14&15&16\\ \hline
+\operatorname{ran}e_v&(a,0,b)&(0,a,b)&(a,-b,0)
+\end{array}\quad (a,b)\in M_c,
+\]
+\[
+\begin{array}{c|ccc}
+v&17&18&19\\ \hline
+\operatorname{ran}e_v&(x,x,z)&(x,-z,z)&(x,-z,x)
+\end{array}\quad (x,z)\in M_c^\perp.
+\]
+The six core--tail edges supply the displayed ambient frames.  Pulling back
+the six tail--tail edges gives five identity maps and one $-J_c$, proving
+both exhaustiveness and $J_cM_c=M_c$.  This formulation includes non-graph
+planes; $M_c=\operatorname{ran}(I,S_c)$ with $S_c^2=-I$ is only a transverse
+chart.
+
+\textbf{Cross-color sector packing.}
+Choose a core unitary $W_c:K_c^3\to Q_c$.  For $c\ne d$, same-vertex
+orthogonality at vertices $1,\ldots,9$ forces
+\[
+ W_d^*W_c=\begin{pmatrix}0&X&Y\\-X&0&Z\\-Y&-Z&0\end{pmatrix}.
+\]
+The lower blocks are negatives, not adjoints, because the matrix maps the
+$c$ coordinate space to the $d$ coordinate space.  With
+$\Omega_L=\left(\begin{smallmatrix}0&L\\-L&0\end{smallmatrix}\right)$, the
+six tail compressions are
+\[
+ \Omega_Y,\ \Omega_Z,\ -\Omega_X,\
+ \Omega_{Y+Z},\ \Omega_{Y-X},\ \Omega_{Z-X}.
+\]
+Their invertible coefficient transform implies, for $L=X,Y,Z$,
+\[
+ \Omega_LM_c\subseteq M_d^\perp,
+ \qquad \Omega_LM_c^\perp\subseteq M_d.
+\]
+
+Since $M_c$ reduces $J_c$, write
+\[
+ M_c\cap\ker(J_c-\sigma iI)
+   =\{(x,\sigma ix):x\in E_{c,\sigma}\},
+ \quad e_{c,+}+e_{c,-}=r.
+\]
+Each $\Omega_L$ intertwines $J_c$ and $J_d$, so the plane flip says
+$L E_{c,\sigma}\subseteq E_{d,\sigma}^{\perp}$.  For fixed $\sigma$, the
+$n$ physical spaces
+\[
+ W_c(E_{c,\sigma}\oplus E_{c,\sigma}\oplus E_{c,\sigma})
+\]
+are pairwise orthogonal in dimension $nr$.  Hence
+\[
+ 3\sum_c e_{c,+}\le nr,\qquad3\sum_c e_{c,-}\le nr.
+\]
+Adding gives $3nr\le2nr$, impossible for $r>0$.  Thus no quantum
+$n$-coloring exists.  The explicit classical four-coloring of $G_{19}$ and
+fresh colors on the joined clique give the matching $(n+1)$ upper bound.
+
+\textbf{Verification.}
+Two standard-library exact verifiers accompany the proof.  They decode the
+graph6 checksum, replay independent rational noncommutative SOS expansions,
+check the Walsh and skew-block systems, multiply all six tail compressions,
+invert their coefficient transform, and check the symbolic all-$n$
+dimension gap.  No floating-point computation enters the theorem.
+
+\textbf{Scope and relation to prior work.}
+The known rank-one theorem motivates the sign frame, but it is not used as a
+reduction: the SOS proves the module-valued core directly, and the invariant
+plane analysis handles genuinely higher-rank tails.  The contradiction does
+not require irreducibility and therefore excludes every finite-dimensional
+representation of the $n$-coloring relations, reducible or irreducible.  No
+minimal forbidden local dimension exists.  At the valid $(n+1)$-color level,
+the explicit classical coloring is already a dimension-one representation.
+The theorem makes no assertion about infinite-dimensional or
+commuting-operator colorings.
+
+\end{document}

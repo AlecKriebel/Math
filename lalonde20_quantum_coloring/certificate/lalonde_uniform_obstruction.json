@@ -1,0 +1,120 @@
+{
+  "schema": "lalonde-uniform-obstruction-certificate-v1",
+  "claim": {
+    "primary": "chi_q(G_19 join K_1) = 5",
+    "family": "chi_q(G_19 join K_(n-3)) = n+1 for every integer n >= 3",
+    "certificate_kind": "trace-SOS plus exact free-block compression"
+  },
+  "graph": {
+    "vertex_count": 19,
+    "graph6": "RxLAKA@AgYAWDGO?O?@??A?W@@OC@_",
+    "edges": [
+      [1, 2], [1, 3], [1, 8], [1, 9], [1, 15],
+      [2, 3], [2, 6], [2, 7], [2, 14],
+      [3, 4], [3, 5], [3, 16],
+      [4, 5], [4, 12], [4, 13],
+      [5, 10], [5, 11], [5, 17],
+      [6, 7], [6, 11], [6, 13],
+      [7, 10], [7, 12], [7, 19],
+      [8, 9], [8, 11], [8, 12], [8, 18],
+      [9, 10], [9, 13],
+      [14, 17], [14, 18],
+      [15, 17], [15, 19],
+      [16, 18], [16, 19]
+    ],
+    "base_triangles": [[1, 2, 3], [1, 8, 9], [3, 4, 5], [2, 6, 7]],
+    "apex": 20,
+    "apex_neighbors": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+  },
+  "uniformization": {
+    "color_count": 4,
+    "permutation_blocks": 24,
+    "fixed_color_occurrences": 6,
+    "new_dimension_multiple": 24,
+    "uniform_rank_multiple": 6,
+    "corner_dimension_in_rank_units": 3
+  },
+  "all_n": {
+    "domain": "integer n >= 3, original local dimension d >= 1",
+    "factorial_predecessor_symbol": "f=(n-1)!",
+    "factorial_recurrence": "n!=n*f",
+    "uniform_rank_formula": "r=f*d=(n-1)!*d",
+    "symmetrized_dimension_formula": "D=n*f*d=n*r=n!*d",
+    "joined_clique_order": "n-3",
+    "corner_dimension_formula": "D-(n-3)*r=3*r",
+    "sector_sum_formula": "E_+ + E_- = n*r",
+    "sector_bounds": ["3*E_+ <= n*r", "3*E_- <= n*r"],
+    "combined_impossible_inequality": "3*n*r <= 2*n*r"
+  },
+  "core": {
+    "corner_identity": "1_Q",
+    "partitions": [
+      [1, 2, 3],
+      [3, 4, 5],
+      [2, 6, 7],
+      [1, 8, 9]
+    ],
+    "binary_pairs": [
+      {"vertices": [4, 5], "complement_vertex": 3, "letter": "A"},
+      {"vertices": [6, 7], "complement_vertex": 2, "letter": "B"},
+      {"vertices": [8, 9], "complement_vertex": 1, "letter": "C"}
+    ],
+    "sos_coefficient": "3/2",
+    "sos_terms": [
+      {"target": 10, "summands": [5, 7, 9], "walsh_signs": [-1, -1, -1]},
+      {"target": 11, "summands": [5, 6, 8], "walsh_signs": [-1, 1, 1]},
+      {"target": 12, "summands": [4, 7, 8], "walsh_signs": [1, -1, 1]},
+      {"target": 13, "summands": [4, 6, 9], "walsh_signs": [1, 1, -1]}
+    ],
+    "overlap_factorization": [
+      [[4, 5], [6, 7]],
+      [[4, 5], [8, 9]],
+      [[6, 7], [8, 9]]
+    ],
+    "sign_vectors": {
+      "1": [1, 0, 0], "2": [0, 1, 0], "3": [0, 0, 1],
+      "4": [1, 1, 0], "5": [1, -1, 0],
+      "6": [1, 0, 1], "7": [1, 0, -1],
+      "8": [0, 1, 1], "9": [0, 1, -1],
+      "10": [1, 1, 1], "11": [1, 1, -1],
+      "12": [1, -1, 1], "13": [1, -1, -1]
+    }
+  },
+  "cross_tail": {
+    "free_block_generators": ["X", "Y", "Z"],
+    "skew_block_matrix": [
+      [{}, {"X": "1"}, {"Y": "1"}],
+      [{"X": "-1"}, {}, {"Z": "1"}],
+      [{"Y": "-1"}, {"Z": "-1"}, {}]
+    ],
+    "tail_embeddings": {
+      "14": [[1, 0], [0, 0], [0, 1]],
+      "15": [[0, 0], [1, 0], [0, 1]],
+      "16": [[1, 0], [0, -1], [0, 0]],
+      "17": [[1, 0], [1, 0], [0, 1]],
+      "18": [[1, 0], [0, -1], [0, 1]],
+      "19": [[1, 0], [0, -1], [1, 0]]
+    },
+    "tail_parameter_spaces": {
+      "14": "M", "15": "M", "16": "M",
+      "17": "M_perp", "18": "M_perp", "19": "M_perp"
+    },
+    "expected_compression_labels": {
+      "14": {"Y": "1"},
+      "15": {"Z": "1"},
+      "16": {"X": "-1"},
+      "17": {"Y": "1", "Z": "1"},
+      "18": {"Y": "1", "X": "-1"},
+      "19": {"Z": "1", "X": "-1"}
+    },
+    "coefficient_inverse": {
+      "X": ["1/2", "-1/2", "-1/2"],
+      "Y": ["1/2", "1/2", "-1/2"],
+      "Z": ["1/2", "-1/2", "1/2"]
+    },
+    "J": [[0, 1], [-1, 0]],
+    "sector_multiplicity": 3,
+    "physical_dimension_in_rank_units": 4,
+    "sector_count": 2
+  }
+}

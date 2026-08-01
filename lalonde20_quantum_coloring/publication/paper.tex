@@ -1,0 +1,475 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\id}{I}
+\newcommand{\join}{\mathbin{\vee}}
+
+\title{The unrestricted quantum chromatic number of the Lalonde graph joins}
+\author{Independent research draft}
+\date{August 1, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Let $G_{19}$ be the 19-vertex complex orthogonality graph introduced by
+Lalonde and put $G_n=G_{19}\join K_{n-3}$ for $n\geq3$.  It was known that
+$\chi_q^{(1)}(G_n)=n+1$ and conjectured that the same is true without a rank
+restriction.  We prove the conjecture in the finite-dimensional projector
+model:
+\[
+   \chi_q(G_n)=n+1\qquad(n\geq3).
+\]
+In particular, adjoining one apex to $G_{19}$ gives a 20-vertex graph $H$
+with $\chi_q(H)=5$.
+
+The proof first symmetrizes an arbitrary coloring, so that every projector
+has a common rank $r$.  For a fixed color, a rational sum-of-squares identity
+rigidifies vertices $1,\ldots,13$ into a rank-$r$ sign-vector configuration.
+The remaining six subspaces are classified, including all non-transverse
+branches, by an $r$-plane invariant under a canonical complex structure.
+Orthogonality between two colors then preserves the two complex-structure
+sectors while reversing membership in the invariant planes.  The resulting
+sector subspaces are pairwise orthogonal across colors, and their dimensions
+give the impossible inequality $3nr\leq2nr$.  The core sum-of-squares and all
+formal block identities have an exact, standard-library verifier.
+\end{abstract}
+
+\section{Graph, model, and result}
+
+The vertex set of $G_{19}$ is $\{1,\ldots,19\}$, and its edge set is
+\begin{align*}
+E_{19}=\{&12,13,18,19,1\,15,
+23,26,27,2\,14,34,35,3\,16,45,4\,12,4\,13,\\
+&5\,10,5\,11,5\,17,67,6\,11,6\,13,
+7\,10,7\,12,7\,19,89,8\,11,8\,12,8\,18,\\
+&9\,10,9\,13,14\,17,14\,18,15\,17,15\,19,16\,18,16\,19\}.
+\end{align*}
+Here $vw$ denotes the unordered edge $(v,w)$.  Its graph6 representation is
+\begin{center}
+\texttt{RxLAKA@AgYAWDGO?O?@??A?W@@OC@\_}.
+\end{center}
+The only triangles are
+\[
+ T_0=123,\qquad T_1=189,\qquad T_2=345,\qquad T_3=267.
+\]
+For $n\geq3$, define
+\[
+   G_n=G_{19}\join K_{n-3}.
+\]
+Thus the graph in the question is $H=G_4$, with vertex 20 as the joined
+apex.
+
+An $m$-coloring in the finite-dimensional projector model is a family of
+orthogonal projections $P_{v,c}\in M_d(\C)$, with zero projections allowed,
+such that
+\[
+ \sum_{c=1}^mP_{v,c}=\id_d,
+ \qquad
+ P_{v,c}P_{w,c}=0\quad(vw\in E).
+\]
+The row orthogonality $P_{v,c}P_{v,c'}=0$ for $c\ne c'$ follows from, and may
+equivalently be included with, the assertion that the row is a projective
+partition of the identity.
+
+\begin{theorem}[Main theorem]\label{thm:main}
+For every $n\geq3$,
+\[
+       \chi_q(G_{19}\join K_{n-3})=n+1.
+\]
+In particular, $\chi_q(H)=5$.
+\end{theorem}
+
+For the elementary upper bound, $G_{19}$ has the following four-coloring:
+\[
+\begin{array}{c|rrrrrrrrrrrrrrrrrrr}
+v&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18&19\\ \hline
+\kappa(v)&1&2&3&2&1&3&1&2&3&2&4&3&1&1&2&1&3&3&3.
+\end{array}
+\]
+Giving the $n-3$ joined vertices fresh colors proves $\chi(G_n)\leq n+1$.
+The work is to exclude a quantum $n$-coloring.  This also excludes every
+coloring with fewer than $n$ colors, since unused colors may be padded by
+zero projections.
+
+\section{Clique saturation and uniformization}
+
+\begin{lemma}[Clique columns]\label{lem:clique}
+Suppose an $m$-coloring contains an $m$-clique $C$.  Then, for every color
+$c$,
+\[
+        \sum_{v\in C}P_{v,c}=\id_d.
+\]
+Thus the $m\times m$ array $(P_{v,c})_{v\in C,c\in[m]}$ is a magic unitary.
+\end{lemma}
+
+\begin{proof}
+For fixed $c$, the summands are pairwise orthogonal, so their sum is a
+projection of trace at most $d$.  Summing this trace bound over the $m$
+columns gives at most $md$.  The row identities show that the total trace is
+exactly $md$, so equality holds in every column.  A projection of trace $d$
+in $M_d(\C)$ is the identity.
+\end{proof}
+
+\begin{lemma}[Color uniformization]\label{lem:uniform}
+If $G_n$ has a finite-dimensional quantum $n$-coloring, then it has one in a
+dimension $D=nr$ for which every projector has the same positive rank $r$.
+\end{lemma}
+
+\begin{proof}
+Given a coloring in dimension $d$, take its direct sum over the $n!$ color
+permutations:
+\[
+ \widetilde P_{v,c}=\bigoplus_{\pi\in S_n}P_{v,\pi(c)}.
+\]
+This is again a coloring.  Its dimension is $D=n!d$, while
+\[
+ \rank \widetilde P_{v,c}
+  =(n-1)!\sum_{a=1}^n\rank P_{v,a}=(n-1)!d=:r.
+\]
+Hence $D=nr$ and $r>0$.
+\end{proof}
+
+Assume henceforth that such a uniform coloring exists.  Fix a color $c$.
+Let $R_c$ be the sum of the color-$c$ projections on the joined clique
+$K_{n-3}$ and let
+\[
+    Q_c=\id_D-R_c.
+\]
+The joined vertices are pairwise adjacent, so $\rank R_c=(n-3)r$ and
+$\dim Q_c=3r$.  Every old-vertex projection $P_{v,c}$ is supported on $Q_c$.
+Applying Lemma~\ref{lem:clique} to $T_j\join K_{n-3}$ gives
+\begin{equation}\label{eq:triangles}
+       \sum_{v\in T_j}P_{v,c}=Q_c
+       \qquad(j=0,1,2,3).
+\end{equation}
+Thus, on $Q_c$, the fixed-color projections form a uniform rank-$r$
+projective orthogonal representation of $G_{19}$ in dimension $3r$.
+
+\section{Exact fixed-color rigidity}
+
+In this section fix the color and write $e_v=P_{v,c}|_{Q_c}$ and
+$I=I_{Q_c}$.  All traces are the ordinary matrix trace on $Q_c$.
+
+\subsection{A rational core sum of squares}
+
+Put
+\[
+ X=e_{10}+e_{11}+e_{12}+e_{13}
+\]
+and define the three Walsh forms
+\begin{align*}
+ H_1&=e_{10}+e_{11}-e_{12}-e_{13},\\
+ H_2&=e_{10}-e_{11}+e_{12}-e_{13},\\
+ H_3&=e_{10}-e_{11}-e_{12}+e_{13}.
+\end{align*}
+Also put $d_1=e_5-e_4$, $d_2=e_7-e_6$, and $d_3=e_9-e_8$.
+
+\begin{lemma}[Core SOS]\label{lem:sos}
+The defining projection, edge, and triangle relations imply the exact
+identity
+\begin{equation}\label{eq:sos}
+       \frac43I-X=\sum_{j=0}^3 f_j^*f_j,
+\end{equation}
+where all $f_j$ are self-adjoint and
+\[
+ f_0=\frac12\left(X-\frac43I\right),
+ \qquad
+ f_i=\frac23d_i+\frac12H_i\quad(1\leq i\leq3).
+\]
+\end{lemma}
+
+\begin{proof}
+The triangle decompositions and edge zeros give
+\begin{equation}\label{eq:pair-squares}
+ \sum_{i=1}^3d_i^2
+  =(e_4+e_5)+(e_6+e_7)+(e_8+e_9)=2I.
+\end{equation}
+Hadamard cancellation, together with $e_j^2=e_j$, gives
+\begin{equation}\label{eq:walsh-squares}
+       X^2+H_1^2+H_2^2+H_3^2=4X.
+\end{equation}
+Finally,
+\begin{equation}\label{eq:neighbor-anti}
+       \sum_{i=1}^3\{d_i,H_i\}=-4X.
+\end{equation}
+To see the last identity, collect the coefficient of each $e_j$ for
+$j=10,11,12,13$.  The corresponding signed sum of $d_1,d_2,d_3$ is
+$N_j-(2I-N_j)=2N_j-2I$, where $N_j$ is the sum of the three projections among
+$e_4,\ldots,e_9$ adjacent to $j$.  Since $N_je_j=e_jN_j=0$, its
+anticommutator with $e_j$ is $-4e_j$.  Summing over $j$ proves
+\eqref{eq:neighbor-anti}.
+
+Expanding the right side of \eqref{eq:sos} and inserting
+\eqref{eq:pair-squares}--\eqref{eq:neighbor-anti} leaves exactly
+$\frac43I-X$.
+\end{proof}
+
+The two sides of \eqref{eq:sos} have the same trace, namely zero, because
+$\dim Q_c=3r$ and each $e_j$ has rank $r$.  Faithfulness of the matrix trace
+therefore forces every $f_j$ to vanish.  Define
+\[
+       A=e_4-e_5,\qquad B=e_6-e_7,\qquad C=e_8-e_9.
+\]
+Walsh inversion now gives
+\begin{align}
+e_{10}&=\tfrac13(I+A+B+C),&
+e_{11}&=\tfrac13(I+A-B-C),\label{eq:walsh-inverse}\\
+e_{12}&=\tfrac13(I-A+B-C),&
+e_{13}&=\tfrac13(I-A-B+C).\nonumber
+\end{align}
+Moreover,
+\[
+ A^2=I-e_3,\qquad B^2=I-e_2,\qquad C^2=I-e_1,\qquad
+ A^2+B^2+C^2=2I.
+\]
+Inserting \eqref{eq:walsh-inverse} into $e_j^2=e_j$ and separating the four
+Walsh sign patterns yields
+\begin{equation}\label{eq:anticommutators}
+        \{B,C\}=A,\qquad \{A,C\}=B,\qquad \{A,B\}=C.
+\end{equation}
+
+\begin{lemma}[Core normal form]\label{lem:core}
+There is a Hilbert space $K_c$ of dimension $r$ and a unitary
+$W_c:K_c^3\to Q_c$ under which the ranges of $e_1,\ldots,e_{13}$ are
+\begin{align*}
+1&=(I,0,0),&2&=(0,I,0),&3&=(0,0,I),\\
+4&=(I,I,0),&5&=(I,-I,0),\\
+6&=(I,0,I),&7&=(I,0,-I),\\
+8&=(0,I,I),&9&=(0,I,-I),\\
+10&=(I,I,I),&11&=(I,I,-I),\\
+12&=(I,-I,I),&13&=(I,-I,-I).
+\end{align*}
+Here a block row denotes the range of the associated block-column map from
+$K_c$; normalization of the frame is immaterial to its range.
+\end{lemma}
+
+\begin{proof}
+Use $e_1+e_2+e_3=I$ to write $Q_c=K_1\oplus K_2\oplus K_3$, with
+$K_i=\ran e_i$ and $\dim K_i=r$.  The operator $A$ is supported on
+$K_1\oplus K_2$, $B$ on $K_1\oplus K_3$, and $C$ on
+$K_2\oplus K_3$.  In the first relation of \eqref{eq:anticommutators}, the
+$(1,1)$ and $(2,2)$ blocks of $\{B,C\}$ vanish, so the two diagonal blocks of
+$A$ vanish.  Cyclically, all diagonal blocks vanish.  Since
+$A^2=I-e_3$, its $(1,2)$ block is unitary, and similarly for $B,C$.  Thus
+\[
+A=\begin{pmatrix}0&U&0\\U^*&0&0\\0&0&0\end{pmatrix},\quad
+B=\begin{pmatrix}0&0&V\\0&0&0\\V^*&0&0\end{pmatrix},\quad
+C=\begin{pmatrix}0&0&0\\0&0&W\\0&W^*&0\end{pmatrix}.
+\]
+Equation \eqref{eq:anticommutators} gives
+$U=VW^*$, $V=UW$, and $W=U^*V$.  Conjugating by the block-diagonal unitary
+$\operatorname{diag}(I,U^*,V^*)$ makes all three off-diagonal blocks the
+identity.  The binary decompositions and \eqref{eq:walsh-inverse} then give
+the displayed ranges.
+\end{proof}
+
+\subsection{All tail branches}
+
+The tail is not always the graph of an operator; retaining degenerate planes
+is essential.
+
+\begin{lemma}[Tail-plane classification]\label{lem:tail}
+After the normalization in Lemma~\ref{lem:core}, the ranges at vertices
+$14,\ldots,19$ are determined by an $r$-plane
+$M_c\subset K_c\oplus K_c$ satisfying
+\begin{equation}\label{eq:J-invariance}
+       J_cM_c=M_c,\qquad
+       J_c=\begin{pmatrix}0&I\\-I&0\end{pmatrix}.
+\end{equation}
+Explicitly,
+\begin{align}
+14&=\{(a,0,b):(a,b)\in M_c\},&
+15&=\{(0,a,b):(a,b)\in M_c\},\nonumber\\
+16&=\{(a,-b,0):(a,b)\in M_c\},\label{eq:tail-form}\\
+17&=\{(x,x,z):(x,z)\in M_c^\perp\},&
+18&=\{(x,-z,z):(x,z)\in M_c^\perp\},\nonumber\\
+19&=\{(x,-z,x):(x,z)\in M_c^\perp\}.\nonumber
+\end{align}
+Conversely, every $J_c$-invariant $r$-plane gives rank-$r$ subspaces
+satisfying all fixed-color edge relations.
+\end{lemma}
+
+\begin{proof}
+The six core--tail edges $2\,14$, $1\,15$, $3\,16$, $5\,17$, $8\,18$, and
+$7\,19$ place the tail ranges in the images of the following injective
+two-column frames:
+\[
+\begin{array}{c|c@{\qquad}c|c}
+v&F_v(a,b)&v&F_v(a,b)\\ \hline
+14&(a,0,b)&17&(a,a,b)\\
+15&(0,a,b)&18&(a,-b,b)\\
+16&(a,-b,0)&19&(a,-b,a).
+\end{array}
+\]
+Write $N_v\subset K_c^2$ for the $r$-dimensional parameter plane at $v$.
+For the six tail--tail edges, direct pullback gives
+\[
+\begin{array}{c|cccccc}
+vw&14\,17&15\,17&14\,18&16\,18&16\,19&15\,19\\ \hline
+F_v^*F_w&I&I&I&I&I&-J_c.
+\end{array}
+\]
+Put $M_c=N_{14}$.  The first five entries successively give
+$N_{17}=M_c^\perp$, $N_{15}=M_c$, $N_{18}=M_c^\perp$,
+$N_{16}=M_c$, and $N_{19}=M_c^\perp$.  The final entry says
+$J_cM_c^\perp=M_c^\perp$.  Because $J_c$ is unitary and $J_c^*=-J_c$,
+this is equivalent to $J_cM_c=M_c$.  The displayed frames are exactly
+\eqref{eq:tail-form}.  Reversing these equalities verifies the converse.
+\end{proof}
+
+\begin{remark}
+If the first-coordinate projection of $M_c$ is invertible, then
+$M_c=\ran(I,S)$ and \eqref{eq:J-invariance} is $S^2=-I$.  This transverse
+branch recovers the familiar operator-valued normal form.  It is not
+exhaustive.  For instance,
+$M=\operatorname{span}\{(e_1,0),(0,e_1)\}\subset\C^2\oplus\C^2$ is
+$J$-invariant but is not a graph.  Lemma~\ref{lem:tail} includes this branch.
+\end{remark}
+
+\section{Cross-color sector obstruction}
+
+Take distinct colors $c,d$ and use the core isometries from
+Lemma~\ref{lem:core}.  Put
+\[
+       T_{dc}=W_d^*W_c:K_c^3\longrightarrow K_d^3.
+\]
+
+\begin{lemma}[Cross-color block equations]\label{lem:cross}
+There are maps $X,Y,Z:K_c\to K_d$ such that
+\begin{equation}\label{eq:skew-block}
+T_{dc}=\begin{pmatrix}
+0&X&Y\\-X&0&Z\\-Y&-Z&0
+\end{pmatrix}.
+\end{equation}
+For $L:K_c\to K_d$, define
+\[
+        \Omega_L=\begin{pmatrix}0&L\\-L&0\end{pmatrix}.
+\]
+Then, for each $L\in\{X,Y,Z\}$,
+\begin{equation}\label{eq:plane-flip}
+ \Omega_LM_c\subseteq M_d^\perp,
+ \qquad
+ \Omega_LM_c^\perp\subseteq M_d.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Same-vertex orthogonality at vertices $1,2,3$ kills the diagonal blocks of
+$T_{dc}$.  Vertices $4,6,8$ make the corresponding lower block the negative
+of the upper block, giving \eqref{eq:skew-block}.  No adjoints occur here:
+$T_{dc}$ maps the coordinate space for $c$ to the one for $d$.
+
+Compressing \eqref{eq:skew-block} by the two-column frames in
+\eqref{eq:tail-form}, vertices $14,15,16$ give, respectively,
+\[
+ \Omega_YM_c\subseteq M_d^\perp,\qquad
+ \Omega_ZM_c\subseteq M_d^\perp,\qquad
+ \Omega_XM_c\subseteq M_d^\perp.
+\]
+Vertices $17,18,19$ give
+\[
+ \Omega_{Y+Z}M_c^\perp\subseteq M_d,\qquad
+ \Omega_{Y-X}M_c^\perp\subseteq M_d,\qquad
+ \Omega_{Z-X}M_c^\perp\subseteq M_d.
+\]
+The coefficient transform is invertible; for example
+\[
+ 2X=(Y+Z)-(Y-X)-(Z-X),
+\]
+with analogous formulas for $Y,Z$.  This proves \eqref{eq:plane-flip}.
+\end{proof}
+
+Let $\Gamma_c=2P_{M_c}-I$ on $K_c^2$.  Equation
+\eqref{eq:plane-flip} is equivalent to
+\begin{equation}\label{eq:gamma-anti}
+      \Gamma_d\Omega_L=-\Omega_L\Gamma_c
+      \qquad(L=X,Y,Z).
+\end{equation}
+Because $M_c$ reduces the unitary $J_c$, it splits across the $+i$ and $-i$
+eigenspaces of $J_c$.  Using the isometries up to a harmless factor
+\[
+       V_{c,\sigma}(x)=(x,\sigma i x),\qquad \sigma\in\{+,-\},
+\]
+write
+\[
+ M_c\cap\ker(J_c-\sigma iI)=V_{c,\sigma}(E_{c,\sigma}),
+ \qquad e_{c,\sigma}=\dim E_{c,\sigma}.
+\]
+Then
+\begin{equation}\label{eq:sector-rank}
+          e_{c,+}+e_{c,-}=r.
+\end{equation}
+The operator $\Omega_L$ intertwines $J_c$ with $J_d$ and acts within a
+$\sigma$ sector as the nonzero scalar $\sigma i$ times $L$.  Combining this
+with \eqref{eq:gamma-anti} gives
+\begin{equation}\label{eq:sector-map}
+          L E_{c,\sigma}\subseteq E_{d,\sigma}^{\perp}
+          \qquad(c\ne d,\ L=X,Y,Z).
+\end{equation}
+
+We can now finish the proof.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose that $G_n$ had a quantum $n$-coloring.  Uniformize it using
+Lemma~\ref{lem:uniform}, so the physical dimension is $D=nr$ and all ranks
+are $r>0$.  For each color $c$, apply Lemmas~\ref{lem:core} and
+\ref{lem:tail}, and define the physical sector subspace
+\[
+       \mathcal H_{c,\sigma}
+       =W_c(E_{c,\sigma}\oplus E_{c,\sigma}\oplus E_{c,\sigma}).
+\]
+It has dimension $3e_{c,\sigma}$.  Equations
+\eqref{eq:skew-block} and \eqref{eq:sector-map} show that, for fixed
+$\sigma$, the $n$ subspaces $\mathcal H_{c,\sigma}$ are pairwise orthogonal
+in the common $nr$-dimensional physical space.  Therefore
+\[
+       3\sum_{c=1}^n e_{c,+}\leq nr,
+       \qquad
+       3\sum_{c=1}^n e_{c,-}\leq nr.
+\]
+Adding and using \eqref{eq:sector-rank} gives
+\[
+        3nr=3\sum_{c=1}^n(e_{c,+}+e_{c,-})\leq2nr,
+\]
+which is impossible because $n,r>0$.  Hence no quantum $n$-coloring exists.
+The explicit classical $(n+1)$-coloring given in Section 1 proves equality.
+\end{proof}
+
+\section{Relation to the rank-one theorem and exact verification}
+
+The previously known rank-one argument classifies scalar three-dimensional
+orthogonal representations of $G_{19}$.  The proof above does not assume that
+classification and does not assume equal ranks in the original coloring.
+Instead, color symmetrization makes the fixed-color ranks uniform; the core
+SOS classifies the resulting fusion-frame core; and
+Lemma~\ref{lem:tail} treats every higher-rank tail, including non-graph and
+noncommuting branches.  Thus the obstruction applies to arbitrary finite
+dimension, zero projectors, nonuniform original ranks, reducible
+representations, and irreducible representations alike.
+
+The machine-readable certificate and verifier distributed with this draft
+replay, using exact rational arithmetic, the free-algebra expansion of
+Lemma~\ref{lem:sos}, its reduction to the graph relations, all six tail
+compressions in Lemma~\ref{lem:cross}, and the final integer dimension
+arithmetic.  No numerical SDP output enters the theorem.
+
+\begin{thebibliography}{9}
+\bibitem{Lalonde2026}
+O.~Lalonde,
+\emph{Quantum colorings of spheres},
+\href{https://arxiv.org/abs/2606.10872}{arXiv:2606.10872v1} (2026).
+\end{thebibliography}
+
+\end{document}
