@@ -8499,6 +8499,34 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_local_filter_hessian.md` and the exact verifier
   `verification/verify_dth_local_filter_hessian.py`.
 
+## 2026-08-01 08:14 PDT — Complete product zero cone and quartic normal form
+
+- Classified every zero-quadratic direction at the product equality corner,
+  modulo the vanishing weight-one local-unitary directions.
+- With one active weight-two pair, its `2x2` coefficient matrix is arbitrary.
+  With two or three active pairs, every active matrix must be a scaled
+  unitary.  Three active pairs additionally obey the exact holonomy
+
+  \[
+  (Z_{12}^{-1})^T Z_{23}Z_{13}^{-1}\propto
+  \begin{pmatrix}0&1\\-1&0\end{pmatrix}.
+  \]
+
+- Computed the complete straight-ray quartic coefficient.  A single pair
+  gives `-|det Z|^2`.  For compatible scaled-unitary edges
+  `Z_e=alpha_e U_e`, it is
+
+  \[
+  -\sum_e\alpha_e^4-rac12\sum_{e<f}\alpha_e^2\alpha_f^2.
+  \]
+
+- Therefore every multi-pair zero-Hessian ray is strictly quartically
+  decreasing.  The only nonzero directions with zero quadratic and quartic
+  coefficients are single-pair rank-one directions, which are exact
+  physical equality rays.
+- Added `notes/agent_dth_product_zero_cone_quartic.md` and the exact
+  multivariate verifier `verification/verify_dth_product_zero_cone_quartic.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
