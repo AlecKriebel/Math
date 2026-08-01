@@ -7637,42 +7637,49 @@ u_1u_1^\dagger\bigr].
 - Derived the exact coupled multiplicity-block SDP.  Twirling removes all
   coherences between inequivalent local-unitary type triples but retains full
   matrices on equal-type multiplicity spaces.  The holomorphic and mixed
-  one-site commutants both have exact dimension (103); partial transpose is
+  one-site commutants both have exact dimension \(103\); partial transpose is
   an isomorphism between them and the crossing map tensors over the three
-  physical sites.  Raw multiplicity blocks have size at most (216), with
-  (35) holomorphic and (56) mixed type orbits after physical-site
+  physical sites.  Raw multiplicity blocks have size at most \(216\), with
+  \(35\) holomorphic and \(56\) mixed type orbits after physical-site
   averaging.
 - Audited the quadratic support-ideal dual
-  (Y=C_{m supp}^dagger T C_{m supp}).  Its target decomposes locally as
+  \(Y=C_{\rm supp}^\dagger T C_{\rm supp}\).  Its target decomposes locally as
 
   \[
   \mathbf3^{\otimes2}\otimes\bar{\mathbf3}
   =(2,1)\oplus2(1,0)\oplus(0,2),
   \]
-  so the local commutant has dimension (6).  The (216) invariant
-  three-site coefficients reduce to (40) after site and conjugation
+  so the local commutant has dimension \(6\).  The \(216\) invariant
+  three-site coefficients reduce to \(40\) after site and conjugation
   averaging, and exact spectator-wedge Gram elimination reduces these to only
-  (14) effective real corrections.
+  \(14\) effective real corrections.
 - Proved that this quadratic ansatz is not the general support ideal.  Every
   Hermitian operator with zero compression to
-  (L=\ker C_{m supp}) has the affine form
-  (C_{m supp}^dagger R+R^dagger C_{m supp}).  The local equivariant
+  \(L=\ker C_{\rm supp}\) has the affine form
+  \(C_{\rm supp}^\dagger R+R^\dagger C_{\rm supp}\).  The local equivariant
   intertwiner space has dimension
-  (6\cdot1+6\cdot2+5\cdot1=23), hence its site-symmetric three-site part has
-  complex dimension (\binom{25}{3}=2300) before the conjugation reality
+  \(6\cdot1+6\cdot2+5\cdot1=23\), hence its site-symmetric three-site part has
+  complex dimension \(\binom{25}{3}=2300\) before the conjugation reality
   reduction.
 - Established an exact no-go certificate for the quadratic ansatz on the
   canonical seven-dimensional
-  ([4,1]\otimes[4,1]\otimes[3,2]) multiplicity carrier.  A rational
-  rank-six matrix (H=BGB^{\mathsf T}\succeq0) annihilates all fourteen
+  \([4,1]\otimes[4,1]\otimes[3,2]\) multiplicity carrier.  A rational
+  rank-six matrix \(H=BGB^{\mathsf T}\succeq0\) annihilates all fourteen
   correction matrices, while
 
   \[
   \operatorname{Tr}(H Q)=-\frac{44943}{4096000}<0.
   \]
-  Hence no invariant (C_{m supp}^dagger T C_{m supp}) correction can
+  Hence no invariant \(C_{\rm supp}^\dagger T C_{\rm supp}\) correction can
   repair even this one negative carrier.  The full affine cross terms, a
-  positive (L)-block, or another mechanism are provably necessary.
+  positive \(L\)-block, or another mechanism are provably necessary.
+- Conversely, proved by exact adjoint duality that the full affine ideal is
+  surjective on every individually tested carrier whose support map has full
+  rank.  If \(\Phi(E)=C_{\rm supp}\Theta_1(E)\), then the one-sided affine
+  pullback is \(\Phi^\dagger\).  Injectivity of \(\Phi\) therefore makes
+  \(C_{\rm supp}^\dagger R+R^\dagger C_{\rm supp}\) span every Hermitian
+  correction on that carrier.  What remains is the compatibility of one
+  globally equivariant \(R\) across all carrier/isotypic components.
 - This is a proof-complexity barrier, not a negative corrected pseudomoment
   and not a physical DTH counterexample.  The full affine/mixed-PPT block
   decision remains open.

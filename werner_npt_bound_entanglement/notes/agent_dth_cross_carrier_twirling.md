@@ -743,3 +743,44 @@ DTH counterexample.  It proves that a support-ideal certificate must use the
 affine cross terms (32), a positive \(L\)-block, or a different mechanism.
 The exact checker is
 `verification/agent_dth_quadratic_support_dual_no_go.py`.
+
+There is also a clean exact reason that the full affine terms have enough
+freedom on this individual carrier.  Define
+
+\[
+ \Phi:\operatorname{End}(\mathscr B_7)\longrightarrow
+ \operatorname{Hom}(\widehat{\mathscr B},\mathscr T),
+ \qquad
+ \Phi(E)=C\Theta_1(E),
+\]
+
+where \(\mathscr B_7\) is the seven-dimensional carrier and
+\(\mathscr T\) the support target.  The established exact support-rank
+calculation says that \(\Phi\) is injective.  For every \(E\) and \(R\),
+self-adjointness of partial transpose gives
+
+\[
+ \left\langle E,
+ P_{\mathscr B_7}\Theta_1(C^\dagger R)P_{\mathscr B_7}
+ \right\rangle_{\rm HS}
+ =\langle C\Theta_1(E),R\rangle_{\rm HS}.
+\tag{43}
+\]
+
+Thus the one-sided affine pullback in (43) is exactly \(\Phi^\dagger\).
+Injectivity of \(\Phi\) implies surjectivity of \(\Phi^\dagger\): its range
+has dimension equal to the rank of \(\Phi\), namely \(7^2\).  Given an
+arbitrary Hermitian \(A\) on the carrier, choose \(R\) with
+\(\Phi^\dagger(R)=A/2\).  Then
+
+\[
+ P_{\mathscr B_7}\Theta_1(C^\dagger R+R^\dagger C)
+ P_{\mathscr B_7}=A.
+\tag{44}
+\]
+
+Therefore the full affine ideal can repair an arbitrary Hermitian matrix on
+this carrier.  The same conclusion applies separately to every carrier with
+full support-map rank in the exact census.  It does **not** yet give one
+globally equivariant \(R\) that repairs all isotypic components
+simultaneously; that compatibility is the remaining dual block problem.

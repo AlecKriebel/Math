@@ -174,6 +174,9 @@ def main():
     _, _, size, inertia, good_basis = census.block_data(shapes, bases)
     assert size == 7 and inertia == (6, 1, 0)
     wedge_basis = [census.wedge_coordinates(vector) for vector in good_basis]
+    # Injectivity of Phi also certifies surjectivity of the full affine
+    # pullback Phi^dagger on this carrier.
+    assert census.support_rank(good_basis)[0] == size**2
 
     witness = [
         [
@@ -244,6 +247,7 @@ def main():
     print("effective corrections annihilated:", len(corrections))
     print("separator rank: 6")
     print("separator/witness pairing:", witness_pairing)
+    print("full affine pullback rank:", size**2, "(surjective on the carrier)")
 
 
 if __name__ == "__main__":
