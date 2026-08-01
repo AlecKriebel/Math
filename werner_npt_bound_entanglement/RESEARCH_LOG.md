@@ -8458,6 +8458,28 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_equal_marginal_orthogonality_filter.md` and
   `verification/verify_dth_equal_marginal_orthogonality_filter.py`.
 
+## 2026-08-01 07:38 PDT — Nonsmooth Ky--Fan purity threshold
+
+- Treated exactly the locus where the fourth and fifth squared singular
+  values meet, equivalently `lambda_2=lambda_3` in the paired skew
+  spectrum.
+- Combining `lambda_1<=1/6`, the violation inequality, trace normalization,
+  and convex equalization of the last ten pair values gives
+
+  \[
+  \operatorname{Tr}(D_z^*D_z)^2>{11\over124}.
+  \]
+
+- The output-purity identity therefore forces
+
+  \[
+  P_{\rm loc}>{57\over31}
+  \]
+
+  at every nonsmooth strict violation.
+- Added `notes/agent_dth_nonsmooth_purity_filter.md` and
+  `verification/verify_dth_nonsmooth_purity_filter.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
