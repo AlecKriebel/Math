@@ -8120,3 +8120,32 @@ u_1u_1^\dagger\bigr].
   exhaustively checks the Hilbert--Schmidt adjoint identity on
   (S_7\times S_5), trace preservation, and the factor
   (3^6=27^2=729).
+
+## 2026-08-01 05:40 PDT — Exact degree-three Grassmann block census
+
+- Quotiented the degree-three Pluecker ideal exactly and decomposed
+  (S_{(3,3)}((\mathbb C^3)^{\otimes3})\otimes(\mathbb C^3)^{\otimes3})
+  under local qutrit Schur--Weyl symmetry.  Of 512 ordered local shape
+  triples, 487 are active.  Their reduced multiplicity-rank sum is 14,572,
+  with 526,070 real-symmetric invariant coordinates; the unreduced source
+  dimension is 80,800,902.
+- Proved the prolonged holomorphic Omega map is surjective onto
+  (S_{(2,2)}H): nonisotropic decomposable bivectors form a nonempty
+  Zariski-open subset of the irreducible Grassmann cone, their squares span,
+  and each square is obtained after choosing (z) with nonzero Omega.
+  The exact output reduced rank is 61 across 39 blocks.
+- After Omega, the source has reduced rank 14,511, 519,434
+  real-symmetric coordinates, and full dimension 80,756,676.  The exact
+  dimension loss 44,226 agrees independently with
+  \(\dim S_{(2,2)}(\mathbb C^{27})\).
+- Computed the full (S_7\downarrow S_5\times S_2) two-box branching table.
+  The removed global bivector pair permits precisely channel triples with an
+  odd number of vertical strips.
+- The worst five-replica output sector, local type
+  ((2,2,1)^{\otimes3}), is reachable from only 23 post-Omega PSD source
+  blocks, of total reduced rank 2,530 and 162,213 symmetric variables, into
+  a 10-dimensional target block.  This is now the smallest decisive fixed
+  extension test; infeasibility here alone excludes a degree-three positive
+  Grassmann extension of the exact obstruction.
+- Added `notes/agent_dth_level2_s7_census.md` and the dependency-free exact
+  verifier `verification/verify_dth_level2_s7_census.py`.
