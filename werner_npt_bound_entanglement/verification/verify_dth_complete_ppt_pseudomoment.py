@@ -5,8 +5,9 @@ The certificate is a real local-unitary-invariant five-replica moment on
 
     (Lambda^2 H)_{12} : (Lambda^2 H)_{34} : H_5.
 
-It obeys the complete first-level Pluecker, support, and Omega equations.
-This verifier proves, using exact rational arithmetic, that
+It obeys the complete first-level density-moment Pluecker, support, and
+Omega constraints.  This verifier proves, using exact rational arithmetic,
+that
 
 * the holomorphic moment is positive definite on its 768-dimensional face;
 * its minimal-DTH witness pairing is strictly negative;
@@ -17,7 +18,7 @@ This verifier proves, using exact rational arithmetic, that
 
 Pair exchange identifies Gamma_{12} and Gamma_{34}; complementary partial
 transposes differ by full transpose.  The two displayed PPT checks therefore
-cover every cut of the physical tripartition.  The result is an exact
+cover every cut of the grouped moment tripartition.  The result is an exact
 pseudomoment obstruction to this strengthened first lift.  It is not a
 rank-one Veronese--Segre point and is not a physical DTH counterexample.
 """

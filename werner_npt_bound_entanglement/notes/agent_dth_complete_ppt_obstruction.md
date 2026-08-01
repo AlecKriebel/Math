@@ -9,10 +9,11 @@ Let
  \qquad \mathcal H=(\mathbb C^3)^{\otimes3},
 \]
 
-and impose the complete first-level homogeneous DTH equations: the first
-Pluecker equation, the lifted support equation \(W^\dagger z=0\), and the
-lifted incidence equation \(\operatorname{Tr}(D_zW)=0\).  Regard the three
-physical factors of this lift as
+and impose the complete first-level density-moment constraints: the first
+Pluecker equation, the corrected density-level support constraint induced
+by \(W^\dagger z=0\) after conjugation, and the lifted incidence constraint
+induced by \(\operatorname{Tr}(D_zW)=0\).  Regard the three grouped moment
+factors of this lift as
 
 \[
  \mathcal A=(\wedge^2\mathcal H)_{12},\qquad
@@ -25,6 +26,9 @@ There is an explicit rational, local-unitary-invariant Hermitian moment
 
 \[
  R\succeq0,\qquad R^{\Gamma_{\mathcal A}}\succeq0,
+ \qquad
+ \operatorname{ran}(R^{\Gamma_{\mathcal A}})
+ \subseteq\ker\mathcal C_{\rm supp},
  \qquad R^{\Gamma_{\mathcal C}}\succeq0,
 \]
 
@@ -34,9 +38,10 @@ but
  \operatorname{Tr}(R\widetilde{\mathcal O}_0)<0.
 \]
 
-All inequalities are certified over \(\mathbb Q\).  Since the first two
-bivector factors are exchange symmetric, these two partial-transpose tests
-imply positivity under every partial transpose of the tripartition
+All inequalities and the range inclusion are certified over \(\mathbb Q\).
+Since the first two bivector grouped moment factors are exchange symmetric,
+these two partial-transpose tests imply positivity under every partial
+transpose of the tripartition
 \(\mathcal A:\mathcal B:\mathcal C\).
 
 Consequently, even the complete-tripartition-PPT strengthening of the
@@ -124,14 +129,16 @@ certificate gives
 
 ## Why these are all PPT cuts
 
-The physical monomial is
+The physical monomial motivating the lift is
 
 \[
- h(w,z)=w_{12}\otimes w_{34}\otimes z_5,
+ h(w,z)=w_{12}\otimes w_{34}\otimes z_5.
 \]
 
-so its moment is invariant under the real pair exchange
-\(S_{\mathcal A\mathcal B}=(13)(24)\).  Directly on matrix units,
+The holomorphic support is contained in the positive eigenspace of the real
+pair exchange \(S_{\mathcal A\mathcal B}=(13)(24)\).  The candidate is
+supported there and is therefore pair-exchange invariant.  Directly on
+matrix units,
 
 \[
  S_{\mathcal A\mathcal B}R^{\Gamma_{\mathcal A}}
@@ -178,6 +185,9 @@ Run
 python3 verification/verify_dth_complete_ppt_pseudomoment.py
 ```
 
+The verifier is deterministic and exact, but it uses NumPy and SymPy for
+integer/rational block orchestration; it is not dependency-free.
+
 The four deterministic artifacts and SHA-256 hashes are
 
 ```text
@@ -202,7 +212,7 @@ a69b3868fc0ae9e5098a8e54f5221a8a8f8b1f9b63485dfcfc0bc87161cbee77
 
 The first constrained Pluecker lift already failed without PPT.  The theorem
 above shows that the failure survives the strongest PPT condition intrinsic
-to the physical tripartition.  No further partial-transpose positivity
+to the grouped moment tripartition.  No further partial-transpose positivity
 constraint at this grouped level can close the proof.  A successful DTH
 proof must add a genuinely rank-one Veronese--Segre relation, a higher
 Pluecker prolongation, or direct critical-point geometry on the physical

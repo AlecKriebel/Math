@@ -8013,9 +8013,10 @@ u_1u_1^\dagger\bigr].
 
 - Completed the finite constrained five-replica decision requested at the
   cloud checkpoint.  There is an explicit rational local-unitary-invariant
-  moment which obeys the first Pluecker, support, and Omega equations, is
-  positive on the holomorphic face, is PPT across every cut of the physical
-  grouping
+  moment which obeys the first Pluecker constraint and the corrected
+  density-level support and Omega constraints, is positive on the
+  holomorphic face, and is PPT across every cut of the grouped moment
+  factors
   \((\wedge^2\mathcal H)_{12}:(\wedge^2\mathcal H)_{34}:\mathcal H_5\),
   and nevertheless has strictly negative minimal-DTH witness pairing.
 - The exact source has SHA-256
@@ -8050,7 +8051,7 @@ u_1u_1^\dagger\bigr].
 - Pair exchange identifies the two bivector partial transposes, while a
   complementary partial transpose differs from the remaining one by full
   transpose.  Thus the two independently certified cuts are all PPT cuts of
-  the physical three-factor grouping.  This statement does not assert PPT
+  the grouped three-factor moment space.  This statement does not assert PPT
   under each of the five replica transposes separately.
 - The exact theorem, artifacts, and end-to-end verifier are in
   `notes/agent_dth_complete_ppt_obstruction.md`,
