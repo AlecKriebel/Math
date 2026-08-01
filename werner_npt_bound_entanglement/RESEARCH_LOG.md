@@ -7951,3 +7951,30 @@ u_1u_1^\dagger\bigr].
   `notes/agent_dth_complete_ppt_cuts.md`.  The finite decision now being run
   is witness positivity on the simultaneous \(\Gamma_1\)- and
   \(\Gamma_5\)-PPT cone.
+
+## 2026-08-01 — Numerical Gamma5 facial reduction isolated
+
+- An objective-free two-PPT feasibility point converged to residuals below
+  \(2\times10^{-11}\).  It is numerically full rank on the 768-dimensional
+  holomorphic support and the exact 2266-dimensional Gamma1 product face,
+  while its Gamma5 image has rank 751 across 188 blocks.  The spectral gap
+  between the proposed kernel and range is larger than ten orders of
+  magnitude: at the export checkpoint the largest kernel eigenvalue is
+  \(4.375\times10^{-19}\) and the smallest positive eigenvalue is
+  \(1.783\times10^{-8}\).
+- Solved the homogeneous dual facial problem numerically.  A Gamma5 operator
+  positive definite on the full 8510-dimensional complementary kernel, plus
+  a Gamma1 affine face multiplier, cancels identically on the holomorphic
+  support to residual \(7.12\times10^{-14}\).  The Gamma1 compression and
+  Gamma5 face leakage are \(3.61\times10^{-14}\) and
+  \(5.20\times10^{-14}\), respectively.  The Gamma5 normal has minimum
+  eigenvalue \(7.60014\times10^{-8}\) on its face and is active in every
+  block.
+- The normal is scalar on 197 of 216 Gamma5 kernel blocks.  Its only
+  nonscalar blocks are 19 site permutations of six displayed block types,
+  recorded in `notes/agent_dth_two_ppt_dual_face.md`.  This reduces exact
+  reconstruction to a small exceptional representation list.
+- This is a numerical facial theorem candidate, not yet an exact certificate
+  and not a proof of DTH.  Exact reconstruction of the rank-751 face and its
+  exposing normal is in progress; only then should the objective dual be
+  solved on the reduced cone.
