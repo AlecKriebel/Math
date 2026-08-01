@@ -8233,3 +8233,37 @@ u_1u_1^\dagger\bigr].
   `verification/verify_dth_one_site_factor_equality.py`.  The remaining
   direct gap is to prove that a global maximizer at or above (1/8) must
   enter this flagged boundary, or to find an interior counterexample.
+
+## 2026-08-01 06:05 PDT — Complete deficient-support equality classification
+
+- Classified equality in the sharp double-Hodge Ky--Fan-two inequality.
+  For (X\in M_3),
+
+  \[
+  \lambda_1(\mathscr D_X^\dagger\mathscr D_X)
+  +\lambda_2(\mathscr D_X^\dagger\mathscr D_X)
+  \le\frac12\|X\|_2^2,
+  \]
+
+  with equality exactly when \(\operatorname{rank}X\le2\).
+- Determined the equality spaces.  Two rank-two matrices have a common
+  two-dimensional top space only when they are proportional.  Two rank-one
+  matrices have such a common space only when they share a left or right
+  factor.  A rank-two/rank-one pair cannot have a common top two-plane.
+- Applied this to the exact deficient-site Hodge recursion.  If any
+  one-site marginal of (z) has rank at most two and the Ky--Fan-four
+  inequality is an equality, then
+
+  \[
+  z=a\otimes\xi,
+  \qquad \operatorname{SchmidtRank}(\xi)\le2
+  \]
+
+  at some site.  Hence every equality point on the solved deficient-support
+  boundary is one of the flagged one-site-factor points from the preceding
+  checkpoint.
+- The remaining equality/violation problem is entirely on the locus where
+  all three one-site marginals of (z) are positive definite.  Added
+  `notes/agent_dth_deficient_equality_classification.md` and the independent
+  rational audit
+  `verification/verify_dth_deficient_equality_classification.py`.
