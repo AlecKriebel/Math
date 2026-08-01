@@ -184,14 +184,20 @@ Nevertheless its lower second-blow-up value obeys
 
 #### Proof
 
+First take the exact quadratic pencil
+
+\[
+ z_2(t)=z_0+t\delta+t^2\eta.
+\]
+
 Write
 
 \[
- S(t)=\widehat D_{z(t)}^\dagger\widehat D_{z(t)}
-      =S_0+tS_1+t^2S_2+t^3S_3+t^4S_4+o(t^4)
+ S(t)=\widehat D_{z_2(t)}^\dagger\widehat D_{z_2(t)}
+      =S_0+tS_1+t^2S_2+t^3S_3+t^4S_4.
 \]
 
-and split the space into the eight-dimensional one-eigenspace \(P_0\) of
+Split the space into the eight-dimensional one-eigenspace \(P_0\) of
 \(S_0\) and its complement.  Eliminating the complement gives
 
 \[
@@ -205,7 +211,9 @@ and split the space into the eight-dimensional one-eigenspace \(P_0\) of
 \]
 
 where \(a_j=P_0S_jP_0\), \(b_j=P_0S_j(1-P_0)\), and
-\(c_2=(1-P_0)S_2(1-P_0)\).  Let \(R\) be the four-dimensional top
+\(c_2=(1-P_0)S_2(1-P_0)\).  The same occupancy check used below gives
+\(P_0S_1P_0=(1-P_0)S_1(1-P_0)=0\), which is why no first-order
+diagonal block occurs in (13).  Let \(R\) be the four-dimensional top
 projector of \(H_2\), \(L=P_0-R\), and let \(H_2^+\) be the inverse of
 \(H_2|_R\), extended by zero.  Direct expansion of the cluster trace gives
 
@@ -286,6 +294,40 @@ singular values of \(Z\).  For audit purposes, if the nonzero spectrum of
 These rational projector formulas verify positivity without choosing
 algebraic eigenvectors.  Only the strict value (15), not a universal
 multi-pair Gram spectrum, is used below.
+
+We now justify that the unspecified remainder in (7) does not enter the
+answer.  The complement of the eight-dimensional cluster is separated by
+a fixed gap.  Its Riesz projector and corresponding finite Feshbach matrix
+are therefore real analytic in \((t,v)\), uniformly for \(v\) in a compact
+set.  At an isolated four-dimensional cutoff this gives the uniform
+straight-pencil expansion
+
+\[
+ \Delta(z_0+tv)=8t^2q_2(v)+t^4k_4(v)+O(t^5),
+\tag{16b}
+\]
+
+where \(k_4\) is continuous and \(k_4(\delta)=q_4(\delta)\).  For the
+path (7), write
+
+\[
+ z(t)=z_0+t v(t),\qquad v(t)=\delta+t\eta+o(t).
+\]
+
+The isolated-cutoff function \(q_2\) is real analytic near \(\delta\).
+It is globally nonnegative and vanishes at \(\delta\), so its first
+derivative there is zero.  Taylor's formula and the calculation above give
+
+\[
+ 8q_2(v(t))
+ =t^2\eta_{\mathbb R}^{\mathsf T}G_\delta
+       \eta_{\mathbb R}+o(t^2).
+\]
+
+Substitution in (16b) proves (8) for the stated \(o(t^2)\) path.  Thus the
+coefficient computation may legitimately be made on the exact quadratic
+pencil; an \(o(t^2)\) term is never expanded as though it were
+\(o(t^4)\).
 
 Here is an exact finite certificate for the amplitude independence in
 (16).  By homogeneity and interchange of the two singular axes, take the
@@ -402,16 +444,27 @@ projector \(P_n\) attaining the variational maximum for
 \(P_n\to P\).  The order-two variational problem implies that \(P\)
 maximizes \(\operatorname{Tr}(PH(\delta))\).
 
-Subtracting the nonnegative leading deficit gives
+Put
+
+\[
+ d_n=\max_{Q^2=Q=Q^\dagger,\ \operatorname{Tr}Q=4}
+          \operatorname{Tr}(QH(\delta_n))
+          -\operatorname{Tr}(P_nH(\delta_n))\ge0.
+\]
+
+The variational expansion gives
 
 \[
  {\Delta(z_0+h_n)\over r_n^4}
- ={8q_2(\delta_n)\over r_n^2}+J(\delta_n,P_n)+o(1),
+ ={8q_2(\delta_n)\over r_n^2}
+   +{d_n\over r_n^2}+J(\delta_n,P_n)+o(1),
 \tag{20a}
 \]
 
 where \(J\) is the continuous fourth deficit obtained from (13)--(14).
-The first term on the right is nonnegative.  At every zero-cone point
+The first two terms on the right are nonnegative.  The \(d_n\) term is
+essential bookkeeping: \(P_n\) maximizes the full reduced operator, not
+necessarily \(H(\delta_n)\) by itself.  At every zero-cone point
 other than a scaled-unitary single pair, the maximizing four-space is the
 isolated space used in Lemma 1, so
 
@@ -485,85 +538,86 @@ on the third site fixes \(z_0+x\) and multiplies \(y\) by
 \(e^{i\theta}\).  Invariance of \(\Delta\) kills every term linear in
 \(y\).
 
-Put \(r=\|x\|\), write \(u=\|y\|\), and put \(Z=x/r\).  Because \(Z\) stays close to a
-rank-one single-pair matrix, it stays a fixed distance from the
-scaled-unitary tie and from every multi-pair zero-cone branch.  The explicit
-zero-cone classification makes this quantitative: in a closed sufficiently
-small neighborhood of \(|110\rangle\), a zero of \(q_2(Z+w)\) with
-\(w\in L_{12}^\perp\) would have two active pairs, which would force the
-same-pair matrix \(Z\) to be a scaled unitary.  This is impossible in that
-neighborhood, so the only zero is \(w=0\).  Moreover (14a) and (16) give
-the uniform Taylor formula
+Put \(r=\|x\|\), \(Z=x/r\), and \(w=y/r\).  We prove one uniform analytic
+estimate; no division into rates relative to \(r^2\) is needed.  Set
 
 \[
- 8q_2(Z+w)=w_{\mathbb R}^{\mathsf T}G_Zw_{\mathbb R}
-            +O(\|w\|^3),
- \qquad G_Z\big|_{L_{12}^\perp}\succeq2I.
+ S(r,v)=\widehat D_{z_0+rv}^{\dagger}
+        \widehat D_{z_0+rv}.
 \]
 
-The coefficients and the remainder are continuous on the closed
-single-pair neighborhood.  Shrinking it until the remainder is at most
-\(\|w\|^2\) gives constants
-\(c_0,C_0>0\) such that
+For \(r\), \(Z-|110\rangle\), and \(w\) small, the eight eigenvalues near
+one are separated from the other nineteen by a fixed contour.  Its Riesz
+projector \(P(r,v)\) is real analytic.  The direct-rotation unitary
 
 \[
- 8q_2(Z+w)\ge c_0\|w\|^2
- \quad(w\in L_{12}^\perp,\ \|w\|<\epsilon),
- \qquad
- 0\le\Delta(z_0+x)\le C_0r^4.
+ U=(PP_0+(I-P)(I-P_0))
+       \bigl(I-(P-P_0)^2\bigr)^{-1/2}
+\]
+
+is defined by the convergent inverse-square-root series, is real analytic,
+and maps \(P_0\) onto \(P\).  Thus
+
+\[
+ A(r,v)=P_0U^\dagger S(r,v)UP_0
+\]
+
+is an analytic eight-dimensional representative of the cluster.  We have
+\(A(0,v)=I\).  Also \(P_0S_1(v)P_0=0\), while differentiating the direct
+rotation contributes a commutator with \(S_0=P_0\), whose \(P_0\)-diagonal
+block is zero.  Hence \(\partial_rA(0,v)=0\), and coefficientwise analytic
+division gives
+
+\[
+ A(r,v)=I+r^2B(r,v)
 \tag{23a}
 \]
 
-We now cover three explicit regimes.
+with \(B\) real analytic through \(r=0\).  At \(r=0\), \(B(0,v)\) is the
+second effective matrix \(H_2(v)\), up to an internal analytic unitary.
 
-1. **Outer regime, \(u\ge Mr^2\).**  The uniform cluster expansion (20),
-   with \(w=y/r\), and (23a) give
+For a unit same-pair \(Z\) in a closed small neighborhood of
+\(|110\rangle\), the exact single-pair spectrum gives a uniform gap between
+the fourth and fifth eigenvalues of \(B(0,Z)\).  The gap persists for small
+\((r,w)\).  The rank-four Riesz projector of \(B\), and hence
 
-   \[
-    \Delta(z_0+x+y)-\Delta(z_0+x)
-    \ge c_0u^2-C_1r^4.
-   \]
+\[
+ F(r,Z,w)
+ ={\Delta(z_0+r(Z+w))\over r^2}
+ =4\|Z+w\|^2-\kappa_4(B(r,Z+w)),
+\tag{23b}
+\]
 
-   Choose \(M^2\ge2C_1/c_0\).  The right side is then at least
-   \((c_0/2)u^2\).  This covers the entire range
-   \(Mr^2\le u<\epsilon r\); no assertion based only on an unbounded
-   quotient is being used.
+therefore extends to a jointly real-analytic function at \(r=0\).
 
-2. **Feshbach annulus, \(mr^2\le u\le Mr^2\).**  Write
-   \(y=r^2\eta\).  Here \(m\le\|\eta\|\le M\).  Subtract the same-pair
-   value before applying (8).  Formula (16) has no row or column coupling
-   \(L_{12}\) to \(L_{12}^\perp\), and its least transverse eigenvalue is
-   two.  Uniformity on the compact \((Z,\eta)\)-annulus gives
+The third-site phase used above sends \(w\) to \(e^{i\theta}w\) while
+fixing \(z_0+rZ\).  Consequently
 
-   \[
-    \Delta(z_0+x+y)-\Delta(z_0+x)\ge u^2
-   \]
+\[
+ D_wF(r,Z,0)=0
+\tag{23c}
+\]
 
-   after reducing \(\epsilon\).
+for every small \(r\), including \(r=0\) by continuity.  At \(r=0\),
+(16) says that the real transverse Hessian is \(2G_Z\), uniformly bounded
+below by \(4I\) on \(L_{12}^{\perp}\).  Compactness of the closed
+single-pair neighborhood and continuity of the Hessian give, after
+shrinking the neighborhoods,
 
-3. **Inner regime, \(u<mr^2\).**  At \(z_0+x\), the top-four cluster is
-   isolated from the remaining cluster by at least \(c_2r^2\).  The
-   variational resolvent expansion therefore gives a transverse Hessian
-   bounded below by one and a third-order Taylor remainder bounded by
+\[
+ D_w^2F(r,Z,w)\big|_{L_{12}^{\perp}}\succeq2cI
+\]
 
-   \[
-    C_2{u^3\over r^2}.
-   \]
+for one \(c>0\).  Taylor's formula with integral remainder and (23c) yield
 
-   This estimate follows directly by differentiating the finite resolvent
-   in (13).  The internal reduced resolvents have norm at most
-   \((c_2r^2)^{-1}\); the slice-parity identity kills the bare internal
-   linear block, so every use of such a resolvent is accompanied by a
-   factor \(r\).  Even the crude bound obtained by allowing two resolvents
-   is \(C_2u^3/r^2\).  Choose
-   \(m\le(2C_2)^{-1}\).  The remainder is at most \(u^2/2\), so the
-   difference is at least \(u^2/2\).
+\[
+ F(r,Z,w)-F(r,Z,0)\ge c\|w\|^2.
+\]
 
-Taking \(c=\min(c_0/2,1/2)\) proves (23) in all three regimes.
-
-This argument also explains why the eight zero directions in (10) cause no
-loss: they are exactly \(L_{12}\), already assigned to \(x\), and there is
-no mixed row or column between them and \(L_{12}^\perp\). \(\square\)
+Multiplication by \(r^2\), with \(y=rw\), is exactly (23).  The eight zero
+directions in (10) cause no loss: they are precisely the same-pair space
+assigned to \(Z\); the transverse Hessian is uniformly positive.
+\(\square\)
 
 The base term in (23) is globally nonnegative, not merely perturbatively
 nonnegative.  Namely
