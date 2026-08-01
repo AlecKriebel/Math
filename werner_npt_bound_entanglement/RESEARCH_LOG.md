@@ -8480,6 +8480,25 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_nonsmooth_purity_filter.md` and
   `verification/verify_dth_nonsmooth_purity_filter.py`.
 
+## 2026-08-01 07:49 PDT — Summed local-filter Hessian constraint
+
+- Expanded the locally filtered top-four Rayleigh trace through second
+  order and summed over a complete traceless Hermitian one-site basis.
+- Proved that every smooth local maximum obeys, at every site,
+
+  \[
+  \|\operatorname{Tr}_i(PD_z^*)\|_2^2
+  +\operatorname{Tr}[(\operatorname{Tr}_iP)
+                      (\operatorname{Tr}_iPS)]\le2F.
+  \]
+
+- The first and last filter-Hessian terms cancel exactly under the local
+  completeness relation.  The two surviving terms retain complementary
+  two-body and transition information discarded by the one-body purity
+  filter.
+- Added `notes/agent_dth_local_filter_hessian.md` and the exact verifier
+  `verification/verify_dth_local_filter_hessian.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
