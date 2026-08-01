@@ -23,6 +23,9 @@ research notes without preparing or initiating outreach.
 - Commit and push changes to the remote regularly. Treat each push as the
   release of findings to the wider world, and prioritize timely publication of
   meaningful progress.
+- GitHub releases automatically upload to Zenodo and create a DOI. Use this
+  sparingly, only when we want to truly and immutably snapshot a result or
+  package.
 
 # Research Goal
 
