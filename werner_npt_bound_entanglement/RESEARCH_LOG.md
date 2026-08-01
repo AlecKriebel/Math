@@ -8628,3 +8628,65 @@ u_1u_1^\dagger\bigr].
   system is unnecessary once crossed positivity is imposed.
 - Added `notes/agent_dth_prolonged_face_automatic.md` and the exact verifier
   `verification/verify_dth_prolonged_face_automatic.py`.
+
+## 2026-08-01 09:00 PDT — Exact audit of the first Gamma-A defects at degree three
+
+- Replaced the prohibitive five-tensor crossing by a signed Choi--Gram
+  expansion.  Every local crossing block has numerical Choi rank at most
+  twelve; an independent exact rational oracle fixes the crossing
+  normalization and orientation.
+- Crossed the strict PSD-only degree-three extension through every mixed
+  multiplicity block of dimension at most one hundred.  Four blocks are
+  robustly indefinite:
+
+  \[
+  \begin{array}{c|c|c}
+  \text{mixed labels}&\text{dimension}&\lambda_{\min}\\ \hline
+  (1,2,9)&44&-7.5132798396\,10^{-10}\\
+  (1,4,9)&55&-7.3739296913\,10^{-10}\\
+  (0,2,5)&96&-4.6888715042\,10^{-11}\\
+  (1,4,6)&100&-5.7258988757\,10^{-11}.
+  \end{array}
+  \]
+- Rebuilt those four matrices independently from all 112 source orbits.
+  Fourteen raw six-index contractions agree with the Choi--Gram route to
+  absolute error at most `3.16e-24`; the maximum relative error on material
+  terms is `8.60e-15`.
+- Identified the exact local carrier triples and constructed rational
+  highest-weight pullback seeds with integer Gram norms
+  `(528, 912, 32, 696)`.  The dependency-free exact seed/oracle verifier is
+  `verification/verify_dth_level2_gammaA_pullback_seeds.py`; it passes under
+  `/usr/local/bin/python`.
+- This is an exact audit of the crossing algebra and a rigorous
+  falsification of **this chosen PSD-only extension** as a PPT extension.
+  The negative eigenvalue signs themselves are discovery-layer numerical
+  data.  Nothing here proves that the fixed marginal has no other
+  PSD/Gamma-A-PPT extension.
+
+## 2026-08-01 09:00 PDT — Active two-cone correction is numerically feasible
+
+- Pulled the four negative eigenvectors back to the 171 site-symmetric
+  source components.  Their quadratic values replay the crossed
+  eigenvalues with absolute error below `7e-24`.  After orthogonal projection
+  into the fixed-marginal kernel, the four-cut Gram matrix has eigenvalues
+
+  \[
+  0.00035894,\quad0.00131410,\quad0.00861066,\quad0.01043766.
+  \]
+  Thus no active cut is affine-rigid.
+- A simultaneous minimum-Euclidean affine correction repairs the four
+  scalar cuts but leaves source minimum eigenvalue `-2.765e-9`; source
+  positivity and crossed positivity must be solved as genuinely coupled
+  cones.
+- Douglas--Rachford projection onto source PSD, the fixed marginal, and the
+  four half-space cuts reached marginal residual `7.43e-21`, zero source
+  PSD defect, source minimum eigenvalue `1.80e-19`, and positive values on
+  all four cuts.
+- Recrossing rotated three negative eigendirections in the same blocks but
+  reduced their magnitudes to `4.49e-12`, `2.31e-12`, and `3.03e-13`; no new
+  negative block of dimension at most one hundred appeared.  Adding the
+  rotated cuts again gives a numerically feasible seven-cut problem.
+- These are discovery-layer feasibility results only.  A complete
+  Gamma-A-PPT extension requires positivity of every mixed block, followed
+  by the two remaining grouped PPT cut types and exact rational
+  reconstruction.
