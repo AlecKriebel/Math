@@ -6,7 +6,7 @@ five-replica cone.  It is represented by 125 rational matrices in the exact
 holomorphic support charts.  This verifier reconstructs every chart from
 the defining permutation actions and checks
 
-* positive semidefiniteness and the Pluecker/Omega range constraints;
+* positive semidefiniteness and the Plücker/Omega range constraints;
 * positive trace and a strictly negative minimal-DTH witness pairing;
 * exact partial-transpose membership in the 2266-dimensional physical
   product-DTH face; and
@@ -15,9 +15,9 @@ the defining permutation actions and checks
 The last two checks are delegated to small exact-arithmetic companion
 modules.  The only inputs are the two committed rational certificate
 artifacts; no floating-point sign, rank tolerance, or discovery checkpoint
-is used.  A successful replay is a proof-complexity obstruction at the
-first corrected Veronese--Segre level.  It is not a physical DTH vector and
-does not settle the Werner problem.
+is used.  A successful replay is an obstruction to the specified
+\(\Gamma_1\)-PPT corrected Plücker/support/Omega relaxation.  It is not a
+physical DTH vector and does not settle the Werner problem.
 """
 
 from __future__ import annotations

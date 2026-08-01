@@ -21,8 +21,8 @@ m=\bar w\otimes w\otimes z,
 (|h\rangle\langle h|)^{\Gamma_1},
 \]
 
-where \(\Gamma_1\) transposes the first bivector slot.  The corrected
-first-level relaxation is
+where \(\Gamma_1\) transposes the first bivector slot.  The specified
+\(\Gamma_1\)-PPT corrected first-level relaxation is
 
 \[
 \rho\succeq0,
@@ -173,7 +173,7 @@ The independent floating audit, retained only as a diagnostic, found:
 
 ## Theorem
 
-> **Theorem.** The corrected first-level, five-replica, density/PPT DTH
+> **Theorem.** The specified \(\Gamma_1\)-PPT corrected, five-replica DTH
 > relaxation (1) contains a nonzero rational feasible density \(\rho\) with
 > \(\operatorname{Tr}(\widetilde{\mathcal O}_0\rho)<0\).
 
@@ -183,10 +183,11 @@ Indeed, items 1, 5, and the support chart (2) prove
 Items 3 and 4 permit normalization by the positive trace while preserving
 the strict negative sign.
 
-This is a certificate-degree obstruction.  It proves that the complete
-first corrected Plücker/DTH lift fails to certify DTH.  Any proof staying
-within this first-level architecture must strengthen it, for example with an
-additional Veronese--Segre constraint or a higher prolongation.
+This is a certificate-degree obstruction.  It proves that the specified
+first corrected Plücker/support/\(\Omega\) lift fails to certify DTH.  Any
+proof staying within this architecture must strengthen it, for example with
+the final-slot Segre/PPT localizer identified in the companion note or with a
+higher prolongation.
 
 It does **not** provide a rank-one density or a physical vector
 \((w\otimes w)\otimes z\).  Therefore it is not a counterexample to DTH,

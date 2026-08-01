@@ -7725,7 +7725,7 @@ u_1u_1^\dagger\bigr].
   `discovery/agent_dth_quadratic_support_dual_probe.py`.
 ## 2026-07-31 — Matrix-free full invariant DTH cone solver
 
-- Reduced the complete corrected first-degree DTH cone, after lossless local
+- Reduced the specified corrected \(\Gamma_1\)-PPT DTH cone, after lossless local
   \(U(3)^3\) twirling, to a tensor cube of one local \(103\times103\)
   crossing.  In Hilbert--Schmidt normalized highest-weight coordinates the
   local crossing is orthogonal; the independent exact diagram-basis
@@ -7865,7 +7865,7 @@ u_1u_1^\dagger\bigr].
 
 - Corrected a conjugation defect in the original holomorphic common-kernel
   formulation.  Since the support equation contains \(W^\dagger z\), the
-  complete first-degree condition is a density/PPT cone:
+  specified corrected first-degree condition is a density/PPT cone:
   \[
   \rho\succeq0,\qquad \rho^{\Gamma_1}\succeq0,\qquad
   \operatorname{ran}\rho\subseteq\mathscr K_{\rm hol},\qquad
@@ -7904,8 +7904,8 @@ u_1u_1^\dagger\bigr].
   block, whose final determinant has 108,888 bits.  The mixed-PD reference
   certificate has SHA-256
   `648186810cd9e9becc71eb6d319749c2a2c956d3f152f116ff17a1cdd1bcdf33`.
-- Therefore the witness is negative on the corrected complete first-level
-  five-replica DTH relaxation: it contains an exact rational feasible
+- Therefore the witness is negative on the specified corrected
+  \(\Gamma_1\)-PPT five-replica DTH relaxation: it contains an exact rational feasible
   pseudomoment with negative value.  This proves that first-level
   Plücker/DTH compatibility does not certify DTH.  Any proof within this
   first-level architecture must add constraints, for example a further
