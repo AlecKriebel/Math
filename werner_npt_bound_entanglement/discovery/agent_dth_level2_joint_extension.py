@@ -32,7 +32,8 @@ import agent_dth_level2_444_extension as BASE
 import verify_dth_level2_s7_census as CENSUS
 
 
-TARGETS = ((4, 4, 4), (3, 3, 3), (4, 3, 3), (3, 4, 3), (3, 3, 4))
+CORE_TARGETS = ((4, 4, 4), (3, 3, 3), (4, 3, 3), (3, 4, 3), (3, 3, 4))
+TARGETS = CORE_TARGETS
 S5_SHAPES = ((5,), (4, 1), (3, 2), (3, 1, 1), (2, 2, 1))
 S5_CARRIER_DIMS = (21, 24, 15, 6, 3)
 S7_CARRIER_DIMS = (36, 48, 42, 15, 24, 15, 6, 3)
@@ -194,7 +195,21 @@ def target_embeddings(source, target, qout):
     return out
 
 
+def target_reachable(source, target):
+    channels = [
+        branch_channels(source[site], target[site]) for site in range(3)
+    ]
+    if not all(channels):
+        return False
+    return any(
+        sum(label == "V" for label in labels) % 2 == 1
+        for labels in product(*(tuple(channel) for channel in channels))
+    )
+
+
 def omega_output_rank(source):
+    if any(index not in OMEGA_LOCAL_OUTPUT for index in source):
+        return 0
     return CENSUS.kronecker_coefficient(
         (2, 2), [OMEGA_LOCAL_OUTPUT[index] for index in source], 4
     )
@@ -202,9 +217,8 @@ def omega_output_rank(source):
 
 def candidate_sources(target_data):
     out = []
-    for source in product((3, 5, 6, 7), repeat=3):
-        if any(target_embeddings(source, target, target_data[target][0])
-               for target in TARGETS):
+    for source in product(range(8), repeat=3):
+        if any(target_reachable(source, target) for target in TARGETS):
             out.append(source)
     return out
 
