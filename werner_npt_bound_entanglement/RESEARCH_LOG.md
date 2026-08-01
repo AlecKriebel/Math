@@ -8373,6 +8373,34 @@ u_1u_1^\dagger\bigr].
   dependency-free sparse-rational verifier
   `verification/verify_dth_factor_equality_hessian.py`.
 
+## 2026-08-01 07:02 PDT — Exact Euler and equal-output-marginal reduction
+
+- Derived the complete Euler system for every smooth unit-sphere critical
+  point of the Ky--Fan-four functional.  If `P` is the isolated top-four
+  spectral projector, `S=D_z^*D_z`, `F=Tr(PS)`, and `M=PS`, then
+
+  \[
+  G_Pz=Fz,\qquad
+  \operatorname{Tr}_{\widehat i}M={F\over2}(I-\rho_i^z)
+  \quad(i=1,2,3).
+  \]
+
+- Proved the unconditional output identity
+
+  \[
+  \operatorname{Tr}_{\widehat i}S
+  ={1\over2}(\|z\|^2I-\rho_i^z).
+  \]
+
+  Hence the normalized top output `tau=PS/F` and bottom output
+  `sigma=(S-PS)/(1-F)` have identical one-site marginals
+  `(I-rho_i^z)/2`.
+- The top state has rank at most four and paired spectrum `(a,a,b,b)`.
+  A hypothetical smooth interior violation is therefore reduced to an
+  orthogonally supported equal-marginal pair with this rigid top spectrum.
+- Added `notes/agent_dth_full_rank_euler.md` and the dependency-free exact
+  verifier `verification/verify_dth_full_rank_euler.py`.
+
 ## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
 
 - Built the complete degree-three post-Omega marginal map: 118 nonzero
