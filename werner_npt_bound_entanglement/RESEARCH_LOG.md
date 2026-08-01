@@ -8346,3 +8346,29 @@ u_1u_1^\dagger\bigr].
   exterior lemma on the three-slice route; it remains unproved.
 - Added `notes/agent_dth_three_slice_fierz.md` and the dependency-free exact
   rational verifier `verification/verify_dth_three_slice_fierz.py`.
+
+## 2026-08-01 06:32 PDT — Morse--Bott stability of the physical equality face
+
+- Computed the complete exact Ky--Fan-four Hessian at every smooth factor
+  equality point
+
+  \[
+  z=e_0\otimes(s|00\rangle+t|11\rangle),\qquad s,t>0.
+  \]
+
+- On the 26-dimensional complex projective tangent, the quadratic
+  coefficient has spectrum
+
+  \[
+  0^{(9)},\quad(-s^2t^2/2)^{(1)},\quad(-1/8)^{(8)},\quad
+  (-(3+s^2-t^2)/16)^{(4)},\quad
+  (-(3+t^2-s^2)/16)^{(4)}.
+  \]
+
+- Proved that its nine-dimensional kernel is exactly the tangent to the
+  factor-times-rank-two equality variety.  Thus the smooth physical
+  equality face is a strict Morse--Bott local maximum: no full-support
+  violating branch can bifurcate from it at quadratic order.
+- Added `notes/agent_dth_factor_equality_morse_bott.md` and a fast,
+  dependency-free sparse-rational verifier
+  `verification/verify_dth_factor_equality_hessian.py`.
