@@ -42,3 +42,21 @@ uncertainty estimate for a potentially open research problem, not a schedule.
 
 Best-guess completion toward a full resolution: **2%**. The simplex lemma is a
 real pruning result, but it does not address \(K_5\)-free obstructions.
+
+## 2026-08-01T16:11:00-07:00 — Projected-subset orbit family eliminated
+
+- Classified diameter relations for arbitrary unions of full radial shells on
+  the 30 projected nonempty proper subsets of a five-element set in the
+  standard \(S_5\) representation.
+- Proved a parameter-independent five-coloring: color a subset by a cyclic
+  boundary element. Every possible diameter pair is either disjoint or has
+  full union, and both cases force different boundary colors.
+- The theorem covers any finite number of shells with arbitrary positive
+  radii, including every parameter tie; negative radii are absorbed by subset
+  complementation.
+- An exact 30-label verifier independently checks the inner-product formula,
+  feasible minimum intersections, and coloring.
+
+Best-guess completion toward a full resolution: **3%**. Two broad symmetric
+families are now pruned, while asymmetric subsets and other group actions
+remain open.
