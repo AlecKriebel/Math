@@ -8653,6 +8653,24 @@ u_1u_1^\dagger\bigr].
   `verification/verify_dth_product_arc_closure.py`.  This is a local DTH
   theorem only; the separated full-local-rank region remains open.
 
+## 2026-08-01 09:33 PDT — Hostile repair of product-corner uniformity
+
+- A hostile reread found two bookkeeping errors in the first write-up:
+  an `o(t^2)` path had been expanded as if its operator remainder were
+  `o(t^4)`, and the moving-maximizer formula omitted a nonnegative
+  second-order projector defect.  Both displays have been corrected.
+- Replaced the three-rate transverse argument by one uniform analytic
+  blow-up.  A fixed contour isolates the eight eigenvalues near one; the
+  canonical direct-rotation unitary gives an analytic reduced matrix
+  `I+r^2 B(r,v)`.  The exact single-pair spectrum isolates its top four
+  uniformly near the rank-one edge.
+- The third-site phase forces the transverse gradient of the rescaled
+  deficit to vanish for every `r`.  Its limiting transverse Hessian is the
+  exact Gram `2 G_Z >= 4 I`; compactness and Taylor's integral formula give
+  the uniform bound `Delta(z0+x+y)-Delta(z0+x) >= c ||y||^2` directly.
+- The correction preserves the local product-corner theorem but removes
+  reliance on an unverified shrinking-gap resolvent remainder estimate.
+
 ## 2026-08-01 09:00 PDT — Exact audit of the first Gamma-A defects at degree three
 
 - Replaced the prohibitive five-tensor crossing by a signed Choi--Gram
@@ -8742,3 +8760,39 @@ u_1u_1^\dagger\bigr].
   `verification/verify_dth_level2_other_ppt_censuses.py` and
   `verification/verify_dth_level2_other_local_crossings.py`, and streamed
   discovery infrastructure for both crossings and the complement bridge.
+
+## 2026-08-01 09:40 PDT — Gamma-A active cuts contract through dimension 500
+
+- Replaced the raw six-index crossing with the audited signed Choi--Gram
+  factorization.  Every local crossing block has numerical Choi rank at most
+  twelve and the maximum local reconstruction error is `6.49e-15`.
+- Added a batch adjoint which reconstructs each of the 112 site-orbit source
+  unions once and pulls back several mixed eigenvector cuts simultaneously.
+  Every new cut through round six replays its crossed eigenvalue to absolute
+  error below `6e-23`.
+- Alternated source PSD, the fixed-marginal affine space, and successively
+  rotated Gamma-A eigenvector cuts.  The round-six source satisfies 67 cuts
+  with marginal residual `8.773e-21`, zero numerical source PSD defect, and
+  source minimum eigenvalue `5.814e-19`.
+- Across all mixed blocks of multiplicity dimension at most 500, the
+  aggregate negative spectrum contracted as follows:
+
+  ```text
+  round 2: worst -7.964e-9,  ||negative||_2 1.734e-8,  L1 1.024e-7
+  round 3: worst -4.328e-9,  ||negative||_2 9.404e-9,  L1 5.778e-8
+  round 4: worst -2.990e-9,  ||negative||_2 6.059e-9,  L1 3.570e-8
+  round 5: worst -2.088e-9,  ||negative||_2 4.197e-9,  L1 2.454e-8
+  round 6: worst -1.331e-9,  ||negative||_2 3.116e-9,  L1 1.759e-8
+  ```
+
+- The leading eigenvectors rotate substantially, so this is not a fixed-ray
+  scalar contraction.  No affine rigidity or finite-cut dual obstruction
+  has appeared.
+- Curated the reusable active-cut core and outer driver as
+  `discovery/agent_dth_level2_active_cut.py` and
+  `discovery/agent_dth_level2_two_cone_active.py`, together with the parallel
+  track's `discovery/agent_dth_level2_multi_ppt_active.py`; documented the
+  numerical scope in `notes/agent_dth_level2_two_cone_active.md`.
+- This is discovery evidence only.  The cap-500 Gamma-A cone is still
+  indefinite, larger Gamma-A blocks are untested, the other two grouped PPT
+  cones remain, and no exact extension certificate follows.
