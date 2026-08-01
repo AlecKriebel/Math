@@ -8157,7 +8157,7 @@ u_1u_1^\dagger\bigr].
   complementation reduce complete grouped PPT to the three representatives
   \(\Gamma_A,\Gamma_z,\Gamma_{A_1A_2}\).
 
-## 2026-08-01 06:15 PDT — Exact third output moment filter
+## 2026-08-01 05:44 PDT — Exact third output moment filter
 
 - Derived an exact three-replica permutation identity for
   \(\operatorname{Tr}(D_z^\dagger D_z)^3\).  The one-site contraction is
@@ -8179,7 +8179,7 @@ u_1u_1^\dagger\bigr].
   `verification/verify_dth_output_third_moment.py`, which checks all 729
   entries of the local epsilon/permutation identity.
 
-## 2026-08-01 06:00 PDT — Convex-hull weak tests closed
+## 2026-08-01 05:42 PDT — Convex-hull weak tests closed
 
 - Reconstructed the exact complete-PPT pseudomoment in the 103-diagram local
   commutant and computed invariant realignment norms without forming the
@@ -8201,3 +8201,35 @@ u_1u_1^\dagger\bigr].
   `discovery/agent_dth_realignment_probe.py` and
   `discovery/agent_dth_local_extension_probe.py`.  These are audited
   floating-point nonseparation calculations, not exact theorems.
+
+## 2026-08-01 05:45 PDT — Exact flagged physical DTH equality face
+
+- Eliminated the physical vector (z) losslessly for each code two-plane
+  (U) and audited the resulting complex-Grassmannian gradient by central
+  differences.  Unrestricted searches found no DTH value above (1/8);
+  several independent starts reached (1/8) to roundoff.  This numerical
+  nonviolation is discovery information only.
+- The equality attractors revealed an intrinsic flag: after a physical-site
+  permutation,
+  (z=a\otimes\xi) with two-qutrit Schmidt rank at most two and
+  \(\operatorname{ran}U\subset a^\perp\otimes H_{\widehat i}\).
+- Proved an exact theorem on this whole flag.  With
+  (T=D_\xi^\dagger D_\xi\),
+  \[
+  \frac18-\|D_zW\|_2^2
+  =\frac14\sum_{r=0}^1
+  \left\langle u_r,
+  I_{a^\perp}\otimes\left(\frac14I-T\right)u_r
+  \right\rangle\ge0.
+  \]
+  The proof uses the exact two-qutrit Hodge singular spectrum
+  (1/2,1/2,s/2,s/2,t/2,t/2,0,0,0).
+- Equality holds exactly when
+  (D_z^\dagger D_zU=U/8).  An explicit rational equality point also
+  satisfies support, Omega, ((D_zW)^2=0), and has the two nonzero singular
+  values of (D_zW) equal to (1/4).
+- Added `notes/agent_dth_physical_pseudomoment_track.md`, the unrestricted
+  discovery optimizer, and the dependency-free rational verifier
+  `verification/verify_dth_one_site_factor_equality.py`.  The remaining
+  direct gap is to prove that a global maximizer at or above (1/8) must
+  enter this flagged boundary, or to find an interior counterexample.
