@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An exact finite-dimensional proof that the quantum chromatic number of the G19 join family is n+1 for every n at least three.">
+  <meta name="description" content="An exact proof confirming Lalonde's finite-witness family: complex orthogonal rank n and finite-dimensional quantum chromatic number n+1 for every n at least three.">
   <meta name="author" content="Alec Kriebel">
   <meta name="citation_title" content="The Quantum Chromatic Number of the G19 Join Family">
   <meta name="citation_author" content="Alec Kriebel">
@@ -11,7 +11,7 @@
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/paper.pdf">
   <meta property="og:type" content="article">
   <meta property="og:title" content="The Quantum Chromatic Number of the G19 Join Family">
-  <meta property="og:description" content="A finite-dimensional all-n obstruction: χq(G19 ∨ K(n−3)) = n+1, with exact rational certificates and independent replay tools.">
+  <meta property="og:description" content="Lalonde's candidate finite witnesses are confirmed: ξ = n and χq = n+1 for the full G19 join family, with exact rational replay tools.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/">
   <meta property="og:image" content="https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/social-card.png">
   <meta property="og:image:width" content="1731">
@@ -79,9 +79,9 @@
       <h1>The Quantum Chromatic Number of the <i>G</i><sub>19</sub> Join Family</h1>
       <p class="byline">Alec Kriebel · Independent Researcher</p>
       <p class="release">Research note · published <time datetime="2026-08-01">1 August 2026</time><br>
-      Frozen proof package: <a href="https://github.com/AlecKriebel/Math/tree/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring"><code class="release-hash">4efa93a404c396346ac8ccf3c46aba9651e7d982</code></a><br>
-      Paper PDF SHA-256: <code class="release-hash">3785da768daf68cdc9037102d6323c464714a2e725c156a25f093cf64189d786</code><br>
-      Technical-summary SHA-256: <code class="release-hash">c00cb8253919cc9d90d6987679c417752abef236bf4557aac94c21fad6d3d59b</code></p>
+      Canonical proof package: <a href="https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring"><code class="release-hash">f0a561e675b86a6e92b5c113c7d6f7b3e036511d</code></a><br>
+      Paper PDF SHA-256: <code class="release-hash">a53dab2b291e5ef1dba5f05c9678cbf68f90edfb75ba2feac4c8e0f28d6b666d</code><br>
+      Technical-summary SHA-256: <code class="release-hash">5fc352c920694a8484bd5143495609757ca0d19f4a031b1dc75194095190bb9c</code></p>
     </div></div>
   </header>
 
@@ -97,45 +97,44 @@
     <div class="button-row paper-actions">
       <a class="button" href="./paper.pdf">Open research-note PDF</a>
       <a class="button secondary" href="./technical-summary.pdf">Two-page summary</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring">Immutable source</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/verification/verify_obstruction_certificate.py">Short verifier</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/verification/verify_lalonde_uniform_obstruction.py">Independent verifier</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/certificate/lalonde_uniform_obstruction.json">Machine certificate</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/publication/reviewer_suggestion_audit.md">Revision audit</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/publication/priority_audit.md">Priority audit</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring">Immutable source</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/verification/README.md">Verification guide</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/certificate">Certificates</a>
     </div>
 
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">Let \(G_{19}\) be the 19-vertex complex orthogonality graph introduced by Olivier Lalonde, and let \(J_n=G_{19}\vee K_{n-3}\) for \(n\ge3\). Lalonde proved the rank-one equality and conjectured the same value for unrestricted finite-dimensional projectors. This note proves</p>
+        <p class="lede" itemprop="abstract">In Section 4.2 of <em>Quantum Colorings of Spheres</em>, Olivier Lalonde proposed \(G_n=G_{19}\vee K_{n-3}\) as a family of finite witnesses for his complex-sphere obstruction. Writing this family as \(J_n\) to reserve \(G_{19}\) for the fixed base graph, this note removes the rank-one restriction and proves</p>
         <div class="equation">
         \[
           \chi_q(J_n)=n+1\qquad(n\ge3).
         \]
         </div>
-        <p>In particular, the 20-vertex apex graph \(H=G_{19}\vee K_1\) has \(\chi_q(H)=5\).</p>
+        <p>Consequently \(\xi(J_n)=n<\chi_q(J_n)=n+1\), confirming the proposed finite witnesses. Moreover, Lalonde's restricted parameters satisfy \(\chi_q^{[d]}(J_n)=\chi_q^{(r)}(J_n)=n+1\) for every \(d,r\ge1\). In particular, the 20-vertex apex graph \(H=G_{19}\vee K_1\) has \(\chi_q(H)=5\).</p>
         <div class="fact-grid">
           <div class="fact"><strong>First apex case</strong><span>Every finite-dimensional quantum four-coloring of \(H\) is excluded, so \(\chi_q(H)=5\)</span></div>
-          <div class="fact"><strong>Entire join family</strong><span>\(\chi_q(G_{19}\vee K_{n-3})=n+1\) for every \(n\ge3\)</span></div>
+          <div class="fact"><strong>Confirmed finite witnesses</strong><span>\(\xi(J_n)=n<\chi_q(J_n)=n+1\) for every \(n\ge3\)</span></div>
+          <div class="fact"><strong>Every fixed resource</strong><span>\(\chi_q^{[d]}(J_n)=\chi_q^{(r)}(J_n)=n+1\) for all \(d,r\ge1\)</span></div>
           <div class="fact"><strong>Exact proof</strong><span>Rational noncommutative identities and integer dimension counting; no numerical optimization enters the theorem</span></div>
         </div>
       </section>
 
       <section id="result">
         <h2>1. Graph, conjecture, and theorem</h2>
-        <p>The base graph has 19 vertices, 36 edges, graph6 record <code>RxLAKA@AgYAWDGO?O?@??A?W@@OC@_</code>, and exactly four triangles: \(123\), \(189\), \(345\), and \(267\). The symbol \(\vee\) denotes graph join and \(K_0\) is empty, so the family starts at the base graph itself.</p>
-        <p>Lalonde's <a href="https://arxiv.org/abs/2606.10872"><em>Quantum Colorings of Spheres</em></a> gives this exact graph and family, proves the rank-one value in Theorem 1.5, and states the full finite-dimensional equality as a conjecture in the discussion immediately following that theorem.</p>
+        <p>The base graph has 19 vertices, 36 edges, graph6 record <code>RxLAKA@AgYAWDGO?O?@??A?W@@OC@_</code>, and exactly four triangles: \(123\), \(189\), \(345\), and \(267\). The symbol \(\vee\) denotes graph join and \(K_0\) is empty. This page writes \(J_n=G_{19}\vee K_{n-3}\) for the family Lalonde denotes \(G_n\), avoiding two meanings for \(G_{19}\) when \(n=19\).</p>
+        <p>Lalonde's <a href="https://arxiv.org/abs/2606.10872"><em>Quantum Colorings of Spheres</em></a> proposes this exact family as finite witnesses for his complex-sphere theorem, proves the rank-one value in Theorem 1.5, and states the full finite-dimensional equality as a conjecture immediately afterward.</p>
         <div class="theorem-block">
-          <p><strong>Main theorem.</strong> For every integer \(n\ge3\),</p>
+          <p><strong>Main theorem.</strong> For every \(n\ge3\) and every \(d,r\ge1\),</p>
           <div class="equation">
           \[
-            \chi_q\!\left(G_{19}\vee K_{n-3}\right)=n+1.
+            \xi(J_n)=n,\qquad
+            \chi_q(J_n)=\chi_q^{[d]}(J_n)=\chi_q^{(r)}(J_n)=\chi(J_n)=n+1.
           \]
           </div>
           <p>For \(H=G_{19}\vee K_1\), this gives \(\chi_q(H)=5\).</p>
         </div>
-        <p>The upper bound is classical: the note prints an explicit four-coloring of \(G_{19}\), and every joined vertex receives a fresh color. The work is the dimension-independent lower bound.</p>
+        <p>The upper bound is classical: the note prints Lalonde's published four-coloring of \(G_{19}\), and every joined vertex receives a fresh color. The work is the dimension-independent lower bound.</p>
       </section>
 
       <section id="proof">
@@ -188,6 +187,7 @@
       <section id="higher-rank">
         <h2>3. Why higher rank mattered</h2>
         <p>The known rank-one obstruction does not justify reducing arbitrary projector ranks to scalar rays. The new SOS proves the module-valued core directly. More importantly, a tail plane need not be the graph \(\operatorname{ran}(I,S)\) of an operator: nontransverse \(J\)-invariant planes occur, including planes that meet a coordinate axis. The proof retains every such branch and excludes only the simultaneous coexistence of all color representations in the physical space.</p>
+        <p>At rank one, \(M_c=\operatorname{span}(1,\sigma i)\), and the six tail frames reproduce Lalonde's Theorem 4.5 normal form exactly with \(b=\sigma\). The present derivation extends that classification without invoking its computer-assisted nonidentification lemma.</p>
         <p>The induced subgraph on vertices \(1,\ldots,13\) is the Mančinska–Roberson \(G_{13}\). Their <a href="https://doi.org/10.22364/bjmc.2016.4.4.16">higher-rank proof that \(\chi_q(G_{13})=4\)</a> is a relevant precedent; the present SOS, six-vertex tail classification, and cross-color packing use the additional structure of \(G_{19}\).</p>
       </section>
 
@@ -195,18 +195,20 @@
         <h2>4. Exact verification and boundaries</h2>
         <p>Two independent standard-library obstruction verifiers accompany the proof, together with a separate graph checker:</p>
         <ul class="certificate-list">
-          <li><a href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/verification/verify_obstruction_certificate.py"><strong>Short paper-form verifier</strong></a> — replays the four-factor rational SOS, neighbor signs, all six tail compressions, \(J\)-intertwining, and the final dimension coefficients.</li>
-          <li><a href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/verification/verify_lalonde_uniform_obstruction.py"><strong>Independent trace-SOS verifier</strong></a> — also decodes graph6, checks clique witnesses, row-reduces the cross-color kernel, and verifies the symbolic all-\(n\) arithmetic.</li>
-          <li><a href="https://github.com/AlecKriebel/Math/blob/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring/verification/verify_graph.py"><strong>Graph checker</strong></a> — reconstructs the 19- and 20-vertex graphs and enumerates the four triangles.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/verification/verify_obstruction_certificate.py"><strong>Short paper-form verifier</strong></a> with <a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/certificate/obstruction_certificate.json">its certificate</a> — replays the rational SOS, signs, six tail compressions, \(J\)-intertwining, and symbolic all-\(n\) dimension coefficients.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/verification/verify_lalonde_uniform_obstruction.py"><strong>Independent trace-SOS verifier</strong></a> with <a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/certificate/lalonde_uniform_obstruction.json">its certificate</a> — also decodes graph6, checks clique witnesses, row-reduces the cross-color kernel, and verifies the all-\(n\) recurrence in \(\mathbb Q[n,f,d]\).</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/verification/verify_graph.py"><strong>Graph checker</strong></a> — reconstructs the graph, confirms no \(K_4\), validates Lalonde's four-coloring, and proves exhaustive non-three-colorability.</li>
           <li><a href="./SHA256SUMS.txt"><strong>Website file hashes</strong></a> — checksums for the PDFs and social-preview image served from this page.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/publication/reviewer_suggestion_audit.md"><strong>Revision audit</strong></a> and <a href="https://github.com/AlecKriebel/Math/blob/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring/publication/priority_audit.md"><strong>priority audit</strong></a> — record presentation decisions and the narrow post-proof literature check.</li>
         </ul>
-        <p class="fine-print">The programs use exact rational or integer arithmetic. Three elementary semantic bridges remain human mathematics: trace faithfulness for positive matrices, equal-dimension complement arguments, and dimension bounds for pairwise orthogonal subspaces. These tools are algebraic replay, not a foundational proof assistant.</p>
+        <p class="fine-print">The programs use exact rational or integer arithmetic. The assertion-based tools explicitly reject Python's optimized mode, so stripped checks cannot produce a false PASS. Three elementary semantic bridges remain human mathematics: trace faithfulness for positive matrices, equal-dimension complement arguments, and dimension bounds for pairwise orthogonal subspaces. These tools are algebraic replay, not a foundational proof assistant.</p>
       </section>
 
       <section id="scope">
         <h2>5. Scope and nonclaims</h2>
         <ul>
           <li>The theorem is for the standard finite-dimensional quantum chromatic number \(\chi_q\).</li>
+          <li>For every fixed \(d,r\ge1\), the restricted values \(\chi_q^{[d]}(J_n)\) and \(\chi_q^{(r)}(J_n)\) are also exactly \(n+1\).</li>
           <li>No result is claimed for \(\chi_{qa}\), \(\chi_{qc}\), infinite-dimensional strategies, or commuting-operator colorings.</li>
           <li>The proof allows zero projectors, nonuniform original ranks, reducible representations, and noncommuting projectors.</li>
           <li>It does not claim that each fixed-color higher-rank representation splits into rank-one representations; the non-graph tail planes show why that statement would be too strong.</li>
@@ -238,9 +240,9 @@
     <section id="paper" class="pdf-section">
       <h2>Typeset research note</h2>
       <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
-      <p class="fine-print">The <a href="./technical-summary.pdf">two-page technical summary</a> gives a compact audit map. The complete source, certificates, verifiers, assumptions, 150-word explanation, author handoff, and research log are preserved in the <a href="https://github.com/AlecKriebel/Math/tree/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring">frozen proof package</a>.</p>
+      <p class="fine-print">The <a href="./technical-summary.pdf">two-page technical summary</a> gives a compact audit map. The complete source, certificates, verifiers, assumptions, 150-word explanation, author handoff, and research log are preserved in the <a href="https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring">canonical proof package</a>.</p>
     </section>
   </main>
-  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math/tree/4efa93a404c396346ac8ccf3c46aba9651e7d982/lalonde20_quantum_coloring">Immutable source</a> · <a href="https://github.com/AlecKriebel/Math">Repository</a></footer>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring">Immutable source</a> · <a href="https://github.com/AlecKriebel/Math">Repository</a></footer>
 </body>
 </html>
