@@ -93,7 +93,7 @@ This gives 80 exact integer vectors.
 Apply the commuting source projector
 
 \[
-P_{m src}
+P_{\rm src}
 =P_{12}^-P_{34}^-P_{(12)(34)}^+(I-\mathcal A_4).
 \]
 
