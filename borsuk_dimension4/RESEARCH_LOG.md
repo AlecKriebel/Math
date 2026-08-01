@@ -60,3 +60,33 @@ real pruning result, but it does not address \(K_5\)-free obstructions.
 Best-guess completion toward a full resolution: **3%**. Two broad symmetric
 families are now pruned, while asymmetric subsets and other group actions
 remain open.
+
+## 2026-08-01T16:11:35-07:00 — Graph-first and positive-route checkpoint
+
+- Proved three reusable exact diameter-realization obstructions:
+  `K_6-e` cannot occur; after a universal `K_2` the remainder has no `C_4`;
+  and two completely cross-joined blocks cannot each contain two diameter
+  edges. The last statement follows from orthogonal affine spans and an exact
+  circle-radius bound.
+- Applied these screens to multiple explicit six-chromatic joins, Mycielski
+  graphs, a Hajós graph, and the 28-vertex disjoint-pair graph on two-subsets
+  of an eight-element set. All were ruled out globally, not merely within a
+  symmetric realization ansatz. Exact diagnostics reconstruct the graphs and
+  their small obstruction subgraphs.
+- Established the correct compactness target for a universal positive proof:
+  exact diameter-graph coloring alone is insufficient, while a universal
+  positive theorem would automatically imply one dimension-wide contraction
+  factor below one and is equivalent to a uniform finite near-diameter
+  theorem.
+- Proved five-partition theorems for convex hulls whose actual diameter
+  endpoints have unique outward normals, for circumradius
+  `R^2 < 3 D^2 / 10`, and for a nonzero (currently nonexplicit) band below the
+  Jung endpoint `R^2 = 2 D^2 / 5`. Exact examples expose the failure of the
+  naive limiting, fan-boundary, and arbitrary-normal extensions.
+- Independently reran all exact Route B diagnostics and the short Route A
+  envelope/transversal checks successfully.
+
+Best-guess completion toward a full resolution: **5%**. The remaining positive
+case includes a middle circumradius shell with nonsmooth diameter endpoints;
+the remaining negative case requires a K5-free graph surviving the new rank
+and cross-block screens.
