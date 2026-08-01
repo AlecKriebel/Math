@@ -8089,3 +8089,30 @@ u_1u_1^\dagger\bigr].
   used in the main theorem.
 - Added `notes/agent_dth_gamma1_gamma5_defect_equality.md` and
   `verification/verify_dth_gamma1_gamma5_defect_equality.py`.
+
+## 2026-08-01 05:20 PDT — Exact seven-to-five extension contraction
+
+- Fixed the normalization and obtained a sparse exact formula for the
+  marginal map required by the degree-three Grassmann symmetric-extension
+  test.  For normalized
+  (w=(u_0\otimes u_1-u_1\otimes u_0)/\sqrt2), tracing the third bivector
+  pair from
+  (w_{12}\otimes w_{34}\otimes w_{56}\otimes z_7) gives exactly the
+  degree-two monomial, with no scalar factor.
+- At one physical qutrit site, partial trace of a seven-replica permutation
+  diagram deletes replica symbols 5 and 6 from its cycle notation.  Every
+  cycle contained wholly in the deleted pair contributes one factor of 3.
+  The three-site map is the tensor product of these local deletion maps.
+- The exact adjoint inserts the two deleted replicas as fixed points.  This
+  gives a direct symmetry-reduced block-map construction without forming the
+  raw (80{,}800{,}902)-dimensional degree-three space.
+- Proved that, for a positive normalized extension, equality of the
+  Grassmann-compressed marginal with the five-replica moment already forces
+  equality of the full marginal: the complementary positive block has zero
+  trace and therefore vanishes, as do the off-diagonal blocks.
+- Added `notes/agent_dth_seven_to_five_contraction.md` and the dependency-free
+  exact verifier
+  `verification/verify_dth_seven_to_five_contraction.py`.  The verifier
+  exhaustively checks the Hilbert--Schmidt adjoint identity on
+  (S_7\times S_5), trace preservation, and the factor
+  (3^6=27^2=729).
