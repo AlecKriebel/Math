@@ -185,7 +185,7 @@ def product_antisymmetrizer_expectation(vector, first: int, second: int):
     answer = F(0)
     for mask in range(8):
         permuted = defaultdict(int)
-        sign = -1 if mask.bit_count() % 2 else 1
+        sign = -1 if bin(mask).count("1") % 2 else 1
         for key, value in vector.items():
             new_key = key
             for site in range(3):

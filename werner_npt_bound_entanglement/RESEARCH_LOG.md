@@ -7426,3 +7426,72 @@ u_1u_1^\dagger\bigr].
   \]
   This is a new exact nonlinear common-factor obstruction, but it
   still does not exclude the symmetric interior branch.
+
+## 2026-07-31 — The proposed DTH common-kernel lift is ill-posed; exact corrected first-level obstruction
+
+- Synchronized `main` and audited the cloud handoff.  The two named
+  cloud artifacts were not present on `origin/main`, so the stated
+  first-Pluecker obstruction was reconstructed independently in the
+  raw five-replica qutrit basis.
+- Derived the exact holomorphic Omega map
+  \[
+  {\cal C}_\Omega=
+  \frac12\bigl(I_{12}\otimes\omega_{345}
+  +\omega_{125}\otimes I_{34}\bigr),
+  \qquad
+  \omega(w,z)=\operatorname{Tr}(D_zW).
+  \]
+  The cloud vector \(\xi\) satisfies
+  \[
+  \|\xi\|^2=64,\quad {\cal A}_4\xi=0,
+  \quad {\cal C}_\Omega\xi=0,
+  \quad
+  \frac{\langle\xi,\widetilde{\cal O}_0\xi\rangle}
+       {\|\xi\|^2}=-\frac14.
+  \]
+  In fact both Omega contractions vanish separately.
+- Proved that the requested complex-linear support map on
+  \(\operatorname{Sym}^2(\wedge^2\mathcal H)\otimes\mathcal H\)
+  cannot exist.  Under \(w\mapsto iw\), the holomorphic source
+  \(w\otimes w\otimes z\) changes sign, whereas
+  \(w\otimes W^\dagger z\) is invariant.  The support incidence is
+  mixed holomorphic--antiholomorphic, so the proposed common-kernel
+  compression is not defined as stated.
+- Identified the correct scalar Hermitian support localizer
+  \[
+  J_5=F_{15}+F_{25}+F_{35}+F_{45},\qquad
+  \langle\eta,J_5\eta\rangle
+  =4\|w\|^2\|W^\dagger z\|^2
+  \]
+  on physical monomials \(\eta=w^{\otimes2}\otimes z\).
+- Split \(\xi\) into the exact \(J_5=\pm2\) branches
+  \(\xi_\pm\), with squared norms \(22\) and \(42\), and formed
+  \[
+  \zeta=\sqrt{21}\,\xi_++\sqrt{11}\,\xi_-.
+  \]
+  Exact arithmetic gives
+  \[
+  {\cal A}_4\zeta={\cal C}_\Omega\zeta=0,
+  \quad \langle\zeta,J_5\zeta\rangle=0,
+  \quad \|\zeta\|^2=924,
+  \]
+  and
+  \[
+  \frac{\langle\zeta,\widetilde{\cal O}_0\zeta\rangle}
+       {\|\zeta\|^2}
+  =-\frac{\sqrt{231}}{64}<0.
+  \]
+  Hence even the corrected scalar-support-localized first lift is
+  insufficient.
+- The obstruction is not physical: its \(1234:5\) Segre flattening
+  has exact rank \(7\), whereas a physical
+  \((w\otimes w)\otimes z\) has rank one.  A complete support
+  relaxation must therefore use a mixed module such as
+  \(w\otimes\bar w\otimes z\), together with consistency equations
+  tying it to the holomorphic objective lift.  This is a certificate-
+  level obstruction, not a DTH or Werner counterexample.
+- Exact artifacts:
+  `notes/agent_dth_omega_lift.md`,
+  `verification/agent_dth_omega_lift.py`,
+  `notes/agent_dth_five_block.md`, and
+  `verification/agent_dth_five_block.py`.
