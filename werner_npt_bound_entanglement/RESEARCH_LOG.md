@@ -8585,3 +8585,18 @@ u_1u_1^\dagger\bigr].
 
 - Added `notes/agent_dth_critical_purity_filter.md` and the dependency-free
   exact verifier `verification/verify_dth_critical_purity_filter.py`.
+
+## 2026-08-01 07:38 PDT — Prolonged DTH faces follow from positive extension
+
+- Proved the converse-to-descent observation needed by the degree-three
+  hierarchy: if a positive extension has a fixed marginal already lying in
+  an anchored contraction face, then the extension lies in the prolonged
+  face automatically.
+- Applied this twice.  `T >= 0` plus the fixed Omega-face marginal implies
+  prolonged Omega; `T^{Gamma_A} >= 0` plus the fixed crossed support-face
+  marginal implies prolonged support.
+- Therefore the next degree-three decision can be posed directly as a
+  positive/PPT extension problem.  A separate huge prolonged-support linear
+  system is unnecessary once crossed positivity is imposed.
+- Added `notes/agent_dth_prolonged_face_automatic.md` and the exact verifier
+  `verification/verify_dth_prolonged_face_automatic.py`.
