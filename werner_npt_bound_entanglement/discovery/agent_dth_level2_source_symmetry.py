@@ -239,7 +239,7 @@ def adjoint_component(value, descriptor):
     return sum(kraus.T @ value @ kraus for kraus in descriptor["kraus"])
 
 
-def build_reduction(blocks, target_data, audit=True):
+def build_reduction(blocks, target_data, audit=True, compile_maps=False):
     block_index = {
         tuple(block["source"]): index for index, block in enumerate(blocks)
     }
@@ -287,6 +287,8 @@ def build_reduction(blocks, target_data, audit=True):
     }
     if audit:
         audit_reduction(reduction)
+    if compile_maps:
+        compile_direct_maps(reduction, audit=audit)
     return reduction
 
 
@@ -344,6 +346,115 @@ def project_psd(values):
         output.append(
             (eigenvectors * np.maximum(eigenvalues, 0.0)) @ eigenvectors.T
         )
+    return output
+
+
+def compile_direct_maps(reduction, audit=True):
+    """Compile the full marginal into the 171 reduced PSD components.
+
+    If an orbit has size h, its ordered block carries the coefficient
+    h^(-1/2).  For a descriptor Kraus K, source transport T, and cached raw
+    marginal Kraus M with carrier weight d, the effective matrix is
+
+        sqrt(d / sqrt(h)) K^T T^T M.
+
+    This removes all 487 ordered-block expansions from iterative solvers.
+    """
+    direct = []
+    for orbit in reduction["orbits"]:
+        orbit_scale = 1.0 / np.sqrt(len(orbit["members"]))
+        component_maps = [
+            {} for _ in orbit["components"]
+        ]
+        for member, index in zip(orbit["members"], orbit["block_index"]):
+            block = reduction["blocks"][index]
+            transport = orbit["transports"][member]
+            for target, matrices in block["maps"].items():
+                scalar = np.sqrt(block["weights"][target] * orbit_scale)
+                for component_index, descriptor in enumerate(
+                    orbit["components"]
+                ):
+                    output = component_maps[component_index].setdefault(
+                        target, []
+                    )
+                    for descriptor_kraus in descriptor["kraus"]:
+                        for matrix in matrices:
+                            output.append(
+                                scalar * descriptor_kraus.T
+                                @ transport.T @ matrix
+                            )
+        direct.extend(component_maps)
+    assert len(direct) == 171
+    reduction["direct_maps"] = tuple({
+        target: tuple(matrices) for target, matrices in maps.items()
+    } for maps in direct)
+
+    if audit:
+        rng = np.random.default_rng(20260803)
+        variables = []
+        for descriptor in reduction["component_descriptors"]:
+            raw = rng.standard_normal((descriptor["rank"],) * 2)
+            variables.append((raw + raw.T) / 2.0)
+        full = JOINT.apply_marginal(
+            reduction["blocks"], expand(reduction, variables),
+            reduction["target_data"],
+        )
+        compressed = apply_direct_marginal(reduction, variables)
+        error = np.sqrt(sum(
+            la.norm(full[target] - compressed[target]) ** 2
+            for target in JOINT.TARGETS
+        ))
+        norm = np.sqrt(sum(
+            la.norm(full[target]) ** 2 for target in JOINT.TARGETS
+        ))
+        assert error < 5e-7 * max(1.0, norm), (error, norm)
+
+        direction = {
+            target: (
+                lambda raw: (raw + raw.T) / 2.0
+            )(rng.standard_normal(moment.shape))
+            for target, (_, moment) in reduction["target_data"].items()
+        }
+        adjoint = apply_direct_adjoint(reduction, direction)
+        left = JOINT.target_inner(compressed, direction)
+        right = sum(
+            np.sum(value * gradient)
+            for value, gradient in zip(variables, adjoint)
+        )
+        assert abs(left - right) < 5e-7 * max(1.0, abs(left))
+        print("direct reduced Kraus audit error:", error)
+    return reduction["direct_maps"]
+
+
+def apply_direct_marginal(reduction, variables):
+    maps = reduction.get("direct_maps")
+    if maps is None:
+        compile_direct_maps(reduction, audit=False)
+        maps = reduction["direct_maps"]
+    output = JOINT.zero_targets(reduction["target_data"])
+    for value, component_maps in zip(variables, maps):
+        for target, matrices in component_maps.items():
+            for matrix in matrices:
+                output[target] += matrix.T @ value @ matrix
+    return {
+        target: (value + value.T) / 2.0
+        for target, value in output.items()
+    }
+
+
+def apply_direct_adjoint(reduction, direction):
+    maps = reduction.get("direct_maps")
+    if maps is None:
+        compile_direct_maps(reduction, audit=False)
+        maps = reduction["direct_maps"]
+    output = []
+    for component_maps in maps:
+        first = next(iter(component_maps.values()))[0]
+        value = np.zeros((first.shape[0],) * 2)
+        for target, matrices in component_maps.items():
+            for matrix in matrices:
+                value += matrix @ direction[target] @ matrix.T
+        output.append((value + value.T) / 2.0)
     return output
 
 

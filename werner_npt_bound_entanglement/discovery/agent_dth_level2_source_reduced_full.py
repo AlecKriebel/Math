@@ -29,21 +29,15 @@ import agent_dth_level2_source_symmetry as SOURCE_SYMMETRY
 DEFAULT_CACHE = DISCOVERY / "dth_level2_full_blocks.pkl"
 DEFAULT_NORMAL = DISCOVERY / "dth_level2_source_reduced_normal.npz"
 DEFAULT_CANDIDATE = DISCOVERY / "dth_level2_source_reduced_best.pkl"
+DEFAULT_WARM_FULL = DISCOVERY / "dth_level2_full_symmetric_floor0.pkl"
 
 
 def reduced_adjoint(reduction, direction):
-    return SOURCE_SYMMETRY.reduce_adjoint(
-        reduction,
-        JOINT.apply_adjoint(reduction["blocks"], direction),
-    )
+    return SOURCE_SYMMETRY.apply_direct_adjoint(reduction, direction)
 
 
 def reduced_marginal(reduction, variables):
-    return JOINT.apply_marginal(
-        reduction["blocks"],
-        SOURCE_SYMMETRY.expand(reduction, variables),
-        reduction["target_data"],
-    )
+    return SOURCE_SYMMETRY.apply_direct_marginal(reduction, variables)
 
 
 def invariant_coordinates(value, directions):
@@ -99,15 +93,33 @@ def spectra_metrics(variables):
     return defect, min(spectrum[0] for spectrum in spectra)
 
 
+def save_candidate(path, floor, iteration, best):
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    with temporary.open("wb") as stream:
+        pickle.dump({
+            "floor": floor,
+            "iteration": iteration,
+            "score": best[0],
+            "residual": best[1],
+            "psd_defect": best[2],
+            "minimum_shifted_component_eigenvalue": best[3],
+            "shifted_components": best[4],
+        }, stream, pickle.HIGHEST_PROTOCOL)
+    temporary.replace(path)
+
+
 def solve(reduction, directions, target, normal, floor, iterations,
-          tolerance):
+          tolerance, initial=None, checkpoint=None, checkpoint_every=250):
     inverse = la.inv(normal)
     shift = SOURCE_SYMMETRY.physical_floor_shift(reduction, floor)
     desired = (
         invariant_coordinates(target, directions)
         - invariant_coordinates(reduced_marginal(reduction, shift), directions)
     )
-    zero = SOURCE_SYMMETRY.zero_components(reduction)
+    zero = (
+        SOURCE_SYMMETRY.zero_components(reduction)
+        if initial is None else initial
+    )
     z = affine_projection(
         reduction, directions, inverse, desired, zero
     )
@@ -135,8 +147,13 @@ def solve(reduction, directions, target, normal, floor, iterations,
             )
             defect, minimum = spectra_metrics(candidate)
             score = max(residual, defect)
-            if best is None or score < best[0]:
+            improved = best is None or score < best[0]
+            if improved:
                 best = (score, residual, defect, minimum, candidate)
+                if (checkpoint is not None
+                        and (iteration % checkpoint_every == 0
+                             or score < tolerance)):
+                    save_candidate(checkpoint, floor, iteration, best)
             if iteration % 250 == 0:
                 print(
                     f"source-reduced DR floor={floor:.2e} "
@@ -160,13 +177,20 @@ def main():
     parser.add_argument("--floor", type=float, default=0.0)
     parser.add_argument("--tolerance", type=float, default=1e-18)
     parser.add_argument("--audit", action="store_true")
+    parser.add_argument(
+        "--warm-full-candidate", type=Path, default=None,
+        help=("ordered-block or reduced candidate used as an affine warm "
+              "start; pass the saved full floor-zero candidate here"),
+    )
+    parser.add_argument("--checkpoint-every", type=int, default=250)
     args = parser.parse_args()
 
     with args.cache.open("rb") as stream:
         data = pickle.load(stream)
     JOINT.TARGETS = tuple(data["targets"])
     reduction = SOURCE_SYMMETRY.build_reduction(
-        data["blocks"], data["target_data"], audit=args.audit
+        data["blocks"], data["target_data"], audit=args.audit,
+        compile_maps=True,
     )
     directions = TARGET_SYMMETRY.invariant_target_basis(data["target_data"])
     target = TARGET_SYMMETRY.invariant_projection(
@@ -180,20 +204,33 @@ def main():
         normal = build_normal(reduction, directions)
         np.savez_compressed(args.normal_cache, normal=normal)
         print("saved source-reduced AA*:", args.normal_cache)
+    initial = None
+    if args.warm_full_candidate is not None:
+        with args.warm_full_candidate.open("rb") as stream:
+            warm = pickle.load(stream)
+        if "shifted_candidate" in warm:
+            warm_components = SOURCE_SYMMETRY.reduce_adjoint(
+                reduction, warm["shifted_candidate"]
+            )
+        elif "shifted_components" in warm:
+            warm_components = warm["shifted_components"]
+        else:
+            raise ValueError("unrecognized warm candidate payload")
+        shift = SOURCE_SYMMETRY.physical_floor_shift(reduction, args.floor)
+        initial = [
+            value - delta
+            for value, delta in zip(warm_components, shift)
+        ]
+        print("loaded warm candidate:", args.warm_full_candidate)
+
     best = solve(
         reduction, directions, target, normal,
         floor=args.floor, iterations=args.iterations,
         tolerance=args.tolerance,
+        initial=initial, checkpoint=args.candidate_cache,
+        checkpoint_every=args.checkpoint_every,
     )
-    with args.candidate_cache.open("wb") as stream:
-        pickle.dump({
-            "floor": args.floor,
-            "score": best[0],
-            "residual": best[1],
-            "psd_defect": best[2],
-            "minimum_shifted_component_eigenvalue": best[3],
-            "shifted_components": best[4],
-        }, stream, pickle.HIGHEST_PROTOCOL)
+    save_candidate(args.candidate_cache, args.floor, args.iterations, best)
     print("saved source-reduced candidate:", args.candidate_cache)
 
 
