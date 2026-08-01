@@ -88,14 +88,19 @@ with SHA-256
 and size 163,447 bytes.  It uses deterministic canonical JSON, decimal-string
 per-entry rationals, and gzip with timestamp zero.
 
-## Audits completed at reconstruction time
+## Exact verification
 
 The following statements are exact:
 
 1. the selected 334 rational face equations vanish identically;
 2. the defect minor has rank 334 over each of two prime fields;
 3. the trace is a positive rational;
-4. the witness pairing is a negative rational.
+4. the witness pairing is a negative rational;
+5. all 118 nonzero holomorphic coordinate blocks are positive definite,
+   with total supported rank 768;
+6. the crossed mixed moment lies in the exact 2266-dimensional physical
+   product-DTH face; and
+7. all 198 nonzero mixed face-coordinate blocks are positive definite.
 
 Their decimal values are
 
@@ -118,7 +123,45 @@ After conceptual normalization by the positive trace, the pairing is
 -0.000452547029071659783580139927555\ldots.
 \]
 
-The independent floating audit, used only as a diagnostic, found:
+The full mixed-face statement in item 6 was checked without a rank tolerance.
+After clearing the 1595-bit common coordinate denominator, all 826,573
+primitive face equations were replayed modulo 85 deterministic primes.  The
+resulting modulus has 1695 bits, while an explicit bound on every integer
+residual has 1683 bits.  Vanishing modulo that modulus therefore implies
+literal vanishing over the integers.
+
+For item 7, the same CRT pass reconstructed all 64,900 pivot-principal
+entries of the 216 mixed blocks.  Each nonzero coordinate matrix was scaled
+by an exact power of two and compared with a 100-bit dyadic reference.  An
+80-bit dyadic inverse-Cholesky proposal makes every reference strictly
+diagonally dominant by exact congruence.  Exact Frobenius perturbation then
+transfers positivity to the reconstructed rational matrix.  The worst
+squared perturbation-to-certified-gap ratio is
+
+\[
+2.691975\times10^{-41}<1.
+\]
+
+As an independent hostile check, direct fraction-free Sylvester arithmetic
+also proves positivity of the numerically hardest raw-coordinate block,
+the (42\times42) block ((2,2,4)); its final determinant has 108,888 bits.
+The exact local crossing additionally satisfies the transpose intertwining
+identity (C T_{\rm hol}=T_{\rm mixed}C), so symmetry of the mixed blocks is
+not inferred from their pivot submatrices.
+
+The mixed positivity reference certificate is
+
+```text
+verification/certificates/dth_mixed_pd_reference.json.gz
+```
+
+with SHA-256
+
+```text
+648186810cd9e9becc71eb6d319749c2a2c956d3f152f116ff17a1cdd1bcdf33
+```
+
+The independent floating audit, retained only as a diagnostic, found:
 
 - smallest holomorphic chart eigenvalue
   \(1.392662703188779\times10^{-12}\), in block \((4,3,3)\);
@@ -128,18 +171,17 @@ The independent floating audit, used only as a diagnostic, found:
   \(2.24258\times10^{-13}\);
 - total mixed face rank 2266.
 
-The exact full-face crossing replay and exact mixed-chart positive-
-definiteness audit are the remaining certificate checks at this checkpoint.
-They must pass before (1)--(3) are promoted to the theorem below.
-
-## The theorem certified after the remaining replay
-
-If the exact full-face and mixed-positivity checks pass, the certificate
-proves:
+## Theorem
 
 > **Theorem.** The corrected first-level, five-replica, density/PPT DTH
 > relaxation (1) contains a nonzero rational feasible density \(\rho\) with
 > \(\operatorname{Tr}(\widetilde{\mathcal O}_0\rho)<0\).
+
+Indeed, items 1, 5, and the support chart (2) prove
+\(\rho\succeq0\) with the required holomorphic range.  Items 6 and 7 prove
+\(\rho^{\Gamma_1}\succeq0\) and the corrected mixed support equation.
+Items 3 and 4 permit normalization by the positive trace while preserving
+the strict negative sign.
 
 This is a certificate-degree obstruction.  It proves that the complete
 first corrected Pluecker/DTH lift is insufficient and that an additional
@@ -150,3 +192,12 @@ It does **not** provide a rank-one density or a physical vector
 square-zero positivity, unrestricted three-copy Werner positivity, or the
 all-copy Werner problem.
 
+The deterministic entry point is
+
+```text
+python3 verification/verify_dth_constrained_pseudomoment.py
+```
+
+It rebuilds the exact support charts and crossing from the defining
+permutation actions, checks the two artifact hashes, certifies the rational
+signs and both PSD systems, and performs the bounded CRT face replay.
