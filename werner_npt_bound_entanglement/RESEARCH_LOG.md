@@ -8372,3 +8372,25 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_factor_equality_morse_bott.md` and a fast,
   dependency-free sparse-rational verifier
   `verification/verify_dth_factor_equality_hessian.py`.
+
+## 2026-08-01 06:56 PDT — Complete PSD-only fixed-marginal lift is numerically feasible
+
+- Built the complete degree-three post-Omega marginal map: 118 nonzero
+  ordered target blocks, 487 ordered source blocks, source rank 14,511, and
+  519,434 real-symmetric source variables.
+- Used the exact physical-site averaging theorem to reduce all 4,139 target
+  equations to 761 invariant equations.  The reduced numerical
+  \(\mathcal L\mathcal L^*\) has full rank and spectrum in
+  `[49.328371469943804, 490.01506230813277]`.
+- The canonical minimum-norm preimage is indefinite (PSD defect
+  `2.874819774981017e-7`, least eigenvalue `-4.0542161326626084e-8`).  Full
+  blockwise Douglas--Rachford correction reached invariant marginal residual
+  `1.6326912387466753e-20`, PSD defect `3.1092050679560775e-14`, and least
+  eigenvalue `-6.1533713273820615e-15` after 2,500 iterations.
+- Preserved the numerical candidate as
+  `discovery/dth_level2_full_symmetric_floor0.pkl` (not tracked because it is
+  a 7.8 MB floating-point cache), SHA-256
+  `5240025205d277a5270154a71d1ada3b9901af7e0a77056b80771aa14f3daa6c`.
+- Scope: this is numerical evidence only for the PSD fixed-marginal problem.
+  The prolonged support face and grouped PPT constraints remain untested, so
+  this is neither a complete degree-three extension nor a DTH result.

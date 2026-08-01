@@ -30,6 +30,7 @@ import agent_dth_level2_joint_extension as JOINT
 
 
 CACHE = DISCOVERY / "dth_level2_joint_blocks.pkl"
+_DIRECTION_SUPPORT_CACHE = {}
 
 
 def load_or_build_data():
@@ -151,22 +152,47 @@ def invariant_target_basis(target_data):
     print("invariant target orbit census:")
     for row in orbit_census:
         print(" ", row)
-    gram = np.asarray([
-        [JOINT.target_inner(left, right) for right in directions]
-        for left in directions
-    ])
-    assert la.norm(gram - np.eye(len(directions))) < 5e-8
+    # Directions from distinct shape orbits have disjoint block support, and
+    # within one orbit the representative SVD basis is orthonormal.  A dense
+    # O(m^2 * number_of_targets) Gram audit is cheap for the small discovery
+    # sets but unnecessarily dominates the complete m=761 calculation.
+    if len(directions) <= 250:
+        gram = np.asarray([
+            [JOINT.target_inner(left, right) for right in directions]
+            for left in directions
+        ])
+        assert la.norm(gram - np.eye(len(directions))) < 5e-8
+    else:
+        norms = np.asarray([
+            JOINT.target_inner(direction, direction)
+            for direction in directions
+        ])
+        assert np.max(np.abs(norms - 1.0)) < 5e-8
     return directions
 
 
 def invariant_projection(target_data, directions):
     original = {target: moment for target, (_, moment) in target_data.items()}
     output = JOINT.zero_targets(target_data)
-    for direction in directions:
-        coefficient = JOINT.target_inner(direction, original)
-        for target in JOINT.TARGETS:
-            output[target] += coefficient * direction[target]
+    coefficients = invariant_coordinates(original, directions)
+    for coefficient, support in zip(coefficients, direction_supports(directions)):
+        for target, matrix in support:
+            output[target] += coefficient * matrix
     return output
+
+
+def direction_supports(directions):
+    """Sparse target-block supports of an invariant orthonormal basis."""
+    key = id(directions)
+    if key not in _DIRECTION_SUPPORT_CACHE:
+        _DIRECTION_SUPPORT_CACHE[key] = [
+            tuple(
+                (target, matrix) for target, matrix in direction.items()
+                if matrix.size and np.any(matrix)
+            )
+            for direction in directions
+        ]
+    return _DIRECTION_SUPPORT_CACHE[key]
 
 
 def reduced_superoperator(blocks, target_data, directions):
@@ -176,8 +202,7 @@ def reduced_superoperator(blocks, target_data, directions):
         image = JOINT.apply_marginal(
             blocks, JOINT.apply_adjoint(blocks, direction), target_data
         )
-        for row, test in enumerate(directions):
-            superoperator[row, column] = JOINT.target_inner(test, image)
+        superoperator[:, column] = invariant_coordinates(image, directions)
         if column % 20 == 0:
             print("reduced AA* column", column, "/", dimension)
     superoperator = (superoperator + superoperator.T) / 2.0
@@ -230,7 +255,8 @@ def project_psd(variables):
 
 def invariant_coordinates(value, directions):
     return np.asarray([
-        JOINT.target_inner(direction, value) for direction in directions
+        sum(np.sum(matrix * value[target]) for target, matrix in support)
+        for support in direction_supports(directions)
     ])
 
 

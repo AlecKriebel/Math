@@ -111,6 +111,46 @@ with the largest recorded negative witness contribution is jointly interior
 at this discovery precision.  Any degree-three obstruction must couple in at
 least one of the remaining 26 nonzero site-shape orbits.
 
+## Complete PSD fixed-marginal discovery test
+
+The complete post-Omega map contains 118 nonzero ordered target blocks and
+487 ordered source blocks.  Its raw source rank is 14,511 and its raw source
+cones contain 519,434 real-symmetric variables.  On the 761-dimensional
+site-invariant target, the reduced operator \(\mathcal L\mathcal L^*\) is
+positive definite, with numerical spectrum
+
+\[
+[49.328371469943804,\ 490.01506230813277].
+\]
+
+The minimum-norm affine preimage is not positive semidefinite: its marginal
+residual is \(3.10\times10^{-17}\), its aggregate negative-eigenvalue norm
+is \(2.87\times10^{-7}\), and its least eigenvalue is
+\(-4.05\times10^{-8}\).  A full blockwise Douglas--Rachford correction,
+however, reduced these quantities to
+
+\[
+\begin{aligned}
+\text{invariant marginal residual}&=1.6326912387466753\times10^{-20},\\
+\text{PSD defect}&=3.1092050679560775\times10^{-14},\\
+\lambda_{\min}&=-6.1533713273820615\times10^{-15}.
+\end{aligned}
+\]
+
+The retained discovery cache is
+`discovery/dth_level2_full_symmetric_floor0.pkl`, with SHA-256 digest
+
+```
+5240025205d277a5270154a71d1ada3b9901af7e0a77056b80771aa14f3daa6c
+```
+
+This is strong numerical evidence that the **PSD-only**, post-Omega,
+fixed-marginal relaxation is feasible on a boundary face.  It is not an
+exact extension certificate.  In particular, it does not yet impose the
+prolonged support equation on the partially transposed source or either of
+the remaining grouped PPT constraints.  It therefore does not decide the
+complete degree-three DTH lift.
+
 ## Verification
 
 `verification/verify_dth_site_symmetric_target_census.py` reconstructs all
