@@ -8315,3 +8315,34 @@ u_1u_1^\dagger\bigr].
   `notes/agent_dth_deficient_equality_classification.md` and the independent
   rational audit
   `verification/verify_dth_deficient_equality_classification.py`.
+
+## 2026-08-01 06:19 PDT — Exact three-slice Fierz and exterior remainder
+
+- Refuted the proposed block Ky--Fan inequality for arbitrary blocks and for
+  complex symmetric blocks.  The numerically positive normalized gaps reach
+  about `0.16`; hence any valid proof must use the common double-Hodge origin
+  `B_p = D_{X_p}`.
+- Derived the exact common-double-Hodge Fierz identity
+
+  \[
+  8\|D_xy\|^2
+  =\|x\|^2\|y\|^2-|\langle x,y\rangle|^2
+   -\sum_i\operatorname{Tr}(\rho_i^x\rho_i^y)
+   +\sum_i\|T_i(x,y)\|_2^2.
+  \]
+
+- Aggregating over an orthonormal rank-four frame `P` reduces the decisive
+  Ky--Fan-four bound exactly to
+
+  \[
+  \langle x,Px\rangle+
+  \sum_i\operatorname{Tr}P\!\left[
+  \rho_i^x\otimes I-I\otimes(\rho_{\hat i}^x)^T\right]\ge0.
+  \]
+
+- Rewrote the same remainder as a signed sum of local column/row exterior
+  Gram deficits plus the global five-vector determinant
+  `||x wedge y_1 wedge ... wedge y_4||^2`.  This isolates the smallest exact
+  exterior lemma on the three-slice route; it remains unproved.
+- Added `notes/agent_dth_three_slice_fierz.md` and the dependency-free exact
+  rational verifier `verification/verify_dth_three_slice_fierz.py`.
