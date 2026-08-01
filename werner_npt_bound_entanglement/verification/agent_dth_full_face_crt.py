@@ -78,6 +78,16 @@ def block_ranges(multiplicities):
     return result
 
 
+def transpose_permutation(ranges):
+    """Coordinate permutation induced by transposing every local block."""
+    permutation = np.arange(103)
+    for block in ranges:
+        for row in range(block.shape[0]):
+            for column in range(block.shape[1]):
+                permutation[block[row, column]] = block[column, row]
+    return permutation
+
+
 def block_indices(ranges, shapes):
     grids = [ranges[s] for s in shapes]
     return (
@@ -162,6 +172,15 @@ def exact_crossing_numerator():
         for row in range(103)
     ], dtype=object)
     assert max(abs(int(value)) for value in integer.flat) == 115_200
+    # A symmetric holomorphic restriction must cross to a symmetric mixed
+    # restriction.  Check the needed transpose intertwiner exactly rather
+    # than relying on reconstructed pivot-principal blocks to expose an
+    # accidental antisymmetric component.
+    hol_transpose = transpose_permutation(block_ranges(BRIDGE.HOL_MULTS))
+    mixed_transpose = transpose_permutation(block_ranges(BRIDGE.MIXED_MULTS))
+    assert np.array_equal(
+        integer[:, hol_transpose], integer[mixed_transpose, :]
+    )
     return integer
 
 

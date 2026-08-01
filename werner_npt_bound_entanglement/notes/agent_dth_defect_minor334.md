@@ -199,6 +199,17 @@ every integer residual is exactly zero.  This proves, over
 \(\mathbb Q\), that the corrected holomorphic moment crosses into the exact
 2266-dimensional product face.
 
+The bridge also passes the literal integer intertwining identity
+
+\[
+C\,T_{\rm hol}=T_{\rm mixed}\,C,
+\]
+
+where the two permutation matrices transpose every local multiplicity
+block.  Thus the crossing sends a symmetric holomorphic restriction to an
+exactly symmetric mixed restriction; symmetry is not inferred from its
+pivot-principal reconstruction.
+
 The same CRT run reconstructs the 64900 entries in the mixed pivot-principal
 submatrices and hence all exact mixed face-coordinate matrices.  A direct
 independent scaling audit on blocks 222, 224, 242, 422, and 444 agrees with
