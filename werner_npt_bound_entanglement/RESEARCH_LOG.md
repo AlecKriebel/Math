@@ -8106,6 +8106,10 @@ u_1u_1^\dagger\bigr].
 - The exact adjoint inserts the two deleted replicas as fixed points.  This
   gives a direct symmetry-reduced block-map construction without forming the
   raw (80{,}800{,}902)-dimensional degree-three space.
+- On the pair-symmetric degree-three Grassmann range, the adjoint of the
+  five-replica witness is exactly the average of the three single-pair DTH
+  witnesses.  Hence a fixed extension preserves the negative objective
+  exactly; there is no additional witness normalization to reconstruct.
 - Proved that, for a positive normalized extension, equality of the
   Grassmann-compressed marginal with the five-replica moment already forces
   equality of the full marginal: the complementary positive block has zero

@@ -143,6 +143,43 @@ The adjoint statement is even simpler.  If \(\widehat\sigma\in S_7\) fixes
 \bigl(\operatorname{Tr}_{5,6}\bigr)^*(P_\sigma)=P_{\widehat\sigma}.
 \]
 
+## Lift of the witness objective
+
+Let \(O_0^{(j)}\) denote the minimal DTH witness acting on the (j)-th
+bivector pair and the final (z) replica, with identities on the other
+pairs.  In the degree-two and degree-three spaces put
+
+\[
+\widetilde O_0^{(2)}=\frac12(O_0^{(1)}+O_0^{(2)}),
+\qquad
+\widetilde O_0^{(3)}=\frac13(O_0^{(1)}+O_0^{(2)}+O_0^{(3)}).
+\]
+
+If (P_3) is the degree-three Grassmann projector, its range is invariant
+under every permutation of the three bivector pairs.  Hence the three
+compressed operators (P_3O_0^{(j)}P_3) are equal.  The adjoint marginal
+therefore obeys the exact identity
+
+\[
+\boxed{
+P_3\mathcal M^*(\widetilde O_0^{(2)})P_3
+=P_3\widetilde O_0^{(3)}P_3.
+}
+\tag{3}
+\]
+
+Consequently any fixed extension (T) of the committed five-replica moment
+(R) preserves its witness value exactly:
+
+\[
+\operatorname{Tr}(T\widetilde O_0^{(3)})
+=\operatorname{Tr}(R\widetilde O_0^{(2)}).
+\]
+
+Thus extension feasibility would immediately produce a negative
+degree-three pseudomoment, while positivity of the properly constrained
+degree-three witness would rule out the extension.
+
 ## Verification
 
 `verification/verify_dth_seven_to_five_contraction.py` checks, for all
