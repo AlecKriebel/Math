@@ -7495,3 +7495,133 @@ u_1u_1^\dagger\bigr].
   `verification/agent_dth_omega_lift.py`,
   `notes/agent_dth_five_block.md`, and
   `verification/agent_dth_five_block.py`.
+
+## 2026-07-31 22:36 PDT — Mixed-* consistency eliminates the binary cloud carrier
+
+- Identified the canonical lowest-degree coupling between the holomorphic
+  lift \(h=w\otimes w\otimes z\) and mixed lift
+  \(m=\bar w\otimes w\otimes z\):
+  \[
+  |m\rangle\langle m|
+  =\bigl(|h\rangle\langle h|\bigr)^{\Gamma_1}.
+  \]
+  For a pure \(h\), positivity of this partial transpose is equivalent to
+  rank one of the \(1:(2,5)\) catalecticant.  Pair symmetry then forces
+  \(h=w^{\otimes2}\otimes z\); the first Pluecker equation forces \(w\) to be
+  decomposable.  Thus the first nontrivial Veronese--Segre/mixed-* consistency
+  level is quadratic, and it is exact on pure lifts.
+- Reconstructed the binary highest-weight carrier of local type
+  \([4,1]\otimes[4,1]\otimes[3,2]\).  After source and first-Pluecker
+  projection it has dimension seven.  Exact flattening calculations give
+  \[
+  \operatorname{rank}_{12:345}\xi=7,\qquad
+  \operatorname{rank}_{12:345}\zeta=11.
+  \]
+  The two cloud vectors share an explicit partially transposed \(2\times2\)
+  principal minor.  Its determinant is \(-4\) for \(\xi\), and, for the
+  scaled algebraic vector \(\zeta'\),
+  \[
+  -\frac{687159}{16}-\frac{5445}{2}\sqrt{231}<0.
+  \]
+- Proved the stronger carrierwise PPT exclusion.  The seven basis matrices
+  occupy 180 of a \(30\times66\) product grid.  PPT zero-diagonal propagation
+  from the other 1800 coordinates produces rational linear equations of
+  full rank \(49\) on arbitrary \(7\times7\) coefficient matrices.  Hence
+  no nonzero PPT operator is supported entirely in this carrier.
+- Independently, the exact mixed-support calculation in
+  agent_dth_ppt_block.md proves the still stronger carrierwise statement
+  that
+  \[
+  \widehat{\mathcal C}_{\rm supp}\rho^{\Gamma_1}=0
+  \Longrightarrow \rho=0
+  \]
+  without positivity.  The results are compatible: both retain the
+  matrix-valued mixed information erased by the scalar \(J_5\) condition.
+- Scope: these theorems eliminate the known \(\xi,\zeta\) carrier, but do
+  not exclude off-diagonal coherences between different local carriers.
+  Such cross-carrier terms can cancel partial-transpose rows or mixed-support
+  outputs and remain the next exact finite question.
+- New artifacts: agent_dth_mixed_consistency.md and
+  agent_dth_mixed_consistency.py.
+- Completion estimate: 100% for the known binary cloud carrier; about 40%
+  for identifying the correct mixed-PPT formulation; about 10% for the full
+  coupled five-replica mixed-PPT decision.  DTH and all downstream Werner
+  conclusions remain open.
+
+## 2026-07-31 — Corrected mixed-conjugate first DTH relaxation
+
+- Repaired the ket-level conjugation obstruction at density level.  If
+  \[
+  h=w\otimes w\otimes z,\qquad
+  m=\bar w\otimes w\otimes z,
+  \]
+  then coefficientwise
+  \[
+  |m\rangle\langle m|
+  =(|h\rangle\langle h|)^{\Gamma_1},
+  \]
+  where the transposed first bivector slot is regarded as
+  \(\overline{\wedge^2V}\).  This is the complete linear consistency
+  relation between the holomorphic and mixed density moments at the
+  current degree.
+- Derived the exactly normalized equivariant mixed support contraction
+  \[
+  {\cal C}_{\rm supp}(\bar w\otimes u\otimes z)
+  =u\otimes W^\dagger z
+  \]
+  on
+  \(\overline{\wedge^2V}\otimes\wedge^2V\otimes V\).  Its positive
+  localizer \(K_{\rm supp}={\cal C}_{\rm supp}^\dagger
+  {\cal C}_{\rm supp}\) obeys
+  \[
+  \langle \bar w\otimes w\otimes z,
+  K_{\rm supp}(\bar w\otimes w\otimes z)\rangle
+  =\|w\|^2\|W^\dagger z\|^2.
+  \]
+- Formulated the corrected finite first-degree cone
+  \[
+  \rho\succeq0,\quad \rho^{\Gamma_1}\succeq0,\quad
+  \operatorname{ran}\rho\subseteq{\cal K}_{\rm hol},\quad
+  {\cal C}_{\rm supp}\rho^{\Gamma_1}=0,
+  \]
+  where \({\cal K}_{\rm hol}\) imposes pair symmetry, the first
+  Pluecker equation, and the exact Omega equation.  Minimizing
+  \(\operatorname{Tr}(\widetilde{\cal O}_0\rho)\) on its normalized
+  slice is now the mathematically correct first-degree finite SDP.
+- Proved rank-one exactness from first principles.  Positivity of the
+  partial transpose of a pure density forces product form across the
+  first bivector slot; pair symmetry then forces
+  \(h=w\otimes w\otimes z\); the Pluecker, Omega, and mixed-support
+  range equations are exactly
+  \[
+  w\wedge w=0,\qquad
+  \operatorname{Tr}(D_zW)=0,\qquad W^\dagger z=0.
+  \]
+  Hence the rank-one feasible points are precisely the physical DTH
+  monomials.  A negative higher-rank feasible point would be an exact
+  pseudomoment obstruction, not a physical witness.
+- Related the mixed positive localizer to the earlier indefinite
+  holomorphic one:
+  \[
+  P_{\rm sym}\Theta_1(K_{\rm supp})P_{\rm sym}
+  =\tfrac14P_{\rm sym}J_5P_{\rm sym}.
+  \]
+  Thus the missing condition in the scalar obstruction is exactly
+  \(\rho^{\Gamma_1}\succeq0\); once it holds, zero \(J_5\) expectation
+  forces the full componentwise support kernel.
+- Audited the local mixed qutrit representation
+  \[
+  \bar{\mathbf3}^{\otimes2}\otimes\mathbf3^{\otimes3}
+  =(3,2)^1\oplus(2,1)^6\oplus(1,0)^6
+   \oplus(1,3)^2\oplus(0,2)^5\oplus(4,0)^1.
+  \]
+  The dimensions sum to \(243\), and the local mixed commutant has
+  dimension \(103\).  These are the correct block sizes for an exact
+  constrained calculation; a dense raw SDP is far beyond the local
+  hardware.
+- Exact artifacts:
+  notes/agent_dth_mixed_module.md and
+  verification/agent_dth_mixed_module.py.
+- Resolution status is unchanged: the sign of this corrected SDP,
+  DTH, square-zero positivity, unrestricted \(n=3\), and the all-copy
+  problem remain open.
