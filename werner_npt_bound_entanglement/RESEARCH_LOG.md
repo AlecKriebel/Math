@@ -8654,7 +8654,7 @@ u_1u_1^\dagger\bigr].
   terms is `8.60e-15`.
 - Identified the exact local carrier triples and constructed rational
   highest-weight pullback seeds with integer Gram norms
-  `(528, 912, 32, 696)`.  The dependency-free exact seed/oracle verifier is
+  `(528, 912, 32, 696)`.  The exact seed/oracle verifier is
   `verification/verify_dth_level2_gammaA_pullback_seeds.py`; it passes under
   `/usr/local/bin/python`.
 - This is an exact audit of the crossing algebra and a rigorous
