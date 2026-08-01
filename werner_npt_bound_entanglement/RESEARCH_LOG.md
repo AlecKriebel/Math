@@ -8157,6 +8157,28 @@ u_1u_1^\dagger\bigr].
   complementation reduce complete grouped PPT to the three representatives
   \(\Gamma_A,\Gamma_z,\Gamma_{A_1A_2}\).
 
+## 2026-08-01 06:15 PDT — Exact third output moment filter
+
+- Derived an exact three-replica permutation identity for
+  \(\operatorname{Tr}(D_z^\dagger D_z)^3\).  The one-site contraction is
+  \(T/8\), where
+  \(T=F_{12}+F_{13}+F_{23}-F_{123}\); the three-site moment is the
+  expectation of \(T^{\otimes3}/512\) on \(z^{\otimes3}\).
+- Since a (27\)-dimensional skew matrix has at most thirteen distinct
+  singular pairs, convexity shows that any strict Ky--Fan-four violation
+  must satisfy the independent exact threshold
+  \[
+  \operatorname{Tr}(D_z^\dagger D_z)^3>125/15488.
+  \]
+  This supplements the established local-purity condition
+  \(P_{\rm loc}(z)>15/11\).
+- Added a general one-body Schur-sector upper bound for the third moment.
+  It is sharp for product tensors but does not alone settle DTH.
+- Added `notes/agent_dth_output_third_moment.md` and the dependency-free
+  rational verifier
+  `verification/verify_dth_output_third_moment.py`, which checks all 729
+  entries of the local epsilon/permutation identity.
+
 ## 2026-08-01 06:00 PDT — Convex-hull weak tests closed
 
 - Reconstructed the exact complete-PPT pseudomoment in the 103-diagram local
