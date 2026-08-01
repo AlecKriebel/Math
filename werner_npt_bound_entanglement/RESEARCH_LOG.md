@@ -8542,6 +8542,26 @@ u_1u_1^\dagger\bigr].
   fixed-marginal problem.  Exact rational correction and the prolonged
   support/PPT constraints remain open.
 
+## 2026-08-01 07:31 PDT — Complete local crossing for prolonged support
+
+- Proved the exact local decomposition of
+  \`conjugate(3)^tensor2 tensor 3^tensor5\`: ten irreducible types with
+  multiplicities \`(1,1,4,10,5,24,20,15,36,11)\`.  Their carrier-weighted
+  dimensions sum to \`2187\`, and their squared multiplicities sum to \`2761\`,
+  matching the holomorphic \(S_7\) commutant.
+- Added the dependency-free exact modular census verifier
+  \`verification/verify_dth_level2_mixed_s7_census.py\`.
+- Constructed the full numerical \`2761 x 2761\` local partial-transpose
+  crossing from sparse \(S_7\) permutation diagrams and finite-group Fourier
+  inversion.  Weighted Hilbert--Schmidt isometry error is \`2.4003e-14\`
+  (maximum entry \`1.8319e-15\`); trace error is \`8.4377e-15\`.
+- Preserved the untracked 55 MB crossing cache
+  \`discovery/dth_level2_local_gammaA_crossing.npz\`, SHA-256
+  \`af76759c761b1deafd335418779e6735120b5e860a0893c17a3b155d4866a5e5\`.
+- Remaining bottleneck: cross the saved strict holomorphic extension through
+  all three sites while exploiting pair/support symmetry; naive mixed blocks
+  can have dimension \(36^3=46656\) and should not be assembled densely.
+
 ## 2026-08-01 07:17 PDT — Sharpened smooth-critical purity threshold
 
 - Combined the exact equal-output-marginal Euler theorem with the
