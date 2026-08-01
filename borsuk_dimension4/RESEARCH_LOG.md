@@ -138,3 +138,33 @@ alignments remain live.
 Best-guess completion toward a full resolution: **7%**. The positive route now
 has exact low- and high-circumradius regimes, but a substantial middle shell
 and nonsmooth diameter-endpoint configurations remain unresolved.
+
+## 2026-08-01T16:41:49-07:00 — Universal-edge theorem and golden lead closed
+
+- Proved a new bounded-set positive theorem: if a diameter pair is universal
+  (both endpoints are at the diameter from every other point), then the set
+  has a five-partition of strictly smaller diameter.
+- After normalizing away the universal edge, the residual points are unit
+  vectors in R^3 with all mutual inner products at least 1/3. More generally,
+  every compact unit-vector set in R^3 with positive minimum inner product c
+  admits a uniform three-partition above c.
+- The proof encloses the spherical set in a closest cap and colors three
+  half-open longitude sectors. At the sharp cap bound, equality forces a
+  regular support triangle; its opposite support point excludes every
+  dangerous sector-boundary limit. Exact arithmetic and an independent
+  hostile audit verified the constants and strictness.
+- Decisively eliminated the strongest golden-symmetry negative lead. On all
+  120 oriented vectors, the exact dot = -8 graph is 20-regular with 1,200
+  edges and has an explicit five-coloring with five classes of size 24.
+  Every switching of the 60 antipodal lines and every admissible deletion is
+  an induced subgraph and inherits that coloring.
+- Independently certified why the unsigned lead looked promising: its
+  60-vertex absolute-8 graph has exact spectrum
+  {20^1, 5^16, 0^18, (-4)^25}, clique number four, and chromatic number
+  exactly six. The obstruction is therefore genuinely in the edge signs,
+  not an earlier chromatic miscalculation.
+
+Best-guess completion toward a full resolution: **8%**. The negative search
+lost its strongest exact candidate, while the positive route gained a
+dimension-reducing theorem that may generalize to nonuniversal diameter
+edges.
