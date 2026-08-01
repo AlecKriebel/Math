@@ -333,6 +333,10 @@ def main():
     parser.add_argument("--work", default="/tmp/dth_exact_obstruction_work")
     parser.add_argument("--output", default="/tmp/dth_exact_obstruction.json")
     parser.add_argument("--reuse-linear-system", action="store_true")
+    parser.add_argument(
+        "--reuse-minor", action="store_true",
+        help="reuse minor.gpdat but recompute the candidate-dependent RHS",
+    )
     args = parser.parse_args()
 
     work = Path(args.work)
@@ -363,21 +367,30 @@ def main():
         assert all(len(row) == 334 for row in minor)
         print("reused exact integer minor and RHS", flush=True)
     else:
-        source_tasks = [
-            (column, triples[int(block)], int(first), int(second))
-            for column, (block, first, second) in enumerate(labels)
-        ]
-        minor = [[0] * 334 for _ in range(334)]
-        start = time.time()
-        with context.Pool(args.workers) as pool:
-            for done, (column, values) in enumerate(
-                pool.imap_unordered(source_worker, source_tasks), 1
-            ):
-                for row, value in enumerate(values):
-                    minor[row][column] = value
-                if done % 20 == 0:
-                    print("exact minor columns", done, "/334",
-                          f"sec {time.time()-start:.1f}", flush=True)
+        if args.reuse_minor:
+            text = (work / "minor.gpdat").read_text().strip()
+            assert text[0] == "[" and text[-1] == "]"
+            minor = [list(map(int, row.split(",")))
+                     for row in text[1:-1].split(";")]
+            assert len(minor) == 334
+            assert all(len(row) == 334 for row in minor)
+            print("reused exact integer minor; recomputing RHS", flush=True)
+        else:
+            source_tasks = [
+                (column, triples[int(block)], int(first), int(second))
+                for column, (block, first, second) in enumerate(labels)
+            ]
+            minor = [[0] * 334 for _ in range(334)]
+            start = time.time()
+            with context.Pool(args.workers) as pool:
+                for done, (column, values) in enumerate(
+                    pool.imap_unordered(source_worker, source_tasks), 1
+                ):
+                    for row, value in enumerate(values):
+                        minor[row][column] = value
+                    if done % 20 == 0:
+                        print("exact minor columns", done, "/334",
+                              f"sec {time.time()-start:.1f}", flush=True)
         rhs = [0] * 334
         active_blocks = [shapes for shapes in product(range(5), repeat=3)
                          if ranges[shapes].shape[1]]

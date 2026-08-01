@@ -7978,3 +7978,113 @@ u_1u_1^\dagger\bigr].
   and not a proof of DTH.  Exact reconstruction of the rank-751 face and its
   exposing normal is in progress; only then should the objective dual be
   solved on the reduced cone.
+
+## 2026-08-01 03:23 PDT — Strict numerical obstruction survives both PPT cuts
+
+- Implemented the unrestricted local-unitary-invariant three-cone primal
+  search with the holomorphic Pluecker/Omega cone, the supported
+  \(\Gamma_1\)-PPT cone, and the full \(\Gamma_5\)-PPT cone.  The independent
+  final-slot crossing audit reproduces the exact precursor's negative
+  \((30)^{\otimes3}\) block and all 177 numerical negative eigenvalues.
+- Objective continuation on the numerically identified exact-product and
+  Gamma5 faces reached value \(-0.00292414\) at residuals
+  \(7.29\times10^{-7}\) and \(1.75\times10^{-7}\).  Resetting the objective
+  and both dual variables, then projecting only for feasibility, converged
+  to a strictly negative point with value approximately
+  \(-0.0021833256\), residuals \(4.27\times10^{-11}\) and
+  \(3.08\times10^{-11}\), and nonnegative supported cone spectra.
+- Mixing 5% of the strict two-PPT feasibility point gives a robust numerical
+  candidate with value \(-9.761047\times10^{-4}\).  Its smallest supported
+  eigenvalues are \(6.23\times10^{-9}\) holomorphic,
+  \(2.40\times10^{-8}\) in the \(\Gamma_1\) face of reduced
+  multiplicity-rank sum 2266, and
+  \(5.48\times10^{-9}\) in the \(\Gamma_5\) face of reduced
+  multiplicity-rank sum 751.  Thus ordinary
+  floating error is separated from the negative sign by several orders of
+  magnitude.
+- This is not yet an exact obstruction.  Conversion to the 4139 rational
+  holomorphic coordinates, exact correction of the 334 Gamma1 face defects,
+  and exact Gamma5 range/positivity certification are in progress.  Estimated
+  completion of an exact certificate is hours rather than minutes, with the
+  main dependency being an exact chart for the observed Gamma5 face of
+  reduced multiplicity-rank sum 751.
+
+## 2026-08-01 04:47 PDT — Exact complete-tripartition-PPT obstruction
+
+- Completed the finite constrained five-replica decision requested at the
+  cloud checkpoint.  There is an explicit rational local-unitary-invariant
+  moment which obeys the first Pluecker, support, and Omega equations, is
+  positive on the holomorphic face, is PPT across every cut of the physical
+  grouping
+  \((\wedge^2\mathcal H)_{12}:(\wedge^2\mathcal H)_{34}:\mathcal H_5\),
+  and nevertheless has strictly negative minimal-DTH witness pairing.
+- The exact source has SHA-256
+  `4a42cfc9a3fcafdbf5667f5fb220eb417cea1b2f76398096668e70179e94606a`.
+  Its 118 nonzero holomorphic blocks have reduced multiplicity-rank sum 768
+  and maximum block dimension 16.  Exact Sylvester tests pass.  The exact
+  trace and objective are respectively
+  \(1.00000004533662035943360398481\ldots>0\) and
+  \(-0.000976106094995776069240622096041\ldots<0\).
+- The first-bivector partial transpose passes the exact product-face CRT
+  certificate and is positive definite in all 198 active blocks, of total
+  reduced rank 2266 and maximum block dimension 53.  The minimum certified
+  scaled lower bound is \(1.056914006481907\times10^{-9}\); the worst exact
+  reference-perturbation ratio is \(6.21183886716376\times10^{-41}\).
+- Constructed all 216 exact final-slot face charts by sparse integer
+  elimination.  Their reduced support/defect/face ranks are
+  \(772/21/751\), with 188 active face blocks; the corresponding full
+  dimensions are \(1\,194\,102/6\,552/1\,187\,550\).  The canonical chart
+  payload has SHA-256
+  `a69b3868fc0ae9e5098a8e54f5221a8a8f8b1f9b63485dfcfc0bc87161cbee77`.
+- Applied the exact final-slot crossing directly to the exact source.  All
+  primitive face residuals vanished modulo 85 deterministic primes.  The
+  resulting 1695-bit CRT modulus exceeds twice the rigorous 1675-bit
+  residual bound, so membership and reconstruction hold over
+  \(\mathbb Q\).  No second correction was needed after the 334-equation
+  first-bivector correction.
+- The reconstructed final-slot face blocks are positive definite exactly:
+  188 active blocks, total reduced rank 751, maximum block dimension 40,
+  minimum certified scaled lower bound
+  \(1.4995135884402178\times10^{-8}\), and worst perturbation ratio
+  \(3.6773767779268204\times10^{-43}\).
+- Pair exchange identifies the two bivector partial transposes, while a
+  complementary partial transpose differs from the remaining one by full
+  transpose.  Thus the two independently certified cuts are all PPT cuts of
+  the physical three-factor grouping.  This statement does not assert PPT
+  under each of the five replica transposes separately.
+- The exact theorem, artifacts, and end-to-end verifier are in
+  `notes/agent_dth_complete_ppt_obstruction.md`,
+  `verification/certificates/dth_complete_ppt_*`, and
+  `verification/verify_dth_complete_ppt_pseudomoment.py`.
+- Consequence: the complete first-level DTH relaxation remains insufficient
+  even after its strongest intrinsic tripartition-PPT strengthening.  This
+  is an exact constrained pseudomoment obstruction, not a physical DTH
+  counterexample and not a resolution of square-zero or unrestricted
+  three-copy Werner positivity.  A higher Veronese--Segre/Pluecker relation
+  or a direct physical-variety argument is genuinely necessary.
+
+## 2026-08-01 04:55 PDT — The two defect row spaces coincide over two exact fields
+
+- Replaced the earlier ill-conditioned joint-rank estimate by a literal
+  finite-field calculation on all 4,139 exact holomorphic source
+  coordinates.  The final-slot system uses all 339 canonical equations from
+  the nineteen nontrivial \(D_5\)-defect blocks, constructed from the exact
+  pair-support and face charts rather than from a frozen numerical range.
+- Over each of \(\mathbb F_{1000003}\) and \(\mathbb F_{1000033}\), the
+  first-bivector defect rank, final-slot defect rank, and stacked rank are
+  all exactly 334.  More strongly, using the certified 334 source pivot
+  columns, the verifier constructs the modular change of row basis and
+  checks its residual on every source coordinate to be identically zero.
+- Thus the presumed joint rank 667 was an artifact of an incorrect
+  target-range coordinate conversion.  At the exact finite-field level,
+  the \(\Gamma_5\) linear face equations add no affine rank beyond the
+  \(\Gamma_1\) equations.  The \(\Gamma_5\) PSD requirement remains a
+  genuinely new cone constraint and is essential to the complete-PPT
+  obstruction theorem above.
+- The calculation is an exact theorem over the two displayed finite fields,
+  not by itself a characteristic-zero row-space theorem.  Rational
+  membership of the actual obstruction is independently proved by the
+  85-prime bounded-CRT replay, so no characteristic-zero extrapolation is
+  used in the main theorem.
+- Added `notes/agent_dth_gamma1_gamma5_defect_equality.md` and
+  `verification/verify_dth_gamma1_gamma5_defect_equality.py`.
