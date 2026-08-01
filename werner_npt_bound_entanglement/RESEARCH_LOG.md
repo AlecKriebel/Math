@@ -8156,3 +8156,26 @@ u_1u_1^\dagger\bigr].
   with the seven-to-five marginal.  At degree three, pair symmetry and cut
   complementation reduce complete grouped PPT to the three representatives
   \(\Gamma_A,\Gamma_z,\Gamma_{A_1A_2}\).
+
+## 2026-08-01 06:00 PDT — Convex-hull weak tests closed
+
+- Reconstructed the exact complete-PPT pseudomoment in the 103-diagram local
+  commutant and computed invariant realignment norms without forming the
+  global ambient operator.  The normalized CCNR ratios are approximately
+  0.34222337 across one bivector versus the other bivector and `z`, and
+  0.03002314 across `z` versus both bivectors.  Both are far below one.
+- Formed the one-physical-site five-replica marginal.  It is numerically full
+  rank on dimension 243, with minimum eigenvalue 0.0012442350.
+- Tested the cheapest convex-hull-valid identical-`w` condition: a local
+  third symmetric extension whose three two-pair marginals all equal the
+  recorded one-site marginal.  Schur--Weyl reduction gives 1,444
+  real-symmetric variables in eight PSD blocks.
+- Found a robust numerical extension satisfying every block floor
+  \(X_\lambda\succeq5\times10^{-5}I\), with relative marginal residual
+  \(7.61\times10^{-15}\).  Thus the one-site extension shadow also does not
+  separate the pseudomoment; a separator must retain multi-site correlations
+  or a global Grassmann/Veronese relation.
+- Added `notes/agent_dth_convex_hull_weak_tests.md` and the discovery scripts
+  `discovery/agent_dth_realignment_probe.py` and
+  `discovery/agent_dth_local_extension_probe.py`.  These are audited
+  floating-point nonseparation calculations, not exact theorems.
