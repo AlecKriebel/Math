@@ -7625,3 +7625,60 @@ u_1u_1^\dagger\bigr].
 - Resolution status is unchanged: the sign of this corrected SDP,
   DTH, square-zero positivity, unrestricted \(n=3\), and the all-copy
   problem remain open.
+
+## 2026-07-31 — Lossless local-unitary reduction and exact quadratic-dual barrier
+
+- Proved that local \(U(3)^3\) twirling preserves every part of the corrected
+  mixed-PPT cone and its witness objective.  Partial transpose intertwines
+  the holomorphic action \(g^{\otimes5}\) with the mixed action
+  \(\bar g^{\otimes2}\otimes g^{\otimes3}\), while the Pluecker, Omega, and
+  mixed-support kernels are equivariant.  Therefore a minimizer may be taken
+  local-unitary invariant.
+- Derived the exact coupled multiplicity-block SDP.  Twirling removes all
+  coherences between inequivalent local-unitary type triples but retains full
+  matrices on equal-type multiplicity spaces.  The holomorphic and mixed
+  one-site commutants both have exact dimension (103); partial transpose is
+  an isomorphism between them and the crossing map tensors over the three
+  physical sites.  Raw multiplicity blocks have size at most (216), with
+  (35) holomorphic and (56) mixed type orbits after physical-site
+  averaging.
+- Audited the quadratic support-ideal dual
+  (Y=C_{m supp}^dagger T C_{m supp}).  Its target decomposes locally as
+
+  \[
+  \mathbf3^{\otimes2}\otimes\bar{\mathbf3}
+  =(2,1)\oplus2(1,0)\oplus(0,2),
+  \]
+  so the local commutant has dimension (6).  The (216) invariant
+  three-site coefficients reduce to (40) after site and conjugation
+  averaging, and exact spectator-wedge Gram elimination reduces these to only
+  (14) effective real corrections.
+- Proved that this quadratic ansatz is not the general support ideal.  Every
+  Hermitian operator with zero compression to
+  (L=\ker C_{m supp}) has the affine form
+  (C_{m supp}^dagger R+R^dagger C_{m supp}).  The local equivariant
+  intertwiner space has dimension
+  (6\cdot1+6\cdot2+5\cdot1=23), hence its site-symmetric three-site part has
+  complex dimension (\binom{25}{3}=2300) before the conjugation reality
+  reduction.
+- Established an exact no-go certificate for the quadratic ansatz on the
+  canonical seven-dimensional
+  ([4,1]\otimes[4,1]\otimes[3,2]) multiplicity carrier.  A rational
+  rank-six matrix (H=BGB^{\mathsf T}\succeq0) annihilates all fourteen
+  correction matrices, while
+
+  \[
+  \operatorname{Tr}(H Q)=-\frac{44943}{4096000}<0.
+  \]
+  Hence no invariant (C_{m supp}^dagger T C_{m supp}) correction can
+  repair even this one negative carrier.  The full affine cross terms, a
+  positive (L)-block, or another mechanism are provably necessary.
+- This is a proof-complexity barrier, not a negative corrected pseudomoment
+  and not a physical DTH counterexample.  The full affine/mixed-PPT block
+  decision remains open.
+- New exact artifacts:
+  `notes/agent_dth_cross_carrier_twirling.md`,
+  `verification/agent_dth_cross_carrier_twirling.py`, and
+  `verification/agent_dth_quadratic_support_dual_no_go.py`.  The numerical
+  discovery reconstruction is isolated in
+  `discovery/agent_dth_quadratic_support_dual_probe.py`.
