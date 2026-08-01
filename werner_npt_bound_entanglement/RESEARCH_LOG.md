@@ -8629,6 +8629,30 @@ u_1u_1^\dagger\bigr].
 - Added `notes/agent_dth_prolonged_face_automatic.md` and the exact verifier
   `verification/verify_dth_prolonged_face_automatic.py`.
 
+## 2026-08-01 09:06 PDT — Curved-arc closure at the singular product corner
+
+- Completed the missing second Feshbach blow-up on the complete
+  zero-Hessian cone.  For a single active pair the real quartic correction
+  Gram has spectrum `0^8, 2^24, 4^8`; for two or three compatible active
+  pairs it has spectrum `0^12, 2^8, (8/3)^12, 4^8`.
+- The straight quartic deficits are exactly
+  `8 |det Z|^2` on one pair and
+  `8 sum_e alpha_e^4 + 4 sum_{e<f} alpha_e^2 alpha_f^2` on the multi-pair
+  strata.  Hence the only joint quadratic/quartic kernel is a rank-one
+  direction followed by a second jet on the same pair.
+- Proved the exact straight-pencil parity identity `H_3=0` throughout the
+  local-unitary product slice.  This retains the nonsmooth scaled-unitary
+  cutoff without choosing individual eigenvalue branches.
+- Combined the transverse Gram gap with the already-established global
+  deficient-support inequality on the same-pair base.  This closes every
+  complex analytic arc, and indeed every convergent sequence, at the
+  singular product orbit.  Equality locally remains precisely on the
+  one-site-factor rank-at-most-two branches.
+- Added `notes/agent_dth_product_arc_closure.md` and the dependency-free
+  exact `Q(i)` verifier
+  `verification/verify_dth_product_arc_closure.py`.  This is a local DTH
+  theorem only; the separated full-local-rank region remains open.
+
 ## 2026-08-01 09:00 PDT — Exact audit of the first Gamma-A defects at degree three
 
 - Replaced the prohibitive five-tensor crossing by a signed Choi--Gram
