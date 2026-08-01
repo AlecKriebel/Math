@@ -7765,3 +7765,46 @@ u_1u_1^\dagger\bigr].
 - Resolution status remains unchanged: no exact constrained first-level
   certificate, exact constrained pseudomoment, physical DTH counterexample,
   or Werner theorem has been obtained.
+
+## 2026-07-31 — Exact 2266-dimensional physical DTH mixed face
+
+- Constructed 27 deterministic small-integer product triples, indexed by
+  \((i,j,k)\in\{0,1,2\}^3\), whose local factors impose respectively one
+  \(\langle z,u_0\rangle\) zero, one \(\langle z,u_1\rangle\) zero, and one
+  alternating Hodge zero.  Their global product vectors therefore satisfy
+  \(W^\dagger z=0\) and \(\operatorname{Tr}(D_zW)=0\) exactly, and their
+  bivectors are nonzero.
+- Twirled the resulting physical monomials in the exact local 103-diagram
+  crossing bridge.  The local mixed transform simplifies over the rationals
+  to
+  \[
+      BG^{-1}=T/7560,
+  \]
+  with integral \(T\) and \(\max |T_{ab}|=7560\).  Hence all 216 mixed
+  multiplicity blocks of the finite ensemble have explicit rational entries.
+- Proved that the block ranks sum exactly to
+  \[
+      \boxed{2266},
+  \]
+  with 198 nonzero blocks.  Two independent prime-field eliminations give
+  identical block ranks and pivot columns; the serialized pivot digest is
+  `2297a5d32caba44ac2dd6a8d26983a9fe61b7bf11d73e7daba06af251a050955`.
+  Independent exact integer/rational rank calculations give the same total,
+  proving both the lower and upper rank bounds and making the recorded pivot
+  columns an exact rational range basis.
+- Corrected an early `int64` overflow that had spuriously produced rank 2270.
+  The four sensitive block ranks are exactly 51 for type `(2,2,2)` and 36
+  for each of `(2,4,4)`, `(4,2,4)`, `(4,4,2)` in the documented mixed-type
+  order.  Modular multiplication now reduces after every local factor.
+- This exact physical face matches the numerical common-face dimension from
+  the full invariant solver.  Numerically, a PSD exposing normal is scalar on
+  the complement in 193 blocks and needs low-rank corrections in only 23
+  blocks.  Reconstructing that normal exactly is now the remaining finite
+  facial-reduction task; the equality of dimensions alone does not yet prove
+  that all feasible moments lie in this face.
+- New exact artifacts:
+  `notes/agent_dth_product_face.md`,
+  `verification/agent_dth_product_face_rank.py`, and
+  `verification/agent_dth_product_face_rank_rational.py`.
+- Resolution status remains unchanged: this is an exact facial theorem, not
+  yet a constrained first-level certificate, DTH proof, or Werner theorem.
