@@ -44,6 +44,16 @@ The exact limiting gap is
  =\sum_i\frac{n-1-k_i}{n^2(k_i+1)}.
 \]
 
+For a precise perturbation argument, restrict the limiting chain to the
+singleton, the two absorbing states, and the support-connected mutant sets
+reachable after an adjacent pair forms.  Its transient matrix has spectral
+radius below one.  At `epsilon=1/r>0`, one-step leakage from this set is
+`O(epsilon)`.  The inverse of the restricted state-change system remains
+bounded near zero, so the total probability of leakage before absorption is
+`O(epsilon)`.  Whatever happens after leakage changes fixation probability by
+at most this amount.  This proves convergence to the limiting formula without
+assuming a uniform bound on path length.
+
 ## 2. Complete support: the first correction
 
 Assume now that every `w_ij>0`, that `n>=3`, and put
@@ -173,6 +183,11 @@ for all sufficiently large finite `r`.
 
 ## 3. Universal conclusion
 
+For `n=2`, a connected loopless graph consists of one positive edge.  After
+either vertex dies its unique neighbor must reproduce, so uniformly averaged
+dB fixation is exactly `1/2` for every `r`; this equals the `K_2` baseline.
+The complete-support coefficient involving `n-2` is used only for `n>=3`.
+
 For every finite connected undirected weighted graph, one of the following
 holds:
 
@@ -186,3 +201,10 @@ holds:
 Hence no such graph is a strict dB amplifier for every `r>1`; a fortiori no
 fitness-independent graph family can be a strict simultaneous Bd/dB amplifier
 for every `r>1`.
+
+All asymptotics here are for one fixed finite graph; the suppressing threshold
+may depend on the graph and on its index in a family.  This is sufficient:
+fixing any proposed family member and then taking `r` beyond its own threshold
+contradicts the required inequality for every `r>1`.  Graph weights that vary
+with `r` would reverse the order of quantifiers and are outside the stated
+fitness-independent problem.
