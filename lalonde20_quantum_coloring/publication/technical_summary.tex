@@ -3,6 +3,13 @@
 \usepackage{amsmath,amssymb,mathtools}
 \usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Technical summary: the quantum chromatic number of the G19 join family},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Quantum graph theory and quantum chromatic number},
+  pdfkeywords={quantum chromatic number, quantum coloring,
+    orthogonal representation, quantum graph theory}
+}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 \setlength{\abovedisplayskip}{4pt}
@@ -18,15 +25,19 @@
 \fontsize{10.1}{11.9}\selectfont
 
 \textbf{Result.}
-Let $J_n=G_{19}\vee K_{n-3}$ for $n\ge3$, with $G_{19}$ given by graph6
-string \texttt{RxLAKA@AgYAWDGO?O?@??A?W@@OC@\_}.  In the unrestricted
-finite-dimensional projector model,
+Lalonde's Section~4.2 family is $G_n=G_{19}\vee K_{n-3}$; write it as $J_n$
+to avoid overloading the fixed 19-vertex base graph.  The base graph has
+graph6 string \texttt{RxLAKA@AgYAWDGO?O?@??A?W@@OC@\_}.  For every
+$n\ge3$ and $d,s\ge1$, with $\xi$ denoting complex orthogonal rank,
 \[
- \boxed{\chi_q(J_n)=n+1\quad(n\ge3).}
+ \boxed{\xi(J_n)=n<\chi_q(J_n)=n+1,}\qquad
+ \chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=n+1.
 \]
-In particular, for the one-apex graph $H=J_4$, $\chi_q(H)=5$.  Zero
-projectors, nonuniform original ranks, arbitrary finite dimension, and
-noncommuting projectors are all allowed.
+This confirms Lalonde's candidate finite witnesses for the complex-sphere
+obstruction and removes the rank-one restriction from his theorem.  In
+particular, for the one-apex graph $H=J_4$, $\chi_q(H)=5$.  Zero projectors,
+nonuniform original ranks, arbitrary finite dimension, and noncommuting
+projectors are all allowed.
 
 \textbf{Uniformization and clique saturation.}
 Suppose $J_n$ has a quantum $n$-coloring in dimension $d$.  Direct-sum over
@@ -113,6 +124,8 @@ the six tail--tail edges gives five identity maps and one $-J_c$, proving
 both exhaustiveness and $J_cM_c=M_c$.  This formulation includes non-graph
 planes; $M_c=\operatorname{ran}(I,S_c)$ with $S_c^2=-I$ is only a transverse
 chart.
+At $r=1$, $M_c=\operatorname{span}(1,\sigma i)$ and the six displayed frames
+recover Lalonde's Theorem~4.5 normal form with sign $b=\sigma$.
 
 \textbf{Cross-color sector packing.}
 Choose a core unitary $W_c:K_c^3\to Q_c$.  For $c\ne d$, same-vertex
@@ -155,21 +168,23 @@ $n$-coloring exists.  The explicit classical four-coloring of $G_{19}$ and
 fresh colors on the joined clique give the matching $(n+1)$ upper bound.
 
 \textbf{Verification.}
-Two standard-library exact verifiers accompany the proof.  They decode the
-graph6 checksum, replay independent rational noncommutative SOS expansions,
-check the Walsh and skew-block systems, multiply all six tail compressions,
-invert their coefficient transform, and check the symbolic all-$n$
-dimension gap.  No floating-point computation enters the theorem.
+Two standard-library exact obstruction verifiers and a separate graph checker
+accompany the proof.  They decode the graph6 checksum, verify the published
+four-coloring and exhaustive non-three-colorability, replay independent
+rational noncommutative SOS expansions, check the Walsh and skew-block
+systems, multiply all six tail compressions, invert their coefficient
+transform, and check the symbolic all-$n$ dimension gap.  No floating-point
+computation enters the theorem.
 
 \textbf{Scope and relation to prior work.}
 The known rank-one theorem motivates the sign frame, but it is not used as a
 reduction: the SOS proves the module-valued core directly, and the invariant
-plane analysis handles genuinely higher-rank tails.  The contradiction does
-not require irreducibility and therefore excludes every finite-dimensional
-representation of the $n$-coloring relations, reducible or irreducible.  No
-minimal forbidden local dimension exists.  At the valid $(n+1)$-color level,
-the explicit classical coloring is already a dimension-one representation.
-The theorem makes no assertion about infinite-dimensional or
-commuting-operator colorings.
+plane analysis handles genuinely higher-rank tails.  The contradiction
+excludes every finite-dimensional representation of the $n$-coloring
+relations, reducible or irreducible.  No finite local dimension supports $n$
+colors.  At $n+1$ colors, the classical solution lifts to fixed dimension $d$
+by tensoring with $I_d$ and to fixed rank $s$ by taking the direct sum of its
+cyclic color relabelings and tensoring with $I_s$.  No claim is made about
+infinite-dimensional or commuting-operator colorings.
 
 \end{document}

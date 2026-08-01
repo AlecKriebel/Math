@@ -1,5 +1,22 @@
 # Lalonde exact algebraic verifier
 
+The separate graph and classical-coloring checker runs with
+
+```sh
+python3 verification/verify_graph.py
+```
+
+It verifies the graph6 checksum, edge counts, exhaustive triangle list,
+absence of a $K_4$, Lalonde Section 4.2's published four-coloring, and exact
+non-three-colorability by transparent exhaustive backtracking.  The search
+fixes the colors on triangle `1,2,3` only up to color-name symmetry and then
+tries every locally feasible branch.
+
+Run the commands without Python's `-O` optimization flag. The graph checker
+and short paper-form verifier reject optimized mode explicitly because their
+exact checks use executable assertions; they never print `PASS` after those
+checks have been stripped.
+
 From the project root, run
 
 ```sh

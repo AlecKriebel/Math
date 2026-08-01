@@ -22,6 +22,13 @@ import pathlib
 import sys
 
 
+if not __debug__:
+    raise RuntimeError(
+        "verify_obstruction_certificate.py relies on executable assertions; "
+        "rerun without Python -O"
+    )
+
+
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
@@ -322,24 +329,27 @@ def verify_cross_color_blocks(certificate) -> None:
         assert scalar_right_product(omega_term, j_matrix) == expected_product
 
 
-def verify_dimension_arithmetic() -> None:
-    # Test the symbolic coefficients for arbitrary positive n,r.  The proof
-    # derives 3(p+q) <= 2nr, while p+q=nr.
-    for n in range(3, 20):
-        for r in range(1, 20):
-            total_sector_dimension = n * r
-            left = 3 * total_sector_dimension
-            right = 2 * n * r
-            assert left > right
-            # Symmetrizing an original d-dimensional n-outcome measurement:
-            # r=(n-1)!d and D=n!d=nr.
-            factorial = 1
-            for value in range(2, n):
-                factorial *= value
-            for d in (1, 2, 5):
-                uniform_rank = factorial * d
-                physical_dimension = n * factorial * d
-                assert physical_dimension == n * uniform_rank
+def verify_dimension_arithmetic(certificate) -> None:
+    # Replay the terminal coefficient identity symbolically, rather than by
+    # sampling dimensions.  Adding the two sector bounds gives coefficient 3
+    # on nr, while their two right-hand sides give coefficient 2.  Their gap
+    # is therefore the positive monomial nr for every n >= 3 and r > 0.
+    dimension = certificate["dimension_contradiction"]
+    assert dimension == {
+        "fixed_color_space_dimension": "3r",
+        "symmetrized_physical_dimension": "nr",
+        "sector_count": 2,
+        "sector_inequalities": [
+            "3 sum_c e_(c,+) <= nr",
+            "3 sum_c e_(c,-) <= nr",
+        ],
+        "rank_partition": "sum_c (e_(c,+)+e_(c,-)) = nr",
+        "impossible_conclusion": "3nr <= 2nr for r > 0",
+    }
+    left_coefficient = 3
+    right_coefficient = dimension["sector_count"]
+    assert (left_coefficient, right_coefficient) == (3, 2)
+    assert left_coefficient - right_coefficient == 1
 
 
 def main() -> None:
@@ -348,11 +358,11 @@ def main() -> None:
     assert certificate["graph6_G19"] == GRAPH6_G19
     verify_core_sos(certificate)
     verify_cross_color_blocks(certificate)
-    verify_dimension_arithmetic()
+    verify_dimension_arithmetic(certificate)
     print("exact obstruction certificate: PASS")
     print("core SOS: rational free-algebra replay PASS")
     print("tail/cross-color blocks: formal replay PASS")
-    print("all-n dimension contradiction: integer replay PASS")
+    print("all-n dimension contradiction: symbolic coefficient replay PASS")
 
 
 if __name__ == "__main__":

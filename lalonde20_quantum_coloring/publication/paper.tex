@@ -3,6 +3,13 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{microtype}
 \usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={The quantum chromatic number of the G19 join family},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Quantum graph theory and quantum chromatic number},
+  pdfkeywords={quantum chromatic number, quantum coloring,
+    orthogonal representation, quantum graph theory}
+}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -23,17 +30,22 @@
 \maketitle
 
 \begin{abstract}
-Let $G_{19}$ be the 19-vertex complex orthogonality graph introduced by
-Lalonde and put $J_n=G_{19}\join K_{n-3}$ for $n\geq3$.  Lalonde proved the
-claimed value for color projectors of rank one~\cite[Theorem~1.5]{Lalonde2026}
-and conjectured the same value without a rank restriction
-\cite[discussion following Theorem~1.5]{Lalonde2026}.  We prove that
-conjecture in the finite-dimensional projector model:
+In Section~4.2 of \emph{Quantum colorings of spheres}, Lalonde proposed the
+family of finite graphs $G_n=G_{19}\join K_{n-3}$ as candidate witnesses for his
+complex-sphere obstruction.  To avoid overloading the fixed base graph
+$G_{19}$, write $J_n$ for his $G_n$.  Lalonde proved
+$\chi_q^{(1)}(J_n)=n+1$ for rank-one color projectors
+\cite[Theorem~1.5]{Lalonde2026} and conjectured the same value without a rank
+restriction.  We prove that conjecture in the finite-dimensional projector
+model:
 \[
    \chi_q(J_n)=n+1\qquad(n\geq3).
 \]
-In particular, adjoining one apex to $G_{19}$ gives a 20-vertex graph $H$
-with $\chi_q(H)=5$.
+Consequently $\xi(J_n)=n<\chi_q(J_n)=n+1$, confirming the candidate finite
+witnesses.  In fact, Lalonde's fixed-dimension and fixed-rank parameters also
+satisfy $\chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=n+1$ for every $d,s\geq1$.
+In particular, adjoining one apex to $G_{19}$ gives a 20-vertex graph $H$ with
+$\chi_q(H)=5$.
 
 The proof first symmetrizes an arbitrary coloring, so that every projector
 has a common rank $r$.  For a fixed color, a rational sum-of-squares identity
@@ -70,6 +82,11 @@ define
 \[
    J_n=G_{19}\join K_{n-3}.
 \]
+Thus $J_n$ is the graph denoted $G_n$ in
+\cite[Section~4.2]{Lalonde2026}; the letter $J$ merely avoids overloading
+$G_{19}$ when $n=19$.  This is the family proposed there as a finite witness
+for the complex-sphere obstruction of \cite[Theorem~1.2]{Lalonde2026}.
+Here $\xi$ denotes complex orthogonal rank.
 Thus the graph in the question is $H=J_4$, with vertex 20 as the joined
 apex.
 
@@ -89,21 +106,26 @@ following Cameron--Montanaro--Newman--Severini--Winter~\cite{CameronEtAl2007},
 this projector formulation is equivalent to the standard finite-dimensional
 definition of $\chi_q$ by perfect entangled strategies for the graph-coloring
 game.
+Following \cite[Section~2.4.2]{Lalonde2026}, write $\chi_q^{[d]}$ for the
+chromatic number restricted to local dimension $d$, and $\chi_q^{(r)}$ for
+the rank-$r$ quantum chromatic number.
 
 \begin{theorem}[Main theorem]\label{thm:main}
-For every $n\geq3$,
+For every $n\geq3$ and every $d,s\geq1$,
 \[
-       \chi_q(G_{19}\join K_{n-3})=n+1.
+ \xi(J_n)=n,\qquad
+ \chi_q(J_n)=\chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=\chi(J_n)=n+1.
 \]
 In particular, $\chi_q(H)=5$.
 \end{theorem}
 
-For the elementary upper bound, $G_{19}$ has the following four-coloring:
+The orthogonal-rank equality follows from $\xi(G_{19})=3$
+\cite[Theorem~1.6]{Lalonde2026} and additivity under graph join
+\cite[Theorem~2.17(5)]{Lalonde2026}.  For the elementary chromatic upper
+bound, Lalonde gives the four-coloring \cite[Section~4.2]{Lalonde2026}
 \[
-\begin{array}{c|rrrrrrrrrrrrrrrrrrr}
-v&1&2&3&4&5&6&7&8&9&10&11&12&13&14&15&16&17&18&19\\ \hline
-\kappa(v)&1&2&3&2&1&3&1&2&3&2&4&3&1&1&2&1&3&3&3.
-\end{array}
+ (\kappa(1),\ldots,\kappa(19))
+ =(1,2,3,2,1,3,1,3,2,3,2,4,1,1,2,1,3,2,3).
 \]
 Giving the $n-3$ joined vertices fresh colors proves $\chi(J_n)\leq n+1$.
 The work is to exclude a quantum $n$-coloring.  This also excludes every
@@ -241,8 +263,15 @@ Moreover,
  A^2=I-e_3,\qquad B^2=I-e_2,\qquad C^2=I-e_1,\qquad
  A^2+B^2+C^2=2I.
 \]
-Inserting \eqref{eq:walsh-inverse} into $e_j^2=e_j$ and separating the four
-Walsh sign patterns yields
+For each
+\[
+ (a,b,c)\in\{(1,1,1),(1,-1,-1),(-1,1,-1),(-1,-1,1)\},
+\]
+the idempotency of $\frac13(I+aA+bB+cC)$ gives
+\[
+ ab\{A,B\}+ac\{A,C\}+bc\{B,C\}=aA+bB+cC.
+\]
+Adding the $(1,1,1)$ equation to each of the other three in turn yields
 \begin{equation}\label{eq:anticommutators}
         \{B,C\}=A,\qquad \{A,C\}=B,\qquad \{A,B\}=C.
 \end{equation}
@@ -276,9 +305,14 @@ B=\begin{pmatrix}0&0&V\\0&0&0\\V^*&0&0\end{pmatrix},\quad
 C=\begin{pmatrix}0&0&0\\0&0&W\\0&W^*&0\end{pmatrix}.
 \]
 Equation \eqref{eq:anticommutators} gives
-$U=VW^*$, $V=UW$, and $W=U^*V$.  Conjugating by the block-diagonal unitary
-$\operatorname{diag}(I,U^*,V^*)$ makes all three off-diagonal blocks the
-identity.  The binary decompositions and \eqref{eq:walsh-inverse} then give
+$U=VW^*$, $V=UW$, and $W=U^*V$.  Set $K_c=K_1$ and define the unitary
+\[
+ G:K_c^3\longrightarrow K_1\oplus K_2\oplus K_3,
+ \qquad G(x,y,z)=(x,U^*y,V^*z).
+\]
+Pulling operators back by $M\mapsto G^*MG$ makes all three upper
+off-diagonal blocks the identity: they become $UU^*=I$, $VV^*=I$, and
+$UWV^*=I$.  The binary decompositions and \eqref{eq:walsh-inverse} then give
 the displayed ranges.
 \end{proof}
 
@@ -320,7 +354,16 @@ v&F_v(a,b)&v&F_v(a,b)\\ \hline
 16&(a,-b,0)&19&(a,-b,a).
 \end{array}
 \]
-Write $N_v\subset K_c^2$ for the $r$-dimensional parameter plane at $v$.
+Because each frame is injective, there is a unique $r$-plane
+$N_v\subset K_c^2$ with $\ran e_v=F_v(N_v)$.  The frames need not be
+isometries.  For a tail edge $vw$,
+\[
+ F_v(N_v)\perp F_w(N_w)
+ \quad\Longleftrightarrow\quad
+ F_v^*F_w(N_w)\subseteq N_v^\perp,
+\]
+so the cross-Gram pullbacks below require no normalization or transversality
+assumption.
 For the six tail--tail edges, direct pullback gives
 \[
 \begin{array}{c|cccccc}
@@ -347,6 +390,25 @@ branch recovers the familiar operator-valued normal form.  It is not
 exhaustive.  For instance,
 $M=\operatorname{span}\{(e_1,0),(0,e_1)\}\subset\C^2\oplus\C^2$ is
 $J$-invariant but is not a graph.  Lemma~\ref{lem:tail} includes this branch.
+
+At $r=1$, for $\sigma\in\{+1,-1\}$ every invariant line and its complement
+have the form
+\[
+ M_c=\operatorname{span}\{(1,\sigma i)\},\qquad
+ M_c^\perp=\operatorname{span}\{(1,-\sigma i)\}.
+\]
+Substitution into \eqref{eq:tail-form} gives
+\[
+\begin{array}{lll}
+14=(1,0,\sigma i),&15=(0,1,\sigma i),&16=(1,-\sigma i,0),\\
+17=(1,1,-\sigma i),&18=(1,\sigma i,-\sigma i),&19=(1,\sigma i,1).
+\end{array}
+\]
+Together with the core, this is exactly Lalonde's scalar normal form
+\cite[Theorem~4.5]{Lalonde2026} after the phase gauge $\alpha=\beta=1$, with
+$b=\sigma$.  Thus Lemmas~\ref{lem:core} and \ref{lem:tail} are a higher-rank
+extension of that normal form; their derivation does not invoke the
+computer-assisted nonidentification input \cite[Lemma~4.4]{Lalonde2026}.
 \end{remark}
 
 \section{Cross-color sector obstruction}
@@ -468,40 +530,37 @@ Adding and using \eqref{eq:sector-rank} gives
         3nr=3\sum_{c=1}^n(e_{c,+}+e_{c,-})\leq2nr,
 \]
 which is impossible because $n,r>0$.  Hence no quantum $n$-coloring exists.
-The explicit classical $(n+1)$-coloring given in Section 1 proves equality.
+The classical $(n+1)$-coloring in Section 1 gives
+$\chi_q(J_n)=\chi(J_n)=n+1$.  Every fixed-dimension or rank-$s$ coloring is
+finite-dimensional, giving the restricted lower bounds.  Tensoring the
+classical solution with $I_d$ gives the fixed-dimension upper bound; the
+direct sum of its $n+1$ cyclic relabelings, tensored with $I_s$, gives the
+fixed-rank upper bound.  Section 1's orthogonal-rank calculation completes the
+theorem.
 \end{proof}
 
 \section{Relation to the rank-one theorem and exact verification}
 
-The previously known rank-one argument classifies scalar three-dimensional
-orthogonal representations of $G_{19}$.  The proof above does not assume that
-classification and does not assume equal ranks in the original coloring.
-Instead, color symmetrization makes the fixed-color ranks uniform; the core
-SOS classifies the resulting fusion-frame core; and
-Lemma~\ref{lem:tail} treats every higher-rank tail, including non-graph and
-noncommuting branches.  Thus the obstruction applies to arbitrary finite
-dimension, zero projectors, nonuniform original ranks, reducible
-representations, and irreducible representations alike.  The induced subgraph
-on vertices $1,\ldots,13$ is the Man\v{c}inska--Roberson graph $G_{13}$.  Their
-operator propagation proving $\chi_q(G_{13})=4$~\cite{MancinskaRoberson2016}
-is therefore a relevant earlier higher-rank rigidity precedent; the SOS and
-exhaustive invariant-plane tail classification here use the additional
-structure of the present 19-vertex graph.
+Remark~3.4 shows that the higher-rank classification recovers Lalonde's
+scalar normal form \cite[Theorem~4.5]{Lalonde2026}, but the proof does not
+assume that classification or equal original ranks.  Symmetrization makes
+fixed-color ranks uniform, the SOS classifies the fusion-frame core, and
+Lemma~\ref{lem:tail} treats every tail, including non-graph and noncommuting
+branches.  The obstruction therefore covers arbitrary finite dimension, zero
+projectors, and reducible or irreducible representations.  On the induced
+Man\v{c}inska--Roberson graph $G_{13}$, operator propagation proving
+$\chi_q(G_{13})=4$~\cite{MancinskaRoberson2016} is an earlier higher-rank
+rigidity precedent; the present argument uses the extra six-vertex tail.
 
-The short verifier \nolinkurl{verify_obstruction_certificate.py} reads
-\nolinkurl{obstruction_certificate.json} and replays the paper's four-factor
-SOS, neighbor signs, six tail compressions, $J$ intertwining, and terminal
-dimension coefficients.  Independently,
-\nolinkurl{verify_lalonde_uniform_obstruction.py} reads
-\nolinkurl{lalonde_uniform_obstruction.json}, uses a distinct trace-SOS
-formulation, and additionally checks graph6 decoding, the clique-ideal
-witness, and row reduction of the cross-color kernel.  A separate
-\nolinkurl{verify_graph.py} checks the canonical graph data.  All arithmetic
-is exact and rational; no numerical SDP output enters the theorem.
+Two standard-library obstruction verifiers replay the SOS, signs, six tail
+compressions, $J$ intertwining, dimension count, and an independent trace-SOS
+formulation with clique and cross-color checks.  A separate graph checker
+verifies graph6, no four-clique, Lalonde's four-coloring, and exhaustive
+non-three-colorability.  All arithmetic is exact; no numerical SDP enters.
 
 \paragraph{Artifact provenance.}
-The exact algebraic artifacts audited before these presentation revisions are
-frozen in an
+The certificate payloads and original algebraic audit were frozen in the
+initial, pre-presentation
 \href{https://github.com/AlecKriebel/Math/tree/b1944a23707eb69d2f9f25eda0bb73c32cd5500a/lalonde20_quantum_coloring}{immutable project snapshot} with full Git object name
 \begin{quote}\small
 \nolinkurl{b1944a23707eb69d2f9f25eda0bb73c32cd5500a}.
@@ -513,9 +572,9 @@ Relative to that project root, the certificate payloads have SHA-256 digests
 \nolinkurl{certificate/lalonde_uniform_obstruction.json}:\\[-0.2ex]
 \nolinkurl{e5e0a6126c1adc4088e090ea58ca194f8c2f0ce243f9cd9c4c151329e97a71e1}
 \end{quote}
-The final source commit and rendered-PDF digest are release metadata recorded
-after typesetting is frozen; omitting them here avoids a self-referential
-artifact hash.
+This initial algebra-audit snapshot is not the canonical source snapshot for
+the present typeset revision.  That commit and the PDF digest are recorded on
+the landing page after typesetting, avoiding a self-referential hash here.
 
 \paragraph{Research status and disclosure.}
 This independent research note has not been peer reviewed.  Generative-AI
@@ -527,6 +586,8 @@ identities; they are neither foundational proof assistants nor a substitute
 for expert review of the mathematical argument.
 
 \begin{thebibliography}{9}
+\footnotesize
+\setlength{\itemsep}{0pt}
 \bibitem{CameronEtAl2007}
 P.~J. Cameron, A.~Montanaro, M.~W. Newman, S.~Severini, and A.~Winter,
 \emph{On the quantum chromatic number of a graph},
@@ -540,9 +601,8 @@ O.~Lalonde,
 
 \bibitem{MancinskaRoberson2016}
 L.~Man\v{c}inska and D.~E. Roberson,
-\emph{Oddities of quantum colorings},
-Baltic J. Modern Computing \textbf{4} (2016), no.~4, 846--859,
-\href{https://doi.org/10.22364/bjmc.2016.4.4.16}{doi:10.22364/bjmc.2016.4.4.16}.
+\href{https://doi.org/10.22364/bjmc.2016.4.4.16}{\emph{Oddities of quantum colorings}},
+Baltic J. Mod. Comput. \textbf{4} (2016), 846--859.
 \end{thebibliography}
 
 \end{document}

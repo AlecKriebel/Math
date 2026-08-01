@@ -754,8 +754,8 @@ def main():
     check_core_sos(cert, edges)
     check_core_sign_and_cross_form(cert, edges)
     check_cross_tail(cert)
-    print("ALL EXACT CERTIFICATE CHECKS PASSED")
     print("analytic convention used: finite-dimensional matrix trace is faithful on positive semidefinite matrices")
+    print("ALL EXACT CERTIFICATE CHECKS PASSED")
 
 
 if __name__ == "__main__":

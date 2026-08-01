@@ -14,6 +14,16 @@ The proof simultaneously establishes the conjectured family
 \chi_q(G_{19}\vee K_{n-3})=n+1\qquad(n\ge3).
 \]
 
+This converts Lalonde's candidate family into the finite witnesses sought in
+his complex-sphere program:
+
+\[
+\xi(G_{19}\vee K_{n-3})=n<\chi_q(G_{19}\vee K_{n-3})=n+1.
+\]
+
+It also removes the rank-one restriction uniformly: in Lalonde's notation,
+both $\chi_q^{[d]}$ and $\chi_q^{(r)}$ equal $n+1$ for every $d,r\ge1$.
+
 This is not an extrapolation from the known rank-one obstruction. It handles
 arbitrary finite dimension, zero outcomes, nonuniform original ranks,
 noncommuting projectors, and every higher-rank degeneracy.
@@ -47,12 +57,15 @@ noncommuting projectors, and every higher-rank degeneracy.
 
 ## Relation to prior rank-one work
 
-The inherited rank-one normal form is useful motivation and a check on the
-transverse chart, but it is not used as a black-box reduction. The new core
-argument proves the needed module-valued rigidity directly, and the
-invariant-plane analysis is precisely what is absent at rank one. The result
-therefore closes the unrestricted/rank-one gap rather than merely rephrasing
-the earlier obstruction.
+At rank one, the invariant plane is
+$M=\operatorname{span}(1,\sigma i)$, and the six tail frames recover
+Lalonde's Theorem 4.5 normal form exactly, with his sign $b=\sigma$. This is
+both a specialization check and the precise relation to the inherited scalar
+classification. The new core argument proves the needed module-valued
+rigidity directly, without invoking Lalonde's computer-assisted Lemma 4.4,
+and the invariant-plane analysis is precisely what is absent at rank one.
+The result therefore closes the unrestricted/rank-one gap rather than merely
+rephrasing the earlier obstruction.
 
 Do not claim that every higher-rank fixed-color representation is a direct
 sum of rank-one representations: non-graph invariant planes show that this

@@ -41,6 +41,22 @@ In fact, the proof establishes the full joined family
 \boxed{\chi_q(G_{19}\vee K_{n-3})=n+1\quad(n\ge3)}.
 \]
 
+This confirms the family proposed in Section 4.2 of Lalonde's *Quantum
+colorings of spheres* as finite witnesses for the complex-sphere obstruction:
+
+\[
+\xi(G_{19}\vee K_{n-3})=n<\chi_q(G_{19}\vee K_{n-3})=n+1.
+\]
+
+Using Lalonde's notation for the restricted parameters, the same conclusion
+holds at every fixed local dimension and every fixed projector rank:
+
+\[
+\chi_q^{[d]}(G_{19}\vee K_{n-3})
+=\chi_q^{(r)}(G_{19}\vee K_{n-3})=n+1
+\qquad(d,r\ge1).
+\]
+
 The argument allows zero projectors, arbitrary original rank profiles,
 noncommuting apex/join projectors, reducible representations, and all finite
 dimensions. It does not use a numerical search result.
@@ -89,7 +105,9 @@ python3 verification/verify_lalonde_uniform_obstruction.py \
 All verification arithmetic is exact. The two obstruction verifiers use only
 the Python standard library. See `verification/README.md` for their precise
 coverage and the elementary finite-dimensional semantic bridges retained in
-the human proof.
+the human proof. The graph checker additionally proves exact
+non-three-colorability, checks the published four-coloring, and confirms that
+the base graph has no four-clique.
 
 To rebuild the paper with Tectonic:
 

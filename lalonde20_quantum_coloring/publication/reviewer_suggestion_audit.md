@@ -40,3 +40,65 @@ itself.
 The manuscript also now includes an explicit AI-assistance and non-peer-review
 disclosure. No researcher or other individual was contacted, and no outreach
 draft was prepared or sent.
+
+## Final two-review pass
+
+Two further AI reviews were scrutinized on the same date. Their mathematical
+claims were checked against Lalonde's arXiv source and against the exact local
+artifacts rather than accepted as authority.
+
+1. **Finite-witness framing and Lalonde's notation — applied with a notation
+   safeguard.** The abstract and theorem now lead with the fact that the result
+   confirms the finite-witness family proposed in Lalonde's Section 4.2:
+   $\xi(J_n)=n<\chi_q(J_n)=n+1$. The note retains $J_n$ and explicitly says
+   that this is Lalonde's $G_n$, because his notation otherwise gives two
+   meanings to $G_{19}$ when $n=19$.
+2. **Every fixed rank and dimension — applied.** In Lalonde's Section 2.4.2
+   notation, the theorem now records
+   $\chi_q^{[d]}(J_n)=\chi_q^{(r)}(J_n)=n+1$ for every $d,r\ge1$. The lower
+   bound follows because these are finite-dimensional colorings; the classical
+   coloring supplies the matching upper bounds.
+3. **Rank-one specialization — applied.** The tail remark displays
+   $M=\operatorname{span}(1,\sigma i)$ and all six resulting tail vectors,
+   identifies Lalonde's sign as $b=\sigma$, and cites his Theorem 4.5. It also
+   states that the higher-rank derivation does not invoke his computer-assisted
+   Lemma 4.4.
+4. **Core gauge convention — applied.** The coordinate unitary is now typed as
+   a map $G:K_1^3\to K_1\oplus K_2\oplus K_3$, and the pullback convention is
+   explicitly $M\mapsto G^*MG$.
+5. **Published four-coloring — applied.** The note now cites and prints
+   Lalonde's Section 4.2 coloring instead of retaining a different valid
+   coloring.
+6. **Walsh and tail bookkeeping — applied.** The four idempotency equations
+   leading to the anticommutators are displayed. The tail proof now states that
+   the frames are injective rather than necessarily isometric and formulates
+   orthogonality through the exact cross-Gram pullbacks.
+7. **PDF metadata — applied.** Both PDFs now embed title, author, subject, and
+   keyword metadata. No contact address was inferred or invented.
+8. **Graph consistency checks — strengthened.** The exact graph checker now
+   verifies absence of a four-clique, Lalonde's published coloring, and
+   exhaustive non-three-colorability, hence $\chi(G_{19})=4$.
+9. **Provenance labels — reconciled.** The manuscript calls commit `b1944a23`
+   the initial algebra-audit snapshot, while the landing page identifies one
+   later canonical source snapshot for the current typeset revision together
+   with its PDF hashes.
+10. **Optional notation changes — declined.** The compact edge notation and
+    the local block letters $X,Y,Z$ remain: both are defined, exact, and aligned
+    with the certificates, so changing them would add churn without resolving
+    an ambiguity.
+11. **Automation and outreach — declined.** No GitHub Action was added, per the
+    author's instruction. No email, contact draft, or external communication
+    was prepared or initiated.
+12. **Verifier optimization mode — hardened.** The two assertion-based tools
+    now refuse to run under Python's `-O` mode, so stripped assertions can
+    never be followed by a misleading `PASS`. Their ordinary and adversarial
+    optimized-mode invocations were both tested.
+13. **All-$n$ verifier wording — strengthened rather than weakened.** The
+    short verifier's former bounded sanity loop was replaced by an exact
+    symbolic coefficient replay of the certificate's terminal
+    $3nr\le2nr$ contradiction. The independent long verifier continues to
+    check the full recurrence in $\mathbb Q[n,f,d]$.
+
+The public action row is also simplified in the final site revision; the
+individual verifier and audit links remain available in the verification
+section rather than competing with the paper and source links.

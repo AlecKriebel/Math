@@ -118,3 +118,30 @@
 - No GitHub Action, release, DOI, or external communication was created. The
   public page labels the note unreviewed and states the finite-dimensional
   scope and nonclaims explicitly.
+
+## 2026-08-01T14:06:53-07:00 — final dual-review revision
+
+- Checked two further AI reviews item by item against Lalonde's primary
+  source and the exact local proof rather than treating their verdicts as
+  authority.
+- Reframed the theorem as confirmation of Lalonde's Section 4.2 finite-witness
+  family, while retaining `J_n` to avoid his literal `G_19` notation collision.
+  Recorded the exact consequences for every fixed local dimension and every
+  fixed projector rank.
+- Added the rank-one specialization to Lalonde's Theorem 4.5, fixed the core
+  gauge convention as a typed pullback `G^* M G`, expanded the Walsh
+  idempotency calculation, and made the non-isometric tail-frame pullbacks
+  explicit.
+- Switched the displayed upper-bound witness to Lalonde's published
+  four-coloring. Extended the exact graph checker to prove no `K_4`, validate
+  that coloring, and exhaustively certify non-three-colorability.
+- Embedded complete PDF metadata and reconciled the initial algebra-audit
+  snapshot with the later canonical typeset snapshot. No GitHub Action was
+  added and no outreach or external communication was prepared or initiated.
+- Replayed all three exact verifiers. Both documents compile without warnings;
+  the paper remains eight pages and the technical summary remains exactly two.
+  Both were rendered and inspected page by page.
+- A final independent release audit found and closed two verifier-interface
+  issues: assert-based tools now reject Python `-O`, and the short verifier's
+  bounded terminal sanity loop is now a genuine symbolic all-$n$ coefficient
+  replay. The long verifier's success banner is again its final output line.

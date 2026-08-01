@@ -17,8 +17,11 @@
 - A coloring can be padded with zero color outcomes. Thus excluding an
   $n$-coloring excludes every coloring using at most $n$ colors.
 - For the family statement, $K_0$ is the empty joined graph at $n=3$.
+- The note writes $J_n=G_{19}\vee K_{n-3}$ for the family that Lalonde calls
+  $G_n$, thereby reserving $G_{19}$ for the fixed 19-vertex base graph.
 - The upper bound uses the explicit classical four-coloring printed in the
-  paper, plus one fresh color for every joined vertex.
+  paper and originally recorded by Lalonde, plus one fresh color for every
+  joined vertex.
 - No claim is made here about infinite-dimensional or commuting-operator
   variants.
 
@@ -46,6 +49,11 @@ simultaneously saturated: their sum would require $3nr\le2nr$.
 - The proven value $n+1$ is attained classically in local dimension one.
   For $H$, five colors are necessary and dimension one suffices at that
   color number.
+- For every fixed $d,r\ge1$, the corresponding restricted parameters
+  $\chi_q^{[d]}$ and $\chi_q^{(r)}$ also equal $n+1$: their strategies are
+  finite-dimensional, while the classical coloring lifts by tensoring with
+  $I_d$ or, for fixed rank, by taking all cyclic color relabelings and
+  tensoring their direct sum with $I_r$.
 - Symmetrization sends a hypothetical dimension-$d$ $n$-coloring to
   dimension $n!d$, with common rank $(n-1)!d$. Since the contradiction
   holds for every positive $r$, no small-dimensional exception is hidden
