@@ -145,3 +145,21 @@
   issues: assert-based tools now reject Python `-O`, and the short verifier's
   bounded terminal sanity loop is now a genuine symbolic all-$n$ coefficient
   replay. The long verifier's success banner is again its final output line.
+
+## 2026-08-01T14:30:00-07:00 — canonical revision published
+
+- Frozen the fully revised proof package in commit
+  `f0a561e675b86a6e92b5c113c7d6f7b3e036511d` and published the corresponding
+  Pages artifacts in commit `5e6458af198a81ad9cd859dfcc3dc423c2ec60c1`.
+- Rechecked the site HTML, JSON-LD, local links, immutable source paths, PDF
+  metadata, page counts, and checksum manifest. The served paper and summary
+  bytes match the frozen build artifacts exactly.
+- The live paper SHA-256 is
+  `a53dab2b291e5ef1dba5f05c9678cbf68f90edfb75ba2feac4c8e0f28d6b666d`;
+  the live summary SHA-256 is
+  `5fc352c920694a8484bd5143495609757ca0d19f4a031b1dc75194095190bb9c`.
+- The final page foregrounds the finite-witness consequence, records the
+  fixed-dimension and fixed-rank equalities, defines complex orthogonal rank,
+  and keeps the finite-dimensional scope and nonclaims explicit.
+- No GitHub Action, release, DOI, outreach draft, or external communication
+  was created.
