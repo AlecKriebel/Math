@@ -90,3 +90,39 @@
 - A pure-standard-library verifier independently checks the common quadratic
   point and all four exact Jacobian determinants.  No literature search was
   conducted.
+
+## 2026-08-01T16:15:54-07:00 — root-collapsed Psi orbit and lifting classified
+
+- **EXACTLY COMPUTED:** found four pairwise distinct root-suppressed
+  semi-directed topologies, `A,A_reflected,B,B_reflected`, sharing one
+  seven-dimensional regular JC region.  Exact rational gauge maps preserve
+  all 64 zero-sum four-leaf Fourier coordinates.
+- **EXACTLY COMPUTED:** restored an incoming cut edge and outgroup leaf.  Each
+  augmented network is binary, strongly tree-child, and level 2, with one
+  blob having cycle lengths `3,6,7` and two reticulations.
+- **PROVED:** the augmented orbit splits into the two ordinary
+  triangle-redirection pairs `{A,B_reflected}` and `{A_reflected,B}`.  The
+  unique underlying labelled-graph isomorphism swaps the triangle vertices
+  `U,V`, preserves every reticulation direction outside the triangle, and
+  changes only its local reticulation designation.
+- **EXACTLY COMPUTED:** derived the rational full-tensor map
+  `b0=4*a0*a1*a3/d`, `b1=a1`, `b2=4*a1*a2*a3/d`,
+  `b3=d/(4*a1)`, with `d=a0*a1+a2`, together with the path and pendant
+  permutations.  Both pairings agree on all 256 zero-sum five-leaf Fourier
+  coordinates.
+- **PROVED:** rational endpoint bounds place the map in the complete open JC
+  cube on a nonempty box.  Exact polynomial rank gives model dimension ten;
+  nonzero rational rank-ten minors and a factored common-gauge determinant
+  prove full-dimensional regular stochastic overlap.
+- **PROVED:** on ordered quartet `(5,1,2,3)`, `I=J-K-M+N` vanishes on
+  `{A,B_reflected}` and is strictly positive throughout the complete open
+  parameter spaces of `{A_reflected,B}`.  The two nonroot classes therefore
+  have disjoint stochastic interiors.
+- **PROVED:** this `Psi` collision is a genuine extra move only at the global
+  root, where suppression destroys its supporting triangle.  Its surviving
+  nonroot lift is standard `T`, so it does not yield independent stackable
+  non-triangle ambiguity bits.
+- A pure-standard-library sparse rational-function implementation
+  independently verifies both symbolic 256-coordinate identities, the exact
+  common point, and both rank-ten determinants.  No literature search was
+  conducted.

@@ -21,6 +21,14 @@ Theta-related semi-directed topologies, with two reversible root placements
 each.  Thus this collision needs no new semi-directed move.  See
 `notes/MILESTONE_3A_JC_FOUR_NETWORK_CLASS.md`.
 
+Milestone 3B finds and classifies a second JC collision, the root-collapsed
+move `Psi`.  Four pairwise distinct root-suppressed semi-directed topologies
+share a seven-dimensional regular region.  Restoring an incoming cut edge
+splits the orbit into two strictly separated classes, and each surviving pair
+is exactly ordinary triangle redirection.  Thus `Psi` is root-adjacent and
+does not supply a stackable non-triangle bit.  See
+`notes/MILESTONE_3B_JC_PSI_LIFTING.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
