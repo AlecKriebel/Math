@@ -98,3 +98,23 @@
 - Replayed all three exact verifier commands. Both LaTeX documents compile;
   the eight-page paper and two-page summary were rendered page by page and
   visually inspected after correcting the only overfull hash lines.
+
+## 2026-08-01T12:34:20-07:00 — public research-note deployment
+
+- Frozen the revised proof package in commit
+  `4efa93a404c396346ac8ccf3c46aba9651e7d982`, then built the static research
+  note around that immutable snapshot.
+- Added the paper page, homepage card, sitemap entry, two exact PDFs, checksum
+  manifest, and a restrained social-preview card. The existing GitHub Pages
+  architecture under `docs/` was preserved; no hosting framework was added.
+- Fixed the homepage's pre-existing omission of MathJax so its current-paper
+  formulas render instead of exposing TeX delimiters.
+- Published the site in commit
+  `a1e839dce21f94a011578fd6dfada2bfe08cdd8c`. GitHub Pages completed that
+  exact build at `2026-08-01T19:34:20Z`.
+- Retrieved the live page, homepage, sitemap, paper, summary, and social image.
+  All returned successfully, and the served asset hashes matched the local
+  manifest exactly.
+- No GitHub Action, release, DOI, or external communication was created. The
+  public page labels the note unreviewed and states the finite-dimensional
+  scope and nonclaims explicitly.

@@ -345,6 +345,42 @@ single-score protocol. The minimum-setting problem remains open for
 but that does not establish absolute novelty or priority. The note remains
 unreviewed.
 
+## Quantum chromatic number of the G19 join family
+
+The revised proof package for “The Quantum Chromatic Number of the
+\(G_{19}\) Join Family” entered `main` in commit
+[`4efa93a404c396346ac8ccf3c46aba9651e7d982`](https://github.com/AlecKriebel/Math/commit/4efa93a404c396346ac8ccf3c46aba9651e7d982)
+on **1 August 2026**. The dedicated public research-note page entered `main`
+in commit
+[`a1e839dce21f94a011578fd6dfada2bfe08cdd8c`](https://github.com/AlecKriebel/Math/commit/a1e839dce21f94a011578fd6dfada2bfe08cdd8c)
+at **1 August 2026, 19:33:33 UTC** (**1 August 2026, 12:33:33 PDT**).
+GitHub Pages reported that exact commit built successfully at
+**1 August 2026, 19:34:20 UTC** (**1 August 2026, 12:34:20 PDT**).
+
+The live
+[research-note page](https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/),
+[paper PDF](https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/paper.pdf),
+[two-page technical summary](https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/technical-summary.pdf),
+homepage card, sitemap entry, and social-preview image were then retrieved
+successfully. Their served SHA-256 checksums were respectively
+`3785da768daf68cdc9037102d6323c464714a2e725c156a25f093cf64189d786`,
+`c00cb8253919cc9d90d6987679c417752abef236bf4557aac94c21fad6d3d59b`,
+and `a7ab39ebdbbbc950717b80ffff0d48fa6bbe9dd9f653840b3f58dfa3f3cac909`,
+identical to the frozen website artifacts.
+
+The note proves in the standard finite-dimensional projector model that
+\[
+\chi_q(G_{19}\vee K_{n-3})=n+1\qquad(n\ge3),
+\]
+and in particular \(\chi_q(G_{19}\vee K_1)=5\). The page links an immutable
+source snapshot, two independent exact obstruction verifiers, a separate
+graph checker, machine-readable certificates, the presentation-suggestion
+audit, and the narrow priority audit. It explicitly makes no claim about
+\(\chi_{qa}\), \(\chi_{qc}\), infinite-dimensional strategies, or
+commuting-operator colorings. No GitHub Action, GitHub release, Zenodo DOI, or
+external communication was created for this publication. The note remains
+unreviewed.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
