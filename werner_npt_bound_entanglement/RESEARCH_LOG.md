@@ -7808,3 +7808,120 @@ u_1u_1^\dagger\bigr].
   `verification/agent_dth_product_face_rank_rational.py`.
 - Resolution status remains unchanged: this is an exact facial theorem, not
   yet a constrained first-level certificate, DTH proof, or Werner theorem.
+
+## 2026-08-01 — Strict numerical constrained-lift obstruction; exact replay pending
+
+- Replaced the ill-conditioned eigen-kernel model of the mixed face by the
+  solver-coordinate QR bases obtained directly from the exact rational
+  product-face pivots.  The exact-product face has total rank 2266 and the
+  numerical bases have maximum orthogonality error (1.15\times10^{-13}).
+  The old approximate face projectors differed by as much as (2.32\times
+  10^{-3}), so every earlier reduced-face objective conclusion was
+  discarded and recomputed.
+- Found a strict relative-interior feasible invariant moment on the exact
+  product face: holomorphic rank 768 with minimum (4.0282\times10^{-6}),
+  mixed rank 2266 with minimum (1.3407\times10^{-6}), crossing residual
+  below (8\times10^{-16}), and objective (+0.1734047252).
+- Independently reconstructed the computational equality triple
+  (u_0=|111\rangle,u_1=|112\rangle,z=|000\rangle) from its 16 exact-integer
+  diagram-moment terms.  Its numerical twirl has trace one, objective
+  (2.88\times10^{-16}), product-face residual (4.70\times10^{-15}), and
+  supported cone minima at roundoff.  This validates the exact upper bound
+  zero and the solver normalization.
+- A standard top-eigenvalue calculation initially appeared to show an
+  eight-dimensional common linear intersection.  This was false: ARPACK
+  missed a highly degenerate eigenvalue-one subspace.  Randomized defect
+  calculations instead give rank 334 for the linear defect and hence common
+  Hermitian intersection dimension (4139-334=3805), with a rank gap over
+  (10^{12}).  No eight-dimensional reduction is retained.
+- Continuing the exact-face primal and then alternating **linear** projection
+  to the common support produced a negative supported direction.  Mixing it
+  by the rational amount \(\theta=9/500\) with the strict Slater point gives
+  an S3-symmetric floating candidate with
+
+  \[
+  \begin{aligned}
+  \langle\widetilde{\mathcal O}_0,x\rangle
+    &=-4.52547025094\times10^{-4},\\
+  \lambda_{\min}(x|_{K_{\rm hol}})
+    &=7.33695108101\times10^{-8},\\
+  \lambda_{\min}(x^\Gamma|_{R_{\rm prod}})
+    &=1.29666784587\times10^{-8}.
+  \end{aligned}
+  \]
+
+  Its affine support residual is (4.51\times10^{-14}).  The simultaneous
+  numerical dual lower bound is (-0.00359877048).  Thus the floating
+  discovery bracket is strictly negative.
+- This is not yet an exact constrained pseudomoment: the common-support
+  equations must be solved over the rationals and all compressed PSD blocks
+  must be certified exactly or by rigorous intervals.  The exact-verifier
+  architecture and coordinate metadata are recorded in
+  `notes/agent_dth_constrained_obstruction_verifier_architecture.md`.
+  No physical DTH counterexample, unrestricted three-copy result, or Werner
+  theorem follows from the numerical candidate.
+
+## 2026-08-01 — Exact constrained first-level DTH pseudomoment obstruction
+
+- Corrected a conjugation defect in the original holomorphic common-kernel
+  formulation.  Since the support equation contains \(W^\dagger z\), the
+  complete first-degree condition is a density/PPT cone:
+  \[
+  \rho\succeq0,\qquad \rho^{\Gamma_1}\succeq0,\qquad
+  \operatorname{ran}\rho\subseteq\mathscr K_{\rm hol},\qquad
+  \mathcal C_{\rm supp}\rho^{\Gamma_1}=0.
+  \]
+  Nonzero rank-one feasible points, up to positive scale, are exactly
+  physical DTH monomials; higher-rank feasible points are pseudomoments.
+- Reconstructed the strict numerical obstruction over \(\mathbb Q\).  A
+  literal exact rank-334 defect minor corrects 334 of the 4139 rational
+  holomorphic chart coordinates after \(2^{-100}\) rounding.  The largest
+  correction is \(4.34534\times10^{-16}\).  The compact source certificate
+  has SHA-256
+  `707e183995f1963aebe9eef732530396b2baa53421aaa9fcbf9f5cb31c36e9da`.
+- Proved by exact Bareiss/Sylvester arithmetic that all 118 nonzero
+  holomorphic blocks are positive definite, with total reduced block
+  dimension 768.
+  Exact trace and witness calculations give
+  \[
+  \operatorname{Tr}\rho
+   =0.99999999997526393956\ldots>0,
+  \qquad
+  \operatorname{Tr}(\widetilde{\mathcal O}_0\rho)
+   =-0.00045254702906046555\ldots<0.
+  \]
+- Proved exact crossed support in the physical product-DTH face.  All
+  826,573 primitive equations in all 216 mixed blocks vanish over the
+  integers: 85 deterministic primes give a 1695-bit CRT modulus, exceeding
+  twice the explicit 1683-bit residual bound.  The face rank is exactly
+  2266.  The exact local crossing also obeys the literal transpose
+  intertwiner \(C T_{\rm hol}=T_{\rm mixed}C\).
+- Reconstructed all 64,900 mixed pivot-principal entries and certified all
+  198 nonzero mixed coordinate blocks positive definite.  Exact dyadic
+  congruence plus a rational Frobenius perturbation bound has worst squared
+  perturbation-to-gap ratio \(2.692\times10^{-41}\).  Direct fraction-free
+  Sylvester arithmetic independently passes the hardest \(42\times42\)
+  block, whose final determinant has 108,888 bits.  The mixed-PD reference
+  certificate has SHA-256
+  `648186810cd9e9becc71eb6d319749c2a2c956d3f152f116ff17a1cdd1bcdf33`.
+- Therefore the witness is negative on the corrected complete first-level
+  five-replica DTH relaxation: it contains an exact rational feasible
+  pseudomoment with negative value.  This proves that first-level
+  Plücker/DTH compatibility does not certify DTH.  Any proof within this
+  first-level architecture must add constraints, for example a further
+  Veronese--Segre condition or a higher prolongation.
+- Identified the first concrete missing Segre condition.  Every physical
+  \((w\otimes w)\otimes z\) density, and every convex mixture of such
+  densities, is PPT across the final \(z\) slot.  The exact pseudomoment is
+  not: in its \((3,0,0)^{\otimes3}\) symmetry block, all 64 diagonal entries
+  are nonnegative but the \((2,8)\) principal \(2\times2\) determinant is
+  strictly negative.  Its exact rational SHA-256 is
+  `2d06679746ba5bf26d867eb05283f8e7c2ebdab0d5d2fda6225f8411f1332caa`.
+  Thus the omitted localizer \(\rho^{\Gamma_5}\succeq0\) separates the
+  pseudomoment from the entire physical Veronese--Segre moment cone.  Whether
+  adding this localizer repairs the first-level relaxation is the next finite
+  decision.
+- Scope remains strict.  The certificate is high rank, not a physical
+  \((w\otimes w)\otimes z\) vector.  It does not refute DTH and does not
+  settle square-zero positivity, unrestricted three-copy positivity, or the
+  all-copy Werner problem.

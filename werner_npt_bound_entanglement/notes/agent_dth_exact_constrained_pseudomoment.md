@@ -35,10 +35,10 @@ first-level relaxation is
 \tag{1}
 \]
 
-Here \(\mathscr K_{\rm hol}\) contains pair symmetry, the first Pluecker
+Here \(\mathscr K_{\rm hol}\) contains pair symmetry, the first Plücker
 equation, and the polarized Omega equation.  Rank-one feasible densities in
-(1) are exactly the physical DTH monomials, but higher-rank feasible
-densities are only pseudomoments.
+(1), when nonzero and up to positive scale, are exactly the physical DTH
+monomials, but higher-rank feasible densities are only pseudomoments.
 
 ## Exact certificate candidate
 
@@ -97,7 +97,7 @@ The following statements are exact:
 3. the trace is a positive rational;
 4. the witness pairing is a negative rational;
 5. all 118 nonzero holomorphic coordinate blocks are positive definite,
-   with total supported rank 768;
+   with total reduced block dimension 768;
 6. the crossed mixed moment lies in the exact 2266-dimensional physical
    product-DTH face; and
 7. all 198 nonzero mixed face-coordinate blocks are positive definite.
@@ -144,9 +144,9 @@ squared perturbation-to-certified-gap ratio is
 
 As an independent hostile check, direct fraction-free Sylvester arithmetic
 also proves positivity of the numerically hardest raw-coordinate block,
-the (42\times42) block ((2,2,4)); its final determinant has 108,888 bits.
+the \(42\times42\) block \((2,2,4)\); its final determinant has 108,888 bits.
 The exact local crossing additionally satisfies the transpose intertwining
-identity (C T_{\rm hol}=T_{\rm mixed}C), so symmetry of the mixed blocks is
+identity \(C T_{\rm hol}=T_{\rm mixed}C\), so symmetry of the mixed blocks is
 not inferred from their pivot submatrices.
 
 The mixed positivity reference certificate is
@@ -169,7 +169,7 @@ The independent floating audit, retained only as a diagnostic, found:
   \(3.3294526318695295\times10^{-8}\), in block \((1,1,3)\);
 - maximum mixed face reconstruction residual
   \(2.24258\times10^{-13}\);
-- total mixed face rank 2266.
+- total mixed reduced block dimension 2266.
 
 ## Theorem
 
@@ -184,8 +184,9 @@ Items 3 and 4 permit normalization by the positive trace while preserving
 the strict negative sign.
 
 This is a certificate-degree obstruction.  It proves that the complete
-first corrected Pluecker/DTH lift is insufficient and that an additional
-Veronese--Segre relation or a higher prolongation is necessary.
+first corrected Plücker/DTH lift fails to certify DTH.  Any proof staying
+within this first-level architecture must strengthen it, for example with an
+additional Veronese--Segre constraint or a higher prolongation.
 
 It does **not** provide a rank-one density or a physical vector
 \((w\otimes w)\otimes z\).  Therefore it is not a counterexample to DTH,

@@ -57,8 +57,8 @@ This identifies a concrete omitted first-degree Segre localizer:
 \boxed{\rho^{\Gamma_5}\succeq0.}
 \]
 
-The existing obstruction shows that first-bivector PPT, the Pluecker and
-Omega range equations, and the mixed support equation do not imply this
+The existing obstruction shows that first-bivector PPT, the Plücker and
+\(\Omega\) range equations, and the mixed support equation do not imply this
 additional PPT condition.
 
 ## Scope
@@ -68,4 +68,3 @@ the pseudomoment.  It does not show that the physical DTH inequality is
 false.  Adding final-slot PPT is a strictly stronger relaxation; whether
 that strengthened cone still contains a negative pseudomoment is a new
 finite question.
-
