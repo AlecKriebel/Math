@@ -212,6 +212,70 @@ The square roots in (11) are merely numerical isometric coordinates.  An
 exact rational certificate may instead retain orbit-size weights in its
 inner product.
 
+## 5. Numerical Slater point for the PSD-only marginal problem
+
+The reduced projection engine was applied to the complete 761-coordinate
+site-invariant target.  Direct effective Kraus maps remove the intermediate
+expansion to all 487 ordered source blocks.  Their marginal agrees with the
+expanded marginal to Frobenius error (3.75\times10^{-13}) in the numerical
+audit.
+
+The physical common-floor normalization is as follows.  For an orbit of
+size (h), the reduced shift is
+
+\[
+S_c(t)=t\sqrt h\,r_c I,
+\qquad
+r_c=\begin{cases}
+\sqrt2,&c\text{ is a standard }S_3\text{ component},\\
+1,&\text{otherwise}.
+\end{cases}
+\tag{12}
+\]
+
+With the isometric embedding (E) of (11), direct substitution gives
+
+\[
+\boxed{E(S(t))_\Lambda=tI_\Lambda}
+\tag{13}
+\]
+
+for every one of the 487 ordered source blocks.  Hence a reduced positive
+solution (Z_c\succeq0) of
+
+\[
+A Z=r-A S(t)
+\]
+
+produces the physical source (E(Z+S(t))), satisfying every ordered-block
+bound (X_\Lambda\succeq tI_\Lambda).
+
+Using the saved floor-zero candidate as a warm start, the complete reduced
+solve at (t=10^{-12}) produced
+
+\[
+\begin{aligned}
+\|A Z-(r-AS(t))\|_2&=2.8872376192091776\times10^{-20},\\
+\left(\sum_c\|Z_{c,-}\|_F^2\right)^{1/2}&=0,\\
+\min_c\lambda_{\min}(Z_c)&=5.885296438818831\times10^{-20}.
+\end{aligned}
+\tag{14}
+\]
+
+After expansion, the smallest eigenvalue among all 487 physical ordered
+blocks is (1.000000033978775\times10^{-12}).  The retained floating-point
+cache is `discovery/dth_level2_source_reduced_floor1e12_warm.pkl`, with
+SHA-256
+
+```
+998d978a306869cf32b5bf46a493d34236cd7e45f1b69004982268bc297b5cb9
+```
+
+This is a numerical Slater point for the **holomorphic PSD-only
+fixed-marginal relaxation**.  It is not yet an exact rational certificate,
+and it does not impose the prolonged support partial-transpose face or the
+remaining grouped PPT constraints.
+
 ## Verification
 
 `verification/verify_dth_level2_source_site_symmetry.py` evaluates

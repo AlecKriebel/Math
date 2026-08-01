@@ -8455,6 +8455,27 @@ u_1u_1^\dagger\bigr].
   The prolonged support face and grouped PPT constraints remain untested, so
   this is neither a complete degree-three extension nor a DTH result.
 
+## 2026-08-01 07:22 PDT — Strict numerical floor for the complete PSD-only lift
+
+- Reduced the 487 ordered source blocks losslessly under physical-site
+  symmetry to 112 source orbits and 171 PSD components: 87,540 symmetric
+  variables, maximum PSD rank 106.  Compiled direct effective Kraus maps;
+  their audit against full ordered-block expansion has Frobenius error
+  `3.75e-13`.
+- Warm-started from the preserved floor-zero solution.  At physical common
+  floor `t=1e-12`, the reduced solver reached marginal residual
+  `2.8872376192091776e-20`, zero floating-point PSD defect, and shifted
+  component minimum `5.885296438818831e-20`.
+- The reduced shift is normalized so that its expansion is exactly `t I` in
+  every ordered source block.  Expanding the saved numerical solution gives
+  a least ordered-block eigenvalue `1.000000033978775e-12`.
+- Preserved `discovery/dth_level2_source_reduced_floor1e12_warm.pkl`
+  (floating cache, not tracked), SHA-256
+  `998d978a306869cf32b5bf46a493d34236cd7e45f1b69004982268bc297b5cb9`.
+- This is numerical Slater evidence only for the holomorphic PSD
+  fixed-marginal problem.  Exact rational correction and the prolonged
+  support/PPT constraints remain open.
+
 ## 2026-08-01 07:17 PDT — Sharpened smooth-critical purity threshold
 
 - Combined the exact equal-output-marginal Euler theorem with the
