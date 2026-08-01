@@ -144,8 +144,10 @@ and nonsmooth diameter-endpoint configurations remain unresolved.
 - Proved a new bounded-set positive theorem: if a diameter pair is universal
   (both endpoints are at the diameter from every other point), then the set
   has a five-partition of strictly smaller diameter.
-- After normalizing away the universal edge, the residual points are unit
-  vectors in R^3 with all mutual inner products at least 1/3. More generally,
+- After normalizing the common neighbors of any diameter edge, they are unit
+  vectors in R^3 with all mutual inner products at least 1/3. Thus every edge
+  has a three-colorable common neighborhood; in particular no diameter
+  subgraph can contain K2 join H with chi(H) at least four. More generally,
   every compact unit-vector set in R^3 with positive minimum inner product c
   admits a uniform three-partition above c.
 - The proof encloses the spherical set in a closest cap and colors three

@@ -11,6 +11,19 @@ other point, then \(S\) has a five-partition whose parts have diameter
 strictly below \(D\).  In particular, a finite six-chromatic diameter graph
 in \(\mathbb R^4\) has no universal \(K_2\).
 
+The local statement is stronger.  For any diameter pair \(a,b\), the set of
+points at distance \(D\) from both \(a\) and \(b\) has a uniform
+three-partition.  Hence, in every finite four-dimensional diameter graph,
+
+\[
+ \chi\bigl(G[N(a)\cap N(b)]\bigr)\le3
+ \qquad\text{for every edge }ab.                          \tag{0}
+\]
+
+Consequently no graph \(K_2\mathbin\vee H\) with \(\chi(H)\ge4\) can occur
+even as a diameter subgraph; the two clique vertices need not be universal
+outside that displayed subgraph.
+
 The earlier four-cycle determinant after a universal \(K_2\) is therefore a
 special case of a stronger fact: the entire residual diameter graph is
 three-colorable.  The key spherical statement works for every positive inner
@@ -142,19 +155,23 @@ The half-open convention assigns every nonpolar point exactly once.  The
 additional equality analysis is what prevents sequences on opposite sector
 boundaries from losing strictness in the compact case.
 
-## 2. Apply the lemma after a universal diameter edge
+## 2. Apply the lemma to common neighbors of a diameter edge
 
-First assume that \(S\) is compact.  Its residual set is compact as well:
-every residual point is at distance \(D\) from each of \(a,b\), so those two
-points are isolated from it.  Scale \(D=1\), place the midpoint of \(a,b\) at
-the origin, and write
+First assume that \(S\) is compact, fix any diameter edge \(ab\), and let
+
+\[
+ T_{ab}=\{x\in S:\lVert x-a\rVert=\lVert x-b\rVert=D\}.
+\]
+
+This common-neighbor set is compact.  Scale \(D=1\), place the midpoint of
+\(a,b\) at the origin, and write
 
 \[
  a=-\frac12e,\qquad b=\frac12e
 \]
 
-for a unit vector \(e\).  For any residual point
-\(x\in S\setminus\{a,b\}\), the two universal-edge equations give
+for a unit vector \(e\).  For any \(x\in T_{ab}\), the two common-neighbor
+equations give
 
 \[
  \lVert x-a\rVert^2=\lVert x-b\rVert^2=1.
@@ -172,8 +189,8 @@ Thus
  y_x=\frac2{\sqrt3}x
 \]
 
-is a unit vector in the three-dimensional space \(e^\perp\).  For two
-residual points, the global diameter bound is equivalent to
+is a unit vector in the three-dimensional space \(e^\perp\).  For two common
+neighbors, the global diameter bound is equivalent to
 
 \[
  1\ge\lVert x-z\rVert^2
@@ -188,9 +205,13 @@ so
 \]
 
 Equality in (9) holds exactly when \(x,z\) are a diameter pair.  Lemma 1 with
-\(c=1/3\) partitions the residual compact set into three sets whose original
-diameters are uniformly below one.  Give \(a\) and \(b\) two new singleton
-parts.  This is the required five-partition.
+\(c=1/3\) partitions \(T_{ab}\) into three sets whose original diameters are
+uniformly below one.  This proves the local claim (0).
+
+If \(ab\) is universal, then
+\(S=T_{ab}\mathbin{\dot\cup}\{a\}\mathbin{\dot\cup}\{b\}\).
+Give \(a\) and \(b\) two new singleton parts.  This is the required
+five-partition.
 
 For an arbitrary bounded, nonclosed \(S\), pass first to its closure.  The
 diameter is unchanged, and continuity preserves all universal-edge
