@@ -8234,6 +8234,33 @@ u_1u_1^\dagger\bigr].
   direct gap is to prove that a global maximizer at or above (1/8) must
   enter this flagged boundary, or to find an interior counterexample.
 
+## 2026-08-01 06:15 PDT — Exact site-symmetric target reduction
+
+- Proved an exact equivariant reduction for the complete degree-three fixed
+  extension test.  Averaging the recorded constrained pseudomoment over the
+  three physical sites preserves its exact negative witness value and every
+  support, Omega, Pluecker, positivity, and grouped-PPT constraint.
+- Proved that an invariant target lies in the full marginal cone if and only
+  if its invariant projection does: any source preimage can be averaged
+  inside the product PSD cone.  Source-block variables therefore need not be
+  tied explicitly.
+- Computed all 35 exact stabilizer modules in the five-replica physical
+  `K`-charts.  Site symmetry reduces the complete target from 4,139 to 761
+  real-symmetric equations.
+- The key modules are
+  (K_444=2[3]\oplus4[2,1]) (13 equations),
+  (K_333=2[3]\oplus2[1,1,1]\oplus6[2,1]) (27 equations), and the 433
+  representative stabilizer split (9,6) (66 equations).
+- Using this 106-equation reduction, independently confirmed strict numerical
+  feasibility of the joint 444, 333, and three ordered 433 blocks.  A common
+  source floor of (10^{-12}) was feasible with residual
+  (9.74\times10^{-21}) and zero numerical PSD defect.  This is discovery
+  evidence, not an exact extension certificate.
+- Added `notes/agent_dth_site_symmetric_target_reduction.md`,
+  `verification/verify_dth_site_symmetric_target_census.py`, and
+  `verification/verify_dth_site_symmetric_census_arithmetic.py`, together
+  with `discovery/agent_dth_level2_joint_symmetry.py`.
+
 ## 2026-08-01 06:05 PDT — Complete deficient-support equality classification
 
 - Classified equality in the sharp double-Hodge Ky--Fan-two inequality.
