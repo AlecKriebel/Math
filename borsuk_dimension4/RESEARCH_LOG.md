@@ -170,3 +170,35 @@ Best-guess completion toward a full resolution: **8%**. The negative search
 lost its strongest exact candidate, while the positive route gained a
 dimension-reducing theorem that may generalize to nonuniversal diameter
 edges.
+
+## 2026-08-01T16:59:51-07:00 — Full golden audit and Mycielski tower screen
+
+- Exhausted every possible diameter threshold for every subset of the 120
+  exact golden vectors. Five of the seven nonantipodal product levels have
+  explicit full-relation five-colorings.
+- At product zero, exact Bron--Kerbosch enumeration found 30,000 maximal
+  admissible subsets (1,200 of size 17 and 28,800 of size 20); their threshold
+  graphs are all three- or four-chromatic. At product eight, all 5,160 maximal
+  admissible subsets (sizes seven and eight) are likewise at most
+  four-chromatic. Exact clique-list hashes and complete DSATUR checks make the
+  elimination reproducible.
+- This closes all orientation, deletion, and alternative-diameter-level
+  variants inside the 120-vector family, not only the previously studied
+  antipodal transversals.
+- Proved that the natural 47-vertex six-critical candidate M^3(C5) cannot be
+  the exact diameter graph of points in R^4. A rank-five original--shadow
+  slack minor forces the 23 top shadows to span a four-polytope. Their graph
+  neighborhoods force exactly 23 facets, 62 polygonal ridges, and 62 edges.
+  Every facet halfspace has positive constant term, which would make the
+  finite polytope contain an unbounded ray.
+- The Mycielski proof uses strict inequalities for graph nonedges. It does not
+  rule out a diameter graph properly containing M^3(C5), so weak
+  subgraph-realization remains open and is not being overstated.
+- Derived a new 600-point exact orbit directly, without a catalogue, as the
+  centroids of all 600 tetrahedral cliques in the positive golden relation.
+  It has 30 nonantipodal inner-product levels; constrained all-threshold
+  screening is now the strongest active negative route.
+
+Best-guess completion toward a full resolution: **9%**. Two major exact
+candidate families are now comprehensively screened, while the derived
+600-point orbit and weak Mycielski realization remain live.
