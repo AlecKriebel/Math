@@ -203,10 +203,9 @@ T,\quad\Theta,\quad\Psi,\quad\Omega,\quad C_{\rm root}.
 No claim is yet made that this is the complete move list for arbitrary
 root-containing blobs of degree at least three.
 
-**UNRESOLVED.** The corresponding complete-image behavior under K2P and K3P
-has not yet been classified. The two-terminal tensor still collapses to three
-model-specific Fourier multipliers there, but positivity and reverse
-factorization require a separate proof.
+**PROVED.** Milestone 5C subsequently proves that the same complete-image
+equality holds under K2P and K3P by an exact positive-kernel factorization.
+See `MILESTONE_5C_GROUP_BASED_ROOT_TWO_PORT_COLLAPSE.md`.
 
 ## Machine replay
 

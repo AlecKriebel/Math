@@ -145,6 +145,15 @@ parallel edge created by root suppression is retained, and is already zipped
 away under the alternative simple-graph convention. See
 `notes/MILESTONE_5B_JC_ROOT_TWO_PORT_COLLAPSE.md`.
 
+Milestone 5C proves that `C_root` is universal across all three requested
+group-based models.  A four-chamber rational factorization writes every
+strictly positive JC, K2P, or K3P kernel as a convolution of two strictly
+positive kernels in the same model.  Applying it once in one direction and
+three times in the other proves equality of the complete open stochastic
+images, with exact regular points of dimensions one, two, and three.  Thus
+K2P/K3P separate `Theta` but do not reveal the two-port root reticulation. See
+`notes/MILESTONE_5C_GROUP_BASED_ROOT_TWO_PORT_COLLAPSE.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

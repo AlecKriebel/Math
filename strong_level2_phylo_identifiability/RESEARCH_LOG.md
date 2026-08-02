@@ -482,3 +482,30 @@
 - **UNRESOLVED:** arbitrary degree-at-least-three root blobs and the K2P/K3P
   behavior of this move remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-01T23:51:00-07:00 — root collapse extended exactly to K2P and K3P
+
+- **PROVED:** every strictly positive group-based probability kernel `R`
+  factors as `E*D` within JC, K2P, or K3P.  If `m` is a minimum coordinate,
+  set `epsilon=2m`, `E=(1-epsilon)delta_0+epsilon U_G`, and
+  `D=(R-epsilon U_G)/(1-epsilon)`.  Both factors are strictly positive.
+- **EXACTLY COMPUTED:** all four minimum-coordinate chambers replay sixteen
+  probability-convolution identities and twelve Fourier-product identities.
+  Uniform subtraction and rescaling preserve the K2P probability equality;
+  in JC the two factor multipliers are `(1+x)/2` and `2x/(1+x)`.
+- **PROVED:** applying the factorization once maps every open two-port root
+  cycle to an ordinary root. Applying it three times maps every open ordinary
+  root back to a cycle by arranging the two reticulation routes to have the
+  same positive kernel and setting inheritance probability `1/2`.
+- **PROVED:** `C_root` therefore preserves the complete open stochastic image
+  under JC, K2P, and K3P, including after arbitrary identical components are
+  attached at both ports.
+- **EXACTLY COMPUTED:** at the common all-character multiplier point, the
+  local image dimensions are `1,2,3`; source rank determinants are
+  `1/8,1/64,1/512` and tree-side determinants are `1/2,1/4,1/8`.
+- **PROVED:** the model hierarchy is not a uniform nesting of move systems:
+  K2P/K3P generically separate `Theta`, but both retain `C_root` with complete
+  image equality.
+- **UNRESOLVED:** arbitrary degree-at-least-three root blobs under JC and the
+  remaining K2P/K3P local/global atlases are still open.
+- No literature search or numerical evidence is used.

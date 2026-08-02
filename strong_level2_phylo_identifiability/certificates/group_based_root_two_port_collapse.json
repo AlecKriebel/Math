@@ -1,0 +1,217 @@
+{
+  "conclusion": "C_root preserves the complete open stochastic image under JC, K2P, and K3P, including after arbitrary identical component substitution",
+  "cycle_to_tree_algorithm": [
+    "form H=lambda*T+(1-lambda)*(S*U)",
+    "form R=P*Q*H",
+    "factor R=C*D with the positive factorization lemma"
+  ],
+  "exact_common_regular_points": {
+    "JC": {
+      "all_source_edge_nonzero_multipliers": "1/2",
+      "effective_nonzero_multipliers": [
+        "3/32"
+      ],
+      "inheritance_probability": "1/2",
+      "model_dimension": 1,
+      "source_jacobian": [
+        [
+          "1/8"
+        ]
+      ],
+      "source_rank_minor": "1/8",
+      "strict_probability_positivity_checked": true,
+      "target_first_arm_nonzero_multipliers": "1/2",
+      "target_jacobian": [
+        [
+          "1/2"
+        ]
+      ],
+      "target_rank_minor": "1/2",
+      "target_second_arm_nonzero_multipliers": "3/16"
+    },
+    "K2P": {
+      "all_source_edge_nonzero_multipliers": "1/2",
+      "effective_nonzero_multipliers": [
+        "3/32",
+        "3/32"
+      ],
+      "inheritance_probability": "1/2",
+      "model_dimension": 2,
+      "source_jacobian": [
+        [
+          "1/8",
+          "0"
+        ],
+        [
+          "0",
+          "1/8"
+        ]
+      ],
+      "source_rank_minor": "1/64",
+      "strict_probability_positivity_checked": true,
+      "target_first_arm_nonzero_multipliers": "1/2",
+      "target_jacobian": [
+        [
+          "1/2",
+          "0"
+        ],
+        [
+          "0",
+          "1/2"
+        ]
+      ],
+      "target_rank_minor": "1/4",
+      "target_second_arm_nonzero_multipliers": "3/16"
+    },
+    "K3P": {
+      "all_source_edge_nonzero_multipliers": "1/2",
+      "effective_nonzero_multipliers": [
+        "3/32",
+        "3/32",
+        "3/32"
+      ],
+      "inheritance_probability": "1/2",
+      "model_dimension": 3,
+      "source_jacobian": [
+        [
+          "1/8",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/8",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/8"
+        ]
+      ],
+      "source_rank_minor": "1/512",
+      "strict_probability_positivity_checked": true,
+      "target_first_arm_nonzero_multipliers": "1/2",
+      "target_jacobian": [
+        [
+          "1/2",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "1/2",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1/2"
+        ]
+      ],
+      "target_rank_minor": "1/8",
+      "target_second_arm_nonzero_multipliers": "3/16"
+    }
+  },
+  "model_preservation": {
+    "JC": "for 0<x<1 the factors have multipliers (1+x)/2 and 2*x/(1+x), both strictly between zero and one",
+    "K2P": "probabilities (r0,r1,r2,r3) satisfy r2=r3; equivalently Fourier multipliers a1=a3, and this equality is preserved",
+    "K3P": "all strictly positive probability kernels on Z2xZ2",
+    "near_identity_factor": "JC and therefore belongs to all three models"
+  },
+  "positive_kernel_factorization": {
+    "chamber_count": 4,
+    "chambers": [
+      {
+        "convolution_identities": 4,
+        "epsilon": "2*r0",
+        "fourier_product_identities": 3,
+        "minimum_coordinate": 0,
+        "near_identity_probabilities": [
+          "-(3*r0 - 2)/2",
+          "r0/2",
+          "r0/2",
+          "r0/2"
+        ],
+        "residual_probabilities": [
+          "-r0/(2*(2*r0 - 1))",
+          "(r0 - 2*r1)/(2*(2*r0 - 1))",
+          "(r0 - 2*r2)/(2*(2*r0 - 1))",
+          "(3*r0 + 2*r1 + 2*r2 - 2)/(2*(2*r0 - 1))"
+        ]
+      },
+      {
+        "convolution_identities": 4,
+        "epsilon": "2*r1",
+        "fourier_product_identities": 3,
+        "minimum_coordinate": 1,
+        "near_identity_probabilities": [
+          "-(3*r1 - 2)/2",
+          "r1/2",
+          "r1/2",
+          "r1/2"
+        ],
+        "residual_probabilities": [
+          "-(2*r0 - r1)/(2*(2*r1 - 1))",
+          "-r1/(2*(2*r1 - 1))",
+          "(r1 - 2*r2)/(2*(2*r1 - 1))",
+          "(2*r0 + 3*r1 + 2*r2 - 2)/(2*(2*r1 - 1))"
+        ]
+      },
+      {
+        "convolution_identities": 4,
+        "epsilon": "2*r2",
+        "fourier_product_identities": 3,
+        "minimum_coordinate": 2,
+        "near_identity_probabilities": [
+          "-(3*r2 - 2)/2",
+          "r2/2",
+          "r2/2",
+          "r2/2"
+        ],
+        "residual_probabilities": [
+          "-(2*r0 - r2)/(2*(2*r2 - 1))",
+          "-(2*r1 - r2)/(2*(2*r2 - 1))",
+          "-r2/(2*(2*r2 - 1))",
+          "(2*r0 + 2*r1 + 3*r2 - 2)/(2*(2*r2 - 1))"
+        ]
+      },
+      {
+        "convolution_identities": 4,
+        "epsilon": "-2*r0 - 2*r1 - 2*r2 + 2",
+        "fourier_product_identities": 3,
+        "minimum_coordinate": 3,
+        "near_identity_probabilities": [
+          "(3*r0 + 3*r1 + 3*r2 - 1)/2",
+          "-(r0 + r1 + r2 - 1)/2",
+          "-(r0 + r1 + r2 - 1)/2",
+          "-(r0 + r1 + r2 - 1)/2"
+        ],
+        "residual_probabilities": [
+          "(3*r0 + r1 + r2 - 1)/(2*(2*r0 + 2*r1 + 2*r2 - 1))",
+          "(r0 + 3*r1 + r2 - 1)/(2*(2*r0 + 2*r1 + 2*r2 - 1))",
+          "(r0 + r1 + 3*r2 - 1)/(2*(2*r0 + 2*r1 + 2*r2 - 1))",
+          "-(r0 + r1 + r2 - 1)/(2*(2*r0 + 2*r1 + 2*r2 - 1))"
+        ]
+      }
+    ],
+    "exact_nonzero_fourier_product_identities": 12,
+    "exact_probability_convolution_identities": 16,
+    "rule": "choose a minimum probability m, set epsilon=2m, E=(1-epsilon)delta_0+epsilon U, and D=(R-epsilon U)/(1-epsilon)",
+    "strict_positivity": "0<m<=1/4 gives 0<epsilon<=1/2; every D coordinate is at least m/(2*(1-2m))>0"
+  },
+  "status": {
+    "JC_complete_image_equality": "PROVED",
+    "K2P_complete_image_equality": "PROVED",
+    "K3P_complete_image_equality": "PROVED",
+    "arbitrary_component_substitution_all_models": "PROVED",
+    "move": "C_root"
+  },
+  "tree_to_cycle_algorithm": [
+    "convolve the two target arm kernels to obtain R",
+    "factor R=P*R1 with the positive factorization lemma",
+    "factor R1=Q*H",
+    "factor H=S*U",
+    "set T=H and lambda=1/2"
+  ]
+}
