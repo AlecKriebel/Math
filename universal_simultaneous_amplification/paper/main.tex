@@ -4,6 +4,7 @@
 \usepackage{booktabs}
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\allowdisplaybreaks[2]
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
@@ -13,108 +14,145 @@
 \newcommand{\dB}{\mathrm{dB}}
 \newcommand{\rhoU}[3]{\rho_{#1}(#2,#3)}
 
-\title{A Sharp Strong-Selection Obstruction to\\
-Universal Simultaneous Amplification}
-\author{}
+\title{No universal death--birth amplifier on a finite\\
+weighted population structure}
+\author{Alec Kriebel\\Independent Researcher}
 \date{August 1, 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We ask whether a finite connected undirected weighted graph can strictly
+We ask whether a finite loopless weighted population structure can strictly
 increase uniformly initialized single-mutant fixation probability, relative
-to the same-order complete graph, under both birth--death and death--birth
-updating for every mutant fitness $r>1$.  We prove a stronger negative result:
-no such graph is an all-fitness amplifier even for death--birth updating alone.
-If the positive-weight support is incomplete, its death--birth fixation
-probability has a strictly smaller strong-selection limit.  If the support is
-complete, its first $1/r$ correction is no better than the complete graph's,
-and the excess loss has an explicit sum-of-squares certificate.  Equality
-forces all edge weights to be equal, in which case the process is exactly the
-complete-graph baseline.  The obstruction applies to every finite graph and
-therefore rules out a family required to amplify at every fitness for each
-sufficiently large member.  It does not settle the reversed asymptotic order
-in which the size threshold may depend on a fixed fitness value.
+to the same-order complete graph, under death--birth updating for every mutant
+fitness $r>1$.  For complete directed support we derive the first $1/r$
+correction exactly.  Its excess loss is a sum of squares over incoming weight
+columns; equality holds precisely when every incoming column is constant, in
+which case the entire process is the complete-graph baseline.  Combining this
+with the known transience theorem for strongly connected noncomplete supports
+and a source-component bound for non-strong supports proves that no finite
+directed weighting amplifies dB fixation for every $r>1$.  For undirected graphs we
+also give the exact incomplete-support strong limit.  Finally, we classify
+positive weighted triangles and two maximally symmetric nontrivial families
+on four vertices at every beneficial fitness: every nonuniform member is a
+strict dB suppressor.  These fixed-graph results do not settle the reversed
+asymptotic order in which the population threshold may depend on fitness.
 \end{abstract}
+
+\section*{Author summary}
+
+Evolution in a structured population depends on who can replace whom.  A
+network is called an amplifier when it makes a beneficial mutation more likely
+to take over than it would be in a well-mixed population.  We ask whether one
+fixed finite weighted network can amplify every possible beneficial mutation
+under death--birth replacement.  It cannot.  For complete directed networks,
+we calculate the first strong-selection correction and show that its deficit
+is an explicit sum of nonnegative squares.  Equality occurs only when every
+competition is dynamically identical to the well-mixed process.  Combining
+this with the remaining support cases rules out every finite directed
+network.  We also obtain exact classifications for all weighted triangles and
+for two natural symmetric four-vertex families: every nonuniform example
+suppresses selection at every beneficial fitness.  The proofs are accompanied
+by exact symbolic transition builders and independent replay checks.  A
+different large-population question remains open because its population-size
+threshold may depend on fitness; we state this quantifier distinction and a
+necessary support-degree condition explicitly.
 
 \section{Relation to prior bounds}
 
-Tkadlec et al. proved that every noncomplete population structure---even with
-directed or weighted edges---is eventually dB-suppressing as fitness grows
-\cite{Tkadlec2020}.  Their theorem explicitly
-leaves one residual possibility: a nonuniform weighted version of the complete
-graph.  They list universal dB amplification as an open direction and observe
-that any example would have to lie in that class.  The complete-support branch
-of our theorem closes this residual case for finite undirected symmetric
-loopless weights.  Its $1/r$ coefficient also provides an equality
-characterization not supplied by the earlier average-degree bound.
+Tkadlec et al. proved that every strongly connected noncomplete population
+structure---allowing directed and weighted edges---is eventually
+dB-suppressing as fitness grows \cite{Tkadlec2020}.  Their source-to-target
+weight convention, loopless model, and uniform initialization agree with ours.
+Their theorem leaves one strongly connected possibility: a nonuniform weighted
+version of the complete directed graph.  Our incoming-column sum of squares
+closes precisely that case and gives the sharp equality class.  A short
+source-component argument below also removes the strong-connectivity
+assumption from the final fixed-graph statement.
 
 Transient dB amplification is known and can be diagnosed at weak selection
 using coalescing random walks \cite{Allen2020}.  More recently, weighted modular
 graphs have been proved to amplify both Bd and dB selection on the fixed fitness
 interval $(1,1.2)$ \cite{Svoboda2024}.  Those positive results are consistent
-with the obstruction here: our conclusion concerns a single graph required to
-amplify for every $r>1$, and failure occurs in its strong-selection tail.
+with the obstruction here: our conclusion concerns a fixed finite graph
+required to amplify for every $r>1$, and failure occurs in its
+strong-selection tail.
 
 \section{Model and result}
 
-Let $G=(V,w)$ be a connected loopless undirected weighted graph, with
-$|V|=n\ge2$, $w_{ij}=w_{ji}\ge0$, and every weighted degree positive.  Mutants
-have fitness $r>1$ and residents fitness one.  Under death--birth updating a
-uniformly chosen vertex dies, after which a neighbor is chosen for reproduction
-with probability proportional to fitness times edge weight.  Write
-$\rho_{\dB}(G,r)$ for fixation probability averaged uniformly over all
-single-mutant initial vertices.  Let
+Let $G=(V,W)$ be loopless, $|V|=n\ge2$, and let $w_{uv}\ge0$ be the
+weight with which source $u$ competes to replace dead target $v$.  Assume each
+incoming degree
 \[
- s_i=|\{j:w_{ij}>0\}|
+ d_v^-:=\sum_{u\ne v}w_{uv}
 \]
-be the degree of $i$ in the positive-weight support.
+is positive.  Mutants have fitness $r>1$ and residents fitness one.  Under
+death--birth updating a uniformly chosen target dies, after which a source is
+chosen with probability proportional to fitness times $w_{uv}$.  Write
+$\rho_{\dB}(G,r)$ for fixation probability averaged uniformly over singleton
+initial mutants.  Multiplying one incoming column by a positive constant is
+dynamically irrelevant for dB.
 
-\begin{theorem}[sharp strong-selection obstruction]\label{thm:main}
-For every finite connected undirected weighted graph $G$ on $n\ge2$ vertices:
-\begin{enumerate}
-\item
+\begin{theorem}[directed complete-support correction]\label{thm:main}
+Suppose $n\ge3$ and $w_{uv}>0$ for every $u\ne v$.  Put
 \[
- \lim_{r\to\infty}\rho_{\dB}(G,r)
- =\frac1n\sum_i\frac{s_i}{s_i+1}.
-\]
-If the support is incomplete, then
-\[
- \lim_{r\to\infty}
- \bigl(\rho_{\dB}(K_n,r)-\rho_{\dB}(G,r)\bigr)
- =\sum_i\frac{n-1-s_i}{n^2(s_i+1)}>0.
-\]
-\item Suppose the support is complete and $n\ge3$.  Put
-\[
- \mathcal E(G)=
- \sum_i\sum_{\substack{j<k\\j,k\ne i}}
- \frac{(w_{ij}-w_{ik})^2}{w_{ij}w_{ik}}.
+ \mathcal E_{\rm dir}(G)=
+ \sum_v\sum_{\substack{u<z\\u,z\ne v}}
+ \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}.
 \]
 Then
 \[
  \rho_{\dB}(K_n,r)-\rho_{\dB}(G,r)
- =\frac{\mathcal E(G)}{n^2(n-2)r}+O(r^{-2}).
+ =\frac{\mathcal E_{\rm dir}(G)}{n^2(n-2)r}+O(r^{-2}).
 \]
-Moreover, $\mathcal E(G)=0$ if and only if all off-diagonal weights are one
-common positive constant.
-\item For $n=2$, every admissible graph is a global rescaling of $K_2$, and
-$\rho_{\dB}(G,r)=1/2$ for all $r$.
-\end{enumerate}
-Consequently every graph not equivalent to $K_n$ is strictly dB-suppressed
-for all sufficiently large finite $r$, while a scaled $K_n$ ties the baseline
-for every $r$.  In particular, no family $(G_N)$ can satisfy
+Here the expansion is for fixed $G$ as $r\to\infty$.
+The defect vanishes if and only if for each target $v$ there is $c_v>0$ with
+$w_{uv}=c_v$ for all $u\ne v$.  In that case the full dB chain equals the
+$K_n$ chain for every $r>0$.  For $n=2$, arbitrary positive $w_{12},w_{21}$
+also give $\rho_{\dB}(G,r)=1/2$.
+\end{theorem}
+
+\begin{proposition}[non-strong supports]\label{prop:nonstrong}
+If the directed positive-weight support is not strongly connected, then $G$
+is strictly dB-suppressing for all sufficiently large finite $r$.
+\end{proposition}
+
+\begin{corollary}[fixed directed closure]\label{cor:directed-closure}
+No finite loopless directed weighting with positive incoming degrees is a
+strict dB amplifier for every $r>1$.  More precisely, it is eventually
+dB-suppressing unless it has complete support and constant incoming columns;
+the latter class ties the baseline exactly.
+\end{corollary}
+
+For symmetric weights, Theorem~\ref{thm:main} has a sharper support-level
+companion.  Let
+\[
+ s_i=|\{j:w_{ij}>0\}|.
+\]
+\par\medskip
+
+\begin{proposition}[undirected support refinement]\label{prop:undirected}
+For every connected undirected weighted graph,
+\[
+ \lim_{r\to\infty}\rho_{\dB}(G,r)
+ =\frac1n\sum_i\frac{s_i}{s_i+1}.
+\]
+Consequently an incomplete support has limiting deficit
+\[
+ \sum_i\frac{n-1-s_i}{n^2(s_i+1)}>0.
+\]
+For complete symmetric support, $\mathcal E_{\rm dir}$ is the incident-star
+defect and vanishes only when all off-diagonal weights are globally equal.
+\end{proposition}
+
+Corollary~\ref{cor:directed-closure} rules out, in particular,
 \[
  \exists N_0\ \forall N\ge N_0\ \forall r>1:\quad
- \rho_{\dB}(G_N,r)>\rho_{\dB}(K_{|V(G_N)|},r).
+ \rho_{\dB}(G_N,r)>\rho_{\dB}(K_{|V(G_N)|},r),
 \]
-Thus simultaneous Bd/dB amplification with this order of quantifiers is
-impossible.  The theorem does not decide whether
-\[
- \forall r>1\ \exists N_0(r)\ \forall N\ge N_0(r)
-\]
-both strict amplification inequalities can hold for one family.
-\end{theorem}
+but it does not decide the reversed order
+$\forall r>1\,\exists N_0(r)\,\forall N\ge N_0(r)$.
 
 The two branches of the certificate are shown schematically in
 Figure~\ref{fig:dichotomy}.
@@ -148,12 +186,12 @@ Figure~\ref{fig:dichotomy}.
     \node at (0,-2.0) {complete support};
     \node[align=center] at (0,-2.75)
       {$\displaystyle \rho_{\dB}(K_n,r)-\rho_{\dB}(G,r)$\\
-       $\displaystyle =\mathcal E(G)/(n^2(n-2)r)+O(r^{-2})$};
+       $\displaystyle =\mathcal E_{\rm dir}(G)/(n^2(n-2)r)+O(r^{-2})$};
   \end{scope}
 \end{tikzpicture}
-\caption{The exhaustive support dichotomy.  The dashed segment on the left is
-a missing edge of the positive-weight support, not an edge weight to be
-optimized.}
+\caption{The undirected support refinement.  The dashed segment on the left is
+a missing support edge.  In the directed complete-support theorem, the right
+branch measures variation within incoming columns.}
 \label{fig:dichotomy}
 \end{figure}
 
@@ -221,7 +259,40 @@ leakage probability.  In the full-space analytic case,
 $(I-Q(\varepsilon))^{-1}$ is analytic by the adjugate formula.
 \end{proof}
 
-\section{Incomplete positive-weight support}
+\section{Noncomplete directed supports}
+
+We first prove Proposition~\ref{prop:nonstrong}.  Consider the condensation
+DAG of the directed positive-weight support.  If it has two source strongly
+connected components, then at least one starts entirely resident and cannot
+receive mutant offspring from outside, so singleton fixation is impossible.
+Suppose instead it has a unique source component $C\subsetneq V$.  An initial
+mutant outside $C$ cannot fixate.  For $i\in C$, let
+$s_i^+=|\{v:w_{iv}>0\}|$.  While $i$ is the only mutant, write $p_{iv}(r)\le1$
+for its conditional chance to replace target $v$ when that target dies.
+After self-loops are removed, the chance of a first gain before the death of
+$i$ is
+\[
+ \frac{\sum_{v:w_{iv}>0}p_{iv}(r)}
+ {1+\sum_{v:w_{iv}>0}p_{iv}(r)}
+ \le \frac{s_i^+}{s_i^++1}\le\frac{n-1}{n}.
+\]
+Fixation requires this gain.  Uniform initialization consequently gives
+\begin{equation}\label{eq:source-component-bound}
+ \rho_{\dB}(G,r)
+ \le\frac1n\sum_{i\in C}\frac{s_i^+}{s_i^++1}
+ \le\frac{(n-1)^2}{n^2}.
+\end{equation}
+The baseline tends to $(n-1)/n$, leaving the positive limiting gap
+$(n-1)/n^2$.  This proves the proposition.
+
+If the support is strongly connected but noncomplete, Theorem~1 of
+Tkadlec et al. gives a threshold $r^*\le2n^2$ beyond which strict suppression
+holds \cite{Tkadlec2020}.  If it is complete, Theorem~\ref{thm:main} gives
+eventual strict suppression unless all incoming columns are constant, in
+which case columnwise normalization makes the chain exactly $K_n$.  These
+three cases prove Corollary~\ref{cor:directed-closure}.
+
+\section{Undirected incomplete positive-weight support}
 
 Fix an initial mutant vertex $i$.  At $r=\infty$, death of $i$ causes
 extinction.  Death of any one of its $s_i$ support-neighbors is followed by
@@ -247,7 +318,7 @@ Subtracting this from $(n-1)/n$ gives the exact termwise certificate below.
 \end{equation}
 \smallskip
 Every denominator is positive.  If an edge is missing, at least one numerator
-is positive, proving the first branch of Theorem~\ref{thm:main}.
+is positive, proving Proposition~\ref{prop:undirected}.
 
 For completeness, the limiting argument is stable: from a singleton, every
 limiting state reached before absorption is a connected mutant set.  The
@@ -260,10 +331,10 @@ probabilities, including the effect of all paths after such leakage.
 
 \section{Complete support and the sum-of-squares correction}
 
-Assume $n\ge3$ and $w_{ij}>0$ for all $i\ne j$.  Put
+Assume $n\ge3$ and $w_{uv}>0$ for all $u\ne v$.  Put
 \[
- d_i=\sum_{j\ne i}w_{ij},\qquad \varepsilon=r^{-1},\qquad
- a_{ij}=\frac{d_i-w_{ij}}{w_{ij}}.
+ \varepsilon=r^{-1},\qquad
+ a_{uv}=\frac{d_v^- -w_{uv}}{w_{uv}}.
 \]
 Let $q_S(\varepsilon)$ be extinction probability from mutant set $S$.  At
 $\varepsilon=0$, every set with at least two mutants fixates, while
@@ -305,13 +376,14 @@ therefore gives
  q_S(\varepsilon)=O(\varepsilon^2),\qquad |S|\ge3.
 \end{equation}
 
-For $S=\{i,j\}$, loss of mutant $i$ occurs with probability
+For $S=\{i,j\}$, loss of mutant target $i$ occurs with probability
 \[
- \frac1n\frac{\varepsilon(d_i-w_{ij})}
- {w_{ij}+\varepsilon(d_i-w_{ij})}
- =\frac{\varepsilon a_{ij}}n+O(\varepsilon^2),
+ \frac1n\frac{\varepsilon(d_i^- -w_{ji})}
+ {w_{ji}+\varepsilon(d_i^- -w_{ji})}
+ =\frac{\varepsilon a_{ji}}n+O(\varepsilon^2),
 \]
-and similarly for $j$.  The leading self-loop probability is $2/n$ and the
+while loss of target $j$ contributes $\varepsilon a_{ij}/n+O(\varepsilon^2)$.
+The leading self-loop probability is $2/n$ and the
 leading total gain probability is $(n-2)/n$.  Since a resulting singleton has
 extinction probability $1/n+O(\varepsilon)$, the exact first-step equation
 gives, on putting
@@ -322,83 +394,181 @@ gives, on putting
  q_{\{i,j\}}(\varepsilon)=b_{ij}\varepsilon+O(\varepsilon^2).
 \end{equation}
 
-From singleton $\{i\}$, death of resident $j$ creates $\{i,j\}$ with
+From singleton $\{i\}$, death of resident target $v$ creates $\{i,v\}$ with
 probability
 \[
- t_{ij}=\frac1n\frac{w_{ij}}
- {w_{ij}+\varepsilon(d_j-w_{ij})}
- =\frac1n(1-a_{ji}\varepsilon)+O(\varepsilon^2).
+ t_{iv}=\frac1n\frac{w_{iv}}
+ {w_{iv}+\varepsilon(d_v^- -w_{iv})}
+ =\frac1n(1-a_{iv}\varepsilon)+O(\varepsilon^2).
 \]
 Death of $i$ causes extinction with probability exactly $1/n$; every other
 outcome is a self-loop.  Hence
 \[
- \left(\frac1n+\sum_{j\ne i}t_{ij}\right)q_{\{i\}}
- =\frac1n+\sum_{j\ne i}t_{ij}q_{\{i,j\}}.
+ \left(\frac1n+\sum_{v\ne i}t_{iv}\right)q_{\{i\}}
+ =\frac1n+\sum_{v\ne i}t_{iv}q_{\{i,v\}}.
 \]
 Substitution of \eqref{eq:pair} yields the useful vertexwise intermediate
 formula.  Define
 \[
- R_i=\sum_{j\ne i}a_{ij},\qquad C_i=\sum_{j\ne i}a_{ji}.
+ O_i=\sum_{v\ne i}a_{iv},\qquad I_i=\sum_{u\ne i}a_{ui}.
 \]
 Since
-$\sum_{j\ne i}b_{ij}=(R_i+C_i)/(n(n-2))$, expansion of the preceding
+$\sum_{j\ne i}b_{ij}=(O_i+I_i)/(n(n-2))$, expansion of the preceding
 singleton equation gives
 \begin{equation}\label{eq:singleton-expansion}
  q_{\{i\}}(\varepsilon)
  =\frac1n+\frac{\varepsilon}{n^2}
- \left[C_i+\frac{R_i+C_i}{n-2}\right]+O(\varepsilon^2).
+ \left[O_i+\frac{O_i+I_i}{n-2}\right]+O(\varepsilon^2).
 \end{equation}
-Now $\sum_iR_i=\sum_iC_i=T(G)$, and averaging
+Now $\sum_iO_i=\sum_iI_i=T_{\rm dir}(G)$, and averaging
 \eqref{eq:singleton-expansion} yields
 \[
- T(G)=\sum_i\sum_{j\ne i}a_{ij},\qquad
- A(G)=\frac{T(G)}{n^2(n-2)},
+ T_{\rm dir}(G)=\sum_v\sum_{u\ne v}a_{uv},\qquad
+ A_{\rm dir}(G)=\frac{T_{\rm dir}(G)}{n^2(n-2)},
 \]
 \begin{equation}\label{eq:full-expansion}
  \rho_{\dB}(G,r)
- =\frac{n-1}{n}-\frac{A(G)}r+O(r^{-2}).
+ =\frac{n-1}{n}-\frac{A_{\rm dir}(G)}r+O(r^{-2}).
 \end{equation}
 
 For the unit complete graph, $a_{ij}=n-2$ and
-$T(K_n)=n(n-1)(n-2)$.  The difference admits the exact identity
+$T_{\rm dir}(K_n)=n(n-1)(n-2)$.  The difference admits the exact identity
 \begin{align}
- T(G)-n(n-1)(n-2)
- &=\sum_i\left[
- d_i\sum_{j\ne i}\frac1{w_{ij}}-(n-1)^2\right] \notag\\
- &=\sum_i\sum_{\substack{j<k\\j,k\ne i}}
- \frac{(w_{ij}-w_{ik})^2}{w_{ij}w_{ik}}
- =\mathcal E(G).                                      \label{eq:sos}
+ T_{\rm dir}(G)-n(n-1)(n-2)
+ &=\sum_v\left[
+ d_v^-\sum_{u\ne v}\frac1{w_{uv}}-(n-1)^2\right] \notag\\
+ &=\sum_v\sum_{\substack{u<z\\u,z\ne v}}
+ \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}
+ =\mathcal E_{\rm dir}(G).                            \label{eq:sos}
 \end{align}
 All denominators in \eqref{eq:sos} are positive.  Equality requires every
-star of incident weights to be constant; symmetry and complete support then
-force one global edge weight.  Equations
+incoming column to be constant.  Independent positive rescaling of incoming
+columns cancels from every dB competition, so the equality class has exactly
+the complete-graph chain.  Under symmetry, the column constants are coupled
+and force one global edge weight.  Equations
 \eqref{eq:dB-baseline-expansion}, \eqref{eq:full-expansion}, and
-\eqref{eq:sos} prove the second branch of Theorem~\ref{thm:main}.
+\eqref{eq:sos} prove Theorem~\ref{thm:main}.
+
+\section{Beneficial-fitness classification on three vertices}
+
+We now specialize to an undirected triangle with positive edge weights
+$(a,b,c)$.  Let $F_i$ be fixation probability when $i$ is the unique mutant
+and $G_i$ when $i$ is the unique resident.  For distinct $i,j,k$, put
+\[
+ u_{ij}=\frac{r w_{ij}}{r w_{ij}+w_{jk}},\qquad
+ v_{ij}=\frac{w_{ij}}{r w_{jk}+w_{ij}}.
+\]
+Deleting holding probabilities from the literal dB first-step equations gives
+\begin{align}
+ (1+u_{ij}+u_{ik})F_i&=u_{ij}G_k+u_{ik}G_j,\label{eq:triangle-singleton}\\
+ (1+v_{ij}+v_{ik})G_i&=1+v_{ij}F_k+v_{ik}F_j.\label{eq:triangle-pair}
+\end{align}
+The coefficient matrix $M$ has nonpositive off-diagonal entries and each
+diagonal entry equals one plus the sum of the absolute off-diagonal entries.
+It is therefore strictly diagonally dominant, and the homotopy
+$I+t(M-I)$ shows $\det M>0$.
+
+Set $s_1=a+b+c$, $s_2=ab+ac+bc$, and $s_3=abc$, and define
+\begin{align*}
+ B_5&=12s_1s_2s_3-36s_3^2,\\
+ B_4&=12s_1^3s_3-56s_1s_2s_3+12s_2^3+72s_3^2,\\
+ B_3&=-24s_1^3s_3+12s_1^2s_2^2+80s_1s_2s_3
+       -24s_2^3-90s_3^2,\\
+ P&=9s_3^2(r^6+1)+B_5(r^5+r)+B_4(r^4+r^2)+B_3r^3.
+\end{align*}
+If $L=\prod_{p\ne q}(r p+q)$ over $p,q\in\{a,b,c\}$, exact expansion of
+\eqref{eq:triangle-singleton}--\eqref{eq:triangle-pair} gives
+$\det M=3P/L$.  Thus $P>0$ for positive weights and fitness.
+
+Define
+\begin{align*}
+ A&=3s_3(s_1s_2-9s_3),\\
+ D&=12s_1^3s_3-45s_1s_2s_3+4s_2^3-27s_3^2,\\
+ E&=4s_2(3s_1^2s_2-3s_1s_3-8s_2^2),\\
+ H&=A(r-1)^4+Dr(r-1)^2+Er^2.
+\end{align*}
+Solving the six equations and averaging the three $F_i$ gives the exact
+rational comparison
+\begin{equation}\label{eq:triangle-difference}
+ \rho_{\dB}(G,r)-\rho_{\dB}(K_3,r)
+ =-\frac{r(r-1)H}{3(r+1)P}.
+\end{equation}
+
+For a sign certificate, put
+\[
+ U=s_1^2-3s_2,\qquad V=s_2^2-3s_1s_3,\qquad
+ W=s_1s_2-9s_3,\qquad Z=s_2^3-27s_3^2.
+\]
+Writing $X=ab,Y=ac,Z_0=bc$, direct expansion yields
+\begin{align*}
+ 2U&=(a-b)^2+(a-c)^2+(b-c)^2,\\
+ 2V&=(X-Y)^2+(X-Z_0)^2+(Y-Z_0)^2,\\
+ W&=c(a-b)^2+b(a-c)^2+a(b-c)^2,\\
+ Z&=s_2V+3\{Z_0(X-Y)^2+Y(X-Z_0)^2+X(Y-Z_0)^2\}.
+\end{align*}
+Finally, the coefficient identities
+\[
+ A=3s_3W,\qquad D=12s_1s_3U+3s_2V+Z,\qquad
+ E=4s_2(3s_2U+V)
+\]
+show $A,D,E\ge0$, with $E>0$ unless $a=b=c$.
+
+\begin{theorem}[weighted-triangle classification]\label{thm:triangle}
+For every positive undirected triangle and every $r>1$,
+\[
+ \rho_{\dB}(G,r)\le\rho_{\dB}(K_3,r)=\frac{2r}{3(r+1)}.
+\]
+Equality holds if and only if $a=b=c$; every nonuniform weighting is a strict
+dB suppressor throughout the beneficial-fitness interval.
+\end{theorem}
+
+\begin{proof}
+All factors in the denominator of \eqref{eq:triangle-difference} are positive.
+For nonuniform weights, $U>0$, hence $E>0$ and $H\ge Er^2>0$; the difference
+is therefore negative for $r>1$.  Uniform weights give $H=0$ and the baseline
+chain exactly.
+\end{proof}
+
+\input{n4_certificate}
 
 \section{Exact verification}
 
-The accompanying verifier is separate from the discovery implementation.  It
-constructs all subset-state transitions directly over $\mathbb Q(r)$, checks
-row normalization and termwise positivity after the substitution $r=1+x$,
-verifies strong lumpability of $K_n$ by mutant count, solves the exact
-absorbing equations, and extracts the limiting coefficients in representative
-finite instances.  These finite computations validate the implementation and
-replay benchmark consequences; they do not discharge the theorem's universal
-quantifier.  That quantifier is proved by the symbolic identities
-\eqref{eq:support-gap}, \eqref{eq:differentiated-system}--
-\eqref{eq:singleton-expansion}, and \eqref{eq:sos}.
+Four exact verification paths accompany the proof.  The original undirected
+verifier constructs every subset-state transition over $\mathbb Q(r)$, checks
+row normalization and representative positivity certificates, verifies
+complete-graph lumpability, solves the absorption equations, and extracts
+strong-selection coefficients.  A separate directed implementation uses the
+literal source-to-target rule on genuinely asymmetric $n=3,4$ matrices.  It
+also checks independent incoming-column rescaling and a column-uniform,
+row-nonuniform negative control that falsifies the wrong row-oriented defect.
+For Theorem~\ref{thm:triangle}, one script derives the six equations and all
+polynomial identities, while a full eight-state transition implementation and
+a hostile no-import replay check the resulting comparison.  For
+Theorem~\ref{thm:k4}, a separate orbit derivation checks
+\eqref{eq:k4-13}--\eqref{eq:k4-sos}; a full subset-state implementation checks
+the lumping and rational formulas, and a hostile audit independently repeated
+the symbolic 14-state solves.
+
+These computations validate implementations and replay exact consequences;
+finite testing does not discharge a universal quantifier.  The complete-
+support quantifier is proved by \eqref{eq:differentiated-system}--
+\eqref{eq:singleton-expansion} and \eqref{eq:sos}; the undirected refinement
+uses \eqref{eq:support-gap}; and the triangle theorem uses the displayed
+homogeneous identities; the symmetric $K_4$ families use the coefficient
+certificate \eqref{eq:k4-sos}.  The remaining directed-support branches follow from
+\eqref{eq:source-component-bound} and the cited noncomplete-support theorem.
 
 As one nontrivial replay, take a weighted triangle with edge weights
 $(w_{12},w_{13},w_{23})=(2,3,5)$.  Exact elimination gives
 \[
  \rho_{\dB}(G,r)-\rho_{\dB}(K_3,r)
- =-\frac{r(r-1)P(r)}{9(r+1)Q(r)},
+ =-\frac{r(r-1)P_{235}(r)}{9(r+1)Q_{235}(r)},
 \]
 where
 \[
  \begin{aligned}
- P(r)&=900r^4+5491r^3+9290r^2+5491r+900,\\
- Q(r)&=675r^6+6600r^5+21791r^4+31768r^3\\
+ P_{235}(r)&=900r^4+5491r^3+9290r^2+5491r+900,\\
+ Q_{235}(r)&=675r^6+6600r^5+21791r^4+31768r^3\\
      &\hspace{2.7cm}{}+21791r^2+6600r+675.
  \end{aligned}
 \]
@@ -413,23 +583,89 @@ These calculations are checks, not evidence used to extend a finite search.
 
 \section{Finite versus asymptotic statements}
 
-The expansions in Theorem~\ref{thm:main} are taken separately for each fixed
-finite graph.  They imply that for every nonbaseline $G$ there exists a finite
-threshold $R_G$ such that
+The complete-support expansion in Theorem~\ref{thm:main}, the source-component
+bound, and the cited noncomplete theorem are all fixed-graph statements.  They
+imply that for every $G$ not dB-equivalent to the complete graph there is a
+finite threshold $R_G$ such that
 \[
  \rho_{\dB}(G,r)<\rho_{\dB}(K_n,r)\qquad(r>R_G).
 \]
 No claim of a graph-independent threshold is needed.  The all-$r$ amplifier
 property quantifies over every finite $r>1$ for each graph, so the existence of
 one such suppressing tail already rules it out.  The equality case is exact,
-not asymptotic: global rescaling cancels from every neighbor-choice
-probability, so a uniformly weighted complete graph has precisely the
-baseline chain for all finite $r$.
+not asymptotic: independent incoming-column scaling cancels from every dB
+parent competition, so a column-uniform complete directed weighting has
+precisely the baseline chain for all finite $r$.
 
 This argument does not interchange the limits in $n$ and $r$.  In particular,
 it leaves open the distinct possibility that one fitness-independent family
 might amplify at every fixed $r>1$ once $N\ge N_0(r)$, with its individual
 strong-selection thresholds tending to infinity.
+
+There is nevertheless a useful necessary condition.  For a mutant set $S$
+and dead target $v$, the mutant replacement probability
+\[
+ \frac{r\sum_{u\in S}w_{uv}}
+ {r\sum_{u\in S}w_{uv}+\sum_{u\notin S}w_{uv}}
+\]
+is nondecreasing both in $r$ and under inclusion of $S$.  A common dead target
+and uniform threshold therefore couple the dB chains monotonically.  Combining
+fitness monotonicity with Proposition~\ref{prop:undirected} gives, for every
+finite connected undirected graph,
+\begin{equation}\label{eq:support-upper-bound}
+ \rho_{\dB}(G,r)\le 1-\frac1n\sum_i\frac1{s_i+1}.
+\end{equation}
+
+\begin{proposition}[necessary asymptotic support condition]
+Let $G_n$ be finite connected undirected weighted graphs with
+$|V(G_n)|=n\to\infty$.  If $G_n$ is eventually a dB amplifier at every fixed
+$r>1$, then
+\[
+ \frac1n\sum_i\frac1{s_i+1}\longrightarrow0.
+\]
+Consequently the support degree of a uniformly chosen vertex tends to
+infinity in probability.
+\end{proposition}
+
+\begin{proof}
+At any fixed $R>1$, eventual amplification and
+\eqref{eq:support-upper-bound} imply
+\[
+ \limsup_{n\to\infty}\frac1n\sum_i\frac1{s_i+1}
+ \le \lim_{n\to\infty}\bigl(1-\rho_{\dB}(K_n,R)\bigr)=\frac1R.
+\]
+Letting the fixed number $R$ grow proves the first claim.  For every fixed
+$K$, the fraction of vertices with $s_i\le K$ is at most $(K+1)$ times the
+displayed average, proving the second.
+\end{proof}
+
+This excludes uniformly bounded-support families.  It excludes repeated
+bounded-degree gadgets when a positive fraction of vertices retains bounded
+total support degree after the gadgets are connected; arbitrarily weak
+support-completion edges can fall outside this criterion.  A companion exact
+report also proves suppression for fixed-class,
+positive-proportion dense equitable blow-ups with a fixed irreducible class
+kernel and unequal limiting weighted degrees.  Diffuse asymptotically regular
+perturbations, mesoscopic modules, vanishing class proportions, and reducible
+limiting kernels remain open; no universal fixed-$r$ obstruction is claimed.
+
+\section*{Research and publication statements}
+
+\noindent\textbf{Data and code availability.}\par
+No empirical data are used.  The complete LaTeX source, exact transition
+builders, symbolic certificates, hostile-audit reports, and one-command
+reproduction target are archived with release
+\texttt{universal-db-obstruction-v1.0.0} at
+\texttt{github.com/AlecKriebel/Math}.  The finite computations audit the
+encoded algebra; they are not substitutes for the universal proofs.
+
+\medskip
+\noindent\textbf{AI-assisted research disclosure.}\par
+Generative-AI systems were used substantively in exploration, derivation,
+adversarial proof analysis, software development, literature support, and
+manuscript preparation.  Alec Kriebel determined the released scope and
+claims and accepts responsibility for the manuscript and verification
+materials.  This preprint has not undergone external specialist peer review.
 
 \begin{thebibliography}{9}
 

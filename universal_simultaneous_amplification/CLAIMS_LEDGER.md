@@ -17,8 +17,15 @@ statuses. The ledger is updated before each publication checkpoint.
 | Non-strong directed supports are eventually dB-suppressing | PROVED | Source-component reachability and first-gain bound | New theorem |
 | Strongly connected noncomplete directed supports are eventually dB-suppressing | PROVED (PRIOR) | Tkadlec et al. Theorem 1; hypotheses audited after the new proof | Prior result |
 | No fixed finite loopless directed weighting with positive incoming degrees amplifies dB for every `r>1` | PROVED | Exhaustive support/strong-connectivity trichotomy | New synthesis |
-| Complete-support weighted-triangle suppression for every `r>1` | CONJECTURED | One exact example only; full parameter classification pending | New track |
-| General complete-support all-fitness suppression | OPEN | Strong-selection coefficient alone is insufficient | New track |
+| Complete-support weighted-triangle suppression for every `r>1` | PROVED | Exact six-state rational formula, homogeneous SOS, independent no-import hostile replay | New theorem |
+| `1+3` symmetric weighted `K_4` suppression for every `r>1` | PROVED | Exact six-orbit rational formula with coefficientwise-positive certificate and symbolic full-chain audit | New theorem |
+| `2+2` symmetric weighted `K_4` suppression for every `r>1` | PROVED | Exact seven-orbit formula, positive determinant, `(g,d,t)` coefficient certificate, and symbolic full-chain audit | New theorem |
+| Unrestricted six-edge weighted `K_4` suppression for every `r>1` | OPEN | 5,000 exact rational samples found no counterexample, but sampling is not a universal proof | New track |
+| General complete-support beneficial-fitness suppression | OPEN | Strong-selection coefficient and low-dimensional certificates alone are insufficient | New track |
+| Eventual dB amplification at every fixed fitness forces support degree to diverge in probability | PROVED | dB fitness monotonicity plus the exact strong-selection support bound | New theorem |
+| Fixed-class positive-proportion dense equitable blow-ups with fixed irreducible kernel and unequal limiting degrees are asymptotically dB-suppressing | PROVED | Exact stopped-generator convergence, multitype branching process, stationarity, and strict Jensen inequality | New theorem |
+| A fitness-independent family eventually amplifying Bd and dB at every fixed `r>1` exists or is universally impossible | OPEN | Diffuse asymptotically regular, mesoscopic, vanishing-class, and reducible-kernel regimes remain | New track |
+| The optimal asymptotic simultaneous-amplification interval is known beyond the prior lower bound `(1,1.2)` | OPEN | No new universal upper bound or larger exact construction was proved | New track |
 
 Computational labels in detailed phase reports distinguish exact symbolic
 outputs from numerical discovery observations. No numerical observation is

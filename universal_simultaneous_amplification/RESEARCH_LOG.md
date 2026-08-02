@@ -113,3 +113,51 @@
 - Best-guess completion: Paper I hardening 95%; directed extension 90%;
   triangle classification 25%; asymptotic-family resolution 10%; overall
   final-closure program 38%.
+
+## 2026-08-01 18:05 PDT — weighted triangles classified for beneficial fitness
+
+- Solved the six transient dB equations for a positive weighted triangle and
+  obtained an exact homogeneous rational comparison with `K_3`.
+- Factored the numerator into three nonnegative symmetric coefficients and
+  supplied explicit weighted-square identities. The strict coefficient is
+  positive exactly off the uniform weighting ray.
+- Proved that every nonuniform positive weighted triangle is a strict dB
+  suppressor for every `r>1`; uniform triangles tie exactly.
+- A hostile no-import verifier independently reconstructed all transition
+  equations, determinant coefficients, rational identities, boundary limits,
+  near-uniform expansion, and 123 exact stress cases. The audit passed without
+  mathematical correction and refined one independence label.
+- Began integrating the directed closure and triangle theorem into the
+  expanded Paper I manuscript.
+- Best-guess completion: Paper I 80% after scope expansion; directed extension
+  100%; triangle classification 100%; asymptotic-family resolution 20%;
+  overall final-closure program 52%.
+
+## 2026-08-01 18:22 PDT — symmetric K4 and asymptotic partial obstructions audited
+
+- Classified both maximally symmetric nontrivial complete-support weighted
+  `K_4` orbit families.  The `1+3` comparison factors through `(x-1)^2` and
+  positive-coefficient polynomials.  The `2+2` comparison has a positive
+  determinant denominator and a global `(g,d,t)` coefficient certificate;
+  equality occurs only at the uniform complete graph.
+- A hostile audit independently repeated the full symbolic 14-state solutions,
+  checked all 123 positive denominator monomials, verified the square-root
+  domain coverage and strictness, and found no theorem-level defect.  The
+  unrestricted six-edge `K_4` problem remains open; 5,000 exact sampled
+  instances are recorded only as an observation.
+- Proved that eventual dB amplification at every fixed fitness forces support
+  degree to diverge in probability.  A second theorem excludes fixed-class,
+  positive-proportion dense equitable blow-ups with fixed irreducible kernel
+  and unequal limiting weighted degrees by a stopped-generator branching limit
+  and strict Jensen inequality.
+- A hostile asymptotic audit identified and repaired the class-rounding error
+  term, the branching-to-fixation lemma, and three scope overstatements.  The
+  diffuse asymptotically regular, mesoscopic, vanishing-class, and reducible
+  limiting-kernel regimes remain genuinely open.
+- Integrated the symmetric `K_4` certificate and the necessary support-degree
+  condition into Paper I.  The earlier integrated-paper hostile audit passed;
+  a final post-integration audit and visual PDF review remain.
+- Best-guess completion: Paper I 92%; directed extension 100%; triangle and
+  symmetric-`K_4` classifications 100%; asymptotic-family resolution 45%
+  (partial, with explicit open regimes); publication package 25%; overall
+  final-closure program 74%.
