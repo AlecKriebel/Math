@@ -246,3 +246,25 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   proves strict local log-product maximality of `K_n` on both edge modes for
   exact orders four through seven.  The all-order product inequality remains
   OPEN.
+- 09:13 -- [PROVED ADJOINT/CAPACITY REDUCTIONS / EXACT ROUTE
+  FALSIFICATIONS] At `r=3/2`, inserted the conservative reversed-arrow dual
+  `C` between the Bd dual `L` and geometric dB dual `D`.  The target product
+  follows from the still-open factors
+  `m_L m_C <= (m_B^K)^2` and
+  `m_D/m_C <= m_D^K/m_B^K`.  The first factor has an exact reversible
+  Poisson representation, while its adjoint defect is the additive zero-sum
+  vertex potential `r sum_(i in A)(1-t_i)`.  Exact entropy and rank-capacity
+  identities survive, but rank MLR, pointwise density products, pointwise
+  tilt alignment, and pairwise vertex alignment are all exactly false.
+  The unweighted five-star is the minimal recorded rank-MLR counterexample
+  even though the desired global adjoint mean gap remains positive.
+- 09:13 -- [EXACTLY CLOSED SYMMETRIZATION SUBROUTES] For regular dB at
+  fitness two, transposition symmetrization remains OPEN.  Exact block
+  reduction isolates an occupation-weighted even/odd sector inequality, but
+  generator annealing, full-permutation annealing, and the entire abstract
+  coverage/submodularity cone fail by rational certificates.  More
+  decisively, orbital symmetrization fails for directed row kernels and
+  direct undirected conductance averaging fails on a connected five-vertex
+  tree.  Hence this route supplies no regularization reduction to arbitrary
+  graphs.  The universal `r=2` maximum and the `r=3/2` product inequality
+  remain OPEN.

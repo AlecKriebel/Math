@@ -64,6 +64,15 @@ already begins at `(1+sqrt(3))/2`; the homogeneous Bd and dB load windows are
 disjoint for every `r>1`.  This is a class theorem, not a universal upper
 bound: nonseparated and multi-portal architectures remain open.
 
+The current universal-obstruction attack factors the conjectured
+`r=3/2` fixation product through a conservative reversed-arrow dual.  Exact
+weighted-adjoint entropy, rank-capacity, and reversible-Poisson identities
+are now available, but the necessary global inequalities remain open;
+several stronger pointwise and rank-order shortcuts have exact
+counterexamples.  At `r=2`, orbital symmetrization remains open for regular
+kernels but cannot be extended by directed or conductance averaging to the
+unrestricted graph class.
+
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
 will be listed as a human-only next action.

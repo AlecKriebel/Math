@@ -264,3 +264,26 @@
 - [OPEN] This is not a universal graph reduction.  Nonseparated multiscale
   dynamics and the exact `r=3/2` fixation-product inequality remain the main
   live routes.  Landmark-closure completion remains **59%**.
+
+## 2026-08-02 09:13 PDT — exact adjoint-capacity and symmetrization audit
+
+- [PROVED REFORMULATION] At `r=3/2`, the proposed fixation product splits
+  through the conservative reversed-arrow dual.  The Bd/reversed-arrow mean
+  sum has an exact reversible Poisson formula; the sole adjoint defect is the
+  additive zero-sum vertex potential `r sum_(i in A)(1-t_i)`.  Exact global
+  entropy signs and rank-boundary capacity identities reduce the remaining
+  proof to a quantitative within-rank trace estimate.
+- [EXACT ROUTE FALSIFICATIONS] Rank monotone likelihood, pointwise density
+  product, pointwise temperature alignment, and pairwise vertex-marginal
+  alignment all fail on explicit rational undirected graphs.  The strongest
+  failed statement already breaks on the unweighted five-star, although the
+  target global mean inequality remains strictly correct there.
+- [EXACT ROUTE FALSIFICATIONS] At dB fitness two, transposition
+  symmetrization remains viable only inside the regular-kernel class.
+  Generator annealing and coverage/submodularity do not prove it; arbitrary
+  directed-kernel symmetrization and direct undirected-conductance averaging
+  are themselves exactly false.  No unrestricted regularization follows.
+- [OPEN] These reductions sharpen the live global inequalities but do not
+  prove a mission-level upper bound.  Landmark-closure completion remains
+  **59%**; the geometric-batching ratio and an independent `r=2` collision
+  bound are under active attack.
