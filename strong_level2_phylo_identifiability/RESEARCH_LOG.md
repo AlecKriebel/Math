@@ -729,3 +729,32 @@
 - **UNRESOLVED:** equality of complete open images, one-sided overlap with
   the ordinary K2P tree, and the K3P `R3` atlas are not claimed.
 - No literature search or numerical assertion is used in the theorem.
+
+## 2026-08-02T03:54:58-07:00 — K3P reticulate three-port atlas completed
+
+- **EXACTLY COMPUTED:** the two cycles and one theta have generic K3P rank
+  14 and satisfy one sparse irreducible eight-term quartic.  The remaining
+  four thetas have exact rank-15 witnesses and complete affine closure.
+- **PROVED:** the rank-14 closures all equal the quartic hypersurface; the
+  rank-15 closures all equal normalized affine 15-space.  The quartic is
+  negated by the K2P character swap and alternates under odd leaf
+  permutations.
+- **INTERVAL CERTIFIED:** exact rational Krawczyk boxes of radius `10^-30`
+  isolate one real-algebraic preimage of the same leaf-symmetric rational
+  tensor in every model.  Contraction bounds are below `10^-20`, inclusion
+  margins exceed `9*10^-31`, and every transition probability exceeds
+  `1/20`.
+- **INTERVAL CERTIFIED:** exact interval inverse bounds certify rank 14 for
+  the three hypersurface models and rank 15 for the four ambient models at
+  those same preimages.
+- **PROVED:** K3P has two reticulate three-port `bowtie` classes, `H14` and
+  `A15`.  Every `H14` model is one-sided generically contained in every
+  `A15` model, and all seven share a local 14-dimensional stochastic
+  intersection.
+- **PROVED:** the labelled classes contain respectively 15 and 24 rooted
+  topologies, or 9 and 12 semi-directed topologies.  The result propagates
+  through arbitrary corresponding port components by characterwise Fourier
+  gluing.
+- **UNRESOLVED:** ordinary-tree relations, complete-image equality, and the
+  arbitrary-port K3P root atlas are not claimed.
+- No literature search or numerical assertion is used in the theorem.

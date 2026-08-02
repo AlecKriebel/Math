@@ -230,6 +230,15 @@ nine-dimensional regular stochastic neighborhood.  Thus K2P removes
 topology.  See
 `notes/MILESTONE_6C_K2P_ROOT_THREE_PORT_SATURATION.md`.
 
+Milestone 6D completes the reticulate three-port root atlas under K3P.  An
+irreducible eight-term quartic cuts out one dimension-14 class containing
+both cycles and one theta; the other four thetas form one dimension-15
+ambient class.  Exact rational Krawczyk boxes isolate preimages of one common
+strict tensor, with rank 14 and 15 certified at those same roots.  Thus each
+class has full-dimensional regular overlap internally, while the quartic
+class is one-sided generically contained in the ambient class.  See
+`notes/MILESTONE_6D_K3P_ROOT_THREE_PORT_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
