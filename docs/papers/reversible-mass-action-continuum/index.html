@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An exact reversible three-species mass-action system with a compact positive equilibrium ellipse and no common factor in its coordinate vector field.">
+  <meta name="author" content="Alec Kriebel, with substantial assistance from OpenAI Codex">
+  <meta name="citation_title" content="A reversible three-species mass-action continuum without a common factor">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-08-02">
+  <meta name="citation_doi" content="10.5281/zenodo.21753316">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A reversible three-species mass-action continuum without a common factor">
+  <meta property="og:description" content="Ten complexes, one reversible linkage class, a positive equilibrium ellipse, and coordinate gcd one—verified exactly by two independent programs.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/">
+  <title>Reversible mass-action equilibrium continuum · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css?v=20260802">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "A reversible three-species mass-action continuum without a common factor",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
+    "datePublished": "2026-08-02",
+    "dateModified": "2026-08-02",
+    "sameAs": "https://doi.org/10.5281/zenodo.21753316",
+    "url": "https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/paper.pdf", "encodingFormat": "application/pdf"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#theorem">Theorem</a><a href="#verification">Verification</a><a href="#release">Release</a><a href="https://github.com/AlecKriebel/Math/tree/wr-continuum-v1.0.0/weakly_reversible_continuum_no_common_factor">Source</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Version 1.0.0 · Exact construction · Not peer reviewed</p>
+      <h1>A reversible three-species mass-action continuum without a common factor</h1>
+      <p class="byline">Alec Kriebel, with substantial assistance from OpenAI Codex</p>
+      <p class="release">Public release: <time datetime="2026-08-02">2 August 2026 UTC</time> (1 August 2026 PDT) · <a href="https://doi.org/10.5281/zenodo.21753316">DOI 10.5281/zenodo.21753316</a></p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note">
+      <div class="notice-mark">!</div>
+      <div><h2>Independent expert review is still required.</h2><p>The construction has passed two exact implementations and a separate proof audit, but it has not been peer reviewed. The Zenodo record and repository tag establish a citable public disclosure date; they do not by themselves establish correctness or mathematical priority.</p></div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="./files/wr-continuum-v1.0.0-complete.tar.gz">Complete archive</a>
+      <a class="button secondary" href="./files/wr-continuum-v1.0.0-source.zip">Source archive</a>
+      <a class="button secondary" href="./files/wr-continuum-v1.0.0-verifiers.zip">Verifier archive</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21753316">Zenodo</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/wr-continuum-v1.0.0">Repository tag</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">We give an exact reversible mass-action system on three species with one linkage class, ten complexes, ten reversible reaction pairs, and positive integer rates. Its stoichiometric subspace is all of ℝ<sup>3</sup>, and its positive orthant contains a compact algebraic ellipse of equilibria. Nevertheless, the three coordinate polynomials of the mass-action vector field have greatest common divisor one. The equilibrium continuum is therefore a genuine height-two steady-state component, not a common-factor hypersurface.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Network</strong><span>3 species · 10 complexes · 10 reversible pairs</span></div>
+          <div class="fact"><strong>Continuum</strong><span>Compact positive algebraic ellipse in one full-rank class</span></div>
+          <div class="fact"><strong>Steady ideal</strong><span>Radical: conic plus 15 reduced isolated points · gcd 1</span></div>
+        </div>
+      </section>
+
+      <section id="theorem">
+        <h2>The exact theorem</h2>
+        <div class="theorem-block">
+          <p>There is a reversible mass-action system on \(X,Y,Z\), with one linkage class and positive integer rate constants, whose stoichiometric subspace is ℝ<sup>3</sup> and whose steady-state set contains the positive conic</p>
+          <div class="equation">\[z-x-y+1=0,\qquad 7x^2-2xy-16x+7y^2-16y+16=0.\]</div>
+          <p>The coordinate vector-field polynomials satisfy \(\gcd(F_1,F_2,F_3)=1\) over ℚ, and hence over ℝ and ℂ. The full steady ideal is radical: over the algebraic closure its variety is this conic, disjoint from fifteen reduced isolated points.</p>
+        </div>
+        <p>An exact positive parametrization is</p>
+        <div class="equation">\[
+          x(t)=\frac{t^2+3}{2(t^2-t+1)},\quad
+          y(t)=\frac{3t^2+1}{2(t^2-t+1)},\quad
+          z(t)=\frac{t^2+t+1}{t^2-t+1}.
+        \]</div>
+        <p>On \(t\in(-1,1)\), these points are positive and pairwise distinct. Because the stoichiometric class is the whole positive orthant, they all lie in one compatibility class.</p>
+      </section>
+
+      <section id="verification">
+        <h2>Two independent exact verifiers</h2>
+        <p>The archive supplies a one-command replay:</p>
+        <div class="theorem-block"><code>./reproduce.sh</code></div>
+        <ul class="certificate-list">
+          <li><strong>Original verifier.</strong> Reconstructs the mass-action field, graph, stoichiometry, ideal membership, parametrization, gcd, Jacobian rank, and full radical decomposition.</li>
+          <li><strong>Clean-room verifier.</strong> Starts from the raw complexes, directed reactions, rates, \(L\), \(Q\), and parametrization. It independently derives the field and ideal quotients, then rediscovers the residual component by saturation and ideal-intersection elimination.</li>
+          <li><strong>Proof audit.</strong> Separately checks the absolute-prime and scalar-extension arguments, three-species minimality, the one-linkage rank-two obstruction, and the four-complex impossibility proof.</li>
+        </ul>
+        <p>No floating-point computation is used as evidence for the theorem.</p>
+      </section>
+
+      <section id="release">
+        <h2>Immutable release and checksums</h2>
+        <p>Version 1.0.0 preserves the original integer-rate construction before the fixed-support rate family was developed. Later versions will not overwrite these bytes.</p>
+        <ul class="certificate-list">
+          <li>PDF SHA-256: <code>8b333f8d3e08d5b2a66ca2b78474079ef4be6b23cb497fbd991f41fae9558e4d</code></li>
+          <li>Complete archive SHA-256: <code>f71d4b70be6f2e7195b9e391d4b9ec0febbed9a4354e7826cf45795f5d4a800e</code></li>
+          <li>Source archive SHA-256: <code>5413a52d8afe71ad302f3e888c01a10d63c307ba5b7b536f63dff2ad85ef14be</code></li>
+          <li>Verifier archive SHA-256: <code>f217d187769bc116055edc41fff9b39fe7c85ebedfaf8e3a9842dc7066a40b06</code></li>
+        </ul>
+        <div class="button-row"><a class="button secondary" href="./files/payload-SHA256SUMS.txt">Payload checksums</a><a class="button secondary" href="./files/archive-SHA256SUMS.txt">Archive checksums</a><a class="button secondary" href="./files/CITATION.cff">CITATION.cff</a></div>
+
+        <h2>Priority scope</h2>
+        <p>The construction was completed and exactly verified before any literature search. A subsequent targeted audit found no prior example satisfying this conjunction. That is a conservative search report, not an exhaustive worldwide priority claim.</p>
+
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, “A reversible three-species mass-action continuum without a common factor,” Version 1.0.0, 2026. <a href="https://doi.org/10.5281/zenodo.21753316">https://doi.org/10.5281/zenodo.21753316</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset manuscript</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a> · <a href="https://doi.org/10.5281/zenodo.21753316">Zenodo DOI</a></footer>
+</body>
+</html>
