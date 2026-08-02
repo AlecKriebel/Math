@@ -240,3 +240,28 @@
   600 directions all cross distinct unresolved root-marginal components and
   are explicitly retained as **UNRESOLVED**.
 - No numerical evidence or literature search is used in this milestone.
+
+## 2026-08-01T19:39:40-07:00 — incoming-port stochastic containment atlas closed
+
+- **EXACTLY COMPUTED:** the 600 cross-root dimension-10-to-dimension-11
+  directions left by Milestone 3F form 25 free outgoing-label orbits and
+  depend on exactly ten directed root-marginal orbits.
+- **EXACTLY COMPUTED:** for every root-marginal orbit, selected one existing
+  root-atlas invariant whose smaller-model pullback is identically zero and
+  whose larger-model pullback has an explicit complete factorization.
+- **PROVED:** nine factorizations contain only positive monomials and factors
+  of the forms `x-1`, `x+1`, and `xy-1`.  The tenth contains in addition a
+  strictly positive convex combination.  Every target pullback is therefore
+  nonzero throughout its complete open JC parameter cube.
+- **PROVED:** marginalization transports the strict separation to all 600
+  lifted pairs.  Combining this with the preceding 39,720 certificates proves
+  that all 40,320 unequal-dimensional incoming-port pairs have disjoint open
+  stochastic images; there are no one-sided stochastic containments.
+- **PROVED:** together with the equal-dimensional Milestone 3E theorem, the
+  finite 612-network incoming-port atlas is now completely classified for
+  full-dimensional regular overlap and one-sided stochastic containment:
+  labelled isomorphism and ordinary triangle redirection `T` are the only
+  generic observational equivalences.
+- This does not classify every possible lower-dimensional intersection or the
+  algebraic boundary-containment status of every pair.  No numerical evidence
+  or literature search is used in the theorem.

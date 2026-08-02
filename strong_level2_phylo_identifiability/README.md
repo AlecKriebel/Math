@@ -65,6 +65,17 @@ with the preceding atlases rejects 39,720 of all 40,320 possible directed
 containments; 600 cross-root directions remain unresolved.  See
 `notes/MILESTONE_3F_JC_BOUNDARY_CONTAINMENTS.md`.
 
+Milestone 3G closes those 600 cross-root directions.  They reduce to ten
+root-marginal pair orbits, and existing root-atlas invariants have exact
+pullbacks that vanish on each smaller model and are strictly nonzero on the
+larger model's entire open parameter cube.  Consequently every one of the
+40,320 unequal-dimensional pairs in the incoming-port atlas has disjoint open
+stochastic images.  Together with Milestone 3E, this completely classifies
+full-dimensional overlap and one-sided stochastic containment for all 612
+reduced five-port networks: only isomorphism and ordinary triangle
+redirection survive.  See
+`notes/MILESTONE_3G_JC_CROSS_ROOT_SEPARATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
