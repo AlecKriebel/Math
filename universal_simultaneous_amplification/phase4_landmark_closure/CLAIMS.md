@@ -25,6 +25,8 @@
 | A growing protected-pair module with two exchangeable active portals can improve the threshold beyond `3/2` | REFUTED FOR THIS CLASS | Exact compound-branching trace retaining portal counts one and two; Bd gain forces a manifestly signed dB deficit, with a stopped-process fixation upper bound and exact labelled-state audit |
 | A diffuse strong-pair module with any fixed number of exchangeable active portals can improve the threshold beyond `3/2` | REFUTED FOR THIS CLASS | Exact full portal-count trace; `Q`-uniform Bd barrier and dB backward-ratio envelope; stopped-process graph consequence and exact labelled-state audit |
 | Letting the exchangeable portal count grow sublinearly repairs the same protected-pair construction | REFUTED IN THE COMPACT-LOAD TRACE REGIME | Explicit `Q`-uniform gap and coupling error `O_K(Q_s/s)+o(1)` for normalized load bounded above and away from zero |
+| The zero-batching collision functional is minimized by the complete kernel for every connected regular graph | OPEN IN GENERAL; PROVED FOR ORDER FOUR AND COMPLETE BIPARTITE GRAPHS | Exact occupation transport; symbolic all-`r` order-four trace formula; exact complete-bipartite rank/Dynkin formula |
+| The geometric-batching ratio proves the `r=3/2` product obstruction | OPEN | Exact additive interpolation and current formula; endpoint follows from a still-open normalized derivative inequality |
 
 This ledger will be updated at every proof checkpoint. Computational signs are
 never sufficient to change an `OPEN` entry to `PROVED`.

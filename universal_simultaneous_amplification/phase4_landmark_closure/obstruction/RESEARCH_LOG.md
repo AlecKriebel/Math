@@ -268,3 +268,14 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   tree.  Hence this route supplies no regularization reduction to arbitrary
   graphs.  The universal `r=2` maximum and the `r=3/2` product inequality
   remain OPEN.
+- 10:27 -- [PROVED BATCHING REDUCTIONS / FINITE REGULAR THEOREMS] The exact
+  edge-slowing interpolation from the conservative reversed-arrow process to
+  dB has an additive dual at every interpolation parameter.  Its normalized
+  derivative is an occupation-current functional.  At zero batching and for
+  a symmetric stochastic kernel, it reduces to
+  `-(r-1)T(P)/n`, where `T` is an exact collision occupation integral.
+  Neutral-flow and reversible-Green identities isolate the remaining
+  all-order extremal problem.  Complete-minimality of `T` is proved for every
+  connected regular order-four kernel and for complete bipartite kernels at
+  all `r>1`; an exact two-`K_3` modular segment is also certified.  The
+  all-order regular inequality and the endpoint batching ratio remain OPEN.

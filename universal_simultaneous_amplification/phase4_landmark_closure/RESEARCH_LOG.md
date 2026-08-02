@@ -324,3 +324,21 @@
 - [OPEN] Positive-proportion portals, nonexchangeable incidence, and genuinely
   nonseparated architectures remain.  This class closure is not a universal
   upper bound, so landmark-closure completion remains **59%**.
+
+## 2026-08-02 10:27 PDT — geometric-batching collision reduction
+
+- [PROVED] An exact additive interpolation joins the conservative
+  reversed-arrow process to dB at `r=3/2`; its complete-graph curve telescopes
+  and its derivative has an exact occupation-current representation.
+- [PROVED REGULAR REDUCTION] At zero batching, every symmetric stochastic
+  kernel has normalized derivative `-(r-1)T(P)/n`.  A neutral-flow identity
+  turns complete-minimality of `T` into complete-maximality of one accumulated
+  collision local time, and a reversible Green formula supports that source
+  only on set sizes one through three.
+- [PROVED FINITE/STRUCTURED CLASSES] For every `r>1`, the complete kernel
+  uniquely minimizes `T` among connected regular four-vertex kernels and is
+  strictly below every complete bipartite kernel.  At `r=3/2`, it is also the
+  unique minimum on an exact two-`K_3` modular segment.
+- [OPEN] The all-order regular convexity inequality and the full batching
+  endpoint ratio remain unproved.  These exact advances do not yield a
+  universal upper bound; landmark-closure completion remains **59%**.

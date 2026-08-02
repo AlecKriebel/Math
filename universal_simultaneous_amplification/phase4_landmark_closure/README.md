@@ -89,6 +89,13 @@ counterexamples.  At `r=2`, orbital symmetrization remains open for regular
 kernels but cannot be extended by directed or conductance averaging to the
 unrestricted graph class.
 
+For the second factor, an exact edge-slowing interpolation now converts its
+zero-batching derivative on regular kernels into a collision occupation
+functional `T(P)`.  The complete kernel uniquely minimizes `T` for every
+connected regular four-vertex kernel and is strictly below all complete
+bipartite kernels for every `r>1`.  The corresponding all-order convexity and
+endpoint batching inequalities remain open.
+
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
 will be listed as a human-only next action.
