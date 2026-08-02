@@ -39,6 +39,7 @@ paper/main.pdf  1572d2fd4abd495c4eed61075afdc1dbd74a7d90fb0fe1f379bfa12c50fbf69b
 
 These hashes identify the v1.0.0 manuscript files but are not substitutes for
 the release tag or an archival DOI. They must be refreshed after any edit.
+The corresponding version DOI is `10.5281/zenodo.21753405`.
 
 ## B. Model and baseline audit
 

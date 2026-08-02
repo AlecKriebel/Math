@@ -35,3 +35,10 @@ and a SHA-256 manifest.
 
 The manuscript and internal hostile audits are AI-assisted and have not
 undergone external specialist peer review.
+
+## Archival identifiers
+
+- Version DOI: <https://doi.org/10.5281/zenodo.21753405>
+- Concept DOI: <https://doi.org/10.5281/zenodo.21753404>
+- GitHub release:
+  <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>

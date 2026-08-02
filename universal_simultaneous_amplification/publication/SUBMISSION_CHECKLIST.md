@@ -113,10 +113,11 @@ requirements can change.
       <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>.
 - [x] The manuscript's release claim and the public tag agree.
 - [x] The release URL is consistent across the current availability drafts.
-- [ ] If Zenodo issues a DOI, verify that it resolves to this exact snapshot
-      and use it consistently in the portal and final manuscript metadata.
-- [ ] Confirm the archive is public no later than required by journal policy and
-      contains no unrelated or sensitive material.
+- [x] Zenodo version DOI <https://doi.org/10.5281/zenodo.21753405> resolves to
+      version `universal-db-obstruction-v1.0.0` and links to the exact tag.
+- [x] Confirm the scoped GitHub release assets are public and contain no
+      unrelated or sensitive material; the separate automatic Zenodo snapshot
+      is transparently identified as a public monorepository archive.
 - [ ] Use the final wording in `publication/data_code_availability.md` only
       after these checks pass.
 
@@ -165,7 +166,7 @@ requirements can change.
       and preprint declarations.
 - [ ] Cover letter approved by the human.
 - [x] Versioned public code/archive URL.
-- [ ] Zenodo DOI, if issued and desired for the journal record.
+- [x] Zenodo version DOI for the journal record.
 
 ## 10. Cover letter and editorial selections
 

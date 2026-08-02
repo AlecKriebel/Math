@@ -65,7 +65,7 @@ Before submission, the human author will confirm and complete the following:
   version exists and provide its permanent link if applicable].
 - **Code archive:** [HUMAN: verify the public release at
   https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0
-  and add the Zenodo DOI if one has been issued].
+  and the version DOI https://doi.org/10.5281/zenodo.21753405].
 - **Author approval:** [HUMAN: confirm final approval of every submitted file
   and portal declaration].
 

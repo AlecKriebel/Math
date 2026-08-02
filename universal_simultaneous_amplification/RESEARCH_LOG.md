@@ -185,6 +185,11 @@
   journal submission, external outreach, or external specialist review was
   performed.  No Zenodo DOI was claimed because none was yet discoverable in
   the public API immediately after release.
+- One minute later, the public Zenodo API exposed the completed automatic
+  deposit.  Verified version DOI `10.5281/zenodo.21753405`, concept DOI
+  `10.5281/zenodo.21753404`, version
+  `universal-db-obstruction-v1.0.0`, and the related identifier pointing to the
+  exact GitHub tag.
 - Completion: fixed-graph theorem, directed closure, triangle classification,
   symmetric-`K_4` classifications, Paper I, exact verifier, hostile audits,
   release archive, and public project page 100%.  The requested final-closure

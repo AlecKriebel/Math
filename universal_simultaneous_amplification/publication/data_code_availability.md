@@ -1,8 +1,8 @@
 # Data and code availability draft
 
 > **DRAFT — NOT SUBMITTED.** The public versioned release below is the verified
-> project archive.  The human author must still approve the wording and add a
-> Zenodo DOI if one has been issued before journal submission.
+> project archive.  The human author must still approve the wording before
+> journal submission.
 
 ## Portal-ready statement after archival
 
@@ -10,7 +10,8 @@ No empirical datasets were generated or analyzed in this study. All materials
 needed to reproduce the exact computations and manuscript build—including the
 LaTeX source, transition builders, symbolic proof certificates, verification
 scripts, and audit reports—are available in the versioned release
-**No universal death–birth amplifier, v1.0.0** at
+**No universal death–birth amplifier, v1.0.0** at the version DOI
+<https://doi.org/10.5281/zenodo.21753405>, with scoped release assets at
 <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>.
 The development repository is
 <https://github.com/AlecKriebel/Math>. The relevant project directory is
@@ -23,7 +24,8 @@ document compiler described in the repository are installed.
 
 No empirical datasets were generated or analyzed. The manuscript source,
 exact code, proof certificates, and reproduction instructions are archived in
-the versioned release at
+the v1.0.0 Zenodo record at
+<https://doi.org/10.5281/zenodo.21753405>, with scoped assets at
 <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>
 and developed at
 <https://github.com/AlecKriebel/Math> under
@@ -44,8 +46,9 @@ and developed at
 - **Verified from a clean source archive:** `make paper1` passes with Python
   3.14.6, SymPy 1.14.0, and Tectonic 0.16.9.
 - **Separate journal status:** no journal upload or submission has been made.
-- **DOI status:** a GitHub-triggered Zenodo DOI, if any, must be independently
-  checked before it is added to journal metadata.
+- **Verified DOI:** `10.5281/zenodo.21753405`; the public Zenodo record reports
+  version `universal-db-obstruction-v1.0.0` and links to the exact GitHub tag.
+- **Verified concept DOI:** `10.5281/zenodo.21753404`.
 
 ## Required human actions before submission
 
@@ -54,15 +57,15 @@ and developed at
 - [x] Commit and push the final Paper I scope according to the repository's
       research workflow.
 - [x] Create and verify the intended versioned release.
-- [ ] If the repository's GitHub–Zenodo integration is used, verify the
-      resulting DOI resolves to the correct snapshot and add it to the journal
-      metadata.
+- [x] Verify that the GitHub–Zenodo DOI resolves to the correct release tag and
+      add the version DOI to this draft.
 - [ ] Make the wording in this file, the submission portal, and
       `paper/main.tex` identical after the human approves the final portal
       entry.
-- [ ] Confirm that the public archive excludes `.venv/`, caches, temporary
-      render files, and any unrelated or sensitive material.
-- [ ] Confirm the archive includes enough environment information to install
+- [x] Confirm that the scoped release assets exclude `.venv/`, caches,
+      temporary render files, unrelated projects, and sensitive material. The
+      automatic Zenodo snapshot separately preserves the public monorepository.
+- [x] Confirm the scoped archive includes enough environment information to install
       SymPy and the required LaTeX/Tectonic compiler.
 
 ## Scope clarification

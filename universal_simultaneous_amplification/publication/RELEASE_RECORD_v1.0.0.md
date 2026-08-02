@@ -6,12 +6,20 @@
   <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>
 - Reader-facing page:
   <https://aleckriebel.github.io/Math/papers/no-universal-death-birth-amplifier/>
+- Version DOI: <https://doi.org/10.5281/zenodo.21753405>
+- Concept DOI: <https://doi.org/10.5281/zenodo.21753404>
 - Published: 2026-08-02 02:09:10 UTC (2026-08-01 19:09:10 PDT)
 - Tag target: `cf61bfdffb1531b328fb0dcd147714782932036b`
 - GitHub state: public, non-draft, non-prerelease
 
 The release tag and the pushed `main` commit resolved to the same object at the
 publication check.
+
+Zenodo record 21753405 was created at 2026-08-02 02:10:07 UTC. Its public
+metadata reports version `universal-db-obstruction-v1.0.0`, creator Alec
+Kriebel, and the exact GitHub tag as its related identifier. The automatic
+Zenodo snapshot preserves the public monorepository; the smaller, scoped
+GitHub assets above are the direct reproduction package for this paper.
 
 ## Frozen manuscript hashes
 
@@ -61,7 +69,5 @@ fresh public release-asset download reproduced the frozen PDF hash.
 ## Publication boundaries
 
 This is a public independent-research release, not a journal submission. No
-external specialist review or external outreach occurred. The GitHub-triggered
-Zenodo integration may issue a DOI asynchronously; no DOI was discoverable in
-the public Zenodo API immediately after release, so this record does not claim
-one.
+external specialist review or external outreach occurred. The automatic
+Zenodo deposit is verified at version DOI `10.5281/zenodo.21753405`.

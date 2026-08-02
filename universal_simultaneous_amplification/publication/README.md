@@ -12,7 +12,7 @@ Contents:
 - `cover_letter.md` — cover-letter draft with human-only declarations left as
   placeholders.
 - `data_code_availability.md` — portal wording with the verified public release
-  URL and a clearly separated optional DOI follow-up.
+  URL and Zenodo DOI.
 - `RELEASE_RECORD_v1.0.0.md` — exact tag, asset hashes, clean-archive replay,
   and publication-boundary record.
 - `external_audit_checklist.md` — audit scope only; it is not outreach text.

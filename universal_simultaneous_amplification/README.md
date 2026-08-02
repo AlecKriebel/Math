@@ -115,6 +115,7 @@ its source is `paper/main.tex`.
 
 Version 1.0.0 is published at
 <https://github.com/AlecKriebel/Math/releases/tag/universal-db-obstruction-v1.0.0>.
+Its archival DOI is <https://doi.org/10.5281/zenodo.21753405>.
 The reader-facing paper page is
 <https://aleckriebel.github.io/Math/papers/no-universal-death-birth-amplifier/>.
 Release assets include the publication PDF, an editable manuscript-source
