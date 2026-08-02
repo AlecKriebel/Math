@@ -224,3 +224,12 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   `I_2<=2` would prove the universal half-density bound.  These observations
   do not yet give a finite-baseline obstruction or an upper bound on
   `R_sim`.
+- 07:31 -- [PROVED / EXACTLY VERIFIED] Classified every regular weighted
+  four-vertex kernel at dB fitness two.  Opposite edges have equal weights,
+  so the exact solution is `rho=4A/(4+5A)` with
+  `A=sum_x 4x/(4+x)`; the complete gap is a positive rational-square sum and
+  equality is unique at `K_4`.  A separate exact order-seven example proves
+  that dB fixation is not globally concave on the positive regular-kernel
+  polytope, closing the naive permutation-averaging proof.  The counterexample
+  lies strictly below `K_7`, and broad order-nine screens still support but
+  do not prove the regular maximizer or aggregate stationary-odds conjecture.

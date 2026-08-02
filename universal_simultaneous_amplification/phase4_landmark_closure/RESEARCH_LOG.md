@@ -190,3 +190,26 @@
   regimes with `epsilon_n` comparable to `1/n` remain genuine construction
   possibilities.  This class closure does not alter the mission status;
   landmark-closure completion remains estimated at **59%**.
+
+## 2026-08-02 07:31 PDT — exact regular-order-four checkpoint
+
+- [PROVED] Every connected regular undirected weighted graph on four
+  vertices satisfies `rho_dB(G,2) <= rho_dB(K_4,2)=3/7`, with equality only
+  for equal edge weights.  Regularity reduces the kernel to three opposite
+  edge weights `a+b+c=1`; the exact fixation formula is
+  `rho=4A/(4+5A)`, where `A=sum_x 4x/(4+x)`, and a tangent-square identity
+  makes the complete-graph gap manifestly nonnegative.
+- [EXACTLY VERIFIED] An independent symbolic verifier reconstructs all
+  fourteen labelled transient equations and checks the rational-square
+  certificate, including the connected zero-weight boundary by continuity.
+- [EXACT ROUTE FALSIFICATION] Global concavity of dB fixation on the regular
+  kernel polytope is false.  Positive rational seven-vertex kernels obtained
+  from a cycle and a triangle-plus-two-pairs boundary mixture give a strictly
+  negative exact Jensen slack.  All three kernels remain below `K_7`, so this
+  refutes only the symmetrization-by-concavity proof, not the maximizer
+  conjecture.
+- [OPEN] The regular all-order maximum and the stronger unrestricted
+  `r=2` theorem remain unresolved.  The aggregate stationary-odds inequality
+  survived searches through order nine but has no proof.  This checkpoint is
+  a finite class theorem and does not change the landmark-closure estimate of
+  **59%**.
