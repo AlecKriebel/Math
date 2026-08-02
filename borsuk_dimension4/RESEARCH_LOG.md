@@ -324,3 +324,26 @@ Best-guess completion toward a full resolution: **14%**. The strongest
 triangle-free graph-first candidate and all of its accidental-edge variants
 are now eliminated, and the Hom-complex obstruction is reusable, but no
 surviving six-chromatic realization or universal partition is yet known.
+
+## 2026-08-01T17:56:47-07:00 — Mixed golden radial unions eliminated
+
+- Derived the complete 15-level cross-product table between the 120 golden
+  roots and the 600 derived tetrahedron centroids. The positive extreme
+  28+12 sqrt(5) is exactly root--tetrahedron incidence, with bidegrees 20
+  and 4, and the dual squared norm is four times this extreme.
+- Found exact negative switching cycles in the root, dual, and cross
+  maximum-absolute signed graphs, of lengths 5, 15, and 10. Consequently
+  every one of the 2^360 independent projective orientation choices has the
+  same three minimum products; no enumeration of switchings is required.
+- Computed the exact radial upper envelopes for all four combinations of
+  full antipodal or projective occupancy. Every exposed regime and tie graph
+  is five-colorable; the full/full family is in fact two-colorable. The
+  checker verifies exact quadratic tie equations, quartic rational norm
+  polynomials, isolating intervals, and frozen transition colorings.
+- This closes every full/projective radial union of the two orbits at every
+  positive scale. Arbitrary vertex-deleted mixed subsets can expose lower
+  product levels and remain outside the theorem.
+
+Best-guess completion toward a full resolution: **15%**. All natural
+symmetry-preserving unions of the two largest exact golden orbits are now
+closed, while asymmetric deletions and graph-first deformations remain live.
