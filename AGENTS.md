@@ -27,7 +27,32 @@ research notes without preparing or initiating outreach.
   sparingly, only when we want to truly and immutably snapshot a result or
   package.
 
+# Research Validation
+
+- Treat target conclusions as hypotheses, not assumptions. Define the exact
+  claim, assumptions, success criteria, and relevant boundary cases. For
+  scientific work, distinguish deductions from empirical or model assumptions
+  and specify falsifiable checks.
+- For difficult problems, use independent subagents across materially distinct
+  approach families. Track each family's mechanism, evidence, status, and exact
+  gap; preserve early independence and redirect effort away from premature
+  convergence.
+- At meaningful checkpoints and before promoting a result, assign adversarial
+  subagents to falsify and independently verify it. Test hidden assumptions,
+  circularity, counterexamples, edge and limiting cases, and, as applicable,
+  units, numerical stability, reproducibility, and consistency among proof,
+  code, data, and interpretation.
+- Require checkable artifacts such as proofs, derivations, equations,
+  constructions, validated computations, tests, or counterexamples. Clearly
+  label partial evidence and record the strongest verified result and exact
+  remaining gap.
+- Mark a route blocked when it transfers the central difficulty to an
+  equivalent or stronger unsupported claim. Reopen it only for a materially
+  new mechanism or evidence.
+
 # Research Goal
 
-The overall goal of this project is to produce novel contributions to
-mathematics.
+The overall goal is to produce novel, independently verifiable contributions
+to mathematics and to sciences whose claims can be formulated mathematically
+and checked by proof, validated computation, or reproducible quantitative
+evidence, including physics, quantum science, and quantitative biology.
