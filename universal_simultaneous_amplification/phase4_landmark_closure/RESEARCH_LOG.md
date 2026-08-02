@@ -342,3 +342,34 @@
 - [OPEN] The all-order regular convexity inequality and the full batching
   endpoint ratio remain unproved.  These exact advances do not yield a
   universal upper bound; landmark-closure completion remains **59%**.
+
+## 2026-08-02 10:53 PDT — exact dB fitness-two Green--collision reduction
+
+- [PROVED REFORMULATION] For every finite connected undirected weighted
+  graph, an exact complete-chain Green calculation gives
+  `rho_dB(G,2)-rho_dB(K_n,2)=L(G)-V(G)`.  The term `V` is a manifestly
+  nonnegative subset-dispersion functional; `L` is a stationary weighted-cut
+  surplus, equivalently a signed internal-pair deficit.  Thus complete-graph
+  maximality at fitness two is exactly the single inequality `L<=V`.
+- [PROVED REDUCTION] The weaker ceiling `rho_dB(G,2)<=1/2` follows from an
+  exact stationary second-collision inequality.  The same target has
+  equivalent factorial-hit and cut-versus-dispersion forms.  It remains
+  OPEN; none of these formulations assumes independent genealogies.
+- [EXACT ROUTE FALSIFICATIONS] Per-level Jensen residuals, the bare sign
+  `L<=0`, pointwise Poisson domination, and a sufficient pairwise stationary
+  correlation bound all fail on explicit rational graphs.  The latter fails
+  even on a positive regular weighted `K_4`, while the summed component-odds
+  conjecture remains strictly satisfied there.
+- [EXACT FARKAS OBSTRUCTION] A positive-support weighted five-vertex graph
+  proves that the nonnegative additive-potential/singleton certificate for
+  aggregate odds is not universally feasible.  Its component and aggregate
+  odds slacks are nevertheless strictly positive, so the surviving
+  inequalities are not refuted.
+- [EXACTLY VERIFIED] Two independent standard-library verifiers reconstruct
+  the forward and dual chains, solve all stationary/absorbing equations over
+  rationals, and certify every identity and counterexample under both the
+  system and project interpreters.
+- [OPEN] The decisive signs `L<=V`, aggregate component odds, the universal
+  half-density ceiling, and dB complete-graph maximality at `r=2` remain
+  unresolved.  This is the sharpest current unrestricted reduction, but not
+  a mission-level upper bound; landmark-closure completion remains **59%**.

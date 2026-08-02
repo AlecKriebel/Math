@@ -27,6 +27,10 @@
 | Letting the exchangeable portal count grow sublinearly repairs the same protected-pair construction | REFUTED IN THE COMPACT-LOAD TRACE REGIME | Explicit `Q`-uniform gap and coupling error `O_K(Q_s/s)+o(1)` for normalized load bounded above and away from zero |
 | The zero-batching collision functional is minimized by the complete kernel for every connected regular graph | OPEN IN GENERAL; PROVED FOR ORDER FOUR AND COMPLETE BIPARTITE GRAPHS | Exact occupation transport; symbolic all-`r` order-four trace formula; exact complete-bipartite rank/Dynkin formula |
 | The geometric-batching ratio proves the `r=3/2` product obstruction | OPEN | Exact additive interpolation and current formula; endpoint follows from a still-open normalized derivative inequality |
+| At dB fitness two, comparison with `K_n` is exactly a stationary cut-surplus versus subset-dispersion inequality | PROVED (REFORMULATION) | Exact complete Green kernel and heat-bath level flux give `rho_dB(G,2)-rho_dB(K_n,2)=L(G)-V(G)` with `V>=0` |
+| Every graph satisfies `rho_dB(G,2)<=rho_dB(K_n,2)` | OPEN | Equivalent to the still-unproved exact inequality `L(G)<=V(G)` |
+| The pairwise stationary-correlation estimate implies the component-odds bound at `r=2` on every graph | REFUTED AS A PROOF ROUTE | Exact counterexamples on unweighted `P_4` and a positive regular weighted `K_4`; both still satisfy the summed component-odds inequality |
+| A nonnegative additive potential certified only on singleton hole sums proves the aggregate-odds bound universally | REFUTED AS A PROOF ROUTE | Exact positive-support five-vertex Farkas certificate; the graph itself has strictly positive component and aggregate odds slacks |
 
 This ledger will be updated at every proof checkpoint. Computational signs are
 never sufficient to change an `OPEN` entry to `PROVED`.

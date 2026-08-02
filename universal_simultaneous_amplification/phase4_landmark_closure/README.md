@@ -96,6 +96,17 @@ connected regular four-vertex kernel and is strictly below all complete
 bipartite kernels for every `r>1`.  The corresponding all-order convexity and
 endpoint batching inequalities remain open.
 
+At dB fitness two, the unrestricted comparison with the complete graph now
+has an exact Green--collision decomposition
+`rho_dB(G,2)-rho_dB(K_n,2)=L(G)-V(G)`.  Here `V` is manifestly nonnegative
+subset dispersion and `L` is a stationary weighted-cut surplus, equivalently
+an internal-pair deficit.  This reduces the conjecture to the single sharp
+inequality `L<=V`, and a weaker half-density ceiling to an exact stationary
+second-collision inequality.  Both signs remain open.  Exact counterexamples
+rule out per-level Jensen, pointwise cut, pairwise-correlation, and one
+nonnegative additive-potential shortcut without refuting either surviving
+aggregate conjecture.
+
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
 will be listed as a human-only next action.

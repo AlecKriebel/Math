@@ -279,3 +279,15 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   connected regular order-four kernel and for complete bipartite kernels at
   all `r>1`; an exact two-`K_3` modular segment is also certified.  The
   all-order regular inequality and the endpoint batching ratio remain OPEN.
+- 10:53 -- [PROVED EXACT FITNESS-TWO REDUCTION / EXACT ROUTE
+  FALSIFICATIONS] The unrestricted dB comparison at `r=2` is exactly
+  `rho_G-rho_K=L-V`, where `V>=0` is full subset dispersion and `L` is a
+  stationary cut surplus/internal-pair deficit.  A factorial collision
+  hierarchy reduces the weaker half-density ceiling to one stationary
+  second-collision inequality.  Exact rational examples falsify per-level
+  Jensen, `L<=0`, pointwise Poisson domination, and the proposed pairwise
+  correlation shortcut without violating the surviving aggregate target.
+  A separate positive-support five-vertex Farkas certificate closes the
+  nonnegative additive-potential/singleton architecture, again while every
+  component and aggregate odds slack stays positive.  The exact inequalities
+  `L<=V`, aggregate odds, half density, and complete maximality remain OPEN.
