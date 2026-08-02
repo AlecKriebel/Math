@@ -239,6 +239,15 @@ class has full-dimensional regular overlap internally, while the quartic
 class is one-sided generically contained in the ambient class.  See
 `notes/MILESTONE_6D_K3P_ROOT_THREE_PORT_ATLAS.md`.
 
+Milestone 6E proves that ordinary triangle redirection `T` is universal under
+JC, K2P, and K3P.  The complete cycle census has nine rooted but exactly three
+semi-directed labelled orientations, and all three graph pairs pass the formal
+redirection predicate.  Exact common points and nonsingular blocks give local
+dimensions 4, 9, and 14; the K3P locus is the quartic hypersurface from
+Milestone 6D.  Characterwise tripod inversion propagates the move through
+arbitrary corresponding port components.  See
+`notes/MILESTONE_6E_GROUP_BASED_TRIANGLE_REDIRECTION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

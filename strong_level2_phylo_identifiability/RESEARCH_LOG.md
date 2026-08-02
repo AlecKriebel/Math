@@ -758,3 +758,26 @@
 - **UNRESOLVED:** ordinary-tree relations, complete-image equality, and the
   arbitrary-port K3P root atlas are not claimed.
 - No literature search or numerical assertion is used in the theorem.
+
+## 2026-08-02T04:39:31-07:00 — triangle redirection proved universal
+
+- **EXACTLY COMPUTED:** the two unlabelled three-port cycle records and all
+  port labellings give twelve presentations, nine rooted topologies, and
+  exactly three semi-directed topologies.  Their reticulation-adjacent ports
+  are `L1`, `L2`, and `L3`.
+- **PROVED:** all three unordered mixed-graph pairs pass the formal triangle-
+  redirection predicate: the labelled underlying graph and every arrowhead
+  outside the unique triangle agree.
+- **PROVED:** the three orientations are pairwise `bowtie` under JC, K2P, and
+  K3P, with common regular local dimensions four, nine, and fourteen.  The
+  K3P class is the irreducible quartic hypersurface `H14`.
+- **EXACTLY COMPUTED:** JC uses simple isolated equal-edge roots, K2P uses
+  exact nonzero rank-nine minors, and K3P uses exact rational Krawczyk boxes
+  plus interval-invertible rank-fourteen blocks at one common strict tensor.
+- **PROVED:** fixing the complementary gauge parameters and inverting each
+  nonsingular output block gives an exact algebraic parameter-correspondence
+  germ.  Characterwise tripod inversion propagates the overlap through
+  arbitrary corresponding positive port substitutions.
+- **UNRESOLVED:** equality of complete open images and the complete richer-
+  model move systems are not claimed.
+- No literature search or numerical assertion is used in the theorem.
