@@ -202,3 +202,31 @@ edges.
 Best-guess completion toward a full resolution: **9%**. Two major exact
 candidate families are now comprehensively screened, while the derived
 600-point orbit and weak Mycielski realization remain live.
+
+## 2026-08-01T17:04:40-07:00 — Optimized high-radius theorem
+
+- Strengthened the positive near-Jung theorem from defect 1/100000 to the
+  clean rational defect 1/728. Thus
+  R^2 > (2/5 - 1/728) D^2 implies a five-partition of uniformly smaller
+  diameter for every bounded set in R^4.
+- Optimizing the full weighted Jung defect gives the sharp edge budget
+  T <= 25 delta/(1-15 delta). The pulled affine metric then has the sharp
+  asymmetric spectral interval -T I <= M-I <= (3/5) T I.
+- Reworked the Voronoi pullback with separate lower and upper metric errors
+  and optimized the anchor-ray center. At the rational endpoint, the exact
+  squared radical comparison has positive margin
+  186180822731/6547648278778880.
+- Identified the exact limitation of this scalar spectral relaxation. Its
+  optimized envelope crosses one at the unique algebraic defect
+  delta_aff = 0.0013742502821037648302... in (1/728,1/727), certified by
+  a degree-ten resultant and rational Sturm calculation. An anisotropic
+  matrix analysis is required to go farther by this route.
+- Hostile review caught the false intermediate comparison
+  2/727 < 1/400. It was repaired with 2/727 < 9/1600, which still gives
+  every contact weight above 1/8; all dependent monotonicity and admissibility
+  inequalities were then re-audited and added to the exact verifier.
+
+Best-guess completion toward a full resolution: **10%**. The certified high
+band is substantially wider and its present method barrier is understood,
+but it still leaves most of the circumradius interval above the low-radius
+theorem unresolved.
