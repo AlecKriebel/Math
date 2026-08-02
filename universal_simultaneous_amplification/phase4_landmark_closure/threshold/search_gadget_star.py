@@ -34,7 +34,7 @@ def fixation_singletons(weights: Matrix, fitness: float, rule: str) -> list[floa
             rows.append([])
             continue
         changes: dict[int, float] = defaultdict(float)
-        mutant_count = mask.bit_count()
+        mutant_count = bin(mask).count("1")
         if rule == "Bd":
             total = n + (fitness - 1.0) * mutant_count
             for parent in range(n):

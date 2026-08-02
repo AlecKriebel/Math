@@ -39,7 +39,7 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   would promote the singleton tradeoff to all establishment levels, but no
   valid concavity or martingale proof has yet been found.  Discovery
   completion estimate: **31%**.
-- 21:44 -- [PROVED] Introduced mutant genealogical lineages between replacement
+- 21:44 -- [RETRACTED; SEE 23:40] Introduced mutant genealogical lineages between replacement
   events.  For dB, their total genealogy is dominated by a linear branching
   process with death one and birth matrix `r P^T`; for Bd it is dominated by
   birth `r P` and type-i death `t_i`.  Exact total-progeny PGF equations plus
@@ -50,14 +50,14 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   probabilities converging to the well-mixed infinite-size limit and can
   amplify only by a vanishing amount.  Discovery completion estimate:
   **46%**.
-- 22:05 -- [PROVED] Derived a nonperturbative tradeoff between the two
+- 22:05 -- [PROVED ONLY FOR SEPARATELY DEFINED ABSTRACT PROCESSES] Derived a nonperturbative tradeoff between the two
   rare-mutant branching survival probabilities.  If `B` is Bd branching
   survival, `S` is dB branching survival, `a=1-1/r`,
   `g=(B-a)_+`, and `delta=a-S`, then
   `delta >= 4a g^2/(2r+sqrt(r)+1)^2`.  The proof uses exact fixed-point
   variance identities, L1 contraction of `P^T`, and a temperature-weighted
   Jensen inequality for Bd.  Discovery completion estimate: **57%**.
-- 22:20 -- [PROVED] In an analytic undirected perturbation of a symmetric
+- 22:20 -- [PROVED ONLY FOR SEPARATELY DEFINED ABSTRACT PROCESSES] In an analytic undirected perturbation of a symmetric
   doubly stochastic kernel, computed the sharp second-order establishment
   signs.  The dB branching loss is at least `r` times any positive Bd
   branching gain.  The resolvent is `rI-P_0`, so this calculation is uniform
@@ -77,7 +77,7 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   inequality, Alternative O proof, or upper bound on `R_sim` was obtained.
   Obstruction-subtask completion estimate: **75%**; landmark-closure estimate:
   **35%**.
-- 23:08 -- [PROVED / AUDITED] Rebuilt the report after a Markdown/LaTeX
+- 23:08 -- [RETRACTED AUDIT ATTEMPT] Rebuilt the report after a Markdown/LaTeX
   encoding failure.  A UTF-8 scan now finds no control or replacement
   characters and all displayed-math delimiters are balanced.  Expanded the
   genealogy argument into a breadth-first conditional-offspring coupling,
@@ -96,7 +96,8 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   argument cannot produce even a crude fixed-fitness obstruction.  Audited a
   tempting stronger branching-survival coupling and rejected it: simultaneous
   mutant-to-mutant death/birth events destroy the independent active-lifetime
-  coupling.  Only total genealogical progeny is presently dominated.
+  coupling.  The later 23:40 audit shows that not even total genealogical
+  progeny is dominated.
   Obstruction-subtask completion estimate: **83%**; landmark-closure estimate:
   **40%**.
 - 23:40 -- [RETRACTED] The claimed total-genealogy domination is also invalid.
@@ -111,3 +112,57 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   concentration, abstract fixed-point, perturbative, and cut identities do
   not use this coupling and remain valid.  Obstruction completion estimate
   reset to **48%**; landmark-closure estimate **34%**.
+- 23:43 -- [PROVED / EXACTLY COMPUTED] After retracting every genealogy-based
+  fixation claim, derived a new threshold-sharp inequality that is genuinely
+  about fixation.  For every positive weighted triangle `L` and `r>=3/2`,
+  `H_L [alpha_dB(r)-(1-1/r)] <= I_dB(1/r)/r^2`.  The full six-state chain was
+  derived symbolically from the dB rule.  After substituting `r=3/2+u`, the
+  comparison numerator has 261 monomials and every coefficient is strictly
+  positive; its denominator is coefficient-positive.  Along the singular
+  triangle `(epsilon,1,epsilon)`, the normalized difference tends
+  `(2r-3)/(3r)`, proving the threshold cannot be lowered.  Added the
+  independent executable certificate `verify_triangle_db_threshold.py`.
+  This is one exact half of the arbitrary-triangle satellite obstruction;
+  the required joint Bd--dB product inequality remains **OPEN**.  Obstruction
+  subtask completion estimate: **62%**; landmark-closure estimate **45%**.
+- 23:46 -- [PROVED] Replaced the invalid lineage route by exact drift
+  identities for the actual chains.  Under dB, weighted mutant degree
+  `D(S)=sum_S d_i` has drift `(r-1) Psi_D(S)/n`; under Bd, inverse-degree mass
+  `X(S)=sum_S 1/d_i` has drift
+  `(r-1) Psi_B(S)/(n+(r-1)|S|)`.  Optional summation gives exact
+  occupation-time formulas for both uniform-singleton fixation
+  probabilities.  Extended the standard-library verifier to check both
+  identities directly on all 39,360 rational nonabsorbing states.  These
+  identities avoid all lineage independence assumptions.  The weighted
+  triangle certificate is retained only as a diagnostic, per the mission's
+  instruction not to extend finite triangle classification.  A universal
+  comparison of the two actual-chain occupation measures remains **OPEN**.
+
+## 2026-08-02
+
+- 00:43 -- [PROVED] Replaced independent genealogy by exact additive
+  set-valued duals which retain every coalescence.  Bd becomes a continuous
+  branching--coalescing walk with neutral copying and selective OR arrows;
+  dB becomes a geometric-OR burst, since
+  `1-E(1-x)^K=rx/(1+(r-1)x)`.  Uniform-singleton fixation is exactly the
+  stationary dual density.  More sharply, inverse-fitness fixation from
+  vertex `i` equals the forward-fitness dB dual's stationary probability of
+  the singleton set `{i}`.  Derived exact stationary size balances for both
+  duals and verified the full intersection duality, stationary densities,
+  reverse singleton identity, and balances over six rational weighted-graph
+  cases.  This turns the proposed all-graph dB threshold inequality into a
+  concrete density-versus-weighted-singleton-mass inequality, still OPEN.
+  No independent-particle domination is used.  Obstruction completion
+  estimate: **69%**; landmark-closure estimate: **49%**.
+- 01:21 -- [PROVED / EXACTLY VERIFIED] Extended the set-dual certificate to
+  check the reverse-fitness singleton identity separately for both Bd and dB,
+  every singleton/doubleton stationarity equation, and the aggregate Bd
+  level-one flux.  Expanding the dB size balance also gives the exact
+  collision identity
+  `E[C+(r-1)R2]=(1-1/r)E|A|`.  The proposed cross-rule product inequality
+  remains OPEN, but it survived an exact rational screen of all connected
+  labelled supports through four vertices under three weight patterns plus
+  additional complete-support graphs: 145 tests at `r=3/2`, with strictly
+  positive minimum slack.  This finite screen is explicitly not used as a
+  proof.  The surviving proof gap is an all-level stationary inequality;
+  level-one/two flux alone does not control higher dB burst jumps.

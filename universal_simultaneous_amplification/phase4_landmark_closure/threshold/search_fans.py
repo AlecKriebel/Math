@@ -77,7 +77,7 @@ class ThetaPathFan:
         degrees = []
         for p in range(length):
             degrees.append(weights[p] + weights[p + 1])
-        arm_mutants = sum(number * pattern.bit_count() for pattern, number in enumerate(counts))
+        arm_mutants = sum(number * bin(pattern).count("1") for pattern, number in enumerate(counts))
         empty = (0, 0, m, *([0] * ((1 << length) - 1)))
         full_counts = [0] * (1 << length)
         full_counts[-1] = m
@@ -159,7 +159,7 @@ class ThetaPathFan:
             rows.append([(index[t], p / mass) for t, p in changes] if mass else [])
         def mutant_count(state):
             h0, h1, *counts = state
-            return h0 + h1 + sum(pattern.bit_count() * number for pattern, number in enumerate(counts))
+            return h0 + h1 + sum(bin(pattern).count("1") * number for pattern, number in enumerate(counts))
         values, iterations, residual = _gauss_seidel_keyed(states, rows, index[empty], index[full], mutant_count)
         total = values[index[(1, 0, self.modules, *([0] * ((1 << self.arm_length) - 1)))]]
         total += values[index[(0, 1, self.modules, *([0] * ((1 << self.arm_length) - 1)))]]
@@ -216,7 +216,7 @@ class PathArmFan:
                 degree += weights[position + 1]
             arm_degree.append(degree)
         hub_degree = m * weights[0]
-        arm_mutants = sum(number * pattern.bit_count() for pattern, number in enumerate(counts))
+        arm_mutants = sum(number * bin(pattern).count("1") for pattern, number in enumerate(counts))
         if state == (0, m, *([0] * ((1 << length) - 1))):
             return []
         full_counts = [0] * (1 << length)

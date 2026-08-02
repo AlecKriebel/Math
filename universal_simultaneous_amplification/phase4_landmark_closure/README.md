@@ -38,6 +38,25 @@ suppresses both rules by rigorously computed order-`N^-2` margins, so its
 exact interval is `(1,3/2)`.  Alternative U, Alternative O, and any universal
 upper bound remain open.
 
+## Current obstruction checkpoint
+
+Both update rules now have exact branching--coalescing set duals, derived
+directly from their Boolean graphical maps.  Uniform-singleton fixation is
+the stationary dual density, and inverse-fitness singleton fixation is the
+stationary singleton mass.  These identities retain every coalescence and do
+not use the retracted independent-genealogy comparison.
+
+The complete graph is not a universal dB maximizer below `2`: exact weighted
+windmills beat it at `r=3/2`, `7/4`, and `9/5`.  The stronger cross-rule sum
+inequality remains viable: it is proved exactly for every positive weighted
+triangle at `r=3/2` and survived the recorded larger searches, but is still
+open for arbitrary graphs.  The boundary `r=2` is under active attack.
+
+The higher-threshold construction search also produced an exact no-window
+identity for the natural singular four-vertex module and an exact rooted
+portal favorable to both rules at `r=31/20`; neither yields a population
+construction beyond `3/2`.
+
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
 will be listed as a human-only next action.

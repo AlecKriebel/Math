@@ -1,0 +1,43 @@
+# Higher-threshold construction research log
+
+All times are America/Los_Angeles.  This track searches for an explicit
+fitness-independent construction extending the proved center--singular-
+triangle interval `(1,3/2)`.  No literature search or external contact is
+used.  Floating-point searches are reconnaissance only.
+
+## 2026-08-01 23:34 — initialization
+
+- Began from the proved separated center/module trace formulas and the exact
+  singular-triangle construction.
+- Primary targets: singular weighted modules of order four through six,
+  optimized nonuniform center attachments, and recursively separated
+  multiscale modules.
+- A candidate must have both isolated uniform establishment probabilities
+  above `1-1/r` and a nonempty exact center-degree window.  These conditions
+  are only filters until the full trace process is proved.
+- Completion estimate toward a rigorous interval beyond `3/2`: **5%**.
+
+## 2026-08-02 00:26 — exact near-miss and load-aware closure
+
+- `PROVED`: the four-vertex two-strong-edge singular module has dB uniform
+  establishment above the infinite-complete baseline up to the unique root
+  `1.543689...` of `r^3-2r^2+2r-2`, but the separated clique-center window is
+  empty for every `r>1`.  Its endpoints differ by exactly
+  `-(r-1)^2(r^2+1)`.
+- `PROVED`: the rational `(3,3,2)` triangle, entered at the vertex incident to
+  both weight-three edges, has rooted fixation exceeding `1-1/r` under both
+  rules at `r=31/20`.  This is a portal primitive, not a uniform construction.
+- A nonuniform early-migration model initially produced a large positive local
+  score at `r=1.55`.  The candidate was rejected after enforcing the handshake
+  load of all resident satellites on the center.
+- `EXACTLY DERIVED WITHIN THE BRANCHING LIMIT`: formulas for the first rare-
+  satellite coefficient under both rules, including the center-load term.
+  Numerical optimization of the exact finite colony chains through five
+  vertices found no positive coefficient at `r=1.55`.
+- Tested mixtures of Bd-special and dB-special colony types using additivity
+  of the first-order coefficients.  The optimized opposing gain/loss products
+  remained below one for orders two through five at and above `r=3/2`; no
+  convex mixture became simultaneously positive.  This is numerical only.
+- No global architecture beyond `3/2` survived.  Completion estimate toward a
+  rigorous interval beyond `3/2`: **32%**; completion toward a useful exact
+  higher-threshold search report: **95%**.

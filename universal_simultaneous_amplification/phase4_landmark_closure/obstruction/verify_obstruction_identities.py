@@ -124,6 +124,7 @@ def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> int:
 
         direct_bd_up = Fraction(0)
         direct_bd_down = Fraction(0)
+        direct_bd_inverse_degree_drift = Fraction(0)
         for parent in range(order):
             for target in range(order):
                 if not weights[parent][target]:
@@ -138,13 +139,29 @@ def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> int:
                     direct_bd_up += probability
                 elif not mutant[parent] and mutant[target]:
                     direct_bd_down += probability
+                direct_bd_inverse_degree_drift += (
+                    probability
+                    * (mutant[parent] - mutant[target])
+                    / degrees[target]
+                )
         assert direct_bd_up == fitness * flow_out / total_fitness
         assert direct_bd_down == flow_in / total_fitness
         ratio_bd = direct_bd_up / direct_bd_down
         assert ratio_bd == fitness * flow_out / flow_in
+        inverse_cut = sum(
+            weights[parent][target]
+            / (degrees[parent] * degrees[target])
+            for parent in range(order)
+            for target in range(order)
+            if mutant[parent] and not mutant[target]
+        )
+        assert direct_bd_inverse_degree_drift == (
+            (fitness - 1) / total_fitness * inverse_cut
+        )
 
         direct_db_up = Fraction(0)
         direct_db_down = Fraction(0)
+        direct_db_degree_drift = Fraction(0)
         for target in range(order):
             denominator = sum(
                 weights[parent][target]
@@ -164,6 +181,11 @@ def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> int:
                     direct_db_up += probability
                 elif not mutant[parent] and mutant[target]:
                     direct_db_down += probability
+                direct_db_degree_drift += (
+                    probability
+                    * (mutant[parent] - mutant[target])
+                    * degrees[target]
+                )
         closed_db_up = (
             fitness
             / order
@@ -185,6 +207,18 @@ def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> int:
         assert direct_db_down == closed_db_down
         ratio_db = direct_db_up / direct_db_down
         assert ratio_bd * ratio_db <= fitness**3
+        closed_db_degree_drift = (
+            (fitness - 1)
+            / order
+            * sum(
+                degrees[i]
+                * x[i]
+                * (1 - x[i])
+                / (1 + (fitness - 1) * x[i])
+                for i in range(order)
+            )
+        )
+        assert direct_db_degree_drift == closed_db_degree_drift
         state_cases += 1
     return state_cases
 

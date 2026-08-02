@@ -102,3 +102,32 @@
   cut inequality are unaffected.  They no longer imply a fixation bound.
 - The construction theorem and `R_sim>=3/2` remain proved.  The false
   obstruction will not be pushed or used in the paper.
+
+## 2026-08-02 01:22 PDT — exact-duality and boundary checkpoint
+
+- [PROVED] Derived exact branching--coalescing set duals for both rules.
+  The Bd dual uses neutral copying and selective OR arrows; the dB dual
+  replaces an occupied test vertex by the union of a geometric number of
+  neighbor samples.  Uniform-singleton fixation equals stationary dual
+  density, while fixation at reciprocal fitness equals stationary singleton
+  mass for either rule.  Two independently implemented exact-rational
+  verifiers reconstruct the forward and dual chains and check the identities.
+- [PROVED / EXACTLY COMPUTED] The complete graph fails to maximize dB
+  fixation at `r=3/2`, `7/4`, and `9/5`.  Exact 7-, 9-, and 11-vertex
+  weighted windmills certify the three strict counterexamples.  Thus a
+  dB-only obstruction below `2` is unavailable by this route.
+- [PROVED DIAGNOSTIC] At `r=3/2`, the complete graph strictly maximizes
+  `rho_Bd+rho_dB` among positive weighted triangles unless all three weights
+  agree.  The numerator is certified by 24 positive squared-difference
+  atoms.  The corresponding arbitrary-graph sum inequality remains OPEN.
+- [PROVED FAMILY-SPECIFIC NO-GO] A natural separated four-vertex module has
+  a dB establishment interval extending to `1.543689...`, but its exact Bd
+  and dB center-load windows are disjoint by
+  `-(r-1)^2(r^2+1)<0`.  A separate weighted triangle has a root favorable to
+  both rules at `31/20`, but no verified handoff retains that local gain under
+  uniform initialization.
+- [OPEN] The leading closure targets are now a universal dB maximization
+  theorem at `r=2`, the cross-rule sum inequality at `r=3/2`, or a
+  construction whose interval exceeds `3/2`.  Landmark-closure completion is
+  estimated at **52%**; publication packaging remains deferred until one of
+  the requested full outcomes is proved.

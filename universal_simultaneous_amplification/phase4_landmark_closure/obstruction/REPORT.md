@@ -7,10 +7,10 @@ support-degree, and finite-type results are treated as proved facts and are
 not rederived here.
 
 This report does **not** prove Alternative O. It proves several new universal
-reductions and isolates the unresolved gap. All proved controls are local,
-branching-level, or leading-order. A vanishing-weight modular cut can retain
-an order-one relative bias, and strict fixation amplification may live below
-the controlled leading order.
+reductions and isolates the unresolved gap. The proved fixation controls are
+local or exact drift identities; the branching statements concern only
+separately defined abstract processes. A vanishing-weight modular cut can
+retain an order-one relative bias not captured by the local controls.
 
 ## Retraction notice
 
@@ -29,8 +29,8 @@ paired with a descendant birth, so that ancestry can persist even when the
 proposed independent branching envelope becomes extinct.
 
 Equations for the separately defined abstract branching processes remain
-valid algebra. They are not fixation bounds. Sections 2, 3, 6, 7, and 8.1 do
-not use the invalid coupling and retain their stated status.
+valid algebra. They are not fixation bounds. Sections 2, 3, 5, 6, 7, and 8.1
+do not use the invalid coupling and retain their stated status.
 
 ## 1. Notation
 
@@ -449,10 +449,11 @@ $$
 \tag{24b}
 $$
 
-The unresolved comparison is therefore exactly a finite-population window of
-order $1/n$.  Optimizing the single-PGF estimate (16) cannot remove its
-logarithm: with $z=e^{-x/n}$, the two leading errors are proportional to
-$e^{-x}$ and $x/n$, whose balance occurs at $x\asymp\log n$.
+Equation (24b) records the exact baseline scale, but the retracted PGF method
+does not bound fixation at any scale.  Within that failed method alone,
+optimizing the formal right side of (16) would leave a logarithm: with
+$z=e^{-x/n}$, the two formal errors are proportional to $e^{-x}$ and $x/n$.
+This observation has no fixation consequence.
 
 ## 5. [PROVED FOR ABSTRACT BRANCHING PROCESSES] A survival tradeoff
 
@@ -732,33 +733,499 @@ $$
 
 for every column-stochastic birth kernel with death rate one. Random tests
 covered up to four types and $K=6$. No proof was found. Even (43), by itself,
-would upper-bound dB fixation by the Bd complete baseline rather than the
-smaller dB baseline, leaving an $O(1/n)$ window.  A stronger active-frontier
-coupling to branching survival would close part of this gap, but it is not
-available: mutant-to-mutant replacement simultaneously terminates one
-lineage and creates another, so the independent lifetime structure required
-by the linear branching process is lost.  The proved coupling in Section 4
-controls the family tree's total progeny, not its number of simultaneously
-active lineages.
+would be only a statement about the abstract branching process.  Without a
+valid coupling it gives no fixation upper bound at all.  Mutant-to-mutant
+replacement simultaneously terminates one lineage and creates another, so
+the independent lifetime structure required by the linear branching process
+is lost.  As Section 4 explains, this blocks even total-progeny domination,
+not merely active-population domination.
 
 Random full-chain searches found no fixed-$r$ universal inequality strong
 enough to close that window. These computations are conjecture generation
 only.
 
-## 9. Verification
+## 9. [PROVED] Coupling-free drift and occupation identities
+
+Put
+
+$$
+\mathcal V=\sum_i d_i,
+\qquad
+H=\sum_i\frac1{d_i},
+\qquad
+D(S)=\sum_{i\in S}d_i,
+\qquad
+X(S)=\sum_{i\in S}\frac1{d_i}.
+\tag{44}
+$$
+
+For $m_v(S)=\sum_{u\in S}w_{uv}$ and $x_v=m_v(S)/d_v$, define
+
+$$
+\Psi_D(S)=\sum_v
+\frac{d_vx_v(1-x_v)}{1+(r-1)x_v},
+\qquad
+\Psi_B(S)=\sum_{u\in S,v\notin S}
+\frac{w_{uv}}{d_ud_v}.
+\tag{45}
+$$
+
+### Theorem 9.1
+
+For every nonabsorbing state $S$,
+
+$$
+\boxed{
+E_{\rm dB}[D(S_{t+1})-D(S_t)\mid S_t=S]
+=\frac{r-1}{n}\Psi_D(S),}
+\tag{46}
+$$
+
+and
+
+$$
+\boxed{
+E_{\rm Bd}[X(S_{t+1})-X(S_t)\mid S_t=S]
+=\frac{r-1}{n+(r-1)|S|}\Psi_B(S).}
+\tag{47}
+$$
+
+Both drifts are nonnegative.  If $\tau$ is absorption time and expectation
+starts from a uniformly sampled singleton, summing the stopped drifts gives
+the exact fixation representations
+
+$$
+\boxed{
+\rho_{\rm dB}(G,r)
+=\frac1n+\frac{r-1}{n\mathcal V}
+E_{\rm dB}\sum_{t<\tau}\Psi_D(S_t),}
+\tag{48}
+$$
+
+$$
+\boxed{
+\rho_{\rm Bd}(G,r)
+=\frac1n+\frac{r-1}{H}
+E_{\rm Bd}\sum_{t<\tau}
+\frac{\Psi_B(S_t)}{n+(r-1)|S_t|}.}
+\tag{49}
+$$
+
+#### Proof
+
+Under dB, conditional on target $v$, its new type is mutant with probability
+
+$$
+f_r(x_v)=\frac{rx_v}{1+(r-1)x_v}.
+$$
+
+Thus the expected degree-mass change is
+$n^{-1}\sum_vd_v(f_r(x_v)-\mathbf1_{v\in S})$.  Undirectedness gives
+
+$$
+\sum_vd_vx_v
+=\sum_v\sum_{u\in S}w_{uv}
+=\sum_{u\in S}d_u=D(S).
+$$
+
+Using
+
+$$
+f_r(x)-x=\frac{(r-1)x(1-x)}{1+(r-1)x}
+$$
+
+proves (46).  For Bd, pair the two orientations of every cut edge
+$uv$, with $u\in S$ and $v\notin S$.  Mutant reproduction along the edge
+has probability $rw_{uv}/([n+(r-1)|S|]d_u)$ and increases $X$ by $1/d_v$;
+the reverse resident event has probability
+$w_{uv}/([n+(r-1)|S|]d_v)$ and decreases $X$ by $1/d_u$.  Their difference is
+
+$$
+\frac{r-1}{n+(r-1)|S|}\frac{w_{uv}}{d_ud_v},
+$$
+
+which proves (47).  At absorption, $D$ is $0$ or $\mathcal V$, and $X$ is
+$0$ or $H$.  Their uniform-singleton initial means are respectively
+$\mathcal V/n$ and $H/n$.  Optional summation of the bounded stopped
+submartingales proves (48)--(49). ∎
+
+These identities involve the actual replacement chains and no independent
+lineage construction.  They reduce a universal tradeoff to comparison of two
+different occupation measures of the nonnegative boundary functionals
+$\Psi_D$ and $\Psi_B$.  No valid comparison between those occupation measures
+is presently known; sharp weak cuts make their pointwise ratio singular.
+
+## 10. [EXACT DIAGNOSTIC, NOT A LANDMARK OUTCOME] A dB inequality for weighted triangles
+
+Let $L$ be an arbitrary triangle with positive edge weights and weighted
+degrees $d_1,d_2,d_3$.  Write
+
+$$
+\alpha_D(s)=\frac13\sum_{i=1}^3\phi_i^{\rm dB}(L,s),
+\qquad
+H_L=\sum_{i=1}^3\frac1{d_i},
+\qquad
+I_D(s)=\sum_{i=1}^3\frac{\phi_i^{\rm dB}(L,s)}{d_i},
+\tag{50}
+$$
+
+where $\phi_i^{\rm dB}(L,s)$ is dB fixation from a mutant initially at $i$.
+
+### Diagnostic proposition 10.1
+
+For every positively weighted triangle and every $r\ge3/2$,
+
+$$
+\boxed{
+H_L\left[\alpha_D(r)-\left(1-\frac1r\right)\right]
+\le \frac{I_D(1/r)}{r^2}.}
+\tag{51}
+$$
+
+The threshold is sharp for this inequality.  For the singular family with
+edge weights $(\varepsilon,1,\varepsilon)$,
+
+$$
+\lim_{\varepsilon\downarrow0}
+\frac1{H_L}
+\left\{
+\frac{I_D(1/r)}{r^2}
+-H_L\left[\alpha_D(r)-\left(1-\frac1r\right)\right]
+\right\}
+=\frac{2r-3}{3r}.
+\tag{52}
+$$
+
+Hence (51) fails along positive weighted triangles for every $1<r<3/2$.
+
+#### Exact proof certificate
+
+Put edge weights $a,b,c>0$.  Build the six transient subset equations
+directly from the dB rule, solve them over
+$\mathbb Q(a,b,c,r)$, and denote the difference between the right and left
+sides of (51) by $D(a,b,c,r)$.  Exact cancellation gives
+
+$$
+D(a,b,c,r)=\frac{N(a,b,c,r)}{Q(a,b,c,r)},
+$$
+
+where every coefficient of $Q$ is positive.  After writing
+$r=3/2+u$, the polynomial
+
+$$
+N(a,b,c,3/2+u)
+$$
+
+has exactly 261 monomials in $a,b,c,u$, all with strictly positive rational
+coefficients.  Therefore $D>0$ for $a,b,c>0$ and $u\ge0$, proving (51).
+Direct symbolic limits give (52).  The independent verifier constructs the
+chain rather than importing a declared fixation formula.
+
+Inequality (51) is a genuine fixation result and uses no branching coupling,
+but it concerns only three-vertex gadgets.  The mission explicitly excludes
+further finite-triangle classification as a primary route, so this is
+recorded only as a sharp diagnostic for the center--satellite mechanism.  It
+is not an upper bound on $R_{\rm sim}$ and is not presented as a landmark
+outcome.
+
+## 11. [PROVED] Exact additive duals and stationary-set reductions
+
+The invalid genealogy coupling in Section 4 tried to replace interacting
+ancestries by independent particles.  There is nevertheless an exact
+set-valued dual which keeps every coalescence and every joint update.  This
+dual gives a second coupling-free formulation of the open obstruction.
+
+Write a type configuration as a Boolean vector.  For Bd, multiplying all
+transition probabilities at a state by the common positive factor
+$n+(r-1)|S|$ does not change hitting probabilities.  The resulting
+continuous-time process has, for every oriented edge $u\to v$,
+
+* a neutral copying arrow at rate $P_{uv}$, sending the type at $u$ to $v$;
+* a selective arrow at rate $(r-1)P_{uv}$, which changes $v$ to mutant if
+  $u$ is mutant and otherwise does nothing.
+
+The first Boolean map is copying and the second is the OR map
+$y_v\leftarrow y_v\mathbin\vee y_u$.  Their exact backward actions on a
+nonempty test set $A$ are respectively
+
+$$
+A\longmapsto (A\setminus\{v\})\cup\{u\},
+\qquad
+A\longmapsto A\cup\{u\},
+\tag{53}
+$$
+
+when $v\in A$; if $v\notin A$, the test set is unchanged.
+
+For dB let $K$ have the geometric law
+
+$$
+\Pr(K=k)=\frac1r\left(1-\frac1r\right)^{k-1},
+\qquad k\ge1.
+\tag{54}
+$$
+
+If $x$ is the mutant $P$-mass among the neighbors of the death vertex, then
+
+$$
+1-E(1-x)^K=\frac{rx}{1+(r-1)x}.
+\tag{55}
+$$
+
+Thus a dB update can be generated exactly by sampling $K$ neighbors
+independently from the row $P_{v\cdot}$ and setting the new type at $v$ to
+the OR of their types.  Its backward action is
+
+$$
+A\longmapsto
+(A\setminus\{v\})\cup\{U_1,\ldots,U_K\}
+\quad (v\in A).
+\tag{56}
+$$
+
+These are finite branching--coalescing *set chains*, not independent-family
+branching processes.
+
+### Theorem 11.1 (stationary dual representation)
+
+For either rule $U$, let $\Pi_U^r$ be the unique limiting stationary law of
+the corresponding dual started from a nonempty subset.  (For dB the full
+test set is transient, because a death vertex cannot sample itself.)  Then,
+for every mutant set $S$,
+
+$$
+\phi_U(S,r)=\Pr_{A\sim\Pi_U^r}(A\cap S\ne\varnothing).
+\tag{57}
+$$
+
+Consequently,
+
+$$
+\boxed{
+\rho_U(G,r)=\frac1nE_{\Pi_U^r}|A|.}
+\tag{58}
+$$
+
+For either rule there is also the exact boundary identity
+
+$$
+\boxed{
+\phi_i^{U}(G,1/r)=
+\Pr_{A\sim\Pi_U^r}(A=\{i\}).}
+\tag{59}
+$$
+
+#### Proof
+
+Each map above satisfies the deterministic intersection duality
+
+$$
+\mathbf1\{\Phi(y)\cap A\ne\varnothing\}
+=\mathbf1\{y\cap\Phi^*(A)\ne\varnothing\}.
+$$
+
+Composition through the graphical construction therefore gives the same
+identity in expectation at every finite time.  The forward process absorbs
+at the all-resident or all-mutant configuration.  Connectedness and the
+positive probabilities of $K=1$ and $K=2$ give a unique recurrent class
+reachable from every nonempty test set, so its law converges to $\Pi_U^r$.
+Taking time to infinity proves (57), and averaging (57) over uniform
+singletons proves (58).
+
+For (59), type complementation gives
+$\phi_i(G,1/r)=1-\phi(V\setminus\{i\},r)$.  By (57), the latter deficit is
+the probability that the nonempty stationary dual set is contained in
+$\{i\}$, which is exactly the singleton probability displayed in (59). ∎
+
+Put
+
+$$
+h_r(x)=\frac{rx}{1+(r-1)x},\qquad
+C(A)=\sum_{u,v\in A}P_{uv}.
+$$
+
+The exact stationary size balances are
+
+$$
+\boxed{
+(r-1)E_{\Pi_{\rm Bd}^r}B(A)
+=E_{\Pi_{\rm Bd}^r}C(A)
+=E_{\Pi_{\rm Bd}^r}\{|A|-A(A)\},}
+\tag{60}
+$$
+
+and
+
+$$
+\boxed{
+E_{\Pi_{\rm dB}^r}|A|
+=E_{\Pi_{\rm dB}^r}
+\sum_{v\in A,u\notin A}h_r(P_{vu}).}
+\tag{61}
+$$
+
+Indeed, a neutral Bd arrow coalesces two occupied dual sites precisely when
+both endpoints lie in $A$, while a selective arrow increases the set size
+precisely when its target is in $A$ and its source is outside.  For dB, an
+update at $v\in A$ removes $v$, and an outside vertex $u$ is added with
+probability $h_r(P_{vu})$.  Taking stationary expectations proves
+(60)--(61).
+
+Expanding
+
+$$
+h_r(x)=rx-
+\frac{r(r-1)x^2}{1+(r-1)x}
+$$
+
+inside (61) gives a second exact form.  Define
+
+$$
+R_2(A)=\sum_{v\in A,u\notin A}
+\frac{P_{vu}^2}{1+(r-1)P_{vu}}.
+$$
+
+Since the row cut equals $|A|-C(A)$,
+
+$$
+\boxed{
+E_{\Pi_{\rm dB}^r}
+\{C(A)+(r-1)R_2(A)\}
+=\left(1-\frac1r\right)E_{\Pi_{\rm dB}^r}|A|.}
+\tag{61a}
+$$
+
+Thus dB stationary density is exactly a sum of pairwise co-occupancy and a
+nonnegative cut-collision remainder.  This identity is useful structurally,
+but it does not by itself control the exact-level singleton masses needed
+below.
+
+For later use, put
+
+$$
+\ell_r(x)=E(x^K)=\frac{x}{r-(r-1)x},
+$$
+
+and denote the stationary probabilities of the singleton and doubleton sets
+by $b_i,b_{ij}$ for the Bd dual and $q_i,q_{ij}$ for the dB dual.  Exact
+stationarity at level one gives
+
+$$
+\boxed{
+r t_i b_i=\sum_jP_{ij}(b_j+b_{ij}),
+\qquad
+q_i=\sum_j\ell_r(P_{ji})(q_j+q_{ij}).}
+\tag{62}
+$$
+
+For example, the only ways for the dB dual to enter $\{i\}$ are from
+$\{j\}$ or $\{i,j\}$, followed by an update at $j$ for which all $K$
+samples equal $i$.  Summing the Bd equations, or directly balancing the
+level-one and level-two size fluxes, gives
+
+$$
+\boxed{
+(r-1)\sum_i t_i b_i
+=\sum_{i<j}(P_{ij}+P_{ji})b_{ij}.}
+\tag{63}
+$$
+
+Identity (59) turns the triangle diagnostic (51) into a stationary-set
+inequality.  Its natural all-graph extension would be
+
+$$
+\sum_i\frac{\Pi_{\rm dB}^r(\{i\})}{d_i}
+\ge r^2H\left\{\frac{E_{\Pi_{\rm dB}^r}|A|}{n}
+-\left(1-\frac1r\right)\right\},
+\tag{64}
+$$
+
+for $r\ge3/2$.  Equation (64) is **OPEN** beyond the diagnostic triangle
+case.  The reduction is useful because it identifies the inverse-fitness
+term as weighted stationary singleton mass, rather than as an unrelated
+second fixation calculation.
+
+There is an equally compact form of the full arbitrary-satellite product
+inequality suggested by the rare-migration calculation.  Put
+
+$$
+s_B=\Pi_{\rm Bd}^r(|A|=1),
+\qquad
+s_D^{(h)}=\sum_i\frac{\Pi_{\rm dB}^r(\{i\})}{H d_i},
+\qquad p=1-\frac1r.
+$$
+
+Then (58)--(59) turn that proposed inequality exactly into
+
+$$
+\boxed{
+r^3n\,[\rho_{\rm Bd}(G,r)-p]_+
+[\rho_{\rm dB}(G,r)-p]_+
+\le s_Bs_D^{(h)}.}
+\tag{65}
+$$
+
+This product inequality is **OPEN**.  Its dB factor alone is (64), whereas
+the tempting separate Bd factor
+$rn[\rho_{\rm Bd}-p]\le s_B$ is false (already on the unit-weight
+three-vertex path at $r=3/2$).  Thus any proof of (65) must genuinely use the
+joint Bd--dB structure rather than multiply two independent bounds.
+
+Finally, grouping the Bd dual arrows which have common target $v$ gives an
+exact local comparison mechanism.  Their incoming rate is $t_v$ and their
+source law is
+
+$$
+Q_{vu}=\frac{P_{uv}}{t_v}.
+\tag{66}
+$$
+
+At a combined rate $rt_v$, the occupied dual site is selectively retained
+and a $Q_v$-neighbor added with probability $1-1/r$, or neutrally replaced
+by a $Q_v$-neighbor with probability $1/r$.  If consecutive $v$-events are
+grouped through their first neutral event while other targets are censored,
+their net map is exactly the geometric burst (56), with kernel $Q$ rather
+than $P$.  Interleaving events at other targets prevents this observation
+from being a proved stochastic domination.  Establishing a valid censoring
+or occupation comparison here would close the present duality gap; assuming
+independent lineages would repeat the retracted error.
+
+## 12. Verification
 
 The file verify_obstruction_identities.py builds singleton and general-state
 transitions directly from both update definitions using exact Fraction
 arithmetic. It checks (4)--(8), including the exact mean-$\lambda$ deficit,
-on 480 deterministic rational weighted graphs, and checks (40)--(42) on all
-39,360 of their nonabsorbing mutant sets. Its expected output is:
+on 480 deterministic rational weighted graphs, and checks (40)--(42) and
+(46)--(47) on all 39,360 of their nonabsorbing mutant sets. Its expected
+output is:
 
     PASS: 480 exact weighted-graph and 39360 nonabsorbing-state checks
 
-The branching and asymptotic proofs above are analytic; no floating-point
-output is used in them.
+The abstract branching identities are analytic and are explicitly separated
+from fixation. No floating-point output is used in any proved claim.
 
-## 10. Status
+The file verify_triangle_db_threshold.py independently derives the full dB
+chain on edge weights $a,b,c$, checks the 261-coefficient diagnostic
+certificate (51), and checks sharpness (52). Its expected output is:
+
+    PASS: arbitrary weighted-triangle dB threshold certificate (261 positive shifted coefficients)
+
+The file verify_exact_duals.py independently builds the forward generators,
+the additive Bd dual, and the geometric-union dB dual over exact rationals.
+It solves both the fixation and stationary equations and checks the full-set
+duality (57), not just its averaged consequence, together with (58)--(63)
+and the collision form (61a).  It also checks (59) separately for both update
+rules.  Finally, as a deliberately non-probative stress test, it evaluates
+the open product (65) at $r=3/2$ on every connected labelled support through
+four vertices under three exact edge-weight patterns, as well as additional
+complete-support examples.  All comparisons use rational arithmetic; this
+finite screen is evidence only and is not used as a universal claim.  Its
+expected output is:
+
+    PASS: 148 exact forward/dual stationary-chain checks
+    PASS: open product inequality survived 145 exact rational small-graph tests at r=3/2 (...)
+
+## 13. Status
 
 - **PROVED:** exact singleton opposite-curvature tradeoff (Theorem 2.1).
 - **PROVED:** every all-fixed-fitness dB amplifier is locally diffuse in
@@ -768,12 +1235,22 @@ output is used in them.
 - **PROVED FOR THE SEPARATELY DEFINED ABSTRACT PROCESSES:** global quadratic
   and local sharp second-order branching tradeoffs (Theorem 5.1 and Section
   6); no fixation consequence is claimed.
-- **OPEN:** control of fixation after establishment at the decisive $1/n$
-  scale.
+- **PROVED:** the coupling-free actual-chain drift and occupation identities
+  (46)--(49).
+- **PROVED:** the exact additive duals, stationary density and reverse
+  singleton representations (57)--(59), and stationary size balances
+  (60)--(63), including the collision expansion (61a).  These retain
+  coalescence and do not use independent ancestry.
+- **EXACT DIAGNOSTIC ONLY:** the threshold-sharp inverse-degree dB fixation
+  inequality (51) for positive weighted triangles; this does not extend the
+  inherited finite classification or bound $R_{\rm sim}$.
+- **OPEN:** a global fixation comparison beyond singleton establishment and
+  the exact drift or stationary-dual identities.
 - **OPEN:** singular mesoscopic or multiscale modular cuts.
 - **OPEN:** Alternative O, Alternative U, and the exact value of
   $R_{\rm sim}$.
 
-The obstruction route has narrowed every positive family to a vanishing-gain,
-locally diffuse, asymptotically isothermal, bottleneck-sensitive regime. It
-has not eliminated that regime.
+The valid obstruction route narrows any all-fixed-fitness dB-amplifying family
+to a locally diffuse, asymptotically isothermal, bottleneck-sensitive regime.
+It does **not** prove that fixation gains vanish, and it has not eliminated
+  that regime.

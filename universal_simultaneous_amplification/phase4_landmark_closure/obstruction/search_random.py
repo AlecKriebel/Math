@@ -57,6 +57,19 @@ def fixation(weights: np.ndarray, fitness: float, rule: str) -> float:
                     else:
                         new_state = state & ~(1 << target)
                     transitions[new_state] = transitions.get(new_state, 0.0) + probability
+        # Delete the state-dependent self-loop before building the linear
+        # system.  This leaves all hitting probabilities unchanged and is
+        # essential when edge scales are separated by many orders of
+        # magnitude: the unconditioned matrix otherwise loses the rare
+        # effective transitions to floating-point cancellation.
+        transitions.pop(state, None)
+        effective_mass = sum(transitions.values())
+        if not effective_mass > 0.0:
+            raise FloatingPointError("no resolvable effective transition")
+        transitions = {
+            new_state: probability / effective_mass
+            for new_state, probability in transitions.items()
+        }
         for new_state, probability in transitions.items():
             if new_state == full:
                 rhs[row] += probability
@@ -123,4 +136,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
