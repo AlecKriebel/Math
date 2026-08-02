@@ -15,6 +15,15 @@ def verify_universal_edge_reduction() -> None:
     threshold = 1 - Q(1, 2) / residual_radius_sq
     assert threshold == Q(1, 3)
 
+    # For arbitrary squared separation s=d^2 in [0,1], the common-neighbor
+    # sphere has radius squared 1-s/4 and normalized threshold
+    # c=(2-s)/(4-s).  It decreases from 1/2 to 1/3.
+    for separation_sq in (Q(0), Q(1, 4), Q(1, 2), Q(1)):
+        radius_sq = 1 - separation_sq / 4
+        c = 1 - Q(1, 2) / radius_sq
+        assert c == (2 - separation_sq) / (4 - separation_sq)
+        assert Q(1, 3) <= c <= Q(1, 2)
+
 
 def verify_cap_and_sector_constants() -> None:
     c = Q(1, 3)

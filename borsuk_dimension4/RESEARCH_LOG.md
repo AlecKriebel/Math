@@ -141,15 +141,17 @@ and nonsmooth diameter-endpoint configurations remain unresolved.
 
 ## 2026-08-01T16:41:49-07:00 — Universal-edge theorem and golden lead closed
 
-- Proved a new bounded-set positive theorem: if a diameter pair is universal
-  (both endpoints are at the diameter from every other point), then the set
-  has a five-partition of strictly smaller diameter.
-- After normalizing the common neighbors of any diameter edge, they are unit
-  vectors in R^3 with all mutual inner products at least 1/3. Thus every edge
-  has a three-colorable common neighborhood; in particular no diameter
-  subgraph can contain K2 join H with chi(H) at least four. More generally,
-  every compact unit-vector set in R^3 with positive minimum inner product c
-  admits a uniform three-partition above c.
+- Proved a new bounded-set positive theorem: if two distinct points are both
+  at the diameter from every other point, then the set has a five-partition
+  of strictly smaller diameter. The two reference points need not themselves
+  form a diameter pair.
+- After normalizing the common diameter-neighbors of any two distinct points,
+  they are unit vectors in R^3 with all mutual inner products at least 1/3.
+  Thus every vertex pair, adjacent or not, has a three-colorable common
+  neighborhood; in particular no two vertices can both be complete to a
+  four-chromatic subgraph. More generally, every compact unit-vector set in
+  R^3 with positive minimum inner product c admits a uniform three-partition
+  above c.
 - The proof encloses the spherical set in a closest cap and colors three
   half-open longitude sectors. At the sharp cap bound, equality forces a
   regular support triangle; its opposite support point excludes every
@@ -168,8 +170,7 @@ and nonsmooth diameter-endpoint configurations remain unresolved.
 
 Best-guess completion toward a full resolution: **8%**. The negative search
 lost its strongest exact candidate, while the positive route gained a
-dimension-reducing theorem that may generalize to nonuniversal diameter
-edges.
+dimension-reducing common-neighborhood theorem.
 
 ## 2026-08-01T16:59:51-07:00 — Full golden audit and Mycielski tower screen
 
@@ -230,3 +231,21 @@ Best-guess completion toward a full resolution: **10%**. The certified high
 band is substantially wider and its present method barrier is understood,
 but it still leaves most of the circumradius interval above the low-radius
 theorem unresolved.
+
+## 2026-08-01T17:08:20-07:00 — Arbitrary-pair common-neighborhood theorem
+
+- Removed an unnecessary hypothesis from the universal-edge argument. For
+  any two distinct points at separation dD, their common diameter-neighbors
+  normalize to unit vectors in R^3 with threshold
+  (2-d^2)/(4-d^2) >= 1/3; the acute spherical lemma applies unchanged.
+- Consequently every pair of vertices in a finite four-dimensional diameter
+  graph, adjacent or not, has a three-colorable common neighborhood. No two
+  vertices can both be complete to a four-chromatic subgraph.
+- If two points are at the diameter from every remaining point, those common
+  neighbors take three parts and the two reference points take singleton
+  parts. This bounded-set five-partition does not require the reference pair
+  itself to be diametral.
+
+Best-guess completion toward a full resolution remains **10%**. The stronger
+local rule materially prunes graph candidates but does not yet color a
+general diameter graph.

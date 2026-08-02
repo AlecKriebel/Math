@@ -1,4 +1,4 @@
-# Route B: eliminate a universal diameter edge
+# Route B: common diameter neighborhoods and co-universal pairs
 
 **Scope:** first-principles diameter-graph reduction.  No literature or web
 search was used.
@@ -6,23 +6,25 @@ search was used.
 ## Result
 
 Let \(S\subset\mathbb R^4\) be bounded and have positive diameter \(D\).  If
-two points \(a,b\in S\) are at distance \(D\) from one another and from every
-other point, then \(S\) has a five-partition whose parts have diameter
-strictly below \(D\).  In particular, a finite six-chromatic diameter graph
-in \(\mathbb R^4\) has no universal \(K_2\).
+two distinct points \(a,b\in S\) are each at distance \(D\) from every point
+of \(S\setminus\{a,b\}\), then \(S\) has a five-partition whose parts have
+diameter strictly below \(D\).  No assumption on \(\lVert a-b\rVert\) is
+needed.  In particular, a finite six-chromatic diameter graph has no pair of
+vertices, adjacent or not, that are both universal to all remaining vertices.
 
-The local statement is stronger.  For any diameter pair \(a,b\), the set of
-points at distance \(D\) from both \(a\) and \(b\) has a uniform
-three-partition.  Hence, in every finite four-dimensional diameter graph,
+The local statement is stronger.  For any two distinct points \(a,b\), the
+set of points at distance \(D\) from both has a uniform three-partition.
+Hence, in every finite four-dimensional diameter graph,
 
 \[
  \chi\bigl(G[N(a)\cap N(b)]\bigr)\le3
- \qquad\text{for every edge }ab.                          \tag{0}
+ \qquad\text{for every two distinct vertices }a,b.        \tag{0}
 \]
 
-Consequently no graph \(K_2\mathbin\vee H\) with \(\chi(H)\ge4\) can occur
-even as a diameter subgraph; the two clique vertices need not be universal
-outside that displayed subgraph.
+Consequently, no two vertices can both be complete to a subgraph \(H\) with
+\(\chi(H)\ge4\).  This excludes both \(K_2\vee H\) and
+\(\overline K_2\vee H\) as diameter subgraphs; the two reference vertices
+need not be universal outside the displayed subgraph.
 
 The earlier four-cycle determinant after a universal \(K_2\) is therefore a
 special case of a stronger fact: the entire residual diameter graph is
@@ -155,23 +157,24 @@ The half-open convention assigns every nonpolar point exactly once.  The
 additional equality analysis is what prevents sequences on opposite sector
 boundaries from losing strictness in the compact case.
 
-## 2. Apply the lemma to common neighbors of a diameter edge
+## 2. Apply the lemma to common diameter neighbors of any pair
 
-First assume that \(S\) is compact, fix any diameter edge \(ab\), and let
+First assume that \(S\) is compact, fix distinct \(a,b\in S\), and let
 
 \[
  T_{ab}=\{x\in S:\lVert x-a\rVert=\lVert x-b\rVert=D\}.
 \]
 
-This common-neighbor set is compact.  Scale \(D=1\), place the midpoint of
-\(a,b\) at the origin, and write
+This common-neighbor set is compact.  Scale \(D=1\), put
+\(d=\lVert a-b\rVert\), place the midpoint of \(a,b\) at the origin, and
+write
 
 \[
- a=-\frac12e,\qquad b=\frac12e
+ a=-\frac d2e,\qquad b=\frac d2e
 \]
 
-for a unit vector \(e\).  For any \(x\in T_{ab}\), the two common-neighbor
-equations give
+for a unit vector \(e\).  Here \(0<d\le1\).  For any \(x\in T_{ab}\), the
+two common-neighbor equations give
 
 \[
  \lVert x-a\rVert^2=\lVert x-b\rVert^2=1.
@@ -180,13 +183,14 @@ equations give
 Subtracting them and then using either one yields
 
 \[
- \langle x,e\rangle=0,\qquad \lVert x\rVert^2=\frac34.  \tag{8}
+ \langle x,e\rangle=0,\qquad
+ \lVert x\rVert^2=r^2:=1-\frac{d^2}{4}.                  \tag{8}
 \]
 
 Thus
 
 \[
- y_x=\frac2{\sqrt3}x
+ y_x=\frac{x}{r}
 \]
 
 is a unit vector in the three-dimensional space \(e^\perp\).  For two common
@@ -194,33 +198,36 @@ neighbors, the global diameter bound is equivalent to
 
 \[
  1\ge\lVert x-z\rVert^2
- =\frac34\lVert y_x-y_z\rVert^2
- =\frac32\bigl(1-\langle y_x,y_z\rangle\bigr),
+ =r^2\lVert y_x-y_z\rVert^2
+ =2r^2\bigl(1-\langle y_x,y_z\rangle\bigr),
 \]
 
 so
 
 \[
- \langle y_x,y_z\rangle\ge\frac13.                       \tag{9}
+ \langle y_x,y_z\rangle\ge
+ c_d:=1-\frac1{2r^2}
+ =\frac{2-d^2}{4-d^2}\ge\frac13>0.                       \tag{9}
 \]
 
 Equality in (9) holds exactly when \(x,z\) are a diameter pair.  Lemma 1 with
-\(c=1/3\) partitions \(T_{ab}\) into three sets whose original diameters are
+\(c=c_d\) partitions \(T_{ab}\) into three sets whose original diameters are
 uniformly below one.  This proves the local claim (0).
 
-If \(ab\) is universal, then
+If \(a,b\) are both universal to all remaining points, then
 \(S=T_{ab}\mathbin{\dot\cup}\{a\}\mathbin{\dot\cup}\{b\}\).
 Give \(a\) and \(b\) two new singleton parts.  This is the required
 five-partition.
 
 For an arbitrary bounded, nonclosed \(S\), pass first to its closure.  The
-diameter is unchanged, and continuity preserves all universal-edge
+diameter is unchanged, and continuity preserves all co-universal distance
 equalities.  Apply the compact result and intersect its five parts with
 \(S\).
 
 ## 3. Exact constants and consequences
 
-At \(c=1/3\), the cap calculation is
+The smallest possible threshold occurs when \(d=1\), giving \(c_d=1/3\).
+At this endpoint the cap calculation is
 
 \[
  k^2=\frac59,qquad
@@ -234,7 +241,7 @@ strong pruning conditions already established in this program:
 
 1. it is \(K_5\)-free;
 2. it contains no \(K_6-e\) diameter subgraph;
-3. it contains no universal diameter \(K_2\); and
+3. it contains no pair of co-universal vertices; and
 4. it contains no pair of completely cross-joined blocks each carrying two
    diameter edges.
 
