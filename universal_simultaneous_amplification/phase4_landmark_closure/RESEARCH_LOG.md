@@ -131,3 +131,30 @@
   construction whose interval exceeds `3/2`.  Landmark-closure completion is
   estimated at **52%**; publication packaging remains deferred until one of
   the requested full outcomes is proved.
+
+## 2026-08-02 06:22 PDT — exact `1/n` modular tradeoffs
+
+- [PROVED] For any separated collection of weakly coupled complete modules
+  on an arbitrary connected weighted macrograph, both fixation excesses have
+  the exact form `n*Delta_U/(1-1/r)=E_U-L_U`: an additive local finite-size
+  budget minus a nonnegative global macro-failure charge.
+- [PROVED] If every module size diverges, each additional module contributes
+  one negative dB unit.  For `q_n` modules this gives dB deficit
+  `(1-1/r)(q_n-1-o(q_n))/n`, regardless of module proportions, degree scales,
+  or macrograph.
+- [PROVED] In a separated star with one growing complete core and arbitrarily
+  many heterogeneous `o(core)` complete satellites, actual dB amplification
+  forces a Bd deficit of order `q_n/n` for every fixed `r>sqrt(2)`.  The
+  scalar certificate is uniform over satellite sizes and scales, and
+  `sqrt(2)` is its exact coefficient-one threshold.
+- [PROVED ROUTE FALSIFICATION] A two-dense-clique family with a superweak cut
+  has complete support, normalized collision `O(1/n)`, temperatures tending
+  uniformly to one, and asymptotically saturates the inherited `r^3` cut
+  product, yet its fixation-sum deficit is only order `1/n`.  Local
+  diffuseness, temperature regularity, and the sharp cut product therefore
+  cannot yield a constant obstruction without a finite-size stability term.
+- [OPEN] These are class theorems, not a reduction from arbitrary graphs.
+  The exact complete-graph sum bound at `r=3/2`, the dB stationary
+  half-density/finite-size inequality at `r=2`, and any construction above
+  `3/2` remain open.  Landmark-closure completion is estimated at **59%**;
+  publication remains deferred pending a mission-level theorem.
