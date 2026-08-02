@@ -295,9 +295,10 @@ ten-complex support:
 This validates every layer of the proposed architecture in one instance.  It
 does not show that this support realizes other ellipses.
 
-## 9. Next lemmas and decision points
+## 9. Open gates if the program is resumed
 
-The next work should resolve these in order.
+The program is paused at this checkpoint.  If it is explicitly resumed, the
+next work should resolve these in order.
 
 1. **Normalization lemma.** Determine which affine normalizations of a
    positive plane ellipse preserve the mass-action monomial structure.  A

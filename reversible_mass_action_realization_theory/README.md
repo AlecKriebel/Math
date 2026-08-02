@@ -4,6 +4,14 @@ This is the separate follow-up program opened after the immutable Version 2
 release of *A reversible three-species mass-action continuum without a common
 factor*.  Nothing in this directory is part of, or changes, that release.
 
+## Status
+
+**Paused 2 August 2026.**  The program is preserved as a research checkpoint,
+not developed into a paper.  The exact framework, reusable remainder-map code,
+and independently verified seed remain available, but the proposed general
+ellipse-realization theorem is open.  No additional search, manuscript, or
+release is planned unless the program is explicitly resumed.
+
 ## Objective
 
 Characterize when a prescribed smooth positive complete intersection
@@ -43,10 +51,11 @@ intended proof architecture separates the problem into three exact layers:
 
 ## Reproduction
 
-From `/Users/alec/Documents/Math`, using the existing project environment:
+From the repository root, using a Python environment with the pinned
+dependency installed:
 
 ```text
-.venv/bin/python reversible_mass_action_realization_theory/verify_seed.py
+python reversible_mass_action_realization_theory/verify_seed.py
 ```
 
 All discovery in this project begins from exact algebra and finite graph
@@ -60,3 +69,7 @@ fixed-support conic preservation and a rational positive-kernel problem, plus
 the local rank criterion for a reduced conic component.  The seed support
 shows that these conditions can hold simultaneously for one ellipse and a
 four-dimensional cone of rates.
+
+The checkpoint does not establish an open family of realizable ellipses, a
+bounded-degree universal support, or a local-to-global theorem for residual
+steady components.  Those are the principal unresolved steps.
