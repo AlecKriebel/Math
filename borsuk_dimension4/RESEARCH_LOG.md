@@ -347,3 +347,31 @@ surviving six-chromatic realization or universal partition is yet known.
 Best-guess completion toward a full resolution: **15%**. All natural
 symmetry-preserving unions of the two largest exact golden orbits are now
 closed, while asymmetric deletions and graph-first deformations remain live.
+
+## 2026-08-01T18:01:38-07:00 — Universal-vertex cap regimes
+
+- Reduced a compact diameter set with one universal diameter vertex to an
+  acute compact set X on S^3 with all pair products at least 1/2. Its closest
+  cap has squared height h^2 >= 5/8.
+- Proved a uniform four-partition at the sharp endpoint h^2=5/8 using the
+  rigid equal-weight four-contact Gram matrix and adaptive safe-coordinate
+  regions. Hausdorff hyperspace compactness upgrades this to one universal,
+  though nonexplicit, interval 5/8 <= h^2 < 5/8+epsilon.
+- Proved a second uniform regime h^2 > (1+sqrt(3))/4 using the exact diameter
+  -1/sqrt(3) of a tetrahedral spherical Voronoi cell. A complete polynomial
+  factorization certifies the cell constant and its equality cases.
+- Derived weighted-polar coordinates for arbitrary four-contact supports.
+  When the transverse support is regular, nearest-contact cells work across
+  the entire intervening cap range, with explicit margin
+  (H-1/2)(3/2-2H)/(1-H).
+- Constructed an exact rational distorted support at H=17/25 and an
+  algebraic threshold pair lying strictly in one nearest-contact cell. This
+  rigorously falsifies the simplest adaptive extension and isolates the
+  remaining target as a compact nonregular middle band.
+- Expanded the dependency-free exact verifier to check all cap constants,
+  polar-cell vertices, radial signs, rational support weights and scores,
+  algebraic root intervals, and the strict distorted-support product bound.
+
+Best-guess completion toward a full resolution: **17%**. A universal
+diameter vertex is now handled in several robust regimes and all regular
+four-contact cases, but a nonregular middle-cap theorem is still missing.
