@@ -189,6 +189,16 @@ the all-`k` rank formula.  Restoring an incoming port remains strictly
 separating, so the move is arbitrary-size but root-local.  See
 `notes/MILESTONE_5G_JC_OMEGA_CHAIN.md`.
 
+Milestone 5H completes the arbitrary-subdivision root-blob JC `bowtie` atlas
+under the one-triangle restriction.  Exact replay of 192,000 relative support
+presentations yields 1,980 five-port and 7,380 six-port structures modulo
+isomorphism and `T`.  Among 24,660 exact invariant pullbacks, every collision
+is explained by contextual `C_root` or `Omega_chain`; overlapping probe
+triples promote the bounded result to arbitrary ordered port chains.  Thus
+the complete root move list is `{T,C_root,R3,Theta,Omega_chain}`.  One-sided
+containments and the global cut-edge locality argument remain open.  See
+`notes/MILESTONE_5H_JC_ARBITRARY_ROOT_BLOB_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

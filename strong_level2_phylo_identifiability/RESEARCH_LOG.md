@@ -615,3 +615,30 @@
   family and this `Omega_chain` family left; converting that census into the
   arbitrary-root completeness theorem is the next step.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T01:30:39-07:00 — arbitrary root-blob JC bowtie atlas completed
+
+- **EXACTLY COMPUTED:** unlifted finite supports give 304 five-port and 216
+  six-port canonical candidates.  All relative labellings comprise 36,480
+  and 155,520 presentations, respectively.
+- **EXACTLY COMPUTED:** canonical semi-directed quotienting by isomorphism
+  and `T` gives 1,980 five-port and 7,380 six-port structures.  Their 4,760
+  quartet restrictions reduce to 411 exact displayed-tree tensor types.
+- **EXACTLY COMPUTED:** all sixty root invariants on all tensor types give
+  24,660 exact polynomial pullbacks.  The five-port atlas has 1,500 singleton
+  classes, 60 two-structure `Omega_chain` classes, and 60 six-structure
+  contextual `C_root` classes.  Every `C_root` class collapses to one of 60
+  distinct cycle codes.
+- **EXACTLY COMPUTED:** all 7,380 six-port signatures are distinct.  Every
+  bounded collision is graphically replayed as its claimed move; complete
+  class-table digests are recorded in the certificate.
+- **PROVED:** the finite support-reduction theorem promotes this table to
+  arbitrary subdivisions.  Overlapping three-port probes determine a path
+  order up to one global reversal, so finite Omega collisions cannot be
+  chosen inconsistently on different subintervals.
+- **PROVED:** for arbitrary one-triangle root blobs, full-dimensional regular
+  JC overlap occurs exactly under the local move system
+  `{T,C_root,R3,Theta,Omega_chain}` and port-preserving isomorphism.
+- **UNRESOLVED:** one-sided root containments and the projective cut-edge
+  tensor extraction needed for the global `L_1/L_*` theorem remain open.
+- No literature search or numerical evidence is used.
