@@ -158,3 +158,35 @@
   half-density/finite-size inequality at `r=2`, and any construction above
   `3/2` remain open.  Landmark-closure completion is estimated at **59%**;
   publication remains deferred pending a mission-level theorem.
+
+## 2026-08-02 06:32 PDT — bounded dense-overlay route closed
+
+- [PROVED, ESTABLISHMENT] The collision-free dB rare-mutant branching
+  process has uniformly averaged survival at most `1-1/r`, with equality
+  only for an isothermal mixing kernel.  This is explicitly not used as a
+  finite-population fixation bound.
+- [PROVED, SUCCESSIVE LIMIT] For every fixed bounded undirected gadget
+  weakly overlaid on density-one complete support, the exact rare-colony
+  process retains all `2^k-1` nonempty local mutant configurations.  After
+  first taking the number of copies to infinity and then the gadget scale
+  `epsilon` to zero, its uniform dB establishment probability is
+  `1-1/r-C epsilon^2+O(epsilon^3)`, where
+  `C=(r-1)/r^2[Var(d)+2(r-1)sum_e a_e^2/k]>0` for every nonzero gadget.
+- [PROVED] For heterogeneous partner-pair overlays, the corresponding Bd
+  establishment correction is nonpositive at cubic order, with equality
+  only for a constant partner strength; the nonzero constant case is
+  globally weighted regular and ties the complete Bd value.
+- [EXACTLY VERIFIED] A symbolic verifier independently rebuilds and
+  differentiates the full colony systems for gadget orders two through four
+  and checks the general partner-pair cubic identity.
+- [EXACT COUNTEREXAMPLE / ROUTE STATUS] The stationary regeneration
+  reduction for the `r=2` dB dual is valid, but the tempting stopped-count
+  inequality for every arbitrary outside starting state is false on a
+  rational weighted `K_4`.  The desired stationary-mixture component-odds
+  inequality remains open; the BCRW comparison currently proves only a
+  one-step first-marginal drift fact.
+- [OPEN] Bounded protected states therefore cannot produce an improvement
+  at their first nonzero establishment order.  Growing gadgets and diagonal
+  regimes with `epsilon_n` comparable to `1/n` remain genuine construction
+  possibilities.  This class closure does not alter the mission status;
+  landmark-closure completion remains estimated at **59%**.
