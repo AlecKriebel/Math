@@ -33,7 +33,9 @@ complete, its first $1/r$ correction is no better than the complete graph's,
 and the excess loss has an explicit sum-of-squares certificate.  Equality
 forces all edge weights to be equal, in which case the process is exactly the
 complete-graph baseline.  The obstruction applies to every finite graph and
-therefore rules out every fitness-independent graph family.
+therefore rules out a family required to amplify at every fitness for each
+sufficiently large member.  It does not settle the reversed asymptotic order
+in which the size threshold may depend on a fixed fitness value.
 \end{abstract}
 
 \section{Relation to prior bounds}
@@ -101,9 +103,17 @@ $\rho_{\dB}(G,r)=1/2$ for all $r$.
 \end{enumerate}
 Consequently every graph not equivalent to $K_n$ is strictly dB-suppressed
 for all sufficiently large finite $r$, while a scaled $K_n$ ties the baseline
-for every $r$.  No graph, and hence no fitness-independent graph family, is a
-strict dB amplifier for every $r>1$; in particular universal simultaneous
-Bd/dB amplification is impossible.
+for every $r$.  In particular, no family $(G_N)$ can satisfy
+\[
+ \exists N_0\ \forall N\ge N_0\ \forall r>1:\quad
+ \rho_{\dB}(G_N,r)>\rho_{\dB}(K_{|V(G_N)|},r).
+\]
+Thus simultaneous Bd/dB amplification with this order of quantifiers is
+impossible.  The theorem does not decide whether
+\[
+ \forall r>1\ \exists N_0(r)\ \forall N\ge N_0(r)
+\]
+both strict amplification inequalities can hold for one family.
 \end{theorem}
 
 The two branches of the certificate are shown schematically in
@@ -261,12 +271,39 @@ $q_{\{i\}}(0)=1/n$.  The limiting transient chain absorbs almost surely, so
 Lemma~\ref{lem:perturbation} shows that the hitting probabilities are analytic
 near $\varepsilon=0$.
 
-The first-order equations for $|S|\ge3$ have no forcing: a rare loss still
-leaves at least two mutants, whose zeroth-order extinction probability is
-zero.  Backward induction from the full state gives
-\[
+For later use, we make the claimed first-order vanishing explicit.  Write
+$P_{ST}(\varepsilon)$ for the transition probability from $S$ to $T$.
+Every entry is analytic at zero: after multiplying mutant fitnesses by
+$\varepsilon$, each nontrivial denominator has a strictly positive constant
+term, while extinction from a singleton mutant death has probability exactly
+$1/n$.  At $\varepsilon=0$, a singleton either becomes extinct or creates a
+pair, and every state with at least two mutants then follows a pure-birth
+chain (apart from self-loops) to fixation.  Hence the full limiting transient
+matrix has spectral radius less than one.  The adjugate formula in
+Lemma~\ref{lem:perturbation} proves that every $q_S$ is analytic near zero.
+
+Differentiate the exact first-step system:
+\begin{equation}\label{eq:differentiated-system}
+ q'_S(0)=\sum_T P'_{ST}(0)q_T(0)
+          +\sum_T P_{ST}(0)q'_T(0).
+\end{equation}
+If $S$ is proper and $3\le m=|S|\le n-1$, a first-order loss removes only one mutant and therefore lands
+in a state with at least two mutants; all loss, self-loop, and gain
+destinations consequently have zeroth-order extinction probability zero.
+The first sum in \eqref{eq:differentiated-system} vanishes.  In the limiting
+chain, $P_{SS}(0)=m/n$ and $P_{S,S\cup\{v\}}(0)=1/n$ for each $v\notin S$, so
+\begin{equation}\label{eq:triangular-derivative}
+ (n-m)q'_S(0)=\sum_{v\notin S}q'_{S\cup\{v\}}(0).
+\end{equation}
+When $n\ge4$, the right side is zero for $m=n-1$ because $q_V\equiv0$;
+downward induction in mutant-set size then proves the assertion for all proper
+states with at least three mutants.  For $n\le3$ there are no such proper
+states, and $q'_V(0)=0$ in every dimension.  Thus $q'_S(0)=0$ for every
+$|S|\ge3$.  Analyticity
+therefore gives
+\begin{equation}\label{eq:three-mutant-vanishing}
  q_S(\varepsilon)=O(\varepsilon^2),\qquad |S|\ge3.
-\]
+\end{equation}
 
 For $S=\{i,j\}$, loss of mutant $i$ occurs with probability
 \[
@@ -298,7 +335,21 @@ outcome is a self-loop.  Hence
  \left(\frac1n+\sum_{j\ne i}t_{ij}\right)q_{\{i\}}
  =\frac1n+\sum_{j\ne i}t_{ij}q_{\{i,j\}}.
 \]
-Substitution of \eqref{eq:pair}, followed by uniform averaging, yields
+Substitution of \eqref{eq:pair} yields the useful vertexwise intermediate
+formula.  Define
+\[
+ R_i=\sum_{j\ne i}a_{ij},\qquad C_i=\sum_{j\ne i}a_{ji}.
+\]
+Since
+$\sum_{j\ne i}b_{ij}=(R_i+C_i)/(n(n-2))$, expansion of the preceding
+singleton equation gives
+\begin{equation}\label{eq:singleton-expansion}
+ q_{\{i\}}(\varepsilon)
+ =\frac1n+\frac{\varepsilon}{n^2}
+ \left[C_i+\frac{R_i+C_i}{n-2}\right]+O(\varepsilon^2).
+\end{equation}
+Now $\sum_iR_i=\sum_iC_i=T(G)$, and averaging
+\eqref{eq:singleton-expansion} yields
 \[
  T(G)=\sum_i\sum_{j\ne i}a_{ij},\qquad
  A(G)=\frac{T(G)}{n^2(n-2)},
@@ -330,7 +381,12 @@ The accompanying verifier is separate from the discovery implementation.  It
 constructs all subset-state transitions directly over $\mathbb Q(r)$, checks
 row normalization and termwise positivity after the substitution $r=1+x$,
 verifies strong lumpability of $K_n$ by mutant count, solves the exact
-absorbing equations, and extracts the limiting coefficients.
+absorbing equations, and extracts the limiting coefficients in representative
+finite instances.  These finite computations validate the implementation and
+replay benchmark consequences; they do not discharge the theorem's universal
+quantifier.  That quantifier is proved by the symbolic identities
+\eqref{eq:support-gap}, \eqref{eq:differentiated-system}--
+\eqref{eq:singleton-expansion}, and \eqref{eq:sos}.
 
 As one nontrivial replay, take a weighted triangle with edge weights
 $(w_{12},w_{13},w_{23})=(2,3,5)$.  Exact elimination gives
@@ -353,9 +409,7 @@ with lexicographic edge weights $(1,2,3,4,5,6)$.  For incomplete support it
 recovers limits $7/12$ for the four-vertex path and $9/16$ for the four-vertex
 star, against the baseline $3/4$.
 
-These calculations are checks, not evidence used to extend a finite search:
-the universal quantifier is discharged by the exact certificates
-\eqref{eq:support-gap} and \eqref{eq:sos}.
+These calculations are checks, not evidence used to extend a finite search.
 
 \section{Finite versus asymptotic statements}
 
@@ -371,6 +425,11 @@ one such suppressing tail already rules it out.  The equality case is exact,
 not asymptotic: global rescaling cancels from every neighbor-choice
 probability, so a uniformly weighted complete graph has precisely the
 baseline chain for all finite $r$.
+
+This argument does not interchange the limits in $n$ and $r$.  In particular,
+it leaves open the distinct possibility that one fitness-independent family
+might amplify at every fixed $r>1$ once $N\ge N_0(r)$, with its individual
+strong-selection thresholds tending to infinity.
 
 \begin{thebibliography}{9}
 

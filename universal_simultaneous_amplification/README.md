@@ -29,6 +29,19 @@ The coefficient vanishes only when every edge weight is the same, in which
 case `G` is exactly the complete baseline up to irrelevant global scaling.
 Thus every nonbaseline graph is dB-suppressing for all sufficiently large
 finite fitness, and the baseline itself never gives a strict inequality.
+Precisely, this rules out
+
+```text
+exists N0, for every N >= N0, for every r > 1: amplification.
+```
+
+It does not settle the reversed asymptotic quantifier order
+
+```text
+for every fixed r > 1, exists N0(r), for every N >= N0(r): amplification.
+```
+
+That question is a separate continuation track.
 
 This closes the weighted-complete case left open by the earlier general
 transience bound for noncomplete graphs; see `notes/LITERATURE_AUDIT.md` for the
@@ -46,17 +59,35 @@ reported theorem must have an exact proof certificate.
 - `src/`: exact Markov-chain and symbolic-certification code.
 - `tests/`: independent checks of transition and fixation formulas.
 - `certificates/`: exact polynomial-positivity or obstruction certificates.
+- `CLAIMS_LEDGER.md`: status and provenance of every substantive claim.
 - `figures/`: graph diagrams used in the manuscript.
 - `results/`: reproducible machine-generated summaries.
 
 ## Verification
 
-With SymPy 1.14 installed:
+One-time environment setup:
 
 ```bash
-PYTHONPATH=. python -m unittest discover -s tests -v
-PYTHONPATH=. python verification/verify_obstruction.py
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
 ```
+
+Then the complete Paper I reproduction is one command:
+
+```bash
+make paper1
+```
+
+Individual checks are also available:
+
+```bash
+make test
+make verify
+```
+
+The verifier checks the exact transition implementation and representative
+symbolic instances.  The all-graph quantifier is proved by the displayed
+support-gap and sum-of-squares identities in the paper, not by finite testing.
 
 The final manuscript is
 `output/pdf/universal_simultaneous_amplification_obstruction.pdf`; its source is

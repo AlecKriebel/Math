@@ -63,3 +63,33 @@
 - The present sum-of-squares correction closes that residual case for finite
   undirected symmetric loopless graphs.  Novelty wording remains qualified
   because the audit was narrow rather than exhaustive.
+
+## 2026-08-01 17:33 PDT — final-closure continuation initialized
+
+- Continued from the inherited theorem without restarting discovery.
+- Split the new work into exact directed complete-support, exact weighted
+  triangle, and asymptotic-family tracks, with separate output directories.
+- Began Phase 0 hardening: an explicit differentiated first-step proof now
+  establishes `q'_S(0)=0` for every state with at least three mutants, and the
+  vertexwise singleton expansion is displayed before averaging.
+- Corrected the family conclusion to distinguish `exists N0, forall N,
+  forall r` from `forall r, exists N0(r), forall N`.
+- Clarified that finite exact computations audit the implementation while
+  symbolic identities prove the universal theorem.
+- Best-guess completion: Paper I hardening 65%; directed extension 10%;
+  triangle classification 10%; asymptotic-family resolution 5%; overall
+  final-closure program 20%.
+
+## 2026-08-01 17:40 PDT — Phase 0 proof hardening verified
+
+- Rebuilt the exact differentiated first-step proof, including analyticity,
+  the proper-state size induction, the `n<=3` boundary case, pair forcing, and
+  the requested singleton expansion before averaging.
+- Added a claims ledger and a reproducible `make paper1` target. A fresh local
+  environment running SymPy 1.14 passed all six unit tests, the independent
+  exact verifier, and the complete manuscript build.
+- Rendered all seven pages of the repaired PDF and inspected them visually;
+  no clipping, overlap, broken glyph, or equation-placement defect remains.
+- Best-guess completion: Paper I hardening 95%; directed extension 15%;
+  triangle classification 15%; asymptotic-family resolution 5%; overall
+  final-closure program 25%.
