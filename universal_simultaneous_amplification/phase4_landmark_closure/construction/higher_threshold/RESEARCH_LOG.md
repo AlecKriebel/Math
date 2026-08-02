@@ -109,3 +109,22 @@ used.  Floating-point searches are reconnaissance only.
   portal-specific blade incidence, and genuinely nonseparated multiscale
   structures.  This remains a class theorem and does not change the proved
   lower bound `R_sim>=3/2` or the **59%** landmark-closure estimate.
+
+## 2026-08-02 11:09 PDT — unequal-load rank-one portal route closed
+
+- **PROVED CLASS NO-GO:** for an arbitrary finite set of unequal portal loads,
+  no direct portal edges, and an arbitrary positive rank-one portal-by-blade
+  incidence matrix, simultaneous Bd/dB establishment is impossible at every
+  `r>1`.  Portal identity is retained through the full `2^Q-1` episode.
+- The two exact portal scores have a pointwise sum equal to the negative of
+  four manifestly positive terms.  Summing over completely unequal loads
+  forces one strict establishment deficit, and the stopped-process upper
+  bound transfers that deficit to fixation without assuming successful
+  establishment implies fixation.
+- **EXACTLY VERIFIED:** symbolic sign identities and an independent labelled
+  subset solver agree over exact rationals with the exchangeable count solver
+  for both rules through `Q=6`.
+- **OPEN:** the rank-one hypothesis is substantive.  At `r=8/5`, exact loads
+  `1/100` and `2` favor opposite local rules, so a typewise summation cannot
+  handle genuinely higher-rank incidence.  That case is now the live portal
+  construction route; the landmark-closure estimate remains **59%**.

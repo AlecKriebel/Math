@@ -78,7 +78,16 @@ uniform in the portal count and consequently also excludes a diverging but
 sublinear portal set throughout the separated strong-pair regime with
 bounded normalized load.  The post-establishment drift is at least `r^3`
 for both rules, so the class failure is localized exactly at entrance.
-Positive-proportion or nonexchangeable portal architectures are not covered.
+Positive-proportion portal architectures are not covered.
+
+Portal exchangeability can now be dropped when the portal-by-blade incidence
+matrix has rank one and direct portal edges are absent.  Arbitrary unequal
+positive loads still obey a pointwise Bd--dB score identity whose sum is
+strictly negative for every `r>1`; hence this entire separated class has no
+simultaneous window.  The full labelled portal-subset trace is retained and
+checked exactly.  Genuinely higher-rank incidence remains open and cannot be
+closed type by type, because exact low- and high-load portal scores favor
+opposite rules.
 
 The current universal-obstruction attack factors the conjectured
 `r=3/2` fixation product through a conservative reversed-arrow dual.  Exact

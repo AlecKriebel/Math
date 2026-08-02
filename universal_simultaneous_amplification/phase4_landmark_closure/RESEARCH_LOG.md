@@ -373,3 +373,22 @@
   half-density ceiling, and dB complete-graph maximality at `r=2` remain
   unresolved.  This is the sharpest current unrestricted reduction, but not
   a mission-level upper bound; landmark-closure completion remains **59%**.
+
+## 2026-08-02 11:09 PDT — nonexchangeable rank-one portals closed
+
+- [PROVED CLASS NO-GO] For arbitrary finitely many unequal positive portal
+  loads, no direct portal edges, and any positive rank-one portal-by-blade
+  incidence matrix, the separated strong-pair family cannot simultaneously
+  amplify Bd and dB at any `r>1`.  The proof retains all `2^Q-1` labelled
+  portal subsets and the full multitype parent trace before rank-one collapse.
+- The Bd and dB portal score functions have a pointwise sum equal to the
+  negative of four manifestly positive terms.  Summation forces one strict
+  establishment deficit, which bounds fixation through a fixed-cutoff trace;
+  no independent-genealogy or post-establishment assumption is used.
+- [EXACTLY VERIFIED] After hostile rate and sign audits, a full rational
+  labelled-subset solver independently matches the count solver for both
+  rules through six portals.
+- [OPEN] Genuinely higher-rank incidence remains alive.  Exact loads `1/100`
+  and `2` at `r=8/5` favor opposite local rules, so typewise application of
+  the rank-one identity is invalid.  A separate multitype search is active;
+  the class closure does not alter the **59%** landmark estimate.
