@@ -348,3 +348,38 @@
   global local tensors, and the global `L_1` theorem remain open.
 - No numerical evidence, external catalogue, specialized network software,
   or literature search is used.
+
+## 2026-08-01T21:26:36-07:00 — arbitrary nonroot theta theorem closed
+
+- **PROVED:** every possibly nonstrong selected restriction induced from a
+  full strong theta blob is obtained by assigning selected labels to arbitrary
+  directed core segments and a subset of path-sink ports, then supplying
+  omitted sink children and missing minimal repairs with unobserved dummy
+  leaves.
+- **EXACTLY COMPUTED:** the five- and six-outgoing weak-target censuses contain
+  1,512 and 2,856 role presentations, reducing to 427 and 1,027 exact base
+  tensor decks.  Dummy-repair choice is exactly irrelevant after edge-product
+  reduction.
+- **EXACTLY COMPUTED:** the weak atlas uses 50 quartet tensor types, 40 new
+  beyond the strong-support atlas.  All 2,400 new root-invariant pullbacks are
+  replayed as exact rational polynomials.
+- **EXACTLY COMPUTED:** arbitrary relative labellings give 16,470 exact weak
+  signatures with five outgoing ports and 218,205 with six.  Strength status
+  never mixes within one signature.
+- **PROVED / EXACTLY COMPUTED:** the intersections with the strong atlas have
+  exactly 8,520 and 10,980 signatures.  Every intersecting target restriction
+  is itself strong.  Exact canonical graph replay checks all 12,720 and 43,920
+  intersecting labelled target presentations and finds zero non-`T` targets.
+- **PROVED:** equality of full blob closures implies equality of every selected
+  marginal closure because Fourier marginalization is a dominant edge-product
+  reparameterization.  The weak-target separation therefore forces each
+  bounded support restriction of a competitor to be strong and `T`-equivalent.
+- **PROVED:** Milestone 4A's support-plus-two deck then reconstructs every
+  complete ordered port word.  Arbitrary finite strongly tree-child nonroot
+  theta blobs have full-dimensional regular JC overlap if and only if they are
+  related by labelled isomorphism and ordinary triangle redirection `T`.
+- **UNRESOLVED:** one-sided weak-atlas containments, cross-generator local
+  comparisons, global cut-split/blob-tree recovery, and nonlocal ambiguity
+  remain open.
+- No numerical evidence, external catalogue, specialized network software,
+  or literature search is used.

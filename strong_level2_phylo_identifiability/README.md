@@ -101,9 +101,19 @@ quartet restrictions collapse exactly to 90 displayed-tree tensor types, and
 5,400 rational polynomial pullbacks give one distinct invariant signature per
 structural class.  Together with Milestones 3E and 3H, every strong support
 deck through six outgoing ports has full-dimensional regular JC overlap only
-under isomorphism or triangle redirection.  The cross-support nonstrong case
-needed for arbitrary blobs remains unresolved.  See
+under isomorphism or triangle redirection.  See
 `notes/MILESTONE_4B_JC_FULLY_LABELLED_SUPPORT_ATLAS.md`.
+
+Milestone 4C closes the cross-support gap and proves the arbitrary-size local
+theorem.  Every five- or six-outgoing restriction induced from a competing
+strong theta blob is enumerated, including genuinely nonstrong selected
+patterns.  Forty new reduced tensor types and 2,400 exact pullbacks show that
+no genuinely weak signature meets the strong atlas; all 56,640 intersecting
+strong target presentations are isomorphic or `T`-equivalent.  Combined with
+the bounded-deck reconstruction, arbitrary finite strongly tree-child
+nonroot theta blobs satisfy `bowtie_JC` exactly under isomorphism and `T`.
+Global blob-tree recovery and cross-generator comparisons remain unresolved.
+See `notes/MILESTONE_4C_JC_ARBITRARY_NONROOT_THETA.md`.
 
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
