@@ -90,9 +90,14 @@ def fixation(weights) -> sp.Rational:
             elif new_state:
                 matrix[row, index[new_state]] -= probability
 
-    numerator, denominator = matrix.to_DM().solve_den(rhs.to_DM(), method="rref")
+    matrix_domain = matrix.to_DM()
+    rhs_domain = rhs.to_DM()
+    numerator, denominator = matrix_domain.solve_den(rhs_domain, method="rref")
+    # Keep the residual check in the exact polynomial-domain representation.
+    # Multiplying the converted dense SymPy matrices is far more expensive
+    # because it repeatedly canonicalizes several-thousand-bit rationals.
+    assert matrix_domain * numerator == rhs_domain * denominator
     solution = numerator.to_Matrix() / denominator
-    assert matrix * solution == rhs
     return sp.cancel(
         sum(solution[index[1 << vertex]] for vertex in range(N)) / N
     )

@@ -18,11 +18,13 @@ is **OPEN**.  It would immediately rule out simultaneous amplification at
 `r=3/2`, and hence combine with the proved lower construction to give
 `R_sim=3/2`.
 
-This note records two exact advances and the finite diagnostics:
+This note records three exact advances and the finite diagnostics:
 
-1. (1) is **PROVED** for every positively weighted triangle, with a
+1. The complete graph is an exact strict local log-product maximizer on both
+   irreducible edge-perturbation modes through order seven.
+2. (1) is **PROVED** for every positively weighted triangle, with a
    manifestly nonnegative 24-atom polynomial certificate.
-2. The complete-graph dB harmonic at `r=3/2` has an unexpectedly simple
+3. The complete-graph dB harmonic at `r=3/2` has an unexpectedly simple
    closed form.  Applying it on an arbitrary graph gives an exact bridge
    between the dB harmonic defect and the Bd cut imbalance, with only one
    signed cut deviation and two explicit dispersion losses left over.
@@ -52,7 +54,8 @@ For `n=4,5,6,7`, both eigenvalues of the Hessian of
 `log(rho_Bd rho_dB)` are exact negative rationals.  In the cycle mode the Bd
 second variation is exactly zero, as required by the isothermal theorem,
 and the dB term is strictly negative.  The companion verifier prints all
-exact fractions.
+exact fractions.  Its memory-safe default runs through `n=6`; the separately
+audited order-seven calculation is enabled by `--include-n7`.
 
 This is an **EXACT LOCAL RESULT** only.  No claim of global log concavity is
 made; radial monotonicity toward the complete graph is numerically false far
@@ -234,5 +237,6 @@ only state-dependent self-loops.
   bound is also infeasible.  This falsifies that certificate architecture,
   not the fixation inequality.
 
-All search statements are **NUMERICALLY OBSERVED**.  Only Sections 1--3 are
-proved exactly.
+All search statements are **NUMERICALLY OBSERVED**.  Sections 0--3 are
+proved exactly, with Section 0 explicitly limited to the audited finite
+orders.

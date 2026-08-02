@@ -170,6 +170,25 @@ counterexample proves that this identity does not make the absorption
 functional concave; any nonreversible-capacity argument needs an additional
 monotone quantity.
 
+A narrower symmetrization conjecture survives the counterexample.  For a
+permutation matrix `Sigma`, numerical tests support
+
+\[
+ \rho_{\rm dB}\left({P+\Sigma P\Sigma^{-1}\over2},2\right)
+ \ge \rho_{\rm dB}(P,2).                               \tag{S}
+\]
+
+Unlike global concavity, the two endpoints in (S) are isomorphic and have
+exactly the same fixation value.  Iterating (S) over vertex permutations and
+using continuity would average `P` to the unique permutation-invariant
+zero-diagonal stochastic kernel, namely `K_n`.  Thus (S) alone would prove
+the regular maximizer theorem.  It holds for order four by (3)--(4), because
+there the fixation formula is a symmetric concave function of `(a,b,c)`.
+Random interior tests through order nine and tests near every sampled
+fractional-matching face through order nine found no violation.  This is
+**NUMERICAL ONLY**; neither a statewise harmonic comparison nor a proof of
+(S) is known.
+
 An equivalent-looking regular-only marginal target also survived the
 screens.  If `p_i` is the stationary dB-dual occupancy marginal and
 
@@ -234,6 +253,11 @@ and hence `m<=1-1/c_n=rho_dB(K_n,2)`.  This reaches the finite baseline; the
 ordinary coefficient-two odds inequality reaches only `m<=1/2`.
 
 ## 3. Reproduction
+
+The exact order-seven solve is substantially faster and uses much less
+memory when SymPy can use `python-flint` as its rational-arithmetic backend.
+On the project hardware, install both packages in an isolated environment
+before running the exact counterexample.
 
 Use a single BLAS thread to avoid oversubscription on the exact-state solves:
 

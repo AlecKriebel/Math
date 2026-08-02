@@ -233,3 +233,16 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   polytope, closing the naive permutation-averaging proof.  The counterexample
   lies strictly below `K_7`, and broad order-nine screens still support but
   do not prove the regular maximizer or aggregate stationary-odds conjecture.
+- 07:51 -- [PROVED REFORMULATIONS / EXACT FINITE CERTIFICATES] Rewrote the
+  `r=2` component-odds target as the stationary comparison
+  `E_{pi_i^0}h_i<=E_{eta_i}g` and split it exactly through a zero-count-biased
+  post-clock law.  Directed and symmetric rational counterexamples close
+  several stronger intermediate arguments, but neither side of the special
+  undirected stationary sandwich has failed.  Separately, at `r=3/2` the
+  fixation-product inequality is proved for every positive weighted triangle
+  by a 24-atom square certificate.  The exact complete-dB harmonic produces
+  an arbitrary-graph Bd--dB drift bridge with one unresolved signed row-cut
+  term and two nonnegative dispersion losses.  Full-chain differentiation
+  proves strict local log-product maximality of `K_n` on both edge modes for
+  exact orders four through seven.  The all-order product inequality remains
+  OPEN.

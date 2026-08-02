@@ -213,3 +213,32 @@
   survived searches through order nine but has no proof.  This checkpoint is
   a finite class theorem and does not change the landmark-closure estimate of
   **59%**.
+
+## 2026-08-02 07:51 PDT — stationary-odds and three-halves product checkpoint
+
+- [PROVED REFORMULATION] At dB fitness two, the component-odds conjecture is
+  exactly `E_{pi_i^0} h_i <= E_{eta_i} g`, comparing the stationary outside
+  law conditional on a target hole with the post-clock law.  An exact
+  zero-count bias splits its slack into a left stationary-resolvent term and
+  a covariance term.  Both proposed signs remain open for undirected weighted
+  graphs and survived the current exact screens.
+- [EXACT ROUTE FALSIFICATIONS] The left split fails for directed kernels,
+  while two natural intermediate resolvent inequalities and generic
+  association/scalar-order shortcuts fail on symmetric weighted `K_4`s.
+  Exact rational verifiers preserve each counterexample without weakening
+  the still-open admissible target.
+- [PROVED FINITE CLASS] At `r=3/2`, every positive weighted triangle obeys
+  the fixation-product bound, strictly unless all three weights agree.  Its
+  exact numerator is a sum of 24 positive squared-difference atoms.
+- [PROVED IDENTITIES] The complete dB count harmonic is
+  `[n-(n+k/2)(2/3)^k]/[n(1-(2/3)^(n-1))]`.  Its drift on an arbitrary graph
+  cancels the Bd temperature defect exactly and leaves one signed row-cut
+  deviation plus two nonnegative dispersion losses.  This identifies, but
+  does not control, the remaining occupation-measure term.
+- [EXACT LOCAL RESULT / OPEN GLOBAL CLAIM] The log fixation product has zero
+  first variation and strictly negative Hessian on both irreducible edge
+  perturbation modes at `K_n` for exact orders four through seven.  All 995
+  connected unweighted graphs through order seven and extensive weighted
+  searches obeyed the product comparison, but these searches are not proof.
+  The universal product inequality—and hence `R_sim=3/2`—remains OPEN.
+  Landmark-closure completion remains estimated at **59%**.

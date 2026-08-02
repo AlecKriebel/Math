@@ -16,7 +16,7 @@ search on orders 4--7, including boundary supports and separated rational
 weight scales, and (ii) discovery of a universal exact certificate or a
 rational counterexample.  Numerical output is discovery evidence only.
 
-## 2026-08-02 09:10 PDT
+## 2026-08-02 07:15 PDT
 
 The unweighted atlas evaluation is complete through order seven: all 995
 connected isomorphism classes, including 853 of order seven.  Neither the
@@ -32,7 +32,7 @@ linear feasibility problem and is false even on weighted paths.  Its
 baseline-weighted (product-tangent) version is also false.  This does not
 refute either fixation inequality.
 
-## 2026-08-02 10:05 PDT
+## 2026-08-02 07:35 PDT
 
 Pivoted to the weaker but decisive product conjecture
 `rho_Bd rho_dB <= rho_Bd(K_n) rho_dB(K_n)`.  Proved it exactly for every
@@ -51,3 +51,11 @@ the log-product has zero first variation and negative Hessian on both
 irreducible edge modes for `n=4,5,6,7`.  This is local only.  Numerical radial
 monotonicity is false far from the complete graph, so a star-concavity proof
 cannot be used.
+
+The similarly tempting symmetric balancing step
+`w_ij -> w_ij/sqrt(d_i d_j)` is locally favorable and increased the product
+on all moderate tests, but it is not globally monotone.  A connected sparse
+order-six separated-scale instance decreased the product from about
+`0.0542035` to `0.0522807` after one step.  Both values are far below the
+complete baseline, so this falsifies only the balancing proof route, not the
+product conjecture.

@@ -52,3 +52,21 @@
   global concavity.
 - The aggregate stationary-odds inequality (5) is now the cleanest surviving
   regular-only target.  Subtask completion estimate: **73%**.
+
+## 2026-08-02 07:38 PDT -- orbital symmetrization survives
+
+- The exact global-concavity counterexample mixes two nonisomorphic boundary
+  types.  The strictly weaker orbital statement
+  `rho((P+sigma P sigma^-1)/2)>=rho(P)` would still suffice, because repeated
+  permutation averaging converges to the complete kernel.
+- **NUMERICALLY OBSERVED:** orbital symmetrization has positive slack on
+  random regular kernels through order nine and near sampled extreme faces
+  through order nine.  It follows exactly at order four from the proved
+  symmetric concave formula.
+- **FAILED PROOF ATTEMPT:** averaging the two endpoint harmonic functions is
+  not statewise subharmonic for the midpoint chain; roughly half the
+  transient states have the wrong drift sign in random order-five and
+  order-six tests.  Any proof must use the uniformly averaged singleton
+  functional rather than a pointwise maximum principle.
+- **OPEN:** both orbital symmetrization and aggregate stationary odds.
+  Subtask completion estimate: **78%**.

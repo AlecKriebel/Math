@@ -9,6 +9,7 @@ It is a local certificate, not a global concavity theorem.
 
 from __future__ import annotations
 
+import argparse
 from functools import lru_cache
 
 import sympy as sp
@@ -107,7 +108,15 @@ def second_variation(n: int, direction, rule: str):
 
 
 def main():
-    for n in (4, 5, 6, 7):
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--include-n7",
+        action="store_true",
+        help="also run the substantially heavier exact 126-state audit",
+    )
+    args = parser.parse_args()
+    orders = (4, 5, 6, 7) if args.include_n7 else (4, 5, 6)
+    for n in orders:
         degree, cycle = directions(n)
         records = []
         for label, direction in (("degree", degree), ("cycle", cycle)):
@@ -118,10 +127,13 @@ def main():
             if label == "cycle":
                 assert bd2 == 0
             records.append((label, bd2, db2, log_product))
-        print("n", n)
+        print("n", n, flush=True)
         for record in records:
-            print(*record)
-    print("PASS: exact log-product Hessian is negative on both irreducible modes")
+            print(*record, flush=True)
+    print(
+        "PASS: exact log-product Hessian is negative on both irreducible modes",
+        flush=True,
+    )
 
 
 if __name__ == "__main__":
