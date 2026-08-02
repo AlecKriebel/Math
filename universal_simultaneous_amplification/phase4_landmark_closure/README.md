@@ -57,6 +57,13 @@ identity for the natural singular four-vertex module and an exact rooted
 portal favorable to both rules at `r=31/20`; neither yields a population
 construction beyond `3/2`.
 
+A separate exact burst analysis now excludes all separated one-portal
+mesoscopic modules made from a growing diffuse family of protected two-state
+blades in a broad compact regime.  For literal strong pairs the obstruction
+already begins at `(1+sqrt(3))/2`; the homogeneous Bd and dB load windows are
+disjoint for every `r>1`.  This is a class theorem, not a universal upper
+bound: nonseparated and multi-portal architectures remain open.
+
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
 will be listed as a human-only next action.

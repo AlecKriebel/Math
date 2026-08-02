@@ -41,3 +41,25 @@ used.  Floating-point searches are reconnaissance only.
 - No global architecture beyond `3/2` survived.  Completion estimate toward a
   rigorous interval beyond `3/2`: **32%**; completion toward a useful exact
   higher-threshold search report: **95%**.
+
+## 2026-08-02 08:33 PDT — separated mesoscopic pair route closed
+
+- **PROVED CLASS NO-GO:** a growing one-portal module with arbitrarily many
+  diffuse strong-pair blades has exact heterogeneous Bd and dB geometric-burst
+  extinction equations.  Jensen in the Bd child law and reciprocal Jensen in
+  the dB child law give a constant survival-odds-product obstruction.
+- For every fixed `r>(1+sqrt(3))/2`, the two uniformly initialized limiting
+  establishment probabilities cannot both reach the infinite-complete
+  baseline.  With uniformly nondegenerate blade/portal ratios, a slowly
+  diverging stopped cutoff and an arbitrarily rarer connected portal
+  macrograph turn this into a finite-graph no-go.  Hence this whole separated
+  mesoscopic route cannot improve the interval beyond `3/2`.
+- **EXACTLY VERIFIED:** an independent symbolic script checks the extinction
+  identities, sharp envelopes, scalar maximization and radical sign
+  certificate.  A second verifier reconstructs every transition of the exact
+  homogeneous lump from the vertex rules and checks its finite-chain
+  convergence to the proved limit.
+- **OPEN:** nonseparated coupling, multiple active portals, unbalanced graph
+  regimes outside the stated compactness hypotheses, and the universal
+  threshold.  This closes a construction class but supplies no new lower
+  construction beyond `3/2`.

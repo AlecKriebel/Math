@@ -242,3 +242,25 @@
   searches obeyed the product comparison, but these searches are not proof.
   The universal product inequality—and hence `R_sim=3/2`—remains OPEN.
   Landmark-closure completion remains estimated at **59%**.
+
+## 2026-08-02 08:33 PDT — mesoscopic two-state trace obstruction
+
+- [PROVED CLASS NO-GO] In the balanced strong-pair windmill regime, retaining
+  the entire geometric portal burst gives rank-one multitype offspring laws
+  with common Perron value `r^3` but reciprocal Bd/dB type biases.  Sharp
+  Jensen bounds imply that uniform Bd and dB establishment cannot both reach
+  `1-1/r` for any fixed `r>(1+sqrt(3))/2`.
+- [PROVED GRAPH CONSEQUENCE] Under uniformly nondegenerate pair/portal ratios,
+  compact total load, a slowly diverging stopped cutoff, and still-rarer
+  intermodule coupling, granting immediate global fixation at the cutoff
+  rigorously excludes every separated repeated pair-module construction in
+  the target range above `3/2` (apart from the irrelevant unresolved endpoint
+  `r=2`, since failure at any other fixed fitness already closes the class as
+  an asymptotically universal candidate).
+- [EXACTLY VERIFIED] The symbolic tradeoff certificate and an independent
+  vertex-rule reconstruction of the full homogeneous lump both pass.  In the
+  homogeneous case, Bd amplification requires `c>1/2`, whereas dB requires
+  `c<(1+r-r^2)/2<1/2`, so their windows never overlap.
+- [OPEN] This is not a universal graph reduction.  Nonseparated multiscale
+  dynamics and the exact `r=3/2` fixation-product inequality remain the main
+  live routes.  Landmark-closure completion remains **59%**.
