@@ -249,3 +249,26 @@ theorem unresolved.
 Best-guess completion toward a full resolution remains **10%**. The stronger
 local rule materially prunes graph candidates but does not yet color a
 general diameter graph.
+
+## 2026-08-01T17:16:15-07:00 — Exact 600-point dual-orbit elimination
+
+- Reconstructed the derived 600-point golden orbit exactly as the distinct
+  scaled centroids of all tetrahedral cliques in the positive golden
+  relation. Every point has squared norm 112+48 sqrt(5), and the complete
+  pair-product spectrum has 30 levels.
+- Exhausted every possible diameter threshold for every subset of this
+  orbit. At five low thresholds, explicit full-relation five-colorings
+  eliminate all subsets.
+- At each of the other 25 thresholds, an exact transitivity reduction and a
+  complete compatible-core recursion prove that no admissible induced graph
+  has minimum degree five. Every such graph is therefore 4-degenerate and
+  five-colorable. The hardest threshold required 16,176 initial neighbor
+  seeds and 19,803 exact recursive states.
+- The standard-library verifier rebuilds the roots, 600 tetrahedra, centroid
+  coordinates, reflection action, all product and compatibility relations,
+  frozen colorings, and all core searches in about four seconds. This closes
+  the entire single-orbit family, while mixed golden orbits remain open.
+
+Best-guess completion toward a full resolution: **11%**. The largest exact
+single-orbit search has been closed completely, but no counterexample or
+universal partition theorem is yet known.
