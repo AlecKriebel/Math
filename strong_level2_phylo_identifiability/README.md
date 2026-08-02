@@ -163,6 +163,13 @@ and 15 semi-directed topologies.  The new move `R3` can change generator type
 and reticulation count.  See
 `notes/MILESTONE_5D_JC_ROOT_THREE_PORT_SATURATION.md`.
 
+Milestone 5E closes the one-sided three-port question.  The exact invariant
+`r12*r13*r23-u123^2` vanishes on the ordinary tree and is strictly positive
+throughout every open cycle/theta parameter cube.  Seven complete Bernstein
+certificates have no negative coefficients.  Hence the tree and `R3` classes
+have disjoint stochastic interiors, and neither one-sided containment occurs.
+See `notes/MILESTONE_5E_JC_ROOT_THREE_PORT_TREE_SEPARATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

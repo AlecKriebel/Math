@@ -538,3 +538,24 @@
 - **UNRESOLVED:** one-sided containment of the ordinary-tree tensor and the
   arbitrary subdivided root atlas from four ports upward remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T00:24:07-07:00 — tree/reticulate three-port separation completed
+
+- **PROVED:** `F=r12*r13*r23-u123^2` vanishes identically on the ordinary
+  three-port tree model.
+- **EXACTLY COMPUTED:** after dividing positive pendant squares and exact
+  open-cube factors `x` and `1-x`, every one of the seven reticulate
+  pullbacks has a natural tensor-product Bernstein expansion with no negative
+  coefficients and at least one positive coefficient.
+- **EXACTLY COMPUTED:** the positive-coefficient counts for the two cycles
+  and five thetas are `6,1,1464,1671,3016,266,268`; all remaining
+  coefficients are zero and every coefficient lies in `[0,1]`.
+- **PROVED:** Bernstein basis functions and all removed factors are strictly
+  positive on the open cube, so `F>0` throughout every reticulate model.
+- **PROVED:** the ordinary-tree and `R3` classes have disjoint complete open
+  stochastic interiors. Neither direction admits one-sided generic
+  containment. This completes the full three-port root `bowtie_JC` and
+  containment atlas.
+- **UNRESOLVED:** complete-image equality among distinct `R3` reticulate
+  models is not claimed; arbitrary root blobs from four ports upward remain.
+- No literature search or numerical evidence is used.

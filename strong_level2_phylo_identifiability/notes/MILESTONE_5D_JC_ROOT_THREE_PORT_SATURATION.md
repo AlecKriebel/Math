@@ -260,8 +260,9 @@ local observational class.  Replacing the three port leaves by arbitrary
 identical triangle-free descendant components gives arbitrarily large
 examples in `L_1`.
 
-**UNRESOLVED.** Whether the dimension-three ordinary-tree image has a
-one-sided generic containment in any reticulate image is not claimed here.
+**PROVED.** Milestone 5E subsequently proves the strict separator
+`r12*r13*r23-u123^2>0` on every open reticulate model, while it vanishes on
+the ordinary tree.  Thus no one-sided tree/reticulate containment occurs.
 The remaining JC root-local problem now begins at four outgoing ports for
 arbitrarily subdivided blobs; the simple four-port theta slice is already
 classified by Milestone 3D.
