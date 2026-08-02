@@ -136,6 +136,15 @@ Unlabelled degree-two root factors, local tensor extraction, and the arbitrary
 root-blob atlas remain open. See
 `notes/MILESTONE_5A_JC_CUT_SPLIT_RECONSTRUCTION.md`.
 
+Milestone 5B classifies the only nontrivial blob that the reduced split tree
+can suppress. The unique two-port root cycle has exactly the same complete
+open JC stochastic image as an ordinary binary root, even after arbitrary
+corresponding network components are substituted at its ports. Explicit
+rational maps work in both directions. The move `C_root` is genuine if the
+parallel edge created by root suppression is retained, and is already zipped
+away under the alternative simple-graph convention. See
+`notes/MILESTONE_5B_JC_ROOT_TWO_PORT_COLLAPSE.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

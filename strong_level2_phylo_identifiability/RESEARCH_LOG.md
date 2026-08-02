@@ -454,3 +454,31 @@
   comparisons, arbitrary root-blob classification, and one-sided global
   containment remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-01T23:30:19-07:00 — two-port root cycle collapses exactly under JC
+
+- **PROVED:** the unique strongly tree-child two-port root cycle has complete
+  Fourier tensor `(1,rho,rho,rho)` on zero-sum characters, where
+  `rho=p*q*(lambda*t+(1-lambda)*s*u)` lies in `(0,1)`.
+- **PROVED:** an ordinary binary root with arm multipliers `c,d` has the same
+  tensor with effective parameter `c*d`. The rational map
+  `c=(1+rho)/2`, `d=2*rho/(1+rho)` sends every open cycle point to an open
+  tree point.
+- **PROVED:** every open tree point maps rationally back by setting
+  `r=c*d`, `C=(1+r)/2`, `H=4*r/(1+r)^2`,
+  `p=q=C`, `t=H`, `s=(1+H)/2`, `u=2*H/(1+H)`, and `lambda=1/2`.
+  The factor `(1-r)^2` certifies `H<1`.
+- **PROVED:** the two complete open stochastic images are equal and remain
+  equal after arbitrary corresponding rooted JC components are substituted
+  at both ports. Both local images have dimension one and are regular
+  throughout their open domains.
+- **EXACTLY COMPUTED:** one common point has effective multiplier `41/180`,
+  matching tree arms `221/360,82/221`, and nonzero rank minors `82/225` and
+  `82/221`.
+- **PROVED:** this is the only possible degree-two nontrivial blob factor in
+  the strong level-2 class. Under a multiplicity-retaining semi-directed
+  convention it is a new move `C_root`; under a root-zipped convention it is
+  already suppressed.
+- **UNRESOLVED:** arbitrary degree-at-least-three root blobs and the K2P/K3P
+  behavior of this move remain open.
+- No literature search or numerical evidence is used.
