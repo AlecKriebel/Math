@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Independent exact checks for the Phase-4 obstruction identities.
 
-The checks use only ``fractions.Fraction``.  They build singleton transitions
-directly from the two update definitions and compare them with the closed
-forms in REPORT.md.  This is a finite identity verifier, not evidence for any
-open asymptotic claim.
+The checks use only ``fractions.Fraction``.  They build singleton and general
+mutant-set transitions directly from the two update definitions and compare
+them with the closed forms in REPORT.md.  This is a finite identity verifier,
+not evidence for any open asymptotic claim.
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ def random_weights(order: int, rng: random.Random) -> list[list[Fraction]]:
     return weights
 
 
-def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> None:
+def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> int:
     order = len(weights)
     degrees = [sum(row) for row in weights]
     influence = [
@@ -102,18 +102,107 @@ def check_graph(weights: list[list[Fraction]], fitness: Fraction) -> None:
     assert fitness - lambda_average == exact_deficit
     assert exact_deficit >= (fitness - 1) * concentration
 
+    # General-state check of (40)--(42).  Here transition is the row-
+    # stochastic kernel P, in contrast with the transposed indexing used by
+    # ``influence`` above.
+    transition = [
+        [weights[i][j] / degrees[i] for j in range(order)]
+        for i in range(order)
+    ]
+    state_cases = 0
+    for mask in range(1, (1 << order) - 1):
+        mutant = [(mask >> i) & 1 for i in range(order)]
+        mutant_count = sum(mutant)
+        total_fitness = order + (fitness - 1) * mutant_count
+        x = [
+            sum(transition[i][j] * mutant[j] for j in range(order))
+            for i in range(order)
+        ]
+        flow_out = sum(1 - x[i] for i in range(order) if mutant[i])
+        flow_in = sum(x[i] for i in range(order) if not mutant[i])
+        assert flow_out > 0 and flow_in > 0
+
+        direct_bd_up = Fraction(0)
+        direct_bd_down = Fraction(0)
+        for parent in range(order):
+            for target in range(order):
+                if not weights[parent][target]:
+                    continue
+                probability = (
+                    (fitness if mutant[parent] else 1)
+                    / total_fitness
+                    * weights[parent][target]
+                    / degrees[parent]
+                )
+                if mutant[parent] and not mutant[target]:
+                    direct_bd_up += probability
+                elif not mutant[parent] and mutant[target]:
+                    direct_bd_down += probability
+        assert direct_bd_up == fitness * flow_out / total_fitness
+        assert direct_bd_down == flow_in / total_fitness
+        ratio_bd = direct_bd_up / direct_bd_down
+        assert ratio_bd == fitness * flow_out / flow_in
+
+        direct_db_up = Fraction(0)
+        direct_db_down = Fraction(0)
+        for target in range(order):
+            denominator = sum(
+                weights[parent][target]
+                * (fitness if mutant[parent] else 1)
+                for parent in range(order)
+            )
+            for parent in range(order):
+                if not weights[parent][target]:
+                    continue
+                probability = (
+                    Fraction(1, order)
+                    * weights[parent][target]
+                    * (fitness if mutant[parent] else 1)
+                    / denominator
+                )
+                if mutant[parent] and not mutant[target]:
+                    direct_db_up += probability
+                elif not mutant[parent] and mutant[target]:
+                    direct_db_down += probability
+        closed_db_up = (
+            fitness
+            / order
+            * sum(
+                x[i] / (1 + (fitness - 1) * x[i])
+                for i in range(order)
+                if not mutant[i]
+            )
+        )
+        closed_db_down = (
+            Fraction(1, order)
+            * sum(
+                (1 - x[i]) / (1 + (fitness - 1) * x[i])
+                for i in range(order)
+                if mutant[i]
+            )
+        )
+        assert direct_db_up == closed_db_up
+        assert direct_db_down == closed_db_down
+        ratio_db = direct_db_up / direct_db_down
+        assert ratio_bd * ratio_db <= fitness**3
+        state_cases += 1
+    return state_cases
+
 
 def main() -> None:
     rng = random.Random(20260801)
     cases = 0
+    state_cases = 0
     for order in range(3, 9):
         for fitness in (Fraction(11, 10), Fraction(6, 5), Fraction(2), Fraction(7)):
             for _ in range(20):
-                check_graph(random_weights(order, rng), fitness)
+                state_cases += check_graph(random_weights(order, rng), fitness)
                 cases += 1
-    print(f"PASS: {cases} exact weighted-graph identity checks")
+    print(
+        f"PASS: {cases} exact weighted-graph and "
+        f"{state_cases} nonabsorbing-state checks"
+    )
 
 
 if __name__ == "__main__":
     main()
-

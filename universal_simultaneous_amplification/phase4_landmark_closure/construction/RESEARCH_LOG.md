@@ -83,3 +83,49 @@ No literature search or external contact is used during discovery.
   comparison coefficient, quadratic numerator, and regular-spoke
   specialization; all four identities pass exactly.
 - Discovery-goal completion estimate: **46%**.
+
+## 2026-08-01 22:00 — corrected center-clique/pair audit
+
+- Independently audited a proposed center-clique plus weak-pair construction.
+  A missing `1/r` in the dB reverse-invasion event is decisive.
+- In its separated limit, the leaf-singleton fixation probabilities are
+
+      p_B = r/(r+1) * z(r^2-1)/(1+z(r^2-1)),
+      p_D = r(r-1)/(z+2r(r-1)).
+
+  Bd amplification requires `z>1`, whereas dB amplification requires
+  `z<2r-r^2<1`.  Thus that candidate has no simultaneous interval.
+- Added an exact center-count/pair-histogram quotient and an independent
+  full-subset `Fraction` verifier; all transition checks pass.
+- Discovery-goal completion estimate: **50%**.
+
+## 2026-08-01 22:30 — proved triangle-satellite construction to `r<3/2`
+
+- Replaced each pair by the singular weighted triangle with one unit edge and
+  two edges `delta=N^-4`.  Take a center clique of size `N`, `N^2` modules,
+  each center edge of weight `N^-3`, and every center--module edge of weight
+  `N^{-N^3}`.
+- `PROVED`: for every fixed `r>1`, both Bd and dB fixation probabilities tend
+  to `1/3`.  Hence this one fitness-independent family simultaneously
+  amplifies every fixed `1<r<3/2` eventually and proves `R_sim>=3/2`.
+- Derived the exact six-transient-state module formulas.  The initial uniform
+  module fixation tends to `1/3` for both rules.  The resident-center versus
+  mutant-module successful-rate ratios grow as
+
+      A_B ~ (r-1)N^2/2,
+      A_D ~ 6r^2(r-1)N^2/(2r+1).
+
+  Once the center is mutant, reversal before all `N^2` modules convert has
+  probability `O_r(N^4 r^-N)`.
+- Proved a quantitative rare-edge trace lemma.  For the explicit outer weight,
+  its per-excursion error has logarithm
+  `-N^3 log N+O_r(N log N)`; union over `N^10` excursions is still `o(1)`.
+- Exact symbolic triangle certificate: all identities, limits, center reverse
+  ratios, and threshold inequalities pass.  Exact full-chain aggregation
+  confirms the center-count/eight-mask-histogram quotient under both rules.
+- `PROVED`: at `r=3/2`, the graph-minus-complete comparisons are
+  `-4/(3N^2)+o(N^-2)` for Bd and `-16/(81N^2)+o(N^-2)` for dB.  Hence
+  `(1,3/2)` is the exact asymptotic fixed-fitness interval of this family.
+- Any improvement beyond `3/2` and a universal upper bound remain `OPEN`.
+- Discovery-goal completion estimate: **78%**.  A substantially improved lower
+  theorem is closed; the landmark all-`r`/exact-threshold mission is not.

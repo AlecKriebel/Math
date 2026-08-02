@@ -60,3 +60,35 @@ rigorous new threshold result: **5%**.
 
 Status: **PROVED new broad-family no-go; global threshold remains OPEN.**
 Estimated completion toward a rigorous global threshold result: **18%**.
+
+### 2026-08-01 — singular-triangle construction and new lower bound
+
+- Considered a clique center and many weakly attached copies of the weighted
+  triangle with strong edge `AC=1` and weak edges `AB=BC=delta`.
+- **EXACTLY COMPUTED:** as `delta -> 0`, isolated-leaf singleton fixation
+  vectors are `(0,1,0)` for Bd and `(1/2,0,1/2)` for dB.  Both uniform
+  establishment probabilities tend to `1/3`.
+- **EXACTLY COMPUTED:** for dB, the inverse-degree entry sum satisfies
+  `J_L(r) -> (r+2)/2` and the full effective forward/reverse factor is
+  `r^3(r+2)/(2r+1)`.  This independently confirms the reverse-invasion
+  defense factors.
+- Derived the rare-migration trace rates directly from both update rules.
+  With center size `c`, per-edge center weight `z`, and a three-vertex leaf,
+  the leading simultaneous scale window is
+
+  `6 delta/[c(3-2r)] < z < 2 r^2(3-2r)/[c(2r+1)]`
+
+  for every fixed `1<r<3/2`.
+- **PROVED:** take `c_N=N`, `M_N=N^2` leaves, `delta_N=N^-4`,
+  `z_N=N^-3`, and complete center--leaf edge weight
+  `epsilon_N=2^(-2^(N^4))`.  For both rules and every fixed `r>1`, the
+  graph fixation probability tends to `1/3`.  Therefore it strictly exceeds
+  the complete-graph baseline for every fixed `1<r<3/2` and all sufficiently
+  large `N`.
+- This gives the new rigorous lower bound `R_sim >= 3/2`, improving the
+  inherited `1.2` benchmark.  It does not prove an upper bound.
+- Added a from-definitions symbolic certificate and a full proof note.
+  `verify_triangle_star.py` passes all exact assertions.
+
+Status: **PROVED `R_sim >= 3/2`; exact global threshold remains OPEN.**
+Estimated completion toward a rigorous threshold result: **55%**.

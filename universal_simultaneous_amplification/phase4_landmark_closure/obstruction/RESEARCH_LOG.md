@@ -77,3 +77,37 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   inequality, Alternative O proof, or upper bound on `R_sim` was obtained.
   Obstruction-subtask completion estimate: **75%**; landmark-closure estimate:
   **35%**.
+- 23:08 -- [PROVED / AUDITED] Rebuilt the report after a Markdown/LaTeX
+  encoding failure.  A UTF-8 scan now finds no control or replacement
+  characters and all displayed-math delimiters are balanced.  Expanded the
+  genealogy argument into a breadth-first conditional-offspring coupling,
+  explicitly stopped at $n$ lineages, so it does not make the false stronger
+  claim that a post-fixation genealogy is dominated forever.  Also derived
+  the exact complete dB baseline
+  `(1-1/r)(1-1/n)/(1-r^(1-n))`.  The decisive missing term is now explicit:
+  the baseline lies `a/n+O(r^-n)` below `a=1-1/r`, whereas the universal PGF
+  method has an irreducible `O(log(n)/n)` error.  Obstruction-subtask
+  completion estimate: **80%**; landmark-closure estimate: **38%**.
+- 23:31 -- [PROVED / FAILED ROUTE] Derived the exact statewise hierarchical
+  cut envelope.  If `A` and `B` are the two normalized boundary flows, then
+  the Bd up/down bias is `r A/B`, the dB bias is at most `r^2 B/A`, and their
+  product is at most `r^3`.  The bound is sharp on vanishing cuts; balancing
+  `A/B=sqrt(r)` gives both rules bias `r^(3/2)`.  Therefore a per-cut product
+  argument cannot produce even a crude fixed-fitness obstruction.  Audited a
+  tempting stronger branching-survival coupling and rejected it: simultaneous
+  mutant-to-mutant death/birth events destroy the independent active-lifetime
+  coupling.  Only total genealogical progeny is presently dominated.
+  Obstruction-subtask completion estimate: **83%**; landmark-closure estimate:
+  **40%**.
+- 23:40 -- [RETRACTED] The claimed total-genealogy domination is also invalid.
+  It implies `limsup rho_dB<=1-1/r`, directly contradicting the separately
+  proved center--singular-triangle family, whose dB fixation tends to `1/3`
+  for every fixed `r` and hence exceeds `1-1/r` for `r<3/2`.  The precise
+  failure is joint independence: a birth clock of one lineage is atomically
+  coupled to the death clock of another lineage in a replacement event.
+  Bounding each marginal birth intensity does not embed the joint family tree
+  into a process with independent births and lifetimes.  Sections based on
+  that coupling are retained only as a failed-route autopsy.  The singleton,
+  concentration, abstract fixed-point, perturbative, and cut identities do
+  not use this coupling and remain valid.  Obstruction completion estimate
+  reset to **48%**; landmark-closure estimate **34%**.

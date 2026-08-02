@@ -12,6 +12,26 @@ branching-level, or leading-order. A vanishing-weight modular cut can retain
 an order-one relative bias, and strict fixation amplification may live below
 the controlled leading order.
 
+## Retraction notice
+
+An earlier version labelled the proposed genealogy domination in Section 4
+as proved. It is false. The independently audited center--singular-triangle
+family has `rho_dB(G_N,r)->1/3`, contradicting the claimed bound
+`limsup rho_dB<=1-1/r` whenever `1<r<3/2`.
+
+The error is joint, not marginal. In one replacement event, a birth of one
+lineage is simultaneously the death of another lineage. Although each
+lineage's marginal birth intensity has the displayed upper bound, those birth
+events cannot be coupled to independent Poisson birth clocks while also
+retaining independent exponential lifetimes. Filling a nearly closed module
+with one ancestry makes the failure transparent: every descendant death is
+paired with a descendant birth, so that ancestry can persist even when the
+proposed independent branching envelope becomes extinct.
+
+Equations for the separately defined abstract branching processes remain
+valid algebra. They are not fixation bounds. Sections 2, 3, 6, 7, and 8.1 do
+not use the invalid coupling and retain their stated status.
+
 ## 1. Notation
 
 Let
@@ -227,7 +247,7 @@ This closes the tiny-edge support-completion loophole at the local influence
 level. It does not control the ratio across a cut whose total normalized
 weight also tends to zero; Section 7 makes that limitation explicit.
 
-## 4. [PROVED] Universal total-genealogy bounds
+## 4. [RETRACTED] Proposed total-genealogy bounds
 
 Put
 
@@ -244,9 +264,10 @@ h=\frac{z}{1+r(1-h)}.
 \tag{15}
 $$
 
-### Theorem 4.1
+### False claim 4.1 (retained for diagnosis)
 
-For every connected undirected weighted graph of order $n$,
+The earlier version claimed that every connected undirected weighted graph of
+order $n$ satisfies
 
 $$
 \boxed{
@@ -262,7 +283,7 @@ $$
 \eta(G)=\frac1n\sum_i|t_i-1|,
 $$
 
-one also has
+and also
 
 $$
 \boxed{
@@ -271,7 +292,7 @@ $$
 \tag{17}
 $$
 
-Consequently, for every graph family and fixed $r>1$,
+The claimed consequences were, for every graph family and fixed $r>1$,
 
 $$
 \limsup_n\rho_{\rm dB}(G_n,r)\le1-\frac1r.
@@ -296,9 +317,9 @@ $$
 \tag{20}
 $$
 
-for every fixed $r>1$. Both strict gains must vanish.
+for every fixed $r>1$.  Statements (16)--(20) are false.
 
-#### Genealogical domination
+#### Invalid genealogical-domination step
 
 Label a mutant lineage from the instant it is created until its vertex is
 next replaced. Replacing a mutant by another mutant ends the old lineage and
@@ -313,9 +334,13 @@ $$
 \tag{21}
 $$
 
-Poisson thinning therefore embeds the actual genealogical tree in a
-multitype linear branching tree with death rate one and birth matrix
-$rP^{\mathsf T}$.
+The attempted argument stopped the genealogy on first producing $n$ lineages
+and revealed its family tree breadth first.  It then tried to attach fresh
+independent Poisson birth envelopes to every lineage.  This is invalid.  A
+child event of one lineage is simultaneously the target-death event of
+another lineage.  The marginal intensity bound (21) does not make those
+birth envelopes independent of all lineage lifetimes, so the claimed
+injection into an independent multitype branching tree does not follow.
 
 For Bd, give residents reproduction clocks of rate one and mutants clocks of
 rate $r$. A type-$i$ mutant produces type-$j$ children at rate $rP_{ij}$.
@@ -326,15 +351,14 @@ $$
 $$
 
 so its lifetime is dominated by an exponential lifetime of rate $t_i$.
-The total genealogy is therefore dominated by the branching process with
-birth matrix $rP$ and type-$i$ death rate $t_i$.
+The same dependence invalidates the proposed Bd coupling.
 
-In either update rule, fixation requires at least $n$ total genealogical
-lineages.
+Fixation does require at least $n$ total genealogical lineages, but without a
+valid domination this gives no branching upper bound.
 
-#### PGF proof
+#### Valid PGF algebra for separately defined branching processes
 
-For the dB-dominating branching process, let $g_i(z)=E_i z^T$, with
+For the proposed dB comparison branching process, let $g_i(z)=E_i z^T$, with
 $z^\infty=0$, where $T$ is total progeny. Conditioning on the exponential
 lifetime gives
 
@@ -352,7 +376,7 @@ $$
 The larger root of the corresponding quadratic exceeds one for $z<1$, so
 $\bar g\ge h_r(z)$.
 
-For the Bd-dominating process, its PGFs $q_i$ satisfy
+For the proposed Bd comparison process, its PGFs $q_i$ satisfy
 
 $$
 q_i(z)=\frac{zt_i}{t_i+r(P(1-q))_i}.
@@ -370,16 +394,15 @@ $$
 Since $0\le q_i\le1$, the uniform average obeys
 $\bar q\ge h_r(z)-\eta(G)$.
 
-Finally,
+For a genuinely dominated tree one could finally use
 
 $$
 1-z^T\ge(1-z^n)\mathbf1_{\{T\ge n\}},
 $$
 
-which proves (16)--(17). Taking $z_n=e^{-n^{-1/2}}$ proves
-(18)--(20). ∎
+but the missing domination means this proves none of (16)--(20) for fixation.
 
-The explicit finite-size choice $z=n^{-1/n}$ gives
+The earlier claimed finite-size consequence
 
 $$
 \rho_{\rm dB}(G,r)
@@ -387,11 +410,51 @@ $$
 \tag{24}
 $$
 
-Thus no dB family can have a positive limiting additive amplification gap.
-The error in (24) remains larger than the complete dB baseline's $O(1/n)$
-deficit, so (24) is not Alternative O.
+is therefore retracted.
 
-## 5. [PROVED] A nonperturbative branching-survival tradeoff
+For clarity, direct solution of the one-dimensional complete-graph chain
+gives the exact baselines
+
+$$
+\rho_{\rm Bd}(K_n,r)
+=\frac{1-r^{-1}}{1-r^{-n}},
+\qquad
+\rho_{\rm dB}(K_n,r)
+=\frac{(1-r^{-1})(1-n^{-1})}{1-r^{1-n}}.
+\tag{24a}
+$$
+
+Indeed, for dB the down/up ratio at mutant count $k$ is
+
+$$
+\gamma_k=\frac1r
+\frac{n-1+(r-1)k}{n-r+(r-1)k},
+$$
+
+and its products telescope after writing
+$x=(n-r)/(r-1)$:
+
+$$
+\prod_{j=1}^k\gamma_j
+=r^{-k}\frac{x+k+1}{x+1}.
+$$
+
+Summing the standard birth--death absorption formula yields (24a).  Thus,
+with $a=1-r^{-1}$,
+
+$$
+\rho_{\rm Bd}(K_n,r)=a+O_r(r^{-n}),
+\qquad
+\rho_{\rm dB}(K_n,r)=a-\frac an+O_r(r^{-n}).
+\tag{24b}
+$$
+
+The unresolved comparison is therefore exactly a finite-population window of
+order $1/n$.  Optimizing the single-PGF estimate (16) cannot remove its
+logarithm: with $z=e^{-x/n}$, the two leading errors are proportional to
+$e^{-x}$ and $x/n$, whose balance occurs at $x\asymp\log n$.
+
+## 5. [PROVED FOR ABSTRACT BRANCHING PROCESSES] A survival tradeoff
 
 Let $S$ be the uniform mean survival probability of the dB branching process
 with birth $rP^{\mathsf T}$ and death one. Let $B$ be the uniform mean
@@ -493,11 +556,11 @@ $$
 
 which is (25). ∎
 
-Theorem 5.1 is a genuine quantitative Bd--dB tradeoff, but it concerns the
-dominating rare-mutant branching processes. The quadratic bound is too weak
-to settle fixation signs at scale $1/n$.
+Theorem 5.1 is a genuine quantitative tradeoff between the two separately
+defined abstract branching processes. Because Section 4's domination is
+false, it currently has no proved implication for fixation.
 
-## 6. [PROVED] Sharper local perturbative tradeoff
+## 6. [PROVED FOR ABSTRACT BRANCHING PROCESSES] Sharper local perturbative tradeoff
 
 Let $P_0$ be symmetric, doubly stochastic, and loopless. Consider an analytic
 row-stochastic perturbation $P_\varepsilon$ arising from an undirected
@@ -561,8 +624,9 @@ $$
 =-\frac{r}{r-1}\langle y,P_0y\rangle.
 $$
 
-This is the requested heterogeneity tradeoff in a full neighborhood of a
-regular kernel. It still does not cover singular weak-cut perturbations.
+This is an abstract branching heterogeneity tradeoff in a full neighborhood
+of a regular kernel. It is not a fixation theorem and still does not cover
+singular weak-cut perturbations.
 
 ## 7. [PROVED FAILURE OF A LOCAL-TO-GLOBAL INFERENCE] Weak cuts retain order-one bias
 
@@ -610,7 +674,52 @@ no argument based only on $\eta(G)$ and $c(G)$ can close the theorem. A
 successful obstruction must also control a hierarchy of vanishing cuts or
 prove that their dB post-establishment effect has the wrong sign.
 
-## 8. [NUMERICALLY OBSERVED, NOT USED]
+## 8. Hierarchical cut test and branching conjecture
+
+### 8.1 [PROVED] Exact statewise cut-bias envelope
+
+There is one further exact inequality relevant to arbitrary hierarchies.  For
+a mutant set $S$, let $x=P\mathbf1_S$ and retain $A(S),B(S)$ from Section 7.
+Deleting ineffective transitions gives
+
+$$
+R_{\rm Bd}(S)
+:=\frac{T^+_{\rm Bd}(S)}{T^-_{\rm Bd}(S)}
+=r\frac{A(S)}{B(S)},
+\tag{40}
+$$
+
+whereas
+
+$$
+R_{\rm dB}(S)
+=r\frac{\displaystyle\sum_{i\notin S}
+ x_i/[1+(r-1)x_i]}
+{\displaystyle\sum_{i\in S}
+ (1-x_i)/[1+(r-1)x_i]}.
+\tag{41}
+$$
+
+Since $1\le1+(r-1)x_i\le r$,
+
+$$
+\boxed{
+R_{\rm dB}(S)\le r^2\frac{B(S)}{A(S)},
+\qquad
+R_{\rm Bd}(S)R_{\rm dB}(S)\le r^3.}
+\tag{42}
+$$
+
+In particular, at least one rule has one-step forward bias at most
+$r^{3/2}$.  This does **not** furnish a fixed-$r$ obstruction.  On a sharp
+weak cut, $x_i\to1$ on the mutant side and $x_i\to0$ on the resident side,
+so (42) is asymptotically sharp.  Choosing $A/B\sim\sqrt r$ makes both rules'
+macro-level biases approach $r^{3/2}>r$.  Thus arbitrary hierarchical
+families cannot be excluded by multiplying their cut-crossing biases.  The
+remaining quantity that would need control is the uniform mass of initial
+vertices whose descendants reach such an established module.
+
+### 8.2 [NUMERICALLY OBSERVED, NOT USED] Branching level conjecture
 
 Small multitype branching computations suggest
 
@@ -618,13 +727,19 @@ $$
 \frac1n\sum_i
 \Pr_i\{\text{hit population }K\text{ before zero}\}
 \le\frac{1-r^{-1}}{1-r^{-K}}
-\tag{40}
+\tag{43}
 $$
 
 for every column-stochastic birth kernel with death rate one. Random tests
-covered up to four types and $K=6$. No proof was found. Even (40), by itself,
+covered up to four types and $K=6$. No proof was found. Even (43), by itself,
 would upper-bound dB fixation by the Bd complete baseline rather than the
-smaller dB baseline, leaving an $O(1/n)$ window.
+smaller dB baseline, leaving an $O(1/n)$ window.  A stronger active-frontier
+coupling to branching survival would close part of this gap, but it is not
+available: mutant-to-mutant replacement simultaneously terminates one
+lineage and creates another, so the independent lifetime structure required
+by the linear branching process is lost.  The proved coupling in Section 4
+controls the family tree's total progeny, not its number of simultaneously
+active lineages.
 
 Random full-chain searches found no fixed-$r$ universal inequality strong
 enough to close that window. These computations are conjecture generation
@@ -632,12 +747,13 @@ only.
 
 ## 9. Verification
 
-The file verify_obstruction_identities.py builds the singleton transitions
-directly from both update definitions using exact Fraction arithmetic. It
-checks (4)--(8), including the exact mean-$\lambda$ deficit, on 480
-deterministic rational weighted graphs. Its expected output is:
+The file verify_obstruction_identities.py builds singleton and general-state
+transitions directly from both update definitions using exact Fraction
+arithmetic. It checks (4)--(8), including the exact mean-$\lambda$ deficit,
+on 480 deterministic rational weighted graphs, and checks (40)--(42) on all
+39,360 of their nonabsorbing mutant sets. Its expected output is:
 
-    PASS: 480 exact weighted-graph identity checks
+    PASS: 480 exact weighted-graph and 39360 nonabsorbing-state checks
 
 The branching and asymptotic proofs above are analytic; no floating-point
 output is used in them.
@@ -647,11 +763,11 @@ output is used in them.
 - **PROVED:** exact singleton opposite-curvature tradeoff (Theorem 2.1).
 - **PROVED:** every all-fixed-fitness dB amplifier is locally diffuse in
   normalized weight and has $t_i\to1$ in uniform $L^1$ (Theorem 3.1).
-- **PROVED:** universal genealogy bounds and convergence of both fixation
-  probabilities to $1-1/r$ for every hypothetical positive family
-  (Theorem 4.1).
-- **PROVED:** global quadratic and local sharp second-order tradeoffs between
-  Bd and dB branching establishment (Theorem 5.1 and Section 6).
+- **RETRACTED:** the universal genealogy bounds and every fixation consequence
+  formerly attributed to Theorem 4.1.
+- **PROVED FOR THE SEPARATELY DEFINED ABSTRACT PROCESSES:** global quadratic
+  and local sharp second-order branching tradeoffs (Theorem 5.1 and Section
+  6); no fixation consequence is claimed.
 - **OPEN:** control of fixation after establishment at the decisive $1/n$
   scale.
 - **OPEN:** singular mesoscopic or multiscale modular cuts.
@@ -661,4 +777,3 @@ output is used in them.
 The obstruction route has narrowed every positive family to a vanishing-gain,
 locally diffuse, asymptotically isothermal, bottleneck-sensitive regime. It
 has not eliminated that regime.
-

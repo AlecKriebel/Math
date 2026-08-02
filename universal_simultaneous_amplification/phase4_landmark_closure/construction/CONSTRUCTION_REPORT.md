@@ -1,4 +1,4 @@
-# Construction track: diffuse and mesoscopic candidates
+# Construction track: a simultaneous-amplifier family up to `r=3/2`
 
 Date: 2026-08-01 (America/Los_Angeles)
 
@@ -8,7 +8,46 @@ reconnaissance, and open conclusions.
 
 ## 1. Outcome of this track
 
-**OPEN.**  No asymptotically universal simultaneous amplifier was found.
+**PROVED: A NEW LOWER CONSTRUCTION.**  There is one explicit
+fitness-independent rational graph family `G_N` such that, for every fixed
+`1<r<3/2`, both Bd and dB fixation probabilities strictly exceed their
+complete-graph baselines for all sufficiently large `N`.  In fact,
+
+\[
+ \rho_{\rm Bd}(G_N,r)\longrightarrow\frac13,
+ \qquad
+ \rho_{\rm dB}(G_N,r)\longrightarrow\frac13.
+\]
+
+Since the complete baselines tend to `1-1/r`, this proves
+
+\[
+ R_{\rm sim}\ge\frac32,
+\]
+
+improving the inherited `6/5` benchmark.  At `r=3/2`, exact order-`N^-2`
+coefficients are negative under both rules; for fixed `r>3/2`, the limiting
+comparison is negative.  Thus `(1,3/2)` is the exact asymptotic fixed-fitness
+amplification interval of this family.  The construction, exact module
+formulas, quantitative timescale-separation lemma, and proof are in
+`CENTER_TRIANGLE_PROOF.md`.  The possibility that another family has a larger
+threshold remains **OPEN**.
+
+The graph has `N` center vertices and `N^2` disjoint weighted triangles.  A
+triangle has one edge of weight one and two edges of weight `N^-4`; every
+center edge has weight `N^-3`; every center--triangle edge has weight
+`N^{-N^3}`.  There are no intertriangle edges.
+The vector diagram is `center_triangle_diagram.svg`.
+
+The exact symbolic verifier `verify_triangle_module.py` independently builds
+the six-state triangle chains and checks every rational identity and limiting
+rate used in the proof.  The full quotient uses center mutant count plus the
+histogram of the eight labelled triangle masks.  It is implemented in
+`scan_center_triangle.py`; `verify_center_triangle_lumping.py` aggregates the
+full subset chain with exact `Fraction` arithmetic and confirms every
+transition under both rules.
+
+## 1.1 Earlier surviving-family exclusion
 
 **NEW CANDIDATE EXCLUSION, PARTLY RIGOROUS.**  The most natural surviving
 locally diffuse family---a hub joining many growing clique satellites---has an
