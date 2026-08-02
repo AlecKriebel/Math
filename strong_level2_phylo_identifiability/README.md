@@ -170,6 +170,15 @@ certificates have no negative coefficients.  Hence the tree and `R3` classes
 have disjoint stochastic interiors, and neither one-sided containment occurs.
 See `notes/MILESTONE_5E_JC_ROOT_THREE_PORT_TREE_SEPARATION.md`.
 
+Milestone 5F completes the nontrivial four-port root atlas by adding all 48
+labelled root cycles to the 612 theta presentations.  Exactly the twelve old
+dimension-seven `Psi` components collide, and all 48 graph matches show why:
+each theta is a contextual `C_root` insertion into a root cycle.  Thus `Psi`
+is redundant, each combined class has eight rooted and five semi-directed
+topologies, and the cycle/theta complete-image equality persists under JC,
+K2P, and K3P.  See
+`notes/MILESTONE_5F_JC_ROOT_FOUR_PORT_CYCLE_THETA_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

@@ -207,6 +207,12 @@ conditional Markov kernels to the two indices of the equal port tensor.
 Tensor contraction therefore preserves equality.  The local parameter maps
 leave every attached-component parameter unchanged.
 
+**PROVED.** More generally, the two equal port tensors may be contracted with
+an arbitrary common two-input tensor context, including one in which the two
+continuations reconnect inside a later blob.  Milestone 5F uses this
+contextual form to identify every former `Psi` theta as a `C_root` expansion
+of a four-port root cycle.
+
 **PROVED.** Under the multiplicity-retaining semi-directed convention,
 suppressing the root creates two parallel `P-X` edges and `C_root` is a
 genuine topological move.  Under a root-zipped simple-graph convention this
