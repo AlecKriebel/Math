@@ -421,6 +421,55 @@ This also explains the large Bd deficits of the certified finite dB
 windmills: dB rewards large reproductive value `p_i/lambda_i`, while (21)
 penalizes exactly its reciprocal.
 
+### 7.1 [PROVED] Reversing the ratio destroys dB
+
+One might instead impose `lambda_i/p_i -> infinity` on the density-one
+ordinary blades, hoping to make the Bd center-seeding race favorable while
+leaving a small exceptional booster set to drive dB fixation.  This cannot
+work.  The exact two-state stopping calculation in
+`MODIFIED_SCALE_AUDIT.md` proves, directly from the full dB rule, that a
+singleton on blade `i` has fixation probability at most
+
+\[
+ 3r(r+1){p_i\over\lambda_i}\qquad(\lambda_i\le1).              \tag{21a}
+\]
+
+The mutant must seed the resident center before the same center erases its
+pair; no booster can act before that handoff.  Thus if the ratio diverges on
+`N-o(N)` blades, their average dB contribution tends zero, while the booster
+and center starts have vanishing population mass.  The proposed reversed
+scale has `rho_dB -> 0` and is rigorously falsified.
+
+### 7.2 [PROVED] Balanced ratios cannot be guarded by strong pairs
+
+`BALANCED_GUARD_AUDIT.md` treats the remaining finite-ratio regime
+`lambda_i/p_i -> c in (0,infinity)`.  Exact singleton handoff probabilities
+give the necessary positive-margin window
+
+\[
+ {r-1\over2r}<c<{r^2(2-r)\over2(r-1)},           \tag{21b}
+\]
+
+which closes at
+`r=(1+sqrt(2)+sqrt(2sqrt(2)-1))/2=1.8832035...`.
+More decisively, no mesoscopic block of resident strong pairs can make
+post-handoff fixation tend one under both rules.  dB requires its total
+`sum lambda` to diverge in order to receive an offspring before center
+reversion; Bd requires the same sum to vanish in order not to kill the mutant
+center first.  The proof grants the first offspring immediate success and so
+already covers overlapping introductions and arbitrary later sweeps.
+
+### 7.3 [PROVED] Growing cliques do not repair the guard
+
+The exponential reverse-stability of a mutant clique also fails to evade the
+same first-establishment bottleneck.  `CLIQUE_GUARD_AUDIT.md` derives the
+exact forward and reverse clique probabilities and all leading module rates.
+If clique `j` has size `s_j` and per-vertex external/internal ratio
+`theta_j`, dB fixation after a center seed forces
+`sum_j s_j theta_j -> infinity`; Bd persistence of that center forces the
+same sum to tend zero.  The reverse clique probability becomes exponentially
+small only after establishment, too late to affect this contradiction.
+
 ## 8. Support completion and diffuse replacements
 
 ### 8.1 [PROVED] Negligible completion does not help
@@ -509,10 +558,17 @@ No tested replacement met these requirements.  This general branch remains
 - `verify_windmill_macro.py` checks convergence of that dB reduction against
   full subset chains, verifies the booster algebra and homogeneous formula
   symbolically, and tests representative finite booster hierarchies.
+- `MODIFIED_SCALE_AUDIT.md` and `BALANCED_GUARD_AUDIT.md` give exact
+  first-handoff obstructions for, respectively, divergent and finite
+  ordinary ratios.
+- `CLIQUE_GUARD_AUDIT.md` proves that exponentially persistent growing
+  cliques cannot evade the post-seed coupling contradiction.
 
 **PROVED:** the dB leading hazards and rank-one reduced chain, the Bd
 first-handoff bound, booster squaring, the computably explicit dB limit `1/2`,
-the Bd limit zero, failure of negligible support completion to make `c->0`,
+the Bd limit zero, the exact dB obstruction to reversing the ordinary scale,
+the balanced-ratio handoff window and strong-pair guard no-go, failure of
+negligible support completion to make `c->0`, the growing-clique guard no-go,
 and the growing-clique replacement no-go.
 
 **NUMERICALLY OBSERVED:** direct balanced trace searches through eight blades

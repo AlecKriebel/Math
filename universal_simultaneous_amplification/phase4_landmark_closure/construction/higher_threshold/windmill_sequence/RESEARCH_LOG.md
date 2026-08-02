@@ -37,3 +37,40 @@ was used.
 - Made the quantifiers uniform on
   `[1+1/N,floor(sqrt(N))]`; this interval eventually contains every fixed
   `r>1`, while all displayed upper and lower errors vanish uniformly.
+
+## 2026-08-02 — reversed ordinary scale falsified
+
+- Tested the proposed regime with density-one ordinary blades satisfying
+  `lambda_i/p_i -> infinity` and tiny total parent mass.
+- Derived an exact two-state dB stopping chain that includes all overlapping
+  center/pair events.  From a singleton ordinary mutant, fixation is at most
+  `3r(r+1)p_i/lambda_i`.
+- Therefore the density-one ordinary contribution tends zero and the
+  exceptional boosters have vanishing initial mass.  The full uniformly
+  initialized dB fixation tends zero before any post-seeding sweep can help.
+
+## 2026-08-02 — balanced handoff window and guard-block no-go
+
+- Derived the exact balanced-ratio singleton handoff limits
+  `2r^2 c/[1+2r(r+1)c]` for Bd and `r^2/[2(r^2+c)]` for dB.
+- Comparison with the infinite complete baseline gives the necessary window
+  `(r-1)/(2r) < c < r^2(2-r)/(2(r-1))`.
+- Solved its closing equation exactly:
+  `r_hand=(1+sqrt(2)+sqrt(2sqrt(2)-1))/2=1.8832035...`.
+- Proved that any strong-pair mesoscopic post-seed block faces an exact
+  contradiction: dB fixation tending one requires total ratio mass
+  `sum lambda -> infinity`, while Bd requires `sum lambda -> 0`.
+
+## 2026-08-02 — growing-clique guard falsified
+
+- Derived from the clique count chain the exact forward and reverse
+  establishment probabilities for both update rules.
+- Derived the center-to-module, module-to-center, and reverse module hazards
+  for weakly center-coupled clique modules.
+- Although reverse establishment is exponentially small after a clique is
+  mutant, the initial race is fatal: dB requires aggregate coupling
+  `sum s_j theta_j -> infinity`, whereas Bd center persistence requires the
+  same aggregate to tend zero.
+- The proof grants success at the first mutant copy, so overlapping
+  introductions and all post-establishment persistence only strengthen the
+  no-go.

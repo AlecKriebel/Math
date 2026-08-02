@@ -21,4 +21,13 @@ All timestamps use America/Los_Angeles.
   coefficients in the potential force nonnegative cubic slack.  Broad LP
   screens support universal feasibility, but no all-graph formula or
   existence proof is claimed.
-
+- 04:48 -- [PROVED / EXACTLY COMPUTED ARCHITECTURE OBSTRUCTION] Derived the
+  exact generator of the natural weighted-pair observable
+  `Q(A)=sum_(i,j in A) P_ij`.  On the four-vertex complete-support graph with
+  one doubled edge, constructed a positive rational pseudo-law that
+  annihilates every singleton drift and `DQ` but has
+  `E(k^2/4-k/2)=100/7043>0`.  Therefore singleton stationarity plus the one
+  `Q` balance cannot prove the proposed second-moment ceiling, even with an
+  unrestricted coefficient on `DQ`.  The exact true stationary law on the
+  same graph has margin `315/33422>0`, so the universal second-moment
+  inequality itself remains OPEN.

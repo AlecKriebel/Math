@@ -130,7 +130,97 @@ def check_symbolic_identities() -> None:
         (m - 1) * (r - 1) / (m * r * (r ** (m - 1) - 1))
     )
     assert sp.simplify(alpha - leading - expected_remainder) == 0
-    print("PASS: booster squaring, homogeneous fixation, and clique formulas")
+
+    # Independently solve the Bd and dB clique count recurrences at symbolic
+    # fitness for representative exact finite sizes.
+    for size in range(2, 9):
+        bd_normalizer = sum(r ** (-count) for count in range(size))
+        bd_alpha = sp.factor(1 / bd_normalizer)
+        bd_formula = (1 - 1 / r) / (1 - r ** (-size))
+        bd_beta = sp.factor(bd_formula.subs(r, 1 / r))
+        assert sp.simplify(bd_alpha - bd_formula) == 0
+        assert sp.simplify(bd_beta - (r - 1) / (r**size - 1)) == 0
+
+        product = sp.Integer(1)
+        db_normalizer = sp.Integer(1)
+        for count in range(1, size):
+            upward = sp.Rational(size - count, size) * (
+                r * count / (r * count + size - count - 1)
+            )
+            downward = sp.Rational(count, size) * (
+                (size - count) / (r * (count - 1) + size - count)
+            )
+            product = sp.factor(product * downward / upward)
+            db_normalizer += product
+        db_alpha = sp.factor(1 / db_normalizer)
+        db_formula = sp.Rational(size - 1, size) * (
+            (1 - 1 / r) / (1 - r ** (-(size - 1)))
+        )
+        db_beta = sp.factor(db_formula.subs(r, 1 / r))
+        assert sp.simplify(db_alpha - db_formula) == 0
+        assert sp.simplify(
+            db_beta
+            - sp.Rational(size - 1, size) * (r - 1) / (r ** (size - 1) - 1)
+        ) == 0
+
+    p, lam = sp.symbols("p lam", positive=True)
+    q2 = r * p / (1 + (r - 1) * p)
+    q1 = r * p / (2 + (r - 1) * p)
+    x = lam / (r + lam)
+    y = r / (r + lam)
+    handoff_m = sp.factor(
+        (q2 * (1 + q1 + y) + 2 * x * q1)
+        / (q2 * (1 + q1 + y) + 2 * x * (1 + q1))
+    )
+    handoff_h = sp.factor((q1 + y * handoff_m) / (1 + q1 + y))
+    assert sp.simplify(handoff_m - (q2 + 2 * x * handoff_h) / (q2 + 2 * x)) == 0
+    assert sp.simplify(handoff_h - (q1 + y * handoff_m) / (1 + q1 + y)) == 0
+
+    c = sp.symbols("c", positive=True)
+    db_m_limit = sp.factor(sp.limit(handoff_m.subs(lam, c * p), p, 0, dir="+"))
+    db_h_limit = sp.factor(sp.limit(handoff_h.subs(lam, c * p), p, 0, dir="+"))
+    assert sp.simplify(db_m_limit - r**2 / (r**2 + c)) == 0
+    assert sp.simplify(db_h_limit - r**2 / (2 * (r**2 + c))) == 0
+
+    bd_m_symbol, bd_h_symbol = sp.symbols("bd_m_symbol bd_h_symbol")
+    seed_m = 2 * r * lam / (1 + lam)
+    seed_h = r * lam / (1 + lam)
+    restore = r / (1 + lam)
+    erase = 1 / (1 + lam) + p / 2
+    bd_solution = sp.solve(
+        (
+            sp.Eq(bd_m_symbol, (seed_m + p * bd_h_symbol) / (seed_m + p)),
+            sp.Eq(
+                bd_h_symbol,
+                (seed_h + restore * bd_m_symbol) / (seed_h + restore + erase),
+            ),
+        ),
+        (bd_m_symbol, bd_h_symbol),
+        dict=True,
+    )[0]
+    bd_m_limit = sp.factor(
+        sp.limit(bd_solution[bd_m_symbol].subs(lam, c * p), p, 0, dir="+")
+    )
+    bd_h_limit = sp.factor(
+        sp.limit(bd_solution[bd_h_symbol].subs(lam, c * p), p, 0, dir="+")
+    )
+    assert sp.simplify(bd_m_limit - 2 * r * (r + 1) * c / (1 + 2 * r * (r + 1) * c)) == 0
+    assert sp.simplify(bd_h_limit - 2 * r**2 * c / (1 + 2 * r * (r + 1) * c)) == 0
+
+    c_birth = (r - 1) / (2 * r)
+    c_death = r**2 * (2 - r) / (2 * (r - 1))
+    assert sp.simplify(
+        c_death
+        - c_birth
+        + (r**4 - 2 * r**3 + r**2 - 2 * r + 1) / (2 * r * (r - 1))
+    ) == 0
+    handoff_root = (1 + sp.sqrt(2) + sp.sqrt(2 * sp.sqrt(2) - 1)) / 2
+    assert sp.simplify((handoff_root - 1) ** 2 - handoff_root**3 * (2 - handoff_root)) == 0
+
+    print(
+        "PASS: booster squaring, homogeneous fixation, clique, "
+        "first-handoff, and balanced-window formulas"
+    )
 
 
 def check_booster_reconnaissance() -> None:
