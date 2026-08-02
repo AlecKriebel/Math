@@ -29,6 +29,15 @@ is exactly ordinary triangle redirection.  Thus `Psi` is root-adjacent and
 does not supply a stackable non-triangle bit.  See
 `notes/MILESTONE_3B_JC_PSI_LIFTING.md`.
 
+Milestone 3C certifies `Omega`, a triangle-free root path-reversal ambiguity.
+Two nonisomorphic semi-directed topologies have equal nine-dimensional JC
+closures and a common regular stochastic region, with an exact rational
+parameter map.  Restoring an incoming cut edge makes a quartet invariant zero
+on the source and strictly positive on the target throughout the open JC
+cube.  Thus `Omega` is another genuinely non-triangle root ambiguity, but its
+natural nonroot lift is impossible observationally.  See
+`notes/MILESTONE_3C_JC_OMEGA_ROOT_REVERSAL.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

@@ -8,3 +8,5 @@ PYTHONPATH=src python3 src/verify_jc_four_network_class_stdlib.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_psi_move.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_psi_lifting.py
 PYTHONPATH=src python3 src/verify_jc_psi_lifting_stdlib.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_omega_move.py
+PYTHONPATH=src python3 src/verify_jc_omega_move_stdlib.py

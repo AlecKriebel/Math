@@ -126,3 +126,31 @@
   independently verifies both symbolic 256-coordinate identities, the exact
   common point, and both rank-ten determinants.  No literature search was
   conducted.
+
+## 2026-08-01T17:02:26-07:00 — triangle-free root path-reversal Omega certified
+
+- **EXACTLY COMPUTED:** found four rooted models in census entries `16,26`
+  forming exactly two semi-directed classes and sharing one exact rational
+  four-leaf Fourier tensor.  The two classes are triangle-free and not
+  semi-directed isomorphic.
+- **EXACTLY COMPUTED:** derived the nine-variable rational `Omega` map and
+  verified all 64 zero-sum Fourier coordinates symbolically.  An explicit
+  rational source point maps strictly inside the target stochastic cube.
+- **PROVED:** exact core rank six, a displayed Euler tangent dependence, and
+  four nonzero rank-nine minors establish model dimension nine and regularity
+  on all four sheets.  The inverse-function theorem gives a common
+  full-dimensional relatively open stochastic region and equality of the
+  irreducible closures.
+- **PROVED:** census entries `16` and `26` are reversible root placements with
+  equal complete stochastic images; the exact root-splitting map was checked
+  on all 64 coordinates for both labellings.
+- **EXACTLY COMPUTED:** exposed the incoming port with an outgroup leaf.  Both
+  lifts remain binary, strongly tree-child, triangle-free level-2 networks
+  with cycle lengths `4,5,7`.
+- **PROVED:** on ordered quartet `(1,2,5,3)`, `I=J-K-M+N` is identically zero
+  on the lifted source and strictly positive throughout the complete open JC
+  cube of the lifted target.  Their stochastic interiors are disjoint, so
+  this `Omega` gadget is root-local and cannot stack naturally.
+- A pure-standard-library verifier independently checks all 64 common
+  coordinates and all four exact rank-nine determinants.  No literature
+  search was conducted.
