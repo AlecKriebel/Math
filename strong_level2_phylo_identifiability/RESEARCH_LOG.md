@@ -312,3 +312,39 @@
   support-augmented stochastic atlas through six outgoing ports and the
   recovery of those local tensors from a global distribution.
 - No numerical evidence or literature search is used.
+
+## 2026-08-01T20:59:20-07:00 — fully relatively labelled bounded-support JC atlas closed
+
+- A first exact replay on 496 role-normalized support-plus-two candidates
+  passed, but a scope audit caught that fixing the sink/repair/probe label
+  roles did not classify arbitrary relative descendant-block labellings.  No
+  theorem was published at that weaker scope.
+- **EXACTLY COMPUTED:** adding all outgoing-label permutations and the missing
+  support-size-four plus one-probe case gives 656 raw role presentations, 520
+  canonical role candidates, and 192,000 relative-label presentations.
+- **PROVED / EXACTLY COMPUTED:** exact mixed-graph
+  individualization-refinement quotients those presentations into 19,500
+  labelled structural classes modulo ordinary triangle redirection: 8,520
+  with five outgoing ports and 10,980 with six.
+- **PROVED:** each quartet marginal is determined by the four displayed-tree
+  descendant masks of every edge.  Equal mask signatures occur only through
+  products of independent JC edge multipliers, and signed permutations of
+  the two parent-choice bits are open-cube automorphisms.  This is an exact
+  stochastic reduction, not an inference from equal closures.
+- **EXACTLY COMPUTED:** all 7,360 quartet restrictions reduce to 90 tensor
+  types.  Exact rational polynomial replay of all 60 root-atlas invariants on
+  each type gives 5,400 symbolic pullbacks.  An additional 8,368 bits agree
+  with the earlier direct full-network symbolic certificate.
+- **PROVED / EXACTLY COMPUTED:** 75 selected identities for five outgoing
+  ports and 65 for six give exactly 19,500 zero/nonzero signatures, one for
+  each structural class and no non-`T` collision.  Full-dimensional regular
+  JC overlap in this atlas is therefore exactly isomorphism plus `T`.
+- **PROVED:** together with the exact three- and four-outgoing atlases, every
+  strong support-deck member required by the size-six combinatorial theorem is
+  classified modulo `T`.
+- **UNRESOLVED:** a support chosen in one arbitrary strong blob may induce a
+  nonstrong or non-core-preserving restriction in a competing blob.  Those
+  cross-support targets, one-sided containments in the new atlas, recovery of
+  global local tensors, and the global `L_1` theorem remain open.
+- No numerical evidence, external catalogue, specialized network software,
+  or literature search is used.

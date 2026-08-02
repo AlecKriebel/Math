@@ -90,9 +90,20 @@ subdivided strong theta blob has a core-preserving strong support of at most
 four outgoing ports.  Adding one arbitrary port identifies its core segment;
 adding two identifies their relative order.  Hence restrictions on at most
 six outgoing ports reconstruct every finite ordered port chain.  This turns
-the infinite subdivision problem into a finite support-augmented JC atlas,
-while deliberately leaving that remaining statistical atlas unresolved.  See
+the infinite subdivision problem into a finite support-augmented JC atlas.
+See
 `notes/MILESTONE_4A_THETA_SUPPORT_REDUCTION.md`.
+
+Milestone 4B completes that finite statistical atlas with arbitrary relative
+descendant-block labels.  Exhaustive exact reduction of 192,000 presentations
+gives 19,500 structural classes modulo isomorphism and `T`.  Their 7,360
+quartet restrictions collapse exactly to 90 displayed-tree tensor types, and
+5,400 rational polynomial pullbacks give one distinct invariant signature per
+structural class.  Together with Milestones 3E and 3H, every strong support
+deck through six outgoing ports has full-dimensional regular JC overlap only
+under isomorphism or triangle redirection.  The cross-support nonstrong case
+needed for arbitrary blobs remains unresolved.  See
+`notes/MILESTONE_4B_JC_FULLY_LABELLED_SUPPORT_ATLAS.md`.
 
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
