@@ -16,7 +16,7 @@ priority or correctness.
 
 - Version: 1.0.0
 - Zenodo version DOI: 10.5281/zenodo.21753527
-- Zenodo concept DOI (all versions): 10.5281/zenodo.21753404
+- Repository-level Zenodo concept DOI: 10.5281/zenodo.21753404
 - Repository tag: `wr-continuum-v1.0.0`
 - Publication date: 2026-08-02 UTC (2026-08-01 PDT)
 
@@ -26,6 +26,9 @@ The automatic GitHub–Zenodo integration minted the version and concept DOIs
 above when this GitHub release was published. The identifier
 `10.5281/zenodo.21753316` printed in the frozen Version 1.0.0 artifacts had
 previously been reserved for an unpublished manual draft; it is not the DOI of
-this release. Cite the version DOI above for Version 1.0.0, or the concept DOI
-when referring to all versions. The frozen release assets remain byte-for-byte
-unchanged, and this note records the correction transparently.
+this release. Cite the version DOI above for Version 1.0.0. Because Zenodo's
+GitHub integration operates at repository scope, the concept DOI groups all
+releases from the `AlecKriebel/Math` monorepo, including unrelated projects;
+it is not an all-versions identifier specific to this paper. The frozen release
+assets remain byte-for-byte unchanged, and this note records the correction
+transparently.

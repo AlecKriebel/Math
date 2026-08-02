@@ -136,15 +136,18 @@
 - GitHub release `wr-continuum-v1.0.0` was published at
   `2026-08-02T02:20:28Z`; all attached-asset SHA-256 digests match the frozen
   local files. The automatic GitHub–Zenodo integration archived the tag at
-  Version 1.0.0 DOI `10.5281/zenodo.21753527`, under all-versions concept DOI
-  `10.5281/zenodo.21753404`.
+  Version 1.0.0 DOI `10.5281/zenodo.21753527`, under repository-level concept
+  DOI `10.5281/zenodo.21753404`. Because this is a monorepo integration, the
+  concept record also groups unrelated GitHub releases and is not a
+  paper-specific all-versions identifier.
 - The earlier identifier `10.5281/zenodo.21753316` belongs to an unpublished
   manually reserved draft and is not the release DOI. The frozen v1 bytes were
   not rewritten. The GitHub release notes and project page transparently record
   the correction and direct citations to the live automatic record.
 - The public project page and all v1 download artifacts were deployed from
   `main` commit `2fb0ce51`; the GitHub Pages build passed and the live page,
-  PDF, archive links, version DOI, and concept DOI were checked directly.
+  PDF, archive links, version DOI, and repository-level concept DOI were
+  checked directly.
 - Exact reduction modulo the conic ideal gives a canonical `21 x 20` rational
   matrix of rank `16`, hence a four-dimensional full fixed-support rate space.
   In free parameters `(a,b,c,d)`, its positive cone is exactly
