@@ -115,6 +115,16 @@ nonroot theta blobs satisfy `bowtie_JC` exactly under isomorphism and `T`.
 Global blob-tree recovery and cross-generator comparisons remain unresolved.
 See `notes/MILESTONE_4C_JC_ARBITRARY_NONROOT_THETA.md`.
 
+Milestone 4D completes the local JC classification for every arbitrary finite
+strongly tree-child nonroot level-2 blob. Cycle subdivisions reduce to a
+two-port support and restrictions on at most four outgoing ports. Their
+complete strong and weak exact atlases have no non-`T` collision. Strong
+theta support signatures are disjoint from every weak cycle signature at
+outgoing sizes three through six, so cycle and theta generators are mutually
+separated. Hence ordinary triangle redirection `T` is the complete nonroot
+local JC move system. Global cut-split and blob-tree recovery remain open.
+See `notes/MILESTONE_4D_JC_NONROOT_GENERATOR_CLASSIFICATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

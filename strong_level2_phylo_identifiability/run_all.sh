@@ -19,3 +19,4 @@ PYTHONPATH=src python3 src/verify_theta_support_reduction.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_support_augmented_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_fully_labelled_support_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cross_support_weak_atlas.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_cycle_cross_generator_atlas.py

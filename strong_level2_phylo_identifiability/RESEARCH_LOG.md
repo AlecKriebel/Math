@@ -383,3 +383,37 @@
   remain open.
 - No numerical evidence, external catalogue, specialized network software,
   or literature search is used.
+
+## 2026-08-01T21:48:01-07:00 — all nonroot level-2 generator types classified under JC
+
+- **PROVED:** every arbitrary strong cycle subdivision has a two-outgoing
+  core-preserving support; support-plus-one locates an extra port and
+  support-plus-two recovers pairwise side order. Restrictions on at most
+  four outgoing ports reconstruct both complete ordered cycle sides modulo
+  side swap and ordinary triangle redirection `T`.
+- **EXACTLY COMPUTED:** the full strong cycle atlas has 9 structural and exact
+  signature classes at three outgoing ports and 48 at four outgoing ports,
+  with zero non-`T` collisions. The two-outgoing triangle is one exact `T`
+  class.
+- **EXACTLY COMPUTED:** all bounded strong and weak cycle marginals use four
+  exact descendant-mask tensor types. The verifier replays 240 rational
+  polynomial invariant pullbacks. Weak atlases through outgoing sizes
+  three, four, five, and six contain 12, 63, 390, and 2,790 exact signatures.
+- **PROVED / EXACTLY COMPUTED:** the four-outgoing strong/weak cycle
+  intersection consists of all 48 strong signatures, every target retains
+  its selected sink, and exact graph replay finds zero non-`T` targets among
+  all 96 intersecting labelled presentations. Dominant marginalization and
+  ordered-side reconstruction lift this to arbitrary finite nonroot cycle
+  blobs.
+- **EXACTLY COMPUTED:** strong theta versus weak cycle signature intersections
+  are empty at outgoing sizes 3, 4, 5, and 6: respectively `21∩12`,
+  `516∩63`, `8520∩390`, and `10980∩2790` have size zero.
+- **PROVED:** cycle and theta generators are mutually JC-separated. Combined
+  with Milestone 4C and the exhaustive level-2 generator theorem, arbitrary
+  finite strongly tree-child nonroot level-2 blobs have full-dimensional
+  regular JC overlap exactly under labelled isomorphism and `T`.
+- **UNRESOLVED:** one-sided arbitrary-blob containments, global cut-split and
+  blob-tree recovery, nonlocal conspiracies, and arbitrary root-blob
+  classification remain open.
+- No numerical evidence, external catalogue, specialized network software,
+  or literature search is used.
