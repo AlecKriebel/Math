@@ -307,3 +307,20 @@
 - [OPEN] Growing portal networks and singular coupling scales remain genuine
   construction regimes.  This is not a universal graph reduction, so the
   landmark-closure estimate remains **59%**.
+
+## 2026-08-02 10:19 PDT — exchangeable many-portal route closed
+
+- [PROVED CLASS NO-GO] Retaining every portal-count state `0,...,Q`, the
+  diffuse strong-pair family with any finite number of exchangeable portals
+  has Bd establishment gain exactly when `x=2c/(1-g)>1`; at and above this
+  boundary an exact backward-ratio envelope forces strict dB suppression.
+- [PROVED UNIFORM EXTENSION] Explicit gaps independent of `Q,c,g` extend the
+  stopped-process graph consequence to diverging `Q_s=o(s)` when `x_s` stays
+  in a fixed positive compact interval, even for arbitrary `g_s->1`.
+- [EXACTLY VERIFIED] Symbolic barrier, envelope, uniform-gap, and later-sweep
+  identities pass.  A separate rational verifier enumerates all 512 labelled
+  subsets of a three-portal test graph and checks exact agreement with all 40
+  lumped orbit generators under both rules.
+- [OPEN] Positive-proportion portals, nonexchangeable incidence, and genuinely
+  nonseparated architectures remain.  This class closure is not a universal
+  upper bound, so landmark-closure completion remains **59%**.

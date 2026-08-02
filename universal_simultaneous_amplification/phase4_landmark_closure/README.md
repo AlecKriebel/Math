@@ -69,8 +69,16 @@ discarding the simultaneous-two-portal state.  Its Bd entrance gain is
 exactly incompatible with dB entrance gain at every `r>1`, although the
 post-establishment drift favors mutants under both rules.  The obstruction is
 uniform on compact nonsingular parameter ranges and is independently audited
-from all labelled atomic transitions.  Growing or asymmetric portal networks
-and singular coupling scales remain open.
+from all labelled atomic transitions.  Asymmetric portal networks and
+singular coupling scales remain open.
+
+The same obstruction now holds for every finite number of exchangeable
+portals while retaining all portal-count states.  Its scalar comparison is
+uniform in the portal count and consequently also excludes a diverging but
+sublinear portal set throughout the separated strong-pair regime with
+bounded normalized load.  The post-establishment drift is at least `r^3`
+for both rules, so the class failure is localized exactly at entrance.
+Positive-proportion or nonexchangeable portal architectures are not covered.
 
 The current universal-obstruction attack factors the conjectured
 `r=3/2` fixation product through a conservative reversed-arrow dual.  Exact

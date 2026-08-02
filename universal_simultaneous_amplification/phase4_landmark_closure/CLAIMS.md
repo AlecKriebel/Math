@@ -23,6 +23,8 @@
 | A weighted `(3,3,2)` triangle has one root favorable to both rules at `r=31/20` | PROVED LOCALLY | Exact six-state formulas; every tested population-level handoff loses the rooted gain, so this is not a uniform-initialization construction |
 | The locally regular second-order establishment tradeoff alone proves Alternative O | OPEN | It does not yet control the post-establishment finite-population correction |
 | A growing protected-pair module with two exchangeable active portals can improve the threshold beyond `3/2` | REFUTED FOR THIS CLASS | Exact compound-branching trace retaining portal counts one and two; Bd gain forces a manifestly signed dB deficit, with a stopped-process fixation upper bound and exact labelled-state audit |
+| A diffuse strong-pair module with any fixed number of exchangeable active portals can improve the threshold beyond `3/2` | REFUTED FOR THIS CLASS | Exact full portal-count trace; `Q`-uniform Bd barrier and dB backward-ratio envelope; stopped-process graph consequence and exact labelled-state audit |
+| Letting the exchangeable portal count grow sublinearly repairs the same protected-pair construction | REFUTED IN THE COMPACT-LOAD TRACE REGIME | Explicit `Q`-uniform gap and coupling error `O_K(Q_s/s)+o(1)` for normalized load bounded above and away from zero |
 
 This ledger will be updated at every proof checkpoint. Computational signs are
 never sufficient to change an `OPEN` entry to `PROVED`.

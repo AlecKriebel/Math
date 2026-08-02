@@ -85,3 +85,27 @@ used.  Floating-point searches are reconnaissance only.
 - **OPEN:** singular parameter scales, nonexchangeable portal incidence, and
   a portal network whose order grows with the blade count.  The many-portal
   extension is under active attack; no threshold beyond `3/2` is claimed.
+
+## 2026-08-02 10:19 PDT — all exchangeable portal counts closed
+
+- **PROVED CLASS NO-GO:** for every finite number `Q>=2` of exchangeable
+  portals joined to diffuse strong-pair blades, the full `Q+1`-state portal
+  trace has Bd establishment gain exactly when
+  `x=2c/(1-g)>1`.  At and above that boundary, a backward-ratio envelope
+  forces strict dB suppression for every `r>1`.
+- **PROVED UNIFORM EXTENSION:** the comparison has an explicit positive gap
+  depending only on `r`, not on `Q,c,g`.  A stopped-trace coupling therefore
+  also excludes `Q_s=o(s)` when `x_s` remains in a fixed positive compact
+  interval, even if `Q_s` diverges and the portal-edge fraction tends to one
+  arbitrarily fast.
+- **EXACTLY DERIVED:** after establishment, the averaged blade
+  forward/backward ratio is at least `r^3` under both rules.  The conflict is
+  solely in rare-mutant entrance, not in the later sweep.
+- **EXACTLY VERIFIED:** symbolic barrier and envelope factorizations pass for
+  symbolic `Q,k`; exact tridiagonal transforms pass at rational parameters;
+  a separate labelled-state verifier matches all 512 subsets of a
+  nine-vertex, three-portal graph to 40 orbit generators under both rules.
+- **OPEN:** positive-proportion portal sets, nonexchangeable portal networks,
+  portal-specific blade incidence, and genuinely nonseparated multiscale
+  structures.  This remains a class theorem and does not change the proved
+  lower bound `R_sim>=3/2` or the **59%** landmark-closure estimate.
