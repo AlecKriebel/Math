@@ -479,7 +479,8 @@ def generate_certificate():
         "status": {
             "local_common_switching_split_lemma": "PROVED",
             "generic_cut_split_rank_characterization": "PROVED",
-            "generic_bridge_contraction_tree_reconstruction": "PROVED",
+            "generic_reduced_bridge_tree_reconstruction": "PROVED",
+            "degree_two_root_blob_detection_from_splits": "UNRESOLVED",
             "global_blob_tensor_factorization": "UNRESOLVED",
             "global_L1_classification": "UNRESOLVED",
         },

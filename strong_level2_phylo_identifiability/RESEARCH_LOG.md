@@ -444,11 +444,12 @@
 - **PROVED:** boundary specialization makes a nonzero-minor polynomial
   certificate for every non-cut split. Outside one proper algebraic
   exceptional set, rank at most four characterizes exactly the cut splits.
-  The compatible split system reconstructs the unique leaf-labelled
-  bridge-contraction tree.
+  The compatible split system reconstructs the unique homeomorphism-reduced
+  leaf-labelled bridge tree.
 - **PROVED:** two networks with full-dimensional regular JC overlap have the
-  same bridge-contraction tree. Global ambiguities therefore cannot coordinate
-  changes between different blob trees.
+  same nontrivial cut splits and reduced bridge tree. An unlabelled degree-two
+  root factor is not encoded by splits and is explicitly deferred to the
+  root-local atlas.
 - **UNRESOLVED:** analytic local-tensor extraction, arbitrary incoming-port
   comparisons, arbitrary root-blob classification, and one-sided global
   containment remain open.

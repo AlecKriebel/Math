@@ -21,13 +21,18 @@ A|B\text{ is induced by a cut edge of }N
 \]
 
 Consequently an exact generic JC distribution determines every nontrivial cut
-split and therefore the complete leaf-labelled tree obtained by contracting
-each nontrivial blob to one vertex.
+split and therefore the leaf-labelled tree obtained by contracting each
+nontrivial blob to one vertex and suppressing unlabelled degree-two vertices.
 
-**PROVED.** If `N bowtie_JC N'`, their bridge-contraction trees are
-leaf-labelled isomorphic. Thus a full-dimensional global ambiguity cannot
-change the cut-split system or coordinate changes between different blob
-trees.
+**PROVED.** If `N bowtie_JC N'`, their homeomorphism-reduced
+bridge-contraction trees are leaf-labelled isomorphic. Thus a
+full-dimensional global ambiguity cannot change the nontrivial cut-split
+system or the reduced arrangement of blobs.
+
+An unlabelled degree-two factor is invisible to a split system. In this class,
+the relevant unresolved case is a minimal two-port root-containing cycle
+blob. Its detection or collapse is explicitly deferred to the root-factor
+atlas; it is not silently treated as reconstructed here.
 
 This milestone does not yet extract every local blob tensor or complete the
 root-blob atlas.
@@ -188,14 +193,20 @@ There are finitely many leaf splits. The union of their nonzero-minor
 exceptional hypersurfaces is still proper, giving one simultaneous generic
 set on which every cut split is recovered correctly.
 
-## Reconstructing the bridge-contraction tree
+## Reconstructing the reduced bridge-contraction tree
 
 **PROVED.** The recovered cut splits are pairwise compatible. Choose a
 reference leaf and orient every split by the side not containing it. These
 sides form a laminar family. Ordering them by inclusion and connecting every
-set to its least strict superset reconstructs the unique leaf-labelled tree
-whose edges realize exactly those splits. Adding the trivial pendant splits
-places every labelled leaf.
+set to its least strict superset reconstructs the unique homeomorphism-reduced
+leaf-labelled tree whose edges realize exactly those splits. Adding the
+trivial pendant splits places every labelled leaf.
+
+The word "reduced" is essential: split systems never record unlabelled
+degree-two vertices. All nonroot blobs in the strong level-2 class have at
+least three incident ports, but a minimal root-containing cycle can have two.
+That possible root factor must be classified from its local stochastic tensor,
+not from cut ranks.
 
 For data known to arise from the class, this gives a finite exact algorithm:
 
@@ -213,12 +224,12 @@ polynomial-time claim is made at this milestone.
 Let `N bowtie_JC N'`. A full-dimensional regular common neighborhood cannot
 be contained in either network's proper algebraic exceptional set. Choose a
 common point outside both sets. Its flattening ranks recover both cut-split
-systems, so those systems and their unique bridge-contraction trees agree.
+systems, so those systems and their unique reduced bridge trees agree.
 
-**PROVED.** Any remaining full-dimensional JC ambiguity is confined to
-corresponding factors at the same vertices of this recovered tree. In
-particular, networks with different bridge trees cannot be observationally
-equivalent.
+**PROVED.** Any remaining full-dimensional JC ambiguity preserves the reduced
+bridge tree. In particular, networks with different nontrivial cut-split
+systems cannot be observationally equivalent. This statement does not rule
+out inserting or deleting a statistically absorbable degree-two root factor.
 
 **UNRESOLVED.** To turn this into the full `L_1`, `L_*`, or `S_2`
 if-and-only-if theorem, the next steps are:
