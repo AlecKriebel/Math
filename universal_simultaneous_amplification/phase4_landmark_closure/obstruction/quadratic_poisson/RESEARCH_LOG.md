@@ -37,3 +37,14 @@ All timestamps use America/Los_Angeles.
   degree is attained.  Therefore no bounded-degree exact-baseline Poisson
   architecture can prove the desired universal maximization theorem, even
   on the baseline itself.
+- 06:29 -- [PROVED REDUCTION / EXACT COUNTEREXAMPLE] Reduced the component
+  odds conjecture to the raw return count between consecutive rings of one
+  target clock: `p_i=Pr(N_i>=1)` and
+  `E N_i=2 sum_v P_vi p_v`.  Therefore the conjecture is exactly
+  `Pr(N_i=0)(1+E N_i)>=1` for the special stationary post-clock mixture.
+  Retracted the stronger arbitrary-start lemma.  The symmetric weighted
+  `K_4` with edge weights `(89,21,1,34,1,2)`, target `i=2`, and full outside
+  start violates it by the exact rational amount recorded in
+  `ODDS_REGENERATION_STATUS.md`.  Also proved the sound one-step fact that
+  every coordinate of the unbatched stationary law has nonpositive drift
+  under the batched generator; stationary domination remains open.

@@ -7,6 +7,12 @@ Date: 2026-08-02 (America/Los_Angeles)
 This directory records two distinct certificate questions for the exact
 geometric-union dB dual at fitness `r=2`.
 
+`ODDS_REGENERATION_STATUS.md` records a separate exact reduction of the
+component-odds conjecture to a stationary stopped-count inequality.  It also
+gives an exact symmetric `K_4` counterexample to the stronger arbitrary-start
+stopped-count lemma and records the sound one-step marginal comparison with
+the unbatched process.
+
 1. **Half-density target (OPEN).**  Seek a graph-dependent Boolean quadratic
    `g` such that
 
