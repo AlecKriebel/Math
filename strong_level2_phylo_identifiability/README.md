@@ -212,6 +212,15 @@ Multiple-triangle blobs, arbitrary one-sided containments, and the remaining
 K2P/K3P atlases remain open.  See
 `notes/MILESTONE_6A_JC_GLOBAL_LSTAR_CLASSIFICATION.md`.
 
+Milestone 6B proves that the entire `Omega_chain` ambiguity is JC-specific.
+A sparse 20-term K2P quintic and a sparse 52-term K3P sextic vanish
+identically on one four-port Omega topology and have completely factored,
+nonzero pullbacks on the other.  Exact rational target witnesses lie in the
+strict positive Markov domains, and endpoint marginalization propagates the
+separation to every chain length.  Thus both richer models remove `Theta` and
+`Omega_chain`, while universal `C_root` remains invisible.  See
+`notes/MILESTONE_6B_OMEGA_MODEL_HIERARCHY.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

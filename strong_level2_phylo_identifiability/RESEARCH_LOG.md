@@ -678,3 +678,33 @@
 - **UNRESOLVED:** `S_2` blobs with multiple triangles, arbitrary one-sided
   containments, and the K2P/K3P local/global theories remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T03:11:42-07:00 — Omega separated under K2P and K3P
+
+- **EXACTLY COMPUTED:** a 20-term coefficient-`+-1` K2P quintic vanishes
+  identically on the source `Omega_2` parameterization.  Its target pullback
+  has 48 terms and factors into open-domain monomials times the character-path
+  binomial `s0*t4*t5*s6*s7-t0*s4*s5*t6*t7`.
+- **EXACTLY COMPUTED:** a 52-term coefficient-`+-1` K3P sextic vanishes
+  identically on the same source.  Its 648-term target pullback factors into
+  24 exact irreducible factors, including two short character-specific
+  factors and one six-term path polynomial.
+- **EXACTLY COMPUTED:** strict positive target witnesses give invariant
+  values `1/824633720832` under K2P and
+  `1/60037854118799648400` under K3P.  The minimum transition probabilities
+  are respectively `1/12` and `7/48`.
+- **EXACTLY COMPUTED:** at the inherited JC common point, nonzero individual
+  tangent minors have orders 18 and 27, while nonzero combined minors have
+  orders 19 and 29.  These certify the character-specific transverse
+  departures but are not used in place of the global invariants.
+- **PROVED:** the two model closures are distinct irreducible varieties of
+  equal dimension, so neither K2P nor K3P permits a full-dimensional regular
+  stochastic overlap for `Omega_2`.
+- **PROVED:** marginalization of every `Omega_chain(k)` to endpoint ports
+  `P1,Pk,Q,X` gives `Omega_2` with path-product multipliers.  Boundary
+  specialization to unused multipliers one proves the all-`k` pullback is a
+  nonzero polynomial; openness of the strict Markov domain gives generic
+  stochastic separation for every `k>=2`.
+- **UNRESOLVED:** the K2P/K3P status of `R3`, ordinary triangle redirection,
+  and the complete local/global richer-model atlases remains open.
+- No literature search or numerical assertion is used in the theorem.
