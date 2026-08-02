@@ -814,3 +814,24 @@
 - **UNRESOLVED:** pairwise full-dimensional `bowtie` is not claimed; the
   exponential result is one-sided from the generic tree model.
 - No literature search or numerical assertion is used in the theorem.
+
+## 2026-08-02T05:11:11-07:00 — complete three-port model atlas closed
+
+- **PROVED:** the complete root three-port `bowtie` and one-sided-containment
+  atlases are now closed for JC, K2P, and K3P, including all labelled and
+  rooted presentations of one tree, two cycle, and five theta generators.
+- **PROVED:** JC has two incomparable classes `T3` and `R4`; their open
+  stochastic images are disjoint by the strict tree invariant.
+- **PROVED:** K2P has the complete containment `T6 -> R9`; all seven
+  reticulate generators lie in the common regular class `R9`.
+- **PROVED:** K3P has `T9 -> H14 -> A15`, with complete tree-image containment
+  into both reticulate classes and regular one-sided containment from the
+  quartic class to the ambient class.
+- **PROVED:** unequal-class `bowtie` and reverse containments are absent by
+  the exact dimension chains `6<9` and `9<14<15`.
+- **PROVED:** the simultaneous intersection of all eight unlabelled open
+  models is empty under JC and is exactly the complete ordinary-tree image of
+  dimension six or nine under K2P or K3P.
+- **UNRESOLVED:** complete open-image equality within equal-dimensional
+  reticulate `bowtie` classes is not claimed.
+- No literature search or numerical assertion is used.

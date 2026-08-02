@@ -258,6 +258,14 @@ topologies compatible with every open distribution on one base tree.  This
 phenomenon is absent from the stipulated positive-multiplier JC domain.  See
 `notes/MILESTONE_6F_GROUP_BASED_DISPLAYED_TREE_CONTAINMENT.md`.
 
+Milestone 6G closes the complete root three-port `bowtie` and one-sided-
+containment atlas under all three models.  JC has two incomparable classes
+`T3` and `R4`; K2P has `T6 -> R9`; and K3P has the chain
+`T9 -> H14 -> A15`, with dimensions shown by the subscripts.  The intersection
+of all eight open models is empty under JC and is exactly the complete tree
+image under K2P and K3P.  See
+`notes/MILESTONE_6G_COMPLETE_ROOT_THREE_PORT_MODEL_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
