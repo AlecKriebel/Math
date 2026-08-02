@@ -3,29 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An exact reversible three-species mass-action system with a compact positive equilibrium ellipse and no common factor in its coordinate vector field.">
+  <meta name="description" content="A four-parameter fixed-support family of reversible three-species mass-action systems with a common positive equilibrium ellipse and generically coprime coordinate fields.">
   <meta name="author" content="Alec Kriebel, with substantial assistance from OpenAI Codex">
-  <meta name="citation_title" content="A reversible three-species mass-action continuum without a common factor">
+  <meta name="citation_title" content="A four-parameter family of reversible three-species mass-action continua without a common factor">
   <meta name="citation_author" content="Alec Kriebel">
   <meta name="citation_publication_date" content="2026-08-02">
-  <meta name="citation_doi" content="10.5281/zenodo.21753527">
+  <meta name="citation_doi" content="10.5281/zenodo.21753997">
   <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/paper.pdf">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="A reversible three-species mass-action continuum without a common factor">
-  <meta property="og:description" content="Ten complexes, one reversible linkage class, a positive equilibrium ellipse, and coordinate gcd one—verified exactly by two independent programs.">
+  <meta property="og:title" content="A four-parameter family of reversible three-species mass-action continua without a common factor">
+  <meta property="og:description" content="An exact fixed-support family with a rational positive cone, generic geometric gcd one, an optimal clean integer specialization, exact radical decompositions, and frozen-rate stability.">
   <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/">
   <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/">
-  <title>Reversible mass-action equilibrium continuum · Alec's Math Explorations</title>
+  <title>Four-parameter reversible mass-action continua · Alec's Math Explorations</title>
   <link rel="stylesheet" href="../../assets/style.css?v=20260802">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ScholarlyArticle",
-    "headline": "A reversible three-species mass-action continuum without a common factor",
+    "headline": "A four-parameter family of reversible three-species mass-action continua without a common factor",
     "author": {"@type": "Person", "name": "Alec Kriebel", "url": "https://aleckriebel.com/"},
     "datePublished": "2026-08-02",
     "dateModified": "2026-08-02",
-    "sameAs": "https://doi.org/10.5281/zenodo.21753527",
+    "version": "2.0.0",
+    "sameAs": "https://doi.org/10.5281/zenodo.21753997",
     "url": "https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/",
     "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/reversible-mass-action-continuum/paper.pdf", "encodingFormat": "application/pdf"}
   }
@@ -39,95 +40,142 @@
   <header class="site-header">
     <nav class="nav" aria-label="Paper navigation">
       <a class="brand" href="../../">Alec's Math Explorations</a>
-      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#theorem">Theorem</a><a href="#verification">Verification</a><a href="#release">Release</a><a href="https://github.com/AlecKriebel/Math/tree/wr-continuum-v1.0.0/weakly_reversible_continuum_no_common_factor">Source</a></div>
+      <div class="nav-links"><a href="#abstract">Abstract</a><a href="#family">Family</a><a href="#specializations">Specializations</a><a href="#verification">Verification</a><a href="#release">Release</a><a href="https://github.com/AlecKriebel/Math/tree/wr-continuum-v2.0.0/weakly_reversible_continuum_no_common_factor">Source</a></div>
     </nav>
     <div class="paper-hero"><div class="inner">
-      <p class="paper-status">Version 1.0.0 · Exact construction · Not peer reviewed</p>
-      <h1>A reversible three-species mass-action continuum without a common factor</h1>
+      <p class="paper-status">Version 2.0.0 · Exact family, optimal specialization, and dynamics · Not peer reviewed</p>
+      <h1>A four-parameter family of reversible three-species mass-action continua without a common factor</h1>
       <p class="byline">Alec Kriebel, with substantial assistance from OpenAI Codex</p>
-      <p class="release">Public release: <time datetime="2026-08-02">2 August 2026 UTC</time> (1 August 2026 PDT) · <a href="https://doi.org/10.5281/zenodo.21753527">DOI 10.5281/zenodo.21753527</a></p>
+      <p class="release">Version 2 release: <time datetime="2026-08-02">2 August 2026 UTC</time> · <a href="https://doi.org/10.5281/zenodo.21753997">DOI 10.5281/zenodo.21753997</a></p>
     </div></div>
   </header>
 
   <main class="paper-main">
     <div class="notice" role="note">
       <div class="notice-mark">!</div>
-      <div><h2>Independent expert review is still required.</h2><p>The construction has passed two exact implementations and a separate proof audit, but it has not been peer reviewed. The Zenodo record and repository tag establish a citable public disclosure date; they do not by themselves establish correctness or mathematical priority.</p></div>
+      <div><h2>Independent expert review is still required.</h2><p>Four exact replay layers cross-check the principal algebraic and dynamical claims, including one separately implemented v2 audit, but the work has not been peer reviewed. A release DOI establishes a citable disclosure date; it does not establish correctness or priority.</p></div>
     </div>
 
     <div class="button-row paper-actions">
-      <a class="button" href="./paper.pdf">Open PDF</a>
-      <a class="button secondary" href="./files/wr-continuum-v1.0.0-complete.tar.gz">Complete archive</a>
-      <a class="button secondary" href="./files/wr-continuum-v1.0.0-source.zip">Source archive</a>
-      <a class="button secondary" href="./files/wr-continuum-v1.0.0-verifiers.zip">Verifier archive</a>
-      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21753527">Zenodo</a>
-      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/wr-continuum-v1.0.0">Repository tag</a>
+      <a class="button" href="./files/manuscript-v2.0.0.pdf">Open Version 2 PDF</a>
+      <a class="button secondary" href="./files/specialist-audit-v2.0.0.pdf">Specialist handout</a>
+      <a class="button secondary" href="./files/wr-continuum-v2.0.0-complete.tar.gz">Complete v2 archive</a>
+      <a class="button secondary" href="./files/wr-continuum-v2.0.0-source.zip">Source v2 archive</a>
+      <a class="button secondary" href="./files/wr-continuum-v2.0.0-verifiers.zip">Verifier v2 archive</a>
+      <a class="button secondary" href="https://doi.org/10.5281/zenodo.21753997">Version 2 on Zenodo</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/wr-continuum-v2.0.0">Version 2 release</a>
     </div>
 
     <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
       <section id="abstract">
         <h2>Abstract</h2>
-        <p class="lede" itemprop="abstract">We give an exact reversible mass-action system on three species with one linkage class, ten complexes, ten reversible reaction pairs, and positive integer rates. Its stoichiometric subspace is all of ℝ<sup>3</sup>, and its positive orthant contains a compact algebraic ellipse of equilibria. Nevertheless, the three coordinate polynomials of the mass-action vector field have greatest common divisor one. The equilibrium continuum is therefore a genuine height-two steady-state component, not a common-factor hypersurface.</p>
+        <p class="lede" itemprop="abstract">We determine a four-dimensional exact rate family on one fixed reversible reaction graph with three species, ten complexes, and ten reversible pairs. Every positive member has full stoichiometric rank and vanishes on the same compact positive algebraic ellipse. The positive rate set is a rational relatively open polyhedral cone, while a nonempty Zariski-open subset of the family has geometrically coprime coordinate polynomials. A clean primitive integer member is simultaneously optimal for maximum rate and rate sum within this fixed-support, conic-preserving family. Its steady ideal is radical. For the immutable Version 1 specialization, exact Sturm analysis divides the ellipse into a normally attracting arc and a saddle-type arc.</p>
         <div class="fact-grid">
-          <div class="fact"><strong>Network</strong><span>3 species · 10 complexes · 10 reversible pairs</span></div>
-          <div class="fact"><strong>Continuum</strong><span>Compact positive algebraic ellipse in one full-rank class</span></div>
-          <div class="fact"><strong>Steady ideal</strong><span>Radical: conic plus 15 reduced isolated points · gcd 1</span></div>
+          <div class="fact"><strong>Fixed-support family</strong><span>4 rational parameters · exact relatively open positive cone</span></div>
+          <div class="fact"><strong>Generic geometry</strong><span>Geometric gcd 1 on a nonempty Zariski-open subset</span></div>
+          <div class="fact"><strong>Clean specialization</strong><span>Maximum rate 10,296 · rate sum 52,464 · both fixed-support optimal</span></div>
+          <div class="fact"><strong>Steady ideal</strong><span>Radical: conic plus 15 reduced isolated points</span></div>
+          <div class="fact"><strong>Frozen v1 dynamics</strong><span>One attracting arc and one saddle-type arc, with two exact transitions</span></div>
+          <div class="fact"><strong>Verification</strong><span>Four exact replay layers · no floating-point evidence</span></div>
         </div>
       </section>
 
-      <section id="theorem">
-        <h2>The exact theorem</h2>
+      <section id="family">
+        <h2>The fixed graph and four-parameter family</h2>
+        <p>Use the ten complexes</p>
+        <div class="theorem-block"><p>\(0, Z, 3Z, Y+Z, 3Y, X+Z, X+Y, X+Y+Z, 2X+Y, 3X\)</p></div>
+        <p>and the ten undirected edges \(01,04,06,17,24,27,29,34,59,89\), with both orientations of every edge. The graph is connected, and three reaction differences have nonzero determinant, so the stoichiometric subspace is \(\mathbb R^3\). There are no conservation laws: the one positive compatibility class is the full positive orthant.</p>
         <div class="theorem-block">
-          <p>There is a reversible mass-action system on \(X,Y,Z\), with one linkage class and positive integer rate constants, whose stoichiometric subspace is ℝ<sup>3</sup> and whose steady-state set contains the positive conic</p>
+          <p><strong>Complete family theorem.</strong> On this directed support, all rate vectors whose three coordinate fields vanish on the conic below form a four-dimensional rational linear space. With free coordinates \((a,b,c,d)=(k_{29},k_{43},k_{95},k_{98})\), the remaining sixteen rates are explicit rational linear forms given in the manuscript.</p>
           <div class="equation">\[z-x-y+1=0,\qquad 7x^2-2xy-16x+7y^2-16y+16=0.\]</div>
-          <p>The coordinate vector-field polynomials satisfy \(\gcd(F_1,F_2,F_3)=1\) over ℚ, and hence over ℝ and ℂ. The full steady ideal is radical: over the algebraic closure its variety is this conic, disjoint from fifteen reduced isolated points.</p>
+          <p>All twenty rates are positive exactly when</p>
+          <div class="equation">\[a,b,c,d>0,\qquad b&lt;c,\qquad 192a+221c&lt;154d.\]</div>
+          <p>This relatively open rational cone is parametrized by \(a,b,h,s>0\) through</p>
+          <div class="equation">\[c=b+h,\qquad d=\frac{192a+221(b+h)+s}{154}.\]</div>
         </div>
-        <p>An exact positive parametrization is</p>
+        <p>The family is exhaustive: an exact canonical \(21\times20\) remainder matrix has rank 16 and nullity 4. A certified nonzero \(16\times16\) minor proves the rank, and the four displayed free coordinates prove the matching kernel dimension.</p>
+        <p>The conic is a nonsingular, geometrically irreducible compact positive ellipse. It has the rational parametrization</p>
         <div class="equation">\[
           x(t)=\frac{t^2+3}{2(t^2-t+1)},\quad
           y(t)=\frac{3t^2+1}{2(t^2-t+1)},\quad
           z(t)=\frac{t^2+t+1}{t^2-t+1}.
         \]</div>
-        <p>On \(t\in(-1,1)\), these points are positive and pairwise distinct. Because the stoichiometric class is the whole positive orthant, they all lie in one compatibility class.</p>
+        <p>All coordinates are positive for every real \(t\); on \((-1,1)\), the points are pairwise distinct.</p>
+
+        <h2>Generic geometric gcd one</h2>
+        <p>Homogeneous triples with a common factor form a projectively closed multiplication locus. Pulling its affine cone back along the linear rate map gives a closed subset of the four-dimensional parameter space, including the zero field. The clean specialization below lies outside it by exact affine and homogenized factorization. Therefore a nonempty Zariski-open subset of the constrained family has coordinate gcd one over \(\mathbb Q\), \(\mathbb R\), and \(\mathbb C\).</p>
+        <p>On that open subset, the steady ideal has height two and the conic prime is a minimal prime. Thus the ellipse is genuinely a height-two equilibrium component, not the zero set of a common scalar factor. This is a relative statement inside the conic-preserving family, not robustness under arbitrary rate perturbations.</p>
+      </section>
+
+      <section id="specializations">
+        <h2>A clean optimal integer specialization</h2>
+        <p>Set \((a,b,c,d)=(653,1,70,915)\). In directed-edge order <code>01, 10, 04, 40, 06, 60, 17, 71, 24, 42, 27, 72, 29, 92, 34, 43, 59, 95, 89, 98</code>, the primitive positive integer rates are</p>
+        <div class="theorem-block"><code>(1160, 10296, 976, 23, 560, 5977, 1800, 25, 1629, 1237,<br>1, 9152, 653, 1214, 5368, 1, 5368, 70, 6039, 915)</code></div>
+        <p>The coordinate gcd is one geometrically. Its steady ideal is radical and, over \(\mathbb Q\), is the intersection of the conic prime with a disjoint degree-15 maximal ideal. Over an algebraic closure, the residual component is fifteen reduced isolated points.</p>
+        <p>Among all positive integral rate vectors on this fixed support that preserve this conic, the specialization simultaneously minimizes the maximum rate, \(10296\), and the rate sum, \(52464\). The exact certificate is a bounded finite enumeration derived from divisibility and positivity. This is not a claim of global network minimality.</p>
+
+        <h2>Exact stability of the frozen Version 1 ellipse</h2>
+        <p>Stability is analyzed for the immutable Version 1 rate vector, not for the clean specialization. Along the rational parametrization, the tangent eigenvalue is zero. The two transverse eigenvalues are real and distinct everywhere; exact Sturm counts isolate exactly two parameters at which one transverse eigenvalue crosses zero:</p>
+        <div class="equation">\[\alpha\in(-4,-3),\qquad \beta\in(9/10,1).\]</div>
+        <p>The ellipse is normally attracting for \(\alpha&lt;t&lt;\beta\), transversely saddle-type for \(t&lt;\alpha\) or \(t>\beta\), and nonhyperbolic at \(\alpha\) and \(\beta\). The point corresponding to \(t=\infty\) is also saddle-type. Decimal approximations in the paper are for orientation only and play no role in the proof.</p>
+
+        <h2>Minimality and scope</h2>
+        <p>One or two species cannot realize the target without a common factor, so three species are globally minimal. A one-linkage three-species target must have full stoichiometric rank. Deficiency-zero weakly reversible systems have at most one positive equilibrium per compatibility class; consequently any three-species weakly reversible realization of the target has at least five active complexes. The present ten-complex network is not claimed to minimize complexes, reactions, degree, or deficiency.</p>
       </section>
 
       <section id="verification">
-        <h2>Two independent exact verifiers</h2>
-        <p>The archive supplies a one-command replay:</p>
+        <h2>Four exact replay layers</h2>
+        <p>The Version 2 archive supplies a one-command replay:</p>
         <div class="theorem-block"><code>./reproduce.sh</code></div>
-        <ul class="certificate-list">
-          <li><strong>Original verifier.</strong> Reconstructs the mass-action field, graph, stoichiometry, ideal membership, parametrization, gcd, Jacobian rank, and full radical decomposition.</li>
-          <li><strong>Clean-room verifier.</strong> Starts from the raw complexes, directed reactions, rates, \(L\), \(Q\), and parametrization. It independently derives the field and ideal quotients, then rediscovers the residual component by saturation and ideal-intersection elimination.</li>
-          <li><strong>Proof audit.</strong> Separately checks the absolute-prime and scalar-extension arguments, three-species minimality, the one-linkage rank-two obstruction, and the four-complex impossibility proof.</li>
-        </ul>
-        <p>No floating-point computation is used as evidence for the theorem.</p>
+        <ol class="certificate-list">
+          <li><strong>Frozen v1 verifier.</strong> Reconstructs the original network, conic identities, graph, stoichiometry, coordinate gcd, and radical decomposition.</li>
+          <li><strong>Family verifier.</strong> Reconstructs the \(21\times20\) remainder matrix, certified rank minor, four-dimensional kernel, exact positive cone, and homogenized gcd-one witness.</li>
+          <li><strong>Strengthening verifier.</strong> Reconstructs the clean field and radical decomposition, proves both bounded integer optima, derives the transverse characteristic polynomial, and performs the exact Sturm counts.</li>
+          <li><strong>Independent v2 audit.</strong> Separately reconstructs the family matrix, both rate specializations, both radical decompositions, both integer optima, and hand-built Sturm chains, then checks a frozen machine-readable result file.</li>
+        </ol>
+        <p>All evidentiary polynomial and optimization computations use exact integer or rational arithmetic. The independent v2 audit is a separate implementation; independent specialist review remains outstanding.</p>
       </section>
 
       <section id="release">
-        <h2>Immutable release and checksums</h2>
-        <p>Version 1.0.0 preserves the original integer-rate construction before the fixed-support rate family was developed. Later versions will not overwrite these bytes.</p>
-        <p><strong>DOI correction.</strong> The automatic GitHub–Zenodo integration minted Version 1.0.0 DOI <a href="https://doi.org/10.5281/zenodo.21753527">10.5281/zenodo.21753527</a>. The different identifier printed in the frozen files had been reserved for an unpublished manual draft before the automatic integration was confirmed. The release bytes remain unchanged; citations to this version should use the live version DOI. Zenodo also assigned repository-level concept DOI <a href="https://doi.org/10.5281/zenodo.21753404">10.5281/zenodo.21753404</a>, but it groups every GitHub release from this monorepo, including unrelated projects, and is not an all-versions identifier specific to this paper.</p>
+        <h2>Version 2 release and checksums</h2>
+        <p>Version 2.0.0 adds the complete fixed-support family, its relatively open positive cone, generic geometric coprimality, the clean fixed-support-optimal integer vector, its exact radical decomposition, frozen-rate transverse stability, structural lower bounds, and four-layer exact replay. Publishing the tagged GitHub release triggered the automatic Zenodo archive and minted the version DOI below.</p>
         <ul class="certificate-list">
-          <li>PDF SHA-256: <code>8b333f8d3e08d5b2a66ca2b78474079ef4be6b23cb497fbd991f41fae9558e4d</code></li>
-          <li>Complete archive SHA-256: <code>f71d4b70be6f2e7195b9e391d4b9ec0febbed9a4354e7826cf45795f5d4a800e</code></li>
-          <li>Source archive SHA-256: <code>5413a52d8afe71ad302f3e888c01a10d63c307ba5b7b536f63dff2ad85ef14be</code></li>
-          <li>Verifier archive SHA-256: <code>f217d187769bc116055edc41fff9b39fe7c85ebedfaf8e3a9842dc7066a40b06</code></li>
+          <li>Version 2 DOI: <code>10.5281/zenodo.21753997</code></li>
+          <li>PDF SHA-256: <code class="hash">fe429cf073b30cacfe1ba75624236cda2545c44076f711d4319dcb22ff79512b</code></li>
+          <li>Specialist handout SHA-256: <code class="hash">5f7ef76a05ef3c31a693cdd8d9d5ae238edab3c04f1a56bd227c65c5bdf6b268</code></li>
+          <li>Complete archive SHA-256: <code class="hash">c587ec4638a734cc8438e5fd2e5c3b8a489f92d6a94675c556038dd298e13707</code></li>
+          <li>Source archive SHA-256: <code class="hash">c9f76c6edc4aa037d9e9a8320415557483a9c03f7bf0f22bb8450bf36e4239cc</code></li>
+          <li>Verifier archive SHA-256: <code class="hash">d13d0400afde27bb444133283957aa5b699928549b36b62024c2c07d3ce5e6e1</code></li>
         </ul>
-        <div class="button-row"><a class="button secondary" href="./files/payload-SHA256SUMS.txt">Payload checksums</a><a class="button secondary" href="./files/archive-SHA256SUMS.txt">Archive checksums</a><a class="button secondary" href="./files/CITATION-corrected.cff">Corrected CITATION.cff</a></div>
+        <div class="button-row"><a class="button secondary" href="./files/payload-v2.0.0-SHA256SUMS.txt">Version 2 payload checksums</a><a class="button secondary" href="./files/archive-v2.0.0-SHA256SUMS.txt">Version 2 archive checksums</a><a class="button secondary" href="./files/CITATION-v2.0.0.cff">Version 2 CITATION.cff</a></div>
+
+        <h2 id="history">Immutable Version 1 history</h2>
+        <p>Version 1.0.0 remains byte-for-byte immutable. Its PDF and all three downloadable archives are preserved below; Version 2 does not overwrite them.</p>
+        <div class="button-row">
+          <a class="button secondary" href="./files/manuscript-v1.0.0.pdf">Version 1 PDF</a>
+          <a class="button secondary" href="./files/wr-continuum-v1.0.0-complete.tar.gz">Version 1 complete archive</a>
+          <a class="button secondary" href="./files/wr-continuum-v1.0.0-source.zip">Version 1 source archive</a>
+          <a class="button secondary" href="./files/wr-continuum-v1.0.0-verifiers.zip">Version 1 verifier archive</a>
+          <a class="button secondary" href="https://doi.org/10.5281/zenodo.21753527">Version 1 DOI</a>
+          <a class="button secondary" href="https://github.com/AlecKriebel/Math/releases/tag/wr-continuum-v1.0.0">Version 1 release</a>
+        </div>
+        <p><strong>Version 1 DOI correction.</strong> The automatic GitHub-Zenodo integration minted Version 1 DOI <a href="https://doi.org/10.5281/zenodo.21753527">10.5281/zenodo.21753527</a>. A different identifier printed in the frozen v1 files had been reserved for an unpublished manual draft before the automatic integration was confirmed. The frozen bytes remain unchanged; citations to v1 should use the live version DOI. The corrected citation file is available separately.</p>
+        <p>Zenodo repository-level concept DOI <a href="https://doi.org/10.5281/zenodo.21753404">10.5281/zenodo.21753404</a> groups releases from the entire <code>AlecKriebel/Math</code> monorepo, including unrelated projects. It is not a paper-specific all-versions DOI. Cite this paper using the applicable version-specific DOI.</p>
+        <div class="button-row"><a class="button secondary" href="./files/payload-SHA256SUMS.txt">Version 1 payload checksums</a><a class="button secondary" href="./files/archive-SHA256SUMS.txt">Version 1 archive checksums</a><a class="button secondary" href="./files/CITATION-corrected.cff">Corrected Version 1 CITATION.cff</a></div>
 
         <h2>Priority scope</h2>
-        <p>The construction was completed and exactly verified before any literature search. A subsequent targeted audit found no prior example satisfying this conjunction. That is a conservative search report, not an exhaustive worldwide priority claim.</p>
+        <p>The construction and exact verifier were completed before the targeted literature audit. Boros, Craciun, and Yu already supplied a positive-dimensional fixed-support same-curve rate family, but every member retains a common scalar factor. A narrow primary-source audit through 1 August 2026 found no earlier weakly reversible fixed-support positive rate family that preserves a continuum in one compatibility class while being generically free of a coordinate common factor within that family. This is a conservative, nonexhaustive audit conclusion, not a universal priority claim. Existing generic-finiteness results concern changes in ambient parameters and do not make this fine-tuned family robust under arbitrary rate perturbations.</p>
 
         <h2>Suggested citation</h2>
-        <p>Alec Kriebel, “A reversible three-species mass-action continuum without a common factor,” Version 1.0.0, 2026. <a href="https://doi.org/10.5281/zenodo.21753527">https://doi.org/10.5281/zenodo.21753527</a>.</p>
+        <p>Alec Kriebel, “A four-parameter family of reversible three-species mass-action continua without a common factor,” Version 2.0.0, 2026. <a href="https://doi.org/10.5281/zenodo.21753997">https://doi.org/10.5281/zenodo.21753997</a>.</p>
       </section>
     </article>
 
     <section id="paper" class="pdf-section">
-      <h2>Typeset manuscript</h2>
+      <h2>Typeset Version 2 manuscript</h2>
       <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p></object>
     </section>
   </main>
-  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a> · <a href="https://doi.org/10.5281/zenodo.21753527">Zenodo DOI</a></footer>
+  <footer class="site-footer"><a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math">Source repository</a> · <a href="https://doi.org/10.5281/zenodo.21753997">Version 2 DOI</a> · <a href="#history">Version 1 history</a></footer>
 </body>
 </html>
