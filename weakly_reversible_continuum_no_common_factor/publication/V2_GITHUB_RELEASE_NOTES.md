@@ -45,13 +45,15 @@ verifier. SHA-256 manifests accompany all release assets.
 - Version: `2.0.0`
 - Repository tag: `wr-continuum-v2.0.0`
 - Publication date: 2 August 2026 UTC (1 August 2026 PDT)
+- Zenodo Version 2 DOI: `10.5281/zenodo.21753997`
 - Version 1 DOI: `10.5281/zenodo.21753527`
 - Repository-level Zenodo concept DOI: `10.5281/zenodo.21753404`
 
-Publishing this GitHub release triggers the repository's automatic Zenodo
-archive. The Version 2 DOI will be added here after Zenodo mints it. Because
-the integration operates at monorepo scope, the concept DOI above groups
-unrelated releases and is not a paper-specific all-versions identifier.
+Publishing this GitHub release triggered the repository's automatic Zenodo
+archive, which minted the Version 2 DOI above. Because the integration
+operates at monorepo scope, the concept DOI groups unrelated releases and is
+not a paper-specific all-versions identifier. Cite this version using
+`10.5281/zenodo.21753997`.
 
 The DOI and repository tag establish a citable public disclosure date. They
 are not peer review or a correctness certificate.

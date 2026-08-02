@@ -24,7 +24,7 @@ evidence.
 | Frozen and clean rates were accidentally mixed | Separate rate columns and separate reconstructed fields; cross-layer equality checks | v2 wrapper and independent v2 audit |
 | Stability is claimed for the wrong specialization | Stability section and Sturm verifier explicitly use frozen v1 rates only | strengthening and independent v2 verifiers |
 | Ten complexes or ten reversible pairs are called globally minimal | Manuscript and packet explicitly restrict optimality to integral rates on the fixed support/family | scope audit |
-| The repository concept DOI is misrepresented as paper-specific | Packet states that `10.5281/zenodo.21753404` groups unrelated monorepo releases and directs paper citations to the pending Version 2 DOI | metadata audit |
+| The repository concept DOI is misrepresented as paper-specific | Packet states that `10.5281/zenodo.21753404` groups unrelated monorepo releases and directs Version 2 citations to `10.5281/zenodo.21753997` | metadata audit |
 | A DOI is represented as peer review or proof | Packet labels DOI metadata as disclosure, not correctness certification | metadata audit |
 
 ## Independent replay

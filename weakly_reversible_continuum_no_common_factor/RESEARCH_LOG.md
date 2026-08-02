@@ -189,3 +189,17 @@
 - No Version 2 DOI is asserted inside the frozen tag candidate. Publishing the
   checked GitHub release will trigger the automatic Zenodo archive; the actual
   version DOI will be recorded afterward without rewriting the immutable tag.
+
+## 2026-08-01 20:36 PDT — Public Version 2 timestamp
+
+- GitHub release `wr-continuum-v2.0.0` was published at
+  `2026-08-02T03:35:10Z`. GitHub reports SHA-256 digests matching all six
+  locally frozen assets.
+- The automatic GitHub--Zenodo integration created record `21753997` at
+  `2026-08-02T03:35:38.594644Z` and minted Version 2 DOI
+  `10.5281/zenodo.21753997`.
+- The automatic archive is
+  `AlecKriebel/Math-wr-continuum-v2.0.0.zip`, size `180108207` bytes, with
+  checksum `md5:4d4c43174a28c17a82b8365ead817975`.
+- The immutable tag remains unchanged. DOI-bearing citation metadata and the
+  specialist handout are maintained as post-mint companion artifacts.

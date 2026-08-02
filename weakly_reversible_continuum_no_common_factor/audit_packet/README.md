@@ -29,6 +29,6 @@ this directory.
 Repository-wide Zenodo concept DOI: **10.5281/zenodo.21753404**. It groups
 unrelated releases from the `AlecKriebel/Math` monorepo and is **not** an
 all-versions DOI specific to this paper. Citations to Version 2 should use its
-version-specific DOI, which remains pending until the GitHub Version 2
-release triggers the automatic Zenodo archive. This packet neither publishes
-anything nor prepares or initiates external communication.
+version-specific DOI, **10.5281/zenodo.21753997**, minted by the automatic
+Zenodo archive triggered by the GitHub Version 2 release. This packet neither
+publishes anything nor prepares or initiates external communication.

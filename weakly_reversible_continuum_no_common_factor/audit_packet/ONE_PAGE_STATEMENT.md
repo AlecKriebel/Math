@@ -121,8 +121,7 @@ human-readable table in Appendix A of
   unrelated releases from the `AlecKriebel/Math` monorepo and is not a
   paper-specific all-versions DOI.
 - Cite this paper using its Version 2 version-specific DOI:
-  **placeholder pending the automatic Zenodo archive triggered by the final
-  GitHub release**.
+  **10.5281/zenodo.21753997**.
 - This packet performs no deposit, publication, or external communication.
 
 From the repository root, replay all Version 2 computational claims with one

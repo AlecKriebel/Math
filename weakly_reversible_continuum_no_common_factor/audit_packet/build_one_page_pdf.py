@@ -51,7 +51,7 @@ def draw_page(canvas, document):
     canvas.setFillColor(MUTED)
     canvas.setFont("Helvetica", 6.4)
     canvas.drawString(0.42*inch, 0.17*inch,
-                      "Repository concept DOI (not paper-specific): 10.5281/zenodo.21753404 | Cite v2 DOI: pending")
+                      "Repository concept DOI (not paper-specific): 10.5281/zenodo.21753404 | v2 DOI: 10.5281/zenodo.21753997")
     canvas.drawRightString(width - 0.42*inch, 0.17*inch, "Audit handout - 1 page")
     canvas.restoreState()
 
@@ -207,7 +207,7 @@ def build():
         "Repository-wide Zenodo concept DOI: <b>10.5281/zenodo.21753404</b>. It "
         "groups unrelated releases from the AlecKriebel/Math monorepo and is not "
         "a paper-specific all-versions DOI. Cite this paper using its Version 2 "
-        "version-specific DOI: <b>pending the final GitHub release</b>. This packet does not "
+        "version-specific DOI: <b>10.5281/zenodo.21753997</b>. This packet does not "
         "publish, deposit, or contact anyone. A DOI is not a correctness certificate.", st)]
     story += [body(
         "Not claimed: global minimality in complexes/reactions/deficiency; "
