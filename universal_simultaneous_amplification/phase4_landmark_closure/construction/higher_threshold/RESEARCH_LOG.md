@@ -63,3 +63,25 @@ used.  Floating-point searches are reconnaissance only.
   regimes outside the stated compactness hypotheses, and the universal
   threshold.  This closes a construction class but supplies no new lower
   construction beyond `3/2`.
+
+## 2026-08-02 09:41 PDT — symmetric two-portal route closed
+
+- **PROVED CLASS NO-GO:** for two exchangeable portals coupled to a growing
+  family of strong-pair blades, the full rare-mutant trace retains both the
+  one-portal and simultaneous-two-portal states.  Bd establishment beats the
+  large-complete limit exactly when `2c+g>1`.
+- After the shift `x=c-(1-g)/2`, the exact dB amplification test is a
+  quadratic whose constant, linear, and quadratic terms are all strictly
+  negative whenever `x>=0` and `r>1`.  Thus Bd gain forces a strict dB loss
+  for `1<r<2`; at `r>=2` the dB one-half entrance factor already fails.
+- The proof uses branching survival only as a fixation upper bound through a
+  fixed-cutoff stopped-process limit.  It does not identify establishment
+  with fixation.  The later density drift is in fact favorable under both
+  rules, locating the obstruction entirely at entrance.
+- **EXACTLY VERIFIED:** symbolic PGF and sign certificates pass.  A separate
+  exact-fraction audit enumerates all 256 labelled subsets of a rational
+  eight-vertex instance, proves strong lumpability into 30 states, and checks
+  every quotient rate under both update rules.
+- **OPEN:** singular parameter scales, nonexchangeable portal incidence, and
+  a portal network whose order grows with the blade count.  The many-portal
+  extension is under active attack; no threshold beyond `3/2` is claimed.

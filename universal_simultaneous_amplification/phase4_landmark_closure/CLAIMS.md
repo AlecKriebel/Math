@@ -22,6 +22,7 @@
 | A singular four-vertex two-edge module improves the `3/2` construction | REFUTED FOR THE SEPARATED-CENTER ARCHITECTURE | Its exact Bd and dB center-load windows differ by `-(r-1)^2(r^2+1)` and never overlap |
 | A weighted `(3,3,2)` triangle has one root favorable to both rules at `r=31/20` | PROVED LOCALLY | Exact six-state formulas; every tested population-level handoff loses the rooted gain, so this is not a uniform-initialization construction |
 | The locally regular second-order establishment tradeoff alone proves Alternative O | OPEN | It does not yet control the post-establishment finite-population correction |
+| A growing protected-pair module with two exchangeable active portals can improve the threshold beyond `3/2` | REFUTED FOR THIS CLASS | Exact compound-branching trace retaining portal counts one and two; Bd gain forces a manifestly signed dB deficit, with a stopped-process fixation upper bound and exact labelled-state audit |
 
 This ledger will be updated at every proof checkpoint. Computational signs are
 never sufficient to change an `OPEN` entry to `PROVED`.

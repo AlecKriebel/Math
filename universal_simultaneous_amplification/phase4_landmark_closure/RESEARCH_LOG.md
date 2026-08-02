@@ -287,3 +287,23 @@
   prove a mission-level upper bound.  Landmark-closure completion remains
   **59%**; the geometric-batching ratio and an independent `r=2` collision
   bound are under active attack.
+
+## 2026-08-02 09:41 PDT — full two-portal protected-pair obstruction
+
+- [PROVED CLASS NO-GO] The separated strong-pair module with two exchangeable
+  active portals has no simultaneous Bd/dB establishment window at any
+  beneficial fitness, even after retaining the simultaneous-two-portal state.
+  Bd gain is exactly `2c+g>1`; after shifting by this boundary, the dB sign
+  polynomial has three manifestly negative terms.
+- [PROVED FIXATION CONSEQUENCE] A fixed-cutoff stopped-process convergence
+  lemma bounds finite-graph fixation by the exact compound-branching survival
+  probability.  This closes the class without assuming that establishment
+  guarantees fixation.  The result is uniform on compact nonsingular
+  parameter ranges.
+- [EXACTLY VERIFIED] The PGF/sign algebra passes symbolic reconstruction, and
+  an independent exact labelled-state audit matches all Bd and dB rates on
+  256 subsets and 30 orbit states.  Finite quotient solutions converge to the
+  predicted limits.
+- [OPEN] Growing portal networks and singular coupling scales remain genuine
+  construction regimes.  This is not a universal graph reduction, so the
+  landmark-closure estimate remains **59%**.

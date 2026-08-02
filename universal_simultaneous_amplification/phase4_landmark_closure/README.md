@@ -62,7 +62,15 @@ mesoscopic modules made from a growing diffuse family of protected two-state
 blades in a broad compact regime.  For literal strong pairs the obstruction
 already begins at `(1+sqrt(3))/2`; the homogeneous Bd and dB load windows are
 disjoint for every `r>1`.  This is a class theorem, not a universal upper
-bound: nonseparated and multi-portal architectures remain open.
+bound: nonseparated and general multi-portal architectures remain open.
+
+The corresponding symmetric two-portal trace has also been closed without
+discarding the simultaneous-two-portal state.  Its Bd entrance gain is
+exactly incompatible with dB entrance gain at every `r>1`, although the
+post-establishment drift favors mutants under both rules.  The obstruction is
+uniform on compact nonsingular parameter ranges and is independently audited
+from all labelled atomic transitions.  Growing or asymmetric portal networks
+and singular coupling scales remain open.
 
 The current universal-obstruction attack factors the conjectured
 `r=3/2` fixation product through a conservative reversed-arrow dual.  Exact
