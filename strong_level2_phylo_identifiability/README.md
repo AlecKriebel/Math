@@ -221,6 +221,15 @@ separation to every chain length.  Thus both richer models remove `Theta` and
 `Omega_chain`, while universal `C_root` remains invisible.  See
 `notes/MILESTONE_6B_OMEGA_MODEL_HIERARCHY.md`.
 
+Milestone 6C proves that the much larger three-port root replacement `R3`
+survives K2P.  All seven unlabelled reticulate root models have explicit
+nonzero rank-nine minors at the same strict algebraic K2P distribution, so
+all 39 labelled rooted topologies (21 semi-directed) share one full
+nine-dimensional regular stochastic neighborhood.  Thus K2P removes
+`Theta` and `Omega_chain` but does not resolve reticulate three-port root
+topology.  See
+`notes/MILESTONE_6C_K2P_ROOT_THREE_PORT_SATURATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

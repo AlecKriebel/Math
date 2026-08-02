@@ -708,3 +708,24 @@
 - **UNRESOLVED:** the K2P/K3P status of `R3`, ordinary triangle redirection,
   and the complete local/global richer-model atlases remains open.
 - No literature search or numerical assertion is used in the theorem.
+
+## 2026-08-02T03:25:57-07:00 — K2P three-port reticulate root saturation proved
+
+- **PROVED:** the complete seven-model reticulate three-port root census has
+  one shared strict K2P algebraic point, obtained on the inherited JC
+  diagonal with the same isolated internal roots and positive pendant arms.
+- **EXACTLY COMPUTED:** prescribed `9 x 9` Jacobian minors factor into
+  positive pendant monomials, powers of `h`, `(1-h)^4`, and univariate
+  factors having no root in `(1/8,7/8)` by exact Sturm counting.
+- **PROVED:** every reticulate model has full rank nine and hence complete
+  affine normalized K2P closure.  More importantly, the submersion theorem at
+  the common strict point gives one simultaneous nine-dimensional regular
+  stochastic neighborhood.
+- **PROVED:** all 39 labelled rooted reticulate three-port topologies,
+  representing 21 semi-directed topologies, therefore belong to one
+  `bowtie_K2P` class generated locally by `R3_K2P`; characterwise tripod
+  inversion propagates the overlap through arbitrary corresponding port
+  components.
+- **UNRESOLVED:** equality of complete open images, one-sided overlap with
+  the ordinary K2P tree, and the K3P `R3` atlas are not claimed.
+- No literature search or numerical assertion is used in the theorem.

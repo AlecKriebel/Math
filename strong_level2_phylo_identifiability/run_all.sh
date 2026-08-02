@@ -24,6 +24,7 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_cut_split_reconstruction.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_two_port_collapse.py
 PYTHONPATH=src .venv/bin/python src/verify_group_based_root_two_port_collapse.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_three_port_saturation.py
+PYTHONPATH=src .venv/bin/python src/verify_k2p_root_three_port_saturation.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_three_port_tree_separation.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_four_port_cycle_theta_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_omega_chain.py
