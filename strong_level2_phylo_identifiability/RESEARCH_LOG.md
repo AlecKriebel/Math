@@ -642,3 +642,39 @@
 - **UNRESOLVED:** one-sided root containments and the projective cut-edge
   tensor extraction needed for the global `L_1/L_*` theorem remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T01:50:30-07:00 — global JC L1/Lstar classification completed
+
+- **PROVED:** every Fourier flattening block at a recovered cut is a positive
+  rank-one outer product.  Anchor factorization and recursive bridge-tree
+  peeling recover every local tensor up to one reciprocal JC arm gauge per
+  bridge.
+- **EXACTLY COMPUTED:** 18 symbolic rank-one minors and 12 anchor identities
+  vanish as required.  The six automorphisms of `Z2xZ2` make the three
+  nonzero character gauges one JC scalar.
+- **EXACTLY COMPUTED:** all 1,026 terms in the sixty local invariants are
+  multihomogeneous in port-arm degrees, so no nonzero cut gauge changes an
+  invariant's vanishing status.
+- **EXACTLY COMPUTED:** the only degree-three tree/blob comparison missing
+  from the bridge reconstruction is strictly separated by
+  `F=r12*r13*r23-u123^2`; the minimal nonroot cycle pullback factors as
+  `-p0*p1*p2*p3^2*p4^2*p5^2*p6^2*p7*(p1-1)^2*(p7-1)>0`.
+- **PROVED:** combining cut-split recovery, projective locality, the complete
+  nonroot atlas, and the complete root atlas gives an if-and-only-if
+  `bowtie_JC` theorem for `L_1` and `L_*`.  The global move system is
+  `{R_root,T,C_root,R3,Theta,Omega_chain}`.
+- **PROVED:** no primitive coordinated ambiguity remains between distant
+  blobs.  Every rooted topology has at most one active non-`T` root expansion
+  relative to its canonical backbone; independent `T` choices still compose
+  multiplicatively.
+- **PROVED:** lexicographic finite minimization gives a canonical form.  Exact
+  formulas count semi-directed sheets from local `T` factors plus root-site
+  corrections, and rooted multiplicity is the sum of compatible-rooting
+  counts.
+- **PROVED:** a terminating structural algorithm uses exact cut ranks,
+  projective factorization, and bounded marginals through six ports.  It
+  avoids exhaustive DAG enumeration, though direct split search remains
+  exponential.
+- **UNRESOLVED:** `S_2` blobs with multiple triangles, arbitrary one-sided
+  containments, and the K2P/K3P local/global theories remain open.
+- No literature search or numerical evidence is used.

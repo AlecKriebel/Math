@@ -199,6 +199,19 @@ the complete root move list is `{T,C_root,R3,Theta,Omega_chain}`.  One-sided
 containments and the global cut-edge locality argument remain open.  See
 `notes/MILESTONE_5H_JC_ARBITRARY_ROOT_BLOB_ATLAS.md`.
 
+Milestone 6A proves the global JC if-and-only-if theorem for both `L_1` and
+`L_*`.  Positive rank-one Fourier blocks recover every component tensor from
+the cut-split tree up to one reciprocal JC arm gauge per bridge; all sixty
+local invariants are exactly multihomogeneous under those gauges.  Hence
+distant blobs cannot conspire.  The global move system is
+`{R_root,T,C_root,R3,Theta,Omega_chain}`; nonroot choices factor by blob, and
+every non-triangle change is confined to the one active root expansion of a
+rooted topology.  The milestone also gives a canonical form, exact topology
+multiplicity formulas, and a terminating structural reconstruction algorithm.
+Multiple-triangle blobs, arbitrary one-sided containments, and the remaining
+K2P/K3P atlases remain open.  See
+`notes/MILESTONE_6A_JC_GLOBAL_LSTAR_CLASSIFICATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

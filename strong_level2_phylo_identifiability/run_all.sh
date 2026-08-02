@@ -28,3 +28,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_root_three_port_tree_separation.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_four_port_cycle_theta_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_omega_chain.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_support_deck.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_projective_cut_locality.py
