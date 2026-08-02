@@ -298,3 +298,29 @@ universal partition theorem is yet known.
 Best-guess completion toward a full resolution: **12%**. This sharply prunes
 the negative route and exposes the needed chromatic-versus-vector-coloring
 gap, but remains a relaxation rather than an ordinary five-coloring theorem.
+
+## 2026-08-01T17:47:10-07:00 — Weak Mycielski realization closed globally
+
+- Proved that the 47-vertex six-critical graph M^3(C5) cannot occur even as a
+  non-induced diameter subgraph in R^4. This removes the strict-nonedge caveat
+  from the earlier slack-polytope proof: arbitrary accidental diameter edges
+  cannot rescue the candidate.
+- Defined the probability-pair model of Hom(K2,G). Any unit-vector assignment
+  with negative products on graph edges gives an explicit equivariant map
+  Hom(K2,G) -> S^(r-1) by normalizing the difference of the two weighted
+  shore sums; complete cross adjacency proves that this difference never
+  vanishes.
+- Built an explicit antipodal decagon S^1 -> Hom(K2,C5) and a three-stage
+  equivariant suspension map Sigma Hom(K2,G) -> Hom(K2,M(G)). Three
+  iterations give S^4 -> Hom(K2,M^3(C5)). The rank-four center-vector theorem
+  would give Hom(K2,M^3(C5)) -> S^3, contradicting the mod-two projective
+  cohomology form of Borsuk--Ulam.
+- Added a standard-library checker for the decagon, antipodal action, and all
+  Mycielski interpolation adjacencies. An independent exact slack census also
+  excludes 804 of the 845 one-edge supergraphs before the global topological
+  argument disposes of every augmentation at once.
+
+Best-guess completion toward a full resolution: **14%**. The strongest
+triangle-free graph-first candidate and all of its accidental-edge variants
+are now eliminated, and the Hom-complex obstruction is reusable, but no
+surviving six-chromatic realization or universal partition is yet known.

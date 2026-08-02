@@ -28,11 +28,14 @@ most four.
    joins, products, incidence graphs, and critical subgraphs.
 2. Reject any graph that lacks a rank-at-most-four vector five-coloring; for a
    regular graph, first apply the exact spectral test \(k\le-4\tau\).
-3. Solve symmetry-reduced Gram equalities for a common edge distance, PSD rank
+3. Apply the equivariant Hom-complex screen: the center vectors map
+   \(\operatorname{Hom}(K_2,G)\) to \(S^3\), so any explicit equivariant
+   \(S^4\)-substructure rules out even a non-induced diameter realization.
+4. Solve symmetry-reduced Gram equalities for a common edge distance, PSD rank
    at most four, and strict nonedge inequalities.
-4. Use numerical nonlinear/semidefinite optimization only to suggest exact
+5. Use numerical nonlinear/semidefinite optimization only to suggest exact
    parameters; recognize and re-check every candidate symbolically.
-5. When a candidate survives, emit CNF, proof, and a tiny independent checker.
+6. When a candidate survives, emit CNF, proof, and a tiny independent checker.
 
 ## Route C — positive theorem
 
