@@ -125,6 +125,17 @@ separated. Hence ordinary triangle redirection `T` is the complete nonroot
 local JC move system. Global cut-split and blob-tree recovery remain open.
 See `notes/MILESTONE_4D_JC_NONROOT_GENERATOR_CLASSIFICATION.md`.
 
+Milestone 5A proves the first global reconstruction theorem. Outside a proper
+algebraic exceptional set, a leaf split is induced by a cut edge exactly when
+its pattern or Fourier flattening has rank at most four. A complete compressed
+two-colour switching census over all root and nonroot cycle/theta cores rules
+out every false split, while exact crossing-quartet minors certify generic
+rank greater than four. Hence generic JC data determine the complete
+leaf-labelled bridge-contraction tree, and observationally equivalent
+networks cannot have different blob trees. Local tensor extraction and the
+arbitrary root-blob atlas remain open. See
+`notes/MILESTONE_5A_JC_CUT_SPLIT_RECONSTRUCTION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

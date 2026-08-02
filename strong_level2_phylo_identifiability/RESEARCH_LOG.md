@@ -417,3 +417,39 @@
   classification remain open.
 - No numerical evidence, external catalogue, specialized network software,
   or literature search is used.
+
+## 2026-08-01T22:33:00-07:00 — generic JC cut splits and bridge tree reconstructed
+
+- **PROVED:** every cut-edge pattern flattening factors through one hidden
+  four-state variable and therefore has rank at most four identically. Pattern
+  and Fourier flattening ranks agree under invertible sidewise transforms.
+- **PROVED:** an arbitrary two-colour port word with a split displayed by
+  every switching has at most one colour transition per directed segment and
+  reduces to one representative per monochromatic run, with a second retained
+  only for a globally singleton run. This gives a finite exhaustive
+  compression for arbitrarily subdivided blobs.
+- **EXACTLY COMPUTED:** the root/nonroot theta censuses test 124,368 and
+  251,352 balanced run-compressed colourings plus 2,232 singleton-run cases in
+  each position. The root/nonroot cycle censuses test 16 and 54 balanced
+  colourings plus 20 and 24 singleton-run cases. No nontrivial port split is
+  displayed by every parent-choice switching.
+- **PROVED:** contracting blobs gives a tree. Every non-edge leaf split has a
+  crossing quartet; a resolved crossing persists through a bridge, while a
+  star crossing is resolved against the split by the exact local switching
+  lemma. Hence some displayed tree crosses every non-cut split.
+- **EXACTLY COMPUTED:** at effective JC multiplier `1/2`, the two crossing
+  quartet Fourier flattenings have exact rank 16. Their common upper-left
+  `5x5` minor has determinant `3/1024` for true split `13|24` and `-3/4096`
+  for true split `14|23` when testing `12|34`.
+- **PROVED:** boundary specialization makes a nonzero-minor polynomial
+  certificate for every non-cut split. Outside one proper algebraic
+  exceptional set, rank at most four characterizes exactly the cut splits.
+  The compatible split system reconstructs the unique leaf-labelled
+  bridge-contraction tree.
+- **PROVED:** two networks with full-dimensional regular JC overlap have the
+  same bridge-contraction tree. Global ambiguities therefore cannot coordinate
+  changes between different blob trees.
+- **UNRESOLVED:** analytic local-tensor extraction, arbitrary incoming-port
+  comparisons, arbitrary root-blob classification, and one-sided global
+  containment remain open.
+- No literature search or numerical evidence is used.

@@ -20,3 +20,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_support_augmented_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_fully_labelled_support_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cross_support_weak_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cycle_cross_generator_atlas.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_cut_split_reconstruction.py
