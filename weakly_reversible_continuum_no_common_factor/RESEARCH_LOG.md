@@ -165,3 +165,27 @@
   stability transitions, with parameters in `(-4,-3)` and `(9/10,1)`. It is
   normally attracting between them and saddle-type outside; no false claim of
   global attraction is made.
+
+## 2026-08-01 20:35 PDT — Version 2.0 frozen release gate
+
+- The final fourteen-page Version 2 manuscript was rebuilt from its frozen
+  source, rendered page by page, and visually inspected without a layout or
+  glyph defect. Its SHA-256 is
+  `fe429cf073b30cacfe1ba75624236cda2545c44076f711d4319dcb22ff79512b`.
+- All exact layers passed independently and through the integrated wrapper:
+  original construction, v1 clean room, four-parameter family, clean-rate
+  radical/optimality/stability, minimality arithmetic, and the separately
+  implemented v2 audit.
+- The complete Version 2 archive was extracted into a fresh directory. Every
+  payload hash and all eight executable gates passed there. Final archive
+  SHA-256 values are `c587ec4638a734cc8438e5fd2e5c3b8a489f92d6a94675c556038dd298e13707`
+  (complete), `c9f76c6edc4aa037d9e9a8320415557483a9c03f7bf0f22bb8450bf36e4239cc`
+  (source), and `d13d0400afde27bb444133283957aa5b699928549b36b62024c2c07d3ce5e6e1`
+  (verifiers).
+- The post-solution audit found that Boros--Craciun--Yu already contain a
+  positive-dimensional fixed-support same-curve rate family, all of whose
+  members retain their common factor. Version 2 therefore claims novelty only
+  for the conjunction of such a family with generic coordinate gcd one.
+- No Version 2 DOI is asserted inside the frozen tag candidate. Publishing the
+  checked GitHub release will trigger the automatic Zenodo archive; the actual
+  version DOI will be recorded afterward without rewriting the immutable tag.
