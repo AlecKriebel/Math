@@ -150,3 +150,200 @@
   There is no long-running search attached to this checkpoint.  Folder is
   stable for commit.  Subtask completion estimate: **78%**; the remaining
   22% is precisely the open `r=2` dB maximizer / universal sum obstruction.
+
+## 2026-08-02 01:44 — exact `r=2` singular-family obstruction
+
+- [NUMERICALLY OBSERVED] Expanded `r=2` searches found no dB counterexample.
+  Larger clique blades, asymmetric two-vertex blade attachments, clique cores
+  with pair satellites, and general undirected equitable block graphs all
+  remained at or below the complete-graph baseline.  Representative deficits
+  include `-0.04585` for four size-three clique blades and `-0.000197` for a
+  size-20 clique core with three optimized pair satellites.  These values are
+  discovery evidence only.
+- [RETRACTED NUMERICAL ARTIFACT / EXACTLY COMPUTED] A size-60 clique core with
+  three extremely isolated, internally fast pair satellites appeared to have
+  excess `+4.75e-9` in double precision.  An exact 608-transient-state FLINT
+  solve instead gives
+
+      rho_dB(G,2)-rho_dB(K_66,2)
+        = -3.763244026503474...e-10 < 0.
+
+  A small floating-point residual is therefore not a sign certificate in
+  this nearly decomposable regime.
+- [PROVED FOR A BROAD FAMILY] Fix `c>=3`, `q>=1`, arbitrary `a_j,b_j>0`, and
+  join a unit-weight `K_c` core to disjoint internally weighted pairs by edges
+  of weight `epsilon*b_j`.  With `n=c+2q`,
+
+      limsup_(epsilon -> 0) rho_dB(G_epsilon,2)
+        <= (n-1)/(2n) < rho_dB(K_n,2).
+
+  The proof uses exact complete-core establishment probabilities, a rare-event
+  reduction, and the harmonic-mean scale tradeoff
+
+      A*x/(2*T+x) + 1/(8*x+1) >= A/(2*T),
+
+  where `T=2^(c-2)` and `A=(c-1)T/(2T-1)`.  After clearing denominators, the
+  unrestricted quadratic minimum has numerator
+
+      188*T^4 - 364*T^3 + 63*T^2 + 12*T - 4.
+
+  Substitution `T=u+2` makes every coefficient positive.  The exact verifier
+  checks this identity and the 608-state close case.
+- [OPEN AT THAT CHECKPOINT] The pair theorem did not cover larger satellites,
+  non-clique or multiscale cores, or parameters changing jointly with the
+  weak-coupling limit.  The next checkpoint closes the fixed clique-satellite
+  extension; universal dB maximization at `r=2` remains open.
+
+## 2026-08-02 02:00 — extension from pairs to arbitrary clique satellites
+
+- [PROVED FOR A BROADER FAMILY] The preceding theorem extends from
+  two-vertex satellites to arbitrary fixed clique sizes `m_j>=2`, still with
+  heterogeneous internal weights and attachment scales.  For a clique
+  `K_m`, put `T_m=2^(m-2)`.  The favorable-to-adverse macro odds in the two
+  directions have exact product
+
+      16*T_c*T_m.
+
+  After writing one directional odds as `z_j=16*T_c*T_m*y_j`, the mutant-core
+  success probability is controlled by the weighted harmonic mean `y_H`.
+  The required scalar inequality is
+
+      A_c*y/(1+y) + A_m/(1+16*T_c*T_m*y) >= d_c-s_m,
+
+  where `d_k=A_k/(2*T_k)` and `s_k=k/2-A_k=1/2-d_k`.
+- [EXACTLY CERTIFIED] Monotonicity of `d_k` makes the right side nonpositive
+  except for pair satellites and `(c,m)=(3,3),(4,3),(3,4)`.  The pair case is
+  the coefficient-positive certificate above.  After positive denominator
+  clearing, the remaining three numerators are
+
+      64*y^2 - 7*y + 1,
+      4480*y^2 - 65*y + 27,
+      3456*y^2 - 65*y + 35,
+
+  with discriminants `-207,-479615,-479615`.  The verifier reconstructs and
+  checks all of these rational identities.
+- [OPEN] Non-clique or nested satellites and jointly growing component sizes
+  remain outside this exact obstruction.
+
+## 2026-08-02 02:42 — arbitrary-module reduction and dual-level audit
+
+- [PROVED CONDITIONAL REDUCTION] For an arbitrary fixed satellite module `H`,
+  define `B=sum alpha_v`, `C=sum alpha_v/delta_v`, and
+  `D=sum beta_v/delta_v`, where `alpha` is dB fixation at fitness two and
+  `beta` at fitness one half.  The weak core--module theorem follows if every
+  module satisfies
+
+      B <= |H|/2,
+      (2*B-|H|+1)*C <= B*D  when 2*B-|H|+1>0.
+
+  The macro odds product is `16*T_c*C/D`.  Under the two invariants, the
+  remaining continuous scalar inequality has no interior minimum in its
+  module-slack parameter.  One endpoint is the already certified pair
+  inequality; at the other endpoint the target lower bound is zero.  This
+  proves the reduction, not the two invariants.
+- [EXACTLY COMPUTED / OPEN] Both module inequalities pass exact FLINT solves
+  on 250 connected rational small graphs, with the second inequality
+  applicable on 64 of them.  They also survived every connected unweighted
+  graph through seven vertices and tens of thousands of weighted numerical
+  samples.  These computations are not a universal proof.
+- [EXACTLY COMPUTED / CONJECTURE OPEN] The proposed stationary dB-dual level
+  inequality
+
+      k*pi_k <= (n-k)*(r-1)^(2*k-n)*pi_(n-k),  k>n/2,
+
+  holds exactly for the certified 7-, 9-, and 11-vertex windmills both at
+  their amplifier fitness and at `r=2`, and for the 66-vertex extreme
+  clique-core false positive at `r=2`.  The closest non-full slack in the last
+  case is about `1.0945e-27`, but is an exact positive rational.
+- [EXACT TRANSFORM] If `F_s` is fixation averaged over all forward mutant sets
+  of size `s`, Boolean duality gives
+
+      1-F_(n-t) = sum_(k<=t) pi_k*C(n-k,t-k)/C(n,t).
+
+  `verify_dual_level_windmills.py` uses this triangular identity to recover
+  every `pi_k` from independently solved forward orbit chains.  At `r=2`, the
+  conjectured paired inequality implies `E|A|<=n/2`, hence the first open
+  module invariant, but does not yet yield the complete-graph fixation bound.
+- [EXACTLY COMPUTED / STRONGER CONJECTURE OPEN] If
+
+      C_k=sum_(|A|=k) Pi(A)*sum_(v in A) 1/d_v,
+
+  then all six windmill cases also satisfy
+
+      C_k <= (r-1)^(2*k-n)*C_(n-k),  k>n/2.
+
+  Exact labelled Möbius inversion gives smallest non-full marked slacks from
+  `5.03e-6` down to `4.51e-10`.  A numerical screen of 37,500 connected
+  weighted graphs through eight vertices, at each of `r=3/2,2,3,5`, found no
+  violation.  This marked form aligns with the inverse-degree quantities in
+  the second open module invariant, but no implication has been proved.
+- [EXACTLY COMPUTED / FURTHER MARKED VARIANTS OPEN] The same six windmill
+  cases pass the degree-occupied conjecture, and both degree- and
+  inverse-degree-hole conjectures.  If `a_v` is `d_v` or `1/d_v`, define
+
+      O_k=sum_(|A|=k) Pi(A)*sum_(v in A) a_v,
+      H_k=sum_(|A|=k) Pi(A)*sum_(v not in A) a_v.
+
+  The exact tested inequalities are
+
+      O_k <= (r-1)^(2*k-n)*O_(n-k),
+      H_k <= ((n-k)/k)^2*(r-1)^(2*k-n)*H_(n-k).
+
+  The squared hole prefactor makes the complete graph an equality.  All four
+  marker variants also passed a numerical screen of 18,500 connected weighted
+  graphs through seven vertices at each of `r=3/2,2,3,5`.  Degree marking may
+  be more directly compatible with reversibility since `d_v*P_vu=w_vu`.
+- [EXACTLY FALSIFIED ROUTE] The ratio of forward fixation probabilities at
+  reciprocal fitness is not graph independent.  On the weighted triangle
+  with edge weights `(1,2,3)`,
+
+      rho_dB(G,2)   = 18764/43223,
+      rho_dB(G,1/2) = 30154/129669,
+      rho_dB(G,2)/rho_dB(G,1/2) = 28146/15077 != 2.
+
+  The inverse-degree-weighted singleton-sum ratio is
+  `428540/222057 != 2` as well.  Type complementation identifies the
+  reverse-fitness singleton values with dual singleton masses, but supplies
+  no graph-independent aggregate ratio.
+- [EXACTLY FALSIFIED ROUTE] Binomial-normalized dual levels need not be
+  unimodal.  On the six-vertex path `1-0-2-4-5-3` with consecutive weights
+  `(30,4,64,1,1860)` at `r=2`, exact arithmetic gives
+
+      pi_k/C(5,k)
+        = (0.14253727..., 0.01391490..., 0.01433493...,
+           0.000961348..., 0.000008561...).
+
+  Hence the sequence decreases and then increases between levels two and
+  three.  A likelihood-ratio/unimodality sharpening of the reflected-level
+  conjecture is unavailable.
+
+## 2026-08-02 03:31 — non-star weak module networks at `r=2`
+
+- [EXACT REDUCED PROCESS] Consider several clique modules `K_(m_i)` with
+  internal weights `a_i`, joined pairwise by complete bipartite edge bundles
+  of weights `epsilon*b_ij`, with no distinguished core.  In the weak-coupling
+  limit, a resident target module `j` flips mutant at rate
+
+      2*m_j*alpha_j/[a_j*(m_j-1)]
+        * sum_(i mutant) m_i*b_ij,
+
+  while a mutant target flips resident at rate
+
+      m_j*beta_j/[2*a_j*(m_j-1)]
+        * sum_(i resident) m_i*b_ij.
+
+  Thus the exact target-module directional odds are
+  `4*alpha_j/beta_j=4*2^(m_j-2)`.  Uniform singleton initialization contributes local mass
+  `m_j*alpha_j` before this macro chain starts.
+- [NUMERICALLY OBSERVED] Global optimization of all module internal scales
+  and symmetric cross-module weights found no `r=2` dB counterexample for
+  complete or cyclic meta-supports with three through five modules and sizes
+
+      (2,2,2), (2,2,2,2), (2,2,2,2,2),
+      (2,2,3), (2,2,3,3), (2,2,2,3),
+      (2,3,3,3), (3,3,3,3),
+      (2,2,2,2,3), (2,2,2,3,3).
+
+  The closest optimized deficit was about `-0.02694` for
+  `(2,2,2,2,3)`.  This search is outside the proved star-shaped
+  core--satellite family but remains numerical discovery only.
