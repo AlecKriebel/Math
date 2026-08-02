@@ -208,3 +208,19 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   order, Boolean stochastic domination, ultra-log-concavity, the coarse rank
   cone, the coarse factorial cone, and their intersection are each false as
   general invariant-cone claims.  Stationary rank reflection remains OPEN.
+- 03:57 -- [NUMERICAL CERTIFICATE AUDIT / NEW INFORMATION REDUCTION] At
+  `r=2`, the pointwise Poisson inequality targeting the exact complete-graph
+  stationary mean fails for edge-supported quadratics already on four
+  vertices and for unrestricted quadratics on small cycles.  In contrast,
+  the weaker target `E|A|<=n/2` remains feasible with one common cardinality
+  coefficient and support-edge pair coefficients on every connected
+  unweighted graph through six vertices.  The exact degree-barrier package
+  proves that an exact complete-target certificate needs degree at least
+  `n-2` even on `K_n`; hence no bounded-degree exact-target hierarchy can
+  close the problem.  A separate stationary random-target reformulation
+  writes `mu_v=pi G_v`, `f_v=d mu_v/d pi`, and
+  `I_2=(1/n)sum_v E_pi f_v^2`.  Since `f_v(B)=0` for `v in B`, Cauchy gives
+  `I_2>=n/(n-E|A|)`.  Therefore the still-open sharp information inequality
+  `I_2<=2` would prove the universal half-density bound.  These observations
+  do not yet give a finite-baseline obstruction or an upper bound on
+  `R_sim`.
