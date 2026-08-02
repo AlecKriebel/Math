@@ -26,11 +26,13 @@ most four.
 
 1. Construct six-chromatic graphs from explicit combinatorial rules, including
    joins, products, incidence graphs, and critical subgraphs.
-2. Solve symmetry-reduced Gram equalities for a common edge distance, PSD rank
+2. Reject any graph that lacks a rank-at-most-four vector five-coloring; for a
+   regular graph, first apply the exact spectral test \(k\le-4\tau\).
+3. Solve symmetry-reduced Gram equalities for a common edge distance, PSD rank
    at most four, and strict nonedge inequalities.
-3. Use numerical nonlinear/semidefinite optimization only to suggest exact
+4. Use numerical nonlinear/semidefinite optimization only to suggest exact
    parameters; recognize and re-check every candidate symbolically.
-4. When a candidate survives, emit CNF, proof, and a tiny independent checker.
+5. When a candidate survives, emit CNF, proof, and a tiny independent checker.
 
 ## Route C — positive theorem
 

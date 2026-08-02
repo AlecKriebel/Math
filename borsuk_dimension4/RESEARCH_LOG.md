@@ -272,3 +272,29 @@ general diameter graph.
 Best-guess completion toward a full resolution: **11%**. The largest exact
 single-orbit search has been closed completely, but no counterexample or
 universal partition theorem is yet known.
+
+## 2026-08-01T17:32:05-07:00 — Rank-four vector five-coloring obstruction
+
+- Proved a new graph-first necessary condition: every finite diameter
+  subgraph in R^4 has a rank-at-most-four unit Gram representation with edge
+  entries at most -1/4. More generally, every finite diameter subgraph in
+  R^d has a rank-d vector (d+1)-coloring with edge entries at most -1/d.
+- The proof takes the minimum enclosing cap of the diameter-neighbor
+  directions at each vertex. Exact active-set geometry gives squared cap
+  height at least 5/8; opposite directions along an edge then force the two
+  cap centers to have product at most -1/4. An independent hostile audit
+  confirmed the empty-neighborhood and equality cases.
+- Derived the exact regular-graph screen k <= -4 tau, where tau is the least
+  adjacency eigenvalue. Applied it to the 60-vertex unsigned golden graph:
+  its degree 20 and least eigenvalue -4 would require 20 <= 16. Hence that
+  abstract six-chromatic graph cannot occur even as a diameter subgraph,
+  giving a coordinate-independent explanation for the failed orientation
+  route.
+- Added a dependency-free exact checker for the sharp constants and the
+  previously certified golden spectral identity. Future graph-first searches
+  now reject candidates at the vector relaxation before attempting a
+  rank-four Euclidean realization.
+
+Best-guess completion toward a full resolution: **12%**. This sharply prunes
+the negative route and exposes the needed chromatic-versus-vector-coloring
+gap, but remains a relaxation rather than an ordinary five-coloring theorem.
