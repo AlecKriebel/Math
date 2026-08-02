@@ -47,6 +47,14 @@ this finite atlas.  One-sided containment between unequal-dimensional models
 is kept separate and remains partially unresolved.  See
 `notes/MILESTONE_3D_JC_ROOT_SPANNING_ATLAS.md`.
 
+Milestone 3E exposes the incoming state port in every one of those 612
+networks.  All lifted semi-directed topologies become distinct, and exact
+quartet marginals partition them into 516 observational components: 420
+singletons and 96 ordinary triangle-redirection pairs.  Hence `T` is the only
+surviving nonroot move in this exhaustive five-port slice; `Theta`, `Psi`,
+and `Omega` are root-local there.  See
+`notes/MILESTONE_3E_JC_INCOMING_PORT_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

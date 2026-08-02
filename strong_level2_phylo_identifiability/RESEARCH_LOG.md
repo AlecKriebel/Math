@@ -186,3 +186,31 @@
 - The deterministic machine certificate contains all network encodings,
   component memberships, dimensions, signatures, and unresolved directions.
   No literature search was conducted.
+
+## 2026-08-01T18:36:35-07:00 — incoming-port JC atlas closed
+
+- **EXACTLY COMPUTED:** exposed the incoming state port of every one of the
+  612 root-spanning labelled networks with a new root and outgroup leaf 5.
+  All 612 rooted and all 612 semi-directed lifted topologies are pairwise
+  distinct.
+- **EXACTLY COMPUTED:** exhaustive graph comparison finds exactly 96 ordinary
+  triangle-redirection pairs and 420 singleton classes, giving 516 candidate
+  nonroot observational components.
+- **EXACTLY COMPUTED:** exact fraction-free symbolic Jacobian ranks are 10
+  for eight unlabelled parameterizations and 11 for nineteen.  At component
+  level this gives 96 dimension-10 and 420 dimension-11 classes.
+- **EXACTLY COMPUTED:** two symmetry-reduced invariant templates, one cubic
+  and one quartic, evaluated on only the four quartets containing incoming
+  leaf 5 produce 60 exact polynomial zero/nonzero tests per model.  Their
+  signatures are constant on each `T` pair and different on all 516
+  components, separating all 92,550 distinct equal-dimensional pairs.
+- **PROVED:** `N bowtie_JC N'` in this finite incoming-port atlas if and only
+  if the two networks are isomorphic or differ by ordinary triangle
+  redirection.  This exhaustively eliminates `Theta`, `Psi`, and `Omega` as
+  nonroot moves in the reduced five-port slice and proves a quartet witness
+  bound there.
+- **EXACTLY COMPUTED:** the same quartet templates refute 39,168 of 40,320
+  possible dimension-10-to-11 containments.  The remaining 1,152 directions
+  are marked **UNRESOLVED** and do not affect the symmetric classification.
+- No intrinsically five-leaf invariant, numerical rank, external catalogue,
+  or literature search was used in the theorem.
