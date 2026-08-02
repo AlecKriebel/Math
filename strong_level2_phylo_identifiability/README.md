@@ -55,6 +55,16 @@ surviving nonroot move in this exhaustive five-port slice; `Theta`, `Psi`,
 and `Omega` are root-local there.  See
 `notes/MILESTONE_3E_JC_INCOMING_PORT_ATLAS.md`.
 
+Milestone 3F resolves every unequal-dimensional direction whose two lifted
+models have the same root marginal.  Exact incoming-quartet factors prove
+that all 168 such dimension-10-to-11 pairs have disjoint open stochastic
+images.  Nevertheless, 48 directions admit dominant rational maps into a
+zero-length-edge boundary of the larger model, giving proper algebraic
+containments with no stochastic containment.  Combining these certificates
+with the preceding atlases rejects 39,720 of all 40,320 possible directed
+containments; 600 cross-root directions remain unresolved.  See
+`notes/MILESTONE_3F_JC_BOUNDARY_CONTAINMENTS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

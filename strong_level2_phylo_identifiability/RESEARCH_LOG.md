@@ -214,3 +214,29 @@
   are marked **UNRESOLVED** and do not affect the symmetric classification.
 - No intrinsically five-leaf invariant, numerical rank, external catalogue,
   or literature search was used in the theorem.
+
+## 2026-08-01T19:11:40-07:00 — same-root directed containments resolved
+
+- **EXACTLY COMPUTED:** the 168 dimension-10-to-11 directions surviving the
+  compact incoming-port signatures and having equal four-leaf root marginal
+  form seven orbits of size 24 under simultaneous relabelling of the four
+  outgoing ports.
+- **PROVED:** one incoming-quartet invariant vanishes identically on the
+  smaller model in each orbit and factors into a strictly nonzero expression
+  throughout the larger model's complete open stochastic cube.  Six orbits
+  use one cubic relabelling; the seventh uses one quartic relabelling.  Hence
+  all 168 same-root directions have disjoint open stochastic images.
+- **EXACTLY COMPUTED:** two of the seven orbit representatives admit explicit
+  rational parameter maps into a target sheet with one Fourier edge
+  multiplier equal to one.  Substitution proves equality of all 51 five-leaf
+  JC orbit coordinates.
+- **PROVED:** nonzero exact rank-ten source-gauge minors prove both maps are
+  dominant onto the smaller closures.  Therefore 48 directed pairs are
+  proper algebraic boundary containments even though their open stochastic
+  images are disjoint.
+- **EXACTLY COMPUTED:** combining the compact incoming signatures, root
+  marginal certificates, and the new strict factors rejects 39,720 of the
+  40,320 possible dimension-10-to-11 stochastic containments.  The remaining
+  600 directions all cross distinct unresolved root-marginal components and
+  are explicitly retained as **UNRESOLVED**.
+- No numerical evidence or literature search is used in this milestone.

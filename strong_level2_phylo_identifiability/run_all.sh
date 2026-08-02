@@ -12,3 +12,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_omega_move.py
 PYTHONPATH=src python3 src/verify_jc_omega_move_stdlib.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_spanning_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_incoming_port_atlas.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_boundary_containments.py
