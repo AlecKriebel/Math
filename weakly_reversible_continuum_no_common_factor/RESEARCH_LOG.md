@@ -110,3 +110,23 @@
 - To publish only this research program, its two dedicated commits were
   replayed onto the clean remote base and pushed as commit `42ee2ce6` on
   `codex/weakly-reversible-continuum`.
+
+## 2026-08-01 18:58 PDT — Version 1.0 verification and archive gate
+
+- The original verifier passed from a newly created Python environment.
+- A substantively independent 551-line clean-room verifier reconstructed the
+  network and field from raw data, rederived the conic representations, and
+  independently recovered the residual ideal by saturation and auxiliary-
+  variable ideal intersection. All computational audit items 1–17 passed.
+- A separate proof audit passed structural items 18–20: three-species
+  minimality, the one-linkage rank-two obstruction, and the four-complex
+  impossibility theorem. It also supplied the scalar-extension argument that
+  gcd one over the rationals excludes common factors over the reals or
+  complexes.
+- The final Version 1.0 archive was extracted into a new temporary directory;
+  both exact verifiers and every payload checksum passed there.
+- The rendered eight-page PDF was rebuilt with the reserved DOI and visually
+  inspected page by page with no clipping, overlap, or missing content.
+- Zenodo reserved Version 1.0 DOI `10.5281/zenodo.21753316`. Reservation is not
+  publication; the record will be made public only after the checked bytes are
+  committed and tagged.
