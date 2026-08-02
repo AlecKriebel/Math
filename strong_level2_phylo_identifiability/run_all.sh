@@ -23,3 +23,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_cycle_cross_generator_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cut_split_reconstruction.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_root_two_port_collapse.py
 PYTHONPATH=src .venv/bin/python src/verify_group_based_root_two_port_collapse.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_root_three_port_saturation.py

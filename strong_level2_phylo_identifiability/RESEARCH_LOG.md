@@ -509,3 +509,32 @@
 - **UNRESOLVED:** arbitrary degree-at-least-three root blobs under JC and the
   remaining K2P/K3P local/global atlases are still open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T00:15:54-07:00 — complete three-port JC root atlas saturates
+
+- **EXACTLY COMPUTED:** exhaustive core expansion gives one ordinary tree,
+  two root cycles, and five root theta blobs with exactly three outgoing
+  ports.  These yield `3,9,30` labelled rooted topologies and `1,3,18`
+  semi-directed topologies by kind.
+- **EXACTLY COMPUTED:** the tree model has exact generic rank three. Every
+  reticulate model has rank four, the full three-leaf JC orbit-space
+  dimension.
+- **PROVED:** in the equal-internal-edge, inheritance-`1/2` subfamily, each
+  reticulate model has a scale-free ratio
+  `kappa=u^2/(r12*r13*r23)`. Exact Sturm counts isolate one simple solution
+  to `kappa=16/25` in `(1/8,7/8)` for all seven unlabelled models.
+- **PROVED:** positive algebraic pendant multipliers give every reticulate
+  model the same exact target
+  `(delta^2,delta^2,delta^2,4*delta^3/5)`, with `delta=2^-30`.  The bound
+  `c_ij>=h^7` puts all pendant multipliers strictly below `2^-9`.
+- **PROVED:** the logarithmic rank-four determinant is exactly
+  `-kappa'(h)/kappa(h)` and is nonzero at every simple isolated root.  Hence
+  all 39 reticulate labelled rooted models share one regular
+  four-dimensional stochastic neighborhood.
+- **PROVED:** move `R3` may replace any reticulate three-port root blob by any
+  other. It joins 21 semi-directed topologies and can change the generator
+  type and reticulation count. The one-triangle restriction still contains
+  33 rooted and 15 semi-directed compatible topologies in `L_1`.
+- **UNRESOLVED:** one-sided containment of the ordinary-tree tensor and the
+  arbitrary subdivided root atlas from four ports upward remain open.
+- No literature search or numerical evidence is used.

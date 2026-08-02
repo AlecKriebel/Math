@@ -154,6 +154,15 @@ images, with exact regular points of dimensions one, two, and three.  Thus
 K2P/K3P separate `Theta` but do not reveal the two-port root reticulation. See
 `notes/MILESTONE_5C_GROUP_BASED_ROOT_TWO_PORT_COLLAPSE.md`.
 
+Milestone 5D discovers a much larger JC root-local move.  Every reticulate
+root blob with exactly three outgoing ports belongs to one four-dimensional
+regular stochastic class: 39 labelled rooted cycle/theta topologies, or 21
+semi-directed topologies, share one exact algebraic neighborhood.  Even after
+restricting to blobs with exactly one triangle, the class contains 33 rooted
+and 15 semi-directed topologies.  The new move `R3` can change generator type
+and reticulation count.  See
+`notes/MILESTONE_5D_JC_ROOT_THREE_PORT_SATURATION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
