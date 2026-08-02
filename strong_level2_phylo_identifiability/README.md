@@ -248,6 +248,16 @@ Milestone 6D.  Characterwise tripod inversion propagates the move through
 arbitrary corresponding port components.  See
 `notes/MILESTONE_6E_GROUP_BASED_TRIANGLE_REDIRECTION.md`.
 
+Milestone 6F proves a universal one-sided containment theorem: under K2P and
+K3P, every network contains the complete open stochastic model of each tree
+it displays.  Uniformizing each discarded reticulation arc turns the parent
+mixture into an ordinary strict edge, and positive convolution factorization
+realizes every target tree kernel.  Consequently, for every `m`, an explicit
+strong level-1 family on `m+2` leaves has `2^m` pairwise non-triangle-equivalent
+topologies compatible with every open distribution on one base tree.  This
+phenomenon is absent from the stipulated positive-multiplier JC domain.  See
+`notes/MILESTONE_6F_GROUP_BASED_DISPLAYED_TREE_CONTAINMENT.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

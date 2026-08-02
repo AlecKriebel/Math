@@ -781,3 +781,36 @@
 - **UNRESOLVED:** equality of complete open images and the complete richer-
   model move systems are not claimed.
 - No literature search or numerical assertion is used in the theorem.
+
+## 2026-08-02T05:06:11-07:00 — universal K2P/K3P displayed-tree containment proved
+
+- **PROVED:** for K2P and K3P, every binary rooted network contains the
+  complete open stochastic model of every tree it displays.  Put the uniform
+  kernel on every discarded reticulation arc; locally the parent mixture is
+  exactly `p*K+(1-p)*U`, independent of the discarded parent state.
+- **EXACTLY COMPUTED:** the four Fourier multipliers of this effective kernel
+  are `(1,p*a1,p*a2,p*a3)`.  Uniformization preserves K2P and K3P and is
+  strictly interior in probability coordinates.
+- **PROVED:** iterating the four-chamber positive factorization lemma assigns
+  a strict JC factor to every inheritance probability and strict residual
+  factors to every network edge, proving complete stochastic rather than
+  boundary containment.
+- **EXACTLY COMPUTED:** both rooted three-port cycle presentations reduce to
+  explicit three-star arm products after one incoming edge is uniform.  All
+  nine K2P and sixteen K3P coordinates agree symbolically.
+- **PROVED:** the complete three-port relations are `tree preceq cycle` with
+  dimensions `6<9` under K2P and `9<14` under K3P.  Under JC the corresponding
+  open interiors remain strictly disjoint because multiplier zero is excluded.
+- **EXACTLY COMPUTED:** a common rational tree point has regular minors
+  `-1/65536` and `-1/268435456`; its cycle realizations are strict but critical,
+  of ranks eight and twelve.  The K3P quartic vanishes identically on the tree.
+- **PROVED:** on `m+2` leaves, independently replacing the `m` nonroot sites of
+  a labelled caterpillar by a triangle gives `2^m` pairwise non-triangle-
+  equivalent strong level-1 topologies, all displaying the same tree.  Every
+  open K2P/K3P distribution on that tree is compatible with all of them.
+- **EXACTLY COMPUTED:** all family members through `m=4` are generated with
+  complete graph encodings and pass binary, strong-tree-child, bridge, blob,
+  displayed-tree, and canonical-isomorphism checks.
+- **UNRESOLVED:** pairwise full-dimensional `bowtie` is not claimed; the
+  exponential result is one-sided from the generic tree model.
+- No literature search or numerical assertion is used in the theorem.
