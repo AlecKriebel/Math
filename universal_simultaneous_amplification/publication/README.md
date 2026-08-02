@@ -13,6 +13,8 @@ Contents:
   placeholders.
 - `data_code_availability.md` — portal wording with the verified public release
   URL and a clearly separated optional DOI follow-up.
+- `RELEASE_RECORD_v1.0.0.md` — exact tag, asset hashes, clean-archive replay,
+  and publication-boundary record.
 - `external_audit_checklist.md` — audit scope only; it is not outreach text.
 - `SUBMISSION_CHECKLIST.md` — end-to-end human submission checklist.
 

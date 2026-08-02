@@ -161,3 +161,33 @@
   symmetric-`K_4` classifications 100%; asymptotic-family resolution 45%
   (partial, with explicit open regimes); publication package 25%; overall
   final-closure program 74%.
+
+## 2026-08-01 19:11 PDT — v1.0.0 independently replayed and published
+
+- The final hostile audit passed the integrated directed theorem, triangle and
+  symmetric-`K_4` certificates, asymptotic support proposition, quantifier
+  scope, diagrams, TeX diagnostics, and visual inspection of all 13 pages.
+- Detected that ordinary Tectonic builds embedded the wall-clock build time.
+  Pinned `SOURCE_DATE_EPOCH` in the one-command target; two rebuilds are now
+  byte-for-byte identical.  Rasterized pages also agree exactly with the
+  already-audited pre-normalization PDF.
+- Replayed `make paper1` from a clean Git archive.  All exact tests,
+  independent full-state cross-checks, symbolic certificates, lumpability
+  checks, and the manuscript build passed.  The final PDF SHA-256 is
+  `1572d2fd4abd495c4eed61075afdc1dbd74a7d90fb0fe1f379bfa12c50fbf69b`.
+- Rebased without conflict onto four concurrent, unrelated `main`-branch
+  commits and pushed commit `cf61bfdffb1531b328fb0dcd147714782932036b`.
+- Published release `universal-db-obstruction-v1.0.0` with the paper PDF,
+  editable manuscript-source ZIP, full reproducibility tarball, checksum
+  manifest, and clean-archive build log.  Verified the release asset digests
+  and a fresh public PDF download.
+- Published and checked the reader-facing GitHub Pages article and PDF.  No
+  journal submission, external outreach, or external specialist review was
+  performed.  No Zenodo DOI was claimed because none was yet discoverable in
+  the public API immediately after release.
+- Completion: fixed-graph theorem, directed closure, triangle classification,
+  symmetric-`K_4` classifications, Paper I, exact verifier, hostile audits,
+  release archive, and public project page 100%.  The requested final-closure
+  and publication deliverables are 100% complete.  The deliberately separate
+  reversed-quantifier asymptotic program remains approximately 45% resolved,
+  with surviving regimes listed explicitly rather than promoted to claims.
