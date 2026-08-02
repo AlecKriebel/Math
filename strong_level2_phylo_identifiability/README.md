@@ -179,6 +179,16 @@ topologies, and the cycle/theta complete-image equality persists under JC,
 K2P, and K3P.  See
 `notes/MILESTONE_5F_JC_ROOT_FOUR_PORT_CYCLE_THETA_ATLAS.md`.
 
+Milestone 5G proves that the non-triangle root move `Omega` is an
+arbitrary-chain schema.  For every `k>=2`, reversing `k` ordered long-path
+ports and the opposed short-path pair gives two nonisomorphic semi-directed
+networks on `k+2` leaves whose JC models share a full regular neighborhood of
+dimension `2k+5`.  A five-case Fourier identity proves the rational map for
+all `k`, while effective core coordinates and adjacent-quartet inverses prove
+the all-`k` rank formula.  Restoring an incoming port remains strictly
+separating, so the move is arbitrary-size but root-local.  See
+`notes/MILESTONE_5G_JC_OMEGA_CHAIN.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

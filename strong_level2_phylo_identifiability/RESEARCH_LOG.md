@@ -585,3 +585,33 @@
 - **UNRESOLVED:** one-sided four-port containments and arbitrary root
   subdivisions with five or more ports remain open.
 - No literature search or numerical evidence is used.
+
+## 2026-08-02T01:13:10-07:00 — Omega extends to arbitrary root path chains
+
+- **PROVED:** for every `k>=2`, the root-spanning triangle-free theta with
+  labelled port order `P1,...,Pk,Q,X` has a nonisomorphic semi-directed mate
+  with order `Pk,...,P1,X,Q`.  The reticulation sets differ under the forced
+  underlying reflection, so this is not triangle redirection.
+- **PROVED:** one rational map works for every chain length.  Reversing the
+  middle edges and pendants reduces every zero-sum Fourier coordinate to five
+  character cases; all five symbolic differences vanish identically.
+- **EXACTLY COMPUTED:** complete displayed-tree contractions independently
+  verify all `64,256,1024` zero-sum coordinates for `k=2,3,4`.
+- **PROVED:** the ungauged core tensor depends on only five endpoint
+  combinations plus the `k-1` middle multipliers.  One pendant Euler direction
+  is already a core direction, giving the upper bound `2k+5`.
+- **PROVED:** adjacent four-port marginals recover those effective core
+  combinations, every middle multiplier, and all free pendants.  At the
+  uniform rational witness the only nontrivial determinant factor clears to
+  an odd integer, proving rank `2k+5` for every `k`.
+- **EXACTLY COMPUTED:** at `k=3`, all 256 coordinates agree at an open
+  rational point and a rank-eleven source minor is
+  `-81/755578637259143234191360000000`.
+- **PROVED:** the two model closures are equal and the stochastic images share
+  a full-dimensional regular neighborhood for every `k`.  An incoming-port
+  marginal reduces to the prior strict Omega obstruction, so the move remains
+  root-local.
+- **UNRESOLVED:** the bounded support-deck census has one contextual `C_root`
+  family and this `Omega_chain` family left; converting that census into the
+  arbitrary-root completeness theorem is the next step.
+- No literature search or numerical evidence is used.
