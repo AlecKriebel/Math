@@ -288,3 +288,27 @@
   ambiguity becomes stackable merely because a fourth outgoing witness port
   is absent.
 - No numerical evidence, external catalogue, or literature search is used.
+
+## 2026-08-01T20:02:08-07:00 — arbitrary theta subdivisions reduced to bounded support decks
+
+- **PROVED:** every strong port expansion of each of the four oriented theta
+  cores contains a core-preserving strong support consisting of every
+  path-sink port and one ordinary port on each segment of a contained minimal
+  tree-child repair.
+- **EXACTLY COMPUTED:** the support sizes are `3,4,3,3` for the four cores.
+  Exhaustive occupancy masks verify every monotone strong segment pattern and
+  every contained minimal repair.
+- **PROVED:** relative to a fixed labelled support, a support-plus-one
+  restriction identifies the directed core segment of any extra port.  A
+  support-plus-two restriction identifies the order of any two extra ports on
+  the same segment.  These pairwise comparisons reconstruct every complete
+  ordered port chain, up to labelled core isomorphism.
+- **PROVED:** the full collection of induced restrictions on at most six
+  outgoing ports determines every finite ported strong theta topology.  If
+  the distinguished incoming state port is counted, the corresponding tensor
+  restrictions have at most seven total ports.
+- **UNRESOLVED:** this is a combinatorial bounded-deck theorem, not yet a JC
+  observational-completeness theorem.  The remaining finite task is the
+  support-augmented stochastic atlas through six outgoing ports and the
+  recovery of those local tensors from a global distribution.
+- No numerical evidence or literature search is used.

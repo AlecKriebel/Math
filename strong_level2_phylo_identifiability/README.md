@@ -85,6 +85,15 @@ generic ambiguity at both possible reduced nonroot port counts; no hidden
 minimal stackable non-triangle move survives.  See
 `notes/MILESTONE_3H_JC_THREE_OUTGOING_NONROOT_ATLAS.md`.
 
+Milestone 4A proves the finite subdivision reduction.  Every arbitrarily
+subdivided strong theta blob has a core-preserving strong support of at most
+four outgoing ports.  Adding one arbitrary port identifies its core segment;
+adding two identifies their relative order.  Hence restrictions on at most
+six outgoing ports reconstruct every finite ordered port chain.  This turns
+the infinite subdivision problem into a finite support-augmented JC atlas,
+while deliberately leaving that remaining statistical atlas unresolved.  See
+`notes/MILESTONE_4A_THETA_SUPPORT_REDUCTION.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 

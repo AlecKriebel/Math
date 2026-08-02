@@ -15,3 +15,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_incoming_port_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_boundary_containments.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cross_root_separation.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_three_outgoing_nonroot_atlas.py
+PYTHONPATH=src python3 src/verify_theta_support_reduction.py
