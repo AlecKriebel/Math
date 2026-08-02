@@ -12,7 +12,11 @@ statuses. The ledger is updated before each publication checkpoint.
 | No fixed finite undirected weighted graph amplifies dB for every `r>1` | PROVED | Exhaustive support dichotomy | Inherited |
 | No family satisfies `exists N0 forall N>=N0 forall r>1` strict dB amplification | PROVED | Apply the fixed-graph theorem to each member | Clarified |
 | A family may or may not satisfy `forall r>1 exists N0(r) forall N>=N0(r)` simultaneous amplification | OPEN | Fixed-graph asymptotics do not interchange `N` and `r` | Explicit limitation |
-| Directed complete-support obstruction with columnwise SOS | CONJECTURED | Under independent derivation and exact testing | New track |
+| Directed complete-support obstruction with columnwise SOS | PROVED | Differentiated first-step proof, exact column SOS, independent `QQ(r)` verifier | New theorem |
+| Equality in the directed complete-support coefficient | PROVED | Exactly the column-uniform class; target-column scaling gives the baseline chain for all fitness | New theorem |
+| Non-strong directed supports are eventually dB-suppressing | PROVED | Source-component reachability and first-gain bound | New theorem |
+| Strongly connected noncomplete directed supports are eventually dB-suppressing | PROVED (PRIOR) | Tkadlec et al. Theorem 1; hypotheses audited after the new proof | Prior result |
+| No fixed finite loopless directed weighting with positive incoming degrees amplifies dB for every `r>1` | PROVED | Exhaustive support/strong-connectivity trichotomy | New synthesis |
 | Complete-support weighted-triangle suppression for every `r>1` | CONJECTURED | One exact example only; full parameter classification pending | New track |
 | General complete-support all-fitness suppression | OPEN | Strong-selection coefficient alone is insufficient | New track |
 

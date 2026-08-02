@@ -53,3 +53,30 @@ This was a narrow, query-driven audit rather than a systematic review of every
 database, thesis, or unpublished manuscript.  The mathematical theorem is
 independent of the audit; any novelty claim should retain the qualified phrase
 “to the best of this audit.”
+
+## Directed-hypothesis audit after the extension proof
+
+This second audit was performed only after the directed complete-support
+coefficient had been derived twice and checked by an independent exact
+directed-state verifier.
+
+The model and Theorem 1 of Tkadlec--Pavlogiannis--Chatterjee--Nowak use the
+same source-to-target convention `w_uv`, exclude self-loops, allow directed
+nonsymmetric nonnegative weights, initialize the single mutant uniformly, and
+assume the support is strongly connected. Their theorem states eventual
+strict dB suppression for every strongly connected noncomplete support and
+even supplies the threshold `r* <= 2n^2`. Their normalization `w_uv in [0,1]`
+does not restrict the present finite-weight model, since a global positive
+rescaling leaves both update rules unchanged.
+
+Thus the published theorem exactly supplies the strongly connected,
+noncomplete branch. It does not cover supports that are not strongly
+connected; `phase1_directed/non_strong_support_closure.md` gives a separate
+first-principles proof for that branch. Complete directed support is
+automatically strongly connected and is handled by the new incoming-column
+sum-of-squares theorem.
+
+Primary source checked: J. Tkadlec, A. Pavlogiannis, K. Chatterjee, and
+M. A. Nowak, *Limits on amplifiers of natural selection under death--Birth
+updating*, PLOS Computational Biology 16 (2020), e1007494,
+doi:10.1371/journal.pcbi.1007494; arXiv:1906.02785.

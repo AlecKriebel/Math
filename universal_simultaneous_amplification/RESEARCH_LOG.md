@@ -93,3 +93,23 @@
 - Best-guess completion: Paper I hardening 95%; directed extension 15%;
   triangle classification 15%; asymptotic-family resolution 5%; overall
   final-closure program 25%.
+
+## 2026-08-01 17:48 PDT — directed complete-support theorem proved
+
+- Two independent derivations obtained the directed coefficient
+  `A_dir/[n^2(n-2)]`, with excess over the complete baseline equal to the
+  incoming-column sum of squares `E_dir/[n^2(n-2)]`.
+- Equality is exactly column-uniform weighting `w_uv=c_v`; independent
+  incoming-column scaling proves exact dB equivalence to `K_n` for all
+  fitness values. A row-oriented alternative was falsified exactly.
+- The separate full-state verifier passed genuinely asymmetric `n=3,4`
+  examples, independent column rescaling, and a column-uniform negative
+  control. Script and recorded-output SHA-256 hashes agree with the audit.
+- After verification, a narrow primary-source audit confirmed that the prior
+  noncomplete theorem matches the source-target convention, loopless directed
+  weights, uniform initialization, and strongly connected support.
+- Added a first-principles source-component argument for non-strong supports,
+  completing the fixed-graph directed model under positive incoming degrees.
+- Best-guess completion: Paper I hardening 95%; directed extension 90%;
+  triangle classification 25%; asymptotic-family resolution 10%; overall
+  final-closure program 38%.
