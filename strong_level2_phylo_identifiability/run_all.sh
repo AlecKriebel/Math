@@ -14,3 +14,4 @@ PYTHONPATH=src .venv/bin/python src/verify_jc_root_spanning_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_incoming_port_atlas.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_boundary_containments.py
 PYTHONPATH=src .venv/bin/python src/verify_jc_cross_root_separation.py
+PYTHONPATH=src .venv/bin/python src/verify_jc_three_outgoing_nonroot_atlas.py

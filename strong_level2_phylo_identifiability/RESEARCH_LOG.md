@@ -265,3 +265,26 @@
 - This does not classify every possible lower-dimensional intersection or the
   algebraic boundary-containment status of every pair.  No numerical evidence
   or literature search is used in the theorem.
+
+## 2026-08-01T19:52:47-07:00 — minimal three-outgoing-port nonroot atlas closed
+
+- **PROVED:** every strongly tree-child nonroot theta blob with exactly three
+  outgoing ports arises from the four-core expansion rule with the ordinary
+  port count fixed by its number of path-sink reticulations.
+- **EXACTLY COMPUTED:** 42 raw core subdivisions reduce to 30 labelled rooted
+  and 30 labelled semi-directed candidates.  They use core types `0,2,3`;
+  the separated `TT` core requires at least four outgoing ports and is absent.
+- **EXACTLY COMPUTED:** reversible root relocation identifies every candidate
+  with a unique semi-directed topology in the certified four-leaf root atlas.
+  The 30 candidates partition into 21 JC observational components: nine
+  size-two ordinary triangle-redirection classes and twelve singletons.
+- **PROVED:** the assigned root-atlas dimensions give nine dimension-eight
+  components and twelve dimension-nine components.  Eighteen `S_3` orbits of
+  exact strict invariants separate all 108 dimension-eight-to-nine pairs over
+  their complete open parameter cubes.
+- **PROVED:** full-dimensional regular JC overlap in this complete minimal
+  nonroot atlas occurs exactly under labelled isomorphism or `T`, and there
+  are no one-sided stochastic containments.  In particular, no non-triangle
+  ambiguity becomes stackable merely because a fourth outgoing witness port
+  is absent.
+- No numerical evidence, external catalogue, or literature search is used.

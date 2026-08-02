@@ -76,6 +76,15 @@ reduced five-port networks: only isomorphism and ordinary triangle
 redirection survive.  See
 `notes/MILESTONE_3G_JC_CROSS_ROOT_SEPARATION.md`.
 
+Milestone 3H closes the smaller nonroot tensor case with only three outgoing
+ports.  First-principles expansion of all strong theta cores gives 30 labelled
+topologies and 21 observational components: nine ordinary
+triangle-redirection pairs and twelve singletons.  Exact strict factors also
+make all 108 unequal-dimensional image pairs disjoint.  Thus `T` is the only
+generic ambiguity at both possible reduced nonroot port counts; no hidden
+minimal stackable non-triangle move survives.  See
+`notes/MILESTONE_3H_JC_THREE_OUTGOING_NONROOT_ATLAS.md`.
+
 Claims are labelled `PROVED`, `EXACTLY COMPUTED`, `INTERVAL CERTIFIED`,
 `NUMERICALLY OBSERVED`, `CONJECTURED`, or `UNRESOLVED`.
 
