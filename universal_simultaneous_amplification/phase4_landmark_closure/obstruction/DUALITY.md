@@ -214,7 +214,57 @@ These identities are exact but involve two different stationary laws.  A
 valid universal obstruction must bridge that difference; adding the two
 statewise drifts at a common set does not do so.
 
-## 6. Independent verification
+## 6. Weighted adjoint and geometric resolvent
+
+Let `L` be the Bd dual generator above.  Reverse every base arrow and call
+the resulting set generator `C`.  Thus an occupied target `v` samples
+`u` from the row `P_v*`; a neutral event replaces `v` by `u`, while a
+selective event retains `v` and adds `u`.  Give a nonempty set reference
+mass
+
+\[
+ \mu(A)=(r-1)^{|A|}.
+\]
+
+Every neutral coalescence of `L` is paired with a reverse selective birth of
+`C`, and every same-level swap is paired with the reversed swap.  Only the
+diagonal exit rates differ.  If
+
+\[
+ A_\partial(A)=\sum_{i\in A,j\notin A}P_{ij},\qquad
+ B_\partial(A)=\sum_{i\in A,j\notin A}P_{ji},
+\]
+
+then entrywise
+
+\[
+ L^{\dagger_\mu}
+ =C+r\{A_\partial(A)-B_\partial(A)\}I.                 \tag{19}
+\]
+
+There is also an exact targetwise batching identity.  Let `S_v` be one
+selective row-`P` sample, `N_v` one neutral row-`P` replacement, and `G_v`
+the geometric burst.  As row transition operators acting on column test
+functions,
+
+\[
+ G_v=\frac1r\sum_{m\ge0}
+ \left(\frac{r-1}{r}S_v\right)^mN_v,
+\]
+
+so
+
+\[
+ \left(I-\frac{r-1}{r}S_v\right)(G_v-I)
+ =\frac1r\{(N_v-I)+(r-1)(S_v-I)\}.                    \tag{20}
+\]
+
+The inverse resolvent is positivity preserving.  Thus a targetwise sign
+certificate for `C` would pass to the dB burst.  The required certificate is
+not presently known: the cut potential in (19) and the differently indexed
+resolvents in (20) both have to be retained.
+
+## 7. Independent verification
 
 `verify_duality.py` uses rational arithmetic to build both original absorbing
 chains and both nonempty dual chains on several weighted graphs.  It checks:
@@ -222,3 +272,7 @@ chains and both nonempty dual chains on several weighted graphs.  It checks:
 1. every one-step Boolean duality identity;
 2. exact equality of uniform-singleton fixation and stationary dual density;
 3. the two generator balances (17)--(18).
+
+`verify_exact_duals.py` additionally solves the limiting stationary laws,
+checks the reverse-fitness singleton identities and level-one/two balances,
+and verifies (19)--(20) entry by entry over exact rationals.

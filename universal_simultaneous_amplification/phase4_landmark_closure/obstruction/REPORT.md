@@ -1190,6 +1190,179 @@ from being a proved stochastic domination.  Establishing a valid censoring
 or occupation comparison here would close the present duality gap; assuming
 independent lineages would repeat the retracted error.
 
+There is also an exact operator form of this bridge.  Let $L$ be the Bd dual
+generator and let $\widehat L$ be obtained by reversing every underlying
+graphical arrow before taking the set dual.  Thus an occupied $v$ in
+$\widehat L$ samples $u$ from the row $P_{v\cdot}$, neutrally replacing $v$
+by $u$ at rate one or selectively retaining $v$ and adding $u$ at rate
+$r-1$.  On nonempty sets give the reference measure the unnormalized mass
+
+$$
+\mu(A)=(r-1)^{|A|}.
+$$
+
+Pairing each neutral coalescence with the reverse selective birth, and each
+same-level swap with its reversed swap, gives all off-diagonal entries of the
+weighted adjoint.  The exit-rate difference is the cut imbalance.  Hence
+
+$$
+\boxed{
+L^{\dagger_\mu}
+=\widehat L+r\{A(A)-B(A)\}I.}
+\tag{67}
+$$
+
+This equality is entrywise and exact.  In particular, the only obstruction
+to a product-reference adjoint is the already identified temperature
+potential $A(A)-B(A)=-\sum_{i\in A}(t_i-1)$.
+
+The geometric batching also has an exact resolvent form.  For a fixed target
+$v$, let $S_v$ be the stochastic operator for one selective row-$P$ sample
+(retain $v$ and add the sample), let $N_v$ be the operator for one neutral
+row-$P$ sample (replace $v$ by the sample), and let $G_v$ be the full
+geometric-burst operator.  Operators act on column test functions, so
+chronological selective samples followed by the neutral sample give
+
+$$
+G_v=\frac1r\sum_{m\ge0}
+\left(\frac{r-1}{r}S_v\right)^mN_v.
+$$
+
+Consequently,
+
+$$
+\boxed{
+\left(I-\frac{r-1}{r}S_v\right)(G_v-I)
+=\frac1r\{(N_v-I)+(r-1)(S_v-I)\}.}
+\tag{68}
+$$
+
+The inverse on the left is positivity preserving.  Therefore any
+targetwise sign certificate for the unbatched generator is inherited by the
+dB burst.  No such certificate proving (64) or (65) is presently known:
+the natural cardinality and inverse-degree potentials have local terms of
+both signs, and summing over targets before applying the distinct resolvents
+is not legitimate.  Equations (67)--(68) isolate that precise remaining
+operator gap without introducing independent particles.
+
+### 11.2 [EXACT FINITE DIAGNOSTIC, OPEN IN GENERAL] A normalized-transpose transform
+
+For a symmetric weight matrix $W$ define another symmetric weighted graph by
+
+$$
+\mathcal T(W)_{ij}=\frac{W_{ij}}{d_i d_j}.
+\tag{69}
+$$
+
+Its degree and transition kernel are exactly
+
+$$
+d_i^{\mathcal T}=\frac{t_i}{d_i},
+\qquad
+P^{\mathcal T}_{ij}=\frac{P_{ji}}{t_i}=Q_{ij}.
+\tag{70}
+$$
+
+Thus $\mathcal T$ is the symmetric diagonal-scaling step whose Markov kernel
+is the normalized transpose already arising in (66).  Exact finite tests
+suggest the two cross-graph inequalities
+
+$$
+\rho_{\rm dB}(W,r)+\rho_{\rm Bd}(\mathcal T(W),r)
+\le \rho_{\rm dB}(K_n,r)+\rho_{\rm Bd}(K_n,r),
+\tag{71}
+$$
+
+$$
+\rho_{\rm Bd}(W,r)+\rho_{\rm dB}(\mathcal T(W),r)
+\le \rho_{\rm dB}(K_n,r)+\rho_{\rm Bd}(K_n,r).
+\tag{72}
+$$
+
+Both (71) and (72) are **OPEN**.  They survived exact rational tests at
+$r=3/2,2,3$ on every connected labelled support through four vertices under
+three weight patterns and on twelve additional five-vertex graphs.  This is
+828 exact comparisons, not a reduction theorem.  Even if proved, the two
+inequalities would show only that $\mathcal T$ maps a simultaneous amplifier
+to a simultaneous suppressor; they would not alone rule out the former.
+Their possible asymptotic use is that inherited dB amplification forces
+$t_i\to1$ in uniform $L^1$, while
+$\mathcal T^2(W)_{ij}=W_{ij}/(t_i t_j)$.  Fixation is not uniformly
+continuous under such a perturbation across arbitrarily weak cuts, so this
+last observation is currently a route rather than a conclusion.
+
+### 11.3 [PROVED REFORMULATION; OPEN INEQUALITY] Occupied-event rank reflection
+
+Let $G_v(A,B)$ be the full geometric-burst kernel at target $v$, including
+null bursts, and define the occupied-event chain
+
+$$
+T(A,B)=\frac1{|A|}\sum_{v\in A}G_v(A,B).
+\tag{73}
+$$
+
+If $\Pi=\Pi_{\rm dB}^r$ and $m=E_\Pi|A|$, then
+
+$$
+\nu(A)=\frac{|A|\Pi(A)}m
+\tag{74}
+$$
+
+is stationary for $T$.  This follows by restoring null target events in the
+continuous-time stationary equation.  Thus, after putting $a=r-1$, the open
+complementary-level conjecture is exactly
+
+$$
+\boxed{
+\sum_{|A|=k}\frac{\nu(A)}{a^k}
+\le
+\sum_{|A|=n-k}\frac{\nu(A)}{a^{n-k}},
+\qquad k>n/2.}
+\tag{75}
+$$
+
+The factors $k$ and $n-k$ in the original formulation are precisely this
+occupied-event Palm bias.
+
+There is an exact complete-reference calculation behind (75).  Write
+$N=n-1$, fix a target, and condition its burst union to have size $s$.  If
+the input event mass is $|A|(n-|A|)a^{|A|}$, its tilted output rank
+polynomial from this target is
+
+$$
+F_{s,a}(z)=a^{1-s}(1+a)^{s-1}z^s(1+z)^{N-s-1}
+\{N+a(N-s)+sz\}.
+\tag{76}
+$$
+
+At $r=2$, put $\ell(x)=x/(2-x)$ and, for a row $p$, define
+$E_j(p)=\sum_{|L|=j}\ell(p_L)$ with $p_L=\sum_{i\in L}p_i$.  Exact
+inclusion-exclusion gives the level-$l$ coefficient
+
+$$
+O_l(p)=\sum_{j=1}^l(-1)^{l-j}2^{j-1}(2N-j)
+{N-j\choose l-j}E_j(p).
+\tag{77}
+$$
+
+The uniform row makes $O_l=O_{n-l}$.  Convexity of $\ell$ proves
+$O_l\le O_{n-l}$ universally for $n\le4$; from $n=5$ onward (77) has
+alternating coefficients and ordinary Jensen convexity no longer closes the
+sign.  Exact iterates suggest the stronger factorial-transform cone
+
+$$
+\sum_A\mu(A){n-|A|\choose j}
+\ge\sum_A\mu(A){|A|\choose j},\qquad1\le j<n,
+\tag{78}
+$$
+
+in addition to rank reflection.  Neither coarse cone, nor their
+intersection, is invariant for arbitrary input measures.  Pointwise
+complement comparison, Boolean stochastic domination, and universal
+ultra-log-concavity are also false.  The full derivation and failed cone
+tests are recorded in `RANK_REFLECTION.md`; no stationary reflection theorem
+is claimed.
+
 ## 12. Verification
 
 The file verify_obstruction_identities.py builds singleton and general-state
@@ -1215,7 +1388,8 @@ the additive Bd dual, and the geometric-union dB dual over exact rationals.
 It solves both the fixation and stationary equations and checks the full-set
 duality (57), not just its averaged consequence, together with (58)--(63)
 and the collision form (61a).  It also checks (59) separately for both update
-rules.  Finally, as a deliberately non-probative stress test, it evaluates
+rules and verifies the weighted-adjoint and local-resolvent matrices
+(67)--(68) entry by entry.  Finally, as a deliberately non-probative stress test, it evaluates
 the open product (65) at $r=3/2$ on every connected labelled support through
 four vertices under three exact edge-weight patterns, as well as additional
 complete-support examples.  All comparisons use rational arithmetic; this
@@ -1224,6 +1398,21 @@ expected output is:
 
     PASS: 148 exact forward/dual stationary-chain checks
     PASS: open product inequality survived 145 exact rational small-graph tests at r=3/2 (...)
+
+The discovery-only file test_sinkhorn_cross_conjecture.py checks (70)
+entrywise and tests both open inequalities (71)--(72) over exact rationals.
+Its expected output begins:
+
+    PASS: both OPEN Sinkhorn cross inequalities survived 828 exact comparisons on 138 rational graphs
+
+The file verify_rank_reflection_diagnostics.py checks (73)--(77), including
+609 graph-independent exact conditional-rank identities.  It then checks
+the open stationary reflection, the one-step reference reflection, and the
+factorial transforms only on four listed rational graphs at $r=2$.  Its
+expected output is:
+
+    PASS: 609 exact conditional-rank formula checks
+    PASS: OPEN stationary/one-step rank and factorial inequalities on 4 exact rational graphs at r=2
 
 ## 13. Status
 
@@ -1241,11 +1430,21 @@ expected output is:
   singleton representations (57)--(59), and stationary size balances
   (60)--(63), including the collision expansion (61a).  These retain
   coalescence and do not use independent ancestry.
+- **PROVED:** the weighted-adjoint and geometric-resolvent operator bridges
+  (67)--(68); their remaining cut-potential and interleaving terms are not
+  assumed to have a sign.
+- **PROVED:** the occupied-event Palm reformulation (73)--(75) and the exact
+  complete-reference rank formulas (76)--(77).
+- **OPEN / EXACTLY TESTED FINITELY:** stationary complementary-level
+  reflection (75) and its factorial-transform strengthening (78).
 - **EXACT DIAGNOSTIC ONLY:** the threshold-sharp inverse-degree dB fixation
   inequality (51) for positive weighted triangles; this does not extend the
   inherited finite classification or bound $R_{\rm sim}$.
 - **OPEN:** a global fixation comparison beyond singleton establishment and
   the exact drift or stationary-dual identities.
+- **OPEN / EXACTLY TESTED FINITELY:** the two normalized-transpose cross
+  inequalities (71)--(72); they are not an obstruction without a weak-cut
+  continuity or reduction theorem.
 - **OPEN:** singular mesoscopic or multiscale modular cuts.
 - **OPEN:** Alternative O, Alternative U, and the exact value of
   $R_{\rm sim}$.

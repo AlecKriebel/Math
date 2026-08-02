@@ -3,7 +3,8 @@
 
 The script derives both forward generators and both nonempty-set dual
 generators directly from the update maps.  It then solves the fixation and
-stationary equations over the rationals and checks (57)--(63).  At r=3/2 it
+stationary equations over the rationals and checks (57)--(63), together with
+the weighted-adjoint and local-resolvent identities (67)--(68).  At r=3/2 it
 also subjects the open product conjecture (65) to a deterministic exact
 small-graph screen.  Passing that screen is evidence only, not a proof of
 (65).
@@ -166,6 +167,72 @@ def dual_generator(weights, fitness, rule: str) -> sp.Matrix:
     return finish_generator(generator)
 
 
+def reversed_arrow_generator(weights, fitness) -> sp.Matrix:
+    """Bd set generator after reversing every underlying graphical arrow."""
+    order = len(weights)
+    full = (1 << order) - 1
+    degree = [sum(map(sp.sympify, row), sp.Integer(0)) for row in weights]
+    transition = [
+        [sp.sympify(weights[i][j]) / degree[i] for j in range(order)]
+        for i in range(order)
+    ]
+    generator = sp.zeros(full, full)
+    for state in range(1, full + 1):
+        for target in range(order):
+            if not ((state >> target) & 1):
+                continue
+            for source in range(order):
+                # Reversing original source target -> target source leaves
+                # the rate P_target,source and makes the source distribution
+                # the row P_target,*.
+                rate = transition[target][source]
+                neutral = (state & ~(1 << target)) | (1 << source)
+                selective = state | (1 << source)
+                add_rate(generator, state - 1, neutral - 1, rate)
+                add_rate(
+                    generator,
+                    state - 1,
+                    selective - 1,
+                    (fitness - 1) * rate,
+                )
+    return finish_generator(generator)
+
+
+def local_sample_kernels(weights, fitness, target: int):
+    """Return S_v, N_v, and the geometric burst B_v as row kernels."""
+    order = len(weights)
+    full = (1 << order) - 1
+    degree = [sum(map(sp.sympify, row), sp.Integer(0)) for row in weights]
+    transition = [
+        [sp.sympify(weights[i][j]) / degree[i] for j in range(order)]
+        for i in range(order)
+    ]
+    selective = sp.zeros(full, full)
+    neutral = sp.zeros(full, full)
+    burst = sp.zeros(full, full)
+    union_law = geometric_union_probabilities(transition[target], fitness)
+    for state in range(1, full + 1):
+        row = state - 1
+        if not ((state >> target) & 1):
+            selective[row, row] = 1
+            neutral[row, row] = 1
+            burst[row, row] = 1
+            continue
+        for source in range(order):
+            probability = transition[target][source]
+            selective_state = state | (1 << source)
+            neutral_state = (state & ~(1 << target)) | (1 << source)
+            selective[row, selective_state - 1] += probability
+            neutral[row, neutral_state - 1] += probability
+        without_target = state & ~(1 << target)
+        for source_set, probability in union_law.items():
+            burst[row, (without_target | source_set) - 1] += probability
+    assert all(sum(selective.row(i)) == 1 for i in range(full))
+    assert all(sum(neutral.row(i)) == 1 for i in range(full))
+    assert all(sum(burst.row(i)) == 1 for i in range(full))
+    return sp.Matrix(selective), sp.Matrix(neutral), sp.Matrix(burst)
+
+
 def fixation_values(generator: sp.Matrix) -> list[sp.Expr]:
     state_count = generator.rows
     full = state_count - 1
@@ -197,6 +264,51 @@ def check_graph(weights, fitness):
         [sp.sympify(weights[i][j]) / degree[i] for j in range(order)]
         for i in range(order)
     ]
+
+    # Weighted adjoint bridge.  Reversing every base arrow gives C, and the
+    # off-diagonal transitions of L_Bd and C are paired by the reference
+    # weight mu(A)=(r-1)^|A|.  Their exit-rate discrepancy is exactly the
+    # cut-imbalance potential r(Acut-Bcut).
+    bd_dual = dual_generator(weights, fitness, "Bd")
+    reversed_arrows = reversed_arrow_generator(weights, fitness)
+    reference = sp.diag(
+        *[(fitness - 1) ** state.bit_count() for state in range(1, full + 1)]
+    )
+    weighted_adjoint = reference.inv() * bd_dual.T * reference
+    potential = []
+    for state in range(1, full + 1):
+        row_cut = sum(
+            transition[i][j]
+            for i in range(order)
+            for j in range(order)
+            if (state >> i) & 1 and not ((state >> j) & 1)
+        )
+        column_cut = sum(
+            transition[j][i]
+            for i in range(order)
+            for j in range(order)
+            if (state >> i) & 1 and not ((state >> j) & 1)
+        )
+        potential.append(fitness * (row_cut - column_cut))
+    assert weighted_adjoint == reversed_arrows + sp.diag(*potential)
+
+    # A geometric dB burst at one occupied target is the exact resolvent of
+    # the corresponding reversed-arrow local generator.  Matrix rows act on
+    # test functions, so selective samples occur before the final neutral
+    # sample in S^m N.
+    identity = sp.eye(full)
+    for target in range(order):
+        selective, neutral, burst = local_sample_kernels(
+            weights, fitness, target
+        )
+        local_reversed = (
+            neutral - identity + (fitness - 1) * (selective - identity)
+        )
+        resolvent_identity = (
+            identity - (fitness - 1) / fitness * selective
+        ) * (burst - identity) - local_reversed / fitness
+        assert resolvent_identity == sp.zeros(full, full)
+
     results = {}
     for rule in ("Bd", "dB"):
         forward = forward_generator(weights, fitness, rule)

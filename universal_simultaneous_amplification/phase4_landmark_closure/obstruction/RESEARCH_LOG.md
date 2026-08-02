@@ -166,3 +166,45 @@ and no external contact.  Labels are `PROVED`, `RIGOROUSLY BOUNDED`,
   positive minimum slack.  This finite screen is explicitly not used as a
   proof.  The surviving proof gap is an all-level stationary inequality;
   level-one/two flux alone does not control higher dB burst jumps.
+- 01:48 -- [PROVED OPERATOR IDENTITIES / OPEN CONJECTURE] Let `C` be the Bd
+  set generator with every base arrow reversed.  Under reference mass
+  `mu(A)=(r-1)^|A|`, proved the exact weighted-adjoint identity
+  `L_Bd^dagger=C+r(Acut-Bcut)I`.  For each target, proved that the geometric
+  dB burst is a positive resolvent of the corresponding local generator:
+  `(I-(r-1)S/r)(G-I)=((N-I)+(r-1)(S-I))/r`.  Exact matrices verify both
+  identities throughout the 148-case dual suite.  They isolate cut imbalance
+  and interleaving as the remaining obstacles rather than discarding them.
+  Also investigated the symmetric scaling
+  `T(W)_ij=W_ij/(d_i d_j)`, for which `P(TW)=P^T/t` and
+  `T^2(W)_ij=W_ij/(t_i t_j)`.  Both cross-rule sum inequalities pairing `W`
+  with `T(W)` survived 828 exact comparisons on 138 rational graphs at
+  `r=3/2,2,3`.  They remain OPEN and, even if true, do not alone exclude a
+  simultaneous amplifier because `T` may send it to a suppressor; weak cuts
+  obstruct the needed fixation-continuity step.
+- 02:03 -- [NUMERICALLY REJECTED PROOF ARCHITECTURE] Tested a direct
+  vector-supermartingale certificate for the original `r=3/2` fixation-sum
+  conjecture.  With `h_B,h_D` the complete-graph count harmonics, seek one
+  transfer potential `psi`, zero at both absorbers, such that
+  `L_B(h_B+psi)<=0` and `L_D(h_D-psi)<=0`.  The correction cancels exactly at
+  every singleton, so this would prove the sum bound.  Linear-program
+  feasibility already fails on the three-vertex weighted path `(1,2)`, even
+  though that graph has a strict sum deficit.  Cardinality corrections
+  augmented by normalized degree and inverse-degree mass also fail on small
+  paths.  Thus pointwise common-potential domination is too rigid; a valid
+  proof must use an averaged stationary/occupation comparison or richer
+  graph-weighted hierarchy.  No theorem is inferred from this numerical
+  infeasibility test.
+- 03:00 -- [PROVED REFORMULATION / EXACT DIAGNOSTIC] Size-biasing the dB
+  dual stationary law by `|A|` gives the invariant law of the embedded chain
+  observed at occupied-target events.  After the tilt
+  `(r-1)^(-|A|)`, the proposed complementary-level inequality becomes the
+  coefficient reflection `eta_k<=eta_(n-k)`, with no remaining fitness
+  exponent.  Derived the exact conditional rank polynomial (76) for the
+  complete-reference event mass and its `r=2` one-row subset-sum form (77).
+  A new verifier checks 609 instances of the graph-independent
+  combinatorial identity and exact stationary/one-step/factorial diagnostics
+  on four rational graphs.  Iterates from the symmetric reference support a
+  stronger binomial/factorial-transform cone, but pointwise complement
+  order, Boolean stochastic domination, ultra-log-concavity, the coarse rank
+  cone, the coarse factorial cone, and their intersection are each false as
+  general invariant-cone claims.  Stationary rank reflection remains OPEN.
