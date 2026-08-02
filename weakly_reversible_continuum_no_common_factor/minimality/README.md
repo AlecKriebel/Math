@@ -24,4 +24,3 @@ The small companion arithmetic check can be run from the repository root:
 
 It does not enumerate reaction networks and is not used as evidence for a
 bounded-support impossibility claim.
-

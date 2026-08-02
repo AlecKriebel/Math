@@ -130,3 +130,35 @@
 - Zenodo reserved Version 1.0 DOI `10.5281/zenodo.21753316`. Reservation is not
   publication; the record will be made public only after the checked bytes are
   committed and tagged.
+
+## 2026-08-01 19:45 PDT — Public v1 timestamp and exact family strengthening
+
+- GitHub release `wr-continuum-v1.0.0` was published at
+  `2026-08-02T02:20:28Z`; all attached-asset SHA-256 digests match the frozen
+  local files. The automatic GitHub–Zenodo integration archived the tag at
+  Version 1.0.0 DOI `10.5281/zenodo.21753527`, under all-versions concept DOI
+  `10.5281/zenodo.21753404`.
+- The earlier identifier `10.5281/zenodo.21753316` belongs to an unpublished
+  manually reserved draft and is not the release DOI. The frozen v1 bytes were
+  not rewritten. The GitHub release notes and project page transparently record
+  the correction and direct citations to the live automatic record.
+- The public project page and all v1 download artifacts were deployed from
+  `main` commit `2fb0ce51`; the GitHub Pages build passed and the live page,
+  PDF, archive links, version DOI, and concept DOI were checked directly.
+- Exact reduction modulo the conic ideal gives a canonical `21 x 20` rational
+  matrix of rank `16`, hence a four-dimensional full fixed-support rate space.
+  In free parameters `(a,b,c,d)`, its positive cone is exactly
+  `a,b,c,d>0`, `b<c`, and `192a+221c<154d`.
+- A rigorous projective multiplication-map argument proves that the
+  common-factor locus is Zariski closed in this family. The verified original
+  rate point has affine and homogenized coordinate gcd one, so geometric
+  coprimality holds on a nonempty Zariski-open subset meeting the positive
+  cone.
+- A primitive positive integer representative with maximum rate `10,296` and
+  total rate `52,464` was found and exactly verified. It is optimal for both
+  objectives among positive integral rate vectors on the fixed support. Its
+  steady ideal is again the conic plus fifteen reduced isolated points.
+- Exact Sturm certificates show that the original ellipse has two transverse
+  stability transitions, with parameters in `(-4,-3)` and `(9/10,1)`. It is
+  normally attracting between them and saddle-type outside; no false claim of
+  global attraction is made.
