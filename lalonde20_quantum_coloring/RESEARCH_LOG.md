@@ -163,3 +163,29 @@
   and keeps the finite-dimensional scope and nonclaims explicit.
 - No GitHub Action, release, DOI, outreach draft, or external communication
   was created.
+
+## 2026-08-02T21:34:00-07:00 — Section 4.2 comparison revision
+
+- Checked a further AI review against Lalonde's arXiv v1 primary source and
+  independently rechecked the proposed rank-two tail invariant.
+- Added a direct comparison with the three higher-rank obstacles in the
+  closing discussion of Lalonde's Section 4.2, an alternative finite-witness
+  proof of the complex-sphere lower bound, and an explicit statement that the
+  \(n=3\) equality was known while the new unrestricted cases start at \(n=4\).
+- Strengthened Remark 3.4: a concrete rank-two invariant plane has
+  \(\dim(E_+\cap E_-)=1\), which is preserved by the residual labeled-core
+  gauge and rules out an orthogonal scalar direct-sum interpretation.
+- Clarified fixed-rank notation and the cyclic-relabeling upper bound, printed
+  the landing-page address, documented the human/machine proof boundary, and
+  added Lalonde's published 2025 small-graphs paper for the computational
+  lineage of his Lemma 4.4.
+- Replayed all three exact verifiers. The revised paper compiles to nine pages
+  and the technical summary remains exactly two pages; every page was rendered
+  and visually inspected with no clipping or layout defect.
+- The revised paper SHA-256 is
+  \`ea1fface0c6b96b2a1dafae090168ab954fa5c760fd7b32171a9fa927f8a8354\`;
+  the revised summary SHA-256 is
+  \`f686adff82747312fc14812aff229d4c75622e348089970d2fbeddd5cfeb2cdb\`.
+- Yu--Oh and Tian--Xu were not added because no new explanatory claim required
+  them. No commuting-operator extension, GitHub Action, release, DOI, outreach,
+  or external communication was undertaken.

@@ -48,6 +48,13 @@ colorings of spheres* as finite witnesses for the complex-sphere obstruction:
 \xi(G_{19}\vee K_{n-3})=n<\chi_q(G_{19}\vee K_{n-3})=n+1.
 \]
 
+It also gives an alternative finite-witness proof of Lalonde's sphere bound
+\[
+\chi_q(S_{\mathbb C}^{n-1})\ge n+1.
+\]
+The equality at \(n=3\) was already known; the first new unrestricted case is
+the one-apex graph at \(n=4\).
+
 Using Lalonde's notation for the restricted parameters, the same conclusion
 holds at every fixed local dimension and every fixed projector rank:
 
@@ -67,8 +74,9 @@ The proof has four exact steps:
    $r$ in dimension $nr$;
 2. an exact rational SOS rigidifies vertices $1,\ldots,13$ for each fixed
    color;
-3. every higher-rank tail, including non-transverse branches, is classified
-   by a $J$-invariant $r$-plane in $K\oplus K$;
+3. every higher-rank tail, including non-transverse branches that are not
+   scalar direct sums, is classified by a $J$-invariant $r$-plane in
+   $K\oplus K$;
 4. cross-color orthogonality produces two sector packings whose dimension
    inequalities sum to the contradiction $3nr\le2nr$.
 

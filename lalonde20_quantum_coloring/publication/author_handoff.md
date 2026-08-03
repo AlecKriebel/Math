@@ -23,6 +23,11 @@ his complex-sphere program:
 
 It also removes the rank-one restriction uniformly: in Lalonde's notation,
 both $\chi_q^{[d]}$ and $\chi_q^{(r)}$ equal $n+1$ for every $d,r\ge1$.
+The resulting finite homomorphisms into the complex orthogonality spheres
+give an alternative finitary proof that
+$\chi_q(S_{\mathbb C}^{n-1})\ge n+1$. The $n=3$ equality for the finite family
+was already known; the first new unrestricted case is the one-apex graph at
+$n=4$.
 
 This is not an extrapolation from the known rank-one obstruction. It handles
 arbitrary finite dimension, zero outcomes, nonuniform original ranks,
@@ -44,8 +49,10 @@ noncommuting projectors, and every higher-rank degeneracy.
    $r$-plane $M\subset K^2$ invariant under the canonical complex
    structure $J=\begin{psmallmatrix}0&I\\-I&0\end{psmallmatrix}$. The
    tempting matrix form $M=\operatorname{ran}(I,S)$, $S^2=-I$, is only
-   the transverse chart. Explicit non-graph planes show that treating only
-   $S$ would leave a gap.
+   the transverse chart. An explicit rank-two plane has coincident sign-sector
+   parameter spaces and is not core-gauge-equivalent to an orthogonal direct
+   sum of scalar representations, so treating only scalar or graph branches
+   would leave a gap.
 
 4. **Cross-color sector flip.** The overlaps $W_d^*W_c$ have an exact skew
    block form. Tail orthogonality makes each overlap exchange $M_c$ with
@@ -66,6 +73,12 @@ rigidity directly, without invoking Lalonde's computer-assisted Lemma 4.4,
 and the invariant-plane analysis is precisely what is absent at rank one.
 The result therefore closes the unrestricted/rank-one gap rather than merely
 rephrasing the earlier obstruction.
+
+It also answers the three difficulties identified in the closing discussion
+of Lalonde's Section 4.2: the SOS and invariant plane classify the
+higher-rank fixed-color representations; the cross-color plane flip replaces
+the role needed from Lemma 4.6; and the argument treats every $n$ with one
+small rational identity rather than large, $n$-specific SDPs.
 
 Do not claim that every higher-rank fixed-color representation is a direct
 sum of rank-one representations: non-graph invariant planes show that this

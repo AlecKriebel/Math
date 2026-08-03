@@ -24,7 +24,7 @@
 
 \title{The quantum chromatic number of the $G_{19}$ join family}
 \author{Alec Kriebel\\{\small Independent Researcher}}
-\date{August 1, 2026}
+\date{Revised August 2, 2026}
 
 \begin{document}
 \maketitle
@@ -42,8 +42,9 @@ model:
    \chi_q(J_n)=n+1\qquad(n\geq3).
 \]
 Consequently $\xi(J_n)=n<\chi_q(J_n)=n+1$, confirming the candidate finite
-witnesses.  In fact, Lalonde's fixed-dimension and fixed-rank parameters also
-satisfy $\chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=n+1$ for every $d,s\geq1$.
+witnesses and giving an alternative finitary proof of Lalonde's complex-sphere
+lower bound.  In fact, Lalonde's fixed-dimension and fixed-rank parameters
+also satisfy $\chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=n+1$ for every $d,s\geq1$.
 In particular, adjoining one apex to $G_{19}$ gives a 20-vertex graph $H$ with
 $\chi_q(H)=5$.
 
@@ -86,9 +87,11 @@ Thus $J_n$ is the graph denoted $G_n$ in
 \cite[Section~4.2]{Lalonde2026}; the letter $J$ merely avoids overloading
 $G_{19}$ when $n=19$.  This is the family proposed there as a finite witness
 for the complex-sphere obstruction of \cite[Theorem~1.2]{Lalonde2026}.
-Here $\xi$ denotes complex orthogonal rank.
-Thus the graph in the question is $H=J_4$, with vertex 20 as the joined
-apex.
+Here $\xi$ denotes complex orthogonal rank.  The first joined case is the
+20-vertex one-apex graph
+\[
+   H=J_4=G_{19}\join K_1.
+\]
 
 An $m$-coloring in the finite-dimensional projector model is a family of
 orthogonal projections $P_{v,c}\in M_d(\C)$, with zero projections allowed,
@@ -107,8 +110,8 @@ this projector formulation is equivalent to the standard finite-dimensional
 definition of $\chi_q$ by perfect entangled strategies for the graph-coloring
 game.
 Following \cite[Section~2.4.2]{Lalonde2026}, write $\chi_q^{[d]}$ for the
-chromatic number restricted to local dimension $d$, and $\chi_q^{(r)}$ for
-the rank-$r$ quantum chromatic number.
+chromatic number restricted to local dimension $d$, and $\chi_q^{(s)}$ for
+the rank-$s$ quantum chromatic number.
 
 \begin{theorem}[Main theorem]\label{thm:main}
 For every $n\geq3$ and every $d,s\geq1$,
@@ -118,6 +121,12 @@ For every $n\geq3$ and every $d,s\geq1$,
 \]
 In particular, $\chi_q(H)=5$.
 \end{theorem}
+
+For $n=3$, the equality $\chi_q(J_3)=4$ was already known: $J_3=G_{19}$
+contains the Man\v{c}inska--Roberson graph $G_{13}$ and is classically
+four-colorable \cite[Section~4.2]{Lalonde2026}.  Thus the new unrestricted
+cases begin with the one-apex graph $J_4$; the theorem is stated for all
+$n\geq3$ because its proof is uniform.
 
 The orthogonal-rank equality follows from $\xi(G_{19})=3$
 \cite[Theorem~1.6]{Lalonde2026} and additivity under graph join
@@ -388,8 +397,22 @@ If the first-coordinate projection of $M_c$ is invertible, then
 $M_c=\ran(I,S)$ and \eqref{eq:J-invariance} is $S^2=-I$.  This transverse
 branch recovers the familiar operator-valued normal form.  It is not
 exhaustive.  For instance,
-$M=\operatorname{span}\{(e_1,0),(0,e_1)\}\subset\C^2\oplus\C^2$ is
-$J$-invariant but is not a graph.  Lemma~\ref{lem:tail} includes this branch.
+$M=\operatorname{span}\{(u,0),(0,u)\}\subset\C^2\oplus\C^2$, where
+$u=(1,0)$, is $J$-invariant but is not a graph.  Lemma~\ref{lem:tail}
+includes this branch.  It is also not equivalent, under a unitary preserving
+the displayed labeled core, to an orthogonal direct sum of rank-one fixed-color
+representations.  Indeed, under the sector parametrization
+\[
+ M\cap\ker(J-\sigma iI)=\{(x,\sigma ix):x\in E_\sigma\},
+\]
+this example has $E_+=E_-=\operatorname{span}\{u\}$ and hence
+$\dim(E_+\cap E_-)=1$.  Vertices $1,2,3$ force every core-preserving unitary
+to be block diagonal, while vertices $4$ and $6$ force its three blocks to
+coincide; it is therefore $\operatorname{diag}(U,U,U)$ and preserves this
+intersection dimension.  By contrast, in a direct sum of rank-one
+representations, $E_+$ and $E_-$ are orthogonal multiplicity summands.  Thus
+fixed-color higher-rank representations are not all scalar direct sums, and
+an unrestricted proof must control these branches.
 
 At $r=1$, for $\sigma\in\{+1,-1\}$ every invariant line and its complement
 have the form
@@ -535,11 +558,51 @@ $\chi_q(J_n)=\chi(J_n)=n+1$.  Every fixed-dimension or rank-$s$ coloring is
 finite-dimensional, giving the restricted lower bounds.  Tensoring the
 classical solution with $I_d$ gives the fixed-dimension upper bound; the
 direct sum of its $n+1$ cyclic relabelings, tensored with $I_s$, gives the
-fixed-rank upper bound.  Section 1's orthogonal-rank calculation completes the
-theorem.
+fixed-rank upper bound.  This explicit construction is needed because the
+rank-$s$ chromatic numbers are not generally monotone in $s$, and adjoining
+an additional nonzero rank-$s$ color is not automatic
+\cite[Section~2.4.2]{Lalonde2026}.  Section 1's orthogonal-rank calculation
+completes the theorem.
+\end{proof}
+
+\begin{corollary}[Finitary complex-sphere obstruction]
+For every $n\geq3$, the complex unit sphere with orthogonality adjacency
+satisfies
+\[
+       \chi_q(S_{\C}^{n-1})\geq n+1.
+\]
+In particular, Theorem~\ref{thm:main} gives an alternative finitary proof of
+\cite[Theorem~1.2]{Lalonde2026}.
+\end{corollary}
+
+\begin{proof}
+The equality $\xi(J_n)=n$ gives a graph homomorphism
+$J_n\to S_{\C}^{n-1}$, and the quantum chromatic number is monotone under
+graph homomorphisms \cite[Sections~1.1 and 2.3.3]{Lalonde2026}.
+Theorem~\ref{thm:main} therefore gives
+\[
+       n+1=\chi_q(J_n)\leq\chi_q(S_{\C}^{n-1}).
+\]
+This finite witness does not follow merely from the infinitary lower bound by
+a general de Bruijn--Erd\H{o}s principle: $\chi_q$ does not have that property
+\cite[Proposition~3.3]{Lalonde2026}.
 \end{proof}
 
 \section{Relation to the rank-one theorem and exact verification}
+
+\paragraph{The three higher-rank obstacles.}
+The closing discussion of \cite[Section~4.2]{Lalonde2026} identifies three
+barriers to the unrestricted problem: rank-one propagation no longer
+classifies Grassmannian-valued representations; no evident analogue of
+Lemma~4.6 supports the rank-one proof; and even a few values of $n$ appear to
+require very large, $n$-specific SOS programs.  Lemmas~\ref{lem:sos}--
+\ref{lem:tail} address the first barrier by classifying every fixed-color
+higher-rank representation through one rational core SOS and a $J$-invariant
+tail plane.  Lemma~\ref{lem:cross}, together with the subsequent sector
+relations, replaces the role of Lemma~4.6 by the structure needed across
+colors.  These statements are independent of $n$, so one exact rational
+identity and the final packing argument treat the entire family without an
+SDP.
 
 Remark~3.4 shows that the higher-rank classification recovers Lalonde's
 scalar normal form \cite[Theorem~4.5]{Lalonde2026}, but the proof does not
@@ -551,12 +614,19 @@ projectors, and reducible or irreducible representations.  On the induced
 Man\v{c}inska--Roberson graph $G_{13}$, operator propagation proving
 $\chi_q(G_{13})=4$~\cite{MancinskaRoberson2016} is an earlier higher-rank
 rigidity precedent; the present argument uses the extra six-vertex tail.
+For context, the computer-assisted method behind Lalonde's Lemma~4.4 is
+developed in \cite{LalondeSmallGraphs2025}; neither that lemma nor its
+algorithm is used in the present classification.
 
 Two standard-library obstruction verifiers replay the SOS, signs, six tail
-compressions, $J$ intertwining, dimension count, and an independent trace-SOS
-formulation with clique and cross-color checks.  A separate graph checker
+compressions, $J$ intertwining, final symbolic dimension arithmetic, and an
+independent trace-SOS formulation with clique and cross-color checks.  A separate graph checker
 verifies graph6, no four-clique, Lalonde's four-coloring, and exhaustive
 non-three-colorability.  All arithmetic is exact; no numerical SDP enters.
+The programs do not formalize the unitary gauge step in
+Lemma~\ref{lem:core}, the projection/subspace semantics and complement
+equalities in Lemma~\ref{lem:tail}, or the final orthogonal-subspace packing;
+those remain part of the human proof.
 
 \paragraph{Artifact provenance.}
 The certificate payloads and original algebraic audit were frozen in the
@@ -585,6 +655,12 @@ responsibility for the note.  The exact programs replay encoded algebraic
 identities; they are neither foundational proof assistants nor a substitute
 for expert review of the mathematical argument.
 
+\medskip
+\noindent
+The current paper, technical summary, source, certificates, and verification
+instructions are available at
+\url{https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/}.
+
 \begin{thebibliography}{9}
 \footnotesize
 \setlength{\itemsep}{0pt}
@@ -598,6 +674,12 @@ Electron. J. Combin. \textbf{14} (2007), no.~1, R81,
 O.~Lalonde,
 \emph{Quantum colorings of spheres},
 \href{https://arxiv.org/abs/2606.10872}{arXiv:2606.10872v1} (2026).
+
+\bibitem{LalondeSmallGraphs2025}
+O.~Lalonde,
+\emph{On the quantum chromatic numbers of small graphs},
+Electron. J. Combin. \textbf{32} (2025), no.~1, P1.18,
+\href{https://doi.org/10.37236/12506}{doi:10.37236/12506}.
 
 \bibitem{MancinskaRoberson2016}
 L.~Man\v{c}inska and D.~E. Roberson,

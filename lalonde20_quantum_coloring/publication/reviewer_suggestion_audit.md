@@ -102,3 +102,40 @@ artifacts rather than accepted as authority.
 The public action row is also simplified in the final site revision; the
 individual verifier and audit links remain available in the verification
 section rather than competing with the paper and source links.
+
+## Focused Section 4.2 comparison pass
+
+A further AI review was checked on 2026-08-02 against Lalonde's primary
+source and the proof itself.
+
+1. **Three stated obstacles — applied with precise scope.** The paper now
+   maps Lalonde's closing Section 4.2 discussion to the fixed-color SOS and
+   tail classification, the cross-color plane flip and sector relations, and
+   the uniform all-\(n\) packing argument. It says these replace the role
+   needed from Lemma 4.6, not that they literally generalize that lemma.
+2. **Finitary sphere corollary — applied.** The homomorphism
+   \(J_n\to S_{\mathbb C}^{n-1}\) now yields
+   \(\chi_q(S_{\mathbb C}^{n-1})\ge n+1\). The accompanying compactness
+   sentence is deliberately narrow: Proposition 3.3 rules out a general
+   de Bruijn--Erdős extraction, not every conceivable graph-specific
+   argument.
+3. **Prior \(n=3\) case — applied.** The note now says explicitly that
+   \(\chi_q(G_{19})=4\) was already known and that the first new unrestricted
+   case is \(J_4\).
+4. **Genuinely higher-rank tail — applied after an independent calculation.**
+   The rank-two nongraph plane is distinguished from every orthogonal direct
+   sum of scalar fixed-color representations by
+   \(\dim(E_+\cap E_-)\), which is invariant under the residual labeled-core
+   gauge \(\operatorname{diag}(U,U,U)\). The conclusion is limited to the
+   fixed-color classification.
+5. **Local clarity fixes — applied.** “The graph in the question” was
+   removed, \(s\) is reserved for the generic fixed-rank parameter, the
+   cyclic-relabeling upper bound is motivated, the human/machine boundary is
+   explicit, and the landing-page address is printed.
+6. **References — selective.** Lalonde's published 2025 small-graphs paper
+   was added because the body now discusses the algorithmic lineage of his
+   Lemma 4.4. Yu--Oh and Tian--Xu were not added because the revised note
+   makes no claim requiring those additional contextual detours.
+7. **Scope discipline — retained.** No commuting-operator extension was
+   pursued, no GitHub Action was added, and no outreach or external
+   communication was prepared or initiated.

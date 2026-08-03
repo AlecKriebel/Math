@@ -19,7 +19,7 @@
 \begin{document}
 \begin{center}
 {\Large\bfseries Technical summary: the $G_{19}$ join family}\\[-1pt]
-{\small Alec Kriebel \textbullet\ Independent Researcher \textbullet\ August 1, 2026}
+{\small Alec Kriebel \textbullet\ Independent Researcher \textbullet\ Revised August 2, 2026}
 \end{center}
 \vspace{-6pt}
 \fontsize{10.1}{11.9}\selectfont
@@ -33,9 +33,11 @@ $n\ge3$ and $d,s\ge1$, with $\xi$ denoting complex orthogonal rank,
  \boxed{\xi(J_n)=n<\chi_q(J_n)=n+1,}\qquad
  \chi_q^{[d]}(J_n)=\chi_q^{(s)}(J_n)=n+1.
 \]
-This confirms Lalonde's candidate finite witnesses for the complex-sphere
-obstruction and removes the rank-one restriction from his theorem.  In
-particular, for the one-apex graph $H=J_4$, $\chi_q(H)=5$.  Zero projectors,
+This confirms Lalonde's candidate finite witnesses, removes the rank-one
+restriction, and gives an alternative finite-witness proof that
+$\chi_q(S_{\mathbb C}^{n-1})\ge n+1$.  The $n=3$ equality was already known;
+the new unrestricted cases begin with the one-apex graph $H=J_4$, for which
+$\chi_q(H)=5$.  Zero projectors,
 nonuniform original ranks, arbitrary finite dimension, and noncommuting
 projectors are all allowed.
 
@@ -123,7 +125,10 @@ The six core--tail edges supply the displayed ambient frames.  Pulling back
 the six tail--tail edges gives five identity maps and one $-J_c$, proving
 both exhaustiveness and $J_cM_c=M_c$.  This formulation includes non-graph
 planes; $M_c=\operatorname{ran}(I,S_c)$ with $S_c^2=-I$ is only a transverse
-chart.
+chart.  For $r=2$, the plane
+$\operatorname{span}\{(u,0),(0,u)\}$ has coincident sign-sector parameter
+spaces, an invariant which shows that it is not core-gauge-equivalent to a
+direct sum of scalar representations.
 At $r=1$, $M_c=\operatorname{span}(1,\sigma i)$ and the six displayed frames
 recover Lalonde's Theorem~4.5 normal form with sign $b=\sigma$.
 
@@ -174,7 +179,8 @@ four-coloring and exhaustive non-three-colorability, replay independent
 rational noncommutative SOS expansions, check the Walsh and skew-block
 systems, multiply all six tail compressions, invert their coefficient
 transform, and check the symbolic all-$n$ dimension gap.  No floating-point
-computation enters the theorem.
+computation enters the theorem.  The gauge, subspace/complement semantics,
+and final packing remain human linear algebra rather than formalized steps.
 
 \textbf{Scope and relation to prior work.}
 The known rank-one theorem motivates the sign frame, but it is not used as a
@@ -185,6 +191,10 @@ relations, reducible or irreducible.  No finite local dimension supports $n$
 colors.  At $n+1$ colors, the classical solution lifts to fixed dimension $d$
 by tensoring with $I_d$ and to fixed rank $s$ by taking the direct sum of its
 cyclic color relabelings and tensoring with $I_s$.  No claim is made about
-infinite-dimensional or commuting-operator colorings.
+infinite-dimensional or commuting-operator colorings.  The proof answers the
+three obstacles identified at the end of Lalonde's Section~4.2: it classifies
+all fixed-color higher-rank branches, replaces the role of Lemma~4.6 by a
+plane-flip lemma, and works for every $n$ with one rational SOS rather than
+large $n$-specific SDPs.
 
 \end{document}
