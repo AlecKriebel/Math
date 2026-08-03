@@ -29,15 +29,18 @@ finite-dimensional equality
 \]
 This confirms Lalonde's proposed finite witnesses:
 \(\xi(G_{19}\vee K_{n-3})=n<\chi_q(G_{19}\vee K_{n-3})=n+1\), and the same
-value holds at every fixed finite dimension and projector rank. In particular,
-the 20-vertex apex graph \(G_{19}\vee K_1\) has quantum chromatic number five.
+value holds at every fixed finite dimension and projector rank. It also gives
+an alternative finite-witness proof that
+\(\chi_q(S_{\mathbb C}^{n-1})\ge n+1\). The \(n=3\) equality was known; the
+first new unrestricted case is the 20-vertex apex graph
+\(G_{19}\vee K_1\), whose quantum chromatic number is five.
 The proof symmetrizes arbitrary ranks, rigidifies the 13-vertex core by an
 exact rational SOS, classifies every higher-rank tail by a \(J\)-invariant
 plane, and finishes with a two-sector dimension-packing contradiction. Two
 independent standard-library verifiers and machine-readable certificates
 accompany the unreviewed note. See the
 [research-note page](https://aleckriebel.github.io/Math/papers/lalonde-quantum-coloring/)
-and [canonical proof package](https://github.com/AlecKriebel/Math/tree/f0a561e675b86a6e92b5c113c7d6f7b3e036511d/lalonde20_quantum_coloring).
+and [canonical proof package](https://github.com/AlecKriebel/Math/tree/91290c5764d89d6d6da7b6935c232d3d83733c75/lalonde20_quantum_coloring).
 
 **Minimum Input Complexity for Separating Qubit POVMs from Projective
 Measurements** proves that, with two Bell inputs per party and arbitrary
