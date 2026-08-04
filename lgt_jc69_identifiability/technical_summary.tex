@@ -1,0 +1,164 @@
+\documentclass[10pt,twocolumn]{extarticle}
+\usepackage[letterpaper,margin=0.62in,columnsep=0.28in]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs,microtype,xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{balance}
+\setlist{nosep,leftmargin=1.4em}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{0.15em}
+\setlength{\emergencystretch}{1.5em}
+\definecolor{darkblue}{RGB}{22,58,99}
+\newcommand{\e}{\mathrm e}
+\newcommand{\Proc}{F_{\mathrm{proc}}}
+\newcommand{\Table}{F_{\mathrm{table}}}
+\newcommand{\Src}{F_{\mathrm{src}}}
+\pagestyle{plain}
+
+\begin{document}
+\twocolumn[
+\begin{@twocolumnfalse}
+\begin{center}
+{\Large\bfseries Global Identifiability in a Three-Taxon LGT Model}\par
+\vspace{0.15em}
+{\large Exhaustive genealogy calculation under JC69}\par
+\vspace{0.25em}
+{\small Alec Kriebel \quad | \quad Version 0.2 -- prepared for author audit -- August 2026}
+\end{center}
+\vspace{0.4em}
+\noindent\textbf{Principal theorem.}
+Fix a known JC69 substitution rate $\mu>0$.  For one sampled ortholog from each taxon on the rooted clocklike species tree $((1,2),3)$, with $0<t_1<t_2$, constant ordered-pair transfer rate $\lambda>0$, donor retention, recipient replacement, no incomplete lineage sorting, and exact population site-pattern probabilities, the exhaustive ordered-pair Poisson LGT map is globally injective.  The distribution uniquely determines $(t_1,t_2,\lambda)$ at every interior point, and the Jacobian has rank three everywhere.  There is no exceptional interior set and no second interior preimage.
+\vspace{0.5em}
+\hrule
+\vspace{0.55em}
+\end{@twocolumnfalse}
+]
+
+\section*{1. The omitted movement}
+A species branch is \emph{ancestrally unoccupied} when it currently carries none of the ancestral lineages of the sampled leaf genes; the branch still carries a population gene copy.
+
+Choose $0<u<v<t_1$.  At $u$, branch 1 transfers into branch 2.  Backward in time, lineage 2 jumps to branch 1 and coalesces with lineage 1, fixing cherry $(1,2)$.  Branches 1 and 3 then carry the surviving sampled ancestry, and branch 2 is ancestrally unoccupied.  At $v$, branch 2 transfers into branch 3.  Backward in time, lineage 3 jumps to branch 2.  This causes no immediate coalescence, but the surviving lineages now occupy branches 1 and 2 and coalesce vertically at $t_1$.  Without the second transfer they remain on branches 1 and 3 and do not coalesce at $t_1$.
+
+Thus the second transfer changes the second coalescence time and branch lengths without changing the already formed cherry.  Topology frequencies can remain correct while site-pattern probabilities change.
+
+\section*{2. Exhaustive CTMC correction}
+After the first sampled-gene coalescence, let the state be the identity of the ancestrally unoccupied branch.  Conditional on no second transfer-coalescence, this state has generator
+\[
+Q=\frac{\lambda}{2}
+\begin{pmatrix}-2&1&1\\1&-2&1\\1&1&-2\end{pmatrix}.
+\]
+The second transfer-coalescence has hazard $\lambda$.  Given survival for elapsed time $s$,
+\[
+P_{ee}(s)=\frac13+\frac23\e^{-3\lambda s/2},\qquad
+P_{ee'}(s)=\frac13-\frac13\e^{-3\lambda s/2}.
+\]
+This sums arbitrarily many noncoalescing movements exactly.  The resulting genealogy measure is disjoint, exhaustive, and normalized.  It recovers
+\[
+P(T_1)=\frac13+\frac23\e^{-3\lambda t_1},\qquad
+P(T_2)=P(T_3)=\frac13-\frac13\e^{-3\lambda t_1}.
+\]
+
+\section*{3. Fourier and pattern coordinates}
+For a three-leaf ultrametric gene tree with interior times $g_1<g_2$, the cherry-pair JC69 Fourier coordinate is $\e^{-2\mu g_1}$, either noncherry pair is $\e^{-2\mu g_2}$, and the nontrivial three-way coordinate is $\e^{-\mu(g_1+2g_2)}$.
+
+For aggregate classes $p_0,p_{12},p_{13}=p_{23},p_D$, define
+\begin{align*}
+A&=\frac{4(p_0+p_{12})-1}{3},&
+B&=\frac{4(p_0+p_{13})-1}{3},\\
+C&=\frac{16p_0-1-3A-6B}{6}.
+\end{align*}
+This is an affine isomorphism, and
+\[
+A-B=\frac43(p_{12}-p_{13}).
+\]
+
+\section*{4. Compact corrected map}
+Set
+\[
+q=\frac{\lambda}{\lambda+\mu},\quad
+x=\e^{-(\lambda+\mu)t_1},\quad
+y=\e^{-(\lambda+\mu)(t_2-t_1)},
+\]
+then $0<q,x,y<1$.  Put
+\[
+r=q+(1-q)y^2,\quad X=x^{2-q},\quad Z=x^3,
+\]
+and $D=A-B$, $M=(A+2B)/3$.  Exhaustive integration gives
+\begin{align*}
+D&=(1-r)x^{2+q/2},\\
+M&=\frac{q(1-X)}{2-q}+\frac{1+2r}{3}X,\\
+C&=\frac{q^2((q-2)Z+3X-(q+1))}{(q-2)(q+1)}\\
+&\quad+rZ+\frac{q(1+2r)}{q+1}(X-Z),
+\end{align*}
+with $q<r<1$.  These formulas do not depend on the numerical value of fixed $\mu$ after reparameterization.
+
+\newpage
+\section*{5. Global-univalence argument}
+Fix observed $D,M$.  Eliminating $r$ yields
+\[
+M=\Phi_q(X)=\frac{q}{2-q}+\frac{2(1-q)}{2-q}X
+-\frac{2D}{3}X^{-3q/[2(2-q)]}.
+\]
+For every $q\in(0,1)$, $\Phi_q'(X)>0$, $\Phi_q(X)\to-\infty$ as $X\downarrow0$, and the observed $M<\Phi_q(1)$.  Hence each $q$ determines a unique formal $X,x,r$.
+
+Let $h=(1-r)/(1-q)$.  The formal branch has $r<1$, hence $h>0$, and physical feasibility is exactly $0<h<1$.  Exact implicit differentiation shows $dh/dq>0$ whenever $h\le1$.  Every crossing of $h=1$ is therefore upward; a later re-entry would require a downward crossing.  Since the generating point is feasible, the feasible $q$-set is a nonempty interval.
+
+The $2\times2$ minor is
+\[
+\det\frac{\partial(D,M)}{\partial(x,r)}
+=x^{3-q/2}[2-q(1+r)]>0.
+\]
+An exact factorization and convexity argument prove
+\[
+\det\frac{\partial(D,M,C)}{\partial(q,x,r)}<0
+\]
+throughout the domain.  Along the fixed-$(D,M)$ branch,
+\[
+\frac{dC}{dq}=
+\frac{\det\partial(D,M,C)/\partial(q,x,r)}
+{\det\partial(D,M)/\partial(x,r)}<0.
+\]
+Thus $C$ selects a unique $q$, and then unique $x,r,y$ and $(t_1,t_2,\lambda)$.
+
+\balance
+\section*{6. Topology and rate scale}
+The corrected map gives
+\[
+A-B=(1-q)(1-y^2)x^{2+q/2}>0,
+\]
+so $p_{12}>p_{13}=p_{23}$.  After relabeling, the uniquely largest matching-pair class identifies the rooted species-tree cherry; the theorem then identifies the parameters.
+
+If $\mu$ is unknown, the exact invariance
+\[
+(t_1,t_2,\lambda,\mu)\mapsto
+(ct_1,ct_2,\lambda/c,\mu/c)
+\]
+leaves $q,x,y$ unchanged.  A time or rate scale must therefore be fixed.  This does not weaken the theorem for fixed known $\mu$.
+
+\section*{7. Two distinct associated maps}
+\textbf{Auxiliary map $\Table$.}  This is the fourteen-history map obtained by distinguishing the two one-transfer density types and treating the displayed transfer variables as absolute gene-tree times.  A 384-bit outward-rounded Krawczyk certificate proves a second unique preimage of the exact target generated by $(q,x,y)=(1/2,1/10,3/5)$.  Both Jacobians exclude zero.  Therefore the image contains a nonempty open set of regular values with at least two preimages.  No claim is made about almost every point of the entire image.
+
+\textbf{Distributed map $\Src$.}  For arXiv:2607.14653v1 and repository commit
+\begin{center}
+\scriptsize\texttt{1954b2ab92525dfdaf43b50f97dcf46658cab6c9}
+\end{center}
+exact evaluation at $(q,x,y)=(1/2,81/100,1/10)$ gives positive normalized classes but
+\[
+A_{\rm src}-B_{\rm src}=-\frac{57472173}{800000000},
+\quad
+p_{xxy}-p_{xyx}=-\frac{172416519}{3200000000}.
+\]
+Here $p_{12}=p_{xxy}$, $p_{13}=p_{xyx}$, and $p_{23}=p_{yxx}$ under the source's aggregate convention.  Thus $\Src$ reverses the process inequality.  The source snapshot records immutable identifiers and hashes.
+
+\section*{8. Verification}
+Run
+\begin{verbatim}
+make verify-exact
+\end{verbatim}
+from the package root.  It deterministically checks genealogy normalization, all symbolic integrations, the Fourier/site-pattern transformation, all 64 JC69 patterns, the global-univalence identities, topology and scale identities, the exact source diagnostic, and the MPFR Krawczyk certificate.  Its final line is
+\begin{verbatim}
+ALL EXACT CHECKS PASSED
+\end{verbatim}
+Monte Carlo is separated as \texttt{make audit-simulation}.  The interval verifier reconstructs the target in $\mathbb Q(\sqrt{10})$ and does not reuse the discovery root search.
+
+\end{document}

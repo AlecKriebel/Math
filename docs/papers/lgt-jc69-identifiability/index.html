@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A global identifiability theorem for a three-taxon lateral-gene-transfer model under JC69, with an exact interval-certified audit distinguishing the process map from two related finite-history maps.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Global Identifiability in a Three-Taxon Lateral-Gene-Transfer Model">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-08-04">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Global Identifiability in a Three-Taxon Lateral-Gene-Transfer Model">
+  <meta property="og:description" content="A missing noncoalescing-transfer mechanism, an exhaustive three-state occupancy chain, and a global JC69 identifiability theorem, with a certified double point and an exact source-formula diagnostic.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/">
+  <title>Three-taxon LGT-JC69 identifiability · Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Global Identifiability in a Three-Taxon Lateral-Gene-Transfer Model",
+    "description": "For every fixed known JC69 substitution rate, the exact three-taxon site-pattern distribution under an exhaustively summed ordered-pair Poisson LGT process uniquely determines the interior parameter triple. A certified regular double point and an exact source-formula diagnostic separate this process map from two related finite-history maps.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "ChatGPT 5.6 Sol"
+    },
+    "datePublished": "2026-08-04",
+    "dateModified": "2026-08-04",
+    "url": "https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#mechanism">Mechanism</a>
+        <a href="#theorem">Theorem</a>
+        <a href="#comparison">Map comparison</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#scope">Scope</a>
+        <a href="#paper">PDF</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Unlisted research page · Version 0.2, prepared for author audit · Not peer reviewed</p>
+      <h1>Global Identifiability in a Three-Taxon Lateral-Gene-Transfer Model</h1>
+      <p class="byline">Alec Kriebel</p>
+      <p class="release">Prepared: <time datetime="2026-08-04">4 August 2026</time> · Developed with heavy assistance from ChatGPT 5.6 Sol</p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Please do not treat this claim as established mathematics.</h2>
+        <p>Alec Kriebel is a complete amateur and cannot independently verify this paper. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, citation, and audit claim requires independent expert review, and no external expert or author has yet been contacted. This page is intentionally not linked from the site's paper listing; it exists as a public, timestamped, directly reachable record while the result awaits outside audit.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="./technical-summary.pdf">Two-page summary</a>
+      <a class="button secondary" href="./SHA256SUMS.txt">PDF SHA-256</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/lgt_jc69_identifiability">Source and certificates</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">A finite enumeration of gene histories can fail for a lateral-gene-transfer (LGT) process even when it reproduces the correct gene-tree topology frequencies. After the first sampled-gene coalescence below the first species divergence, a transfer from a species branch carrying no currently traced sampled ancestry into an occupied recipient moves one sampled ancestral lineage without causing a coalescence. Repeated movements of this kind can change the second gene-tree coalescence time and hence the JC69 branch lengths. These are summed exhaustively with a three-state continuous-time Markov chain. For every fixed known substitution rate \(\mu&gt;0\), the resulting parameter map for the rooted clocklike three-taxon tree \(((1,2),3)\) is globally injective on \(0&lt;t_1&lt;t_2\), \(\lambda&gt;0\), with full Jacobian rank three at every interior point; the exact distribution also identifies the rooted species-tree cherry through the strict inequality \(p_{12}&gt;p_{13}=p_{23}\). Two finite-history formula maps associated with the model are shown to be distinct from this exhaustive process map: an auxiliary fourteen-history table map has a certified regular double point, and the formula/code map distributed alongside the source paper reverses the process's strict matching-pair inequality at an exact interior parameter point.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Main theorem</strong><span>Global injectivity, full rank, every fixed \(\mu&gt;0\)</span></div>
+          <div class="fact"><strong>Mechanism</strong><span>Noncoalescing lineage movement omitted from the finite history list</span></div>
+          <div class="fact"><strong>Audit</strong><span>384-bit MPFR Krawczyk certificate + exact source diagnostic</span></div>
+        </div>
+      </section>
+
+      <section id="mechanism">
+        <h2>1. Context and the missing mechanism</h2>
+        <p>Kubatko, Linz, and Wicke derived three-taxon gene-tree and JC69 site-pattern formulas for a Poisson lateral-gene-transfer process and posed a global parameter-identifiability question after proving generic local identifiability for their displayed formula map (arXiv:2607.14653v1). This paper addresses the underlying backward-lineage process directly.</p>
+        <p>&ldquo;Relevant transfer&rdquo; cannot be equated with &ldquo;transfer that immediately coalesces two currently traced sampled lineages.&rdquo; Once the first sampled pair has coalesced, a transfer can move one of the two remaining sampled ancestral lineages through the third species branch without changing the already formed cherry. Concretely, for \(0&lt;u&lt;v&lt;t_1\): at time \(u\), branch 1 transfers into branch 2, and traced backward the sampled lineage from taxon 2 jumps to branch 1 and coalesces, forming the cherry \((1,2)\); branch 2 now carries no currently traced sampled ancestry. At time \(v\), branch 2 transfers into branch 3, and lineage 3 jumps backward from branch 3 to branch 2 &mdash; without immediately coalescing the two surviving lineages, but moving them onto branches 1 and 2 so that they coalesce vertically at \(t_1\). Without this second transfer they remain on branches 1 and 3 and do not coalesce at \(t_1\). This changes the second gene-tree coalescence time and the JC69 branch lengths while leaving gene-tree topology probabilities unaffected, which is why a finite list terminating after two immediately coalescing transfers need not determine the site-pattern distribution.</p>
+        <p>After the first sampled-gene coalescence, the state is the identity of the species branch carrying no currently traced sampled ancestry. Conditional on no second transfer-coalescence, this three-state occupancy chain has generator</p>
+        <div class="equation">\[
+          Q=\frac{\lambda}{2}\begin{pmatrix}-2&amp;1&amp;1\\1&amp;-2&amp;1\\1&amp;1&amp;-2\end{pmatrix},
+        \]</div>
+        <p>and summing all repetitions of the noncoalescing movement over the second-transfer-coalescence hazard \(\lambda\) gives a disjoint, exhaustive, normalized genealogy measure that recovers the exact topology probabilities \(P(T_1)=\tfrac13+\tfrac23e^{-3\lambda t_1}\), \(P(T_2)=P(T_3)=\tfrac13-\tfrac13e^{-3\lambda t_1}\).</p>
+      </section>
+
+      <section id="theorem">
+        <h2>2. Compact map and the global theorem</h2>
+        <p>Writing \(q=\lambda/(\lambda+\mu)\), \(x=e^{-(\lambda+\mu)t_1}\), \(y=e^{-(\lambda+\mu)(t_2-t_1)}\), \(r=q+(1-q)y^2\), the exhaustive process map reduces to explicit closed forms for \(D=A-B\), \(M=(A+2B)/3\), and a third coordinate \(C\) in \((q,x,r)\).</p>
+        <div class="theorem-block">
+          <p><strong>Theorem (global identifiability).</strong> Fix a known substitution rate \(\mu&gt;0\). For the rooted clocklike species tree \(((1,2),3)\) with \(0&lt;t_1&lt;t_2\), no incomplete lineage sorting, constant ordered-pair transfer rate \(\lambda&gt;0\), donor retention, and recipient replacement, the exact JC69 site-pattern distribution uniquely determines \((t_1,t_2,\lambda)\). The process map \(F_{\mathrm{proc}}\) is injective on the full open domain, its Jacobian has rank three at every interior point, and there is no exceptional interior set or second interior preimage.</p>
+        </div>
+        <p>For fixed observed \((D,M)\) and each \(q\in(0,1)\), a strictly increasing scalar equation has exactly one formal solution \(X(q)\), hence a unique \(x(q),r(q)\). Writing \(h=(1-r)/(1-q)\), physical feasibility is exactly \(0&lt;h&lt;1\); the proof shows \(dh/dq&gt;0\) whenever \(h\le1\), so every crossing of \(h=1\) is upward and the feasible \(q\)-set is a nonempty interval. The minor \(\det\,\partial(D,M)/\partial(x,r)=x^{3-q/2}[2-q(1+r)]\) is strictly positive, and an exact determinant factorization together with a convexity argument gives \(\det\,\partial(D,M,C)/\partial(q,x,r)&lt;0\) throughout the physical domain, so \(C\) is strictly decreasing along the entire fixed-\((D,M)\) branch &mdash; giving a unique \(q\) and then a unique original parameter triple. Separately, \(A-B=(1-q)(1-y^2)x^{2+q/2}=\tfrac43(p_{12}-p_{13})&gt;0\), so the uniquely largest matching-pair aggregate identifies the rooted cherry before parameter inversion. If \(\mu\) is unknown, the common-scale transformation \((t_1,t_2,\lambda,\mu)\to(ct_1,ct_2,\lambda/c,\mu/c)\) leaves \(q,x,y\) unchanged, so a time or rate scale must still be fixed.</p>
+      </section>
+
+      <section id="comparison">
+        <h2>3. Three distinct maps</h2>
+        <p>The paper is careful to separate the process theorem from claims about two other maps associated with the same model.</p>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <thead><tr><th scope="col">Map</th><th scope="col">Definition</th><th scope="col">Status</th></tr></thead>
+            <tbody>
+              <tr><td>\(F_{\mathrm{proc}}\)</td><td>Exhaustive map induced by the ordered-pair Poisson LGT process, including arbitrarily many noncoalescing lineage movements</td><td>Globally injective and regular everywhere in the interior (this paper's theorem)</td></tr>
+              <tr><td>\(F_{\mathrm{table}}\)</td><td>Auxiliary fourteen-history map, distinguishing the two one-transfer density types and treating displayed transfer variables as absolute gene-tree times</td><td>Internally normalized but omits the repeated noncoalescing movements; has a certified regular double point</td></tr>
+              <tr><td>\(F_{\mathrm{src}}\)</td><td>The formula/code map distributed with arXiv:2607.14653v1 and repository commit <code>1954b2a…</code></td><td>Differs algebraically from both other maps; reverses the strict matching-pair inequality at an exact interior point</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>\(F_{\mathrm{table}}\) regular double point.</strong> At the exact first point \((q,x,y)=(1/2,1/10,3/5)\), a 384-bit outward-rounded Krawczyk certificate proves a unique second root in a stored rational box, with both Jacobian determinant intervals excluding zero. The inverse function theorem then gives a nonempty open set of regular observed distributions, each with at least two distinct \(F_{\mathrm{table}}\) preimages &mdash; no stronger claim is made about almost every point of the full image.</p>
+        <p><strong>\(F_{\mathrm{src}}\) exact diagnostic.</strong> At \((q,x,y)=(1/2,81/100,1/10)\), the source formula gives a positive normalized five-class aggregate distribution but \(A_{\mathrm{src}}-B_{\mathrm{src}}=-57472173/800000000\) and \(p_{12}-p_{13}=-172416519/3200000000\), reversing the strict matching-pair inequality that \(F_{\mathrm{proc}}\) proves. This is stated as an exact algebraic diagnostic of the distributed formula/code at a frozen, cited version, not as a claim about the source paper's stated theorems, which concern a different (auxiliary) map. <code>SOURCE_SNAPSHOT.md</code> records the exact arXiv identifier, submission timestamp, repository commit, file/function/cell locations, and every locally computed SHA-256 hash used for this comparison.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>4. Exact certificates and independent verification</h2>
+        <p>The exact target runs symbolic history normalization and integration, all 64 direct JC69 pattern checks, the global-univalence algebra, topology and scale identities, the exact source-formula diagnostic, and a 384-bit directed-rounding MPFR Krawczyk certificate. It does not run Monte Carlo. The Krawczyk verifier is logically independent of the numerical root search that first suggested the box: it reads only the exact target in \(\mathbb{Q}(\sqrt{10})\), exact decimal-rational box endpoints, and an exact decimal-rational preconditioner, with every transcendental function enclosed under directed MPFR rounding.</p>
+        <ul class="certificate-list">
+          <li><code>make verify-exact</code> (from <a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/Makefile"><code>Makefile</code></a>) &mdash; runs the eight deterministic theorem-bearing scripts in <a href="https://github.com/AlecKriebel/Math/tree/main/lgt_jc69_identifiability/verifier"><code>verifier/</code></a>; expected final line <code>ALL EXACT CHECKS PASSED</code>. Independently rerun for this publication with SymPy 1.14.0, mpmath 1.3.0, and MPFR 4.2.2 &mdash; same result.</li>
+          <li><code>make audit-simulation</code> &mdash; a separate fixed-seed Monte Carlo sanity check against \(F_{\mathrm{proc}}\) and \(F_{\mathrm{table}}\); not theorem-bearing.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/verifier/certificate.json"><code>verifier/certificate.json</code></a> &mdash; exact target, rational interval box, precision, and rational-decimal Krawczyk preconditioner.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/verifier/source_diagnostic.json"><code>verifier/source_diagnostic.json</code></a> &mdash; machine-readable frozen source point and exact diagnostic values.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/verify_exact_transcript.txt"><code>verify_exact_transcript.txt</code></a> and <a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/clean_unpack_transcript.txt"><code>clean_unpack_transcript.txt</code></a> &mdash; archived successful transcripts.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/SOURCE_SNAPSHOT.md"><code>SOURCE_SNAPSHOT.md</code></a> &mdash; immutable arXiv version, repository commit, and file/hash identifiers used for the map comparison.</li>
+        </ul>
+        <p class="fine-print">Per-file SHA-256 manifest for this directory: <a href="https://github.com/AlecKriebel/Math/blob/main/lgt_jc69_identifiability/MANIFEST.sha256"><code>MANIFEST.sha256</code></a>. Published PDF hashes are in <a href="./SHA256SUMS.txt"><code>SHA256SUMS.txt</code></a>.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Scope and limitations</h2>
+        <p>The theorem concerns the specific ordered-pair Poisson process and backward-lineage convention defined in the manuscript; no claim is made that this convention exhausts every possible interpretation of an LGT model. It does not resolve finite-sample performance, a corrected maximum-likelihood implementation, numerical conditioning across the full parameter domain, joint LGT&ndash;ILS identifiability, branch-specific transfer models, or larger taxon sets. The global sign and monotonicity arguments are the decisive ingredient; the fixed rank of \(F_{\mathrm{table}}\)'s Jacobian at both points of its regular double point shows that local well-conditioned fits can coexist with a separated second inverse branch, so local identifiability results alone do not settle global identifiability.</p>
+        <p>The comparison with the distributed source formula is an exact algebraic diagnostic at a frozen, cited arXiv version and repository commit; it is not a claim about the correctness of the source paper's proved theorems, which concern a different auxiliary map. No external expert or author has been contacted, and no external review has occurred. The natural collaborative follow-ups are to reconcile the intended transfer convention with the backward-lineage interpretation, implement a corrected likelihood, quantify conditioning, compare with joint LGT&ndash;ILS models, and extend the occupancy-chain method to larger trees.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The stochastic-model derivation, symbolic manipulation, proof drafting, interval-certificate implementation, and manuscript were developed with heavy assistance from ChatGPT 5.6 Sol under Alec Kriebel's direction; this page was assembled and published by Claude Code under the same direction. Alec Kriebel is the human author and cannot independently validate the claims. Computational searches were used during discovery, including to locate the second preimage of the auxiliary map, but search output is not used as a theorem certificate: the omitted-history mechanism, occupancy-chain construction, exhaustive partition, Fourier reduction, monotonicity and Jacobian-sign arguments, and topology corollary are all checkable directly from the manuscript, and every displayed identity is additionally reduced to an exact symbolic or directed-rounding interval check. The work has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, &ldquo;Global Identifiability in a Three-Taxon Lateral-Gene-Transfer Model,&rdquo; version 0.2, provisional research note, 4 August 2026. <a href="https://aleckriebel.github.io/Math/papers/lgt-jc69-identifiability/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">The complete TeX manuscript, two-page technical summary, exact certificates, source-version snapshot, and verifier suite are public in the repository.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/lgt_jc69_identifiability">Source package</a>
+  </footer>
+</body>
+</html>
