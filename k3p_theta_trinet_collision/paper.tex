@@ -1,0 +1,579 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,tabularx,longtable}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={An Exact Full-Dimensional K3P Tree--Theta-Trinet Collision},
+  pdfauthor={Alec Kriebel}
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\ThetaZero}{\Theta_{0}}
+\newcommand{\KthreeP}{\mathrm{K3P}}
+\newcommand{\odotv}{\mathbin{\odot}}
+\newcommand{\e}{\mathrm{e}}
+
+\title{An Exact Full-Dimensional K3P\\Tree--Theta-Trinet Collision}
+\author{Alec Kriebel}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give an exact negative answer to the high-level K3P trinet question: the K3P analogue of the high-level trinet inequality fails already for a binary semi-directed strict level-two theta trinet with a genuine nontrivial $3$-blob.  The comparison model is a three-leaf tree.  At an explicit point in the quartic number field $\mathbb{Q}(h)$, where $h=5^{-1/4}$, every network and tree edge lies strictly inside the stated stochastic parameter space $\ThetaZero$, every transition probability is strictly positive, and both inheritance probabilities equal $1/2$.  A sixteen-entry Fourier factorization proves equality of all sixty-four Fourier coordinates and hence all sixty-four leaf-pattern probabilities.  The explicit closed-form witness lies on the boundary of the smaller cone in which every continuous-time K3P substitution rate is strictly positive, but this is not a boundary of $\ThetaZero$.  We further compute an exact nonzero $15\times15$ Jacobian determinant, proving that the fixed theta-trinet image contains an ordinary open neighborhood in the $15$-dimensional affine space of consistent three-leaf group-based Fourier coordinates, $q_{AAA}=1$.  Finally, a real-analytic implicit-function argument, whose Jacobian and tangent data are verified exactly, shows that the collision persists in the strict continuous-time K3P rate cone.  A dependency-free verifier reconstructs the topology, parameters, collision, Jacobian, and the algebraic hypotheses and tangent signs used in that analytic argument.
+\end{abstract}
+
+\section{Context and statement of the result}
+
+Brits, Holtgrefe, van Iersel, and Martin proved the level-one K3P trinet inequality in their Lemma~4.2, proved arbitrary-level trinet inequalities for JC and K2P in Lemmas~5.5 and~5.6, and used those results to obtain their global JC/K2P tree--network distinguishability Corollary~5.8 \cite{BritsHoltgrefeVanIerselMartin2026}.  In their discussion, they asked whether the high-level trinet inequality and quartet distinguishability extend to K3P, noting that the K3P level-one proof requires several invariants and does not directly support the one-invariant induction used for JC and K2P.
+
+The construction below answers the high-level K3P trinet question negatively at strict level two.  It therefore also rules out a direct K3P extension of Corollary~5.8 on the same parameter space.  The JC and K2P results of \cite{BritsHoltgrefeVanIerselMartin2026} are unaffected.
+
+\begin{theorem}[Exact K3P tree--theta collision]\label{thm:collision}
+There is a binary semi-directed strict level-two trinet $N_{\theta}$ with a nontrivial $3$-blob and a three-leaf tree $T$ such that
+\[
+  \cM_{\KthreeP}(N_{\theta};\ThetaZero)
+  \cap
+  \cM_{\KthreeP}(T;\ThetaZero)
+  \neq \varnothing.
+\]
+At the exhibited collision, every edge has all three nontrivial Fourier eigenvalues in $(0,1)$, every transition probability is strictly positive, and both inheritance probabilities are $1/2$.
+\end{theorem}
+
+The result is stronger locally than the existence of one isolated collision.
+
+\begin{proposition}[Full-rank local overlap]\label{prop:rank}
+At the explicit network parameters in Theorem~\ref{thm:collision}, the parameterization of the fixed theta-trinet topology has rank $15$, equal to the dimension of the affine group-based Fourier space $q_{AAA}=1$.  Consequently its stochastic image contains an ordinary open neighborhood of the common distribution within that affine space.  Its intersection with the tree model contains a relatively open neighborhood of the common point inside the tree model.
+\end{proposition}
+
+The closed-form parameters have two zero continuous-time rate margins.  Nevertheless, the full-rank calculation permits an analytic perturbative strengthening with exactly verified algebraic data.
+
+\begin{corollary}[Strict continuous-time collision]\label{cor:ct}
+The same fixed tree distribution has a nearby preimage on the same theta-trinet topology for which every network edge is generated by a continuous-time K3P process with all three instantaneous substitution rates strictly positive.  The three comparison-tree edges also have strictly positive K3P rates.
+\end{corollary}
+
+
+\paragraph{Scope.}
+The construction shows that the K3P analogue of the high-level trinet inequality fails, prevents a direct K3P extension of the JC/K2P global blob-detection corollary, and disproves universal identification of a nontrivial $3$-blob from three-leaf K3P distributions on $\ThetaZero$.  It does not by itself settle K3P quartet distinguishability, classify all tree/theta intersections, imply that generic theta-network parameters are tree-equivalent, refute every possible level-two K3P identifiability theorem, or classify observational equivalence for arbitrary networks.
+
+\section{K3P Fourier notation and the continuous-time subcone}
+
+Identify the nucleotide set with the Klein group
+\[
+  G=\{A,C,G,T\}\cong \mathbb{Z}_2\times\mathbb{Z}_2,
+\]
+where $A$ is the identity and every element is self-inverse.  We use the index order $(A,C,G,T)$ and bitwise XOR for addition.
+
+A K3P edge is represented in Fourier coordinates by
+\[
+  a=(1,a_C,a_G,a_T).
+\]
+Its transition-probability vector is
+\begin{equation}\label{eq:inverse-edge}
+\begin{aligned}
+ p_A&=\frac{1+a_C+a_G+a_T}{4},&
+ p_C&=\frac{1+a_C-a_G-a_T}{4},\\
+ p_G&=\frac{1-a_C+a_G-a_T}{4},&
+ p_T&=\frac{1-a_C-a_G+a_T}{4}.
+\end{aligned}
+\end{equation}
+The parameter space $\ThetaZero$ used here requires
+\[
+  0<a_C,a_G,a_T<1,
+  \qquad p_A,p_C,p_G,p_T\geq 0.
+\]
+All probabilities in our construction are in fact strictly positive.
+
+For three leaves, a Fourier coordinate $q_{xyz}$ can be nonzero only when
+\[
+  x+y+z=A.
+\]
+There are $4^2=16$ such consistent labels and $64-16=48$ inconsistent labels.  For a three-star tree with pendant-edge vectors $\alpha,\beta,\gamma$,
+\begin{equation}\label{eq:tree-param}
+  q^{T}_{xyz}=\alpha_x\beta_y\gamma_z
+  \qquad (x+y+z=A),
+\end{equation}
+and all inconsistent coordinates vanish.
+
+\begin{lemma}[Strict continuous-time rate cone]\label{lem:ct-cone}
+Let $0<a_C,a_G,a_T<1$.  The edge vector $(1,a_C,a_G,a_T)$ arises from a continuous-time K3P process with all three instantaneous substitution rates strictly positive if and only if
+\begin{equation}\label{eq:ct-ineq}
+  a_C>a_Ga_T,
+  \qquad
+  a_G>a_Ca_T,
+  \qquad
+  a_T>a_Ca_G.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For rates $\lambda_C,\lambda_G,\lambda_T\geq0$, absorbing elapsed time into the rates, the nontrivial eigenvalues are
+\begin{equation}\label{eq:ct-eigs}
+\begin{aligned}
+ a_C&=\exp[-2(\lambda_G+\lambda_T)],\\
+ a_G&=\exp[-2(\lambda_C+\lambda_T)],\\
+ a_T&=\exp[-2(\lambda_C+\lambda_G)].
+\end{aligned}
+\end{equation}
+Hence
+\[
+ \frac{a_C}{a_Ga_T}=\e^{4\lambda_C},\qquad
+ \frac{a_G}{a_Ca_T}=\e^{4\lambda_G},\qquad
+ \frac{a_T}{a_Ca_G}=\e^{4\lambda_T}.
+\]
+This proves necessity.  Conversely, define
+\[
+ \lambda_C=\frac14\log\frac{a_C}{a_Ga_T},\quad
+ \lambda_G=\frac14\log\frac{a_G}{a_Ca_T},\quad
+ \lambda_T=\frac14\log\frac{a_T}{a_Ca_G}.
+\]
+The inequalities in \eqref{eq:ct-ineq} make all three rates positive, and direct substitution recovers \eqref{eq:ct-eigs}.
+\end{proof}
+
+\section{The semi-directed theta trinet and its parameters}
+
+Let $h$ be the unique positive root in the rational isolating interval
+\begin{equation}\label{eq:h}
+  5h^4-1=0,
+  \qquad \frac23<h<\frac7{10}.
+\end{equation}
+Thus $h=5^{-1/4}$.  All exact calculations take place in the quartic number field $\mathbb{Q}(h)$, represented in the basis $1,h,h^2,h^3$.
+
+We first give a rooted representation used to calculate displayed-tree probabilities.  Its vertices are the root $\rho$, tree vertices $u,p,q$, reticulations $r_2,r_3$, and leaves $1,2,3$, with arcs
+\begin{equation}\label{eq:arcs}
+\begin{gathered}
+ \rho\to1,\quad \rho\to u,\quad
+ u\to p,\quad u\to q,\\
+ p\to r_2,\quad q\to r_2,\quad
+ p\to r_3,\quad q\to r_3,\\
+ r_2\to2,\quad r_3\to3.
+\end{gathered}
+\end{equation}
+Each reticulation chooses either parent with probability $1/2$.
+
+\begin{figure}[ht]
+  \centering
+  \resizebox{\textwidth}{!}{\input{figures/theta_network.tikz}}
+  \caption{The rooted representation used for the displayed-tree calculation and the corresponding semi-directed trinet.  Suppressing $\rho$ composes the two $K$ edges into the pendant edge $K\odotv K$.  Double circles mark the two reticulations.}
+  \label{fig:network}
+\end{figure}
+
+Define the edge eigenvalue vectors
+\begin{equation}\label{eq:network-vectors}
+\begin{aligned}
+ K&=\left(1,\frac12,\frac12,\frac12\right),\\
+ U&=\left(1,\frac h3,h,\frac13\right),&
+ V&=\left(1,h,\frac h3,\frac13\right),\\
+ S&=\left(1,\frac{3h^2}{4},\frac14,\frac3{10}\right),&
+ T&=\left(1,\frac14,\frac{3h^2}{4},\frac3{10}\right).
+\end{aligned}
+\end{equation}
+Assign $K$ to $\rho\to1$, $\rho\to u$, $r_2\to2$, and $r_3\to3$; assign $U$ to $u\to p$ and $V$ to $u\to q$; assign $S$ to both arcs out of $p$ and $T$ to both arcs out of $q$.
+
+\begin{lemma}[Topology]\label{lem:topology}
+After suppressing the degree-two root in the underlying semi-directed graph, the network in \eqref{eq:arcs} is a strict level-two trinet with a nontrivial $3$-blob.
+\end{lemma}
+
+\begin{proof}
+Root suppression replaces $\rho\to1$ and $\rho\to u$ by one pendant edge $1-u$.  The maximal subgraph containing no cut edge has vertex set
+\[
+  \{u,p,q,r_2,r_3\}
+\]
+and consists of the three internally disjoint $p$--$q$ paths
+\[
+  p-u-q,
+  \qquad p-r_2-q,
+  \qquad p-r_3-q.
+\]
+Thus it is a theta graph.  Every core edge lies on a cycle, while the edges to leaves $1,2,3$ are cut edges.  The core is therefore a maximal nontrivial blob with exactly three incident leaf components.  It contains precisely the two reticulations $r_2,r_3$, so the trinet is strict level two.
+\end{proof}
+
+The theorem uses only these robust blob facts.  It does not require a convention-dependent claim that the network has no literal ``$2$-sub-blob.''\footnote{Under a bare two-boundary-vertex wording, an individual theta edge can be counted as a two-terminal induced subgraph, although contracting it creates a degree-four vertex rather than a degree-two suppression.  No proper nontrivial cyclic two-terminal contraction removes the theta blob, and the counterexample is independent of this terminology.}
+
+The two root-adjacent $K$ edges compose coordinatewise under suppression:
+\begin{equation}\label{eq:K2}
+  K\odotv K=\left(1,\frac14,\frac14,\frac14\right).
+\end{equation}
+By \eqref{eq:inverse-edge}, its transition probabilities are
+\begin{equation}\label{eq:K2-probs}
+  \left(\frac7{16},\frac3{16},\frac3{16},\frac3{16}\right),
+\end{equation}
+so the effective semi-directed pendant edge is strictly interior.
+
+\begin{lemma}[Network-edge admissibility]\label{lem:network-adm}
+Every effective edge of the semi-directed trinet lies in $\ThetaZero$, and every transition probability is strictly positive.
+\end{lemma}
+
+\begin{proof}
+The inverse Fourier probabilities for $K$ are
+\[
+  \left(\frac58,\frac18,\frac18,\frac18\right),
+\]
+and those for $K\odotv K$ are given in \eqref{eq:K2-probs}.  For $U$ and $V$ they are
+\begin{align*}
+ p(U)&=\left(\frac{1+h}{3},\frac{1-h}{6},
+             \frac{1+h}{6},\frac{1-h}{3}\right),\\
+ p(V)&=\left(\frac{1+h}{3},\frac{1+h}{6},
+             \frac{1-h}{6},\frac{1-h}{3}\right).
+\end{align*}
+For $S$ and $T$ they are
+\begin{align*}
+ p(S)=\bigg(&\frac{31}{80}+\frac{3h^2}{16},
+              \frac9{80}+\frac{3h^2}{16},
+              \frac{19}{80}-\frac{3h^2}{16},
+              \frac{21}{80}-\frac{3h^2}{16}\bigg),\\
+ p(T)=\bigg(&\frac{31}{80}+\frac{3h^2}{16},
+              \frac{19}{80}-\frac{3h^2}{16},
+              \frac9{80}+\frac{3h^2}{16},
+              \frac{21}{80}-\frac{3h^2}{16}\bigg).
+\end{align*}
+The interval \eqref{eq:h} makes every displayed quantity strictly positive and every nontrivial eigenvalue strictly between zero and one.
+\end{proof}
+
+The explicit closed-form witness is interior to $\ThetaZero$, but it is not interior to the smaller strict continuous-time rate cone.  Indeed,
+\begin{equation}\label{eq:ct-boundary}
+  U_C=U_GU_T,
+  \qquad
+  V_G=V_CV_T.
+\end{equation}
+All other inequalities in \eqref{eq:ct-ineq} are strict.  This distinction will be removed perturbatively in Section~\ref{sec:ct-extension}.
+
+\section{The comparison tree}
+
+Set
+\begin{equation}\label{eq:mn}
+  m=\frac{5h^3+h}{16},
+  \qquad n=\frac{h^2}{4},
+\end{equation}
+and give the pendant edges to leaves $1,2,3$ the respective vectors
+\begin{equation}\label{eq:tree-vectors}
+  \alpha=(1,m,m,n),
+  \qquad
+  \beta=\gamma=(1,n,n,n).
+\end{equation}
+
+\begin{lemma}[Tree-edge admissibility]\label{lem:tree-adm}
+The three comparison-tree edges lie in $\ThetaZero$, all their transition probabilities are strictly positive, and all three lie in the strict continuous-time K3P rate cone.
+\end{lemma}
+
+\begin{proof}
+The probabilities for $\alpha$ are
+\begin{equation}\label{eq:alpha-probs}
+ \left(
+ \frac14+\frac{5h^3+h}{32}+\frac{h^2}{16},
+ \frac14-\frac{h^2}{16},
+ \frac14-\frac{h^2}{16},
+ \frac14-\frac{5h^3+h}{32}+\frac{h^2}{16}
+ \right),
+\end{equation}
+and those for $\beta=\gamma$ are
+\begin{equation}\label{eq:beta-probs}
+ \left(
+ \frac14+\frac{3h^2}{16},
+ \frac14-\frac{h^2}{16},
+ \frac14-\frac{h^2}{16},
+ \frac14-\frac{h^2}{16}
+ \right).
+\end{equation}
+All entries and all nontrivial eigenvalues are strictly between their required bounds by \eqref{eq:h}.  For the continuous-time inequalities, $\beta$ and $\gamma$ have margin $n-n^2>0$ in every character.  For $\alpha$, the first two margins are $m(1-n)>0$, and the third is
+\[
+ n-m^2=\frac{h^2(29-5h^2)}{128}>0,
+\]
+where $5h^4=1$ was used.
+\end{proof}
+
+For orientation only, the approximate values are shown in Table~\ref{tab:numerics}.  They play no role in the proof.
+
+\begin{table}[ht]
+\centering
+\caption{Decimal orientation only; no theorem depends on this table.}
+\label{tab:numerics}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+Object & $a_C$ & $a_G$ & $a_T$ & smallest edge probability \\
+\midrule
+$h$ & \multicolumn{3}{c}{$0.668740305$} & --\\
+$K\odotv K$ & $0.250000$ & $0.250000$ & $0.250000$ & $0.187500$\\
+$U$ & $0.222913$ & $0.668740$ & $0.333333$ & $0.055210$\\
+$V$ & $0.668740$ & $0.222913$ & $0.333333$ & $0.055210$\\
+$S$ & $0.335410$ & $0.250000$ & $0.300000$ & $0.153647$\\
+$T$ & $0.250000$ & $0.335410$ & $0.300000$ & $0.153647$\\
+$\alpha$ & $0.135256$ & $0.135256$ & $0.111803$ & $0.210323$\\
+$\beta=\gamma$ & $0.111803$ & $0.111803$ & $0.111803$ & $0.222049$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Exact Fourier factorization}
+
+For a consistent label $(x,y,z)$ on leaves $(1,2,3)$, write $x=y+z$.  Strip the four $K$ edges in the rooted representation: the two root-adjacent edges contribute $K_x^2$, and the two reticulation-to-leaf edges contribute $K_yK_z$.
+
+\begin{lemma}[Displayed-tree formula]\label{lem:display-formula}
+After stripping the four $K$ factors, the network Fourier coordinate is the matrix entry
+\begin{equation}\label{eq:M-def}
+ M_{y,z}=\frac14\left(
+ S_yS_zU_{y+z}
+ +S_yT_zU_yV_z
+ +T_yS_zU_zV_y
+ +T_yT_zV_{y+z}
+ \right).
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:q-network-M}
+  q^{N_\theta}_{xyz}=K_x^2K_yK_zM_{y,z}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+There are four independent inheritance choices.  Choosing the $p$ parent at both $r_2$ and $r_3$ gives the first monomial in \eqref{eq:M-def}; choosing $p$ at $r_2$ and $q$ at $r_3$ gives the second; choosing $q$ at $r_2$ and $p$ at $r_3$ gives the third; and choosing $q$ at both gives the fourth.  Each choice has weight $1/4$.  The character carried by an edge is the group sum of the labels below it, giving exactly the displayed subscripts.
+\end{proof}
+
+Define
+\begin{equation}\label{eq:PB}
+\begin{aligned}
+ B&=\left(1,\frac{h^2}{2},\frac{h^2}{2},\frac{h^2}{2}\right),\\
+ P&=\left(1,\frac{5h^3+h}{4},\frac{5h^3+h}{4},h^2\right).
+\end{aligned}
+\end{equation}
+
+\begin{lemma}[Exact core factorization]\label{lem:factorization}
+For every $y,z\in G$,
+\begin{equation}\label{eq:factorization}
+  M_{y,z}=P_{y+z}B_yB_z.
+\end{equation}
+In the order $(A,C,G,T)$, the common matrix is
+\begin{equation}\label{eq:M-matrix}
+M=\begin{pmatrix}
+1 & \dfrac{h+h^3}{8} & \dfrac{h+h^3}{8} & \dfrac1{10}\\[2mm]
+\dfrac{h+h^3}{8} & \dfrac1{20} & \dfrac{h^2}{20} & \dfrac{5h^3+h}{80}\\[2mm]
+\dfrac{h+h^3}{8} & \dfrac{h^2}{20} & \dfrac1{20} & \dfrac{5h^3+h}{80}\\[2mm]
+\dfrac1{10} & \dfrac{5h^3+h}{80} & \dfrac{5h^3+h}{80} & \dfrac1{20}
+\end{pmatrix}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The simultaneous $C/G$ symmetry reduces the sixteen entries to six representative types.  Substitution into \eqref{eq:M-def}, followed only by $h^4=1/5$, gives
+\begin{align*}
+ M_{A,A}&=1,&
+ M_{A,C}&=\frac{h+h^3}{8},&
+ M_{A,T}&=\frac1{10},\\
+ M_{C,C}&=\frac1{20},&
+ M_{C,G}&=\frac{h^2}{20},&
+ M_{C,T}&=\frac{5h^3+h}{80}.
+\end{align*}
+For example,
+\[
+ M_{C,C}=\frac14\left(\frac9{80}+\frac1{80}+\frac1{80}+\frac5{80}\right)=\frac1{20},
+\]
+and
+\[
+ M_{C,T}=\frac14\left(\frac{9h^3}{40}+\frac{h^3}{40}
+ +\frac{h}{40}+\frac{h}{40}\right)=\frac{5h^3+h}{80}.
+\]
+These values and their symmetric images give \eqref{eq:M-matrix}.  On the factorized side, the same representatives are
+\begin{align*}
+ P_C B_A B_C&=\frac{5h^5+h^3}{8}=\frac{h+h^3}{8},\\
+ P_T B_A B_T&=\frac{h^4}{2}=\frac1{10},\\
+ P_A B_C^2&=\frac{h^4}{4}=\frac1{20},\\
+ P_T B_C B_G&=\frac{h^6}{4}=\frac{h^2}{20},\\
+ P_G B_C B_T&=\frac{(5h^3+h)h^4}{16}=\frac{5h^3+h}{80}.
+\end{align*}
+Thus all sixteen identities hold.  The certificate records all sixteen entries and all four displayed terms for each entry separately.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:collision}]
+For every consistent $(x,y,z)$, Lemmas~\ref{lem:display-formula} and~\ref{lem:factorization} give
+\[
+ q^{N_\theta}_{xyz}
+ =K_x^2K_yK_zP_xB_yB_z.
+\]
+The definitions imply
+\[
+ K_x^2P_x=\alpha_x,
+ \qquad
+ K_yB_y=\beta_y,
+ \qquad
+ K_zB_z=\gamma_z.
+\]
+Therefore
+\begin{equation}\label{eq:full-equality}
+ q^{N_\theta}_{xyz}=\alpha_x\beta_y\gamma_z=q^T_{xyz}
+ \qquad(x+y+z=A).
+\end{equation}
+All forty-eight inconsistent Fourier coordinates vanish in both models.  Hence all sixty-four Fourier coordinates agree.  The finite Fourier transform on $G^3$ is invertible, so all sixty-four leaf-pattern probabilities agree as well.  Lemmas~\ref{lem:topology}, \ref{lem:network-adm}, and~\ref{lem:tree-adm} establish the topology and stochastic admissibility.
+\end{proof}
+
+\section{The full-rank Jacobian}\label{sec:rank}
+
+Let $F$ denote the rooted theta-network parameterization restricted to the fifteen nonconstant consistent Fourier coordinates.  The row order is
+\begin{equation}\label{eq:jac-rows}
+\begin{gathered}
+ ACC,AGG,ATT,CAC,CCA,CGT,CTG,GAG,\\
+ GCT,GGA,GTC,TAT,TCG,TGC,TTA.
+\end{gathered}
+\end{equation}
+The selected parameter columns, in order, are
+\begin{equation}\label{eq:jac-cols}
+\begin{gathered}
+ e_{\rho1}.a_C,\,e_{\rho1}.a_G,\,e_{\rho1}.a_T,\,e_{up}.a_G,\\
+ e_{pr_2}.a_C,\,e_{pr_2}.a_G,\,e_{qr_2}.a_C,\,e_{qr_2}.a_G,\\
+ e_{pr_3}.a_C,\,e_{pr_3}.a_G,\,e_{qr_3}.a_C,\,e_{qr_3}.a_G,\\
+ e_{r_22}.a_T,\,e_{r_33}.a_T,\,\delta_3(p).
+\end{gathered}
+\end{equation}
+Here $\delta_3(p)$ is the inheritance weight of the $p\to r_3$ edge, while the $q\to r_3$ weight is $1-\delta_3(p)$.
+
+\begin{proof}[Proof of Proposition~\ref{prop:rank}]
+Differentiate the four displayed-tree monomials directly with respect to the columns in \eqref{eq:jac-cols}, evaluate at the witness, and use the row order \eqref{eq:jac-rows}.  Exact Gaussian elimination in $\mathbb{Q}(h)$, using the basis $1,h,h^2,h^3$, gives
+\begin{equation}\label{eq:jac-det}
+ \det J_*
+ =\frac{h(10h^2+1)}{2^{61}3^4 5^{14}}.
+\end{equation}
+This is strictly positive on $2/3<h<7/10$.  Thus $F$ is a submersion at the witness.  By the submersion theorem, the fixed theta-trinet image contains an ordinary open neighborhood of the common point in the $15$-dimensional affine Fourier space $q_{AAA}=1$.  Intersecting that ambient neighborhood with the tree model gives a relatively open tree-model neighborhood contained in the network model.
+
+The conclusion concerns openness in distribution space.  It does not say that a generic point of the higher-dimensional network parameter space maps to a tree distribution.  The full $15\times15$ matrix, the row and column metadata, and the exact determinant are stored in \texttt{jacobian\_certificate.json} and independently reconstructed by \texttt{verify.py}.
+\end{proof}
+
+\section{Moving into the strict continuous-time rate cone}\label{sec:ct-extension}
+
+We retain the same fifteen pivot parameters as in \eqref{eq:jac-cols}.  Introduce a scalar $\varepsilon$ by changing the two free coordinates
+\begin{equation}\label{eq:free-ct}
+  U_C\longmapsto U_C+\varepsilon,
+  \qquad
+  V_G\longmapsto V_G+\varepsilon.
+\end{equation}
+Let $F(p,\varepsilon)$ denote the vector of fifteen nonconstant Fourier outputs after the free perturbation in \eqref{eq:free-ct}, where $p$ is the vector of fifteen pivot parameters.  At the closed-form witness $(p_0,0)$, the derivative $D_pF(p_0,0)$ is the invertible matrix $J_*$.  The real-analytic implicit-function theorem therefore supplies a unique analytic solution $p(\varepsilon)$ near $0$ such that
+\[
+  F(p(\varepsilon),\varepsilon)=F(p_0,0)
+\]
+for all sufficiently small $\varepsilon$.
+
+For auditability, the nonzero first derivatives $p'(0)$ are listed below; omitted entries are zero:
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.32\textwidth}p{.62\textwidth}@{}}
+\toprule
+Pivot parameter & First derivative at $\varepsilon=0$\\
+\midrule
+\endhead
+$e_{\rho1}.a_C$ & $-\dfrac{3h(125h^2+16)}{304}$\\[2mm]
+$e_{\rho1}.a_G$ & $\dfrac{3h(625h^2-414)}{304}$\\[2mm]
+$e_{up}.a_G$ & $\dfrac{6}{1+10h^2}=\dfrac{6(10h^2-1)}{19}$\\[2mm]
+$e_{pr_2}.a_C,\ e_{pr_3}.a_C$ & $\dfrac{9h(51h^2-26)}{608}$\\[2mm]
+$e_{pr_2}.a_G,\ e_{pr_3}.a_G$ & $-\dfrac{15h(26h^2+5)}{608}$\\[2mm]
+$e_{qr_2}.a_C,\ e_{qr_3}.a_C$ & $\dfrac{15h(18h^2-17)}{608}$\\[2mm]
+$e_{qr_2}.a_G,\ e_{qr_3}.a_G$ & $-\dfrac{9h(h^2-2)}{608}$\\
+\bottomrule
+\end{longtable}
+The exact certificate verifies, row by row,
+\begin{equation}\label{eq:ift-linear}
+  J_*p'(0)
+  +\frac{\partial F}{\partial U_C}
+  +\frac{\partial F}{\partial V_G}
+  =0.
+\end{equation}
+
+\begin{proof}[Proof of Corollary~\ref{cor:ct}]
+At $\varepsilon=0$, the only saturated strict-rate inequalities are those in \eqref{eq:ct-boundary}.  Along the implicit solution, the first margin has derivative
+\begin{align}
+ \left.\frac{d}{d\varepsilon}
+ (U_C-U_GU_T)\right|_{0}
+ &=1-\frac13\frac{6}{1+10h^2}\notag\\
+ &=\frac{10h^2-1}{1+10h^2}
+ =\frac{21-20h^2}{19}>0,
+ \label{eq:U-margin-der}
+\end{align}
+and the second has derivative
+\begin{equation}\label{eq:V-margin-der}
+ \left.\frac{d}{d\varepsilon}
+ (V_G-V_CV_T)\right|_{0}=1>0.
+\end{equation}
+Thus both formerly zero margins are positive for all sufficiently small $\varepsilon>0$.  Every other continuous-time margin is already strictly positive at $\varepsilon=0$.  Every nontrivial eigenvalue lies strictly in $(0,1)$, every transition probability is strictly positive, and both inheritance parameters lie strictly in $(0,1)$.  These finitely many strict inequalities persist by continuity.  By construction of the implicit solution,
+\[
+  F(p(\varepsilon),\varepsilon)=F(p(0),0)
+\]
+exactly for all sufficiently small $\varepsilon$.  Equation~\eqref{eq:ift-linear} is the derivative of this identity at $\varepsilon=0$; it determines the first-order parameter correction and the signs of the two formerly saturated rate margins.  Since $q_{AAA}=1$ is constant, the perturbed network gives exactly the same fixed tree distribution and every effective network edge lies in the strict positive-rate cone.  The tree edges are strict by Lemma~\ref{lem:tree-adm}.
+\end{proof}
+
+\section{Consequences, hypotheses, and reproducibility}
+
+The exact collision shows that a three-way reticulate blob is not universally detectable from three-leaf K3P distributions on $\ThetaZero$.  In particular, the local trinet step that proves the JC/K2P global theorem in \cite{BritsHoltgrefeVanIerselMartin2026} cannot be extended verbatim to K3P.  The full-rank result shows that this is not merely an isolated singularity in distribution space: the network image is locally full-dimensional.  The strict continuous-time corollary further shows that the phenomenon is not confined to zero substitution rates.
+
+\begin{table}[ht]
+\centering
+\caption{Where each hypothesis is used.}
+\label{tab:hypotheses}
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Hypothesis or datum & Use\\
+\midrule
+Binary rooted arcs in \eqref{eq:arcs} & Establish the displayed-tree mixture and the strict level-two theta topology.\\
+Root suppression and K3P composition & Replace the two root-adjacent $K$ edges by the effective semi-directed edge $K\odotv K$.\\
+$5h^4=1$ & Reduce every Fourier identity and the Jacobian determinant in the quartic field.\\
+$2/3<h<7/10$ & Certify strict signs and isolate the intended real root.\\
+$\ThetaZero$ edge conditions & Establish that the closed-form collision is an admissible stochastic collision.\\
+Inheritance weights $1/2$ & Produce the equal four-term mixture in \eqref{eq:M-def}.\\
+Klein-group Fourier transform & Give the sixteen consistent coordinates and invert Fourier equality to pattern equality.\\
+Selected Jacobian minor & Prove local surjectivity and enable the implicit-function perturbation.\\
+Strict continuous-time inequalities & Used only for Corollary~\ref{cor:ct}, not for the primary counterexample.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The accompanying verifier uses only the Python standard library.  It independently reconstructs the rooted graph and root suppression, checks all edge probabilities, enumerates all four displayed trees, proves all sixteen entries of \eqref{eq:factorization}, checks all sixty-four Fourier and pattern equalities, differentiates the fifteen outputs, recomputes \eqref{eq:jac-det}, and verifies the exact tangent identity and strict-margin signs used in the real-analytic implicit-function argument.  The existence of the nearby branch is then the analytic conclusion of the implicit-function theorem.  Run
+\begin{verbatim}
+python3 verify.py
+\end{verbatim}
+from the package directory.  Successful execution ends with
+\begin{verbatim}
+ALL EXACT CHECKS PASSED
+\end{verbatim}
+
+\section*{Acknowledgment of computational assistance}
+The construction and exposition were developed with AI-assisted mathematical and editorial tools.  Every computationally derived identity, stochastic inequality, and determinant is independently replayable.  The continuous-time extension then follows analytically from the implicit-function theorem after exact verification of its hypotheses and tangent signs.  The provenance file describes the division between inherited material, regenerated calculations, and new strengthening steps.
+
+\enlargethispage{4\baselineskip}
+\begingroup\small
+\begin{thebibliography}{9}
+\bibitem{BritsHoltgrefeVanIerselMartin2026}
+J.~Brits, N.~Holtgrefe, L.~van Iersel, and S.~Martin,
+\emph{On Tree--Network Distinguishability and Full Identifiability of
+Phylogenetic Networks}, arXiv:2607.12919v2 [q-bio.PE], revised 29 July
+2026; manuscript dated 30 July 2026.
+
+\bibitem{Matsen2009}
+F.~A. Matsen,
+\emph{Fourier Transform Inequalities for Phylogenetic Trees},
+IEEE/ACM Transactions on Computational Biology and Bioinformatics
+\textbf{6} (2009), 89--95.
+
+\bibitem{CoxGrossMartin2025}
+S.~Cox, E.~Gross, and S.~Martin,
+\emph{Group-Based Phylogenetic Models on 3-Sunlet Networks},
+Bulletin of Mathematical Biology \textbf{87} (2025), 132.
+\end{thebibliography}
+\endgroup
+
+\end{document}
