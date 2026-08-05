@@ -1,0 +1,68 @@
+\documentclass[10pt]{article}
+\usepackage[margin=.52in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{microtype}
+\usepackage{amsmath,amssymb,mathtools,booktabs,tabularx,enumitem,xcolor,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,pdftitle={K2P and K3P tree--theta collisions: confidential technical summary},pdfauthor={Alec Kriebel}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{2.5pt}\setlist[itemize]{leftmargin=1.15em,itemsep=0pt,topsep=1pt}
+\newcommand{\odotv}{\mathbin{\odot}}
+\begin{document}
+\begin{center}
+{\Large\bfseries Exact K2P and K3P Tree--Theta-Trinet Collisions}\par
+{\large Confidential technical summary -- not yet publicly circulated}\par
+Alec Kriebel \hfill August 2026
+\end{center}
+\textbf{Exact finding under confidential review.} A binary semi-directed strict level-two theta trinet with a genuine nontrivial $3$-blob shares an exact K2P distribution with a three-star tree. Under the conventions stated in arXiv:2607.12919v2, this appears to conflict with the conclusion of Lemma~5.6 and with the K2P case of Corollary~5.8. The present construction does not test the paper's JC or level-one results. A companion exact K3P collision answers its open high-level K3P trinet question negatively.
+
+\textbf{Common topology.} Use
+\[
+\rho\to1,\rho\to u,\ u\to p,q,\ p,q\to r_2,\ p,q\to r_3,\ r_2\to2,\ r_3\to3,
+\]
+with both inheritance probabilities $1/2$. Root suppression gives paths $p-u-q$, $p-r_2-q$, $p-r_3-q$ and three incident leaf edges.
+
+\textbf{Simple exact K2P witness.} In order $(A,C,G,T)$, assign
+\[
+\begin{aligned}
+K&=(1,\tfrac12,\tfrac12,\tfrac12),&U&=(1,\tfrac45,\tfrac{19}{30},\tfrac45),&V&=(1,\tfrac7{240},\tfrac{239}{360},\tfrac7{240}),\\
+S&=(1,\tfrac14,\tfrac12,\tfrac14),&T&=(1,\tfrac13,\tfrac1{27},\tfrac13).
+\end{aligned}
+\]
+Use $K$ on the four pendant rooted edges, $U,V$ on $u\to p,u\to q$, and $S,T$ on arcs from $p,q$. Every transition entry is positive; the smallest is $1/120$. For $x=y+z$ let
+\[
+M_{y,z}=\tfrac14(S_yS_zU_x+S_yT_zU_yV_z+T_yS_zU_zV_y+T_yT_zV_x).
+\]
+With $s=\sqrt{71}$,
+\[
+P=(1,\tfrac{151}{36s},\tfrac{107}{162},\tfrac{151}{36s}),\quad R=(1,\tfrac{s}{40},\tfrac{31}{120},\tfrac{s}{40}),
+\]
+and exact arithmetic gives $M_{y,z}=P_{y+z}R_yR_z$. The tree vectors are
+\[
+\alpha=(1,\tfrac{151s}{10224},\tfrac{107}{648},\tfrac{151s}{10224}),\quad
+\beta=\gamma=(1,\tfrac{s}{80},\tfrac{31}{240},\tfrac{s}{80}).
+\]
+All $64$ Fourier and pattern probabilities agree exactly; the minimum is $1188799/79626240=0.01492973924\ldots$. The source invariant $Q$ is zero.
+
+\textbf{Proof diagnosis.} The level-one sign factorization is valid after placing the active reticulation leaf in a designated position. In the level-two induction a child can retain a reticulation adjacent to another leaf. Positivity after a child-specific relabelling does not imply positivity of the fixed-order child invariant in the parent expansion. On the exact continuous-time witness, one child has $Q=-1.919971072382827\ldots\times10^{-9}$ in the parent order and $Q=3.428488326525925\ldots\times10^{-9}$ after the favorable swap. A separate fully specified rational theta point has $Q<0$ in all six orders.
+
+\newpage
+\textbf{K2P geometry and continuous time.} The affine K2P space has dimension $9$ and the tree model dimension $6$. At the simple collision, the fixed theta map has determinant
+\[
+-\frac{7^2 11^2 19\,107\,151^2\,15013}{2^{60}3^{25}5^{10}}\ne0.
+\]
+It also has rank $9$ at the strict continuous-time collision. Hence the local semi-directed theta collision locus has dimension $17$ and codimension $3$: generic theta parameters are distinguishable, but full distinguishability fails. An exact symmetric ansatz contains a local six-dimensional collision family. The strict continuous-time witness satisfies $g>s^2$ on every edge, has minimum eigenvalue $1/16$ and minimum rate margin $11/900$, and is verified by direct Markov pruning.
+
+\textbf{K3P companion.} Let $h=5^{-1/4}$. Use
+\[
+U=(1,h/3,h,1/3),\ V=(1,h,h/3,1/3),\ S=(1,3h^2/4,1/4,3/10),\ T=(1,1/4,3h^2/4,3/10).
+\]
+Its core factors with
+\[
+B=(1,h^2/2,h^2/2,h^2/2),\quad P=(1,(5h^3+h)/4,(5h^3+h)/4,h^2).
+\]
+The fixed theta map has rank $15$ with
+\[
+\det J_*=\frac{h(10h^2+1)}{2^{61}3^4 5^{14}}>0.
+\]
+Its local collision locus has dimension $23$ and codimension $6$. A real-analytic implicit-function argument, with Jacobian and tangent data verified exactly, moves the collision into the cone where all three K3P rate classes are positive.
+
+\textbf{Status and replay.} No public posting or submission has occurred. Run \texttt{python3 verify\_k2p\_simple.py} for the compact witness or \texttt{python3 verify.py} for every check; the latter ends with \texttt{ALL EXACT CHECKS PASSED}.
+\end{document}

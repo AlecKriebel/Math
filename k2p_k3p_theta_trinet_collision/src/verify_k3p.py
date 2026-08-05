@@ -498,8 +498,159 @@ class Verification:
             else:
                 require_equal(row["kind"], "undirected", f"kind of {edge_id}")
 
+        # Audit the three literal printed clauses of the source paper's
+        # 2-sub-blob definition.  This is deliberately separate from the
+        # theorem: the theorem needs only the unambiguous maximal theta
+        # 3-blob facts above.
+        literal = suppression["literal_two_sub_blob_audit"]
+        require(isinstance(literal, Mapping), "literal 2-sub-blob audit")
+        qualifying: List[Set[str]] = []
+        ordered_nodes = sorted(semi_nodes)
+        for size in range(1, len(ordered_nodes)):
+            for chosen in itertools.combinations(ordered_nodes, size):
+                w = set(chosen)
+                induced = {edge for edge in semi_edges if edge.issubset(w)}
+                if not connected(w, induced):
+                    continue
+                if induced & bridges:
+                    continue
+                boundary_vertices = {
+                    v for v in w
+                    if any(v in edge and not edge.issubset(w) for edge in semi_edges)
+                }
+                if len(boundary_vertices) == 2:
+                    qualifying.append(w)
+        expected_literal_sets = {
+            frozenset(("p", "u")), frozenset(("q", "u")),
+            frozenset(("p", "r2")), frozenset(("q", "r2")),
+            frozenset(("p", "r3")), frozenset(("q", "r3")),
+        }
+        require_equal({frozenset(w) for w in qualifying}, expected_literal_sets,
+                      "literal three-clause 2-sub-blob enumeration")
+        require_equal({frozenset(x) for x in literal["qualifying_vertex_sets"]},
+                      expected_literal_sets, "stored literal 2-sub-blob sets")
+        literal_edge_ids: Set[str] = set()
+        for w in qualifying:
+            induced_ids = {
+                edge_id for edge_id, edge in semi_edges_by_id.items()
+                if edge.issubset(w)
+            }
+            require(len(induced_ids) == 1,
+                    f"literal qualifying set {sorted(w)} is not a single edge")
+            literal_edge_ids |= induced_ids
+            crossing = [edge for edge in semi_edges if len(edge & w) == 1]
+            require(len(crossing) == 4,
+                    f"contracting {sorted(w)} does not have four external incidences")
+        require_equal(literal_edge_ids, set(literal["qualifying_edge_ids"]),
+                      "literal qualifying edge identifiers")
+        require_equal(literal["count"], 6, "literal qualifying-set count")
+        require_equal(literal["each_induced_subgraph_is_one_edge"], True,
+                      "literal sets are individual edges")
+        require_equal(literal["crossing_edge_count_after_contraction"], 4,
+                      "four incidences after literal edge contraction")
+        require_equal(literal["ordinary_degree_two_suppression_applicable"], False,
+                      "ordinary degree-two suppression flag")
+        require_equal(literal["theorem_depends_on_suppressing_them"], False,
+                      "theorem independence from terminology")
+
+        # Independently audit the alternative criterion that is compatible
+        # with the ensuing degree-two suppression instruction: clauses (i)
+        # and (ii), but exactly two crossing edge incidences rather than two
+        # boundary vertices.  No proper induced subgraph of this theta meets
+        # that criterion.
+        suppressible = suppression["degree_two_suppressible_audit"]
+        require(isinstance(suppressible, Mapping), "degree-two suppressible audit")
+        degree_two_sets: List[Set[str]] = []
+        for size in range(1, len(ordered_nodes)):
+            for chosen in itertools.combinations(ordered_nodes, size):
+                w = set(chosen)
+                induced = {edge for edge in semi_edges if edge.issubset(w)}
+                if not connected(w, induced):
+                    continue
+                if induced & bridges:
+                    continue
+                crossing = [edge for edge in semi_edges if len(edge & w) == 1]
+                if len(crossing) == 2:
+                    degree_two_sets.append(w)
+        require_equal(degree_two_sets, [], "degree-two/edge-incidence enumeration")
+        require_equal(suppressible["qualifying_vertex_sets"], [],
+                      "stored degree-two qualifying sets")
+        require_equal(suppressible["count"], 0,
+                      "degree-two qualifying-set count")
+        require_equal(suppressible["proper_nontrivial_cyclic_two_terminal_substructure_exists"],
+                      False, "no proper cyclic two-terminal suppressible substructure")
+
         print("[topology] PASS  rooted binary DAG and correct semi-directed root suppression")
         print("[topology] PASS  maximal theta 3-blob with three leaf sides and two reticulations")
+        print("[topology] PASS  literal three-clause audit finds exactly six single-edge sets; each contracts to four incidences")
+        print("[topology] PASS  edge-incidence/degree-two audit finds no proper suppressible substructure")
+
+    # ---- Symmetric construction ansatz --------------------------------------
+
+    def verify_construction_ansatz(self) -> None:
+        ansatz = self.cert["construction_ansatz"]
+        require(isinstance(ansatz, Mapping), "construction ansatz")
+        vectors = self.cert["parameter_vectors"]
+        require(isinstance(vectors, Mapping), "parameter vectors for ansatz")
+        u = parse_vector(vectors["U"]["eigen"])
+        v = parse_vector(vectors["V"]["eigen"])
+        s = parse_vector(vectors["S"]["eigen"])
+        t = parse_vector(vectors["T"]["eigen"])
+        tau = parse_alg(ansatz["tau"])
+        sigma = parse_alg(ansatz["sigma"])
+        b = parse_alg(ansatz["b"])
+        kappa = parse_alg(ansatz["kappa"])
+        d = parse_alg(ansatz["d"])
+        e = parse_alg(ansatz["e"])
+        r = parse_alg(ansatz["r"])
+        one = Alg.one()
+        h = Alg.h()
+        h2 = h * h
+
+        require_equal(u, [one, b * tau, b, tau], "U symmetric-ansatz form")
+        require_equal(v, [one, b, b * tau, tau], "V symmetric-ansatz form")
+        require_equal(s, [one, kappa * d, d, e], "S symmetric-ansatz form")
+        require_equal(t, [one, d, kappa * d, e], "T symmetric-ansatz form")
+        require_equal(tau, Alg.rational(Fraction(1, 3)), "ansatz tau")
+        require_equal(b, h, "positive ansatz branch b=h")
+        require_equal(kappa, h2.scale(3), "ansatz kappa=3h^2")
+        require_equal(d, Alg.rational(Fraction(1, 4)), "ansatz d")
+        require_equal(e, Alg.rational(Fraction(3, 10)), "ansatz e")
+        require_equal(r, h2.scale(Fraction(1, 2)), "ansatz r")
+        require_equal(sigma, h2.scale(Fraction(10, 3)), "ansatz sigma")
+
+        sigma_residual = sigma * sigma - (one + tau * tau).scale(2)
+        shape_1 = (kappa * (one + tau * tau) + tau.scale(2)
+                   - sigma * (kappa * tau + one))
+        shape_2 = ((kappa * tau).scale(2)
+                   + b * b * (kappa * kappa * tau * tau + one)
+                   - (tau.scale(2) / sigma)
+                   * (kappa * kappa + one + (kappa * b * b * tau).scale(2)))
+        scale_residual = ((e / d) * (e / d)
+                          - (kappa * kappa + one + (kappa * b * b * tau).scale(2))
+                          / ((one + tau * tau).scale(2)))
+        require_zero(sigma_residual, "ansatz sigma relation")
+        require_zero(shape_1, "ansatz first shape equation")
+        require_zero(shape_2, "ansatz second shape equation")
+        require_zero(scale_residual, "ansatz scale equation")
+        require_equal(sigma_residual, parse_alg(ansatz["sigma_relation_residual"]),
+                      "stored sigma residual")
+        require_equal(shape_1, parse_alg(ansatz["shape_equation_1_residual"]),
+                      "stored first shape residual")
+        require_equal(shape_2, parse_alg(ansatz["shape_equation_2_residual"]),
+                      "stored second shape residual")
+        require_equal(scale_residual, parse_alg(ansatz["scale_equation_residual"]),
+                      "stored scale residual")
+        require_zero((b * b) - h2, "b^2=h^2")
+        require_zero((b * b) * (b * b) - Alg.rational(Fraction(1, 5)),
+                     "b^4=1/5")
+        require_equal(e / d, Alg.rational(Fraction(6, 5)), "ansatz e/d")
+        for name, value in (("b", b), ("kappa", kappa), ("d", d),
+                            ("e", e), ("r", r), ("sigma", sigma)):
+            require_positive(value, self.lo, self.hi, f"positive ansatz parameter {name}")
+
+        print("[construction] PASS  C/G-symmetric ansatz reduction verified exactly")
+        print("[construction] PASS  tau=1/3 forces kappa=3h^2 and b=h on the positive quartic branch")
 
     # ---- Edge admissibility --------------------------------------------------
 
@@ -859,9 +1010,76 @@ class Verification:
         require_positive(determinant, self.lo, self.hi, "Jacobian determinant")
         require_equal(jac["rank"], 15, "certified Jacobian rank")
 
+        # The first three selected columns vary one of the two rooted factors
+        # of the effective leaf-1 edge.  Multiplication by the fixed positive
+        # K eigenvalues is an invertible diagonal coordinate change, so the
+        # same rank holds for the 29-parameter semi-directed theta map.
+        fixed_root_factor = self.edge_eigen["e_rho_u"]
+        for symbol, value in zip(self.symbols[1:], fixed_root_factor[1:]):
+            require_positive(value, self.lo, self.hi,
+                             f"invertible root-suppression coordinate factor K_{symbol}")
+
+        # Independently reconstruct a 9 x 9 tree-model rank witness.
+        tree_witness = jac["tree_rank_witness"]
+        require(isinstance(tree_witness, Mapping), "tree rank witness")
+        expected_tree_rows: List[str] = []
+        expected_tree_columns: List[str] = []
+        tree_matrix = [[Alg.zero() for _ in range(9)] for _ in range(9)]
+        leaf_vectors = self.cert["comparison_tree"]["leaf_edge_vectors"]
+        alpha = parse_vector(leaf_vectors["1"]["eigen"])
+        beta = parse_vector(leaf_vectors["2"]["eigen"])
+        gamma = parse_vector(leaf_vectors["3"]["eigen"])
+        for block, symbol in enumerate(("C", "G", "T")):
+            idx = self.index[symbol]
+            a, b, g = alpha[idx], beta[idx], gamma[idx]
+            expected_tree_rows.extend([symbol + symbol + "A",
+                                       symbol + "A" + symbol,
+                                       "A" + symbol + symbol])
+            expected_tree_columns.extend([f"alpha_{symbol}", f"beta_{symbol}",
+                                          f"gamma_{symbol}"])
+            block_matrix = [[b, a, Alg.zero()],
+                            [g, Alg.zero(), a],
+                            [Alg.zero(), g, b]]
+            for rr in range(3):
+                for cc in range(3):
+                    tree_matrix[3 * block + rr][3 * block + cc] = block_matrix[rr][cc]
+        require_equal(tree_witness["row_order"], expected_tree_rows,
+                      "tree rank row order")
+        require_equal(tree_witness["column_order"], expected_tree_columns,
+                      "tree rank column order")
+        require_equal([[parse_alg(x) for x in row] for row in tree_witness["matrix"]],
+                      tree_matrix, "tree rank matrix")
+        tree_det = det_field(tree_matrix)
+        require_equal(tree_det, parse_alg(tree_witness["determinant"]),
+                      "tree rank determinant")
+        require_positive(-tree_det, self.lo, self.hi,
+                         "negative nonzero tree rank determinant")
+        require_equal(tree_witness["rank"], 9, "tree model rank")
+
+        semi_edge_count = len(self.cert["root_suppression"]["effective_semi_directed_edges"])
+        reticulation_count = len(self.retic_rows)
+        semi_parameter_dimension = 3 * semi_edge_count + reticulation_count
+        tree_dimension = 9
+        tree_codimension = 15 - tree_dimension
+        local_collision_dimension = semi_parameter_dimension - tree_codimension
+        require_equal(semi_edge_count, 9, "semi-directed edge count")
+        require_equal(reticulation_count, 2, "reticulation count")
+        require_equal(jac["semi_directed_parameter_dimension"], semi_parameter_dimension,
+                      "semi-directed parameter dimension")
+        require_equal(jac["tree_model_dimension"], tree_dimension,
+                      "tree model dimension")
+        require_equal(jac["tree_codimension_in_ambient"], tree_codimension,
+                      "tree codimension")
+        require_equal(jac["local_collision_locus_dimension"], local_collision_dimension,
+                      "local collision-locus dimension")
+        require_equal(jac["generic_rank"], 15, "generic theta rank")
+        require_equal(jac["dominant_to_ambient_space"], True,
+                      "dominance to ambient group-based Fourier space")
+
         print("[Jacobian] PASS  specified 15 x 15 minor reconstructed by exact differentiation")
         print("[Jacobian] PASS  det J = h(10 h^2+1)/(2^61 3^4 5^14) > 0")
-        print("[Jacobian] PASS  fixed theta-trinet map has full rank 15 at the collision")
+        print("[Jacobian] PASS  fixed semi-directed theta map has rank 15; the nonzero-minor locus is Zariski open")
+        print("[Jacobian] PASS  tree model has rank 9; local network preimage of the tree model has dimension 23 (codimension 6)")
         return expected_rows, columns, matrix
 
     # ---- Strict continuous-time extension -----------------------------------
@@ -959,16 +1177,17 @@ class Verification:
 
 def verify(certificate_path: Path) -> None:
     data = json.loads(certificate_path.read_text(encoding="utf-8"))
-    require_equal(data["schema_version"], "2.0", "certificate schema version")
+    require_equal(data["schema_version"], "3.0", "certificate schema version")
     verification = Verification(data)
     verification.verify_field()
     verification.verify_topology()
+    verification.verify_construction_ansatz()
     verification.verify_parameters()
     verification.verify_collision()
     rows, columns, jacobian = verification.verify_jacobian()
     verification.verify_continuous_time(rows, columns, jacobian)
     print()
-    print("ALL EXACT CHECKS PASSED")
+    print("ALL K3P CHECKS PASSED")
 
 
 def main() -> None:
@@ -977,7 +1196,7 @@ def main() -> None:
         "certificate",
         nargs="?",
         type=Path,
-        default=Path(__file__).resolve().with_name("certificate.json"),
+        default=Path(__file__).resolve().parents[1] / "certificate_k3p.json",
         help="path to certificate.json (default: next to verify.py)",
     )
     args = parser.parse_args()
