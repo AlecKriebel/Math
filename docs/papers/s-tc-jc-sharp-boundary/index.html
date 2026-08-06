@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A complete one-sided observational classification for binary standard semi-directed S_TC level-2 networks under the Jukes-Cantor model, with a matching all-n sharpness counterexample on W_TC.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Sharp Identifiability Boundary for Level-2 Jukes-Cantor Networks">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-08-06">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sharp Identifiability Boundary for Level-2 Jukes-Cantor Networks">
+  <meta property="og:description" content="S_TC level-2 networks with at most one triangle per blob are generically JC-identifiable modulo ordinary triangle redirection, and this is sharp: W_TC \ S_TC contains an all-n non-T Theta ambiguity.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/">
+  <title>Sharp S_TC/W_TC JC identifiability boundary &middot; Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Sharp Identifiability Boundary for Level-2 Jukes-Cantor Networks",
+    "description": "Binary standard semi-directed S_TC level-2 phylogenetic networks with at most one triangle per blob are generically identifiable under the Jukes-Cantor model modulo ordinary triangle redirection T. The larger class W_TC \\ S_TC contains an all-n non-T Theta ambiguity, so the tree-child boundary is sharp.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "Claude Sonnet 5"
+    },
+    "datePublished": "2026-08-06",
+    "dateModified": "2026-08-06",
+    "url": "https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#classes">Classes</a>
+        <a href="#theorems">Theorems</a>
+        <a href="#method">Method</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#scope">Scope</a>
+        <a href="#paper">PDF</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Unlisted research page &middot; Exact release package &middot; Not peer reviewed</p>
+      <h1>Sharp Identifiability Boundary for Level-2 Jukes&ndash;Cantor Networks</h1>
+      <p class="byline">Alec Kriebel</p>
+      <p class="release">Prepared: <time datetime="2026-08-06">6 August 2026</time> &middot; Developed with heavy AI assistance</p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Please do not treat this claim as established mathematics.</h2>
+        <p>Alec Kriebel is a complete amateur and cannot independently verify this paper. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, and scope statement requires independent expert review, and no external expert has yet been contacted. This page is intentionally not linked from the site's paper listing; it exists as a public, timestamped, directly reachable record while the result awaits outside audit.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="./SHA256SUMS.txt">PDF SHA-256</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary">Source and certificates</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/s_tc_jc_sharp_boundary/verify_release.py">Verifier</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary/certificates">Certificates</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Binary standard semi-directed level-2 phylogenetic networks with at most one triangle per blob, restricted to the class \(S_{\mathrm{TC}}\) where every admissible rooted partner is tree-child, are generically identifiable under the four-state Jukes&ndash;Cantor (JC) model modulo ordinary triangle redirection \(T\): a complete one-sided observational classification (Theorem A) shows two such networks share a JC preordering exactly when their reduced bridge trees agree and every pair of corresponding blobs is either labelled-isomorphic or a \(T\)-redirection of a triangle. Generic parameters are identified up to \(T\) and labelled isomorphism (Corollary B). This is sharp: replacing \(S_{\mathrm{TC}}\) by the strictly larger class \(W_{\mathrm{TC}}\) (some admissible rooted partner, not necessarily every one, is tree-child) admits, for every \(n\ge4\), a Theta-construction pair of non-isomorphic, non-\(T\)-equivalent \(2n\)-dimensional networks whose open JC images share a full-dimensional regular region (Theorem C).</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Main theorem</strong><span>Complete S_TC classification modulo triangle redirection T</span></div>
+          <div class="fact"><strong>Sharpness</strong><span>All-n non-T Theta ambiguity on W_TC \ S_TC</span></div>
+          <div class="fact"><strong>Audit</strong><span>Fail-closed hash-locked verifier, 547 Bernstein certificates, dual independent reviewers</span></div>
+        </div>
+      </section>
+
+      <section id="classes">
+        <h2>1. Locked class names</h2>
+        <p>Three tree-child classes are kept distinct throughout, over the open JC parameter domain \(0&lt;x_e&lt;1\), \(0&lt;\lambda_r&lt;1\):</p>
+        <ul>
+          <li>\(R_{\mathrm{TC}}\): the supplied rooted DAG is tree-child;</li>
+          <li>\(W_{\mathrm{TC}}\): the standard semi-directed topology has <em>at least one</em> tree-child rooted partner;</li>
+          <li>\(S_{\mathrm{TC}}\): <em>every</em> admissible rooted partner is tree-child.</li>
+        </ul>
+        <p>The network class under study is binary standard semi-directed \(S_{\mathrm{TC}}\) level-2 networks with at most one triangle in each blob.</p>
+      </section>
+
+      <section id="theorems">
+        <h2>2. Main theorems</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem A (complete one-sided observational classification).</strong> For leaf-labelled \(N,N'\) in the stated class, \(N\preceq_{\mathrm{JC}}N'\) if and only if their labelled homeomorphism-reduced bridge trees agree and, under the induced correspondence of ports, every pair of corresponding blobs is either labelled-isomorphic or differs only by ordinary triangle redirection \(T\). Every surviving local relation is a symmetric regular overlap, so \(T\) is the complete observational ambiguity in \(S_{\mathrm{TC}}\).</p>
+        </div>
+        <div class="theorem-block">
+          <p><strong>Corollary B (generic identifiability modulo T).</strong> For each fixed \(S_{\mathrm{TC}}\) topology \(N\), there is a proper algebraic exceptional set in its parameter space outside of which the exact JC distribution identifies the parameter up to ordinary triangle redirection and labelled isomorphism.</p>
+        </div>
+        <div class="theorem-block">
+          <p><strong>Theorem C (sharpness).</strong> The conclusion fails on replacing \(S_{\mathrm{TC}}\) by \(W_{\mathrm{TC}}\). For every \(n\ge4\), the inherited Theta construction gives nonisomorphic, non-\(T\)-equivalent networks \(N_n,N_n'\in W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}\) of model dimension \(2n\) whose open JC model images share a full-dimensional regular region.</p>
+        </div>
+        <p>Consequently: \(S_{\mathrm{TC}}\) is generically JC-identifiable modulo \(T\); \(W_{\mathrm{TC}}\) is not. The strong tree-child requirement on <em>every</em> admissible rooted partner is exactly where identifiability breaks.</p>
+      </section>
+
+      <section id="method">
+        <h2>3. Method</h2>
+        <p>The proof enumerates a final seven-port universe of 192 residual mixed-graph records across eight free \(S_4\)-orbits, giving 1,686 canonical conservative completions. A universal three-port separator \(F_{abc}=r_{ab}r_{ac}r_{bc}-u_{abc}^2\) built from Fourier pair and all-distinct zero-sum coordinates distinguishes cycle- from theta-sourced records: six orbits are separated before completion, and the two genuine completion cases (orbits 649 and 705) are each resolved by an exact strict-positivity identity after marginalization. Exact Jacobian minors modulo the prime \(1{,}000{,}003\) certify that these structural dimension bounds are met exactly for every occurring count vector.</p>
+        <p>A bounded-support reconstruction theorem promotes the closed six-outgoing-port atlas to arbitrary subdivisions via rigid supports and one-/two-port probes, giving a nonroot local theorem for arbitrary finite port-labelled \(S_{\mathrm{TC}}\) cycle or theta factors. A root-reduction argument (reversing a tree-child root-to-leaf path) shows every rooted local factor reduces to the nonroot case regardless of which admissible pendant root site was used. A separate pointwise-cut analysis over 177 canonical endpoint tensor types and four exact wrong-split minors shows a flattening has rank at most four exactly at a cut split, so cuts are preserved in both containment directions. Peeling the common bridge tree's Fourier rank-one blocks and gauge-fixing then reduces global containment to local containment factor by factor, giving Theorem A; a canonical reconstruction procedure (Fourier transform, split test, block factorization, port-role determination, ordered-word reconstruction, lexicographically-least re-rooting) recovers the full observational-equivalence class from an exact distribution.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>4. Exact certificates and independent verification</h2>
+        <p>The release verifier is fail-closed: it checks the SHA-256 manifest of every source, certificate, reviewer, and report byte before and after computation, regenerates the 192-record seven-port classification, runs a separately implemented seven-port replay, independently replays the root reduction, validates the hash-locked audit of all 547 pointwise-cut Bernstein factor certificates, verifies the frozen bounded nonroot atlas, positive gluing, ordinary triangle redirection, and Theta sharpness, and rejects any missing, changed, or unresolved theorem dependency.</p>
+        <ul class="certificate-list">
+          <li><code>python3 verify_release.py</code> (from <a href="https://github.com/AlecKriebel/Math/blob/main/s_tc_jc_sharp_boundary/verify_release.py"><code>verify_release.py</code></a>) &mdash; the primary fail-closed verifier; expected final status <code>"ALL EXACT CHECKS PASSED"</code>. Independently rerun for this publication in a fresh Python 3.14.6 / SymPy virtual environment &mdash; same result.</li>
+          <li><code>python3 verify_release.py --full-adversarial</code> &mdash; additionally recomputes the complete independent pointwise-cut audit; archived at <a href="https://github.com/AlecKriebel/Math/blob/main/s_tc_jc_sharp_boundary/full_adversarial_verification_output.txt"><code>full_adversarial_verification_output.txt</code></a>.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary/certificates"><code>certificates/</code></a> &mdash; machine-readable seven-port closure, root reduction, positive gluing, Theta sharpness, pointwise-cut, and final-theorem certificates, each with a paired adversarial review file.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary/review"><code>review/</code></a> &mdash; four independently written reviewer scripts (seven-port closure, root reduction, pointwise cut, final synthesis) that re-derive the same records from the raw definitions rather than trusting the primary implementation.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary/src"><code>src/</code></a> &mdash; the primary construction, enumeration, and certificate-building scripts.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/s_tc_jc_sharp_boundary/report/FINAL_SHARP_BOUNDARY_THEOREM.md"><code>report/FINAL_SHARP_BOUNDARY_THEOREM.md</code></a> &mdash; the manuscript-ready proof text (source of this page's typeset PDF).</li>
+        </ul>
+        <p class="fine-print">Per-file SHA-256 manifest for the source package: <a href="https://github.com/AlecKriebel/Math/blob/main/s_tc_jc_sharp_boundary/MANIFEST.sha256"><code>MANIFEST.sha256</code></a>. Published PDF hash is in <a href="./SHA256SUMS.txt"><code>SHA256SUMS.txt</code></a>.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Scope and limitations</h2>
+        <p>The result concerns exact, infinite-data JC observations on binary standard semi-directed level-2 networks with at most one triangle per blob; it does not address finite-sample estimation, model classes with more than one triangle per blob or higher-level blobs, non-JC substitution models, or numerical conditioning of the inversion. The exceptional set in Corollary B is shown proper by a Zariski-closure and dominance argument but is not given an explicit description or codimension bound. Theorem C's sharpness construction is specific to the Theta family inherited from prior work; it is not claimed to characterize every source of failure once the "every admissible rooted partner" requirement is dropped.</p>
+        <p>No external expert or author has been contacted, and no external review has occurred. The natural collaborative follow-ups are an explicit description of the exceptional set, extension to more than one triangle per blob, and a finite-sample identifiability analysis.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The construction, symbolic manipulation, proof drafting, and certificate implementation were developed with heavy AI assistance under Alec Kriebel's direction; this page was assembled and published by Claude Code under the same direction. Alec Kriebel is the human author and cannot independently validate the claims. The theorem-bearing content is not a search certificate: it is reduced to exact SymPy algebra, hash-locked machine-checkable certificates, and independently written reviewer scripts that re-derive the classification from the raw definitions. The work has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, &ldquo;Sharp Identifiability Boundary for Level-2 Jukes&ndash;Cantor Networks,&rdquo; provisional research note, 6 August 2026. <a href="https://aleckriebel.github.io/Math/papers/s-tc-jc-sharp-boundary/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">The complete source, machine-readable certificates, independent reviewer scripts, and fail-closed verifier are public in the repository.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> &middot; <a href="https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_sharp_boundary">Source package</a>
+  </footer>
+</body>
+</html>

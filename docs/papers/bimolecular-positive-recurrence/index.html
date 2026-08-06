@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Every finite bimolecular weakly reversible stochastic mass-action network with one linkage class is positive recurrent on every closed communicating class, for every positive rate vector.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Positive Recurrence of Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-08-06">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Positive Recurrence of Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks">
+  <meta property="og:description" content="A residual-factorial Foster function and a finite target-following episode library prove positive recurrence for every one-linkage-class bimolecular weakly reversible stochastic mass-action network, with no pure-species complex assumption.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/">
+  <title>Bimolecular single-linkage positive recurrence &middot; Alec's Math Explorations</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "Positive Recurrence of Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks",
+    "description": "Every finite bimolecular weakly reversible stochastic mass-action network with one linkage class is positive recurrent on every closed communicating class, for every positive rate vector, with no pure-species complex assumption imposed.",
+    "author": {
+      "@type": "Person",
+      "name": "Alec Kriebel",
+      "url": "https://aleckriebel.com/"
+    },
+    "contributor": {
+      "@type": "SoftwareApplication",
+      "name": "Claude Sonnet 5"
+    },
+    "datePublished": "2026-08-06",
+    "dateModified": "2026-08-06",
+    "url": "https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/",
+    "encoding": {
+      "@type": "MediaObject",
+      "contentUrl": "https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/paper.pdf",
+      "encodingFormat": "application/pdf"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Alec's Math Explorations",
+      "url": "https://aleckriebel.github.io/Math/"
+    }
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {tags: "ams", inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec's Math Explorations</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a>
+        <a href="#mechanism">Mechanism</a>
+        <a href="#theorem">Theorem</a>
+        <a href="#phases">Discovery phases</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#scope">Scope</a>
+        <a href="#paper">PDF</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Unlisted research page &middot; Phase V expert-audit manuscript &middot; Not peer reviewed</p>
+      <h1>Positive Recurrence of Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks</h1>
+      <p class="byline">Alec Kriebel</p>
+      <p class="release">Prepared: <time datetime="2026-08-06">6 August 2026</time> &middot; Developed with heavy AI assistance</p>
+    </div></div>
+  </header>
+
+  <main class="paper-main">
+    <div class="notice" role="note" aria-label="Verification disclaimer">
+      <div class="notice-mark">!</div>
+      <div>
+        <h2>Please do not treat this claim as established mathematics.</h2>
+        <p>Alec Kriebel is a complete amateur and cannot independently verify this paper. It is an experiment in the limits of AI-assisted mathematics. Every proof, computation, and scope statement requires independent expert review, and no external expert has yet been contacted. This page is intentionally not linked from the site's paper listing; it exists as a public, timestamped, directly reachable record while the result awaits outside audit.</p>
+      </div>
+    </div>
+
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Open PDF</a>
+      <a class="button secondary" href="./SHA256SUMS.txt">PDF SHA-256</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence">Source and history</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase5_source_flag_closure">Phase V (final proof)</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase5_source_flag_closure/certificates">Certificates</a>
+    </div>
+
+    <article class="paper-text" itemscope itemtype="https://schema.org/ScholarlyArticle">
+      <section id="abstract">
+        <h2>Abstract</h2>
+        <p class="lede" itemprop="abstract">Every finite bimolecular weakly reversible stochastic mass-action network with one linkage class is positive recurrent on every closed communicating class, for every positive rate vector. No pure-species complex assumption is imposed &mdash; the theorem covers coordinate-face, parity, lattice-restricted, siphon, conservative, and boundary classes alike. The proof augments the embedded jump chain by the target complex of the most recent reaction and removes that target from the population. The resulting residual factorial potential \(V(x,t)=\sum_i\log((x_i-t_i)!)\) has the exact jump increment \(\log((x)_t/(x)_s)\) when the next reaction source is \(s\); following the carried target costs exactly zero, so all Foster drift comes from source switching. A finite library of target-following episodes reduces every possible hierarchy of source propensities to a scalar concave recursion, and a normalized-log compactification of an arbitrary divergent state sequence forces either an enabled source of strictly greater asymptotic weight at a lower terminal complex, or an exact reaction-wise conservation law contradicting divergence in the fixed communicating class. This yields one common proper random-time Foster function, a finite exceptional set, and bounded jump-count episodes; a self-contained finite trace-chain argument then converts the certificate to finite mean return time for the original continuous-time chain.</p>
+        <div class="fact-grid">
+          <div class="fact"><strong>Main theorem</strong><span>Positive recurrence, one linkage class, bimolecular, weakly reversible, any positive rates</span></div>
+          <div class="fact"><strong>Mechanism</strong><span>Target/source residual-factorial Foster function, zero cost for following the target</span></div>
+          <div class="fact"><strong>Audit</strong><span>Self-tested source, independent Phase V verifier, exhaustive finite atlas checks</span></div>
+        </div>
+      </section>
+
+      <section id="mechanism">
+        <h2>1. The residual-factorial mechanism</h2>
+        <p>The embedded jump chain is augmented by the target complex \(t\) of the most recent reaction. For \(x\ge t\), the potential \(V(x,t)=\sum_i\log((x_i-t_i)!)\) records the log-factorial of the residual population \(r=x-t\) left after removing the currently carried target. If the next reaction has source \(s\) and target \(t'\), the exact increment factors as \(\Delta V=\log((x)_t/(x)_s)\): moving from residual \(r\) forward by consuming \(s\) and re-crediting \(t'\) leaves a term that depends only on the source, not on which target is eventually produced. Consequently, a chain of reactions that keeps re-selecting the same currently carried target as its own source contributes zero net drift &mdash; all reward for the Foster argument comes from the (finitely many) moments the chain switches which complex it is sourcing from.</p>
+        <p>For every ordered pair of complexes, a designated finite target-following episode of at most \(|\mathcal C|\) jumps is constructed. A sharp scalar recursion shows that if the terminal complex of an episode has vanishing source probability along a divergent direction, the entire episode's expected drift tends to \(-\infty\), regardless of how many distinct propensity scales are present among the intermediate reactions. Bimolecularity is what makes this dichotomy exhaustive: writing an arbitrary divergent state sequence's directions in normalized-log form \(w\), either a lower terminal complex exposes an enabled source of strictly larger \(w\)-weight, or a species-linear conservation law contradicts divergence inside the fixed closed communicating class. The first alternative forces the relevant terminal source probability to zero, and a finite bad-sequence contradiction then makes the finite episode family uniformly negative outside one finite exceptional set \(K\).</p>
+      </section>
+
+      <section id="theorem">
+        <h2>2. Theorem and Foster certificate</h2>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> Let \(G=(\mathcal S,\mathcal C,\mathcal R)\) be a finite stochastic mass-action reaction network such that (1) every complex has molecularity at most two, (2) the reaction graph has one linkage class and is strongly connected, and (3) every nontrivial reaction has a positive rate constant. Then every closed communicating class of the associated nonexplosive continuous-time Markov chain is positive recurrent.</p>
+        </div>
+        <p>The stronger Foster statement used in the proof: augment the embedded jump chain by the target complex \(t\) of the most recent reaction, and for \(x\ge t\) put \(V(x,t)=\sum_i\log((x_i-t_i)!)\). There is a finite set \(K\) of augmented states, one finite target-following episode for every ordered pair of complexes, and a deterministic state-dependent choice among those episodes, such that every selected episode has at most \(|\mathcal C|\) jumps and, outside \(K\), \(\mathbb E_{(x,t)}[V(Z_\tau)-V(x,t)]\le-1\). Because the current target is always enabled, if \(\kappa_*\) is the smallest nontrivial reaction rate, the physical duration of an episode is stochastically dominated by a sum of \(|\mathcal C|\) independent \(\mathrm{Exp}(\kappa_*)\) variables. This finite-family random-time Foster certificate gives finite expected hitting time of \(K\), and a finite trace-chain argument gives finite expected return time to one state &mdash; positive recurrence.</p>
+        <p>The theorem is restricted to one linkage class: the proof uses a directed path from every carried target to every chosen terminal complex, which is not available across distinct linkage classes. Nonexplosion of bimolecular weakly reversible stochastic mass-action systems is inherited rather than reproved.</p>
+      </section>
+
+      <section id="phases">
+        <h2>3. Discovery phases and what Phase V newly proves</h2>
+        <p>The repository preserves the full discovery history, including recorded failed lemmas (an uncorrected one-step entropy drift, a one-step total-count drift, a coercive quadratic correction, and a finite-degree factorial-polynomial stationary ansatz all fail on specific boundary calibrations &mdash; see <a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/failed_approaches"><code>failed_approaches/</code></a> and <a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/WORKLOG.md"><code>WORKLOG.md</code></a>). Phases II&ndash;IV (<a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase2_trigger_drain"><code>phase2_trigger_drain/</code></a>, <a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase3_defect_credit"><code>phase3_defect_credit/</code></a>, <a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase4_critical_lamperti"><code>phase4_critical_lamperti/</code></a>) develop the trigger-drain stopping-time lemma, defect-credit tier induction, and a critical Lamperti-type bounded-defect theorem; the Phase-IV bounded-defect theorem is <em>not</em> used as a black box in the final proof because its last target-retention interface had not been fully certified.</p>
+        <p>Phase V, in <a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase5_source_flag_closure"><code>phase5_source_flag_closure/</code></a>, is the final self-contained resolution and the source of the theorem and manuscript on this page. It newly proves: the exact target/source residual-factorial identity; a source-probability entropy bound; the finite target-following episode recursion; complete-credit scalar elimination; the normalized-log top-availability-or-global-conservation dichotomy; the finite-family sequence-to-uniform Foster closure; deterministic overshoot and physical-duration bounds; and the finite trace-chain conversion to positive recurrence. What it inherits is limited to nonexplosion, Phase-I target-lifting intuition, and exact finite graph/conservation utilities from earlier phases.</p>
+      </section>
+
+      <section id="certificates">
+        <h2>4. Exact certificates and independent verification</h2>
+        <p>All deterministic source files carry self-tests, and a Phase V independent verifier separately records source hashes, test results, an exhaustive finite three-species atlas digest, and calibration output.</p>
+        <ul class="certificate-list">
+          <li><code>PYTHONPATH=. pytest -q phase2_trigger_drain/tests phase5_source_flag_closure/tests</code> &mdash; 11 tests covering the trigger-drain stopping-time lemma and every Phase V core/audit module. Independently rerun for this publication in a fresh Python 3.14.6 / SymPy / NetworkX virtual environment &mdash; all 11 passed.</li>
+          <li><code>PYTHONPATH=. python -m phase5_source_flag_closure.src.phase5_independent_verifier</code> &mdash; reruns every Phase V module's self-test, the exhaustive three-species atlas, and a randomized four-species availability audit, and hashes the result. Rerun transcript: <a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/verification_transcript.txt"><code>verification_transcript.txt</code></a>.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/phase5_source_flag_closure/certificates/independent_verification.json"><code>certificates/independent_verification.json</code></a> &mdash; the archived certificate from the original discovery run, including finite-shell trigger-drain, immigration/linear-death, and several-species calibration series.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/phase5_source_flag_closure/certificates/top_availability_audit.json"><code>certificates/top_availability_audit.json</code></a> &mdash; the exhaustive top-alternative certificate underlying the normalized-log dichotomy.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/phase5_source_flag_closure/certificates/counterexample_falsification_search.json"><code>certificates/counterexample_falsification_search.json</code></a> &mdash; a search for counterexamples to the theorem, retained regardless of outcome.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase5_source_flag_closure/src"><code>phase5_source_flag_closure/src/</code></a> &mdash; the complete Phase V source: residual identity, episode library, Foster verifier, uniformization, and the independent verifier itself.</li>
+          <li><a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence/phase5_source_flag_closure/examples"><code>phase5_source_flag_closure/examples/</code></a> &mdash; worked network examples, including the canonical trigger-drain, immigration/linear-death, and several-I-type calibrations.</li>
+        </ul>
+        <p class="fine-print">Published PDF hash is in <a href="./SHA256SUMS.txt"><code>SHA256SUMS.txt</code></a>. The Phase V manuscript's package manifest is at <a href="https://github.com/AlecKriebel/Math/blob/main/bimolecular_positive_recurrence/phase5_source_flag_closure/package_manifest.json"><code>package_manifest.json</code></a>.</p>
+      </section>
+
+      <section id="scope">
+        <h2>5. Scope and limitations</h2>
+        <p>The theorem is restricted to one linkage class; the proof's directed target-following paths are not available across distinct linkage classes, and no claim is made about the multiple-linkage-class case. No claim of exponential ergodicity, product-form stationarity, or an explicit stationary tail exponent is made. The finite exceptional set \(K\) is defined through episode expectations and proved finite by a compactness argument; the current implementation does not give a polynomial-time bound on its radius. Nonexplosion of bimolecular weakly reversible stochastic mass-action systems is inherited from prior literature rather than reproved here.</p>
+        <p>No external expert or author has been contacted, and no external review has occurred. The natural collaborative follow-ups are extending the argument across multiple linkage classes, an explicit bound on the exceptional set, and quantitative (rather than qualitative) ergodicity.</p>
+      </section>
+
+      <section id="disclosure">
+        <h2>AI-assistance and verification disclosure</h2>
+        <p>The stochastic-model derivation, Foster-function construction, proof drafting, and verifier implementation were developed with heavy AI assistance under Alec Kriebel's direction; this page was assembled and published by Claude Code under the same direction. Alec Kriebel is the human author and cannot independently validate the claims. Every deterministic source file carries a self-test, and the Phase V independent verifier reruns them all along with an exhaustive finite atlas check; a dedicated counterexample search is included and retained regardless of outcome. The work has not been peer reviewed.</p>
+      </section>
+
+      <section id="suggested-citation">
+        <h2>Suggested citation</h2>
+        <p>Alec Kriebel, &ldquo;Positive Recurrence of Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks,&rdquo; provisional research note, 6 August 2026. <a href="https://aleckriebel.github.io/Math/papers/bimolecular-positive-recurrence/">Permanent page</a>.</p>
+      </section>
+    </article>
+
+    <section id="paper" class="pdf-section">
+      <h2>Typeset paper</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf">
+        <p>Your browser cannot display the embedded PDF. <a href="./paper.pdf">Open it directly.</a></p>
+      </object>
+      <p class="fine-print">The complete TeX manuscript, discovery-phase history, exact certificates, and verifier suite are public in the repository.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="../../">Alec's Math Explorations</a> &middot; <a href="https://github.com/AlecKriebel/Math/tree/main/bimolecular_positive_recurrence">Source package</a>
+  </footer>
+</body>
+</html>
