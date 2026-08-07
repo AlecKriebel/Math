@@ -1,0 +1,109 @@
+\section{Root reduction and local-to-global completeness}\label{sec:global}
+
+The local theorem of \cref{thm:nonroot-local} uses a distinguished incoming boundary.  We first show that no new ambiguity arises when the root lies inside a local factor.  We then combine cut preservation and analytic peeling to prove the global classification.
+
+\subsection{Rerooting through an ordinary tree-child path}
+
+\begin{lemma}[Ordinary path to a leaf]\label{lem:ordinary-path}
+Let $N^+$ be a rooted tree-child partner of a standard semi-directed topology.  Starting at the root, one can choose a child repeatedly to obtain a root-to-leaf path whose nonterminal vertices are ordinary tree vertices.
+\end{lemma}
+
+\begin{proof}
+At every internal vertex tree-childness supplies a child that is a tree vertex or a leaf.  Choose such a child.  Acyclic finiteness prevents repetition and forces termination at a leaf.  No reticulation occurs on the chosen path.
+\end{proof}
+
+\begin{theorem}[Root reduction]\label{thm:root-reduction}
+Every root-local factor of a standard semi-directed $\TCs$ topology can be rerooted through an ordinary path onto a pendant edge so that it becomes a nonroot factor with a distinguished incoming boundary.  The standard semi-directed topology and the complete open JC model germ are unchanged.
+\end{theorem}
+
+\begin{proof}
+Choose a rooted tree-child partner and an ordinary root-to-leaf path from \cref{lem:ordinary-path}.  Suppress the old root, reverse the ordinary edges along the path, and insert a new binary root on the terminal pendant edge.  Each internal path vertex exchanges one incoming and one outgoing ordinary edge, so its bidegree remains $(1,2)$.  Reticulation arrowheads are unchanged.  A directed cycle in the new rooting would combine a reversed path interval with an old directed path returning to a higher path vertex, contradicting acyclicity of the original rooting.  Thus the new rooting is admissible.  Since the semi-directed topology lies in $\TCs$, the new rooting is tree-child.
+
+Standard reduction forgets every reversed ordinary direction and suppresses the new root, so it returns the same mixed graph.  Under JC, uniform stationarity and reversibility make the distribution of every displayed tree independent of root location.  If rerooting splits an effective ordinary multiplier $x\in(0,1)$, take
+\begin{equation}\label{eq:root-split}
+y=\frac{1+x}{2},
+\qquad
+z=\frac{2x}{1+x},
+\end{equation}
+so $0<y,z<1$ and $yz=x$.  Conversely, suppressing the inserted root multiplies its two arm multipliers.
+
+There is one retained-arrowhead case.  Suppose the old root was inserted on an edge entering a reticulation.  In a switching that selects this parent, the two root-arm multipliers occur consecutively and hence only through their product.  In a switching that selects the other parent, the remaining one-child root stem subtends all observed leaves; its descendant character sum is zero, so its Fourier exponent is zero.  Suppression therefore again preserves every term of \eqref{eq:fourier-network}.  The parameter transformations are analytic and remain in the open cube, giving equality of the local model germs.
+\end{proof}
+
+The incoming-boundary label used in the finite atlas is not observed.  The atlas contains every relative ordering of boundary labels, so choosing another pendant root site merely permutes complete joint-tensor coordinates.
+
+\subsection{Localization of one-sided containment}
+
+We now make the projection step precise.  Let $p$ lie in a source-relative open set witnessing $N\preceqJC N'$.  By \cref{cor:cut-preservation}, both networks have the same labelled bridge tree $\mathcal T$.  Apply \cref{thm:peeling-chart} to a regular source point in the containment set.  Let
+\[
+\mathcal U=\prod_{v\in V(\mathcal T)}U_v\times\prod_{e\in E(\mathcal T)}I_e
+\]
+be a source product chart, and write $\Gamma$ for its analytic contraction into observed space.
+
+The target model has the same cut factorizations at every common distribution.  Anchor extraction, which depends only on the observed tensor, maps the target set into the same product of projective tensor spaces and bridge coordinates.  It is not necessary to choose a regular target preimage.
+
+\begin{proposition}[Directed product localization]\label{prop:directed-localization}
+Suppose a source-relative open subset of $\Gamma(\mathcal U)$ is contained in the target model.  After shrinking $\mathcal U$, for every component $v$ the projection $U_v$ contains a nonempty source-relative open subset of the local source model that lies in the corresponding local target model.  Thus each local pair satisfies one-sided containment in the source-to-target direction.
+\end{proposition}
+
+\begin{proof}
+Because $\Gamma$ is an analytic diffeomorphism on the source gauge slice, pull the containment set back to a full-dimensional semialgebraic subset $S\subset\mathcal U$.  By \cref{lem:semialgebraic-open}, $S$ contains a nonempty open box after shrinking around a smooth point:
+\[
+B=\prod_v B_v\times\prod_e J_e\subseteq S.
+\]
+For every $b\in B$, apply the observed anchor-extraction map to the target representation of $\Gamma(b)$.  Uniqueness of positive rank-one factorization up to the already fixed reciprocal gauges implies that the extracted local tensor at $v$ is exactly the $v$-coordinate of $b$.  Hence $B_v$ lies in the target local tensor set.  Since $B_v$ is open relative to the local source germ, it witnesses local one-sided containment.  This argument uses no target regularity and no global selection of target parameters.
+\end{proof}
+
+\begin{corollary}[No cross-blob compensation]\label{cor:no-compensation}
+A coordinated change in several distinct blobs cannot create a one-sided global containment unless every corresponding local source model is one-sided contained in its local target model.
+\end{corollary}
+
+This is the precise sense in which observational ambiguity factorizes over blobs.  Reciprocal bridge gauges do not permit one local defect to be cancelled by another: they have been fixed by the intrinsic positive anchor chart.
+
+\subsection{Sufficiency of embedded triangle redirection}\label{sec:embedded-T}
+
+\begin{lemma}[Three ordinary external arms]\label{lem:triangle-arms}
+Every triangle in a valid binary standard semi-directed $\TCs$ topology has exactly one reticulation, and each of its three external arms is an ordinary undirected edge.
+\end{lemma}
+
+\begin{proof}
+A triangle with no reticulation cannot occur in a rooted acyclic binary network blob.  Two reticulations on a triangle would force either a reticulation-to-reticulation edge or a tree vertex tailing two retained arrows, violating \cref{lem:local-strong}.  Hence there is one reticulation.  The other two triangle vertices each tail one retained edge into it.  The local strong criterion forces their remaining incident external edge to be undirected.  At the reticulation, the two triangle edges are its retained incoming edges.  If its external edge were also retained, that reticulation would be the tail of an edge entering another reticulation and would have no incident undirected edge, again contradicting \cref{lem:local-strong}.  Its external edge is therefore ordinary and undirected in the standard reduction.
+\end{proof}
+
+Cut the three external arms beyond the triangle and let $Q$ denote the normalized JC three-boundary tensor.  The three orientations of the triangle define three maps into the same four-dimensional boundary-tensor space.  The exact local certificate gives a common strict tensor point
+\[
+r_{12}=r_{13}=r_{23}=\frac7{64},
+\qquad
+u_{123}=\frac{35}{1024},
+\]
+and a rank-four parameter minor
+\[
+-\frac{343}{16{,}777{,}216}\ne0
+\]
+for each orientation.  Thus the three local images contain one common relative open tensor neighborhood $U\subset Q$.
+
+\begin{proposition}[Contextual $\Tmove$ gluing]\label{prop:T-context}
+Let two valid standard semi-directed networks differ only by an ordinary triangle redirection, with an otherwise identical context.  Their JC model images share a full-dimensional regular germ, even if the context reconnects two of the triangle arms within the same level-2 blob.
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:triangle-arms}, all three external arms are always-present ordinary JC edges.  Cutting them factors either network parameterization as
+\[
+\Theta_{\triangle}\times\Theta_{\mathrm{ctx}}
+\longrightarrow Q\times\mathcal C
+\overset{H}{\longrightarrow}\mathbb R^{4^{|X|}},
+\]
+where the second map is one common analytic tensor contraction.  Uniform stationarity changes between a normalized joint boundary tensor and a conditional port tensor only by orientation-independent powers of $1/4$, absorbed into $H$.  The local triangle maps are submersions onto the same open set $U\subset Q$.
+
+Choose a regular point of the generic contraction $H$ over $U\times\mathcal C$.  A maximal minor of $DH$ cannot vanish on all of the real open set $U\times\mathcal C$ unless it is the zero polynomial; choose a point where it is nonzero.  Composing with either local rank-four triangle map gives the same maximal rank, because both composites factor through $Q\times\mathcal C$ and no composite can exceed the rank of $H$.  The inverse-function/constant-rank theorem gives a common full-dimensional regular image germ.  No separation of the context into three independent pendant components is required.
+\end{proof}
+
+\input{figures/fig_triangle_redirection}
+
+\subsection{Proof of the global theorem}
+
+\begin{proof}[Proof of \cref{thm:main-classification}]
+Assume $N\preceqJC N'$.  By \cref{cor:cut-preservation}, their labelled reduced bridge trees agree.  Extract projective local tensors and choose the analytic peeling chart of \cref{thm:peeling-chart}.  Proposition~\ref{prop:directed-localization} produces one-sided containment for each corresponding local factor.  Apply root reduction if the global root is represented in a local factor, and then apply \cref{thm:nonroot-local}.  Every local pair is port-labelled isomorphic or $\Tmove$-related.
+
+Conversely, assume the bridge trees agree and every local pair has one of these two relations.  Isomorphic factors are identified directly.  For each redirected triangle, \cref{prop:T-context} gives a common local regular germ in the complete surrounding context.  Choose compatible positive anchor gauges and glue recursively along the bridge tree using \eqref{eq:tripod-glue}--\eqref{eq:tripod-inverse}.  The source and target have the same total local-plus-bridge dimension, and the block-triangular peeling Jacobian is of full rank.  Hence the global models share a symmetric full-dimensional regular germ.  This proves both directions and the final assertion.
+\end{proof}

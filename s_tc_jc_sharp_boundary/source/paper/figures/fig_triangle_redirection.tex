@@ -1,0 +1,29 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.84, every node/.style={font=\small}]
+\foreach \shift/\hyb in {0/1,5.45/2,10.9/3}{
+  \begin{scope}[shift={(\shift,0)}]
+  \node[treev] (a) at (0,1.3) {$A$};
+  \node[treev] (b) at (-1.2,-.72) {$B$};
+  \node[treev] (c) at (1.2,-.72) {$C$};
+  \node[leaf] (la) at (0,2.35) {$1$};
+  \node[leaf] (lb) at (-2.0,-1.4) {$2$};
+  \node[leaf] (lc) at (2.0,-1.4) {$3$};
+  \draw[ordinary] (a)--(la); \draw[ordinary] (b)--(lb); \draw[ordinary] (c)--(lc);
+  \ifnum\hyb=1
+    \node[reticv] at (a) {$A$}; \draw[reticedge] (b)--(a); \draw[reticedge] (c)--(a); \draw[ordinary] (b)--(c);
+  \fi
+  \ifnum\hyb=2
+    \node[reticv] at (b) {$B$}; \draw[reticedge] (a)--(b); \draw[reticedge] (c)--(b); \draw[ordinary] (a)--(c);
+  \fi
+  \ifnum\hyb=3
+    \node[reticv] at (c) {$C$}; \draw[reticedge] (a)--(c); \draw[reticedge] (b)--(c); \draw[ordinary] (a)--(b);
+  \fi
+  \end{scope}
+}
+\draw[<->,thick] (2.35,.28)--(3.95,.28) node[midway,above] {$\Tmove$};
+\draw[<->,thick] (7.80,.28)--(9.40,.28) node[midway,above] {$\Tmove$};
+\end{tikzpicture}
+\caption{Ordinary triangle redirection $\Tmove$.  The labelled underlying graph and all arrowheads outside the triangle are fixed; only the local reticulation designation changes.  The three models share a common four-dimensional regular JC boundary-tensor germ, but equality of their complete open stochastic images is not asserted.}
+\label{fig:Tmove}
+\end{figure}

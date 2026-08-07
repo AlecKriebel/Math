@@ -1,0 +1,75 @@
+\section{Introduction}
+
+Reticulate evolutionary events---hybridization, introgression, recombination, and lateral gene transfer---cannot in general be represented by a phylogenetic tree.  A phylogenetic network replaces the single ancestral path of a tree by a directed acyclic graph in which a reticulation may inherit from either of two parents.  This flexibility creates an immediate statistical question: even with an arbitrarily long aligned sequence, does the induced distribution of site patterns determine the network topology?  If the answer is negative, then no consistent inference procedure can distinguish the competing histories without additional assumptions or data.  The principle that inference should not separate observationally indistinguishable networks has therefore become central in the theory of phylogenetic networks \cite{PardiScornavacca2015}.
+
+This paper studies the displayed-tree Jukes--Cantor model on a class of level-2 networks.  Level-2 blobs may contain two interacting reticulations, so they are the first class in which reticulation cycles can be genuinely tangled.  Englander et al. proved generic identifiability for binary, triangle-free, strongly tree-child, level-2 semi-directed networks under the Jukes--Cantor model \cite[Theorem~3.2]{EnglanderEtAl2025}.  Their triangle-free hypothesis is substantial rather than cosmetic.  In a triangle, changing the vertex designated as the reticulation can preserve a full-dimensional region of the observable model.  Recent work has clarified both sides of this phenomenon: the three triangle orientations have rich semialgebraic intersections \cite{CurrieEtAl2026}, while complete level-1 identifiability can be formulated only modulo triangle redirection \cite[Theorem~4.9]{BritsEtAl2026}.
+
+Our purpose is to remove the triangle-free hypothesis for the full binary strongly tree-child level-2 class, while stating exactly what remains unidentifiable.  The relevant strength condition must be imposed on the standard semi-directed topology, not merely on one convenient rooted presentation.  We call a semi-directed topology \emph{strongly tree-child} when every admissible rooting is tree-child.  A preliminary structural theorem shows that any binary level-2 topology admitting even one tree-child rooting already has at most one triangle in each blob.  Thus the triangle-count restriction that appeared in an earlier formulation is automatic, rather than a limitation of the identifiability theorem.  Generic Jukes--Cantor data identify the bridge tree and every local blob of every binary strongly tree-child level-2 network up to ordinary triangle redirection.  The theorem is sharp.  If one only asks that at least one rooting be tree-child, an explicit non-triangle ambiguity survives on a full-dimensional regular set for every number of leaves at least four.
+
+\subsection{Main contribution}
+
+Let $\M_N^{\JC}$ denote the open stochastic model image of a standard semi-directed topology $N$.  We write $N\preceqJC N'$ when a source-relative open set of full source dimension in $\M_N^{\JC}$ is contained in $\M_{N'}^{\JC}$; this is the one-sided relation relevant to generic topological identifiability.  Our principal result is the following.
+
+\begin{theorem*}[informal form]
+Let $N$ and $N'$ be leaf-labelled binary standard semi-directed strongly tree-child level-2 networks.  Then $N\preceqJC N'$ if and only if their labelled homeomorphism-reduced bridge trees agree and each corresponding pair of blobs is port-labelled isomorphic or differs by ordinary triangle redirection.  Every surviving one-sided relation is a symmetric full-dimensional regular overlap.
+\end{theorem*}
+
+The proof has six main components.
+
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item A graph-theoretic reduction proves that every weakly tree-child binary level-2 blob has at most one triangle.  A blob with two triangles would reduce to the $(1,2,2)$ theta, or $K_4$ minus an edge, and every possible rooting violates tree-childness.
+\item A pointwise cut theorem characterizes bridge splits by rank at most four of the appropriate pattern flattening throughout the open Jukes--Cantor parameter domain.  The proof includes the delicate case in which the central edge of a crossing quartet joins two active three-port blob tensors.
+\item Fourier rank-one factorization across the recovered bridge tree yields projective local tensors.  We describe the entire reciprocal gauge group and construct compatible analytic gauge slices.  This gives a genuine local product chart rather than only an entrywise gluing identity.
+\item Every nonroot cycle or theta blob has a bounded rigid support.  One-port restrictions locate extra ports on core segments and two-port restrictions recover their order.  Thus arbitrary subdivisions reduce to finite local atlases.
+\item The last finite case is a seven-outgoing-port cycle-to-theta comparison.  It consists of eight free $S_4$ orbits, or $192$ labelled role presentations, with $1{,}686$ standard strongly tree-child completions.  The Jukes--Cantor trinet polynomial
+\[
+F_{abc}=r_{ab}r_{ac}r_{bc}-u_{abc}^{2}
+\]
+was introduced by Englander et al. to distinguish a three-leaf tree from strict level-1 and level-2 trinets \cite[Proposition~2.26 in the April 2025 version]{EnglanderEtAl2025}; a level-$k$ extension appears in \cite[Lemma~5.5]{BritsEtAl2026}.  The polynomial is not new here.  What is new is that, after restoring the labels required by a rigid core-3 support, suitable trinet restrictions make $F_{abc}$ a strict separator for every residual seven-port completion.
+\item A root-reduction lemma reroots every root-local strongly tree-child factor through an ordinary tree-child path to a pendant edge.  Stationarity and reversibility of the Jukes--Cantor model then reduce root factors to the nonroot incoming-port theorem.
+\end{enumerate}
+
+The resulting local-to-global theorem excludes coordinated compensation between distant blobs.  In an analytic peeling chart, a regular source germ is a Cartesian product of local tensor germs and bridge parameters.  Projecting a product box contained in a target model produces a genuine local one-sided containment for each blob.  Hence global containment cannot be created by changes that fail locally.
+
+\subsection{Relationship to prior work}
+
+The exact increment over the closest results is summarized in \cref{tab:prior-work}.  The comparison distinguishes algebraic, generic, and pointwise notions of identifiability; they are not interchangeable.  In particular, equality of Zariski closures does not imply equality, or even nonempty intersection, of open stochastic images.
+
+\begingroup\footnotesize
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{6pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{2.05cm}>{\raggedright\arraybackslash}p{2.45cm}>{\raggedright\arraybackslash}p{1.8cm}>{\raggedright\arraybackslash}p{2.35cm}>{\raggedright\arraybackslash}p{5.5cm}@{}}
+\caption{Closest prior results and the increment proved here.}\label{tab:prior-work}\\
+\toprule
+Reference & Network class & Model & Identifiability notion & Relation to this paper\\
+\midrule
+\endfirsthead
+\toprule
+Reference & Network class & Model & Identifiability notion & Relation to this paper\\
+\midrule
+\endhead
+Holtgrefe et al. \cite[Theorem~5 and Corollary~3]{HoltgrefeEtAl2026} & General semi-directed and multi-semi-directed networks & None & Weak/strong tree-child rooting characterizations & Supplies the general rooting framework and omnian characterizations.  We prove directly that, at binary level~2, weak tree-childness automatically excludes blobs with two triangles.\\
+Ardiyansyah \cite{Ardiyansyah2021} & Simple and semisimple level-2 networks, including four-leaf types & JC, K2P, K3P & Algebraic variety distinguishability and noncontainment results & Develops Fourier-invariant tools and several distinguishability results for level-2 network varieties.  It does not give a global open-stochastic classification of all strongly tree-child level-2 networks.\\
+Englander et al. \cite[Theorem~3.2]{EnglanderEtAl2025} & Binary triangle-free strongly tree-child level 2 & JC & Generic semi-directed topology & Establishes the triangle-free base theorem.  The present work covers the entire binary standard strongly tree-child level-2 class and proves that ordinary triangle redirection is the only topology change that can remain compatible on a full-dimensional model region.\\
+Englander et al. \cite[Proposition~2.26 in the April 2025 version]{EnglanderEtAl2025} & Three-leaf tree versus strict level-1/2 trinet & JC & Pointwise strict inequality & Introduces $F_{abc}$.  We use it on restored rigid-support labels to close the final seven-port level-2 comparison.\\
+Brits et al. \cite[Theorem~4.9]{BritsEtAl2026} & All level-1 networks & JC, K2P, K3P & Full pointwise topology modulo redirected triangles & Gives the complete level-1 result; their level-$k$ trinet inequality \cite[Lemma~5.5]{BritsEtAl2026} generalizes the earlier base inequality.  Our result concerns tangled level-2 blobs and is generic, not pointwise.\\
+Currie et al. \cite[Theorem~3.1, Corollary~3.3, Lemma~3.4, Theorem~3.5]{CurrieEtAl2026} & Three labelled three-leaf triangle orientations & JC & Complete semialgebraic model geometry & Shows full-dimensional intersections and differences among the three triangle models.  We treat their orientation ambiguity as the local move $\Tmove$ and prove no further ambiguity in the strong level-2 class.\\
+Cox, Gross, and Martin \cite{CoxGrossMartin2025} & Three-sunlet networks & Group-based models & Dimension and partial identifiability & Provides geometric context for triangle-containing group-based network models.\\
+This paper & All binary standard semi-directed $\TCs$ level-2 networks & JC & Generic one-sided classification and reconstruction & Recovers the bridge tree and every blob modulo $\Tmove$; proves the boundary is sharp by an all-$n$ ambiguity in $\TCw\setminus\TCs$.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+Ardiyansyah's earlier level-2 study developed direct Fourier-invariant comparisons for simple and semisimple level-2 network varieties, including four-leaf cases \cite{Ardiyansyah2021}.  It provides important algebraic context but does not subsume the open-stochastic, local-to-global classification proved here.
+
+The semialgebraic description of Currie et al. is especially relevant conceptually.  Their Theorem~3.1 gives explicit inequalities for one three-leaf triangle model; Corollary~3.3 translates the pairwise distinguishability conditions to numerical parameters; Lemma~3.4 proves that both an intersection and a model difference contain nonempty open subsets; and Theorem~3.5 concludes that triangle direction is not generically identifiable \cite{CurrieEtAl2026}.  Our use of a common regular germ for $\Tmove$ is consistent with this geometry, but our global theorem neither asserts nor requires equality of the complete stochastic images of redirected networks.
+
+\subsection{Biological interpretation}
+
+The theorem describes which aspects of an evolutionary history are, in principle, recoverable from an exact infinite-data site-pattern distribution under the displayed-tree Jukes--Cantor model.  In the strong class, the coarse branching architecture given by the bridge tree is recoverable.  Within every reticulated component, the cycle/theta generator, the placement of labelled descendant components, and their order along generator sides are recoverable.  Ordinary triangle redirection is the only topology change that can remain observationally compatible on a full-dimensional model region.  Thus the generic topology is determined modulo this local move.  This is biologically natural: a triangle represents reticulation between very closely related lineages, and its orientation signal can be erased on part of parameter space even while the presence of reticulation remains detectable.
+
+Strong tree-childness is not merely a technical convenience.  The sharpness construction exchanges two labelled pendant components in a theta blob.  Both resulting standard semi-directed topologies possess tree-child rootings, but not every admissible rooting is tree-child.  They are not related by triangle redirection, yet they generate a common full-dimensional regular Jukes--Cantor region.  Thus weakening the structural hypothesis crosses an actual identifiability boundary.
+
+\subsection{Organization}
+
+\Cref{sec:definitions} fixes graph and model conventions.  The formal theorems are stated in \cref{sec:main-results}.  Sections~\ref{sec:bridges} and~\ref{sec:cuts} develop bridge peeling and pointwise cut recovery.  Section~\ref{sec:support} proves the automatic triangle bound and bounded-support reconstruction.  Section~\ref{sec:atlas} gives the local atlas and seven-port closure.  Section~\ref{sec:global} proves root reduction, local-to-global completeness, and sufficiency of $\Tmove$.  Genericity and reconstruction appear in \cref{sec:genericity}; the sharpness theorem is proved in \cref{sec:sharpness}.  The computer-assisted proof and its independent verification are described in \cref{sec:computation}.  Exact dimension and sharpness data are collected in the appendices.

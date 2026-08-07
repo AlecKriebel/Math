@@ -1,0 +1,76 @@
+\section{Genericity and reconstruction}\label{sec:genericity}
+
+The classification theorem is formulated through full-dimensional semialgebraic containment.  We now connect this relation to the usual algebraic meaning of generic identifiability and give a constructive canonical reconstruction procedure.
+
+\subsection{Full dimension produces a relative open source set}
+
+We use standard facts from real algebraic geometry; see \cite{BochnakCosteRoy1998,BasuPollackRoy2006}.  All model images and intersections below are semialgebraic by Tarski--Seidenberg.
+
+\begin{lemma}[Semialgebraic interior]\label{lem:semialgebraic-open}
+Let $M$ be a smooth $d$-dimensional semialgebraic manifold and let $S\subseteq M$ be semialgebraic.  If $\dimR S=d$, then $S$ contains a nonempty relatively open subset of $M$.  Moreover, this subset may be chosen in the regular locus of any polynomial parameterization whose image contains a dense open subset of $M$.
+\end{lemma}
+
+\begin{proof}
+Take a finite semialgebraic Whitney stratification of $S$ compatible with the singular/critical loci of the parameterization.  Some stratum has dimension $d$.  A $d$-dimensional embedded submanifold of the $d$-manifold $M$ is relatively open near each of its points.  The critical image has dimension less than $d$ at a generically full-rank parameterization, so the top stratum may be chosen outside it.
+\end{proof}
+
+Thus the definition of $N\preceqJC N'$ is equivalent to saying that the intersection has the full real dimension of the source image.  It is stronger than a single common point and weaker than equality of complete stochastic images.
+
+\subsection{Proper algebraic exceptional sets}
+
+Fix a topology $N$ on $n$ leaves.  Let $\mathcal N_n$ be the finite set of valid labelled topologies in the theorem's class.  Finiteness follows from the tree-child reticulation bound.  In a rooted binary network with $r$ reticulations and $n$ leaves, the number of tree vertices is $n+r-2$ and the total number of vertices is $2n+2r-1$.  Vertex-disjoint tree-child paths from the root and reticulations to leaves give $r\le n-1$, and hence at most $4n-3$ vertices.  Only finitely many labelled mixed graphs occur.
+
+For every $N'\in\mathcal N_n$ not $\Tmove$-equivalent to $N$, define
+\[
+E_{N,N'}=
+\overline{\M_N^{\JC}\cap\M_{N'}^{\JC}}^{\,Z}
+\subseteq\V_N^{\JC}.
+\]
+
+\begin{proposition}[Properness of non-$\Tmove$ intersections]\label{prop:proper-intersections}
+For every non-$\Tmove$ topology $N'$, $E_{N,N'}$ is a proper algebraic subset of $\V_N^{\JC}$.
+\end{proposition}
+
+\begin{proof}
+Suppose $E_{N,N'}=\V_N^{\JC}$.  The real semialgebraic intersection then has real dimension $\dimC\V_N^{\JC}$: real and complex dimensions agree with the common maximal real/complex Jacobian rank, and complexification preserves the Krull dimension of the real Zariski closure.  By \cref{lem:semialgebraic-open}, the intersection contains a source-relative open regular subset, so $N\preceqJC N'$.  Theorem~\ref{thm:main-classification} then forces $N'$ to be $\Tmove$-equivalent to $N$, a contradiction.
+\end{proof}
+
+The finite union
+\[
+E_N=\bigcup_{N'\not\sim_{\Tmove}N}E_{N,N'}
+\]
+is therefore proper.  Choose a polynomial $f$ on observed space that vanishes on $E_N$ but not identically on $\V_N^{\JC}$.  Dominance of the parameterization onto its closure makes $f\circ\phi_N$ a nonzero polynomial on parameter space.  Its zero set is a proper algebraic subset.  This proves \cref{cor:generic-identifiability} in the stated parameter-space sense.
+
+The exceptional locus also includes the finitely many rank/minor degeneracies needed by the constructive reconstruction.  Adding these proper algebraic subsets does not change properness.
+
+\subsection{Canonical reconstruction procedure}
+
+We describe an exact algorithm for a generic distribution $p$ known to arise from the class.  It is structural rather than a search over all rooted DAGs.
+
+\begin{enumerate}[label=\textbf{Step \arabic*.},leftmargin=2.2cm]
+\item \textbf{Fourier transform.}  Apply the invertible $G^X$ Fourier transform to the pattern probabilities and retain the zero-sum coordinates.
+
+\item \textbf{Recover bridge splits.}  For every nontrivial leaf split $A\mid B$, compute the rank of $\operatorname{Flat}_{A\mid B}(p)$.  By \cref{thm:pointwise-cut}, rank at most four is equivalent to a bridge split.  Assemble the compatible split system into the labelled homeomorphism-reduced bridge tree.
+
+\item \textbf{Peel local tensors.}  At each bridge and character sum, factor the positive rank-one Fourier block by the anchor formulas of \cref{lem:anchor}.  Recursively peel the bridge tree, choosing the prescribed positive gauge slice.  This yields one projective boundary tensor for every local factor and one bridge multiplier per edge.
+
+\item \textbf{Identify the local core.}  Evaluate the exact bounded invariant deck on all restrictions through seven outgoing ports.  Cycle/theta and strong/weak target signatures, together with the $F_{abc}$ signs of \cref{thm:seven-separation}, identify the primitive core and a rigid support modulo $\Tmove$.
+
+\item \textbf{Recover segment words.}  For each additional descendant block, use support-plus-one restrictions to locate its core segment.  For each pair on one segment, use support-plus-two restrictions to determine their order.  Sort by these comparisons to obtain the complete labelled word on each directed segment.
+
+\item \textbf{Canonicalize.}  Form every structurally valid ordinary triangle redirection, retain only globally rootable $\TCs$ mixed graphs, and compute their labelled canonical encodings.  Return the lexicographically least encoding as the canonical representative modulo $\Tmove$.  If requested, also return the complete structural $\Tmove$-equivalence class.  This structural list is not asserted to equal the set of topologies whose stochastic images contain the particular input distribution $p$; determining that pointwise list requires a separate semialgebraic membership test for each redirected endpoint.
+\end{enumerate}
+
+\begin{theorem}[Correctness of reconstruction]\label{thm:reconstruction}
+Outside a proper algebraic exceptional subset of parameter space, the procedure terminates and returns the unique canonical semi-directed topology modulo labelled isomorphism and ordinary triangle redirection.  Optionally, it returns the complete structural $\Tmove$-equivalence class of that canonical topology.
+\end{theorem}
+
+\begin{proof}
+There are finitely many splits and bounded restrictions, so the procedure terminates.  Steps 2 and 3 are correct by \cref{thm:pointwise-cut,thm:peeling-chart}.  The complete local atlas and bounded-support theorem prove Steps 4 and 5 and identify one structural topology class modulo $\Tmove$.  Step 6 performs a finite graph-theoretic normalization inside that class.  Theorem~\ref{thm:main-classification} excludes every non-$\Tmove$ topology from full-dimensional generic compatibility, which proves uniqueness of the canonical quotient representative.  Proposition~\ref{prop:T-context} shows only that valid redirected endpoints share a full-dimensional regular germ; it does not imply that the particular input point $p$ belongs to every redirected model.  The exceptional set is the finite union of the proper rank, invariant, and non-$\Tmove$ intersection loci described above.
+\end{proof}
+
+\begin{remark}[Structural versus pointwise triangle compatibility]\label{rem:pointwise-T}
+The reconstruction theorem identifies the structural quotient by $\Tmove$.  It does not solve the distinct pointwise problem of deciding, for a fixed exact distribution $p$, which orientations in that structural class actually contain $p$ in their open stochastic images.  The three triangle models can have both full-dimensional intersections and full-dimensional differences, so that pointwise question requires additional semialgebraic membership tests.
+\end{remark}
+
+We do not claim a polynomial-time bit-complexity bound.  Direct split testing is exponential in $n$, and exact algebraic-number arithmetic may dominate practical cost.  The result is nevertheless constructive and avoids enumerating all rooted DAGs on up to $4n-3$ vertices.

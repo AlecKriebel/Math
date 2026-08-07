@@ -1,0 +1,24 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.86,every node/.style={font=\small}]
+% one active
+\node[draw,rounded corners,minimum width=3.2cm,minimum height=2.2cm] (B) at (-3.8,0) {active blob};
+\node[leaf] (a) at (-5.5,1.5) {$a$}; \node[leaf] (b) at (-5.5,-1.5) {$b$};
+\node[leaf] (c) at (-2.1,1.5) {$c$}; \node[leaf] (d) at (-2.1,-1.5) {$d$};
+\draw[ordinary] (a)--(B); \draw[ordinary] (b)--(B); \draw[ordinary] (B)--(c); \draw[ordinary] (B)--(d);
+\node at (-3.8,2.25) {one-active crossing};
+\node[align=center,text width=4.7cm] at (-3.8,-2.55) {421 types: a fixed-sign wrong-split minor.\\32 types: rank one only when a true bridge is present in every switching.};
+
+% two active
+\node[draw,rounded corners,minimum width=2.3cm,minimum height=2cm] (L) at (1.2,0) {$P$};
+\node[draw,rounded corners,minimum width=2.3cm,minimum height=2cm] (R) at (5.4,0) {$Q$};
+\draw[bridge] (L)--(R) node[midway,above] {$z\in(0,1)$};
+\node[leaf] at (0,1.4) (l1) {$1$}; \node[leaf] at (0,-1.4) (l2) {$2$};
+\node[leaf] at (6.6,1.4) (l3) {$3$}; \node[leaf] at (6.6,-1.4) (l4) {$4$};
+\draw[ordinary] (l1)--(L); \draw[ordinary] (l2)--(L); \draw[ordinary] (R)--(l3); \draw[ordinary] (R)--(l4);
+\node at (3.3,2.25) {two-active bridge crossing};
+\node[align=center,text width=6.4cm] at (3.3,-2.65) {$m_0=aA-bcBCz^2$, $m_1=(aA-Ttz)(aA+Ttz)$,\\ $m_2=aA^2-bcT^2z^2$, $m_3=a^2A-t^2BCz^2$.};
+\end{tikzpicture}
+\caption{The two configurations in the pointwise cut theorem. The second is the previously delicate case: the crossing quartet's central bridge joins two active local tensors.}
+\label{fig:cuts}
+\end{figure}

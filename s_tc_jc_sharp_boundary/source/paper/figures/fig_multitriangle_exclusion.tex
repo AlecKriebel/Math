@@ -1,0 +1,47 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=.82, every node/.style={font=\small}]
+\begin{scope}[xshift=0cm]
+  \node[treev] (u) at (0,1.35) {$u$};
+  \node[treev] (v) at (3.0,1.35) {$v$};
+  \node[treev] (a) at (1.1,2.50) {$a$};
+  \node[treev] (b) at (1.1,.20) {$b$};
+  \draw[ordinary] (u)--(v);
+  \draw[ordinary] (u)--(a)--(v);
+  \draw[ordinary] (u)--(b)--(v);
+  \draw[bridge] (a)--++(0,0.60);
+  \draw[bridge] (b)--++(0,-0.60);
+  \node[align=center,text width=3.35cm,font=\scriptsize] at (1.5,-1.05)
+    {two triangles force\\path lengths $(1,2,2)$};
+\end{scope}
+\draw[-{Stealth[length=2.4mm]},thick] (3.55,1.35)--(4.15,1.35);
+\begin{scope}[xshift=4.6cm]
+  \node[reticv] (u) at (0,1.35) {$u$};
+  \node[reticv] (v) at (3.0,1.35) {$v$};
+  \node[treev] (a) at (1.1,2.50) {$a$};
+  \node[treev] (b) at (1.1,.20) {$b$};
+  \draw[reticedge] (u)--(v);
+  \draw[ordinary] (u)--(a)--(v);
+  \draw[ordinary] (u)--(b)--(v);
+  \node[align=center,text=retic,text width=3.35cm,font=\scriptsize] at (1.5,-1.05)
+    {adjacent reticulations:\\a reticulation child};
+\end{scope}
+\begin{scope}[xshift=9.2cm]
+  \node[treev] (u) at (0,1.35) {$u$};
+  \node[treev] (v) at (3.0,1.35) {$v$};
+  \node[reticv] (a) at (1.1,2.50) {$a$};
+  \node[reticv] (b) at (1.1,.20) {$b$};
+  \draw[ordinary] (u)--(v);
+  \draw[reticedge] (u)--(a);
+  \draw[reticedge] (v)--(a);
+  \draw[reticedge] (u)--(b);
+  \draw[reticedge] (v)--(b);
+  \draw[bridge] (a)--++(0,0.60);
+  \draw[bridge] (b)--++(0,-0.60);
+  \node[align=center,text=retic,text width=3.55cm,font=\scriptsize] at (1.5,-1.05)
+    {nonadjacent reticulations:\\one pole has two reticulation children};
+\end{scope}
+\end{tikzpicture}
+\caption{Automatic exclusion of multiple triangles.  A simple theta with two triangle cycles must have path lengths $(1,2,2)$ and underlying graph $K_4$ minus the edge $ab$.  Adjacent reticulations force a reticulation child (or a root with two reticulation children).  The only nonadjacent pair is $a,b$; their external bridges must point away from them, and every internal root position leaves one pole with both reticulations as children.}
+\label{fig:multitriangle-exclusion}
+\end{figure}

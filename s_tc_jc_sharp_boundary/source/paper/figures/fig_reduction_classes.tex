@@ -1,0 +1,55 @@
+\begin{figure}[t]
+\centering
+\begin{minipage}[t]{0.61\textwidth}
+\centering
+\begin{tikzpicture}[scale=.82, every node/.style={font=\small}]
+% rooted DAG
+\node[root] (r) at (0,2.4) {$\rho$};
+\node[treev] (a) at (-1,1.25) {};
+\node[treev] (b) at (1,1.25) {};
+\node[leaf] (l1) at (-1.55,0) {$1$};
+\node[reticv] (h) at (0,0) {};
+\node[leaf] (l2) at (1.55,0) {$2$};
+\node[leaf] (l3) at (0,-1.2) {$3$};
+\draw[dir] (r)--(a); \draw[dir] (r)--(b);
+\draw[dir] (a)--(l1); \draw[reticedge] (a)--(h);
+\draw[reticedge] (b)--(h); \draw[dir] (b)--(l2); \draw[dir] (h)--(l3);
+\node[align=center] at (0,3.08) {rooted binary network};
+
+\draw[-{Stealth[length=3mm]},thick] (2.0,.65)--(3.05,.65)
+  node[midway,above,font=\scriptsize,align=center]{standard\\reduction};
+
+% semidirected
+\node[treev] (sa) at (4.05,1.25) {};
+\node[treev] (sb) at (6.05,1.25) {};
+\node[leaf] (sl1) at (3.5,0) {$1$};
+\node[reticv] (sh) at (5.05,0) {};
+\node[leaf] (sl2) at (6.6,0) {$2$};
+\node[leaf] (sl3) at (5.05,-1.2) {$3$};
+\draw[ordinary] (sa)--(sb); \draw[ordinary] (sa)--(sl1); \draw[reticedge] (sa)--(sh);
+\draw[reticedge] (sb)--(sh); \draw[ordinary] (sb)--(sl2); \draw[ordinary] (sh)--(sl3);
+\node[align=center,text width=3.2cm] at (5.05,3.08) {standard semi-directed topology};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.35\textwidth}
+\vspace{0.25cm}
+\centering
+\setlength{\fboxsep}{7pt}
+\fbox{\begin{minipage}{0.86\linewidth}
+\small
+\textbf{Three tree-child notions}\medskip
+
+$\TCr$: the supplied rooted DAG is tree-child.\medskip
+
+$\TCw$: at least one admissible rooting is tree-child.\medskip
+
+$\TCs$: every admissible rooting is tree-child.
+\end{minipage}}
+\end{minipage}
+
+\medskip
+\centering
+$\TCs\subseteq\TCw$, whereas $\TCr$ concerns one chosen rooted presentation.
+\caption{Rooted-to-semi-directed reduction and the three tree-child notions. Ordinary edges lose their directions, whereas arrowheads entering reticulations are retained. Membership in $\TCs$ is a property of the standard semi-directed topology, not of one preferred rooting.}
+\label{fig:reduction-classes}
+\end{figure}

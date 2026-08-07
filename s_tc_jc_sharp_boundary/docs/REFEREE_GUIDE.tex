@@ -1,0 +1,72 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,microtype}\usepackage[margin=.72in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,enumitem,hyperref}
+\setlist{nosep,leftmargin=*}\pagestyle{plain}\setlength{\parindent}{0pt}\setlength{\parskip}{4pt}
+\begin{document}
+\begin{center}
+{\Large\bf Referee guide}\\[2pt]
+{\bf Generic Identifiability of Strongly Tree-Child Level-2 Jukes--Cantor Networks}
+\end{center}
+
+\textbf{Claim and scope.}  The main theorem concerns all binary standard semi-directed $S_{\rm TC}$ level-2 networks under open four-state Jukes--Cantor parameters, with generic topology identification modulo ordinary triangle redirection $T$.  Theorem~3.1 proves that no additional triangle-count hypothesis is needed.  It classifies one-sided full-dimensional stochastic containment, not equality of complete stochastic images.  The sharpness theorem places the explicit Theta pair in $W_{\rm TC}\setminus S_{\rm TC}$ and extends it to every $n\ge4$.  The reconstruction theorem returns a canonical structural topology modulo $T$; it does not claim that a fixed input distribution lies in every redirected model.
+
+\textbf{Suggested proof-reading order.}
+\begin{enumerate}
+\item Definitions and scope: Section 2 and Theorems 3.1--3.5.
+\item Bridge localization: Proposition 4.1, Lemmas 4.2--4.3, and Theorem 4.4.  The key issue is that reciprocal bridge gauges are complete and a regular source product cell projects to genuine local one-sided containments without assuming target regularity.
+\item Cut preservation: Theorem 5.1.  Check especially Lemma 5.4, where four wrong-split minors exclude a bridge joining two active endpoint tensors.
+\item Local reconstruction: Proposition 6.1 and Theorem 6.6.  These give the cycle/four-theta core list, rigid supports, one-port segment location, and two-port order recovery.
+\item Finite atlas: Section 7.  The load-bearing residual step is Theorem 7.5: eight role orbits, 192 labelled records, 1,686 valid completions, and strict trinet separators.  The polynomial $F_{abc}$ is attributed to Englander et al.; only its restored-support application is new.
+\item Root and global synthesis: Theorem 8.2, Proposition 8.3, Corollary 8.4, and Proposition 8.6.  The retained-arrowhead rerooting case and contextual $T$ gluing deserve special attention.
+\item Genericity and reconstruction: Lemma 9.1, Proposition 9.2, Theorem 9.3, and Remark 9.4.  These connect full semialgebraic source dimension to a source-relative regular open set, pull the proper observed exceptional set back to a proper parameter polynomial, and distinguish structural reconstruction modulo $T$ from input-specific triangle-orientation membership.
+\item Sharpness: Section 10 and Appendix B.  The exact quadratic point, all Fourier coordinates, two rank-eight Jacobians, leaf-substitution inverse, and $2n$ dimension defect are explicit.
+\end{enumerate}
+
+\textbf{Quick verification.}
+\begin{verbatim}
+bash reproducibility/verify_quick.sh
+\end{verbatim}
+This checks the archive manifest, the automatic-triangle certificate and its independent census, the underlying exact statistical release, publication scope/count audit, bibliography, PDF build, embedded fonts, and unresolved-reference/overfull-box conditions.
+
+\newpage
+\textbf{Full independent verification.}
+\begin{verbatim}
+bash reproducibility/verify_full.sh
+\end{verbatim}
+The full command independently regenerates the complete multi-triangle rooting universe in Python and C++, and verifies the unchanged cycle/theta algebra, directed relations, seven-port closure, and pointwise-cut replay against the preserved clean full-adversarial base transcript. The optional \texttt{verify\_regenerate\_all.sh} reruns those large algebra generators from scratch.  The expected terminal line is
+\begin{verbatim}
+AUTHOR-READY FULL INDEPENDENT VERIFICATION PASSED
+\end{verbatim}
+
+\textbf{Theorem-to-artifact map.}
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}p{.25\textwidth}X@{}}
+\toprule
+Result & Principal commands/files\\\midrule
+Automatic triangle bound & \texttt{publication/src/verify\_multitriangle\_exclusion.py}; independent C++ rooting census\\
+Five/six-port theta atlas & \texttt{publication/src/regenerate\_nonroot\_algebra.py}; complete signature binaries and pair TSVs; independent adaptive-list reviewer\\
+Cycle/cross-generator atlas & \texttt{publication/src/regenerate\_cycle\_algebra.py}; relation summaries and complete TSVs\\
+Seven-port closure & \texttt{exact\_release/src/verify\_seven\_port\_closure.py}; independent \texttt{review\_seven\_port\_closure.py}\\
+Pointwise cuts & \texttt{exact\_release/review/review\_pointwise\_cut.py}; 177 endpoints, 453 one-active crossings, 547 Bernstein expansions\\
+Root reduction & primary and independent scripts in \texttt{exact\_release/src} and \texttt{exact\_release/review}\\
+Global synthesis & \texttt{build\_sharp\_boundary\_certificate.py}; \texttt{review\_final\_synthesis.py}\\
+Theta sharpness & \texttt{verify\_theta\_sharpness.py}; exact quadratic certificate\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\textbf{Adversarial questions.}
+\begin{itemize}
+\item Does standard $S_{\rm TC}$ mean every admissible rooting, rather than the supplied rooted presentation?  Yes; Section 2 fixes $R_{\rm TC}$, $W_{\rm TC}$, and $S_{\rm TC}$ separately.
+\item Is the former one-triangle condition still an assumption?  No.  Theorem 3.1 proves that every binary level-2 topology in $W_{\rm TC}$ automatically has at most one triangle per blob.
+\item Is containment oriented correctly?  The finite relation stores source nonvanishing masks as subsets of target masks.  Strict separators vanish on the source and have fixed nonzero target sign, which proves open-image disjointness.
+\item Could distant blobs compensate?  The peeling chart makes the source germ a product modulo exactly the bridge gauges; projection gives each local containment separately.
+\item Is the seven-port count assumed?  No.  Both primary and independent programs regenerate the role orbits and every completed graph from primitive cores.
+\item Is a boundary specialization used as an interior witness?  Boundary choices appear only to prove a polynomial nonzero.  Every overlap or strict sign used in the stochastic theorem is certified in the open domain.
+\item Does $T$ mean equal complete images, or that one input point belongs to every redirected model?  No.  The proof supplies a common full-dimensional regular germ and the algorithm returns the structural $T$-class; pointwise membership requires separate semialgebraic tests.
+\end{itemize}
+
+Ardiyansyah (2021) is included as direct historical context for Fourier-invariant distinguishability of simple and semisimple level-2 varieties.\par\medskip
+
+The detailed crosswalk is \texttt{docs/THEOREM\_CERTIFICATE\_CROSSWALK.md}.  Hashes verify byte integrity, not mathematics.
+\end{document}

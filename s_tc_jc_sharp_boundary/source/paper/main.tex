@@ -1,0 +1,92 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array,tabularx,multirow}
+\usepackage{enumitem,graphicx,tikz,xcolor,caption,subcaption,float,url,setspace}
+\usetikzlibrary{arrows.meta,calc,positioning,shapes.geometric,decorations.pathreplacing,fit,matrix}
+\usepackage[backend=biber,style=numeric-comp,sorting=nyt,maxbibnames=99,natbib=true]{biblatex}
+\addbibresource{references.bib}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=green!40!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={Generic Identifiability of Strongly Tree-Child Level-2 Jukes--Cantor Networks},pdfauthor={Alec Kriebel},pdfsubject={Phylogenetic-network identifiability under the Jukes--Cantor model},pdfkeywords={phylogenetic networks, identifiability, Jukes--Cantor, level 2, tree-child}}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\setstretch{1.03}
+\setlist{nosep}
+\setlength{\emergencystretch}{2em}
+
+\definecolor{retic}{RGB}{180,45,45}
+\definecolor{treecol}{RGB}{38,90,160}
+\definecolor{bridgecol}{RGB}{40,130,85}
+\tikzset{
+  vertex/.style={circle,draw,minimum size=5.3mm,inner sep=1pt,fill=white},
+  treev/.style={vertex,draw=treecol,thick},
+  reticv/.style={vertex,draw=retic,thick,double},
+  leaf/.style={circle,draw,minimum size=4.8mm,inner sep=.4pt,fill=white},
+  root/.style={diamond,draw,minimum size=5.3mm,inner sep=1pt,fill=white},
+  ordinary/.style={line width=.65pt},
+  reticedge/.style={-{Stealth[length=2mm]},draw=retic,line width=.8pt},
+  dir/.style={-{Stealth[length=2mm]},line width=.65pt},
+  bridge/.style={draw=bridgecol,line width=1.15pt},
+  port/.style={rectangle,rounded corners=1pt,draw,inner sep=1.3pt,font=\scriptsize}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{theorem*}{Theorem}
+
+\newcommand{\TCr}{R_{\mathrm{TC}}}
+\newcommand{\TCw}{W_{\mathrm{TC}}}
+\newcommand{\TCs}{S_{\mathrm{TC}}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\ThetaOpen}{\Theta_{0}}
+\newcommand{\JC}{\mathrm{JC}}
+\newcommand{\Ztwo}{\mathbb{Z}_{2}}
+\newcommand{\preceqJC}{\preceq_{\JC}}
+\newcommand{\bowtieJC}{\bowtie_{\JC}}
+\newcommand{\Tmove}{\mathsf{T}}
+\newcommand{\whp}{\widehat{p}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\dimR}{dim_{\mathbb R}}
+\DeclareMathOperator{\dimC}{dim_{\mathbb C}}
+
+\title{Generic Identifiability of Strongly Tree-Child Level-2\\
+Jukes--Cantor Networks\\
+\large A sharp boundary at weak tree-childness}
+\author{Alec Kriebel\\\small Independent Researcher\\\small Correspondence: \texttt{me@aleckriebel.com}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Phylogenetic networks extend trees by allowing reticulation events, but a topology is scientifically meaningful only to the extent that it is identifiable from the distribution induced at the observed taxa. We study the displayed-tree Jukes--Cantor model on binary standard semi-directed level-2 networks. A semi-directed topology is called strongly tree-child here when every admissible rooting is tree-child. We first prove a structural fact: any binary level-2 semi-directed topology that admits even one tree-child rooting automatically has at most one triangle in each blob. We then show that the exact generic leaf-pattern distribution determines every strongly tree-child level-2 topology up to ordinary triangle redirection, the only topology change that can remain observationally compatible on a full-dimensional model region. More precisely, one-sided full-dimensional stochastic containment occurs exactly when the labelled bridge trees agree and corresponding blobs are isomorphic or triangle-redirected. The proof combines Fourier cut factorization, pointwise cut-split recovery, projective extraction of local boundary tensors, bounded-support reconstruction of cycle and theta blobs, and exact finite atlases. The final atlas case consists of 192 seven-outgoing-port cycle-to-theta completions; established Jukes--Cantor trinet inequalities, applied to restored support labels, separate all of them. Sharpness holds at weak tree-childness: for every number of leaves at least four, two nonisomorphic and non-triangle-equivalent weakly but not strongly tree-child networks share a full-dimensional regular Jukes--Cantor model region. Exact graph, polynomial, sign, and Jacobian certificates accompany the proof.
+\end{abstract}
+\noindent\textbf{Keywords.} phylogenetic networks; identifiability; Jukes--Cantor model; level-2 networks; tree-child networks; algebraic statistics; semialgebraic geometry.
+
+\medskip\noindent\textbf{MSC 2020.} 92B10, 62R01, 14P10, 05C05.
+
+\input{sections/01_introduction}
+\input{sections/02_definitions}
+\input{sections/03_main_results}
+\input{sections/04_bridges}
+\input{sections/05_cuts}
+\input{sections/06_support}
+\input{sections/07_local_atlas}
+\input{sections/08_global}
+\input{sections/09_genericity}
+\input{sections/10_sharpness}
+\input{sections/11_computation}
+\input{sections/12_discussion}
+\appendix
+\input{sections/A_dimensions}
+\input{sections/B_theta_data}
+\input{sections/C_crosswalk}
+\printbibliography
+\end{document}

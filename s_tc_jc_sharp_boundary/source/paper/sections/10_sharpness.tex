@@ -1,0 +1,204 @@
+\section{Sharpness: a non-triangle ambiguity in \texorpdfstring{$\TCw\setminus\TCs$}{W-TC minus S-TC}}\label{sec:sharpness}
+
+We now prove \cref{thm:sharpness} without appealing to any result outside this paper and its exact supplement.  The construction is a pair of four-leaf level-2 theta networks whose pendant placements differ.  Their standard semi-directed topologies are weakly tree-child but not strongly tree-child, and their JC images meet along a regular eight-dimensional open set.
+
+\subsection{The four-leaf pair}
+
+Let the internal vertices be a root $\rho$, tree vertices $A,B,D,E$, and reticulations $C,F$.  Both rooted networks have internal arcs
+\begin{equation}\label{eq:theta-common-arcs}
+\rho\to A,\quad \rho\to C,\quad A\to B,\quad B\to C,
+\quad C\to D,\quad D\to E,\quad A\to F,\quad E\to F.
+\end{equation}
+Their pendant arcs are
+\begin{align}
+N:&\qquad B\to1,\quad D\to2,\quad F\to3,\quad E\to4,\label{eq:theta-N-pendants}\\
+N':&\qquad E\to1,\quad D\to2,\quad F\to3,\quad B\to4.\label{eq:theta-Np-pendants}
+\end{align}
+After suppressing the root artifact, the nontrivial blob is a theta graph with three $A$--$C$ paths
+\[
+A-C,\qquad A-B-C,\qquad A-F-E-D-C.
+\]
+Its three simple cycles have lengths $3,5,6$, so both networks are binary and level~2, and each blob contains exactly one triangle.  The two standard reductions are shown in \cref{fig:theta-sharpness}.
+
+\input{figures/fig_theta_sharpness}
+
+\begin{proposition}[Tree-child class and topological separation]\label{prop:theta-class}
+The supplied rooted representatives of $N$ and $N'$ lie in $\TCr$.  Each standard semi-directed topology has five admissible rootings, exactly two of which are tree-child.  Hence
+\[
+N,N'\in\TCw\setminus\TCs.
+\]
+The two standard semi-directed topologies are nonisomorphic and are not related by ordinary triangle redirection.
+\end{proposition}
+
+\begin{proof}
+In the rooted networks \eqref{eq:theta-common-arcs}--\eqref{eq:theta-Np-pendants}, every internal vertex has a tree-or-leaf child and neither reticulation has a reticulation child.  Thus both chosen rootings are tree-child.
+
+For the standard reductions, retain the arrowheads entering $C$ and $F$, suppress $\rho$, and enumerate each edge on which a root can be inserted without changing the retained arrowheads.  Propagating the forced ordinary orientations from the proposed root gives exactly five admissible rootings.  The root sites $A-C$ and $A-F$ give tree-child rootings; the remaining three give a tail of a retained arrow two reticulation children.  The same count and the same two root sites occur for both pendant placements.  This proves membership in $\TCw\setminus\TCs$.  The enumeration is reproduced from the arc lists by the independent checker in the supplement.
+
+The unique triangle is $A-B-C$.  In $N$, leaf $1$ is adjacent to $B$, a triangle vertex; in $N'$, leaf $1$ is adjacent to $E$, which is not on a triangle.  This labelled graph property is preserved by isomorphism and by a redirection confined to the unique triangle.  Therefore the two topologies are neither isomorphic nor $\Tmove$-equivalent.
+\end{proof}
+
+\subsection{Exact common JC point}
+
+Write every edge multiplier as $x_e\in(0,1)$ and let $\lambda_C,\lambda_F\in(0,1)$ be the two inheritance probabilities.  It is convenient to suppress the root and use the effective product on the root-split $A-C$ edge.  A rooted realization is recovered by the strict factorization
+\begin{equation}\label{eq:theta-root-factor}
+ x_{\rho A}=\frac23,\qquad x_{\rho C}=\frac34,
+ \qquad x_{\rho A}x_{\rho C}=\frac12.
+\end{equation}
+
+For $N$, take
+\begin{equation}\label{eq:theta-source-point}
+\begin{gathered}
+ x_{D2}=\frac12,\quad x_{DE}=\frac25,\quad x_{E4}=\frac38,
+ \quad x_{EF}=\frac13,\quad x_{F3}=\frac12,\\
+ x_{CD}=\frac9{20},\quad x_{AB}=\frac35,\quad x_{B1}=\frac15,\\
+ x_{AC}=x_{AF}=x_{BC}=\frac12,
+ \qquad \lambda_C=\lambda_F=\frac12.
+\end{gathered}
+\end{equation}
+Let $\beta$ be the smaller real root of
+\begin{equation}\label{eq:beta-polynomial}
+43337075\beta^2-36083110\beta+7336259=0,
+\qquad
+\frac{441}{1250}<\beta<\frac{3529}{10000}.
+\end{equation}
+For $N'$, take
+\begin{equation}\label{eq:theta-target-point}
+\begin{gathered}
+ x_{D2}=\frac12,\qquad x_{DE}=\frac{171}{775},\qquad
+ x_{AF}=\frac{10339}{53010\beta},\\
+ x_{AB}=\frac{24835\beta}{20678-24835\beta},\qquad
+ x_{F3}=\frac{1767}{4832},\qquad x_{CD}=\frac{9934}{12215},\\
+ x_{E1}=\frac{31}{190},\qquad x_{B4}=\frac{3}{20\beta},\\
+ x_{AC}=x_{EF}=x_{BC}=\frac12,
+ \qquad \lambda_C=\lambda_F=\frac12.
+\end{gathered}
+\end{equation}
+The isolating interval in \eqref{eq:beta-polynomial} proves directly that every quantity in \eqref{eq:theta-target-point} lies strictly between zero and one.
+
+The four-leaf JC orbit space has fourteen nonconstant coordinates.  In the ordering
+\[
+(A,B,C,D,E,F,G,H,J,K,L,M,N,O)
+\]
+used in \cref{app:theta-data}, the common point is
+\begin{align}
+(A,\ldots,H)&=
+\left(
+\frac{277}{8000},\frac3{40},\frac{67}{2400},\frac{127}{16000},
+\frac{27}{5000},\frac{81}{5000},\frac{153}{160000},\frac9{500}
+\right),\label{eq:theta-common-first}\\
+(J,\ldots,O)&=
+\left(
+\frac{27}{16000},\frac{261}{320000},\frac{27}{10000},
+\frac{27}{20000},\frac{153}{320000},\frac{183}{80000}
+\right).\label{eq:theta-common-second}
+\end{align}
+
+\begin{proposition}[Exact Fourier equality]\label{prop:theta-equality}
+Substitution of \eqref{eq:theta-source-point} and \eqref{eq:theta-target-point} into the displayed-tree formula \eqref{eq:fourier-network} gives identical values for all $256$ four-leaf Fourier coordinates, and hence for all $256$ pattern probabilities.
+\end{proposition}
+
+\begin{proof}
+Coordinates with nonzero total character sum vanish on both sides.  The remaining coordinates reduce, under JC character symmetry, to the fourteen entries in \eqref{eq:theta-common-first}--\eqref{eq:theta-common-second}.  For the source, direct rational substitution gives those values.  For the target, clear the denominators and reduce every numerator difference modulo the quadratic polynomial in \eqref{eq:beta-polynomial}; each remainder is zero.  The complete list of orbit representatives and the exact sparse reductions appear in \cref{app:theta-data}, and the independent verifier evaluates the unreduced $256$-coordinate tensors directly.  The inverse Fourier transform is linear and invertible, so the pattern distributions agree as well.
+\end{proof}
+
+\subsection{A common regular eight-dimensional germ}
+
+The equality at one point is not enough for the sharpness theorem.  We now show that the intersection contains a full-dimensional regular neighborhood.
+
+Both parameterizations satisfy the six equations
+\begin{align}
+J-K-M+N&=0,\label{eq:theta-inv1}\\
+J-AH-BF+CE&=0,\label{eq:theta-inv2}\\
+GL-EN&=0,\label{eq:theta-inv3}\\
+L^2-BEH&=0,\label{eq:theta-inv4}\\
+BM-DL-B^2F+BCE&=0,\label{eq:theta-inv5}\\
+BEO-BGH-CEL+DEH&=0.\label{eq:theta-inv6}
+\end{align}
+On the physical locus $BE>0$, five of these reconstruct $J,K,M,N,O$ from
+$(A,B,C,D,E,F,G,H,L)$, while \eqref{eq:theta-inv4} gives
+\[
+L=+\sqrt{BEH}.
+\]
+Thus the physical main locus is a smooth sheet of the irreducible variety with localized coordinate ring
+\begin{equation}\label{eq:theta-coordinate-ring}
+\mathbb C[A,B,C,D,E,F,G,H,L,(BE)^{-1}]/(L^2-BEH),
+\end{equation}
+which has dimension eight.  Smoothness on the open locus follows from
+$\partial(L^2-BEH)/\partial H=-BE\ne0$.
+
+For the source, fix
+\[
+x_{AC}=x_{AF}=x_{BC}=\lambda_C=\lambda_F=\frac12
+\]
+and use the eight variables
+\[
+(P,s,Q,t,R,u,v,S)
+=(x_{D2},x_{DE},x_{E4},x_{EF},x_{F3},x_{CD},x_{AB},x_{B1}).
+\]
+The Jacobian determinant of the map to $(A,\ldots,H)$ is
+\begin{equation}\label{eq:theta-source-jac}
+-\frac{P^3s^3Q^4tR^4u^3vS^3(s-1)^2(v-1)(v+1)^2}{16384},
+\end{equation}
+which is nonzero at \eqref{eq:theta-source-point}.  For the target, fix
+\[
+x_{AC}=x_{EF}=x_{BC}=\lambda_C=\lambda_F=\frac12
+\]
+and use
+\[
+(P',x,y,z,R',w,S',Q')
+=(x_{D2},x_{DE},x_{AF},x_{AB},x_{F3},x_{CD},x_{E1},x_{B4}).
+\]
+The corresponding determinant is
+\begin{equation}\label{eq:theta-target-jac}
+-\frac{(P')^3x^2y^2z(R')^4w^4(S')^3(Q')^4
+(x-1)^2(z-1)(z+1)^3}{32768},
+\end{equation}
+which is nonzero throughout the open target point \eqref{eq:theta-target-point}.
+
+\begin{corollary}[Four-leaf regular overlap]\label{cor:theta-four-leaf}
+The two four-leaf JC images share a relatively open regular eight-dimensional subset.  In particular, $N\bowtieJC N'$.
+\end{corollary}
+
+\begin{proof}
+The six identities place both images in the same irreducible eight-dimensional locus \eqref{eq:theta-coordinate-ring}.  Equations \eqref{eq:theta-source-jac} and \eqref{eq:theta-target-jac} show that each image is locally an open eight-dimensional submanifold of the positive smooth sheet at their common point.  Their two image neighborhoods therefore have a nonempty relative intersection in that sheet.
+\end{proof}
+
+\subsection{The extra parameter defect}
+
+The eight-dimensional result has one more generic fiber dimension than the standard local edge gauges alone predict.  This point matters for the all-$n$ dimension formula.
+
+A rooted binary network with $n$ leaves and $r$ reticulations has
+\begin{equation}\label{eq:sharp-edge-count}
+E=2n+3r-2
+\end{equation}
+network edges; see \cref{app:dimensions}.  For $r=2$, the raw JC parameter count is
+$E+r=2n+6$.  The ordinary root-split gauge and two local gauges at each reticulation account for five generic fiber dimensions, suggesting the upper value $2n+1$.  For the Theta topology there is one further generic dependence.  At $n=4$, the exact implicit description \eqref{eq:theta-coordinate-ring} and the nonzero determinants above prove dimension eight rather than nine.  Equivalently, the generic fiber has dimension six rather than five.  This extra one-dimensional defect persists under the leaf substitutions below because each substitution contributes two new identifiable arm multipliers and does not interact with the original fiber.
+
+\subsection{Leaf substitution and the all-\texorpdfstring{$n$}{n} family}
+
+Let $P$ be the Fourier tensor of either member of the four-leaf pair, written with one selected leaf port $a$.  Replace $a$ by a cherry with new leaves $1,2$ and edge multipliers $u,v\in(0,1)$.  If $g_X$ denotes the characters on all other leaves, then
+\begin{equation}\label{eq:theta-leaf-substitution}
+\widetilde P(g_X,g_1,g_2)
+=P(g_X,g_1\oplus g_2)
+ u^{\mathbf1[g_1\ne0]}v^{\mathbf1[g_2\ne0]}.
+\end{equation}
+For any nonzero $h\in G$, positivity gives
+\begin{align}
+uv&=\widetilde P(0,h,h),\label{eq:theta-cherry-product}\\
+\frac uv&=
+\frac{\widetilde P(g_X,h,0)}{\widetilde P(g_X,0,h)}
+\quad\text{whenever }\bigoplus g_X=h.
+\label{eq:theta-cherry-ratio}
+\end{align}
+Hence $u$ and $v$ are recovered uniquely by the positive square root, after which $P$ is recovered from \eqref{eq:theta-leaf-substitution}.  Leaf substitution is therefore a positive analytic embedding with a positive analytic inverse onto its image.  Replacing corresponding leaves of $N$ and $N'$ by the same rooted binary tree preserves the common tensor equality and adds exactly two model dimensions for every new leaf.
+
+The standard semi-directed graphs remain nonisomorphic and non-$\Tmove$-equivalent because restricting to one chosen descendant leaf in every substituted component recovers the original labelled pair.  A tree-child rooting extends through every substituted rooted tree, while each original non-tree-child admissible rooting remains non-tree-child after substitution.  Thus membership in $\TCw\setminus\TCs$ is preserved.
+
+Starting from the eight-dimensional four-leaf pair and applying $n-4$ cherry substitutions yields
+\[
+\dim \M_{N_n}^{\JC}
+=\dim \M_{N_n'}^{\JC}
+=8+2(n-4)=2n.
+\]
+The analytic inverse shows that the common open germ also gains two dimensions at every step.  This proves \cref{thm:sharpness} for every $n\ge4$.

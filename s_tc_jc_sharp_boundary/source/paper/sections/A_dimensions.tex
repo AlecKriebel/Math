@@ -1,0 +1,46 @@
+\section{Dimension and gauge calculations}\label{app:dimensions}
+
+This appendix collects the dimension bounds used in the finite local atlases and explains how exact Jacobian minors certify equality.
+
+\subsection{Binary network counts}
+
+Let a rooted binary network have $n$ leaves, $r$ reticulations, and $t$ tree vertices other than the root.  Summing indegrees and outdegrees gives
+\[
+E=t+2r+n=2+2t+r.
+\]
+Hence
+\[
+t=n+r-2,
+\qquad
+E=2n+3r-2.
+\]
+The raw JC parameter count is $E+r=2n+4r-2$.
+
+For a lifted incoming-port local factor, the root lies outside the blob and the two root arms enter only through one product, giving one root-split gauge.  Suppose in addition that the three-edge neighborhoods of the reticulations are disjoint, as they are in the bounded cycle and theta parameterizations used here.  At a reticulation with incoming multipliers $a,b$, outgoing multiplier $c$, and inheritance $\lambda$, the local contribution for a nonzero descendant character is determined by
+\[
+\lambda ac,
+\qquad
+(1-\lambda)bc.
+\]
+For zero descendant character the two parent choices combine to one.  Thus the four raw local parameters contain two independent gauge directions.  The resulting upper bound is
+\begin{equation}\label{eq:dimension-gauge-upper}
+\dim \V_N^{\JC}
+\le E+r-(1+2r)=2n+2r-3.
+\end{equation}
+For the seven-outgoing comparison, the incoming port makes $n=8$.  The cycle has $r=1$ and therefore dimension at most $15$; the core-3 theta has $r=2$ and dimension at most $17$.
+
+The disjoint-neighborhood hypothesis in this counting lemma is not asserted for every possible level-2 parameterization.  When it does not apply, dimensions are computed from an explicit gauge chart or from the complete symbolic Jacobian.  The global theorem itself needs only the local dimensions certified in the finite atlas.
+
+\subsection{Jacobian certification}
+
+Let $J(\theta)$ be an $m\times p$ Jacobian matrix with entries in $\mathbb Z[\theta]$ after clearing denominators.  If a $d\times d$ minor has a nonzero value modulo a prime at some parameter assignment, its determinant is a nonzero polynomial over $\mathbb Z$ and hence over $\mathbb Q$.  Therefore the generic rank is at least $d$.  Combined with a structural upper bound such as \eqref{eq:dimension-gauge-upper}, this proves the exact model dimension.
+
+The seven-port certificate stores one selected minor for each of seven cycle side-count profiles and each of sixty-five core-3 theta count profiles represented among the $1{,}686$ completions.  The primary and independent implementations reconstruct the parameterizations from the primitive graphs and re-evaluate all stored minors modulo $1{,}000{,}003$.  The resulting ranks are $15$ and $17$, respectively.
+
+For the cut theorem, dimensions are not inferred from sampled rank.  Exact sparse determinant factorizations or tensor-product Bernstein signs prove that the selected wrong-split minor is nonzero at every point of the open cube.  For the Theta sharpness pair, equations \eqref{eq:theta-source-jac} and \eqref{eq:theta-target-jac} are exact rational-function factorizations and prove rank eight directly.
+
+\subsection{The Theta defect}
+
+For the four-leaf Theta pair, $n=4$ and $r=2$, so $E=12$ and the raw parameter count is $14$.  The root-split plus two gauges per reticulation account for five dimensions of the generic fiber, leaving the naive upper count nine.  The actual model has dimension eight.  The six identities \eqref{eq:theta-inv1}--\eqref{eq:theta-inv6} identify its localized main locus with \eqref{eq:theta-coordinate-ring}, while the nonzero rank-eight determinants prove that the image is dense there.  Thus the generic fiber has dimension six: one more than the standard gauge count.
+
+A cherry substitution adds two edge multipliers.  Equations \eqref{eq:theta-cherry-product}--\eqref{eq:theta-cherry-ratio} recover both, so it adds exactly two image dimensions and no new fiber defect.  Induction therefore gives dimension $8+2(n-4)=2n$ for the all-$n$ sharpness family.

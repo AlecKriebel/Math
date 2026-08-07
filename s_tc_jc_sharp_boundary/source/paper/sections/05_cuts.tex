@@ -1,0 +1,119 @@
+\section{Pointwise recovery of bridge splits}\label{sec:cuts}
+
+Generic split recovery from flattening ranks is standard in latent-tree models, but one-sided containment requires a stronger statement.  A source model could, a priori, lie inside the rank-exceptional locus of a larger target.  We therefore prove a pointwise theorem on the complete open JC domain.
+
+For a leaf split $A\mid B$, write $\operatorname{Flat}_{A\mid B}(p)$ for the ordinary pattern-probability flattening.  The Fourier transform acts invertibly and separately on the two sides, so its rank equals the rank of the corresponding Fourier flattening.
+
+\begin{theorem}[Pointwise cut characterization]\label{thm:pointwise-cut}
+Let $N$ be a binary standard semi-directed $\TCs$ level-2 network, and let $p\in\M_N^{\JC}$.  For every nontrivial leaf split $A\mid B$,
+\[
+\rank\operatorname{Flat}_{A\mid B}(p)\le4
+\quad\Longleftrightarrow\quad
+A\mid B\text{ is induced by a bridge of }N.
+\]
+This holds at every point of the open parameter domain, not only generically.
+\end{theorem}
+
+The forward implication for a true bridge is immediate from conditional independence at the hidden four-state variable.  The converse is local.  Choose a crossing quartet and contract irrelevant pendant paths into effective multipliers.  If the crossing is contained in one blob, a finite one-active atlas supplies a nonzero wrong-split minor unless the tested split is a true bridge in every switching.  If the crossing passes through a bridge joining two active blob endpoints, the following endpoint calculation applies.
+
+\subsection{Three-boundary endpoint tensors}
+
+Normalize a three-boundary JC tensor by its zero coordinate and choose a fixed nonzero character.  By JC symmetry, the four relevant coordinates may be written
+\[
+(1,a,b,c,t),
+\]
+where $a,b,c$ are the three pair coordinates and $t$ is the all-distinct zero-sum coordinate.  Put
+\[
+\Delta=abc-t^2,
+\qquad
+\Gamma=a-bc.
+\]
+The roles of $a,b,c$ can be permuted according to which boundary is designated as the bridge interface.
+
+\begin{lemma}[Endpoint dichotomy]\label{lem:endpoint-dichotomy}
+Every open three-boundary endpoint tensor arising from an admissible root, cycle, or theta completion in the stated class satisfies exactly one of
+\begin{align}
+\Delta&>0,\label{eq:endpoint-positive}\\
+\Delta&=0\quad\text{and}\quad \Gamma>0.\label{eq:endpoint-zero}
+\end{align}
+The complete canonical endpoint universe has $177$ types: $151$ satisfy \eqref{eq:endpoint-positive} and $26$ satisfy \eqref{eq:endpoint-zero}.
+\end{lemma}
+
+\begin{proof}
+Suppress ordinary boundary paths into products of edge multipliers.  By the level-2 generator theorem and the strong local criterion, every possible endpoint is obtained from one cycle or theta core, one admissible interface role, and a minimal strong repair.  The independent enumerators described in \cref{sec:computation} canonicalize these objects before evaluating their displayed-tree tensors.
+
+For each type, $\Delta$ and, when necessary, $\Gamma$ are expanded in the tensor-product Bernstein basis on the edge and inheritance cube.  In $151$ cases every Bernstein coefficient of $\Delta$ is nonnegative and at least one coefficient active in the open cube is positive.  In the remaining $26$ cases $\Delta$ is the zero polynomial and the same test applied to $\Gamma$ is strictly positive.  Since every Bernstein basis function is positive in the open cube, the stated signs follow.  The reviewer independently regenerates the canonical types, rather than reading the primary list as input.
+\end{proof}
+
+The identity $\Delta=0$ is the tree-like boundary equation.  The strict inequality $a>bc$ in the second branch is the extra information needed when two such tree-like endpoints are joined.
+
+\subsection{One active crossing}
+
+Suppose a crossing quartet meets one active blob and otherwise passes through ordinary bridge paths.  After path contraction, there are four boundary ports and a proposed wrong split.
+
+\begin{lemma}[One-active crossing]\label{lem:one-active}
+Among the $453$ canonical one-active crossing tensor types, $421$ possess a Fourier minor of the wrong-split flattening with a fixed nonzero sign throughout the open parameter cube.  In the remaining $32$ types every wrong-split block is rank one identically, and the tested split is a genuine bridge split in every displayed switching.
+\end{lemma}
+
+\begin{proof}
+The universe is generated from the primitive cycle/four-theta cores, all admissible interface roles, and every minimal strong repair.  Canonical mixed-graph encodings remove duplicates.  For each non-bridge type the verifier enumerates the $2\times2$ Fourier block minors and selects one whose polynomial is nonzero.  Exact factorization or tensor-product Bernstein expansion proves a fixed sign over the open cube.  The $32$ residual signatures are checked graphically: deleting the designated edge disconnects the selected leaf pairs in every parent switching, so the rank-one behavior comes from a true bridge rather than an accidental degeneracy.
+\end{proof}
+
+\input{figures/fig_cuts}
+
+\subsection{Two active endpoints}
+
+Now suppose the crossing quartet has two active endpoint tensors joined by a bridge of multiplier $z\in(0,1)$.  Let their normalized coordinates be
+\[
+(a,b,c,t),
+\qquad
+(A,B,C,T).
+\]
+Direct Fourier contraction gives four wrong-split $2\times2$ minors:
+\begin{align}
+m_0&=aA-bcBCz^2,\label{eq:m0}\\
+m_1&=(aA-Ttz)(aA+Ttz),\label{eq:m1}\\
+m_2&=aA^2-bcT^2z^2,\label{eq:m2}\\
+m_3&=a^2A-t^2BCz^2.\label{eq:m3}
+\end{align}
+All factors not shown have been divided out only after being verified strictly positive on the open domain.
+
+\begin{lemma}[Two-active contradiction]\label{lem:two-active}
+The four minors \eqref{eq:m0}--\eqref{eq:m3} cannot vanish simultaneously for a wrong split.
+\end{lemma}
+
+\begin{proof}
+Assume all four vanish.  Positivity makes $aA+Ttz>0$, so \eqref{eq:m1} gives
+\[
+aA=Ttz.
+\]
+Combining this identity with \eqref{eq:m2} and \eqref{eq:m3}, and cancelling positive factors, yields
+\[
+ABC=T^2,
+\qquad
+abc=t^2.
+\]
+Thus both endpoint tensors lie in the zero branch of \cref{lem:endpoint-dichotomy}, and therefore
+\[
+a>bc,
+\qquad
+A>BC.
+\]
+Multiplying gives $aA>bcBC$.  On the other hand, \eqref{eq:m0} gives
+\[
+aA=bcBCz^2<bcBC,
+\]
+because $0<z<1$.  This is impossible.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:pointwise-cut}]
+If $A\mid B$ is a bridge split, \cref{prop:bridge-factorization} gives rank at most four.  Conversely, take a crossing quartet for a non-bridge split in the homeomorphism-reduced bridge tree.  Contract ordinary paths and suppress irrelevant components.  The central crossing either lies in one active factor, where \cref{lem:one-active} gives a nonzero wrong-split minor, or joins two active endpoints across a bridge, where \cref{lem:two-active} gives a contradiction to wrong-split rank one.  The quartet minor is a minor of a marginal of the full flattening; rank greater than four for the quartet therefore forces rank greater than four globally.
+\end{proof}
+
+\begin{corollary}[Cut preservation under one-sided containment]\label{cor:cut-preservation}
+If $N\preceqJC N'$, then $N$ and $N'$ have the same nontrivial bridge splits and hence isomorphic labelled homeomorphism-reduced bridge trees.
+\end{corollary}
+
+\begin{proof}
+Choose a source-relative open subset contained in the target.  At every common open stochastic point, \cref{thm:pointwise-cut} characterizes the cut splits from the distribution alone.  Thus the split sets agree.  A compatible set of labelled nontrivial splits determines the unique homeomorphism-reduced tree: after fixing a reference leaf, the sides not containing it form a laminar family ordered by inclusion.
+\end{proof}

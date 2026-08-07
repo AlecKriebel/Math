@@ -1,0 +1,54 @@
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[scale=.72, every node/.style={font=\scriptsize}]
+% helper positions manually
+% cycle
+\begin{scope}[shift={(0,3.2)}]
+\node[treev] (s) at (-1.5,0) {$S$}; \node[reticv] (x) at (1.5,0) {$X$};
+\draw[reticedge] (s) .. controls (-.5,.8) and (.5,.8) .. (x);
+\draw[reticedge] (s) .. controls (-.5,-.8) and (.5,-.8) .. (x);
+\node at (0,1.3) {cycle core};
+\end{scope}
+% theta 0
+\begin{scope}[shift={(4.6,3.2)}]
+\node[treev] (u) at (-1.6,0) {$U$}; \node[treev] (v) at (1.6,0) {$V$};
+\node[root] (s) at (0,1.15) {$S$}; \node[reticv] (x1) at (0,-1.1) {$X_1$}; \node[reticv] (x2) at (0,0) {$X_2$};
+\draw[dir] (s)--(u); \draw[dir] (s)--(v);
+\draw[reticedge] (u)--(x2); \draw[reticedge] (v)--(x2);
+\draw[reticedge] (u)--(x1); \draw[reticedge] (v)--(x1);
+\node at (0,1.75) {theta core 0};
+\end{scope}
+% theta 1 schematic
+\begin{scope}[shift={(9.2,3.2)}]
+\node[treev] (u) at (-1.6,0) {$U$}; \node[treev] (v) at (1.6,0) {$V$};
+\node[root] (s) at (-.45,1.15) {$S$}; \node[reticv] (x1) at (.45,-1.1) {$X_1$}; \node[reticv] (x2) at (1.6,0) {$V$};
+\draw[dir] (s)--(u); \draw[dir] (s)--(x2);
+\draw[reticedge] (u)--(x2); \draw[reticedge] (u)--(x1); \draw[reticedge] (x2)--(x1);
+\draw[ordinary] (u) .. controls (0,-.35) .. (x2);
+\node at (0,1.75) {theta core 1};
+\end{scope}
+% theta 2
+\begin{scope}[shift={(2.3,-.35)}]
+\node[treev] (u) at (-1.6,0) {$U$}; \node[reticv] (v) at (1.6,0) {$V$};
+\node[root] (s) at (0,1.15) {$S$}; \node[reticv] (x) at (0,-1.1) {$X$};
+\draw[dir] (s)--(u); \draw[reticedge] (s)--(v);
+\draw[reticedge] (u)--(v); \draw[reticedge] (u)--(x); \draw[reticedge] (v)--(x);
+\draw[ordinary] (u) .. controls (0,-.35) .. (v);
+\node at (0,1.75) {theta core 2};
+\end{scope}
+% core3 exact
+\begin{scope}[shift={(7.4,-.35)}]
+\node[treev] (u) at (-1.8,0) {$U$}; \node[reticv] (v) at (1.8,0) {$V$};
+\node[root] (s) at (0,1.3) {$S$}; \node[reticv] (x) at (0,-1.25) {$X$};
+\draw[reticedge] (u)--(v) node[midway,above] {$UV$};
+\draw[dir] (s)--(u) node[midway,above left] {$SU$};
+\draw[reticedge] (s)--(v) node[midway,above right] {$SV$};
+\draw[reticedge] (u)--(x) node[midway,below left] {$UX$};
+\draw[reticedge] (v)--(x) node[midway,below right] {$VX$};
+\node at (0,1.9) {theta core 3};
+\end{scope}
+\node[align=center,text width=10.7cm] at (4.6,-3.05) {Ports arise by subdividing directed core segments with ordinary tree vertices carrying cut-edge components. The four theta cores are the complete orientation list after branch reversal and path permutation; the diagrams are schematic, while core 3 is labelled in the segment convention used in the seven-port proof.};
+\end{tikzpicture}
+\caption{The cycle core and four oriented theta cores. The exact machine encodings, rather than the drawings, define the finite atlas.}
+\label{fig:cores}
+\end{figure}

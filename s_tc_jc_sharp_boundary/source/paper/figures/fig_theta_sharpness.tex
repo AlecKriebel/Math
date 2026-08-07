@@ -1,0 +1,35 @@
+\begin{figure}[p]
+\centering
+\begin{tikzpicture}[scale=.70,every node/.style={font=\scriptsize}]
+\newcommand{\thetablob}[2]{%
+\begin{scope}[shift={(#1,0)}]
+\node[treev] (A#2) at (0,2.2) {$A$}; \node[treev] (B#2) at (-1.4,1.2) {$B$};
+\node[reticv] (C#2) at (0,0) {$C$}; \node[treev] (D#2) at (1.3,-.8) {$D$};
+\node[treev] (E#2) at (2.35,.1) {$E$}; \node[reticv] (F#2) at (2.0,1.55) {$F$};
+\draw[reticedge] (A#2)--(C#2); \draw[ordinary] (A#2)--(B#2); \draw[reticedge] (B#2)--(C#2);
+\draw[ordinary] (C#2)--(D#2); \draw[ordinary] (D#2)--(E#2); \draw[reticedge] (A#2)--(F#2); \draw[reticedge] (E#2)--(F#2);
+\end{scope}}
+\thetablob{-5}{L}
+\thetablob{3.5}{R}
+% left leaves
+\node[leaf] (l1) at (-7.1,1.2) {$1$}; \node[leaf] (l2) at (-3.7,-1.8) {$2$}; \node[leaf] (l3) at (-3,2.35) {$3$}; \node[leaf] (l4) at (-1.85,-.55) {$4$};
+\draw (BL)--(l1); \draw (DL)--(l2); \draw (FL)--(l3); \draw (EL)--(l4);
+\node[font=\bfseries] at (-3.8,3.5) {$N$};
+% right leaves swapped 1,4
+\node[leaf] (r4) at (1.4,1.2) {$4$}; \node[leaf] (r2) at (4.8,-1.8) {$2$}; \node[leaf] (r3) at (5.5,2.35) {$3$}; \node[leaf] (r1) at (6.65,-.55) {$1$};
+\draw (BR)--(r4); \draw (DR)--(r2); \draw (FR)--(r3); \draw (ER)--(r1);
+\node[font=\bfseries] at (4.7,3.5) {$N'$};
+\draw[<->,very thick] (-.75,1.2)--(.65,1.2) node[midway,above] {$\Theta$};
+\node[align=center,text width=11.5cm] at (0,-3.2) {The pendant components at $B$ and $E$ are exchanged. The two standard semi-directed graphs are nonisomorphic and not $\Tmove$-equivalent. Each has five admissible rootings, exactly two tree-child, so both lie in $\TCw\setminus\TCs$.};
+
+% leaf substitution schematic
+\node[leaf] (p) at (-1.3,-5.2) {$i$};
+\draw[-{Stealth[length=2.5mm]},thick] (-.5,-5.2)--(.8,-5.2) node[midway,above]{substitute};
+\node[treev] (t) at (2,-5.2) {};
+\node[leaf] (q1) at (3.25,-4.55) {$i_1$}; \node[leaf] (q2) at (3.25,-5.85) {$i_2$};
+\draw (t)--(q1) node[midway,above] {$u$}; \draw (t)--(q2) node[midway,below] {$v$};
+\node[align=center,text width=7cm] at (0,-7.15) {$\widetilde P(g_X,g_1,g_2)=P(g_X,g_1\oplus g_2)u^{\mathbf1[g_1\ne0]}v^{\mathbf1[g_2\ne0]}$};
+\end{tikzpicture}
+\caption{The Theta sharpness pair and identical leaf substitution. Repeated substitution gives a non-$\Tmove$ ambiguity in $\TCw\setminus\TCs$ for every $n\ge4$.}
+\label{fig:theta-sharpness}
+\end{figure}

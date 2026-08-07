@@ -1,0 +1,120 @@
+\section{Fourier factorization and analytic bridge peeling}\label{sec:bridges}
+
+This section develops the local coordinates used in the global proof.  The key point is not merely that a bridge tensor factors entrywise.  We identify the complete reciprocal gauge group, choose analytic gauge slices, and prove a local product theorem in which local tensor variations and bridge variations are independent at a regular point.
+
+\subsection{Rank-one character blocks}
+
+Let $e$ be a bridge of a network $N$, inducing the nontrivial leaf split $A\mid B$.  Cut $e$ at an interior point and regard the two halves as boundary ports.  For a zero-sum assignment $g=(g_A,g_B)$ put
+\[
+h=\bigoplus_{i\in A}g_i=\bigoplus_{j\in B}g_j.
+\]
+The equality follows because the group has exponent two and the total sum is zero.
+
+\begin{proposition}[Bridge factorization]\label{prop:bridge-factorization}
+At every open JC parameter point, the Fourier tensor satisfies
+\begin{equation}\label{eq:bridge-factor}
+F_h(g_A,g_B)=P_A(g_A,h)\,x_e^{\mathbf 1[h\ne0]}\,P_B(g_B,h),
+\end{equation}
+where $P_A$ and $P_B$ are positive boundary tensors of the two cut components.  For fixed $h$, the matrix with rows indexed by $g_A$ and columns indexed by $g_B$ has rank one and strictly positive entries.
+\end{proposition}
+
+\begin{proof}
+Condition on the state at an interior point of $e$.  In probability coordinates the two sides are conditionally independent given this four-state variable.  Applying the group Fourier transform diagonalizes the transition kernel on $e$ and separates the character sum $h$.  The trivial character has edge multiplier one; every nontrivial character has multiplier $x_e$.  This gives \eqref{eq:bridge-factor}.  Positivity follows from $x_e\in(0,1)$ and positivity of every stochastic transition and inheritance weight.
+\end{proof}
+
+\input{figures/fig_bridge_factorization}
+
+\subsection{The reciprocal gauge group}
+
+For a fixed character block, a positive rank-one matrix $F_h=L_hR_h^{\mathsf T}$ determines its two factors only up to
+\[
+(L_h,R_h)\longmapsto(c_hL_h,c_h^{-1}R_h),\qquad c_h>0.
+\]
+Normalization fixes $c_0=1$.  The JC symmetry identifies the remaining three scalars.
+
+\begin{lemma}[Complete bridge gauge]\label{lem:bridge-gauge}
+The complete factorization ambiguity in \cref{prop:bridge-factorization} is one positive scalar $c_e$ per bridge:
+\begin{equation}\label{eq:jc-gauge}
+P_A(g_A,h)\longmapsto c_e^{\mathbf1[h\ne0]}P_A(g_A,h),
+\qquad
+P_B(g_B,h)\longmapsto c_e^{-\mathbf1[h\ne0]}P_B(g_B,h).
+\end{equation}
+There are no additional character-dependent gauges compatible with the JC symmetry.
+\end{lemma}
+
+\begin{proof}
+Rank-one uniqueness gives a scalar $c_h$ for each character-sum block.  The normalized zero block has $c_0=1$.  Every local JC tensor is invariant under the action of $\operatorname{Aut}(G)\cong S_3$ on the nonzero characters.  Applying an automorphism to the factorization of a positive entry shows $c_{\alpha h}=c_h$.  Since the action is transitive on $G\setminus\{0\}$, the three nonzero scalars coincide.  This common value is $c_e$.
+\end{proof}
+
+Because the bridge graph is a tree, the gauges in \eqref{eq:jc-gauge} cannot circulate.  Choose a root component of the bridge tree and peel outward.  At each cut, fix one positive anchor entry on the parent side and absorb the reciprocal scalar into the child side.  The process uniquely fixes every local projective tensor.
+
+\begin{lemma}[Anchor reconstruction]\label{lem:anchor}
+Let $F=(F_{ij})$ be a positive rank-one matrix and fix an anchor $(i_0,j_0)$.  Then
+\[
+L_i=F_{i j_0},
+\qquad
+R_j=\frac{F_{i_0j}}{F_{i_0j_0}}
+\]
+reconstruct a factorization $F_{ij}=L_iR_j$.  These formulas are real analytic on the positive rank-one locus.
+\end{lemma}
+
+\begin{proof}
+The rank-one identities give $F_{ij}F_{i_0j_0}=F_{ij_0}F_{i_0j}$.  Positivity makes the denominator nonzero.  Analyticity is immediate.
+\end{proof}
+
+\subsection{Analytic peeling charts}
+
+Let $\mathcal T$ be a fixed labelled bridge tree.  For each vertex $v$ of $\mathcal T$, let $\mathcal L_v$ be the local boundary-tensor model of its component, with one boundary index for each incident bridge.  Let $J$ index the bridges.  The contraction map
+\[
+\Gamma:\left(\prod_v\mathcal L_v\right)\times(0,1)^J\longrightarrow\mathbb R^{4^{|X|}}
+\]
+contracts matching boundary characters and inserts the bridge multipliers.
+
+The local models contain redundant arm scalings.  Fix positive anchor entries for each incident bridge and impose one analytic normalization equation for each reciprocal gauge.  Denote the resulting slices by $\mathcal S_v$.
+
+\begin{theorem}[Analytic bridge-peeling chart]\label{thm:peeling-chart}
+Let $p$ be a positive regular point of a network model with bridge tree $\mathcal T$.  After choosing positive anchors, there are neighborhoods $U_v\subseteq\mathcal S_v$ of the extracted local tensors and intervals $I_e\subset(0,1)$ such that the contraction map restricts to a real-analytic diffeomorphism from
+\begin{equation}\label{eq:product-chart}
+\prod_{v\in V(\mathcal T)}U_v\times\prod_{e\in E(\mathcal T)} I_e
+\end{equation}
+onto a relative neighborhood of $p$ in the model image.  The only quotient removed in forming the slices is the reciprocal gauge group of \cref{lem:bridge-gauge}.
+\end{theorem}
+
+\begin{proof}
+Peel the bridge tree from its leaves.  At a leaf component, every character block of the incident cut flattening is a positive rank-one matrix.  The anchor formulas of \cref{lem:anchor} recover the boundary tensor of the leaf component and the complementary tensor of the remaining network, up to the single JC gauge.  The chosen normalization fixes this gauge analytically.  Remove the leaf component and iterate.  Since the bridge graph is a tree, every bridge is processed exactly once and no consistency equation appears around a cycle.
+
+The reconstruction formulas define a real-analytic left inverse to $\Gamma$ on the positive rank-one locus satisfying the fixed anchors.  Conversely, contraction gives a right inverse.  At a regular point the source tangent rank equals the sum of the sliced local ranks and the bridge directions: the Jacobian is block triangular after ordering variables by the peeling sequence, and each diagonal block is the corresponding local tangent block or a nonzero bridge derivative.  The constant-rank theorem therefore gives the claimed product neighborhood and analytic diffeomorphism.
+\end{proof}
+
+The point of the last statement is that the product structure is intrinsic near a regular source point.  We do not assume that a target preimage of the same distribution is regular.
+
+\subsection{Tripod gluing and contextual contraction}
+
+A particularly useful special case glues two boundary tensors through a new tripod.  Let $P$ be a normalized positive Fourier tensor on $X\cup\{a\}$ and $Q$ one on $Y\cup\{b\}$.  Delete the terminal leaves $a,b$, join the exposed edges to a new tree vertex, and attach a new leaf $c$ with multiplier $z\in(0,1)$.  With
+\[
+h_X=\bigoplus_{i\in X}g_i,
+\qquad
+h_Y=\bigoplus_{j\in Y}g_j,
+\qquad
+h_X\oplus h_Y\oplus g_c=0,
+\]
+the glued tensor is
+\begin{equation}\label{eq:tripod-glue}
+\widehat\Gamma(g_X,g_Y,g_c)
+=P(g_X,h_X)Q(g_Y,h_Y)z^{\mathbf1[g_c\ne0]}.
+\end{equation}
+For a nonzero character $h$, choose assignments with $h_X=h_Y=h$ and define
+\[
+U=\widehat\Gamma(g_X,0,h),\quad
+V=\widehat\Gamma(0,g_Y,h),\quad
+W=\widehat\Gamma(g_X,g_Y,0).
+\]
+Then
+\begin{equation}\label{eq:tripod-inverse}
+z=\sqrt{\frac{UV}{W}},
+\qquad
+P(g_X,h)=\frac Uz,
+\qquad
+Q(g_Y,h)=\frac Vz.
+\end{equation}
+The positive square root is unique.  These identities prove positivity, dimension additivity, and propagation of a local regular overlap through identical attached components.  More generally, any unchanged network context defines an analytic multilinear contraction in the boundary tensor.  This observation will be used for an embedded triangle whose context reconnects two of its three arms.

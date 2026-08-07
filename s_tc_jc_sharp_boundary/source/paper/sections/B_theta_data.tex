@@ -1,0 +1,57 @@
+\section{Exact data for the Theta sharpness pair}\label{app:theta-data}
+
+This appendix records the exact coordinate convention and certificates used in \cref{sec:sharpness}.  It is included so that the common point and regularity can be checked independently of the machine-readable files.
+
+\subsection{Fourier orbit coordinates}
+
+Identify the nonzero elements of $G=\Ztwo\times\Ztwo$ with $1,2,3$.  The fourteen nonconstant JC coordinate orbits are represented by
+\begin{gather*}
+A=r_{34},\ B=r_{24},\ C=r_{23},\ D=t_{234},\ E=r_{14},\ F=r_{13},\
+G=t_{134},\ H=r_{12},\\
+J=u_{1111},\ K=u_{1122},\ L=t_{124},\ M=u_{1212},\
+N=u_{1221},\ O=t_{123}.
+\end{gather*}
+Here $r_{ij}$ denotes a two-leaf nonzero-character coordinate, $t_{ijk}$ a three-leaf zero-sum coordinate, and $u$ a four-leaf zero-sum coordinate in the indicated character orbit.  Character relabelling supplies all remaining zero-sum coordinates.
+
+At the common point, the values are those in \eqref{eq:theta-common-first}--\eqref{eq:theta-common-second}.  Direct substitution verifies \eqref{eq:theta-inv1}--\eqref{eq:theta-inv6}.  On $BE\ne0$ they reconstruct
+\begin{align*}
+J&=AH+BF-CE,\\
+N&=GL/E,\\
+M&=(DL+B^2F-BCE)/B,\\
+K&=J+N-M,\\
+O&=(BGH+CEL-DEH)/(BE),
+\end{align*}
+with $L^2=BEH$.  This proves the coordinate-ring description \eqref{eq:theta-coordinate-ring}.
+
+\subsection{Exact number field and positivity}
+
+The target field is $\mathbb Q(\beta)$, where $\beta$ satisfies \eqref{eq:beta-polynomial}.  Evaluating the polynomial at the two rational endpoints gives opposite signs, and its discriminant is positive, so the interval isolates the smaller real root.  Rational interval arithmetic applied to each expression in \eqref{eq:theta-target-point} gives
+\[
+0<x_e<1,
+\qquad
+0<\lambda_C,\lambda_F<1.
+\]
+The smallest margins are retained in the exact certificate; no floating-point rounding is used.
+
+For each zero-sum assignment $g\in G^4$, the source value is rational.  The target value is represented as
+\[
+\frac{a_g+b_g\beta}{d_g},
+\qquad a_g,b_g,d_g\in\mathbb Z,
+\]
+after reduction modulo \eqref{eq:beta-polynomial}.  The verifier checks equality with the source by confirming $b_g=0$ and $a_g/d_g$ equal to the source value for all $64$ zero-sum assignments, and then repeats the calculation on all $256$ assignments, including the forced zeros.
+
+\subsection{Jacobian blocks}
+
+The source output block is $(A,B,C,D,E,F,G,H)$ and the source input block is
+\[
+(x_{D2},x_{DE},x_{E4},x_{EF},x_{F3},x_{CD},x_{AB},x_{B1}).
+\]
+After fixing the five parameters stated before \eqref{eq:theta-source-jac}, its determinant factors exactly as \eqref{eq:theta-source-jac}.  The target uses the same output block and the input block
+\[
+(x_{D2},x_{DE},x_{AF},x_{AB},x_{F3},x_{CD},x_{E1},x_{B4}),
+\]
+with determinant \eqref{eq:theta-target-jac}.  Every factor is nonzero at the certified point.  These are ordinary derivatives of the full displayed-tree Fourier parameterizations; they are not determinants of an implicit reconstruction map.
+
+\subsection{Admissible rootings}
+
+The standard mixed graph has retained arrowheads on $A\to C$, $B\to C$, $A\to F$, and $E\to F$.  The independent rooting checker inserts a root on every compatible edge, orients all undirected edges away from it subject to the retained arrowheads, rejects cycles and incorrect bidegrees, and reduces the result back to the original mixed graph.  Five rootings survive.  Root insertions on $A-C$ and $A-F$ are tree-child; the other three are not.  The result is identical for the two pendant placements because rooting depends only on the internal mixed graph.

@@ -1,0 +1,87 @@
+\section{Computer-assisted proof and reproducibility}\label{sec:computation}
+
+The proof combines conceptual arguments valid for arbitrary networks with exact finite calculations.  This section describes where computation enters, why the finite universes are exhaustive, and how the publication archive checks the calculations independently.  The integrity hashes distributed with the archive detect accidental file changes; they are not mathematical evidence.  The mathematical evidence consists of regenerated graphs, exact polynomial identities, sign certificates, and nonzero Jacobian minors.
+
+\subsection{Division between written proof and finite verification}
+
+The following arguments are entirely symbolic and are proved in the body of the paper: Fourier bridge factorization and its reciprocal gauge group; analytic bridge peeling; the two-active-endpoint cut contradiction; reduction of level-2 blobs to a cycle or theta core; the automatic exclusion of multi-triangle weakly tree-child blobs; rigid-support and ordered-word reconstruction; root reduction; semialgebraic localization; and the local-to-global product theorem.
+
+Finite computation is used for five tasks.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item It independently enumerates every binary acyclic rooting of the sole two-triangle level-2 core, $K_4$ minus an edge, as an audit of \cref{thm:automatic-triangle-bound}.
+\item It enumerates all oriented cycle and theta cores satisfying the binary and $\TCs$ conditions, and all bounded port placements required by the rigid-support theorem.
+\item It evaluates exact JC Fourier tensors and exact polynomial invariants on every canonical type, including every directed source--target comparison.
+\item It proves strict open-cube signs by sparse factorization or tensor-product Bernstein coefficients.
+\item It certifies generic model dimensions by exact nonzero Jacobian minors, sometimes first located modulo a prime and then replayed exactly over $\mathbb Q$.
+\end{enumerate}
+No floating-point fit is used to certify an overlap, containment, separation, sign, dimension, or graph count.
+
+\subsection{Primitive graph generation}
+
+The regenerative source begins with the definitions of the two branch vertices, source event, and reticulation events on three theta paths.  It enumerates all placements and path orientations, imposes the required bidegrees, acyclicity, reachability, and the local $\TCs$ criterion, and then quotients by branch reversal and path permutation.  This gives four oriented theta cores.  The cycle core is generated separately.  A separate primitive program starts from the five edges of $K_4$ minus an edge, ranges over every reticulation pair and every internal or external binary root site, and rejects all $25$ valid acyclic presentations as non-tree-child; an independently written C++ program repeats that census without importing the atlas code.  Ordinary port vertices are inserted as ordered words on directed core segments.  Minimum tree-child repairs are generated as minimal hitting sets of the local child obligations, rather than read from a frozen list.
+
+For each bounded support size, canonical mixed-graph codes are computed by colour refinement followed, when necessary, by exact individualization.  Taxon labels and the incoming-port role are included in the colours.  Records are inserted into a dictionary keyed by the complete canonical code, which proves duplicate removal by construction.  A second implementation uses an independent recursive canonicalization and compares the complete set of codes and orbit sizes.
+
+The resulting structural counts are listed in \cref{tab:regen-counts}.  These are outputs of the primitive generators, not assumptions supplied to them.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Finite local universes regenerated in the publication archive.}
+\label{tab:regen-counts}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}X>{\centering\arraybackslash}p{2.6cm}>{\centering\arraybackslash}p{3.2cm}>{\centering\arraybackslash}p{3.0cm}@{}}
+\toprule
+Universe & Sources & Targets or signatures & Strict directed cases\\
+\midrule
+Two-triangle $(1,2,2)$ theta & $25$ rooted presentations & $7$ symmetry orbits & $0$ tree-child survivors\\
+Theta, five outgoing ports & $8{,}520$ & $16{,}590$ & $18{,}480$\\
+Theta, six outgoing ports & $10{,}980$ & $218{,}925$ & $21{,}960$\\
+Strong cycle, three outgoing ports & $9$ & $12$ weak signatures & none survive\\
+Strong cycle, four outgoing ports & $48$ & $63$ weak signatures & no non-$\Tmove$ survivor\\
+Weak cycle, five outgoing ports & --- & $390$ & no theta-source intersection\\
+Weak cycle, six outgoing ports & --- & $2{,}790$ & no theta-source intersection\\
+Residual core-3 completion & $192$ role records & $1{,}686$ completed graphs & all $192$ separated\\
+Cut endpoints & $177$ types & $453$ one-active types & $421$ strict minors\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The $192$ residual records are regenerated as eight role patterns with a free $S_4$ action.  For each record, all legal assignments of the three restored support labels are generated, and only standard $\TCs$ completions are retained.  Canonicalization produces the $1{,}686$ completed mixed graphs used in \cref{thm:seven-separation}.  The independent reviewer starts again from the primitive core and verifies the orbit decomposition, class membership, canonical codes, and the complete displayed-tree monomial schemas.
+
+\subsection{Exact Fourier and invariant arithmetic}
+
+For every rooted realization and every reticulation parent choice, the software deletes the unselected incoming arcs and computes the descendant taxon set of each selected edge.  Formula \eqref{eq:fourier-network} is then evaluated as a sparse polynomial over $\mathbb Z$ or $\mathbb Q$.  Marginal tensors are obtained by setting omitted leaf characters to zero, not by numerical summation.
+
+On a four-port restriction, an edge is represented by the tuple of its descendant masks over all parent choices.  Edges with identical tuples enter every JC monomial together and are replaced by the product of their multipliers.  This produces an exact reduced tensor type.  The finite atlas evaluates a symmetry-complete deck of integer invariants on each type.  The source/target orientation is recorded explicitly.  For a directed containment $\M_{\rm source}\subseteq\M_{\rm target}$, an invariant vanishing on the source and strictly nonzero on the target proves that the open images are disjoint; equal-dimensional closure separation also excludes containment by irreducibility.
+
+The final seven-port calculation does not rely on a zero-signature heuristic.  It expands the complete marginal of each restored label and verifies the factorizations \eqref{eq:orbit649} and \eqref{eq:orbit705} directly from the seven-port displayed-tree formulas.
+
+\subsection{Strict signs}
+
+A factor such as $x$, $1-x$, $1-xy$, or a positive convex combination has an immediate strict sign on $(0,1)^d$.  More complicated multivariate factors are converted exactly to the tensor-product Bernstein basis on $[0,1]^d$.  If all coefficients have one sign and at least one is nonzero, the polynomial has that strict sign on the open cube after any explicitly removed positive factors are restored.  Coefficients are stored as arbitrary-precision integers or rational numbers.
+
+The pointwise cut calculation regenerates $177$ endpoint types and $453$ one-active crossing types.  An independent reviewer recomputes $547$ sparse Bernstein expansions without importing the primary sign routine.  It verifies all $151/26$ endpoint dichotomy cases, all $421$ strict wrong-split minors, and all $32$ rank-one true-bridge cases.  The two-active contradiction is then checked as a formal identity in the nine variables of \cref{lem:two-active}.
+
+\subsection{Exact dimensions and modular discovery}
+
+Jacobian rank is a generic algebraic property.  The archive constructs the symbolic Jacobian of a chosen output coordinate block.  Some useful minors were located by evaluation modulo the prime $1{,}000{,}003$.  A determinant that is nonzero modulo a prime is the reduction of a nonzero integer polynomial, and therefore proves a nonzero minor over $\mathbb Q$.  The publication certificate stores the selected rows, columns, and modular value, and the independent checker re-evaluates each determinant from the primitive parameterization.  The structural gauge upper bounds in \cref{app:dimensions} then prove equality with the claimed model dimensions.
+
+For the Theta sharpness pair, the stronger rational factorizations \eqref{eq:theta-source-jac} and \eqref{eq:theta-target-jac} are checked symbolically.  The target arithmetic is carried out in the exact quadratic field defined by \eqref{eq:beta-polynomial}.
+
+\subsection{Independent replay and release commands}
+
+The archive contains separate primary and adversarial implementations for the automatic triangle bound, the seven-port closure, root reduction, pointwise cut theorem, final synthesis, and publication preflight.  The review implementations do not import the primary graph generators or sign routines.  They reconstruct the relevant objects from primitive encodings and compare complete canonical-code or polynomial sets, not only totals.
+
+From the archive root, the short verification is
+\begin{verbatim}
+python3 verify_release.py
+\end{verbatim}
+and the complete adversarial replay is
+\begin{verbatim}
+python3 verify_release.py --full-adversarial
+\end{verbatim}
+The publication wrapper additionally regenerates the bounded graph universes, builds the manuscript, runs bibliography and PDF preflight checks, and verifies the theorem-to-certificate crosswalk.  Pinned environment files and clean-shell commands are included for both Conda and standard virtual environments.  Measured runtime and peak memory for the distributed environment are reported in \texttt{RUNTIME.md}.
+
+\subsection{Integrity and archival practice}
+
+The archive includes a SHA-256 manifest covering source, certificates, figures, manuscript files, and verification transcripts.  The verifier checks that no required path is missing or duplicated and that generated certificates match the distributed versions.  Hashes serve only as integrity controls.  A mathematical claim is accepted by the release wrapper only after the corresponding generator, exact identity or sign check, and independent review assertion all pass.  The detailed correspondence is given in \cref{app:crosswalk}.

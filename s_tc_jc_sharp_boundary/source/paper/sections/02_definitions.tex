@@ -1,0 +1,132 @@
+\section{Networks, reductions, and stochastic models}\label{sec:definitions}
+
+\subsection{Rooted and standard semi-directed networks}
+
+Let $X$ be a finite set of taxon labels.  A \emph{rooted binary phylogenetic network} on $X$ is a finite directed acyclic graph with no parallel arcs in which: the root has indegree $0$ and outdegree $2$; each leaf has indegree $1$, outdegree $0$, and a distinct label in $X$; each tree vertex has bidegree $(1,2)$; and each reticulation has bidegree $(2,1)$.  An edge is called a \emph{reticulation edge} when its head is a reticulation.  All other edges are ordinary tree edges.
+
+\begin{definition}[Standard semi-directed reduction]
+Given a rooted binary network, its \emph{standard semi-directed reduction} is obtained by retaining the arrowheads on reticulation edges, replacing every ordinary edge by an undirected edge, suppressing the root, and then exhaustively suppressing unlabelled ordinary vertices of undirected degree two.  If suppression produces the standard parallel root artifact, it is resolved before further degree-two suppression.  Isomorphisms preserve taxon labels, undirected edges, and retained arrowheads.
+\end{definition}
+
+The reduction forgets ordinary edge directions but does not forget which vertices receive reticulation arrowheads.  It is the network analogue of passing from a rooted tree to an unrooted tree under a stationary reversible substitution model.  We use $N$ for a standard semi-directed topology and $N^+$ for one rooted partner.
+
+\begin{definition}[Admissible rooting]
+An \emph{admissible rooting} of a standard semi-directed topology $N$ is a rooted binary network $N^+$ whose standard reduction is $N$.  A rooting may insert the root on an undirected edge or, when compatible with the retained arrowhead, on an edge entering a reticulation.  All directed edges must form an acyclic orientation with the prescribed binary bidegrees.
+\end{definition}
+
+A rooted network is \emph{tree-child} when every internal vertex has a child that is a tree vertex or a leaf.  Equivalently in the present binary setting, no internal vertex has two reticulation children and no reticulation has a reticulation child.  Three different classes arise.
+
+\begin{definition}[Three tree-child classes]
+\begin{align*}
+\TCr&=\{N^+:\text{the supplied rooted DAG }N^+\text{ is tree-child}\},\\
+\TCw&=\{N:\text{$N$ has at least one tree-child admissible rooting}\},\\
+\TCs&=\{N:\text{every admissible rooting of $N$ is tree-child}\}.
+\end{align*}
+\end{definition}
+
+Thus $\TCs\subseteq\TCw$, whereas $\TCr$ is a property of a chosen rooted presentation rather than of a semi-directed topology.  These notions must not be conflated.  This weak/strong rooting distinction agrees with the general semi-directed framework of \textcite{HoltgrefeEtAl2026}.  The main positive theorem concerns $\TCs$; the sharpness example lies in $\TCw\setminus\TCs$ and has explicit rooted representatives in $\TCr$.
+
+\begin{lemma}[Local strong criterion]\label{lem:local-strong}
+For a binary standard semi-directed topology, membership in $\TCs$ is equivalent to the following local condition (compare \cite[Theorem~5]{HoltgrefeEtAl2026}): every tail of a retained reticulation edge has two incident undirected edges.
+\end{lemma}
+
+\begin{proof}
+Suppose a tail $v$ of a retained arrow $v\to r$ has fewer than two incident undirected edges.  Binary degree forces another retained arrow incident at $v$ or forces a rooting in which the only ordinary incident edge points toward $v$.  In the first case $v$ has two reticulation children; in the second, the admissible rooting on the opposite side makes both children reticulations.  Thus some admissible rooting is not tree-child.
+
+Conversely, assume the local condition.  In any admissible rooting, each tail of a retained arrow has at least one ordinary child, because among its two undirected incident edges at most one points toward it.  If a reticulation had a reticulation child, its outgoing edge would be a retained arrow with that reticulation as its tail.  Its two incoming edges are also retained at the same vertex, so it would have no incident undirected edge, contradicting the local condition.  Every internal vertex therefore has a tree-or-leaf child in every admissible rooting.  Hence every rooting is tree-child.
+\end{proof}
+
+\input{figures/fig_reduction_classes}
+
+\subsection{Blobs, bridges, and generator cores}
+
+The underlying undirected multigraph of a standard semi-directed topology is obtained by forgetting retained arrowheads.  A \emph{blob} is a maximal biconnected subgraph containing at least one cycle.  An edge whose deletion disconnects the topology is a \emph{bridge}.  Contracting every blob and suppressing unlabelled degree-two vertices gives the \emph{homeomorphism-reduced bridge tree}.  Each component attached to a blob through a bridge is represented locally by a \emph{port}; ports inherit the labels of their descendant leaf blocks.
+
+A network is \emph{level $k$} when every blob contains at most $k$ reticulations.  The main theorem assumes only level at most two; it imposes no separate triangle-count restriction.  In \cref{thm:automatic-triangle-bound} we prove that every binary level-2 topology in $\TCw$---and hence every topology in $\TCs$---automatically has at most one undirected 3-cycle in each blob.
+
+Suppress within a blob every ordinary tree vertex that carries no port and has degree two in the blob.  The resulting directed mixed object is its \emph{ported generator core}.  At level two the only nontrivial undirected cores are a cycle and a theta graph: the latter consists of three internally disjoint paths between two branch vertices.  Direction and reticulation roles refine the theta graph into four oriented cores.  Ordinary port-bearing tree vertices form finite ordered words on the directed core segments.  The exact finite list and its proof are given in \cref{sec:support}; \cref{fig:cores} gives a schematic preview.
+
+\begin{definition}[Ordinary triangle redirection]\label{def:T}
+Let $N$ contain a triangle $C$ in a blob.  For the level-2 topologies in $\TCw$ considered below, $C$ is necessarily the unique triangle in that blob by \cref{thm:automatic-triangle-bound}.  An \emph{ordinary triangle redirection} $\Tmove$ changes which vertex of $C$ receives the two retained arrowheads, while preserving the labelled underlying graph and every arrowhead outside $C$.  The operation is permitted only when both endpoints are valid standard semi-directed topologies in the class under consideration.
+\end{definition}
+
+This is a move between semi-directed topologies, not a change of an unobservable root position.  The three external arms of a valid $\TCs$ triangle are ordinary undirected edges; this fact is proved in \cref{lem:triangle-arms}.
+
+\subsection{The Jukes--Cantor network model}
+
+Identify the four nucleotide states with the group
+\[
+G=\Ztwo\times\Ztwo.
+\]
+The root distribution is uniform.  Each network edge $e$ carries one nontrivial Fourier multiplier $x_e\in(0,1)$.  In probability coordinates the transition matrix is
+\[
+T_e(a,b)=
+\begin{cases}
+(1+3x_e)/4,&a=b,\\
+(1-x_e)/4,&a\ne b.
+\end{cases}
+\]
+Equivalently, the off-diagonal substitution probability is $q_e=(1-x_e)/4\in(0,1/4)$.  Every reticulation $r$ has an inheritance probability $\lambda_r\in(0,1)$.  Independently at each reticulation, one incoming parent is selected; after deleting the unselected incoming edges, suppressing degree-two artifacts gives a displayed tree.  The network distribution is the inheritance-weighted mixture of its displayed-tree distributions.
+
+The \emph{open parameter space} is
+\[
+\ThetaOpen(N)=(0,1)^{E(N)}\times(0,1)^{R(N)}.
+\]
+No zero multiplier, zero-length edge, infinitely long edge, or degenerate inheritance probability is allowed.
+
+For a zero-sum character assignment $g=(g_i)_{i\in X}\in G^X$ with $\bigoplus_i g_i=0$, let $A_e$ be either side of the split induced by edge $e$ in a displayed tree.  The Fourier coordinate is
+\begin{equation}\label{eq:fourier-network}
+\whp_N(g)=
+\sum_{\sigma}w_\sigma
+\prod_{e\in T_\sigma}
+ x_e^{\mathbf 1[\oplus_{i\in A_e}g_i\ne0]},
+\end{equation}
+where $\sigma$ ranges over parent selections and $w_\sigma$ is the corresponding product of inheritance probabilities and complements.  Coordinates with nonzero total character sum vanish.  Formula \eqref{eq:fourier-network} follows from the standard group-based Fourier transform \cite{EvansSpeed1993,SturmfelsSullivant2005,Sullivant2018}.
+
+The Fourier transform is invertible on the ambient coordinate space.  Hence equality, rank, dimension, and semialgebraic questions may be studied in either Fourier or pattern-probability coordinates.  We use normalized tensors with $\whp(0,\ldots,0)=1$.
+
+\subsection{Model images and observational relations}
+
+Let
+\[
+\phi_N:\ThetaOpen(N)\longrightarrow\mathbb R^{4^{|X|}}
+\]
+be the site-pattern parameterization, and let
+\[
+\M_N^{\JC}=\phi_N(\ThetaOpen(N))
+\]
+be its open stochastic image.  Its complex Zariski closure is denoted
+\[
+\V_N^{\JC}=\overline{\M_N^{\JC}}^{\,Z}\subseteq\mathbb C^{4^{|X|}}.
+\]
+The closure is irreducible because it is the closure of the polynomial image of an irreducible affine parameter space.  We nevertheless keep equality of closures separate from equality or intersection of stochastic images.
+
+A parameter point is \emph{regular} when the Jacobian rank of $\phi_N$ is locally maximal.  The model dimension is the common maximal real/complex Jacobian rank,
+\[
+\dim \M_N^{\JC}=\dimC \V_N^{\JC}.
+\]
+The equality holds because the real open cube is Zariski dense and the parameterization has real coefficients.
+
+\begin{definition}[Symmetric overlap and one-sided containment]
+Write $N\bowtieJC N'$ if there is a distribution $p\in\M_N^{\JC}\cap\M_{N'}^{\JC}$ that is regular for both models, the local dimensions agree, and the intersection contains a relative neighborhood of $p$ in both images.  Write
+\[
+N\preceqJC N'
+\]
+if $\M_N^{\JC}\cap\M_{N'}^{\JC}$ contains a semialgebraic subset of full dimension $\dim\M_N^{\JC}$, equivalently a nonempty relatively open regular subset of the source image by \cref{lem:semialgebraic-open} below.  The target may have larger dimension and a target preimage need not be regular.
+\end{definition}
+
+This orientation is important.  If $\V_N\subseteq\V_{N'}$, then
+\[
+I(\V_{N'})\subseteq I(\V_N).
+\]
+A polynomial that vanishes on the source and is strictly nonzero throughout the target proves disjointness of the open stochastic images, even though it is not a target-ideal witness for algebraic noncontainment.
+
+\begin{definition}[Generic topological identifiability]
+Fix a finite topology $N$.  The topology is \emph{generically identifiable modulo $\Tmove$} if there is a proper algebraic subset $Z\subsetneq\ThetaOpen(N)$ such that, for every $\theta\notin Z$, equality
+\[
+\phi_N(\theta)=\phi_{N'}(\theta')
+\]
+with another valid topology $N'$ implies that $N'$ is labelled-isomorphic to a topology obtained from $N$ by valid ordinary triangle redirections.
+\end{definition}
+
+The phrase \emph{generic} always means outside a proper algebraic parameter locus.  It does not mean merely that one favorable Euclidean-open set exists.

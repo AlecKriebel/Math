@@ -1,0 +1,60 @@
+\section{Finite-atlas generation and theorem-to-certificate crosswalk}\label{app:crosswalk}
+
+The publication archive is organized so that every finite claim in the paper has a primitive generator, a mathematical certificate, and, where load-bearing, an independent replay.  The principal correspondence is listed below.  Paths are relative to the archive root; the machine-readable version is \nolinkurl{THEOREM_CERTIFICATE_CROSSWALK.md}.
+
+\begingroup\footnotesize\begin{description}[font=\normalfont\bfseries]
+\item[Automatic triangle bound.]
+Primary: \nolinkurl{publication/src/verify_multitriangle_exclusion.py}.  Independent review: \nolinkurl{publication/review/review_multitriangle_exclusion.cpp}.  Output: \nolinkurl{publication/certificates/multitriangle_exclusion.json} and the two clean replay transcripts.
+
+\item[Cycle/four-theta core exhaustion and support repairs.]
+Primary: \nolinkurl{src/core_enumerator.py}.\\ Additional regeneration: \nolinkurl{publication/src/regenerate_bounded_graph_universes.py}.\\ Independent review: \nolinkurl{publication/review/review_bounded_universes.py}.\\ Output: \nolinkurl{publication/certificates/bounded_universes.json}.
+
+\item[Five- and six-port theta directed atlases.]
+Primary: \nolinkurl{publication/src/regenerate_theta_atlases.py}.  Independent review: \nolinkurl{publication/review/review_directed_universes.py}.  Outputs: the \nolinkurl{canonical_theta_k5_*} and \nolinkurl{canonical_theta_k6_*} certificates.
+
+\item[Cycle and cross-generator atlas.]
+Primary: \nolinkurl{publication/src/regenerate_cycle_atlas.py}.  Independent review: \nolinkurl{publication/review/review_bounded_universes.py}.  Output: \nolinkurl{canonical_cycle_cross_summary.json}.
+
+\item[Seven-port residual universe and strict separators.]
+Primary: \nolinkurl{src/verify_seven_port_closure.py}.  Independent review: \nolinkurl{review/review_seven_port_closure.py}.  Outputs: \nolinkurl{seven_port_closure.json} and \nolinkurl{seven_port_adversarial_review.json}.
+
+\item[Pointwise cut theorem.]
+Primary: \nolinkurl{src/verify_frozen_cut_theorem.py} and the sparse publication replay.  Independent review: \nolinkurl{review/review_pointwise_cut.py}.  Outputs: \nolinkurl{pointwise_cut_certificate.json} and its adversarial-review JSON.
+
+\item[Root reduction.]
+Primary: \nolinkurl{src/verify_root_reduction.py}.  Independent review: \nolinkurl{review/review_root_reduction.py}.  Outputs: \nolinkurl{root_reduction.json} and its adversarial-review JSON.
+
+\item[Ordinary triangle redirection.]
+Primary: the publication JC triangle checker.  Independent review: a separately coded tensor replay.  Output: \nolinkurl{ordinary_triangle_T_certificate.json}.
+
+\item[Positive gluing and bounded-subdivision lift.]
+Primary: \nolinkurl{src/verify_positive_gluing.py} and \nolinkurl{src/verify_bounded_support_lift.py}.  Independent review: the final synthesis reviewer.  Outputs: the corresponding JSON files and transcripts.
+
+\item[Theta sharpness.]
+Primary: \nolinkurl{src/verify_theta_sharpness.py}.  Independent review: the publication sharpness reviewer.  Output: \nolinkurl{theta_sharpness_certificate.json}.
+
+\item[Final local-to-global synthesis and genericity.]
+Primary: \nolinkurl{src/build_sharp_boundary_certificate.py}.  Independent review: \nolinkurl{review/review_final_synthesis.py} and the publication scope review.  Output: \nolinkurl{final_theorem.json}.
+
+\item[Manuscript, bibliography, figures, and archive.]
+Primary: \nolinkurl{publication/verify_publication.py}.  Independent review: \nolinkurl{publication/review/review_publication_package.py}.  Outputs: the clean quick/full transcripts, PDF preflight report, and SHA-256 manifest.
+\end{description}\endgroup
+
+\subsection{Exhaustiveness assertions}
+
+The primitive generator proves exhaustion in the following order.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Cyclomatic number at most two and biconnectivity reduce the undirected core to a cycle or theta graph.
+\item Two triangle cycles force theta path lengths $(1,2,2)$; the direct rooting proof and independent finite census exclude this core from $\TCw$.
+\item Event placement and orientation enumerate every binary acyclic rooted realization of those cores.
+\item The local $\TCs$ criterion and minimum-repair enumeration characterize every permitted port occupancy.
+\item Every binary subdivision is an ordered word of ordinary port vertices on a directed core segment.
+\item The rigid-support theorem reduces arbitrary words to support plus one- and two-port probes.
+\item Canonical mixed-graph codes quotient exactly by labelled isomorphism and, in the observational atlas, by valid ordinary triangle redirection.
+\item Directed pair records are generated from the Cartesian product of canonical source and permitted target signature classes and stored under an ordered source--target key; duplicate keys are rejected.
+\end{enumerate}
+The independent programs use a different canonicalization and reconstruct the same code sets and orbit decompositions.
+
+\subsection{Release policy}
+
+The top-level verifier fails if a required source, certificate, review assertion, manuscript file, figure, transcript, or manifest entry is absent; if a generated object differs from its frozen release copy; or if the PDF preflight reports missing fonts, unresolved references, or malformed pages.  The quick command checks the exact theorem certificates and publication integrity.  The full command also regenerates the finite graph universes and runs every independent reviewer.  The archived transcripts record the software versions, elapsed time, and peak resident memory.

@@ -1,0 +1,17 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.92, every node/.style={font=\small}]
+\node[draw,rounded corners,minimum width=2.6cm,minimum height=2.2cm] (L) at (-3,0) {$\mathcal B_L$};
+\node[draw,rounded corners,minimum width=2.6cm,minimum height=2.2cm] (R) at (3,0) {$\mathcal B_R$};
+\node[port] (pL) at (-1.45,0) {$h$};
+\node[port] (pR) at (1.45,0) {$h$};
+\draw[bridge] (pL)--(pR) node[midway,above] {$x_e$};
+\draw[ordinary] (L.east)--(pL); \draw[ordinary] (pR)--(R.west);
+\node[align=center] at (0,-1.55) {$F_h(g_A,g_B)=P_A(g_A,h)\,x_e^{\mathbf 1[h\ne0]}\,P_B(g_B,h)$};
+\node[align=center,draw,rounded corners,text width=5.2cm] at (0,2.1) {Each Fourier character-sum block is a positive rank-one matrix. Anchor factorization recovers both sides up to one reciprocal positive scalar.};
+\draw[decorate,decoration={brace,amplitude=5pt},thick] (-4.25,-1.25)--(-1.35,-1.25) node[midway,below=6pt] {$A$};
+\draw[decorate,decoration={brace,amplitude=5pt,mirror},thick] (1.35,-1.25)--(4.25,-1.25) node[midway,below=6pt] {$B$};
+\end{tikzpicture}
+\caption{Bridge factorization in Fourier coordinates. Peeling the bridge tree gives projective local tensors and a reciprocal gauge for each bridge; because the bridge graph is a tree, no gauge can circulate around a cycle of components.}
+\label{fig:bridge-factorization}
+\end{figure}

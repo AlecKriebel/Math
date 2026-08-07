@@ -1,0 +1,183 @@
+\section{The complete nonroot local atlas}\label{sec:atlas}
+
+We now classify one-sided containment among arbitrary nonroot local factors.  The proof is computer-assisted only in its finite portions: generation and canonicalization of bounded supports, exact Fourier expansion, zero/nonzero invariant signatures, strict positivity, and Jacobian minors.  The promotion to arbitrary subdivisions is the structural theorem of \cref{thm:bounded-support}.
+
+\subsection{Finite atlas protocol}
+
+Every bounded record consists of:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item a primitive cycle or oriented theta core;
+\item a selected subset of path-sink ports;
+\item a weak composition recording the number of selected ordinary ports on each directed core segment;
+\item a minimum dummy repair completing the target to a full strongly tree-child factor; and
+\item a relative labelling of the observed outgoing ports and the distinguished incoming boundary.
+\end{enumerate}
+Canonical mixed-graph codes preserve leaf labels, undirected edges, and retained arrowheads, and quotient ordinary triangle direction exactly when forming a $\Tmove$ class.  The generator proves completeness by iterating over the finite lists in \cref{prop:core-theorem,lem:weak-completion}; duplicate-freeness is checked by requiring one record per canonical code.
+
+For each record, the displayed-tree Fourier parameterization is expanded from \eqref{eq:fourier-network}.  On a four-boundary marginal, an edge is represented by its descendant mask in each parent-choice switching.  Edges with identical switching-mask vectors enter every JC monomial together and are replaced by one effective product parameter.  Permuting the two inheritance-choice bits and applying JC character automorphisms are exact open-cube symmetries.
+
+The invariant deck consists of exact integer polynomials in the $15$ nontrivial four-leaf JC orbit coordinates.  The six core templates and their leaf-relabelling orbits distinguish equal-dimensional closures; a seventh multihomogeneous polynomial refines the directed signature universe.  Each pullback is evaluated as a sparse polynomial over $\mathbb Z$.  A zero bit means the pullback is the zero polynomial, not that it vanished at sampled points.
+
+The containment orientation is as follows.  If a source model were contained in a target model, then every polynomial vanishing on the target would vanish on the source.  For unequal signatures we often obtain the stronger stochastic certificate used here: an invariant vanishes identically on the source and has one strict sign on the complete open target cube.  That proves the two open images disjoint, and therefore excludes either orientation of open containment.  For equal-dimensional irreducible closures, any invariant distinguishing the closures in either orientation is already sufficient to exclude containment.
+
+\subsection{Theta and cycle atlases}
+
+The canonical bounded counts are summarized in \cref{tab:atlas-counts}.  These are counts of canonical signature records, not raw network presentations.
+
+\begin{table}[t]
+\centering
+\caption{Canonical bounded local atlases.  ``Weak'' includes selected restrictions completed by unobserved sink children and repair ports.}
+\label{tab:atlas-counts}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+family & outgoing ports & strong classes & weak classes & strict directed pairs\\
+\midrule
+theta & 5 & $8{,}520$ & $16{,}590$ & $18{,}480$\\
+theta, support-size-four core & 6 & $10{,}980$ & $218{,}925$ & $21{,}960$\\
+cycle & 3 & 9 & 12 & 0\\
+cycle & 4 & 48 & 63 & 0\\
+cycle & 5 & --- & 390 & 0\\
+cycle & 6 & --- & $2{,}790$ & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For theta-to-theta comparisons, equal signatures correspond exactly to the same canonical topology modulo $\Tmove$.  At five outgoing ports, all $12{,}720$ intersecting weak-target presentations are themselves strong and graphically replay to the source modulo $\Tmove$.  At six outgoing ports the analogous complete replay checks $43{,}920$ presentations.  Every strict pair has an exact target pullback whose irreducible factors are one-signed on the open cube; tensor-product Bernstein coefficients provide an independent positivity certificate.
+
+For cycles, the two-outgoing triangle is a single $\Tmove$ class.  Strong classes at three and four outgoing ports have $9$ and $48$ distinct signatures, respectively.  Their weak atlases at sizes three through six have $12,63,390,2{,}790$ signatures.  Equal signatures retain the selected path-sink child and replay to isomorphism or $\Tmove$; there is no strict cycle-to-cycle pair.  Strong theta sources and weak cycle targets have empty signature intersections at outgoing sizes three through six.
+
+The only remaining direction is a cycle source against a weak theta target that mimics the cycle after some reticulation information is marginalized.  Most such targets are separated after adding at most two rigid-support labels.  Exactly $192$ labelled core-3 presentations require three labels and hence seven outgoing ports.
+
+\subsection{The seven-port core-3 universe}\label{sec:seven-port}
+
+Use the core-3 segment order
+\[
+(UV,SU,SV,UX,VX),
+\]
+with source $S$, tree branch $U$, branch reticulation $V$, and path-sink reticulation $X$.  Its minimum repairs are
+\[
+\{UV,VX\},\qquad \{UX,VX\}.
+\]
+The residual records have the eight role patterns in \cref{tab:seven-orbits}.
+
+\begin{table}[t]
+\centering
+\caption{The eight seven-port role orbits.  Each has all $24$ permutations of the four original outgoing labels.}
+\label{tab:seven-orbits}
+\begin{tabular}{@{}rcc@{}}
+\toprule
+orbit id & selected path-sink child? & ordinary counts on $(UV,SU,SV,UX,VX)$\\
+\midrule
+629 & no  & $(0,0,1,1,2)$\\
+644 & no  & $(0,1,1,2,0)$\\
+649 & no  & $(0,2,0,1,1)$\\
+650 & no  & $(0,2,0,2,0)$\\
+685 & no  & $(2,1,0,1,0)$\\
+700 & yes & $(0,0,2,0,1)$\\
+705 & yes & $(0,1,0,2,0)$\\
+706 & yes & $(0,1,1,0,1)$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{proposition}[Exhaustive seven-port universe]\label{prop:seven-universe}
+The $192$ residual labelled presentations are exactly the eight free $S_4$ orbits in \cref{tab:seven-orbits}.  Conservative completion with labels $5,6,7$ gives $1{,}686$ distinct canonical labelled mixed graphs, each satisfying the $\TCs$ local criterion.  No residual relation is omitted or counted twice.
+\end{proposition}
+
+\begin{proof}
+The primitive core has four distinguished directed roles and therefore trivial directed automorphism group.  A role pattern is determined by whether the sink child is selected and by the weak composition of the four ordinary selected labels over the five directed segments, subject to the condition that a full strong completion exists and that fewer than three additions do not contain a rigid support.  Exhaustive solution of these finite constraints gives precisely the eight rows in \cref{tab:seven-orbits}.  Since the core automorphism group is trivial, no nonidentity permutation of the four original labels fixes a presentation; every orbit has size $24$ and the eight orbits are disjoint.
+
+For each representative, assign the three new labels to all sink/repair placements that complete one of the minimum repairs, insert their port vertices, and canonicalize the resulting mixed graph.  The local criterion of \cref{lem:local-strong} is checked on the full completed graph.  The primary and adversarial enumerators, written independently, obtain the same $1{,}686$ canonical codes and the same complete displayed-tree monomial schemas.  The certificate includes the code and schema digest for every record.
+\end{proof}
+
+\subsection{Trinet inequalities on restored labels}
+
+For three selected boundary ports $a,b,c$, let
+\begin{equation}\label{eq:Fabc}
+F_{abc}=r_{ab}r_{ac}r_{bc}-u_{abc}^2,
+\end{equation}
+where $r_{ab},r_{ac},r_{bc}$ are the pair Fourier coordinates and $u_{abc}$ is the all-distinct zero-sum coordinate.  Englander et al. proved that this polynomial vanishes on a three-leaf tree and is strictly positive on every strict level-1 or level-2 JC trinet in their open domain \cite[Proposition~2.26 in the April 2025 version]{EnglanderEtAl2025}.  We use the equivalent boundary-tensor normalization.
+
+\begin{lemma}[Cycle star pattern]\label{lem:cycle-star}
+Let $s$ be the path-sink label of a cycle factor.  Then
+\[
+F_{abc}=0\quad\Longleftrightarrow\quad s\notin\{a,b,c\}.
+\]
+If the sink is selected, the pullback has one of the forms
+\begin{align}
+F_{abc}&=\lambda(1-\lambda)M(1-y)^2,\label{eq:cycle-F-same}\\
+F_{abc}&=\lambda(1-\lambda)M(1-yz)^2,\label{eq:cycle-F-opposite}
+\end{align}
+where $M$ is a positive monomial and $y,z\in(0,1)$ are path products.  Thus $F_{abc}>0$ whenever the sink is present.
+\end{lemma}
+
+\begin{proof}
+If the sink is absent from the restriction, both cycle routes induce the same three-leaf tree after degree-two suppression, so \eqref{eq:Fabc} is the tree equation.  If the sink is present, expand the two displayed-tree terms.  When the two ordinary selected ports lie on one side, common pendant factors yield \eqref{eq:cycle-F-same}; when they lie on opposite sides, the intervening path contributes the product $yz$ and yields \eqref{eq:cycle-F-opposite}.  All removed factors are strictly positive.
+\end{proof}
+
+On the original four outgoing labels plus the incoming boundary, the $F$ zero pattern separates orbits $629,644,650,685,700,706$ for every possible source-sink label.  Orbits $649$ and $705$ have the same cycle-star pattern on these five boundaries; the restored support labels are essential.
+
+\input{figures/fig_residual_orbits}
+
+\begin{lemma}[Orbit 649 separator]\label{lem:orbit649}
+Every strong completion of orbit $649$ has a newly selected target sink $e\in\{5,6,7\}$.  On the full target parameterization,
+\begin{equation}\label{eq:orbit649}
+\begin{split}
+F_{12e}={}&M_A(1-\lambda_V)(1-\lambda_X)(1-a)^2\\
+&\times\bigl[\lambda_V(1-\lambda_X)b+\lambda_Xc\bigr]>0,
+\end{split}
+\end{equation}
+where $M_A,a,b,c$ are positive products of open edge multipliers.  The competing cycle has sink label $4$ and hence $F_{12e}=0$.
+\end{lemma}
+
+\begin{lemma}[Orbit 705 separator]\label{lem:orbit705}
+Every strong completion of orbit $705$ places a new label $e\in\{5,6,7\}$ on segment $V\to X$.  Its full target parameterization satisfies
+\begin{equation}\label{eq:orbit705}
+F_{12e}=M_B\lambda_V(1-\lambda_V)(1-a)^2>0,
+\end{equation}
+where $M_B,a>0$ and $a<1$.  The competing cycle again has $F_{12e}=0$.
+\end{lemma}
+
+\begin{proof}[Proofs of \cref{lem:orbit649,lem:orbit705}]
+For each canonical completed target, marginalize the complete seven-port displayed-tree parameterization to $(1,2,e)$ and expand \eqref{eq:Fabc}.  Group edge parameters having identical descendant masks into path products.  Sparse exact factorization yields \eqref{eq:orbit649} and \eqref{eq:orbit705}.  Every factor is strictly positive on $\ThetaOpen$: inheritance probabilities and complements lie in $(0,1)$, path products lie in $(0,1)$, and the bracket in \eqref{eq:orbit649} is a positive sum.  The independent reviewer reconstructs and expands all $486$ reduced witness tensors occurring in these two orbits.
+\end{proof}
+
+\begin{theorem}[Seven-port separation]\label{thm:seven-separation}
+Every residual cycle-source/core-3-theta-target relation has disjoint complete open JC stochastic images.  In particular, none gives a lower-dimensional open intersection, one-sided containment, or full-dimensional overlap.
+\end{theorem}
+
+\begin{proof}
+Six of the eight role orbits are separated by the original five-boundary $F$ pattern.  The remaining two are separated by \cref{lem:orbit649,lem:orbit705}.  The $S_4$ action transports the selected triples and formulas to all $192$ labelled records.  Since one polynomial is identically zero on the cycle source and strictly positive at every open target parameter, the open images are disjoint.
+\end{proof}
+
+\subsection{Local dimensions}
+
+For the incoming-port parameterizations in the seven-port certificate, the root is outside the local factor and the three-edge neighborhoods of distinct reticulations are disjoint.  If there are $n$ observed boundary leaves and $r$ reticulations, binary degree counting gives
+\begin{equation}\label{eq:edge-count}
+E=2n+3r-2.
+\end{equation}
+There are $E+r$ raw JC edge/inheritance parameters.  One root-split gauge and two gauges per reticulation are unobservable.  Locally, if the incoming multipliers are $a,b$, the outgoing multiplier is $c$, and the inheritance probability is $\lambda$, then a nonzero descendant character sees only
+\[
+\lambda ac,
+\qquad
+(1-\lambda)bc,
+\]
+while the zero character combines the two inheritance weights to one.  Therefore
+\begin{equation}\label{eq:dimension-upper}
+\dim \V\le E+r-(1+2r)=2n+2r-3.
+\end{equation}
+For seven outgoing ports plus one incoming boundary, $n=8$.  The cycle has $r=1$ and the theta target $r=2$, giving upper bounds $15$ and $17$.  Exact modular Jacobian minors are nonzero for all seven cycle side-count profiles and all $65$ core-3 profiles appearing among the completions, so the bounds are attained over $\mathbb Q$; see \cref{app:dimensions}.
+
+\begin{theorem}[Complete nonroot local classification]\label{thm:nonroot-local}
+Let $B,B'$ be arbitrary finite port-labelled nonroot $\TCs$ level-2 local factors.  Then
+\[
+B\preceqJC B'
+\]
+if and only if $B$ and $B'$ are port-labelled isomorphic or related by ordinary triangle redirection $\Tmove$.  Every surviving relation is a symmetric regular overlap.
+\end{theorem}
+
+\begin{proof}
+Choose a rigid support in the source.  By \cref{lem:weak-completion}, the corresponding target restriction occurs in the complete strong/weak bounded atlases.  Theta/theta, cycle/cycle, and theta-source/cycle-target relations are already classified through the support bounds.  The only cross-generator direction requiring a larger completion is the $192$-record core-3 universe, closed by \cref{thm:seven-separation}.  Hence every source support, one-port probe, and two-port probe is target-equivalent only by isomorphism or $\Tmove$.  The ordered-word reconstruction of \cref{thm:bounded-support} lifts these consistent bounded identifications to the complete arbitrary subdivisions.
+
+Conversely, a port-labelled isomorphism is trivial.  The common regular germ for $\Tmove$ and its contextual gluing are proved in \cref{sec:embedded-T}; they give symmetric full-dimensional overlap.
+\end{proof}
