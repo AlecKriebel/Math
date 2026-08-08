@@ -1,6 +1,6 @@
 # Failed and closed proof routes
 
-Last updated: 2026-08-08 stationary determinant and flow audit.
+Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
 
 These failures are exact unless explicitly labeled numerical.  None should
 be revived without a new ingredient addressing the stated witness.
@@ -13,6 +13,14 @@ be revived without a new ingredient addressing the stated witness.
   center--triangle family directly contradicts the retracted fixation bound.
 
 ## Endpoint `r=3/2`
+
+- The universal normalized fixation-product inequality is false.  The
+  unweighted graph `G(31,4)=K_32` with four leaves at one hub has exact
+  normalized product `1.000669371885...>1`.  Its dB ratio is
+  `0.892002982408...<1`, so it is not an endpoint simultaneous amplifier.
+- The balanced normalized arithmetic separator is also false on the same
+  graph: `(x+y)/2=1.006912940840...>1`.  Do not retry proving the global
+  Green sign `T+C<=E`; the exact counterexample refutes it.
 
 - A common pointwise Bd/dB harmonic correction, including the
   baseline-weighted tangent version, is infeasible on weighted paths.

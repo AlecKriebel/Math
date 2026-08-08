@@ -1,20 +1,29 @@
 # Active exact lemmas
 
-Last updated: 2026-08-08 stationary determinant and flow audit.
+Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
 
-## A. Endpoint product at `r=3/2`
+## A. Endpoint product at `r=3/2` is refuted
 
-For every finite connected loopless undirected weighted graph `G` on `n`
-vertices, prove or refute
+The formerly proposed inequality
 
 \[
  \rho_{\rm Bd}(G,3/2)\rho_{\rm dB}(G,3/2)
  \le \rho_{\rm Bd}(K_n,3/2)\rho_{\rm dB}(K_n,3/2).       \tag{A}
 \]
 
-It is proved for all positive weighted triangles and locally at the complete
-graph in the audited finite orders.  Exact finite and weighted searches have
-not found a violation, but (A) is **OPEN**.
+is **EXACTLY FALSIFIED**.  Let `G(c,m)` be the unweighted graph formed from
+the clique `K_(c+1)` by attaching `m` leaves to one distinguished hub.  At
+`r=3/2`, `G(31,4)` has `n=36` and exact normalized ratios
+
+\[
+ x=1.1218228992728234\ldots,
+ \qquad y=0.8920029824088562\ldots,
+\]
+
+with `xy-1=0.000669371885908453...>0`.  Exact rational solves independently
+verify all 636 transient harmonic equations, and an independent labelled
+implementation proves the 320-state orbit chain is strongly lumped.  This
+does not refute the endpoint disjunction because `y<1`.
 
 The exact dual form is
 
@@ -22,16 +31,17 @@ The exact dual form is
  m_Bm_D\le m_B^Km_D^K,
 \]
 
-where fixation is stationary dual mean divided by `n`.  A sufficient
-arithmetic strengthening is
+where fixation is stationary dual mean divided by `n`.  A formerly
+sufficient arithmetic strengthening was
 
 \[
  {m_B\over m_B^K}+{m_D\over m_D^K}\le2.                \tag{A1}
 \]
 
-Any product-chain certificate for (A1) must retain graph-sensitive vertex
-information within ranks: dependence only on the two ranks and their overlap
-is exactly impossible on the three-path.
+It too is **EXACTLY FALSIFIED** by `G(31,4)`, whose normalized mean is
+`1.006912940840839855...`.  The exact reductions below remain useful
+structural identities, but they can no longer be proof obligations for a
+universal product or balanced-mean theorem.
 
 An exact intermediate orientation problem is now isolated.  For the Bd dual
 `L`, its reversed-arrow partner `C`, `M=(L+C)/2`, `K=(L-C)/2`, and
@@ -71,7 +81,7 @@ This remains **OPEN** even if (A) is false.  Candidate separators may be
 nonlinear or graph-dependent before yielding the graph-independent
 disjunction.
 
-The strongest surviving affine candidate is the balanced normalized mean
+The balanced normalized mean
 
 \[
  {1\over2}\left\{
@@ -80,9 +90,20 @@ The strongest surviving affine candidate is the balanced normalized mean
  \right\}\le1.                                        \tag{B1}
 \]
 
-Exact endpoint witnesses force any fixed affine multiplier to lie in
-`(177/2000,7/12)`.  The balanced value survives every exact test, but is
-not proved.
+is exactly false by Section A.  Writing a fixed affine separator as
+`lambda x+(1-lambda)y<=1`, the same witness forces
+`lambda<=lambda_0=0.469920183876...`.  The strongest simple candidate now
+under active audit is
+
+\[
+             {x+2y\over3}\le1.                            \tag{B2}
+\]
+
+It has exact positive slack on the complete hostile corpus and on every
+`G(c,m)` audited exactly through `n=36`.  This is evidence, not proof.  A
+seven-atom exact Farkas certificate on a weighted four-star already rules
+out the natural arbitrary-state common-correction proof of (B2), so a
+valid proof must again be global and nonpointwise.
 
 ## C. Exact endpoint drift bridge
 
@@ -113,13 +134,14 @@ Combining this bridge with the two exact transient Green measures gives
  \qquad \mathsf E\ge0.                                \tag{C1}
 \]
 
-Thus (B1) is exactly the global inequality
+Thus the now-refuted (B1) was exactly the global inequality
 
 \[
  \boxed{\mathsf T+\mathsf C\le\mathsf E}.             \tag{C2}
 \]
 
-Neither its statewise terms, its fixed-rank sums, `T` by itself, nor
+The `G(31,4)` counterexample proves that (C2) is false globally.  In
+addition, neither its statewise terms, its fixed-rank sums, `T` by itself, nor
 `C-E` by itself has the required sign.  A ten-atom exact Farkas law also
 excludes every vertex-labelled bilinear *pointwise* correction on the
 weighted `1:17` three-path.  The surviving proof obligation must use the

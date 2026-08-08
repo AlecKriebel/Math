@@ -110,11 +110,15 @@ maximality at fitness two.
 
 ### Fitness-three-halves exact results
 
-**PROVED / EXACTLY COMPUTED.**  Every positive weighted triangle satisfies
-the fixation-product inequality at `r=3/2`, strictly unless all weights are
-equal.  The complete graph is an exact strict local log-product maximizer on
-both irreducible edge modes for the audited orders.  The full all-graph
-product inequality and the weaker disjunctive separator remain **OPEN**.
+**PROVED / EXACTLY COMPUTED / EXACTLY REFUTED GLOBALLY.**  Every positive
+weighted triangle satisfies the fixation-product inequality at `r=3/2`,
+strictly unless all weights are equal.  The complete graph is an exact strict
+local log-product maximizer on both irreducible edge modes for the audited
+orders.  Nevertheless the full all-graph product inequality is false:
+`G(31,4)=K_32` with four hub pendants has exact normalized product
+`1.000669371885...>1`.  Its dB ratio is below one, so the weaker disjunctive
+separator remains **OPEN**.  The balanced normalized arithmetic separator is
+also exactly false on this graph.
 
 ## Critical replay ledger
 
@@ -152,16 +156,10 @@ paper in the repository is the inherited fixed-graph paper under `paper/`.
 
 ## Genuinely open proof obligations
 
-1. Prove or exactly refute, for arbitrary finite connected undirected
-   weighted graphs,
-
-   ```text
-   rho_Bd(G,3/2) rho_dB(G,3/2)
-   <= rho_Bd(K_n,3/2) rho_dB(K_n,3/2).
-   ```
-
-2. Independently prove or refute the weaker statement that at least one of
+1. Prove or refute the weaker statement that at least one of
    the two normalized fixation probabilities is at most one at `r=3/2`.
+2. Prove or exactly refute the surviving one-third affine separator
+   `(x+2y)/3<=1`, which would imply the disjunction.
 3. Prove or refute the exact fitness-two sign `L(G)<=V(G)`.
 4. If an endpoint simultaneous amplifier is found, convert its mechanism
    into one growing, fitness-independent family and prove a strict interval
@@ -169,12 +167,10 @@ paper in the repository is the inherited fixed-graph paper under `paper/`.
 
 ## Next three executable mathematical tasks
 
-1. Formulate a graph-sensitive product-chain or variational certificate
-   retaining vertex identities within ranks, and exact-screen it first on
-   the recorded three-path Farkas obstruction.
-2. Run a deliberately independent exact hostile search for the endpoint
-   product and the weaker minimum objective, exactifying every apparent
-   violation before drawing any conclusion.
+1. Attack the one-third affine separator using the exact weighted
+   Green--Poisson identity while respecting the four-star Farkas obstruction.
+2. Search targeted weighted clique--pendant and related two-scale families
+   for a true endpoint simultaneous amplifier, exactifying any candidate.
 3. Attack `L<=V` through a two-particle stationary likelihood/capacity
    inequality, keeping the finite complete-baseline correction; the Shannon
    and chi-square reductions alone yield only half density.

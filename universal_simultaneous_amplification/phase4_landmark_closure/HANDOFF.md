@@ -1,6 +1,6 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-08 stationary determinant and flow audit
+Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
 (America/Los_Angeles)
 
 ## Current theorem state
@@ -9,12 +9,15 @@ Checkpoint date: 2026-08-08 stationary determinant and flow audit
 - **PROVED:** the same family is suppressing under both rules at `r=3/2`.
 - **PROVED CLASS THEOREM:** fixed-finite-rank positive-incidence blade/portal
   families without portal edges cannot work at any fixed `r>=3/2`.
-- **OPEN:** universal endpoint product inequality.
+- **EXACTLY FALSIFIED:** the universal endpoint product inequality.  The
+  unweighted 36-vertex `G(31,4)=K_32` with four hub pendants has normalized
+  product `1.000669371885...>1`, with independent exact rational audits.
+- **EXACTLY FALSIFIED:** the balanced normalized arithmetic separator; the
+  same graph has normalized mean `1.006912940840...>1`.
 - **OPEN:** weaker universal no-simultaneous endpoint separator.
-- **PROVED REFORMULATION:** the balanced normalized separator is exactly
-  `T+C<=E` in the Green--Poisson notation, with `E>=0` and exact rank-flow
-  conservation.  Every separate state/rank/sign shortcut checked in the
-  endpoint cycle is false.
+- **OPEN:** the surviving fixed affine candidate `(x+2y)/3<=1`.  Its exact
+  Green--Poisson reduction passes the hostile corpus, but the natural
+  common-potential proof is exactly infeasible on a weighted four-star.
 - **PROVED REFORMULATIONS:** `T+C` is an exact rankwise Johnson Dirichlet
   pairing, and the reversed-arrow stationary chord is an exact electrical
   two-tree transfer scalar.  Neither final sign is proved.
@@ -25,7 +28,8 @@ Checkpoint date: 2026-08-08 stationary determinant and flow audit
 - **OPEN:** exact fitness-two sign `L<=V` and hence any finite universal upper
   bound on `R_sim`.
 - **OPEN:** exact value of `R_sim`; current rigorous information is only the
-  lower bound `R_sim>=3/2`.
+  lower bound `R_sim>=3/2`.  The new finite graph is not a simultaneous
+  amplifier because its dB ratio is below one.
 
 ## Repository and preservation
 
@@ -39,17 +43,16 @@ it is historical and not part of the audited theorem packages.
 
 ## Exact live targets
 
-Endpoint:
+Endpoint (product now refuted):
 
 ```text
-rho_Bd(G,3/2) rho_dB(G,3/2)
-<= rho_Bd(K_n,3/2) rho_dB(K_n,3/2),
+min(rho_Bd/rho_Bd(K_n), rho_dB/rho_dB(K_n)) <= 1,
 ```
 
-or at least
+with the current affine candidate
 
 ```text
-min(rho_Bd/rho_Bd(K_n), rho_dB/rho_dB(K_n)) <= 1.
+(rho_Bd/rho_Bd(K_n)+2 rho_dB/rho_dB(K_n))/3 <= 1.
 ```
 
 Fitness two:
@@ -64,10 +67,11 @@ so the exact missing sign is `L<=V`.
 
 Continue the three independent live branches:
 
-1. prove the electrical transfer sign for the stationary orientation chord,
-   then address the independent batching factor;
-2. control the paired high-mode Schur feedback in the exact Johnson--Green
-   form of `T+C<=E`;
+1. prove or refute the one-third affine separator by a genuinely global
+   Green/forest argument, or find an endpoint simultaneous graph;
+2. convert the clique--pendant mechanism into a rigorously controlled
+   growing product counterexample and use its sharp affine crossing to test
+   whether the coefficient `1/3` is optimal;
 3. prove the direct stationary collision sign `L<=V` at `r=2`, without the
    now-refuted symmetric-flow split, using the exact source-centered
    event-ratio transport identity recorded in `ACTIVE_LEMMAS.md`.
@@ -85,10 +89,12 @@ must be converted into one growing fitness-independent family.
 
 ## Publication boundary
 
-No phase-4 paper or release exists yet.  The inherited fixed-graph paper is
-under `universal_simultaneous_amplification/paper/`.  Under the independent
-research policy, no specialist outreach may be prepared or initiated; a
-future external-review step may only be recorded as human-only.
+A complete phase-4 lower-bound manuscript and deterministic PDF are prepared
+under `paper_lower_threshold/`, including the exact endpoint product and
+balanced-mean counterexample.  They have not yet been released, assigned a
+DOI, or submitted.  Under the independent research policy, no specialist
+outreach may be prepared or initiated; a future external-review step may
+only be recorded as human-only.
 
 ## 2026-08-08 latest exact checkpoint
 
@@ -105,8 +111,11 @@ future external-review step may only be recorded as human-only.
 - **PROVED SHARP LEMMA / OPEN SIGN:** the rank-weighted posterior reflection
   (H)--(H1) retains the finite complete baseline at `r=2`.  Local Cayley,
   target, edge, and cycle shortcuts are exactly closed.  Commit `425fa927`.
-- **STILL OPEN:** endpoint product/disjunction, endpoint batching covariance,
-  the exact `r=2` stationary mean bound, and the value of `R_sim`.
+- **EXACTLY FALSIFIED:** endpoint product and balanced arithmetic separators,
+  by the independently audited `G(31,4)` witness in commits `02335bb0` and
+  `21601879`.
+- **STILL OPEN:** endpoint disjunction and one-third affine separator, the
+  exact `r=2` stationary mean bound, and the value of `R_sim`.
 
 The active proof cycle is global: combined endpoint forest transport and
 full-tree complement reflection at `r=2`.  Further construction work must
