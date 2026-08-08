@@ -27,6 +27,11 @@ The following statements are **PROVED**.
 7. Two weaker sign-regularity statements, and an even weaker positive
    Bernstein-quotient statement, each suffice for the desired standard
    sign.
+8. The full `3N-1` distinguished-pin operator pencil has an exact all-`N`
+   determinant factorization, nonnegative generalized spectrum, and
+   explicit binomial right eigenvectors.
+9. A stronger multinomial, discrete Schur-convexity statement implies the
+   positive-quotient condition by an exact two-label reflection argument.
 
 The sign-regularity and quotient statements are **EXACT FINITE
 COMPUTATIONS** on the ranges stated below.  Their all-order forms remain
@@ -412,19 +417,78 @@ Thus quotient positivity asks only that every lower partial binomial mean
 of the first differences be nonpositive; it does not ask their signs to be
 ordered pointwise.
 
-## 7. A structured operator-pencil clue
+### 6.4 Multinomial Schur route
+
+There is a stronger label-symmetric formulation.  For a pin-count vector
+`c=(c_1,...,c_n)`, let `h(c)` be the terminal reward averaged uniformly over
+all pin words with those multiplicities.  Consider the discrete Schur
+inequality
+
+\[
+ c_i\ge c_j\quad\Longrightarrow\quad
+ h(c+e_i)\ge h(c+e_j).
+\]
+
+This implies every quotient coefficient in `(41)` is nonnegative.  To see
+this, draw a uniform multinomial count vector `C` of total `m=t-1`, fix a
+label `x`, and let `y` be another label.  Conditional on `C_x=c`, the first
+difference `d_c` is the mean effect of adding one `x` pin rather than one
+uniform non-`x` pin.  After swapping `x` and `y` in the second term, the
+negative of the numerator in `(41)` is an average of
+
+\[
+ h(C+e_x)\{1_{\{C_y\le k\}}-1_{\{C_x\le k\}}\}.
+\]
+
+Pairing `C` with its `x,y` swap turns this into one half of
+
+\[
+ \{h(C+e_x)-h(C+e_y)\}
+ \{1_{\{C_y\le k\}}-1_{\{C_x\le k\}}\},
+\]
+
+which is nonnegative under the displayed Schur inequality.  Averaging over
+`y` proves the required lower-partial-mean sign.
+
+This is a genuinely grouped statement.  Prescribed-word recolouring is
+already exactly false, so any proof must use the uniform word average or an
+equivalent reflection principle.
+
+## 7. Exact distinguished-pin pencil
 
 The quotient operators have an unexpectedly simple generalized spectrum.
-Exact symbolic calculations for `2<=N<=7` give
+The following factorization is exact for every `N>=2`, not merely a finite
+symbolic pattern.
+
+### Theorem 1 (exact pencil determinant)
+
+Let `K_alpha` be the quotient in `(17)`--`(19)`, with
+`beta=(1-alpha)/(N-1)`.  Then
+
+\[
+ \boxed{
+ \det K_\alpha=\Gamma_N(1-\alpha)^{N-1}
+ \prod_{j=1}^{N-1}(j\alpha+N-1-j),}               \tag{42}
+\]
+
+where
+
+\[
+ \Gamma_N=-{2(2^N-N-1)N!(N-1)!\over
+ N(4N)^N(N-1)^{2N-2}}<0.                         \tag{43}
+\]
+
+Consequently, for the distinguished-pin operator `A=K_1` and the
+other-pin average `B=K_(1/N^2)`, one has
 
 \[
  \det(A-zB)=C_N z^{N-1}(z-1)^{N+1}
  \prod_{j=1}^{N-1}\left(
- [N^2-(N+1)j]z-N^2\right),                        \tag{42}
+ [N^2-(N+1)j]z-N^2\right),                        \tag{44}
 \]
 
 with `C_N\ne 0`.  The roots and right generalized eigenvectors admit the
-following all-`N` formulas, directly checkable from `(17)`--`(19)`:
+following all-`N` formulas:
 
 * eigenvalue `0`: the `N-1` coordinate functions supported on `O_k`;
 * eigenvalue `1`: the `N` coordinate functions supported on `X_k`, together
@@ -432,7 +496,7 @@ following all-`N` formulas, directly checkable from `(17)`--`(19)`:
 * for `1<=j<N`,
 
   \[
-  \lambda_j={N^2\over N^2-(N+1)j},                \tag{43}
+  \lambda_j={N^2\over N^2-(N+1)j},                \tag{45}
   \]
 
   with
@@ -440,27 +504,199 @@ following all-`N` formulas, directly checkable from `(17)`--`(19)`:
   \[
   f_j(X_k)=0,\qquad
   f_j(I_k)=\binom{N-k}{j},\qquad
-  f_j(O_k)=\binom{N-k-1}{j}.                      \tag{44}
+  f_j(O_k)=\binom{N-k-1}{j}.                      \tag{46}
   \]
 
 More precisely, if `K_alpha` denotes `(17)`--`(19)`, then elementary
 binomial identities give
 
 \[
- K_\alpha f_j={N-j-1+j\alpha\over2(N-1)}h_j,      \tag{45}
+ K_\alpha f_j={N-j-1+j\alpha\over2(N-1)}h_j,      \tag{47}
 \]
 
 for a vector `h_j` independent of `alpha`.  Taking `alpha=1` and
 `alpha=1/N^2` yields `Af_j=lambda_jBf_j`.
 
-The vectors in `(44)`, the `O` coordinates, and the eigenvalue-one vectors
+### Proof of Theorem 1
+
+Order rows and columns by the three category blocks `X,I,O`.  Define the
+following matrices, deleting entries outside their displayed ranges:
+
+\[
+\begin{array}{lll}
+ X_{k,k}={k\over2N},&X_{k,k+1}={N-k\over2N},&1\le k\le N,\\
+ U_{k,k-1}={k-1\over2kN},&
+ U_{k,k}={N-k+1\over2kN},&1\le k\le N,\\
+ Z_{k,k-1}={k-1\over2},&Z_{k,k}={N-k\over2},&1\le k\le N,\\
+ W_{k,k}=W_{k,k+1}={1\over2},&&1\le k<N,
+\end{array}                                                       \tag{48}
+\]
+
+where `X,U` are `N` by `N`, `Z` is `N` by `N-1`, and `W` is
+`N-1` by `N`.  Finally, let `T` be the `N-1` by `N-1` tridiagonal matrix
+
+\[
+ T_{k,k}={N\over2},\qquad T_{k,k-1}={k-1\over2},\qquad
+ T_{k,k+1}={N-k-1\over2},                         \tag{49}
+\]
+
+and let `V_alpha` be the `N` by `N` tridiagonal matrix
+
+\[
+\begin{aligned}
+ (V_\alpha)_{k,k+1}&={(N-k)\beta\over2},\\
+ (V_\alpha)_{k,k-1}&={k-1\over2k}
+                  \{\alpha+(k-2)\beta\},\\
+ (V_\alpha)_{k,k}&={\alpha+(k-1)\beta\over2}
+ +{(k-1)(N-k+1)\beta\over2k}.
+\end{aligned}                                      \tag{50}
+\]
+
+Equations `(17)`--`(19)` are exactly the block identity
+
+\[
+ K_\alpha=
+ \begin{pmatrix}
+ X&\alpha I/2&\beta Z\\
+ U&V_\alpha&0\\
+ 0&\alpha W&\beta T
+ \end{pmatrix}.                                   \tag{51}
+\]
+
+Factor `beta` from the `N-1` columns in the `O` block.  For nonzero
+`beta`, eliminate first `T` and then `X`.  Polynomial continuation covers
+`beta=0` and gives
+
+\[
+ \det K_\alpha=\beta^{N-1}\det(T)\det(X)\det(C_\alpha),
+ \quad
+ C_\alpha=V_\alpha-\alpha UX^{-1}
+ \{I/2-ZT^{-1}W\}.                                \tag{52}
+\]
+
+The apparently dense Schur term is rank one.  Indeed, direct multiplication
+gives `T=2WZ`.  Thus
+
+\[
+ ZT^{-1}W={1\over2}Z(WZ)^{-1}W={P\over2},          \tag{53}
+\]
+
+where `P` is the oblique projection onto `col(Z)` along `ker(W)`.  Put
+
+\[
+ u_k=(-1)^{k-1},\qquad
+ w_k=(-1)^{k-1}\binom{N-1}{k-1},\qquad v={w\over2^N}.
+\]
+
+Then `ker(W)=span(u)`, `w^T Z=0`, and `w^Tu=2^(N-1)`.  Hence
+
+\[
+ {I\over2}-ZT^{-1}W={I-P\over2}=uv^T.             \tag{54}
+\]
+
+A backward bidiagonal substitution also gives
+
+\[
+ UX^{-1}u=q,qquad
+ q_1=2^N-1,\qquad q_k={(-1)^k\over k}\quad(2\le k\le N).
+                                                               \tag{55}
+\]
+
+Therefore
+
+\[
+                       C_\alpha=V_\alpha-\alpha qv^T.          \tag{56}
+\]
+
+The easy outer determinants are
+
+\[
+ \det X={N!\over(2N)^N},\qquad \det T=(N-1)!.      \tag{57}
+\]
+
+For the second identity, `2T` is `N I` plus the rank adjacency matrix of
+the `(N-2)`-dimensional hypercube, whose eigenvalues are
+`N-2-2j`; hence the eigenvalues of `T` are `1,...,N-1`.
+
+Let `D_k` be the leading `k` by `k` determinant of `V_alpha`, with
+`D_0=1`.  Its tridiagonal continuant recurrence simplifies exactly to
+
+\[
+ {D_k\over D_{k-1}}={(N-k)\alpha+k-1\over2(N-1)},
+ \qquad1\le k\le N.                               \tag{58}
+\]
+
+Consequently
+
+\[
+ \det V_\alpha={1\over2^N(N-1)^{N-1}}
+ \prod_{j=1}^{N-1}(j\alpha+N-1-j).                \tag{59}
+\]
+
+The derivative `C'_alpha` annihilates the all-ones vector: the row sums of
+`V_alpha` are `(2k-1)/(2k)`, independent of `alpha`, and `v^T1=0`.
+Therefore `det C_alpha` has degree at most `N-1`.  For
+
+\[
+ \alpha_j=-{N-1-j\over j},\qquad1\le j<N,          \tag{60}
+\]
+
+the vector
+
+\[
+ r^{(j)}_k=\binom{N-k}{j}                          \tag{61}
+\]
+
+is killed by `V_(alpha_j)`.  Moreover, `v^Tr^(j)=0` for `j<N-1`; when
+`j=N-1`, the coefficient `alpha_j` itself is zero.  Thus
+`C_(alpha_j)r^(j)=0` for all `j`.  These are `N-1` distinct roots, so
+`det C_alpha` is either zero or a constant multiple of `(59)`.
+
+It remains only to prove that constant is nonzero.  At `alpha=1`, `V_1`
+is lower bidiagonal with diagonal `1/2` and subdiagonal `(k-1)/(2k)`.
+Solving `V_1x=q` gives
+
+\[
+ x_k={2(-1)^{k+1}(2^N-k)\over k}.                 \tag{62}
+\]
+
+The matrix determinant lemma and
+
+\[
+ \sum_{k=1}^N{1\over k}\binom{N-1}{k-1}
+ ={2^N-1\over N}                                  \tag{63}
+\]
+
+now yield
+
+\[
+ {\det C_1\over\det V_1}
+ =1-v^Tx=-{2(2^N-N-1)\over N}\ne0.               \tag{64}
+\]
+
+Combining `(52)`, `(57)`, `(59)`, and `(64)` proves `(42)`--`(43)`.
+
+Finally,
+
+\[
+ A-zB=(1-z)K_{\alpha(z)},\qquad
+ \alpha(z)={1-z/N^2\over1-z}.                    \tag{65}
+\]
+
+Substitution in `(42)` proves `(44)`.  The binomial vectors in `(46)`
+satisfy `(47)` by Pascal's identity.  Together with the coordinate kernels
+at `z=0,1`, they give `3N-1` independent vectors, so every displayed
+algebraic multiplicity is also geometric.  QED.
+
+The vectors in `(46)`, the `O` coordinates, and the eigenvalue-one vectors
 are linearly independent: modulo the `O` coordinates, their `I` components
 are the triangular binomial basis of degrees `0,...,N-1`.  What is not yet
-proved in this note is the all-`N` nonvanishing leading factor in `(42)` or
-a variation-diminishing theorem connecting this generalized spectrum to
-`(34)`--`(41)`.  The ordered positive values `(43)` strongly suggest a
-Krawtchouk/oscillatory-pencil proof, but spectrum alone is insufficient
-because `A` and `B` do not commute.
+proved is a variation-diminishing theorem connecting this generalized
+spectrum to `(34)`--`(41)`.  After reversing the rank order, the nontrivial
+`I` components in `(46)` form the totally nonnegative Pascal matrix, an
+exact sign-regular ingredient.  Spectrum and right sign regularity alone
+are nevertheless insufficient because `A` and `B` do not commute; in the
+natural generalized eigenbasis the transfer matrix still has mixed signs.
 
 ## 8. Exact finite scope and open lemma
 
@@ -472,19 +708,28 @@ point:
   recursion;
 * the exact counterexample `(32)` and positive mean `(33)`;
 * exact quotient lumpability against every labelled row for `3<=n<=5`;
+* the generalized eigenvectors and determinant factorization on finite
+  symbolic instances, independently checking the all-`N` proof above;
 * for every `3<=n<=8` and `2<=t<=50`, all 294 order/time pairs satisfy
   `(34)`, `(36)`, positive terminal slope, and positive weighted curvature;
 * the quotient coefficients in `(38)` are strictly positive on the same
   exact corpus.
+* the multinomial Schur comparison in Section 6.4 holds in 95,495 exact
+  add-one tests: `n=3,t<=35`; `n=4,t<=14`; and `n=5,t<=9`.
 
 These finite statements are evidence, not a universal proof.  The cleanest
 remaining standard-sector lemma is
 
 \[
- \boxed{q_c\ge0\quad(0\le c\le t-2, n\ge3, t\ge2).}           \tag{46}
+ \boxed{q_c\ge0\quad(0\le c\le t-2, n\ge3, t\ge2).}           \tag{66}
 \]
 
-Any proof of `(46)`, or either stronger sign-regularity statement, proves
+Any proof of `(66)`, or either stronger sign-regularity statement, proves
 the standard fixed-count two-replica sector for every population order and
 every time.  It does not by itself prove the symmetric sector or the full
 higher-colour transient floor.
+
+The multinomial Schur inequality of Section 6.4 is a stronger open target.
+Its finite audit is implemented independently in
+`verify_pin_multinomial_schur.py`; no finite comparison discharges the
+all-order claim.

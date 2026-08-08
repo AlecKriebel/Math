@@ -249,6 +249,24 @@ def generalized_pencil_audit() -> None:
         # Therefore A-zB=B*basis*(diagonal-zI)*basis^{-1}; the displayed
         # generalized eigenvalues give the complete determinant factor.
 
+        # Independently check the exact all-N determinant constant at a
+        # nonexceptional rational alpha.  This remains a finite audit of
+        # the analytic block-elimination proof in STANDARD_PIN_VARIATION.md.
+        alpha = Q(2, 3)
+        _, test_operator = category_operator(N, alpha)
+        test_matrix = operator_matrix(test_operator)
+        gamma = -sp.Rational(
+            2
+            * (2**N - N - 1)
+            * sp.factorial(N)
+            * sp.factorial(N - 1),
+            N * (4 * N) ** N * (N - 1) ** (2 * N - 2),
+        )
+        predicted = gamma * sp.Rational(1, 3) ** (N - 1)
+        for degree in range(1, N):
+            predicted *= degree * sp.Rational(2, 3) + N - 1 - degree
+        assert test_matrix.det() == predicted
+
 
 def exact_screen() -> tuple[int, int, int, int]:
     first_negative_order = 0

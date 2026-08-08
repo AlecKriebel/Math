@@ -87,12 +87,28 @@ The standard sector now has a second, probabilistic reduction in
 `STANDARD_PIN_VARIATION.md`.  One verifier reconstructs the distinguished-
 pin line and exact convexity counterexample; another independently checks
 the `3N-1` quotient, the binomial/Krawtchouk identities, and the surviving
-one-crossing and positive-quotient signs:
+one-crossing and positive-quotient signs.  A third performs the stronger
+multinomial Schur-convexity screen:
 
 ```text
 ../../.venv/bin/python verify_standard_pin_bernstein.py
 ../../.venv/bin/python verify_standard_pin_one_crossing.py
+../../.venv/bin/python verify_pin_multinomial_schur.py
 ```
+
+The cubic and quartic optional-potential variants are now closed by exact
+Farkas certificates in `CUBIC_OPTIONAL_FARKAS_REFUTATION.md`.  The independent
+replay is `../../.venv/bin/python verify_cubic_optional_farkas.py`; it
+checks the full labelled-to-quotient audit, the cubic and quartic dual
+rays, and the strict quartic repair on the first witness.
+
+The more flexible rank-dependent additive potential is also exactly
+refuted in `RANK_DEPENDENT_ADDITIVE_FARKAS_REFUTATION.md`.  Replay
+`../../.venv/bin/python verify_rank_dependent_additive_farkas.py`; it checks
+the 196 exact quotient rows, reconstructs a positive 48-state Farkas ray,
+and independently solves the witness graph's dB fixation system over the
+rationals.  The witness is dB-suppressing at fitness two, so this result
+closes only the certificate ansatz.
 
 Status:
 
@@ -117,11 +133,23 @@ Status:
   reductions of the standard two-replica sector;
 - **PROVED:** exact `3N-1` stabilizer quotient for the distinguished-pin
   pencil;
+- **PROVED:** all-order determinant factorization and semisimple generalized
+  spectrum of the distinguished-pin pencil;
 - **EXACTLY REFUTED:** pointwise convexity of the standard pin-count
   controls;
+- **EXACTLY REFUTED:** universal degree-three and degree-four
+  optional-potential feasibility, by sparse exact Farkas rays;
+- **EXACTLY REFUTED:** the rank-dependent additive optional-potential ansatz,
+  by a positive exact 48-state Farkas ray on a 17-vertex graph;
+- **PROVED:** a strict degree-four optional potential on the first cubic
+  counterexample;
+- **EXACTLY COMPUTED:** the rank-additive witness has normalized dB fixation
+  `0.8734550749036819...<1` at fitness two, by an exact 196-state solve;
 - **EXACTLY COMPUTED:** first-difference and curvature one-crossing, and
   positive derivative-quotient Bernstein controls, for `3<=n<=8` and
   `2<=t<=50`;
+- **EXACTLY COMPUTED:** 95,495 multinomial discrete-Schur comparisons on the
+  exact finite ranges stated in `STANDARD_PIN_VARIATION.md`;
 - **EXACTLY COMPUTED:** positive standard, symmetric, and antisymmetric
   Hessian sectors through order twelve;
 - **EXACTLY REFUTED:** termwise transverse-excursion and two-colour-word

@@ -179,5 +179,54 @@
   `Phi_t'`.  All survive exact rational checks for `3<=n<=8,t<=50`.
 - Found a simple generalized spectrum for the quotient pencil in exact
   symbolic orders `2<=N<=7`, with nontrivial eigenvectors given by complement
-  binomial coefficients.  An all-order oscillatory-pencil theorem remains
-  open because the two pin operators do not commute.
+  binomial coefficients.  A subsequent block elimination proves the exact
+  determinant factorization and semisimple generalized spectrum for every
+  `N>=2`.  The right eigenvectors form a Pascal system, but the transfer
+  matrix in that basis still has mixed signs, so the variation theorem
+  remains open.
+- Recast the positive-quotient target as a consequence of discrete
+  Schur-convexity of the fully word-symmetrized multinomial pin reward.  A
+  two-label swap pairs every lower-binomial-tail term with the correct sign.
+  Exact rational computation verifies 95,495 add-one comparisons through
+  `(n,t)=(3,35),(4,14),(5,9)`; the all-order reflection theorem is open.
+
+## 2026-08-08 — exact cubic and quartic optional-potential refutations
+
+- Independently derived the monomial drift columns and the Farkas dual of
+  the degree-bounded optional-potential LP.
+- On the complete-support two-class graph of order seven with class sizes
+  `(2,5)` and weights `w_AA=10000,w_BB=100,w_AB=1`, extracted a seven-state
+  positive integer Farkas ray with exact negative objective
+  `-16671847733465987326305780396702792`.  This exactly refutes the cubic
+  lemma.
+- Verified the entire 126-state labelled drift system against the
+  `S_2 x S_5` quotient, so the obstruction is not a faulty lump.
+- Exactified a strict quartic potential on that same graph and checked its
+  expected drift directly on every labelled transient state.
+- Enlarging the classes to `(2,8)` gives an order-ten graph with a ten-state
+  exact Farkas ray against every degree-at-most-four potential; its objective
+  is
+  `-591738467543996669461667803880418671550252755178182911237183584`.
+- Numerical two-class sweeps suggest the required degree continues to grow,
+  but no unbounded-degree theorem is claimed.
+
+## 2026-08-08 — rank-dependent additive Farkas refutation
+
+- Derived the exact drift system for
+  `G(S)=1+|S|/n+sum_(v in S)a_(|S|,v)` and its marked Farkas dual.
+- Found and exactified a complete-support three-class graph of order 17,
+  with class sizes `(2,5,10)` and integer class weights
+  `((20000000,15,5),(15,9,4500),(5,4500,150))`.
+- The 48-state dual support has a one-dimensional rational nullspace.  In
+  normalization `z=-1`, all 48 state weights are strictly positive and the
+  exact objective is `-0.34734270358231461111...`.
+- The summed rank balances telescope to
+  `[2(n-1)R_1-(2^(n-1)(n+1)-2n)A_(n-1)]/n`.  The witness exceeds the endpoint
+  ratio threshold, showing precisely why a one-marked-vertex correction is
+  insufficient.  A viable forest dual must retain a second marked
+  vertex/collision statistic rather than merely raising a fixed polynomial
+  degree.
+- Independently solved the 196-state quotient fixation chain exactly over
+  `QQ`.  The normalized dB fixation ratio is
+  `0.87345507490368193387...<1`, so the graph supports the universal r=2
+  inequality and refutes only the potential ansatz.
