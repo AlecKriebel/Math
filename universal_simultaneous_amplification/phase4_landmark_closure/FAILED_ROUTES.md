@@ -1,6 +1,6 @@
 # Failed and closed proof routes
 
-Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
+Last updated: 2026-08-08 endpoint simultaneous-amplifier breakthrough.
 
 These failures are exact unless explicitly labeled numerical.  None should
 be revived without a new ingredient addressing the stated witness.
@@ -23,6 +23,17 @@ be revived without a new ingredient addressing the stated witness.
 - The balanced normalized arithmetic separator is also false on the same
   graph: `(x+y)/2=1.006912940840...>1`.  Do not retry proving the global
   Green sign `T+C<=E`; the exact counterexample refutes it.
+- The sharp-looking one-third separator is false.  The complete-support
+  two-class graph with class sizes `(2,20)` and weights `137`, `1`, and
+  `1/500` has exact normalized score `(x+2y)/3=1.000221711118...`.
+  Its affine crossing is `0.335546682073...>1/3`; clique--pendant rays force
+  every universal affine Bd coefficient to be at most `1/3`.  Therefore no
+  fixed convex affine separator exists.  Do not search for another fixed
+  coefficient.
+- More fundamentally, the endpoint disjunction itself is false: the
+  proved dilute pair--leaf family eventually amplifies both rules at
+  `r=3/2` and in fact for every fixed `1<r<R_hyb`.  Endpoint obstruction
+  routes can now be useful only as class theorems, not universal goals.
 
 - A common pointwise Bd/dB harmonic correction, including the
   baseline-weighted tangent version, is infeasible on weighted paths.

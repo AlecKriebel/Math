@@ -2,7 +2,9 @@
 
 Date: 2026-08-08 (America/Los_Angeles)
 
-No literature search or external communication was used.
+No literature search was used during discovery, and no external
+communication was made.  A narrow post-theorem audit is recorded separately
+in `LITERATURE_AUDIT.md`.
 
 ## 1. Result
 

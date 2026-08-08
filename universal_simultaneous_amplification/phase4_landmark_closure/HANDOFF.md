@@ -1,12 +1,17 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-08 audited public preprint v1.0.0
+Checkpoint date: 2026-08-08 dilute-hybrid threshold breakthrough
 (America/Los_Angeles)
 
 ## Current theorem state
 
-- **PROVED:** `R_sim>=3/2` by the explicit rational center--triangle family.
-- **PROVED:** the same family is suppressing under both rules at `r=3/2`.
+- **PROVED:** `R_sim>=R_hyb=1.5028569127905696...>3/2` by the explicit
+  dilute pair--leaf family.  The exact threshold is the isolated root of
+  `r^6-8r^5+22r^4-30r^3+21r^2-6r+1`; finite weak-cut trace,
+  post-establishment fixation, compact-uniform diagonal, and exact algebra
+  are all audited.
+- **PROVED:** the inherited center--triangle family is suppressing under
+  both rules at `r=3/2`; this statement does not apply to the new hybrid.
 - **PROVED CLASS THEOREM:** fixed-finite-rank positive-incidence blade/portal
   families without portal edges cannot work at any fixed `r>=3/2`.
 - **EXACTLY FALSIFIED:** the universal endpoint product inequality.  The
@@ -17,10 +22,12 @@ Checkpoint date: 2026-08-08 audited public preprint v1.0.0
   `256/243>1`; the post-establishment step is audited, not assumed.
 - **EXACTLY FALSIFIED:** the balanced normalized arithmetic separator; the
   same graph has normalized mean `1.006912940840...>1`.
-- **OPEN:** weaker universal no-simultaneous endpoint separator.
-- **OPEN:** the surviving fixed affine candidate `(x+2y)/3<=1`.  Its exact
-  Green--Poisson reduction passes the hostile corpus, but the natural
-  common-potential proof is exactly infeasible on a weighted four-star.
+- **FALSIFIED:** universal no-simultaneous endpoint obstruction.  The new
+  family eventually amplifies both rules at `r=3/2`.
+- **EXACTLY FALSIFIED:** the one-third affine candidate, by the exact
+  `(2,20)` complete-support graph with weights `(137,1,1/500)`.
+- **FALSIFIED:** every fixed convex affine separator.  The new witness forces
+  `theta>1/3`, while clique--pendant rays force `theta<=1/3`.
 - **PROVED SHARPNESS:** no universal convex affine separator can give Bd a
   coefficient above `1/3`; explicit clique--pendant rays have crossing
   coefficient decreasing to `1/3`.  An exact rational dB witness forces the
@@ -45,9 +52,9 @@ Checkpoint date: 2026-08-08 audited public preprint v1.0.0
   witness graphs retain the desired actual fixation comparison.
 - **OPEN:** exact fitness-two sign `L<=V` and hence any finite universal upper
   bound on `R_sim`.
-- **OPEN:** exact value of `R_sim`; current rigorous information is only the
-  lower bound `R_sim>=3/2`.  The new finite graph is not a simultaneous
-  amplifier because its dB ratio is below one.
+- **OPEN:** exact value of `R_sim`; the current rigorous lower bound is
+  `R_hyb`.  The exact `r=2` stationary collision inequality remains the
+  principal universal-upper-bound route.
 
 ## Repository and preservation
 
@@ -85,16 +92,18 @@ so the exact missing sign is `L<=V`.
 
 ## Immediate next action
 
-Continue the three independent live branches:
+Continue three independent live branches:
 
-1. prove or refute the one-third affine separator by a genuinely global
-   Green/forest argument, or find an endpoint simultaneous graph;
-2. test weighted and multi-hub clique--pendant extensions for an actual
-   endpoint simultaneous amplifier; the unweighted growing family already
-   proves the product violation and optimal affine coefficient;
-3. prove the direct stationary collision sign `L<=V` at `r=2`, without the
-   now-refuted symmetric-flow split, using the exact source-centered
-   event-ratio transport identity recorded in `ACTIVE_LEMMAS.md`.
+1. formalize and publish the dilute pair--leaf theorem and its independent
+   labelled/Schur verification, replacing the now-superseded endpoint
+   narrative in preprint v1.0.0;
+2. optimize the general dilute bounded-gadget tangent cone.  The exact
+   `K_s` formulas and finite searches currently single out `K_2`, but no
+   universal gadget theorem or global upper bound is proved;
+3. prove the direct stationary collision sign at `r=2`.  The marked
+   one-sample lift and its uniform two-step sum-of-squares inequality are
+   proved; the sole new obstruction is promotion to the stationary marked
+   law.
 
 Do not retry rank/overlap-only, vertex-bilinear pointwise, statewise,
 fixed-rank, separately signed, or first-change-balanced endpoint
@@ -102,10 +111,9 @@ certificates.  Also do not retry finite-degree Green relaxations, transient
 orientation domination, treewise reversal, rank-tail domination, or the
 `L<=S<=V` split: exact witnesses now close all of them.
 
-The first exact theorem, exact endpoint counterexample, or universal
-fitness-two sign should stop broad exploration and trigger theorem
-extraction.  A finite endpoint amplifier alone is not a threshold result; it
-must be converted into one growing fitness-independent family.
+The endpoint counterexample has already been converted into one growing
+fitness-independent family with an exact interval.  Do not reopen the
+universal endpoint-obstruction or fixed-affine programs.
 
 ## Publication boundary
 
@@ -148,3 +156,21 @@ The active proof cycle is global: combined endpoint forest transport and
 full-tree complement reflection at `r=2`.  Further construction work must
 leave both the fixed-rank and diffuse-growing portal scopes and must control
 fixation after establishment.
+
+## 2026-08-08 landmark correction
+
+The preceding historical checkpoint is superseded as follows.
+
+- Commit `a660aa3f` exactly refutes the one-third separator and, together
+  with the clique--pendant sharpness theorem, every fixed convex affine
+  separator.
+- Commit `9c37b436` supplies an independently derived dilute pair--leaf
+  construction beyond `3/2`; the canonical full theorem and constructive
+  diagonal are in `threshold/dilute_pair_leaf_hybrid/` pending final
+  integration commit.
+- The exact class threshold is `R_hyb=1.5028569127905696...`, the isolated
+  sextic root recorded above.  The global exact value of `R_sim` remains
+  open.
+- Commits `3e65e0b7` and `c6e60ca5` reduce the `r=2` fallback to a stationary
+  marked-chain promotion after proving the universal uniform two-step
+  sum-of-squares comparison.

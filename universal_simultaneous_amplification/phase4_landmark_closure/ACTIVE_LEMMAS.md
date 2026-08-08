@@ -1,6 +1,35 @@
 # Active exact lemmas
 
-Last updated: 2026-08-08 affine-window and weighted-star checkpoint.
+Last updated: 2026-08-08 dilute-hybrid threshold breakthrough.
+
+## Landmark superseding update
+
+Sections A--C below record historically useful reductions, but their former
+universal endpoint targets are now closed negatively.
+
+- The one-third affine separator is **EXACTLY FALSIFIED** by the positive
+  complete-support `(2,20)` two-class graph with weights `137`, `1`, and
+  `1/500`.  Its exact affine crossing is
+  `0.3355466820733536...>1/3`; together with the proved clique--pendant
+  restriction `theta<=1/3`, this rules out every fixed convex affine
+  separator.
+- The endpoint disjunction is **FALSIFIED** by a proved growing family.  A
+  dilute population of weak `K_2` satellites and hub leaves attached to a
+  growing clique simultaneously amplifies at `r=3/2`.
+- More strongly, with the algebraic constants in
+  `threshold/dilute_pair_leaf_hybrid/`, the same fitness-independent family
+  works for every fixed `1<r<R_hyb`, where
+
+  \[
+  R_{\rm hyb}=1.5028569127905696\ldots
+  \]
+
+  is the unique root in `(3/2,151/100)` of
+  `r^6-8r^5+22r^4-30r^3+21r^2-6r+1`.  This is the exact threshold of that
+  two-mechanism leading family and proves `R_sim>=R_hyb`.
+
+The live universal problem is now to improve this lower bound or prove an
+upper bound.  The independent fitness-two target in Section D remains live.
 
 ## A. Endpoint product at `r=3/2` is refuted
 
