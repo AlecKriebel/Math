@@ -414,3 +414,47 @@ tree/forest cancellation.
 
 These are universal or exact low-order theorems, not the missing all-time or
 all-order proof.
+
+## 11. Cubic optional-potential frontier
+
+A new direct sufficient dual avoids stationarity altogether.  Let
+
+\[
+ F(S)=2^{-|S|}G(S),\qquad
+ G(S)=1+\sum_{1\le |I|\le3}c_I1_{\{I\subseteq S\}}.
+\]
+
+Impose
+
+\[
+ \sum_i c_{\{i\}}=1,
+ \qquad \sum_{2\le|I|\le3}c_I=0.                  \tag{R2-8}
+\]
+
+Then `F(empty)=1`, `F(V)=2^(1-n)`, and its uniform-singleton average is
+`(n+1)/(2n)`.  Consequently, if `F` is a submartingale at every transient
+fitness-two dB state, optional stopping gives exactly the finite complete
+baseline, not merely its large-order limit.
+
+For `x_v=P_(vS)`, the statewise condition, after a common positive factor is
+removed, is
+
+\[
+ \sum_{v\notin S}{2x_v\over1+x_v}
+       \{G(S+v)-2G(S)\}
+ +2\sum_{v\in S}{1-x_v\over1+x_v}
+       \{2G(S-v)-G(S)\}\ge0.                     \tag{R2-9}
+\]
+
+Equations `(R2-8)`--`(R2-9)` are linear in the singleton, pair, and triple
+coefficients.  Degree one is exactly infeasible on the weighted triangle
+`(1,1,2)`, and degree two fails on many exact-structure instances.  Degree
+three is feasible in every hostile numerical LP screen currently completed:
+the full 995-graph unweighted atlas through order seven, broad multiscale
+reversible/directed tests through order ten, and seeded tests at orders eleven
+and twelve.  This is **NUMERICAL EVIDENCE ONLY**.
+
+The named open statement is the **cubic optional-potential lemma**: prove
+feasibility of `(R2-8)`--`(R2-9)` for every admissible graph.  It would imply
+`(R2-1)` directly.  The canonical derivation and discovery implementation
+are in `r2_multiplicative_potential/`.
