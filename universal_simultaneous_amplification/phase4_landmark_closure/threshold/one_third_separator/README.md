@@ -11,9 +11,9 @@ at fitness `r=3/2`.
 What is proved:
 
 - the exact Green--Poisson identity for `e_B+2e_D`;
-- exact rare-state algebra which, conditional on the mesoscopic-core lemma
-  now under hostile audit, forces every universal affine Bd coefficient to
-  be at most `1/3`;
+- a proved sharpness theorem, using the independently hostile-audited
+  mesoscopic-core lemma, which forces every universal affine Bd coefficient
+  to be at most `1/3`;
 - the candidate is strict for every nonconstant positively weighted triangle;
 - a seven-atom exact barrier to arbitrary pointwise common corrections;
 - exact survival of all saved Pareto witnesses and the finite

@@ -55,7 +55,7 @@ def main():
 
     print("PASS exact branching polynomial and limiting ratios")
     print("PASS exact affine-sharpness algebra")
-    print("CONDITIONAL theorem: coefficient <=1/3 pending mesoscopic-core audit")
+    print("PROVED theorem: every universal affine Bd coefficient is <=1/3")
 
 
 if __name__ == "__main__":

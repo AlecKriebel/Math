@@ -5,12 +5,12 @@
 - [PROVED REDUCTION] Derived
   `e_B+2e_D=T_2+2C-2E`, hence the affine separator is exactly
   `T_2+2C<=2E`.
-- [EXACT ALGEBRA / CONDITIONAL SHARPNESS] Extended the clique--pendant
-  rare-state calculation to arbitrary fixed rational leaf proportion
-  `alpha`.  The limiting affine crossing is
-  `1/(3 ell(alpha)) -> 1/3`.  The coefficient-optimality conclusion is
-  conditional on the mesoscopic-core establishment lemma, which is under
-  an independent hostile audit.
+- [PROVED SHARPNESS] Extended the clique--pendant rare-state calculation to
+  arbitrary fixed rational leaf proportion `alpha`.  The limiting affine
+  crossing is `1/(3 ell(alpha)) -> 1/3`.  The general-ratio mesoscopic-core
+  establishment lemma survived independent hostile audit and was committed
+  at `1af17787`; consequently every universal affine Bd coefficient is at
+  most `1/3`.
 - [PROVED CLASS THEOREM] Constructed a 24-atom coefficient-positive
   certificate for every positively weighted triangle, strict away from the
   unit-weight equality class.

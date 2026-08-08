@@ -1,4 +1,4 @@
-# Conditional sharpness of the Bd coefficient `1/3`
+# Sharpness of the Bd coefficient `1/3`
 
 Date: 2026-08-08 (America/Los_Angeles)
 
@@ -7,11 +7,13 @@ No literature search or external communication was used.
 ## Status
 
 This note proves the exact rare-state algebra for a sharpness theorem and
-reduces its probabilistic part to the mesoscopic-core establishment lemma in
-the sibling clique--pendant manuscript.  That lemma is presently under an
-independent hostile audit.  Accordingly, the coefficient-optimality theorem
-below is **CONDITIONAL** until that audit is closed.  This note does **not**
-prove that the sharp candidate is universal.
+combines it with the independently hostile-audited mesoscopic-core
+establishment lemma in the sibling clique--pendant manuscript
+`threshold/clique_pendant_asymptotic/CLIQUE_PENDANT_ASYMPTOTICS.md`, Lemma 1.
+That lemma, including its arbitrary fixed positive core-to-leaf ratio, is
+proved in commit `1af17787`.  The coefficient-optimality theorem below is
+therefore **PROVED**.  This note does **not** prove that the sharp candidate
+is universal.
 
 At fitness `r=3/2`, write
 
@@ -20,7 +22,7 @@ At fitness `r=3/2`, write
  y(G)={\rho_{dB}(G)\over\rho_{dB}(K_n)}.
 \]
 
-Conditional on the audited mesoscopic-core lemma, if an inequality
+If an inequality
 
 \[
              \theta x(G)+(1-\theta)y(G)\leq1             \tag{1}
@@ -33,10 +35,9 @@ holds for every finite connected undirected weighted graph, then necessarily
 \]
 
 The coefficient `1/3` is approached from above by explicit unweighted
-clique--pendant families under that lemma.  On every fixed ray, the candidate
-at `theta=1/3` still has a strict limiting slack.  Thus (2), once the lemma is
-audited, is an optimality theorem for the coefficient, not the desired
-universal separator.
+clique--pendant families.  On every fixed ray, the candidate at
+`theta=1/3` still has a strict limiting slack.  Thus (2) is an optimality
+theorem for the coefficient, not the desired universal separator.
 
 ## 1. The explicit family
 
@@ -54,9 +55,10 @@ The graph is connected, unweighted, and independent of fitness.
 The exact quotient state is `(h,i,j)`, where `h` is the hub type and `i,j`
 are the mutant counts among ordinary vertices and leaves.  Strong lumping
 and the six transition formulas are proved directly in the sibling
-clique--pendant audit.  The establishment lemma there is stated for arbitrary
-fixed `c_m/m -> a>0`; the conclusions below are conditional on its hostile
-audit.  For completeness, the new rare-state calculation is given next.
+clique--pendant audit.  The establishment lemma there is proved for arbitrary
+fixed positive rational `a`, with `c_m=am` along an integer subsequence.
+This suffices here because `alpha` is rational.  For completeness, the new
+rare-state calculation is given next.
 
 ## 2. General leaf branching calculation
 
@@ -94,7 +96,7 @@ branching process has rates
 for leaf birth, leaf death, and a successful ordinary-core mark.  The mark
 rate includes the exact ordinary-family establishment probability `p`.
 
-Subject to the mesoscopic-core lemma, convergence follows by the same
+By the mesoscopic-core lemma, convergence follows by the same
 stopped-path argument as on the ray
 `a=8`: a hub excursion has probability `O(1/m)` of one productive event and
 `O(1/m^2)` of two; failed ordinary families have an exponentially decaying
@@ -137,7 +139,7 @@ probability tends to zero.
 
 ## 3. Exact limiting ratios
 
-Conditional on the same establishment lemma, an ordinary singleton fixes
+By the same establishment lemma, an ordinary singleton fixes
 with probability `p+o(1)` under both rules, and the hub has vanishing
 initialization mass.  Uniform singleton initialization therefore gives
 
@@ -168,10 +170,8 @@ The unique affine crossing on this ray is
  \quad(\alpha\downarrow0).                              \tag{11}
 \]
 
-Thus, if the establishment lemma survives audit, every `theta>1/3` is
-refuted by first choosing a sufficiently small positive rational `alpha` and
-then taking `m` large.  This proves (2) conditional on that single named
-lemma.
+Thus every `theta>1/3` is refuted by first choosing a sufficiently small
+positive rational `alpha` and then taking `m` large.  This proves (2).
 
 At the sharp candidate itself,
 
