@@ -119,3 +119,34 @@ within-rank gradients.
   hierarchy is not being extended.
 - No endpoint simultaneous amplifier was found.  These searches are
   discovery evidence only and do not prove the separator.
+
+## 2026-08-08 -- bounded paired-Schur closure cycle
+
+- [PROVED] For the transient occupation operator `A=-L.T`, the canonical
+  complete-graph adjoint diagonal is the inverse reversible weight
+  `D_k=binomial(n-2,k-1)(2/3)^(k-1)`.  The orientation was checked directly:
+  `D A=A.T D` for both rules on `K_6`.
+- [EXACTLY FALSIFIED] On the unweighted cycle `C_6`, whose degree-greater-two
+  space is only the five-dimensional rank-three Johnson component, the
+  symmetric parts of both `D(Sigma_B+Sigma_D)` and
+  `D(Sigma_B-Sigma_D)` are indefinite.  Tiny exact witnesses give paired
+  values `-15488/3375, 96/5, -1792/3375, 32/15`.  This simultaneously
+  refutes the canonical weighted-adjoint identity and every Loewner
+  sum/difference version tested.
+- [EXACTLY VERIFIED HOSTILE SCREEN] Explicit positive and negative
+  rank-pair witnesses reproduce both indefiniteness statements over `QQ` on
+  the frozen seven-vertex fake-Green graph, the exact dB-amplifying
+  windmill, and the affine-lower-multiplier witness.
+- [EXACTLY FALSIFIED] The stronger scalar claim that high modes cannot
+  improve both normalized endpoint scores is false.  On the exact
+  dB-amplifying windmill, deleting Schur feedback gives normalized scores
+  `0.736005425738...` (Bd) and `0.984306556384...` (dB); the true scores are
+  respectively higher by exact positive rationals
+  `0.0144247167995...` and `0.0295416643673...`.
+- [PRECISE REMAINING GLOBAL SIGN] With low blocks `B_U`, Schur terms `C_U`,
+  source `b`, and normalized fluxes `c_U`, the endpoint target is exactly
+  `sum_U c_U.T (B_U-C_U)^(-1)b <= 2`.  Equivalently, the joint low-only
+  deficit must dominate the sum of the two resolvent-dressed corrections.
+  Operator order, separate correction signs, and a no-both-improve shortcut
+  are now all closed.  See `SCHUR_FEEDBACK_AUDIT.md` and
+  `verify_schur_feedback_exact.py`.
