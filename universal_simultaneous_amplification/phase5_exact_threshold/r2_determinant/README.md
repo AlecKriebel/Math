@@ -64,6 +64,15 @@ active chain through order seven.  The second uses an independent stabilizer-
 orbit reduction to compute all three invariant Hessian eigenvalues exactly
 through order twelve.
 
+The weaker transient-baseline route is documented in
+`TRANSIENT_BASELINE_FLOOR.md`.  Its verifier proves the directed-triangle
+time-three identity and exact negative packet obstructions, then replays the
+finite boundary and complete-ray Bernstein screens:
+
+```text
+../../.venv/bin/python verify_transient_baseline_floor.py
+```
+
 Status:
 
 - **PROVED:** exact target/promotion implication audit;
@@ -73,8 +82,14 @@ Status:
 - **PROVED:** positive Bernstein coefficients along the complete-refresh
   interpolation for every weighted triangle;
 - **PROVED:** strict positivity of the all-order antisymmetric Hessian sector;
+- **PROVED:** transient baseline-floor implication and its exact
+  quenched-versus-annealed formulation;
+- **PROVED:** positive time-two and time-three grouped path certificates for
+  every directed triangle;
 - **EXACTLY COMPUTED:** positive standard, symmetric, and antisymmetric
   Hessian sectors through order twelve;
+- **EXACTLY REFUTED:** termwise transverse-excursion and two-colour-word
+  positivity;
 - **EXACTLY REFUTED:** raw edge-monomial coefficient positivity;
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
@@ -82,4 +97,6 @@ Status:
 - **OPEN:** all-order positivity of the standard and symmetric Hessian
   sectors;
 - **OPEN:** positivity of every higher complete-refresh forest coefficient;
+- **OPEN:** the universal transient baseline floor and its complete-ray
+  Bernstein strengthening;
 - **OPEN:** the arbitrary-order active-tree coefficient.

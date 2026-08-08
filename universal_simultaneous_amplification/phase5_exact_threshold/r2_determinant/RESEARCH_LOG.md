@@ -92,3 +92,38 @@
   computation through order twelve.
 - The standard and symmetric sectors are exactly positive through order
   twelve but do not yet have all-order sign proofs.
+
+## 2026-08-08 — transient baseline floor and grouped histories
+
+- Isolated the weaker sufficient conjecture
+  `nu_0 K_P^t H >= nu_0 H` for every finite time.  Cesaro convergence would
+  prove the true collision target without stationary promotion.
+- Recast it exactly as a quenched-versus-annealed comparison under a random
+  fixed vertex labelling versus independently refreshed labellings.
+- Derived the rank/transverse block expansions at times two and three.
+  Individual packets are not positive: the reversible triangle `(1,10,10)`
+  has an exact negative `BDC` packet, and `(1,2,2)` has a negative isolated
+  two-colour word.  Their fixed-length grouped sums remain positive.
+- Proved for every directed triangle that
+  `a_2-a_0=(X^2+Y^2+Z^2)/12` and
+  `a_3-a_2=((y+z)X^2+(1+x-z)Y^2+(2-x-y)Z^2)/16`.
+- Exact boundary screens cover all deterministic row maps at orders three
+  and four and all equal two-neighbour row supports at order four through
+  time fifty.  Exact complete-ray Bernstein coefficients are nonnegative on
+  a seeded reversible/directed corpus through order five and time thirty.
+- Derived the exact fixed-count-word recurrence for complete-ray Bernstein
+  control vectors.  It makes each coefficient the uniform average of all
+  histories with a prescribed number of actual versus complete updates and
+  avoids unstable polynomial interpolation.
+- The finite evidence does not prove the all-time statement.  The live target
+  is a grouped two-replica or tree-homomorphism certificate; termwise
+  excursions are closed.
+- Proved strict complete-ray convexity at time three for every directed
+  triangle using the cubic bound
+  `(X+Y)(X-Z)(Y+Z) >= -(X^2+Y^2+Z^2)/2`.
+- Exactified two stronger-route failures.  Raw product-simplex Bernstein
+  control coefficients are negative at order four and time three.  A
+  reversible order-five kernel has negative complete-ray curvature at time
+  eighteen, even though all its complete-ray Bernstein coefficients remain
+  nonnegative.  Thus convexity is closed but the more flexible ray-history
+  grouping survives.
