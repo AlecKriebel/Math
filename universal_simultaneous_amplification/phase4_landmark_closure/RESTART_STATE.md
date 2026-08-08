@@ -238,10 +238,12 @@ on `main`, equal to `origin/main` before the final ledger-only checkpoint.
   integrated gadgets, and symmetric portal-linked `K_2` doublets at the
   `R_hyb` first-order tangent.  Second-order, asymmetric, growing-rank, and
   nonseparated mechanisms remain open.
-- **FITNESS TWO:** commit `6e893e3f` freezes the remaining universal upper
-  route at one equivalent stationary promotion/determinant sign.  The exact
-  structural verifier and exact finite corpus replay pass; no universal sign
-  and no counterexample are known.
+- **FITNESS TWO:** commit `6e893e3f` freezes the marked reduction, but its
+  prior equivalence wording is repaired in phase 5: the true collision target
+  has a direct determinant sign, while stationary promotion is a stronger
+  sufficient sign with Cesaro/Abel/tree equivalents.  The exact structural
+  verifier and finite corpus replay pass; no universal sign or counterexample
+  is known.
 - **PUBLICATION:** the theorem package was publicly released at GitHub tag
   `simultaneous-amplification-beyond-three-halves-v1.0.0` with archival
   version DOI `10.5281/zenodo.21852072`.  Later class obstructions and the

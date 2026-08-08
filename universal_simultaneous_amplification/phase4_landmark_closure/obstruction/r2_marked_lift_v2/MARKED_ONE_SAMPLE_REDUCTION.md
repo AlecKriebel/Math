@@ -325,7 +325,8 @@ proves
 \]
 
 strictly unless `P=P_K`.  This is a global exact theorem, but it is not yet
-the stationary theorem: the sole remaining promotion inequality is
+the stationary theorem.  One sufficient, strictly stronger route is the
+promotion inequality
 
 \[
  {\lambda\over m}\psi\ \stackrel{?}{\ge}\ U M_P^2\psi.                 \tag{24}
@@ -453,7 +454,7 @@ environment is `T_P^j1`.  In particular,
  U M_P^2\psi={1\over nN2^{N-1}}\sum_{B,v}(\mathcal T_P^2 1)(B,v).
 \]
 
-Consequently the sole promotion inequality (24) is exactly
+Consequently the promotion inequality (24) is exactly
 
 \[
  \boxed{\sum_{B,v}g(B,v)
@@ -461,10 +462,12 @@ Consequently the sole promotion inequality (24) is exactly
        \sum_{B,v}(\mathcal T_P^2 1)(B,v).}          \tag{33}
 \]
 
-This is the minimal surviving obstruction: prove (33) for the Perron vector
-of the explicit positive operator (26)--(28), normalized by (29).  A
-state-dependent sample policy destroys (31), so the proof must use that the
-same row `P_v` is reused for every cache with target `v`.
+Because the two-step theorem gives
+`sum T_P^2 1 >= |Y|`, equation (33) implies the exact collision target (31).
+The converse is not proved: (31) may hold while (33) fails.  Thus (33) is a
+strong sufficient promotion lemma, not an equivalent reformulation of dB
+maximality.  A state-dependent sample policy destroys (31), so either proof
+must use that the same row `P_v` is reused for every cache with target `v`.
 
 There is a useful annealed interpretation.  Averaging all conjugates of a
 fixed loopless `P` over uniform vertex permutations gives `P_K`.  Refreshing
@@ -562,12 +565,27 @@ The finite-chain Abel--Cesaro theorem gives `r_epsilon -> 1/m` as
 This is the sharp return-time inequality left by the marked reduction; it
 is not a monotonicity assertion about `a_t`.
 
-### 7.2 Active arborescence certificate
+### 7.2 Active arborescence certificates
 
 Let `L_P=I-K_P`, and let `tau_y=det L_P^(y)` be the directed in-tree
-cofactor at active state `y`.  Set `c_P=a_2`, explicitly given by (24b).
-The Markov-chain tree theorem turns promotion into the single determinant
-sign
+cofactor at active state `y`.  The Markov-chain tree theorem turns the exact
+collision target (31) into
+
+\[
+ \boxed{
+ \sum_{y\in\mathcal Y}\tau_y\left\{H(y)-{1\over m_K}\right\}\ge0.}
+                                                                    \tag{33h0}
+\]
+
+Equivalently, the left side is the coefficient of `epsilon` in
+
+\[
+ \det\left\{L_P+\epsilon\,
+ \operatorname{diag}\left(H-{1\over m_K}\right)\right\}.          \tag{33i0}
+\]
+
+This is exactly equivalent to dB complete-graph maximality.  Set now
+`c_P=a_2`, explicitly given by (24b).  The stronger promotion lemma becomes
 
 \[
  \boxed{
@@ -580,11 +598,12 @@ Equivalently, the left side is the coefficient of `epsilon` in
  \det\{L_P+\epsilon\,\operatorname{diag}(H-c_P)\}.                  \tag{33i}
 \]
 
-Equations (33e), (33g), and (33h) are three exact forms of the same sole
-promotion obstruction.  The forward rank flux (33a), original-edge
-reversibility, and the positive two-step defects have not yet yielded a
-nonnegative expansion of (33h).  In particular, none of these equivalent
-forms is claimed as a universal theorem.
+Equations (33e), (33g), and (33h) are three exact forms of the same stronger
+promotion obstruction.  Since `c_P>=1/m_K`, (33h) implies (33h0), not
+conversely.  The forward rank flux (33a), original-edge reversibility, and
+the positive two-step defects have not yet yielded a nonnegative expansion
+of either determinant coefficient.  Neither sign is claimed as a universal
+theorem.
 
 ## 8. Exact failure of event-rank stochastic domination
 
@@ -665,12 +684,16 @@ Classification:
 * **PROVED:** the marked chain, its stationary law, nearest-neighbour rank
   transition, collision identity, complete binomial reference, and universal
   two-step sum-of-squares theorem (18).
-* **PROVED REDUCTION:** the Perron fixed-point formulation (26)--(33).
-* **PROVED EQUIVALENCE:** the forward flux, quenched Cesaro, rare-restart,
-  and active-arborescence formulations (33a)--(33i).
+* **PROVED REDUCTION:** the Perron fixed-point collision formulation
+  (26)--(31) and its exact arborescence form (33h0)--(33i0).
+* **PROVED EQUIVALENCE FOR THE STRONGER PROMOTION LEMMA:** the quenched
+  Cesaro, rare-restart, and active-arborescence formulations
+  (33)--(33i).  Promotion implies the collision target but is not known to
+  be equivalent to it.
 * **EXACTLY REFUTED:** first-order stochastic domination (34), naive temporal
   monotonicity, and a full radial-PGF stationary envelope.
 * **EXACTLY COMPUTED:** the positive harmonic margin (36) and strict
   promotion on every displayed hostile witness.
-* **OPEN:** the stationary promotion inequality (24)/(33), equivalently the
-  universal collision inequality (1) and `rho_dB(G,2)<=rho_dB(K_n,2)`.
+* **OPEN:** the universal collision inequality (1)/(31)/(33h0), equivalently
+  `rho_dB(G,2)<=rho_dB(K_n,2)`.  The stronger promotion inequality
+  (24)/(33)/(33h) is a sufficient open route.

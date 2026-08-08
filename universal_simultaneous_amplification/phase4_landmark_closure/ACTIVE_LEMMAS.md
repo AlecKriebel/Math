@@ -215,11 +215,12 @@ fitness two.  Proving (D1) gives the fallback universal bound
 
 The latest marked one-sample lift removes the geometric burst exactly.  Its
 uniform two-step target gap is a nonnegative sum of row-collision,
-column-imbalance, and antisymmetry squares.  Promoting that two-step gain to
-the stationary law is exactly equivalent to each of the following: a
-quenched Cesaro persistence inequality, a rare-restart Abel/return-time
-inequality, and one active-arborescence determinant coefficient sign.  This
-promotion remains **OPEN**.  Exact checks on all 54 audited order-three, 624
+column-imbalance, and antisymmetry squares.  The true collision theorem has
+an exact active-arborescence determinant form.  Promoting the stronger
+two-step value to stationarity is equivalently a quenched Cesaro, rare-restart
+Abel/return-time, or stricter determinant sign; this promotion is sufficient
+but not known equivalent to the collision theorem.  Both signs remain
+**OPEN**.  Exact checks on all 54 audited order-three, 624
 order-four, 48 deterministic order-five, and the frozen order-six witnesses
 all pass, but finite checks are not a universal proof.
 

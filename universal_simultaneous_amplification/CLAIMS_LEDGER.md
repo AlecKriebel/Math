@@ -32,7 +32,7 @@ superseded its former open status.
 | Fixed-class positive-proportion dense equitable blow-ups with fixed irreducible kernel and unequal limiting degrees are asymptotically dB-suppressing | PROVED | Exact stopped-generator convergence, multitype branching process, stationarity, and strict Jensen inequality | New theorem |
 | A fitness-independent family eventually amplifying Bd and dB at every fixed `r>1` exists or is universally impossible | OPEN | Diffuse asymptotically regular, mesoscopic, vanishing-class, and reducible-kernel regimes remain | New track |
 | The optimal asymptotic simultaneous-amplification interval is known beyond the prior lower bound `(1,1.2)` | PROVED LOWER BOUND | `R_sim>=R_hyb=1.5028569127905696...>3/2`; the endpoint disjunction is exactly refuted | New phase-4 theorem |
-| The exact value of `R_sim` is known | OPEN | No matching universal upper bound; the fitness-two route is reduced to one stationary promotion/determinant sign | New track |
+| The exact value of `R_sim` is known | OPEN | No matching universal upper bound; the fitness-two collision target has an exact determinant form, while a stronger promotion sign is a sufficient route | New track |
 
 Computational labels in detailed phase reports distinguish exact symbolic
 outputs from numerical discovery observations. No numerical observation is

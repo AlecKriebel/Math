@@ -86,8 +86,8 @@ so the exact missing sign is `L<=V`.
 
 Continue three independent live branches:
 
-1. resolve the stationary collision promotion at `r=2` through its exact
-   quenched-Cesaro, rare-restart, or active-arborescence determinant form;
+1. resolve the stationary collision determinant at `r=2`, either directly
+   or through the stronger quenched-Cesaro/rare-restart promotion lemma;
 2. analyze second-order perturbations of the zero first-order tangent
    `(sigma_*,u=0)`, which are not excluded by the symmetric-doublet theorem;
 3. search asymmetric correlated portals, growing-rank or mesoscopic gadgets,
@@ -187,12 +187,13 @@ The preceding historical checkpoint is superseded as follows.
 - **PROVED REDUCTION / OPEN SIGN:** commits `2beba690` and `6e893e3f`
   rewrite the remaining fitness-two promotion as a positive active-state
   Perron inequality.  The size-weighted mass is invariant and the desired
-  collision observable is the unweighted Perron mass.  The same sign is
-  exactly equivalent to quenched Cesaro persistence, a rare-restart
-  Abel/return-time inequality, and one active-arborescence determinant
+  collision observable is the unweighted Perron mass.  The collision theorem
+  has a direct arborescence determinant sign.  The stronger sufficient
+  promotion lemma is exactly equivalent to quenched Cesaro persistence, a
+  rare-restart Abel/return-time inequality, and a stricter determinant
   coefficient.  Generic late-time monotonicity, event-rank domination, and
-  a rank-zero stationary envelope are exactly false; the collision-observable
-  promotion itself remains open.  Both exact verifiers replayed cleanly on
+  a rank-zero stationary envelope are exactly false; both the collision sign
+  and stronger promotion remain open.  Both exact verifiers replayed cleanly on
   2026-08-08, including all 54 order-three, 624 order-four, 48 deterministic
   order-five, and the frozen order-six witnesses.  This finite audit is not a
   universal proof.
