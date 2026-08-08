@@ -53,6 +53,11 @@ be revived without a new ingredient addressing the stated witness.
   through degree two admit exact positive pseudo-Green witnesses.  The
   seven-vertex degree-two witness is not an endpoint fixation counterexample;
   it proves that higher-mode Schur feedback is indispensable.
+- Splitting the sharp affine target into a `1:2` reversed-arrow orientation
+  inequality plus a separately signed batching comparison is false.  An
+  exact multiscale integer-weight six-cycle violates the orientation sign;
+  its negative batching term overcompensates, so the full one-third score
+  remains below one.  The cancellation cannot be discarded.
 
 Exact files: `obstruction/cross_sum_three_halves/`,
 `obstruction/signed_cut_capacity/`, and

@@ -25,6 +25,12 @@ Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
   coefficient above `1/3`; explicit clique--pendant rays have crossing
   coefficient decreasing to `1/3`.  The sharp candidate holds for every
   positive weighted triangle.
+- **PROVED CLASS OBSTRUCTION:** a unit clique with an unbounded number of
+  hub pendants is eventually dB-suppressing even when every pendant has an
+  arbitrary positive, size-dependent weight.
+- **EXACT ROUTE CLOSURE:** the natural separate `1:2` orientation and
+  batching signs are false on an integer-weight six-cycle; only their full
+  cancellation retains the one-third inequality there.
 - **PROVED REFORMULATIONS:** `T+C` is an exact rankwise Johnson Dirichlet
   pairing, and the reversed-arrow stationary chord is an exact electrical
   two-tree transfer scalar.  Neither final sign is proved.

@@ -128,6 +128,12 @@ proportion proves that every graph-independent convex affine separator must
 give Bd coefficient at most `1/3`.  The sharp one-third separator remains
 **OPEN**, but is proved for every positive weighted triangle.
 
+Arbitrary pendant weights do not repair this mechanism when the number of
+leaves diverges: a uniform dB comparison bounds the normalized fixation by
+`(c+A_r)/(c+m)`.  Separately, an exact six-cycle refutes the tempting split
+of the one-third inequality into independently signed orientation and
+batching terms; their cancellation is essential.
+
 ## Critical replay ledger
 
 | Package | Result | Exact replay |
