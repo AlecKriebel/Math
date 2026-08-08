@@ -29,7 +29,7 @@ where `m=E_Pi|A|`.  Thus (1) is **equivalent**, not merely sufficient, to
 
 The marked lift also led to a stronger event-rank stochastic-domination
 conjecture.  That conjecture is **EXACTLY FALSE** on a six-vertex reversible
-integer-weight graph recorded in Section 6.  The actual harmonic collision
+integer-weight graph recorded in Section 8.  The actual harmonic collision
 inequality (1) remains strict on that witness.  This prevents the new lift
 from being mistaken for a completed universal theorem.
 
@@ -337,6 +337,33 @@ decreases, although every screened value remains above the two-step value.
 Thus (24), if true, requires a time-homogeneous lower-envelope, return-time,
 or stationary-flow argument.
 
+The integral also has a useful closed form.  For `n>=4`, with `s=n-2`, put
+
+\[
+ \overline S_s=\sum_{j=0}^{s-2}
+ {\binom{s-2}{j}\over(j+1)(j+2)^2},\qquad
+ \overline I_s={2^s-1\over s}-{2^{s+1}-1\over2(s+1)},
+\]
+
+\[
+ a_n={\overline I_s-\overline S_s\over n2^s},\qquad
+ b_n={\overline S_s\over2n2^s}.                    \tag{24a}
+\]
+
+Both coefficients are positive, and direct integration of (18) gives
+
+\[
+ \boxed{
+ U M_P^2\psi={1\over m_K}
+ +a_n\left(R-{n\over n-1}\right)
+ +b_n\{(C_2-J)-(n-R)\}.}                           \tag{24b}
+\]
+
+For `n=3`, the added term is simply `(R-3/2)/24`.  Thus the right side of
+the open promotion inequality is an explicit two-replica collision
+functional of `P`; no subset-chain stationary solve is needed to evaluate
+it.
+
 ## 7. Exact density factorisation of the remaining sign
 
 The promotion problem has a compact Perron--Frobenius form.  Besides the
@@ -446,6 +473,119 @@ fixing it produces the powers in (32)--(33).  Proposition 2 is the exact
 two-step quenched-minus-annealed square.  Extending that positivity to the
 Perron limit would prove (33); no such all-history argument is claimed here.
 
+### 7.1 Forward active chain and exact rank flux
+
+The same obstruction can be stated without densities.  Let
+
+\[
+                  \mathcal K_P=R A_P
+\]
+
+be the forward chain on `Y`, and let `nu` be its stationary probability
+law.  For `y=(B,v)` and `b=|B|`, its only nonzero rank changes have rates
+
+\[
+ \begin{split}
+ u(B,v)&=\Pr\{|B'|=b+1\mid B,v\}
+       ={1-P_{vB}\over2},\\
+ d(B)&=\Pr\{|B'|=b-1\mid B,v\}
+       ={1\over2b}\sum_{w\in B}P_{wB}.             \tag{33a}
+ \end{split}
+\]
+
+The first formula is the continue branch followed by a new sample.  For the
+second, the stop branch chooses `w` uniformly in `B`, deletes it, and loses
+one rank exactly when the next `P_w` sample lies in `B minus {w}`.  Looplessness
+allows `P_(wB)` in (33a).  Consequently the stationary aggregate flux from
+rank `b` to `b+1` equals the reverse aggregate flux, even though the rank
+projection is not itself Markov.
+
+Let
+
+\[
+                         H(B,v)={1\over |B|}.
+\]
+
+The recurrence defining `psi` gives the pointwise identity
+
+\[
+                         R\psi=H,                  \tag{33b}
+\]
+
+because `(psi_b+psi_(b-1))/2=1/b`.  If `nu_K` is the complete active law
+from (25), define
+
+\[
+             a_t=\nu_K\mathcal K_P^tH=U M_P^t\psi. \tag{33c}
+\]
+
+Then
+
+\[
+ a_0={1\over m_K},\qquad
+ a_2={1\over m_K}+a_nD_1+b_nD_2,\qquad
+ \lim_{T\to\infty}{1\over T}\sum_{t=0}^{T-1}a_t={1\over m},          \tag{33d}
+\]
+
+where `D_1,D_2` are the two nonnegative defects in (24b), with the stated
+`n=3` convention.  Thus promotion is exactly the persistence inequality
+
+\[
+ \boxed{
+ \lim_{T\to\infty}{1\over T}\sum_{t=0}^{T-1}a_t\ge a_2.}             \tag{33e}
+\]
+
+This formulation survives periodic boundary cases by using Cesaro
+averages.  It also makes the quenched comparison precise.  For every vertex
+permutation `sigma`, conjugating `P` conjugates `K_P`, while `nu_K` and `H`
+are invariant.  Hence fixed-environment histories have value `a_t`.
+Refreshing an independent conjugation at every step replaces `K_P` by its
+group average `K_K` and has value `a_0` at every time.  Proposition 2 proves
+the quenched excess at time two; (33e) asks whether that exact two-replica
+gain persists in the long-run average.
+
+There is an equivalent rare-restart/return-time form.  Reset the active
+chain to `nu_K` with probability `epsilon` after every step.  Its stationary
+reward is
+
+\[
+ r_\epsilon=\epsilon\sum_{t\ge0}(1-\epsilon)^t a_t.                  \tag{33f}
+\]
+
+The finite-chain Abel--Cesaro theorem gives `r_epsilon -> 1/m` as
+`epsilon -> 0+`.  Hence (33) is equivalently
+
+\[
+                         \lim_{\epsilon\downarrow0}r_\epsilon\ge a_2. \tag{33g}
+\]
+
+This is the sharp return-time inequality left by the marked reduction; it
+is not a monotonicity assertion about `a_t`.
+
+### 7.2 Active arborescence certificate
+
+Let `L_P=I-K_P`, and let `tau_y=det L_P^(y)` be the directed in-tree
+cofactor at active state `y`.  Set `c_P=a_2`, explicitly given by (24b).
+The Markov-chain tree theorem turns promotion into the single determinant
+sign
+
+\[
+ \boxed{
+ \sum_{y\in\mathcal Y}\tau_y\{H(y)-c_P\}\ge0.}                     \tag{33h}
+\]
+
+Equivalently, the left side is the coefficient of `epsilon` in
+
+\[
+ \det\{L_P+\epsilon\,\operatorname{diag}(H-c_P)\}.                  \tag{33i}
+\]
+
+Equations (33e), (33g), and (33h) are three exact forms of the same sole
+promotion obstruction.  The forward rank flux (33a), original-edge
+reversibility, and the positive two-step defects have not yet yielded a
+nonnegative expansion of (33h).  In particular, none of these equivalent
+forms is claimed as a universal theorem.
+
 ## 8. Exact failure of event-rank stochastic domination
 
 The tempting strengthening
@@ -506,13 +646,19 @@ Run
 
 ```text
 PYTHONDONTWRITEBYTECODE=1 python3 -B verify_marked_lift.py
+PYTHONDONTWRITEBYTECODE=1 python3 -B audit_promotion_corpus.py
 ```
 
 The verifier reconstructs the proper geometric-union chain over exact
 rationals, builds every marked transition, checks row normalisation and
 stationarity, verifies (5)--(13), checks complete binomiality, verifies the
-two-step identity (18) over exact rational directed kernels, and certifies
-all strict counterexample and surviving-promotion signs in Section 8.
+two-step identity (18) and its integrated form (24b) over exact rational
+directed kernels, constructs the forward active chain, and certifies all
+strict counterexample and surviving-promotion signs in Section 8.  The
+separate corpus audit checks promotion exactly on 54 connected weighted
+triangles, 624 connected four-vertex graphs, 48 deterministic five-vertex
+graphs, and the frozen six-vertex witnesses.  This is finite verification,
+not a proof of (33).
 
 Classification:
 
@@ -520,6 +666,8 @@ Classification:
   transition, collision identity, complete binomial reference, and universal
   two-step sum-of-squares theorem (18).
 * **PROVED REDUCTION:** the Perron fixed-point formulation (26)--(33).
+* **PROVED EQUIVALENCE:** the forward flux, quenched Cesaro, rare-restart,
+  and active-arborescence formulations (33a)--(33i).
 * **EXACTLY REFUTED:** first-order stochastic domination (34), naive temporal
   monotonicity, and a full radial-PGF stationary envelope.
 * **EXACTLY COMPUTED:** the positive harmonic margin (36) and strict

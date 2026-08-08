@@ -84,3 +84,29 @@ promote this two-step lower bound to the stationary marked law.  A proof must
 use time-homogeneous target/sample flow, a marked-chain tree theorem, or a
 genuinely global collision/return-time inequality.  The exact universal r=2
 upper bound remains open.
+
+## Final closure checkpoint
+
+- Integrated the two-step sum of squares exactly.  For `n>=4`,
+  `U M_P^2 psi` is the complete value plus positive rational coefficients
+  `a_n,b_n` times the two defects already isolated in Proposition 2; for
+  `n=3` the excess is `(R-3/2)/24`.
+- Built the forward active chain `K_P=R A_P`.  Its exact rank-up and rank-down
+  rates are `(1-P_vB)/2` and
+  `(2|B|)^(-1) sum_(w in B) P_(wB)`.  Also proved pointwise `R psi=1/|B|`.
+- Reduced stationary promotion equivalently to: (i) persistence of the
+  two-step quenched gain in the Cesaro limit; (ii) the zero-reset limit of a
+  rare-restart reward; and (iii) one signed active-arborescence cofactor sum,
+  or determinant coefficient.  These are equivalent open inequalities, not
+  a universal sign proof.
+- Added an independent exact corpus audit.  Promotion is nonnegative on all
+  54 connected triangle kernels from `{0,1,2,5}`, all 624 connected
+  four-vertex kernels from `{0,1,2}`, 48 deterministic five-vertex graphs,
+  and the frozen six-vertex split and rank-tail witnesses.  Equality in the
+  exhaustive screens occurs only for repeated scalar presentations of the
+  complete kernel.
+- A final continuous hostile search also found no promotion violation, but
+  this numerical observation is not used by the verifier or any theorem.
+- **FINAL STATUS:** the exact r=2 complete-graph dB maximality theorem remains
+  open.  The sole surviving promotion sign is (33)/(33e)/(33g)/(33h) in the
+  companion note.

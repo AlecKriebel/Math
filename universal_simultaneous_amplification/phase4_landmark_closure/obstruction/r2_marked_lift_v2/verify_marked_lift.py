@@ -107,12 +107,50 @@ def marked_kernel(P):
     return marked, index, kernel
 
 
+def active_kernel(P):
+    """Build the forward active chain K_P=R A_P over exact rationals."""
+    n = len(P)
+    active = [
+        (B, v)
+        for v in range(n)
+        for B in range(1 << n)
+        if B and not ((B >> v) & 1)
+    ]
+    index = {state: position for position, state in enumerate(active)}
+    kernel = [[F(0) for _ in active] for _ in active]
+    for source, (B, v) in enumerate(active):
+        b = B.bit_count()
+        # Continue: keep B and v, then take the next P_v sample.
+        for i in range(n):
+            if P[v][i]:
+                kernel[source][index[B | (1 << i), v]] += P[v][i] / 2
+        # Stop: retarget uniformly inside B, delete that target, then sample.
+        for w in range(n):
+            if not ((B >> w) & 1):
+                continue
+            C = B & ~(1 << w)
+            for i in range(n):
+                if P[w][i]:
+                    kernel[source][index[C | (1 << i), w]] += P[w][i] / (2 * b)
+        assert sum(kernel[source], F(0)) == 1
+    return active, index, kernel
+
+
 def apply_kernel(kernel, values):
     """Apply a row-stochastic kernel to a column observable."""
     return [
         sum((probability * values[target]
              for target, probability in enumerate(row)), F(0))
         for row in kernel
+    ]
+
+
+def propagate_law(law, kernel):
+    """Propagate a row law through a row-stochastic kernel."""
+    return [
+        sum((law[source] * kernel[source][target]
+             for source in range(len(kernel))), F(0))
+        for target in range(len(kernel))
     ]
 
 
@@ -162,6 +200,41 @@ def two_step_formula(P, t):
     assert alpha >= 0
     assert beta >= 0
     return alpha * row_defect + beta * transport_defect
+
+
+def two_step_psi_formula(P):
+    """Closed exact value of U M_P^2 psi from the integrated SOS."""
+    n = len(P)
+    assert n >= 3
+    N = n - 1
+    complete_inverse_mean = F(2 ** N - 1, N * 2 ** (N - 1))
+    row_square = sum(
+        (P[v][i] ** 2 for v in range(n) for i in range(n)), F(0)
+    )
+    columns = [sum((P[v][i] for v in range(n)), F(0)) for i in range(n)]
+    column_square = sum((value ** 2 for value in columns), F(0))
+    mutual = sum(
+        (P[v][i] * P[i][v] for v in range(n) for i in range(n)), F(0)
+    )
+    row_defect = row_square - F(n, n - 1)
+    transport_defect = (column_square - mutual) - (n - row_square)
+    assert row_defect >= 0
+    assert transport_defect >= 0
+    if n == 3:
+        return complete_inverse_mean + row_defect / 24
+
+    s = n - 2
+    integrated_sum = sum(
+        (F(comb(s - 2, j), (j + 1) * (j + 2) ** 2)
+         for j in range(s - 1)),
+        F(0),
+    )
+    integrated_half = F(2 ** s - 1, s) - F(2 ** (s + 1) - 1, 2 * (s + 1))
+    alpha = (integrated_half - integrated_sum) / (n * 2 ** s)
+    beta = integrated_sum / (2 * n * 2 ** s)
+    assert alpha > 0
+    assert beta > 0
+    return complete_inverse_mean + alpha * row_defect + beta * transport_defect
 
 
 def marked_data(weights):
@@ -218,6 +291,7 @@ def marked_data(weights):
     psi_vector = [psi[C.bit_count()] for C, _ in marked]
     twice = apply_kernel(kernel, apply_kernel(kernel, psi_vector))
     two_step_psi = sum(twice, F(0)) / len(marked)
+    assert two_step_psi == two_step_psi_formula(P)
 
     # The unconditional stopping-and-handoff flow has mass exactly 1/2 in
     # the unnormalised stationary measure, hence probability 1/(2m).
@@ -345,7 +419,49 @@ def audit_density_factorization():
     assert transient == marked_data(weights)["two_step_psi"]
     assert sum(g.values(), F(0)) > sum(second.values(), F(0))
 
-    print("PASS: exact Perron density factorization and strict P3 promotion")
+    # Independently build the forward active chain and verify the exact rank
+    # flux, R psi=1/|B|, and the two-step/long-run formulations.
+    active_forward, _, forward = active_kernel(P)
+    assert active_forward == active
+    stationary = [nu[v][B] / mean for B, v in active]
+    assert propagate_law(stationary, forward) == stationary
+    for row, (B, v) in zip(forward, active):
+        b = B.bit_count()
+        up = sum(
+            (probability for probability, (D, _) in zip(row, active)
+             if D.bit_count() == b + 1),
+            F(0),
+        )
+        down = sum(
+            (probability for probability, (D, _) in zip(row, active)
+             if D.bit_count() == b - 1),
+            F(0),
+        )
+        p_vB = sum((P[v][i] for i in range(n) if (B >> i) & 1), F(0))
+        internal = sum(
+            (P[w][i]
+             for w in range(n) if (B >> w) & 1
+             for i in range(n) if (B >> i) & 1),
+            F(0),
+        )
+        assert up == (1 - p_vB) / 2
+        assert down == internal / (2 * b)
+
+    psi_rank = marked_data(weights)["psi"]
+    for B, _ in active:
+        b = B.bit_count()
+        assert (psi_rank[b] + psi_rank[b - 1]) / 2 == F(1, b)
+    H = [F(1, B.bit_count()) for B, _ in active]
+    reference = [
+        F(B.bit_count(), n * (n - 1) * 2 ** (n - 2))
+        for B, _ in active
+    ]
+    assert sum(reference, F(0)) == 1
+    law = propagate_law(propagate_law(reference, forward), forward)
+    assert sum((mass * value for mass, value in zip(law, H)), F(0)) == transient
+    assert sum((mass * value for mass, value in zip(stationary, H)), F(0)) == 1 / mean
+
+    print("PASS: exact Perron/forward-active factorization and strict P3 promotion")
 
 
 def audit_complete_and_path():
