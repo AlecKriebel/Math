@@ -50,7 +50,7 @@ rates; the proof controls the post-establishment route to fixation.
 
 ## 2. Explicit graph family
 
-For an integer `t>=2`, set
+For an integer `t>=2`, put
 
 \[
  q_t=t,\qquad m_t=\lfloor\lambda_*t\rfloor,
@@ -67,22 +67,25 @@ The graph contains:
 5. an edge of weight
 
    \[
-       \epsilon_t=2^{-2^{n_t^4}}                       \tag{5}
+       \epsilon_t=2^{-e_t},                            \tag{5}
    \]
 
    from every satellite vertex to every clique vertex.
 
-There are no other edges.  Every displayed weight is positive algebraic and
-independent of fitness.  The weak bundles make the graph connected.  Notice
-that the degree-one population has proportion `m_t/n_t -> 0`, while every
-satellite has clique support degree `C_t`; this is not a repeated
-bounded-support construction.
+There are no other edges.  Every displayed weight is positive algebraic or
+rational and independent of fitness.  The weak bundles make the graph
+connected.  Notice that the degree-one population has proportion
+`m_t/n_t -> 0`, while every satellite has clique support degree `C_t`; this
+is not a repeated bounded-support construction.
 
 For a completely rational, slightly weaker statement one may instead use
 
 \[
  \sigma={19\over137},\qquad q_t=27t,\qquad m_t=20t.    \tag{6}
 \]
+
+Use `C_t=t^4` and the same least-exponent choice of a sufficiently small
+positive rational coupling as in Section 6.
 
 That family has exact threshold
 
@@ -116,24 +119,25 @@ dB death--parent event over `QQ`, and matches all 108 orbit fibres.
 
 ## 4. The center-module estimates
 
-Let `H_(C,m)` be the unit clique `K_C` with `m` unit hub pendants.  Assume
+Let `H_(C,m)` be the unit clique `K_C` with `m` unit hub pendants.  Along the
+explicit family, write
 
 \[
-             m\longrightarrow\infty,qquad m/C\longrightarrow0,             \tag{9}
+ C=q^4,\qquad m/q\longrightarrow\lambda\in(0,\infty),
+ \qquad q\longrightarrow\infty.                         \tag{9}
 \]
 
-and fix `r>1`.  Write `p=1-1/r`.  Directly from the three-coordinate
-`(h,i,l)` rates one obtains, for either rule,
+Put `p=1-1/r`.  Uniformly when `r` ranges over a compact subset of
+`(1,infinity)`, the average over the `C` clique starting vertices obeys
 
 \[
- u_{\rm core}(r)=p+O_r(C^{-1}),                          \tag{10}
+ u_{\rm core}(r)=p+o(q/C).                              \tag{10}
 \]
 
-uniformly for a hub or ordinary clique start after averaging over the
-`C` clique vertices.  For a pendant start,
+For a pendant start,
 
 \[
- u_{\rm leaf}^{Bd}(r)=1-O_r(m/C+m^{-1}),
+ u_{\rm leaf}^{Bd}(r)=1-o(1),
  \qquad
  u_{\rm leaf}^{dB}(r)=O_r(C^{-1}).                       \tag{11}
 \]
@@ -164,39 +168,90 @@ and
 At reciprocal fitness, both the portal-uniform fixation probability and
 `J_core(1/r)` are `exp(-Omega_r(C))`.
 
-Here is a proof that includes the establishment-to-fixation step.  Stop the
-ordinary clique mutant count on first reaching zero or a cutoff `K` with
-`K->infinity`, `K=o(C)`.  Until this time the two opposing clique-change
-rates, under either update rule, are
+Here is the quantitative stopped proof of the scale in (10).  Write
+`c=C-1` and start from an ordinary clique mutant with resident hub and no
+mutant leaves.  Set `K=A log C`.  Before `i` reaches `0` or `K`, conditional
+on the hub remaining resident, the exact embedded up/down odds under Bd are
 
 \[
-                  ri\{1+O_r(K/C)\},\qquad
-                  i\{1+O_r(K/C)\}.                       \tag{15}
+ r\,{c-i\over c-i+c/(c+m)}=r\{1+O(K/C)\}.
 \]
 
-Hub excursions contribute only `O_r(K/C)` to a stopped finite family; a
-pendant created during such an excursion returns through the same hub and
-does not change the limiting offspring law.  Truncate first at fixed `K`
-and then let `K` grow.  The linear birth--death extinction calculation gives
-`p`, with an `O_r(C^-1)` averaged error.  Starting from `K` core mutants, the
-same rate ratio is bounded above one until a fixed positive core density is
-reached.  In the upper strip the resident deficit is dominated by a
-subcritical linear birth--death chain.  Recurrent mutant-hub intervals then
-fill all pendants: under dB every pendant copies the hub at its next death;
-under Bd the hub-occupation renewal ratio for mutant versus resident pendant
-changes tends to `r^2>1`.  Thus reaching `K` leads to full fixation with
-probability `1-o(1)`, not merely to branching survival.
+Under dB the corresponding odds are
 
-For a single Bd mutant pendant, hub activations occur at order-one rate.
-During each short activated excursion, a successful clique family is marked
-at order `1/m`, whereas pendant extinction is at order `1/C`; the ratio is
-`C/m->infinity`.  Multiple productive events in one excursion and the
-finite-family return time contribute `O_r(m/C+m^-1)`.  This proves the first
-part of (11).  Under dB the mutant pendant dies at rate one after the common
-death-clock time change, while hub activation is `O_r(C^-1)`, proving the
-second part.  Reversing fitness makes (15) uniformly subcritical; reaching a
-positive core density, necessary for fixation, has probability
-`exp(-Omega_r(C))`.  This proves (10)--(14).
+\[
+ r\,{c-i\over c-i+1}
+ {c+(r-1)(i-1)\over c+(r-1)i}
+       =r\{1+O(K/C)\}.
+\]
+
+The chance of a hub change before this stopping time is `O(K^2/C)`: the
+embedded walk has `O(K)` expected changes before absorption, and at level
+`i<=K` the hub-change hazard divided by the ordinary-change hazard is
+`O(K/C)`.  A hub change can therefore be charged as an error event.  The
+product-odds gambler's-ruin formula gives
+
+\[
+ \Pr_1(T_K<T_0)=p+O(K^2/C)+O(r^{-K}).
+\]
+
+This estimate is two-sided; mutant-hub excursions have not been discarded
+in a one-sided comparison, but are covered by their total probability.
+
+For every hub and leaf state, the same exact ratios are bounded below by a
+constant `r_0>1` while `K<=i<=theta C`, for some fixed `theta>0`.  Thus the
+chance of returning to zero from `K` before reaching `theta C` is
+`O(r_0^{-K})`.  Above `theta C`, apply the reversed comparison to the
+resident deficit.  It reaches a fixed small strip with failure
+`exp(-Omega(C))`.  From that strip, dB leaf deaths copy the mutant hub.  For
+Bd, resolve successive hub excursions: the embedded leaf up/down odds tend
+uniformly to `r^2>1`.  One leaf-filling attempt succeeds with probability
+bounded away from zero and takes polynomial time, whereas a resident core
+lineage reaches density `theta` with probability `exp(-Omega(C))` per
+attempt.  Repeating `B log C` blocks makes the cleanup failure `O(C^{-B})`
+for arbitrary fixed `B`.  Hence
+
+\[
+ \Pr(\hbox{failure after }T_K)
+ =O(r_0^{-K})+O(C^{-B})+\exp(-\Omega(C)).
+\]
+
+Choose `A` and then `B` uniformly on the chosen compact fitness interval so
+that the last two displays are `o(q/C)`; here
+`K^2/C=o(C^{-3/4})=o(q/C)`.  The exceptional hub starting vertex has weight
+`1/C=o(q/C)` in the clique average.  This proves (10) without the previously
+overstrong `O(C^-1)` assertion.  It also controls the complete
+establishment-to-fixation path, rather than only branching survival.
+
+For completeness, start instead from one mutant pendant under Bd.  While
+the hub is resident, its activation rate is order one, whereas loss of that
+pendant through hub reproduction has rate `O(C^-1)`.  During an activated
+hub excursion, the return rate is `m+O(1)` and the rate of creating an
+ordinary clique seed is bounded above and below by positive constants.
+Consequently an activation produces a successful core mark with probability
+`Theta(1/m)`, uniformly on compact fitness intervals.  Between successive
+activations the loss probability is `O(C^-1)`.  Resolving the excursions
+until either loss or a mark gives
+
+\[
+ \Pr(\hbox{loss before a successful mark})=O(m/C)+o(1).
+\]
+
+Failed finite core families cause no hidden accumulation: conditioned on
+extinction their total progeny has a uniformly summable tail, the chance of
+a pendant-loss event during such a family is `O(C^-1)`, and the number of
+failed marks before establishment has a geometric tail.  New mutant
+pendants can only improve the lower bound.  Combining this excursion bound
+with the preceding post-establishment estimate proves
+`u_leaf^Bd=1-o(1)`.  After multiplication by the pendant initialization mass
+`m/(C+m)`, its entire error is `o(m/C)=o(q/C)`, the scale required in (12).
+
+Under dB, before either extinction or hub activation the two changing rates,
+after the common death-clock factor is removed, are `1` and at most `r/C`.
+Thus `u_leaf^dB<=r/(C+r)=O(C^-1)`.  Finally, replacing `r` by `1/r` makes the
+core comparison uniformly subcritical.  Reaching positive core density,
+which fixation requires, then has probability `exp(-Omega_r(C))`.  This
+proves (10)--(14).
 
 These estimates are also the dilute limit of the independently audited
 clique--pendant calculation in `threshold/clique_pendant_asymptotic/`.
@@ -309,18 +364,29 @@ and the pair part of (23) is `-2+pi_D/p`.  The pendant
 corrections are `lambda/(r-1)` and `-lambda`.  The exact symbolic verifier
 reconstructs (20)--(24).
 
-The explicit diagonal (5) preserves (22)--(23).  Indeed, fixation is a ratio
-of nonnegative directed-forest sums in `epsilon`.  After the common lowest
-power is removed, coefficient-height and forest-count bounds are at most
+For completeness, here is the constructive fitness-independent diagonal
+used in (4)--(5).  Put
 
 \[
- \exp\{2^{O(n_t\log n_t)}\}.
+ I_t=[1+1/t,R_*-1/t]
 \]
 
-On the compact interval `[1+1/t,t]`, (5) makes the full-chain/trace error
-smaller than `o(q_t/C_t)`.  Every fixed `r>1` lies in these compact intervals
-eventually.  This is the same cancellation-free diagonal argument used for
-the earlier center--triangle construction.
+whenever this interval is nonempty.  With the counts in (4), let `e_t` be
+the least positive integer for which the actual connected graph with
+`epsilon=2^{-e_t}` differs from its separated trace, after multiplication by
+`n_t/q_t`, by at most `1/t` for both rules throughout `I_t`.  For the finitely
+many empty intervals take `e_t=1`.
+
+Existence follows from the finite Schur-complement trace in Section 5,
+uniformly on `I_t`.  This is an effective definition: at fixed `t,e` the two
+finite lumped systems are algebraic rational functions of `r`; their
+denominators are positive on `I_t`, and the two uniform inequalities are
+decidable by exact real-algebraic Sturm arithmetic.  Therefore the search
+for the least exponent terminates.  All counts and weights are fixed before
+fitness is quantified.  Every fixed `1<r<R_*` lies in `I_t` eventually, so
+this diagonal preserves (22)--(23) at the strict `q_t/n_t` scale.  A direct
+forest-coefficient bound can replace the least-exponent definition, but is
+not needed for explicitness or for the quantifier order.
 
 ## 7. Exact interval and optimization
 
@@ -361,9 +427,14 @@ discriminant
 
 At `R_*` the two admissible roots merge at `sigma_*`; immediately above it
 the discriminant is negative and (26) is impossible for any positive
-`sigma,lambda`.  Thus `R_*` is the exact threshold of this dilute hybrid
-ansatz.  For the fixed optimized family, `U(r,sigma_*)<lambda_*` for every
-`r>R_*`, so it is eventually dB-suppressing there.
+`sigma,lambda`.  There is no later admissible window hidden by that local
+statement.  Exact Sturm counting gives no further zero of `P` in
+`(R_*,2]`, and `P(2)=-7`, so the discriminant stays negative there.  For
+`r>=2`, the numerator `r(2-r)-sigma` of `U/2` is strictly negative for every
+`sigma>0`, whereas (26) requires `U>lambda>0`.  Thus `R_*` is the exact
+threshold of this dilute hybrid ansatz on the entire half-line.  For the
+fixed optimized family, `U(r,sigma_*)<lambda_*` for every `r>R_*`, so it is
+eventually dB-suppressing there.
 
 The rational parameters (6) give, exactly at `r=3/2`,
 
@@ -375,7 +446,19 @@ The rational parameters (6) give, exactly at `r=3/2`,
 Their dB coefficient first vanishes at (7), while the Bd coefficient remains
 positive, proving the stated rational-family threshold.
 
-## 8. Verification
+## 8. Hostile-audit closure
+
+The first hostile audit accepted the exact trace and coefficient algebra but
+rejected the earlier claim `u_core=p+O(C^-1)`: the displayed fixed-cutoff
+argument did not prove that rate.  Section 4 now proves only the weaker and
+sufficient `u_core=p+o(q/C)` on the explicit scale `C=q^4`, using the
+logarithmic cutoff and two-sided product-odds estimate.  A second independent
+audit checked the exact odds, hub-event charge, post-cutoff blocks, Bd-leaf
+initialization error, and dB-leaf bound and found no remaining scale gap.
+The computation below is independent verification of finite identities; it
+is not being used in place of these estimates.
+
+## 9. Verification
 
 From the repository root:
 

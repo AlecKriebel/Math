@@ -48,3 +48,18 @@ only.
 - The construction proof, full post-establishment trace, explicit diagonal,
   and exact class optimization are recorded in
   `HYBRID_CONSTRUCTION_AUDIT.md`.
+
+## 2026-08-08: hostile-audit repair
+
+- The first hostile audit confirmed the exact rare trace and algebra, but
+  correctly rejected an unsupported `O(C^-1)` core-singleton error rate.
+- Replaced it by the sufficient scale-exact estimate `o(q/C)` for the
+  explicit counts `C=q^4`, using `K=A log C`, exact Bd/dB product odds, an
+  explicit first-hub-event charge, and quantitative post-establishment
+  blocks.
+- Made the Bd leaf mark/loss excursion comparison explicit; only `1-o(1)`
+  is required because leaves have initialization mass `Theta(q/C)`.
+- Added an effective least-exponent positive-coupling diagonal and ruled out
+  a second admissible window of the optimized ansatz on the full half-line.
+- A second independent hostile audit accepted every repaired asymptotic
+  scale.  Both exact verifiers replayed successfully afterward.
