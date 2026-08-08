@@ -3,6 +3,10 @@
 This public preprint proves a strict improvement to the known robust
 simultaneous-amplification interval for Birth–death and death–Birth updating.
 
+- Permanent record: https://doi.org/10.5281/zenodo.21852072
+- Project page:
+  https://aleckriebel.github.io/Math/papers/simultaneous-amplification-beyond-three-halves/
+
 ## Main theorem
 
 Let

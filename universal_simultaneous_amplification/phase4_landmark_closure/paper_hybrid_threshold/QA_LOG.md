@@ -48,7 +48,8 @@ quantifier defect remains in the stated result.
 
 ## Release status
 
-The paper, source, and replay are ready for a tagged public preprint release.
-Release and DOI metadata must be checked after the release action; this log
-does not claim either in advance.  No journal submission or external contact
-is claimed.
+The paper, source, and replay were released as
+`simultaneous-amplification-beyond-three-halves-v1.0.0`.  Both public assets
+were downloaded and matched their local SHA-256 values.  Zenodo version DOI
+`10.5281/zenodo.21852072` and the public project page were checked live.  No
+journal submission or external contact occurred.
