@@ -1,6 +1,6 @@
 # Active exact lemmas
 
-Last updated: 2026-08-07 restart gate.
+Last updated: 2026-08-07 endpoint hostile cycle.
 
 ## A. Endpoint product at `r=3/2`
 
@@ -48,6 +48,19 @@ This remains **OPEN** even if (A) is false.  Candidate separators may be
 nonlinear or graph-dependent before yielding the graph-independent
 disjunction.
 
+The strongest surviving affine candidate is the balanced normalized mean
+
+\[
+ {1\over2}\left\{
+ {\rho_{\rm Bd}(G,3/2)\over\rho_{\rm Bd}(K_n,3/2)}+
+ {\rho_{\rm dB}(G,3/2)\over\rho_{\rm dB}(K_n,3/2)}
+ \right\}\le1.                                        \tag{B1}
+\]
+
+Exact endpoint witnesses force any fixed affine multiplier to lie in
+`(177/2000,7/12)`.  The balanced value survives every exact test, but is
+not proved.
+
 ## C. Exact endpoint drift bridge
 
 For a mutant set `S` of size `k`, let
@@ -69,6 +82,26 @@ The proved identity is
 with `C_M-C_R>0` and `E(S)>=0`.  The exact remaining obstruction is to
 control the signed row-cut deviation after the correct occupation or
 stationary averaging.  It is not pointwise nonnegative.
+
+Combining this bridge with the two exact transient Green measures gives
+
+\[
+ e_B+e_D=\mathsf T+\mathsf C-\mathsf E,
+ \qquad \mathsf E\ge0.                                \tag{C1}
+\]
+
+Thus (B1) is exactly the global inequality
+
+\[
+ \boxed{\mathsf T+\mathsf C\le\mathsf E}.             \tag{C2}
+\]
+
+Neither its statewise terms, its fixed-rank sums, `T` by itself, nor
+`C-E` by itself has the required sign.  A ten-atom exact Farkas law also
+excludes every vertex-labelled bilinear *pointwise* correction on the
+weighted `1:17` three-path.  The surviving proof obligation must use the
+cross-rank Green-flow conservation law or an equivalent global
+capacity/path-reversal theorem.
 
 ## D. Fitness-two finite-baseline sign
 

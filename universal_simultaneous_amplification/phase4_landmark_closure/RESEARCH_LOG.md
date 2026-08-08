@@ -415,3 +415,32 @@
   disjunctive separator at `r=3/2`, and the exact fitness-two sign `L<=V`, are
   the three mission-level proof obligations.  Control ledgers and full replay
   outputs were written before new research began.
+
+## 2026-08-07 23:35 PDT — exact endpoint hostile cycle and Green reduction
+
+- [EXACT SEARCH RESULT] An independent full-subset rational implementation
+  checked ten hostile endpoint graphs, including genuine one-rule
+  amplifiers, without finding a product or simultaneous endpoint violation.
+  This is evidence only; both universal endpoint statements remain OPEN.
+- [PROVED FAMILY CERTIFICATE] On the `K_{2,2}` support with one internal
+  chord of arbitrary weight `a>=0`, the dB, normalized-arithmetic, and
+  product comparison numerators are coefficient-positive.  This is a
+  boundary-family theorem, not an order-four classification.
+- [EXACT AFFINE CORRIDOR] Two rational witnesses prove that any universal
+  fixed affine separator must use
+  `177/2000 < lambda < 7/12`.  The balanced value `lambda=1/2` survives.
+- [PROVED REFORMULATION] Exact Bd and dB Green occupations give
+  `e_B+e_D=T+C-E`, where `E>=0`.  Consequently the balanced normalized
+  separator is exactly the global sign `T+C<=E`; each Green measure obeys
+  an exact cross-rank flow conservation law.
+- [EXACT ROUTE CLOSURES] Statewise signs, fixed-rank signs, separate
+  aggregate signs, and a coefficient selected by the exact singleton
+  reach-two tradeoff all fail on rational graphs while the endpoint
+  separator remains strict.  A ten-atom rational Farkas law on the weighted
+  `1:17` three-path further excludes every vertex-labelled bilinear
+  pointwise product-chain correction.  The remaining endpoint obstruction
+  is genuinely global, cross-rule, and cross-rank.
+- [EXACTLY VERIFIED] `verify_endpoint_candidates.py`,
+  `verify_balanced_poisson.py`, and `verify_vertex_bilinear_farkas.py` all
+  replay over exact arithmetic.  No universal separator or counterexample
+  has yet been obtained.

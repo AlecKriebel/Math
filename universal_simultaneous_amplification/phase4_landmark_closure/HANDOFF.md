@@ -1,6 +1,6 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-07 (America/Los_Angeles)
+Checkpoint date: 2026-08-07 endpoint hostile cycle (America/Los_Angeles)
 
 ## Current theorem state
 
@@ -10,6 +10,10 @@ Checkpoint date: 2026-08-07 (America/Los_Angeles)
   families without portal edges cannot work at any fixed `r>=3/2`.
 - **OPEN:** universal endpoint product inequality.
 - **OPEN:** weaker universal no-simultaneous endpoint separator.
+- **PROVED REFORMULATION:** the balanced normalized separator is exactly
+  `T+C<=E` in the Green--Poisson notation, with `E>=0` and exact rank-flow
+  conservation.  Every separate state/rank/sign shortcut checked in the
+  endpoint cycle is false.
 - **OPEN:** exact fitness-two sign `L<=V` and hence any finite universal upper
   bound on `R_sim`.
 - **OPEN:** exact value of `R_sim`; current rigorous information is only the
@@ -17,9 +21,9 @@ Checkpoint date: 2026-08-07 (America/Los_Angeles)
 
 ## Repository and preservation
 
-The restart base is
-`ffe5c89cf41ca3cced5a2e573404baeb2d510897` on `main`, equal to
-`origin/main` before restart integration.  Exact replay reports are under
+The restart base was
+`ffe5c89cf41ca3cced5a2e573404baeb2d510897`; the audited restart integration
+was pushed as `72289a4a45e4db97ca473bd84e7bd9773ded791f` on `main`.  Exact replay reports are under
 `restart_audit/`.  Do not delete or silently modify the untracked discovery
 program `obstruction/stationary_inequality/explore_target_information.py`;
 it is historical and not part of the audited theorem packages.
@@ -49,12 +53,15 @@ so the exact missing sign is `L<=V`.
 
 ## Immediate next action
 
-After committing and pushing the restart/audit integration, open three
-independent branches of work within this task:
+Continue the three independent live branches:
 
-1. a vertex-sensitive product-chain/variational certificate at `r=3/2`;
-2. hostile exact endpoint optimization of both product and minimum ratios;
-3. a two-particle stationary/capacity proof of `L<=V` at `r=2`.
+1. the summed tree-determinant/forest endpoint inequality at `r=3/2`;
+2. the global cross-rank Green-flow sign `T+C<=E`;
+3. a stationary collision/entropy proof of `L<=V` at `r=2`.
+
+Do not retry rank/overlap-only, vertex-bilinear pointwise, statewise,
+fixed-rank, separately signed, or first-change-balanced endpoint
+certificates: exact witnesses now close all of them.
 
 The first exact theorem, exact endpoint counterexample, or universal
 fitness-two sign should stop broad exploration and trigger theorem
