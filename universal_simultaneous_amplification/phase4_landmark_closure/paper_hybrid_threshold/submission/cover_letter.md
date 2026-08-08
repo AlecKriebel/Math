@@ -5,7 +5,7 @@
 
 **[HUMAN: submission date]**
 
-Editors  
+Editors<br>
 PLOS Computational Biology
 
 Re: Research Article, *Simultaneous amplification beyond fitness three
@@ -70,7 +70,7 @@ Thank you for considering the manuscript.
 
 Sincerely,
 
-**[HUMAN: Alec Kriebel]**  
-**[HUMAN: affiliation]**  
-**[HUMAN: corresponding email]**  
+**[HUMAN: Alec Kriebel]**<br>
+**[HUMAN: affiliation]**<br>
+**[HUMAN: corresponding email]**<br>
 **[HUMAN: ORCID]**
