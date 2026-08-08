@@ -127,3 +127,40 @@
   external background.  The remaining positive-density trigger search must
   use a nonregular child network, a larger local state space, or intercell
   interaction before the rare-colony trace resolves.
+
+## 2026-08-08 — growing-rank constructive cycle and exact endpoint target
+
+- Stopped fixed-cell obstruction work and ran one bounded constructive cycle
+  on growing-rank integrated modules, where core events remain active during
+  every polymorphic local state.
+- Complete-bipartite modules through part sizes 40 at `r=1.7,1.9,1.99`
+  converged numerically to the portal-clone boundary.  A positive-density
+  clique--antenna screen was also negative.  These are observations only,
+  not class obstructions.
+- **EXACT CONSTRUCTIVE REDUCTION:** at `r=2`, the full integrated response is
+  the pair of vertexwise rational harmonic scores `mathcal B,mathcal D` in
+  `ENDPOINT_INTEGRATED_MODULE_TARGET.md`.  Adding ordinary leaves can make
+  both coordinates positive exactly when
+  `mathcal D>0` and `mathcal S=mathcal B+mathcal D>0`.
+- The next constructive target is therefore a rational growing-rank gadget
+  with positive `mathcal D` and `mathcal S`, plus compact-uniform trace
+  margins.  This packages every entrance and far-field term and is strictly
+  weaker than asking the raw gadget to have both response coordinates
+  positive.
+
+## 2026-08-08 — exact Bd-catalyst ray criterion
+
+- Sharpened the endpoint target using the exact zero-scale pair response
+  `(-2,(2-r)/(r-1))`.
+- **EXACT CONSTRUCTIVE REDUCTION:** a growing-rank catalyst sequence with
+  normalized response converging compact-uniformly to `(b(r),0)`, where
+  `inf b>0`, combines with the pair resource to give a single
+  fitness-independent response diagonal for every fixed `r<2`.
+- At fixed fitness the sharp cost condition is
+  `(-D_catalyst/B_catalyst)<(2-r)/(2(r-1))`.  Hence the catalyst's dB-cost to
+  Bd-gain ratio must tend to zero; a constant limiting ratio cannot reach
+  two.
+- Graded portal-clone paths, integrated stars through 300 leaves, singular
+  `(1,k,k^2)` gateways, and an `o(n)` dense twin gateway were screened for
+  this ray.  None showed a vanishing ratio.  This is numerical triage only,
+  and no class obstruction is claimed.

@@ -9,3 +9,5 @@ PYTHON=${PYTHON:-"$ROOT/../../../.venv/bin/python"}
 "$PYTHON" "$ROOT/verify_two_channel_entrance.py"
 "$PYTHON" "$ROOT/verify_dense_pair_relay.py"
 "$PYTHON" "$ROOT/verify_dense_heterogeneous_pair_relay.py"
+"$PYTHON" "$ROOT/verify_endpoint_integrated_target.py"
+"$PYTHON" "$ROOT/verify_bd_catalyst_ray_target.py"
