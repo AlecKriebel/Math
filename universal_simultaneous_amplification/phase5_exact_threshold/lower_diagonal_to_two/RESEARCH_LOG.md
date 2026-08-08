@@ -189,3 +189,24 @@
 - Equality is the constant-propensity complete graph.  The remaining
   catalyst search must use genuinely non-rank-one incidence or correlations
   surviving below every growing cutoff.
+
+## 2026-08-08 — regular correlated dense catalyst tangents obstructed
+
+- Searched exact integrated path and paired-star traces with arbitrary
+  multiscale edge/portal profiles.  Positive Bd responses occurred, but the
+  dB cost stayed of the same order; these screens are numerical triage only.
+- Replaced those ansatz-specific observations by the exact adjoint branching
+  normal form for an arbitrary dense latent-type kernel `P` and its
+  `p`-adjoint.  At `r=2`, the global identities are
+  `beta-1/2=-2<z,Pz>_p` and
+  `1/2-sigma=4 E[v^2/(1-2v)]`.
+- **PROVED BROAD QUADRATIC OBSTRUCTION:** about every regular reversible base
+  `Q`, an arbitrary correlated perturbation has first type response
+  `v=-u`; its Bd gain coefficient is `-2<u,Qu>` and its dB cost coefficient
+  is `4||u||^2`.  Since the spectrum of `Q` lies in `[-1,1]`, dB cost is at
+  least twice positive Bd gain, sharply in the bipartite `-1` mode.
+- The estimate has no spectral-gap or fixed-rank hypothesis and therefore
+  applies stagewise to trace-resolved growing-rank quadratic diagonals with
+  uniform remainder control.  A positive catalyst must use a singular
+  higher-order tangent, non-diffuse collisions, or sparse order-one shared
+  edges.
