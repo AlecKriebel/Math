@@ -44,3 +44,20 @@
 - Therefore a root-polynomial proof must address the derivative at one
   globally; stability, log-concavity, and coefficientwise domination do not
   provide the missing sign.
+
+## 2026-08-08 — factorial-moment recurrence and hostile audit
+
+- Exactified the full falling-factorial stationarity recurrence in terms of
+  labelled burst-coverage tensors.
+- Derived the positive Laplace-product representation
+  `c_p(T)=2 integral exp(-s) product_(i in T)(1-exp(-s p_i)) ds`.
+- All factorial-moment inequalities survive the exact 54/624/48 graph
+  corpus and both frozen order-six witnesses, including the rank-tail
+  counterexample.
+- The recurrence is triangular but not closed: its base member is already
+  the unknown mean inequality and every higher member contains
+  state-correlated labelled coverage tensors.
+- On `P4`, the state `{0,2,3}` updated at endpoint `0` has every conditional
+  factorial moment strictly larger than the corresponding complete update.
+  Thus one-step total positivity cannot supply a pointwise comparison; a
+  proof would need a new stationary correlation inequality.
