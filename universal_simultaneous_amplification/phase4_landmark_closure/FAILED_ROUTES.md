@@ -18,6 +18,8 @@ be revived without a new ingredient addressing the stated witness.
   unweighted graph `G(31,4)=K_32` with four leaves at one hub has exact
   normalized product `1.000669371885...>1`.  Its dB ratio is
   `0.892002982408...<1`, so it is not an endpoint simultaneous amplifier.
+  This is not a finite-size accident: `K_(8m+1)` with `m` hub pendants has
+  audited normalized limits `32/27` and `8/9`, with product `256/243>1`.
 - The balanced normalized arithmetic separator is also false on the same
   graph: `(x+y)/2=1.006912940840...>1`.  Do not retry proving the global
   Green sign `T+C<=E`; the exact counterexample refutes it.

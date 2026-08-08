@@ -120,6 +120,14 @@ orders.  Nevertheless the full all-graph product inequality is false:
 separator remains **OPEN**.  The balanced normalized arithmetic separator is
 also exactly false on this graph.
 
+The failure persists asymptotically.  For `G_m=K_(8m+1)` with `m` leaves
+attached to one hub, an audited post-establishment argument and exact rare
+branching limit give normalized endpoint limits `32/27` and `8/9`; hence the
+product tends to `256/243>1`.  More generally, varying the limiting leaf
+proportion proves that every graph-independent convex affine separator must
+give Bd coefficient at most `1/3`.  The sharp one-third separator remains
+**OPEN**, but is proved for every positive weighted triangle.
+
 ## Critical replay ledger
 
 | Package | Result | Exact replay |

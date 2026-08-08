@@ -105,6 +105,21 @@ seven-atom exact Farkas certificate on a weighted four-star already rules
 out the natural arbitrary-state common-correction proof of (B2), so a
 valid proof must again be global and nonpointwise.
 
+The coefficient in (B2) is **PROVED OPTIMAL** among every graph-independent
+convex affine separator.  For a fixed rational leaf proportion `alpha`, the
+unweighted clique--pendant family has exact normalized endpoint limits
+
+\[
+ x_\infty=1-\alpha+3\alpha\ell(\alpha),\qquad
+ y_\infty=1-\alpha,
+\]
+
+where `0<ell(alpha)<1` and `ell(alpha)->1` as `alpha->0`.  Its affine
+crossing is `1/(3 ell(alpha))->1/3`, so every larger Bd coefficient fails.
+At coefficient `1/3` the limiting slack is
+`alpha(1-ell(alpha))>0`.  The same exact package proves (B2) for every
+positively weighted triangle, strictly except at equal weights.
+
 ## C. Exact endpoint drift bridge
 
 For a mutant set `S` of size `k`, let

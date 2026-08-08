@@ -12,12 +12,19 @@ Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
 - **EXACTLY FALSIFIED:** the universal endpoint product inequality.  The
   unweighted 36-vertex `G(31,4)=K_32` with four hub pendants has normalized
   product `1.000669371885...>1`, with independent exact rational audits.
+- **PROVED GROWING COUNTEREXAMPLE:** `K_(8m+1)` with `m` hub pendants has
+  normalized endpoint limits `32/27` and `8/9`, so its product tends to
+  `256/243>1`; the post-establishment step is audited, not assumed.
 - **EXACTLY FALSIFIED:** the balanced normalized arithmetic separator; the
   same graph has normalized mean `1.006912940840...>1`.
 - **OPEN:** weaker universal no-simultaneous endpoint separator.
 - **OPEN:** the surviving fixed affine candidate `(x+2y)/3<=1`.  Its exact
   Green--Poisson reduction passes the hostile corpus, but the natural
   common-potential proof is exactly infeasible on a weighted four-star.
+- **PROVED SHARPNESS:** no universal convex affine separator can give Bd a
+  coefficient above `1/3`; explicit clique--pendant rays have crossing
+  coefficient decreasing to `1/3`.  The sharp candidate holds for every
+  positive weighted triangle.
 - **PROVED REFORMULATIONS:** `T+C` is an exact rankwise Johnson Dirichlet
   pairing, and the reversed-arrow stationary chord is an exact electrical
   two-tree transfer scalar.  Neither final sign is proved.
@@ -69,9 +76,9 @@ Continue the three independent live branches:
 
 1. prove or refute the one-third affine separator by a genuinely global
    Green/forest argument, or find an endpoint simultaneous graph;
-2. convert the clique--pendant mechanism into a rigorously controlled
-   growing product counterexample and use its sharp affine crossing to test
-   whether the coefficient `1/3` is optimal;
+2. test weighted and multi-hub clique--pendant extensions for an actual
+   endpoint simultaneous amplifier; the unweighted growing family already
+   proves the product violation and optimal affine coefficient;
 3. prove the direct stationary collision sign `L<=V` at `r=2`, without the
    now-refuted symmetric-flow split, using the exact source-centered
    event-ratio transport identity recorded in `ACTIVE_LEMMAS.md`.
