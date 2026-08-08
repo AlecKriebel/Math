@@ -146,6 +146,7 @@ def main():
     mismatch_positive = False
     cut_dispersion_positive = False
     rank_positive = False
+    affine_lower = None
     for label, weights in hostile_corpus():
         if labels is not None and label not in labels:
             continue
@@ -154,6 +155,12 @@ def main():
         mismatch_positive |= result["mismatch"] > 0
         cut_dispersion_positive |= result["cut"] + result["dispersion"] > 0
         rank_positive |= any(sum(values) > 0 for values in result["ranks"].values())
+        if label == "affine-lower-multiplier-witness":
+            x = 1 + result["e_b"]
+            y = 1 + result["e_d"]
+            affine_lower = sp.cancel((y - 1) / (y - x))
+            assert x < 1 < y
+            assert affine_lower > sp.Rational(177, 2000)
         print(
             f"PASS {label}: eB~{sp.N(result['e_b'], 10)}, "
             f"eD~{sp.N(result['e_d'], 10)}, "
@@ -170,6 +177,12 @@ def main():
     assert mismatch_positive
     assert cut_dispersion_positive
     assert rank_positive
+    if args.all:
+        assert affine_lower is not None
+        print(
+            "PASS exact affine lower crossing "
+            f"theta_-~{sp.N(affine_lower, 16)} > 177/2000"
+        )
     print(f"PASS exact one-third Green--Poisson identity on {count} witnesses")
     print("PASS separate mismatch, cut-dispersion, and fixed-rank signs remain false")
 

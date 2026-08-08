@@ -191,3 +191,26 @@ The asymptotically largest Bd gain is twice the dB loss in this sharp
 boundary regime.  Hence the normalized linear combination must weight Bd
 and dB in the ratio `1:2`.  This is the structural origin of the proposed
 one-third separator.
+
+## 4. Current exact necessary window
+
+The sharp upper restriction has a complementary exact lower restriction.
+The saved seven-vertex dB-amplifying rational witness has normalized ratios
+`x_-<1<y_-` and crossing
+
+\[
+ \theta_-={y_--1\over y_--x_-}
+ =0.088542283991193063\ldots>{177\over2000}.          \tag{13}
+\]
+
+For this graph, (1) can hold only when `theta>=theta_-`.  Combining (2) and
+(13), every universal convex affine separator must therefore have
+
+\[
+                   \boxed{\theta_-\le\theta\le1/3}.   \tag{14}
+\]
+
+All quantities defining `theta_-` are exact rational full-chain solutions;
+`verify_one_third_poisson.py --all` reconstructs the witness and checks the
+displayed strict rational bound.  Equation (14) is only a necessary window:
+no coefficient in it is currently proved universal.

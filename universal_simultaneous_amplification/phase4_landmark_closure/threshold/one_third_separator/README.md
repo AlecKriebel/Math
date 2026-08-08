@@ -14,6 +14,9 @@ What is proved:
 - a proved sharpness theorem, using the independently hostile-audited
   mesoscopic-core lemma, which forces every universal affine Bd coefficient
   to be at most `1/3`;
+- an exact necessary coefficient window
+  `0.088542283991... <= theta <= 1/3` for any universal convex affine
+  separator (no coefficient in the window is yet proved universal);
 - an exact `L--C--D` dual split and Poisson--Dirichlet identity, together
   with a rational weighted six-cycle proving that its separate `1:2`
   orientation sign is false even though batching preserves the full target;

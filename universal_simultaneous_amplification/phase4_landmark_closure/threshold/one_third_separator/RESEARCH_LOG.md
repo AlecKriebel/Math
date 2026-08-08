@@ -11,6 +11,11 @@
   establishment lemma survived independent hostile audit and was committed
   at `1af17787`; consequently every universal affine Bd coefficient is at
   most `1/3`.
+- [EXACT NECESSARY WINDOW] The saved rational dB-amplifying witness forces
+  every universal convex affine coefficient to be at least
+  `theta_-=0.088542283991...>177/2000`; together with sharpness, the only
+  surviving necessary window is `[theta_-,1/3]`.  Universality remains open
+  throughout this window.
 - [PROVED CLASS THEOREM] Constructed a 24-atom coefficient-positive
   certificate for every positively weighted triangle, strict away from the
   unit-weight equality class.
