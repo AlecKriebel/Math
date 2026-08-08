@@ -1,6 +1,6 @@
 # Active exact lemmas
 
-Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
+Last updated: 2026-08-08 affine-window and weighted-star checkpoint.
 
 ## A. Endpoint product at `r=3/2` is refuted
 
@@ -119,6 +119,25 @@ crossing is `1/(3 ell(alpha))->1/3`, so every larger Bd coefficient fails.
 At coefficient `1/3` the limiting slack is
 `alpha(1-ell(alpha))>0`.  The same exact package proves (B2) for every
 positively weighted triangle, strictly except at equal weights.
+
+There is also an exact lower restriction.  A saved seven-vertex rational dB
+amplifier has `x_-<1<y_-` and crossing
+
+\[
+ \theta_-={y_--1\over y_--x_-}
+ =0.088542283991193063\ldots>{177\over2000}.
+\]
+
+Thus every universal fixed convex affine separator must lie in the exact
+necessary window `theta_-<=theta<=1/3`.  No coefficient in this window is
+currently proved universal.
+
+For arbitrary positively weighted stars, exact harmonic elimination reduces
+the dB comparison with the unit star to a finite coefficient recurrence with
+a square drift term.  Exact rational certificates prove the sign through 20
+leaves (equality at two, strict thereafter).  The recurrence sign for every
+leaf count and the Bd half of (B2) remain **OPEN**; finite verification is not
+an all-order theorem.
 
 ## C. Exact endpoint drift bridge
 

@@ -1,6 +1,6 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
+Checkpoint date: 2026-08-08 audited public preprint v1.0.0
 (America/Los_Angeles)
 
 ## Current theorem state
@@ -23,8 +23,13 @@ Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
   common-potential proof is exactly infeasible on a weighted four-star.
 - **PROVED SHARPNESS:** no universal convex affine separator can give Bd a
   coefficient above `1/3`; explicit clique--pendant rays have crossing
-  coefficient decreasing to `1/3`.  The sharp candidate holds for every
-  positive weighted triangle.
+  coefficient decreasing to `1/3`.  An exact rational dB witness forces the
+  complementary lower bound `theta>=0.088542283991...`.  The sharp candidate
+  holds for every positive weighted triangle; no coefficient in the resulting
+  necessary window is proved universal.
+- **EXACT FINITE STAR THEOREM:** the unit star is dB-maximal among arbitrarily
+  weighted stars through 20 leaves by an exact coefficient recurrence.  The
+  recurrence sign for every leaf count remains open.
 - **PROVED CLASS OBSTRUCTION:** a unit clique with an unbounded number of
   hub pendants is eventually dB-suppressing even when every pendant has an
   arbitrary positive, size-dependent weight.
@@ -49,10 +54,12 @@ Checkpoint date: 2026-08-08 exact clique--pendant endpoint counterexample
 The restart base was
 `ffe5c89cf41ca3cced5a2e573404baeb2d510897`; the audited restart integration
 was pushed as `72289a4a45e4db97ca473bd84e7bd9773ded791f`, and the endpoint
-Green--Poisson reduction as `8ef6e0b0` on `main`.  Exact replay reports are
-under `restart_audit/`.  Do not delete or silently modify the untracked discovery
-program `obstruction/stationary_inequality/explore_target_information.py`;
-it is historical and not part of the audited theorem packages.
+Green--Poisson reduction as `8ef6e0b0` on `main`.  The current public-preprint
+commit is `db9c03ec`, following the weighted-star checkpoint `f481e3e6`.
+Exact replay reports are under `restart_audit/`.  Do not delete or silently
+modify the untracked discovery program
+`obstruction/stationary_inequality/explore_target_information.py`; it is
+historical and not part of the audited theorem packages.
 
 ## Exact live targets
 
@@ -102,12 +109,18 @@ must be converted into one growing fitness-independent family.
 
 ## Publication boundary
 
-A complete phase-4 lower-bound manuscript and deterministic PDF are prepared
-under `paper_lower_threshold/`, including the exact endpoint product and
-balanced-mean counterexample.  They have not yet been released, assigned a
-DOI, or submitted.  Under the independent research policy, no specialist
-outreach may be prepared or initiated; a future external-review step may
-only be recorded as human-only.
+The hostile-audited 18-page lower-bound manuscript, deterministic PDF, and
+exact replay package are committed at `db9c03ec` under
+`paper_lower_threshold/`.  Public preprint v1.0.0 is live at
+`https://github.com/AlecKriebel/Math/releases/tag/simultaneous-amplification-below-three-halves-v1.0.0`.
+The PDF SHA-256 is
+`cfd9eb2755a4f9296eae8209adff6f6b41708425a4a4f186e647184ec6617672`;
+the source/certificate archive SHA-256 is
+`3499314496f905fd8c89a285e3c1cb91189450d7e2f7898f1db90fc1e330be27`.
+No archival DOI was observed immediately after release, and none may be
+claimed until an actual record exists.  No journal submission or external
+outreach occurred.  Under the independent research policy, only the human
+researcher may initiate external communication.
 
 ## 2026-08-08 latest exact checkpoint
 

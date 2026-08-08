@@ -1,6 +1,6 @@
 # Exact-threshold claims ledger
 
-Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
+Last updated: 2026-08-08 audited preprint v1.0.0 release.
 
 | Claim | Status | Exact basis | Remaining gap |
 |---|---|---|---|
@@ -13,7 +13,8 @@ Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
 | product inequality at `r=3/2` for every graph | **EXACTLY FALSIFIED, WITH GROWING NONVANISHING GAP** | finite `G(31,4)` exact witness; growing `K_(8m+1)` plus `m` hub pendants has normalized limits `32/27,8/9`, product `256/243` | not a simultaneous amplifier because its dB ratio is below one |
 | no graph simultaneously amplifies both rules at `r=3/2` | **OPEN** | the product shortcut is false; every exact endpoint witness still has at least one ratio at most one | universal disjunctive separator or actual simultaneous graph |
 | balanced normalized-arithmetic separator at `r=3/2` | **EXACTLY FALSIFIED** | the same `G(31,4)` has normalized mean `1.0069129408...>1` | seek a weaker separator; Bd weight `1/3` is the strongest surviving fixed affine candidate |
-| one-third affine separator `(x+2y)/3<=1` at `r=3/2` | **OPEN; COEFFICIENT PROVED OPTIMAL** | exact Green--Poisson identity; proved for all positive weighted triangles; growing clique--pendant rays prove every universal affine Bd coefficient is at most `1/3` | global nonpointwise sign; the natural common-potential architecture is exactly infeasible |
+| one-third affine separator `(x+2y)/3<=1` at `r=3/2` | **OPEN; COEFFICIENT PROVED OPTIMAL** | exact Green--Poisson identity; proved for all positive weighted triangles; growing clique--pendant rays prove every universal affine Bd coefficient is at most `1/3`; a rational dB witness forces `theta>=0.088542283991...` | global nonpointwise sign; no coefficient in the exact necessary window `[theta_-,1/3]` is proved universal |
+| unit star maximizes dB among arbitrarily weighted stars at `r=3/2` | **EXACTLY COMPUTED THROUGH 20 LEAVES; ALL-ORDER SIGN OPEN** | exact arbitrary-weight star harmonic equations and square-drift coefficient recurrence over `QQ`; equality at 2 leaves and strict sign for 3--20 leaves | prove or refute the finite coefficient recurrence for every leaf count; Bd affine half also open |
 | growing clique core with arbitrarily weighted hub pendants can cross the endpoint | **FALSIFIED FOR UNBOUNDED PENDANT COUNT** | uniform bound `rho_dB(G,r)/rho_dB(K_n,r) <= (c+A_r)/(c+m)` for arbitrary individual positive pendant weights | bounded pendant count has only a lower-order open sign |
 | reversed-arrow orientation mean inequality at `r=3/2` | **OPEN; EXACTLY REDUCED** | skew/defect Dirichlet identities and electrical two-tree transfer formula | prove the scalar transfer sign; batching factor would still remain |
 | `C`-to-dB endpoint batching ratio | **OPEN; EXACTLY REDUCED** | full marked event resolvent, Palm laws, rooted-arborescence/coverage covariance identity | prove paired root-mass transport; persistence, timing, and rootwise signs are each false |
@@ -31,7 +32,7 @@ Last updated: 2026-08-08 exact clique--pendant endpoint counterexample.
 | separate `1:2` orientation and batching signs prove the one-third separator | **FALSIFIED AS A ROUTE** | exact integer-weight six-cycle violates the orientation sign while the compensating batching term and full affine score retain the desired sign | any proof must keep orientation--batching cancellation |
 | independent-lineage domination yields a universal fixation bound | **RETRACTED** | reproduction and another lineage's death are the same event; lower construction contradicts it | never reuse |
 | exact value of `R_sim` | **OPEN; RIGOROUS LOWER BOUND `3/2`** | matching upper bound absent | preferred endpoint separator; fallback finite upper bound |
-| phase-4 paper/release | **PAPER PREPARED; RELEASE NOT DONE** | reproducible lower-bound manuscript, exact verifier package, deterministic PDF, and endpoint-counterexample proposition | final audit/commit; no universal upper theorem, public release, DOI, or submission |
+| phase-4 paper/release | **PUBLIC PREPRINT v1.0.0 COMPLETED** | hostile-audited 18-page manuscript; all exact replays PASS; deterministic PDF SHA-256 `cfd9eb27...`; commit `db9c03ec`; public tag and release `simultaneous-amplification-below-three-halves-v1.0.0` | no archival DOI observed yet; no journal submission or external outreach; universal upper theorem remains open |
 
 Computational searches never change an `OPEN` entry.  A route counterexample
 does not count as a counterexample to the endpoint theorem unless it violates
