@@ -87,3 +87,26 @@
   positive-density class must now carry substantial fixation under both
   update rules, or a nonvanishing relay population must carry the missing
   uniform-start mass.
+
+## 2026-08-08 — homogeneous nonvanishing pair relay exactly closed
+
+- Tested the smallest nonvanishing relay population that itself has protected
+  two-vertex collision states: a density-one population of homogeneous pairs
+  over a complete inter-pair background.
+- Reconstructed the exact two-state rare-colony equations for both rules.
+  Singleton, doubleton, repair, shrinkage, and every external child are
+  retained; this is not a collision-free branching approximation.
+- **PROVED ALL-STRENGTH CLASS OBSTRUCTION:** for every fixed normalized pair
+  strength `z>0`, Bd establishment is exactly `p`, while dB establishment is
+  the unique positive root `T_D` of an explicit quadratic and satisfies
+  `0<T_D<p`.  The certificate is
+  `F(0)=-(r-1)(z+1)(rz+z+1)<0` and
+  `F(p)=z^2(r-1)^2>0`, with opposite-sign roots.
+- Full three-coordinate cells, fully crossed pair cells, and a four-coordinate
+  two-pair cell were also screened with exact orbit aggregation at `r=1.9`.
+  They collapsed to the complete/regular boundary or remained dB-suppressing.
+  This is numerical triage only and is not used in the theorem.
+- A positive construction must therefore put its nonvanishing protected
+  relay population on a genuinely nonregular or hierarchical external
+  network; homogeneous dense pair protection cannot supply strict gain under
+  either rule.
