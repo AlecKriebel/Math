@@ -58,3 +58,21 @@ collision integral.  This is finite numerical evidence only.
 - **PROVED ON THE WITNESS:** its full `A(t)` is nevertheless positive on
   `[0,1]`, since the positive constant already dominates its sole negative
   monomial there.  Functional one-crossing remains open.
+
+## 2026-08-08: active PCDF exactly refuted
+
+- Built a singularly coupled connected rational family from five copies of
+  the weighted path `0--(10)--1--(1)--2`, joined through portal `2`.
+- Solved the isolated six-state proper-subset chain exactly:
+  `H(z)=58z/63+5z^2/63`, `m_H=68/63`,
+  `Q_H(z)=29z/34+5z^2/34`, `alpha=1/12`, `s=1/42`.
+- Derived the first-order reduced odds directly from the update rule:
+  `R=(2alpha-s/2)/(s/2)=13`, hence module vacancy `a=1/14`.
+- **PROVED:** as the portal coupling tends to zero, the active rank PGF is
+  `Q_*(z)=Q_H(z)[a+(1-a)H(z)]^4`.
+- **EXACTLY REFUTED:** the active CDF through rank two has exact defect
+  `-6530729/10532745216` relative to `K_15`, hence `c_1<0` for every
+  sufficiently small positive coupling.  Tree/rational continuity supplies
+  connected rational finite witnesses.
+- **OPEN:** `N+pi_1-2m>=0`; its exact limit on this family is the positive
+  rational `1151848/289597`.

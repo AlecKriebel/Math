@@ -12,8 +12,10 @@ Date: 2026-08-08 (America/Los_Angeles)
   and signed integration-by-parts forms below.
 - **EXACTLY REFUTED:** the pointwise derivative shortcut used to force the
   PGF order.
-- **NUMERICALLY OBSERVED / OPEN:** two weaker one-crossing components survive
-  the hostile screens, but neither is asserted as a theorem.
+- **EXACTLY REFUTED:** the residual active-CDF assertion `c_j>=0` for all
+  `j>=1`; a fifteen-vertex weak-module family has `c_1<0` at small coupling.
+- **OPEN:** the separate mean--singleton sign and the weighted integrated
+  collision inequality.
 
 ## 1. The proposed order and its exact implication
 
@@ -146,7 +148,7 @@ For the counterexample (4), the exact verifier finds
 Thus `D` crosses once from negative to positive on `(0,1)`, while its
 weighted integral remains positive.
 
-The following residual statement survived the screens:
+The following residual statement survived the original finite screens:
 
 \[
  c_j\ge0\quad(1\le j\le N-2).                       \tag{PCDF}
@@ -155,9 +157,16 @@ The following residual statement survived the screens:
 By (8), this says that the active law has at least the complete cumulative
 mass at every cut `2,...,N-1`; only the singleton cut may fail.  This is a
 precise weakening of the fully refuted event-rank stochastic order.
-`PCDF` is **NUMERICALLY OBSERVED / OPEN**, not proved.  Moreover, `PCDF`
-alone does not prove (9), because a negative `c_0` still needs quantitative
-compensation.
+It is now **EXACTLY REFUTED**.  Five weakly coupled copies of a weighted
+three-vertex path give, in an exact singular limit,
+
+\[
+ \Pr_q\{K\le2\}-{7\over4096}
+ =-{6530729\over10532745216}<0.
+\]
+
+Continuity gives connected rational counterexamples at every sufficiently
+small positive rational coupling.  See `WEAK_MODULE_PCDF_REFUTATION.md`.
 
 ## 4. Signed integration by parts
 
@@ -263,7 +272,7 @@ singleton mass of the original proper-subset stationary dual, then
 \]
 
 Consequently the following pair of strictly weaker structural lemmas would
-be sufficient for the collision theorem:
+have been sufficient for the collision theorem:
 
 \[
  c_j\ge0\quad(j\ge1),                               \tag{17a}
@@ -281,9 +290,10 @@ Indeed, if `c_0>=0`, (17a) makes (9) nonnegative.  If `c_0<0`, then
               > {2(1-2^{-N})\over N}={1\over m_K}.
 \]
 
-Both (17a) and (17b) survived the present exact witnesses and randomized
-screens.  They are **OPEN** and are recorded as a possible narrower target,
-not as progress toward a universal theorem until one is proved.
+Lemma (17a) is now **EXACTLY FALSE** by the weak-module family above.  The
+separate mean--singleton sign (17b) remains **OPEN** and is strictly positive
+in that counterexample's singular limit.  Thus any successful replacement
+must control the weighted sum (9) or (14) without termwise active-CDF signs.
 
 ## 5. Verification
 

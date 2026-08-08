@@ -11,12 +11,14 @@ is not the already-refuted comparison of the stationary PGF with its
 two-step value.
 
 Status: **EXACTLY REFUTED**.  The canonical proof and independent exact
-certificate are:
+certificates are:
 
 - `UNIFORM_PGF_REFUTATION_AND_INTEGRATED_REDUCTION.md`;
-- `verify_uniform_pgf_refutation.py`.
+- `verify_uniform_pgf_refutation.py`;
+- `WEAK_MODULE_PCDF_REFUTATION.md`;
+- `verify_weak_module_pcdf_refutation.py`.
 
-The refutation leaves the required `psi`-weighted integral positive.  The
-note isolates a narrower two-lemma frontier consisting of partial active-rank
-CDF order away from the singleton cut and a mean--singleton inequality.
-Both are **OPEN**.
+The first refutation leaves the required `psi`-weighted integral positive.
+The weak-module certificate then exactly refutes the residual active-rank CDF
+order away from the singleton cut.  The mean--singleton inequality and the
+weighted integrated collision sign remain **OPEN**.
