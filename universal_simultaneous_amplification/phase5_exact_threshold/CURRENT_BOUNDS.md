@@ -31,6 +31,16 @@ R_{\rm sim}\le2.
 It would not by itself prove equality; a single family working for every
 fixed `1<r<2` would still be required.
 
+The exact constant
+
+\[
+R_{\rm pair}=1.6986624639825652\ldots
+\]
+
+is an upper endpoint only for the separated monomorphic-`K_2` hierarchy
+class.  It is not a bound on `R_sim` and therefore does not alter the boxed
+global interval above.
+
 ## Endpoint convention
 
 `R_sim` is a supremum over open fitness intervals.  Whether an extremal

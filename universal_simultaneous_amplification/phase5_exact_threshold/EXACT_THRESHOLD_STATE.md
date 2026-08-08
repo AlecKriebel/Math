@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 12:20 PDT.
+Last updated: 2026-08-08 13:05 PDT.
 
 ## Frozen starting point
 
@@ -87,6 +87,24 @@ This is finite evidence only.
     its quadratic coefficient is positive in the antisymmetric balanced
     sector for every order.  The standard and symmetric balanced sectors and
     higher forest coefficients remain open.
+11. For the complete-ray transient interpolation, the first open
+    fixed-colour coefficient has an exact triangular two-replica expansion.
+    Every antisymmetric packet is positive for all population orders and all
+    time lags; the entire directed three-vertex coefficient and the
+    four-vertex standard sector are positive for all times.  The all-order
+    standard and symmetric signs remain open.
+12. Every separated hierarchy of monomorphic strong `K_2` macrovertices is
+    obstructed throughout
+
+    \[
+    [R_{\rm pair},2],\qquad
+    R_{\rm pair}=1.6986624639825652\ldots,
+    \]
+
+    independently of macrograph topology, rank, pair-strength
+    heterogeneity, and later recovery paths.  This is a class theorem, not
+    a new upper bound on `R_sim`; a construction reaching two must permit
+    portal action before pair absorption or use a different reservoir.
 
 ### Open
 
@@ -138,3 +156,8 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 - `f1e7c98b`: complete-refresh determinant sectors and antisymmetric theorem.
 - `35af7f1f`: connected weak-module refutation of active-rank PCDF.
 - `4abcc038`: isolation of the finite-time harmonic frontier `(FT-H)`.
+- `2d4b70d6`: exact transient grouped-history and ray obstructions.
+- `0dbfa3cc`: canonical finite-time harmonic state files.
+- `29db1bd4`: all-topology first-event obstruction for separated strong-pair
+  hierarchies, with exact `R_pair`.
+- `3cd4f293`: fixed-count two-replica sector theorems and exact recurrences.

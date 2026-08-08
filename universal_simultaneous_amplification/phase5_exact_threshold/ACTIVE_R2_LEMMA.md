@@ -1,6 +1,6 @@
 # Canonical fitness-two lemma
 
-Last updated: 2026-08-08 12:20 PDT.  Status labels are literal.
+Last updated: 2026-08-08 13:05 PDT.  Status labels are literal.
 
 ## 1. Graph kernel and exact dual law
 
@@ -264,6 +264,49 @@ The individual signs `C_(t,j)>=0` are false: on the frozen reversible
 six-vertex rank-tail graph, `C_(88,1)<0` exactly while `a_88-a_0>0` exactly.
 Accordingly a proof must preserve the harmonic weighting in (R2-5H), or the
 equivalent cumulative weighted rank-flux sum.
+
+## 5B. Fixed-count complete-refresh frontier
+
+Let `K_0` be the complete active kernel, put
+
+\[
+\Delta=K_P-K_0,\qquad K_\alpha=K_0+\alpha\Delta,
+\]
+
+and expand
+
+\[
+\nu_0K_\alpha^tH-a_0
+=\sum_{j=0}^t\binom tj b_{t,j}
+ \alpha^j(1-\alpha)^{t-j}.
+\]
+
+Rank averaging gives `b_(t,0)=b_(t,1)=0`.  The first open coefficient has
+the exact two-replica form
+
+\[
+\boxed{
+b_{t,2}={1\over\binom t2}
+ \sum_{\ell,m\ge0,\ \ell+m\le t-2}
+ \nu_0\Delta K_0^\ell\Delta R^mH.}                 \tag{R2-5B}
+\]
+
+This quadratic invariant splits into standard, symmetric balanced, and
+antisymmetric balanced sectors.  The following are proved:
+
+- every antisymmetric packet in (R2-5B) is strictly positive for every
+  population order and both lags;
+- the full directed three-vertex coefficient is positive for every time;
+- the four-vertex standard-sector fixed-lag diagonal is positive for every
+  time by an exact rational generating function and contraction certificate.
+
+The all-order standard and symmetric cumulative signs remain open.  Exact
+two-channel rank recurrences replace the exponential subset chain and pass
+over `4<=n<=31` and lags through 100, but this is finite evidence only.
+Individual packets, individual radial eigenmodes, complete-ray convexity,
+and monotonicity in the colour count are all exactly false.  Proving every
+`b_(t,j)>=0` would imply `(FT-H)`; proving only (R2-5B) would be a genuine
+two-replica theorem but would not yet close higher colour counts.
 
 ## 6. Equality cases
 

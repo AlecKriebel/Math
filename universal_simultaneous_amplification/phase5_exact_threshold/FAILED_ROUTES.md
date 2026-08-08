@@ -30,6 +30,17 @@ Do not retry without a new ingredient defeating the saved witness:
 - interpreting local establishment as fixation without the entire macro path;
 - optimizing an integrated gadget without its far-field singleton Poisson
 correction.
+- proving the transient floor by positive individual transverse excursions
+  or fixed two-colour words: both have exact negative reversible-triangle
+  witnesses;
+- complete-ray convexity, or monotonicity of complete-ray Bernstein controls
+  in the number of actual-coloured updates;
+- splitting the first two-replica coefficient by individual
+  Walsh/Krawtchouk radial degrees: exact standard and symmetric degree
+  contributions change sign;
+- recursively nesting separated monomorphic strong pairs to evade the
+  Bd/dB source--target activity duality.  The topology-independent
+  first-event envelope rules out the entire class on `[R_pair,2]`.
 
 Nonregular permutation-orbit midpoint symmetrization is also exactly false,
 including on a five-vertex weighted path.  Only the symmetric-stochastic
