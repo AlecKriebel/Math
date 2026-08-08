@@ -16,7 +16,7 @@
   clique--pendant rays, random dense three-class reversible blow-ups, and
   multi-scale weighted stars.  These screens are not proof.
 
-- [PROVED] Introduced exact marked operators (J,H,S,N).  The C pre-neutral,
+- [PROVED] Introduced exact marked operators $J,H,S,N$.  The C pre-neutral,
   C post-neutral, and D locked-burst kernels are
 
   \[
@@ -25,10 +25,10 @@
   \qquad K_D=pJ(I-qS)^{-1}N,
   \]
 
-  where (R_C=p(I-qJSH)^{-1}), (p=2/3), and (q=1/3).
+  where $R_C=p(I-qJSH)^{-1}$, $p=2/3$, and $q=1/3$.
 
-- [PROVED] If (alpha_C,alpha_D) are the size-biased event Palm laws and
-  (eta_C=alpha_CN_C), then
+- [PROVED] If $\alpha_C,\alpha_D$ are the size-biased event Palm laws and
+  $\beta_C=\alpha_CN_C$, then
 
   \[
   \beta_CK_R=\beta_C,
@@ -42,8 +42,8 @@
   K_D-K_R=pqJ(I-qS)^{-1}S(I-HJ)(I-qSHJ)^{-1}N.
   \]
 
-- [PROVED] With (f(A)=1/|A|) and the centered (K_R)-Poisson potential
-  (g), the batching inequality is equivalent to the single sign
+- [PROVED] With $f(A)=1/|A|$ and the centered $K_R$-Poisson potential
+  $g$, the batching inequality is equivalent to the single sign
 
   \[
   \alpha_D(K_D-K_R)g
@@ -55,17 +55,40 @@
 
 - [EXACTLY FALSIFIED] The persistence term is not nonnegative.  The integer
   weighted four-vertex graph in `EVENT_PALM_RESOLVENT.md` makes it strictly
-  negative over (mathbb Q), while the combined endpoint gap is positive.
+  negative over $\mathbb Q$, while the combined endpoint gap is positive.
 
 - [EXACTLY FALSIFIED] The timing term is not nonnegative.  A small integer
-  weighted five-vertex graph makes it strictly negative over (mathbb Q),
+  weighted five-vertex graph makes it strictly negative over $\mathbb Q$,
   while the persistence term and combined endpoint gap are positive.
 
 - [OPEN] The paired sign itself.  The exact witnesses show that any closure
   must control cancellation between target-mark dispersion and event timing;
   neither contribution admits the natural separate sign.
 
-- Added `verify_event_palm_resolvent.py`.  It verifies the marked resolvent,
-  stationary Palm transformations, Poisson identity, both rational sign
-  failures, and an independent exact forward-chain reconstruction.
+- [PROVED REDUCTION / PRECISE OPEN CLASSICAL INEQUALITY] Applied the
+  directed matrix-tree expansion to the recurrent nonfull event kernels.
+  If $\tau_R,\tau_D$ are their positive rooted-arborescence cofactors,
+  $\zeta$ is the normalized tree-root likelihood ratio, and
+  $c=R_C(1/|A|)$ is the full resampled geometric-coverage cost, the target is
 
+  \[
+  \operatorname{Cov}_{\beta_C}(\zeta,1/|A|)
+  \ge R_n^{-1}\mathbb E_{\beta_C}c
+       -\mathbb E_{\beta_C}(1/|A|).
+  \]
+
+  Equivalently it is one comparison of two positive cofactor partition
+  sums.  This is the irreducible surviving sign after the bounded closure
+  cycle.
+
+- [EXACTLY FALSIFIED] Rootwise positivity of the cofactor--coverage
+  integrand.  Even on $K_4$, the integrand is $47/1092$ on a singleton and
+  $-58/1365$ on a three-set, while its arborescence-root average is zero.
+  Thus any tree proof must transport mass between roots; a root-preserving
+  termwise injection is impossible even at equality.
+
+- Extended verify_event_palm_resolvent.py.  It verifies the marked
+  resolvent, stationary Palm transformations, Poisson identity, every
+  directed-tree cofactor on the exact witnesses, the rootwise sign failure,
+  both rational split failures, and an independent exact forward-chain
+  reconstruction.

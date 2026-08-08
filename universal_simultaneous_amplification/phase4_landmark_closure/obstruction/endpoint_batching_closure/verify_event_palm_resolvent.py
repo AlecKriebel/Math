@@ -3,9 +3,10 @@
 
 All assertions use rational arithmetic.  The verifier constructs the
 neutral-event kernels directly, checks the marked burst-resolvent identity,
-and certifies that the two natural pieces of the endpoint gap can each have
-the wrong sign.  It also independently rebuilds both forward fixation
-chains and checks the Palm harmonic-mean formula.
+reconstructs both invariant laws from their directed-tree cofactors, and
+certifies that the two natural pieces of the endpoint gap can each have the
+wrong sign.  It also independently rebuilds both forward fixation chains
+and checks the Palm harmonic-mean formula.
 """
 
 from __future__ import annotations
@@ -214,6 +215,39 @@ def rational_hash(value) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def principal_minor(matrix: fmpq_mat, omitted: int) -> fmpq_mat:
+    size = matrix.nrows()
+    minor = fmpq_mat(size - 1, size - 1)
+    for row in range(size):
+        if row == omitted:
+            continue
+        reduced_row = row - int(row > omitted)
+        for column in range(size):
+            if column == omitted:
+                continue
+            reduced_column = column - int(column > omitted)
+            minor[reduced_row, reduced_column] = matrix[row, column]
+    return minor
+
+
+def recurrent_tree_law(kernel: fmpq_mat, masks, full: int):
+    """Cofactor/root law on the recurrent nonfull event state space."""
+    keep = tuple(row for row, mask in enumerate(masks) if mask != full)
+    restricted = fmpq_mat(len(keep), len(keep))
+    for row, old_row in enumerate(keep):
+        for column, old_column in enumerate(keep):
+            restricted[row, column] = kernel[old_row, old_column]
+    laplacian = eye(len(keep)) - restricted
+    tree_weights = tuple(
+        principal_minor(laplacian, root).det()
+        for root in range(len(keep))
+    )
+    assert all(weight > 0 for weight in tree_weights)
+    normalizer = sum(tree_weights)
+    law = tuple(weight / normalizer for weight in tree_weights)
+    return keep, tree_weights, normalizer, law
+
+
 def analyze(weights, factorization_check: bool = True):
     context = event_kernels(weights)
     masks = context["masks"]
@@ -253,6 +287,41 @@ def analyze(weights, factorization_check: bool = True):
     total = persistence + timing
     assert total == d_mean - lam * c_mean
 
+    # Directed matrix-tree/root likelihood representation on Omega\{V}.
+    full = (1 << len(weights)) - 1
+    keep_r, trees_r, normalizer_r, law_r = recurrent_tree_law(
+        c_post, masks, full
+    )
+    keep_d, trees_d, normalizer_d, law_d = recurrent_tree_law(
+        d_kernel, masks, full
+    )
+    assert keep_r == keep_d
+    for reduced_row, old_row in enumerate(keep_r):
+        assert law_r[reduced_row] == beta[old_row, 0]
+        assert law_d[reduced_row] == d_invariant[old_row, 0]
+
+    c_coverage = context["R_C"] * reciprocal_size
+    coupled_integrand = []
+    for reduced_row, old_row in enumerate(keep_r):
+        tree_density = (
+            trees_d[reduced_row]
+            * normalizer_r
+            / (trees_r[reduced_row] * normalizer_d)
+        )
+        assert tree_density * beta[old_row, 0] == d_invariant[old_row, 0]
+        value = (
+            tree_density * reciprocal_size[old_row, 0]
+            - lam * c_coverage[old_row, 0]
+        )
+        coupled_integrand.append((value, masks[old_row]))
+    assert (
+        sum(
+            beta[context["index"][mask], 0] * value
+            for value, mask in coupled_integrand
+        )
+        == total
+    )
+
     # Exact marked resolvent identity retaining the entire geometric burst.
     if factorization_check:
         choose = context["J"]
@@ -282,7 +351,15 @@ def analyze(weights, factorization_check: bool = True):
     assert rho_c == 1 / (len(weights) * c_mean)
     assert rho_d == 1 / (len(weights) * d_mean)
     assert total >= 0
-    return persistence, timing, total, rho_c, rho_d
+    return (
+        persistence,
+        timing,
+        total,
+        rho_c,
+        rho_d,
+        min(coupled_integrand),
+        max(coupled_integrand),
+    )
 
 
 def graph(matrix):
@@ -298,7 +375,10 @@ def main() -> None:
     )
     complete = analyze(complete_four)
     assert complete[0] == complete[1] == complete[2] == 0
+    assert complete[5] == (-fmpq(58, 1365), 0b0111)
+    assert complete[6] == (fmpq(47, 1092), 0b1000)
     print("PASS K_4: beta_C=alpha_D and the normalized endpoint gap is zero")
+    print("PASS K_4: the cofactor--coverage integrand has both exact signs")
 
     persistence_witness = graph(
         [
@@ -310,6 +390,7 @@ def main() -> None:
     )
     persistence = analyze(persistence_witness)
     assert persistence[0] < 0 < persistence[1]
+    assert persistence[5][0] < 0 < persistence[6][0]
     print(
         "PASS n=4: locked-vs-resampled persistence term is negative;",
         "hash", rational_hash(persistence[0]),
@@ -327,6 +408,7 @@ def main() -> None:
     )
     timing = analyze(timing_witness)
     assert timing[1] < 0 < timing[0]
+    assert timing[5][0] < 0 < timing[6][0]
     print(
         "PASS n=5: neutral/selective timing term is negative;",
         "hash", rational_hash(timing[1]),

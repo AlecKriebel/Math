@@ -13,5 +13,7 @@ The main note is `EVENT_PALM_RESOLVENT.md`.  Its exact verifier is
 The comparison remains **OPEN**.  The new proved result is an all-burst
 event--Palm/resolvent reduction to one paired sign, together with exact
 counterexamples showing that its persistence and timing terms are each
-separately indefinite.
-
+separately indefinite.  A second exact reformulation identifies the
+surviving sign as a directed-arborescence likelihood--geometric-coverage
+covariance inequality; its integrand has both signs even on the complete
+graph.
