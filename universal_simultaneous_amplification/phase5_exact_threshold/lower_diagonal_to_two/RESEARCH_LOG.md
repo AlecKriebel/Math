@@ -43,3 +43,23 @@
 - Next executable task: build the smallest nonseparated pair--portal trace,
   retain portal events during the discordant-pair episode, and optimize its
   exact first-excursion response against the separated envelope.
+
+## 2026-08-08 — exact star--reservoir diode and entrance obstruction
+
+- A star between two clique reservoirs is an exact same-direction diode.
+  With `L` leaves and reservoir order `C`, its two-interface odds products
+  grow as `r^(C+2L)` for Bd and tend to `r^(C+4)` for dB, up to the displayed
+  exact rational factors in `STAR_RESERVOIR_DIODE_AND_ENTRANCE_OBSTRUCTION.md`.
+- The diode does not rescue a three-scale construction in which each clique
+  and star locally absorbs before coupling.  The total dB singleton fixation
+  mass of the star is only `O(1)`, while it contributes `L+1` uniformly
+  sampled vertices, and `K_C` itself loses one finite-population unit.
+- **PROVED CLASS OBSTRUCTION:** for every fixed `r>5/3`, every separated
+  cycle with at least two `K_C` reservoirs and one `S_L` antenna per
+  reservoir is eventually dB-suppressing, even after granting certain global
+  fixation once the initially occupied component fixes.  The proof is the
+  exact inequality `A_L<=A_1=-(2r-3)/r` and the complete-baseline correction
+  `p/m`.
+- The necessary escape is now sharper: star--reservoir events must act while
+  the initial clique or antenna is polymorphic and create a positive entrance
+  correction of order at least `1/C`.
