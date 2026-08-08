@@ -52,12 +52,13 @@ center--triangle family, but this manuscript supersedes it.
 | effective iterated diagonal | compact-uniform two-step limit | `DILUTE_HYBRID_THEOREM.md` |
 | novelty context | narrow post-proof audit | `LITERATURE_AUDIT.md` |
 
-## Before release
+## Release checklist
 
-- Complete a line-by-line hostile proof audit of `main.tex`.
-- Compile and visually inspect the PDF.
-- Add equation-level cross-references to every verifier.
-- Generate a deterministic manifest and archive.
-- Update the project claims ledger without overwriting parallel work.
-- Do not reuse the previous title suggesting that `3/2` is the boundary.
-- Do not claim the exact value of `R_sim`.
+- [x] Complete a line-by-line hostile proof audit of `main.tex`.
+- [x] Compile and visually inspect every page of the PDF.
+- [x] Add equation-level cross-references to every verifier.
+- [x] Update the project claims ledger without overwriting parallel work.
+- [x] Use a title that does not suggest that `3/2` is the boundary.
+- [x] State explicitly that the exact value of `R_sim` remains open.
+- [ ] Regenerate the deterministic manifest after the final source edits.
+- [ ] Create and verify the tagged release and source archive.

@@ -36,7 +36,18 @@ All ten final pages were rendered at 150 dpi and inspected.
 The build script deletes stale rendered pages before every render, including
 when the page-number padding changes.
 
+## Independent hostile audit
+
+The final manuscript received an independent line-by-line hostile audit after
+the last mathematical edits.  The graph quantifiers, the `o(q/C)` error scale,
+post-establishment fixation, both leading coefficients, constrained sextic
+optimization, affine-separator scope, citations, and release wording all
+passed.  No unresolved theorem, transition-rate, asymptotic-scale, or
+quantifier defect remains in the stated result.
+
 ## Release status
 
-The paper, source, and replay are prepared but not publicly released from
-this folder. No DOI, journal submission, or external contact is claimed.
+The paper, source, and replay are ready for a tagged public preprint release.
+Release and DOI metadata must be checked after the release action; this log
+does not claim either in advance.  No journal submission or external contact
+is claimed.

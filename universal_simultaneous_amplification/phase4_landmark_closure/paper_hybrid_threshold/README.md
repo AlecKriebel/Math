@@ -1,7 +1,9 @@
 # Simultaneous amplification beyond fitness three halves
 
-This is the unreleased replacement manuscript for the now-superseded
-lower-bound paper in `paper_lower_threshold/`.
+This is the hostile-audited public-repository replacement draft for the
+now-superseded lower-bound paper in `paper_lower_threshold/`.  Release
+metadata is recorded separately from the mathematical source so that no DOI
+or archival status is claimed before it exists.
 
 ## Central proved result
 
@@ -25,10 +27,11 @@ value of `R_sim` remains open.
 
 ## Status
 
-- `main.tex`: replacement manuscript source in active preparation.
+- `main.tex`: completed and hostile-audited replacement manuscript source.
 - `MANUSCRIPT_PLAN.md`: theorem/evidence map and remaining editorial work.
 - `replay.sh`: one-command exact replay for the new construction.
-- No release, DOI, submission, or external contact is performed here.
+- `RELEASE_NOTES.md`: exact scope and status text for the tagged preprint.
+- No journal submission or external contact is claimed.
 - The released `R_sim>=3/2` paper remains mathematically correct but is
   superseded by this stronger theorem.
 
