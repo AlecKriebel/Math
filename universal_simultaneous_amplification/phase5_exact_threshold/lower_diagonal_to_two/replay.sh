@@ -8,3 +8,4 @@ PYTHON=${PYTHON:-"$ROOT/../../../.venv/bin/python"}
 "$PYTHON" "$ROOT/verify_star_reservoir_diode.py"
 "$PYTHON" "$ROOT/verify_two_channel_entrance.py"
 "$PYTHON" "$ROOT/verify_dense_pair_relay.py"
+"$PYTHON" "$ROOT/verify_dense_heterogeneous_pair_relay.py"

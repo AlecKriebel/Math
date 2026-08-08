@@ -110,3 +110,20 @@
   relay population on a genuinely nonregular or hierarchical external
   network; homogeneous dense pair protection cannot supply strict gain under
   either rule.
+
+## 2026-08-08 — arbitrary heterogeneous dense pair relay closed
+
+- Extended the density-one pair calculation from one common strength to an
+  arbitrary limiting distribution of normalized partner strengths.
+- **PROVED ALL-STRENGTH CLASS OBSTRUCTION:** the uniformly averaged dB
+  establishment probability is at most `p=(r-1)/r`, with equality only when
+  the partner strength vanishes almost surely.
+- The proof keeps the child-law bias exactly.  With `x=(1+z)^-1`, the local
+  survival and child-weighted response are rational coordinates `s_A(x)` and
+  `g_A(x)`, while self-consistency is `E g_A=A/r`.  The upper envelope of
+  `s_A` over a fixed value of `g_A` is strictly concave.  Jensen plus the
+  exact comparison point `x_0=A/(r-1)` gives `E s_A<=p`.
+- This eliminates mixtures of weak and strong protected pairs over a complete
+  external background.  The remaining positive-density trigger search must
+  use a nonregular child network, a larger local state space, or intercell
+  interaction before the rare-colony trace resolves.
