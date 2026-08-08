@@ -1,0 +1,35 @@
+# Research log
+
+## 2026-08-08 — response recovery and cone reduction
+
+- Recovered ordinary leaves, finite-scale common-hub leaves, distinct-heavy
+  leaves with far-field correction, `K_2`, every `K_s`, the pair--leaf
+  hybrid, the invariant separated-gadget formula, integrated-gadget
+  summaries, portal clones, and symmetric correlated pair doublets.
+- Expressed the free separated gate through `z=Z_B` and the scale-invariant
+  product `K=Z_B Z_D`.
+- Cleared the leaf-eliminated separator to one explicit quadratic in `z`.
+- Formulated compact-interval feasibility in `C(I)^2`, with its exact dual
+  pair of nonnegative measures.
+- Recorded the effective growing-menu diagonal lemma.  The missing object is
+  an exact generator with positive margin near fitness two, not a quantifier
+  issue.
+
+## 2026-08-08 — all-order second-order clone obstruction
+
+- Expanded the exact Bd and dB killed local chains around
+  `a_ij=0, x_i=1` for arbitrary fixed gadget order.
+- Proved `B_2=0` identically.
+- Proved
+
+  ```text
+  D_2=-(1/r) [sum_i (xi_i+sum_j A_ij)^2
+               +2(r-1) sum_{i<j} A_ij^2].
+  ```
+
+- Equality is possible only for the trivial tangent.
+- Independently reconstructed the generic labelled order-three subset chain
+  and exact order-four/order-five instances from the update definitions.
+- This closes fixed-order second-order portal clones.  Growing order,
+  interior positive matrices, correlated modules, and nonseparated dynamics
+  remain open.
