@@ -1,6 +1,6 @@
 # Failed and closed proof routes
 
-Last updated: 2026-08-07 restart gate.
+Last updated: 2026-08-08 stationary determinant and flow audit.
 
 These failures are exact unless explicitly labeled numerical.  None should
 be revived without a new ingredient addressing the stated witness.
@@ -33,6 +33,16 @@ be revived without a new ingredient addressing the stated witness.
   they close proof architectures, not the theorem.
 - The complete dB harmonic drift is not pointwise superharmonic: the signed
   row-cut deviation in the exact bridge can be negative.
+- Full-start transient midpoint interpolation fails on the unweighted
+  four-star at exact time `7/2`; statewise curvature fails even earlier.
+- Single-tree in/out reversal, coefficientwise all-root-mark positivity,
+  one-variable real-rootedness, termwise even-resolvent signs, and
+  first-order stochastic domination of the centered rank law all have exact
+  counterexamples.  The stationary scalar orientation inequality survives.
+- Scalar rank-flow constraints and even every rank-labelled Boolean moment
+  through degree two admit exact positive pseudo-Green witnesses.  The
+  seven-vertex degree-two witness is not an endpoint fixation counterexample;
+  it proves that higher-mode Schur feedback is indispensable.
 
 Exact files: `obstruction/cross_sum_three_halves/`,
 `obstruction/signed_cut_capacity/`, and
@@ -62,6 +72,9 @@ Exact files: `obstruction/cross_sum_three_halves/`,
 - Fixed-reference `L^2` contraction, revealing the effective/null flag,
   Blackwell garbling, and full likelihood-ratio convex-order domination all
   have exact counterexamples.
+- The proposed symmetric-flow split `L<=S<=V` is false even for a connected
+  complete-support undirected graph on six vertices.  Its exact witness still
+  has `L<V`, so it closes only the split, not complete-graph maximality.
 
 Exact files: `obstruction/r2_collision_bound/`,
 `obstruction/r2_entropy_certificate/`, `obstruction/regular_db_max/`, and

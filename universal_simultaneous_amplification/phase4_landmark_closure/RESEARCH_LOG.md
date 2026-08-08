@@ -444,3 +444,45 @@
   `verify_balanced_poisson.py`, and `verify_vertex_bilinear_farkas.py` all
   replay over exact arithmetic.  No universal separator or counterexample
   has yet been obtained.
+
+## 2026-08-08 00:45 PDT — stationary determinant and flow audit
+
+- [PROVED ORIENTATION IDENTITIES] For `Q_s=M+sK`, the midpoint is reversible,
+  the defect splits into a skew operator and a diagonal zero-rank-mean
+  potential, and the opposite stationary densities obey an exact
+  geometric-product orthogonality plus two Dirichlet-square identities.
+- [PROVED ELECTRICAL REDUCTION] A signless-incidence determinant lemma and
+  singular forest limit reduce the centered stationary orientation chord to
+  the single scalar
+  `4s^2 1_E^T X(I-s^2X^2)^(-1)u`.  The reduction is exact; its universal sign
+  is OPEN.  The weighted `1:17` path is certified on the whole interpolation
+  interval.
+- [EXACT ORIENTATION ROUTE CLOSURES] Statewise and full-start transient
+  domination, single-tree reversal, all-root-mark coefficient positivity,
+  one-variable real-rootedness, termwise resolvent signs, and cumulative
+  rank-tail domination all fail on exact or rigorous-interval witnesses.
+  None of those witnesses violates the stationary mean target.
+- [PROVED JOHNSON--GREEN IDENTITY] The two signed endpoint fields are exactly
+  centered Johnson modes of degrees one and two, with closed-form rankwise
+  Poisson inverses.  Hence `T+C` is a precise within-rank Dirichlet pairing.
+- [EXACT GREEN-RELAXATION CLOSURES] Scalar rank flow fails on `P_3`.  A
+  seven-vertex rational pseudo-Green law satisfies every rank-labelled
+  Boolean conservation equation through degree two yet has relaxed excess
+  sum `>0`; the true graph has balanced score about `0.7947`.  Higher-mode
+  Schur feedback is therefore essential.
+- [PROVED `r=2` FLOW IDENTITIES / EXACTLY FALSIFIED SPLIT] The complete
+  geometric-union flow has an exact symmetric/antisymmetric circulation
+  decomposition and Fisher identity.  However, a complete-support
+  undirected order-six graph has `L-S>0` exactly while `L-V<0`, refuting the
+  proposed split `L<=S<=V` without refuting the actual sign.
+- [PROVED DIRECT `r=2` EVENT-FLOW IDENTITY] With uncentered actual/reference
+  event kernels, the likelihood ratio of stationary laws, and the exact
+  Poisson potential, `L` is a source-centered transport work
+  `sum c g (1-r) Delta psi`.  The open inequality is now the direct statement
+  that this globally compensated work is absorbed by the tangent cost `V`.
+  Broad and local order-six searches found no `L>V` candidate; this is
+  numerical evidence only.
+- [INDEPENDENT REPLAY] Four endpoint-orientation verifiers, both Green-flow
+  verifiers, and the fitness-two flow verifier passed cleanly.  The endpoint
+  product/disjunction, the electrical transfer sign, `T+C<=E`, and `L<=V`
+  all remain OPEN.

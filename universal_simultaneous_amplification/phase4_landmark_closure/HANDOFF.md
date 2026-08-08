@@ -1,6 +1,7 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-07 endpoint hostile cycle (America/Los_Angeles)
+Checkpoint date: 2026-08-08 stationary determinant and flow audit
+(America/Los_Angeles)
 
 ## Current theorem state
 
@@ -14,6 +15,13 @@ Checkpoint date: 2026-08-07 endpoint hostile cycle (America/Los_Angeles)
   `T+C<=E` in the Green--Poisson notation, with `E>=0` and exact rank-flow
   conservation.  Every separate state/rank/sign shortcut checked in the
   endpoint cycle is false.
+- **PROVED REFORMULATIONS:** `T+C` is an exact rankwise Johnson Dirichlet
+  pairing, and the reversed-arrow stationary chord is an exact electrical
+  two-tree transfer scalar.  Neither final sign is proved.
+- **EXACT ROUTE CLOSURES:** scalar and degree-two Green-flow relaxations fail;
+  transient/treewise/rank-tail orientation strengthenings fail; the
+  `r=2` symmetric-flow split fails on an undirected order-six graph.  All
+  witness graphs retain the desired actual fixation comparison.
 - **OPEN:** exact fitness-two sign `L<=V` and hence any finite universal upper
   bound on `R_sim`.
 - **OPEN:** exact value of `R_sim`; current rigorous information is only the
@@ -23,8 +31,9 @@ Checkpoint date: 2026-08-07 endpoint hostile cycle (America/Los_Angeles)
 
 The restart base was
 `ffe5c89cf41ca3cced5a2e573404baeb2d510897`; the audited restart integration
-was pushed as `72289a4a45e4db97ca473bd84e7bd9773ded791f` on `main`.  Exact replay reports are under
-`restart_audit/`.  Do not delete or silently modify the untracked discovery
+was pushed as `72289a4a45e4db97ca473bd84e7bd9773ded791f`, and the endpoint
+Green--Poisson reduction as `8ef6e0b0` on `main`.  Exact replay reports are
+under `restart_audit/`.  Do not delete or silently modify the untracked discovery
 program `obstruction/stationary_inequality/explore_target_information.py`;
 it is historical and not part of the audited theorem packages.
 
@@ -55,13 +64,19 @@ so the exact missing sign is `L<=V`.
 
 Continue the three independent live branches:
 
-1. the summed tree-determinant/forest endpoint inequality at `r=3/2`;
-2. the global cross-rank Green-flow sign `T+C<=E`;
-3. a stationary collision/entropy proof of `L<=V` at `r=2`.
+1. prove the electrical transfer sign for the stationary orientation chord,
+   then address the independent batching factor;
+2. control the paired high-mode Schur feedback in the exact Johnson--Green
+   form of `T+C<=E`;
+3. prove the direct stationary collision sign `L<=V` at `r=2`, without the
+   now-refuted symmetric-flow split, using the exact source-centered
+   event-ratio transport identity recorded in `ACTIVE_LEMMAS.md`.
 
 Do not retry rank/overlap-only, vertex-bilinear pointwise, statewise,
 fixed-rank, separately signed, or first-change-balanced endpoint
-certificates: exact witnesses now close all of them.
+certificates.  Also do not retry finite-degree Green relaxations, transient
+orientation domination, treewise reversal, rank-tail domination, or the
+`L<=S<=V` split: exact witnesses now close all of them.
 
 The first exact theorem, exact endpoint counterexample, or universal
 fitness-two sign should stop broad exploration and trigger theorem
