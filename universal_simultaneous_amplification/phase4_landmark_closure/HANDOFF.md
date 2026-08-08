@@ -174,3 +174,30 @@ The preceding historical checkpoint is superseded as follows.
 - Commits `3e65e0b7` and `c6e60ca5` reduce the `r=2` fallback to a stationary
   marked-chain promotion after proving the universal uniform two-step
   sum-of-squares comparison.
+
+## 2026-08-08 release and continuation checkpoint
+
+- **PUBLIC PREPRINT RELEASED:** the hostile-audited replacement manuscript is
+  tagged as
+  `simultaneous-amplification-beyond-three-halves-v1.0.0` at
+  `https://github.com/AlecKriebel/Math/releases/tag/simultaneous-amplification-beyond-three-halves-v1.0.0`.
+  Its PDF SHA-256 is
+  `685decc4c8ccb5287ac766e226a81b2e9724611861d0c36bf8e5e43a2495405f`;
+  the independently unpacked and replayed source/certificate archive has
+  SHA-256
+  `9274c192d51933b5a4af181c53bc2d6069e7041347577542ee703ca1b5f56256`.
+- **ARCHIVAL RECORD VERIFIED:** Zenodo version DOI
+  `10.5281/zenodo.21852072`, concept DOI `10.5281/zenodo.21753404`.
+- **PROVED CLASS OBSTRUCTION:** commit `6cd1bf85` classifies the audited
+  common-hub and distinct-hub weighted-leaf scalings.  Once the far-field
+  ordinary-singleton term is included, none improves `R_hyb`.
+- **PROVED REDUCTION / OPEN SIGN:** commit `2beba690` rewrites the remaining
+  fitness-two promotion as a positive active-state Perron inequality.  The
+  size-weighted mass is invariant and the desired collision observable is
+  the unweighted Perron mass.  Generic late-time monotonicity and a rank-zero
+  stationary envelope are exactly false; the collision-observable promotion
+  itself remains open.
+- **OPEN:** the unrestricted exact value of `R_sim`; current rigorous bound
+  `R_sim>=R_hyb=1.5028569127905696...`, with no finite universal upper bound.
+- No journal submission or external communication occurred.  The public
+  preprint is not peer-reviewed journal publication.
