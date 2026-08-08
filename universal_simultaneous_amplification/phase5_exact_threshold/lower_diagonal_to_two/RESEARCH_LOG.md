@@ -164,3 +164,28 @@
   `(1,k,k^2)` gateways, and an `o(n)` dense twin gateway were screened for
   this ray.  None showed a vanishing ratio.  This is numerical triage only,
   and no class obstruction is claimed.
+
+## 2026-08-08 — diffuse rank-one catalyst ray rigorously obstructed
+
+- Replaced the narrow gateway screens by an arbitrary multiscale rank-one
+  clone blow-up: arbitrary rational class proportions and propensities,
+  growing class number, and clone multiplicity sent out on the diagonal.
+- Derived every Bd and dB rare-mutant type rate directly from the finite
+  loopless graph.  Uniform singleton starts have exactly the class law used
+  in the limit.
+- **PROVED ALL-FITNESS IDENTITY:** for every `r>1`, the uniformly averaged
+  limiting Bd survival probability is exactly `(r-1)/r`, independently of
+  the propensity distribution.  The Bd self-consistency equation gives the
+  cancellation in one line.  The averaged dB survival is at most `(r-1)/r`,
+  strictly below it for every nonconstant profile by strict Jensen.
+- At `r=2` the stronger typewise certificate `b_i+s_i<=1` also holds; it
+  follows from `4MS<=1` via a decreasing Stieltjes transform.
+- **PROVED FULL-FIXATION CLASS OBSTRUCTION:** fixation implies reaching a
+  fixed cutoff `K`; the finite labelled chain below `K` converges to the
+  exact branching trace.  Sending clone multiplicity, then `K`, to infinity
+  compact-uniformly away from neutrality gives zero positive normalized Bd
+  gain.  Consequently no trace-resolved rank-one clone diagonal has
+  `B_k(r)/c_k -> b(r)>0`, regardless of its dB coordinate.
+- Equality is the constant-propensity complete graph.  The remaining
+  catalyst search must use genuinely non-rank-one incidence or correlations
+  surviving below every growing cutoff.
