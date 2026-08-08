@@ -63,3 +63,27 @@
 - The necessary escape is now sharper: star--reservoir events must act while
   the initial clique or antenna is polymorphic and create a positive entrance
   correction of order at least `1/C`.
+
+## 2026-08-08 — dense complementary two-channel trigger obstruction
+
+- Tested the proposed dense population of asymmetric two-root triggers before
+  returning to dilute-core far-field calculations.
+- **PROVED:** for a dB singleton at vertex `v`, with incoming temperature
+  `T_v`, fixation is at most `r T_v/(1+r T_v)`.  Since `sum_v T_v=n`, a
+  class of density `delta` contributes at most
+  `delta*r/(r+delta)` to uniform dB fixation.  This remains true after
+  granting fixation following the first mutant expansion.
+- Consequently a positive-density dB-specific root class cannot have average
+  singleton success tending to one.  The asymmetric local limit with
+  `u_dB(B)->1` is necessarily dilute and cannot occupy half the population.
+- **PROVED CLASS OBSTRUCTION:** if disjoint classes `A,B` carry all Bd and dB
+  fixation respectively, while every wrong-channel and relay singleton mass
+  is `o(1)`, then simultaneous amplification is impossible for
+  `r>R_split=1.75487766624669...`, the unique real root of
+  `r^3-2r^2+r-1`.  The literal equal two-root split already fails for every
+  `r>(1+sqrt(5))/2`.
+- All relay starts and far-field starts occur explicitly in the two remainder
+  masses; no portal class is silently removed.  To approach fitness two, a
+  positive-density class must now carry substantial fixation under both
+  update rules, or a nonvanishing relay population must carry the missing
+  uniform-start mass.
