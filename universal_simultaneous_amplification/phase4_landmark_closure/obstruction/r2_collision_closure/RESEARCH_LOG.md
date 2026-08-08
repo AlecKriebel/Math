@@ -115,3 +115,84 @@ equivalent to the Green--collision sign.
   reversible vertex kernel make this compensated work no larger than the
   explicit subset-mass tangent cost `V`.  Statewise domination is already
   exactly false, so the conservation constraint is essential.
+
+## 2026-08-08 direct transport-cost closure audit
+
+- Rewrote every tangent-remainder atom exactly in burst-hit coordinates.  If
+  `p=h(x)` and `p0=h(k/(n-1))`, then
+  `2(x-a)^2/[(1+a)^2(1+x)]=(p-p0)^2/(2-p)`.  Thus `V` is a weighted
+  one-sided chi-square cost, not an unspecified quadratic remainder.
+- Proved the statewise cancellation
+  `v(A)-U_s Z(A)=sum c_k(p0-p_vC)`.  Combining it with the stationary
+  coupon-union identities collapses the full direct residual exactly to
+  `V-L=rho_K-E_Pi|A|/n` and to the explicit coefficient identity (20) in
+  `DIRECT_STATIONARY_FLOW_REDUCTION.md`.  The sharp scalar obstruction is
+  now: the stationary geometric-union dual must have mean size at most the
+  complete dual mean `(n-1)2^(n-2)/(2^(n-1)-1)`.
+- Hostile-tested the most direct compensated log-sum idea.  For the
+  normalized actual and complete event rows, the full event KL has the exact
+  Pinsker lower bounds `8051/18000` on the path and `65753/774900` on the
+  regular weighted `K4`.  Both already exceed `V` exactly.  Hence a proof
+  cannot charge the full event KL to `V`; it must exploit signed balance or
+  project to the hit marginals.  This closes the generic full-KL absorption
+  route, not all compensated entropy arguments.
+- Refuted the corresponding graph-independent rescaled event-chi sandwich
+  exactly.  The regular weighted `K4` forces
+  `alpha>=L/Chi~=0.042318852`, while the rational six-vertex split witness
+  forces `alpha<=V/Chi~=0.025064992`.  The verifier checks the crossing over
+  exact fractions.  State-dependent compensation remains open.
+- A floating Hellinger-constant screen likewise crossed by `n=4`
+  (`sup L/H^2` about `0.1259`, `inf V/H^2` about `0.08086`).  This is only
+  numerical evidence against a graph-independent scalar sandwich and is not
+  used as an exact refutation.
+- Extended the direct numerical falsification pass by 1,200 full and 1,000
+  sparse six-vertex samples and by 1,000 full and 700 sparse seven-vertex
+  samples, with local polishing of the strongest candidates.  No positive
+  gap appeared; polished full-support points converged to `K_n`.
+- Added an independent exact finite screen: 54 connected weighted
+  three-vertex graphs, 624 connected weighted four-vertex graphs, 48 seeded
+  sparse/extreme five-vertex graphs, and the frozen six-vertex split witness.
+  Every exact gap satisfies `V-L>=0`.  This is finite validation only.
+- **FINAL STATUS OF THIS BOUNDED CYCLE:** no admissible `L>V` counterexample
+  and no universal proof.  The sharper sole sign is the stationary-size
+  inequality above, equivalently the conserved-flow/hit-cost inequality.
+
+## 2026-08-08 rank-refined posterior collision cycle
+
+- Reopened the exact stationary target experiment with
+  \(e_v(B)=\nu_v(B)/\Pi(B)\) and
+  \(\sum_{v\notin B}e_v(B)=|B|\). Defined the exact posterior collision
+  excess
+  \(J(B)=\sum e_v^2-|B|^2/(n-|B|)
+  =\sum(e_v-|B|/(n-|B|))^2\).
+- The first rank-envelope choice
+  \(E[(n-k)\sum e_v^2/k]\le m_K\) is **EXACTLY FALSE**. The unweighted path
+  has \(14/9>4/3\), and the regular weighted \(K_4\) has
+  \(2514/1435=12/7+54/1435\).
+- Isolated a new finite-baseline two-replica sign with explicit weights
+  \(a_k=1/n\), \(b_k=k-k^2/[n(n-k)]\):
+  \[
+  E[k+J(B)/n]\le m_K,
+  \qquad\text{equivalently}\qquad
+  EJ(B)\le n(m_K-Ek).
+  \]
+  Its sharp pointwise lower envelope is \(k\), so it proves the exact
+  complete-baseline inequality rather than only half density. It is stronger
+  than, not equivalent to, the desired theorem.
+- Expanded the Cayley identity
+  \(\nu_v=((\sigma_v+\nu_v)/2)A_v\) into an exact two-replica
+  coincident-output sum. The sole remaining sign is that this collision
+  energy, after subtracting the rankwise uniform minimum, is paid by \(n\)
+  times the complete-law mean deficit.
+- Exact slacks are \(1/6\) on unweighted \(P_3\), \(1/5\) on weighted
+  \(P_3(1,2)\), and \(8/615\) on the regular weighted \(K_4\); the \(n=6\)
+  split witness is also exactly positive (approximately \(3.13798935\)).
+- Exact corpus replay found no violation among 54 connected \(n=3\) graphs,
+  624 connected \(n=4\) graphs, 48 fixed sparse/extreme \(n=5\) graphs, and
+  the \(n=6\) split witness. Full/sparse/directed numerical searches through
+  \(n=7\) also found no violation; the smallest optimized ratio
+  \(n(m_K-Ek)/EJ\) was about \(1.43016\).
+- **FINAL STATUS:** no proof or counterexample. The new sole scalar
+  two-replica obstruction is the finite collision-reflection inequality in
+  POSTERIOR_RANK_COLLISION_REDUCTION.md; it strictly improves the earlier
+  half-density-only \(I_2\le2\) target in relevance to the required baseline.

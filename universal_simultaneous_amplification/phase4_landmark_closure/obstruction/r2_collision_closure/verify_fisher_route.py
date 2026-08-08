@@ -168,25 +168,55 @@ def green_data(weights, P, states, QK, pi):
 
     forcing = []
     conditional_V = []
+    conditional_hit_gap = []
     for state in states:
         occupied = [v for v in range(n) if (state >> v) & 1]
         holes = [u for u in range(n) if not ((state >> u) & 1)]
         cut = sum((P[v][u] for v in occupied for u in holes), F(0))
         surplus = cut - F(len(occupied) * len(holes), N)
-        forcing.append(U[len(holes)] * surplus)
+        forcing_value = U[len(holes)] * surplus
+        forcing.append(forcing_value)
 
         value = F(0)
+        hit_gap = F(0)
         for k in range(1, len(holes) + 1):
             baseline = F(k, N)
             factor = coefficients[k] * F(2) / (1 + baseline) ** 2
+            baseline_hit = F(2) * baseline / (1 + baseline)
             for v in occupied:
                 for subset in combinations(holes, k):
                     mass = sum((P[v][u] for u in subset), F(0))
-                    value += factor * (mass - baseline) ** 2 / (1 + mass)
+                    atom = factor * (mass - baseline) ** 2 / (1 + mass)
+                    hit = F(2) * mass / (1 + mass)
+
+                    # If p=h(mass) and p_0=h(baseline), the tangent
+                    # remainder has the exact one-sided chi-square form
+                    #
+                    #   D_{-h}(mass,baseline)
+                    #       =(p-p_0)^2/(2-p).
+                    #
+                    # This is the cost naturally paired with the direct
+                    # stationary-flow work; no logarithms or approximation
+                    # enter the identity.
+                    hit_chi = coefficients[k] * (hit - baseline_hit) ** 2 / (
+                        2 - hit
+                    )
+                    assert atom == hit_chi
+                    value += atom
+                    hit_gap += coefficients[k] * (baseline_hit - hit)
         conditional_V.append(value)
+        conditional_hit_gap.append(hit_gap)
+
+        # The tangent identity h(x)-h(a)=linear-D gives a second, simpler
+        # exact form of the direct residual at every dual state.
+        assert value - forcing_value == hit_gap
 
     L = sum((pi[row] * forcing[row] for row in range(len(states))), F(0))
     V = sum((pi[row] * conditional_V[row] for row in range(len(states))), F(0))
+    assert V - L == sum(
+        (pi[row] * conditional_hit_gap[row] for row in range(len(states))),
+        F(0),
+    )
 
     # Solve Q_K psi = forcing with one gauge equation.  Because the forcing
     # has zero pi_K mean, replacing any one equation is legitimate.
@@ -262,25 +292,41 @@ def audit(label, weights, expected):
             assert QK[row][col] == TK[row][col] - (size if row == col else 0)
     direct_work = F(0)
     actual_work = F(0)
+    event_pinsker_lower_bound = F(0)
+    event_chi_square = F(0)
     for row in range(len(states)):
         ratio_mean = F(0)
+        total_variation = F(0)
         for col in range(len(states)):
             if not TK[row][col]:
                 assert not TP[row][col]
                 continue
             ratio = TP[row][col] / TK[row][col]
             ratio_mean += TK[row][col] * ratio
+            total_variation += abs(TP[row][col] - TK[row][col]) / 2
+            event_chi_square += (
+                pi[row] * (TP[row][col] - TK[row][col]) ** 2 / TK[row][col]
+            )
             increment = psi[col] - psi[row]
             direct_work += (
                 piK[row] * TK[row][col] * g[row] * (1 - ratio) * increment
             )
             actual_work += pi[row] * TP[row][col] * increment
         assert ratio_mean == popcount(states[row])
+        # T_P/|A| and T_K/|A| are probability laws.  Pinsker therefore
+        # gives a fully rational lower bound on their rowwise KL cost:
+        # |A| KL(T_P/|A| || T_K/|A|) >= 2 TV(T_P,T_K)^2/|A|.
+        event_pinsker_lower_bound += (
+            pi[row] * F(2, popcount(states[row])) * total_variation**2
+        )
     assert actual_work == 0
     assert direct_work == L
     assert V - L == sum(
         (pi[row] * conditional_V[row] for row in range(len(states))), F(0)
     ) - direct_work
+    assert event_pinsker_lower_bound == expected["event_pinsker"]
+    assert event_chi_square == expected["event_chi"]
+    assert event_pinsker_lower_bound > V
 
     # The quadratic (chi-square) complete-chain Fisher information remains
     # exact without reversibility because the stationary directed flow is
@@ -465,6 +511,12 @@ def audit(label, weights, expected):
         )
         print(f"  L={L} ({decimal(L):.20E})")
         print(f"  V={V} ({decimal(V):.20E})")
+        print(
+            "  event Pinsker lower bound="
+            f"{event_pinsker_lower_bound} "
+            f"({decimal(event_pinsker_lower_bound):.20E}); "
+            f"event chi-square={event_chi_square}"
+        )
         print(f"  I_K(g)={fisher:.20E}")
         print(f"  chi-Fisher={chi_fisher} ({decimal(chi_fisher):.20E})")
         print(f"  psi-energy={psi_energy} ({decimal(psi_energy):.20E})")
@@ -530,6 +582,48 @@ def audit_directed_counterexample():
         "PASS: exact directed counterexample to L<=S; "
         f"L-S={L-S} (~{float(L-S):.8g})"
     )
+
+
+def audit_rank_collapse():
+    """Check the exact Green-coefficient rank identity in (20).
+
+    The manuscript proof uses the complete count-chain Green equation.
+    These rational checks are an independent finite replay of its explicit
+    binomial form, not a proof for all n.
+    """
+    for n in range(3, 13):
+        N = n - 1
+        coefficients = complete_green_coefficients(n)
+        rhoK = F((n - 1) * 2 ** (n - 2), n * (2 ** (n - 1) - 1))
+        for size in range(1, n):
+            holes = n - size
+            complete_hits = sum(
+                (
+                    coefficients[k]
+                    * F(2 * k, N + k)
+                    * comb(holes, k)
+                    for k in range(1, n)
+                ),
+                F(0),
+            )
+            stationary_elimination = sum(
+                (
+                    coefficients[k]
+                    * sum(
+                        (
+                            F((-1) ** (k - 1 - j)) * comb(holes, j)
+                            for j in range(k)
+                        ),
+                        F(0),
+                    )
+                    for k in range(1, n)
+                ),
+                F(0),
+            )
+            assert size * (complete_hits - stationary_elimination) == (
+                rhoK - F(size, n)
+            )
+    print("PASS: exact Green-coefficient rank collapse for 3<=n<=12")
 
 
 def audit_original_edge_decomposition():
@@ -632,6 +726,25 @@ def audit_undirected_split_counterexample():
     ]
     g = [pi[row] / piK[row] for row in range(len(states))]
     L, V, _, _, psi = green_data(weights, P, states, QK, pi)
+
+    # A graph-independent scalar sandwich through the full event
+    # chi-square cannot work either.  The regular K4 would require
+    # alpha >= L_K4/Chi_K4, while this n=6 witness requires
+    # alpha <= V_6/Chi_6.  The two exact rational bounds cross.
+    _, TP = event_kernel(P)
+    _, TK = event_kernel(complete_P)
+    event_chi = sum(
+        (
+            pi[row] * (TP[row][col] - TK[row][col]) ** 2 / TK[row][col]
+            for row in range(len(states))
+            for col in range(len(states))
+            if TK[row][col]
+        ),
+        F(0),
+    )
+    k4_required_alpha = F(207, 22960) / F(82543, 387450)
+    n6_allowed_alpha = V / event_chi
+    assert k4_required_alpha > n6_allowed_alpha
     S = -sum(
         (
             piK[row]
@@ -650,9 +763,15 @@ def audit_undirected_split_counterexample():
         "PASS: exact undirected n=6 counterexample to L<=S; "
         f"L-S~{float(L-S):.8g}, while L-V~{float(L-V):.8g}"
     )
+    print(
+        "PASS: exact event-chi scalar sandwich obstruction; "
+        f"K4 requires alpha>={float(k4_required_alpha):.8g}, "
+        f"n6 requires alpha<={float(n6_allowed_alpha):.8g}"
+    )
 
 
 def main():
+    audit_rank_collapse()
     audit(
         "weighted path (1,2)",
         [[0, 1, 0], [1, 0, 2], [0, 2, 0]],
@@ -660,6 +779,8 @@ def main():
             "L": F(2, 135),
             "S": F(1, 45),
             "V": F(8, 135),
+            "event_pinsker": F(8051, 18000),
+            "event_chi": F(4293, 4000),
             "symmetric_state_residuals": {
                 2: F(-13, 990),
                 3: F(-4, 495),
@@ -673,6 +794,8 @@ def main():
             "L": F(207, 22960),
             "S": F(207, 22960),
             "V": F(247, 22960),
+            "event_pinsker": F(65753, 774900),
+            "event_chi": F(82543, 387450),
         },
     )
     audit_directed_counterexample()

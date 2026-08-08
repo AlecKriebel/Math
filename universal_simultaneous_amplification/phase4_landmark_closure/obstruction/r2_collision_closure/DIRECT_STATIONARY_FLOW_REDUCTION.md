@@ -114,7 +114,177 @@ This is not the former `S` split in disguise: (12) uses the actual balanced
 event flow directly and retains the full compensation between its symmetric
 and circulating parts.
 
-## 3. Minimal remaining obstruction
+## 3. Exact hit-probability cost and rank collapse
+
+There is a useful exact simplification of the cost which is invisible in
+the raw row-mass variable.  Put
+
+\[
+ h(x)={2x\over1+x},\qquad a={k\over n-1},\qquad
+ p=h(x),\quad p_0=h(a).
+\]
+
+The tangent remainder in each atom of `V` is exactly
+
+\[
+ \boxed{
+ {2(x-a)^2\over(1+a)^2(1+x)}
+ ={(p-p_0)^2\over2-p}.}                          \tag{14}
+\]
+
+Thus `V` is a Green-weighted one-sided chi-square cost of the burst-hit
+probabilities.  Moreover, the same algebra gives
+
+\[
+ {(p-p_0)^2\over2-p}-{2(x-a)\over(1+a)^2}=p_0-p.\tag{15}
+\]
+
+For a dual state `A`, target `v in A`, and `k`-set `C subset A^c`, let
+
+\[
+ p_{vC}=h(P_{vC}),\qquad p_k^0=h(k/(n-1)).
+\]
+
+Summing (15) over all atoms gives the **statewise identity**
+
+\[
+ \boxed{
+ v(A)-U_{|A^c|}Z(A)
+ =\sum_{v\in A}\sum_{k=1}^{|A^c|}c_k
+   \sum_{\substack{C\subseteq A^c\\|C|=k}}
+       (p_k^0-p_{vC}).}                          \tag{16}
+\]
+
+Consequently the direct sign also has the exact hit-deficit form
+
+\[
+ \boxed{
+ \mathcal V-\mathcal L
+ =E_\pi\sum_{v\in A}\sum_kc_k
+   \sum_{\substack{C\subseteq A^c\\|C|=k}}
+       (p_k^0-p_{vC}).}                          \tag{17}
+\]
+
+This expression collapses further under stationarity.  Define
+
+\[
+ B_k(A)=\sum_{v\in A}\sum_{\substack{C\subseteq A^c\\|C|=k}}p_{vC},
+ \qquad M_j(A)=|A|{ |A^c|\choose j},\qquad B_0=0.
+\]
+
+Stationarity of the number of `k`-subsets of holes gives
+
+\[
+ E_\pi(B_k+B_{k-1})=E_\pi M_{k-1},               \tag{18}
+\]
+
+and hence
+
+\[
+ E_\pi B_k
+ =E_\pi\sum_{j=0}^{k-1}(-1)^{k-1-j}M_j.         \tag{19}
+\]
+
+Substitution of the exact complete Green coefficients gives, for every
+integer `1<=a<=n-1`,
+
+\[
+ \begin{split}
+ &a\sum_{k=1}^{n-1}c_k\left[
+ {2k\over n-1+k}{n-a\choose k}
+ -\sum_{j=0}^{k-1}(-1)^{k-1-j}{n-a\choose j}
+ \right]\\
+ &\hspace{35mm}=\rho_{\rm dB}(K_n,2)-{a\over n}. \tag{20}
+ \end{split}
+\]
+
+Equations (17)--(20) prove the invariant collapse
+
+\[
+ \boxed{
+ \mathcal V-\mathcal L
+ =\rho_{\rm dB}(K_n,2)-{E_\pi|A|\over n}.}       \tag{21}
+\]
+
+This is consistent with the coverage representation of fixation, but (20)
+shows explicitly that the entire transport cost and work reduce, with no
+slack, to one rank statistic.  The universal theorem is therefore also
+exactly the stationary-size inequality
+
+\[
+ \boxed{
+ E_\pi|A|\le
+ { (n-1)2^{n-2}\over2^{n-1}-1}.}                 \tag{22}
+\]
+
+The right side is the mean size under the complete dual.  Inequality (22)
+remains **OPEN**.
+
+## 4. Why a full event-KL charge cannot close
+
+Normalize the event rows by
+
+\[
+ \tau_A(B)={T_P(A,B)\over|A|},\qquad
+ \kappa_A(B)={T_K(A,B)\over|A|}.
+\]
+
+The natural rowwise event entropy is
+
+\[
+ \mathscr K=E_\pi\{|A|D(\tau_A\Vert\kappa_A)\}.
+\]
+
+Pinsker gives the exact rational lower bound
+
+\[
+ \mathscr K\ge \mathscr P
+ :=E_\pi {2\over|A|}
+ \left\{ {1\over2}\sum_B|T_P(A,B)-T_K(A,B)|\right\}^2.       \tag{23}
+\]
+
+Already on the two frozen rational witnesses,
+
+\[
+\begin{array}{c|cc}
+ &\mathscr P&\mathcal V\\ \hline
+\text{path }(1,2)&8051/18000&8/135\\
+\text{regular weighted }K_4&65753/774900&247/22960.
+\end{array}                                                     \tag{24}
+\]
+
+In both rows `P>V` exactly.  Hence a log-sum argument which first charges
+the *entire* event KL to `V` cannot close.  A successful entropy argument
+would have to retain the signed compensation in (12), or project the event
+law to the particular hit marginals in (14); a generic Pinsker or full-KL
+absorption loses far too much.
+
+Even inserting one graph-independent scalar cannot repair the analogous
+full event chi-square sandwich.  If
+
+\[
+ \mathscr X=E_\pi\sum_{A,B}{(T_P(A,B)-T_K(A,B))^2\over T_K(A,B)},
+\]
+
+then the regular weighted `K4` would require
+
+\[
+ \alpha\ge {\mathcal L_{K_4}\over\mathscr X_{K_4}}
+ \simeq0.042318852,
+\]
+
+whereas the exact six-vertex split witness would require
+
+\[
+ \alpha\le {\mathcal V_6\over\mathscr X_6}
+ \simeq0.025064992.
+\]
+
+The verifier checks the strict crossing by rational arithmetic.  Thus no
+universal `L<=alpha X<=V` proof exists.  This does not exclude a
+state-dependent or genuinely compensated divergence.
+
+## 5. Minimal remaining obstruction
 
 The local cost `v(A)` is the explicit Green-weighted tangent remainder
 
@@ -122,7 +292,7 @@ The local cost `v(A)` is the explicit Green-weighted tangent remainder
  \sum_{x\in A}\sum_{k=1}^{|A^c|}
  c_k{2\over(1+k/(n-1))^2}
  \sum_{\substack{C\subseteq A^c\\|C|=k}}
- {\{P_{xC}-k/(n-1)\}^2\over1+P_{xC}}.            \tag{14}
+ {\{P_{xC}-k/(n-1)\}^2\over1+P_{xC}}.            \tag{25}
 \]
 
 Thus (13) is a constrained transport-cost inequality:
@@ -139,18 +309,22 @@ prove (13).  The already certified path witness shows that even the local
 state residual
 
 \[
- v(A)-(Q_K-Q_P)\psi(A)                           \tag{15}
+ v(A)-(Q_K-Q_P)\psi(A)                           \tag{26}
 \]
 
 can be negative.  Hence the remaining theorem is precisely:
 
 > Prove that the coupled sourcewise centering and global conservation in
 > (5), (8), together with vertex reversibility, make the aggregate work in
-> (12) no larger than the subset-mass cost (14).
+> (12) no larger than the subset-mass cost (25).
 
-This is the current **MINIMAL OPEN OBSTRUCTION** for the direct r=2 route.
+Equivalently, after the exact rank collapse, the current **MINIMAL OPEN
+OBSTRUCTION** is (22): show that reversibility of the underlying vertex
+kernel prevents the stationary geometric-union dual from having larger mean
+cardinality than the complete dual.  The transport formulation retains more
+local information, while (22) is the sharpest scalar invariant statement.
 
-## 4. Bounded hostile search
+## 6. Bounded hostile search
 
 The direct search used the exact six-vertex counterexample to the discarded
 `L<=S` inequality as a seed, then evaluated:
@@ -168,7 +342,22 @@ counterexample itself has `L-V` approximately `-0.1084443`.
 These figures validate only the hostile-search implementation.  They do not
 discharge (13).
 
-## 5. Verification
+An additional broad pass evaluated 1,200 complete-support and 1,000 sparse
+six-vertex graphs, followed by local optimization, and 1,000
+complete-support plus 700 sparse seven-vertex graphs, followed by three
+local optimizations.  Again no positive direct gap appeared.  The strongest
+random seven-vertex value was about `-7.08e-4`; every polished full-support
+candidate converged to the complete graph with gap at floating roundoff.
+This remains **NUMERICAL EVIDENCE ONLY**.
+
+The deterministic exact screen independently checks all 54 connected
+three-vertex graphs with weights in `{0,1,2,5}`, all 624 connected
+four-vertex graphs with weights in `{0,1,2}`, 48 fixed seeded sparse/extreme
+five-vertex integer graphs, and the frozen six-vertex split witness.  No
+`L>V` graph occurs in that finite list.  This is **EXACTLY COMPUTED FINITE
+VALIDATION**, not a universal theorem.
+
+## 7. Verification
 
 Run
 
@@ -178,8 +367,17 @@ PYTHONDONTWRITEBYTECODE=1 python3 -B verify_fisher_route.py
 
 The exact verifier constructs both uncentered event kernels independently,
 checks (2)--(5), checks the actual-flow balance and zero work in (11), and
-certifies (12)--(13) on the frozen rational witnesses.  It also replays the
-exact undirected six-vertex refutation of the discarded symmetric split.
+certifies (12)--(17) and the exact Pinsker lower bounds (24) on the frozen
+rational witnesses.  It also replays the exact undirected six-vertex
+refutation of the discarded symmetric split.
+
+Run
+
+```text
+PYTHONDONTWRITEBYTECODE=1 python3 -B verify_direct_flow_screen.py
+```
+
+for the deterministic exact finite screen described above.
 
 `search_direct_gap.py` and `search_symmetric_split.py` are floating-point
 discovery programs, not proof certificates.
