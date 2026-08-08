@@ -49,3 +49,24 @@ tree coefficient
 whereas promotion replaces `1/m_K` by the larger graph-dependent two-step
 value `a_2`.  This opens a genuinely new direct determinant route that the
 prior handoff had incorrectly hidden.
+
+## 2026-08-08 09:08 PDT — first phase-5 exact milestones
+
+- Replayed the full lower-response package and its independent labelled
+  order-three plus exact order-four/order-five checks.
+- Proved the universal fixed-order second-order clone formula
+
+  ```text
+  B_2=0,
+  D_2=-(1/r)[sum_i(xi_i+sum_j A_ij)^2
+              +2(r-1)sum_{i<j}A_ij^2].
+  ```
+
+  Hence every nontrivial fixed-order portal-clone tangent is dB-negative at
+  quadratic order.  Growing rank, higher-order zero tangents, cross-module
+  correlations, and nonseparated dynamics remain outside scope.
+- Independently replayed the determinant branch.  The direct collision
+  coefficient is a centered positive square certificate for every weighted
+  triangle.  The associated subset root polynomial is not generally stable,
+  ultra-log-concave, log-concave, or rank-tail dominated; only its scalar
+  logarithmic derivative at one remains viable.

@@ -263,3 +263,38 @@ Thus (R2-1) is also exactly
 Here `L` is the stationary weighted cut surplus and `V` the explicit tangent
 dispersion in the phase-4 Green--collision note.  Neither term has the
 required sign separately.
+
+## 9. Exact determinant frontier
+
+The active-tree target (R2-5C) transfers without loss to the smaller subset
+dual.  If `tau_A` are its rooted in-arborescence cofactors and
+
+\[
+Z_P(t)=\sum_{\varnothing\ne A\subsetneq V}\tau_A t^{|A|},
+\]
+
+then the true theorem is exactly
+
+\[
+\boxed{m_KZ_P(1)-Z_P'(1)\ge0.}                       \tag{R2-7}
+\]
+
+For every weighted triangle this difference has an exact centered positive
+certificate: after a positive denominator is cleared it is
+
+\[
+\sum_{\rm cyc}(a-b)^2q(a,b,c),
+\]
+
+where
+
+\[
+q(a,b,c)=16a^2b^2+20ab(a+b)c+19abc^2+12(a+b)c^3>0.
+\]
+
+The raw monomial expansion nevertheless contains a negative coefficient.
+At higher order, real-rootedness, ultra-log-concavity, ordinary
+log-concavity, and coefficientwise rank-tail domination are each exactly
+false.  The surviving determinant problem is therefore the scalar
+logarithmic-derivative sign at `t=1`, requiring a genuinely centered
+tree/forest cancellation.

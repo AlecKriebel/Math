@@ -1,10 +1,11 @@
 # Next executable step
 
-Last updated: 2026-08-08 08:48 PDT.
+Last updated: 2026-08-08 09:08 PDT.
 
 ## Immediate command
 
-After the three parallel branches produce their first checkpoint, replay:
+After the determinant and hostile branches freeze their current checkpoint,
+replay:
 
 ```text
 cd /Users/alec/Documents/Math-universal-amplification
@@ -15,23 +16,22 @@ Then run only the exact verifier belonging to each new claimed milestone.
 
 ## Immediate proof step
 
-Audit the logical relation between the exact collision target
+The collision/promotion implication has been audited and repaired.  The next
+upper-bound step is to prove or refute the direct subset-tree sign
 
 \[
-\sum g\ge|\mathcal Y|
+ m_KZ_P(1)-Z_P'(1)\ge0
 \]
 
-and the stronger stationary-promotion target
+for every reversible loopless replacement kernel.  Root stability,
+log-concavity, and levelwise domination are unavailable; seek a centered
+two-tree exchange, transfer-current identity, or complement-reversal
+cancellation at `t=1`.
 
-\[
-\sum g\ge\sum\mathcal T_P^2\mathbf1.
-\]
+The next lower-bound step starts outside the now-closed fixed-order
+second-order clone tangent.  In priority order:
 
-If they are not equivalent, pursue both:
-
-1. a direct arborescence certificate for the collision target;
-2. the stronger Cesaro/Abel promotion certificate.
-
-In parallel, derive the second-order response on the portal-clone equality
-manifold and test whether its cone supplies a positive direction near
-`r=2`.
+1. compute the first nonzero cubic response along paths whose first
+   derivative vanishes;
+2. derive a growing-rank recurrence with uniform error control;
+3. test a genuinely nonseparated fast generator.

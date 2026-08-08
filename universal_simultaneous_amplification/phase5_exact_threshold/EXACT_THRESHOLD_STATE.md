@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 08:48 PDT.
+Last updated: 2026-08-08 09:08 PDT.
 
 ## Frozen starting point
 
@@ -65,6 +65,14 @@ This is finite evidence only.
 3. The complete graph is a strict two-step minimum for the exact marked
    fitness-two collision observable, with an explicit sum-of-squares gap.
 4. The scoped class obstructions listed in the phase-4 claims ledger.
+5. For every fixed-order integrated gadget leaving portal-clone equality at
+   first order, the Bd response vanishes through quadratic order and the dB
+   quadratic is negative definite.  Thus this entire second-order escape is
+   closed; the result is not uniform in growing gadget order.
+6. The true fitness-two determinant target has a positive centered
+   sum-of-squares certificate for every weighted triangle.  Real-rootedness,
+   ultra-log-concavity, ordinary log-concavity, and rank-tail domination of
+   the associated root polynomial are all exactly false in larger examples.
 
 ### Open
 
@@ -85,3 +93,8 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 - `r2_determinant/`: tree/determinant proof branch;
 - `r2_hostile/`: exact counterexample branch;
 - `lower_to_two/`: module-response and diagonal-family branch.
+
+## Phase-5 exact checkpoints
+
+- `230f83eb`: state recovery and correction of collision versus promotion;
+- `8977752f`: universal fixed-order second-order portal-clone obstruction.
