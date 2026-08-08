@@ -10,6 +10,11 @@ quadratic term and the dB quadratic is negative definite.  This eliminates
 the full fixed-order second-order clone escape, including asymmetric portals
 and arbitrary positive internal matrices.
 
+The Taylor remainder is compact-uniform only at fixed gadget order with
+uniformly positive local denominators and bounded parameter jets.  Growing
+rank, singular vanishing portals, higher-order interactions between module
+densities, and nonseparated dynamics remain outside the theorem.
+
 `SEPARATED_CONE_NORMAL_FORM.md` gives the complete invariant response for
 every fixed gadget in the separated dilute architecture, its scalar
 quadratic gate test, the semi-infinite interval cone, the positive-measure

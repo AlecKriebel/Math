@@ -33,3 +33,20 @@
 - This closes fixed-order second-order portal clones.  Growing order,
   interior positive matrices, correlated modules, and nonseparated dynamics
   remain open.
+
+## 2026-08-08 — first attainable cubic response
+
+- Continued the general killed-chain expansion through cubic order in Bd.
+- Proved the edge form
+
+  ```text
+  B3=-(1/r^2) sum_{i<j}[A_ij^2(c_i+c_j)+2 A_ij c_i c_j].
+  ```
+
+- `B3` can be positive, but every nontrivial direction has already incurred
+  the negative-definite dB quadratic loss.
+- Proved the rank-independent bound
+  `|r^2 B3| <= Q^(3/2){1/(r-1)+1/sqrt(r-1)}`.  Therefore a growing number of
+  diffuse coordinates cannot magnify the normalized cubic relative to the
+  quadratic.  Uniform control of fourth and higher terms at growing rank
+  remains open.

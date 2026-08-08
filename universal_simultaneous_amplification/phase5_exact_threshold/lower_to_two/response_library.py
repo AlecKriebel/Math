@@ -157,6 +157,26 @@ def clone_second_order(
     return sp.Integer(0), sp.factor(-quadratic / r)
 
 
+def clone_bd_cubic(
+    portal_tangent: list[sp.Expr], internal_tangent: list[list[sp.Expr]]
+) -> sp.Expr:
+    """Coefficient of epsilon^3 in Bd at portal-clone equality."""
+    xi = [sp.sympify(value) for value in portal_tangent]
+    matrix = [[sp.sympify(value) for value in row] for row in internal_tangent]
+    n = len(xi)
+    if len(matrix) != n or any(len(row) != n for row in matrix):
+        raise ValueError("internal tangent has the wrong shape")
+    alpha = [sum(matrix[i][j] for j in range(n)) for i in range(n)]
+    c = [xi[i] + alpha[i] for i in range(n)]
+    cubic = sum(
+        matrix[i][j] ** 2 * (c[i] + c[j])
+        + 2 * matrix[i][j] * c[i] * c[j]
+        for i in range(n)
+        for j in range(i + 1, n)
+    )
+    return sp.factor(-cubic / r**2)
+
+
 def registry() -> dict[str, object]:
     sigma, lam, tau, a = sp.symbols("sigma lambda tau a", positive=True)
     s = sp.symbols("s", integer=True, positive=True)
@@ -194,6 +214,11 @@ def registry() -> dict[str, object]:
         "derived": {
             name: {"leaf_eliminated_separator": sp.sstr(leaf_eliminated_separator(value))}
             for name, value in entries.items()
+        },
+        "higher_order": {
+            "clone_bd_cubic_symmetric2": sp.sstr(
+                clone_bd_cubic([X, Y], [[0, A], [A, 0]])
+            )
         },
     }
 

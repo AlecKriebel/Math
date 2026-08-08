@@ -80,6 +80,9 @@ def main() -> None:
     second = lib.clone_second_order([X, Y], [[0, A], [A, 0]])
     expected_second = -(X**2 + Y**2 + 2 * A * (X + Y) + 2 * r * A**2) / r
     assert second[0] == 0 and sp.factor(second[1] - expected_second) == 0
+    cubic = lib.clone_bd_cubic([X, Y], [[0, A], [A, 0]])
+    expected_cubic = -A * (4 * A**2 + 3 * A * (X + Y) + 2 * X * Y) / r**2
+    assert sp.factor(cubic - expected_cubic) == 0
 
     target = Path(__file__).with_name("response_library.json")
     lib.write_registry(target)

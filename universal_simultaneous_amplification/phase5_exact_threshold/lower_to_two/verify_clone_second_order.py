@@ -14,7 +14,7 @@ import sympy as sp
 
 def killed_chain_coefficients(
     rule: str, internal: list[list[sp.Expr]], portal_tangent: list[sp.Expr], r: sp.Expr
-) -> tuple[list[int], sp.Matrix, sp.Matrix, sp.Matrix]:
+) -> tuple[list[int], sp.Matrix, sp.Matrix, sp.Matrix, sp.Matrix]:
     n = len(portal_tangent)
     epsilon = sp.symbols("epsilon")
     states = list(range(1, 1 << n))
@@ -91,21 +91,22 @@ def killed_chain_coefficients(
                 matrix[row, index[target]] -= rate
 
     matrices = [
-        matrix.subs(epsilon, 0),
-        matrix.diff(epsilon).subs(epsilon, 0),
-        matrix.diff(epsilon, 2).subs(epsilon, 0) / 2,
+        matrix.diff(epsilon, degree).subs(epsilon, 0) / sp.factorial(degree)
+        for degree in range(4)
     ]
     vectors = [
-        rhs.subs(epsilon, 0),
-        rhs.diff(epsilon).subs(epsilon, 0),
-        rhs.diff(epsilon, 2).subs(epsilon, 0) / 2,
+        rhs.diff(epsilon, degree).subs(epsilon, 0) / sp.factorial(degree)
+        for degree in range(4)
     ]
     u0 = matrices[0].inv() * vectors[0]
     u1 = matrices[0].inv() * (vectors[1] - matrices[1] * u0)
     u2 = matrices[0].inv() * (
         vectors[2] - matrices[1] * u1 - matrices[2] * u0
     )
-    return states, u0, u1, u2
+    u3 = matrices[0].inv() * (
+        vectors[3] - matrices[1] * u2 - matrices[2] * u1 - matrices[3] * u0
+    )
+    return states, u0, u1, u2, u3
 
 
 def expected_singleton_coefficients(
@@ -150,7 +151,7 @@ def audit_instance(
     responses: dict[str, tuple[sp.Expr, sp.Expr]] = {}
 
     for rule in ("Bd", "dB"):
-        states, u0, u1, u2 = killed_chain_coefficients(
+        states, u0, u1, u2, u3 = killed_chain_coefficients(
             rule, internal, portal_tangent, r
         )
         index = {mask: row for row, mask in enumerate(states)}
@@ -204,6 +205,24 @@ def audit_instance(
             )
         responses[rule] = (first, second)
 
+        if rule == "Bd":
+            U3 = sum(u3[row] for row in singleton_rows)
+            source3 = r * sum(
+                u3[singleton_rows[i]]
+                + portal_tangent[i] * u2[singleton_rows[i]]
+                for i in range(n)
+            ) + (r - 1) * sum(alpha[i] * c[i] ** 2 for i in range(n))
+            cubic = sp.factor(
+                U3 * r / (r - 1) + source3 / (r - 1) ** 2
+            )
+            expected_cubic = -sum(
+                internal[i][j] ** 2 * (c[i] + c[j])
+                + 2 * internal[i][j] * c[i] * c[j]
+                for i in range(n)
+                for j in range(i + 1, n)
+            ) / r**2
+            assert sp.factor(cubic - expected_cubic) == 0
+
     expected_db = -(
         sum(value**2 for value in c) + 2 * (r - 1) * edge_square
     ) / r
@@ -243,7 +262,8 @@ def main() -> None:
 
     print("PASS: generic labelled order-three subset chain matches the all-order expansion")
     print("PASS: independent exact order-four and order-five instances")
-    print("PASS: Bd epsilon^2 coefficient vanishes; dB quadratic is negative definite")
+    print("PASS: Bd epsilon^2 vanishes and its universal cubic coefficient matches")
+    print("PASS: dB quadratic is negative definite")
 
 
 if __name__ == "__main__":

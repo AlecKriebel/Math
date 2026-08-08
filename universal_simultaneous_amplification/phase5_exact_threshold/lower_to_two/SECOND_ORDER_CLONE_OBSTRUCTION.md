@@ -35,7 +35,16 @@ uniform-singleton subtraction and ordinary-core Poisson term, is
  D_H(\varepsilon)=
  -{\varepsilon^2\over r}
  \left\{\sum_i c_i^2+2(r-1)E_2\right\}
- +O(\varepsilon^3).}
++O(\varepsilon^3).}
+\]
+
+The first potentially nonzero Bd coefficient is also explicit:
+
+\[
+ \boxed{
+ [\varepsilon^3]B_H
+ =-{1\over r^2}\sum_{i<j}
+ \left\{A_{ij}^2(c_i+c_j)+2A_{ij}c_ic_j\right\}.}     \tag{C}
 \]
 
 Thus every nontrivial first-order departure from the clone manifold points
@@ -48,6 +57,56 @@ This closes the entire **fixed-order second-order portal-clone escape**, with
 arbitrary portal asymmetry and arbitrary positive internal matrix.  The
 remainder is not uniform when gadget order grows, so this theorem does not
 exclude growing-rank or nonseparated limits.
+
+More precisely, the `O(epsilon^3)` remainder is uniform when `r` ranges over
+a compact subset of `(1,infinity)`, `s` is fixed, the first three parameter
+jets range over a bounded set, and all portal loads and local denominators
+stay uniformly positive.  It is not asserted uniformly as `s` grows,
+`r -> 1`, a portal vanishes, or a local absorption time diverges.
+
+If a fixed-order analytic or Puiseux path has zero first derivative but a
+first nonzero parameter term of order `epsilon^m`, applying the theorem with
+`delta=epsilon^m` gives the same strictly negative dB form at order
+`epsilon^(2m)`.  What remains open at higher order is therefore not such a
+finite-order reparametrization.  The open zero-tangent mechanisms are
+second- or higher-order **density interactions between modules**, singular
+paths with no controlled leading jet, growing order, and nonseparated fast
+dynamics.
+
+## Rank-uniform comparison of the cubic and quadratic forms
+
+The cubic Bd coefficient can have either sign.  For example, for one edge
+`A_12=1` and `(c_1,c_2)=(1,-2)`, equation (C) gives `B_3=5/r^2>0`.
+This does not yield simultaneous amplification because its dB coefficient is
+already `-(2r+3)/r<0` at quadratic order.
+
+There is also no hidden rank gain in the cubic form.  Let
+
+\[
+ x=\|c\|_2,\qquad y=\|A\|_F,
+ \qquad Q=x^2+(r-1)y^2,
+\]
+
+where the Frobenius norm counts both orientations.  With
+`beta_i=sum_j A_ij^2`, the numerator in (C) is
+
+\[
+ T=\beta\mathbin\cdot c+c^TAc.
+\]
+
+Since `||beta||_2 <= ||beta||_1=y^2` and
+`||A||_op<=y`,
+
+\[
+ |T|\le xy^2+yx^2
+ \le Q^{3/2}\left\{{1\over r-1}+{1\over\sqrt{r-1}}\right\}. \tag{C1}
+\]
+
+The constant is independent of gadget order.  Thus spreading a normalized
+clone perturbation over a growing number of vertices cannot amplify its
+cubic Bd motion relative to the negative quadratic dB form.  This norm
+bound does not control fourth and higher remainders uniformly in growing
+rank, so it is a sharp gate rather than a full growing-rank obstruction.
 
 ## Local-chain coefficient extraction
 
@@ -169,6 +228,13 @@ The linear dB term cancels.  The quadratic term is
 \]
 
 Equations (3)--(4) prove the theorem.
+
+Continuing the same coefficient system by one order and summing its
+singleton rows yields (C).  All length-two internal paths combine, by
+symmetry, into `c_i=sum_j A_ij+xi_i`; the remaining return along the first
+edge supplies the `A_ij^2(c_i+c_j)` term.  The verifier checks this identity
+with every order-three label symbolic and on independent exact order-four
+and order-five instances.
 
 ## Consequence for the lower-to-two program
 
