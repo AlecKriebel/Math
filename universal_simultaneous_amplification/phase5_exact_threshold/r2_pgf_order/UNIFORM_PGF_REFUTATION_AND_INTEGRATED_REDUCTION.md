@@ -215,14 +215,43 @@ Interestingly, that same graph has every coefficient of `Q` positive, so
 even a graph satisfying the full PGF order can violate the derivative
 shortcut.
 
-Two weaker features survived the numerical audit:
+One weaker feature survived the numerical audit:
 
 1. `Q` has at most one sign change, necessarily `c_0<0` followed by positive
-   coefficients;
-2. `A` has at most one sign change on `(0,1)`, from negative to positive.
+   coefficients.
 
-Neither has been proved.  A one-crossing statement by itself is also
+This has not been proved.  A one-crossing statement by itself is also
 insufficient; (14) still requires control of the signed areas.
+
+A tempting coefficientwise route to one-crossing is exactly false.  If
+`q_k^K` denotes the complete active law and `r_k=q_k/q_k^K`, direct
+coefficient comparison in (12) gives
+
+\[
+ [t^{k-1}]A(t)
+ ={(N-k)q_k-kq_{k+1}\over2}
+ ={(N-k)q_k^K\over2}(r_k-r_{k+1}).                 \tag{15a}
+\]
+
+Thus nonnegative nonconstant coefficients would assert that the active
+likelihood ratio decreases from rank two onward.  This fails exactly on the
+six-vertex weighted path
+
+```text
+vertex order:       1--0--2--4--5--3
+consecutive weights: 30, 4, 64, 1, 1860.
+```
+
+Its exact polynomial has coefficient signs
+
+\[
+                         (+,-,+,+),                 \tag{15b}
+\]
+
+with the negative coefficient at rank two.  The polynomial itself remains
+strictly positive on `[0,1]`, so this refutes likelihood-ratio descent but
+not a functional one-crossing theorem.  The exact verifier certifies both
+claims.
 
 There is, however, a useful exact unweighted identity.  If `pi_1` is the
 singleton mass of the original proper-subset stationary dual, then
@@ -275,7 +304,8 @@ The verifier:
 5. certifies (4), (5), and the coefficient signs (10);
 6. reconstructs the integrated collision value from (9);
 7. independently certifies the derivative failure (15).
+8. certifies the weighted-path likelihood-ratio failure (15b) while checking
+   that its full derivative polynomial stays positive on `[0,1]`.
 
 The floating scripts `search_uniform_pgf.py` and `search_one_crossing.py`
 are hostile discovery tools only.  Their output is not a proof of (17).
-

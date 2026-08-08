@@ -171,6 +171,22 @@ def main():
     )
     assert derivative_value < 0
 
+    # A six-vertex weighted path exactly refutes the stronger claim that all
+    # nonconstant coefficients of A are nonnegative.  Path order is
+    # 1-0-2-4-5-3 with consecutive weights (30,4,64,1,1860).
+    path_edges = (30, 4, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 1860, 1)
+    path_eta = stationary_rank_law(6, path_edges)
+    _, path_q_polynomial = factor_quotient(path_eta)
+    path_a = derivative_polynomial(path_q_polynomial)
+    assert path_a[0] > 0 and path_a[1] < 0
+    assert path_a[2] > 0 and path_a[3] > 0
+    # Despite the failed coefficient sign, A itself is positive on [0,1]:
+    # the only negative monomial is dominated already by the constant term.
+    assert path_a[0] + path_a[1] > 0
+
+    path_active = active_law_from_marked(path_eta)
+    assert (5 - 2) * path_active[2] < 2 * path_active[3]
+
     print("PASS: direct 192-state QQ marked-chain solve")
     print("PASS: stationary parity and exact (1-t^2) factorization")
     print(f"PGF gap at t=0 = {gap_at_zero}")
@@ -178,6 +194,7 @@ def main():
     print(f"integrated collision gap = {collision_gap}")
     print(f"decimal collision gap = {float(collision_gap):.15g} > 0")
     print(f"derivative shortcut at t=1/100 = {derivative_value} < 0")
+    print(f"path likelihood-ratio coefficient at rank two = {path_a[1]} < 0")
     print("EXACTLY REFUTED: uniform-baseline stationary PGF order")
 
 

@@ -44,6 +44,17 @@
   four through six.
 
 No screen found a negative non-singleton coefficient, a second positive
-root of `Q`, more than one sign variation of the derivative polynomial, a
-negative unweighted derivative integral, or a negative collision integral.
-This is finite numerical evidence only.
+root of `Q`, a negative unweighted derivative integral, or a negative
+collision integral.  This is finite numerical evidence only.
+
+## 2026-08-08: exact likelihood-ratio correction
+
+- Derived
+  `[t^(k-1)]A=((N-k)q_k-kq_(k+1))/2`, so coefficientwise positivity after
+  the constant term is exactly descent of `q_k/q_k^K` from rank two onward.
+- **EXACTLY REFUTED:** that likelihood-ratio descent.  The historical
+  six-vertex path `1-0-2-4-5-3` with weights `(30,4,64,1,1860)` has exact
+  derivative-coefficient signs `(+,-,+,+)`.
+- **PROVED ON THE WITNESS:** its full `A(t)` is nevertheless positive on
+  `[0,1]`, since the positive constant already dominates its sole negative
+  monomial there.  Functional one-crossing remains open.
