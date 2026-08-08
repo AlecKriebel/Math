@@ -7,6 +7,7 @@ python-flint.  Finite screening is not a proof of the universal hierarchy.
 
 from __future__ import annotations
 
+from decimal import Decimal, localcontext
 from itertools import combinations, product
 from math import comb
 from random import Random
@@ -229,7 +230,10 @@ def main():
     ]
     for label, weights in frozen:
         slacks = audit_graph(weights, check_recurrence=True)
-        print(label, "PASS", [f"{float(value):.10g}" for value in slacks])
+        with localcontext() as context:
+            context.prec = 12
+            decimals = [Decimal(int(value.p)) / Decimal(int(value.q)) for value in slacks]
+        print(label, "PASS", [f"{value:.10g}" for value in decimals])
 
     counts = []
     for n, alphabet in ((3, (0, 1, 2, 5)), (4, (0, 1, 2))):
@@ -253,4 +257,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -61,3 +61,34 @@
   factorial moment strictly larger than the corresponding complete update.
   Thus one-step total positivity cannot supply a pointwise comparison; a
   proof would need a new stationary correlation inequality.
+
+## 2026-08-08 — complete-refresh forest interpolation
+
+- Introduced the affine active-kernel interpolation
+  `K_alpha=K_0+alpha(K(P)-K_0)` and the exact determinant
+  `det[I-K_alpha+(H-c_0 1)nu_0]`.
+- Proved `S Delta S=0` for rank averaging `S`; consequently its constant and
+  linear coefficients vanish for every loopless row-stochastic kernel.
+- For a symbolic weighted triangle, reconstructed the determinant and found
+  positive centered Bernstein certificates for every nonzero coefficient.
+  This proves the true collision sign along the entire complete-to-actual
+  interpolation in order three.
+- Exact hostile screens found every nonzero Bernstein coefficient positive on
+  reversible and directed rational kernels through order five.  This is
+  evidence only; higher-coefficient positivity remains open.
+
+## 2026-08-08 — all-order antisymmetric Hessian sector
+
+- Decomposed the quadratic coefficient into the standard, symmetric
+  balanced, and antisymmetric balanced row-kernel sectors.
+- Reduced the antisymmetric sector to a one-dimensional complete-rank
+  resolvent.  A monotone heat-bath coupling proves the required rank
+  potential differences strictly decrease.
+- Derived an explicit positive two-tree expression after the second
+  perturbation.  It proves strict Hessian positivity on every nonzero
+  antisymmetric row-balanced perturbation for every population order.
+- Independently checked the recurrence through order 40, against the full
+  active chain through order seven, and against a separate stabilizer-orbit
+  computation through order twelve.
+- The standard and symmetric sectors are exactly positive through order
+  twelve but do not yet have all-order sign proofs.

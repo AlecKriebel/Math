@@ -6,18 +6,17 @@ from the stronger stationary-promotion coefficient.
 
 ## Scope and status
 
-The package proves four finite algebraic facts: the exact target/promotion
-implication, transfer to the smaller subset determinant, the centered
-triangle forest certificate, and explicit obstructions to uncentered
-coefficient/root shortcuts.  It does **not** prove or refute the universal
-active-tree sign for arbitrary order.  That sign remains the sole theorem
-target of this branch.
+The package proves the exact target/promotion implication, transfer to the
+smaller subset determinant, two centered triangle forest certificates, the
+full antisymmetric sector of the complete-refresh Hessian in every order,
+and explicit obstructions to uncentered coefficient/root shortcuts.  It does
+**not** prove or refute the universal active-tree sign for arbitrary order.
+That sign remains the theorem target of this branch.
 
-Run the exact symbolic audit from the phase-4 obstruction environment:
+Run the exact symbolic audit from this directory:
 
 ```text
-../../phase4_landmark_closure/obstruction/.venv/bin/python \
-  r2_determinant/verify_r2_determinant.py
+../../.venv/bin/python verify_r2_determinant.py
 ```
 
 The verifier reconstructs the nine-state active chain for a symbolic
@@ -27,8 +26,7 @@ coefficient, and verifies the centered squared-difference certificate.
 Run the independent subset-root-polynomial hostile audit with
 
 ```text
-../../phase4_landmark_closure/obstruction/.venv/bin/python \
-  r2_determinant/verify_root_polynomial_obstructions.py
+../../.venv/bin/python verify_root_polynomial_obstructions.py
 ```
 
 It certifies failures of real-rootedness, ultra-log-concavity, ordinary
@@ -39,21 +37,49 @@ are documented in `FACTORIAL_MOMENT_ROUTE.md`.  Replay its independent
 rational screen with
 
 ```text
-../../phase4_landmark_closure/obstruction/.venv/bin/python \
-  r2_determinant/verify_factorial_moment_route.py
+../../.venv/bin/python verify_factorial_moment_route.py
 ```
 
 The hierarchy survives the finite corpus, but its order-one member is the
 original open theorem.  The verifier also gives an exact path-graph witness
 against any pointwise complete-transition proof.
 
+The complete-refresh interpolation and its forest expansion are documented
+in `COMPLETE_REFRESH_FOREST.md`.  Replay the symbolic triangle certificate
+and the exact finite Bernstein screen with
+
+```text
+../../.venv/bin/python verify_complete_refresh_forest.py
+```
+
+The all-order antisymmetric proof has two independent exact checks:
+
+```text
+../../.venv/bin/python verify_antisymmetric_hessian.py
+../../.venv/bin/python verify_hessian_sectors.py
+```
+
+The first verifies the rank recurrence through order 40 and against the full
+active chain through order seven.  The second uses an independent stabilizer-
+orbit reduction to compute all three invariant Hessian eigenvalues exactly
+through order twelve.
+
 Status:
 
 - **PROVED:** exact target/promotion implication audit;
 - **PROVED:** exact active-tree coefficient for the true target;
 - **PROVED:** centered positive triangle certificate;
+- **PROVED:** zero constant and linear complete-refresh forest coefficients;
+- **PROVED:** positive Bernstein coefficients along the complete-refresh
+  interpolation for every weighted triangle;
+- **PROVED:** strict positivity of the all-order antisymmetric Hessian sector;
+- **EXACTLY COMPUTED:** positive standard, symmetric, and antisymmetric
+  Hessian sectors through order twelve;
 - **EXACTLY REFUTED:** raw edge-monomial coefficient positivity;
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
 - **OPEN:** the stationary factorial-moment hierarchy;
+- **OPEN:** all-order positivity of the standard and symmetric Hessian
+  sectors;
+- **OPEN:** positivity of every higher complete-refresh forest coefficient;
 - **OPEN:** the arbitrary-order active-tree coefficient.
