@@ -53,6 +53,28 @@ Date: 2026-08-08 (America/Los_Angeles)
   `U M_P^t psi` decrease at late times.  The surviving conjecture is the
   lower-envelope promotion `(lambda/m)psi>=U M_P^2 psi`, not monotonicity.
 
+## Perron density reduction and hostile envelope audit
+
+- Factored the marked transition as `M_P=A_P R`, with a fixed
+  continue-or-retarget channel `R`.  Relative to the complete active law,
+  the stationary active density is the Perron vector `g=T_P g` of an
+  explicit positive operator `T_P=B_P Q`.
+- The size-weighted mass of `g` is fixed.  The collision target is its
+  unweighted mass.  Thus complete maximality is exactly `sum g>=|Y|`, and
+  the two-step promotion is exactly `sum g>=sum T_P^2 1`.
+- This exposes the indispensable coupling: `P_vi` must be the same for all
+  cache states with target `v`.  Allowing state-dependent rows gives a
+  finite linear-program counterexample with stationary target `1/(n-1)`.
+- Exactified a reversible rational `K5` on which `U M_P^t psi` strictly
+  decreases at a late time, and a separate reversible rational `K5` on
+  which the stationary lower envelope is false for the rank-zero PGF.  The
+  actual `psi` promotion remains strict on both witnesses.
+- Averaging all vertex-permutation conjugates of `P` gives the complete
+  kernel.  The two-step theorem is therefore an exact quenched-versus-
+  annealed square.  A viable proof of promotion would extend this to the
+  all-history Perron limit, probably through a two-replica or tree-
+  homomorphism positivity statement.  This extension remains open.
+
 ## Current boundary
 
 The marked lift replaces the nonlinear geometric chain by a linear

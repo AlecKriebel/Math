@@ -337,19 +337,128 @@ decreases, although every screened value remains above the two-step value.
 Thus (24), if true, requires a time-homogeneous lower-envelope, return-time,
 or stationary-flow argument.
 
-## 7. Exact failure of event-rank stochastic domination
+## 7. Exact density factorisation of the remaining sign
+
+The promotion problem has a compact Perron--Frobenius form.  Besides the
+marked space `X`, introduce the active space
+
+\[
+ \mathcal Y=\{(B,v):\varnothing\ne B\subseteq V\setminus\{v\}\}.
+\]
+
+Write `R` for the fixed continue-or-retarget channel from `Y` to `X`, and
+`A_P` for the one-sample channel from `X` to `Y`, so `M_P=A_P R`.  The
+complete reference laws are
+
+\[
+ U(C,v)={1\over n2^N},\qquad
+ \nu_K(B,v)={|B|\over nN2^{N-1}}.                  \tag{25}
+\]
+
+One checks directly that `nu_K R=U`.  Its reverse density channel
+`Q` is especially simple.  If `k=|C|`, then
+
+\[
+ (\mathcal Qg)(C,v)
+ ={k\over N}g(C,v)
+ +{1\over N}\sum_{u\notin C\cup\{v\}}g(C\cup\{v\},u).                  \tag{26}
+\]
+
+Let `mu=lambda/m` be marked stationarity, let `nu=mu A_P`, and define
+density ratios
+
+\[
+ h={d\mu\over dU},\qquad g={d\nu\over d\nu_K}.
+\]
+
+Then `h=Q g`.  Conversely, direct enumeration of the two possible
+pre-sample caches gives, for `b=|B|`,
+
+\[
+ (\mathcal B_Ph)(B,v)
+ ={N\over2b}\left\{P_{vB}h(B,v)
+       +\sum_{i\in B}P_{vi}h(B\setminus\{i\},v)\right\}.              \tag{27}
+\]
+
+Thus the actual active density is the positive fixed point
+
+\[
+                 \boxed{g=\mathcal T_Pg},\qquad
+ \mathcal T_P=\mathcal B_P\mathcal Q.              \tag{28}
+\]
+
+The left invariant functional is size weight:
+
+\[
+ \sum_{B,v}b(\mathcal T_Pg)(B,v)=\sum_{B,v}b g(B,v).
+\]
+
+With the probability normalization,
+
+\[
+ \sum_{B,v}b g(B,v)=nN2^{N-1}=\sum_{B,v}b.          \tag{29}
+\]
+
+The collision target is the *unweighted* mass of this Perron vector:
+
+\[
+ {1\over m}={1\over nN2^{N-1}}\sum_{B,v}g(B,v).     \tag{30}
+\]
+
+Since `|Y|=n(2^N-1)`, complete maximality is now exactly the scalar fixed
+point inequality
+
+\[
+ \boxed{\sum_{B,v}g(B,v)\ge |\mathcal Y|.}          \tag{31}
+\]
+
+No stationary subset law appears in (26)--(31).  These equations quantify
+precisely where reuse of one row kernel matters.  Indeed
+
+\[
+ (\mathcal T_P1)(B,v)={N P_{vB}\over b},            \tag{32}
+\]
+
+and the active density after successive applications of the same marked
+environment is `T_P^j1`.  In particular,
+
+\[
+ U M_P^2\psi={1\over nN2^{N-1}}\sum_{B,v}(\mathcal T_P^2 1)(B,v).
+\]
+
+Consequently the sole promotion inequality (24) is exactly
+
+\[
+ \boxed{\sum_{B,v}g(B,v)
+       \stackrel{?}{\ge}
+       \sum_{B,v}(\mathcal T_P^2 1)(B,v).}          \tag{33}
+\]
+
+This is the minimal surviving obstruction: prove (33) for the Perron vector
+of the explicit positive operator (26)--(28), normalized by (29).  A
+state-dependent sample policy destroys (31), so the proof must use that the
+same row `P_v` is reused for every cache with target `v`.
+
+There is a useful annealed interpretation.  Averaging all conjugates of a
+fixed loopless `P` over uniform vertex permutations gives `P_K`.  Refreshing
+that conjugation before every step produces the complete chain, whereas
+fixing it produces the powers in (32)--(33).  Proposition 2 is the exact
+two-step quenched-minus-annealed square.  Extending that positivity to the
+Perron limit would prove (33); no such all-history argument is claimed here.
+
+## 8. Exact failure of event-rank stochastic domination
 
 The tempting strengthening
 
 \[
- q\ \le_{\rm st}\ 1+\operatorname{Bin}(n-2,1/2)     \tag{25}
+ q\ \le_{\rm st}\ 1+\operatorname{Bin}(n-2,1/2)     \tag{34}
 \]
 
 passes the historical exact corpus through five vertices but is false.
 On six vertices, take lexicographic edge weights
 
 \[
- (1,3,3,1000,30,1000,300,3,1,10,1,30,1,300,30).    \tag{26}
+ (1,3,3,1000,30,1000,300,3,1,10,1,30,1,300,30).    \tag{35}
 \]
 
 The graph has complete positive support.  An exact 62-state rational solve
@@ -359,12 +468,12 @@ gives
  \sum_{k\ge2}q_k>{15\over16}
 \]
 
-with strict excess `0.001463330069...`.  Thus (25) is exactly refuted.
+with strict excess `0.001463330069...`.  Thus (34) is exactly refuted.
 Nevertheless
 
 \[
  \sum_k{q_k\over k}-{1\over m_K}
- =0.046284704868\ldots>0,                            \tag{27}
+ =0.046284704868\ldots>0,                            \tag{36}
 \]
 
 so the graph remains strictly below the complete fixation baseline.
@@ -372,7 +481,26 @@ so the graph remains strictly below the complete fixation baseline.
 This witness rules out first-order event-rank domination, but not the
 harmonic collision inequality actually required.
 
-## 8. Verification
+Two further exact reversible five-vertex witnesses delimit the promotion
+route.  Edge weights
+
+```text
+(1,20000,1,15000,660,164,1280000,1000000,3150,293)
+```
+
+give `U M_P^37 psi < U M_P^36 psi`, while the stationary value remains
+strictly above `U M_P^2 psi`.  Thus temporal monotonicity is false.  Edge
+weights
+
+```text
+(12,3150,1850000,812000,1810000,4180,295000,4,159000,1)
+```
+
+give the strict reverse of (33) when `psi` is replaced by the rank-zero PGF
+observable.  Thus no pointwise-in-the-PGF-parameter stationary envelope is
+available.  Both signs are certified over exact rationals.
+
+## 9. Verification
 
 Run
 
@@ -384,15 +512,17 @@ The verifier reconstructs the proper geometric-union chain over exact
 rationals, builds every marked transition, checks row normalisation and
 stationarity, verifies (5)--(13), checks complete binomiality, verifies the
 two-step identity (18) over exact rational directed kernels, and certifies
-both strict signs in Section 7.
+all strict counterexample and surviving-promotion signs in Section 8.
 
 Classification:
 
 * **PROVED:** the marked chain, its stationary law, nearest-neighbour rank
   transition, collision identity, complete binomial reference, and universal
   two-step sum-of-squares theorem (18).
-* **EXACTLY REFUTED:** first-order stochastic domination (25), as well as
-  naive monotonicity of `U M_P^t psi` in time.
-* **EXACTLY COMPUTED:** the positive harmonic margin (27) on the same graph.
-* **OPEN:** the stationary promotion inequality (24), equivalently the
+* **PROVED REDUCTION:** the Perron fixed-point formulation (26)--(33).
+* **EXACTLY REFUTED:** first-order stochastic domination (34), naive temporal
+  monotonicity, and a full radial-PGF stationary envelope.
+* **EXACTLY COMPUTED:** the positive harmonic margin (36) and strict
+  promotion on every displayed hostile witness.
+* **OPEN:** the stationary promotion inequality (24)/(33), equivalently the
   universal collision inequality (1) and `rho_dB(G,2)<=rho_dB(K_n,2)`.

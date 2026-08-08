@@ -215,6 +215,9 @@ def marked_data(weights):
     ]
     assert sum((eta[k] * psi[k] for k in range(n)), F(0)) == 1 / mean
     assert sum((q[k] / k for k in range(1, n)), F(0)) == 1 / mean
+    psi_vector = [psi[C.bit_count()] for C, _ in marked]
+    twice = apply_kernel(kernel, apply_kernel(kernel, psi_vector))
+    two_step_psi = sum(twice, F(0)) / len(marked)
 
     # The unconditional stopping-and-handoff flow has mass exactly 1/2 in
     # the unnormalised stationary measure, hence probability 1/(2m).
@@ -231,6 +234,7 @@ def marked_data(weights):
         "q": q,
         "eta": eta,
         "psi": psi,
+        "two_step_psi": two_step_psi,
         "handoff": handoff,
     }
 
@@ -263,12 +267,94 @@ def audit_two_step_sos():
     print("PASS: exact universal two-step sum-of-squares identity")
 
 
+def audit_density_factorization():
+    """Check the active Perron density equations independently on P3."""
+    weights = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
+    P, _, _, nu, _, lam, mean = posterior_midpoint(weights)
+    n = len(P)
+    N = n - 1
+    marked = [
+        (C, v)
+        for v in range(n)
+        for C in range(1 << n)
+        if not ((C >> v) & 1)
+    ]
+    active = [
+        (B, v)
+        for v in range(n)
+        for B in range(1 << n)
+        if B and not ((B >> v) & 1)
+    ]
+    U = F(1, n * 2 ** N)
+
+    def nu_complete(B):
+        return F(B.bit_count(), n * N * 2 ** (N - 1))
+
+    h = {(C, v): lam[v][C] / mean / U for C, v in marked}
+    g = {
+        (B, v): (nu[v][B] / mean) / nu_complete(B)
+        for B, v in active
+    }
+
+    def reverse_density(values):
+        output = {}
+        for C, v in marked:
+            k = C.bit_count()
+            value = F(0)
+            if k:
+                value += F(k, N) * values[C, v]
+            value += sum(
+                (values[C | (1 << v), u] / N
+                 for u in range(n)
+                 if u != v and not ((C >> u) & 1)),
+                F(0),
+            )
+            output[C, v] = value
+        return output
+
+    def sample_density(values):
+        output = {}
+        for B, v in active:
+            b = B.bit_count()
+            value = sum(
+                (P[v][i] * values[B & ~(1 << i), v]
+                 for i in range(n) if (B >> i) & 1),
+                F(0),
+            )
+            value += sum(
+                (P[v][i] for i in range(n) if (B >> i) & 1), F(0)
+            ) * values[B, v]
+            output[B, v] = F(N, 2 * b) * value
+        return output
+
+    assert reverse_density(g) == h
+    assert sample_density(h) == g
+    assert sum((B.bit_count() * value for (B, _), value in g.items()), F(0)) \
+        == n * N * 2 ** (N - 1)
+    assert sum(g.values(), F(0)) / (n * N * 2 ** (N - 1)) == 1 / mean
+
+    ones = {state: F(1) for state in active}
+    first = sample_density(reverse_density(ones))
+    for B, v in active:
+        row_mass = sum(
+            (P[v][i] for i in range(n) if (B >> i) & 1), F(0)
+        )
+        assert first[B, v] == F(N, B.bit_count()) * row_mass
+    second = sample_density(reverse_density(first))
+    transient = sum(second.values(), F(0)) / (n * N * 2 ** (N - 1))
+    assert transient == marked_data(weights)["two_step_psi"]
+    assert sum(g.values(), F(0)) > sum(second.values(), F(0))
+
+    print("PASS: exact Perron density factorization and strict P3 promotion")
+
+
 def audit_complete_and_path():
     path = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
     data = marked_data(path)
     assert data["mean"] == F(11, 9)
     assert data["q"][1:3] == [F(7, 11), F(4, 11)]
     assert data["eta"] == [F(7, 22), F(1, 2), F(2, 11)]
+    assert 1 / data["mean"] > data["two_step_psi"]
 
     for n in range(3, 7):
         complete = [[0 if i == j else 1 for j in range(n)] for i in range(n)]
@@ -281,6 +367,7 @@ def audit_complete_and_path():
         assert complete_data["q"] == expected_q
         complete_mean = F((n - 1) * 2 ** (n - 2), 2 ** (n - 1) - 1)
         assert complete_data["mean"] == complete_mean
+        assert 1 / complete_data["mean"] == complete_data["two_step_psi"]
 
     print("PASS: exact marked stationarity, path values, and complete binomial law")
 
@@ -300,6 +387,7 @@ def audit_tail_counterexample():
     harmonic_excess = sum((q[k] / k for k in range(1, 6)), F(0)) - complete_inverse_mean
     assert harmonic_excess > 0
     assert data["mean"] < F(80, 31)
+    assert 1 / data["mean"] > data["two_step_psi"]
 
     print(
         "PASS: exact n=6 event-rank tail counterexample; "
@@ -311,10 +399,66 @@ def audit_tail_counterexample():
     )
 
 
+def audit_lower_envelope_obstructions():
+    """Certify failures of stronger semigroup claims, not of promotion."""
+    # This rational reversible K5 has a strict late decrease in U M^t psi.
+    temporal = matrix_from_edges(
+        5,
+        (1, 20000, 1, 15000, 660, 164, 1280000, 1000000, 3150, 293),
+    )
+    P, _, _, _, _, lam, mean = posterior_midpoint(temporal)
+    marked, _, kernel = marked_kernel(P)
+    N = 4
+    psi = [
+        2 * sum(
+            (F((-1) ** (ell - 1 - C.bit_count()), ell)
+             for ell in range(C.bit_count() + 1, N + 1)),
+            F(0),
+        )
+        for C, _ in marked
+    ]
+    values = psi
+    sequence = [sum(values, F(0)) / len(marked)]
+    for _ in range(37):
+        values = apply_kernel(kernel, values)
+        sequence.append(sum(values, F(0)) / len(marked))
+    assert sequence[37] < sequence[36]
+    stationary_psi = sum(
+        (lam[v][C] * value / mean
+         for (C, v), value in zip(marked, psi)),
+        F(0),
+    )
+    assert stationary_psi > sequence[2]
+
+    # A different rational reversible K5 shows that the stationary lower
+    # envelope is special to psi: it is false for the radial PGF at t=0.
+    pgf = matrix_from_edges(
+        5,
+        (12, 3150, 1850000, 812000, 1810000,
+         4180, 295000, 4, 159000, 1),
+    )
+    P, _, _, _, _, lam, mean = posterior_midpoint(pgf)
+    marked, _, kernel = marked_kernel(P)
+    zero_rank = [F(C == 0) for C, _ in marked]
+    twice = apply_kernel(kernel, apply_kernel(kernel, zero_rank))
+    transient = sum(twice, F(0)) / len(marked)
+    stationary = sum(
+        (lam[v][C] * value / mean
+         for (C, v), value in zip(marked, zero_rank)),
+        F(0),
+    )
+    assert stationary < transient
+
+    print("PASS: exact late-time decrease; psi lower envelope still survives")
+    print("PASS: exact stationary PGF lower-envelope counterexample at t=0")
+
+
 def main():
     audit_two_step_sos()
+    audit_density_factorization()
     audit_complete_and_path()
     audit_tail_counterexample()
+    audit_lower_envelope_obstructions()
     print("OPEN: universal marked collision inequality, equivalently dB r=2 maximality")
 
 
