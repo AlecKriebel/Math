@@ -100,12 +100,35 @@ No resolved `P>1` or `M>1` point was found.  These are numerical observations
 only.  The exact verifier checks ten selected rational graphs from both
 sides of the Pareto frontier.
 
+### Order-eight adjoint-gradient continuation
+
+`search_endpoint_adjoint.py` differentiates the full transient subset
+systems analytically with respect to every logarithmic edge weight.  A
+finite-difference audit on a generic weighted `K_5` agreed in both rules to
+better than `10^-10`; this validates the discovery gradient, not a theorem.
+
+On complete support at order eight, six hostile starts for the normalized
+product, five for the balanced arithmetic mean, and five for a smooth
+minimum surrogate were optimized with log-weight bounds `[-14,14]`.  No
+endpoint violation was found.  The best product converged to `K_8` within
+floating precision; the best nontrivial normalized arithmetic score was
+`0.999257121546...`, and the best simultaneous minimum was
+`0.999031296393...`.  These values are **NUMERICAL EVIDENCE ONLY** and are
+not used in any universal claim.
+
 ## Reproduction
 
 From the repository root:
 
 ```bash
 .venv/bin/python universal_simultaneous_amplification/phase4_landmark_closure/threshold/endpoint_hostile_exact/verify_endpoint_candidates.py
+```
+
+The order-eight discovery continuation can be replayed, with no exact claim,
+using for example
+
+```bash
+.venv/bin/python universal_simultaneous_amplification/phase4_landmark_closure/threshold/endpoint_hostile_exact/search_endpoint_adjoint.py --n 8 --objective product
 ```
 
 Expected final lines include:
