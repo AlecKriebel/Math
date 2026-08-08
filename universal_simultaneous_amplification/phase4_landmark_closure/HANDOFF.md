@@ -117,10 +117,11 @@ The PDF SHA-256 is
 `cfd9eb2755a4f9296eae8209adff6f6b41708425a4a4f186e647184ec6617672`;
 the source/certificate archive SHA-256 is
 `3499314496f905fd8c89a285e3c1cb91189450d7e2f7898f1db90fc1e330be27`.
-No archival DOI was observed immediately after release, and none may be
-claimed until an actual record exists.  No journal submission or external
-outreach occurred.  Under the independent research policy, only the human
-researcher may initiate external communication.
+The archival hook minted version DOI `10.5281/zenodo.21850042` (verified
+through the Zenodo record and DOI redirect); its concept DOI is
+`10.5281/zenodo.21753404`.  No journal submission or external outreach
+occurred.  Under the independent research policy, only the human researcher
+may initiate external communication.
 
 ## 2026-08-08 latest exact checkpoint
 
