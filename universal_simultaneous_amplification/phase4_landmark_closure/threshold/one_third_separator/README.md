@@ -20,6 +20,9 @@ What is proved:
 - an exact `L--C--D` dual split and Poisson--Dirichlet identity, together
   with a rational weighted six-cycle proving that its separate `1:2`
   orientation sign is false even though batching preserves the full target;
+- an exact arbitrary-weight star dB harmonic reduction to a rational
+  correction recurrence, proving the needed sign through 20 leaves while
+  leaving the all-order recurrence sign open;
 - the candidate is strict for every nonconstant positively weighted triangle;
 - a seven-atom exact barrier to arbitrary pointwise common corrections;
 - exact survival of all saved Pareto witnesses and the finite

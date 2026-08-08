@@ -45,5 +45,12 @@
   orientation excess `0.002563645...`, but exact negative batching difference
   and full target excess `-0.030003330...`.  Thus separate orientation and
   batching signs cannot prove the target.
+- [PROVED FINITE CLASS / OPEN RECURRENCE] Derived exact arbitrary-weight star
+  dB harmonic equations and a linear correction whose drift is one rational
+  coefficient times `(p_A-k/m)^2`.  Exact recurrence solutions have the
+  required coefficient sign for every `2<=m<=20` (equality of the two
+  corrections at `m=2`, strict thereafter), proving unit-star dB maximality
+  in those orders.  The sign for arbitrary `m`, and the Bd half of an affine
+  star theorem, remain open.
 - [OPEN] Prove or refute the configuration-resolved global Green inequality
   `T_2+2C<=2E`.
