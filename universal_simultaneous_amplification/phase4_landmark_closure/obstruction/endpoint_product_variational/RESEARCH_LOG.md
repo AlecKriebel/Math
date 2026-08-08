@@ -636,3 +636,327 @@ computed transfer scalar equals the directly solved stationary chord
   **FALSIFIED** by the exact witnesses recorded above.
 - Even if orientation is closed, the independent C-to-dB batching factor is
   still required for the full fixation-product theorem.
+
+## 2026-08-08 checkpoint 7: original-graph Poisson pairing
+
+The electrical scalar has a second exact reduction that retains the atomic
+original-edge structure and eliminates the state-edge transfer matrix from
+the final sign.  Write `k(A)=|A|`.  For `0<s<=1`, let `chi_s` and `chi_-s`
+be the Poisson potentials, with the harmless gauge fixed by zero `mu` mean,
+
+\[
+ -Q_s\chi_s=k-m(s)1,
+ \qquad -Q_{-s}\chi_{-s}=k-m(-s)1.                  \tag{31}
+\]
+
+Put `D_s=chi_-s-chi_s`.  Adding the two equations in (31) gives
+
+\[
+ -M(\chi_s+\chi_{-s})+sK D_s
+ =2k-\{m(s)+m(-s)\}1.
+\]
+
+Taking the `mu` inner product and using
+`K^{dagger_mu}1=V` proves directly, without the determinant reduction,
+
+\[
+ \boxed{
+  2m(0)-m(s)-m(-s)=s\langle V,D_s\rangle_\mu.}      \tag{32}
+\]
+
+Now let `x_i(A)=1_{i in A}`, `d_i=sum_j w_ij`, and `h_i=d_i^{-1}`.  Define
+the original-vertex marginal response
+
+\[
+ z_i(s)=\langle x_i,D_s\rangle_\mu.
+\]
+
+The endpoint defect and its original-graph divergence are
+
+\[
+ V(A)={3\over2}\sum_iq_ix_i(A),
+ \qquad q_i=\sum_jw_{ij}(h_i-h_j).
+\]
+
+Substitution in (32), followed only by undirected summation by parts, gives
+the new exact equivalence
+
+\[
+ \boxed{
+  2m(0)-m(s)-m(-s)
+  ={3s\over2}\sum_{i<j}w_{ij}(h_i-h_j)
+                    \{z_i(s)-z_j(s)\}.}             \tag{33}
+\]
+
+Thus the universal orientation theorem is equivalent to the single
+original-graph Dirichlet sign
+
+\[
+ \boxed{
+ \mathcal E_w(h,z(s))
+ :=\sum_{i<j}w_{ij}(h_i-h_j)(z_i(s)-z_j(s))\ge0.}    \tag{34}
+\]
+
+Combining (29) and (33), for `s>0`, also identifies the electrical scalar
+itself as
+
+\[
+ 1_E^TX(I-s^2X^2)^{-1}u
+ =-{3\over8s}\mathcal E_w(h,z(s)).                  \tag{35}
+\]
+
+Equations (31)--(35) are **PROVED**.  They reduce the final sign from the
+state-edge space to an `n`-vertex conductance pairing.  The response `z(s)`
+still contains the two exact subset-chain Poisson solves, so (34) is an
+equivalent inequality rather than a proof of its sign.  If all weighted
+degrees are equal then `h` is constant, `K=0`, and equality is immediate.
+The converse equality statement remains open.
+
+### Atomic source of the pairing
+
+For an original edge `{i,j}`, orient it from `i` to `j` and put
+
+\[
+ p_{ij}={w_{ij}\over2}(d_i^{-1}+d_j^{-1}),\qquad
+ \delta_{ij}=w_{ij}(d_i^{-1}-d_j^{-1}).
+\]
+
+For every fixed outside set `B`, in the ordered local states
+`B+i,B+j,B+ij`, direct construction from the update arrows gives
+
+\[
+ M_{ij}=p_{ij}
+ \begin{pmatrix}
+ -3/2&1&1/2\\ 1&-3/2&1/2\\ 1&1&-2
+ \end{pmatrix},
+\quad
+ K_{ij}={\delta_{ij}\over2}
+ \begin{pmatrix}
+ 3/2&-1&-1/2\\ 1&-3/2&1/2\\ 1&-1&0
+ \end{pmatrix}.                                    \tag{36}
+\]
+
+The midpoint block `T` in (36) obeys `T^2=-(5/2)T`, while applying the
+defect block to local rank `(1,1,2)` gives `(-1/2,1/2,0)`.  Summing the
+blocks proves `Kk=-V/6` and shows that the vector in (34) is precisely the
+weighted-degree gradient that drives all set-lattice circulations.  This is
+the extra admissible structure absent from a generic directed state network.
+
+### Hostile boundary
+
+The tempting edgewise strengthening of (34) is **EXACTLY FALSIFIED**.
+On the weighted path with edge weights `1,17`, at `s=1`, the heavy edge
+contributes
+
+\[
+ -{393682007\over44387764470}<0,
+\]
+
+although the sum is positive and the exact endpoint deficit is
+
+\[
+ {4587869633\over9863947660}>0.
+\]
+
+Consequently a proof of (34) must retain cancellation among original edges;
+edgewise monotonicity of `z_i` in inverse degree is false.  The independent
+verifier checks (31)--(36), this negative edge term, the saved curvature,
+all-root-mark, and rank-tail witnesses, and 24 deterministic connected
+integer-weight graphs of orders three through five at rational interpolation
+values.  Every global pairing in that finite screen is nonnegative.  This is
+**EXACT FINITE EVIDENCE ONLY**.
+
+### Frozen status after the bounded closure cycle
+
+- Original-graph Poisson identity (31)--(35): **PROVED**.
+- Atomic triangle decomposition (36): **PROVED**.
+- Edgewise positivity in (34): **FALSIFIED** exactly on weighted P3.
+- Global original-graph Dirichlet sign (34): **OPEN**; no admissible
+  counterexample was found in the exact hostile screen.
+- Stationary orientation inequality and endpoint electrical scalar sign:
+  **OPEN**, now exactly equivalent to (34).
+- Universal fixation-product inequality: **OPEN**, with the separate
+  C-to-dB batching comparison still outstanding even if (34) is proved.
+
+`verify_original_graph_poisson_pairing.py` is the independent exact verifier
+for this checkpoint.
+
+## 2026-08-08 checkpoint 8: singleton projection and the exact higher-mode forcing
+
+The Poisson response in (33) does not satisfy a closed equation on the
+original vertices alone.  The failure is now isolated exactly at the first
+higher level of the subset hierarchy.
+
+For a zero-`mu`-mean function `f`, put
+
+\[
+ z_i(f)=\langle x_i,f\rangle_\mu,
+ \qquad y_{ij}(f)=\langle x_ix_j,f\rangle_\mu.
+\]
+
+Let
+
+\[
+ \bar p_{ij}={w_{ij}\over2}(d_i^{-1}+d_j^{-1}),
+ \qquad \delta_{ij}=w_{ij}(d_i^{-1}-d_j^{-1}),
+ \qquad a_i=\sum_j\bar p_{ij}=1-{q_i\over2}.
+\]
+
+Direct application of the atomic blocks (36), including the diagonal
+adjoint defect `K^{dagger_mu}=-K+V`, gives the exact singleton projections
+
+\[
+ \begin{aligned}
+ \langle x_i,-Mf\rangle_\mu
+ &=a_i z_i(f)-{3\over2}\sum_j\bar p_{ij}z_j(f)
+   +{3\over2}\sum_j\bar p_{ij}y_{ij}(f),\\
+ \langle x_i,Kf\rangle_\mu
+ &=q_i z_i(f)-{3\over4}\sum_j\delta_{ij}z_j(f)
+   +{3\over4}\sum_j\delta_{ij}y_{ij}(f)
+   +{3\over2}\sum_{j\ne i}q_jy_{ij}(f).
+                                                               \tag{37}
+ \end{aligned}
+\]
+
+The last sum in (37) runs over nonedges as well as edges.  It is the global
+diagonal term `Vx_i`; omitting it gives an incorrect apparent closure.
+
+### Orthogonal removal of the singleton part of every pair
+
+Set `bar x_i=x_i-alpha`, where `alpha=<x_i>_mu`, and let
+
+\[
+ G_{ij}=\langle\bar x_i,\bar x_j\rangle_\mu.
+\]
+
+For every unordered pair `e={i,j}`, define `Lambda_{e,l}` by orthogonally
+projecting the centered pair indicator onto the singleton space:
+
+\[
+ x_ix_j-\langle x_ix_j\rangle_\mu
+ =\sum_l\Lambda_{ij,l}\bar x_l+R_{ij},
+ \qquad \langle R_{ij},\bar x_l\rangle_\mu=0.        \tag{38}
+\]
+
+Equivalently, `Lambda` is obtained by solving the explicit `n` by `n` Gram
+system `G Lambda_{ij} = Cov_mu(bar x,x_ix_j)`.  Thus
+
+\[
+ y(f)=\Lambda z(f)+\eta(f),
+ \qquad \eta_{ij}(f)=\langle R_{ij},f\rangle_\mu.    \tag{39}
+\]
+
+The vector `eta(f)` is the genuine pair component orthogonal to constants
+and all singleton indicators.
+
+Define original-vertex/pair matrices by the two lines of (37):
+
+\[
+ \begin{aligned}
+ (\mathsf A z)_i&=a_i z_i-{3\over2}\sum_j\bar p_{ij}z_j,&
+ (\mathsf B y)_i&={3\over2}\sum_j\bar p_{ij}y_{ij},\\
+ (\mathsf C z)_i&=q_i z_i-{3\over4}\sum_j\delta_{ij}z_j,&
+ (\mathsf D y)_i&={3\over4}\sum_j\delta_{ij}y_{ij}
+                  +{3\over2}\sum_{j\ne i}q_jy_{ij}.
+ \end{aligned}
+\]
+
+Centering the test singleton subtracts
+`alpha<V,f>=alpha(3/2)q^Tz(f)`.  Hence put
+
+\[
+ \widehat{\mathsf A}=\mathsf A+\mathsf B\Lambda,
+ \qquad
+ \widehat{\mathsf C}=\mathsf C+\mathsf D\Lambda
+       -{3\alpha\over2}1q^T.                         \tag{40}
+\]
+
+Let `S_s=chi_-s+chi_s`, `D_s=chi_-s-chi_s`, and
+`beta=<bar x_i,k>_mu` (independent of `i`).  Projecting the sum and
+difference of the two Poisson equations proves the exact `2n`-dimensional
+balance system
+
+\[
+ \boxed{
+ \begin{pmatrix}
+  \widehat{\mathsf A}&s\widehat{\mathsf C}\\
+  s\widehat{\mathsf C}&\widehat{\mathsf A}
+ \end{pmatrix}
+ \binom{z(S_s)}{z(D_s)}
+ =
+ \binom{2\beta1}{0}
+ -
+ \binom{
+   \mathsf B\eta(S_s)+s\mathsf D\eta(D_s)}{
+   \mathsf B\eta(D_s)+s\mathsf D\eta(S_s)}.}       \tag{41}
+\]
+
+Equation (41) is **PROVED**.  It is the requested vertex-space
+Schur/Galerkin reduction.  If the residual pair vectors `eta` vanished, it
+would be a closed original-vertex system.  They do not vanish even on the
+weighted `1:17` path.  Projecting their equations introduces triples, so
+the sole unresolved higher-order input to the vertex sign in (34) is now
+the right-hand forcing in (41), rather than an unspecified failure of
+closure.
+
+### The natural self-adjoint-PSD response is false
+
+There is a canonical linear test at weak orientation.  Hold the midpoint
+`M` fixed, give an arbitrary original-vertex field `g` the atomic current
+
+\[
+ \delta_{ij}^{(g)}=w_{ij}(g_i-g_j),
+\]
+
+let `K_g` be the corresponding sum of the three-state blocks (36), and put
+
+\[
+ \Phi=(-M)^\#(k-m(0)),
+ \qquad
+ (\mathcal T_0g)_i
+ =-\langle x_i,(-M)^\#K_g\Phi\rangle_\mu.           \tag{42}
+\]
+
+For the physical field `g=h=d^{-1}`,
+
+\[
+ {z(D_s)\over2s}=\mathcal T_0h+O(s^2).
+\]
+
+Thus the natural claim that the projected response is self-adjoint in the
+original conductance geometry would require `L_w\mathcal T_0` to be
+symmetric.  This is **EXACTLY FALSIFIED** already by weighted P3 with edge
+weights `1,17`: its three upper-triangular antisymmetric entries are
+
+\[
+ {156672\over1200325},\quad
+ -{156672\over1200325},\quad
+ {156672\over1200325}.                               \tag{43}
+\]
+
+Therefore `z=\mathcal T_s h` with the canonical response operator
+self-adjoint PSD is not the missing proof.  Formula (43) does not refute
+positivity of the symmetric quadratic part on the physical degree field;
+that weaker sign remains open.
+
+### Hostile audit and frozen boundary
+
+`verify_singleton_projection_schur.py` checks (37)--(43) over exact
+rationals.  It reconstructs the singleton response from (41) on:
+
+- the weighted-P3 negative-edge witness;
+- the saved statewise-curvature K4 witness;
+- the order-five all-root-mark witness;
+- the order-five rank-tail witness.
+
+It independently verifies the nonzero pair-residual forcing and the exact
+cyclic asymmetry (43).
+
+- Singleton projection formulas (37): **PROVED**.
+- Orthogonal pair-residual Schur system (38)--(41): **PROVED**.
+- Closure on singleton moments alone: **FALSIFIED**; `eta` is nonzero.
+- Canonical self-adjoint-PSD vertex response: **FALSIFIED** by (43), already
+  at the self-adjointness requirement.
+- Positivity of the physical symmetric quadratic / global Dirichlet pairing
+  (34): **OPEN**.
+- No exact admissible counterexample to endpoint orientation was found.
