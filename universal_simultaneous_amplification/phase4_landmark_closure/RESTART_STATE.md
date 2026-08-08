@@ -218,3 +218,41 @@ The next three executable tasks are now:
    obstructions: fixed-degree portal networks, portal-dependent incidence,
    and singular/mesoscopic scaling, with post-establishment fixation control
    required before any positive claim.
+
+## 2026-08-08 final landmark checkpoint
+
+The preceding Gate-1 obligations and endpoint tasks are historical.  The
+current committed checkpoint is `6e893e3f40719f26225c2c0e24878db5152a3722`
+on `main`, equal to `origin/main` before the final ledger-only checkpoint.
+
+- **OUTCOME C PROVED:** the explicit dilute pair--leaf family proves
+  `R_sim>=R_hyb=1.5028569127905696...>3/2`; hence the proposed exact value
+  `3/2`, the endpoint disjunction, and every universal endpoint affine
+  separator are false.
+- **EXACT FAMILY THRESHOLD:** `R_hyb` is the unique root in
+  `(3/2,151/100)` of
+  `r^6-8r^5+22r^4-30r^3+21r^2-6r+1`.  This is the threshold of the proved
+  two-mechanism dilute family, not the unrestricted value of `R_sim`.
+- **POST-THEOREM CLASS OBSTRUCTIONS:** exact audits exclude the stated
+  common/distinct weighted-leaf rescalings, zero-leading-internal strong
+  integrated gadgets, and symmetric portal-linked `K_2` doublets at the
+  `R_hyb` first-order tangent.  Second-order, asymmetric, growing-rank, and
+  nonseparated mechanisms remain open.
+- **FITNESS TWO:** commit `6e893e3f` freezes the remaining universal upper
+  route at one equivalent stationary promotion/determinant sign.  The exact
+  structural verifier and exact finite corpus replay pass; no universal sign
+  and no counterexample are known.
+- **PUBLICATION:** the theorem package was publicly released at GitHub tag
+  `simultaneous-amplification-beyond-three-halves-v1.0.0` with archival
+  version DOI `10.5281/zenodo.21852072`.  Later class obstructions and the
+  final `r=2` reduction are on `main`, not in that v1.0.0 archive.  No journal
+  submission or external communication occurred.
+
+The three next executable mathematical tasks are now:
+
+1. resolve the marked stationary promotion/arborescence determinant sign at
+   `r=2`, which would give the first finite universal upper bound;
+2. analyze second-order perturbations of the zero tangent
+   `(sigma_*,u=0)` beyond the first-order symmetric-doublet obstruction;
+3. search and exactify asymmetric, growing-rank, mesoscopic, or nonseparated
+   hybrid mechanisms, including their post-establishment fixation control.

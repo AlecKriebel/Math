@@ -1,6 +1,6 @@
 # Active exact lemmas
 
-Last updated: 2026-08-08 dilute-hybrid threshold breakthrough.
+Last updated: 2026-08-08 final landmark and fitness-two reduction freeze.
 
 ## Landmark superseding update
 
@@ -95,78 +95,44 @@ reversal, transient domination, and rank-tail domination are exactly false.
 Even (A2) would settle only the orientation factor; the separate geometric
 batching comparison would remain.
 
-## B. The weaker endpoint separator
+## B. Endpoint separators are refuted
 
-The theorem actually needed for `R_sim=3/2` is only
+The former disjunctive target
 
 \[
  \min\left\{
  {\rho_{\rm Bd}(G,3/2)\over\rho_{\rm Bd}(K_n,3/2)},
  {\rho_{\rm dB}(G,3/2)\over\rho_{\rm dB}(K_n,3/2)}
- \right\}\le1.                                         \tag{B}
+ \right\}\le1                                          \tag{B}
 \]
 
-This remains **OPEN** even if (A) is false.  Candidate separators may be
-nonlinear or graph-dependent before yielding the graph-independent
-disjunction.
+is **FALSIFIED** by the dilute pair--leaf family.  In fact that same
+fitness-independent family simultaneously amplifies throughout every fixed
+`1<r<R_hyb`, so the old endpoint obstruction program is closed negatively.
 
-The balanced normalized mean
+The balanced normalized mean and the one-third affine separator
 
 \[
- {1\over2}\left\{
- {\rho_{\rm Bd}(G,3/2)\over\rho_{\rm Bd}(K_n,3/2)}+
- {\rho_{\rm dB}(G,3/2)\over\rho_{\rm dB}(K_n,3/2)}
- \right\}\le1.                                        \tag{B1}
+ {x+y\over2}\le1,
+ \qquad
+ {x+2y\over3}\le1                                      \tag{B1}
 \]
 
-is exactly false by Section A.  Writing a fixed affine separator as
-`lambda x+(1-lambda)y<=1`, the same witness forces
-`lambda<=lambda_0=0.469920183876...`.  The strongest simple candidate now
-under active audit is
+are also **EXACTLY FALSIFIED**.  The first fails on `G(31,4)`.  The second
+fails on the complete-support `(2,20)` two-class graph with within-class
+weights `137,1` and cross weight `1/500`, whose exact normalized score is
+`1.000221711118742...`.
 
-\[
-             {x+2y\over3}\le1.                            \tag{B2}
-\]
+More generally, no graph-independent convex affine separator
+`theta x+(1-theta)y<=1` exists.  Clique--pendant rays force
+`theta<=1/3`, whereas the exact `(2,20)` witness forces
+`theta>=0.3355466820733536...>1/3`.  These counterexamples do not by
+themselves amplify both rules, but the dilute pair--leaf family does.
 
-It has exact positive slack on the complete hostile corpus and on every
-`G(c,m)` audited exactly through `n=36`.  This is evidence, not proof.  A
-seven-atom exact Farkas certificate on a weighted four-star already rules
-out the natural arbitrary-state common-correction proof of (B2), so a
-valid proof must again be global and nonpointwise.
-
-The coefficient in (B2) is **PROVED OPTIMAL** among every graph-independent
-convex affine separator.  For a fixed rational leaf proportion `alpha`, the
-unweighted clique--pendant family has exact normalized endpoint limits
-
-\[
- x_\infty=1-\alpha+3\alpha\ell(\alpha),\qquad
- y_\infty=1-\alpha,
-\]
-
-where `0<ell(alpha)<1` and `ell(alpha)->1` as `alpha->0`.  Its affine
-crossing is `1/(3 ell(alpha))->1/3`, so every larger Bd coefficient fails.
-At coefficient `1/3` the limiting slack is
-`alpha(1-ell(alpha))>0`.  The same exact package proves (B2) for every
-positively weighted triangle, strictly except at equal weights.
-
-There is also an exact lower restriction.  A saved seven-vertex rational dB
-amplifier has `x_-<1<y_-` and crossing
-
-\[
- \theta_-={y_--1\over y_--x_-}
- =0.088542283991193063\ldots>{177\over2000}.
-\]
-
-Thus every universal fixed convex affine separator must lie in the exact
-necessary window `theta_-<=theta<=1/3`.  No coefficient in this window is
-currently proved universal.
-
-For arbitrary positively weighted stars, exact harmonic elimination reduces
-the dB comparison with the unit star to a finite coefficient recurrence with
-a square drift term.  Exact rational certificates prove the sign through 20
-leaves (equality at two, strict thereafter).  The recurrence sign for every
-leaf count and the Bd half of (B2) remain **OPEN**; finite verification is not
-an all-order theorem.
+The weighted-star recurrence remains a valid class problem: exact rational
+certificates prove the unit-star dB comparison through 20 leaves (equality
+at two and strict thereafter), while the all-order sign is **OPEN**.  It no
+longer bears on the now-refuted universal endpoint separator.
 
 ## C. Exact endpoint drift bridge
 
@@ -246,6 +212,16 @@ The single exact open sign is
 It is equivalent—not merely sufficient—to dB complete-graph maximality at
 fitness two.  Proving (D1) gives the fallback universal bound
 `R_sim<=2`.
+
+The latest marked one-sample lift removes the geometric burst exactly.  Its
+uniform two-step target gap is a nonnegative sum of row-collision,
+column-imbalance, and antisymmetry squares.  Promoting that two-step gain to
+the stationary law is exactly equivalent to each of the following: a
+quenched Cesaro persistence inequality, a rare-restart Abel/return-time
+inequality, and one active-arborescence determinant coefficient sign.  This
+promotion remains **OPEN**.  Exact checks on all 54 audited order-three, 624
+order-four, 48 deterministic order-five, and the frozen order-six witnesses
+all pass, but finite checks are not a universal proof.
 
 The auxiliary symmetric complete-flow pairing `S` obeys exact circulation
 and Dirichlet formulas, but the proposed split `L<=S<=V` is false.  A

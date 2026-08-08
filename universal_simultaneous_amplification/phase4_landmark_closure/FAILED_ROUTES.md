@@ -15,7 +15,8 @@ be revived without a new ingredient addressing the stated witness.
 ## Endpoint `r=3/2`
 
 - The universal normalized fixation-product inequality is false.  The
-  unweighted graph `G(31,4)=K_32` with four leaves at one hub has exact
+  unweighted graph `G(31,4)`, with a `K_32` core and four leaves at one hub,
+  has exact
   normalized product `1.000669371885...>1`.  Its dB ratio is
   `0.892002982408...<1`, so it is not an endpoint simultaneous amplifier.
   This is not a finite-size accident: `K_(8m+1)` with `m` hub pendants has
@@ -109,6 +110,11 @@ Exact files: `obstruction/cross_sum_three_halves/`,
 - Targetwise active-channel positivity and undirected edge-pair positivity
   are false.  The unweighted four-path already needs compensation between
   distinct tree edges, so cycle circulation cannot be the missing mechanism.
+- Event-rank stochastic domination of the marked lift is false on an exact
+  reversible six-vertex graph.  Late-time monotonicity of the marked target
+  and the stationary rank-zero PGF lower envelope also fail exactly.  The
+  collision-observable promotion itself survives these witnesses and remains
+  open.
 
 Exact files: `obstruction/r2_collision_bound/`,
 `obstruction/r2_entropy_certificate/`, `obstruction/regular_db_max/`, and
@@ -131,7 +137,16 @@ Exact files: `obstruction/r2_collision_bound/`,
 - growing diffuse regular portal networks with exchangeable incidence,
   including complete portal graphs and degree-diverging regular expanders;
 - fixed-class positive-proportion dense blow-ups with unequal limiting
-  weighted degrees.
+  weighted degrees;
+- the audited common-hub and distinct-hub weighted-leaf rescalings at their
+  exact leading order;
+- strong integrated gadgets with zero leading internal weights away from the
+  portal-clone equality tangent;
+- symmetric portal-linked `K_2` doublets at the `R_hyb` separated dilute
+  first-order tangent, including arbitrary mixtures with uncoupled pairs and
+  ordinary leaves.
 
-The exact unclosed regimes are growing or singular portal rank, direct portal
-networks, genuinely nonseparated multiscale systems, and arbitrary graphs.
+The exact unclosed construction regimes include second-order motion at the
+zero tangent, asymmetric portal networks, growing or singular portal rank,
+mesoscopic correlated gadgets, genuinely nonseparated multiscale systems,
+and arbitrary graphs.  The unrestricted exact value of `R_sim` is open.

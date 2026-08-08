@@ -1,6 +1,6 @@
 # Live handoff: exact-threshold closure
 
-Checkpoint date: 2026-08-08 dilute-hybrid threshold breakthrough
+Checkpoint date: 2026-08-08 final landmark and `r=2` reduction freeze
 (America/Los_Angeles)
 
 ## Current theorem state
@@ -15,7 +15,8 @@ Checkpoint date: 2026-08-08 dilute-hybrid threshold breakthrough
 - **PROVED CLASS THEOREM:** fixed-finite-rank positive-incidence blade/portal
   families without portal edges cannot work at any fixed `r>=3/2`.
 - **EXACTLY FALSIFIED:** the universal endpoint product inequality.  The
-  unweighted 36-vertex `G(31,4)=K_32` with four hub pendants has normalized
+  unweighted 36-vertex `G(31,4)`, which has a `K_32` core and four hub
+  pendants, has normalized
   product `1.000669371885...>1`, with independent exact rational audits.
 - **PROVED GROWING COUNTEREXAMPLE:** `K_(8m+1)` with `m` hub pendants has
   normalized endpoint limits `32/27` and `8/9`, so its product tends to
@@ -28,12 +29,11 @@ Checkpoint date: 2026-08-08 dilute-hybrid threshold breakthrough
   `(2,20)` complete-support graph with weights `(137,1,1/500)`.
 - **FALSIFIED:** every fixed convex affine separator.  The new witness forces
   `theta>1/3`, while clique--pendant rays force `theta<=1/3`.
-- **PROVED SHARPNESS:** no universal convex affine separator can give Bd a
-  coefficient above `1/3`; explicit clique--pendant rays have crossing
-  coefficient decreasing to `1/3`.  An exact rational dB witness forces the
-  complementary lower bound `theta>=0.088542283991...`.  The sharp candidate
-  holds for every positive weighted triangle; no coefficient in the resulting
-  necessary window is proved universal.
+- **PROVED AFFINE INCOMPATIBILITY:** clique--pendant rays force any universal
+  convex affine separator to have `theta<=1/3`, while the exact `(2,20)`
+  witness forces `theta>=0.335546682073...>1/3`.  Therefore no such separator
+  exists.  The one-third inequality nevertheless holds for every positive
+  weighted triangle.
 - **EXACT FINITE STAR THEOREM:** the unit star is dB-maximal among arbitrarily
   weighted stars through 20 leaves by an exact coefficient recurrence.  The
   recurrence sign for every leaf count remains open.
@@ -61,8 +61,9 @@ Checkpoint date: 2026-08-08 dilute-hybrid threshold breakthrough
 The restart base was
 `ffe5c89cf41ca3cced5a2e573404baeb2d510897`; the audited restart integration
 was pushed as `72289a4a45e4db97ca473bd84e7bd9773ded791f`, and the endpoint
-Green--Poisson reduction as `8ef6e0b0` on `main`.  The current public-preprint
-commit is `db9c03ec`, following the weighted-star checkpoint `f481e3e6`.
+Green--Poisson reduction as `8ef6e0b0` on `main`.  The replacement release
+tag points to `c82fa555`; later class-obstruction and fitness-two commits are
+on `main` but are not part of that frozen v1.0.0 archive.
 Exact replay reports are under `restart_audit/`.  Do not delete or silently
 modify the untracked discovery program
 `obstruction/stationary_inequality/explore_target_information.py`; it is
@@ -70,19 +71,10 @@ historical and not part of the audited theorem packages.
 
 ## Exact live targets
 
-Endpoint (product now refuted):
-
-```text
-min(rho_Bd/rho_Bd(K_n), rho_dB/rho_dB(K_n)) <= 1,
-```
-
-with the current affine candidate
-
-```text
-(rho_Bd/rho_Bd(K_n)+2 rho_dB/rho_dB(K_n))/3 <= 1.
-```
-
-Fitness two:
+The old endpoint disjunction and every fixed convex affine endpoint
+separator are **REFUTED**, not live targets.  The unrestricted tasks are to
+improve the proved lower bound `R_hyb` and to obtain any finite universal
+upper bound.  At fitness two:
 
 ```text
 rho_dB(G,2)-rho_dB(K_n,2)=L(G)-V(G),
@@ -94,16 +86,12 @@ so the exact missing sign is `L<=V`.
 
 Continue three independent live branches:
 
-1. formalize and publish the dilute pair--leaf theorem and its independent
-   labelled/Schur verification, replacing the now-superseded endpoint
-   narrative in preprint v1.0.0;
-2. optimize the general dilute bounded-gadget tangent cone.  The exact
-   `K_s` formulas and finite searches currently single out `K_2`, but no
-   universal gadget theorem or global upper bound is proved;
-3. prove the direct stationary collision sign at `r=2`.  The marked
-   one-sample lift and its uniform two-step sum-of-squares inequality are
-   proved; the sole new obstruction is promotion to the stationary marked
-   law.
+1. resolve the stationary collision promotion at `r=2` through its exact
+   quenched-Cesaro, rare-restart, or active-arborescence determinant form;
+2. analyze second-order perturbations of the zero first-order tangent
+   `(sigma_*,u=0)`, which are not excluded by the symmetric-doublet theorem;
+3. search asymmetric correlated portals, growing-rank or mesoscopic gadgets,
+   and nonseparated dynamics, with full post-establishment control.
 
 Do not retry rank/overlap-only, vertex-bilinear pointwise, statewise,
 fixed-rank, separately signed, or first-change-balanced endpoint
@@ -115,7 +103,7 @@ The endpoint counterexample has already been converted into one growing
 fitness-independent family with an exact interval.  Do not reopen the
 universal endpoint-obstruction or fixed-affine programs.
 
-## Publication boundary
+## Historical lower-bound publication (superseded by the replacement release)
 
 The hostile-audited 18-page lower-bound manuscript, deterministic PDF, and
 exact replay package are committed at `db9c03ec` under
@@ -131,7 +119,7 @@ through the Zenodo record and DOI redirect); its concept DOI is
 occurred.  Under the independent research policy, only the human researcher
 may initiate external communication.
 
-## 2026-08-08 latest exact checkpoint
+## 2026-08-08 historical pre-breakthrough checkpoint
 
 - **PROVED CLASS THEOREM:** fixed `Q=2,T=1` direct-portal strong-pair
   systems, including arbitrary unequal positive loads and any positive
@@ -149,13 +137,14 @@ may initiate external communication.
 - **EXACTLY FALSIFIED:** endpoint product and balanced arithmetic separators,
   by the independently audited `G(31,4)` witness in commits `02335bb0` and
   `21601879`.
-- **STILL OPEN:** endpoint disjunction and one-third affine separator, the
-  exact `r=2` stationary mean bound, and the value of `R_sim`.
+- **HISTORICAL STATUS, NOW SUPERSEDED:** at this checkpoint the endpoint
+  disjunction and one-third separator were still open.  Both were later
+  refuted; only the exact `r=2` stationary mean bound and global value of
+  `R_sim` remain open.
 
-The active proof cycle is global: combined endpoint forest transport and
-full-tree complement reflection at `r=2`.  Further construction work must
-leave both the fixed-rank and diffuse-growing portal scopes and must control
-fixation after establishment.
+At that historical checkpoint the proof cycle was global endpoint forest
+transport and full-tree complement reflection at `r=2`.  The endpoint target
+was subsequently refuted; only the fitness-two component remains live.
 
 ## 2026-08-08 landmark correction
 
@@ -164,10 +153,10 @@ The preceding historical checkpoint is superseded as follows.
 - Commit `a660aa3f` exactly refutes the one-third separator and, together
   with the clique--pendant sharpness theorem, every fixed convex affine
   separator.
-- Commit `9c37b436` supplies an independently derived dilute pair--leaf
+- Commit `9c37b436` supplied an independently derived dilute pair--leaf
   construction beyond `3/2`; the canonical full theorem and constructive
-  diagonal are in `threshold/dilute_pair_leaf_hybrid/` pending final
-  integration commit.
+  diagonal were later integrated in commit `1c21be57` under
+  `threshold/dilute_pair_leaf_hybrid/`.
 - The exact class threshold is `R_hyb=1.5028569127905696...`, the isolated
   sextic root recorded above.  The global exact value of `R_sim` remains
   open.
@@ -188,16 +177,35 @@ The preceding historical checkpoint is superseded as follows.
   `9274c192d51933b5a4af181c53bc2d6069e7041347577542ee703ca1b5f56256`.
 - **ARCHIVAL RECORD VERIFIED:** Zenodo version DOI
   `10.5281/zenodo.21852072`, concept DOI `10.5281/zenodo.21753404`.
+  Zenodo classifies this as an archival software release.  The frozen v1.0.0
+  manuscript still says that no tag or DOI existed "at this checkpoint";
+  that was true at manuscript freeze but is minor wording debt for any future
+  source revision, not a theorem defect.
 - **PROVED CLASS OBSTRUCTION:** commit `6cd1bf85` classifies the audited
   common-hub and distinct-hub weighted-leaf scalings.  Once the far-field
   ordinary-singleton term is included, none improves `R_hyb`.
-- **PROVED REDUCTION / OPEN SIGN:** commit `2beba690` rewrites the remaining
-  fitness-two promotion as a positive active-state Perron inequality.  The
-  size-weighted mass is invariant and the desired collision observable is
-  the unweighted Perron mass.  Generic late-time monotonicity and a rank-zero
-  stationary envelope are exactly false; the collision-observable promotion
-  itself remains open.
+- **PROVED REDUCTION / OPEN SIGN:** commits `2beba690` and `6e893e3f`
+  rewrite the remaining fitness-two promotion as a positive active-state
+  Perron inequality.  The size-weighted mass is invariant and the desired
+  collision observable is the unweighted Perron mass.  The same sign is
+  exactly equivalent to quenched Cesaro persistence, a rare-restart
+  Abel/return-time inequality, and one active-arborescence determinant
+  coefficient.  Generic late-time monotonicity, event-rank domination, and
+  a rank-zero stationary envelope are exactly false; the collision-observable
+  promotion itself remains open.  Both exact verifiers replayed cleanly on
+  2026-08-08, including all 54 order-three, 624 order-four, 48 deterministic
+  order-five, and the frozen order-six witnesses.  This finite audit is not a
+  universal proof.
 - **OPEN:** the unrestricted exact value of `R_sim`; current rigorous bound
   `R_sim>=R_hyb=1.5028569127905696...`, with no finite universal upper bound.
+- **PROVED TANGENT OBSTRUCTIONS:** commit `5b10877f` gives the exact strong
+  integrated portal-clone square when leading internal weights vanish;
+  commit `17adba55` excludes arbitrary mixtures of symmetric portal-linked
+  `K_2` doublets at `R_hyb` to first order.  Equality in the latter occurs
+  only at the uncoupled tangent `u=0,sigma=sigma_*`.
+- **SURVIVING CONSTRUCTION MODES:** second-order motion into the zero tangent,
+  genuinely asymmetric correlated portals, growing-rank or mesoscopic
+  gadgets, and nonseparated dynamics.  Searches outside the proved scopes
+  remain numerical only.
 - No journal submission or external communication occurred.  The public
   preprint is not peer-reviewed journal publication.
