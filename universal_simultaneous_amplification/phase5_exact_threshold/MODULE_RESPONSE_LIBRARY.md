@@ -158,6 +158,32 @@ first-order internal matrices.  It does not control a remainder uniformly
 when module order grows, higher-order paths with zero first derivative, or
 nonseparated dynamics.
 
+The first attainable Bd coefficient is cubic:
+
+\[
+\boxed{B_3=-{1\over r^2}\sum_{i<j}
+ \left[A_{ij}^2(c_i+c_j)+2A_{ij}c_ic_j\right].}       \tag{M6b}
+\]
+
+It can have either sign.  Nevertheless, with
+
+\[
+Q=\sum_i c_i^2+(r-1)\sum_{i<j}A_{ij}^2,
+\]
+
+the exact rank-independent estimate
+
+\[
+\boxed{|r^2B_3|\le Q^{3/2}
+ \left({1\over r-1}+{1\over\sqrt{r-1}}\right)}       \tag{M6c}
+\]
+
+shows that increasing gadget order alone cannot amplify the cubic Bd term
+relative to the strict quadratic dB loss.  A viable growing-rank escape must
+therefore make the Taylor remainder nonuniform, approach a singular portal
+boundary, introduce inter-module density interactions, or abandon the
+separated trace.
+
 ## 5. Symmetric correlated `K_2` doublet
 
 For two identical strong pairs with common scale `sigma` and symmetric
@@ -222,8 +248,8 @@ subinterval of `(1,2)` when the menu may grow with the diagonal index.
 ## 8. Missing generators with priority
 
 1. growing-rank modules where the remainder in (M6a) is not uniform;
-2. genuinely higher-order paths tangent to clone equality through first
-   order;
+2. genuinely higher-order paths with vanishing first derivative (ordinary
+   nonzero tangents are controlled through cubic order by (M6a)--(M6c));
 3. asymmetric correlations between multiple modules rather than within one
    fixed integrated gadget;
 4. interior positive-internal-matrix gadgets away from clone equality;

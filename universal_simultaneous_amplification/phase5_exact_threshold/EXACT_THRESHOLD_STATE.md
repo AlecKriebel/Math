@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 09:08 PDT.
+Last updated: 2026-08-08 09:28 PDT.
 
 ## Frozen starting point
 
@@ -73,6 +73,10 @@ This is finite evidence only.
    sum-of-squares certificate for every weighted triangle.  Real-rootedness,
    ultra-log-concavity, ordinary log-concavity, and rank-tail domination of
    the associated root polynomial are all exactly false in larger examples.
+7. The first possible Bd term along a fixed-order clone departure is cubic,
+   but it is uniformly controlled by the already negative dB quadratic.
+   Growing rank by itself cannot magnify that cubic relative to the
+   quadratic cost.
 
 ### Open
 
@@ -81,6 +85,16 @@ This is finite evidence only.
 2. Whether one family amplifies both rules for every fixed `1<r<2`.
 3. Any finite universal upper bound on `R_sim`.
 4. The exact value of `R_sim`.
+
+### Exact finite hostile boundary
+
+An independent solver found no fitness-two dB or simultaneous violation in
+all 995 connected unweighted graphs through order seven, 9,471 multiscale
+structured rational graphs, 4,180 independently weighted trees through
+order six, or 2,300 additional reversible rational `F0` instances.  These
+are exact finite computations, not a universal theorem.  Nonregular
+permutation-midpoint symmetrization is exactly false; its regular subcase is
+still open.
 
 ## Working exact-threshold hypothesis
 
@@ -98,3 +112,6 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 
 - `230f83eb`: state recovery and correction of collision versus promotion;
 - `8977752f`: universal fixed-order second-order portal-clone obstruction.
+- `bbf3323d`: direct collision determinant and triangle certificate;
+- `c7d6a479`: independent exact fitness-two hostile audit;
+- `ffcde4d5`: cubic clone response and rank-uniform domination bound.

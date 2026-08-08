@@ -70,3 +70,22 @@ prior handoff had incorrectly hidden.
   triangle.  The associated subset root polynomial is not generally stable,
   ultra-log-concave, log-concave, or rank-tail dominated; only its scalar
   logarithmic derivative at one remains viable.
+
+## 2026-08-08 09:28 PDT — cubic bound and hostile freeze
+
+- Derived the exact first Bd term along a fixed-order clone departure,
+
+  ```text
+  r^2 B3 = -sum_{i<j}[Aij^2(ci+cj)+2 Aij ci cj].
+  ```
+
+  It may be positive, but a rank-independent `Q^(3/2)` bound controls it by
+  the already strict dB quadratic.  Thus mere growth in the number of clone
+  coordinates cannot turn the perturbative response positive.
+- Froze an independent exact hostile audit: 995 connected unweighted graphs
+  through order seven, 9,471 multiscale structured graphs, 4,180 weighted
+  trees, and 2,300 further reversible `F0` graphs yielded no violation.
+  This remains finite evidence only.
+- Exactly refuted nonregular conductance midpoint symmetrization on a simple
+  weighted path.  The regular orbital sector remains a live scoped theorem,
+  not a reduction of the unrestricted problem.

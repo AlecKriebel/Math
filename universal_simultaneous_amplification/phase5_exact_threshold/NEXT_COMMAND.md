@@ -1,6 +1,6 @@
 # Next executable step
 
-Last updated: 2026-08-08 09:08 PDT.
+Last updated: 2026-08-08 09:28 PDT.
 
 ## Immediate command
 
@@ -28,10 +28,11 @@ log-concavity, and levelwise domination are unavailable; seek a centered
 two-tree exchange, transfer-current identity, or complement-reversal
 cancellation at `t=1`.
 
-The next lower-bound step starts outside the now-closed fixed-order
-second-order clone tangent.  In priority order:
+The next lower-bound step starts outside the now-closed fixed-order clone
+Taylor regime.  In priority order:
 
-1. compute the first nonzero cubic response along paths whose first
-   derivative vanishes;
-2. derive a growing-rank recurrence with uniform error control;
+1. derive a growing-rank recurrence in a singular portal regime where the
+   fixed-order remainder is not uniform;
+2. derive inter-module density corrections rather than isolated module
+   responses;
 3. test a genuinely nonseparated fast generator.

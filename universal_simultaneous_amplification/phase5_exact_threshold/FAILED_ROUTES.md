@@ -26,6 +26,11 @@ Do not retry without a new ingredient defeating the saved witness:
 - optimizing an integrated gadget without its far-field singleton Poisson
 correction.
 
+Nonregular permutation-orbit midpoint symmetrization is also exactly false,
+including on a five-vertex weighted path.  Only the symmetric-stochastic
+(regular) subcase remains viable; it cannot be used as a reduction for
+arbitrary weighted graphs without a new exact regularization theorem.
+
 The fixed-order portal-clone second-order route is now closed by theorem,
 not merely by a failed search: every nontrivial tangent has zero Bd
 quadratic and strictly negative dB quadratic.  Any reuse must explain how
