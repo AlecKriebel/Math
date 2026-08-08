@@ -127,3 +127,33 @@
   eighteen, even though all its complete-ray Bernstein coefficients remain
   nonnegative.  Thus convexity is closed but the more flexible ray-history
   grouping survives.
+- Exactified a third stronger-route failure.  The deterministic directed
+  order-five map `(1,0,0,4,3)` has every time-28 complete-ray control
+  positive, but `b_(28,28)<b_(28,27)`.  Positivity cannot be reduced to
+  monotonicity in the number of actual-coloured updates.
+
+## 2026-08-08 — fixed-count two-replica sectors
+
+- Derived the exact triangular identity
+  `binom(t,2)b_(t,2)=sum_(ell+m<=t-2) nu Delta K0^ell Delta R^m H`.
+- Proved every antisymmetric packet positive for every order and both lags:
+  the radial difference cone and the antisymmetric feature cone are both
+  positive and decreasing, making the second perturbation a sum of four
+  nonnegative sampling terms.
+- Derived exact two-feature rank recurrences and one weighted output
+  functional for each of the standard and symmetric balanced sectors.
+- Proved the entire directed three-vertex two-colour coefficient positive
+  at every time.  The exceptional standard cumulative generating function
+  has a three-term residual recurrence contracting in an exact weighted
+  maximum norm.
+- Proved every four-vertex standard fixed-total-lag diagonal positive at
+  every time by isolating its dominant `(2/3)^m` term and certifying an
+  exact 21-step companion contraction.
+- Exactified the failure of packetwise positivity: a symmetric balanced
+  four-vertex direction has `Q_(1,0)=-1/36`.
+- A first proposed local cone was rejected after a hostile boundary audit:
+  it had silently set the physical standard `k=N` mode to zero.  The
+  corrected upper-boundary mode is retained in the canonical recurrence.
+- Exact finite screens find every unresolved standard and symmetric
+  diagonal nonnegative for `4<=n<=31` and total lag at most 100.  Their
+  universal signs remain open.

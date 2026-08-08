@@ -425,10 +425,35 @@ def convexity_obstruction():
     print("PASS: same degree-18 ray polynomial has nonnegative Bernstein coefficients")
 
 
+def colour_count_monotonicity_obstruction():
+    """Exact positive ray whose final two controls decrease."""
+
+    targets = (1, 0, 0, 4, 3)
+    weights = [[0 for _ in targets] for _ in targets]
+    for source, target in enumerate(targets):
+        weights[source][target] = 1
+    coefficients = complete_ray_bernstein_recurrence(weights, 28)[28]
+    assert all(value > 0 for value in coefficients[2:])
+    assert coefficients[27] == Q(
+        5419433765256640517224634078697766406321,
+        41300141969359454129500389108526885109760,
+    )
+    assert coefficients[28] == Q(
+        128473916356718592969158918814619542013,
+        983336713556177479273818788298259169280,
+    )
+    assert coefficients[28] - coefficients[27] == -Q(
+        4705855654891922503991897696749128355,
+        8260028393871890825900077821705377021952,
+    )
+    print("PASS: exact positive n=5 ray with nonmonotone colour-count controls")
+
+
 def main():
     triangle_certificates()
     product_simplex_obstruction()
     convexity_obstruction()
+    colour_count_monotonicity_obstruction()
     exact_finite_screens()
 
 

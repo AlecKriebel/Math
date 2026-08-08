@@ -292,7 +292,7 @@ These are exact finite computations.  The attractive universal conjecture
 would imply `(TF)` immediately.  It is stronger than the endpoint floor and
 remains **OPEN**.
 
-Two exact hostile checks delimit the claim.
+Three exact hostile checks delimit the claim.
 
 1. Direct Bernstein positivity in the independent row-simplex coordinates
    is false already for the directed order-four, time-three polynomial.  At
@@ -317,9 +317,27 @@ Two exact hostile checks delimit the claim.
    `A_(18,P)''(1)<0` (approximately `-0.0312589498239`).  Nevertheless every
    degree-18 complete-ray Bernstein coefficient remains nonnegative, with
    `b_0=b_1=0` and every `b_j>0` for `j>=2`.
+3. The surviving Bernstein controls are not monotone in the colour count.
+   Let the five directed rows deterministically target
+
+   ```text
+   (1,0,0,4,3).
+   ```
+
+   At time 28 every control `b_(28,j)` with `j>=2` is strictly positive,
+   but
+
+   \[
+   b_{28,28}-b_{28,27}
+   =-{4705855654891922503991897696749128355\over
+       8260028393871890825900077821705377021952}<0.              \tag{24}
+   \]
+
+   Hence positivity, if true, cannot be obtained by proving that adding an
+   actual-coloured update always increases the fixed-count average.
 
 Thus it is the flexible complete-ray grouping `(20)`, not raw product
-coefficients or convexity, that survives.
+coefficients, convexity, or monotonicity in the colour count, that survives.
 
 ## 6. Hostile numerical optimization and remaining gap
 

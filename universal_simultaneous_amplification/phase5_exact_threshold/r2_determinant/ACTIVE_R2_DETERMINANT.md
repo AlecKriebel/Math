@@ -499,3 +499,22 @@ while still having `m<80/31`.  Thus coefficientwise level domination and
 root stochastic domination fail in the direction that would prove `(43)`.
 Any successful use of `Z_P` must control its logarithmic derivative at one
 directly, not through real stability, log-concavity, or levelwise ordering.
+
+## 12. Finite-time two-replica progress
+
+The weaker transient route has a complete-ray expansion whose first open
+control is the fixed-count two-colour coefficient `b_(t,2)`.  The exact
+triangular identity and sector reductions are recorded in
+`FIXED_COUNT_TWO_REPLICA.md`.
+
+The antisymmetric sector is proved positive packet by packet for every
+population order and both time lags.  The full directed three-vertex
+coefficient and the four-vertex standard fixed-lag diagonals are also proved
+for every time.  The remaining finite-dimensional sign is the cumulative
+standard/symmetric two-channel inequality `(35)` of that note.  Exact
+screens through `n=31` and total lag 100 find no violation.
+
+This is a genuine local two-replica advance, but it is not yet the stationary
+tree sign `(T)`: proving every two-colour coefficient would still leave the
+higher fixed-colour controls open.  No implication from the stronger
+stationary-promotion conjecture is used.

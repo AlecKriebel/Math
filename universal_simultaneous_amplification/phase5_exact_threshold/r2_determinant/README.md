@@ -73,6 +73,16 @@ finite boundary and complete-ray Bernstein screens:
 ../../.venv/bin/python verify_transient_baseline_floor.py
 ```
 
+The first open fixed-count coefficient is reduced sector by sector in
+`FIXED_COUNT_TWO_REPLICA.md`.  Its independent verifier checks the full-chain
+word identity, the all-time antisymmetric proof, the all-time three-vertex
+and four-vertex standard certificates, and the exact finite screen of the
+two unresolved rank systems:
+
+```text
+../../.venv/bin/python verify_fixed_count_two_replica.py
+```
+
 Status:
 
 - **PROVED:** exact target/promotion implication audit;
@@ -86,10 +96,18 @@ Status:
   quenched-versus-annealed formulation;
 - **PROVED:** positive time-two and time-three grouped path certificates for
   every directed triangle;
+- **PROVED:** every antisymmetric fixed-count two-colour packet is positive
+  for all population orders and both time lags;
+- **PROVED:** the complete two-colour coefficient is positive for every
+  noncomplete directed three-vertex kernel and every time;
+- **PROVED:** every four-vertex standard-sector fixed-lag diagonal is
+  positive for every time;
 - **EXACTLY COMPUTED:** positive standard, symmetric, and antisymmetric
   Hessian sectors through order twelve;
 - **EXACTLY REFUTED:** termwise transverse-excursion and two-colour-word
   positivity;
+- **EXACTLY REFUTED:** monotonicity of complete-ray controls in the number
+  of actual-coloured updates;
 - **EXACTLY REFUTED:** raw edge-monomial coefficient positivity;
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
@@ -99,4 +117,5 @@ Status:
 - **OPEN:** positivity of every higher complete-refresh forest coefficient;
 - **OPEN:** the universal transient baseline floor and its complete-ray
   Bernstein strengthening;
+- **OPEN:** the standard and symmetric all-order two-colour sector signs;
 - **OPEN:** the arbitrary-order active-tree coefficient.
