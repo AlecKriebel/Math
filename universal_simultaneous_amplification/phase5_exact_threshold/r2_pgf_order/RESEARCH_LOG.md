@@ -76,3 +76,21 @@ collision integral.  This is finite numerical evidence only.
   connected rational finite witnesses.
 - **OPEN:** `N+pi_1-2m>=0`; its exact limit on this family is the positive
   rational `1151848/289597`.
+
+## 2026-08-08: finite-time harmonic frontier isolated
+
+- Named the sufficient all-time sign
+  `FT-H: nu_K K_P^t H >= nu_K H` for every integer `t>=0`.
+- **PROVED:** Cesaro averaging of `FT-H` gives the stationary collision
+  inequality `m<=m_K`.
+- **PROVED:** at each time the harmonic gap is exactly
+  `sum_j C_(t,j)/(j(j+1))`, where `C_(t,j)` is active-rank CDF excess; also
+  derived the equivalent cumulative weighted up/down rank-flux sign.
+- Built an independent exact 186-state active-chain verifier for the frozen
+  six-vertex rank-tail graph.
+- **EXACTLY REFUTED:** pointwise finite-time CDF domination.  The singleton
+  cut is positive at time 87 and negative at time 88 (exact numerator with
+  1062 digits), while the time-88 harmonic gap remains
+  `0.0473650197701...>0` exactly.
+- **OPEN:** `FT-H` itself.  It is proved at times `0,1,2`; the verifier finds
+  no failure through time 88 on the hostile exact witness.

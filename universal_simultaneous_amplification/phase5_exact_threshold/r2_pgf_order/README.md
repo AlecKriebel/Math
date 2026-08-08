@@ -18,6 +18,12 @@ certificates are:
 - `WEAK_MODULE_PCDF_REFUTATION.md`;
 - `verify_weak_module_pcdf_refutation.py`.
 
+The surviving finite-time route and an exact refutation of its stronger
+pointwise-CDF version are recorded in:
+
+- `FINITE_TIME_HARMONIC_FRONTIER.md`;
+- `verify_finite_time_harmonic_frontier.py`.
+
 The first refutation leaves the required `psi`-weighted integral positive.
 The weak-module certificate then exactly refutes the residual active-rank CDF
 order away from the singleton cut.  The mean--singleton inequality and the
