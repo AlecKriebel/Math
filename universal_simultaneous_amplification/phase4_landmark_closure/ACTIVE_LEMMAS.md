@@ -215,5 +215,77 @@ map inequality is
  S^{D,h}(J_r(s))<J_r(S^{B,h}(s)).                       \tag{F}
 \]
 
-The no-direct-portal case is proved.  (F) is numerical only and is secondary
-to the universal endpoint and fitness-two tasks.
+The no-direct-portal case is proved.  In the direct case, `Q=2,T=1` is now
+also proved impossible for every `r>=3/2`, with arbitrary positive unequal
+portal loads and an arbitrary positive portal edge.  The exact separator is
+
+\[
+ T_B+{81\over200}T_D<0,\qquad 3/2\le r\le2.          \tag{F1}
+\]
+
+The remaining direct-portal problem begins at three portals, multiple blade
+types, or growing portal rank.  No statement in this section is universal
+over arbitrary graphs.
+
+A second exact theorem closes one growing-rank subregime.  If `Q_s->infinity`,
+`Q_s=o(s)`, the portal graph is `H`-regular with maximum edge weight tending
+to zero, and blade incidence is exchangeable across portal identities, then
+the limiting portal episode is a scalar branching process.  Bd establishment
+can exceed `1-1/r` only when `B+H>1`; throughout that regime dB establishment
+is strictly below `1-1/r`.  If `B+H<1`, Bd is strictly below it.  This holds
+for every `r>1` and includes complete portal graphs and degree-diverging
+regular expanders.  Fixed-degree networks, portal-dependent incidence, and
+singular scaling remain outside the theorem.
+
+## G. Endpoint batching covariance
+
+Let `K_R` be the post-neutral refreshed-target event chain and `K_D` the
+locked-target dB burst chain at `r=3/2`.  Let `tau_R(A),tau_D(A)` be their
+rooted in-arborescence cofactors, `beta_C=tau_R/Z_R`, and
+
+\[
+ \zeta(A)={Z_R\tau_D(A)\over Z_D\tau_R(A)},\qquad
+ f(A)=|A|^{-1},\qquad c=R_Cf.
+\]
+
+The exact open batching comparison is equivalent to
+
+\[
+ \boxed{
+ \operatorname{Cov}_{\beta_C}(\zeta,f)
+ \ge R_n^{-1}E_{\beta_C}c-E_{\beta_C}f.}             \tag{G}
+\]
+
+All quantities in (G) are positive tree or coverage weights, but neither
+side has a separate sign.  The rootwise integrand has both signs already on
+`K_4`, so a proof must transport mass between different arborescence roots.
+
+## H. Rank-weighted posterior reflection at fitness two
+
+For the stationary fair-geometric dual, let `e_v(B)` be the effective-target
+posterior excess, `k=|B|`, `h=n-k`, and
+
+\[
+ J(B)=\sum_{v\notin B}(e_v-k/h)^2,
+ \qquad
+ G(B)=\sum_{v\notin B}{1\over1+e_v}-{h^2\over n}.
+\]
+
+The sharp pointwise arithmetic--harmonic lemma proves
+
+\[
+ J(B)\le n c_{n,k}G(B),                              \tag{H}
+\]
+
+where `c_(n,k)` is the exact piecewise coefficient recorded in
+`obstruction/r2_posterior_reflection/POSTERIOR_REFLECTION.md`.  Hence the
+finite complete baseline would follow from the sole stationary sign
+
+\[
+ \boxed{E_\Pi[c_{n,|B|}G(B)]\le m_K-E_\Pi|B|.}       \tag{H1}
+\]
+
+The active-channel Brier decomposition of (H1) is exact.  Centered Cayley
+contraction, constant-coefficient splitting, targetwise positivity, and
+reversible edge-pair positivity are all exactly false; cancellation is
+nonlocal even on a tree.

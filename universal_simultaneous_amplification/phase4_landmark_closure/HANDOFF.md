@@ -89,3 +89,26 @@ No phase-4 paper or release exists yet.  The inherited fixed-graph paper is
 under `universal_simultaneous_amplification/paper/`.  Under the independent
 research policy, no specialist outreach may be prepared or initiated; a
 future external-review step may only be recorded as human-only.
+
+## 2026-08-08 latest exact checkpoint
+
+- **PROVED CLASS THEOREM:** fixed `Q=2,T=1` direct-portal strong-pair
+  systems, including arbitrary unequal positive loads and any positive
+  portal edge, cannot cross `3/2`.  Commit `f4956bd0`.
+- **PROVED GROWING-CLASS THEOREM:** diffuse regular portal networks with
+  `Q_s->infinity`, `Q_s=o(s)`, and exchangeable incidence fail simultaneous
+  establishment for every `r>1`.  Commit `ece03514`.
+- **PROVED REDUCTION / OPEN SIGN:** endpoint batching is exactly the paired
+  rooted-arborescence/coverage covariance (G) in `ACTIVE_LEMMAS.md`.
+  Persistence, timing, and rootwise signs are each exactly false.  Commits
+  `5ff48ffb`, `eda895fe`.
+- **PROVED SHARP LEMMA / OPEN SIGN:** the rank-weighted posterior reflection
+  (H)--(H1) retains the finite complete baseline at `r=2`.  Local Cayley,
+  target, edge, and cycle shortcuts are exactly closed.  Commit `425fa927`.
+- **STILL OPEN:** endpoint product/disjunction, endpoint batching covariance,
+  the exact `r=2` stationary mean bound, and the value of `R_sim`.
+
+The active proof cycle is global: combined endpoint forest transport and
+full-tree complement reflection at `r=2`.  Further construction work must
+leave both the fixed-rank and diffuse-growing portal scopes and must control
+fixation after establishment.

@@ -1,21 +1,25 @@
 # Exact-threshold claims ledger
 
-Last updated: 2026-08-08 stationary determinant and flow audit.
+Last updated: 2026-08-08 direct-portal, endpoint-batching, and posterior-reflection audits.
 
 | Claim | Status | Exact basis | Remaining gap |
 |---|---|---|---|
 | `R_sim>=3/2` | **PROVED** | explicit rational center--triangle family; exact module chains, rare-edge bounds, endpoint audit | none |
 | center--triangle family amplifies at `r=3/2` | **FALSIFIED FOR THIS FAMILY** | exact deficits `-4/(3N^2)+o(N^-2)` and `-16/(81N^2)+o(N^-2)` | says nothing universal |
 | fixed-finite-rank no-direct-portal blade families work at or above `3/2` | **FALSIFIED FOR THIS CLASS** | affine supersolution, exact Bernstein certificate, stopped-trace fixation bound, hostile audit | growing/singular rank and direct portal edges open |
+| fixed two-portal, one-blade-type direct network works at or above `3/2` | **FALSIFIED FOR THIS CLASS** | exact three-state portal trace and strict separator `T_B+(81/200)T_D<0`; 11-box rational Bernstein certificate | higher fixed rank/types and non-diffuse or portal-dependent growing rank open |
+| diffuse regular growing-portal network works beyond `3/2` | **FALSIFIED FOR THIS CLASS, IN FACT FOR EVERY `r>1`** | exact finite-count trace, branching-episode limit, and complementary Bd/dB threshold factors | fixed-degree networks, portal-dependent incidence, mesoscopic classes, and singular scaling open |
 | product inequality at `r=3/2` for positive weighted triangles | **PROVED** | 24-atom squared-difference certificate | arbitrary `n` open |
 | product inequality at `r=3/2` for every graph | **OPEN** | exact local/finite evidence only | global graph-sensitive inequality |
 | no graph simultaneously amplifies both rules at `r=3/2` | **OPEN** | product would suffice but is stronger than necessary | universal disjunctive separator |
 | balanced normalized-arithmetic separator at `r=3/2` | **OPEN; EXACTLY REDUCED** | `e_B+e_D=T+C-E`, exact Green occupations, `E>=0`, and rank-flow conservation | prove the global cross-rule, cross-rank sign `T+C<=E` |
 | reversed-arrow orientation mean inequality at `r=3/2` | **OPEN; EXACTLY REDUCED** | skew/defect Dirichlet identities and electrical two-tree transfer formula | prove the scalar transfer sign; batching factor would still remain |
+| `C`-to-dB endpoint batching ratio | **OPEN; EXACTLY REDUCED** | full marked event resolvent, Palm laws, rooted-arborescence/coverage covariance identity | prove paired root-mass transport; persistence, timing, and rootwise signs are each false |
 | rankwise Johnson reduction of `T+C` | **PROVED IDENTITY** | exact degree-one/two Johnson Poisson equations and Green summation by parts | high-mode Schur feedback has no proved sign |
 | scalar or degree-two Green-flow relaxation proves the endpoint separator | **FALSIFIED AS A ROUTE** | exact rational pseudo-Green laws on `P_3` and a seven-vertex graph | actual Green equations require higher modes |
 | a fixed affine separator can use an arbitrary multiplier | **EXACTLY RESTRICTED** | exact endpoint witnesses force `177/2000<lambda<7/12`; `lambda=1/2` survives | no fixed multiplier is yet proved universal |
 | complete graph maximizes dB fixation at `r=2` | **OPEN** | exactly equivalent to `L<=V` | stationary cut surplus versus dispersion |
+| sharp rank-weighted posterior reflection at `r=2` | **PROVED REDUCTION; FINAL SIGN OPEN** | sharp arithmetic--harmonic lemma `J<=n c G`, exact Brier/Cayley transport identities | prove `E[cG]<=m_K-E|A|`; edgewise and componentwise signs are false |
 | symmetric-flow split `L<=S<=V` proves the `r=2` sign | **FALSIFIED AS A ROUTE** | exact complete-support undirected order-six witness has `L>S` while `L<V` | a direct cancellation in `V-L` is required |
 | entropy reflection `M>=I(V;B)` at `r=2` | **OPEN** | exact identity and exact route counterexamples | would imply half density only |
 | chi-square information bound `I_2(V;B)<=2` | **OPEN** | exact identity and diagnostics | would imply half density only |

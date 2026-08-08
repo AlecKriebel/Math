@@ -178,3 +178,33 @@ paper in the repository is the inherited fixed-graph paper under `paper/`.
 3. Attack `L<=V` through a two-particle stationary likelihood/capacity
    inequality, keeping the finite complete-baseline correction; the Shannon
    and chi-square reductions alone yield only half density.
+
+## 2026-08-08 continuation checkpoint
+
+The audited committed checkpoint after the latest construction cycle is
+`ece03514` on `main`; its immediate theorem/reduction milestones are:
+
+- `5ff48ffb`, `eda895fe`: exact endpoint event--Palm and rooted-arborescence
+  batching reductions;
+- `f4956bd0`: exact two-portal direct-network obstruction for all
+  `r>=3/2` in the fixed `Q=2,T=1` scope;
+- `425fa927`: sharp rank-weighted posterior-reflection reduction at `r=2`;
+- `ece03514`: all-fitness obstruction for growing diffuse regular portal
+  networks with exchangeable incidence.
+
+All associated exact verifiers replayed successfully from the repository
+root.  The historical untracked stationary-discovery script remains
+preserved and is not part of any theorem package.
+
+The next three executable tasks are now:
+
+1. combine the orientation and batching arborescence formulas into one
+   full endpoint-product forest sign, allowing their indefinite pieces to
+   cancel;
+2. attack the exact `r=2` stationary mean through complement/root-moving
+   path reversal on full Markov-chain trees, rather than another local Brier
+   split;
+3. test the remaining construction regimes outside the proved portal
+   obstructions: fixed-degree portal networks, portal-dependent incidence,
+   and singular/mesoscopic scaling, with post-establishment fixation control
+   required before any positive claim.

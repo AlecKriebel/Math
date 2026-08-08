@@ -75,6 +75,14 @@ Exact files: `obstruction/cross_sum_three_halves/`,
 - The proposed symmetric-flow split `L<=S<=V` is false even for a connected
   complete-support undirected graph on six vertices.  Its exact witness still
   has `L<V`, so it closes only the split, not complete-graph maximality.
+- Centering the fair-geometric Cayley channel does not restore contraction;
+  exact `P_3` and regular weighted `K_4` witnesses show strong expansion.
+- The rank-weighted posterior-reflection slack cannot be split into a static
+  Boolean term and an independently nonnegative active Brier term.  The
+  static term is negative on the standard exact witnesses.
+- Targetwise active-channel positivity and undirected edge-pair positivity
+  are false.  The unweighted four-path already needs compensation between
+  distinct tree edges, so cycle circulation cannot be the missing mechanism.
 
 Exact files: `obstruction/r2_collision_bound/`,
 `obstruction/r2_entropy_certificate/`, `obstruction/regular_db_max/`, and
@@ -92,6 +100,10 @@ Exact files: `obstruction/r2_collision_bound/`,
 - unequal-load rank-one portal incidence with no direct portal edges;
 - fixed-finite-rank arbitrary positive incidence with no direct portal edges
   for every fixed `r>=3/2`;
+- two arbitrary unequal fixed portals with one blade type and an arbitrary
+  positive direct portal edge, for every fixed `r>=3/2`;
+- growing diffuse regular portal networks with exchangeable incidence,
+  including complete portal graphs and degree-diverging regular expanders;
 - fixed-class positive-proportion dense blow-ups with unequal limiting
   weighted degrees.
 
