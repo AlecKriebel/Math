@@ -392,3 +392,26 @@
   and `2` at `r=8/5` favor opposite local rules, so typewise application of
   the rank-one identity is invalid.  A separate multitype search is active;
   the class closure does not alter the **59%** landmark estimate.
+
+## 2026-08-07 22:30 PDT — landmark restart gate passed
+
+- [PROVED / REPLAYED] Recovered `main` and `origin/main` at
+  `ffe5c89cf41ca3cced5a2e573404baeb2d510897`.  The exact center--triangle
+  module, quotient-lumping, independent threshold, endpoint, fitness-two
+  Green--collision, entropy-reflection, three-halves triangle/drift, and
+  product-route verifiers all exited cleanly.  No frozen theorem failed.
+- [PROVED CLASS THEOREM AFTER HOSTILE AUDIT] The higher-rank affine separator
+  is valid for fixed finite `Q,T`, fixed positive limiting blade proportions,
+  fixed positive incidences `lambda_at/s`, and no portal edges.  It excludes
+  the class for every fixed `r>=3/2`.  Growing or singular rank and direct
+  portal networks are explicitly not covered.
+- [EXACT ROUTE CLOSURES] A rank/overlap-only product-Poisson certificate,
+  rank-convolution domination, and global all-`z` coverage-product domination
+  have exact counterexamples that preserve the desired fixation endpoint.
+  At fitness two, active-channel entropy expansion, fixed-reference
+  contraction, Blackwell garbling, and full convex order likewise fail
+  exactly.  The aggregate endpoint and information signs remain open.
+- [OPEN, FROZEN TARGETS] The universal product inequality and weaker
+  disjunctive separator at `r=3/2`, and the exact fitness-two sign `L<=V`, are
+  the three mission-level proof obligations.  Control ledgers and full replay
+  outputs were written before new research began.

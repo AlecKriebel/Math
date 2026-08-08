@@ -1,0 +1,86 @@
+# Failed and closed proof routes
+
+Last updated: 2026-08-07 restart gate.
+
+These failures are exact unless explicitly labeled numerical.  None should
+be revived without a new ingredient addressing the stated witness.
+
+## Global caution
+
+- **Independent genealogy domination is false.**  A reproduction event for
+  one ancestry is simultaneously a death event for another.  Marginal clock
+  bounds cannot be embedded as independent branching clocks.  The proved
+  center--triangle family directly contradicts the retracted fixation bound.
+
+## Endpoint `r=3/2`
+
+- A common pointwise Bd/dB harmonic correction, including the
+  baseline-weighted tangent version, is infeasible on weighted paths.
+- Pointwise harmonic comparison, simple rank ordering, pointwise density
+  products, temperature alignment, and pairwise vertex-marginal alignment
+  have exact counterexamples.
+- Global concavity and radial monotonicity toward `K_n` fail; balancing an
+  arbitrary weight vector is not monotonically product-improving.
+- A product-chain Poisson potential depending only on
+  `(|A|,|B|,|A intersection B|)` is impossible: an exact five-atom law on
+  the unweighted three-path annihilates every such generator correction but
+  gives target value `571/852>0`.
+- Stationary rank-sum convolution domination fails on an exact weighted
+  four-vertex graph.
+- All-`z` Bernoulli-coverage product domination fails on another exact
+  weighted four-vertex graph.
+- The last two witness graphs still satisfy the endpoint product inequality;
+  they close proof architectures, not the theorem.
+- The complete dB harmonic drift is not pointwise superharmonic: the signed
+  row-cut deviation in the exact bridge can be negative.
+
+Exact files: `obstruction/cross_sum_three_halves/`,
+`obstruction/signed_cut_capacity/`, and
+`obstruction/product_chain_certificate/`.
+
+## Fitness `r=2`
+
+- Per-level Jensen residuals are not all nonpositive; a regular weighted
+  `K_4` has a positive middle-level residual.
+- The bare cut sign `L<=0` is false; the weighted path with consecutive
+  weights `(1,2)` has `L=2/135>0` while `L-V<0`.
+- Pointwise complete-Poisson forcing domination fails on the same path.
+- Pairwise stationary-correlation bounds behind component odds fail on the
+  unweighted `P_4` and a positive regular weighted `K_4`; the summed odds
+  inequality survives these witnesses.
+- A nonnegative additive potential certified only through singleton hole
+  sums is infeasible on an exact positive-support weighted five-vertex
+  graph; the target odds inequalities remain positive there.
+- Global concavity on the regular-kernel polytope fails on an exact rational
+  seven-vertex example.
+- Directed transposition symmetrization, unrestricted conductance averaging,
+  and the natural annealing/coverage intermediates fail.  A narrower regular
+  symmetrization question remains open.
+- Entropy reflection is not pointwise in rank, even for complete `K_4`.
+- Separate active-channel entropy expansion fails on the regular weighted
+  `K_4` with cycle weights four and diagonal weights one.
+- Fixed-reference `L^2` contraction, revealing the effective/null flag,
+  Blackwell garbling, and full likelihood-ratio convex-order domination all
+  have exact counterexamples.
+
+Exact files: `obstruction/r2_collision_bound/`,
+`obstruction/r2_entropy_certificate/`, `obstruction/regular_db_max/`, and
+`obstruction/orbital_symmetrization/`.
+
+## Construction classes already closed
+
+- uniformly bounded-support-degree families and repeated bounded gadgets;
+- windmills and the recorded clique-guard modifications;
+- weakly coupled complete modules and the recorded mesoscopic modules;
+- bounded dense overlays at their first nonzero establishment order;
+- separated protected-pair systems with two exchangeable portals;
+- fixed or sublinear exchangeable multiportal systems in the compact-load
+  regime;
+- unequal-load rank-one portal incidence with no direct portal edges;
+- fixed-finite-rank arbitrary positive incidence with no direct portal edges
+  for every fixed `r>=3/2`;
+- fixed-class positive-proportion dense blow-ups with unequal limiting
+  weighted degrees.
+
+The exact unclosed regimes are growing or singular portal rank, direct portal
+networks, genuinely nonseparated multiscale systems, and arbitrary graphs.

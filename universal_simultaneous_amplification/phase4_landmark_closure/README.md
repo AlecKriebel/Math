@@ -80,14 +80,14 @@ bounded normalized load.  The post-establishment drift is at least `r^3`
 for both rules, so the class failure is localized exactly at entrance.
 Positive-proportion portal architectures are not covered.
 
-Portal exchangeability can now be dropped when the portal-by-blade incidence
-matrix has rank one and direct portal edges are absent.  Arbitrary unequal
-positive loads still obey a pointwise Bd--dB score identity whose sum is
-strictly negative for every `r>1`; hence this entire separated class has no
-simultaneous window.  The full labelled portal-subset trace is retained and
-checked exactly.  Genuinely higher-rank incidence remains open and cannot be
-closed type by type, because exact low- and high-load portal scores favor
-opposite rules.
+Portal exchangeability can be dropped completely, for every fixed finite
+incidence rank, when direct portal edges are absent and the positive trace
+data remain fixed with population size.  An affine survival-map separator
+and an exact Bernstein certificate exclude this class for every fixed
+`r>=3/2`; a hostile restart audit independently checked the rates,
+fixed-point direction, terminal Bernstein boxes, endpoints, and degeneracies.
+The theorem does not cover growing or singular rank, vanishing blade types,
+size-dependent incidences, or direct portal networks.
 
 The current universal-obstruction attack factors the conjectured
 `r=3/2` fixation product through a conservative reversed-arrow dual.  Exact
@@ -115,6 +115,22 @@ second-collision inequality.  Both signs remain open.  Exact counterexamples
 rule out per-level Jensen, pointwise cut, pairwise-correlation, and one
 nonnegative additive-potential shortcut without refuting either surviving
 aggregate conjecture.
+
+Two independent restart packages sharpen the route boundary without changing
+the theorem status.  At `r=3/2`, exact Farkas and rational witnesses rule out
+rank/overlap-only product-chain Poisson potentials, rank-convolution
+domination, and all-parameter coverage-product domination; every witness
+still obeys the fixation endpoint comparison.  At `r=2`, exact Shannon and
+chi-square reflection identities reduce half density to one information
+sign each, while exact counterexamples close active-channel expansion,
+fixed-reference contraction, Blackwell garbling, and full convex order.
+Neither information sign is equivalent to the finite Green--collision gap,
+and both remain open.
+
+The 2026-08-07 critical restart replay is recorded in `RESTART_STATE.md` and
+`restart_audit/`.  All theorem-grade verifiers passed.  The exact universal
+product/disjunctive endpoint separator and the fitness-two sign `L<=V` remain
+the mission-level open problems.
 
 No specialist outreach will be prepared or initiated under the repository's
 independent-research policy. If a theorem reaches publication, external review
