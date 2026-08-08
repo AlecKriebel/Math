@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact certificate for the K_33-with-four-pendants product counterexample.
+"""Exact certificate for the K_32-with-four-pendants product counterexample.
 
 The solve uses FLINT over QQ.  The returned vector is then converted to
 stdlib Fractions and every harmonic equation is checked independently.
@@ -78,7 +78,7 @@ def main() -> None:
     parser.add_argument("--full", action="store_true", help="print the full exact JSON")
     args = parser.parse_args()
 
-    c, m, r = 32, 4, Fraction(3, 2)
+    c, m, r = 31, 4, Fraction(3, 2)
     n = c + m + 1
     results = {}
     solutions = {}
@@ -142,7 +142,7 @@ def main() -> None:
         print(rendered)
     else:
         print(
-            "PASS: exact 328-state solves; "
+            f"PASS: exact {len(transient)}-state solves; "
             f"Bd ratio={report['decimal']['Bd_ratio']}, "
             f"dB ratio={report['decimal']['dB_ratio']}, "
             f"product={report['decimal']['normalized_product']}"

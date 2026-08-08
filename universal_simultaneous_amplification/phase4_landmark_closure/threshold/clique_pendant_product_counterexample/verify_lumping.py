@@ -16,7 +16,8 @@ def main() -> None:
         (2, 1, Fraction(3, 2)),
         (3, 2, Fraction(7, 5)),
         (4, 3, Fraction(2)),
-        (32, 4, Fraction(3, 2)),
+        (31, 4, Fraction(3, 2)),
+        (32, 4, Fraction(3, 2)),  # original, slightly larger witness
     ]
     checks = 0
     for c, m, r in cases:

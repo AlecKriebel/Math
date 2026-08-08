@@ -63,7 +63,7 @@ def solve(rule: str, c: int, m: int, r: Fraction) -> Fraction:
 def main() -> None:
     here = Path(__file__).resolve().parent
     certificate = json.loads((here / "certificate.json").read_text())
-    c, m, n = 32, 4, 37
+    c, m, n = 31, 4, 36
     r = Fraction(3, 2)
     rho = {rule: solve(rule, c, m, r) for rule in ("Bd", "dB")}
     for rule in ("Bd", "dB"):
