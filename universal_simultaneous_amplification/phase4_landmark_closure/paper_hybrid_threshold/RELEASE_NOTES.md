@@ -41,7 +41,7 @@ heavy `K_2` satellites.  The release includes:
 - the exact counterexample excluding every graph-independent convex affine
   endpoint separator;
 - hostile-audit and page-by-page PDF QA records; and
-- a one-command replay script.
+- a one-command replay script, plus a pinned clean-archive bootstrap.
 
 ## Scope
 

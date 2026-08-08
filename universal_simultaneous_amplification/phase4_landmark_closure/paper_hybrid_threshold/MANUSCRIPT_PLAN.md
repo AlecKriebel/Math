@@ -60,5 +60,6 @@ center--triangle family, but this manuscript supersedes it.
 - [x] Update the project claims ledger without overwriting parallel work.
 - [x] Use a title that does not suggest that `3/2` is the boundary.
 - [x] State explicitly that the exact value of `R_sim` remains open.
+- [x] Add and test a pinned clean-archive replay bootstrap.
 - [ ] Regenerate the deterministic manifest after the final source edits.
 - [ ] Create and verify the tagged release and source archive.

@@ -30,6 +30,8 @@ value of `R_sim` remains open.
 - `main.tex`: completed and hostile-audited replacement manuscript source.
 - `MANUSCRIPT_PLAN.md`: theorem/evidence map and remaining editorial work.
 - `replay.sh`: one-command exact replay for the new construction.
+- `bootstrap_replay.sh`: clean-archive replay after installing the two pinned
+  exact-algebra dependencies into a local virtual environment.
 - `RELEASE_NOTES.md`: exact scope and status text for the tagged preprint.
 - No journal submission or external contact is claimed.
 - The released `R_sim>=3/2` paper remains mathematically correct but is
@@ -41,6 +43,16 @@ From this folder run:
 ./replay.sh
 ./build.sh
 ~~~
+
+From a clean source-archive extraction, run instead:
+
+~~~sh
+./bootstrap_replay.sh
+~~~
+
+The bootstrap uses `python3` by default, creates `.venv` at the archive root,
+installs the versions in `requirements.txt`, and then runs the same exact
+replay.  Set `BOOTSTRAP_PYTHON` to select a different Python executable.
 
 `all.sh` performs both steps. The deterministic PDF is written to
 `output/pdf/simultaneous_amplification_beyond_three_halves.pdf`.

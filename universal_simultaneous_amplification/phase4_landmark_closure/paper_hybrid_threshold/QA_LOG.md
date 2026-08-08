@@ -9,6 +9,7 @@ Date: 2026-08-08 (America/Los_Angeles)
 - Hybrid coefficient and rational endpoint certificate: PASS.
 - Exact endpoint affine witness: PASS.
 - Independent discrete-time labelled-event endpoint solve: PASS.
+- Clean-archive replay path: PASS with the pinned dependency bootstrap.
 
 ## Build
 
