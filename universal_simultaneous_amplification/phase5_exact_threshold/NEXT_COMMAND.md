@@ -1,6 +1,6 @@
 # Next executable step
 
-Last updated: 2026-08-08 09:28 PDT.
+Last updated: 2026-08-08 12:20 PDT.
 
 ## Immediate command
 
@@ -17,7 +17,17 @@ Then run only the exact verifier belonging to each new claimed milestone.
 ## Immediate proof step
 
 The collision/promotion implication has been audited and repaired.  The next
-upper-bound step is to prove or refute the direct subset-tree sign
+upper-bound step is to prove or refute the finite-time harmonic lemma
+
+\[
+ \nu_KK_P^tH\ge\nu_KH\qquad(t\ge0),
+\]
+
+whose Cesaro limit proves the true collision target.  Pointwise rank cuts,
+PGF order, likelihood-ratio order, and individual excursion packets are all
+unavailable.  Seek a fixed-length grouped-history certificate, a
+quenched-versus-annealed two-replica identity, or a nonnegative complete-ray
+Bernstein expansion.  In parallel, continue the direct subset-tree sign
 
 \[
  m_KZ_P(1)-Z_P'(1)\ge0
@@ -26,7 +36,8 @@ upper-bound step is to prove or refute the direct subset-tree sign
 for every reversible loopless replacement kernel.  Root stability,
 log-concavity, and levelwise domination are unavailable; seek a centered
 two-tree exchange, transfer-current identity, or complement-reversal
-cancellation at `t=1`.
+cancellation at `t=1`.  The exact triangle `t=3` increment and all-order
+antisymmetric Hessian are the current algebraic footholds.
 
 The next lower-bound step starts outside the now-closed fixed-order clone
 Taylor regime.  In priority order:

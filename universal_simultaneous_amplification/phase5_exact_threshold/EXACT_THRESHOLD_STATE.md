@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 09:28 PDT.
+Last updated: 2026-08-08 12:20 PDT.
 
 ## Frozen starting point
 
@@ -77,6 +77,16 @@ This is finite evidence only.
    but it is uniformly controlled by the already negative dB quadratic.
    Growing rank by itself cannot magnify that cubic relative to the
    quadratic cost.
+8. For every `n>=4`, the complete graph is a strict local dB maximizer at
+   fitness two throughout the regular kernel sector.  This is an all-order
+   local theorem, not global regular maximality.
+9. The finite-time harmonic lemma `(FT-H)` is proved at times zero, one, and
+   two universally, and through time three for every directed triangle.  It
+   would prove the universal fitness-two theorem by Cesaro averaging.
+10. The true complete-refresh determinant has zero constant and linear terms;
+    its quadratic coefficient is positive in the antisymmetric balanced
+    sector for every order.  The standard and symmetric balanced sectors and
+    higher forest coefficients remain open.
 
 ### Open
 
@@ -95,6 +105,13 @@ order six, or 2,300 additional reversible rational `F0` instances.  These
 are exact finite computations, not a universal theorem.  Nonregular
 permutation-midpoint symmetrization is exactly false; its regular subcase is
 still open.
+
+The stationary marked PGF, active rank CDF, and rank likelihood-ratio
+strengthenings are also exactly false on connected reversible graphs.  In
+particular a weakly coupled five-copy `P_3` construction makes the second
+active-rank CDF cut negative in the exact singular limit, and the frozen
+six-vertex graph makes a finite-time singleton cut negative at time 88.
+Neither graph violates the harmonic collision target.
 
 ## Working exact-threshold hypothesis
 
@@ -115,3 +132,9 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 - `bbf3323d`: direct collision determinant and triangle certificate;
 - `c7d6a479`: independent exact fitness-two hostile audit;
 - `ffcde4d5`: cubic clone response and rank-uniform domination bound.
+- `37f370d1`: exact stationary marked-PGF refutation and integrated reduction.
+- `e559a087`: exact likelihood-ratio-descent refutation.
+- `7a867242`: all-order strict local theorem in the regular sector.
+- `f1e7c98b`: complete-refresh determinant sectors and antisymmetric theorem.
+- `35af7f1f`: connected weak-module refutation of active-rank PCDF.
+- `4abcc038`: isolation of the finite-time harmonic frontier `(FT-H)`.

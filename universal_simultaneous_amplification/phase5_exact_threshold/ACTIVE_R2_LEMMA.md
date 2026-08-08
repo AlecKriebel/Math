@@ -1,6 +1,6 @@
 # Canonical fitness-two lemma
 
-Last updated: 2026-08-08.  Status labels are literal.
+Last updated: 2026-08-08 12:20 PDT.  Status labels are literal.
 
 ## 1. Graph kernel and exact dual law
 
@@ -220,6 +220,51 @@ It is the coefficient of `epsilon` in
 Since `c_P=a_2>=1/m_K`, the promotion tree sign (R2-5) implies (R2-5C),
 but the converse is not proved.
 
+## 5A. The weaker finite-time harmonic frontier
+
+The strongest surviving all-time statement actually needed is weaker than
+`PROM`.  Start the forward active chain from the complete active law and put
+
+\[
+ a_t=\nu_KK_P^tH,\qquad H(B,v)=1/|B|.
+\]
+
+Then
+
+\[
+ \boxed{a_t\ge a_0=1/m_K\quad\hbox{for every integer }t\ge0.}
+ \tag{FT-H}
+\]
+
+If `(FT-H)` holds, finite-chain Cesaro convergence gives
+
+\[
+ {1\over m}=\lim_{T\to\infty}{1\over T}\sum_{t<T}a_t\ge{1\over m_K},
+\]
+
+which proves (R2-1).  Thus `(FT-H)` is a named sufficient lemma, not an
+equivalent reformulation of the stationary target.  It is proved for
+`t=0,1,2`: conjugacy averaging gives `a_1=a_0`, and the two-step SOS gives
+`a_2>=a_0`.  It is **OPEN** for arbitrary `t`.
+
+If `q_{t,k}` is the rank law of `nu_K K_P^t`, `q_k^K` the complete rank law,
+and
+
+\[
+ C_{t,j}=\sum_{k\le j}(q_{t,k}-q_k^K),
+\]
+
+then discrete summation by parts gives the exact weakest rank form
+
+\[
+ \boxed{a_t-a_0=\sum_{j=1}^{N-1}{C_{t,j}\over j(j+1)}.} \tag{R2-5H}
+\]
+
+The individual signs `C_(t,j)>=0` are false: on the frozen reversible
+six-vertex rank-tail graph, `C_(88,1)<0` exactly while `a_88-a_0>0` exactly.
+Accordingly a proof must preserve the harmonic weighting in (R2-5H), or the
+equivalent cumulative weighted rank-flux sum.
+
 ## 6. Equality cases
 
 - Complete kernel: equality in (R2-1)--(R2-3), and `D_1=D_2=0`.
@@ -240,6 +285,9 @@ Do not use without a new ingredient:
 6. the symmetric-flow split `L<=S<=V`;
 7. ordinary one-particle entropy or fixed-reference `L^2` contraction;
 8. edgewise, targetwise, or cyclewise positive stationary decomposition.
+9. stationary or finite-time pointwise PGF domination;
+10. active-rank CDF domination, even at a fixed finite time;
+11. descent of active rank likelihood ratios.
 
 The exact six-vertex rank-tail witness and exact five-vertex temporal/PGF
 witnesses still satisfy (R2-1) strictly.  They close routes, not the theorem.
@@ -298,3 +346,28 @@ log-concavity, and coefficientwise rank-tail domination are each exactly
 false.  The surviving determinant problem is therefore the scalar
 logarithmic-derivative sign at `t=1`, requiring a genuinely centered
 tree/forest cancellation.
+
+## 10. Local and low-order exact progress
+
+- For every weighted triangle the true determinant sign is proved, with the
+  centered positive polynomial displayed above.
+- Along complete refresh `P_alpha=(1-alpha)P_K+alpha P`, the determinant has
+  zero constant and linear terms.  Its quadratic form is strictly positive
+  on the entire antisymmetric balanced sector for every population order.
+- In the admissible regular sector, `K_n` is a strict local dB maximizer at
+  fitness two for every `n>=4`; the first variation is zero and the second is
+  strictly negative in every nonzero symmetric row-zero direction.
+- For every directed loopless triangle, `(FT-H)` is proved through time
+  three.  Writing the three row parameters as `x,y,z` and
+  `X=x-1/2,Y=y-1/2,Z=z-1/2`, the exact increments are
+
+  \[
+  a_2-a_0={X^2+Y^2+Z^2\over12},
+  \]
+
+  \[
+  a_3-a_2={ (y+z)X^2+(1+x-z)Y^2+(2-x-y)Z^2\over16}\ge0.
+  \]
+
+These are universal or exact low-order theorems, not the missing all-time or
+all-order proof.

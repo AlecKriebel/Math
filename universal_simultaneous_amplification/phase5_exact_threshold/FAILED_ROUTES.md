@@ -17,6 +17,11 @@ Do not retry without a new ingredient defeating the saved witness:
 - event-rank stochastic domination in the marked `r=2` lift;
 - monotonicity of the marked target in time;
 - a stationary envelope for every radial PGF;
+- a finite-time pointwise active-rank CDF envelope (the singleton cut is
+  exactly negative at time 88 on the frozen reversible order-six graph);
+- active-rank CDF domination beyond the singleton cut (an exact connected
+  weak-module family has negative second cut in its singular limit);
+- descent of active-rank likelihood ratios;
 - real-rootedness or stability of the subset root polynomial (already false
   on the complete graph of order four);
 - ultra-log-concavity, ordinary log-concavity, or coefficientwise rank-tail
