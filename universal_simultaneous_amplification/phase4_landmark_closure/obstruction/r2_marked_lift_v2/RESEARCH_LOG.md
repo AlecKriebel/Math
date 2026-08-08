@@ -38,12 +38,27 @@ Date: 2026-08-08 (America/Los_Angeles)
 - The same solve gives `m=2.305291055...<80/31` and harmonic collision slack
   `0.046284704868...>0`.  It is not a fixation counterexample.
 
+## Universal two-step theorem
+
+- For every loopless row-stochastic kernel, proved an exact formula for
+  `U M_P^2 t^K-U t^K` as a nonnegative combination of two graph defects.
+  The first is `sum_(vi) P_(vi)^2-n/(n-1)`.  The second is
+  `sum_i(column_i-1)^2+(1/2)sum_(vi)(P_(vi)-P_(iv))^2`.
+- The two coefficients are explicitly nonnegative on `0<=t<=1`.  Integrating
+  the formula and using the fact that one marked step annihilates rank parity
+  proves `U M_P^2 psi>=U psi=1/m_K`, strictly off the complete kernel.
+- The identity is valid without reversibility and has been independently
+  checked by exact marked-state enumeration on rational directed kernels.
+- Long-time monotonicity is false: extreme reversible kernels can have
+  `U M_P^t psi` decrease at late times.  The surviving conjecture is the
+  lower-envelope promotion `(lambda/m)psi>=U M_P^2 psi`, not monotonicity.
+
 ## Current boundary
 
 The marked lift replaces the nonlinear geometric chain by a linear
-single-sample chain, but the surviving sign remains global.  Radial
-pointwise Poisson control fails on the high-rank two-state edge.  A proof
-must use target/sample labels, a marked-chain tree theorem, or a genuinely
-global collision/return-time inequality.  The exact universal r=2 upper
-bound remains open.
-
+single-sample chain, and the complete law is now a strict two-step global
+minimum for the exact target observable.  The sole remaining step is to
+promote this two-step lower bound to the stationary marked law.  A proof must
+use time-homogeneous target/sample flow, a marked-chain tree theorem, or a
+genuinely global collision/return-time inequality.  The exact universal r=2
+upper bound remains open.

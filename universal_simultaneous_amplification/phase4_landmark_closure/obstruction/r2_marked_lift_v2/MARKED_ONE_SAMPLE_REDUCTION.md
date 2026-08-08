@@ -214,19 +214,142 @@ high-rank edge already forces incompatible radial inequalities.  The
 remaining task is to control (15) using the labelled target/sample flow,
 not only its rank projection.
 
-## 6. Exact failure of event-rank stochastic domination
+## 6. Universal two-step theorem
+
+Although a pointwise Poisson comparison fails, the uniform marked law has an
+exact nonnegative response after two applications of the *same* kernel.  Let
+`U` denote the uniform law on the `n 2^(n-1)` marked states and put
+
+\[
+ f_t(C,v)=t^{|C|},\qquad 0\le t\le1.
+\]
+
+For a loopless row-stochastic matrix `P`, define
+
+\[
+ \begin{split}
+ R&=\sum_{v,i}P_{vi}^2,\\
+ C_2&=\sum_i\left(\sum_vP_{vi}\right)^2,\\
+ J&=\sum_{v,i}P_{vi}P_{iv}.
+ \end{split}                                           \tag{16}
+\]
+
+For `n>=4`, write `s=n-2` and
+
+\[
+ S_s(t)=\sum_{j=0}^{s-2}{\binom{s-2}{j}\over j+2}t^j,
+\]
+
+\[
+ \begin{split}
+ \alpha_n(t)&={1-t^2\over2n2^s}
+ \left\{{(1+t)^{s-1}\over2}-S_s(t)\right\},\\
+ \beta_n(t)&={1-t^2\over4n2^s}S_s(t).
+ \end{split}                                           \tag{17}
+\]
+
+### Proposition 2 (exact two-step sum of squares)
+
+For every loopless row-stochastic `P` and `0<=t<=1`,
+
+\[
+ \boxed{
+ U M_P^2f_t-Uf_t
+ =\alpha_n(t)\left(R-{n\over n-1}\right)
+ +\beta_n(t)\{(C_2-J)-(n-R)\}\ge0.}                  \tag{18}
+\]
+
+For `n=3`, the corresponding identity is
+
+\[
+ U M_P^2f_t-Uf_t
+ ={1-t^2\over24}\left(R-{3\over2}\right)\ge0.       \tag{19}
+\]
+
+Both defects in (18) are sums of squares.  Rowwise Cauchy--Schwarz gives
+
+\[
+ R-{n\over n-1}\ge0,
+\]
+
+while, writing `c_i=sum_v P_(vi)`, direct expansion gives
+
+\[
+ (C_2-J)-(n-R)
+ =\sum_i(c_i-1)^2+{1\over2}\sum_{v,i}(P_{vi}-P_{iv})^2\ge0.              \tag{20}
+\]
+
+Moreover, `beta_n(t)>=0`, and
+
+\[
+ S_s(t)\le {1\over2}(1+t)^{s-2}
+            \le {1\over2}(1+t)^{s-1},
+\]
+
+so `alpha_n(t)>=0`.  Equality throughout an open `t` interval forces every
+row of `P` to be uniform on the other `n-1` vertices, hence `P=P_K`.
+
+For completeness, if `k=|C|` and `x=P_(vC)`, one marked step gives the exact
+radial drift
+
+\[
+ (M_P-I)f_t(C,v)
+ ={t-1\over2}t^{k-1}\{t-(t+1)x\}.                   \tag{21}
+\]
+
+Apply the same transition once more and average over uniform `v` and a
+uniform subset `C` of `V minus {v}`.  Splitting the second application into
+its continue and stop branches, the continue branch contains the row
+collision `R`; the stop-and-retarget branch contains `C_2-J`.  Grouping the
+binomial subset averages by `|C|` gives exactly (18).  The verifier performs
+this expansion independently over rational directed kernels, including the
+separate `n=3` boundary case.
+
+The alternating correction in `psi` disappears after one step:
+
+\[
+ M_P(-1)^{|C|}=0,                                    \tag{22}
+\]
+
+because the equal continue/stop branches have opposite rank parity.  Also
+
+\[
+ \psi_j=2\int_0^1{t^j-(-1)^{N-j}t^N\over1+t}\,dt.   \tag{23}
+\]
+
+Integrating Proposition 2 against `2/(1+t)` and using (22)--(23) therefore
+proves
+
+\[
+             \boxed{U M_P^2\psi\ge U\psi={1\over m_K}},
+\]
+
+strictly unless `P=P_K`.  This is a global exact theorem, but it is not yet
+the stationary theorem: the sole remaining promotion inequality is
+
+\[
+ {\lambda\over m}\psi\ \stackrel{?}{\ge}\ U M_P^2\psi.                 \tag{24}
+\]
+
+The inequality cannot be justified by monotonicity in time.  Exact and
+high-precision screens contain kernels for which `U M_P^t psi` eventually
+decreases, although every screened value remains above the two-step value.
+Thus (24), if true, requires a time-homogeneous lower-envelope, return-time,
+or stationary-flow argument.
+
+## 7. Exact failure of event-rank stochastic domination
 
 The tempting strengthening
 
 \[
- q\ \le_{\rm st}\ 1+\operatorname{Bin}(n-2,1/2)     \tag{16}
+ q\ \le_{\rm st}\ 1+\operatorname{Bin}(n-2,1/2)     \tag{25}
 \]
 
 passes the historical exact corpus through five vertices but is false.
 On six vertices, take lexicographic edge weights
 
 \[
- (1,3,3,1000,30,1000,300,3,1,10,1,30,1,300,30).    \tag{17}
+ (1,3,3,1000,30,1000,300,3,1,10,1,30,1,300,30).    \tag{26}
 \]
 
 The graph has complete positive support.  An exact 62-state rational solve
@@ -236,12 +359,12 @@ gives
  \sum_{k\ge2}q_k>{15\over16}
 \]
 
-with strict excess `0.001463330069...`.  Thus (16) is exactly refuted.
+with strict excess `0.001463330069...`.  Thus (25) is exactly refuted.
 Nevertheless
 
 \[
  \sum_k{q_k\over k}-{1\over m_K}
- =0.046284704868\ldots>0,                            \tag{18}
+ =0.046284704868\ldots>0,                            \tag{27}
 \]
 
 so the graph remains strictly below the complete fixation baseline.
@@ -249,7 +372,7 @@ so the graph remains strictly below the complete fixation baseline.
 This witness rules out first-order event-rank domination, but not the
 harmonic collision inequality actually required.
 
-## 7. Verification
+## 8. Verification
 
 Run
 
@@ -259,15 +382,17 @@ PYTHONDONTWRITEBYTECODE=1 python3 -B verify_marked_lift.py
 
 The verifier reconstructs the proper geometric-union chain over exact
 rationals, builds every marked transition, checks row normalisation and
-stationarity, verifies (5)--(13), checks complete binomiality, and certifies
-both strict signs in Section 6.
+stationarity, verifies (5)--(13), checks complete binomiality, verifies the
+two-step identity (18) over exact rational directed kernels, and certifies
+both strict signs in Section 7.
 
 Classification:
 
 * **PROVED:** the marked chain, its stationary law, nearest-neighbour rank
-  transition, collision identity, and complete binomial reference.
-* **EXACTLY REFUTED:** first-order stochastic domination (16).
-* **EXACTLY COMPUTED:** the positive harmonic margin (18) on the same graph.
-* **OPEN:** the universal collision inequality (1), equivalently
-  `rho_dB(G,2)<=rho_dB(K_n,2)`.
-
+  transition, collision identity, complete binomial reference, and universal
+  two-step sum-of-squares theorem (18).
+* **EXACTLY REFUTED:** first-order stochastic domination (25), as well as
+  naive monotonicity of `U M_P^t psi` in time.
+* **EXACTLY COMPUTED:** the positive harmonic margin (27) on the same graph.
+* **OPEN:** the stationary promotion inequality (24), equivalently the
+  universal collision inequality (1) and `rho_dB(G,2)<=rho_dB(K_n,2)`.

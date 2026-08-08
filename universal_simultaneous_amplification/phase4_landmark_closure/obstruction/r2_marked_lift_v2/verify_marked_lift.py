@@ -107,6 +107,63 @@ def marked_kernel(P):
     return marked, index, kernel
 
 
+def apply_kernel(kernel, values):
+    """Apply a row-stochastic kernel to a column observable."""
+    return [
+        sum((probability * values[target]
+             for target, probability in enumerate(row)), F(0))
+        for row in kernel
+    ]
+
+
+def two_step_gap(P, t):
+    """Return U M_P^2 t^K - U t^K by direct exact enumeration."""
+    marked, _, kernel = marked_kernel(P)
+    values = [t ** C.bit_count() for C, _ in marked]
+    twice = apply_kernel(kernel, apply_kernel(kernel, values))
+    return (sum(twice, F(0)) - sum(values, F(0))) / len(marked)
+
+
+def two_step_formula(P, t):
+    """Closed sum-of-squares formula for the two-step radial gap."""
+    n = len(P)
+    assert n >= 3
+    row_square = sum(
+        (P[v][i] ** 2 for v in range(n) for i in range(n)), F(0)
+    )
+    columns = [sum((P[v][i] for v in range(n)), F(0)) for i in range(n)]
+    column_square = sum((value ** 2 for value in columns), F(0))
+    mutual = sum(
+        (P[v][i] * P[i][v] for v in range(n) for i in range(n)), F(0)
+    )
+
+    row_defect = row_square - F(n, n - 1)
+    assert row_defect >= 0
+    transport_defect = (column_square - mutual) - (n - row_square)
+    transport_sos = sum(((value - 1) ** 2 for value in columns), F(0))
+    transport_sos += sum(
+        ((P[v][i] - P[i][v]) ** 2
+         for v in range(n) for i in range(n)), F(0)
+    ) / 2
+    assert transport_defect == transport_sos
+    assert transport_defect >= 0
+
+    if n == 3:
+        return (1 - t ** 2) * row_defect / 24
+
+    s = n - 2
+    binomial_sum = sum(
+        (F(comb(s - 2, j), j + 2) * t ** j for j in range(s - 1)), F(0)
+    )
+    beta = (1 - t ** 2) * binomial_sum / (4 * n * 2 ** s)
+    alpha = (1 - t ** 2) * (
+        (1 + t) ** (s - 1) / 2 - binomial_sum
+    ) / (2 * n * 2 ** s)
+    assert alpha >= 0
+    assert beta >= 0
+    return alpha * row_defect + beta * transport_defect
+
+
 def marked_data(weights):
     P, states, pi, nu, sigma, lam, mean = posterior_midpoint(weights)
     n = len(P)
@@ -178,6 +235,34 @@ def marked_data(weights):
     }
 
 
+def audit_two_step_sos():
+    """Independently compare the closed formula with marked enumeration."""
+    raw_kernels = [
+        ((0, 1, 3), (2, 0, 1), (4, 1, 0)),
+        ((0, 1, 2, 5), (3, 0, 7, 1), (4, 2, 0, 9), (1, 8, 3, 0)),
+        (
+            (0, 1, 2, 3, 5),
+            (7, 0, 1, 4, 2),
+            (3, 8, 0, 1, 6),
+            (2, 5, 9, 0, 1),
+            (4, 1, 3, 7, 0),
+        ),
+    ]
+    for raw in raw_kernels:
+        P = [
+            [F(value, sum(row)) for value in row]
+            for row in raw
+        ]
+        marked, _, kernel = marked_kernel(P)
+        parity = [(-1) ** C.bit_count() for C, _ in marked]
+        assert apply_kernel(kernel, parity) == [F(0) for _ in marked]
+        for t in (F(0), F(1, 5), F(2, 3), F(1)):
+            assert two_step_gap(P, t) == two_step_formula(P, t)
+            assert two_step_formula(P, t) >= 0
+
+    print("PASS: exact universal two-step sum-of-squares identity")
+
+
 def audit_complete_and_path():
     path = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
     data = marked_data(path)
@@ -227,6 +312,7 @@ def audit_tail_counterexample():
 
 
 def main():
+    audit_two_step_sos()
     audit_complete_and_path()
     audit_tail_counterexample()
     print("OPEN: universal marked collision inequality, equivalently dB r=2 maximality")
@@ -234,4 +320,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
