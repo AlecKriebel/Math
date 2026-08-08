@@ -25,9 +25,10 @@ This cycle did not prove or refute (1).  It did establish four exact facts.
    commit `1af17787`.
 3. Inequality (1) is strict for every nonconstant positively weighted
    triangle, by a 24-atom positive polynomial certificate.
-4. Statewise, fixed-rank, separately signed Green terms, and an arbitrary
-   pointwise common correction are all exactly insufficient.  Thus the open
-   step is genuinely a coupled global occupation/flow inequality.
+4. Statewise, fixed-rank, separately signed Green terms, an arbitrary
+   pointwise common correction, and the natural separate orientation--batching
+   split are all exactly insufficient.  Thus the open step is genuinely a
+   coupled global occupation/flow inequality.
 
 The clique--pendant product counterexamples remain dB suppressors and satisfy
 (1).  Nothing here proves no simultaneous amplification at the endpoint.
@@ -266,9 +267,20 @@ This is a class theorem, not a reduction of the all-order problem.
 
 The only surviving target is the global sign (12).  It must use the full
 configuration-resolved Green conservation across ranks, or an equivalent
-nonpointwise transport/capacity theorem.  Rank totals, statewise tangent
-loss, separate Green signs, low-degree common corrections, and local
-near-disconnected search candidates are all insufficient.
+nonpointwise transport/capacity theorem.  The exact dual decomposition in
+`AFFINE_DUAL_SPLIT.md` sharpens this statement.  If `z` is the complete-
+normalized mean of the reversed-arrow intermediate dual, then
+
+\[
+ {x+2y\over3}-1
+ =\left({x+2z\over3}-1\right)+{2\over3}(y-z).
+\]
+
+An exact integer-weight six-cycle makes the first term positive and the
+second term more strongly negative.  Therefore orientation and target-
+locking/batching cannot be bounded independently either.  Rank totals,
+statewise tangent loss, separate Green signs, low-degree common corrections,
+and local near-disconnected search candidates are all insufficient.
 
 The universal one-third separator is **OPEN**.  If proved, it immediately
 implies the desired endpoint disjunction and hence `R_sim=3/2`.  If refuted,

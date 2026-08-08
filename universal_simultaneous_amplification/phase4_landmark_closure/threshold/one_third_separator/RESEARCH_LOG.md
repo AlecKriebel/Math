@@ -26,5 +26,13 @@
   complete supports of orders five and six, and asymmetric three-blade
   windmills found no score above one.  These searches are discovery evidence
   only.
+- [PROVED REDUCTION / EXACT ROUTE REFUTATION] Split the target through the
+  reversed-arrow dual `C` as
+  `(x+2y)/3-1=((x+2z)/3-1)+(2/3)(y-z)` and derived its
+  Poisson--Dirichlet orientation pairing.  The integer-weight six-cycle
+  `(1,6000000000,4000000,5000000000,20000,7000000000)` has exact positive
+  orientation excess `0.002563645...`, but exact negative batching difference
+  and full target excess `-0.030003330...`.  Thus separate orientation and
+  batching signs cannot prove the target.
 - [OPEN] Prove or refute the configuration-resolved global Green inequality
   `T_2+2C<=2E`.

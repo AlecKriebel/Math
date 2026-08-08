@@ -14,6 +14,9 @@ What is proved:
 - a proved sharpness theorem, using the independently hostile-audited
   mesoscopic-core lemma, which forces every universal affine Bd coefficient
   to be at most `1/3`;
+- an exact `L--C--D` dual split and Poisson--Dirichlet identity, together
+  with a rational weighted six-cycle proving that its separate `1:2`
+  orientation sign is false even though batching preserves the full target;
 - the candidate is strict for every nonconstant positively weighted triangle;
 - a seven-atom exact barrier to arbitrary pointwise common corrections;
 - exact survival of all saved Pareto witnesses and the finite
