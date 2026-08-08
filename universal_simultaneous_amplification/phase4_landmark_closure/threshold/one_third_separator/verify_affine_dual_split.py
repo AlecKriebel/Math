@@ -74,12 +74,14 @@ def exact_link_fixation(q):
 def poisson_solution(generator, mean, mu):
     count = generator.rows
     cardinality = sp.Matrix([(state + 1).bit_count() for state in range(count)])
+    original_rhs = cardinality - mean * sp.ones(count, 1)
     matrix = -generator.copy()
-    rhs = cardinality - mean * sp.ones(count, 1)
+    rhs = original_rhs.copy()
     matrix[-1, :] = mu.T
     rhs[-1] = 0
     answer = matrix.inv() * rhs
     assert sp.cancel((mu.T * answer)[0]) == 0
+    assert -generator * answer == original_rhs
     return answer
 
 
