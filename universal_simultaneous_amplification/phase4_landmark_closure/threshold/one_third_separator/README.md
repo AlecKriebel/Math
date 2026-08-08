@@ -21,7 +21,8 @@ What is proved:
 - a seven-atom exact barrier to arbitrary pointwise common corrections;
 - exact survival of all saved Pareto witnesses and the finite
   clique--pendant product counterexample;
-- exact refutation of the strongest near-disconnected floating artifact.
+- exact refutation of two severe near-disconnected floating artifacts,
+  including a false order-six score above `1.06`.
 
 What remains open:
 

@@ -22,6 +22,12 @@
 - [EXACTLY REFUTED ARTIFACT] A near-disconnected order-five floating point
   candidate has exact normalized ratios approximately `1.0100703` and
   `0.9529680`, hence one-third score `0.9720021`, not a violation.
+- [EXACTLY REFUTED ARTIFACT] An adjoint-gradient order-six run reported
+  `x~0.988016,y~1.104986` and one-third score `1.065996` at an edge spread
+  near `exp(48)`.  Freezing all fifteen effective edge ratios as positive
+  integers and rebuilding both 62-state chains over `QQ` gives instead
+  `x=0.9880158512...`, `y=0.9582965904...`, and score
+  `0.9682030107...<1`.  The apparent endpoint violation was conditioning.
 - [NUMERICALLY OBSERVED] Weighted optimization on all order-four supports,
   complete supports of orders five and six, and asymmetric three-blade
   windmills found no score above one.  These searches are discovery evidence
