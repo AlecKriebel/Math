@@ -19,10 +19,10 @@ This cycle did not prove or refute (1).  It did establish four exact facts.
 1. Equation (1) has an exact Green--Poisson reduction with one joint
    occupation term and the same tangent-square loss as the earlier balanced
    reduction.
-2. Conditional on the mesoscopic-core establishment lemma now under hostile
-   audit, the coefficient is optimal: no fixed affine separator with Bd
-   coefficient greater than `1/3` can hold universally.  The rare-state
-   algebra for this implication is exact.
+2. The coefficient is optimal: no fixed affine separator with Bd coefficient
+   greater than `1/3` can hold universally.  This combines exact rare-state
+   algebra with the independently hostile-audited mesoscopic-core lemma at
+   commit `1af17787`.
 3. Inequality (1) is strict for every nonconstant positively weighted
    triangle, by a 24-atom positive polynomial certificate.
 4. Statewise, fixed-rank, separately signed Green terms, and an arbitrary
@@ -133,13 +133,13 @@ twice: algebraically it doubles the dB tangent slope in (9), and the
 conditional clique--pendant sharpness calculation below selects the same
 coefficient.
 
-## 3. Conditional sharpness of the coefficient
+## 3. Sharpness of the coefficient
 
 For any fixed positive rational `alpha<1`, take a clique--pendant family in
-which the leaf proportion tends to `alpha`.  Conditional on the
-mesoscopic-core establishment lemma in the sibling manuscript (currently
-under independent hostile audit), the calculation in `AFFINE_SHARPNESS.md`
-gives
+which the leaf proportion tends to `alpha`.  The mesoscopic-core
+establishment lemma in the sibling manuscript is proved for every fixed
+positive core-to-leaf ratio.  Combining it with the exact calculation in
+`AFFINE_SHARPNESS.md` gives
 
 \[
  x_\infty=1-\alpha+3\alpha\ell(\alpha),\qquad
@@ -161,9 +161,9 @@ The crossing coefficient is
  \theta_0(\alpha)={1\over3\ell(\alpha)}\downarrow{1\over3}. \tag{15}
 \]
 
-Therefore, if that named lemma survives audit, every putative universal
-affine separator with Bd coefficient `theta>1/3` is false.  At the endpoint
-coefficient itself the fixed-ray limiting slack is
+Therefore every putative universal affine separator with Bd coefficient
+`theta>1/3` is false.  At the endpoint coefficient itself the fixed-ray
+limiting slack is
 
 \[
  1-{x_\infty+2y_\infty\over3}
@@ -177,9 +177,8 @@ Moreover
  1-y_\infty=\alpha.
 \]
 
-Thus the limiting algebra has two units of Bd gain per unit of dB loss.
-Subject to the establishment audit, this explains the `1:2` weights without
-fitting a decimal constant.
+Thus the limiting algebra has two units of Bd gain per unit of dB loss.  This
+explains the `1:2` weights without fitting a decimal constant.
 
 ## 4. Exact hostile audit
 
