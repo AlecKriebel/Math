@@ -83,6 +83,17 @@ two unresolved rank systems:
 ../../.venv/bin/python verify_fixed_count_two_replica.py
 ```
 
+The standard sector now has a second, probabilistic reduction in
+`STANDARD_PIN_VARIATION.md`.  One verifier reconstructs the distinguished-
+pin line and exact convexity counterexample; another independently checks
+the `3N-1` quotient, the binomial/Krawtchouk identities, and the surviving
+one-crossing and positive-quotient signs:
+
+```text
+../../.venv/bin/python verify_standard_pin_bernstein.py
+../../.venv/bin/python verify_standard_pin_one_crossing.py
+```
+
 Status:
 
 - **PROVED:** exact target/promotion implication audit;
@@ -102,6 +113,15 @@ Status:
   noncomplete directed three-vertex kernel and every time;
 - **PROVED:** every four-vertex standard-sector fixed-lag diagonal is
   positive for every time;
+- **PROVED:** exact common-pin collision and one-dimensional Bernstein
+  reductions of the standard two-replica sector;
+- **PROVED:** exact `3N-1` stabilizer quotient for the distinguished-pin
+  pencil;
+- **EXACTLY REFUTED:** pointwise convexity of the standard pin-count
+  controls;
+- **EXACTLY COMPUTED:** first-difference and curvature one-crossing, and
+  positive derivative-quotient Bernstein controls, for `3<=n<=8` and
+  `2<=t<=50`;
 - **EXACTLY COMPUTED:** positive standard, symmetric, and antisymmetric
   Hessian sectors through order twelve;
 - **EXACTLY REFUTED:** termwise transverse-excursion and two-colour-word
@@ -118,4 +138,6 @@ Status:
 - **OPEN:** the universal transient baseline floor and its complete-ray
   Bernstein strengthening;
 - **OPEN:** the standard and symmetric all-order two-colour sector signs;
+- **OPEN:** an all-order variation-diminishing or positive-quotient theorem
+  for the standard common-pin pencil;
 - **OPEN:** the arbitrary-order active-tree coefficient.

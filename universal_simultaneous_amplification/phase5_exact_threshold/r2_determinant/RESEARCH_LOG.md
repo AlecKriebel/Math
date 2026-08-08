@@ -157,3 +157,27 @@
 - Exact finite screens find every unresolved standard and symmetric
   diagonal nonnegative for `4<=n<=31` and total lag at most 100.  Their
   universal signs remain open.
+
+## 2026-08-08 — common-pin variation and exact convexity failure
+
+- Represented the complete replacement kernel as the uniform mixture of
+  vertex-pin kernels and identified the canonical standard direction with
+  one distinguished pin minus that mixture, including the exact scale
+  `(N-1)/N`.
+- Recast the standard two-replica coefficient as the covariance of terminal
+  inverse cache rank with the centered collision count of an iid pin
+  history.
+- Lumped the distinguished-pin line to the exact `3N-1` categories
+  `X_k,I_k,O_k`; an independent implementation matches every labelled row
+  through order five.
+- Exactified the first failure of coefficientwise convexity:
+  `(n,t,c)=(5,21,19)` has negative second difference, although the required
+  binomially weighted curvature remains strictly positive.
+- Isolated three surviving sufficient statements: first-difference
+  one-crossing, curvature one-crossing plus positive terminal slope, and
+  coefficientwise positivity after factoring the symmetry root from
+  `Phi_t'`.  All survive exact rational checks for `3<=n<=8,t<=50`.
+- Found a simple generalized spectrum for the quotient pencil in exact
+  symbolic orders `2<=N<=7`, with nontrivial eigenvectors given by complement
+  binomial coefficients.  An all-order oscillatory-pencil theorem remains
+  open because the two pin operators do not commute.
