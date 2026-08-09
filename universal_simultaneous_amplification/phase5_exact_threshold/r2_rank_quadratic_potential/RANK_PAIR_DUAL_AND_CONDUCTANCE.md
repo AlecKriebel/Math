@@ -389,7 +389,167 @@ arbitrary rank-labelled vertex corrections plus `e(S)` repairs the exact
 additive Farkas obstruction.  It does not yet prove that the correction
 drifts can absorb the first line of `(36)` at every state.
 
-## 7. Exact scope
+## 7. Optional Farkas currents and the exact endpoint ratio
+
+The same relaxation has a useful current form after the standard optional
+transform.  Put
+
+\[
+ Q(S)=2^{-|S|}G(S),\qquad G_0(S)=1+{|S|\over n}.              \tag{38}
+\]
+
+If `C` is a slice-quadratic correction with
+
+\[
+ C(\varnothing)=C(V)=0,qquad {1\over n}\sum_iC(\{i\})=0,    \tag{39}
+\]
+
+the positively cleared drift operator is
+
+\[
+\begin{aligned}
+(\mathcal AC)(S)={}&\sum_{v\notin S}g_v
+ \{C(S\cup v)-2C(S)\}\\
+&+\sum_{v\in S}\ell_v
+ \{4C(S\setminus v)-2C(S)\}.                               \tag{40}
+\end{aligned}
+\]
+
+The base drift `mathcal A G_0` is `(33)`.  A Farkas obstruction to the
+baseline certificate would be weights `eta_S>=0` on transient states such
+that
+
+\[
+ \sum_S\eta_S(\mathcal AC)(S)=0                              \tag{41}
+\]
+
+for every correction `(39)`, while `sum_S eta_S B(S)<0`.
+These optional Farkas weights are distinct from the Green pseudoflow `y` in
+Sections 2--4 and have a free overall scale.
+
+Set `eta_empty=eta_V=0`.  On the hypercube edge from a `k`-set `S` to
+`T=S union {v}`, define the signed current
+
+\[
+ j(S,v)=\eta_Sg_v(S)-2\eta_T\ell_v(T)
+ ={2\{\eta_Sx_v-\eta_T(1-x_v)\}\over1+x_v}.                  \tag{42}
+\]
+
+Pairing the two directions of every edge gives the exact identity
+
+\[
+ \boxed{\quad
+ \sum_S\eta_S(\mathcal AC)(S)
+ =\sum_{S,v\notin S}j(S,v)\{C(S\cup v)-2C(S)\}.
+ \quad}                                                       \tag{43}
+\]
+
+Let `O_k` be the lower-end marginal of `j` on the `k`-slice and `I_k`
+the upper-end marginal from interface `k-1`.  Equation `(41)` says
+
+\[
+ I_k(\phi)=2O_k(\phi)                                        \tag{44}
+\]
+
+for every degree-at-most-two slice test `phi` and `2<=k<=n-1`.
+At rank one the same statement holds modulo the singleton boundary
+constraint: there is a scalar `theta` such that
+
+\[
+ -2\eta_{\{i\}}-2O_1(\{i\})=\theta\quad\hbox{for every }i.   \tag{45}
+\]
+
+Write `J_k` for the total current on interface `k`, and put
+
+\[
+ R_1=\sum_i\eta_{\{i\}},\qquad
+ A_{n-1}=\sum_{|S|=n-1}\eta_S.                              \tag{46}
+\]
+
+Then
+
+\[
+ J_0=-2R_1,qquad J_{n-1}=A_{n-1},                           \tag{47}
+\]
+
+\[
+ J_{k-1}=2J_k\quad(2\le k\le n-1),                          \tag{48}
+\]
+
+and
+
+\[
+ J_0-2J_1=n\theta.                                           \tag{49}
+\]
+
+Since the edge increment of `G_0` is
+
+\[
+G_0(k+1)-2G_0(k)=-{n+k-1\over n},                            \tag{50}
+\]
+
+`(43)` and the finite geometric sum in `(48)` give
+
+\[
+\boxed{
+ \sum_S\eta_SB(S)
+ ={2(n-1)\over n}R_1
+ -{(n+1)2^{n-1}-2n\over n}A_{n-1}.}                          \tag{51}
+\]
+
+Consequently the exact remaining endpoint-current inequality is
+
+\[
+\boxed{
+ {A_{n-1}\over R_1}
+ \le {2(n-1)\over (n+1)2^{n-1}-2n}.}                         \tag{52}
+\]
+
+There is no normalization `A_(n-1)+R_1=1` in this Farkas formulation.
+Equation `(52)` is scale invariant and exactly matches the endpoint ratio
+found in the rank-dependent additive Farkas audit.
+
+The reversible storage gives a further exact current recurrence.  Define
+
+\[
+ h_k=O_k(H),\qquad c_k=\sum_{|S|=k}\eta_SC(S).                \tag{53}
+\]
+
+Using `(21)`, `(42)`, and `(44)` gives
+
+\[
+ 2h_{k+1}=h_k+2(c_k-c_{k+1})\quad(1\le k\le n-2).            \tag{54}
+\]
+
+At rank one,
+
+\[
+ h_1=-c_1-\theta/2,qquad
+ h_1+2c_1=c_1+{R_1+J_1\over n}.                              \tag{55}
+\]
+
+At the upper boundary,
+
+\[
+ H(V\setminus v)+2C(V\setminus v)={3\over2},                \tag{56}
+\]
+
+so iteration of `(54)` yields
+
+\[
+\boxed{
+ {3A_{n-1}\over2}
+ ={c_1+(R_1+J_1)/n\over2^{n-2}}
+ +\sum_{k=2}^{n-1}{c_k\over2^{n-1-k}},
+ \qquad J_1=2^{n-2}A_{n-1}.}                                \tag{57}
+\]
+
+Every `c_k` is nonnegative.  Therefore `(57)` by itself gives a lower,
+not an upper, endpoint estimate.  A proof of `(52)` must use the remaining
+individual one-mark/two-mark balances to upper-control the weighted cut
+production in `(57)`.
+
+## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
   `(12)`, `(14)`, `(15)`.
@@ -397,6 +557,9 @@ drifts can absorb the first line of `(36)` at every state.
   law `(24)`, and its full rank recurrence `(28)`.
 - **PROVED:** the row-stochastic tangent/SOS decomposition `(36)`; its only
   linear defects are temperature and the single internal-flow pair moment.
+- **PROVED:** the optional edge-current factorization `(42)--(43)`, the
+  exact endpoint ratio `(51)--(52)`, and the boundary-aware cut-production
+  identity `(57)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
   identities and the dual balances on small weighted graphs, and checks
   `(36)` on a genuinely directed rational kernel.

@@ -27,6 +27,16 @@
   kernels on `n=5,6,7`, 10,000 direct fixation trials at `n=5`, and directed
   three/four-class quotients) also approached the complete value only from
   below.  This is numerical evidence, not an extension theorem.
+- Rewrote the optional Farkas system as a signed current on hypercube edges.
+  Rank-pair balance transports every degree-two current moment by a factor
+  two between adjacent ranks.  Derived the exact top/bottom ratio which is
+  necessary and sufficient for the base sign, including the separate
+  singleton injection defect.
+- Combined the edge current with reversible conductance storage.  The exact
+  weighted cut-production identity survives, but positivity of the cut
+  terms yields only the reverse (lower) endpoint estimate.  The unresolved
+  sign is now sharply an upper bound on this weighted cut production using
+  the remaining individual marked-current balances.
 
 ### Active sign
 
