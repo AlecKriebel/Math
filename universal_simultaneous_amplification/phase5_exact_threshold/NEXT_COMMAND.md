@@ -1,6 +1,6 @@
 # Next executable step
 
-Last updated: 2026-08-08 21:41 PDT.
+Last updated: 2026-08-08 22:24 PDT.
 
 ## Immediate command
 
@@ -21,8 +21,10 @@ highest-value upper-bound steps are now:
 
 1. prove or refute the fixed-colour rooted-tree numerator sign along the
    complete ray.  Do not use the exactly false ratio/monotonicity statement;
-   work with the fixed-colour mixed-minor sum itself.  Its final coefficient
-   is the true endpoint target;
+   work with the full fixed-colour mixed-minor sum itself.  Single row sets,
+   single unicycle skeletons, and single directed cycles even after summing
+   their attachment forests are exactly sign-indefinite.  Its final
+   coefficient is the true endpoint target;
 2. close or refute the dynamic three-channel rank-pair space.  Use the exact
    mass-square current recurrence and its oriented Schur cones to derive a
    rank-profile Riccati/M-matrix certificate.  Static rankwise tangents are
@@ -58,9 +60,12 @@ antisymmetric Hessian are the current algebraic footholds.
 The next lower-bound step also starts outside the separated strong-pair
 normal form.  First settle the exact adjoint factor-one/ground-energy
 inequality using a coupled reversible unordered-edge certificate; a single
-Picone multiplier is exactly unavailable.  If factor one is proved, record
-it as a complete obstruction to the diffuse catalyst normal form and move
-immediately to a non-diffuse construction.  In construction priority order:
+Picone multiplier is exactly unavailable, and raw orbit averages can increase
+on both one-step and parity subsequences.  The current executable reduction
+is the sparse unordered-conductance circuit/Farkas problem with both ground
+systems retained.  If factor one is proved, record it as a complete
+obstruction to the diffuse catalyst normal form and move immediately to a
+non-diffuse construction.  In construction priority order:
 
 1. derive the exact fast law when portal events compete with resolution of a
    discordant pair or star--reservoir interface;

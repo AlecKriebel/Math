@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 21:41 PDT.
+Last updated: 2026-08-08 22:24 PDT.
 
 ## Frozen starting point
 
@@ -124,6 +124,15 @@ This is finite evidence only.
 16. On the lower-side adjoint branching normal form, the first dB orbit step
     from the Bd extinction vector cannot increase its type-averaged mass.
     The full factor-one inequality and the Bd-catalyst ray remain open.
+17. Neither the raw Bd-started dB orbit average nor either parity subsequence
+    is monotone.  One rational reversible three-type kernel has exact
+    increases at steps `9 -> 10` and `13 -> 15`; this refutes only those
+    Lyapunov strengthenings, not the endpoint factor-one inequality.
+18. Fixed-colour determinant packets cannot be localized to one row set, one
+    unicycle skeleton, or one directed cycle with all attachment forests.
+    The weighted triangle `(1,10,3)` gives exact negative packets in every
+    such grouping.  The surviving determinant target is the literal sum over
+    all colour locations and all unicycles at each fixed colour count.
 
 ### Open
 
@@ -188,3 +197,7 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
   three-channel Schur current.
 - `50ddac1b`, `7cf99376`: complete-ray transfer and exact refutation of ray
   monotonicity.
+- `abd89f6a`: exact refutation of one-step and parity-subsequence orbit
+  monotonicity in the lower adjoint normal form.
+- `4eb46002`: fixed-colour row-mixture and unicycle reductions, including
+  exact local-packet refutations.
