@@ -9,9 +9,10 @@ from the stronger stationary-promotion coefficient.
 The package proves the exact target/promotion implication, transfer to the
 smaller subset determinant, two centered triangle forest certificates, the
 full antisymmetric sector of the complete-refresh Hessian in every order,
-and explicit obstructions to uncentered coefficient/root shortcuts.  It does
-**not** prove or refute the universal active-tree sign for arbitrary order.
-That sign remains the theorem target of this branch.
+the stationary standard and symmetric inverse-rank sectors, and explicit
+obstructions to uncentered coefficient/root shortcuts.  It does **not** prove
+or refute the universal active-tree sign for arbitrary order.  That sign
+remains the theorem target of this branch.
 
 Run the exact symbolic audit from this directory:
 
@@ -110,7 +111,20 @@ It reconstructs the signed two-label quotient and inverse-rank coboundary,
 checks every coefficientwise rational certificate, and independently
 recomputes the seven small-order Schur complements.  This closes the
 stationary standard irreducible Hessian sector, not the finite-time standard
-coefficient or the symmetric sector.
+coefficient.
+
+The companion stationary symmetric-sector theorem is in
+`TRUE_INVERSE_RANK_SYMMETRIC_PHASE_CONTRACTION.md`.  Replay it with
+
+```text
+../../.venv/bin/python verify_true_inverse_rank_symmetric_phase.py
+```
+
+The verifier rebuilds the signed two-channel rank system, solves all small
+orders exactly, checks every finite rational phase margin, and reconstructs
+the two all-order discriminant certificates.  This closes the stationary
+symmetric irreducible Hessian sector, not its finite-time fixed-count
+coefficient.
 
 The cubic and quartic optional-potential variants are now closed by exact
 Farkas certificates in `CUBIC_OPTIONAL_FARKAS_REFUTATION.md`.  The independent
@@ -154,6 +168,9 @@ Status:
 - **PROVED:** strict positivity of the stationary standard irreducible
   inverse-rank sector in every population order, by an explicit all-reentry
   phase contraction;
+- **PROVED:** strict positivity of the stationary symmetric row-zero
+  inverse-rank sector in every population order, by a second explicit
+  all-reentry phase contraction;
 - **EXACTLY REFUTED:** pointwise convexity of the standard pin-count
   controls;
 - **EXACTLY REFUTED:** the all-order marked-cache Bernstein/PGF order, by an
@@ -183,7 +200,6 @@ Status:
 - **OPEN:** the stationary factorial-moment hierarchy;
 - **OPEN:** all-order finite-time positivity of the standard and symmetric
   Hessian sectors;
-- **OPEN:** the stationary symmetric irreducible Hessian sector;
 - **OPEN:** positivity of every higher complete-refresh forest coefficient;
 - **OPEN:** the universal transient baseline floor and its complete-ray
   Bernstein strengthening;

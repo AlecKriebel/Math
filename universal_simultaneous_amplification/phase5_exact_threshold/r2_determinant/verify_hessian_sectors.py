@@ -223,7 +223,7 @@ def main():
         assert sector_eigenvalue(n, "anti") == antisymmetric
     print("PASS: independent exact orbit reduction for all three Hessian sectors, 3<=n<=12")
     print("EXACTLY COMPUTED: every displayed sector value is positive")
-    print("OPEN: all-n positivity of the standard and symmetric sectors")
+    print("PROVED SEPARATELY: all-n stationary standard and symmetric positivity")
 
 
 if __name__ == "__main__":

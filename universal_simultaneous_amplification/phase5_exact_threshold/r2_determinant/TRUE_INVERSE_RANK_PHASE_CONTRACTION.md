@@ -401,16 +401,17 @@ Every entry is strictly positive.  Equations (33)--(34) prove the theorem.
 ## 6. What this closes, and what remains
 
 The result proves the stationary inverse-rank sign in every standard
-irreducible direction at the complete kernel.  Together with the existing
-antisymmetric theorem, two of the three nonradial Hessian sectors are now
-closed at stationarity.
+irreducible direction at the complete kernel.  The symmetric stationary
+sector was subsequently closed in
+`TRUE_INVERSE_RANK_SYMMETRIC_PHASE_CONTRACTION.md`; together with the
+antisymmetric theorem, all three nonradial Hessian sectors are now closed at
+stationarity.
 
 It does **not** prove:
 
 1. positivity at every finite time or every fixed-count coefficient;
-2. the stationary symmetric irreducible sector;
-3. positivity of every higher complete-refresh forest coefficient;
-4. the universal fitness-two obstruction for arbitrary weighted graphs.
+2. positivity of every higher complete-refresh forest coefficient;
+3. the universal fitness-two obstruction for arbitrary weighted graphs.
 
 The independent verifier reconstructs the signed quotient, the
 inverse-rank reward, the coboundary, every symbolic coefficient certificate,

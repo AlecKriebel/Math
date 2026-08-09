@@ -253,4 +253,34 @@
 - Summing the absolute re-entry tail proves strict positivity for every
   `N>=9`; seven exact Schur complements close `2<=N<=8`.  This proves the
   stationary standard irreducible Hessian sector in every population order.
-  The stationary symmetric sector remains open.
+  The stationary symmetric sector was still open at this checkpoint.
+
+## 2026-08-08 — stationary symmetric closure
+
+- Transposed the exact symmetric two-feature recurrence to the signed phase
+  form `H=((S,C),(-D,Q))` and Schur-eliminated the bad channel.  The exact
+  scalar is `ell(I+A)^(-1)f_0-s^bW`, with
+  `A=(I-S)^(-1)C(I-Q)^(-1)D>=0`.
+- Proved the radial identity
+  `2/k-d_k=2^(2-N) sum_(r>=k)binom(N-1,r)/[(N-1)binom(N-2,k-1)]`
+  and the uniform bounds `2(N-2)/(Nk)<=d_k<=2/k`.
+- Found the sharp enough binomial debt majorant
+  `Wbar=(7N/25)q`.  Its all-order sign reduces to a cubic with negative
+  discriminant for `N>=25`; the isolated order `N=24` has exact minimum 24.
+  This leaves the uniform first-phase reserve `f_0>=(11/25)v`.
+- Proved the complete bad-phase contraction
+  `Av<=c_Nv`, `c_N=(2N-5)/[2N(N-2)]`, using the explicit majorant
+  `h_k=k omega_(k-1)/(N-2)` and an exact radial-ratio induction.
+- Controlled the left occupation by
+  `Y_k=2(k+1)/[3k(k-1)]`; the residual `(I-Q^T)Y-1/[k(k-1)]`
+  is entrywise strictly positive.
+- Reduced the remaining debt to one scalar rank recurrence.  Exact rational
+  margins close `40<=N<=287`; for `N>=288`, a pure-birth lower barrier and a
+  second negative-discriminant cubic give the uniform split
+  `debt<=19/20` and `re-entry tail<=1/20`.  Direct exact solves close
+  `3<=N<=39`.
+- Therefore the stationary symmetric row-zero inverse-rank sector is
+  strictly positive in every population order.  Together with the prior
+  standard and antisymmetric theorems, every stationary nonradial Hessian
+  sector is now closed.  Finite-time standard/symmetric signs, all forest
+  orders at least three, and the global `F0` determinant sign remain open.
