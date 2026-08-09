@@ -376,6 +376,85 @@ def stieltjes_obstruction_audit():
     print("PASS (EXACT REFUTATION): rational Stieltjes and opposite-orthant routes")
 
 
+def monotonicity_refutation_audit():
+    n = 5
+    values = (10, 100, 10, 1000, 10000, 1, 1, 1, 1, 10000)
+    pairs = [(i, j) for i in range(n) for j in range(i + 1, n)]
+    weights = [[0 for _ in range(n)] for _ in range(n)]
+    for value, (i, j) in zip(values, pairs):
+        weights[i][j] = weights[j][i] = value
+
+    complete_weights = [
+        [0 if i == j else 1 for j in range(n)] for i in range(n)
+    ]
+    states, kernel = flint_active(weights)
+    complete_states, complete = flint_active(complete_weights)
+    assert states == complete_states
+    size = len(states)
+    identity = fmpq_mat(size, size, [
+        int(i == j) for i in range(size) for j in range(size)
+    ])
+    delta = kernel - complete
+    one = fmpq_mat(size, 1, [Q(1) for _ in range(size)])
+    nu0 = fmpq_mat(size, 1, [
+        Q(B.bit_count(), n * (n - 1) * 2 ** (n - 2)) for B, _ in states
+    ])
+    q = fmpq_mat(size, 1, [
+        Q(1, B.bit_count()) - Q(15, 32) for B, _ in states
+    ])
+
+    def outer(left, right):
+        return fmpq_mat(left.nrows(), right.nrows(), [
+            left[i, 0] * right[j, 0]
+            for i in range(left.nrows()) for j in range(right.nrows())
+        ])
+
+    def evaluate(alpha):
+        active = complete + alpha * delta
+        stationary = (
+            identity - active + outer(one, nu0)
+        ).transpose().solve(nu0)
+        f = (stationary.transpose() * q)[0, 0]
+        fundamental = identity - active + outer(one, stationary)
+        h = fundamental.solve(q)
+        fp = (stationary.transpose() * delta * h)[0, 0]
+        return f, fp
+
+    f97, fp97 = evaluate(Q(97, 100))
+    assert Q(98, 1000) < f97 < Q(99, 1000)
+    assert -Q(17, 1000) < fp97 < -Q(16, 1000)
+    f1, fp1 = evaluate(Q(1))
+    assert Q(75, 1000) < f1 < Q(76, 1000)
+    assert -Q(3580, 1000) < fp1 < -Q(3579, 1000)
+
+    natural_size, (numerator, trees) = polynomial_pair(weights)
+    assert natural_size == 75
+    n_controls = bernstein(numerator, natural_size - 1)
+    z_controls = bernstein(trees, natural_size - 1)
+    assert all(value > 0 for value in z_controls)
+    bad_ratios = [
+        j for j in range(natural_size - 1)
+        if n_controls[j + 1] * z_controls[j]
+        < n_controls[j] * z_controls[j + 1]
+    ]
+    assert bad_ratios == [70, 71, 72, 73]
+    assert n_controls[0] == n_controls[1] == 0
+    assert all(value > 0 for value in n_controls[2:])
+
+    J = subtract(
+        multiply(derivative(numerator), trees),
+        multiply(numerator, derivative(trees)),
+    )
+    j_controls = bernstein(J, len(J) - 1)
+    assert len(J) - 1 == 138
+    assert j_controls[0] == 0
+    assert all(value > 0 for value in j_controls[1:132])
+    assert all(value < 0 for value in j_controls[132:])
+    print("PASS (EXACT REFUTATION): undirected complete-ray monotonicity and CT")
+    print("PASS (EXACT): witness retains every fixed-colour numerator sign")
+    print("PASS (EXACT): derivative controls have one + to - sign change")
+
+
 def main():
     transfer_audit([
         [0, sp.Rational(1, 3), sp.Rational(2, 3)],
@@ -395,7 +474,8 @@ def main():
     convexity_witness_audit()
     pointwise_quadratic_obstruction()
     stieltjes_obstruction_audit()
-    print("OPEN: all-order tree-colour ratio order and complete-ray monotonicity")
+    monotonicity_refutation_audit()
+    print("OPEN: all-order fixed-colour numerator sign and no-downcrossing")
 
 
 if __name__ == "__main__":

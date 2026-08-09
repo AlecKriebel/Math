@@ -10,9 +10,11 @@ loopless row-stochastic kernel.  It also isolates a concrete coloured-tree
 order which would prove the global fitness-two theorem.
 
 The matrix identities and the equivalence of the proposed signs are
-**PROVED**.  The coloured-tree order, complete-ray monotonicity, and the
-global sign are **OPEN**.  Exact boundary calculations reported below are
-finite hostile evidence only.
+**PROVED**.  The coloured-tree order and complete-ray monotonicity are
+**EXACTLY REFUTED** by an undirected five-vertex graph.  The weaker
+no-downcrossing statement, fixed-colour root sign, and global sign remain
+**OPEN**.  Exact boundary calculations reported below are finite hostile
+evidence only.
 
 Joint convexity is not used.  In fact it is false already for directed
 three-vertex kernels.  The ray question survives that counterexample.
@@ -262,10 +264,17 @@ Thus `(CT)` implies `f'(alpha)>=0`.  Since `theta_0=theta_1=0`, it also
 implies every `theta_j>=0` and hence the original forest-coefficient
 conjecture.
 
-The condition `(CT)` is **OPEN**.  Its advantage is that it names a precise
-tree injection target: increasing the number of actual-coloured edges must
-increase the conditional inverse-rank reward of the root.  It is stronger
-than the endpoint sign and should not be reported as equivalent to it.
+The condition `(CT)` is **EXACTLY REFUTED** in Section 8.  Its covariance
+consequence is exact, but it is not a viable universal lemma.  The surviving
+fixed-colour target is only
+
+\[
+ \boxed{\theta_j\geq0\quad\hbox{for every }j,}       \tag{FC}
+\]
+
+equivalently nonnegativity of every true numerator control `n_j`.  This is
+strictly weaker than ordering the controls across colours and is still
+**OPEN**.
 
 ## 6. Hostile audit and convexity separation
 
@@ -285,9 +294,10 @@ The independent verifier establishes the following exact finite facts.
    exact coloured-tree and derivative tests.
 5. The simple matrix (23) exactly refutes pointwise positivity of `W`.
 
-Items 2--4 are finite evidence, not a reduction in population order.  The
-remaining theorem is an all-order proof of `(CT)`, a weaker direct proof of
-`J>=0`, or merely exclusion of a downward zero through (12)--(13).
+Items 2--4 are finite evidence, not a reduction in population order, and
+Section 8 shows that neither pattern persists universally.  The remaining
+theorem is an all-order proof of `(FC)`, or a still weaker exclusion of a
+downward zero through (12)--(13).
 
 ## 7. Exact obstruction to a literal Stieltjes realization
 
@@ -369,4 +379,57 @@ This product is invariant under diagonal sign changes, so no such change
 can put `b` and `c` in coordinatewise opposite orthants.  These facts close
 the naive substochastic/oscillatory/Stieltjes proof.  They do not refute a
 larger positive realization or a grouped forest injection; the exact
-colour-order route `(CT)` remains viable.
+fixed-colour route `(FC)` remains viable.
+
+## 8. Exact undirected refutation of monotonicity and colour order
+
+On five vertices, take the symmetric edge weights in lexicographic order
+
+\[
+ (w_{01},w_{02},w_{03},w_{04},w_{12},w_{13},w_{14},w_{23},w_{24},w_{34})
+ =(10,100,10,1000,10000,1,1,1,1,10000).             \tag{36}
+\]
+
+This is a connected complete-support undirected weighted graph.  Exact
+rational stationary sensitivity gives
+
+\[
+ 0.098<f(97/100)<0.099,
+ \qquad -0.017<f'(97/100)<-0.016,                   \tag{37}
+\]
+
+and
+
+\[
+ 0.075<f(1)<0.076,
+ \qquad -3.580<f'(1)<-3.579.                       \tag{38}
+\]
+
+Every quantity in (37)--(38) is computed over `QQ`; the verifier retains the
+full rational fractions.  Thus complete-ray monotonicity and `J>=0` are
+false even in the admissible undirected class.
+
+The natural tree degree is 74.  The adjacent colour-ratio inequalities fail
+exactly at
+
+\[
+ j=70,71,72,73.                                     \tag{39}
+\]
+
+The derivative numerator has degree 138.  Its Bernstein controls have the
+exact sign pattern
+
+\[
+ 0,\quad +\ (1\leq j\leq131),\quad
+ -\ (132\leq j\leq138).                            \tag{40}
+\]
+
+By variation diminution, this particular ray has exactly one interior
+critical point, a strict maximum; it has no interior minimum.
+
+Most importantly, every true numerator control in degree 74 is
+nonnegative: the first two vanish and all controls 2 through 74 are strictly
+positive.  Hence the witness is not a counterexample to `(FC)`, to the
+no-downcrossing statement, or to the endpoint theorem.  It proves that an
+all-order forest argument must pair roots separately at each fixed colour
+count; comparing consecutive colour counts is unnecessarily strong.
