@@ -146,6 +146,14 @@
   `4/9`.  The exact verifier explicitly warns that this is not a graph or
   pseudoflow; it isolates the loss caused by forgetting the individual
   vertex currents.
+- Found the simplest rank-`H` storage form: internal conductance `E=H-M`
+  obeys `LE=C-Q`.  Oriented additions create
+  `P=C-Q^+=sum_out 2 pi x^2/(1+x)>=0`, while removals destroy
+  `N=Q^-`.  Its rank recurrence has zero singleton source and top boundary
+  `z/2`, so `sum(P-N)=z/2`.  The sharp theorem is exactly
+  `(1-kappa_n)sum mu C <= sum(P-N)`.  This isolates the missing statement as
+  transport of vertex-marked destruction debt across an entire excursion,
+  not a pointwise or prefix inequality.
 
 ### Active sign
 

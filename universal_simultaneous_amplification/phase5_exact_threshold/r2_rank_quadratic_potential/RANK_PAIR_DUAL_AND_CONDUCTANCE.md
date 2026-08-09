@@ -1170,6 +1170,62 @@ rational coordinates and an exact replay are in
 **not** claimed to arise from a graph or a pseudoflow; it proves only that
 vertex-forgetting destroys indispensable constraints.
 
+### 7.8 Internal-conductance creation and excursion debt
+
+The rank-`H` route alone has an especially simple storage interpretation.
+Recall that `E=H-M` is internal stationary conductance.  Equations `(22)`
+and `(71)` give the pointwise identity
+
+\[
+ \boxed{LE=C-Q.}                                             \tag{114}
+\]
+
+Resolve its two orientations by putting
+
+\[
+ P(S)=C(S)-Q^+(S)
+ =\sum_{v\notin S}{2\pi_vx_v^2\over1+x_v}\ge0,\qquad
+ N(S)=Q^-(S)\ge0.                                           \tag{115}
+\]
+
+Thus an addition creates internal conductance at rate `P`, while a removal
+destroys it at rate `N`, and `LE=P-N`.  Write
+`P_k=sum_(|S|=k) bar(mu)_S P(S)` and similarly for `N_k`.  If
+
+\[
+ X^E_k=\sum_{|S|=k}\bar\mu_SE(S)U(S),\qquad
+ Y^E_k=\sum_{|S|=k}\bar\mu_SE(S)D(S),                       \tag{116}
+\]
+
+then the exact rank recurrence is
+
+\[
+ \boxed{
+ X^E_{k-1}+P_{k-1}+Y^E_{k+1}-N_{k+1}
+ -X^E_k-Y^E_k-{z\over2}1_{\{k=n\}}=0.}                    \tag{117}
+\]
+
+There is no singleton source because `E({i})=0`; the top term is `z/2`
+because `E(V)=1/2`.  Summing gives
+
+\[
+ \sum_k(P_k-N_k)={z\over2}.                                \tag{118}
+\]
+
+Consequently the endpoint theorem is equivalently
+
+\[
+ \boxed{
+ (1-\kappa_n)\sum_S\bar\mu_SC(S)
+ \le\sum_k(P_k-N_k).}                                      \tag{119}
+\]
+
+This is the sharp creation-versus-excursion-debt form of the compressed
+rank-`H` conjecture.  It explains why a prefix argument which ignores debt
+can fail: `P,N` are separately nonnegative, but only their all-rank
+difference is fixed by the boundary.  The missing theorem must control how
+the vertex-marked current transports the destruction debt before absorption.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1203,6 +1259,9 @@ vertex-forgetting destroys indispensable constraints.
 - **EXACTLY REFUTED:** the vertex-forgotten scalar current cone, even after
   the natural event-moment bounds `(112)--(113)`, by the rational `n=3`
   relaxed point of flux `5/9`.
+- **PROVED:** the internal-conductance creation/debt identity
+  `(114)--(119)`, an exact reformulation of the sharp rank-`H` endpoint
+  problem.
 - **EXACTLY COMPUTED:** rank-dependent `H` and, separately, rank-dependent
   `K_0` both repair the exact 17-vertex global-coefficient witness, by the
   matching rational certificates `(96)` and `(102)`.

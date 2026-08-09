@@ -692,8 +692,16 @@ def verify_fixed_matrix_contractions() -> None:
     mass_down = [F(0) for _ in range(N + 1)]
     cut_up = [F(0) for _ in range(N + 1)]
     cut_down = [F(0) for _ in range(N + 1)]
+    internal_up = [F(0) for _ in range(N + 1)]
+    internal_down = [F(0) for _ in range(N + 1)]
+    creation = [F(0) for _ in range(N + 1)]
+    destruction = [F(0) for _ in range(N + 1)]
     d_zero_integral = F(0)
     nonlinear_remainder_integral = F(0)
+    internal_values = [internal(state) for state in range(FULL + 1)]
+    assert internal_values[0] == 0
+    assert internal_values[FULL] == F(1, 2)
+    assert all(internal_values[1 << vertex] == 0 for vertex in range(N))
     for state in transient:
         k = state.bit_count()
         mutant_mass = mass(state)
@@ -733,6 +741,7 @@ def verify_fixed_matrix_contractions() -> None:
         assert q_plus + q_minus == selection_gain(state)
         assert 0 <= q_plus <= collision_cut
         assert 0 <= 2 * q_minus <= collision_cut
+        assert generator(state, internal_values) == collision_cut - q_plus - q_minus
 
         weight = mu[state]
         cut_occupation[k] += weight * collision_cut
@@ -742,6 +751,10 @@ def verify_fixed_matrix_contractions() -> None:
         mass_down[k] += weight * mutant_mass * down
         cut_up[k] += weight * collision_cut * up
         cut_down[k] += weight * collision_cut * down
+        internal_up[k] += weight * internal_values[state] * up
+        internal_down[k] += weight * internal_values[state] * down
+        creation[k] += weight * (collision_cut - q_plus)
+        destruction[k] += weight * q_minus
 
         d_zero = 2 * collision_cut - r_zero_values[state]
         direct_gradient = sum(
@@ -792,12 +805,22 @@ def verify_fixed_matrix_contractions() -> None:
             cut_rank_residual -= cut_up[k] + cut_down[k]
         assert cut_rank_residual == 0
 
+        internal_rank_residual = F(0)
+        if k > 1:
+            internal_rank_residual += internal_up[k - 1] + creation[k - 1]
+        if k < N:
+            internal_rank_residual += internal_down[k + 1] - destruction[k + 1]
+            internal_rank_residual -= internal_up[k] + internal_down[k]
+        internal_rank_residual -= F(1, 2) * rho if k == N else F(0)
+        assert internal_rank_residual == 0
+
     kappa = F(
         2 * ((N - 3) * 2 ** N + 4),
         (3 * N - 7) * 2 ** N + 8,
     )
     total_cut = sum(cut_occupation)
     total_gain = sum(gain_up) + sum(gain_down)
+    assert sum(creation) - sum(destruction) == rho / 2
     assert (
         total_gain <= kappa * total_cut
     ) == (
