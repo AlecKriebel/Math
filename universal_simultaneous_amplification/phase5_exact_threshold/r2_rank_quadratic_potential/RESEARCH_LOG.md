@@ -1,0 +1,42 @@
+# Research log: rank-dependent quadratic fitness-two potential
+
+## 2026-08-08 — exact dual and conductance storage
+
+- Derived the exact LP dual.  Its nonnegative weights are state occupation
+  pseudoflows conserving, rank by rank, mass and all one- and two-vertex
+  marked moments.  The dual objective is the full-boundary flux `z`; proving
+  the certificate requires an upper bound on every feasible `z`.
+- Derived the complete mass, one-mark, and pair-mark recurrence systems.
+- Found the reversible quadratic storage
+  `H(S)=pi(S)+sum_({i,j} subset S) pi_i P_ij`.  At fitness two its drift is
+  exactly the stationary conductance cut of `S`.
+- Obtained the endpoint identity
+  `1/n + sum_S y_S cut(S) = 3z/2` and its exact adjacent-rank refinement.
+- Identified the same object in the determinant branch as a two-labelled
+  request/cache-cut alignment.  No endpoint sign has been inferred from
+  this identification.
+- Hostile floating quotient searches with four through six equitable
+  classes, including multiscale and sparse supports, found no rank-pair LP
+  violation.  This remains discovery evidence only.
+- Derived an exact row-stochastic tangent decomposition of the complete
+  radial optional drift.  Its nonlinear remainder is a positive sum of
+  squares; the only linear terms are the column-temperature defect and
+  `Z_k=k(k-1)/(n-1)-sum_(i,j in S)P_ij`.  This exactly isolates the
+  compressed vertex-plus-one-pair certificate now under study.
+- Hostile tests on genuinely directed row-stochastic kernels (arbitrary
+  kernels on `n=5,6,7`, 10,000 direct fixation trials at `n=5`, and directed
+  three/four-class quotients) also approached the complete value only from
+  below.  This is numerical evidence, not an extension theorem.
+
+### Active sign
+
+For every feasible two-moment pseudoflow, prove
+
+`sum_S y_S cut_pi(S) <= (3/2) rho_dB(K_n,2) - 1/n`.
+
+The next analytic attempt is to combine the rank-cut recurrence with the
+arbitrary one-mark recurrence using a rank-dependent solution of a
+reversible Poisson equation.  The smaller space containing only rank
+constants, stationary mass, and internal conductance is exactly unsuitable
+as a universal route according to direct LP counterexamples, so the full
+vertex corrector must be retained.
