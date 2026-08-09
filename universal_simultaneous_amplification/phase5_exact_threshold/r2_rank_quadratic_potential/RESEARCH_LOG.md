@@ -75,6 +75,19 @@
   `2C-Q=sum_v pi_v[(s_v-x_v)^2+x_v^2(1-x_v)/(1+x_v)]`.
   This supplies a graph-independent positive square identity, but its
   factor-two bound is still weaker than the required all-rank constant.
+- [EXACT ROUTE REFUTATION] Tested the corrected smallest compressed ansatz:
+  arbitrary rank constants, arbitrary rank-labelled vertex fields, and one
+  global coefficient of stationary internal conductance in the original
+  fixation potential.  The exact 17-vertex `(2,5,10)` additive-witness graph
+  refutes it.  Within the 196-state symmetry quotient the function space has
+  dimension 50; a 49-state strictly positive rational dual ray and an exact
+  matching primal give restricted optimum
+  `0.4767015236181397039926...`, strictly above the `K_17` baseline
+  `524288/1114095` by an exact 719/721-digit rational.  Every labelled to
+  quotient row and every primal inequality is replayed independently.
+- Consequently a single fixed conductance contraction of the matrix budget
+  cannot prove the endpoint theorem.  The full rank-pair system, or at least
+  a genuinely rank-dependent conductance profile, remains the live route.
 
 ### Active sign
 

@@ -593,7 +593,9 @@ refuted rank-dependent additive route.  Hence `(59)` explains both facts
 seen computationally: one conductance statistic is the natural storage
 variable, but its fixed geometric coefficient is insufficient; an
 additional zero-boundary rank profile of `H`, together with the arbitrary
-vertex corrector, is essential.
+vertex corrector, is essential.  Section 7.4 upgrades this last statement
+from discovery evidence to an exact Farkas refutation, even when every rank
+constant and every rank-labelled vertex corrector is retained.
 
 ### 7.2 Geometric conjugacy back to the Green pseudoflow
 
@@ -808,6 +810,42 @@ They are graph-independent and exact, but their factor two is not the sharp
 all-rank constant in `(75)`; the missing gain is the transport of this PSD
 budget between ranks and the two absorbing boundaries.
 
+### 7.4 Exact failure of one global conductance coefficient
+
+The smallest compressed conjecture suggested by `(59)` is now exactly
+decided.  In the original fixation coordinates, allow
+
+\[
+ F(S)=a_{|S|}+\sum_{v\in S}b_{|S|,v}+\lambda E_\pi(S),       \tag{81}
+\]
+
+with arbitrary rank constants, arbitrary rank-labelled vertex
+coefficients, and one scalar `lambda` shared by all ranks.  The 17-vertex
+complete-support graph with class sizes `(2,5,10)` and class-edge weights
+
+\[
+ \begin{pmatrix}20000000&15&5\\15&9&4500\\5&4500&150\end{pmatrix}
+\]
+
+has the exact restricted optimum
+
+\[
+ p_{\rm glob}=0.4767015236181397039926\ldots
+ >{524288\over1114095}
+ =\rho_{\rm dB}(K_{17},2).                                 \tag{82}
+\]
+
+The proof is an exact 49-state positive Farkas ray in the 196-state
+`S_2 x S_5 x S_10` quotient, together with an independently reconstructed
+matching primal potential whose 196 drift inequalities are checked over the
+rationals.  See `GLOBAL_CONDUCTANCE_FARKAS_REFUTATION.md` and
+`verify_global_conductance_farkas_refutation.py`.
+
+The graph itself is dB-suppressing at fitness two.  Hence `(82)` refutes
+only the compressed certificate `(81)`, not the endpoint fixation theorem.
+The full rank-pair route and the version with an independent conductance
+coefficient on every rank remain open.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -827,6 +865,9 @@ budget between ranks and the two absorbing boundaries.
 - **PROVED:** the two-request covariance representation `(76)--(77)`, the
   reversible square comparison `(78)--(79)`, and the exact collision SOS
   `(80)`.
+- **EXACTLY REFUTED:** the restricted potential with rank constants,
+  arbitrary rank-labelled vertex terms, and one global conductance
+  coefficient, by the rational primal/dual pair `(81)--(82)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
   identities and the dual balances on small weighted graphs, checks `(36)`
   on a genuinely directed rational kernel, and checks the new Green/current
@@ -835,4 +876,6 @@ budget between ranks and the two absorbing boundaries.
   the complete baseline in the hostile searches in this directory.
 - **OPEN:** the universal cut bound `(25)`, hence universal feasibility of
   the rank-pair certificate and the universal fitness-two fixation theorem;
-  equivalently, the summed collision inequality `(75)`.
+  equivalently, the summed collision inequality `(75)`.  The corresponding
+  compressed potential with a separate conductance coefficient on every
+  rank also remains open.
