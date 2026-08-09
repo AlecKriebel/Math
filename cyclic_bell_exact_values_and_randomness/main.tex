@@ -46,6 +46,7 @@
 \newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\supp}{\operatorname{supp}}
 \newcommand{\spec}{\operatorname{spec}}
+\newcommand{\rankop}{\operatorname{rank}}
 \newcommand{\e}{\mathrm e}
 \newcommand{\bbC}{\mathbb C}
 \newcommand{\bbT}{\mathbb T}
@@ -58,7 +59,7 @@
 \large Sharp operator bounds, equality structure, and limits of Bell-value randomness certification}
 \author{Alec Kriebel\\
 \small Independent Researcher}
-\date{8 August 2026}
+\date{9 August 2026}
 
 \begin{document}
 \maketitle
@@ -66,22 +67,25 @@
 \begin{abstract}
 Perito, D'Avino, Jung, Mironowicz, Ac\'in, and Augusiak introduced two
 cyclic Bell families designed for efficient certification of maximal global
-randomness and conjectured the exact value of the reduced operator underlying
-the first family.  We prove the conjectured value in every dimension and
-strengthen the upper bound to the commuting-operator model.  The proof uses a
-polar-decomposition positive factor and a sharp scalar extremum on the unit
-circle.  We then study the equality mechanism and identify a permutation
-freedom invisible to every first-harmonic correlator in the Bell score.  For
-every \(d\geq4\), a final-two phase swap gives admissible order-\(d\),
-rank-one projective measurements that attain the exact maxima of both
-augmented cyclic families while producing a nonuniform designated joint
-output distribution.  Hence the maximum scalar Bell value alone does not
-certify \(2\log_2d\) bits of global randomness across the whole maximizing
-face.  This does not challenge randomness certification conditioned on the
-complete canonical behavior, nor does it show that the canonical strategy
-lacks maximal randomness.  We give an exact \(d=4\) certificate over
-\(\mathbb Q(\zeta_{16})\), all-dimensional analytic constructions, and
-scoped consequences for low-setting designs.
+randomness.  For the first reduced operator they proved the general bound
+\(d\sqrt2\), supplied an attaining strategy of value
+\(2\csc(\pi/(2d))\), and conjectured that this sharper value is exact.  We
+prove that formula in every dimension; the polar-decomposition argument also
+applies to commuting-operator realizations.  Its scalar equality phases yield
+two complementary structural results.  Every finite-dimensional exact
+maximizer of the first augmented family has, on the support of Alice's
+reduced state, all \(d\) equality roots with equal multiplicity, so \(d\)
+divides the supported dimension.  At the same time, conditional permutations
+of those phases generate a large orbit of exact maximizers invisible to all
+first-harmonic correlators in the score.  For every \(d\geq4\), a final-two
+swap maximizes both augmented cyclic families while producing a nonuniform
+designated joint-output distribution.  Thus maximal value of the displayed
+scalar functional alone does not certify the proposed uniform
+\(2\log_2d\) bits or uniquely determine the canonical behavior.  This does
+not challenge certification conditioned on the complete canonical behavior,
+nor determine the worst-case guessing probability.  An exact \(d=4\)
+certificate over \(\mathbb Q(\zeta_{16})\) accompanies the all-dimensional
+proofs.
 \end{abstract}
 
 \medskip
@@ -101,14 +105,16 @@ purifying adversary.  If the maximizing face contains several behaviors, the
 same symmetry argument need not apply to each of them
 \cite{DharaEtAl2013,NietoSillerasEtAl2014,BancalEtAl2014}.
 
-Perito, D'Avino, Jung, Mironowicz, Acin, and Augusiak recently introduced two
+Perito, D'Avino, Jung, Mironowicz, Ac\'in, and Augusiak recently introduced two
 families built around cyclic Fourier correlators
 \cite{PeritoEtAl2026}.  They defined the families, found explicit
-maximally-entangled strategies, proved the exact value of the second reduced
-family by a sum-of-squares identity, and conjectured the exact value of the
-first reduced family.  Their symmetry analysis motivated maximal-global-
-randomness statements; for selected dimensions they also evaluated Eve's
-guessing probability numerically after fixing the complete canonical
+maximally-entangled strategies, and proved the general first-family bound
+\(d\sqrt2\).  Their strategy has value \(2\csc(\pi/(2d))\); they
+conjectured equality and confirmed it numerically through \(d=6\) with the
+NPA hierarchy~\cite{NPA2007}.  They also proved the exact value of the second
+reduced family by a sum-of-squares identity.  Their symmetry analysis motivated
+maximal-global-randomness statements; for selected dimensions they evaluated
+Eve's guessing probability numerically after fixing the complete canonical
 behavior.  These are logically different inputs to a randomness problem.
 
 The surrounding literature includes high-dimensional and modular Bell
@@ -147,13 +153,15 @@ Bell families & Introduced both cyclic families and their normalization &
 Adopts the displayed Hermitian operator definitions, with a convention note\\
 Attaining strategies & Supplied the canonical strategies and matching lower
 bounds & Rechecks admissibility and attainment exactly\\
-First reduced value & Conjectured \(2\csc(\pi/(2d))\); numerical evidence
-through \(d=6\) & Proves the all-dimensional upper bound and the
+First reduced value & Proved \(\beta_q\leq d\sqrt2\), supplied the lower
+value \(2\csc(\pi/(2d))\), and conjectured equality; NPA evidence through
+\(d=6\) & Proves the sharper all-dimensional upper bound and the
 \(q=qa=qc\) equality\\
 Second reduced value & Proved value \(d\) by an SOS identity & Uses that SOS,
 including its commuting-operator reading\\
-Equality phases & Not a classification of the maximizing face & Gives a
-conditional phase-permutation mechanism and its exact product hypotheses\\
+Equality structure & No complete maximizing-face classification & Proves
+the scalar phases, finite-dimensional equal supported multiplicities, and a
+conditional phase-permutation orbit with exact product hypotheses\\
 Alternative maximizers & Not identified & Constructs biased exact maximizers
 of both augmented families for every \(d\geq4\)\\
 Canonical full behavior & Randomness studied numerically in selected
@@ -173,6 +181,9 @@ Our main conclusions are as follows.
 \item The finite-dimensional tensor-product, approximate, and
 commuting-operator values of the first reduced cyclic operator are all
 \(2\csc(\pi/(2d))\).
+\item Every finite-dimensional exact maximizer of the first augmented family
+has all equality roots with equal multiplicity on Alice's support; in
+particular, \(d\) divides that supported dimension.
 \item A polar-linear permutation theorem gives explicit sufficient conditions
 under which phase permutations remain admissible maximizers and preserve the
 entire first-harmonic correlator matrix.
@@ -187,11 +198,13 @@ worst-case guessing probability, the complete maximizing face, or the
 randomness of the canonical realization.
 \end{enumerate}
 
-The equality mechanism is proved in Sections~\ref{sec:exact}--\ref{sec:phase};
+The exact value and support rigidity are proved in
+Sections~\ref{sec:exact}--\ref{sec:rigidity}; the explicit equality orbit is
+developed in Section~\ref{sec:phase};
 the two biased families are treated in Sections~\ref{sec:biased} and
 \ref{sec:second}; and the randomness interpretation is isolated in
-Section~\ref{sec:randomness}.  Section~\ref{sec:settings} records only the
-setting-complexity consequences that survive an independent audit.
+Section~\ref{sec:randomness}.  Section~\ref{sec:settings} collects the
+binary benchmark and sharply scoped low-setting design conditions.
 
 \section{Bell operators, behaviors, and randomness notions}
 \label{sec:framework}
@@ -243,6 +256,15 @@ Eve's guessing probability is
  G(AB\mid x_*,y_*,E)
  =\max_{\{Q_{ab}\}}\sum_{a,b}\Tr(Q_{ab}\sigma_E^{ab}).
 \]
+For model-dependent optimizations below, \(\mathfrak S_q\) denotes finite-
+dimensional tripartite tensor-product strategies, including Eve's
+\(d^2\)-outcome guessing POVM; \(\mathfrak S_{qa}\) is the closure of the
+resulting finite extended correlations; and \(\mathfrak S_{qc}\) consists of
+a vector state and three party algebras on one Hilbert space that commute
+pairwise across parties, with Eve's guessing POVM in her algebra.  This fixes
+the adversarial extension rather than leaving \(q\), \(qa\), or \(qc\)
+implicit in a guessing quantity.
+
 Maximal private global randomness means
 \(\sigma_E^{ab}=\rho_E/d^2\) for every \(a,b\), and implies
 \(G=1/d^2\).  Uniform probabilities are necessary but not sufficient for
@@ -318,6 +340,31 @@ Then
 \end{lemma}
 
 \begin{proof}
+Put \(\mathcal M=\mathcal A''\), the von Neumann algebra generated by
+\(\mathcal A\).  Because \(C\in\mathcal A\), continuous functional
+calculus places \(\absop C\), its square root, and
+\((\absop C+\varepsilon\Id)^{-1}\) in \(\mathcal M\) for every
+\(\varepsilon>0\).  Strong closure then places its support projection there,
+since
+\[
+ \supp\absop C
+ =\operatorname*{s\!-\!lim}_{\varepsilon\downarrow0}
+ \absop C(\absop C+\varepsilon\Id)^{-1}.
+\]
+The canonical polar partial isometry belongs to the same algebra; explicitly,
+\[
+ V=\operatorname*{s\!-\!lim}_{\varepsilon\downarrow0}
+ C(\absop C+\varepsilon\Id)^{-1}.
+\]
+Indeed, the right-hand side is
+\(V\absop C(\absop C+\varepsilon\Id)^{-1}\), which converges strongly to
+\(V\supp\absop C=V\).  Elementwise commutation of the two original
+algebras gives \(\mathcal B\subseteq\mathcal A'\); since
+\(\mathcal M=(\mathcal A')'\), every element of \(\mathcal M\), in
+particular \(V\) and the functional-calculus factors above, commutes with
+\(B\).  This is the only closure step needed in the commuting-operator
+model.
+
 The initial projection \(V^\dagger V\) is the support projection of
 \(\absop C\), while polar functional calculus gives
 \[
@@ -325,8 +372,7 @@ The initial projection \(V^\dagger V\) is the support projection of
  \qquad
  \absop{C^\dagger}^{1/2}V\absop C^{1/2}=C.
 \]
-The polar operators lie in the von Neumann algebra generated by
-\(\mathcal A\), and hence commute with \(B\).  Expanding yields
+Expanding yields
 \[
  P_{C,B}^\dagger P_{C,B}
  =\absop{C^\dagger}+\absop C-CB-B^\dagger C^\dagger.
@@ -381,7 +427,10 @@ Lemma~\ref{lem:polar} now gives
  \leq\frac12\bigl(F_d(U)+A_0F_d(U)A_0^\dagger\bigr)
  \leq M_d\Id.
 \]
-This uses only cross-party commutation, not a tensor-product factorization.
+All functional-calculus operators used here lie in the von Neumann algebra
+generated by Alice's observables and therefore commute with Bob's algebra by
+the argument in Lemma~\ref{lem:polar}.  Thus no tensor-factor decomposition,
+finite-dimensional trace, or cyclicity assumption enters the upper bound.
 The finite order-\(d\) strategy rechecked in
 Appendix~\ref{app:attainment} attains \(M_d\).  The inclusions among
 \(q,qa,qc\) then prove all three equalities.
@@ -413,8 +462,11 @@ exact conclusion from \eqref{eq:global-certificate} is only
  G\lvert\psi\rangle=0,\qquad
  GA_0^\dagger\lvert\psi\rangle=0.
 \]
-We do not promote these support-level conditions to a global relation for
-\(U\), or to a classification of all maximizing realizations.
+These vector-level relations do not yield a global relation for \(U\), a
+description outside the state support, or a classification of all maximizing
+realizations.  In finite dimension, however, the stabilizer supplied by the
+augmented term upgrades them to the support-level spectral restriction in
+Section~\ref{sec:rigidity}.
 
 \begin{corollary}[First augmented family]
 \label{cor:first-augmented}
@@ -436,6 +488,77 @@ The upper bound follows from Theorem~\ref{thm:exact} and
 Appendix~\ref{app:attainment}, with the aligned added observable, attains
 equality.
 \end{proof}
+
+The exact formula gives a direct check against the numerical evidence in the
+originating paper:
+\begin{table}[ht]
+\centering
+\small
+\begin{tabularx}{0.94\textwidth}{@{}c>{\raggedright\arraybackslash}Xcc@{}}
+\toprule
+\(d\) & Exact value \(M_d\) & Decimal & Source comparison\\
+\midrule
+2 & \(2\sqrt2\) & \(2.828427\ldots\) & analytic CHSH value\\
+3 & \(4\) & \(4.000000\ldots\) & NPA \(1+AB\)\\
+4 & \(2\sqrt{4+2\sqrt2}\) & \(5.226252\ldots\) & NPA \(1+AB\)\\
+5 & \(2(1+\sqrt5)\) & \(6.472136\ldots\) & NPA level 2\\
+6 & \(2(\sqrt6+\sqrt2)\) & \(7.727407\ldots\) & NPA level 2\\
+\bottomrule
+\end{tabularx}
+\caption{Low-dimensional exact values.  The source NPA bounds, displayed
+there in truncated decimal form, agree with these values to the reported
+precision; its analytic \(d\sqrt2\) bound is tight only at \(d=2\).}
+\label{tab:exact-values}
+\end{table}
+
+Appendix~\ref{app:attainment} also derives the two source Fourier sums and
+the explicit qutrit Bob observable, fixing the phase, transpose, and
+complex-conjugation conventions rather than identifying the strategies only
+through their common value.
+
+\section{Finite-dimensional support-level equality rigidity}
+\label{sec:rigidity}
+
+The equality certificate contains more information about arbitrary exact
+maximizers once the first cyclic operator is augmented by its aligned term.
+The following result is restricted to an attained finite-dimensional tensor-
+product maximum.  It does not extend silently to \(qa\) or \(qc\).
+
+\begin{theorem}[Equal supported multiplicities]
+\label{thm:support-rigidity}
+Let a finite-dimensional tensor-product strategy with order-\(d\)
+observables and state \(\rho_{AB}\) attain
+\[
+ \langle\overline{\cI}_d\rangle=M_d+1.
+\]
+For a purification \(\lvert\Psi\rangle_{ABE}\), put
+\[
+ \rho_A=\Tr_{BE}\lvert\Psi\rangle\!\langle\Psi\rvert,
+ \qquad K=\supp\rho_A,
+ \qquad U=A_0^\dagger A_1.
+\]
+Then \(K\) reduces the relative unitary \(U\), and every root of
+\(z^d=(-1)^{d-1}\) occurs in \(\spec(U|_K)\) with the same multiplicity.
+Consequently,
+\[
+ d\mid\dim K.
+\]
+No conclusion is asserted on \(K^\perp\), for approximate maximizers, or
+for general commuting-operator realizations.
+\end{theorem}
+
+The proof, given in Appendix~\ref{app:rigidity-proof}, starts from the
+individual vanishing of every positive residual in
+\eqref{eq:global-certificate} and of the augmented stabilizer.  A Schmidt-
+support cancellation lemma moves those vector relations to \(K\).  Kernel-
+safe polar cancellation then makes each polar partial isometry unitary on
+\(K\), adjacent half-angle phases produce one reflection for each equality
+root, and a rank inequality forces all root multiplicities to agree.
+
+Equal supported multiplicities are necessary but do not imply a Weyl
+representation, uniqueness, or self-testing.  In particular, every explicit
+permutation maximizer below has \(K=\bbC^d\) and is compatible with the
+theorem.
 
 \section{Equality phases and permutation blindness}
 \label{sec:phase}
@@ -710,6 +833,35 @@ and define the Hermitian functional
  \label{eq:second-functional}
 \end{equation}
 
+\begin{lemma}[Coefficient normalization]
+\label{lem:lambda-normalization}
+The coefficients in \eqref{eq:lambda} satisfy
+\[
+ \sum_{\ell=0}^{d-1}\absop{\lambda_\ell}^2=1.
+\]
+\end{lemma}
+
+\begin{proof}
+The logarithmic derivative of the sine product gives, away from its poles,
+\[
+ \sum_{k=0}^{d-1}\cot\!\left(x+\frac{k\pi}{d}\right)
+ =d\cot(dx).
+\]
+Differentiating yields the general identity
+\begin{equation}
+ \sum_{k=0}^{d-1}\csc^2\!\left(x+\frac{k\pi}{d}\right)
+ =d^2\csc^2(dx).
+ \label{eq:csc-square-sum}
+\end{equation}
+At \(x=-\pi/(2d)\), the right-hand side is \(d^2\).  Since the numerator
+of every \(\lambda_\ell\) has modulus one,
+\[
+ \sum_{\ell=0}^{d-1}\absop{\lambda_\ell}^2
+ =\frac1{d^2}\sum_{\ell=0}^{d-1}
+ \csc^2\!\left(\frac{\pi(\ell-\tfrac12)}d\right)=1.
+\]
+\end{proof}
+
 The source SOS is short and load-bearing.  Fourier orthogonality and
 unitarity of the \(B_y\)'s give
 \[
@@ -820,25 +972,30 @@ classification of its maximizing face.
 \section{Randomness interpretation}
 \label{sec:randomness}
 
-Define the value-conditioned guessing quantity for either augmented family
-by
-\[
- G_{\mathrm{val}}(d)
- =\sup_{\mathsf S:\,\langle\mathcal B_d\rangle=\beta(\mathcal B_d)}
- G_{\mathsf S}(AB\mid1,d,E),
-\]
-where \(\mathcal B_d\) is \(\overline{\cI}_d\) or
-\(\overline{\cF}_d\).  Theorems~\ref{thm:biased} and \ref{thm:second} imply
+For \(\mu\in\{q,qa,qc\}\) and either augmented family, define the model-
+indexed value-conditioned guessing quantity
 \begin{equation}
- G_{\mathrm{val}}(d)
+ G_{\mathrm{val}}^\mu(d;\mathcal B)
+ =\sup_{\substack{\mathsf S\in\mathfrak S_\mu:\\
+ \langle\mathcal B_d\rangle_{\mathsf S}=\beta_\mu(\mathcal B_d)}}
+ G_{\mathsf S}(AB\mid1,d,E),
+ \qquad
+ \mathcal B\in\{\overline{\cI},\overline{\cF}\}.
+ \label{eq:gval-model}
+\end{equation}
+The finite-dimensional construction embeds into both larger models, so
+Theorems~\ref{thm:biased} and \ref{thm:second} imply, for every such \(\mu\),
+\begin{equation}
+ G_{\mathrm{val}}^\mu(d;\mathcal B)
  \geq\frac1{d^2}
  +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
  >\frac1{d^2}
  \qquad(d\geq4).
  \label{eq:value-conditioned}
 \end{equation}
-This is a lower bound on the worst case over the maximizing face.  We do not
-claim that the final-two swap is worst possible.
+This is only a lower bound on the supremal adversarial guessing probability
+over the maximizing face.  It comes from one explicit strategy with trivial
+Eve; the final-two swap is not claimed to be worst possible.
 
 The scope can be stated in one sentence:
 \begin{quote}
@@ -846,6 +1003,58 @@ The scope can be stated in one sentence:
 behavior or certify maximal global randomness across the entire maximizing
 face.}
 \end{quote}
+
+This conclusion has a precise relationship to the originating conjecture.
+Conjecture~2 of Ref.~\cite{PeritoEtAl2026} states that maximal violation of
+the first augmented functional certifies \(2\log_2d\) random bits for
+\((x,y)=(1,d)\).  Its printed maximum contains the isolated normalization
+discrepancy described in Remark~\ref{rem:normalization}; for the displayed
+operator the actual maximum is \(M_d+1\).  In that normalization, the
+constructed strategies prove that the scalar-value implication
+\[
+ \langle\overline{\cI}_d\rangle=M_d+1
+ \quad\Longrightarrow\quad
+ G(AB\mid1,d,E)=\frac1{d^2}
+\]
+is false for every \(d\geq4\).  This is a counterexample to the displayed
+Bell-value claim in those dimensions, not a determination of the exact
+worst-case guessing probability and not a statement about protocols that
+condition on additional observed data.
+
+\begin{corollary}[Behavior-level nonuniqueness]
+\label{cor:behavior-nonunique}
+For either augmented family and every \(d\geq4\), the maximal scalar value
+does not determine a unique behavior, even modulo local output relabelings.
+\end{corollary}
+
+\begin{proof}
+The canonical phase order has the uniform target table \(1/d^2\), whereas
+the final-two swap has the nonuniform table of
+Theorems~\ref{thm:biased} and \ref{thm:second}.  A local output relabeling at
+either target input only permutes the entries of that table and therefore
+cannot turn a uniform table into a nonuniform one.  Thus the two exact
+maximizers represent inequivalent behaviors under those relabelings.
+\end{proof}
+
+This behavior-level failure of uniqueness is the only self-testing-related
+consequence used here.  We do not claim a classification under every
+strategy-level equivalence involving local isometries, ancillary systems, or
+transposition.
+
+At \(d=4\), Appendix~\ref{app:d4} gives
+\(\max_{a,b}p(a,b\mid1,4)=3/32\).  For the displayed trivial-Eve
+realization its min-entropy is exactly
+\begin{equation}
+ -\log_2(3/32)=5-\log_2 3=3.415037\ldots<4.
+ \label{eq:d4-entropy}
+\end{equation}
+Equivalently, if
+\(H_{\mathrm{val}}^\mu(d;\mathcal B)
+:=-\log_2G_{\mathrm{val}}^\mu(d;\mathcal B)\), then the scalar maximum
+certifies at most \(5-\log_2 3\) bits in every model above.  The
+number is an upper bound on value-only worst-case conditional min-entropy,
+not its exact optimized value.
+
 It is equally important to state what does not follow.  The result does not
 dispute a calculation that fixes the complete canonical behavior, and it does
 not show that the canonical strategy lacks maximal global randomness.  In
@@ -867,7 +1076,7 @@ statistics that exclude the phase-permuted realization.  The source's
 For either augmented family and every \(d\geq4\), there is no valid bound for
 all strategies of the form
 \[
- G(AB\mid E)\leq\frac1{d^2}+f_d(\varepsilon),
+ G(AB\mid1,d,E)\leq\frac1{d^2}+f_d(\varepsilon),
  \qquad f_d(\varepsilon)\longrightarrow0,
 \]
 where \(\varepsilon\) is only the Bell deficit from the maximum.
@@ -882,19 +1091,22 @@ has the fixed positive gap in \eqref{eq:value-conditioned}.  Bounds that use
 additional observed correlators or the complete behavior are not excluded.
 \end{proof}
 
-\section{Setting-complexity consequences}
+\section{Benchmarks and design conditions for low-setting private randomness}
 \label{sec:settings}
 
 The permutation mechanism is a design warning, not a universal lower bound
-on settings.  One universal baseline is nevertheless immediate.
+on settings.  This section separates one exact resource baseline, a complete
+binary benchmark, and a positive sufficient composition criterion from the
+still-open higher-dimensional problem.
 
-\begin{proposition}[One-input baseline]
+\begin{proposition}[One-input certification baseline]
 \label{prop:one-input}
 If either party has only one input, every finite-output nonsignalling behavior
 is local and admits a compatible finite-dimensional pure projective
-realization in which Eve guesses both outputs perfectly.  Hence at least two
-inputs per party are necessary for any private global randomness, even when
-the complete behavior is fixed.
+realization in which Eve guesses both outputs perfectly at every input pair.
+Therefore neither a scalar score nor even the complete behavior in such a
+scenario can device-independently force positive private global randomness
+against all compatible realizations.
 \end{proposition}
 
 \begin{proof}
@@ -918,13 +1130,129 @@ with diagonal grouping PVMs realizes it.  Eve reads \(\lambda\) and guesses
 perfectly.  The other case is symmetric.
 \end{proof}
 
-This is a standard locality fact rather than a novelty claim.  For \(d=2\),
-the \((2,2)\) baseline is attainable by a known tilted Bell score
-\cite{WooltortonEtAl2022}.  For \(d\geq3\), neither this paper nor the
-phase-permutation theorem determines the minimum number of settings.  A
-current all-dimensional construction with projective generation
-measurements uses two Alice settings and \(d^2+1\) Bob settings
-\cite{FarkasMironowiczAugusiak2026}.
+This is a standard locality fact, and it concerns the total test-input
+alphabets.  It does not say that a trusted one-input realization is
+intrinsically random or nonrandom, nor does it prevent a larger Bell test
+from having one designated generation input on each wing.
+
+\begin{theorem}[Binary two-input benchmark]
+\label{thm:binary-benchmark}
+For binary Hermitian unitaries with cross-party commutation, set
+\[
+ \mathcal W_2=A_0B_0-2A_0B_1+2A_1B_0+2A_1B_1.
+\]
+Its finite-dimensional tensor-product, approximate, and commuting-operator
+values are all \(3\sqrt3\).  Moreover, every attaining finite-dimensional
+tensor-product strategy, with arbitrary purifying Eve, satisfies at the
+target pair \((x,y)=(0,0)\)
+\[
+ \sigma_E^{ab}=\rho_E/4\qquad(a,b\in\bbZ_2).
+\]
+Hence \(G(AB\mid0,0,E)=1/4\) and
+\(H_{\min}(AB\mid E)=2\) bits.
+\end{theorem}
+
+Appendix~\ref{app:binary} gives a self-contained two-square SOS and
+operator-valued Fourier proof.  The result is established prior art: after
+the output flip \(B_1\mapsto-B_1\), this is the \(\delta=\pi/6\) member of
+the Wooltorton--Brown--Colbeck family~\cite{WooltortonEtAl2022}.  We include
+the proof as a normalization and privacy benchmark, not as a novelty claim.
+
+\begin{corollary}[Binary setting minimality]
+\label{cor:binary-minimality}
+In the finite-dimensional projective device-independent model considered
+here, two binary inputs per party suffice to certify two private global
+output bits.  One input on either wing cannot force any private global
+randomness against all compatible realizations.  Thus \((2,2)\) is
+componentwise minimal for this binary certification task.
+\end{corollary}
+
+For general \(d\), operator-valued Fourier coefficients make the privacy
+condition explicit.  For target PVMs \(R=\{R_a\}\) and \(Q=\{Q_c\}\), put
+\[
+ \widehat\sigma_E(k,\ell)
+ =\sum_{a,c}\omega^{ka+\ell c}\sigma_E^{a,c},
+ \qquad
+ \sigma_E^{a,c}=\frac1{d^2}\sum_{k,\ell}
+ \omega^{-ka-\ell c}\widehat\sigma_E(k,\ell).
+\]
+Thus privacy is equivalent to
+\(\widehat\sigma_E(0,0)=\rho_E\) and
+\(\widehat\sigma_E(k,\ell)=0\) for every nonzero Fourier index.  Observed
+uniformity tests only the scalar trace of these conditions.
+
+\begin{lemma}[Private-MUB composition; sufficient criterion]
+\label{lem:private-mub}
+Let \(\lvert\Psi\rangle_{ABE}\) be a finite-dimensional purification.
+Alice has two \(d\)-outcome PVMs \(P=\{P_b\}_{b\in\bbZ_d}\) and
+\(R=\{R_a\}_{a\in\bbZ_d}\), and Bob has a \(d\)-outcome PVM
+\(Q=\{Q_c\}_{c\in\bbZ_d}\).  Let \(\pi\) be a permutation of \(\bbZ_d\)
+and define
+\[
+ \tau_E^b=\Tr_{AB}\!\left[(P_b\otimes\Id)
+ \lvert\Psi\rangle\!\langle\Psi\rvert(P_b\otimes\Id)\right].
+\]
+Suppose, for every \(a,b\), that
+\begin{align*}
+ \tau_E^b&=\rho_E/d,\\
+ (\Id\otimes Q_{\pi(b)}\otimes\Id)\lvert\Psi\rangle
+ &=(P_b\otimes\Id)\lvert\Psi\rangle,\\
+ (P_bR_aP_b\otimes\Id)\lvert\Psi\rangle
+ &=d^{-1}(P_b\otimes\Id)\lvert\Psi\rangle.
+\end{align*}
+Then the target pair \((R,Q)\) obeys
+\[
+ \sigma_E^{a,\pi(b)}=\rho_E/d^2
+ \qquad\text{for every }a,b.
+\]
+The hypotheses are sufficient; no necessity or low-setting existence claim
+is made.
+\end{lemma}
+
+\begin{proof}
+Fix \(a,b\) and a Hermitian test operator \(T_E\).  Suppressing identity
+factors, projectivity, cross-party commutation, and the matching hypothesis
+give
+\begin{align*}
+ \Tr(T_E\sigma_E^{a,\pi(b)})
+ &=\langle\Psi|R_aQ_{\pi(b)}T_EQ_{\pi(b)}R_a|\Psi\rangle\\
+ &=\langle\Psi|P_bR_aP_bT_E|\Psi\rangle\\
+ &=\frac1d\langle\Psi|P_bT_E|\Psi\rangle
+ =\frac1{d^2}\Tr(T_E\rho_E).
+\end{align*}
+Equality against every Hermitian \(T_E\) proves the operator identity.
+\end{proof}
+
+The lemma identifies what a successful composition would have to certify:
+a private reference PVM, perfect matching to Bob, and a state-supported MUB
+sandwich.  It does not itself construct a Bell functional enforcing those
+hypotheses.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}X@{}}
+\toprule
+Scenario or design & Audited status\\
+\midrule
+\(1\times m\) or \(m\times1\) & Cannot DI-force private global randomness,
+even from the complete behavior (Proposition~\ref{prop:one-input}).\\
+\(2\times2,\ d=2\) & Achievable and componentwise setting-minimal
+(Theorem~\ref{thm:binary-benchmark}).\\
+\(2\times2,\ d\geq3\) & Open here; the standard ideal qudit realization has
+no uniform input pair.\\
+\(2\times3,\ d\geq3\) & Open here; the direct perfect-anchor construction
+fails, and Proposition~\ref{prop:mub} excludes one coefficientwise exposure
+route.\\
+All-dimensional benchmark & A current construction uses two Alice inputs and
+\(d^2+1\) Bob inputs~\cite{FarkasMironowiczAugusiak2026}.\\
+Two augmented cyclic families & Their scalar maxima fail to force maximal
+global randomness for every \(d\geq4\).\\
+\bottomrule
+\end{tabularx}
+\caption{Proved, conditional, and open low-setting regimes.}
+\label{tab:setting-status}
+\end{table}
 
 Appendix~\ref{app:settings} records two narrower observations retained from
 the setting-complexity study: the standard two-input qudit self-test has no
@@ -944,8 +1272,10 @@ to the target output distribution.
 
 Several questions are now sharply posed.
 \begin{enumerate}[leftmargin=1.6em]
-\item Characterize the complete maximizing faces of both augmented families,
-including reducible and commuting-operator realizations.
+\item Determine whether the support-level rigidity conditions, admissible
+phase permutations, direct sums, and irrelevant ancillary systems generate
+all finite-dimensional exact maximizers of the first augmented family; then
+separately characterize the \(qa\) and \(qc\) maximizing faces.
 \item Determine the exact worst-case guessing probability at the Bell maximum;
 the bound \eqref{eq:value-conditioned} need not be tight.
 \item Resolve the \(d=2,3\) maximizing faces for the first augmented family.
@@ -958,6 +1288,10 @@ self-testing.
 \item Develop robust bounds conditioned on a minimal set of extra correlators,
 rather than either one scalar score or the entire behavior.
 \end{enumerate}
+The positive private-MUB criterion and the negative permutation-blindness
+mechanism point in the same direction: a successful low-setting score must
+control operator-valued adversarial information, not merely a scalar maximum
+or an unordered first-harmonic spectrum.
 These problems are natural opportunities for collaboration with the
 originating authors and the broader Bell-inequality community.  No external
 review or collaboration is claimed here.
@@ -980,7 +1314,7 @@ code, literature-search organization, and drafting under Alec Kriebel's
 direction.  Alec Kriebel is the sole named author and takes responsibility
 for the manuscript and release.  AI output was not treated as evidence:
 claims were retained only when accompanied by a written proof and replayable
-checks.  No originating author or outside researcher was contacted.
+checks.  No external review, collaboration, or endorsement is claimed.
 
 \appendix
 
@@ -1010,6 +1344,150 @@ nonnegative and the last \(m\) are nonpositive.  Two finite sums give
 \]
 The maximum occurs exactly at \(s\equiv a\pmod h\), equivalently \(z^d=-1\).
 Multiplying by two proves Lemma~\ref{lem:scalar}, including the equality set.
+
+\section{Proof of support-level rigidity}
+\label{app:rigidity-proof}
+
+We first isolate the finite-dimensional rank step.
+
+\begin{lemma}[Reflection-product rank bound]
+\label{lem:reflection-rank}
+Let \(T\) be unitary on an \(n\)-dimensional space and let \(E\) be an
+orthogonal projection of rank \(r\).  If
+\[
+ T^d=\Id,
+ \qquad \bigl(T(\Id-2E)\bigr)^d=-\Id,
+\]
+then \(n\leq dr\).
+\end{lemma}
+
+\begin{proof}
+Put \(R=\Id-2E\).  Factoring the ordered product gives
+\[
+ (TR)^d=T^dR_{d-1}\cdots R_0,
+ \qquad R_j=T^{-j}RT^j.
+\]
+Thus \(-\Id=R_{d-1}\cdots R_0\).  Each
+\(\Id-R_j=2T^{-j}ET^j\) has rank \(r\), while repeated use of
+\(\Id-AB=(\Id-A)+A(\Id-B)\) gives
+\[
+ \rankop(\Id-R_{d-1}\cdots R_0)
+ \leq\sum_{j=0}^{d-1}\rankop(\Id-R_j)=dr.
+\]
+The left side is \(\rankop(2\Id)=n\).
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:support-rigidity}]
+Equality in the first reduced bound and in
+\(\Reop(A_0B_d)\leq\Id\) is forced separately.  Every positive term in
+the augmented gap therefore vanishes on \(\lvert\Psi\rangle\):
+\begin{equation}
+ P_y\lvert\Psi\rangle=0,
+ \qquad
+ (M_d\Id-F_d(U))\lvert\Psi\rangle=0,
+ \qquad
+ (A_0B_d)\lvert\Psi\rangle=\lvert\Psi\rangle.
+ \label{eq:rigidity-residuals}
+\end{equation}
+Here and below identity factors on the other parties are suppressed.  The
+last relation follows from
+\(
+ \Id-\Reop W=\tfrac12(\Id-W)^\dagger(\Id-W)
+\)
+for unitary \(W\).
+
+For every Alice operator \(R\), a Schmidt decomposition across
+\(A:(BE)\) gives the support-cancellation equivalence
+\begin{equation}
+ (R\otimes\Id_{BE})\lvert\Psi\rangle=0
+ \quad\Longleftrightarrow\quad R|_K=0.
+ \label{eq:support-cancellation}
+\end{equation}
+Equivalently, the squared norm is
+\(\Tr(\rho_AR^\dagger R)\).  This formulation includes nonfaithful
+\(\rho_A\) and makes no assertion on \(K^\perp\).
+The middle relation in \eqref{eq:rigidity-residuals} therefore gives
+\[
+ K\subseteq L:=\operatorname{ran}\mathbf1_{\mathcal Z_d}(U),
+ \qquad
+ \mathcal Z_d=\{z\in\bbT:z^d=(-1)^{d-1}\}.
+\]
+The augmented stabilizer, after tracing out \(BE\), gives
+\(\rho_A=A_0\rho_AA_0^\dagger\), hence \(A_0K=K\).
+
+Write \(L_y=V_y\absop{L_y}\) and define the possible kernel projection
+\[
+ E_y^{\mathrm{bad}}=\mathbf1_{\{-\omega^{-y}\}}(U),
+ \qquad
+ F_y=V_yV_y^\dagger
+ =A_0(\Id-E_y^{\mathrm{bad}})A_0^\dagger.
+\]
+The bad phase is not in \(\mathcal Z_d\), because its \(d\)-th power is
+\((-1)^d\).  Thus \(E_y^{\mathrm{bad}}K=0\), and \(A_0K=K\) gives
+\(F_y|_K=\Id_K\).  Polar functional calculus factors the first residual as
+\[
+ P_y=\absop{L_y^\dagger}^{1/2}(\Id-V_yB_y).
+\]
+The vector
+\(q_y=(\Id-V_yB_y)\lvert\Psi\rangle\) lies in
+\(\operatorname{ran}F_y\) because \(F_y\) fixes the state's Alice support
+and \(F_yV_y=V_y\).  Equation~\eqref{eq:rigidity-residuals} also puts
+\(q_y\) in \(\ker\absop{L_y^\dagger}^{1/2}=\ker F_y\).  Therefore
+\begin{equation}
+ (V_yB_y)\lvert\Psi\rangle=\lvert\Psi\rangle.
+ \label{eq:polar-stabilizer}
+\end{equation}
+This cancellation uses neither an inverse nor a globally unitary extension
+of \(V_y\).
+
+The space \(K\) is contained in the initial support of \(V_y\), so \(V_y\)
+is isometric there.  Tracing \eqref{eq:polar-stabilizer} over \(BE\) yields
+\(\rho_A=V_y\rho_AV_y^\dagger\), and hence \(V_yK=K\).  Thus
+\(S_y=A_0^\dagger V_y\) is unitary on \(K\).  On \(L\), polar functional
+calculus gives
+\[
+ S_y=s_y(U),
+ \qquad
+ s_y(z)=\frac{1+\omega^yz}{\absop{1+\omega^yz}},
+ \qquad s_y(z)^2=\omega^yz.
+\]
+It follows that \(U|_K=\omega^{-y}(S_y|_K)^2\), so \(K\) reduces \(U\).
+Let \(E_k\) be the spectral projection of \(U|_K\) corresponding to the
+root \(z_k\) in \eqref{eq:equality-roots}.
+
+Put \(\eta=\e^{\pi i/d}\), read \(y+1\) modulo \(d\), and let
+\(r_*=\lfloor(d-1)/2\rfloor\).  Direct division of the adjacent half-angle
+phases gives
+\[
+ \overline{s_y(z_k)}s_{y+1}(z_k)
+ =\begin{cases}
+ -\eta,&[k+y]_d=r_*,\\
+ \eta,&[k+y]_d\neq r_*.
+ \end{cases}
+\]
+Consequently, for \(k(y)=[r_*-y]_d\),
+\begin{equation}
+ S_y^\dagger S_{y+1}=\eta(\Id-2E_{k(y)}),
+ \qquad
+ V_{y+1}=\eta V_y(\Id-2E_{k(y)})
+ \quad\text{on }K.
+ \label{eq:adjacent-reflection}
+\end{equation}
+The map \(y\mapsto k(y)\) is a permutation of the root labels.
+
+Raising \eqref{eq:polar-stabilizer} to the \(d\)-th power and using
+\(B_y^d=\Id\), then applying \eqref{eq:support-cancellation}, gives
+\(V_y^d=\Id_K\).  Since \(\eta^d=-1\),
+\eqref{eq:adjacent-reflection} also gives
+\[
+ \bigl(V_y(\Id-2E_{k(y)})\bigr)^d=-\Id_K.
+\]
+Lemma~\ref{lem:reflection-rank}, with \(n=\dim K\), yields
+\(n\leq d\rankop E_k\) for every \(k\).  The \(E_k\)'s are mutually
+orthogonal and sum to \(\Id_K\), so their ranks sum to \(n\).  Every one of
+the \(d\) inequalities must be an equality:
+\(\rankop E_k=n/d\) for all \(k\).  This proves the theorem.
+\end{proof}
 
 \section{Rechecking the canonical attaining strategy}
 \label{app:attainment}
@@ -1065,8 +1543,47 @@ Finally,
 The spectrum of \(W_y\) is the scalar equality set, so summing over \(y\)
 gives \(\langle\cI_d\rangle=M_d\).  Taking the extra Bob observable
 \(B_d=Z^\dagger\) gives \(\langle Z\otimes Z^\dagger\rangle=1\), proving
-Corollary~\ref{cor:first-augmented}.  This appendix claims no new attaining
-strategy.
+Corollary~\ref{cor:first-augmented}.
+
+To identify this polar form with the source observables rather than only
+compare their values, write the source expansion as
+\[
+ B_y^{\mathrm{src}}=\sum_{k=0}^{d-1}\lambda^{\mathrm{src}}_{y,k}
+ X^{k+1}Z^k,
+ \qquad
+ \lambda^{\mathrm{src}}_{y,k}=
+ \frac{(-1)^k\omega^{k(k+1)/2}\omega^{-y(k+1)}}
+ {d\sin(\pi(k+\tfrac12)/d)}.
+\]
+Its discrete Fourier transform is
+\[
+ \sum_{y=0}^{d-1}\omega^{my}\lambda^{\mathrm{src}}_{y,k}
+ =d\lambda^{\mathrm{src}}_{0,k}\,
+ \delta_{k,m-1\ (\mathrm{mod}\ d)}.
+\]
+At \(m=0,1\) this gives exactly
+\begin{equation}
+ \sum_yB_y^{\mathrm{src}}=\alpha_dZ^\dagger,
+ \qquad
+ \sum_y\omega^yB_y^{\mathrm{src}}=\alpha_dX,
+ \qquad
+ \alpha_d=\csc\!\left(\frac{\pi}{2d}\right).
+ \label{eq:source-fourier}
+\end{equation}
+Thus the source strategy saturates the sum of the termwise polar bounds.
+Every \(L_y\) is invertible here, so equality in each positive polar deficit
+uniquely forces \((B_y^{\mathrm{src}})^T=V_y^\dagger\).  Hence
+\(B_y^{\mathrm{src}}=Q_y^T=\overline{V_y}\): the transpose and complex
+conjugation are fixed by
+\(\langle\Phi_d|R\otimes S|\Phi_d\rangle=d^{-1}\Tr(RS^T)\).
+
+For \(d=3\), the coefficient formula reduces to
+\[
+ B_y=\frac13\left(2Z^2+2\omega^{2y}X
+ -\omega^{y+1}X^2Z\right),
+\]
+the explicit source observable, with \(\alpha_3=2\).  This appendix claims
+no new attaining strategy.
 
 \section{The exact four-outcome certificate}
 \label{app:d4}
@@ -1114,12 +1631,130 @@ For both augmented families,
  \qquad G=3/32>1/16.
  \label{eq:d4-table}
 \end{equation}
+For the displayed one-dimensional Eve this gives exactly
+\(H_{\min}(AB)=-\log_2(3/32)=5-\log_2 3\) bits, while the ideal uniform
+table would give four bits.
 One exact verifier reconstructs \eqref{eq:d4-table} from projectors and a
 separate Fourier calculation.  An independent exact implementation
 reconstructs the source coefficients \(\lambda_{y,k}\), proves
 \(\widehat B_\ell=4\lambda_\ell D_\ell\), checks all fourth-power relations,
 expands
 the full second-family SOS, and verifies values \(M_4+1\) and \(5\).
+
+\section{Binary two-input benchmark}
+\label{app:binary}
+
+We prove Theorem~\ref{thm:binary-benchmark} directly, while crediting its
+prior-art origin in the main text.  Cross-party identity factors are
+suppressed.  The exact operator identity is
+\begin{equation}
+\begin{aligned}
+ 3\sqrt3\Id-\mathcal W_2
+ ={}&\frac1{2\sqrt3}
+ \bigl(\sqrt3A_0-B_0+2B_1\bigr)^2\\
+ &+\frac1{\sqrt3}
+ \bigl(\sqrt3A_1-B_0-B_1\bigr)^2.
+\end{aligned}
+\label{eq:binary-sos}
+\end{equation}
+Its expansion uses only \(A_x^2=B_y^2=\Id\) and cross-party commutation.
+The two same-party Bob anticommutator terms cancel, so
+\(\mathcal W_2\leq3\sqrt3\Id\) already in the commuting model.
+
+If a finite-dimensional purified strategy attains equality, both squares
+annihilate \(\lvert\Psi\rangle\):
+\begin{equation}
+ (B_0-2B_1)\lvert\Psi\rangle=\sqrt3A_0\lvert\Psi\rangle,
+ \qquad
+ (B_0+B_1)\lvert\Psi\rangle=\sqrt3A_1\lvert\Psi\rangle.
+ \label{eq:binary-equality}
+\end{equation}
+Define the Hermitian operators
+\[
+ X_A=\frac{A_0+2A_1}{\sqrt3},
+ \qquad
+ Z_B=\frac{B_0-2B_1}{\sqrt3}.
+\]
+Solving \eqref{eq:binary-equality} gives, explicitly as on-state relations,
+\[
+ B_0\lvert\Psi\rangle=X_A\lvert\Psi\rangle,
+ \qquad
+ Z_B\lvert\Psi\rangle=A_0\lvert\Psi\rangle.
+\]
+Cross-party commutation and unitarity imply
+\(X_A^2\lvert\Psi\rangle=Z_B^2\lvert\Psi\rangle
+=\lvert\Psi\rangle\).  The exact identities
+\[
+ \{A_0,X_A\}=\sqrt3(X_A^2-\Id),
+ \qquad
+ \{Z_B,B_0\}=\sqrt3(Z_B^2-\Id)
+\]
+therefore yield
+\begin{equation}
+ \{A_0,X_A\}\lvert\Psi\rangle=0,
+ \qquad
+ \{Z_B,B_0\}\lvert\Psi\rangle=0.
+ \label{eq:binary-anticommutation}
+\end{equation}
+No global anticommutation relation is asserted.
+
+Put \(S_A=X_AB_0\) and \(S_B=A_0Z_B\).  These Hermitian operators stabilize
+the state.  For every Hermitian Eve test \(T_E\), cross-party commutation and
+\eqref{eq:binary-anticommutation} give
+\[
+\begin{aligned}
+ \langle A_0T_E\rangle
+ &=\langle S_AA_0T_E\rangle
+ =\langle X_AA_0B_0T_E\rangle
+ =-\langle A_0T_ES_A\rangle
+ =-\langle A_0T_E\rangle,\\
+ \langle B_0T_E\rangle
+ &=\langle S_BB_0T_E\rangle
+ =-\langle B_0T_ES_B\rangle
+ =-\langle B_0T_E\rangle.
+\end{aligned}
+\]
+Here the commuting factor \(B_0T_E\), respectively \(A_0T_E\), may be
+moved through the relevant on-state anticommutator; no global
+anticommutation is used.  Finally,
+\[
+ \langle A_0B_0T_E\rangle=\langle A_0X_AT_E\rangle.
+\]
+The left side is real, while the complex conjugate of the right side is its
+negative by \eqref{eq:binary-anticommutation}; hence the joint moment also
+vanishes.  Thus all three nontrivial binary operator-valued Fourier
+coefficients are zero:
+\[
+ \langle A_0T_E\rangle=
+ \langle B_0T_E\rangle=
+ \langle A_0B_0T_E\rangle=0.
+\]
+For
+\(M_a^0=(\Id+(-1)^aA_0)/2\) and
+\(N_b^0=(\Id+(-1)^bB_0)/2\), Fourier inversion gives
+\[
+\begin{aligned}
+ \Tr(T_E\sigma_E^{ab})=\frac14\bigl(&\Tr(T_E\rho_E)
+ +(-1)^a\langle A_0T_E\rangle+(-1)^b\langle B_0T_E\rangle\\
+ &+(-1)^{a+b}\langle A_0B_0T_E\rangle\bigr)
+ =\frac14\Tr(T_E\rho_E).
+\end{aligned}
+\]
+Equality for every Hermitian \(T_E\) proves
+\(\sigma_E^{ab}=\rho_E/4\).
+
+For attainment, on \(\lvert\Phi_2\rangle\) take
+\[
+ A_0=Z,
+ \quad A_1=-\tfrac12Z+\tfrac{\sqrt3}{2}X,
+ \quad B_0=X,
+ \quad B_1=-\tfrac{\sqrt3}{2}Z+\tfrac12X.
+\]
+All four observables square to \(\Id\), and the maximally entangled trace
+identity gives \(\langle\mathcal W_2\rangle=3\sqrt3\).  This finite strategy
+and \eqref{eq:binary-sos} establish the \(q=qa=qc\) value; the preceding
+operator-valued calculation establishes the stated finite-dimensional
+privacy conclusion.
 
 \section{Scoped low-setting observations}
 \label{app:settings}
@@ -1141,7 +1776,12 @@ Every table has
 \[
  p_{\max}=\frac1{2d^3\sin^2(\pi/(4d))}>\frac1{d^2},
 \]
-so no ideal input pair is uniform.  Perfectly anchoring a third Bob setting
+so no ideal input pair is uniform.  Its ideal joint min-entropy is
+\[
+ \log_2\!\left(2d^3\sin^2\frac{\pi}{4d}\right)
+ =\log_2d+\log_2\frac{\pi^2}{8}+o(1).
+\]
+Perfectly anchoring a third Bob setting
 to either Alice basis leaves a cross table with
 \[
  p_{\max}^{\mathrm{cross}}

@@ -1,45 +1,106 @@
 # Focused questions for specialist review
 
-Please address the six bounded questions below.  They isolate the places where a short expert check is most valuable; no reviewer is being asked to “check the whole paper.”
+Please address the six bounded core questions below. They isolate the places
+where a short expert check is most valuable; no reviewer is being asked to
+“check the whole paper.” Two optional secondary-benchmark questions follow.
 
-## 1. Commuting-operator bound
+## 1. Source baseline and exact-value strengthening
 
-Does the polar-decomposition argument establish the commuting-operator bound without an implicit tensor-product assumption?
+Is the attribution boundary accurate?
 
-In particular, are the canonical-partial-isometry support identities valid on the kernels, do the polar factors remain in Alice's generated von Neumann algebra, and is cross-party commutation the only commutation used?
+In particular, does the originating paper receive explicit credit for the
+two family definitions, canonical strategies and lower bounds, the general
+first-family upper bound $d\sqrt2$, NPA evidence through $d=6$, the second-
+family SOS, and the canonical full-behavior numerical framework? Do the
+radical values and reported NPA decimals/levels agree, and is the isolated
+Conjecture 2 normalization discrepancy described without rhetorical use?
 
-## 2. Phase-permutation theorem
+## 2. Commuting-operator upper bound
 
-Does the phase-permutation theorem characterize exactly the **admissible maximizers claimed**?
+Does the polar-decomposition proof establish
 
-The intended claim is sufficient, not exhaustive: under the maximizing-label and product-one hypotheses, every paired label permutation is admissible and score-preserving.  Is any extra condition needed for order \(d\), full spectrum, or zero polar factors?  Does any sentence accidentally suggest a complete maximizing-face classification?
+\[
+\mathcal I_d\le2\csc(\pi/(2d))I
+\]
 
-## 3. Nonuniform maximum-value behavior
+without an implicit tensor-product or finite-dimensional assumption?
 
-Does the constructed nonuniform behavior attain the same normalized Bell maximum?
+Please check the strong-limit construction of the support projection and
+canonical polar partial isometry in Alice's bicommutant, the resulting
+commutation with Bob, all kernel identities, and the left/right placement of
+$A_0$ in the functional-calculus terms. Is the finite source strategy used
+only for the matching lower bound, so that $q=qa=qc$ follows correctly?
 
-Please check the root and polar-phase products, the Fourier target formula, the final-two-swap autocorrelation, and the exact \(d=4\) table.  Are the local marginals uniform while the designated joint table is nonuniform exactly as stated?
+## 3. Finite-dimensional support rigidity
 
-## 4. Randomness conditioning
+Does Theorem `thm:support-rigidity` prove exactly its stated narrow result?
 
-Is the distinction between Bell-value and fixed-full-behavior randomness stated correctly?
+Please audit conversion of exact augmented saturation into separate residual
+stabilizers; Schmidt-support cancellation for nonfaithful $\rho_A$; the bad-
+phase/kernel cancellation; invariance and reduction of
+$K=\operatorname{supp}\rho_A$; the adjacent half-angle reflection; and the
+rank argument forcing every root multiplicity to equal $\dim K/d$. Does any
+sentence silently extend the conclusion from attained finite-dimensional
+tensor-product maxima of the first augmented family to the unaugmented,
+second-family, approximate, or general commuting-operator setting?
 
-Specifically, does trivial Eve suffice for the claimed lower bound at the scalar maximum, and does the text avoid claiming either that the final-two swap is globally worst-case or that the canonical complete behavior fails to certify maximal randomness?
+## 4. Permutation orbit, nonuniformity, and $d=4$ entropy
 
-## 5. Second-family extension
+Does the conditional phase-permutation theorem characterize exactly the
+**admissible maximizers claimed**, as a sufficient family rather than a full
+classification?
 
-Does the second-family extension follow from the displayed SOS certificate?
+Please check both product-one conditions, paired row permutations, weighted-
+cycle order and spectrum, the target-projector DFT, the final-two-swap
+autocorrelation, and the guessing bound for every $d\ge4$. At $d=4$, do
+independent calculations give the $1/32,3/32$ table, $G=3/32$, and
+$H_{\min}=5-\log_2 3$ only for the displayed trivial-Eve realization? Is that
+entropy used only as an upper bound on value-only worst-case entropy?
 
-Please verify the \(1/(2d)\) normalization, coefficient conjugations, Fourier phase in \(\widehat B_\ell=d\lambda_\ell D_\ell\), order-\(d\) parity calculation, and annihilation of **every** SOS factor.  Is the transfer of the first-family target table to \(A_1,B_d\) exact?
+## 5. Precise scalar-value randomness conclusion
 
-## 6. Novelty and attribution
+Is the relationship to Conjecture 2 stated at the correct logical strength?
 
-Are the novelty and source-attribution boundaries accurate?
+In the displayed-operator normalization, the intended disproved implication
+is
 
-In particular, are the originating family definitions, canonical strategies, lower bounds, and full-behavior numerical framework credited; is the normalization discrepancy described neutrally; and are the exact upper bound, commuting strengthening, phase mechanism, and value-only counterexample assigned appropriately under the current primary-source record?
+\[
+\langle\overline{\mathcal I}_d\rangle=M_d+1
+\Longrightarrow G(AB\mid1,d,E)=1/d^2
+\qquad(d\ge4).
+\]
 
-## Optional short checks
+Does trivial Eve suffice for the counterexample? Does the paper clearly avoid
+claiming that the final-two swap is worst-case, that the canonical strategy
+lacks maximal randomness, or that an SDP fixing the complete canonical
+behavior is invalid? Is behavior-level nonuniqueness proved only up to local
+output relabelings, without an unsupported classification under every
+strategy-level equivalence?
 
-- Is “deficit at most \(\varepsilon\)” the correct quantifier for the endpoint-robustness corollary?
-- Should the finite-dimensional equal-supported-multiplicity result be included, or is explicit preservation and changelog disposition sufficient for a concise paper?
-- Are the low-setting statements visibly limited to the one-input theorem, specified ideal tables, and the separately bounded computational-MUB route?
+## 6. Second-family SOS and conventions
+
+Does the second-family extension follow from the complete credited source SOS?
+
+Please verify the corrected $1/(2d)$ normalization, coefficient conjugations,
+phase in $\widehat B_\ell=d\lambda_\ell D_\ell$, the order-$d$ parity
+calculation, and annihilation of **every** SOS factor. Is the transfer of the
+first-family target table to $A_1,B_d$ exact? Is the alternative source-
+appendix all-Bob-adjoint convention handled consistently as outcome inversion
+$b\mapsto-b$, rather than mixed termwise with the main/SOS convention?
+
+## Optional secondary checks
+
+### A. Binary benchmark
+
+Does the two-square identity prove $q=qa=qc=3\sqrt3$, and do its equality
+relations force all nontrivial operator-valued Fourier coefficients at
+$(0,0)$ to vanish for every attaining finite-dimensional tensor-product
+strategy? Is the Wooltorton--Brown--Colbeck prior-art credit clear, and is the
+privacy conclusion kept separate from arbitrary commuting maximizers?
+
+### B. Private-MUB composition
+
+Do the private reference condition, perfect Bob matching, and supported MUB
+sandwich imply $\sigma_E^{a,\pi(b)}=\rho_E/d^2$ with the displayed
+normalization? Is the lemma visibly sufficient only, with no necessity or
+low-setting existence claim?

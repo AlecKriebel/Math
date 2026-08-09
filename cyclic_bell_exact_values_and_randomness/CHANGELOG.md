@@ -1,5 +1,55 @@
 # Changelog
 
+## Version 1.1 — 2026-08-09
+
+### Restored and strengthened
+
+- Restored the finite-dimensional support-rigidity theorem for exact
+  maximizers of the first augmented family: every equality root occurs with
+  equal multiplicity on $\operatorname{supp}\rho_A$, hence $d$ divides the supported
+  dimension. Added the complete kernel-safe support and reflection-rank proof.
+- Expanded the commuting-operator polar proof with the generated von Neumann
+  algebra, strong-limit formulas for the support and canonical partial
+  isometry, and the bicommutant commutation step.
+- Restored the private-MUB composition lemma as a sufficient operator-valued
+  criterion and the complete binary `3*sqrt(3)` benchmark, including two
+  private bits and precisely scoped `(2,2)` DI setting minimality.
+- Restored the source-observable Fourier identification, explicit qutrit
+  formula, exact radical table for `d=2,...,6`, and the cosecant-square proof
+  of the second-family coefficient normalization.
+
+### Attribution and randomness scope
+
+- Credited Perito et al.'s proved `d*sqrt(2)` upper bound separately from
+  their sharper conjectured value and NPA evidence through `d=6`.
+- Identified the intended scalar-value implication of source Conjecture 2 as
+  refuted for every `d>=4`, after explaining its printed normalization
+  discrepancy; the fixed canonical full-behavior computation remains outside
+  the counterexample's scope.
+- Replaced the unqualified guessing quantity by model-indexed `q`, `qa`, and
+  `qc` quantities. Added behavior-level nonuniqueness modulo output
+  relabelings and the exact `d=4` entropy `5-log_2(3)` bits, without claiming
+  the worst-case optimum or a complete self-testing classification.
+- Corrected one-input wording to DI certification against all compatible
+  realizations. Restored a status table separating prior-art, proved,
+  conditional, and open low-setting regimes.
+- Verified the official names Lorenzo Coccia, Matteo Padovan, and Giuseppe
+  Vallone; the canonical `L./M./G.` initials were already correct. Cited the
+  formerly unused NPA reference at the numerical-evidence statement.
+- Removed the categorical statement that no source author had ever been
+  contacted, which was incompatible with the preserved historical record.
+  No external review, collaboration, or endorsement is claimed.
+
+### Audit and verification
+
+- Added `REVIEW_RESPONSE.md`, a theorem-by-theorem crosswalk, three focused
+  restoration audits, and an immutable pre-revision commit/hash record.
+- Added deterministic rigidity, exact-benchmark/source-observable, and
+  binary/private-MUB hostile verifiers and integrated them into
+  `reproduce.sh`.
+- Preserved every historical source directory and deployed standalone PDF
+  byte-for-byte.
+
 ## Version 1.0 — 2026-08-08
 
 ### Consolidated

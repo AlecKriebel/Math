@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
-\usepackage[margin=0.74in]{geometry}
-\usepackage{amsmath,amssymb,booktabs,tabularx,microtype,xcolor}
+\usepackage[margin=0.70in]{geometry}
+\usepackage{amsmath,amssymb,microtype,xcolor}
 \usepackage[hidelinks]{hyperref}
 \definecolor{deepblue}{HTML}{173B57}
 \hypersetup{colorlinks=true,urlcolor=deepblue,linkcolor=deepblue,
@@ -8,130 +8,125 @@ pdftitle={Two-page summary: Exact Quantum Values and Permutation-Blind Maximizer
 pdfauthor={Alec Kriebel}}
 \pagestyle{plain}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{5pt}
+\setlength{\parskip}{4pt}
 \newcommand{\Reop}{\operatorname{Re}}
+\newcommand{\supp}{\operatorname{supp}}
 \begin{document}
 \begin{center}
 {\Large\bfseries Exact Quantum Values and Permutation-Blind Maximizers\\
 in Cyclic Bell Inequalities}\\[-1pt]
 {\small Sharp operator bounds, equality structure, and limits of Bell-value
 randomness certification}\\[3pt]
-{\small Alec Kriebel, Independent Researcher \quad--\quad 8 August 2026}
+{\small Alec Kriebel, Independent Researcher \quad--\quad Version 1.1,
+9 August 2026}
 \end{center}
 
-\textbf{Status and attribution.}
+\textbf{Status, source credit, and result.}
 This is an unrefereed, AI-assisted manuscript. Perito, D'Avino, Jung,
 Mironowicz, Ac\'in, and Augusiak introduced the two cyclic Bell families,
-supplied canonical strategies and lower bounds, conjectured the first reduced
-value, and SOS-proved the second. The present paper proves the first upper
-bound, strengthens it to commuting operators, and constructs alternative
-exact maximizers. It does not claim external review or challenge the source's
-fixed-canonical-behavior numerical calculation.
+supplied canonical strategies and lower bounds, proved the first-family bound
+$d\sqrt2$, and conjectured their sharper attained value. Their NPA bounds
+through $d=6$ agree with it to the reported precision; they also SOS-proved
+the second reduced value. These source results are credited, not reclaimed.
 
-\textbf{Exact operator value.}
-With $\omega=e^{2\pi i/d}$,
+For $\omega=e^{2\pi i/d}$ and
+$\mathcal I_d=\sum_y\Reop[(A_0+\omega^yA_1)B_y]$, version 1.1 proves
 \[
- \mathcal I_d=\sum_{y=0}^{d-1}
- \Reop\!\left[(A_0+\omega^yA_1)B_y\right].
-\]
-For arbitrary unitaries satisfying only cross-party commutation,
-\[
- \mathcal I_d\le 2\csc\!\left(\frac{\pi}{2d}\right)I.
-\]
-After imposing the order-$d$ measurement relations, the source's finite
-strategy attains this value, hence
-\[
+ \mathcal I_d\le 2\csc\!\left(\frac{\pi}{2d}\right)I,
+ \qquad
  \beta_q=\beta_{qa}=\beta_{qc}=2\csc\!\left(\frac{\pi}{2d}\right).
 \]
-The Hermitian augmentation has value one more.
+The upper bound uses only cross-party commutation; the source's finite
+order-$d$ strategy gives attainment. The first Hermitian augmentation has
+value one more.
 
-The load-bearing operator identity is, for the canonical polar decomposition
-$C=V|C|$ and a commuting unitary $B$,
+\textbf{Polar and scalar mechanism.}
+For the canonical polar decomposition $C=V|C|$ and commuting unitary $B$,
 \[
  \frac{|C|+|C^\dagger|}{2}-\Reop(CB)
  =\frac12P^\dagger P,
  \qquad P=|C^\dagger|^{1/2}-V|C|^{1/2}B.
 \]
-It is valid for a partial isometry with a kernel; no inverse or unitary
-extension is used. Functional calculus reduces the remaining gap to
+An explicit strong-limit argument puts $V$ in Alice's generated von Neumann
+algebra, hence in Bob's commutant. Support projections handle kernels; no
+inverse or unitary polar extension is used. Functional calculus for
+$U=A_0^\dagger A_1$ reduces the remaining gap to
 \[
- \sum_{y=0}^{d-1}|1+\omega^y z|
- \le2\csc\!\frac{\pi}{2d},
+ \sum_y|1+\omega^yz|\le2\csc\frac{\pi}{2d},
  \qquad\text{equality iff }z^d=(-1)^{d-1}.
 \]
 
-\textbf{Equality-phase permutations.}
-Let $z_k$ be the $d$ scalar equality roots. For any permutation $\kappa$,
-put
-\[
- A_0=X,\qquad A_1=X\operatorname{diag}(z_{\kappa_j}),
-\]
-and pair the same order with every Bob polar-phase row. Exact product-one
-identities make all weighted shifts order-$d$ observables with simple full
-spectrum. Every complex first-harmonic correlator in the Bell score is a
-symmetric sum of the unordered root data and is independent of $\kappa$.
-This is a sufficient maximizing family, not a classification of all
-maximizers.
+\textbf{Finite-dimensional support rigidity.}
+For an attained finite-dimensional \emph{tensor-product} maximum of the first
+\emph{augmented} family, let $K=\supp\rho_A$. Then $K$ reduces $U$, every one
+of the $d$ equality roots occurs in $U|_K$ with equal multiplicity, and
+$d\mid\dim K$. The proof uses the augmented stabilizer, Schmidt-support and
+kernel-safe polar cancellation, adjacent-phase reflections, and a rank bound.
+It says nothing about $K^\perp$, approximate or general commuting-operator
+maximizers, or a complete classification/self-test.
+
+\textbf{Conditional permutation orbit.}
+Under the displayed product-one and paired polar-phase hypotheses, any
+permutation $\kappa$ gives
+$A_0=X$, $A_1=X\operatorname{diag}(z_{\kappa_j})$ and matching Bob weighted
+shifts that remain full-spectrum order-$d$ exact maximizers. All local first
+moments and complex first-harmonic correlators are permutation-independent.
+This is a sufficient family, not a classification.
 
 \newpage
-\textbf{Target distribution and guessing gap.}
-Define the cyclic cumulative sequence
-\[
- q_0=1,\qquad q_{j+1}=z_{\kappa_j}q_j,
- \qquad \widehat q_m=\sum_jq_j\omega^{mj}.
-\]
-The designated joint-output distribution is
+\textbf{Nonuniform maximizers and exact $d=4$ entropy.}
+With $q_0=1$, $q_{j+1}=z_{\kappa_j}q_j$,
 \[
  p_\kappa(a,b\mid1,d)=\frac{|\widehat q_{-(a+b)}|^2}{d^3}.
 \]
-Parseval makes both marginals uniform. The canonical order is Fourier-flat.
-For every $d\ge4$, swapping the last two roots gives lag-two autocorrelation
+Both marginals are uniform. For every $d\ge4$, swapping the final two roots
+gives $|R_2|=4\sin(\pi/d)\sin(3\pi/d)>0$, hence a nonuniform exact maximizer
+of both augmented families and
 \[
- |R_2|=4\sin(\pi/d)\sin(3\pi/d)>0,
+ G\ge\frac1{d^2}+\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}>\frac1{d^2}.
 \]
-so the joint table is nonuniform. With one-dimensional Eve,
+At $d=4$, exact $\mathbb Q(\zeta_{16})$ arithmetic gives probabilities
+$1/32$ and $3/32$, so $G=3/32$. The displayed trivial-Eve realization has
+$H_{\min}=5-\log_2 3=3.415037\ldots$ bits, not four. This is an upper bound
+on value-only worst-case min-entropy, not its exact optimized value.
+
+\textbf{Precise Conjecture 2 consequence.}
+Using the displayed first augmented operator, whose maximum is $M_d+1$, the
+construction disproves exactly
 \[
- G(AB\mid1,d,E)\ge\frac1{d^2}
- +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
- >\frac1{d^2}.
+ \langle\overline{\mathcal I}_d\rangle=M_d+1
+ \ \Longrightarrow\ G(AB\mid1,d,E)=1/d^2
+ \qquad(d\ge4).
 \]
-At $d=4$, independent exact arithmetic over $\mathbb Q(\zeta_{16})$ gives
-probabilities $1/32$ and $3/32$, hence $G=3/32>1/16$.
+Thus scalar maximum alone does not certify the proposed $2\log_2d$ bits or
+identify the canonical behavior. This does not challenge an SDP fixing the
+complete canonical behavior, show that the canonical strategy lacks maximal
+randomness, or determine the worst-case guessing probability.
 
-\textbf{Second family.}
-For $\widehat B_\ell=\sum_y\omega^{\ell y}B_y$, the source certificate is
-\[
- dI-\mathcal F_d=\frac1{2d}\sum_\ell
- (d\lambda_\ell I-A_\ell\widehat B_\ell)^\dagger
- (d\lambda_\ell I-A_\ell\widehat B_\ell).
-\]
-The permuted Bob cycles satisfy the exact compression
-$\widehat B_\ell=d\lambda_\ell D_\ell$. Choosing
-$A_\ell=\overline{D_\ell}$ annihilates every factor and gives the same
-target table. Under the source appendix's alternative dagger convention this
-table is merely relabeled by Bob outcome inversion.
+\textbf{Second-family convention.}
+The source SOS, with corrected factor $1/(2d)$, supplies global optimality.
+The exact compression $\widehat B_\ell=d\lambda_\ell D_\ell$ and
+$A_\ell=\overline{D_\ell}$ annihilate every factor. The alternative source-
+appendix convention adjoints all Bob observables and changes the target table
+only by $b\mapsto-b$; value, nonuniformity, guessing, and entropy are unchanged.
 
-\textbf{Exact scope.}
-The scalar maximum does not identify the canonical behavior or certify
-$2\log_2d$ private global bits across the entire maximizing face. This does
-not show that the canonical strategy lacks maximal randomness. An SDP that
-fixes the complete canonical distribution imposes higher Fourier data that
-the permuted behavior does not satisfy. Passing from fixed full behavior to
-one scalar value would require uniqueness, sufficient self-testing, or extra
-observed correlators.
+\textbf{Secondary benchmarks.}
+The prior-art binary $2\times2$ score has $q=qa=qc=3\sqrt3$ by a two-square
+SOS; every attaining finite-dimensional tensor-product strategy satisfies
+$\sigma_E^{ab}=\rho_E/4$ at the target pair. Separately, the private-MUB lemma
+is only a sufficient composition criterion: a private reference PVM, perfect
+Bob matching, and a supported MUB sandwich imply
+$\sigma_E^{a,\pi(b)}=\rho_E/d^2$. It is not a low-setting existence theorem.
 
-\textbf{Focused checks.}
-Review should concentrate on: (1) partial-isometry support and commuting
-functional calculus; (2) paired permutation/product hypotheses; (3) the
-target DFT and guessing estimate; (4) second-family Fourier phase, Alice
-conjugation, and SOS normalization; and (5) the scalar-value/full-behavior
-logic. The package includes a fresh claims ledger, dependency map, priority
-audit, hostile tests, and two independent exact $d=4$ verifiers.
-
-\textbf{Replay.}
-\texttt{cd cyclic\_bell\_exact\_values\_and\_randomness \&\& ./reproduce.sh}
+\textbf{Focused replay.}
+\begin{center}\small
+\texttt{python3 verification/verify\_rigidity.py}\\
+\texttt{python3 verification/verify\_exact\_benchmarks.py}\\
+\texttt{python3 verification/verify\_private\_mub\_binary.py}\\
+\texttt{./reproduce.sh}
+\end{center}
 
 \textbf{Canonical page.}
 \href{https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/}
-{Open the canonical paper page and complete artifact index.}
+{Open the manuscript and complete artifact index.}
 \end{document}

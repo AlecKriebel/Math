@@ -43,3 +43,29 @@ of completion toward the requested merged publication package.
   place; historical PDF hashes are unchanged. Final artifact copying,
   manifests, full reproduction, visual PDF inspection, reports, and push
   remain.
+
+## 2026-08-09
+
+- **Author-ready revision opened (10%).** Received a multi-reviewer revision
+  directive and treated every item as a hypothesis. Fast-forwarded the clean
+  Bell worktree to current `origin/main`; intervening changes were unrelated.
+  Froze version 1.0 by immutable commits and SHA-256 hashes before editing.
+- **Source crosswalk and proof audit (45%).** Re-read all named results in the
+  three historical TeX sources. Confirmed that equal supported
+  multiplicities, the private-MUB composition lemma, and the full binary
+  benchmark are valid and should be restored. Confirmed the (qc) theorem
+  after expanding the bicommutant/strong-limit step. Narrowed support rigidity
+  to exact finite-dimensional tensor-product maximizers of the first
+  augmented family.
+- **Attribution and convention audit (65%).** Verified from primary source
+  material that Perito et al. proved the (d*sqrt(2)) bound and reported NPA
+  evidence through (d=6); reconstructed the source Fourier observables and
+  qutrit formula; verified official Coccia/Padovan initials; and retained the
+  precise scalar-value/full-behavior distinction around Conjecture 2.
+- **Mathematical integration checkpoint (80%).** Added the support-rigidity
+  theorem/proof, model-indexed guessing quantities, behavior nonuniqueness,
+  exact four-outcome entropy, binary privacy proof, private-MUB criterion,
+  low-setting status table, exact radical table, and coefficient-normalization
+  proof. Three new deterministic hostile suites pass. The intermediate
+  manuscript builds to 25 pages; final packet, website, manifest, visual QA,
+  and release validation remain.

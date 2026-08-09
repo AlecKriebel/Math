@@ -1,35 +1,113 @@
 # Known limitations
 
-Audit date: 2026-08-08
+Audit date: 2026-08-09
 
-These are theorem boundaries, not defects in the proved central results.
+These are theorem boundaries, not defects in the proved results.
 
-1. **No complete maximizing-face classification.**  The manuscript classifies the scalar equality phases and constructs an explicit permutation orbit.  It does not classify all state/measurement realizations, spectral multiplicities, reducible sectors, kernels, or behaviors attaining either maximum.
+1. **No complete maximizing-face classification.** The manuscript classifies
+   the scalar equality phases, proves a finite-dimensional support constraint,
+   and constructs an explicit permutation orbit. It does not classify all
+   states, measurements, reducible sectors, direct sums, ancillary systems,
+   or behaviors attaining either augmented maximum.
 
-2. **Vector equality is weaker than an operator identity.**  The exact first-family gap implies annihilation of its factors on a maximizing vector.  Without an additional support and invariance argument it does not imply a global polynomial relation for the relative unitary on the whole Hilbert space.
+2. **Support rigidity has a strict model and family boundary.** Equal root
+   multiplicities are proved only for an attained finite-dimensional tensor-
+   product exact maximizer of the first augmented family. The theorem says
+   nothing about approximate maximizers, $qa$ limit points, arbitrary $qc$
+   realizations, the second family, or $K^\perp$.
 
-3. **No exact worst-case guessing probability.**  The final-two swap supplies a rigorous lower bound on the supremal guessing probability at the maximum Bell value.  It is not proved to be worst among maximizers, and a more strongly biased realization or a nontrivial adversarial extension may exist.
+3. **Support rigidity is necessary, not classifying.** Equal multiplicities
+   and $d\mid\dim K$ do not force a Weyl representation, a phase ordering,
+   uniqueness, self-testing, or sufficiency for maximization. The reflection
+   argument controls ranks, not the full representation.
 
-4. **The explicit nonuniform family starts at \(d=4\).**  For \(d=2,3\), all orderings in this particular permutation construction are Fourier-flat.  This neither proves rigidity nor rules out other nonuniform maximizers in those dimensions.
+4. **Vector equality remains weaker than a global operator identity.** Before
+   the finite-dimensional support argument is invoked, the exact gap gives
+   only residual annihilation on a maximizing vector. No relation on unused
+   sectors follows.
 
-5. **Trivial Eve proves only the needed obstruction.**  A one-dimensional adversary is sufficient to show \(G>1/d^2\) for the displayed nonuniform table.  The manuscript does not optimize Eve's side information for that table.
+5. **No exact value-only guessing optimum.** The model-indexed quantities
+   $G_{\mathrm{val}}^q$, $G_{\mathrm{val}}^{qa}$, and
+   $G_{\mathrm{val}}^{qc}$ are defined separately. The final-two swap gives
+   the same rigorous lower bound for each because the finite strategy embeds
+   in all three models. The three suprema are not proved equal, and none is
+   computed exactly.
 
-6. **The conclusion is Bell-value-only.**  The construction changes higher Fourier correlators and the complete behavior.  It does not challenge maximal-randomness certification conditioned on the complete canonical behavior, and it does not show that the canonical strategy itself has deficient private randomness.
+6. **The explicit nonuniform family starts at $d=4$.** Every ordering in this
+   permutation family is Fourier-flat for $d=2,3$. This neither proves
+   Bell-value rigidity nor excludes other nonuniform maximizers there.
 
-7. **No robustness theorem from additional data.**  The endpoint obstruction applies to bounds based only on a Bell deficit tolerance.  Bounds using extra correlators, a behavior distance, or a sufficiently rigid modified functional remain possible.
+7. **Trivial Eve proves only the needed obstruction.** A one-dimensional
+   adversary suffices to show $G>1/d^2$ for the displayed behavior. It is not
+   claimed to optimize Eve's side information. Likewise, $5-\log_2 3$ is the
+   displayed $d=4$ realization's entropy and an upper bound on value-only
+   worst-case entropy, not the exact optimized entropy.
 
-8. **The phase-permutation theorem is conditional.**  Maximizing scalar labels and both product-one hypotheses are essential.  The theorem does not apply to arbitrary phase multisets, arbitrary zero-phase choices, or permutations of data that fail the order-\(d\) products.
+8. **The main randomness conclusion is scalar-value-only.** The witness
+   changes higher Fourier correlators and the complete behavior. It does not
+   challenge certification conditioned on the complete canonical behavior or
+   show that the canonical realization lacks maximal private randomness.
 
-9. **The second-family result imports and rederives a specific SOS.**  The complete SOS is displayed and checked, but the argument does not classify every equality case of that SOS or every alternative normalization/conjugation convention in the literature.
+9. **Behavior nonuniqueness is not a full strategy-level self-test theorem.**
+   A uniform target table cannot be mapped to a nonuniform one by local output
+   relabelings. The manuscript does not classify equivalence under every local
+   isometry, ancilla, transposition, or direct-sum convention.
 
-10. **The setting consequences are mixed in scope.**  The one-input impossibility is universal.  The standard-table and perfect-anchor computations concern specified ideal bases.  The computational-MUB proposition excludes only a separately bounded coefficientwise spectral construction; it is not a general two-by-three-setting no-go theorem.
+10. **No robustness theorem from additional data.** The endpoint obstruction
+    applies to bounds based only on a Bell deficit at most $\varepsilon$.
+    Bounds using extra correlators, a behavior distance, or a modified rigid
+    functional remain possible.
 
-11. **The binary result is calibration, not a novelty claim.**  The \(d=2\) SOS/global-randomness mechanism is known in prior work and should remain cited accordingly.
+11. **The phase-permutation theorem is conditional.** Maximizing scalar labels
+    and both product-one hypotheses are load-bearing. The theorem does not
+    apply to arbitrary phase multisets, arbitrary zero-phase extensions, or
+    labeled data that fail the order-$d$ products.
 
-12. **Finite tests are not mathematical proofs.**  Direct-sum “commuting” matrices do not sample nonspatial commuting-operator representations.  Random dimension tests cannot establish an all-dimensional formula.  Existing exact-value unit tests reuse the primary verifier, so they are not an independent symbolic implementation.
+12. **The second-family result imports a source SOS.** The manuscript
+    rederives its normalization and commuting-operator reading, but does not
+    claim invention of that SOS, classify all equality cases, or cover every
+    alternative convention. The new part is the permutation-biased saturating
+    family and its randomness consequence.
 
-13. **Historical kernel tests are narrower than the analytic lemma.**  The standalone exact-value package's singular polar cases use unitary extensions of polar phases.  The canonical merged verifier now adds a genuinely nonunitary partial-isometry case, while the analytic proof remains the reason arbitrary kernels are covered.
+13. **Binary value and binary privacy have different model scopes.** The
+    two-square SOS proves the value $3\sqrt3$ in $q,qa,qc$. The operator-
+    valued privacy conclusion is stated only for attaining finite-dimensional
+    tensor-product strategies with purifying Eve. It is not a $qa/qc$
+    adversarial privacy theorem.
 
-14. **Historical secondary results are not automatically merged.**  The equal-supported-multiplicity proposition and private-MUB composition lemma appear valid under their stated hypotheses but are not central to the new narrative.  If omitted, their deliberate disposition must be recorded while the historical manuscripts remain accessible.
+14. **The binary benchmark is established prior art.** Its restored proof is
+    a self-contained normalization and privacy replay of the
+    Wooltorton--Brown--Colbeck $\delta=\pi/6$ case after an output flip, not a
+    novelty claim.
 
-15. **Priority remains qualified.**  Mathematical validity does not establish priority.  Novelty language must follow the dated primary-source audit and retain “to our knowledge” where appropriate.
+15. **The private-MUB lemma is sufficient only.** Its three exact operator and
+    state hypotheses imply privacy, but are not asserted necessary. The lemma
+    does not construct a Bell functional enforcing them, prove a $2\times3$
+    protocol, or settle any higher-dimensional minimum-setting problem.
+
+16. **The one-input result concerns DI forcing.** It constructs, for every
+    behavior in a one-wing-one-input scenario, a compatible realization with
+    perfect Eve knowledge. It does not say that a selected trusted realization
+    is intrinsically nonrandom, nor does it prohibit one designated generation
+    input inside a larger test.
+
+17. **The remaining setting observations are narrow.** The standard-table and
+    perfect-anchor calculations concern specified Fourier bases. The
+    computational-MUB proposition excludes only a separately bounded
+    coefficientwise spectral route. Together they are not a general
+    $2\times3$ no-go theorem.
+
+18. **Finite hostile tests remain regression evidence.** Matrix tests do not
+    sample all nonspatial commuting representations; finite dimension sweeps
+    do not prove all-dimensional formulas; rank and Fourier tests do not prove
+    the support or privacy theorems. The analytic arguments carry those
+    claims.
+
+19. **Source conventions remain delicate.** The main-text no-adjoint Bob
+    convention, its outcome-inverted alternative, Alice's entrywise
+    conjugation in the second family, and the source's printed normalization
+    discrepancy cannot be mixed formula by formula.
+
+20. **Priority remains qualified.** Mathematical validity does not establish
+    priority. Novelty language must continue to follow the dated primary-
+    source audit and retain “to our knowledge” where appropriate.

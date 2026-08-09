@@ -34,7 +34,8 @@ Used: `manuscript.tex`, `certificate.json`, `cycle_family.py`,
 
 Imported conclusions: paired root permutations, weighted-shift
 admissibility, first-harmonic invariance, target Fourier formula, final-two
-swap, quantitative guessing lower bound, and exact (d=4) certificate.
+swap, quantitative guessing lower bound, exact (d=4) certificate, and the
+finite-dimensional equal-supported-multiplicity theorem.
 
 ### 3. Second-family and setting consequences
 
@@ -48,7 +49,9 @@ Used: `manuscript.tex`, `test_cases.py`, `second_family_discovery.py`,
 Imported conclusions: second-family Fourier compression and SOS saturation,
 one-input flagged locality realization, canonical two-input qudit tables,
 direct third-anchor failure, and the narrowly scoped computational-MUB
-obstruction.
+obstruction. The valid private-MUB composition lemma and complete binary
+benchmark were restored with repaired state-supported proofs and explicit
+prior-art attribution.
 
 ## Frozen historical artifacts
 
@@ -64,19 +67,24 @@ Earlier publication-history hashes are also recorded: exact-value initial
 
 ## Claims retained, narrowed, and omitted
 
-The detailed disposition is in `CHANGELOG.md` and `audit/CLAIMS_LEDGER.md`.
+The detailed disposition is in `CHANGELOG.md`, `audit/CLAIMS_LEDGER.md`, and
+the line-anchored `audit/THEOREM_CROSSWALK.md`.
 The central exact-value and counterexample claims were retained. Equality was
 narrowed from any possible classification reading to exact scalar phases,
-state-level positive-factor conditions, and a sufficient permutation
-theorem. The second-family theorem is explicitly tied to the source SOS.
-Low-setting conclusions are confined to proved baselines and the exact
-hypotheses of one obstruction.
+state-level positive-factor conditions, a necessary finite-dimensional
+support-multiplicity theorem, and a sufficient permutation theorem. The
+second-family theorem is explicitly tied to the source SOS. Low-setting
+conclusions are confined to the one-input DI baseline, the complete prior-art
+binary benchmark, the sufficient private-MUB criterion, and the exact
+hypotheses of the retained obstruction.
 
-Two valid but secondary historical propositions—equal supported
-multiplicities and the private-MUB composition lemma—remain accessible in
-their original papers and are intentionally not part of the canonical
-theorem set. Unproved repair experiments and any all-dimensional minimum
-setting claim were removed from the current scientific narrative.
+The author-ready revision restores both valid results omitted from version
+1.0: equal supported multiplicities and the private-MUB composition lemma.
+It also restores the full binary benchmark, source-observable identification,
+the exact low-dimensional value table, and the coefficient-normalization
+derivation. Unproved repair experiments and any all-dimensional minimum-
+setting claim remain outside the scientific narrative for explicit reasons
+recorded in the crosswalk.
 
 ## Independent review disposition
 
@@ -96,7 +104,10 @@ as plausibly new or a new strengthening, never as definitive priority.
 
 ## Scope controls
 
-- No source author was contacted.
+- No external communication was initiated during this merger or revision.
+  Repository history records earlier author contact about the companion
+  exact-value result, so the canonical paper makes no categorical claim that
+  no prior contact ever occurred.
 - No email, cover letter, endorsement request, or authorship proposal was
   drafted.
 - No DOI, release, arXiv submission, or journal submission was created.

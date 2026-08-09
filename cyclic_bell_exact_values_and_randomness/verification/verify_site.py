@@ -112,9 +112,9 @@ def main() -> int:
     required_meta = {
         "citation_title": "Exact Quantum Values and Permutation-Blind Maximizers in Cyclic Bell Inequalities",
         "citation_author": "Alec Kriebel",
-        "citation_publication_date": "2026-08-08",
+        "citation_publication_date": "2026-08-09",
         "citation_pdf_url": CANONICAL_URL + "paper.pdf",
-        "version": "1.0.0",
+        "version": "1.1.0",
     }
     for name, expected in required_meta.items():
         require(meta_value(parser, "name", name) == expected,
@@ -132,6 +132,9 @@ def main() -> int:
             "status/AI disclosure missing", failures)
     require("has not been submitted" in text.lower(), "non-submission status missing", failures)
     require("source-author review" in text.lower(), "source-author packet link missing", failures)
+    require("equal supported" in text.lower(), "support-rigidity scope missing", failures)
+    require("conjecture 2" in text.lower(), "precise source-claim boundary missing", failures)
+    require("5-\\log_2 3" in text, "four-outcome entropy statement missing", failures)
 
     json_blocks: list[dict[str, object]] = []
     for attrs, script in zip(parser.scripts, parser.script_text):
@@ -145,6 +148,11 @@ def main() -> int:
         data = json_blocks[0]
         require(data.get("@type") == "ScholarlyArticle", "JSON-LD type mismatch", failures)
         require(data.get("url") == CANONICAL_URL, "JSON-LD URL mismatch", failures)
+        require(data.get("version") == "1.1.0", "JSON-LD version mismatch", failures)
+        require(data.get("datePublished") == "2026-08-09",
+                "JSON-LD publication date mismatch", failures)
+        require(data.get("dateModified") == "2026-08-09",
+                "JSON-LD modification date mismatch", failures)
 
     for slug, expected_hash in OLD.items():
         page = DOCS / "papers" / slug / "index.html"
@@ -194,6 +202,7 @@ def main() -> int:
 
     home = (DOCS / "index.html").read_text(encoding="utf-8")
     require("Sixteen provisional artifacts" in home, "homepage count not sixteen", failures)
+    require("Version 1.1.0" in home, "homepage cyclic-paper version not updated", failures)
     require(home.count("cyclic-bell-exact-values-and-randomness/") == 2,
             "homepage should link canonical cyclic paper page and PDF exactly once each", failures)
     for slug in OLD:

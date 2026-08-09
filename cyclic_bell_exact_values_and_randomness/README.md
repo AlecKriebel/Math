@@ -7,7 +7,7 @@ Canonical source and verification package for the merged paper
 
 Author: Alec Kriebel, Independent Researcher
 
-Version: 1.0, 8 August 2026
+Version: 1.1, 9 August 2026
 
 Status: unrefereed, AI-assisted research manuscript
 
@@ -21,14 +21,21 @@ are all
 2\csc\!\left(\frac{\pi}{2d}\right).
 \]
 
-The polar equality phases admit paired permutations that preserve all
-Bell-visible first harmonics. Every such permutation gives exact admissible
-maximizers of both relevant cyclic families. For every (d\ge4), an explicit
-final-two swap has a nonuniform designated joint-output table, although its
-local marginals are uniform. Therefore the maximum scalar Bell value alone
-does not certify (2\log_2 d) global random bits across the whole maximizing
-face. This does not dispute randomness certification conditioned on the
-complete canonical behavior.
+For every finite-dimensional exact maximizer of the first augmented family,
+all scalar equality roots occur with equal multiplicity on Alice's supported
+subspace, so $d$ divides that dimension. This necessary rigidity condition
+coexists with paired phase permutations that preserve all Bell-visible first
+harmonics. Every admissible permutation gives exact maximizers of both
+relevant cyclic families. For every $d\ge4$, an explicit final-two swap has a
+nonuniform designated joint-output table, although its local marginals are
+uniform. Therefore the maximum scalar Bell value alone does not certify
+$2\log_2 d$ global random bits or a unique canonical behavior. This does not
+dispute randomness certification conditioned on the complete canonical
+behavior.
+
+The revision also contains the complete prior-art binary $2\times2$
+benchmark, a sufficient private-MUB composition lemma, and sharply scoped
+higher-dimensional setting obstructions.
 
 ## One-command replay
 
@@ -49,10 +56,12 @@ limits of computational evidence.
 - `main.tex` — canonical manuscript source.
 - `output/pdf/cyclic_bell_exact_values_and_randomness.pdf` — built manuscript.
 - `verification/` — unified tests and frozen verification report.
-- `audit/` — fresh adversarial review, claims/dependency ledgers, current
-  primary-source priority audit, and limitations.
+- `audit/` — fresh adversarial review, theorem crosswalk, focused restoration
+  audits, claims/dependency ledgers, current primary-source priority audit,
+  baseline hashes, and limitations.
 - `review_packet/` — concise materials for focused specialist review.
 - `MERGE_REPORT.md` — source-to-merged disposition.
+- `REVIEW_RESPONSE.md` — item-by-item disposition of the author-ready review.
 - `CHANGELOG.md` — corrections, narrowed claims, and presentation changes.
 - `manifest.sha256` — integrity manifest for the canonical package.
 
