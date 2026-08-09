@@ -37,6 +37,12 @@
   terms yields only the reverse (lower) endpoint estimate.  The unresolved
   sign is now sharply an upper bound on this weighted cut production using
   the remaining individual marked-current balances.
+- Observed that the geometrically weighted cut is exactly
+  `mathcal A(2^(k-N-1) H)`.  This converts the endpoint theorem into a
+  boundary-extension problem.  The fixed geometric conductance profile
+  leaves precisely the old additive obstruction; the live compressed
+  theorem requires an additional zero-boundary conductance profile plus the
+  arbitrary rank-labelled vertex corrector.
 
 ### Active sign
 

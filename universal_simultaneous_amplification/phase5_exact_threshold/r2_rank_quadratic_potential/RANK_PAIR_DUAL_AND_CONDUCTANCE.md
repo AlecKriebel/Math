@@ -549,6 +549,52 @@ not an upper, endpoint estimate.  A proof of `(52)` must use the remaining
 individual one-mark/two-mark balances to upper-control the weighted cut
 production in `(57)`.
 
+### 7.1 The weighted cut is an exact optional coboundary
+
+The geometric weights in `(57)` are forced by a simpler exact identity.
+Put `N=n-1` and
+
+\[
+ q_k=2^{k-N-1}.                                                \tag{58}
+\]
+
+Then `q_(k+1)=2q_k`, `q_(k-1)=q_k/2`, so every holding term in the
+rank-weighted storage formula cancels.  In the optional normalization,
+
+\[
+ \boxed{\quad
+ \mathcal A\{q_{|S|}H(S)\}=2^{|S|-N}C(S).
+ \quad}                                                        \tag{59}
+\]
+
+Thus the geometrically weighted cut reward is already an exact drift.  It
+cannot itself be used as the correction because its boundary data are
+
+\[
+ q_0H(\varnothing)=0,\qquad q_nH(V)={3\over2},
+ \qquad {1\over n}\sum_iq_1H(\{i\})={q_1\over n}.             \tag{60}
+\]
+
+Equivalently, a Bellman certificate for the weighted cut bound is a
+slice-linear-plus-conductance boundary extension `R` with the data `(60)`
+and
+
+\[
+ \mathcal AR(S)\le0\quad(|S|\ge2),\qquad
+ \mathcal AR(S)\le\Lambda_n\quad(|S|=1),                     \tag{61}
+\]
+
+where `Lambda_n` is the complete weighted-cut value.  Then
+`C=qH-R` is an admissible zero-boundary correction and `(59)` proves the
+dual reward bound.
+
+The most direct radial extension in `(61)` reduces exactly to the already
+refuted rank-dependent additive route.  Hence `(59)` explains both facts
+seen computationally: one conductance statistic is the natural storage
+variable, but its fixed geometric coefficient is insufficient; an
+additional zero-boundary rank profile of `H`, together with the arbitrary
+vertex corrector, is essential.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -560,6 +606,8 @@ production in `(57)`.
 - **PROVED:** the optional edge-current factorization `(42)--(43)`, the
   exact endpoint ratio `(51)--(52)`, and the boundary-aware cut-production
   identity `(57)`.
+- **PROVED:** the geometric cut coboundary `(59)` and the exact boundary
+  extension formulation `(60)--(61)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
   identities and the dual balances on small weighted graphs, and checks
   `(36)` on a genuinely directed rational kernel.

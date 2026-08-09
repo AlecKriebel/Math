@@ -184,6 +184,23 @@ def verify_storage_identities() -> None:
         right += c_values[state] * (2 * q[k + 1] - q[k - 1])
         assert generator(state, weighted) == right
 
+    # In optional coordinates, the geometric rank profile turns the cut
+    # reward into an exact drift on every (not necessarily complete) graph.
+    geometric = [F(1, 2 ** (N - k)) for k in range(N + 1)]
+    optional_values = [
+        geometric[state.bit_count()] * h_values[state]
+        for state in range(FULL + 1)
+    ]
+    for state in range(1, FULL):
+        k = state.bit_count()
+        optional_drift = F(0)
+        for target, rate in rates(state):
+            if target.bit_count() == k + 1:
+                optional_drift += rate * (optional_values[target] - 2 * optional_values[state])
+            else:
+                optional_drift += rate * (4 * optional_values[target] - 2 * optional_values[state])
+        assert optional_drift == 2 * geometric[k] * c_values[state]
+
 
 def verify_dual_and_rank_recurrences() -> F:
     transient, occupation, rho = exact_green_occupation()
