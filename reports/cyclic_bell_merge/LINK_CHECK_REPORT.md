@@ -1,93 +1,93 @@
 # Cyclic Bell link-check report
 
-Date: 8 August 2026
+Date: 9 August 2026
 
-Canonical URL: <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/>
+Release version: 1.1.0
 
-## Pre-deployment verdict
+Implementation commit:
+[0dd9d030cba128565744c1c7c83cf3956b32d744](https://github.com/AlecKriebel/Math/commit/0dd9d030cba128565744c1c7c83cf3956b32d744)
 
-**PASS.** Static parsing, a local HTTP server, and an actual Chromium render
-all agree. The post-push production check is recorded in the final section
-after GitHub Pages deployment.
+GitHub Pages build completed: 2026-08-09T16:19:04Z
 
-## Local link and metadata checks
+Canonical URL:
+<https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/>
 
-- Canonical `index.html` parsed as HTML and its JSON-LD parsed as one
-  `ScholarlyArticle` object.
-- `citation_title`, `citation_author`, `citation_publication_date`,
-  `citation_pdf_url`, version, canonical URL, and OpenGraph URL match.
-- No `citation_doi`, DOI identifier, submission, acceptance, endorsement, or
-  peer-review claim is present.
-- MathJax loaded and rendered 31 expressions; no browser console warnings or
-  errors were emitted.
-- The embedded canonical PDF loaded from the local server with HTTP 200.
-- The canonical PDF and two-page summary links resolve.
-- All relative links from the homepage, canonical page, and three redirect
-  pages resolve on disk.
-- `docs/sitemap.xml` is well formed, lists the canonical route once, and lists
-  none of the three redirects.
-- The homepage has one merged card, no old cyclic-card links, and the updated
-  count of sixteen provisional artifacts.
+## Deployment verdict
 
-The only HTTP 404 observed during browser rendering was the site's optional
-`favicon.ico`; no page, artifact, stylesheet, script, or required link failed.
+**PASS.** Repository parsing, local integrity checks, and a production-browser
+replay agree for deployed version 1.1.0. No required page or artifact is
+missing, no compatibility route forms a redirect loop, and the deployed PDF
+bytes match the repository artifacts.
 
-## Redirect checks
+## Canonical production page
 
-Each route initially rendered its consolidation notice, historical-PDF link,
-immutable-source link, and ordinary canonical link, then navigated after
-three seconds to the exact canonical production URL:
+The canonical page loaded with the version 1.1.0 content and metadata. Its
+title, author, publication date, canonical URL, citation PDF URL, OpenGraph
+fields, JSON-LD ScholarlyArticle object, unrefereed status, and AI-assistance
+disclosure agree with the repository source. No DOI metadata is present.
 
-| Route | Notice | Historical PDF link | Final URL | Result |
-|---|---:|---:|---|---|
-| `/Math/papers/cyclic-bell-tsirelson-bound/` | yes | `./paper.pdf` | canonical URL | PASS |
-| `/Math/papers/cyclic-bell-randomness-counterexample/` | yes | `./paper.pdf` | canonical URL | PASS |
-| `/Math/papers/permutation-blind-bell-randomness/` | yes | `./paper.pdf` | canonical URL | PASS |
+The browser replay found 41 rendered MathJax containers. The embedded
+manuscript displayed successfully, the browser console contained no warnings
+or errors, and the page had no horizontal overflow.
 
-Every stub contains `noindex,follow`, a canonical link, meta refresh,
-`window.location.replace`, a scripts-disabled ordinary link, and no return
-link that can create a redirect loop.
+## Canonical PDF artifacts
 
-## Historical-PDF integrity
+| Artifact | Production URL | HTTP result | Served SHA-256 |
+|---|---|---|---|
+| Main manuscript | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/paper.pdf> | 200, application/pdf | 5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b |
+| Two-page summary | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/two-page-summary.pdf> | 200, application/pdf | a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c |
 
-| PDF route | SHA-256 | Result |
-|---|---|---|
-| `cyclic-bell-tsirelson-bound/paper.pdf` | `c4e80e0956595c28cbf0323639dcf5b84f5ffbd0785362cc4233e2c19812b96f` | unchanged |
-| `cyclic-bell-randomness-counterexample/paper.pdf` | `3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975` | unchanged |
-| `permutation-blind-bell-randomness/paper.pdf` | `2c9e4d864f5b617f0d99c1b199f8b3546e3d3aa27ac96356e399a860fd1263c3` | unchanged |
+Both hashes match the files committed under the canonical website route.
 
-The old live routes and PDFs returned HTTP 200 before the merger and their
-served PDF bytes matched these local hashes. Initial superseded PDF bytes
-remain accessible through the commit-pinned links on the canonical page.
+## Compatibility-route checks
 
-## Browser layout check
+Each historical landing route remains a valid HTML document. Static
+inspection confirmed the consolidation notice and all required fallback
+mechanisms before the timed navigation to the canonical page.
 
-The existing site style renders the long title without clipping, keeps the
-four primary actions visible, lays out the three main-result cards and
-theorem boxes coherently, wraps long hashes within the historical table, and
-embeds the manuscript at the end. The page was tested at the default 1280 by
-720 viewport and has no horizontal overflow there.
+| Historical route | Robots | Canonical | Meta refresh | JavaScript | Ordinary link | Historical PDF | Immutable source |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| <https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/> | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
+| <https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/> | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
+| <https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/> | PASS | PASS | PASS | PASS | PASS | PASS | PASS |
 
-## Post-push production check
+For every stub:
 
-**PASS**, 9 August 2026 at 04:04:20 UTC, after implementation commit
-`a4d0e2a99ce6da3ddd78a79e85d5540b28e975d5` was pushed to `origin/main`.
+- the robots value is noindex,follow;
+- the absolute canonical target is the new canonical page;
+- the meta-refresh delay is three seconds;
+- the JavaScript fallback uses window.location.replace with the same target;
+- an ordinary clickable link supports scripts-disabled clients;
+- the original PDF has a direct, nonredirecting link; and
+- the immutable source snapshot, release-hash record, archived landing page,
+  and publication-history links remain present.
 
-- The canonical page, homepage, sitemap, and all three compatibility pages
-  returned HTTP 200 with the expected HTML or XML content type.
-- The canonical page contains the title, citation metadata, canonical URL,
-  JSON-LD `ScholarlyArticle`, and AI-assistance metadata.
-- The manuscript and two-page-summary URLs returned HTTP 200 as
-  `application/pdf`; their served SHA-256 hashes are respectively
-  `d887643523c4c1346dea561d6ecbd00c7a6166a218e63cb81259565f28d9e305`
-  and `c9ef83297369b45f033348f6727317355d6a1b74f63112be9db5a7c1eca7b0b6`.
-- Every compatibility page contains the required `noindex,follow`, canonical,
-  meta-refresh, JavaScript fallback, ordinary canonical link, historical PDF
-  link, and immutable-source link.
-- All three historical PDF URLs returned HTTP 200 as `application/pdf`; their
-  served hashes match the preservation table above.
-- The production homepage contains one merged card and the count of sixteen;
-  the production sitemap lists the canonical route once and no redirect route.
+No stub links back to another stub, so no redirect loop is possible within
+this compatibility layer.
 
-No redirect loop, missing required artifact, metadata mismatch, content-type
-mismatch, or byte-integrity failure was found.
+## Historical-PDF production integrity
+
+| Historical PDF URL | HTTP result | Served SHA-256 | Result |
+|---|---|---|---|
+| <https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/paper.pdf> | 200, application/pdf | c4e80e0956595c28cbf0323639dcf5b84f5ffbd0785362cc4233e2c19812b96f | unchanged |
+| <https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/paper.pdf> | 200, application/pdf | 3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975 | unchanged |
+| <https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/paper.pdf> | 200, application/pdf | 2c9e4d864f5b617f0d99c1b199f8b3546e3d3aa27ac96356e399a860fd1263c3 | unchanged |
+
+The served bytes match the frozen local artifacts and their historical
+manifests. The landing-page redirects do not intercept these PDF URLs.
+
+## Homepage and sitemap
+
+- <https://aleckriebel.github.io/Math/> presents exactly one canonical cyclic
+  Bell card and displays the total count of sixteen provisional artifacts.
+- <https://aleckriebel.github.io/Math/sitemap.xml> lists the canonical paper
+  route exactly once.
+- The sitemap lists none of the three compatibility landing routes.
+- The homepage contains no surviving card link to a superseded landing page.
+
+## Final result
+
+The production deployment from implementation commit
+0dd9d030cba128565744c1c7c83cf3956b32d744 passes the canonical-page,
+metadata, rendering, PDF, redirect, sitemap, homepage, content-type, and
+historical-integrity checks for version 1.1.0.

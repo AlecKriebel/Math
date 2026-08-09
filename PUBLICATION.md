@@ -381,6 +381,47 @@ commuting-operator colorings. No GitHub Action, GitHub release, Zenodo DOI, or
 external communication was created for this publication. The note remains
 unreviewed.
 
+## Canonical cyclic Bell merger, version 1.1
+
+The version 1 pre-revision merged baseline of “Exact Quantum Values and
+Permutation-Blind Maximizers in Cyclic Bell Inequalities” is preserved at
+baseline commit
+[`9cc4d0da42d2c2aea0f5cc5e4d7754ae0350878d`](https://github.com/AlecKriebel/Math/commit/9cc4d0da42d2c2aea0f5cc5e4d7754ae0350878d).
+Canonical version **1.1.0**, dated **9 August 2026**, entered `main` in
+implementation commit
+[`0dd9d030cba128565744c1c7c83cf3956b32d744`](https://github.com/AlecKriebel/Math/commit/0dd9d030cba128565744c1c7c83cf3956b32d744),
+which was pushed to `origin/main`. GitHub Pages reported that build completed
+at **2026-08-09T16:19:04Z**. The canonical route is
+<https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/>.
+
+The deployed manuscript PDF has SHA-256
+`5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b`;
+the two-page review summary has SHA-256
+`a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c`.
+The three historical standalone PDFs remain at their original URLs with
+their recorded hashes unchanged:
+`c4e80e0956595c28cbf0323639dcf5b84f5ffbd0785362cc4233e2c19812b96f`,
+`3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975`,
+and
+`2c9e4d864f5b617f0d99c1b199f8b3546e3d3aa27ac96356e399a860fd1263c3`.
+
+The author-ready review response records each accepted, narrowed, or
+attribution-corrected feedback item. The rebuilt adversarial review gives
+PASS verdicts for the central mathematics, restored results, and scope. The
+fresh priority audit found no conflict: it classifies the exact
+all-dimensional value and family-specific nonuniform maximizers as plausibly
+new, the commuting-operator value as a new strengthening, and the source
+bound, canonical strategies, second-family SOS, binary benchmark, and general
+scalar/full-statistics distinction as established prior art. The frozen
+`reproduce.sh` run passed every mathematical, hostile, exact-certificate,
+historical-integrity, PDF-build, metadata, and local website/link check; the
+canonical manuscript is 25 pages and the review summary is exactly two.
+
+No DOI was created, no GitHub release or Zenodo snapshot was made, no arXiv or
+journal submission occurred, and no external contact was initiated for this
+revision. A separate deployment-record commit containing this ledger entry
+will follow the already-pushed implementation commit.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**
