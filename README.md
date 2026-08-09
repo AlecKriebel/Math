@@ -77,26 +77,31 @@ See the
 [paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-constraints/)
 and [version 1.0.1 reproducibility release](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-constraints-v1.0.1).
 
-**Permutation-blind Bell scores and obstructions to maximal global
-randomness** proves a positive-factor theorem for a broad first-harmonic
-polar-linear design class. Under explicit weighted-cycle hypotheses, every
-ordering of the same scalar equality spectrum gives an order-\(d\) maximizer
-with identical Bell-visible first harmonics, while the target distribution
-may change. The construction supplies nonuniform exact maximizers for both
-augmented cyclic Bell families of Perito et al. for every \(d\ge4\):
+**Exact Quantum Values and Permutation-Blind Maximizers in Cyclic Bell
+Inequalities** consolidates the three historical cyclic-Bell notes. It proves
+the all-dimensional commuting-operator value
+\[
+\beta_q(\mathcal I_d)=\beta_{qa}(\mathcal I_d)=\beta_{qc}(\mathcal I_d)
+=2\csc\!\left(\frac{\pi}{2d}\right),
+\]
+then identifies a paired phase-permutation freedom invisible to the complete
+first-harmonic Bell data. For both augmented families introduced by Perito,
+D'Avino, Jung, Mironowicz, Acín, and Augusiak, an explicit permutation gives
+nonuniform exact maximizers for every \(d\ge4\):
 \[
 G(AB\mid E)
 \ge\frac1{d^2}
 +\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
 >\frac1{d^2}.
 \]
-An independent \(d=4\) verifier works exactly in
-\(\mathbb Q(\zeta_{16})\). The note also proves a one-input locality baseline
-and exact obstructions to two natural low-setting repair strategies. It does
-not determine whether some other \(2\times2\) or \(2\times3\) projective
-single-score protocol works for every \(d\). See the
-[paper page](https://aleckriebel.github.io/Math/papers/permutation-blind-bell-randomness/)
-and [source package](minimum_bell_randomness/).
+Both marginals remain uniform. The conclusion concerns the scalar Bell value,
+not a randomness optimization conditioned on the complete canonical
+behavior. Two independent \(d=4\) verifiers work exactly in
+\(\mathbb Q(\zeta_{16})\); the package also retains the one-input baseline and
+narrow low-setting observations. See the
+[canonical paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/),
+[merged source package](cyclic_bell_exact_values_and_randomness/), and
+[preserved historical versions](PUBLICATION.md).
 
 **An exceptional four-dimensional unitary Hecke Yang--Baxter operator**
 gives an exact representative of the previously unresolved class
@@ -113,45 +118,6 @@ The public priority audit found no earlier ordinary four-dimensional
 localization, but absolute novelty is not claimed. See the
 [paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/)
 and [version 1.1.0 source package](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-d4-v1.1.0).
-
-**Maximal violation without maximal global randomness in a cyclic Bell
-family** gives exact counterexamples to the Bell-value reading of Conjecture 2
-of Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak for every \(d\ge4\),
-after correcting an internal normalization typo in its printed value. Sparse
-weighted-shift observables attain the exact augmented maximum
-\(2\csc(\pi/(2d))+1\), but the designated joint output distribution is
-nonuniform even with trivial Eve:
-\[
-G(AB\mid1,d,E)
-\ge\frac1{d^2}
-+\frac{2\sin(\pi/d)\sin(3\pi/d)}{d^2(d-1)}
->\frac1{d^2}.
-\]
-Both local marginals remain uniform. At \(d=4\), an exact
-\(\mathbb Q(\zeta_{16})\) certificate gives \(G=3/32>1/16\). This does not
-challenge the separate numerical certificate for the fixed canonical full
-behavior. See the
-[paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-randomness-counterexample/)
-and [source package](cyclic_randomness_counterexample/).
-
-**The exact quantum value of a cyclic Bell operator** proves Conjecture 1 of
-Perito, D'Avino, Jung, Mironowicz, Acín, and Augusiak:
-\[
-\beta_q(\mathcal I_d)
-=\beta_{qa}(\mathcal I_d)
-=\beta_{qc}(\mathcal I_d)
-=2\csc\!\left(\frac{\pi}{2d}\right)
-\quad(d\ge2).
-\]
-Their paper introduced the Bell family, conjectured the formula, and supplied
-the attaining strategy and lower bound. The candidate contribution is the
-dimension-independent analytic upper bound, which remains valid for arbitrary
-unitary Alice and Bob observables satisfying cross-party commutation, without
-order relations or a tensor-product representation. The proof uses an exact
-polar positive-factor identity and a sharp scalar roots-of-unity extremum. It
-does not prove uniqueness, self-testing, or all-dimensional randomness. See the
-[paper page](https://aleckriebel.github.io/Math/papers/cyclic-bell-tsirelson-bound/)
-and [source package](cyclic_bell_tsirelson_bound/).
 
 **Excluding Parameter Three at Order Thirteen in the \(\gamma\)--\(\theta\)
 Conjecture** proves that no graph on 13 vertices satisfies
