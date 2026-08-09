@@ -2,8 +2,9 @@
 """Independent exact verifier for the rank-pair dual conductance laws.
 
 This script deliberately does not import the floating discovery programs.
-All transition rates, Green occupations, and identities are evaluated over
-fractions.Fraction.
+All transition rates, Green occupations, optional-current conjugacies,
+two-mark matrix balances, and identities are evaluated over
+``fractions.Fraction``.
 """
 
 from __future__ import annotations
@@ -111,6 +112,16 @@ def cut(state: int) -> F:
         for i in range(N)
         for j in range(N)
         if bit(state, i) and not bit(state, j)
+    )
+
+
+def selection_gain(state: int) -> F:
+    """Drift of stationary mutant mass at fitness two."""
+
+    return sum(
+        PI[v] * x_value(state, v) * (1 - x_value(state, v))
+        / (1 + x_value(state, v))
+        for v in range(N)
     )
 
 
@@ -255,9 +266,165 @@ def verify_dual_and_rank_recurrences() -> F:
     return rho
 
 
+def bridge_test_function(state: int) -> F:
+    """A deterministic slice-quadratic function with nontrivial boundary."""
+
+    if state == 0:
+        return F(0)
+    occupied = [i for i in range(N) if bit(state, i)]
+    k = len(occupied)
+    value = F(2 * k + 1, 7)
+    value += sum(F((k + 1) * (i + 2), 11) for i in occupied)
+    value += sum(
+        F((k + 2) * (i + j + 1), 13)
+        for i in occupied
+        for j in occupied
+        if i < j
+    )
+    return value
+
+
+def verify_geometric_green_bridge() -> None:
+    """Check optional/Green conjugacy and the two-mark matrix identity."""
+
+    transient, occupation, rho = exact_green_occupation()
+    mu = {state: occupation[j] for j, state in enumerate(transient)}
+    q = [F(1, 2 ** (N - k)) for k in range(N + 1)]
+    eta = {state: mu[state] / (2 * q[state.bit_count()]) for state in transient}
+
+    optional_top = sum(
+        eta[state] for state in transient if state.bit_count() == N - 1
+    )
+    optional_bottom = sum(
+        eta[state] for state in transient if state.bit_count() == 1
+    )
+    injection = optional_top + F(1, 2 ** (N - 2)) * optional_bottom
+    assert optional_top == rho
+    assert optional_bottom == 2 ** (N - 2) * (1 - rho)
+    assert injection == 1
+    theta = -(2 * optional_bottom + 2 ** (N - 1) * optional_top) / N
+    assert -N * theta * q[1] == injection
+
+    values = [bridge_test_function(state) for state in range(FULL + 1)]
+    optional_values = [
+        q[state.bit_count()] * values[state] for state in range(FULL + 1)
+    ]
+    optional_integral = F(0)
+    green_integral = F(0)
+    for state in transient:
+        k = state.bit_count()
+        optional_drift = F(0)
+        for target, rate in rates(state):
+            if target.bit_count() == k + 1:
+                optional_drift += rate * (
+                    optional_values[target] - 2 * optional_values[state]
+                )
+            else:
+                optional_drift += rate * (
+                    4 * optional_values[target] - 2 * optional_values[state]
+                )
+        ordinary_drift = generator(state, values)
+        assert optional_drift == 2 * q[k] * ordinary_drift
+        optional_integral += eta[state] * optional_drift
+        green_integral += mu[state] * ordinary_drift
+
+    boundary = optional_top * values[FULL]
+    boundary += theta * q[1] * sum(values[1 << i] for i in range(N))
+    assert optional_integral == green_integral == boundary
+    assert (
+        sum(values[1 << i] for i in range(N)) / N
+        + green_integral
+        - rho * values[FULL]
+        == 0
+    )
+
+    # Matrix form of every one- and two-mark balance.
+    matrix = [[F(0) for _ in range(N)] for _ in range(N)]
+    for state in transient:
+        indicator = [F(int(bit(state, i))) for i in range(N)]
+        drift = []
+        activity = []
+        for i in range(N):
+            x = x_value(state, i)
+            if bit(state, i):
+                drift.append(-(1 - x) / (1 + x))
+                activity.append((1 - x) / (1 + x))
+            else:
+                drift.append(2 * x / (1 + x))
+                activity.append(2 * x / (1 + x))
+        for i in range(N):
+            for j in range(N):
+                entry = indicator[i] * drift[j] + drift[i] * indicator[j]
+                if i == j:
+                    entry += activity[i]
+                    assert activity[i] == (1 - 2 * indicator[i]) * drift[i]
+                matrix[i][j] += mu[state] * entry
+    for i in range(N):
+        for j in range(N):
+            expected = rho - (F(1, N) if i == j else 0)
+            assert matrix[i][j] == expected
+
+    centered_mark = [F(3), F(-2), F(4), F(-5)]
+    assert sum(centered_mark) == 0
+    quadratic_balance = sum(
+        centered_mark[i] * matrix[i][j] * centered_mark[j]
+        for i in range(N)
+        for j in range(N)
+    )
+    assert quadratic_balance == -sum(x * x for x in centered_mark) / N
+
+    # Exact selection drift, collision occupation, and sharp conditional
+    # Jensen inequality.  The latter is checked statewise on a non-equitable
+    # rational graph and at equality on every complete-graph rank.
+    gain_integral = F(0)
+    cut_integral = F(0)
+    mass_values = [mass(state) for state in range(FULL + 1)]
+    for state in transient:
+        gain = selection_gain(state)
+        assert generator(state, mass_values) == gain
+        mutant_mass = mass(state)
+        collision_cut = cut(state)
+        bound_ratio = (
+            (1 - mutant_mass - collision_cut)
+            / (1 - mutant_mass + collision_cut)
+            + (mutant_mass - collision_cut)
+            / (2 * mutant_mass - collision_cut)
+        )
+        assert gain <= collision_cut * bound_ratio
+        gain_integral += mu[state] * gain
+        cut_integral += mu[state] * collision_cut
+    assert gain_integral == rho - F(1, N)
+    assert cut_integral == F(3, 2) * rho - F(1, N)
+
+    for k in range(1, N):
+        mutant_mass = F(k, N)
+        collision_cut = F(k * (N - k), N * (N - 1))
+        x_out = F(k, N - 1)
+        x_in = F(k - 1, N - 1)
+        complete_gain = (
+            F(N - k, N) * x_out * (1 - x_out) / (1 + x_out)
+            + F(k, N) * x_in * (1 - x_in) / (1 + x_in)
+        )
+        bound_ratio = (
+            (1 - mutant_mass - collision_cut)
+            / (1 - mutant_mass + collision_cut)
+            + (mutant_mass - collision_cut)
+            / (2 * mutant_mass - collision_cut)
+        )
+        assert complete_gain == collision_cut * bound_ratio
+
+    baseline = F((N - 1) * 2 ** (N - 2), N * (2 ** (N - 1) - 1))
+    kappa = F(
+        2 * ((N - 3) * 2 ** N + 4),
+        (3 * N - 7) * 2 ** N + 8,
+    )
+    assert (gain_integral <= kappa * cut_integral) == (rho <= baseline)
+
+
 def main() -> None:
     verify_storage_identities()
     rho = verify_dual_and_rank_recurrences()
+    verify_geometric_green_bridge()
     print("all exact rank-pair/conductance checks passed")
     print("test-graph fixation numerator", rho.numerator)
     print("test-graph fixation denominator", rho.denominator)

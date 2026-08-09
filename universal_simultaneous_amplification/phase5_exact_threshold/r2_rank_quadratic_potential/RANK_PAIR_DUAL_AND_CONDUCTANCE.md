@@ -595,6 +595,173 @@ variable, but its fixed geometric coefficient is insufficient; an
 additional zero-boundary rank profile of `H`, together with the arbitrary
 vertex corrector, is essential.
 
+### 7.2 Geometric conjugacy back to the Green pseudoflow
+
+The geometric coboundary is part of an exact conjugacy, not merely an
+isolated identity.  Let `eta` be a full rank-pair optional Farkas weight and
+retain the notation `A_(n-1),R_1,theta` of `(45)--(49)`.  Define
+
+\[
+ q_k=2^{k-n},\qquad
+ \mu_S=2q_{|S|}\eta_S,\qquad
+ I=A_{n-1}+2^{2-n}R_1.                                    \tag{62}
+\]
+
+For every slice-quadratic function `F`, with `F(empty)=0`, geometric
+conjugacy gives the pointwise identity
+
+\[
+ \mathcal A\{q_{|S|}F(S)\}=2q_{|S|}LF(S).                 \tag{63}
+\]
+
+The boundary functional of the optional current is
+
+\[
+ \sum_S\eta_S\mathcal A(qF)(S)
+ =A_{n-1}F(V)+\theta q_1\sum_iF(\{i\}).                    \tag{64}
+\]
+
+Since `(49)` gives
+
+\[
+ -n\theta q_1=A_{n-1}+2^{2-n}R_1=I,                       \tag{65}
+\]
+
+the normalized weights `bar(mu)=mu/I` obey
+
+\[
+ \boxed{
+ {1\over n}\sum_iF(\{i\})+
+ \sum_S\bar\mu_SLF(S)-zF(V)=0,
+ \qquad z={A_{n-1}\over I}.}                              \tag{66}
+\]
+
+Thus a full optional rank-pair obstruction is exactly a nonnegative
+degree-two Green pseudoflow after geometric reweighting.  Moreover,
+
+\[
+ {A_{n-1}\over R_1}
+ \le {2(n-1)\over (n+1)2^{n-1}-2n}
+ \quad\Longleftrightarrow\quad
+ z\le{(n-1)2^{n-2}\over n(2^{n-1}-1)}.                    \tag{67}
+\]
+
+This removes the apparent sign mismatch at the bottom current: the
+singleton defect is precisely the uniform source of total mass `I`.
+
+There is a compact matrix form of every one- and two-mark balance.  Write
+`s` for the zero-one column vector of `S`, and put
+
+\[
+ d_v(S)=(1-s_v)g_v(S)-s_v\ell_v(S),\qquad
+ t_v(S)=(1-s_v)g_v(S)+s_v\ell_v(S)=(1-2s_v)d_v(S).
+\]
+
+Since `Ls=d` and
+
+\[
+ L(ss^T)=sd^T+ds^T+\operatorname{Diag}(t),
+\]
+
+equation `(66)` is equivalent at degree two to
+
+\[
+ \boxed{
+ \sum_S\bar\mu_S
+ \{sd^T+ds^T+\operatorname{Diag}(t)\}
+ =z\mathbf1\mathbf1^T-{1\over n}I_n.}                    \tag{68}
+\]
+
+In particular, for every `a` with `sum_i a_i=0`,
+
+\[
+ \sum_S\bar\mu_S\left[
+ 2(a\mathbin\cdot s)(a\mathbin\cdot d)+
+ \sum_vt_va_v^2\right]
+ =-{\|a\|_2^2\over n}.                                    \tag{69}
+\]
+
+Equation `(69)` is the exact two-marked collision/variance budget carried
+by the rank-pair relaxation.  The compressed rank-plus-vertex-plus-`H`
+conjecture retains only its conductance contraction, whereas the full
+rank-pair conjecture retains the entire matrix identity `(68)`.
+
+### 7.3 Selection gain versus reversible collision cut
+
+The matrix formulation exposes one further sharp local inequality.  Put
+
+\[
+ a_v(S)={x_v(S)\{1-x_v(S)\}\over1+x_v(S)}.
+\]
+
+Then the mutant-indicator drift has the exact neutral-plus-selection split
+
+\[
+ d=(P-I)s+a.                                                \tag{70}
+\]
+
+For stationary mutant mass `M(S)=pi(S)`, reversibility (indeed only
+stationarity of `pi`) therefore gives
+
+\[
+ LM(S)=Q(S):=\sum_v\pi_va_v(S)\ge0.                         \tag{71}
+\]
+
+On the other hand `LH=C`.  Testing `(66)` with `M` and `H` gives
+
+\[
+ \sum_S\bar\mu_SQ(S)=z-{1\over n},\qquad
+ \sum_S\bar\mu_SC(S)={3z\over2}-{1\over n}.              \tag{72}
+\]
+
+The scalar function `a(x)=x(1-x)/(1+x)` is strictly concave on `[0,1]`.
+Conditioning the stationary target first on `v notin S` and then on
+`v in S`, and using the two oriented cut identities
+
+\[
+ \sum_{v\notin S}\pi_vx_v=C,
+ \qquad
+ \sum_{v\in S}\pi_v(1-x_v)=C,
+\]
+
+gives the sharp statewise Jensen bound
+
+\[
+ \boxed{
+ {Q(S)\over C(S)}\le
+ {1-M(S)-C(S)\over1-M(S)+C(S)}
+ +{M(S)-C(S)\over2M(S)-C(S)}.}                             \tag{73}
+\]
+
+For a connected graph and a transient nonempty proper set, all denominators
+in `(73)` are positive.  Equality holds exactly when `x_v(S)` is constant
+over `S` and constant over its complement (with respect to the positive
+stationary weights).  In particular every complete-graph rank attains
+equality.
+
+Finally, put
+
+\[
+ \kappa_n=
+ {2\{(n-3)2^n+4\}\over(3n-7)2^n+8}.                       \tag{74}
+\]
+
+Because the ratio of the two quantities in `(72)` is strictly increasing
+in `z>=1/n`, the exact endpoint theorem is equivalently the summed
+selection-gain/collision inequality
+
+\[
+ \boxed{
+ \sum_S\bar\mu_SQ(S)
+ \le\kappa_n\sum_S\bar\mu_SC(S).}                         \tag{75}
+\]
+
+The complete pseudoflow has equality in `(75)`.  Bound `(73)` alone does
+not prove `(75)`: its right side tends to `3/2` across a vanishing
+conductance cut, while `kappa_n<2/3`.  The genuinely open ingredient is
+therefore an all-rank two-marked flow inequality, not a pointwise or
+per-rank cut estimate.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -608,10 +775,15 @@ vertex corrector, is essential.
   identity `(57)`.
 - **PROVED:** the geometric cut coboundary `(59)` and the exact boundary
   extension formulation `(60)--(61)`.
+- **PROVED:** the geometric conjugacy `(62)--(67)`, the degree-two matrix
+  collision balance `(68)--(69)`, and the sharp local reversible Jensen
+  bound `(73)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
-  identities and the dual balances on small weighted graphs, and checks
-  `(36)` on a genuinely directed rational kernel.
+  identities and the dual balances on small weighted graphs, checks `(36)`
+  on a genuinely directed rational kernel, and checks the new Green/current
+  conjugacy and matrix balance without floating arithmetic.
 - **NUMERICALLY OBSERVED ONLY:** the full rank-pair primal has remained below
   the complete baseline in the hostile searches in this directory.
 - **OPEN:** the universal cut bound `(25)`, hence universal feasibility of
-  the rank-pair certificate and the universal fitness-two fixation theorem.
+  the rank-pair certificate and the universal fitness-two fixation theorem;
+  equivalently, the summed collision inequality `(75)`.

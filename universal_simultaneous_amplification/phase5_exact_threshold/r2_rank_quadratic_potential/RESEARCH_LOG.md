@@ -43,6 +43,29 @@
   leaves precisely the old additive obstruction; the live compressed
   theorem requires an additional zero-boundary conductance profile plus the
   arbitrary rank-labelled vertex corrector.
+- Proved that geometric optional reweighting is an exact conjugacy, not only
+  a scalar cut identity.  If `eta` is an optional full rank-pair Farkas ray,
+  then `mu_S=2^(|S|-n+1) eta_S`, normalized by
+  `I=A_(n-1)+2^(2-n)R_1`, is exactly a nonnegative degree-two Green
+  pseudoflow with uniform singleton source and fixation flux `A_(n-1)/I`.
+  The optional endpoint ratio is algebraically identical to the original
+  complete-baseline bound.
+- Wrote all one- and two-mark balances as one matrix carré-du-champ identity
+  `sum mu [s d^T+d s^T+Diag((1-2s)d)]=z 11^T-I/n`.  Its restriction to the
+  zero-sum label space is the fixed negative form `-I/n`; this is the exact
+  degree-two collision/variance budget which the determinant/common-pin
+  formulation must reproduce.
+- Isolated the stationary selection gain
+  `Q=L pi(S)=sum_v pi_v x_v(1-x_v)/(1+x_v)` and proved the sharp statewise
+  conditional-Jensen inequality
+  `Q/C <= (1-M-C)/(1-M+C)+(M-C)/(2M-C)`.  Equality means that the mutant
+  posterior is constant separately on the two sides of the cut, and holds
+  on every complete-graph rank.
+- Reduced the universal endpoint sign exactly to the summed all-rank bound
+  `sum mu Q <= kappa_n sum mu C`, where
+  `kappa_n=2((n-3)2^n+4)/((3n-7)2^n+8)`.  The local Jensen bound alone is
+  insufficient near a vanishing cut, so the remaining issue is genuinely a
+  two-marked flow/collision inequality rather than a per-rank cut ceiling.
 
 ### Active sign
 
