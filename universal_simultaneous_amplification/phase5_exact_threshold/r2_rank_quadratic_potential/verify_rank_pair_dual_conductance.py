@@ -413,6 +413,101 @@ def verify_geometric_green_bridge() -> None:
         )
         assert complete_gain == collision_cut * bound_ratio
 
+    # The selection gain is a state-dependent mixture of categorical
+    # covariance matrices.  Check the exact matrix identities and the
+    # reversible square 2 L_pi-K_0=(I-P)^T Pi (I-P).
+    covariance = []
+    for v in range(N):
+        matrix_v = [
+            [
+                (P[v][i] if i == j else F(0)) - P[v][i] * P[v][j]
+                for j in range(N)
+            ]
+            for i in range(N)
+        ]
+        covariance.append(matrix_v)
+        for test in (
+            [F(1), F(-2), F(4), F(3)],
+            [F(0), F(5), F(-1), F(2)],
+        ):
+            quadratic = sum(
+                test[i] * matrix_v[i][j] * test[j]
+                for i in range(N)
+                for j in range(N)
+            )
+            variance = sum(P[v][i] * test[i] ** 2 for i in range(N))
+            variance -= sum(P[v][i] * test[i] for i in range(N)) ** 2
+            assert quadratic == variance >= 0
+
+    k_zero = [
+        [sum(PI[v] * covariance[v][i][j] for v in range(N)) for j in range(N)]
+        for i in range(N)
+    ]
+    laplacian = [
+        [(PI[i] if i == j else F(0)) - CONDUCTANCE[i][j] for j in range(N)]
+        for i in range(N)
+    ]
+    assert all(
+        k_zero[i][j]
+        == (PI[i] if i == j else F(0))
+        - sum(P[v][i] * PI[v] * P[v][j] for v in range(N))
+        for i in range(N)
+        for j in range(N)
+    )
+    reversible_square = [
+        [
+            sum(
+                ((F(int(v == i)) - P[v][i]) * PI[v]
+                 * (F(int(v == j)) - P[v][j]))
+                for v in range(N)
+            )
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert all(
+        2 * laplacian[i][j] - k_zero[i][j] == reversible_square[i][j]
+        for i in range(N)
+        for j in range(N)
+    )
+
+    for state in transient:
+        indicator = [F(int(bit(state, i))) for i in range(N)]
+        k_state = [
+            [
+                sum(
+                    PI[v] * covariance[v][i][j]
+                    / (1 + x_value(state, v))
+                    for v in range(N)
+                )
+                for j in range(N)
+            ]
+            for i in range(N)
+        ]
+        matrix_gain = sum(
+            indicator[i] * k_state[i][j] * indicator[j]
+            for i in range(N)
+            for j in range(N)
+        )
+        collision_sum = sum(
+            PI[v] * P[v][i] * P[v][j]
+            * (indicator[i] - indicator[j]) ** 2
+            / (2 * (1 + x_value(state, v)))
+            for v in range(N)
+            for i in range(N)
+            for j in range(N)
+        )
+        assert matrix_gain == collision_sum == selection_gain(state)
+        sos = sum(
+            PI[v] * (
+                (indicator[v] - x_value(state, v)) ** 2
+                + x_value(state, v) ** 2 * (1 - x_value(state, v))
+                / (1 + x_value(state, v))
+            )
+            for v in range(N)
+        )
+        assert 2 * cut(state) - selection_gain(state) == sos >= 0
+
     baseline = F((N - 1) * 2 ** (N - 2), N * (2 ** (N - 1) - 1))
     kappa = F(
         2 * ((N - 3) * 2 ** N + 4),

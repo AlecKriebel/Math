@@ -762,6 +762,52 @@ conductance cut, while `kappa_n<2/3`.  The genuinely open ingredient is
 therefore an all-rank two-marked flow inequality, not a pointwise or
 per-rank cut estimate.
 
+There is also an exact positive-semidefinite representation of the local
+gain.  Let `p_v` denote row `v` of `P`, let `Pi=Diag(pi)`, and define the
+categorical covariance matrices and their state-dependent mixture by
+
+\[
+ D_v=\operatorname{Diag}(p_v)-p_v^Tp_v,qquad
+ K_S=\sum_v{\pi_v\over1+x_v(S)}D_v.                          \tag{76}
+\]
+
+Every `D_v` is positive semidefinite and annihilates `mathbf1`, and
+
+\[
+ \boxed{
+ Q(S)=s^TK_Ss
+ ={1\over2}\sum_{v,i,j}{\pi_vP_{vi}P_{vj}\over1+x_v(S)}
+ (s_i-s_j)^2.}                                             \tag{77}
+\]
+
+If `K_0=sum_v pi_vD_v`, stationarity and reversibility give
+
+\[
+ K_S\preceq K_0=\Pi-P^T\Pi P\preceq2L_\pi,
+ \qquad L_\pi=\Pi(I-P),                                   \tag{78}
+\]
+
+where the second comparison is the explicit square
+
+\[
+ 2L_\pi-K_0=(I-P)^T\Pi(I-P)\succeq0.                       \tag{79}
+\]
+
+For zero-one `s`, the associated scalar law of total variance sharpens the
+resulting `Q<=2C` bound to the exact SOS decomposition
+
+\[
+ \boxed{
+ 2C(S)-Q(S)=\sum_v\pi_v\left[
+ (s_v-x_v)^2+{x_v^2(1-x_v)\over1+x_v}
+ \right]\ge0.}                                             \tag{80}
+\]
+
+Equations `(76)--(80)` are the promised two-request collision squares.
+They are graph-independent and exact, but their factor two is not the sharp
+all-rank constant in `(75)`; the missing gain is the transport of this PSD
+budget between ranks and the two absorbing boundaries.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -778,6 +824,9 @@ per-rank cut estimate.
 - **PROVED:** the geometric conjugacy `(62)--(67)`, the degree-two matrix
   collision balance `(68)--(69)`, and the sharp local reversible Jensen
   bound `(73)`.
+- **PROVED:** the two-request covariance representation `(76)--(77)`, the
+  reversible square comparison `(78)--(79)`, and the exact collision SOS
+  `(80)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
   identities and the dual balances on small weighted graphs, checks `(36)`
   on a genuinely directed rational kernel, and checks the new Green/current

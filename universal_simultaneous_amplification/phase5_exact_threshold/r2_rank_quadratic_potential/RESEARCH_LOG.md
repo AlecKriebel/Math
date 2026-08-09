@@ -66,6 +66,15 @@
   `kappa_n=2((n-3)2^n+4)/((3n-7)2^n+8)`.  The local Jensen bound alone is
   insufficient near a vanishing cut, so the remaining issue is genuinely a
   two-marked flow/collision inequality rather than a per-rank cut ceiling.
+- Factored `Q` as the quadratic form of the state-dependent PSD matrix
+  `K_S=sum_v pi_v (Diag(P_v)-P_v^T P_v)/(1+x_v)`.  The exact reversible
+  square
+  `2 L_pi-(Pi-P^T Pi P)=(I-P)^T Pi(I-P)` gives
+  `K_S <= Pi-P^T Pi P <= 2L_pi`.  For binary state vectors this yields the
+  stronger exact collision decomposition
+  `2C-Q=sum_v pi_v[(s_v-x_v)^2+x_v^2(1-x_v)/(1+x_v)]`.
+  This supplies a graph-independent positive square identity, but its
+  factor-two bound is still weaker than the required all-rank constant.
 
 ### Active sign
 
