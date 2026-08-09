@@ -225,17 +225,11 @@ For every feasible two-moment pseudoflow, prove
 
 `sum_S y_S cut_pi(S) <= (3/2) rho_dB(K_n,2) - 1/n`.
 
-The next analytic attempt is the combined rank-`H,K_0` contraction.  Write
-`K(theta)=L_pi+theta K_0`; reversibility diagonalizes this family with
-eigenvalue factor `(1-lambda)[1+theta(1+lambda)]`, hence it is PSD for every
-reversible kernel whenever `theta>=-1/2`.  Rank-varying coefficients must be
-combined with the arbitrary one-mark recurrences to control the signed
-adjacent-rank mixed current, ideally through an M-matrix/Schur recursion.
-
-Rank-`H` alone is exactly refuted.  The sharpest surviving compressed
-conjecture uses rank mass + every rank one-mark balance + independent
-rank-`H` and rank-`K_0` recurrences.  If this fails, the search escalates to
-the full pair matrix; no further rank-`H`-only screens are warranted.
+The live route is now the full rank-pair matrix balance `(68)`.  The
+rank-`H,K_0` Schur pencil and each of its one-channel restrictions have all
+been exactly refuted as universal certificate spaces.  Any smaller new
+candidate must add at least one genuinely independent pair direction and
+must be hostile-tested before analytic investment.
 
 - [EXACT ROUTE REFUTATION] Rank-dependent `K_0` plus all rank-labelled
   one-marks is now also exactly refuted.  A complete-support nine-vertex
@@ -249,6 +243,27 @@ the full pair matrix; no further rank-`H`-only screens are warranted.
   `49230606abeb30eafdf1dbe7bfd96b7e35f80bdff7eb7b15efbd759706c4534c`.
   All 142 quotient drifts agree exactly with a separately labelled chain.
 - This refutes only the `K_0`-only certificate, not the fixation theorem.
-  Together with the earlier exact rank-`H` refutation, it makes the
-  two-channel rank-`H,K_0` space the unique smallest live compression;
-  full arbitrary rank-pair coefficients remain the fallback.
+  Together with the earlier exact rank-`H` refutation, it identified the
+  two-channel rank-`H,K_0` space as the next candidate; that candidate is
+  refuted below.
+- [EXACT COMBINED-ROUTE REFUTATION] The full two-channel compressed space
+  with rank constants, every rank-labelled one-mark, and independent
+  rank-`H` and rank-`K_0` coefficients on every rank is exactly refuted.  A
+  complete-support twelve-vertex graph with class sizes `(1,1,2,3,5)` has
+  a 286-state quotient and 74-dimensional `W_12` space.  A 73-state
+  strictly positive rational Farkas dual and independently reconstructed
+  matching primal give restricted optimum
+  `0.4600442069423893447745517...`, above the `K_12` baseline `2816/6141`
+  by the exact positive rational
+  `0.001486968707574168093229390...`, SHA-256
+  `0cc5256b94a446ce0a8d2f8174e8cc081f5c3a0b25ea683d977808f044f94a22`.
+  All 286 quotient rows match a separately labelled chain.
+- [EXACT NON-CONFLATION] An independent exact harmonic solve gives true
+  fixation `0.4215620895939539989012090...`, strictly below the complete
+  baseline by `0.03699514864086117778011324...` (exact-margin SHA-256
+  `15fdf227d4184ee288596e3d92f7ea65be17c0e0e87b9d60a01ecd1d8d190ae1`).
+  Thus this is solely a proof-space counterexample.
+- The full rank-pair matrix is now the smallest live quadratic certificate.
+  The next task is to contract the complete matrix balance without reducing
+  it to the refuted `H,K_0` span, and to hostile-test the full pair LP on
+  this exact witness.

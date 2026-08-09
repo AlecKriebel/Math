@@ -956,8 +956,9 @@ the fixed-matrix contraction using PSD alone.  To reach `kappa_n`, a proof
 must control the signed mixed increments in `(91)` after summation against
 the one-mark balances.  The exact counterexamples in Sections 7.4 and 7.9
 show that neither constant nor arbitrary rank-dependent multipliers of
-`L_pi` suffice.  The combined rank-dependent `L_pi,K_0` problem remains
-open.
+`L_pi` suffice.  At this stage the combined rank-dependent `L_pi,K_0`
+problem was the next candidate; Section 7.13 refutes that compressed space
+exactly.
 
 ### 7.6 The exact compressed dual and rank-dependent witness repairs
 
@@ -1149,9 +1150,11 @@ This is the minimal positive target found by the contraction audit.  The
 term `D` is the reversible one-step prediction-error energy tracked
 by the combined quadratic certificate; `W` is its nonnegative
 fitness-two remainder.  What remains open is a rank-current coercivity
-argument proving `(111)`.  Dropping the individual vertex recurrences and
-keeping only the scalar bounds `(105)--(107)` is far too weak, so any
-continued-fraction or `M`-matrix proof must remain vertex marked.
+argument proving `(111)` from the **full** two-marked flow.  Section 7.13
+shows that even retaining the individual vertex recurrences together with
+the two scalar `H,K_0` contractions does not force it.  Dropping the
+individual vertex recurrences and keeping only the scalar bounds
+`(105)--(107)` is still weaker.
 
 That last obstruction is exact.  Even if the scalar system is augmented by
 all elementary event-moment bounds
@@ -1281,8 +1284,8 @@ checks every labelled-to-quotient row.  See
 This is a route counterexample only; it is not a fixation counterexample.
 It proves that one reversible pair direction per rank is insufficient even
 with every rank-labelled vertex correction.  The smallest surviving
-compressed space contains both rank-`H` and rank-`K_0`; the full rank-pair
-matrix remains the unconditional fallback.
+compressed candidate at this point contained both rank-`H` and rank-`K_0`;
+Section 7.13 refutes that candidate too, leaving the full rank-pair matrix.
 
 ### 7.10 The combined route as two internal-request flows
 
@@ -1331,7 +1334,7 @@ There are no hidden pair constraints in this description.  Finite LP
 duality says that its optimum is the maximum `z` over nonnegative
 pseudoflows satisfying exactly the rank-mass equations `(12)`, all
 rank-labelled one-mark equations `(14)`, and the two storage rows `(132)`
-below.  Thus the sharp surviving compressed conjecture is precisely
+below.  Thus the exact two-channel compressed conjecture is precisely
 
 \[
  (12),(14),(132),\ \bar\mu\ge0
@@ -1577,11 +1580,11 @@ at every rank, including both endpoints, with absent terms zero.  Hence
 \]
 
 Equation `(151)`, coupled to all individual one-mark recurrences, is the
-minimal surviving Schur problem.  It explains both why rank-`H` alone can
+minimal two-channel Schur problem.  It explains both why rank-`H` alone can
 fail and why merely adding a fixed PSD inequality cannot repair it: the
 additional channel acts only by moving signed collision excess between
-ranks.  A closure must prove that this zero-total redistribution controls
-the first-channel destruction debt in `(119)`.
+ranks.  Section 7.13 proves that this redistribution still does not control
+the first-channel destruction debt universally.
 
 ### 7.12 Rank-`K_0` alone is also exactly insufficient
 
@@ -1637,9 +1640,78 @@ Every quotient drift row is checked against a separately labelled
 nine-vertex construction.  Thus `(156)` is an exact obstruction to the
 rank-`K_0` proof space, not a floating search result.  It is also not a
 fixation counterexample.  Together with the independent rank-`H`
-refutation `(120)--(123)`, it proves that the smallest surviving compressed
-space must keep both channels rankwise; neither alone can be promoted to a
-universal theorem.
+refutation `(120)--(123)`, it proves that the next compressed candidate had
+to keep both channels rankwise; neither alone can be promoted
+to a universal theorem.  The next section refutes even that combined
+candidate.
+
+### 7.13 Exact failure of the combined two-channel certificate
+
+The implication `(127b)` is exactly false.  Take the twelve-vertex
+complete-support graph with equitable class sizes
+
+\[
+ (1,1,2,3,5)                                               \tag{157}
+\]
+
+and symmetric integer class-weight matrix
+
+\[
+\begin{pmatrix}
+1000&5000000000&10000&30&3\\
+5000000000&2500&350&44&1200\\
+10000&350&26000&4800&80000000\\
+30&44&4800&6000000&30000000\\
+3&1200&80000000&30000000&10000000
+\end{pmatrix}.                                             \tag{158}
+\]
+
+The restricted potential space is the full two-channel space
+
+\[
+ F(S)=a_k+\sum_{i\in S}b_{k,i}
+ +u_kE_1(S)+v_k\,s^TK_0s,\qquad k=|S|.                  \tag{159}
+\]
+
+Within-class symmetry gives 286 transient quotient states and 74
+independent columns.  An exact 73-state strictly positive rational Farkas
+dual and its independently reconstructed matching rational primal prove
+
+\[
+ \boxed{
+ p_{W_{12}}(P)=0.4600442069423893447745517\ldots
+ >{2816\over6141}=\rho_{\rm dB}(K_{12},2).}               \tag{160}
+\]
+
+The exact excess is
+`0.001486968707574168093229390...`; its reduced numerator and denominator
+have 3485 and 3487 decimal digits.  The canonical SHA-256 identifier is
+
+```text
+0cc5256b94a446ce0a8d2f8174e8cc081f5c3a0b25ea683d977808f044f94a22
+```
+
+Every quotient drift is checked against a separately labelled
+twelve-vertex construction.  An independent exact harmonic solve also
+gives
+
+\[
+ \rho_{\rm dB}(G,2)=0.4215620895939539989012090\ldots
+ <{2816\over6141},                                         \tag{161}
+\]
+
+with exact suppression margin
+`0.03699514864086117778011324...`.  Thus `(160)` is solely a proof-space
+counterexample; the graph itself is not an endpoint amplifier.
+
+Consequently the mass equations, every rank one-mark equation, and the two
+storage rows `(132)` do not imply the endpoint bound.  Neither a
+rank-dependent `theta_k` pencil nor a two-channel Schur/Riccati argument can
+close the universal theorem without additional pair information.  The
+smallest live quadratic space is now the full rank-pair matrix `(68)`, or
+an enlargement with at least one genuinely new graph-dependent pair
+direction.  See `COMBINED_W12_FARKAS_REFUTATION.md` and
+`verify_combined_w12_farkas_refutation.py`.
 
 ## 8. Exact scope
 
@@ -1680,6 +1752,11 @@ universal theorem.
 - **EXACTLY REFUTED:** the restricted potential with rank constants,
   arbitrary rank-labelled vertex terms, and one `K_0` coefficient per
   rank, by the exact nine-vertex rational primal/dual pair `(153)--(156)`.
+- **EXACTLY REFUTED:** the combined rank-`H,K_0` potential with both pair
+  coefficients independent on every rank and all rank-labelled one-marks,
+  by the exact twelve-vertex rational primal/dual pair `(157)--(160)`.
+- **EXACTLY COMPUTED:** the combined-certificate witness is itself strictly
+  dB-suppressing at fitness two, by the exact harmonic solve `(161)`.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
@@ -1688,7 +1765,8 @@ universal theorem.
   relaxed point of flux `5/9`.
 - **PROVED:** the internal-conductance creation/debt identity
   `(114)--(119)`, an exact reformulation of the now-refuted rank-`H`
-  implication and a surviving component of the combined route.
+  implication and a diagnostic component of the now-refuted combined
+  route.
 - **EXACTLY COMPUTED:** rank-dependent `H` and, separately, rank-dependent
   `K_0` both repair the exact 17-vertex global-coefficient witness, by the
   matching rational certificates `(96)` and `(102)`.
@@ -1700,7 +1778,7 @@ universal theorem.
   the complete baseline in the hostile searches in this directory.
 - **OPEN:** the universal cut bound `(25)`, hence universal feasibility of
   the rank-pair certificate and the universal fitness-two fixation theorem;
-  equivalently, the summed collision inequality `(75)`.  The smallest live
-  compressed potential has separate rank-dependent coefficients for both
-  `H` and `K_0`; each single-channel space is now exactly refuted, and
-  otherwise the full rank-pair matrix is required.
+  equivalently, the summed collision inequality `(75)`.  Every tested
+  one- and two-channel compression in this note is now exactly refuted.
+  The smallest live quadratic certificate is the full rank-pair matrix;
+  the minimal adequate intermediate pair space is unknown.

@@ -163,16 +163,17 @@ is rank dependent and every vertex correction is retained:
   `RANK_DEPENDENT_CONDUCTANCE_FARKAS_REFUTATION.md`;
 - rank-`K_0` alone is refuted by `(7)--(15)`.
 
-The smallest surviving compressed space must retain both directions on
+At this stage the next compressed candidate retained both directions on
 every rank,
 
 \[
  E_\pi(S),\qquad s^T(\Pi-P^T\Pi P)s,                       \tag{16}
 \]
 
-together with all rank-labelled one-marks.  The present certificate says
-nothing about feasibility of that combined space.  The full rank-pair
-matrix remains the fallback.
+together with all rank-labelled one-marks.  That combined space is
+subsequently refuted exactly in `COMBINED_W12_FARKAS_REFUTATION.md`.
+Accordingly the full rank-pair matrix is now the smallest live quadratic
+certificate recorded in this project.
 
 ## 5. Replay
 
