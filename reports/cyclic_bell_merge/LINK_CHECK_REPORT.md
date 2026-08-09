@@ -70,5 +70,24 @@ embeds the manuscript at the end. The page was tested at the default 1280 by
 
 ## Post-push production check
 
-Pending the first scoped implementation push. This section will record live
-HTTP/content-type/hash/canonical results before the release-record commit.
+**PASS**, 9 August 2026 at 04:04:20 UTC, after implementation commit
+`a4d0e2a99ce6da3ddd78a79e85d5540b28e975d5` was pushed to `origin/main`.
+
+- The canonical page, homepage, sitemap, and all three compatibility pages
+  returned HTTP 200 with the expected HTML or XML content type.
+- The canonical page contains the title, citation metadata, canonical URL,
+  JSON-LD `ScholarlyArticle`, and AI-assistance metadata.
+- The manuscript and two-page-summary URLs returned HTTP 200 as
+  `application/pdf`; their served SHA-256 hashes are respectively
+  `d887643523c4c1346dea561d6ecbd00c7a6166a218e63cb81259565f28d9e305`
+  and `c9ef83297369b45f033348f6727317355d6a1b74f63112be9db5a7c1eca7b0b6`.
+- Every compatibility page contains the required `noindex,follow`, canonical,
+  meta-refresh, JavaScript fallback, ordinary canonical link, historical PDF
+  link, and immutable-source link.
+- All three historical PDF URLs returned HTTP 200 as `application/pdf`; their
+  served hashes match the preservation table above.
+- The production homepage contains one merged card and the count of sixteen;
+  the production sitemap lists the canonical route once and no redirect route.
+
+No redirect loop, missing required artifact, metadata mismatch, content-type
+mismatch, or byte-integrity failure was found.

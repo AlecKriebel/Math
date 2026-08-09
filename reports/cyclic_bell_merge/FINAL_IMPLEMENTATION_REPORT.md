@@ -4,7 +4,7 @@ Date: 8 August 2026
 
 Branch target: `origin/main`
 
-Implementation commit: `TO_BE_RECORDED_AFTER_SCOPED_CONTENT_COMMIT`
+Implementation commit: `a4d0e2a99ce6da3ddd78a79e85d5540b28e975d5`
 
 ## Delivered result
 
@@ -175,13 +175,18 @@ Initial exact-value and counterexample PDF hashes (`947b6019…` and
 - Two-page summary: **PASS**, exactly two pages, clean log, visually inspected.
 - Website metadata, MathJax, redirects, PDF embedding, links, homepage, and
   sitemap: **PASS** locally and in a real browser.
+- Production GitHub Pages: **PASS**; the canonical route, both new PDFs, all
+  compatibility pages, all historical PDFs, homepage, and sitemap returned
+  HTTP 200 with the expected content types, metadata, and hashes.
 - Canonical package manifest: **PASS**.
 
 ## Push and remaining risks
 
-Push status: pending final remote synchronization.
+Push status: implementation commit pushed directly to `origin/main` without a
+force push. The release-record commit containing this post-deployment report
+is the final pushed HEAD reported at handoff.
 
-Production GitHub Pages status: pending content push.
+Production GitHub Pages status: **PASS** at 04:04:20 UTC on 9 August 2026.
 
 Most important remaining specialist-review risks:
 
