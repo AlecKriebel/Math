@@ -1583,6 +1583,64 @@ additional channel acts only by moving signed collision excess between
 ranks.  A closure must prove that this zero-total redistribution controls
 the first-channel destruction debt in `(119)`.
 
+### 7.12 Rank-`K_0` alone is also exactly insufficient
+
+The exact `n=17` certificate `(102)` showed that rank-dependent `K_0`
+repairs one particular global-conductance witness.  It does **not** furnish
+a universal certificate by itself.  This can now be refuted exactly.
+
+Consider the complete-support equitable graph with class sizes
+
+\[
+ (1,1,2,2,3)                                               \tag{153}
+\]
+
+and symmetric integer class-weight matrix
+
+\[
+\begin{pmatrix}
+10^6&3\cdot10^{11}&7\cdot10^{10}&4\cdot10^5&3\cdot10^7\\
+3\cdot10^{11}&10&4\cdot10^5&5\cdot10^{10}&5\\
+7\cdot10^{10}&4\cdot10^5&3\cdot10^6&11\cdot10^5&9\cdot10^{10}\\
+4\cdot10^5&5\cdot10^{10}&11\cdot10^5&17\cdot10^{10}&5\cdot10^{10}\\
+3\cdot10^7&5&9\cdot10^{10}&5\cdot10^{10}&36\cdot10^9
+\end{pmatrix}.                                             \tag{154}
+\]
+
+The restricted potential is
+
+\[
+ F(S)=a_k+\sum_{i\in S}b_{k,i}+q_k\,s^TK_0s,
+ \qquad k=|S|.                                             \tag{155}
+\]
+
+Within-class symmetry gives 142 transient quotient states and 47
+independent columns.  An exact 46-state strictly positive rational Farkas
+dual, together with its independently reconstructed matching rational
+primal, proves
+
+\[
+ \min_F {1\over9}\sum_iF(\{i\})
+ =0.4539329228798728451964329\ldots
+ >{1024\over2295}.                                         \tag{156}
+\]
+
+The exact excess is
+`0.007745559045450187244363190...`; its reduced numerator and denominator
+have 1798 and 1800 decimal digits, and its canonical SHA-256 identifier is
+
+```text
+49230606abeb30eafdf1dbe7bfd96b7e35f80bdff7eb7b15efbd759706c4534c
+```
+
+Every quotient drift row is checked against a separately labelled
+nine-vertex construction.  Thus `(156)` is an exact obstruction to the
+rank-`K_0` proof space, not a floating search result.  It is also not a
+fixation counterexample.  Together with the independent rank-`H`
+refutation `(120)--(123)`, it proves that the smallest surviving compressed
+space must keep both channels rankwise; neither alone can be promoted to a
+universal theorem.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1619,6 +1677,9 @@ the first-channel destruction debt in `(119)`.
 - **PROVED:** the traceless boundary-neutral collision-excess decomposition
   and its exact rank Schur recurrence `(140)--(152)`; this is a reduction,
   not a sign theorem.
+- **EXACTLY REFUTED:** the restricted potential with rank constants,
+  arbitrary rank-labelled vertex terms, and one `K_0` coefficient per
+  rank, by the exact nine-vertex rational primal/dual pair `(153)--(156)`.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
@@ -1641,4 +1702,5 @@ the first-channel destruction debt in `(119)`.
   the rank-pair certificate and the universal fitness-two fixation theorem;
   equivalently, the summed collision inequality `(75)`.  The smallest live
   compressed potential has separate rank-dependent coefficients for both
-  `H` and `K_0`; otherwise the full rank-pair matrix is required.
+  `H` and `K_0`; each single-channel space is now exactly refuted, and
+  otherwise the full rank-pair matrix is required.

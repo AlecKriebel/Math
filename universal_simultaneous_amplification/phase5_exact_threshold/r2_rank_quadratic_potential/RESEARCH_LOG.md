@@ -236,3 +236,19 @@ Rank-`H` alone is exactly refuted.  The sharpest surviving compressed
 conjecture uses rank mass + every rank one-mark balance + independent
 rank-`H` and rank-`K_0` recurrences.  If this fails, the search escalates to
 the full pair matrix; no further rank-`H`-only screens are warranted.
+
+- [EXACT ROUTE REFUTATION] Rank-dependent `K_0` plus all rank-labelled
+  one-marks is now also exactly refuted.  A complete-support nine-vertex
+  equitable graph with class sizes `(1,1,2,2,3)` has a 142-state quotient
+  and a 47-dimensional rank-constant + rank-vertex + rank-`K_0` potential
+  space.  An exact 46-state strictly positive rational Farkas dual and
+  independently reconstructed matching primal give restricted optimum
+  `0.4539329228798728451964329...`, above the `K_9` baseline `1024/2295` by
+  `0.007745559045450187244363190...`.  The exact gap is identified by
+  SHA-256
+  `49230606abeb30eafdf1dbe7bfd96b7e35f80bdff7eb7b15efbd759706c4534c`.
+  All 142 quotient drifts agree exactly with a separately labelled chain.
+- This refutes only the `K_0`-only certificate, not the fixation theorem.
+  Together with the earlier exact rank-`H` refutation, it makes the
+  two-channel rank-`H,K_0` space the unique smallest live compression;
+  full arbitrary rank-pair coefficients remain the fallback.
