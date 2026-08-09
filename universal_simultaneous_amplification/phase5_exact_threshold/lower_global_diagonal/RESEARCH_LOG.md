@@ -82,3 +82,36 @@
   `beta+sigma<=1`, equivalently endpoint cost at least Bd gain.  All broad
   hostile optimizations approach equality from the allowed side; no proof
   or exact counterexample is yet known.
+
+## 2026-08-08 — exact first Bd-to-dB orbit step
+
+- **PROVED:** for every finite row-stochastic `P`, every positive start law
+  `p`, and every endpoint Bd extinction vector `q`, the first iterate of the
+  endpoint dB survival map satisfies
+
+  ```text
+  E_p F(q) <= E_p q,       F(y)=2Ry/(1+2Ry).
+  ```
+
+  No reversibility or bounded-temperature hypothesis is used.
+- The proof writes the gap as `E_p phi(Rq)` for the convex function
+  `phi(z)=z(2z-1)/(1+2z)`, takes labelled tangent lines at `q_i`, and adds an
+  exact Bd-flow null Lagrangian with
+
+  ```text
+  lambda(x)=-(2x-3)(12x^2-12x+11)/(16(2x+1)).
+  ```
+
+  The resulting two-label edge slack is nonnegative on the unit square.
+  Its numerator is certified by exact Bernstein coefficients on 26 outer
+  rational boxes and exact Hessian convexity on `[7/16,9/16]^2`.
+- This closes only the first orbit step.  Pointwise and temporal monotonicity
+  fail, so no endpoint claim is inferred.  The stronger active target
+
+  ```text
+  W = E[b(1-b)] - E[b^2 s/(1-s)] >= 0
+    = E(q-s) - E[(q-s)^2/(1-s)]
+  ```
+
+  would prove `beta+sigma<=1` with a quantitative square deficit and remains
+  open.
