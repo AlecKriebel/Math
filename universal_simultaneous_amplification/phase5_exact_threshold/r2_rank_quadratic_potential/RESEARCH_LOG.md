@@ -412,3 +412,32 @@ must be hostile-tested before analytic investment.
   This is an exact obstruction to a local kinetic-only Riccati, not a
   refutation of `W_123`.  The nonlocal signed one-mark holdings or a larger
   spectral/full-pair coordinate must be retained.
+
+## 2026-08-08 22:58 PDT
+
+- [EXACT POSITIVE SPECTRAL CONJUGATE] In reversible coordinates set
+  `T=I-P_sym`, `B=I-sqrt(pi)sqrt(pi)^T`, and
+  `F=theta B-T/2`, where `theta=n/(n-1)`.  Its spectrum off the stationary
+  vector is `theta-t/2>=1/(n-1)`, so
+  `K_F=theta(Pi-pi pi^T)-L_pi/2` is PSD with constant kernel.
+- The induced boundary-zero `W_123` storage is exactly
+  `S_F=theta V-C/2>=0`, with uniform-singleton source
+  `Tr(K_F)/n=[theta(1-||pi||^2)-1/2]/n`.  Its labelled-chain drift is
+  `L S_F=K_theta-theta^2 V+2 A_F+D_F`, where
+  `A_F=s^T K_F a` and `D_F=sum_v(K_F)_vv t_v`.
+- [EXACT VARIATIONAL REDUCTION] Writing
+  `b_n=kappa_n+2/(n-1)` and
+  `J_F=W+b_n C-2A_F-D_F`, the complete endpoint residual is exactly
+  `L S_F+J_F`.  Degree-two Green balance therefore makes the universal
+  theorem equivalent to the single inequality
+  `sum mu J_F>=Tr(K_F)/n`.  This inequality is OPEN; no finite evidence is
+  promoted to a theorem.
+- Derived the full rank recurrence of the positive storage, including the
+  singleton source and bottom/top boundary cancellations.  The holdings
+  are nonnegative but its addition/removal increments are signed, locating
+  the remaining obstruction in adjacent-rank current transport rather than
+  in a missing local PSD block.
+- Extended the independent Fraction verifier.  It checks symmetry, row
+  sums, all principal minors on the replay graph, the storage identity,
+  state generator decomposition, exact rank recurrence, integrated source,
+  and endpoint-residual equivalence without importing discovery code.

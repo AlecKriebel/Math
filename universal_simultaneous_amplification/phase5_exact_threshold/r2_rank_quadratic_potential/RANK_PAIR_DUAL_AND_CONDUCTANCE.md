@@ -2591,6 +2591,155 @@ rank-dependent spectral matrix `f_k(P)` (and ultimately the full pair
 matrix).  Adding another static scalar contraction cannot repair the
 singular Schur step.
 
+### 7.21 A positive spectral conjugate and the single remaining current sign
+
+The spectral enlargement has a canonical first member which is already
+inside `W_123` and supplies the missing positive holding block.  Work in
+reversible coordinates and put
+
+\[
+ S_\pi=\Pi^{1/2}P\Pi^{-1/2},\qquad
+ T=I-S_\pi,\qquad
+ B=I-\sqrt\pi\sqrt\pi^{T},\qquad
+ \theta={n\over n-1}.                                    \tag{231}
+\]
+
+Here `B` is the orthogonal projection off the stationary vector.  Define
+
+\[
+ \mathscr F=\theta B-{1\over2}T,
+ \qquad
+ K_F=\Pi^{1/2}\mathscr F\Pi^{1/2}
+     =\theta(\Pi-\pi\pi^T)-{1\over2}L_\pi.               \tag{232}
+\]
+
+Because a reversible Markov kernel has spectrum in `[-1,1]`, the spectrum
+of `T` on `sqrt(pi)^perp` lies in `[0,2]`.  Hence the corresponding
+eigenvalues of `mathscr F` are
+
+\[
+ \theta-{t\over2}\ge\theta-1={1\over n-1}>0.             \tag{233}
+\]
+
+Thus `K_F` is positive semidefinite, its kernel is exactly the constants,
+and the boundary-zero pair storage
+
+\[
+ \mathcal S_F(S)=s^TK_Fs
+ =\theta V(S)-{1\over2}C(S)\ge0                         \tag{234}
+\]
+
+vanishes only at the empty and full states.  This is a fixed linear
+combination of the first and third `W_123` pair channels, not an added
+ansatz.  Looplessness gives the exact singleton source
+
+\[
+ {1\over n}\sum_v\mathcal S_F(\{v\})
+ ={\operatorname {Tr}K_F\over n},\qquad
+ \operatorname {Tr}K_F
+ =\theta(1-\|\pi\|_2^2)-{1\over2}.                       \tag{235}
+\]
+
+Recall the selection vector `a` and event activity `t` from `(68)--(70)`,
+and set
+
+\[
+ A_F(S)=s^TK_Fa(S),\qquad
+ D_F(S)=\sum_v(K_F)_{vv}t_v(S).                           \tag{236}
+\]
+
+For `u=Pi^{1/2}(s-M1)`, one has
+`Pi^{1/2}d=-Tu+Pi^{1/2}a` and
+`Pi^{1/2}e=(T-theta B)u`.  The exact quadratic generator identity is
+therefore
+
+\[
+\boxed{
+ L\mathcal S_F
+ =K_\theta-\theta^2V+2A_F+D_F.}                          \tag{237}
+\]
+
+Indeed, the quadratic part is
+`-2u^T mathscr F T u=u^T(T^2-2 theta T)u`, and the other two
+terms are respectively the linear drift and flip diagonal in `(68)`.
+This proves `(237)` directly from the labelled chain; it is not a
+stationary approximation.
+
+Let `a_n=2-kappa_n` and
+
+\[
+ b_n=2\theta-a_n=\kappa_n+{2\over n-1}.                  \tag{238}
+\]
+
+The endpoint residual in `(111)` has the exact decomposition
+
+\[
+\boxed{\begin{aligned}
+ \mathcal D+\mathcal W-a_nC
+ &=K_\theta+\mathcal W+b_nC-\theta^2V\\
+ &=L\mathcal S_F+\mathcal J_F,\\
+ \mathcal J_F
+ &:=\mathcal W+b_nC-2A_F-D_F.
+\end{aligned}}                                             \tag{239}
+\]
+
+Since `mathcal S_F` is zero at both absorbing states, the exact degree-two
+pseudoflow balance `(66)` gives
+
+\[
+ \sum_S\bar\mu_SL\mathcal S_F(S)
+ =-{\operatorname {Tr}K_F\over n}.                       \tag{240}
+\]
+
+Consequently the universal fitness-two theorem is **equivalent**, within
+the exact rank-pair pseudoflow, to the single integrated current inequality
+
+\[
+\boxed{
+ \sum_S\bar\mu_S\mathcal J_F(S)
+ \ge {\operatorname {Tr}K_F\over n}.}                    \tag{241}
+\]
+
+This is sharper than the singular local Riccati formulation: the positive
+storage `(234)` supplies a genuine holding block, and `(241)` contains no
+discarded pair moment.  It also exposes the precise remaining sign rather
+than asserting it.  On the complete kernel equality holds.
+
+For completeness, the exact rank transport behind `(240)` is as follows.
+For an addition or removal at `v`, define the signed storage increments
+
+\[
+ \Delta_v^+=2(K_Fs)_v+(K_F)_{vv},\qquad
+ \Delta_v^-=2(K_Fs)_v-(K_F)_{vv},                         \tag{242}
+\]
+
+and the occupied currents
+
+\[
+ P^F_k=\sum_{|S|=k}\bar\mu_S\sum_{v\notin S}g_v\Delta_v^+,
+ \qquad
+ N^F_k=\sum_{|S|=k}\bar\mu_S\sum_{v\in S}\ell_v\Delta_v^- . \tag{243}
+\]
+
+If `X^F_k,Y^F_k` are the occupations of `mathcal S_F U` and
+`mathcal S_F D`, then, with absent terms zero,
+
+\[
+\boxed{
+ {\operatorname {Tr}K_F\over n}1_{\{k=1\}}
+ +X^F_{k-1}+P^F_{k-1}+Y^F_{k+1}-N^F_{k+1}
+ -X^F_k-Y^F_k=0,\quad 1\le k<n.}                         \tag{244}
+\]
+
+The holdings `X^F,Y^F` are nonnegative, although the increments in
+`(242)` are signed.  Summing `(244)` recovers `(240)`.  A proof of `(241)`
+must control these signed adjacent-rank currents; it cannot be replaced by
+a pointwise or independent-rank bound.  A numerical diagnostic on the
+stored rational twelve-vertex hostile graph finds negative true-Green
+contributions of `mathcal J_F` on many intermediate ranks even though their
+total exceeds `(235)`; this observation is not used as proof.  Thus `(241)`
+is a proved variational reduction and the final sign remains **OPEN**.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -2667,6 +2816,11 @@ singular Schur step.
   momentum `q` block is locally zero; the naive first backward Schur
   complement is therefore singular.  Any valid Riccati proof must retain
   nonlocal one-mark holdings or pass to a larger spectral/full-pair space.
+- **PROVED:** the positive spectral conjugate `(231)--(244)`.  The
+  boundary-zero `W_123` storage `theta V-C/2` is positive semidefinite and
+  converts the full endpoint residual exactly into one integrated current
+  sign `(241)`, with its singleton constant, rank transport, and equality
+  normalization all explicit.  Inequality `(241)` itself remains open.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.

@@ -46,6 +46,30 @@ def solve_linear(matrix: list[list[Q]], rhs: list[Q]) -> list[Q]:
     return [augmented[row][-1] for row in range(n)]
 
 
+def determinant(matrix: list[list[Q]]) -> Q:
+    """Exact determinant, used only for the small PSD replay."""
+
+    work = [row[:] for row in matrix]
+    answer = Q(1)
+    for column in range(len(work)):
+        pivot = next(
+            (row for row in range(column, len(work)) if work[row][column]),
+            None,
+        )
+        if pivot is None:
+            return Q(0)
+        if pivot != column:
+            work[column], work[pivot] = work[pivot], work[column]
+            answer = -answer
+        diagonal = work[column][column]
+        answer *= diagonal
+        for row in range(column + 1, len(work)):
+            scale = work[row][column] / diagonal
+            for j in range(column + 1, len(work)):
+                work[row][j] -= scale * work[column][j]
+    return answer
+
+
 N = len(WEIGHTS)
 FULL = (1 << N) - 1
 DEGREE = tuple(sum(row) for row in WEIGHTS)
@@ -73,6 +97,15 @@ def x_vector(state: int) -> tuple[Q, ...]:
     return matvec(P, s)
 
 
+def indicator(state: int) -> tuple[Q, ...]:
+    return tuple(Q(bit(state, i)) for i in range(N))
+
+
+def quadratic_form(matrix: tuple[tuple[Q, ...], ...], vector: tuple[Q, ...]) -> Q:
+    image = matvec(matrix, vector)
+    return sum(vector[i] * image[i] for i in range(N))
+
+
 def p2_matrix() -> tuple[tuple[Q, ...], ...]:
     return tuple(
         tuple(sum(P[v][j] * P[j][i] for j in range(N)) for i in range(N))
@@ -91,6 +124,27 @@ H2 = tuple(Q(1, N - 1) - R_DIAGONAL[v] for v in range(N))
 BOUNDARY_VECTOR = (DELTA, -EPSILON)
 
 
+def kappa() -> Q:
+    return Q(
+        2 * ((N - 3) * 2 ** N + 4),
+        (3 * N - 7) * 2 ** N + 8,
+    )
+
+
+L_PI = tuple(
+    tuple(PI[i] * ((i == j) - P[i][j]) for j in range(N))
+    for i in range(N)
+)
+K_F = tuple(
+    tuple(
+        THETA * (PI[i] * (i == j) - PI[i] * PI[j]) - L_PI[i][j] / 2
+        for j in range(N)
+    )
+    for i in range(N)
+)
+TRACE_K_F = sum(K_F[v][v] for v in range(N))
+
+
 def rates(state: int) -> list[tuple[int, Q]]:
     x = x_vector(state)
     result = []
@@ -103,6 +157,104 @@ def rates(state: int) -> list[tuple[int, Q]]:
 
 def stationary_mass(state: int) -> Q:
     return sum(PI[v] for v in range(N) if bit(state, v))
+
+
+def cut(state: int) -> Q:
+    s = indicator(state)
+    return quadratic_form(L_PI, s)
+
+
+def variance(state: int) -> Q:
+    mass = stationary_mass(state)
+    return mass * (1 - mass)
+
+
+def spectral_storage(state: int) -> Q:
+    return quadratic_form(K_F, indicator(state))
+
+
+def selection_vector(state: int) -> tuple[Q, ...]:
+    x = x_vector(state)
+    return tuple(x[v] * (1 - x[v]) / (1 + x[v]) for v in range(N))
+
+
+def activity_vector(state: int) -> tuple[Q, ...]:
+    x = x_vector(state)
+    return tuple(
+        (1 - x[v]) / (1 + x[v]) if bit(state, v)
+        else 2 * x[v] / (1 + x[v])
+        for v in range(N)
+    )
+
+
+def prediction_error(state: int) -> Q:
+    s = indicator(state)
+    x = x_vector(state)
+    return sum(PI[v] * (s[v] - x[v]) ** 2 for v in range(N))
+
+
+def nonlinear_remainder(state: int) -> Q:
+    x = x_vector(state)
+    return sum(
+        PI[v] * x[v] ** 2 * (1 - x[v]) / (1 + x[v])
+        for v in range(N)
+    )
+
+
+def k_theta(state: int) -> Q:
+    e, _ = error_vectors(state)
+    return sum(PI[v] * e[v] ** 2 for v in range(N))
+
+
+def spectral_cross(state: int) -> Q:
+    return sum(
+        indicator(state)[i] * K_F[i][j] * selection_vector(state)[j]
+        for i in range(N)
+        for j in range(N)
+    )
+
+
+def spectral_diagonal(state: int) -> Q:
+    activity = activity_vector(state)
+    return sum(K_F[v][v] * activity[v] for v in range(N))
+
+
+def spectral_currents(state: int) -> tuple[Q, Q]:
+    """Signed creation and debt currents of the positive spectral storage."""
+
+    s = indicator(state)
+    image = matvec(K_F, s)
+    x = x_vector(state)
+    creation = Q(0)
+    debt = Q(0)
+    for v in range(N):
+        if bit(state, v):
+            rate = (1 - x[v]) / (1 + x[v])
+            debt += rate * (2 * image[v] - K_F[v][v])
+        else:
+            rate = 2 * x[v] / (1 + x[v])
+            creation += rate * (2 * image[v] + K_F[v][v])
+    return creation, debt
+
+
+def spectral_remainder(state: int) -> Q:
+    coefficient = kappa() + Q(2, N - 1)
+    return (
+        nonlinear_remainder(state)
+        + coefficient * cut(state)
+        - 2 * spectral_cross(state)
+        - spectral_diagonal(state)
+    )
+
+
+def target_residual(state: int) -> Q:
+    coefficient = kappa() + Q(2, N - 1)
+    return (
+        k_theta(state)
+        + nonlinear_remainder(state)
+        + coefficient * cut(state)
+        - THETA ** 2 * variance(state)
+    )
 
 
 def e1(state: int) -> Q:
@@ -284,6 +436,13 @@ def verify_state_identities() -> None:
     assert all(P[v][v] == 0 for v in range(N))
     assert sum(PI) == 1
     assert all(PI[v] * P[v][i] == PI[i] * P[i][v] for v in range(N) for i in range(N))
+    assert all(K_F[i][j] == K_F[j][i] for i in range(N) for j in range(N))
+    assert all(sum(K_F[i]) == 0 for i in range(N))
+    assert TRACE_K_F == THETA * (1 - SIGMA) - Q(1, 2)
+    for mask in range(1, 1 << N):
+        vertices = [v for v in range(N) if bit(mask, v)]
+        principal = [[K_F[i][j] for j in vertices] for i in vertices]
+        assert determinant(principal) >= 0
     assert sum(PI[v] * H1[v] for v in range(N)) == DELTA
     assert sum(PI[v] * H2[v] for v in range(N)) == -EPSILON
 
@@ -317,7 +476,23 @@ def verify_state_identities() -> None:
         )
         for state in range(FULL + 1)
     )
+    spectral_values = tuple(spectral_storage(state) for state in range(FULL + 1))
+    assert spectral_values[0] == spectral_values[FULL] == 0
+    assert sum(spectral_values[1 << v] for v in range(N)) / N == TRACE_K_F / N
     for state in range(1, FULL):
+        assert spectral_values[state] == THETA * variance(state) - cut(state) / 2
+        assert spectral_values[state] >= 0
+        spectral_drift = scalar_generator(state, spectral_values)
+        spectral_creation, spectral_debt = spectral_currents(state)
+        assert spectral_drift == spectral_creation - spectral_debt
+        assert spectral_drift == (
+            k_theta(state)
+            - THETA ** 2 * variance(state)
+            + 2 * spectral_cross(state)
+            + spectral_diagonal(state)
+        )
+        assert target_residual(state) == spectral_drift + spectral_remainder(state)
+
         pair_plus, pair_minus, mark_plus, mark_minus, error_plus, error_minus, p_mass, n_mass = oriented_currents(state)
         assert pair_plus == error_plus
         assert tuple(pair_minus[a] - mark_minus[a] for a in range(2)) == error_minus
@@ -338,10 +513,10 @@ def verify_state_identities() -> None:
         assert up * up <= p_mass * action
         assert down * down <= n_mass * action
 
-        k_theta = sum(PI[v] * e[v] * e[v] for v in range(N))
+        k_theta_value = sum(PI[v] * e[v] * e[v] for v in range(N))
         endpoint_zero = (ALPHA * multiplier[0]) ** 2
         endpoint_two = (-ALPHA * multiplier[0] + 2 * multiplier[1]) ** 2
-        assert action <= max(endpoint_zero, endpoint_two) * k_theta
+        assert action <= max(endpoint_zero, endpoint_two) * k_theta_value
 
         phase_plus, phase_minus, phase_p_mass, phase_n_mass, m = three_phase_currents(state)
         assert phase_plus[1:] == error_plus
@@ -365,7 +540,7 @@ def verify_state_identities() -> None:
             + 2 * multiplier3[2]
         ) ** 2
         phase_bound = multiplier3[0] ** 2 * THETA ** 2 * m ** 2
-        phase_bound += max(phase_endpoint_zero, phase_endpoint_two) * k_theta
+        phase_bound += max(phase_endpoint_zero, phase_endpoint_two) * k_theta_value
         assert phase_action <= phase_bound
 
         rank = state.bit_count()
@@ -469,12 +644,28 @@ def verify_rank_recurrences() -> Q:
     phase_minus = [[Q(0), Q(0), Q(0)] for _ in range(N + 1)]
     phase_action = [Q(0) for _ in range(N + 1)]
     multiplier3 = (Q(4, 9), Q(-3, 10), Q(5, 17))
+    spectral_generator_integral = Q(0)
+    spectral_remainder_integral = Q(0)
+    target_residual_integral = Q(0)
+    spectral_values = tuple(spectral_storage(value) for value in range(FULL + 1))
+    spectral_x = [Q(0) for _ in range(N + 1)]
+    spectral_y = [Q(0) for _ in range(N + 1)]
+    spectral_creation = [Q(0) for _ in range(N + 1)]
+    spectral_debt = [Q(0) for _ in range(N + 1)]
 
     for state in transient:
         mu = occupation[state]
         k = state.bit_count()
+        spectral_generator_integral += mu * scalar_generator(state, spectral_values)
+        spectral_remainder_integral += mu * spectral_remainder(state)
+        target_residual_integral += mu * target_residual(state)
         up_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k + 1)
         down_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k - 1)
+        spectral_x[k] += mu * spectral_values[state] * up_rate
+        spectral_y[k] += mu * spectral_values[state] * down_rate
+        state_creation, state_debt = spectral_currents(state)
+        spectral_creation[k] += mu * state_creation
+        spectral_debt[k] += mu * state_debt
         currents = oriented_currents(state)
         for a in range(2):
             x_pair[k][a] += mu * pair_values[state][a] * up_rate
@@ -545,6 +736,13 @@ def verify_rank_recurrences() -> Q:
         assert phase_up * phase_up <= p_mass[k] * phase_action[k]
         assert phase_down * phase_down <= n_mass[k] * phase_action[k]
 
+        if k < N:
+            spectral_residual = TRACE_K_F / N * (k == 1)
+            spectral_residual += spectral_x[k - 1] + spectral_creation[k - 1]
+            spectral_residual += spectral_y[k + 1] - spectral_debt[k + 1]
+            spectral_residual -= spectral_x[k] + spectral_y[k]
+            assert spectral_residual == 0
+
     for a in range(2):
         assert sum(pair_plus[k][a] - pair_minus[k][a] for k in range(1, N)) == rho * BOUNDARY_VECTOR[a] / 2
         assert sum(mark_plus[k][a] - mark_minus[k][a] for k in range(1, N)) == BOUNDARY_VECTOR[a] * (rho - Q(1, N))
@@ -554,6 +752,13 @@ def verify_rank_recurrences() -> Q:
             for k in range(1, N)
         )
         assert centered_total == BOUNDARY_VECTOR[a] / (2 * N)
+    assert spectral_generator_integral == -TRACE_K_F / N
+    assert spectral_creation[N - 1] == -spectral_x[N - 1]
+    assert spectral_debt[1] == spectral_y[1]
+    assert sum(spectral_creation) - sum(spectral_debt) == -TRACE_K_F / N
+    assert target_residual_integral == (
+        spectral_remainder_integral - TRACE_K_F / N
+    )
     return rho
 
 
@@ -581,8 +786,9 @@ def main() -> None:
     print("three-channel boundary/current block: PASS")
     print(f"graph: n={N}, exact rational connected loopless weighted graph")
     print(f"delta={DELTA}, epsilon={EPSILON}")
+    print(f"Tr(K_F)={TRACE_K_F}, singleton source={TRACE_K_F / N}")
     print(f"exact fixation={rho}")
-    print("state identities, endpoint data, rank recurrences, and vector SOC checked")
+    print("state identities, spectral conjugate, rank recurrences, and vector SOC checked")
 
 
 if __name__ == "__main__":
