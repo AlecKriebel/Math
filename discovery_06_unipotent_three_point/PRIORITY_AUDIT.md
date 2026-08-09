@@ -3,6 +3,29 @@
 Audit cutoff: 22 July 2026. This is a provisional research audit, not a proof
 of worldwide priority.
 
+## Refresh: 9 August 2026
+
+The refreshed exact-phrase, repository, arXiv, and Zenodo sweep found no
+public source before this artifact's **22 July 2026 at 14:26:12 UTC** release
+for the exact 14-variable, 24-term unipotent-Jacobian map with its displayed
+three-point fiber and every-exponent `SIC(14)` formula. This remains
+source-bounded evidence, not a guarantee of worldwide priority.
+
+The artifact is nevertheless superseded in two distinct senses:
+
+- Discovery 07 superseded it internally later on 22 July by incorporating the
+  map and adding the exact reduced-fiber proof, homogeneous Jordan type, and
+  unified every-order Vanishing transfers.
+- Roy van Rijn's later archival preprint, *A Four-Term Counterexample to the
+  Special Image Conjecture in Three Pairs*, was deposited on Zenodo on
+  **28 July 2026 at 01:06:41 UTC** (DOI
+  [`10.5281/zenodo.21634058`](https://doi.org/10.5281/zenodo.21634058)). It
+  proves `SIC(3)` false. It is not earlier priority, but it externally
+  supersedes this artifact's quantitative SIC dimension headline.
+
+The explicit unipotent map, regular-nilpotent certificate, rational fiber,
+and ansatz-scoped optimality claim remain separate historical content.
+
 ## What is not claimed
 
 - The formula \(3+(4-2)+(6-2)+(7-2)=14\) is part of the classical degree

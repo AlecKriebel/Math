@@ -6,6 +6,12 @@
 > 14-dimensional obstruction at every positive exponent. This directory and
 > its release timestamp remain public for provenance.
 
+> **External supersession, 28 July 2026.** Roy van Rijn subsequently
+> published a four-term counterexample to `SIC(3)`. That later result is not
+> prior art against this 22 July release, but it supersedes the dimension-21
+> benchmark. The historical content here is the explicit certificate and the
+> scalar-parameter inversion lemma. See `PRIORITY_AUDIT.md`.
+
 Status: **public branch draft; not peer reviewed**.
 
 First public branch draft: **22 July 2026, 02:59:33 UTC**.

@@ -7,6 +7,11 @@
 > its original timestamps remain unchanged as a technical precursor and exact
 > certificate source.
 
+> **Priority refresh, 9 August 2026.** The earlier Cassidy, Thompson, and
+> Mikhail Szh predecessor findings were reconfirmed. Those components are
+> externally preempted; no earlier source was found for the residual executed
+> 22/44-variable certificate. See `PRIORITY_AUDIT.md`.
+
 This package accompanies the provisional note:
 
 > **An explicit 44-variable vanishing witness from a 22-variable cubic Keller

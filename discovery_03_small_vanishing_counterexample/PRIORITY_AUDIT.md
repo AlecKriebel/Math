@@ -3,6 +3,30 @@
 Audit date: **21 July 2026**. This is a source-specific record, not an
 exhaustive literature review or a claim of worldwide priority.
 
+## Refresh: 9 August 2026
+
+The original predecessor findings were rechecked against the primary commit
+record and remain unchanged:
+
+- Eliott Cassidy's equivalent six-variable symmetric transport was public on
+  **20 July 2026 at 14:46:10 UTC**, before this artifact.
+- William Thompson's executed rank-compression principle and 24-variable
+  cubic map were public on **21 July 2026 at 03:29:42 UTC**, before this
+  artifact.
+- Mikhail Szh's stronger full-family monodromy theorem was public on
+  **21 July 2026 at 04:03:36 UTC**, before the archived Exploration 01.
+
+Those components are therefore externally preempted, as the corrected paper
+already says. The refreshed exact-phrase, repository, arXiv, and Zenodo sweep
+found no public source before this artifact's **21 July 2026 at 14:42:57 UTC**
+release for the residual 22-variable cubic certificate together with its
+executed 44-variable quartic Hessian-nilpotent certificate. This is still a
+source-bounded finding, not a worldwide-priority guarantee.
+
+As a current-paper matter, the whole artifact is superseded internally by
+Discovery 07, which incorporates its cubic-to-quartic route and strengthens
+the Vanishing conclusion to an every-order formula.
+
 ## Bottom line
 
 - **Exploration 01's main theorem was already available in stronger form.**

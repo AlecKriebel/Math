@@ -7,6 +7,13 @@
 > and timestamp remain public and unchanged as the detailed construction
 > source.
 
+> **External supersession, 28 July 2026.** Roy van Rijn subsequently
+> published a four-term counterexample to `SIC(3)`. That later result is not
+> prior art against this 22 July release, but it supersedes this artifact's
+> SIC dimension benchmark. The 14-variable unipotent map and its exact
+> certificates remain preserved as separate historical content. See
+> `PRIORITY_AUDIT.md`.
+
 Status: **branch draft; not peer reviewed**.
 
 This directory gives an exact rational polynomial map

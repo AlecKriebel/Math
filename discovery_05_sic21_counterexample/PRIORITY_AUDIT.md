@@ -6,6 +6,30 @@ This is a documented search, not a guarantee of worldwide priority. Public
 work following the announced Jacobian counterexample is changing on an hourly
 timescale; private, unindexed, or simultaneously released work may exist.
 
+## Refresh: 9 August 2026
+
+The refreshed exact-phrase, repository, arXiv, and Zenodo sweep found no
+public explicit `SIC(n)` witness for `n <= 21` before this artifact's first
+release on **22 July 2026 at 02:59:33 UTC**. The original priority conclusion
+therefore remains source-bounded but unchanged.
+
+The quantitative dimension headline is no longer current:
+
+- Discovery 07 superseded it internally later on 22 July with an explicit
+  `SIC(14)` obstruction at every positive exponent.
+- Roy van Rijn's archival preprint, *A Four-Term Counterexample to the Special
+  Image Conjecture in Three Pairs*, was deposited on Zenodo on **28 July 2026
+  at 01:06:41 UTC** (DOI
+  [`10.5281/zenodo.21634058`](https://doi.org/10.5281/zenodo.21634058)). It
+  proves `SIC(3)` false with a four-term polynomial and a linear multiplier.
+  This is later work, not prior art against the 22 July release, but it
+  externally supersedes the dimension-21 benchmark.
+
+The remaining historical content is the explicit 72-term certificate and the
+nonhomogeneous scalar-parameter inversion lemma used to remove the earlier
+homogenizing coordinate. Neither should be described as the current SIC
+dimension record.
+
 ## Claim being audited
 
 The construction supplies explicit rational polynomials in 42 indeterminates,
