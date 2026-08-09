@@ -284,3 +284,21 @@
   standard and antisymmetric theorems, every stationary nonradial Hessian
   sector is now closed.  Finite-time standard/symmetric signs, all forest
   orders at least three, and the global `F0` determinant sign remain open.
+
+## 2026-08-08 — fixed-colour row mixtures and unicycle cancellation
+
+- Derived the exact Bernstein root-vector recurrence
+  `(d+1-j)t_j(I-K_0)+j t_(j-1)(I-K)=0` and its scalar colour-current form
+  `t_(j-1) Delta h=n_(j-1)+(d+1-j)n_j/j`.
+- Rewrote each degree-elevated control as the uniform sum of row-mixed
+  determinants.  Each determinant equals a leave-one-root tree-weighted
+  response `sum_x tau_x Delta h(x)`.
+- Rewrote the same fixed-colour control as a sum of spanning functional-
+  unicycle circulations, with an exact elementary-symmetric formula for
+  every fixed skeleton.
+- Exact hostile audit on the reversible triangle with weights `(1,10,3)`:
+  the row set `{(2,0)}` gives determinant `-891/524288`, and a level-two
+  spanning-unicycle packet gives `-4804/1859`.
+- Therefore neither row locations nor unicycle skeletons can be treated
+  pointwise.  The remaining global target is a simultaneous cancellation
+  over all fixed-colour locations and all spanning-unicycle completions.

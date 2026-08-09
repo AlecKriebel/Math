@@ -140,6 +140,20 @@ and independently solves the witness graph's dB fixation system over the
 rationals.  The witness is dB-suppressing at fitness two, so this result
 closes only the certificate ansatz.
 
+The global fixed-colour numerator has two exact aggregate forms in
+`FIXED_COLOUR_UNICYCLE_REDUCTION.md`: a uniform row-mixture/root-response
+sum and a coloured spanning-unicycle circulation.  Replay
+
+```text
+../../.venv/bin/python verify_fixed_colour_unicycle.py
+```
+
+The verifier reconstructs the active chain independently, checks the
+root-vector recurrence and degree-elevated row-mixture identity, and gives
+exact reversible-triangle counterexamples to both a single-row sign and a
+single-unicycle sign.  Thus the surviving open certificate must cancel
+simultaneously across colour locations and unicycle skeletons.
+
 Status:
 
 - **PROVED:** exact target/promotion implication audit;
@@ -195,6 +209,10 @@ Status:
 - **EXACTLY REFUTED:** monotonicity of complete-ray controls in the number
   of actual-coloured updates;
 - **EXACTLY REFUTED:** raw edge-monomial coefficient positivity;
+- **PROVED:** exact fixed-colour row-mixture/root-response and spanning-
+  unicycle circulation identities;
+- **EXACTLY REFUTED:** pointwise signs for an individual row location and
+  for an individual level-two spanning-unicycle packet;
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
 - **OPEN:** the stationary factorial-moment hierarchy;
@@ -207,3 +225,4 @@ Status:
 - **OPEN:** an all-order variation-diminishing or positive-quotient theorem
   for the standard common-pin pencil;
 - **OPEN:** the arbitrary-order active-tree coefficient.
+- **OPEN:** the aggregate all-location, all-unicycle fixed-colour sign.
