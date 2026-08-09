@@ -1,7 +1,9 @@
 # Phase V — source-flag closure
 
-This directory contains the final single-linkage resolution of the
-bimolecular stochastic positive-recurrence problem.
+This directory records Phase V, the immediate historical predecessor of the
+version 0.3 manuscript and standalone verifier.  Its proof architecture led to
+the current result, but this archived manuscript and its certificates are
+superseded by `../manuscript/` and `../code/` for publication and citation.
 
 ## Result
 
@@ -27,7 +29,18 @@ It does not claim the multiple-linkage theorem.
 
 ## Verification
 
-From `/mnt/data/bimolecular_positive_recurrence`:
+From the repository's `bimolecular_positive_recurrence` directory, first
+create a Python 3.11-or-newer environment and install the historical verifier
+dependencies.  For the exact version 0.3 audit environment, use:
+
+```bash
+python -m pip install -r requirements-tested.txt
+```
+
+The compatible ranges in `requirements.txt` are available for exploratory
+reruns on other supported environments.
+
+Then run:
 
 ```bash
 PYTHONPATH=. pytest -q phase2_trigger_drain/tests \
@@ -48,8 +61,16 @@ The universal proof does not depend on finite enumeration.
 
 ## Reproducibility
 
-Python dependencies are inherited from the project-level
-`requirements.txt`.  All deterministic source files have self-tests.  The
-independent verifier records source hashes, test results, the exhaustive
-atlas digest, and calibration output in
-`certificates/independent_verification.json`.
+Python dependencies are inherited from the project-level `requirements.txt`.
+The version 0.3 certificate was regenerated with Python 3.14.6, SymPy 1.14.0,
+NetworkX 3.6.1, and pytest 9.1.1.  Those exact package versions are recorded in
+`../requirements-tested.txt`; compatible major-version ranges are retained in
+`../requirements.txt` for additional supported-environment reruns.
+
+All deterministic source files have self-tests.  The independent verifier
+records source hashes, normalized test results, the exhaustive atlas digest,
+and calibration output in `certificates/independent_verification.json`.
+Pytest wall-clock time, machine paths, and interpreter metadata are excluded
+from the mathematical certificate.  The Phase-V `package_manifest.json`
+hashes the archived package after certificate generation.  These materials
+are provenance aids; the current release verifier is `../code/reproduce.sh`.

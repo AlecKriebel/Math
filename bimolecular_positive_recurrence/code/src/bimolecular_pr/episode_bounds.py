@@ -27,3 +27,20 @@ def episode_continuation_probability(source_probability: Fraction, conditional_e
     if not (0 <= source_probability <= 1 and 0 < conditional_edge_probability <= 1):
         raise ValueError("invalid probability")
     return source_probability * conditional_edge_probability
+
+
+def target_following_path_probability(
+    phases: list[tuple[Fraction, Fraction]],
+) -> Fraction:
+    """Exact probability of following every designated edge in a path.
+
+    Each phase is ``(source_probability, conditional_edge_probability)``.
+    The empty list is the length-zero path and has probability one.
+    """
+    probability = Fraction(1)
+    for source_probability, conditional_edge_probability in phases:
+        probability *= episode_continuation_probability(
+            source_probability,
+            conditional_edge_probability,
+        )
+    return probability

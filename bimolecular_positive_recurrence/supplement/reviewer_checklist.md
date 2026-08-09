@@ -1,6 +1,6 @@
 # Reviewer checklist: ten load-bearing proof interfaces
 
-This checklist is designed for a skeptical audit of Version 0.2. None of the computational checks below substitutes for these mathematical steps.
+This checklist is designed for a skeptical audit of Version 0.3. None of the computational checks below substitutes for these mathematical steps.
 
 ## 1. Marked-channel augmentation
 
@@ -45,7 +45,7 @@ on \(0<p\le1\), verify both branches including equality at \(M=-1/q\), and check
 
 **Location:** Lemma 5.2.
 
-Audit the exhaustive use of molecularity at most two. In particular, check: all complexes top; a top complex with two divergent particles; and the four one-divergent-particle subcases. Verify that the final service-species functional is a signed linear stoichiometric invariant, not mislabeled as a nonnegative conservation law.
+Audit the exhaustive use of molecularity at most two. In particular, check: all complexes top; a top complex with two divergent-coordinate particles; and the four one-divergent-particle subcases. Verify that the final bounded-companion functional is a signed linear stoichiometric invariant, not mislabeled as a nonnegative conservation law.
 
 ## 7. Falling-factorial asymptotics
 
@@ -73,4 +73,4 @@ Distinguish first hitting of \(K\) from positive return. Check finite mean \(K\)
 
 **Location:** Proposition 7.2.
 
-Verify the uniform lower rate bound supplied by the carried target, the finite expected physical return-time estimate, and the direct nonexplosion argument: recurrent visits to one marked state contribute an infinite subseries of independent identically distributed positive exponential holding times.
+Verify projection from the marked chain to the population embedded chain. Then check that every state of the fixed infinite class enables a genuine channel, giving the uniform population-level lower rate bound by the minimum rate constant. Finally verify the finite expected physical return-time estimate and the direct nonexplosion argument: recurrent visits to one population state contribute an infinite subseries of independent identically distributed positive exponential holding times.

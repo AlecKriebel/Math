@@ -9,18 +9,21 @@ from pathlib import Path
 import zipfile
 
 NAME = "bimolecular_pr"
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 DIST = f"{NAME}-{VERSION}.dist-info"
 WHEEL = f"{NAME}-{VERSION}-py3-none-any.whl"
+ROOT = Path(__file__).resolve().parent
 
 
 def _metadata() -> bytes:
     return (
-        "Metadata-Version: 2.1\n"
+        "Metadata-Version: 2.4\n"
         "Name: bimolecular-pr\n"
         f"Version: {VERSION}\n"
         "Summary: Exact verification utilities for a stochastic reaction-network proof\n"
         "Requires-Python: >=3.11\n"
+        "License-Expression: MIT\n"
+        "License-File: LICENSE\n"
     ).encode()
 
 
@@ -39,15 +42,15 @@ def _record(entries: dict[str, bytes]) -> bytes:
 
 
 def _write_wheel(wheel_directory: str, editable: bool) -> str:
-    root = Path.cwd().resolve()
     entries: dict[str, bytes] = {
         f"{DIST}/METADATA": _metadata(),
         f"{DIST}/WHEEL": _wheel_header(),
+        f"{DIST}/licenses/LICENSE": (ROOT / "LICENSE").read_bytes(),
     }
     if editable:
-        entries[f"{NAME}.pth"] = (str(root / "src") + "\n").encode()
+        entries[f"{NAME}.pth"] = (str(ROOT / "src") + "\n").encode()
     else:
-        for path in sorted((root / "src" / NAME).glob("*.py")):
+        for path in sorted((ROOT / "src" / NAME).glob("*.py")):
             entries[f"{NAME}/{path.name}"] = path.read_bytes()
     entries[f"{DIST}/RECORD"] = _record(entries)
     destination = Path(wheel_directory) / WHEEL
@@ -71,6 +74,9 @@ def prepare_metadata_for_build_wheel(metadata_directory, config_settings=None):
     path.mkdir(parents=True, exist_ok=True)
     (path / "METADATA").write_bytes(_metadata())
     (path / "WHEEL").write_bytes(_wheel_header())
+    licenses = path / "licenses"
+    licenses.mkdir(parents=True, exist_ok=True)
+    (licenses / "LICENSE").write_bytes((ROOT / "LICENSE").read_bytes())
     return DIST
 
 

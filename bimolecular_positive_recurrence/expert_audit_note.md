@@ -1,4 +1,4 @@
-# Expert audit note
+# Reader audit note
 
 ## Exact theorem
 
@@ -30,18 +30,25 @@ No claim is made for multiple linkage classes, molecularity three or higher, the
 
 4. **Logarithmic compactification and bimolecular dichotomy.** Every divergent residual sequence yields normalized logarithmic weights on species. Molecularity at most two gives an exhaustive top-complex split: either a higher-weight source is enabled over a lower terminal complex, making the terminal source probability vanish, or a reaction-wise linear invariant contradicts divergence inside one communicating class.
 
-These ingredients yield a finite nonempty exceptional set, a state-selected random-time drift of at most \(-1\) outside it, and a finite trace-chain return argument. Nonexplosion is then proved directly from recurrent visits to a marked state and its repeated positive exponential holding times.
+These ingredients yield a finite nonempty exceptional set, a state-selected random-time drift of at most \(-1\) outside it, and a finite trace-chain return argument. Nonexplosion is then proved directly from recurrent visits to the population embedded state \(x_*\) and its repeated positive exponential holding times.
 
 ## Reproducibility
 
-The proof is universal and does not rely on computation. The standalone package checks exact channel identities, scalar-envelope branches, adversarial boundary examples, and a finite top-complex atlas.
+The proof is universal and does not rely on computation. The standalone
+package checks 3,318 exact factorial identities, 172 exact entropy rewrites,
+the scalar-envelope branches, adversarial boundary examples, and both an
+exhaustive 98,261-case three-species top-complex atlas and a fixed-seed
+5,000-case audit. Availability and invariant witnesses are validated
+independently of the classifier that produces them.
 
 Run from the release root:
 
 ```bash
 cd code
-python -m pip install -e .
 ./reproduce.sh
 ```
 
-The script runs the test suite, generates the canonical verification report twice, requires byte-for-byte agreement, and prints its SHA-256 digest.
+The script needs only Python 3.11 or newer and the standard library. It runs
+38 tests, generates the canonical verification report twice in temporary
+locations, requires byte-for-byte agreement between those runs, and compares
+the result with the committed golden report without overwriting it.

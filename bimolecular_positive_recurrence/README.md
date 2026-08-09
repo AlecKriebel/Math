@@ -1,10 +1,14 @@
 # Positive recurrence of bimolecular weakly reversible stochastic reaction networks with a single linkage class
 
-**Version 0.2 - prepared for expert and author audit - 6 August 2026**
+**Version 0.3 — publication-readiness revision — 9 August 2026**
 
 ## Status
 
-The adversarial reconstruction found no substantive mathematical defect in the marked-target proof. The clean release therefore records **Outcome A: author-ready theorem**.
+The adversarial reconstruction and subsequent publication-readiness audit found
+no known theorem-breaking defect in the marked-target proof.  Version 0.3
+packages the revised manuscript and reproducible verification materials for
+journal submission.  The work has not yet been peer reviewed; the supplied
+proof and exact artifacts are intended to make detailed checking practical.
 
 The exact theorem is limited to finite weakly reversible stochastic mass-action networks with:
 
@@ -17,30 +21,33 @@ The release does **not** claim the multiple-linkage case, higher molecularity, t
 
 ## Release map
 
-- `manuscript/main_arxiv.tex` and `main_arxiv.pdf`: archival/arXiv version.
+- `manuscript/main_arxiv.tex` and `main_arxiv.pdf`: public-preprint version.
 - `manuscript/main_jap.tex` and `main_jap.pdf`: Journal of Applied Probability initial-submission version with identical mathematical content.
 - `manuscript/references.bib`: bibliography.
-- `code/`: standalone verification package (version 0.2, this author-ready layer).
+- `code/`: standalone verification package (version 0.3, the current verifier).
 - `audit/independent_proof_reconstruction.md`: the adversarial Gate A1-A12 reconstruction referenced above.
-- `supplement/proof_audit.md`: independent proof audit.
+- `supplement/proof_audit.md`: internal adversarial proof reconstruction; the
+  legacy filename is retained so existing links continue to resolve.
 - `supplement/priority_audit.md`: narrow literature and priority audit.
 - `supplement/reviewer_checklist.md`: ten load-bearing reviewer checks.
 - `supplement/ai_use_statement.md`: full AI-use declaration.
 - `supplement/verification_report.json`: canonical deterministic verifier output, as released.
 - `supplement/MANIFEST.sha256`: release-file hashes.
+- `supplement/verify_manifest.py`: portable release-manifest checker.
+- `CITATION.cff`: citation metadata for the repository release.
+- `LICENSE.md`: terms for the manuscript and verification software.
 - `expert_audit_note.md`: two-page orientation for a subject-matter expert.
 - `cover_letter.md`: neutral draft submission letter; no submission was made.
-- `revision_log.md`: changes from the preserved discovery version.
+- `revision_log.md`: release history and material changes.
 
-The full Phase I-V discovery archive that this release was audited against is
-preserved unmodified elsewhere in this same directory rather than in a
-separate `discovery_version/` subfolder: see `WORKLOG.md`,
-`failed_approaches/`, `phase2_trigger_drain/`, `phase3_defect_credit/`,
-`phase4_critical_lamperti/`, `phase5_source_flag_closure/`, and the
-top-level `src/`. Their preserved hashes and the original Phase-V manuscript
-match `discovery_version/ORIGINAL_HASHES.sha256` from the author-ready
-distribution bit for bit (`main_manuscript.pdf` SHA-256
-`f069d986ad13ca59cddab8d9fc4fff5ba46a85ca81146a65f1a4b17900390a1a`).
+The top-level `src/`, `failed_approaches/`, and `phase2_trigger_drain/` through
+`phase5_source_flag_closure/` directories record the research path.  Phases
+II--IV are superseded approaches, and Phase V is the immediate predecessor of
+the current proof.  They are retained as provenance, but neither their old
+manuscripts nor their certificates are the release's canonical theorem or
+verification result.  Version 0.3 repairs a few archived execution paths and
+regenerates the Phase-V certificate deterministically; Git history preserves
+the earlier states.
 
 ## Build the manuscript
 
@@ -49,7 +56,13 @@ cd manuscript
 ./build.sh
 ```
 
-The script uses `SOURCE_DATE_EPOCH` and suppresses variable PDF metadata. Byte-identical rebuilds were verified in the release environment. With a different TeX distribution, a rebuild should be expected to be content-equivalent rather than necessarily byte-identical.
+The reference toolchain is Tectonic 0.16.9.  `build.sh` performs dependency
+preflight, uses Tectonic when available, and also supports a traditional
+`pdflatex`/BibTeX installation by setting `TEX_ENGINE=pdflatex`.  It sets
+`SOURCE_DATE_EPOCH` and suppresses variable PDF metadata where the engine
+supports doing so.  The repository does not claim byte-identical PDFs across
+different TeX engines, distributions, font bundles, or operating systems;
+compare mathematical content and rendering when using a different toolchain.
 
 The `main_jap` wrapper intentionally uses a standard article class for initial submission. Current Applied Probability Trust instructions state that the APT class is encouraged but not a condition of initial submission; an accepted manuscript would be moved to the official class during production.
 
@@ -57,22 +70,43 @@ The `main_jap` wrapper intentionally uses a standard article class for initial s
 
 ```bash
 cd code
-python -m pip install -e .
 ./reproduce.sh
 ```
 
-Tested with Python 3.13.5 and independently rerun with Python 3.14.6 for this git mirror (`code/GIT_MIRROR_VERIFICATION.txt`); Python 3.11 or newer is required. The package has no runtime third-party dependencies. The script runs the test suite, generates the report twice, requires byte-for-byte equality, and prints the stable SHA-256 digest.
+Python 3.11 or newer is required; the package has no runtime third-party
+dependencies and the reproduction command is installation-free.  The verifier
+has been exercised under Python 3.11 and 3.14.
+The reproduction script runs the tests, generates the normalized mathematical
+report twice, requires byte-for-byte equality, and prints its SHA-256 digest.
+Environment provenance is recorded separately so that interpreter metadata
+does not masquerade as mathematical output.
 
 The finite atlas and fixed-seed tests are adversarial calibration. The universal theorem is proved in the manuscript, not by enumeration.
+
+## Verify the release manifest
+
+From this directory, run:
+
+```bash
+python supplement/verify_manifest.py
+```
+
+The check covers every durable release file, reports missing or unexpected
+files as well as changed hashes, and is portable to platforms without the GNU
+`sha256sum` utility.
 
 ## Author metadata
 
 Alec Kriebel
 Independent researcher
 Correspondence: me@aleckriebel.com
-
-No verified ORCID was supplied or located during the audit, so the release does not invent one.
+ORCID: https://orcid.org/0009-0001-9320-500X
 
 ## AI disclosure
 
-OpenAI ChatGPT, model GPT-5.6 Pro, was used extensively on 5-6 August 2026 for proof exploration, counterexample attempts, verification-code generation, drafting, and critique. The human author reviewed the released manuscript and assumes responsibility for its claims, citations, code, and conclusions. See `supplement/ai_use_statement.md`.
+Generative-AI systems were used substantively throughout the research workflow.
+The complete disclosure—including systems, access routes, dates, and uses—is
+in `supplement/ai_use_statement.md` and in the manuscript declaration.  The
+author determined the released scope and claims, curated the package, and
+assumes responsibility for the submitted manuscript and public verification
+materials.  No claim of prior independent expert human verification is made.

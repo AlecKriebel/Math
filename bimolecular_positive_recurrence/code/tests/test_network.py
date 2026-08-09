@@ -1,29 +1,103 @@
 import unittest
 from fractions import Fraction
+
 from bimolecular_pr.network import Channel, Network, falling_factorial
-from bimolecular_pr.target_augmented import direct_exp_increment, exp_potential_increment, marked_successor
+from bimolecular_pr.target_augmented import (
+    direct_exp_increment,
+    exp_potential_increment,
+    marked_successor,
+)
+
 
 class NetworkTests(unittest.TestCase):
-    def test_residual_identity(self):
-        x=(5,3); t=(1,1); ch=Channel((2,0),(0,1),Fraction(2),"r")
-        self.assertEqual(direct_exp_increment(x,t,ch), exp_potential_increment(x,t,ch.source))
-    def test_zero_complex_and_two_a(self):
-        self.assertEqual(falling_factorial((3,), (0,)), 1)
-        self.assertEqual(falling_factorial((3,), (2,)), 6)
-    def test_mixed_complex(self):
-        self.assertEqual(falling_factorial((3,4),(1,1)),12)
+    def test_residual_identity_for_distinct_outcome(self):
+        state = (5, 3)
+        target = (1, 1)
+        channel = Channel((2, 0), (0, 1), Fraction(2), "r")
+        self.assertEqual(
+            direct_exp_increment(state, target, channel),
+            exp_potential_increment(state, target, channel.source),
+        )
+
+    def test_residual_identity_with_zero_carried_target(self):
+        state = (4, 2)
+        target = (0, 0)
+        channel = Channel((1, 1), (2, 0), Fraction(3), "r")
+        self.assertEqual(
+            direct_exp_increment(state, target, channel),
+            exp_potential_increment(state, target, channel.source),
+        )
+
+    def test_zero_pure_binary_and_mixed_falling_factorials(self):
+        self.assertEqual(falling_factorial((3, 4), (0, 0)), 1)
+        self.assertEqual(falling_factorial((3, 4), (2, 0)), 6)
+        self.assertEqual(falling_factorial((3, 4), (1, 1)), 12)
+
+    def test_disabled_falling_factorial_and_successor(self):
+        channel = Channel((2,), (1,), Fraction(1))
+        self.assertEqual(falling_factorial((1,), channel.source), 0)
+        with self.assertRaises(ValueError):
+            Network(("A",), (channel,)).successor((1,), channel)
+
     def test_parallel_and_same_displacement_channels(self):
-        net=Network(("A","B"),(
-            Channel((0,0),(1,0),Fraction(2),"a"), Channel((0,0),(1,0),Fraction(3),"b"),
-            Channel((1,0),(0,1),Fraction(1),"c"), Channel((2,0),(1,1),Fraction(1),"d")))
-        combined=net.combined_parallel()
-        self.assertEqual(len(combined.channels),3)
-        self.assertTrue(any(c.rate==5 and c.source==(0,0) for c in combined.channels))
+        network = Network(
+            ("A", "B"),
+            (
+                Channel((0, 0), (1, 0), Fraction(2), "a"),
+                Channel((0, 0), (1, 0), Fraction(3), "b"),
+                Channel((1, 0), (0, 1), Fraction(1), "c"),
+                Channel((2, 0), (1, 1), Fraction(1), "d"),
+            ),
+        )
+        combined = network.combined_parallel()
+        self.assertEqual(len(combined.channels), 3)
+        self.assertTrue(
+            any(channel.rate == 5 and channel.source == (0, 0) for channel in combined.channels)
+        )
+
+    def test_null_self_channel_is_removed_on_combination(self):
+        network = Network(
+            ("A",),
+            (
+                Channel((0,), (0,), Fraction(7), "null"),
+                Channel((0,), (1,), Fraction(2), "birth"),
+                Channel((1,), (0,), Fraction(3), "death"),
+            ),
+        ).combined_parallel()
+        self.assertEqual(len(network.channels), 2)
+        self.assertTrue(all(channel.source != channel.target for channel in network.channels))
+
     def test_mark_actual_channel_not_displacement(self):
-        c1=Channel((1,0),(0,1),Fraction(1),"c1")
-        c2=Channel((2,0),(1,1),Fraction(1),"c2")
-        self.assertEqual(c1.displacement,c2.displacement)
-        self.assertNotEqual(marked_successor((2,0),c1)[1],marked_successor((2,0),c2)[1])
+        first = Channel((1, 0), (0, 1), Fraction(1), "first")
+        second = Channel((2, 0), (1, 1), Fraction(1), "second")
+        self.assertEqual(first.displacement, second.displacement)
+        self.assertNotEqual(
+            marked_successor((2, 0), first)[1],
+            marked_successor((2, 0), second)[1],
+        )
+
+    def test_target_following_cycle_has_zero_increment(self):
+        channels = (
+            Channel((0, 0), (1, 1), Fraction(1), "trigger"),
+            Channel((1, 1), (0, 1), Fraction(1), "drain"),
+            Channel((0, 1), (0, 0), Fraction(1), "reset"),
+        )
+        for channel in channels:
+            self.assertEqual(
+                direct_exp_increment(channel.source, channel.source, channel),
+                1,
+            )
+
     def test_strong_connectivity(self):
-        net=Network(("A",),(Channel((0,),(1,),Fraction(1)),Channel((1,),(0,),Fraction(1))))
-        self.assertTrue(net.strongly_connected())
+        network = Network(
+            ("A",),
+            (
+                Channel((0,), (1,), Fraction(1)),
+                Channel((1,), (0,), Fraction(1)),
+            ),
+        )
+        self.assertTrue(network.strongly_connected())
+
+
+if __name__ == "__main__":
+    unittest.main()

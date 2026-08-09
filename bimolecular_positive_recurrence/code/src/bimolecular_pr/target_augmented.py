@@ -83,9 +83,68 @@ def add_weighted_signature(acc: dict[int, Fraction], signature: Mapping[int, int
 
 
 def expected_increment_signature(network: Network, x: State, target: Complex) -> dict[int, Fraction]:
+    """Prime-exponent signature of the left side of the entropy identity."""
     probs = source_probabilities(network, x)
+    if target not in probs:
+        raise ValueError("the carried target must be an enabled source")
     out: dict[int, Fraction] = {}
     for source, prob in probs.items():
         ratio = Fraction(falling_factorial(x, target), falling_factorial(x, source))
         add_weighted_signature(out, rational_log_signature(ratio), prob)
+    return out
+
+
+def source_rate_constants(network: Network) -> dict[Complex, Fraction]:
+    """Aggregate genuine-channel constants by source complex.
+
+    Parallel channels are combined here exactly as in the manuscript's
+    ``bar kappa`` notation.  Null self-channels do not participate in the
+    embedded chain and are therefore excluded.
+    """
+    out: dict[Complex, Fraction] = {}
+    for channel in network.channels:
+        if channel.source == channel.target:
+            continue
+        out[channel.source] = out.get(channel.source, Fraction(0)) + channel.rate
+    return out
+
+
+def entropy_rewrite_signature(network: Network, x: State, target: Complex) -> dict[int, Fraction]:
+    """Prime-exponent signature of the entropy-rewrite right side.
+
+    This evaluates, without floating-point logarithms,
+
+        log p(target) - sum_s p(s) log p(s)
+        + sum_s p(s) log kappa_bar(s) - log kappa_bar(target).
+
+    Equality with :func:`expected_increment_signature` is therefore an exact
+    rational check of the manuscript's entropy identity.
+    """
+    probabilities = source_probabilities(network, x)
+    if target not in probabilities:
+        raise ValueError("the carried target must be an enabled source")
+    rate_constants = source_rate_constants(network)
+    out: dict[int, Fraction] = {}
+
+    add_weighted_signature(
+        out,
+        rational_log_signature(probabilities[target]),
+        Fraction(1),
+    )
+    for source, probability in probabilities.items():
+        add_weighted_signature(
+            out,
+            rational_log_signature(probability),
+            -probability,
+        )
+        add_weighted_signature(
+            out,
+            rational_log_signature(rate_constants[source]),
+            probability,
+        )
+    add_weighted_signature(
+        out,
+        rational_log_signature(rate_constants[target]),
+        Fraction(-1),
+    )
     return out

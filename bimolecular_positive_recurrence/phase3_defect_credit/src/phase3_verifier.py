@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from fractions import Fraction
-from itertools import combinations
 from pathlib import Path
 import importlib
 import sys
@@ -14,16 +13,16 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 
 MODULES = (
-    "cone_lemma",
-    "conservation_or_drain",
-    "buffered_word",
-    "fast_automaton",
-    "fast_scc_analysis",
-    "slow_skeleton",
-    "reward_cycle",
-    "bellman_certificate",
-    "tier_induction",
-    "foster_trace_chain",
+    "phase3_defect_credit.src.cone_lemma",
+    "phase3_defect_credit.src.conservation_or_drain",
+    "phase3_defect_credit.src.buffered_word",
+    "phase3_defect_credit.src.fast_automaton",
+    "phase3_defect_credit.src.fast_scc_analysis",
+    "phase3_defect_credit.src.slow_skeleton",
+    "phase3_defect_credit.src.reward_cycle",
+    "phase3_defect_credit.src.bellman_certificate",
+    "phase3_defect_credit.src.tier_induction",
+    "phase3_defect_credit.src.foster_trace_chain",
 )
 
 
@@ -38,8 +37,11 @@ def run_self_tests() -> None:
 
 def exact_canonical_checks() -> None:
     from src.generator import Reaction
-    from conservation_or_drain import conservation_extension, drain_multiset
-    from buffered_word import construct_buffered_word
+    from phase3_defect_credit.src.conservation_or_drain import (
+        conservation_extension,
+        drain_multiset,
+    )
+    from phase3_defect_credit.src.buffered_word import construct_buffered_word
 
     rs = [
         Reaction((0, 0), (1, 1), Fraction(2)),

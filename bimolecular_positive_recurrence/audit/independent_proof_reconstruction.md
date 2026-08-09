@@ -1,8 +1,12 @@
-# Independent proof reconstruction
+# Adversarial proof reconstruction
 
-**Version audited:** discovery manuscript preserved in `discovery_version/`  
-**Audit date:** 6 August 2026  
+**Version audited:** Version 0.3 and its Phase-V marked-target predecessor
+**Audit date:** 9 August 2026
 **Scope:** binary/bimolecular, weakly reversible, one linkage class, arbitrary positive stochastic mass-action rates, each closed communicating class.
+
+This is an internal second-pass reconstruction intended to expose hidden proof
+interfaces and make the argument checkable. It is not presented as prior
+independent expert human verification.
 
 This reconstruction uses only the final marked-target argument. It does not use the speculative tier, fast-slow, cycle-pivot, or bounded-defect hierarchy developed during earlier phases.
 
@@ -174,19 +178,19 @@ Bimolecularity leaves no bounded-coordinate particle in that complex. Its requir
 
 ### Case 3: every top complex contains exactly one divergent particle
 
-Let \(K\) be the divergent species appearing in top complexes. For each \(i\in K\), the other possible particle is not divergent and has weight zero, so \(w_i=a\). No complex contains two \(K\)-particles, since that would have weight at least \(2a>a\). Moreover,
+Let \(J\) be the divergent species appearing in top complexes. For each \(i\in J\), the other possible particle is not divergent and has weight zero, so \(w_i=a\). No complex contains two \(J\)-particles, since that would have weight at least \(2a>a\). Moreover,
 \[
- y\in T\iff q_K(y)=\sum_{i\in K}y_i=1.
+ y\in T\iff q_J(y)=\sum_{i\in J}y_i=1.
 \]
 
-- **3a.** If every complex has \(q_K=1\), then \(M_K=\sum_{i\in K}X_i\) is a nonnegative invariant and diverges, impossible.
+- **3a.** If every complex has \(q_J=1\), then \(M_J=\sum_{i\in J}X_i\) is a nonnegative invariant and diverges, impossible.
 - **3b.** If a unary top complex \(S_i\) exists, it is enabled over every lower terminal.
-- **3c.** Otherwise every top complex is \(S_i+D\) with a service species \(D\notin I\). If a lower complex contains one such \(D\), the corresponding top source is enabled over it.
-- **3d.** If no lower complex contains a service species, let \(\mathcal D\) be the distinct service species. Then
+- **3c.** Otherwise every top complex is \(S_i+D\) with a bounded companion species \(D\notin I\). If a lower complex contains one such \(D\), the corresponding top source is enabled over it.
+- **3d.** If no lower complex contains a bounded companion species, let \(\mathcal D\) be the distinct companion species. Then
   \[
-  M_K-\sum_{D\in\mathcal D}X_D
+  M_J-\sum_{D\in\mathcal D}X_D
   \]
-  has the same value (zero) on every complex and is a signed linear stoichiometric invariant. Its positive part diverges, while the service coordinates are fixed along the extracted sequence. Its class value would tend to infinity, impossible.
+  has the same value (zero) on every complex and is a signed linear stoichiometric invariant. Its positive part diverges, while the companion coordinates are fixed along the extracted sequence. Its class value would tend to infinity, impossible.
 
 The cases are exhaustive for molecularity at most two. The statement is “at least one alternative,” not logical exclusivity; overlaps do not affect the proof. The term “conservation law” is reserved for nonnegative invariants, while the last functional is explicitly signed.
 
@@ -241,17 +245,20 @@ Thus the augmented embedded chain has finite mean positive return to \(k_*\). It
 
 ## A12. Direct CTMC conversion and nonexplosion
 
-At every augmented state the carried target is enabled, so
+Apply the CTMC conversion to the population embedded chain on the fixed
+infinite class. Every population state enables at least one genuine channel;
+otherwise irreducibility would make the class an absorbing singleton. Hence,
+with \(\kappa_{\min}\) the minimum positive rate constant,
 \[
- \Lambda(x)\ge\bar\kappa_t(x)_t\ge\bar\kappa_->0.
+ \Lambda(x)\ge\kappa_{\min}>0.
 \]
-Let \(N\) be the finite-mean embedded positive return count and \(H_j\) the holding times. Conditional on the embedded path, \(H_j\) has mean \(1/\Lambda(X_j)\). Hence
+Let \(N\) be the finite-mean population-embedded positive return count and \(H_j\) the holding times. Conditional on the embedded path, \(H_j\) has mean \(1/\Lambda(X_j)\). Hence
 \[
  \mathbb E\sum_{j=0}^{N-1}H_j
- \le \frac{\mathbb EN}{\bar\kappa_-}<\infty.
+ \le \frac{\mathbb EN}{\kappa_{\min}}<\infty.
 \]
 
-Nonexplosion is proved internally. Positive recurrence of the augmented embedded chain makes \(k_*=(x_*,t_*)\) recurrent, so it is visited infinitely often almost surely. The holding time following each visit is an independent exponential variable with the same finite rate \(\Lambda(x_*)\). Their infinite sum diverges almost surely. Total physical time dominates this subseries, so jumps cannot accumulate in finite time. The minimal CTMC is nonexplosive and has finite mean positive return.
+Nonexplosion is proved internally. Positive recurrence of the population embedded chain makes \(x_*\) recurrent, so it is visited infinitely often almost surely. The holding time following each visit is an independent exponential variable with the same finite rate \(\Lambda(x_*)\). Their infinite sum diverges almost surely. Total physical time dominates this subseries, so jumps cannot accumulate in finite time. The minimal CTMC is nonexplosive and has finite mean positive return.
 
 ## Mandatory adversarial examples
 
@@ -263,7 +270,7 @@ Nonexplosion is proved internally. Positive recurrence of the augmented embedded
 | Permanent coordinate face | Every path is an actual enabled channel path inside the fixed class. |
 | Divergent species with \(w_i=0\) | It remains in \(I\), preventing false bounded-defect reasoning. |
 | Species absent from all complexes | Its count is reaction-wise invariant. |
-| Shared service species | \(\mathcal D\) is a set, so each service coordinate is counted once. |
+| Shared bounded companion species | \(\mathcal D\) is a set, so each companion coordinate is counted once. |
 | Parallel channels | Exact source-target duplicates may be combined by rate addition. |
 | Same displacement, different mark | Channels remain distinct and the actual target is recorded. |
 | \(c=t\) | The designated path has length zero and the episode is one final jump. |
@@ -275,4 +282,8 @@ Nonexplosion is proved internally. Positive recurrence of the augmented embedded
 
 ## Audit conclusion
 
-No substantive defect was found. Three interfaces were made explicit in Version 0.2: actual-channel marking, nonemptiness of the exceptional set, and direct embedded-chain-to-CTMC/nonexplosion conversion. The reconstructed proof supports the stated binary, one-linkage theorem and no broader claim.
+No theorem-breaking defect was found. Version 0.3 makes explicit the positive
+CTMC return convention, the stopped episode chain and its finite-index
+integrability, trace-excursion conditioning, and the population-level rate
+bound used in the CTMC conversion. The reconstructed proof supports the stated
+binary, one-linkage theorem and no broader claim.

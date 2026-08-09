@@ -8,6 +8,7 @@ import json
 from math import factorial
 from pathlib import Path
 from random import Random
+import re
 import subprocess
 import sys
 from typing import Sequence
@@ -84,25 +85,28 @@ def _run_self_tests() -> dict[str, dict[str, object]]:
             capture_output=True,
             timeout=60,
         )
-        results[module] = {
-            "returncode": cp.returncode,
-            "stdout_last_line": cp.stdout.strip().splitlines()[-1] if cp.stdout.strip() else "",
-            "stderr": cp.stderr.strip(),
-        }
         if cp.returncode:
-            raise RuntimeError(f"self-test failed for {module}: {cp.stderr}")
+            raise RuntimeError(
+                f"self-test failed for {module}:\n{cp.stdout}\n{cp.stderr}"
+            )
+        # Store only the mathematical pass/fail result. Captured output may
+        # contain paths or formatting that varies between Python environments.
+        results[module] = {"status": "passed"}
     return results
 
 
 def _run_pytest() -> dict[str, object]:
+    test_roots = (
+        "phase2_trigger_drain/tests",
+        "phase5_source_flag_closure/tests",
+    )
     cp = subprocess.run(
         [
             sys.executable,
             "-m",
             "pytest",
             "-q",
-            "phase2_trigger_drain/tests",
-            "phase5_source_flag_closure/tests",
+            *test_roots,
         ],
         cwd=PROJECT,
         env={**__import__("os").environ, "PYTHONPATH": str(PROJECT)},
@@ -112,7 +116,16 @@ def _run_pytest() -> dict[str, object]:
     )
     if cp.returncode:
         raise RuntimeError(cp.stdout + cp.stderr)
-    return {"returncode": cp.returncode, "stdout": cp.stdout.strip()}
+    # Pytest's human-readable summary includes elapsed wall time. Retain the
+    # exact number of passing tests, but exclude timing from the certificate.
+    match = re.search(r"(?m)(\d+) passed(?:[,\s]|$)", cp.stdout)
+    if match is None:
+        raise RuntimeError(f"could not parse pytest pass count:\n{cp.stdout}")
+    return {
+        "status": "passed",
+        "tests_passed": int(match.group(1)),
+        "test_roots": list(test_roots),
+    }
 
 
 def _independent_residual_identity() -> dict[str, int]:

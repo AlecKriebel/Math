@@ -56,3 +56,7 @@ The overall goal is to produce novel, independently verifiable contributions
 to mathematics and to sciences whose claims can be formulated mathematically
 and checked by proof, validated computation, or reproducible quantitative
 evidence, including physics, quantum science, and quantitative biology.
+
+# Author Metadata
+
+- Alec Kriebel ORCID: https://orcid.org/0009-0001-9320-500X
