@@ -46,6 +46,16 @@ of completion toward the requested merged publication package.
 
 ## 2026-08-09
 
+- **Surgical final-edit checkpoint, 10:53 PDT.** Fast-forwarded the isolated
+  Bell-paper worktree to current `origin/main`. Standardized the exact scope
+  of support rigidity across the canonical materials, expanded the omitted
+  cyclic-diagonal calculation in Proposition F.1 without changing its
+  statement, added the two requested Appendix B clarifications, adopted
+  neutral source-v3 SOS wording, recorded the operator-model asymmetry, and
+  sharpened only the minimal-support subcase of Open Problem 1. No theorem,
+  mathematical verifier, historical artifact, redirect, or contribution
+  boundary was changed.
+
 - **Author-ready revision opened (10%).** Received a multi-reviewer revision
   directive and treated every item as a hypothesis. Fast-forwarded the clean
   Bell worktree to current `origin/main`; intervening changes were unrelated.

@@ -2,6 +2,19 @@
 
 ## Version 1.1 — 2026-08-09
 
+### Final proof-presentation pass
+
+- Standardized the support-rigidity scope as attained finite-dimensional
+  tensor-product exact maximizers of the first augmented family throughout
+  the manuscript, canonical page, summary, README, and reviewer packet.
+- Expanded Proposition F.1's cyclic-diagonal argument with the two indexed
+  off-diagonal equation families, the exact vanishing range, and the explicit
+  Toeplitz corner block. Added the two requested invariance and commuting-
+  stabilizer sentences to the support-rigidity proof.
+- Replaced correction-implying SOS language by the neutral source-v3
+  prefactor convention, explained the operator-model scope asymmetry once,
+  and sharpened Open Problem 1 with the minimal-support case.
+
 ### Restored and strengthened
 
 - Restored the finite-dimensional support-rigidity theorem for exact

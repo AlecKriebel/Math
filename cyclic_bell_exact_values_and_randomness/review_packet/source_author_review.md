@@ -12,7 +12,7 @@ authorship proposal, or claim that external review has occurred.
 | First lower bound and conjecture | Supplied a canonical strategy of value $2\csc(\pi/(2d))$ and conjectured equality | Rechecks the source strategy and proves equality for $q,qa,qc$ |
 | Low-dimensional evidence | Reported matching NPA bounds through $d=6$: $1+AB$ for $d=3,4$, level 2 for $d=5,6$ | Gives the corresponding exact radicals and checks agreement with the reported decimals |
 | First augmentation | Defined it; the formula printed beside Conjecture 2 has an isolated normalization discrepancy | Uses the displayed operator, whose exact maximum is $M_d+1$ |
-| Arbitrary first-augmented maximizers | No complete maximizing-face classification | Proves a necessary finite-dimensional tensor-product support condition: every equality root has equal multiplicity on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$ |
+| Attained finite-dimensional tensor-product exact maximizers of the first augmented family | No complete maximizing-face classification | Proves that every such maximizer has every equality root with equal multiplicity on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$ |
 | Phase ordering | Canonical ordering supplied | Gives a conditional paired-permutation orbit preserving all complex first harmonics; does not claim exhaustiveness |
 | Alternative maximizers | Not identified in the source | Constructs nonuniform exact maximizers of both augmented families for every $d\ge4$ |
 | Second reduced value | Proved value $d$ by an SOS | Credits and uses that complete SOS, including its commuting-operator reading |
@@ -36,8 +36,8 @@ stated $d=3$ augmented value. The extra $d$ in the denominator printed beside
 Conjecture 2 is recorded neutrally as a localized normalization or
 typographical discrepancy and is not used rhetorically.
 
-For the second family, version 1.1 follows the source main-text/SOS convention
-with $B_y$ and the corrected v3 prefactor $1/(2d)$. The alternative appendix
+For the second family, version 1.1 follows the source main-text convention
+with $B_y$ and the source-v3 SOS, with prefactor $1/(2d)$. The alternative appendix
 convention consistently replaces every Bob observable by its adjoint. This is
 Bob outcome inversion, preserving the maximum, the table's nonuniformity, the
 guessing probability, and entropy. The two conventions cannot be mixed term
@@ -80,12 +80,14 @@ entropy, not the optimized value itself.
 2. **Two equality layers.** Verify support cancellation for nonfaithful
    $\rho_A$, polar stabilization on $K$, the adjacent reflection and rank
    count, keeping support rigidity restricted to attained finite-dimensional
-   tensor-product maxima of the first augmented family. Separately verify both
+   tensor-product exact maximizers of the first augmented family.
+   Separately verify both
    product-one conditions for the sufficient paired phase orbit, the target
    DFT, final-two autocorrelation, and exact $d=4$ table and entropy.
 3. **Second-family SOS and randomness logic.** Verify
    $\widehat B_\ell=d\lambda_\ell D_\ell$, $D_\ell^d=I$, Alice's conjugation,
-   the $1/(2d)$ SOS, and the all-Bob-adjoint outcome inversion. Then check that
+   the source-v3 SOS prefactor $1/(2d)$, and the all-Bob-adjoint outcome
+   inversion. Then check that
    the explicit nonuniform maximum refutes only the normalized scalar-value
    implication and leaves the fixed canonical full-behavior calculation
    outside its scope.
@@ -115,7 +117,7 @@ privacy conditions but are not dependencies of the cyclic counterexample.
 | Canonical lower strategies | Adopted, credited, and exactly rechecked |
 | NPA evidence through $d=6$ | Credited and matched to exact radicals |
 | First-value conjecture | Proved, including the commuting-operator value |
-| Second-family SOS | Adopted with corrected v3 normalization and credited |
+| Second-family SOS | Adopted from source-v3 with prefactor $1/(2d)$ and credited |
 | Fixed-canonical-behavior numerical randomness | Explicitly not contradicted |
 | Conjecture 2 scalar-value implication | Disproved for the displayed operator for every $d\ge4$ |
 | Source $d=3$ second-family self-test | Explicitly outside the counterexample dimensions |
@@ -123,8 +125,8 @@ privacy conditions but are not dependencies of the cyclic counterexample.
 ## Possible collaborative extensions
 
 - Determine whether supported rigidity, admissible phase permutations, direct
-  sums, and irrelevant ancillas generate every finite-dimensional exact
-  maximizer of the first augmentation.
+  sums, and irrelevant ancillas generate every attained finite-dimensional
+  tensor-product exact maximizer of the first augmented family.
 - Separately characterize the $qa$ and $qc$ maximizing faces.
 - Determine the exact worst-case guessing probability and min-entropy at the
   scalar maximum.

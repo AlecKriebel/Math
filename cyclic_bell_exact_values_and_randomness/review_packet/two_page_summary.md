@@ -55,9 +55,8 @@ reduces the remaining gap to
 \qquad \text{equality exactly when }z^d=(-1)^{d-1}.
 \]
 
-There is also a necessary equality theorem for arbitrary exact maximizers,
-at a deliberately narrower scope. If a finite-dimensional tensor-product
-strategy exactly maximizes the **first augmented** family and
+Every attained finite-dimensional tensor-product exact maximizer of the
+**first augmented** family has the following property: if
 $K=\operatorname{supp}\rho_A$, then $K$ reduces the relative unitary $U$, all
 $d$ equality roots occur in $U|_K$ with equal multiplicity, and
 $d\mid\dim K$. The proof uses the augmented stabilizer, Schmidt-support
@@ -104,9 +103,8 @@ upper bound on value-only worst-case min-entropy, not its exact optimum.
 
 ## Second family and exact randomness scope
 
-The paper uses the originating second-family SOS, with its corrected
-$1/(2d)$ normalization, to prove global optimality of the same permutation
-orbit. Exact Fourier compression
+The paper uses the source-v3 SOS, with prefactor $1/(2d)$, to prove global
+optimality of the same permutation orbit. Exact Fourier compression
 $\widehat B_\ell=d\lambda_\ell D_\ell$, together with
 $A_\ell=\overline{D_\ell}$, annihilates every SOS factor. Under the
 alternative source-appendix convention that adjoints all Bob observables,

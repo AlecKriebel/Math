@@ -201,7 +201,7 @@ def main() -> int:
                 failures.append(f"broken local link from {page.relative_to(ROOT)}: {href}")
 
     home = (DOCS / "index.html").read_text(encoding="utf-8")
-    require("Sixteen provisional artifacts" in home, "homepage count not sixteen", failures)
+    require("Eight provisional artifacts" in home, "homepage count not eight", failures)
     require("Version 1.1.0" in home, "homepage cyclic-paper version not updated", failures)
     require(home.count("cyclic-bell-exact-values-and-randomness/") == 2,
             "homepage should link canonical cyclic paper page and PDF exactly once each", failures)

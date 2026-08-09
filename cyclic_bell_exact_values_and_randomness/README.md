@@ -21,12 +21,13 @@ are all
 2\csc\!\left(\frac{\pi}{2d}\right).
 \]
 
-For every finite-dimensional exact maximizer of the first augmented family,
-all scalar equality roots occur with equal multiplicity on Alice's supported
-subspace, so $d$ divides that dimension. This necessary rigidity condition
-coexists with paired phase permutations that preserve all Bell-visible first
-harmonics. Every admissible permutation gives exact maximizers of both
-relevant cyclic families. For every $d\ge4$, an explicit final-two swap has a
+Every attained finite-dimensional tensor-product exact maximizer of the first
+augmented family has all scalar equality roots with equal multiplicity on
+Alice's supported subspace, so $d$ divides that dimension. This necessary
+rigidity condition coexists with paired phase permutations that preserve all
+Bell-visible first harmonics. Every admissible permutation gives exact
+maximizers of both relevant cyclic families. For every $d\ge4$, an explicit
+final-two swap has a
 nonuniform designated joint-output table, although its local marginals are
 uniform. Therefore the maximum scalar Bell value alone does not certify
 $2\log_2 d$ global random bits or a unique canonical behavior. This does not

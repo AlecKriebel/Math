@@ -53,14 +53,16 @@ arbitrary commuting representations? The audited answer is yes.
    $P_y|\Psi\rangle=0$ to the polar stabilizer even when $V_y$ is globally
    only a partial isometry.
 5. Check that $A_0K=K$, $V_yK=K$, and $S_y^2=\omega^yU$ make $K$ reducing
-   for $U$.
+   for $U$, using finite dimensionality to pass from $U(K)\subseteq K$ to
+   $U(K)=K$.
 6. Recompute the adjacent half-angle reflection, apply Lemma
    `lem:reflection-rank`, and verify that the rank sum forces every root
    multiplicity to equal $\dim K/d$.
 
-Decisive question: is the conclusion limited to attained finite-dimensional
-tensor-product maxima of the **first augmented** family? It must not be stated
-for $qa$, general $qc$, the unaugmented operator, or the second family.
+Decisive question: is the conclusion limited to every attained finite-
+dimensional tensor-product exact maximizer of the **first augmented** family?
+It must not be stated for $qa$, general $qc$, the unaugmented operator, or the
+second family.
 
 ## Route 3: conditional permutations and nonuniformity
 
@@ -82,7 +84,7 @@ every $d\ge4$ without claiming the complete face or worst guessing strategy?
 
 ## Route 4: second augmented family
 
-1. Expand `eq:second-sos`; check the corrected $1/(2d)$, Fourier
+1. Expand `eq:second-sos`; check the source-v3 SOS prefactor $1/(2d)$, Fourier
    orthogonality, and $\sum_\ell|\lambda_\ell|^2=1$.
 2. Recompute `eq:Fourier-compression`, including its phase $r_\ell$.
 3. Check $D_\ell^d=I$ and that
@@ -95,7 +97,7 @@ every $d\ge4$ without claiming the complete face or worst guessing strategy?
    $b\mapsto-b$, not a termwise mixture.
 
 Decisive question: is global optimality imported from and credited to the
-complete source SOS rather than inferred from annihilating an arbitrary
+complete source-v3 SOS rather than inferred from annihilating an arbitrary
 candidate expression?
 
 ## Route 5: precise randomness conclusion

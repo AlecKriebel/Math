@@ -40,9 +40,10 @@ stabilizers; Schmidt-support cancellation for nonfaithful $\rho_A$; the bad-
 phase/kernel cancellation; invariance and reduction of
 $K=\operatorname{supp}\rho_A$; the adjacent half-angle reflection; and the
 rank argument forcing every root multiplicity to equal $\dim K/d$. Does any
-sentence silently extend the conclusion from attained finite-dimensional
-tensor-product maxima of the first augmented family to the unaugmented,
-second-family, approximate, or general commuting-operator setting?
+sentence silently extend the conclusion from every attained finite-
+dimensional tensor-product exact maximizer of the first augmented family to
+the unaugmented, second-family, approximate, or general commuting-operator
+setting?
 
 ## 4. Permutation orbit, nonuniformity, and $d=4$ entropy
 
@@ -79,9 +80,10 @@ strategy-level equivalence?
 
 ## 6. Second-family SOS and conventions
 
-Does the second-family extension follow from the complete credited source SOS?
+Does the second-family extension follow from the complete credited source-v3
+SOS?
 
-Please verify the corrected $1/(2d)$ normalization, coefficient conjugations,
+Please verify the source-v3 SOS prefactor $1/(2d)$, coefficient conjugations,
 phase in $\widehat B_\ell=d\lambda_\ell D_\ell$, the order-$d$ parity
 calculation, and annihilation of **every** SOS factor. Is the transfer of the
 first-family target table to $A_1,B_d$ exact? Is the alternative source-

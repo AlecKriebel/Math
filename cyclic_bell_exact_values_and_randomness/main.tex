@@ -72,10 +72,11 @@ randomness.  For the first reduced operator they proved the general bound
 \(2\csc(\pi/(2d))\), and conjectured that this sharper value is exact.  We
 prove that formula in every dimension; the polar-decomposition argument also
 applies to commuting-operator realizations.  Its scalar equality phases yield
-two complementary structural results.  Every finite-dimensional exact
-maximizer of the first augmented family has, on the support of Alice's
-reduced state, all \(d\) equality roots with equal multiplicity, so \(d\)
-divides the supported dimension.  At the same time, conditional permutations
+two complementary structural results.  Every attained finite-dimensional
+tensor-product exact maximizer of the first augmented family has, on the
+support of Alice's reduced state, all \(d\) equality roots with equal
+multiplicity, so \(d\) divides the supported dimension.  At the same time,
+conditional permutations
 of those phases generate a large orbit of exact maximizers invisible to all
 first-harmonic correlators in the score.  For every \(d\geq4\), a final-two
 swap maximizes both augmented cyclic families while producing a nonuniform
@@ -160,8 +161,9 @@ value \(2\csc(\pi/(2d))\), and conjectured equality; NPA evidence through
 Second reduced value & Proved value \(d\) by an SOS identity & Uses that SOS,
 including its commuting-operator reading\\
 Equality structure & No complete maximizing-face classification & Proves
-the scalar phases, finite-dimensional equal supported multiplicities, and a
-conditional phase-permutation orbit with exact product hypotheses\\
+the scalar phases, equal supported multiplicities for every attained finite-
+dimensional tensor-product exact maximizer of the first augmented family, and
+a conditional phase-permutation orbit with exact product hypotheses\\
 Alternative maximizers & Not identified & Constructs biased exact maximizers
 of both augmented families for every \(d\geq4\)\\
 Canonical full behavior & Randomness studied numerically in selected
@@ -181,9 +183,9 @@ Our main conclusions are as follows.
 \item The finite-dimensional tensor-product, approximate, and
 commuting-operator values of the first reduced cyclic operator are all
 \(2\csc(\pi/(2d))\).
-\item Every finite-dimensional exact maximizer of the first augmented family
-has all equality roots with equal multiplicity on Alice's support; in
-particular, \(d\) divides that supported dimension.
+\item Every attained finite-dimensional tensor-product exact maximizer of the
+first augmented family has all equality roots with equal multiplicity on
+Alice's support; in particular, \(d\) divides that supported dimension.
 \item A polar-linear permutation theorem gives explicit sufficient conditions
 under which phase permutations remain admissible maximizers and preserve the
 entire first-harmonic correlator matrix.
@@ -231,6 +233,11 @@ We use
 \]
 The operator inequalities below hold in the commuting model; a matching
 finite-dimensional strategy then identifies all three values.
+The value theorem extends to the commuting-operator model because it is an
+operator inequality, whereas the support-rigidity and privacy results are
+stated only for finite-dimensional tensor-product strategies because their
+proofs use reduced-state supports, Schmidt decompositions, and purifying-Eve
+conditional states; no commuting-operator analogue is claimed here.
 
 For a behavior \(p(a,b\mid x,y)\), a scalar Bell maximum fixes only one
 supporting hyperplane of the quantum correlation set.  We distinguish:
@@ -519,10 +526,11 @@ through their common value.
 \section{Finite-dimensional support-level equality rigidity}
 \label{sec:rigidity}
 
-The equality certificate contains more information about arbitrary exact
-maximizers once the first cyclic operator is augmented by its aligned term.
-The following result is restricted to an attained finite-dimensional tensor-
-product maximum.  It does not extend silently to \(qa\) or \(qc\).
+The equality certificate yields additional information at the precise scope
+below once the first cyclic operator is augmented by its aligned term.
+The following result concerns every attained finite-dimensional tensor-
+product exact maximizer of the first augmented family.  It does not extend
+silently to \(qa\) or \(qc\).
 
 \begin{theorem}[Equal supported multiplicities]
 \label{thm:support-rigidity}
@@ -862,8 +870,8 @@ of every \(\lambda_\ell\) has modulus one,
 \]
 \end{proof}
 
-The source SOS is short and load-bearing.  Fourier orthogonality and
-unitarity of the \(B_y\)'s give
+The source-v3 SOS, with prefactor \(1/(2d)\), is short and load-bearing.
+Fourier orthogonality and unitarity of the \(B_y\)'s give
 \[
  \sum_\ell \widehat B_\ell^\dagger\widehat B_\ell=d^2\Id,
  \qquad \sum_\ell\absop{\lambda_\ell}^2=1.
@@ -962,7 +970,7 @@ first-harmonic correlator is a sum over the complete unordered root set, and
 is therefore permutation-independent.
 \end{proof}
 
-The theorem uses the source SOS to prove global optimality; merely
+The theorem uses the source-v3 SOS to prove global optimality; merely
 annihilating a candidate collection of operators would not have sufficed.
 What is common to both families is the root ordering, the Bob cycle, and the
 target table.  The second family additionally requires the exact Fourier
@@ -1274,8 +1282,13 @@ Several questions are now sharply posed.
 \begin{enumerate}[leftmargin=1.6em]
 \item Determine whether the support-level rigidity conditions, admissible
 phase permutations, direct sums, and irrelevant ancillary systems generate
-all finite-dimensional exact maximizers of the first augmented family; then
-separately characterize the \(qa\) and \(qc\) maximizing faces.
+all attained finite-dimensional tensor-product exact maximizers of the first
+augmented family.  First classify the minimal-support case \(\dim K=d\).
+Theorem~\ref{thm:support-rigidity} then forces the equality-root spectrum to
+be simple; determine whether every such maximizer is equivalent, under the
+explicitly allowed symmetries, to a member of the permutation orbit of
+Theorem~\ref{thm:biased}.  Then separately characterize the \(qa\) and \(qc\)
+maximizing faces.
 \item Determine the exact worst-case guessing probability at the Bell maximum;
 the bound \eqref{eq:value-conditioned} need not be tight.
 \item Resolve the \(d=2,3\) maximizing faces for the first augmented family.
@@ -1451,7 +1464,9 @@ calculus gives
  s_y(z)=\frac{1+\omega^yz}{\absop{1+\omega^yz}},
  \qquad s_y(z)^2=\omega^yz.
 \]
-It follows that \(U|_K=\omega^{-y}(S_y|_K)^2\), so \(K\) reduces \(U\).
+It follows that \(U|_K=\omega^{-y}(S_y|_K)^2\), so \(U(K)\subseteq K\).
+Since \(U\) is unitary and \(K\) is finite-dimensional, this inclusion
+implies \(U(K)=K\); hence \(K\) reduces \(U\).
 Let \(E_k\) be the spectral projection of \(U|_K\) corresponding to the
 root \(z_k\) in \eqref{eq:equality-roots}.
 
@@ -1475,9 +1490,16 @@ Consequently, for \(k(y)=[r_*-y]_d\),
 \end{equation}
 The map \(y\mapsto k(y)\) is a permutation of the root labels.
 
-Raising \eqref{eq:polar-stabilizer} to the \(d\)-th power and using
-\(B_y^d=\Id\), then applying \eqref{eq:support-cancellation}, gives
-\(V_y^d=\Id_K\).  Since \(\eta^d=-1\),
+Since \(V_y\) is Alice-side and \(B_y\) is Bob-side, the two operators
+commute.  Thus \eqref{eq:polar-stabilizer}, together with \(B_y^d=\Id\),
+gives
+\[
+ V_y^d\lvert\Psi\rangle
+ =(V_yB_y)^d\lvert\Psi\rangle
+ =\lvert\Psi\rangle.
+\]
+Applying \eqref{eq:support-cancellation} to \(V_y^d-\Id\) gives
+\(V_y^d|_K=\Id_K\).  Since \(\eta^d=-1\),
 \eqref{eq:adjacent-reflection} also gives
 \[
  \bigl(V_y(\Id-2E_{k(y)})\bigr)^d=-\Id_K.
@@ -1814,18 +1836,95 @@ coefficientwise spectral upper bound.
 \end{proposition}
 
 \begin{proof}
-Write \(K=C+RC'R^\dagger\) with \(C,C'\) Hermitian circulants.  Comparing
-the column-\(r\) eigenvector equations with their Hermitian conjugates forces
-all but the first and last
-\(s=\min(r,d-1-r)\) cyclic diagonals to vanish.  After grouping the first
-\(s\), middle \(d-2s\), and last \(s\) coordinates,
+Write \(K=C+RC'R^\dagger\), with \(C,C'\) Hermitian circulants.  Index rows
+and columns by \(0,\ldots,d-1\), and write
+\[
+ C_{jk}=c_{j-k},
+ \qquad
+ C'_{jk}=c'_{j-k},
+\]
+where the coefficient subscripts are understood modulo \(d\), while the
+exponent in
+\[
+ (RC'R^\dagger)_{jk}=\rho^{j-k}c'_{j-k}
+\]
+uses the ordinary integer difference \(j-k\).  The diagonal equation gives
+\(c_0+c'_0=\kappa\).  The off-diagonal components of
+\(Ke_r=\kappa e_r\), first with \(j=r+t\) and then with \(j=r-t\), are
+\begin{align*}
+ c_t+\rho^t c'_t&=0
+ &&(1\leq t\leq d-1-r),\\
+ c_{d-t}+\rho^{-t}c'_{d-t}&=0
+ &&(1\leq t\leq r).
+\end{align*}
+Put \(s=\min(r,d-1-r)\).  Since \(C\) and \(C'\) are Hermitian,
+\[
+ c_{d-t}=\overline{c_t},
+ \qquad
+ c'_{d-t}=\overline{c'_t}
+ \qquad(1\leq t\leq d-1).
+\]
+Conjugating the second indexed family and combining it with the first
+therefore gives
+\[
+ c_t+\rho^t c'_t=0
+ \qquad(1\leq t\leq\max(r,d-1-r)=d-1-s).
+\]
+For \(s+1\leq t\leq d-1\), the index \(u=d-t\) satisfies
+\(1\leq u\leq d-1-s\).  Applying the preceding equation at \(u\) and
+taking its Hermitian conjugate gives
+\[
+ c_t+\rho^{t-d}c'_t=0.
+\]
+Because \(\rho^d=-1\), this is
+\[
+ c_t-\rho^t c'_t=0
+ \qquad(s+1\leq t\leq d-1).
+\]
+On the common index range
+\[
+ s+1\leq t\leq d-1-s
+\]
+(which may be empty), adding and subtracting the last two equations shows
+directly that
+\[
+ c_t=c'_t=0.
+\]
+Thus only the off-diagonal cyclic modes
+\(t\in\{1,\ldots,s\}\cup\{d-s,\ldots,d-1\}\) can survive, with both
+sets empty when \(s=0\).
+
+For \(1\leq t\leq s\), the relation
+\(c_t+\rho^t c'_t=0\), and its Hermitian conjugate, cancel the entries
+having ordinary differences \(t\) and \(-t\).  The only surviving
+occurrences are therefore the wraparound differences \(t-d\) and \(d-t\).
+Set
+\[
+ a_t:=c_t+\rho^{t-d}c'_t
+     =c_t-\rho^t c'_t
+     =2c_t
+ \qquad(1\leq t\leq s).
+\]
+After grouping the first \(s\), middle \(d-2s\), and last \(s\)
+coordinates, the upper-right corner has entries
+\[
+ T_{pq}:=(K-\kappa\Id)_{p,d-s+q}
+ =\begin{cases}
+ a_{s+p-q},&0\leq p\leq q\leq s-1,\\
+ 0,&0\leq q<p\leq s-1.
+ \end{cases}
+\]
+Hence \(T\) is an \(s\)-by-\(s\) upper-triangular Toeplitz matrix, and
+Hermiticity supplies the lower-left corner:
 \[
  K-\kappa\Id=
- \begin{pmatrix}0&0&T\\0&0&0\\T^\dagger&0&0\end{pmatrix},
+ \begin{pmatrix}0&0&T\\0&0&0\\T^\dagger&0&0\end{pmatrix}.
 \]
-where \(T\) is upper-triangular Toeplitz.  Its nonzero eigenvalues occur in
-pairs \(\pm\sigma_j(T)\).  Hence a nonscalar \(K\) has spectrum on both
-sides of \(\kappa\).
+On the first and last coordinate blocks this is
+\(\bigl(\begin{smallmatrix}0&T\\T^\dagger&0\end{smallmatrix}\bigr)\).
+An SVD of \(T\) shows that this block matrix has nonzero eigenvalues
+\(\pm\sigma_j(T)\).  Hence a nonscalar \(K\) has spectrum on both sides of
+\(\kappa\).
 
 To saturate a coefficientwise upper bound on the maximally entangled state
 with computational \(Q_b\), every computational outcome has nonzero weight
@@ -1849,9 +1948,9 @@ between the two notations, but mixing them within one formula does not.  We
 therefore state every adjoint explicitly and test the Fourier orientation.
 
 For the second family, \eqref{eq:second-functional} matches the Hermitian
-content of the source definition and its corrected \(1/(2d)\) SOS factor in
-the latest version.  The source text adjacent to the canonical construction
-briefly omits Alice's entrywise conjugation, while its theorem includes it.
+content of the source definition and the source-v3 SOS, with prefactor
+\(1/(2d)\).  The source text adjacent to the canonical construction briefly
+omits Alice's entrywise conjugation, while its theorem includes it.
 Our choice \(A_\ell=\overline{D_\ell}\) is the one that annihilates the
 displayed SOS on \(\lvert\Phi_d\rangle\).
 
