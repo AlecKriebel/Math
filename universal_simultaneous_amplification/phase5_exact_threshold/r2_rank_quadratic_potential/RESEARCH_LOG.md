@@ -176,6 +176,11 @@
   direction is `-2E_2`, where `E_2` is internal conductance for two
   independent requests from a common stationary target.  Their upward-edge
   increments are exactly `pi_v(Ps)_v` and `pi_v(P^2s)_v`.
+- Wrote the combined restricted primal/dual without redundancy.  Its slice
+  space is exactly `span{1,s_i,E_1,E_2}`; its dual consists exactly of
+  nonnegative pseudoflow plus rank mass, every one-mark balance, and the two
+  storage recurrences.  The surviving universal implication is therefore a
+  concrete finite system, not an informal PSD heuristic.
 - Split both channels into nonnegative creation/debt currents and derived the
   exact two-component rank recurrence, including top boundary
   `z(1,1-chi)/2`.  The all-rank totals give the sharp universal collision

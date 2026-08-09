@@ -1319,6 +1319,28 @@ systems are symmetric and nonnegative.  Modulo vertex fields,
  s^TK_0s\equiv-2E_2(S).                                    \tag{127}
 \]
 
+Consequently the live combined restricted primal has the exact function
+space
+
+\[
+ \mathcal W_{12}=\bigoplus_k
+ \operatorname{span}\{1,s_1,\ldots,s_n,E_1,E_2\}\big|_{|S|=k}. \tag{127a}
+\]
+
+There are no hidden pair constraints in this description.  Finite LP
+duality says that its optimum is the maximum `z` over nonnegative
+pseudoflows satisfying exactly the rank-mass equations `(12)`, all
+rank-labelled one-mark equations `(14)`, and the two storage rows `(132)`
+below.  Thus the sharp surviving compressed conjecture is precisely
+
+\[
+ (12),(14),(132),\ \bar\mu\ge0
+ \quad\Longrightarrow\quad z\le\rho_{\rm dB}(K_n,2).       \tag{127b}
+\]
+
+This is strictly stronger than the refuted rank-`H` implication `(95)` and
+strictly weaker than retaining the full pair matrix `(68)`.
+
 Write `x=Ps`, `y=P^2s`, and `r_v=(P^2)_(vv)`.  Reversibility gives
 `q_(vi)=pi_v(P^2)_(vi)`.  Hence, on an upward edge with `v notin S`,
 
