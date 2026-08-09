@@ -342,3 +342,41 @@ must be hostile-tested before analytic investment.
   checks both oriented identities and both rank-aggregated squares over the
   rationals.  This is the smallest current-level Riccati cone found so far;
   an explicit rank profile coupling its two orientations is still open.
+
+## 2026-08-08 22:10 PDT
+
+- [EXACT TWO-COMPONENT BOUNDARY BLOCK] Added the channel-two companion to
+  the mixed-current cone.  With `beta=(n-2)/(n-1)`, the discrepancy
+  `P2-beta P1` is the oriented average of `f=(I-P)e`; on removal its only
+  correction is the one-mark `1/(n-1)-diag(P^2)`.
+- The two pair storages `alpha E1-E3` and `E2-beta E1` have top boundary
+  vector `(delta,-epsilon)/2`, where
+  `delta=||pi||^2-1/n` and `epsilon=chi-1/(n-1)`.  Their two removal marks
+  have total vector `(delta,-epsilon)` exactly.  Centering by half the mark
+  field removes the top sink and leaves fixed all-rank flux
+  `(delta,-epsilon)/(2n)`.
+- For every two-vector multiplier `lambda`, both corrected oriented
+  currents obey one vector Cauchy action.  Reversible spectral calculus
+  gives the sharp contraction
+  `a_lambda<=max((alpha lambda1)^2,(-alpha lambda1+2lambda2)^2) K_theta`.
+  The heterogeneity boundary vector vanishes exactly for the complete
+  loopless kernel.
+- Added `verify_three_channel_boundary_block.py`, an independent exact
+  rational Green-chain replay.  It checks all state identities, boundary
+  data, full rank recurrences, state/rank vector SOC inequalities, the
+  spectral envelope, and complete-kernel equality.
+- [MINIMAL OPEN SIGN] The centered rank recurrence still contains signed
+  holding vectors.  Deleting them does not yield an M-matrix and collapses
+  back to the refuted static relaxation.  A valid Thomson proof must couple
+  this block to the three original nonnegative storage recurrences; that
+  rank-path action inequality remains open.
+- [HOSTILE CHECK, NUMERICAL ONLY] Replayed the vector factorization and
+  sharp spectral envelope on every quotient state of the exact twelve-
+  vertex `W_12` refuter and on 50 complete-support reversible six-vertex
+  kernels with edge weights spanning `exp(24)`.  The identities and cone
+  survived to floating tolerance.  On the twelve-vertex true Green flow,
+  however, replacing the path transport by the best independent rankwise
+  scalar projection is catastrophically weak: the resulting target lower
+  residual is about `-1.2886e4` while the exact true residual is positive
+  `0.002549972...`.  Thus `(214)` is useful only inside the full rank-path
+  recurrence; another static use of it is decisively excluded.

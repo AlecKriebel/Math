@@ -2135,6 +2135,221 @@ transport inequality coupling the two cones through the one-mark
 recurrence.  No relaxation of `T^-_pi` to an unsigned scalar has been
 claimed.
 
+### 7.18 Canonical two-component boundary block
+
+The second pair channel supplies the missing companion to `(193)`.  Put
+
+\[
+ \beta={n-2\over n-1}=2-\theta,
+ \qquad r_v=(P^2)_{vv},
+ \qquad f=(I-P)e,                                         \tag{196}
+\]
+
+and retain `chi=sum_v pi_v sum_i P_(vi)^2`.  Since
+
+\[
+ f_v=y_v-\beta x_v-(\theta-1)s_v,
+ \qquad y=P^2s,                                           \tag{197}
+\]
+
+the creation and debt currents in `(130)` obey the exact oriented
+identities
+
+\[
+\boxed{
+\begin{aligned}
+ P^2-\beta P^1
+   &=\sum_{v\notin S}g_v\pi_v f_v,\\
+ N^2-\beta N^1-T^-_r
+   &=\sum_{v\in S}\ell_v\pi_v f_v,
+\end{aligned}}                                             \tag{198}
+\]
+
+where the second one-mark debt is
+
+\[
+ T^-_r(S)=\sum_{v\in S}\ell_v\pi_v
+ \left({1\over n-1}-r_v\right).                           \tag{199}
+\]
+
+Thus the first--third and second--first discrepancies are not two
+unrelated scalar currents.  Define the pair-storage vector
+
+\[
+ \mathbf G(S)=
+ \binom{\alpha E_1(S)-E_3(S)}{E_2(S)-\beta E_1(S)},        \tag{200}
+\]
+
+the two one-mark fields
+
+\[
+ h^{(1)}_v=\pi_v-{1\over n},\qquad
+ h^{(2)}_v={1\over n-1}-r_v,
+ \qquad
+ \mathbf H(S)=\sum_{v\in S}\pi_v
+ \binom{h^{(1)}_v}{h^{(2)}_v},                             \tag{201}
+\]
+
+and the nonnegative heterogeneity defects
+
+\[
+ \delta=\|\pi\|_2^2-{1\over n},\qquad
+ \varepsilon=\chi-{1\over n-1},\qquad
+ \mathbf u=\binom{\delta}{-\varepsilon}.                 \tag{202}
+\]
+
+Reversibility gives `sum_v pi_v r_v=chi`.  Consequently the endpoint data
+line up exactly:
+
+\[
+ \boxed{
+ \mathbf G(\varnothing)=\mathbf G(\{i\})=0,\quad
+ \mathbf G(V)={\mathbf u\over2},\quad
+ \mathbf H(V)=\mathbf u,\quad
+ {1\over n}\sum_i\mathbf H(\{i\})={\mathbf u\over n}.} \tag{203}
+\]
+
+Let `mathbf(A)^+,mathbf(A)^-` be the creation and debt currents of
+`mathbf(G)`, and `mathbf(T)^+,mathbf(T)^-` the oriented responses of
+`mathbf(H)`.  Equations `(193)` and `(198)` combine into the single
+two-component factorization
+
+\[
+\boxed{
+\begin{aligned}
+ \mathbf A^+(S)
+  &=\sum_{v\notin S}g_v\pi_v
+       \binom{-\alpha e_v}{f_v},\\
+ \mathbf A^-(S)-\mathbf T^-(S)
+  &=\sum_{v\in S}\ell_v\pi_v
+       \binom{-\alpha e_v}{f_v}.
+\end{aligned}}                                             \tag{204}
+\]
+
+This is the canonical `W_123` current block.  Both orientations are driven
+by the same Schur error; all asymmetry is stored in the available one-mark
+vector `(201)`.
+
+There are two useful exact gauges.  First,
+
+\[
+ \mathbf C=\mathbf G-{1\over2}\mathbf H                 \tag{205}
+\]
+
+vanishes at the empty and full states and has uniform-singleton average
+`-mathbf(u)/(2n)`.  With
+
+\[
+ \mathbf J^+=\mathbf A^+-{1\over2}\mathbf T^+,
+ \qquad
+ \mathbf J^-=\mathbf A^--{1\over2}\mathbf T^-,           \tag{206}
+\]
+
+one has `Lmathbf(C)=mathbf(J)^+-mathbf(J)^-`.  Second, the scalar
+combination
+
+\[
+ G_*=\varepsilon(\alpha E_1-E_3)
+       +\delta(E_2-\beta E_1),
+ \qquad
+ H_*=\varepsilon H_1+\delta H_2                           \tag{207}
+\]
+
+has zero empty, uniform-singleton, and full boundary data.  This is forced
+by `(203)`, since `(varepsilon,delta) dot mathbf(u)=0`; it is not a fitted
+coefficient from finite data.
+
+For a degree-two pseudoflow, let `mathbf(X)^G_k,mathbf(Y)^G_k` denote the
+rank occupations of `mathbf(G)U,mathbf(G)D`, and define the analogous
+quantities for `mathbf(H)` and `mathbf(C)`.  The full vector rank balances
+are
+
+\[
+\boxed{
+ \mathbf X^G_{k-1}+\mathbf A^+_{k-1}
+ +\mathbf Y^G_{k+1}-\mathbf A^-_{k+1}
+ -\mathbf X^G_k-\mathbf Y^G_k
+ ={z\mathbf u\over2}1_{\{k=n\}},}                         \tag{208}
+\]
+
+\[
+\boxed{
+ {\mathbf u\over n}1_{\{k=1\}}
+ +\mathbf X^H_{k-1}+\mathbf T^+_{k-1}
+ +\mathbf Y^H_{k+1}-\mathbf T^-_{k+1}
+ -\mathbf X^H_k-\mathbf Y^H_k
+ =z\mathbf u1_{\{k=n\}},}                                \tag{209}
+\]
+
+and hence
+
+\[
+\boxed{
+ -{\mathbf u\over2n}1_{\{k=1\}}
+ +\mathbf X^C_{k-1}+\mathbf J^+_{k-1}
+ +\mathbf Y^C_{k+1}-\mathbf J^-_{k+1}
+ -\mathbf X^C_k-\mathbf Y^C_k=0.}                         \tag{210}
+\]
+
+All absent endpoint terms are zero.  In particular the total centered
+flux is fixed independently of `z`:
+
+\[
+ \sum_k(\mathbf J^+_k-\mathbf J^-_k)={\mathbf u\over2n}. \tag{211}
+\]
+
+The associated local action is also exact.  For every
+`lambda=(lambda_1,lambda_2) in R^2`, put
+
+\[
+ \mathfrak a_\lambda(S)
+ =\sum_v\pi_v\{-\alpha\lambda_1e_v+\lambda_2f_v\}^2.     \tag{212}
+\]
+
+Weighted Cauchy--Schwarz gives, statewise and after rank aggregation,
+
+\[
+\boxed{
+\begin{aligned}
+ \{\lambda\mathbin\cdot\mathbf A^+\}^2
+ &\le P^M\mathfrak a_\lambda,\\
+ \{\lambda\mathbin\cdot(\mathbf A^--\mathbf T^-)\}^2
+ &\le N^M\mathfrak a_\lambda.
+\end{aligned}}                                             \tag{213}
+\]
+
+Because reversible `P` is self-adjoint on `L^2(pi)` with spectrum in
+`[-1,1]`, the action contracts to the original Schur energy sharply:
+
+\[
+\boxed{
+ \mathfrak a_\lambda(S)
+ \le m(\lambda)K_\theta(S),\qquad
+ m(\lambda)=\max\{(\alpha\lambda_1)^2,
+                   (-\alpha\lambda_1+2\lambda_2)^2\}.}    \tag{214}
+\]
+
+Indeed `(212)` applies the affine polynomial
+`-alpha lambda_1+lambda_2 t` to `e`, with `t` in `[0,2]`; the maximum of
+its squared magnitude is attained at an endpoint.  This produces the
+promised two-channel Thomson action without importing any untracked pair
+moment.
+
+Finally, `mathbf(u)=0` holds exactly at the complete loopless kernel.  The
+condition `delta=0` makes `pi` uniform, while `varepsilon=0` is the rowwise
+Cauchy equality in `(134)` and makes every loopless row uniform.  Thus the
+boundary block has the correct equality class.
+
+Equations `(208)--(214)` are an exact vector-flow reduction, but not yet a
+proof of `(111)`.  A path-network proof must still control the signed
+holdings `mathbf(X)^C,mathbf(Y)^C` in `(210)` (or work with the three
+original nonnegative pair storages).  Simply deleting those holdings does
+not define an `M`-matrix and would repeat the already refuted static
+relaxation.  The remaining concrete obligation is a rank-path
+Dirichlet/Thomson inequality which couples `(210)` to the nonnegative
+storage recurrences `(132),(184)` and pays the reward
+`theta^2 V-W-(2theta-a_n)C` in `(178)`.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -2196,6 +2411,12 @@ claimed.
 - **PROVED:** the statewise and rank-aggregated mixed-current Schur cones
   `(190)--(195)`, retaining the exact stationary one-mark debt rather than
   replacing it by an unsigned scalar relaxation.
+- **PROVED:** the canonical two-component boundary/current block
+  `(196)--(214)`.  The first--third and second--first discrepancies are
+  driven by `e` and `(I-P)e`, their one-mark debts have exactly the same
+  heterogeneity boundary vector, and every scalar projection satisfies the
+  sharp reversible Thomson-action bound.  This is a vector-flow reduction,
+  not yet the missing rank-path sign theorem.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
