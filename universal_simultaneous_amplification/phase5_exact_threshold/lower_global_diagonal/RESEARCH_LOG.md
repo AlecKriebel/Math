@@ -115,3 +115,23 @@
 
   would prove `beta+sigma<=1` with a quantitative square deficit and remains
   open.
+
+## 2026-08-08 — temporal and parity orbit monotonicity refuted exactly
+
+- **FALSIFIED:** the Bd-started dB survival orbit is not monotone in
+  `p`-average after its first step, and neither parity subsequence is
+  monotone.  A positive rational symmetric-W three-type kernel has
+
+  ```text
+  E_p(y_10-y_9)  > 1.437e-7,
+  E_p(y_15-y_13) > 4e-8.
+  ```
+
+- The Bd extinction vector is enclosed in an exact rational invariant box
+  of radii `10^-60(2,16,3)`.  Fifteen dB iterates are propagated with exact
+  outward rounding on a `10^-45` grid, so both strict signs are rigorous and
+  independent of floating conditioning.
+- Consequently the exact first-step theorem cannot be iterated directly,
+  even after grouping updates in pairs.  This is a proof-route
+  counterexample only; `beta+sigma<=1` and the special ground-state energy
+  `K` remain open.
