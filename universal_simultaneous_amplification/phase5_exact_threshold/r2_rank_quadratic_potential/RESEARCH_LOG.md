@@ -205,6 +205,14 @@
   obligation is now minimal: couple this zero-boundary rank Schur mode to
   every one-mark balance strongly enough to control first-channel
   destruction debt.
+- Factored the neutral mode further as
+  `K_perp=L_pi(P+chi I)`.  Its reversible spectral multiplier is
+  `(1-lambda)(lambda+chi)`, with the exact difference-of-squares form
+  `(1+chi)^2 ||f||_pi^2/4-||(P-(1-chi)I/2)f||_pi^2` and sharp cone
+  `-(1-chi)L_pi <= K_perp <= (1+chi)L_pi`.  Complete-graph nonconstant
+  modes sit exactly at the sign-change `lambda=-chi`.  This proves that the
+  required gain cannot come from a fixed PSD comparison; it must use
+  rank-dependent transport across the positive and negative spectral parts.
 
 ### Active sign
 

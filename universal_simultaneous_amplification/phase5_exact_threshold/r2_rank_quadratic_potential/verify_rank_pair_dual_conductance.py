@@ -1008,6 +1008,41 @@ def verify_fixed_matrix_contractions() -> None:
     assert form(k_perp, positive_vector) == F(19, 105) > 0
     assert form(k_perp, negative_vector) == -F(23, 525) < 0
 
+    # K_perp=L_pi(P+chi I), together with its exact centered
+    # difference-of-squares identity and sharp Loewner cone.
+    factorized = [
+        [
+            sum(
+                laplacian[i][u]
+                * (P[u][j] + (chi if u == j else F(0)))
+                for u in range(N)
+            )
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert factorized == k_perp
+    center = (1 - chi) / 2
+    radius = (1 + chi) / 2
+    for vector in (
+        positive_vector,
+        negative_vector,
+        [F(2), F(-1), F(3), F(-4)],
+    ):
+        p_vector = [
+            sum(P[i][j] * vector[j] for j in range(N))
+            for i in range(N)
+        ]
+        centered_square = sum(
+            PI[i] * (p_vector[i] - center * vector[i]) ** 2
+            for i in range(N)
+        )
+        norm = sum(PI[i] * vector[i] ** 2 for i in range(N))
+        assert form(k_perp, vector) == radius ** 2 * norm - centered_square
+        l_energy = form(laplacian, vector)
+        assert -(1 - chi) * l_energy <= form(k_perp, vector)
+        assert form(k_perp, vector) <= (1 + chi) * l_energy
+
     excess_values = [
         collision_internal_values[state]
         - (1 - chi) * internal_values[state]

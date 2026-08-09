@@ -1472,18 +1472,56 @@ pencil splits as
  K(\theta)=\{1+\theta(1-\chi)\}L_\pi+\theta K_\perp.       \tag{143}
 \]
 
+In fact the mode has the exact reversible factorization
+
+\[
+ \boxed{K_\perp=L_\pi(P+\chi I)
+ =\Pi(I-P)(P+\chi I).}                                    \tag{144}
+\]
+
+If `lambda` is an eigenvalue of the self-adjoint reversible kernel, its
+generalized multiplier relative to `L_pi` is `lambda+chi`; equivalently the
+absolute multiplier is
+
+\[
+ (1-\lambda)(\lambda+\chi)
+ ={(1+\chi)^2\over4}
+ -\left(\lambda-{1-\chi\over2}\right)^2.                  \tag{145}
+\]
+
+Thus `K_perp` is positive on nonconstant modes with `lambda>-chi`, negative
+on modes with `lambda<-chi`, and zero on the complete kernel, whose
+nonconstant eigenvalues all equal `-chi=-1/(n-1)`.  In quadratic form this
+is the exact difference of squares
+
+\[
+ f^TK_\perp f
+ ={(1+\chi)^2\over4}\|f\|_\pi^2
+ -\left\|\left(P-{1-\chi\over2}I\right)f\right\|_\pi^2.  \tag{146}
+\]
+
+It also gives the sharp fixed cone
+
+\[
+ -(1-\chi)L_\pi\preceq K_\perp
+ \preceq(1+\chi)L_\pi,                                    \tag{147}
+\]
+
+which is just the centered form of `0<=K_0<=2L_pi`.  Hence no contraction
+using only this fixed cone can create the missing strict rank transport.
+
 There is also a local formula for its signed forcing.  Put
 
 \[
  R=\operatorname{Diag}(r_v),\qquad
- B=P^2-R-(I-R)P.                                           \tag{144}
+ B=P^2-R-(I-R)P.                                           \tag{148}
 \]
 
 Then `B1=0`, and the two-step mutant mass available after deleting the
 target decomposes as
 
 \[
- y-Rs=(I-R)x+Bs.                                           \tag{145}
+ y-Rs=(I-R)x+Bs.                                           \tag{149}
 \]
 
 Using the signed coordinate drift `d` from `(68)`, equations `(129)--(130)`
@@ -1493,7 +1531,7 @@ give
 \boxed{
  L\mathcal E_\perp(S)
  =\sum_v\pi_vd_v(S)
- \left[(\chi-r_v)x_v(S)+(Bs)_v\right].}                   \tag{146}
+ \left[(\chi-r_v)x_v(S)+(Bs)_v\right].}                   \tag{150}
 \]
 
 The right side vanishes pointwise at the complete kernel.  For a general
@@ -1507,16 +1545,16 @@ of `(132)` gives
 
 \[
  X^\perp_{k-1}+P^\perp_{k-1}+Y^\perp_{k+1}-N^\perp_{k+1}
- -X^\perp_k-Y^\perp_k=0                                   \tag{147}
+ -X^\perp_k-Y^\perp_k=0                                   \tag{151}
 \]
 
 at every rank, including both endpoints, with absent terms zero.  Hence
 
 \[
- \sum_k(P^\perp_k-N^\perp_k)=0.                            \tag{148}
+ \sum_k(P^\perp_k-N^\perp_k)=0.                            \tag{152}
 \]
 
-Equation `(147)`, coupled to all individual one-mark recurrences, is the
+Equation `(151)`, coupled to all individual one-mark recurrences, is the
 minimal surviving Schur problem.  It explains both why rank-`H` alone can
 fail and why merely adding a fixed PSD inequality cannot repair it: the
 additional channel acts only by moving signed collision excess between
@@ -1557,7 +1595,7 @@ the first-channel destruction debt in `(119)`.
   vector rank recurrence, sharp collision deficit, and fixed-pencil
   `M`-matrix/PSD factorization `(124)--(139)`.
 - **PROVED:** the traceless boundary-neutral collision-excess decomposition
-  and its exact rank Schur recurrence `(140)--(148)`; this is a reduction,
+  and its exact rank Schur recurrence `(140)--(152)`; this is a reduction,
   not a sign theorem.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
