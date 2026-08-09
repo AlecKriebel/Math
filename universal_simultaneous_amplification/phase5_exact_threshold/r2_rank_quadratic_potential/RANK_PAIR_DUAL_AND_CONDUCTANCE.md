@@ -1936,6 +1936,205 @@ best independent rank tangents lose the theorem by a large exact margin.
 This does **not** refute `W_123`: that potential space retains precisely
 the transport identity `(177)` which the static relaxation discards.
 
+### 7.16 The third direction is a nonnegative pair flow and an operator square
+
+The signed variance current is not the canonical gauge for the potential
+space.  Put
+
+\[
+ \sigma=\|\pi\|_2^2,\qquad
+ J(S)=\sum_i\pi_i^2s_i,\qquad
+ E_3(S)=\sum_{i<j}\pi_i\pi_js_is_j={M(S)^2-J(S)\over2}.    \tag{182}
+\]
+
+Because every rank-labelled one-mark is already available, adjoining
+`M^2` is exactly equivalent to adjoining `E_3`.  Unlike `V`, the latter is
+an internal flow with nonnegative edge weights.  It vanishes at the empty
+set and every singleton, and
+
+\[
+ E_3(V)={1-\sigma\over2}.
+\]
+
+Its increment on adding `v` is `pi_v M`, and the amount lost on removing
+`v` is `pi_v(M-pi_v)`.  Hence
+
+\[
+\begin{aligned}
+ \widetilde P^3(S)&=\sum_{v\notin S}g_v\pi_vM,&
+ \widetilde N^3(S)&=\sum_{v\in S}\ell_v\pi_v(M-\pi_v),\\
+ LE_3&=\widetilde P^3-\widetilde N^3,&
+ \widetilde P^3,\widetilde N^3&\ge0.                     \tag{183}
+\end{aligned}
+\]
+
+If `\widetilde X^3_k,\widetilde Y^3_k` are the rank occupations of
+`E_3U,E_3D`, then
+
+\[
+\boxed{
+ \widetilde X^3_{k-1}+\widetilde P^3_{k-1}
+ +\widetilde Y^3_{k+1}-\widetilde N^3_{k+1}
+ -\widetilde X^3_k-\widetilde Y^3_k
+ ={z(1-\sigma)\over2}1_{\{k=n\}}.}                       \tag{184}
+\]
+
+In particular,
+
+\[
+ \sum_k(\widetilde P^3_k-\widetilde N^3_k)
+ ={z(1-\sigma)\over2}.                                    \tag{185}
+\]
+
+Since `sigma>=1/n`, comparison with the first internal-request channel
+in `(133)` gives the second sharp total deficit
+
+\[
+\boxed{
+ \sum_k(\widetilde P^3_k-\widetilde N^3_k)
+ \le {n-1\over n}\sum_k(P^1_k-N^1_k),}                   \tag{186}
+\]
+
+with exact gap `z(sigma-1/n)/2`.  Equality means that `pi` is uniform.
+Together, the channel-two gap `(136)` and the channel-three gap `(186)`
+vanish only for the complete loopless kernel.
+
+The three channels also lift the scalar covariance inequality to a single
+graph-independent matrix square.  Define
+
+\[
+ L_3=\Pi-\pi\pi^T,\qquad
+ D_0=2L_\pi-K_0=(I-P)^T\Pi(I-P),\qquad
+ B=I-\mathbf1\pi^T.                                      \tag{187}
+\]
+
+For every real `theta`,
+
+\[
+\boxed{
+ \begin{aligned}
+ \mathcal K(\theta)
+ &=D_0-2\theta L_\pi+\theta^2L_3\\
+ &=\{(I-P)-\theta B\}^T\Pi\{(I-P)-\theta B\}\succeq0.
+ \end{aligned}}                                           \tag{188}
+\]
+
+The matrices in `(188)` lie exactly in the span of the three cut
+Laplacians: `L_3` belongs to `E_3`, `L_pi` to `E_1`, and `K_0` to `E_2`,
+with `D_0=2L_pi-K_0`.  On a mutant indicator `s`,
+
+\[
+ s^TL_3s=V,\qquad s^TL_\pi s=C,\qquad
+ s^TD_0s=\mathcal D.
+\]
+
+Thus `(173)` is the binary specialization of an all-vector operator
+identity.  Moreover, `K(theta)=0` as a matrix implies
+
+\[
+ P=(1-\theta)I+\theta\mathbf1\pi^T.
+\]
+
+Looplessness then forces
+
+\[
+ \pi_i={1\over n},\qquad
+ \theta={n\over n-1},\qquad
+ P_{ij}={1\over n-1}\quad(i\ne j).                        \tag{189}
+\]
+
+So the operator square has exactly the desired complete-kernel equality
+class.  This does not yet prove the endpoint bound: Section 7.15 proves
+that independent rankwise use of the square is insufficient.  The live
+`W_123` problem is now sharply a three-channel nonnegative-flow transport
+theorem using `(132)` and `(184)`, with the full rank-pair matrix as
+fallback.
+
+### 7.17 The exact mixed-current Schur cone
+
+The operator square controls the failure of the first and third currents
+to remain in their complete-graph ratio.  Put
+
+\[
+ \alpha={n-1\over n},\qquad \theta={1\over\alpha}={n\over n-1},
+\qquad
+ e_v(S)=s_v-x_v-\theta\{s_v-M(S)\}.                       \tag{190}
+\]
+
+Then
+
+\[
+ K_\theta(S):=\sum_v\pi_ve_v(S)^2
+ =\mathcal D(S)-2\theta C(S)+\theta^2V(S)\ge0.            \tag{191}
+\]
+
+Recall that, state by state,
+
+\[
+ P^1=C-Q^+,\qquad N^1=Q^-,
+\]
+
+and let `\widetilde P^3,\widetilde N^3` be the product-mass currents in
+`(183)`.  The sole stationary-mass correction is the one-mark debt
+
+\[
+ T^-_\pi(S)=\sum_{v\in S}\ell_v\pi_v
+             \left(\pi_v-{1\over n}\right).               \tag{192}
+\]
+
+Direct substitution into `(183)` gives the two exact identities
+
+\[
+\boxed{
+\begin{aligned}
+ \alpha P^1-\widetilde P^3
+   &=-\alpha\sum_{v\notin S}g_v\pi_ve_v,\\
+ \alpha N^1-\widetilde N^3-T^-_\pi
+   &=-\alpha\sum_{v\in S}\ell_v\pi_ve_v.
+\end{aligned}}                                            \tag{193}
+\]
+
+Since `0<=g_v,ell_v<=1`, weighted Cauchy--Schwarz yields the statewise
+second-order cone
+
+\[
+\boxed{
+\begin{aligned}
+ (\alpha P^1-\widetilde P^3)^2
+   &\le\alpha^2P^M K_\theta,\\
+ (\alpha N^1-\widetilde N^3-T^-_\pi)^2
+   &\le\alpha^2N^M K_\theta.
+\end{aligned}}                                            \tag{194}
+\]
+
+This survives rank aggregation without loss of form.  If a subscript `k`
+denotes occupation against `bar(mu)` and
+`K_{\theta,k}=sum_(|S|=k)bar(mu)_S K_theta(S)`, then
+
+\[
+\boxed{
+\begin{aligned}
+ (\alpha P^1_k-\widetilde P^3_k)^2
+   &\le\alpha^2P^M_kK_{\theta,k},\\
+ (\alpha N^1_k-\widetilde N^3_k-T^-_{\pi,k})^2
+   &\le\alpha^2N^M_kK_{\theta,k}.
+\end{aligned}}                                            \tag{195}
+\]
+
+The term `T^-_pi` is not discarded: it is an oriented response of the
+rank-labelled vertex field with coefficients
+`pi_v(pi_v-1/n)`, so the exact one-mark balances retain it.  On the
+complete kernel, `e_v=T^-_pi=0` and both current ratios in `(193)` are
+identities.
+
+Equations `(184)` and `(195)` are the smallest concrete Schur/Riccati
+system found in the three-channel space.  They improve the refuted static
+tangent by controlling adjacent-rank creation and debt separately.  They
+do not yet imply the endpoint sum: the remaining sign is a rank-profile
+transport inequality coupling the two cones through the one-mark
+recurrence.  No relaxation of `T^-_pi` to an unsigned scalar has been
+claimed.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1990,6 +2189,13 @@ the transport identity `(177)` which the static relaxation discards.
   after optimizing every rank coefficient independently, by the exact
   Green residuals `(180)--(181)`.  This does not refute the dynamic
   three-channel space `W_123`.
+- **PROVED:** the pure-pair gauge for `M^2`, its nonnegative creation/debt
+  recurrence and sharp stationary-mass deficit, and the all-vector
+  three-channel operator square with unique complete-kernel equality class
+  `(182)--(189)`.
+- **PROVED:** the statewise and rank-aggregated mixed-current Schur cones
+  `(190)--(195)`, retaining the exact stationary one-mark debt rather than
+  replacing it by an unsigned scalar relaxation.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.

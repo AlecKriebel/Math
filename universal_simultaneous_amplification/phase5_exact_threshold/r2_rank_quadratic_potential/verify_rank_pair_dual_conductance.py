@@ -689,9 +689,85 @@ def verify_fixed_matrix_contractions() -> None:
     # probability is affine in the mutant indicator (constant on each side
     # of the cut), and holds on every complete-graph rank.
     stationary_square = sum(value * value for value in PI)
+    stationary_covariance = [
+        [
+            (PI[i] if i == j else F(0)) - PI[i] * PI[j]
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    prediction_error_matrix = [
+        [2 * laplacian[i][j] - k_zero[i][j] for j in range(N)]
+        for i in range(N)
+    ]
+    theta_test = F(7, 5)
+    schur_matrix = [
+        [
+            prediction_error_matrix[i][j]
+            - 2 * theta_test * laplacian[i][j]
+            + theta_test ** 2 * stationary_covariance[i][j]
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    prediction_minus_projection = [
+        [
+            (F(int(i == j)) - P[i][j])
+            - theta_test * (F(int(i == j)) - PI[j])
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    schur_gram = [
+        [
+            sum(
+                prediction_minus_projection[v][i]
+                * PI[v]
+                * prediction_minus_projection[v][j]
+                for v in range(N)
+            )
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert schur_matrix == schur_gram
+    for test in (
+        [F(1), F(-2), F(4), F(3)],
+        [F(0), F(5), F(-1), F(2)],
+    ):
+        assert sum(
+            test[i] * schur_matrix[i][j] * test[j]
+            for i in range(N)
+            for j in range(N)
+        ) >= 0
+
+    # The complete loopless kernel kills the square at the unique radial
+    # value theta=n/(n-1).
+    complete_theta = F(N, N - 1)
+    complete_a = [
+        [
+            (F(int(i == j)) - (F(0) if i == j else F(1, N - 1)))
+            - complete_theta * (F(int(i == j)) - F(1, N))
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert all(value == 0 for row in complete_a for value in row)
+
     mass_values = [mass(state) for state in range(FULL + 1)]
     mass_square_values = [value * value for value in mass_values]
     mass_variance_values = [value * (1 - value) for value in mass_values]
+    stationary_linear_values = [
+        sum((PI[i] ** 2 for i in range(N) if bit(state, i)), F(0))
+        for state in range(FULL + 1)
+    ]
+    product_internal_values = [
+        F(mass_square_values[state] - stationary_linear_values[state]) / 2
+        for state in range(FULL + 1)
+    ]
+    assert product_internal_values[0] == 0
+    assert all(product_internal_values[1 << i] == 0 for i in range(N))
+    assert product_internal_values[FULL] == (1 - stationary_square) / 2
     activity_square_integral = F(0)
     mass_gain_integral = F(0)
     for state in transient:
@@ -754,6 +830,14 @@ def verify_fixed_matrix_contractions() -> None:
     variance_down = [F(0) for _ in range(N + 1)]
     variance_response_up = [F(0) for _ in range(N + 1)]
     variance_response_down = [F(0) for _ in range(N + 1)]
+    product_internal_up = [F(0) for _ in range(N + 1)]
+    product_internal_down = [F(0) for _ in range(N + 1)]
+    product_creation = [F(0) for _ in range(N + 1)]
+    product_destruction = [F(0) for _ in range(N + 1)]
+    mass_creation = [F(0) for _ in range(N + 1)]
+    mass_destruction = [F(0) for _ in range(N + 1)]
+    stationary_mark_destruction = [F(0) for _ in range(N + 1)]
+    complete_schur_occupation = [F(0) for _ in range(N + 1)]
     d_zero_integral = F(0)
     nonlinear_remainder_integral = F(0)
     internal_values = [internal(state) for state in range(FULL + 1)]
@@ -776,6 +860,8 @@ def verify_fixed_matrix_contractions() -> None:
         square_response_down = F(0)
         variance_drift_up = F(0)
         variance_drift_down = F(0)
+        product_creation_state = F(0)
+        product_destruction_state = F(0)
         nonlinear_remainder = F(0)
         for vertex in range(N):
             x = x_value(state, vertex)
@@ -792,6 +878,9 @@ def verify_fixed_matrix_contractions() -> None:
                 variance_drift_down += rate * PI[vertex] * (
                     2 * mutant_mass - 1 - PI[vertex]
                 )
+                product_destruction_state += (
+                    rate * PI[vertex] * (mutant_mass - PI[vertex])
+                )
             else:
                 rate = 2 * x / (1 + x)
                 up += rate
@@ -804,6 +893,7 @@ def verify_fixed_matrix_contractions() -> None:
                 variance_drift_up += rate * PI[vertex] * (
                     1 - 2 * mutant_mass - PI[vertex]
                 )
+                product_creation_state += rate * PI[vertex] * mutant_mass
             nonlinear_remainder += (
                 PI[vertex] * x * x * (1 - x) / (1 + x)
             )
@@ -836,6 +926,68 @@ def verify_fixed_matrix_contractions() -> None:
         )
         assert square_response_up >= 0
         assert square_response_down <= 0
+        assert product_creation_state >= 0
+        assert product_destruction_state >= 0
+        assert (
+            generator(state, product_internal_values)
+            == product_creation_state - product_destruction_state
+        )
+
+        # The operator Schur square specializes on the mutant indicator to
+        # the scalar covariance tangent checked above.
+        indicator_state = indicator(state)
+        schur_quadratic = quadratic(schur_matrix, indicator_state)
+        assert schur_quadratic == (
+            2 * collision_cut
+            - r_zero_values[state]
+            - 2 * theta_test * collision_cut
+            + theta_test ** 2 * mutant_mass * (1 - mutant_mass)
+        )
+
+        # At the complete-kernel slope theta=n/(n-1), the discrepancies
+        # between the first and third creation/debt channels are linear
+        # functionals of the same Schur error.  Weighted Cauchy--Schwarz
+        # gives the exact mixed-current cone used by the Riccati route.
+        alpha = F(N - 1, N)
+        theta_complete = 1 / alpha
+        schur_error = []
+        up_error = F(0)
+        down_error = F(0)
+        down_stationary_mark = F(0)
+        for vertex in range(N):
+            error = (
+                F(int(bit(state, vertex))) - x_value(state, vertex)
+                - theta_complete
+                * (F(int(bit(state, vertex))) - mutant_mass)
+            )
+            schur_error.append(error)
+            x = x_value(state, vertex)
+            if bit(state, vertex):
+                rate = (1 - x) / (1 + x)
+                down_error += rate * PI[vertex] * error
+                down_stationary_mark += (
+                    rate * PI[vertex] * (PI[vertex] - F(1, N))
+                )
+            else:
+                rate = 2 * x / (1 + x)
+                up_error += rate * PI[vertex] * error
+        complete_schur = sum(
+            PI[vertex] * schur_error[vertex] ** 2 for vertex in range(N)
+        )
+        first_creation_state = collision_cut - q_plus
+        first_destruction_state = q_minus
+        assert (
+            alpha * first_creation_state - product_creation_state
+            == -alpha * up_error
+        )
+        assert (
+            alpha * first_destruction_state
+            - product_destruction_state
+            - down_stationary_mark
+            == -alpha * down_error
+        )
+        assert up_error ** 2 <= mass_response_up * complete_schur
+        assert down_error ** 2 <= (-mass_response_down) * complete_schur
 
         weight = mu[state]
         cut_occupation[k] += weight * collision_cut
@@ -858,6 +1010,18 @@ def verify_fixed_matrix_contractions() -> None:
         variance_down[k] += weight * mutant_mass * (1 - mutant_mass) * down
         variance_response_up[k] += weight * variance_drift_up
         variance_response_down[k] += weight * variance_drift_down
+        product_internal_up[k] += (
+            weight * product_internal_values[state] * up
+        )
+        product_internal_down[k] += (
+            weight * product_internal_values[state] * down
+        )
+        product_creation[k] += weight * product_creation_state
+        product_destruction[k] += weight * product_destruction_state
+        mass_creation[k] += weight * mass_response_up
+        mass_destruction[k] -= weight * mass_response_down
+        stationary_mark_destruction[k] += weight * down_stationary_mark
+        complete_schur_occupation[k] += weight * complete_schur
 
         d_zero = 2 * collision_cut - r_zero_values[state]
         direct_gradient = sum(
@@ -951,6 +1115,23 @@ def verify_fixed_matrix_contractions() -> None:
             )
         assert variance_rank_residual == 0
 
+        product_rank_residual = F(0)
+        if k > 1:
+            product_rank_residual += (
+                product_internal_up[k - 1] + product_creation[k - 1]
+            )
+        if k < N:
+            product_rank_residual += (
+                product_internal_down[k + 1]
+                - product_destruction[k + 1]
+                - product_internal_up[k]
+                - product_internal_down[k]
+            )
+        product_rank_residual -= (
+            rho * (1 - stationary_square) / 2 if k == N else F(0)
+        )
+        assert product_rank_residual == 0
+
     # Summing the stationary target/request covariance matrix over one rank
     # preserves positive semidefiniteness.  Its determinant is precisely the
     # sharp rankwise Schur inequality C_k^2 <= V_k D_k.  The final check is
@@ -971,6 +1152,19 @@ def verify_fixed_matrix_contractions() -> None:
             + theta ** 2 * variance_occupation[k]
             >= 0
         )
+        alpha = F(N - 1, N)
+        assert (
+            alpha * creation[k] - product_creation[k]
+        ) ** 2 <= (
+            alpha ** 2 * mass_creation[k] * complete_schur_occupation[k]
+        )
+        assert (
+            alpha * destruction[k]
+            - product_destruction[k]
+            - stationary_mark_destruction[k]
+        ) ** 2 <= (
+            alpha ** 2 * mass_destruction[k] * complete_schur_occupation[k]
+        )
 
     kappa = F(
         2 * ((N - 3) * 2 ** N + 4),
@@ -982,6 +1176,10 @@ def verify_fixed_matrix_contractions() -> None:
     assert (
         sum(mass_square_creation) - sum(mass_square_destruction)
         == rho - stationary_square / N
+    )
+    assert (
+        sum(product_creation) - sum(product_destruction)
+        == rho * (1 - stationary_square) / 2
     )
     assert (
         total_gain <= kappa * total_cut

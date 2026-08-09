@@ -312,3 +312,33 @@ must be hostile-tested before analytic investment.
   `e9921c44de22a2f1d274edfe7e95672a803a3e32541b9f1aa5a260a9fe2f2782`.
   This refutes only the static PSD tangent route, not `W_123`; any proof of
   the latter must use the signed variance-current recurrence essentially.
+- [EXACT PURE-PAIR GAUGE] Using the available one-mark
+  `J=sum_i pi_i^2 s_i`, replaced `M^2` by the equivalent internal pair flow
+  `E_3=(M^2-J)/2=sum_(i<j)pi_i pi_j s_i s_j`.  Its addition and removal
+  increments are `pi_v M` and `pi_v(M-pi_v)`, so both creation and debt are
+  nonnegative.  The exact rank recurrence has zero singleton source, top
+  sink `z(1-||pi||_2^2)/2`, and total net equal to that sink.
+- This third channel supplies a second sharp total deficit:
+  `sum(P_3-N_3)<=(n-1)/n sum(P_1-N_1)`, with exact gap
+  `z(||pi||_2^2-1/n)/2`.  Together with the row-collision deficit of channel
+  two, equality forces both uniform stationary mass and uniform loopless
+  rows, hence the complete kernel.
+- [EXACT OPERATOR SQUARE] With `L_3=Pi-pi pi^T`,
+  `D_0=2L_pi-K_0`, and `B=I-1 pi^T`, proved for every real `theta`
+  `D_0-2 theta L_pi+theta^2 L_3=((I-P)-theta B)^T Pi
+  ((I-P)-theta B)>=0`.  Its binary specialization is the rank covariance
+  tangent.  Matrix equality plus looplessness uniquely forces
+  `pi=1/n`, `theta=n/(n-1)`, and `P_ij=1/(n-1)`.  Thus `W_123` is exactly a
+  three-channel nonnegative-flow/Schur system with the right equality class;
+  the remaining gap is dynamic rank transport, not identification of a
+  positive square.
+- [EXACT MIXED-CURRENT CONE] At the complete slope `theta=n/(n-1)`, wrote
+  the first/third creation and debt discrepancies as oriented averages of
+  the same Schur error `e_v=s_v-x_v-theta(s_v-M)`.  Weighted
+  Cauchy--Schwarz gives exact statewise and rankwise second-order-cone
+  bounds.  The removal identity has one correction
+  `sum_in ell_v pi_v(pi_v-1/n)`, which is retained exactly by the
+  rank-labelled one-mark with coefficients `pi_v(pi_v-1/n)`.  The verifier
+  checks both oriented identities and both rank-aggregated squares over the
+  rationals.  This is the smallest current-level Riccati cone found so far;
+  an explicit rank profile coupling its two orientations is still open.
