@@ -7,10 +7,12 @@ The script has four independent components.
 * It compares the marked-request cut formula with a separately built
   labelled standard-perturbation prefix.
 * It checks the power/Bernstein/hypergeometric identities over QQ.
-* It records the exact rank-CDF counterexample and screens the weaker
-  marked-cache Bernstein signs on a declared finite corpus.
+* It records the exact rank-CDF counterexample and the finite corpus on
+  which the weaker marked-cache Bernstein signs originally survived.
 
-The finite sign screen is evidence only.  The algebraic identities are exact.
+The finite sign screen is evidence only.  The all-order marked-cache claim is
+exactly refuted by ``verify_marked_cache_refutation.py``.  The algebraic
+identities in this file remain exact.
 """
 
 from __future__ import annotations
@@ -342,7 +344,8 @@ def main() -> None:
     marked_prefix_audit()
     hypergeometric_identity_audit()
     finite_marked_cache_screen()
-    print("OPEN: prove every marked-cache coefficient for arbitrary n and time")
+    print("FINITE PATTERN ONLY: all-order marked-cache order is exactly refuted")
+    print("SEE: verify_marked_cache_refutation.py")
 
 
 if __name__ == "__main__":

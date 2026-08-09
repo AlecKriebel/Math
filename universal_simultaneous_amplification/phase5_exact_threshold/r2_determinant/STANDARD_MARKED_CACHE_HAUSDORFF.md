@@ -1,4 +1,4 @@
-# Marked requests and the hypergeometric cache transform
+# Marked requests and the failure of hypergeometric cache order
 
 Date: 2026-08-08 (America/Los_Angeles)
 
@@ -19,11 +19,15 @@ The following statements are **PROVED**.
    probability difference.
 4. Rank-CDF ordering, a tempting stronger statement, is **EXACTLY
    REFUTED** on four vertices.  The hypergeometric transform remains
-   positive on that same witness.
+   positive on that witness.
+5. The all-order hypergeometric marked-cache inequality is itself
+   **EXACTLY REFUTED** on eight vertices.  In particular, the PGF Schur
+   order is false.  The inverse-rank comparison remains positive on the
+   same witness, so the true standard-sector sign is not refuted.
 
-The marked-cache Bernstein coefficients were checked by exact arithmetic on
-the finite corpus stated in Section 7.  Their all-order positivity remains
-**OPEN**.  A finite check is not used as a proof.
+The marked-cache Bernstein coefficients are positive on the earlier finite
+corpus stated in Section 7, but that finite pattern does not extend to all
+orders.  The exact counterexample in Section 7 closes this proposed route.
 
 ## 1. Complete pins and a marked request
 
@@ -295,7 +299,80 @@ and both endpoint values are positive:
 
 The marking average in `(24)--(25)` is therefore essential.
 
-## 7. Exact finite audit and remaining lemma
+## 7. Exact refutation of all-order marked-cache order
+
+The finite corpus
+
+\[
+ n=3, t\le25;\qquad n=4, t\le12;\qquad n=5, t\le8             \tag{31}
+\]
+
+has all `89,433` marked-cache Bernstein comparisons nonnegative.  That
+pattern is not universal.
+
+Take `n=8`, so `N=7`, and use only two pin labels `x,y`.  At total word
+length `26`, compare the uniformly shuffled pin multisets
+
+\[
+ (C_x,C_y)=(14,12)\qquad\hbox{and}\qquad(13,13).                \tag{32}
+\]
+
+The first multiset is obtained from the base counts `(13,12)` by adding a
+request to the already more frequent label.  For `q=1`, the empty-cache
+reward in `(24)` is
+
+\[
+ \psi_1(k)={N-k\over N-1}.
+\]
+
+The exact labelled-chain calculation gives
+
+\[
+\begin{aligned}
+ &E_{(14,12)}\psi_1(K)-E_{(13,13)}\psi_1(K)\\
+ &\quad=
+ -{5097841855133683116602026973677867709383649499615439175346534343452763341123776494668866115269
+ \over
+ 2209253741490523003907776625044372951761360171795984893713024521622498836480000000000000000000000000}
+ <0.                                                               \tag{33}
+\end{aligned}
+\]
+
+Its decimal value is approximately `-2.30749495153e-6`.  By `(24)`, the
+last natural Bernstein control is `(N-1)` times `(33)`, and is therefore
+strictly negative.  Thus the PGF quotient is negative in a neighborhood of
+`z=1`; neither the Bernstein order nor the weaker pointwise PGF Schur order
+holds universally.
+
+For orientation, the six CDF differences on this witness have decimal
+values
+
+\[
+ (4.5297983\,10^{-4},-2.7315554\,10^{-6},-2.4420987\,10^{-4},
+ -1.6294688\,10^{-4},-5.0271620\,10^{-5},-6.6648680\,10^{-6}), \tag{34}
+\]
+
+and the six natural Bernstein controls are
+
+\[
+ (4.5297983\,10^{-4},4.5243351\,10^{-4},4.2746622\,10^{-4},
+ 3.6178324\,10^{-4},2.2903558\,10^{-4},-1.3844970\,10^{-5}). \tag{35}
+\]
+
+The stronger route fails without falsifying the desired inverse-rank sign.
+On the same two multisets, exact arithmetic gives
+
+\[
+ E_{(14,12)}{1\over K}-E_{(13,13)}{1\over K}
+ ={25801268944756526477036175355372435803145464088958168680881355283347745154642235159793307444839
+ \over
+ 131839524215120724870881810531207252023269575469496114714332239142007603200000000000000000000000000}
+ >0,                                                               \tag{36}
+\]
+
+approximately `1.95702078708e-4`.  Therefore `(33)` is a refutation of the
+marked-cache/PGF strengthening only.  The true inverse-rank standard-sector
+comparison remains **OPEN**.
 
 The independent verifier reconstructs the pin active chains and checks:
 
@@ -303,20 +380,11 @@ The independent verifier reconstructs the pin active chains and checks:
   two-feature recurrence;
 * `(19)--(25)` by exact binomial algebra;
 * the CDF counterexample `(27)--(30)`;
-* all 89,433 marked-cache Bernstein comparisons in the declared corpus
-  `n=3,t<=25`; `n=4,t<=12`; and `n=5,t<=8`.
+* all `89,433` positive marked-cache comparisons in `(31)`;
+* the exact negative comparison `(33)` from the full `1,016`-state labelled
+  active chain;
+* the positive inverse-rank comparison `(36)` on the same witness.
 
-The all-order lemma still required is
-
-\[
-\boxed{
- E_{c+e_x}\psi_q(K)\ge E_{c+e_y}\psi_q(K)
- \quad\text{whenever }c_x\ge c_y,
- \quad 1\le q\le N-1.}                           \tag{31}
-\]
-
-Equivalently, transferring one request to an already at-least-as-frequent
-label cannot decrease the terminal empty marked-cache probability after
-uniform word shuffling.  A proof of `(31)` proves the PGF Schur inequality,
-and hence the standard fixed-count sign.  The counterexample `(28)` shows
-that replacing `(31)` by pointwise rank-CDF domination is invalid.
+The eight-vertex computation is also rebuilt through an independent
+two-label orbit quotient and checked against the labelled chain.  No
+numerical sign is used in the refutation.
