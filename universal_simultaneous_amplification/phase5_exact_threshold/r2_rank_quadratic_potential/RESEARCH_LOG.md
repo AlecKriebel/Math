@@ -380,3 +380,35 @@ must be hostile-tested before analytic investment.
   residual is about `-1.2886e4` while the exact true residual is positive
   `0.002549972...`.  Thus `(214)` is useful only inside the full rank-path
   recurrence; another static use of it is decisively excluded.
+- [EXACT MASS PHASE] Added the rank-centred mass coordinate
+  `m=M-k/n`.  Both oriented discrepancies
+  `P1-k P^M/(n-1)` and `N1-(k-1)N^M/(n-1)` are averages of the same error
+  `theta m-e`.  Together with the two pair phases this gives a common
+  three-vector `(theta m-e,-alpha e,(I-P)e)`.
+- Every three-vector projection has the exact action
+  `lambda0^2 theta^2 m^2 + ||-(lambda0+alpha lambda1)e
+  +lambda2(I-P)e||_pi^2`, bounded sharply by the two spectral endpoints.
+  Both `m^2` and `K_theta` lie in `W_123`, so the local kinetic metric is
+  now closed in the allowed potential space.
+- [TARGETED HOSTILE TEST, NUMERICAL ONLY] Restricting all rank one-marks to
+  the two boundary fields `H1,H2` while keeping all three pair directions
+  fails on the exact n=12 graph by about `+0.00359841`.  Adding the mass
+  field repairs it with gap about `-0.02987612`, and the same three marks
+  repair the stored n=9 and n=17 witnesses.  The required path transfer is
+  therefore at least three-component; a pure two-mark Riccati is not live.
+- [EXACT BLOCK-TRIDIAGONAL TRANSFER] Introduced centered phase coordinates
+  `Y=(M,H1,H2)` and
+  `Z_k=(E1-(k-1/2)M/(n-1), G-H/2)`.  Their addition/removal increments are
+  the common kinetic vector plus/minus half of the mark vector, with the
+  radial `M/(n-1)` holding term retained exactly.  An arbitrary profile
+  `c_k+p_k.Z_k+q_k.Y` now has an explicit Bellman formula coupling only
+  ranks `k-1,k,k+1`; the rational verifier checks it event by event and
+  against direct generator evaluation.
+- The oriented terms split as kinetic current `p.R` plus mark mismatches
+  `(q-Dp/2).T+` and `(q+Dp/2).T-`, with
+  `D=diag(1/(n-1),1,1)`.  The local action has a positive `p` block but a
+  zero `q` block.  Therefore the naive first backward Schur complement is
+  singular; cancelling both mark orientations locally forces `p=q=0`.
+  This is an exact obstruction to a local kinetic-only Riccati, not a
+  refutation of `W_123`.  The nonlocal signed one-mark holdings or a larger
+  spectral/full-pair coordinate must be retained.

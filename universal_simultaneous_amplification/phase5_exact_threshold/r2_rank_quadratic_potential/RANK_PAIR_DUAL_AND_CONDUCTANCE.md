@@ -2350,6 +2350,247 @@ Dirichlet/Thomson inequality which couples `(210)` to the nonnegative
 storage recurrences `(132),(184)` and pays the reward
 `theta^2 V-W-(2theta-a_n)C` in `(178)`.
 
+### 7.19 The mass mode completes the local phase action
+
+The two special mark fields do not by themselves form a dynamically closed
+Bellman block.  The missing local coordinate is the rank-centred stationary
+mass
+
+\[
+ m_k(S)=M(S)-{k\over n},\qquad |S|=k.                     \tag{215}
+\]
+
+It produces an especially clean third current.  Put
+
+\[
+\begin{aligned}
+ R^+_0(S)&=P^1(S)-{k\over n-1}P^M(S),\\
+ R^-_0(S)&=N^1(S)-{k-1\over n-1}N^M(S).
+\end{aligned}                                             \tag{216}
+\]
+
+For an addition target `v notin S` and a removal target `v in S`,
+respectively,
+
+\[
+ x_v-{k\over n-1}=\theta m_k-e_v,
+ \qquad
+ x_v-{k-1\over n-1}=\theta m_k-e_v.                       \tag{217}
+\]
+
+Consequently, if
+
+\[
+ \mathbf R^+=
+ \begin{pmatrix}R^+_0\\ \alpha P^1-\widetilde P^3\\
+ P^2-\beta P^1\end{pmatrix},
+ \qquad
+ \mathbf R^-=
+ \begin{pmatrix}R^-_0\\ \alpha N^1-\widetilde N^3-T^-_\pi\\
+ N^2-\beta N^1-T^-_r\end{pmatrix},                        \tag{218}
+\]
+
+then both orientations have the same exact three-phase factorization
+
+\[
+\boxed{
+ \mathbf R^+(S)=\sum_{v\notin S}g_v\pi_v
+ \begin{pmatrix}\theta m_k-e_v\\-\alpha e_v\\f_v\end{pmatrix},
+ \qquad
+ \mathbf R^-(S)=\sum_{v\in S}\ell_v\pi_v
+ \begin{pmatrix}\theta m_k-e_v\\-\alpha e_v\\f_v\end{pmatrix}.} \tag{219}
+\]
+
+For `lambda=(lambda_0,lambda_1,lambda_2)`, its exact local action is
+
+\[
+\begin{aligned}
+ \mathfrak b_\lambda(S)
+ &=\sum_v\pi_v\{\lambda_0\theta m_k
+ -(\lambda_0+\alpha\lambda_1)e_v+\lambda_2f_v\}^2\\
+ &=\lambda_0^2\theta^2m_k^2
+ +\|-(\lambda_0+\alpha\lambda_1)e+\lambda_2(I-P)e\|_\pi^2.
+                                                               \tag{220}
+\end{aligned}
+\]
+
+The second equality uses `sum_v pi_v e_v=sum_v pi_v f_v=0`.  Therefore
+weighted Cauchy--Schwarz gives
+
+\[
+ \{\lambda\mathbin\cdot\mathbf R^+\}^2
+ \le P^M\mathfrak b_\lambda,
+ \qquad
+ \{\lambda\mathbin\cdot\mathbf R^-\}^2
+ \le N^M\mathfrak b_\lambda,                              \tag{221}
+\]
+
+statewise and after rank aggregation.  Reversible spectral calculus gives
+the sharp endpoint envelope
+
+\[
+\boxed{
+ \mathfrak b_\lambda(S)
+ \le \lambda_0^2\theta^2m_k^2
+ +\max\{(\lambda_0+\alpha\lambda_1)^2,
+ (-\lambda_0-\alpha\lambda_1+2\lambda_2)^2\}K_\theta(S).} \tag{222}
+\]
+
+Both terms on the right belong to `W_123`: on a fixed rank,
+`m_k^2=M^2-2(k/n)M+k^2/n^2`, and `K_theta` is the three-pair operator
+square `(188)`.  Thus `(219)--(222)` give a closed local kinetic metric in
+the allowed potential space.  What remains nonlocal is the transfer of its
+three phase potentials between adjacent ranks.
+
+This mass coordinate is not cosmetic.  On the exact twelve-vertex combined
+refuter, the numerical LP obtained by retaining all three pair directions
+but only the two mark fields `(201)` lies above the complete baseline by
+about `0.0035984`.  Adding the rank-labelled mass field `(215)` moves the
+optimum below baseline by about `0.0298761` and also repairs the stored
+nine- and seventeen-vertex witnesses.  These are discovery calculations,
+not exact certificates or a universal theorem.  They show that the next
+Riccati recursion must carry the mass phase together with the two pair
+phases; a pure `2 by 2` mark recursion is already falsified numerically on
+the principal hostile case.
+
+### 7.20 Exact block-tridiagonal Bellman transfer
+
+The three-phase action has a canonical first-order transfer.  Put
+`N=n-1`, let `e_0=(1,0,0)^T`, and define
+
+\[
+ \widehat h_v=
+ \begin{pmatrix}1\\h^{(1)}_v\\h^{(2)}_v\end{pmatrix},
+ \qquad
+ \widetilde h_v=
+ \begin{pmatrix}1/N\\h^{(1)}_v\\h^{(2)}_v\end{pmatrix},
+ \qquad
+ \mathbf Y(S)=\begin{pmatrix}M(S)\\\mathbf H(S)\end{pmatrix}. \tag{223}
+\]
+
+The centered pair coordinate on the `k`-slice is
+
+\[
+ \mathbf Z_k(S)=
+ \begin{pmatrix}
+ E_1(S)-{k-1/2\over N}M(S)\\
+ \mathbf G(S)-\mathbf H(S)/2
+ \end{pmatrix}.                                            \tag{224}
+\]
+
+For one addition `T=S union {v}` and one removal `T=S minus {v}`,
+the event-level identities are
+
+\[
+\boxed{
+\begin{aligned}
+ \mathbf Y(S\cup v)-\mathbf Y(S)&=\pi_v\widehat h_v,\\
+ \mathbf Z_{k+1}(S\cup v)-\mathbf Z_k(S)
+ &=\pi_v\{\mathbf z_{k,v}-\widetilde h_v/2\}
+   -{M(S)\over N}e_0,\\
+ \mathbf Y(S)-\mathbf Y(S\setminus v)&=\pi_v\widehat h_v,\\
+ \mathbf Z_k(S)-\mathbf Z_{k-1}(S\setminus v)
+ &=\pi_v\{\mathbf z_{k,v}+\widetilde h_v/2\}
+   -{M(S)\over N}e_0,
+\end{aligned}}                                             \tag{225}
+\]
+
+where
+
+\[
+ \mathbf z_{k,v}=
+ \begin{pmatrix}\theta m_k(S)-e_v\\-\alpha e_v\\f_v\end{pmatrix}. \tag{226}
+\]
+
+These formulas include the half-rank shift in the first coordinate; no
+endpoint or holding term is suppressed.
+
+Let `c_k in R` and `p_k,q_k in R^3`, and consider the canonical phase
+potential
+
+\[
+ \Phi(S)=c_k+p_k\mathbin\cdot\mathbf Z_k(S)
+                 +q_k\mathbin\cdot\mathbf Y(S),
+ \qquad |S|=k.                                             \tag{227}
+\]
+
+This lies in `W_123` with rank constants and the three distinguished
+one-marks `M,H_1,H_2`.  Define
+
+\[
+\begin{aligned}
+ \Xi^+_{p,q}(S)
+ &=\sum_{v\notin S}g_v\pi_v
+   [p\mathbin\cdot(\mathbf z_{k,v}-\widetilde h_v/2)
+    +q\mathbin\cdot\widehat h_v],\\
+ \Xi^-_{p,q}(S)
+ &=\sum_{v\in S}\ell_v\pi_v
+   [p\mathbin\cdot(\mathbf z_{k,v}+\widetilde h_v/2)
+    +q\mathbin\cdot\widehat h_v].                         \tag{228}
+\end{aligned}
+\]
+
+Direct substitution of `(225)` gives the exact block-tridiagonal Bellman
+operator
+
+\[
+\boxed{
+\begin{aligned}
+ L\Phi(S)={}&U\bigl[c_{k+1}-c_k
+ +(p_{k+1}-p_k)\mathbin\cdot\mathbf Z_k
+ +(q_{k+1}-q_k)\mathbin\cdot\mathbf Y
+ -{p_{k+1,0}\over N}M\bigr]\\
+ &+D\bigl[c_{k-1}-c_k
+ +(p_{k-1}-p_k)\mathbin\cdot\mathbf Z_k
+ +(q_{k-1}-q_k)\mathbin\cdot\mathbf Y
+ +{p_{k-1,0}\over N}M\bigr]\\
+ &+\Xi^+_{p_{k+1},q_{k+1}}(S)
+  -\Xi^-_{p_{k-1},q_{k-1}}(S).
+\end{aligned}}                                             \tag{229}
+\]
+
+Thus every slice constraint couples only coefficient blocks `k-1,k,k+1`.
+In particular, `(229)` is the exact graph-dependent Bellman transfer whose
+inverse-positive or Riccati sign would prove feasibility of this canonical
+subspace.  Together with an arbitrary residual rank one-mark it is the
+full `W_123` Bellman system.
+
+The reason a naive backward Schur complement fails is now algebraic.  Let
+
+\[
+ D_*=\operatorname{Diag}(1/N,1,1),\qquad
+ \mathbf T^+=\sum_{v\notin S}g_v\pi_v\widehat h_v,
+ \qquad
+ \mathbf T^-=\sum_{v\in S}\ell_v\pi_v\widehat h_v.
+\]
+
+Using `(219)`, the oriented terms split as
+
+\[
+\boxed{
+ \Xi^+_{p,q}=p\mathbin\cdot\mathbf R^+
+ +(q-D_*p/2)\mathbin\cdot\mathbf T^+,
+ \qquad
+ \Xi^-_{p,q}=p\mathbin\cdot\mathbf R^-
+ +(q+D_*p/2)\mathbin\cdot\mathbf T^-.}                   \tag{230}
+\]
+
+The kinetic metric `(220)--(222)` is positive only in `p`; `q` is the
+one-mark transport momentum and has a zero local quadratic block.  Hence
+the first Schur complement which tries to eliminate `q` from the local
+action is singular.  Killing both mark currents pointwise would require
+`q=D_*p/2=-D_*p/2`, hence `p=0`.  This proves that no local `3 by 3`
+Riccati based only on the kinetic action can be valid.  It does **not**
+refute `W_123`: the signed `q` holdings in `(229)` are precisely the
+nonlocal information that must be retained.
+
+Accordingly, there are now two honest continuations.  One may prove a
+rank-path coercivity theorem which supplies a positive `q` block from the
+full one-mark transport, or enlarge the pair coordinate to a
+rank-dependent spectral matrix `f_k(P)` (and ultimately the full pair
+matrix).  Adding another static scalar contraction cannot repair the
+singular Schur step.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -2417,6 +2658,15 @@ storage recurrences `(132),(184)` and pays the reward
   heterogeneity boundary vector, and every scalar projection satisfies the
   sharp reversible Thomson-action bound.  This is a vector-flow reduction,
   not yet the missing rank-path sign theorem.
+- **PROVED:** the rank-centred mass/request phase `(215)--(222)`.  It joins
+  the two pair discrepancies into a common three-component oriented error
+  and has an exact diagonal-mass plus spectral-endpoint kinetic metric
+  entirely inside `W_123`.  The adjacent-rank transfer/Riccati sign is open.
+- **PROVED:** the exact centered block-tridiagonal Bellman transfer
+  `(223)--(230)`.  Its kinetic `p` block is positive, but the one-mark
+  momentum `q` block is locally zero; the naive first backward Schur
+  complement is therefore singular.  Any valid Riccati proof must retain
+  nonlocal one-mark holdings or pass to a larger spectral/full-pair space.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
