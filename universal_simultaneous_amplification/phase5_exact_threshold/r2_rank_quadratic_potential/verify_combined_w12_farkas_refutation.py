@@ -10,6 +10,9 @@ strictly above the complete ``K_12`` baseline.
 The script reconstructs the dB quotient chain at r=2 from the update rule,
 audits every quotient row against a separately labelled construction, and
 checks matching rational primal and Farkas-dual solutions exactly.
+It also reconstructs the exact Green occupation and proves that the best
+static rankwise covariance tangent fails even though the full endpoint
+residual is strictly positive.
 
 This refutes only this compressed certificate.  It does not refute the
 universal r=2 fixation bound or the full rank-pair certificate.
@@ -452,6 +455,127 @@ def exact_fixation() -> Q:
     return fixation
 
 
+def exact_green_schur_audit() -> tuple[Q, Q]:
+    """Separate the static covariance bound from the true endpoint target.
+
+    The first return value is the strongest lower-bound residual obtainable
+    by optimizing the rankwise tangent
+
+        D_k >= 2 theta_k C_k - theta_k^2 V_k,
+
+    namely ``sum_k C_k^2/V_k + W - (2-kappa)C``.  The second is the true
+    residual ``D+W-(2-kappa)C``.  All Green occupations and moments are
+    reconstructed over the rationals from the update rule.
+    """
+
+    states = orbit_states()
+    state_index = {state: j for j, state in enumerate(states)}
+    dimension = len(states)
+    rows = [[Q(0) for _ in range(dimension)] for _ in range(dimension)]
+    source = [Q(0) for _ in range(dimension)]
+    empty = (0,) * len(CLASS_SIZES)
+
+    for state in states:
+        row_index = state_index[state]
+        if sum(state) == 1:
+            mutant_class = next(a for a, count in enumerate(state) if count)
+            source[row_index] = Q(CLASS_SIZES[mutant_class], N_VERTICES)
+        gain, loss = orbit_rates(state)
+        total = Q(0)
+        for a, size in enumerate(CLASS_SIZES):
+            if state[a] < size:
+                rate = (size - state[a]) * gain[a]
+                target = list(state)
+                target[a] += 1
+                target = tuple(target)
+                total += rate
+                if target != CLASS_SIZES:
+                    rows[row_index][state_index[target]] -= rate
+            if state[a]:
+                rate = state[a] * loss[a]
+                target = list(state)
+                target[a] -= 1
+                target = tuple(target)
+                total += rate
+                if target != empty:
+                    rows[row_index][state_index[target]] -= rate
+        rows[row_index][row_index] += total
+
+    matrix = fmpq_mat([
+        [to_fmpq(value) for value in row] for row in rows
+    ])
+    vector = fmpq_mat([[to_fmpq(value)] for value in source])
+    green = matrix.transpose().solve(vector)
+    occupation = [from_fmpq(green[j, 0]) for j in range(dimension)]
+    assert all(value > 0 for value in occupation)
+
+    variance = [Q(0) for _ in range(N_VERTICES + 1)]
+    cut = [Q(0) for _ in range(N_VERTICES + 1)]
+    prediction_error = [Q(0) for _ in range(N_VERTICES + 1)]
+    nonlinear = [Q(0) for _ in range(N_VERTICES + 1)]
+
+    for state, weight in zip(states, occupation):
+        rank = sum(state)
+        mutant_mass = sum(
+            PI_PER_VERTEX[a] * state[a] for a in range(len(CLASS_SIZES))
+        )
+        state_cut = Q(0)
+        state_collision = Q(0)
+        state_nonlinear = Q(0)
+        for a, size in enumerate(CLASS_SIZES):
+            weighted_mutants = sum(
+                CLASS_WEIGHTS[a][b] * state[b]
+                for b in range(len(CLASS_SIZES))
+            )
+            if state[a]:
+                x = Q(
+                    weighted_mutants - CLASS_WEIGHTS[a][a], DEGREES[a]
+                )
+                count = state[a]
+                state_cut += count * PI_PER_VERTEX[a] * (1 - x)
+                state_collision += count * PI_PER_VERTEX[a] * x * (1 - x)
+                state_nonlinear += (
+                    count * PI_PER_VERTEX[a] * x * x * (1 - x) / (1 + x)
+                )
+            if state[a] < size:
+                x = Q(weighted_mutants, DEGREES[a])
+                count = size - state[a]
+                state_collision += count * PI_PER_VERTEX[a] * x * (1 - x)
+                state_nonlinear += (
+                    count * PI_PER_VERTEX[a] * x * x * (1 - x) / (1 + x)
+                )
+
+        variance[rank] += weight * mutant_mass * (1 - mutant_mass)
+        cut[rank] += weight * state_cut
+        prediction_error[rank] += weight * (
+            2 * state_cut - state_collision
+        )
+        nonlinear[rank] += weight * state_nonlinear
+
+    for rank in range(1, N_VERTICES):
+        assert variance[rank] > 0
+        assert (
+            variance[rank] * prediction_error[rank] - cut[rank] ** 2
+            >= 0
+        )
+
+    kappa = Q(
+        2 * ((N_VERTICES - 3) * 2 ** N_VERTICES + 4),
+        (3 * N_VERTICES - 7) * 2 ** N_VERTICES + 8,
+    )
+    target_coefficient = 2 - kappa
+    schur_residual = sum(
+        cut[rank] ** 2 / variance[rank]
+        for rank in range(1, N_VERTICES)
+    ) + sum(nonlinear) - target_coefficient * sum(cut)
+    target_residual = (
+        sum(prediction_error)
+        + sum(nonlinear)
+        - target_coefficient * sum(cut)
+    )
+    return schur_residual, target_residual
+
+
 def decimal_string(value: Q, digits: int = 25) -> str:
     with localcontext() as context:
         context.prec = digits
@@ -473,6 +597,8 @@ def main() -> None:
     fixation = exact_fixation()
     fixation_margin = baseline - fixation
     assert fixation_margin > 0
+    schur_residual, target_residual = exact_green_schur_audit()
+    assert schur_residual < 0 < target_residual
     print("combined rank-H,K0 Farkas refutation: PASS")
     print("graph: n=12, class sizes=(1,1,2,3,5), complete positive support")
     print("exact labelled/quotient drift rows checked: 286")
@@ -490,6 +616,14 @@ def main() -> None:
     print(
         "true suppression margin: "
         f"{decimal_string(fixation_margin)} > 0, {digest(fixation_margin)}"
+    )
+    print(
+        "optimized rankwise covariance residual: "
+        f"{decimal_string(schur_residual)} < 0, {digest(schur_residual)}"
+    )
+    print(
+        "exact full target residual: "
+        f"{decimal_string(target_residual)} > 0, {digest(target_residual)}"
     )
 
 

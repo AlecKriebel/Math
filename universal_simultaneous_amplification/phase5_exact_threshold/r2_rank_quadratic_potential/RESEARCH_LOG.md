@@ -267,3 +267,48 @@ must be hostile-tested before analytic investment.
   The next task is to contract the complete matrix balance without reducing
   it to the refuted `H,K_0` span, and to hostile-test the full pair LP on
   this exact witness.
+- [EXACT THIRD PAIR DIRECTION] Contracting the full matrix balance with
+  `pi pi^T` adds stationary mutant mass squared `M^2`.  If
+  `V=M(1-M)` and `D=2C-R0`, the covariance matrix of the stationary target
+  indicator and its request probability is
+  `[[V,V-C],[V-C,V-R0]]>=0`; hence the sharp statewise square
+  `C^2<=VD`.  Equality holds exactly when `x` is constant on each side of
+  the cut, including every complete-graph rank.
+- The exact current law is
+  `L M^2=2MQ+sum_v pi_v^2 t_v`.  Resolving additions/removals gives
+  nonnegative third-channel creation/debt and a rank recurrence with source
+  `||pi||_2^2/n`, sink `z`, and total net
+  `z-||pi||_2^2/n`.  The exact verifier checks the PSD determinant, equality
+  class, generator identity, every rank equation, and the total boundary
+  law.
+- [NUMERICAL ONLY] Adding rank-dependent `M^2` to `W_12` repairs the exact
+  twelve-vertex refuter with margin about `0.02988`; initial 728-evaluation
+  five-class and 540-evaluation six-class multiscale hostile cycles found no
+  failure.  The live intermediate conjecture is `W_123`; the next analytic
+  target is a `2 by 2` rank Schur/Riccati bound using `C^2<=M(1-M)D`.
+- [HOSTILE SCREEN, NUMERICAL ONLY] `W_123` also closes every stored exact
+  refuter: the rank-`H` and rank-`K_0` nine-vertex graphs, the combined
+  twelve-vertex graph, and the original seventeen-vertex additive witness.
+  New optimized multiscale cycles found no violation: 567 seven-class
+  evaluations on sizes `(1,1,1,1,2,3,5)` with best gap `-0.0486952`, 504
+  five-class evaluations on `(1,2,3,5,8)` with best gap `-0.0185538`, and
+  360 six-class evaluations on `(1,1,2,3,4,6)` with best gap `-0.0574056`.
+  The weight ratios spanned up to about `exp(40)`.  These screens do not
+  establish universal feasibility.
+- [EXACT RANK SCHUR REDUCTION] Summing the target/request covariance matrix
+  on each rank gives `C_k^2<=V_k D_k`, equivalently the full tangent family
+  `D_k-2 theta_k C_k+theta_k^2 V_k>=0`.  Subtracting the `M^2` recurrence
+  from the rank-labelled `M` recurrence gives the boundary-zero variance
+  transport for `V=M(1-M)`, with signed adjacent-rank responses
+  `B^+=P^M-P^3` and `B^-=N^3-N^M`.  The verifier checks the state generator,
+  every endpoint, every rank recurrence, and nonconstant exact tangents.
+- [EXACT STATIC-SCHUR REFUTATION] The strongest contraction which discards
+  that signed transport and optimizes every rank tangent independently is
+  insufficient on the exact twelve-vertex graph.  Its exact Green residual
+  is `-0.2524901456099282956184879...`, SHA-256
+  `56d33de896c8e6c7d23dfb1712acbbb972647529cbbcec94d12cd5c61832a2e9`,
+  while the true target residual is the exact positive rational
+  `0.002549972027336616301296108...`, SHA-256
+  `e9921c44de22a2f1d274edfe7e95672a803a3e32541b9f1aa5a260a9fe2f2782`.
+  This refutes only the static PSD tangent route, not `W_123`; any proof of
+  the latter must use the signed variance-current recurrence essentially.

@@ -1713,6 +1713,229 @@ an enlargement with at least one genuinely new graph-dependent pair
 direction.  See `COMBINED_W12_FARKAS_REFUTATION.md` and
 `verify_combined_w12_farkas_refutation.py`.
 
+### 7.14 The first new full-pair direction gives a sharp covariance square
+
+The exact failure of `W_12` identifies the next matrix contraction rather
+than merely deleting a conjecture.  Put
+
+\[
+ M(S)=\pi\mathbin\cdot s,\qquad V(S)=M(S)\{1-M(S)\},
+ \qquad \mathcal D(S)=2C(S)-R_0(S).                        \tag{162}
+\]
+
+Sample a stationary target `v` and then a request `i` from row `P_v`.
+For the random variables `S_0=s_v` and `X=x_v(S)`, stationarity and
+reversibility give
+
+\[
+ \mathbb E S_0=\mathbb E X=M,\qquad
+ \mathbb E(S_0X)=M-C,\qquad
+ \mathbb E X^2=M-R_0.                                     \tag{163}
+\]
+
+Therefore their exact covariance matrix is positive semidefinite:
+
+\[
+ \boxed{
+ \begin{pmatrix}
+ V&V-C\\ V-C&V-R_0
+ \end{pmatrix}\succeq0.}                                 \tag{164}
+\]
+
+Its determinant is the sharp pair inequality
+
+\[
+ \boxed{C(S)^2\le V(S)\mathcal D(S).}                     \tag{165}
+\]
+
+Equality holds exactly when `x_v(S)` is affine in `s_v`, equivalently when
+the request probability is constant on the mutant side and constant on the
+resident side (up to stationary-null vertices).  Every complete-graph rank
+has equality.  Thus `(165)` has the correct equality class that the fixed
+`L_pi,K_0` cone lacked.
+
+The additional pair direction is simply the rank-one matrix
+`pi pi^T`, because its state statistic is `M(S)^2`.  With `d,t` from
+`(68)` and `Q=pi dot d`,
+
+\[
+ \boxed{L M(S)^2=2M(S)Q(S)+\mathcal V_\pi(S),\qquad
+ \mathcal V_\pi(S)=\sum_v\pi_v^2t_v(S)\ge0.}             \tag{166}
+\]
+
+This also has a nonnegative rank-current resolution.  Define
+
+\[
+\begin{aligned}
+ P^3(S)&=\sum_{v\notin S}g_v
+       \{2M\pi_v+\pi_v^2\},\\
+ N^3(S)&=\sum_{v\in S}\ell_v
+       \{2M\pi_v-\pi_v^2\},
+\end{aligned}                                              \tag{167}
+\]
+
+so `P^3,N^3>=0` and `LM^2=P^3-N^3`.  If `X^3_k,Y^3_k` are the rank
+occupations of `M^2U,M^2D`, the exact recurrence is
+
+\[
+\boxed{
+ {\|\pi\|_2^2\over n}1_{\{k=1\}}
+ +X^3_{k-1}+P^3_{k-1}+Y^3_{k+1}-N^3_{k+1}-X^3_k-Y^3_k
+ =z1_{\{k=n\}}.}                                         \tag{168}
+\]
+
+Summing gives
+
+\[
+ \sum_k(P^3_k-N^3_k)=z-{\|\pi\|_2^2\over n}.             \tag{169}
+\]
+
+Equations `(164)--(169)` are exact consequences of the full pair matrix,
+and the rational verifier checks them independently.  They suggest the
+smallest current enlargement after the refuted `W_12` space:
+
+\[
+ \mathcal W_{123}=\mathcal W_{12}
+ +\operatorname{span}\{M(S)^2\}\quad\hbox{on every rank}. \tag{170}
+\]
+
+On the exact twelve-vertex `W_12` refuter this single added direction moves
+the numerical restricted optimum below the baseline by more than `0.029`.
+It also survived the first multiscale five- and six-class hostile cycles.
+These are **NUMERICAL OBSERVATIONS ONLY**, not a universal theorem.  The
+next exact obligation is a rankwise `2 by 2` Schur/Riccati estimate combining
+`(132)`, `(165)`, and `(168)`.  The full rank-pair matrix remains the
+fallback if `W_123` fails.
+
+### 7.15 Exact rank Schur reduction and the transport obstruction
+
+The covariance square remains positive after aggregation over any rank.
+Write
+
+\[
+ V_k=\sum_{|S|=k}\bar\mu_SV(S),\qquad
+ R^0_k=\sum_{|S|=k}\bar\mu_SR_0(S),\qquad
+ \mathcal D_k=2C_k-R^0_k.                                 \tag{171}
+\]
+
+Summing `(164)` against the nonnegative pseudoflow gives
+
+\[
+ \Gamma_k=
+ \begin{pmatrix}
+ V_k&V_k-C_k\\
+ V_k-C_k&V_k-R^0_k
+ \end{pmatrix}\succeq0,
+ \qquad
+ \boxed{C_k^2\le V_k\mathcal D_k.}                        \tag{172}
+\]
+
+Equivalently, for every real rank sequence `theta_k`,
+
+\[
+ \boxed{
+ \mathcal D_k-2\theta_kC_k+\theta_k^2V_k\ge0.}            \tag{173}
+\]
+
+This is the exact `2 by 2` Schur inequality, rather than a scalar
+relaxation guessed from finite data.  Its best tangent at a fixed rank is
+`theta_k=C_k/V_k`, with the convention that the term is zero when
+`V_k=0` (then `(172)` forces `C_k=0`).
+
+The new statistic also has a boundary-zero transport form.  Define
+
+\[
+\begin{aligned}
+ P^M(S)&=\sum_{v\notin S}\pi_vg_v(S),&
+ N^M(S)&=\sum_{v\in S}\pi_v\ell_v(S),\\
+ B^+(S)&=P^M(S)-P^3(S)
+ =\sum_{v\notin S}g_v\pi_v\{1-2M-\pi_v\},\\
+ B^-(S)&=N^3(S)-N^M(S)
+ =\sum_{v\in S}\ell_v\pi_v\{2M-1-\pi_v\}.
+\end{aligned}                                             \tag{174}
+\]
+
+Then `LM=P^M-N^M=Q`.  For `V=M-M^2`,
+
+\[
+ \boxed{
+ LV=B^++B^-=(1-2M)Q-\mathcal V_\pi.}                     \tag{175}
+\]
+
+Let `X^V_k,Y^V_k` denote the rank occupations of `VU,VD`, and let
+`B^\pm_k` denote those of `(174)`.  Subtracting `(168)` from the
+rank-labelled `M` balance gives the exact recurrence
+
+\[
+\boxed{
+ {1-\|\pi\|_2^2\over n}1_{\{k=1\}}
+ +X^V_{k-1}+B^+_{k-1}+Y^V_{k+1}+B^-_{k+1}
+ -X^V_k-Y^V_k=0.}                                        \tag{176}
+\]
+
+There is no top sink because `V(empty)=V(V)=0`.  More generally, for every
+rank profile `lambda_k`,
+
+\[
+\begin{aligned}
+ L\{\lambda_kV(S)\}={}&V(S)
+ [(\lambda_{k+1}-\lambda_k)U
+  +(\lambda_{k-1}-\lambda_k)D]\\
+ &+\lambda_{k+1}B^+(S)+\lambda_{k-1}B^-(S),\qquad k=|S|,
+\end{aligned}                                             \tag{177}
+\]
+
+and its integrated boundary source is
+`lambda_1(1-||pi||_2^2)/n`.  Equations `(173)` and `(177)` are the
+minimal Riccati starting point.  The difficulty is now explicit:
+`B^+` and `B^-` are signed adjacent-rank currents.  A proof must pay the
+negative quadratic term in `(173)` using their transport, together with
+the rank one-mark balances; a static PSD contraction cannot do so.
+
+Indeed, put `a_n=2-kappa_n`.  From `(173)`, any rank profile `theta`
+would reduce the target `(111)` to the sufficient residual
+
+\[
+ \mathcal R(\theta)=
+ \sum_k\{W_k+(2\theta_k-a_n)C_k-\theta_k^2V_k\}\ge0.       \tag{178}
+\]
+
+If one discards `(176)--(177)` and optimizes the static tangent rank by
+rank, its strongest possible value is
+
+\[
+ \sup_\theta\mathcal R(\theta)=
+ \sum_k\left\{W_k-a_nC_k+{C_k^2\over V_k}\right\}.        \tag{179}
+\]
+
+This static route is **EXACTLY REFUTED** by the same rational twelve-vertex
+graph from Section 7.13.  An independent exact Green solve gives
+
+\[
+ \sup_\theta\mathcal R(\theta)
+ =-0.2524901456099282956184879\ldots<0,                  \tag{180}
+\]
+
+while the true full residual in `(111)` is
+
+\[
+ \sum_k(\mathcal D_k+W_k-a_nC_k)
+ =0.002549972027336616301296108\ldots>0.                 \tag{181}
+\]
+
+Both signs are certified over the rationals.  Their canonical
+numerator/denominator SHA-256 identifiers are, respectively,
+
+```text
+56d33de896c8e6c7d23dfb1712acbbb972647529cbbcec94d12cd5c61832a2e9
+e9921c44de22a2f1d274edfe7e95672a803a3e32541b9f1aa5a260a9fe2f2782
+```
+
+Thus the sharp covariance square is genuine new structure, but even its
+best independent rank tangents lose the theorem by a large exact margin.
+This does **not** refute `W_123`: that potential space retains precisely
+the transport identity `(177)` which the static relaxation discards.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1757,6 +1980,16 @@ direction.  See `COMBINED_W12_FARKAS_REFUTATION.md` and
   by the exact twelve-vertex rational primal/dual pair `(157)--(160)`.
 - **EXACTLY COMPUTED:** the combined-certificate witness is itself strictly
   dB-suppressing at fitness two, by the exact harmonic solve `(161)`.
+- **PROVED:** the sharp stationary target/request covariance inequality
+  `C^2<=M(1-M)D`, its equality class, the mass-square drift, and the exact
+  third-channel rank recurrence `(162)--(169)`.
+- **PROVED:** the rank-aggregated covariance matrix, its optimal Schur
+  tangent, and the boundary-zero variance-current recurrence
+  `(171)--(177)`.
+- **EXACTLY REFUTED:** the static rankwise covariance-tangent route, even
+  after optimizing every rank coefficient independently, by the exact
+  Green residuals `(180)--(181)`.  This does not refute the dynamic
+  three-channel space `W_123`.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
@@ -1776,9 +2009,11 @@ direction.  See `COMBINED_W12_FARKAS_REFUTATION.md` and
   conjugacy and matrix balance without floating arithmetic.
 - **NUMERICALLY OBSERVED ONLY:** the full rank-pair primal has remained below
   the complete baseline in the hostile searches in this directory.
+- **NUMERICALLY OBSERVED ONLY:** the three-channel space `W_123` repairs the
+  exact combined refuter and survived the first multiscale hostile cycle.
 - **OPEN:** the universal cut bound `(25)`, hence universal feasibility of
   the rank-pair certificate and the universal fitness-two fixation theorem;
   equivalently, the summed collision inequality `(75)`.  Every tested
   one- and two-channel compression in this note is now exactly refuted.
-  The smallest live quadratic certificate is the full rank-pair matrix;
-  the minimal adequate intermediate pair space is unknown.
+  The full rank-pair matrix remains live; `W_123` is the smallest unrefuted
+  intermediate space, but its universal validity is open.

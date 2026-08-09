@@ -682,6 +682,53 @@ def verify_fixed_matrix_contractions() -> None:
     assert 2 * mixed + diagonal_carre == -trace_k_zero / N
     assert mixed <= -trace_k_zero / (2 * N)
 
+    # The first genuinely new full-pair direction beyond H and K_0 is the
+    # rank-one matrix pi*pi^T, i.e. stationary mutant mass squared.  Its
+    # 2-by-2 covariance determinant gives the sharp statewise inequality
+    # C^2 <= M(1-M) D, with D=2C-R_0.  Equality means that the request
+    # probability is affine in the mutant indicator (constant on each side
+    # of the cut), and holds on every complete-graph rank.
+    stationary_square = sum(value * value for value in PI)
+    mass_values = [mass(state) for state in range(FULL + 1)]
+    mass_square_values = [value * value for value in mass_values]
+    mass_variance_values = [value * (1 - value) for value in mass_values]
+    activity_square_integral = F(0)
+    mass_gain_integral = F(0)
+    for state in transient:
+        mutant_mass = mass_values[state]
+        variance = mutant_mass * (1 - mutant_mass)
+        collision_cut = cut_values[state]
+        collision_variance = r_zero_values[state]
+        prediction_error = 2 * collision_cut - collision_variance
+        request_variance = variance - collision_variance
+        covariance = variance - collision_cut
+        determinant = variance * request_variance - covariance * covariance
+        assert determinant == variance * prediction_error - collision_cut ** 2
+        assert determinant >= 0
+
+        drift, activity = drift_activity(state)
+        gain = sum(PI[v] * drift[v] for v in range(N))
+        activity_square = sum(PI[v] ** 2 * activity[v] for v in range(N))
+        assert gain == selection_gain(state)
+        assert (
+            generator(state, mass_square_values)
+            == 2 * mutant_mass * gain + activity_square
+        )
+        activity_square_integral += mu[state] * activity_square
+        mass_gain_integral += mu[state] * mutant_mass * gain
+
+    assert (
+        stationary_square / N
+        + 2 * mass_gain_integral
+        + activity_square_integral
+        == rho
+    )
+    for k in range(1, N):
+        variance = F(k * (N - k), N * N)
+        collision_cut = F(k * (N - k), N * (N - 1))
+        prediction_error = F(N, N - 1) * collision_cut
+        assert variance * prediction_error == collision_cut ** 2
+
     # Resolve the L_pi contraction into its two oriented selection-gain
     # currents.  These are the minimal rank currents retained by the
     # rank-H plus arbitrary-one-mark dual.
@@ -696,6 +743,17 @@ def verify_fixed_matrix_contractions() -> None:
     internal_down = [F(0) for _ in range(N + 1)]
     creation = [F(0) for _ in range(N + 1)]
     destruction = [F(0) for _ in range(N + 1)]
+    mass_square_up = [F(0) for _ in range(N + 1)]
+    mass_square_down = [F(0) for _ in range(N + 1)]
+    mass_square_creation = [F(0) for _ in range(N + 1)]
+    mass_square_destruction = [F(0) for _ in range(N + 1)]
+    variance_occupation = [F(0) for _ in range(N + 1)]
+    prediction_error_occupation = [F(0) for _ in range(N + 1)]
+    nonlinear_remainder_by_rank = [F(0) for _ in range(N + 1)]
+    variance_up = [F(0) for _ in range(N + 1)]
+    variance_down = [F(0) for _ in range(N + 1)]
+    variance_response_up = [F(0) for _ in range(N + 1)]
+    variance_response_down = [F(0) for _ in range(N + 1)]
     d_zero_integral = F(0)
     nonlinear_remainder_integral = F(0)
     internal_values = [internal(state) for state in range(FULL + 1)]
@@ -714,6 +772,10 @@ def verify_fixed_matrix_contractions() -> None:
         mass_response_down = F(0)
         cut_response_up = F(0)
         cut_response_down = F(0)
+        square_response_up = F(0)
+        square_response_down = F(0)
+        variance_drift_up = F(0)
+        variance_drift_down = F(0)
         nonlinear_remainder = F(0)
         for vertex in range(N):
             x = x_value(state, vertex)
@@ -724,12 +786,24 @@ def verify_fixed_matrix_contractions() -> None:
                 q_minus += local_gain
                 mass_response_down -= PI[vertex] * rate
                 cut_response_down -= PI[vertex] * (1 - 2 * x) * rate
+                square_response_down += rate * (
+                    -2 * mutant_mass * PI[vertex] + PI[vertex] ** 2
+                )
+                variance_drift_down += rate * PI[vertex] * (
+                    2 * mutant_mass - 1 - PI[vertex]
+                )
             else:
                 rate = 2 * x / (1 + x)
                 up += rate
                 q_plus += local_gain
                 mass_response_up += PI[vertex] * rate
                 cut_response_up += PI[vertex] * (1 - 2 * x) * rate
+                square_response_up += rate * (
+                    2 * mutant_mass * PI[vertex] + PI[vertex] ** 2
+                )
+                variance_drift_up += rate * PI[vertex] * (
+                    1 - 2 * mutant_mass - PI[vertex]
+                )
             nonlinear_remainder += (
                 PI[vertex] * x * x * (1 - x) / (1 + x)
             )
@@ -742,6 +816,26 @@ def verify_fixed_matrix_contractions() -> None:
         assert 0 <= q_plus <= collision_cut
         assert 0 <= 2 * q_minus <= collision_cut
         assert generator(state, internal_values) == collision_cut - q_plus - q_minus
+        assert (
+            generator(state, mass_square_values)
+            == square_response_up + square_response_down
+        )
+        assert (
+            generator(state, mass_variance_values)
+            == variance_drift_up + variance_drift_down
+            == (1 - 2 * mutant_mass) * selection_gain(state)
+            - sum(
+                PI[vertex] ** 2
+                * (
+                    (1 - x_value(state, vertex)) / (1 + x_value(state, vertex))
+                    if bit(state, vertex)
+                    else 2 * x_value(state, vertex) / (1 + x_value(state, vertex))
+                )
+                for vertex in range(N)
+            )
+        )
+        assert square_response_up >= 0
+        assert square_response_down <= 0
 
         weight = mu[state]
         cut_occupation[k] += weight * collision_cut
@@ -755,6 +849,15 @@ def verify_fixed_matrix_contractions() -> None:
         internal_down[k] += weight * internal_values[state] * down
         creation[k] += weight * (collision_cut - q_plus)
         destruction[k] += weight * q_minus
+        mass_square_up[k] += weight * mutant_mass ** 2 * up
+        mass_square_down[k] += weight * mutant_mass ** 2 * down
+        mass_square_creation[k] += weight * square_response_up
+        mass_square_destruction[k] -= weight * square_response_down
+        variance_occupation[k] += weight * mutant_mass * (1 - mutant_mass)
+        variance_up[k] += weight * mutant_mass * (1 - mutant_mass) * up
+        variance_down[k] += weight * mutant_mass * (1 - mutant_mass) * down
+        variance_response_up[k] += weight * variance_drift_up
+        variance_response_down[k] += weight * variance_drift_down
 
         d_zero = 2 * collision_cut - r_zero_values[state]
         direct_gradient = sum(
@@ -769,6 +872,8 @@ def verify_fixed_matrix_contractions() -> None:
         )
         d_zero_integral += weight * d_zero
         nonlinear_remainder_integral += weight * nonlinear_remainder
+        prediction_error_occupation[k] += weight * d_zero
+        nonlinear_remainder_by_rank[k] += weight * nonlinear_remainder
 
     # Rank-resolved M and C recurrences, including both boundary sources.
     for k in range(1, N + 1):
@@ -814,6 +919,59 @@ def verify_fixed_matrix_contractions() -> None:
         internal_rank_residual -= F(1, 2) * rho if k == N else F(0)
         assert internal_rank_residual == 0
 
+        square_rank_residual = stationary_square / N if k == 1 else F(0)
+        if k > 1:
+            square_rank_residual += (
+                mass_square_up[k - 1]
+                + mass_square_creation[k - 1]
+            )
+        if k < N:
+            square_rank_residual += (
+                mass_square_down[k + 1]
+                - mass_square_destruction[k + 1]
+                - mass_square_up[k]
+                - mass_square_down[k]
+            )
+        square_rank_residual -= rho if k == N else F(0)
+        assert square_rank_residual == 0
+
+        variance_rank_residual = (
+            (1 - stationary_square) / N if k == 1 else F(0)
+        )
+        if k > 1:
+            variance_rank_residual += (
+                variance_up[k - 1] + variance_response_up[k - 1]
+            )
+        if k < N:
+            variance_rank_residual += (
+                variance_down[k + 1]
+                + variance_response_down[k + 1]
+                - variance_up[k]
+                - variance_down[k]
+            )
+        assert variance_rank_residual == 0
+
+    # Summing the stationary target/request covariance matrix over one rank
+    # preserves positive semidefiniteness.  Its determinant is precisely the
+    # sharp rankwise Schur inequality C_k^2 <= V_k D_k.  The final check is
+    # its equivalent tangent form for a deliberately nonconstant sequence.
+    schur_profile = [F((k + 2) * (2 * k + 1), 3 * k + 7) for k in range(N + 1)]
+    for k in range(1, N):
+        assert variance_occupation[k] >= 0
+        assert prediction_error_occupation[k] >= 0
+        assert (
+            variance_occupation[k] * prediction_error_occupation[k]
+            - cut_occupation[k] ** 2
+            >= 0
+        )
+        theta = schur_profile[k]
+        assert (
+            prediction_error_occupation[k]
+            - 2 * theta * cut_occupation[k]
+            + theta ** 2 * variance_occupation[k]
+            >= 0
+        )
+
     kappa = F(
         2 * ((N - 3) * 2 ** N + 4),
         (3 * N - 7) * 2 ** N + 8,
@@ -821,6 +979,10 @@ def verify_fixed_matrix_contractions() -> None:
     total_cut = sum(cut_occupation)
     total_gain = sum(gain_up) + sum(gain_down)
     assert sum(creation) - sum(destruction) == rho / 2
+    assert (
+        sum(mass_square_creation) - sum(mass_square_destruction)
+        == rho - stationary_square / N
+    )
     assert (
         total_gain <= kappa * total_cut
     ) == (

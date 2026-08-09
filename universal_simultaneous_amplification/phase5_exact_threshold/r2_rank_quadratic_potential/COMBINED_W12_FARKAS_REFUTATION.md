@@ -172,6 +172,63 @@ The canonical SHA-256 identifier of the exact margin in `(16)` is
 Thus the witness graph is exactly dB-suppressing at fitness two.  The
 failure is solely a failure of the compressed proof space.
 
+### 4.1 Exact audit of the next covariance contraction
+
+The independent Green solve now also checks the first new pair direction
+beyond `W_12`.  Put
+
+\[
+ V(S)=M(S)\{1-M(S)\},\qquad
+ \mathcal D(S)=2C(S)-R_0(S),\qquad
+ \mathcal W(S)=\sum_v{\pi_vx_v^2(1-x_v)\over1+x_v}.
+\]
+
+For the rank occupations `V_k`, `C_k`, and `mathcal D_k`, the exact stationary
+target/request covariance square gives
+
+\[
+ C_k^2\le V_k\mathcal D_k.
+\]
+
+Optimizing its tangent independently on every rank yields the strongest
+static Schur lower bound
+
+\[
+ \sum_k\left\{\mathcal W_k-(2-\kappa_{12})C_k
+                  +{C_k^2\over V_k}\right\}.
+\]
+
+For this graph that exact rational is
+
+\[
+ -0.2524901456099282956184879\ldots<0,
+\]
+
+with canonical SHA-256 identifier
+
+```text
+56d33de896c8e6c7d23dfb1712acbbb972647529cbbcec94d12cd5c61832a2e9
+```
+
+Yet the actual endpoint residual is the exact positive rational
+
+\[
+ \sum_k\{\mathcal D_k+\mathcal W_k-(2-\kappa_{12})C_k\}
+ =0.002549972027336616301296108\ldots>0,
+\]
+
+whose identifier is
+
+```text
+e9921c44de22a2f1d274edfe7e95672a803a3e32541b9f1aa5a260a9fe2f2782
+```
+
+Thus the static rankwise PSD contraction is exactly insufficient even on
+a graph where the desired inequality holds.  This does not refute the
+enlarged dynamic space `W_123=W_12+span{M^2 on every rank}`: that space
+also retains the signed adjacent-rank transport recurrence for
+`V=M-M^2`, which this static audit deliberately discards.
+
 ## 5. Consequence
 
 The exact dual description of `W_12` consists of rank mass, every
@@ -197,4 +254,5 @@ From the repository root:
 The replay checks all labelled and quotient drift rows, reconstructs the
 strictly positive rational dual and matching rational primal, verifies all
 drift signs, proves the strict restricted excess over `2816/6141`, and
-solves the true fixation system exactly.
+solves the true fixation system exactly.  It also rebuilds the rational
+Green occupation and certifies both signs in the static covariance audit.

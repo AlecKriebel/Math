@@ -22,10 +22,17 @@ def main() -> None:
     parser.add_argument("--iterations", type=int, default=12)
     parser.add_argument("--popsize", type=int, default=4)
     parser.add_argument("--seed", type=int, default=26080831)
+    parser.add_argument("--polish", action="store_true")
+    parser.add_argument(
+        "--extra",
+        default="",
+        help="comma-separated extra pair columns accepted by the sparse solver",
+    )
     args = parser.parse_args()
 
     sizes = tuple(int(value) for value in args.sizes.split(","))
-    quotient = W12Equitable(sizes)
+    extra_pairs = tuple(name for name in args.extra.split(",") if name)
+    quotient = W12Equitable(sizes, extra_pairs)
     entries = [
         (a, b) for a in range(len(sizes)) for b in range(a, len(sizes))
     ]
@@ -54,10 +61,11 @@ def main() -> None:
         seed=args.seed,
         popsize=args.popsize,
         maxiter=args.iterations,
-        polish=True,
+        polish=args.polish,
         updating="immediate",
     )
     print("sizes", sizes)
+    print("extra pairs", extra_pairs)
     print("states", len(quotient.transient), "dimension", len(quotient.keys))
     print("evaluations", evaluations)
     print("best gap", best[0])
