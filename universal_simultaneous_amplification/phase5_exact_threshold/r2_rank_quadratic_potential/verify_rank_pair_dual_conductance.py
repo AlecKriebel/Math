@@ -828,6 +828,162 @@ def verify_fixed_matrix_contractions() -> None:
         <= d_zero_integral + nonlinear_remainder_integral
     )
 
+    # Gauge away the diagonal of K_0 with the available one-mark fields.
+    # The resulting pure-pair statistic is -2 times the internal flow of
+    # two independent requests from a common stationary target.
+    collision_conductance = [
+        [
+            sum(PI[v] * P[v][i] * P[v][j] for v in range(N))
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert all(
+        collision_conductance[i][j] == collision_conductance[j][i]
+        for i in range(N) for j in range(N)
+    )
+    collision_degree = [
+        sum(collision_conductance[i][j] for j in range(N) if j != i)
+        for i in range(N)
+    ]
+    assert all(
+        collision_degree[i]
+        == PI[i] * (1 - p_squared[i][i])
+        for i in range(N)
+    )
+    collision_internal_values = [
+        sum(
+            collision_conductance[i][j]
+            for i in range(N) for j in range(i + 1, N)
+            if bit(state, i) and bit(state, j)
+        )
+        for state in range(FULL + 1)
+    ]
+    collision_mass_values = [
+        sum(collision_degree[i] for i in range(N) if bit(state, i))
+        for state in range(FULL + 1)
+    ]
+    assert collision_internal_values[0] == 0
+    assert all(
+        collision_internal_values[1 << vertex] == 0
+        for vertex in range(N)
+    )
+    assert collision_internal_values[FULL] == (1 - chi) / 2
+    assert all(
+        r_zero_values[state]
+        == collision_mass_values[state]
+        - 2 * collision_internal_values[state]
+        for state in range(FULL + 1)
+    )
+
+    collision_internal_up = [F(0) for _ in range(N + 1)]
+    collision_internal_down = [F(0) for _ in range(N + 1)]
+    collision_creation = [F(0) for _ in range(N + 1)]
+    collision_destruction = [F(0) for _ in range(N + 1)]
+    for state in transient:
+        k = state.bit_count()
+        s = indicator(state)
+        p2s = [
+            sum(p_squared[i][j] * s[j] for j in range(N))
+            for i in range(N)
+        ]
+        up = F(0)
+        down = F(0)
+        p_two = F(0)
+        n_two = F(0)
+        for vertex in range(N):
+            x = x_value(state, vertex)
+            if bit(state, vertex):
+                rate = (1 - x) / (1 + x)
+                lower_internal = PI[vertex] * (
+                    p2s[vertex] - p_squared[vertex][vertex]
+                )
+                assert lower_internal >= 0
+                target = state ^ (1 << vertex)
+                assert (
+                    collision_internal_values[target]
+                    - collision_internal_values[state]
+                    == -lower_internal
+                )
+                down += rate
+                n_two += rate * lower_internal
+            else:
+                rate = 2 * x / (1 + x)
+                upper_increment = PI[vertex] * p2s[vertex]
+                assert upper_increment >= 0
+                target = state ^ (1 << vertex)
+                assert (
+                    collision_internal_values[target]
+                    - collision_internal_values[state]
+                    == upper_increment
+                )
+                up += rate
+                p_two += rate * upper_increment
+
+        assert (
+            generator(state, collision_internal_values)
+            == p_two - n_two
+        )
+        weight = mu[state]
+        collision_internal_up[k] += (
+            weight * collision_internal_values[state] * up
+        )
+        collision_internal_down[k] += (
+            weight * collision_internal_values[state] * down
+        )
+        collision_creation[k] += weight * p_two
+        collision_destruction[k] += weight * n_two
+
+    # This is the second component of the combined rank-H/rank-K_0
+    # storage recurrence, including its exact upper boundary flux.
+    for k in range(1, N + 1):
+        residual = F(0)
+        if k > 1:
+            residual += (
+                collision_internal_up[k - 1]
+                + collision_creation[k - 1]
+            )
+        if k < N:
+            residual += (
+                collision_internal_down[k + 1]
+                - collision_destruction[k + 1]
+                - collision_internal_up[k]
+                - collision_internal_down[k]
+            )
+        residual -= rho * (1 - chi) / 2 if k == N else F(0)
+        assert residual == 0
+
+    first_net = sum(creation) - sum(destruction)
+    second_net = sum(collision_creation) - sum(collision_destruction)
+    assert first_net == rho / 2
+    assert second_net == rho * (1 - chi) / 2
+    complete_ratio = F(N - 2, N - 1)
+    row_variance = sum(
+        PI[v] * sum(
+            (P[v][i] - F(1, N - 1)) ** 2
+            for i in range(N) if i != v
+        )
+        for v in range(N)
+    )
+    assert chi - F(1, N - 1) == row_variance >= 0
+    assert complete_ratio * first_net - second_net == rho * row_variance / 2
+
+    # K(theta)=L_pi+theta K_0 is the Laplacian of the effective
+    # conductances c_ij+theta*q_ij when theta is nonnegative.  Verify the
+    # corresponding cut/internal-flow identity for a nontrivial rational
+    # theta; the analytic note proves the all-kernel spectral PSD range.
+    theta = F(7, 5)
+    for state in range(FULL + 1):
+        effective_internal = (
+            internal_values[state]
+            + theta * collision_internal_values[state]
+        )
+        effective_mass = mass(state) + theta * collision_mass_values[state]
+        effective_cut = cut_values[state] + theta * r_zero_values[state]
+        assert effective_cut == effective_mass - 2 * effective_internal
+        assert effective_internal >= 0
+        assert effective_cut >= 0
+
 
 def main() -> None:
     verify_storage_identities()

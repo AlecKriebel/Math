@@ -170,6 +170,26 @@
   alone is closed as a proof route.  The live compressed route must combine
   rank-dependent `H` and `K_0`, equivalently two independent reversible
   quadratic directions per rank, with the full pair matrix as fallback.
+- [EXACT TWO-CHANNEL REDUCTION] Used the arbitrary vertex fields to gauge
+  away quadratic diagonals.  The `L_pi` pair direction is then `-2E_1`,
+  where `E_1` is internal target--request conductance, and the `K_0` pair
+  direction is `-2E_2`, where `E_2` is internal conductance for two
+  independent requests from a common stationary target.  Their upward-edge
+  increments are exactly `pi_v(Ps)_v` and `pi_v(P^2s)_v`.
+- Split both channels into nonnegative creation/debt currents and derived the
+  exact two-component rank recurrence, including top boundary
+  `z(1,1-chi)/2`.  The all-rank totals give the sharp universal collision
+  deficit
+  `sum(P_2-N_2) <= (n-2)/(n-1) sum(P_1-N_1)`, whose exact slack is
+  `z/2 sum_v pi_v sum_(i!=v)(P_vi-1/(n-1))^2`.  Equality is exactly the
+  complete kernel.  This is new graph-independent information but does not
+  alone control the first-channel debt rankwise.
+- Factored `K(theta)=L_pi+theta K_0` spectrally.  It is a graph Laplacian
+  with effective conductances `c+theta q` for `theta>=0`, and is PSD for
+  every reversible kernel for the sharp universal range `theta>=-1/2`.
+  The corresponding rank-profile identity is the canonical two-channel
+  M-matrix/Schur starting point; the remaining sign is precisely a rankwise
+  second-channel transport bound coupled to all one-marks.
 
 ### Active sign
 

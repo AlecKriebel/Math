@@ -1284,6 +1284,159 @@ with every rank-labelled vertex correction.  The smallest surviving
 compressed space contains both rank-`H` and rank-`K_0`; the full rank-pair
 matrix remains the unconditional fallback.
 
+### 7.10 The combined route as two internal-request flows
+
+The available vertex fields remove the diagonal of any quadratic form.
+For a symmetric `K` with `K1=0`, put
+
+\[
+ R_K^\circ(S)=s^TKs-\sum_iK_{ii}s_i
+ =2\sum_{i<j}K_{ij}s_is_j.                                 \tag{124}
+\]
+
+Thus `R_K` and `R_K^circ` generate the same rank-constant plus rank-vertex
+plus rank-quadratic potential space.  This gauge makes the combined pair
+directions literal internal flows.  Define
+
+\[
+ c_{ij}=\pi_iP_{ij},\qquad
+ q_{ij}=(P^T\Pi P)_{ij}=\sum_v\pi_vP_{vi}P_{vj}\quad(i\ne j), \tag{125}
+\]
+
+and
+
+\[
+ E_1(S)=\sum_{i<j}c_{ij}s_is_j,qquad
+ E_2(S)=\sum_{i<j}q_{ij}s_is_j.                             \tag{126}
+\]
+
+The first statistic records a target--request internal edge; the second
+records two independent requests from one stationary target.  Both edge
+systems are symmetric and nonnegative.  Modulo vertex fields,
+
+\[
+ s^TL_\pi s\equiv-2E_1(S),\qquad
+ s^TK_0s\equiv-2E_2(S).                                    \tag{127}
+\]
+
+Write `x=Ps`, `y=P^2s`, and `r_v=(P^2)_(vv)`.  Reversibility gives
+`q_(vi)=pi_v(P^2)_(vi)`.  Hence, on an upward edge with `v notin S`,
+
+\[
+ E_1(S\cup v)-E_1(S)=\pi_vx_v,qquad
+ E_2(S\cup v)-E_2(S)=\pi_vy_v.                             \tag{128}
+\]
+
+For a removal from a state containing `v`, the lost amounts are
+`pi_vx_v` and `pi_v(y_v-r_v)`, respectively.  The latter is nonnegative
+because it is the sum of `q_(vi)` over the other mutants.  Consequently the
+two storage drifts split into nonnegative creation and debt terms:
+
+\[
+ LE_a=P_a-N_a\qquad(a=1,2),                                \tag{129}
+\]
+
+where
+
+\[
+\begin{aligned}
+ P_1(S)&=\sum_{v\notin S}{2\pi_vx_v^2\over1+x_v},&
+ N_1(S)&=\sum_{v\in S}{\pi_vx_v(1-x_v)\over1+x_v},\\
+ P_2(S)&=\sum_{v\notin S}{2\pi_vx_vy_v\over1+x_v},&
+ N_2(S)&=\sum_{v\in S}{\pi_v(1-x_v)(y_v-r_v)\over1+x_v}.
+\end{aligned}                                               \tag{130}
+\]
+
+The first line agrees with `(115)`.  Put
+`chi=sum_(v,i)pi_vP_(vi)^2`.  The exact boundary data are
+
+\[
+ E_1(\varnothing)=E_2(\varnothing)=E_1(\{i\})=E_2(\{i\})=0,
+\quad E_1(V)={1\over2},\quad E_2(V)={1-\chi\over2}.        \tag{131}
+\]
+
+For `a=1,2`, define the rank occupations `X^a_k,Y^a_k` by replacing `E`
+with `E_a` in `(116)`, and let `P^a_k,N^a_k` be the corresponding
+occupations of `(130)`.  Every feasible two-moment pseudoflow therefore
+obeys the vector recurrence
+
+\[
+\boxed{
+ \binom{X^1_{k-1}+P^1_{k-1}+Y^1_{k+1}-N^1_{k+1}-X^1_k-Y^1_k}
+       {X^2_{k-1}+P^2_{k-1}+Y^2_{k+1}-N^2_{k+1}-X^2_k-Y^2_k}
+ ={z\over2}\binom{1}{1-\chi}1_{\{k=n\}}.}                \tag{132}
+\]
+
+All absent terms vanish.  Summation over rank gives
+
+\[
+ \sum_k(P^1_k-N^1_k)={z\over2},\qquad
+ \sum_k(P^2_k-N^2_k)={z(1-\chi)\over2}.                   \tag{133}
+\]
+
+This immediately exposes a sharp complete-kernel deficit.  Rowwise
+Cauchy--Schwarz and looplessness give
+
+\[
+ \chi-{1\over n-1}
+ =\sum_v\pi_v\sum_{i\ne v}\left(P_{vi}-{1\over n-1}\right)^2
+ \ge0.                                                     \tag{134}
+\]
+
+Combining `(133)--(134)`,
+
+\[
+\boxed{
+ \sum_k(P^2_k-N^2_k)
+ \le {n-2\over n-1}\sum_k(P^1_k-N^1_k),}                 \tag{135}
+\]
+
+with exact gap
+
+\[
+ {z\over2}\left(\chi-{1\over n-1}\right).               \tag{136}
+\]
+
+Equality holds exactly when every row is uniform on the other `n-1`
+vertices, namely at the complete kernel.
+
+The fixed-matrix pencil requested by the contraction route now has two
+complementary interpretations:
+
+\[
+ K(\theta)=L_\pi+\theta K_0,qquad
+ R_{K(\theta)}^\circ=-2(E_1+\theta E_2).                   \tag{137}
+\]
+
+For `theta>=0`, it is the graph Laplacian with edge conductances
+`c_(ij)+theta q_(ij)`, hence an `M`-matrix.  More generally, if
+`widehat P=Pi^(1/2)P Pi^(-1/2)`, then
+
+\[
+ K(\theta)=\Pi^{1/2}(I-\widehat P)
+ [I+\theta(I+\widehat P)]\Pi^{1/2},                        \tag{138}
+\]
+
+so `K(theta)` is positive semidefinite for every reversible kernel whenever
+`theta>=-1/2`; this universal range is sharp by nearly disconnected
+kernels.  For `theta>=0`, put `E_theta=E_1+theta E_2` and similarly
+`P_theta,N_theta`.  The exact rank-profile formula is
+
+\[
+\begin{aligned}
+ L\{u_kE_\theta(S)\}={}&E_\theta(S)
+ [(u_{k+1}-u_k)U+(u_{k-1}-u_k)D]\\
+ &+u_{k+1}P_\theta(S)-u_{k-1}N_\theta(S).                 \tag{139}
+\end{aligned}
+\]
+
+Here every storage, creation, and debt term is nonnegative.  Equation
+`(139)` is the exact two-channel `M`-matrix/Schur starting point.  Its total
+collision deficit `(135)` is sharp, but totals alone do not prove `(119)`:
+the remaining obligation is a rankwise coupling which transports the
+`N_1` debt using the second channel and the arbitrary one-mark balances.
+No such sign is claimed here.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1314,6 +1467,9 @@ matrix remains the unconditional fallback.
 - **EXACTLY REFUTED:** the universal implication `(95)` from rank mass,
   every rank one-mark balance, and one conductance-storage balance per rank,
   by the exact nine-vertex primal/dual pair `(120)--(123)`.
+- **PROVED:** the pure-pair gauge, two internal-request storage laws,
+  vector rank recurrence, sharp collision deficit, and fixed-pencil
+  `M`-matrix/PSD factorization `(124)--(139)`.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
