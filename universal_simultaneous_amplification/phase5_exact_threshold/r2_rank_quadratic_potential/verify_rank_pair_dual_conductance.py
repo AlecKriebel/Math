@@ -984,6 +984,110 @@ def verify_fixed_matrix_contractions() -> None:
         assert effective_internal >= 0
         assert effective_cut >= 0
 
+    # The genuinely new combined direction is the boundary-neutral,
+    # traceless collision excess.  A fixed PSD contraction cannot isolate
+    # it: every nonzero symmetric trace-zero matrix is indefinite.
+    k_perp = [
+        [
+            k_zero[i][j] - (1 - chi) * laplacian[i][j]
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert all(sum(row) == 0 for row in k_perp)
+    assert sum(k_perp[i][i] for i in range(N)) == 0
+    positive_vector = [F(1), F(0), F(-1), F(0)]
+    negative_vector = [F(1), F(-1), F(0), F(0)]
+
+    def form(matrix: list[list[F]], vector: list[F]) -> F:
+        return sum(
+            vector[i] * matrix[i][j] * vector[j]
+            for i in range(N) for j in range(N)
+        )
+
+    assert form(k_perp, positive_vector) == F(19, 105) > 0
+    assert form(k_perp, negative_vector) == -F(23, 525) < 0
+
+    excess_values = [
+        collision_internal_values[state]
+        - (1 - chi) * internal_values[state]
+        for state in range(FULL + 1)
+    ]
+    assert excess_values[0] == excess_values[FULL] == 0
+    assert all(excess_values[1 << vertex] == 0 for vertex in range(N))
+    for state in range(FULL + 1):
+        s = indicator(state)
+        pure_pair = (
+            quadratic(k_perp, s)
+            - sum(k_perp[i][i] * s[i] for i in range(N))
+        )
+        assert pure_pair == -2 * excess_values[state]
+
+    collision_defect = [
+        [
+            p_squared[i][j]
+            - (p_squared[i][i] if i == j else F(0))
+            - (1 - p_squared[i][i]) * P[i][j]
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    assert all(sum(row) == 0 for row in collision_defect)
+    for state in transient:
+        s = indicator(state)
+        drift, _ = drift_activity(state)
+        x = [x_value(state, i) for i in range(N)]
+        y = [
+            sum(p_squared[i][j] * s[j] for j in range(N))
+            for i in range(N)
+        ]
+        defect = [
+            y[i] - p_squared[i][i] * s[i] - (1 - chi) * x[i]
+            for i in range(N)
+        ]
+        decomposed = [
+            (chi - p_squared[i][i]) * x[i]
+            + sum(collision_defect[i][j] * s[j] for j in range(N))
+            for i in range(N)
+        ]
+        assert defect == decomposed
+        assert generator(state, excess_values) == sum(
+            PI[i] * drift[i] * defect[i] for i in range(N)
+        )
+
+    # Its rank recurrence has no source at either boundary.  This is the
+    # exact rankwise Schur mode which can redistribute first-channel debt
+    # without changing fixation flux or the singleton objective.
+    excess_up = [
+        collision_internal_up[k] - (1 - chi) * internal_up[k]
+        for k in range(N + 1)
+    ]
+    excess_down = [
+        collision_internal_down[k] - (1 - chi) * internal_down[k]
+        for k in range(N + 1)
+    ]
+    excess_creation = [
+        collision_creation[k] - (1 - chi) * creation[k]
+        for k in range(N + 1)
+    ]
+    excess_destruction = [
+        collision_destruction[k] - (1 - chi) * destruction[k]
+        for k in range(N + 1)
+    ]
+    for k in range(1, N + 1):
+        residual = F(0)
+        if k > 1:
+            residual += excess_up[k - 1] + excess_creation[k - 1]
+        if k < N:
+            residual += (
+                excess_down[k + 1]
+                - excess_destruction[k + 1]
+                - excess_up[k]
+                - excess_down[k]
+            )
+        assert residual == 0
+    assert sum(excess_creation) - sum(excess_destruction) == 0
+
 
 def main() -> None:
     verify_storage_identities()

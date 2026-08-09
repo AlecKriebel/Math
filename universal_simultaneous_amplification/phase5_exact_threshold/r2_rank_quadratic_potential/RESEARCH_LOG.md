@@ -190,6 +190,21 @@
   The corresponding rank-profile identity is the canonical two-channel
   M-matrix/Schur starting point; the remaining sign is precisely a rankwise
   second-channel transport bound coupled to all one-marks.
+- [EXACT MINIMAL SCHUR MODE] Split off the complete-aligned collision
+  channel by setting `E_perp=E_2-(1-chi)E_1` and
+  `K_perp=K_0-(1-chi)L_pi`.  This storage vanishes at empty, every singleton,
+  and full; `K_perp` has row sums and trace zero, so whenever nonzero it is
+  necessarily indefinite.  Its rank recurrence has no source at either
+  endpoint and zero total drift.  Therefore the new combined information is
+  exactly a signed redistribution between ranks, not a positive fixed-matrix
+  budget.
+- With `R=Diag((P^2)_(vv))` and
+  `B=P^2-R-(I-R)P`, proved `B1=0` and the local forcing formula
+  `L E_perp=sum_v pi_v d_v[(chi-r_v)x_v+(Bs)_v]`.  This vanishes pointwise
+  on the complete kernel but has no general local sign.  The remaining
+  obligation is now minimal: couple this zero-boundary rank Schur mode to
+  every one-mark balance strongly enough to control first-channel
+  destruction debt.
 
 ### Active sign
 
