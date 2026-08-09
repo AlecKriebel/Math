@@ -682,6 +682,129 @@ def verify_fixed_matrix_contractions() -> None:
     assert 2 * mixed + diagonal_carre == -trace_k_zero / N
     assert mixed <= -trace_k_zero / (2 * N)
 
+    # Resolve the L_pi contraction into its two oriented selection-gain
+    # currents.  These are the minimal rank currents retained by the
+    # rank-H plus arbitrary-one-mark dual.
+    cut_occupation = [F(0) for _ in range(N + 1)]
+    gain_up = [F(0) for _ in range(N + 1)]
+    gain_down = [F(0) for _ in range(N + 1)]
+    mass_up = [F(0) for _ in range(N + 1)]
+    mass_down = [F(0) for _ in range(N + 1)]
+    cut_up = [F(0) for _ in range(N + 1)]
+    cut_down = [F(0) for _ in range(N + 1)]
+    d_zero_integral = F(0)
+    nonlinear_remainder_integral = F(0)
+    for state in transient:
+        k = state.bit_count()
+        mutant_mass = mass(state)
+        collision_cut = cut(state)
+        up = F(0)
+        down = F(0)
+        q_plus = F(0)
+        q_minus = F(0)
+        mass_response_up = F(0)
+        mass_response_down = F(0)
+        cut_response_up = F(0)
+        cut_response_down = F(0)
+        nonlinear_remainder = F(0)
+        for vertex in range(N):
+            x = x_value(state, vertex)
+            local_gain = PI[vertex] * x * (1 - x) / (1 + x)
+            if bit(state, vertex):
+                rate = (1 - x) / (1 + x)
+                down += rate
+                q_minus += local_gain
+                mass_response_down -= PI[vertex] * rate
+                cut_response_down -= PI[vertex] * (1 - 2 * x) * rate
+            else:
+                rate = 2 * x / (1 + x)
+                up += rate
+                q_plus += local_gain
+                mass_response_up += PI[vertex] * rate
+                cut_response_up += PI[vertex] * (1 - 2 * x) * rate
+            nonlinear_remainder += (
+                PI[vertex] * x * x * (1 - x) / (1 + x)
+            )
+
+        assert mass_response_up == collision_cut + q_plus
+        assert mass_response_down == q_minus - collision_cut
+        assert cut_response_up == 3 * q_plus - collision_cut
+        assert cut_response_down == 3 * q_minus - collision_cut
+        assert q_plus + q_minus == selection_gain(state)
+        assert 0 <= q_plus <= collision_cut
+        assert 0 <= 2 * q_minus <= collision_cut
+
+        weight = mu[state]
+        cut_occupation[k] += weight * collision_cut
+        gain_up[k] += weight * q_plus
+        gain_down[k] += weight * q_minus
+        mass_up[k] += weight * mutant_mass * up
+        mass_down[k] += weight * mutant_mass * down
+        cut_up[k] += weight * collision_cut * up
+        cut_down[k] += weight * collision_cut * down
+
+        d_zero = 2 * collision_cut - r_zero_values[state]
+        direct_gradient = sum(
+            PI[v]
+            * (F(int(bit(state, v))) - x_value(state, v)) ** 2
+            for v in range(N)
+        )
+        assert d_zero == direct_gradient >= 0
+        assert (
+            2 * collision_cut - selection_gain(state)
+            == d_zero + nonlinear_remainder
+        )
+        d_zero_integral += weight * d_zero
+        nonlinear_remainder_integral += weight * nonlinear_remainder
+
+    # Rank-resolved M and C recurrences, including both boundary sources.
+    for k in range(1, N + 1):
+        mass_rank_residual = F(1, N) if k == 1 else F(0)
+        if k > 1:
+            mass_rank_residual += (
+                mass_up[k - 1]
+                + cut_occupation[k - 1]
+                + gain_up[k - 1]
+            )
+        if k < N:
+            mass_rank_residual += (
+                mass_down[k + 1]
+                + gain_down[k + 1]
+                - cut_occupation[k + 1]
+            )
+            mass_rank_residual -= mass_up[k] + mass_down[k]
+        mass_rank_residual -= rho if k == N else F(0)
+        assert mass_rank_residual == 0
+
+        cut_rank_residual = F(1, N) if k == 1 else F(0)
+        if k > 1:
+            cut_rank_residual += (
+                cut_up[k - 1]
+                + 3 * gain_up[k - 1]
+                - cut_occupation[k - 1]
+            )
+        if k < N:
+            cut_rank_residual += (
+                cut_down[k + 1]
+                + 3 * gain_down[k + 1]
+                - cut_occupation[k + 1]
+            )
+            cut_rank_residual -= cut_up[k] + cut_down[k]
+        assert cut_rank_residual == 0
+
+    kappa = F(
+        2 * ((N - 3) * 2 ** N + 4),
+        (3 * N - 7) * 2 ** N + 8,
+    )
+    total_cut = sum(cut_occupation)
+    total_gain = sum(gain_up) + sum(gain_down)
+    assert (
+        total_gain <= kappa * total_cut
+    ) == (
+        (2 - kappa) * total_cut
+        <= d_zero_integral + nonlinear_remainder_integral
+    )
+
 
 def main() -> None:
     verify_storage_identities()

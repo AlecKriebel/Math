@@ -121,6 +121,31 @@
   `3763047422347/5888649661090 > kappa_4=5/11`.  The live `K_0` route must
   retain rank transport and the positive remainder
   `sum pi x^2(1-x)/(1+x)`.
+- Split the `L_pi` response into the two oriented selection currents
+  `Q_k^+` and `Q_k^-`.  The exact addition/removal responses are respectively
+  `(C+Q^+,Q^--C)` for stationary mass and
+  `(3Q^+-C,3Q^--C)` for the conductance cut.  This gives a closed pair of
+  rank-current recurrences before the fixed contraction collapses them to
+  `L C=3Q-2C`.
+- [EXACT POSITIVE REFORMULATION] Combining rank-`H` and rank-`K_0`, set
+  `D=2C-R0=sum pi(s-x)^2` and
+  `W=sum pi x^2(1-x)/(1+x)`.  Then `2C-Q=D+W` pointwise, so the sharp theorem
+  is exactly the integrated coercivity
+  `(2-kappa_n) sum mu C <= sum mu(D+W)`.  The combined certificate tracks
+  `C` and `D` on every rank; `W` is an additional nonnegative fitness-two
+  remainder.  This is the cleanest surviving positive target.
+- The scalar cone obtained by retaining only the oriented total currents
+  and the bounds `0<=Q^+<=C`, `0<=Q^-<=C/2` is insufficient; individual
+  rank-labelled vertex recurrences remain essential.  Any M-matrix or
+  continued-fraction proof must therefore be vertex marked rather than a
+  one-dimensional rank argument.
+- [EXACT RELAXATION REFUTATION] Added every natural scalar event-moment bound
+  (`X^C<=X^M,A-X^M`, and the analogous down-current inequalities) and the
+  exact singleton/top identities.  At `n=3` this enlarged scalar system
+  still has a rational point with flux `z=5/9`, above the complete baseline
+  `4/9`.  The exact verifier explicitly warns that this is not a graph or
+  pseudoflow; it isolates the loss caused by forgetting the individual
+  vertex currents.
 
 ### Active sign
 

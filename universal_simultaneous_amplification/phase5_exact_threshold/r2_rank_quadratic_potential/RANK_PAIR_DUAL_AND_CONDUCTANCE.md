@@ -1052,6 +1052,124 @@ The independent exact replay is
 `verify_rank_dependent_k0_witness.py`.  The universal implication from
 `(99)--(100)` remains open.
 
+### 7.7 Minimal oriented current and gradient form of the combined route
+
+The `L_pi` rank contraction becomes more informative before its two
+orientations are summed.  Split the gain at rank `k` into
+
+\[
+ Q_k^+=\sum_{|S|=k}\bar\mu_S\sum_{v\notin S}
+ {\pi_vx_v(1-x_v)\over1+x_v},\qquad
+ Q_k^-=\sum_{|S|=k}\bar\mu_S\sum_{v\in S}
+ {\pi_vx_v(1-x_v)\over1+x_v}.                              \tag{103}
+\]
+
+For a single state, the response parts of the `M` and `C` drifts obey the
+four exact identities
+
+\[
+ \begin{array}{c|cc}
+ &\hbox{addition}&\hbox{removal}\\ \hline
+ M&C+Q^+&Q^--C\\
+ C&3Q^+-C&3Q^--C.
+ \end{array}                                                \tag{104}
+\]
+
+For example,
+`2x(1-2x)/(1+x)=3x(1-x)/(1+x)-x`; the other three identities
+are equally direct.  Put
+
+\[
+ X^M_k=\sum_{|S|=k}\bar\mu_SM(S)U(S),\quad
+ Y^M_k=\sum_{|S|=k}\bar\mu_SM(S)D(S),
+\]
+
+and define `X^C_k,Y^C_k` in the same way with `C(S)`.  The rank-labelled
+stationary-mass tests and rank-labelled cut tests are then exactly
+
+\[
+\begin{aligned}
+0={}&{1_{\{k=1\}}\over n}
+ +X^M_{k-1}+C_{k-1}+Q^+_{k-1}
+ +Y^M_{k+1}+Q^-_{k+1}-C_{k+1}\\
+&-X^M_k-Y^M_k-z1_{\{k=n\}},                                \tag{105}
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+0={}&{1_{\{k=1\}}\over n}
+ +X^C_{k-1}+3Q^+_{k-1}-C_{k-1}
+ +Y^C_{k+1}+3Q^-_{k+1}-C_{k+1}\\
+&-X^C_k-Y^C_k.                                              \tag{106}
+\end{aligned}
+\]
+
+These equations include the endpoint cancellations, with absent terms set
+to zero.  Summing `(106)` gives `(83)--(84)`, but `(105)--(106)` retain the
+signed adjacent-rank information destroyed by the fixed contraction.  The
+elementary pointwise cone is
+
+\[
+ 0\le Q^+\le C,\qquad 0\le Q^-\le {C\over2}.               \tag{107}
+\]
+
+The combined `H,K_0` route has a still cleaner positive form.  Define
+
+\[
+ \mathcal D(S)=2C(S)-R_0(S)
+ =s^T(I-P)^T\Pi(I-P)s
+ =\sum_v\pi_v(s_v-x_v)^2,                                  \tag{108}
+\]
+
+\[
+ \mathcal W(S)=\sum_v{\pi_vx_v^2(1-x_v)\over1+x_v}.        \tag{109}
+\]
+
+Then `(80)` is precisely
+
+\[
+ \boxed{2C-Q=\mathcal D+\mathcal W,\qquad
+        \mathcal D,\mathcal W\ge0.}                        \tag{110}
+\]
+
+Rank-dependent `H` and `K_0` coefficients retain `C` and `D` on
+every rank.  Therefore the sharp endpoint problem is equivalently the
+integrated coercivity inequality
+
+\[
+ \boxed{
+ (2-\kappa_n)\sum_S\bar\mu_SC(S)
+ \le\sum_S\bar\mu_S\{\mathcal D(S)+\mathcal W(S)\}.}       \tag{111}
+\]
+
+This is the minimal positive target found by the contraction audit.  The
+term `D` is the reversible one-step prediction-error energy tracked
+by the combined quadratic certificate; `W` is its nonnegative
+fitness-two remainder.  What remains open is a rank-current coercivity
+argument proving `(111)`.  Dropping the individual vertex recurrences and
+keeping only the scalar bounds `(105)--(107)` is far too weak, so any
+continued-fraction or `M`-matrix proof must remain vertex marked.
+
+That last obstruction is exact.  Even if the scalar system is augmented by
+all elementary event-moment bounds
+
+\[
+ 0\le X^M_k\le A_k,quad0\le Y^M_k\le R_k,quad
+ 0\le X^C_k\le\min(X^M_k,A_k-X^M_k),                        \tag{112}
+\]
+
+\[
+ 0\le Y^C_k\le\min(Y^M_k,R_k-Y^M_k),                       \tag{113}
+\]
+
+and by the exact singleton/top identities, it admits at `n=3` the rational
+point `z=5/9`, whereas the complete baseline is `4/9`.  The complete list of
+rational coordinates and an exact replay are in
+`verify_oriented_scalar_cone_refutation.py`.  This point is deliberately
+**not** claimed to arise from a graph or a pseudoflow; it proves only that
+vertex-forgetting destroys indispensable constraints.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -1079,6 +1197,12 @@ The independent exact replay is
   two-step response.
 - **PROVED:** the exact compressed rank-`H` dual `(94)--(95)` and the
   rank-dependent collision recurrence `(97)--(100)`.
+- **PROVED:** the oriented rank-current identities `(103)--(107)` and the
+  exact positive gradient reformulation `(108)--(111)` of the combined
+  rank-`H,K_0` target.
+- **EXACTLY REFUTED:** the vertex-forgotten scalar current cone, even after
+  the natural event-moment bounds `(112)--(113)`, by the rational `n=3`
+  relaxed point of flux `5/9`.
 - **EXACTLY COMPUTED:** rank-dependent `H` and, separately, rank-dependent
   `K_0` both repair the exact 17-vertex global-coefficient witness, by the
   matching rational certificates `(96)` and `(102)`.
