@@ -1,6 +1,6 @@
 # Canonical fitness-two lemma
 
-Last updated: 2026-08-08 13:05 PDT.  Status labels are literal.
+Last updated: 2026-08-08 21:41 PDT.  Status labels are literal.
 
 ## 1. Graph kernel and exact dual law
 
@@ -414,6 +414,30 @@ tree/forest cancellation.
 
 These are universal or exact low-order theorems, not the missing all-time or
 all-order proof.
+
+- All stationary nonradial Hessian sectors at the complete kernel are now
+  proved positive in the determinant normalization: standard, symmetric
+  balanced, and antisymmetric balanced.  This proves a strict local theorem,
+  not the global sign.
+- Along the complete ray, the exact transfer scalar has the resolvent and
+  rooted-tree factorizations recorded in `r2_determinant/`.  Monotonicity is
+  false on the exact undirected order-five witness above.  Its natural
+  fixed-colour numerator coefficients are nevertheless zero at colours zero
+  and one and strictly positive thereafter.  The current tree candidate is
+  therefore fixed-colour nonnegativity, not colour-ratio monotonicity; its
+  final coefficient is exactly the original endpoint target.
+- In the rank-pair dual, every compression through the two natural request
+  matrices is exactly refuted.  Adding the mass-square direction yields
+  three nonnegative internal pair flows and the exact Gram square
+
+  \[
+  \{(I-P)-\theta(I-\mathbf1\pi^T)\}^T
+  \Pi\{(I-P)-\theta(I-\mathbf1\pi^T)\}\succeq0,
+  \]
+
+  with the complete kernel as its unique loopless equality case.  The open
+  sign is the rankwise Riccati transport of the two oriented current debts;
+  a static covariance contraction is exactly false.
 
 ## 11. Cubic optional-potential frontier
 

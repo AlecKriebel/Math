@@ -1,6 +1,6 @@
 # Next executable step
 
-Last updated: 2026-08-08 13:05 PDT.
+Last updated: 2026-08-08 21:41 PDT.
 
 ## Immediate command
 
@@ -16,8 +16,19 @@ Then run only the exact verifier belonging to each new claimed milestone.
 
 ## Immediate proof step
 
-The collision/promotion implication has been audited and repaired.  The next
-upper-bound step is to prove or refute the finite-time harmonic lemma
+The collision/promotion implication has been audited and repaired.  The two
+highest-value upper-bound steps are now:
+
+1. prove or refute the fixed-colour rooted-tree numerator sign along the
+   complete ray.  Do not use the exactly false ratio/monotonicity statement;
+   work with the fixed-colour mixed-minor sum itself.  Its final coefficient
+   is the true endpoint target;
+2. close or refute the dynamic three-channel rank-pair space.  Use the exact
+   mass-square current recurrence and its oriented Schur cones to derive a
+   rank-profile Riccati/M-matrix certificate.  Static rankwise tangents are
+   exactly false.  If this compression fails, retain the full pair matrix.
+
+The independent finite-time route remains to prove or refute
 
 \[
  \nu_KK_P^tH\ge\nu_KH\qquad(t\ge0),
@@ -45,8 +56,11 @@ cancellation at `t=1`.  The exact triangle `t=3` increment and all-order
 antisymmetric Hessian are the current algebraic footholds.
 
 The next lower-bound step also starts outside the separated strong-pair
-normal form, which is now rigorously obstructed on `[R_pair,2]`.  In priority
-order:
+normal form.  First settle the exact adjoint factor-one/ground-energy
+inequality using a coupled reversible unordered-edge certificate; a single
+Picone multiplier is exactly unavailable.  If factor one is proved, record
+it as a complete obstruction to the diffuse catalyst normal form and move
+immediately to a non-diffuse construction.  In construction priority order:
 
 1. derive the exact fast law when portal events compete with resolution of a
    discordant pair or star--reservoir interface;

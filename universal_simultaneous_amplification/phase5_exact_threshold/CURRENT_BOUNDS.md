@@ -1,6 +1,6 @@
 # Current rigorous bounds
 
-Last updated: 2026-08-08.
+Last updated: 2026-08-08 21:41 PDT.
 
 \[
 \boxed{1.5028569127905696267\ldots=R_{\rm hyb}
@@ -30,6 +30,16 @@ R_{\rm sim}\le2.
 
 It would not by itself prove equality; a single family working for every
 fixed `1<r<2` would still be required.
+
+The current exact upper frontier is unchanged despite substantial proof
+compression.  At `r=2`, all rank constants, all rank-labelled one-vertex
+fields, and the two natural request-flow matrices are insufficient: an
+exact twelve-vertex Farkas certificate refutes that restricted proof space.
+The smallest surviving compressed space adds the stationary-mass square;
+the universally safe fallback retains the full rank-dependent pair matrix.
+Independently, complete-ray monotonicity is exactly false on a five-vertex
+integer-weight graph.  The fixed-colour forest signs and the endpoint sign
+survive, but remain open.
 
 The exact constant
 

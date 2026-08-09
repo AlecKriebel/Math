@@ -35,12 +35,27 @@ correction.
   witnesses;
 - complete-ray convexity, or monotonicity of complete-ray Bernstein controls
   in the number of actual-coloured updates;
+- complete-ray monotonicity of the true stationary scalar itself: on the
+  undirected order-five graph with lexicographic edge weights
+  `(10,100,10,1000,10000,1,1,1,1,10000)`, the exact derivative is negative
+  near the endpoint while the true scalar remains positive;
 - splitting the first two-replica coefficient by individual
   Walsh/Krawtchouk radial degrees: exact standard and symmetric degree
   contributions change sign;
 - recursively nesting separated monomorphic strong pairs to evade the
   Bd/dB source--target activity duality.  The topology-independent
   first-event envelope rules out the entire class on `[R_pair,2]`.
+- replacing the full two-marked fitness-two dual by rank constants, every
+  rank-labelled vertex field, and either rank-`H`, rank-`K_0`, or both.  All
+  three compressed spaces have exact positive Farkas rays above the complete
+  baseline; the combined refuter is not a fixation counterexample.  Static
+  use of the sharp mass/request covariance square is also exactly
+  insufficient.  The live compressed route must retain its signed
+  adjacent-rank mass-square transport, or else use the full pair matrix.
+- a single monotone Picone interpolation for the lower-side adjoint
+  factor-one inequality.  Exact/numerically robust cross-sign order failures
+  occur for the target, for `W`, and for the special ground-energy defect;
+  any valid proof must use coupled label potentials or a multi-energy term.
 
 Nonregular permutation-orbit midpoint symmetrization is also exactly false,
 including on a five-vertex weighted path.  Only the symmetric-stochastic

@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 13:05 PDT.
+Last updated: 2026-08-08 21:41 PDT.
 
 ## Frozen starting point
 
@@ -105,6 +105,25 @@ This is finite evidence only.
     heterogeneity, and later recovery paths.  This is a class theorem, not
     a new upper bound on `R_sim`; a construction reaching two must permit
     portal action before pair absorption or use a different reservoir.
+13. Every stationary nonradial Hessian sector of the true fitness-two
+    determinant is positive at the complete kernel.  The standard and
+    symmetric sectors require global phase-contraction certificates; this
+    remains a local theorem.
+14. The exact full rank-pair relaxation has been reduced to nonnegative
+    occupation flows and collision/variance identities.  Rank-`H`,
+    rank-`K_0`, and their combination with every rank-labelled vertex field
+    are each exactly insufficient.  Adding the mass-square pair direction
+    produces a sharp three-channel Gram square with unique complete equality;
+    its signed rank transport remains open.
+15. Complete-ray monotonicity and the associated coloured-root ratio order
+    are exactly false on a connected undirected five-vertex integer-weight
+    graph.  The exact ray remains positive and has one interior maximum; all
+    of its fixed-colour numerator coefficients are nonnegative.  Universal
+    fixed-colour nonnegativity is open and includes the original endpoint as
+    its last coefficient.
+16. On the lower-side adjoint branching normal form, the first dB orbit step
+    from the Bd extinction vector cannot increase its type-averaged mass.
+    The full factor-one inequality and the Bd-catalyst ray remain open.
 
 ### Open
 
@@ -161,3 +180,11 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 - `29db1bd4`: all-topology first-event obstruction for separated strong-pair
   hierarchies, with exact `R_pair`.
 - `3cd4f293`: fixed-count two-replica sector theorems and exact recurrences.
+- `f26a406c`, `ab2c116b`: stationary standard and symmetric phase
+  contractions, completing all nonradial Hessian sectors.
+- `e7dee4c0`: exact first Bd-to-dB orbit-average step.
+- `e48b44ba`: exact refutation of the combined two-request compressed dual.
+- `02b4a086`, `9ca1425d`: mass-square covariance channel and dynamic
+  three-channel Schur current.
+- `50ddac1b`, `7cf99376`: complete-ray transfer and exact refutation of ray
+  monotonicity.
