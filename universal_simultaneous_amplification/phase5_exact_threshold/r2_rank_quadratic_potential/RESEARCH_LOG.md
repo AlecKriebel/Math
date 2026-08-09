@@ -154,6 +154,22 @@
   `(1-kappa_n)sum mu C <= sum(P-N)`.  This isolates the missing statement as
   transport of vertex-marked destruction debt across an entire excursion,
   not a pointwise or prefix inequality.
+- [EXACT ROUTE REFUTATION] The full rank-dependent conductance space is now
+  refuted, not merely its global-coefficient subspace.  A connected
+  complete-support nine-vertex integer-weight graph with equitable class
+  sizes `(1,1,2,2,3)` has a 142-state quotient and a 47-dimensional
+  rank-constant + rank-vertex + rank-conductance potential space.  An exact
+  46-state strictly positive rational Farkas ray and independently
+  reconstructed matching rational primal give restricted optimum
+  `0.4463122484779187239833287...`, above the `K_9` baseline `1024/2295` by
+  the exact positive rational identified by SHA-256
+  `54157ebc0d0153a2d86dc928f47495f688d2104b3971ff5cf0127e838ccb9f76`.
+  Every quotient drift and its labelled realization are checked exactly.
+- This refutation concerns only the certificate space; preliminary true-chain
+  computation is suppressing and is not used as an exact claim.  Rank-`H`
+  alone is closed as a proof route.  The live compressed route must combine
+  rank-dependent `H` and `K_0`, equivalently two independent reversible
+  quadratic directions per rank, with the full pair matrix as fallback.
 
 ### Active sign
 
@@ -161,15 +177,14 @@ For every feasible two-moment pseudoflow, prove
 
 `sum_S y_S cut_pi(S) <= (3/2) rho_dB(K_n,2) - 1/n`.
 
-The next analytic attempt is to combine the rank-cut recurrence with the
-arbitrary one-mark recurrence using a rank-dependent solution of a
-reversible Poisson equation.  The smaller space containing only rank
-constants, stationary mass, and internal conductance is exactly unsuitable
-as a universal route according to direct LP counterexamples, so the full
-vertex corrector must be retained.
+The next analytic attempt is the combined rank-`H,K_0` contraction.  Write
+`K(theta)=L_pi+theta K_0`; reversibility diagonalizes this family with
+eigenvalue factor `(1-lambda)[1+theta(1+lambda)]`, hence it is PSD for every
+reversible kernel whenever `theta>=-1/2`.  Rank-varying coefficients must be
+combined with the arbitrary one-mark recurrences to control the signed
+adjacent-rank mixed current, ideally through an M-matrix/Schur recursion.
 
-The sharpest surviving compressed conjecture is now the exact implication
-from rank mass + every rank one-mark balance + the rank-`H` recurrence to
-`z<=rho_dB(K_n,2)`.  A parallel augmentation uses the rank-`K_0` recurrence.
-Neither fixed-matrix PSD nor `Q<=s^T K_0s` closes the sign; the unresolved
-object is the signed adjacent-rank mixed current after one-mark elimination.
+Rank-`H` alone is exactly refuted.  The sharpest surviving compressed
+conjecture uses rank mass + every rank one-mark balance + independent
+rank-`H` and rank-`K_0` recurrences.  If this fails, the search escalates to
+the full pair matrix; no further rank-`H`-only screens are warranted.

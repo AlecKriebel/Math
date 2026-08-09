@@ -684,8 +684,8 @@ In particular, for every `a` with `sum_i a_i=0`,
 \]
 
 Equation `(69)` is the exact two-marked collision/variance budget carried
-by the rank-pair relaxation.  The compressed rank-plus-vertex-plus-`H`
-conjecture retains only its conductance contraction, whereas the full
+by the rank-pair relaxation.  The now-refuted rank-plus-vertex-plus-`H`
+compression retained only its conductance contraction, whereas the full
 rank-pair conjecture retains the entire matrix identity `(68)`.
 
 ### 7.3 Selection gain versus reversible collision cut
@@ -843,8 +843,8 @@ rationals.  See `GLOBAL_CONDUCTANCE_FARKAS_REFUTATION.md` and
 
 The graph itself is dB-suppressing at fitness two.  Hence `(82)` refutes
 only the compressed certificate `(81)`, not the endpoint fixation theorem.
-The full rank-pair route and the version with an independent conductance
-coefficient on every rank remain open.
+The stronger version with an independent conductance coefficient on every
+rank is decided separately in Section 7.9.
 
 ### 7.5 Exact audit of the fixed collision-matrix contractions
 
@@ -954,9 +954,10 @@ For constant `r`, positivity of the diagonal carré term yields only
 Equations `(91)--(93)` are the strongest sign consequence obtained from
 the fixed-matrix contraction using PSD alone.  To reach `kappa_n`, a proof
 must control the signed mixed increments in `(91)` after summation against
-the one-mark balances.  The exact global-coefficient counterexample in
-Section 7.4 shows that constant multipliers of `L_pi` do not suffice; the
-rank-dependent `L_pi` and `K_0` problem remains open.
+the one-mark balances.  The exact counterexamples in Sections 7.4 and 7.9
+show that neither constant nor arbitrary rank-dependent multipliers of
+`L_pi` suffice.  The combined rank-dependent `L_pi,K_0` problem remains
+open.
 
 ### 7.6 The exact compressed dual and rank-dependent witness repairs
 
@@ -973,15 +974,16 @@ The dual of `(94)` has a particularly small exact description: it consists
 of nonnegative `y_S` satisfying the rank-mass equations `(12)`, every
 one-mark equation `(14)`, and the single rank-storage equation `(28)` for
 each rank.  Conversely those equations annihilate every function in
-`W_H`, so this description loses nothing.  Thus the canonical compressed
-universal question is
+`W_H`, so this description loses nothing.  Thus the rank-`H` compressed
+universal question was
 
 \[
  \boxed{(12),(14),(28),\ y\ge0\quad\Longrightarrow\quad
  z\le\rho_{\rm dB}(K_n,2).}                                \tag{95}
 \]
 
-This system exactly repairs the graph which refutes one global coefficient.
+This system exactly repairs the graph which refutes one global coefficient,
+but Section 7.9 gives a different graph which refutes `(95)` itself.
 On the 17-vertex graph in Section 7.4, its 196-state symmetry quotient has
 dimension 63.  A 62-state strictly positive rational dual solution and a
 matching rational primal give
@@ -994,8 +996,8 @@ matching rational primal give
 with exact margin
 `0.00751956487508311132513730...`.  Every quotient drift inequality is
 checked over the rationals by
-`verify_rank_dependent_conductance_witness.py`.  This is an exact finite
-repair, not a proof of `(95)`.
+`verify_rank_dependent_conductance_witness.py`.  This remains a useful exact
+finite repair, but it is not a universal result.
 
 There is an equally compact rank recurrence for the collision matrix
 `K_0`.  For a fixed symmetric `K` with `K1=0`, define
@@ -1221,10 +1223,66 @@ Consequently the endpoint theorem is equivalently
 \]
 
 This is the sharp creation-versus-excursion-debt form of the compressed
-rank-`H` conjecture.  It explains why a prefix argument which ignores debt
-can fail: `P,N` are separately nonnegative, but only their all-rank
-difference is fixed by the boundary.  The missing theorem must control how
-the vertex-marked current transports the destruction debt before absorption.
+rank-`H` implication `(95)`.  It explains why a prefix argument which ignores
+debt can fail: `P,N` are separately nonnegative, but only their all-rank
+difference is fixed by the boundary.  Section 7.9 shows that even the full
+rank-`H` plus arbitrary one-mark system does not control that debt strongly
+enough.  The identity remains useful as one component of the combined
+rank-`H,K_0` route, but it cannot close the endpoint alone.
+
+### 7.9 Exact failure of rank-dependent conductance plus all one-marks
+
+The implication `(95)` is exactly false.  Take the nine-vertex graph with
+five equitable classes of sizes `(1,1,2,2,3)` and class-edge weights
+
+\[
+\begin{pmatrix}
+10^9&10^{22}&2\,10^9&5\,10^{10}&3000\\
+10^{22}&10^9&4\,10^8&2500000000&1\\
+2\,10^9&4\,10^8&4\,10^{16}&45\,10^{15}&450000\\
+5\,10^{10}&2500000000&45\,10^{15}&4\,10^8&1750000000\\
+3000&1&450000&1750000000&8\,10^9
+\end{pmatrix}.                                             \tag{120}
+\]
+
+Every intervertex weight is positive.  The exact quotient has 142 transient
+states, and the invariant rank-constant plus rank-vertex plus rank-`H`
+function space has dimension 47.  A 46-state strictly positive rational
+Farkas ray and an independently reconstructed matching rational primal give
+
+\[
+ p_{\rm rank-H}
+ =0.4463122484779187239833287\ldots,                       \tag{121}
+\]
+
+whereas
+
+\[
+ \rho_{\rm dB}(K_9,2)={1024\over2295}
+ =0.44618736383442265795\ldots.                            \tag{122}
+\]
+
+Thus
+
+\[
+ \boxed{p_{\rm rank-H}-\rho_{\rm dB}(K_9,2)
+ =0.0001248846434960660312589405\ldots>0.}                \tag{123}
+\]
+
+The reduced exact gap has a 2875-digit numerator and 2879-digit denominator;
+the SHA-256 identifier of canonical `numerator/denominator` text is
+`54157ebc0d0153a2d86dc928f47495f688d2104b3971ff5cf0127e838ccb9f76`.
+The verifier checks the sign by integer comparison, reconstructs both sides
+of strong duality, audits all 142 drift inequalities, and independently
+checks every labelled-to-quotient row.  See
+`RANK_DEPENDENT_CONDUCTANCE_FARKAS_REFUTATION.md` and
+`verify_rank_dependent_conductance_farkas_refutation.py`.
+
+This is a route counterexample only; it is not a fixation counterexample.
+It proves that one reversible pair direction per rank is insufficient even
+with every rank-labelled vertex correction.  The smallest surviving
+compressed space contains both rank-`H` and rank-`K_0`; the full rank-pair
+matrix remains the unconditional fallback.
 
 ## 8. Exact scope
 
@@ -1253,6 +1311,9 @@ the vertex-marked current transports the destruction debt before absorption.
   two-step response.
 - **PROVED:** the exact compressed rank-`H` dual `(94)--(95)` and the
   rank-dependent collision recurrence `(97)--(100)`.
+- **EXACTLY REFUTED:** the universal implication `(95)` from rank mass,
+  every rank one-mark balance, and one conductance-storage balance per rank,
+  by the exact nine-vertex primal/dual pair `(120)--(123)`.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
@@ -1260,8 +1321,8 @@ the vertex-marked current transports the destruction debt before absorption.
   the natural event-moment bounds `(112)--(113)`, by the rational `n=3`
   relaxed point of flux `5/9`.
 - **PROVED:** the internal-conductance creation/debt identity
-  `(114)--(119)`, an exact reformulation of the sharp rank-`H` endpoint
-  problem.
+  `(114)--(119)`, an exact reformulation of the now-refuted rank-`H`
+  implication and a surviving component of the combined route.
 - **EXACTLY COMPUTED:** rank-dependent `H` and, separately, rank-dependent
   `K_0` both repair the exact 17-vertex global-coefficient witness, by the
   matching rational certificates `(96)` and `(102)`.
@@ -1273,6 +1334,6 @@ the vertex-marked current transports the destruction debt before absorption.
   the complete baseline in the hostile searches in this directory.
 - **OPEN:** the universal cut bound `(25)`, hence universal feasibility of
   the rank-pair certificate and the universal fitness-two fixation theorem;
-  equivalently, the summed collision inequality `(75)`.  The corresponding
-  compressed potential with a separate conductance coefficient on every
-  rank also remains open.
+  equivalently, the summed collision inequality `(75)`.  The smallest live
+  compressed potential has separate rank-dependent coefficients for both
+  `H` and `K_0`; otherwise the full rank-pair matrix is required.
