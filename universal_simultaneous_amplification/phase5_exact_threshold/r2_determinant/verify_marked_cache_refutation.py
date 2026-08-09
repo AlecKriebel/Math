@@ -319,7 +319,8 @@ def refutation_audit() -> None:
     print(f"FULL LABELLED STATES: {len(full_states)}")
     print(f"q=1 marked-cache difference: {marked_difference}")
     print(f"inverse-rank difference on same witness: {inverse_difference}")
-    print("OPEN: the integrated inverse-rank standard-sector sign")
+    print("OPEN HERE: arbitrary finite-word inverse-rank Schur order")
+    print("PROVED SEPARATELY: stationary standard inverse-rank sector")
 
 
 if __name__ == "__main__":

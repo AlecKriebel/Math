@@ -96,6 +96,22 @@ multinomial Schur-convexity screen:
 ../../.venv/bin/python verify_pin_multinomial_schur.py
 ```
 
+The stronger all-order marked-cache/PGF route is exactly refuted in
+`STANDARD_MARKED_CACHE_HAUSDORFF.md`.  The true stationary inverse-rank
+scalar nevertheless has a complete phase-contraction proof in
+`TRUE_INVERSE_RANK_PHASE_CONTRACTION.md`.  Replay its independent exact
+certificate with
+
+```text
+../../.venv/bin/python verify_true_inverse_rank_phase_contraction.py
+```
+
+It reconstructs the signed two-label quotient and inverse-rank coboundary,
+checks every coefficientwise rational certificate, and independently
+recomputes the seven small-order Schur complements.  This closes the
+stationary standard irreducible Hessian sector, not the finite-time standard
+coefficient or the symmetric sector.
+
 The cubic and quartic optional-potential variants are now closed by exact
 Farkas certificates in `CUBIC_OPTIONAL_FARKAS_REFUTATION.md`.  The independent
 replay is `../../.venv/bin/python verify_cubic_optional_farkas.py`; it
@@ -135,8 +151,13 @@ Status:
   pencil;
 - **PROVED:** all-order determinant factorization and semisimple generalized
   spectrum of the distinguished-pin pencil;
+- **PROVED:** strict positivity of the stationary standard irreducible
+  inverse-rank sector in every population order, by an explicit all-reentry
+  phase contraction;
 - **EXACTLY REFUTED:** pointwise convexity of the standard pin-count
   controls;
+- **EXACTLY REFUTED:** the all-order marked-cache Bernstein/PGF order, by an
+  exact eight-vertex, length-26 two-pin witness;
 - **EXACTLY REFUTED:** universal degree-three and degree-four
   optional-potential feasibility, by sparse exact Farkas rays;
 - **EXACTLY REFUTED:** the rank-dependent additive optional-potential ansatz,
@@ -160,8 +181,9 @@ Status:
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
 - **OPEN:** the stationary factorial-moment hierarchy;
-- **OPEN:** all-order positivity of the standard and symmetric Hessian
-  sectors;
+- **OPEN:** all-order finite-time positivity of the standard and symmetric
+  Hessian sectors;
+- **OPEN:** the stationary symmetric irreducible Hessian sector;
 - **OPEN:** positivity of every higher complete-refresh forest coefficient;
 - **OPEN:** the universal transient baseline floor and its complete-ray
   Bernstein strengthening;

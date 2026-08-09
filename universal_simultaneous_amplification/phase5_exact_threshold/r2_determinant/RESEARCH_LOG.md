@@ -230,3 +230,27 @@
   `QQ`.  The normalized dB fixation ratio is
   `0.87345507490368193387...<1`, so the graph supports the universal r=2
   inequality and refutes only the potential ansatz.
+
+## 2026-08-08 — marked-cache refutation and stationary standard closure
+
+- Exactified the first failure of the all-order marked-cache/PGF Schur
+  strengthening.  At `n=8`, word length 26, the shuffled pin counts
+  `(14,12)` versus `(13,13)` give a strictly negative `q=1` avoidance
+  coefficient, while the true inverse-rank difference remains strictly
+  positive.
+- Integrated the Hausdorff atoms before attempting a renewal proof.  The
+  resulting true inverse-rank reward admits the exact bad-channel debt
+  `W_1=N^2`, `W_k=2N/[k(k-1)]`; its transformed reward is entrywise
+  nonnegative, but a memoryless signed occupation still fails in small
+  orders.
+- Schur-eliminated complete bad excursions.  The exact stationary standard
+  scalar is `s(I+A)^(-1)f_0`, where
+  `A=(I-S)^(-1)C(I-Q)^(-1)D` is nonnegative.
+- Proved an all-order phase contraction with the explicit radial majorant
+  `V_1=N`, `V_k=4N/k^2+2/N`: `f_0<=v`,
+  `f_0(R_k)>=V_k/3`, and
+  `Av<=[12/(5(N+1))]v`.
+- Summing the absolute re-entry tail proves strict positivity for every
+  `N>=9`; seven exact Schur complements close `2<=N<=8`.  This proves the
+  stationary standard irreducible Hessian sector in every population order.
+  The stationary symmetric sector remains open.

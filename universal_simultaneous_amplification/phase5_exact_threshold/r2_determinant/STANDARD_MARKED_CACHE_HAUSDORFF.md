@@ -371,8 +371,10 @@ On the same two multisets, exact arithmetic gives
 \]
 
 approximately `1.95702078708e-4`.  Therefore `(33)` is a refutation of the
-marked-cache/PGF strengthening only.  The true inverse-rank standard-sector
-comparison remains **OPEN**.
+marked-cache/PGF strengthening only.  The arbitrary finite-word
+inverse-rank Schur comparison remains open.  The distinct *stationary*
+standard-sector inverse-rank comparison is now **PROVED** by the all-reentry
+phase contraction in `TRUE_INVERSE_RANK_PHASE_CONTRACTION.md`.
 
 The independent verifier reconstructs the pin active chains and checks:
 
