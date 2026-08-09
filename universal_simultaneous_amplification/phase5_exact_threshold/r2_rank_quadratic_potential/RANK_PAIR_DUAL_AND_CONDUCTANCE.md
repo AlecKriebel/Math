@@ -846,6 +846,212 @@ only the compressed certificate `(81)`, not the endpoint fixation theorem.
 The full rank-pair route and the version with an independent conductance
 coefficient on every rank remain open.
 
+### 7.5 Exact audit of the fixed collision-matrix contractions
+
+The matrix balance `(68)` can be contracted with `L_pi` and `K_0` exactly.
+This determines what those two fixed PSD tests do and do not provide.
+Write `mathscr L` for the evolutionary generator in this subsection, to
+distinguish it from the conductance Laplacian `L_pi`.
+
+For `K=L_pi`, the quadratic form is `s^TKs=C(S)`, `K1=0`, and
+`Tr(K)=1`.  Thus `(68)` gives
+
+\[
+ \sum_S\bar\mu_S\mathscr LC(S)=-{1\over n}.                 \tag{83}
+\]
+
+But `C=3M-2H`, `mathscr LM=Q`, and `mathscr LH=C`, so pointwise
+
+\[
+ \boxed{\mathscr LC=3Q-2C.}                                \tag{84}
+\]
+
+Consequently `(83)` is exactly the linear combination of the two boundary
+identities `(72)`.  The constant `L_pi` contraction adds no new inequality.
+
+For `K=K_0=Pi-P^TPi P`, put
+
+\[
+ R_0(S)=s^TK_0s=\sum_v\pi_vx_v(1-x_v),
+ \qquad
+ \chi=\sum_{v,i}\pi_vP_{vi}^2.                             \tag{85}
+\]
+
+Then `K_01=0` and `Tr(K_0)=1-chi`, hence
+
+\[
+ \boxed{
+ \sum_S\bar\mu_S\mathscr LR_0(S)=-{1-\chi\over n}.}      \tag{86}
+\]
+
+Looplessness and rowwise Cauchy--Schwarz give the sharp collision bound
+
+\[
+ \chi\ge{1\over n-1},                                     \tag{87}
+\]
+
+with equality only when every row is uniform on the other `n-1` vertices,
+that is, at the complete kernel.
+
+The new drift in `(86)` has an exact two-step response form.  Reversibility
+gives `P^TPi P=Pi P^2`; with `d,t` from `(68)`, define
+
+\[
+ \mathcal J_2(S)=
+ 2(\Pi P^2s)\mathbin\cdot d
+ +\sum_i\pi_i(P^2)_{ii}t_i.                                \tag{88}
+\]
+
+Then
+
+\[
+ \boxed{\mathscr LR_0=Q-\mathcal J_2,\qquad
+ \sum_S\bar\mu_S\mathcal J_2=z-{\chi\over n}.}           \tag{89}
+\]
+
+Neither term in `(89)` has a statewise sign.  On the exact four-vertex
+weighted cycle used by the rational verifier, `mathcal J_2=3604/11025>0`
+at `S={0,1}`, but `mathcal J_2=-107/3024<0` at `S={2}`; correspondingly
+`mathscr LR_0` also has both signs.  Thus PSD of `K_0` does not turn `(86)`
+into a direct gain/cut comparison.
+
+For completeness, the entire rank-dependent information supplied by a
+fixed symmetric matrix `K` with `K1=0` can be written explicitly.  Put
+
+\[
+ R_K(S)=s^TKs,
+\]
+
+\[
+ \Delta^+_{K,v}=2(Ks)_v+K_{vv},\qquad
+ \Delta^-_{K,v}=-2(Ks)_v+K_{vv}.                           \tag{90}
+\]
+
+For an arbitrary rank sequence `r_k`,
+
+\[
+\begin{aligned}
+ \mathscr L\{r_kR_K(S)\}={}&R_K(S)
+ [(r_{k+1}-r_k)U+(r_{k-1}-r_k)D]\\
+ &+r_{k+1}\sum_{v\notin S}g_v\Delta^+_{K,v}
+ +r_{k-1}\sum_{v\in S}\ell_v\Delta^-_{K,v}.              \tag{91}
+\end{aligned}
+\]
+
+Testing the pseudoflow gives the exact integrated recurrence
+
+\[
+ {r_1\operatorname{Tr}K\over n}
+ +\sum_S\bar\mu_S\mathscr L\{r_{|S|}R_K(S)\}=0.           \tag{92}
+\]
+
+For constant `r`, positivity of the diagonal carré term yields only
+
+\[
+ \sum_S\bar\mu_Ss^TKd\le-{\operatorname{Tr}K\over2n}.     \tag{93}
+\]
+
+Equations `(91)--(93)` are the strongest sign consequence obtained from
+the fixed-matrix contraction using PSD alone.  To reach `kappa_n`, a proof
+must control the signed mixed increments in `(91)` after summation against
+the one-mark balances.  The exact global-coefficient counterexample in
+Section 7.4 shows that constant multipliers of `L_pi` do not suffice; the
+rank-dependent `L_pi` and `K_0` problem remains open.
+
+### 7.6 The exact compressed dual and rank-dependent witness repairs
+
+Let `W_H` contain the rank constants, all rank-labelled vertex functions,
+and one independent coefficient of `H` on every rank:
+
+\[
+ F(S)=a_k+\sum_{i\in S}b_{k,i}+q_kH(S).                    \tag{94}
+\]
+
+Since the mass part of `H` already lies in the vertex span, this is the
+same space as using one rank-dependent internal-conductance coefficient.
+The dual of `(94)` has a particularly small exact description: it consists
+of nonnegative `y_S` satisfying the rank-mass equations `(12)`, every
+one-mark equation `(14)`, and the single rank-storage equation `(28)` for
+each rank.  Conversely those equations annihilate every function in
+`W_H`, so this description loses nothing.  Thus the canonical compressed
+universal question is
+
+\[
+ \boxed{(12),(14),(28),\ y\ge0\quad\Longrightarrow\quad
+ z\le\rho_{\rm dB}(K_n,2).}                                \tag{95}
+\]
+
+This system exactly repairs the graph which refutes one global coefficient.
+On the 17-vertex graph in Section 7.4, its 196-state symmetry quotient has
+dimension 63.  A 62-state strictly positive rational dual solution and a
+matching rational primal give
+
+\[
+ p_{\rm rank-H}=0.463075851135221216402749\ldots
+ <{524288\over1114095},                                    \tag{96}
+\]
+
+with exact margin
+`0.00751956487508311132513730...`.  Every quotient drift inequality is
+checked over the rationals by
+`verify_rank_dependent_conductance_witness.py`.  This is an exact finite
+repair, not a proof of `(95)`.
+
+There is an equally compact rank recurrence for the collision matrix
+`K_0`.  For a fixed symmetric `K` with `K1=0`, define
+
+\[
+ X^K_k=\sum_{|S|=k}\bar\mu_SR_K(S)U(S),\qquad
+ Y^K_k=\sum_{|S|=k}\bar\mu_SR_K(S)D(S),                    \tag{97}
+\]
+
+\[
+ P^K_k=\sum_{|S|=k}\bar\mu_S\sum_{v\notin S}g_v
+       \Delta^+_{K,v},\qquad
+ N^K_k=\sum_{|S|=k}\bar\mu_S\sum_{v\in S}\ell_v
+       \Delta^-_{K,v}.                                    \tag{98}
+\]
+
+Taking the coefficient of an arbitrary rank multiplier in `(92)` gives
+
+\[
+ \boxed{
+ {\operatorname{Tr}K\over n}1_{\{k=1\}}
+ +X^K_{k-1}+P^K_{k-1}+Y^K_{k+1}+N^K_{k+1}
+ -X^K_k-Y^K_k=0.}                                         \tag{99}
+\]
+
+All absent terms are zero; the formally redundant `k=n` equation cancels
+because `R_K(V)=0`.  For `K=K_0`, the source in `(99)` is
+`(1-chi)/n`.  Also, pointwise,
+
+\[
+ Q(S)\le R_0(S),\qquad
+ R_0(S)-Q(S)=\sum_v{\pi_vx_v^2(1-x_v)\over1+x_v}\ge0.     \tag{100}
+\]
+
+The occupation inequality obtained by discarding the remainder in `(100)`
+is too weak.  On the exact four-vertex verifier graph,
+
+\[
+ {\sum_S\bar\mu_SR_0(S)\over\sum_S\bar\mu_SC(S)}
+ ={3763047422347\over5888649661090}>{5\over11}=\kappa_4. \tag{101}
+\]
+
+Hence any `K_0` proof must use the rank transport `(99)` and the positive
+remainder in `(100)`, not merely `Q<=R_0`.  As a finite check, the
+rank-constant plus rank-vertex plus rank-`K_0` space also closes the exact
+17-vertex witness, with rational optimum
+
+\[
+ p_{\rm rank-K_0}=0.439476931794796785748626\ldots
+ <{524288\over1114095}.                                    \tag{102}
+\]
+
+The independent exact replay is
+`verify_rank_dependent_k0_witness.py`.  The universal implication from
+`(99)--(100)` remains open.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -868,6 +1074,14 @@ coefficient on every rank remain open.
 - **EXACTLY REFUTED:** the restricted potential with rank constants,
   arbitrary rank-labelled vertex terms, and one global conductance
   coefficient, by the rational primal/dual pair `(81)--(82)`.
+- **PROVED:** the fixed `L_pi,K_0` contraction identities `(83)--(93)`,
+  including the sharp row-collision source and exact sign-indefinite
+  two-step response.
+- **PROVED:** the exact compressed rank-`H` dual `(94)--(95)` and the
+  rank-dependent collision recurrence `(97)--(100)`.
+- **EXACTLY COMPUTED:** rank-dependent `H` and, separately, rank-dependent
+  `K_0` both repair the exact 17-vertex global-coefficient witness, by the
+  matching rational certificates `(96)` and `(102)`.
 - **EXACTLY VERIFIED:** an independent rational implementation checks these
   identities and the dual balances on small weighted graphs, checks `(36)`
   on a genuinely directed rational kernel, and checks the new Green/current

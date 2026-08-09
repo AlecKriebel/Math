@@ -88,6 +88,39 @@
 - Consequently a single fixed conductance contraction of the matrix budget
   cannot prove the endpoint theorem.  The full rank-pair system, or at least
   a genuinely rank-dependent conductance profile, remains the live route.
+- Contracted the exact degree-two matrix balance with the two fixed
+  reversible PSD matrices.  The `L_pi` contraction is identically
+  `L cut=3Q-2 cut`, hence is only a linear combination of the already known
+  mass/storage boundary laws.  The `K_0=Pi-P^T Pi P` contraction has source
+  `1-chi`, where `chi=sum_(v,i) pi_v P_vi^2 >=1/(n-1)`, but its two-step
+  response `J_2` changes sign even on the exact four-cycle.  Therefore no
+  sign follows from either fixed contraction alone.
+- Derived the exact arbitrary-rank multiplier formula for `s^T K s` and
+  its rank-current recurrence.  PSD controls only the diagonal
+  carre-du-champ for a constant multiplier; rank variation introduces
+  signed adjacent-rank mixed currents which must be coupled to the
+  one-mark balances.  This is the minimal unresolved term in the matrix
+  contraction route.
+- Wrote the exact compressed dual for rank constants, arbitrary
+  rank-labelled vertices, and one conductance coefficient per rank.  It is
+  precisely nonnegative pseudoflow plus the rank-mass equations, all
+  one-mark equations, and one `H`-storage recurrence per rank.
+- [EXACT FINITE REPAIR] On the same 17-vertex graph which refutes one global
+  conductance coefficient, the rank-dependent conductance space has exact
+  dimension 63.  A 62-state strictly positive rational dual and matching
+  rational primal give optimum
+  `0.463075851135221216402749...`, below the `K_17` baseline by
+  `0.00751956487508311132513730...`; all 196 quotient drifts are exact.
+- [EXACT FINITE REPAIR] Replacing rank-dependent conductance by the
+  rank-dependent two-request covariance `s^T K_0 s` also repairs the same
+  witness.  Its exact optimum is `0.439476931794796785748626...`, below
+  baseline by `0.0311184842155075419792610...`.
+- The naive scalar use of `Q<=s^T K_0s` cannot prove the sharp constant:
+  on the exact four-vertex verifier graph the integrated ratio
+  `(sum mu s^T K_0s)/(sum mu cut)` is
+  `3763047422347/5888649661090 > kappa_4=5/11`.  The live `K_0` route must
+  retain rank transport and the positive remainder
+  `sum pi x^2(1-x)/(1+x)`.
 
 ### Active sign
 
@@ -101,3 +134,9 @@ reversible Poisson equation.  The smaller space containing only rank
 constants, stationary mass, and internal conductance is exactly unsuitable
 as a universal route according to direct LP counterexamples, so the full
 vertex corrector must be retained.
+
+The sharpest surviving compressed conjecture is now the exact implication
+from rank mass + every rank one-mark balance + the rank-`H` recurrence to
+`z<=rho_dB(K_n,2)`.  A parallel augmentation uses the rank-`K_0` recurrence.
+Neither fixed-matrix PSD nor `Q<=s^T K_0s` closes the sign; the unresolved
+object is the signed adjacent-rank mixed current after one-mark elimination.

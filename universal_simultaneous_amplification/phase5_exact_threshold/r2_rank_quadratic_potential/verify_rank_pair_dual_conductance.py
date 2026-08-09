@@ -516,10 +516,178 @@ def verify_geometric_green_bridge() -> None:
     assert (gain_integral <= kappa * cut_integral) == (rho <= baseline)
 
 
+def verify_fixed_matrix_contractions() -> None:
+    """Check the exact fixed-``L_pi``/``K_0`` contraction audit.
+
+    This includes the two-step response, its sign changes, and the full
+    rank-profile drift formula for a nonconstant rational profile.
+    """
+
+    transient, occupation, rho = exact_green_occupation()
+    mu = {state: occupation[j] for j, state in enumerate(transient)}
+
+    laplacian = [
+        [(PI[i] if i == j else F(0)) - CONDUCTANCE[i][j] for j in range(N)]
+        for i in range(N)
+    ]
+    k_zero = [
+        [
+            (PI[i] if i == j else F(0))
+            - sum(P[v][i] * PI[v] * P[v][j] for v in range(N))
+            for j in range(N)
+        ]
+        for i in range(N)
+    ]
+    p_squared = [
+        [sum(P[i][v] * P[v][j] for v in range(N)) for j in range(N)]
+        for i in range(N)
+    ]
+    chi = sum(
+        PI[v] * sum(P[v][i] ** 2 for i in range(N)) for v in range(N)
+    )
+    assert chi >= F(1, N - 1)
+
+    def indicator(state: int) -> list[F]:
+        return [F(int(bit(state, i))) for i in range(N)]
+
+    def quadratic(matrix: list[list[F]], vector: list[F]) -> F:
+        return sum(
+            vector[i] * matrix[i][j] * vector[j]
+            for i in range(N)
+            for j in range(N)
+        )
+
+    def drift_activity(state: int) -> tuple[list[F], list[F]]:
+        drift = []
+        activity = []
+        for i in range(N):
+            x = x_value(state, i)
+            if bit(state, i):
+                drift.append(-(1 - x) / (1 + x))
+                activity.append((1 - x) / (1 + x))
+            else:
+                drift.append(2 * x / (1 + x))
+                activity.append(2 * x / (1 + x))
+        return drift, activity
+
+    cut_values = [cut(state) for state in range(FULL + 1)]
+    r_zero_values = [
+        quadratic(k_zero, indicator(state)) for state in range(FULL + 1)
+    ]
+    assert all(
+        r_zero_values[state]
+        == sum(
+            PI[v] * x_value(state, v) * (1 - x_value(state, v))
+            for v in range(N)
+        )
+        for state in range(FULL + 1)
+    )
+
+    j_two = {}
+    for state in transient:
+        s = indicator(state)
+        drift, activity = drift_activity(state)
+        p2s = [sum(p_squared[i][j] * s[j] for j in range(N)) for i in range(N)]
+        j_two[state] = 2 * sum(
+            PI[i] * p2s[i] * drift[i] for i in range(N)
+        ) + sum(
+            PI[i] * p_squared[i][i] * activity[i] for i in range(N)
+        )
+
+        # The L_pi contraction is only the already-known boundary identity.
+        assert generator(state, cut_values) == 3 * selection_gain(state) - 2 * cut(state)
+
+        # The K_0 contraction is gain minus its signed two-step response.
+        assert (
+            generator(state, r_zero_values)
+            == selection_gain(state) - j_two[state]
+        )
+
+    assert j_two[3] == F(3604, 11025) > 0
+    assert j_two[4] == -F(107, 3024) < 0
+    assert generator(3, r_zero_values) == -F(1882, 11025) < 0
+    assert generator(4, r_zero_values) == F(719, 7560) > 0
+
+    assert sum(
+        mu[state] * generator(state, cut_values) for state in transient
+    ) == -F(1, N)
+    assert sum(
+        mu[state] * generator(state, r_zero_values) for state in transient
+    ) == -(1 - chi) / N
+    assert sum(mu[state] * j_two[state] for state in transient) == rho - chi / N
+
+    # Check the full rank-dependent formula with a deliberately nonconstant
+    # rational sequence.  K_0 annihilates the all-ones vector, so both
+    # absorbing boundary values vanish.
+    profile = [F((k + 1) * (k + 4), 3 * k + 5) for k in range(N + 1)]
+    weighted_values = [
+        profile[state.bit_count()] * r_zero_values[state]
+        for state in range(FULL + 1)
+    ]
+    for state in transient:
+        k = state.bit_count()
+        s = indicator(state)
+        up = sum(
+            rate for target, rate in rates(state) if target.bit_count() == k + 1
+        )
+        down = sum(
+            rate for target, rate in rates(state) if target.bit_count() == k - 1
+        )
+        right = r_zero_values[state] * (
+            (profile[k + 1] - profile[k]) * up
+            + (profile[k - 1] - profile[k]) * down
+        )
+        for vertex in range(N):
+            ks = sum(k_zero[vertex][j] * s[j] for j in range(N))
+            if bit(state, vertex):
+                x = x_value(state, vertex)
+                rate = (1 - x) / (1 + x)
+                right += profile[k - 1] * rate * (
+                    -2 * ks + k_zero[vertex][vertex]
+                )
+            else:
+                x = x_value(state, vertex)
+                rate = 2 * x / (1 + x)
+                right += profile[k + 1] * rate * (
+                    2 * ks + k_zero[vertex][vertex]
+                )
+        assert generator(state, weighted_values) == right
+
+    trace_k_zero = sum(k_zero[i][i] for i in range(N))
+    assert trace_k_zero == 1 - chi
+    assert (
+        profile[1] * trace_k_zero / N
+        + sum(
+            mu[state] * generator(state, weighted_values)
+            for state in transient
+        )
+        == 0
+    )
+
+    # For the constant profile, the diagonal carré term is nonnegative.
+    mixed = F(0)
+    diagonal_carre = F(0)
+    for state in transient:
+        s = indicator(state)
+        drift, activity = drift_activity(state)
+        mixed += mu[state] * sum(
+            s[i] * k_zero[i][j] * drift[j]
+            for i in range(N)
+            for j in range(N)
+        )
+        diagonal_carre += mu[state] * sum(
+            k_zero[i][i] * activity[i] for i in range(N)
+        )
+    assert diagonal_carre >= 0
+    assert 2 * mixed + diagonal_carre == -trace_k_zero / N
+    assert mixed <= -trace_k_zero / (2 * N)
+
+
 def main() -> None:
     verify_storage_identities()
     rho = verify_dual_and_rank_recurrences()
     verify_geometric_green_bridge()
+    verify_fixed_matrix_contractions()
     print("all exact rank-pair/conductance checks passed")
     print("test-graph fixation numerator", rho.numerator)
     print("test-graph fixation denominator", rho.denominator)
