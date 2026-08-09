@@ -302,3 +302,9 @@
 - Therefore neither row locations nor unicycle skeletons can be treated
   pointwise.  The remaining global target is a simultaneous cancellation
   over all fixed-colour locations and all spanning-unicycle completions.
+- Summed all attachment forests for each fixed directed cycle by the
+  all-minors theorem.  This larger unit is still insufficient: on the same
+  triangle, the cycle `(2,0)->(6,0)->(3,2)->(2,0)` has a strictly negative
+  degree-eight Bernstein control at every nonzero level; its level-one
+  value is `-783/11534336`.  The exact 362-cycle audit reconstructs the
+  global determinant, so cancellation across distinct cycles is essential.

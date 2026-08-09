@@ -151,8 +151,10 @@ sum and a coloured spanning-unicycle circulation.  Replay
 The verifier reconstructs the active chain independently, checks the
 root-vector recurrence and degree-elevated row-mixture identity, and gives
 exact reversible-triangle counterexamples to both a single-row sign and a
-single-unicycle sign.  Thus the surviving open certificate must cancel
-simultaneously across colour locations and unicycle skeletons.
+single-unicycle sign.  It also checks the all-minors cycle-plus-attachment
+formula and refutes a sign for one directed cycle even after every
+attachment forest is summed.  Thus the surviving open certificate must
+cancel simultaneously across colour locations and directed cycles.
 
 Status:
 
@@ -213,6 +215,9 @@ Status:
   unicycle circulation identities;
 - **EXACTLY REFUTED:** pointwise signs for an individual row location and
   for an individual level-two spanning-unicycle packet;
+- **PROVED:** the cycle-plus-all-attachment mixed-minor identity;
+- **EXACTLY REFUTED:** a sign for one directed cycle after summing every
+  attachment forest;
 - **PROVED:** exact factorial-moment stationarity recurrence;
 - **EXACTLY REFUTED:** pointwise factorial domination by a complete update;
 - **OPEN:** the stationary factorial-moment hierarchy;

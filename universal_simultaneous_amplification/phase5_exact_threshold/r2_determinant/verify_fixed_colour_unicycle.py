@@ -207,11 +207,120 @@ def unicycle_audit(states, K0, K, h):
     print("PASS (EXACT REFUTATION): one level-two unicycle packet is negative")
 
 
+def simple_directed_cycles(kernel):
+    """Enumerate nontrivial directed cycles once, with their minimum first."""
+    size = kernel.rows
+    answer = []
+    for start in range(size):
+        path = [start]
+        seen = {start}
+
+        def extend(source):
+            for target in range(size):
+                if source == target or not kernel[source, target]:
+                    continue
+                if target == start:
+                    if len(path) >= 2:
+                        answer.append(tuple(path))
+                    continue
+                # The unique minimum-vertex convention removes rotations.
+                if target <= start or target in seen:
+                    continue
+                seen.add(target)
+                path.append(target)
+                extend(target)
+                path.pop()
+                seen.remove(target)
+
+        extend(start)
+    return answer
+
+
+def cycle_attachment_audit(states, K0, K, nu0, q, h):
+    """Check the all-attachment cycle formula and its smallest obstruction."""
+    size = len(states)
+    alpha = sp.symbols("alpha")
+    Kalpha = K0 + alpha * (K - K0)
+    Lalpha = sp.eye(size) - Kalpha
+    index = {state: i for i, state in enumerate(states)}
+    cycle = [index[state] for state in ((2, 0), (6, 0), (3, 2))]
+    outside = [i for i in range(size) if i not in cycle]
+    edges = list(zip(cycle, cycle[1:] + cycle[:1]))
+    packet = sum(
+        K0[u, v] * (h[u] - h[v])
+        * sp.prod(
+            Kalpha[x, y]
+            for position, (x, y) in enumerate(edges)
+            if position != distinguished
+        )
+        for distinguished, (u, v) in enumerate(edges)
+    )
+    contribution = sp.factor(
+        Lalpha.extract(outside, outside).det(method="domain-ge") * packet
+    )
+    expected = sp.factor(
+        -sp.Rational(9, 139375149056) * alpha * (7 * alpha + 13)
+        * (2709 * alpha**4 - 9824 * alpha**3 - 60233 * alpha**2
+           - 355368 * alpha + 646932)
+    )
+    assert contribution == expected
+    controls = bernstein_controls(contribution, alpha, size - 1)
+    assert controls == [
+        0,
+        -sp.Rational(783, 11534336),
+        -sp.Rational(97821, 721616896),
+        -sp.Rational(119626803, 600385257472),
+        -sp.Rational(310593141, 1219532554240),
+        -sp.Rational(331189569, 1115001192448),
+        -sp.Rational(626218821, 1951252086784),
+        -sp.Rational(22336947, 69687574528),
+        -sp.Rational(1261215, 4355473408),
+    ]
+
+    # Independently sum every simple cycle and all its attachment forests at
+    # two rational interpolation points.  This is the all-minors identity,
+    # checked without expanding individual functional unicycles.
+    cycles = simple_directed_cycles(K0)
+    assert len(cycles) == 362
+    one = sp.ones(size, 1)
+    for value in (sp.Rational(1, 3), sp.Rational(2, 3)):
+        mixed = K0 + value * (K - K0)
+        laplacian = sp.eye(size) - mixed
+        total = 0
+        for directed_cycle in cycles:
+            complement = [i for i in range(size) if i not in directed_cycle]
+            forest = (
+                laplacian.extract(complement, complement).det(method="domain-ge")
+                if complement else sp.Integer(1)
+            )
+            cycle_edges = list(zip(
+                directed_cycle,
+                directed_cycle[1:] + directed_cycle[:1],
+            ))
+            circulation = sum(
+                K0[u, v] * (h[u] - h[v])
+                * sp.prod(
+                    mixed[x, y]
+                    for position, (x, y) in enumerate(cycle_edges)
+                    if position != distinguished
+                )
+                for distinguished, (u, v) in enumerate(cycle_edges)
+            )
+            total += forest * circulation
+        determinant = (
+            sp.eye(size) - mixed + q * nu0
+        ).det(method="domain-ge")
+        assert sp.factor(total - determinant) == 0
+    print("PASS: exact cycle-plus-all-attachments mixed-minor identity")
+    print("PASS (EXACT REFUTATION): one all-attachment cycle packet is negative")
+
+
 def main():
     states, K0, K, nu0, _, q = triangle_data()
     controls, h, delta_h = root_recurrence_audit(states, K0, K, q)
     row_mixture_audit(states, K0, K, nu0, q, controls, h, delta_h)
     unicycle_audit(states, K0, K, h)
+    cycle_attachment_audit(states, K0, K, nu0, q, h)
     print("OPEN: the all-location, all-unicycle fixed-colour sign")
 
 

@@ -12,13 +12,14 @@ problem on the complete-to-actual active ray.
 2. The same coefficient is a sum of coloured functional-unicycle
    circulations.
 
-Both identities are **PROVED**.  Two tempting local strengthenings are
+Both identities are **PROVED**.  Three tempting local strengthenings are
 **EXACTLY REFUTED**, already on the reversible weighted triangle with edge
 weights `(1,10,3)`: a single row-location determinant can be negative, and
 a single spanning unicycle packet can be negative at the first nonzero
-colour level.  Thus a proof must average simultaneously over colour
-locations and unicycle skeletons.  The global fixed-colour sign remains
-**OPEN**.
+colour level.  Even summing every attachment forest before judging a fixed
+directed cycle can be negative.  Thus a proof must average simultaneously
+over colour locations and directed cycles.  The global fixed-colour sign
+remains **OPEN**.
 
 ## 1. Setup and root controls
 
@@ -280,10 +281,66 @@ quadratic certificate requires cancellation between different unicycle
 skeletons.  A path reversal or cycle rotation that treats one unicycle at
 a time cannot prove `(FC)`.
 
+### Exact all-minors grouping, and why one cycle is still too small
+
+There is a canonical way to sum all attachment forests before testing a
+cycle.  For a directed simple cycle `C`, put
+
+\[
+ F_C(\alpha)=
+ \det (I-K_\alpha)_{Y\setminus C,Y\setminus C}
+\tag{20}
+\]
+
+and orient the edges of `C` cyclically.  The all-minors forest theorem and
+the distinguished-root-edge construction give
+
+\[
+ \boxed{
+ N(\alpha)=\sum_C F_C(\alpha)
+ \sum_{e\in C}K_0(e)\delta_e
+       \prod_{f\in C\setminus\{e\}}K_\alpha(f).
+ }
+\tag{21}
+\]
+
+Thus each summand in (21) contains every forest attaching the off-cycle
+states to `C`.  This is a strictly larger grouping than (16), but it still
+does not have a pointwise sign.
+
+On the triangle (11), take
+
+```text
+(2,0) -> (6,0) -> (3,2) -> (2,0).
+```
+
+The complete degree-eight Bernstein polynomial contributed by this cycle
+and **all** of its attachment forests is
+
+\[
+ -{9\alpha(7\alpha+13)
+ (2709\alpha^4-9824\alpha^3-60233\alpha^2
+ -355368\alpha+646932)\over139375149056}.
+\tag{22}
+\]
+
+Its degree-eight Bernstein controls are zero at level zero and strictly
+negative at every level `1<=j<=8`; for example the level-one control is
+
+\[
+ -{783\over11534336}<0.                                  \tag{23}
+\]
+
+The verifier enumerates all 362 directed simple cycles of the nine-state
+active chain and checks (21) independently at rational interpolation
+points.  Hence (22) is an obstruction to the natural cycle-plus-forest
+unit, not a bookkeeping artefact.  Cancellation across different cycles
+is essential.
+
 ## 4. Consequence for the next proof step
 
 The exact surviving target is the fixed-level sum (10), equivalently the
-all-unicycle sum (15).  The two refutations show that the grouping must keep
+all-unicycle sum (15).  The three refutations show that the grouping must keep
 both of the following at once:
 
 1. all choices of the actual-coloured source locations at a fixed `j`;
