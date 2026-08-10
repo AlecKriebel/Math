@@ -2,4 +2,4 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
-python3 cleanroom_verifier.py
+python3 -B cleanroom_verifier.py
