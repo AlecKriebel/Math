@@ -155,11 +155,20 @@ def model_key(ordered: dict[tuple[int, int, int, int], Descriptor], n: int):
     return tuple(ordered[quartet] for quartet in combinations(range(n + 1), 4))
 
 
-def source_bases(n: int) -> tuple[BaseModel, ...]:
+def source_bases(
+    n: int,
+    *,
+    core_ids: frozenset[str] | None = None,
+    extra_counts: frozenset[int] | None = None,
+) -> tuple[BaseModel, ...]:
     data = json.loads(SUPPORT_CERT.read_text())
     answer = []
     for index, row in enumerate(data["records"]):
         if int(row["outgoing_count"]) != n:
+            continue
+        if core_ids is not None and str(row["core_id"]) not in core_ids:
+            continue
+        if extra_counts is not None and int(row["extra_count"]) not in extra_counts:
             continue
         graph = graph_from_record(row)
         labels = (*outgoing(graph), INCOMING)
@@ -453,9 +462,20 @@ def equal_topology_audit(common_signatures: set[int], sources: dict[int, dict], 
     }
 
 
-def compile_size(n: int, invariants, bit_cache):
+def compile_size(
+    n: int,
+    invariants,
+    bit_cache,
+    *,
+    source_core_ids: frozenset[str] | None = None,
+    source_extra_counts: frozenset[int] | None = None,
+):
     start = time.monotonic()
-    sources_base = source_bases(n)
+    sources_base = source_bases(
+        n,
+        core_ids=source_core_ids,
+        extra_counts=source_extra_counts,
+    )
     targets_base = target_bases(n)
     sources, source_raw = labelled_records(
         sources_base, n, invariants, bit_cache,
@@ -485,6 +505,13 @@ def compile_size(n: int, invariants, bit_cache):
                 pair_kind_matrix[f"{source_kind}_to_{target_kind}"][relation] += 1
     return {
         "outgoing": n,
+        "source_core_filter": (
+            sorted(source_core_ids) if source_core_ids is not None else None
+        ),
+        "source_extra_count_filter": (
+            sorted(source_extra_counts)
+            if source_extra_counts is not None else None
+        ),
         "source_bases": len(sources_base),
         "target_bases": len(targets_base),
         "source_raw_labelled": source_raw,
@@ -727,6 +754,8 @@ def main() -> None:
     parser.add_argument("--relations", action="store_true")
     parser.add_argument("--load-bit-cache", type=Path)
     parser.add_argument("--write-bit-cache", type=Path, default=BIT_CACHE_FILE)
+    parser.add_argument("--source-core-id", action="append")
+    parser.add_argument("--source-extra-count", action="append", type=int)
     args = parser.parse_args()
     template_sha = sha256(TEMPLATE_FILE)
     if template_sha != EXPECTED_TEMPLATE_SHA:
@@ -753,7 +782,19 @@ def main() -> None:
     loaded_descriptor_types = len(cache)
     runs = []
     for n in args.sizes:
-        row, working = compile_size(n, invariants, cache)
+        row, working = compile_size(
+            n,
+            invariants,
+            cache,
+            source_core_ids=(
+                frozenset(args.source_core_id)
+                if args.source_core_id is not None else None
+            ),
+            source_extra_counts=(
+                frozenset(args.source_extra_count)
+                if args.source_extra_count is not None else None
+            ),
+        )
         if args.relations:
             row["bounded_relation_certificate"] = compile_relation_records(
                 n, working, invariants

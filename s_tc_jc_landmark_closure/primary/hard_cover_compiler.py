@@ -758,12 +758,26 @@ def main():
     parser.add_argument("--root-stop", type=int)
     parser.add_argument("--list-root-cases", action="store_true")
     parser.add_argument("--tag", default="all")
+    parser.add_argument("--source-core-id", action="append")
+    parser.add_argument("--source-extra-count", action="append", type=int)
     args = parser.parse_args()
     invariants = load_invariants()
     bit_cache = load_bit_cache(args.bit_cache)
     rows = []
     for n in args.sizes:
-        summary, working = compile_size(n, invariants, bit_cache)
+        summary, working = compile_size(
+            n,
+            invariants,
+            bit_cache,
+            source_core_ids=(
+                frozenset(args.source_core_id)
+                if args.source_core_id is not None else None
+            ),
+            source_extra_counts=(
+                frozenset(args.source_extra_count)
+                if args.source_extra_count is not None else None
+            ),
+        )
         indices = (
             tuple(args.signature_index) if args.signature_index is not None else None
         )
@@ -787,6 +801,8 @@ def main():
         "schema": 1,
         "relation_action": "anchor every source boundary; full target S_p",
         "target_roles": ("selected incoming", "zero-character marginalized incoming"),
+        "source_core_filter": args.source_core_id,
+        "source_extra_count_filter": args.source_extra_count,
         "runs": rows,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)

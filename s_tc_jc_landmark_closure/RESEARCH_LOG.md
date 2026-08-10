@@ -310,3 +310,59 @@
   independently written producer comparison, mutation tests, and the global
   proof-logic audit are active.  No positive theorem is promoted from the
   primary census alone.
+
+## 2026-08-10T01:39:00-07:00 — four-outgoing minimum-support gap found
+
+- The adversarial theorem-logic pass forced a recheck of the source-support
+  sizes.  The support certificate has nine minimum presentations: the cycle
+  has outgoing support size two; theta cores `0`, `1`, and `3` have size
+  three; and `theta-2` has size four.  The running hard cover begins only with
+  three outgoing boundaries and therefore does not, by itself, quantify over
+  the `theta-2` minimum support.
+- The earlier informal statement that the eight three-outgoing source
+  signatures were all minimum supports was false.  It is withdrawn before
+  theorem promotion.
+- The completed three-outgoing computation remains valid as a scoped gate.
+  The global theorem now additionally requires either a rigorous reduction
+  of every four-outgoing `theta-2` fixed-full relation to that gate or a
+  separate graph-bound restoration cover beginning at five tensor ports.
+  The clean-room producer, artifact adversary, and theorem referee were all
+  redirected to attack this exact issue.
+
+## 2026-08-10T01:47:00-07:00 — unequal directed-pair certificate gap isolated
+
+- The primary restoration compiler intentionally starts from common equal
+  invariant signatures.  Rechecking the bounded compiler showed that the
+  current three- and four-outgoing summaries also contain `110` and `776`
+  unequal but zero-set-compatible directed signature pairs.
+- The source contains a pair-level relation compiler intended to certify
+  these by regenerated strict target signs, but no
+  `bounded_relations_n*.jsonl.gz` or associated sign-library artifact exists
+  in the active tree.  Summary counts therefore cannot be used in their
+  place.
+- Final local closure now explicitly has three algebraic pieces: graph-bound
+  certificates for every unequal necessary direction; fixed-full restoration
+  of every equal non-core-retaining direction from each minimum support size;
+  and the core-retaining one-/two-port probe atlas.  All three require an
+  independent normalized replay.
+
+## 2026-08-10T02:08:00-07:00 — promotion logic accepted; theta-2 inventory regenerated
+
+- The independent theorem-logic referee completed its adversarial pass.  It
+  found no additional global obstruction: corrected incidence-projective
+  peeling, both pointwise cut inclusions, localization without a continuous
+  target selector, simultaneous `T` gluing, and the proper-exceptional-locus
+  argument promote the desired theorem once the fixed-full local closure
+  contract is independently certified.
+- The referee accepted the efficient arbitrary-word implementation: extend
+  every raw path-bound common anchor `A=Q_s union Q_t` by one physical port
+  `p`, then by `q`, on every internal blob arc on both sides.  Each child must
+  delete to its exact parent and retain the same restoration root, target
+  support, and anchor transport.  This gives the safe twelve-tensor-port
+  bound without factorial full-boundary enumeration at outgoing sizes five
+  and six.
+- Added an explicit source-stratum filter to the primary compiler and
+  regenerated the mandatory theta-2 inventory.  Exactly three filtered
+  source signatures produce 132 fixed full restoration roots.  This is an
+  exact inventory only; the corresponding hard cover and independent replay
+  remain pending.
