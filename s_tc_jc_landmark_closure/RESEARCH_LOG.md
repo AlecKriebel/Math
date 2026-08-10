@@ -508,3 +508,23 @@
 - This is recorded as a resource-scheduling failure, not an algebraic result.
   The relation compilers will be rerun sequentially after the hard-cover
   shards release memory.  The theorem gate remains fail-closed.
+
+## 2026-08-10T04:31:00-07:00 — corrected n=3 cover merged after fail-closed metadata check
+
+- All four disjoint root shards completed with zero unresolved terminals.
+  The merger initially rejected shard 0 because it had been launched just
+  before the producer began emitting the descriptive bounded-atlas field
+  `descriptor_mask_convention`; shards 1--3 contained the field.
+- Removing only that field and nondeterministic elapsed time makes all four
+  bounded summaries exactly equal.  A hash-bound metadata-only migration adds
+  the true convention label to shard 0 and changes no graph, polynomial,
+  relation, or root stream byte.  This incident is preserved rather than
+  bypassed in the merger.
+- The merged cover has 5,344 roots, 68,584 graph-bound states, 14,482 rooted
+  graphs, and 225 polynomial bodies.  Its terminal census is 56,055 generic
+  separations, 4,036 strict open-cube separations, 8,349 refinements, 120
+  labelled isomorphisms, and 24 ordinary-T relations, with zero unresolved
+  class.  The merged summary SHA-256 is
+  `791844a802af61f64cba937a5adbe9d1d381d3fd7e55165914d4e4c885908e65`.
+- These remain primary counts until the exact merged replay and independent
+  mutation-sensitive audit pass.

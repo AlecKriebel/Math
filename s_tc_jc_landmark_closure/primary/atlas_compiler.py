@@ -505,6 +505,9 @@ def compile_size(
                 pair_kind_matrix[f"{source_kind}_to_{target_kind}"][relation] += 1
     return {
         "outgoing": n,
+        "descriptor_mask_convention": (
+            "rooted_selected_side_masks_before_zero_sum_complement_zip"
+        ),
         "source_core_filter": (
             sorted(source_core_ids) if source_core_ids is not None else None
         ),
