@@ -528,3 +528,24 @@
   `791844a802af61f64cba937a5adbe9d1d381d3fd7e55165914d4e4c885908e65`.
 - These remain primary counts until the exact merged replay and independent
   mutation-sensitive audit pass.
+
+## 2026-08-10T04:45:00-07:00 — n=3 base and path probes close in primary replay
+
+- The strengthened merged replay independently rebuilt all 68,584 n=3
+  graph-to-polynomial records and verified the 56,055 generic, 4,036 strict,
+  8,349 refinement, 120 isomorphism, and 24 ordinary-T classifications.  It
+  found 9,721 standard mixed tensor descriptor orbits and no root-dependent
+  complement-normalized descriptor.
+- The complete path-bound one-/two-port universe has exactly 144 allowed
+  terminal paths.  Four disjoint compact shards enumerate and replay 90,008
+  generic polynomial separations, 624 strict open-cube separations, 9,676
+  coherent labelled isomorphisms, and 840 coherent ordinary-T children, with
+  no unresolved classification.
+- Attempting all four semantic replays concurrently was rejected by the
+  machine's resource envelope.  A measured single-shard replay peaks at
+  6,289,457,152 bytes RSS; all four were therefore rerun sequentially and
+  pass.  The terminated concurrent attempts emitted no certificate and are
+  not mathematical evidence.
+- A verbose n=3 graph/state/binding package is being generated for
+  representation-level comparison, and the clean-room n=3 base audit is
+  active.  Primary closure alone does not promote the theorem.
