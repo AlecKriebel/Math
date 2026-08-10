@@ -39,3 +39,39 @@
 - The primary implementation will not share graph canonicalization,
   switching, descendant-mask, relation-assignment, or separator-selection code
   with those implementations.
+
+## 2026-08-09T20:45:00-07:00 — root atlas structurally reduced
+
+- Wrote a candidate structural proof that a root-containing `S_TC` factor is
+  represented by an ordinary incoming-port factor in the projective tensor
+  quotient.
+- The proof uses uniform-root JC reversibility, positive edge splitting, and
+  the definition of `S_TC` over every admissible rooting.
+- This route avoids the historically failed root weak-target promotion chain.
+- Status remains candidate until a separate adversarial implementation checks
+  all primitive root sites and retained-arrowhead cases.
+
+## 2026-08-09T21:05:00-07:00 — primary generator/support layer rebuilt
+
+- A new primary event-and-direction enumerator derived 24 normalized valid
+  theta presentations, four theta classes, and the cycle core.
+- The minimum repair multiset is exactly `1,1,2,2,2` across cycle/theta cores.
+- A new completion compiler independently regenerated the exact
+  `831/1983/4155/7909` weak-completion counts for three through six selected
+  outgoing ports; every full completion is rooted binary and passes the
+  standard-strong local criterion.
+- A new rigid-support compiler generated 304 five-outgoing and 216
+  six-outgoing decorated source presentations.  The extra 24 five-port rows
+  are the support-plus-one marginals of the four-support core that the older
+  direct five-port file omitted and later derived indirectly.
+- Proved candidate marginal-submersion and probe-coherence lemmas.  These
+  remain unpromoted pending the independent atlas and adversarial review.
+
+## 2026-08-09T21:18:00-07:00 — ordinary T germ independently replayed
+
+- Replayed both the historical primary triangle verifier and the independent
+  JC-only release verifier in the clean environment.
+- The independent output matched its frozen certificate byte-for-byte with
+  SHA-256 `97097fa36e00edbf4837bbef3a255ccd756aac99136138746168ec94630df4dc`.
+- Promoted only the JC common regular germ under ordinary `T`; no complete
+  stochastic-image equality or richer-model statement is imported.

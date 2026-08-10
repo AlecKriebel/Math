@@ -48,6 +48,19 @@ membership in `S_TC`.
 No membership statement transfers between these classes without an explicit
 rooting census or a proved local criterion.
 
+For a simple binary mixed graph admitting at least one rooting, the criterion
+used below is exact: it is in `S_TC` if and only if every tail of a retained
+reticulation edge is incident with two undirected edges.  Necessity follows
+because a tail with two reticulation edges has two reticulation children in
+every compatible rooting.  For sufficiency, a tail with one reticulation edge
+has one of its two undirected incidences as a parent and the other as a
+nonreticulation child.  A vertex with no outgoing reticulation edge has no
+reticulation child, and a reticulation's unique child cannot be a
+reticulation, since an edge entering that child would carry an arrowhead.
+An inserted root has at most one reticulation child.  Thus every compatible
+rooting is tree-child.  The primary implementation checks this local
+criterion and independently exhausts all rootings on the primitive cores.
+
 ## Graphs, blobs, and level
 
 Isomorphisms preserve leaf labels, undirected edges, directed retained
