@@ -10,9 +10,9 @@ import sys
 import tempfile
 
 HERE = Path(__file__).resolve().parent
-SCRIPT_SHA256 = "7cee6cac60e5ce1208ddf601de33914d1f24d298b6248cbdef48fe63f19bcc35"
+SCRIPT_SHA256 = "93a29ea6fdd1eba1671cf720a3929c2e2cab6ef5882c89a355d7cef04406c639"
 INSTANCE_SHA256 = "cca38c3928c7eb768f5dabf480d8eae16ef5a08b7576ffe2780e6a7deaeb337b"
-CERTIFICATE_SHA256 = "8d70b47f7ca6bd0b8ea87fab71bf2c6eefb254b410708bbb01ccd3dc0c10b40f"
+CERTIFICATE_SHA256 = "38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7"
 
 
 def digest(path: Path) -> str:

@@ -11,10 +11,10 @@ import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "MANIFEST.sha256"
-INDEPENDENT_SCRIPT_SHA256 = "7cee6cac60e5ce1208ddf601de33914d1f24d298b6248cbdef48fe63f19bcc35"
+INDEPENDENT_SCRIPT_SHA256 = "93a29ea6fdd1eba1671cf720a3929c2e2cab6ef5882c89a355d7cef04406c639"
 INDEPENDENT_INSTANCE_SHA256 = "cca38c3928c7eb768f5dabf480d8eae16ef5a08b7576ffe2780e6a7deaeb337b"
-INDEPENDENT_CERTIFICATE_SHA256 = "8d70b47f7ca6bd0b8ea87fab71bf2c6eefb254b410708bbb01ccd3dc0c10b40f"
-IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache"}
+INDEPENDENT_CERTIFICATE_SHA256 = "38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7"
+IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", "tmp"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
 
 
@@ -83,13 +83,19 @@ def run_exact(label: str, command: list[str], env: dict[str, str] | None = None)
 
 
 def verify_scope_contract() -> None:
-    manuscript = (ROOT / "source/paper/main.tex").read_text(encoding="utf-8")
-    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    manuscript = " ".join(
+        (ROOT / "source/paper/main.tex").read_text(encoding="utf-8").split()
+    )
+    readme = " ".join((ROOT / "README.md").read_text(encoding="utf-8").split())
     required = [
         "Weakly Tree-Child Level-2 Networks",
         "For every $n\\ge4$",
-        "does not settle identifiability inside $\\TCs$",
-        "Earlier automated drafts overclaimed a global positive classification",
+        "Let $X$ be nonempty",
+        "replace leaf $2$ in both networks",
+        "settles neither identifiability inside $\\TCs$ nor",
+        "triangle-free subclass of $\\TCw$",
+        "Earlier automated drafts overclaimed a",
+        "global positive classification",
     ]
     for text in required:
         if text not in manuscript:

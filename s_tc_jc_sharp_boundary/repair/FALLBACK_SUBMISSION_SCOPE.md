@@ -1,11 +1,11 @@
 # Submission-safe fallback scope
 
-Status: **CANDIDATE — awaiting independent sharpness review**
+Status: **VERIFIED — promoted as release 2.0.0**
 
 If the finite positive-classification gates do not all close, the repaired
 release will contain only the following theorem and its direct prerequisites.
 
-## Candidate primary theorem
+## Verified primary theorem
 
 For every `n >= 4`, there are two leaf-labelled binary standard
 semi-directed level-2 topologies `N_n` and `N'_n` such that:
@@ -43,7 +43,8 @@ The fallback manuscript will not assert:
 
 ## Release requirements
 
-Promotion requires all of the following:
+Promotion was conditioned on all of the following, and each item has now been
+completed:
 
 1. an independent implementation of the four-leaf graph and Fourier checks;
 2. exact rational interval certification of every algebraic target parameter;
@@ -54,4 +55,3 @@ Promotion requires all of the following:
 6. a current, narrow prior-work comparison;
 7. one canonical source tree, clean-clone verification, and a visually
    inspected PDF.
-

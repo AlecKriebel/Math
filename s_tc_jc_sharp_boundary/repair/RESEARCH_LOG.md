@@ -121,3 +121,22 @@ sound; the finite atlas remains the critical positive-theorem blocker.
 Atlas audit: **100% complete**.  Positive classification: **withheld**.
 Endpoint-B release preparation: **approximately 55% complete**, pending the
 fresh sharpness reviewer, clean reproducibility package, and final PDF audit.
+
+## 2026-08-09T23:40:00-07:00 -- release 2.0.0 closed on the sharpness theorem
+
+- Two independent exact implementations now verify the four-leaf topology,
+  strict `Theta_0` common point, all 256 Fourier and pattern coordinates,
+  common eight-dimensional locus, and both rank-eight certificates.
+- The all-taxa statement is proved by a positive analytic cherry inverse, not
+  by finite extrapolation; the explicit family repeatedly replaces leaf 2
+  while leaf 1 remains the non-`T` topology separator.
+- A first adversarial manuscript review found three P1 and seven P2 issues.
+  All were corrected.  A second rereview found no mathematical defect and
+  only four release-engineering residues; those were also corrected.
+- The canonical ten-page PDF rebuilds byte for byte, the deterministic source
+  and reproducibility archives pass extraction tests, and the complete
+  manifest-locked driver passes in a clean worktree.
+- Release 2.0.0 is therefore submission-ready for the theorem in
+  `W_TC \ S_TC`, subject only to journal-specific author metadata and style.
+  The former positive `S_TC` classification remains unresolved and
+  quarantined.

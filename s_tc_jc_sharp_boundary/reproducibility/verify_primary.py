@@ -102,7 +102,7 @@ def check_binary_rooted_class(common: dict, network: dict) -> nx.Graph:
 
     cycles = nx.cycle_basis(ug)
     cycle_lengths = sorted(len(c) for c in cycles)
-    # Cycle rank is three; in this theta graph the three simple cycles have
+    # Cycle rank is two; in this theta graph the three simple cycles have
     # lengths 3,5,6.  cycle_basis may return any two of the three, so enumerate.
     directed = nx.DiGraph()
     directed.add_nodes_from(ug.nodes())

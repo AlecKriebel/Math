@@ -1,6 +1,6 @@
 # Current authoritative status
 
-## WITHHELD POSITIVE THEOREM -- ENDPOINT B SELECTED
+## VERIFIED SHARPNESS RELEASE -- POSITIVE THEOREM WITHHELD
 
 The global positive theorem is unresolved and is not asserted by this repair
 workspace.  No manuscript or release may use `PROVED` for that theorem until
@@ -12,8 +12,9 @@ research.  In particular, the finite atlas lacks an end-to-end
 topology-to-polynomial assignment theorem and its arbitrary-subdivision
 promotion is not proved.
 
-The project is therefore preparing a separate, sharply scoped submission on
+The project has therefore completed a separate, sharply scoped submission on
 the all-`n` Theta boundary theorem in `W_TC \ S_TC`.  That theorem has not
-been enlarged into a claim about the standard strongly tree-child class.  Its
-release remains conditional only on the fresh independent sharpness replay,
-clean-clone verification, and final PDF inspection.
+been enlarged into a claim about the standard strongly tree-child class.  Two
+independent exact implementations, an adversarial manuscript review, a
+deterministic PDF build, archive extraction tests, and a clean-worktree replay
+support release 2.0.0.

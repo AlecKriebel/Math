@@ -1,0 +1,324 @@
+{
+  "audit": "Gate 2 independent standard nonroot JC full closure",
+  "baseline_timeout": {
+    "approximately_minutes": 18,
+    "certificate_produced": false,
+    "cpu": "approximately 100% of one core",
+    "program": "AUDIT/REVIEWS/gate_f_nonroot_containment_crosscheck.py --counts-only --tensor-smoke",
+    "terminated": true,
+    "used_as_evidence": false
+  },
+  "completion_census": {
+    "all_complete_reductions_strong": true,
+    "all_counts_match": true,
+    "all_rooted_valid": true,
+    "derivation": "For each theta core, choose every selected sink subset, every weak composition of remaining selected ports over ordered core arcs, and every listed minimal repair; add missing repair and sink children as distinct dummies.  For a cycle the selected occupancy supplies its repair and the two sink choices contribute n+(n+1)=2n+1.",
+    "rows": {
+      "3": {
+        "all": 831,
+        "counts_match": true,
+        "cycle": 7,
+        "expected": {
+          "all": 831,
+          "cycle": 7,
+          "theta": 824
+        },
+        "reduced_not_strong_count": 0,
+        "rooted_invalid": [],
+        "rooted_invalid_count": 0,
+        "theta": 824
+      },
+      "4": {
+        "all": 1983,
+        "counts_match": true,
+        "cycle": 9,
+        "expected": {
+          "all": 1983,
+          "cycle": 9,
+          "theta": 1974
+        },
+        "reduced_not_strong_count": 0,
+        "rooted_invalid": [],
+        "rooted_invalid_count": 0,
+        "theta": 1974
+      },
+      "5": {
+        "all": 4155,
+        "counts_match": true,
+        "cycle": 11,
+        "expected": {
+          "all": 4155,
+          "cycle": 11,
+          "theta": 4144
+        },
+        "reduced_not_strong_count": 0,
+        "rooted_invalid": [],
+        "rooted_invalid_count": 0,
+        "theta": 4144
+      },
+      "6": {
+        "all": 7909,
+        "counts_match": true,
+        "cycle": 13,
+        "expected": {
+          "all": 7909,
+          "cycle": 13,
+          "theta": 7896
+        },
+        "reduced_not_strong_count": 0,
+        "rooted_invalid": [],
+        "rooted_invalid_count": 0,
+        "theta": 7896
+      }
+    }
+  },
+  "deterministic_replay": "PYTHONDONTWRITEBYTECODE=1 AUDIT/CLEAN_ENV/bin/python AUDIT/INDEPENDENT_IMPLEMENTATION/audit_gate2_nonroot_full_closure.py --output AUDIT/INDEPENDENT_IMPLEMENTATION/gate2_nonroot_full_closure_audit.json --markdown AUDIT/GATE2_NONROOT_FULL_CLOSURE_AUDIT.md",
+  "direction_convention": {
+    "bit_meaning": "1 iff exact invariant pullback is a nonzero polynomial",
+    "necessary_relation": "ones(source) subseteq ones(target)",
+    "proof": "Source containment in target implies I(target) subseteq I(source)."
+  },
+  "failure": {
+    "message": "",
+    "type": "KeyboardInterrupt"
+  },
+  "implementation": {
+    "independence_lock": {
+      "forbidden_import_violations": [],
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "hashlib",
+        "itertools",
+        "json",
+        "math",
+        "os",
+        "re",
+        "sys",
+        "time",
+        "collections",
+        "dataclasses",
+        "fractions",
+        "pathlib",
+        "typing",
+        "sympy",
+        "sympy",
+        "sympy"
+      ],
+      "passed": true,
+      "provenance": "Low-level code copied, not imported, from the 2026-08-02 independent adversarial cross-check; all exhaustive deck, topology, sign, and promotion code is new here.",
+      "repository_local_imports": []
+    },
+    "path": "/Users/alec/Documents/Math/strong_level2_phylo_identifiability/AUDIT/INDEPENDENT_IMPLEMENTATION/audit_gate2_nonroot_full_closure.py",
+    "python": "3.14.6",
+    "sha256": "d88febb3e051378e769db3e55fcf9f9b51004f94eefe9975cc9e221a6727212d"
+  },
+  "inputs": {
+    "invariant_templates": {
+      "path": "/Users/alec/Documents/Math/strong_level2_phylo_identifiability/src/jc_root_spanning_atlas_data.py",
+      "sha256": "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3"
+    },
+    "orientation_core": {
+      "path": "/Users/alec/Documents/Math/strong_level2_phylo_identifiability/AUDIT/INDEPENDENT_IMPLEMENTATION/level2_orientation_core_audit.json",
+      "sha256": "785c87921cf708d1a51d9a4bf8b16e2630bd881c7e98ad42a9741c6e905fdd5e"
+    },
+    "submitted_expected_claim_hashes_only": {
+      "AUDIT/INDEPENDENT_IMPLEMENTATION/cycle_to_theta_containment_chain_audit.json": "09f905c190cb6b42f29b7c4d6226aa029a7633b9f03fd6f5b7821754235c89d3",
+      "AUDIT/INDEPENDENT_IMPLEMENTATION/nonroot_containment_candidate_audit.json": "46b6dd77275e751b5486165d3c282e7db2649d658ad1339d4ad46c83512ab903",
+      "AUDIT/INDEPENDENT_IMPLEMENTATION/nonroot_cycle_containment_sieve_audit.json": "28ad23a220303ae20aaf0313379eb8df7cfe355d4f4b324d1bc729e4c63b80be",
+      "AUDIT/INDEPENDENT_IMPLEMENTATION/nonroot_five_port_containment_audit.json": "52dfa28d9c452dadfef40a9c43273b5e15c6e026797be8b68fbe67ae7ec75163",
+      "AUDIT/INDEPENDENT_IMPLEMENTATION/nonroot_weak_five_port_containment_audit.json": "de7dc04a9c53424fa529914d137837f0c601b057c84c8a0c0e12161479e10b78"
+    },
+    "support_network_encodings": {
+      "path": "/Users/alec/Documents/Math/strong_level2_phylo_identifiability/certificates/jc_support_augmented_atlas.json",
+      "sha256": "728d4b147e5e0b1bc161dca297e54396c429dfe68221575d04d708e0b5cb7286",
+      "use": "inert graph encodings only; all validation, Fourier tensors, and topology codes independently recomputed"
+    }
+  },
+  "raw_promotion_provenance": {
+    "all_raw_promotion_paths_tracked": true,
+    "completed_survivor_scope": "All combinatorial completed targets are present.  Whether any is an algebraic survivor requires the exact separator replay and is not inferred from the submitted no-survivor count.",
+    "incoming_port_present_in_every_state": true,
+    "runs": {
+      "3": {
+        "initial_theta_completions": 824,
+        "maximum_distinct_futures_for_one_selected_pattern": 4,
+        "maximum_dummy_blocks": 4,
+        "premature_selected_pattern_quotient_would_lose_paths": true,
+        "provenance_preserving_state_keys_unique": true,
+        "raw_completed_target_states": 824,
+        "raw_states_by_level": {
+          "3": 824,
+          "4": 2004,
+          "5": 1736,
+          "6": 630,
+          "7": 80
+        },
+        "raw_transitions_by_level": {
+          "3": 2004,
+          "4": 3472,
+          "5": 1890,
+          "6": 320,
+          "7": 0
+        },
+        "selected_patterns_with_distinct_completion_futures": 308,
+        "selected_port_levels_in_full_combinatorial_superset": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "4": {
+        "initial_theta_completions": 1974,
+        "maximum_distinct_futures_for_one_selected_pattern": 4,
+        "maximum_dummy_blocks": 4,
+        "premature_selected_pattern_quotient_would_lose_paths": true,
+        "provenance_preserving_state_keys_unique": true,
+        "raw_completed_target_states": 1974,
+        "raw_states_by_level": {
+          "4": 1974,
+          "5": 4454,
+          "6": 3576,
+          "7": 1200,
+          "8": 140
+        },
+        "raw_transitions_by_level": {
+          "4": 4454,
+          "5": 7152,
+          "6": 3600,
+          "7": 560,
+          "8": 0
+        },
+        "selected_patterns_with_distinct_completion_futures": 728,
+        "selected_port_levels_in_full_combinatorial_superset": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  "repair_exhaustiveness": {
+    "arbitrary_word_exhaustiveness": "Strongness depends only on the nonempty segment occupancy.  The finite occupancy check proves that every full strong word family contains a listed minimal repair.  For a selected marginal O and actual full occupancy F, choosing any listed R subset F adds only R\\O; every omitted path-sink child is independently restored.",
+    "cores": [
+      {
+        "all_occupancies_checked": 32,
+        "arc_count": 5,
+        "characterization_mismatches": [],
+        "compatible_selected_full_repair_triples_checked": 216,
+        "core_id": "theta-TR-nested",
+        "direct_minimal_strong_masks": [
+          17,
+          18
+        ],
+        "kind": "theta",
+        "listed_minimal_repair_masks": [
+          17,
+          18
+        ],
+        "missing_compatible_completions": [],
+        "passed": true,
+        "path_sink_count": 1,
+        "strong_occupancy_count": 12
+      },
+      {
+        "all_occupancies_checked": 32,
+        "arc_count": 5,
+        "characterization_mismatches": [],
+        "compatible_selected_full_repair_triples_checked": 216,
+        "core_id": "theta-TR-separated",
+        "direct_minimal_strong_masks": [
+          17,
+          24
+        ],
+        "kind": "theta",
+        "listed_minimal_repair_masks": [
+          17,
+          24
+        ],
+        "missing_compatible_completions": [],
+        "passed": true,
+        "path_sink_count": 1,
+        "strong_occupancy_count": 12
+      },
+      {
+        "all_occupancies_checked": 64,
+        "arc_count": 6,
+        "characterization_mismatches": [],
+        "compatible_selected_full_repair_triples_checked": 972,
+        "core_id": "theta-TT-nested",
+        "direct_minimal_strong_masks": [
+          8,
+          32
+        ],
+        "kind": "theta",
+        "listed_minimal_repair_masks": [
+          8,
+          32
+        ],
+        "missing_compatible_completions": [],
+        "passed": true,
+        "path_sink_count": 2,
+        "strong_occupancy_count": 48
+      },
+      {
+        "all_occupancies_checked": 64,
+        "arc_count": 6,
+        "characterization_mismatches": [],
+        "compatible_selected_full_repair_triples_checked": 1296,
+        "core_id": "theta-TT-separated",
+        "direct_minimal_strong_masks": [
+          12,
+          24,
+          36,
+          48
+        ],
+        "kind": "theta",
+        "listed_minimal_repair_masks": [
+          12,
+          24,
+          36,
+          48
+        ],
+        "missing_compatible_completions": [],
+        "passed": true,
+        "path_sink_count": 2,
+        "strong_occupancy_count": 36
+      },
+      {
+        "all_occupancies_checked": 4,
+        "arc_count": 2,
+        "characterization_mismatches": [],
+        "compatible_selected_full_repair_triples_checked": 12,
+        "core_id": "cycle-S-X",
+        "direct_minimal_strong_masks": [
+          1,
+          2
+        ],
+        "kind": "cycle",
+        "listed_minimal_repair_masks": [
+          1,
+          2
+        ],
+        "missing_compatible_completions": [],
+        "passed": true,
+        "path_sink_count": 1,
+        "strong_occupancy_count": 3
+      }
+    ],
+    "passed": true
+  },
+  "status": "UNRESOLVED",
+  "theta0": {
+    "edge_multipliers": "0 < x_e < 1",
+    "endpoints_used": false,
+    "inheritance": "0 < lambda_r < 1",
+    "positive_definite_JC": true
+  },
+  "verdict": "UNRESOLVED \u2014 independent execution did not close every gate."
+}

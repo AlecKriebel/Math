@@ -9,6 +9,8 @@ submission candidate.
 
 - [x] The theorem is restricted to `W_TC \ S_TC`; no result inside `S_TC` is
   claimed.
+- [x] The text states explicitly that the example also contains a triangle
+  and does not settle the triangle-free weakly tree-child subclass.
 - [x] The four-leaf rooted graphs, narrow standard semi-directed reductions,
   five admissible LSA rootings, weak-but-not-strong classification,
   nonisomorphism, and non-`T`-equivalence were independently checked.
@@ -38,7 +40,7 @@ submission candidate.
 - [x] The source archive was extracted and reproduced the distributed PDF
   byte for byte.
 - [x] The archive builders are deterministic.
-- [ ] Run `python3 reproducibility/verify_release.py` from the final committed
+- [x] Run `python3 reproducibility/verify_release.py` from the final committed
   tree and preserve its terminal result.
 
 ## Manuscript and public-material gate
@@ -53,9 +55,9 @@ submission candidate.
   verifiers are isolated under `quarantine/withdrawn_positive_v1.1.1/`.
 - [x] The public paper page contains no hidden copy of the withdrawn theorem
   and no longer serves the withdrawn referee guide.
-- [ ] Incorporate the final independent manuscript referee report.
-- [ ] Generate and verify the final repository manifest after the last edit.
-- [ ] Replay the complete gate in a clean Git worktree.
+- [x] Incorporate the final independent manuscript referee report.
+- [x] Generate and verify the final repository manifest after the last edit.
+- [x] Replay the complete gate in a clean Git worktree.
 
 ## Human submission fields
 

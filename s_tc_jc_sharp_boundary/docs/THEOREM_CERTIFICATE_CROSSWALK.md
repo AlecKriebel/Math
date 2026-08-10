@@ -21,7 +21,7 @@ library and shares no code with the primary verifier.  Its canonical output
 is `reproducibility/independent/expected_certificate.json`, SHA-256:
 
 ```text
-8d70b47f7ca6bd0b8ea87fab71bf2c6eefb254b410708bbb01ccd3dc0c10b40f
+38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7
 ```
 
 The full adversarial review, including failed mutations and convention

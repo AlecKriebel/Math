@@ -1,42 +1,62 @@
 # Final release audit
 
-## Verdict under review
+## Final verdict
 
-The original positive classification of standard strongly tree-child
-level-2 JC networks is **UNRESOLVED**.  It was not repaired, repackaged, or
-silently weakened.  The only active submission theorem is the independently
-verified all-taxa sharpness result in `W_TC \ S_TC`.
+**VERIFIED — release 2.0.0 is a submission-ready sharpness package.**
 
-## Claims retained
+This verdict applies only to the manuscript *Full-Dimensional Jukes--Cantor
+Ambiguity in Weakly Tree-Child Level-2 Networks*.  The earlier positive
+classification of standard strongly tree-child level-2 networks is
+**UNRESOLVED**, not refuted, and is not asserted by this release.
 
-1. **PROVED:** the displayed four-leaf rooted networks are binary,
-   tree-child, LSA-valid, and level two.
-2. **PROVED:** their narrow standard semi-directed reductions lie in
-   `W_TC \ S_TC`, are leaf-labelled nonisomorphic, and are not related by
-   ordinary triangle redirection.
-3. **PROVED / EXACTLY COMPUTED:** the open JC models share a regular
-   eight-dimensional stochastic region at an exact quadratic-algebraic
-   interior point.
-4. **PROVED:** identical cherry substitution preserves the overlap, has a
-   positive analytic inverse, and gives dimension `2n` for every `n >= 4`.
+## Theorem retained
 
-The independent evidence is summarized in
-`repair/reviews/SHARPNESS_GATE_REVIEW.md` and
-`docs/THEOREM_CERTIFICATE_CROSSWALK.md`.
+For every `n >= 4`, the release gives two explicit leaf-labelled binary
+level-2 semi-directed networks in `W_TC \ S_TC` that are nonisomorphic and
+not related by ordinary triangle redirection, while their open JC models in
+`Theta_0` share a regular relatively open region of full dimension `2n`.
 
-## Claims withdrawn or excluded
+The four-leaf case is supported by an exact quadratic-algebraic common point,
+strict interior inequalities, equality of all 256 Fourier and pattern
+coordinates, a common irreducible eight-dimensional locus, and exact nonzero
+rank-eight Jacobian minors.  A positive real-analytic inverse for repeated
+cherry substitution proves the all-taxa statement.
 
-The release does not assert a complete local atlas, bridge-tree
-reconstruction, one-sided containment classification, automatic triangle
-bound, positive theorem for `S_TC`, K2P/K3P result, or an efficient inference
-algorithm.  The forensic reasons are preserved in the definition, bridge,
-and atlas gate reports under `repair/reviews/`.
+## Independent verification
 
-## Release integrity
+- The primary verifier derives displayed-tree Fourier maps from rooted arc
+  lists using pinned SymPy and NetworkX versions.
+- A separately written standard-library verifier shares no graph, Fourier,
+  number-field, isomorphism, or rank modules with the primary implementation.
+- The independent certificate is byte-deterministic under three distinct
+  Python hash seeds and is locked at
+  `38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7`.
+- The adversarial sharpness review and manuscript rereview found no remaining
+  mathematical defect.  Every P1/P2 manuscript or release issue identified
+  by those reviews was corrected before the final manifest was generated.
+- Two consecutive Tectonic builds are byte-identical.  All ten pages were
+  rendered and inspected, and all font resources are embedded.
+- Both deterministic ZIP archives were extracted and checked; the extracted
+  reproducibility package passed its exact driver, and the extracted source
+  rebuilt the distributed PDF byte for byte.
+- The complete release driver passed from a clean Git worktree.
 
-The active source and exact verifiers live only in `source/` and
-`reproducibility/`.  Contradictory historical generations are retained under
-`quarantine/withdrawn_positive_v1.1.1/` with an explicit withdrawal notice.
-The public project page serves only the active sharpness PDF.  A final
-manifest and clean-worktree replay are required after the independent
-manuscript review is incorporated.
+## Withdrawn and excluded claims
+
+No active file asserts a complete finite atlas, bridge-tree reconstruction,
+one-sided-containment classification, automatic triangle bound, positive
+theorem for `S_TC`, K2P/K3P extension, or efficient inference algorithm.
+Contradictory historical generations are isolated under
+`quarantine/withdrawn_positive_v1.1.1/` and are evidence of the audit history,
+not submission materials.
+
+The constructed pair contains a triangle as well as failing strong
+tree-childness.  It therefore does not settle either the standard strongly
+tree-child class or the triangle-free weakly tree-child subclass.
+
+## Remaining human submission choices
+
+The mathematical and reproducibility package is complete.  Journal choice,
+house style, affiliation, correspondence address, ORCID, funding and conflict
+statements, and a journal-specific cover letter remain for the author to
+select before transmission to a venue.

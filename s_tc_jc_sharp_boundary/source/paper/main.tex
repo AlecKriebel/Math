@@ -78,9 +78,9 @@ field.  Replacing corresponding leaves by identical rooted binary trees has
 a positive analytic inverse.  Consequently, for every $n\ge4$ there is such
 a non-triangle ambiguity on $n$ leaves, with a common regular open region of
 dimension $2n$.  The result supplies an exact negative instance among
-same-type four-leaf level-2 comparisons and gives a precise obstruction to extending
-identifiability statements from strongly to merely weakly tree-child
-semi-directed networks.
+same-type four-leaf level-2 comparisons and proves that generic identifiability
+fails over the full weakly tree-child level-2 class, even modulo ordinary
+triangle redirection.
 \end{abstract}
 
 \noindent\textbf{Keywords.} phylogenetic networks; identifiability;
@@ -107,14 +107,17 @@ triangle.  Their standard semi-directed graphs are therefore not related by
 triangle redirection.  Nevertheless, their Jukes--Cantor (JC) images meet in
 full dimension on the open stochastic parameter space.
 
-The tree-child convention is essential.  Following the semi-directed
+The pair's location in the tree-child hierarchy is important for the scope of
+the result.  Following the semi-directed
 terminology of Holtgrefe et al.~\cite{HoltgrefeEtAl2026}, a semi-directed
 topology is \emph{weakly tree-child} if it has at least one tree-child rooting
 and \emph{strongly tree-child} if every admissible rooting is tree-child.  The
 pair below is weakly but not strongly tree-child.  It therefore does not
 contradict the triangle-free strongly tree-child identifiability theorem of
-Englander et al.~\cite{EnglanderEtAl2026}; instead it shows that allowing all
-weakly tree-child topologies introduces a genuinely non-triangle ambiguity.
+Englander et al.~\cite{EnglanderEtAl2026}.  It proves failure over the full
+weakly tree-child class even modulo ordinary triangle redirection, but because
+the pair also contains a triangle, it does not settle the triangle-free weakly
+tree-child subclass.
 
 Ardiyansyah~\cite{Ardiyansyah2021} classified several four-leaf simple
 level-2 comparisons algebraically and identified same-type comparisons that
@@ -122,8 +125,8 @@ were not resolved by those calculations.  The construction below supplies an
 exact negative instance for one labelled pair of the triangle-containing
 type.
 It is distinct from the three-leaf semialgebraic triangle-orientation overlap
-studied by Currie et al.~\cite{CurrieEtAl2026}, and from the stacked-
-reticulation and two-blob local modifications studied by
+studied by Currie et al.~\cite{CurrieEtAl2026}, and from the
+stacked-reticulation and two-blob local modifications studied by
 Sullivant~\cite{Sullivant2026}.  Brits et al.~\cite{BritsEtAl2026} prove full
 identifiability for level-1 networks modulo triangle redirection and analyze
 tree--network separation in the presence of specified two-sub-blob
@@ -160,8 +163,10 @@ phylogenetic network} on $X$ is a finite directed acyclic graph without
 parallel arcs in which the root has bidegree $(0,2)$, a tree vertex has
 bidegree $(1,2)$, a reticulation has bidegree $(2,1)$, and each leaf has
 bidegree $(1,0)$ and a unique label in $X$.  We additionally require the
-root to be the lowest stable ancestor of $X$: no proper descendant of the
-root is a stable ancestor of every labelled leaf.  A rooted network is
+root to be the lowest stable ancestor of $X$.  A vertex is a stable ancestor
+of $X$ if it lies on every directed path from the root to each labelled leaf;
+thus no proper descendant of the root may have this property.  A rooted
+network is
 \emph{tree-child} if every internal vertex has a child that is a tree vertex
 or a leaf.
 
@@ -549,8 +554,9 @@ eight-dimensional locus together with rank eight therefore makes both
 closures equal to that locus.  Moreover, the first eight coordinates of each
 stochastic image contain a neighborhood of the vector in
 \eqref{eq:first-eight}.  Intersect the two neighborhoods.  Positivity forces
-the same value $L=+\sqrt{BEH}$, and \eqref{eq:reconstruction} forces the other
-five coordinates.  Hence the intersection contains a relative open
+the same value $L=+\sqrt{BEH}$, and the five reconstruction formulas in the
+proof of \cref{lem:geometry} force $J,K,M,N,O$.  Hence the intersection
+contains a relative open
 eight-dimensional neighborhood.
 \end{proof}
 
@@ -571,7 +577,8 @@ Euclidean-open parameter set.
 
 \section{Leaf substitution}
 
-Let $P$ be a normalized positive Fourier tensor on $X\cup\{a\}$.  Replace
+Let $X$ be nonempty, and let $P$ be a normalized Fourier tensor on
+$X\cup\{a\}$ whose zero-total coordinates are strictly positive.  Replace
 the leaf $a$ by a cherry with leaves $a_1,a_2$ and new pendant multipliers
 $u,v\in(0,1)$.  The former pendant edge becomes the stem of the cherry.  The
 new tensor is
@@ -593,24 +600,25 @@ Fix $h\in G\setminus\{0\}$.  With all characters on $X$ equal to zero,
 \[
 uv=\widetilde P(0,h,h),
 \]
-because $P(0,0)=1$.  Choose any $g_X$ with total character $h$.  Positivity of
-the open JC Fourier tensor permits division, and
+because $P(0,0)=1$.  Choose any $g_X$ with total character $h$.  Strict
+positivity of the zero-total JC Fourier coordinates permits division, and
 \[
 \frac uv=
 \frac{\widetilde P(g_X,h,0)}{\widetilde P(g_X,0,h)}.
 \]
 Thus $u$ and $v$ are recovered uniquely by the positive square root.  Every
-entry of $P$ is then recovered from \eqref{eq:cherry} by division by a
-positive monomial in $u,v$.  These formulas are real analytic.  Therefore
+zero-total coordinate of $P$ is then recovered from \eqref{eq:cherry} by
+division by a positive monomial in $u,v$.  These formulas are real analytic.  Therefore
 the image is analytically isomorphic to the product of the base tensor image
 with $(0,1)^2$, proving the dimension and regularity assertions.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:main}]
-The case $n=4$ is \cref{prop:topology,prop:overlap}.  For each new taxon,
-replace the same labelled leaf in both networks by an identically labelled
-cherry.  Equation \eqref{eq:cherry} carries every common base distribution
-and every common pair $(u,v)$ to the same enlarged distribution.  By
+The case $n=4$ is \cref{prop:topology,prop:overlap}.  For
+$m=5,\ldots,n$, replace leaf $2$ in both networks by a cherry whose children
+retain label $2$ and receive the new label $m$.  Equation \eqref{eq:cherry}
+carries every common base distribution and every common pair $(u,v)$ to the
+same enlarged distribution.  By
 \cref{lem:cherry}, a common regular open region gains exactly two dimensions
 at each step.  Starting from dimension eight gives
 \[
@@ -619,10 +627,10 @@ at each step.  Starting from dimension eight gives
 
 The displayed tree-child rootings extend through each inserted cherry, so
 the enlarged semi-directed topologies remain in $\TCw$.  The original
-omnian at $A$ is unchanged, so they remain outside $\TCs$.  The substituted
-leaf block attaches at a triangle vertex in one topology and at a
-nontriangle vertex in the other.  This labelled cut-component property is
-preserved by mixed-graph isomorphism and by $\Tmove$.  Thus the two enlarged
+omnian at $A$ is unchanged, so they remain outside $\TCs$.  Leaf $1$ remains
+adjacent to a triangle vertex in $N_n$ and to a nontriangle vertex in $N'_n$.
+This labelled property is preserved by mixed-graph isomorphism and by
+$\Tmove$.  Thus the two enlarged
 topologies remain nonisomorphic and non-$\Tmove$-equivalent.  Repeating the
 construction proves the theorem for every $n\ge4$.
 \end{proof}
@@ -639,8 +647,9 @@ The ambiguity is also not root relocation or triangle orientation.  It
 changes which labelled descendant component is attached to the triangle.
 Consequently, even an exact infinite-data JC distribution cannot always
 determine that attachment in the weakly tree-child level-2 class.  The
-construction does not settle identifiability inside $\TCs$; that positive
-classification remains outside the scope of this paper.
+construction settles neither identifiability inside $\TCs$ nor identifiability
+in the triangle-free subclass of $\TCw$; both remain outside the scope of this
+paper.
 
 \section{Exact verification}\label{sec:verification}
 

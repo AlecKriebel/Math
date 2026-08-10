@@ -1,6 +1,6 @@
-# Full-dimensional JC ambiguity at the weak/strong tree-child boundary
+# Full-dimensional JC ambiguity in weakly tree-child level-2 networks
 
-## Release-candidate status
+## Verified release status
 
 This is the replacement for the withdrawn version 1.1.1 positive-
 classification release.  Its scope is intentionally narrower and matches the
@@ -20,6 +20,9 @@ all-taxa extension.
 The former claim that all standard strongly tree-child level-2 JC networks
 are identifiable modulo triangle redirection remains **unresolved, not
 refuted**.  It is not asserted anywhere in the active manuscript or release.
+The construction also does not settle the triangle-free weakly tree-child
+subclass: its blob contains a triangle as well as failing strong
+tree-childness.
 The historical files are preserved under
 `quarantine/withdrawn_positive_v1.1.1/` and must not be submitted or cited as
 established.
@@ -34,7 +37,7 @@ established.
 
 ## Reproduce
 
-The final release command will be:
+The release command is:
 
 ```sh
 python3 reproducibility/verify_release.py
@@ -47,8 +50,9 @@ implementations.  Build the manuscript with Tectonic:
 reproducibility/build_paper.sh
 ```
 
-Until `repair/FALLBACK_SUBMISSION_SCOPE.md` is marked verified and the
-submission PDF is present, this branch remains a release candidate rather
-than a publication release.
+The independent mathematical audit, final manuscript rereview, deterministic
+archive checks, and clean-worktree replay are recorded in `AUDIT_REPORT.md`.
+Journal-specific author metadata and formatting remain human submission
+choices rather than mathematical release blockers.
 
 Manuscript text and figures are licensed CC BY 4.0.  Code is MIT licensed.

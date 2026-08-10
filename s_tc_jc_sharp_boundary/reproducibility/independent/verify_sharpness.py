@@ -511,12 +511,11 @@ def root_is_lsa(network: Network) -> bool:
 
 
 def reduce_standard(network: Network) -> MixedGraph:
-    """Standard reduction for the simple graphs used in this theorem.
+    """Narrow standard reduction used in the manuscript.
 
     Reticulation heads are retained, ordinary arcs are undirected, the binary
-    root is suppressed, and unlabelled ordinary degree-two vertices are then
-    suppressed exhaustively.  No broad deletion of reticulation artifacts is
-    performed.
+    root is suppressed once, and no further degree-two cleanup or broad
+    deletion of reticulation artifacts is performed.
     """
 
     edges = []
@@ -538,31 +537,6 @@ def reduce_standard(network: Network) -> MixedGraph:
 
     types = dict(network.types)
     del types[network.root]
-    leaves = set(network.leaves)
-
-    while True:
-        candidate = None
-        for node in sorted(types):
-            if node in leaves or types[node] != "tree":
-                continue
-            node_incident = [edge for edge in edges if node in edge.endpoints]
-            if len(node_incident) == 2:
-                candidate = node
-                break
-        if candidate is None:
-            break
-        node_incident = [edge for edge in edges if candidate in edge.endpoints]
-        require(all(candidate not in edge.heads for edge in node_incident), "ordinary suppression encountered an arrowhead")
-        external = [next(node for node in edge.endpoints if node != candidate) for edge in node_incident]
-        inherited = {
-            endpoint
-            for endpoint, edge in zip(external, node_incident)
-            if endpoint in edge.heads
-        }
-        edges = [edge for edge in edges if candidate not in edge.endpoints]
-        if external[0] != external[1]:
-            edges.append(MixedEdge.make(external, inherited))
-        del types[candidate]
 
     require(len(edges) == len(set(edges)), "parallel artifact outside theorem convention")
     return MixedGraph(types, tuple(sorted(edges)), tuple(sorted(network.leaves)))

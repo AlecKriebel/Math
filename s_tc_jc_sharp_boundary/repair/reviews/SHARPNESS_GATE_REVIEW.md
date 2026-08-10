@@ -67,9 +67,9 @@ which are implemented rather than inferred from status prose.
    bidegree `(1,2)`, reticulation bidegree `(2,1)`, and leaf bidegree `(1,0)`.
    It is acyclic and every vertex is root-reachable.
 2. The standard semi-directed reduction retains arrowheads precisely on
-   edges entering reticulations, makes ordinary edges undirected, suppresses
-   the binary root, and then suppresses unlabelled ordinary degree-two
-   vertices.  It does not broadly erase reticulation artifacts.
+   edges entering reticulations, makes ordinary edges undirected, and
+   suppresses the binary root once.  It performs no further degree-two
+   cleanup or broad deletion of reticulation artifacts.
 3. An admissible rooting may insert its root on an undirected edge or on a
    compatible retained edge entering a reticulation.  Every orientation must
    have the required rooted binary bidegrees, be acyclic, and reduce exactly
@@ -614,17 +614,17 @@ obligations.  No manuscript source was changed during this audit.
 
 ## Reproduction and hashes
 
-Run from `/Users/alec/Documents/Math-stc-jc-final-repair`:
+Run from the release root:
 
 ```text
-PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 python3 s_tc_jc_sharp_boundary/repair/independent/sharpness/verify_sharpness.py --instance s_tc_jc_sharp_boundary/repair/independent/sharpness/instance.json --output s_tc_jc_sharp_boundary/repair/independent/sharpness/certificate.json
+PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 python3 reproducibility/independent/verify_sharpness.py --instance reproducibility/independent/instance.json --output /tmp/stc-jc-sharpness-certificate.json
 ```
 
 Expected result:
 
 ```text
 PASS final_verdict=PROVED
-certificate_sha256=8d70b47f7ca6bd0b8ea87fab71bf2c6eefb254b410708bbb01ccd3dc0c10b40f
+certificate_sha256=38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7
 ```
 
 The run was repeated under `PYTHONHASHSEED=1` and
@@ -635,9 +635,16 @@ Core audit artifacts:
 
 | File | SHA-256 |
 |---|---|
-| `verify_sharpness.py` | `7cee6cac60e5ce1208ddf601de33914d1f24d298b6248cbdef48fe63f19bcc35` |
+| `verify_sharpness.py` | `93a29ea6fdd1eba1671cf720a3929c2e2cab6ef5882c89a355d7cef04406c639` |
 | `instance.json` | `cca38c3928c7eb768f5dabf480d8eae16ef5a08b7576ffe2780e6a7deaeb337b` |
-| `certificate.json` | `8d70b47f7ca6bd0b8ea87fab71bf2c6eefb254b410708bbb01ccd3dc0c10b40f` |
+| `certificate.json` | `38266537a7966d83bdb94c6fb90fa68f93fbd227b82579f1bf311005925366d7` |
+
+The active hashes above were reissued after the final manuscript referee
+identified an inert post-root degree-two cleanup loop.  Removing that loop
+makes the implementation literally match the manuscript's narrow `sd_0`
+definition; it changes only the implementation hash recorded inside the
+certificate.  The corrected artifacts are independently re-audited in
+`repair/reviews/MANUSCRIPT_FINAL_REREVIEW.md`.
 
 Raw input provenance:
 
@@ -651,4 +658,3 @@ Raw input provenance:
 
 `repair/independent/sharpness/MANIFEST.sha256` records the remaining final
 artifact hashes, including this review.
-

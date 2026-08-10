@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "MANIFEST.sha256"
-IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache"}
+IGNORED_PARTS = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", "tmp"}
 IGNORED_SUFFIXES = {".pyc", ".pyo"}
 
 
