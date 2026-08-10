@@ -1,6 +1,6 @@
 # Focused reviewer packet
 
-This packet is a short route into version 1.1's load-bearing and restored
+This packet is a short route into version 1.1's load-bearing and secondary
 claims. It is not an outreach message and asks no one to endorse, join, or
 review the entire project.
 

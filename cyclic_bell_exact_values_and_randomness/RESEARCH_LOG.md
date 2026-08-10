@@ -79,3 +79,20 @@ of completion toward the requested merged publication package.
   proof. Three new deterministic hostile suites pass. The intermediate
   manuscript builds to 25 pages; final packet, website, manifest, visual QA,
   and release validation remain.
+
+- **Referee-explication checkpoint, 20:52 PDT.** Re-derived each proposed
+  repair against the current notation. Accepted the kernel-extension,
+  target-table/Fourier-flatness, nonzero-corner, correlator-trace, root-reference,
+  overbar, attribution, model-definition, and reproducibility clarifications.
+  Removed the redundant manuscript-front status notice while retaining the
+  end disclosure. Rejected a new DOI and a structural supplement split; neither
+  is needed for correctness and both exceed this scoped final pass. The central
+  theorem statements, section order, mathematical verifiers, redirects, and
+  historical artifacts remain unchanged.
+- **Website-validator repair, 21:06 PDT.** The first full replay passed every
+  mathematical, certificate, historical-integrity, and PDF-build stage, then
+  exposed three stale assertions left by the newer portfolio redesign. The
+  site validator no longer mistakes the author's ORCID JSON-LD identifier for
+  a DOI, accepts the current AI/unrefereed wording, and checks the current
+  selected-papers section rather than a retired homepage count. No deployment
+  configuration or website route changed.

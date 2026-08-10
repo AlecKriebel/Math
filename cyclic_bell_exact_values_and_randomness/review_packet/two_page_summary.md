@@ -103,8 +103,9 @@ upper bound on value-only worst-case min-entropy, not its exact optimum.
 
 ## Second family and exact randomness scope
 
-The paper uses the source-v3 SOS, with prefactor $1/(2d)$, to prove global
-optimality of the same permutation orbit. Exact Fourier compression
+The paper uses the SOS of Perito et al., Eqs. (22)--(23), with prefactor
+$1/(2d)$, to prove global optimality of the same permutation orbit. Exact
+Fourier compression
 $\widehat B_\ell=d\lambda_\ell D_\ell$, together with
 $A_\ell=\overline{D_\ell}$, annihilates every SOS factor. Under the
 alternative source-appendix convention that adjoints all Bob observables,
@@ -113,9 +114,8 @@ maximum, nonuniformity, guessing probability, and entropy are unchanged.
 
 Conjecture 2 of the originating paper says that maximal violation of the
 first augmented functional certifies $2\log_2d$ random bits at
-$(x,y)=(1,d)$. After resolving its isolated printed normalization discrepancy
-by using the displayed operator, version 1.1 disproves precisely the scalar-
-value implication
+$(x,y)=(1,d)$. Using the displayed first augmented operator, whose maximum is
+$M_d+1$, version 1.1 disproves precisely the scalar-value implication
 
 \[
 \langle\overline{\mathcal I}_d\rangle=M_d+1

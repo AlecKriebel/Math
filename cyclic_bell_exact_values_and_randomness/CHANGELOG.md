@@ -2,6 +2,29 @@
 
 ## Version 1.1 — 2026-08-09
 
+### Referee-explication and arXiv-readiness pass
+
+- Removed the redundant first-page status notice while retaining the detailed
+  end-of-manuscript AI-assistance disclosure, and added the author's public
+  contact address and ORCID to the author block.
+- Made the kernel case in the conditional phase-permutation proof explicit by
+  separating the canonical polar partial isometry from its unitary extension.
+  Derived the target probability table from its eigenvectors and proved the
+  canonical ordering Fourier-flat in every dimension, including the complete
+  short argument for dimensions two and three.
+- Added representative trace calculations for the second-family correlator
+  invariance, the missing nonscalar-implies-nonzero-corner hinge in Proposition
+  F.1, and a valid numbered cross-reference for the equality roots. No theorem
+  statement or contribution boundary changed.
+- Credited the originating score symmetries and narrowed the comparison row to
+  nonuniform phase-permuted maximizers. Replaced internal source-version
+  shorthand in publication-facing prose by the precise SOS citation to
+  Eqs. (22)--(23), and gave a conventional public code-and-data URL.
+- Updated only the obsolete website assertions in the existing validator
+  after the repository-wide portfolio redesign: an ORCID JSON-LD identifier
+  is no longer mistaken for a DOI, and homepage/status checks follow the
+  current site structure. Mathematical verification code is unchanged.
+
 ### Final proof-presentation pass
 
 - Standardized the support-rigidity scope as attained finite-dimensional

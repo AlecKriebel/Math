@@ -58,7 +58,11 @@
 \textbf{in Cyclic Bell Inequalities}\\[0.45em]
 \large Sharp operator bounds, equality structure, and limits of Bell-value randomness certification}
 \author{Alec Kriebel\\
-\small Independent Researcher}
+\small Independent Researcher\\[-0.1em]
+\small \href{mailto:me@aleckriebel.com}{me@aleckriebel.com}
+\quad
+\href{https://orcid.org/0009-0001-9320-500X}
+{ORCID: 0009-0001-9320-500X}}
 \date{9 August 2026}
 
 \begin{document}
@@ -88,12 +92,6 @@ nor determine the worst-case guessing probability.  An exact \(d=4\)
 certificate over \(\mathbb Q(\zeta_{16})\) accompanies the all-dimensional
 proofs.
 \end{abstract}
-
-\medskip
-\noindent\textbf{Status.}
-This is an unrefereed, AI-assisted manuscript.  Its proofs and verification
-artifacts are public for specialist audit; internal adversarial review and
-passing code are not peer review.
 
 \section{Introduction}
 
@@ -139,8 +137,8 @@ bound to a scalar roots-of-unity extremum.  At equality the relative unitary
 may carry the full set of maximizing phases in different cyclic orders.
 Those orders leave the Bell-visible first harmonics unchanged, but they alter
 higher Fourier data and can change a complete output table.  The same Bob
-observables also annihilate the published sum-of-squares factors for the
-second family.
+observables also annihilate the sum-of-squares factors of
+Ref.~\cite{PeritoEtAl2026}, Eqs.~(22)--(23), for the second family.
 
 \begin{table}[t]
 \centering
@@ -160,12 +158,15 @@ value \(2\csc(\pi/(2d))\), and conjectured equality; NPA evidence through
 \(q=qa=qc\) equality\\
 Second reduced value & Proved value \(d\) by an SOS identity & Uses that SOS,
 including its commuting-operator reading\\
-Equality structure & No complete maximizing-face classification & Proves
-the scalar phases, equal supported multiplicities for every attained finite-
-dimensional tensor-product exact maximizer of the first augmented family, and
-a conditional phase-permutation orbit with exact product hypotheses\\
-Alternative maximizers & Not identified & Constructs biased exact maximizers
-of both augmented families for every \(d\geq4\)\\
+Equality structure & Identified score symmetries and developed their
+randomness implications under a uniqueness hypothesis, without a complete
+maximizing-face classification & Proves the scalar phases, equal supported
+multiplicities for every attained finite-dimensional tensor-product exact
+maximizer of the first augmented family, and a conditional phase-permutation
+orbit with exact product hypotheses\\
+Nonuniform phase-permuted maximizers & Focused on canonical realizations and
+their symmetry-based randomness implications & Constructs biased exact
+maximizers of both augmented families for every \(d\geq4\)\\
 Canonical full behavior & Randomness studied numerically in selected
 dimensions; second family self-tested at \(d=3\) & Not contradicted\\
 Scalar-value implication & Maximal-violation certification proposed, with a
@@ -223,13 +224,25 @@ Zero spectral projections are allowed in the general definition.  All
 explicit strategies below have the complete simple spectrum of \(d\)-th
 roots, so their outcomes are rank-one projectors.
 
-For finite-dimensional tensor-product strategies, let \(q\) denote the
-supremum of a Bell functional, and let \(qa\) denote the value over the
-closure of those correlations.  In the commuting-operator model \(qc\),
+For a matrix \(T\) written in the displayed computational basis,
+\(\overline T\) denotes entrywise complex conjugation, while \(T^T\) and
+\(T^\dagger\) denote its transpose and adjoint.  The overbars in the
+separately defined names \(\overline{\cI}_d\) and \(\overline{\cF}_d\)
+indicate augmentation, not complex conjugation.
+
+Let \(\mathcal Q_q\) denote the set of finite-dimensional tensor-product
+correlations, let \(\mathcal Q_{qa}=\overline{\mathcal Q_q}\), and let
+\(\mathcal Q_{qc}\) denote the commuting-operator correlation set, in which
 Alice's and Bob's PVMs act on one Hilbert space and commute across parties.
-We use
+Thus
 \[
  \mathcal Q_q\subseteq\mathcal Q_{qa}\subseteq\mathcal Q_{qc}.
+\]
+For a Bell functional \(\mathcal B\), write
+\[
+ \beta_\mu(\mathcal B)
+ =\sup_{p\in\mathcal Q_\mu}\mathcal B(p),
+ \qquad \mu\in\{q,qa,qc\}.
 \]
 The operator inequalities below hold in the commuting model; a matching
 finite-dimensional strategy then identifies all three values.
@@ -281,7 +294,7 @@ randomness for that realization.
 
 \begin{remark}[Normalization convention]
 \label{rem:normalization}
-The current source version of Ref.~\cite{PeritoEtAl2026} has a localized
+Version 3 of Ref.~\cite{PeritoEtAl2026} has a localized
 normalization discrepancy: the displayed reduced value in its Eq.~(17) and
 its \(d=3\) augmented value agree with the operator definition, while the
 formula printed beside its first augmented randomness conjecture contains an
@@ -653,18 +666,49 @@ For arbitrary nonzero weights \(t_j\),
 \end{equation}
 and its characteristic polynomial is
 \(t^d-\prod_jt_j\).  The product hypotheses therefore prove (i).  Moreover,
+for each \(r\), put
 \[
- \alpha_rA_0+\beta_rA_1
- =X\operatorname{diag}(g_r(z_{\kappa_j}))
+ W_r=X\operatorname{diag}(s_{r,\kappa_j}),
+ \qquad
+ E_r=\supp\absop{L_r}.
 \]
-has unitary polar extension
-\(X\operatorname{diag}(s_{r,\kappa_j})\).  The maximally-entangled trace
-identity
+Then
 \[
- \langle\Phi_d\vert R\otimes S\vert\Phi_d\rangle
- =\frac1d\Tr(RS^T)
+ L_r=W_r\absop{L_r},
+ \qquad
+ V_r=W_rE_r,
 \]
-annihilates every factor in the displayed gap, proving (ii).  Finally,
+where \(V_r\) is the canonical polar partial isometry appearing in \(P_r\).
+Consequently
+\[
+ V_r\absop{L_r}^{1/2}
+ =W_rE_r\absop{L_r}^{1/2}
+ =W_r\absop{L_r}^{1/2};
+\]
+the phases extending \(W_r\) on \(\ker L_r\) do not enter the positive
+residual.  Since \(B_r=\overline{W_r}\), one has \(B_r^T=W_r^\dagger\), and
+therefore
+\[
+ V_r\absop{L_r}^{1/2}B_r^T
+ =W_r\absop{L_r}^{1/2}W_r^\dagger
+ =\absop{L_r^\dagger}^{1/2}.
+\]
+The vectorization identity
+\[
+ (R\otimes S)\lvert\Phi_d\rangle
+ =(RS^T\otimes\Id)\lvert\Phi_d\rangle
+\]
+now gives \(P_r\lvert\Phi_d\rangle=0\), including when \(g_r(U)\) has a
+kernel.  Moreover, \(f(U)=M\Id\), because every \(z_{\kappa_j}\) is a
+maximizing phase, and
+\[
+ (A_0\otimes B_*)\lvert\Phi_d\rangle
+ =(X\otimes X)\lvert\Phi_d\rangle
+ =\lvert\Phi_d\rangle.
+\]
+Thus every factor in the displayed gap annihilates
+\(\lvert\Phi_d\rangle\), proving (ii).  Finally, the maximally-entangled
+trace identity gives
 \[
 \begin{aligned}
  \langle A_0B_r\rangle&=\frac1d\sum_j\overline{s_{rj}},&
@@ -688,12 +732,12 @@ analysis.
 \label{sec:biased}
 
 Put
-\[
+\begin{equation}
  \delta_d=\begin{cases}0,&d\text{ odd},\\1,&d\text{ even},\end{cases}
  \qquad
  z_k=\exp\!\left(\frac{\pi i(2k+\delta_d)}d\right).
  \label{eq:equality-roots}
-\]
+\end{equation}
 These are precisely the roots in \eqref{eq:scalar-equality}.  For
 \(0\leq y,k<d\), define
 \[
@@ -749,16 +793,59 @@ To calculate the designated pair \((A_1,B_d)\), set
  \widehat q_m=\sum_{j=0}^{d-1}q_j\omega^{mj}.
  \label{eq:q-sequence}
 \end{equation}
-The product condition makes the sequence cyclic.  Direct diagonalization of
-the two weighted shifts gives
+The product condition makes the sequence cyclic, so extend it by
+\(q_{j+d}=q_j\), and put \(Q=\operatorname{diag}(q_j)\).  The recurrence
+gives \(A_1=QXQ^\dagger\).  Define
+\[
+ \lvert u_c\rangle
+ =\frac1{\sqrt d}\sum_{j=0}^{d-1}\omega^{-cj}\lvert j\rangle,
+ \qquad
+ \lvert v_a\rangle=Q\lvert u_a\rangle.
+\]
+Then
+\[
+ X\lvert u_c\rangle=\omega^c\lvert u_c\rangle,
+ \qquad
+ A_1\lvert v_a\rangle=\omega^a\lvert v_a\rangle,
+\]
+so these are the outcome eigenvectors under the encoding
+\(A=\sum_a\omega^aM_a\).  The transpose of the outcome-\(b\) projector of
+\(B_d=X\) is the projector onto \(\overline{u_b}=u_{-b}\).  Hence the
+maximally-entangled trace identity gives
 \begin{equation}
+\begin{aligned}
  p_\kappa(a,b\mid1,d)
+ &=\frac1d\absop{\langle u_{-b}\mid v_a\rangle}^2\\
+ &=\frac1{d^3}
+   \absop{\sum_{j=0}^{d-1}q_j\omega^{-(a+b)j}}^2
  =\frac{\absop{\widehat q_{-(a+b)}}^2}{d^3}.
+\end{aligned}
  \label{eq:target-table}
 \end{equation}
 Parseval gives \(\sum_m\absop{\widehat q_m}^2=d^2\).  Consequently both
 local marginals are exactly \(1/d\), while the joint table is uniform if and
 only if every squared Fourier magnitude equals \(d\).
+
+The canonical ordering is Fourier-flat in every dimension.  Indeed, for
+\(\kappa_j=j\), the recurrence gives
+\[
+ q_j=\eta^{j(j-1+\delta_d)},
+ \qquad \eta=\e^{\pi i/d},
+\]
+and the parity choice in \(\delta_d\) makes this formula cyclic.  Reading
+indices cyclically, its autocorrelations are
+\[
+ R_t:=\sum_{j=0}^{d-1}q_{j+t}\overline{q_j}
+ =\eta^{t(t-1+\delta_d)}
+   \sum_{j=0}^{d-1}\omega^{tj}
+ =\begin{cases}d,&t=0,\\0,&1\leq t<d.\end{cases}
+\]
+Therefore
+\[
+ \absop{\widehat q_m}^2
+ =\sum_{t=0}^{d-1}R_t\omega^{mt}=d
+\]
+for every \(m\), and the canonical target table is exactly \(1/d^2\).
 
 \begin{theorem}[Biased exact maximizers]
 \label{thm:biased}
@@ -811,8 +898,17 @@ With trivial Eve, always guessing a most likely pair gives
 \end{proof}
 
 For \(d=2,3\), every ordering in this particular permutation family is
-Fourier-flat.  The theorem therefore neither proves nor disproves
-Bell-value rigidity in those dimensions.
+Fourier-flat.  Indeed, for any permutation \(\kappa\),
+\[
+ R_1=\sum_jq_{j+1}\overline{q_j}
+ =\sum_jz_{\kappa_j}=\sum_kz_k=0,
+ \qquad R_{d-t}=\overline{R_t}.
+\]
+For \(d=2\), \(R_1\) is the only nonzero-lag autocorrelation; for \(d=3\),
+the only such autocorrelations are \(R_1\) and
+\(R_2=\overline{R_1}\).  Thus all nonzero-lag autocorrelations vanish and
+\(\absop{\widehat q_m}^2=d\) for every \(m\).  This leaves Bell-value
+rigidity in those dimensions unresolved.
 
 \section{Extension to the second augmented cyclic family}
 \label{sec:second}
@@ -870,7 +966,8 @@ of every \(\lambda_\ell\) has modulus one,
 \]
 \end{proof}
 
-The source-v3 SOS, with prefactor \(1/(2d)\), is short and load-bearing.
+The SOS of Ref.~\cite{PeritoEtAl2026}, Eqs.~(22)--(23), with prefactor
+\(1/(2d)\), is short and load-bearing.
 Fourier orthogonality and unitarity of the \(B_y\)'s give
 \[
  \sum_\ell \widehat B_\ell^\dagger\widehat B_\ell=d^2\Id,
@@ -965,13 +1062,33 @@ Finally
  A_1=X\operatorname{diag}(\eta^{2\kappa_j+\delta_d})
  =X\operatorname{diag}(z_{\kappa_j}),
 \]
-which identifies the target table with \eqref{eq:target-table}.  Each
-first-harmonic correlator is a sum over the complete unordered root set, and
-is therefore permutation-independent.
+which identifies the target table with \eqref{eq:target-table}.  For
+\(0\leq\ell,y<d\), the trace identity and \(B_y^T=V_y^\dagger\) give
+\begin{align*}
+ \langle A_\ell B_y\rangle
+ &=\frac{\overline{r_\ell}}d
+   \sum_j\omega^{\ell\kappa_j}
+   \overline{s_{y,\kappa_j}}\\
+ &=\frac{\overline{r_\ell}\omega^{-\ell y}}d
+   \sum_t\omega^{\ell t}\overline{s_{0,t}}\\
+ &=\lambda_\ell\omega^{-\ell y},
+\end{align*}
+where the last equality uses \(S_\ell=d\lambda_\ell r_\ell\).  Likewise,
+\[
+ \langle A_\ell B_d\rangle
+ =\frac{\overline{r_\ell}}d
+  \sum_j\omega^{\ell\kappa_j}
+ =\delta_{\ell0}.
+\]
+All local first moments vanish because the displayed Alice and Bob
+observables are weighted shifts.  These formulas give the complete complex
+first-harmonic correlator matrix and show directly that it is independent of
+\(\kappa\).
 \end{proof}
 
-The theorem uses the source-v3 SOS to prove global optimality; merely
-annihilating a candidate collection of operators would not have sufficed.
+The theorem uses the SOS of Ref.~\cite{PeritoEtAl2026}, Eqs.~(22)--(23), to
+prove global optimality; merely annihilating a candidate collection of
+operators would not have sufficed.
 What is common to both families is the root ordering, the Bob cycle, and the
 target table.  The second family additionally requires the exact Fourier
 phases in \eqref{eq:second-A}.  No statement is made here about a complete
@@ -1306,19 +1423,17 @@ mechanism point in the same direction: a successful low-setting score must
 control operator-valued adversarial information, not merely a scalar maximum
 or an unordered first-harmonic spectrum.
 These problems are natural opportunities for collaboration with the
-originating authors and the broader Bell-inequality community.  No external
-review or collaboration is claimed here.
+originating authors and the broader Bell-inequality community.
 
 \section*{Data, code, and historical versions}
 
-The accompanying repository contains the TeX source, exact and numerical
-verifiers, machine-readable certificates, claims ledger, proof-dependency
-map, fresh adversarial and priority audits, and integrity hashes.  One command
-replays the mathematical checks, the two independent \(d=4\) exact
-implementations, the manuscript build, and the website validation.  The
-three earlier standalone papers and their original PDFs, sources, hashes,
-and Git history remain available as historical artifacts; they are not
-silently replaced by this synthesis.
+The source, exact certificates, and verification scripts are available at
+\url{https://github.com/AlecKriebel/Math/tree/main/cyclic_bell_exact_values_and_randomness}.
+From that directory, \texttt{./reproduce.sh} runs the mathematical checks,
+the two independent \(d=4\) exact implementations, and clean manuscript and
+metadata builds; \texttt{manifest.sha256} records the package integrity
+hashes.  Historical standalone versions remain accessible from the canonical
+paper page linked in that repository.
 
 \section*{AI-assistance disclosure}
 
@@ -1327,7 +1442,7 @@ code, literature-search organization, and drafting under Alec Kriebel's
 direction.  Alec Kriebel is the sole named author and takes responsibility
 for the manuscript and release.  AI output was not treated as evidence:
 claims were retained only when accompanied by a written proof and replayable
-checks.  No external review, collaboration, or endorsement is claimed.
+checks.
 
 \appendix
 
@@ -1922,6 +2037,13 @@ Hermiticity supplies the lower-left corner:
 \]
 On the first and last coordinate blocks this is
 \(\bigl(\begin{smallmatrix}0&T\\T^\dagger&0\end{smallmatrix}\bigr)\).
+If \(s=0\), the preceding vanishing already gives \(K=\kappa\Id\).  If
+\(s>0\) and \(T=0\), then \(T_{0,s-t}=a_t=0\) for every
+\(1\leq t\leq s\).  Hence \(c_t=0\) by \(a_t=2c_t\), and \(c'_t=0\) by
+\(c_t+\rho^tc'_t=0\).  Hermiticity eliminates the modes
+\(d-s,\ldots,d-1\), while the middle modes already vanish; together with
+\(c_0+c'_0=\kappa\), this gives \(K=\kappa\Id\).  Thus a nonscalar \(K\)
+forces \(T\neq0\).
 An SVD of \(T\) shows that this block matrix has nonzero eigenvalues
 \(\pm\sigma_j(T)\).  Hence a nonscalar \(K\) has spectrum on both sides of
 \(\kappa\).
@@ -1948,9 +2070,10 @@ between the two notations, but mixing them within one formula does not.  We
 therefore state every adjoint explicitly and test the Fourier orientation.
 
 For the second family, \eqref{eq:second-functional} matches the Hermitian
-content of the source definition and the source-v3 SOS, with prefactor
-\(1/(2d)\).  The source text adjacent to the canonical construction briefly
-omits Alice's entrywise conjugation, while its theorem includes it.
+content of the source definition and the SOS of
+Ref.~\cite{PeritoEtAl2026}, Eqs.~(22)--(23), with prefactor \(1/(2d)\).
+The source text adjacent to the canonical construction briefly omits Alice's
+entrywise conjugation, while its theorem includes it.
 Our choice \(A_\ell=\overline{D_\ell}\) is the one that annihilates the
 displayed SOS on \(\lvert\Phi_d\rangle\).
 

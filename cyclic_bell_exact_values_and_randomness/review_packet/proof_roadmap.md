@@ -84,7 +84,8 @@ every $d\ge4$ without claiming the complete face or worst guessing strategy?
 
 ## Route 4: second augmented family
 
-1. Expand `eq:second-sos`; check the source-v3 SOS prefactor $1/(2d)$, Fourier
+1. Expand `eq:second-sos`; check the prefactor $1/(2d)$ in the SOS of Perito
+   et al., Eqs. (22)--(23), together with Fourier
    orthogonality, and $\sum_\ell|\lambda_\ell|^2=1$.
 2. Recompute `eq:Fourier-compression`, including its phase $r_\ell$.
 3. Check $D_\ell^d=I$ and that
@@ -97,7 +98,7 @@ every $d\ge4$ without claiming the complete face or worst guessing strategy?
    $b\mapsto-b$, not a termwise mixture.
 
 Decisive question: is global optimality imported from and credited to the
-complete source-v3 SOS rather than inferred from annihilating an arbitrary
+complete originating SOS rather than inferred from annihilating an arbitrary
 candidate expression?
 
 ## Route 5: precise randomness conclusion

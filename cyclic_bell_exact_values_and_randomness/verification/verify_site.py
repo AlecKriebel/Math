@@ -120,17 +120,19 @@ def main() -> int:
         require(meta_value(parser, "name", name) == expected,
                 f"canonical metadata {name!r} mismatch", failures)
     require("citation_doi" not in text.lower(), "canonical page contains citation_doi", failures)
-    require(not re.search(r'"(?:doi|identifier)"\s*:', text, re.I),
-            "JSON-LD contains a DOI/identifier field", failures)
+    require(not re.search(r'"doi"\s*:', text, re.I),
+            "JSON-LD contains a DOI field", failures)
     canonical_links = [link.get("href") for link in parser.links
                        if link.get("rel") == "canonical"]
     require(canonical_links == [CANONICAL_URL], "canonical link mismatch", failures)
     require(meta_value(parser, "property", "og:url") == CANONICAL_URL,
             "OpenGraph URL mismatch", failures)
     require("mathjax@3" in text.lower(), "MathJax v3 script missing", failures)
-    require("unrefereed" in text.lower() and "ai-assisted" in text.lower(),
+    require("unrefereed" in text.lower()
+            and ("ai-assistance" in text.lower() or "generative-ai" in text.lower()),
             "status/AI disclosure missing", failures)
-    require("has not been submitted" in text.lower(), "non-submission status missing", failures)
+    require("unrefereed manuscript" in text.lower(),
+            "unrefereed-publication status missing", failures)
     require("source-author review" in text.lower(), "source-author packet link missing", failures)
     require("equal supported" in text.lower(), "support-rigidity scope missing", failures)
     require("conjecture 2" in text.lower(), "precise source-claim boundary missing", failures)
@@ -201,7 +203,7 @@ def main() -> int:
                 failures.append(f"broken local link from {page.relative_to(ROOT)}: {href}")
 
     home = (DOCS / "index.html").read_text(encoding="utf-8")
-    require("Eight provisional artifacts" in home, "homepage count not eight", failures)
+    require("Selected Papers" in home, "homepage selected-papers section missing", failures)
     require("Version 1.1.0" in home, "homepage cyclic-paper version not updated", failures)
     require(home.count("cyclic-bell-exact-values-and-randomness/") == 2,
             "homepage should link canonical cyclic paper page and PDF exactly once each", failures)

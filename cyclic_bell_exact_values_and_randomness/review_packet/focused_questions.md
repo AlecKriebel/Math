@@ -80,10 +80,10 @@ strategy-level equivalence?
 
 ## 6. Second-family SOS and conventions
 
-Does the second-family extension follow from the complete credited source-v3
-SOS?
+Does the second-family extension follow from the complete credited SOS of
+Perito et al., Eqs. (22)--(23)?
 
-Please verify the source-v3 SOS prefactor $1/(2d)$, coefficient conjugations,
+Please verify its prefactor $1/(2d)$, coefficient conjugations,
 phase in $\widehat B_\ell=d\lambda_\ell D_\ell$, the order-$d$ parity
 calculation, and annihilation of **every** SOS factor. Is the transfer of the
 first-family target table to $A_1,B_d$ exact? Is the alternative source-

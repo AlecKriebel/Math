@@ -12,9 +12,9 @@ authorship proposal, or claim that external review has occurred.
 | First lower bound and conjecture | Supplied a canonical strategy of value $2\csc(\pi/(2d))$ and conjectured equality | Rechecks the source strategy and proves equality for $q,qa,qc$ |
 | Low-dimensional evidence | Reported matching NPA bounds through $d=6$: $1+AB$ for $d=3,4$, level 2 for $d=5,6$ | Gives the corresponding exact radicals and checks agreement with the reported decimals |
 | First augmentation | Defined it; the formula printed beside Conjecture 2 has an isolated normalization discrepancy | Uses the displayed operator, whose exact maximum is $M_d+1$ |
-| Attained finite-dimensional tensor-product exact maximizers of the first augmented family | No complete maximizing-face classification | Proves that every such maximizer has every equality root with equal multiplicity on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$ |
-| Phase ordering | Canonical ordering supplied | Gives a conditional paired-permutation orbit preserving all complex first harmonics; does not claim exhaustiveness |
-| Alternative maximizers | Not identified in the source | Constructs nonuniform exact maximizers of both augmented families for every $d\ge4$ |
+| Attained finite-dimensional tensor-product exact maximizers of the first augmented family | Developed score symmetries under a uniqueness hypothesis, without a complete maximizing-face classification | Proves that every such maximizer has every equality root with equal multiplicity on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$ |
+| Phase ordering | Canonical ordering and score symmetries supplied | Gives a conditional paired-permutation orbit preserving all complex first harmonics; does not claim exhaustiveness |
+| Nonuniform phase-permuted maximizers | No such nonuniform family identified | Constructs nonuniform exact maximizers of both augmented families for every $d\ge4$ |
 | Second reduced value | Proved value $d$ by an SOS | Credits and uses that complete SOS, including its commuting-operator reading |
 | Second-family conventions | Main/SOS and appendix formulas differ by consistent Bob adjunction | Keeps the main/SOS convention; treats the appendix convention as Bob outcome inversion $b\mapsto-b$ |
 | Canonical full behavior | Numerical guessing analysis fixes the complete canonical distribution; selected rigidity/self-testing results are also given | Explicitly not contradicted |
@@ -37,7 +37,7 @@ Conjecture 2 is recorded neutrally as a localized normalization or
 typographical discrepancy and is not used rhetorically.
 
 For the second family, version 1.1 follows the source main-text convention
-with $B_y$ and the source-v3 SOS, with prefactor $1/(2d)$. The alternative appendix
+with $B_y$ and the SOS in Eqs. (22)--(23), with prefactor $1/(2d)$. The alternative appendix
 convention consistently replaces every Bob observable by its adjoint. This is
 Bob outcome inversion, preserving the maximum, the table's nonuniformity, the
 guessing probability, and entropy. The two conventions cannot be mixed term
@@ -86,7 +86,7 @@ entropy, not the optimized value itself.
    DFT, final-two autocorrelation, and exact $d=4$ table and entropy.
 3. **Second-family SOS and randomness logic.** Verify
    $\widehat B_\ell=d\lambda_\ell D_\ell$, $D_\ell^d=I$, Alice's conjugation,
-   the source-v3 SOS prefactor $1/(2d)$, and the all-Bob-adjoint outcome
+   the Eqs. (22)--(23) SOS prefactor $1/(2d)$, and the all-Bob-adjoint outcome
    inversion. Then check that
    the explicit nonuniform maximum refutes only the normalized scalar-value
    implication and leaves the fixed canonical full-behavior calculation
@@ -117,7 +117,7 @@ privacy conditions but are not dependencies of the cyclic counterexample.
 | Canonical lower strategies | Adopted, credited, and exactly rechecked |
 | NPA evidence through $d=6$ | Credited and matched to exact radicals |
 | First-value conjecture | Proved, including the commuting-operator value |
-| Second-family SOS | Adopted from source-v3 with prefactor $1/(2d)$ and credited |
+| Second-family SOS | Adopted from Eqs. (22)--(23) with prefactor $1/(2d)$ and credited |
 | Fixed-canonical-behavior numerical randomness | Explicitly not contradicted |
 | Conjecture 2 scalar-value implication | Disproved for the displayed operator for every $d\ge4$ |
 | Source $d=3$ second-family self-test | Explicitly outside the counterexample dimensions |
