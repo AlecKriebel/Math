@@ -13,6 +13,14 @@ Certified foundation:
 Current mathematical target: prove Outcome P or Outcome C.  Nothing else may
 be labelled the final outcome.
 
+The independent convention gate is now **VERIFIED AFTER CORRECTION**.  The
+positive theorem, if promoted, concerns the simple binary LSA-rootable mixed
+graphs obtained under the reticulation-preserving `sd_0` convention used by
+Englander et al., equivalently the binary LSA-valid Holtgrefe class with no
+omnians.  It does not quantify over every preimage of the broader exhaustive
+cleanup map used by Brits et al.  All primitive supports, the weak sharpness
+pair, and the double-triangle exclusion pass the clean-room rooting census.
+
 Latest fail-closed note: the primary corrected four-selected-boundary hard
 cover now uses every
 boundary bijection and represents a target incoming boundary omitted from a

@@ -1,6 +1,6 @@
 # Definitions lock
 
-Status: **LOCKED FOR AUDIT; promotion requires independent convention review**
+Status: **VERIFIED AFTER CORRECTION by independent convention review**
 
 ## Rooted networks
 
@@ -16,7 +16,7 @@ that is a tree vertex or a leaf.  Equivalently in this binary setting, no
 reticulation has a reticulation child and no tree/root vertex has two
 reticulation children.
 
-## Narrow standard semi-directed reduction
+## Reticulation-preserving semi-deorientation `sd_0`
 
 The map `sd_0` marks every arc entering a reticulation, undirects every other
 arc, deletes the binary root, and replaces its two incident edges by one edge
@@ -26,6 +26,11 @@ single suppression already produces a simple binary mixed graph: no loop or
 parallel edge is created and every reticulation and retained incoming
 arrowhead survives.  No later degree-two or parallel cleanup is part of
 `sd_0`.
+
+This is the already-simple semi-deorientation convention of Englander et al.
+and the binary LSA-valid specialization of Holtgrefe et al.  It is not the
+broader exhaustive-cleanup map used by Brits et al.; no theorem below
+quantifies over every rooted preimage of that broader map.
 
 An admissible rooting of a mixed graph is an LSA-valid rooted binary network
 whose `sd_0` image is exactly that graph.  Compatible insertion on an edge
@@ -50,8 +55,9 @@ No membership statement transfers between these classes without an explicit
 rooting census or a proved local criterion.
 
 For a simple binary mixed graph admitting at least one rooting, the criterion
-used below is exact: it is in `S_TC` if and only if every tail of a retained
-reticulation edge is incident with two undirected edges.  Necessity follows
+used below is exact: it is in `S_TC` if and only if it has no *omnian*,
+equivalently every tail of a retained reticulation edge is incident with two
+undirected edges.  Necessity follows
 because a tail with two reticulation edges has two reticulation children in
 every compatible rooting.  For sufficiency, a tail with one reticulation edge
 has one of its two undirected incidences as a parent and the other as a
@@ -61,6 +67,10 @@ reticulation, since an edge entering that child would carry an arrowhead.
 An inserted root has at most one reticulation child.  Thus every compatible
 rooting is tree-child.  The primary implementation checks this local
 criterion and independently exhausts all rootings on the primitive cores.
+
+Thus the positive theorem's exact topology class is: simple binary
+LSA-rootable semi-directed mixed graphs obtained under reticulation-preserving
+`sd_0`, of level at most two, with no omnians.
 
 ## Graphs, blobs, and level
 

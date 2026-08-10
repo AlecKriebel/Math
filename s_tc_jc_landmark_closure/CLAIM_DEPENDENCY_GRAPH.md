@@ -6,7 +6,7 @@ is independently verified.
 | Node | Claim | Initial status |
 |---|---|---|
 | W | Frozen all-`n` theorem in `W_TC \ S_TC` | VERIFIED |
-| D | One reticulation-preserving simple standard convention; `S_TC` membership and primitive cores | VERIFIED under the locked narrow `sd_0` convention; final literature-convention reconciliation still required before release |
+| D | One reticulation-preserving simple semi-deorientation convention; `S_TC` membership and primitive cores | VERIFIED AFTER CORRECTION: `sd_0` is the Englander v4 convention and binary LSA-valid Holtgrefe specialization, but not the broader Brits cleanup map; all primitive and sharpness fixtures pass the independent census |
 | B | Correct projective bridge peeling with exact incidence-scaling kernel | VERIFIED by two independent implementations and adversarial review |
 | C | Pointwise cut characterization and both cut inclusions under one-sided containment, including the two-active-endpoint crossing | VERIFIED by two independent implementations and adversarial review |
 | U | Exhaustive duplicate-free primitive level-2 generator universe | Primitive graphs VERIFIED; the previously reported 19,290 ordinary-`T` relation count fixed the incoming boundary and is WITHDRAWN as a relation-universe count |
@@ -16,7 +16,7 @@ is independently verified.
 | Q | Structural root-to-real-incoming-port reduction | VERIFIED AFTER CORRECTION; final review manifest pending |
 | G | No-compensation local-to-global theorem and converse gluing | VERIFIED by adversarial theorem-logic review, conditional only on the fixed-full local theorem |
 | V | Independent clean-room replay and mutation suite | COMPLETE for W,D,B,C,U and invariant engine; active for R/A |
-| P | Positive `S_TC` classification modulo `T` | BLOCKED on the four-outgoing `theta-2` minimum-support gate, independent R/A comparison V, adversarial global proof closure, and final convention reconciliation D |
+| P | Positive `S_TC` classification modulo `T` | BLOCKED on independent R/A comparison V, unequal directed pairs, and final terminal probes; the convention gate D is closed for the explicitly scoped `sd_0` class |
 | X | Exact `S_TC` counterexample | No candidate in exhaustive 3–5-leaf topology census; bounded model search negative only numerically |
 | F | Final sharp-boundary release | requires `(P and W)` or `X` |
 

@@ -428,3 +428,20 @@
   all 256 Fourier coordinates at the algebraic interior point, and both
   rank-eight Jacobian minors.  The all-taxa weak-but-not-strong sharpness
   branch remains frozen and available for the final synthesis.
+
+## 2026-08-10T02:48:00-07:00 — convention gate closed after correction
+
+- The clean-room convention referee compared the exact definitions in
+  Englander et al. v4, Holtgrefe et al. v2, and Brits et al. v2.  There is no
+  single literal reduction map shared by all three sources.
+- The locked reticulation-preserving `sd_0` map agrees with Englander v4 and
+  is the binary LSA-valid specialization of Holtgrefe.  It is strictly
+  narrower than the exhaustive degree-two/parallel cleanup in Brits; an
+  exact LSA-valid level-2 fixture separates the two conventions.
+- The theorem scope is therefore corrected to simple binary LSA-rootable
+  mixed graphs produced by `sd_0`, level at most two, with no omnians.  No
+  claim is made for every preimage of the broader cleanup map.
+- The independent verifier checks all 12 primitive supports and all 100 of
+  their admissible rootings, the weak Theta rooting counts, the `K4-e`
+  double-triangle exclusion, and eight convention mutations.  The gate is
+  `VERIFIED AFTER CORRECTION`; local algebra remains separately pending.
