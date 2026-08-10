@@ -24,6 +24,9 @@
   after the repository-wide portfolio redesign: an ORCID JSON-LD identifier
   is no longer mistaken for a DOI, and homepage/status checks follow the
   current site structure. Mathematical verification code is unchanged.
+- Pinned the public data-and-code statement to scientific implementation
+  commit `609f8c6ffc083b665804890dd82fc739d414ea9d`; no DOI or release was
+  created.
 
 ### Final proof-presentation pass
 

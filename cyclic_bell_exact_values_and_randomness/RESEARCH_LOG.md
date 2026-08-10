@@ -96,3 +96,9 @@ of completion toward the requested merged publication package.
   a DOI, accepts the current AI/unrefereed wording, and checks the current
   selected-papers section rather than a retired homepage count. No deployment
   configuration or website route changed.
+- **Scientific-source freeze, 21:12 PDT.** Committed the complete substantive
+  referee-explication revision as
+  `609f8c6ffc083b665804890dd82fc739d414ea9d` after the 11-stage replay and
+  full visual PDF inspection. The publication-facing data-and-code statement
+  now points to that immutable scientific snapshot. This provenance-only
+  follow-up changes no theorem, proof, or verifier.
