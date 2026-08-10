@@ -77,11 +77,11 @@ ordered stage, so
 
 The remaining failed one-step geometry is covered by twelve canonical
 asymptotic gate types. The rank-two two-active phase, the exact
-all-active-only reversible-top branch, and the rank-one no-promotion branch
-are closed at their stated scopes. Two-active promotion carriers and
-one-active stopped kernels outside the exact post-rank-one 92-pair branch
-remain open. Candidate selector counts outside the audited branches are not
-being reported as recurrence theorems.
+all-active-only reversible-top branch, the rank-one no-promotion branch, and
+the exact 36-pair promotion-only branch are closed at their stated scopes.
+Other two-active promotion carriers and one-active stopped kernels outside
+the exact post-rank-one 92-pair branch remain open. Candidate selector counts
+outside the audited branches are not being reported as recurrence theorems.
 
 The all-active interface has also passed an independent, dimension-local
 proof replay for all 403 affected support pairs. Its disjoint branches are
@@ -122,6 +122,19 @@ ordered branches. The ordered updates are
 \]
 \[
  (1963,191)\longmapsto(1871,191).
+\]
+An exact promotion-only selector then identifies 36 further disjoint pairs,
+32 positive-invariant and four signed, each with exactly one feasible
+two-active failure and no one-active failure. The twenty enabled-seed rows
+have one exact top D-tier across both linkages. The sixteen dormant rows
+split into seven unique-\(0\) phases, seven \(A\)-enabled
+\(\{B,2A\}\) phases, and two finite disabled classes. A finite priority
+macrochain retains every reaction, resolves the \(BC\) versus \(A/AC\)
+scale mismatch, and gives negative drift for the same corrected-factorial
+potential. Two independent audits checked every stopping-time and
+fixed-class obligation. The ordered update is
+\[
+ (1871,191)\longmapsto(1839,187).
 \]
 Global T3-2 remains uncertified.
 

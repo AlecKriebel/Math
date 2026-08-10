@@ -178,7 +178,7 @@ than silently replacing the first neutral \(I+U\to0\) interruption by the
 favorable \(I+U\to2I\) case. No fixed cofactor box may be inserted; leaving
 a bounded set must be reclassified by its exact source-rate ratio.
 
-## 5. Pair-level selector, not a theorem
+## 5. Separation from the certified 36-pair branch
 
 After removing the four already certified disjoint branches (151 affine,
 fourteen rank-two, 51 all-active-only, and 141 rank-one no-promotion pairs),
@@ -196,6 +196,9 @@ All their feasible failures are two-active. Their pair fingerprint is
 f2ad8cbe4b9ca7f36c39bed4bfe5aaafc6a9152eaf300390b5c25ba546519137
 ```
 
-This is a disjoint structural selector only. Neither the 36-pair recurrence
-flag nor the full promotion analytic flag may be set until the killed-shell
-and whole-phase episodes are proved and independently audited.
+The four suppressed-regression pairs have zero overlap with this selector.
+The 36-pair common-potential theorem has now passed two independent audits
+and is certified at its exact scope. That result does not settle the four
+suppressed flags in Sections 1--4: their killed-shell cleanup remains a
+separate open promotion mechanism, and the full promotion analytic flag
+remains false.

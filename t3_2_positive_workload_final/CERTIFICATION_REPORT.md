@@ -8,7 +8,7 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has produced seven independently audited exact-scope physical-time
+The repair has produced eight independently audited exact-scope physical-time
 theorem statements, with the fourteen-partner rank-two theorem sharing its
 top support with—but not overlapping—the earlier residual pair. None uses
 tightness as finite support, and none
@@ -34,6 +34,7 @@ T3-2 counterexample is known.
 | Rank-one corrected-factorial endpoint theorem | Pass at 920-incidence local scope |
 | Rank-one no-promotion Foster theorem | Pass; 141 new positive pairs |
 | Post-rank-one one-active Foster theorem | Pass; exact final 92 no-promotion positive pairs |
+| Exact promotion-only Foster theorem | Pass; 32 positive and four signed pairs |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
@@ -129,12 +130,23 @@ duration. Independent audit verified the lower-interruption compensator,
 same-potential gluing, and fixed-class frozen alternative. This disjoint
 branch leaves 1,871 positive and 191 signed pairs.
 
+The exact promotion-only selector contributes another 36 disjoint pairs:
+32 positive-invariant and four signed. Its twenty seeded rows use one exact
+top D-tier and a bounded actual-target path. Its sixteen dormant rows split
+as \(7+7+2\): seven unique-\(0\) phases, seven \(A\)-enabled
+\(\{B,2A\}\) priority phases, and two finite disabled classes. The priority
+macrochain retains all physical clocks, tracks at most two reflected debt
+units, and excludes every service-free SCC by strong connectivity. Two
+independent audits passed the common corrected-factorial composition. The
+certified remainder is therefore 1,839 positive and 187 signed pairs.
+
 Those raw counts compress to twelve canonical asymptotic gate types. A
 counterexample rules out the proposed *universal* uniform mixed old-debt
 service margin. The exact post-rank-one 92-pair branch avoids that obstruction
 through orientation-independent zero-contest service and is now closed. The
 remaining one-active supports require a shell-dependent or reflected-level
-replacement, while the two-active promotion families also remain open.
+replacement, while two-active promotion families outside the exact 36-pair
+branch also remain open.
 
 ## Reproducible package status
 
@@ -159,7 +171,8 @@ The accurate public status is:
 
 > Candidate T3-2 theorem under adversarial repair. The fourteen-partner
 > rank-two theorem, the 51-pair all-active-only Foster theorem, the
-> full 233-pair rank-one no-promotion Foster theorem, the other exact
+> full 233-pair rank-one no-promotion Foster theorem, the exact 36-pair
+> promotion-only Foster theorem, the other exact
 > physical-time interfaces, the complete finite tier geometry, and 151
-> classwise affine-filter closures are certified; promotion and the remaining
-> one-active stopped-phase closures remain open.
+> classwise affine-filter closures are certified; the remaining promotion
+> and one-active stopped-phase closures remain open.

@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Seven exact interface families now have independently audited physical-time
+Eight exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -17,7 +17,10 @@ proofs:
 6. the 141 rank-one no-promotion pairs with no affine-feasible one-active
    failure; and
 7. the remaining 92 rank-one no-promotion pairs, whose 272 one-active rows
-   satisfy the audited direct/seed/frozen zero-contest trichotomy.
+   satisfy the audited direct/seed/frozen zero-contest trichotomy; and
+8. the exact 36-pair promotion-only selector, comprising twenty enabled
+   seeds, fourteen nontrivial dormant priority phases, and two finite
+   disabled classes.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -54,6 +57,14 @@ lower interruption, and gives common corrected-factorial drift
 \(-\log X+O(1)\). Same-potential gluing closes the pair-level recurrence
 claim without reinstating a universal old-debt minorization.
 
+The eighth proof uses one corrected-factorial potential on every passing
+cone and on the unique failed two-active cone. The dormant
+\(\{B,2A\}\) phases are contracted only at physical reaction times:
+\(BC\)-source exits have priority \(N^2\), \(A/AC\) interruptions have
+order \(N\), reflected workload debt is at most two, and strong connectivity
+excludes a closed service-free reset class. Two independent audits found no
+orientation or rate counterexample.
+
 ## 2. Exact finite remainder
 
 After finite classes, common active invariants, full deficiency zero, the
@@ -66,12 +77,13 @@ The audited all-active-only theorem then closes 51 additional, disjoint
 positive-invariant pairs and no signed pair. The audited rank-one
 no-promotion theorem closes another 141 positive pairs and no signed pair.
 The audited post-rank-one one-active theorem closes the remaining 92 pairs in
-that selector and no signed pair.
+that selector and no signed pair. The audited promotion-only theorem then
+closes 32 positive-invariant and four signed pairs.
 The current certified remainder is
 
 \[
- 1871\quad\text{positive-invariant pairs},\qquad
- 191\quad\text{signed pairs}.
+ 1839\quad\text{positive-invariant pairs},\qquad
+ 187\quad\text{signed pairs}.
 \]
 
 The line arrangement of the ten bimolecular monomials reduces every failed
@@ -116,8 +128,8 @@ rank-one flat incidence has an audited corrected-factorial carrier or
 finite-class alternative. The no-promotion selector converts this into 233
 pair-level recurrence theorems: 141 without a one-active failure and 92
 through the separately audited direct/seed/frozen one-active theorem.
-Promotion families and one-active supports outside this exact branch remain
-open.
+The exact 36-pair promotion-only selector is also closed. Promotion families
+and one-active supports outside these exact branches remain open.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five

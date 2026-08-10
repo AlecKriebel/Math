@@ -397,3 +397,22 @@
   finite priority-macrochain lemma and leaves every analytic, recurrence,
   and global flag false. If repaired and certified, the correct ordered
   arithmetic would be \((1871,191)\to(1839,187)\).
+
+## 2026-08-10T15:07:08-07:00 - exact 36-pair promotion branch certified
+
+- Replaced the invalid equal-scale dormant race by a finite physical
+  priority macrochain. The exact dormant split is seven unique-\(0\) rows,
+  seven \(A\)-enabled \(\{B,2A\}\) rows, and two disabled finite classes.
+  Whenever \(C>0\), every \(BC\)-source edge has order \(N^2\) and lowers
+  descriptor workload; \(A/AC\) interference has probability \(O(N^{-1})\).
+- Tracked at most two units of reflected workload debt and excluded every
+  service-free reset SCC in \(\{0,A,BC\}\) by strong connectivity to
+  \(2C\). Equal-scale internal \(AC/BC\) reactions have a geometric count,
+  and killed \(BC\)-windows have \(O(N^{-1})\) whole-shell factorial cost.
+- Two independent replays passed the twenty seeded paths, sixteen dormant
+  phases, common corrected-factorial lift, duration and endpoint moments,
+  fixed-class disabled alternative, and exact disjoint selector. Focused
+  finite replay is green.
+- Promoted exactly 32 positive-invariant and four signed pairs. The certified
+  remainder changes from \((1871,191)\) to \((1839,187)\). The suppressed
+  no-whole-top promotion orbit and global T3-2 remain uncertified.

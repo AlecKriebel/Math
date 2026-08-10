@@ -1,6 +1,6 @@
 # The 36 promotion-only support pairs
 
-## 1. Exact scope and provisional status
+## 1. Exact scope and certified status
 
 After the four already certified disjoint branches are removed, the exact
 promotion selector contains 36 support pairs with no affine-feasible
@@ -22,9 +22,11 @@ fingerprint is
 f2ad8cbe4b9ca7f36c39bed4bfe5aaafc6a9152eaf300390b5c25ba546519137
 ```
 
-This note gives a proof-level candidate physical-time theorem for exactly
-these 36 pairs. Its executable flags remain false until an independent
-audit checks the stopping rules and endpoint estimates.
+This note proves the physical-time theorem for exactly these 36 pairs. Two
+independent audits checked the stopping rules, endpoint estimates, arbitrary
+strong orientations, and common-potential composition. The narrowly scoped
+analytic and pair-level flags are true. Global T3-2 remains uncertified, and
+its executable flag remains false.
 
 ## 2. One common proper potential
 
@@ -64,9 +66,14 @@ Only the single failed descriptor listed in (1.1) needs a stopped episode.
 ## 3. The twenty enabled-seed rows
 
 All network complexes in these rows have descriptor weight zero or one.
-Along an exact realizing sequence write \(N\) for any top source monomial.
-Exact D-tier equivalence gives finite positive ratios between all top source
-monomials, while every enabled lower source has rate \(O(1)=o(N)\).
+More strongly, the exact descriptor partition places every occurring top
+source of both linkages in one D-tier block. Along an exact realizing
+sequence write \(N\) for any one of their source monomials. Exact D-tier
+equivalence, not merely equality of normalized logarithmic weights, gives
+finite positive ratios between *all* these source monomials. The inactive
+coordinate has cap zero and stays bounded along a finite actual-target path,
+while every enabled lower source has rate \(O(1)=o(N)\). Thus a whole-top
+competitor cannot hide a subpower refinement inside the displayed top tier.
 
 Choose an enabled vertex \(y_0\) in the proper top subset of one linkage.
 Strong connectivity supplies a simple directed path
@@ -170,63 +177,168 @@ at a bounded finite sequence of independent \(0\)-source waits or killed
 the unimolecular shell; the stopped semigroup estimate proved in the
 corrected-factorial endpoint theorem gives it for \(\{B,2A\}\).
 
-### 4.2 A finite actual-target activation block
+### 4.2 The finite priority macrochain
 
-Fix a simple directed path in the proper linkage from an enabled base
-vertex in \(\{0,A\}\) to \(2C\). At an actual target on this path, use the
-following physical block before proceeding.
-
-- A \(0\)-source edge is an independent bounded-rate clock while the whole
-  shell evolves. Equations (4.2)--(4.3) control that wait.
-- An \(A\)-source edge is sampled on an \(O(N^{-1})\) occupation window.
-  The interior estimate keeps \(A\ge cN\), so its integrated clock has a
-  fixed positive success probability and all other lower clocks are retained
-  by the conditional Poisson construction.
-- At a source in the global top subset \(\{AC,BC\}\), the actual target keeps
-  the next source enabled, but the clocks need not have the same leading
-  scale. In the \(\{B,2A\}\) shell, a \(BC\)-source clock can be
-  \(\Theta(N^2)\) while \(AC\)- and \(A\)-source clocks are only
-  \(\Theta(N)\).
-- If a faster top exit consumes the carried \(C\) before the next slower
-  edge, it either gives the desired strict active-workload exit or returns
-  to an earlier base vertex. Restart the finite path. It is not discarded
-  as a skipped fast jump.
-
-**Audit boundary.** Independent review validates Sections 2--4.1 but shows
-that the direct-race argument below is not yet proved in the
-\(\{B,2A\}\) shell: the scale separation just displayed does not supply a
-uniform \(p>0\), so the proposed \((1-p)^K\) bound cannot currently be used.
-A viable repair would contract the fast whole-shell motion to a finite
-priority macrochain carrying the actual target and at most two units of
-reflected workload debt. The rest of this subsection records the conclusion
-that such a macrochain lemma must establish; it is not a certified proof.
-
-There are only finitely many path vertices. The proposed completion caps the
-number of attempts at each vertex by one deterministic integer \(K\) and must
-prove that the probability of reaching a \(C\)-only target is at least
-\(a>0\), while the probability of stopping with unresolved active-workload
-debt is at most \(C(1-p)^K\).
-
-If the path began at \(A\), its total lower-linkage displacement from \(A\)
-to \(2C\) already lowers the descriptor workload by one. If it began at
-\(0\), reaching \(2C\) is workload-neutral. In the latter case append one
-additional unpaired exit from an enabled \(AC\) or \(BC\) source to the
-complement of the proper top set. On the interior event its source rate has
-the full top scale, and a deterministically capped carrier gives this exit
-with probability \(s>0\). Increase \(K\) once more so that the unresolved
-debt probability is at most \(as/8\). Conditional on the missing
-priority-macrochain estimate, the workload bookkeeping would be
+The sixteen rows have the exact disjoint split
 
 \[
- \mathbb E\Delta H_w\le-as/2<0,
- \qquad |\Delta H_w|\le C.                             \tag{4.4}
+ 7\ \hbox{with unique enabled source }0,\qquad
+ 7\ \hbox{with enabled source }A,\qquad
+ 2\ \hbox{disabled}.                                  \tag{4.4}
 \]
 
-Only a fixed number of lower reactions and killed windows occur. Their
-duration has moments of every fixed order, uniformly in the shell. The
-whole-shell endpoint has every fixed scaled active moment, and \(C\) is
-bounded by the deterministic carrier length. There is no inactive-coordinate
-truncation.
+The seven unique-\(0\) rows have proper support contained in
+\(\{0,C,2C,AC,BC\}\). Four have the equal-scale whole shell
+\(\{A,B\}\); the other three have \(\{B,2A\}\) and therefore are not
+invocations of the earlier weight-one cap-zero theorem. All seven are
+covered directly by the priority proof below. The seven \(A\)-enabled rows
+also have whole shell \(\{B,2A\}\). The final two rows are handled in
+Section 4.3.
+
+The two whole-shell templates have different physical scales.  We contract
+only the conservative whole-shell motion and retain every proper-linkage
+reaction.  If the successive proper reactions are \(y_k\to z_k\), define
+the reflected workload debt
+
+\[
+ D_{k+1}=\bigl(D_k+h(z_k)-h(y_k)\bigr)^+,
+ \qquad h(y)=w\mathbin{\cdot}y,\qquad D_0=0.             \tag{4.5}
+\]
+
+A negative increment larger than the current \(D_k\) is a *surplus exit*.
+Before the first surplus exit the cumulative proper-linkage workload
+increment equals \(D_k\), whereas a surplus endpoint has cumulative
+increment at most \(-1\).  Whole-shell reactions preserve \(h\), remain
+present in physical time, and do not change \(D\).
+
+For \(A\leftrightarrow B\), every present \(AC\)- or \(BC\)-source clock
+has order \(N\) whenever \(C>0\).  Let \({\cal M}\) be the nonempty set of
+these workload-one vertices.  Since the proper linkage is strongly
+connected and \({\cal M}\) is a proper set, no nonempty subset of
+\({\cal M}\) reachable from an actual target can be closed.  Its first
+edge to workload zero has an exponential tail on the \(N\)-clock, with all
+internal \({\cal M}\)-edges and all whole-shell jumps retained.
+More explicitly, on the interior tube the aggregate exit hazard is at
+least \(cN\), whereas the total internal proper-linkage hazard is at most
+\(CN\).  The number of internal \({\cal M}\to{\cal M}\) reactions before
+each exit consequently has a uniform geometric tail and moments of every
+fixed order.  These internal reactions preserve \(C\) and \(H_w\), and
+exact D-tier equivalence gives an \(O(1)\) corrected-factorial increment
+per reaction.  Present \(C\)-only source clocks have order one, so their
+probability of interrupting one such block is \(O(N^{-1})\).
+
+The only nonabsorbing macrostates needed in this case are
+
+\[
+ R=(C=0,D=0),\qquad P=(C>0,D=1),\qquad Q=(C>0,D=0).     \tag{4.6}
+\]
+
+At \(R\), the only enabled proper source is \(0\).  Its target either is
+\(C\)-only, giving \(Q\), or lies in \({\cal M}\), giving \(P\).  The first
+\({\cal M}\)-exit from \(P\) either consumes the last \(C\) and returns to
+\(R\), or retains \(C\) and reaches \(Q\).  From \(Q\), the next
+\({\cal M}\)-exit is surplus.  If every trial from \(R\) returned to \(R\),
+then \(0\) together with all reachable vertices of \({\cal M}\) would be a
+closed proper subset of the directed proper linkage, omitting \(2C\).
+Strong connectivity rules this out.  Neutral restarts therefore have a
+geometric tail with a network-dependent parameter bounded away from zero.
+
+For \(B\leftrightarrow2A\),
+
+\[
+ A\asymp N,\qquad B\asymp N^2.                         \tag{4.7}
+\]
+
+Here \(BC\) is the unique workload-two proper vertex.  Whenever \(C>0\),
+every \(BC\)-source channel has order \(N^2\), and each of its targets has
+workload at most one.  Consequently
+
+\[
+ h(z)-h(BC)\le-1                                      \tag{4.8}
+\]
+
+for every such edge.  At \(C=0\), take \(A\), rather than \(0\), as the
+base source whenever \(A\) is present: its clocks have order \(N\), while
+a \(0\)-source clock has order one.  If \(A\) is absent, \(0\) is the only
+enabled base source.  Thus an order-one wait never hides an enabled
+order-\(N\) proper reaction.
+
+An entry from \(0\) creates at most two debt units, and an entry from \(A\)
+creates at most one. Equation (4.8) confines the nonabsorbing priority
+macrochain to
+
+\[
+ R_0=(C=0,D=0),\quad R_1=(C=0,D=1),\quad
+ P_d=(C>0,D=d),\ d=0,1,2,                              \tag{4.9}
+\]
+
+where \(R_1\) occurs only when \(A\) is present.  If a \(BC\)-reaction
+retains \(C\), at most two such reactions clear all old debt and the next
+one is surplus.  If it consumes the last \(C\), its target is \(0\), with
+workload drop two, or \(A\), with workload drop one, so the endpoint is
+\(R_0\) or \(R_1\).
+
+Any closed service-free macroclass would be contained in the base/reset
+set generated by \(\{0,A,BC\}\); all other targets either give surplus or
+enter a \(BC\)-priority run which does.  Such a class would project to a
+proper closed subset of the proper-linkage digraph.  This is impossible
+because the digraph is strongly connected and contains \(2C\).  Equivalently,
+the possible neutral resets \(b\to BC\to b\), \(b\in\{0,A\}\), and mixtures
+of them always have an outgoing edge.  Every edge leaving \(A\) has the
+same order-\(N\) scale as the other \(A\)-source edges, every edge leaving
+\(0\) has the same order-one scale as the other \(0\)-source edges, and
+every edge leaving \(BC\) has the same order-\(N^2\) scale as the other
+\(BC\)-source edges.  Thus each visit has a fixed positive escape
+probability.  An \(A\)- or \(AC\)-source reaction while \(BC\) is enabled
+has probability \(O(N^{-1})\) before the next \(BC\)-reaction.  It is
+retained as a physical interruption and is not counted as service.
+Likewise, when \(A\) is the leading cap-zero source, a simultaneous
+\(0\)-source reaction interrupts its \(O(N^{-1})\) window with probability
+\(O(N^{-1})\).  All still lower \(0,C,2C\) clocks during a \(BC\)-block
+have smaller probability.
+
+In either shell, the finite priority macrochain has an absorbing surplus
+state accessible from every non-disabled starting state and no other
+closed class.  Hence there are constants \(C<\infty\) and \(q\in(0,1)\),
+depending on the network and rates but not on \(N\), such that
+
+\[
+ \mathbb P\{\text{no surplus in the first \(K\) macrotransitions}\}
+ \le Cq^K+O(N^{-1}).                                   \tag{4.10}
+\]
+
+Choose \(K\) so the first term is below \(1/8\), and stop at surplus, at
+the first lower-priority interruption, or after \(K\) macrotransitions.
+Before surplus the positive endpoint workload is at most two.  Enlarging
+\(K\), if necessary, gives some \(\delta>0\) such that, for all large \(N\),
+
+\[
+ \mathbb E\Delta H_w\le-\delta,
+ \qquad |\Delta H_w|\le C_K.                           \tag{4.11}
+\]
+
+All clocks remain physical.  A \(0\)-source wait occurs only when no
+proper \(A\)-source is present and has fixed exponential moments.  An
+\(A\)-source wait is an \(O(N^{-1})\) killed occupation window; an
+equal-shell top exit has duration \(O(N^{-1})\); and a \(BC\)-priority exit
+has duration \(O(N^{-2})\).  The whole shell evolves throughout.  With
+\(K\) fixed, the duration has moments of every fixed order, the inactive
+count is bounded by the number of retained proper jumps, and the
+whole-shell endpoint has every fixed scaled active moment.  No
+inactive-coordinate truncation is used.
+
+For completeness, a killed \(BC\)-window has uniformly bounded
+whole-shell factorial cost without any scale matching.  The exact
+\(\{B,2A\}\) corrected-factorial inequality gives
+
+\[
+ {\cal L}_*{\cal F}_\ell\le C(1+A)=O(N)                \tag{4.12}
+\]
+
+on the interior tube.  Its duration is \(O(N^{-2})\), so Dynkin's formula
+charges \(O(N^{-1})\).  The \(A\)-windows and independent \(0\)-clock
+endpoints are covered by (4.3).  Thus the scale-separated contraction has
+not hidden a positive top-shell endpoint cost.
 
 On the interior event,
 
@@ -236,25 +348,28 @@ On the interior event,
  \begin{cases}
    \log N+O(1),&L_*=\{A,B\},\\
    2\log N+O(1),&L_*=\{B,2A\}.
- \end{cases}                                           \tag{4.5}
+ \end{cases}                                           \tag{4.13}
 \]
 
 Hence every bounded lower jump has
 
 \[
- \Delta{\cal F}_\ell=\Delta H_w\log N+O(1).           \tag{4.6}
+ \Delta{\cal F}_\ell=\Delta H_w\log N+O(1).           \tag{4.14}
 \]
 
-Equations (4.2)--(4.3), the deterministic attempt cap, and (4.4)--(4.6)
-would then give
+Equations (4.2)--(4.3), the deterministic transition cap, and
+(4.11)--(4.14) give
 
 \[
- \mathbb E\Delta{\cal F}_\ell\le-c\log N+O(1).        \tag{4.7}
+ \mathbb E\Delta{\cal F}_\ell\le-c\log N+O(1).        \tag{4.15}
 \]
 
 The exceptional interior-exit probability is super-polynomial, while the
 factorial oscillation on the finite whole shell is polynomial times
 \(\log N\); its endpoint contribution is therefore \(o(1)\).
+Every lower-priority interruption has a bounded workload jump and
+factorial cost \(O(\log N)\); its \(O(N^{-1})\) probability therefore
+contributes \(O(\log N/N)=o(1)\).
 
 ### 4.3 The two disabled rows
 
@@ -266,7 +381,7 @@ class realizes the displayed descriptor.
 
 ## 5. Classwise composition
 
-> **Candidate Theorem 5.1.** Give either linkage of any of the 36 selected
+> **Theorem 5.1.** Give either linkage of any of the 36 selected
 > support pairs an arbitrary strongly connected orientation and arbitrary
 > positive rates on its present edges. Then every closed irreducible
 > population class is positive recurrent.
@@ -291,8 +406,9 @@ so the positive part of the total-population generator is bounded by
 \(C(1+|x|)\). Local finiteness and finite mean return from the finite target
 give positive recurrence of \(\Gamma\).
 
-No pair count is promoted by this note before independent audit. If the
-candidate theorem passes, the ordered residual arithmetic would be
+The two independent audits certify the exact selector and show that it is
+disjoint from all earlier ordered branches. The ordered residual arithmetic
+is therefore
 
 \[
  (1871,191)\longmapsto(1839,187).                       \tag{5.2}
@@ -308,10 +424,13 @@ An independent replay should check, in this order:
    supermartingale (4.2);
 3. that the dormant actual-target path can be restarted after every faster
    top exit without silently deleting a reaction;
-4. the unresolved-debt coefficient in (4.4), including paths started from
-   \(A\) rather than \(0\);
-5. the lift from (4.4) to the common factorial drift (4.7); and
+4. the reflected-debt coefficient in (4.5) and (4.10)--(4.11), including
+   base states with source \(A\) rather than \(0\);
+5. the lift from (4.11) to the common factorial drift (4.15); and
 6. the fixed-class treatment of the two disabled rows and the disjoint
    36-pair selector.
 
-Until those six checks pass, all analytic and pair-level flags stay false.
+Both independent replays passed all six checks. In particular they verified
+the exact \(7+7+2\) dormant split, the priority SCC argument for arbitrary
+strong digraphs, and the \(O(\log N/N)\) interruption charge. No
+counterorientation or adverse rate choice remains at this scope.

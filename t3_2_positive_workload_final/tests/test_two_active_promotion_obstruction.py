@@ -60,9 +60,30 @@ class TwoActivePromotionObstructionCertificate(unittest.TestCase):
         self.assertEqual(
             result["selector_dormant_disabled_finite_class_incidences"], 2
         )
+        self.assertEqual(
+            result["selector_dormant_priority_split"],
+            {
+                "unique_zero_source": 7,
+                "active_A_source": 7,
+                "disabled_finite_class": 2,
+            },
+        )
         self.assertTrue(result["each_selector_pair_has_one_feasible_failure"])
-        self.assertFalse(result["analytic_promotion_theorem_certified"])
-        self.assertFalse(result["pair_level_recurrence_certified"])
+        self.assertEqual(result["ordered_prior_overlap"], 0)
+        self.assertEqual(result["suppressed_regression_overlap"], 0)
+        self.assertEqual(result["independent_audits_passed"], 2)
+        self.assertTrue(result["analytic_promotion_theorem_certified"])
+        self.assertTrue(result["pair_level_recurrence_certified"])
+        self.assertFalse(result["global_t3_2_certified"])
+        self.assertEqual(
+            (
+                result["positive_remainder_before"],
+                result["positive_remainder_after"],
+                result["signed_remainder_before"],
+                result["signed_remainder_after"],
+            ),
+            (1871, 1839, 191, 187),
+        )
 
 
 if __name__ == "__main__":

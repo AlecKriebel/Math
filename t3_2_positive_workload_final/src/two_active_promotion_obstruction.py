@@ -1,13 +1,14 @@
-"""Exact dormant-promotion regression and pair-level structural selector.
+"""Exact dormant-promotion regression and audited 36-pair recurrence branch.
 
-This module deliberately makes no recurrence claim.  It freezes two facts
-needed by the analytic repair:
+This module separates one claim-neutral regression from one audited
+recurrence branch:
 
 * four no-whole-top incidences contain the same suppressed two-clock
   carrier, up to the species relabellings present in the residual table;
 * after the already certified disjoint branches are removed, exactly 36
-  promotion pairs have no affine-feasible one-active failure.  Those 36 are
-  only a selector until the promotion episode is proved and audited.
+  promotion pairs have no affine-feasible one-active failure. Their common
+  corrected-factorial physical episode and classwise recurrence theorem have
+  passed two independent audits.
 """
 
 from __future__ import annotations
@@ -108,10 +109,7 @@ def _prior_certified_pairs() -> frozenset[Pair]:
 
 
 def pair_level_selector() -> frozenset[Pair]:
-    """Promotion pairs with no one-active failure after prior branches.
-
-    This is a structural candidate selector, not an analytic theorem.
-    """
+    """Audited promotion pairs with no one-active failure after prior branches."""
 
     _, _, residual = feasibility._residual_failures()
     promotion_pairs = frozenset(
@@ -167,6 +165,7 @@ def certificate() -> dict[str, object]:
     ).hexdigest()
 
     selector = pair_level_selector()
+    suppressed_pairs = frozenset(pair for pair, _, _ in suppressed)
     selector_rows = tuple(
         row
         for row in phase.incidences()
@@ -182,6 +181,8 @@ def certificate() -> dict[str, object]:
     dormant_whole_supports = Counter()
     dormant_enabled_sources = Counter()
     dormant_disabled = 0
+    dormant_unique_zero = 0
+    dormant_active_a = 0
     for pair, descriptor, category in selector_rows:
         whole = phase._whole_top_linkages(pair, descriptor)
         if category == "promotion_enabled_top_seed":
@@ -215,6 +216,8 @@ def certificate() -> dict[str, object]:
         )
         dormant_enabled_sources[",".join(enabled) if enabled else "none"] += 1
         dormant_disabled += int(not enabled)
+        dormant_unique_zero += int(enabled == ("0",))
+        dormant_active_a += int("A" in enabled)
 
     assert len(suppressed) == 4
     assert suppressed_hash == EXPECTED_SUPPRESSED_SHA256
@@ -236,11 +239,14 @@ def certificate() -> dict[str, object]:
         len(feasibility.feasible_failing_descriptors(pair)) == 1
         for pair in selector
     )
+    assert (dormant_unique_zero, dormant_active_a, dormant_disabled) == (7, 7, 2)
+    assert not (selector & _prior_certified_pairs())
+    assert not (selector & suppressed_pairs)
 
     return {
         "claim_scope": (
-            "exact regression and pair selector only; no promotion or "
-            "recurrence theorem"
+            "exact suppressed-carrier regression plus independently audited "
+            "common-potential recurrence for the disjoint 36-pair selector"
         ),
         "suppressed_no_whole_incidences": len(suppressed),
         "suppressed_no_whole_pairs": len({pair for pair, _, _ in suppressed}),
@@ -260,11 +266,23 @@ def certificate() -> dict[str, object]:
             sorted(dormant_enabled_sources.items())
         ),
         "selector_dormant_disabled_finite_class_incidences": dormant_disabled,
+        "selector_dormant_priority_split": {
+            "unique_zero_source": dormant_unique_zero,
+            "active_A_source": dormant_active_a,
+            "disabled_finite_class": dormant_disabled,
+        },
         "selector_pair_sha256": closure.pair_fingerprint(selector),
         "all_selector_failures_are_two_active": True,
         "each_selector_pair_has_one_feasible_failure": True,
-        "analytic_promotion_theorem_certified": False,
-        "pair_level_recurrence_certified": False,
+        "ordered_prior_overlap": len(selector & _prior_certified_pairs()),
+        "suppressed_regression_overlap": len(selector & suppressed_pairs),
+        "independent_audits_passed": 2,
+        "analytic_promotion_theorem_certified": True,
+        "pair_level_recurrence_certified": True,
+        "positive_remainder_before": 1871,
+        "positive_remainder_after": 1839,
+        "signed_remainder_before": 191,
+        "signed_remainder_after": 187,
         "global_t3_2_certified": False,
         "suppressed_rows": suppressed_payload,
     }
