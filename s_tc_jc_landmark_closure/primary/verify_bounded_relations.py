@@ -7,6 +7,7 @@ import argparse
 from collections import Counter
 import gzip
 import hashlib
+from itertools import combinations
 import json
 from pathlib import Path
 
@@ -19,13 +20,39 @@ from graph_model import (
     sd0,
     t_quotient,
 )
-from hard_cover_compiler import deck_signature, full_deck, load_invariants
-from jc_tensor import pullback
+from hard_cover_compiler import deck_signature, load_invariants
+from jc_tensor import canonicalize_rows, pullback, raw_descriptor
 from sign_certificate import certify as certify_sign
 
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
+
+
+def bounded_full_deck(graph: RootedGraph, port_count: int):
+    """Replay the bounded-atlas descriptor convention exactly.
+
+    The bounded compiler records its rooted physical descriptor before the
+    later hard-cover root-edge product normalization.  Keeping this function
+    local prevents a verifier from silently changing conventions when the
+    arbitrary-root hard cover is strengthened.
+    """
+    labels = tuple(f"L_{index}" for index in range(port_count))
+    retics, signatures = raw_descriptor(graph, labels)
+    answer = []
+    for quartet in combinations(range(port_count), 4):
+        rows = []
+        for signature in signatures:
+            moved = []
+            for mask in signature:
+                new_mask = 0
+                for new_index, old_index in enumerate(quartet):
+                    if mask & (1 << old_index):
+                        new_mask |= 1 << new_index
+                moved.append(new_mask)
+            rows.append(tuple(moved))
+        answer.append(canonicalize_rows(retics, rows))
+    return tuple(answer)
 
 
 def sha256(path: Path) -> str:
@@ -64,6 +91,9 @@ def poly_from_row(row: dict):
 
 def verify_run(run: dict, bit_cache_path: Path):
     n = int(run["outgoing"])
+    assert run.get("descriptor_mask_convention") == (
+        "rooted_selected_side_masks_before_zero_sum_complement_zip"
+    )
     cert = run["bounded_relation_certificate"]
     relation_path = PROJECT / cert["relation_path"]
     graph_path = PROJECT / cert["graph_library_path"]
@@ -128,7 +158,7 @@ def verify_run(run: dict, bit_cache_path: Path):
 
     def descriptors(graph_id):
         if graph_id not in descriptor_cache:
-            descriptor_cache[graph_id] = full_deck(
+            descriptor_cache[graph_id] = bounded_full_deck(
                 graph_objects[graph_id], n + 1
             )
         return descriptor_cache[graph_id]
@@ -136,7 +166,17 @@ def verify_run(run: dict, bit_cache_path: Path):
     counts = Counter()
     referenced_polynomials = set()
     referenced_signs = set()
-    for relation_id, row in relations.items():
+    rebuilt_signs = {}
+    for relation_number, (relation_id, row) in enumerate(relations.items(), 1):
+        if relation_number % 1000 == 0:
+            print(json.dumps({
+                "bounded_relation_replay_progress": {
+                    "outgoing": n,
+                    "relations": relation_number,
+                    "total_relations": len(relations),
+                    "descriptor_cache": len(descriptor_cache),
+                }
+            }, sort_keys=True), flush=True)
         assert int(row["schema"]) == 3
         binding = row.pop("binding_sha256")
         assert stable_hash(row) == binding
@@ -198,7 +238,16 @@ def verify_run(run: dict, bit_cache_path: Path):
             ).hexdigest()
             assert exact_hash == witness["target_pullback_exact_sha256"]
             published = signs[exact_hash]
-            rebuilt = certify_sign(target_poly)
+            if exact_hash not in rebuilt_signs:
+                # The certifier's in-memory proof uses tuples for ordered
+                # arrays, whereas the published JSON necessarily reloads
+                # those arrays as lists.  Compare the complete normalized
+                # JSON value; do not weaken any polynomial, factor, sign, or
+                # ordered-array field.
+                rebuilt_signs[exact_hash] = json.loads(json.dumps(
+                    certify_sign(target_poly), sort_keys=True
+                ))
+            rebuilt = rebuilt_signs[exact_hash]
             assert rebuilt == {
                 key: value for key, value in published.items()
                 if key not in {"exact_polynomial_sha256", "polynomial_id"}

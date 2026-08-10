@@ -319,6 +319,7 @@ def labelled_records(
     topology_filter: set[int] | None = None,
     topology_for_all: bool = False,
     anchor_source_labels: bool = False,
+    required_supersets_of: tuple[int, ...] | None = None,
 ):
     records: dict[int, dict] = {}
     raw = 0
@@ -334,6 +335,16 @@ def labelled_records(
         for assignment in assignments:
             raw += 1
             signature, descriptors = labelled_signature(base, assignment, invariants, cache)
+            # For source-relative containment, a target can survive the
+            # invariant-zero filter only when every invariant nonzero on the
+            # source is also nonzero on the target.  Apply this exact filter
+            # before retaining the very large target presentation body.  The
+            # predicate is identical to the final directed-pair test below;
+            # all raw target assignments are still examined and counted.
+            if required_supersets_of is not None and not any(
+                source & ~signature == 0 for source in required_supersets_of
+            ):
+                continue
             row = records.setdefault(signature, {
                 "presentations": {},
                 "variant_presentations": {},
@@ -469,6 +480,7 @@ def compile_size(
     *,
     source_core_ids: frozenset[str] | None = None,
     source_extra_counts: frozenset[int] | None = None,
+    prefilter_targets: bool = True,
 ):
     start = time.monotonic()
     sources_base = source_bases(
@@ -482,7 +494,12 @@ def compile_size(
         topology_for_all=True, anchor_source_labels=True,
     )
     targets, target_raw = labelled_records(
-        targets_base, n, invariants, bit_cache, topology_filter=set(sources),
+        targets_base,
+        n,
+        invariants,
+        bit_cache,
+        topology_filter=set(sources),
+        required_supersets_of=(tuple(sources) if prefilter_targets else None),
     )
     pairs, examined = directed_pairs(sources, targets, math_comb(n + 1, 4), len(invariants))
     equal = {(s, t) for s, t in pairs if s == t}
@@ -519,6 +536,9 @@ def compile_size(
         "target_bases": len(targets_base),
         "source_raw_labelled": source_raw,
         "target_raw_labelled": target_raw,
+        "target_signature_retention_rule": (
+            "exists source s with s & ~target == 0" if prefilter_targets else None
+        ),
         "source_signatures": len(sources),
         "target_signatures": len(targets),
         "target_signature_core_retention_status": dict(retention_signatures),
@@ -910,12 +930,16 @@ def main() -> None:
     parser.add_argument("--sizes", nargs="+", type=int, default=(5, 6))
     parser.add_argument("--relations", action="store_true")
     parser.add_argument("--relation-tag")
+    parser.add_argument("--disable-target-signature-prefilter", action="store_true")
     parser.add_argument("--load-bit-cache", type=Path)
     parser.add_argument("--write-bit-cache", type=Path, default=BIT_CACHE_FILE)
     parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--source-core-id", action="append")
     parser.add_argument("--source-extra-count", action="append", type=int)
     args = parser.parse_args()
+    if args.write_bit_cache is not None:
+        args.write_bit_cache = args.write_bit_cache.resolve()
+    args.output = args.output.resolve()
     template_sha = sha256(TEMPLATE_FILE)
     if template_sha != EXPECTED_TEMPLATE_SHA:
         raise SystemExit(f"inert invariant template hash changed: {template_sha}")
@@ -953,6 +977,7 @@ def main() -> None:
                 frozenset(args.source_extra_count)
                 if args.source_extra_count is not None else None
             ),
+            prefilter_targets=not args.disable_target_signature_prefilter,
         )
         if args.relations:
             row["bounded_relation_certificate"] = compile_relation_records(

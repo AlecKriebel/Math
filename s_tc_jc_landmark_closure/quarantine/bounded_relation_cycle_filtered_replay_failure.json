@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-08-10T05:43:30-07:00",
+  "status": "PRESERVED_REPLAY_FAILURE_DIAGNOSED_AS_REPRESENTATION_ONLY",
+  "command": "../.venv/bin/python primary/verify_bounded_relations.py primary/certificates/bounded_relation_n3_cycle_filtered_summary.json --bit-cache primary/certificates/descriptor_bits_cache_relations_n3_cycle_filtered.json.gz",
+  "failure": "AssertionError at the exact rebuilt-versus-published sign-certificate comparison",
+  "first_relation_id": "000a5699830aeecaced0e6459d5a6ef52cc0324d72ee6446110448c8dd92e10c",
+  "first_polynomial_id": "d2dded8d26570a1b8a6fad0076ea01198b353d377dd3f48fa5a2452a4ea89d32",
+  "diagnosis": {
+    "exact_polynomial_disagreement": false,
+    "sign_disagreement": false,
+    "factorization_disagreement": false,
+    "certificate_value_disagreement": false,
+    "representation_difference": "The in-memory certifier returns tuples for proof.used_variables and proof.degrees, while the published JSON necessarily reloads those arrays as lists. Every scalar and ordered entry agrees exactly."
+  },
+  "repair_constraint": "Normalize the independently rebuilt certificate through a JSON round trip before exact comparison. Do not weaken polynomial, factor, sign, or ordered-array comparison."
+}

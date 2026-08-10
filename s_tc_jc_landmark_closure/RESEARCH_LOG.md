@@ -562,3 +562,46 @@
   `quarantine/bounded_relation_n3_retry1_failure.json` and contributes no
   theorem evidence.  A genuinely isolated retry will run only after the
   active probe and hard-cover replays release memory.
+
+## 2026-08-10T05:14:00-07:00 — isolated cycle relation run failed at final serialization
+
+- Sharding the n=3 relation universe by source core allowed the cycle shard
+  to generate all of its graph, relation, polynomial, sign, and descriptor
+  streams with zero reported algebraic failure.  The program then raised a
+  `Path.relative_to` exception because the explicitly supplied bit-cache path
+  was relative while the serializer expected an absolute path.  It therefore
+  wrote no top-level summary and is not a certificate.
+- The complete diagnostic counts, logical-stream commitments, compressed-file
+  commitments, traceback, and cache hash are preserved in
+  `quarantine/bounded_relation_n3_cycle_finalization_failure.json`.  The path
+  bug was corrected by resolving output paths immediately after argument
+  parsing.  The exact target-signature prefilter can now be disabled so an
+  unfiltered/filtered equivalence regression can be replayed under one code
+  version before the optimized stream is used.
+
+## 2026-08-10T05:43:30-07:00 — n=3 cycle directed relations close in primary replay
+
+- The failed-finalization streams were regenerated under the corrected code
+  with the exact target-signature prefilter disabled.  The resulting
+  top-level summary has SHA-256
+  `f857fabc1bdcdfa0d7f91b0f68cc7a9a0fd0b519169f3eb8bf85c623e44a774d`,
+  and every normalized graph, polynomial, sign, and relation body is bytewise
+  equal to the preserved diagnostic stream.
+- A second run retained only target signatures satisfying the necessary
+  source-relative predicate `s & ~t == 0`.  It reduced 127 target signatures
+  to 55 while reproducing exactly the same 9,036 decorated relation bodies,
+  7,602 graph bodies, 677 polynomial bodies, and 677 strict-sign records.
+  The relation census is 4,092 strict open-cube separations, 4,932 pending
+  support completions, and 12 isomorphism-or-ordinary-T relations, with no
+  compiler failure.
+- The first strengthened replay failed because the in-memory sign certifier
+  used tuples for `used_variables` and `degrees`, while the JSON certificate
+  reloaded the same ordered arrays as lists.  This failure and its first exact
+  relation/polynomial identifiers are preserved in
+  `quarantine/bounded_relation_cycle_filtered_replay_failure.json`.  After a
+  JSON-normalization step at that representation boundary, with every scalar,
+  factor, sign, polynomial, and array entry still compared exactly, the full
+  9,036-relation replay passes.
+- This closes only the primary n=3 cycle source shard.  The theta source
+  shards, complete hard-cover crosswalk, and clean-room relation audit remain
+  load-bearing.
