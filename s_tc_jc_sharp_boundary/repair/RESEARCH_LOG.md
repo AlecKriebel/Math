@@ -92,3 +92,32 @@ tree-child level-2 Jukes--Cantor identifiability theorem.
 
 Estimated mathematical closure: 15%.  The bridge necessity mechanism is now
 sound; the finite atlas remains the critical positive-theorem blocker.
+
+## 2026-08-09T18:29:00-07:00 -- independent atlas gate fails; Endpoint B selected
+
+- The independent atlas reviewer completed an adversarial, mutation-sensitive
+  audit.  Exact internal replay supports the stored `k=5`, `k=6`, and cut
+  table algebra, including containment direction and every referenced sign
+  factor.
+- The positive release nevertheless fails its end-to-end gate.  Nine inputs
+  required by the advertised compiler are absent from all supplied folders,
+  archives, and Git histories.  No durable artifact binds each primitive
+  source-target topology pair to its displayed-tree pullbacks and separator.
+- The `1,152` and `1,686` seven-port counts concern target-only graph
+  quotients, not decorated directed pairs.  Deleting 4,176 of the 4,368
+  upstream census records leaves both historical seven-port checks passing,
+  proving that those checks do not certify the load-bearing reduction.
+- The later Gate-2 script contains substantial exact algebra but records no
+  successful pair-level bindings and promotes arbitrary subdivisions from
+  finite tests plus prose.  Its independent crosscheck failed with a broken
+  pipe.  Even a successful primary replay cannot repair these structural
+  omissions.
+- No mathematical counterexample to the intended standard-class theorem was
+  found.  Its correct status is **UNRESOLVED**, not false.
+- Endpoint B is now selected: prepare a standalone all-taxa Theta sharpness
+  submission in `W_TC \\ S_TC`, with the positive theorem mentioned only as
+  unresolved background.
+
+Atlas audit: **100% complete**.  Positive classification: **withheld**.
+Endpoint-B release preparation: **approximately 55% complete**, pending the
+fresh sharpness reviewer, clean reproducibility package, and final PDF audit.

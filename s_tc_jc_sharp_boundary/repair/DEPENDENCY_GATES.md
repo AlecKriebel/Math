@@ -1,13 +1,14 @@
 # Final theorem dependency gates
 
-| Gate | Requirement | Status |
-|---|---|---|
-| D | Standard simple semi-directed reduction, LSA trimming, `S_TC`, and 2-sub-blob conventions locked | OPEN |
-| B | Incidence bridge invariance, freeness on every permitted component, exact kernel, intrinsic slice/product chart | OPEN |
-| A | Primitive decorated source-target atlas regenerated with explicit topology/polynomial binding | OPEN |
-| S | Arbitrary subdivisions reconstructed by dominant bounded marginals with globally consistent probes | OPEN |
-| G | One-sided cut preservation and no-cross-blob compensation proved from intrinsic projective coordinates | OPEN |
-| R | Independent implementation and mutation tests reject omitted, permuted, inserted, or misassigned records | OPEN |
-| P | One source tree builds one manuscript and all submission collateral has identical scope/status | OPEN |
+| Gate | Requirement | Positive-theorem status | Endpoint-B relevance |
+|---|---|---|---|
+| D | Standard simple semi-directed reduction, LSA trimming, `S_TC`, and 2-sub-blob conventions locked | FAILED under the old wording | Corrected narrow convention independently validates the sharpness pair |
+| B | Incidence bridge invariance, freeness on every permitted component, exact kernel, intrinsic slice/product chart | PARTIAL; global chart unresolved | Not used |
+| A | Primitive decorated source-target atlas regenerated with explicit topology/polynomial binding | UNRESOLVED | Not used |
+| S | Arbitrary subdivisions reconstructed by dominant bounded marginals with globally consistent probes | UNRESOLVED | Not used; cherry substitution has a direct analytic inverse |
+| G | One-sided cut preservation and no-cross-blob compensation proved from intrinsic projective coordinates | UNRESOLVED | Not used |
+| R | Independent implementation and mutation tests reject omitted, permuted, inserted, or misassigned records | FAILED for positive atlas | Fresh sharpness-only replay pending |
+| P | One source tree builds one manuscript and all submission collateral has identical scope/status | OPEN | Required before release |
 
-The positive theorem may be released only if every row is `VERIFIED`.
+The positive theorem may be released only if every positive-theorem row is
+`VERIFIED`; it is not part of the Endpoint-B submission.
