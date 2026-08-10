@@ -131,3 +131,88 @@
   three-leaf tree from the 3-sunlet over the entire open JC cube.
 - Dispatched new adversarial reviews of (i) root reduction/support/submersion/
   probe coherence and (ii) the bridge/cut/global-localization synthesis.
+
+## 2026-08-09T21:48:00-07:00 — selected-core-retention binding defect preserved and corrected
+
+- Rejected the first corrected-atlas strength flag `not dummy_labels`.  A
+  selected restriction can already occupy one minimum strong repair while a
+  different chosen completion inserts an irrelevant dummy on another repair.
+  Thus dummy presence belongs to the completion witness, not to the selected
+  topology.
+- Replaced the flag by the core-retention criterion: every path-sink
+  reticulation port is selected and the occupied ordinary segments contain at
+  least one minimum repair.  The independent decorated-atlas agent separately
+  derived the same criterion and is running a direct admissible-rooting review.
+- The first rerun correctly failed because topology canonicalization still
+  used the full dummy-bearing completion graph.  This failure was preserved;
+  algebra had marginalized the dummy leaves while topology had not.
+- Split every target record into a tensor-realization graph and, when the
+  selected ports retain the primitive core strongly, an intrinsic selected
+  topology graph.
+  The latter is rebuilt from selected words before canonicalization and has
+  no dummy labels.  A fresh three-outgoing replay then returned zero strong
+  non-`T` equal-signature failures.
+- Refactored the directed relation certificate so every source/target
+  presentation is bound to graph-derived descriptors.  Core-retaining
+  equal-signature targets must be isomorphic or `T`; nonretaining
+  equal-signature targets are retained explicitly for the support-completion
+  gate rather than promoted.
+- A second independent reviewer exhibited the necessary semantic caveat:
+  omitting a cycle sink and applying a broader marginal reduction can yield a
+  smaller strong tree.  Therefore the criterion is not intrinsic `S_TC`
+  membership after `red_*`; it certifies retention of the original primitive
+  core.  The atlas logic uses only this latter property.
+
+## 2026-08-09T21:56:00-07:00 — global bridge/localization gate adversarially closed
+
+- The second clean-room bridge reviewer independently replayed the complete
+  incidence kernel, stabilizers, analytic slices, all 77 endpoint cases, 204
+  strict one-active minors, the two-active crossing identities, and all
+  package mutations.
+- It verified both cut-set inclusions under source-relative containment, hence
+  equality of labelled bridge trees; verified projective localization without
+  a continuous target-parameter selector; and verified that distant blobs
+  cannot compensate after intrinsic extraction.
+- It rejected one overstatement: a finite union of target role/completion
+  images need not contain the *entire* focal source germ in one member.  Exact
+  semialgebraic dimension guarantees a member containing a nonempty
+  full-dimensional source-open subgerm, which is precisely sufficient for
+  local `preceq_JC`.  The active global proof now uses only this corrected
+  statement.
+- It also verified simultaneous gluing of compatible local `T` germs using a
+  sufficiently small nonempty effective-scale interval on each bridge.  No
+  arbitrary-scale or physical-bridge-identifiability claim survives.
+
+## 2026-08-09T22:24:00-07:00 — three-outgoing nonretaining completion discharged
+
+- The corrected bounded census contains selected three-outgoing
+  cycle-to-theta deck equalities whose target completion uses omitted real
+  sink/repair roles.  These are not complete equal-boundary factor
+  comparisons.
+- Once the independently verified cut theorem fixes the same labelled bridge
+  tree, a complete three-outgoing source factor and target factor have the
+  same three real boundaries.  A full standard-strong target with no omitted
+  sink/repair boundary is core-retaining, so the dummy completion cannot be
+  used.  If the source has another boundary, its cycle support-plus-two
+  restriction is the four-outgoing gate handled by the completion compiler.
+- The local and global proof ledgers now record this degree argument
+  explicitly; no three-outgoing dummy equality is promoted.
+
+## 2026-08-09T22:28:00-07:00 — root/probe adversarial corrections integrated
+
+- The clean-room reviewer verified root reduction, the one-cycle/four-theta
+  primitive universe, automatic triangle exclusion, core-retaining support
+  rigidity, the physical-to-descriptor parameter-cube submersion, completion
+  coverage, and support-plus-one/two word reconstruction.
+- It caught three proof overstatements.  Setwise support automorphisms can
+  duplicate anchored representatives; selected core collapse can make
+  descriptor inheritance coordinates tensor-redundant; and a probe that
+  subdivides a support-triangle edge destroys that triangle rather than
+  carrying the same `T` ambiguity.
+- The active proof now uses only surjectivity of the anchored quotient, only
+  the physical-to-descriptor source submersion, and a two-case coherence
+  argument: a triangle-destroying probe fixes literal orientation, while
+  otherwise one unique triangle persists globally.
+- The root proof now explicitly suppresses the old root, preserves its
+  possible reticulation arrowhead, and proves the rerooted presentation is
+  again LSA-valid by finding labelled leaves on both sides of the new root.

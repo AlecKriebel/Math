@@ -33,11 +33,26 @@ reticulation arrows are therefore preserved.  The new site is admissible;
 because the standard topology lies in `S_TC`, the rerooted presentation is
 tree-child.
 
+In this operation the old root is suppressed after the path reversal.  Its
+off-path child edge becomes exactly the edge created by the original `sd_0`
+suppression; if that child is a reticulation, its retained arrowhead is
+unchanged.  Suppressing the newly inserted root therefore recovers the same
+mixed graph literally, not only after a broader cleanup.
+
+The new root is again the LSA.  The chosen boundary side contains a labelled
+leaf.  Its complement also contains a labelled leaf: otherwise the first
+boundary-side descendant would already have been a proper stable ancestor of
+every original leaf, contradicting the original LSA condition.  Thus each
+new-root child has a labelled descendant avoided by the other child, and no
+proper descendant lies on every root-to-leaf path.
+
 Parent choices at the reticulations are unchanged by this rerooting.  For
 every choice, deleting one incoming reticulation arc gives the same unrooted
 displayed tree.  A JC tree with uniform stationary root distribution is
 reversible, and its Fourier monomial depends only on displayed unrooted edge
-splits.  Hence rerooting changes no complete boundary tensor.
+splits.  A reversal can complement the bookkeeping choice at a reticulation;
+this merely replaces `lambda` by `1-lambda`, which remains in `(0,1)`.
+Hence rerooting changes no complete boundary tensor.
 
 If the chosen site lies in the interior of an edge with multiplier `x`, split
 it into two positive multipliers `x_1,x_2` with `x_1x_2=x`; for example take

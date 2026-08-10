@@ -91,6 +91,12 @@ scalars, and independent adjacent bridge multipliers make this marginal map a
 submersion.  No continuous choice of target parameters is needed and distant
 blobs cannot compensate for a local projective separator.
 
+When finitely many target incoming-role/completion types are possible, the
+focal source box lies in their union.  Semialgebraic dimension guarantees that
+at least one member contains a nonempty source-relative full-dimensional open
+subgerm.  It does **not** imply that one member contains the entire focal
+source germ; the local relation `preceq_JC` needs only the former statement.
+
 Dependency: independent bridge theorem, exact local stabilizer exclusion, and
 multihomogeneity certificate for every atlas invariant.
 
@@ -101,19 +107,33 @@ each segment of a minimum strong repair.  Theta support sizes are at most four
 and cycle support size is two.  Support-plus-one locates an additional port's
 segment; support-plus-two orders every pair on a segment.
 
-Every selected marginal of a full strong target is one of the generated weak
-completions: selected ports are distributed in order on primitive segments,
-while omitted sink and repair roles are restored by zero-character dummy
-ports.  Serial omitted edges occur only through their product.
+Every selected marginal of a full strong target is one of the generated
+completion records: selected ports are distributed in order on primitive
+segments, while omitted sink and repair roles are restored by zero-character
+dummy ports.  Serial omitted edges occur only through their product.  The
+record separately states whether the selected ports retain the original
+primitive core; a nonretaining marginal may reduce to a smaller strong
+topology and is never called intrinsically weak.
 
 The graph-bound exact atlas must certify all directed cases:
 
+- the minimal two-outgoing cycle factor: the independently regenerated
+  three-port polynomial `q011*q101*q110-q123^2` vanishes on the ordinary tree
+  and is strictly positive on every open 3-sunlet, while the three sunlet
+  orientations are ordinary `T`;
 - theta to theta at five and six outgoing ports;
 - theta to cycle at five and six outgoing ports;
 - cycle to cycle at four outgoing ports;
 - cycle to theta, beginning with four-port equalities and completing the
   union by every one, two, or three missing theta support role, for at most
   seven outgoing ports.
+
+The selected three-outgoing cycle/theta equality uses an omitted target
+sink/repair boundary.  It cannot represent two complete factors once cut
+equality has fixed their identical boundary set.  A cycle factor with another
+boundary is tested on its four-outgoing support-plus-two restriction, and a
+cycle factor without one admits no nonretaining full strong target of the
+same bridge-tree degree.  Hence it creates no residual local direction.
 
 Every non-equal decorated relation must carry an exact graph-derived strict
 separator or noncontainment witness.  Every equal relation must reconstruct
@@ -132,15 +152,19 @@ the differential
 
     dz=sum_i (product_{j != i} x_j) dx_i
 
-is nonzero throughout the open cube.  Selected marginal maps are therefore
-semialgebraic submersions on dense regular loci.  A full-dimensional arbitrary
-containment projects to a full-dimensional bounded decorated relation.
+is nonzero throughout the open cube.  The physical-to-effective
+descriptor-parameter map is therefore an onto semialgebraic submersion.  It
+need not be a minimal chart on a core-collapsed target tensor image; the proof
+uses the core-retaining source map.  A full-dimensional arbitrary containment
+therefore projects to a full-dimensional bounded decorated relation.
 
 Fixing one pointwise-rigid support forces all one-port probes to use the same
-core identification.  Two-port probes agree on overlaps and recover one total
-order on each segment.  Passing to the `T` quotient makes the triangle choice
-coherent.  Probe-dependent automorphisms cannot be mixed because the support
-stabilizer is trivial.
+fixed-label core identification.  Two-port probes agree on overlaps and
+recover one total order on each segment.  If a probe subdivides a support
+triangle edge, it has no `T` ambiguity and fixes literal orientation;
+otherwise the unique triangle persists and one global `T` choice is coherent.
+Setwise support symmetries may duplicate anchored atlas representatives but
+cannot mix fixed-label probe transports.
 
 Dependencies: rigid-support audit, bounded atlas, independent probe-coherence
 review.
@@ -168,10 +192,13 @@ local theorem forces corresponding factors to be isomorphic or `T`-related.
 Thus no proper one-sided containment survives.
 
 Conversely, the independently verified local `T` correspondence supplies a
-common full-dimensional regular projective germ.  Products of these local
-germs and arbitrary positive effective bridge scales glue through the bridge
-tree.  Hence every coherent combination of ordinary `T` moves gives a common
-global full-dimensional regular germ.
+common full-dimensional regular projective germ.  Fix positive representatives
+of the finitely many incident arm orbits.  On each bridge choose a common
+effective scale `z` in a sufficiently small nonempty open interval, so that
+the physical multiplier `z/(a_{u,e}a_{v,e})` lies in `(0,1)` in both network
+realizations.  The bridge tree has no cycle, so these choices are independent
+and glue all local germs simultaneously.  Hence every coherent combination
+of ordinary `T` moves gives a common global full-dimensional regular germ.
 
 Dependencies: all preceding nodes and independent `T` verifier.
 

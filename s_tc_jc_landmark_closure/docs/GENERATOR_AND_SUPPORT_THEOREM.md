@@ -14,8 +14,12 @@ segments and by one outgoing port at every path-sink reticulation.
 ### Proof
 
 Choose an admissible rooting and expose the unique incoming boundary of a
-nonroot factor.  If the factor has `t` tree vertices, `r` reticulations, `v`
-internal vertices, and `e` internal edges, summing internal indegrees gives
+nonroot factor.  That boundary cannot enter a reticulation: the two
+root-to-parent paths of an incoming reticulation edge give an undirected
+bypass, so such an edge is not a cut edge.  The boundary therefore meets the
+unique local tree source.  If the factor has `t` tree vertices, `r`
+reticulations, `v` internal vertices, and `e` internal edges, summing internal
+indegrees gives
 
 ```
 e = t + 2r - 1 = v + r - 1,
@@ -31,8 +35,9 @@ three paths: a theta.
 
 On a theta path, direction can change only at the unique source event `S` or
 at a path-sink reticulation `X`, so source and sink events alternate.  At most
-one branch is reticulate, since two reticulate branches would leave the
-finite internal DAG without a sink.  Exhausting the event multisets
+one branch is reticulate.  The two-reticulate-branch case is separately
+exhausted by the event-and-direction compiler and has no reachable acyclic
+orientation.  Exhausting the remaining event multisets
 `{S,X,X}` and `{S,X}`, all segment directions, bidegrees, acyclicity, and
 reachability gives exactly four path-template classes.  The primary
 enumerator derives 24 normalized branch-labelled presentations and four
@@ -117,10 +122,15 @@ disjoint edge sets, and each product map has nonzero differential
 d(x_1...x_k) = sum_i (product_{j != i} x_j) dx_i
 ```
 
-throughout `(0,1)^k`.  The product of these maps is therefore a submersion;
-inheritance coordinates are unchanged up to parent complementation.  It is
-also onto the effective open cube because any effective multiplier has a
-positive `k`th-root factorization.
+throughout `(0,1)^k`.  The product of these maps is therefore a submersion
+from the physical parameter cube onto the effective descriptor-parameter
+cube; inheritance coordinates are unchanged up to parent complementation.
+It is also onto the effective open cube because any effective multiplier has
+a positive `k`th-root factorization.  This does not assert that descriptor
+coordinates are minimal coordinates on the tensor image.  After a selected
+marginal collapses a core, switching columns and inheritance coordinates may
+be tensor-redundant.  Only the source core-retaining parameter-cube
+submersion is used below.
 
 Hence a full-dimensional arbitrary-subdivision containment projects to a
 full-dimensional bounded decorated relation.  This is stronger than the
@@ -139,16 +149,32 @@ restricts to the same identification of the core.  Overlapping one-port
 probes assign the same segment to each label.  Overlapping two-port probes
 give the same pairwise comparisons; these comparisons are the restrictions
 of total orders, so they assemble uniquely on every segment.  A `T` choice
-does not change the underlying core or any port placement.  Because the core
-has at most one triangle and every probe retains the complete core, all local
-`T` choices refer to that same triangle.  Canonicalizing its orientation once
-makes every probe identification literal and consistent.
+does not change the underlying core or any port placement.  If an extra label
+subdivides an edge of the support triangle, that one-port probe has no
+triangle and forces literal orientation agreement.  Otherwise the same
+unique triangle persists in the full graph and one global ordinary `T`
+choice applies to every probe.  Canonicalizing that orientation makes all
+probe identifications literal and consistent.
+
+For the finite directed atlas one may fix the source support labels once and
+enumerate every target port permutation.  Simultaneously relabelling any
+decorated source-target relation by the inverse source assignment puts the
+source into an anchored form and transports the complete port matching to
+one of the enumerated target assignments.  Thus this convention is
+surjective onto all labelled directed relations and loses none.  A setwise
+source or `T`-quotient automorphism may produce duplicate anchored
+representatives; the final decorated-relation canonicalizer removes those
+duplicates.  Pointwise rigidity supplies the unique fixed-label core
+transport needed by probe coherence, not uniqueness of the anchored
+group-action representative.
 
 ## Exact primary artifacts
 
 - `primary/core_universe.py` regenerates the primitive cores and repairs.
-- `primary/completion_universe.py` regenerates every weak selected pattern
-  induced by a full standard-strong completion.
+- `primary/completion_universe.py` regenerates every selected pattern induced
+  by a full standard-strong completion and records whether it retains the
+  original primitive core.  A nonretaining marginal may reduce to a smaller
+  strong topology; it is not called intrinsically weak.
 - The exact completion counts for three through six selected outgoing ports
   are `831, 1983, 4155, 7909`; all generated full completions pass the locked
   rooted and standard-strong checks.
