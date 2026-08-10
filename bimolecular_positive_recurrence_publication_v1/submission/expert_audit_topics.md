@@ -1,0 +1,66 @@
+# Internal expert-audit topics — no outreach drafts prepared
+
+The project policy reserves all external communication to the human
+researcher and directs that possible outside input be recorded without
+preparing or initiating outreach. Accordingly, this file contains no
+message-ready text, salutations, email addresses, contact instructions, or
+requests addressed to another person. Nothing here has been sent.
+
+If the human author independently chooses to seek expert review, the following
+researcher-specific topics identify the narrow technical interfaces on which
+outside scrutiny could be most informative.
+
+## Chuang Xu
+
+- Check that the manuscript accurately reports the live official record for
+  arXiv:2409.05340v2, whose title is *On the Regulary of Reaction Systems*
+  [sic], and documents the discrepancy from the title proposed in the
+  revision directive.
+- Stress-test the distinction between recovered nonexplosion for the present
+  subclass and the genuinely new positive-recurrence conclusion.
+- Examine whether any known endotactic result supplies a stronger conclusion
+  than the manuscript acknowledges.
+
+## David F. Anderson
+
+- Audit the exact relationship to the Anderson–Kim positive-recurrence
+  conjecture and the deterministic/stochastic stability distinction.
+- Check whether the marked-target residual-factorial potential is positioned
+  accurately relative to classical chemical-reaction-network entropy.
+- Test the class-wise formulation and the explicitly unproved class-entry
+  property.
+
+## Daniele Cappelletti
+
+- Check the source-specific comparison with the Anderson–Cappelletti–Kim
+  (2020) tier/path construction and the role of its pure-species-complex
+  hypothesis.
+- Audit the marked-channel augmentation, scalar-envelope propagation, and
+  finite trace-chain closure.
+- Check that the present theorem is correctly described as containing the
+  2020 theorem as a special case.
+
+## Jinsu Kim
+
+- Independently examine where the pure unary or pure-double complex condition
+  enters the 2020 proof and whether the present comparison is neither too broad
+  nor too narrow.
+- Stress-test the top-complex alternative and the transition from embedded
+  recurrence to physical-time CTMC recurrence.
+- Check the separation between positive recurrence on closed classes and
+  expected entrance into closed components.
+
+## Andrea Agazzi
+
+- Check the priority note's description of the publicly announced
+  two-species result and whether a public manuscript has appeared since the
+  dated search.
+- Verify the claimed orthogonality of scopes: two species with broader network
+  structure versus arbitrarily many species under one linkage class and
+  molecularity at most two.
+- Identify any public source that requires revising the author list, date, or
+  characterization of the announced result.
+
+These are internal audit notes only. Any actual communication must be composed
+and sent by the human author outside this research workflow after independently
+checking current contact and disclosure norms.

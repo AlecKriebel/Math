@@ -1,0 +1,59 @@
+name: Bimolecular positive recurrence Version 1.0 checks
+
+on:
+  push:
+    paths:
+      - "bimolecular_positive_recurrence_publication_v1/**"
+      - ".github/workflows/bimolecular-positive-recurrence-v1.yml"
+  pull_request:
+    paths:
+      - "bimolecular_positive_recurrence_publication_v1/**"
+      - ".github/workflows/bimolecular-positive-recurrence-v1.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    name: Verifier (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install editable package
+        working-directory: bimolecular_positive_recurrence_publication_v1/code
+        run: python -m pip install -e .
+      - name: Reproduce canonical report and tests
+        working-directory: bimolecular_positive_recurrence_publication_v1/code
+        run: ./reproduce.sh
+
+  release-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - name: Verify complete Version 1.0 manifest
+        working-directory: bimolecular_positive_recurrence_publication_v1
+        run: python supplement/verify_manifest.py
+
+  manuscript-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: wtfjoke/setup-tectonic@v4.0.5
+        with:
+          tectonic-version: "0.16.9"
+      - name: Compile all manuscript wrappers
+        working-directory: bimolecular_positive_recurrence_publication_v1/manuscript
+        run: ./build.sh
+      - name: Require byte-identical committed PDFs
+        run: git diff --exit-code -- bimolecular_positive_recurrence_publication_v1/manuscript
