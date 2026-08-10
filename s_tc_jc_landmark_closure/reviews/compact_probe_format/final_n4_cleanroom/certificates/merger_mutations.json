@@ -1,0 +1,103 @@
+{
+  "implementation": "reviews/compact_probe_format/final_n4_cleanroom/merger_mutations.py",
+  "implementation_sha256": "1a44a811c58ee84ba07a66281147aa89d3527843f22c4ab42a5f84fda88cfa24",
+  "independent_replay_sha256": [
+    "d82c8d7ff455a90586c2dc2dc6a1228a1382de014e3296f03f06d81e978dda1c",
+    "536ace57ad10904bba2b0a83dc570df1c442f576af3f20250966af5489475528",
+    "6d918fb1312295e6aa008ca3b502dcca60f934702e9d11cc65270dabe80fbb4c",
+    "a1373a7fc854ec5121b349ef009f13fcf4bfc5e9817cd7b430a798bbea0e8463"
+  ],
+  "merger": "primary/merge_compact_probe_shards.py",
+  "merger_sha256": "26a47976056c57c79b3ea7b056929fb1b25ee512cae5f8dd3bad0247c5e97e67",
+  "note": "Relation-level mutations are tested by mutation_tests.py; this black-box suite tests the merger's distinct aggregation contract.",
+  "primary_replay_sha256": [
+    "5b46025658c4abfb83fdc2452dc9b2d8828f187b624c521e03a70cd80977d48a",
+    "f380c0aa8eeeabbf1ba7e25b2a2d504e132bd0eb042ed092f99c03626987924b",
+    "67f8bf0d323fbb6ee8a92308490b4c5fb00126ad9b53aea62397f3e55b6e2a44",
+    "d7de61b6d8128eabfc13e362bce9e8a2ef17d96ec455950bff15df52cdbd6bef"
+  ],
+  "results": [
+    {
+      "accepted": true,
+      "expected_acceptance": true,
+      "manifest_created": true,
+      "meets_expectation": true,
+      "mutation": "baseline",
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 153072, \"labelled_isomorphism\": 15510}, \"output\": \"<TEMP>/baseline_manifest.json\", \"path_inventory_count\": 132, \"sha256\": \"53b6523b7412c266495b5ff05123fe0f8ae15aca98ce9c6ad0246f4673578461\", \"shards\": 4, \"status\": \"EXACTLY_VERIFIED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "incomplete_shard_coverage",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 323, in main\n    raise AssertionError((\"incomplete inventory\", cursor, len(inventory)))\nAssertionError: ('incomplete inventory', 99, 132)\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "duplicate_shard",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 275, in main\n    primary_replays = load_replays(args.primary_replay, independent=False)\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 229, in load_replays\n    raise AssertionError((path, \"duplicate replay for summary\", summary_digest))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_theta2_compact_n4_s0_replay.json'), 'duplicate replay for summary', '9649b08315dbd5d9dca8b8e4e1892deefe4cecacd81ea6f1880d994e56bd0863')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "missing_independent_replay",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 295, in main\n    raise AssertionError((summary_path, \"missing bound replay certificate\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_theta2_compact_n4_s3_summary.json'), 'missing bound replay certificate')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_replay_summary_binding",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 295, in main\n    raise AssertionError((summary_path, \"missing bound replay certificate\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_theta2_compact_n4_s0_summary.json'), 'missing bound replay certificate')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_independent_path_range",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 303, in main\n    raise AssertionError((summary_path, label, \"path range\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_theta2_compact_n4_s0_summary.json'), 'independent', 'path range')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_independent_counts",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 305, in main\n    raise AssertionError((summary_path, label, \"classification counts\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_theta2_compact_n4_s0_summary.json'), 'independent', 'classification counts')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_schema_specification",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 262, in main\n    raise AssertionError(\"schema specification SHA-256\")\nAssertionError: schema specification SHA-256\n",
+      "returncode": 1
+    }
+  ],
+  "schema": "compact-probe-hardened-merger-black-box-audit-v1",
+  "scope": "coverage, replay binding, range, count, and schema commitments",
+  "status": "VERIFIED",
+  "summary_sha256": [
+    "9649b08315dbd5d9dca8b8e4e1892deefe4cecacd81ea6f1880d994e56bd0863",
+    "ea0c7181389d4bb73a7a1332ec396f0223cf0e9746efde9f39bc79d3d3029de1",
+    "ab678bcbd268ffd704fa79c45ac8a1eb89e2907132eb5e12a99a625cc606ebbd",
+    "ffa5658edfaac800da9614fcaf32a576a09d26d6d1449fc89a2ac66efff551d6"
+  ],
+  "unexpected_results": []
+}
