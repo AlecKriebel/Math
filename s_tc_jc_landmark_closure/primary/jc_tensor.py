@@ -203,6 +203,64 @@ def coordinate_polynomials(descriptor: Descriptor) -> tuple[Poly, ...]:
     return tuple(coordinates)
 
 
+@lru_cache(maxsize=None)
+def coordinate_values_mod(
+    descriptor: Descriptor,
+    seed: int,
+    prime: int = 2_147_483_647,
+) -> tuple[int, ...]:
+    """Evaluate the complete JC tensor directly over a prime field.
+
+    A nonzero value is an exact certificate that the corresponding integer
+    polynomial is nonzero.  Zero values are never trusted as identities; the
+    caller must expand those cases exactly.
+    """
+    retics, signatures = descriptor
+    displays = tuple(product((0, 1), repeat=retics))
+    variable_count = len(signatures) + retics
+    values = []
+    for index in range(variable_count):
+        value = (seed + 37 * index + 11) % prime
+        if value in (0, 1):
+            value = 2
+        values.append(value)
+    edges = values[: len(signatures)]
+    inheritance = values[len(signatures) :]
+    answer = []
+    for assignment in jc_representatives():
+        total = 0
+        for display_index, choices in enumerate(displays):
+            term = 1
+            for retic_index, choice in enumerate(choices):
+                lam = inheritance[retic_index]
+                term = term * (lam if choice == 0 else 1 - lam) % prime
+            for edge_value, signature in zip(edges, signatures):
+                mask = signature[display_index]
+                state = 0
+                for leaf_index, character in enumerate(assignment):
+                    if mask & (1 << leaf_index):
+                        state ^= character
+                if state:
+                    term = term * edge_value % prime
+            total = (total + term) % prime
+        answer.append(total)
+    return tuple(answer)
+
+
+def invariant_value_mod(
+    coordinates: Sequence[int],
+    invariant: Sequence[tuple[Sequence[int], int]],
+    prime: int = 2_147_483_647,
+) -> int:
+    total = 0
+    for monomial, coefficient in invariant:
+        term = int(coefficient) % prime
+        for index in monomial:
+            term = term * coordinates[index] % prime
+        total = (total + term) % prime
+    return total
+
+
 def pullback(descriptor: Descriptor, invariant: Sequence[tuple[Sequence[int], int]]) -> Poly:
     coordinates = coordinate_polynomials(descriptor)
     variables = len(descriptor[1]) + descriptor[0]

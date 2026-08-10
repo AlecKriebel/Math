@@ -22,6 +22,8 @@ from graph_model import RootedGraph, canonical_mixed, sd0, t_quotient
 from jc_tensor import (
     Descriptor,
     all_port_quartet_deck,
+    coordinate_values_mod,
+    invariant_value_mod,
     invariant_orbit,
     parse_literal,
     pullback,
@@ -66,6 +68,15 @@ def outgoing(graph: RootedGraph) -> tuple[str, ...]:
 
 
 @dataclass(frozen=True)
+class ModelVariant:
+    primitive_id: str
+    graph: RootedGraph
+    labels: tuple[str, ...]
+    selected_strong: bool
+    provenance: tuple
+
+
+@dataclass(frozen=True)
 class BaseModel:
     primitive_id: str
     graph: RootedGraph
@@ -73,6 +84,7 @@ class BaseModel:
     ordered: tuple[tuple[tuple[int, int, int], Descriptor], ...]
     selected_strong: bool
     provenance: tuple
+    variants: tuple[ModelVariant, ...]
 
     def deck_map(self) -> dict[tuple[int, int, int], Descriptor]:
         return dict(self.ordered)
@@ -102,21 +114,24 @@ def source_bases(n: int) -> tuple[BaseModel, ...]:
             "words": row["words"], "sink_labels": row["sink_labels"],
             "mixed": canonical_mixed(sd0(graph))[0],
         })
+        provenance = (row["core_id"], row["repair_index"], row["words"])
+        variant = ModelVariant(primitive, graph, labels, True, provenance)
         answer.append(BaseModel(
             primitive, graph, labels, tuple(sorted(ordered.items())), True,
-            (row["core_id"], row["repair_index"], row["words"]),
+            provenance, (variant,),
         ))
     return tuple(answer)
 
 
 def target_bases(n: int) -> tuple[BaseModel, ...]:
-    unique: dict[tuple, BaseModel] = {}
+    grouped: dict[tuple, dict[str, ModelVariant]] = defaultdict(dict)
+    ordered_by_key = {}
     for index, completion in enumerate(completions(n)):
         graph = completion.graph
         labels = tuple(sorted(completion.selected_labels, key=natural))
         ordered = deck(graph, labels)
-        key = model_key(ordered, n)
         strong = not completion.dummy_labels
+        kind = "cycle" if completion.core_id == "cycle" else "theta"
         primitive = stable_hash({
             "kind": "target", "core": completion.core_id,
             "sink_mask": completion.selected_sink_mask,
@@ -124,22 +139,50 @@ def target_bases(n: int) -> tuple[BaseModel, ...]:
             "selected": completion.selected_labels, "dummies": completion.dummy_labels,
             "arcs": graph.arcs, "labels": graph.labels,
         })
-        candidate = BaseModel(
-            primitive, graph, labels, tuple(sorted(ordered.items())), strong,
-            (completion.core_id, completion.selected_sink_mask, completion.repair_index,
-             completion.words, completion.dummy_labels),
+        provenance = (
+            completion.core_id, completion.selected_sink_mask, completion.repair_index,
+            completion.words, completion.dummy_labels,
         )
-        previous = unique.get(key)
-        if previous is None or (strong and not previous.selected_strong):
-            unique[key] = candidate
-    return tuple(unique[key] for key in sorted(unique, key=repr))
+        variant = ModelVariant(primitive, graph, labels, strong, provenance)
+        ordered_tuple = tuple(sorted(ordered.items()))
+        key = kind, ordered_tuple
+        ordered_by_key[key] = ordered_tuple
+        variant_key = stable_hash({
+            "primitive": primitive,
+            "mixed": canonical_mixed(sd0(graph))[0],
+            "selected": labels,
+            "dummies": completion.dummy_labels,
+        })
+        grouped[key][variant_key] = variant
+    answer = []
+    for key in sorted(grouped, key=repr):
+        variants = tuple(grouped[key][variant_key] for variant_key in sorted(grouped[key]))
+        representative = min(variants, key=lambda row: (not row.selected_strong, row.primitive_id))
+        answer.append(BaseModel(
+            representative.primitive_id,
+            representative.graph,
+            representative.labels,
+            ordered_by_key[key],
+            representative.selected_strong,
+            representative.provenance,
+            variants,
+        ))
+    return tuple(answer)
 
 
 def descriptor_bits(descriptor: Descriptor, invariants, cache: dict[Descriptor, int]) -> int:
     if descriptor not in cache:
         bits = 0
+        evaluations = tuple(
+            coordinate_values_mod(descriptor, seed)
+            for seed in (101, 1009, 10007)
+        )
         for index, invariant in enumerate(invariants):
-            if pullback(descriptor, invariant):
+            modular_nonzero = any(
+                invariant_value_mod(coordinates, invariant)
+                for coordinates in evaluations
+            )
+            if modular_nonzero or pullback(descriptor, invariant):
                 bits |= 1 << index
         cache[descriptor] = bits
     return cache[descriptor]
@@ -182,19 +225,27 @@ def labelled_records(
                 "strengths": set(),
                 "kinds": set(),
                 "t_codes": set(),
+                "variant_ids": set(),
+                "presentation_coverage": defaultdict(set),
+                "presentation_t_codes": defaultdict(set),
             })
-            # One descriptor presentation per strength/core type is sufficient
-            # for strict-witness discovery.  Topology completeness is retained
-            # separately as the complete set of T-quotient codes.
-            kind = "cycle" if base.provenance[0] == "cycle" else "theta"
-            presentation_key = (base.selected_strong, kind)
-            row["presentations"].setdefault(presentation_key, (base, assignment, descriptors))
-            row["strengths"].add(base.selected_strong)
-            row["kinds"].add(kind)
-            if topology_for_all or (topology_filter is not None and signature in topology_filter):
-                if base.selected_strong:
-                    mixed = sd0(relabel_selected(base.graph, base.labels, assignment))
-                    row["t_codes"].add(canonical_mixed(t_quotient(mixed))[0])
+            descriptor_hash = stable_hash(descriptors)
+            for variant in base.variants:
+                kind = "cycle" if variant.provenance[0] == "cycle" else "theta"
+                presentation_key = (variant.selected_strong, kind, descriptor_hash)
+                row["presentations"].setdefault(
+                    presentation_key, (variant, base, assignment, descriptors)
+                )
+                row["strengths"].add(variant.selected_strong)
+                row["kinds"].add(kind)
+                row["variant_ids"].add(variant.primitive_id)
+                row["presentation_coverage"][presentation_key].add(variant.primitive_id)
+                if topology_for_all or (topology_filter is not None and signature in topology_filter):
+                    if variant.selected_strong:
+                        mixed = sd0(relabel_selected(variant.graph, variant.labels, assignment))
+                        t_code = canonical_mixed(t_quotient(mixed))[0]
+                        row["t_codes"].add(t_code)
+                        row["presentation_t_codes"][presentation_key].add(t_code)
     return records, raw
 
 
@@ -244,7 +295,7 @@ def equal_topology_audit(common_signatures: set[int], sources: dict[int, dict], 
         target_t = set(targets[signature]["t_codes"])
         weak += int(False in targets[signature]["strengths"])
         checked += len(source_t) * len(target_t)
-        if not target_t or source_t != target_t:
+        if len(source_t) != 1 or len(target_t) != 1 or source_t != target_t:
             failures.append({
                 "signature_sha": hashlib.sha256(str(signature).encode()).hexdigest(),
                 "source_t_classes": len(source_t), "target_t_classes": len(target_t),
@@ -316,95 +367,111 @@ def compile_relation_records(n: int, working, invariants):
     counts = defaultdict(int)
     hasher = hashlib.sha256()
 
-    def presentation(row, kind: str):
-        candidates = [
-            value for (strength, row_kind), value in row["presentations"].items()
-            if row_kind == kind
-        ]
-        return candidates[0] if candidates else None
+    def presentations(row, kind: str, *, require_strong: bool = False):
+        candidates = []
+        for key, value in row["presentations"].items():
+            strength, row_kind, _descriptor_hash = key
+            if row_kind != kind or (require_strong and not strength):
+                continue
+            candidates.append((key, value))
+        return tuple(candidates)
 
     with gzip.open(relation_path, "wt", encoding="utf-8", newline="\n") as handle:
         for source_signature, target_signature in pairs:
             if "theta" not in targets[target_signature]["kinds"]:
                 continue
-            source_presentation = presentation(sources[source_signature], "theta")
-            target_presentation = presentation(targets[target_signature], "theta")
-            if source_presentation is None or target_presentation is None:
+            source_presentations = presentations(sources[source_signature], "theta", require_strong=True)
+            target_presentations = presentations(targets[target_signature], "theta")
+            if not source_presentations or not target_presentations:
                 failures.append("missing theta presentation")
                 continue
-            source_base, source_assignment, source_descriptors = source_presentation
-            target_base, target_assignment, target_descriptors = target_presentation
-            record = {
+            for (source_key, source_presentation) in source_presentations:
+              for (target_key, target_presentation) in target_presentations:
+                source_variant, source_base, source_assignment, source_descriptors = source_presentation
+                target_variant, target_base, target_assignment, target_descriptors = target_presentation
+                source_coverage = sorted(sources[source_signature]["presentation_coverage"][source_key])
+                target_coverage = sorted(targets[target_signature]["presentation_coverage"][target_key])
+                source_t_codes_for_presentation = sorted(
+                    sources[source_signature]["presentation_t_codes"].get(source_key, ())
+                )
+                target_t_codes_for_presentation = sorted(
+                    targets[target_signature]["presentation_t_codes"].get(target_key, ())
+                )
+                record = {
                 "schema": 1,
                 "outgoing": n,
                 "direction": "source_precedes_target",
                 "source_signature_sha256": hashlib.sha256(str(source_signature).encode()).hexdigest(),
                 "target_signature_sha256": hashlib.sha256(str(target_signature).encode()).hexdigest(),
-                "source_primitive_id": source_base.primitive_id,
-                "target_primitive_id": target_base.primitive_id,
+                "source_primitive_id": source_variant.primitive_id,
+                "target_primitive_id": target_variant.primitive_id,
                 "source_position_to_label": source_assignment,
                 "target_position_to_label": target_assignment,
                 "port_correspondence": tuple(range(n)),
-                "source_roles": source_base.provenance,
-                "target_roles": target_base.provenance,
+                "source_roles": source_variant.provenance,
+                "target_roles": target_variant.provenance,
                 "source_descriptor_deck_sha256": stable_hash(source_descriptors),
                 "target_descriptor_deck_sha256": stable_hash(target_descriptors),
-            }
-            if source_signature == target_signature:
-                source_codes = sorted(sources[source_signature]["t_codes"])
-                target_codes = sorted(targets[target_signature]["t_codes"])
-                if source_codes != target_codes or not source_codes:
-                    failures.append({"equal_signature_not_T": record})
-                    continue
-                record["classification"] = "isomorphism_or_T"
-                record["t_quotient_code_sha256"] = hashlib.sha256(source_codes[0].encode()).hexdigest()
-                counts["equal"] += 1
-            else:
-                difference = target_signature & ~source_signature
-                witness = None
-                while difference:
-                    lowest = difference & -difference
-                    absolute_bit = lowest.bit_length() - 1
-                    difference ^= lowest
-                    chunk, invariant_index = divmod(absolute_bit, len(invariants))
-                    source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
-                    target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
-                    if source_poly or not target_poly:
+                "source_covered_primitive_ids": source_coverage,
+                "target_covered_primitive_ids": target_coverage,
+                "source_presentation_t_codes_sha256": stable_hash(source_t_codes_for_presentation),
+                "target_presentation_t_codes_sha256": stable_hash(target_t_codes_for_presentation),
+                }
+                if source_signature == target_signature:
+                    source_codes = sorted(sources[source_signature]["t_codes"])
+                    target_codes = sorted(targets[target_signature]["t_codes"])
+                    if len(source_codes) != 1 or len(target_codes) != 1 or source_codes != target_codes:
+                        failures.append({"equal_signature_not_T": record})
                         continue
-                    cache_key = target_descriptors[chunk], invariant_index
-                    if cache_key not in sign_cache:
-                        sign_cache[cache_key] = target_poly, certify_sign(target_poly)
-                    _poly, sign = sign_cache[cache_key]
-                    if sign["certified"]:
-                        poly_hash = sign["polynomial_sha256"]
-                        sign_library.setdefault(poly_hash, sign)
-                        witness = {
-                            "quartet_chunk": chunk,
-                            "invariant_index": invariant_index,
-                            "source_pullback": "0",
-                            "target_pullback_sha256": poly_hash,
-                            "target_pullback_primitive_sha256": hashlib.sha256(repr(primitive(target_poly)).encode()).hexdigest(),
-                            "strict_sign": sign["strict_sign"],
-                        }
-                        break
-                if witness is None:
-                    failures.append({"no_strict_witness": record})
-                    continue
-                record["classification"] = "strict_open_cube_separation"
-                record["witness"] = witness
-                counts["strict"] += 1
-            record["relation_id"] = stable_hash({
+                    record["classification"] = "isomorphism_or_T"
+                    record["t_quotient_code_sha256"] = hashlib.sha256(source_codes[0].encode()).hexdigest()
+                    counts["equal"] += 1
+                else:
+                    difference = target_signature & ~source_signature
+                    witness = None
+                    while difference:
+                        lowest = difference & -difference
+                        absolute_bit = lowest.bit_length() - 1
+                        difference ^= lowest
+                        chunk, invariant_index = divmod(absolute_bit, len(invariants))
+                        source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
+                        target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
+                        if source_poly or not target_poly:
+                            continue
+                        cache_key = target_descriptors[chunk], invariant_index
+                        if cache_key not in sign_cache:
+                            sign_cache[cache_key] = target_poly, certify_sign(target_poly)
+                        _poly, sign = sign_cache[cache_key]
+                        if sign["certified"]:
+                            poly_hash = sign["polynomial_sha256"]
+                            sign_library.setdefault(poly_hash, sign)
+                            witness = {
+                                "quartet_chunk": chunk,
+                                "invariant_index": invariant_index,
+                                "source_pullback": "0",
+                                "target_pullback_sha256": poly_hash,
+                                "target_pullback_primitive_sha256": hashlib.sha256(repr(primitive(target_poly)).encode()).hexdigest(),
+                                "strict_sign": sign["strict_sign"],
+                            }
+                            break
+                    if witness is None:
+                        failures.append({"no_strict_witness": record})
+                        continue
+                    record["classification"] = "strict_open_cube_separation"
+                    record["witness"] = witness
+                    counts["strict"] += 1
+                record["relation_id"] = stable_hash({
                 "source": record["source_primitive_id"],
                 "target": record["target_primitive_id"],
                 "source_assignment": record["source_position_to_label"],
                 "target_assignment": record["target_position_to_label"],
                 "direction": record["direction"],
                 "ports": record["port_correspondence"],
-            })
-            record["binding_sha256"] = stable_hash(record)
-            line = json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n"
-            handle.write(line)
-            hasher.update(line.encode())
+                })
+                record["binding_sha256"] = stable_hash(record)
+                line = json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n"
+                handle.write(line)
+                hasher.update(line.encode())
     sign_path.write_text(json.dumps(sign_library, sort_keys=True, indent=2) + "\n")
     return {
         "relation_path": str(relation_path.relative_to(HERE.parent)),

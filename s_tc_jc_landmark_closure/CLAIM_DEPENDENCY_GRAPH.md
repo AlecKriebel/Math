@@ -6,9 +6,9 @@ is independently verified.
 | Node | Claim | Initial status |
 |---|---|---|
 | W | Frozen all-`n` theorem in `W_TC \ S_TC` | VERIFIED |
-| D | One standard semi-directed convention; `S_TC` membership and primitive cores | PRIMARY COMPLETE; independent review pending |
-| B | Correct projective bridge peeling with exact incidence-scaling kernel | PARTIAL |
-| C | One-sided cut-split preservation, including two-active-endpoint crossing | OPEN |
+| D | One standard semi-directed convention; `S_TC` membership and primitive cores | PRIMARY COMPLETE; bounded independent census complete; final structural review active |
+| B | Correct projective bridge peeling with exact incidence-scaling kernel | INDEPENDENTLY PROVED; second adversarial review active |
+| C | Pointwise cut characterization and one-sided cut preservation, including two-active-endpoint crossing | INDEPENDENTLY PROVED; second adversarial review active |
 | U | Exhaustive duplicate-free primitive level-2 generator universe | PRIMARY COMPLETE; independent review pending |
 | R | Canonical decorated directed relation universe with complete transports | OPEN |
 | A | Graph-derived exact local algebra and complete directed atlas | OPEN |
@@ -17,7 +17,7 @@ is independently verified.
 | G | No-compensation local-to-global theorem and converse gluing | OPEN |
 | V | Independent clean-room replay and mutation suite | OPEN |
 | P | Positive `S_TC` classification modulo `T` | BLOCKED on D,B,C,U,R,A,S,Q,G,V |
-| X | Exact `S_TC` counterexample | SEARCH ACTIVE; requires D and independent exact certification |
+| X | Exact `S_TC` counterexample | No candidate in exhaustive 3–5-leaf topology census; bounded model search negative only numerically |
 | F | Final sharp-boundary release | requires `(P and W)` or `X` |
 
 Historical files may inform conjectures but are not dependencies unless their

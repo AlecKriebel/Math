@@ -334,6 +334,39 @@ def canonical_mixed(graph: MixedGraph) -> tuple[str, dict[int, int]]:
     return repr(best), best_map
 
 
+def mixed_automorphisms(graph: MixedGraph) -> tuple[dict[int, int], ...]:
+    """All label- and arrowhead-preserving automorphisms.
+
+    Stable WL cells only restrict the exact permutation search; every
+    permutation inside every cell is still tested against the complete mixed
+    edge set.  Primitive/support graphs are small enough that this is a direct
+    certificate rather than a heuristic canonicalization claim.
+    """
+    colours = _wl_colours(graph)
+    cells: dict[int, list[int]] = defaultdict(list)
+    for vertex, colour in colours.items():
+        cells[colour].append(vertex)
+    ordered_cells = [tuple(sorted(cells[key])) for key in sorted(cells)]
+    original_labels = graph.label_map
+    original_edges = set(graph.edges)
+    answers = []
+    for moved_cells in product(*(tuple(permutations(cell)) for cell in ordered_cells)):
+        mapping = {
+            old: new
+            for cell, moved in zip(ordered_cells, moved_cells)
+            for old, new in zip(cell, moved)
+        }
+        if any(original_labels.get(mapping[vertex]) != label for vertex, label in graph.labels):
+            continue
+        moved_edges = set()
+        for edge in graph.edges:
+            heads = {mapping[head] for head in edge.heads()}
+            moved_edges.add(MixedEdge.make(mapping[edge.u], mapping[edge.v], heads))
+        if moved_edges == original_edges:
+            answers.append(mapping)
+    return tuple(answers)
+
+
 def underlying_triangles(graph: MixedGraph) -> tuple[tuple[int, int, int], ...]:
     adjacency = {v: set() for v in graph.vertices}
     for edge in graph.edges:

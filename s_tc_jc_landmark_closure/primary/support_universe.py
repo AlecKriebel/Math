@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 
 from completion_universe import build_graph, core_rows, source_and_sinks
-from graph_model import canonical_mixed, mixed_local_strong, rooted_validation, sd0
+from graph_model import canonical_mixed, mixed_automorphisms, mixed_local_strong, rooted_validation, sd0
 
 
 HERE = Path(__file__).resolve().parent
@@ -48,6 +48,9 @@ def source_records():
                         mixed = sd0(graph)
                         if not mixed_local_strong(mixed):
                             raise AssertionError("support source is not standard strong")
+                        automorphism_count = len(mixed_automorphisms(mixed))
+                        if automorphism_count != 1:
+                            raise AssertionError((core["id"], words, sink_labels, automorphism_count))
                         code, transport = canonical_mixed(mixed)
                         key = (core["id"], support_size, extras, code)
                         records.setdefault(key, {
@@ -63,6 +66,7 @@ def source_records():
                             "labels": graph.labels,
                             "arcs": graph.arcs,
                             "mixed_code": code,
+                            "pointwise_labelled_automorphism_count": automorphism_count,
                             "raw_to_canonical": transport,
                         })
     return raw, tuple(records[key] for key in sorted(records, key=repr))
@@ -82,6 +86,9 @@ def main() -> None:
         "canonical_decorated_support_presentations": len(records),
         "by_outgoing_count": dict(sorted(by_outgoing.items())),
         "by_core": dict(sorted(by_core.items())),
+        "all_supports_pointwise_rigid": all(
+            row["pointwise_labelled_automorphism_count"] == 1 for row in records
+        ),
         "records": records,
     }
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))

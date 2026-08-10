@@ -107,3 +107,27 @@
 - Began a new graph-bound cycle-to-theta union-support compiler.  It retains
   the source graph, target graph, port relation, restored support roles, exact
   pullback, and strict sign witness for every completed directed relation.
+
+## 2026-08-09T21:45:00-07:00 — first independent bridge/cut and falsification gates closed
+
+- The clean-room bridge/cut implementation proved the complete positive
+  incidence-scaling fiber, analytic slices on the reduced leaf-supported
+  bridge tree, source-relative localization, and the pointwise rank-four cut
+  characterization.  It regenerated 72 four-port endpoint tensors and 204
+  strict wrong-split minors with no failures.
+- Its final adversarial replay caught one omitted ordinary trivalent
+  three-port endpoint.  The corrected endpoint universe has 76 nontrivial
+  tensors plus the ordinary tensor.  The universal `F=0` implication is
+  `a>=bc`, not strict `a>bc`; the two-active contradiction remains strict
+  because the joining multiplier satisfies `0<z<1`.  The report and mutation
+  suite were corrected before promotion.
+- A separate clean-room census exhaustively generated 2,821 standard `S_TC`
+  topologies through five leaves (1,667 ordinary-`T` classes), independently
+  replayed the frozen weak pair, and found no exact strong non-`T`
+  counterexample.  Its four-/five-leaf fitting results remain labelled only
+  `NUMERICALLY OBSERVED`.
+- The same reviewer independently proved that every standard weakly
+  tree-child level-2 blob has at most one triangle and exactly separated the
+  three-leaf tree from the 3-sunlet over the entire open JC cube.
+- Dispatched new adversarial reviews of (i) root reduction/support/submersion/
+  probe coherence and (ii) the bridge/cut/global-localization synthesis.
