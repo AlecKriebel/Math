@@ -605,3 +605,27 @@
 - This closes only the primary n=3 cycle source shard.  The theta source
   shards, complete hard-cover crosswalk, and clean-room relation audit remain
   load-bearing.
+
+## 2026-08-10T05:51:07-07:00 — complete n=3 directed relation universe closes in primary
+
+- The independently partitioned source-core shards `cycle`, `theta-0`,
+  `theta-1`, and `theta-3` exhaust the verified three-outgoing support
+  universe.  The fail-closed merger rejects missing or duplicate source cores
+  and produced 10,466 canonical decorated directed relations: 5,284 strict
+  open-cube separations, 5,120 pending support-completion relations, and 62
+  labelled isomorphism-or-ordinary-T relations.  Its summary SHA-256 is
+  `d94533afa40126b9623cccb29ed07f1fd0994377f86a80274f725613e4e25d87`.
+- A complete merged replay regenerated all 7,726 rooted graph bodies, 800
+  exact polynomial bodies, every strict sign certificate, all relation IDs,
+  all port maps, and every classification with no discrepancy.
+- The first hard-cover crosswalk report failed after writing its stream
+  because its output path had not been resolved before `relative_to`; the
+  diagnostic stream and traceback metadata are preserved in
+  `quarantine/bounded_relation_n3_crosswalk_finalization_failure.json` and are
+  not evidence.  After fixing only path normalization, deterministic
+  regeneration produced the identical compressed stream hash
+  `cfc128a65d5547416ec4e860cb55fdea2a1773a5d16385743f357521909c2e68`.
+- Exactly 5,344 pending raw relation coverages bind bijectively to the 5,344
+  fixed-full n=3 hard-cover roots.  Thus no equal-signature nonretaining
+  presentation is lost by canonical relation merging.  Independent
+  graph-to-algebra/crosswalk review and mutation rejection remain mandatory.
