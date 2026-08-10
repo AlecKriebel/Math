@@ -42,8 +42,9 @@ membership in `S_TC`.
 - `R_TC`: a chosen rooted presentation is tree-child.
 - `W_TC`: a standard semi-directed topology has at least one admissible
   tree-child rooting.
-- `S_TC`: every admissible rooting of the standard semi-directed topology is
-  tree-child.
+- `S_TC`: the standard semi-directed topology has at least one admissible
+  rooting, and every admissible rooting is tree-child.  The existence clause
+  prevents vacuous membership of a mixed graph with no valid rooting.
 
 No membership statement transfers between these classes without an explicit
 rooting census or a proved local criterion.

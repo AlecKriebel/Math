@@ -21,8 +21,8 @@ from completion_universe import INCOMING, Completion, completions
 from graph_model import RootedGraph, canonical_mixed, sd0, t_quotient
 from jc_tensor import (
     Descriptor,
+    all_port_quartet_deck,
     invariant_orbit,
-    ordered_quartet_deck,
     parse_literal,
     pullback,
     primitive,
@@ -34,6 +34,8 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent
 TEMPLATE_FILE = PROJECT / "strong_level2_phylo_identifiability" / "src" / "jc_root_spanning_atlas_data.py"
 EXPECTED_TEMPLATE_SHA = "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3"
+SEVENTH_TEMPLATE_FILE = HERE / "seventh_invariant.json"
+EXPECTED_SEVENTH_SHA = "f737f9bee9cc04045355416b95629c18cb5aa9bc31d9719e319eb0a3907babed"
 SUPPORT_CERT = HERE / "certificates" / "support_universe.json"
 OUT = HERE / "certificates" / "bounded_atlas_summary.json"
 
@@ -77,11 +79,13 @@ class BaseModel:
 
 
 def deck(graph: RootedGraph, labels: tuple[str, ...]):
-    return ordered_quartet_deck(graph, labels, INCOMING)
+    return all_port_quartet_deck(graph, labels, INCOMING)
 
 
-def model_key(ordered: dict[tuple[int, int, int], Descriptor], n: int):
-    return tuple(ordered[triple] for triple in combinations(range(n), 3))
+def model_key(ordered: dict[tuple[int, int, int, int], Descriptor], n: int):
+    # A canonical unlabelled base key may use increasing positions.  Labelled
+    # transports below use every ordered four-tuple.
+    return tuple(ordered[quartet] for quartet in combinations(range(n + 1), 4))
 
 
 def source_bases(n: int) -> tuple[BaseModel, ...]:
@@ -154,11 +158,12 @@ def labelled_signature(
     ordered = base.deck_map()
     signature = 0
     descriptors = []
-    for chunk, actual_triple in enumerate(combinations(range(n), 3)):
-        positional = tuple(inverse[value] for value in actual_triple)
+    inverse.append(n)  # the incoming boundary is fixed by outgoing relabelling
+    for chunk, actual_quartet in enumerate(combinations(range(n + 1), 4)):
+        positional = tuple(inverse[value] for value in actual_quartet)
         descriptor = ordered[positional]
         descriptors.append(descriptor)
-        signature |= descriptor_bits(descriptor, invariants, cache) << (60 * chunk)
+        signature |= descriptor_bits(descriptor, invariants, cache) << (len(invariants) * chunk)
     return signature, tuple(descriptors)
 
 
@@ -193,20 +198,20 @@ def labelled_records(
     return records, raw
 
 
-def directed_pairs(sources: dict[int, dict], targets: dict[int, dict], chunks: int):
-    mask = (1 << 60) - 1
+def directed_pairs(sources: dict[int, dict], targets: dict[int, dict], chunks: int, bits_per_chunk: int):
+    mask = (1 << bits_per_chunk) - 1
     indexes = []
     for chunk in range(chunks):
         groups: dict[int, list[int]] = defaultdict(list)
         for target in targets:
-            groups[(target >> (60 * chunk)) & mask].append(target)
+            groups[(target >> (bits_per_chunk * chunk)) & mask].append(target)
         indexes.append(groups)
     pairs = []
     examined = 0
     for source in sources:
         shortlist = None
         for chunk, groups in enumerate(indexes):
-            source_chunk = (source >> (60 * chunk)) & mask
+            source_chunk = (source >> (bits_per_chunk * chunk)) & mask
             candidates = []
             for target_chunk, rows in groups.items():
                 if source_chunk & ~target_chunk == 0:
@@ -259,7 +264,7 @@ def compile_size(n: int, invariants, bit_cache):
     targets, target_raw = labelled_records(
         targets_base, n, invariants, bit_cache, topology_filter=set(sources),
     )
-    pairs, examined = directed_pairs(sources, targets, math_comb(n, 3))
+    pairs, examined = directed_pairs(sources, targets, math_comb(n + 1, 4), len(invariants))
     equal = {(s, t) for s, t in pairs if s == t}
     strict = len(pairs) - len(equal)
     common = set(sources) & set(targets)
@@ -268,9 +273,14 @@ def compile_size(n: int, invariants, bit_cache):
     for row in targets.values():
         strength_signatures[repr(tuple(sorted(row["strengths"])))] += 1
     pair_target_kinds: dict[str, int] = defaultdict(int)
+    pair_kind_matrix: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     for source, target in pairs:
         for kind in targets[target]["kinds"]:
             pair_target_kinds[kind] += 1
+        relation = "equal" if source == target else "strict"
+        for source_kind in sources[source]["kinds"]:
+            for target_kind in targets[target]["kinds"]:
+                pair_kind_matrix[f"{source_kind}_to_{target_kind}"][relation] += 1
     return {
         "outgoing": n,
         "source_bases": len(sources_base),
@@ -285,6 +295,9 @@ def compile_size(n: int, invariants, bit_cache):
         "equal_pairs": len(equal),
         "strict_pairs": strict,
         "necessary_pairs_by_target_kind_membership": dict(pair_target_kinds),
+        "necessary_pair_kind_matrix": {
+            key: dict(value) for key, value in sorted(pair_kind_matrix.items())
+        },
         "indexed_candidates_examined": examined,
         "topology_audit": topology,
         "signature_pair_commitment": stable_hash(sorted((str(s), str(t)) for s, t in pairs)),
@@ -353,7 +366,7 @@ def compile_relation_records(n: int, working, invariants):
                     lowest = difference & -difference
                     absolute_bit = lowest.bit_length() - 1
                     difference ^= lowest
-                    chunk, invariant_index = divmod(absolute_bit, 60)
+                    chunk, invariant_index = divmod(absolute_bit, len(invariants))
                     source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
                     target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
                     if source_poly or not target_poly:
@@ -421,8 +434,20 @@ def main() -> None:
     if template_sha != EXPECTED_TEMPLATE_SHA:
         raise SystemExit(f"inert invariant template hash changed: {template_sha}")
     templates = parse_literal(TEMPLATE_FILE, "INVARIANT_TEMPLATES")
+    seventh_sha = sha256(SEVENTH_TEMPLATE_FILE)
+    if seventh_sha != EXPECTED_SEVENTH_SHA:
+        raise SystemExit(f"seventh invariant hash changed: {seventh_sha}")
+    seventh_payload = json.loads(SEVENTH_TEMPLATE_FILE.read_text())
+    # The source certificate indexes the fourteen nontrivial coordinates
+    # A,...,O, whereas jc_tensor includes the normalized trivial coordinate at
+    # index zero.  The explicit +1 transport is part of the certificate.
+    seventh = tuple(
+        (tuple(int(index) + 1 for index in monomial), int(coefficient))
+        for coefficient, monomial in seventh_payload["invariant"]
+    )
+    templates = (*templates, seventh)
     invariants = invariant_orbit(templates)
-    if len(invariants) != 60:
+    if len(invariants) != 84:
         raise AssertionError(len(invariants))
     cache: dict[Descriptor, int] = {}
     runs = []
@@ -438,6 +463,8 @@ def main() -> None:
         "schema": 1,
         "template_path": str(TEMPLATE_FILE.relative_to(PROJECT)),
         "template_sha256": template_sha,
+        "seventh_template_path": str(SEVENTH_TEMPLATE_FILE.relative_to(HERE.parent)),
+        "seventh_template_sha256": seventh_sha,
         "invariant_orbit_size": len(invariants),
         "descriptor_types_exactly_expanded": len(cache),
         "runs": runs,

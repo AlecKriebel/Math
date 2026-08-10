@@ -12,3 +12,8 @@ Certified foundation:
 
 Current mathematical target: prove Outcome P or Outcome C.  Nothing else may
 be labelled the final outcome.
+
+Latest fail-closed note: the first primary local deck omitted all-outgoing
+quartets and is withdrawn.  The corrected all-subset, 84-invariant deck and
+decorated union-support compiler are currently regenerating; no local atlas
+claim is promoted from the withdrawn run.

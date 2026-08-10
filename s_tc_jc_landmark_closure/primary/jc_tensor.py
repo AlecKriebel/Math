@@ -139,6 +139,37 @@ def ordered_quartet_deck(
     return answer
 
 
+def all_port_quartet_deck(
+    graph: RootedGraph,
+    outgoing_labels: Sequence[str],
+    incoming_label: str,
+) -> dict[tuple[int, int, int, int], Descriptor]:
+    """Every ordered four-port restriction of the complete boundary tensor.
+
+    The earlier closure compiler considered only quartets containing the
+    distinguished incoming boundary.  That is not sufficient for a directed
+    containment atlas: a weak target can hide a reticulation from all such
+    restrictions while an all-outgoing quartet detects it.  Keys are ordered
+    tuples of positions in ``(*outgoing_labels, incoming_label)``.
+    """
+    labels = (*tuple(outgoing_labels), incoming_label)
+    retics, signatures = raw_descriptor(graph, labels)
+    answer = {}
+    for ordered in permutations(range(len(labels)), 4):
+        rows = []
+        for signature in signatures:
+            moved = []
+            for mask in signature:
+                new_mask = 0
+                for new_index, old_index in enumerate(ordered):
+                    if mask & (1 << old_index):
+                        new_mask |= 1 << new_index
+                moved.append(new_mask)
+            rows.append(tuple(moved))
+        answer[ordered] = canonicalize_rows(retics, rows)
+    return answer
+
+
 @lru_cache(maxsize=None)
 def coordinate_polynomials(descriptor: Descriptor) -> tuple[Poly, ...]:
     retics, signatures = descriptor
@@ -186,6 +217,27 @@ def pullback(descriptor: Descriptor, invariant: Sequence[tuple[Sequence[int], in
     for indices, coefficient in invariant:
         answer = poly_add(answer, monomial(tuple(indices)), int(coefficient))
     return answer
+
+
+def trinet_F_pullback(descriptor: Descriptor) -> Poly:
+    """Pull back ``abc-t^2`` on a three-port marginal.
+
+    The descriptor is built from exactly three ordered labels.  We embed the
+    assignments into four positions with a zero fourth character, so the
+    relevant coordinates in ``jc_representatives`` are
+    ``(1,1,0,0)``, ``(1,0,1,0)``, ``(0,1,1,0)``, and ``(1,2,3,0)``.
+    """
+    representatives = jc_representatives()
+    indexes = {
+        assignment: representatives.index(assignment)
+        for assignment in ((1, 1, 0, 0), (1, 0, 1, 0), (0, 1, 1, 0), (1, 2, 3, 0))
+    }
+    coordinates = coordinate_polynomials(descriptor)
+    a = coordinates[indexes[(1, 1, 0, 0)]]
+    b = coordinates[indexes[(1, 0, 1, 0)]]
+    c = coordinates[indexes[(0, 1, 1, 0)]]
+    t = coordinates[indexes[(1, 2, 3, 0)]]
+    return poly_add(poly_mul(poly_mul(a, b), c), poly_mul(t, t), scale=-1)
 
 
 def parse_literal(path: Path, name: str):

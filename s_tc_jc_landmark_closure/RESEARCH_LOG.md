@@ -87,3 +87,23 @@
   only the corrected incidence-scaling gauge on the chosen arm.
 - The correction removes the fictitious-port gap and is now the version sent
   to adversarial review.
+
+## 2026-08-09T21:35:00-07:00 — primary atlas defect caught and quarantined
+
+- Before promoting the new bounded-atlas counts, an internal adversarial check
+  found that the deck contained every symmetry of quartets using the incoming
+  boundary but omitted four-outgoing-port marginals.  The affected counts and
+  incomplete relation stream are not evidence and will be regenerated.
+- Replaced the deck by every ordered restriction of every four-port subset of
+  the complete boundary tensor.
+- Added the seventh independent quartet invariant as inert coefficients, with
+  its historical file hash recorded.  Its historical indices run over the
+  fourteen nontrivial JC coordinates; the primary tensor engine includes the
+  trivial coordinate at index zero, so every index must be transported by
+  `+1`.  Omitting this transport falsely made the orbit nonhomogeneous.
+- After the explicit transport, the full 84-element invariant orbit is exactly
+  multihomogeneous in all four port arms.  This is now checked by
+  `primary/verify_multihomogeneity.py`.
+- Began a new graph-bound cycle-to-theta union-support compiler.  It retains
+  the source graph, target graph, port relation, restored support roles, exact
+  pullback, and strict sign witness for every completed directed relation.
