@@ -334,7 +334,7 @@ identical all-channel argument applies.
 
 ## 6. Exact conclusion and the lower activation block
 
-> **Theorem 6.1 (audit pending).** Along every exact-flat realizing
+> **Theorem 6.1.** Along every exact-flat realizing
 > sequence belonging to the 893 seeded or two top-activation rank-one
 > incidences, the full CTMC admits a bounded-step physical stopping time
 > satisfying (5.3)--(5.5). In particular, competing lower channels do not
@@ -538,7 +538,7 @@ endpoint moments. This construction uses an actual \(C\)-only target and
 then an additional unpaired maximal-source exit; it does not count the
 first debt-cancelling return as strict descent.
 
-> **Theorem 6.2 (audit pending).** The physical carrier theorem extends to
+> **Theorem 6.2.** The physical carrier theorem extends to
 > all 25 lower-activation incidences via (6.1)--(6.10).
 
 Combining Theorems 6.1 and 6.2 with the ten finite zero-boundary
@@ -546,7 +546,7 @@ incidences treats all 930 rank-one flat incidences at descriptor level.
 This still does not promote any support pair to recurrence until the
 descriptor episodes are composed with the global tier Foster theorem.
 
-The exact all-channel statements requiring independent audit are:
+The independent audit checked:
 
 1. the integrated upper moment (3.3);
 2. the submaximal \(o(1)\) estimate (3.4) under subpower tier separation;
@@ -555,7 +555,11 @@ The exact all-channel statements requiring independent audit are:
 5. the exact support assertions preceding (6.1); and
 6. the second, unpaired service in the cap-zero activation episode.
 
-Until that audit passes, Theorems 6.1--6.2 are not release claims.
+All six checks passed at the local carrier scope. A second independent
+replay of *rank_one_corrected_factorial_endpoint.md* then verified that the
+same episodes have strictly negative expected drift for the actual
+rate-corrected factorial potential, including arbitrarily slow subpower
+tier gaps. Neither audit is a pair-level recurrence claim.
 
 The scoped finite certificate is reproduced by
 
@@ -568,4 +572,6 @@ lower layer is proper and has weight one, and records dormant-geometry hash
 
     e645359a8ec1432f7093a703bccf4f309601d86ee5600582803677262f5ad5b2
 
-The executable deliberately records analytic_theorem_certified as false.
+The executable records the audited local corrected-factorial endpoint in a
+narrowly named flag. Its broader analytic and pair-level recurrence flags
+remain false; global T3-2 remains uncertified.

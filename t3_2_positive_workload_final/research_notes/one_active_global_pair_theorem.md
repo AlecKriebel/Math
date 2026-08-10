@@ -1,4 +1,10 @@
-# Global one-active pair theorem
+# Global one-active pair theorem (refuted candidate)
+
+> **Audit failure.** The mixed old-debt input used below is false. The exact
+> nested-entry obstruction is given in
+> *one_active_nested_entry_obstruction.md*. Consequently Theorem 1.1 and
+> the 1,227-pair promotion are withdrawn. Sections 2--5 remain a record of
+> the conditional gluing architecture only.
 
 ## 1. Scope and audit status
 
@@ -18,7 +24,7 @@ certificate identifies 1,227 residual pairs satisfying
 
 The finite selector and the analytic theorem are logically separate.
 
-> **Audit-pending Theorem 1.1 (one-active pair theorem).** Every support
+> **Withdrawn Theorem 1.1 (one-active pair theorem).** Every support
 > pair satisfying (1.1), in every strongly connected orientation and for
 > every positive rate vector, is classwise positive recurrent in physical
 > time.

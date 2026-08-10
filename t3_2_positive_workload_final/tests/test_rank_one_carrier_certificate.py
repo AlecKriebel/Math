@@ -49,8 +49,13 @@ class RankOneCarrierCertificateTests(unittest.TestCase):
             ]
         )
 
-    def test_scope_remains_audit_pending(self):
+    def test_local_endpoint_scope_is_separate_from_recurrence(self):
         self.assertFalse(self.result["analytic_theorem_certified"])
+        self.assertTrue(
+            self.result["corrected_factorial_local_endpoint_certified"]
+        )
+        self.assertFalse(self.result["pair_level_recurrence_certified"])
+        self.assertFalse(self.result["global_t3_2_certified"])
 
     def test_frozen_dormant_geometry_hash(self):
         self.assertEqual(

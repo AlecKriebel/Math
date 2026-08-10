@@ -1,4 +1,11 @@
-# One-active mixed-top killed carriers
+# One-active mixed-top killed carriers (uniform old-debt claim withdrawn)
+
+> **Refuted statement.** Lemma 4.1 and the old-debt part of Theorem 6.1
+> below are false as uniform physical-time assertions. The exact network
+> and vanishing nested-entry race are recorded in
+> *one_active_nested_entry_obstruction.md*. The surplus-service and
+> finite-carrier estimates remain useful locally, but this note must not be
+> cited as a certified old-debt or 3,075-incidence theorem.
 
 ## 1. Scope and status
 
@@ -18,9 +25,10 @@ incidences with a wholly top linkage; their sole countable shape is treated
 in *one_active_countable_phase_service.md*. This note treats the remaining
 3,075 incidences, in which every linkage meeting \({\cal H}_X\) is mixed.
 
-The result below is local. It proves the killed-carrier
+The intended result below is local. Its claimed killed-carrier
 service/coboundary and direct factorial-entropy episode on a finite
-generator-bad cross-section. It does not promote a support-pair count.
+generator-bad cross-section is now known to fail for consistent old debt
+created by nested slow entries. It does not promote a support-pair count.
 Global gluing to the generator-good region is a separate stopping-time
 statement.
 
@@ -146,7 +154,7 @@ Define scalar debt reaction by reaction:
 Only marks obtained from a physical path begun with \(D=0\) are called
 **consistent**.
 
-> **Lemma 4.1 (actual-target service reachability).** From every
+> **Withdrawn Lemma 4.1 (actual-target service reachability).** From every
 > consistent base state with \(D>0\), an unpaired top exit is reachable by a
 > finite physical reaction path. For a finite starting set \(E_0\), one may
 > choose these paths and one finite padding \(E\) uniformly. Hence there
@@ -242,7 +250,7 @@ Let
  \Phi(x)=h(x_X)+h(x_U)+h(x_V).                          \tag{6.1}
 \]
 
-> **Theorem 6.1 (mixed-top entropy block).** Fix a finite base set \(E_0\).
+> **Withdrawn Theorem 6.1 (mixed-top entropy block).** Fix a finite base set \(E_0\).
 > For every service-reachable base mark, and for every consistent mark with
 > old debt, there are \(T,p,C,N_0\) and stopping times \(\tau_N\) such that
 > \[

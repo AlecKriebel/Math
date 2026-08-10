@@ -322,3 +322,43 @@
 - Promoted only this exact branch. It is disjoint at the current ordered
   stage and changes the certified remainder from `(2155,191)` to
   `(2104,191)`. Global T3-2 remains uncertified.
+
+## 2026-08-10T13:30:10-07:00 - rank-one factorial endpoints audited
+
+- Proved and independently replayed the corrected-factorial endpoint
+  theorem for all 920 nonfinite exact-flat rank-one incidences. The replay
+  checked the exact \(\{B,2A\}\) generator inequality, the
+  \(\{2A,R+I\}\) factorial-ratio cancellation and killed exponential
+  moment, the independent zero-clock semigroup, subpower
+  propensity-times-log uniform integrability, and both carrier debt blocks.
+- Turned on only the narrowly named local endpoint flag. Pair-level
+  recurrence remained unclaimed and global T3-2 remained uncertified.
+- Encoded the exact rank-one no-promotion selector. The 310 rank-one pairs
+  split into 77 with a two-active promotion obstruction and 233 without.
+  The 233 local branch splits as 154 safe reversible all-active, 67
+  directed triple, and twelve with no all-active failure.
+- Found the load-bearing post-counterexample boundary: 92 of those 233
+  still have a feasible one-active failed descriptor. The remaining 141
+  have none and split \(72+57+12\) across the same all-active branches.
+  Their pair-level common-potential composition is a candidate under
+  independent audit; no recurrence count has yet been promoted.
+
+## 2026-08-10T13:38:46-07:00 - 141 rank-one no-promotion pairs certified
+
+- Repaired the only composition seam found by independent audit: the
+  reversible all-active theorem used continuous entropy while the carrier
+  used discrete log-factorial entropy. The exact detailed-balance
+  finite-difference identity bounds the discrete top drift by the same
+  curvature-cofactor monomials, and the lower factorial exit dominates by
+  a divergent logarithmic factor.
+- Independently replayed the full 141-pair selector and common-potential
+  proof: unique top-mask compatibility, all feasible descriptor branches,
+  the sequence-to-finite-exception step, duration and endpoint
+  integrability, nonexplosion, and classwise positive return all passed.
+- Promoted exactly the 141 positive no-promotion pairs having no
+  affine-feasible one-active failure. The 233-pair higher-dimensional local
+  theorem remains useful, but its other 92 pairs are explicitly blocked by
+  one-active failures.
+- The branch is disjoint from all prior ordered closures and changes the
+  certified remainder from \((2104,191)\) to \((1963,191)\). Global T3-2
+  remains uncertified.

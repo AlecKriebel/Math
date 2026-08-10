@@ -14,7 +14,7 @@ the 895 seeded/top-activation carrier incidences and the 25 cap-zero
 activation incidences. It does not compose different active dimensions
 and does not assert recurrence of a support pair.
 
-> **Candidate Theorem 1.1 (corrected-factorial carrier).** Fix arbitrary
+> **Theorem 1.1 (corrected-factorial carrier).** Fix arbitrary
 > strongly connected orientations and positive rates on a rank-one whole
 > top linkage \(L_*\), and let \(x_n\) realize one of the 920 nonfinite
 > exact-flat incidences treated in Theorems 6.1--6.2 of
@@ -40,8 +40,9 @@ window or independent zero-source wait has uniformly bounded expected
 has its exact negative logarithmic reward, while every submaximal positive
 edge contributes \(o(1)\) after propensity weighting.
 
-The word *candidate* is retained until this note receives an independent
-proof replay. In particular no analytic flag is changed here.
+An independent six-point proof replay has now checked this theorem at its
+stated local scope. Section 8 records the audit boundary. No pair-level or
+global recurrence flag follows from this result alone.
 
 ## 2. The common factorial-linear potential
 
@@ -343,9 +344,9 @@ where \(p\) has one interior zero \(r_*\), points toward it, and
 \tag{3.19}
 \]
 
-Equations (3.18)--(3.19) prove (3.17). The same calculation covers a
-two-node homogeneous support; a shared catalyst only changes \(p\) by a
-strictly positive factor on the stopped tube.
+Equations (3.18)--(3.19) prove (3.17). The same calculation covers each
+two-node homogeneous support in (6.2) directly. No bounded-catalyst time
+change is asserted or needed in Lemma 3.2.
 
 For \(\{B,2A\}\), put \(u=\alpha B\) and \(v=\beta(A)_2\). Rewriting
 (3.3) gives
@@ -574,8 +575,8 @@ conditioning on the interior event.
 
 ## 7. What this does and does not close
 
-Subject to independent audit, Candidate Theorem 1.1 closes the common
-corrected-factorial endpoint obligation for all 930 rank-one flat
+Theorem 1.1 closes the common corrected-factorial endpoint obligation for
+all 930 rank-one flat
 incidences: 895 direct, 25 lower-activation, and ten finite-class boundary
 incidences. The ten finite incidences need no stochastic episode.
 
@@ -587,9 +588,9 @@ the 298 all-active/two-active overlaps removes one possible correction
 conflict, but it does not perform that composition. In particular the
 twelve all-active linear-workload seams require separate treatment.
 
-## 8. Audit checklist
+## 8. Independent audit
 
-An independent replay should check, in order:
+An independent replay checked, in order:
 
 1. the exact \(\{B,2A\}\) identity (3.3) and bound (3.4);
 2. the uniform factorial-ratio expansion (3.9) and killed exponential
@@ -603,5 +604,16 @@ An independent replay should check, in order:
 6. the conversion of the 25-case workload debt coefficient into the
    factorial coefficient in (6.3).
 
-Until those checks pass, the executable carrier certificate must keep its
-analytic theorem flag false.
+All six checks passed. In particular, the replay independently derived the
+exact \(\beta(4A+2)+\alpha\) bound in (3.4), verified the
+\(-2\log J+\log K+\log(i!)\) cancellation in (3.9), checked compensation
+at the killed cofactor endpoint in (3.12), and confirmed that (4.5) is
+strong enough for arbitrary subpower gaps. It also checked the actual-target
+compact success event and the 25-case coefficient in (6.3).
+
+The audit qualification is exactly the one now stated after (3.19): a
+bounded shared catalyst could alter the physical scaling, but no such
+time-change occurs among the five zero-clock top supports. The audit
+certifies the local corrected-factorial episode only. Pair-level recurrence
+still requires the selector and common-potential composition described in
+Section 7.

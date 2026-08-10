@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Five exact interface families now have independently audited physical-time
+Six exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -12,7 +12,10 @@ proofs:
 4. all fourteen rank-two two-active supports selected by the current phase
    classifier, with fast support \(\{B,2A,B+C\}\); and
 5. the 51 all-active-only pairs whose fixed reversible two-node top satisfies
-   the curvature-cofactor hypothesis on every feasible failed descriptor.
+   the curvature-cofactor hypothesis on every feasible failed descriptor;
+   and
+6. the 141 rank-one no-promotion pairs with no affine-feasible one-active
+   failure.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -33,6 +36,14 @@ and the fixed affine correction preserves its logarithmic exit. A
 bad-sequence contradiction and stopped Dynkin formula give classwise positive
 recurrence without a finite inactive-coordinate box.
 
+The sixth proof starts from the audited discrete corrected-factorial
+endpoint for every exact-flat rank-one carrier. The no-promotion selector
+has 233 pairs; 92 retain a one-active failure and are excluded. For the
+other 141, one common factorial-linear potential handles every two-active
+failed episode, every all-active failed cone, and every passing descriptor.
+An exact reversible finite-difference bound prevents a hidden
+continuous/discrete potential switch.
+
 ## 2. Exact finite remainder
 
 After finite classes, common active invariants, full deficiency zero, the
@@ -42,11 +53,12 @@ pairs. The certified affine-stoichiometric feasibility theorem then closes
 another 143 positive and eight signed pairs. The audited fourteen-partner
 theorem closes fourteen more positive-invariant pairs and no signed pair.
 The audited all-active-only theorem then closes 51 additional, disjoint
-positive-invariant pairs and no signed pair.
+positive-invariant pairs and no signed pair. The audited rank-one
+no-promotion theorem closes another 141 positive pairs and no signed pair.
 The current certified remainder is
 
 \[
- 2104\quad\text{positive-invariant pairs},\qquad
+ 1963\quad\text{positive-invariant pairs},\qquad
  191\quad\text{signed pairs}.
 \]
 
@@ -76,20 +88,22 @@ from the one-copy complexes gives a unimolecular process on
 \(\{0,B,C\}\). A tagged-particle construction gives phase-type service times
 on the dominant-species clock and an explicit per-entry interruption bound.
 The only wholly top countable phase surviving the affine filter is the
-one-dimensional open pair \(\{0,U\}\). Its Poisson-averaged service block
-now supplies total unresolved-entry control, old-debt service, duration and
-endpoint moments, and direct factorial-entropy descent when its explicit
-service polynomial is nonzero. The remaining one-active obligation is to
-extend this common-entropy endpoint estimate to the mixed/killed top
-components and compose all tube exits without a switch potential.
+one-dimensional open pair \(\{0,U\}\). Its carrier-drain and
+Poisson-occupation estimates remain valid locally, but the proposed
+uniform mixed old-debt kernel is withdrawn. An exact nested-entry history
+makes its service probability \(O(1/X)\). The remaining one-active
+obligation is therefore a shell-dependent replacement with endpoint cost,
+not another finite-target minorization.
 
 The two-active certificate splits every feasible failed incidence into
 seeded promotion, dormant activation, a rank-one finite top shell, or the
 unique rank-two support \(\{B,2A,B+C\}\) up to relabeling. The three-active
 certificate finds one whole flat top linkage in every incidence and only five
-rank/deficiency shapes. The rank-two branch is now certified. Every rank-one
-incidence has an audited scalar-workload carrier or finite-class alternative,
-but its corrected-factorial endpoint estimate remains open.
+rank/deficiency shapes. The rank-two branch is now certified. Every
+rank-one flat incidence has an audited corrected-factorial carrier or
+finite-class alternative. The no-promotion selector converts this into 141
+pair-level recurrence theorems; promotion families and the 92 pairs with a
+one-active failure remain open.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five
@@ -109,5 +123,5 @@ Do not use any of the following:
 - lexicographic descent without lower-level endpoint-cost moments.
 
 No C3 counterexample is known. T3-2 remains plausible but uncertified until
-the mixed one-active entropy block, rank-one corrected-factorial endpoint
-lemma, and the resulting global tube composition are closed.
+the shell-dependent one-active replacement, the remaining two-active
+promotion families, and the resulting global tube composition are closed.

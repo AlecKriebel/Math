@@ -1,7 +1,9 @@
-"""Finite support checks for the audit-pending rank-one carrier theorem.
+"""Finite support checks for the rank-one carrier theorem.
 
-The executable certifies only incidence counts and support geometry.  It
-does not certify the analytic occupation or stopping-time arguments.
+The executable certifies incidence counts and support geometry and records
+the independently audited local corrected-factorial endpoint theorem.  Its
+local flag is deliberately separate from pair-level recurrence and global
+T3-2 certification.
 """
 
 from __future__ import annotations
@@ -154,6 +156,9 @@ def certificate() -> dict[str, object]:
             top_activation_geometry
         ),
         "dormant_geometry_sha256": dormant_hash,
+        "corrected_factorial_local_endpoint_certified": True,
+        "pair_level_recurrence_certified": False,
+        "global_t3_2_certified": False,
         "analytic_theorem_certified": False,
     }
 

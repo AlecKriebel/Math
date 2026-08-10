@@ -3,7 +3,7 @@
 This module certifies the finite support/tier geometry and records the exact
 scope of the independently audited all-active physical-time generator
 theorem.  The local analytic flag is deliberately separate from pair-level
-recurrence and global T3-2 certification, both of which remain false.
+recurrence and global T3-2 certification, which remain uncertified.
 """
 
 from __future__ import annotations

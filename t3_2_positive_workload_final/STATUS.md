@@ -76,10 +76,10 @@ ordered stage, so
 \]
 
 The remaining failed one-step geometry is covered by twelve canonical
-asymptotic gate types. The rank-two two-active phase and the exact
-all-active-only reversible-top branch are closed at their stated scopes.
-Rank-one two-active carriers, one-active stopped kernels, and their global
-common-entropy composition remain open. Candidate selector counts outside
+asymptotic gate types. The rank-two two-active phase, the exact
+all-active-only reversible-top branch, and the rank-one no-promotion branch
+are closed at their stated scopes. Two-active promotion carriers and
+one-active stopped kernels remain open. Candidate selector counts outside
 the audited branches are not being reported as recurrence theorems.
 
 The all-active interface has also passed an independent, dimension-local
@@ -87,8 +87,30 @@ proof replay for all 403 affected support pairs. Its disjoint branches are
 288 two-node rank-one tops (276 rate-adjusted entropy and twelve strict
 rate-dependent linear workloads), 91 arbitrary directed three-node
 rank-one tops, and 24 rank-two tops. This certifies only the all-active
-physical-time generator theorem. It does not promote any pair to positive
-recurrence; corrected-entropy endpoints and the lower-dimensional interface
-composition remain open.
+physical-time generator theorem. Pair promotion requires a separately
+audited lower-dimensional composition, as supplied for the exact 141-pair
+rank-one branch below.
+
+The exact-flat rank-one carrier has now passed a separate six-point audit
+at its local scope. The actual maximal-to-lower edge gives divergent
+negative drift for one rate-corrected factorial potential; fast top
+endpoints have uniformly bounded expected net cost, and the
+propensity-times-log estimate remains valid under arbitrarily slow
+subpower tier separation. This treats 895 direct/top-activation and 25
+cap-zero activation incidences; ten further boundary incidences are finite
+classwise.
+
+An exact no-promotion selector identifies 233 rank-one pairs for which the
+same potential closes every feasible failure with at least two active
+coordinates. Of these, 92 still have a one-active failed descriptor, so
+they are not recurrence claims. The remaining 141 have no one-active
+failure, and their common-potential composition has passed an independent
+replay. All 141 are positive residual pairs and are disjoint from the
+previous ordered branches. Hence
+\[
+ (2104,191)\longmapsto(1963,191).
+\]
+The broader 233-pair local flag does not promote the 92 one-active cases,
+and global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.

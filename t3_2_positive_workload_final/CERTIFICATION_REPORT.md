@@ -8,7 +8,7 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has produced five independently audited exact-scope physical-time
+The repair has produced six independently audited exact-scope physical-time
 theorem statements, with the fourteen-partner rank-two theorem sharing its
 top support with—but not overlapping—the earlier residual pair. None uses
 tightness as finite support, and none
@@ -31,7 +31,9 @@ T3-2 counterexample is known.
 | Affine-stoichiometric tier-feasibility theorem | Pass; 151 classwise closures |
 | Fourteen-partner rank-two theorem | Pass; 14 new pairs, zero prior overlap |
 | All-active-only reversible-top Foster theorem | Pass; 51 new positive pairs |
-| One-active killed-carrier lemma | Pass locally; stopped kernel remains open |
+| Rank-one corrected-factorial endpoint theorem | Pass at 920-incidence local scope |
+| Rank-one no-promotion Foster theorem | Pass; 141 new positive pairs |
+| One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
@@ -101,12 +103,25 @@ realizable boundary descriptor passes the ordinary tier criterion. The
 classwise Foster proof uses the same rate-adjusted entropy throughout and
 leaves 2,104 positive and 191 signed pairs.
 
+The audited exact-flat carrier supplies one common discrete
+factorial-linear endpoint potential for all 920 nonfinite rank-one
+incidences; ten additional zero-boundary incidences are finite classwise.
+The no-promotion selector contains 233 support pairs. Ninety-two retain a
+one-active failed descriptor and remain open. The other 141 have no such
+failure, and their all-active branch is either safe reversible (72),
+directed triple (57), or absent (12). The exact reversible finite-difference
+identity transfers the all-active curvature-cofactor bound to the same
+discrete potential used by the carrier. Common-entropy gluing then proves
+classwise positive recurrence for those 141 pairs. They are disjoint from
+the prior ordered branches, so the certified remainder is now 1,963
+positive and 191 signed pairs.
+
 Those raw counts compress to twelve canonical asymptotic gate types. The
-one-active local carrier theorem now identifies the exact stopped finite
-fast/slow kernel still needed; it does not yet prove that kernel's uniform
-old-debt clearance or marked Foster gluing. The two-active and three-active
-notes give exact rank/phase decompositions without promoting their structural
-labels to recurrence claims.
+one-active local carrier theorem now identifies the exact stopped
+fast/slow kernel still needed, and a counterexample rules out the proposed
+uniform mixed old-debt service margin. Two-active rank-one phases without
+promotion are closed by the 141-pair theorem; the remaining promotion
+families and the 92 no-promotion pairs with one-active failures remain open.
 
 ## Reproducible package status
 
@@ -130,7 +145,8 @@ metadata will be built only after every remaining analytic gate is closed.
 The accurate public status is:
 
 > Candidate T3-2 theorem under adversarial repair. The fourteen-partner
-> rank-two theorem, the 51-pair all-active-only Foster theorem, the other
-> exact physical-time interfaces, the complete finite tier geometry, and
-> 151 classwise affine-filter closures are certified; universal stopped-phase
-> and common-entropy closure remain open.
+> rank-two theorem, the 51-pair all-active-only Foster theorem, the
+> 141-pair rank-one no-promotion Foster theorem, the other exact
+> physical-time interfaces, the complete finite tier geometry, and 151
+> classwise affine-filter closures are certified; promotion and one-active
+> stopped-phase closure remain open.
