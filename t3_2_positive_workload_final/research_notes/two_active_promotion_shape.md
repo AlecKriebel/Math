@@ -42,15 +42,37 @@ incidence modes.  The exact row fingerprint is
 3e3616f8099b93ccd860db2e3320cd90300c8adf896f12127cae1a32f7d7bfe5
 ```
 
-The intended analytic split is now exact:
+The support split is exact, but the initially intended generic carrier
+inference is **withdrawn**. A dormant no-whole-top row can contain a fast
+null carrier which steals the cofactor from the first lower activation. For
+example, with
 
-1. generalize the audited mixed killed-carrier theorem from active
-   coordinate \(X\) to the integer descriptor workload \(H_w\), using the
-   lower/top source-scale ratio for the unresolved-arrival error;
+\[
+ L_0=\{B,A+C\},\qquad L_1=\{0,A,2A,A+B\},\qquad
+ w=(0,4,5),
+\]
+
+the isolated word \(0\to A+B\), \(A+C\to B\) has endpoint displacement
+\(2B-C\). At \(x_N=(0,N^4,N^5)\), every factorial-linear potential pays
+
+\[
+ \log\frac{(B+1)(B+2)}{C}+O(1)=3\log N+O(1).
+\]
+
+Thus a bounded-cap actual-target path is not by itself a corrected-factorial
+episode. The exact four-row orbit and a 36-pair structural selector are
+frozen in *two_active_promotion_obstruction.py*.
+
+The revised analytic split is:
+
+1. contract every null carrier on its physical occupation clock before
+   evaluating the lower activation;
 2. use the audited rank-one shell endpoint estimate on the 42 finite-phase
    rows; and
 3. use the one-dimensional Poisson corrector on the eight open rows.
 
-Each step must prove drift for the common corrected factorial potential and
-retain every physical reaction.  The executable deliberately leaves the
-analytic certification flag false.
+Each step must prove drift for the common corrected factorial potential,
+retain every physical reaction, and handle transient rather than stationary
+initialization. Exiting a fixed cofactor box is a new exact source-rate flag,
+not automatic promotion. The executable deliberately leaves the analytic
+certification flag false.

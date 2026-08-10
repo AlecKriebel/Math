@@ -8,7 +8,7 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has produced six independently audited exact-scope physical-time
+The repair has produced seven independently audited exact-scope physical-time
 theorem statements, with the fourteen-partner rank-two theorem sharing its
 top support with—but not overlapping—the earlier residual pair. None uses
 tightness as finite support, and none
@@ -33,12 +33,13 @@ T3-2 counterexample is known.
 | All-active-only reversible-top Foster theorem | Pass; 51 new positive pairs |
 | Rank-one corrected-factorial endpoint theorem | Pass at 920-incidence local scope |
 | Rank-one no-promotion Foster theorem | Pass; 141 new positive pairs |
+| Post-rank-one one-active Foster theorem | Pass; exact final 92 no-promotion positive pairs |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
-| Universal one-active/countable-phase closure | Open |
+| Universal one-active/countable-phase closure | Open outside the exact 92-pair branch |
 | Remaining twelve asymptotic interface gates | Open |
 | Global T3-2 theorem | Not certified |
 
@@ -106,9 +107,8 @@ leaves 2,104 positive and 191 signed pairs.
 The audited exact-flat carrier supplies one common discrete
 factorial-linear endpoint potential for all 920 nonfinite rank-one
 incidences; ten additional zero-boundary incidences are finite classwise.
-The no-promotion selector contains 233 support pairs. Ninety-two retain a
-one-active failed descriptor and remain open. The other 141 have no such
-failure, and their all-active branch is either safe reversible (72),
+The no-promotion selector contains 233 support pairs. The first 141 have no
+one-active failure, and their all-active branch is either safe reversible (72),
 directed triple (57), or absent (12). The exact reversible finite-difference
 identity transfers the all-active curvature-cofactor bound to the same
 discrete potential used by the carrier. Common-entropy gluing then proves
@@ -116,12 +116,25 @@ classwise positive recurrence for those 141 pairs. They are disjoint from
 the prior ordered branches, so the certified remainder is now 1,963
 positive and 191 signed pairs.
 
-Those raw counts compress to twelve canonical asymptotic gate types. The
-one-active local carrier theorem now identifies the exact stopped
-fast/slow kernel still needed, and a counterexample rules out the proposed
-uniform mixed old-debt service margin. Two-active rank-one phases without
-promotion are closed by the 141-pair theorem; the remaining promotion
-families and the 92 no-promotion pairs with one-active failures remain open.
+The other 92 positive pairs have exactly 272 one-active failed incidences:
+230 direct enabled-top rows, 32 zero-source seed rows, and ten frozen
+singleton faces. Strong connectivity gives an orientation-independent
+zero-contest surplus exit on each nonfrozen face. Refined tier compression
+makes both inactive populations eventually fixed on a genuine one-active
+subsequence; the stripped phase is a killed linear
+immigration/death/conversion chain with exponential endpoint and
+polynomial-log occupation moments. Its all-reactions-retained physical
+episode has common corrected-factorial drift \(-\log X+O(1)\) and bounded
+duration. Independent audit verified the lower-interruption compensator,
+same-potential gluing, and fixed-class frozen alternative. This disjoint
+branch leaves 1,871 positive and 191 signed pairs.
+
+Those raw counts compress to twelve canonical asymptotic gate types. A
+counterexample rules out the proposed *universal* uniform mixed old-debt
+service margin. The exact post-rank-one 92-pair branch avoids that obstruction
+through orientation-independent zero-contest service and is now closed. The
+remaining one-active supports require a shell-dependent or reflected-level
+replacement, while the two-active promotion families also remain open.
 
 ## Reproducible package status
 
@@ -146,7 +159,7 @@ The accurate public status is:
 
 > Candidate T3-2 theorem under adversarial repair. The fourteen-partner
 > rank-two theorem, the 51-pair all-active-only Foster theorem, the
-> 141-pair rank-one no-promotion Foster theorem, the other exact
+> full 233-pair rank-one no-promotion Foster theorem, the other exact
 > physical-time interfaces, the complete finite tier geometry, and 151
-> classwise affine-filter closures are certified; promotion and one-active
-> stopped-phase closure remain open.
+> classwise affine-filter closures are certified; promotion and the remaining
+> one-active stopped-phase closures remain open.

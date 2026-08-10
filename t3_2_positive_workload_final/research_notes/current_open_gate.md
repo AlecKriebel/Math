@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Six exact interface families now have independently audited physical-time
+Seven exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -15,7 +15,9 @@ proofs:
    the curvature-cofactor hypothesis on every feasible failed descriptor;
    and
 6. the 141 rank-one no-promotion pairs with no affine-feasible one-active
-   failure.
+   failure; and
+7. the remaining 92 rank-one no-promotion pairs, whose 272 one-active rows
+   satisfy the audited direct/seed/frozen zero-contest trichotomy.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -37,12 +39,20 @@ bad-sequence contradiction and stopped Dynkin formula give classwise positive
 recurrence without a finite inactive-coordinate box.
 
 The sixth proof starts from the audited discrete corrected-factorial
-endpoint for every exact-flat rank-one carrier. The no-promotion selector
-has 233 pairs; 92 retain a one-active failure and are excluded. For the
-other 141, one common factorial-linear potential handles every two-active
-failed episode, every all-active failed cone, and every passing descriptor.
-An exact reversible finite-difference bound prevents a hidden
+endpoint for every exact-flat rank-one carrier. For 141 of the 233
+no-promotion pairs, one common factorial-linear potential handles every
+two-active failed episode, every all-active failed cone, and every passing
+descriptor. An exact reversible finite-difference bound prevents a hidden
 continuous/discrete potential switch.
+
+The seventh proof treats the remaining 92 pairs. Their 272 one-active rows
+split into 230 direct enabled-top rows, 32 zero-source seed rows, and ten
+frozen singleton faces. On a genuine one-active subsequence the two inactive
+counts are eventually fixed. The resulting killed linear stripped phase has
+the endpoint and polynomial-log occupation moments needed to retain every
+lower interruption, and gives common corrected-factorial drift
+\(-\log X+O(1)\). Same-potential gluing closes the pair-level recurrence
+claim without reinstating a universal old-debt minorization.
 
 ## 2. Exact finite remainder
 
@@ -55,10 +65,12 @@ theorem closes fourteen more positive-invariant pairs and no signed pair.
 The audited all-active-only theorem then closes 51 additional, disjoint
 positive-invariant pairs and no signed pair. The audited rank-one
 no-promotion theorem closes another 141 positive pairs and no signed pair.
+The audited post-rank-one one-active theorem closes the remaining 92 pairs in
+that selector and no signed pair.
 The current certified remainder is
 
 \[
- 1963\quad\text{positive-invariant pairs},\qquad
+ 1871\quad\text{positive-invariant pairs},\qquad
  191\quad\text{signed pairs}.
 \]
 
@@ -101,9 +113,11 @@ unique rank-two support \(\{B,2A,B+C\}\) up to relabeling. The three-active
 certificate finds one whole flat top linkage in every incidence and only five
 rank/deficiency shapes. The rank-two branch is now certified. Every
 rank-one flat incidence has an audited corrected-factorial carrier or
-finite-class alternative. The no-promotion selector converts this into 141
-pair-level recurrence theorems; promotion families and the 92 pairs with a
-one-active failure remain open.
+finite-class alternative. The no-promotion selector converts this into 233
+pair-level recurrence theorems: 141 without a one-active failure and 92
+through the separately audited direct/seed/frozen one-active theorem.
+Promotion families and one-active supports outside this exact branch remain
+open.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five

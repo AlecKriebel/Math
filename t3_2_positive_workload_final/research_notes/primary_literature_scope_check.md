@@ -51,6 +51,27 @@ shielded phases, but not the remaining two-dimensional coupled seams.
 Primary source:
 <https://arxiv.org/abs/2012.07954>
 
+## Finite-phase Lamperti theory
+
+Lo and Wade, *Non-homogeneous random walks on a half strip with generalized
+Lamperti drifts* (Markov Processes Relat. Fields 23 (2017), 125--146;
+arXiv:1512.04242), classify several recurrent, null, and transient regimes
+for a level coordinate coupled to a finite internal phase. Their generalized
+Lamperti criterion contains phase--level correlation terms; averaging only
+the first level drift is not sufficient in the critical case.
+
+This is directly relevant to the reflected-level repair in
+`reflected_level_process_repair.md`: after a legitimate finite-phase
+reduction, a vanishing leading debt drift still requires a second-moment and
+phase-corrector audit. The theorem is not directly applicable to every T3-2
+episode because promotion boundaries, state-dependent physical holding
+times, and occasional macroscopic increments fall outside its basic
+half-strip hypotheses. It supplies a warning and a possible terminal tool,
+not a black-box proof of the one-active gate.
+
+Primary source:
+<https://arxiv.org/abs/1512.04242>
+
 ## Consequence for this project
 
 The existing primary theorems validate several branches and motivate the

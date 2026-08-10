@@ -79,8 +79,9 @@ The remaining failed one-step geometry is covered by twelve canonical
 asymptotic gate types. The rank-two two-active phase, the exact
 all-active-only reversible-top branch, and the rank-one no-promotion branch
 are closed at their stated scopes. Two-active promotion carriers and
-one-active stopped kernels remain open. Candidate selector counts outside
-the audited branches are not being reported as recurrence theorems.
+one-active stopped kernels outside the exact post-rank-one 92-pair branch
+remain open. Candidate selector counts outside the audited branches are not
+being reported as recurrence theorems.
 
 The all-active interface has also passed an independent, dimension-local
 proof replay for all 403 affected support pairs. Its disjoint branches are
@@ -88,8 +89,8 @@ proof replay for all 403 affected support pairs. Its disjoint branches are
 rate-dependent linear workloads), 91 arbitrary directed three-node
 rank-one tops, and 24 rank-two tops. This certifies only the all-active
 physical-time generator theorem. Pair promotion requires a separately
-audited lower-dimensional composition, as supplied for the exact 141-pair
-rank-one branch below.
+audited lower-dimensional composition, as supplied for the exact 233-pair
+rank-one no-promotion branch below.
 
 The exact-flat rank-one carrier has now passed a separate six-point audit
 at its local scope. The actual maximal-to-lower edge gives divergent
@@ -102,15 +103,26 @@ classwise.
 
 An exact no-promotion selector identifies 233 rank-one pairs for which the
 same potential closes every feasible failure with at least two active
-coordinates. Of these, 92 still have a one-active failed descriptor, so
-they are not recurrence claims. The remaining 141 have no one-active
-failure, and their common-potential composition has passed an independent
-replay. All 141 are positive residual pairs and are disjoint from the
-previous ordered branches. Hence
+coordinates. The 141 pairs with no one-active failure passed the first
+common-potential replay. The other 92 positive pairs have 272 one-active
+failed incidences, split exactly into 230 direct enabled-top rows, 32
+zero-source seed rows, and ten frozen singleton faces. An
+orientation-independent zero-contest lemma gives a surplus active exit on
+every nonfrozen face. On a genuine one-active subsequence the inactive
+populations are eventually fixed; stripping the active molecule gives a
+killed immigration/death/conversion phase with exponential endpoint and
+polynomial-log occupation moments. The same corrected factorial potential
+has drift \(-\log X+O(1)\) over a bounded-duration physical episode.
+Independent audit checked the strong-digraph path contraction,
+lower-interruption compensator, common-potential gluing, and frozen classes.
+All 233 are positive residual pairs and are disjoint from the previous
+ordered branches. The ordered updates are
 \[
  (2104,191)\longmapsto(1963,191).
 \]
-The broader 233-pair local flag does not promote the 92 one-active cases,
-and global T3-2 remains uncertified.
+\[
+ (1963,191)\longmapsto(1871,191).
+\]
+Global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.

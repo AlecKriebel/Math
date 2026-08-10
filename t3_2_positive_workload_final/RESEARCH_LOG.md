@@ -362,3 +362,38 @@
 - The branch is disjoint from all prior ordered closures and changes the
   certified remainder from \((2104,191)\) to \((1963,191)\). Global T3-2
   remains uncertified.
+
+## 2026-08-10T14:28:00-07:00 - remaining 92 rank-one pairs certified
+
+- Classified all 272 one-active failed incidences on the remaining 92
+  no-promotion pairs into 230 direct enabled-top rows, 32 zero-source seed
+  rows, and ten frozen singleton faces. The partition and its arbitrary
+  strongly connected orientation proof are exact at this support scope.
+- Replaced the invalid universal old-debt minorization by a zero-contest
+  physical episode. Refined tier compression makes both inactive counts
+  eventually fixed on a genuine one-active subsequence; the stripped killed
+  immigration/death/conversion phase has exponential endpoint and
+  polynomial-log occupation bounds. Retaining all lower interruptions costs
+  \(O(\log N/N)\), while the unperturbed endpoint gives common
+  corrected-factorial drift \(-\log N+O(1)\).
+- Independent adversarial audit verified the geometric seed restart, the
+  size-biased interruption compensator, the frozen-class alternative, and
+  same-potential classwise gluing. Focused replay passed all seven tests.
+- Promoted exactly these 92 disjoint positive pairs. The certified remainder
+  changes from \((1963,191)\) to \((1871,191)\). Universal one-active closure
+  outside this branch and global T3-2 remain uncertified.
+
+## 2026-08-10T14:47:08-07:00 - 36-pair promotion candidate held at audit gate
+
+- The exact promotion-only selector contains 36 pairs (32 positive and four
+  signed), each with one feasible two-active failure. Its seeded and
+  finite-shell estimates passed initial review.
+- Independent audit found that the dormant \(\{B,2A\}\) argument incorrectly
+  treated \(BC\)-source and \(AC/A\)-source clocks as being on the same
+  scale: the former can be \(\Theta(N^2)\) while the latter are
+  \(\Theta(N)\). Consequently the asserted uniform direct-race probability
+  and geometric debt bound are not proved.
+- No counterexample was found. The candidate note now records the required
+  finite priority-macrochain lemma and leaves every analytic, recurrence,
+  and global flag false. If repaired and certified, the correct ordered
+  arithmetic would be \((1871,191)\to(1839,187)\).
