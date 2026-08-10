@@ -537,7 +537,7 @@ def compile_size(
     }, (sources, targets, pairs)
 
 
-def compile_relation_records(n: int, working, invariants):
+def compile_relation_records(n: int, working, invariants, *, relation_tag: str | None = None):
     """Bind every necessary directed presentation pair to graph-derived algebra.
 
     Core-retaining target restrictions are compared as intrinsic selected
@@ -547,10 +547,11 @@ def compile_relation_records(n: int, working, invariants):
     exact marginalized tensor remains available for algebraic separation.
     """
     sources, targets, pairs = working
-    relation_path = HERE / "certificates" / f"bounded_relations_n{n}.jsonl.gz"
-    sign_path = HERE / "certificates" / f"bounded_sign_library_n{n}.json"
-    graph_path = HERE / "certificates" / f"bounded_relation_graphs_n{n}.jsonl.gz"
-    polynomial_path = HERE / "certificates" / f"bounded_relation_polynomials_n{n}.jsonl.gz"
+    suffix = f"_{relation_tag}" if relation_tag else ""
+    relation_path = HERE / "certificates" / f"bounded_relations_n{n}{suffix}.jsonl.gz"
+    sign_path = HERE / "certificates" / f"bounded_sign_library_n{n}{suffix}.json"
+    graph_path = HERE / "certificates" / f"bounded_relation_graphs_n{n}{suffix}.jsonl.gz"
+    polynomial_path = HERE / "certificates" / f"bounded_relation_polynomials_n{n}{suffix}.jsonl.gz"
     sign_library: dict[str, dict] = {}
     graph_library: dict[str, dict] = {}
     polynomial_library: dict[str, dict] = {}
@@ -877,6 +878,7 @@ def compile_relation_records(n: int, working, invariants):
     graph_stream_sha = write_library(graph_path, graph_library)
     polynomial_stream_sha = write_library(polynomial_path, polynomial_library)
     return {
+        "relation_tag": relation_tag,
         "relation_path": str(relation_path.relative_to(HERE.parent)),
         "relation_stream_sha256": hasher.hexdigest(),
         "sign_library_path": str(sign_path.relative_to(HERE.parent)),
@@ -907,6 +909,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sizes", nargs="+", type=int, default=(5, 6))
     parser.add_argument("--relations", action="store_true")
+    parser.add_argument("--relation-tag")
     parser.add_argument("--load-bit-cache", type=Path)
     parser.add_argument("--write-bit-cache", type=Path, default=BIT_CACHE_FILE)
     parser.add_argument("--output", type=Path, default=OUT)
@@ -953,7 +956,7 @@ def main() -> None:
         )
         if args.relations:
             row["bounded_relation_certificate"] = compile_relation_records(
-                n, working, invariants
+                n, working, invariants, relation_tag=args.relation_tag
             )
             if row["bounded_relation_certificate"]["failure_count"]:
                 raise SystemExit(f"relation failures at n={n}")

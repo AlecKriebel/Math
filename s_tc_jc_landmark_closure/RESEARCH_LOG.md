@@ -549,3 +549,16 @@
 - A verbose n=3 graph/state/binding package is being generated for
   representation-level comparison, and the clean-room n=3 base audit is
   active.  Primary closure alone does not promote the theorem.
+
+## 2026-08-10T04:57:00-07:00 — first sequential n=3 relation retry failed closed
+
+- The first nominally sequential unequal-directed-relation retry overlapped
+  the n=3 verbose probe producer and two independent semantic replays.  It
+  terminated with exit status 1 after reporting 4,000 raw presentations,
+  3,852 canonical relations, 330 regenerated sign bodies, and zero reported
+  algebraic failures, but before writing any relation stream, summary, or bit
+  cache.
+- Those progress numbers are diagnostic only.  The attempt is recorded in
+  `quarantine/bounded_relation_n3_retry1_failure.json` and contributes no
+  theorem evidence.  A genuinely isolated retry will run only after the
+  active probe and hard-cover replays release memory.
