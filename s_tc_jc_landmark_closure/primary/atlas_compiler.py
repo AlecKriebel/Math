@@ -555,6 +555,7 @@ def compile_relation_records(n: int, working, invariants):
     failures = []
     counts = defaultdict(int)
     records: dict[str, dict] = {}
+    raw_relations_examined = 0
 
     def register_graph(graph: RootedGraph) -> str:
         payload = {
@@ -644,6 +645,17 @@ def compile_relation_records(n: int, working, invariants):
             continue
         for source_presentation in source_presentations:
           for target_presentation in target_presentations:
+            raw_relations_examined += 1
+            if raw_relations_examined % 1000 == 0:
+                print(json.dumps({
+                    "bounded_relation_progress": {
+                        "outgoing": n,
+                        "raw_presentations": raw_relations_examined,
+                        "canonical_relations": len(records),
+                        "sign_cache": len(sign_cache),
+                        "failures": len(failures),
+                    }
+                }, sort_keys=True), flush=True)
             (
                 source_variant, _source_base, source_assignment,
                 source_descriptors, source_t_code,
@@ -758,6 +770,7 @@ def compile_relation_records(n: int, working, invariants):
             else:
                 difference = target_signature & ~source_signature
                 witness = None
+                candidates = []
                 while difference:
                     lowest = difference & -difference
                     absolute_bit = lowest.bit_length() - 1
@@ -768,6 +781,30 @@ def compile_relation_records(n: int, working, invariants):
                     if source_poly or not target_poly:
                         continue
                     cache_key = target_descriptors[chunk], invariant_index
+                    coefficients = tuple(target_poly.values())
+                    same_sign = (
+                        (all(value >= 0 for value in coefficients)
+                         and any(value > 0 for value in coefficients))
+                        or
+                        (all(value <= 0 for value in coefficients)
+                         and any(value < 0 for value in coefficients))
+                    )
+                    candidates.append((
+                        0 if cache_key in sign_cache else (1 if same_sign else 2),
+                        len(target_poly),
+                        chunk,
+                        invariant_index,
+                        cache_key,
+                        target_poly,
+                    ))
+                for (
+                    _cached,
+                    _term_count,
+                    chunk,
+                    invariant_index,
+                    cache_key,
+                    target_poly,
+                ) in sorted(candidates):
                     if cache_key not in sign_cache:
                         sign = certify_sign(target_poly)
                         exact_hash = hashlib.sha256(
@@ -848,6 +885,7 @@ def compile_relation_records(n: int, working, invariants):
         "polynomial_library_records": len(polynomial_library),
         "polynomial_library_stream_sha256": polynomial_stream_sha,
         "canonical_decorated_relations": len(records),
+        "raw_presentations_examined": raw_relations_examined,
         "counts": dict(sorted(counts.items())),
         "distinct_strict_polynomials": len(sign_library),
         "failures": failures[:20],
