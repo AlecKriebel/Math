@@ -1,70 +1,54 @@
-# Repair branch — submission withheld
+# Full-dimensional JC ambiguity at the weak/strong tree-child boundary
 
-This directory is undergoing a fail-closed mathematical and reproducibility
-repair.  The former version 1.1.1 positive-classification release is
-**withdrawn**: its bridge chart and finite-atlas promotion were not certified
-at the strength required by the manuscript.  The global standard
-strongly-tree-child level-2 Jukes--Cantor theorem is presently **unresolved**,
-not refuted.
+## Release-candidate status
 
-The currently established result is the all-`n` sharpness theorem for the
-explicit Theta family in `W_TC \ S_TC`, together with its exact stochastic
-and rank certificates.  It is not a counterexample in the standard `S_TC`
-class.
+This is the replacement for the withdrawn version 1.1.1 positive-
+classification release.  Its scope is intentionally narrower and matches the
+theorem that survives exact adversarial review:
 
-The authoritative repair status and gate ledger are:
+> For every `n >= 4`, two nonisomorphic and non-triangle-equivalent binary
+> level-2 semi-directed networks in `W_TC \ S_TC` have open Jukes--Cantor
+> model images with a common regular full-dimensional region of dimension
+> `2n`.
 
-- `repair/STATUS.md`
-- `repair/DEPENDENCY_GATES.md`
-- `repair/RESEARCH_LOG.md`
+The four-leaf common point is exact in a quadratic number field, lies strictly
+inside the positive-definite JC domain `Theta_0`, agrees in all 256 Fourier
+coordinates, and has nonzero rank-eight Jacobian minors on both models.  A
+positive analytic inverse for identical cherry substitution proves the
+all-taxa extension.
 
-Nothing under `submission/`, `source/paper/`, or
-`reproducibility/exact_release/` should be submitted or cited as a completed
-positive theorem until every repair gate is independently verified and this
-notice is replaced by a coherent release.
+The former claim that all standard strongly tree-child level-2 JC networks
+are identifiable modulo triangle redirection remains **unresolved, not
+refuted**.  It is not asserted anywhere in the active manuscript or release.
+The historical files are preserved under
+`quarantine/withdrawn_positive_v1.1.1/` and must not be submitted or cited as
+established.
 
-## Historical withdrawn files
+## Active files
 
-- `submission/Generic_Identifiability_STC_Level2_JC.pdf`
-- `submission/LaTeX_TikZ_Source.zip`
-- `submission/STC_JC_Reproducibility.zip`
-- journal-specific and generic cover letters
-- `submission/Referee_Guide.pdf`
+- `source/paper/main.tex` — canonical manuscript source
+- `submission/` — generated submission PDF after the final release gate
+- `reproducibility/` — primary and independent exact implementations
+- `docs/PRIOR_WORK_COMPARISON.md` — version-locked literature audit
+- `repair/` — forensic reports explaining why the old theorem was withdrawn
 
-## Historical verification commands
+## Reproduce
 
-```bash
-bash reproducibility/verify_quick.sh
-bash reproducibility/verify_full.sh
+The final release command will be:
+
+```sh
+python3 reproducibility/verify_release.py
 ```
 
-These commands belong to the withdrawn version 1.1.1 bundle.  A successful
-run is not evidence for the global theorem: parts of that bundle attest frozen
-bytes or conditional status records.  Replacement fail-closed commands will
-be published only after the mathematical repair closes.
+It checks the release manifest before running two independent exact
+implementations.  Build the manuscript with Tectonic:
 
-Licenses: manuscript text and figures are CC BY 4.0; code is MIT. No persistent
-archive identifier is claimed in this local release; the author should insert one
-after depositing the final bytes. The
-`MANIFEST.sha256` file is an integrity control, not a mathematical proof.
+```sh
+reproducibility/build_paper.sh
+```
 
-## Note on this Git mirror
+Until `repair/FALLBACK_SUBMISSION_SCOPE.md` is marked verified and the
+submission PDF is present, this branch remains a release candidate rather
+than a publication release.
 
-Three files from the original author-ready release are intentionally omitted
-here because they exceed practical Git hosting limits or duplicate bytes
-already present unpacked elsewhere in this directory:
-
-- `submission/LaTeX_TikZ_Source.zip` and `submission/STC_JC_Reproducibility.zip`
-  are zipped copies of `source/paper/` and `reproducibility/`, which are
-  already present unpacked; both zips are covered by `MANIFEST.sha256` and can
-  be regenerated with `reproducibility/build_component_archives.py`.
-- `reproducibility/publication/certificates/theta_k6_weak_signatures.bin`
-  (SHA-256 `92db30fa49ee4603ff27256d10898f785c42a252b4180503391ec09b175bb711`,
-  recorded in `MANIFEST.sha256`) is a 175&nbsp;MB exhaustive signature dump used
-  only by the optional `reproducibility/verify_regenerate_all.sh` full
-  regeneration path, not by `verify_quick.sh` or `verify_full.sh`. It can be
-  regenerated from `reproducibility/publication/src/regenerate_signature_relation.cpp`.
-
-The omissions listed above remain relevant to reconstructing the historical
-bundle, but the historical manifest and verifier hierarchy are not an
-authoritative proof ledger for the repaired project.
+Manuscript text and figures are licensed CC BY 4.0.  Code is MIT licensed.

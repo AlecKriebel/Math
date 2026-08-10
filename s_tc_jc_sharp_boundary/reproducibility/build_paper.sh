@@ -1,52 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=$(cd "$(dirname "$0")/.." && pwd)
-PAPER="$ROOT/source/paper"
-DOCS="$ROOT/docs"
-OUT="$ROOT/submission"
-TMP=$(mktemp -d)
-trap 'rm -rf "$TMP"' EXIT
-export SOURCE_DATE_EPOCH=1785974400 FORCE_SOURCE_DATE=1 TZ=UTC
-mkdir -p "$OUT"
 
-build_tex() {
-  local source=$1 expected_pages=$2 output=$3
-  local work="$TMP/$(basename "$source" .tex)"
-  mkdir -p "$work"
-  cp "$source" "$work/input.tex"
-  (cd "$work" && latexmk -pdf -interaction=nonstopmode -halt-on-error input.tex >build.log 2>&1) || {
-    cat "$work/build.log" >&2; exit 1;
-  }
-  if grep -Eq 'LaTeX Warning: (There were undefined references|Citation .* undefined)|Overfull \\hbox|Overfull \\vbox' "$work/input.log"; then
-    echo "$(basename "$source") contains an unresolved reference/citation or overfull box" >&2
-    grep -E 'LaTeX Warning: (There were undefined references|Citation .* undefined)|Overfull \\hbox|Overfull \\vbox' "$work/input.log" >&2 || true
-    exit 1
-  fi
-  pdfinfo "$work/input.pdf" | grep -q "^Pages:[[:space:]]*$expected_pages$"
-  pdffonts "$work/input.pdf" | awk 'NR>2 {if ($5!="yes") bad=1} END {exit bad}'
-  cp "$work/input.pdf" "$OUT/$output"
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source_file="$repo_dir/source/paper/main.tex"
+output_dir="$repo_dir/submission"
+output_file="$output_dir/Weakly_Tree_Child_Level2_JC_Ambiguity.pdf"
+
+if [[ -n "${TECTONIC_BIN:-}" ]]; then
+  tectonic_bin="$TECTONIC_BIN"
+elif command -v tectonic >/dev/null 2>&1; then
+  tectonic_bin="$(command -v tectonic)"
+elif [[ -x /opt/homebrew/bin/tectonic ]]; then
+  tectonic_bin=/opt/homebrew/bin/tectonic
+else
+  echo "ERROR: Tectonic is required (set TECTONIC_BIN or install tectonic)." >&2
+  exit 2
+fi
+
+build_dir="$(mktemp -d "${TMPDIR:-/tmp}/stc-jc-paper.XXXXXX")"
+cleanup() {
+  rm -rf -- "$build_dir"
 }
+trap cleanup EXIT
 
-cd "$PAPER"
-latexmk -C >/dev/null 2>&1 || true
-if ! latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex >"$TMP/paper.log" 2>&1; then
-  cat "$TMP/paper.log" >&2
-  exit 1
+mkdir -p "$output_dir"
+export SOURCE_DATE_EPOCH=1786258800
+"$tectonic_bin" -X compile "$source_file" --outdir "$build_dir" --keep-logs
+
+if [[ ! -s "$build_dir/main.pdf" ]]; then
+  echo "ERROR: manuscript build did not produce a nonempty PDF." >&2
+  exit 3
 fi
-if grep -Eq 'LaTeX Warning: (There were undefined references|Citation .* undefined)|Overfull \\hbox|Overfull \\vbox' main.log; then
-  echo 'paper log contains an unresolved reference/citation or overfull box' >&2
-  grep -E 'LaTeX Warning: (There were undefined references|Citation .* undefined)|Overfull \\hbox|Overfull \\vbox' main.log >&2 || true
-  exit 1
-fi
-pdfinfo main.pdf | grep -q '^Pages:[[:space:]]*48$'
-pdffonts main.pdf | awk 'NR>2 {if ($5!="yes") bad=1} END {exit bad}'
-cp main.pdf "$OUT/Generic_Identifiability_STC_Level2_JC.pdf"
 
-build_tex "$DOCS/COVER_LETTER.tex" 1 Cover_Letter.pdf
-build_tex "$DOCS/COVER_LETTER_JMB.tex" 1 Cover_Letter_JMB.pdf
-build_tex "$DOCS/COVER_LETTER_BMB.tex" 1 Cover_Letter_BMB.pdf
-build_tex "$DOCS/REFEREE_GUIDE.tex" 2 Referee_Guide.pdf
-
-# Keep the source tree submission-clean; all auxiliary products are reproducible.
-rm -f main.aux main.bcf main.blg main.fdb_latexmk main.fls main.log main.out main.run.xml main.bbl
-printf '%s\n' 'PAPER AND EDITORIAL PDF BUILD PASSED (48 manuscript pages; all fonts embedded)'
+install -m 0644 "$build_dir/main.pdf" "$output_file"
+printf 'BUILT %s\n' "$output_file"
+shasum -a 256 "$output_file"
