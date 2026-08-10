@@ -77,6 +77,10 @@ def main() -> None:
     selected_outgoing = None
     source_core_filter = None
     source_extra_count_filter = None
+    descriptor_cache_scope = None
+    descriptor_mask_normalization = None
+    state_rows_total = 0
+    root_rows_total = 0
 
     for summary_path in args.summary:
         payload = json.loads(summary_path.read_text())
@@ -92,6 +96,10 @@ def main() -> None:
             selected_outgoing = int(cover["selected_outgoing"])
             source_core_filter = payload.get("source_core_filter")
             source_extra_count_filter = payload.get("source_extra_count_filter")
+            descriptor_cache_scope = cover.get("descriptor_cache_scope")
+            descriptor_mask_normalization = cover.get(
+                "descriptor_mask_normalization"
+            )
         else:
             if normalized_bounded(run["bounded_summary"]) != bounded:
                 raise AssertionError("bounded summaries differ across shards")
@@ -103,6 +111,10 @@ def main() -> None:
                 raise AssertionError("source-core filters differ across shards")
             if payload.get("source_extra_count_filter") != source_extra_count_filter:
                 raise AssertionError("source-extra filters differ across shards")
+            if cover.get("descriptor_cache_scope") != descriptor_cache_scope:
+                raise AssertionError("descriptor-cache scopes differ across shards")
+            if cover.get("descriptor_mask_normalization") != descriptor_mask_normalization:
+                raise AssertionError("descriptor-mask normalizations differ across shards")
         start, stop = cover["selected_root_range"]
         if start is None or stop is None:
             raise AssertionError((summary_path, "not a range shard"))
@@ -121,9 +133,32 @@ def main() -> None:
         for destination, relative, key, label in streams:
             path = PROJECT / relative
             input_hashes[str(path)] = sha256(path)
-            union_rows(destination, read_stream(path, key), label)
+            incoming = read_stream(path, key)
+            if label == "states":
+                state_rows_total += len(incoming)
+            elif label == "roots":
+                root_rows_total += len(incoming)
+                shard_indices = {
+                    int(row["global_root_case_index"])
+                    for row in incoming.values()
+                }
+                if shard_indices != set(range(int(start), int(stop))):
+                    raise AssertionError((
+                        summary_path,
+                        "root rows do not equal declared shard range",
+                    ))
+            union_rows(destination, incoming, label)
 
     assert first_cover is not None and bounded is not None
+    if descriptor_cache_scope != "selected_port_count_and_exact_rooted_graph_id":
+        raise AssertionError(("unsafe descriptor-cache scope", descriptor_cache_scope))
+    if descriptor_mask_normalization != (
+        "minimum_of_quartet_side_and_complement_on_zero_sum_characters"
+    ):
+        raise AssertionError((
+            "unsafe descriptor-mask normalization",
+            descriptor_mask_normalization,
+        ))
     ordered_ranges = sorted(ranges)
     cursor = 0
     for start, stop in ordered_ranges:
@@ -135,8 +170,10 @@ def main() -> None:
     global_indices = {int(row["global_root_case_index"]) for row in roots.values()}
     if global_indices != set(range(all_root_cases)):
         raise AssertionError("root library global indices are not complete")
-    if len(states) != sum(1 for _ in states):
-        raise AssertionError("state union failed")
+    if len(states) != state_rows_total:
+        raise AssertionError(("duplicate state across disjoint root shards", state_rows_total, len(states)))
+    if len(roots) != root_rows_total:
+        raise AssertionError(("duplicate root across disjoint root shards", root_rows_total, len(roots)))
     if any(int(row.get("schema", -1)) != 3 for row in states.values()):
         raise AssertionError("non-schema-3 state in shard merge")
 

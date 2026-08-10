@@ -151,6 +151,13 @@ def full_deck(graph: RootedGraph, port_count: int):
                 for new_index, old_index in enumerate(quartet):
                     if mask & (1 << old_index):
                         new_mask |= 1 << new_index
+                # Every retained Fourier assignment has total character
+                # zero.  A split side and its complement therefore induce
+                # exactly the same JC factor.  Canonicalizing that choice
+                # zips the two root arcs into the effective edge multiplier
+                # of the locked semi-directed graph and makes the descriptor
+                # independent of an admissible root location.
+                new_mask = min(new_mask, 0b1111 ^ new_mask)
                 moved.append(new_mask)
             rows.append(tuple(moved))
         answer.append(canonicalize_rows(retics, rows))
@@ -438,8 +445,12 @@ def compile_hard_cover(
         for row in root_cases
     }
 
-    def cached_deck(graph, p, code):
-        key = p, code
+    def cached_deck(graph, p, graph_id):
+        # The sparse-polynomial variable order is induced by the exact rooted
+        # graph's arc order.  Distinct rooted presentations can have the same
+        # standard mixed code but only permutation-equivalent variable
+        # orders; merging them here breaks the graph-to-polynomial binding.
+        key = p, graph_id
         if key not in deck_cache:
             deck_cache[key] = full_deck(graph, p)
         return deck_cache[key]
@@ -571,11 +582,11 @@ def compile_hard_cover(
                 continue
 
             source_descriptors = cached_deck(
-                source_graph, current_p + 1, source_code
+                source_graph, current_p + 1, source_graph_id
             )
             if target_descriptors is None:
                 target_descriptors = cached_deck(
-                    target_graph, current_p + 1, target_code
+                    target_graph, current_p + 1, target_graph_id
                 )
             classification, witness = relation_witness(
                 source_descriptors, target_descriptors, invariants,
@@ -755,6 +766,10 @@ def compile_hard_cover(
         "unresolved": unresolved,
         "relation_path": str(path.relative_to(HERE.parent)),
         "relation_stream_sha256": hasher.hexdigest(),
+        "descriptor_cache_scope": "selected_port_count_and_exact_rooted_graph_id",
+        "descriptor_mask_normalization": (
+            "minimum_of_quartet_side_and_complement_on_zero_sum_characters"
+        ),
         "descriptor_cache_size": len(deck_cache),
         "sign_cache_size": len(sign_cache),
         "graph_library_records": len(graph_library),

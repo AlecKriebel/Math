@@ -58,6 +58,12 @@ def poly_from_row(row):
 
 
 def verify_run(summary: dict, project: Path):
+    assert summary.get("descriptor_cache_scope") == (
+        "selected_port_count_and_exact_rooted_graph_id"
+    )
+    assert summary.get("descriptor_mask_normalization") == (
+        "minimum_of_quartet_side_and_complement_on_zero_sum_characters"
+    )
     relation_path = project / summary["relation_path"]
     graph_path = project / summary["graph_library_path"]
     polynomial_path = project / summary["polynomial_library_path"]
@@ -116,11 +122,25 @@ def verify_run(summary: dict, project: Path):
 
     invariant_templates = load_invariants()
     descriptor_cache = {}
+    standard_tensor_descriptors = {}
 
     def descriptors(graph_id, p):
         key = graph_id, p
         if key not in descriptor_cache:
-            descriptor_cache[key] = full_deck(graph_objects[graph_id], p)
+            deck = full_deck(graph_objects[graph_id], p)
+            descriptor_cache[key] = deck
+            # Complement normalization must make the selected JC tensor
+            # independent of the admissible root placement representing one
+            # labelled standard mixed graph.  This assertion detects both a
+            # missing zero-sum quotient and presentation-dependent cache
+            # contamination on every graph actually cited by a state.
+            standard_key = graph_codes[graph_id], p
+            prior = standard_tensor_descriptors.setdefault(standard_key, deck)
+            assert prior == deck, (
+                "root-dependent normalized descriptor",
+                graph_id,
+                p,
+            )
         return descriptor_cache[key]
 
     path_ids = set()
@@ -186,7 +206,24 @@ def verify_run(summary: dict, project: Path):
             chunk, inv = witness["quartet_chunk"], witness["invariant_index"]
             source = pullback(descriptors(source_id, p)[chunk], invariant_templates[inv])
             actual = pullback(descriptors(target_id, p)[chunk], invariant_templates[inv])
-            assert not source and actual == poly_objects[polynomial_id]
+            assert not source and actual == poly_objects[polynomial_id], {
+                "state_id": state_id,
+                "source_graph_id": source_id,
+                "target_graph_id": target_id,
+                "selected_port_count": p,
+                "quartet_chunk": chunk,
+                "invariant_index": inv,
+                "polynomial_id": polynomial_id,
+                "source_term_count": len(source),
+                "actual_term_count": len(actual),
+                "stored_term_count": len(poly_objects[polynomial_id]),
+                "actual_exact_sha256": hashlib.sha256(
+                    repr(tuple(sorted(actual.items()))).encode()
+                ).hexdigest(),
+                "stored_exact_sha256": hashlib.sha256(
+                    repr(tuple(sorted(poly_objects[polynomial_id].items()))).encode()
+                ).hexdigest(),
+            }
             published_sign = witness["target_sign_certificate"]
             # Never trust a stored ``certified`` flag.  Rebuild the exact
             # sparse-coefficient proof, or refactor and recompute every
@@ -195,7 +232,13 @@ def verify_run(summary: dict, project: Path):
                 rebuilt_sign = certify_sign(actual, max_elevation=5)
             else:
                 rebuilt_sign = quick_power_sign(actual)
-            assert rebuilt_sign == published_sign
+            normalized_rebuilt_sign = json.loads(json.dumps(rebuilt_sign))
+            assert normalized_rebuilt_sign == published_sign, {
+                "state_id": state_id,
+                "polynomial_id": polynomial_id,
+                "rebuilt_sign": normalized_rebuilt_sign,
+                "published_sign": published_sign,
+            }
             assert rebuilt_sign["certified"]
 
         for coverage in row["raw_coverage"]:
@@ -282,6 +325,7 @@ def verify_run(summary: dict, project: Path):
         "graphs": len(graphs),
         "polynomials": len(polynomials),
         "root_cases": len(roots),
+        "standard_tensor_descriptor_orbits": len(standard_tensor_descriptors),
         "counts": dict(sorted(counts.items())),
         "status": "EXACTLY VERIFIED",
     }
@@ -290,11 +334,23 @@ def verify_run(summary: dict, project: Path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("summary", type=Path)
+    parser.add_argument("--output", type=Path)
     args = parser.parse_args()
-    payload = json.loads(args.summary.read_text())
+    summary_path = args.summary.resolve()
+    payload = json.loads(summary_path.read_text())
     project = Path(__file__).resolve().parent.parent
     results = [verify_run(row["hard_cover"], project) for row in payload["runs"]]
-    print(json.dumps({"status": "EXACTLY VERIFIED", "runs": results}, sort_keys=True))
+    result = {
+        "schema": "schema3-hard-cover-primary-replay-v1",
+        "status": "EXACTLY_VERIFIED",
+        "summary": str(summary_path.relative_to(project)),
+        "summary_sha256": hashlib.sha256(summary_path.read_bytes()).hexdigest(),
+        "runs": results,
+    }
+    if args.output:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n")
+    print(json.dumps(result, sort_keys=True))
 
 
 if __name__ == "__main__":
