@@ -37,6 +37,39 @@ tree-child level-2 Jukes--Cantor identifiability theorem.
   only theorem-bearing source and compact certificates, not the 531 MiB
   omnibus research tree.
 - Completion estimate: **7%**.
+
+## 2026-08-09T18:18:40-07:00 -- definitions and 2-sub-blob gate audited
+
+- Completed the independent definitions audit without changing the
+  manuscript.  The review is recorded in
+  `repair/reviews/DEFINITIONS_GATE_REVIEW.md`; the standalone finite validator
+  is `repair/independent/definitions/validate_standard_definitions.py`.
+- **Load-bearing correction:** the cyclomatic no-subblob lemma is valid for a
+  connected induced gadget with exactly two external incident edges, but that
+  is stronger than the literal 2-sub-blob definition in Brits et al., which
+  specifies two boundary vertices.  A standard strongly-tree-child 4-sunlet
+  has a literal two-boundary-vertex subgraph with four external incidences.
+  This is a definition/suppression inconsistency, not by itself a JC model
+  counterexample.
+- The exact two-edge case is fully closed.  Degree counting leaves only
+  `K4-e`; an independent Python census and a separately written C++ census
+  both find 25 LSA-valid binary acyclic rootings and zero tree-child rootings.
+- Found a second exact convention counterexample: if the manuscript's
+  undefined parallel-artifact rule is read as broad exhaustive
+  root/parallel/degree-two cleanup, it cannot define all admissible rootings
+  while retaining the narrower local `S_TC` arrow-tail criterion.  A narrow
+  reticulation-preserving reading excludes the witness but must be stated.
+- An independent read-only adversarial reviewer agreed with both P0 findings,
+  accepted the corrected cyclomatic proof, and found no additional defect in
+  the finite `K4-e` conclusion.  Its report is preserved at
+  `repair/independent/definitions/ADVERSARIAL_REVIEW.md`.
+- Gate D remains **OPEN/FAILED**.  The full positive theorem stays withheld.
+  The maximal definitionally safe scope is an explicitly narrow-standard,
+  operationally 2-subblob-reduced class, or a theorem modulo a separately
+  defined 2-subblob quotient with root-trapping arrows treated one-sidedly.
+- Definitions-audit task completion: **100%**.  Overall final-repair program
+  completion estimate: **9%**; this checkpoint removes an ambiguity but does
+  not verify any of the remaining global theorem gates.
 ## 2026-08-09T18:14:14-07:00 — bridge gate closed conditionally; fallback scope locked
 
 - The independent bridge reviewer proved the exact full-incidence scaling
