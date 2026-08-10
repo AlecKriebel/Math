@@ -12,13 +12,27 @@ from collections import defaultdict
 from dataclasses import dataclass
 import hashlib
 import gzip
-from itertools import combinations, permutations
+from itertools import chain, combinations, permutations
 import json
 from pathlib import Path
 import time
 
-from completion_universe import INCOMING, Completion, completions
-from graph_model import RootedGraph, canonical_mixed, sd0, t_quotient
+from completion_universe import (
+    INCOMING,
+    Completion,
+    completions,
+    marginal_incoming_completions,
+    selected_graph,
+    selected_retains_strong_core,
+)
+from graph_model import (
+    RootedGraph,
+    canonical_mixed,
+    mixed_local_strong,
+    rooted_validation,
+    sd0,
+    t_quotient,
+)
 from jc_tensor import (
     Descriptor,
     all_port_quartet_deck,
@@ -27,6 +41,7 @@ from jc_tensor import (
     invariant_orbit,
     parse_literal,
     pullback,
+    pullbacks_shared,
     primitive,
 )
 from sign_certificate import certify as certify_sign
@@ -40,6 +55,7 @@ SEVENTH_TEMPLATE_FILE = HERE / "seventh_invariant.json"
 EXPECTED_SEVENTH_SHA = "f737f9bee9cc04045355416b95629c18cb5aa9bc31d9719e319eb0a3907babed"
 SUPPORT_CERT = HERE / "certificates" / "support_universe.json"
 OUT = HERE / "certificates" / "bounded_atlas_summary.json"
+BIT_CACHE_FILE = HERE / "certificates" / "descriptor_bits_cache.json.gz"
 
 
 def stable_hash(value: object) -> str:
@@ -48,6 +64,37 @@ def stable_hash(value: object) -> str:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_bit_cache(path: Path, cache: dict[Descriptor, int]) -> None:
+    rows = [
+        {
+            "descriptor": [retics, [list(row) for row in signatures]],
+            "bits": str(bits),
+        }
+        for (retics, signatures), bits in sorted(cache.items())
+    ]
+    payload = json.dumps({"schema": 1, "rows": rows}, sort_keys=True, separators=(",", ":"))
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("wb") as raw:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as handle:
+            handle.write((payload + "\n").encode())
+
+
+def load_bit_cache(path: Path) -> dict[Descriptor, int]:
+    with gzip.open(path, "rt", encoding="utf-8") as handle:
+        payload = json.load(handle)
+    if payload.get("schema") != 1:
+        raise ValueError("unsupported descriptor-bit cache schema")
+    answer = {}
+    for row in payload["rows"]:
+        retics, signatures = row["descriptor"]
+        descriptor = int(retics), tuple(tuple(int(x) for x in values) for values in signatures)
+        bits = int(row["bits"])
+        prior = answer.setdefault(descriptor, bits)
+        if prior != bits:
+            raise ValueError("descriptor-bit cache conflict")
+    return answer
 
 
 def natural(label: str):
@@ -72,8 +119,11 @@ class ModelVariant:
     primitive_id: str
     graph: RootedGraph
     labels: tuple[str, ...]
-    selected_strong: bool
+    retains_strong_core: bool
     provenance: tuple
+    topology_graph: RootedGraph | None
+    dummy_labels: tuple[str, ...]
+    incoming_selected: bool
 
 
 @dataclass(frozen=True)
@@ -81,17 +131,22 @@ class BaseModel:
     primitive_id: str
     graph: RootedGraph
     labels: tuple[str, ...]
-    ordered: tuple[tuple[tuple[int, int, int], Descriptor], ...]
-    selected_strong: bool
+    ordered: tuple[tuple[tuple[int, int, int, int], Descriptor], ...]
+    retains_strong_core: bool
     provenance: tuple
     variants: tuple[ModelVariant, ...]
 
-    def deck_map(self) -> dict[tuple[int, int, int], Descriptor]:
+    def deck_map(self) -> dict[tuple[int, int, int, int], Descriptor]:
         return dict(self.ordered)
 
 
 def deck(graph: RootedGraph, labels: tuple[str, ...]):
-    return all_port_quartet_deck(graph, labels, INCOMING)
+    if len(labels) < 4:
+        raise ValueError("the quartet deck needs at least four selected boundaries")
+    # The tensor compiler treats its last argument only as the final ordered
+    # label.  It need not be the rooted presentation's structural incoming
+    # leaf; this is how a zero-character incoming boundary is marginalized.
+    return all_port_quartet_deck(graph, labels[:-1], labels[-1])
 
 
 def model_key(ordered: dict[tuple[int, int, int, int], Descriptor], n: int):
@@ -107,7 +162,7 @@ def source_bases(n: int) -> tuple[BaseModel, ...]:
         if int(row["outgoing_count"]) != n:
             continue
         graph = graph_from_record(row)
-        labels = outgoing(graph)
+        labels = (*outgoing(graph), INCOMING)
         ordered = deck(graph, labels)
         primitive = stable_hash({
             "kind": "source", "core": row["core_id"], "repair": row["repair_index"],
@@ -115,7 +170,9 @@ def source_bases(n: int) -> tuple[BaseModel, ...]:
             "mixed": canonical_mixed(sd0(graph))[0],
         })
         provenance = (row["core_id"], row["repair_index"], row["words"])
-        variant = ModelVariant(primitive, graph, labels, True, provenance)
+        variant = ModelVariant(
+            primitive, graph, labels, True, provenance, graph, (), True
+        )
         answer.append(BaseModel(
             primitive, graph, labels, tuple(sorted(ordered.items())), True,
             provenance, (variant,),
@@ -126,24 +183,43 @@ def source_bases(n: int) -> tuple[BaseModel, ...]:
 def target_bases(n: int) -> tuple[BaseModel, ...]:
     grouped: dict[tuple, dict[str, ModelVariant]] = defaultdict(dict)
     ordered_by_key = {}
-    for index, completion in enumerate(completions(n)):
+    # A target rooted presentation may place its structural incoming boundary
+    # either inside the selected source support or outside it.  The latter is
+    # represented by a zero-character dummy incoming leaf in the full strong
+    # completion.  Both cases have n+1 selected tensor ports.
+    completion_rows = chain(completions(n), marginal_incoming_completions(n + 1))
+    for index, completion in enumerate(completion_rows):
         graph = completion.graph
-        labels = tuple(sorted(completion.selected_labels, key=natural))
+        selected = tuple(sorted(completion.selected_labels, key=natural))
+        labels = ((*selected, INCOMING) if completion.incoming_selected else selected)
+        if len(labels) != n + 1:
+            raise AssertionError((n, completion.incoming_selected, labels))
         ordered = deck(graph, labels)
-        strong = not completion.dummy_labels
+        retains_core = (
+            completion.incoming_selected and selected_retains_strong_core(completion)
+        )
         kind = "cycle" if completion.core_id == "cycle" else "theta"
         primitive = stable_hash({
             "kind": "target", "core": completion.core_id,
             "sink_mask": completion.selected_sink_mask,
             "repair": completion.repair_index, "words": completion.words,
             "selected": completion.selected_labels, "dummies": completion.dummy_labels,
+            "incoming_selected": completion.incoming_selected,
             "arcs": graph.arcs, "labels": graph.labels,
         })
         provenance = (
             completion.core_id, completion.selected_sink_mask, completion.repair_index,
-            completion.words, completion.dummy_labels,
+            completion.words, completion.dummy_labels, completion.incoming_selected,
         )
-        variant = ModelVariant(primitive, graph, labels, strong, provenance)
+        topology_graph = selected_graph(completion) if retains_core else None
+        if topology_graph is not None:
+            valid, problems = rooted_validation(topology_graph)
+            if not valid or not mixed_local_strong(sd0(topology_graph)):
+                raise AssertionError((completion.core_id, completion.words, problems))
+        variant = ModelVariant(
+            primitive, graph, labels, retains_core, provenance, topology_graph,
+            completion.dummy_labels, completion.incoming_selected,
+        )
         ordered_tuple = tuple(sorted(ordered.items()))
         key = kind, ordered_tuple
         ordered_by_key[key] = ordered_tuple
@@ -157,13 +233,15 @@ def target_bases(n: int) -> tuple[BaseModel, ...]:
     answer = []
     for key in sorted(grouped, key=repr):
         variants = tuple(grouped[key][variant_key] for variant_key in sorted(grouped[key]))
-        representative = min(variants, key=lambda row: (not row.selected_strong, row.primitive_id))
+        representative = min(
+            variants, key=lambda row: (not row.retains_strong_core, row.primitive_id)
+        )
         answer.append(BaseModel(
             representative.primitive_id,
             representative.graph,
             representative.labels,
             ordered_by_key[key],
-            representative.selected_strong,
+            representative.retains_strong_core,
             representative.provenance,
             variants,
         ))
@@ -177,13 +255,24 @@ def descriptor_bits(descriptor: Descriptor, invariants, cache: dict[Descriptor, 
             coordinate_values_mod(descriptor, seed)
             for seed in (101, 1009, 10007)
         )
+        exact_candidates = []
         for index, invariant in enumerate(invariants):
             modular_nonzero = any(
                 invariant_value_mod(coordinates, invariant)
                 for coordinates in evaluations
             )
-            if modular_nonzero or pullback(descriptor, invariant):
+            if modular_nonzero:
                 bits |= 1 << index
+            else:
+                exact_candidates.append((index, invariant))
+        if exact_candidates:
+            candidate_invariants = tuple(invariant for _index, invariant in exact_candidates)
+            for (index, _invariant), polynomial in zip(
+                exact_candidates,
+                pullbacks_shared(descriptor, candidate_invariants),
+            ):
+                if polynomial:
+                    bits |= 1 << index
         cache[descriptor] = bits
     return cache[descriptor]
 
@@ -194,15 +283,20 @@ def labelled_signature(
     invariants,
     cache: dict[Descriptor, int],
 ) -> tuple[int, tuple[Descriptor, ...]]:
-    n = len(assignment)
-    inverse = [0] * n
+    # ``assignment`` transports *every* boundary position, including the
+    # distinguished incoming boundary used by this rooted presentation, to
+    # the fixed labels of the source relation.  The standard semi-directed
+    # topology does not retain an incoming-port colour, so restricting this
+    # permutation to outgoing ports would omit genuine relations (including
+    # ordinary-T variants whose admissible incoming boundary changes).
+    p = len(assignment)
+    inverse = [0] * p
     for position, actual in enumerate(assignment):
         inverse[actual] = position
     ordered = base.deck_map()
     signature = 0
     descriptors = []
-    inverse.append(n)  # the incoming boundary is fixed by outgoing relabelling
-    for chunk, actual_quartet in enumerate(combinations(range(n + 1), 4)):
+    for chunk, actual_quartet in enumerate(combinations(range(p), 4)):
         positional = tuple(inverse[value] for value in actual_quartet)
         descriptor = ordered[positional]
         descriptors.append(descriptor)
@@ -212,17 +306,29 @@ def labelled_signature(
 
 def labelled_records(
     bases: tuple[BaseModel, ...], n: int, invariants, cache,
-    *, topology_filter: set[int] | None = None, topology_for_all: bool = False,
+    *,
+    topology_filter: set[int] | None = None,
+    topology_for_all: bool = False,
+    anchor_source_labels: bool = False,
 ):
     records: dict[int, dict] = {}
     raw = 0
     for base in bases:
-        for assignment in permutations(range(n)):
+        # Base positions are ``(*outgoing, incoming)``.  Anchor all source
+        # boundary labels simultaneously, but allow the target's rooted
+        # incoming position to correspond to any source boundary.
+        assignments = (
+            (tuple(range(n + 1)),)
+            if anchor_source_labels
+            else permutations(range(n + 1))
+        )
+        for assignment in assignments:
             raw += 1
             signature, descriptors = labelled_signature(base, assignment, invariants, cache)
             row = records.setdefault(signature, {
                 "presentations": {},
-                "strengths": set(),
+                "variant_presentations": {},
+                "core_retention_statuses": set(),
                 "kinds": set(),
                 "t_codes": set(),
                 "variant_ids": set(),
@@ -232,20 +338,35 @@ def labelled_records(
             descriptor_hash = stable_hash(descriptors)
             for variant in base.variants:
                 kind = "cycle" if variant.provenance[0] == "cycle" else "theta"
-                presentation_key = (variant.selected_strong, kind, descriptor_hash)
+                presentation_key = (variant.retains_strong_core, kind, descriptor_hash)
                 row["presentations"].setdefault(
                     presentation_key, (variant, base, assignment, descriptors)
                 )
-                row["strengths"].add(variant.selected_strong)
+                row["core_retention_statuses"].add(variant.retains_strong_core)
                 row["kinds"].add(kind)
                 row["variant_ids"].add(variant.primitive_id)
                 row["presentation_coverage"][presentation_key].add(variant.primitive_id)
+                variant_key = stable_hash({
+                    "primitive": variant.primitive_id,
+                    "assignment": assignment,
+                    "descriptor_deck": descriptor_hash,
+                })
+                variant_t_code = None
                 if topology_for_all or (topology_filter is not None and signature in topology_filter):
-                    if variant.selected_strong:
-                        mixed = sd0(relabel_selected(variant.graph, variant.labels, assignment))
+                    if variant.retains_strong_core:
+                        if variant.topology_graph is None:
+                            raise AssertionError("strong variant lacks selected topology graph")
+                        mixed = sd0(relabel_selected(
+                            variant.topology_graph, variant.labels, assignment
+                        ))
                         t_code = canonical_mixed(t_quotient(mixed))[0]
+                        variant_t_code = t_code
                         row["t_codes"].add(t_code)
                         row["presentation_t_codes"][presentation_key].add(t_code)
+                row["variant_presentations"].setdefault(
+                    variant_key,
+                    (variant, base, assignment, descriptors, variant_t_code),
+                )
     return records, raw
 
 
@@ -278,6 +399,8 @@ def directed_pairs(sources: dict[int, dict], targets: dict[int, dict], chunks: i
 
 
 def relabel_selected(graph: RootedGraph, labels: tuple[str, ...], assignment: tuple[int, ...]) -> RootedGraph:
+    if len(assignment) != len(labels):
+        raise ValueError("boundary assignment must cover every selected position")
     mapping = {label: f"L_{actual}" for label, actual in zip(labels, assignment)}
     return RootedGraph(
         graph.root,
@@ -288,21 +411,46 @@ def relabel_selected(graph: RootedGraph, labels: tuple[str, ...], assignment: tu
 
 def equal_topology_audit(common_signatures: set[int], sources: dict[int, dict], targets: dict[int, dict]):
     failures = []
-    weak = 0
+    nonretained = 0
     checked = 0
+    presentation_matrix: dict[str, int] = defaultdict(int)
     for signature in common_signatures:
-        source_t = set(sources[signature]["t_codes"])
-        target_t = set(targets[signature]["t_codes"])
-        weak += int(False in targets[signature]["strengths"])
-        checked += len(source_t) * len(target_t)
-        if len(source_t) != 1 or len(target_t) != 1 or source_t != target_t:
-            failures.append({
-                "signature_sha": hashlib.sha256(str(signature).encode()).hexdigest(),
-                "source_t_classes": len(source_t), "target_t_classes": len(target_t),
-                "source_only": sorted(source_t - target_t)[:2],
-                "target_only": sorted(target_t - source_t)[:2],
-            })
-    return {"failures": failures, "common_signatures_also_having_a_weak_presentation": weak, "t_class_comparisons": checked}
+        nonretained_here = False
+        source_presentations = sources[signature]["presentation_t_codes"]
+        target_presentations = targets[signature]["presentation_t_codes"]
+        for source_key, source_t0 in source_presentations.items():
+            source_retains, source_kind, _ = source_key
+            if not source_retains:
+                raise AssertionError("source support presentation loses its primitive core")
+            source_t = set(source_t0)
+            for target_key in targets[signature]["presentations"]:
+                target_retains, target_kind, _ = target_key
+                presentation_matrix[
+                    f"{source_kind}_to_{target_kind}_target_"
+                    f"{'retained' if target_retains else 'nonretained'}"
+                ] += 1
+                if not target_retains:
+                    nonretained_here = True
+                    continue
+                target_t = set(target_presentations.get(target_key, ()))
+                checked += len(source_t) * len(target_t)
+                if len(source_t) != 1 or len(target_t) != 1 or source_t != target_t:
+                    failures.append({
+                        "signature_sha": hashlib.sha256(str(signature).encode()).hexdigest(),
+                        "source_kind": source_kind,
+                        "target_kind": target_kind,
+                        "source_t_classes": len(source_t),
+                        "target_t_classes": len(target_t),
+                        "source_only": sorted(source_t - target_t)[:2],
+                        "target_only": sorted(target_t - source_t)[:2],
+                    })
+        nonretained += int(nonretained_here)
+    return {
+        "failures": failures,
+        "common_signatures_also_having_a_nonretaining_presentation": nonretained,
+        "strong_presentation_t_class_comparisons": checked,
+        "equal_signature_presentation_matrix": dict(sorted(presentation_matrix.items())),
+    }
 
 
 def compile_size(n: int, invariants, bit_cache):
@@ -310,7 +458,8 @@ def compile_size(n: int, invariants, bit_cache):
     sources_base = source_bases(n)
     targets_base = target_bases(n)
     sources, source_raw = labelled_records(
-        sources_base, n, invariants, bit_cache, topology_for_all=True,
+        sources_base, n, invariants, bit_cache,
+        topology_for_all=True, anchor_source_labels=True,
     )
     targets, target_raw = labelled_records(
         targets_base, n, invariants, bit_cache, topology_filter=set(sources),
@@ -320,9 +469,11 @@ def compile_size(n: int, invariants, bit_cache):
     strict = len(pairs) - len(equal)
     common = set(sources) & set(targets)
     topology = equal_topology_audit(common, sources, targets)
-    strength_signatures: dict[str, int] = defaultdict(int)
+    retention_signatures: dict[str, int] = defaultdict(int)
     for row in targets.values():
-        strength_signatures[repr(tuple(sorted(row["strengths"])))] += 1
+        retention_signatures[
+            repr(tuple(sorted(row["core_retention_statuses"])))
+        ] += 1
     pair_target_kinds: dict[str, int] = defaultdict(int)
     pair_kind_matrix: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
     for source, target in pairs:
@@ -340,7 +491,7 @@ def compile_size(n: int, invariants, bit_cache):
         "target_raw_labelled": target_raw,
         "source_signatures": len(sources),
         "target_signatures": len(targets),
-        "target_signature_strength_status": dict(strength_signatures),
+        "target_signature_core_retention_status": dict(retention_signatures),
         "common_signatures": len(common),
         "necessary_directed_pairs": len(pairs),
         "equal_pairs": len(equal),
@@ -357,128 +508,206 @@ def compile_size(n: int, invariants, bit_cache):
 
 
 def compile_relation_records(n: int, working, invariants):
-    """Bind every theta-directed necessary pair to graph-derived algebra."""
+    """Bind every necessary directed presentation pair to graph-derived algebra.
+
+    Core-retaining target restrictions are compared as intrinsic selected
+    topologies; non-core-retaining target restrictions retain their full
+    strong completion graph and are marked for the support-completion gate.
+    Thus a dummy completion can never be promoted to a topology, while its
+    exact marginalized tensor remains available for algebraic separation.
+    """
     sources, targets, pairs = working
-    relation_path = HERE / "certificates" / f"theta_relations_n{n}.jsonl.gz"
-    sign_path = HERE / "certificates" / f"theta_sign_library_n{n}.json"
+    relation_path = HERE / "certificates" / f"bounded_relations_n{n}.jsonl.gz"
+    sign_path = HERE / "certificates" / f"bounded_sign_library_n{n}.json"
     sign_library: dict[str, dict] = {}
-    sign_cache: dict[tuple[Descriptor, int], tuple[object, dict]] = {}
+    sign_cache: dict[tuple[Descriptor, int], tuple[object, dict, str]] = {}
     failures = []
     counts = defaultdict(int)
-    hasher = hashlib.sha256()
+    records: dict[str, dict] = {}
 
-    def presentations(row, kind: str, *, require_strong: bool = False):
-        candidates = []
-        for key, value in row["presentations"].items():
-            strength, row_kind, _descriptor_hash = key
-            if row_kind != kind or (require_strong and not strength):
-                continue
-            candidates.append((key, value))
-        return tuple(candidates)
+    def labelled_mixed_code(variant: ModelVariant, assignment, *, topology: bool) -> str | None:
+        graph = variant.topology_graph if topology else variant.graph
+        if graph is None:
+            return None
+        moved = relabel_selected(graph, variant.labels, assignment)
+        return canonical_mixed(sd0(moved))[0]
 
-    with gzip.open(relation_path, "wt", encoding="utf-8", newline="\n") as handle:
-        for source_signature, target_signature in pairs:
-            if "theta" not in targets[target_signature]["kinds"]:
-                continue
-            source_presentations = presentations(sources[source_signature], "theta", require_strong=True)
-            target_presentations = presentations(targets[target_signature], "theta")
-            if not source_presentations or not target_presentations:
-                failures.append("missing theta presentation")
-                continue
-            for (source_key, source_presentation) in source_presentations:
-              for (target_key, target_presentation) in target_presentations:
-                source_variant, source_base, source_assignment, source_descriptors = source_presentation
-                target_variant, target_base, target_assignment, target_descriptors = target_presentation
-                source_coverage = sorted(sources[source_signature]["presentation_coverage"][source_key])
-                target_coverage = sorted(targets[target_signature]["presentation_coverage"][target_key])
-                source_t_codes_for_presentation = sorted(
-                    sources[source_signature]["presentation_t_codes"].get(source_key, ())
-                )
-                target_t_codes_for_presentation = sorted(
-                    targets[target_signature]["presentation_t_codes"].get(target_key, ())
-                )
-                record = {
-                "schema": 1,
+    for source_signature, target_signature in pairs:
+        source_presentations = tuple(
+            sources[source_signature]["variant_presentations"].values()
+        )
+        target_presentations = tuple(
+            targets[target_signature]["variant_presentations"].values()
+        )
+        if not source_presentations or not target_presentations:
+            failures.append({"missing_variant_presentations": [source_signature, target_signature]})
+            continue
+        for source_presentation in source_presentations:
+          for target_presentation in target_presentations:
+            (
+                source_variant, _source_base, source_assignment,
+                source_descriptors, source_t_code,
+            ) = source_presentation
+            (
+                target_variant, _target_base, target_assignment,
+                target_descriptors, target_t_code,
+            ) = target_presentation
+            source_kind = "cycle" if source_variant.provenance[0] == "cycle" else "theta"
+            target_kind = "cycle" if target_variant.provenance[0] == "cycle" else "theta"
+            source_code = labelled_mixed_code(source_variant, source_assignment, topology=True)
+            target_completion_code = labelled_mixed_code(
+                target_variant, target_assignment, topology=False
+            )
+            target_selected_code = labelled_mixed_code(
+                target_variant, target_assignment, topology=True
+            )
+            if source_code is None or target_completion_code is None:
+                raise AssertionError("missing graph in decorated relation")
+            relation_id = stable_hash({
+                "direction": "source_precedes_target",
+                "outgoing": n,
+                "source_side_coloured_mixed_graph": source_code,
+                "target_completion_side_coloured_mixed_graph": target_completion_code,
+                "target_selected_side_coloured_mixed_graph": target_selected_code,
+                "port_matching": tuple((f"L_{i}", f"L_{i}") for i in range(n + 1)),
+            })
+            record = {
+                "schema": 2,
+                "relation_id": relation_id,
                 "outgoing": n,
                 "direction": "source_precedes_target",
-                "source_signature_sha256": hashlib.sha256(str(source_signature).encode()).hexdigest(),
-                "target_signature_sha256": hashlib.sha256(str(target_signature).encode()).hexdigest(),
-                "source_primitive_id": source_variant.primitive_id,
-                "target_primitive_id": target_variant.primitive_id,
-                "source_position_to_label": source_assignment,
-                "target_position_to_label": target_assignment,
-                "port_correspondence": tuple(range(n)),
-                "source_roles": source_variant.provenance,
-                "target_roles": target_variant.provenance,
+                "source_kind": source_kind,
+                "target_kind": target_kind,
+                "target_retains_strong_core": target_variant.retains_strong_core,
+                "source_mixed_code_sha256": hashlib.sha256(source_code.encode()).hexdigest(),
+                "target_completion_mixed_code_sha256": hashlib.sha256(
+                    target_completion_code.encode()
+                ).hexdigest(),
+                "target_selected_mixed_code_sha256": (
+                    hashlib.sha256(target_selected_code.encode()).hexdigest()
+                    if target_selected_code is not None else None
+                ),
+                "source_signature_sha256": hashlib.sha256(
+                    str(source_signature).encode()
+                ).hexdigest(),
+                "target_signature_sha256": hashlib.sha256(
+                    str(target_signature).encode()
+                ).hexdigest(),
+                "port_correspondence": tuple(range(n + 1)),
                 "source_descriptor_deck_sha256": stable_hash(source_descriptors),
                 "target_descriptor_deck_sha256": stable_hash(target_descriptors),
-                "source_covered_primitive_ids": source_coverage,
-                "target_covered_primitive_ids": target_coverage,
-                "source_presentation_t_codes_sha256": stable_hash(source_t_codes_for_presentation),
-                "target_presentation_t_codes_sha256": stable_hash(target_t_codes_for_presentation),
-                }
-                if source_signature == target_signature:
-                    source_codes = sorted(sources[source_signature]["t_codes"])
-                    target_codes = sorted(targets[target_signature]["t_codes"])
-                    if len(source_codes) != 1 or len(target_codes) != 1 or source_codes != target_codes:
-                        failures.append({"equal_signature_not_T": record})
+                "raw_coverage": [{
+                    "source_primitive_id": source_variant.primitive_id,
+                    "target_primitive_id": target_variant.primitive_id,
+                    "source_position_to_label": source_assignment,
+                    "target_position_to_label": target_assignment,
+                    "source_incoming_actual_label": (
+                        source_assignment[source_variant.labels.index(INCOMING)]
+                        if INCOMING in source_variant.labels else None
+                    ),
+                    "target_incoming_actual_label": (
+                        target_assignment[target_variant.labels.index(INCOMING)]
+                        if INCOMING in target_variant.labels else None
+                    ),
+                    "source_roles": source_variant.provenance,
+                    "target_roles": target_variant.provenance,
+                }],
+            }
+            if source_signature == target_signature:
+                if target_variant.retains_strong_core:
+                    if source_t_code is None or target_t_code is None:
+                        failures.append({"missing_T_code": record})
+                        continue
+                    if source_t_code != target_t_code:
+                        failures.append({"equal_signature_non_T_strong_relation": record})
                         continue
                     record["classification"] = "isomorphism_or_T"
-                    record["t_quotient_code_sha256"] = hashlib.sha256(source_codes[0].encode()).hexdigest()
-                    counts["equal"] += 1
+                    record["t_quotient_code_sha256"] = hashlib.sha256(
+                        source_t_code.encode()
+                    ).hexdigest()
                 else:
-                    difference = target_signature & ~source_signature
-                    witness = None
-                    while difference:
-                        lowest = difference & -difference
-                        absolute_bit = lowest.bit_length() - 1
-                        difference ^= lowest
-                        chunk, invariant_index = divmod(absolute_bit, len(invariants))
-                        source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
-                        target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
-                        if source_poly or not target_poly:
-                            continue
-                        cache_key = target_descriptors[chunk], invariant_index
-                        if cache_key not in sign_cache:
-                            sign_cache[cache_key] = target_poly, certify_sign(target_poly)
-                        _poly, sign = sign_cache[cache_key]
-                        if sign["certified"]:
-                            poly_hash = sign["polynomial_sha256"]
-                            sign_library.setdefault(poly_hash, sign)
-                            witness = {
-                                "quartet_chunk": chunk,
-                                "invariant_index": invariant_index,
-                                "source_pullback": "0",
-                                "target_pullback_sha256": poly_hash,
-                                "target_pullback_primitive_sha256": hashlib.sha256(repr(primitive(target_poly)).encode()).hexdigest(),
-                                "strict_sign": sign["strict_sign"],
-                            }
-                            break
-                    if witness is None:
-                        failures.append({"no_strict_witness": record})
+                    record["classification"] = "pending_support_completion"
+            else:
+                difference = target_signature & ~source_signature
+                witness = None
+                while difference:
+                    lowest = difference & -difference
+                    absolute_bit = lowest.bit_length() - 1
+                    difference ^= lowest
+                    chunk, invariant_index = divmod(absolute_bit, len(invariants))
+                    source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
+                    target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
+                    if source_poly or not target_poly:
                         continue
-                    record["classification"] = "strict_open_cube_separation"
-                    record["witness"] = witness
-                    counts["strict"] += 1
-                record["relation_id"] = stable_hash({
-                "source": record["source_primitive_id"],
-                "target": record["target_primitive_id"],
-                "source_assignment": record["source_position_to_label"],
-                "target_assignment": record["target_position_to_label"],
-                "direction": record["direction"],
-                "ports": record["port_correspondence"],
-                })
-                record["binding_sha256"] = stable_hash(record)
-                line = json.dumps(record, sort_keys=True, separators=(",", ":")) + "\n"
+                    cache_key = target_descriptors[chunk], invariant_index
+                    if cache_key not in sign_cache:
+                        sign = certify_sign(target_poly)
+                        exact_hash = hashlib.sha256(
+                            repr(tuple(sorted(target_poly.items()))).encode()
+                        ).hexdigest()
+                        sign_cache[cache_key] = target_poly, sign, exact_hash
+                    _poly, sign, exact_hash = sign_cache[cache_key]
+                    if sign["certified"]:
+                        sign_library.setdefault(exact_hash, {
+                            **sign,
+                            "exact_polynomial_sha256": exact_hash,
+                        })
+                        witness = {
+                            "quartet_chunk": chunk,
+                            "invariant_index": invariant_index,
+                            "source_pullback": "0",
+                            "target_pullback_exact_sha256": exact_hash,
+                            "target_pullback_primitive_sha256": sign["polynomial_sha256"],
+                            "strict_sign": sign["strict_sign"],
+                        }
+                        break
+                if witness is None:
+                    failures.append({"no_strict_witness": record})
+                    continue
+                record["classification"] = "strict_open_cube_separation"
+                record["witness"] = witness
+
+            prior = records.get(relation_id)
+            if prior is None:
+                records[relation_id] = record
+            else:
+                comparable = lambda row: {
+                    key: value for key, value in row.items()
+                    if key not in {"raw_coverage"}
+                }
+                if comparable(prior) != comparable(record):
+                    failures.append({"canonical_relation_disagreement": [prior, record]})
+                    continue
+                prior["raw_coverage"].extend(record["raw_coverage"])
+
+    hasher = hashlib.sha256()
+    for record in records.values():
+        record["raw_coverage"] = sorted(
+            record["raw_coverage"], key=lambda value: stable_hash(value)
+        )
+        record["binding_sha256"] = stable_hash(record)
+        counts[record["classification"]] += 1
+        counts[
+            f"{record['source_kind']}_to_{record['target_kind']}_"
+            f"{record['classification']}"
+        ] += 1
+    with relation_path.open("wb") as raw:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as handle:
+            for relation_id in sorted(records):
+                line = (
+                    json.dumps(records[relation_id], sort_keys=True, separators=(",", ":"))
+                    + "\n"
+                ).encode()
                 handle.write(line)
-                hasher.update(line.encode())
+                hasher.update(line)
     sign_path.write_text(json.dumps(sign_library, sort_keys=True, indent=2) + "\n")
     return {
         "relation_path": str(relation_path.relative_to(HERE.parent)),
         "relation_stream_sha256": hasher.hexdigest(),
         "sign_library_path": str(sign_path.relative_to(HERE.parent)),
         "sign_library_sha256": sha256(sign_path),
-        "counts": dict(counts),
+        "canonical_decorated_relations": len(records),
+        "counts": dict(sorted(counts.items())),
         "distinct_strict_polynomials": len(sign_library),
         "failures": failures[:20],
         "failure_count": len(failures),
@@ -496,6 +725,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sizes", nargs="+", type=int, default=(5, 6))
     parser.add_argument("--relations", action="store_true")
+    parser.add_argument("--load-bit-cache", type=Path)
+    parser.add_argument("--write-bit-cache", type=Path, default=BIT_CACHE_FILE)
     args = parser.parse_args()
     template_sha = sha256(TEMPLATE_FILE)
     if template_sha != EXPECTED_TEMPLATE_SHA:
@@ -516,15 +747,22 @@ def main() -> None:
     invariants = invariant_orbit(templates)
     if len(invariants) != 84:
         raise AssertionError(len(invariants))
-    cache: dict[Descriptor, int] = {}
+    cache: dict[Descriptor, int] = (
+        load_bit_cache(args.load_bit_cache) if args.load_bit_cache else {}
+    )
+    loaded_descriptor_types = len(cache)
     runs = []
     for n in args.sizes:
         row, working = compile_size(n, invariants, cache)
         if args.relations:
-            row["theta_relation_certificate"] = compile_relation_records(n, working, invariants)
-            if row["theta_relation_certificate"]["failure_count"]:
+            row["bounded_relation_certificate"] = compile_relation_records(
+                n, working, invariants
+            )
+            if row["bounded_relation_certificate"]["failure_count"]:
                 raise SystemExit(f"relation failures at n={n}")
         runs.append(row)
+        if args.write_bit_cache:
+            write_bit_cache(args.write_bit_cache, cache)
         print(json.dumps(row, sort_keys=True), flush=True)
     payload = {
         "schema": 1,
@@ -534,8 +772,16 @@ def main() -> None:
         "seventh_template_sha256": seventh_sha,
         "invariant_orbit_size": len(invariants),
         "descriptor_types_exactly_expanded": len(cache),
+        "descriptor_types_loaded": loaded_descriptor_types,
         "runs": runs,
     }
+    if args.write_bit_cache:
+        write_bit_cache(args.write_bit_cache, cache)
+        payload["descriptor_bit_cache"] = {
+            "path": str(args.write_bit_cache.relative_to(HERE.parent)),
+            "sha256": sha256(args.write_bit_cache),
+            "records": len(cache),
+        }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
     print(json.dumps({"output": str(OUT), "descriptor_types": len(cache)}, sort_keys=True))

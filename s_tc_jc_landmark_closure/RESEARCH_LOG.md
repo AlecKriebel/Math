@@ -229,15 +229,16 @@
   rootable boundaries are `{C,D}`, and the physical port matching is fixed.
   Thus the two factors have no common admissible incoming boundary.  The
   relative permutation is `(2,3,0,1)`, outside the incoming-fixed subgroup.
-- A separate explicit four-boundary ordinary-`T` example was extracted from
+- **WITHDRAWN by the independent review recorded below.** A purported
+  four-boundary ordinary-`T` example was extracted from
   the primitive records.  Its source hash is
   `25e272478915938e49b980ad172aa4f590f44fba8d0c50aaecf826fef7f46623`,
   its target rooted-presentation hash is
   `2e3b531105573999bd129e4cfa105136cf074cf2924481e9d5f9aba13ae1932f`,
   and the full port map is `{0:2,1:3,2:0,3:1}`.  The source admits only
   physical boundary `0`, while the target admits only `1` or `2`, so no
-  incoming-to-incoming representative exists for this valid standard
-  semi-directed `T` relation.
+  incoming-to-incoming representative exists.  This last assertion is false:
+  both presentations admit physical boundary `1`.
 - The primary compiler has been repaired to anchor all source boundaries and
   enumerate all target boundary permutations.  This repair is not promoted:
   the complete graph-bound relation streams and a clean-room normalized
@@ -247,3 +248,65 @@
   is preserved.  Its graph-theoretic counterexample remains independently
   replayable, but the modified primary bytes are treated only as discovery
   code until the separate incoming-boundary reviewer agrees.
+
+## 2026-08-09T22:56:29-07:00 — marginalized target incoming role added
+
+- Full boundary permutations still do not cover a target rooted presentation
+  whose incoming boundary lies outside the selected source support.  Added a
+  second target-completion role in which that incoming leaf remains in the
+  full standard-strong graph but carries character zero.
+- The primary generator independently produced `1,983`, `4,155`, `7,909`,
+  and `13,983` such full completions for four through seven selected tensor
+  ports.  Every rooted graph and narrow standard reduction passes the exact
+  strong criterion.
+- Pilot four- and five-port runs introduce no new invariant-deck signature
+  and no core-retaining non-`T` equality, but every source common signature
+  now also has at least one non-core-retaining presentation.  Those equal
+  presentations are not dismissed: restoring their omitted incoming/support
+  roles is a new mandatory branch of the graph-bound hard cover.
+- The clean-room relation reviewer was interrupted and redirected to generate
+  this role independently.  No fixed-incoming or selected-incoming-only count
+  remains a theorem input.
+
+## 2026-08-10T00:02:00-07:00 — incoming-boundary counterexample corrected
+
+- The dedicated incoming-boundary reviewer independently verified the
+  TT-nested four-boundary example with disjoint admissible incoming sets.  It
+  therefore confirms that the fixed-`INCOMING` quotient is false and that the
+  target action must be the full boundary symmetric group.
+- The same reviewer refuted the separate purported ordinary-`T` witness
+  recorded at `2026-08-09T22:52:00-07:00`: both presentations admit physical
+  incoming boundary `1`.  An exhaustive check of the stored four-boundary
+  primitives found no replacement ordinary-`T` pair with disjoint incoming
+  sets.  That illustrative witness is withdrawn; it is not needed for the
+  fixed-`INCOMING` refutation.
+- The reviewer independently confirmed that a target structural incoming
+  boundary may lie outside the selected source support and must then be
+  represented as a zero-character dummy.  Its finite algebraic replay was
+  interrupted and is not used as a theorem certificate.
+
+## 2026-08-10T00:28:00-07:00 — primary full-boundary hard cover closes
+
+- Rebuilt the bounded local comparison with all source-anchored target
+  boundary permutations and both selected and marginalized target incoming
+  roles.  Every non-core-retaining equal selected tensor was followed through
+  sequential restoration of all omitted `D_REPAIR`, `D_SINK`, and `INCOMING`
+  roles, always bound to one fixed full source-target relation.
+- The exact primary census contains `5,344` fixed root cases and `40,072`
+  canonical restored relations.  It classifies them as `32,394` generic
+  polynomial separations, `1,538` strict open-cube separations, `6,051`
+  intermediate restoration states, `73` labelled-isomorphic rigid supports,
+  and `16` ordinary-`T` rigid supports.  There are no unresolved terminals and
+  no non-`T` survivor.
+- The fixed-full precondition is essential.  The adversarial design review
+  supplied an exact counterexample to lifting containment from a selected
+  marginal alone.  The active proof descends every restored prefix directly
+  from the same assumed full containment and never uses that false lift.
+- Upgraded the producer to emit content-addressed rooted graphs, complete
+  standard reductions, raw-to-canonical transports, exact polynomial bodies,
+  root-case entry records, restoration-parent bindings, and graph-derived
+  witness references.  A primary structural replay passes on a smoke shard.
+- Status remains candidate: a combined final-schema regeneration, an
+  independently written producer comparison, mutation tests, and the global
+  proof-logic audit are active.  No positive theorem is promoted from the
+  primary census alone.

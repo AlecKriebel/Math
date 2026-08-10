@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """End-to-end decorated cycle-source/theta-target JC separation compiler.
 
-The compiler closes the only bounded-support direction in which a weak theta
-restriction can hide its second reticulation from a rigid cycle support.  It
+The compiler closes the only bounded-support direction in which a
+non-core-retaining theta restriction can hide its second reticulation from a
+rigid cycle support.  It
 does not read a historical topology id, signature table, relation table, or
 separator assignment.  Every record is regenerated through
 
@@ -34,10 +35,17 @@ from atlas_compiler import (
     TEMPLATE_FILE,
     descriptor_bits,
     labelled_signature,
+    load_bit_cache,
     sha256,
     stable_hash,
 )
-from completion_universe import build_graph, completions, core_rows
+from completion_universe import (
+    build_graph,
+    completions,
+    core_rows,
+    selected_graph,
+    selected_retains_strong_core,
+)
 from graph_model import RootedGraph, canonical_mixed, mixed_local_strong, rooted_validation, sd0
 from jc_tensor import (
     Descriptor,
@@ -173,8 +181,16 @@ def extension_candidates(source: CyclePresentation, total: int, all_cycles):
 
 
 def selected_theta_equalities(invariants, cache, source_by_signature):
-    """Return every decorated weak-theta four-port equality presentation."""
-    records = {}
+    """Return every decorated cycle/theta four-port deck equality.
+
+    The strength flag is intrinsic to the selected restriction.  In
+    particular, it is *not* inferred from whether one chosen full completion
+    happens to contain a dummy repair leaf.  Weak equalities are promoted to
+    completed supports below; any selected-strong equality is quarantined as
+    a direct cross-generator survivor for separate classification.
+    """
+    weak_records = {}
+    strong_records = {}
     raw = 0
     for completion in completions(4):
         if completion.core_id == "cycle":
@@ -193,12 +209,22 @@ def selected_theta_equalities(invariants, cache, source_by_signature):
                 continue
             mapping = {label: f"L_{actual}" for label, actual in zip(labels, assignment)}
             graph = relabel(completion.graph, mapping)
+            retains_core = selected_retains_strong_core(completion)
+            selected_topology = (
+                relabel(selected_graph(completion), mapping) if retains_core else None
+            )
+            selected_code = (
+                canonical_mixed(sd0(selected_topology))[0]
+                if selected_topology is not None
+                else None
+            )
             full_code = canonical_mixed(sd0(graph))[0]
             dummy_roles = tuple(sorted(completion.dummy_labels))
             record = {
                 "source_code": source.mixed_code,
                 "source_signature_sha256": hashlib.sha256(str(signature).encode()).hexdigest(),
-                "target_selected_code": full_code,
+                "target_completion_code": full_code,
+                "target_selected_code": selected_code,
                 "target_graph": graph,
                 "target_core": completion.core_id,
                 "target_repair_index": completion.repair_index,
@@ -207,15 +233,24 @@ def selected_theta_equalities(invariants, cache, source_by_signature):
                 "dummy_roles": dummy_roles,
                 "selected_mapping": tuple(sorted(mapping.items())),
                 "target_descriptor_sha256": stable_hash(descriptors),
+                "target_retains_strong_core": retains_core,
             }
             key = stable_hash({
                 "source": source.mixed_code,
-                "target": full_code,
+                "target_completion": full_code,
+                "target_selected": selected_code,
                 "dummy_roles": dummy_roles,
                 "selected_mapping": record["selected_mapping"],
             })
-            records.setdefault(key, record)
-    return raw, tuple(records[key] for key in sorted(records))
+            bucket = (
+                strong_records if record["target_retains_strong_core"] else weak_records
+            )
+            bucket.setdefault(key, record)
+    return (
+        raw,
+        tuple(weak_records[key] for key in sorted(weak_records)),
+        tuple(strong_records[key] for key in sorted(strong_records)),
+    )
 
 
 def completed_targets(equality):
@@ -242,6 +277,9 @@ def completed_targets(equality):
 
 
 def relation_witness(source, target, total, invariants, sign_cache, sign_library):
+    def exact_polynomial_hash(poly):
+        return hashlib.sha256(repr(tuple(sorted(poly.items()))).encode()).hexdigest()
+
     # The cycle's unique sink is excluded.  Every such trinet is a tree
     # marginal and therefore has F=0; the exact assertion is replayed for
     # every compiled source graph rather than assumed from the role label.
@@ -258,16 +296,19 @@ def relation_witness(source, target, total, invariants, sign_cache, sign_library
             continue
         key = ("F", target_descriptor)
         if key not in sign_cache:
-            sign_cache[key] = certify_sign(target_poly)
-        sign = sign_cache[key]
+            sign_cache[key] = certify_sign(target_poly), exact_polynomial_hash(target_poly)
+        sign, exact_hash = sign_cache[key]
         if sign["certified"]:
-            sign_library.setdefault(sign["polynomial_sha256"], sign)
+            sign_library.setdefault(exact_hash, {
+                **sign, "exact_polynomial_sha256": exact_hash,
+            })
             return {
                 "kind": "trinet_F",
                 "ports": triple,
                 "zero_side": "cycle_source",
                 "nonzero_side": "theta_target",
-                "target_polynomial_sha256": sign["polynomial_sha256"],
+                "target_polynomial_exact_sha256": exact_hash,
+                "target_polynomial_primitive_sha256": sign["polynomial_sha256"],
                 "strict_sign": sign["strict_sign"],
             }
 
@@ -287,17 +328,20 @@ def relation_witness(source, target, total, invariants, sign_cache, sign_library
             polynomial = source_poly if source_poly else target_poly
             key = ("I", descriptor, invariant_index)
             if key not in sign_cache:
-                sign_cache[key] = certify_sign(polynomial)
-            sign = sign_cache[key]
+                sign_cache[key] = certify_sign(polynomial), exact_polynomial_hash(polynomial)
+            sign, exact_hash = sign_cache[key]
             if sign["certified"]:
-                sign_library.setdefault(sign["polynomial_sha256"], sign)
+                sign_library.setdefault(exact_hash, {
+                    **sign, "exact_polynomial_sha256": exact_hash,
+                })
                 return {
                     "kind": "quartet_invariant",
                     "quartet_chunk": chunk,
                     "invariant_index": invariant_index,
                     "zero_side": "theta_target" if source_poly else "cycle_source",
                     "nonzero_side": nonzero_side,
-                    "polynomial_sha256": sign["polynomial_sha256"],
+                    "polynomial_exact_sha256": exact_hash,
+                    "polynomial_primitive_sha256": sign["polynomial_sha256"],
                     "strict_sign": sign["strict_sign"],
                 }
     return None
@@ -312,12 +356,11 @@ def compile_relations(invariants, cache, sources, equalities):
     extension_cache = {}
     sign_cache = {}
     sign_library = {}
-    relation_ids = set()
+    records = {}
     failures = []
     counts = defaultdict(int)
     hasher = hashlib.sha256()
-    with gzip.open(RELATIONS, "wt", encoding="utf-8", newline="\n") as handle:
-        for equality_index, equality in enumerate(equalities):
+    for equality_index, equality in enumerate(equalities):
             source0 = source_by_code[equality["source_code"]]
             missing = len(equality["dummy_roles"])
             if missing not in (1, 2, 3):
@@ -341,12 +384,19 @@ def compile_relations(invariants, cache, sources, equalities):
                         "source": source.mixed_code,
                         "target": target["mixed_code"],
                         "ports": tuple(range(total)),
-                        "parent_source": source0.mixed_code,
-                        "parent_target": equality["target_selected_code"],
                     })
-                    if relation_id in relation_ids:
+                    if relation_id in records:
+                        records[relation_id]["raw_coverage"].append({
+                            "selected_equality_index": equality_index,
+                            "parent_source_sha256": hashlib.sha256(
+                                source0.mixed_code.encode()
+                            ).hexdigest(),
+                            "parent_target_completion_sha256": hashlib.sha256(
+                                equality["target_completion_code"].encode()
+                            ).hexdigest(),
+                            "target_dummy_assignment": target["dummy_assignment"],
+                        })
                         continue
-                    relation_ids.add(relation_id)
                     witness = relation_witness(
                         source, target, total, invariants, sign_cache, sign_library
                     )
@@ -363,6 +413,16 @@ def compile_relations(invariants, cache, sources, equalities):
                         "target_dummy_assignment": target["dummy_assignment"],
                         "port_correspondence": tuple(range(total)),
                         "witness": witness,
+                        "raw_coverage": [{
+                            "selected_equality_index": equality_index,
+                            "parent_source_sha256": hashlib.sha256(
+                                source0.mixed_code.encode()
+                            ).hexdigest(),
+                            "parent_target_completion_sha256": hashlib.sha256(
+                                equality["target_completion_code"].encode()
+                            ).hexdigest(),
+                            "target_dummy_assignment": target["dummy_assignment"],
+                        }],
                     }
                     if witness is None:
                         failures.append(row)
@@ -370,13 +430,21 @@ def compile_relations(invariants, cache, sources, equalities):
                     else:
                         row["classification"] = "strict_open_cube_separation"
                         counts[f"witness_{witness['kind']}"] += 1
-                    row["binding_sha256"] = stable_hash(row)
-                    line = json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
-                    handle.write(line)
-                    hasher.update(line.encode())
+                    records[relation_id] = row
+    with RELATIONS.open("wb") as raw:
+      with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as handle:
+        for relation_id in sorted(records):
+            row = records[relation_id]
+            row["raw_coverage"] = sorted(
+                row["raw_coverage"], key=lambda value: stable_hash(value)
+            )
+            row["binding_sha256"] = stable_hash(row)
+            line = json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n"
+            handle.write(line.encode())
+            hasher.update(line.encode())
     SIGNS.write_text(json.dumps(sign_library, sort_keys=True, indent=2) + "\n")
     return {
-        "canonical_decorated_relations": len(relation_ids),
+        "canonical_decorated_relations": len(records),
         "relation_stream_sha256": hasher.hexdigest(),
         "relation_file_sha256": sha256(RELATIONS),
         "sign_library_sha256": sha256(SIGNS),
@@ -392,30 +460,67 @@ def compile_relations(invariants, cache, sources, equalities):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.parse_args()
+    parser.add_argument("--bit-cache", type=Path)
+    args = parser.parse_args()
     invariants = load_invariants()
-    cache = {}
+    bit_cache_path = args.bit_cache
+    if bit_cache_path is None:
+        default_cache = HERE / "certificates" / "descriptor_bits_cache.json.gz"
+        bit_cache_path = default_cache if default_cache.is_file() else None
+    cache = load_bit_cache(bit_cache_path) if bit_cache_path is not None else {}
+    loaded_descriptor_types = len(cache)
     sources = cycle_presentations(4, invariants, cache)
     source_by_signature = {}
     for source in sources:
         if source.signature in source_by_signature:
             raise AssertionError("two labelled cycle topologies share a full invariant deck")
         source_by_signature[source.signature] = source
-    raw, equalities = selected_theta_equalities(invariants, cache, source_by_signature)
+    raw, equalities, strong_survivors = selected_theta_equalities(
+        invariants, cache, source_by_signature
+    )
     relation = compile_relations(invariants, cache, sources, equalities)
     payload = {
         "schema": 1,
-        "status": "EXACTLY_COMPUTED" if not relation["failure_count"] else "UNRESOLVED",
-        "scope": "all cycle rigid-support four-port equalities completed by every omitted theta support role",
+        "status": (
+            "EXACTLY_COMPUTED"
+            if not relation["failure_count"] and not strong_survivors
+            else "UNRESOLVED"
+        ),
+        "scope": (
+            "all cycle rigid-support four-port non-core-retaining theta "
+            "equalities completed "
+            "by every omitted theta support role"
+        ),
         "invariant_orbit_size": len(invariants),
         "cycle_source_presentations": len(sources),
         "raw_theta_labelled_presentations_examined": raw,
-        "decorated_selected_equalities": len(equalities),
+        "decorated_selected_weak_equalities": len(equalities),
+        "decorated_core_retaining_equalities": len(strong_survivors),
+        "core_retaining_survivors": [
+            {
+                "source_code_sha256": hashlib.sha256(row["source_code"].encode()).hexdigest(),
+                "target_selected_code_sha256": hashlib.sha256(
+                    row["target_selected_code"].encode()
+                ).hexdigest(),
+                "target_core": row["target_core"],
+                "target_repair_index": row["target_repair_index"],
+                "target_selected_sink_mask": row["target_selected_sink_mask"],
+                "target_words": row["target_words"],
+                "selected_mapping": row["selected_mapping"],
+            }
+            for row in strong_survivors[:20]
+        ],
         "descriptor_types": len(cache),
+        "descriptor_types_loaded": loaded_descriptor_types,
+        "descriptor_bit_cache_sha256": (
+            sha256(bit_cache_path) if bit_cache_path is not None else None
+        ),
         "relation_certificate": relation,
     }
     OUT.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
     print(json.dumps(payload, sort_keys=True, indent=2))
+    if strong_survivors:
+        raise SystemExit("selected-strong cycle/theta survivor requires direct classification")
     if relation["failure_count"]:
         raise SystemExit("unresolved cycle-to-theta completed relation")
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 from collections import Counter
 from dataclasses import dataclass
+from functools import lru_cache
 import hashlib
 import json
 from pathlib import Path
@@ -30,6 +31,7 @@ class Completion:
     repair_index: int | None
     words: tuple[tuple[str, ...], ...]
     graph: RootedGraph
+    incoming_selected: bool = True
 
 
 def source_and_sinks(arcs: tuple[tuple[str, str], ...]) -> tuple[str, tuple[str, ...]]:
@@ -95,7 +97,68 @@ def core_rows() -> list[dict]:
     return answer
 
 
+@lru_cache(maxsize=1)
+def core_by_id() -> dict[str, dict]:
+    return {row["id"]: row for row in core_rows()}
+
+
+def selected_retains_strong_core(completion: Completion) -> bool:
+    """Whether selected ports retain the original core as a strong factor.
+
+    Dummy leaves make the *full completion* binary/strong; they do not by
+    themselves decide whether the selected ports retain the primitive core. In
+    particular, a dummy inserted for one chosen minimum repair is irrelevant
+    when the selected ports already occupy another minimum repair.  This
+    predicate uses the complete repair family and selected sink occupancy.
+
+    This is deliberately not called intrinsic ``S_TC`` membership after an
+    arbitrary ``red_*`` reduction.  For example, omitting a cycle sink can
+    collapse the selected marginal to a smaller strong tree.  Such a marginal
+    does not retain the cycle core and belongs to the support-completion gate.
+    """
+    core = core_by_id()[completion.core_id]
+    _source, sinks = source_and_sinks(core["arcs"])
+    all_sinks_selected = completion.selected_sink_mask == (1 << len(sinks)) - 1
+    occupied = {
+        index
+        for index, word in enumerate(completion.words)
+        if any(not label.startswith("D_") for label in word)
+    }
+    return all_sinks_selected and any(set(repair) <= occupied for repair in core["repairs"])
+
+
+def selected_graph(completion: Completion) -> RootedGraph:
+    """Build the intrinsic graph on the selected ports only.
+
+    A completion graph may contain zero-character dummy leaves needed to
+    realize the selected tensor inside a full strong factor.  Those leaves do
+    not belong to the selected topology.  This constructor removes them at
+    the primitive-word level, before any graph canonicalization, so topology
+    comparisons never mistake a completion witness for the selected graph.
+
+    The result retains the original rooted binary strong core exactly when
+    ``selected_retains_strong_core(completion)`` is true.
+    """
+    core = core_by_id()[completion.core_id]
+    _source, sinks = source_and_sinks(core["arcs"])
+    words = tuple(
+        tuple(label for label in word if not label.startswith("D_"))
+        for word in completion.words
+    )
+    sink_labels = {
+        sink: f"SINK_{index}"
+        for index, sink in enumerate(sinks)
+        if completion.selected_sink_mask & (1 << index)
+    }
+    return build_graph(core["arcs"], words, sink_labels)
+
+
 def completions(selected_count: int) -> Iterable[Completion]:
+    """Completions with the structural incoming boundary selected.
+
+    ``selected_count`` counts selected outgoing boundaries; the complete
+    selected tensor therefore has ``selected_count + 1`` ports.
+    """
     for core in core_rows():
         arcs: tuple[tuple[str, str], ...] = core["arcs"]
         _, sinks = source_and_sinks(arcs)
@@ -135,6 +198,68 @@ def completions(selected_count: int) -> Iterable[Completion]:
                     yield Completion(
                         core["id"], selected_count, selected, tuple(sorted(dummies)),
                         sink_mask, repair_index, tuple(tuple(word) for word in full_words), graph,
+                        True,
+                    )
+
+
+def marginal_incoming_completions(selected_total: int) -> Iterable[Completion]:
+    """Completions whose rooted incoming boundary is marginalized.
+
+    The selected tensor has ``selected_total`` real boundaries, all carried
+    by ordinary path ports or reticulation-sink ports.  The structural
+    incoming leaf remains in the full standard-strong witness with character
+    zero.  This case is indispensable for standard semi-directed relations:
+    the target's admissible incoming boundary need not belong to a selected
+    source support.
+    """
+    for core in core_rows():
+        arcs: tuple[tuple[str, str], ...] = core["arcs"]
+        _, sinks = source_and_sinks(arcs)
+        for sink_mask in range(1 << len(sinks)):
+            selected_sinks = {
+                sink for index, sink in enumerate(sinks) if sink_mask & (1 << index)
+            }
+            ordinary = selected_total - len(selected_sinks)
+            if ordinary < 0:
+                continue
+            for counts in weak_compositions(ordinary, len(arcs)):
+                labels = iter(f"O_{i}" for i in range(ordinary))
+                selected_words = tuple(
+                    tuple(next(labels) for _ in range(count)) for count in counts
+                )
+                repairs = core["repairs"]
+                indexed_repairs = (
+                    ((None, ()),)
+                    if core["id"] == "cycle"
+                    else tuple(enumerate(repairs))
+                )
+                for repair_index, repair in indexed_repairs:
+                    full_words = [list(word) for word in selected_words]
+                    dummies = [INCOMING]
+                    for arc_index in repair:
+                        if not full_words[arc_index]:
+                            dummy = f"D_REPAIR_{repair_index}_{arc_index}"
+                            full_words[arc_index].append(dummy)
+                            dummies.append(dummy)
+                    sink_labels = {}
+                    for index, sink in enumerate(sinks):
+                        if sink in selected_sinks:
+                            sink_labels[sink] = f"SINK_{index}"
+                        else:
+                            dummy = f"D_SINK_{index}"
+                            sink_labels[sink] = dummy
+                            dummies.append(dummy)
+                    selected = tuple(sorted(
+                        [label for word in selected_words for label in word]
+                        + [sink_labels[sink] for sink in selected_sinks]
+                    ))
+                    graph = build_graph(
+                        arcs, tuple(tuple(word) for word in full_words), sink_labels
+                    )
+                    yield Completion(
+                        core["id"], selected_total, selected,
+                        tuple(sorted(dummies)), sink_mask, repair_index,
+                        tuple(tuple(word) for word in full_words), graph, False,
                     )
 
 
@@ -160,7 +285,9 @@ def main() -> None:
         5: (4155, 4144, 11),
         6: (7909, 7896, 13),
     }
+    expected_retaining = {3: 15, 4: 78, 5: 257, 6: 652}
     census = {}
+    retention_census = {}
     invalid = []
     hashes = []
     for n in range(3, 7):
@@ -178,9 +305,16 @@ def main() -> None:
                 invalid.append({"n": n, "index": index, "problems": problems, "strong": strong})
             hashes.append(hashlib.sha256(json.dumps(graph_record(row), sort_keys=True).encode()).hexdigest())
         actual = (len(rows), kinds["theta"], kinds["cycle"])
+        retaining = sum(selected_retains_strong_core(row) for row in rows)
         census[str(n)] = {
             "all": actual[0], "theta": actual[1], "cycle": actual[2],
             "expected": expected[n], "matches": actual == expected[n],
+        }
+        retention_census[str(n)] = {
+            "core_retaining": retaining,
+            "non_core_retaining": len(rows) - retaining,
+            "expected_core_retaining": expected_retaining[n],
+            "matches": retaining == expected_retaining[n],
         }
     payload = {
         "schema": 1,
@@ -189,13 +323,18 @@ def main() -> None:
             "segments; every minimal repair; omitted sink and repair ports restored as zero-character dummies"
         ),
         "census": census,
+        "selected_core_retention_census": retention_census,
         "all_full_completions_rooted_valid_and_standard_strong": not invalid,
         "failures": invalid[:20],
         "ordered_graph_record_hash": hashlib.sha256("".join(hashes).encode()).hexdigest(),
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
-    if invalid or not all(row["matches"] for row in census.values()):
+    if (
+        invalid
+        or not all(row["matches"] for row in census.values())
+        or not all(row["matches"] for row in retention_census.values())
+    ):
         raise SystemExit("completion census failed")
     print(json.dumps(payload, sort_keys=True))
 

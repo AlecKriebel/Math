@@ -148,8 +148,9 @@ def all_port_quartet_deck(
 
     The earlier closure compiler considered only quartets containing the
     distinguished incoming boundary.  That is not sufficient for a directed
-    containment atlas: a weak target can hide a reticulation from all such
-    restrictions while an all-outgoing quartet detects it.  Keys are ordered
+    containment atlas: a non-core-retaining target marginal can hide a
+    reticulation from all such restrictions while an all-outgoing quartet
+    detects it.  Keys are ordered
     tuples of positions in ``(*outgoing_labels, incoming_label)``.
     """
     labels = (*tuple(outgoing_labels), incoming_label)
@@ -170,7 +171,7 @@ def all_port_quartet_deck(
     return answer
 
 
-@lru_cache(maxsize=None)
+@lru_cache(maxsize=4096)
 def coordinate_polynomials(descriptor: Descriptor) -> tuple[Poly, ...]:
     retics, signatures = descriptor
     displays = tuple(product((0, 1), repeat=retics))
@@ -203,7 +204,7 @@ def coordinate_polynomials(descriptor: Descriptor) -> tuple[Poly, ...]:
     return tuple(coordinates)
 
 
-@lru_cache(maxsize=None)
+@lru_cache(maxsize=4096)
 def coordinate_values_mod(
     descriptor: Descriptor,
     seed: int,
@@ -261,7 +262,11 @@ def invariant_value_mod(
     return total
 
 
-def pullback(descriptor: Descriptor, invariant: Sequence[tuple[Sequence[int], int]]) -> Poly:
+@lru_cache(maxsize=2048)
+def pullback(
+    descriptor: Descriptor,
+    invariant: tuple[tuple[tuple[int, ...], int], ...],
+) -> Poly:
     coordinates = coordinate_polynomials(descriptor)
     variables = len(descriptor[1]) + descriptor[0]
     cache: dict[tuple[int, ...], Poly] = {(): poly_const(1, variables)}
@@ -275,6 +280,37 @@ def pullback(descriptor: Descriptor, invariant: Sequence[tuple[Sequence[int], in
     for indices, coefficient in invariant:
         answer = poly_add(answer, monomial(tuple(indices)), int(coefficient))
     return answer
+
+
+def pullbacks_shared(
+    descriptor: Descriptor,
+    invariants: tuple[tuple[tuple[tuple[int, ...], int], ...], ...],
+) -> tuple[Poly, ...]:
+    """Pull back several invariants with one shared monomial expansion cache.
+
+    The 84-element atlas orbit reuses most coordinate monomials.  Expanding
+    each candidate identity independently was exact but needlessly repeated
+    the expensive sparse products.  This routine changes no algebra: it only
+    shares those products within one descriptor.
+    """
+    coordinates = coordinate_polynomials(descriptor)
+    variables = len(descriptor[1]) + descriptor[0]
+    monomial_cache: dict[tuple[int, ...], Poly] = {(): poly_const(1, variables)}
+
+    def monomial(indices: tuple[int, ...]) -> Poly:
+        if indices not in monomial_cache:
+            monomial_cache[indices] = poly_mul(
+                monomial(indices[:-1]), coordinates[indices[-1]]
+            )
+        return monomial_cache[indices]
+
+    answers = []
+    for invariant in invariants:
+        answer: Poly = {}
+        for indices, coefficient in invariant:
+            answer = poly_add(answer, monomial(indices), int(coefficient))
+        answers.append(answer)
+    return tuple(answers)
 
 
 def trinet_F_pullback(descriptor: Descriptor) -> Poly:

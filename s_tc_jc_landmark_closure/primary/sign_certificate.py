@@ -80,17 +80,38 @@ def bernstein_sign(expression, symbols, max_elevation: int = 3):
     }
 
 
-def certify(poly: Poly):
+def certify(poly: Poly, *, max_elevation: int = 3):
     import sympy as sp
 
     if not poly:
         return {"certified": False, "reason": "zero polynomial"}
+    coefficients = tuple(poly.values())
+    if all(value >= 0 for value in coefficients) and any(value > 0 for value in coefficients):
+        return {
+            "certified": True,
+            "strict_sign": 1,
+            "domain": "all variables lie in (0,1)",
+            "method": "same-sign sparse power coefficients",
+            "polynomial_sha256": hashlib.sha256(repr(primitive(poly)).encode()).hexdigest(),
+            "term_count": len(poly),
+            "factors": [],
+        }
+    if all(value <= 0 for value in coefficients) and any(value < 0 for value in coefficients):
+        return {
+            "certified": True,
+            "strict_sign": -1,
+            "domain": "all variables lie in (0,1)",
+            "method": "same-sign sparse power coefficients",
+            "polynomial_sha256": hashlib.sha256(repr(primitive(poly)).encode()).hexdigest(),
+            "term_count": len(poly),
+            "factors": [],
+        }
     symbols, expression = to_sympy(poly)
     constant, factors = sp.factor_list(expression, *symbols)
     sign = 1 if constant > 0 else -1
     rows = []
     for factor, multiplicity in factors:
-        proof = bernstein_sign(factor, symbols)
+        proof = bernstein_sign(factor, symbols, max_elevation=max_elevation)
         expanded = sp.expand(factor)
         row = {
             "expanded_sha256": hashlib.sha256(str(expanded).encode()).hexdigest(),
