@@ -1,0 +1,749 @@
+\documentclass[11pt]{article}
+\pdfinfoomitdate=1
+\pdftrailerid{}
+\pdfsuppressptexinfo=-1
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem,microtype,booktabs}
+\usepackage[hidelinks]{hyperref}
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\N}{\mathbb N_0}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\one}{\mathbf 1}
+
+\title{Positive Recurrence for Bimolecular Weakly Reversible\\
+Stochastic Reaction Networks with Three Species\\
+and Two Linkage Classes}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}}
+\date{Version 1.0 --- August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove positive recurrence on every closed communicating class for every
+finite weakly reversible stochastic mass-action network with molecularity at
+most two, at most three dynamically active species, at most two active
+linkage classes, and arbitrary positive rate constants.  The proof combines
+an embedded labelled reaction-count Green construction with a finite
+source-rate compactification.  The new stochastic ingredient is an aggregate
+physical workload-debt excursion: positive reactions are retained at their
+natural probabilities, their actual targets initiate faster return
+relaxations, and repeated slower arrivals are controlled by a scalar reflected
+debt process rather than by genealogical credits.  A finite phase
+classification supplies service, structural exit, or an affine invariant.
+The one-active case is reduced to an exact polynomial-rate phase chain, while
+the two-active boundary geometry is closed by an independently reproduced
+finite atlas.  Embedded return, physical return, and nonexplosion are treated
+separately.
+\end{abstract}
+
+\noindent\textbf{Keywords.}
+stochastic reaction network; weak reversibility; positive recurrence;
+mass-action kinetics; Green occupation; Foster--Lyapunov method; finite phase.
+
+\section{Model and theorem}
+
+Let the species set have at most three dynamically active coordinates.  A
+complex is \(y\in\N^d\), \(d\le3\), and the network is
+\emph{bimolecular} when \(|y|_1\le2\) for every complex.  A labelled reaction
+channel is \(e:y_e\to y_e'\), with rate \(\kappa_e>0\), reaction vector
+\(\zeta_e=y_e'-y_e\), and stochastic mass-action propensity
+\[
+ \lambda_e(x)=\kappa_e(x)_{y_e},\qquad
+ (x)_y=\prod_i\frac{x_i!}{(x_i-y_i)!}
+\]
+when \(x\ge y\), and zero otherwise.  Parallel channels are retained.
+Each linkage class is a connected component of the undirected complex graph;
+weak reversibility means that each linkage class is strongly connected.
+
+Fix one closed irreducible population class \(\Gamma\).  The population CTMC
+has formal generator
+\[
+ \cL f(x)=\sum_e\kappa_e(x)_{y_e}
+ \bigl[f(x+\zeta_e)-f(x)\bigr].
+\]
+
+\begin{theorem}[T3--2 positive recurrence]\label{thm:main}
+Suppose the network has at most three dynamically active species and at most
+two active linkage classes.  Then, for every positive rate vector, every
+closed communicating class is positive recurrent.  Equivalently, every
+closed irreducible class has a unique stationary probability distribution.
+\end{theorem}
+
+The one-linkage case is supplied by the marked-target theorem
+\cite{Kriebel2026Single}; earlier binary one-linkage results under additional
+structural assumptions appear in \cite{AndersonCappellettiKim2020}.  The
+present proof uses that theorem only at explicit one-linkage reductions.
+
+\section{Labelled embedded Green occupation}
+
+Let \(Z_n\) be the population immediately after the \(n\)-th reaction and
+\(E_{n+1}\) the actual labelled channel producing \(Z_{n+1}\).  Conditional on
+\(Z_n=x\),
+\[
+ \Pp(E_{n+1}=e\mid Z_n=x)
+ =\frac{\kappa_e(x)_{y_e}}{\Lambda(x)},\qquad
+ \Lambda(x)=\sum_f\kappa_f(x)_{y_f}.
+\]
+
+Fix \(o\in\Gamma\), an increasing finite exhaustion \(D_M\ni o\), and
+\[
+ T_o^+=\inf\{n\ge1:Z_n=o\},\quad
+ \sigma_M=\inf\{n\ge0:Z_n\notin D_M\},\quad
+ \tau_M=T_o^+\wedge\sigma_M.
+\]
+
+\begin{theorem}[Embedded labelled Green occupation]\label{thm:green}
+If \(\E_oT_o^+=\infty\), then \(t_M=\E_o\tau_M\to\infty\) and
+\[
+ \nu_M(x,e)=\frac1{t_M}\E_o\sum_{n<\tau_M}
+ \one\{Z_n=x,E_{n+1}=e\}
+\]
+is a probability measure on labelled transitions.  It escapes every fixed
+finite set.  For bounded \(f\),
+\[
+ \sum_{x,e}\nu_M(x,e)\,[f(x+\zeta_e)-f(x)]
+ =\frac{\E_o[f(Z_{\tau_M})-f(o)]}{t_M}.
+\]
+For every linear workload \(h\),
+\[
+ \sum_{x,e}\nu_M(x,e)\,h\!\cdot\!\zeta_e=h\!\cdot q_M,\qquad
+ q_M=\frac{\E_o[Z_{\tau_M}-o]}{t_M}.
+\]
+The vectors \(q_M\) are bounded and every limit belongs to
+\(\mathbb R_{\ge0}^d\).
+\end{theorem}
+
+\begin{proof}
+Monotone convergence gives \(t_M\uparrow\E_oT_o^+=\infty\).
+For a fixed state \(x\), choose a finite positive-probability embedded path
+from \(x\) to \(o\) not revisiting \(x\).  Each visit to \(x\) has a fixed
+positive chance of terminating the killed excursion before the next visit,
+so its expected visit count is uniformly bounded in \(M\).  Division by
+\(t_M\) proves escape from finite sets.
+
+The identities are pathwise telescoping.  Since each reaction changes each
+coordinate by at most two,
+\(\|Z_{\tau_M}-o\|_\infty\le2\tau_M\), so \(q_M\) is bounded.  Also
+\(q_{M,i}\ge-o_i/t_M\), proving nonnegativity of every limit.
+\end{proof}
+
+\section{Terminal chart localization}
+
+A Green occupation is a measure, not a representative sequence.  We
+therefore compactify the occupation itself.
+
+For each transition source record:
+\begin{enumerate}[label=(\roman*)]
+\item each population coordinate in \(\N\cup\{\infty\}\);
+\item capped availability \(\min(x_i,2)\) and enabled-source support;
+\item the actual current target and labelled channel;
+\item the complete recursively normalized physical source-propensity flag;
+\item the tied positive ratio vector, workload chamber, and lattice phase.
+\end{enumerate}
+The flag compactification is finite-depth: normalize the finite source vector;
+then normalize recursively on its zero coordinates.  Thus every sequence has
+a convergent flag subsequence, including arbitrarily slow divergent species.
+
+\begin{lemma}[Terminal chart]\label{lem:chart}
+After subsequence extraction, every escaping Green occupation has a nonzero
+restriction to a terminal chart with fixed active set, fixed finite box for
+inactive coordinates, fixed enabled support, fixed source flag, compact tied
+ratio cell, fixed workload chamber and zero normalized structural-exit flux.
+For the positive integer workload \(H(x)=h\cdot x\) of that chart,
+\[
+ \sum_{x,e}\nu(x,e)\,h\cdot\zeta_e\ge0.       \tag{3.1}
+\]
+\end{lemma}
+
+\begin{proof}
+Push \(\nu_M\) to the compact descriptor.  A weak limit exists and has total
+mass one at infinity.  Bounded jumps preserve each asymptotic descriptor on
+a positive-mass limiting edge.  Splitting over the finitely many active sets
+prevents, for example, mass near \((n,0,0)\) and \((0,n,0)\) from being put
+in one chart that enables both active families.
+
+Inactive coordinates have tight probability marginals.  Choose a finite box
+carrying all but \(\varepsilon\) of the source and endpoint mass and pad by
+the maximal jump.  Box crossings, support changes and flag refinements are
+retained as chart edges.  Indicator telescoping gives a finite flow.  Select
+a terminal strongly connected component of its support and diagonalize as
+\(\varepsilon\downarrow0\).
+
+For (3.1), restrict to a long integer workload band.  Summing lower-cut flux
+over consecutive cuts counts each bounded jump only a bounded number of
+times.  Hence one lower cut has vanishing normalized inward flux.  Upper-cut
+flux is outward.  The finite chart-error tends to zero with \(\varepsilon\).
+\end{proof}
+
+A raw reaction-count normalization can be dominated by faster neutral
+motion.  We therefore take exact physical traces at successively slower
+source layers.  If a layer has bounded expected count, its bounded
+displacement cannot support escape.  If its count diverges, normalize by that
+count and contract the already processed finite neutral phase.  The source
+flag is finite, so this procedure terminates at the first occupied changing
+trace.
+
+
+\subsection{The iterated source simplex}
+
+For completeness we spell out the finite compactification used in
+Lemma~\ref{lem:chart}.  Let \(\mathcal S_0\) be the finite set of source
+complexes enabled in the selected capped phase, and put
+\[
+ a_s(x)=\bar\kappa_s(x)_s,\qquad s\in\mathcal S_0.
+\]
+The first projective vector is
+\[
+ \rho^{(1)}_s(x)=\frac{a_s(x)}{\sum_{u\in\mathcal S_0}a_u(x)}.
+\]
+At a boundary limit let \(\mathcal F_1\) be its positive support.  On
+\(\mathcal S_1=\mathcal S_0\setminus\mathcal F_1\), provided it is nonempty,
+renormalize again:
+\[
+ \rho^{(2)}_s(x)=\frac{a_s(x)}{\sum_{u\in\mathcal S_1}a_u(x)}.
+\]
+Continue.  At most \(|\mathcal S_0|\) steps are possible.  The resulting
+ordered partition
+\[
+ \mathcal F_1\gg\mathcal F_2\gg\cdots\gg\mathcal F_r
+\]
+and the positive ratio vector in every \(\mathcal F_j\) constitute the
+complete flag.  This is a closed subset of a finite product of simplices and
+is compact.  Sources with vanishing first-order ratio are not discarded; they
+occur in a later \(\mathcal F_j\).
+
+The mass-action source exponents belong to the finite set
+\[
+ \{0,e_i,2e_i,e_i+e_j\}.
+\]
+After passing to one flag cell, its strict comparisons can be represented by
+a rational workload.  Indeed, take the finitely many rational separating
+covectors produced by the successive normalized-log levels, clear
+denominators, and combine them with a sufficiently large integer base.
+The resulting \(h\in\mathbb Z_{\ge0}^d\) preserves every strict source
+comparison and is positive on every active coordinate.  Equality of source
+orders is retained because the complete flag has already separated every
+nonzero lower-order difference.
+
+\subsection{Why chart flow is retained}
+
+Let \(\mathcal P\) be a finite partition of one compact flag cell into its
+finite discrete data.  For a part \(A\in\mathcal P\), apply the bounded-test
+identity of Theorem~\ref{thm:green} to \(\one_A\).  The normalized inflow
+minus outflow tends to zero.  Hence every weak limit induces a finite
+circulation after source and return errors vanish.  If a transition changes
+the active set, bounded box, source support, flag face or workload chamber,
+we place it on a directed chart edge rather than deleting it.  A terminal
+strongly connected component therefore has zero limiting flux through every
+such edge.
+
+The workload-band argument is also purely reaction-count based.  If
+\(J=\max_e|h\cdot\zeta_e|\), a transition crosses at most \(J\) integer lower
+cuts.  Summing the normalized inward flux over \(K\) consecutive cuts is at
+most \(J\).  One cut has inward flux at most \(J/K\).  Letting \(K\to\infty\)
+proves the local nonnegative outward balance without integrating an
+unbounded propensity.
+
+\section{Actual targets and aggregate workload debt}
+
+At an embedded jump, retain the target \(T_n\) of the actual labelled
+reaction.  It is physically present.  The inherited residual factorial
+identity is
+\[
+ V(x,t)=\sum_i\log((x_i-t_i)!),\qquad
+ \Delta V=\log\frac{(x)_t}{(x)_s}.
+\]
+It is used only for same-linkage target paths beginning from an already
+carried target; no future activation is conditioned upon.
+
+For the source-layer argument, scale the chart workload so that \(H(y)\) is
+integer-valued on complexes.  A positive reaction \(y\to u\) has \(H(u)>H(y)\)
+and hence creates an actual target in a strictly faster source layer.
+
+\begin{lemma}[Actual-target return prefix]\label{lem:return}
+For every positive reaction \(y\to u\), a directed path in its linkage from
+\(u\) back to \(y\) has a first target \(v\) with \(H(v)\le H(y)\).  Every
+earlier source is strictly faster than \(y\), and
+\[
+ H(u-y)+H(v-u)=H(v-y)\le0.                    \tag{4.1}
+\]
+The lifted path is sequentially enabled until a declared chart exit.
+\end{lemma}
+
+\begin{proof}
+Strong connectivity supplies the path.  The first-crossing definition gives
+the priority statement and (4.1).  Each designated reaction produces the
+source of the next reaction, so the lifted path is physical.
+\end{proof}
+
+The bounded coordinates, actual target, availability, source support,
+linkage and lattice data form a finite phase.  Include every processed
+physical reaction and every return prefix.
+
+\begin{lemma}[Finite physical service phase]\label{lem:phase}
+A closed finite phase component without a negative workload edge contains no
+positive workload edge.  Consequently each component is strict, edgewise
+zero, or has a structural exit.
+\end{lemma}
+
+\begin{proof}
+A positive edge has the return certificate of Lemma~\ref{lem:return}.
+Closedness retains that certificate.  A finite path whose initial reward is
+positive and whose cumulative reward is nonpositive contains a negative edge.
+\end{proof}
+
+Finite graph reachability and compactness of the tied-rate cell give constants
+\(L<\infty\), \(q>0\), and \(K<\infty\): in a strict component a negative
+edge is reached within \(L\) carrier changes with probability at least \(q\);
+the number of changes has geometric moments.  Reactions leaving the selected
+source enabled do not delay its physical exponential clock.  If the total
+unprocessed slower hazard is at most \(\varepsilon_R\) times the carrier
+hazard, then
+\[
+ \Pp\{\text{slower interruption before service}\}\le K\varepsilon_R,
+ \qquad \varepsilon_R\to0.                    \tag{4.2}
+\]
+
+Fix an excursion baseline \(B=H(X_0)\) and define only the physical scalar
+\[
+ D=(H(X)-B)^+.
+\]
+
+\begin{theorem}[Aggregate-debt clearing]\label{thm:debt}
+At successive service trials suppose
+\[
+ D_{k+1}\le(D_k-S_k)^++A_k,
+\]
+and, on \(D_k>0\),
+\[
+ \Pp(S_k\ge1\mid\mathcal F_k)\ge p,\qquad
+ \E(A_k\mid\mathcal F_k)\le a<p.
+\]
+Then
+\[
+ \E\tau_0\le \frac{D_0}{p-a}.
+\]
+If trial durations have conditional mean at most \(T\), the physical clearing
+time has mean at most \(TD_0/(p-a)\).
+\end{theorem}
+
+\begin{proof}
+For integer \(d>0\),
+\[
+ (d-s)^++a-d\le-\one_{\{s\ge1\}}+a.
+\]
+The conditional drift is at most \(-(p-a)\).  Sum through
+\(n\wedge\tau_0\), use nonnegativity, and apply monotone convergence.
+\end{proof}
+
+Here \(A_k\) is the workload of the first unprocessed slower event.
+Equation (4.2) gives \(\E A_k=O(\varepsilon_R)\); choose the chart threshold
+so that it is below \(p/2\).  Multiple slower arrivals occur over repeated
+trials and are all represented in \(D\).
+
+After one service, if \(D>0\), restart from the new physical state and actual
+target.  A strict phase gives the same service minorization; loss of support
+is an exit; a zero phase passes the unchanged debt to the next slower physical
+trace.  No creator identity is retained.
+
+At \(D=0\), a strict negative transition before the next positive event lowers
+the workload below the baseline.  A failed trial creates bounded debt, which
+is cleared before the next zero-debt trial.  Geometric trials therefore give
+genuine descent in finite mean.
+
+
+\subsection{The physical carrier graph}
+
+We give the construction behind the finite phase assertion.  A carrier state
+records the actual target complex, the exact inactive-coordinate population,
+the capped active availability, the creator linkage and a position in one of
+the fixed return prefixes.  It does not record an active population count.
+For each processed physical reaction there are two cases.
+
+If the selected return source remains enabled, its exponential clock
+continues.  Reactions not disabling that source are skipped in the carrier
+clock.  If a reaction disables the source, then, inside a padded chart, it
+must consume one of the finitely many inactive cofactors required by the
+source.  Its actual target and the new inactive population determine another
+carrier state.  Loss of the padded box or active threshold is an exit.
+
+Thus the carrier state space is finite.  From every positive edge, the
+designated return prefix gives a path to cancellation or exit.  Add all
+possible disabling transfers.  A closed class avoiding cancellation would
+contain the positive edge but, by the return certificate, no negative edge,
+contradicting Lemma~\ref{lem:phase}.  This proves the qualitative
+reactivation alternative directly from physical channels.
+
+For uniformity, eliminate source priorities recursively along the same
+complete flag.  A strictly faster recurrent class either already contains
+service or is edgewise workload-neutral and is contracted by its finite
+Green/Poisson corrector.  Consequently, when a carrier source at a given
+priority is inspected, only sources tied with it remain as genuine
+competitors; faster activity has already been absorbed into the finite phase.
+
+Choose in every strict carrier class one path to service.  There are finitely
+many phases and finitely many selected edges.  Conditional channel
+probabilities from a fixed source depend only on its positive rate constants,
+and tied-source ratios range over a compact cell.  Their minimum is a number
+\(q>0\).  If the longest selected path has length \(L\), one block succeeds
+with probability at least \(q^L\).  Repeated blocks give a geometric bound
+on carrier changes.  This is a trace argument, not an assumption of fast
+mixing.
+
+\subsection{Slower arrivals}
+
+Let \(K\) bound the expected number of carrier changes in one strict trial.
+At every carrier phase, let \(\lambda_f\) be the total processed carrier
+hazard and \(\lambda_s\) the total unprocessed source hazard.  The complete
+flag gives
+\[
+ \lambda_s\le\varepsilon_R\lambda_f,\qquad \varepsilon_R\downarrow0.
+\]
+Stop at the first unprocessed event.  Compensator comparison over the
+carrier occupation gives
+\[
+ \Pp\{\hbox{interruption}\}\le K\varepsilon_R.   \tag{4.3}
+\]
+If \(\Delta_+\) is the largest positive integer workload jump, then
+\[
+ \E A\le K\Delta_+\varepsilon_R,\qquad
+ \E z^A\le1+K\varepsilon_R(z^{\Delta_+}-1),\quad z>1. \tag{4.4}
+\]
+There is at most one unprocessed event in a trial; multiple arrivals are
+handled over successive trials.  This is why the arrival bound is independent
+of the current debt.
+
+For a finite workload band, stop also at its padded upper boundary.  One
+reaction overshoots that boundary by at most \(\Delta_+\).  A partial
+carrier excursion at the Green stopping time is therefore either a recorded
+upper-shell exit or has a uniformly bounded workload correction.  When the
+layer trace count diverges, this one terminal correction vanishes after
+normalization.  Thus no unfinished busy period is silently omitted.
+
+\subsection{Reactivation and zero debt}
+
+The service selector is recomputed after every trial from the current
+physical phase.  In a strict component the same finite minorization applies.
+A zero component is carried to the next source layer, and any loss of the
+phase support is an exit.  Therefore Theorem~\ref{thm:debt} can be restarted
+whenever \(D>0\), without identifying which reaction created the remaining
+excess.
+
+At \(D=0\), run the same strict trial.  A strict edge before the first
+unprocessed positive event gives a unit of descent below the baseline.  On a
+failed trial, the first unprocessed event creates at most \(\Delta_+\) debt.
+Clear it by Theorem~\ref{thm:debt}, then retry.  The number of trials is
+geometrically dominated and all physical durations have finite mean.
+
+\section{Finite source-layer hierarchy}
+
+Process the complete source flag from fastest to slowest.
+
+At the fastest layer, a positive edge is impossible: its target would be a
+faster source.  Thus every recurrent class is strict or zero.
+
+Inductively assume faster layers have been replaced by finite-mean effective
+transitions with nonpositive complete workload.  Retain a raw event from the
+next layer at its natural probability.  If it is positive, its actual target
+starts a faster debt excursion.  Same-layer and slower interruptions enter
+the arrival variable in Theorem~\ref{thm:debt}.  Completion gives a
+nonpositive effective transition or a structural exit.
+
+\begin{proposition}[Source-layer alternative]\label{prop:layers}
+Every recurrent effective source-layer class has exactly one of:
+\begin{enumerate}[label=(\roman*)]
+\item a strict negative stationary corrected reward;
+\item edgewise zero reward and a bounded rational phase coboundary;
+\item positive structural-exit flux.
+\end{enumerate}
+The hierarchy terminates after finitely many layers.
+\end{proposition}
+
+\begin{proof}
+All effective rewards are nonpositive.  In a finite irreducible class, one
+negative edge has positive stationary flow and makes the mean strict.
+If the mean is zero, every positive-probability edge has reward zero.  Cycle
+sums vanish, so path sums define the phase coboundary.  A layer of vanishing
+fraction is retained as the next slower trace.  There are finitely many
+source layers.
+\end{proof}
+
+If every layer is zero, \(H(X)+\psi(\phi)\) is invariant on the terminal
+recurrent support.  The phase term is bounded and \(h\) is positive on every
+active coordinate, contradicting escape.  Because zero is edgewise after
+complete faster relaxation, the corrected variance is also zero; no hidden
+critical random walk remains.
+
+
+\subsection{Induction inside one raw source layer}
+
+The induction has an inner priority induction.  At the fastest source
+priority, a positive reaction is impossible because its target would be a
+strictly faster source.  Hence the fastest raw edges are neutral or negative.
+
+Suppose priorities above \(p\) have already been replaced by nonpositive
+finite-mean effective transitions.  A positive raw reaction with source
+priority \(p\) produces an actual target of priority greater than \(p\).
+Start the carrier process immediately after that actual reaction, while
+retaining the reaction's positive workload in \(D\).  A second event from
+priority \(p\) or below is an unprocessed arrival.  Equations
+(4.3)--(4.4) and Theorem~\ref{thm:debt} show that the entire positive event
+plus faster relaxation has nonpositive endpoint workload in finite mean, or
+exits the chart.  It may cancel exactly; it is not called strict descent.
+
+Descending through the finite priority set converts every raw edge of the
+source layer into a nonpositive effective edge.  Only then is the finite
+recurrent-class alternative of Proposition~\ref{prop:layers} applied.
+
+\subsection{Passage to a slower reaction-count trace}
+
+Let \(C_j(M)\) be the expected number of layer-\(j\) events in the killed
+Green path.  If \(C_j(M)\) is bounded, its bounded jumps have zero
+contribution to an escaping endpoint after division by the relevant divergent
+count.  If \(C_j(M)\to\infty\), normalize its exact labelled trace, including
+the complete faster excursions between successive layer-\(j\) events.
+Positive chart-exit counts are retained.  This gives a nonzero finite-phase
+occupation at layer \(j\).
+
+Thus ``zero at the current normalization'' never means deletion.  It means
+that the same physical events appear at the next slower normalization.
+Since the source set is finite, the procedure cannot continue indefinitely.
+
+\subsection{The all-zero branch}
+
+Suppose every effective layer is edgewise zero.  On each finite recurrent
+phase class, define \(\psi\) by integrating \(-h\cdot\Delta X\) along phase
+paths.  Zero cycle sums make this well-defined.  Correctors from successive
+layers add, and only finitely many are present.  Hence
+\[
+ h\cdot X+\psi(\phi)
+\]
+is invariant for every transition of the terminal physical trace.  Events
+outside the trace have bounded count or positive exit flux.  The first cannot
+produce an escaping endpoint and the second contradicts terminality.  Since
+\(\psi\) is bounded, the invariant excludes escape in an active direction.
+
+\section{Active-coordinate cases}
+
+\subsection{Three active coordinates}
+
+Every possible bimolecular source is enabled.  At the first occupied changing
+layer, every changing reaction is nonincreasing and at least one is strict:
+a positive reaction at the highest changing source level would force, along
+its linkage return cycle, a negative reaction sourced at a still higher
+level.  Compact tied ratios give strictly negative physical flux, contrary
+to (3.1).  If no layer changes \(H\), it is a global invariant.
+
+\subsection{One active coordinate}
+
+Let \(A=n\) be active and let \(B,C\) remain in a finite box.  Every transition
+is
+\[
+ (n,\phi)\to(n+k,\phi'),\qquad |k|\le2,
+\]
+with rate
+\[
+ c_2(\phi,e)n(n-1)+c_1(\phi,e)n+c_0(\phi,e).
+\]
+If \(2A\) is a source, every genuine reaction from it lowers \(A\), while
+upward reactions have degree at most one:
+\[
+ \cL A\le-c_2A(A-1)+c_1A+c_0,\qquad c_2>0.
+\]
+
+Without \(2A\), every degree-one edge has increment zero or minus one.
+Finite recurrent degree-one classes have strict negative mean and a Poisson
+corrector, or are edgewise zero and are contracted.  A degree-zero birth
+creates at most one \(A\) and an actual target \(A\) or \(A+D\); the creator
+linkage provides its service path and the aggregate-debt theorem includes
+every bounded-coordinate interruption.
+
+In an all-zero class, let \(K\) be the bounded service species occurring in
+one-\(A\) complexes.  Either a unary one-\(A\) complex or a zero-\(A\)
+complex containing \(K\) gives unpaired service, or
+\[
+ A-\sum_{D\in K}D
+\]
+is an exact invariant.  Since the bounded coordinates and phase correction
+are bounded, escape is impossible.
+
+
+\subsubsection{Exact finite-phase correction}
+
+Let \(Q_1\) be the finite generator formed by the coefficients of \(n\) in
+the degree-one phase transitions.  For an irreducible recurrent class let
+\(\pi\) be its stationary probability and \(g(\phi)\le0\) its conditional
+mean \(A\)-increment.  If one negative edge is present, then
+\(\bar g=\pi g<0\).  Solve
+\[
+ Q_1\chi=-(g-\bar g)
+\]
+with one normalization.  Since the phase is finite, \(\chi\) is bounded and
+\[
+ \cL\,[A+\chi(\phi)]=n\bar g+O(1),
+\]
+uniformly over the bounded-coordinate phase.
+
+If \(\bar g=0\), nonpositivity forces every positive-flow degree-one edge to
+have zero increment.  Contract the class.  Degree-zero events and their
+complete fast relaxations form a finite macrochain.  A positive birth is
+kept at its natural rate; its actual one-\(A\) target starts the faster
+carrier process.  Repeated births are handled by aggregate debt.
+
+In an edgewise-zero macroclass, the service-token dichotomy is exact.  If
+there is no unary one-\(A\) complex and no zero-\(A\) complex contains a
+service species from a binary one-\(A\) complex, then every one-\(A\)
+complex carries exactly one such token and every zero-\(A\) complex carries
+none.  Therefore \(A-\sum_{D\in K}D\) is preserved reaction by reaction.
+Otherwise the finite phase contains an unpaired service or an exit.  Thus a
+zero mean with nonzero variance is never classified as an invariant.
+
+\subsection{Two active coordinates and the finite atlas}
+
+We first record the interface between the stochastic trace and the finite
+classification.  Call a linkage \emph{available} when it falls in one of the
+available branches of the certified top-complex alternative.  In the
+two-active chart, an available linkage has one of the following witnesses:
+a top source containing two active particles, a unary top source, or an
+active-plus-\(C\) target whose service cofactor is present in a lower complex.
+The first two witnesses are enabled throughout the padded chart.  In the
+third case the exact finite \(C\)-phase either restores the cofactor and
+enables service, or leaves the box/support.  Actual-target return prefixes and
+the carrier-race lemma therefore give strict service or exit.  Consequently,
+a closed edgewise-zero terminal phase can contain only flat or shielded
+linkages.  If both linkages represented in it are shielded, the pair atlas
+below applies.
+
+Let \(A,B\) be active and \(C\) bounded.  Up to exchanging \(A,B\), four
+workloads cover every chamber and wall:
+\[
+ (1,1,0),\quad(2,3,0),\quad(1,2,0),\quad(1,3,0).
+\]
+Three independent implementations exhaust all assignments of the ten
+complexes to linkage 1, linkage 2 or unused:
+\[
+\begin{array}{lr}
+\text{workload assignments}&187{,}488\\
+\text{shielded assignments}&446\\
+\text{common affine invariants}&382\\
+\text{deficiency-zero assignments}&60\\
+\text{ordered service assignments}&4\\
+\text{unclassified}&0.
+\end{array}
+\]
+
+Available linkages are handled by Proposition~\ref{prop:layers}.  A closed
+shielded phase is therefore one of:
+\begin{enumerate}[label=(\roman*)]
+\item a common affine invariant positive on \(A,B\);
+\item a weakly reversible deficiency-zero network;
+\item one of the two service architectures
+\[
+ \{C,2C\}\ \&\ \{0,A,2A,B+C\},
+\]
+\[
+ \{0,C,2C\}\ \&\ \{A,2A,B+C\}.
+\]
+\end{enumerate}
+The deficiency-zero branch has a summable product-Poisson stationary measure.
+In the service branch \(W=B-C\); the mixed linkage preserves \(W\), while a
+finite-shell \(C\)-trial gives
+\[
+ W_\tau\le W_0-1
+\]
+or a declared promotion/exit.
+
+\section{Proof of the main theorem}
+
+Assume, for contradiction, infinite expected positive return count.  Apply
+Theorem~\ref{thm:green} and Lemma~\ref{lem:chart}.  The terminal chart has
+nonnegative outward workload balance.
+
+If it has three active coordinates, the strict source-layer flux is negative.
+If it has two, Proposition~\ref{prop:layers} or the certified atlas gives
+negative flux, an invariant, product-form stationarity, or service descent.
+If it has one, the polynomial phase analysis gives quadratic descent, strict
+corrected linear descent, an invariant, or exit.  With no active coordinates
+the chart is finite.  Every possibility contradicts terminal escape.
+Therefore the embedded chain has finite expected positive return count.
+
+At every nonabsorbing population state, some enabled falling factorial is a
+positive integer.  Hence \(\Lambda(x)\ge\kappa_{\min}>0\), and finite expected
+embedded return count implies finite expected physical return time.
+
+Population-increasing reactions have source molecularity at most one, so
+their aggregate rate is bounded by \(C(1+|X|_1)\).  A linear pure-birth
+comparison bounds upward jumps on finite time intervals.  Between upward
+jumps total population is nonincreasing and the chain remains in a finite
+shell, where total rate is bounded.  Thus the CTMC is nonexplosive.
+
+The standard irreducible countable-state equivalence now gives positive
+recurrence and uniqueness of the stationary probability
+\cite{Norris1997}.  This proves Theorem~\ref{thm:main}. \qed
+
+\appendix
+\section{Forbidden activation regressions}
+
+The proof never conditions on a future activation.  For
+\[
+ 0\to2A\to A\to0
+\]
+the conditioned activation/path block satisfies
+\[
+ J_n=\frac{7\log n+1}{n^2}
+      +O\!\left(\frac{\log n}{n^3}\right)>0.
+\]
+For
+\[
+ A\rightleftarrows2A,\qquad
+ 0\to A+B\to B\to0,
+\]
+conditioning on \(0\to A+B\) and appending only the target episode is
+asymptotic to \(+\log n\).  Both invalid decompositions are preserved as
+regression tests.  In the proof, every activation remains in its preceding
+unconditioned physical source-layer trace.
+
+\section{Verification boundary}
+
+Computation is not used to prove the infinite-state Green or debt theorems.
+It independently checks the finite atlas, priority graph alternatives,
+one-active source signs, exact queue inequalities, Poisson arithmetic,
+service supports, and the two activation counterexamples.
+
+
+\begin{thebibliography}{9}
+\bibitem{AndersonKim2018}
+D.~F. Anderson and J.~Kim.
+\newblock Some network conditions for positive recurrence of stochastically modeled reaction networks.
+\newblock \emph{SIAM Journal on Applied Mathematics}, 78:2692--2713, 2018.
+
+\bibitem{AndersonCappellettiKim2020}
+D.~F. Anderson, D.~Cappelletti, and J.~Kim.
+\newblock Stochastically modeled weakly reversible reaction networks with a single linkage class.
+\newblock \emph{Journal of Applied Probability}, 57:792--810, 2020.
+
+\bibitem{Kriebel2026Single}
+A.~Kriebel.
+\newblock Positive recurrence of bimolecular weakly reversible stochastic reaction networks with a single linkage class.
+\newblock Version 0.2 manuscript, 2026.
+
+\bibitem{Norris1997}
+J.~R. Norris.
+\newblock \emph{Markov Chains}.
+\newblock Cambridge University Press, 1997.
+\end{thebibliography}
+\end{document}

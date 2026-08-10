@@ -1,0 +1,288 @@
+\pdfinfoomitdate=1
+\pdfsuppressptexinfo=15
+\documentclass[11pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\hypersetup{pdftitle={Positive Recurrence of Three-Species Bimolecular Weakly Reversible Stochastic Reaction Networks with Two Linkage Classes},pdfauthor={Alec Kriebel}}
+\setlist{itemsep=.15em,topsep=.35em}
+\emergencystretch=2em
+\allowdisplaybreaks
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+
+\title{\bfseries Positive Recurrence of Three-Species Bimolecular\\
+Weakly Reversible Stochastic Reaction Networks\\with Two Linkage Classes}
+\author{Alec Kriebel\\[.2em]\small Independent researcher\\\small\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}}
+\date{8 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove positive recurrence on every closed communicating class for every finite stochastic mass-action reaction network having at most three dynamically active species, at most two active linkage classes, weak reversibility, molecularity at most two, and arbitrary positive rate constants.  The proof combines the marked-target single-linkage theorem and the arbitrary-linkage two-active-species theorem with finite-volume Green duality.  The new ingredient is an exact three-species workload-cone classification.  In a two-active boundary chart, an exhaustive rational atlas leaves twenty-seven canonical deficiency-zero systems and two explicit service architectures; the latter admit shellwise descent in the workload $B-C$.  A finite-shell activation lemma repairs the interface between a linkage-wise rare terminal and the currently carried target.  One-active charts are closed by an exact finite-phase source-degree hierarchy.  These alternatives exclude every escaping Green occupation and give finite mean return.
+\end{abstract}
+
+\noindent\textbf{Keywords.} stochastic reaction network; positive recurrence; weak reversibility; bimolecular network; linkage class; Green occupation; Foster--Lyapunov method; deficiency zero.
+
+\section{Model, result, and inherited modules}
+
+Let $\mathcal S=\{A,B,C\}$.  A complex is a vector $y\in\mathbb N_0^3$ with $|y|_1\le2$.  The complete universe is
+\[
+ \mathcal C_3=\{0,A,B,C,2A,2B,2C,A+B,A+C,B+C\}.
+\]
+A labelled reaction channel is $e:y_e\to y'_e$ with rate $\kappa_e>0$.  At $x\in\mathbb N_0^3$ its propensity is
+\[
+ \lambda_e(x)=\kappa_e(x)_{y_e},\qquad
+ (x)_y=\prod_i\frac{x_i!}{(x_i-y_i)!},
+\]
+with $(x)_y=0$ unless $x\ge y$.  The generator is
+\[
+ \mathcal Lf(x)=\sum_e\kappa_e(x)_{y_e}
+ [f(x+y'_e-y_e)-f(x)].
+\]
+The linkage classes are the connected components of the undirected complex graph.  Weak reversibility means that each linkage class is strongly connected.
+
+We work on one fixed closed irreducible class $\Gamma$.  Finite classes are immediate.  Self channels and inert singleton linkage components are discarded.  Parallel channels with identical source and target may be combined; equal displacements with different source or target remain distinct.
+
+The following results are used in their certified forms.
+\begin{enumerate}
+\item Every weakly reversible bimolecular network with one linkage class is positive recurrent on every closed class.
+\item Every weakly reversible bimolecular network on at most two dynamically active species is positive recurrent for arbitrary linkage count.
+\item The marked-channel residual-factorial identity, target-following scalar envelope, complete source-rate scalarization, first-changing-source sign theorem, finite-volume Green duality, shell-adapted random-time Foster construction, and finite trace-chain/nonexplosion conversion are available.
+\end{enumerate}
+The new work is the exact interface between the first two theorems.
+
+\begin{theorem}[Three-species, two-linkage theorem]\label{thm:main}
+Let a finite stochastic mass-action reaction network have at most three dynamically active species, molecularity at most two, and at most two active linkage classes.  If it is weakly reversible, then for every positive rate vector every closed communicating class is positive recurrent.
+\end{theorem}
+
+\begin{corollary}
+Every closed irreducible class in Theorem~\ref{thm:main} admits a unique stationary probability distribution.
+\end{corollary}
+
+\section{Terminal Green charts}
+
+Suppose, for contradiction, that a state $o\in\Gamma$ has infinite expected positive return time.  Kill the CTMC on return to $o$ or exit from increasing finite volumes.  Normalize the killed Green occupations by their total masses.  The inherited Green theorem gives occupations escaping every finite set and exact physical channel fluxes.
+
+Because jumps are bounded, summing state balance over consecutive workload cuts and averaging the lower cut yields a terminal chart with
+\begin{equation}\label{eq:green}
+ \sum_eJ_e(y'_e-y_e)=q,
+ \qquad h\cdot q\ge0,
+\end{equation}
+where $J_e\ge0$ are physical mass-action fluxes and $q$ is either zero or the retained outward shell flux.
+
+A coordinate is called \emph{active} if its Green occupation is not tight.  If a nominally bounded coordinate cannot be confined in a finite box with vanishing normalized exit flux, it is promoted to the active set.  There are at most three promotions.  A subsequence fixes
+\begin{itemize}
+\item the active set $I$ and a finite box for the remaining coordinates;
+\item the capped availability phase in $\{0,1,2\}^3$;
+\item the finite target marks and lattice data;
+\item a complete weak order of all enabled source propensities.
+\end{itemize}
+The finite source flag is scalarized by a rational workload $h$, strictly positive on every active coordinate and zero on the bounded coordinates.  Tied normalized source ratios range over a compact positive cell.  A terminal chart has no positive normalized flux to a larger active set, a lower shell, or a smaller source/support rank.
+
+\begin{lemma}[Fully active chart]\label{lem:interior}
+A terminal chart with $|I|=3$ cannot carry an escaping Green occupation.
+\end{lemma}
+
+\begin{proof}
+All populations eventually exceed two, so every source in $\mathcal C_3$ is physically enabled.  At the highest source layer containing an $h$-changing reaction, the first-changing-source theorem makes every such transition nonpositive and at least one strict.  Compact tied-rate ratios give a strict channel a positive fraction of that layer's physical flux.  Faster layers are $h$-neutral and slower positive layers disappear under layer normalization.  Hence the left side of \eqref{eq:green} has strictly negative $h$-component, contrary to $h\cdot q\ge0$.
+
+If no source layer changes $h$, then $h\cdot X$ is a reaction-wise invariant.  It is positive on all active coordinates and diverges in the chart, impossible inside one communicating class.
+\end{proof}
+
+\section{Finite source-layer elimination}
+
+The bounded populations, target marks, path-progress states and capped availability of a chart form a finite phase set.  A complete source flag gives finitely many physical scales
+\[
+ R_1\gg R_2\gg\cdots\gg R_m.
+\]
+After division by $R_k$, tied rate vectors range over a compact positive cell.
+
+\begin{lemma}[Finite phase elimination]\label{lem:phase}
+Let $Q_k$ be the exact finite phase generator at layer $k$, after faster zero classes have been contracted, and suppose its complete corrected edge rewards are nonpositive.  Then every recurrent class has either strictly negative stationary mean reward or zero reward on every positive-probability edge.  In the zero case the reward is a bounded phase coboundary.  Eliminating transient states preserves nonpositivity, and positive absorption flux is a structural exit.
+\end{lemma}
+
+\begin{proof}
+A finite irreducible recurrent class has a strictly positive stationary vector.  The stationary mean of nonpositive edge rewards is therefore strict if any negative edge has positive rate.  If the mean is zero, every such edge reward is zero; path sums around every directed cycle vanish and define a phase potential.  For a transient block $T$, $(-Q_T)^{-1}$ is entrywise nonnegative, so its multiplication by a nonpositive reward vector remains nonpositive.  Absorption probabilities and mean times are finite.  Compact tied-rate cells make every strict margin uniform within a fixed chart.
+\end{proof}
+
+Iterating Lemma~\ref{lem:phase} through the finite source flag gives a strict physical Green reward, a lower-rank exit, or an affine workload invariant.  No fast-mixing assumption is used.
+
+\section{Finite-shell linkage activation}
+
+For one linkage, the certified top-complex alternative gives either a linkage workload or fixed complexes $s,c$ in that linkage such that $h(s)>h(c)$ and the higher source $s$ is enabled over the lifted terminal $c$.  With several linkages, the currently carried target need not lie in the linkage containing $c$.  The next lemma is the required interface.
+
+\begin{lemma}[Finite-shell activation and correction]\label{lem:activation}
+Fix a terminal chart, a finite padded workload shell, the finite bounded-coordinate box, and a linkage $L$ having an available terminal $c$.  From every state in the shell, one of the following has finite expected physical time:
+\begin{enumerate}
+\item an actual channel of $L$ fires and the certified same-linkage terminal episode is completed;
+\item the process exits the shell or chart;
+\item the process enters a class on which only the other linkage is active.
+\end{enumerate}
+Moreover, after a bounded shell-dependent phase correction, the first outcome has expected residual-factorial reward at most $-1$ outside a sufficiently large chart threshold.
+\end{lemma}
+
+\begin{proof}
+Wait for an actual channel of $L$ to fire.  Its actual target $t$ is enabled.  Choose the fixed simple path from $t$ to $c$ and run exactly the certified target-following episode: continue only while the designated channels fire, stop immediately on any deviation (including a channel from the other linkage), and take the final ordinary jump after reaching $c$.  The episode therefore ends after a uniformly bounded number of jumps, and every designated source is physically enabled by one preserved nonnegative residual vector.
+
+Before the $L$-channel fires, kill on shell/chart exit or entry into a class on which only the other linkage is active.  The padded shell and phase are finite.  A closed nonabsorbing waiting class contains no $L$ channel and hence is governed only by the other linkage, giving the certified one-linkage reduction.  Otherwise the waiting time to an actual $L$ firing or a declared exit has finite mean.  Appending the bounded target episode preserves finite mean duration.
+
+Let $\sigma$ be the first activation or exit and let $F$ be the marked residual-factorial potential.  On the finite killed shell set
+\[
+ H_N(z)=\mathbb E_z[F(Z_\sigma)-F(z)],
+\]
+with $H_N=0$ on the activation/exit section.  This finite Dirichlet solution cancels the waiting reward.  Once activation occurs, the certified scalar envelope propagates $p(c)\to0$ along the fixed path and gives expected terminal reward at most $-1$ beyond a chart threshold.  The correction $H_N$ is bounded on the shell.  The inherited shell-adapted Foster construction absorbs these shell-dependent corrections and finite mean durations.
+\end{proof}
+
+Thus, if either linkage has the availability conclusion, the terminal chart is resolved.  It remains only to glue two linkage-wise zero workloads.
+
+\section{The exact workload-cone atlas with two active species}
+
+Assume $I=\{A,B\}$ and $C$ belongs to the finite chart phase.  Up to exchanging $A$ and $B$, take $0<h_A\le h_B$.  The projected complex weights are
+\[
+0,\ h_A,\ h_B,\ 2h_A,\ h_A+h_B,\ 2h_B.
+\]
+Their order changes only at $h_A=h_B$ and $h_B=2h_A$.  Hence
+\begin{equation}\label{eq:four}
+ (1,1,0),\quad(2,3,0),\quad(1,2,0),\quad(1,3,0)
+\end{equation}
+represent every open chamber and wall, modulo active-species exchange.
+
+Assign each of the ten complexes to linkage 1, linkage 2, or neither.  Both active linkage sets have at least two vertices.  For each of the $3^{10}$ assignments and each workload in \eqref{eq:four}, perform the certified one-linkage top split.  If both linkages are shielded, solve exactly
+\begin{equation}\label{eq:farkas}
+ q\cdot(y-z)=0\quad\text{inside both linkage sets},
+ \qquad q_A>0,\ q_B>0.
+\end{equation}
+A solution gives the affine invariant $q_AA+q_BB+q_CC$.  The $C$ coefficient may be signed because $C$ is bounded in the chart.
+
+\begin{proposition}[Two-active workload-cone atlas]\label{prop:atlas}
+Every shielded assignment satisfies exactly one of:
+\begin{enumerate}
+\item \eqref{eq:farkas} is feasible;
+\item the full network has deficiency zero;
+\item up to species permutation and exchange of the two linkage classes, its component sets are
+\begin{align}
+ \{C,2C\}&\quad\&\quad\{0,A,2A,B+C\},\label{eq:S1}\\
+ \{0,C,2C\}&\quad\&\quad\{A,2A,B+C\}.\label{eq:S2}
+\end{align}
+\end{enumerate}
+After quotienting by the same symmetries, the noninvariant atlas has twenty-nine classes: twenty-seven of deficiency zero and the two systems above.
+\end{proposition}
+
+\begin{proof}
+The finite universe has $3^{10}$ assignments.  The top split uses integer complex vectors and the four rational workloads.  Feasibility of \eqref{eq:farkas} is exact nullspace arithmetic in dimension three; deficiency is $n-2-s$.  A direct C++ implementation checks all $187{,}488$ nontrivial workload assignments.  Among $446$ shielded assignments, $382$ have a common invariant, $60$ have deficiency zero, and the remaining four are the two displayed architectures and their ordered copies.  An independent Python implementation reconstructs the reduced twenty-nine-class atlas.
+
+Only the complex sets enter this classification.  Later arguments use internal edges solely through strong connectivity.  Independently, all $1{,}606$ strongly connected directed supports on the four-vertex component of \eqref{eq:S1} and all $18$ supports on each three-vertex component of \eqref{eq:S2} are checked for the required paths.
+\end{proof}
+
+\section{The deficiency-zero and service branches}
+
+\begin{proposition}[Deficiency-zero product form]\label{prop:dz}
+Every deficiency-zero branch in Proposition~\ref{prop:atlas} is positive recurrent for arbitrary positive rates.
+\end{proposition}
+
+\begin{proof}
+Let $n$ be the number of complexes, $\ell=2$ and $s$ the stoichiometric rank.  For each strongly connected linkage let $K_y>0$ be its directed spanning-tree constant.  Seek $c\in\mathbb R_{>0}^3$ and linkage multipliers $\lambda_a>0$ with
+\[
+ c^y=\lambda_aK_y,
+ \qquad y\in\mathcal C_a.
+\]
+After logarithms this is a linear system with one row per complex and $3+\ell$ columns.  Its row rank is $s+\ell$: within-linkage row differences span the stoichiometric subspace and the linkage columns add one independent direction per component.  Deficiency zero gives $n=s+\ell$, so the system is surjective and a positive complex-balanced point exists.
+
+Then
+\[
+ \widetilde\pi(x)=\frac{c_A^{x_A}c_B^{x_B}c_C^{x_C}}{x_A!x_B!x_C!}
+\]
+satisfies the master equation and has finite total mass $e^{c_A+c_B+c_C}$.  Every enabled transition in a weakly reversible network has a lifted return path, so it remains in one communicating class.  Restriction to any closed class has positive finite mass and normalizes to a stationary probability.
+\end{proof}
+
+For \eqref{eq:S1} and \eqref{eq:S2}, define
+\[
+ W(x)=x_B-x_C.
+\]
+Every complex in the linkage containing $B+C$ has $B-C=0$, hence that linkage preserves $W$.  The other linkage changes only $C$, so
+\begin{equation}\label{eq:W}
+ \Delta W=-\Delta C.
+\end{equation}
+These systems occur only in the chamber $h_B>2h_A$; therefore $W\to+\infty$ in the alleged two-active escape while $C$ is bounded.
+
+\begin{lemma}[Shellwise service descent]\label{lem:service}
+In either \eqref{eq:S1} or \eqref{eq:S2}, a finite shell trial has finite expected physical duration and ends with $W$ decreased by one, bounded-coordinate promotion, lower-shell descent, or chart exit.
+\end{lemma}
+
+\begin{proof}
+Fix the trial-start value $c_0=x_C$ and kill on shell/chart exit or $C$ exceeding the chart cap.  The physical ledger state set is finite.
+
+In \eqref{eq:S2}, strong connectivity of $\{0,C,2C\}$ gives a target-following path from $0$ to a positive complex at $c_0=0$, and from $C$ to $2C$ at $c_0\ge1$.  In \eqref{eq:S1}, the latter applies at $c_0\ge1$.  At $c_0=0$, source $0$ in the other linkage is enabled; a path from $0$ to $B+C$ creates one $B$ and one $C$ while preserving $W$, after which the path $C\to2C$ is enabled.
+
+Thus every nonabsorbing state has an actual finite path to the first time at which the net contribution of the $C$-linkage raises $C$ by one relative to $c_0$.  Other-linkage reactions preserve $W$, so \eqref{eq:W} gives $W_\tau=W_0-1$.  A finite killed CTMC in which every state reaches the absorbing set has finite mean absorption time.  Repeating the trial either lowers $W$ or promotes $C$, and the inherited shell-adapted construction absorbs the shell-dependent means.
+\end{proof}
+
+\section{One active coordinate}
+
+Assume only $A$ is active.  The populations of $B,C$, target marks, capped availability and lattice data form a finite phase $\phi$.  Every rate is
+\[
+ k_e(\phi)(A)_{d_e},\qquad d_e\in\{0,1,2\}.
+\]
+
+\begin{lemma}[Finite-phase one-active hierarchy]\label{lem:one}
+A terminal chart with one active coordinate has strict finite-mean shell descent or an affine invariant whose physical coefficient on the active coordinate is positive.
+\end{lemma}
+
+\begin{proof}
+If the complex $2A$ is present, every genuine channel from it lowers $A$.  Hence
+\[
+ \mathcal LA\le-cA(A-1)+C_1A+C_0<0
+\]
+outside a finite set.
+
+Suppose $2A$ is absent.  Degree-one sources are $A,A+B,A+C$, and none can increase $A$.  Freeze the common large factor $A$ and form the exact finite generator $Q_1$ from enabled degree-one channels.  Rewards are $0$ or $-1$.  A recurrent class containing a negative edge has strictly negative stationary reward for every positive rate vector; its finite Poisson equation gives a bounded corrector and drift $-cA+O(1)$.  Transient degree-one motion is eliminated by a nonnegative Green matrix, so it cannot create positive complete reward.
+
+A degree-zero birth raises $A$ by at most one and leaves a target containing one $A$.  In the creator linkage, follow a return path to a zero-$A$ complex.  The first crossing to zero $A$ is a negative degree-one channel, and every earlier source on the path contains one $A$.  A competing linkage cannot consume a bounded cofactor of a source $A+D$ at the same linear order without using the same source complex, which belongs to the creator linkage.  A competitor consuming the active $A$ is already service; one preserving $A$ and omitting $D$ leaves the carrier source enabled.  Bounded-source interruptions are lower order and remain in the finite phase.
+
+Consequently the creator carrier is absorbed by service in physical time $O(A^{-1})$ unless a bounded-source interruption occurs.  Such interruptions have probability $O(A^{-1})$ per finite carrier path.  Inside the terminal chart, every interrupted cofactor and every outstanding failed service is recorded by the bounded physical phase; infinitely many unresolved interruptions would promote a bounded coordinate and are a declared exit.  Exact finite Green elimination therefore includes all interruptions and gives nonpositive complete birth--relaxation reward.  If a recurrent effective class has zero mean, every positive-probability complete reward is zero; finite graph cohomology gives a bounded $\psi$ for which $A+\psi(\phi)$ is invariant.  Otherwise the first nonzero effective class is strict.  All killed shell phases are finite, so their absorption times have finite physical mean.  Zero mean is edgewise zero, excluding a critical nonzero-variance branch.
+\end{proof}
+
+\section{Workload-cone gluing and recurrence}
+
+\begin{theorem}[Three-dimensional workload-cone alternative]\label{thm:cone}
+Every terminal Green chart for a three-species bimolecular weakly reversible network with at most two active linkage classes has one of:
+\begin{enumerate}
+\item an affine workload invariant, positive on the escape cone;
+\item a same-linkage rare-terminal episode or finite-phase transition with strict negative corrected reward;
+\item finite-mean lower-shell descent or an exit to a resolved smaller-rank chart;
+\item a deficiency-zero product-form stationary probability.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+With three active coordinates, Lemma~\ref{lem:interior} gives a strict physical source layer or a global invariant.  With two active coordinates, Lemma~\ref{lem:activation}, Proposition~\ref{prop:atlas}, Proposition~\ref{prop:dz} and Lemma~\ref{lem:service} give the four alternatives.  With one active coordinate, Lemma~\ref{lem:one} gives the first three.  A zero-active chart is finite.
+
+The cone assertion is exact.  A linkage zero workload is a rational null vector of its within-linkage complex differences.  Their common intersection is \eqref{eq:farkas}.  If that intersection is empty in the two-active chart, the exhaustive Farkas atlas produces either the deficiency-zero certificate or one of the two explicit service workloads.  No proportionality assumption special to two dimensions is used.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Apply Theorem~\ref{thm:cone} to a terminal chart of an escaping Green occupation.  An invariant cannot diverge inside one communicating class.  A product-form branch already has a stationary probability.  Lower-shell or lower-rank flux contradicts terminality.  A strict direct layer contradicts \eqref{eq:green}; a strict marked episode, with its finite-shell Dirichlet correction, contradicts the inherited shell-adapted Foster/Green alternative.  Thus no terminal escaping occupation exists.
+
+Therefore every state has finite expected positive return time.  The inherited finite trace-chain argument gives finite expected return to one state.  Population-increasing reactions have source molecularity at most one, so their aggregate rate is at most linear in total population; neutral and decreasing reactions remain within finite shells.  Comparison with a linear pure-birth process proves nonexplosion.  The CTMC on $\Gamma$ is positive recurrent.
+\end{proof}
+
+\section{Verification and scope}
+
+The proof is class-wise.  Boundary zeros, siphons, parity and lattice classes, and signed intermediate invariants are retained.  Rates are arbitrary positive numbers.
+
+The only load-bearing computation is Proposition~\ref{prop:atlas}.  Its finite universe is proved exhaustive and replayed by independent C++ and Python implementations.  Exact rational tests also verify the deficiency-zero rank interface and the strongly connected service paths.  No floating-point simulation or finite stationary truncation is used as proof.
+
+The theorem does not cover three active species with three or more linkage classes.  Extending the finite workload-cone atlas to arbitrary linkage partitions is not claimed here.
+
+\end{document}
