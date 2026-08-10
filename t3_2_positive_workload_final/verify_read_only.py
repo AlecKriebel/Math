@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dependency-isolated, non-mutating replay of claim-neutral regressions."""
+"""Dependency-isolated replay of regressions and exact finite interfaces."""
 
 from __future__ import annotations
 
@@ -16,8 +16,11 @@ TESTS = ROOT / "tests"
 READ_ONLY_SCOPE = (
     ROOT / "verify_read_only.py",
     ROOT / "RELEASE_ENGINEERING.md",
+    ROOT / "research_notes" / "certified_exact_shielded_seam.md",
     SOURCE / "claim_neutral_regressions.py",
+    SOURCE / "exact_shielded_seam.py",
     TESTS / "test_claim_neutral_regressions.py",
+    TESTS / "test_exact_shielded_seam.py",
 )
 
 
@@ -64,7 +67,10 @@ def main() -> int:
         return 1
 
     report = {
-        "claim_scope": "generic recurrence-interface regressions only",
+        "claim_scope": (
+            "generic regressions and exact-seam finite algebra only; "
+            "not the analytic seam proof or T3-2"
+        ),
         "files_mutated": False,
         "isolated_python": True,
         "scope_sha256": _scope_digest(after),

@@ -19,3 +19,19 @@ close both interfaces. No theorem manuscript or submission claim will be
 released unless the full physical-time descent construction is proved or an
 exact counterexample is found.
 
+The previously isolated seam
+$\{2B,A+B\}$ / $\{C,A+C,B+C\}$ is now closed, together with all seven
+compatible positive-invariant shielded supports, by a direct physical-time
+factorial Foster argument and one autonomous-clock product branch. An
+independent adversarial replay found no error at that exact scope.
+
+The first remaining arbitrary pairing is
+$\{B,2A,B+C\}$ / $\{0,A,C\}$. A natural complex-balanced factorial
+potential has positive drift of order $B$ at $(A,B,C)=(n,n^2,0)$, while the
+available linkage supplies only order $n\log n$ negative drift. Closing this
+case requires a shell-uniform fast-phase Poisson corrector or killed-resolvent
+estimate. The two exceptional signed service architectures also require a
+proper two-region seam argument; their signed $B-C$ descent is not itself
+descent of a proper workload.
+
+No physical counterexample to T3-2 is known.

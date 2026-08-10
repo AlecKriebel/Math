@@ -1,0 +1,667 @@
+# Exact shielded/available seam in physical time
+
+## 1. Status, hypotheses, and conclusion
+
+This note closes one exact two-active seam and its complete finite
+shielded-support generalization. It is **not** a proof of T3-2. Sections 8
+and 9 list what this argument does not cover.
+
+Use stochastic mass-action propensities
+
+\[
+ \lambda_{y\to z}(x)=\kappa_{yz}(x)_y,\qquad
+ (x)_y=\prod_i\frac{x_i!}{(x_i-y_i)!}.
+\tag{1.1}
+\]
+
+Fix the available linkage support
+
+\[
+ L_1=\{C,A+C,B+C\}.
+\tag{1.2}
+\]
+
+Its labelled reaction graph may have arbitrary orientations and parallel
+channels, subject only to strong connectivity and positive rate constants.
+After subtracting the common catalyst $C$, it is an irreducible
+immigration/conversion/death network on the vertices $0,A,B$. Every $L_1$
+propensity has a common factor $C$, and every $L_1$ reaction leaves $C$
+unchanged.
+
+Let $L_0$ be a disjoint, strongly connected linkage. Assume it is shielded
+for one of the four two-active workload representatives
+
+\[
+ (1,1,0),\quad(2,3,0),\quad(1,2,0),\quad(1,3,0),
+\tag{1.3}
+\]
+
+and that its complex differences admit an invariant
+$q=(q_A,q_B,q_C)$ with $q_A,q_B>0$. These are exactly the finite hypotheses
+replayed by src/exact_shielded_seam.py.
+
+The scoped conclusion is:
+
+> For the fixed available support (1.2), every compatible $L_0$ satisfying
+> these hypotheses gives a positive recurrent CTMC on every closed
+> irreducible population class, for every strongly connected orientation
+> and every positive rate vector.
+
+The proof uses the physical-time generator directly. It does not condition
+on an $L_1$ activation, truncate $C$, count fast $L_0$ jumps, or prove
+recurrence of the raw embedded jump chain.
+
+## 2. Exact seven-support reduction
+
+Take the union over (1.3) of all shielded masks having a positive $A,B$
+invariant, then impose disjointness from $\{C,A+C,B+C\}$. Up to exchanging
+$A$ and $B$, exactly seven supports remain:
+
+\[
+\begin{split}
+ &\{0,2C\},\qquad \{A,B\},\qquad \{B,2A\},\\
+ &\{2A,2B\},\qquad \{2A,A+B\},\qquad \{2B,A+B\},\\
+ &\{2A,A+B,2B\}.
+\end{split}
+\tag{2.1}
+\]
+
+The original obstruction
+
+\[
+ L_0=\{2B,A+B\},\qquad L_1=\{C,A+C,B+C\}
+\tag{2.2}
+\]
+
+is the sixth entry. The self-contained executable certificate checks that
+the full positive-invariant union has 25 supports and that the disjoint
+filter gives exactly (2.1).
+
+After removing $\{0,2C\}$, the other six supports contain only $A,B$.
+Consequently $C$ is a reaction-wise invariant of the full network. Five are
+reversible two-complex linkages. The sixth is the arbitrary directed
+three-complex linkage $\{2A,A+B,2B\}$. Sections 3--6 handle these six;
+Section 7 handles $\{0,2C\}$ by an autonomous-clock product law.
+
+## 3. Reversible two-complex fast linkage
+
+### Lemma 3.1: exact factorial-ratio identity
+
+Let $L_0$ be $y\rightleftarrows z$. Aggregate parallel channels in each
+direction, writing $\alpha>0$ for $y\to z$ and $\beta>0$ for $z\to y$.
+Put $\zeta=z-y$, and choose $\theta\in(0,\infty)^3$ satisfying
+
+\[
+ \alpha\theta^y=\beta\theta^z.
+\tag{3.1}
+\]
+
+One scalar equation in $\log\theta$ always has a solution because $y\ne z$.
+Define the proper factorial potential with a network-dependent linear
+corrector
+
+\[
+ F_\theta(x)=\sum_{i=A,B,C}\log(x_i!)
+              -\sum_i x_i\log\theta_i.
+\tag{3.2}
+\]
+
+Whenever $y\to z$ is enabled at $x$,
+
+\[
+ F_\theta(x+\zeta)-F_\theta(x)
+ =\log\frac{\beta(x+\zeta)_z}{\alpha(x)_y}.
+\tag{3.3}
+\]
+
+Indeed, the factorial part of the increment is
+
+\[
+ \log\prod_i\frac{(x_i-y_i+z_i)!}{x_i!},
+\]
+
+while (3.1) gives $\beta/\alpha=\theta^{y-z}=\theta^{-\zeta}$.
+The reverse identity follows identically.
+
+### Lemma 3.2: positive fast drift is at most linear
+
+There is a finite constant $K_0$, depending only on
+$y,z,\alpha,\beta$, such that
+
+\[
+ \mathcal L_0F_\theta(x)\le K_0(1+|x|_1)
+\tag{3.4}
+\]
+
+at every population state.
+
+To prove this, put $\lambda(x)=\alpha(x)_y$ and
+$\mu(x)=\beta(x)_z$. For an enabled forward channel, (3.3) and
+$\log u\le u-1$ give
+
+\[
+ \lambda(x)[F_\theta(x+\zeta)-F_\theta(x)]
+ \le \mu(x+\zeta)-\lambda(x).
+\tag{3.5}
+\]
+
+For an enabled reverse channel,
+
+\[
+ \mu(x)[F_\theta(x-\zeta)-F_\theta(x)]
+ \le \lambda(x-\zeta)-\mu(x).
+\tag{3.6}
+\]
+
+Only enabled terms are retained. Away from the finitely many boundary
+faces, their sum is
+
+\[
+ \beta[(x+\zeta)_z-(x)_z]
+ +\alpha[(x-\zeta)_y-(x)_y].
+\tag{3.7}
+\]
+
+Each bracket is a first finite difference of a falling-factorial polynomial
+of degree at most two, hence is affine. On a boundary face, a shift can newly
+supply one or two missing factors of a bimolecular source. If it supplies
+both, the resulting value is bounded; if it supplies one, the other factor
+is at most linear in $|x|_1$. Thus the positive part of each enabled
+right-hand side in (3.5)--(3.6) is bounded by
+$K_0(1+|x|_1)$. This proves (3.4).
+
+This applies for arbitrary positive rates to the five two-vertex supports
+
+\[
+ \{A,B\},\quad\{B,2A\},\quad\{2A,2B\},\quad
+ \{2A,A+B\},\quad\{2B,A+B\}.
+\tag{3.8}
+\]
+
+For the exact seam (2.2), let $\alpha$ be the rate of
+$2B\to A+B$ and $\beta$ the rate of $A+B\to2B$. One may take
+
+\[
+ F(a,b,c)=\log(a!)+\log(b!)+\log(c!)
+          +a\log(\beta/\alpha).
+\tag{3.9}
+\]
+
+Its exact $L_0$ drift is
+
+\[
+\begin{split}
+ &\alpha b(b-1)\log\frac{\beta(a+1)}{\alpha b}\\
+ &\qquad+\beta ab\log\frac{\alpha(b+1)}{\beta a}.
+\end{split}
+\tag{3.10}
+\]
+
+Thus the fast neutral linkage is handled without averaging its jump chain.
+
+## 4. Arbitrary directed three-complex fast linkage
+
+Now take $L_0=\{2A,A+B,2B\}$. Index its complexes by their number of
+$A$ particles:
+
+\[
+ Y_i=iA+(2-i)B,\qquad i=0,1,2.
+\tag{4.1}
+\]
+
+Aggregate parallel $Y_i\to Y_j$ channels into a rate $\kappa_{ij}>0$
+whenever that directed edge is present. The graph is arbitrary subject to
+strong connectivity.
+
+Define
+
+\[
+\begin{split}
+ p(r)
+ &=\sum_{i\to j}\kappa_{ij}r^i(1-r)^{2-i}(j-i)\\
+ &=\gamma_0(1-r)^2+\gamma_1r(1-r)+\gamma_2r^2.
+\end{split}
+\tag{4.2}
+\]
+
+Every edge leaving $Y_0$ has positive $A$ increment, and strong
+connectivity supplies at least one such edge. Every edge leaving $Y_2$ has
+negative $A$ increment, again with at least one present edge. Hence
+
+\[
+ \gamma_0>0,\qquad\gamma_2<0.
+\tag{4.3}
+\]
+
+After setting $z=r/(1-r)$, the sign of $p(r)$ is the sign of
+
+\[
+ \gamma_0+\gamma_1z+\gamma_2z^2.
+\tag{4.4}
+\]
+
+Its coefficient sequence has exactly one sign change, regardless of the
+sign of $\gamma_1$. Descartes' rule and (4.3) give a unique positive root.
+Thus there is a unique $r_*\in(0,1)$ with
+
+\[
+ p(r)>0\quad(r<r_*),\qquad p(r)<0\quad(r>r_*).
+\tag{4.5}
+\]
+
+Put
+
+\[
+ d=-\log\frac{r_*}{1-r_*},\qquad
+ F_*(a,b)=\log(a!)+\log(b!)+da.
+\tag{4.6}
+\]
+
+For $n=a+b$, $r=a/n$, and
+
+\[
+ \Phi(r)=\log\frac{r(1-r_*)}{(1-r)r_*},
+\tag{4.7}
+\]
+
+the leading fluid contribution is $n^2p(r)\Phi(r)$. Equations
+(4.5)--(4.7) imply
+
+\[
+ p(r)\Phi(r)\le0.
+\tag{4.8}
+\]
+
+### Lemma 4.1: global discrete upper bound
+
+For every strongly connected orientation and every positive rate vector,
+there is a finite $K_*$ such that
+
+\[
+ \mathcal L_0F_*(a,b)\le K_*(1+a+b)
+\tag{4.9}
+\]
+
+for all $a,b\in\mathbb N_0$.
+
+For an edge $i\to j$, put $k=j-i$, so $|k|\le2$. On an
+interior strip $\varepsilon n\le a,b\le(1-\varepsilon)n$, exact factorial
+increments and $|\log(1+u)|\le2|u|$ for $|u|\le1/2$ give
+
+\[
+ F_*(a+k,b-k)-F_*(a,b)
+ =k[\log(a/b)+d]+R_{ij}(a,b),
+\tag{4.10}
+\]
+
+with
+
+\[
+ |R_{ij}(a,b)|\le K_\varepsilon(1/a+1/b).
+\tag{4.11}
+\]
+
+Also,
+
+\[
+ (a)_i(b)_{2-i}
+ =n^2r^i(1-r)^{2-i}+O_\varepsilon(n).
+\tag{4.12}
+\]
+
+Summing over the finite edge set yields
+
+\[
+ \mathcal L_0F_*(a,b)
+ =n^2p(r)\Phi(r)+O_\varepsilon(n).
+\tag{4.13}
+\]
+
+The leading term is nonpositive by (4.8), proving (4.9) on each fixed
+interior strip.
+
+It remains to make the estimate uniform at the two faces. By (4.3), choose
+$\varepsilon>0$ small enough that
+
+\[
+ p(r)\ge\gamma_0/2\quad(0\le r\le2\varepsilon),\qquad
+ p(r)\le\gamma_2/2\quad(1-2\varepsilon\le r\le1).
+\tag{4.14}
+\]
+
+For $a\le\varepsilon n$, every enabled edge from $Y_0=2B$ moves inward and,
+for a rate-dependent constant $K$,
+
+\[
+ \Delta_{0j}F_*
+ \le-j\log\frac{b}{a+2}+K.
+\tag{4.15}
+\]
+
+The aggregate $Y_0$-source rate is at least $k_0b(b-1)$ for some
+$k_0>0$. The positive parts of all $Y_1$- and $Y_2$-source terms satisfy
+
+\[
+ \sum_{\substack{i=1,2\\i\to j}}
+ \kappa_{ij}(a)_i(b)_{2-i}(\Delta_{ij}F_*)^+
+ \le K(ab+a^2)
+       \left(1+\log\frac{b+2}{a+1}\right).
+\tag{4.16}
+\]
+
+Choose $\varepsilon$ smaller, if necessary, so the right side of (4.16) is
+absorbed by half the negative $b(b-1)$ term from (4.15) whenever
+$b/(a+2)$ is above a fixed rate-dependent constant $R_0$. For this
+sufficiently small fixed $\varepsilon$, there is a finite
+$n_0=n_0(R_0,\varepsilon)$ such that $a\le\varepsilon n$, $b=n-a$, and
+$n\ge n_0$ force that ratio above $R_0$. This same absorption includes
+$a=1$; when $a=0$, every $Y_1$- and $Y_2$-source propensity vanishes and
+(4.15) applies directly. Enlarge $K_*$ over the remaining finite set. The
+symmetric argument, using $\gamma_2<0$, handles
+$b\le\varepsilon n$. Together with (4.13), this proves (4.9).
+
+This argument uses only endpoint signs forced by strong connectivity. It
+does not assume reversibility, detailed balance, deficiency zero, or a
+special orientation of the three-complex linkage.
+
+## 5. Coercivity of the available linkage
+
+Remove the common catalyst $C$ from (1.2), and let $\mathcal M$ be the
+resulting generator on $(a,b)\in\mathbb N_0^2$. Its reaction graph on
+$0,A,B$ is strongly connected. For every fixed
+$\ell=(\ell_A,\ell_B)\in\mathbb R^2$, define
+
+\[
+ G_\ell(a,b)=\log(a!)+\log(b!)+\ell_Aa+\ell_Bb.
+\tag{5.1}
+\]
+
+### Lemma 5.1: superlinear negative physical-time drift
+
+There are constants $k>0$ and $K<\infty$, depending only on the graph,
+rates, and $\ell$, such that
+
+\[
+ \mathcal MG_\ell(a,b)
+ \le-kn\log\log(n+e^e)+Kn,\qquad n=a+b.
+\tag{5.2}
+\]
+
+The exact increments are
+
+\[
+\begin{array}{c|c}
+0\to A&\log(a+1)+\ell_A\\
+0\to B&\log(b+1)+\ell_B\\
+A\to0&-\log a-\ell_A\\
+B\to0&-\log b-\ell_B\\
+A\to B&\log(b+1)-\log a+\ell_B-\ell_A\\
+B\to A&\log(a+1)-\log b+\ell_A-\ell_B.
+\end{array}
+\tag{5.3}
+\]
+
+Let $m=\max(a,b)$, $s=\min(a,b)$, and call their species $D,E$,
+respectively. Thus $m\ge n/2$. Fixed linear-corrector contributions are at
+most $K_1n$, immigration contributions are at most $K_1\log(n+2)$, and a
+conversion from the minor to the dominant species has positive part bounded
+by
+
+\[
+ s\log\frac{m+1}{s\vee1}\le m+1.
+\tag{5.4}
+\]
+
+If $D\to0$ is present, its death term gives
+
+\[
+ \mathcal MG_\ell(a,b)\le-k_1m\log m+K_2n,
+\tag{5.5}
+\]
+
+which is stronger than (5.2).
+
+Suppose $D\to0$ is absent. Strong connectivity on the three vertices forces
+both $D\to E$ and $E\to0$: without the first edge $D$ cannot leave its
+vertex, and without the second no path from $D$ can reach zero. Their
+combined negative contribution, after absorbing fixed linear terms, is a
+positive constant times
+
+\[
+ R(m,s)=m\log\frac{m}{s+1}+s\log(s\vee1).
+\tag{5.6}
+\]
+
+The first summand is bounded below by $-1$, because $s\le m$. Put
+$L=\log(m+e^e)$. If
+
+\[
+ s+1\le m/\sqrt L,
+\]
+
+then the first summand is at least $\frac12m\log L$. Otherwise, for all
+sufficiently large $m$,
+
+\[
+\begin{split}
+ s\log(s\vee1)
+ &\ge (m/\sqrt L-1)\log(m/\sqrt L-1)\\
+ &\ge c_0m\sqrt{\log m}
+ \ge c_0m\log\log(m+e^e).
+\end{split}
+\tag{5.7}
+\]
+
+Equations (5.4)--(5.7), with $m\ge n/2$, prove (5.2) after enlarging $K$
+over a finite set.
+
+This includes every immigration event at its natural rate and holds for
+the linear corrector selected by either Section 3 or Section 4.
+
+## 6. Foster conclusion for six supports
+
+For each of the six $A,B$-only supports in (2.1), $C=c$ is fixed on a
+closed class.
+
+If $c=0$, every $L_1$ propensity vanishes. The positive invariant of $L_0$
+has positive $A,B$ coefficients, so its population shells are finite.
+Every closed irreducible class is finite.
+
+Suppose $c\ge1$. The full generator is
+
+\[
+ \mathcal L=\mathcal L_0+c\mathcal M.
+\tag{6.1}
+\]
+
+Choose $F$ from Lemma 3.1 for a two-complex $L_0$, or from (4.6) for the
+three-complex support. Add the constant-in-class term $\log(c!)$.
+Factorial growth dominates every fixed linear corrector, so $F$, after an
+additive shift, is nonnegative and proper. Lemmas 3.2 or 4.1 and Lemma 5.1
+give
+
+\[
+ \mathcal LF(x)
+ \le K_0(1+n)+c[-kn\log\log(n+e^e)+Kn]
+ \longrightarrow-\infty
+\tag{6.2}
+\]
+
+as $n=A+B\to\infty$. Thus $\mathcal LF\le-1$ outside a finite subset of
+each closed class.
+
+The process is nonexplosive. In these supports, every
+population-increasing channel has propensity at most a constant times
+$1+A+B$; quadratic channels preserve molecular count or point inward.
+Comparison with a linear pure-birth process suffices.
+
+The standard countable-state continuous-time Foster theorem applied to the
+proper $F$ gives finite mean physical return to a finite set, hence positive
+recurrence on each closed irreducible class. No expected bound on the number
+of $L_0$ jumps is asserted or needed.
+
+This is a global factorial potential, not the marked residual potential. If
+
+\[
+ V_{\rm res}(x,t)=\sum_i\log((x_i-t_i)!),
+\]
+
+then
+
+\[
+ F_\ell(x)=V_{\rm res}(x,t)+\log(x)_t+\ell\cdot x.
+\tag{6.3}
+\]
+
+Thus the seam closes by a direct, unconditioned physical-time generator
+argument. No residual-only target episode is claimed to have negative reward.
+
+## 7. The remaining compatible support \{0,2C\}
+
+Let the aggregate rates of $0\to2C$ and $2C\to0$ be
+$\alpha,\beta>0$. The $C$ process is autonomous. On parity class
+$p\in\{0,1\}$, its stationary law is
+
+\[
+ \pi_C(p+2k)=\frac1{Z_p}
+ \left(\frac\alpha\beta\right)^k\frac{p!}{(p+2k)!},
+ \qquad k\ge0.
+\tag{7.1}
+\]
+
+It is summable, and
+
+\[
+ \pi_C(c)\alpha
+ =\pi_C(c+2)\beta(c+2)(c+1).
+\tag{7.2}
+\]
+
+Let $Y$ be the unmodulated monomolecular $A,B$ chain obtained from $L_1$ by
+removing the common factor $C$, and let $\mathcal L_Y$ be its generator.
+Strong connectivity gives a positive traffic solution
+$(\rho_A,\rho_B)$, and
+
+\[
+ \pi_Y(a,b)=e^{-\rho_A-\rho_B}
+ \frac{\rho_A^a}{a!}\frac{\rho_B^b}{b!}
+\tag{7.3}
+\]
+
+is stationary. The joint generator is
+
+\[
+ \mathcal L=\mathcal L_C+C\mathcal L_Y.
+\tag{7.4}
+\]
+
+For every finitely supported $f$,
+
+\[
+\begin{split}
+ \sum_{c,a,b}\pi_C(c)\pi_Y(a,b)\mathcal Lf(c,a,b)
+ &=\sum_{a,b}\pi_Y(a,b)\sum_c\pi_C(c)\mathcal L_Cf(c,a,b)\\
+ &\quad+\sum_c c\pi_C(c)
+   \sum_{a,b}\pi_Y(a,b)\mathcal L_Yf(c,a,b)=0.
+\end{split}
+\tag{7.5}
+\]
+
+Therefore $\pi_C\otimes\pi_Y$ is an invariant probability. Each parity
+product class is irreducible: move $C$ within its parity class, keep it
+positive while executing any prescribed finite $Y$ path, then move it to
+the requested endpoint. That finite sequence has positive probability.
+Population-increasing rates are at most linear in $C$, so the process is
+nonexplosive. Every closed irreducible class is therefore positive recurrent.
+
+This remains valid on the even class containing $C=0$: the $Y$ clock pauses
+there, but $0\to2C$ has positive rate, and (7.5) includes the pause exactly.
+
+## 8. Exact boundary of the argument
+
+The finite reduction contains 25 unique positive-active-invariant shielded
+supports. Sixteen have two vertices, so Lemma 3.2 gives their fast generator
+at-most-linear positive drift after a factorial-linear correction. Lemma 4.1
+adds $\{2A,A+B,2B\}$. Thus the fast-generator bound covers 17 of 25 supports
+for every rate and orientation.
+
+That fact alone does not prove recurrence for arbitrary second linkages:
+the other linkage must supply coercive negative drift in every divergent
+coordinate. The eight multi-vertex supports not covered by the present
+fast-generator lemma are
+
+\[
+\begin{split}
+ &\{0,A+C,B+C\},\qquad \{0,C,2C\},\\
+ &\{A,A+C,B+C\},\qquad \{A,B,A+C\},\qquad \{A,B,B+C\},\\
+ &\{B,2A,B+C\},\qquad \{B,A+C,B+C\},\\
+ &\{A,B,A+C,B+C\}.
+\end{split}
+\tag{8.1}
+\]
+
+Six supports in (8.1) have single-linkage deficiency zero. The two
+deficiency-one supports are
+
+\[
+ \{0,C,2C\},\qquad\{A,B,A+C,B+C\}.
+\tag{8.2}
+\]
+
+This note therefore does not close all 25 masks in arbitrary pairings and
+does not establish T3-2.
+
+## 9. Signed one-active supports
+
+The non-positive-invariant output of the shielded reduction consists, in the
+displayed orientation, of
+
+\[
+ \{0,A,B+C\},\quad
+ \{0,2A,B+C\},\quad
+ \{A,2A,B+C\},\quad
+ \{0,A,2A,B+C\}.
+\tag{9.1}
+\]
+
+Every support in (9.1) preserves
+
+\[
+ W=B-C.
+\tag{9.2}
+\]
+
+This quantity is signed and not proper: the ray $B=C\to\infty$ lies in one
+level set. An episode can decrease $B-C$ while every positive workload
+increases. Therefore neither $W$ descent nor the service endpoint
+$W_\tau\le W_0-1$ implies positive recurrence by physical-time Foster.
+
+The first three supports in (9.1), in isolation, have deficiency zero; the
+four-vertex support has deficiency one. Product form for an isolated
+deficiency-zero linkage is not preserved after arbitrary coupling. The
+direct argument in this note therefore covers none of (9.1) globally.
+They do not occur in the exact seam (1.2), because each contains $B+C$,
+already assigned to $L_1$.
+
+## 10. Executable certificate
+
+Run:
+
+    PYTHONPATH=src python3 src/exact_shielded_seam.py
+    PYTHONPATH=src python3 -m unittest tests/test_exact_shielded_seam.py -v
+
+The certificate checks:
+
+1. 25 unique positive-invariant shielded supports;
+2. the exact seven-support filter (2.1);
+3. the 16 two-vertex plus one directed-triple fast-bound partition;
+4. the exact eight supports in (8.1);
+5. the three deficiency-one supports;
+6. the four signed supports and their $B-C$ invariant;
+7. the reversible-pair finite-difference algebra;
+8. endpoint signs (4.3) for every strongly connected digraph on three
+   vertices; and
+9. the detailed-balance recursion (7.2).
+
+These are finite algebraic checks. The analytic estimates in Sections 3--7
+are mathematical proofs, not computational certificates.
