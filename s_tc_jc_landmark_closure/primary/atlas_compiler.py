@@ -546,11 +546,84 @@ def compile_relation_records(n: int, working, invariants):
     sources, targets, pairs = working
     relation_path = HERE / "certificates" / f"bounded_relations_n{n}.jsonl.gz"
     sign_path = HERE / "certificates" / f"bounded_sign_library_n{n}.json"
+    graph_path = HERE / "certificates" / f"bounded_relation_graphs_n{n}.jsonl.gz"
+    polynomial_path = HERE / "certificates" / f"bounded_relation_polynomials_n{n}.jsonl.gz"
     sign_library: dict[str, dict] = {}
+    graph_library: dict[str, dict] = {}
+    polynomial_library: dict[str, dict] = {}
     sign_cache: dict[tuple[Descriptor, int], tuple[object, dict, str]] = {}
     failures = []
     counts = defaultdict(int)
     records: dict[str, dict] = {}
+
+    def register_graph(graph: RootedGraph) -> str:
+        payload = {
+            "root": int(graph.root),
+            "labels": tuple(sorted(
+                (int(vertex), str(label)) for vertex, label in graph.labels
+            )),
+            "arcs": tuple(sorted((int(u), int(v)) for u, v in graph.arcs)),
+        }
+        identifier = stable_hash(payload)
+        mixed = sd0(graph)
+        code, transport = canonical_mixed(mixed)
+        t_code, t_transport = canonical_mixed(t_quotient(mixed))
+        valid, problems = rooted_validation(graph)
+        row = {
+            "schema": 1,
+            "graph_id": identifier,
+            "rooted_graph": payload,
+            "rooted_valid": valid,
+            "rooted_validation_problems": problems,
+            "standard_strong_local": mixed_local_strong(mixed),
+            "standard_mixed_code": code,
+            "t_quotient_code": t_code,
+            "raw_mixed_vertex_to_canonical": tuple(sorted(transport.items())),
+            "raw_t_quotient_vertex_to_canonical": tuple(
+                sorted(t_transport.items())
+            ),
+        }
+        prior = graph_library.setdefault(identifier, row)
+        if prior != row:
+            raise AssertionError("bounded graph content-address collision")
+        return identifier
+
+    def register_polynomial(poly) -> tuple[str, str]:
+        terms = tuple(
+            (tuple(int(value) for value in exponents), int(coefficient))
+            for exponents, coefficient in sorted(poly.items())
+        )
+        payload = {
+            "schema": 1,
+            "variable_count": len(terms[0][0]) if terms else 0,
+            "terms": terms,
+        }
+        identifier = stable_hash(payload)
+        exact_hash = hashlib.sha256(repr(tuple(sorted(poly.items()))).encode()).hexdigest()
+        row = {
+            **payload,
+            "polynomial_id": identifier,
+            "exact_polynomial_sha256": exact_hash,
+        }
+        prior = polynomial_library.setdefault(identifier, row)
+        if prior != row:
+            raise AssertionError("bounded polynomial content-address collision")
+        return identifier, exact_hash
+
+    def write_library(path: Path, rows: dict[str, dict]) -> str:
+        digest = hashlib.sha256()
+        with path.open("wb") as raw:
+            with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as out:
+                for identifier in sorted(rows):
+                    line = (
+                        json.dumps(
+                            rows[identifier], sort_keys=True, separators=(",", ":")
+                        )
+                        + "\n"
+                    ).encode()
+                    out.write(line)
+                    digest.update(line)
+        return digest.hexdigest()
 
     def labelled_mixed_code(variant: ModelVariant, assignment, *, topology: bool) -> str | None:
         graph = variant.topology_graph if topology else variant.graph
@@ -590,6 +663,25 @@ def compile_relation_records(n: int, working, invariants):
             )
             if source_code is None or target_completion_code is None:
                 raise AssertionError("missing graph in decorated relation")
+            source_graph = relabel_selected(
+                source_variant.topology_graph,
+                source_variant.labels,
+                source_assignment,
+            )
+            target_completion_graph = relabel_selected(
+                target_variant.graph,
+                target_variant.labels,
+                target_assignment,
+            )
+            source_graph_id = register_graph(source_graph)
+            target_completion_graph_id = register_graph(target_completion_graph)
+            target_selected_graph_id = None
+            if target_variant.topology_graph is not None:
+                target_selected_graph_id = register_graph(relabel_selected(
+                    target_variant.topology_graph,
+                    target_variant.labels,
+                    target_assignment,
+                ))
             relation_id = stable_hash({
                 "direction": "source_precedes_target",
                 "outgoing": n,
@@ -614,6 +706,9 @@ def compile_relation_records(n: int, working, invariants):
                     hashlib.sha256(target_selected_code.encode()).hexdigest()
                     if target_selected_code is not None else None
                 ),
+                "source_graph_id": source_graph_id,
+                "target_completion_graph_id": target_completion_graph_id,
+                "target_selected_graph_id": target_selected_graph_id,
                 "source_signature_sha256": hashlib.sha256(
                     str(source_signature).encode()
                 ).hexdigest(),
@@ -675,15 +770,20 @@ def compile_relation_records(n: int, working, invariants):
                         sign_cache[cache_key] = target_poly, sign, exact_hash
                     _poly, sign, exact_hash = sign_cache[cache_key]
                     if sign["certified"]:
+                        polynomial_id, stored_exact_hash = register_polynomial(target_poly)
+                        if stored_exact_hash != exact_hash:
+                            raise AssertionError("strict polynomial hash disagreement")
                         sign_library.setdefault(exact_hash, {
                             **sign,
                             "exact_polynomial_sha256": exact_hash,
+                            "polynomial_id": polynomial_id,
                         })
                         witness = {
                             "quartet_chunk": chunk,
                             "invariant_index": invariant_index,
                             "source_pullback": "0",
                             "target_pullback_exact_sha256": exact_hash,
+                            "target_pullback_id": polynomial_id,
                             "target_pullback_primitive_sha256": sign["polynomial_sha256"],
                             "strict_sign": sign["strict_sign"],
                         }
@@ -728,11 +828,19 @@ def compile_relation_records(n: int, working, invariants):
                 handle.write(line)
                 hasher.update(line)
     sign_path.write_text(json.dumps(sign_library, sort_keys=True, indent=2) + "\n")
+    graph_stream_sha = write_library(graph_path, graph_library)
+    polynomial_stream_sha = write_library(polynomial_path, polynomial_library)
     return {
         "relation_path": str(relation_path.relative_to(HERE.parent)),
         "relation_stream_sha256": hasher.hexdigest(),
         "sign_library_path": str(sign_path.relative_to(HERE.parent)),
         "sign_library_sha256": sha256(sign_path),
+        "graph_library_path": str(graph_path.relative_to(HERE.parent)),
+        "graph_library_records": len(graph_library),
+        "graph_library_stream_sha256": graph_stream_sha,
+        "polynomial_library_path": str(polynomial_path.relative_to(HERE.parent)),
+        "polynomial_library_records": len(polynomial_library),
+        "polynomial_library_stream_sha256": polynomial_stream_sha,
         "canonical_decorated_relations": len(records),
         "counts": dict(sorted(counts.items())),
         "distinct_strict_polynomials": len(sign_library),

@@ -366,3 +366,21 @@
   source signatures produce 132 fixed full restoration roots.  This is an
   exact inventory only; the corresponding hard cover and independent replay
   remain pending.
+
+## 2026-08-10T02:18:00-07:00 — path-bound probe algebra compiler added
+
+- Added a primary `A+p`, `A+p+q` compiler following the referee-accepted
+  contract.  It reads only allowed raw hard-cover terminal paths, inserts the
+  new physical label on every nonbridge internal blob arc on both sides,
+  verifies exact deletion to the parent, regenerates every quartet descriptor
+  and invariant pullback, and permits a child only when its unique labelled
+  isomorphism/ordinary-`T` transport restricts to the parent anchor map.
+- Canonical child algebra, raw path bindings, rooted graph bodies, exact
+  polynomial bodies, and all transports are emitted in separate
+  content-addressed streams.  The code is syntax-checked and its
+  insertion/deletion and identity-transport primitives pass exact unit
+  replays.  It has not yet run on the complete final-schema n=3+n=4 base
+  streams and is therefore not a theorem certificate.
+- Hardened the unequal-directed-pair compiler to emit complete rooted graph
+  and exact polynomial libraries, rather than only topology and polynomial
+  hashes.  Its full n=3/n=4 runs and independent replay remain pending.
