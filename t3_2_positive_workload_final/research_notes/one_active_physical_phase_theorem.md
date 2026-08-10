@@ -41,9 +41,10 @@ rates.  Suppose that every **affine-stoichiometrically feasible** failed tier
 descriptor for the pair has exactly one active coordinate.  Then every
 closed irreducible class of the physical CTMC is positive recurrent.
 
-The candidate theorem follows from the stopped-kernel hypotheses stated in
-Proposition 5.1 and the gluing hypothesis in Section 6.  The present note
-does not prove those hypotheses from weak reversibility alone.
+The candidate theorem would follow from the countable regenerated-mode
+kernel summarized in Section 5 and the gluing hypothesis in Section 6.  The
+local countable kernel is now proved in
+*one_active_countable_phase_service.md*; the global gluing remains open.
 
 More locally, for each one-active failed descriptor exactly one of the
 following occurs.
@@ -282,7 +283,8 @@ If a prescribed source is disturbed before its return edge fires, the
 disturbing reaction and its actual target must be retained.  Iterating the
 identity suggests a physical return attempt, but the identity alone does not
 give an \(N\)-uniform absorption probability or a finite-moment completion
-time.  Those are the stopped-kernel requirements in Proposition 5.1.
+time.  A finite-box formulation of those requirements is false; Section 5
+states the countable replacement.
 
 **Proof.**  If the chosen path is
 \(y'=z_0\to z_1\to\cdots\to z_k=y\), then immediately after \(r\) the state
@@ -352,60 +354,48 @@ while the inactive population is bounded by \(m\).  It does **not** by itself
 bound the total number of such units produced during an old-debt return
 attempt.
 
-The exact missing statement is the following.
+The previously proposed finite-phase version of the missing statement is
+false and is withdrawn.  A flat top linkage \(\{X,X+U\}\) makes \(U\) an
+immigration--death chain on the \(X\)-clock.  It leaves every fixed finite
+box before a slow service edge fires with probability tending to one, even
+though its complete countable occupation gives that edge a positive
+physical-time rate.  The exact counterexample and bound are in
+*one_active_countable_phase_service.md*, Sections 1--2.
 
-**Proposition 5.1 (required stopped-kernel estimate).**  Let \(E\) be a finite
-inactive phase set, enlarged by the actual target and return-path position.
-There should exist stopping times
+The valid replacement is a **countable regenerated-mode kernel**.  For the
+only open top pattern which occurs on the affine-feasible one-active branch,
+\(\{X,X+U\}\), Theorem 6.1 of that note retains the full Poisson phase and
+proves constants \(p,C,T>0\) such that, from bounded-moment one-active
+starts,
 
 \[
- \tau_0=0<\tau_1<\cdots
- \tag{5.5}
+\begin{aligned}
+ \mathbb P(\text{one unpaired exit in a block})&\ge p,\\
+ \mathbb E(\text{total new unresolved entries})&\le {C\over X},\\
+ \mathbb E(\text{block event count})^r&\le C_r,
+ \qquad \tau\le T.                                  \tag{5.5}
+\end{aligned}
 \]
 
-which stop immediately when \(X<N_E\), when the inactive phase leaves \(E\),
-or when one complete old-debt attempt ends, and constants
-\(p_E>0,C_E<\infty\), such that:
+The first line holds whenever the explicit averaged service polynomial is
+nonzero.  If that polynomial is zero, unresolved debt cannot be created and
+the base/carrier active reward is a bounded coboundary.  Conservative top
+phases are genuinely finite on each fixed particle-number class; mixed top
+phases retain the killed-carrier estimate of Lemma 3.1.
 
-1. if \(D_{\tau_k}>0\), an exit clearing one old unit occurs before
-   \(\tau_{k+1}\) with conditional probability at least \(p_E\);
-2. if \(J_k\) is the number of raw entries in the block, then
-   \(\mathbb E[J_k\mid\mathcal F_{\tau_k}]\le C_E\), with enough higher
-   moments to control nested carrier trials;
-3. the expected number \(A_k\) of *new unresolved* units obeys
-
-   \[
-   \mathbb E[A_k\mid\mathcal F_{\tau_k}]
-   \le {C_E\over X_{\tau_k}};
-   \tag{5.6}
-   \]
-
-4. the duration and the entropy endpoint at both exits
-   \(X<N_E\) and \((U,V)\notin E\) are uniformly integrable.
-
-The constants may depend on \(E\) and the rate vector, but not on the active
-level.
-
-If Proposition 5.1 holds, choose \(N_E\) larger if necessary so that
-\(C_E/N_E\le p_E/2\).  The scalar aggregate-debt inequality then gives at
-successive stopped blocks
+Choose the active threshold large enough that \(C/X\le p/2\).  The scalar
+aggregate-debt inequality at successive countable-mode blocks then gives
 
 \[
  \mathbb E[D_{\tau_{k+1}}-D_{\tau_k}\mid\mathcal F_{\tau_k}]
- \le -{p_E\over2}\mathbf 1_{\{D_{\tau_k}>0\}}.
- \tag{5.7}
+ \le -{p\over2}\mathbf 1_{\{D_{\tau_k}>0\}}.         \tag{5.6}
 \]
 
-Together with (5.3), the duration and endpoint bounds would rule out a
-critical reflected-random-walk branch.
-
-Proposition 5.1 is stronger than the local carrier Lemma 3.1.  In
-particular, (5.6) requires the factor
-\(\mathbb E J_k\), a bound on recursively interrupted carriers, and a proof
-that an old debt created by a \(\Delta X=0\) cofactor theft can be serviced
-without relying on a new net entry.  Lemma 4.2 supplies the exact reverse
-path, but the present note does not yet prove the uniform probability and
-moment estimates after fast/slow elimination.
+Unlike the refuted finite-box assertion, (5.5) includes the total raw-entry
+factor, competing lower reactions, old debt, surplus service, duration, and
+endpoint moments.  Its proof uses the Poisson equation on the full
+countable phase.  It never promotes a mere tail visit of that recurrent
+phase.
 
 ## 6. Composition with the other descriptors
 
@@ -467,7 +457,7 @@ ambiguity in the gluing target; it does not prove simultaneous negative
 drift of the debt vector.
 
 What remains is an explicit gluing inequality.  Starting at a tube state,
-one must run the stopped kernel of Proposition 5.1; after a tube exit, run
+one must run the appropriate countable-mode or killed-carrier kernel; after a tube exit, run
 the physical chain under (6.2) until it returns to a tube or hits a finite
 set.  Dynkin's formula controls the latter segment.  To invoke random-time
 Foster, however, one still must prove a single inequality of the form
@@ -480,12 +470,12 @@ Foster, however, one still must prove a single inequality of the form
 \]
 
 outside a finite set, with the marked target and debt included at the tube
-stopping times.  Proposition 5.1(4) is exactly the endpoint hypothesis
+stopping times.  The endpoint estimates in (5.5) are the local hypothesis
 needed to justify this composition.  In addition one needs a vector-debt
 drift estimate which remains valid under tube switching.  The local carrier
 estimate and the qualitative word “promotion” do not prove (6.4).
 
-If Propositions 5.1 and (6.4) are established, the remaining conclusion is
+If the local kernels and (6.4) are globally composed, the remaining conclusion is
 standard.  The chain is nonexplosive because every reaction increasing total
 population has source molecularity at most one, so the total increasing
 rate is affine.  Stopped Dynkin summation gives finite expected hitting time
@@ -515,10 +505,11 @@ neutral jumps.
 For example, after \(0\to X+U\), a lower reaction can consume \(U\) before
 \(X+U\) exits.  This is exactly the event in (3.7).  Its actual target starts
 Lemma 4.2.  The return-prefix identity says how restoration would occur.
-The uniform old-debt completion estimate after arbitrary competing
-reactions is the unproved part of Proposition 5.1.  The failed entry remains
-in \(D\) until a physical exit occurs; it may not be declared cleared merely
-because a later entry obtained service.
+For the sole Poisson phase, the uniform old-debt estimate after arbitrary
+competing reactions is now Theorem 6.1 and Lemma 7.1 of
+*one_active_countable_phase_service.md*.  The failed entry remains in \(D\)
+until a physical exit occurs; it may not be declared cleared merely because
+a later entry obtained service.
 
 ### 7.4 Why arbitrary supersets are allowed here
 
@@ -530,8 +521,9 @@ minimal support cannot be extended to a superset by deletion monotonicity.
 ### 7.5 What is not proved
 
 The present note does not yet prove Candidate Theorem 1.1, even when all
-failed descriptors are one-active.  Proposition 5.1 and the marked
-random-time inequality (6.4) remain open.  The intended conclusion is
+failed descriptors are one-active.  The false finite-box Proposition 5.1
+has been replaced locally, but the global marked random-time inequality
+(6.4) remains open.  The intended conclusion is
 classwise positive recurrence of the physical CTMC, not recurrence of the
 raw embedded jump chain.
 
@@ -565,7 +557,7 @@ The 67 raw flat-top invariant pairs are contained in the first,
 affine-infeasible branch: a descriptor along an exactly invariant active
 axis is not affine feasible.  Therefore the unproved physical carrier/debt
 kernel is needed for all 1,227 pairs in the third column of (8.2).  If
-Propositions 5.1 and (6.4) are proved, the ordered affine-plus-one-active
+the local kernels and (6.4) are globally composed, the ordered affine-plus-one-active
 union would contain 1,378 pairs and leave 1,133.
 
 The fingerprints of the candidate new branch, ordered union, and remainder

@@ -8,10 +8,12 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has, however, produced three new exact-scope physical-time
-theorems. None uses tightness as finite support, and none attempts to prove
-recurrence of the raw embedded jump chain. No physical T3-2 counterexample is
-known.
+The repair has produced five independently audited exact-scope physical-time
+theorem statements, with the fourteen-partner rank-two theorem sharing its
+top support with—but not overlapping—the earlier residual pair. None uses
+tightness as finite support, and none
+attempts to prove recurrence of the raw embedded jump chain. No physical
+T3-2 counterexample is known.
 
 ## Current gate table
 
@@ -27,6 +29,8 @@ known.
 | Exact `{B,2A,B+C}` / `{0,A,C}` theorem | Pass |
 | Global finite support/tier interface | Pass as an enumeration certificate |
 | Affine-stoichiometric tier-feasibility theorem | Pass; 151 classwise closures |
+| Fourteen-partner rank-two theorem | Pass; 14 new pairs, zero prior overlap |
+| All-active-only reversible-top Foster theorem | Pass; 51 new positive pairs |
 | One-active killed-carrier lemma | Pass locally; stopped kernel remains open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
@@ -63,6 +67,16 @@ exceptional-return moments supply the missing pointwise and endpoint-cost
 estimates. Independent adversarial review found no remaining gap for any
 strongly connected orientation or positive present rates.
 
+The certified extension in
+research_notes/rank_two_global_return_all14.md treats all fourteen lower
+supports that occur with the same rank-two top linkage. Ten are controlled
+directly by the outer quadratic workload; four require an unbounded-\(C\)
+physical-time regeneration. Its explicit cleanup estimate controls every
+added lower source before returning to the transient Riccati core. The
+phase classifier is applied after the single residual branch above has
+already been removed, so the prior-branch overlap is zero and the
+overlap-free contribution is fourteen positive-invariant pairs.
+
 ## Exact remaining interface
 
 The support audit in `research_notes/global_atlas_interface_closure.md`
@@ -77,7 +91,15 @@ pair--descriptor incidence, not only the twelve displayed representatives.
 It proves that 151 pairs have no class-feasible bad descriptor and closes them
 by a class-local entropy Foster argument. Independent audits verified both
 the levelwise Gordan alternative and that class-local implication. The
-certified remainder is 2,169 positive and 191 signed pairs.
+certified remainder was 2,169 positive and 191 signed pairs. The audited
+rank-two family then contributes \(14-0=14\) new positive-invariant pairs
+and zero signed pairs, leaving 2,155 positive and 191 signed pairs. The
+independently audited all-active-only selector then contributes 51 disjoint
+positive-invariant pairs and no signed pairs. Its 209 failed incidences all
+meet the reversible two-node curvature-cofactor theorem, while every
+realizable boundary descriptor passes the ordinary tier criterion. The
+classwise Foster proof uses the same rate-adjusted entropy throughout and
+leaves 2,104 positive and 191 signed pairs.
 
 Those raw counts compress to twelve canonical asymptotic gate types. The
 one-active local carrier theorem now identifies the exact stopped finite
@@ -107,7 +129,8 @@ metadata will be built only after every remaining analytic gate is closed.
 
 The accurate public status is:
 
-> Candidate T3-2 theorem under adversarial repair. Three exact physical-time
-> interface theorems, the complete finite tier geometry, and 151 additional
-> classwise affine-filter closures are certified; universal stopped-phase and
-> promotion closure remains open.
+> Candidate T3-2 theorem under adversarial repair. The fourteen-partner
+> rank-two theorem, the 51-pair all-active-only Foster theorem, the other
+> exact physical-time interfaces, the complete finite tier geometry, and
+> 151 classwise affine-filter closures are certified; universal stopped-phase
+> and common-entropy closure remain open.

@@ -314,12 +314,21 @@ apply the truncated \(H_w\) identity with controlled shell-boundary terms.
 Those are precisely the occupation-localization steps challenged in the
 independent audit. The finite support enumeration does not prove them.
 
-Accordingly the certified conclusion is:
+The stronger construction in *three_active_shell_gluing_gate.md* uses the
+fixed whole-top support of each pair to replace the cone-dependent linear
+workloads by one constrained-shell entropy. It closes every failed
+all-active cone of that pair, but an exact passing-cone example shows that
+the shell entropy is not itself a global Foster function. Thus the
+passing/flat interface, rather than the within-failure cone selection, is
+the remaining gluing problem.
+
+Accordingly the certified conclusion here is:
 
 > Every affine-feasible three-active tier failure belongs to one of five
 > explicit finite-shell top-phase shapes, and on each realizing descriptor
 > sequence the proper descriptor workload has generator drift tending to
-> minus infinity. Global cone-interface/Green gluing remains open.
+> minus infinity. A fixed shell potential removes the failed-cone switch,
+> but global passing/flat interface gluing remains open.
 
 ## 7. Reproduction
 

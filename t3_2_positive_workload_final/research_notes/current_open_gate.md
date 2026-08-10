@@ -2,17 +2,36 @@
 
 ## 1. What is no longer open
 
-Three exact interfaces now have independently audited physical-time proofs:
+Five exact interface families now have independently audited physical-time
+proofs:
 
 1. the seven-support seam with available support
    \(\{C,A+C,B+C\}\);
-2. the displayed pure-\(C\) signed-service supports; and
-3. \(\{B,2A,B+C\}\) paired with \(\{0,A,C\}\).
+2. the displayed pure-\(C\) signed-service supports;
+3. \(\{B,2A,B+C\}\) paired with \(\{0,A,C\}\); and
+4. all fourteen rank-two two-active supports selected by the current phase
+   classifier, with fast support \(\{B,2A,B+C\}\); and
+5. the 51 all-active-only pairs whose fixed reversible two-node top satisfies
+   the curvature-cofactor hypothesis on every feasible failed descriptor.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
 window, and a core-to-core trace with full endpoint moments. It is not a
 stationary averaging argument.
+
+The fourth proof extends the same physical-time architecture to every lower
+support in the rank-two phase table. Ten supports are returned by a
+quadratic outer workload; four unbounded-\(C\) strips use explicit
+regeneration before the Riccati core. This family is disjoint from the
+earlier residual-pair branch in the filtered table and adds fourteen new
+positive-invariant ordered pairs.
+
+The fifth proof uses one rate-adjusted continuous entropy on the entire
+closed class. Proposition 5.2 supplies drift on all 209 failed all-active
+incidences; every boundary descriptor passes the ordinary tier condition,
+and the fixed affine correction preserves its logarithmic exit. A
+bad-sequence contradiction and stopped Dynkin formula give classwise positive
+recurrence without a finite inactive-coordinate box.
 
 ## 2. Exact finite remainder
 
@@ -20,11 +39,14 @@ After finite classes, common active invariants, full deficiency zero, the
 three exact physical-time branches, and the Anderson--Kim one-step tier
 criterion, the exact support table leaves 2,312 positive and 199 signed
 pairs. The certified affine-stoichiometric feasibility theorem then closes
-another 143 positive and eight signed pairs. The current certified remainder
-is
+another 143 positive and eight signed pairs. The audited fourteen-partner
+theorem closes fourteen more positive-invariant pairs and no signed pair.
+The audited all-active-only theorem then closes 51 additional, disjoint
+positive-invariant pairs and no signed pair.
+The current certified remainder is
 
 \[
- 2169\quad\text{positive-invariant pairs},\qquad
+ 2104\quad\text{positive-invariant pairs},\qquad
  191\quad\text{signed pairs}.
 \]
 
@@ -35,7 +57,8 @@ accompanying source/tests. It is not itself a recurrence theorem.
 
 ## 3. The structural replacement for the false finite phase
 
-The immediate analytic target is a **promotion-or-closed-phase theorem**.
+The immediate analytic target is a **common-entropy
+promotion-or-closed-phase theorem**.
 For a fixed communication class and a divergent source-rate flag, prove one
 of:
 
@@ -52,15 +75,28 @@ For a unique dominant species and no double source, stripping that species
 from the one-copy complexes gives a unimolecular process on
 \(\{0,B,C\}\). A tagged-particle construction gives phase-type service times
 on the dominant-species clock and an explicit per-entry interruption bound.
-The remaining one-active obligations are a stopped finite fast/slow kernel
-with uniform old-debt clearance, a bound on total unresolved entries per
-attempt, and one marked Foster inequality across tube exits.
+The only wholly top countable phase surviving the affine filter is the
+one-dimensional open pair \(\{0,U\}\). Its Poisson-averaged service block
+now supplies total unresolved-entry control, old-debt service, duration and
+endpoint moments, and direct factorial-entropy descent when its explicit
+service polynomial is nonzero. The remaining one-active obligation is to
+extend this common-entropy endpoint estimate to the mixed/killed top
+components and compose all tube exits without a switch potential.
 
 The two-active certificate splits every feasible failed incidence into
 seeded promotion, dormant activation, a rank-one finite top shell, or the
 unique rank-two support \(\{B,2A,B+C\}\) up to relabeling. The three-active
 certificate finds one whole flat top linkage in every incidence and only five
-rank/deficiency shapes. These are exact reductions, not recurrence claims.
+rank/deficiency shapes. The rank-two branch is now certified. Every rank-one
+incidence has an audited scalar-workload carrier or finite-class alternative,
+but its corrected-factorial endpoint estimate remains open.
+
+At the all-active interface, every one of the 403 residual pairs has one
+fixed whole-top linkage. Exact generator arguments cover all five
+rank/deficiency shapes on all-active cones, and 298 pairs use exactly that
+same top support in their two-active rank-one phase. These are local
+common-correction facts; boundary and random-time gluing remain necessary
+before those pair counts can be promoted to recurrence.
 
 ## 4. Claim discipline
 
@@ -73,4 +109,5 @@ Do not use any of the following:
 - lexicographic descent without lower-level endpoint-cost moments.
 
 No C3 counterexample is known. T3-2 remains plausible but uncertified until
-the twelve asymptotic gates are closed.
+the mixed one-active entropy block, rank-one corrected-factorial endpoint
+lemma, and the resulting global tube composition are closed.
