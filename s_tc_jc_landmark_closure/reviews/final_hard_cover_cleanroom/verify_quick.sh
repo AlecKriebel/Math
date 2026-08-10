@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HERE="$(cd "$(dirname "$0")" && pwd)"
-cd "$HERE/../.."
-
-PYTHONPATH="$HERE" python3 "$HERE/mutation_tests.py"
-PYTHONPATH="$HERE" python3 "$HERE/verify_universes.py"
-PYTHONPATH="$HERE" python3 "$HERE/verify_pq_extension.py"
-PYTHONPATH="$HERE" python3 "$HERE/audit_primary_stream.py"
-
+# Compatibility entry point: the active quick gate is the frozen n=4 base
+# certificate check.  Historical universe/probe checks are not active theorem
+# evidence because the probe bytes bind a superseded base.
+exec "$(cd "$(dirname "$0")" && pwd)/verify_schema3_n4_quick.sh"

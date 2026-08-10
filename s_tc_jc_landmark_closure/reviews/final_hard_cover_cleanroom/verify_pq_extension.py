@@ -12,7 +12,10 @@ import sys
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
-from graph_model import decorated_mixed_relation, digest, rooted_code, stable_json, standard_semidirected_audit
+from graph_model import (
+    decorated_mixed_relation, digest, rooted_code, rooted_graph_id,
+    stable_json, standard_semidirected_audit,
+)
 from pq_extension import (
     all_segment_insertions, cyclic_blob_arcs, extend_p_then_q,
     extend_relation,
@@ -35,7 +38,9 @@ def relation_id(source, target, matching):
 
 
 def verify_extension_record(record, full_relation_id, parent_path_id):
-    assert record["full_relation_id"] == full_relation_id
+    assert record["fixed_full_root_case_id"] == full_relation_id
+    assert record["source_rooted_graph_id"] == rooted_graph_id(record["source_graph"])
+    assert record["target_rooted_graph_id"] == rooted_graph_id(record["target_graph"])
     assert record["parent_path_binding_id"] == parent_path_id
     assert standard_semidirected_audit(record["source_graph"])["ok"]
     assert standard_semidirected_audit(record["target_graph"])["ok"]
@@ -44,6 +49,9 @@ def verify_extension_record(record, full_relation_id, parent_path_id):
         tuple(map(tuple, record["port_matching"])),
     )
     state_payload = {
+        "fixed_full_root_case_id": full_relation_id,
+        "source_rooted_graph_id": rooted_graph_id(record["source_graph"]),
+        "target_rooted_graph_id": rooted_graph_id(record["target_graph"]),
         "decorated_relation_code": rel["code"],
         "direction": rel["direction"],
         "port_matching": rel["port_matching"],
@@ -172,6 +180,7 @@ def main():
             "complete_cartesian_segment_coverage": True,
             "both_same_segment_orders": True,
             "fixed_full_relation_binding": True,
+            "rooted_graph_ids_in_state_identity": True,
             "qt_transport_retained": True,
             "only_allowed_p_paths_reach_q": True,
             "complete_base_matching_required": True,

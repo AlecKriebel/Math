@@ -8,7 +8,7 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 
 from graph_model import (
     RootedGraph, biconnected_components, decorated_mixed_relation, digest,
-    rooted_code, stable_json, standard_semidirected_audit,
+    rooted_code, rooted_graph_id, stable_json, standard_semidirected_audit,
     validate_standard_strong,
 )
 
@@ -78,13 +78,18 @@ def extend_relation(base_relation_id: str, source: RootedGraph, target: RootedGr
         for t in target_insertions:
             relation = decorated_mixed_relation(s["graph"], t["graph"], matching)
             state_payload = {
+                "fixed_full_root_case_id": base_relation_id,
+                "source_rooted_graph_id": rooted_graph_id(s["graph"]),
+                "target_rooted_graph_id": rooted_graph_id(t["graph"]),
                 "decorated_relation_code": relation["code"],
                 "direction": relation["direction"],
                 "port_matching": relation["port_matching"],
             }
             state_id = digest(state_payload)
             path_payload = {
-                "full_relation_id": base_relation_id,
+                "fixed_full_root_case_id": base_relation_id,
+                "source_rooted_graph_id": state_payload["source_rooted_graph_id"],
+                "target_rooted_graph_id": state_payload["target_rooted_graph_id"],
                 "parent_path_binding_id": parent_path_id,
                 "state_id": state_id,
                 "source_added_label": source_label,

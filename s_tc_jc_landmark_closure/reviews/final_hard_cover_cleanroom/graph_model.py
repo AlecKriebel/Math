@@ -230,6 +230,11 @@ def rooted_code(g: RootedGraph, selected_generic: bool = False):
     return canonical_relational(g.vertices, colours, rel)
 
 
+def rooted_graph_id(g: RootedGraph) -> str:
+    """Independent exact identity for a fully labelled rooted graph."""
+    return digest({"rooted_graph_code": rooted_code(g)[0]})
+
+
 def semidirected(g: RootedGraph):
     """Suppress the root and retain arrowheads only at reticulation heads."""
     indeg, outdeg, children, _ = g.degrees(); rets = {v for v in g.vertices if (indeg[v], outdeg[v]) == (2, 1)}

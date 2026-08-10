@@ -16,6 +16,7 @@ _CACHE = {}
 _MOD_CACHE = {}
 _EXACT_PULLBACK_CACHE = {}
 _POLY_CONTEXT_CACHE = {}
+_SOURCE_MOD_BITS_CACHE = {}
 
 
 def _cached_pullback(desc, quartet, relation):
@@ -118,6 +119,80 @@ def modular_nonzero_deck(desc, port_count: int, family):
                 if not (bits >> i & 1) and relation_value(vals, rel, prime): bits |= 1 << i
         ans.append((quartet, bits))
     out = tuple(ans); _MOD_CACHE[key] = out; return out
+
+
+def _modular_bits_for_quartet(desc, quartet, port_count, family):
+    key = (desc.key, tuple(quartet), port_count, len(family), digest(family))
+    if key in _SOURCE_MOD_BITS_CACHE: return _SOURCE_MOD_BITS_CACHE[key]
+    bits = 0
+    for trial, prime in enumerate(PRIMES):
+        vals = quartet_values_mod(desc, quartet, port_count, prime, trial)
+        for i, rel in enumerate(family):
+            if not (bits >> i & 1) and relation_value(vals, rel, prime): bits |= 1 << i
+    _SOURCE_MOD_BITS_CACHE[key] = bits
+    return bits
+
+
+def find_generic_identity_separator(source_desc, target_desc, port_count: int, family):
+    """Find target-zero/source-nonzero without expanding a full source deck."""
+    target_mod = modular_nonzero_deck(target_desc, port_count, family)
+    all_bits = (1 << len(family)) - 1
+    for quartet, target_nonzero in target_mod:
+        possible_target_zeros = all_bits & ~target_nonzero
+        if not possible_target_zeros: continue
+        source_nonzero = _modular_bits_for_quartet(
+            source_desc, quartet, port_count, family,
+        )
+        candidates = possible_target_zeros & source_nonzero
+        for invariant in bit_indices(candidates):
+            target_poly = _cached_pullback(target_desc, quartet, family[invariant])
+            if target_poly: continue
+            source_poly = _cached_pullback(source_desc, quartet, family[invariant])
+            if not source_poly:
+                # A modular nonzero evaluation made this branch impossible;
+                # retain the assertion rather than silently continuing.
+                raise AssertionError("modular source witness expanded to zero")
+            return {
+                "classification": "generic_identity_separation",
+                "quartet": quartet,
+                "invariant": invariant,
+                "source_polynomial_sha256": p_hash(source_poly),
+                "target_zero": True,
+            }
+    return None
+
+
+def find_generic_identity_separator_on_quartet(source_desc, target_desc,
+                                                quartet, port_count: int,
+                                                family):
+    """Exact target-zero/source-nonzero witness on one prescribed quartet."""
+    quartet = tuple(quartet)
+    target_nonzero = _modular_bits_for_quartet(
+        target_desc, quartet, port_count, family,
+    )
+    source_nonzero = _modular_bits_for_quartet(
+        source_desc, quartet, port_count, family,
+    )
+    candidates = source_nonzero & ~target_nonzero
+    for invariant in bit_indices(candidates):
+        target_poly = _cached_pullback(
+            target_desc, quartet, family[invariant],
+        )
+        if target_poly:
+            continue
+        source_poly = _cached_pullback(
+            source_desc, quartet, family[invariant],
+        )
+        if not source_poly:
+            raise AssertionError("modular source witness expanded to zero")
+        return {
+            "classification": "generic_identity_separation",
+            "quartet": quartet,
+            "invariant": invariant,
+            "source_polynomial_sha256": p_hash(source_poly),
+            "target_zero": True,
+        }
+    return None
 
 
 def _exact_nonzero(desc, quartet, family, i):

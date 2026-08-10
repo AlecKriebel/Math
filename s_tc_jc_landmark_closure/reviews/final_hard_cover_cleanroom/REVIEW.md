@@ -1,32 +1,24 @@
 # Final hard-cover clean-room review
 
-Status: **UNRESOLVED; current primary 40,072-state certificate is FALSE as a
-fixed-relation path certificate**
+## Active verdicts
 
-This is an interim fail-closed verdict.  The independent topology grammar and
-completion census have been regenerated, and a concrete first-provenance
-child-binding defect has been exactly certified.  The mathematical local
-containment theorem is not refuted: a corrected regeneration could supply the
-missing bindings and directions.
+- **VERIFIED:** corrected schema-3 n=4 theta-2 minimum-support base hard
+  cover.  See `SCHEMA3_N4_THETA2_REVIEW.md`.
+- **UNRESOLVED:** active p/q probe closure.  The only existing probe evidence
+  binds a superseded n=4 base and is quarantined under `history/`.
+- **UNRESOLVED:** n=3 merged hard-cover gate until its separate clean-room
+  replay and report are complete.
+- **UNRESOLVED:** the landmark global JC identifiability and one-sided
+  containment theorem.
 
-The current primary bytes cannot be promoted because:
+The n=4 verdict is bound to summary SHA-256
+`915bed0a3add001c1a94d6d862a2359e6ad75b3489f8d71b7adf006952b5ce37`.
+It independently closes 132 fixed roots, 2,106 states, 1,860 polynomial
+separations, 114 refinements, and 132 labelled-isomorphism terminals.
 
-1. 1,287 canonical refined states reuse a state-level child list without
-   child provenance for every merged raw path;
-2. 2,118 raw paths have no emitted children;
-3. the advertised total covers only the three-outgoing-support stratum, while
-   theta-2 has a four-outgoing minimum support; and
-4. pair-level evidence for the reported 110 and 776 unequal-but-necessary
-   directed signature pairs is absent.
-
-The exact current-stream certificate is
-`certificates/primary_path_binding_audit.json`.  Independent n=3 and theta-2
-minimum-support universes are in `certificates/universe_*.json.gz`.
-
-The proposed path-bound `p/q` closure is **VERIFIED as an enumeration lemma**
-by `certificates/pq_extension_certificate.json`.  It is not yet a
-classification of those extensions and therefore does not alter this
-fail-closed review status.
-
-No positive theorem and no strong-class counterexample is promoted by this
-interim review.
+The implementation regenerates exact rooted graph reductions, every path's
+child set, complement-normalized displayed-tree descriptors, JC Fourier
+tensors, and target-zero/source-nonzero polynomial pullbacks.  It does not
+accept primary classification or sign flags as evidence.  Thirteen mutations
+are rejected, including provenance merges, relation/polynomial swaps, and
+both removal and incorrect application of split-complement normalization.

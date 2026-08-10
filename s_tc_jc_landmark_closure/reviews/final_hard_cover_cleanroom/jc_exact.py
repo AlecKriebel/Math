@@ -102,17 +102,71 @@ class Descriptor:
     def key(self): return (self.reticulation_count, self.rows)
 
 
+def normalize_zero_sum_split_mask(mask: int, port_count: int,
+                                  mode: str = "minimum") -> int:
+    """Normalize an edge side on the zero-sum Fourier slice.
+
+    For a zero-sum character assignment, the XOR on ``S`` equals the XOR on
+    its complement.  The physical JC coordinate therefore sees an unordered
+    split, not a rooted descendant side.  ``minimum`` is the locked canonical
+    representative.  The other modes exist only for adversarial mutation
+    tests and must never be used by an accepted audit.
+    """
+    if mask < 0:
+        return -1
+    full = (1 << port_count) - 1
+    complement = full ^ mask
+    if mode == "minimum":
+        return min(mask, complement)
+    if mode == "none":
+        return mask
+    if mode == "maximum":
+        return max(mask, complement)
+    if mode == "wrong_four_port_universe":
+        # Deliberately invalid mutation: it complements only the first four
+        # positions even when the descriptor has more selected ports.
+        wrong_full = (1 << min(port_count, 4)) - 1
+        return min(mask, wrong_full ^ mask)
+    raise ValueError(("unknown split-complement normalization", mode))
+
+
 def permute_descriptor(desc: Descriptor, old_to_new: Sequence[int]) -> Descriptor:
     def pmask(mask):
         if mask < 0: return -1
         out = 0
         for old, new in enumerate(old_to_new):
             if mask >> old & 1: out |= 1 << new
-        return out
+        return normalize_zero_sum_split_mask(out, len(old_to_new), "minimum")
     return Descriptor(desc.reticulation_count, tuple(sorted(tuple(pmask(x) for x in row) for row in desc.rows)))
 
 
-def descriptor_from_graph(g: RootedGraph) -> Descriptor:
+def canonical_descriptor_key(desc: Descriptor):
+    """Quotient harmless reticulation ordering and parent-choice flips."""
+    r = desc.reticulation_count
+    best = None
+    for permutation in itertools.permutations(range(r)):
+        for flips in itertools.product((0, 1), repeat=r):
+            old_column_for_new = []
+            for new_bits in itertools.product((0, 1), repeat=r):
+                old_bits = [0] * r
+                for new_axis, old_axis in enumerate(permutation):
+                    old_bits[old_axis] = new_bits[new_axis] ^ flips[old_axis]
+                column = 0
+                for bit in old_bits:
+                    column = (column << 1) | bit
+                old_column_for_new.append(column)
+            rows = tuple(sorted(
+                tuple(row[column] for column in old_column_for_new)
+                for row in desc.rows
+            ))
+            key = (r, rows)
+            if best is None or key < best:
+                best = key
+    return best
+
+
+def descriptor_from_graph(g: RootedGraph,
+                          split_complement_mode: str = "minimum") -> Descriptor:
     lm = g.label_map
     selected = sorted((int(c.split("_")[1]), v) for v, c in lm.items() if c.startswith("L_"))
     if [i for i, _ in selected] != list(range(len(selected))): raise ValueError("nonconsecutive selected labels")
@@ -135,7 +189,12 @@ def descriptor_from_graph(g: RootedGraph) -> Descriptor:
         rows.append({e: masks[e[1]] for e in kept})
     edge_rows = []
     for e in all_arcs:
-        row = tuple(rows[c].get(e, -1) for c in range(len(rows)))
+        row = tuple(
+            normalize_zero_sum_split_mask(
+                rows[c].get(e, -1), len(selected), split_complement_mode,
+            )
+            for c in range(len(rows))
+        )
         # A retained zero-mask edge and an absent edge are both invisible to
         # every selected Fourier coordinate.  Entirely invisible rows vanish.
         if all(x in (-1, 0) for x in row): continue

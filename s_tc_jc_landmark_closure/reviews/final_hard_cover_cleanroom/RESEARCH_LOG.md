@@ -87,3 +87,135 @@
   theta-2 `n=4`-minimum universes pass; no root-created parallel edge is
   silently overwritten.  The regenerated graph commitments equal the frozen
   clean-room universe commitments.
+
+## 2026-08-10 — schema-2 n=4 failure preserved
+
+- **FALSE:** the quarantined schema-2 theta-2 stream omitted the fixed root
+  from state identity and merged exact rooted presentations.
+- Exact categories: 1,518 missing fixed-root fields; 276 cross-root merges;
+  276 cross-target-rooted-graph merges; 2,106 coverage/root mismatches; 588
+  coverage graph mismatches; and 72 independently regenerated child-set
+  mismatches.
+- This is the concrete failure that motivated schema 3.  It is not repaired
+  in place and remains under `quarantine/schema2_rooted_merge_failure/`.
+
+## 2026-08-10 — corrected schema-3 n=4 theta-2 base stream
+
+- **VERIFIED:** 132 fixed roots, 2,106 path states, and all per-path child
+  sets agree with independent regeneration.
+- **VERIFIED:** 1,860 nonisomorphic terminals have exact target-zero,
+  source-nonzero polynomial pullbacks; 132 terminals are independently
+  labelled-isomorphic; 114 states refine; no T or unresolved terminal occurs.
+- Exact full-audit hash:
+  `245321c8e17c6b27fc2c5230b4074459d106a3c37454c90e1ff84f902954a1a4`.
+- An earlier clean-room pass incorrectly generated children for already
+  terminal states and reported 822 false mismatches.  The bytes and correction
+  are preserved under `history/implementation_failures/`.
+
+## 2026-08-10 — actual schema-3 theta-2 p/q probe stream
+
+- **VERIFIED:** all four summary commitments equal the decompressed JSONL
+  streams exactly.
+- **VERIFIED:** all 23,400 graphs independently satisfy the locked standard
+  S_TC criterion and carry the independently recovered active-blob arc set.
+- **VERIFIED:** all 168,582 states have exactly one path binding; all 12,906 p
+  children cover the Cartesian arc products of 132 base paths; all 155,676 q
+  children cover the Cartesian arc products of exactly 1,302 allowed
+  isomorphic p paths.
+- **VERIFIED:** all 15,510 topology terminals are labelled-isomorphic with
+  semantically exact canonicalization, vertex, edge, reticulation, and port
+  transports.  Every separated state is neither isomorphic nor T-related.
+- **VERIFIED:** independent displayed-tree and descendant-mask regeneration
+  gives exact target-zero/source-nonzero pullbacks for all 153,072 separated
+  states.  The clean-room quadratic family closes 150,468; its independent
+  degree-three family closes 2,604.  No strict-sign flag and no primary
+  polynomial body is used for acceptance.
+- **VERIFIED:** ten actual-stream mutations are rejected, including a valid
+  polynomial moved to the wrong relation.
+- **EXACTLY COMPUTED:** all 132 accepted base terminals have zero triangles on
+  both sides.  The probe package therefore does not close T-edge subdivision
+  coherence.
+- Structural, algebra, and mutation hashes are respectively
+  `e586e17213a37d075cca714d597b0d03a9fa0aa5fb8ed91a5567da3095c8425c`,
+  `d954013945e74c99dc28c2ab55541531cf491e413473ada8931c45e74758f3a8`,
+  and `93ed47297ec22b3ac8c50921c05ef6bfdc1f125992e1ca0508970d857bed4e18`.
+- Three reviewer implementation failures—gzip hash semantics, exact versus
+  isomorphic rooted presentations, and split-complement descriptor
+  normalization—are preserved and explicitly labelled as reviewer errors.
+- **ADVERSARIAL CROSS-CHECK:** after completion, the independent implementation
+  in `reviews/final_hard_cover_adversary/` was compared post hoc.  It agrees on
+  all graph/state/binding/class totals, the 110 + 776 gap, and the
+  triangle-free-terminal limitation.  It was not used by this implementation.
+
+## 2026-08-10 — current release boundary
+
+- **UNRESOLVED:** no merged corrected schema-3 n=3 stream is present.
+- **UNRESOLVED:** the reported 110 n=3 and 776 n=4 unequal-but-necessary
+  directions are outside the equal-signature theta-2 streams audited above.
+- **UNRESOLVED:** complete primitive-root exhaustiveness and the remaining
+  cycle/cross-core directed relations are not certified by this subgate.
+- **UNRESOLVED:** coherence of probes on an edge changed by ordinary T has no
+  triangle-bearing accepted base in this stream.
+- Therefore the n=4 theta-2 stream is promoted to **VERIFIED**, while the
+  landmark global identifiability/containment theorem remains fail-closed.
+
+## 2026-08-10 — scoped release finalized
+
+- Added `MANIFEST.sha256` and a single `verify_all.sh` entry point that checks
+  the frozen review artifacts before and after replay.
+- **VERIFIED:** both release modes pass.  The final full replay independently
+  regenerated the 2,106-state base cover, all 168,582 probe structures and
+  exact terminal pullbacks, both actual-stream mutation suites, the clean-room
+  universe, and the conditional p/q and generic mutation certificates; its
+  closing manifest check also passed.
+- **UNRESOLVED:** this release intentionally makes no promotion of n=3 or of
+  the global theorem.  Those require a fresh, explicit gate.
+
+## 2026-08-10 — release withdrawn before commit; audit paused
+
+- **SUPERSEDED:** before commit, the primary producer disclosed that the n=4
+  descriptor cache had not been keyed by exact rooted graph provenance.  The
+  old base and 168,582-state p/q replay were moved intact to
+  `history/superseded_pre_exact_rooted_descriptor_cache/`.
+- **SUPERSEDED:** the first exact-rooted-graph regeneration had summary
+  SHA-256
+  `fd3b7a6a180a5569bf6d1f3056d8c31756d4b14eec8bf19805f37706748e9342`.
+  A clean-room audit was started and then terminated before certificate
+  output when a second issue was reported: admissible rootings can produce
+  quartet masks differing by split complement.
+- **REQUIRED CORRECTION:** active descriptors must canonicalize each zero-sum
+  quartet split as `min(S,S^c)`, thereby zipping root-edge factors and
+  restoring root-location invariance.
+- **UNRESOLVED:** no active n=4 base or p/q verdict remains.  `verify_all.sh`
+  now fails closed pending the final regenerated summary SHA.  No commit or
+  primary edit was made by this review.
+
+## 2026-08-10 — corrected schema-3 n=4 base gate independently closed
+
+- Locked the final active summary at physical SHA-256
+  `915bed0a3add001c1a94d6d862a2359e6ad75b3489f8d71b7adf006952b5ce37`.
+- **VERIFIED:** independently regenerated complement-normalized descriptors
+  from all 606 exact rooted graphs.  The active rule has zero failures across
+  66 multi-root mixed-graph groups; removing it or complementing in the wrong
+  universe breaks all 66.
+- **VERIFIED:** all 2,106 stronger-identity states and all raw path bindings,
+  including 114 complete child-set restorations.  There are zero normalized
+  collisions and zero merged-provenance child disagreements.
+- **VERIFIED:** 132 labelled-isomorphism terminals and 1,860 exact polynomial
+  separations.  Every separation is rederived on its graph-bound primary
+  quartet; 1,828 use the independent finite family and 32 use exact
+  degree-five target-nullspace relations.  No fallback quartet is used.
+- **VERIFIED:** all 19 primary polynomial records are referenced and
+  conflict-free as stream bindings.  Primary flags are not used for the
+  mathematical acceptance decision.
+- **VERIFIED:** all 13 relation, provenance, polynomial, path, and
+  split-complement mutations are rejected.
+- Frozen full-audit and mutation commitments are respectively
+  `5cea78208f1ccbce93b22fb7f5c71e73999a9abea51e23d7182b9cfa4f1be1c6`
+  and
+  `c5cceff673c84ff0f654438adc0ef9aead969101549a4daa645a26911d0ad2e6`.
+- **UNRESOLVED:** p/q probe closure remains historical because its base-input
+  hashes predate the corrected descriptor cache and split normalization.
+- A post-hoc older adversary implementation was stopped to avoid consuming
+  resources while it recomputed a stale invariant census.  It produced no
+  verdict and is not evidence for or against this gate.
