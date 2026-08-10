@@ -75,3 +75,15 @@
   SHA-256 `97097fa36e00edbf4837bbef3a255ccd756aac99136138746168ec94630df4dc`.
 - Promoted only the JC common regular germ under ordinary `T`; no complete
   stochastic-image equality or richer-model statement is imported.
+
+## 2026-08-09T21:25:00-07:00 — root reduction corrected before promotion
+
+- Rejected the first candidate formulation because an artificial incoming
+  character at a uniform root would not be observable.
+- Replaced it by a real-boundary theorem: following tree/leaf children from
+  an admissible tree-child root reaches an existing labelled boundary along
+  an all-tree path; rerooting there reverses only ordinary arcs.
+- JC reversibility then identifies the complete real boundary tensor, with
+  only the corrected incidence-scaling gauge on the chosen arm.
+- The correction removes the fictitious-port gap and is now the version sent
+  to adversarial review.

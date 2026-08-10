@@ -5,69 +5,73 @@ Status: **CANDIDATE PROOF — awaiting independent adversarial review**
 ## Statement
 
 Let `B` be the root-containing local factor of a standard semi-directed
-topology in `S_TC`.  Choose any admissible root site `s` of `B`.  Split the
-edge at `s`, retain one half-edge as a distinguished state port `i`, and view
-the remaining mixed graph as a nonroot factor with incoming port `i`.
+topology in `S_TC`.  There is an existing leaf-bearing boundary port `i` at
+which the topology has an admissible rooting.  Designate that real port as
+the incoming port and view every other boundary as outgoing.
 
 On the positive JC locus, the root-factor tensor and this incoming-port tensor
-have the same germ after quotienting by positive port-incidence scalings.  The
-construction and its inverse preserve the standard mixed graph after deleting
-the artificial port.  The incoming lift is a rooted tree-child DAG.
+have the same germ after quotienting by positive port-incidence scalings.  No
+fictitious boundary state is introduced.  The rerooted presentation is a
+rooted tree-child DAG and has exactly the original standard mixed graph.
 
 Consequently a complete projective incoming-port atlas also classifies root
 factors; no separate root-presentation atlas is required.
 
 ## Proof
 
-Fix an admissible rooted presentation at `s`.  Parent choices at the
-reticulations are unchanged when ordinary tree arcs are rerooted.  For every
-choice, deleting one incoming reticulation arc gives the same unrooted
-displayed tree before and after rerooting.  A JC tree with uniform stationary
-root distribution is reversible, and its Fourier monomial depends only on
-the displayed unrooted edge splits.  Hence moving the root along ordinary
-edges changes no displayed-tree distribution.
+Start with any admissible tree-child rooting.  From the root, repeatedly
+choose a child that is a tree vertex or leaf.  Finiteness produces a labelled
+leaf without ever traversing a reticulation.  The resulting all-tree path
+ends in an existing leaf-bearing boundary component of `B`; call its boundary
+port `i`.
+
+Move the root down this path to the cut/pendant edge representing `i`.
+Only ordinary tree arcs on the path reverse.  At each path vertex the former
+tree parent becomes a tree child, while every off-path reticulation edge keeps
+its retained arrowhead.  Binary bidegrees, reachability, acyclicity, and the
+reticulation arrows are therefore preserved.  The new site is admissible;
+because the standard topology lies in `S_TC`, the rerooted presentation is
+tree-child.
+
+Parent choices at the reticulations are unchanged by this rerooting.  For
+every choice, deleting one incoming reticulation arc gives the same unrooted
+displayed tree.  A JC tree with uniform stationary root distribution is
+reversible, and its Fourier monomial depends only on displayed unrooted edge
+splits.  Hence rerooting changes no complete boundary tensor.
 
 If the chosen site lies in the interior of an edge with multiplier `x`, split
 it into two positive multipliers `x_1,x_2` with `x_1x_2=x`; for example take
 `x_1=x_2=sqrt(x)`.  Conversely, suppressing the inserted root replaces the
 two multipliers by their product.  Both operations remain in `0<x<1`.
 
-Attach an artificial boundary leaf `i` as the second root child.  For a
-Fourier assignment on the genuine ports, its character is forced to be the
-XOR of all genuine port characters.  The artificial arm therefore contributes
-only a positive factor
+The character at `i` is a genuine observable boundary character supplied by
+the labelled component on that side.  The zero-sum condition merely determines
+it from the other boundary characters; it does not force it to zero.  Moving
+the root within the boundary arm refactors that arm multiplier and changes
+only the positive incidence factor `a_i^[h_i != 0]`.  This is precisely the
+bridge-incidence gauge.  Thus the root and incoming descriptions define the
+same projective local tensor germ.
 
-```
-a_i^[h_i != 0].
-```
-
-Changing the split of the original edge or the artificial-arm multiplier
-changes precisely this factor and the reciprocal factor at the new incidence.
-It is therefore the incidence-scaling gauge, not a change in the projective
-local tensor.  Contracting the artificial port with the uniform root state
-recovers the root factor, while exposing it recovers the incoming factor.
-
-The mixed arrowheads are unchanged: only ordinary arcs are reversed, and an
-admissible site on an edge entering a reticulation is split in the unique way
-whose suppression restores that arrowhead.  Acyclicity, binary bidegrees, and
-the LSA condition hold because `s` was admissible.  Finally, `S_TC` says that
-every admissible rooting is tree-child, so the chosen incoming lift is
-tree-child.  Deleting its artificial leaf and suppressing its root returns
-the original standard semi-directed factor exactly.
+Suppressing the moved root returns the original standard semi-directed factor
+exactly.  Conversely, forgetting which real boundary was designated incoming
+returns the root-factor description.  No graph reduction beyond the locked
+single root suppression is used.
 
 ## What the statement does not claim
 
 - It does not identify a physical root location.
 - It does not recover the two physical multipliers used to split one edge.
+- It does not say that an arbitrary boundary is rootable.  Existence is proved
+  by the all-tree child path; the chosen real boundary is part of the witness.
 - It does not say that a merely rooted-tree-child or weakly tree-child factor
-  may be lifted at an arbitrary site.
+  may be rerooted at every compatible site.
 - It identifies root and incoming models only in the projective tensor
   quotient required by bridge peeling.
 
 ## Review obligations
 
-The independent review must test ordinary root sites, sites on retained
-reticulation edges, path endpoints, all primitive cycle/theta orientations,
-and the inverse suppression.  It must reject the statement if any artificial
-lift changes an arrowhead, admits a non-tree-child rooting, or introduces a
-boundary multiplier `0` or `1`.
+The independent review must test the all-tree-path construction, ordinary
+root sites, path endpoints, all primitive cycle/theta orientations, and the
+inverse suppression.  It must reject the statement if a chosen real boundary
+cannot be rooted without changing an arrowhead or if any edge split leaves
+the open parameter domain.
