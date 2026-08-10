@@ -794,41 +794,84 @@ def compile_relation_records(n: int, working, invariants, *, relation_tag: str |
             else:
                 difference = target_signature & ~source_signature
                 witness = None
-                candidates = []
+                candidate_specs = []
                 while difference:
                     lowest = difference & -difference
                     absolute_bit = lowest.bit_length() - 1
                     difference ^= lowest
                     chunk, invariant_index = divmod(absolute_bit, len(invariants))
                     source_poly = pullback(source_descriptors[chunk], invariants[invariant_index])
-                    target_poly = pullback(target_descriptors[chunk], invariants[invariant_index])
-                    if source_poly or not target_poly:
+                    if source_poly:
                         continue
                     cache_key = target_descriptors[chunk], invariant_index
-                    coefficients = tuple(target_poly.values())
-                    same_sign = (
-                        (all(value >= 0 for value in coefficients)
-                         and any(value > 0 for value in coefficients))
-                        or
-                        (all(value <= 0 for value in coefficients)
-                         and any(value < 0 for value in coefficients))
-                    )
-                    candidates.append((
-                        0 if cache_key in sign_cache else (1 if same_sign else 2),
-                        len(target_poly),
-                        chunk,
-                        invariant_index,
-                        cache_key,
-                        target_poly,
-                    ))
+                    candidate_specs.append((chunk, invariant_index, cache_key))
+
+                # A cached certified target pullback always precedes every
+                # uncached candidate in the historical deterministic order.
+                # Select it before expanding the remaining pullbacks.  This
+                # preserves the exact chosen witness while avoiding enormous
+                # unused polynomial products in the n=4 relation census.
+                cached_certified = []
+                for chunk, invariant_index, cache_key in candidate_specs:
+                    if cache_key not in sign_cache:
+                        continue
+                    target_poly, sign, exact_hash = sign_cache[cache_key]
+                    if sign["certified"]:
+                        cached_certified.append((
+                            len(target_poly), chunk, invariant_index,
+                            cache_key, target_poly, sign, exact_hash,
+                        ))
+                if cached_certified:
+                    (
+                        _term_count, chunk, invariant_index, _cache_key,
+                        target_poly, sign, exact_hash,
+                    ) = min(cached_certified)
+                    polynomial_id, stored_exact_hash = register_polynomial(target_poly)
+                    if stored_exact_hash != exact_hash:
+                        raise AssertionError("strict polynomial hash disagreement")
+                    sign_library.setdefault(exact_hash, {
+                        **sign,
+                        "exact_polynomial_sha256": exact_hash,
+                        "polynomial_id": polynomial_id,
+                    })
+                    witness = {
+                        "quartet_chunk": chunk,
+                        "invariant_index": invariant_index,
+                        "source_pullback": "0",
+                        "target_pullback_exact_sha256": exact_hash,
+                        "target_pullback_id": polynomial_id,
+                        "target_pullback_primitive_sha256": sign["polynomial_sha256"],
+                        "strict_sign": sign["strict_sign"],
+                    }
+
+                candidates = []
+                if witness is None:
+                    for chunk, invariant_index, cache_key in candidate_specs:
+                        target_poly = pullback(
+                            target_descriptors[chunk], invariants[invariant_index]
+                        )
+                        if not target_poly:
+                            continue
+                        coefficients = tuple(target_poly.values())
+                        same_sign = (
+                            (all(value >= 0 for value in coefficients)
+                             and any(value > 0 for value in coefficients))
+                            or
+                            (all(value <= 0 for value in coefficients)
+                             and any(value < 0 for value in coefficients))
+                        )
+                        candidates.append((
+                            0 if cache_key in sign_cache else (1 if same_sign else 2),
+                            len(target_poly),
+                            chunk,
+                            invariant_index,
+                            cache_key,
+                            target_poly,
+                        ))
                 for (
-                    _cached,
-                    _term_count,
-                    chunk,
-                    invariant_index,
-                    cache_key,
-                    target_poly,
-                ) in sorted(candidates):
+                    _cached, _term_count, chunk, invariant_index,
+                    cache_key, target_poly,
+                ) in sorted(candidates) if witness is None else ():
                     if cache_key not in sign_cache:
                         sign = certify_sign(target_poly)
                         exact_hash = hashlib.sha256(

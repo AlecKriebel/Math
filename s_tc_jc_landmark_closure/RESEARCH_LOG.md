@@ -629,3 +629,39 @@
   fixed-full n=3 hard-cover roots.  Thus no equal-signature nonretaining
   presentation is lost by canonical relation merging.  Independent
   graph-to-algebra/crosswalk review and mutation rejection remain mandatory.
+
+## 2026-08-10T06:02:22-07:00 — first n=4 cycle relation attempt stopped for machine safety
+
+- The n=4 cycle-source compiler overlapped two long primary probe replays and
+  two independent exact n=3 reviews.  During a target pullback expansion,
+  dynamic swap reduced free data-volume space below 0.4 GiB.  The process was
+  interrupted deliberately before the workstation could exhaust disk.
+- It had reported 4,000 raw presentations, 3,779 canonical relations, 64
+  cached signs, and zero reported failures, but had emitted no top-level
+  summary or certificate stream.  Those counts are diagnostic only and are
+  preserved in `quarantine/bounded_relation_n4_cycle_resource_stop.json`.
+- One independent n=3 terminal routine was also stopped after a separate
+  adversarial reviewer proved that routine incompatible with two active
+  labels.  Its successful path-only audit remains usable; its terminal layer
+  is withdrawn and independently replaced.  The n=4 relation census will be
+  restarted from the beginning after memory and swap pressure subside.
+
+## 2026-08-10T06:19:38-07:00 — exact certified-cache optimization regression
+
+- The resource stop occurred while the compiler expanded every possible
+  target-only pullback even when one candidate in the same relation already
+  had a cached exact strict-sign certificate.  The selection order always
+  ranks a cached candidate before any uncached candidate.  The compiler now
+  selects the least cached certified candidate before expanding pullbacks
+  that cannot affect the chosen witness; if none exists, it executes the
+  original exhaustive search unchanged.
+- A complete fresh n=3 cycle-source run under the optimized code reproduced
+  exactly the prior 9,036 relation bodies, 7,602 graph bodies, 677 polynomial
+  bodies, 677 sign records, every logical stream hash, and every selected
+  witness.  The regression certificate is
+  `primary/certificates/bounded_relation_n3_cycle_cacheopt_equivalence.json`.
+- The compact-probe schema was corrected in response to independent review:
+  evidence-format equivalence requires exact graph relation, direction,
+  insertion, class, and transport, plus independent validation of each
+  selected witness.  It no longer falsely requires two valid deterministic
+  implementations to select the same separator when several exist.
