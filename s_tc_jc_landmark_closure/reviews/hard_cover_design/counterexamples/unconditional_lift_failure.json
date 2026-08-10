@@ -1,0 +1,24 @@
+{
+  "schema": "hard-cover-unconditional-lift-counterexample-v1",
+  "status": "FALSE",
+  "claim_refuted": "A containment/equality after marginalizing a target dummy can be refuted by restoring that dummy and comparing arbitrary restored source placements, without first conditioning on one fixed full source-target relation.",
+  "variables": ["a", "b"],
+  "domain": "0 < a < 1 and 0 < b < 1",
+  "selected_coordinate": "a",
+  "selected_source": {
+    "set": "S0 = { a : 0 < a < 1 }"
+  },
+  "selected_target_marginal": {
+    "full_set_before_projection": "T1 = { (a,b) : b - a = 0, 0 < a,b < 1 }",
+    "projection_to_selected_coordinate": "T0 = { a : 0 < a < 1 }"
+  },
+  "restored_source_placement": {
+    "set": "S1 = { (a,b) : a + b - 1 = 0, 0 < a,b < 1 }"
+  },
+  "exact_checks": {
+    "selected_containment": "S0 = T0",
+    "restored_full_containment": "S1 is not contained in T1 because b-a = 1-2a is nonzero on every open subinterval avoiding a=1/2",
+    "full_dimensional_intersection": "S1 intersect T1 = { (1/2, 1/2) }, dimension 0 inside the one-dimensional restored source"
+  },
+  "interpretation": "This is the exact algebraic obstruction to using restoration as a selected-marginal proof. Restoration is sound only after fixing an actual full relation whose extra physical label occupies the restored source position."
+}
