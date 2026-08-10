@@ -7,10 +7,13 @@ Release version: 1.1.0
 Canonical route:
 <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/>
 
-Implementation commit:
-[0dd9d030cba128565744c1c7c83cf3956b32d744](https://github.com/AlecKriebel/Math/commit/0dd9d030cba128565744c1c7c83cf3956b32d744)
+Deployed tip:
+[a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d](https://github.com/AlecKriebel/Math/commit/a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d)
 
-GitHub Pages build completed: 2026-08-09T16:19:04Z
+Scientific snapshot pinned by the manuscript:
+[609f8c6ffc083b665804890dd82fc739d414ea9d](https://github.com/AlecKriebel/Math/commit/609f8c6ffc083b665804890dd82fc739d414ea9d)
+
+GitHub Pages build completed: 2026-08-10T04:02:30Z
 
 ## Outcome
 
@@ -84,23 +87,27 @@ The deployed page uses the existing site stylesheet and includes:
 - all three historical PDF, source, and hash records; and
 - the manuscript PDF and two-page-summary links.
 
-A production-browser replay rendered 41 MathJax containers and the embedded
-PDF without warnings or horizontal overflow.
+A production-browser replay rendered 43 MathJax containers and the embedded
+PDF without page-script warnings or horizontal overflow. The only console item
+was the repository-wide missing `/favicon.ico` request, outside this scoped
+paper-page revision. The canonical target was correct, and the page displayed
+the pinned scientific source commit
+`609f8c6ffc083b665804890dd82fc739d414ea9d`.
 
 ## Canonical PDF artifacts
 
 | Artifact | Production URL | HTTP result | SHA-256 |
 |---|---|---|---|
-| Main manuscript | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/paper.pdf> | 200, application/pdf | 5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b |
-| Two-page summary | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/two-page-summary.pdf> | 200, application/pdf | a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c |
+| Main manuscript, 28 pages | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/paper.pdf> | 200, application/pdf | 9d0d23837aed20346f6e97234095ee146f7e7b852c7a4a4b5d646e5fa595c0f6 |
+| Two-page summary | <https://aleckriebel.github.io/Math/papers/cyclic-bell-exact-values-and-randomness/two-page-summary.pdf> | 200, application/pdf | 0f3dfa78424a8934defdf9952593bf9a7269f7fec58dc6dd5c4824fa9db562d2 |
 
-Both served hashes match the files in the implementation commit.
+Both served hashes match the repository files at the deployed provenance tip.
 
 ## Homepage and sitemap
 
-The deployed homepage at <https://aleckriebel.github.io/Math/> has one merged
-cyclic Bell card, no superseded cyclic Bell cards, and the displayed count of
-sixteen provisional artifacts.
+The deployed homepage at <https://aleckriebel.github.io/Math/> uses the current
+selected-portfolio design. It has one merged cyclic Bell card, no superseded
+cyclic Bell cards, and no retired provisional-artifact count assertion.
 
 The deployed sitemap at <https://aleckriebel.github.io/Math/sitemap.xml>
 contains the canonical route exactly once and contains none of the three
@@ -109,18 +116,23 @@ as canonical publications.
 
 ## Deployment validation
 
-GitHub Pages built implementation commit
-0dd9d030cba128565744c1c7c83cf3956b32d744 at 2026-08-09T16:19:04Z.
+GitHub Pages built deployed tip
+`a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d` at 2026-08-10T04:02:30Z. The
+manuscript and canonical page identify scientific snapshot
+`609f8c6ffc083b665804890dd82fc739d414ea9d`.
 Production validation then confirmed:
 
 - version 1.1.0 metadata and canonical targeting;
-- successful MathJax and embedded-PDF rendering;
-- no browser warnings and no horizontal overflow;
+- 43 successful MathJax renderings, the visible pinned source commit, and
+  embedded-PDF rendering;
+- no MathJax or page-script warnings and no horizontal overflow; the only
+  console item was the repository-wide missing `/favicon.ico` request;
 - HTTP 200 with application/pdf for both canonical PDFs;
 - all required redirect-stub mechanisms and preservation links;
 - HTTP 200 with application/pdf for all three historical PDFs;
 - exact agreement of all five served PDF hashes with local files;
-- one homepage card and the count of sixteen; and
+- one homepage card under the selected-portfolio design, with no retired count
+  assertion; and
 - canonical-only sitemap membership.
 
 No redirect loop, missing artifact, content-type mismatch, metadata mismatch,
@@ -140,7 +152,21 @@ The merger and its version 1.1 refinement cover:
 - docs/sitemap.xml; and
 - reports/cyclic_bell_merge/WEBSITE_REDIRECT_REPORT.md.
 
-The version 1.1 implementation commit updated the canonical HTML and PDFs,
-homepage, and sitemap. The already-deployed redirect stubs and historical PDFs
-were left byte-for-byte unchanged and were reverified in production. No DOI,
-release, source-history rewrite, or unrelated paper-page change was made.
+The original version 1.1 implementation updated the canonical HTML and PDFs,
+homepage, and sitemap. The referee-explication deployment updated the canonical
+paper materials while leaving the redirect stubs and historical PDFs
+byte-for-byte unchanged; those preserved artifacts were reverified in
+production. No DOI, release, source-history rewrite, or unrelated paper-page
+change was made. A forthcoming deployment-record commit will update these
+reports only.
+
+## Earlier version 1.1 deployment record
+
+Implementation commit `0dd9d030cba128565744c1c7c83cf3956b32d744`
+was built at 2026-08-09T16:19:04Z. Its browser replay rendered 41 MathJax
+containers, the then-current homepage displayed a count of sixteen provisional
+artifacts, and its canonical manuscript and summary hashes were
+`5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b`
+and `a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c`.
+These facts are preserved as history and are not the current production
+result.

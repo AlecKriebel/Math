@@ -422,6 +422,27 @@ journal submission occurred, and no external contact was initiated for this
 revision. A separate deployment-record commit containing this ledger entry
 will follow the already-pushed implementation commit.
 
+### Final referee-explication deployment
+
+The final scientific snapshot is commit
+[`609f8c6ffc083b665804890dd82fc739d414ea9d`](https://github.com/AlecKriebel/Math/commit/609f8c6ffc083b665804890dd82fc739d414ea9d),
+and the deployed implementation tip is
+[`a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d`](https://github.com/AlecKriebel/Math/commit/a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d).
+GitHub Pages completed that deployment at **2026-08-10T04:02:30Z**. The
+served manuscript is 28 pages with SHA-256
+`9d0d23837aed20346f6e97234095ee146f7e7b852c7a4a4b5d646e5fa595c0f6`,
+and the served two-page summary has SHA-256
+`0f3dfa78424a8934defdf9952593bf9a7269f7fec58dc6dd5c4824fa9db562d2`.
+All 11 reproduction stages and the live page, PDF, metadata, link, and
+redirect checks passed. The three historical PDF hashes remain unchanged:
+`c4e80e0956595c28cbf0323639dcf5b84f5ffbd0785362cc4233e2c19812b96f`,
+`3bef4205ead0c1629cc78120dd701f2464ab3a38f855c8f01891412ce7b38975`,
+and
+`2c9e4d864f5b617f0d99c1b199f8b3546e3d3aa27ac96356e399a860fd1263c3`.
+No DOI, GitHub release, submission, or external contact occurred. A separate
+deployment-record commit containing this final ledger addition follows the
+deployed implementation tip.
+
 ## Authorship and status
 
 **Alec Kriebel, with heavy assistance from ChatGPT 5.6 Sol.**

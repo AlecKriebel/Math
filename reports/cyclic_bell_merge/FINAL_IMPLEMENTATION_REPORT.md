@@ -6,14 +6,18 @@ Target and deployed branch: `origin/main`
 
 Manuscript version: 1.1 (website metadata version 1.1.0)
 
-Scientific/website implementation commit:
-`0dd9d030cba128565744c1c7c83cf3956b32d744`
+Final scientific snapshot:
+`609f8c6ffc083b665804890dd82fc739d414ea9d`
 
-GitHub Pages status: **built**, 2026-08-09T16:19:04Z
+Deployed provenance tip:
+`a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d`
+
+GitHub Pages status: **built**, 2026-08-10T04:02:30Z
 
 Deployment-record commit: **forthcoming at the time this report is written**.
-It will contain this post-deployment report, not a different scientific
-implementation. Its hash must be reported separately at final handoff.
+It will contain these three post-deployment reports, not a different
+scientific implementation. Its hash must be reported separately at final
+handoff.
 
 ## Delivered result
 
@@ -29,14 +33,18 @@ randomness certification*
 Canonical route:
 `/Math/papers/cyclic-bell-exact-values-and-randomness/`
 
-Version 1.1 contains 17 named theorem-like environments. The claims ledger
+The final manuscript is 28 pages. Version 1.1 contains 17 named theorem-like
+environments. The claims ledger
 contains 30 audited claims, and the source crosswalk accounts for 37 named or
 quantitative source items: 10 from the exact-value manuscript, 12 from the
 first-family randomness manuscript, and 15 from the permutation/setting
 manuscript.
 
-The implementation commit changed 43 scoped files (5,396 insertions and 1,059
-deletions) and added 10 new author-ready audit or verification files.
+The earlier author-ready implementation commit `0dd9d030…` changed 43 scoped
+files (5,396 insertions and 1,059 deletions) and added 10 new audit or
+verification files. The final referee-explication snapshot `609f8c6f…`
+changed 18 scoped files (272 insertions and 105 deletions); provenance tip
+`a1cf257a…` then pinned that scientific snapshot in 7 scoped files.
 
 ## Source files used
 
@@ -155,6 +163,34 @@ The 10 files added by implementation commit `0dd9d030…` are:
 9. `verification/verify_private_mub_binary.py`;
 10. `verification/verify_rigidity.py`.
 
+### Final referee-explication and provenance pass
+
+Scientific snapshot `609f8c6ffc083b665804890dd82fc739d414ea9d`
+made the final arXiv-readiness and proof-explication changes without altering a
+formal theorem statement, theorem numbering, section structure, mathematical
+verifier, historical source, redirect, or historical PDF. In particular, it:
+
+- separated the canonical polar partial isometry from its harmless unitary
+  kernel extension in the conditional permutation proof;
+- derived the target table from explicit eigenvectors, proved canonical
+  Fourier flatness, and supplied the complete short $d=2,3$ argument;
+- displayed representative trace calculations for the second-family
+  first-harmonic correlators;
+- closed the nonscalar-implies-nonzero-corner hinge in Proposition F.1 and
+  repaired the equality-root equation reference;
+- clarified overbar and $q,qa,qc$ notation, improved originating-work
+  attribution, and cited the source SOS as Perito et al., Eqs. (22)--(23),
+  with prefactor $1/(2d)$;
+- removed the redundant first-page status notice while retaining the detailed
+  end disclosure, and added the author's public email and verified ORCID; and
+- retained the single self-contained 28-page manuscript rather than creating
+  a new supplement, and did not create or repurpose a DOI.
+
+Provenance tip `a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d`
+then pinned the immutable scientific snapshot in the manuscript and canonical
+page. The public page displayed that source commit during production-browser
+validation.
+
 The canonical website files are
 `docs/papers/cyclic-bell-exact-values-and-randomness/index.html`,
 `paper.pdf`, and `two-page-summary.pdf`. The original merger also created
@@ -208,9 +244,9 @@ rewritten.
   support and canonical partial isometry in $\mathcal A''$ and the full
   bicommutant commutation argument.
 - The finite-dimensional support-rigidity theorem and reflection-product rank
-  lemma are restored. For an attained tensor-product exact maximum of the
-  first augmented family, every equality root occurs with equal multiplicity
-  on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$.
+  lemma are restored. Every attained finite-dimensional tensor-product exact
+  maximizer of the first augmented family has every equality root with equal
+  multiplicity on $K=\operatorname{supp}\rho_A$, hence $d\mid\dim K$.
 - The source-observable Fourier identification, transpose/conjugation
   convention, and explicit $d=3$ formula are restored.
 - The cosecant-square derivation proving
@@ -299,7 +335,7 @@ rewritten.
    implicit invertibility or global unitary-extension assumption.
 6. Derived the source-observable Fourier relations and coefficient
    normalization, including the exact qutrit formula.
-7. Preserved the corrected second-family $1/(2d)$ SOS factor,
+7. Preserved the second-family source-SOS prefactor $1/(2d)$,
    $d\lambda_\ell$ compression, Alice conjugation, and global adjoint
    orientation.
 8. Replaced one ambiguous guessing quantity by model-indexed definitions and
@@ -405,8 +441,8 @@ analytic arguments, not finite sampling.
 
 | Artifact | Pages | SHA-256 | Result |
 |---|---:|---|---|
-| canonical manuscript | 25 | `5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b` | PASS |
-| reviewer summary | 2 | `a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c` | PASS |
+| canonical manuscript | 28 | `9d0d23837aed20346f6e97234095ee146f7e7b852c7a4a4b5d646e5fa595c0f6` | PASS |
+| reviewer summary | 2 | `0f3dfa78424a8934defdf9952593bf9a7269f7fec58dc6dd5c4824fa9db562d2` | PASS |
 
 Both PDFs built with Tectonic without undefined references, undefined
 citations, overfull/underfull boxes, or TeX errors. Every rendered page was
@@ -426,10 +462,16 @@ Production validation after the Pages build passed:
 - canonical citation, OpenGraph, and JSON-LD `ScholarlyArticle` metadata use
   version 1.1.0, the correct author/date/PDF/canonical URL, an AI-assistance
   disclosure, and no DOI;
-- MathJax rendered 41 expressions in a real browser;
-- no horizontal overflow occurred at a 1,280-pixel viewport, and the browser
-  console had no warnings or errors;
-- the homepage retains one merged card and the count of 16;
+- MathJax rendered 43 expressions in a real browser;
+- no horizontal overflow occurred at a 1,280-pixel viewport, and MathJax and
+  the page scripts produced no warnings or errors; the only console item was
+  the repository-wide missing `/favicon.ico` request, outside this scoped
+  paper-page revision;
+- the canonical target was correct, the embedded PDF rendered, and the page
+  displayed scientific source commit
+  `609f8c6ffc083b665804890dd82fc739d414ea9d`;
+- the selected-portfolio homepage retains one merged cyclic card and has no
+  retired provisional-artifact count assertion;
 - the sitemap contains the canonical route once and no compatibility route;
 - all three redirect stubs retain `noindex,follow`, canonical, meta-refresh,
   JavaScript, ordinary-link, historical-PDF, and immutable-source elements;
@@ -439,17 +481,29 @@ Production validation after the Pages build passed:
 
 ## Commit and deployment record
 
-The scientific manuscript, audit, verifier, PDF, and website changes are in
-implementation commit
-`0dd9d030cba128565744c1c7c83cf3956b32d744`. That commit is on and was pushed
-directly to `origin/main` without a force push. GitHub Pages built it at
-2026-08-09T16:19:04Z.
+The final scientific manuscript, reviewer-packet, PDF, and canonical-page
+changes are frozen in snapshot
+`609f8c6ffc083b665804890dd82fc739d414ea9d`. Provenance tip
+`a1cf257a5e935faa3c01292a4f5cd5d6accbbb1d` pins that snapshot in the
+manuscript and canonical page. Both commits are on and were pushed directly to
+`origin/main` without a force push. GitHub Pages built the provenance tip at
+2026-08-10T04:02:30Z, and live HTTP, content-type, byte-equality, rendering,
+canonical-target, embedded-PDF, and source-commit checks passed.
 
 The next commit is a **deployment-record commit** whose purpose is only to add
-this final post-deployment record. It is not the implementation commit and
-does not change the scientific result. A commit cannot record its own hash
-without changing that hash, so the deployment-record hash belongs in the
-final handoff response rather than inside this file.
+the three refreshed post-deployment reports. It is not the scientific snapshot
+or deployed provenance tip and does not change the scientific result. A commit
+cannot record its own hash without changing that hash, so the deployment-record
+hash belongs in the final handoff response rather than inside this file.
+
+For chronology, the earlier version 1.1 implementation
+`0dd9d030cba128565744c1c7c83cf3956b32d744` was built at
+2026-08-09T16:19:04Z with a 25-page manuscript, 41 MathJax containers, main-PDF
+hash `5a7265057a07ef58883defb4c46993328ac418ccf937f3e416e96c61099b3a9b`,
+and summary hash
+`a52798ec6451b368ddc7e6777004a8b30a478e1104769587e94b466ceac2819c`.
+Those values are retained as history and are superseded by the current
+deployment above.
 
 ## Remaining specialist-review risks
 
