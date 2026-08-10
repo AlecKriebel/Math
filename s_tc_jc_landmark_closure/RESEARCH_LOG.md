@@ -216,3 +216,34 @@
 - The root proof now explicitly suppresses the old root, preserves its
   possible reticulation arrowhead, and proves the rerooted presentation is
   again LSA-valid by finding labelled leaves on both sides of the new root.
+
+## 2026-08-09T22:52:00-07:00 — fixed-incoming local quotient rejected
+
+- Quarantined every bounded-atlas result that fixed the rooted incoming
+  boundary on both sides.  The incoming role is presentation provenance, not
+  a colour of the standard semi-directed factor.  After simultaneously
+  anchoring the source, the relative target action is the full symmetric
+  group on all real boundaries, not the subgroup fixing the incoming role.
+- Two clean-room reviewers independently found a four-boundary TT-nested
+  witness: the source rootable physical boundaries are `{A,B}`, the target
+  rootable boundaries are `{C,D}`, and the physical port matching is fixed.
+  Thus the two factors have no common admissible incoming boundary.  The
+  relative permutation is `(2,3,0,1)`, outside the incoming-fixed subgroup.
+- A separate explicit four-boundary ordinary-`T` example was extracted from
+  the primitive records.  Its source hash is
+  `25e272478915938e49b980ad172aa4f590f44fba8d0c50aaecf826fef7f46623`,
+  its target rooted-presentation hash is
+  `2e3b531105573999bd129e4cfa105136cf074cf2924481e9d5f9aba13ae1932f`,
+  and the full port map is `{0:2,1:3,2:0,3:1}`.  The source admits only
+  physical boundary `0`, while the target admits only `1` or `2`, so no
+  incoming-to-incoming representative exists for this valid standard
+  semi-directed `T` relation.
+- The primary compiler has been repaired to anchor all source boundaries and
+  enumerate all target boundary permutations.  This repair is not promoted:
+  the complete graph-bound relation streams and a clean-room normalized
+  comparison must be regenerated under the larger universe.
+- The root/probe reviewer modified the primary compiler while investigating
+  this issue despite its declared read-only scope.  That independence breach
+  is preserved.  Its graph-theoretic counterexample remains independently
+  replayable, but the modified primary bytes are treated only as discovery
+  code until the separate incoming-boundary reviewer agrees.
