@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - "bimolecular_positive_recurrence_publication_v1/**"
+      - "bimolecular_positive_recurrence_publication_v1.zip"
       - ".github/workflows/bimolecular-positive-recurrence-v1.yml"
   pull_request:
     paths:
       - "bimolecular_positive_recurrence_publication_v1/**"
+      - "bimolecular_positive_recurrence_publication_v1.zip"
       - ".github/workflows/bimolecular-positive-recurrence-v1.yml"
   workflow_dispatch:
 
@@ -44,6 +46,97 @@ jobs:
       - name: Verify complete Version 1.0 manifest
         working-directory: bimolecular_positive_recurrence_publication_v1
         run: python supplement/verify_manifest.py
+      - name: Require identical manifest and report copies
+        run: |
+          cmp bimolecular_positive_recurrence_publication_v1/supplement/MANIFEST.sha256 bimolecular_positive_recurrence_publication_v1/validation/MANIFEST.sha256
+          cmp bimolecular_positive_recurrence_publication_v1/code/verification_report.json bimolecular_positive_recurrence_publication_v1/supplement/verification_report.json
+          cmp bimolecular_positive_recurrence_publication_v1/code/verification_report.json bimolecular_positive_recurrence_publication_v1/validation/VERIFICATION_REPORT.json
+
+  release-archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - name: Require a safe archive identical to the durable package tree
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          from pathlib import Path, PurePosixPath
+          import stat
+          import subprocess
+          import sys
+          import tempfile
+          import zipfile
+
+          root_name = "bimolecular_positive_recurrence_publication_v1"
+          source = Path(root_name)
+          archive = Path(f"{root_name}.zip")
+
+          def digest(path: Path) -> str:
+              return hashlib.sha256(path.read_bytes()).hexdigest()
+
+          with zipfile.ZipFile(archive) as handle:
+              corrupt = handle.testzip()
+              if corrupt is not None:
+                  raise SystemExit(f"corrupt ZIP member: {corrupt}")
+              for info in handle.infolist():
+                  name = info.filename
+                  candidate = PurePosixPath(name)
+                  if (
+                      not name
+                      or "\\" in name
+                      or candidate.is_absolute()
+                      or ".." in candidate.parts
+                      or not candidate.parts
+                      or candidate.parts[0] != root_name
+                  ):
+                      raise SystemExit(f"unsafe or unexpected ZIP path: {name!r}")
+                  file_type = (info.external_attr >> 16) & 0o170000
+                  if file_type == stat.S_IFLNK:
+                      raise SystemExit(f"symbolic link forbidden in ZIP: {name}")
+
+              with tempfile.TemporaryDirectory() as temporary:
+                  handle.extractall(temporary)
+                  extracted = Path(temporary) / root_name
+                  subprocess.run(
+                      [sys.executable, "supplement/verify_manifest.py"],
+                      cwd=extracted,
+                      check=True,
+                  )
+                  tracked = subprocess.check_output(
+                      ["git", "ls-files", "-z", "--", root_name]
+                  ).decode("utf-8").split("\0")
+                  tracked_paths = [Path(path) for path in tracked if path]
+                  source_files = {
+                      path.relative_to(source).as_posix(): digest(path)
+                      for path in tracked_paths
+                  }
+                  archive_files = {
+                      path.relative_to(extracted).as_posix(): digest(path)
+                      for path in extracted.rglob("*")
+                      if path.is_file()
+                  }
+                  if len(source_files) != 60:
+                      raise SystemExit(
+                          f"expected 60 durable package files, found {len(source_files)}"
+                      )
+                  if source_files != archive_files:
+                      missing = sorted(source_files.keys() - archive_files.keys())
+                      extra = sorted(archive_files.keys() - source_files.keys())
+                      common = source_files.keys() & archive_files.keys()
+                      changed = sorted(
+                          key for key in common
+                          if source_files[key] != archive_files[key]
+                      )
+                      raise SystemExit(
+                          f"ZIP/tree mismatch; missing={missing}, extra={extra}, changed={changed}"
+                      )
+                  print("release archive verification passed: 60 byte-identical files")
+          PY
 
   manuscript-build:
     runs-on: ubuntu-latest

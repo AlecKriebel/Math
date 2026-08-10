@@ -78,9 +78,8 @@ substitute for proof.
 
 **Code and supporting materials:**
 The Version 1.0 archive contains the standalone verifier, tests, stable output,
-release manifest, and clean-clone transcript. A public immutable repository
-link should be entered only after the Version 1.0 tag exists and has been
-verified.
+release manifest, and clean-clone transcript. Its immutable public package URL
+is <https://github.com/AlecKriebel/Math/tree/bimolecular-positive-recurrence-v1.0/bimolecular_positive_recurrence_publication_v1>.
 
 **Ethics:**
 Not applicable: the work involves no human participants, animals, patient

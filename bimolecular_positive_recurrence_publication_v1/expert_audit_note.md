@@ -95,9 +95,10 @@ Species may diverge on slower tiers while having limiting weight zero; they
 remain in the divergent-coordinate set. Molecularity at most two yields the
 critical dichotomy: either a useful terminal complex has vanishing source
 probability, or a signed linear stoichiometric invariant prevents the proposed
-divergence inside the fixed communicating class. The equivalence between top
-complexes and unit normalized source weight also removes a formerly redundant
-branch: if every complex has unit weight, every complex is top.
+divergence inside the fixed communicating class. The equivalence
+$y\in T\iff q_J(y)=1$, where $q_J(y)$ counts the $J$-particles in $y$, also
+removes a formerly redundant branch: if every complex has exactly one
+$J$-particle, every complex is top.
 
 ## 7. Qualitative and rate-dependent limitation
 

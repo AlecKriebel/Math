@@ -1,3 +1,18 @@
+\ifdefined\japsubmission
+\begin{abstract}
+Stochastic reaction networks model populations changed by random reaction
+events.  A central stability question is whether such a system returns often
+enough to admit a stationary probability distribution rather than escaping
+permanently toward ever-larger populations.  We prove this stability, for
+every choice of positive reaction rates, when the network is weakly
+reversible, has one linkage class, and no reaction complex contains more than
+two molecules.  This removes an additional pure-species condition required
+by the previous theorem.  The proof follows the target produced by each
+reaction and measures the population remaining after that target is
+subtracted.  Multiple linkage classes and reactions involving more than two
+molecules remain open.
+\end{abstract}
+\else
 \begin{abstract}
 Weak reversibility is conjectured to imply positive recurrence for stochastic
 mass-action systems.  For binary networks with one linkage class, this was
@@ -18,6 +33,7 @@ supply such a source or produce a stoichiometric invariant that precludes
 divergence within the class.  The result is class-wise and does not address
 multiple linkage classes or molecularity above two.
 \end{abstract}
+\fi
 
 \noindent\textbf{Keywords.}
 Stochastic reaction network; systems biology; chemical master equation;
@@ -266,8 +282,9 @@ After the sampled channel \(r\) fires, record its target \(t=y_r'\).  The mark
 is therefore obtained from the actual channel and is never inferred from the
 population displacement.  Once exact parallel channels with the same source
 and target have been aggregated, retaining the target is the only part of the
-previous channel needed below.  A reachable augmented state is denoted
-\((x,t)\), where \(x\) is the post-jump population.  If the next sampled
+previous channel needed below.  Write \(Z_n\) for this target-augmented
+embedded chain.  A reachable augmented state is denoted \((x,t)\), where
+\(x\) is the post-jump population.  If the next sampled
 channel is \(q:s\to u\), then
 \begin{equation}\label{eq:aug-transition}
   (x,t)\longmapsto(x-s+u,u).
@@ -613,7 +630,7 @@ subcases.
       \(\mathcal D\) be the set of distinct companion species.  The signed
       linear functional
       \begin{equation}\label{eq:signed-invariant}
-        M_J-\sum_{D\in\mathcal D}X_D
+        \ell(x):=\sum_{i\in J}x_i-\sum_{D\in\mathcal D}x_D
       \end{equation}
       has value zero on every complex: each top complex contains one
       \(J\)-particle and one companion particle, whereas a lower complex

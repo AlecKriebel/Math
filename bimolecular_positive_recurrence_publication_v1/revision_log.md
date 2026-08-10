@@ -95,6 +95,21 @@ Version 0.3, its Git tag, or its tagged commit.
   validation records, stable verification output, and a complete Version 1.0
   manifest.
 
+### Final independent-audit repairs
+
+- Named the marked augmented embedded chain $Z_n$ at its construction and
+  wrote the signed invariant explicitly as
+  $\ell(x)=\sum_{i\in J}x_i-\sum_{D\in\mathcal D}x_D$, closing two localized
+  notation omissions found in the final proof replay.
+- Added a nine-line, non-mathematical abstract selected only by the Applied
+  Probability wrapper; the canonical technical abstract remains unchanged in
+  the arXiv and bioRxiv wrappers.
+- Corrected the literature-audit title and mathematics formatting, clarified
+  that $q_J(y)=1$ counts one $J$-particle, and separated completed checks
+  from submission-day rechecks.
+- Extended continuous integration to compare manifest/report copies and to
+  reject an unsafe, corrupt, incomplete, or stale first-contact ZIP archive.
+
 ### Scope retained
 
 Version 1.0 does not claim multiple linkage classes, molecularity greater than

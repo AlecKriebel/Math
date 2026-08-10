@@ -89,9 +89,10 @@ different scales and a pure-double source on the slower coordinate.
 
 **Manuscript location:** Lemmas `lem:top` and `lem:terminal`.
 
-Audit every molecularity-at-most-two branch. Verify the equivalence between a
-top complex and unit normalized source weight. Consequently, if every complex
-has unit weight, all complexes are top and the all-top case already applies;
+Audit every molecularity-at-most-two branch. Verify the equivalence
+$y\in T\iff q_J(y)=1$, where $q_J(y)$ counts the particles in $y$ whose
+species lie in $J$. Consequently, if every complex has exactly one
+$J$-particle, all complexes are top and the all-top case already applies;
 there is no independent non-all-top branch of that form. In the remaining
 case, check that the proof produces either a useful vanishing-probability
 terminal or a signed linear stoichiometric invariant that rules out divergence

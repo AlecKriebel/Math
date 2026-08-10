@@ -1,8 +1,11 @@
 # Publication-candidate v1 literature and proof-positioning audit
 
-**Paper:** *Positive Recurrence of Bimolecular Weakly Reversible Stochastic Reaction Networks with a Single Linkage Class*  
-**Audit date:** 9 August 2026 (America/Los_Angeles)  
-**Scope:** literature metadata, theorem/proof positioning, and publication-safe comparison language.  
+**Paper:** *Positive Recurrence for Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks*
+
+**Audit date:** 9 August 2026 (America/Los_Angeles)
+
+**Scope:** literature metadata, theorem/proof positioning, and publication-safe comparison language.
+
 **Source rule used:** publisher pages, publisher PDFs/front matter, arXiv records/PDFs, and official conference/project pages only. No external contact was made.
 
 ## Executive verdict
@@ -52,9 +55,9 @@ There are two release-critical bibliographic cautions:
 
 **Safe mathematical role.** This is the foundational deterministic complex-balance/free-energy reference. It supports calling
 
-\[
+$$
 G_c(r)=\sum_i\left[r_i\bigl(\log(r_i/c_i)-1\bigr)+c_i\right]
-\]
+$$
 
 the Horn--Jackson or pseudo-Helmholtz family in the reaction-network literature. It does not contain the target mark, residual subtraction, or exact falling-factorial identity used in the present paper.
 
@@ -65,9 +68,9 @@ the Horn--Jackson or pseudo-Helmholtz family in the reaction-network literature.
 **Exact positioning in the author version.** In arXiv:1410.4820:
 
 - formula (2), PDF page 2, is the pseudo-Helmholtz function
-  \[
+  $$
   V(x)=\sum_i\left[x_i(\log x_i-\log c_i-1)+c_i\right];
-  \]
+  $$
 - Theorem 7, PDF page 8, gives the scaled product-Poisson stationary distribution for a complex-balanced system;
 - Theorem 8, beginning on PDF page 8, proves that the scaled stochastic non-equilibrium potential converges to $V$, which is a deterministic Lyapunov function.
 
@@ -92,18 +95,18 @@ the Horn--Jackson or pseudo-Helmholtz family in the reaction-network literature.
 
 For residual $r=x-t\in\mathbb N_0^d$, Stirling's formula gives
 
-\[
+$$
 \sum_i\log(r_i!)
 =\sum_i(r_i\log r_i-r_i)
 +O\!\left(\sum_i\log(r_i+1)\right).
-\]
+$$
 
 Thus its leading term agrees with $G_{\mathbf 1}(r)$ up to an additive constant and the stated lower-order term. For general $c$, $G_c$ also contains the linear term $-\sum_i r_i\log c_i$. The publication-safe conclusion is:
 
 > The residual log-factorial potential is a discrete, target-shifted analogue of the classical Horn--Jackson entropy, not that entropy itself. Its new feature is the subtraction of the complex actually produced by the preceding reaction, which yields the exact increment
-> \[
+> $$
 > V(x-s+u,u)-V(x,t)=\log\frac{(x)_t}{(x)_s}
-> \]
+> $$
 > and makes a reaction sourced at the carried target have exactly zero increment.
 
 This is sharper and more defensible than claiming novelty for “an entropy Lyapunov function.”
@@ -165,30 +168,30 @@ The enabled case $y^{**}\notin T^{S,\infty}$ is settled without the extra struct
 
 The hard case begins at equation (19), page 17:
 
-\[
+$$
 \lambda_{y^{**}}(x_n)=0,
-\]
+$$
 
 while equation (20), page 18, gives
 
-\[
+$$
 (x_n\vee1)^{y^{**}}\longrightarrow\infty.
-\]
+$$
 
 Because the network is binary, these two facts force
 
-\[
+$$
 y^{**}=S_u+S_v,\qquad x_{n,u}=0,\qquad x_{n,v}\to\infty
-\]
+$$
 
 after relabeling and passage to the chosen proper sequence. At this exact point the hypothesis supplies either $S_v\in\mathcal C$ or $2S_v\in\mathcal C$.
 
 - If $2S_v\in\mathcal C$, then its D-monomial $x_{n,v}^2$ strictly dominates the D-monomial $x_{n,v}$ of $S_u+S_v$, contradicting $y^{**}\in T^{D,1}$.
 - Therefore $2S_v\notin\mathcal C$ along this case and the hypothesis forces $S_v\in\mathcal C$.
 - The pure unary complex is enabled and has source intensity
-  \[
+  $$
   \lambda_{S_v}(x_n)=x_{n,v}=(x_n\vee1)^{y^{**}}.
-  \]
+  $$
 - Comparing that enabled intensity with the top S-tier source $y^*$ prevents $y^{**}$ from lying strictly above $y^*$ in the D-order. Since $y^{**}$ is already top D-tier, they must be D-equivalent, which establishes (11).
 
 This is the precise obstacle the hypothesis resolves: a **mixed top D-tier complex can be disabled because one coordinate is zero even though its D-monomial diverges through another coordinate**. The proof manufactures an enabled pure unary source with comparable intensity. Calling the hypothesis merely a “technical artifact” would be inaccurate and unnecessarily dismissive; it performs a specific structural job in the proof.
@@ -279,7 +282,7 @@ The 2020 Anderson--Cappelletti--Kim paper says its embedded-chain transfer theor
 **Recommended use.** The official contents give:
 
 - Section 8.4, “Classification using drift criteria”;
-- Chapter 10, “The existence of \(\pi\)”;
+- Chapter 10, “The existence of $\pi$”;
 - Chapter 11, “Drift and regularity,” especially Section 11.3;
 - Section 13.2, “Renewal and regeneration”;
 - Sections 19.1--19.3, state-dependent, history-dependent, and mixed drift criteria.
@@ -542,13 +545,13 @@ All records below were checked during this audit.
 - Asmussen publisher record: <https://link.springer.com/book/10.1007/b97236>
 - Asmussen regenerative-process chapter: <https://link.springer.com/chapter/10.1007/0-387-21525-5_6>
 
-## Final release checklist for this literature slice
+## Submission-day checklist for this literature slice
 
-- [ ] Keep Xu's official title exactly as currently displayed on arXiv and recheck it on submission day.
-- [ ] Include Horn--Jackson, Anderson--Craciun--Gopalkrishnan--Wiuf, Anderson--Cappelletti--Koyama--Kurtz, Anderson (2011), and Boros--Hofbauer in the final bibliography if the corresponding comparison sentences remain.
-- [ ] In the Anderson--Cappelletti--Kim comparison, identify Section 6.1/equations (19)--(20) and the disabled mixed-complex case.
-- [ ] Say the present theorem recovers the 2020 result as a special case; do not say their assumption was an “artifact.”
-- [ ] Keep deterministic permanence and stochastic recurrence logically separate.
-- [ ] Attribute the Agazzi author/status statements to the correct public sources and time-stamp the no-public-manuscript search.
+- [ ] Recheck Xu's official title and version immediately before submission; this audit and the candidate bibliography use the official record as displayed on 9 August 2026.
+- [x] Include Horn--Jackson, Anderson--Craciun--Gopalkrishnan--Wiuf, Anderson--Cappelletti--Koyama--Kurtz, Anderson (2011), and Boros--Hofbauer in the final bibliography where the corresponding comparison sentences remain.
+- [x] In the Anderson--Cappelletti--Kim comparison, identify Section 6.1/equations (19)--(20) and the disabled mixed-complex case.
+- [x] Say the present theorem recovers the 2020 result as a special case; do not say their assumption was an “artifact.”
+- [x] Keep deterministic permanence and stochastic recurrence logically separate.
+- [x] Attribute the Agazzi author/status statements to the correct public sources and time-stamp the no-public-manuscript search.
 - [ ] Recheck arXiv and the ConStRAINeD page immediately before journal upload.
-- [ ] Use broad chapter/section citations for standard Markov theory unless exact theorem text is independently checked.
+- [x] Use broad chapter/section citations for standard Markov theory unless exact theorem text is independently checked.
