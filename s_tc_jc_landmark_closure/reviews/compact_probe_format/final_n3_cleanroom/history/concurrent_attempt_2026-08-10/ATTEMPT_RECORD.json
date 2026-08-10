@@ -1,0 +1,47 @@
+{
+  "schema": "compact-probe-n3-concurrent-attempt-preservation-v1",
+  "status": "QUARANTINED_RESOURCE_UNSAFE_ATTEMPT",
+  "timestamp_recorded": "2026-08-10T05:19:59-07:00",
+  "resource_observation": {
+    "swap_total_mib": 8192.0,
+    "swap_used_mib": 7103.31,
+    "reason": "The s1 and s2 clean-room shard audits were inadvertently launched concurrently. The user required immediate cancellation and strict sequential replay because a primary semantic shard had previously reached 6.29 GB RSS."
+  },
+  "launch": {
+    "working_directory": "/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure",
+    "commands": [
+      "../.venv/bin/python reviews/compact_probe_format/final_n3_cleanroom/audit_final_n3.py --shard s1",
+      "../.venv/bin/python reviews/compact_probe_format/final_n3_cleanroom/audit_final_n3.py --shard s2"
+    ],
+    "mode": "concurrent",
+    "accepted_as_evidence": false
+  },
+  "s1": {
+    "status": "INTERRUPTED_RESOURCE_SAFETY",
+    "pid_at_termination": 4834,
+    "rss_kib_at_observation": 1122672,
+    "signal": "SIGTERM",
+    "exit_observed": true,
+    "partial_output": "reviews/compact_probe_format/final_n3_cleanroom/history/concurrent_attempt_2026-08-10/normalized_relations_s1_interrupted.jsonl.gz",
+    "partial_output_sha256": "80f8257db38def7df0e617ebe9cbf814f610d43a7f80959947f2cfa03fbf5819",
+    "partial_output_size_bytes": 1782750,
+    "gzip_complete": false,
+    "accepted_as_evidence": false
+  },
+  "s2": {
+    "status": "FIRST_SEMANTIC_FAILURE_DURING_RESOURCE_UNSAFE_ATTEMPT",
+    "process_exit_code": 1,
+    "first_failure": {
+      "category": "compact_verbose_witness",
+      "context": [73, "p", 26],
+      "source_location": "audit_final_n3.py:evidence_check"
+    },
+    "partial_output": "reviews/compact_probe_format/final_n3_cleanroom/history/concurrent_attempt_2026-08-10/normalized_relations_s2_semantic_failure.jsonl.gz",
+    "partial_output_sha256": "41cb0f82d721cb148992e2b2016520cb56d6c1b5f35e67950dfc898a1a657a45",
+    "partial_output_size_bytes": 107950,
+    "gzip_complete": true,
+    "accepted_as_evidence": false,
+    "note": "This semantic mismatch is preserved separately from the resource-safety interruption. It must be reproduced sequentially before deciding whether it is a primary evidence failure or an audit defect."
+  },
+  "required_follow_up": "Discard both partial streams from the evidence chain and replay s1, s2, and all remaining n3 shards strictly sequentially."
+}

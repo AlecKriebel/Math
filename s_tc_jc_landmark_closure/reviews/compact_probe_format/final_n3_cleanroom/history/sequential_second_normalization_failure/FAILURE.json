@@ -1,0 +1,16 @@
+{
+  "status": "FALSE_CROSS_LIBRARY_LOSSLESSNESS_ASSERTION",
+  "command": "../.venv/bin/python reviews/compact_probe_format/final_n3_cleanroom/audit_final_n3.py --shard s2",
+  "exit_code": 1,
+  "first_failure": {
+    "category": "verbose_polynomial_missing",
+    "compact_polynomial_id": "d86f7a48740c0df4e94f4a5fd30992dbbd1800a455bcbc3e7f26408f6ce0208e"
+  },
+  "partial_relation_stream": "reviews/compact_probe_format/final_n3_cleanroom/history/sequential_second_normalization_failure/normalized_relations_s2_complete_before_cross_library_assertion.jsonl.gz",
+  "partial_relation_stream_sha256": "86044749a0ff007bd6005b7b515709019dabb1dd5bedbb1acb27c81eef206448",
+  "partial_relation_stream_size_bytes": 3677658,
+  "gzip_complete": true,
+  "accepted_as_evidence": false,
+  "diagnosis": "All relation-level graph and algebra checks completed. The final assertion incorrectly required every independently valid compact-selected polynomial also to occur in the verbose package's selected-polynomial library. This is the library-level form of the already withdrawn lossless-witness-body claim.",
+  "correction": "Require each package's referenced polynomial to match its own independently regenerated pullback and its own content-addressed library. Do not require cross-package selected-polynomial library identity."
+}
