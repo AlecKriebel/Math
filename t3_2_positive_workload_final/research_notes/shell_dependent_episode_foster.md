@@ -128,7 +128,7 @@ For the regression network, condition on the primary entry from the base
 Suppose a stopped post-activation averaging theorem gives
 
 \[
- {C_{\rm end}\over N}\Longrightarrow R,qquad
+ {C_{\rm end}\over N}\Longrightarrow R,\qquad
  0\leq R\leq1,\qquad \mathbb P\{R<1\}>0,              \tag{4.2}
 \]
 

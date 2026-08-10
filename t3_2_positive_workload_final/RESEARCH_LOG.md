@@ -416,3 +416,23 @@
 - Promoted exactly 32 positive-invariant and four signed pairs. The certified
   remainder changes from \((1871,191)\) to \((1839,187)\). The suppressed
   no-whole-top promotion orbit and global T3-2 remain uncertified.
+
+## 2026-08-10T16:02:48-07:00 - suppressed four-pair orbit certified
+
+- Isolated the exact support orbit
+  \(\{U,I+V\}/\{0,I,2I,I+U\}\): four positive-invariant pairs,
+  28 affine-feasible failed incidences, no signed pair, and no overlap with
+  any earlier certified branch. The selector and exact cleaned macro rewards
+  are frozen by the scoped certificate.
+- Proved a transient top-shell birth--death occupation lemma using the
+  invariant \(Q=U+2V-I\). The proof treats the one-active rows, the
+  equal-depth immediate-stop flag, the balanced cut-hazard window, and both
+  extreme regimes \(M^2/D\to0,\infty\), while retaining every physical
+  reaction clock.
+- Two independent audits replayed all six obligations: macro endpoints,
+  martingale and size-biased moment bounds, all-clock cleanup, arbitrary
+  strong-orientation cut service, rare positive endpoint cost, and the
+  single corrected-factorial composition. Focused tests are green.
+- Promoted exactly four additional positive-invariant pairs. The certified
+  remainder changes from \((1839,187)\) to \((1835,187)\). Global T3-2
+  remains uncertified.

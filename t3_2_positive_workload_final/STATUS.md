@@ -136,6 +136,19 @@ fixed-class obligation. The ordered update is
 \[
  (1871,191)\longmapsto(1839,187).
 \]
+The formerly suppressed promotion orbit has now been isolated as four
+further positive-invariant pairs. Across its 28 affine-feasible failed
+incidences, the top shell is the reversible pair
+\(\{U,I+V\}\) and the partner is
+\(\{0,I,2I,I+U\}\). An exact invariant
+\(Q=U+2V-I\), a killed birth--death occupation estimate, and one common
+corrected-factorial potential cover the one-active, equal-depth, balanced,
+and two extreme-ratio flags. Both independent audits passed the physical
+cleanup, conditional cut-hazard, endpoint-integrability, and
+common-potential composition obligations. The disjoint update is
+\[
+ (1839,187)\longmapsto(1835,187).
+\]
 Global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.
