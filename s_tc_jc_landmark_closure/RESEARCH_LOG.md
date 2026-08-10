@@ -445,3 +445,66 @@
   their admissible rootings, the weak Theta rooting counts, the `K4-e`
   double-triangle exclusion, and eight convention mutations.  The gate is
   `VERIFIED AFTER CORRECTION`; local algebra remains separately pending.
+
+## 2026-08-10T03:31:00-07:00 — exact replay rejects mixed-code descriptor cache
+
+- The first complete schema-3 three-outgoing merge was rejected by the
+  strengthened graph-to-polynomial replay.  A target graph with content ID
+  `83fbeab153b433dea88528707b25a74898a924b90b1eff000c5a7c10257c8dd8`
+  cited a sparse polynomial generated from another rooted presentation with
+  the same standard mixed code.  The regenerated and stored exact polynomial
+  hashes differed, and their variable counts were 12 and 11.
+- The cause was a descriptor cache keyed by selected-port count and standard
+  mixed code.  A sparse polynomial's variables follow the exact rooted arc
+  order, so no such cross-presentation cache is graph-bound.  The complete
+  failed stream and the first affected state are quarantined; none of its
+  counts is active evidence.
+- The producer now keys descriptors by selected-port count and exact rooted
+  graph ID.  The merger and replay reject any weaker declared cache scope.
+
+## 2026-08-10T03:47:00-07:00 — zero-sum root quotient corrected
+
+- A second adversarial check found that admissible root placements of one
+  standard mixed graph can give descendant masks differing by split
+  complement.  On the retained Fourier domain the boundary characters sum
+  to zero, hence `xor(A)=xor(A^c)` exactly.  The hard-cover descriptor now
+  replaces every quartet mask by `min(A,A^c)` before zipping duplicate edge
+  rows; the two root arcs become the effective product edge.
+- Added an exact regression using two root placements of one labelled
+  quartet.  Their raw rooted descriptors differ, their standard mixed codes
+  agree, and their complement-normalized descriptors and complete JC
+  coordinate polynomials agree.  An independent clean-room proof and a
+  separate audit of the bounded atlas's graph-specific physical convention
+  are active.
+- Every n=3/n=4 hard-cover and terminal-probe body generated before this
+  correction is superseded.  Large obsolete streams were removed only after
+  recording their SHA-256 digests in the quarantine README.
+
+## 2026-08-10T04:18:00-07:00 — corrected n=4 base and compact probes pass primary replay
+
+- The final complement-normalized theta-2 base contains 132 fixed roots and
+  2,106 graph-bound states: 1,860 generic separators, 114 refinements, and
+  132 labelled-isomorphism terminals.  Its summary SHA-256 is
+  `915bed0a3add001c1a94d6d862a2359e6ad75b3489f8d71b7adf006952b5ce37`;
+  the strengthened primary replay passes.
+- The path-bound `A+p` and `A+p+q` universe was regenerated in four compact
+  shards covering every one of the 132 terminal paths.  The primary exact
+  replays decode all 168,582 child relations and report 153,072 generic
+  polynomial separations and 15,510 coherent labelled isomorphisms, with no
+  unresolved class.  This n=4 family has no ordinary-`T` terminal and does
+  not by itself certify T-edge probe coherence.
+- A verbose graph/state/binding representation is now being regenerated for
+  record-by-record comparison with the compact encoding.  Clean-room review,
+  mutation tests, n=3 closure, and unequal directed pairs remain mandatory;
+  no global theorem is promoted.
+
+## 2026-08-10T04:24:00-07:00 — simultaneous unequal-relation runs terminated
+
+- The n=3 and n=4 graph-bound unequal-directed-relation compilers were run
+  concurrently with four hard-cover shards and the verbose probe producer.
+  Both processes received termination signal 15 before emitting a final
+  summary.  Neither run is a certificate and no partial count is retained as
+  evidence.
+- This is recorded as a resource-scheduling failure, not an algebraic result.
+  The relation compilers will be rerun sequentially after the hard-cover
+  shards release memory.  The theorem gate remains fail-closed.
