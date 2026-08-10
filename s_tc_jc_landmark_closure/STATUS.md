@@ -48,3 +48,16 @@ filtered theta-2 compiler independently finds three source signatures and 132
 fixed restoration roots.  These are progress certificates, not promotion:
 the n=4 cover, unequal directed relations, terminal extensions, and their
 clean-room/mutation replays remain load-bearing.
+
+The first completed theta-2 cover was rejected by its own exact replay: its
+schema-2 canonical key merged distinct rooted graph presentations.  The full
+failed stream is quarantined and the simultaneous schema-2 n=3 run was
+stopped.  Schema 3 binds every state to one fixed-full root case and exact
+rooted graph pair; all local counts must now be regenerated.  Accordingly,
+the historical 40,072 and failed 1,518 counts are discovery diagnostics only.
+
+The corrected schema-3 theta-2 cover now passes the strengthened primary
+replay: all 132 fixed roots yield 2,106 states, with 1,860 exact generic
+separators, 114 refinements, 132 labelled isomorphisms, and no unresolved or
+non-`T` terminal.  This result is awaiting clean-room and mutation review and
+does not yet promote the global theorem.

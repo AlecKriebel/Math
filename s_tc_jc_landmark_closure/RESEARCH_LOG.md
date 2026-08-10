@@ -384,3 +384,36 @@
 - Hardened the unequal-directed-pair compiler to emit complete rooted graph
   and exact polynomial libraries, rather than only topology and polynomial
   hashes.  Its full n=3/n=4 runs and independent replay remain pending.
+
+## 2026-08-10T02:25:00-07:00 — schema-2 rooted-provenance merge rejected
+
+- The filtered theta-2 primary run terminated with 132 fixed roots, 1,518
+  canonical states, zero unresolved terminals, and only 66 apparent labelled
+  isomorphisms surviving.  This numerical closure is **not promoted**.
+- The exact primary replay immediately failed because one canonical state
+  contained raw coverage with a different target rooted graph ID from the
+  graph used to derive the state's algebra.  The state key had included only
+  semi-directed mixed codes and remaining roles, so distinct rooted
+  presentations could merge even though their continuation trees and
+  variable transports had not been proved identical.
+- Preserved the complete failed n=4 stream under
+  `quarantine/schema2_rooted_merge_failure/` and interrupted the still-running
+  n=3 schema-2 regeneration before it emitted final artifacts.
+- Schema 3 now includes the fixed-full root-case ID and exact source and
+  target rooted graph IDs in every state identity.  Both covers must be
+  regenerated, and independent reviewers have been instructed to reject any
+  cross-root or cross-rooted-graph merge.
+
+## 2026-08-10T02:33:00-07:00 — schema-3 theta-2 cover passes primary replay
+
+- Regenerated all 132 filtered theta-2 fixed roots with schema 3.  The exact
+  stream contains 2,106 path-bound states: 1,860 generic polynomial
+  separations, 114 refinement states, and 132 labelled-isomorphism terminals.
+  There is no ordinary-`T`, non-`T`, unsigned, or unresolved terminal.
+- The strengthened primary verifier independently rereads all four streams,
+  checks every graph and polynomial body, rebuilds every displayed-tree
+  pullback, validates every path-specific parent/child relation, and reaches
+  all states from the 132 root entries.  It reports `EXACTLY VERIFIED`.
+- This closes the primary theta-2 base gate only.  Clean-room regeneration,
+  adversarial mutations, the schema-3 n=3 cover, unequal directed pairs, and
+  terminal probes are still required before promotion.

@@ -125,6 +125,7 @@ def verify_run(summary: dict, project: Path):
 
     path_ids = set()
     parent_ids = []
+    path_index = {}
     root_coverage = Counter()
     counts = Counter()
     for state_id, row in states.items():
@@ -138,7 +139,10 @@ def verify_run(summary: dict, project: Path):
         expected_matching = [[f"L_{i}", f"L_{i}"] for i in range(p)]
         assert row["port_matching"] == expected_matching
         state_payload = {
+            "fixed_full_root_case_id": row["fixed_full_root_case_id"],
             "selected_port_count": p,
+            "source_rooted_graph_id": source_id,
+            "target_rooted_graph_id": target_id,
             "source_mixed_code": graph_codes[source_id],
             "target_completion_mixed_code": graph_codes[target_id],
             "remaining_target_roles": tuple(row["remaining_target_roles"]),
@@ -195,6 +199,7 @@ def verify_run(summary: dict, project: Path):
             assert rebuilt_sign["certified"]
 
         for coverage in row["raw_coverage"]:
+            assert coverage["root_case_id"] == row["fixed_full_root_case_id"]
             assert coverage["canonical_state_id"] == state_id
             assert coverage["source_graph_id"] == source_id
             assert coverage["target_graph_id"] == target_id
@@ -205,6 +210,9 @@ def verify_run(summary: dict, project: Path):
             payload.pop("child_state_ids")
             assert stable_hash(payload) == path_id == payload_sha
             path_ids.add(path_id)
+            if path_id in path_index:
+                raise AssertionError(("duplicate path binding", path_id))
+            path_index[path_id] = (state_id, coverage)
             parent_ids.append(coverage["parent_path_binding_id"])
             root_id = coverage["root_case_id"]
             assert root_id in roots
@@ -221,6 +229,31 @@ def verify_run(summary: dict, project: Path):
     assert not any("non_T" in key for key in counts)
     for parent in parent_ids:
         assert parent is None or parent in path_ids
+
+    children_by_parent_path = {}
+    for child_state_id, child_row in states.items():
+        for child_coverage in child_row["raw_coverage"]:
+            parent_path = child_coverage["parent_path_binding_id"]
+            if parent_path is None:
+                continue
+            children_by_parent_path.setdefault(parent_path, set()).add(
+                child_state_id
+            )
+            parent_state_id, parent_coverage = path_index[parent_path]
+            assert child_coverage["parent_state_id"] == parent_state_id
+            assert child_coverage["root_case_id"] == parent_coverage["root_case_id"]
+            assert tuple(child_coverage["restoration_path"]) == tuple(
+                parent_coverage["restoration_path"]
+            ) + (child_coverage["restoration_path"][-1],)
+    for path_id, (state_id, coverage) in path_index.items():
+        expected = set(coverage["child_state_ids"])
+        actual = children_by_parent_path.get(path_id, set())
+        assert actual == expected, (
+            "path-specific child coverage mismatch",
+            path_id,
+            sorted(expected - actual),
+            sorted(actual - expected),
+        )
 
     entries = set()
     for root_id, row in roots.items():

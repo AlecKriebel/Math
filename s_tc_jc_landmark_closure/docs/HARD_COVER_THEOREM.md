@@ -1,7 +1,7 @@
 # Fixed-full hard-cover theorem
 
-Status: **CANDIDATE — primary terminal census complete; independent producer
-and global promotion review pending**
+Status: **CANDIDATE — theorem logic verified; schema-3 relation census and
+independent producer pending**
 
 ## Statement
 
@@ -104,8 +104,12 @@ support-plus-one/two probe-coherence theorem.
 - **VERIFIED:** fixed-full restoration exhaustiveness, role completeness,
   source segment placement, prefix submersion, and both separator directions.
 - **FALSE:** unconditional lifting from selected marginal containment.
-- **EXACTLY COMPUTED (PRIMARY):** `5,344` fixed root cases and `40,072`
-  canonical restored relations close with `73` labelled-isomorphic supports,
-  `16` ordinary-`T` supports, and no unresolved or non-`T` terminal.
-- **PENDING:** final-schema combined regeneration, independent normalized
-  record comparison, mutation-sensitive coverage audit, and global promotion.
+- **FALSE AS A RELATION CERTIFICATE:** the schema-2 `40,072`-state discovery
+  census keyed states only by semi-directed mixed codes.  Distinct rooted
+  presentations could merge while retaining only the first graph witness and
+  child set.  The corresponding theta-2 n=4 run was rejected by exact replay.
+- **EXACTLY COMPUTED:** the fixed root inventories contain `5,344` n=3 roots
+  and `132` filtered theta-2 n=4 roots.
+- **PENDING:** schema-3 regeneration binding every state to its fixed root and
+  exact rooted graph pair; independent normalized comparison; mutation audit;
+  and final local promotion.

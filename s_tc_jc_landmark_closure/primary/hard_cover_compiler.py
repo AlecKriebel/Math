@@ -506,7 +506,10 @@ def compile_hard_cover(
             )
             source_graph_id, source_code, source_transport = register_graph(source_graph)
             state_id = stable_hash({
+                "fixed_full_root_case_id": raw_root["root_case_id"],
                 "selected_port_count": current_p + 1,
+                "source_rooted_graph_id": source_graph_id,
+                "target_rooted_graph_id": target_graph_id,
                 "source_mixed_code": source_code,
                 "target_completion_mixed_code": target_code,
                 "remaining_target_roles": remaining_next,
@@ -543,7 +546,27 @@ def compile_hard_cover(
             if prior_state is not None:
                 if "terminal_classification" not in prior_state:
                     raise AssertionError("canonical state revisited before child closure")
-                coverage["child_state_ids"] = tuple(prior_state["children"])
+                if prior_state["terminal_classification"] == "refined_by_next_restoration":
+                    child_ids = visit(
+                        source_variant,
+                        source_assignment,
+                        extended_words,
+                        target_variant,
+                        target_assignment,
+                        restored_next,
+                        remaining_next,
+                        (*path_roles, role),
+                        raw_root,
+                        state_id,
+                        coverage["path_binding_id"],
+                    )
+                    if tuple(child_ids) != tuple(prior_state["children"]):
+                        raise AssertionError(
+                            "merged rooted state has provenance-dependent children"
+                        )
+                    coverage["child_state_ids"] = tuple(child_ids)
+                else:
+                    coverage["child_state_ids"] = ()
                 prior_state["raw_coverage"].append(coverage)
                 continue
 
@@ -560,8 +583,9 @@ def compile_hard_cover(
                 register_polynomial=register_polynomial,
             )
             state = {
-                "schema": 2,
+                "schema": 3,
                 "state_id": state_id,
+                "fixed_full_root_case_id": raw_root["root_case_id"],
                 "selected_port_count": current_p + 1,
                 "source_mixed_code_sha256": hashlib.sha256(
                     source_code.encode()
