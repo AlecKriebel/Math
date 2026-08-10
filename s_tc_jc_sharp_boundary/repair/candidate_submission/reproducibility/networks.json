@@ -1,0 +1,133 @@
+{
+  "format_version": "1.0",
+  "state_group": "Z2 x Z2",
+  "edge_parameter_convention": {
+    "symbol": "x_e",
+    "definition": "x_e = 1 - 4 q_e",
+    "physical_range": "0 < x_e < 1",
+    "recover_q": "q_e = (1 - x_e)/4"
+  },
+  "triangle_equivalence": {
+    "definition": "Apply the narrow reticulation-preserving root suppression sd_0, retain leaf labels, and erase reticulation status and arrowheads only on the three edges and three vertices of the unique triangle. Two networks are triangle-equivalent exactly when the resulting partially marked leaf-labelled graphs are isomorphic, with all markings outside the triangle preserved."
+  },
+  "common_internal_structure": {
+    "vertices": {
+      "rho": "root",
+      "A": "tree",
+      "B": "tree",
+      "C": "reticulation",
+      "D": "tree",
+      "E": "tree",
+      "F": "reticulation",
+      "L1": "leaf:1",
+      "L2": "leaf:2",
+      "L3": "leaf:3",
+      "L4": "leaf:4"
+    },
+    "internal_arcs": [
+      ["rho", "A"],
+      ["rho", "C"],
+      ["A", "B"],
+      ["B", "C"],
+      ["C", "D"],
+      ["D", "E"],
+      ["A", "F"],
+      ["E", "F"]
+    ],
+    "reticulation_parent_order": {
+      "C": {
+        "lambda_C_parent": "rho",
+        "one_minus_lambda_C_parent": "B"
+      },
+      "F": {
+        "lambda_F_parent": "A",
+        "one_minus_lambda_F_parent": "E"
+      }
+    },
+    "suppressed_root_effective_edge": {
+      "edge": ["A", "C"],
+      "parameter": "x_AC = x_(rho,A) * x_(rho,C)"
+    }
+  },
+  "networks": [
+    {
+      "id": "N",
+      "pendant_arcs": [
+        ["B", "L1"],
+        ["D", "L2"],
+        ["F", "L3"],
+        ["E", "L4"]
+      ],
+      "exact_source_point": {
+        "edge_x": {
+          "rho->A": "2/3",
+          "rho->C": "3/4",
+          "A->B": "3/5",
+          "B->C": "1/2",
+          "C->D": "9/20",
+          "D->E": "2/5",
+          "A->F": "1/2",
+          "E->F": "1/3",
+          "B->L1": "1/5",
+          "D->L2": "1/2",
+          "F->L3": "1/2",
+          "E->L4": "3/8"
+        },
+        "inheritance": {
+          "lambda_C": "1/2",
+          "lambda_F": "1/2"
+        }
+      }
+    },
+    {
+      "id": "N_prime",
+      "pendant_arcs": [
+        ["E", "L1"],
+        ["D", "L2"],
+        ["F", "L3"],
+        ["B", "L4"]
+      ],
+      "algebraic_number_beta": {
+        "minimal_polynomial": "43337075*beta^2 - 36083110*beta + 7336259",
+        "isolating_interval": ["441/1250", "3529/10000"],
+        "radical_expression": "10339/24835 - 36*sqrt(233509269)/8667415"
+      },
+      "exact_target_point": {
+        "edge_x": {
+          "rho->A": "2/3",
+          "rho->C": "3/4",
+          "A->B": "24835*beta/(20678 - 24835*beta)",
+          "B->C": "1/2",
+          "C->D": "9934/12215",
+          "D->E": "171/775",
+          "A->F": "10339/(53010*beta)",
+          "E->F": "1/2",
+          "E->L1": "31/190",
+          "D->L2": "1/2",
+          "F->L3": "1767/4832",
+          "B->L4": "3/(20*beta)"
+        },
+        "inheritance": {
+          "lambda_C": "1/2",
+          "lambda_F": "1/2"
+        }
+      }
+    }
+  ],
+  "common_fourier_orbit_vector": {
+    "r34": "277/8000",
+    "r24": "3/40",
+    "r23": "67/2400",
+    "t234": "127/16000",
+    "r14": "27/5000",
+    "r13": "81/5000",
+    "t134": "153/160000",
+    "r12": "9/500",
+    "u1111": "27/16000",
+    "u1122": "261/320000",
+    "t124": "27/10000",
+    "u1212": "27/20000",
+    "u1221": "153/320000",
+    "t123": "183/80000"
+  }
+}
