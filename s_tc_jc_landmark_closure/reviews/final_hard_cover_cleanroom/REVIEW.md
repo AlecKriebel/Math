@@ -7,7 +7,7 @@
 - **UNRESOLVED:** active p/q probe closure.  The only existing probe evidence
   binds a superseded n=4 base and is quarantined under `history/`.
 - **UNRESOLVED:** n=3 merged hard-cover gate until its separate clean-room
-  replay and report are complete.
+  terminal layer is rebuilt correctly.
 - **UNRESOLVED:** the landmark global JC identifiability and one-sided
   containment theorem.
 
@@ -22,3 +22,14 @@ tensors, and target-zero/source-nonzero polynomial pullbacks.  It does not
 accept primary classification or sign flags as evidence.  Thirteen mutations
 are rejected, including provenance merges, relation/polynomial swaps, and
 both removal and incorrect application of split-complement normalization.
+
+## n=3 scoped result
+
+- **VERIFIED:** graph/path layer: 5,344 roots, 68,584 states, 14,482 graphs,
+  and 8,349 independently regenerated refinement child sets, with zero
+  failures or provenance collisions.  See `SCHEMA3_N3_PATH_REVIEW.md`.
+- **WITHDRAWN:** the attempted terminal routine.  It is incompatible with
+  required two-active-label cases and its apparent zero-failure result is not
+  evidence.
+- **UNRESOLVED:** terminal algebra/topology, the complete n=3 gate, and every
+  downstream global claim.

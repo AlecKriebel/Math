@@ -219,3 +219,20 @@
 - A post-hoc older adversary implementation was stopped to avoid consuming
   resources while it recomputed a stale invariant census.  It produced no
   verdict and is not evidence for or against this gate.
+
+## 2026-08-10 — n=3 path gate verified; terminal attempt withdrawn
+
+- **VERIFIED:** the independent graph/path replay completed over 5,344 roots,
+  68,584 states, 14,482 exact rooted graphs, and 8,349 refinement states.
+  It found zero failures, zero normalized-state collisions, and zero
+  merged-provenance child-set disagreements.  Its commitment is
+  `d9dfc6d5e6e300bff00bd940adbf55395f609031aba8adeae0f38494dacadee6`.
+- **WITHDRAWN:** an attempted terminal routine emitted a zero-failure result,
+  but an independent adversarial reviewer identified incompatibility with
+  required two-active-label cases.  The process was stopped/confirmed absent,
+  no heavy rerun was attempted, and all terminal outputs were moved to
+  `history/withdrawn_n3_terminal_two_active_labels/`.
+- **UNRESOLVED:** n=3 terminal algebra, topology/T terminals, and the complete
+  n=3 hard-cover gate.  No global theorem is promoted from this subreview.
+- Machine memory was released; no clean-room audit process remained active at
+  the stop checkpoint.
