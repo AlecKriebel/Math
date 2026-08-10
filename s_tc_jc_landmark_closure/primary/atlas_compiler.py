@@ -685,13 +685,16 @@ def compile_relation_records(n: int, working, invariants):
             relation_id = stable_hash({
                 "direction": "source_precedes_target",
                 "outgoing": n,
+                "source_rooted_graph_id": source_graph_id,
+                "target_completion_rooted_graph_id": target_completion_graph_id,
+                "target_selected_rooted_graph_id": target_selected_graph_id,
                 "source_side_coloured_mixed_graph": source_code,
                 "target_completion_side_coloured_mixed_graph": target_completion_code,
                 "target_selected_side_coloured_mixed_graph": target_selected_code,
                 "port_matching": tuple((f"L_{i}", f"L_{i}") for i in range(n + 1)),
             })
             record = {
-                "schema": 2,
+                "schema": 3,
                 "relation_id": relation_id,
                 "outgoing": n,
                 "direction": "source_precedes_target",
@@ -721,6 +724,9 @@ def compile_relation_records(n: int, working, invariants):
                 "raw_coverage": [{
                     "source_primitive_id": source_variant.primitive_id,
                     "target_primitive_id": target_variant.primitive_id,
+                    "source_graph_id": source_graph_id,
+                    "target_completion_graph_id": target_completion_graph_id,
+                    "target_selected_graph_id": target_selected_graph_id,
                     "source_position_to_label": source_assignment,
                     "target_position_to_label": target_assignment,
                     "source_incoming_actual_label": (
@@ -862,6 +868,7 @@ def main() -> None:
     parser.add_argument("--relations", action="store_true")
     parser.add_argument("--load-bit-cache", type=Path)
     parser.add_argument("--write-bit-cache", type=Path, default=BIT_CACHE_FILE)
+    parser.add_argument("--output", type=Path, default=OUT)
     parser.add_argument("--source-core-id", action="append")
     parser.add_argument("--source-extra-count", action="append", type=int)
     args = parser.parse_args()
@@ -931,9 +938,9 @@ def main() -> None:
             "sha256": sha256(args.write_bit_cache),
             "records": len(cache),
         }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
-    print(json.dumps({"output": str(OUT), "descriptor_types": len(cache)}, sort_keys=True))
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+    print(json.dumps({"output": str(args.output), "descriptor_types": len(cache)}, sort_keys=True))
 
 
 if __name__ == "__main__":

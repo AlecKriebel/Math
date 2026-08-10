@@ -417,3 +417,14 @@
 - This closes the primary theta-2 base gate only.  Clean-room regeneration,
   adversarial mutations, the schema-3 n=3 cover, unequal directed pairs, and
   terminal probes are still required before promotion.
+
+## 2026-08-10T02:43:00-07:00 — frozen weak-class theorem replayed
+
+- Replayed `../s_tc_jc_sharp_boundary/reproducibility/verify_release.py` from
+  the active environment.  The manifest, manuscript scope lock, primary
+  symbolic verifier, and independent implementation all pass.
+- The replay checks binary/LSA/tree-child rooted witnesses, level two,
+  nonisomorphic non-`T` semi-directed reductions, all six exact invariants,
+  all 256 Fourier coordinates at the algebraic interior point, and both
+  rank-eight Jacobian minors.  The all-taxa weak-but-not-strong sharpness
+  branch remains frozen and available for the final synthesis.
