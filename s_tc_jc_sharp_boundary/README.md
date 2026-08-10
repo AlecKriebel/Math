@@ -1,19 +1,29 @@
-# Author-ready release, version 1.1.1
+# Repair branch — submission withheld
 
-This directory contains the journal submission and exact computational
-supplement for Alec Kriebel's paper *Generic Identifiability of Strongly
-Tree-Child Level-2 Jukes--Cantor Networks*.
+This directory is undergoing a fail-closed mathematical and reproducibility
+repair.  The former version 1.1.1 positive-classification release is
+**withdrawn**: its bridge chart and finite-atlas promotion were not certified
+at the strength required by the manuscript.  The global standard
+strongly-tree-child level-2 Jukes--Cantor theorem is presently **unresolved**,
+not refuted.
 
-The theorem covers all binary standard semi-directed `S_TC` level-2 networks
-under the open four-state Jukes--Cantor model, modulo ordinary triangle
-redirection. A separate graph theorem proves that every binary `W_TC`
-level-2 topology automatically has at most one triangle per blob, so no
-triangle-count hypothesis remains. The sharpness result gives an all-`n`
-non-triangle ambiguity in `W_TC \ S_TC`. The reconstruction theorem returns
-a canonical structural class modulo ordinary triangle redirection; it does not
-claim that every redirected orientation contains one fixed input distribution.
+The currently established result is the all-`n` sharpness theorem for the
+explicit Theta family in `W_TC \ S_TC`, together with its exact stochastic
+and rank certificates.  It is not a counterexample in the standard `S_TC`
+class.
 
-## Submission files
+The authoritative repair status and gate ledger are:
+
+- `repair/STATUS.md`
+- `repair/DEPENDENCY_GATES.md`
+- `repair/RESEARCH_LOG.md`
+
+Nothing under `submission/`, `source/paper/`, or
+`reproducibility/exact_release/` should be submitted or cited as a completed
+positive theorem until every repair gate is independently verified and this
+notice is replaced by a coherent release.
+
+## Historical withdrawn files
 
 - `submission/Generic_Identifiability_STC_Level2_JC.pdf`
 - `submission/LaTeX_TikZ_Source.zip`
@@ -21,15 +31,17 @@ claim that every redirected orientation contains one fixed input distribution.
 - journal-specific and generic cover letters
 - `submission/Referee_Guide.pdf`
 
-## Verification
+## Historical verification commands
 
 ```bash
 bash reproducibility/verify_quick.sh
 bash reproducibility/verify_full.sh
 ```
 
-The first is a submission/build check. The second independently rebuilds the complete automatic-triangle rooting universe in Python and C++, and verifies every unchanged statistical/atlas byte against its preserved clean full-adversarial transcript. The optional `verify_regenerate_all.sh` reruns every large algebra generator and directed join from scratch. See `reproducibility/RUNTIME.md` for
-resource expectations.
+These commands belong to the withdrawn version 1.1.1 bundle.  A successful
+run is not evidence for the global theorem: parts of that bundle attest frozen
+bytes or conditional status records.  Replacement fail-closed commands will
+be published only after the mathematical repair closes.
 
 Licenses: manuscript text and figures are CC BY 4.0; code is MIT. No persistent
 archive identifier is claimed in this local release; the author should insert one
@@ -53,7 +65,6 @@ already present unpacked elsewhere in this directory:
   regeneration path, not by `verify_quick.sh` or `verify_full.sh`. It can be
   regenerated from `reproducibility/publication/src/regenerate_signature_relation.cpp`.
 
-Every other file, including all theorem-bearing certificates, the primary
-verifier, and both independent reviewers, is present and was independently
-rerun before this git mirror was published; see
-`reproducibility/GIT_MIRROR_VERIFICATION.txt`.
+The omissions listed above remain relevant to reconstructing the historical
+bundle, but the historical manifest and verifier hierarchy are not an
+authoritative proof ledger for the repaired project.
