@@ -37,3 +37,25 @@ tree-child level-2 Jukes--Cantor identifiability theorem.
   only theorem-bearing source and compact certificates, not the 531 MiB
   omnibus research tree.
 - Completion estimate: **7%**.
+## 2026-08-09T18:14:14-07:00 — bridge gate closed conditionally; fallback scope locked
+
+- The independent bridge reviewer proved the exact full-incidence scaling
+  fiber on leaf-supported component trees and a direct marginal-localization
+  theorem that avoids the withdrawn physical-bridge chart.
+- The reviewer also produced an exact retained-bivalent-factor counterexample
+  to the unrestricted product chart.  The positive theorem therefore still
+  depends on the standard-reduction/2-sub-blob gate and the complete local
+  atlas.
+- Structural inspection of the long Gate-2 replay found that its claimed
+  arbitrary-subdivision closure includes finite regressions and prose rather
+  than an executable quantified proof; a PASS from that program will not be
+  promoted without the separate atlas reviewer.
+- The original four-leaf counterexample and all-`n` extension replayed under
+  the local pinned environment.  A fresh independent reviewer is rebuilding
+  the sharpness theorem, including exact positivity and dimension bounds.
+- Added `FALLBACK_SUBMISSION_SCOPE.md`.  If the positive atlas gate remains
+  unresolved, the release will be a standalone, honest sharpness paper rather
+  than another conditional positive manuscript.
+
+Estimated mathematical closure: 15%.  The bridge necessity mechanism is now
+sound; the finite atlas remains the critical positive-theorem blocker.
