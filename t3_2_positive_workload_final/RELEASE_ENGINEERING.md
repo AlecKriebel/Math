@@ -2,9 +2,12 @@
 
 ## Scope
 
-This verification layer records four proof-interface regressions and eight
-finite checks for one exact shielded/available seam. It does not certify T3-2,
-construct a theorem manuscript, or inspect the inherited release.
+This verification layer records proof-interface regressions and exact finite
+checks for the three physical-time branches, global support enumeration, tier
+geometry, affine-stoichiometric feasibility, and the exact two-/three-active
+phase classifications. It does not certify the open analytic stopped-kernel
+arguments or T3-2, construct a theorem manuscript, or modify the inherited
+release.
 
 1. **Shell-dependent negative drift.** The birth-death chain with
    \(p_n=n/(2n+1)\) upward and \(q_n=(n+1)/(2n+1)\) downward has strict drift
@@ -38,12 +41,13 @@ The first two examples are generic countable-state Markov processes, not T3-2
 counterexamples. The latter two are positive-recurrent CRN stress tests. Their
 purpose is to prevent reuse of invalid proof interfaces.
 
-The eight exact-seam tests independently replay the finite support filter,
-deficiency partition, reversible-pair finite-difference algebra, endpoint
-signs for every strongly connected three-vertex orientation, and the
-autonomous parity-law recursion. They also lock the exact residual busy-period
-counterexample to a one-target service margin. They do not replace the
-analytic drift proof in `research_notes/certified_exact_shielded_seam.md`.
+The exact finite tests independently replay the support filters, deficiency
+partitions, reversible-pair finite-difference algebra, endpoint signs for
+every strongly connected three-vertex orientation, autonomous parity-law
+recursion, the residual-pair generator identities, and the complete monomial
+tier arrangement. They also lock the exact residual busy-period
+counterexample to a one-target service margin. They do not replace any
+analytic drift proof.
 
 ## Read-only replay
 

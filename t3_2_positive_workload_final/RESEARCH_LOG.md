@@ -139,3 +139,75 @@
 - Enforced the repair program’s hard stop. No replacement theorem manuscript
   or PDF was created because global T3-2 and the signed-service seam remain
   unproved.
+
+## 2026-08-10T08:12:00-07:00 - exact signed-service seam closed
+
+- Replaced the nonproper signed-workload shortcut by a two-region physical-time
+  proof. A positive linear workload has quadratic generator drift outside the
+  bounded-(A,C), large-(B) tube; inside that tube, stopped regeneration
+  cycles turn the order-(1/B) signed service probability into a uniform
+  negative drift for the square of the proper workload.
+- Used exact compensators rather than a genealogical ledger, stopped rare
+  cycles at shell exit, and included autonomous boundary classes.
+- Exhaustively checked every strongly connected orientation of the displayed
+  supports. An independent adversarial review found no counterexample or
+  remaining gap at the exact stated scope.
+- Recorded the strict limitation: the theorem is not monotone under adding
+  complexes. It contributes exactly two new non-deficiency-zero pairs to the
+  positive support table and zero pairs to the signed shielded/available row.
+
+## 2026-08-10T08:36:00-07:00 - residual fast-shell pair closed
+
+- Proved positive recurrence for
+  `{B,2A,B+C}` / `{0,A,C}` for every strongly connected orientation and every
+  positive choice of present rates.
+- Constructed a proper linear return workload whose bad set lies in the core
+  `A=O(sqrt(q)), C=O(1)`, where `q=A+2B`.
+- On a window of length `T/sqrt(q+1)`, used the exact scalar
+  `Z=A+(2v/(t+v))C` to obtain a uniform Riccati limit and strict negative
+  expected `q` drift. Transient immigration--death domination controls the
+  unbounded `C` coordinate from every core state.
+- Added a fixed square-root safety margin, super-polynomial cleanup-exit
+  bounds, and polynomial exceptional-return/count moments before telescoping
+  the core trace. This closes the prior stationary-start and endpoint-cost
+  gaps.
+- Two independent proof audits found no remaining load-bearing defect. The
+  finite certificate exhausts all `18 x 18` strongly connected three-node
+  orientation pairs.
+
+## 2026-08-10T08:51:20-07:00 - global interface compressed
+
+- Replayed the full shielded/available support universe without deleting
+  reactions or assuming recurrence is monotone under support enlargement.
+- After finite classes, common active invariants, full deficiency zero, the
+  three exact physical-time branches, and the Anderson--Kim one-step tier
+  theorem, exactly 2,312 positive-invariant and 199 signed ordered support
+  pairs remain.
+- Enumerated the complete monomial comparison arrangement: 21 comparison
+  planes, 37 simplex vertices, 193 tier/active types, and 259 exact
+  availability descriptors. Twelve canonical asymptotic gate types cover all
+  remaining one-step tier failures.
+- Opened the next structural proof at the one-active gates: replace the false
+  finite phase by a killed or closed unimolecular cofactor process, with
+  explicit promotion and endpoint-cost alternatives.
+
+## 2026-08-10T09:41:08-07:00 - affine flags certified; phase gates isolated
+
+- Proved an exact levelwise Gordan alternative for whether a tier flag can
+  occur in one real affine stoichiometric class, and checked every failed
+  pair--descriptor incidence with exact rational arithmetic.
+- Closed 151 additional support pairs classwise (143 positive, eight signed):
+  none has an affine-feasible failed descriptor, so the class-local
+  Anderson--Kim entropy Foster argument applies. Two independent audits found
+  no load-bearing gap; lattice reachability is not used in this implication.
+- Replaced the proposed one-active theorem by a claim-neutral local record:
+  the killed unimolecular actual-target estimate is proved, while uniform
+  old-debt clearance, total nested-entry control, and marked Foster gluing are
+  stated explicitly as open.
+- Classified all affine-feasible two-active failures into seeded/dormant
+  promotion, 930 rank-one top-phase incidences, and 42 incidences with the
+  unique rank-two support `{B,2A,B+C}` up to relabeling. The structural
+  classification passed adversarial review and makes no recurrence claim.
+- Added the exact all-active finite classification: 1,269 incidences on 403
+  pairs, each with one whole flat top linkage, compressed to five
+  rank/deficiency shapes. Its analytic gluing theorem remains open.

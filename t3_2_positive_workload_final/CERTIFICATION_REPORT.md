@@ -1,125 +1,113 @@
 # T3-2 certification report
 
-Date: 2026-08-09
+Date: 2026-08-10
 
 ## Decision
 
-The independent audit is correct on its two load-bearing objections. The
-inherited T3-2 theorem is not certified and the supplied release is not ready
-for arXiv.
+The independent audit was correct on both load-bearing objections. The
+inherited T3-2 proof is not certified, and no replacement manuscript is ready
+for arXiv yet.
 
-The proposed physical-time repair is the right change of target, but it is not
-a proof as written. In particular, pointwise shell-dependent negative drift
-does not imply finite mean clearing, and a lexicographic descent with finite
-primary duration does not control a heavy-tailed lower-component reset.
+The repair has, however, produced three new exact-scope physical-time
+theorems. None uses tightness as finite support, and none attempts to prove
+recurrence of the raw embedded jump chain. No physical T3-2 counterexample is
+known.
 
-No physical T3-2 counterexample was found.
-
-## What remains certified
+## Current gate table
 
 | Component | Status |
 | --- | --- |
 | Three independent finite atlas replays | Pass |
 | Deficiency-zero/product-Poisson branch | Pass |
-| Scalar aggregate-debt inequality | Pass at its stated uniform-margin scope |
+| Scalar aggregate-debt inequality | Pass at its uniform-margin scope |
 | Actual-current-target identity and local return paths | Pass locally |
-| Four generic proof-interface regressions | Pass |
-| Exact `{C,A+C,B+C}` shielded/available seam | Pass analytically after repair |
-| Seven compatible shielded supports for that exact seam | Pass |
+| Generic proof-interface regressions | Pass |
+| Exact `{C,A+C,B+C}` seven-support seam | Pass |
+| Exact signed-service support theorem | Pass at its displayed-support scope |
+| Exact `{B,2A,B+C}` / `{0,A,C}` theorem | Pass |
+| Global finite support/tier interface | Pass as an enumeration certificate |
+| Affine-stoichiometric tier-feasibility theorem | Pass; 151 classwise closures |
+| One-active killed-carrier lemma | Pass locally; stopped kernel remains open |
+| Two-active promotion/phase classification | Pass as structural enumeration |
+| Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
 | Universal one-active/countable-phase closure | Open |
-| Universal shielded/available interface | Open |
-| Signed exceptional-service seam | Open |
+| Remaining twelve asymptotic interface gates | Open |
 | Global T3-2 theorem | Not certified |
 
-## New theorem-level progress
+## Exact physical-time advances
 
-The former smallest obstruction
+The seven-support seam in
+`research_notes/certified_exact_shielded_seam.md` uses a direct factorial
+Foster estimate or, in its autonomous branch, an explicit parity law times a
+product-Poisson law.
 
-\[
- \{2B,A+B\}\quad\&\quad\{C,A+C,B+C\}
-\]
+The signed theorem in `research_notes/signed_service_seam_full_proof.md`
+combines a positive linear workload outside a thin tube with stopped
+regeneration cycles inside it. Squaring the proper workload converts the
+order-`1/B` signed-service probability into a uniform negative cycle drift.
+Its exact scope is not stable under arbitrary support enlargement.
 
-has been repaired without conditioning on activation and without counting
-fast embedded jumps. A global factorial potential balances the fast neutral
-linkage to at most linear positive drift, while the catalyst-scaled
-monomolecular linkage supplies coercive negative physical-time drift. An
-independent adversarial proof review found no defect under the exact stated
-hypotheses.
-
-The finite support reduction shows that the argument covers all seven
-positive-invariant shielded supports compatible with the fixed available
-support. Six use Foster drift; the autonomous `{0,2C}` case uses an explicit
-parity law times a product-Poisson law.
-
-This result is recorded in
-`research_notes/certified_exact_shielded_seam.md` and replayed by
-`src/exact_shielded_seam.py`.
-
-## First exact remaining gate
-
-The first arbitrary pairing not reduced to product form is
+The residual theorem in `research_notes/residual_pair_full_proof.md` treats
 
 \[
- L_0=\{B,2A,B+C\},\qquad L_1=\{0,A,C\}.
+ \{B,2A,B+C\}\quad\&\quad\{0,A,C\}.
 \]
 
-The fast linkage preserves \(q=A+2B\) and has an explicit conditional
-product law. Under that law, \(C\) is Poisson and
-\(\mathbb E[A]=\Theta(\sqrt q)\); therefore the available linkage has
-averaged \(q\)-drift \(-\Theta(\sqrt q)\). This strongly suggests recurrence
-and rules out a critical averaged birth-death mechanism.
+It constructs a proper return workload and a core with
+`A=O(sqrt(q)), C=O(1)`, where `q=A+2B`. A short physical-time window has an
+exact Riccati limit and strict negative expected `q` drift. Transient
+immigration--death domination, a fixed cleanup margin, and polynomial
+exceptional-return moments supply the missing pointwise and endpoint-cost
+estimates. Independent adversarial review found no remaining gap for any
+strongly connected orientation or positive present rates.
 
-Two simpler bridges nevertheless fail:
+## Exact remaining interface
 
-1. a natural complex-balanced factorial potential can have positive drift
-   of order \(n^2\) at \((A,B,C)=(n,n^2,0)\);
-2. for \(H=A+2B+C\), after a positive actual target the next workload change
-   can be positive with probability tending to one.
+The support audit in `research_notes/global_atlas_interface_closure.md`
+starts from 4,761 positive-invariant and 408 signed unique ordered support
+pairs. After applying only proved disjoint branches, the Anderson--Kim
+one-step tier theorem certifies another 1,219 positive and 159 signed pairs.
+Exactly 2,312 positive and 199 signed pairs remain at that stage.
 
-The exact missing result is a pointwise, shell-uniform killed busy-period or
-Poisson-corrector estimate joining a large-\(C\) proper-workload region to the
-\(A=\Theta(\sqrt q)\) averaged descent region. Stationary product form and an
-\(L^2\) spectral gap do not alone supply the required weighted endpoint
-control from arbitrary initial phases.
+The exact affine-stoichiometric filter in
+`research_notes/stoichiometric_gate_feasibility.md` checks every failed
+pair--descriptor incidence, not only the twelve displayed representatives.
+It proves that 151 pairs have no class-feasible bad descriptor and closes them
+by a class-local entropy Foster argument. Independent audits verified both
+the levelwise Gordan alternative and that class-local implication. The
+certified remainder is 2,169 positive and 191 signed pairs.
 
-Details are in `research_notes/remaining_fast_phase_corrector.md`.
-
-## Release audit
-
-The inherited archive's manifest and finite suite replay, but the public
-certification surfaces overclaim the analytic scope. The clean-extraction
-report has stale generated-report hashes, the accessible outer archive hash
-does not match the previously reported hash, and the verifier is mutating and
-non-hermetic. Python and TeX prerequisites are undocumented, and release
-metadata such as license, citation file, precise classwise theorem scope, and
-repository/tag provenance are missing.
-
-These are repairable release-engineering defects, but repairing them now
-would not make the theorem true. A final arXiv source/PDF archive should be
-built only after the remaining mathematical gates close.
+Those raw counts compress to twelve canonical asymptotic gate types. The
+one-active local carrier theorem now identifies the exact stopped finite
+fast/slow kernel still needed; it does not yet prove that kernel's uniform
+old-debt clearance or marked Foster gluing. The two-active and three-active
+notes give exact rank/phase decompositions without promoting their structural
+labels to recurrence claims.
 
 ## Reproducible package status
 
-Run the current non-mutating finite replay with:
+Run the non-mutating finite replay with:
 
 ```bash
 python3 -I -B verify_read_only.py
 ```
 
-The command covers the generic regressions and exact-seam finite algebra. It
-does not claim computational certification of the analytic seam proof or of
-T3-2.
+The replay checks exact algebra, regressions, support enumeration, and tier
+geometry. It does not computationally certify the analytic stopping-time
+proofs or T3-2.
 
-## Hard stop
+## Release decision
 
-No replacement theorem manuscript or PDF was created. Doing so would violate
-the supplied final-repair program's hard stop and would present an open
-killed-resolvent lemma as a proved global theorem. The correct public status
-is:
+The inherited archive has stale hashes, undocumented runtime assumptions,
+and mutating verification behavior. Those defects will be replaced, not
+patched in place. A new manuscript, PDF, manifest, archive hash, and release
+metadata will be built only after every remaining analytic gate is closed.
 
-> Candidate T3-2 theorem under repair. The finite atlas, local debt identity,
-> and one exact physical-time shielded/available seam are certified. A
-> residual fast-phase busy-period corrector and the signed-service seam remain
-> open.
+The accurate public status is:
+
+> Candidate T3-2 theorem under adversarial repair. Three exact physical-time
+> interface theorems, the complete finite tier geometry, and 151 additional
+> classwise affine-filter closures are certified; universal stopped-phase and
+> promotion closure remains open.

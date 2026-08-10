@@ -13,14 +13,21 @@ import unittest
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / "src"
 TESTS = ROOT / "tests"
-READ_ONLY_SCOPE = (
-    ROOT / "verify_read_only.py",
-    ROOT / "RELEASE_ENGINEERING.md",
-    ROOT / "research_notes" / "certified_exact_shielded_seam.md",
-    SOURCE / "claim_neutral_regressions.py",
-    SOURCE / "exact_shielded_seam.py",
-    TESTS / "test_claim_neutral_regressions.py",
-    TESTS / "test_exact_shielded_seam.py",
+READ_ONLY_SCOPE = tuple(
+    sorted(
+        {
+            ROOT / "verify_read_only.py",
+            ROOT / "README.md",
+            ROOT / "STATUS.md",
+            ROOT / "CERTIFICATION_REPORT.md",
+            ROOT / "RELEASE_ENGINEERING.md",
+            ROOT / "RESEARCH_LOG.md",
+            *(ROOT / "research_notes").glob("*.md"),
+            *SOURCE.glob("*.py"),
+            *TESTS.glob("test_*.py"),
+        },
+        key=lambda path: str(path.relative_to(ROOT)),
+    )
 )
 
 
@@ -68,8 +75,10 @@ def main() -> int:
 
     report = {
         "claim_scope": (
-            "generic regressions and exact-seam finite algebra only; "
-            "not the analytic seam proof or T3-2"
+            "generic regressions, exact finite algebra, global support "
+            "enumeration, tier geometry, affine feasibility, and structural "
+            "phase classifications only; not the analytic physical-time "
+            "proofs or T3-2"
         ),
         "files_mutated": False,
         "isolated_python": True,
