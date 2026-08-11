@@ -149,6 +149,20 @@ common-potential composition obligations. The disjoint update is
 \[
  (1839,187)\longmapsto(1835,187).
 \]
+The fifteen coefficient-critical one-active pairs are now also certified.
+Their 75 equality rows have mixed linkage \(\{0,A+C,B+C\}\), invariant
+\(Q=C-A-B\), and an exact deficiency-zero shell law. A full physical
+base-return cycle lowers \(Q\) with probability
+\(a_-/\{\Lambda N\}+O(N^{-2})\); a squared corrected-factorial potential
+turns this into drift of order \(-\log^2N\). A multiplicative phase
+corrector controls promotion boundaries without a finite inactive box. The
+remaining eight rows split into six killed countable immigration--death
+carriers and two geometric zero-source seeds. Two independent audits passed
+the stopped Kac expansion, endpoint moments, companion rows, and global
+same-potential composition. The disjoint update is
+\[
+ (1835,187)\longmapsto(1820,187).
+\]
 Global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.

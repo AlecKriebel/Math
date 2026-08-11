@@ -8,7 +8,7 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has produced nine independently audited exact-scope physical-time
+The repair has produced ten independently audited exact-scope physical-time
 theorem statements, with the fourteen-partner rank-two theorem sharing its
 top support with—but not overlapping—the earlier residual pair. None uses
 tightness as finite support, and none
@@ -36,12 +36,13 @@ T3-2 counterexample is known.
 | Post-rank-one one-active Foster theorem | Pass; exact final 92 no-promotion positive pairs |
 | Exact promotion-only Foster theorem | Pass; 32 positive and four signed pairs |
 | Suppressed-orbit shell theorem | Pass; four new positive pairs, 28 failed incidences |
+| Critical one-active positive-Q trace theorem | Pass; 15 new positive pairs, 83 failed incidences |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
-| Universal one-active/countable-phase closure | Open outside the exact 92-pair branch |
+| Universal one-active/countable-phase closure | Open outside the exact 92-pair and critical 15-pair branches |
 | Remaining twelve asymptotic interface gates | Open |
 | Global T3-2 theorem | Not certified |
 
@@ -149,7 +150,21 @@ flags, while the equal-depth flag stops immediately at the first useful
 the conditional cut-hazard lower bound, propensity-times-log endpoint
 integrability, and the single corrected-factorial composition. It closes
 four further positive-invariant pairs and no signed pair. The certified
-remainder is therefore 1,835 positive and 187 signed pairs.
+remainder at that stage was 1,835 positive and 187 signed pairs.
+
+The coefficient-critical one-active branch contributes fifteen further
+positive pairs and no signed pair. Its 75 equality rows have mixed linkage
+\(\{0,A+C,B+C\}\), level \(Q=C-A-B\), and an exact conditional
+product-form law. A stopped full-reaction base cycle has downward
+probability \(a_-/\{\Lambda N\}+O(N^{-2})\); squaring the common
+corrected-factorial potential yields drift of order \(-\log^2N\). A
+multiplicative particle corrector gives exponentially small promotion and
+level-boundary exits. The other eight rows are six killed open
+immigration--death carriers and two geometric zero-source seeds. Two
+independent audits passed the Kac perturbation, boundary UI, companion-row
+table, passing-cone carré term, and classwise gluing. The exact prior overlap
+is zero, so the certified remainder is now 1,820 positive and 187 signed
+pairs.
 
 Those raw counts compress to twelve canonical asymptotic gate types. A
 counterexample rules out the proposed *universal* uniform mixed old-debt
@@ -184,7 +199,7 @@ The accurate public status is:
 > rank-two theorem, the 51-pair all-active-only Foster theorem, the
 > full 233-pair rank-one no-promotion Foster theorem, the exact 36-pair
 > promotion-only Foster theorem, the exact four-pair suppressed-orbit
-> shell theorem, the other exact
+> shell theorem, the critical 15-pair positive-Q trace theorem, the other exact
 > physical-time interfaces, the complete finite tier geometry, and 151
 > classwise affine-filter closures are certified; the remaining promotion
 > and one-active stopped-phase closures remain open.

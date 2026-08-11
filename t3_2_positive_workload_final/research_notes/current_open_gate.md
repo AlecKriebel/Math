@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Nine exact interface families now have independently audited physical-time
+Ten exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -23,7 +23,9 @@ proofs:
    disabled classes; and
 9. the exact suppressed four-pair orbit
    \(\{U,I+V\}/\{0,I,2I,I+U\}\), comprising 28 affine-feasible
-   failed incidences.
+   failed incidences; and
+10. the fifteen coefficient-critical one-active pairs, comprising 75
+    positive-\(Q\) equality rows and eight companion rows.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -75,6 +77,14 @@ shell, and the two extreme ratios \(M^2/D\to0,\infty\). Both independent
 audits passed physical cleanup, conditional cut-hazard, endpoint moments,
 and common-potential gluing.
 
+The tenth proof uses the exact shell invariant \(Q=C-A-B\) for
+\(\{0,A+C,B+C\}\). A perturbative Kac calculation gives a strict
+order-\(N^{-1}\) downward level bias per physical base cycle, and the
+squared corrected-factorial potential amplifies it to order
+\(-\log^2N\). A multiplicative phase corrector controls every stopped
+boundary with exponential tails. Six direct countable carriers and two
+zero-source seeds close the remaining rows on the same fifteen pairs.
+
 ## 2. Exact finite remainder
 
 After finite classes, common active invariants, full deficiency zero, the
@@ -91,10 +101,12 @@ that selector and no signed pair. The audited promotion-only theorem then
 closes 32 positive-invariant and four signed pairs.
 The audited suppressed-orbit theorem then closes four further
 positive-invariant pairs and no signed pair.
+The audited critical one-active theorem then closes fifteen further
+positive-invariant pairs and no signed pair.
 The current certified remainder is
 
 \[
- 1835\quad\text{positive-invariant pairs},\qquad
+ 1820\quad\text{positive-invariant pairs},\qquad
  187\quad\text{signed pairs}.
 \]
 
@@ -142,7 +154,8 @@ pair-level recurrence theorems: 141 without a one-active failure and 92
 through the separately audited direct/seed/frozen one-active theorem.
 The exact 36-pair promotion-only selector and the exact suppressed four-pair
 orbit are also closed. Promotion families and one-active supports outside
-these exact branches remain open.
+these exact branches remain open; the fifteen equal-depth one-active pairs
+are no longer part of that open set.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five

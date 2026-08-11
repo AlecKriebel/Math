@@ -4,10 +4,10 @@
 
 This note treats the coefficient-sensitive part of the fifteen support
 pairs selected by `src/one_active_remaining_structure.py`.  It proves the
-physical sign on the seventy-five active-\(C\) equality rows.  It does not
-promote the fifteen pair-level recurrence count: the eight companion
-one-active rows and the common-potential composition with the remaining
-tier regions are recorded separately in Section 7.
+physical sign on the seventy-five active-\(C\) equality rows and composes
+the eight companion rows in Section 7. Two independent audits passed the
+stopped trace and pair-level theorem. The exact selector is frozen in
+`src/critical_one_active_q_trace_certificate.py`.
 
 After relabelling the active species to \(C\), every equality row has
 
@@ -132,7 +132,8 @@ generally, the probability of reaching \(M\geq k\) before returning to
 zero has a geometric-factorial bound uniform in \(N\).  This supplies
 uniform integrability of every fixed endpoint and occupation moment.
 
-Now retain every reaction in \(T\).  Fix \(\rho\in(0,1/4)\), and define
+Now retain every reaction in \(T\).  Fix a sufficiently small,
+rate-dependent \(\rho\in(0,1/4)\), and define
 \(\tau_N\) to be the first of
 
 \[
@@ -152,6 +153,77 @@ or boundary hit; no clock is suppressed during the append.
 
 Only unary-to-quadratic reactions can increase \(M\).  Their total rate is
 at most linear in \(M\); quadratic reactions cannot increase \(M\).
+Here is a uniform comparison which also retains the degree-preserving
+quadratic clocks.  Strip the common \(C\) from \(AC,BC\), and let \(R\)
+be the transient two-state single-particle generator, with absorption at
+\(0\).  Since \(-R\) is a nonsingular M-matrix, there are
+\(r_A,r_B>1\) and \(c>0\) such that the multiplicative particle corrector
+
+\[
+ G(a,b)=r_A^a r_B^b
+\]
+
+has top drift at most \(-cCMG\).  Every quadratic degree-preserving
+reaction changes \(G\) by a bounded factor and contributes at most
+\(K M^2G\); every extra \(0\)-immigration or unary-to-quadratic reaction
+contributes at most \(K(1+M)G\).  Choose the rate-dependent
+\(\rho>0\) in (4.2) so small that \(KM^2\le cNM/4\) for
+\(M\le\rho N\).  The stopped multiplicative drift is then strictly
+negative for \(1\le M<\rho N\), after increasing the finite threshold
+in \(N\).
+
+One explicit choice is \(w=(-R)^{-1}{\bf1}>0\) and
+\(r_i=1+\varepsilon w_i\).  For small \(\varepsilon>0\), the logarithmic
+drift bracket of one phase-\(i\) particle is
+\(\varepsilon(Rw)_i+O(\varepsilon^2)\le-\varepsilon/2\), which gives the
+displayed product drift after summing over particles.
+
+The corresponding linear corrector \(W=w_AA+w_BB\) gives the block-time
+bound directly.  Suppress only the two slow creation clocks until the next
+particle absorption.  Then \(M\) is constant, the quadratic label-change
+error is at most \(KM^2\), and
+\({\cal L}W\le-cNM\) below the chosen \(\rho N\).  Since
+\(W\asymp M\), stopped Dynkin yields
+\({\mathbb E}(\text{next absorption time})\le C/N\), uniformly in the
+current label composition.
+
+Equivalently, expose successive phase-type particle-absorption blocks.
+Even after the quadratic label changes, a block has mean duration at most
+\(C/N\).  Its aggregate
+extra-immigration/unary-birth rate is at most
+\(K(1+M)\).  With \(\rho\) as above, the probability of one more creation
+before the next absorption is bounded by a fixed \(q<1/4\), uniformly below
+the boundary; shrink the rate-dependent \(\rho\) once more to ensure this.
+At block endpoints, \(M\) is therefore dominated by the nearest-neighbor
+walk with up probability \(q\) and down probability \(1-q\), killed at
+zero.  Equivalently its family tree is dominated by a subcritical
+Galton--Watson total progeny.  The Catalan/path multiplicity is included in
+this comparison, which gives
+
+\[
+ \mathbb P\{\text{at least }j\text{ creation blocks before return}\}
+ \le Ce^{-cj}.
+\]
+
+Reaching \(M=\rho N\), or changing \(Q\) by a fixed fraction of \(N\)
+without first returning to \(M=0\), requires order \(N\) creation blocks.
+The resulting bound is \(Ce^{-cN}=O(N^{-k})\) for every fixed \(k\).  This
+supplies the claimed geometric-factorial comparison rather than inferring
+it merely from a pointwise negative drift.
+
+The implication for the two \(Q\)-boundaries is exact.  Before return to
+zero, let \(I_0\) count extra \(0\)-immigrations, \(U_T\) unary-to-
+quadratic events, \(D_T\) quadratic-to-unary events, and \(D_0\) top
+particle absorptions.  Then
+
+\[
+ M=1+I_0+U_T-D_T-D_0,qquad Q-N=-U_T+D_T.
+\]
+
+Thus \(Q\le N/2\) forces \(U_T\ge N/2\), while \(Q\ge2N\), together
+with \(M\ge0\), forces \(I_0\ge N-1\).  Either boundary therefore
+requires order \(N\) of the slow creation blocks controlled above.
+
 Together with the phase-type \(L_0\) killing blocks, this gives, for all
 sufficiently large \(N\),
 
@@ -196,8 +268,26 @@ the unary-to-quadratic event.  Since
    &=-\frac{a_-}{\Lambda N}+O(N^{-2}),\\
  \mathbb E_{z_N}(Q_{\tau_N}-N)^2
    &= \frac{a_-}{\Lambda N}+O(N^{-2}).                \tag{4.5}
- \end{aligned}
+\end{aligned}
 \]
+
+For completeness, if \(\sigma_N\) denotes the unperturbed positive
+\(L_0\)-return cycle, continuous-time Kac gives
+
+\[
+ {\mathbb E}_{z_N}\int_0^{\sigma_N} f(X_t)\,dt
+ =\frac{{\mathbb E}_{\pi_N}f}
+        {\pi_N(z_N)\Lambda}.                         \tag{4.5a}
+\]
+
+Applied to the aggregate unary-to-quadratic propensity, (3.2) makes the
+right side \(a_-/(\Lambda N)+O(N^{-2})\).  Total unary \(T\)-occupation
+is \(O(N^{-1})\), total quadratic occupation is \(O(N^{-2})\), and after
+one unary event the remaining busy occupation is again \(O(N^{-1})\).
+Compensation therefore makes two \(T\)-events an \(O(N^{-2})\) event.
+Coupling the full and unperturbed cycles until their first \(T\)-event
+changes the Kac coefficient only by \(O(N^{-2})\), which proves both
+lines of (4.5).
 
 These are full-reaction stopped-cycle expansions; (4.4) is included in
 their remainders.  A unary conversion followed by
@@ -295,6 +385,20 @@ remaining eight rows consist of
 * two zero-source seed rows with zero-contest service and strictly deeper
   debt creation.
 
+After normalizing the active species to \(C\) and exchanging inactive
+\(A/B\) where needed, the executable payload
+gives exactly the following four templates; every row has cap \((A,B)=(0,0)\):
+
+\[
+\begin{array}{c|c|c}
+L^{(1)}&L^{(2)}&\text{multiplicity/access}\\ \hline
+\{0,AB,AC\}&\{B,2B,BC\}&2\ \text{zero-source}\\
+\{0,AB,AC\}&\{C,2B,BC\}&2\ \text{direct}\\
+\{0,AB,AC\}&\{B,C,2B,BC\}&2\ \text{direct}\\
+\{0,AB,AC\}&\{B,C,BC\}&2\ \text{direct}.
+\end{array}                                           \tag{7.4a}
+\]
+
 For a direct row, mark an enabled active-degree-one source and follow a
 shortest top path to its first lower target.  Strong connectivity makes the
 fast path phase type.  A completed path has
@@ -316,12 +420,39 @@ are uniform from the fixed inactive start.  Hence
 
 for all sufficiently large \(X\).
 
+More explicitly, in each direct template the initially enabled source is
+\(C\).  A \(C\)-edge to \(B\) or \(2B\) is already a strict active exit.
+A \(C\)-edge to \(BC\) launches the stripped open phase on
+\(\{0,B\}\): on the \(X\)-clock, \(C\to BC\) is immigration and
+\(BC\to C\) is linear death.  It is countable, not a finite carrier.
+Kill this immigration--death phase at the first \(C\)- or \(BC\)-source
+edge to \(B\) or \(2B\).  Strong connectivity makes that killing
+accessible from its unique closed fast class, so the killed phase has a
+uniform exponential absorption time and exponential \(B\)-endpoint
+moments.  All competitors from the first linkage or from \(B,2B\) have
+order at most polynomial in this exponentially controlled \(B\) and act
+for physical time \(O(X^{-1})\).  Their aggregate interruption probability
+and propensity-times-log cost are therefore \(O(X^{-1})\).  The successful
+endpoint loses one \(C\), so (7.4)--(7.5) follow with all clocks retained.
+
 For either zero-source row, start at the actual target of the \(0\)-edge
 and run the finite lower/top return prefix with all clocks retained.  A
 failed seed attempt returns to the exact capped face; the number of
 attempts is geometric.  At the first enabled unpaired top exit, (7.4)
 holds.  Positive interrupted-carrier cost is again \(O(\log X/X)\).
 Thus (7.5) holds for these two rows as well.
+
+For clarity, the two possible seed targets are \(AB\) and \(AC\).  A seed
+at \(AB\) immediately enables the order-\(X\) \(BC\) carrier in the second
+linkage.  A seed at \(AC\) either returns to \(0\), an exact failed reset,
+or reaches \(AB\) through the first strongly connected linkage and then
+launches that same \(BC\) carrier.  Strong connectivity makes the number of
+resets geometric with a rate-dependent positive success parameter.  During
+an \(AC\) or \(BC\) carrier, every noncarrier clock is order one, so the
+total exceptional probability is \(O(X^{-1})\); its positive squared-
+factorial cost is \(O(F_\ell\log X/X)\), negligible beside the successful
+\(-cF_\ell\log X\) term.  This verifies the two seed rows rather than
+appealing to the withdrawn uniform old-debt lemma.
 
 Finally, along every feasible descriptor of these pairs which is not one
 of the eighty-three failed rows, the Anderson--Kim top-source argument
@@ -336,22 +467,34 @@ On a passing source-rate sequence, the second term is
 \(o(F_\ell|{\cal L}F_\ell|)\): every
 \(\Delta_rF_\ell=O(\log(2+|x|))\), while
 \(F_\ell\asymp |x|\log(2+|x|)\), and the strict top-source logarithmic
-ratio diverges.  Thus the passing-region drift also remains strict for the
-same \(V\).
+ratio diverges.  Explicitly, if \(\alpha_n\) is a maximal source
+propensity and \(g_n\to\infty\) the certified logarithmic exit gap, the
+ordinary tier estimate gives
+\({\cal L}F_\ell\le-c\alpha_ng_n\), whereas
+
+\[
+ \sum_r\lambda_r(\Delta_rF_\ell)^2
+ \le C\alpha_n\log^2(2+|x_n|).
+\]
+
+The ratio to \(F_\ell\alpha_ng_n\) is at most
+\(C\log(2+|x_n|)/\{|x_n|g_n\}=o(1)\).  Thus the passing-region drift also
+remains strict for the same \(V\).
 
 At a boundary in (4.2), the exact descriptor has at least two active
 coordinates, has already lost a fixed fraction of \(Q\), or is a
 super-polynomially rare larger positive-\(Q\) restart.  In the first case
 every affine-feasible descriptor of these fifteen pairs passes the
-top-source test; in the last case the same critical episode restarts at
-the new level.  The squared-factorial estimate (7.6) charges the promoted
-endpoint, while (4.4) makes the upward-restart \(V\)-cost summable.
+top-source test: by construction they are a subset of the exact 1,227-pair
+selector whose nonempty feasible failure set is entirely one-active.  In
+the last case the same critical episode restarts at the new level.  The
+squared-factorial estimate (7.6) charges the promoted endpoint, while
+(4.4) makes the upward-restart \(V\)-cost summable.
 
-These estimates give the following exact composition statement, subject
-only to independent verification of the stopped regenerative estimates
-(4.3)--(4.5).
+These estimates give the following independently audited exact composition
+statement.
 
-> **Candidate pair theorem.**  Give each linkage of any of the fifteen
+> **Theorem 7.1.**  Give each linkage of any of the fifteen
 > selected support pairs an arbitrary strongly connected orientation and
 > arbitrary positive channel rates.  Then every closed irreducible class
 > is positive recurrent.
@@ -374,7 +517,7 @@ source-molecularity-one reactions can increase total population, at an
 affine rate, so the chain is nonexplosive.  Random-time Foster then gives
 finite mean return to the finite set.
 
-## 8. Claim status and universal interface
+## 8. Audit status and universal interface
 
 The argument above explains what a universal 1,227-pair theorem would have
 to prove.  For every arbitrary strong orientation, classify reflected
@@ -386,12 +529,18 @@ equality family it is resolved by the invariant \(Q\) and the shell trace
 (4.3).  Any other equality family would require its own coefficient
 identity.
 
-No assertion in this note promotes the remaining 1,212 pairs.  The
+No assertion in this note promotes any pair outside these exact fifteen. The
 canonical regression is not an arbitrary-orientation theorem, a box exit
 is not automatically a promotion, and no count is inferred from kinetic
 depth alone.
 
-The positive-\(Q\) stopped-trace theorem is proved here, while the
-fifteen-pair composition theorem is labelled candidate until an independent
-audit checks (4.3)--(4.5), the two seed episodes, and the squared-potential
-gluing estimate (7.6).  The global T3-2 flag remains false.
+Two independent audits checked (4.3)--(4.5a), the super-polynomial boundary
+restart, all four companion templates, the squared-potential gluing estimate
+(7.6), and the exact prior-branch disjointness. The certified update is
+
+\[
+ (1835,187)\longmapsto(1820,187).
+\]
+
+The analytic and pair-level flags are true only for these fifteen pairs.
+The global T3-2 flag remains false.

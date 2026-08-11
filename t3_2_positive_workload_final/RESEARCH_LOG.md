@@ -436,3 +436,27 @@
 - Promoted exactly four additional positive-invariant pairs. The certified
   remainder changes from \((1839,187)\) to \((1835,187)\). Global T3-2
   remains uncertified.
+
+## 2026-08-10T16:40:23-07:00 - critical fifteen-pair one-active trace certified
+
+- Froze an exact fifteen-pair selector with 83 feasible failed incidences:
+  75 coefficient-critical active-\(C\) rows and eight companion rows. All
+  fifteen pairs are positive-invariant, their overlap with every previously
+  certified selector is zero, and the pair fingerprint is
+  `6ec74f95e50e39ecda002b988d8233ae74c040ff9bb3518892dfd980bfad06d3`.
+- Proved the full-reaction positive-\(Q\) trace for
+  \(\{0,A+C,B+C\}\). Continuous-time Kac gives a unary-to-quadratic
+  event with coefficient \(a_-/\{\Lambda N\}\); all reverse or multiple
+  lower events are order \(N^{-2}\). A multiplicative phase corrector and
+  subcritical block comparison give exponentially small inactive/level
+  boundary exits with polynomial endpoint UI.
+- Corrected the six direct companion rows to use their genuine countable
+  stripped \(\{0,B\}\) immigration--death phase, not a finite carrier.
+  Two additional zero-source templates have geometric exact-base resets.
+  One squared corrected-factorial potential covers the critical trace,
+  companion episodes, and every passing cone.
+- Two independent audits passed the Kac coupling, Catalan-aware boundary
+  estimate, squared-potential drift, all four companion templates, and
+  classwise sequence gluing. Promoted exactly fifteen positive pairs. The
+  certified remainder changes from \((1835,187)\) to \((1820,187)\).
+  Global T3-2 remains uncertified.
