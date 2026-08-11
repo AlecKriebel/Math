@@ -513,3 +513,26 @@
   pairs. Promoted the net new contribution of 1,061 positive and 151 signed
   pairs, changing the certified remainder from $(1820,187)$ to
   $(759,36)$. Global T3-2 remains uncertified.
+
+## 2026-08-10T21:45:00-07:00 - exact 26-pair common-factorial branch certified
+
+- Replayed the claim-neutral 26-pair selector inside the prospective 795.
+  Its 124 feasible failed incidences split as 30 one-active, zero two-active,
+  and 94 all-active. The 30 one-active rows reduce to twenty direct
+  pure-active-source rows, eight Family-III resistance-zero origin-service
+  rows, and two frozen/no-history rows for arbitrary strong orientations.
+- Proved the missing discrete powered-top estimate. With the rate-adjusted
+  correction \(\ell\), the reversible top drift is negative entropy
+  dissipation plus a curvature-cofactor-sized error. The exact fourth-power
+  carré/Taylor remainder is absorbed by that dissipation and the partner
+  linkage's divergent logarithmic exit on all 94 failed all-active rows.
+- Used the same \(W=(1+F_\ell)^4\) in the one-active aggregate kernel,
+  passing cones, and all-active cones. The endpoint-weighted \(q>8\)
+  three-interruption estimate pays the full \(O(L_n+J)\) linear-correction
+  boundary cost. Reflected all-debt gluing and the linear-growth birth bound
+  give classwise positive recurrence and nonexplosion.
+- Independent final audit returned PASS. The branch contains 26 positive and
+  zero signed pairs, is a subset of the prospective 795, and has zero overlap
+  with all prior-certified branches. Promoted the exact update
+  \((759,36)\mapsto(733,36)\), leaving 769 pairs. Global T3-2 remains
+  uncertified.

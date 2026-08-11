@@ -38,13 +38,14 @@ T3-2 counterexample is known.
 | Suppressed-orbit shell theorem | Pass; four new positive pairs, 28 failed incidences |
 | Critical one-active positive-Q trace theorem | Pass; 15 new positive pairs, 83 failed incidences |
 | Universal all-one-active fourth-power theorem | Pass; 1,227 pairs, 3,297 failed incidences, net 1,212 new pairs |
+| Exact 26-pair common-factorial mixed-profile theorem | Pass; 26 new positive pairs, zero prior overlap |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
 | Universal one-active/countable-phase closure | Pass on the exact all-one-active 1,227-pair selector |
-| Remaining mixed-profile asymptotic gates | Open; 759 positive and 36 signed pairs |
+| Remaining mixed-profile asymptotic gates | Open; 733 positive and 36 signed pairs |
 | Global T3-2 theorem | Not certified |
 
 ## Exact physical-time advances
@@ -180,16 +181,30 @@ independent pair audit passed the orientation split, random-overshoot
 moments, frozen/no-history alternatives, marked gluing, nonexplosion, and
 exact selector hashes. Its overlap with the certified set is exactly the
 fifteen critical positive pairs, so the new contribution is 1,061 positive
-and 151 signed pairs. The certified remainder is now 759 positive and 36
-signed pairs.
+and 151 signed pairs. The certified remainder at that stage was 759 positive
+and 36 signed pairs.
+
+The exact 26-pair no-promotion mixed-profile selector then closes 26 further
+positive pairs and no signed pair. Its 30 one-active rows use only direct
+pure-active-source and Family-III origin-service/frozen graph shapes. Its 94
+all-active rows have one pair-fixed reversible two-node top and satisfy the
+curvature-cofactor premise. The same rate-adjusted discrete factorial
+fourth power handles both dimensions: reversible-top carré terms are paired
+and absorbed by the lower logarithmic exit, while the one-active aggregate
+kernel retains the endpoint-weighted moving-boundary estimate with the same
+fixed linear correction. Independent audit passed every arbitrary
+orientation/rate, endpoint, gluing, and nonexplosion obligation. The exact
+prior-certified overlap is zero, so the certified remainder is now 733
+positive and 36 signed pairs.
 
 Those raw counts compress to twelve canonical asymptotic gate types. A
 counterexample rules out the proposed *universal* uniform mixed old-debt
 service margin. The exact post-rank-one 92-pair branch avoids that obstruction
 through orientation-independent zero-contest service, and the all-one-active
-1,227-pair selector is now closed by the fourth-power theorem. The remaining
-795 pairs all have a feasible two- or three-active failure in addition to any
-one-active rows; their mixed-profile composition remains open.
+1,227-pair selector is now closed by the fourth-power theorem. Of the former
+795-pair prospective remainder, the exact 26-pair branch above is now closed.
+The remaining 769 pairs have 733 positive-invariant and 36 signed members;
+their other mixed-profile compositions remain open.
 
 ## Reproducible package status
 
@@ -217,7 +232,8 @@ The accurate public status is:
 > full 233-pair rank-one no-promotion Foster theorem, the exact 36-pair
 > promotion-only Foster theorem, the exact four-pair suppressed-orbit
 > shell theorem, the critical 15-pair positive-Q trace theorem, the exact
-> 1,227-pair universal one-active fourth-power theorem, the other exact
+> 1,227-pair universal one-active fourth-power theorem, the exact 26-pair
+> common-factorial mixed-profile theorem, the other exact
 > physical-time interfaces, the complete finite tier geometry, and 151
-> classwise affine-filter closures are certified; 795 mixed-profile support
+> classwise affine-filter closures are certified; 769 mixed-profile support
 > pairs remain open.

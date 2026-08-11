@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Eleven exact interface families now have independently audited physical-time
+Twelve exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -27,7 +27,9 @@ proofs:
 10. the fifteen coefficient-critical one-active pairs, comprising 75
     positive-\(Q\) equality rows and eight companion rows; and
 11. the universal all-one-active selector: 1,227 pairs and 3,297 feasible
-    failed incidences, with a net new contribution of 1,212 pairs.
+    failed incidences, with a net new contribution of 1,212 pairs; and
+12. the exact 26-pair common-factorial mixed-profile selector, with 30
+    one-active failures, no two-active failure, and 94 all-active failures.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -98,6 +100,17 @@ reflected marks make zero-debt tubes finite classwise. Independent audit
 passed the fixed-width extraction, frozen/no-history split, common-potential
 gluing, nonexplosion, and exact 1,227/15/1,212 arithmetic.
 
+The twelfth proof chooses one rate-adjusted discrete factorial correction
+from the pair-fixed reversible all-active top and uses
+\(W=(1+F_\ell)^4\) everywhere. The 30 one-active rows use the audited
+direct/Family-III aggregate kernel for arbitrary strong orientations and
+rates, including the endpoint-weighted \(O(L_n+J)\) moving-boundary charge.
+On all 94 all-active rows, the curvature-cofactor premise bounds the shifted
+reversible-top carré term by the partner linkage scale; the divergent lower
+logarithmic exit absorbs it and the third/fourth Taylor remainders.
+Independent audit passed the common-potential reflected-debt composition and
+nonexplosion. All 26 pairs are positive-invariant and have zero prior overlap.
+
 ## 2. Exact finite remainder
 
 After finite classes, common active invariants, full deficiency zero, the
@@ -119,10 +132,14 @@ positive-invariant pairs and no signed pair.
 The audited universal one-active theorem contains 1,227 pairs, overlaps the
 certified set exactly in those fifteen critical positive pairs, and therefore
 adds 1,061 positive-invariant and 151 signed pairs.
+The audited exact 26-pair theorem is a subset of the resulting prospective
+795, contains only positive-invariant pairs, and has zero overlap with every
+prior-certified branch. It therefore adds 26 positive pairs and no signed
+pair.
 The current certified remainder is
 
 \[
- 759\quad\text{positive-invariant pairs},\qquad
+ 733\quad\text{positive-invariant pairs},\qquad
  36\quad\text{signed pairs}.
 \]
 
@@ -133,8 +150,9 @@ accompanying source/tests. It is not itself a recurrence theorem.
 
 ## 3. The structural replacement for the false finite phase
 
-The all-one-active selector is no longer open. The immediate target is the
-**mixed-profile composition** on the remaining 795 support pairs. For a
+The all-one-active selector and the exact 26-pair no-promotion mixed-profile
+branch are no longer open. The immediate target is the **mixed-profile
+composition** on the remaining 769 support pairs. For a
 fixed communication class and a divergent two- or three-active source-rate
 flag, prove one of:
 
@@ -166,10 +184,10 @@ rank-one flat incidence has an audited corrected-factorial carrier or
 finite-class alternative. The no-promotion selector converts this into 233
 pair-level recurrence theorems: 141 without a one-active failure and 92
 through the separately audited direct/seed/frozen one-active theorem.
-The exact 36-pair promotion-only selector and the exact suppressed four-pair
-orbit are also closed. The remaining promotion families occur only in the
-795 mixed-profile pairs and must be glued to their other feasible failure
-dimensions.
+The exact 36-pair promotion-only selector, the exact suppressed four-pair
+orbit, and the exact 26-pair common-factorial branch are also closed. The
+remaining promotion families occur only in the 769 mixed-profile pairs and
+must be glued to their other feasible failure dimensions.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five

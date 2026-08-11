@@ -189,6 +189,32 @@ positive pairs overlap the critical branch, so the net contribution is
  (1820,187)\longmapsto(759,36).
 \]
 
+The exact 26-pair no-promotion mixed-profile branch is now also certified.
+Its 30 one-active failures split into twenty direct pure-active-source rows,
+eight Family-III origin-service rows, and two frozen/no-history rows; its 94
+all-active failures have a fixed reversible two-node top and satisfy the
+curvature-cofactor premise. One rate-adjusted discrete factorial potential
+
+\[
+ W=\left(1+K+\sum_i\log(X_i!)+\ell\mathbin\cdot X\right)^4
+\]
+
+handles both dimensions. The all-active proof pairs the reversible top
+directions and absorbs every carré/Taylor term with the lower-linkage
+logarithmic exit, while the one-active proof uses the audited aggregate
+kernel and endpoint-weighted moving boundary with the same fixed \(\ell\).
+Independent audit passed the arbitrary-orientation/rate quantifier, discrete
+factorial correction, common-potential reflected-debt gluing, nonexplosion,
+and exact selector arithmetic. The 26 pairs are positive-invariant, have
+zero signed members and zero prior-certified overlap, so
+
+\[
+ (759,36)\longmapsto(733,36).
+\]
+
+The current certified remainder is therefore 769 pairs: 733
+positive-invariant and 36 signed.
+
 Global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.
