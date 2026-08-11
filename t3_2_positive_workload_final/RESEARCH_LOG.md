@@ -536,3 +536,76 @@
   with all prior-certified branches. Promoted the exact update
   \((759,36)\mapsto(733,36)\), leaving 769 pairs. Global T3-2 remains
   uncertified.
+
+## 2026-08-10T21:41:03-07:00 - dormant 407 and generalized-FII seam frozen for audit
+
+- Froze the exact 407 dormant, no-wholly-top two-active incidences on 333
+  pairs.  Their normalized support menu has 188 ratio-sensitive templates
+  and 154 templates after the ratio is forgotten.  The
+  arbitrary-orientation cut proof has aggregate service-resistance split
+  \(395+10+2\), with maximum two and an upward gap of one.
+- Replaced the exceptional finite-phase shorthand by its exact countable
+  birth--death chain.  Its product ratio gives factorial cofactor tails,
+  all fixed endpoint moments, and the physical-duration estimate needed by
+  the all-reaction resolvent.  The only subpower-neutral macro pair is
+  handled by a propensity-times-entropy-gap trichotomy for arbitrary fixed
+  \(\ell\).
+- Classified all 1,104 one-active failures on the same 333 pairs.  The 951
+  generalized-Family-II rows lie on exactly 317 pairs.  Relabeling the
+  spectator, old active species, and unique top cofactor as \(U,V,I\)
+  produces 146 normalized support templates shared exactly with 317 hard
+  \((1,3,0)\) targets.  Every target has three source rows, one for each
+  spectator cap; the exact map hash is
+  2b34a3c828fa55a93a5595555f7dd5160e7a676338245bd0611809f399b4296f.
+- Wrote the candidate killed one-species Green lemma, factorial promotion
+  boundary, charged entry-macrojump estimate, and same-\(W_\ell\)
+  telescoping handoff.  Six focused tests pass.  This checkpoint is pending
+  independent analytic audit; no pair or global certification flag was
+  changed.
+
+## 2026-08-10T23:10:00-07:00 - exact 416 easy-promotion branch certified
+
+- Proved the positive-overshoot exponential Lyapunov estimate for the
+  reversible rank-one and homogeneous quadratic shells, yielding the
+  conditional moments above order eight required by the common fourth-power
+  potential. Replaced the overbroad finite-shell citation by an explicit
+  six-support reset-cut argument and froze the actual mixed-phase
+  pure-active-source premise in the executable selector.
+- Composed 762 easy promotion incidences, 1,455 compatible one-active
+  incidences, 117 closed rank-one incidences, and 117 all-active incidences
+  with one pair-fixed corrected-factorial fourth power. The marked
+  fixed-class argument charges every moving-boundary endpoint and retains
+  every reaction clock.
+- Independent audit returned PASS and replayed the exact 416-pair selector:
+  414 positive-invariant and two signed pairs, with fingerprint
+  `8c3325983568c53772f024080c0b95d37873cfe0a149386ec9829d1d9323e186`.
+  Promoted \((733,36)\mapsto(319,34)\). The hard 333-pair family and global
+  T3-2 remain uncertified.
+
+## 2026-08-10T23:25:00-07:00 - rank-two thirteen-pair common scalar certified
+
+- Closed the rank-two workload/factorial switch with one proper scalar per
+  pair: \((1+F)^4+\eta(1+H_w)^6\) on eleven homogeneous supports and the
+  fifth workload power on the two weighted supports. The failed all-active
+  polynomial gaps are respectively one and one-half; passing bounded-\(C\)
+  cones have the extra powered-factorial logarithmic gap.
+- Independent audit replayed all thirteen supports, every possible strong
+  orientation and positive rate choice, the rank-two flat scaling, exact
+  fourth-power terms, nonexplosion, and localized Dynkin. No counterexample
+  was found.
+- The thirteen pairs are positive-invariant and disjoint from the 416-pair
+  branch. Promoted \((319,34)\mapsto(306,34)\), leaving 340 pairs. Global
+  T3-2 remains uncertified.
+
+## 2026-08-10T23:40:00-07:00 - hard 333 uniform Green claim fails audit
+
+- Independent audit preserved the exact 407-incidence/333-pair selector and
+  the 951-to-317 promotion map, but refuted Lemma 7.1 as written. Complete
+  strong digraphs on \(\{U,I,V+I\}\) and \(\{0,2U,U+I\}\) admit
+  historically consistent positive-debt bases with arbitrarily large
+  spectator \(U\); taking \(U_n\asymp\log n\) contradicts the claimed
+  start-uniform polynomial Green sum.
+- This is not a T3-2 counterexample. The likely repair is a start-weighted
+  factorial Green estimate combined with expectation-level workload
+  accounting; the current pathwise service inequality also cannot ignore
+  accumulated spectator mass. All 333 pair/global flags remain false.

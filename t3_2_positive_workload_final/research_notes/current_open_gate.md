@@ -136,11 +136,15 @@ The audited exact 26-pair theorem is a subset of the resulting prospective
 795, contains only positive-invariant pairs, and has zero overlap with every
 prior-certified branch. It therefore adds 26 positive pairs and no signed
 pair.
+The audited easy-promotion theorem then closes 416 disjoint mixed-profile
+pairs, adding 414 positive and two signed pairs. The audited common-scalar
+theorem closes thirteen further disjoint all-active-only rank-two pairs, all
+positive-invariant.
 The current certified remainder is
 
 \[
- 733\quad\text{positive-invariant pairs},\qquad
- 36\quad\text{signed pairs}.
+ 306\quad\text{positive-invariant pairs},\qquad
+ 34\quad\text{signed pairs}.
 \]
 
 The line arrangement of the ten bimolecular monomials reduces every failed
@@ -150,9 +154,14 @@ accompanying source/tests. It is not itself a recurrence theorem.
 
 ## 3. The structural replacement for the false finite phase
 
-The all-one-active selector and the exact 26-pair no-promotion mixed-profile
-branch are no longer open. The immediate target is the **mixed-profile
-composition** on the remaining 769 support pairs. For a
+The all-one-active selector, the exact 26-pair no-promotion branch, the
+416-pair easy-promotion branch, and the thirteen all-active-only linear-switch
+pairs are no longer open. The immediate target is the **hard dormant and
+generalized-resolvent composition** on 333 of the remaining 340 support
+pairs. Its current uniform spectator Green lemma failed audit and must be
+replaced by a start-weighted estimate. This is followed by a stopped
+activation/service theorem for the final seven.
+For a
 fixed communication class and a divergent two- or three-active source-rate
 flag, prove one of:
 
@@ -185,9 +194,10 @@ finite-class alternative. The no-promotion selector converts this into 233
 pair-level recurrence theorems: 141 without a one-active failure and 92
 through the separately audited direct/seed/frozen one-active theorem.
 The exact 36-pair promotion-only selector, the exact suppressed four-pair
-orbit, and the exact 26-pair common-factorial branch are also closed. The
-remaining promotion families occur only in the 769 mixed-profile pairs and
-must be glued to their other feasible failure dimensions.
+orbit, the exact 26-pair common-factorial branch, and the 416-pair easy
+promotion selector are also closed. The remaining promotion family is the
+407 dormant/no-wholly-top incidence table on 333 pairs; its proposed
+resolvent/gluing theorem failed audit as written and is not certified.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five
@@ -207,5 +217,5 @@ Do not use any of the following:
 - lexicographic descent without lower-level endpoint-cost moments.
 
 No C3 counterexample is known. T3-2 remains plausible but uncertified until
-the remaining two-/three-active promotion families and their mixed-profile
-global tube composition are closed.
+the 333-pair dormant/generalized theorem, the final seven stopped episodes,
+and the resulting global composition are independently closed.
