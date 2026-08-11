@@ -65,7 +65,7 @@ symmetry on finite calibration networks, scalar-envelope branch conditions
 and monotonicity, the bimolecular top-complex classification with independently
 validated witnesses, absorbing-singleton handling, the corrected
 $\kappa_2\downarrow0$ rate-example limit, the exact logarithmic coefficient,
-the exact ACK Example 4.1 comparison when retained in the paper, and
+the exact ACK Example 4.1 comparison included in the paper, and
 stationary return-cycle normalization on a finite chain.
 
 The reproducer runs the complete test suite, emits the canonical report twice,

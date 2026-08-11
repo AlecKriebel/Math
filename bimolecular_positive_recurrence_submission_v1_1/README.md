@@ -95,7 +95,7 @@ hypotheses.
 - `manuscript/main_jap.tex`: thin Applied Probability initial-submission wrapper.
 - `code/`: standalone deterministic verifier and exact regression tests.
 - `supplement/v1_1_mathematical_audit.md`: exact audit of state-space closure,
-  the rate limit, and the optional ACK Example 4.1 comparison.
+  the rate limit, and the ACK Example 4.1 comparison included in the paper.
 - `supplement/publication_v1_1_literature_audit.md`: primary-source literature,
   metadata, and bibliography audit dated 10 August 2026.
 - `supplement/quantitative_limitations.md`: exact rate-sensitive Foster-set

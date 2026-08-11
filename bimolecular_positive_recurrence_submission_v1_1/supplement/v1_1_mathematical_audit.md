@@ -2,7 +2,7 @@
 
 **Audit date:** 10 August 2026  
 **Scope:** the proposed lifted state-cycle lemma and its state-space
-consequences; the rate-dependence calculation; and the optional exact
+consequences; the rate-dependence calculation; and the exact
 comparison with Anderson, Cappelletti, and Kim (2020), Example 4.1.  The
 load-bearing marked-target recurrence proof was not reopened.
 
@@ -23,10 +23,10 @@ The fixed-state limit in the rate-dependence example is
 and the fixed-rate large-\(m\) coefficient remains exactly
 \(-\kappa_2/(\kappa_1+\kappa_2)\).
 
-The optional ACK Example 4.1 comparison also survives exact audit.  A short
+The ACK Example 4.1 comparison also survives exact audit.  A short
 complete target-following episode has reward
 \(-\alpha\log n+O(1)\) with an explicit \(\alpha>0\), so the comparison is
-suitable for inclusion in the manuscript or reviewer supplement.
+certified for its inclusion in the manuscript.
 
 ## 1. Lifted state-cycle lemma
 

@@ -62,7 +62,7 @@ pseudo-Helmholtz/Horn--Jackson entropy, not an identity with that function.
 **Falsification targets:** $0$, $2A$, $A+B$, and mixed enabled and
 disabled sources.
 
-If the ACK Example 4.1 comparison is retained, separately verify the cycle
+For the ACK Example 4.1 comparison, separately verify the cycle
 $A\to A+B\to A+C\to C\to2B\to A$. At $x_n=(n,1,0)$, ACK's unshifted
 generator drift should be
 $\kappa_1n(2\log2-1)\to+\infty$. For the explicitly reachable carried target
