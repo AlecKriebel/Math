@@ -1,0 +1,208 @@
+# A common polynomial scalar for the thirteen rank-two switch pairs
+
+## 1. Scope and status
+
+This note gives the independently audited common-potential proof for the thirteen pairs
+isolated in *rank_two_linear_switch_13.md*.  It fixes the seam identified
+there: the linear workload is positive on some passing boundary states,
+whereas factorial entropy can be positive in the failed all-active interior.
+
+The proof uses one state function on the whole population class.  Independent
+replay passed every orientation, rate, scaling, endpoint, and classwise
+obligation.  The exact thirteen-pair recurrence flag is true; global T3-2
+remains false.
+
+## 2. The scalar and its exact exponents
+
+Fix one pair, arbitrary strongly connected orientations, positive rates,
+and a closed irreducible class.  Put
+
+\[
+ F(x)=K+\sum_{i=A,B,C}\log(x_i!),\qquad
+ G=1+F,qquad W=G^4,                                  \tag{2.1}
+\]
+
+where \(K\) makes \(G\ge1\).  Let \(w\) be the positive rank-two workload
+and \(H=1+w\cdot x\).  For any fixed \(\eta>0\), define
+
+\[
+ V(x)=W(x)+\eta H(x)^q,                               \tag{2.2}
+\]
+
+with
+
+\[
+ q=\begin{cases}
+ 6,&w=(1,1,1),\\
+ 5,&w=(2,1,1)\text{ or }w=(1,2,1).
+ \end{cases}                                         \tag{2.3}
+\]
+
+The finite certificate finds eleven rows of the first kind and two of the
+second.  Every top complex has \(w\)-level two and the top difference space
+has rank two.  Thus the top generator annihilates every function of \(H\).
+The lower linkage is \(0\rightleftarrows C\), so exactly
+
+\[
+ \mathcal L H^q
+ =\kappa_{0C}\{(H+w_C)^q-H^q\}
+  +\kappa_{C0}C\{(H-w_C)^q-H^q\}.                   \tag{2.4}
+\]
+
+Consequently, as \(H\to\infty\),
+
+\[
+ \mathcal L H^q\le K_0H^{q-1}-c_0CH^{q-1}.          \tag{2.5}
+\]
+
+In particular (2.2) is nonnegative and proper.
+
+## 3. Failed all-active sequences
+
+Take a failed all-active exact-tier sequence.  Every top source is enabled
+and all top source monomials are mutually comparable.  Since the top
+difference space has rank two, its orthogonal complement is exactly
+\(\operatorname{span}\{w\}\).  Flatness says that every top-complex scalar
+product with \(\log x\) differs by \(O(1)\).  Hence
+\(\log x=\lambda w+O(1)\) for some \(\lambda\to\infty\).  Writing
+\(N=e^\lambda\) and \(m=\max_i w_i\) gives
+
+\[
+ x_i=\Theta(N^{w_i}),\qquad
+ H=\Theta(N^m),\qquad
+ \beta_T=\Theta(N^2)=\Theta(H^{2/m}).                \tag{3.1}
+\]
+
+Here the constants may change along a compact-ratio subsequence, which is
+all the sequence argument needs.  The exact factorial ratio across a top
+jump is bounded on this flat tier.
+
+The lower birth must be retained separately.  Its exact entropy increment is
+
+\[
+ d_+(x)=F(x+e_C)-F(x)=\log(C+1).                    \tag{3.2}
+\]
+
+The fourth-power binomial identity therefore gives
+
+\[
+\begin{split}
+ \mathcal L_{0C}W
+ &\le K_1\{G^3d_++G^2d_+^2+Gd_+^3+d_+^4\}\\
+ &=O\{H^3(\log H)^4\}.                              \tag{3.3}
+\end{split}
+\]
+
+This is strictly lower order than the top bound in both workload classes:
+the latter is \(H^5(\log H)^3\) in the homogeneous rows and
+\(H^4(\log H)^3\) in the weighted rows.  Thus, since
+\(G=\Theta(H\log H)\), the complete positive part satisfies
+
+\[
+ \mathcal LW\le C H^{3+2/m}(\log H)^3.               \tag{3.4}
+\]
+
+The lower death term in (2.5), on the other hand, has polynomial order
+
+\[
+ CH^{q-1}=\Theta(H^{q-1+w_C/m}).                     \tag{3.5}
+\]
+
+For the eleven homogeneous rows, (3.4) has exponent \(5\), while (3.5)
+has exponent \(6\).  For either weighted row, the exponents are \(4\) and
+\(9/2\).  Thus the strict power gaps are respectively \(1\) and \(1/2\),
+and
+
+\[
+             \mathcal LV(x_n)\longrightarrow-\infty. \tag{3.6}
+\]
+
+This is why the exponent must change on the two unary-top supports.  A
+uniform sixth power is unnecessarily large at their unary boundary axes;
+the fifth power has exactly the required half-power all-active margin.
+
+## 4. Passing sequences
+
+Every affine-feasible descriptor other than the unique all-active failure
+passes the ordinary top-S/top-D condition.  The quantitative powered
+Anderson--Kim estimate therefore supplies, with \(A_n\) the largest enabled
+source propensity and \(g_n\to\infty\) the descending factorial gap,
+
+\[
+ \mathcal LW(x_n)\le-cG_n^3A_ng_n                  \tag{4.1}
+\]
+
+after absorbing its lower-order fourth-power remainders.
+
+If \(C_n\to\infty\), (2.4) is eventually negative.  Both summands in
+(2.2) are then generator-good, so the desired drift follows immediately.
+
+It remains to consider \(C_n\) bounded.  Then \(H\asymp A+B\).  The exact
+support certificate gives the following pure sources in the top linkage:
+
+\[
+\begin{array}{c|c|c}
+w&q&\text{coercive sources}\\ \hline
+(1,1,1)&6&2A,2B\\
+(2,1,1)&5&A,2B\\
+(1,2,1)&5&2A,B.
+\end{array}                                          \tag{4.2}
+\]
+
+Hence \(A_n\ge cH^{q-4}\).  Since \(G\asymp H\log H\), (4.1) has magnitude
+at least
+
+\[
+ cH^{q-1}(\log H)^3g_n,                              \tag{4.3}
+\]
+
+whereas the possibly positive term in (2.5) is only \(O(H^{q-1})\).
+The logarithmic factor and \(g_n\to\infty\) close the boundary seam:
+
+\[
+             \mathcal LV(x_n)\longrightarrow-\infty \tag{4.4}
+\]
+
+on every passing \(C\)-bounded sequence as well.
+
+## 5. Classwise recurrence theorem
+
+Every divergent sequence in a fixed class has an exact-tier subsequence.
+An affine-infeasible descriptor cannot occur in that class.  Sections 3--4
+therefore show that every divergent sequence has a subsequence along which
+\(\mathcal LV\to-\infty\).  The usual bad-sequence contradiction makes
+
+\[
+             \mathcal LV\le-1                              \tag{5.1}
+\]
+
+outside a finite subset of the class.  Nonexplosion follows from the
+standard binary-network population bound, and localized Dynkin would then
+give positive recurrence on every closed irreducible class.
+
+Independent replay checked (3.1)--(3.5), the exact discrete fourth-power
+bound in (3.3)--(3.4), the quantitative passing estimate (4.1), properness,
+nonexplosion, and localized Dynkin.  It found no counterorientation or rate
+exception.  Therefore all thirteen pairs are classwise positive recurrent.
+
+They are disjoint from the previously certified 416-pair branch and contain
+thirteen positive-invariant and zero signed pairs.  The certified remainder
+changes exactly as
+
+\[
+ (319,34)\longmapsto(306,34).                       \tag{5.2}
+\]
+
+The global T3-2 theorem is not claimed.
+
+## 6. Reproduction
+
+```text
+PYTHONPATH=src python3 -B src/rank_two_linear_switch_13_common_scalar.py
+PYTHONPATH=src python3 -B -m unittest \
+  tests/test_rank_two_linear_switch_13_common_scalar.py -v
+```
+
+The executable freezes all thirteen supports, the \(11+2\) power split,
+the all-active strict exponent gaps, and the \(C\)-bounded coercive source
+menu.

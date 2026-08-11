@@ -39,13 +39,16 @@ T3-2 counterexample is known.
 | Critical one-active positive-Q trace theorem | Pass; 15 new positive pairs, 83 failed incidences |
 | Universal all-one-active fourth-power theorem | Pass; 1,227 pairs, 3,297 failed incidences, net 1,212 new pairs |
 | Exact 26-pair common-factorial mixed-profile theorem | Pass; 26 new positive pairs, zero prior overlap |
+| Easy-promotion common-\(W\) theorem | Pass; 414 positive and two signed pairs |
+| Rank-two thirteen-pair common scalar | Pass; 13 new positive pairs |
+| Hard 333-pair dormant/generalized resolvent | Fail as written; start-weighted spectator Green repair open |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
 | Universal one-active/countable-phase closure | Pass on the exact all-one-active 1,227-pair selector |
-| Remaining mixed-profile asymptotic gates | Open; 733 positive and 36 signed pairs |
+| Remaining mixed-profile asymptotic gates | Open; 306 positive and 34 signed pairs |
 | Global T3-2 theorem | Not certified |
 
 ## Exact physical-time advances
@@ -197,14 +200,37 @@ orientation/rate, endpoint, gluing, and nonexplosion obligation. The exact
 prior-certified overlap is zero, so the certified remainder is now 733
 positive and 36 signed pairs.
 
+The easy-promotion theorem next closes the maximal 416-pair selector on
+which every promotion incidence has a bounded top-tier access word or one of
+the six audited finite rank-one shell mechanisms. Its other failed
+dimensions are handled by the same corrected-factorial fourth power: 1,455
+one-active rows satisfy the direct/Family-I/Family-III/open graph predicates,
+117 closed rank-one rows have endpoint moments above order eight, and 117
+all-active rows use either the reversible two-node or directed-triple powered
+generator bound. Independent audit passed the finite-shell cut,
+positive-overshoot Lyapunov estimate, moving-boundary charge, fixed-class
+marked gluing, and exact arithmetic. It contributes 414 positive and two
+signed pairs, leaving \((319,34)\).
+
+The thirteen all-active-only rank-two switch pairs then use the proper scalar
+\(V=(1+F)^4+\eta(1+H_w)^q\), with \(q=6\) on eleven homogeneous supports
+and \(q=5\) on the two weighted supports. The workload term dominates the
+powered-factorial curvature in the unique failed all-active cone; on passing
+boundary cones the powered factorial descent has an additional logarithmic
+gap. Independent replay passed every orientation, rate, exponent, and
+classwise Foster obligation. These thirteen positive pairs are disjoint
+from the 416-pair branch, leaving \((306,34)\).
+
 Those raw counts compress to twelve canonical asymptotic gate types. A
 counterexample rules out the proposed *universal* uniform mixed old-debt
 service margin. The exact post-rank-one 92-pair branch avoids that obstruction
 through orientation-independent zero-contest service, and the all-one-active
 1,227-pair selector is now closed by the fourth-power theorem. Of the former
-795-pair prospective remainder, the exact 26-pair branch above is now closed.
-The remaining 769 pairs have 733 positive-invariant and 36 signed members;
-their other mixed-profile compositions remain open.
+795-pair prospective remainder, the exact 26-pair, 416-pair, and thirteen-pair
+branches above are now closed. The remaining 340 pairs have 306
+positive-invariant and 34 signed members. They consist of the 333-pair
+dormant/generalized-resolvent family whose current uniform Green lemma failed
+independent audit, and seven mixed-profile rank-two switch pairs.
 
 ## Reproducible package status
 

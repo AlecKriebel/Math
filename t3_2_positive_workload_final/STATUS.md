@@ -212,8 +212,41 @@ zero signed members and zero prior-certified overlap, so
  (759,36)\longmapsto(733,36).
 \]
 
-The current certified remainder is therefore 769 pairs: 733
-positive-invariant and 36 signed.
+The independently audited easy-promotion common-potential theorem now closes
+another 416 mixed-profile pairs. Its exact physical inventory is 762 easy
+two-active promotion incidences, 1,455 structurally compatible one-active
+incidences, 117 closed rank-one two-active incidences, and 117 compatible
+all-active incidences. Positive corrected-factorial overshoots have moments
+of every required order; the six finite-shell rows use the unique
+rate-adjusted correction. The marked fixed-class argument retains every
+competing clock and closes 414 positive-invariant and two signed pairs:
+
+\[
+ (733,36)\longmapsto(319,34).
+\]
+
+The thirteen all-active-only rank-two switch pairs are also certified. One
+pair-dependent scalar
+
+\[
+ V=(1+F)^4+\eta(1+H_w)^q,
+ \qquad q=6\text{ on eleven supports},\quad q=5\text{ on two},
+\]
+
+handles both the failed all-active cone and every passing boundary cone.
+Independent replay checked the rank-two scaling, fourth-power Taylor terms,
+workload exponents, properness, nonexplosion, and localized Dynkin. These
+thirteen pairs are positive-invariant and disjoint from the 416-pair branch:
+
+\[
+ (319,34)\longmapsto(306,34).
+\]
+
+The current certified remainder is therefore 340 pairs: 306
+positive-invariant and 34 signed. It splits into a 333-pair
+dormant/generalized-resolvent family whose current uniform Green lemma failed
+independent audit, and seven mixed-profile rank-two switch pairs requiring a
+stopped activation/service episode.
 
 Global T3-2 remains uncertified.
 
