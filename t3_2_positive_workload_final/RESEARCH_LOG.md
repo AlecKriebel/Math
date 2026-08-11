@@ -460,3 +460,56 @@
   classwise sequence gluing. Promoted exactly fifteen positive pairs. The
   certified remainder changes from \((1835,187)\) to \((1820,187)\).
   Global T3-2 remains uncertified.
+
+## 2026-08-10T18:18:27-07:00 - excluded equality-order stress case resolved locally
+
+- Audited the sharp relative-debt equality network
+  \(0\leftrightarrow B+C\),
+  \(B\to A\to A+B\to2B\to B\). Its two selected order-two return
+  words do not determine the physical sign: a primary \(B\to A\)
+  activation occurs with probability \(\kappa_1/(\beta N)+O(N^{-2})\)
+  and opens a macroscopic stabilizing excursion.
+- Recorded the exact identity
+  \(Q=C-A-B\),
+  \({\cal L}Q=-\kappa_2A+\kappa_4(B)_2\), together with the exact
+  immigration--death chain obtained from the clock
+  \(u=\int B_t\,dt\). The longer literal base-return asymptotic remains
+  explicitly conditional and is not used as a theorem.
+- Proved instead an all-reactions-retained stopped block. Conditional on
+  the rare activation, a fixed positive probability of
+  \(\lfloor\varepsilon N\rfloor\) clean \(A\to A+B\),
+  \(B+C\to0\) stages gives a fixed-fraction population loss. For the
+  common potential \(W=(1+{\cal F}_\ell)^4\), the successful contribution
+  is \(-\Theta(N^3\log^4N)\), failed endpoints cost only
+  \(O(N^2\log^4N)\), and the unconditional mean duration is bounded.
+- Two independent audits passed the stopped episode, endpoint moments,
+  nonleading-trigger stop, debt transfer, and duration accounting. The
+  equality/PDMP focused suite passes 12 tests. This is a local theorem only:
+  no support-pair count or global flag was changed.
+
+## 2026-08-10T20:10:05-07:00 - universal one-active 1,227-pair branch certified
+
+- Completed the arbitrary-orientation graph-to-physical-kernel lift for all
+  3,297 affine-feasible failed incidences on the exact all-one-active
+  selector. Finite mixed phases use a classwise killed-resolvent expansion;
+  the sole open wholly-top phase uses its Poisson regeneration theorem.
+  Family-II cap label two is now correctly interpreted as an arbitrary fixed
+  class invariant $a_\Gamma\ge2$, with class-dependent constants.
+- Used the common potential
+  $W=(1+K+\sum_i\log(X_i!))^4$. Neutral base returns telescope before the
+  first nonneutral endpoint; random upward overshoots have conditional
+  moments of order $q>8$; and an endpoint-weighted $n^{1/8}$ boundary
+  estimate pays every promotion or simultaneous boundary tie. The separate
+  unweighted third-interruption estimate preserves the order-$n^{-3}$
+  upward bound in the resistance-two case.
+- Composed the local episodes on the all-species reflected marked chain.
+  Atlas identity (8.6) yields a genuine fixed-width state-sequence tube, the
+  $D_X=0$ part is finite classwise, and frozen/no-history bases cannot carry
+  reachable positive old debt. A common-potential bad-sequence argument and
+  the linear-growth birth bound give classwise recurrence and nonexplosion.
+- Independent pair audit returned PASS (confidence 0.91) and replayed the
+  exact selector hashes. The 1,227-pair set contains 1,076 positive and 151
+  signed pairs; its only prior overlap is the fifteen critical positive
+  pairs. Promoted the net new contribution of 1,061 positive and 151 signed
+  pairs, changing the certified remainder from $(1820,187)$ to
+  $(759,36)$. Global T3-2 remains uncertified.

@@ -2,7 +2,7 @@
 
 ## 1. What is no longer open
 
-Ten exact interface families now have independently audited physical-time
+Eleven exact interface families now have independently audited physical-time
 proofs:
 
 1. the seven-support seam with available support
@@ -25,7 +25,9 @@ proofs:
    \(\{U,I+V\}/\{0,I,2I,I+U\}\), comprising 28 affine-feasible
    failed incidences; and
 10. the fifteen coefficient-critical one-active pairs, comprising 75
-    positive-\(Q\) equality rows and eight companion rows.
+    positive-\(Q\) equality rows and eight companion rows; and
+11. the universal all-one-active selector: 1,227 pairs and 3,297 feasible
+    failed incidences, with a net new contribution of 1,212 pairs.
 
 The third proof is the former shell-corrector obstruction. It uses a proper
 return workload, transient immigration--death control, a short Riccati
@@ -85,6 +87,17 @@ squared corrected-factorial potential amplifies it to order
 boundary with exponential tails. Six direct countable carriers and two
 zero-source seeds close the remaining rows on the same fifteen pairs.
 
+The eleventh proof uses one common potential
+\(W=(1+K+\sum_i\log(X_i!))^4\). The arbitrary-orientation graph theorem
+orders aggregate relative-debt returns on every selected one-active
+incidence; finite killed Green expansions and the open Poisson block lift
+that ordering to a full-reaction episode. Random active overshoots are
+controlled by conditional moments of order \(q>8\), while a stopped
+\(n^{1/8}\) boundary pays every promotion endpoint. The all-species
+reflected marks make zero-debt tubes finite classwise. Independent audit
+passed the fixed-width extraction, frozen/no-history split, common-potential
+gluing, nonexplosion, and exact 1,227/15/1,212 arithmetic.
+
 ## 2. Exact finite remainder
 
 After finite classes, common active invariants, full deficiency zero, the
@@ -103,11 +116,14 @@ The audited suppressed-orbit theorem then closes four further
 positive-invariant pairs and no signed pair.
 The audited critical one-active theorem then closes fifteen further
 positive-invariant pairs and no signed pair.
+The audited universal one-active theorem contains 1,227 pairs, overlaps the
+certified set exactly in those fifteen critical positive pairs, and therefore
+adds 1,061 positive-invariant and 151 signed pairs.
 The current certified remainder is
 
 \[
- 1820\quad\text{positive-invariant pairs},\qquad
- 187\quad\text{signed pairs}.
+ 759\quad\text{positive-invariant pairs},\qquad
+ 36\quad\text{signed pairs}.
 \]
 
 The line arrangement of the ten bimolecular monomials reduces every failed
@@ -117,10 +133,10 @@ accompanying source/tests. It is not itself a recurrence theorem.
 
 ## 3. The structural replacement for the false finite phase
 
-The immediate analytic target is a **common-entropy
-promotion-or-closed-phase theorem**.
-For a fixed communication class and a divergent source-rate flag, prove one
-of:
+The all-one-active selector is no longer open. The immediate target is the
+**mixed-profile composition** on the remaining 795 support pairs. For a
+fixed communication class and a divergent two- or three-active source-rate
+flag, prove one of:
 
 1. an affine invariant makes the flag impossible;
 2. a lower-priority coordinate reaches the next active scale, so the episode
@@ -131,17 +147,15 @@ of:
 4. a strict workload service occurs before lower-layer interruption with a
    margin that is uniform along the flag.
 
-For a unique dominant species and no double source, stripping that species
-from the one-copy complexes gives a unimolecular process on
-\(\{0,B,C\}\). A tagged-particle construction gives phase-type service times
-on the dominant-species clock and an explicit per-entry interruption bound.
-The only wholly top countable phase surviving the affine filter is the
-one-dimensional open pair \(\{0,U\}\). Its carrier-drain and
-Poisson-occupation estimates remain valid locally, but the proposed
-uniform mixed old-debt kernel is withdrawn. An exact nested-entry history
-makes its service probability \(O(1/X)\). The remaining one-active
-obligation is therefore a shell-dependent replacement with endpoint cost,
-not another finite-target minorization.
+For pairs whose every feasible failure is one-active, the fourth-power
+theorem now supplies the required physical episode without a uniform raw
+minorization. It sums neutral returns, uses aggregate resistance rather than
+one selected word, and charges moving-boundary endpoints with the common
+potential. A pair remaining in the table has at least one feasible two- or
+three-active failure. Any one-active rows on such a pair must either be
+covered by an extension of the same graph/resolvent interface or bypassed by
+one common mixed-profile stopping construction; the 1,227-pair selector does
+not by itself certify them.
 
 The two-active certificate splits every feasible failed incidence into
 seeded promotion, dormant activation, a rank-one finite top shell, or the
@@ -153,9 +167,9 @@ finite-class alternative. The no-promotion selector converts this into 233
 pair-level recurrence theorems: 141 without a one-active failure and 92
 through the separately audited direct/seed/frozen one-active theorem.
 The exact 36-pair promotion-only selector and the exact suppressed four-pair
-orbit are also closed. Promotion families and one-active supports outside
-these exact branches remain open; the fifteen equal-depth one-active pairs
-are no longer part of that open set.
+orbit are also closed. The remaining promotion families occur only in the
+795 mixed-profile pairs and must be glued to their other feasible failure
+dimensions.
 
 At the all-active interface, every one of the 403 residual pairs has one
 fixed whole-top linkage. Exact generator arguments cover all five
@@ -175,5 +189,5 @@ Do not use any of the following:
 - lexicographic descent without lower-level endpoint-cost moments.
 
 No C3 counterexample is known. T3-2 remains plausible but uncertified until
-the shell-dependent one-active replacement, the remaining two-active
-promotion families, and the resulting global tube composition are closed.
+the remaining two-/three-active promotion families and their mixed-profile
+global tube composition are closed.

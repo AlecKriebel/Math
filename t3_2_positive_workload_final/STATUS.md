@@ -79,9 +79,10 @@ The remaining failed one-step geometry is covered by twelve canonical
 asymptotic gate types. The rank-two two-active phase, the exact
 all-active-only reversible-top branch, the rank-one no-promotion branch, and
 the exact 36-pair promotion-only branch are closed at their stated scopes.
-Other two-active promotion carriers and one-active stopped kernels outside
-the exact post-rank-one 92-pair branch remain open. Candidate selector counts
-outside the audited branches are not being reported as recurrence theorems.
+The exact all-one-active 1,227-pair branch is also closed below. Other
+two-active promotion carriers and mixed-profile combinations remain open.
+Candidate selector counts outside the audited branches are not being
+reported as recurrence theorems.
 
 The all-active interface has also passed an independent, dimension-local
 proof replay for all 403 affected support pairs. Its disjoint branches are
@@ -163,6 +164,31 @@ same-potential composition. The disjoint update is
 \[
  (1835,187)\longmapsto(1820,187).
 \]
+
+The universal one-active theorem now closes all 1,227 support pairs whose
+affine-feasible failed descriptors are nonempty and all one-active. Its
+3,297 failed incidences admit an arbitrary-orientation relative-debt
+ordering. A finite killed-resolvent expansion, the open Poisson phase, and a
+stopped \(n^{1/8}\) promotion boundary lift that ordering to the one common
+potential
+
+\[
+ W=\left(1+K+\sum_i\log(X_i!)\right)^4.
+\]
+
+The all-species reflected marked-chain proof treats random upward overshoots
+with conditional moments of order \(q>8\), permits class-dependent invariant
+caps, and uses a fixed-class bad-sequence argument rather than a finite
+inactive-environment assumption. Independent audit passed the orientation
+split, fixed-width tube extraction, frozen/no-history alternatives,
+physical-time gluing, nonexplosion, and selector arithmetic. Exactly fifteen
+positive pairs overlap the critical branch, so the net contribution is
+1,061 positive and 151 signed pairs:
+
+\[
+ (1820,187)\longmapsto(759,36).
+\]
+
 Global T3-2 remains uncertified.
 
 No physical counterexample to T3-2 is known.

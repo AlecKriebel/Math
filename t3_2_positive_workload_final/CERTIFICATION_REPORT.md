@@ -8,8 +8,8 @@ The independent audit was correct on both load-bearing objections. The
 inherited T3-2 proof is not certified, and no replacement manuscript is ready
 for arXiv yet.
 
-The repair has produced ten independently audited exact-scope physical-time
-theorem statements, with the fourteen-partner rank-two theorem sharing its
+The repair has produced a collection of independently audited exact-scope
+physical-time theorem statements, with the fourteen-partner rank-two theorem sharing its
 top support with—but not overlapping—the earlier residual pair. None uses
 tightness as finite support, and none
 attempts to prove recurrence of the raw embedded jump chain. No physical
@@ -37,13 +37,14 @@ T3-2 counterexample is known.
 | Exact promotion-only Foster theorem | Pass; 32 positive and four signed pairs |
 | Suppressed-orbit shell theorem | Pass; four new positive pairs, 28 failed incidences |
 | Critical one-active positive-Q trace theorem | Pass; 15 new positive pairs, 83 failed incidences |
+| Universal all-one-active fourth-power theorem | Pass; 1,227 pairs, 3,297 failed incidences, net 1,212 new pairs |
 | One-active carrier-drain estimates | Pass locally; uniform old-debt kernel withdrawn, shell-dependent replacement open |
 | Two-active promotion/phase classification | Pass as structural enumeration |
 | Three-active flat-phase classification | Pass as structural enumeration |
 | Tightness to one fixed finite inactive phase | Withdrawn |
 | Raw embedded-occupation closure | Withdrawn |
-| Universal one-active/countable-phase closure | Open outside the exact 92-pair and critical 15-pair branches |
-| Remaining twelve asymptotic interface gates | Open |
+| Universal one-active/countable-phase closure | Pass on the exact all-one-active 1,227-pair selector |
+| Remaining mixed-profile asymptotic gates | Open; 759 positive and 36 signed pairs |
 | Global T3-2 theorem | Not certified |
 
 ## Exact physical-time advances
@@ -163,16 +164,32 @@ level-boundary exits. The other eight rows are six killed open
 immigration--death carriers and two geometric zero-source seeds. Two
 independent audits passed the Kac perturbation, boundary UI, companion-row
 table, passing-cone carré term, and classwise gluing. The exact prior overlap
-is zero, so the certified remainder is now 1,820 positive and 187 signed
+is zero, so the certified remainder at that stage was 1,820 positive and 187 signed
 pairs.
+
+The universal one-active composition then closes every support pair whose
+nonempty affine-feasible failure set is all one-active: 1,227 pairs and
+3,297 failed incidences. The arbitrary-orientation graph theorem gives
+relative down resistance at most two and a strictly larger same-base up
+resistance. Finite killed Green expansions, the open Poisson block, and an
+endpoint-weighted \(n^{1/8}\) boundary estimate lift this to the common
+fourth-power factorial potential. The all-species reflected target handles
+zero debt without asking for surplus service, while a fixed-class
+bad-sequence argument supplies finitely many actual statewise tubes. The
+independent pair audit passed the orientation split, random-overshoot
+moments, frozen/no-history alternatives, marked gluing, nonexplosion, and
+exact selector hashes. Its overlap with the certified set is exactly the
+fifteen critical positive pairs, so the new contribution is 1,061 positive
+and 151 signed pairs. The certified remainder is now 759 positive and 36
+signed pairs.
 
 Those raw counts compress to twelve canonical asymptotic gate types. A
 counterexample rules out the proposed *universal* uniform mixed old-debt
 service margin. The exact post-rank-one 92-pair branch avoids that obstruction
-through orientation-independent zero-contest service and is now closed. The
-remaining one-active supports require a shell-dependent or reflected-level
-replacement, while two-active promotion families outside the exact 36-pair
-and four-pair branches also remain open.
+through orientation-independent zero-contest service, and the all-one-active
+1,227-pair selector is now closed by the fourth-power theorem. The remaining
+795 pairs all have a feasible two- or three-active failure in addition to any
+one-active rows; their mixed-profile composition remains open.
 
 ## Reproducible package status
 
@@ -199,7 +216,8 @@ The accurate public status is:
 > rank-two theorem, the 51-pair all-active-only Foster theorem, the
 > full 233-pair rank-one no-promotion Foster theorem, the exact 36-pair
 > promotion-only Foster theorem, the exact four-pair suppressed-orbit
-> shell theorem, the critical 15-pair positive-Q trace theorem, the other exact
+> shell theorem, the critical 15-pair positive-Q trace theorem, the exact
+> 1,227-pair universal one-active fourth-power theorem, the other exact
 > physical-time interfaces, the complete finite tier geometry, and 151
-> classwise affine-filter closures are certified; the remaining promotion
-> and one-active stopped-phase closures remain open.
+> classwise affine-filter closures are certified; 795 mixed-profile support
+> pairs remain open.
