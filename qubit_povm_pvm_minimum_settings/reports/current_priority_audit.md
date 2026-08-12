@@ -1,6 +1,6 @@
 # Current priority and positioning audit
 
-**Dated search:** 11 August 2026
+**Dated search:** 12 August 2026
 
 **Scope:** analytic fixed-qubit POVM–PVM separation, universal two-input
 convexified equality, and minimum setting complexity.
@@ -19,8 +19,9 @@ when documenting public chronology. The corresponding concept DOI is
 
 These facts establish public-release order only. They do not establish the
 order of private discovery or development, dependence, legal priority,
-peer-reviewed correctness, or misconduct. “Independent contemporaneous work”
-is the appropriate manuscript characterization.
+peer-reviewed correctness, or misconduct. “Related contemporaneous work,”
+with an explicit statement that the constructions were independently
+obtained, is the manuscript characterization.
 
 ## Narrow literature finding
 
@@ -31,6 +32,10 @@ scopes:
 
 - Gisin posed the fixed-dimension measurement question and noted the binary-
   outcome obstruction.
+- Pál–Vértesi proved that fixed-dimensional raw behavior sets can be
+  nonconvex and exhibited a qubit behavior attainable with a POVM but not one
+  qubit-PVM realization. This does not settle equality after shared-randomness
+  convexification.
 - Vértesi–Bene supplied the historical 3×2 architecture and a genuine ternary
   POVM advantage, with the unrestricted-state comparison for their displayed
   choice supported numerically.
@@ -74,6 +79,7 @@ the quantified closure theorem.
 
 - <https://arxiv.org/abs/2608.01317>
 - <https://arxiv.org/abs/1007.2578>
+- <https://doi.org/10.1103/PhysRevA.80.042114>
 - <https://arxiv.org/abs/1609.06139>
 - <https://arxiv.org/abs/2505.20519>
 - <https://arxiv.org/abs/2603.26875>

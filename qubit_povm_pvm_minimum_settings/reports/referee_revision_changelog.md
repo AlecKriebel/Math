@@ -1,5 +1,9 @@
 # Referee-revision change log
 
+> Historical July referee-revision record. The current v1.2.0 final-hardening
+> map is `v1.2.0_revision_changelog.md`; current line numbers and build counts
+> are recorded there.
+
 **Revision base:** `04b6eb46d7fa15669f7fa353a7ced28d21d78a6a`
 
 **Revision date:** 2026-07-29
@@ -120,7 +124,7 @@ included where possible because they survive later typesetting changes.
 1. The first-order tangent equation is derived at
    `paper/main.tex:1420-1439`.
 2. Fredholm compatibility is derived at `paper/main.tex:1439-1448`.
-3. Independence and \(\dim\mathcal H_K=16-k\) are proved at
+3. Independence and \(\dim\mathcal H_{\mathcal K}=16-k\) are proved at
    `paper/main.tex:1449-1462`.
 4. The identity direction, \(q(I)=0\), normalization shift, and invariance of
    \(q\) are `paper/main.tex:1486-1507`.
@@ -181,9 +185,10 @@ included where possible because they survive later typesetting changes.
 
 ## M. Reproducibility package
 
-1. `run_all.sh` executes every exact verifier and checks all eight immutable
-   artifact hashes.
-2. `paper/build.sh:7-24` builds both PDFs and fails on reference, citation,
+1. `run_all.sh` executes every exact verifier and checks all eight
+   current-release artifact hashes.
+2. `paper/build.sh` builds the archival, line-numbered, and PRA PDFs and fails
+   on reference, citation,
    UTF-8, overfull/underfull, or other LaTeX warnings.
 3. `paper/review.tex` and `paper/review.pdf` supply the line-numbered review
    version.

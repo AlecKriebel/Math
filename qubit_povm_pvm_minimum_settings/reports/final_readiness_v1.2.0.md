@@ -1,6 +1,6 @@
 # Final readiness verdict — version 1.2.0
 
-**Assessment date:** 2026-08-11
+**Assessment date:** 2026-08-12
 
 **Release type:** author-ready, non-destructive revision package
 
@@ -26,18 +26,20 @@ been fabricated.
 | B — claim boundary | **PASS** | The paper distinguishes fixed-qubit separation, unrestricted optimization, convexified equality, raw-set equality, setting minimality, exact symbolic checks, and formal proof-assistant verification. |
 | C — priority restraint | **PASS** | July 30/August 2 public chronology appears once and is explicitly not a claim about private development, correctness, or misconduct. |
 | D — main-theorem emphasis | **PASS** | Abstract, introduction, contributions, cover letter, and website draft foreground universal two-input convexified equality and the resulting 3-by-2 minimum. |
-| E — mathematical freeze | **PASS** | The 21 frozen Main/Theorem/Lemma/Proposition/Corollary blocks have the same digest as v1.1.0; `paper/appendices.tex` and all exact artifact sources are unchanged. A new contextual Remark does not modify a dependency or conclusion. |
-| F — build and verification | **PASS** | Both 36-page manuscript PDFs and both auxiliary PDFs build warning-free; every exact check and every applicable manifest check passes; all pages were rendered and inspected. |
+| E — mathematical freeze | **PASS** | No pre-existing theorem hypothesis, proof mechanism, Bell functional, exact witness, certified bound, or conclusion changed. The two residual-domain definitions were separated and existing reconstruction identities were made explicit. Appendix and artifact-source edits are notation-only; the exact outputs are unchanged. |
+| F — build and verification | **PASS** | The 35-page canonical and review PDFs, 46-page PRA PDF, 3-page Supplemental Material PDF, and 1-page internal comparison PDF build warning-free; every exact check and every applicable manifest check passes; all 120 pages were rendered and inspected. |
 | G — Zenodo readiness | **CONDITIONAL PASS** | Five clean payloads, metadata sheets, history, changelog, checksums, and upload instructions exist. The author must create five New version drafts and insert the returned DOI values before publishing. |
 | H — PRA readiness | **CONDITIONAL PASS** | Regular Article PDF/source, cover letter, supplement, verifier, dossier, data statement, AI disclosure, and referee report exist. Insert new DOI values and complete private author checks before submission. |
 | I — correspondence readiness | **CONDITIONAL PASS** | The email is accurate and restrained; insert live new-version links and send only after the Zenodo release. |
 
 ## Mathematical status
 
-- No pre-existing theorem statement, proof, Bell functional, exact witness,
-  displayed constant, or conclusion changed from the July 30 release. One
-  new contextual remark records that either independent exact 3-by-2 witness
-  supplies the existence half of the unchanged minimum-setting corollary.
+- No pre-existing theorem hypothesis, proof mechanism, Bell functional, exact
+  witness, displayed constant, or conclusion changed from the July 30
+  release. The revision splits the residual-domain definition, exposes
+  normalization and steering identities already used in the physical-
+  completeness proof, and adds one contextual remark. None changes a
+  dependency or conclusion.
 - The 3-by-2 result remains an exact attained POVM lower bound above a global
   analytic fixed-qubit PVM upper bound; neither is relabeled as an exact
   optimum.
@@ -52,7 +54,8 @@ been fabricated.
 ## Integrity status
 
 - Frozen v1.1.0 directory: unchanged and manifest-verified.
-- Immutable exact source artifacts: unchanged and manifest-verified.
+- Exact source artifacts: notation-only edits are manifest-verified; all
+  mathematical outputs remain unchanged and every exact verifier passes.
 - Version 1.2.0 core manifest: generated from the final tracked/public file
   set, excluding temporary and private material.
 - New archives: assembled from explicit allowlists; ignored `tmp/`, virtual
@@ -69,10 +72,11 @@ The post-upload checklist tracks exactly five values:
 4. new checksum-object version DOI; and
 5. new software-archive version DOI.
 
-These tokens occur only in the intended author-action documents, draft site,
-PRA availability materials, and post-release correspondence. The canonical
-version 1.2.0 manuscript uses the already public July 30 paper and software
-records rather than a fictitious future DOI.
+These tokens occur only in the intended author-action documents, current
+v1.2.0 manuscript and supplement, draft site, PRA availability materials, and
+post-release correspondence. Each is visibly marked as an unassigned
+placeholder. The already public July 30 DOI is retained separately and only
+for historical chronology.
 
 ## External-state statement
 

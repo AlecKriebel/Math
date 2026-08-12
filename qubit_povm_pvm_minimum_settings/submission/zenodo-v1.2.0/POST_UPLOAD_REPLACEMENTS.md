@@ -1,12 +1,14 @@
-# Finite post-upload replacement checklist
+# Finite post-reservation, pre-publication replacement checklist
 
 Record the five actual Zenodo-generated version DOIs:
 
-- Paper PDF: `[NEW VERSION-SPECIFIC PAPER DOI]`
+- Paper PDF: `[NEW VERSION-SPECIFIC PAPER DOI]` / manuscript token
+  `[ZENODO V1.2.0 VERSION-SPECIFIC DOI — INSERT AFTER UPLOAD]`
 - Line-numbered PDF: `[NEW VERSION-SPECIFIC REVIEW DOI]`
 - LaTeX source archive: `[NEW VERSION-SPECIFIC SOURCE DOI]`
 - Integrity manifest: `[NEW VERSION-SPECIFIC CHECKSUM DOI]`
-- Software archive: `[NEW VERSION-SPECIFIC SOFTWARE DOI]`
+- Software archive: `[NEW VERSION-SPECIFIC SOFTWARE DOI]` / manuscript token
+  `[ZENODO V1.2.0 SOFTWARE DOI — INSERT AFTER UPLOAD]`
 
 Before publishing any draft, replace matching tokens and superseded public-
 version links in:
@@ -25,6 +27,8 @@ version links in:
 - `submission/pra-v1.2.0/submission_form_dossier.md`;
 - `submission/pra-v1.2.0/data_availability_statement.md`;
 - `submission/pra-v1.2.0/supplement/supplement.tex`;
+- `submission/pra-v1.2.0/supplemental_material_README.txt` if its status
+  wording is affected;
 - `submission/zcw_notification_email.md`;
 - `submission/website-v1.2.0-draft/index.html`;
 - `review_packet/theorem_summary.md` and
@@ -37,9 +41,10 @@ version links in:
 - all five metadata sheets and cross-links;
 - release notes and repository tag/release description.
 
-Search the entire project for `NEW VERSION`, `NEW_VERSION`, `TO_BE_INSERTED`,
-`TO BE INSERTED`, `NEW_PUBLICATION_PDF_SHA256`, and the release-tag token. No
-such token may remain in an externally submitted or deployed file.
+Search the entire project for `ZENODO V1.2.0`, `NEW VERSION`, `NEW_VERSION`,
+`TO_BE_INSERTED`, `TO BE INSERTED`, `NEW_PUBLICATION_PDF_SHA256`, and the
+release-tag token. No such token may remain in an externally submitted or
+deployed file.
 
 After replacement, rebuild both paper PDFs, the supplement and theorem
 comparison, all source/software/verifier archives, the website PDF copies,

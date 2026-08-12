@@ -23,11 +23,13 @@ finite, input-dependent output alphabets, we prove that the shared-randomness
 convex hull of fixed-qubit positive-operator-valued-measurement (POVM)
 behaviors equals the corresponding convex hull of projection-valued
 measurement (PVM) behaviors. Consequently, no two-input linear Bell
-functional separates these convexified fixed-qubit models. We complement the
-lower bound with a rational \(3\times2\) Bell functional, an exact qubit-POVM
-strategy, and a global analytic qubit-PVM upper bound separated by a strict
-exact gap. Thus, up to exchanging the parties, \(3\times2\) is the minimum
-input architecture. The equality proof combines a one-binary-party
+functional separates these convexified fixed-qubit models. We complement this
+impossibility theorem with a rational \(3\times2\) Bell functional and an
+exact qubit-POVM strategy whose value lies strictly above a global analytic
+qubit-PVM upper bound. Thus, up to exchanging the parties, \(3\times2\) is the
+minimum input architecture for a linear Bell-functional separation of these
+shared-randomness-convexified fixed-qubit models. The equality proof combines
+a one-binary-party
 Lorentz-cone simulation, an extremal binary--ternary reduction, a physically
 exact Lorentz incidence manifold, finite-POVM duality, and a rank trichotomy
 based on the incidence second variation. The equality concerns convexified

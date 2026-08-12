@@ -11,7 +11,7 @@ Perform these steps only after final author approval.
 3. In each draft, use **Get a DOI now** (or the equivalent DOI-reservation
    control) and record all five version-specific DOI values. Do not publish
    any record yet.
-4. Complete every item in `POST_UPLOAD_REPLACEMENTS.md`, including the
+4. Complete every post-reservation item in `POST_UPLOAD_REPLACEMENTS.md`, including the
    canonical manuscript/bibliography, root citation metadata, the
    software-archive citation template, PRA files, website draft, email draft,
    and all five Zenodo metadata sheets.

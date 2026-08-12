@@ -13,8 +13,12 @@ source_archive="$zenodo_dir/publication/kriebel-2026-minimum-bell-setting-comple
 publication_manifest="$zenodo_dir/publication/kriebel-2026-minimum-bell-setting-complexity-SHA256SUMS-v${release_version}.txt"
 software_archive="$zenodo_dir/software/kriebel-qubit-povm-pvm-reproducibility-v${release_version}.zip"
 
+"$project_dir/paper/build.sh"
+"$pra_dir/build.sh"
+
 test -f "$project_dir/paper/main.pdf"
 test -f "$project_dir/paper/review.pdf"
+test -f "$project_dir/paper/pra.pdf"
 test -f "$project_dir/paper/main.bbl"
 test -f "$project_dir/reports/verifier_report.txt"
 test -d "$project_dir/submission/zenodo-v1.1.0"
@@ -43,13 +47,24 @@ trap 'rm -rf "$build_tmp"' EXIT HUP INT TERM
 source_top="kriebel-minimum-bell-setting-complexity-source-v${release_version}"
 source_root="$build_tmp/$source_top"
 mkdir -p "$source_root/figures"
-for source_file in main.tex appendices.tex references.bib main.bbl review.tex lineno.sty build.sh SOURCE_README.md; do
+for source_file in main.tex abstract.tex appendices.tex references.bib main.bbl pra.bbl review.tex pra.tex lineno.sty build.sh SOURCE_README.md; do
     cp "$project_dir/paper/$source_file" "$source_root/$source_file"
 done
 for figure_file in five_ray_circuit.tex rank_trichotomy.tex threshold.tex; do
     cp "$project_dir/paper/figures/$figure_file" "$source_root/figures/$figure_file"
 done
 cp "$project_dir/LICENSE" "$source_root/LICENSE"
+mkdir -p "$source_root/vendor/revtex-4.2f/tex/latex" \
+    "$source_root/vendor/revtex-4.2f/bibtex/bst" \
+    "$source_root/vendor/revtex-4.2f/doc/latex/revtex"
+cp -R "$project_dir/paper/vendor/revtex-4.2f/tex/latex/revtex" \
+    "$source_root/vendor/revtex-4.2f/tex/latex/"
+cp -R "$project_dir/paper/vendor/revtex-4.2f/bibtex/bst/revtex" \
+    "$source_root/vendor/revtex-4.2f/bibtex/bst/"
+cp "$project_dir/paper/vendor/revtex-4.2f/NOTICE.md" \
+    "$source_root/vendor/revtex-4.2f/NOTICE.md"
+cp "$project_dir/paper/vendor/revtex-4.2f/doc/latex/revtex/README" \
+    "$source_root/vendor/revtex-4.2f/doc/latex/revtex/README"
 
 COPYFILE_DISABLE=1 tar -czf "$source_archive" -C "$build_tmp" "$source_top"
 COPYFILE_DISABLE=1 tar -czf "$project_dir/submission/arxiv_source.tar.gz" -C "$source_root" .
@@ -67,12 +82,23 @@ cp -R "$project_dir/artifacts" "$software_root/artifacts"
 cp -R "$project_dir/reports" "$software_root/reports"
 cp -R "$project_dir/review_packet" "$software_root/review_packet"
 mkdir -p "$software_root/paper/figures"
-for paper_file in main.pdf review.pdf main.tex appendices.tex references.bib main.bbl review.tex lineno.sty build.sh SOURCE_README.md; do
+for paper_file in main.pdf review.pdf pra.pdf main.tex abstract.tex appendices.tex references.bib main.bbl pra.bbl review.tex pra.tex lineno.sty build.sh SOURCE_README.md; do
     cp "$project_dir/paper/$paper_file" "$software_root/paper/$paper_file"
 done
 for figure_file in five_ray_circuit.tex rank_trichotomy.tex threshold.tex; do
     cp "$project_dir/paper/figures/$figure_file" "$software_root/paper/figures/$figure_file"
 done
+mkdir -p "$software_root/paper/vendor/revtex-4.2f/tex/latex" \
+    "$software_root/paper/vendor/revtex-4.2f/bibtex/bst" \
+    "$software_root/paper/vendor/revtex-4.2f/doc/latex/revtex"
+cp -R "$project_dir/paper/vendor/revtex-4.2f/tex/latex/revtex" \
+    "$software_root/paper/vendor/revtex-4.2f/tex/latex/"
+cp -R "$project_dir/paper/vendor/revtex-4.2f/bibtex/bst/revtex" \
+    "$software_root/paper/vendor/revtex-4.2f/bibtex/bst/"
+cp "$project_dir/paper/vendor/revtex-4.2f/NOTICE.md" \
+    "$software_root/paper/vendor/revtex-4.2f/NOTICE.md"
+cp "$project_dir/paper/vendor/revtex-4.2f/doc/latex/revtex/README" \
+    "$software_root/paper/vendor/revtex-4.2f/doc/latex/revtex/README"
 (
     cd "$software_root"
     find . -type f ! -path './SHA256SUMS.txt' -print | LC_ALL=C sort |
@@ -110,7 +136,7 @@ cp "$project_dir/reports/verifier_report.txt" "$verifier_root/verifier_report.tx
         "$verifier_top"
 )
 
-cp "$project_dir/paper/main.pdf" \
+cp "$project_dir/paper/pra.pdf" \
     "$pra_dir/kriebel-minimum-bell-setting-complexity-pra-v${release_version}.pdf"
 cp "$project_dir/paper/review.pdf" \
     "$pra_dir/kriebel-minimum-bell-setting-complexity-review-v${release_version}.pdf"

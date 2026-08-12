@@ -6,14 +6,17 @@ secondary fit.
 
 ## Author-review upload set
 
-- `kriebel-minimum-bell-setting-complexity-pra-v1.2.0.pdf` — stable author
-  manuscript for initial review.
+- `kriebel-minimum-bell-setting-complexity-pra-v1.2.0.pdf` — one-column
+  REVTeX 4.2f PRA manuscript for initial review.
 - `kriebel-minimum-bell-setting-complexity-review-v1.2.0.pdf` — optional
   line-numbered review copy.
 - `kriebel-minimum-bell-setting-complexity-source-v1.2.0.tar.gz` — canonical
-  source; no risky REVTeX conversion was made.
-- `supplement/kriebel-minimum-bell-setting-complexity-supplement-v1.2.0.pdf`
-  — referee-facing Supplemental Material.
+  source with thin archival, review, and PRA wrappers.
+- `supplemental_material.pdf` — referee-facing Supplemental Material.
+- `supplemental_material_README.txt` — portal description for the separate
+  Supplemental Material deposit.
+- `supplemental_artifacts/` and the matching ZIP — exact tables, map,
+  certificate descriptions, instructions, hashes, and verification boundary.
 - `kriebel-minimum-bell-setting-complexity-verifier-v1.2.0.zip` — exact
   verifier/artifact supplement, if the portal accepts code.
 - `cover_letter.md` — cover-letter text.

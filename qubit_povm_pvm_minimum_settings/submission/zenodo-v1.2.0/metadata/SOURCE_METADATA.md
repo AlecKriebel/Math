@@ -10,7 +10,8 @@
 - **License:** CC BY 4.0
 - **New version DOI:** `[NEW VERSION-SPECIFIC SOURCE DOI]`
 
-The archive contains the complete canonical manuscript source, bibliography,
-figures, and generated bibliography file needed for a clean offline build. It
-does not contain private submission planning, temporary files, or the
-external ZCW source repository.
+The archive contains one canonical mathematical source, thin archival,
+line-numbered, and Physical Review A wrappers, the bibliography and frozen
+bibliography outputs, figures, build script, and the official vendored REVTeX
+4.2f runtime needed for clean offline builds. It does not contain private
+submission planning, temporary files, or the external ZCW source repository.

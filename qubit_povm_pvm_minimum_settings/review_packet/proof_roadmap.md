@@ -18,7 +18,7 @@ Every binary qubit POVM is an exact convex mixture of PVMs. Fix two binary
 PVMs on Bob and compress each Alice-steered positive operator to
 
 \[
-\Phi_B(\sigma)=
+\mathcal C_B(\sigma)=
 (\operatorname{Tr}\sigma,\operatorname{Tr}\sigma B_0,
 \operatorname{Tr}\sigma B_1).
 \]
@@ -131,7 +131,7 @@ completion gives
 
 \[
 q(W)=\operatorname{Tr}(S W\Lambda W^T),\qquad
-S=P^Tg^{-1}P.
+\Sigma=P^Tg^{-1}P.
 \]
 
 Because `S` has signature `(1,3)` and `\(\Lambda>0\)`, `q` has inertia

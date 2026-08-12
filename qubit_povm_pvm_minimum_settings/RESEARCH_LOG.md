@@ -1,5 +1,25 @@
 # Research log
 
+## 2026-08-12 — final v1.2.0 submission hardening
+
+- Preserved the pre-hardening v1.2.0 checkpoint at commit
+  `49215a87df29b094b05f14f98ad9cc3590878d0a` on its existing branch and
+  continued on `codex/qubit-v1.2.0-final-hardening` without rewriting history.
+- Kept the mathematical claim freeze: notation and exposition were clarified,
+  but no pre-existing theorem hypothesis, proof mechanism, Bell functional,
+  exact witness, certified bound, or conclusion was changed.
+- Rebalanced related contemporaneous work, added foundational Bell/CHSH and
+  fixed-dimension references, and separated strict residual metrics from
+  genuine residual incidence points.
+- Added a genuine one-column Physical Review A build from the same canonical
+  mathematical source, using the official vendored REVTeX 4.2f runtime; an
+  attempted two-column prototype was rejected because it damaged load-bearing
+  displays and float placement.
+- Consolidated the substantive generative-AI disclosure and synchronized the
+  Zenodo, PRA, supplement, website-draft, audit, and correspondence materials.
+- No Zenodo upload, journal or arXiv submission, website deployment, email,
+  GitHub push, release, or tag was performed.
+
 ## 2026-08-11 — version 1.2.0 publication revision
 
 - Preserved and reverified the complete public version-1.1.0 Zenodo bundle

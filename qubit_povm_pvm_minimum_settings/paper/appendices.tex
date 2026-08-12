@@ -1,16 +1,16 @@
-\section[Exact algebra for the 3-by-2 separation]
-{Exact algebra for the \(3\times2\) separation}
+\section{Exact algebra for the
+\texorpdfstring{\(3\times2\)}{3-by-2} separation}
 \label{app:separation-algebra}
 
 We record the identities that make the projective bound independent of
 numerical optimization. For a pair involving auxiliary label \(2\), let
 \[
-K_{\bm n}=\frac35D \Pi(\bm n)D,\qquad
-K_{\bm m}=\frac45D \Pi(\bm m)D,
+K_{\bm n}=\frac35D_\eta \Pi(\bm n)D_\eta,\qquad
+K_{\bm m}=\frac45D_\eta \Pi(\bm m)D_\eta,
 \]
-where \(x=n_z\), \(y=m_z\), \(r=\bm n\cdot\bm m\), and
+where \(\xi=n_z\), \(\zeta=m_z\), \(r=\bm n\cdot\bm m\), and
 \[
-D=\operatorname{diag}\!\left(
+D_\eta=\operatorname{diag}\!\left(
 \sqrt{\frac{1+\eta}{2}},\sqrt{\frac{1-\eta}{2}}\right).
 \]
 Direct expansion, using \(\|\bm n\|=\|\bm m\|=1\), gives
@@ -29,8 +29,8 @@ F_\eta=
 Its discriminant yields
 \[
 20F_\eta=
-7+\eta(3x+4y)+
-\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}.
+7+\eta(3\xi+4\zeta)+
+\sqrt{[-1+\eta(3\xi-4\zeta)]^2+24(1-\eta^2)(1-r)}.
 \]
 
 At \(\eta=0\),
@@ -39,11 +39,11 @@ F_0(r)=\frac7{20}+\frac1{20}\sqrt{25-24r}.
 \]
 Set
 \[
-q=\sqrt{25-24r}\ge1,\qquad H=8-3x-4y\ge1.
+q=\sqrt{25-24r}\ge1,\qquad H=8-3\xi-4\zeta\ge1.
 \]
 To prove \(F_\eta\le F_0(r)+2\eta/5\), it is enough to prove
 \[
-\sqrt{[-1+\eta(3x-4y)]^2+24(1-\eta^2)(1-r)}
+\sqrt{[-1+\eta(3\xi-4\zeta)]^2+24(1-\eta^2)(1-r)}
 \le q+\eta H.
 \]
 The right side is at least one, so squaring is valid. Using
@@ -51,37 +51,37 @@ The right side is at least one, so squaring is valid. Using
 \[
 \begin{aligned}
 2\eta\{&
-\eta[8(1-y)(4-3x)+12(1-r)]\\
-&+(q-1)(8-3x-4y)+8(1-y)\}.
+\eta[8(1-\zeta)(4-3\xi)+12(1-r)]\\
+&+(q-1)(8-3\xi-4\zeta)+8(1-\zeta)\}.
 \end{aligned}
 \]
 Every factor is nonnegative on
 \[
-0\le\eta\le1,\qquad -1\le x,y,r\le1.
+0\le\eta\le1,\qquad -1\le \xi,\zeta,r\le1.
 \]
-No omitted compatibility condition among \(x,y,r\) can invalidate the
+No omitted compatibility condition among \(\xi,\zeta,r\) can invalidate the
 estimate because it holds on the larger box.
 
-For \(u=|\bm b_0\cdot\bm b_1|\), both relevant pairs satisfy \(r\ge-u\).
+For \(\nu=|\bm b_0\cdot\bm b_1|\), both relevant pairs satisfy \(r\ge-\nu\).
 Moreover,
 \[
-(5+8u)^2-(25+24u)=8u(7+8u)\ge0,
+(5+8\nu)^2-(25+24\nu)=8\nu(7+8\nu)\ge0,
 \]
 so
 \[
-F_0(r)\le\frac7{20}+\frac1{20}\sqrt{25+24u}
-\le\frac35+\frac{2u}{5}.
+F_0(r)\le\frac7{20}+\frac1{20}\sqrt{25+24\nu}
+\le\frac35+\frac{2\nu}{5}.
 \]
 
 For completeness, the scalar inequalities in the CHSH-deficit estimate have
 nonnegative squared differences
 \[
-\left(1-\frac{u^2}{2}\right)^2-(1-u^2)=\frac{u^4}{4},
+\left(1-\frac{\nu^2}{2}\right)^2-(1-\nu^2)=\frac{\nu^4}{4},
 \]
 \[
-\left(2-\frac{u^2}{4}\right)^2-(4-u^2)=\frac{u^4}{16}.
+\left(2-\frac{\nu^2}{4}\right)^2-(4-\nu^2)=\frac{\nu^4}{16}.
 \]
-Their right sides are nonnegative on \(0\le u\le1\), so no sign reversal is
+Their right sides are nonnegative on \(0\le \nu\le1\), so no sign reversal is
 introduced by squaring.
 
 \section{The strengthened algebraic strategy}
@@ -177,7 +177,7 @@ claim.
 \label{app:binary-degeneracies}
 
 If \(B_0,B_1\) are nondegenerate and have linearly independent Bloch axes,
-\(\Phi_B\) maps the positive cone onto a three-dimensional Lorentz cone.
+\(\mathcal C_B\) maps the positive cone onto a three-dimensional Lorentz cone.
 An extreme ray of the image lies on the boundary ellipse. Its minimum-norm
 Bloch lift in the plane of the two axes has norm one; a perpendicular
 component would exceed the Bloch ball. Thus the positive lift in
@@ -188,13 +188,12 @@ interval and has two extreme rays. Every positive relation reduces to
 one-versus-one cancellations or a two-versus-two relation with repeated
 zero-padded outcomes. The same purification construction applies.
 
-If one observable is scalar and the other nondegenerate, the image is again
-two-dimensional; the scalar input is deterministic and does not add a
-coordinate. If both are scalar, Bob is deterministic on both inputs and the
-behavior is local. A rank-deficient circuit sum \(\Omega\) forces all lifted
-rays to be collinear and is realized by a product purification. Zero effects
-receive zero projectors. These cases also show that circuit weights remain
-nonnegative and sum to one at the boundary.
+Suppose one observable is scalar. If the other is nondegenerate, the image
+has dimension two; the scalar input is deterministic and adds no coordinate.
+If both are scalar, Bob is deterministic and the behavior is local. When the
+circuit sum \(\Omega\) has rank one, all lifted rays are collinear; a product
+purification realizes them. Zero effects receive zero projectors. Circuit
+weights remain nonnegative and sum to one at the boundary.
 
 \section{Extremal qubit POVMs and the rank-square bound}
 \label{app:extremal-povm}
@@ -301,7 +300,7 @@ Therefore
 \[
 \sum_j\lambda_jD^2F_j
 =2\sum_j\lambda_jr_j^TW^TP^TQPW r_j
-=2\Tr(SW\Lambda W^T).
+=2\Tr(\Sigma W\Lambda W^T).
 \]
 This expansion also fixes the sign convention used at a Bell maximum.
 
@@ -368,7 +367,7 @@ where
 \]
 Hence \([x]\) is recovered from \([\Phi(x)]\) whenever \(\omega(x)\ne0\).
 
-\subsection[Exceptional divisor x2=0]{Exceptional divisor \(x_2=0\)}
+\subsection{Exceptional divisor \texorpdfstring{\(x_2=0\)}{x2=0}}
 
 Fix a nonbase source with \(x_2=0\). The base-locus analysis shows that
 \(x_3\ne0\), and its nonzero target has the form
@@ -401,7 +400,7 @@ z^Tgz=(1-2(b+d))(1-t).
 Strictness \(b+d<1/2\) gives only \(t=1\), for which \(z=-r_5\) and
 \(\Phi(z)=0\). Thus the cross branch contributes no nonbase preimage.
 
-\subsection[Exceptional divisor x3=0]{Exceptional divisor \(x_3=0\)}
+\subsection{Exceptional divisor \texorpdfstring{\(x_3=0\)}{x3=0}}
 
 Now fix a nonbase source with \(x_3=0\). Then \(x_2\ne0\) and the target is
 \([\xi_0:0:\xi_2:0]\). The target zeros give either the direct branch
@@ -425,7 +424,7 @@ satisfy \(\xi_0=\xi_2\), and nullness becomes
 Strictness \(a+c<1/2\) again leaves only \(t=1\), the base ray \(-r_5\).
 Thus this cross branch also contributes no nonbase preimage.
 
-\subsection[Exceptional divisor x0=x1]{Exceptional divisor \(x_0=x_1\)}
+\subsection{Exceptional divisor \texorpdfstring{\(x_0=x_1\)}{x0=x1}}
 
 If \(x_0=x_1=0\), nullness reduces to \(2e x_2x_3=0\). Since \(e>0\),
 the point is \(r_3\) or \(r_4\), hence in the base locus. A nonbase point may
@@ -478,7 +477,7 @@ which strictness excludes.
 Thus \(N_{01}\) determines at most one \(p\) for the remaining \(q\), proving
 uniqueness on this divisor.
 
-\subsection[Exceptional divisor x2=x3]{Exceptional divisor \(x_2=x_3\)}
+\subsection{Exceptional divisor \texorpdfstring{\(x_2=x_3\)}{x2=x3}}
 
 If \(x_2=x_3=0\), nullness gives \(x_0x_1=0\), hence the base rays
 \(r_1,r_2\). For a nonbase point scale \(x_2=x_3=1\) and put

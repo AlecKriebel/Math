@@ -5,6 +5,12 @@
 **Public version of record:** 1.1.0, deposited 30 July 2026,
 [doi:10.5281/zenodo.21699161](https://doi.org/10.5281/zenodo.21699161)
 
+**Prepared 1.2.0 paper DOI:**
+`[ZENODO V1.2.0 VERSION-SPECIFIC DOI — INSERT AFTER UPLOAD]`
+
+**Prepared 1.2.0 software DOI:**
+`[ZENODO V1.2.0 SOFTWARE DOI — INSERT AFTER UPLOAD]`
+
 This folder is the dependency-complete publication and verification package
 for the following fixed-dimension Bell-correlation classification:
 
@@ -23,8 +29,9 @@ the same state, or that Naimark dilation preserves the qubit dimension.
 
 ## Package map
 
-- `paper/`: complete LaTeX manuscript, bibliography, figures, publication PDF,
-  and line-numbered review PDF.
+- `paper/`: one canonical mathematical source, bibliography, figures,
+  publication PDF, line-numbered review PDF, and a separate one-column
+  REVTeX 4.2f PRA presentation.
 - `artifacts/`: exact symbolic certificates and machine-readable data.
 - `reports/`: proof audit, dependency graph, literature/priority audit,
   verifier report, known risks, and final readiness assessment.
@@ -36,7 +43,7 @@ the same state, or that Naimark dilation preserves the qubit dimension.
   preserved byte-for-byte.
 - `run_all.sh`: one-command exact verification.
 - repository workflow `.github/workflows/qubit-povm-pvm.yml`: continuous
-  exact verification and warning-free builds of both PDFs.
+  exact verification and warning-free archival, review, and PRA builds.
 
 ## Exact verification
 
@@ -51,7 +58,8 @@ SymPy 1.14.0 (pinned in `requirements.txt`). The exact verification path uses
 rational/algebraic arithmetic and does not require network access. Numerical
 discovery scripts are not part of this release path.
 
-To rebuild the publication and line-numbered review PDFs with Tectonic 0.16.9:
+To rebuild the publication, line-numbered review, and PRA PDFs with Tectonic
+0.16.9:
 
 ```sh
 ./paper/build.sh
@@ -66,12 +74,15 @@ manuscript.
 The public-preprint status is **READY, NEEDS EXPERT SCRUTINY**; see
 `reports/readiness_report.md`.
 
-Version 1.2.0 adds a primary-source comparison with the independent
+Version 1.2.0 adds a primary-source comparison with the related
 contemporaneous work of Zhu, Chen, and Wang
 ([arXiv:2608.01317](https://arxiv.org/abs/2608.01317)), foregrounds the
 universal two-input closure theorem, and adds PRA submission and release
-materials. No theorem, proof, Bell coefficient, witness, or mathematical
-conclusion has changed. See `CHANGELOG.md` and `reports/version_history.md`.
+materials. The final hardening pass also clarifies notation and exposition,
+adds foundational citations, and produces a genuine APS-compatible build.
+No theorem hypothesis, Bell coefficient, witness, certified bound, proof
+mechanism, or mathematical conclusion changed. See `CHANGELOG.md` and
+`reports/version_history.md`.
 
 ## Author
 

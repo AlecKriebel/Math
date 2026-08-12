@@ -3,8 +3,8 @@
 OpenAI ChatGPT and Codex were used substantively in mathematical exploration
 and derivation, adversarial proof analysis, symbolic-code generation and
 debugging, literature support, and manuscript preparation. Anthropic Claude
-was used during a separate generative-AI review stage. Exact model identifiers were not
-exposed or retained for every session and are not inferred.
+was used during a separate generative-AI review stage. Exact model identifiers
+were not exposed or retained for every session and are not inferred.
 
 Alec Kriebel selected the research problem, directed the iterative program,
 supplied source material and computational resources, determined the released

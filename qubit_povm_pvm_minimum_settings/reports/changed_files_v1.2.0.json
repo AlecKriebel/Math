@@ -1,92 +1,98 @@
 {
   "version": "1.2.0",
-  "base_commit": "46da4cea4992140eb67e6a6dbeaf7681aeb06289",
+  "pre_hardening_commit": "49215a87df29b094b05f14f98ad9cc3590878d0a",
   "comparison_tag": "qubit-povm-pvm-minimum-settings-v1.1.0",
   "comparison_tag_target": "773356a1de85290c3e85a361e0019f5f82b8e6d9",
   "mathematics_changed": false,
-  "unchanged_mathematical_files": [
-    "paper/appendices.tex",
-    "artifacts/README.md",
-    "artifacts/SHA256SUMS.txt",
-    "artifacts/three_by_two_separation/bell_coefficients_dense.csv",
-    "artifacts/three_by_two_separation/bell_coefficients_sparse.csv",
-    "artifacts/three_by_two_separation/strategy_simple_qsqrt2.json",
-    "artifacts/three_by_two_separation/strategy_strengthened_algebraic.json",
-    "artifacts/three_by_two_separation/verify_exact.py",
-    "artifacts/two_by_two_closure/closure_formulas.json",
-    "artifacts/two_by_two_closure/rank_zero_simulator.py",
-    "artifacts/two_by_two_closure/verify_exact.py"
-  ],
-  "unchanged_numbered_result_digest": {
-    "count": 21,
-    "sha256": "4c4e66da9a8e699bc4e48b02e7804e32bde010a614e33fbc4627c3465939758d"
+  "mathematical_content_unchanged": {
+    "scope": [
+      "fixed-qubit model and shared-randomness convexification",
+      "all pre-existing theorem hypotheses and conclusions",
+      "Bell coefficients and exact strategy data",
+      "certified lower and upper bounds",
+      "proof mechanisms and dependency chain"
+    ],
+    "clarifications": [
+      "split the former combined residual-domain definition into Definitions 5.1 and 5.2",
+      "displayed normalization and steering-recovery identities already used in Theorem 6.1",
+      "added a non-load-bearing independent-existence remark"
+    ],
+    "regression_report": "reports/mathematical_regression_v1.2.0.md"
   },
-  "changed_prose_metadata_or_build_files": [
-    ".gitignore",
-    "AI_PROVENANCE.md",
-    "CHANGELOG.md",
-    "CITATION.cff",
-    "CORRECTIONS.md",
-    "README.md",
-    "RESEARCH_LOG.md",
-    "VERSION.txt",
-    "paper/SOURCE_README.md",
-    "paper/build.sh",
+  "notation_only_changes": {
+    "files": [
+      "paper/main.tex",
+      "paper/appendices.tex",
+      "artifacts/three_by_two_separation/verify_exact.py",
+      "artifacts/two_by_two_closure/closure_formulas.json",
+      "reports/dependency_graph.md",
+      "reports/proof_audit.md",
+      "review_packet/proof_roadmap.md",
+      "review_packet/theorem_to_artifact_map.md",
+      "submission/pra-v1.2.0/supplement/supplement.tex"
+    ],
+    "renames": {
+      "x=n_z, y=m_z": "xi=n_z, zeta=m_z",
+      "u=abs(b0 dot b1)": "nu=abs(b0 dot b1)",
+      "D": "D_eta",
+      "Phi_B": "mathcal C_B",
+      "S=P^TQP": "Sigma=P^TQP",
+      "K=ker D^T": "mathcal K=ker D^T",
+      "H_K": "H_mathcalK"
+    }
+  },
+  "literature_and_prose_changes": [
     "paper/main.tex",
     "paper/references.bib",
-    "reports/changed_files_v1.2.0.json",
     "reports/current_priority_audit.md",
-    "reports/final_readiness_v1.2.0.md",
-    "reports/frozen_v1.1.0_integrity.md",
-    "reports/known_risks.md",
-    "reports/mathematical_regression_v1.2.0.md",
     "reports/pra_policy_audit.md",
     "reports/priority_audit.md",
-    "reports/proof_audit.md",
-    "reports/readiness_report.md",
-    "reports/v1.2.0_revision_changelog.md",
-    "reports/version_history.md",
     "reports/zcw_claim_comparison.md",
     "review_packet/theorem_summary.md",
-    "review_packet/theorem_to_artifact_map.md",
-    "run_all.sh",
     "submission/arxiv_metadata.md",
-    "submission/build_release_v1.2.0.sh",
-    "submission/cover_letter.md",
-    "submission/generate_core_manifest.sh",
-    "submission/journal_metadata.md",
-    "submission/journal_options.md",
     "submission/submission_statements.md",
-    "submission/title_and_abstract.md",
-    "submission/zcw_notification_email.md"
+    "submission/title_and_abstract.md"
   ],
-  "new_submission_and_release_directories": [
+  "layout_and_build_changes": [
+    ".github/workflows/qubit-povm-pvm.yml",
+    "paper/abstract.tex",
+    "paper/build.sh",
+    "paper/pra.bbl",
+    "paper/pra.tex",
+    "paper/SOURCE_README.md",
+    "paper/vendor/revtex-4.2f/",
+    "submission/build_release_v1.2.0.sh"
+  ],
+  "submission_metadata_changes": [
+    "CHANGELOG.md",
+    "CORRECTIONS.md",
+    "LICENSE",
+    "README.md",
+    "RESEARCH_LOG.md",
+    "reports/",
+    "review_packet/",
     "submission/pra-v1.2.0/",
     "submission/website-v1.2.0-draft/",
-    "submission/zenodo-v1.2.0/"
+    "submission/zenodo-v1.2.0/",
+    "submission/zcw_notification_email.md"
   ],
-  "new_directory_entries_are_recursive": true,
-  "regenerated_files": [
-    "SHA256SUMS.txt",
+  "directory_entries_are_recursive": true,
+  "regenerated_binary_artifacts": [
     "paper/main.pdf",
     "paper/review.pdf",
-    "reports/verifier_report.txt",
+    "paper/pra.pdf",
     "submission/arxiv_source.tar.gz",
-    "submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-pra-v1.2.0.pdf",
-    "submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-review-v1.2.0.pdf",
-    "submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-source-v1.2.0.tar.gz",
-    "submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-verifier-v1.2.0.zip",
-    "submission/pra-v1.2.0/kriebel-zcw-theorem-comparison-v1.2.0.pdf",
-    "submission/pra-v1.2.0/supplement/kriebel-minimum-bell-setting-complexity-supplement-v1.2.0.pdf",
-    "submission/website-v1.2.0-draft/paper.pdf",
-    "submission/website-v1.2.0-draft/review.pdf",
-    "submission/zenodo-v1.2.0/SHA256SUMS.txt",
-    "submission/zenodo-v1.2.0/publication/kriebel-2026-minimum-bell-setting-complexity-SHA256SUMS-v1.2.0.txt",
-    "submission/zenodo-v1.2.0/publication/kriebel-2026-minimum-bell-setting-complexity-review-v1.2.0.pdf",
-    "submission/zenodo-v1.2.0/publication/kriebel-2026-minimum-bell-setting-complexity-source-v1.2.0.tar.gz",
-    "submission/zenodo-v1.2.0/publication/kriebel-2026-minimum-bell-setting-complexity-v1.2.0.pdf",
-    "submission/zenodo-v1.2.0/software/kriebel-qubit-povm-pvm-reproducibility-v1.2.0.zip"
+    "submission/pra-v1.2.0/*.pdf",
+    "submission/pra-v1.2.0/*.zip",
+    "submission/pra-v1.2.0/*.tar.gz",
+    "submission/website-v1.2.0-draft/*.pdf",
+    "submission/zenodo-v1.2.0/publication/*",
+    "submission/zenodo-v1.2.0/software/*",
+    "SHA256SUMS.txt",
+    "artifacts/SHA256SUMS.txt",
+    "submission/**/SHA256SUMS.txt"
   ],
   "frozen_historical_directory": "submission/zenodo-v1.1.0/",
-  "frozen_historical_directory_modified": false
+  "frozen_historical_directory_modified": false,
+  "external_actions_performed": []
 }

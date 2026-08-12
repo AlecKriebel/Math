@@ -1,6 +1,6 @@
 # Physical Review A / APS policy audit
 
-**Checked against official APS pages:** 11 August 2026
+**Checked against official APS pages:** 12 August 2026
 
 ## Submission choice
 
@@ -8,8 +8,9 @@
 - Article type: Regular Article
 - Suggested section: A-1E, Fundamental Concepts; A-2E, Quantum Information
   Science, is a plausible secondary classification.
-- Regular Articles have no Letter-style length limit. The stable author PDF is
-  appropriate for initial review; a risky REVTeX conversion is not required.
+- Regular Articles have no Letter-style length limit. APS can begin review
+  from a PDF, and REVTeX is the preferred source format. The package now uses
+  the official REVTeX 4.2f runtime in a stable one-column 11-point build.
 
 ## Required statements
 
@@ -35,12 +36,13 @@ the stable Zenodo software archive.
 
 ## Formatting decision
 
-APS can begin review from a PDF. The canonical article uses a stable standard
-LaTeX class with theorem, appendix, table, and line-numbered review builds. A
-mechanical REVTeX conversion would add regression risk without improving the
-initial scientific review. The PRA package therefore includes the clean
-author PDF and a preservation-friendly canonical source archive, and records
-this decision explicitly.
+The canonical mathematical body is shared by the archival, line-numbered,
+and PRA builds. The PRA wrapper uses the official REVTeX 4.2f runtime with the
+`aps,pra,onecolumn,11pt,notitlepage` options and conventional author metadata. A two-column
+prototype was rejected after it produced extensive overfull displays and
+stuck floats in load-bearing equations and appendices; the submitted
+one-column form is APS-compatible and materially safer to audit. The package
+includes both the PRA PDF and a preservation-friendly source archive.
 
 ## Official sources
 
@@ -52,6 +54,7 @@ this decision explicitly.
 - AI tools: <https://journals.aps.org/authors/appropriate-use-ai-tools>
 - Supplemental Material: <https://journals.aps.org/authors/supplemental-material-instructions>
 - Editorial policies: <https://journals.aps.org/authors/editorial-policies>
+- REVTeX: <https://journals.aps.org/revtex>
 
 Policies can change. The author should recheck the portal immediately before
 submission, especially section names, file limits, and referee fields.

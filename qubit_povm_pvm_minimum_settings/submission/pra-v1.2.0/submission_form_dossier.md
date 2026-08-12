@@ -8,7 +8,7 @@
 - **Secondary fit:** A-2E Quantum Information Science
 - **Title:** Minimum Bell-Setting Complexity for Qubit POVM–PVM Separation
 - **Author:** Alec Kriebel
-- **Affiliation:** Independent Researcher
+- **Affiliation:** Independent Researcher, United States
 - **Corresponding email:** me@aleckriebel.com
 - **ORCID:** 0009-0001-9320-500X
 
@@ -19,10 +19,12 @@ finite, input-dependent output alphabets, we prove that the shared-randomness
 convex hull of fixed-qubit positive-operator-valued-measurement (POVM)
 behaviors equals the corresponding convex hull of projection-valued
 measurement (PVM) behaviors. Consequently, no two-input linear Bell
-functional separates these convexified fixed-qubit models. We complement the
-lower bound with a rational 3×2 Bell functional, an exact qubit-POVM strategy,
-and a global analytic qubit-PVM upper bound separated by a strict exact gap.
-Thus, up to exchanging the parties, 3×2 is the minimum input architecture.
+functional separates these convexified fixed-qubit models. We complement this
+impossibility theorem with a rational 3×2 Bell functional and an exact
+qubit-POVM strategy whose value lies strictly above a global analytic
+qubit-PVM upper bound. Thus, up to exchanging the parties, 3×2 is the minimum
+input architecture for a linear Bell-functional separation of these
+shared-randomness-convexified fixed-qubit models.
 The equality proof combines a one-binary-party Lorentz-cone simulation, an
 extremal binary–ternary reduction, a physically exact Lorentz incidence
 manifold, finite-POVM duality, and a rank trichotomy based on the incidence
@@ -41,8 +43,9 @@ simulability.
 
 - Public preprint v1.1.0: <https://doi.org/10.5281/zenodo.21699161>
 - Stable preprint concept: <https://doi.org/10.5281/zenodo.21699160>
-- Revised version DOI: `[NEW VERSION-SPECIFIC PAPER DOI]`
-- Independent contemporaneous work: Zhu, Chen, and Wang,
+- Revised version DOI:
+  `[ZENODO V1.2.0 VERSION-SPECIFIC DOI — INSERT AFTER UPLOAD]`
+- Related contemporaneous work: Zhu, Chen, and Wang,
   arXiv:2608.01317v1.
 - The manuscript has not been submitted to another journal and is not under
   simultaneous consideration.
@@ -51,8 +54,11 @@ simulability.
 
 No empirical data were generated or analyzed. Exact coefficient tables,
 strategies, programs, manifests, source, and audits are archived on Zenodo.
-Public software v1.1.0: <https://doi.org/10.5281/zenodo.21699224>. Revised
-software DOI: `[NEW VERSION-SPECIFIC SOFTWARE DOI]`.
+The current v1.2.0 paper and software DOIs must be inserted before submission:
+`[ZENODO V1.2.0 VERSION-SPECIFIC DOI — INSERT AFTER UPLOAD]` and
+`[ZENODO V1.2.0 SOFTWARE DOI — INSERT AFTER UPLOAD]`. Version 1.1.0 remains
+the frozen historical release at <https://doi.org/10.5281/zenodo.21699161>
+and <https://doi.org/10.5281/zenodo.21699224>.
 
 ## AI disclosure
 

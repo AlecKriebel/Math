@@ -2,18 +2,21 @@
 
 ## Version 1.2.0 regression note
 
-The August 2026 revision changes positioning, citations, disclosures, and
-submission/release materials only. The Main Theorem, all numbered theorem and
-proof bodies, `paper/appendices.tex`, every Bell coefficient and strategy
-file, and all three exact programs remain mathematically unchanged from the
-frozen 1.1.0 release. A machine-readable regression manifest and fresh exact
-run accompany the revision. Zhu--Chen--Wang is added only as independent
-contemporaneous context and as an alternative 3×2 existence certificate for
-the already-proved minimum-setting corollary.
+The August 2026 revision changes positioning, citations, disclosures,
+notation, and submission/release presentation. No pre-existing theorem
+hypothesis, proof mechanism, Bell functional, exact witness, certified bound,
+or conclusion changes from the frozen 1.1.0 release. The residual-domain
+definition is split and local reconstruction equations already used by the
+proof are displayed explicitly. Appendix A and two exact-description files
+receive the same notation-only renaming; exact coefficient/strategy data and
+computed values are unchanged. A machine-readable change manifest and fresh
+exact run accompany the revision. Zhu--Chen--Wang appears only as related
+contemporaneous context and as an independently obtained alternative
+(3\times2) existence certificate.
 
 **Original audit date:** 2026-07-29
 
-**Regression update:** 2026-08-11
+**Regression update:** 2026-08-12
 **Audited target:** the current manuscript and exact artifacts in this package
 
 ## Verdict
@@ -92,7 +95,7 @@ symmetric-trine rank-zero construction.
 | **E. Lorentz conventions and representation** | **PASS** | `sec:incidence` fixes \(\det X=x^TJx\) and \(\operatorname{Tr}(XY)=2x^Ty\), proves that the selected four effects form a basis, defines the strict residual domain, and derives \(P=2\mathsf E_A^TL_\Xi\mathsf E_B\), \(L_\Xi^TJL_\Xi=|\det\Xi|^2J\), and \(P^Tg^{-1}P=4|\det\Xi|^2h\) with all factors accounted for. | The closure verifier checks the metric identities symbolically and the conformal-Lorentz relation on one exact trine instance. The general determinant/polarization proof is the manuscript's. |
 | **F. Physical exactness and tangent integration** | **PASS** | `thm:physical-completeness` constructs a smooth Lorentz frame, reconstructs both parties' effects and the normalized full-rank state, explains the factor \(1/2\), proves nonnegative Born probabilities even at zero joint entries, and integrates every tangent through a regular-level-set chart on both sides. `prop:smooth` proves the six differentials independent on the stated open stratum. | The verifier checks finite independence witnesses, not the smooth reconstruction, openness, or integration theorem. |
 | **G. KKT pullback and strict multiplier positivity** | **PASS** | `lem:povm-duality` and `app:duality` prove finite POVM duality. `lem:determinant-pullback` derives the effect-level stationarity equation separately for each input. `prop:positive-multipliers` identifies the KKT normalization multiplier with the per-input dual operator, obtains nonnegative multipliers, and gives an explicit hidden-variable/PVM model after a zero multiplier, proving strict positivity. | No script certifies dual attainment, multiplier identification, or the zero-multiplier locality implication. These are manuscript proofs. |
-| **H. Compatibility, second variation, and rank at least two** | **PASS** | `sec:second-variation` now derives the first variation, the Fredholm compatibility condition, independence of the \(k\) compatibility functionals, and \(\dim\mathcal H_K=16-k\). `prop:second-form` proves square completion, inertia \((4,12)\), radial normalization without changing \(q\), and the maximum-sign convention. The rank-\(\ge2\) dimension contradiction then follows. | The closure verifier checks square completion on a nontrivial exact matrix instance and checks the \(\mu\mapsto\Lambda_\mu\) independence witnesses. The general differential, inertia, dimension, and physical-uphill arguments are manuscript proofs. |
+| **H. Compatibility, second variation, and rank at least two** | **PASS** | `sec:second-variation` derives the first variation, the Fredholm compatibility condition, independence of the \(k\) compatibility functionals, and \(\dim\mathcal H_{\mathcal K}=16-k\). `prop:second-form` proves square completion with \(\Sigma=P^TQP\), inertia \((4,12)\), radial normalization without changing \(q\), and the maximum-sign convention. The rank-\(\ge2\) dimension contradiction then follows. | The closure verifier checks square completion on a nontrivial exact matrix instance and checks the \(\mu\mapsto\Lambda_\mu\) independence witnesses. The general differential, inertia, dimension, and physical-uphill arguments are manuscript proofs. |
 | **I. Projective fibers and rank one** | **PASS** | `prop:fiber` and `app:fibers` give the base locus, generic inverse, all four exceptional divisors, direct and cross branches, permissible scalings, zero target coordinates, resultant degeneracies, strict-inequality exclusions, and exceptional intersections. This is sufficient for the rank-one multiplier contradiction. | The closure verifier reproduces the inverse identity, resultants, and listed factorizations exactly. It does not by itself prove the quantified injectivity or exhaustion; those use the written case analysis. |
 | **J. Rank-zero simulation** | **PASS** | `sec:closure` proves that the transformed pentad preserves the binary/ternary partition, has a common scale, and normalizes to \(P=g\). `prop:rank-zero` defines the table entries and checks all four setting blocks. `app:transport` proves the bounded flow exists for every allowed table, including zero-capacity endpoints. | The closure verifier checks the flow row/column identities. `rank_zero_simulator.py` constructs one symmetric-trine instance. General feasibility and simultaneous reconstruction come from the interval proof. |
 | **K. Exact \(3\times2\) separation** | **PASS** | `thm:separation` uses the simple attained value \(L_0\), not an asserted optimum. The manuscript separately proves POVM positivity and normalization, derives both CHSH deficit bounds, identifies the three score operators, lists all six ternary-PVM supports, proves the robust auxiliary bound, and completes the square to the global PVM bound \(U\). `app:strengthened` correctly presents \(L_1\) as an optional stronger attained lower bound, with one-parameter optimality confined to a remark. | The separation verifier checks the coefficient files, both strategies, dual factorizations, support patterns, algebraic bound identities, and exact gaps. The reduction from an arbitrary continuous PVM strategy to those inequalities remains the manuscript proof. |

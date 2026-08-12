@@ -8,17 +8,18 @@
 
 - **Title:** Minimum Bell-Setting Complexity for Qubit POVM--PVM Separation
 - **Author:** Alec Kriebel
-- **Affiliation:** Independent Researcher
+- **Affiliation:** Independent Researcher, United States
 - **Corresponding author:** Alec Kriebel (`me@aleckriebel.com`)
 - **ORCID:** `0009-0001-9320-500X`
 - **Manuscript type:** Regular research article
 - **Primary field:** Quantum information theory / quantum foundations
 - **Secondary field:** Mathematical physics
-- **Length:** 36 pages, including technical appendices and references
+- **Length:** 46 pages in the one-column REVTeX submission build, including
+  technical appendices and references (35 pages in the canonical review build)
 - **Figures:** 3
 - **Tables:** 3
-- **Supplementary material:** exact verification code and machine-readable
-  certificates in the public repository
+- **Supplementary material:** separate PDF plus an exact-artifact archive;
+  load-bearing proofs remain in the main paper
 
 ## Keywords
 
@@ -43,12 +44,12 @@ Use the exact synchronized abstract in:
 
 ## Files for upload
 
-1. `paper/main.pdf`;
-2. `submission/arxiv_source.tar.gz` or the equivalent journal source archive;
-3. `paper/main.tex`, `paper/appendices.tex`, `paper/references.bib`, and
-   `paper/figures/*.tex`;
-4. the public repository link from `submission/submission_statements.md`;
-5. any journal-specific disclosure form generated from
+1. `submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-pra-v1.2.0.pdf`;
+2. `submission/pra-v1.2.0/supplemental_material.pdf`;
+3. `submission/pra-v1.2.0/kriebel-minimum-bell-setting-complexity-source-v1.2.0.tar.gz`;
+4. `submission/pra-v1.2.0/supplemental_artifacts-v1.2.0.zip`;
+5. the public repository link from `submission/submission_statements.md`;
+6. any journal-specific disclosure form generated from
    `submission/submission_statements.md`.
 
 ## Availability and declarations

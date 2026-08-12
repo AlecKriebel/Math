@@ -23,7 +23,8 @@ Public 1.1.0 software DOI: <https://doi.org/10.5281/zenodo.21699224>
 
 Stable software concept DOI: <https://doi.org/10.5281/zenodo.21699223>
 
-New 1.2.0 version DOI: `[TO BE INSERTED AFTER ZENODO NEW-VERSION DEPOSIT]`
+New 1.2.0 version DOI:
+`[ZENODO V1.2.0 SOFTWARE DOI — INSERT AFTER UPLOAD]`
 
 The exact suite runs without network access using the pinned Python
 dependency listed in `requirements.txt`. Numerical discovery code is not part
@@ -34,12 +35,12 @@ of the theorem-verification path.
 OpenAI ChatGPT and Codex were used substantively for mathematical exploration
 and derivation, adversarial proof analysis, symbolic-code generation and
 debugging, literature support, and manuscript preparation. Anthropic Claude
-was used in a separate generative-AI review stage. Exact model identifiers were not
-exposed or retained for every session and are not inferred. Alec Kriebel
+was used in a separate generative-AI review stage. Exact model identifiers
+were not exposed or retained for every session and are not inferred. Alec Kriebel
 selected and directed the research program, supplied source material and
 computational resources, determined the claims and publication scope,
 reviewed the package, and accepts responsibility for every statement and
-artifact. Outputs were checked through exact arithmetic, independently
+artifact. Outputs were checked through exact arithmetic, separately
 organized scripts, proof audits, frozen-release regression, and author
 review. These checks do not formally verify the universal manuscript proof
 and do not constitute independent expert peer review. Generative-AI systems

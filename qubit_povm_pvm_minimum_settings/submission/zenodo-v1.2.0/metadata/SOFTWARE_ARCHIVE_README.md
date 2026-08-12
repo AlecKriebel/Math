@@ -7,9 +7,10 @@ prepared for a new version of Zenodo concept DOI
 
 ## Contents
 
-- `artifacts/`: immutable exact coefficient, strategy, symbolic-verifier, and
+- `artifacts/`: manifest-pinned exact coefficient, strategy, symbolic-verifier, and
   rank-zero simulator sources;
-- `paper/`: canonical LaTeX source, figures, and both 36-page PDFs;
+- `paper/`: one canonical mathematical source, thin build wrappers, figures,
+  archival, line-numbered, and PRA PDFs, and the official REVTeX 4.2f runtime;
 - `reports/`: proof, dependency, comparison, priority, risk, regression, and
   readiness audits plus the fresh verifier transcript;
 - `review_packet/`: theorem summary, proof roadmap, load-bearing lemma index,
@@ -40,4 +41,5 @@ than proof-assistant-verified theorems.
 
 Verification source code is MIT licensed. Manuscript text, reports, figures,
 and machine-readable mathematical data are CC BY 4.0. The vendored
-`paper/lineno.sty` retains the LPPL terms stated in that file. See `LICENSE`.
+`paper/lineno.sty` and official REVTeX 4.2f materials retain the LPPL terms
+documented with those files. See `LICENSE`.

@@ -23,10 +23,11 @@ that 3×2, up to party exchange, is the minimum input architecture. The
 equality is not raw-set equality, same-state simulation, or operator-level
 POVM simulability.
 
-Version 1.2.0 adds and accurately compares the independent contemporaneous
-work of Zhu, Chen, and Wang (arXiv:2608.01317v1) and foregrounds the two-input
-closure theorem. No pre-existing theorem statement, proof, Bell functional,
-exact witness, certified bound, or conclusion changed.
+Version 1.2.0 adds a restrained comparison with related contemporaneous work
+by Zhu, Chen, and Wang (arXiv:2608.01317v1), whose construction was obtained
+independently, and foregrounds the two-input closure theorem. No pre-existing
+theorem statement, proof, Bell functional, exact witness, certified bound, or
+conclusion changed.
 
 Generative-AI systems were used substantively in research, software, review,
 and manuscript preparation. The human author accepts responsibility for all

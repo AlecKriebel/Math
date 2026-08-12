@@ -12,10 +12,10 @@
 - **Programming language:** Python
 - **Reference runtime:** Python 3.14.6
 - **Dependency:** SymPy 1.14.0
-- **PDF build:** Tectonic 0.16.9
+- **PDF build:** Tectonic 0.16.9 with the official vendored REVTeX 4.2f
 - **Licenses:** MIT for verification code; CC BY 4.0 for paper, reports,
-  figures, and mathematical data; vendored `lineno.sty` remains under its
-  embedded LPPL terms.
+  figures, and mathematical data; vendored `lineno.sty` and REVTeX 4.2f
+  remain under their documented LPPL terms.
 - **New version DOI:** `[NEW VERSION-SPECIFIC SOFTWARE DOI]`
 
 ## Description
@@ -23,7 +23,8 @@
 This record archives the exact verification and reproducibility package for
 version 1.2.0 of the associated preprint. It contains rational Bell
 coefficients, exact states and POVMs, separation and Lorentz-incidence
-symbolic checks, an exact rank-zero simulator, manuscript source and PDFs,
+symbolic checks, an exact rank-zero simulator, manuscript source and archival,
+line-numbered, and PRA PDFs,
 proof/dependency/priority/risk audits, a theorem-to-artifact map, and a one-
 command offline runner.
 

@@ -124,7 +124,7 @@ logical chain is
 \eta\le2^{1/4}\sqrt\delta,\quad
 u\le2^{3/4}\sqrt\delta\\
 &\longrightarrow
-T\le\frac35+\frac25(\eta+u)
+T\le\frac35+\frac25(\eta+\nu)
 \le\frac35+C\sqrt\delta\\
 &\longrightarrow
 10S+T\le20\sqrt2+\frac35+\frac{C^2}{40}=U.
@@ -197,7 +197,7 @@ For
 
 \[
 \delta P=PW+Hg^{-1}P,\qquad
-S=P^Tg^{-1}P,
+\Sigma=P^Tg^{-1}P,
 \]
 
 the weighted constrained second variation is
@@ -213,7 +213,7 @@ and \(q\) has inertia \((4,12)\).
   maximality.
 - If \(\operatorname{rank}\mathcal D=1\), projective injectivity of the null-ray
   quadratic map leaves exactly one nonzero row, so
-  \(\ker\mathcal D^T\) has no strictly positive vector.
+  \(\mathcal K=\ker\mathcal D^T\) has no strictly positive vector.
 - If \(\operatorname{rank}\mathcal D=0\), the transformed pentad permutes the
   base rays with one common scale; the resulting Lorentz Gram table has an
   explicit deterministic local decomposition.

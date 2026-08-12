@@ -254,17 +254,17 @@ def verify_strengthened_strategy(coeff):
 
 
 def verify_projective_bound():
-    eta, x, y, r, q = sp.symbols("eta x y r q", real=True)
+    eta, xi, zeta, r, q = sp.symbols("eta xi zeta r q", real=True)
 
     # Determinant and trace-discriminant identities for binary projective
     # discrimination.  The Bloch vectors obey n^2=m^2=1 and n.m=r.
     nx, ny, nz, mx, my, mz = sp.symbols("nx ny nz mx my mz", real=True)
     s = sp.symbols("s", nonnegative=True, real=True)
-    D = sp.diag(sp.sqrt((1 + eta) / 2), sp.sqrt((1 - eta) / 2))
+    D_eta = sp.diag(sp.sqrt((1 + eta) / 2), sp.sqrt((1 - eta) / 2))
     Qn = (I2 + nx * X + ny * Y + nz * Z) / 2
     Qm = (I2 + mx * X + my * Y + mz * Z) / 2
-    A = R(3, 5) * D * Qn * D
-    B = R(4, 5) * D * Qm * D
+    A = R(3, 5) * D_eta * Qn * D_eta
+    B = R(4, 5) * D_eta * Qm * D_eta
     H = sp.simplify(A - B)
     # Reduce polynomial identities modulo unit-vector and dot-product relations.
     relations = [nx**2 + ny**2 + nz**2 - 1,
@@ -285,22 +285,22 @@ def verify_projective_bound():
     assert sp.expand(rem) == 0
 
     # The robust square-root comparison, checked as a polynomial identity.
-    Rrad = (-1 + eta * (3*x - 4*y))**2 + 24*(1-eta**2)*(1-r)
-    Hlin = 8 - 3*x - 4*y
-    E1 = 8*(1-y)*(4-3*x) + 12*(1-r)
-    E2 = (q-1)*Hlin + 8*(1-y)
+    Rrad = (-1 + eta * (3*xi - 4*zeta))**2 + 24*(1-eta**2)*(1-r)
+    Hlin = 8 - 3*xi - 4*zeta
+    E1 = 8*(1-zeta)*(4-3*xi) + 12*(1-r)
+    E2 = (q-1)*Hlin + 8*(1-zeta)
     lhs = sp.expand((q + eta*Hlin)**2 - Rrad)
     lhs = sp.expand(lhs.subs(q**2, 25-24*r))
     rhs = sp.expand(2*eta*(eta*E1 + E2))
     assert sp.simplify(lhs-rhs) == 0
-    assert sp.expand(Hlin - (1 + 3*(1-x) + 4*(1-y))) == 0
-    assert sp.expand((4-3*x) - (1+3*(1-x))) == 0
+    assert sp.expand(Hlin - (1 + 3*(1-xi) + 4*(1-zeta))) == 0
+    assert sp.expand((4-3*xi) - (1+3*(1-xi))) == 0
 
     # Scalar tangent/square certificates used in the CHSH deficit estimates.
-    u, z = sp.symbols("u z", nonnegative=True, real=True)
-    assert sp.factor((1-u**2/2)**2 - (1-u**2)) == u**4/4
-    assert sp.factor((2-u**2/4)**2 - (4-u**2)) == u**4/16
-    assert sp.factor((5+8*u)**2 - (25+24*u)) == 8*u*(7+8*u)
+    nu, z = sp.symbols("nu z", nonnegative=True, real=True)
+    assert sp.factor((1-nu**2/2)**2 - (1-nu**2)) == nu**4/4
+    assert sp.factor((2-nu**2/4)**2 - (4-nu**2)) == nu**4/16
+    assert sp.factor((5+8*nu)**2 - (25+24*nu)) == 8*nu*(7+8*nu)
 
     C = R(2, 5) * (2**R(1, 4) + 2**R(3, 4))
     C2 = sp.simplify(C**2)

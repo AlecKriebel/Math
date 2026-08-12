@@ -1,12 +1,12 @@
 # Claim comparison: Zhu–Chen–Wang and the present work
 
-**Audit date:** 11 August 2026
+**Audit date:** 12 August 2026
 
 **Primary ZCW source:** arXiv:2608.01317v1, posted 2 August 2026
 
 **Audited repository commit:** `c782e8bc2876d5a2c5f068fe8c9007aa1ce0718f`
 
-The official arXiv submission history was rechecked on 11 August 2026 and
+The official arXiv submission history was rechecked on 12 August 2026 and
 showed only version 1, submitted 2 August 2026 at 15:37:41 UTC.
 
 ## Executive boundary
@@ -41,7 +41,7 @@ degenerate binary observables, and every ternary-PVM rank pattern together.
 This audit records the wording, the direct theorem overlap, and the public
 dates; it draws no inference about misconduct, dependence, unknown private
 development, or final priority. The public repository HEAD was also rechecked
-on 11 August 2026 and remained the audited commit shown above.
+on 12 August 2026 and remained the audited commit shown above.
 
 ## Exact ZCW scope
 

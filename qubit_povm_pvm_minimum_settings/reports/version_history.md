@@ -2,13 +2,15 @@
 
 ## Version 1.2.0 — August 2026 (prepared, not yet deposited)
 
-This non-destructive revision cites and compares the independent
-contemporaneous paper by Zhu, Chen, and Wang, foregrounds the universal
-two-input convexified equality and minimum-setting theorem, and adds complete
-Zenodo-new-version and Physical Review A preparation materials.
+This non-destructive revision gives a restrained comparison with related
+contemporaneous work by Zhu, Chen, and Wang, whose construction was obtained
+independently; foregrounds the universal two-input convexified equality and
+minimum-setting theorem; clarifies notation and local reconstruction; and
+adds complete Zenodo-new-version, Supplemental Material, and genuine REVTeX
+4.2f Physical Review A preparation materials.
 
-No theorem, proof, Bell coefficient, exact strategy, certified bound, or
-mathematical conclusion changed.
+No pre-existing theorem hypothesis, proof mechanism, Bell coefficient, exact
+strategy, certified bound, or mathematical conclusion changed.
 
 The five new version-specific Zenodo DOIs do not exist until the author uses
 “New version” on each existing concept. Every placeholder is listed in

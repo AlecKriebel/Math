@@ -1,6 +1,6 @@
 # Version 1.2.0 readiness report
 
-**Assessment date:** 2026-08-11
+**Assessment date:** 2026-08-12
 
 **Scope:** non-destructive Zenodo new version and Physical Review A Regular
 Article package
@@ -34,7 +34,7 @@ that one additional input can.
 | Lorentz-incidence equality proof | **READY, NEEDS EXPERT SCRUTINY** | Lorentz factors, physical reconstruction, per-input multiplier pullback, Fredholm compatibility, second variation, exceptional fibers, and all four rank-zero blocks are written out. Exact programs regression-check the finite algebra; the quantified conclusions are manuscript proofs. |
 | Combined universal equality theorem | **READY, NEEDS EXPERT SCRUTINY** | The dependency chain is complete, the C--K revision audit found no unresolved load-bearing step, and the theorem-to-artifact map identifies every executable boundary. No independent expert referee has yet certified the combined theorem. |
 | Priority claim | **READY, NEEDS EXPERT SCRUTINY** for qualified wording; **NOT READY** for an absolute “first” claim | The current primary-source audit found the \(3\times2\) phenomenon to be prior art and found no earlier arbitrary-output \(2\times2\) closure or minimum-input classification. Use only “to our knowledge,” and repeat the search immediately before submission. |
-| Computational reproducibility | **READY** | Python 3.14.6 and SymPy 1.14.0 are pinned. The offline runner verifies eight immutable source artifacts and passes the exact separation, 39 closure checks, and rank-zero construction. The executable boundary is disclosed. |
+| Computational reproducibility | **READY** | Python 3.14.6 and SymPy 1.14.0 are pinned. The offline runner verifies eight current-release manifest-pinned source artifacts and passes the exact separation, 39 closure checks, and rank-zero construction. The executable boundary is disclosed. |
 
 ## Quality gates
 
@@ -44,16 +44,19 @@ that one additional input can.
   and a one-command runner.
 - **Literature:** PASS for conservative positioning; an immediate
   pre-submission refresh remains required.
-- **Presentation:** PASS. The 36-page publication PDF and 36-page
-  line-numbered review PDF compile without warnings. Every publication page
-  was rendered and inspected, and the three figures were checked in context.
+- **Presentation:** PASS. The 35-page publication PDF, 35-page line-numbered
+  review PDF, 46-page one-column REVTeX PRA PDF, 3-page Supplemental Material
+  PDF, and 1-page internal comparison PDF compile without warnings. All 120
+  pages were rendered and inspected, including the first five pages after the
+  Introduction float repair.
 - **Scope discipline:** PASS. The paper consistently states convexified
   behavior-set equality, permits zero projectors/postprocessing, forbids
   dimension-increasing dilation, and disclaims same-state simulation and exact
   global optima.
-- **CI:** CONFIGURED. The repository workflow runs `run_all.sh`, builds both
-  PDFs with Tectonic 0.16.9, and uploads them; its first hosted run follows the
-  release push.
+- **CI:** CONFIGURED. The repository workflow runs `run_all.sh`, builds the
+  canonical, review, PRA, and Supplemental Material PDFs with Tectonic
+  0.16.9, and uploads them; its first hosted run follows an authorized release
+  push.
 - **External expert review:** NOT YET PERFORMED.
 - **Journal/arXiv upload:** NOT PERFORMED; those account actions remain for the
   human author.
