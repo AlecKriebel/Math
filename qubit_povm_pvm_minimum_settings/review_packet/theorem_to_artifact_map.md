@@ -1,5 +1,9 @@
 # Theorem-to-artifact map
 
+**Version 1.2.0:** all mathematical artifacts listed below are unchanged from
+the public 1.1.0 release. The revision adds citations, positioning,
+provenance, and submission/release materials only.
+
 All paths below are relative to the package root. Manuscript labels are more
 stable than page or theorem numbers and should be used during review.
 

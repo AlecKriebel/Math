@@ -17,6 +17,7 @@ export PYTHONHASHSEED=0
 printf '%s\n' '== Environment =='
 "$python_bin" - <<'PY'
 import platform
+from pathlib import Path
 import sys
 
 import sympy
@@ -31,7 +32,7 @@ if sympy.__version__ != expected_sympy:
 print(f"Python {platform.python_version()}")
 print(f"Reference Python {reference_python} (pinned in .python-version)")
 print(f"SymPy {sympy.__version__}")
-print(f"Executable {sys.executable}")
+print(f"Executable name {Path(sys.executable).name}")
 PY
 
 printf '%s\n' '== Artifact integrity =='

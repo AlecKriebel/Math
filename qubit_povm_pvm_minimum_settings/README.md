@@ -1,5 +1,10 @@
 # Minimum Bell-setting complexity for qubit POVM--PVM separation
 
+**Current prepared revision:** 1.2.0 (August 2026; awaiting author release)
+
+**Public version of record:** 1.1.0, deposited 30 July 2026,
+[doi:10.5281/zenodo.21699161](https://doi.org/10.5281/zenodo.21699161)
+
 This folder is the dependency-complete publication and verification package
 for the following fixed-dimension Bell-correlation classification:
 
@@ -26,7 +31,9 @@ the same state, or that Naimark dilation preserves the qubit dimension.
 - `review_packet/`: theorem summary, proof roadmap, load-bearing lemma index,
   theorem-to-artifact map, and focused reviewer questions.
 - `submission/`: arXiv and journal metadata, availability/disclosure
-  statements, and private referee-objection responses.
+  statements, the non-destructive Zenodo 1.2.0 upload set, and a complete
+  Physical Review A review package. The frozen `zenodo-v1.1.0/` directory is
+  preserved byte-for-byte.
 - `run_all.sh`: one-command exact verification.
 - repository workflow `.github/workflows/qubit-povm-pvm.yml`: continuous
   exact verification and warning-free builds of both PDFs.
@@ -58,6 +65,13 @@ is not peer review and does not replace the mathematical arguments in the
 manuscript.
 The public-preprint status is **READY, NEEDS EXPERT SCRUTINY**; see
 `reports/readiness_report.md`.
+
+Version 1.2.0 adds a primary-source comparison with the independent
+contemporaneous work of Zhu, Chen, and Wang
+([arXiv:2608.01317](https://arxiv.org/abs/2608.01317)), foregrounds the
+universal two-input closure theorem, and adds PRA submission and release
+materials. No theorem, proof, Bell coefficient, witness, or mathematical
+conclusion has changed. See `CHANGELOG.md` and `reports/version_history.md`.
 
 ## Author
 

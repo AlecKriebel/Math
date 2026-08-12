@@ -50,8 +50,9 @@ for Qubit POVM--PVM Separation}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
 \small \texttt{me@aleckriebel.com}\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}\\
 \small \url{https://aleckriebel.com/}}
-\date{July 2026}
+\date{Version 1.2.0 --- August 2026}
 
 \begin{document}
 \ifdefined\REVIEWVERSION
@@ -60,21 +61,21 @@ for Qubit POVM--PVM Separation}
 \maketitle
 
 \begin{abstract}
-V\'ertesi and Bene exhibited a \(3\times2\) Bell scenario in which qubit
-positive-operator-valued measurements (POVMs) outperform qubit
-projection-valued measurements (PVMs). We prove the matching setting lower
-bound. For arbitrary finite, input-dependent output alphabets, the
-shared-randomness convex hulls of bipartite qubit-POVM and qubit-PVM behaviors
-are equal when both parties have two inputs. Equivalently, no two-input
-linear Bell functional separates the two convexified sets. We also give a
-rational \(3\times2\) functional, an exact qubit-POVM strategy, and a global
-analytic qubit-PVM upper bound with a strict exact gap. Hence \(3\times2\) is
-the minimum input architecture, up to exchanging the parties. The equality
-proof combines a one-binary-party Lorentz-cone simulation, an extremal
-binary--ternary reduction, a physically exact Lorentz incidence manifold,
-finite-POVM duality, and a rank trichotomy based on the incidence second
-variation. The result concerns convexified behavior sets; it does not assert
-equality of the raw nonconvex strategy images or same-state simulation.
+For every bipartite Bell architecture with two inputs per party and arbitrary
+finite, input-dependent output alphabets, we prove that the shared-randomness
+convex hull of fixed-qubit positive-operator-valued-measurement (POVM)
+behaviors equals the corresponding convex hull of projection-valued
+measurement (PVM) behaviors. Consequently, no two-input linear Bell
+functional separates these convexified fixed-qubit models. We complement the
+lower bound with a rational \(3\times2\) Bell functional, an exact qubit-POVM
+strategy, and a global analytic qubit-PVM upper bound separated by a strict
+exact gap. Thus, up to exchanging the parties, \(3\times2\) is the minimum
+input architecture. The equality proof combines a one-binary-party
+Lorentz-cone simulation, an extremal binary--ternary reduction, a physically
+exact Lorentz incidence manifold, finite-POVM duality, and a rank trichotomy
+based on the incidence second variation. The equality concerns convexified
+behavior sets; it does not assert equality of raw nonconvex strategy images,
+same-state simulation, or operator-level projective simulability.
 \end{abstract}
 
 \begin{maintheorem}
@@ -100,6 +101,11 @@ POVM--PVM separation by a linear Bell functional.
 \end{maintheorem}
 
 \noindent
+The convex hull represents shared randomness selecting an entire state-and-
+measurement strategy. The equality is not an equality of raw strategy images
+and does not assert same-state or operator-level simulation.
+
+\noindent
 Throughout, ``\(m\times n\)'' counts Bell inputs (measurement settings), not
 measurement outcomes.
 
@@ -117,9 +123,9 @@ nonlocality and dimension-constrained quantum behavior
 
 Gisin asked whether some Bell inequality and quantum state can require
 nonprojective measurements for optimal violation, noting that binary outcomes
-cannot furnish such an example \cite{gisin2007}. V\'ertesi and Bene answered
-that existence question for two qubits using three inputs on Alice and two on Bob
-\cite{vertesi2010}; subsequent work refined that family
+cannot furnish such an example \cite{gisin2007}. V\'ertesi and Bene introduced
+a \(3\times2\) two-qubit construction demonstrating the relevance of a genuine
+ternary POVM \cite{vertesi2010}; subsequent work refined that family
 \cite{barra2012}, and related device-independent constructions certify
 nonprojective qubit measurements with larger input architectures
 \cite{gomez2016}. These results do not settle the two-input behavior-set
@@ -159,15 +165,42 @@ qubit PVM with a zero effect was found to attain the same value
 projectors, deterministic inputs, every support pattern, and stochastic
 postprocessing throughout.
 
+\subsection*{Independent contemporaneous work}
+
+Zhu, Chen, and Wang independently construct a different rational
+\(3\times2\) Bell functional and a different exact ternary qubit POVM, and
+prove an analytic fixed-qubit POVM--PVM separation over arbitrary shared
+two-qubit states \cite{zhu2026}. They additionally determine the unrestricted
+finite-dimensional tensor-product optimum of their functional through an
+exact level-3 noncommutative sum-of-squares certificate and provide a Lean~4
+formalization of their fixed-qubit separation theorem. Their construction
+and ours have different displayed Bell coefficients and measurements,
+although both combine a dominant CHSH component with a weaker ternary probe.
+Their work does not address the universal two-input convexified equality or
+minimum-setting classification proved here; conversely, the present work
+does not determine the unrestricted finite-dimensional optimum of its own
+functional or reproduce their formal certificates. The first public version
+of this manuscript was deposited on Zenodo on 30 July 2026
+\cite{kriebel2026v11}; their first public arXiv version was posted on 2 August
+2026. These dates record public chronology only; we describe the results as
+independent contemporaneous work.
+
 \subsection*{Contributions}
 
 We work throughout with local Hilbert-space dimension at most two and with
 shared-randomness convexification. Our results are:
 
 \begin{enumerate}[leftmargin=*,itemsep=3pt]
-\item An explicit rational \(3\times2\) Bell functional has an exact
-  algebraic qubit-POVM strategy above a global analytic upper bound for all
-  qubit-PVM strategies (\cref{thm:separation}).
+\item For arbitrary finite, input-dependent outputs, the shared-randomness
+  convex hulls of fixed-qubit POVM and PVM behaviors coincide when both
+  parties have two inputs (\cref{thm:two-input-equality}).
+\item Combining that lower bound with an exact \(3\times2\) separator proves
+  that \(3\times2\) is the minimum input architecture, up to exchanging the
+  parties (\cref{cor:minimality}).
+\item The matching existence witness is an explicit rational \(3\times2\)
+  Bell functional with an exact algebraic qubit-POVM strategy above a global
+  analytic upper bound for all qubit-PVM strategies
+  (\cref{thm:separation}).
 \item If one party has binary outcomes on both of its two inputs, every qubit
   POVM behavior is a common convex mixture of complete qubit-PVM behaviors
   (\cref{thm:binary-party}).
@@ -177,8 +210,9 @@ shared-randomness convexification. Our results are:
 \item The residual architecture cannot strictly exceed the PVM support
   function (\cref{thm:two-input-equality}). The proof treats every smooth and
   singular rank of an exact Lorentz incidence model.
-\item Consequently \(3\times2\) is the minimum input architecture, up to
-  exchanging the parties (\cref{cor:minimality}).
+\item Exact machine-readable witnesses and symbolic regression checks make
+  the finite algebraic certificate layers independently reproducible, while
+  the universal convex-geometric steps remain manuscript proofs.
 \end{enumerate}
 
 \begin{figure}[t]
@@ -197,27 +231,46 @@ sets. The distinction is central.
 \begin{table}[t]
 \centering
 \small
-\caption{The earlier \(3\times2\) separator and the present exact
-classification. Both use the heterogeneous output architecture
-\((2,2,3)\)-by-\((2,2)\).}
-\label{tab:comparison}
+\caption{Verified scope of three \(3\times2\) constructions. All use the
+heterogeneous output architecture \((2,2,3)\)-by-\((2,2)\).}
+\label{tab:comparison-separation}
 \begin{tabular}{@{}
->{\raggedright\arraybackslash}p{0.20\linewidth}
->{\raggedright\arraybackslash}p{0.33\linewidth}
->{\raggedright\arraybackslash}p{0.39\linewidth}@{}}
+>{\raggedright\arraybackslash}p{0.22\linewidth}
+>{\raggedright\arraybackslash}p{0.21\linewidth}
+>{\raggedright\arraybackslash}p{0.22\linewidth}
+>{\raggedright\arraybackslash}p{0.25\linewidth}@{}}
 \toprule
-Feature & V\'ertesi--Bene \cite{vertesi2010} & Present work\\
+Feature & V\'ertesi--Bene \cite{vertesi2010} & Zhu--Chen--Wang
+\cite{zhu2026} & Present work\\
 \midrule
-Role & Establishes fixed-qubit POVM advantage at \(3\times2\) &
-Proves arbitrary-output convexified equality at \(2\times2\), then combines it
-with an exact \(3\times2\) witness\\
-Bell coefficients & Algebraic \(I_{CH3}\) family & Rational functional\\
-Unrestricted-state PVM comparison & Numerical optimization supported by an
-NPA upper bound for the displayed parameter choice & Analytic upper bound
-covering every two-qubit state and every PVM support\\
-Global optimum claimed & No & No; \(L_0\) is a lower bound and \(U\) an upper
-bound\\
-Setting minimality & Not addressed & \(3\times2\), up to party exchange\\
+Bell coefficients & Algebraic \(I_{CH3}\) family & Rational functional &
+Rational functional\\
+Arbitrary-state fixed-qubit PVM ceiling & Numerical/NPA for the displayed
+parameter choice & Analytic & Analytic\\
+Strict fixed-qubit separation & Yes & Yes & Yes\\
+Exact fixed-qubit PVM optimum claimed & No & No & No\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Results beyond the displayed \(3\times2\) fixed-qubit separation.}
+\label{tab:comparison-scope}
+\begin{tabular}{@{}
+>{\raggedright\arraybackslash}p{0.37\linewidth}
+>{\centering\arraybackslash}p{0.17\linewidth}
+>{\centering\arraybackslash}p{0.18\linewidth}
+>{\centering\arraybackslash}p{0.17\linewidth}@{}}
+\toprule
+Result & V\'ertesi--Bene & Zhu--Chen--Wang & Present work\\
+\midrule
+Unrestricted finite-dimensional optimum for its functional & Not reported & Yes & Not reported\\
+Formal proof-assistant certificate & Not reported & Lean~4 for fixed-qubit separation & Not supplied\\
+Universal convexified two-input equality & Not addressed & Not addressed & Yes\\
+Minimum-setting classification & Not addressed & Not addressed & Yes\\
+Reproducibility materials & Numerical materials reported & Exact artifacts & Exact artifacts\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -241,6 +294,17 @@ separator. The constrained second variation then has ambient inertia
 forces an uphill direction. Rank one contradicts positivity through an exact
 projective-fiber theorem, while rank zero has an explicit deterministic
 decomposition.
+
+\subsection*{Research and verification process}
+
+Generative-AI systems were used substantively during the mathematical
+research itself, including exploration, derivation, adversarial proof
+analysis, and symbolic-code development. The author directed the research
+program and determined the released claim boundaries. Finite exact identities
+and constructions were checked with separately organized scripts; the
+universal steps remain explicit manuscript proofs. Tool provenance,
+verification limits, and human responsibility are stated in full at the end
+of the paper and in the archived provenance record.
 
 \section{Model and convexified behavior sets}
 \label{sec:model}
@@ -457,6 +521,15 @@ L_0-U=\frac{3(2-\sqrt2)}{250}>0.
 These are an attained POVM lower bound and a global PVM upper bound; neither
 is asserted to be the corresponding exact optimum.
 \end{theorem}
+
+\begin{remark}[Independent existence certificate]
+Zhu, Chen, and Wang give an independent contemporaneous analytic
+\(3\times2\) separator \cite{zhu2026}. Either exact separator supplies the
+existence half of \cref{cor:minimality}; the universal two-input equality
+theorem is independent of which \(3\times2\) witness is used. We retain the present
+witness because it is a distinct construction and part of the 30 July public
+record.
+\end{remark}
 
 \subsection{The simple exact strategy}
 
@@ -1702,10 +1775,10 @@ parties are excluded by \cref{thm:two-input-equality}.
 
 \section{Operational consequences and limitations}
 
-For every Bell functional with two inputs per party, optimizing over
-fixed-qubit PVMs already
-provides the fixed-qubit POVM bound. Thus a value above that bound excludes
-all local-qubit realizations, not merely projective ones.
+At the level of linear Bell tests whose fixed-qubit comparison class permits
+shared randomness, optimizing over fixed-qubit PVMs with two inputs per party
+already provides the fixed-qubit POVM bound. Thus a value above that bound
+excludes all local-qubit realizations, not merely projective ones.
 
 Likewise, no qubit behavior with two inputs per party can certify that a
 nonprojective local
@@ -1727,11 +1800,16 @@ decomposition, not only equality of observed behavior sets.
 
 The threshold result is special to local dimension two. Natural open
 questions include minimum-input laws in dimension three and higher,
-multipartite scenarios, equality without convexification, constructive
-simulation algorithms for generic two-input behaviors, instruments and
-sequential measurements, and experimentally robust exact \(3\times2\)
-witnesses. Determining the exact two-qubit POVM and PVM optima of
+multipartite scenarios, equality of the raw nonconvex two-input behavior
+sets, same-state or constructive simulation, instruments and sequential
+measurements, and experimentally robust exact \(3\times2\) witnesses.
+Determining the exact fixed-qubit POVM and PVM optima of
 \eqref{eq:bell-functional} is also open but unnecessary for the separation.
+The unrestricted finite-dimensional tensor-product optimum is not known for
+our functional. Zhu, Chen, and Wang determine that unrestricted optimum for
+their different functional \cite{zhu2026}; this optimization statement does
+not by itself assert that POVMs remain necessary when local dimension is
+unrestricted.
 
 The proof illustrates a distinction between operator-level and behavioral
 generality. Ternary qubit POVMs are genuine generalized measurements, yet two
@@ -1742,24 +1820,35 @@ a discrimination advantage.
 
 \section*{Data, code, and verification}
 
-The accompanying repository contains exact Bell coefficients and strategies,
-the separation verifier, the exceptional-fiber identities, the closure
-verifier, and an independent rank-zero simulator. One offline command runs
+No empirical data were generated or analyzed. Exact Bell coefficients and
+strategies, the separation verifier, exceptional-fiber identities, closure
+verifier, rank-zero simulator, source materials, and release manifests are
+archived in the versioned reproducibility record \cite{kriebel2026software}.
+The public preprint record is \cite{kriebel2026v11}. One offline command runs
 all exact checks. The code verifies finite algebraic identities and explicit
 constructions; the convexity, extremality, physical-reconstruction, and
-dimension arguments remain explicit manuscript proofs.
+rank-exhaustion arguments remain manuscript proofs rather than formally
+verified executable claims. Additional referee-facing descriptions of the
+finite certificates are provided in the Supplemental Material
+\cite{supplemental}.
 
 \section*{AI-assisted research and verification}
 
-Generative-AI systems were used substantively throughout the research
-workflow, including mathematical exploration and derivation, adversarial
-proof analysis, symbolic and software work, literature support, and
-manuscript preparation. The work was developed through an iterative,
-human-directed research process. The author determined the scope and claims
-released here, curated the resulting package, and assumes responsibility for
-the submitted manuscript and public verification materials. The proof and
-exact artifacts are supplied to make the AI-mediated research independently
-checkable; no claim of prior independent expert human verification is made.
+OpenAI ChatGPT and Codex were used substantively throughout the research
+workflow for mathematical exploration and derivation, adversarial proof
+analysis, symbolic-code generation and debugging, literature support, and
+manuscript preparation. Anthropic Claude was used in a separate generative-AI review
+stage. Exact model identifiers were not exposed or retained for every
+session; the available project record is documented in the archived
+provenance statement. The author selected the research problem, directed the
+iterative program, supplied computational resources and source material,
+determined the claims and publication scope, reviewed the resulting package,
+and accepts responsibility for every statement and released artifact.
+Outputs were checked through exact arithmetic, separately organized verification scripts,
+manuscript proof audits, regression against the frozen release, and author
+review. The executable checks do not formally verify the universal proof,
+and no claim of prior independent expert human verification is made.
+Generative-AI systems are not authors.
 
 \section*{Competing interests and funding}
 

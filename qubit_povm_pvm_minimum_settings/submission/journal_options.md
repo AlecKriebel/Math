@@ -1,5 +1,10 @@
 # Journal, editor, and referee options
 
+> **Version 1.2.0 decision:** the author-directed target is Physical Review A
+> as a Regular Article. Current APS-specific guidance is in
+> `reports/pra_policy_audit.md` and `submission/pra-v1.2.0/`. The broader July
+> venue comparison below is retained as historical planning context.
+
 **Checked:** 2026-07-29  
 **Purpose:** options for the human author at submission time. This document
 does not authorize outreach to any editor, referee, or other researcher.

@@ -7,15 +7,23 @@ Independent Researcher
 Email: `me@aleckriebel.com`  
 Website: <https://aleckriebel.com/>
 
-No ORCID was supplied for this release.
+ORCID: <https://orcid.org/0009-0001-9320-500X>
 
 ## Data and code availability
 
-All exact verification source, machine-readable Bell coefficients and
-strategy matrices, symbolic closure formulas, hash manifests, and the
-rank-zero simulator are included in the public source repository:
+No empirical data were generated or analyzed. All exact verification source,
+machine-readable Bell coefficients and strategy matrices, symbolic closure
+formulas, hash manifests, source materials, and the rank-zero simulator are
+included in the public repository and archived in the versioned software
+record:
 
 <https://github.com/AlecKriebel/Math/tree/main/qubit_povm_pvm_minimum_settings>
+
+Public 1.1.0 software DOI: <https://doi.org/10.5281/zenodo.21699224>
+
+Stable software concept DOI: <https://doi.org/10.5281/zenodo.21699223>
+
+New 1.2.0 version DOI: `[TO BE INSERTED AFTER ZENODO NEW-VERSION DEPOSIT]`
 
 The exact suite runs without network access using the pinned Python
 dependency listed in `requirements.txt`. Numerical discovery code is not part
@@ -23,15 +31,19 @@ of the theorem-verification path.
 
 ## AI-assisted research and verification
 
-Generative-AI systems were used substantively throughout the research
-workflow, including mathematical exploration and derivation, adversarial
-proof analysis, symbolic and software work, literature support, and
-manuscript preparation. The work was developed through an iterative,
-human-directed research process. The author determined the scope and claims
-released here, curated the resulting package, and assumes responsibility for
-the submitted manuscript and public verification materials. The proof and
-exact artifacts are supplied to make the AI-mediated research independently
-checkable; no claim of prior independent expert human verification is made.
+OpenAI ChatGPT and Codex were used substantively for mathematical exploration
+and derivation, adversarial proof analysis, symbolic-code generation and
+debugging, literature support, and manuscript preparation. Anthropic Claude
+was used in a separate generative-AI review stage. Exact model identifiers were not
+exposed or retained for every session and are not inferred. Alec Kriebel
+selected and directed the research program, supplied source material and
+computational resources, determined the claims and publication scope,
+reviewed the package, and accepts responsibility for every statement and
+artifact. Outputs were checked through exact arithmetic, independently
+organized scripts, proof audits, frozen-release regression, and author
+review. These checks do not formally verify the universal manuscript proof
+and do not constitute independent expert peer review. Generative-AI systems
+are not authors.
 
 ## Author contributions
 

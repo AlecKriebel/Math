@@ -1,5 +1,11 @@
 # Literature and priority audit
 
+> **Historical audit notice (version 1.1.0).** This July 2026 report predates
+> Zhu--Chen--Wang, arXiv:2608.01317. The current dated assessment is
+> `reports/current_priority_audit.md`, and the theorem-by-theorem comparison is
+> `reports/zcw_claim_comparison.md`. This file is retained so the evolution of
+> the public record remains visible.
+
 **Audit date:** 2026-07-29  
 **Search cutoff:** 2026-07-29  
 **Verdict:** the universal convexified two-input equality and the resulting

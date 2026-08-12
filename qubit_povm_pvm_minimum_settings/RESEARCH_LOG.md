@@ -1,5 +1,23 @@
 # Research log
 
+## 2026-08-11 — version 1.2.0 publication revision
+
+- Preserved and reverified the complete public version-1.1.0 Zenodo bundle
+  byte-for-byte; recorded tag, commit, five version/concept DOI pairs, and
+  published hashes.
+- Audited Zhu--Chen--Wang, arXiv:2608.01317v1, from the complete paper,
+  current public repository, exact SOS materials, and Lean project.
+- Confirmed direct independent overlap on exact analytic arbitrary-state
+  fixed-qubit 3×2 separation and distinct contributions on both sides.
+- Repositioned the manuscript around the unchanged universal two-input
+  convexified equality and minimum-setting classification.
+- Added current priority, claim-comparison, PRA-policy, AI-provenance, Zenodo
+  new-version, PRA submission, correspondence, and website-draft materials.
+- Mathematical claim freeze remains in force: no theorem, proof, Bell
+  coefficient, witness, bound, or conclusion changed.
+- No Zenodo upload, journal submission, website deployment, external message,
+  GitHub Release, or final release tag was performed.
+
 ## 2026-07-29 20:14 PDT — publication production started
 
 - Began a dependency-complete publication package for the fixed-qubit

@@ -1,6 +1,19 @@
 # End-to-end proof audit
 
-**Audit date:** 2026-07-29
+## Version 1.2.0 regression note
+
+The August 2026 revision changes positioning, citations, disclosures, and
+submission/release materials only. The Main Theorem, all numbered theorem and
+proof bodies, `paper/appendices.tex`, every Bell coefficient and strategy
+file, and all three exact programs remain mathematically unchanged from the
+frozen 1.1.0 release. A machine-readable regression manifest and fresh exact
+run accompany the revision. Zhu--Chen--Wang is added only as independent
+contemporaneous context and as an alternative 3×2 existence certificate for
+the already-proved minimum-setting corollary.
+
+**Original audit date:** 2026-07-29
+
+**Regression update:** 2026-08-11
 **Audited target:** the current manuscript and exact artifacts in this package
 
 ## Verdict

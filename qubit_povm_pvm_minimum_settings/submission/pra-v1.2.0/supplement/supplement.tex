@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,enumitem,hyperref,microtype,xurl}
+\hypersetup{hidelinks}
+\newcommand{\id}{\mathbb I}
+\newcommand{\Tr}{\operatorname{Tr}}
+\title{Supplemental Material for\\
+\textbf{Minimum Bell-Setting Complexity for Qubit POVM--PVM Separation}}
+\author{Alec Kriebel\\Independent Researcher\\
+\texttt{me@aleckriebel.com}}
+\date{Version 1.2.0 --- August 2026}
+
+\begin{document}
+\maketitle
+
+\section{Purpose and verification boundary}
+
+The main article is self-contained and contains every load-bearing proof.
+This supplement collects the exact witness data, finite-certificate map, and
+reproducibility instructions in a compact referee-facing form. The executable
+checks verify exact algebraic identities and explicit constructions. They do
+not formally prove compactness, convex separation, arbitrary-output extremal
+reduction, physical reconstruction, multiplier positivity, or exhaustion of
+the rank trichotomy; those are manuscript arguments.
+
+No empirical data were generated or analyzed. The public version-1.1.0
+software archive is \url{https://doi.org/10.5281/zenodo.21699224}.
+Its stable concept DOI is \url{https://doi.org/10.5281/zenodo.21699223}.
+At the time this author-review package was prepared, no version-specific
+1.2.0 software DOI had yet been reserved; the current DOI will be inserted
+before journal submission.
+
+\section{Exact rational \texorpdfstring{\(3\times2\)}{3-by-2} witness}
+
+Alice has inputs \(x=0,1,2\), Bob has inputs \(y=0,1\), and signs
+\[
+\alpha_0=\alpha_2=1,\quad \alpha_1=-1,\qquad
+\beta_0=1,\quad\beta_1=-1.
+\]
+With
+\[
+E_{xy}=\sum_{a=0}^2\sum_{b=0}^1
+\alpha_a\beta_b p(a,b|x,y),
+\]
+the Bell functional is
+\[
+\mathcal B=10(E_{00}+E_{01}+E_{10}-E_{11})
++\frac35p(0,0|2,0)+\frac35p(1,1|2,0)
++\frac45p(2,0|2,1).
+\]
+For \(x=0,1\), labels \(0\) and \(2\) have identical coefficients and may
+be coarse-grained, so the heterogeneous output architecture is
+\((2,2,3)\)-by-\((2,2)\).
+
+Use \(|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2\), Bob observables
+\(B_0=Z,B_1=X\), and Alice observables
+\(A_0=(Z+X)/\sqrt2\), \(A_1=(Z-X)/\sqrt2\). Alice's ternary effects are
+\[
+M_0=\frac{17\id-8X+15Z}{50},\qquad
+M_1=\frac{17\id-8X-15Z}{50},\qquad
+M_2=\frac{16\id+16X}{50}.
+\]
+Their rank-one factorizations are
+\[
+M_0=\frac1{25}\binom4{-1}(4,-1),\quad
+M_1=\frac1{25}\binom1{-4}(1,-4),\quad
+M_2=\frac8{25}\binom11(1,1).
+\]
+They sum to \(\id\) and have nonzero eigenvalues
+\(17/25,17/25,16/25\). The exact certified chain is
+\[
+\beta_{\rm POVM}\ge L_0:=20\sqrt2+\frac{16}{25}
+>U:=20\sqrt2+\frac35+\frac{4+3\sqrt2}{250}
+\ge\beta_{\rm PVM},
+\]
+with
+\[
+L_0-U=\frac{3(2-\sqrt2)}{250}>0.
+\]
+These are an attained lower bound and a global upper bound, not asserted
+global optima.
+
+\section{Six ternary-PVM supports}
+
+Every three-label qubit PVM has one of the following labeled rank patterns.
+The main paper derives the common final auxiliary bound
+\(T\le3/5+2(\eta+u)/5\).
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Nonzero labels & Rank pattern & Intermediate bound\\
+\midrule
+\(\{0\}\) & \((2,0,0)\) & \(\Tr K_0\le3(1+\eta)/10\)\\
+\(\{1\}\) & \((0,2,0)\) & \(\Tr K_1\le3(1+\eta)/10\)\\
+\(\{2\}\) & \((0,0,2)\) & \(\Tr K_2\le2(1+\eta)/5\)\\
+\(\{0,1\}\) & \((1,1,0)\) & \(\Tr(K_0+K_1)\le3/5\)\\
+\(\{0,2\}\) & \((1,0,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
+\(\{1,2\}\) & \((0,1,1)\) & \(F_\eta\le3/5+2(\eta+u)/5\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Theorem-to-artifact map}
+
+\begin{center}
+\small
+\begin{tabular}{@{}
+>{\raggedright\arraybackslash}p{0.27\linewidth}
+>{\raggedright\arraybackslash}p{0.31\linewidth}
+>{\raggedright\arraybackslash}p{0.34\linewidth}@{}}
+\toprule
+Claim layer & Exact executable support & Manuscript-only boundary\\
+\midrule
+\(3\times2\) witness & Coefficients, effects, state, values, dual
+factorizations, scalar inequalities, and gap & Continuous global reduction
+to the analytic PVM inequalities\\
+Lorentz incidence algebra & Null rays, metric identities, rational inverse,
+exceptional resultants, and a conformal-Lorentz regression instance & General
+physical reconstruction and tangent integration\\
+Second variation & Exact square-completion regression and independence
+witnesses & General inertia/dimension argument and physical uphill curve\\
+Rank zero & Exact flow identities and a symmetric-trine deterministic
+simulation & Universal bounded-transportation interval proof\\
+Two-input equality & Finite algebraic layers above & Compact separation,
+arbitrary-output reduction, positive multipliers, and exhaustive rank logic\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Exact runner and environment}
+
+From the top-level project directory, execute
+\begin{verbatim}
+./run_all.sh
+./paper/build.sh
+\end{verbatim}
+The reference environment is Python 3.14.6 with SymPy 1.14.0. The PDFs are
+built with Tectonic 0.16.9. The exact runner:
+\begin{enumerate}[leftmargin=*]
+\item verifies the SHA-256 hashes of the eight mathematical artifacts;
+\item checks the dense and sparse Bell coefficient tables;
+\item checks both explicit strategies, their exact values, and dual data;
+\item checks the polynomial identities in the global PVM bound;
+\item checks the Lorentz metric, quadratic null-ray map, generic inverse,
+exceptional branches, resultants, and second-form regression;
+\item checks bounded-flow identities; and
+\item runs an independently written exact rank-zero simulator.
+\end{enumerate}
+
+The runner is offline and uses no numerical optimization. A successful run is
+not represented as formal verification of the universal theorem.
+
+\section{Frozen files and reproducibility}
+
+The mathematical artifacts are unchanged from public version 1.1.0. Their
+directory-level SHA-256 manifest is preserved. Version 1.2.0 adds a machine-
+readable changed-file manifest distinguishing unchanged mathematics, changed
+prose and metadata, and regenerated release files. The complete historical
+Zenodo upload directory remains byte-for-byte frozen.
+
+Generative-AI systems were used substantively in the research and software
+workflow. The human author accepts responsibility for all claims and released
+artifacts. Full provenance and verification limits are given in the main
+article and archived package.
+
+\end{document}

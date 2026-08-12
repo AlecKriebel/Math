@@ -16,6 +16,12 @@ if command -v tectonic >/dev/null 2>&1; then
                 "$source.log" >&2
             exit 1
         fi
+        if grep -Eiq 'warning--|there (was|were) [1-9][0-9]* warning' \
+            "$source.blg"; then
+            printf '%s\n' "BibTeX warning found in $source.blg:" >&2
+            cat "$source.blg" >&2
+            exit 1
+        fi
     done
     printf '%s\n' 'Built warning-free main.pdf and review.pdf.'
     exit 0

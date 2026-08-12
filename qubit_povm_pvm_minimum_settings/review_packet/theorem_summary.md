@@ -1,5 +1,11 @@
 # One-page theorem summary
 
+**Version 1.2.0 note.** The theorem is unchanged from the 30 July 2026 public
+release. Zhu--Chen--Wang (arXiv:2608.01317v1) independently provide a distinct
+exact 3×2 separator; either separator supplies the existence half of the
+minimum-setting conclusion. Their paper does not address the two-input
+equality summarized below.
+
 ## Problem
 
 Fix local Hilbert-space dimension at most two in a bipartite Bell experiment.

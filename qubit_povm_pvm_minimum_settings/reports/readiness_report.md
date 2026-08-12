@@ -1,10 +1,16 @@
-# Final readiness report
+# Version 1.2.0 readiness report
 
-**Assessment date:** 2026-07-29  
-**Scope:** public preprint, reproducibility release, arXiv source, and journal
-submission package
+**Assessment date:** 2026-08-11
 
-## Outcome
+**Scope:** non-destructive Zenodo new version and Physical Review A Regular
+Article package
+
+## Current outcome
+
+The mathematics is frozen. The fresh exact run, clean builds, visual
+inspection, source-archive rebuild, and manifest checks have passed. Author
+review, creation of five Zenodo New version drafts, insertion of the returned
+DOIs, and final account-level checks remain required before external action.
 
 The referee revision is internally complete enough for a public, versioned
 preprint release and expert review. It is **not represented as independently
@@ -38,7 +44,7 @@ that one additional input can.
   and a one-command runner.
 - **Literature:** PASS for conservative positioning; an immediate
   pre-submission refresh remains required.
-- **Presentation:** PASS. The 34-page publication PDF and 34-page
+- **Presentation:** PASS. The 36-page publication PDF and 36-page
   line-numbered review PDF compile without warnings. Every publication page
   was rendered and inspected, and the three figures were checked in context.
 - **Scope discipline:** PASS. The paper consistently states convexified
@@ -51,19 +57,23 @@ that one additional input can.
 - **External expert review:** NOT YET PERFORMED.
 - **Journal/arXiv upload:** NOT PERFORMED; those account actions remain for the
   human author.
-- **Archival DOI:** NOT YET ASSIGNED. The versioned public repository release
-  supplies a timestamp but is not described as peer review or conclusive
-  priority.
+- **Archival DOI:** Five version 1.2.0 DOI values are NOT YET ASSIGNED. The
+  five July 30 version-specific records remain public and immutable. The new
+  payloads are ready for the author to create linked Zenodo New versions; no
+  placeholder is represented as an assigned identifier.
 
 ## Recommended next actions
 
-1. Preserve the release commit and immutable tag URL.
-2. The author may submit the identical source archive to arXiv; category
+1. Create a New version under each of the five existing Zenodo concepts,
+   insert the returned version-specific DOI values, rebuild affected files,
+   and publish only after a final preview.
+2. Preserve the eventual release commit and immutable tag URL.
+3. The author may submit the identical source archive to arXiv; category
    endorsement may be required.
-3. Independent expert scrutiny remains desirable, especially for D2, D3,
+4. Independent expert scrutiny remains desirable, especially for D2, D3,
    incidence reconstruction, multiplier positivity, and exceptional fibers.
    Any external communication is solely for the author.
-4. Refresh the literature and editorial-board checks immediately before
+5. Refresh the literature and editorial-board checks immediately before
    journal submission.
-5. Submit first to the venue selected from
+6. Submit first to the venue selected from
    `submission/journal_options.md`; do not submit simultaneously elsewhere.

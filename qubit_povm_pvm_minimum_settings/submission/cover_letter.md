@@ -1,5 +1,10 @@
 # Journal cover letter
 
+> **Superseded for version 1.2.0.** Use the current Physical Review A letter at
+> `submission/pra-v1.2.0/cover_letter.md`, which includes the two-input-first
+> framing, ZCW comparison, public chronology, exact-verification boundary, and
+> APS-compliant AI disclosure.
+
 Dear Editors,
 
 Please consider the manuscript **“Minimum Bell-Setting Complexity for Qubit
