@@ -665,3 +665,40 @@
   insertion, class, and transport, plus independent validation of each
   selected witness.  It no longer falsely requires two valid deterministic
   implementations to select the same separator when several exist.
+
+## 2026-08-12T21:31:08-07:00 — proof-first closure replaces further atlas expansion
+
+- No further large topology or relation search will be used on the active
+  proof path.  Three independent adversarial proof audits agree that the
+  corrected cut, incidence-gauge bridge, root-reduction, marginal-submersion,
+  probe-coherence, and global no-compensation layers survive.  Their commits
+  are `3a2bdfa3`, `9ad318ac`, and `adcf72bb`.
+- The global theorem now has one exact mathematical premise, `L_blob`: a
+  source-full projective JC containment between two complete standard-strong
+  level-2 blob factors is labelled isomorphism or ordinary triangle
+  redirection.  Source and target incoming presentations must be chosen
+  independently.
+- A proposed bridge decomposition of a triangle-bearing theta was rejected.
+  Such a theta meets its complementary path at two hidden poles, not across a
+  cut edge, and the resulting hidden-pair contraction has a gauge larger than
+  the bridge incidence group.  This is an obstruction to that proof shortcut,
+  not a JC counterexample.
+- The active proof-first closure of `L_blob` is instead a finite grammar
+  theorem.  Every source has a rigid core-preserving support: the three-port
+  stream covers the cycle (with its separate three-sunlet base case) and
+  `theta-0`, `theta-1`, `theta-3`; only the triangle-free `theta-2` core needs
+  four outgoing support ports.  The frozen exact algebra and probe streams
+  already classify these supports.  What remained from the reviews was an
+  independent proof and normalized regeneration that the five-core repair,
+  incoming-role, completion, port-transport, and restoration grammar maps
+  onto every frozen fixed-full root relation.  That bounded independent gate
+  is now running; it regenerates no Fourier atlas and performs no open-ended
+  search.
+- A separate quarnet/strong-repair proof is being tested as an independent
+  conceptual route.  It must handle intrinsically weak induced quarnets and
+  the two possible repairs of the weak Theta omnian; it will not be promoted
+  unless it closes those cases without assuming the desired lifting.
+- The release remains fail-closed.  Outcome P will be promoted only after the
+  inventory theorem, exact local algebra crosswalk, and a fresh adversarial
+  review agree.  Otherwise the first exact failure will be preserved and the
+  counterexample route resumed.
