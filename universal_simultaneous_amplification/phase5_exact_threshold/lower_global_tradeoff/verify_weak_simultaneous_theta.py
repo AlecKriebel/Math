@@ -254,6 +254,7 @@ def main() -> None:
     assert sp.factor(excesses["dB"] - expected_db_excess) == 0
     # Descartes: coefficients in increasing order are ---+++++, so exactly
     # one positive root (existence follows from the endpoint signs).
+    assert sp.gcd(sp.Poly(P_B, x), sp.Poly(sp.diff(P_B, x), x)) == 1
     assert sp.Poly(P_B, x).count_roots(0, sp.oo) == 1
     assert sp.Poly(dB_quadratic, x).count_roots(0, sp.oo) == 1
     witness = sp.Rational(103, 500)

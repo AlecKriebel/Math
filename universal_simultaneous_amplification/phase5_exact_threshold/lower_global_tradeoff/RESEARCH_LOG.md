@@ -58,6 +58,21 @@
 - Updated the packet-cone target: an unrestricted weak paired cone already
   enters the positive quadrant.  Any useful scale induction must be
   fitness-resolved and show where a positive weak atom loses a coordinate.
+- Built the exact `13,728`-orbit full-fitness quotient for the seven-arm
+  theta graph.  At fixed `x=103/500`, dB remains positive through roughly
+  `r=1.006` and changes sign before `1.0065`; the weak interval therefore
+  does not collapse immediately but is narrow.
+- Extracted the exact first Taylor coefficients as rational functions of
+  `x` and proved, by the analytic implicit-function theorem at the two
+  simple weak roots, that the Bd/dB overlap persists for a positive
+  finite-fitness wedge.
+- Proved an explicit finite-fitness checkpoint at `r=1001/1000`.  Two
+  rational Bellman subsolutions on the full quotient have positive exact
+  uniform-start gaps for both rules.  Float solves are proposal-only; every
+  final inequality is over `QQ`.
+- At `R_hyb`, the theta atom has `a+b approximately 0.90086<1`, so the BDM
+  Hellinger target is zero and all positive portal laws pass strictly.  This
+  is a targeted float diagnostic, not an exact promotion.
 - Scope warning: `K_r>=0` remains open and is asserted nowhere.  The exact
   square is a diffuse-adjoint theorem, not a universal finite-graph affine
   separator.
