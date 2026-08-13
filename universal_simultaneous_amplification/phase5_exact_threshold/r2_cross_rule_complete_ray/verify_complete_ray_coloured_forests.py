@@ -10,7 +10,7 @@ does not assert the open all-order fixed-colour sign.
 from __future__ import annotations
 
 from fractions import Fraction as F
-from itertools import permutations
+from itertools import combinations, permutations, product
 
 import sympy as sp
 
@@ -381,14 +381,107 @@ def audit_k4_two_orbits():
     assert adjacent_coefficient > 0 and disjoint_coefficient > 0
 
 
+def directed_tree_root(edges, size):
+    parents = dict(edges)
+    roots = set(range(size)) - set(parents)
+    if len(edges) != size - 1 or len(parents) != size - 1 or len(roots) != 1:
+        return None
+    root = next(iter(roots))
+    for source in range(size):
+        if source == root:
+            continue
+        seen = set()
+        vertex = source
+        while vertex != root:
+            if vertex in seen or vertex not in parents:
+                return None
+            seen.add(vertex)
+            vertex = parents[vertex]
+    return root
+
+
+def enumerate_directed_trees(generator):
+    trees = []
+    size = len(generator)
+    for root in range(size):
+        sources = tuple(vertex for vertex in range(size) if vertex != root)
+        choices = tuple(
+            tuple(target for target in range(size)
+                  if target != source and generator[source][target])
+            for source in sources
+        )
+        for targets in product(*choices):
+            edges = frozenset(zip(sources, targets))
+            if directed_tree_root(edges, size) != root:
+                continue
+            weight = F(1)
+            for source, target in edges:
+                weight *= generator[source][target]
+            trees.append((root, edges, weight))
+    return trees
+
+
+def audit_naive_tree_negative_association_obstruction():
+    """The ordinary directed-tree NA mechanism fails already on K3."""
+
+    from pathlib import Path
+    import sys
+
+    cross_rule = Path(__file__).resolve().parents[1] / "r2_cross_rule_sum"
+    sys.path.insert(0, str(cross_rule))
+    from verify_cross_rule_tree_reduction import db_generator  # noqa: PLC0415
+
+    complete = ((0, 1, 1), (1, 0, 1), (1, 1, 0))
+    generator = db_generator(complete)
+    trees = enumerate_directed_trees(generator)
+    assert len(trees) == 1323
+    partition = sum((weight for _, _, weight in trees), F(0))
+    root_mean = sum(
+        ((root + 1).bit_count() * weight for root, _, weight in trees), F(0)
+    ) / partition
+    assert root_mean == F(4, 3)
+
+    edge = (3, 2)
+    edge_probability = sum(
+        (weight for _, edges, weight in trees if edge in edges), F(0)
+    ) / partition
+    root_edge_moment = sum(
+        ((root + 1).bit_count() * weight
+         for root, edges, weight in trees if edge in edges),
+        F(0),
+    ) / partition
+    assert edge_probability == F(29, 99)
+    assert root_edge_moment - root_mean * edge_probability == F(2, 27)
+
+    directed_edges = sorted({edge for _, edges, _ in trees for edge in edges})
+    covariances = []
+    for left, right in combinations(directed_edges, 2):
+        p_left = sum(
+            (weight for _, edges, weight in trees if left in edges), F(0)
+        ) / partition
+        p_right = sum(
+            (weight for _, edges, weight in trees if right in edges), F(0)
+        ) / partition
+        p_both = sum(
+            (weight for _, edges, weight in trees
+             if left in edges and right in edges),
+            F(0),
+        ) / partition
+        covariances.append((p_both - p_left * p_right, left, right))
+    assert sum(covariance > 0 for covariance, _, _ in covariances) == 54
+    assert max(covariances) == (F(64, 3267), (4, 5), (5, 3))
+
+
 def main():
     audit_local_positive_clearing()
     triangle_certificate_bernstein_check()
     audit_k4_two_orbits()
+    audit_naive_tree_negative_association_obstruction()
     print("PASS: fair-geometric support law has a positive first-appearance clearing")
     print("PASS: canonical full-clearing degrees q_3=63 and general formula audited")
     print("PASS: triangle certificate has nonnegative complete-ray Bernstein controls")
     print("PASS: the sole K4 audit has two positive quadratic edge-pair orbit weights")
+    print("REFUTED: ordinary directed-tree negative association already on complete K3")
     print("OPEN: fixed-colour root-rank expectation for general n and j>=3")
 
 

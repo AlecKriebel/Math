@@ -43,6 +43,13 @@
   `(0,1000,2,1,1000,10)` found every canonical coefficient `C_j` positive
   for `2<=j<=12`, with the tilted mean root product strictly decreasing.
   This is evidence only; no graph or architecture scan was performed.
+- Closed the naive joint strong-Rayleigh route exactly.  The complete-K3
+  continuous dB tree ensemble has
+  `Cov(root rank, 1_{edge (3,2)})=2/27>0`; among transition-edge pairs 54
+  covariances are positive, with maximum `64/3267`.  Hence any proof of the
+  physical-slot covariance must use cancellations across transition edges
+  and clearing decorations, not ordinary directed-tree negative
+  association.
 - Completion estimate: **100%** for the positive clearing and exact
   fixed-colour reduction; **100%** for all fixed-colour levels at `n=3`;
   **30%** for an all-order coefficient proof.  The root/slot correlation

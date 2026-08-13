@@ -421,6 +421,20 @@ of the two **roots**, while the sampled objects are local linear slots.
 Exchangeability of the colour labels alone gives `(26)` but supplies no
 monotone relation between a slot colour and either root rank.
 
+A sufficient elementary property would be a sign-preserving root/slot
+coupling showing that the conditional mean
+
+\[
+ {Y^L_a\over Z^L_a}{Y^D_b\over Z^D_b}                       \tag{40}
+\]
+
+lies below `b_nd_n` after the hypergeometric-sector averaging in `(25)`.
+It is not necessary that every individual sector in `(40)` have that sign;
+the exact first-order cancellation already couples the `(1,0)` and `(0,1)`
+sectors.  The minimal object to prove is therefore the globally weighted
+sum `(25)`, or equivalently `(22)`, not separate marginal suppression and
+not a packetwise forest injection.
+
 This obstruction has a particularly sharp covariance form.  Let `nu_0`
 be the complete-colour law on the fully decorated paired-tree packets.  If
 the `q_n` positive linear slots in a packet `theta` are `ell_s`, put
@@ -456,26 +470,40 @@ packets, in the relation between their roots and their slot ratios.  A proof
 must supply negative regression for that packet law; exchangeability of the
 colour set is not such a mechanism.
 
-A sufficient elementary property would be a sign-preserving root/slot
-coupling showing that the conditional mean
+Nor can one import the standard spanning-tree strong-Rayleigh mechanism for
+the packet law.  The `D` state graph is directed and its arborescence
+measure is not negatively associated even at the complete kernel.  On
+`K_3`, enumerate the 1323 positive in-arborescences of the six-state
+continuous `D` generator and normalize by their total weight.  The mean
+root rank is `4/3`.  For the directed state edge `e=(3,2)` (zero-based mask
+indices),
 
 \[
- {Y^L_a\over Z^L_a}{Y^D_b\over Z^D_b}                       \tag{40}
+ \mathbb P(e\in T)={29\over99},\qquad
+ \operatorname {Cov}(|r(T)|,\mathbf1_{\{e\in T\}})={2\over27}>0.\tag{44}
 \]
 
-lies below `b_nd_n` after the hypergeometric-sector averaging in `(25)`.
-It is not necessary that every individual sector in `(40)` have that sign;
-the exact first-order cancellation already couples the `(1,0)` and `(0,1)`
-sectors.  The minimal object to prove is therefore the globally weighted
-sum `(25)`, or equivalently `(22)`, not separate marginal suppression and
-not a packetwise forest injection.
+Edge indicators themselves have 54 positively correlated pairs; the
+largest exact covariance is
+
+\[
+ \operatorname {Cov}(\mathbf1_{\{(4,5)\in T\}},
+                      \mathbf1_{\{(5,3)\in T\}})
+ ={64\over3267}>0.                                          \tag{45}
+\]
+
+Thus neither ordinary directed-tree negative association nor a naive
+strong-Rayleigh lift can prove `(43)`.  This does not refute the globally
+grouped **physical-slot** statistic in `(43)`; rather, it shows that its
+sign, if true, must cancel across transition edges and their positive
+clearing decorations.
 
 One targeted exact `K_4` audit of `(43)` was made on the previously frozen
 hostile conductance ray
 
 \[
  (w_{01},w_{02},w_{03},w_{12},w_{13},w_{23})
- =(0,1000,2,1,1000,10).                                    \tag{44}
+ =(0,1000,2,1,1000,10).                                    \tag{46}
 \]
 
 Second-order-through-twelfth-order rational determinant series, converted
@@ -484,7 +512,7 @@ to the canonical degree-420 Bernstein basis, give
 \[
  C_{4,j}>0\quad(2\le j\le12),\qquad
  \mathbb E_{\mu_{4,j}}[R_LR_D]
- \text{ strictly decreases for }0\le j\le12.               \tag{45}
+ \text{ strictly decreases for }0\le j\le12.               \tag{47}
 \]
 
 This supports negative regression but does not prove it.  No additional
@@ -505,7 +533,7 @@ independently computes the two exact order-four stationary variations in
 
 The adjacent exploratory script
 `explore_n4_fixed_colour_path.py` performs only the targeted hostile-ray
-audit `(44)--(45)`.  Its current filename is retained to avoid churn; it is
+audit `(46)--(47)`.  Its current filename is retained to avoid churn; it is
 not a graph search and proves no general sign.
 
 **PROVED:** `(6)--(22)`, `(26)--(28)`, the `n=3` fixed-colour theorem
