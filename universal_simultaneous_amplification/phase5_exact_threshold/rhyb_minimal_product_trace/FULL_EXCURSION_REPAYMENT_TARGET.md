@@ -210,15 +210,22 @@ or marked-tree identity.
 ## 5. A boundary trace of the full reward
 
 There is one exact way to expose that missing information without returning
-to all singleton roots.  For either rule, take `E` to be the entire
-doubleton sector and `R` its complement in the recurrent state space.  The
-irreducible finite chain hits `E` almost surely, so the killed `R` block is
-transient.  Let
+to all singleton roots.  For either rule, take
+
+\[
+ E=\{\{i,j\}:w_{ij}>0\}                               \tag{18}
+\]
+
+to be precisely the base-edge doubletons and take `R` to be their complement
+in the recurrent state space.  This is exactly the collection used in the
+rebate (5); nonedge doubletons remain inside the killed excursion.  Since the
+finite recurrent dual is irreducible and `E` is nonempty, it hits `E` almost
+surely, so the killed `R` block is transient.  Let
 
 \[
  G_E=(-Q_{RR})^{-1},\qquad
  \Psi_U=g_E+Q_{ER}G_Eg_R,qquad
- g(A)={|A|\over s}-p.                                 \tag{18}
+ g(A)={|A|\over s}-p.                                 \tag{19}
 \]
 
 Stationarity gives
@@ -231,14 +238,14 @@ and therefore, after division by `c_U`,
 
 \[
  \boxed{
- \overline\phi_U=\sum_{D\in E}\eta^U_D\Psi_U(D).}   \tag{19}
+ \overline\phi_U=\sum_{D\in E}\eta^U_D\Psi_U(D).}   \tag{20}
 \]
 
 In particular,
 
 \[
  [\overline\phi_U]_+
- \le\sum_{D\in E}\eta^U_D[\Psi_U(D)]_+.            \tag{20}
+ \le\sum_{D\in E}\eta^U_D[\Psi_U(D)]_+.            \tag{21}
 \]
 
 Formula (19) is the exact bridge sought by a doubleton proof: it pairs the
@@ -252,3 +259,83 @@ The remaining proof-first target is therefore not a marginal estimate.  It
 is a paired comparison showing that the two full coefficients `Psi_B,Psi_D`
 are jointly repaid by the nonlinear edge rebates (5) propagated through
 `(I-L)^{-1}`.
+
+## 6. Exact star obstruction to a separate reward bound
+
+The killed coefficient in (20) cannot be replaced, rule by rule, by a
+constant or even by a polynomial in the module order.  This already fails
+for the Bd dual on the unit star with centre `0` and `L` leaves.
+
+Let `H_B(q)` and `E_B(q)` be the Bd fixation probabilities at relative
+fitness `q` from the centre and one leaf.  Put
+
+\[
+ \theta_q={L+q\over q(qL+1)},\qquad
+ D_q={q\over L}+{1-\theta_q^L\over1-\theta_q}.        \tag{22}
+\]
+
+The exact star solution is
+
+\[
+ H_B(q)={q\over LD_q},\qquad
+ E_B(q)={q^2\theta_q\over D_q}.                       \tag{23}
+\]
+
+By reciprocal-fitness duality, the Bd singleton atoms at fitness `r` are
+
+\[
+ u_0=H_B(1/r),\qquad u_\ell=E_B(1/r).                 \tag{24}
+\]
+
+If `b_{0ell}` is the centre-leaf doubleton atom, exact singleton balance at
+a leaf gives
+
+\[
+ b_{0\ell}={r\over L}u_\ell-u_0.                     \tag{25}
+\]
+
+Writing `c=u_0+Lu_ell`, direct simplification yields
+
+\[
+ \boxed{
+ \sum_{D\in E}\eta_D={Lb_{0\ell}\over c}
+ ={L^2(r^2-1)\over
+   (L+1)(rL^2-rL+L+r)}.}                              \tag{26}
+\]
+
+On the other hand,
+
+\[
+ \rho_{Bd}={H_B(r)+LE_B(r)\over L+1},\qquad
+ \overline\phi_{Bd}={\rho_{Bd}-p\over c}.            \tag{27}
+\]
+
+For fixed `r>1`, the exact formulas give
+
+\[
+ \rho_{Bd}-p\longrightarrow {r-1\over r^2},\qquad
+ c\sim L(r^2-1)e^{r-1/r}r^{-2L},                     \tag{28}
+\]
+
+while (26) is asymptotic to `(r^2-1)/(rL)`.  Therefore
+
+\[
+ \boxed{
+ {\overline\phi_{Bd}\over\sum_{D\in E}\eta_D}
+ \sim {r^{2L-1}\over
+ (r-1)(r+1)^2e^{r-1/r}}\longrightarrow\infty.}       \tag{29}
+\]
+
+This rules out every separate per-rule estimate
+
+\[
+ [\overline\phi_{Bd}]_+
+ \le C_r(s)\sum_{D\in E}\eta_D
+\]
+
+with `C_r(s)` constant or polynomial in `s=L+1`.  It does not refute a
+genuinely paired bound: on large stars the dB excess is nonpositive, so the
+positive-part product vanishes.  What (29) proves is that `Psi_B` cannot be
+localized before the two rules are coupled.  A successful proof must retain
+both full killed Green coefficients and exploit their cross-rule
+compensation.

@@ -21,11 +21,18 @@ exact audits.
   fixed, while `bar(phi)_B bar(phi)_D` grows as `epsilon^-2`.  Thus no proof
   using normalized low data plus singleton balances alone can control the
   full reward.  The doubleton/rank-three return equation is indispensable.
-- Schur-traced the full normalized reward to the entire doubleton boundary:
+- Schur-traced the full normalized reward to the base-edge doubleton boundary:
   `bar(phi)_U=sum_D eta_D Psi_U(D)`, where `Psi_U` is the signed reward of a
   full killed excursion away from that boundary.  This aligns the reward
   with the doubleton atoms in the rebate, but the killed-Green coefficient
   cannot be discarded or localized by immediate rank drift.
+- Proved this localization failure exactly on the unit Bd star with `L`
+  leaves.  The positive reward divided by total normalized edge-doubleton
+  mass grows as
+  `r^(2L-1)/[(r-1)(r+1)^2 exp(r-1/r)]`.  Hence no constant or
+  polynomial-in-order *separate per-rule* coefficient can replace the full
+  Green reward.  This does not refute a paired bound: the large-star dB
+  excess is nonpositive, so cross-rule compensation remains available.
 - Added the exact boundary-trace replay on the named hostile weighted `P4`.
 - Universal `(FER)`, `(RHR)`, `(SRR)`, and the minimal stationary product
   remain open.  The exact residual problem is a paired comparison between

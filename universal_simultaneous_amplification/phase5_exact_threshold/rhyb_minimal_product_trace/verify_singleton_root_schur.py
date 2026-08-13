@@ -206,18 +206,20 @@ def root_green_bound(weights, fitness, bd, db):
 
 
 def doubleton_boundary_reward_audit(weights, fitness, data) -> None:
-    """Check the full reward traced to the entire doubleton boundary."""
+    """Check the full reward traced to base-edge doubletons."""
     order = len(weights)
+    transition, _ = transition_matrix(weights)
     states = sorted(data["state_index"], key=data["state_index"].get)
     doubleton = [
-        data["state_index"][state]
-        for state in states
-        if state.bit_count() == 2
+        data["state_index"][(1 << i) | (1 << j)]
+        for i in range(order)
+        for j in range(i + 1, order)
+        if transition[i, j] > 0
     ]
     rest = [
         data["state_index"][state]
         for state in states
-        if state.bit_count() != 2
+        if data["state_index"][state] not in doubleton
     ]
     generator = data["Q"]
     green = (-generator.extract(rest, rest)).inv()
@@ -360,7 +362,7 @@ def main() -> None:
     print("PASS: root normalization, reward, and SRR cancellation identities")
     print("PASS: exact Bd/dB singleton balances and doubleton-rebate algebra")
     print("PASS: exact cross-rule Green lower bound (sharp on unweighted P3)")
-    print("PASS: full excursion reward traced to the doubleton boundary")
+    print("PASS: full excursion reward traced to edge doubletons")
     print("PASS: exact all-portal RHR certificate on unweighted P3")
     print("PASS: two named hostile order-four entrywise audits at r=3/2")
     print("OPEN: universal root-Hellinger/Green excursion repayment")
