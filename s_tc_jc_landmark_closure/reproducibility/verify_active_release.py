@@ -47,7 +47,7 @@ def main() -> None:
     require(metadata["outcome"] == "P" and metadata["status"] == "PROVED",
             "release metadata is not final Outcome P")
     require(metadata["release_source_commit"] ==
-            "15e01790d107c15f2cbc8e8b3b79753cecbf3bab",
+            "3bb59040b7bf23bde8cd9dca7d5978b6f91992af",
             "release source seal changed")
     for record in metadata["artifacts"].values():
         path = PROJECT / record["path"]
