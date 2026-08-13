@@ -1,5 +1,16 @@
 # Changelog
 
+## Displayed-tree clarification revision
+
+The additive `k2p_k3p_theta_clarified/` release makes the existing construction unambiguous without changing any mathematical parameter or conclusion.
+
+- States explicitly that both arcs out of `p` carry `S` and both arcs out of `q` carry `T`.
+- Derives the common `K_x^2 K_y K_z` factor and the four-switching matrix from labelled descendants.
+- Adds literal retained-edge graph reconstruction and exact ordinary-state pruning for the simple witness.
+- Records the exact five-coordinate Lemma 4.1 convention cross-check.
+- Corrects the technical summary and public-repository/provenance wording.
+- Preserves the pre-clarification paper, summary, certificates, and original verifier modules in this parent directory; parent navigation and provenance files now point to the clarification.
+
 ## Widened scope: added the K2P collision
 
 This directory supersedes the earlier K3P-only `k3p_theta_trinet_collision` package. The construction, verifiers, and manuscript now cover both K2P and K3P.

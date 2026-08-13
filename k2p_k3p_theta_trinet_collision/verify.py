@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-command exact replay of the confidential K2P/K3P audit package."""
+"""One-command exact replay of the historical K2P/K3P verification package."""
 from pathlib import Path
 import subprocess,sys
 ROOT=Path(__file__).resolve().parent

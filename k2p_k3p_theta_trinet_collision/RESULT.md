@@ -14,4 +14,12 @@ The K3P witness lies over `Q(5^(-1/4))`, has strictly positive transition probab
 
 ## Replay
 
-Run `python3 verify.py`. Successful output ends with `ALL EXACT CHECKS PASSED`.
+Run the current clarification package:
+
+```bash
+cd k2p_k3p_theta_clarified
+python3 verify_k2p_displayed_trees.py
+python3 verify.py
+```
+
+Successful output ends with `ALL DISPLAYED-TREE CHECKS PASSED` and `ALL EXACT CHECKS PASSED`, respectively.

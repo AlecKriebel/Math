@@ -2,7 +2,9 @@
 
 ## Status
 
-August 2026. No journal or arXiv submission has occurred. The source authors have not yet been privately notified of this construction.
+August 2026. This repository is public. The pre-clarification combined package first appears in repository history at commit `ca21a733`, dated 4 August 2026, and was linked from the public project page by commit `85cdead2`. The source authors have been contacted and are auditing the construction. No journal or arXiv submission has occurred.
+
+The clarification revision is additive and lives in `k2p_k3p_theta_clarified/`. No Git history was rewritten. The pre-clarification paper, summary, certificates, and original verifier modules remain in place; the parent navigation and provenance files were updated to identify the clarification.
 
 ## Discovery sequence
 
@@ -20,7 +22,7 @@ The package therefore does not describe the K2P direction as having arisen spont
 
 ## Inherited exact materials
 
-The package starts from two preserved projects: the independent K2P reproduction audit containing the simple and strict continuous-time collisions, proof-order audit, direct-pruning verifier, and certificates; and the latest corrected K3P author-ready package containing the semi-directed formulation, exact quartic collision, rank-15 determinant, local-overlap theorem, analytic continuous-time extension, and exact certificates. Neither inherited directory was overwritten.
+The package incorporates material from an earlier K2P reproduction audit and the prior K3P-only package. The K3P-only repository version is recoverable at commit `d60581d1`. The separate K2P audit directory and first-contact memo were not included in this repository. The clarification revision reconstructs its focused two-page note from the exact certificate and unified paper without overwriting the pre-clarification paper, summary, certificates, or original verifier modules.
 
 ## Independent recomputations
 

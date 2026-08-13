@@ -1,0 +1,122 @@
+\documentclass[10pt]{article}
+\usepackage[margin=.52in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern}\usepackage{microtype}
+\usepackage{amsmath,amssymb,booktabs,tabularx,array,xcolor,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black,
+  pdftitle={K2P displayed-tree clarification},pdfauthor={Alec Kriebel}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{2.5pt}
+\setlength{\abovedisplayskip}{4pt}\setlength{\belowdisplayskip}{4pt}
+\newcommand{\odotv}{\mathbin{\odot}}
+\begin{document}
+\begin{center}
+{\Large\bfseries K2P Displayed-Tree Clarification}\par
+{\large Exact edge placement and four-switching derivation}\par
+Alec Kriebel \hfill August 2026
+\end{center}
+
+This note removes a compressed wording ambiguity in the exact $\mathbb Q(\sqrt{71})$ tree--theta-trinet witness. It changes no vector, matrix entry, factorization, or conclusion. The rooted network has arcs
+\[
+\rho\to1,\ \rho\to u,\ u\to p,\ u\to q,\ p\to r_2,\ p\to r_3,\ q\to r_2,\ q\to r_3,\ r_2\to2,\ r_3\to3,
+\]
+and both inheritance probabilities are $1/2$.
+
+\textbf{Unambiguous edge placement.}
+\begin{center}
+\small
+\begin{tabular}{@{}cl@{\qquad}cl@{}}
+\toprule
+arc&Fourier vector&arc&Fourier vector\\
+\midrule
+$\rho\to1$&$K$&$\rho\to u$&$K$\\
+$u\to p$&$U$&$u\to q$&$V$\\
+$p\to r_2$&$S$&$p\to r_3$&$S$\\
+$q\to r_2$&$T$&$q\to r_3$&$T$\\
+$r_2\to2$&$K$&$r_3\to3$&$K$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Thus both arcs out of $p$ carry $S$, and both arcs out of $q$ carry $T$.
+
+Let $(x,y,z)$ be the Fourier labels on leaves $1,2,3$. Consistency gives $x+y+z=A$, hence $x=y+z$. Every displayed tree has the following four common $K$-edge factors.
+\begin{center}
+\small
+\begin{tabular}{@{}ccl@{}}
+\toprule
+edge&labelled descendants&Fourier factor\\
+\midrule
+$\rho\to1$&$\{1\}$&$K_x$\\
+$\rho\to u$&$\{2,3\}$&$K_{y+z}=K_x$\\
+$r_2\to2$&$\{2\}$&$K_y$\\
+$r_3\to3$&$\{3\}$&$K_z$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Their common product is
+\[
+K_xK_{y+z}K_yK_z=K_x^2K_yK_z.
+\]
+
+\textbf{Four switchings.} Deleting one incoming edge at each reticulation gives:
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}cccc>{\raggedright\arraybackslash}X@{}}
+\toprule
+\shortstack{parent\\at $r_2$}&\shortstack{parent\\at $r_3$}&$\operatorname{desc}(u\to p)$&$\operatorname{desc}(u\to q)$&core monomial\\
+\midrule
+$p$&$p$&$\{2,3\}$&$\varnothing$&$S_yS_zU_{y+z}$\\
+$p$&$q$&$\{2\}$&$\{3\}$&$S_yT_zU_yV_z$\\
+$q$&$p$&$\{3\}$&$\{2\}$&$T_yS_zU_zV_y$\\
+$q$&$q$&$\varnothing$&$\{2,3\}$&$T_yT_zV_{y+z}$\\
+\bottomrule
+\end{tabularx}
+\end{center}
+If an edge has no labelled descendant, its Fourier label is $A$, so its factor is $U_A=1$ or $V_A=1$. Equivalently, that dangling branch disappears when the displayed tree is pruned to the labelled leaves. Each row has inheritance weight $1/4$, so after extracting the four common $K$-edge factors,
+\[
+\boxed{M_{y,z}=\frac14\left(S_yS_zU_{y+z}+S_yT_zU_yV_z+T_yS_zU_zV_y+T_yT_zV_{y+z}\right).}
+\]
+
+\newpage
+\textbf{Exact compact witness.} In order $(A,C,G,T)$, use
+\[
+\begin{aligned}
+K&=(1,\tfrac12,\tfrac12,\tfrac12),&U&=(1,\tfrac45,\tfrac{19}{30},\tfrac45),&V&=(1,\tfrac7{240},\tfrac{239}{360},\tfrac7{240}),\\
+S&=(1,\tfrac14,\tfrac12,\tfrac14),&T&=(1,\tfrac13,\tfrac1{27},\tfrac13).
+\end{aligned}
+\]
+Every transition entry is positive. Direct substitution into the graph-derived formula gives
+\[
+M=\begin{pmatrix}
+1&151/1440&3317/19440&151/1440\\
+151/1440&71/1600&4681/172800&7597/259200\\
+3317/19440&4681/172800&961/14400&4681/172800\\
+151/1440&7597/259200&4681/172800&71/1600
+\end{pmatrix}.
+\]
+In particular,
+\[
+M_{A,C}=\frac{151}{1440},\qquad M_{C,C}=\frac{71}{1600}.
+\]
+Writing $s=\sqrt{71}$ and
+\[
+P=(1,\tfrac{151}{36s},\tfrac{107}{162},\tfrac{151}{36s}),\qquad
+R=(1,\tfrac{s}{40},\tfrac{31}{120},\tfrac{s}{40}),
+\]
+exact arithmetic gives $M_{y,z}=P_{y+z}R_yR_z$ for all $y,z$. The comparison-tree vectors are
+\[
+\alpha=K^{\odotv2}\odotv P=(1,\tfrac{151s}{10224},\tfrac{107}{648},\tfrac{151s}{10224}),\qquad
+\beta=\gamma=K\odotv R=(1,\tfrac{s}{80},\tfrac{31}{240},\tfrac{s}{80}).
+\]
+Hence for every consistent $(x,y,z)$,
+\[
+q^{N_\theta}_{xyz}=K_x^2K_yK_zM_{y,z}=\alpha_x\beta_y\gamma_z=q^T_{xyz}.
+\]
+All $64$ Fourier coordinates and all $64$ pattern probabilities agree exactly, the source invariant $Q$ vanishes, and the exact minimum pattern probability is
+\[
+\frac{1188799}{79626240}>0.
+\]
+
+\textbf{Independent checks.} The new verifier literally deletes the unselected incoming reticulation edges, reconstructs each retained graph, computes every edge label from its labelled descendants, and recovers the four monomials above. Independently of that Fourier factorization, it performs ordinary-state Markov pruning with the exact $4\times4$ K2P transition matrices on each of the four displayed rooted trees, averages their distributions, and compares with both the comparison tree and Fourier inversion. All $64$ probabilities agree exactly. As a source-convention check, the same descendant-label rule reproduces all five explicit 3-sunlet Fourier coordinates displayed in Lemma~4.1 of arXiv:2607.12919v2.
+
+The calculation is replayed with the Python standard library by
+\texttt{python3 verify\_k2p\_displayed\_trees.py}.
+\end{document}
