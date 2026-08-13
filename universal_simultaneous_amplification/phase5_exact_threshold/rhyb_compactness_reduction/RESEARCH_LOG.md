@@ -1,5 +1,14 @@
 # Research log: `R_hyb` compactness reduction
 
+- Separated the minimal one-module gate theorem from its convex closure.
+  Direct solution of the two gate inequalities gives exactly
+  `q_B q_D >= r^3 [rho_Bd-p]_+ [rho_dB-p]_+`, the portal-general form of
+  the old stationary singleton-product inequality (65).  This is strictly
+  weaker than BDM.  Nevertheless BDM is necessary for the separated
+  response cone: any strict positive `D+(r-1)B` score can be mixed with
+  either the ordinary leaf ray or the tangent strong-`K_2` ray to enter the
+  open positive quadrant.  Exact symbolic replay verifies both reductions.
+
 All times are America/Los_Angeles.  No external communication or graph
 optimization was used.
 

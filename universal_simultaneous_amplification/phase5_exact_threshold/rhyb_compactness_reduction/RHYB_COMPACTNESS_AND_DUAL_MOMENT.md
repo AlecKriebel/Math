@@ -254,6 +254,18 @@ particular it implies the required nonlinear alternative
 non-dilute graphs; the stored weak-cut `K_2--K_20` witness lies outside this
 one-module conclusion.
 
+For one module at one fixed gate, the minimal disjunction is the strictly
+weaker stationary singleton-product inequality
+
+\[
+ q_Bq_D\ge r^3[\rho_{Bd}-p]_+[\rho_{dB}-p]_+,
+ \qquad p=1-1/r.
+\]
+
+The exact derivation and the reason BDM reappears after convexification by
+the leaf and tangent-pair boundary rays are recorded in
+`LOCAL_DISJUNCTION_AND_CONVEXIFICATION.md`.
+
 ## 7. Exact `K_2` equality and the hybrid sextic
 
 For `H=K_2`, symmetry makes the portal laws irrelevant and
