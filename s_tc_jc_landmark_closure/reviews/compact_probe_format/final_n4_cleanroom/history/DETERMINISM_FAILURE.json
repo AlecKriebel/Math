@@ -1,0 +1,14 @@
+{
+  "status": "VERIFIED_AFTER_CORRECTION",
+  "scope": "review-side merger mutation transcript only",
+  "semantic_certificate_affected": false,
+  "observed_nondeterministic_certificate_sha256": [
+    "1f874b546c5e000075aac16890cc41c7177117a557cb800966ebc9c817f0ed3c",
+    "e025bd1784135977357a01950a7a65989f34c83f4b7f930dc8b0696ca93a4ecb",
+    "e89f70351a7e60f7f004a40e764d5f832e8407486dc6d391d8b4d02869566c75",
+    "97cf31a94add9ac9009a3426333399c8f5df4d26762b769f1ed121b82f90e201"
+  ],
+  "cause": "The accepted baseline merger stdout normalized its temporary output path relative to the project. The initial sanitizer replaced only the absolute temporary path, and its first correction assumed an underscore after tmp; Python's randomized tempfile name had no underscore. Both versions left the randomized temporary directory name in output_tail.",
+  "correction": "Normalize absolute and project-relative tempfile directory names matching tmp* before serializing the mutation transcript.",
+  "note": "All eight merger acceptance/rejection outcomes were identical. No compact relation, graph, descriptor, polynomial, transport, or verbose comparison was affected."
+}

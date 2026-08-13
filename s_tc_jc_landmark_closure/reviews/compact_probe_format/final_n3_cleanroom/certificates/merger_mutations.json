@@ -1,0 +1,111 @@
+{
+  "implementation": "reviews/compact_probe_format/final_n3_cleanroom/merger_mutations.py",
+  "implementation_sha256": "80192d0fc81570a2416297d2f779a31ee9fea2b8b1b76e4e0c1f48742681044a",
+  "independent_replay_sha256": [
+    "fb411d3e84fc90a68760b23e85a317d5a00d709fb39941f4c7a6e311124bf5f7",
+    "3a6b16a73bd98f3724fdf3aafbdd83885813351a4c490d6aab9d125b587eb42a",
+    "0f81ab74b46e6d2ef465167b7fbee08d348b2cbe9a6173dea68b83a5e8282b0c",
+    "af6f4c1cb1fa921e3506289fbb51f836d78f5838f6871e17677f63de2ea36601"
+  ],
+  "merger": "primary/merge_compact_probe_shards.py",
+  "merger_sha256": "26a47976056c57c79b3ea7b056929fb1b25ee512cae5f8dd3bad0247c5e97e67",
+  "primary_replay_sha256": [
+    "2b203f4b6d49b60a230d5ce01f56aac28f3355f690785bfc778f614ef203208c",
+    "f3152441540cf49883bdf425a72695f1f66fb7094bb13fe2fc3adec690124cab",
+    "e92d9c07290e9cef7ea9757841ee25551d9fccc092f4962b78d16b7a1d2aa915",
+    "df4fbb3cdfd681d52ee1a6d1c0df88c4f6fa95bcf199618074cad410e6f1b431"
+  ],
+  "results": [
+    {
+      "accepted": true,
+      "expected_acceptance": true,
+      "manifest_created": true,
+      "meets_expectation": true,
+      "mutation": "baseline",
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 90008, \"labelled_isomorphism\": 9676, \"ordinary_T\": 840, \"strict_open_cube_separation\": 624}, \"output\": \"<TEMP>/baseline_manifest.json\", \"path_inventory_count\": 144, \"sha256\": \"616c5cd5c29930d572b6e84ec47191b3d418d88d964395e7de988e80ae56afdd\", \"shards\": 4, \"status\": \"EXACTLY_VERIFIED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "incomplete_shard_coverage",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 323, in main\n    raise AssertionError((\"incomplete inventory\", cursor, len(inventory)))\nAssertionError: ('incomplete inventory', 108, 144)\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "duplicate_shard",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 275, in main\n    primary_replays = load_replays(args.primary_replay, independent=False)\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 229, in load_replays\n    raise AssertionError((path, \"duplicate replay for summary\", summary_digest))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_schema3_n3_compact_s0_replay.json'), 'duplicate replay for summary', 'dc7b806f9afc1af9909682f47ea4bdc9ac5a8631d78ce3a6b15d41c4f171ad73')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "missing_independent_replay",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 295, in main\n    raise AssertionError((summary_path, \"missing bound replay certificate\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_schema3_n3_compact_s3_summary.json'), 'missing bound replay certificate')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_replay_summary_binding",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 295, in main\n    raise AssertionError((summary_path, \"missing bound replay certificate\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_schema3_n3_compact_s0_summary.json'), 'missing bound replay certificate')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_independent_path_range",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 303, in main\n    raise AssertionError((summary_path, label, \"path range\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_schema3_n3_compact_s0_summary.json'), 'independent', 'path range')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_independent_counts",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 305, in main\n    raise AssertionError((summary_path, label, \"classification counts\"))\nAssertionError: (PosixPath('/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/certificates/compact_probe_schema3_n3_compact_s0_summary.json'), 'independent', 'classification counts')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "failed_independent_status",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 276, in main\n    independent_replays = load_replays(args.independent_replay, independent=True)\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 224, in load_replays\n    raise AssertionError((path, \"replay status\", status))\nAssertionError: (PosixPath('<TEMP>/wrong_status.json'), 'replay status', 'FALSE')\n",
+      "returncode": 1
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "wrong_schema_specification",
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 345, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 262, in main\n    raise AssertionError(\"schema specification SHA-256\")\nAssertionError: schema specification SHA-256\n",
+      "returncode": 1
+    }
+  ],
+  "schema": "compact-probe-final-n3-merger-mutations-v1",
+  "scope": "Black-box coverage, replay binding, range, count, status, and schema commitments. Relation semantics are tested separately by mutation_tests.py.",
+  "status": "VERIFIED",
+  "summary_sha256": [
+    "dc7b806f9afc1af9909682f47ea4bdc9ac5a8631d78ce3a6b15d41c4f171ad73",
+    "996084af49c3e4ddf63b62cfa951be652a886e3424674f6e34d664b5a4901a37",
+    "a8162d2bb136668ce2f204ce2012c85eb4dbb5e42c7037307d974b5f9ebf2286",
+    "b246614dafc669784f8ef5e16ef62db79f08929b2afc2a6d14ce7f50bd7b7942"
+  ],
+  "unexpected_results": []
+}

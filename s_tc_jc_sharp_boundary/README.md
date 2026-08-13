@@ -1,59 +1,58 @@
-# Author-ready release, version 1.1.1
+# Full-dimensional JC ambiguity in weakly tree-child level-2 networks
 
-This directory contains the journal submission and exact computational
-supplement for Alec Kriebel's paper *Generic Identifiability of Strongly
-Tree-Child Level-2 Jukes--Cantor Networks*.
+## Verified release status
 
-The theorem covers all binary standard semi-directed `S_TC` level-2 networks
-under the open four-state Jukes--Cantor model, modulo ordinary triangle
-redirection. A separate graph theorem proves that every binary `W_TC`
-level-2 topology automatically has at most one triangle per blob, so no
-triangle-count hypothesis remains. The sharpness result gives an all-`n`
-non-triangle ambiguity in `W_TC \ S_TC`. The reconstruction theorem returns
-a canonical structural class modulo ordinary triangle redirection; it does not
-claim that every redirected orientation contains one fixed input distribution.
+This is the replacement for the withdrawn version 1.1.1 positive-
+classification release.  Its scope is intentionally narrower and matches the
+theorem that survives exact adversarial review:
 
-## Submission files
+> For every `n >= 4`, two nonisomorphic and non-triangle-equivalent binary
+> level-2 semi-directed networks in `W_TC \ S_TC` have open Jukes--Cantor
+> model images with a common regular full-dimensional region of dimension
+> `2n`.
 
-- `submission/Generic_Identifiability_STC_Level2_JC.pdf`
-- `submission/LaTeX_TikZ_Source.zip`
-- `submission/STC_JC_Reproducibility.zip`
-- journal-specific and generic cover letters
-- `submission/Referee_Guide.pdf`
+The four-leaf common point is exact in a quadratic number field, lies strictly
+inside the positive-definite JC domain `Theta_0`, agrees in all 256 Fourier
+coordinates, and has nonzero rank-eight Jacobian minors on both models.  A
+positive analytic inverse for identical cherry substitution proves the
+all-taxa extension.
 
-## Verification
+The former claim that all standard strongly tree-child level-2 JC networks
+are identifiable modulo triangle redirection remains **unresolved, not
+refuted**.  It is not asserted anywhere in the active manuscript or release.
+The construction also does not settle the triangle-free weakly tree-child
+subclass: its blob contains a triangle as well as failing strong
+tree-childness.
+The historical files are preserved under
+`quarantine/withdrawn_positive_v1.1.1/` and must not be submitted or cited as
+established.
 
-```bash
-bash reproducibility/verify_quick.sh
-bash reproducibility/verify_full.sh
+## Active files
+
+- `source/paper/main.tex` — canonical manuscript source
+- `submission/` — generated submission PDF after the final release gate
+- `reproducibility/` — primary and independent exact implementations
+- `docs/PRIOR_WORK_COMPARISON.md` — version-locked literature audit
+- `repair/` — forensic reports explaining why the old theorem was withdrawn
+
+## Reproduce
+
+The release command is:
+
+```sh
+python3 reproducibility/verify_release.py
 ```
 
-The first is a submission/build check. The second independently rebuilds the complete automatic-triangle rooting universe in Python and C++, and verifies every unchanged statistical/atlas byte against its preserved clean full-adversarial transcript. The optional `verify_regenerate_all.sh` reruns every large algebra generator and directed join from scratch. See `reproducibility/RUNTIME.md` for
-resource expectations.
+It checks the release manifest before running two independent exact
+implementations.  Build the manuscript with Tectonic:
 
-Licenses: manuscript text and figures are CC BY 4.0; code is MIT. No persistent
-archive identifier is claimed in this local release; the author should insert one
-after depositing the final bytes. The
-`MANIFEST.sha256` file is an integrity control, not a mathematical proof.
+```sh
+reproducibility/build_paper.sh
+```
 
-## Note on this Git mirror
+The independent mathematical audit, final manuscript rereview, deterministic
+archive checks, and clean-worktree replay are recorded in `AUDIT_REPORT.md`.
+Journal-specific author metadata and formatting remain human submission
+choices rather than mathematical release blockers.
 
-Three files from the original author-ready release are intentionally omitted
-here because they exceed practical Git hosting limits or duplicate bytes
-already present unpacked elsewhere in this directory:
-
-- `submission/LaTeX_TikZ_Source.zip` and `submission/STC_JC_Reproducibility.zip`
-  are zipped copies of `source/paper/` and `reproducibility/`, which are
-  already present unpacked; both zips are covered by `MANIFEST.sha256` and can
-  be regenerated with `reproducibility/build_component_archives.py`.
-- `reproducibility/publication/certificates/theta_k6_weak_signatures.bin`
-  (SHA-256 `92db30fa49ee4603ff27256d10898f785c42a252b4180503391ec09b175bb711`,
-  recorded in `MANIFEST.sha256`) is a 175&nbsp;MB exhaustive signature dump used
-  only by the optional `reproducibility/verify_regenerate_all.sh` full
-  regeneration path, not by `verify_quick.sh` or `verify_full.sh`. It can be
-  regenerated from `reproducibility/publication/src/regenerate_signature_relation.cpp`.
-
-Every other file, including all theorem-bearing certificates, the primary
-verifier, and both independent reviewers, is present and was independently
-rerun before this git mirror was published; see
-`reproducibility/GIT_MIRROR_VERIFICATION.txt`.
+Manuscript text and figures are licensed CC BY 4.0.  Code is MIT licensed.

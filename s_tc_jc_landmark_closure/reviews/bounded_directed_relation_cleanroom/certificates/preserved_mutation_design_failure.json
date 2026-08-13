@@ -1,0 +1,29 @@
+{
+  "classification": "REVIEWER_MUTATION_DESIGN_FAILURE",
+  "failed_mutation": "alter_valid_port_correspondence",
+  "first_full_n3_replay_status": "FAILED_CLOSED",
+  "mathematical_audit_before_mutations": "PASSED",
+  "reason": "The first strict relation was invariant under the fixed transposition (0 1), so changing that record's port map did not change its selected separator. A mutation that can land in a genuine relation symmetry is not a valid sensitivity test.",
+  "failed_fixture": {
+    "relation_id": "000a5699830aeecaced0e6459d5a6ef52cc0324d72ee6446110448c8dd92e10c",
+    "mutated_port_correspondence": [
+      1,
+      0,
+      2,
+      3
+    ],
+    "separator_remained_graph_valid": true
+  },
+  "repair": "Search deterministically over nonidentity port permutations and strict relations, select the first alteration rejected by independently regenerated graph pullbacks, record the selected relation/permutation, and rerun all mutations.",
+  "repaired_fixture": {
+    "relation_id": "000a5699830aeecaced0e6459d5a6ef52cc0324d72ee6446110448c8dd92e10c",
+    "mutated_port_correspondence": [
+      0,
+      2,
+      3,
+      1
+    ]
+  },
+  "schema": 1,
+  "theorem_evidence": false
+}

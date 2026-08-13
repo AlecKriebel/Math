@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "description": "Status-free primitive data for the four-leaf theta sharpness pair",
+  "root": "rho",
+  "leaf_order": ["L1", "L2", "L3", "L4"],
+  "vertex_types": {
+    "rho": "root",
+    "A": "tree",
+    "B": "tree",
+    "C": "reticulation",
+    "D": "tree",
+    "E": "tree",
+    "F": "reticulation",
+    "L1": "leaf",
+    "L2": "leaf",
+    "L3": "leaf",
+    "L4": "leaf"
+  },
+  "internal_arcs": [
+    ["rho", "A"],
+    ["rho", "C"],
+    ["A", "B"],
+    ["B", "C"],
+    ["C", "D"],
+    ["D", "E"],
+    ["A", "F"],
+    ["E", "F"]
+  ],
+  "pendant_arcs": {
+    "N": [["B", "L1"], ["D", "L2"], ["F", "L3"], ["E", "L4"]],
+    "N_prime": [["E", "L1"], ["D", "L2"], ["F", "L3"], ["B", "L4"]]
+  },
+  "inheritance_parent_order": {
+    "C": [["rho", "lambda_C"], ["B", "one_minus_lambda_C"]],
+    "F": [["A", "lambda_F"], ["E", "one_minus_lambda_F"]]
+  },
+  "points": {
+    "N": {
+      "edge_multipliers": {
+        "rho->A": "2/3",
+        "rho->C": "3/4",
+        "A->B": "3/5",
+        "B->C": "1/2",
+        "C->D": "9/20",
+        "D->E": "2/5",
+        "A->F": "1/2",
+        "E->F": "1/3",
+        "B->L1": "1/5",
+        "D->L2": "1/2",
+        "F->L3": "1/2",
+        "E->L4": "3/8"
+      },
+      "inheritance": {"C": "1/2", "F": "1/2"}
+    },
+    "N_prime": {
+      "edge_multipliers": {
+        "rho->A": "2/3",
+        "rho->C": "3/4",
+        "A->B": "24835*beta/(20678-24835*beta)",
+        "B->C": "1/2",
+        "C->D": "9934/12215",
+        "D->E": "171/775",
+        "A->F": "10339/(53010*beta)",
+        "E->F": "1/2",
+        "E->L1": "31/190",
+        "D->L2": "1/2",
+        "F->L3": "1767/4832",
+        "B->L4": "3/(20*beta)"
+      },
+      "inheritance": {"C": "1/2", "F": "1/2"}
+    }
+  },
+  "quadratic_field": {
+    "basis_element": "beta",
+    "minimal_polynomial_coefficients": [43337075, -36083110, 7336259],
+    "isolating_interval": ["441/1250", "3529/10000"]
+  },
+  "orbit_representatives": {
+    "A": "0011",
+    "B": "0101",
+    "C": "0110",
+    "D": "0123",
+    "E": "1001",
+    "F": "1010",
+    "G": "1023",
+    "H": "1100",
+    "J": "1111",
+    "K": "1122",
+    "L": "1203",
+    "M": "1212",
+    "N": "1221",
+    "O": "1230"
+  },
+  "claimed_common_orbit_values": {
+    "A": "277/8000",
+    "B": "3/40",
+    "C": "67/2400",
+    "D": "127/16000",
+    "E": "27/5000",
+    "F": "81/5000",
+    "G": "153/160000",
+    "H": "9/500",
+    "J": "27/16000",
+    "K": "261/320000",
+    "L": "27/10000",
+    "M": "27/20000",
+    "N": "153/320000",
+    "O": "183/80000"
+  },
+  "provenance_sha256": {
+    "download_networks_json": "80b07f82641bf7d9e7a96abdbaae1c36cba7fc070cc3163214eee639fc43e9af",
+    "download_counterexample_manuscript_tex": "4b3001444c29fa7926f14793e0fe4082834fc13e02e9096f76fc996d06badaa4",
+    "closure_audit_status_certificate_json_untrusted": "d0bca08bd6df796655b2a7b9d0fa44b013dfb689042505bc6e522a3f7939d7de",
+    "closure_audit_graph_fourier_code_not_imported": "1df20e19ab9cb7c4f52518cfe402cc5ed9f79453f094a8e8e824cdb803fa38d4",
+    "counterexample_graph_fourier_code_not_imported": "c790585c83515141d3dfff20084548a8372c132205cba01f934f017009c6bbb9"
+  }
+}

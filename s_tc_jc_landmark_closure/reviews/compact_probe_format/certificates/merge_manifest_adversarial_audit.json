@@ -1,0 +1,91 @@
+{
+  "accepted_malformed_cases": [
+    "forged_inventory_count",
+    "forged_classification_counts",
+    "unresolved_but_status_computed",
+    "wrong_schema_specification_hash",
+    "wrong_inventory_commitment"
+  ],
+  "interpretation": "A shard semantic verifier rejects these mutations, but the merger does not bind or replay that verifier.  Therefore its manifest is not a standalone semantic certificate.",
+  "primary_merger": "primary/merge_compact_probe_shards.py",
+  "primary_merger_sha256": "f6cbc81d12811f2cf58b2540d8b9553e7ed673f52affe46ae58560d4db599d35",
+  "results": [
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "baseline_incomplete_shard",
+      "mutation_rejected": true,
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 165, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 143, in main\n    raise AssertionError((\"incomplete inventory\", cursor, first[\"path_inventory_count\"]))\nAssertionError: ('incomplete inventory', 1, 132)\n",
+      "returncode": 1
+    },
+    {
+      "accepted": true,
+      "expected_acceptance": false,
+      "manifest_created": true,
+      "meets_expectation": false,
+      "mutation": "forged_inventory_count",
+      "mutation_rejected": false,
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 1562, \"labelled_isomorphism\": 143}, \"output\": \"reviews/compact_probe_format/tmpqxvpi03w/forged_inventory_count_manifest.json\", \"path_inventory_count\": 1, \"sha256\": \"<OUTPUT_SHA256>\", \"shards\": 1, \"status\": \"EXACTLY_COMPUTED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": false,
+      "expected_acceptance": false,
+      "manifest_created": false,
+      "meets_expectation": true,
+      "mutation": "missing_witness_stream",
+      "mutation_rejected": true,
+      "output_tail": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 165, in <module>\n    main()\n    ~~~~^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 125, in main\n    stream_ids, stream_digest = stream_keys(stream_path, key)\n                                ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math-stc-jc-final-repair/s_tc_jc_landmark_closure/primary/merge_compact_probe_shards.py\", line 61, in stream_keys\n    with gzip.open(path, \"rb\") as handle:\n         ~~~~~~~~~^^^^^^^^^^^^\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/gzip.py\", line 66, in open\n    binary_file = GzipFile(filename, gz_mode, compresslevel)\n  File \"/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/gzip.py\", line 210, in __init__\n    fileobj = self.myfileobj = builtins.open(filename, mode or 'rb')\n                               ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '<TMP>/reviews/compact_probe_format/does_not_exist.jsonl.gz'\n",
+      "returncode": 1
+    },
+    {
+      "accepted": true,
+      "expected_acceptance": false,
+      "manifest_created": true,
+      "meets_expectation": false,
+      "mutation": "forged_classification_counts",
+      "mutation_rejected": false,
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 999999999}, \"output\": \"reviews/compact_probe_format/tmpqxvpi03w/forged_classification_counts_manifest.json\", \"path_inventory_count\": 1, \"sha256\": \"<OUTPUT_SHA256>\", \"shards\": 1, \"status\": \"EXACTLY_COMPUTED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "expected_acceptance": false,
+      "manifest_created": true,
+      "meets_expectation": false,
+      "mutation": "unresolved_but_status_computed",
+      "mutation_rejected": false,
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 1562, \"labelled_isomorphism\": 143}, \"output\": \"reviews/compact_probe_format/tmpqxvpi03w/unresolved_but_status_computed_manifest.json\", \"path_inventory_count\": 1, \"sha256\": \"<OUTPUT_SHA256>\", \"shards\": 1, \"status\": \"EXACTLY_COMPUTED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "expected_acceptance": false,
+      "manifest_created": true,
+      "meets_expectation": false,
+      "mutation": "wrong_schema_specification_hash",
+      "mutation_rejected": false,
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 1562, \"labelled_isomorphism\": 143}, \"output\": \"reviews/compact_probe_format/tmpqxvpi03w/wrong_schema_specification_hash_manifest.json\", \"path_inventory_count\": 1, \"sha256\": \"<OUTPUT_SHA256>\", \"shards\": 1, \"status\": \"EXACTLY_COMPUTED\"}\n",
+      "returncode": 0
+    },
+    {
+      "accepted": true,
+      "expected_acceptance": false,
+      "manifest_created": true,
+      "meets_expectation": false,
+      "mutation": "wrong_inventory_commitment",
+      "mutation_rejected": false,
+      "output_tail": "{\"counts\": {\"generic_polynomial_separation\": 1562, \"labelled_isomorphism\": 143}, \"output\": \"reviews/compact_probe_format/tmpqxvpi03w/wrong_inventory_commitment_manifest.json\", \"path_inventory_count\": 1, \"sha256\": \"<OUTPUT_SHA256>\", \"shards\": 1, \"status\": \"EXACTLY_COMPUTED\"}\n",
+      "returncode": 0
+    }
+  ],
+  "reviewer": "reviews/compact_probe_format/audit_merge_manifest.py",
+  "reviewer_sha256": "1dcf6a12e2f121f68f4f2426effd3a4e29eefcabfbf62d6139c6e825b27d5583",
+  "schema": "compact-probe-merge-black-box-audit-v1",
+  "scope": "standalone primary merge-manifest validation",
+  "smoke_summary": "primary/certificates/compact_probe_theta2_smoke0_summary.json",
+  "smoke_summary_sha256": "0c8469402313746a151b85679a99f741ac19d35fe9bfa6fa28faa8e93ce2e0d2",
+  "status": "FALSE"
+}

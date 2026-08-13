@@ -1,0 +1,16 @@
+{
+  "classification": "ADVERSARIAL_REVIEWER_INVOCATION_FAILURE",
+  "attempts": [
+    {
+      "result": "NO_SESSION_STARTED",
+      "reason": "The local Codex CLI rejected the user configuration because its installed version did not recognize reasoning effort ultra."
+    },
+    {
+      "result": "INTERRUPTED_WITHOUT_VERDICT",
+      "reason": "With user configuration disabled, the reviewer began launching verify_all.sh and verify_n3.sh concurrently despite the sequential memory rule. The parent session was interrupted immediately; process inspection confirmed that no child verifier remained and no review report was written."
+    }
+  ],
+  "repair": "The final reviewer prompt must prohibit launching verifier entrypoints or other long-running computations, restrict the reviewer to static inspection of the already generated exact certificates and short read-only probes, and request one final combined n3/n4 verdict.",
+  "schema": 1,
+  "theorem_evidence": false
+}
