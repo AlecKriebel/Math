@@ -742,3 +742,57 @@
   theorem, this proves the local blob-containment lemma.  Every mathematical
   dependency of Outcome P is now closed.  A fresh whole-proof adversarial
   review and clean release replay remain mandatory before final promotion.
+
+## 2026-08-12T22:55:00-07:00 — first whole-proof referee withholds Outcome P
+
+- The independent whole-proof referee at commit `5377048d` found no standard-
+  strong counterexample and verified the convention, cut, bridge, root,
+  theta-2, triangle, global-logic, and weak-sharpness layers.  It nevertheless
+  returned **UNRESOLVED / HOLD SUBMISSION** for three exact reasons.
+- The n3 clean-room gate checked every supplied relation but had not generated
+  the completion/presentation universe independently.  The arbitrary-word
+  package covered 144 restoration terminals but omitted the 62 direct
+  residual anchors.  Finally, the large verbose probe streams were untracked,
+  so a clean clone could not replay the claimed release.
+- The report and all requested manuscript corrections are preserved in
+  `reviews/final_outcome_p_referee/`.  No positive status was promoted.
+
+## 2026-08-12T23:05:00-07:00 — independent n3 universe generation closes the first gap
+
+- A clean implementation derives the eight source supports, 831 selected-
+  incoming and 1,983 marginalized-incoming completions, every relative port
+  assignment, and both source-to-target directions before reading the primary
+  relation claim.
+- It regenerates exactly 10,826 raw and 10,466 merged relations.  The raw and
+  merged normalized multisets agree byte-for-byte with independent SHA-256
+  commitments; multiplicities are 10,106 singleton and 360 double relations.
+  Six deletion, duplication, direction, assignment, and coverage mutations
+  are rejected.  Commit: `3f9af468`.
+
+## 2026-08-12T23:40:00-07:00 — direct-anchor arbitrary words close exactly
+
+- The 62 direct residual anchors have four ports and therefore cannot be
+  identical to any of the 144 restoration terminals, which have five to seven
+  ports.  A separate proof-forced compiler was required rather than a false
+  crosswalk.
+- The independent package classifies all 2,642 one-port relations and all
+  18,224 two-port relations above the 314 surviving parents.  Exactly 34 base
+  anchors are labelled isomorphisms and 28 are ordinary triangle
+  redirections.  Every one of the 18,520 unequal child relations has a
+  graph-derived exact JC separator; all surviving child transports restrict
+  their unique parent.  Twelve semantic mutations are rejected.  Commit:
+  `a33cb4b0`.
+
+## 2026-08-13T00:05:00-07:00 — compact-only clean-clone probe gate
+
+- The active release no longer consumes any untracked verbose
+  `probe_extension_*` artifact.  A compact-only semantic replay reconstructs
+  all graph insertions, switchings, masks, Fourier descriptors, invariant
+  pullbacks, signs, and transports for 101,148 n3 and 168,582 theta-2 probe
+  relations from 50 tracked byte-locked inputs.
+- All nine mutations are rejected, the maximum attained probe size is ten
+  ports, and a fresh `git archive HEAD` quick plus full replay succeeds.
+  Commit: `d63289fa`.
+- All mathematical and clean-input gates identified by the first referee are
+  now closed.  A new whole-proof adversarial referee is running against the
+  integrated candidate; Outcome P remains unpromoted until that verdict.
