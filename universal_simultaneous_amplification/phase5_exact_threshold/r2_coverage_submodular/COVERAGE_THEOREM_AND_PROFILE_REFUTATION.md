@@ -333,3 +333,157 @@ The exact remaining upper-bound target is unchanged:
  \frac{(n-1)2^{n-2}}{2^{n-1}-1}.
 \tag{28}
 \]
+
+## 6. Rank-summed harmonic edges as a dual/test-set coupling
+
+The useful consequence of complete alternation is not a marginal profile,
+but an exact coupling of a stationary dual set with an independent test set.
+For `0<=k<=n-1`, put
+
+\[
+ \delta_vh(S)=h(S\cup\{v\})-h(S),\qquad v\notin S,
+\tag{29}
+\]
+
+and define the unweighted and heat-bath-weighted rank sums
+
+\[
+ D_k=\sum_{|S|=k,v\notin S}\delta_vh(S),
+\qquad
+ W_k=\sum_{|S|=k,v\notin S}
+ {2P_{vS}\over1+P_{vS}}\delta_vh(S).
+\tag{30}
+\]
+
+Formula (14) at first order gives
+
+\[
+ \delta_vh(S)=
+ \Pr_\Pi(v\in A,\ A\cap S=\varnothing).
+\tag{31}
+\]
+
+Let `H=A^c`.  Tonelli's theorem, applied to the finite nonnegative sum,
+therefore gives
+
+\[
+ \boxed{
+ D_k=E_\Pi\left[|A|{|H|\choose k}\right],
+ }
+\tag{32}
+\]
+
+and
+
+\[
+ \boxed{
+ W_k=E_\Pi\sum_{v\in A}
+ \sum_{\substack{S\subseteq H\\|S|=k}}
+ {2P_{vS}\over1+P_{vS}}.
+ }
+\tag{33}
+\]
+
+Thus the rank sum is exactly the joint experiment
+
+1. draw `A` from its stationary fair-geometric law;
+2. choose a marked vertex `v in A`;
+3. choose a uniform `k`-subset `S` of `A^c`;
+4. observe the row mass `P_(vS)`.
+
+No independence between ancestral lineages appears.  Conditional on `A`
+and `v`, only the auxiliary test set `S` is sampled.
+
+There is an exact first-moment collapse which isolates the sole signed
+quantity.  Write
+
+\[
+ I_P(A)=\sum_{v,u\in A}P_{vu},\qquad
+ Z_P(A)={|A|(|A|-1)\over n-1}-I_P(A).
+\tag{34}
+\]
+
+If `a=|A|` and `h=n-a`, uniform `k`-subset sampling gives
+
+\[
+ \sum_{v\in A}\sum_{\substack{S\subseteq A^c\\|S|=k}}
+ \left(P_{vS}-{k\over n-1}\right)
+ ={k\over h}{h\choose k}Z_P(A).
+\tag{35}
+\]
+
+Indeed, each hole belongs to exactly `{h-1 choose k-1}` test sets, while
+
+\[
+ \sum_{v\in A,u\notin A}P_{vu}=|A|-I_P(A).
+\]
+
+For an undirected weighted graph, the apparent oriented term in (34) is the
+symmetric internal-edge deficit
+
+\[
+ \boxed{
+ Z_P(A)=\sum_{\{u,v\}\subseteq A}
+ \left\{{2\over n-1}-w_{uv}
+ \left({1\over d_u}+{1\over d_v}\right)\right\}.
+ }
+\tag{36}
+\]
+
+In particular its uniform average vanishes separately on every rank.
+
+Finally use the exact tangent remainder, for `q(x)=2x/(1+x)`,
+
+\[
+ q(x)-q(b)={2(x-b)\over(1+b)^2}
+ -{2(x-b)^2\over(1+b)^2(1+x)}.
+\tag{37}
+\]
+
+Let `c_k>0` be the complete killed-Green edge weights and put
+
+\[
+ U_h=\sum_{k=1}^h c_k{2(n-1)^2\over(n-1+k)^2}
+ {h-1\choose k-1}.
+\tag{38}
+\]
+
+Then (32)--(37) give the exact comparison
+
+\[
+ \boxed{
+ \rho_{\rm dB}(G,2)-\rho_{\rm dB}(K_n,2)
+ =E_\Pi[U_{|A^c|}Z_P(A)]-\mathcal V_P,
+ }
+\tag{39}
+\]
+
+where
+
+\[
+ \mathcal V_P=
+ E_\Pi\sum_{v\in A}\sum_{k=1}^{|A^c|}
+ c_k{2\over(1+k/(n-1))^2}
+ \sum_{\substack{S\subseteq A^c\\|S|=k}}
+ {\{P_{vS}-k/(n-1)\}^2\over1+P_{vS}}\ge0.
+\tag{40}
+\]
+
+This identifies the proof-first frontier without another marginal guess.
+The exact universal upper bound is implied, and in this Green formulation
+is equivalent, to the named **stationary internal-edge deficit inequality**
+
+\[
+ \boxed{
+ E_\Pi[U_{|A^c|}Z_P(A)]\le\mathcal V_P.
+ }
+\tag{SID}
+\]
+
+Both sides of `(SID)` arise from the same joint law `(A,v,S)`: the left is
+its centered first row-mass moment after the reversible internal-edge
+collapse (35)--(36), and the right is its full positive concavity remainder.
+The left side is not pointwise nonpositive, so a proof must use stationarity
+to convert its rank-centered internal-edge deficit into a global two-copy,
+current, or tree cancellation.  Abstract submodularity alone stops at
+(31)--(33).

@@ -7,7 +7,8 @@ rational enclosure of the transcendental profile value.
 """
 
 from fractions import Fraction as Q
-from itertools import product
+from itertools import combinations, product
+from math import comb
 
 
 def solve(matrix, rhs):
@@ -124,5 +125,46 @@ def main():
     print("PASS: witness remains below K_6; only the profile envelope is refuted")
 
 
+def verify_test_set_collapse():
+    """Check (35)--(36) independently on rational graph/set atoms."""
+    weights = [
+        [0, 3, 0, 2, 1],
+        [3, 0, 5, 0, 4],
+        [0, 5, 0, 7, 0],
+        [2, 0, 7, 0, 6],
+        [1, 4, 0, 6, 0],
+    ]
+    n = len(weights)
+    degrees = [sum(row) for row in weights]
+    transition = [
+        [Q(weights[v][u], degrees[v]) for u in range(n)]
+        for v in range(n)
+    ]
+    for mask in range(1, (1 << n) - 1):
+        occupied = [v for v in range(n) if (mask >> v) & 1]
+        holes = [v for v in range(n) if not ((mask >> v) & 1)]
+        size, hole_count = len(occupied), len(holes)
+        internal = sum(
+            transition[v][u] for v in occupied for u in occupied
+        )
+        deficit = Q(size * (size - 1), n - 1) - internal
+        edge_deficit = sum(
+            Q(2, n - 1)
+            - weights[u][v] * (Q(1, degrees[u]) + Q(1, degrees[v]))
+            for u, v in combinations(occupied, 2)
+        )
+        assert deficit == edge_deficit
+        for k in range(hole_count + 1):
+            centered = sum(
+                sum(transition[v][u] for u in subset) - Q(k, n - 1)
+                for v in occupied
+                for subset in combinations(holes, k)
+            )
+            expected = Q(k * comb(hole_count, k), hole_count) * deficit
+            assert centered == expected
+    print("PASS: exact test-set first moment collapses to internal-edge deficit")
+
+
 if __name__ == "__main__":
     main()
+    verify_test_set_collapse()

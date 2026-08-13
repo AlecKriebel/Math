@@ -29,3 +29,24 @@ All timestamps are America/Los_Angeles.
 - **OPEN:** the exact stationary mean bound.  Any continuation of this route
   must use the full stationarity constraints of the representing coverage
   measure or the equivalent two-labelled current/tree cancellation.
+
+## 2026-08-13 -- rank-summed dual/test-set reduction
+
+- **PROVED:** the harmonic edge marginal is exactly
+  `Delta_v h(S)=Pr(v in A, A intersects S = empty)`.
+- Swapping the finite sums over the stationary dual set `A` and a rank-`k`
+  test set `S` recovers the exact rank identities for `D_k` and `W_k` as one
+  joint experiment `(A,v,S)`.
+- **PROVED:** the centered first moment over uniform test sets collapses to
+  `Z_P(A)=|A|(|A|-1)/(n-1)-sum_(u,v in A)P_uv`.  Reversibility turns this
+  into a symmetric sum over internal original-graph edges, and its uniform
+  average vanishes at each rank.
+- Combining this with the exact concavity remainder yields the named
+  stationary internal-edge deficit inequality `(SID)`.  It is exactly the
+  remaining sign in the Green comparison: the stationary weighted internal
+  deficit must be paid by the positive subset-mass dispersion from the same
+  `(A,v,S)` coupling.
+- **OPEN:** convert the rank-centered internal-edge deficit in `(SID)` into a
+  two-copy/internal-edge square using full dual stationarity.  Pointwise and
+  reference-only comparisons already fail, so the required cancellation is
+  genuinely global.
