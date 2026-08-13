@@ -24,3 +24,27 @@ search was used.
 - Conclusion: the universal regular target remains open; a proof must use a
   rank-two/rank-three return equation or an equivalent full Green/tree
   identity.  No broad graph or coefficient search was performed.
+
+## 2026-08-13 -- finite-depth return and root-loss obstruction
+
+- Used the one-step support fact that the dB dual can lower rank by at most
+  one.  Scaling a genuine law on every rank at most `m+1` and putting the
+  residual mass at rank `m+2` preserves every coordinate stationarity
+  equation through rank `m`.
+- For `m=2`, this preserves the full doubleton equation and its scaled
+  triple-to-doubleton entrance current.  On order eight the limiting
+  pseudo-density is `1/2>p(R_hyb)` while every singleton atom vanishes, so
+  the rank-two/rank-three row alone cannot prove VDR.
+- The same construction at order `2(m+2)` refutes every fixed finite-rank
+  closure as a universal proof route.  It is not a graph counterexample;
+  the first omitted rank equation fails.
+- Wrote the honest stopped-chain identity rootwise as
+  `v_i=sum_C eta(C)G^-(C,{i})`.  Its scalar rank shadow retains only the sum
+  over `i`.
+- Exactified failure of the canonical root-average bridge on one connected
+  regular six-vertex equitable kernel with class sizes two and four.  A
+  symbolic 13-state orbit solve proves the two singleton classes differ for
+  every `r>1`.
+- Conclusion: a surviving proof must use a full high-excursion Green/tree
+  invariant and keep the named root.  No such invariant emerged, so the
+  rank-prefix route was stopped without graph enumeration.
