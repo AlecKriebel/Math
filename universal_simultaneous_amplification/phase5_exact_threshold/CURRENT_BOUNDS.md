@@ -1,6 +1,6 @@
 # Current rigorous bounds
 
-Last updated: 2026-08-08 21:41 PDT.
+Last updated: 2026-08-13.
 
 \[
 \boxed{1.5028569127905696267\ldots=R_{\rm hyb}
@@ -31,15 +31,23 @@ R_{\rm sim}\le2.
 It would not by itself prove equality; a single family working for every
 fixed `1<r<2` would still be required.
 
-The current exact upper frontier is unchanged despite substantial proof
-compression.  At `r=2`, all rank constants, all rank-labelled one-vertex
-fields, and the two natural request-flow matrices are insufficient: an
-exact twelve-vertex Farkas certificate refutes that restricted proof space.
-The smallest surviving compressed space adds the stationary-mass square;
-the universally safe fallback retains the full rank-dependent pair matrix.
-Independently, complete-ray monotonicity is exactly false on a five-vertex
-integer-weight graph.  The fixed-colour forest signs and the endpoint sign
-survive, but remain open.
+The current proof-first upper candidate is `R_sim=R_hyb`, but no universal
+upper theorem has yet been proved.  The proposed route has been reduced to
+two precise statements:
+
+- the bounded dual-moment inequality (BDM) at `R_hyb`, proved for all
+  complete modules and all weighted three-paths, but open for arbitrary
+  positive triangles and general modules; and
+- a response-scale compactness theorem that synchronizes the Bd and dB
+  first-exit traces.  Rule-by-rule positive trace decompositions do not
+  suffice; an exact leaf/closed-`K_2` marginal-cone obstruction proves that
+  the two rules must share a paired trace measure or obey an equivalent
+  signed mismatch-charge bound.
+
+The higher-rank part of BDM has an exact renewal/Schur formulation (RTER), so
+the remaining gap is a cross-rule stationary-flow inequality rather than an
+uncontrolled catalogue of graph cases.  These reductions sharpen the upper
+frontier but do not change the boxed rigorous interval.
 
 The exact constant
 

@@ -175,11 +175,36 @@ active-rank CDF cut negative in the exact singular limit, and the frozen
 six-vertex graph makes a finite-time singleton cut negative at time 88.
 Neither graph violates the harmonic collision target.
 
-## Working exact-threshold hypothesis
+## Current exact-threshold program
 
-`R_sim=2` is a hypothesis to prove or refute, not an assumption.  The upper
-route is `ACTIVE_R2_LEMMA.md`; the lower route is the response-cone and
-diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
+The earlier working hypothesis `R_sim=2` is no longer the active proof
+target.  The proof-first candidate is
+
+\[
+                         R_{\rm sim}=R_{\rm hyb},
+\]
+
+but this remains a conjecture, not a theorem.  The exact upper program now
+has two explicit obligations.
+
+1. **Bounded local theorem.**  Prove the bounded dual-moment inequality
+   (BDM) at `R_hyb` for every connected weighted module and every portal
+   law.  BDM is proved for every complete module and every weighted
+   three-path.  It remains open already for arbitrary positive weighted
+   triangles.  The higher-rank stationary equations reduce it exactly to
+   the rank-three excursion repayment inequality (RTER), or equivalently to
+   a Schur-traced product-chain Poisson certificate on ranks one and two.
+2. **Paired trace compactness.**  Lift BDM from bounded modules to arbitrary
+   graph sequences at their first nonzero response scale.  Separate positive
+   Bd and dB trace measures are insufficient: an exact leaf/closed-`K_2`
+   example assembles a vector in the positive quadrant from two marginal
+   cones.  A successful lift must construct a common paired module measure
+   or prove the exact one-charge synchronization inequality for the two
+   first-exit traces.
+
+These reductions do not provide a finite global upper bound by themselves.
+Failure of BDM or of paired trace synchronization could instead point to a
+larger threshold construction.
 
 ## Branch ownership
 
