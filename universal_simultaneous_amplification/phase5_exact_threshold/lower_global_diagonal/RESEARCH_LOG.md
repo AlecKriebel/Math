@@ -136,7 +136,7 @@
   counterexample only; `beta+sigma<=1` and the special ground-state energy
   `K` remain open.
 
-## 2026-08-13 — exact coupled three-ground Picone reduction
+## 2026-08-13 — exact complete four-ground Picone reduction
 
 - Recast the two endpoint systems as four positive ground states
   `1,a,b,v=as` of the same self-adjoint kernel, with potentials
@@ -166,3 +166,54 @@
   proved, diffuse adjoint branching cannot produce positive Bd gain with
   little-oh dB cost at fitness two, forcing any sharp lower construction to
   preserve a genuinely non-diffuse interaction.
+
+## 2026-08-13 — factor-one gap is exactly special `K` plus a square
+
+- Put `x=b-1/2` and `u=s-1/2`.  The Bd and dB total ground identities give
+  two nonnegative quadratic deficits
+
+  ```text
+  B = 4 E_p[t x^2/(1-2x)],   D = 4 E_p[u^2/(1-2u)].
+  ```
+
+  If `E(a,b)=<a,(I-P)b>_pi`, then **PROVED EXACTLY**
+
+  ```text
+  beta-1/2 = E(a,b)-B,   1/2-sigma = D,
+  1-beta-sigma = B+D-E(a,b).
+  ```
+
+- The centered dB equation says `1-t=2Ru-2u/h`.  Adjointness therefore
+  rewrites the dangerous cross-energy as
+
+  ```text
+  E(a,b) = 2 E_p[u(Px-x/h)].
+  ```
+
+  Completing the square proves the decisive identity
+
+  ```text
+  1-beta-sigma
+    = K/2 + (1/2) E_p[h(Px-(x+2u)/h)^2],
+
+  K = 4 E_p[t x^2/q] - E_p[h(Px-x/h)^2].
+  ```
+
+  Thus `K>=0` proves factor one quantitatively, while every actual endpoint
+  counterexample must have `K<0`.
+- **PROVED:** the existing Jensen marginal `M=E_p[tC(q)+A(q,h)]` satisfies
+  `K>=M`.  The exact difference is
+  `E_p[t x^2-h(Px)^2-sx^2/(2h)]>=0`, by Markov Jensen and
+  `Rh=t-s/(2h)`.
+- The Bd equation itself eliminates the last nonlocal-looking term:
+
+  ```text
+  K = E_p[t z^2/q
+          -(h/4){t(1-q)/q-1+z/h}^2],   z=2q-1.
+  ```
+
+  Hence the sign of `K` is exactly a three-label equilibrium problem in
+  `(t,q,h)`, rather than a further operator-contraction problem.
+- The sharp active proof obligation is now `M>=0`, or directly `K>=0` if the
+  marginal is too strong.  This supersedes treating `K` and factor one as
+  separate conjectures.
