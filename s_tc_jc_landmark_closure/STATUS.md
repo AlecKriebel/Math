@@ -1,6 +1,7 @@
 # Authoritative status
 
-Status: **ACTIVE — final closure in progress**
+Status: **OUTCOME P CANDIDATE — mathematical gates closed; final adversarial
+release review in progress**
 
 Certified foundation:
 
@@ -10,10 +11,14 @@ Certified foundation:
 - the reciprocal-only bridge chart, root-presentation moves, Omega, Theta as
   an `S_TC` move, and frozen target-only atlas counts are quarantined.
 
-Current mathematical target: prove Outcome P or Outcome C.  Nothing else may
-be labelled the final outcome.
+The proof-first route has now closed the last local mathematical gate.  The
+candidate result is Outcome P: standard semi-directed `S_TC` level-two JC
+topologies are identifiable modulo ordinary triangle redirection, with no
+proper one-sided generic containments.  It is not yet labelled the final
+outcome until a fresh whole-proof adversarial referee and clean release replay
+agree.
 
-The independent convention gate is now **VERIFIED AFTER CORRECTION**.  The
+The independent convention gate is **VERIFIED AFTER CORRECTION**.  The
 positive theorem, if promoted, concerns the simple binary LSA-rootable mixed
 graphs obtained under the reticulation-preserving `sd_0` convention used by
 Englander et al., equivalently the binary LSA-valid Holtgrefe class with no
@@ -21,41 +26,29 @@ omnians.  It does not quantify over every preimage of the broader exhaustive
 cleanup map used by Brits et al.  All primitive supports, the weak sharpness
 pair, and the double-triangle exclusion pass the clean-room rooting census.
 
-Latest fail-closed note: the primary corrected four-selected-boundary hard
-cover now uses every
-boundary bijection and represents a target incoming boundary omitted from a
-selected support by a zero-character dummy.  Its exact discovery census
-closes all `5,344` fixed root cases and `40,072` canonical restoration states
-with only labelled isomorphism or ordinary `T` surviving.  A combined
-self-contained certificate regeneration is running.  The result is not yet
-promoted: an independent producer, complete mutation suite, and adversarial
-global proof audit must still agree.
-
-The theorem-logic audit identified an additional coverage obligation: the
-`theta-2` primitive has a minimum rigid source support with four outgoing
-boundaries, whereas the running hard cover starts with three.  The positive
-theorem therefore remains blocked until those five-tensor-port fixed-full
-relations are either independently reduced to the existing cover or compiled
-and closed in their own right.  The old assertion that the eight
-three-outgoing sources were all minimum supports is withdrawn.
-
-In addition, the restoration cover begins at equal invariant signatures.  It
-does not replace pair-level certification of the `110` and `776`
-unequal-but-necessary directed signature pairs in the current three- and
-four-outgoing screens.  The active release must regenerate graph-bound exact
-separators for those directions as well; the present summary counts are not
-pair certificates.
+The complete n3 directed gate independently regenerates all `10,466`
+canonical relations, including every unequal necessary direction, every
+strict sign certificate, all `5,344` fixed-root coverages, and the residual
+isomorphism/ordinary-`T` terminals.  The independent five-port theta-2 gate
+regenerates the complete target grammar and exact invariant deck.  It finds
+only three necessary equal-signature pairs.  Their 192 raw presentations
+split as 18 direct isomorphisms, 42 alternative incoming-root presentations,
+and exactly the 132 independently verified fixed hard-cover roots.  The
+2,106-state theta-2 forest ends only in labelled isomorphism.  Thus the former
+110/776 summary-count concern and the missing minimum-support concern are
+closed by graph-derived relation certificates, not by reusing target-only
+counts.
 
 The earlier illustrative ordinary-`T` no-common-incoming pair was false and
 is withdrawn.  The separate TT-nested disjoint-rootable-set example remains
 verified and is sufficient to refute the fixed-incoming quotient.
 
-The independent theorem-logic referee now accepts the conditional global
-promotion and the path-bound `A+p`, `A+p+q` terminal-extension design.  The
-filtered theta-2 compiler independently finds three source signatures and 132
-fixed restoration roots.  These are progress certificates, not promotion:
-the n=4 cover, unequal directed relations, terminal extensions, and their
-clean-room/mutation replays remain load-bearing.
+The common-anchor arbitrary-subdivision promotion is independently verified:
+all path-bound `A+p` and `A+p+q` probes share one full relation and one
+transport, reconstruct each total segment word, and require at most ten
+tensor ports.  Correct bridge incidence scaling, both one-sided cut
+inclusions, root reduction, and no cross-blob compensation were already
+independently verified.
 
 The first completed theta-2 cover was rejected by its own exact replay: its
 schema-2 canonical key merged distinct rooted graph presentations.  The full
@@ -64,8 +57,8 @@ stopped.  Schema 3 binds every state to one fixed-full root case and exact
 rooted graph pair; all local counts must now be regenerated.  Accordingly,
 the historical 40,072 and failed 1,518 counts are discovery diagnostics only.
 
-The corrected schema-3 theta-2 cover now passes the strengthened primary
-replay: all 132 fixed roots yield 2,106 states, with 1,860 exact generic
-separators, 114 refinements, 132 labelled isomorphisms, and no unresolved or
-non-`T` terminal.  This result is awaiting clean-room and mutation review and
-does not yet promote the global theorem.
+The active theorem statement and proof are in
+`docs/SHARP_BOUNDARY_THEOREM.md`.  Historical failed schema-2 streams,
+ineffective mutation designs, reciprocal-only bridge charts, Theta as a
+strong-class move, Omega, and rooted-presentation moves remain quarantined.
+The frozen weak-class theorem remains unchanged and supplies sharpness only.

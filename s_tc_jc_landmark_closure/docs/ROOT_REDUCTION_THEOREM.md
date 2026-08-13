@@ -1,6 +1,6 @@
 # Structural root reduction
 
-Status: **CANDIDATE PROOF — awaiting independent adversarial review**
+Status: **PROVED; independently verified after correction**
 
 ## Statement
 
@@ -29,9 +29,10 @@ Move the root down this path to the cut/pendant edge representing `i`.
 Only ordinary tree arcs on the path reverse.  At each path vertex the former
 tree parent becomes a tree child, while every off-path reticulation edge keeps
 its retained arrowhead.  Binary bidegrees, reachability, acyclicity, and the
-reticulation arrows are therefore preserved.  The new site is admissible;
-because the standard topology lies in `S_TC`, the rerooted presentation is
-tree-child.
+reticulation arrows are therefore preserved.  The new site is admissible.
+By the locked definition of `S_TC`, **every** admissible rooting of this mixed
+graph is tree-child, so the rerooted presentation is tree-child.  This is the
+step that would fail if one assumed only membership in `W_TC`.
 
 In this operation the old root is suppressed after the path reversal.  Its
 off-path child edge becomes exactly the edge created by the original `sd_0`
@@ -83,10 +84,13 @@ single root suppression is used.
 - It identifies root and incoming models only in the projective tensor
   quotient required by bridge peeling.
 
-## Review obligations
+## Independent review
 
-The independent review must test the all-tree-path construction, ordinary
-root sites, path endpoints, all primitive cycle/theta orientations, and the
-inverse suppression.  It must reject the statement if a chosen real boundary
-cannot be rooted without changing an arrowhead or if any edge split leaves
-the open parameter domain.
+The clean-room review in `reviews/root_probe/` tested every all-tree endpoint
+from every admissible rooting of every primitive support, including ordinary
+root sites, path endpoints, retained arrowheads, LSA validity, inverse
+suppression, and open edge splitting.  It found no failure.  It also found and
+preserved a counterexample to the stronger, false assertion that two compared
+factors must share one rootable physical boundary.  Accordingly, the local
+classification always chooses source and target incoming boundaries
+independently.

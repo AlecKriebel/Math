@@ -1,11 +1,11 @@
 # Proof-first local closure
 
-Status: **CANDIDATE PENDING THE INDEPENDENT INVENTORY CROSSWALK**
+Status: **PROVED; independently regenerated and adversarially reviewed**
 
 This note isolates the one local statement needed by the global theorem and
-shows how the already audited exact algebra proves it once the finite grammar
-is independently bound to the frozen relation streams.  It is not a new
-topology search and it does not use a triangle/complement factorization.
+shows how the audited exact algebra proves it after the finite grammar is
+independently bound to the frozen relation streams.  It is not a new topology
+search and it does not use a triangle/complement factorization.
 
 ## 1. Local theorem
 
@@ -105,9 +105,9 @@ number of dummies proves that every complete relation extends exactly one raw
 restoration path before canonical duplicate removal.  A terminal path has no
 dummy and therefore compares two complete core-retaining labelled factors.
 
-The independent inventory crosswalk must verify this mathematical grammar
-against the frozen root streams.  The expected fixed-root inventories are
-`5,344` four-port roots and `132` five-port `theta-2` roots.  These counts are
+The independent inventory crosswalk verifies this mathematical grammar
+against the frozen root streams.  The fixed-root inventories are `5,344`
+four-port roots and `132` five-port `theta-2` roots.  These counts are
 checksums of the grammar, not premises of the proof.
 
 ## 5. Exact algebraic cover
@@ -151,6 +151,18 @@ states:
 There is no unresolved terminal in either stream.  Every polynomial body is
 regenerated from its bound graph, switching, mask, marginal, and invariant;
 no topology identifier selects a stored polynomial.
+
+The independent upstream five-port signature gate regenerates all three
+`theta-2` supports, both target incoming modes, 6,138 completion bases, every
+relative five-port assignment, and the complete 84-invariant quartet deck.
+The necessary containment filter leaves exactly three equal signature pairs.
+Expanding them gives 192 raw presentations, partitioned intrinsically into
+18 direct labelled isomorphisms, 42 selected-incoming root-presentation
+duplicates, and 132 marginalized-incoming restoration roots.  Explicit
+mixed-graph transports identify every one of the 42 duplicates with an
+already represented standard relation, while the 132 marginalized
+presentations equal the frozen root multiset exactly.  Thus the downstream
+five-port hard cover omits no algebraically necessary decorated relation.
 
 For generic separation, let `V_H` be the complex closure of the source
 projective model.  It is irreducible because it is the closure of the image
@@ -198,9 +210,9 @@ an embedded triangle.  Positivity holds after shrinking to the certified
 open parameter neighborhood.  No equality of complete stochastic images is
 claimed.
 
-Sections 2--7 prove the local theorem once the independent inventory
-crosswalk confirms that the grammar in Sections 2--4 is exactly the grammar
-consumed by the frozen algebra and probe certificates.
+Sections 2--7 prove the local theorem.  The independent inventory and
+signature crosswalks confirm that the grammar in Sections 2--4 is exactly the
+grammar consumed by the frozen algebra and probe certificates.
 
 ## 8. Prohibited shortcut
 

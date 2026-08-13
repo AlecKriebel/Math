@@ -1,7 +1,7 @@
 # Directed local atlas theorem
 
-Status: **CANDIDATE — promotion awaits the completed relation stream and its
-independent normalized-record comparison.**
+Status: **PROVED — superseded in detail by `PROOF_FIRST_LOCAL_CLOSURE.md` and
+the independent n3/n4 relation reviews**
 
 ## Statement to be certified
 
@@ -150,6 +150,11 @@ some extra port subdivides a support-triangle edge, that probe has no triangle
 and fixes the literal orientation.  Otherwise the same unique triangle
 persists and all probe-level `T` choices are one coherent global redirection.
 
-When the completed relation and mutation certificates have no failure, these
-five steps prove the stated directed local theorem.  Until then this document
-is a proof ledger, not a promoted theorem.
+The completed relation and mutation certificates have no active failure.
+The n3 directed universe is independently regenerated in
+`reviews/bounded_directed_relation_cleanroom/`; the theta-2 five-port
+signature and presentation crosswalk is independently regenerated in
+`reviews/theta2_signature_gate/`; both hard covers and the common-anchor
+promotion are independently reviewed.  These five steps therefore prove the
+stated directed local theorem.  The concise final proof is
+`PROOF_FIRST_LOCAL_CLOSURE.md`.

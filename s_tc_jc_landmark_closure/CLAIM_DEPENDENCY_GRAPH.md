@@ -10,15 +10,15 @@ is independently verified.
 | B | Correct projective bridge peeling with exact incidence-scaling kernel | VERIFIED by two independent implementations and adversarial review |
 | C | Pointwise cut characterization and both cut inclusions under one-sided containment, including the two-active-endpoint crossing | VERIFIED by two independent implementations and adversarial review |
 | U | Exhaustive duplicate-free primitive level-2 generator universe | Primitive graphs VERIFIED; the previously reported 19,290 ordinary-`T` relation count fixed the incoming boundary and is WITHDRAWN as a relation-universe count |
-| R | Canonical decorated directed relation universe with complete transports | Schema-3 theta-2 n=4 relation universe PRIMARY VERIFIED for all `132` fixed roots; schema-3 n=3 and independent comparison remain active |
-| A | Graph-derived exact local algebra and complete directed atlas | Schema-3 theta-2 n=4 PRIMARY VERIFIED (`2,106` states, zero unresolved/non-T); n=3, pair-level 110/776 directions, terminal probes, and clean-room replay remain active |
-| S | Physical-to-descriptor submersion and coherent arbitrary-subdivision promotion | Structural submersion and common-anchor coherence VERIFIED AFTER CORRECTION; the path-bound `A+p`, `A+p+q` finite implementation is referee-accepted but not yet generated or independently replayed |
-| Q | Structural root-to-real-incoming-port reduction | VERIFIED AFTER CORRECTION; final review manifest pending |
+| R | Canonical decorated directed relation universe with complete transports | VERIFIED: complete n3 directed universe and five-port theta-2 signature/presentation crosswalk independently regenerated; selected and marginalized incoming roles are explicit |
+| A | Graph-derived exact local algebra and complete directed atlas | VERIFIED: n3 has `10,466` canonical relations and complete graph-bound strict/root coverage; theta-2 n4 has only three necessary equal-signature pairs, partitioned `18+42+132`, with the `132`-root hard cover ending only in isomorphism |
+| S | Physical-to-descriptor submersion and coherent arbitrary-subdivision promotion | VERIFIED AFTER CORRECTION: common anchor `A=Q_s union Q_t`, exact path-bound `A+p`/`A+p+q` streams, and ten-tensor-port bound independently replayed |
+| Q | Structural root-to-real-incoming-port reduction | VERIFIED AFTER CORRECTION with independently chosen source and target incoming boundaries |
 | G | No-compensation local-to-global theorem and converse gluing | VERIFIED by adversarial theorem-logic review, conditional only on the fixed-full local theorem |
-| V | Independent clean-room replay and mutation suite | COMPLETE for W,D,B,C,U and invariant engine; active for R/A |
-| P | Positive `S_TC` classification modulo `T` | BLOCKED on independent R/A comparison V, unequal directed pairs, and final terminal probes; the convention gate D is closed for the explicitly scoped `sd_0` class |
+| V | Independent clean-room replay and mutation suite | COMPLETE for every load-bearing mathematical gate; a fresh whole-proof release referee remains mandatory before final promotion |
+| P | Positive `S_TC` classification modulo `T` | CANDIDATE FOR FINAL ADVERSARIAL RELEASE: every mathematical dependency is closed; promotion awaits the whole-proof referee and clean release replay |
 | X | Exact `S_TC` counterexample | No candidate in exhaustive 3–5-leaf topology census; bounded model search negative only numerically |
-| F | Final sharp-boundary release | requires `(P and W)` or `X` |
+| F | Final sharp-boundary release | active integration of `(P and W)`; requires final referee, manuscript, and clean release replay |
 
 Historical files may inform conjectures but are not dependencies unless their
 claims are regenerated inside this directory from primitive encodings.

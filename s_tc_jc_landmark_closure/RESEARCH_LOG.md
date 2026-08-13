@@ -702,3 +702,43 @@
   inventory theorem, exact local algebra crosswalk, and a fresh adversarial
   review agree.  Otherwise the first exact failure will be preserved and the
   counterexample route resumed.
+## 2026-08-12T22:05:00-07:00 — theta-2 signature gate strengthened to presentation level
+
+- The first independent five-port theta-2 signature replay regenerated the
+  complete selected/marginalized-incoming completion grammar and found only
+  the three expected necessary invariant-signature pairs.  A mutation audit
+  correctly rejected that first release because its complement-width attack
+  was semantically ineffective; the failed certificate is preserved.
+- A stronger presentation-level comparison then exposed a gap hidden by the
+  three signature hashes: the raw survivor stream has 192 presentations,
+  whereas the frozen hard-cover inventory has 132 decorated roots.  The gate
+  remains **FALSE / UNRESOLVED** until an independent canonicalization of the
+  coloured source-target mixed relation determines whether the extra 60 are
+  merely alternative root presentations or genuinely omitted relations.
+- The count pattern is diagnostic but not yet evidence: for each of the three
+  theta-2 source supports, the 64 raw survivors split as 44
+  marginalized-incoming and 20 selected-incoming presentations, while the
+  frozen inventory contains 44 roots.  A root-relocation quotient could
+  explain the discrepancy, but it must be proved with explicit mixed-graph
+  transports and mutation-sensitive relation keys.
+- Outcome P is not promoted.  No broader topology search was started.
+
+## 2026-08-12T22:30:00-07:00 — five-port theta-2 gate closes after fail-closed corrections
+
+- The corrected independent exact signature replay regenerates the complete
+  five-port theta-2 source and target grammar, both incoming modes, the
+  84-invariant orbit, and every relative port assignment.  Only three
+  necessary signature pairs survive, all equal.
+- Equality of three hashes was not promoted.  Expanding all provenance gives
+  192 raw presentations.  Independent mixed-graph canonicalization and
+  explicit transports prove the intrinsic partition: 18 direct labelled
+  isomorphisms, 42 selected-incoming root-presentation duplicates, and 132
+  marginalized-incoming presentations equal to the frozen hard-cover root
+  multiset.
+- Two semantically ineffective mutation designs and the initial 192-versus-
+  132 failure are preserved.  The corrected active mutations all reject.
+- Together with the independently regenerated n3 directed relation universe,
+  both schema-3 hard covers, and the common-anchor arbitrary-subdivision
+  theorem, this proves the local blob-containment lemma.  Every mathematical
+  dependency of Outcome P is now closed.  A fresh whole-proof adversarial
+  review and clean release replay remain mandatory before final promotion.

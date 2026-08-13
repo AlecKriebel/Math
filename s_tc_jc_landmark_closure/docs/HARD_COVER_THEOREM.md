@@ -1,7 +1,7 @@
 # Fixed-full hard-cover theorem
 
-Status: **CANDIDATE — theorem logic verified; schema-3 relation census and
-independent producer pending**
+Status: **PROVED; schema-3 n3/n4 forests and their relation bindings are
+independently verified**
 
 ## Statement
 
@@ -110,6 +110,9 @@ support-plus-one/two probe-coherence theorem.
   child set.  The corresponding theta-2 n=4 run was rejected by exact replay.
 - **EXACTLY COMPUTED:** the fixed root inventories contain `5,344` n=3 roots
   and `132` filtered theta-2 n=4 roots.
-- **PENDING:** schema-3 regeneration binding every state to its fixed root and
-  exact rooted graph pair; independent normalized comparison; mutation audit;
-  and final local promotion.
+- **VERIFIED:** schema-3 regeneration binds every state to its fixed root and
+  exact rooted graph pair.  Independent normalized comparisons and mutation
+  audits cover all `5,344` n3 and `132` theta-2 n4 roots.  The separate
+  signature gates prove that these are exactly the nonretaining relations
+  surviving the necessary algebraic filter.  Common-anchor probe streams
+  promote every terminal to arbitrary subdivisions.
