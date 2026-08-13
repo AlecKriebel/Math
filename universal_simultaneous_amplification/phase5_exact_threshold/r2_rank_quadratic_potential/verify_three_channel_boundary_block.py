@@ -70,6 +70,30 @@ def determinant(matrix: list[list[Q]]) -> Q:
     return answer
 
 
+def inverse_matrix(matrix: tuple[tuple[Q, ...], ...]) -> tuple[tuple[Q, ...], ...]:
+    columns = []
+    for column in range(len(matrix)):
+        rhs = [Q(int(row == column)) for row in range(len(matrix))]
+        columns.append(solve_linear([list(row) for row in matrix], rhs))
+    return tuple(
+        tuple(columns[column][row] for column in range(len(matrix)))
+        for row in range(len(matrix))
+    )
+
+
+def matmul(
+    left: tuple[tuple[Q, ...], ...],
+    right: tuple[tuple[Q, ...], ...],
+) -> tuple[tuple[Q, ...], ...]:
+    return tuple(
+        tuple(
+            sum(left[i][k] * right[k][j] for k in range(len(right)))
+            for j in range(len(right[0]))
+        )
+        for i in range(len(left))
+    )
+
+
 N = len(WEIGHTS)
 FULL = (1 << N) - 1
 DEGREE = tuple(sum(row) for row in WEIGHTS)
@@ -143,6 +167,22 @@ K_F = tuple(
     for i in range(N)
 )
 TRACE_K_F = sum(K_F[v][v] for v in range(N))
+K_E = tuple(
+    tuple(
+        L_PI[i][j]
+        - THETA * (PI[i] * (i == j) - PI[i] * PI[j])
+        for j in range(N)
+    )
+    for i in range(N)
+)
+# ``K_F`` has constant kernel.  Adding the all-ones matrix changes only that
+# kernel, so its inverse is the exact quotient inverse on every zero-sum
+# column.  This avoids square roots and keeps the Green--Schur matrix rational.
+K_F_QUOTIENT_INVERSE = inverse_matrix(
+    tuple(tuple(K_F[i][j] + 1 for j in range(N)) for i in range(N))
+)
+K_G = matmul(matmul(K_E, K_F_QUOTIENT_INVERSE), K_E)
+TRACE_K_G = sum(K_G[v][v] for v in range(N))
 
 
 def rates(state: int) -> list[tuple[int, Q]]:
@@ -185,6 +225,35 @@ def affine_spectral_gauge(state: int) -> Q:
 
 def spectral_storage(state: int) -> Q:
     return quadratic_form(K_F, indicator(state))
+
+
+def green_schur_storage(state: int) -> Q:
+    return quadratic_form(K_G, indicator(state))
+
+
+def green_schur_dissipation(state: int) -> Q:
+    s = indicator(state)
+    neutral_gradient = tuple(
+        s[v] - x_vector(state)[v] for v in range(N)
+    )
+    return sum(
+        s[i] * K_G[i][j] * neutral_gradient[j]
+        for i in range(N)
+        for j in range(N)
+    )
+
+
+def green_schur_cross(state: int) -> Q:
+    return sum(
+        indicator(state)[i] * K_G[i][j] * selection_vector(state)[j]
+        for i in range(N)
+        for j in range(N)
+    )
+
+
+def green_schur_diagonal(state: int) -> Q:
+    activity = activity_vector(state)
+    return sum(K_G[v][v] * activity[v] for v in range(N))
 
 
 def selection_vector(state: int) -> tuple[Q, ...]:
@@ -453,10 +522,18 @@ def verify_state_identities() -> None:
     assert all(K_F[i][j] == K_F[j][i] for i in range(N) for j in range(N))
     assert all(sum(K_F[i]) == 0 for i in range(N))
     assert TRACE_K_F == THETA * (1 - SIGMA) - Q(1, 2)
+    assert all(K_E[i][j] == K_E[j][i] for i in range(N) for j in range(N))
+    assert all(sum(K_E[i]) == 0 for i in range(N))
+    assert all(K_G[i][j] == K_G[j][i] for i in range(N) for j in range(N))
+    assert all(sum(K_G[i]) == 0 for i in range(N))
+    assert matmul(matmul(K_F, K_F_QUOTIENT_INVERSE), K_E) == K_E
+    assert TRACE_K_G > 0
     for mask in range(1, 1 << N):
         vertices = [v for v in range(N) if bit(mask, v)]
         principal = [[K_F[i][j] for j in vertices] for i in vertices]
         assert determinant(principal) >= 0
+        green_principal = [[K_G[i][j] for j in vertices] for i in vertices]
+        assert determinant(green_principal) >= 0
     assert sum(PI[v] * H1[v] for v in range(N)) == DELTA
     assert sum(PI[v] * H2[v] for v in range(N)) == -EPSILON
 
@@ -491,9 +568,13 @@ def verify_state_identities() -> None:
         for state in range(FULL + 1)
     )
     spectral_values = tuple(spectral_storage(state) for state in range(FULL + 1))
+    green_values = tuple(green_schur_storage(state) for state in range(FULL + 1))
     gauge_values = tuple(affine_spectral_gauge(state) for state in range(FULL + 1))
     assert spectral_values[0] == spectral_values[FULL] == 0
+    assert green_values[0] == green_values[FULL] == 0
+    assert all(value >= 0 for value in green_values)
     assert sum(spectral_values[1 << v] for v in range(N)) / N == TRACE_K_F / N
+    assert sum(green_values[1 << v] for v in range(N)) / N == TRACE_K_G / N
     assert gauge_values[0] == 0
     assert gauge_values[FULL] == Q(1, 2)
     assert sum(gauge_values[1 << v] for v in range(N)) / N == -TRACE_K_F / N
@@ -520,6 +601,74 @@ def verify_state_identities() -> None:
             scalar_generator(state, gauge_values)
             - (1 - kappa()) * cut(state)
         )
+        green_dissipation = green_schur_dissipation(state)
+        assert green_dissipation >= 0
+        assert scalar_generator(state, green_values) == (
+            -2 * green_dissipation
+            + 2 * green_schur_cross(state)
+            + green_schur_diagonal(state)
+        )
+        mass = stationary_mass(state)
+        state_variance = variance(state)
+        state_cut = cut(state)
+        state_prediction_error = prediction_error(state)
+        x = x_vector(state)
+        selection = selection_vector(state)
+        gain = selection_gain(state)
+        inside_mean_x = sum(
+            PI[v] * x[v] for v in range(N) if bit(state, v)
+        ) / mass
+        outside_mean_x = sum(
+            PI[v] * x[v] for v in range(N) if not bit(state, v)
+        ) / (1 - mass)
+        inside_mean_a = sum(
+            PI[v] * selection[v] for v in range(N) if bit(state, v)
+        ) / mass
+        outside_mean_a = sum(
+            PI[v] * selection[v] for v in range(N) if not bit(state, v)
+        ) / (1 - mass)
+        assert inside_mean_x == 1 - state_cut / mass
+        assert outside_mean_x == state_cut / (1 - mass)
+        conditional_x_variance = sum(
+            PI[v]
+            * (x[v] - (inside_mean_x if bit(state, v) else outside_mean_x)) ** 2
+            for v in range(N)
+        )
+        conditional_a_variance = sum(
+            PI[v]
+            * (
+                selection[v]
+                - (inside_mean_a if bit(state, v) else outside_mean_a)
+            ) ** 2
+            for v in range(N)
+        )
+        schur_variance = (
+            state_prediction_error - state_cut * state_cut / state_variance
+        )
+        assert conditional_x_variance == schur_variance
+        assert conditional_a_variance <= schur_variance
+        two_level_gain = (
+            (1 - mass)
+            * outside_mean_x * (1 - outside_mean_x) / (1 + outside_mean_x)
+            + mass
+            * inside_mean_x * (1 - inside_mean_x) / (1 + inside_mean_x)
+        )
+        assert two_level_gain - gain >= schur_variance / 4
+        assert kappa() * state_cut - gain >= (
+            kappa() * state_cut - two_level_gain + schur_variance / 4
+        )
+        centered_selection_norm = sum(
+            PI[v] * (selection[v] - gain) ** 2 for v in range(N)
+        )
+        assert centered_selection_norm <= nonlinear_remainder(state)
+        quotient_source = tuple(
+            PI[v] * (selection[v] - gain) for v in range(N)
+        )
+        quotient_image = matvec(K_F_QUOTIENT_INVERSE, quotient_source)
+        quotient_metric = sum(
+            quotient_source[v] * quotient_image[v] for v in range(N)
+        )
+        assert quotient_metric <= (N - 1) * nonlinear_remainder(state)
 
         pair_plus, pair_minus, mark_plus, mark_minus, error_plus, error_minus, p_mass, n_mass = oriented_currents(state)
         assert pair_plus == error_plus
@@ -678,7 +827,12 @@ def verify_rank_recurrences() -> Q:
     gauge_generator_integral = Q(0)
     cut_integral = Q(0)
     gain_integral = Q(0)
+    green_generator_integral = Q(0)
+    green_dissipation_integral = Q(0)
+    green_cross_integral = Q(0)
+    green_diagonal_integral = Q(0)
     spectral_values = tuple(spectral_storage(value) for value in range(FULL + 1))
+    green_values = tuple(green_schur_storage(value) for value in range(FULL + 1))
     gauge_values = tuple(affine_spectral_gauge(value) for value in range(FULL + 1))
     spectral_x = [Q(0) for _ in range(N + 1)]
     spectral_y = [Q(0) for _ in range(N + 1)]
@@ -694,6 +848,10 @@ def verify_rank_recurrences() -> Q:
         gauge_generator_integral += mu * scalar_generator(state, gauge_values)
         cut_integral += mu * cut(state)
         gain_integral += mu * selection_gain(state)
+        green_generator_integral += mu * scalar_generator(state, green_values)
+        green_dissipation_integral += mu * green_schur_dissipation(state)
+        green_cross_integral += mu * green_schur_cross(state)
+        green_diagonal_integral += mu * green_schur_diagonal(state)
         up_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k + 1)
         down_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k - 1)
         spectral_x[k] += mu * spectral_values[state] * up_rate
@@ -801,6 +959,12 @@ def verify_rank_recurrences() -> Q:
         gauge_generator_integral - (1 - kappa()) * cut_integral
     )
     assert target_residual_integral == kappa() * cut_integral - gain_integral
+    assert green_generator_integral == -TRACE_K_G / N
+    assert 2 * green_dissipation_integral == (
+        2 * green_cross_integral
+        + green_diagonal_integral
+        + TRACE_K_G / N
+    )
     complete = Q((N - 1) * 2 ** (N - 2), N * (2 ** (N - 1) - 1))
     assert (
         spectral_remainder_integral >= TRACE_K_F / N
@@ -814,6 +978,19 @@ def verify_complete_equality() -> None:
         for v in range(N)
     )
     pi = tuple(Q(1, N) for _ in range(N))
+    complete_laplacian = tuple(
+        tuple(pi[i] * ((i == j) - complete[i][j]) for j in range(N))
+        for i in range(N)
+    )
+    complete_k_e = tuple(
+        tuple(
+            complete_laplacian[i][j]
+            - THETA * (pi[i] * (i == j) - pi[i] * pi[j])
+            for j in range(N)
+        )
+        for i in range(N)
+    )
+    assert all(value == 0 for row in complete_k_e for value in row)
     chi = sum(pi[v] * sum(value * value for value in complete[v]) for v in range(N))
     assert sum(value * value for value in pi) - Q(1, N) == 0
     assert chi - Q(1, N - 1) == 0
@@ -833,6 +1010,7 @@ def main() -> None:
     print(f"graph: n={N}, exact rational connected loopless weighted graph")
     print(f"delta={DELTA}, epsilon={EPSILON}")
     print(f"Tr(K_F)={TRACE_K_F}, singleton source={TRACE_K_F / N}")
+    print(f"Tr(K_G)={TRACE_K_G}, Green-Schur source={TRACE_K_G / N}")
     print(f"exact fixation={rho}")
     print("state identities, spectral conjugate, rank recurrences, and vector SOC checked")
 

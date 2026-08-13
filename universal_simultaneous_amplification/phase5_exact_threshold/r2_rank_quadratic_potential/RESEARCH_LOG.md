@@ -459,3 +459,28 @@ must be hostile-tested before analytic investment.
 - The exact Fraction verifier now checks the pointwise gauge identity, all
   boundary values, its integrated pseudoflow law, and equivalence of the
   resulting inequality to the exact complete value.
+- [EXACT NON-AFFINE SPECTRAL DEFECT] Set `E=T-theta B`, retain the positive
+  `F=theta B-T/2`, and form the quotient Schur complement
+  `G=E F^(-1) E`.  In rational coordinates this is
+  `K_G=K_E(K_F+11^T)^(-1)K_E`, so no algebraic square roots enter the
+  certificate.
+- `K_G` is PSD, annihilates constants, and vanishes exactly at the complete
+  loopless kernel.  Its storage has drift
+  `L S_G=-2 E_G+2 A_G+D_G`, where
+  `E_G=u^T G T u>=0`; integrated degree-two balance gives the exact Thomson
+  budget `2 int E_G=2 int A_G+int D_G+Tr(K_G)/n`.
+- [EXACT SELECTION CONTRACTION] Decomposed the centered selection vector
+  into its two-level projection along `u` plus a residual orthogonal to
+  both `u` and the stationary vector.  The residual norm is at most
+  `D-C^2/V`, the optimal covariance-Schur variance.  Also
+  `||q0||^2<=W` and `q0^T F^(-1)q0<=(n-1)W`.
+- Since `a''(x)<=-1/2`, conditional Jensen sharpens to
+  `Q2(M,C)-Q >= (D-C^2/V)/4`.  The endpoint integrand is therefore bounded
+  below by the explicit two-level envelope
+  `kappa C-Q2(M,C)` plus this positive Schur term.  The two-level term still
+  changes sign across complete ranks, so the precise remaining obligation
+  is adjacent-rank transport, not a pointwise inequality.
+- Extended the exact rational verifier to check the quotient inverse,
+  Green--Schur PSD minors, statewise dissipation law, integrated Thomson
+  budget, selection variance contractions, strong Jensen remainder, and
+  complete-kernel equality class.

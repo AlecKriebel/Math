@@ -2830,6 +2830,222 @@ has no independent coercivity.  A genuine spectral advance must retain a
 non-affine function of `T` (for example a Green/Schur multiplier) or the full
 pair matrix, together with its rank transport.
 
+### 7.23 The first non-affine Green--Schur defect
+
+There is a canonical next multiplier, with no fitted parameter.  On the
+centered reversible space put
+
+\[
+ E=T-\theta B,\qquad F=\theta B-{T\over2},\qquad
+ G=EF^{-1}E.                                             \tag{255}
+\]
+
+Here and below the inverse is on `sqrt(pi)^perp`.  Since `F` is strictly
+positive there, `G` is positive semidefinite and its spectral multiplier is
+
+\[
+ g(t)={(t-\theta)^2\over\theta-t/2},\qquad 0<t\le2.      \tag{256}
+\]
+
+This is genuinely non-affine in `T`.  It is also rational in the original
+coordinates.  Define
+
+\[
+ K_E=L_\pi-\theta(\Pi-\pi\pi^T),                         \tag{257}
+\]
+
+so that `K_E=Pi^(1/2) E Pi^(1/2)`.  Since `K_F` and `K_E` annihilate the
+constant vector,
+
+\[
+\boxed{
+ K_G=K_E(K_F+\mathbf1\mathbf1^T)^{-1}K_E
+     =\Pi^{1/2}G\Pi^{1/2}.}                              \tag{258}
+\]
+
+The first equality is independent of the displayed constant-kernel gauge:
+on every zero-sum column the inverse solves the quotient `K_F` equation,
+and the left `K_E` deletes the possible additive constant.  In particular,
+`K_G` has rational entries whenever `P,pi` do.  Equivalently, on the
+constant-orthogonal quotient,
+
+\[
+ \begin{pmatrix}K_F&K_E\\K_E&K_G\end{pmatrix}\succeq0
+\quad\hbox{and has zero Schur complement}.               \tag{259}
+\]
+
+The boundary-zero storage
+
+\[
+ \mathcal S_G(S)=s^TK_Gs=u^TGu\ge0                      \tag{260}
+\]
+
+has uniform-singleton source `Tr(K_G)/n`.  Unlike the affine storage, its
+neutral drift contains a true Dirichlet dissipation.  Put
+
+\[
+ \mathcal E_G(S)=s^TK_G(I-P)s=u^TGTu\ge0,                \tag{261}
+\]
+
+\[
+ A_G(S)=s^TK_Ga(S),\qquad
+ D_G(S)=\sum_v(K_G)_{vv}t_v(S).                          \tag{262}
+\]
+
+Because `G` and `T` commute and have nonnegative spectral multipliers,
+`(261)` has the asserted sign, and the labelled quadratic generator law is
+
+\[
+\boxed{
+ L\mathcal S_G=-2\mathcal E_G+2A_G+D_G.}                \tag{263}
+\]
+
+Thus every exact degree-two pseudoflow satisfies the non-affine Thomson
+budget
+
+\[
+\boxed{
+ 2\sum_S\bar\mu_S\mathcal E_G(S)
+ =2\sum_S\bar\mu_SA_G(S)
+  +\sum_S\bar\mu_SD_G(S)+{\operatorname {Tr}K_G\over n}.} \tag{264}
+\]
+
+This identity is not a mass-square gauge: its dissipation has spectral
+multiplier `t(t-theta)^2/(theta-t/2)` and is strictly positive on every
+non-complete spectral mode seen by the state.
+
+The equality class is exact.  One has `K_G=0` if and only if `K_E=0`.  The
+diagonal entries in `(257)` are
+
+\[
+ (K_E)_{vv}=\theta\pi_v\left(\pi_v-{1\over n}\right).   \tag{265}
+\]
+
+Hence `K_E=0` forces `pi_v=1/n` for every `v`; its off-diagonal entries then
+force `P_vi=1/(n-1)` for `i\ne v`.  Conversely the complete kernel plainly
+has `E=0`.  Therefore
+
+\[
+ \boxed{\operatorname {Tr}K_G=0
+ \quad\Longleftrightarrow\quad P=P_{K_n}.}               \tag{266}
+\]
+
+Equations `(255)--(266)` supply the first full-pair spectral source which
+vanishes exactly at the desired equality case and comes with an actual
+Dirichlet square.  The remaining analytic obligation is to pay the
+selection and flip terms `2A_G+D_G` in `(264)` while retaining adjacent-rank
+transport; simply integrating `(263)` would, of course, use the identity in
+the wrong direction.
+
+### 7.24 Conditional selection contraction and the two-level remainder
+
+The nonlinear selection vector admits an exact Hilbert decomposition which
+interfaces with `(255)`.  For a fixed state, sample `v` from `pi` and write
+
+\[
+ S_0=s_v,\qquad X=x_v(S),\qquad
+ A=a(X)={X(1-X)\over1+X}.                                \tag{267}
+\]
+
+Let `bar(a)_i=E(A | S_0=i)`, put `r=bar(a)_1-bar(a)_0`, and define
+
+\[
+ q_0=B\Pi^{1/2}a,\qquad
+ \xi_v=\sqrt{\pi_v}\{a_v-\bar a_{s_v}\}.                \tag{268}
+\]
+
+Then
+
+\[
+\boxed{q_0=r u+\xi,\qquad
+ \xi\perp\sqrt\pi,\quad\xi\perp u.}                    \tag{269}
+\]
+
+The scalar selection map is one-Lipschitz on `[0,1]`, since
+
+\[
+ a'(x)={1-2x-x^2\over(1+x)^2}\in[-1,1].                 \tag{270}
+\]
+
+Conditional variance contraction and the covariance matrix `(164)` now
+give
+
+\[
+\boxed{
+ \|\xi\|^2
+ =E\{\operatorname {Var}(A\mid S_0)\}
+ \le E\{\operatorname {Var}(X\mid S_0)\}
+ =\mathcal D-{C^2\over V}.}                              \tag{271}
+\]
+
+The right side is interpreted as zero when `V=0`; for a transient state
+`V>0`.  It is exactly the optimal covariance-Schur defect `(173)`.  In
+spectral notation,
+
+\[
+ \mathcal D-{C^2\over V}
+ =\min_{\lambda}\|(T-\lambda B)u\|_2^2.                 \tag{272}
+\]
+
+There is also a direct `W`-metric bound.  Since `a(x)^2<=x a(x)` and
+`F\succeq (n-1)^{-1}B`,
+
+\[
+\boxed{
+ \|q_0\|^2\le\mathcal W,qquad
+ q_0^TF^{-1}q_0\le(n-1)\mathcal W.}                     \tag{273}
+\]
+
+Finally the Jensen envelope `(73)` has a quantitative full-pair remainder.
+The conditional means of `X` are
+
+\[
+ \bar x_0={C\over1-M},\qquad
+ \bar x_1=1-{C\over M}.                                 \tag{274}
+\]
+
+Put
+
+\[
+ Q_2(M,C)=(1-M)a(\bar x_0)+M a(\bar x_1).                \tag{275}
+\]
+
+Because `a''(x)=-4/(1+x)^3<=-1/2`, the function
+`a(x)+x^2/4` is concave.  Conditional Jensen therefore proves the uniform
+estimate
+
+\[
+\boxed{
+ Q_2(M,C)-Q
+ \ge {1\over4}\left(\mathcal D-{C^2\over V}\right).}    \tag{276}
+\]
+
+In particular the exact endpoint integrand has the pointwise lower bound
+
+\[
+\boxed{
+ \kappa_nC-Q\ge
+ \kappa_nC-Q_2(M,C)
+ +{1\over4}\left(\mathcal D-{C^2\over V}\right).}       \tag{277}
+\]
+
+All graph dependence not already paid by the positive Schur variance has
+now been compressed to the two-level envelope.  Writing
+`lambda=C/V`, it is
+
+\[
+ {Q_2\over C}=
+ {3-2\lambda+M\lambda
+  \over(1+M\lambda)(2-\lambda+M\lambda)}.                \tag{278}
+\]
+
+The first term on the right of `(277)` still changes sign, including on
+complete-graph ranks; it must be transported between ranks.  Thus `(277)`
+does not prove the endpoint theorem by itself.  It isolates the remaining
+minimal obstruction as a two-level rank-flow sign, while `(264),(269)--(273)`
+provide the non-affine Thomson budget available to pay it.  No further
+state-space search is needed to state that obligation.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -2917,6 +3133,16 @@ pair matrix, together with its rank transport.
   algebraically the endpoint theorem itself.  Hence the affine conjugate
   supplies a positive holding metric but no independent coercive sign.  A
   further spectral contraction must be non-affine or full-pair.
+- **PROVED:** the canonical non-affine Green--Schur matrix `(255)--(266)`.
+  Its rational quotient formula is PSD, vanishes exactly for the complete
+  kernel, and its Green drift has a genuine nonnegative Dirichlet
+  dissipation with exact positive source `Tr(K_G)/n` away from equality.
+- **PROVED:** the conditional selection decomposition and contractions
+  `(267)--(278)`.  Selection heterogeneity is bounded by the optimal
+  covariance-Schur variance and by the `W` metric; strong conditional
+  Jensen leaves only the explicit two-level envelope plus one quarter of
+  that Schur variance.  The remaining sign is an adjacent-rank two-level
+  transport problem, not another unexplored static ansatz.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.
