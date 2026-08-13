@@ -68,14 +68,15 @@ This argument never lifts containment from the preceding marginal.
 
 The union `A=Q_s union Q_t` is core-retaining and pointwise rigid on both
 sides: an automorphism fixing `A` fixes the rigid subset belonging to that
-side.  It has at most ten tensor ports.  For every remaining label `p`, extend
+side.  The corrected finite geometry gives at most eight tensor ports for
+`A`.  For every remaining label `p`, extend
 the exact path-bound terminal relation on `A` by inserting `p` on every
 admissible internal blob arc of the source and target rooted graphs.  For
 every allowed `A+p` child, do the same with `q`.  Recompute each decorated
 relation from graph to switching masks, tensor, pullbacks, signs, and ranks.
 Deleting the new label must recover the exact parent relation, including its
 restoration root, parent path, `Q_t`, and raw transport.  The resulting
-terminal sets are `A+p` and `A+p+q`, of size at most eleven and twelve.
+terminal sets are `A+p` and `A+p+q`, of size at most nine and ten.
 
 Every terminal labelled isomorphism restricts to the unique map on `A`.
 Thus all one-port probes assign the same segment to each label and all
@@ -114,7 +115,7 @@ probe is justified only on terminals where the actual target `Q_s` is
 independently core-retaining.
 
 Lemmas 1--3 explain the arbitrary-subdivision content required of `L` and the
-safe twelve-port theorem object.
+safe ten-port theorem object.
 
 The n=3 hard cover does not cover every `Q_s` in Lemma 2.  Theta-2 has three
 canonical minimal supports with four outgoing labels: two sinks and two repair
@@ -159,15 +160,39 @@ root factor; independently chosen incoming labels are allowed by `L`.
 No target preimage is selected continuously and no distant component can
 compensate for the focal orbit.
 
-## Theorem 6 — necessity
+## Lemma 6 — ordinary/nontrivial component decoration
+
+The cut system first determines an unmarked reduced component tree.  A
+degree-three node can be an ordinary trivalent median or a three-port blob.
+In the locked standard-strong level-2 class the only nontrivial three-port
+factor is a three-sunlet: a theta has two reticulations, hence four incoming
+reticulation arcs with distinct nonreticulate tails, and therefore at least
+four boundary ports.
+
+For a three-port tensor set
+
+```text
+a=P(1,1,0), b=P(1,0,1), c=P(0,1,1), t=P(1,2,3),
+F=abc-t^2.
+```
+
+The ordinary median has `F=0`, while the exact three-sunlet pullback is a
+strictly positive product on the open JC cube.  Both monomials have the same
+arm multidegree, so zero/strict sign descends through projective bridge
+scaling.  Thus one-sided containment cannot replace an ordinary node by a
+nontrivial node in either direction.  Nodes of degree greater than three are
+automatically nontrivial in a binary network.
+
+## Theorem 7 — necessity
 
 Under `L`, if `N preceq_JC N'`, Lemma 4 gives the same labelled bridge tree.
-Lemma 5 gives a source-relative projective local containment at each
+Lemma 6 gives the same ordinary/nontrivial decoration, and Lemma 5 gives a
+source-relative projective local containment at each
 corresponding nontrivial factor.  Hypothesis `L` makes each pair
 labelled-isomorphic modulo ordinary `T`.  Ordinary tree components are already
-fixed by the bridge tree.  This proves the necessary direction.
+fixed after the decoration step.  This proves the necessary direction.
 
-## Lemma 7 — simultaneous converse gluing
+## Lemma 8 — simultaneous converse gluing
 
 For an isomorphic local pair use the same projective germ.  For a `T` pair use
 the independently verified port-labelled common full-dimensional regular
@@ -191,7 +216,7 @@ topological relation.  The independently verified local `T` germ used here is
 the distinct stochastic input.  No equality of complete local images is
 inferred from the terminal code.
 
-## Theorem 8 — classification
+## Theorem 9 — classification
 
 Under `L`,
 
@@ -202,11 +227,11 @@ the labelled bridge trees agree and corresponding factors are
 labelled-isomorphic or ordinary-T-related.
 ```
 
-The right side is symmetric and Lemma 7 supplies a common full-dimensional
+The right side is symmetric and Lemma 8 supplies a common full-dimensional
 regular germ in both directions.  Hence there are no proper one-sided generic
 containments, and the same condition classifies `bowtie_JC`.
 
-## Corollary 9 — proper algebraic exceptional set
+## Corollary 10 — proper algebraic exceptional set
 
 Fix `N` and the taxon set.  Tree-child paths give `r<=n-1`; with
 `t=n+r-2`, a rooted binary presentation has at most `4n-3` vertices.  There
@@ -224,11 +249,11 @@ semi-directed topology modulo `T`.  The final local certificate can emit an
 explicit nonzero witness/minor product whose zero set is a release-computable
 overapproximation of `E_rec(N)`.
 
-## Corollary 10 — sharp boundary
+## Corollary 11 — sharp boundary
 
 The frozen weak-class theorem supplies, for every `n>=4`, a nonisomorphic
 non-`T` pair in `W_TC minus S_TC` with a full-dimensional regular JC overlap.
-Combining it with Theorem 8 gives Outcome P: strong tree-childness is the sharp
+Combining it with Theorem 9 gives Outcome P: strong tree-childness is the sharp
 generic-identifiability boundary in the locked level-2 standard class.
 
 The corollary identifies a quotient.  It does not say that every `T`

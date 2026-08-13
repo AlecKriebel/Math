@@ -67,7 +67,21 @@ network must be a cut of the other: use the rank equation on the shared source
 germ and the pointwise strict inequality on the network for which the split
 is noncut.  The labelled bridge trees are equal.
 
-Dependency: independent bridge/cut package and its adversarial review.
+This first recovers an unmarked reduced component tree.  A degree-three node
+could still be either an ordinary trivalent median or a nontrivial
+three-sunlet.  The arm-multihomogeneous polynomial
+
+    F = abc-t^2
+
+vanishes on the median and is strictly positive on the open three-sunlet
+model.  It therefore excludes ordinary-to-blob and blob-to-ordinary
+source-relative containment in both directions.  A nontrivial theta factor
+has at least four boundaries in the standard-strong class, while a binary
+ordinary component has degree three.  Hence the two networks have the same
+ordinary/nontrivial decoration of the recovered component tree.
+
+Dependency: independent bridge/cut package, three-sunlet marker, and their
+adversarial reviews.
 
 ### 3. Correct bridge quotient and localization
 
@@ -211,11 +225,14 @@ singular loci, and anchor denominators:
 2. Recover cuts by rank-at-most-four flattenings and build the labelled bridge
    tree.
 3. Select bounded taxon representatives around each component.
-4. Match their graph-derived invariant deck to the certified local atlas.
+4. Match their graph-derived invariant deck to the certified local theorem.
 5. Use one- and two-port probes to recover every segment word.
 6. Put each triangle into the lexicographically least `T` orientation and
    assemble the components.
 
-The combinatorial search uses `O(n^7)` bounded marginals.  It recovers no
-physical bridge multiplier.  The complete compatible standard semi-directed
-topology set is exactly the finite set of coherent ordinary `T` variants.
+The largest corrected anchor-plus-two certificate has ten tensor ports, so a
+direct implementation uses `O(n^10)` bounded marginals.  It recovers no
+physical bridge multiplier.  It returns one canonical topology modulo `T`.
+To list the orientations realizing one particular distribution, each finite
+`T` variant must be tested for open-model membership separately; the common
+germ theorem does not assert equality of their complete stochastic images.
