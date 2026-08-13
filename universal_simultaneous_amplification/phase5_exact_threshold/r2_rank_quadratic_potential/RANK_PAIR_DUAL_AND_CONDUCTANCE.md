@@ -3046,6 +3046,101 @@ minimal obstruction as a two-level rank-flow sign, while `(264),(269)--(273)`
 provide the non-affine Thomson budget available to pay it.  No further
 state-space search is needed to state that obligation.
 
+### 7.25 Exact failure of the Schur--Jensen lower-envelope route
+
+The precise sufficient inequality left by `(277)` is false, even on the
+true Green occupation measure.  Define
+
+\[
+ \mathcal H_n(S)=\kappa_nC-Q_2(M,C)
+  +{1\over4}\left(\mathcal D-{C^2\over V}\right).       \tag{279}
+\]
+
+Since `kappa_n C-Q >= H_n` pointwise, the proposed scalar closure was
+
+\[
+ \sum_{S\in\mathcal T}\bar\mu_S\mathcal H_n(S)\ge0.    \tag{280}
+\]
+
+Its canonical one-dimensional Bellman form is equally explicit.  If
+`k=|S|`, let `U_up(S)` and `U_down(S)` be the total addition and removal
+rates.  A boundary/source-neutral radial supersolution would obey
+
+\[
+ q_0=q_1=q_n=0,\qquad
+ \mathcal H_n(S)+U_\uparrow(S)(q_{k+1}-q_k)
+ +U_\downarrow(S)(q_{k-1}-q_k)\ge0.                    \tag{281}
+\]
+
+On the complete graph the exact rank rates are
+
+\[
+ U^K_k={2k(n-k)\over n-1+k},\qquad
+ D^K_k={k(n-k)\over n+k-2}.                            \tag{282}
+\]
+
+For `n=4`, imposing equality in `(281)` at all three complete-graph ranks
+uniquely gives
+
+\[
+ (q_0,q_1,q_2,q_3,q_4)=
+ \left(0,0,{1\over132},{1\over88},0\right).             \tag{283}
+\]
+
+Neither this candidate nor any other neutral Bellman correction can prove
+`(280)`.  Consider the complete-support rational graph
+
+\[
+ W=\begin{pmatrix}
+ 0&1&1&2\\
+ 1&0&3&2\\
+ 1&3&0&1\\
+ 2&2&1&0
+ \end{pmatrix},\qquad
+ \pi=\left({1\over5},{3\over10},{1\over4},{1\over4}\right). \tag{284}
+\]
+
+Solving the `14`-state Green system over the rationals from the uniform
+singleton source gives
+
+\[
+ \boxed{
+ \sum_S\bar\mu_S\mathcal H_4(S)
+ =-{1252850194080656479947059
+ \over438686742569162737630780800}<0.}                  \tag{285}
+\]
+
+This is an exact pseudoflow counterexample to `(280)`.  Indeed, the Green
+identity makes the integral of every correction in `(281)` zero.  More
+strongly, `(285)` excludes even a graph-dependent full-state correction
+whose absorbing values and uniform-singleton source average are zero, not
+just a radial `q_k`.  For the complete-normalized profile `(283)`, the
+failure is already visible at `S={0}`:
+
+\[
+ \mathcal H_4(\{0\})+Lq_{|S|}(\{0\})
+ =-{9973\over554400}<0.                                 \tag{286}
+\]
+
+Crucially, this does **not** refute the original endpoint inequality.  On
+the same exact Green flow,
+
+\[
+ \sum_S\bar\mu_S(\kappa_4C-Q)
+ ={518083999004788499\over236310462491468830872}>0,
+ \qquad
+ \rho={4529438568157799647\over10741384658703128676}
+       <{3\over7}=\rho_{K_4}.                           \tag{287}
+\]
+
+Thus the loss is exactly the replacement of `Q` by the scalar
+Schur--Jensen lower envelope.  Equations `(255)--(276)` remain valid, but
+they cannot be closed by proving `(280)` or by adding any neutral Bellman
+coboundary to its integrand.  A continuation must use the non-affine/full-
+pair information before this scalar lower-envelope projection, rather than
+refine its rank transport.  The independent exact replay is
+`verify_schur_jensen_green_refutation.py`.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -3141,8 +3236,13 @@ state-space search is needed to state that obligation.
   `(267)--(278)`.  Selection heterogeneity is bounded by the optimal
   covariance-Schur variance and by the `W` metric; strong conditional
   Jensen leaves only the explicit two-level envelope plus one quarter of
-  that Schur variance.  The remaining sign is an adjacent-rank two-level
-  transport problem, not another unexplored static ansatz.
+  that Schur variance.
+- **EXACTLY REFUTED:** the resulting integrated Schur--Jensen sufficient
+  inequality `(279)--(280)`, and hence every neutral Bellman supersolution
+  of its integrand, by the rational four-vertex true Green flow
+  `(284)--(287)`.  The original endpoint residual is strictly positive on
+  the same witness, so this refutes only the scalar lower-envelope route,
+  not the universal `r=2` statement or the non-affine identities.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.

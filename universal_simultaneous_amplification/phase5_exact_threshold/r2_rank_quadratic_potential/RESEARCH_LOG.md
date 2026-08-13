@@ -484,3 +484,29 @@ must be hostile-tested before analytic investment.
   Green--Schur PSD minors, statewise dissipation law, integrated Thomson
   budget, selection variance contractions, strong Jensen remainder, and
   complete-kernel equality class.
+
+## 2026-08-13 — exact Schur--Jensen route refutation
+
+- [EXACT REMAINING INEQUALITY] Named the precise lower-envelope integrand
+  `H_n=kappa_n C-Q2+(D-C^2/V)/4`.  Its nonnegative Green integral would be
+  sufficient for the endpoint theorem.  A neutral radial Bellman closure is
+  exactly `H_n+U_up Delta_+q+U_down Delta_-q>=0`, with
+  `q_0=q_1=q_n=0`.  Complete-graph equality at `n=4` forces
+  `q=(0,0,1/132,1/88,0)`.
+- [EXACT TRUE-GREEN REFUTATION] On the four-vertex complete-support graph
+  with edge weights `(w01,w02,w03,w12,w13,w23)=(1,1,2,3,2,1)`, an exact
+  Fraction solve gives
+  `int H_4=-1252850194080656479947059/
+  438686742569162737630780800<0`.  Hence no neutral Bellman coboundary,
+  radial or full-state, can make this sufficient integrand pointwise
+  nonnegative.
+- [U2 NOT REFUTED] The exact original residual on the same Green flow is
+  `518083999004788499/236310462491468830872>0`, and its fixation probability
+  is `4529438568157799647/10741384658703128676<3/7`.  The failure is solely
+  the scalar Schur--Jensen projection; all non-affine Green--Schur identities
+  remain valid.  This branch must return to literal full-pair information or
+  a different global proof, not optimize the failed lower envelope further.
+- [CHECKPOINT] Proof-first upper-bound program estimated `72%` complete:
+  the endpoint reduction and several exact spectral/full-pair identities are
+  proved, while the universal integrated sign before scalar projection is
+  still open.  The present checkpoint sharply removes one plausible closure.
