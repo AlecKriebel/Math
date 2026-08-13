@@ -41,3 +41,27 @@
   the direct common-block or duplicated-phase-master `M`-matrix shortcuts.
 - **OPEN:** a genuinely nonsymmetric `M`-matrix/forest proof of the exact
   block coefficient, equivalently `PAPT_n`.
+
+## 2026-08-13 -- first nonlocal forest-exchange unit
+
+- Expanded only the exact `s^2` coefficient into paired positive
+  arborescences; recorded the denominator-cleared reference decorations that
+  turn PAPT into one literal weight-nondecreasing injection problem.
+- Found an exact repair of the complete-`K_3` bad dB star: replacing
+  `1->6` by `6->3` is a reversible fundamental-cycle pivot, preserves weight
+  `1/972`, and changes the conditional cost from `-4/7` to `+4/7`.
+- **REFUTED:** a universal exchange using at most one pivot in each paired
+  tree.  On weighted `P_3`, an explicit negative atom of mass `-2/525` has
+  no positive atom anywhere in that full one-pivot-by-one-pivot
+  neighbourhood.
+- Proved this obstruction sharp locally: two successive dB pivots reach a
+  positive atom of mass `4/945`, a domination ratio `10/9`.
+- Derived the exact two-deletion identity which writes the full coefficient
+  as a sum of paired three-component completion packets.  This is the
+  nonduplicating deletion-contraction realization of the minimal bicyclic
+  unit, not a finite ansatz.
+- Found a positive `7 x 6=42`-atom path packet with exact value `116/675`.
+- **REFUTED:** pointwise positivity of the three-component packets; an exact
+  sibling packet has value `-362/525`.
+- **OPEN:** a common-arrow crabwalk/injection exchanging mass between
+  distinct three-component forest pairs.
