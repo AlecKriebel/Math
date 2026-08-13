@@ -1,0 +1,30 @@
+{
+  "classification": "REVIEWER_MUTATION_DESIGN_FAILURE",
+  "failed_mutation": "assign_valid_separator_to_wrong_relation",
+  "mathematical_audit_before_mutations": "PASSED",
+  "reason": "The preliminary fixture selected the first different stored polynomial with the same invariant, quartet chunk, and strict sign. The two stored records represented the same effective polynomial after exact positive-product variable-column identification, so assigning one to the other relation did not alter the mathematical witness.",
+  "failed_fixture": {
+    "relation_id": "013ba54a88d9c0c3b3f65c8a53522ff2a6d3ea133cf28adb6155e33abc9ad46d",
+    "assigned_polynomial_from_relation_id": "016e3c4890ade3c5c6989142fead0bbcfe5d2a8950d28c1471c664f9d5009a3d",
+    "original_polynomial_id": "1f415bb0d5bd16f2781456e6c17599806f3e671f4eabe9bfeee408f31fc78328",
+    "assigned_polynomial_id": "ae0a4a0aaf7481de5a42b3946366eb0061dc8475d0040e9c3e33b0b4ce408d73",
+    "same_effective_positive_product_polynomial": true,
+    "shared_invariant_chunk_sign": [
+      1,
+      0,
+      1
+    ]
+  },
+  "repair": "Search deterministically among witnesses sharing invariant, quartet chunk, and strict sign; retain only a pair whose independently regenerated graph-derived effective pullbacks differ; then require rejection specifically because the stored separator is not the graph-derived pullback.",
+  "repaired_fixture": {
+    "relation_id": "013ba54a88d9c0c3b3f65c8a53522ff2a6d3ea133cf28adb6155e33abc9ad46d",
+    "wrong_polynomial_from_relation_id": "105e8dcf72d8a96bbd1bf9ef108aa7653178f7eafef908377e81e4ff18e7e1e2",
+    "shared_invariant_chunk_sign": [
+      1,
+      0,
+      1
+    ]
+  },
+  "schema": 1,
+  "theorem_evidence": false
+}

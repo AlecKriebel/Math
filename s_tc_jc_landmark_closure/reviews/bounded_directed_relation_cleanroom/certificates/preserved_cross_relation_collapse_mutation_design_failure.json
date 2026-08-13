@@ -1,0 +1,14 @@
+{
+  "classification": "REVIEWER_MUTATION_DESIGN_FAILURE",
+  "failed_mutation": "collapse_canonical_relations_same_target_different_source",
+  "mathematical_audit_before_mutations": "PASSED",
+  "reason": "The preliminary fixture unnecessarily required two pending canonical n3 relations to share a target completion while having different source graphs. No such pending pair exists in the certified n3 stream, so the fixture could not be instantiated and the mutation harness failed closed before making a mathematical claim.",
+  "repair": "Use the first two canonical relations of any terminal class that share a target completion but have distinct source graphs; merge the second raw source embedding into the first relation; recompute its binding hash; and require independent decorated graph binding to reject the mixed-source canonical record.",
+  "repaired_fixture": {
+    "first_relation_id": "000a5699830aeecaced0e6459d5a6ef52cc0324d72ee6446110448c8dd92e10c",
+    "second_relation_id": "a326f09e81fb6a5d62fcf857bd2723b511dd28d86d95a30e369eef2aef43ba3e",
+    "shared_target_completion_graph_id": "403a08d3bec040a2c7fabdbdcc7e5c61e64210223cfc4a15601c82d37b3673ef"
+  },
+  "schema": 1,
+  "theorem_evidence": false
+}
