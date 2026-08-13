@@ -77,3 +77,26 @@ All timestamps are America/Los_Angeles.
   against the full subset dispersion.  The exact witnesses above still
   satisfy SID with gaps `2/45` and `1/574`, so they refute only the naive
   square representation, not universal fitness-two maximality.
+
+## 2026-08-13 -- exact scalar SID gauge collapse
+
+- **PROVED:** the full subset dispersion has an exact expression using the
+  same fair-geometric burst as the dual generator.  With
+  `F_h=sum_k c_k binom(h,k)`, `T_h=F_h-F_(h-1)`,
+  `G_h=sum_k c_k binom(h,k)q(k/(n-1))`, and
+  `Psi_h(y)=F_h-F_(h-y)`, its state integrand is
+  `V(A)=U_h Z(A)+|A|G_h-sum_(v in A) E_v Psi_h(|J|)`.
+- **PROVED:** for the radial potential `phi(A)=F_(|A^c|-1)`, the burst term
+  is its exact generator increment.  The complete killed-Green equation is
+  `|A|(G_h-T_h)=rho_K-|A|/n`.  Therefore, pointwise,
+  `V(A)-U_hZ(A)=L phi+rho_K-|A|/n`.
+- **DECISIVE SCALAR NO-GO:** combining this with the weighted-deficit
+  generator gives
+  `U(C1+C2)+R_U-2V=L(UZ-2phi)+2(|A|/n-rho_K)`.
+  Hence the literal SID mixed current is only a coboundary plus the original
+  mean-rank residual.  Any scalar coboundary-plus-PSD proof at this stage
+  would already assume exactly the theorem it is meant to prove; no
+  independent two-copy square survives the contraction.
+- Per direction, stop further SID scalar algebra.  A live upper route must
+  retain labelled full-pair information before contraction or switch to a
+  different sufficient endpoint theorem.

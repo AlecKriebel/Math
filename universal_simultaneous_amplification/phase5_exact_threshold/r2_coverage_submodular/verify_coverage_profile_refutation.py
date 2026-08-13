@@ -343,6 +343,17 @@ def verify_stationary_deficit_generator(weights, expected):
                 creation_two += hit_two * edge[i][j]
         assert direct_lz == -2 * z_value + creation_one + creation_two
         assert direct_luz == rank_weight[holes_count] * direct_lz + commutator
+        row = index[state]
+        assert direct_lz == sum(
+            generator[row][column] * deficit(output)
+            for column, output in enumerate(states)
+        )
+        assert direct_luz == sum(
+            generator[row][column]
+            * rank_weight[n - output.bit_count()]
+            * deficit(output)
+            for column, output in enumerate(states)
+        )
 
     # Integrated generator and weighted-renewal checks.
     mean_uz = mean_v = mean_u_lz = mean_commutator = Q(0)
@@ -365,6 +376,56 @@ def verify_stationary_deficit_generator(weights, expected):
         mean_u_lz += probability * rank_weight[holes_count] * lz
         mean_commutator += probability * (
             luz - rank_weight[holes_count] * lz
+        )
+
+        # Check the pointwise burst form (66) and scalar gauge (71).
+        occupied = [v for v in range(n) if (state >> v) & 1]
+        holes = [v for v in range(n) if not ((state >> v) & 1)]
+        size = len(occupied)
+
+        def binomial_transform(h):
+            return sum(
+                coefficients[k] * comb(h, k) for k in range(1, h + 1)
+            )
+
+        F_h = binomial_transform(holes_count)
+        F_previous = binomial_transform(holes_count - 1)
+        T_h = F_h - F_previous
+        G_h = sum(
+            coefficients[k]
+            * comb(holes_count, k)
+            * Q(2 * k, N + k)
+            for k in range(1, holes_count + 1)
+        )
+        burst_hits = Q(0)
+        for v in occupied:
+            for union, union_probability in laws[v].items():
+                hit_count = sum(
+                    1 for i in holes if (union >> i) & 1
+                )
+                burst_hits += union_probability * (
+                    F_h - binomial_transform(holes_count - hit_count)
+                )
+        assert dispersion(state) == (
+            rank_weight[holes_count] * z_value
+            + size * G_h
+            - burst_hits
+        )
+
+        phi = F_previous
+        l_phi = sum(
+            generator[row][column]
+            * binomial_transform(n - output.bit_count() - 1)
+            for column, output in enumerate(states)
+        )
+        complete_rho = Q(
+            N * 2 ** (n - 2),
+            n * (2 ** N - 1),
+        )
+        assert size * (G_h - T_h) == complete_rho - Q(size, n)
+        assert (
+            dispersion(state) - rank_weight[holes_count] * z_value
+            == l_phi + complete_rho - Q(size, n)
         )
     assert mean_u_lz + mean_commutator == 0
 

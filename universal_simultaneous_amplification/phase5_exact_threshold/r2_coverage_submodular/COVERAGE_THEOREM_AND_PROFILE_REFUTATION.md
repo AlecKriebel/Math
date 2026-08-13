@@ -685,3 +685,129 @@ inequality obtained by substituting `(56)` into `(SID)`.  Any square
 closure must use more than reversibility of the original edge kernel: it
 must absorb the dual circulation and the signed mixed rank/internal-edge
 current together with the subset-mass dispersion `(40)`.
+
+## 8. Burst form of the dispersion and exact gauge collapse
+
+The literal mixed-current target in `(52)` admits a stronger exact
+simplification.  It does not leave a hidden positive two-copy form: after
+the correct rank Poisson solve, it is a coboundary plus the original mean-
+rank inequality.
+
+For `0<=h<=N`, define the binomial transforms
+
+\[
+ F_h=\sum_{k=1}^h c_k{h\choose k},\qquad
+ T_h=F_h-F_{h-1}quad(h\geq1),                         \tag{60}
+\]
+
+and
+
+\[
+ G_h=\sum_{k=1}^h c_k{h\choose k}q(k/N),qquad
+ \Psi_h(y)=F_h-F_{h-y}.                                 \tag{61}
+\]
+
+Fix `A`, write `a=|A|`, `h=n-a`, and retain the burst notation `J,Y=|J|`
+from Section 7.  The elementary scalar identity
+
+\[
+ {2\over(1+b)^2}{(x-b)^2\over1+x}
+ ={2(x+b^2)\over(1+b)^2}-q(x)                          \tag{62}
+\]
+
+rewrites the conditional dispersion in `(40)` exactly.  The linear term
+uses
+
+\[
+ \sum_{|S|=k}P_{vS}={h-1\choose k-1}P_{vH},
+ \qquad
+ \sum_{v\in A}P_{vH}={ah\over N}+Z_P(A).               \tag{63}
+\]
+
+The baseline contribution cancels the `ah/N` part because
+
+\[
+ {h\choose k}{k\over h}={h-1\choose k-1}.              \tag{64}
+\]
+
+Finally, the same burst realizes `q(P_(vS))` as a hit probability, so
+
+\[
+ \sum_{|S|=k}q(P_{vS})
+ =E_v\left[{h\choose k}-{h-Y\choose k}\right].          \tag{65}
+\]
+
+Equations `(62)--(65)` prove the pointwise burst formula
+
+\[
+\boxed{
+ \mathcal V_P(A)
+ =U_hZ_P(A)+aG_h-\sum_{v\in A}E_v\Psi_h(Y).}             \tag{66}
+\]
+
+Here `mathcal V_P(A)` denotes the integrand whose stationary expectation is
+`mathcal V_P`.
+
+Now put
+
+\[
+ \varphi(A)=\varphi_h:=F_{h-1}.                          \tag{67}
+\]
+
+Since the output hole count is `h'=h+1-Y`, one has
+
+\[
+ \Psi_h(Y)=T_h-\{\varphi_{h'}-\varphi_h\}.              \tag{68}
+\]
+
+Therefore
+
+\[
+ \mathcal V_P(A)-U_hZ_P(A)
+ =\mathcal L\varphi(A)+a(G_h-T_h).                       \tag{69}
+\]
+
+The last term is the complete-rank Poisson residual.  Indeed, on the
+complete dual an active burst sees hole mass `h/N`, and `(65)` gives
+`L_K varphi=a(G_h-T_h)`.  Direct substitution of the exact complete Green
+weights `(9)--(10)` (equivalently, the defining killed-Green equation)
+gives
+
+\[
+\boxed{
+ a(G_h-T_h)=\rho_K-{a\over n}.}                          \tag{70}
+\]
+
+Thus the strongest pointwise collapse is
+
+\[
+\boxed{
+ \mathcal V_P(A)-U_hZ_P(A)
+ =\mathcal L\varphi(A)+\rho_K-{a\over n}.}               \tag{71}
+\]
+
+Combining `(71)` with `(50)` gives, again pointwise,
+
+\[
+\boxed{
+ U_h(C_1+C_2)+\mathcal R_U-2\mathcal V_P(A)
+ =\mathcal L\{U_hZ_P-2\varphi\}
+  +2\left({a\over n}-\rho_K\right).}                   \tag{72}
+\]
+
+This is a decisive no-go result for the literal scalar SID current.  After
+stationary averaging, every generator term in `(71)--(72)` vanishes and
+one obtains exactly
+
+\[
+ \mathcal V_P-E_\Pi[U_hZ_P]
+ =\rho_K-{E_\Pi|A|\over n}.                              \tag{73}
+\]
+
+Consequently a decomposition of the left side of `(72)` as a neutral
+coboundary plus a nonpositive two-copy form would already be, without any
+additional leverage, the original universal mean-rank theorem.  The
+coverage/SID contraction has discarded the labelled matrix information
+needed to prove its own sign.  Further scalar SID algebra is therefore not
+a live proof route; a successful continuation must retain full-pair data
+before this contraction or use a different endpoint comparison.
