@@ -301,6 +301,104 @@ def cut_envelope_audit() -> None:
             assert (bd_a * db_b) * (bd_b * db_a) <= FITNESS**6
 
 
+def synchronized_cocycle_obstruction_audit() -> None:
+    """Refute only the canonical endpoint-degree/path-clock cocycle.
+
+    This is an independent SymPy replay of the weighted 1:17 path
+    calculation.  It does not test, and cannot refute, the global paired
+    root-tree inequality.
+    """
+
+    # Retain the centre target in 0 --(1)-- 2 --(17)-- 1.  The C history
+    # samples from row P_2, while labelled arrow reversal gives equal raw
+    # incoming masses and hence the L-oriented source law (1/2,1/2).
+    degree = (sp.Rational(1), sp.Rational(17), sp.Rational(18))
+    source_c = (sp.Rational(1, 18), sp.Rational(17, 18))
+    source_l = (sp.Rational(1, 2), sp.Rational(1, 2))
+    target_degree = degree[2]
+
+    def exact_union_law(source, draws):
+        if draws == 1:
+            return {
+                1: source[0],
+                2: source[1],
+            }
+        return {
+            1: source[0] ** draws,
+            2: source[1] ** draws,
+            3: 1 - source[0] ** draws - source[1] ** draws,
+        }
+
+    endpoint_degree = {
+        1: degree[0],
+        2: degree[1],
+        3: degree[0] * degree[1],
+    }
+
+    def normalized_clocks(law_l, law_c):
+        return {
+            endpoint: sp.factor(
+                (law_l[endpoint] / law_c[endpoint])
+                / (target_degree / endpoint_degree[endpoint])
+            )
+            for endpoint in law_c
+        }
+
+    # A single neutral sample fixes the canonical singleton degree
+    # potential and gives one common target clock.
+    one_clocks = normalized_clocks(
+        exact_union_law(source_l, 1), exact_union_law(source_c, 1)
+    )
+    assert one_clocks == {1: sp.Rational(1, 2), 2: sp.Rational(1, 2)}
+
+    # One selective sample and the final neutral sample.  Repeating the
+    # degree-17 source leaves the exact multiplicity factor 1/17.
+    two_clocks = normalized_clocks(
+        exact_union_law(source_l, 2), exact_union_law(source_c, 2)
+    )
+    assert two_clocks == {
+        1: sp.Rational(9, 2),
+        2: sp.Rational(9, 34),
+        3: sp.Rational(9, 2),
+    }
+    assert len(set(two_clocks.values())) == 2
+
+    # Sum N>=1 with P(N=m)=(2/3)(1/3)^(m-1).  Inclusion-exclusion gives
+    # the exact endpoint union law through its scalar geometric pgf.
+    def geometric_union_law(source):
+        neutral = sp.Rational(2, 3)
+        selective = sp.Rational(1, 3)
+
+        def pgf(mass):
+            return sp.factor(neutral * mass / (1 - selective * mass))
+
+        return {
+            1: pgf(source[0]),
+            2: pgf(source[1]),
+            3: sp.factor(1 - pgf(source[0]) - pgf(source[1])),
+        }
+
+    burst_c = geometric_union_law(source_c)
+    burst_l = geometric_union_law(source_l)
+    assert burst_c == {
+        1: sp.Rational(2, 53),
+        2: sp.Rational(34, 37),
+        3: sp.Rational(85, 1961),
+    }
+    assert burst_l == {
+        1: sp.Rational(2, 5),
+        2: sp.Rational(2, 5),
+        3: sp.Rational(1, 5),
+    }
+    burst_clocks = normalized_clocks(burst_l, burst_c)
+    assert burst_clocks == {
+        1: sp.Rational(53, 90),
+        2: sp.Rational(37, 90),
+        3: sp.Rational(1961, 450),
+    }
+    assert len(set(burst_clocks.values())) == 3
+
+
 def main() -> None:
     bd = recurrent_data("Bd")
     db = recurrent_data("dB")
@@ -308,12 +406,14 @@ def main() -> None:
     weighted_adjoint_audit(bd)
     geometric_resolvent_audit(db)
     cut_envelope_audit()
+    synchronized_cocycle_obstruction_audit()
     print("PASS: root-tree cofactors and marked determinant derivatives")
     print("PASS: exact Poisson gauge and singleton Schur cofactor trace")
     print("PASS: exact cancellation to paired root-tree repayment")
     print("PASS: Bd marked determinant under weighted adjunction")
     print("PASS: dB positive targetwise resolvent sum")
     print("PASS: swapped two-copy cut-odds envelope")
+    print("PASS: canonical synchronized endpoint cocycle exactly obstructed")
     print("OPEN: paired root-tree operator inequality")
 
 

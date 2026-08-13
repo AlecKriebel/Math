@@ -343,7 +343,109 @@ swapped local bound survives the killed Green/forest composition in
 two favorable macro biases while losing the entrance mass recorded by the
 singleton-root cofactors.
 
-## 8. Exact remaining operator theorem
+## 8. Exact obstruction to canonical synchronized composition
+
+There is a precise obstruction to lifting (29) by the most direct positive
+path construction.  Expand a dB macroedge with retained target `v` into its
+labelled source history.  The reversed-arrow `C` source law and the
+Bd-oriented source law are
+
+\[
+ p_v^C(u)={w_{uv}\over d_v},\qquad
+ p_v^L(u)={{w_{uv}/d_u}\over t_v},\qquad
+ t_v=\sum_z{w_{zv}\over d_z}.                         \tag{30}
+\]
+
+Writing `c_v=d_v/t_v`, their exact likelihood ratio is
+
+\[
+                         {p_v^L(u)\over p_v^C(u)}={c_v\over d_u}.
+                                                               \tag{31}
+\]
+
+Suppose a locked history has `k` selective samples and one final neutral
+sample, with sources `u_0,...,u_k`.  The common geometric factor cancels,
+so
+
+\[
+ {W_L(u_0,\ldots,u_k)\over W_C(u_0,\ldots,u_k)}
+ ={c_v^{k+1}\over\prod_{j=0}^k d_{u_j}}.              \tag{32}
+\]
+
+Let `B` be the set of distinct sampled sources, let `n_i` be the
+multiplicity of source `i`, and put
+
+\[
+                         D(A)=\prod_{i\in A}d_i.
+\]
+
+The singleton neutral step forces the degree factor in this canonical
+arrow-reversal lift.  After removing its endpoint ratio, (32) leaves
+
+\[
+ \boxed{
+ {W_L/W_C\over D(\{v\})/D(B)}
+ ={1\over t_v}c_v^k
+   \prod_{i\in B}d_i^{1-n_i}.}                      \tag{33}
+\]
+
+The last factor records repeated sources.  It is neither a target clock nor
+an endpoint-set coboundary, and therefore does not telescope under projected
+set-path rerooting.
+
+This failure is exact at the first possible collision.  At `r=3/2`, take
+the weighted path
+
+\[
+                    0\mathbin{-}^{1}2\mathbin{-}^{17}1
+\]
+
+and retain target `v=2`.  Here
+
+\[
+ p_2^C=(1/18,17/18),\qquad p_2^L=(1/2,1/2),
+ \qquad t_2=2,\quad c_2=9.                            \tag{34}
+\]
+
+For one selective sample followed by the neutral sample, the normalized
+endpoint clocks in (33), for endpoints `{0}`, `{1}`, and `{0,1}`, are
+
+\[
+                         {9\over2},\qquad {9\over34},\qquad {9\over2}.
+                                                               \tag{35}
+\]
+
+Thus no clock depending only on the initial set, retained target, and
+history length makes the labelled histories endpoint-diagonally conjugate.
+After summing the entire geometric burst, the three normalized clocks are
+
+\[
+                         {53\over90},\qquad {37\over90},
+                         \qquad {1961\over450}.        \tag{36}
+\]
+
+Projection to a macroedge therefore does not repair the defect.
+
+There is a second, separate synchronization loss.  The factors in (29) are
+ratios of *total* upward and downward cut rates.  A tree selects individual
+state edges, while a dB macroedge expands into histories of variable length.
+Applying (29) step by step would therefore require a noncanonical matching
+of both the tree edges and all hidden source draws.  Formula (33) shows that
+even the natural equal-length labelled matching fails to descend to mutant
+sets.
+
+This refutes only the canonical positive transport consisting of
+
+1. expansion into target-locked histories;
+2. step-synchronous labelled arrow reversal; and
+3. telescoping through the multiplicative endpoint degree potential.
+
+It does **not** refute `(PTR)`.  A global grouping of multiplicity-labelled
+histories, or a forest identity which averages the collision factor in
+(33) together with the orientation square, remains logically possible.
+No search over forest matchings was made.
+
+## 9. Exact remaining operator theorem
 
 Combining the preceding identities leaves one explicit statement.  For the
 common reversed-arrow blocks in (25), prove
@@ -354,7 +456,7 @@ common reversed-arrow blocks in (25), prove
  \mathcal T_{r^{-1}\sum_vR_vC_v}(f_\alpha)\\
  &\qquad\ge r^3
  [\mathcal T_{C+V}(g)]_+
- [\mathcal T_{r^{-1}\sum_vR_vC_v}(g)]_+,             \tag{30}
+ [\mathcal T_{r^{-1}\sum_vR_vC_v}(g)]_+,             \tag{37}
 \end{split}
 
 where `T_(C+V)` means the determinant derivative in (20), not the stationary
@@ -372,7 +474,7 @@ The first route is strictly weaker and is the current proof-first target.
 A targetwise Loewner comparison, a common trace-edge adjoint, and an
 unsymmetrized path-odds multiplication have already been ruled out.
 
-## 9. Replay
+## 10. Replay
 
 Run
 
@@ -385,5 +487,7 @@ The replay uses one nonregular rational weighted four-path.  For both rules
 it verifies the tree cofactor law, determinant derivative, Poisson gauge,
 singleton Schur cofactor factorization, and cancellation to `(PTR)`.  It
 also verifies (19), every targetwise resolvent identity in (22), the sum in
-(24), and the two-copy cut envelopes (28)--(29).  It checks identities only;
-it does not assert the open sign in (30).
+(24), and the two-copy cut envelopes (28)--(29).  It independently
+reproduces the collision clocks (35)--(36), thereby refuting only the
+canonical projected-state cocycle described in Section 8.  It checks
+identities only; it does not assert the open sign in (37).
