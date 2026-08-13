@@ -363,13 +363,54 @@ they do not constrain probability stored on ranks three and above.  The
 first missing proof step is therefore a cross-rule stationary inequality,
 not another marginal profile guess.
 
+This insufficiency is exact, not merely a warning.  Equations (27)--(28) are
+homogeneous in the exact rank-one and rank-two state masses.  Starting from
+any two probability laws satisfying them, multiply all masses on ranks one
+and two by `lambda in (0,1)` and put the remaining probability on any
+rank-three state.  The rescaled laws still satisfy every singleton-state
+balance.
+
+Take order `s=8` and let `lambda->0`.  Both limiting mean ranks are three, so
+
+\[
+ b\longrightarrow{3\over8},\qquad
+ a\longrightarrow{3\over8(r-1)}.                        \tag{31}
+\]
+
+Throughout the exact isolating interval
+`3/2<r<151/100`, one has `0<a<1` and
+
+\[
+ a+b-1>{25\over34}+{3\over8}-1={15\over136}>0.          \tag{32}
+\]
+
+The right side of (17) therefore tends to a strictly positive number, while
+`q_Bq_D=O(lambda^2)`.  Thus the first-level stationary LP itself violates
+BDM for all sufficiently small `lambda`.  These rescaled laws need not be
+stationary for the higher-rank equations, so this is not a graph
+counterexample.  It proves that no argument using only (27)--(30),
+positivity, and normalization can establish BDM.  At least one genuine
+higher-rank flow identity is logically necessary.
+
+The separate condition `a<=1` is the dB density assertion
+
+\[
+                         \rho_{dB}(H,R_{hyb})\le R_{hyb}-1. \tag{33}
+\]
+
+It is not presently proved.  The stronger complementary-level conjecture
+for the dB dual would imply `E|A|<=s/2`, hence (33), because
+`R_hyb-1>1/2`.  Singleton-state balance alone cannot imply it: the same
+rank-three rescaling on four or more vertices can make the mean rank exceed
+`s(R_hyb-1)` while leaving (28) intact.
+
 There is an exact finite product-chain formulation.  Set
 `C=r(r-1)^2`, let `A,A'` be independent `mu_Bd` sets and `D` an independent
 `mu_dB` set, and define
 
 \[
  U(A)=\sum_i\gamma_i\mathbf1_{A=\{i\}},\qquad
- V(D)=\sum_i\alpha_i\mathbf1_{D=\{i\}}.                 \tag{31}
+ V(D)=\sum_i\alpha_i\mathbf1_{D=\{i\}}.                 \tag{34}
 \]
 
 After clearing the denominators in (17), the BDM gap is the stationary mean
@@ -381,7 +422,7 @@ of
        \left(1-{|D|\over s(r-1)}\right)
        -z{|A'|\over s}\right]\\
  &+zU(A)V(D)\left[1+z\left(1-{|A'|\over s}\right)\right].
-                                                               \tag{32}
+                                                               \tag{35}
  \end{split}
 \]
 
@@ -389,10 +430,10 @@ Thus a proof may seek a potential `Phi_z` on the three-copy product chain
 such that
 
 \[
- F_z+(L_{Bd}^{A}+L_{Bd}^{A'}+L_{dB}^{D})\Phi_z\ge0       \tag{33}
+ F_z+(L_{Bd}^{A}+L_{Bd}^{A'}+L_{dB}^{D})\Phi_z\ge0       \tag{36}
 \]
 
-pointwise.  Equation (33) is a finite LP dual certificate for fixed `H,z`;
+pointwise.  Equation (36) is a finite LP dual certificate for fixed `H,z`;
 its stationary mean is exactly BDM.  A universal construction of this
 certificate, with equality rigidity at `K_2`, is the smallest currently
 visible proof obligation.
@@ -402,7 +443,9 @@ visible proof obligation.
 The matching-upper program now has a definite order.
 
 1. **Bounded local step:** prove BDM, equivalently (17), (24), or the
-   product-chain inequality (33).
+   product-chain inequality (36).  The exact scaling obstruction above
+   proves that singleton-state balances are too weak; the certificate must
+   use higher-rank flow.
 2. **Equality step:** control the next response scale near the `K_2` equality
    ray; a first-order cone cannot decide a zero tangent.
 3. **Dilute global step:** prove response-scale trace tightness for growing

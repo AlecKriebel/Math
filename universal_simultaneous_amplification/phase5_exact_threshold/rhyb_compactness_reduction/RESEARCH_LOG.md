@@ -35,6 +35,15 @@ optimization was used.
   an exact three-copy product-chain LP certificate formulation.  The missing
   step is a cross-rule stationary inequality; marginal profiling alone does
   not close it.
+- Proved first-level balance is decisively insufficient: scale every
+  rank-one/rank-two mass by `lambda` and put the residual probability on
+  rank three.  On eight vertices the limiting means satisfy `a<1<a+b`, while
+  `q_B q_D=O(lambda^2)`, violating the Hellinger bound.  This is a pseudo-law
+  obstruction to the relaxed proof space, not a graph counterexample; it
+  proves that higher-rank stationary flow is unavoidable.
+- Isolated `a<=1` as the separate density theorem
+  `rho_dB(H,R_hyb)<=R_hyb-1`.  The open complementary-level conjecture would
+  imply the stronger half-density bound, whereas first-level balance cannot.
 - Verified that `K_2` has discriminant exactly `r^2 P(r)`, so equality at
   `R_hyb` is precisely the known hybrid tangency.
 - Best-guess completion of the exact-threshold program: **73%**.  The local

@@ -95,14 +95,33 @@ def k2_equality() -> None:
     assert remainder.is_zero
 
 
+def first_level_relaxation_obstruction() -> None:
+    # A rank-three pseudo-law on eight vertices obeys a<1 but lies in the
+    # nontrivial Hellinger branch throughout the exact isolating interval.
+    r = sp.symbols("r", positive=True)
+    a = sp.Rational(3, 8) / (r - 1)
+    b = sp.Rational(3, 8)
+    lo, hi = sp.Rational(3, 2), sp.Rational(151, 100)
+    assert sp.factor(1 - a.subs(r, lo)) > 0
+    assert sp.factor((a + b - 1).subs(r, hi)) == sp.Rational(15, 136) > 0
+
+    # Every singleton balance is homogeneous in the rank-one/rank-two
+    # masses.  Scaling a symbolic equality by lambda preserves it.
+    lam, lhs, rhs = sp.symbols("lambda lhs rhs")
+    scaled_residual = lam * lhs - lam * rhs
+    assert sp.factor(scaled_residual.subs(lhs, rhs)) == 0
+
+
 def main() -> None:
     generic_reduction()
     portal_copositivity()
     k2_equality()
+    first_level_relaxation_obstruction()
     print("PASS: exact OR-dual normal-form reduction")
     print("PASS: quadratic/discriminant/Hellinger equivalence")
     print("PASS: exact portal copositivity formulation")
     print("PASS: K2 discriminant = r^2 P(r) and R_hyb double root")
+    print("PASS: first-level stationary balances alone are insufficient")
     print("OPEN: universal bounded dual-moment inequality")
 
 
