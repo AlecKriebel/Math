@@ -1,0 +1,335 @@
+# Exact coverage structure and a refuted degree-profile envelope
+
+Date: 2026-08-13 (America/Los_Angeles)
+
+## Status
+
+This note formalizes an exact structural fact about the fitness-two dB
+fixation committor: it is a normalized coverage function and hence is
+monotone and submodular.  The statement is **PROVED** for the actual finite
+chain, with all coalescence retained.
+
+The note then records a proof-first attempt to combine this structure with
+reversibility.  The resulting stationary-degree profile envelope is
+**EXACTLY REFUTED** by a six-vertex equitable weighted graph.  Consequently
+coverage/submodularity by itself does not turn reversible vertex masses into
+the sharp complete-graph bound.  The universal fitness-two upper bound
+remains **OPEN**.
+
+## 1. Exact Boolean duality and coverage representation
+
+Let `V` be the vertex set of a finite connected loopless undirected weighted
+graph, and put
+
+\[
+ P_{vu}=\frac{w_{vu}}{d_v},\qquad d_v=\sum_u w_{vu}.
+\tag{1}
+\]
+
+At fitness two, a dB update at target `v` writes a mutant with probability
+
+\[
+ \frac{2P_{vS}}{1+P_{vS}}.
+\tag{2}
+\]
+
+Let `N` have the fair geometric law
+
+\[
+ \Pr(N=q)=2^{-q},\qquad q\geq1,
+\tag{3}
+\]
+
+and let `U_1,...,U_N` be iid samples from row `P_v`.  Since
+
+\[
+ \Pr(U_1,\ldots,U_N\notin S)
+ =E(1-P_{vS})^N
+ =\frac{1-P_{vS}}{1+P_{vS}},
+\tag{4}
+\]
+
+the forward update is exactly the additive Boolean map
+
+\[
+ x_v\longleftarrow x_{U_1}\vee\cdots\vee x_{U_N}.
+\tag{5}
+\]
+
+Its transpose sends a dual set `A` to
+
+\[
+ A\longmapsto
+ \begin{cases}
+ (A\setminus\{v\})\cup\{U_1,\ldots,U_N\},&v\in A,\\
+ A,&v\notin A.
+ \end{cases}
+\tag{6}
+\]
+
+Use the same graphical marks forward and backward.  Composition of the
+one-step transpose identity gives, for every forward mutant set `S` and dual
+set `A`,
+
+\[
+ \Pr_S(X_t\cap A\ne\varnothing)
+ =\Pr_A(S\cap A_t\ne\varnothing).
+\tag{7}
+\]
+
+The dual never reaches the empty set.  Let `Pi` be its limiting invariant
+law from `V` (equivalently the invariant law on its recurrent proper-set
+class).  The finite forward chain absorbs almost surely.  Taking `A_0=V`
+and then `t\to\infty` in (7) proves the exact representation
+
+\[
+ \boxed{
+ h(S)=\Pr_{A\sim\Pi}(A\cap S\ne\varnothing),
+ }
+\tag{8}
+\]
+
+where `h(S)` is the forward fixation probability from `S`.
+
+## 2. Exact monotonicity and submodularity
+
+For a fixed nonempty set `A`, define
+
+\[
+ c_A(S)=\mathbf1_{\{A\cap S\ne\varnothing\}}.
+\tag{9}
+\]
+
+This is a coverage function.  It obeys
+
+\[
+ c_A(S\cup\{i\})-c_A(S)
+ =\mathbf1_{\{A\cap S=\varnothing,\ i\in A\}}\geq0,
+\tag{10}
+\]
+
+and, for distinct `i,j` outside `S`,
+
+\[
+ \begin{split}
+ &c_A(S\cup\{i\})+c_A(S\cup\{j\})
+       -c_A(S)-c_A(S\cup\{i,j\})\\
+ &\hspace{28mm}
+ =\mathbf1_{\{A\cap S=\varnothing,\ i,j\in A\}}\geq0.
+ \end{split}
+\tag{11}
+\]
+
+Averaging (10)--(11) under `Pi` proves
+
+\[
+ \boxed{h(S\cup\{i\})\geq h(S)}
+\tag{12}
+\]
+
+and
+
+\[
+ \boxed{
+ h(S\cup\{i\})+h(S\cup\{j\})
+ \geq h(S)+h(S\cup\{i,j\}).
+ }
+\tag{13}
+\]
+
+There is a stronger exact Möbius formula.  For every nonempty named set
+`T` disjoint from `S`,
+
+\[
+ \boxed{
+ (-1)^{|T|+1}\Delta_T h(S)
+ =\Pr_\Pi(A\cap S=\varnothing,\ T\subseteq A)\geq0,
+ }
+\tag{14}
+\]
+
+where `Delta_T=prod_(i in T) Delta_i`.  Thus the fixation committor is not
+merely submodular: it is a completely alternating normalized coverage
+function.
+
+In particular,
+
+\[
+ h(\{i\})=\Pr_\Pi(i\in A),\qquad
+ h(\{i\})+h(\{j\})-h(\{i,j\})=\Pr_\Pi(i,j\in A).
+\tag{15}
+\]
+
+The uniform-singleton fixation probability is therefore
+
+\[
+ \rho_{\rm dB}(G,2)=\frac1n\sum_i h(\{i\})
+ =\frac1n E_\Pi|A|.
+\tag{16}
+\]
+
+## 3. A natural reversible degree-profile envelope
+
+Normalize the reversible stationary vertex law by
+
+\[
+ \pi_i=\frac{d_i}{\sum_jd_j}.
+\tag{17}
+\]
+
+The complete count-chain harmonic admits the continuous interpolation
+
+\[
+ \Phi_n(z)=
+ \frac{1-(1+z)2^{-nz}}{1-2^{1-n}},\qquad0\leq z\leq1.
+\tag{18}
+\]
+
+Indeed, at the lattice points `z=k/n`,
+
+\[
+ \Phi_n(k/n)
+ =\frac{1-(n+k)/(n2^k)}{1-2^{1-n}},
+\tag{19}
+\]
+
+the exact complete-graph fixation probability from `k` mutants.  In
+particular
+
+\[
+ \Phi_n(1/n)
+ =\rho_{\rm dB}(K_n,2)
+ =\frac{(n-1)2^{n-2}}{n(2^{n-1}-1)}.
+\tag{20}
+\]
+
+Direct differentiation gives, with `a=n log 2`,
+
+\[
+ \Phi_n''(z)
+ =\frac{a e^{-az}\{2-a(1+z)\}}{1-2^{1-n}}.
+\tag{21}
+\]
+
+Thus the function is not even globally concave for every `n`; more
+importantly, the aggregate envelope
+
+\[
+ \frac1n\sum_i h(\{i\})
+ \stackrel{?}{\leq}
+ \frac1n\sum_i\Phi_n(\pi_i)
+\tag{22}
+\]
+
+is false.  The failure below is strict and exact.
+
+## 4. Exact six-vertex refutation
+
+Partition the vertices into cells
+
+\[
+ A=\{0,1,3\},\qquad B=\{2,4\},\qquad H=\{5\}.
+\]
+
+Give every edge within `A` weight `5`, every edge from `A` to `H` weight
+`2`, the edge within `B` weight `73`, and both edges from `B` to `H` weight
+`1`.  All other weights vanish.  This is a connected undirected weighted
+graph.  Its weighted degrees are
+
+\[
+ d_A=12,\qquad d_B=74,\qquad d_H=8,
+\]
+
+and hence
+
+\[
+ (\pi_i)=\left(
+ {1\over16},{1\over16},{37\over96},{1\over16},
+ {37\over96},{1\over24}\right).
+\tag{23}
+\]
+
+The three-count orbit chain has `4*3*2-2=22` transient states.  Solving its
+exact rational harmonic system gives
+
+\[
+ \boxed{
+ \rho_{\rm dB}(G,2)=
+ \frac{
+ 3068195756606417046102333640985779252
+ }{
+ 8357819445634194964176471307640845009
+ }
+ =0.3671048144272996\ldots .
+ }
+\tag{24}
+\]
+
+To certify the strict failure of (22) without numerical logarithms, put
+
+\[
+ \alpha=2^{1/16},\qquad u={10443\over10000}.
+\]
+
+Exact integer arithmetic gives `u^16>2`, hence `alpha<u`.  From (18) and
+(23),
+
+\[
+ \frac16\sum_i\Phi_6(\pi_i)
+ ={32\over31}\left[
+ 1-{1\over6}\left{
+ 3{17\over16}\alpha^{-6}
+ +2{133\over96}\alpha^{-37}
+ +{25\over24}\alpha^{-4}
+ \right}\right].                                  \tag{25}
+\]
+
+Since all coefficients in braces are positive and `alpha<u`, the right
+side of (25) is strictly smaller than the rational number obtained by
+replacing `alpha` by `u`.  Exact cross multiplication then gives
+
+\[
+ \rho_{\rm dB}(G,2)
+ -{32\over31}\left[
+ 1-{1\over6}\left{
+ 3{17\over16}u^{-6}
+ +2{133\over96}u^{-37}
+ +{25\over24}u^{-4}
+ \right}\right]
+ >0.0042.                                             \tag{26}
+\]
+
+Equations (25)--(26) prove
+
+\[
+ \boxed{
+ \rho_{\rm dB}(G,2)
+ >\frac16\sum_i\Phi_6(\pi_i),
+ }
+\tag{27}
+\]
+
+so the degree-profile envelope is exactly refuted.  Notice that this graph
+still lies below the complete baseline `rho_(K_6)=80/189`; it refutes only
+the proposed intermediate theorem, not the universal fitness-two bound.
+
+## 5. Consequence for the live proof
+
+The coverage theorem (8)--(14) is exact and globally valid, but it does not
+couple the representing law `Pi` to the reversible stationary masses
+`pi_i` sharply enough to compare the mean in (16).  In particular:
+
+1. abstract coverage/submodularity cannot supply the missing extremal step;
+2. even the full singleton vector is not bounded by the natural continuous
+   complete harmonic evaluated at reversible vertex masses;
+3. a successful proof must use the stationarity equations of the
+   fair-geometric representing measure, or an equivalent two-labelled
+   current/tree identity, in addition to complete alternation.
+
+The exact remaining upper-bound target is unchanged:
+
+\[
+ E_\Pi|A|\leq
+ \frac{(n-1)2^{n-2}}{2^{n-1}-1}.
+\tag{28}
+\]
