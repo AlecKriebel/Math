@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+HERE="$(cd "$(dirname "$0")" && pwd)"
+source "$HERE/bootstrap.sh"
+cd "$STC_JC_PROJECT"
+
+"$STC_JC_PYTHON" reproducibility/verify_active_release.py
+bash reviews/final_standard_convention/verify_all.sh
+bash reviews/triangle_redirection_cleanroom/verify_all.sh
+bash reviews/global_bridge/verify_all.sh
+"$STC_JC_PYTHON" reviews/theta2_signature_gate/verify_manifest.py
+bash reviews/compact_probe_format/final_n3_cleanroom/verify_quick.sh
+bash reviews/compact_probe_format/final_n4_cleanroom/verify_quick.sh
+"$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
+
+echo "VERIFIED: quick Outcome-P release gates"
