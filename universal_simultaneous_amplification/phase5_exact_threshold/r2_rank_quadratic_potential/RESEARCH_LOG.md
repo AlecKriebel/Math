@@ -510,3 +510,32 @@ must be hostile-tested before analytic investment.
   the endpoint reduction and several exact spectral/full-pair identities are
   proved, while the universal integrated sign before scalar projection is
   still open.  The present checkpoint sharply removes one plausible closure.
+
+## 2026-08-13 — literal full-pair coverage matrix
+
+- [EXACT MATRIX RENEWAL] Lifted the fair-geometric dual burst to the
+  zero-diagonal pair matrix `P(A)=ss^T-Diag(s)`.  Eventwise pair deletion and
+  cross/hole-pair creation give `L P=-2P+C^(1)+C^(2)`.  The original-edge
+  discrepancy contraction is exactly `LZ=-2Z+C1+C2`.
+- [EXACT MATRIX POISSON LAW] With the complete-Green rank weight and its
+  literal output-rank commutator,
+  `L(U P)=-2U P+U(C^(1)+C^(2))+R_U^matrix`.  Stationarity says the mean burst
+  matrix is exactly twice the weighted pair-inclusion matrix.  This is the
+  full-pair form before any scalar edge contraction.
+- [POSITIVE TEST GRAM] Writing each row deviation as `r_v=P_v-K_v`, the full
+  subset-mass dispersion is `sum_v r_v^T T_v(A)r_v`, where every rational
+  test matrix `T_v(A)` is PSD.  An equivalent vertex-pair Gram is also PSD
+  and contracts against the all-ones vector to the exact dispersion.
+- [EXACT TRACE REDUCTION] Defined the canonical target matrix
+  `Q_P=2 Diag(E V_v)+Sym((P-K) Bbar^T)`.  Its trace is exactly the negative
+  circulation-corrected SID residual.  Thus `Tr Q_P>=0` is the original
+  upper theorem, not a stronger scalar envelope or an affine gauge.
+- [LOEWNER ROUTE REFUTED] The strengthening `Q_P>=0` is false on the regular
+  weighted `K4` with edge weights `(1,1,2,2,1,1)`: its leading principal
+  minor is exactly `-2849/27541504`.  Yet `Tr Q_P=1/287>0`, exactly twice
+  the valid SID gap `1/574`.  Pair/target modes must therefore cancel at
+  trace level; independent Loewner positivity is unavailable.
+- [CHECKPOINT] Proof-first upper-bound program estimated `73%` complete.
+  The exact literal matrix and positive Gram are now identified, and the
+  first canonical matrix ordering is closed.  The remaining task is a
+  genuinely global trace/circulation theorem or a nonlocal Poisson metric.
