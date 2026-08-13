@@ -16,8 +16,7 @@ bash reviews/theta2_signature_gate/verify.sh
 bash reviews/base_gate_adversarial_referee_n3/verify_all.sh
 bash reviews/base_gate_adversarial_referee/verify_all.sh
 bash reviews/direct_anchor_probe_closure/verify_regenerate.sh
-bash reviews/compact_probe_format/final_n3_cleanroom/verify_full.sh
-bash reviews/compact_probe_format/final_n4_cleanroom/verify_full.sh
+PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_full.sh
 bash reviews/global_bridge/verify_all.sh --with-upstream-replay
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
 "$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py

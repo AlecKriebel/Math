@@ -13,9 +13,7 @@ bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh
 bash reviews/theta2_signature_gate/verify.sh
 bash reviews/base_gate_adversarial_referee_n3/verify_all.sh
 bash reviews/base_gate_adversarial_referee/verify_all.sh
-bash reviews/arbitrary_subdivision_promotion_referee/verify_all.sh
 bash reviews/direct_anchor_probe_closure/verify.sh
-bash reviews/compact_probe_format/final_n3_cleanroom/verify_full.sh
-bash reviews/compact_probe_format/final_n4_cleanroom/verify_full.sh
+PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_full.sh
 
 echo "VERIFIED: full Outcome-P release gates"

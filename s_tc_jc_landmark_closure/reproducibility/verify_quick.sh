@@ -12,8 +12,7 @@ bash reviews/global_bridge/verify_all.sh
 "$STC_JC_PYTHON" reviews/n3_universe_generator/verify_manifest.py
 "$STC_JC_PYTHON" reviews/theta2_signature_gate/verify_manifest.py
 (cd reviews/direct_anchor_probe_closure && shasum -a 256 -c MANIFEST.sha256)
-bash reviews/compact_probe_format/final_n3_cleanroom/verify_quick.sh
-bash reviews/compact_probe_format/final_n4_cleanroom/verify_quick.sh
+PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_quick.sh
 "$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
 
 echo "VERIFIED: quick Outcome-P release gates"

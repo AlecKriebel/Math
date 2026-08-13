@@ -265,10 +265,10 @@ probe restricts one fixed anchor transport.  The pair comparisons come from
 actual total words and therefore assemble uniquely.  If a probe subdivides
 a triangle edge it fixes the literal orientation; otherwise one unique
 triangle persists and the same ordinary `T` choice applies to every probe.
-The largest required probe has ten tensor ports.  Independent compact and
-verbose implementations agree on 101,148 three-outgoing and 168,582
-`theta-2` probe relations, and mutation tests reject broken parents,
-transports, orders, and probe-dependent `T` choices.
+The largest required probe has ten tensor ports.  A compact-only clean-clone
+implementation reconstructs 101,148 three-outgoing and 168,582 `theta-2`
+probe relations from tracked graph inputs; mutation tests reject broken
+parents, transports, orders, and probe-dependent `T` choices.
 
 The 62 direct residual anchors are a distinct four-port base case and are not
 among those restoration-terminal streams.  Independent graph insertion on

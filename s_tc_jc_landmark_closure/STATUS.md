@@ -53,6 +53,11 @@ the 62 direct n3 anchors is independently closed by all 2,642 one-port and
 bridge incidence scaling, both one-sided cut inclusions, root reduction, and
 no cross-blob compensation were already independently verified.
 
+The path-bound promotion now has a compact-only clean-clone gate: all 269,730
+relations are regenerated from 50 tracked byte-locked inputs, all nine
+semantic mutations are rejected, and a fresh `git archive HEAD` replay passes.
+No untracked verbose `probe_extension_*` artifact is an active dependency.
+
 The first completed theta-2 cover was rejected by its own exact replay: its
 schema-2 canonical key merged distinct rooted graph presentations.  The full
 failed stream is quarantined and the simultaneous schema-2 n=3 run was
