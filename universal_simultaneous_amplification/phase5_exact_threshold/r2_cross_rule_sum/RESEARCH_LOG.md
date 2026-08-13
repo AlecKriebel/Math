@@ -136,7 +136,9 @@
 - Derived and independently enumerated a closed local-arrow formula for
   `F_P(A)` for complement-cache rank at least two.  It uses only the
   one-step cut masses, their squares, the cache internal mass, and two
-  two-arrow return/cross masses; no marked resolvent remains.
+  quadratic new-sample masses: the row-square sum `sum P_vi^2` and
+  `sum P_vi` times the incoming-plus-outgoing cache mass at `i`; no marked
+  resolvent remains.
 - Weighted-P3 exact fingerprint:
 
   ```text

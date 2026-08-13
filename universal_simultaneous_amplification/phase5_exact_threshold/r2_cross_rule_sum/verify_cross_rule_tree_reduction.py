@@ -356,18 +356,21 @@ def collapsed_shared_l_forcing(weights, occupied):
     x_sum = sum(x.values(), F(0))
     x_square = sum((value * value for value in x.values()), F(0))
     occupied_request = F(len(targets)) - x_sum
-    two_step_into_cache = sum(
+    new_sample_square = sum(
         (
-            p[target][sample]
-            * sum((p[sample][source] for source in cache_vertices), F(0))
+            p[target][sample] * p[target][sample]
             for target in targets
             for sample in targets
         ),
         F(0),
     )
-    return_to_target = sum(
+    new_internal_cross = sum(
         (
-            p[target][sample] * p[sample][target]
+            p[target][sample]
+            * (
+                sum((p[source][sample] for source in cache_vertices), F(0))
+                + sum((p[sample][source] for source in cache_vertices), F(0))
+            )
             for target in targets
             for sample in targets
         ),
@@ -388,8 +391,8 @@ def collapsed_shared_l_forcing(weights, occupied):
             + internal / (rank * (rank + 1) * (rank + 1))
         )
         + (x_sum - x_square) / ((rank + 1) * (rank + 2))
-        + two_step_into_cache / ((rank + 1) * (rank + 2))
-        + return_to_target / (rank * (rank + 1) * (rank + 1))
+        + new_sample_square / ((rank + 1) * (rank + 2))
+        + new_internal_cross / (rank * (rank + 1) * (rank + 1))
     )
 
 
@@ -793,6 +796,16 @@ def main():
     assert delta == 0
     audit_local_paired_skeleton_obstruction()
 
+    # The expanded local-arrow forcing has more independent quadratic terms
+    # once both the occupied set and its complement have size at least two;
+    # audit that regime on K4 as well as the weighted P3 boundary.
+    complete_four = tuple(
+        tuple(0 if left == right else 1 for right in range(4))
+        for left in range(4)
+    )
+    complete_four_data = audit(complete_four)
+    assert complete_four_data[11] == 0
+
     print("PASS: exact uniform-adjoint and targetwise fair-resolvent identities")
     print("PASS: marginal cofactors and paired-tree numerator")
     print("PASS: weighted-P3 normalized gap = 1033/10230")
@@ -814,6 +827,7 @@ def main():
         weighted_data[10],
     )
     print("AUDIT: weighted-P3 common-arrow t=2 gap =", weighted_data[11])
+    print("PASS: expanded local-arrow forcing on every complete-K4 set")
     print("REFUTED: pair-by-pair skeleton signs (both gaps = -1/2 on K3)")
     print("OPEN: the all-graph shared-arrow signs SAPT_n and PAPT_n")
 
