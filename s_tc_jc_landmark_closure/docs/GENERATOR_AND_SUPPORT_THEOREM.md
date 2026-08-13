@@ -1,6 +1,7 @@
 # Generator and bounded-support theorem
 
-Status: **PRIMARY PROOF AND EXACT CENSUS COMPLETE; independent review pending**
+Status: **PROVED; independently regenerated finite files are regression
+certificates, not premises**
 
 ## Theorem 1 — primitive universe
 
@@ -33,15 +34,41 @@ Every surviving core vertex has degree three.  Since `e=v+1`,
 lock exclude the one-vertex loop case, leaving two branch vertices joined by
 three paths: a theta.
 
-On a theta path, direction can change only at the unique source event `S` or
-at a path-sink reticulation `X`, so source and sink events alternate.  At most
-one branch is reticulate.  The two-reticulate-branch case is separately
-exhausted by the event-and-direction compiler and has no reachable acyclic
-orientation.  Exhausting the remaining event multisets
-`{S,X,X}` and `{S,X}`, all segment directions, bidegrees, acyclicity, and
-reachability gives exactly four path-template classes.  The primary
-enumerator derives 24 normalized branch-labelled presentations and four
-classes; it does not read a frozen core list.
+On a theta path, direction can change only at the unique local source event
+`S` or at a path-sink reticulation `X`, so source and sink events alternate.
+At most one pole is reticulate.  Indeed, if both poles were reticulations,
+each would have two incoming path incidences and one outgoing path incidence.
+The path carrying the outgoing incidence of the first pole must enter the
+second pole, and symmetrically the outgoing incidence of the second must enter
+the first.  Those two directed pole-to-pole paths form a directed cycle.
+
+There are therefore two cases.  If one pole is reticulate and the other is a
+tree pole, the second reticulation is an internal path sink and `S` is an
+internal source.  Up to permuting the three paths and swapping the poles,
+`S` and `X` lie on different paths (`theta-0`) or on the same path
+(`theta-1`).  If both poles are tree poles, both reticulations are internal
+path sinks.  Up to the same symmetries, `S` lies on the third path
+(`theta-2`) or shares a path with one sink (`theta-3`).  These four cases are
+mutually exclusive and exhaust the possible event incidences, proving the
+four-core assertion without a topology census.
+
+The minimum strong repairs are read directly from the four arc templates.
+They remove a reticulation child of a reticulation, split a parallel core
+pair, or give a nonreticulate child to an omnian tail, as applicable:
+
+| core | directed segment indices | minimum repairs |
+|---|---|---|
+| cycle | `S->X`, `S->X` | `{0}`, `{1}` |
+| `theta-0` | `S->U,S->V,U->X,V->X,U->V` | `{2,3}`, `{3,4}` |
+| `theta-1` | `S->U,S->X,V->X,U->V,U->V` | `{2,3}`, `{2,4}` |
+| `theta-2` | `S->U,S->V,U->X0,V->X0,U->X1,V->X1` | `{2,3}`, `{2,5}`, `{3,4}`, `{4,5}` |
+| `theta-3` | `S->U,S->X0,V->X0,U->X1,V->X1,U->V` | `{2}`, `{4}` |
+
+For example, in `theta-0` segment 3 separates the two reticulations, while
+segment 2 or 4 supplies a nonreticulate child at the other offending tail.
+The other rows follow by the same two local tests.  Occupancy is monotone, so
+every strong word contains one listed minimum repair and every word
+containing one is strong.
 
 Every remaining side vertex has degree two inside the blob and one outgoing
 cut-edge port.  Reading these vertices along each directed segment gives an
@@ -60,13 +87,13 @@ A cycle blob has only one simple cycle.  A theta with path lengths
 either `(1,1,2)` or `(1,2,2)`.  The first has two parallel branch edges and is
 excluded by the simple standard lock.  The second is the graph `K_4-e`.
 
-In a standard-strong mixed graph, the tail of an edge entering a reticulation
-must have two other undirected incident edges.  Otherwise some admissible
-rooting makes both of that vertex's tree-child alternatives reticulate.  In
-particular, one vertex cannot be the tail of two reticulation edges, and a
-reticulation cannot be such a tail.  The two reticulations of `K_4-e` require
-four incoming arrowed edges with four distinct nonreticulate tails, but the
-graph has only two nonreticulate vertices.  This is impossible.
+In a standard-strong mixed graph, one vertex cannot tail two edges entering
+reticulations, and a reticulation cannot tail such an edge.  In the final
+root-suppressed `K_4-e` mixed graph there are only two nonreticulate internal
+vertices, fewer than the four distinct tails required by the two
+reticulations.  Equivalently, if the count is made before root suppression,
+the two ordinary vertices and the inserted root provide at most three
+tree-child-compatible tails, still fewer than four.  This is impossible.
 
 Thus the final positive theorem, if established, applies to all of `S_TC`,
 not merely to a separately imposed one-triangle-per-blob subclass.
@@ -176,8 +203,8 @@ group-action representative.
   original primitive core.  A nonretaining marginal may reduce to a smaller
   strong topology; it is not called intrinsically weak.
 - The exact completion counts for three through six selected outgoing ports
-  are `831, 1983, 4155, 7909`; all generated full completions pass the locked
-  rooted and standard-strong checks.
+  are `831, 1983, 4155, 7909`; these are implementation checksums of the
+  completion grammar, not mathematical inputs.
 - `primary/support_universe.py` regenerates all rigid support/probe sources;
   it obtains 304 five-port and 216 six-port decorated source presentations.
 
