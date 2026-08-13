@@ -87,3 +87,65 @@
   ```
 
 - **OPEN:** `PAPT_n`, the weaker decisive shared-arrow product-tree sign.
+
+## 2026-08-13 12:02 PDT -- collision insertion and common-arrow two-step forcing
+
+- Collapsed the post-neutral `C` reciprocal-rank observable exactly.  For
+  `k=|A|` and internal directed request mass `I_P(A)`,
+
+  ```text
+  g(A)=k*(N_C (1/|.|))(A)
+      =1                                  (k=1),
+      =1+I_P(A)/(k*(k-1))                 (k>=2).
+  ```
+
+  Consequently `beta_C f=(sum tau_C(A)g(A))/Y_C`.
+- Derived the stationary internal-mass identity
+  `E_piC I_P(A)=m_C/2` from the exact `C` rank drift `k-2I_P(A)`.
+- Split the event-Palm product gap, without assigning separate signs, into
+
+  ```text
+  1/m_D-m_L/(b*d)
+   =(1/m_D-beta_C f)+(beta_C f-m_L/(b*d)).
+  ```
+
+  The second bracket is the global determinant numerator
+  `b*d*Z_L*sum(tau_C*g)-Y_L*Y_C` after positive normalization.
+- Exactly refuted the tempting statewise comparison `K_D f>=K_R f`: on the
+  weighted three-path with edge weights `1,2`, the minimum pointwise
+  difference is `-17/280`.  Its stationary persistence term remains
+  positive, exactly `7/1416`.
+- Added the common-arrow marked reduction.  With
+  `q_L(C,v)=pi_L(V\C)/m_L`, the first marked step satisfies
+
+  ```text
+  (M psi)(C,v)=1                                  (|C|=0),
+               =1/(k+1)+P_v(C)/(k*(k+1))          (k>=1).
+  ```
+
+  Defining
+  `F_P(A)=sum_(v in A)(M^2 psi)(V\A,v)` gives the exact normalization
+  `E_piL F_P=m_L*q_L*M^2*psi`.  Thus the proposed two-step floor is exactly
+
+  ```text
+  E_piL F_P >= m_L^2/(b*d).
+  ```
+
+  It is also the mean of the symmetric two-copy forcing
+  `(F_P(A)+F_P(A'))/2-|A||A'|/(b*d)` under `pi_L tensor pi_L`.
+- Derived and independently enumerated a closed local-arrow formula for
+  `F_P(A)` for complement-cache rank at least two.  It uses only the
+  one-step cut masses, their squares, the cache internal mass, and two
+  two-arrow return/cross masses; no marked resolvent remains.
+- Weighted-P3 exact fingerprint:
+
+  ```text
+  q_L*M^2*psi=123/146,
+  E_piL F_P=492/341,
+  b*d*E_piL F_P-m_L^2=296960/813967 > 0.
+  ```
+
+- **OPEN:** the all-graph common-arrow two-step floor and its proposed
+  persistence for every time `t>=2`.  The next proof-first target is the
+  complete radial two-copy Poisson solve for this exact forcing, followed by
+  a pointwise residual/SOS audit.

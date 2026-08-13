@@ -153,6 +153,246 @@ def matmul(left, right):
     ]
 
 
+def identity(size):
+    return [[F(i == j) for j in range(size)] for i in range(size)]
+
+
+def inverse(matrix):
+    """Gauss--Jordan inverse over QQ."""
+
+    size = len(matrix)
+    work = [row[:] + unit[:] for row, unit in zip(matrix, identity(size))]
+    for column in range(size):
+        pivot = next(row for row in range(column, size) if work[row][column])
+        if pivot != column:
+            work[pivot], work[column] = work[column], work[pivot]
+        value = work[column][column]
+        work[column] = [entry / value for entry in work[column]]
+        for row in range(size):
+            if row == column or not work[row][column]:
+                continue
+            scale = work[row][column]
+            work[row] = [
+                entry - scale * pivot_entry
+                for entry, pivot_entry in zip(work[row], work[column])
+            ]
+    return [row[size:] for row in work]
+
+
+def row_times_matrix(row, matrix):
+    return [
+        sum((row[i] * matrix[i][j] for i in range(len(row))), F(0))
+        for j in range(len(matrix[0]))
+    ]
+
+
+def dot(row, column):
+    return sum((left * right for left, right in zip(row, column)), F(0))
+
+
+def event_kernels_r2(weights):
+    """Return target-refreshed C and target-locked D event kernels at r=2."""
+
+    p = transition_matrix(weights)
+    n = len(weights)
+    full = (1 << n) - 1
+    size = full
+    selective = [[F(0) for _ in range(size)] for _ in range(size)]
+    neutral = [[F(0) for _ in range(size)] for _ in range(size)]
+    locked = [[F(0) for _ in range(size)] for _ in range(size)]
+    union_laws = [geometric_union_law(row) for row in p]
+    for state in range(1, full + 1):
+        row = state - 1
+        reciprocal_rank = F(1, state.bit_count())
+        for target in range(n):
+            if not ((state >> target) & 1):
+                continue
+            without = state & ~(1 << target)
+            for source in range(n):
+                probability = reciprocal_rank * p[target][source]
+                selective[row][(state | (1 << source)) - 1] += probability
+                neutral[row][(without | (1 << source)) - 1] += probability
+            for source_set, probability in union_laws[target].items():
+                locked[row][(without | source_set) - 1] += (
+                    reciprocal_rank * probability
+                )
+    for kernel in (selective, neutral, locked):
+        assert all(sum(row, F(0)) == 1 for row in kernel)
+
+    # At r=2, a selective arrow and the terminating neutral arrow are fair.
+    resolvent_inverse = [
+        [F(i == j) - selective[i][j] / 2 for j in range(size)]
+        for i in range(size)
+    ]
+    refreshed_run = [
+        [entry / 2 for entry in row] for row in inverse(resolvent_inverse)
+    ]
+    refreshed = matmul(refreshed_run, neutral)
+    assert all(sum(row, F(0)) == 1 for row in refreshed)
+    return selective, neutral, refreshed, locked
+
+
+def internal_mass(weights, state):
+    r"""I_P(A)=sum_{v in A} sum_{u in A\{v}} P_vu."""
+
+    p = transition_matrix(weights)
+    n = len(weights)
+    return sum(
+        (
+            p[target][source]
+            for target in range(n)
+            if (state >> target) & 1
+            for source in range(n)
+            if source != target and (state >> source) & 1
+        ),
+        F(0),
+    )
+
+
+def neutral_collision_numerator(weights, state):
+    """Sum over occupied neutral targets of the output reciprocal rank."""
+
+    p = transition_matrix(weights)
+    n = len(weights)
+    return sum(
+        (
+            p[target][source]
+            / ((state & ~(1 << target)) | (1 << source)).bit_count()
+            for target in range(n)
+            if (state >> target) & 1
+            for source in range(n)
+        ),
+        F(0),
+    )
+
+
+def marked_kernel_r2(weights):
+    """Exact one-sample marked dB kernel M_P on (C,v), v not in C."""
+
+    p = transition_matrix(weights)
+    n = len(weights)
+    states = tuple(
+        (cache, target)
+        for cache in range(1 << n)
+        for target in range(n)
+        if not ((cache >> target) & 1)
+    )
+    index = {state: row for row, state in enumerate(states)}
+    kernel = [[F(0) for _ in states] for _ in states]
+    for row, (cache, target) in enumerate(states):
+        for sample in range(n):
+            probability = p[target][sample]
+            if not probability:
+                continue
+            active = cache | (1 << sample)
+            # Continue with the same target.
+            kernel[row][index[active, target]] += probability / 2
+            # Stop and retarget uniformly within the active set.
+            for new_target in range(n):
+                if (active >> new_target) & 1:
+                    output = active & ~(1 << new_target)
+                    kernel[row][index[output, new_target]] += (
+                        probability / (2 * active.bit_count())
+                    )
+    assert all(sum(row, F(0)) == 1 for row in kernel)
+    return states, kernel
+
+
+def marked_psi(n, rank):
+    """Alternating inverse-rank observable on marked cache rank."""
+
+    return sum(
+        (2 * F((-1) ** (active_rank - 1 - rank), active_rank)
+         for active_rank in range(rank + 1, n)),
+        F(0),
+    )
+
+
+def shared_l_two_step_forcing(weights, marked_states, marked_two_step):
+    """F_P(A)=sum_{v in A} (M_P^2 psi)(A^c,v)."""
+
+    n = len(weights)
+    full = (1 << n) - 1
+    index = {state: row for row, state in enumerate(marked_states)}
+    answer = []
+    for occupied in range(1, full + 1):
+        cache = full ^ occupied
+        answer.append(
+            sum(
+                (
+                    marked_two_step[index[cache, target]]
+                    for target in range(n)
+                    if (occupied >> target) & 1
+                ),
+                F(0),
+            )
+        )
+    return answer
+
+
+def collapsed_shared_l_forcing(weights, occupied):
+    r"""Closed local-arrow formula for F_P(A), away from k=0,1 boundaries.
+
+    Here A is the occupied L set, C=V\A is its marked cache, and k=|C|.
+    The formula is obtained by conditioning the first marked step on whether
+    its sample lies in C, then using the exact neutral collision collapse on
+    the stop branch.  It is intentionally checked only for k>=2; the two
+    small-cache boundary formulas are evaluated directly by M_P.
+    """
+
+    p = transition_matrix(weights)
+    n = len(weights)
+    full = (1 << n) - 1
+    cache = full ^ occupied
+    rank = cache.bit_count()
+    assert rank >= 2
+    targets = [target for target in range(n) if (occupied >> target) & 1]
+    cache_vertices = [source for source in range(n) if (cache >> source) & 1]
+    x = {
+        target: sum((p[target][source] for source in cache_vertices), F(0))
+        for target in targets
+    }
+    internal = internal_mass(weights, cache)
+    x_sum = sum(x.values(), F(0))
+    x_square = sum((value * value for value in x.values()), F(0))
+    occupied_request = F(len(targets)) - x_sum
+    two_step_into_cache = sum(
+        (
+            p[target][sample]
+            * sum((p[sample][source] for source in cache_vertices), F(0))
+            for target in targets
+            for sample in targets
+        ),
+        F(0),
+    )
+    return_to_target = sum(
+        (
+            p[target][sample] * p[sample][target]
+            for target in targets
+            for sample in targets
+        ),
+        F(0),
+    )
+    return F(1, 2) * (
+        x_sum
+        * (
+            F(1, rank)
+            + F(1, rank + 1)
+            + internal / (rank * rank * (rank - 1))
+        )
+        + x_square / (rank * (rank + 1))
+        + occupied_request
+        * (
+            F(1, rank + 1)
+            + F(1, rank + 2)
+            + internal / (rank * (rank + 1) * (rank + 1))
+        )
+        + (x_sum - x_square) / ((rank + 1) * (rank + 2))
+        + two_step_into_cache / ((rank + 1) * (rank + 2))
+        + return_to_target / (rank * (rank + 1) * (rank + 1))
+    )
+
+
 def determinant(matrix):
     work = [row[:] for row in matrix]
     size = len(work)
@@ -273,7 +513,7 @@ def audit(weights, expected=None):
     check_local_resolvents(weights)
 
     tau_l, z_l, y_l, m_l = tree_data(left, list(range(1, full + 1)))
-    _, z_c, y_c, m_c = tree_data(reverse, list(range(1, full + 1)))
+    tau_c, z_c, y_c, m_c = tree_data(reverse, list(range(1, full + 1)))
     tau_d, z_d, y_d, m_d = tree_data(db, list(range(1, full)))
     b = F(n * 2 ** (n - 1), 2**n - 1)
     d = F((n - 1) * 2 ** (n - 2), 2 ** (n - 1) - 1)
@@ -339,6 +579,124 @@ def audit(weights, expected=None):
         1 / m_d - m_l / (b * d)
     )
 
+    # Shared-C event-Palm split of the decisive product target.  The
+    # pre-neutral C Palm law is rank-size-biased pi_C, and beta_C is its
+    # law immediately after the neutral arrow.  The latter is invariant
+    # for the target-refreshed post-neutral event kernel.
+    _, neutral, refreshed, locked = event_kernels_r2(weights)
+    pi_c = [value / z_c for value in tau_c]
+    alpha_c = [
+        (state + 1).bit_count() * pi_c[state] / m_c for state in range(full)
+    ]
+    beta_c = row_times_matrix(alpha_c, neutral)
+    assert row_times_matrix(beta_c, refreshed) == beta_c
+
+    pi_d = [value / z_d for value in tau_d]
+    alpha_d = [F(0) for _ in range(full)]
+    for state in range(full - 1):
+        alpha_d[state] = (state + 1).bit_count() * pi_d[state] / m_d
+    assert row_times_matrix(alpha_d, locked) == alpha_d
+    reciprocal_rank = [F(1, (state + 1).bit_count()) for state in range(full)]
+    beta_f = dot(beta_c, reciprocal_rank)
+    assert dot(alpha_d, reciprocal_rank) == 1 / m_d
+
+    # A neutral replacement from A has output rank k-1 precisely when its
+    # sampled source already lies in A\{v}.  Therefore the unnormalized
+    # reciprocal-rank collision observable collapses pointwise to internal
+    # P-mass, with no resolvent or Poisson potential.
+    collision_observable = []
+    for state in range(1, full + 1):
+        rank = state.bit_count()
+        internal = internal_mass(weights, state)
+        direct = neutral_collision_numerator(weights, state)
+        collapsed = F(1) if rank == 1 else F(1) + internal / (rank * (rank - 1))
+        assert direct == collapsed
+        collision_observable.append(collapsed)
+    collision_partition = sum(
+        (weight * value for weight, value in zip(tau_c, collision_observable)),
+        F(0),
+    )
+    assert beta_f == collision_partition / y_c
+
+    # The C rank drift is k-2 I_P(A), so stationarity fixes the first
+    # internal-mass moment exactly.
+    mean_internal = sum(
+        (
+            pi_c[state - 1] * internal_mass(weights, state)
+            for state in range(1, full + 1)
+        ),
+        F(0),
+    )
+    assert mean_internal == m_c / 2
+
+    persistence_gap = 1 / m_d - beta_f
+    collision_orientation_gap = beta_f - m_l / (b * d)
+    assert persistence_gap + collision_orientation_gap == (
+        1 / m_d - m_l / (b * d)
+    )
+
+    # The second term is itself one global out-C / in-C collision-tree
+    # determinant.  This is a strict reduction, not a claimed sign.
+    collision_orientation_numerator = (
+        b * d * z_l * collision_partition - y_l * y_c
+    )
+    assert collision_orientation_gap == collision_orientation_numerator / (
+        b * d * z_l * y_c
+    )
+
+    # A tempting statewise locked-versus-refreshed comparison is recorded
+    # only diagnostically; no sign assertion is made here.
+    locked_f = [dot(row, reciprocal_rank) for row in locked]
+    refreshed_f = [dot(row, reciprocal_rank) for row in refreshed]
+    statewise_persistence_min = min(
+        locked_value - refreshed_value
+        for locked_value, refreshed_value in zip(locked_f, refreshed_f)
+    )
+
+    # Common-arrow marked finite-time form.  Complementing the occupied
+    # target Palm law of L gives the probability q_L(C,v)=pi_L(V\C)/m_L.
+    # Its stationary M_P limit is 1/m_D, so the product target is the
+    # stationary lower floor q_L M_P^infinity psi >= m_L/(b d).  The exact
+    # t=2 forcing is a one-copy observable F_P on occupied L sets.
+    marked_states, marked_kernel = marked_kernel_r2(weights)
+    psi = [marked_psi(n, cache.bit_count()) for cache, _ in marked_states]
+    marked_one_step = [dot(row, psi) for row in marked_kernel]
+    marked_two_step = [dot(row, marked_one_step) for row in marked_kernel]
+    marked_index = {state: row for row, state in enumerate(marked_states)}
+    for row, (cache, target) in enumerate(marked_states):
+        rank = cache.bit_count()
+        request_mass = sum(
+            (
+                transition_matrix(weights)[target][source]
+                for source in range(n)
+                if (cache >> source) & 1
+            ),
+            F(0),
+        )
+        collapsed = (
+            F(1)
+            if rank == 0
+            else F(1, rank + 1) + request_mass / (rank * (rank + 1))
+        )
+        assert marked_one_step[row] == collapsed
+
+    pi_l = [value / z_l for value in tau_l]
+    q_l = []
+    for cache, target in marked_states:
+        occupied = full ^ cache
+        q_l.append(pi_l[occupied - 1] / m_l)
+    assert sum(q_l, F(0)) == 1
+    q_l_t2 = dot(q_l, marked_two_step)
+    forcing = shared_l_two_step_forcing(weights, marked_states, marked_two_step)
+    for occupied, direct_forcing in enumerate(forcing, 1):
+        if (full ^ occupied).bit_count() >= 2:
+            assert collapsed_shared_l_forcing(weights, occupied) == direct_forcing
+    forcing_mean = dot(pi_l, forcing)
+    assert forcing_mean == m_l * q_l_t2
+    two_step_gap = q_l_t2 - m_l / (b * d)
+    two_copy_mean_gap = forcing_mean - m_l * m_l / (b * d)
+    assert two_copy_mean_gap == m_l * two_step_gap
+
     # The tensor stationary law is checked without constructing its much
     # larger tree Laplacian.  The tree theorem then gives the
     # root-independent cofactor factor in equation (14) of the note.
@@ -355,7 +713,20 @@ def audit(weights, expected=None):
 
     if expected is not None:
         assert (b, d, m_l, m_c, m_d, delta) == expected
-    return b, d, m_l, m_c, m_d, delta
+    return (
+        b,
+        d,
+        m_l,
+        m_c,
+        m_d,
+        delta,
+        persistence_gap,
+        collision_orientation_gap,
+        statewise_persistence_min,
+        q_l_t2,
+        forcing_mean,
+        two_step_gap,
+    )
 
 
 def audit_local_paired_skeleton_obstruction():
@@ -407,14 +778,16 @@ def main():
         F(6, 5),
         F(1033, 10230),
     )
-    assert audit(weighted_path, expected) == expected
+    weighted_data = audit(weighted_path)
+    assert weighted_data[:6] == expected
 
     complete = (
         (0, 1, 1),
         (1, 0, 1),
         (1, 1, 0),
     )
-    b, d, m_l, m_c, m_d, delta = audit(complete)
+    complete_data = audit(complete)
+    b, d, m_l, m_c, m_d, delta = complete_data[:6]
     assert m_l == m_c == b
     assert m_d == d
     assert delta == 0
@@ -424,6 +797,23 @@ def main():
     print("PASS: marginal cofactors and paired-tree numerator")
     print("PASS: weighted-P3 normalized gap = 1033/10230")
     print("PASS: weighted-P3 normalized product gap = 172/1705")
+    print(
+        "PASS: exact shared-C Palm split on weighted P3 =",
+        weighted_data[6],
+        "+",
+        weighted_data[7],
+    )
+    print(
+        "AUDIT: minimum statewise locked-minus-refreshed reciprocal rank =",
+        weighted_data[8],
+    )
+    assert weighted_data[10] == F(492, 341)
+    print(
+        "PASS: weighted-P3 common-arrow q_L M^2 psi and E_piL F =",
+        weighted_data[9],
+        weighted_data[10],
+    )
+    print("AUDIT: weighted-P3 common-arrow t=2 gap =", weighted_data[11])
     print("REFUTED: pair-by-pair skeleton signs (both gaps = -1/2 on K3)")
     print("OPEN: the all-graph shared-arrow signs SAPT_n and PAPT_n")
 

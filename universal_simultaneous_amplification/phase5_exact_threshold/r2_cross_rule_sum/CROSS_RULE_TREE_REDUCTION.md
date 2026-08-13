@@ -245,6 +245,157 @@ Every edge of `K_D` already has the positive locked-history expansion in
 `(18)` below, so `(14d)` is the most direct tree/resolvent version of the
 weaker decisive target.
 
+### 3.2 Shared-`C` collision insertion
+
+There is a useful exact split of the event-Palm expression before any sign
+is assigned.  Let `pi_C` be the invariant law of `C`, let
+
+\[
+ \alpha_C(A)={|A|\pi_C(A)\over m_C},\qquad
+ \beta_C=\alpha_CN_C,\qquad f(A)={1\over|A|},                 \tag{14f}
+\]
+
+where `N_C` is one neutral row-`P` replacement with a uniformly chosen
+occupied target.  For `k=|A|`, define the internal directed request mass
+
+\[
+ I_P(A)=\sum_{v\in A}\sum_{u\in A}P_{vu}.                    \tag{14g}
+\]
+
+One neutral replacement has rank `k-1` precisely when its source already
+lies in `A\setminus\{v\}`.  Consequently the unnormalised reciprocal-rank
+collision observable collapses pointwise to
+
+\[
+ \boxed{
+ g(A):=k(N_Cf)(A)=
+ \begin{cases}
+ 1,&k=1,\\
+ 1+I_P(A)/[k(k-1)],&k\ge2.
+ \end{cases}}                                                \tag{14h}
+\]
+
+If `tau_C(A)` denotes the in-arborescence cofactor of `C` and
+`Y_C=sum_A k tau_C(A)`, then
+
+\[
+ \boxed{\beta_Cf={\sum_A\tau_C(A)g(A)\over Y_C}.}             \tag{14i}
+\]
+
+The `C` rank drift is `k-2I_P(A)`, so stationarity also gives the exact
+first-moment identity
+
+\[
+ \boxed{E_{\pi_C}I_P(A)=m_C/2.}                              \tag{14j}
+\]
+
+Thus the event-Palm product gap has the exact shared-`C` decomposition
+
+\[
+ {1\over m_D}-{m_L\over b_nd_n}
+ =\left({1\over m_D}-\beta_Cf\right)
+  +\left(\beta_Cf-{m_L\over b_nd_n}\right),                 \tag{14k}
+\]
+
+and the second bracket has the global determinant numerator
+
+\[
+ b_nd_nZ_L\sum_A\tau_C(A)g(A)-Y_LY_C.                       \tag{14l}
+\]
+
+This does not provide two separate signs.  In particular, the tempting
+statewise inequality `K_Df>=K_Rf` is false on the weighted three-path with
+edge weights `1,2`: its minimum is exactly `-17/280`.  The stationary first
+bracket is nevertheless `7/1416>0` on that graph.
+
+### 3.3 Common-arrow marked finite-time reduction
+
+Let
+
+\[
+ \mathcal X=\{(C,v):v\notin C\}
+\]
+
+and let `M_P` be the exact fair one-sample marked dB kernel: sample
+`I~P_v`, put `B=C union {I}`, and then either continue at `(B,v)` or stop,
+choose `W` uniformly in `B`, and move to `(B\setminus\{W\},W)`, each with
+probability `1/2`.  Let `psi` be the alternating inverse-rank observable
+from the marked lift.  The recurrence for `psi` gives the pointwise first
+step collapse
+
+\[
+ \boxed{
+ (M_P\psi)(C,v)=
+ \begin{cases}
+ 1,&|C|=0,\\
+ {1\over k+1}+{P_v(C)\over k(k+1)},&k=|C|\ge1.
+ \end{cases}}                                                \tag{14m}
+\]
+
+Complement the occupied-target Palm law of `L`:
+
+\[
+ q_L(C,v)={\pi_L(V\setminus C)\over m_L}.                    \tag{14n}
+\]
+
+It is a probability law because every occupied set `A` contributes once
+for each `v in A`.  The common-arrow construction identifies its stationary
+marked limit with the dB collision law, so
+
+\[
+ \lim_{t\to\infty}q_LM_P^t\psi={1\over m_D}.                 \tag{14o}
+\]
+
+For an occupied `L` set `A`, define the exact two-step forcing
+
+\[
+ F_P(A)=\sum_{v\in A}(M_P^2\psi)(V\setminus A,v).             \tag{14p}
+\]
+
+Then, without an inequality,
+
+\[
+ \boxed{E_{\pi_L}F_P=m_Lq_LM_P^2\psi.}                       \tag{14q}
+\]
+
+Hence the common-arrow two-step floor
+
+\[
+ q_LM_P^2\psi\ge {m_L\over b_nd_n}                           \tag{14r}
+\]
+
+is exactly the one-copy stationary sign
+
+\[
+ \boxed{E_{\pi_L}F_P\ge {m_L^2\over b_nd_n}.}                \tag{14s}
+\]
+
+Equivalently, for two independent `pi_L` sets `A,A'`, it is the mean sign
+
+\[
+ E\left[{F_P(A)+F_P(A')\over2}
+          -{|A||A'|\over b_nd_n}\right]\ge0.                 \tag{14t}
+\]
+
+This is a genuinely different two-copy Poisson target from earlier coarse
+rank/overlap potentials: its forcing retains the full common-arrow
+two-step collision.  On the weighted three-path,
+
+\[
+ q_LM_P^2\psi={123\over146},\qquad
+ E_{\pi_L}F_P={492\over341},                                  \tag{14u}
+\]
+
+and the cleared two-copy surplus is
+
+\[
+ b_3d_3E_{\pi_L}F_P-m_L^2={296960\over813967}>0.              \tag{14v}
+\]
+
+The all-graph sign `(14r)` and the assertion that the same floor persists
+for every later time remain open.  They are introduced as proof targets,
+not as established inequalities.
+
 ## 4. The exact shared-arrow representation
 
 Let `P` be the reversible vertex request kernel and let `C` be the
