@@ -152,6 +152,34 @@
   complete radial two-copy Poisson solve for this exact forcing, followed by
   a pointwise residual/SOS audit.
 
+## 2026-08-13 12:44 PDT -- exact boundary of product-Poisson corrections
+
+- The complete radial product-Poisson potential was solved exactly in the
+  adjacent marked-current note.  On weighted `P3`, its pointwise residual is
+  `-107/288` at `(A,B)=(001,101)`, although its `pi_L tensor pi_L` mean is
+  the positive two-step surplus `18560/116281`.
+- Strengthened the obstruction beyond the bare overlap count.  Allowed an
+  arbitrary symmetric labelled bilinear correction
+
+  ```text
+  sum_i Z_ii 1_i(A)1_i(B)
+   +sum_(i<j) Z_ij[1_i(A)1_j(B)+1_j(A)1_i(B)]
+  ```
+
+  together with arbitrary one-copy vertex marginals.  An exact positive
+  ten-state Farkas measure annihilates the product-generator drift of every
+  such correction but averages the original residual to
+
+  ```text
+  -440101/16416000 < 0.
+  ```
+
+- **EXACTLY REFUTED:** every pointwise complete-Poisson repair using only
+  labelled bilinear overlap plus linear vertex marginals.
+- **OPEN:** the integrated two-step sign.  Any current proof must retain
+  higher-order set dependence or group signed currents only after stationary
+  averaging.
+
 ## 2026-08-13 12:40 PDT -- common marked current and product-Poisson obstruction
 
 - Put the two rules on one literal marked space.  The complemented occupied

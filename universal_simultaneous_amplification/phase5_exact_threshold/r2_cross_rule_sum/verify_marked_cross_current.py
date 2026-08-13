@@ -340,12 +340,75 @@ def main():
     assert dot(actual_product[overlap_index], overlap) == 0
     assert residuals[overlap_index][0] == F(-11, 36)
 
+    # Exact Farkas certificate against every symmetric labelled bilinear
+    # overlap correction, even after adjoining all one-copy vertex
+    # marginals.  One-based support indices refer to the lexicographic
+    # ordered state pairs (A,B), masks 1,...,7.
+    farkas = {
+        3: F(13, 250),
+        4: F(1, 25),
+        6: F(337, 2850),
+        7: F(497, 7125),
+        17: F(21, 2000),
+        20: F(229, 2375),
+        21: F(961, 19000),
+        41: F(151, 600),
+        42: F(373, 1500),
+        49: F(373, 6000),
+    }
+    assert sum(farkas.values(), F(0)) == 1
+
+    bilinear_features = []
+    for first_vertex in range(n):
+        for second_vertex in range(first_vertex, n):
+            values = []
+            for first in range(1, full + 1):
+                for second in range(1, full + 1):
+                    value = F(
+                        ((first >> first_vertex) & 1)
+                        * ((second >> second_vertex) & 1)
+                    )
+                    if second_vertex != first_vertex:
+                        value += F(
+                            ((first >> second_vertex) & 1)
+                            * ((second >> first_vertex) & 1)
+                        )
+                    values.append(value)
+            bilinear_features.append(values)
+    marginal_features = [
+        [
+            F(((first >> vertex) & 1) + ((second >> vertex) & 1))
+            for first in range(1, full + 1)
+            for second in range(1, full + 1)
+        ]
+        for vertex in range(n)
+    ]
+    for feature in bilinear_features + marginal_features:
+        feature_drift = [dot(row, feature) for row in actual_product]
+        assert sum(
+            (
+                weight * feature_drift[one_based_row - 1]
+                for one_based_row, weight in farkas.items()
+            ),
+            F(0),
+        ) == 0
+    farkas_residual = sum(
+        (
+            weight * residuals[one_based_row - 1][0]
+            for one_based_row, weight in farkas.items()
+        ),
+        F(0),
+    )
+    assert farkas_residual == F(-440101, 16416000)
+
     print("PASS: common marked L/dB probability-space normalization")
     print("PASS: literal lambda_L transport and current/covariance identity")
     print("PASS: exact two-L forcing and complete product Poisson identity")
     print("REFUTED: pointwise radial product-Poisson residual")
     print("minimum = -107/288 at (A,B)=(001,101); 14/49 pairs negative")
     print("REFUTED: any scalar bare-overlap correction at (001,111)")
+    print("REFUTED: all labelled bilinear-plus-marginal corrections")
+    print("exact Farkas residual = -440101/16416000")
     print("OPEN: integrated two-step floor; exact surplus = 18560/116281")
 
 

@@ -323,13 +323,62 @@ and vanish at the complete kernel.  A viable overlap correction must retain
 labelled row/current information; the unweighted intersection count is too
 coarse.
 
+In fact the natural labelled bilinear enlargement is still insufficient.
+For a symmetric matrix `Z` and a vertex vector `ell`, put
+
+\[
+ H_{Z,\ell}(A,B)
+ =\sum_i Z_{ii}1_{i\in A}1_{i\in B}
+ +\sum_{i<j}Z_{ij}
+   \{1_{i\in A}1_{j\in B}+1_{j\in A}1_{i\in B}\}
+ +\sum_i\ell_i\{1_{i\in A}+1_{i\in B}\}.                    \tag{26}
+\]
+
+This contains every symmetric labelled bilinear overlap and every one-copy
+linear vertex correction.  On the weighted path `(17)`, define a probability
+measure `eta` on ordered state pairs by
+
+\[
+\begin{array}{c|cccccccccc}
+(A,B)&(001,011)&(001,100)&(001,110)&(001,111)&(011,011)&
+(011,110)&(011,111)&(110,110)&(110,111)&(111,111)\\ \hline
+\eta&13/250&1/25&337/2850&497/7125&21/2000&229/2375&
+961/19000&151/600&373/1500&373/6000.
+\end{array}                                                   \tag{27}
+\]
+
+The ten weights are positive and sum to one.  Direct exact evaluation gives
+
+\[
+ \boxed{E_\eta[Q_P^\times H_{Z,\ell}]=0
+        \quad\hbox{for every }Z=Z^T,\ell,}                    \tag{28}
+\]
+
+whereas
+
+\[
+ \boxed{E_\eta\mathcal R_P=-{440101\over16416000}<0.}        \tag{29}
+\]
+
+Equations `(28)--(29)` are an exact Farkas certificate: for every choice of
+`Z,ell`, at least one state pair has
+
+\[
+ \mathcal R_P+Q_P^\times H_{Z,\ell}<0.                       \tag{30}
+\]
+
+Thus even degree-labelled or full vertex-pair bilinear corrections cannot
+turn the canonical product Poisson identity into a pointwise supersolution.
+The remaining full-pair route must use higher-order set dependence or prove
+the stationary current sign without pointwise closure.
+
 ## 5. Exact audit
 
 `verify_marked_cross_current.py` constructs `L`, `M_P`, `F_P`, the complete
 product Poisson solution, and every residual over `QQ`.  It verifies
 `(3)--(15)`, the table `(18)`, the minimum `(21)`, the count of negative
-ordered pairs, the bare-overlap obstruction `(25)`, and the positive
-integrated value `(22)`.
+ordered pairs, the bare-overlap obstruction `(25)`, the labelled-bilinear
+Farkas certificate `(27)--(29)`, and the positive integrated value `(22)`.
 
 The proof obligation left by this note is therefore precise:
 
