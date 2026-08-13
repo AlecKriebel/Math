@@ -151,3 +151,69 @@
   persistence for every time `t>=2`.  The next proof-first target is the
   complete radial two-copy Poisson solve for this exact forcing, followed by
   a pointwise residual/SOS audit.
+
+## 2026-08-13 12:40 PDT -- common marked current and product-Poisson obstruction
+
+- Put the two rules on one literal marked space.  The complemented occupied
+  `L` Palm measure is
+
+  ```text
+  lambda_L(C,v)=pi_L(V\C),   lambda_L 1=m_L,
+  ```
+
+  while the normalized stationary dB marked law `mu_D` satisfies
+  `mu_D psi=1/m_D`.  At the complete kernel `lambda_L=b_n U`, with `U` the
+  complete marked dB law.  Hence the decisive product target is exactly
+
+  ```text
+  1/m_D-m_L/(b_n*d_n)=mu_D psi-lambda_L 1/(b_n*d_n).
+  ```
+
+- Inverted the marked continue/stop branches exactly to obtain a closed
+  pointwise formula for `(lambda_L M_P)(D,w)` in terms of `pi_L` on the
+  neighbouring occupied sets and the same row-`P` arrows.
+- With `g` the actual marked group-inverse potential, derived the single
+  current/covariance identity
+
+  ```text
+  m_L*(1/m_D-m_L/(b*d))
+   =lambda_L*(M-I)*g + lambda_L*psi-m_L^2/(b*d).
+  ```
+
+  On the weighted path the radial covariance is `-293/581405`, while the
+  marked current is `739/5115`; their sum is `50224/348843>0`.  Thus the
+  two summands cannot be signed separately.
+
+- For the exact two-step forcing `F_P`, formed the two-copy target
+
+  ```text
+  G_P(A,B)=(F_P(A)+F_P(B))/2-|A||B|/(b_n*d_n).
+  ```
+
+  If `Phi` solves the complete product Poisson equation
+  `-Q_K^x Phi=G_K`, stationarity gives the exact shared current
+
+  ```text
+  E G_P=E [G_P+Q_P^x Phi].
+  ```
+
+- Exactified the first pointwise strengthening as false.  On the weighted
+  three-path `w01=1,w02=2,w12=0`, the residual minimum is
+
+  ```text
+  -107/288 at (A,B)=(001,101),
+  ```
+
+  split as marked forcing `-25/144` plus generator current `-19/96`.
+  Fourteen of 49 ordered pairs are negative.  The stationary integral is
+  nevertheless `18560/116281>0`.
+- Therefore the canonical complete radial product potential does not give a
+  pointwise supersolution.  A proof must add a zero-mean overlap/full-pair
+  correction or group the currents globally into cycle/tree packets.
+- The bare overlap correction `H(A,B)=|A intersect B|` is already too
+  coarse.  At `(A,B)=(001,111)` its product-generator drift is zero while
+  the residual is `-11/36`; hence no graph-dependent scalar multiple of
+  this overlap drift can repair the pointwise sign.
+- **PROVED:** all normalizations and current identities above.
+- **REFUTED:** pointwise complete radial product-Poisson closure.
+- **OPEN:** the integrated two-step floor and `PAPT_n`.
