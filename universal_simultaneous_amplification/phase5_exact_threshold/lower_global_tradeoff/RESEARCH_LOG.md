@@ -73,6 +73,13 @@
 - At `R_hyb`, the theta atom has `a+b approximately 0.90086<1`, so the BDM
   Hellinger target is zero and all positive portal laws pass strictly.  This
   is a targeted float diagnostic, not an exact promotion.
+- Checked the direct bounded-satellite composition dictated by the proved
+  gate formulas.  Uniform portals admit a single internal/core scale near
+  `1.397` from neutrality through roughly fitness `1.05`, so the atom is
+  genuinely composable.  This is below the already proved `R_hyb` lower
+  bound, and the strict BDM sign at `R_hyb` means it cannot improve the
+  hybrid tangent at first order.  No optimization of this obsolete endpoint
+  was pursued.
 - Scope warning: `K_r>=0` remains open and is asserted nowhere.  The exact
   square is a diffuse-adjoint theorem, not a universal finite-graph affine
   separator.
