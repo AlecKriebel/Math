@@ -846,3 +846,19 @@
 - The active regeneration command now passes the already bootstrapped pinned
   interpreter explicitly.  This changes no verifier semantics; it makes the
   declared dependency environment effective through the nested wrapper.
+
+## 2026-08-13T02:40:00-07:00 — Outcome P release sealed from clean clones
+
+- At exact commit `35291bba72f52ac800e99ea797ddad20d9852a67`, the quick,
+  full, and all-record-regeneration commands all exited successfully in clean
+  detached worktrees and left their tracked trees unchanged.
+- Wall times were 49.06 seconds, 1,322.94 seconds, and 1,330.24 seconds,
+  respectively.  The full gate regenerated 269,730 theorem-forced compact
+  probe relations and rejected all semantic mutations.  The regeneration
+  gate independently rebuilt every load-bearing bounded record.
+- The 18-page manuscript was rendered afresh and inspected page by page; no
+  clipping, overlap, missing page, placeholder, unresolved citation, or LaTeX
+  layout warning was found.
+- Exact transcripts, environment details, and archive reproduction metadata
+  are recorded under `release/`.  Outcome P is publication-ready; no
+  mathematical or release-engineering blocker remains.

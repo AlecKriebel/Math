@@ -41,3 +41,20 @@ open-ended topology search.
 
 Historical failed releases and withdrawn claims are retained only as
 fail-closed audit history and are not consumed by the active verifiers.
+
+`docs/GLOBAL_THEOREM_DRAFT.md` is a frozen pre-promotion proof ledger retained
+because several historical independent reviews hash it.  The active theorem
+is `docs/SHARP_BOUNDARY_THEOREM.md`; the authoritative outcome is
+`FINAL_OUTCOME.json`.
+
+## Sealed release evidence
+
+All three commands above passed in clean detached worktrees at commit
+`35291bba72f52ac800e99ea797ddad20d9852a67`, and each worktree remained clean
+after replay.  Exact transcripts and timings are in `release/`, with the
+machine-readable summary in `release/CLEAN_REPRODUCTION.json`.
+
+The deterministic source-and-certificate archive is intentionally not stored
+as an ordinary Git blob because it is 336 MB.  Its tracked checksum and exact
+construction command are in `release/`; the archive itself is suitable for a
+repository release asset.
