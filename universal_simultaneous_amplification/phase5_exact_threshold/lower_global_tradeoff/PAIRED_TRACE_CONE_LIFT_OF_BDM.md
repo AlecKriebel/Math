@@ -114,6 +114,43 @@ is a common nonnegative coefficient multiplying its already paired vector
 all separated dilute mixtures, their positive-measure limits, and mixtures
 with ordinary leaves, since a leaf has `mathcal L=0`.
 
+### Common-coefficient first-exit lemma
+
+The common coefficient follows from the exact Schur trace; it is not an
+extra symmetry assumption.  Partition the fast transient states by physical
+module instance,
+
+\[
+ A=\bigsqcup_j\bigsqcup_{m=1}^{q_{k,j}}A_{j,m}.         \tag{10a}
+\]
+
+Retain the reservoir and every intermodule state in `B`.  If a leading
+excursion reaches `B` or absorbs before entering another module, then for
+either update rule
+
+\[
+ L_{AA}^U=\bigoplus_j\bigoplus_{m=1}^{q_{k,j}}L_j^U.   \tag{10b}
+\]
+
+Applying (11) below makes both the local occupation and the first-exit load
+additive over the `q_{k,j}` identical blocks.  All rule-dependence --
+entrance hazard, reciprocal recovery, local fixation, and baseline
+normalization -- belongs inside the coordinate `v_U(theta_j)`.  The
+multiplicity/core factor `lambda_{k,j}` is physical and common to both
+rules.  Therefore
+
+\[
+ \Delta_k=\sum_j\lambda_{k,j}v(\theta_j)+e_k.           \tag{10c}
+\]
+
+If paths with two unresolved modules, or with another boundary arrival
+before local absorption, contribute `o(epsilon_k)` after uniform averaging,
+then `e_k=o(epsilon_k)` and (10c) is (8) with
+`mu_k=sum_j lambda_{k,j}delta_{theta_j}`.  This proves the paired lift for
+the separated first-exit alternative.  If those paths have
+order-`epsilon_k` mass, they remain in the coupled trace and cannot be
+declared dilute.
+
 ## 3. What first-exit Schur elimination gives by itself
 
 For one rule `U`, the exact killed-chain block identity is
