@@ -1,6 +1,6 @@
 # Research log: bulk/root diffuse reduction
 
-## 2026-08-13 15:47 PDT — exact root-to-adjoint trichotomy
+## 2026-08-13 15:47 PDT — exact root-to-adjoint cutoff implication
 
 - Worked proof-first; no graph search, literature search, or external
   communication was used.
@@ -30,5 +30,12 @@
   coupling generators on a nonregular weighted graph, checks the Green
   hitting bound, and separately reconstructs both complete-graph fixation
   baselines.
+- Applied a second hostile-audit precision pass: replaced asymptotic
+  “of-order” wording by the explicit lower constant, described the result as
+  an aggregate cutoff implication rather than a mutually exclusive
+  trichotomy, supplied the finite-band absorption proof that branching
+  survival equals unbounded growth, stated the Bd/dB state-time
+  normalizations, and checked that the singleton identity has no duplicated
+  defect term.
 
 The primary agent approved commit after the audit and exact replay.

@@ -22,8 +22,9 @@ normalized gains
 \]
 
 The paired Schur-trace theorem says that every physical peeling which
-reaches the nonseparated root leaves `D+aB` charge of order
-`epsilon_k`.  The theorem below identifies exactly what that root can be.
+reaches the nonseparated root leaves `D+aB` charge at least
+`(r-1)epsilon_k-o(epsilon_k)` in its controlled-error form.  The theorem
+below identifies exactly what that root can be.
 
 For each population cutoff `2<=K<=n`, couple the finite Moran process to its
 whole-graph linear branching process until extinction, population `K`, or
@@ -34,16 +35,16 @@ errors:
 2. `theta_U(K)`, the probability that the branching process reaches `K`
    and nevertheless later becomes extinct.
 
-Then either
+The resulting aggregate cutoff implication is the following.  If some
+cutoff sequence makes
 
 \[
  {1\over n_k}+\sum_{U\in\{B,D\}}
        \{\chi_{U,k}(K_k)+\theta_{U,k}(K_k)\}
- \not=o(\epsilon_k)                                      \tag{2}
+ =o(\epsilon_k),                                        \tag{2}
 \]
 
-for every cutoff sequence `2<=K_k<=n_k`, or the finite reversible adjoint
-branching kernels of the graphs satisfy
+then the finite reversible adjoint branching kernels of the graphs satisfy
 
 \[
  \boxed{
@@ -51,8 +52,16 @@ branching kernels of the graphs satisfy
    +(r-1)\left(\bar b_k-p_0\right)>0}                    \tag{3}
 \]
 
-by a quantity of order `epsilon_k`.  Here `bar b_k` and `bar s_k` are the
-uniformly averaged Bd and dB branching survival probabilities.
+and, eventually, the left side of (3) is at least
+
+\[
+                         { (r-1)p_0\over4}\epsilon_k.     \tag{3a}
+\]
+
+Here `bar b_k` and `bar s_k` are the uniformly averaged Bd and dB branching
+survival probabilities.  If no cutoff sequence makes (2) hold, the
+three-term aggregate obstruction remains.  These conclusions are not
+asserted to be mutually exclusive.
 
 Consequently the one diffuse inequality
 
@@ -63,16 +72,17 @@ Consequently the one diffuse inequality
 \]
 
 for every finite undirected-realizable adjoint branching kernel at
-`r=R_hyb` closes the root branch whenever the left side of (2) is little-oh
-of the response scale.  The exact support identity already stored in
+`r=R_hyb` closes the root branch whenever (2) holds.  The exact support
+identity already stored in
 `lower_global_tradeoff/R_DEPENDENT_DIFFUSE_SUPPORT_IDENTITY.md` reduces
 `(DA)` to one constrained ground-energy sign plus a manifest square.
 
 Thus average diffuseness and average isothermality do not by themselves
-prove root exhaustion.  Their precise missing uniformity is (2): a
-response-weighted killed-Green collision/metastability budget, together
-with the finite-population `1/n` layer.  This is a theorem-level obstruction,
-not a request for a larger graph search.
+prove root exhaustion.  The precise missing uniformity is the ability to
+make the aggregate in (2) little-oh of the response: it contains a
+response-weighted killed-Green collision/metastability budget together with
+the finite-population `1/n` layer.  This is a theorem-level obstruction, not
+a request for a larger graph search.
 
 ## 2. Whole-graph adjoint branching pair
 
@@ -92,12 +102,24 @@ a particle at `i`
  \qquad i\longrightarrow\varnothing\quad\hbox{at rate }t_i. \tag{5}
 \]
 
+Here `i -> i+j` means that the parent at `i` remains and one child of type
+`j` is added.  The clock normalization is the exact Bd Moran
+state-time normalization: every resident has a reproduction clock of rate
+one and every mutant a clock of rate `r`, after which its target is sampled
+from its row of `P`.  Dividing all outgoing rates at a mutant set `S` by
+`n+(r-1)|S|` recovers the usual discrete-time Bd transition probabilities,
+so this Poissonization preserves every hitting probability.
+
 The dB branching process has
 
 \[
  i\longrightarrow i+j\quad\hbox{at rate }rP_{ji},
  \qquad i\longrightarrow\varnothing\quad\hbox{at rate }1.   \tag{6}
 \]
+
+For dB, every target has a death clock of rate one.  The two rules therefore
+use their own standard state-time normalizations; no comparison of their
+absolute clock speeds is used.
 
 Their survival vectors are the unique strictly positive solutions
 
@@ -226,8 +248,16 @@ Let
 \]
 
 The equality between survival and the decreasing limit of hitting
-probabilities follows from nonexplosion of a finite-type linear branching
-process.  Since fixation must hit every `K`, (17)--(18) imply
+probabilities uses two facts.  The finite-type linear branching process is
+nonexplosive, and, for every fixed `K`, its count chain killed on total
+population zero or `K` has a finite interior state space.  From every
+interior state a finite sequence of deaths reaches zero with positive
+probability, uniformly over that finite state space.  Hence the killed chain
+hits zero or `K` almost surely.  It follows that a nonextinct trajectory
+cannot remain forever in a finite population band: survival is exactly
+unbounded growth, equivalently the intersection over `K` of the events of
+hitting `K`.  Therefore `H_U^{br}(K)` decreases to `bar u_U`.  Since
+fixation must hit every `K`, (17)--(18) imply
 
 \[
  \boxed{
@@ -309,8 +339,10 @@ the root forces the strict diffuse support violation (3).  Conversely, if
 
 for every cutoff `K` and all sufficiently large `k`.
 
-This proves the announced trichotomy without taking a limit of graph
-kernels or trace measures.
+This proves the aggregate cutoff implication without taking a limit of
+graph kernels or trace measures.  It is not a mutually exclusive
+trichotomy: a positive diffuse charge and a response-scale cutoff error may
+coexist.
 
 ## 5. What `c(G)->0` and `t->1` do, and do not, supply
 
@@ -337,6 +369,11 @@ whereas
 \[
                          \delta_B(\{i\})=0.             \tag{31}
 \]
+
+There is no duplicated defect term in this equality.  For `S={i}`, the
+loopless hypothesis gives `I(S)=P_ii=0` and `x_i=P_ii=0`, so the first two
+terms of (13) vanish; only its resident nonlinear term remains.  Averaging
+that term over `i` gives exactly the double sum in (30).
 
 The temperature conclusion has an equally exact one-generation meaning.
 The aggregate Bd child-birth flow generated by a uniform singleton source
@@ -376,8 +413,7 @@ correction is `Theta(1/n)`.  The example is not a simultaneous amplifier,
 but it rigorously proves that the local hypotheses cannot yield
 `o(epsilon)` control by themselves.
 
-Accordingly the precise residual obstruction within this reduction has
-three parts in (2):
+Accordingly the three-term aggregate obstruction within this reduction is:
 
 1. **atomic scale:** `1/n` is comparable with the response;
 2. **Green-amplified collision/nonlinearity:** `chi_U(K)` is comparable
@@ -427,9 +463,9 @@ of root termination.  If (36) is false but the full right side of (34)
 remains nonnegative, `(DA)` still suffices; the true minimal target is the
 sign of `T_r`, not the stronger sign of `K_r`.
 
-Combining (28) and (34) leaves a sharply stated global task.  Either prove
-`T_{R_hyb}>=0` and then rule out the three response-scale budgets in
-Section 5, or prove a direct physical inequality charging those budgets.
+Combining (28) and (34) leaves a sharply stated global task.  Prove
+`T_{R_hyb}>=0` and then rule out the three-term response-scale aggregate in
+Section 5, or prove a direct physical inequality charging that aggregate.
 No exhaustion of graph spaces is relevant to either step.
 
 ## 7. Exact replay
