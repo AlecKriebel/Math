@@ -152,12 +152,19 @@ nonlinear disjunction
 \]
 
 For the asymptotic threshold definition, the minimally sufficient sequence
-form is
+form is instead
 
 \[
- \boxed{\liminf_k\min\{X_{G_k},Y_{G_k}\}\le1
-        \quad\hbox{for every }|G_k|\to\infty.}             \tag{17}
+ \boxed{\text{every graph sequence has infinitely many }k\text{ with }
+                    \min\{X_{G_k},Y_{G_k}\}\le1.}          \tag{17}
 \]
+
+Equivalently, no graph sequence is eventually contained in the open
+quadrant `{X>1,Y>1}`.  The superficially similar statement
+`liminf min(X_k,Y_k)<=1` is **not** sufficient: `X_k=Y_k=1+1/k`
+satisfies that limit inequality while strictly amplifying at every index.
+This distinction is essential for dilute constructions, whose gains tend to
+zero.
 
 The equality class necessarily contains complete/isothermal sequences.  At
 the tangent level it also contains the optimized dilute pair--leaf direction
@@ -168,31 +175,45 @@ limiting graph sequence.
 
 ## 5. Compactness/tangent-cone reduction target
 
-The proof-first route to (17) is one structural theorem rather than a new
-separator guess.
+The proof-first route to (17) is a response-germ theorem rather than a new
+separator guess.  Put
 
-> **Minimal compactness theorem (target).**  Let `(G_k)` be a sequence with
-> `|G_k|->infinity` and
-> `liminf X_{G_k}>1`, `liminf Y_{G_k}>1` at `R_hyb`.  After passing to a
-> subsequence and deleting `o(n_k)` vertices and `o(1)` normalized edge
-> mass, the fixation response admits a first nonzero expansion as a
-> nonnegative element of the closed dilute-module response cone generated
-> by finite trace modules, with every uniform-start, reciprocal-invasion,
-> and far-field term retained.
+\[
+ \Delta_k=(X_{G_k}-1,Y_{G_k}-1),\qquad
+ \epsilon_k=\|\Delta_k\|_\infty.                         \tag{18}
+\]
 
-If this compactness theorem holds and the closed module cone obeys the
-nonlinear disjunction at `R_hyb`, then (17) follows.  The exact hybrid
-tangency and its known equality generators describe the boundary of that
-cone.  Conversely, any counterexample to the compactness theorem identifies
-the only remaining lower mechanism: non-dilute correlations, growing modules
-with nonuniform trace error, or a graph limit with positive-density
-interaction.
+At the first nonzero scale, compactness gives a subsequential direction
+`v_1=lim Delta_k/epsilon_k`.  A valid tangent obstruction must put at least
+one coordinate of `v_1` on the nonpositive side.  If that coordinate is
+zero, this has not yet ruled out strict amplification: one must pass to the
+next smaller response scale and inspect that coordinate again.  Recursively,
+for a complete hierarchy
 
-The crucial word is **closed**.  Existing finite-gadget screens and fixed
-order Taylor theorems do not prove compactness of growing modules or
-continuity of fixation response under the proposed deletion.  Establishing
-that one concentration/trace theorem is the smallest currently visible
-matching-upper program for `R_hyb`.
+\[
+ \Delta_k=\epsilon_{1,k}v_1+\epsilon_{2,k}v_2+\cdots,
+ \qquad \epsilon_{j+1,k}=o(\epsilon_{j,k}),               \tag{19}
+\]
+
+the first nonzero coefficient in at least one coordinate must be negative
+(or that coordinate must vanish exactly).  This is the required
+**lexicographic response-cone obstruction**.  A first-order cone statement
+alone is insufficient on a zero tangent such as the optimized pair--leaf
+ray.
+
+The structural target is correspondingly scale-sensitive.  Exceptional
+vertices may have negligible initialization mass but order-one dynamical
+influence (the hybrid hub is the canonical example), so they cannot simply
+be deleted.  They must remain in the macro chain after exact Schur/trace
+elimination of the fast states.  Every trace and mixing error must be
+`o(epsilon_k)`, not merely `o(1)` or `o(module density)`.
+
+A precise bulk/dilute dichotomy, the exact bounded-module dual-moment
+reduction, and the first missing stationary inequality are recorded in
+`../rhyb_compactness_reduction/RHYB_COMPACTNESS_AND_DUAL_MOMENT.md`.
+Failure of that dichotomy identifies the only remaining lower mechanisms:
+non-dilute correlations, growing modules with nonuniform trace error, or a
+positive-density interaction limit.
 
 ## 6. Exact replay
 

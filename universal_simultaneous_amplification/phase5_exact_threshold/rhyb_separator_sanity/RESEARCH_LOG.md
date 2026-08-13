@@ -22,13 +22,15 @@
   is established over exact rational polynomials.
 - Therefore the dilute-hybrid tangent is not a universal affine separator.
   The witness has `x<1<y`, so it does not refute `R_sim=R_hyb`.
-- Formulated the minimally sufficient matching upper theorem as the
-  nonlinear endpoint disjunction `liminf min(X_k,Y_k)<=1` for every graph
-  sequence.
-- Isolated one structural route: a compactness theorem reducing every
-  hypothetical simultaneous endpoint sequence, after negligible deletion,
-  to the closed cone of exact dilute module responses.  Failure of this
-  theorem would itself locate the only remaining lower mechanisms.
+- Formulated the finite nonlinear endpoint disjunction.  The initial log
+  mistakenly recorded `liminf min(X_k,Y_k)<=1` as a sufficient sequence
+  form; this has now been corrected.  One must forbid eventual strict
+  membership in `{X>1,Y>1}` and recursively control zero tangent
+  coordinates at their next response scale.
+- Isolated one structural route: response-scale trace compactness reducing
+  every hypothetical endpoint sequence to a lexicographically closed cone
+  of exact module responses.  Exceptional hubs must remain in the Schur
+  trace rather than being deleted from the dynamics.
 - Best-guess completion of the exact-threshold program: **72%**.  The
   `R_hyb` hypothesis remains viable, but its upper proof cannot be a global
   supporting line.
