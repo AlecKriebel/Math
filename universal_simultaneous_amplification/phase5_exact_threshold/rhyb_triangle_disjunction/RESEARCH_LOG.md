@@ -56,5 +56,19 @@ at `R_hyb`.  It is not an all-graph or asymptotic theorem.
 
 Status: **PROVED for the weighted-triangle dB/disjunction theorem.**
 
+## Independent hostile audit
+
+An independent derivation verified the exact sign orientation
+
+\[
+ \rho_{dB}-\rho_{dB}(K_3)
+ =-{r(r-1)F\over3(r+1)D},
+\]
+
+where `D` has eighty strictly positive coefficients, checked the sixfold
+permutation normalization of every `E_ijk`, and confirmed rigidity from
+`E_004`.  The replay was then hardened to assert the two scalar numerator
+factors `r` and `r-1` explicitly.
+
 Best-guess completion toward the all-graph `R_sim` problem: **12%**.  This is
 an exact base class, not an induction theorem.

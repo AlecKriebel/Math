@@ -101,6 +101,12 @@ def main() -> None:
     numerator, denominator = sp.fraction(db_gap)
     factor_data = sp.factor_list(numerator)
     assert factor_data[0] == -1
+    scalar_factors = [
+        (factor, multiplicity)
+        for factor, multiplicity in factor_data[1]
+        if sp.Poly(factor, *VARIABLES).total_degree() == 0
+    ]
+    assert scalar_factors == [(r - 1, 1), (r, 1)]
     weight_factors = [
         factor
         for factor, multiplicity in factor_data[1]
