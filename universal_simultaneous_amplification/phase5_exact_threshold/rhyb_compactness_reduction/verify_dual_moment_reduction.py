@@ -112,16 +112,80 @@ def first_level_relaxation_obstruction() -> None:
     assert sp.factor(scaled_residual.subs(lhs, rhs)) == 0
 
 
+def complete_module_class() -> None:
+    r = sp.symbols("r", positive=True)
+    polynomial = r**6 - 8 * r**5 + 22 * r**4 - 30 * r**3 + 21 * r**2 - 6 * r + 1
+    lo = sp.Rational(1502856912, 10**9)
+    hi = sp.Rational(1502856913, 10**9)
+
+    # The four forced boundary orders.  For s=3,4,5 the discriminant is
+    # strictly negative.  For s=6 the middle coefficient is already negative.
+    for order in range(3, 7):
+        b = (r - 1) * r ** (order - 1) / (r**order - 1)
+        a = sp.Rational(order - 1, order) * r ** (order - 2) / (
+            r ** (order - 1) - 1
+        )
+        q_b = (r - 1) / (r**order - 1)
+        q_d = sp.Rational(order - 1, order) * (r - 1) / (
+            r ** (order - 1) - 1
+        )
+        K = sp.factor(r * (r - 1) ** 2 / (q_b * q_d))
+        middle = sp.factor(K * (a + b - 1) - 1)
+        discriminant = sp.factor(middle**2 - 4 * K * (1 - a) * (1 - b))
+
+        one_minus_a_num, one_minus_a_den = map(
+            sp.factor, sp.together(1 - a).as_numer_denom()
+        )
+        assert one_minus_a_num.subs(r, lo) > 0
+        assert one_minus_a_den.subs(r, lo) > 0
+        assert sp.Poly(one_minus_a_num, r).count_roots(lo, hi) == 0
+
+        if order <= 5:
+            middle_num, middle_den = map(
+                sp.factor, sp.together(middle).as_numer_denom()
+            )
+            disc_num, disc_den = map(
+                sp.factor, sp.together(discriminant).as_numer_denom()
+            )
+            assert middle_num.subs(r, lo) > 0 and middle_den.subs(r, lo) > 0
+            assert disc_num.subs(r, lo) < 0 < disc_den.subs(r, lo)
+            assert sp.Poly(middle_num, r).count_roots(lo, hi) == 0
+            assert sp.Poly(disc_num, r).count_roots(lo, hi) == 0
+        else:
+            middle_num, middle_den = map(
+                sp.factor, sp.together(middle).as_numer_denom()
+            )
+            assert middle_num.subs(r, lo) < 0 < middle_den.subs(r, lo)
+            assert sp.Poly(middle_num, r).count_roots(lo, hi) == 0
+
+    # Symbolic numerator in the all-order tail identity (22d).
+    n = sp.symbols("n", integer=True, positive=True)
+    tail_numerator = r ** (2 * n - 2) - 2 * n * r ** (n - 1) + (n - 1) * r ** (n - 2) + n
+    tail_factored = r ** (n - 2) * (r**n - 2 * n * r + n - 1) + n
+    assert sp.simplify(tail_numerator - tail_factored) == 0
+    base = sp.Rational(3, 2) ** 7 - 2 * 7 - 1
+    assert base > 0
+    n_step = sp.expand(
+        (sp.Rational(3, 2) ** (n + 1) - 2 * (n + 1) - 1)
+        - sp.Rational(3, 2) * (sp.Rational(3, 2) ** n - 2 * n - 1)
+    )
+    assert sp.simplify(n_step - (n - sp.Rational(3, 2))) == 0
+
+    assert sp.Poly(polynomial, r).count_roots(lo, hi) == 1
+
+
 def main() -> None:
     generic_reduction()
     portal_copositivity()
     k2_equality()
     first_level_relaxation_obstruction()
+    complete_module_class()
     print("PASS: exact OR-dual normal-form reduction")
     print("PASS: quadratic/discriminant/Hellinger equivalence")
     print("PASS: exact portal copositivity formulation")
     print("PASS: K2 discriminant = r^2 P(r) and R_hyb double root")
     print("PASS: first-level stationary balances alone are insufficient")
+    print("PASS: BDM for every complete module, equality only at K2")
     print("OPEN: universal bounded dual-moment inequality")
 
 

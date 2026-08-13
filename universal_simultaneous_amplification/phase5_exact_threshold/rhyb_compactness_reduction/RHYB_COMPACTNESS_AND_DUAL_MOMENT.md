@@ -292,6 +292,78 @@ This is exactly `z_*=(r^2-1)sigma_*` from the pair--leaf construction.
 Thus BDM is not an invented strengthening: its equality condition is the
 algebraic tangency that defines the proved lower endpoint.
 
+### 7.1 BDM is proved for every complete module
+
+The equality calculation extends to an exact all-order radial theorem.  For
+`H=K_s`, arbitrary positive portal loads give the same two singleton
+averages by symmetry, and
+
+\[
+ \begin{aligned}
+ b_s&={(r-1)r^{s-1}\over r^s-1},&
+ a_s&={(s-1)r^{s-2}\over s(r^{s-1}-1)},\\
+ q_{B,s}&={r-1\over r^s-1},&
+ q_{D,s}&={(s-1)(r-1)\over s(r^{s-1}-1)}.              \tag{22a}
+ \end{aligned}
+\]
+
+At `r=R_hyb`, (16) holds for every `s>=2`, strictly for `s>=3`.
+Consequently
+
+\[
+ D+(R_{hyb}-1)B\le0                                    \tag{22b}
+\]
+
+for every complete separated module and every positive scale, with equality
+only for `K_2` at the gate scale (22).
+
+Here is a proof without an order scan.  First, `a_s<1` for all `s>=2` and
+`r>3/2`, because the numerator of `1-a_s` is
+
+\[
+ r^{s-2}\{sr-(s-1)\}-s,                                \tag{22c}
+\]
+
+which is increasing in `r`, vanishes at `(s,r)=(2,3/2)`, and is positive
+for `s>=3` already at `r=3/2`.
+
+For `s>=7`, direct subtraction gives
+
+\[
+ 1-a_s-b_s={r^{2s-2}-2sr^{s-1}+(s-1)r^{s-2}+s\over
+              s(r^{s-1}-1)(r^s-1)}.                    \tag{22d}
+\]
+
+The numerator is
+
+\[
+ r^{s-2}\{r^s-2sr+s-1\}+s.
+\]
+
+The bracket is increasing for `r>=3/2`.  At `r=3/2` it is
+`(3/2)^s-2s-1`, positive at `s=7`; moreover
+
+\[
+ \left\{(3/2)^{s+1}-2(s+1)-1\right\}
+ -{3\over2}\left\{(3/2)^s-2s-1\right\}=s-{3\over2}>0.
+\]
+
+Thus `a_s+b_s<1`, so the middle coefficient in (15) is negative and the
+claim follows immediately.
+
+Only `s=3,4,5,6` remain.  Exact Sturm reduction over the isolating interval
+of `R_hyb` gives
+
+\[
+ \operatorname{disc}_zN<0\quad(s=3,4,5),\qquad
+ K(a_6+b_6-1)-1<0.                                    \tag{22e}
+\]
+
+The replay constructs these rational polynomials and proves each sign by a
+zero root count plus one rational endpoint evaluation.  This is a finite
+boundary discharge forced by (22d), not a gadget catalogue.  Together with
+(21), it proves the complete-module theorem and its equality class.
+
 ## 8. Portal coupling and the exact pointwise target
 
 The two portal averages in (10) are coupled by the same `x`, but one is

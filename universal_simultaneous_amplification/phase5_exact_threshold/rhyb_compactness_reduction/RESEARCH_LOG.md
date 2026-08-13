@@ -46,6 +46,11 @@ optimization was used.
   imply the stronger half-density bound, whereas first-level balance cannot.
 - Verified that `K_2` has discriminant exactly `r^2 P(r)`, so equality at
   `R_hyb` is precisely the known hybrid tangency.
+- Proved BDM for every complete module `K_s` and arbitrary portal loads.  A
+  closed all-order estimate gives `a_s+b_s<1` for `s>=7`; exact Sturm signs
+  discharge the forced boundary orders `3<=s<=6`.  The separator is strict
+  for every `s>=3`, while `K_2` has the unique double-root equality at the
+  hybrid gate scale.
 - Best-guess completion of the exact-threshold program: **73%**.  The local
   matching-upper question is now one exact stationary inequality, while the
   global trace compactness and positive-density bulk alternatives remain
