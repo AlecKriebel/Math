@@ -205,6 +205,36 @@ def root_green_bound(weights, fitness, bd, db):
     return kernel, rebate, lower, hellinger
 
 
+def doubleton_boundary_reward_audit(weights, fitness, data) -> None:
+    """Check the full reward traced to the entire doubleton boundary."""
+    order = len(weights)
+    states = sorted(data["state_index"], key=data["state_index"].get)
+    doubleton = [
+        data["state_index"][state]
+        for state in states
+        if state.bit_count() == 2
+    ]
+    rest = [
+        data["state_index"][state]
+        for state in states
+        if state.bit_count() != 2
+    ]
+    generator = data["Q"]
+    green = (-generator.extract(rest, rest)).inv()
+    p = (fitness - 1) / fitness
+    reward = sp.Matrix(
+        [sp.Rational(state.bit_count(), order) - p for state in states]
+    )
+    psi = (
+        reward.extract(doubleton, [0])
+        + generator.extract(doubleton, rest)
+        * green
+        * reward.extract(rest, [0])
+    )
+    eta = data["pi"].extract([0], doubleton) / data["c"]
+    assert sp.factor((eta * psi)[0] - data["bar_phi"]) == 0
+
+
 def exact_p3_replay() -> None:
     weights = (
         (0, 1, 0),
@@ -263,6 +293,8 @@ def hostile_p4_associativity() -> None:
     bd = singleton_trace(weights, fitness, "Bd")
     db = singleton_trace(weights, fitness, "dB")
     singleton_balance_audit(weights, fitness, bd, db)
+    doubleton_boundary_reward_audit(weights, fitness, bd)
+    doubleton_boundary_reward_audit(weights, fitness, db)
     root_green_bound(weights, fitness, bd, db)
 
     # Verify the normalized Schur cancellation and the exact SRR algebra
@@ -328,6 +360,7 @@ def main() -> None:
     print("PASS: root normalization, reward, and SRR cancellation identities")
     print("PASS: exact Bd/dB singleton balances and doubleton-rebate algebra")
     print("PASS: exact cross-rule Green lower bound (sharp on unweighted P3)")
+    print("PASS: full excursion reward traced to the doubleton boundary")
     print("PASS: exact all-portal RHR certificate on unweighted P3")
     print("PASS: two named hostile order-four entrywise audits at r=3/2")
     print("OPEN: universal root-Hellinger/Green excursion repayment")

@@ -4,6 +4,34 @@ All times are America/Los_Angeles.  No external communication or new graph
 search was used; explicitly identified stored witnesses may be replayed as
 exact audits.
 
+## 2026-08-13 15:50 PDT -- full-excursion repayment normalization
+
+- Rewrote the root Green repayment bound in the honest alternating
+  rank-`<=2`/rank-`>=3` excursion coordinates.  If
+  `h_U=nu_U^-G_U^-`, `H_U=sum_i h_U({i})`, and
+  `X_U=M_U/s-pT_U`, then exactly
+  `lambda=h_1/H`, `eta=h_2/H`, and `bar(phi)=X/H`.
+- Rescaled the doubleton rebate before applying `(I-L)^(-1)`.  Every
+  singleton and crossing-current normalizer cancels.  The resulting clean
+  sufficient target is `(x.y)^2 >= r^3[X_B]_+[X_D]_+(x.1)(x.e)`, with
+  `y=(I-L)^(-1)hat(beta)`.  Its all-portal form again has a sharp pairwise
+  copositivity criterion.
+- Proved a route obstruction: the rank-three pseudo-law scaling leaves
+  `lambda`, normalized doubletons, `L`, and the normalized root Green bound
+  fixed, while `bar(phi)_B bar(phi)_D` grows as `epsilon^-2`.  Thus no proof
+  using normalized low data plus singleton balances alone can control the
+  full reward.  The doubleton/rank-three return equation is indispensable.
+- Schur-traced the full normalized reward to the entire doubleton boundary:
+  `bar(phi)_U=sum_D eta_D Psi_U(D)`, where `Psi_U` is the signed reward of a
+  full killed excursion away from that boundary.  This aligns the reward
+  with the doubleton atoms in the rebate, but the killed-Green coefficient
+  cannot be discarded or localized by immediate rank drift.
+- Added the exact boundary-trace replay on the named hostile weighted `P4`.
+- Universal `(FER)`, `(RHR)`, `(SRR)`, and the minimal stationary product
+  remain open.  The exact residual problem is a paired comparison between
+  the two full boundary-excursion coefficients and the nonlinear doubleton
+  rebate propagated by the base-path Green kernel.
+
 ## 2026-08-13 15:13 PDT -- root-Hellinger hostile audit and Green repayment
 
 - Hostile-audited `(RHR)` only on named, previously stored modules.  At the
