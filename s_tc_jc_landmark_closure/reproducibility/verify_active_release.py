@@ -52,9 +52,9 @@ def main() -> None:
         r"\TCw\setminus\TCs",
         r"complete stochastic images is not asserted",
         r"does not recover physical bridge multipliers",
-        r"18\text{ direct isomorphisms}",
-        r"42\text{ selected-incoming rooting duplicates}",
-        r"132\text{ marginalized-incoming restoration roots}",
+        r"18&\text{ direct isomorphisms}",
+        r"42&\text{ selected-incoming rooting duplicates}",
+        r"132&\text{ marginalized-incoming restoration roots}",
         r"reviews/direct\_anchor\_probe\_closure/",
         r"reviews/compact\_probe\_clean\_clone\_gate/",
     ]
@@ -70,11 +70,15 @@ def main() -> None:
     for phrase in prohibited:
         require(phrase not in compact, f"withdrawn claim leaked into paper: {phrase}")
 
-    require("source and target incoming boundaries may be chosen independently" in theorem,
-            "independent incoming-role quantifier missing")
-    require("Every prefix is a direct" in theorem,
-            "restoration direction lock missing")
-    require("full incidence action" in theorem,
+    require(re.search(
+        r"Source and target incoming boundaries are\s+chosen independently",
+        theorem,
+    ), "independent incoming-role quantifier missing")
+    require(re.search(
+        r"Each restoration prefix is a direct\s+marginal",
+        theorem,
+    ), "restoration direction lock missing")
+    require(re.search(r"full\s+incidence action", theorem),
             "correct bridge action missing")
 
     n3 = load_json("reviews/bounded_directed_relation_cleanroom/certificates/n3_full_replay.json")
@@ -157,10 +161,19 @@ def main() -> None:
             "triangle scope widened")
 
     referee = PROJECT / "reviews/final_outcome_p_referee_v2/REPORT.md"
+    referee_certificate = PROJECT / "reviews/final_outcome_p_referee_v2/CERTIFICATE.json"
     require(referee.is_file(), "whole-proof referee report missing")
+    require(referee_certificate.is_file(), "whole-proof referee certificate missing")
     report = referee.read_text(encoding="utf-8")
-    require(re.search(r"final (decision|verdict).*VERIFIED", report, re.I | re.S),
-            "whole-proof referee did not issue a VERIFIED verdict")
+    certificate = json.loads(referee_certificate.read_text(encoding="utf-8"))
+    require(re.search(r"terminal verdict.*\*\*VERIFIED\*\*", report, re.I | re.S),
+            "whole-proof referee report did not issue a VERIFIED verdict")
+    require(certificate.get("schema") == "final-outcome-p-referee-v2-certificate" and
+            certificate.get("status") == "VERIFIED" and
+            certificate.get("terminal_verdict") == "VERIFIED" and
+            certificate.get("load_bearing_blocker") is None and
+            all(value == "VERIFIED" for value in certificate["theorem_verdicts"].values()),
+            "whole-proof referee certificate is not terminally VERIFIED")
 
     pdf = PROJECT / "submission/Strong_Tree_Childness_Sharp_Level2_JC_Boundary.pdf"
     require(pdf.is_file() and pdf.stat().st_size > 75_000, "submission PDF missing or too small")

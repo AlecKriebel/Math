@@ -1,9 +1,9 @@
 # Sharp level-2 JC boundary: final theorem proof
 
-Status: **CANDIDATE FOR FINAL ADVERSARIAL RELEASE**
+Status: **PROVED — OUTCOME P; INDEPENDENTLY VERIFIED**
 
-This document gives the proof to be attacked by the final independent
-reviewer.  It uses only the locked `sd_0` convention and the open JC domain.
+This document gives the proof accepted by the final independent whole-proof
+referee.  It uses only the locked `sd_0` convention and the open JC domain.
 No statement below concerns a broader root-cleanup convention, a physical
 bridge multiplier, or equality of complete stochastic images.
 

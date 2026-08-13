@@ -1,7 +1,6 @@
 # Claim dependency graph
 
-The final node can be promoted only when every ancestor on one complete path
-is independently verified.
+Every ancestor of the final Outcome-P node has been independently verified.
 
 | Node | Claim | Initial status |
 |---|---|---|
@@ -15,10 +14,10 @@ is independently verified.
 | S | Physical-to-descriptor submersion and coherent arbitrary-subdivision promotion | VERIFIED AFTER CORRECTION: common anchor `A=Q_s union Q_t`, exact path-bound `A+p`/`A+p+q` streams and ten-port bound for every restoration terminal, plus an independent complete one-/two-port closure of all 62 direct residual anchors |
 | Q | Structural root-to-real-incoming-port reduction | VERIFIED AFTER CORRECTION with independently chosen source and target incoming boundaries |
 | G | No-compensation local-to-global theorem and converse gluing | VERIFIED by adversarial theorem-logic review, conditional only on the fixed-full local theorem |
-| V | Independent clean-room replay and mutation suite | COMPLETE for every load-bearing mathematical gate; a fresh whole-proof release referee remains mandatory before final promotion |
-| P | Positive `S_TC` classification modulo `T` | CANDIDATE FOR FINAL ADVERSARIAL RELEASE: all mathematical dependencies are closed; promotion awaits the whole-proof referee and clean release replay |
-| X | Exact `S_TC` counterexample | No candidate in exhaustive 3–5-leaf topology census; bounded model search negative only numerically |
-| F | Final sharp-boundary release | active integration of `(P and W)`; requires final referee, manuscript, and clean release replay |
+| V | Independent clean-room replay and mutation suite | VERIFIED for every load-bearing mathematical gate; terminal whole-proof verdict in `reviews/final_outcome_p_referee_v2/` |
+| P | Positive `S_TC` classification modulo `T` | VERIFIED: exact one-sided iff theorem, no proper containment, and symmetric quotient by `T` |
+| X | Exact `S_TC` counterexample | CLOSED: no counterexample exists within the proved theorem class |
+| F | Final sharp-boundary release | VERIFIED: `(P and W)` gives the sharp boundary theorem |
 
 Historical files may inform conjectures but are not dependencies unless their
 claims are regenerated inside this directory from primitive encodings.

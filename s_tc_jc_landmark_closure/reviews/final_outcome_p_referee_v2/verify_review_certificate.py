@@ -286,7 +286,11 @@ def check_manuscript_and_release() -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", type=Path, default=HERE / "CERTIFICATE.json")
+    parser.add_argument(
+        "--write",
+        type=Path,
+        help="optional output path; omitted for a read-only verification replay",
+    )
     args = parser.parse_args()
 
     actual_head = git("rev-parse", "HEAD")
@@ -328,7 +332,8 @@ def main() -> None:
         ],
         "terminal_verdict": "VERIFIED",
     }
-    args.write.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    if args.write is not None:
+        args.write.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
     print(json.dumps({
         "status": payload["status"],
         "terminal_verdict": payload["terminal_verdict"],

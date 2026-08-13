@@ -1,5 +1,7 @@
 # Specialist referee guide
 
+Status: **PROVED — final independent whole-proof verdict VERIFIED**
+
 ## Headline
 
 The paper claims a sharp boundary under one exact standard convention:
@@ -23,6 +25,8 @@ simple only after broader parallel-edge or degree-two cleanup.
 4. Section 9: the independently frozen weak-class sharpness theorem.
 5. `THEOREM_CERTIFICATE_CROSSWALK.md` for the exact artifacts behind each
    computer-assisted statement.
+6. `reviews/final_outcome_p_referee_v2/REPORT.md` for the terminal adversarial
+   verdict and preserved release-level defects.
 
 ## Five delicate points
 

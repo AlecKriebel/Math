@@ -796,3 +796,18 @@
 - All mathematical and clean-input gates identified by the first referee are
   now closed.  A new whole-proof adversarial referee is running against the
   integrated candidate; Outcome P remains unpromoted until that verdict.
+
+## 2026-08-13T01:10:00-07:00 — terminal whole-proof verdict verifies Outcome P
+
+- The second independent adversarial referee returned **VERIFIED** and found
+  no remaining load-bearing mathematical gap.  It independently confirms the
+  one-sided and symmetric JC classification modulo ordinary `T`, the absence
+  of proper generic one-sided containment, the arbitrary-subdivision closure,
+  the projective bridge localization, and the frozen weak-class sharpness
+  theorem.
+- The report preserves all nonmathematical defects seen at the reviewed
+  commit: absent final metadata, an intentionally fail-closed release wrapper,
+  and local historical untracked artifacts that are not active inputs.
+- `FINAL_OUTCOME.json` is now promoted to Outcome P.  Remaining work is purely
+  mechanical: stable PDF, deterministic archive, and clean-worktree quick,
+  full, and regeneration transcripts.

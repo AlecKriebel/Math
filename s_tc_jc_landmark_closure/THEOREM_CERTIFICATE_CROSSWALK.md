@@ -1,6 +1,6 @@
 # Theorem-to-certificate crosswalk
 
-Status: **CANDIDATE PENDING FINAL WHOLE-PROOF REFEREE**
+Status: **VERIFIED — FINAL OUTCOME P**
 
 This is the active evidence map for Outcome P.  Historical artifacts are not
 theorem inputs unless named here.  Counts below are deterministic checksums of
@@ -21,7 +21,7 @@ proofs.
 | `T` | Ordinary triangle redirection has a common regular projective germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` | `bash reviews/triangle_redirection_cleanroom/verify_all.sh` |
 | `G` | Local-to-global necessity and simultaneous converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` | bounded semantic replay in the global bridge package |
 | `W` | All-`n` weak-but-not-strong sharpness pair | frozen `../s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier | `python3 ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py` |
-| `V_final` | Whole-proof adversarial attack | integrated theorem and manuscript | `reviews/final_outcome_p_referee/` | included in active quick gate after final verdict |
+| `V_final` | Whole-proof adversarial attack | integrated theorem and manuscript | `reviews/final_outcome_p_referee_v2/` | `python3 reviews/final_outcome_p_referee_v2/verify_review_certificate.py` |
 
 ## Exact local checksums
 

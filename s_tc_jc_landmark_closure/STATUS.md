@@ -1,72 +1,37 @@
 # Authoritative status
 
-Status: **OUTCOME P CANDIDATE — all mathematical gates closed; final
-adversarial release review remains open**
+Status: **PROVED — OUTCOME P**
 
-Certified foundation:
+The final independent whole-proof referee reports **VERIFIED**.  Under the
+locked already-simple, reticulation-preserving standard semi-directed
+convention and the open Jukes--Cantor domain, binary strongly tree-child
+level-2 networks satisfy
 
-- the all-taxa weak-but-not-strong JC ambiguity theorem is verified and
-  frozen in `../s_tc_jc_sharp_boundary/`;
-- the former positive `S_TC` classification is unresolved, not refuted;
-- the reciprocal-only bridge chart, root-presentation moves, Omega, Theta as
-  an `S_TC` move, and frozen target-only atlas counts are quarantined.
+```text
+N preceq_JC N'
+  iff
+their labelled reduced bridge trees agree and corresponding blobs are
+labelled-isomorphic or differ by ordinary triangle redirection T.
+```
 
-The candidate result is Outcome P: standard semi-directed `S_TC` level-two JC
-topologies are identifiable modulo ordinary triangle redirection, with no
-proper one-sided generic containments.  The independent primitive generation
-of the complete three-outgoing relation universe and the formerly omitted
-direct-anchor arbitrary-subdivision case are now closed.  It is not labelled
-the final outcome until a fresh whole-proof adversarial referee and a clean
-release replay agree.
+Consequently there are no proper one-sided generic containments, symmetric
+full-dimensional regular overlap is exactly the same relation, and a generic
+exact JC distribution determines a unique standard semi-directed topology
+modulo `T`.
 
-The independent convention gate is **VERIFIED AFTER CORRECTION**.  The
-positive theorem, if promoted, concerns the simple binary LSA-rootable mixed
-graphs obtained under the reticulation-preserving `sd_0` convention used by
-Englander et al., equivalently the binary LSA-valid Holtgrefe class with no
-omnians.  It does not quantify over every preimage of the broader exhaustive
-cleanup map used by Brits et al.  All primitive supports, the weak sharpness
-pair, and the double-triangle exclusion pass the clean-room rooting census.
+The boundary is sharp.  The frozen package in
+`../s_tc_jc_sharp_boundary/` proves that, for every `n >= 4`, the larger
+weakly-but-not-strongly tree-child class contains a nonisomorphic,
+non-`T`-equivalent pair with a common full-dimensional regular JC germ of
+dimension `2n`.
 
-The complete n3 directed gate independently regenerates all `10,466`
-canonical relations, including every unequal necessary direction, every
-strict sign certificate, all `5,344` fixed-root coverages, and the residual
-isomorphism/ordinary-`T` terminals.  The independent five-port theta-2 gate
-regenerates the complete target grammar and exact invariant deck.  It finds
-only three necessary equal-signature pairs.  Their 192 raw presentations
-split as 18 direct isomorphisms, 42 alternative incoming-root presentations,
-and exactly the 132 independently verified fixed hard-cover roots.  The
-2,106-state theta-2 forest ends only in labelled isomorphism.  Thus the former
-110/776 summary-count concern and the missing minimum-support concern are
-closed by graph-derived relation certificates, not by reusing target-only
-counts.
+The proof uses the full incidence-scaling bridge quotient and does **not**
+claim physical bridge-parameter recovery, equality of complete stochastic
+images under `T`, or any K2P/K3P or level-3 classification.  Theta, Omega,
+root-presentation moves, the reciprocal-only bridge chart, and historical
+target-only atlas counts remain quarantined and are not theorem inputs.
 
-The earlier illustrative ordinary-`T` no-common-incoming pair was false and
-is withdrawn.  The separate TT-nested disjoint-rootable-set example remains
-verified and is sufficient to refute the fixed-incoming quotient.
-
-The common-anchor arbitrary-subdivision promotion is independently verified
-for all 144 restoration-terminal n3 paths and all 132 theta-2 paths: their
-`A+p` and `A+p+q` probes share one full relation and one transport, reconstruct
-each total segment word, and require at most ten tensor ports.  Promotion of
-the 62 direct n3 anchors is independently closed by all 2,642 one-port and
-18,224 two-port relations, with no unresolved or non-`T` survivor.  Correct
-bridge incidence scaling, both one-sided cut inclusions, root reduction, and
-no cross-blob compensation were already independently verified.
-
-The path-bound promotion now has a compact-only clean-clone gate: all 269,730
-relations are regenerated from 50 tracked byte-locked inputs, all nine
-semantic mutations are rejected, and a fresh `git archive HEAD` replay passes.
-No untracked verbose `probe_extension_*` artifact is an active dependency.
-
-The first completed theta-2 cover was rejected by its own exact replay: its
-schema-2 canonical key merged distinct rooted graph presentations.  The full
-failed stream is quarantined and the simultaneous schema-2 n=3 run was
-stopped.  Schema 3 binds every state to one fixed-full root case and exact
-rooted graph pair; all local counts must now be regenerated.  Accordingly,
-the historical 40,072 and failed 1,518 counts are discovery diagnostics only.
-
-The active theorem statement and proof are in
-`docs/SHARP_BOUNDARY_THEOREM.md`.  Historical failed schema-2 streams,
-ineffective mutation designs, reciprocal-only bridge charts, Theta as a
-strong-class move, Omega, and rooted-presentation moves remain quarantined.
-The frozen weak-class theorem remains unchanged and supplies sharpness only.
+The final mathematical verdict and its machine-readable certificate are in
+`reviews/final_outcome_p_referee_v2/`.  The active theorem, manuscript,
+dependency graph, and certificate crosswalk are the only authoritative
+release documents.
