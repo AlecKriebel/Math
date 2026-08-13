@@ -282,6 +282,23 @@ conditions:
 - it must be allowed to move two pivots in the same history tree;
 - and its inverse data must distinguish completion siblings, as in `(21)`.
 
+There is presently no abstract termination order for such a crabwalk.  The
+weighted-path packet graph gives a sharp warning against the canonical
+ones.  The negative packet `(25)` has 41 neighbours obtained by one
+`L`-forest edge exchange, of which 37 remain negative, and 20 neighbours
+obtained by one `D`-forest edge exchange, of which 18 remain negative.
+Thus neither fundamental-cycle distance nor the sign itself is monotone.
+
+Nor does component-rank data supply the missing order.  Record, for each of
+the three components, the complete multiset of ranks of its subset states,
+and group paired packets having the same two three-component profiles.  On
+the weighted path, 279 of the 286 occupied profile classes contain packets
+of both signs.  Even after summing every packet within a profile class, 15
+classes remain strictly negative.  Component-rank sorting therefore cannot
+prove termination or injectivity; a viable global crabwalk must retain
+directed edge/history data beyond ranks.  In the absence of such an order,
+we do not assert an involution.
+
 ## 5. Exact audit
 
 `verify_forest_exchange_unit.py` checks over `QQ`:
@@ -292,7 +309,9 @@ conditions:
 - the sharp two-pivot repair and ratio `10/9` in `(16)--(17)`;
 - the general double-counting identity `(20)` on the weighted path; and
 - the positive and negative completion packets `(24)--(25)`.
+- the hostile one-edge packet neighbourhood and component-profile counts
+  quoted above (these diagnostics isolate the obstruction; they are not a
+  search for the theorem).
 
 The finite audits refute local exchange strengthenings; they are not a
 finite-search proof of `PAPT_n`.
-

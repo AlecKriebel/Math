@@ -65,3 +65,10 @@
   sibling packet has value `-362/525`.
 - **OPEN:** a common-arrow crabwalk/injection exchanging mass between
   distinct three-component forest pairs.
+- Audited the canonical termination orders before attempting such a
+  crabwalk.  On weighted `P_3`, a negative packet has 37/41 negative
+  one-edge `L` neighbours and 18/20 negative one-edge `D` neighbours;
+  279/286 complete component-rank-profile classes contain both signs, and
+  15 profile-class totals remain negative.  Hence cycle distance, sign, and
+  component-rank profile are all nonmonotone.  No injective global walk is
+  claimed without additional directed-history data.

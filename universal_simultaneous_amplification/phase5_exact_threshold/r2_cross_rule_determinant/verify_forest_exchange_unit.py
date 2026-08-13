@@ -111,6 +111,40 @@ def completion_class(trees, forest):
     return [tree for tree in trees if forest <= tree[1]]
 
 
+def forest_components(forest, size):
+    """The vertex sets of the three components of a two-deletion forest."""
+
+    parent = dict(forest)
+    roots = set(range(size)) - set(parent)
+    answer = []
+    for root in roots:
+        component = []
+        for source in range(size):
+            vertex = source
+            while vertex in parent:
+                vertex = parent[vertex]
+            if vertex == root:
+                component.append(source)
+        answer.append(tuple(sorted(component)))
+    assert len(answer) == 3
+    return tuple(sorted(answer))
+
+
+def forest_moments(trees, forest):
+    extensions = completion_class(trees, forest)
+    return (
+        sum((weight for _, _, weight in extensions), F(0)),
+        sum(
+            ((root + 1).bit_count() * weight for root, _, weight in extensions),
+            F(0),
+        ),
+        sum(
+            (weight / (root + 1).bit_count() for root, _, weight in extensions),
+            F(0),
+        ),
+    )
+
+
 def audit_complete_cycle_mate():
     complete = ((0, 1, 1), (1, 0, 1), (1, 1, 0))
     left, _ = unbatched_generators(complete)
@@ -302,6 +336,69 @@ def audit_path_pivot_radius_and_packets():
     )
     assert negative_packet == F(-362, 525)
 
+    # Exact obstruction to the obvious packet-level termination orders.
+    # Exchange one fixed forest edge at a time, retaining only valid
+    # two-deletion forests.
+    left_forests = {
+        edges - frozenset(removed)
+        for _, edges, _ in left_trees
+        for removed in itertools.combinations(edges, 2)
+    }
+    event_forests = {
+        edges - frozenset(removed)
+        for _, edges, _ in event_trees
+        for removed in itertools.combinations(edges, 2)
+    }
+    left_moments = {
+        forest: forest_moments(left_trees, forest) for forest in left_forests
+    }
+    event_moments = {
+        forest: forest_moments(event_trees, forest) for forest in event_forests
+    }
+
+    def packet(left_forest, event_forest):
+        z_left, y_left, _ = left_moments[left_forest]
+        theta, _, phi = event_moments[event_forest]
+        return b * d * z_left * phi - y_left * theta
+
+    left_neighbour_packets = [
+        packet(forest, event_forest)
+        for forest in left_forests
+        if len(negative_left_forest - forest) == 1
+        and len(forest - negative_left_forest) == 1
+    ]
+    event_neighbour_packets = [
+        packet(negative_left_forest, forest)
+        for forest in event_forests
+        if len(event_forest - forest) == 1 and len(forest - event_forest) == 1
+    ]
+    assert len(left_neighbour_packets) == 41
+    assert sum(value < 0 for value in left_neighbour_packets) == 37
+    assert len(event_neighbour_packets) == 20
+    assert sum(value < 0 for value in event_neighbour_packets) == 18
+
+    def component_rank_profile(forest, size):
+        return tuple(
+            sorted(
+                tuple(sorted((state + 1).bit_count() for state in component))
+                for component in forest_components(forest, size)
+            )
+        )
+
+    profile_signs = defaultdict(set)
+    profile_totals = defaultdict(lambda: F(0))
+    for left_forest in left_forests:
+        left_profile = component_rank_profile(left_forest, 7)
+        for event_forest_ in event_forests:
+            event_profile = component_rank_profile(event_forest_, 6)
+            key = left_profile, event_profile
+            value = packet(left_forest, event_forest_)
+            profile_signs[key].add((value > 0) - (value < 0))
+            profile_totals[key] += value
+    assert len(profile_signs) == 286
+    assert sum({-1, 1} <= signs for signs in profile_signs.values()) == 279
+    assert sum(value < 0 for value in profile_totals.values()) == 15
+
 
 def main():
     audit_complete_cycle_mate()
@@ -311,6 +408,7 @@ def main():
     print("PASS: closest positive witness is a sharp two-pivot D exchange (ratio 10/9)")
     print("PASS: exact two-deletion identity and positive 42-atom completion packet")
     print("REFUTED: pointwise sign of three-component completion packets")
+    print("REFUTED: cycle-distance/sign/component-rank monotone packet orders")
     print("OPEN: nonduplicating exchange between three-component forest pairs")
 
 
