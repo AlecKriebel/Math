@@ -1,0 +1,67 @@
+# The hard 181 enabled-promotion access-word theorem
+
+**Proof-first scoped corollary, 2026-08-12 PDT. Audit status: pending.**
+This note applies the already audited all-reaction bounded-access lemma to
+the enabled two-active promotion rows on the hard 333 pairs.  The finite
+table checks only that these rows form a subset of the lemma's 929-row
+analytic domain.
+
+## 1. Generic analytic lemma
+
+Fix a descriptor sequence and let \(A_n\to\infty\) be the common propensity
+scale of its global top D-tier.  Suppose a bounded directed physical word
+has an enabled first source, all prescribed source propensities comparable
+with \(A_n\), every preterminal target in the exact top D-tier, and a
+terminal edge with factorial gap \(g_n\to\infty\).  Stop at completion or
+at the first competing physical reaction.
+
+Retaining all clocks gives a uniform success probability \(p_0>0\),
+physical duration \(O(A_n^{-1})\), and arbitrary fixed positive endpoint
+moments.  For every fixed correction \(\ell\),
+
+\[
+ \mathbb E\Delta G_\ell\le-p_0g_n+O(1),\qquad
+ \sup_n\mathbb E\{(\Delta G_\ell)^+\}^r<\infty.      \tag{1.1}
+\]
+
+The all-competitor estimate uses
+
+\[
+ {b\over A}\{1+\log(A/b)\}^r\le C_r,                \tag{1.2}
+\]
+
+so no deleted clock or selected-word probability approximation occurs.
+The exact fourth-power expansion therefore yields
+
+\[
+ \mathbb E_x[W_\ell(X_\tau)-W_\ell(x)+\tau]
+      \le-cG_\ell(x)^3g_n.                           \tag{1.3}
+\]
+
+This lemma, including the arbitrary-\(\ell\) and endpoint-moment
+quantifiers, was independently audited as Lemma 3.1 of the easy-943 common
+potential theorem.
+
+## 2. Hard-family specialization
+
+Exactly 181 two-active failures on the hard 333 pairs have an enabled
+source in the proper top-D subset.  They are among the 929 seeded rows in
+the audited lemma.  Strong connectivity gives a directed path inside the
+top-D subset from the enabled source to a top node whose forced outgoing
+edge leaves that proper subset.  Taking a simple path gives bounded length.
+Every source on it lies in the same exact top D-tier; hence its propensity
+is comparable with \(A_n\).  The final outgoing edge has the divergent
+factorial gap to the lower tier.  These are precisely the four hypotheses
+of Section 1.
+
+### Theorem 2.1
+
+For every one of the 181 hard enabled-promotion incidences, every strong
+orientation, every fixed positive rate vector, and every fixed common
+correction \(\ell\), the raw physical access-word stopping rule satisfies
+(1.3), arbitrary fixed endpoint moments, and physical-time moments.  Its
+actual endpoint is reclassified under the same \(W_\ell\).
+
+The corollary is local.  It makes no pair or global claim before independent
+audit and full descriptor composition.
+

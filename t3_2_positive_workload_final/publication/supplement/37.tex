@@ -1,0 +1,555 @@
+\section{The cap-free one-active B/F0 killed-resolvent
+theorem}
+
+\textbf{Proof-first candidate, 2026-08-12 PDT.} This note removes the
+finite inactive-cap stop from the one-active Bellman/Flat0 argument. It
+proves a literal all-clock theorem on the countable inactive phase. No
+orientation, reaction word, population box, or stochastic history is
+enumerated.
+
+The result is classwise. If the killed inactive phase has a closed
+no-kill component, that component is proved positive recurrent directly.
+Otherwise its exact killed resolvent is used, and the first access or
+Bellman-linkage firing is completed before the episode stops.
+
+\subsection{1. Statement}
+
+Fix two disjoint binary linkage supports \(L_B,L_0\) on species
+\(X,U,V\), arbitrary strongly connected orientations, arbitrary positive
+labelled rates, and a closed irreducible population class \(\Gamma\).
+Assume that \(L_0\) is \textbf{Flat0} in \(X\):
+
+\[
+                         y_X=0\qquad(y\in L_0).       \tag{1.1}
+\]
+
+Assume that \(L_B\) has a Bellman witness \(q,c\in L_B\):
+
+\[
+ q_X=1,\qquad c_X=0,\qquad
+ q_U\le c_U,\qquad q_V\le c_V.                       \tag{1.2}
+\]
+
+Let \((x_n,t_n)\) be an escaping sequence of physical marked states in
+\(\Gamma\), with \(t_n\in L_0\), for which \(X\) is the unique active
+coordinate. Thus
+
+\[
+ X_n\longrightarrow\infty,\qquad
+ \log(1+U_n)+\log(1+V_n)=o(\log X_n),\qquad x_n\ge t_n.
+                                                               \tag{1.3}
+\]
+
+Carry the actual reaction target as the mark and use
+
+\[
+ F(x,t)=\sum_{i\in\{X,U,V\}}\log((x_i-t_i)!),
+ \qquad W(x,t)=1+F(x,t).                              \tag{1.4}
+\]
+
+\begin{quote}
+\textbf{Theorem 1.1 (cap-free B/F0 completion).} Under (1.1)--(1.3), one
+of the following two classwise alternatives holds.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The full physical class \(\Gamma\) is a fixed-\(X\), fixed-\(U\)
+  one-species binary class and is positive recurrent (a singleton is
+  allowed).
+\item
+  A finite support-dependent menu selects, at every sufficiently large
+  start in (1.3), an almost surely finite all-clock stopping time
+  \(\tau_n>0\), with its actual population endpoint and actual target,
+  such that, for constants \(\eta>0\) and \(C_m<\infty\), \[
+  \mathbb E_{x_n,t_n}
+     [W(X_{\tau_n},T_{\tau_n})-W(x_n,t_n)+\eta\tau_n]
+        \longrightarrow-\infty,                    \tag{1.5}
+  \] \[
+  \mathbb E_{x_n,t_n}
+     [((F(X_{\tau_n},T_{\tau_n})-F(x_n,t_n))^+)^m]
+        \le C_m.                                    \tag{1.6}
+  \] The killed Flat0 prefix has a uniform exponential relative marked
+  factorial bound, and its physical duration satisfies the sharp bound
+  \[
+     \mathbb E\sigma^m\le
+        C_m\{1+\log(2+V_n)\}^m.                    \tag{1.7}
+  \]
+\end{enumerate}
+\end{quote}
+
+The rule never stops merely because a cap, tier, active-set label, or
+enabled-source flag changes. A Flat0 access jump and a Bellman-linkage
+launch are terminal events only after their physical reward completion
+has been included.
+
+The logarithm in (1.7) cannot be replaced by a constant uniform in the
+inactive start. For the pure-death phase \(V\to0\), followed by a launch
+available only at zero, the mean time from \(V=v\) is
+\(\sum_{k=1}^v(\kappa k)^{-1}=\kappa^{-1}\log v+O(1)\).
+
+\subsection{2. The unconditional B
+episode}
+
+Let \(t\in L_B\) be any actual target. Strong connectivity gives a
+simple directed path
+
+\[
+       t=y_0\longrightarrow y_1\longrightarrow\cdots
+                         \longrightarrow y_m=c.       \tag{2.1}
+\]
+
+Follow its designated labels with every physical clock retained, stop on
+the first competitor, and, on reaching \(c\), take one final ordinary
+all-clock jump. There is no structural-exit test. On designated success
+the pre-final population is
+
+\[
+                         z=x-t+c\ge c.                \tag{2.2}
+\]
+
+Equation (1.2) and divergence of \(X\) make \(q\) enabled at \(z\).
+Since the inactive coordinates differ from their start values by a
+bounded amount,
+
+\[
+ p_c(z)\le \frac{K_c(z)_c}{K_q(z)_q}
+       \le \frac{C(1+U+V)^2}{X}.                    \tag{2.3}
+\]
+
+For one ordinary marked jump put \(D(x,t)=\mathbb E_{x,t}\Delta F\).
+Exact factorial cancellation gives
+
+\[
+ D(x,t)=\log p_t-\sum_y p_y\log p_y-\log K_t+\sum_y p_y\log K_y
+       \le\log p_t+C.                               \tag{2.4}
+\]
+
+If \(a_i\) is the probability of the designated label at stage \(i\),
+the literal all-clock Bellman recursion is
+
+\[
+ J_m=D_m,\qquad J_i=D_i+a_iJ_{i+1}.                  \tag{2.5}
+\]
+
+The first source probability tending to zero gives the negative term;
+all earlier designated probabilities stay bounded below, and the later
+positive tail is multiplied by the rare designated probability.
+Equations (2.3)--(2.5) give \(J_0\to-\infty\).
+
+This already proves the qualitative unconditional B episode whenever
+\(\log(1+U)+\log(1+V)=o(\log X)\), including the immediate \(q=X\) case
+and the B/B case with two subpower inactive coordinates.
+
+We need one quantitative refinement only for a B episode
+\textbf{appended after the prefix absorption of Section 3}. Before
+absorption \(U=0\), so the absorbing target leaves \(U\) bounded by two;
+\(V\), denoted \(v\), is the only possibly large inactive coordinate.
+Along (2.1), every enabled source propensity is, up to a fixed factor,
+
+\[
+                         X^a(1+v)^b,
+ \quad a\in\{0,1\},\quad b\in\{0,1,2\},\quad a+b\le2. \tag{2.6}
+\]
+
+Here is the complete first-rare product argument. Expand (2.5):
+
+\[
+ J_0=D_0+a_0D_1+\cdots+
+             (a_0\cdots a_{m-1})D_m.                \tag{2.6a}
+\]
+
+After a subsequence, either \(v\) is bounded or \(v\to\infty\), and
+every enabled source in every one of the finitely many
+bounded-displacement states has a fixed exponent pair \((a,b)\) from
+(2.6). The total hazard is comparable with the lexicographically largest
+enabled pair, where the \(X\)-exponent is compared first because
+\(v=X^{o(1)}\). Consequently a source probability is either bounded
+below, at most \(C/v\), or at most \(Cv^2/X\).
+
+Let \(j<m\) be the first path source whose probability is not bounded
+below. Then \(a_0\cdots a_{j-1}\ge b_*>0\), while (2.4) gives
+
+\[
+ D_j\le
+ \begin{cases}
+  -\log v+C,&p_{y_j}\le C/v,\\
+  -\log X+2\log v+C,&p_{y_j}\le Cv^2/X.
+ \end{cases}                                          \tag{2.6b}
+\]
+
+Every \(D_i\le C_0\), and the complete positive tail after \(j\) is
+multiplied by \(a_j\le Cp_{y_j}\). Hence it is \(O(p_{y_j})\), while the
+negative term in (2.6b) is multiplied only by the fixed \(b_*\). If no
+such \(j\) exists, all preterminal \(a_i\)'s are bounded below and the
+terminal estimate (2.3) supplies the second line of (2.6b). Since
+\(\log(1+v)=o(\log X)\), this proves constants \(a,C>0\), uniform over
+the finite target/path menu, such that
+
+\[
+ \begin{cases}
+ J_0\le-a\log X+C,&v\le M,\\
+ J_0\le-a\log(2+v)+C,&v>M
+ \end{cases}                                          \tag{2.7}
+\]
+
+for a fixed sufficiently large \(M\). This is only the integer-exponent
+comparison (2.6); no population ranges are enumerated. Source entropy
+gives every fixed positive reward moment, and the episode has at most
+ten physical jumps with uniformly bounded duration moments.
+
+\subsection{3. Exact reduction before
+access}
+
+If the witness has a cofactor, binaryity and relabelling give
+
+\[
+                              q=X+U.                  \tag{3.1}
+\]
+
+If \(q=X\), or if \(q=X+U\) and \(U>0\), the witness is already enabled.
+The actual mark is still in \(L_0\), so one does \textbf{not} start the
+same-linkage path (2.1) from that mark. Instead take one ordinary
+all-clock payoff jump. The marked source has rate at most
+\(C(1+U+V)^2\), whereas \(q\) has rate at least \(cX\). Thus (2.4) gives
+
+\[
+             \mathbb E\Delta F\le
+                -\log X+2\log(2+U+V)+C.             \tag{3.2}
+\]
+
+It remains to have \(q=X+U\) and start with \(U=0\). Stop the
+\textbf{prefix} at the first of:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a reaction of \(L_B\); or
+\item
+  a reaction of \(L_0\) whose target contains \(U\).
+\end{enumerate}
+
+Before that event, \(X\) and \(U\) are constant, and every enabled
+source and target lies in
+
+\[
+                             E=\{0,V,2V\}.            \tag{3.3}
+\]
+
+The actual mark also lies in \(E\). The nonabsorbed marked phase is
+
+\[
+              \mathcal E=\{(v,s):v\in\mathbb N_0,\ 
+                              s\in\{0,1,2\},\ v\ge s\}, \tag{3.4}
+\]
+
+where \(s\) is the \(V\)-degree of the actual target. No cap replaces
+\(v\).
+
+At a type-1 event, include the causing reaction and start Section 2 from
+its actual B target. At a type-2 event, include the causing reaction and
+then take the access jump in (3.2), unless the causing reaction is
+itself a B reaction, in which case type 1 has priority. These are the
+disjoint absorbing payoff kernels.
+
+\subsection{4. The marked killed
+resolvent}
+
+Let \(P\) be the exact substochastic embedded kernel of nonabsorbed
+transitions in (3.4), and let \(S\) be its physical absorption kernel,
+including the causing reaction. For \(0<\theta<1/4\), put
+
+\[
+                         w_\theta(v,s)=((v-s)!)^\theta. \tag{4.1}
+\]
+
+On a terminal state reached with source \(y\), write \(v=V\) for its
+pre-jump inactive count and define
+
+\[
+ \widehat w_\theta(y;X,v)
+   =\left\{\frac{(X-y_X)!\,(v-y_V)!}{X!}\right\}^{\!\theta}. \tag{4.2}
+\]
+
+Every enabled source before absorption has \(y_U=0\). Thus (4.2) is
+exactly the terminal marked factorial divided by the constant prefix
+factor \((X!)^\theta\); the actual target cancels. A B source of
+\(X\)-degree one supplies the favorable factor \(X^{-\theta}\).
+
+\begin{quote}
+\textbf{Lemma 4.1 (uniform relative marked-factorial resolvent).} If the
+phase has no reachable closed no-absorption class, then \[
+      (I-P)^{-1}S\widehat w_\theta(\,\cdot\,;X,\,\cdot\,)(v,s)
+         \le C_\theta w_\theta(v,s)                 \tag{4.3}
+\] for all \(X\ge1\) and \((v,s)\in\mathcal E\). Equivalently, at the
+physical prefix endpoint \(\sigma\), \[
+      \mathbb E_{x,t}
+         \exp\{\theta(F(X_\sigma,T_\sigma)-F(x,t))\}
+            \le C_\theta.                           \tag{4.4}
+\]
+\end{quote}
+
+\subsubsection{Proof}
+
+Delete zero-vector self labels. Let \(d\) be the largest \(V\)-degree of
+an enabled degree-zero source occurring in either linkage. There is only
+one one-species complex of degree \(d\). If it belongs only to \(L_B\),
+every firing from it is absorbed and the continuation is contractive.
+Otherwise it is the maximal Flat0 source \(dV\).
+
+For a nonabsorbed jump with source \(yV\), factorial cancellation gives
+
+\[
+ \frac{w_\theta(v-y+u,u)}{w_\theta(v,s)}
+       =\left(\frac{(v-y)!}{(v-s)!}\right)^\theta.    \tag{4.5}
+\]
+
+The target \(u\) cancels. When \(y<d\), divide its source rate by the
+order-\((v)_d\) maximal-source rate. If \(y<s\),
+
+\[
+ \frac{K_y(v)_y}{K_d(v)_d}
+ \left(\frac{(v-y)!}{(v-s)!}\right)^\theta
+       \le C v^{-(d-s)-(1-\theta)(s-y)}.             \tag{4.6}
+\]
+
+If \(s\le y<d\), the exponent is \(-(d-s)+(1-\theta)(y-s)<0\). Hence
+every lower-source continuation is \(O(v^{-\eta})\), unless \(s<d\), in
+which case the maximal-source jump itself contracts by
+\(O(v^{-\theta(d-s)})\).
+
+Only \(s=d\) permits one weight-neutral maximal-source jump. Strong
+connectivity supplies an outgoing nonself label from \(dV\). It is
+either absorbed or has target \(u<d\); in the latter case the successor
+mark is strictly lower, so the next maximal-source jump contracts.
+Consequently, for a kernel \(Q\) retaining maximal-source nonabsorbed
+jumps, there are \(M<\infty\), \(\rho<1\), and \(\eta>0\) such that
+
+\[
+       \|Q^2\|_{w_\theta,\{v>M\}}\le\rho,\qquad
+       \|P-Q\|_{w_\theta,\{v>M\}}\le C M^{-\eta}.     \tag{4.7}
+\]
+
+Choose \(M\) so the second bound is smaller than \((1-\rho)/4\).
+
+Absorbing degree-one B sources cannot spoil the estimate. If \(r\) is
+their propensity divided by the propensity of the enabled marked source,
+their source probability is at most \(Cr/(1+r)\), while the exact marked
+factorial ratio is at most \(Cr^{-\theta}\). Their weighted terminal
+contribution is at most
+
+\[
+                         C\frac{r^{1-\theta}}{1+r}\le C. \tag{4.8}
+\]
+
+The identical sourcewise estimate handles every degree-zero absorbing
+label. Thus the terminal operator from \(w_\theta\) to
+\(\widehat w_\theta\) has finite weighted norm.
+
+On the finite marked core \(v\le M+4\), absence of a reachable closed
+no-absorption class says that the substochastic kernel is transient. For
+a fixed core phase, write the total Flat0 continuation rate as \(a\),
+the total absorbing degree-zero rate as \(b\), and the total coefficient
+of absorbing degree-one B rates as \(c\). Its nonabsorbed row is the
+fixed Flat0 numerator divided by \(a+b+cX\), hence is entrywise
+nonincreasing in \(X\). The entrywise largest core kernel occurs at
+\(X=1\), and its finite Green matrix is bounded. Combining that inverse
+with (4.7), or using the Schur complement at first core return, gives
+
+\[
+                         \|(I-P)^{-1}\|_{w_\theta}<\infty. \tag{4.9}
+\]
+
+Equations (4.8)--(4.9) prove (4.3), and exact factorial cancellation
+turns (4.3) into (4.4). \(\square\)
+
+For every fixed \(m\), (4.4) implies
+
+\[
+          \sup_{X,v,s}\mathbb E[((F_\sigma-F_0)^+)^m]<\infty.
+                                                               \tag{4.10}
+\]
+
+This uniform relative statement is what permits a Bellman decrement
+which may diverge arbitrarily slowly.
+
+We also need the continuation maximum before absorption, without the
+favorable \(X^{-\theta}\) factor at a degree-one B terminal. For
+\(M>v+4\), let \(\rho_M\) be the first nonabsorbed phase with
+\(V\ge M\). Stop the Green series at \(\rho_M\wedge\sigma\). The same
+outer contraction (4.7) and finite-core inverse (4.9), now with boundary
+payoff \(w_\theta\) at \(\rho_M\) and zero at absorption, give
+
+\[
+ \mathbb E_{v,s}\!\left[
+    w_\theta(V_{\rho_M},S_{\rho_M});\rho_M<\sigma
+ \right]\le C_\theta w_\theta(v,s).                 \tag{4.11}
+\]
+
+Since jumps are bounded and
+\(w_\theta(M-O(1),2)\ge\exp\{cM\log(2+M)\}\), (4.11) implies
+
+\[
+ \mathbb P_{v,s}\!\left\{\sup_{r<\sigma}V_r\ge M\right\}
+ \le C\exp\{\theta v\log(2+v)-cM\log(2+M)\}.         \tag{4.12}
+\]
+
+This is the required survival-before-absorption tail. It is stronger
+than the terminal relative bound (4.4) in precisely the case where a
+terminal B source contributes \(X^{-\theta}\).
+
+\subsection{5. Physical duration}
+
+\begin{quote}
+\textbf{Lemma 5.1 (sharp logarithmic duration).} Under Lemma 4.1, for
+every fixed \(m\ge1\), \[
+                   \mathbb E_{v,s}\sigma^m
+      \le C_m\{1+\log(2+v)\}^m.                    \tag{5.1}
+\]
+\end{quote}
+
+\subsubsection{Proof}
+
+Put \(L(v)=1+\log(v+e)\), and give an absorbed state value zero. If the
+largest source degree is one, its nonabsorbed strict jump lowers \(v\)
+by one and has rate at least \(cv\); every upward jump has constant
+rate. If the largest degree is two, a maximal-source nonabsorbed strict
+jump lowers \(v\) by one or two and has rate at least \(cv^2\), whereas
+every upward jump has source degree at most one. A maximal-source
+absorbing jump adds a negative killed term. Bounded-jump Taylor
+estimates give, outside a fixed core,
+
+\[
+                        {\cal K}L(v)\le-c,             \tag{5.2}
+\]
+
+where \({\cal K}\) is the physical killed generator. In degree zero,
+either absorption has a fixed positive hazard or the phase is closed.
+Finite-core killed transience supplies (5.2) globally after adding a
+bounded finite-core corrector.
+
+Dynkin gives (5.1) for \(m=1\). Applying the calculation to \(L^j\) and
+inducting with the strong Markov property gives
+\({\cal K}L^j\le-c_jL^{j-1}+C_j1_{\{v\le M\}}\), hence all integer
+moments. Other fixed moments follow by domination. \(\square\)
+
+\subsection{6. The closed no-kill
+alternative}
+
+Suppose the nonabsorbed phase has a reachable closed communicating
+class. There every physical reaction preserves \(X\), preserves \(U=0\),
+and remains in (3.3). It is a closed physical subset of \(\Gamma\).
+Irreducibility forces it to be the whole class.
+
+The remaining coordinate is a one-species binary mass-action chain. If
+its largest nontrivial source degree is one, strong connectivity
+supplies a strict \(V\to0\) edge of linear rate and every upward edge
+has constant rate. If it is two, strong connectivity supplies a strict
+edge from \(2V\) to a lower complex of quadratic rate, while every
+upward edge has source degree at most one. Therefore, for
+\(0<\theta<1/2\),
+
+\[
+ \Psi_\theta(v)=\exp\{\theta v\log(v+e)\}
+\]
+
+satisfies
+
+\[
+        {\cal L}\Psi_\theta(v)
+          \le C-c(1+v)^d\Psi_\theta(v),
+          \qquad d\in\{1,2\},                       \tag{6.1}
+\]
+
+outside a finite set. Degree zero is finite. Ordinary Foster theory
+proves nonexplosion and positive recurrence. This is alternative 1 of
+Theorem 1.1, with no episode handoff.
+
+\subsection{7. Completion and the physical-time
+ledger}
+
+Assume the transient alternative. At type 1, append Section 2 from the
+actual B target. At type 2, append the ordinary access jump (3.2). Call
+the resulting stop \(\tau\). Every jump is counted once: the
+absorption-causing jump ends the killed prefix, and the appended rule
+starts only at its actual endpoint.
+
+Let \(r_0=V_0-(t_0)_V\), and let \(r_\sigma\) be the residual inactive
+population at the prefix endpoint. On \(r_\sigma<r_0/2\), exact
+factorial telescoping gives
+
+\[
+ F_\sigma-F_0\le-c r_0\log(2+r_0)+C.                \tag{7.1}
+\]
+
+The appended B/access rule has expected reward bounded above by a fixed
+constant, because every one-jump \(D\le C\) and its Bellman recursion
+has finite depth. Thus the full completed reward obeys the same estimate
+on this event, after changing \(C\).
+
+On \[
+             r_0/2\le r_\sigma\le2r_0+4,             \tag{7.2a}
+\] (2.7) or (3.2) gives conditional appended reward at most
+
+\[
+                         -a\log(2+r_0)+C              \tag{7.2}
+\]
+
+when \(r_0\to\infty\). On \(r_\sigma>2r_0+4\), the universal upper bound
+\(D\le C\), the finite Bellman recursion, and source entropy bound the
+appended expected reward above by a constant. Moreover (4.12), with
+\(M=2r_0+O(1)\), gives
+
+\[
+ \mathbb P\{r_\sigma>2r_0+4\}
+ \le C\exp\{-c r_0\log(2+r_0)\}.                    \tag{7.2b}
+\]
+
+The positive prefix overshoot is uniformly integrable by (4.10). The
+low, middle, and high events form a partition; (7.2b) makes the high
+probability vanish. Therefore
+
+\[
+              \mathbb E[F(X_\tau,T_\tau)-F(x,t)]
+                 \le-a_0\log(2+V_0)+C.              \tag{7.3}
+\]
+
+If \(V_0\) is bounded, (4.12) lets us choose a fixed \(M\) such that the
+prefix endpoint lies below \(M\) with probability at least \(3/4\),
+uniformly in \(n\). On that event (2.7) or (3.2) contributes
+\(-a\log X+C\). On the complement, the positive part of the complete
+reward is uniformly integrable by (4.10) and source entropy. Thus
+
+\[
+              \mathbb E[F(X_\tau,T_\tau)-F(x,t)]
+                 \le-a_1\log X+C.                   \tag{7.4}
+\]
+
+Equations (5.1), (7.3), and (7.4) permit one fixed sufficiently small
+\(\eta>0\) and give (1.5). Equation (4.10), the finite-jump
+source-entropy bound, and Hölder give (1.6). Every endpoint is physical
+and the physical duration is integrable.
+
+The menu is finite: choose the witness, the simple B path, and tie
+ordering from the finite support. If uniform constants failed, extract a
+one-active subsequence with fixed actual mark, witness, path, and
+bounded reaction offsets. Sections 2--7 contradict the failure. This
+proves Theorem 1.1.
+
+\subsection{8. Exact scope and the remaining global
+interface}
+
+Theorem 1.1 is the cap-free one-active B/F0 contract. The qualitative
+part of Section 2 also proves the unconditional B/B contract with two
+subpower inactive coordinates: every actual target belongs to a B
+linkage, and (2.3) tends to zero. The two-active Q/U/C bridge and the
+same cap-free path argument prove the unconditional AA contract.
+
+This note does not alone assert recurrence of every 6,654 failure pair.
+A final pair theorem must use one proper potential on complementary
+passing and all-active sequences, or prove an episode-level population
+boundary estimate lifting these marked episodes to that common
+potential. No terminal-chart exit, descriptor SCC, or unweighted
+drift-or-exit gluing is claimed here.

@@ -209,10 +209,10 @@ Then \({\cal R}\subset{\cal K}\cup{\cal B}\). For
 \begin{split}
  \mathbb E_x\tau_{\cal R}+\tfrac12\mathbb E_x
        \int_0^{\tau_{\cal R}}D(X_t)\,dt&\le U(x),\\
- \mathbb E_xU(X_{\tau_{\cal R}})&\le U(x),                \tag{3.4}\\
+ \mathbb E_xU(X_{\tau_{\cal R}})&\le U(x),\\
  \mathbb E_x[\tau_{\cal R}^p+U(X_{\tau_{\cal R}})^p]
  &\le C_p(1+U(x))^{r_p}.
-\end{split}
+\end{split}                                               \tag{3.4}
 \]
 
 No inactive coordinate is truncated: \({\cal B}\) is the exact
@@ -252,9 +252,9 @@ first moments and its \(C\)-service intensity satisfy
 \begin{split}
  {d\over d\tau}\mathbb EY_B&=-v\mathbb EY_B,\\
  {d\over d\tau}\mathbb EY_A
- &=u+a-(v_1+z)\mathbb EY_A+2v\mathbb EY_B,                \tag{4.3}\\
+ &=u+a-(v_1+z)\mathbb EY_A+2v\mathbb EY_B,\\
  s(\tau)&=a+b+(w+z)\mathbb EY_A+(t+v)\mathbb EY_B .
-\end{split}
+\end{split}                                               \tag{4.3}
 \]
 
 Here \(t,v\) are the rates \(BC\to B,2A\) from (2.1).
@@ -299,10 +299,10 @@ Random time changes and the Burkholder inequality therefore give,
 uniformly over \(q\le Q\),
 
 \[
-\begin{split}
- \mathbb E[U(X_{T/n})-U(X_0)]&\le-3\epsilon,              \tag{4.7}\\
- \sup_n\mathbb E|U(X_{T/n})-U(X_0)|^p&<\infty.            \tag{4.8}
-\end{split}
+ \mathbb E[U(X_{T/n})-U(X_0)]\le-3\epsilon.              \tag{4.7}
+\]
+\[
+ \sup_n\mathbb E|U(X_{T/n})-U(X_0)|^p<\infty.            \tag{4.8}
 \]
 
 The stop is removable: the number of leading reactions has all fixed
@@ -376,7 +376,7 @@ Choose \(M\) so that
 is finite and contains all finite-\(C\) exceptions in Section 4. For the
 ten supports containing \(2C\), enlarge \(M\) so that
 \({\cal B}\subset F_V\); no vertical episode is then required. Starting
-from \({\cal B}\setminus F_V\), run (4.7), (4.9), or (4.12), obtaining
+from \({\cal B}\mathbin{\backslash} F_V\), run (4.7), (4.9), or (4.12), obtaining
 \(Y\).
 If \(Y\in{\cal R}\), stop; otherwise append \(\tau_{\cal R}\) from (3.4).
 Call the result \(\sigma_V\).
@@ -398,16 +398,16 @@ Equations (4.8), (4.9), and (4.12) then yield
  \le-c_V(1+U(x))+C_V.                                    \tag{5.3}
 \]
 
-Iterate (5.2) at endpoints in \({\cal B}\setminus F_V\), and stop when
+Iterate (5.2) at endpoints in \({\cal B}\mathbin{\backslash} F_V\), and stop when
 \({\cal K}\cup F_V\) is reached. Summing (5.2) and
 (5.3), and using (3.4) for appended durations, gives
 
 \[
 \begin{split}
  \mathbb E_xN_V&\le {1+U(x)\over\epsilon_V},\\
- \mathbb E_x\sum_{j<N_V}(1+U_j)&\le C(1+U(x))^2,          \tag{5.4}\\
+ \mathbb E_x\sum_{j<N_V}(1+U_j)&\le C(1+U(x))^2,\\
  \mathbb E_x\tau_{{\cal K}\cup F_V}&\le C(1+U(x))^2.
-\end{split}
+\end{split}                                               \tag{5.4}
 \]
 
 Repeating the bounded-jump Taylor and counting-martingale estimates at
@@ -424,7 +424,7 @@ higher powers gives, for each fixed \(p\),
 This is a global physical-time return theorem with endpoint integrability,
 not a tightness-to-finite-phase assertion. From an arbitrary initial state,
 first run \(\tau_{\cal R}\). Its endpoint lies in
-\({\cal K}\cup{\cal B}\); if it lies in \({\cal B}\setminus F_V\), apply
+\({\cal K}\cup{\cal B}\); if it lies in \({\cal B}\mathbin{\backslash} F_V\), apply
 the preceding vertical trace. Thus (5.4)--(5.5), with changed polynomial
 constants, hold for the global hitting time of \({\cal K}\cup F_V\).
 
@@ -481,8 +481,8 @@ immigration \(C_3N\) and per-particle death \(c_3N\) therefore gives
  \begin{split}
  \mathbb E\sigma_C&\le {C(1+\log(1+c_0))\over N},\\
  \mathbb E\int_0^{\sigma_C}(1+C_t+C_t^2)\,dt
- &\le {C(\log N+c_0+c_0^2)\over N}=o(1).                \tag{6.5}
- \end{split}
+ &\le {C(\log N+c_0+c_0^2)\over N}=o(1).
+ \end{split}                                             \tag{6.5}
 \]
 
 The same comparison gives every fixed polynomial moment of these
@@ -505,11 +505,11 @@ episode \(\sigma_K\) satisfies
 \[
 \begin{split}
  X_{\sigma_K}&\in{\cal K}\cup F_V,\\
- \mathbb E_x[q(X_{\sigma_K})-q(x)]&\le-\epsilon_K,        \tag{6.6}\\
+ \mathbb E_x[q(X_{\sigma_K})-q(x)]&\le-\epsilon_K,\\
  \sup_{x\in{\cal K},q(x)>N_0}\mathbb E_x\sigma_K&<\infty,\\
  \sup_{x\in{\cal K},q(x)>N_0}
  \mathbb E_x|q(X_{\sigma_K})-q(x)|^2&<\infty
-\end{split}
+\end{split}                                               \tag{6.6}
 \]
 
 for some \(\epsilon_K>0,N_0<\infty\).

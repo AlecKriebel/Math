@@ -1,0 +1,430 @@
+\section{Population-Foster closure of the 432-pair active-invariant
+orbit
+gap}
+
+\textbf{Proof-first standalone theorem, 2026-08-12 PDT.} This note
+closes the support-pair orbit which had been removed by an invariant
+positive on only two coordinates before species permutations were taken.
+The original active-coordinate invariant is not used as a globally
+proper Foster function. Instead, the exact orbit splits into
+deficiency-zero pairs, pairs with a statewise factorial fourth-power
+drift, and two explicit rank-two exceptional families with a direct
+population-level service proof.
+
+Finite computation is used only for support-orbit, deficiency,
+invariant, tier, affine-feasibility, and orbit-representative
+identities. No orientation, rate vector, population box, or stochastic
+history is enumerated.
+
+\subsection{1. The family, process, and one population
+potential}
+
+Begin with the inherited ordered shielded/available seed pairs. Among
+them, 110 were assigned to the common-active-invariant prebranch. Close
+these pairs under all species permutations and linkage reversal, then
+subtract the orbit of every other inherited seed pair. Denote the
+resulting exclusive family by \(\mathcal G\).
+
+Fix \(P\in\mathcal G\), an arbitrary strongly connected directed graph
+on each of its two linkage supports, arbitrary positive labelled rate
+constants, and a closed irreducible population class \(\Gamma\). Let
+\(X_t\) be the ordinary stochastic mass-action chain. Choose \(K>1\) and
+put
+
+\[
+ G(x)=K+\sum_{i=A,B,C}\log(x_i!),
+ \qquad W(x)=G(x)^4.                                  \tag{1.1}
+\]
+
+This is one population function: there is no reaction mark,
+chart-dependent linear correction, or entrance recharge. It is
+nonnegative and proper on \(\mathbb N_0^3\).
+
+The chain is nonexplosive for every pair considered here. A quadratic
+source cannot increase total molecularity because every target has
+molecularity at most two. Every population-increasing reaction therefore
+has source degree zero or one, total increasing intensity
+\(O(1+|x|_1)\), and bounded jump size. A linear pure-birth comparison
+bounds total population on finite time intervals; each population
+sublevel is finite and has bounded total hazard.
+
+\subsection{2. Exact finite
+decomposition}
+
+The authoritative finite certificate verifies all of the following.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The 110 seeds have a 714-pair orbit. Removing the orbit of the other
+  5,059 inherited seeds leaves exactly \(432\) pairs in \(\mathcal G\).
+\item
+  Every pair has stoichiometric rank two. Its primitive normal has
+  exactly one zero coefficient and two coefficients of the same strict
+  sign. Each choice of zero coordinate occurs 144 times.
+\item
+  Exactly 174 pairs have full-network deficiency zero.
+\item
+  Of the remaining 258 pairs, 234 have no affine-feasible failure of the
+  corrected S-tier-superlevel cut.
+\item
+  The last 24 pairs form two disjoint
+  species-permutation/linkage-reversal orbits, each of size 12,
+  represented by \[
+  \begin{array}{c|c|c}
+    &L_1&L_2\\ \hline
+  \mathrm I&\{A,A+B\}&\{2A,2C,A+C\}\\
+  \mathrm {II}&\{A,A+B\}&\{C,2A,B+C\}.
+  \end{array}                                        \tag{2.1}
+  \] Their primitive nonnegative invariants are respectively \(A+C\) and
+  \(A+2C\). Thus the only unbounded coordinate on a fixed class is
+  \(B\), the zero coordinate of the invariant.
+\item
+  The 192 affine-feasible corrected-cut failures include 48
+  deficiency-zero pairs and the 24 pairs in (2.1). In every failed row,
+  the invariant-zero coordinate is exactly the unique active coordinate.
+\end{enumerate}
+
+The principal exact fingerprints are
+
+\begin{CodeBlock}
+all 432 pairs
+5516d6071b2b9d07b0e4e02613b9caee217ba3ebb0082e21f2bc664e6247ea36
+deficiency-zero 174
+d894c296de7c24e3c855f116228b852ef940b15ac913556ffea9c87e6655a974
+non-DZ / no feasible failure 234
+4c6420ad47c2ee57736484b213595dde69c3734ce20d19ff4f97aeb31ab77d6a
+exceptional 24
+051a641f3987ec93b129ad044d96292a97e536e9ef3d2724234dc4af9bfdef69
+type-I orbit 12
+50804d58a48bb1a2683014442a436761ec0ba0df34af3ef3ac0d1939fe850886
+type-II orbit 12
+cc76d3c7bcc7942f956f1efc8cf0f718ad1e6e08d911f8f8127ebc3cf8c5002f
+invariant manifest
+9dec8108276e9d439c18aacda1ec35d9bac08e097f8833e3446c50b40d8148ca
+failure/invariant alignment
+a9368dd934b7ac6135c3df4866e2322700d3a607dd58f8327aeb709065880ab2
+\end{CodeBlock}
+
+These are support identities only. The analytic implications are proved
+in Sections 4--6.
+
+The authoritative certificate bytes are
+
+\begin{CodeBlock}
+src/active_invariant_orbit_gap_432_certificate.py
+31fa24a20e18546e9c623d3aaf6d3b845c1708d5782f86333c02417fa366cd53
+
+tests/test_active_invariant_orbit_gap_432_certificate.py
+09c434fc162ff33f51e331e298ec2e35407a8e0501f1a3b8d771bf33c2fe708b
+\end{CodeBlock}
+
+Its nine dedicated tests and the combined 22-test replay pass.
+
+\subsection{3. Elementary fourth-power
+estimates}
+
+On any fixed conserved \((A,C)\)-phase, as \(B\to\infty\),
+
+\[
+             G(A,B,C)=B\log B+O(B).                  \tag{3.1}
+\]
+
+If a bounded reaction changes \(G\) by \(u\), then exactly
+
+\[
+ (G+u)^4-G^4=4G^3u+6G^2u^2+4Gu^3+u^4.              \tag{3.2}
+\]
+
+Consequently, uniformly over a finite \((A,C)\)-phase, for all
+sufficiently large \(B\):
+
+\[
+\begin{array}{rcll}
+ u&=&-\log B+O(1)&\Longrightarrow\quad
+          \Delta W\le-cG^3\log B,\\
+ u&=& \log(B+1)+O(1)&\Longrightarrow\quad
+          (\Delta W)^+\le CG^3\log B,\\
+ |u|&\le&C&\Longrightarrow\quad |\Delta W|\le CG^3.
+\end{array}                                          \tag{3.3}
+\]
+
+All constants in (3.1)--(3.3) may depend on the fixed population class
+and rate vector. No uniformity across different classes or rates is
+needed.
+
+We will also use the following elementary random-time criterion.
+
+\begin{quote}
+\textbf{Lemma 3.1 (bounded-depth population Foster rule).} Let a
+nonexplosive CTMC have a proper nonnegative function \(V\) and a finite
+set \(K_0\). Suppose that from every state outside \(K_0\) there is an
+all-clock stopping time \(\tau>0\), ending after between one and
+\(d<\infty\) actual jumps, such that \[
+      \mathbb E_x[V(X_\tau)-V(x)+\tau]\le-1,        \tag{3.4}
+\] and \(V(X_\tau)+\tau\) is integrable. Then the mean hitting time of
+\(K_0\) is finite. On a closed irreducible class the chain is positive
+recurrent.
+\end{quote}
+
+\subsubsection{Proof}
+
+Let \(\sigma_0=0\), and recursively complete the selected episode from
+its actual endpoint. Define \(N\) to be the first positive episode count
+\(j\) for which the path segment from \(\sigma_{j-1}\) through
+\(\sigma_j\) visits \(K_0\); complete that episode only for accounting.
+Conditional summation of (3.4) through \(N\wedge n\) gives
+
+\[
+ \mathbb E V(X_{\sigma_{N\wedge n}})
+ +\mathbb E\sigma_{N\wedge n}
+ +\mathbb E(N\wedge n)\le V(x).                     \tag{3.5}
+\]
+
+Fatou and monotone convergence give \(\mathbb EN<\infty\) and finite
+mean accounting time. Indeed, on \(\{N=\infty\}\), the episode endpoints
+include an infinite subsequence of actual jump times because every
+episode contains at least one jump. Nonexplosion forces
+\(\sigma_n\to\infty\), contradicting the finite expectation obtained
+from (3.5). Thus \(N<\infty\) almost surely, and the actual hit of
+\(K_0\) occurs no later than \(\sigma_N\).
+
+For the recurrence promotion, fix \(o\in K_0\cap\Gamma\), which is
+nonempty by the hitting result. From each of the finitely many
+\(c\in K_0\cap\Gamma\), irreducibility gives a finite actual labelled
+path to \(o\). On the event that each prescribed label fires before
+every competitor, that path is completed. Across the finitely many path
+states, this event has a positive uniform probability and the attempt
+has finite uniform mean duration. The possible first-competitor
+endpoints form a finite set; the preceding hitting bound gives a finite
+uniform mean return from them to \(K_0\cap\Gamma\). Geometric repetition
+gives a finite mean hit of \(o\). A singleton class is already positive
+recurrent. Otherwise, after the first jump from \(o\), the same bound
+gives a finite mean return to \(o\). Hence the closed irreducible class
+is positive recurrent. \(\square\)
+
+\subsection{4. The 174 deficiency-zero
+pairs}
+
+Each directed linkage graph is strongly connected, so the full network
+is weakly reversible. For every positive rate vector, weak reversibility
+and full deficiency zero give a positive complex-balanced vector
+\(c\in(0,\infty)^3\). On a closed irreducible class \(\Gamma\), the
+stochastic product form is
+
+\[
+ \pi_\Gamma(x)=Z_\Gamma^{-1}
+       \prod_{i=A,B,C}{c_i^{x_i}\over x_i!},
+ \qquad x\in\Gamma.                                  \tag{4.1}
+\]
+
+It is normalizable because its mass is bounded by \(\exp(c_A+c_B+c_C)\),
+the full-lattice product-Poisson mass before the constant factors.
+Nonexplosion was proved in Section 1. Thus every closed irreducible
+class is positive recurrent. This is the class-restricted
+Anderson--Craciun--Kurtz deficiency-zero theorem, applied to the full
+two-linkage network, not separately to its linkages.
+
+\subsection{5. The 234 pairs with no feasible corrected-cut
+failure}
+
+We prove a direct generator theorem under the population potential
+(1.1). Suppose, to the contrary, that no finite set supports
+\(\mathcal LW\le-1\) on a fixed class \(\Gamma\). Properness supplies a
+divergent sequence \(x_n\in\Gamma\) with \(\mathcal LW(x_n)>-1\).
+Extract one of the finitely many exact tier/cap descriptors.
+
+Because the sequence lies in one affine stoichiometric class, the
+necessity direction of the exact affine-feasibility theorem makes this
+descriptor feasible. By the defining 234-pair identity it therefore
+satisfies the corrected S-tier-superlevel cut. For every strong
+orientation, that cut gives a D-descending reaction sourced in the
+literal global top S-tier.
+
+Let \(A_n\) be the largest enabled source propensity and let
+\(g_n\to\infty\) be its certified logarithmic D-gap. The exact factorial
+calculation gives
+
+\[
+ \mathcal LG(x_n)\le-cA_ng_n,
+ \qquad \sum_r a_r(x_n)\le CA_n,
+ \qquad |\Delta_rG(x_n)|\le C\log(2+|x_n|_1).        \tag{5.1}
+\]
+
+Using (3.2) reaction by reaction,
+
+\[
+\begin{split}
+ \mathcal LW={}&4G^3\mathcal LG
+ +6G^2\sum_ra_r(\Delta_rG)^2\\
+ &+4G\sum_ra_r(\Delta_rG)^3
+ +\sum_ra_r(\Delta_rG)^4.
+\end{split}                                          \tag{5.2}
+\]
+
+Since \(G(x_n)\asymp |x_n|_1\log(2+|x_n|_1)\), every remainder in (5.2)
+is lower order than \(-G^3A_ng_n\). Hence
+\(\mathcal LW(x_n)\to-\infty\), a contradiction. Therefore
+
+\[
+                         \mathcal LW\le-1            \tag{5.3}
+\]
+
+outside a finite subset of \(\Gamma\). Continuous-time Foster, localized
+at finite \(W\)-sublevels and followed by Fatou, gives finite mean hit
+of that finite set and positive recurrence. This branch has no chart
+exits and no random-potential seam.
+
+\subsection{6. The two exceptional
+orbits}
+
+Relabel an exceptional pair as in (2.1). The invariant makes \(A,C\)
+range over a finite set on every fixed class, while \(B\) is the only
+coordinate that can diverge.
+
+\subsubsection{6.1 Type II: pointwise
+service}
+
+Fix the invariant value
+
+\[
+                         M=A+2C.                     \tag{6.1}
+\]
+
+If \(M=0\), all sources are disabled and each population state is an
+absorbing singleton. Assume \(M>0\). Since both linkage graphs are
+strong, the source \(A+B\) has a positive total rate to \(A\), and the
+source \(B+C\) has a positive total rate to the B-free complexes \(C\)
+or \(2A\). Thus the aggregate rate of B-removing reactions is
+
+\[
+       B(\delta_1A+\delta_2C)\ge c_M B.              \tag{6.2}
+\]
+
+Every such reaction changes \(G\) by \(-\log B+O_M(1)\). All B-creating
+sources are among \(A,C,2A\); their aggregate propensity is bounded by a
+classwise constant. Reactions which do not change B also have bounded
+propensity and bounded \(G\)-increment. Equations (3.3) and (6.2) give
+
+\[
+ \mathcal LW
+ \le-c_M B G^3\log B+C_MG^3\log B+C_MG^3
+ \longrightarrow-\infty.                            \tag{6.3}
+\]
+
+Hence \(\mathcal LW\le-1\) outside a finite set, and ordinary
+continuous-time Foster proves positive recurrence.
+
+\subsubsection{6.2 Type I: activation followed by
+service}
+
+Now fix
+
+\[
+                          M=A+C.                     \tag{6.4}
+\]
+
+The first linkage necessarily contains both arrows
+\(A\rightleftarrows A+B\). Whenever \(A>0\), the B-death rate is
+\(\delta AB\), whereas its B-birth rate is \(\beta A=O_M(1)\). The
+second linkage has no B-coordinate and has total rate \(O_M(1)\).
+Therefore, at a state \(z=(A,B,C)\) with \(A>0\),
+
+\[
+ \mathcal LW(z)
+       \le-c_M B G(z)^3\log B+C_MG(z)^3\log B.      \tag{6.5}
+\]
+
+Its total hazard satisfies
+
+\[
+                   c_M B\le\lambda(z)\le C_M(1+B).  \tag{6.6}
+\]
+
+If \(J\) is the next actual jump and \(T_J\) its holding time, then
+(6.5)--(6.6) imply, for large \(B\),
+
+\[
+ \mathbb E_z[W(X_J)-W(z)+T_J]
+       ={\mathcal LW(z)+1\over\lambda(z)}
+       \le-c'_MG(z)^3\log B.                         \tag{6.7}
+\]
+
+It remains to cover \(A=0\). If \(M=0\), or if \(M=1\) and \(C=1\), no
+complex in either linkage is enabled; the state is an absorbing
+singleton. If \(M\ge2\), the only enabled source is \(2C\). Every
+outgoing target from \(2C\) is either \(2A\) or \(A+C\), because its
+linkage is strong. Thus the first actual jump occurs at a fixed positive
+classwise rate, leaves B unchanged, and lands at a state \(z\) with
+\(A>0\). Its \(G\)-increment is bounded by a classwise constant, and
+hence its \(W\)-increment is at most \(C_MG^3\). Append the next actual
+jump from \(z\). By (6.7),
+
+\[
+ \mathbb E_{(0,B,M)}
+ [W(X_\tau)-W(0,B,M)+\tau]
+ \le C_MG^3-c'_MG^3\log B+C_M\le-1                 \tag{6.8}
+\]
+
+for all sufficiently large \(B\). From \(A>0\), define \(\tau\) to be
+one actual jump; from \(A=0,M\ge2\), define it to be the two jumps in
+(6.8). Every clock is retained. The endpoint changes B by at most one,
+\(A,C\) stay in their finite invariant phase, and the duration has
+finite mean bounded uniformly in B. Thus the endpoint and duration in
+(6.8) are integrable.
+
+The complement of the large-B region is finite on the fixed class. Lemma
+3.1 applied to (6.7)--(6.8) proves positive recurrence of every
+non-singleton type-I class.
+
+\subsection{7. Pair theorem and seam
+disposition}
+
+\begin{quote}
+\textbf{Theorem 7.1 (the exclusive 432-pair orbit).} For every support
+pair in \(\mathcal G\), every strongly connected orientation on its two
+linkage supports, every fixed positive labelled rate vector, and every
+closed irreducible population class, the stochastic mass-action chain is
+nonexplosive and positive recurrent.
+\end{quote}
+
+\subsubsection{Proof}
+
+The exact decomposition in Section 2 is disjoint and exhaustive. Section
+4 handles 174 pairs, Section 5 handles 234, and Section 6 handles the
+final 24. The counts sum to 432. \(\square\)
+
+This proof intentionally supersedes the earlier marked- \(W\)
+drift-or-chart-exit draft. A terminal strongly connected component can
+cycle entirely through chart exits, so common marked potential plus
+unweighted exit circulation is not sufficient. Here the 234 passing
+pairs have statewise population-generator drift, type II has statewise
+direct service, and type I has an unconditional one- or two-jump
+population Foster episode from every large state. No chart exit, cap
+promotion, marked recharge, or weighted terminal seam remains.
+
+\subsection{8. Frozen analytic dependencies and claim
+boundary}
+
+The passing calculation uses the exact analytic statements in:
+
+\begin{CodeBlock}
+research_notes/s_tier_superlevel_cut_and_affine151_corrected.md
+d91f369d34cadfb28ddb872df8fb9f6d17799ec207da29933037f55ae95f0407
+
+research_notes/stoichiometric_gate_feasibility.md
+27b40b61903ae6c2e223d007ec08323ec9aec10e9198deb99d2d7c60d878d007
+
+research_notes/universal_fourth_power_one_active_interface.md
+9d4239f4fc6b45a9522b94b09523c9f98ac7a3b089c919bd9594f12409c78cc2
+\end{CodeBlock}
+
+The deficiency-zero publication scope is independently checked in the
+\href{proof_first_publication_primary_literature_audit.md}{primary-literature
+audit}.
+
+The theorem is pair-level. A final global union must pin the
+authoritative 432 certificate and prove that this orbit and the other
+certified branches cover the intended global support universe with the
+stated precedence.

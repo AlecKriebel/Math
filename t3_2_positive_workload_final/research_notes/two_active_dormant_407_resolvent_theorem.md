@@ -17,10 +17,16 @@ only support identities and the premises of the graph argument.  It does not
 infer a stochastic theorem from a finite box.
 
 The candidate theorem is descriptor-local. It does not by itself certify
-any support pair or T3-2. Independent audit found that Lemma 7.1 is false as
-stated for unbounded spectator starts, and consequently Section 8 does not
-yet close. A start-weighted Green estimate and revised workload accounting
-are required. Accordingly,
+any support pair or T3-2. Independent audit found that the original uniform
+form of Lemma 7.1 and the original pathwise argument in Section 8 were
+false.  A first repair also incorrectly put the actual service endpoint
+inside a uniformly negative entropy drift, and a second repair expanded
+only through finitely many paid interruptions although their count is
+unbounded.  Sections 6--8 now use a start-weighted Green estimate, a
+logarithmic service-boundary majorant with a bounded compact corrector, a
+full weighted Neumann sum over every paid-interruption order, and an
+unweighted boundary charge.  This repair is pending independent re-audit.
+Accordingly,
 analytic_theorem_independently_audited,
 pair_level_recurrence_certified, and global_t3_2_certified remain false.
 
@@ -541,26 +547,63 @@ $$
 L_n=s_n^{1/8}. \tag{6.2}
 $$
 
-Stop at $P$ when $I$, the accumulated nontrivial base displacement, or the
-paid-interruption count first reaches $L_n$.  Include the boundary-causing
-physical reaction in the endpoint.
+The reset convention is part of the stopping rule.  A raw block ends at
+$D,U^\uparrow,P$, or an **exact physical-state** regeneration $N$.
+Only at such an exact return are its paid-interruption count
+$J^{\rm raw}$ and its local absolute-displacement mark $C^{\rm raw}$
+reset.  Every nonexact neutral return remains in the same raw block.  The
+only exception is the pair of macros $\pm\zeta$ in (5.11): those returns
+are lifted to the macrochain of Section 5.3 and their absolute variation
+$A$ is accumulated across the completed episode.  The mark $A$ is never
+reset before $D,U^\uparrow$, or $P$.
+
+Stop at $P$ when one of
+
+$$
+ I,\qquad J^{\rm raw},\qquad C^{\rm raw},\qquad A              \tag{6.2a}
+$$
+
+first reaches $L_n$.  Include the boundary-causing physical reaction in
+the endpoint.  The support exhaustion in Section 4 shows that, through
+resistance $m_-$, every neutral base return is an exact state return except
+for (5.11).  A higher-resistance nonexact return is therefore retained in
+the raw block and in $J^{\rm raw}$; it is not silently regenerated away.
 
 With at most two paid interruptions the explicit phases in Sections 4 and
-5 have bounded displacement, apart from the exceptional birth-death
-coordinate already controlled by (5.5).  Below $L_n$, a binary lower
-propensity contributes at most $CL_n^2$.  Three applications of (5.7) give,
-for every fixed $r$,
+5 have bounded local displacement, apart from the exceptional
+birth--death coordinate controlled by (5.5) and the macro pair controlled
+by Section 5.3.  Their probabilities of reaching $L_n$ before a terminal
+are superpolynomially small.  Below the marks in (6.2a), a binary lower
+propensity, after its primitive source power has been factored out,
+contributes at most $CL_n^2$.  Three stopped applications of (5.7), with
+the continuation kernel bounded only by its total mass, therefore give the
+valid **unweighted** estimate
 
 $$
-\mathbb E[(1+J+I+\tau_n)^r;P\text{ in one raw attempt}]
-\le s_n^{-3+6/8+o(1)}. \tag{6.3}
+\mathbb P(P\text{ in one raw exact-regeneration block})
+\le s_n^{-3+6/8+o(1)}.                              \tag{6.3}
 $$
 
-There are at most $s_n^{m_-+o(1)}\le s_n^{2+o(1)}$ attempts, so
+No all-$r$ endpoint-weighted version of (6.3) is asserted.  In particular,
+three insertions alone would not justify multiplying its left side by an
+arbitrary power of the cutoff.
+
+The exact-regeneration block count has geometric moments and
+
+$$
+ \mathbb E N_{\rm raw}=s_n^{m_-+o(1)}.              \tag{6.3a}
+$$
+
+Thus a conditional union bound gives the contribution of (6.3) to the
+completed episode.  Repetition of nonexact neutral blocks cannot evade
+that union: it occurs only for (5.11), and the geometric-service/bounded-gap
+case and the entropy-negative/divergent-gap case of Section 5.3 give a
+superpolynomial bound for $A\ge L_n$.  Consequently
 
 $$
 \mathbb P(P\text{ in the completed episode})
-\le s_n^{-1/4+o(1)}. \tag{6.4}
+\le s_n^{m_--3+6/8+o(1)}
+\le s_n^{-1/4+o(1)}.                                \tag{6.4}
 $$
 
 At the base, $G_\ell=s_n^{q+o(1)}$.  A strict $h$-decrease gives
@@ -576,16 +619,44 @@ $$
 \le -c\,s_n^{3q+o(1)}(\log s_n)^4. \tag{6.6}
 $$
 
-The completed upward probability is one primitive order smaller.  The
-$r>8$ endpoint estimate in (6.3) charges the included boundary jump and
-gives
+The completed upward probability is one primitive order smaller.  For the
+boundary term no weighted Green assertion is needed.  Before the included
+boundary jump, every paid vector contributes $O(J^{\rm raw})$, every
+nonexact local return contributes $O(C^{\rm raw})$, and the exceptional
+proper phase has active displacement $O(I)$.  The only displacement which
+survives exact regeneration is the macro displacement recorded by $A$.
+Bounded reaction vectors therefore give, pathwise at $P$,
 
 $$
+ |X_{P,U}-x_U|+|X_{P,V}-x_V|
+ \le C(1+I+J^{\rm raw}+C^{\rm raw}+A)\le CL_n.      \tag{6.6a}
+$$
+
+Since $L_n=o(s_n^p)$, the factorial finite-difference identity and the
+included boundary jump imply
+
+$$
+ |\Delta G_\ell|\le CL_n\log s_n,
+ \qquad
+ (\Delta W_\ell)^+
+ \le C\{G_\ell^3L_n\log s_n+(L_n\log s_n)^4\}.     \tag{6.6b}
+$$
+
+Multiplying the deterministic bound (6.6b) by (6.4), and using
+$m_-\le2$ and $L_n=s_n^{1/8}$, gives
+
+$$
+\begin{aligned}
 \mathbb E[(\Delta W_\ell)^+;P]
-\le s_n^{3q-1/8+o(1)}(\log s_n)^4, \tag{6.7}
+&\le G_\ell^3\log s_n\,
+ s_n^{m_--3+7/8+o(1)}+o(G_\ell^3\log s_n)\\
+&\le s_n^{3q-1/8+o(1)}(\log s_n)^4,
+\end{aligned}                                       \tag{6.7}
 $$
 
-which is strictly below (6.6).
+which is strictly below (6.6).  The exponent $-1/8$ is the sum of the
+worst completed boundary-probability exponent $-1/4$ and the deterministic
+endpoint factor $+1/8$.
 
 When $|g_n|\to\infty$, stop also on the entropy-negative macro from Section
 5.3.  Its negative reward is
@@ -636,134 +707,586 @@ physical event.
 
 ### 7.2 One-species Green lemma
 
-**Lemma 7.1 (killed one-species phase).**  Contract exact neutral self-loops
-in the chain (7.1) and kill it on workload service.  From every historically
-consistent positive-debt base, its killed Green kernel satisfies, for each
-fixed $r$,
+Write $u$ for the spectator population at the initial no-fast base; it is
+not replaced by its cap label.  In particular, cap $2$ permits $u$ to
+diverge subpolynomially along a one-active tier.
+
+**Lemma 7.1 (start-weighted killed one-species phase).**  Contract exact
+zero-displacement macros in (7.1), and let $\sigma_0$ be the first workload
+service.  For every historically consistent positive-debt base, every
+fixed $r$, and constants depending on the fixed support, orientation, and
+rates but not on $u$ or the old-active level,
 
 $$
-\sup_n
-\mathbb E\left[
-\sum_{k<\sigma}(1+U_k)^r
-\right]<\infty. \tag{7.2}
+ \mathbb E_u\left[
+   \sum_{k<\sigma_0}(1+U_k)^r+(1+U_{\sigma_0})^r
+ \right]
+ \le C_r(1+u)^{r+1}.                               \tag{7.2}
 $$
 
-The same statement holds with the factorial Foster weight
+For
 
 $$
-H_\theta(u)=\exp\{\theta u\log(u+e)\} \tag{7.3}
+ H_\theta(u)=\exp\{\theta u\log(u+e)\},            \tag{7.3}
 $$
 
-for sufficiently small fixed $\theta>0$.
-
-**Audit failure.** The uniform assertion (7.2) is false when the historically
-consistent spectator start depends on $n$. For
+and $0<\theta'<\theta<1/2$,
 
 $$
-L_+=\{U,I,V+I\},\qquad L_0=\{0,2U,U+I\},
+ \mathbb E_u\left[
+   \sum_{k<\sigma_0}H_{\theta'}(U_k)
+   +H_{\theta'}(U_{\sigma_0})
+ \right]
+ \le C_{\theta',\theta}H_\theta(u).                \tag{7.4}
+$$
+
+Consequently, for $L>u+4$,
+
+$$
+ \mathbb P_u\{\max_{k\le\sigma_0}U_k\ge L\}
+ \le C{H_\theta(u)\over H_{\theta'}(L-4)}.         \tag{7.5}
+$$
+
+The start weight is necessary.  For
+
+$$
+ L_+=\{U,I,V+I\},\qquad L_0=\{0,2U,U+I\},          \tag{7.6}
 $$
 
 with complete strong digraphs, the physical history
 
 $$
-0\to U+I,\quad U\to V+I,\quad I\to U,\quad I\to U
+ 0\to U+I,\quad U\to V+I,\quad I\to U,\quad I\to U
+                                                                    \tag{7.7}
 $$
 
-returns to $I=0$ with positive old-$V$ debt and $U=2$. Repeating the neutral
-move $0\to2U$ yields historically consistent positive-debt bases with
-$U=2+2k$. Choosing $U_n\asymp\log n$ makes the summand in (7.2) diverge.
-Thus the proof below establishes at most a start-weighted factorial Green
-bound; it does not establish (7.2) uniformly. The subsequent use of (7.6)
-and the pathwise service assertion (8.6) must be replaced by a conditional
-start-weighted expectation estimate. No network recurrence counterexample
-is implied by this audit example.
+returns to $I=0$ with positive old-$V$ debt and $U=2$.  Repeating
+$0\to2U$ gives historically consistent bases $U=2+2k$.  Thus the old
+claim $\sup_n\mathbb E\sum(1+U_k)^r<\infty$ was false.  This is a
+counterexample to that quantifier, not to recurrence.
 
-To prove the lemma, decompose the finite neutral complex graph on
-$\mathcal E$ into strongly connected components.  Consider the largest
-enabled $U$-degree $d$ in a linkage.  There is only one $I$-free complex of
-degree $d$.  If it lies in $L_0$, every nontrivial outgoing edge either
-lowers $U$ or enters an $I$-bearing state and is killed by the fast service
-mechanism.  If it lies in $L_+$, an edge through $V+I$ is neutral only when
-the following top edge returns to the same degree-$d$ complex.  Strong
-connectivity then forces a cut from this exact reverse block unless the
-block is the whole proper linkage.  The cut either lowers $U$ at the same
-degree-$d$ source order or gives service.  In the whole-linkage exception,
-apply the same argument to the maximal enabled source of $L_0$.
+To prove the corrected lemma, retain the actual service endpoint and
+write every contracted base transition as
 
-It follows that, in any nontrivial closed service-free neutral component,
-a negative population clock has the maximal mass-action order, while every
-positive population jump is sourced at a lower degree.  The generator
-applied to (7.3) is therefore strictly negative outside a fixed set.  A
-singleton component consists only of exact zero-displacement loops; either
-a strong-connectivity cut kills it geometrically, or it is a
-history-free/frozen class and no positive old-active debt episode is
-started there.  Transient components reach one of these alternatives after
-a geometrically bounded number of component changes.  This proves (7.2)
-and the factorial tail without selecting a reaction word.
+$$
+ a\longrightarrow b\quad\hbox{at rate }c_{ab}(u)_{\underline a},
+ \qquad a,b\in\{0,1,2\},                            \tag{7.8}
+$$
 
-This is the point at which arbitrary orientations matter.  The argument
-uses only the maximal source degree and the directed cut forced by strong
-connectivity; it does not assume a preferred cycle.
+or as a service mark at rate $c_{a\dagger}(u)_{\underline a}$.  Here a
+proper macro $aU\to V+I\to bU$ is included in $c_{ab}$; the common
+$V+I$ source makes its exit probabilities independent of the old-active
+level.  Exact $a=b$ macros have already been contracted.
+
+Let $d$ be the largest source degree among the remaining nontrivial macros
+and service marks.  There is one $I$-free complex of degree $d$.  If it is
+in $L_0$, strong connectivity forces a nonself edge either to a smaller
+$I$-free degree or to an $I$-bearing state, which gives service at the next
+fast firing.  If it is in $L_+$, apply the same cut argument to the safe
+block $\{dU,V+I\}$.  A cut lowers the base population at source order $d$
+or gives service.  If the block is the whole proper linkage, move to the
+maximal $I$-free source of $L_0$.  The exact support exhaustion has
+seventeen such proper pairs,
+
+$$
+ \{0,V+I\}:6,\qquad \{U,V+I\}:5,\qquad
+ \{2U,V+I\}:6,                                      \tag{7.9}
+$$
+
+and every one has an $I$-free source in $L_0$.  Hence the second cut is
+always available.
+
+It follows that a negative or killed transition has source degree $d$,
+while every positive transition has source degree at most $d-1$.  For a
+bounded jump $j$,
+
+$$
+ {H_\theta(u+j)\over H_\theta(u)}=O(u^{\theta j}). \tag{7.10}
+$$
+
+After division by the total contracted rate, the negative/killed clock
+has probability bounded below, whereas all positive contributions to the
+$H_\theta$ drift are $O(u^{-1+2\theta})$.  Thus the embedded kernel
+contracts $H_\theta$ outside a finite set when $\theta<1/2$.  Applied to
+$(1+u)^{r+1}$, the same calculation gives drift at most
+$-c(1+u)^r$.  This proves (7.2)--(7.5) once the finite set is killed
+transiently.
+
+There is no hidden singleton exception.  Any positive-debt no-fast return
+ends at an $I$-free target $bU$ which is enabled at its endpoint.  A
+directed path in its linkage from $bU$ to an $I$-bearing complex supplies
+service.  If no such path exists, the interruption which allegedly
+created positive old-active debt could not have returned to that class.
+Thus an exact-zero singleton is either killed by a directed cut or is a
+frozen/no-history class.  It is never an initial state of the lemma.  The
+killed Green matrix on the remaining finite set is transient, uniformly
+after first entrance, and completes the Foster proof for arbitrary strong
+orientations.
+
+The same calculation supplies the weaker entropy estimate actually needed
+below.  For the arbitrary fixed common vector $\ell$, put
+
+$$
+ B_\ell(u)=\log(u!)+\ell_Uu.                        \tag{7.11}
+$$
+
+An $O(1)$ bound with the actual service endpoint inside the one-step drift
+is false.  Indeed, take
+
+$$
+ L_+=\{2U,V+I\},\qquad L_0=\{0,I,2I,U+I\}.          \tag{7.11a}
+$$
+
+Orient the proper pair in both directions and orient the lower linkage by
+the strong cycle $0\to I\to2I\to U+I\to0$.  After the exact proper
+self-macro is contracted, the lower firing $0\to I$ followed by the fast
+service $V+I\to2U$ sends the base coordinate $u$ to the actual service
+endpoint $u+2$.  Consequently
+
+$$
+ B_\ell(u+2)-B_\ell(u)
+ =\log((u+1)(u+2))+2\ell_U
+ =2\log u+O(1).                                     \tag{7.11b}
+$$
+
+This refutes the previous assertion that the service-including drift is
+negative outside a compact set.  It does not refute the killed Green
+estimate: this transition is the terminal workload service itself.
+
+Keep the actual endpoint and pay exactly this logarithmic loss.  Let $Q$
+be the substochastic continuation kernel before service and let $S$ be the
+terminal service kernel, including the actual spectator coordinate after
+the service macro.  Put
+
+$$
+ L(u)=\log(u+e),\qquad h_C(u)=B_\ell(u)+C L(u).      \tag{7.12}
+$$
+
+For $C$ sufficiently large, the maximal-source cut used above gives
+
+$$
+ Qh_C(u)+SB_\ell(u)-h_C(u)<0                       \tag{7.13}
+$$
+
+outside a finite set.  Here is the complete large-$u$ comparison.  Every
+contracted jump is bounded.  If a degree-$d$ service mark is present, its
+actual endpoint contributes at most $j_*\log(u+e)+O(1)$ to $B_\ell$, while
+the absence of the $CL$ term at the service boundary contributes
+$-C\log(u+e)$.  Its normalized probability is bounded below, so choosing
+$C>j_*$ dominates this endpoint cost.  If there is no degree-$d$ service
+mark, the cut supplies a degree-$d$ descending continuation, whose
+$B_\ell$ increment is $-c\log(u+e)+O(1)$.  Every positive continuation or
+service mark then has source degree at most $d-1$, so its total normalized
+contribution is only $O(u^{-1}\log(u+e))$.  Mixed maximal-degree service
+and descent only strengthens the same inequality.  For $d=0$ there is no
+positive lower-degree transition.  These alternatives are exhaustive by
+the cut proof preceding (7.10).
+
+Let
+
+$$
+ g(u)=\bigl[Qh_C(u)+SB_\ell(u)-h_C(u)\bigr]_+.
+$$
+
+By (7.13), $g$ has finite support.  The finite-set killed transience gives
+the bounded resolvent corrector
+
+$$
+ \chi(u)=\mathbb E_u\sum_{k<\sigma_0}g(U_k),
+ \qquad \chi=g+Q\chi,qquad \|\chi\|_\infty<\infty. \tag{7.14}
+$$
+
+Consequently
+
+$$
+ Q(h_C+\chi)+SB_\ell-(h_C+\chi)
+ =Qh_C+SB_\ell-h_C-g\le0.                          \tag{7.14a}
+$$
+
+Iteration keeps the exact terminal payoff $B_\ell(U_{\sigma_0})$ and gives
+
+$$
+ \mathbb E_u[B_\ell(U_{\sigma_0})-B_\ell(u)]
+ \le C\log(u+e)+\|\chi\|_\infty.                  \tag{7.14b}
+$$
+
+The logarithmic majorant and bounded function $\chi$ are only proof
+correctors.  Neither is added to $G_\ell$ or $W_\ell$; the actual physical
+endpoint, common potential, and exact seam telescoping are unchanged.
 
 ### 7.3 All-reaction perturbation and endpoint moments
 
 During a top excursion with $I>0$, the dominant clock is
-$\Theta(nI)$.  On a stopped set $U\le L$, the total lower clock is at most
-$C(1+U+I)^2$.  The weighted Green estimate (7.2) therefore gives
+$\Theta(nI)$.  Along a one-active tier the initial spectator is
 
 $$
-\left\lVert
-G_n^{\mathrm{nf}}B_n
-\right\rVert_{r\to r}
-\le n^{-1+o(1)} \tag{7.4}
+ u=u_n=n^{o(1)};                                    \tag{7.15}
 $$
 
-for the operator that inserts a lower interruption into an uncleared top
-excursion.  Expanding at the first such interruption is an exact
-all-reaction resolvent identity with nonnegative coefficients, just as in
-(5.8).
-
-A zero-interruption return cannot increase $V$: a lower entry into $V+I$
-adds one $V$, and return to $I=0$ requires a $V+I$ firing that removes it.
-Thus an upward old-active return contains at least one operator $B_n$.
-Equations (7.2)--(7.4) give a fixed conditional service probability and
+this, rather than a uniform bound in $u$, is the exact tier input.  Set
 
 $$
-\mathbb P(U^\uparrow)\le n^{-1+o(1)}. \tag{7.5}
+ L_n=\lfloor n^{1/3}\rfloor.                       \tag{7.15a}
 $$
 
-Endpoint multiplication in the same resolvent gives
+Let $J$ count **all** paid lower firings, not a fixed truncation.  Before
+the first old-active service put
 
 $$
-\mathbb E[(1+U_\sigma+I_\sigma+R_\sigma)^r;E]
-\le C_r\mathbb P(E) \tag{7.6}
+ R=V-n.                                             \tag{7.15b0}
 $$
 
-for every fixed $r$, hence for arbitrary $r>8$.  Exponential holding-time
-moments and (7.2) also give every fixed moment of the physical duration,
-uniformly $O(1)$ in $n$; fast top holding times are $O(n^{-1})$.
+This is a nonnegative reserve, not an abstract debt mark.  The only
+$V$-bearing complex is $V+I$.  Consequently a lower firing whose source is
+not $V+I$ cannot decrease $R$ and can raise it by at most one, whereas
+every $V+I$ firing lowers $R$ by one.  If such a fast firing occurs at
+$R=0$, it is the terminal old-active service.  At a service endpoint we
+set the stopped proof mark $R_\sigma=0$; at an upward endpoint it is the
+actual active overshoot $V_\sigma-n$.
+
+Stop at the auxiliary boundary $B_n$ if $I$, $J$, or $R$ first reaches
+$L_n$, or if $U$ reaches $L_n$ anywhere other than the exact service-free
+base return used for the promotion boundary $P_n$ in Section 8.  Include
+the boundary-causing physical firing.  Until $B_n\cup P_n$,
+
+$$
+ U,I,J,R\le L_n+O(1).                              \tag{7.15b}
+$$
+
+There is a useful exact clock bound which does not require a false
+linear-source assertion.  The finite support menu has molecularity at most
+two.  It actually contains quadratic $I$-increasing paid edges, for example
+$2U\to2I$ in
+
+$$
+ L_+=\{U,I,V+I\},\qquad L_0=\{0,2U,2I\}.           \tag{7.15c}
+$$
+
+The lower strong cycle $0\to2U\to2I\to0$ contains the quadratic birth
+explicitly.  Exhausting the 146 support templates gives 705 possible
+ordered $I$-increasing lower edges, 253 of them with quadratic source.
+Thus the claim that every $I$-increasing paid source has
+molecularity at most one would be false.  The true uniform estimates are
+sufficient.  If
+$\lambda_f$ is the total $V+I$ clock, $\lambda_p$ the total paid lower
+clock, and $\lambda_+$ its $I$-increasing part, then
+$V=n+O(R)\ge n/2$ on the stopped region for all large $n$.  Hence, for
+$I\ge1$,
+
+$$
+\begin{aligned}
+ \lambda_f&\ge c nI,\\
+ \lambda_p&\le C(1+U+I)^2,\\
+ \lambda_+&\le C\{(1+U)^2+(1+U)I\}.
+\end{aligned}                                                   \tag{7.15d}
+$$
+
+Consequently, throughout (7.15b),
+
+$$
+ {\lambda_p\over\lambda_f}\le Cn^{-1/3},\qquad
+ {\lambda_+\over\lambda_f}
+ \le {Cn^{-1/3}\over I}.                           \tag{7.15e}
+$$
+
+The second inequality uses $I\le L_n$: the extra $n^{-2/3}$ term from
+$(1+U)I/(nI)$ is at most $n^{-1/3}/I$.  It gives a factorial cost for
+successive cofactor increases even though quadratic birth edges exist.
+
+We now sum the full ordered expansion.  Let $\tau_1$ be the first paid
+firing and let $\sigma$ be the terminal or auxiliary stop.  Compensation
+and (7.2), with a sufficiently high but fixed polynomial weight, give
+
+$$
+\begin{aligned}
+ \mathbb P_u(\tau_1<\sigma)&\le {C(1+u)^a\over n},\\
+ \mathbb E_u[(1+U_{\tau_1})^{r+1};\tau_1<\sigma]
+ &\le {C_r(1+u)^{b_r}\over n}.
+\end{aligned}                                                   \tag{7.16}
+$$
+
+This retains the decisive first-event factor $n^{-1+o(1)}$.  It is not
+replaced by the weaker uniform bound in (7.15e).  Before $\tau_1$, a
+zero-paid top excursion has uniformly bounded $I$ and $R$, and the first
+paid reaction vector is bounded.  Thus the second line of (7.16) also
+controls every fixed mark used below at the state just after $\tau_1$.
+
+The continuation estimate is made on a hybrid skeleton; it is not a
+pointwise clock estimate pasted onto a whole-phase kernel.  At
+$(I,R)=(0,0)$, contract only the zero-paid neutral entry/cleanup macros of
+Lemma 7.1.  As soon as $I>0$, expose every physical firing until service,
+an exact neutral base return, or a boundary.  In particular, every
+**nonterminal** fast firing has
+
+$$
+ \Delta R=-1,\qquad \Delta I\le1,                 \tag{7.16a}
+$$
+
+and a fast firing from $R=0$ belongs to the terminal kernel.
+
+Here is the marked inequality on that skeleton.  Fix $r$ and let $j_*$
+bound one physical $U$-jump.  Let $\kappa_r\ge0$ be the bounded resolvent
+corrector supplied by the finite-set part of the base cut calculation and
+put
+
+$$
+ \phi_r(u)=D_r+(1+u)^{r+1}+\kappa_r(u).           \tag{7.16b}
+$$
+
+Enlarge $D_r$ after the corrector is added.  Then
+
+$$
+ \sup_{u\ge0,\ |j|\le j_*}
+ {\phi_r((u+j)^+)\over\phi_r(u)}\downarrow1
+ \quad\hbox{as }D_r\uparrow\infty.               \tag{7.16c}
+$$
+
+Choose fixed numbers
+
+$$
+ 1<z_0<z_1,\qquad 1<a_I<a_R,                      \tag{7.16d}
+$$
+
+all sufficiently close to one, and $D_r$ sufficiently large, so that for
+some $\varepsilon>0$
+
+$$
+ {a_I\over a_R}
+ \sup_{u,|j|\le j_*}{\phi_r((u+j)^+)\over\phi_r(u)}
+ \le1-4\varepsilon.                               \tag{7.16e}
+$$
+
+The choices are made in this order: first make the jump ratio in
+(7.16c) close to one, next choose $a_R/a_I$ across that ratio, and finally
+take $a_I-1$ and $z_1-1$ still smaller.  Thus an opened zero-paid service
+mark, which has a uniformly bounded cofactor, retains a fixed fraction of
+the killed base drift, while every paid mark multiplier remains as close
+to one as required below.
+
+This asymmetric choice is essential.  For example, in the exact template
+$L_+=\{0,I,2I,V+I\}$, $L_0=\{U,2U\}$, orient
+$0\to I\to V+I\to2I\to0$ and $U\leftrightarrow2U$.  After $k$ paid
+$I\to V+I$ firings, successive zero-paid $V+I\to2I$ firings send
+$(I,R)=(1+t,k-t)$.  Thus the previously used symmetric mark
+$a_0^{I+R}$ is constant for $k$ physical steps and has no strict drift.
+It is withdrawn.
+
+Let $\mathcal K_n$ denote one continuation step of the hybrid skeleton and
+$\mathcal S_n$ its terminal kernel, including the boundary-causing
+physical firing.  For a fixed large constant $A_r$, define the interior
+mark and the **actual terminal reward** by
+
+$$
+\begin{aligned}
+ \Psi_r(U,I,J,R)&=A_r z_1^J a_I^I a_R^R\phi_r(U),\\
+ \Phi_r(U,I,J,R)&=z_0^J(1+U+I+R)^r.
+\end{aligned}                                                   \tag{7.16f}
+$$
+
+The reward $\Phi_r$ is evaluated at the physical terminal endpoint, not
+at the state before service.  Exponential gaps in $J,I,R$, the extra
+power in $\phi_r$, and then $A_r$ make every bounded terminal jump satisfy
+the required comparison with $\Psi_r$.
+
+We verify the two pieces separately.  At $I>0$, (7.15e) says that the
+next firing is paid with probability at most $Cn^{-1/3}$.  On a
+nonterminal fast firing, (7.16a) and (7.16e) give a continuation-mark ratio
+at most $1-4\varepsilon$.  The constant $A_r$ is chosen so that the actual
+$\Phi_r$ reward of every fast terminal step is at most
+$(1-4\varepsilon)\Psi_r$; this includes the service firing from $R=0$.
+A paid firing has a fixed mark multiplier
+$m_*$, because all reaction vectors are bounded.  Hence, for all large
+$n$, the physical top-step kernel obeys
+
+$$
+ \mathcal K_n^{\rm top}\Psi_r+
+ \mathcal S_n^{\rm top}\Phi_r
+ \varepsilon\Psi_r\le\Psi_r.                     \tag{7.16g}
+$$
+
+At $(I,R)=(0,0)$ use the contracted kernel of Lemma 7.1.  A zero-paid
+neutral entry creates one unit each of $I$ and $R$, and its fast cleanup
+removes both; their asymmetric marks cancel exactly, leaving the same
+contracted $U$-transition as in Lemma 7.1.  A zero-paid service mark is
+opened one physical step early when necessary.  It enters with $R=0$ and
+bounded $I$, so the ordered choice after (7.16e), followed by (7.16g),
+retains the maximal-degree killing in the proof of (7.2).  During either
+opened macro, the chance of a paid firing before the fast cleanup or
+service is at most
+$C(1+U)^2/n$.  Relative to the negative
+$-c(1+U)^r$ base drift, its mark-only and bounded-$U$-jump errors are,
+respectively,
+
+$$
+ C(m_*-1){(1+U)^3\over n}(1+U)^r,
+ \qquad
+ C{(1+U)^2\over n}(1+U)^r.                        \tag{7.16h}
+$$
+
+On $U\le L_n$, the two displayed ratios are at most
+$C(m_*-1)$ and $Cn^{-1/3}$.  The parameters in (7.16d) can be chosen close
+enough to one that the first is smaller than one quarter of the base
+drift; the second is $o(1)$.  The bounded compact corrector already folded
+into $\phi_r$ handles the remaining states.  This comparison also covers
+the apparent loss of a killed macro.  On a neutral macro, the unmarked
+continuation value is already present in the contracted kernel, so only
+the mark excess and the bounded $U$-difference in (7.16h) are new.  On a
+service macro, replacing the fast service by a paid continuation loses at
+most $C(1+U)^2/n$ of a killing term of order $\phi_r(U)$; this is
+$O(n^{-1/3})$ relative to that same maximal-degree killing.  Thus the
+contracted base piece and (7.16g) combine to the genuine physical-step
+Foster--Feynman--Kac inequality
+
+$$
+ \mathcal K_n\Psi_r+\mathcal S_n\Phi_r
+ +c_r\!\left[
+   {\bf1}_{\{I=0\}}z_1^J(1+U)^r
+   +{\bf1}_{\{I>0\}}\Psi_r
+ \right]
+ \le\Psi_r.                                       \tag{7.16i}
+$$
+
+There is no cap on $J$ in (7.16i), and the actual service, upward, and
+boundary endpoints all occur in $\mathcal S_n\Phi_r$.
+
+For completeness, the exact ordered history expansion is
+
+$$
+ \mathsf P_n=A_{n,0}
+ +K_{n,0}\sum_{k=0}^{\infty}K_n^kA_n.             \tag{7.16j}
+$$
+
+Here $K_{n,0}$ is the first paid operator, $K_n$ every subsequent paid
+operator, and $A_{n,0},A_n$ terminate before the next paid clock.  No small
+norm is asserted for an entire zero-paid return phase.  Instead, iterate
+(7.16i) from the state immediately after $\tau_1$ and use (7.16).  This
+justifies the series and gives
+
+$$
+ \sum_{k\ge1}z_0^{k-1}
+ \mathbb E_u[(1+U_\sigma+I_\sigma+R_\sigma)^r;J=k]
+ \le {C_r(1+u)^{b_r}\over n}.                      \tag{7.16k}
+$$
+
+Thus no remainder with $J\ge3$, or with any other fixed value of $J$, is
+discarded.  In particular,
+
+$$
+\begin{aligned}
+ \mathbb P_u(J\ge k)
+ &\le {C(1+u)^a\over n}z_0^{-(k-1)},\\
+ I_{\max}+R_{\max}
+ &\le r_*(1+J)\quad\hbox{before termination}.
+\end{aligned}                                                   \tag{7.16l}
+$$
+
+The deterministic inequality is exact: $R$ starts at zero, a zero-paid
+entry creates at most one reserve unit, only a paid firing can create
+another, and every nonterminal fast firing consumes one.  A paid firing
+changes $I$ by a bounded amount, while every fast increase of $I$ consumes
+one of those reserve units.  Thus total $I,J,R$ have exponential tails.
+The sharper $1/I$ bound in (7.15e) additionally gives the factorial factor
+$(Cn^{-1/3})^{(k-1)_+}/(k-1)_+!$ after the first paid event for histories
+with $k$ record-setting **paid** cofactor births.  Fast cofactor increases
+are instead charged to the reserve they consume.  That refinement is not needed
+below.  Applying (7.16i) also before $\tau_1$ and using (7.16k) on
+$\{J\ge1\}$ proves for every fixed $r$ that
+
+$$
+\begin{aligned}
+ \mathbb E_u[(1+U_\sigma+I_\sigma+J+R_\sigma)^r]
+   &\le C_r(1+u)^{a_r}=n^{o(1)},\\
+ \mathbb E_u[(1+U_\sigma+I_\sigma+J+R_\sigma)^r;
+                 U^\uparrow]
+   &\le {C_r(1+u)^{a_r}\over n}=n^{-1+o(1)}.
+\end{aligned}                                                   \tag{7.17}
+$$
+
+A zero-paid return cannot increase $V$: entry into $V+I$ adds one $V$,
+and a return to $I=0$ uses a $V+I$ firing which removes it.  Hence an upward
+old-active return contains $K_{n,0}$, and the all-order bound (7.16k)
+preserves the first $n^{-1}$ in the second line of (7.17).
+
+The same sum proves the physical-duration statement.  If $T_j$ is the
+duration of the $j$th zero-paid block, its fixed moments satisfy the same
+weighted Green bounds.  The inequality
+
+$$
+ \left(\sum_{j=0}^{J}T_j\right)^r
+ \le (J+1)^{r-1}\sum_{j=0}^{J}T_j^r
+$$
+
+and the exponential $J$ moment in (7.16k)--(7.16l), together with the
+occupation term in (7.16i), imply
+
+$$
+ \mathbb E_u\sigma^r\le C_r(1+u)^{a_r}=n^{o(1)}.   \tag{7.17a}
+$$
+
+Finally extend $h_C+\chi$ to each top phase by its zero-order
+harmonic interpolation, using $B_\ell$ at an actual service boundary; call
+the extension $\widehat h$.  A paid physical firing has positive
+$\widehat h$ increment at most $C\log n$ before the boundary.  The first
+insertion estimate and the full series, not a finite hierarchy, give
+
+$$
+\begin{aligned}
+ \mathbb E_u\sum_{j\le J}(\Delta_j\widehat h)^+
+ &\le {C(1+u)^a\log n\over n}
+       \sum_{k\ge1}kz_0^{-(k-1)}\\
+ &=n^{-1+o(1)}\log n=o(1).
+\end{aligned}                                       \tag{7.18}
+$$
+
+Apply (7.14a) at every zero-paid block.  Since
+$h_C+\chi\ge B_\ell$ at a nonservice stop and actual service uses the
+terminal payoff $B_\ell$, (7.18) yields
+
+$$
+ \mathbb E_u[B_\ell(U_\sigma)-B_\ell(u)]
+ \le C\log(u+e)+\|\chi\|_\infty+o(1),
+ \qquad
+ \mathbb P_u(U^\uparrow)=n^{-1+o(1)}.              \tag{7.19}
+$$
+
+No raw uniform $O(1)$ entropy-endpoint, polynomial-endpoint, or duration
+claim is made for an unbounded spectator start.  Since $u=n^{o(1)}$,
+$\log(u+e)=o(\log n)$; this is exactly the loss allowed in Section 8.
 
 ## 8. Moving spectator boundary and exact handoff
 
-Set
+Keep $L_n$ from (7.15a).  Stop the one-active kernel on workload service
+$D$, an upward return $U^\uparrow$, the first service-free neutral return
+$P_n$ to $I=0$ with $U\ge L_n$, or the auxiliary boundary $B_n$ of
+Section 7.3.  Every stopping rule includes its boundary-causing physical
+firing.  Since all reaction vectors are bounded, each overshoot is $O(1)$.
+
+For $u=u_n=n^{o(1)}$, use (7.17) with an arbitrarily large fixed
+polynomial order $q$.  Because the boundary-causing firing is included,
+$U_\sigma\ge L_n$ on $P_n$ and on the $U$-part of $B_n$.  Write their
+union as $\partial_n^U$.  For every prescribed $M$, choose $q>3M$;
+Markov's inequality gives
 
 $$
-L_n=\lfloor n^{1/3}\rfloor. \tag{8.1}
+ \mathbb P_u(\partial_n^U)
+ \le {C_q(1+u)^{a_q}\over L_n^q}
+ =n^{-q/3+o(1)}=O(n^{-M}).                         \tag{8.2}
 $$
 
-Stop the one-active kernel on workload service, an upward return, or the
-first service-free neutral return to $I=0$ with $U\ge L_n$.  The stopping
-time includes every physical firing in the boundary-causing macro.  Since
-all reaction vectors are bounded, the overshoot is $O(1)$.
-
-The factorial Foster estimate (7.3) gives constants $c,C>0$ such that
+The same actual-terminal reward in (7.16f), rather than a pre-boundary
+state, gives
 
 $$
-\mathbb P(P\text{ before service})
-\le C\exp\{-cL_n\log L_n\}. \tag{8.2}
+ \mathbb P_u(B_n\text{ through }I,J,\text{ or }R)
+ \le {C_q(1+u)^{a_q}\over L_n^q}=O(n^{-M}).        \tag{8.2a}
 $$
 
-At the boundary,
+These are all-reaction estimates: paths with arbitrarily large finite $J$
+have already been summed.  The exponential $J,I,R$ tails in (7.16l) are
+stronger for those three marks, but are not needed for the fourth-power
+boundary charge.
+
+On the promotion boundary $P_n$,
 
 $$
 U=n^{1/3+o(1)},\qquad V=n^{1+o(1)},\qquad I=0. \tag{8.3}
@@ -778,28 +1301,101 @@ $$
 +C(L_n\log n)^4. \tag{8.4}
 $$
 
-Multiplying (8.4) by (8.2) shows
+The same deterministic bound holds on $B_n$, because every coordinate,
+the reserve mark, and the paid-event count are at most $CL_n$ after the
+included boundary jump.
+Multiplying (8.4) by (8.2)--(8.2a) shows
 
 $$
-\mathbb E[(\Delta W_\ell)^+;P]
+\mathbb E[(\Delta W_\ell)^+;P_n\cup B_n]
 =o(G_\ell(x)^3\log n). \tag{8.5}
 $$
 
 Thus no part of the entry jump or of the accumulated spectator displacement
 is deferred or omitted.  It is charged by the first kernel under the same
-$W_\ell$.
+$W_\ell$.  Only $P_n$ is used for the exact hard-row handoff; $B_n$ is an
+auxiliary event whose full positive cost is already negligible in (8.5).
 
-On a strict workload-service terminal, the weighted source order
-$3v+u$ decreases by at least one.  Therefore
+There is no pathwise weighted-order descent at service.  In the support
+pair (7.6), with complete strong digraphs, the service path
 
 $$
-\Delta\mathcal F_\ell
-\le -c\log n+O(1), \tag{8.6}
+ 0\to2U,\qquad 0\to U+I,\qquad V+I\to U            \tag{8.5a}
 $$
 
-and the negative fourth-power contribution is
-$-cG_\ell^3\log n$.  Equations (7.5), (7.6), and (8.5) make every positive
-terminal lower order.  The physical duration is also lower order.  Hence
+takes $(U,I,\Delta V)$ from $(0,0,0)$ to $(4,0,-1)$, and hence
+
+$$
+ \Delta(3V+U)=1.                                   \tag{8.5b}
+$$
+
+Longer neutral spectator excursions can also make the raw factorial
+increment positive on an individual service path.  Thus neither
+$3v+u$ nor $\mathcal F_\ell$ is used pathwise here.
+
+Instead set
+
+$$
+ Y_n=G_\ell(X_{\sigma_n})-G_\ell(x).               \tag{8.5c}
+$$
+
+On a zero-interruption service, the first strict old-active descent has
+$V=n-1$ and contributes $-\log n+O(1)$.  A positive old-active endpoint
+contains a paid interruption and is controlled by the second line of
+(7.17); a promotion endpoint is neutral in $V$.  Equations (7.14a),
+(7.18), (7.19), and (8.2)--(8.5) control the entire spectator entropy in
+expectation, including the actual service endpoint and starts
+$u_n\to\infty$.  Its positive contribution is
+$O(\log(u_n+e))=o(\log n)$.  The cofactor endpoint is bounded in the
+zero-interruption phase and has event-weighted polynomial moments after an
+interruption.  Therefore
+
+$$
+ \mathbb E Y_n
+ \le-\mathbb P(D)\log n+O(\log(u_n+e))
+       +n^{-1+o(1)}\log n
+ \le-\tfrac12\log n,                               \tag{8.6}
+$$
+
+Indeed, the service probability follows explicitly from
+$$
+ \mathbb P(D)=1-\mathbb P(U^\uparrow)
+                -\mathbb P(P_n)-\mathbb P(B_n)=1-o(1),          \tag{8.6a}
+$$
+
+where (7.17), (8.2), and (8.2a) bound the three subtracted terms.  For the
+three remaining Taylor orders, on a nonboundary endpoint and $j\le4$,
+
+$$
+ |Y_n|^j\le C_j\left\{
+ (1+I_\sigma+R_\sigma)^{2j}(\log n)^{2j}
+ +(U_\sigma\log(U_\sigma+e))^j
+ +(u\log(u+e))^j+1\right\}.                        \tag{8.6b}
+$$
+
+The endpoint estimate (7.17) is available with an exponent $r>8$, and
+$(z\log(z+e))^j\le C_j(1+z)^{2j}$.  The boundary contribution is smaller
+than every power by the deterministic bound (8.4) and the probabilities
+(8.2)--(8.2a).  Therefore the full, untruncated
+all-reaction kernel satisfies
+$$
+ \mathbb E|Y_n|^j=n^{o(1)},\qquad j=2,3,4.          \tag{8.6c}
+$$
+
+Since $u=n^{o(1)}$ and $I=0$ initially,
+$G_\ell(x)=(1+o(1))n\log n$.  The exact fourth-power identity now gives
+
+$$
+\begin{aligned}
+\mathbb E[W_\ell(X_{\sigma_n})-W_\ell(x)]
+={}&4G_\ell(x)^3\mathbb EY_n
+ +6G_\ell(x)^2\mathbb EY_n^2\\
+&+4G_\ell(x)\mathbb EY_n^3+\mathbb EY_n^4\\
+\le{}&-cG_\ell(x)^3\log n.
+\end{aligned}                                       \tag{8.6d}
+$$
+
+The duration bound $n^{o(1)}$ from Section 7.3 is lower order.  Hence
 
 $$
 \mathbb E_x[
@@ -807,7 +1403,7 @@ W_\ell(X_{\sigma_n})-W_\ell(x)+\sigma_n]
 \longrightarrow-\infty. \tag{8.7}
 $$
 
-Finally, the exact map of Section 2.3 identifies the endpoint of $P$ with
+Finally, the exact map of Section 2.3 identifies the endpoint of $P_n$ with
 one of the 317 hard dormant targets.  The second kernel starts at that same
 physical state, with the same rate vector, $\ell$, $K_\ell$, and
 $W_\ell$.  Consequently the two increments telescope exactly:
@@ -833,14 +1429,25 @@ linkage supports:
    moments of every fixed order, including an arbitrary exponent $r>8$;
 3. its moving-boundary remainder is lower order for the one common
    fourth-power factorial entropy $W_\ell$, for arbitrary fixed $\ell$;
-4. each of the 951 generalized Family-II one-active rows has a killed
-   one-species no-fast resolvent with factorial endpoint tails and a charged
-   spectator-promotion boundary; and
+4. each of the 951 generalized Family-II one-active rows has a
+   start-weighted killed one-species resolvent, polynomial moments
+   $n^{o(1)}$ along every one-active tier, a logarithmic service-boundary
+   majorant with bounded compact corrector, an
+   $O(\log(u+e))=o(\log n)$ actual endpoint charge, and a charged
+   spectator-promotion boundary; all paid-interruption orders are summed by
+   the physical-step inequality (7.16f)--(7.16i) and its iteration
+   (7.16k); and
 5. that boundary lands, including its entry macrojump, in the exact mapped
    hard $(1,3,0)$ row, so the two physical kernels compose under the same
    $W_\ell$.
 
-Together with the existing exact-Family-II, direct-service, and
+The false uniform Green, service-including uniformly negative entropy
+drift, finite-$J$ truncation, linear-only cofactor-birth premise, symmetric
+$a_0^{I+R}$ strict drift, pathwise $3V+U$, and weighted all-$r$
+three-insertion statements have all been withdrawn explicitly; none is a
+premise of this repaired theorem.
+Together with the existing
+exact-Family-II, direct-service, and
 open-wholly-top one-active predicates, item 4 covers the one-active
 dimension on all 333 hard pairs.  This still does not set a pair-level or
 global recurrence flag: an independent audit of Sections 4--8 and the

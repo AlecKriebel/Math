@@ -1,43 +1,67 @@
-# T3-2 positive-workload final repair
+# Positive recurrence for three-species binary networks
 
-This directory is an adversarial repair workspace for the proposed theorem
-that every finite bimolecular weakly reversible stochastic mass-action network
-with at most three dynamically active species and at most two active linkage
-classes is positive recurrent on each closed communicating class.
+This research package proves the following theorem.
 
-The inherited candidate release is preserved under `inherited/`. Its finite
-atlas and local aggregate-debt calculation remain useful, but its global
-certification claim is withdrawn while the tight-environment and
-trace-to-physical-time interfaces are reworked.
+> Every finite weakly reversible stochastic mass-action network whose
+> complexes have total molecularity at most two, with at most three species
+> and at most two linkage classes, is nonexplosive. Every state in every
+> closed irreducible population class is positive recurrent, for every
+> positive rate vector.
 
-The active research record is `RESEARCH_LOG.md`; the current certification
-state is `STATUS.md`. Three new exact-scope physical-time results are recorded
-in `research_notes/certified_exact_shielded_seam.md`,
-`research_notes/signed_service_seam_full_proof.md`, and
-`research_notes/residual_pair_full_proof.md`. The remaining support interface
-and its twelve canonical asymptotic gates are recorded in
-`research_notes/global_atlas_interface_closure.md`.
-The certified classwise affine filter is in
-`research_notes/stoichiometric_gate_feasibility.md`. The current one-active
-stopped-kernel gap and the exact two-/three-active structural decompositions
-are recorded in `research_notes/one_active_physical_phase_theorem.md`,
-`research_notes/two_active_promotion_phase.md`, and the accompanying finite
-certificates; none of those structural decompositions is itself a global
-recurrence theorem.
-The only classwise interpretation of “dynamically active” compatible with
-the inherited three-coordinate atlas is stated in
-`research_notes/classwise_scope_reduction.md`.
+The proof first reduces each fixed population class exactly, then handles
+zero, one, or two projected linkage classes. The two-linkage case is an exact
+disjoint union of all 46,872 ordered support pairs:
 
-## Read-only finite replay
+\[
+46{,}872=27{,}462+432+146+336+18{,}496.
+\]
 
-The current recurrence-interface regressions, exact finite algebra, and global
-support/tier certificates can
-be replayed without external packages or writes to the project:
+Each summand has a standalone analytic recurrence theorem. The finite code
+certifies only support, tier, affine, and set identities; it never enumerates
+rates, orientations, population states, or stochastic histories.
+
+## Primary artifacts
+
+- Main article: `output/pdf/main.pdf`
+- Complete technical supplement: `output/pdf/technical-supplement.pdf`
+- Global theorem: `research_notes/proof_first_t3_2_global_theorem.md`
+  (`781d2520cbb3ad30e1749814f620d49d4c503c5c341ccd1add39a5fec31e2b7f`)
+- Global exact-byte audit:
+  `research_notes/proof_first_t3_2_global_theorem_exact_byte_audit.md`
+  (`bbc47342d8d7b3cacf4b34d2ce2b5bd122798f41838787e8edafa4c70c859560`)
+- Final two-linkage theorem:
+  `research_notes/proof_first_two_linkage_46872_final_theorem.md`
+  (`dae2a58f170836427ffc053ff931c1909d64ac591d77b971591b0d5814526cde`)
+- Final two-linkage exact-byte audit:
+  `research_notes/proof_first_two_linkage_46872_final_exact_byte_audit.md`
+  (`a4f50dcbc2235766524ddb7000a264ec88bf04f8841b3ce9b8d4689c800ba619`)
+
+Independent audits under distinct paths reproduce both final conclusions.
+See `STATUS.md` and `CERTIFICATION_REPORT.md` for the complete release record.
+
+## Reproduction
+
+Run the isolated finite verifier:
 
 ```bash
 python3 -I -B verify_read_only.py
 ```
 
-See `RELEASE_ENGINEERING.md` for their exact scope and the final-release
-requirements. Passing these tests does not computationally certify the
-analytic physical-time proofs, and it is not a T3-2 certification.
+It currently runs 418 tests and checks that its entire declared scope is
+unchanged. Passing this executable layer is not, by itself, a proof of the
+stochastic theorem; the analytic argument is supplied by the byte-frozen
+theorems and independent audits above.
+
+Rebuild the publication PDFs and verify all 40 supplement inputs:
+
+```bash
+./publication/build_publication.sh
+```
+
+The `inherited/` tree and many early research notes are retained as
+chronological provenance. Their historical statements that the theorem was
+open are superseded by the final artifacts listed here; their local
+counterexamples and claim boundaries remain in force at their stated scopes.
+
+Author, license, and submission metadata are intentionally not selected in
+this research package.

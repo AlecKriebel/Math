@@ -1,0 +1,689 @@
+\section{Audited common-factorial theorem for the prospective 26
+pairs}
+
+\subsection{1. Scope and claim status}
+
+This note supplies the proof requested by the claim-neutral selector in
+\texttt{src/\texttt{\seqsplit{prospective\_no\_promotion\_26.py}}}. It proves two local
+extensions and then composes them on a fixed irreducible class:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the audited arbitrary-orientation one-active graph/kernel theorem
+  applies to the selector's 30 one-active incidences, with the same
+  arbitrary fixed linear correction used below;
+\item
+  the curvature-safe reversible two-node all-active estimate lifts to
+  the \textbf{discrete} rate-adjusted factorial and to its fourth power;
+  and
+\item
+  one common potential closes the one-active and all-active descriptions
+  by the existing all-species reflected-debt gluing theorem.
+\end{enumerate}
+
+The resulting pair statement has passed an independent proof audit. The
+finite scope certificate is
+\texttt{\seqsplit{src/\texttt{\seqsplit{prospective\_26\_candidate\_theorem.py}}}}, and its focused
+tests are in
+\texttt{\seqsplit{tests/\texttt{\seqsplit{test\_prospective\_26\_candidate\_theorem.py}}}}. Its two
+scoped analytic flags and its 26-pair recurrence flag are certified. The
+global T3-2 flag remains false.
+
+There is one correction to the older selector note. Proposition 5.2 of
+\texttt{three\_\texttt{\seqsplit{active\_shell\_gluing\_gate.md}}} is literally written for
+the continuous entropy
+
+\[
+ U_\theta(x)=\sum_i\left[x_i\left(\log{x_i\over\theta_i}-1\right)
+                         +\theta_i\right],
+\]
+
+not for \(\sum_i\log(x_i!)\). The two functions do not differ by an
+affine term. Section 4 below proves the missing discrete comparison and
+does not identify the two potentials by assertion.
+
+\subsection{2. Exact selector and the common
+correction}
+
+The selector contains 26 positive-invariant ordered support pairs, with
+pair fingerprint
+
+\begin{CodeBlock}
+393474671be0bf095868e66cbcbf3164d941b99191517f172a41f157e20b21af
+\end{CodeBlock}
+
+Their 124 affine-feasible failed incidences split as
+
+\[
+ 30\text{ one-active},\qquad 0\text{ two-active},\qquad
+ 94\text{ all-active}.                                      \tag{2.1}
+\]
+
+The selector is disjoint from every prior-certified branch and lies
+inside the authoritative claim-neutral prospective 795. The frozen
+arithmetic is
+
+{\small\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lrrr@{}}
+\toprule\noalign{}
+claim-neutral set & positive & signed & total \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+prospective parent & 759 & 36 & 795 \\
+selected candidate, prior-certified overlap zero & 26 & 0 & 26 \\
+prospective remainder after candidate & 733 & 36 & 769 \\
+\end{longtable}
+}
+
+The 769-pair remainder fingerprint is
+
+\begin{CodeBlock}
+4e645eca1ba23849680f2f983e1fb8c9465001c5b0e8c0090a31a339bf18ec06
+\end{CodeBlock}
+
+Before the independent verdict this was prospective arithmetic only. The
+audit has now promoted exactly these 26 pairs, with zero overlap, and
+changes the authoritative remainder from \((759,36)\) to \((733,36)\).
+
+Fix one pair, arbitrary strongly connected orientations of both linkage
+supports, arbitrary positive rates, and one closed irreducible
+population class \(\Gamma\). The whole-top linkage in every failed
+all-active descriptor of this pair is one fixed support \(T=\{y,z\}\).
+It is either
+
+\[
+ \{2A,B+C\}\quad\hbox{or}\quad\{A+C,B+C\}.           \tag{2.2}
+\]
+
+A strongly connected orientation on two vertices contains both
+directions. After aggregating any parallel labels, write their positive
+rates as \(\kappa_{yz}\) and \(\kappa_{zy}\), and put \(d=z-y\). Choose
+\(\theta\in(0,\infty)^3\) so that
+
+\[
+ \kappa_{yz}\theta^y=\kappa_{zy}\theta^z,
+ \qquad
+ \ell_i=-\log\theta_i.                              \tag{2.3}
+\]
+
+Only the scalar equation
+
+\[
+ \ell\mathbin\cdot d
+   =-\log(\kappa_{yz}/\kappa_{zy})                   \tag{2.4}
+\]
+
+is prescribed, so a solution always exists. Because \(T\) is fixed for
+the pair, the same \(\ell\) works on all 94-menu cones belonging to that
+pair. Choose \(K\) large enough that
+
+\[
+ F_\ell(x)=K+\sum_{i=1}^3\log(x_i!)+\ell\mathbin\cdot x,
+ \qquad G=1+F_\ell\ge1,
+ \qquad W=G^4                                           \tag{2.5}
+\]
+
+on \(\mathbb N_0^3\). Such a \(K\) exists because the factorial term
+dominates every fixed linear term. The function \(W\) is proper and
+
+\[
+ G(x)\asymp R\log R,qquad R=2+\lVert x\rVert_1,      \tag{2.6}
+\]
+
+along every divergent sequence.
+
+\subsection{3. The 30 one-active rows}
+
+\subsubsection{3.1 Exact support audit}
+
+Relabel the active species as \(X=C\) and the inactive species as
+\(A,B\), as in the audited one-active graph theorem. The 30 physical
+rows collapse to 15 exact normalized support profiles. Every row has
+capped inactive state \((A,B)=(0,0)\), and both linkages are mixed.
+Their exact partition is
+
+{\small\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+arbitrary-orientation route & incidences \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+a mixed linkage contains the pure active source \(X\) & 20 \\
+Family III, resistance-zero service from the origin & 8 \\
+Family III, frozen origin/no positive-debt history & 2 \\
+\end{longtable}
+}
+
+The full 30-row and 15-profile hashes are
+
+\begin{CodeBlock}
+one-active rows:     091dc59dc83b6445d36135a2d6b1e6c1bfb9565db88328fc1725c39f78bbc7e4
+normalized profiles: 36b6eb1c1beadc939681fc7515e2adf3dfb9e16d116da4b8d2bd73ac77aabe12
+\end{CodeBlock}
+
+The certificate checks the following support facts row by row.
+
+\begin{itemize}
+\tightlist
+\item
+  In each of the 20 direct rows, one mixed linkage has stripped top
+  source \(0\), hence physical source \(X\), and also has a lower
+  complex.
+\item
+  In each of the ten remaining rows the two stripped top sources are
+  exactly \(A\) and \(B\), one in each mixed linkage. The no-fast set is
+  therefore the origin.
+\item
+  In the eight service rows, a zero-containing linkage has another lower
+  vertex. In the other two rows neither lower support contains \(0\).
+\end{itemize}
+
+These are exactly the hypotheses used in Sections 3 and 6 of the audited
+arbitrary-orientation graph proof. They do not depend on a
+Hamilton-cycle orientation or a bounded CEGAR box.
+
+\subsubsection{Lemma 3.1 (scope extension of the graph
+ordering)}
+
+For every strong orientation and every positive rate vector, every
+historically consistent positive-debt row among these 30 incidences has
+
+\[
+ m_-=0<m_+,                                             \tag{3.1}
+\]
+
+where resistance counts a lower-source firing while an active-degree-one
+source is enabled. The two remaining rows are frozen at the displayed
+origin and admit no history carrying positive reflected \(X\)-debt.
+
+\paragraph{Proof}
+
+In a direct row, positive old debt implies \(X\ge1\), so the source
+\(X\) is enabled. In its strong mixed linkage take a simple directed
+complex path from \(X\) to a lower complex. Before the first lower
+target every source has active degree one. The top-to-top edges have
+active reward zero and the first top-to-lower edge has reward \(-1\).
+Consecutive edges are physically enabled because the target complex of
+one firing supplies the source of the next. This is a resistance-zero
+strict decrease.
+
+In a Family-III service row, the only no-fast base is the origin. Follow
+a simple path in the zero-containing strong linkage from \(0\) to a
+nonzero lower vertex. If the path enters an active complex first, follow
+its first exit; the surviving nonzero cofactor enables the other active
+source or a second exit. In either case the path supplies one more exit
+than entry and strictly lowers the relative active level without firing
+a lower source against an enabled fast clock. Hence again \(m_-=0\).
+
+A primitive positive return to the origin cannot have resistance zero.
+Its only free launch occurs while no fast source is enabled. Thereafter,
+in a zero-resistance word, every reaction is active-sourced until the
+origin is reached. Each entry contributes \(+1\), each exit contributes
+\(-1\), and return of the inactive population requires at least as many
+exits as free entries. Its active reward is therefore nonpositive. Thus
+\(m_+\ge1\).
+
+Finally, in either no-history row the origin has no enabled source: the
+two top sources require \(A\) and \(B\), and every lower source is
+nonzero. Moreover no linkage contains target \(0\), so this origin
+cannot be reached from a nonorigin state. It is an absorbing initial
+singleton and cannot carry positive reflected debt. This proves the
+lemma. \(\square\)
+
+\subsubsection{\texorpdfstring{Lemma 3.2 (aggregate kernel and arbitrary
+fixed
+\(\ell\))}{Lemma 3.2 (aggregate kernel and arbitrary fixed \textbackslash ell)}}
+
+For every nonfrozen row of Lemma 3.1, the complete physical one-active
+block of the audited fourth-power kernel theorem satisfies, uniformly
+over the finite base marks of the fixed class,
+
+\[
+ p_D(n)\ge a,
+ \qquad p_U(n)\le {b\over n},
+ \qquad \mathbb E\sigma_n\le T,                     \tag{3.2}
+\]
+
+for all sufficiently large active population \(n\). Every fixed
+endpoint-polynomial moment is bounded in the sense of the kernel
+theorem, and its stopped three-interruption moving-boundary remainder is
+\(O((L_n^2/n)^3)\) with \(L_n=n^{1/8}\). The conclusion remains true for
+the common \(W\) in (2.5), with the arbitrary fixed \(\ell\) selected in
+(2.3).
+
+\paragraph{Proof}
+
+The analytic proof of the resistance-to-kernel proposition uses only the
+support properties just checked, binary molecularity, strong
+connectivity, and fixed positive rates.
+
+In a direct row, divide time by the active population. Before service,
+the stripped active-source phase is an immigration--conversion--death
+process on complexes contained in \(\{0,A,B\}\), killed on its first
+active exit. Every transient top component has a directed route to the
+lower part because the original mixed linkage is strong. The exponential
+killed-Green estimate and its polynomially size-biased versions
+therefore apply exactly as in the audited direct-block proof. The simple
+path in Lemma 3.1 has a strictly positive product of rate fractions,
+which supplies the order-one down coefficient.
+
+In a Family-III service row the regenerative no-fast set is the single
+origin. Between visits to it, the same killed unimolecular Green
+estimate applies. The resistance-zero witness supplies the positive
+order-one down coefficient. A positive origin return requires at least
+one suppressed lower clock by Lemma 3.1, so the ordered-compensation
+expansion makes its aggregate probability \(O(n^{-1})\), after all
+neutral loops have been summed. Binary molecularity gives the same
+carrier estimate and the same endpoint-weighted three-interruption bound
+as in the audited proof. There is no unlisted countable no-fast phase in
+these rows.
+
+This proves (3.2), including duration and endpoint moments, rather than
+only the probability of one selected word. The repeated-base
+fourth-power theorem now applies with \(m=0\).
+
+It remains to check \(\ell\). A bounded reaction changes
+\(\ell\mathbin\cdot x\) by the fixed number
+\(\ell\mathbin\cdot\zeta_r\). Thus it changes neither resistance, the
+killed generator, nor any power of \(n\) in the compensation expansion.
+At a down endpoint,
+
+\[
+ F_\ell(X_{\tau})-F_\ell(X_0)=-\log n+O(1+Z),       \tag{3.3}
+\]
+
+where \(Z\) is the inactive endpoint cost; at an up endpoint the
+analogous positive bound differs from the \(\ell=0\) bound by at most a
+fixed multiple of the endpoint population. The already proved
+exponential/factorial endpoint moments absorb that linear term. At the
+moving boundary the term is \(O(L_n+J)\), not merely \(O(L_n)\): nested
+active entries can make the active overshoot as large as a constant
+multiple of the counted number \(J\) of suppressed interruptions. The
+audited boundary estimate is endpoint-weighted and controls every fixed
+\(J\)-moment, in particular an order strictly above eight, on the
+three-interruption remainder. Applying that estimate first to the
+leading linear endpoint term and then with moment order \(q>8\) to the
+fourth-power tail gives the same
+\(O(n^{2+7/8}(\log n)^4)=o(n^3(\log n)^4)\) completed-episode boundary
+cost as for \(\ell=0\). Hence the fourth-power endpoint calculation and
+the promotion-access estimate are unchanged. \(\square\)
+
+\subsection{4. Discrete all-active fourth-power
+lift}
+
+Fix one of the 94 all-active rows and a tier sequence \(x_n\) realizing
+it. All three coordinates diverge. Hence, after deleting a finite
+prefix, both top sources are enabled, both neighboring states
+\(x_n\pm(z-y)\) lie in the population lattice whenever they occur below,
+and all factorial quotients are literal. At boundary states the usual
+convention is \(x^{\underline y}=0\) when \(y\nleq x\); no boundary
+state remains in this all-active tail. Let \(T=\{y,z\}\), \(d=z-y\), and
+write
+
+\[
+ A(x)=\kappa_{yz}x^{\underline y},\qquad
+ B(x)=\kappa_{zy}x^{\underline z},\qquad
+ h(x)=\log{A(x)\over B(x)}.                         \tag{4.1}
+\]
+
+The two top source monomials occupy one D-tier, so along a further tier
+subsequence
+
+\[
+ 0<c\le A/B\le C<\infty.                            \tag{4.2}
+\]
+
+Let \(R\) now denote the other linkage, let \(\beta_n\) be its maximal
+source propensity, and put
+
+\[
+ \mathcal D_n=(A_n-B_n)\log(A_n/B_n)\ge0.           \tag{4.3}
+\]
+
+\subsubsection{Lemma 4.1 (discrete reversible
+decomposition)}
+
+For the top linkage,
+
+\[
+ \mathcal L_TF_\ell(x_n)
+ \le-\mathcal D_n+C\beta_n,                         \tag{4.4}
+\]
+
+and, for \(k=2,3,4\),
+
+\[
+ \sum_{r\in T}\lambda_r(x_n)|\Delta_rF_\ell(x_n)|^k
+ \le C(\mathcal D_n+\beta_n).                      \tag{4.5}
+\]
+
+\paragraph{Proof}
+
+For the forward jump, the factorial identity is exact:
+
+\[
+ \prod_i{(x_i+d_i)!\over x_i!}
+ ={(x+d)^{\underline z}\over x^{\underline y}}.   \tag{4.6}
+\]
+
+Together with (2.4), it gives
+
+\[
+ e^{F_\ell(x+d)-F_\ell(x)}
+ ={\kappa_{zy}(x+d)^{\underline z}
+    \over \kappa_{yz}x^{\underline y}},            \tag{4.7}
+\]
+
+the exact discrete endpoint detailed-balance ratio. To compare both top
+clocks at the same state, bounded falling-factorial expansion gives
+
+\[
+ \Delta_{y z}F_\ell=-h+\varepsilon_+,qquad
+ \Delta_{z y}F_\ell=h+\varepsilon_-,               \tag{4.8}
+\]
+
+where, with \(I=\{i:d_i\ne0\}\),
+
+\[
+ |\varepsilon_+|+|\varepsilon_-|
+ \le C s_n,qquad s_n=\sum_{i\in I}{1\over x_{n,i}}. \tag{4.9}
+\]
+
+Indeed each logarithm in the quotient of two shifted factorials is a sum
+of finitely many terms \(\log(1+j/x_i)\).
+
+Consequently
+
+\[
+ \mathcal L_TF_\ell
+ =-(A-B)h+A\varepsilon_++B\varepsilon_-.
+                                                               \tag{4.10}
+\]
+
+The curvature-safe premise is exactly
+
+\[
+ {A_n+B_n\over x_{n,i}}\le C\beta_n
+ \qquad(i\in I).                                    \tag{4.11}
+\]
+
+To see this, choose a top endpoint \(e\) with \(e_i>0\). Top flatness
+makes \(A+B\asymp x_n^e\), while \(x_n^e/x_{n,i}=x_n^{e-\mathbf e_i}\);
+the certificate checks that this curvature cofactor lies at or below the
+maximal \(R\)-source D-tier in all 94 rows. Equations (4.9)--(4.11)
+prove (4.4).
+
+On the compact ratio range (4.2),
+
+\[
+ \mathcal D_n\asymp(A_n+B_n)h_n^2.                 \tag{4.12}
+\]
+
+Equations (4.8)--(4.9), boundedness of \(h_n\), and
+\((A+B)s_n^2\le C\beta_n\) therefore yield, for \(2\le k\le4\),
+
+\[
+ (A+B)(|\Delta_{yz}F_\ell|^k+|\Delta_{zy}F_\ell|^k)
+ \le C\{(A+B)h^2+(A+B)s_n^2\}
+ \le C(\mathcal D_n+\beta_n),
+\]
+
+which is (4.5). \(\square\)
+
+\subsubsection{Lemma 4.2 (lower-linkage drift and jump
+moments)}
+
+There is a sequence \(a_n\to\infty\) such that
+
+\[
+ \mathcal L_RF_\ell(x_n)\le-\beta_na_n,             \tag{4.13}
+\]
+
+and, for \(k=2,3,4\),
+
+\[
+ \sum_{r\in R}\lambda_r(x_n)|\Delta_rF_\ell(x_n)|^k
+ \le C\beta_n(1+\log^k R_n),
+ \qquad R_n=2+\lVert x_n\rVert_1.                  \tag{4.14}
+\]
+
+\paragraph{Proof}
+
+The lower-linkage part of Proposition 5.2 proves
+\(\mathcal L_RU_\theta/\beta_n\to-\infty\). Here
+
+\[
+ F_\ell-U_\theta
+ =C_0+\sum_i\{\log(x_i!)-x_i\log x_i+x_i\}.        \tag{4.15}
+\]
+
+For every bounded reaction vector, the jump of the right side is
+\(O(\sum_i x_i^{-1})=o(1)\) on an all-active sequence, by the discrete
+Stirling difference (or directly by factorial ratios). The total
+\(R\)-reaction rate is \(O(\beta_n)\). Hence
+
+\[
+ \mathcal L_R(F_\ell-U_\theta)=o(\beta_n),          \tag{4.16}
+\]
+
+which proves (4.13). Finally, every bounded reaction has
+\(|\Delta F_\ell|\le C(1+\log R_n)\), and every \(R\)-source propensity
+is at most a fixed multiple of \(\beta_n\) on the tier. The reaction
+menu is finite, proving (4.14). \(\square\)
+
+\subsubsection{Proposition 4.3 (powered all-active
+drift)}
+
+Along every selected failed all-active sequence,
+
+\[
+ \mathcal L(1+F_\ell)^4(x_n)\longrightarrow-\infty. \tag{4.17}
+\]
+
+The conclusion is uniform over the finite failed-cone menu of a fixed
+pair in the finite-exception sense.
+
+\paragraph{Proof}
+
+Absorb the \(C\beta_n\) term of (4.4) into (4.13). After decreasing
+\(a_n\), still with \(a_n\to\infty\), Lemmas 4.1--4.2 give
+
+\[
+ \mathcal LF_\ell
+ \le-\mathcal D_n-\beta_na_n                         \tag{4.18}
+\]
+
+and, for \(k=2,3,4\),
+
+\[
+ M_{k,n}:=\sum_r\lambda_r|\Delta_rF_\ell|^k
+ \le C\{\mathcal D_n+\beta_n(1+\log^kR_n)\}.       \tag{4.19}
+\]
+
+The exact discrete binomial, or carré/Taylor, identity is
+
+\[
+\begin{split}
+ \mathcal LW={}&4G^3\mathcal LF_\ell
+       +6G^2\sum_r\lambda_r(\Delta_rF_\ell)^2\\
+ &+4G\sum_r\lambda_r(\Delta_rF_\ell)^3
+       +\sum_r\lambda_r(\Delta_rF_\ell)^4.
+\end{split}\tag{4.20}
+\]
+
+The third moment is signed, so bounding it by its absolute moment can
+only increase the right side. Substituting (4.18)--(4.19) gives
+
+\[
+\begin{split}
+ \mathcal LW\le{}&-4G^3(\mathcal D_n+\beta_na_n)\\
+ &+C(G^2+G+1)\mathcal D_n\\
+ &+C\beta_n\{G^2(1+\log^2R_n)
+      +G(1+\log^3R_n)+1+\log^4R_n\}.
+\end{split}\tag{4.21}
+\]
+
+Because \(G\to\infty\), the second line is absorbed by
+\(-G^3\mathcal D_n\). By (2.6), the ratio of the largest term in the
+last line to \(G^3\beta_na_n\) is
+
+\[
+ {C(1+\log^2R_n)\over G a_n}\longrightarrow0,      \tag{4.22}
+\]
+
+and the other two ratios are smaller. Thus eventually
+
+\[
+ \mathcal LW(x_n)
+ \le-2G_n^3(\mathcal D_n+\beta_na_n)\to-\infty.     \tag{4.23}
+\]
+
+This controls both the reversible top carré term near detailed balance
+and the Taylor remainder away from it. It does not infer
+convex-transform drift merely from \(\mathcal LF_\ell<0\).
+
+Equivalently, if the harmless finite shifts in (4.8) are temporarily
+deleted and \(q=\Delta_{yz}F_\ell=-h\), the two top directions pair as
+
+\[
+\begin{split}
+ &(G+q)^4-G^4+e^q\{(G-q)^4-G^4\}\\
+ &\quad=4G^3q(1-e^q)+6G^2q^2(1+e^q)
+       +4Gq^3(1-e^q)+q^4(1+e^q).
+\end{split}\tag{4.24}
+\]
+
+On the bounded flat-top ratio range, \(q(1-e^q)\le-cq^2\), while the
+cubic term is nonpositive; hence this core is nonpositive for large
+\(G\). Restoring the shifts costs \(O((A+B)s_nG^3)=O(\beta_nG^3)\) by
+(4.11), which is absorbed by the \(-\beta_na_nG^3\) lower exit. This
+paired form is the same domination as (4.18)--(4.23), and records
+explicitly that the two enabled top directions are paired before
+estimating their discrete curvature.
+
+There are finitely many failed all-active descriptors for a fixed pair.
+If no common finite exception existed, a violating divergent sequence
+would have a subsequence in one descriptor and contradict (4.23). This
+is the claimed finite-exception uniformity. \(\square\)
+
+\subsection{\texorpdfstring{5. Fixed-class common-\(W\)
+composition}{5. Fixed-class common-W composition}}
+
+\subsubsection{Theorem 5.1 (audited prospective 26-pair
+branch)}
+
+For every selected support pair, every strongly connected orientation,
+every positive rate vector, and every closed irreducible population
+class \(\Gamma\), the physical mass-action CTMC is positive recurrent.
+
+\paragraph{Proof}
+
+Use the one function \(W\) in (2.5) on the whole class. Take any
+divergent sequence in \(\Gamma\) and extract an exact source/D-tier
+subsequence. An affine-infeasible descriptor cannot occur in the fixed
+affine class. Every affine-feasible descriptor is therefore one of the
+following.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It passes the ordinary top-S/top-D criterion. The quantitative
+  Anderson--Kim factorial estimate, with an arbitrary fixed linear
+  correction, and the standard fourth-power remainder calculation give
+  \(\mathcal LW\to-\infty\).
+\item
+  It is one of the 94 all-active failures. Proposition 4.3 gives
+  \(\mathcal LW\to-\infty\).
+\item
+  It is one of the 30 one-active failures. There is no two-active failed
+  descriptor by (2.1).
+\end{enumerate}
+
+The usual bad-sequence contradiction therefore gives a finite set
+\(K_0\) such that \(\mathcal LW\le-1\) outside \(K_0\) and finitely many
+fixed-width one-active tubes. A moving-boundary exit from such a tube
+has two active coordinates and hence is in the generator-good region; no
+promotion kernel or return to the old axis is needed.
+
+On the all-species reflected marked chain update
+
+\[
+ D_i^+=(D_i+\zeta_i)^+,
+ \qquad H_i=X_i-D_i.                                \tag{5.1}
+\]
+
+Then \(0\le D_i\le X_i\) and \(H_i\) is pathwise bounded above by its
+initial value. In a divergent one-active bad tube, \(D_X=0\) would imply
+\(X=H_X\) bounded, a contradiction. Thus every reachable divergent bad
+tube has positive old debt. The two no-history rows of Lemma 3.1 are
+incompatible with that marked history. Lemma 3.2 and the repeated-base
+fourth-power theorem give, outside another finite set, an all-reaction
+physical stopping time \(\tau>0\) with
+
+\[
+ \mathbb E_{x,d}[W(X_\tau)-W(x)+\tau]\le-1,         \tag{5.2}
+\]
+
+whose successful endpoint strictly reduces old \(D_X\). It uses the same
+\(\ell\) and the same \(W\) as the generator-good region.
+
+Generator steps and the episodes (5.2) are exactly the hypotheses of the
+existing all-debt finite-target gluing theorem. Alternating them and
+localizing at finite \(W\)-sublevels gives a nonnegative
+supermartingale; bounded-index telescoping and Fatou yield a finite mean
+hit of the finite marked target where every debt is zero. Its physical
+projection is finite. The finite trace has a positive recurrent state,
+and irreducibility of \(\Gamma\) promotes positive recurrence to every
+state in the class.
+
+Finally the process is nonexplosive. In a binary network, a reaction
+with a bimolecular source cannot increase total population because
+targets have molecularity at most two. Every population-increasing
+propensity is therefore constant or linear. Stopping at population
+levels and applying Gronwall controls the total population, while every
+finite population sublevel has finitely many states and bounded total
+jump rate. \(\square\)
+
+\subsection{6. Reproduction and frozen
+hashes}
+
+The finite certificate freezes the following hashes:
+
+\begin{CodeBlock}
+one-active rows:       091dc59dc83b6445d36135a2d6b1e6c1bfb9565db88328fc1725c39f78bbc7e4
+normalized profiles:  36b6eb1c1beadc939681fc7515e2adf3dfb9e16d116da4b8d2bd73ac77aabe12
+all-active rows:       55669e3dc9b3fbb7ee84895ea158b3b596d339265cde1a23189bdf312a314bea
+pair-fixed tops:       d1de16c1c45eaab3bce35a17db75bd947a8398a049722f100d96dd227b7e21d5
+certificate payload:  a1f528caffb63729d889e792ce8831b899865e70c1564b2a0a33d46f295a39da
+prospective remainder: 4e645eca1ba23849680f2f983e1fb8c9465001c5b0e8c0090a31a339bf18ec06
+\end{CodeBlock}
+
+Run
+
+\begin{CodeBlock}
+PYTHONPATH=src python3 -B src/prospective_26_candidate_theorem.py
+PYTHONPATH=src python3 -B -m unittest \
+  tests/test_prospective_26_candidate_theorem.py -v
+\end{CodeBlock}
+
+The machine checks exact supports, caps, categories, top reaction
+vectors, cofactor tiers, and the discrete endpoint factorial identity.
+It does not replace the analytic estimates above. The independent audit
+replayed the one-active arbitrary-orientation scope extension, the
+discrete powered-top remainder, the common-\(W\) gluing, nonexplosion,
+and the exact zero-overlap arithmetic, and returned \textbf{PASS}.
+Accordingly the scoped flags are
+
+\begin{CodeBlock}
+analytic_one_active_scope_extension_certified = true
+analytic_powered_all_active_lift_certified = true
+candidate_26_pair_recurrence_certified = true
+global_t3_2_certified = false
+\end{CodeBlock}

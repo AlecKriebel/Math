@@ -69,6 +69,11 @@ positive-debt bases `U=2+2k` of arbitrary size. Choosing, for example,
 summand `(1+U_n)^r` in (7.2) diverge. Hence the asserted uniform Green bound
 cannot hold.
 
+The exact selector contains this same normalized support at spectator caps
+0, 1, and 2 (two physical relabellings at each cap). Thus the unbounded
+sequence is represented by its cap-2 incidence; the objection is not an
+attempt to keep an unbounded spectator inside the cap-0 availability class.
+
 A viable repair must be start-weighted. It must also remember that cap 2 is
 an availability class and may represent an unbounded subpower spectator; it
 is not the fixed population two. The prefactor must be carried through the

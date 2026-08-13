@@ -1,0 +1,655 @@
+\section{The residual pair: a physical-time core
+trace}
+
+\subsection{1. Scope and result}
+
+This note concerns only the two linkage classes
+
+\[
+ {\cal L}_0=\{B,2A,B+C\},\qquad
+ {\cal L}_1=\{0,A,C\}.                                    \tag{1.1}
+\]
+
+Each labelled reaction graph is assumed strongly connected, parallel
+channels in the same direction are aggregated, and every displayed
+channel rate is positive. A missing directed edge has aggregate rate
+zero. All propensities are stochastic mass-action propensities.
+
+The purpose of the argument is to avoid both stationary-only averaging
+and recurrence of the raw jump chain. The chain is sampled after a
+physical window of length \(T/\sqrt{q+1}\), where
+
+\[
+ q=A+2B.                                                     \tag{1.2}
+\]
+
+The fast linkage preserves \(q\). A rate-dependent proper linear
+workload returns the process to a core on which \(A=O(\sqrt q)\) and
+\(C=O(1)\). On the short physical window the exact fast dynamics have a
+deterministic Riccati limit, while all positive \(q\)-hazards vanish.
+This gives a strict, shell-uniform negative drift for the core trace.
+Endpoint moments and the physical duration of the return appendage are
+included below.
+
+\begin{quote}
+\textbf{Theorem 1.1.} For every choice of strongly connected
+orientations and positive rates in (1.1), the minimal stochastic
+mass-action CTMC is nonexplosive. Every state in every closed
+irreducible population class is positive recurrent.
+\end{quote}
+
+No finite inactive-coordinate box is assumed. The finite \(C\)-bound
+below is a state-dependent core produced by a proper Foster workload;
+excursions outside it are retained and charged.
+
+\subsection{2. Aggregated rates and two exact
+identities}
+
+Write the six possible rates in \({\cal L}_0\) as
+
+\[
+\begin{array}{c|cccccc}
+\text{edge}&B\to2A&B\to B+C&2A\to B&2A\to B+C&B+C\to B&B+C\to2A\\
+\hline
+\text{rate}&x&y&s&r&t&v .
+\end{array}                                                  \tag{2.1}
+\]
+
+Put \(d=t+v\). Strong connectivity gives \(d>0\). Define
+
+\[
+ \zeta={2v\over d},\qquad
+ \alpha=x+{vy\over d},\qquad
+ \beta=2\left(s+{rt\over d}\right).                        \tag{2.2}
+\]
+
+Both \(\alpha\) and \(\beta\) are strictly positive. For example,
+\(\alpha=0\) would imply that neither \(B\) nor \(B+C\) can reach
+\(2A\); the proof for \(\beta\) is the reverse argument.
+
+Set
+
+\[
+ Z=A+\zeta C.
+\]
+
+Direct substitution gives the exact identity
+
+\[
+ {\cal L}_0Z
+ =2\alpha B-\beta(A)_2
+ =\alpha(q-A)-\beta A(A-1)=:P_q(A).                         \tag{2.3}
+\]
+
+The coefficient of \(BC\) cancels because \(-\zeta t+(2-\zeta)v=0\). Let
+\(a_q\) be the positive root of \(P_q(a)=0\). Then
+
+\[
+ {a_q\over\sqrt{q+1}}\longrightarrow
+ a_*:=\sqrt{\alpha/\beta}.                                 \tag{2.4}
+\]
+
+For \({\cal L}_1\), write its rates as \(k_{ij}\), with
+\(i,j\in\{0,A,C\}\). Then
+
+\[
+ {\cal L}_1q=k_{0A}+k_{CA}C-wA,\qquad
+ w:=k_{A0}+k_{AC}>0.                                       \tag{2.5}
+\]
+
+The strict positivity of \(w\) follows from strong connectivity.
+
+\subsection{3. A proper workload and an exact
+core}
+
+The return workload is constructed algebraically. Use the conventions
+\(d/v=+\infty\) if \(v=0\), and \((k_{C0}+k_{CA})/k_{CA}=+\infty\) if
+\(k_{CA}=0\). Strong connectivity implies that the open intervals
+
+\[
+ I_0=\left({r\over s+r},{d\over v}\right),\qquad
+ I_1=\left({k_{AC}\over k_{A0}+k_{AC}},
+            {k_{C0}+k_{CA}\over k_{CA}}\right)             \tag{3.1}
+\]
+
+are nonempty and contain values arbitrarily close to one. If an endpoint
+equals one, the opposite endpoint is strict; equality at both ends would
+disconnect one of the three-vertex graphs.
+
+Choose \(\lambda\in I_0\) and \(\rho\in I_1\), sufficiently close to one
+that \(2\rho-\lambda>0\), and put
+
+\[
+ U=\rho A+(2\rho-\lambda)B+C.                              \tag{3.2}
+\]
+
+Define the positive constants
+
+\[
+\begin{aligned}
+ c_B&=x\lambda+y,\\
+ c_2&=(s+r)\lambda-r,\\
+ c_{BC}&=d-v\lambda,\\
+ d_A&=(k_{A0}+k_{AC})\rho-k_{AC},\\
+ d_C&=(k_{C0}+k_{CA})-k_{CA}\rho,\\
+ K_0&=k_{0A}\rho+k_{0C}.
+\end{aligned}                                               \tag{3.3}
+\]
+
+The generator identity is
+
+\[
+ {\cal L}U
+ =K_0+c_BB-c_2(A)_2-c_{BC}BC-d_AA-d_CC.                    \tag{3.4}
+\]
+
+This identity is valid at the boundary because falling factorials,
+rather than ordinary monomials, occur in (3.4).
+
+Put
+
+\[
+ D(A,B,C)=c_2(A)_2+c_{BC}BC+d_AA+d_CC                       \tag{3.5}
+\]
+
+and define
+
+\[
+ {\cal R}=\{D\le 2(K_0+c_BB+1)\}.                         \tag{3.6}
+\]
+
+Outside \({\cal R}\),
+
+\[
+ {\cal L}U\le-1-\tfrac12D.                               \tag{3.7}
+\]
+
+There are explicit constants
+
+\[
+ K_A=2+\sqrt{{2(K_0+c_B+1)\over c_2}},qquad
+ K_C={2(K_0+c_B+1)\over c_{BC}}                            \tag{3.8}
+\]
+
+and a finite integer \(q_0\) such that every state of \({\cal R}\) with
+\(q>q_0\) satisfies
+
+\[
+ A\le K_A\sqrt{q+1},\qquad C\le K_C.                       \tag{3.9}
+\]
+
+Indeed, (3.9) follows separately from the \((A)_2\) and \(BC\) terms in
+(3.5). When \(B=0\), (3.6) bounds both \(A\) and \(C\), so all
+sufficiently large states in \({\cal R}\) have \(B\ge1\).
+
+Choose \(K\) and \(C_*\), after \(q_0\) has been fixed, so that
+
+\[
+\begin{split}
+ K&>K_A+a_*+2,\qquad C_*>K_C+2,\\
+ K&>1+\max_{x\in{\cal R},\ q(x)\le q_0}
+          {A(x)\over\sqrt{q(x)+1}},\\
+ C_*&>1+\max_{x\in{\cal R},\ q(x)\le q_0}C(x).
+\end{split}                                                 \tag{3.10}
+\]
+
+and define the moving core
+
+\[
+ {\cal K}=\{(a,b,c):a\le K\sqrt{a+2b+1},\ c\le C_*\}.       \tag{3.11}
+\]
+
+The finite maxima in (3.10) exist because (3.6) bounds \(C\) when \(q\)
+is bounded. Together with (3.9), they give the global inclusion
+
+\[
+ {\cal R}\subset{\cal K}.                                  \tag{3.12}
+\]
+
+Thus (3.7) is a genuine proper-workload return mechanism to
+\({\cal K}\), not a truncation assumption.
+
+The positive part of (3.4) is at most \(K(1+U)\). Localization and
+Gronwall therefore give
+
+\[
+ \mathbb E_xU(X_{t\wedge\tau_n})
+ \le (U(x)+K t)e^{Kt},                                     \tag{3.13}
+\]
+
+where \(\tau_n\) exits the \(U\)-sublevel \(\{U\le n\}\). Since those
+sublevels are finite, (3.13) proves nonexplosion and endpoint
+integrability. The same calculation applied to \(U^p\), using the strict
+negative coefficients at the two quadratic sources, gives finite
+polynomial moments on every bounded physical interval.
+
+\subsection{4. The short physical
+window}
+
+For a starting state in \({\cal K}\), write \(N=q(x)\),
+\(S_N=\sqrt{N+1}\), and fix \(T>0\). During the physical interval
+
+\[
+ h_N={T\over S_N},                                         \tag{4.1}
+\]
+
+use accelerated time \(\tau=S_Nt\) and set
+
+\[
+ z_N(\tau)={A(\tau/S_N)+\zeta C(\tau/S_N)\over S_N}.        \tag{4.2}
+\]
+
+Let \(\Phi_\tau(u)\) denote the solution at time \(\tau\) of
+
+\[
+ \dot z=\alpha-\beta z^2,\qquad z(0)=u.                    \tag{4.3}
+\]
+
+The following is the quantitative finite-time statement needed below.
+
+\begin{quote}
+\textbf{Lemma 4.1 (uniform fast window).} Uniformly over starting states
+in \({\cal K}\) with \(q=N\), as \(N\to\infty\), \[
+\mathbb E_x\sup_{0\le\tau\le T}
+  |z_N(\tau)-\Phi_\tau(z_N(0))|^2\longrightarrow0.        \tag{4.4}
+\] For every integer \(p\ge1\), \[
+\sup_N\sup_{0\le\tau\le T}
+  \mathbb E_x[C(\tau/S_N)^p]<\infty,                     \tag{4.5}
+\] and the number \(J_N\) of \(q\)-changing reactions in the window has
+uniformly bounded \(p\)-th moment. Finally, \[
+\sup_{x\in{\cal K}:\,q(x)=N}\left|
+\mathbb E_x[q(X_{h_N})-N]
++w\int_0^T\Phi_\tau(z_N(0))\,d\tau\right|
+\longrightarrow0.                                      \tag{4.6}
+\]
+\end{quote}
+
+\subsubsection{Proof of Lemma 4.1}
+
+Let \(\vartheta_N\) be the first accelerated time at which
+\(q\notin[N/2,2N]\) or \(A>2KS_N\). On \([0,T\wedge\vartheta_N]\),
+\(B\ge N/8\) for all large \(N\). The physical \(C\)-birth rate is at
+most
+
+\[
+ yB+r(A)_2+k_{0C}+k_{AC}A\le b_CN,                         \tag{4.7}
+\]
+
+where one may take \[
+ b_C=y+8rK^2+k_{0C}+2Kk_{AC}+1.
+\] The physical \(C\)-death rate contains
+
+\[
+ dBC\ge\delta_CN C,\qquad \delta_C=d/8.                    \tag{4.8}
+\]
+
+Consequently, up to \(\vartheta_N\), \(C\) is stochastically dominated
+by the immigration--death chain \(\bar C\) with immigration rate
+\(b_CN\) and per-particle death rate \(\delta_CN\), started at
+\(C(0)\le C_*\). At every physical time \(t\),
+
+\[
+\bar C(t)\ \stackrel d=\ {\rm Bin}\!\left(C(0),e^{-\delta_CNt}\right)
+ +{\rm Pois}\!\left({b_C\over\delta_C}
+             (1-e^{-\delta_CNt})\right).                  \tag{4.9}
+\]
+
+In particular, for every \(\eta>0\),
+
+\[
+ \sup_N\sup_{\tau\le T}
+ \mathbb E_x\exp\{\eta C((\tau\wedge\vartheta_N)/S_N)\}
+ \le
+ \exp\!\left\{\eta C_*+{b_C\over\delta_C}(e^\eta-1)\right\}
+ =:M_\eta.                                                \tag{4.10}
+\]
+
+This is a transient coupling from every core point, not a
+stationary-start estimate.
+
+By (2.3), the predictable drift of (4.2) is
+
+\[
+ {P_q(A)\over N}+O(N^{-1/2})(1+C)
+ =\alpha-\beta z_N^2+o_{L^p}(1)                            \tag{4.11}
+\]
+
+uniformly up to \(\vartheta_N\), for every fixed \(p\). Here we used
+\(A/S_N=z_N-\zeta C/S_N\), (4.10), and the fact that the \(q\)-changing
+intensity on accelerated time is bounded by \(K_1(1+C)\). Its counting
+process therefore has moments of every fixed order bounded uniformly in
+\(N\).
+
+If \(M_N\) denotes the martingale part of \(z_N\), its jumps have size
+at most \(2/S_N\), and its predictable quadratic variation is bounded by
+
+\[
+ \langle M_N\rangle_T
+ \le {K_2\over S_N^3}\int_0^{T\wedge\vartheta_N}
+       \{N+(A)_2+NC\}\,d\tau.                             \tag{4.12}
+\]
+
+The Burkholder--Davis--Gundy inequality, including its jump term, and
+(4.10) imply, for every integer \(m\ge1\),
+
+\[
+ \mathbb E_x\sup_{\tau\le T\wedge\vartheta_N}|M_N(\tau)|^{2m}
+ \le C_mS_N^{-m}.                                        \tag{4.13}
+\]
+
+The same estimate applied to the integral equation (4.11), followed by
+Gronwall on the compact stopped range, gives, for every \(\epsilon>0\),
+
+\[
+ \mathbb P_x\!\left\{
+ \sup_{\tau\le T\wedge\vartheta_N}
+ |z_N(\tau)-\Phi_\tau(z_N(0))|>\epsilon\right\}
+ \le C_{\epsilon,m}S_N^{-m}.                              \tag{4.14}
+\]
+
+The Riccati solutions starting in \([0,K+1]\) stay a fixed distance
+below \(2K\). Exiting the \(q\)-band requires at least \(N/2\) bounded
+\(q\)-jumps. The all-order count bounds and (4.14) therefore yield
+
+\[
+ \mathbb P_x\{\vartheta_N\le T\}\le C_mS_N^{-m}
+ \quad\hbox{for every }m.                                 \tag{4.15}
+\]
+
+On this exceptional event, the polynomial endpoint estimates from (3.13)
+and Hölder's inequality let us remove the stopping in (4.10)--(4.14).
+This proves (4.4), (4.5), and the moment assertion for \(J_N\).
+
+On accelerated time, (2.5) now gives
+
+\[
+ \mathbb E[q(X_{h_N})-N]
+ =\int_0^T\mathbb E\left[
+ {k_{0A}+k_{CA}C\over S_N}-w{A\over S_N}\right]d\tau.      \tag{4.16}
+\]
+
+The positive terms vanish by (4.5), and \(A/S_N=z_N-\zeta C/S_N\).
+Equation (4.4) gives (4.6). \(\square\)
+
+The Riccati flow is order preserving. Its smallest solution over all
+nonnegative starting values is the solution from zero,
+
+\[
+ z_0(\tau)=a_*\tanh(\sqrt{\alpha\beta}\,\tau).
+\]
+
+Consequently
+
+\[
+ I_T:=\inf_{z(0)\ge0}\int_0^Tz(\tau)d\tau
+ ={1\over\beta}\log\cosh(\sqrt{\alpha\beta}\,T)>0.        \tag{4.17}
+\]
+
+Lemma 4.1 therefore gives, uniformly on the core,
+
+\[
+ \mathbb E_x[q(X_{h_N})-N]\le-\tfrac34wI_T                \tag{4.18}
+\]
+
+for all sufficiently large \(N\).
+
+\subsection{5. Returning to the core costs (o(1))
+workload}
+
+Let \(Y=X_{h_N}\), and from \(Y\) continue the original, unmodified CTMC
+until its first entrance into \({\cal K}\); call the additional time
+\(\sigma_N\). If \(Y\in{\cal K}\), set \(\sigma_N=0\).
+
+\begin{quote}
+\textbf{Lemma 5.1 (return appendage).} Uniformly for core starting
+states, \[
+\mathbb E\sigma_N=o(1),\qquad
+\mathbb E[(q(X_{h_N+\sigma_N})-q(Y))^+]=o(1).             \tag{5.1}
+\] All endpoint variables in (5.1) are integrable, and the full
+increment \(q(X_{h_N+\sigma_N})-q(Y)\) has a uniformly bounded second
+moment.
+\end{quote}
+
+\subsubsection{Proof of Lemma 5.1}
+
+Because \(K>a_*\), order preservation of the Riccati flow gives
+
+\[
+ \Delta:=K-\sup_{0\le u\le K}\Phi_T(u)
+        =K-\Phi_T(K)>0.                                   \tag{5.2}
+\]
+
+Put \(\delta=\Delta/4\). Equations (4.10), (4.14), and (4.15), together
+with \(q(Y)-N=O_{L^p}(1)\), imply that for every integer \(m\ge1\),
+
+\[
+\begin{split}
+ \mathbb P_x(G_N^c)&\le C_mS_N^{-m},\\
+ G_N:=\bigl\{&
+ 3N/4\le q(Y)\le5N/4,\quad
+ A(Y)\le(K-2\delta)\sqrt{q(Y)+1},\quad
+ C(Y)\le S_N^{1/4}\bigr\}.
+\end{split}                                                \tag{5.3}
+\]
+
+On the no-stop part of \(G_N\), \(C(Y)\) has the uniform exponential
+moment (4.10). The exceptional estimate in (5.3) is super-polynomial;
+the stronger \(\exp\{-cS_N\}\) estimate is not needed.
+
+Suppose now that \(Y=y\in G_N\) and \(C(y)>C_*\). Stop the cleanup at
+the first of
+
+\[
+ \gamma=\inf\{t:C(t)\le C_*\},\qquad
+ \chi=\inf\{t:A(t)>K\sqrt{q(t)+1}\ {\rm or}\
+                       q(t)\notin[N/2,2N]\}.              \tag{5.4}
+\]
+
+Before \(\gamma\wedge\chi\), the bounds (4.7)--(4.8) remain valid. After
+the physical-time change \(u=Nt\), the dominating chain in (4.9) has
+constant immigration \(b_C\) and per-particle death \(\delta_C\). The
+explicit binomial--Poisson representation, followed by fixed-length
+geometric trials after the initial population has contracted, gives, for
+every integer \(m\ge1\),
+
+\[
+\begin{split}
+ \mathbb E_y(\gamma\wedge\chi)^m
+ &\le {C_m[1+\log(1+C(y))]^m\over N^m},\\
+ \mathbb E_y\left(\int_0^{\gamma\wedge\chi}C(t)\,dt\right)^m
+ &\le {C_m[1+C(y)]^m\over N^m}.
+\end{split}\tag{5.5}
+\]
+
+For completeness, these same bounds control the probability of the stop
+\(\chi\). Until \(\gamma\wedge\chi\), reactions that can change \(A\),
+other than reactions consuming one \(C\), have total rate at most
+\(K_3N\). The number of reactions consuming \(C\) is pathwise at most
+\(C(y)\) plus the number of reactions producing \(C\). The latter has
+intensity at most \(b_CN\). If \(V_{A,q}\) denotes the total variation
+of \((A,q)\) before \(\gamma\wedge\chi\), thinning the corresponding
+Poisson clocks and using (5.5) gives
+
+\[
+ \mathbb E_y V_{A,q}^m
+ \le C_m\,\mathbb E_y
+       \{1+C(y)+N(\gamma\wedge\chi)\}^m
+ \le C_m\{1+C(y)+\log(1+C(y))\}^m.                        \tag{5.6}
+\]
+
+On \(G_N\), \(C(y)\le S_N^{1/4}\), whereas the \(A\)-boundary is at
+least \(\delta S_N\) away and leaving the \(q\)-band requires order
+\(N\) bounded jumps. Markov's inequality applied to an arbitrarily high
+moment in (5.6) therefore gives
+
+\[
+ \sup_{y\in G_N}\mathbb P_y\{\chi<\gamma\}
+ \le C_mS_N^{-m}\quad\hbox{for every }m.                  \tag{5.7}
+\]
+
+On \(\{\gamma<\chi\}\) the endpoint lies in \({\cal K}\). The positive
+\(q\)-jump intensity is \(k_{0A}+k_{CA}C\), so (5.5) and the exponential
+moment of \(C(Y)\) give
+
+\[
+ \mathbb E[\gamma;\gamma<\chi]=O(N^{-1}),\qquad
+ \mathbb E N_q^+(\gamma;\gamma<\chi)=O(N^{-1}),            \tag{5.8}
+\]
+
+where \(N_q^+\) counts positive \(q\)-jumps. The negative intensity is
+\(wA\le 2wKS_N\) before \(\chi\); (5.5) therefore also gives uniformly
+bounded second moments for the full \(q\)-increment on the typical
+cleanup.
+
+It remains to charge \(G_N^c\) and \(\{\chi<\gamma\}\). By the global
+inclusion (3.12), (3.7) holds everywhere outside \({\cal K}\). If
+\(\tau_{\cal K}\) is the core hitting time, localized Dynkin estimates
+give
+
+\[
+ \mathbb E_y\tau_{\cal K}
+ +{1\over2}\mathbb E_y\int_0^{\tau_{\cal K}}D(X_t)\,dt
+ \le U(y).                                                 \tag{5.9}
+\]
+
+Both positive and negative \(q\)-intensities are bounded by
+\(K_4(1+D)\). Moreover, outside \({\cal K}\) there is a \(\kappa>0\)
+such that \(D\ge\kappa(1+U)\): if \(C>C_*\), use the \(BC,A,C\) terms in
+\(D\); if \(C\le C_*\), then \(A>K\sqrt{q+1}\), so the \((A)_2\) term
+bounds \(q\) and hence \(U\). Also the total reaction intensity is at
+most \(K_5(1+B+D)\), and outside \({\cal R}\) the \(B\)-term is bounded
+by \(K_6D\). All jumps of \(U\) are bounded by a rate-dependent
+constant. Hence, for each integer \(p\ge2\), the bounded-jump Taylor
+formula gives, outside \({\cal K}\),
+
+\[
+\begin{split}
+ {\cal L}(1+U)^p
+ &=p(1+U)^{p-1}{\cal L}U+R_p,\\
+ |R_p|&\le C_pD(1+U)^{p-2},\\
+ {\cal L}(1+U)^p
+ &\le C_p-c_pD(1+U)^{p-1}.
+\end{split}\tag{5.10}
+\]
+
+For the last line, absorb the remainder when \(U\) exceeds a
+\(p\)-dependent constant and enlarge \(C_p\) on the remaining finite
+sublevel. Localized Dynkin's formula applied successively to
+\((1+U)^j\), \(1\le j\le2p\), bounds the moments of \(\tau_{\cal K}\)
+and of \(\int_0^{\tau_{\cal K}}(1+D)\,dt\). The counting-martingale
+inequality then gives
+
+\[
+ \mathbb E_y\!\left[
+ \tau_{\cal K}^p+
+ |q(X_{\tau_{\cal K}})-q(y)|^{2p}\right]
+ \le C_p(1+U(y))^{r_p}                                    \tag{5.11}
+\]
+
+for a finite integer \(r_p\) depending only on \(p\) and the rates.
+
+Over the preceding window, (3.13) gives polynomial moments
+\(\mathbb E_x(1+U(Y))^p\le C_p(1+N)^{C_p}\). At the cleanup stop the
+same bound follows from (5.5)--(5.6). Hölder's inequality, (5.3), (5.7),
+and arbitrarily high choices of \(m\) make the duration, positive
+\(q\)-cost, and second-moment contribution of both exceptional sets
+\(o(1)\). Together with (5.8), this proves (5.1). \(\square\)
+
+Combining (4.18) and Lemma 5.1 gives a constant
+
+\[
+ \varepsilon={1\over2}wI_T>0                               \tag{5.12}
+\]
+
+and an integer \(N_0\) such that the complete core-to-core episode obeys
+
+\[
+ \mathbb E_x[q(X_\tau)-q(x)]\le-\varepsilon,qquad
+ x\in{\cal K},\ q(x)>N_0.                                 \tag{5.13}
+\]
+
+Its expected physical duration is uniformly finite (in fact
+\(T/S_N+o(1)\)), and its endpoint \(q\)-increment has uniformly bounded
+second moment.
+
+\subsection{6. Trace Foster argument and positive
+recurrence}
+
+Start outside \({\cal K}\) by running until the core is hit. Since
+\({\cal R}\subset{\cal K}\), (3.7), localization, and Dynkin's formula
+show that this time has finite expectation. At a core state with
+\(q>N_0\), run the complete episode of Sections 4--5. Stop the trace
+once \(q\le N_0\).
+
+Let \(Q_n\) be the shell values of the resulting core trace and
+\(\nu=\inf\{n:Q_n\le N_0\}\). Summing (5.13) only through
+\(m\wedge\nu\), for finite \(m\), is legitimate by the endpoint moment
+bounds. Since \(q\ge0\),
+
+\[
+ \varepsilon\,\mathbb E_x(m\wedge\nu)\le q(x),
+ \qquad
+ \mathbb E_x\nu\le {q(x)\over\varepsilon}.                 \tag{6.1}
+\]
+
+The episode durations are uniformly integrable, so the physical time to
+hit
+
+\[
+ F={\cal K}\cap\{q\le N_0\}                                \tag{6.2}
+\]
+
+has finite expectation. The set \(F\) is finite because \(q\) bounds
+\(A,B\) and the core bounds \(C\).
+
+Fix a closed irreducible population class \(\Gamma\). The preceding
+hitting argument is pathwise inside \(\Gamma\), so
+\(F_\Gamma=F\cap\Gamma\) is nonempty. Record successive visits to
+\(F_\Gamma\). The finite trace chain is irreducible on its visited
+subset. From a nonabsorbing point of \(F_\Gamma\), take one ordinary
+jump and apply the preceding finite-mean hitting bound to its finitely
+many successors; an absorbing singleton is already positive recurrent.
+Thus the finite trace has finite mean positive return time, and at least
+one population state in \(\Gamma\) has finite mean positive physical
+return time. Irreducibility gives positive recurrence of the entire
+closed class. Nonexplosion was proved in (3.13), completing the proof of
+Theorem 1.1.
+
+\subsection{7. Adversarial checks}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{No stationary-start assumption.} The Poisson shell law
+  motivates the scale but is not used in Lemma 4.1. The \(C\)-moment
+  estimate (4.9) and the Riccati limit follow from stopped generator
+  identities from every core point.
+\item
+  \textbf{Huge initial \(C\).} Such a state is outside the core. It is
+  returned by the proper workload (3.7). A large \(C\) produced at the
+  end of a fast window is charged by (5.5)--(5.11); it is not discarded
+  as a tail-box error.
+\item
+  \textbf{Boundary \(B=0\).} The bad set (3.6) is finite on \(B=0\),
+  because the negative \((A)_2\) and \(C\) terms remain. Hence no large
+  shell with \(B=0\) is silently included in the Riccati core.
+\item
+  \textbf{Positive \(C\to A\) events.} Their rate appears explicitly in
+  (2.5). It vanishes on the accelerated core window by (4.5), and its
+  full occupation during the return appendage is charged in (5.5),
+  (5.8), and (5.9).
+\item
+  \textbf{Fast neutral jump counts.} No estimate counts \({\cal L}_0\)
+  jumps. The proof uses physical quadratic variation over a prescribed
+  physical interval and a physical hitting-time appendage.
+\item
+  \textbf{Endpoint integrability.} It follows from the proper linear
+  workload and localized moment estimates, before any trace telescoping
+  is used.
+\item
+  \textbf{Rate and orientation degeneracies.} Missing edges are allowed.
+  The only strict constants used are
+  \(\alpha,\beta,d,c_2,c_{BC},d_A,d_C,w\), all of which are forced
+  positive by strong connectivity and the explicit interval choices
+  (3.1).
+\end{enumerate}

@@ -1,0 +1,219 @@
+\section{Bounded carrier theorem for two disabled mixed
+tops}
+
+\textbf{Proof-first theorem, 2026-08-12 PDT.} This note closes the
+one-active single-linkage face with two disabled top complexes. It is
+independent of the separated-scale operator and uses no support or
+orientation enumeration.
+
+\subsection{1. Setting and theorem}
+
+Put
+
+\[
+ q_B=A+B,\qquad q_C=A+C,\qquad
+ {\cal P}=\{B,C,2B,2C,B+C\}.                                 \tag{1.1}
+\]
+
+Fix one strongly connected linkage support
+
+\[
+ \{q_B,q_C\}\subseteq{\cal C}
+      \subseteq\{0,q_B,q_C\}\cup{\cal P},                    \tag{1.2}
+\]
+
+with arbitrary positive labelled rates. The no-fast entrance is
+
+\[
+                              x_n=(n,0,0).                     \tag{1.3}
+\]
+
+For fixed \(\ell\), put
+
+\[
+ G_\ell(x)=K_\ell+\sum_{i=A,B,C}\log(x_i!)+\ell\cdot x\ge1,
+ \qquad W_\ell=G_\ell^4.                                     \tag{1.4}
+\]
+
+\begin{quote}
+\textbf{Theorem 1.1 (bounded two-top service).} In one fixed closed
+irreducible class, exactly one of the following applies.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If \(0\notin{\cal C}\), (1.3) is absorbing and its class is a
+  singleton.
+\item
+  If \(0\in{\cal C}\) and \({\cal C}\cap{\cal P}=\varnothing\), then
+  \(A-B-C\) is invariant. The cofactor-free part of a fixed class
+  contains at most one state (1.3).
+\item
+  If \(0\in{\cal C}\) and \({\cal C}\cap{\cal P}\ne\varnothing\), there
+  is an included all-reaction stopping time \(\tau_n\) such that, for
+  every fixed \(p\), \[
+  \begin{aligned}
+   \mathbb P(E_n)&\le C/n,\\
+   \mathbb E[(1+|X_{\tau_n}-x_n|+\tau_n)^p;E_n]&\le C_p/n,\\
+   \mathbb E(1+\tau_n)^p&\le C_p,\\
+   A_{\tau_n}&=n-1,\quad B_{\tau_n}+C_{\tau_n}\le3
+           \quad\hbox{on }E_n^c,
+  \end{aligned}
+  \tag{1.5}
+  \] and, for all large \(n\), \[
+   \mathbb E_{x_n}[
+     W_\ell(X_{\tau_n})-W_\ell(x_n)+\tau_n]
+      \le-cG_\ell(x_n)^3\log n.                            \tag{1.6}
+  \]
+\end{enumerate}
+
+Here \(E_n\) is the included first lower-source competitor during a
+mixed-top carrier phase. All physical clocks are retained.
+\end{quote}
+
+Constants may depend on the graph, rates, class, and \(\ell\), but not
+on \(n\).
+
+\subsection{2. Frozen and invariant
+alternatives}
+
+The complex weights of
+
+\[
+                              H=A-B-C                         \tag{2.1}
+\]
+
+are zero on \(0,q_B,q_C\), \(-1\) on \(B,C\), and \(-2\) on
+\(2B,2C,B+C\).
+
+If \(0\) is absent, no source is enabled at (1.3), so the state is
+absorbing. If \({\cal P}\) is absent, every reaction has zero
+\(H\)-reward. At \(B=C=0\), the invariant value is \(H=A\), so a fixed
+class contains at most one cofactor-free value of \(A\). This proves
+alternatives 1--2.
+
+\subsection{3. The clean geometric attempt
+kernel}
+
+Assume alternative 3. At the no-fast face, \(0\) is the only enabled
+source, with aggregate rate
+
+\[
+                 \lambda_0=\sum_{0\to z}\kappa_{0z}>0.        \tag{3.1}
+\]
+
+Choose a simple directed path from \(0\) to its first vertex in
+\({\cal P}\). Before its terminal vertex, it lies in \(\{0,q_B,q_C\}\).
+Simplicity prevents an intermediate return to \(0\). After the launch,
+every prescribed source is \(q_B\) or \(q_C\), and is physically enabled
+by the preceding target with the same residual population.
+
+Temporarily suppress lower-source clocks during a top phase. A carrier
+moves on the finite transient graph \(\{q_B,q_C\}\), absorbed at
+\(\{0\}\cup{\cal P}\). Conditional outgoing probabilities at a top
+source are independent of \(n\), because the outgoing clocks have their
+common falling-factorial source. The chosen path therefore gives a fixed
+
+\[
+                              p_*>0                            \tag{3.2}
+\]
+
+chance that an attempt reaches \({\cal P}\). Its internal top-event
+count is phase type and its physical duration has moments \(O(n^{-p})\).
+
+Absorption at \(0\) returns to the exact population \((n,0,0)\). Repeat
+attempts. Their count is dominated by a geometric variable of parameter
+\(p_*\). Each no-fast visit waits an exponential time of rate
+\(\lambda_0\). Thus the clean attempt count and total duration have
+every fixed moment.
+
+\subsection{4. Restoring every physical
+clock}
+
+During any pre-success top phase, the inactive population is at most
+one. Every lower source, including \(0\) and any enabled member of
+\({\cal P}\), therefore has aggregate rate bounded by a graph-dependent
+constant. The aggregate enabled top rate is at least \(cn\). Hence
+
+\[
+ \mathbb P\{\hbox{a lower firing before clean top absorption}\}
+       \le C/n                                                \tag{4.1}
+\]
+
+per attempt. Stop at and include the first such firing.
+
+At a clean \({\cal P}\)-target, the inactive population has molecularity
+one or two. At least one of \(q_B,q_C\) is enabled, and its rate is at
+least \(cn\). Follow top reactions until the first top-to-lower exit.
+Top-to-top conversions preserve \(A\); this exit lowers \(A\) by one.
+Before it, inactive population is at most two and the lower-source
+aggregate rate is bounded. Its included competitor probability is again
+\(O(n^{-1})\).
+
+Sum these races over the geometric attempt count. The causing lower jump
+has a binary target, so its actual endpoint is bounded relative to the
+clean carrier state. Geometric-sum moment formulas give the first three
+lines of (1.5).
+
+On a clean successful attempt, a launch \(0\to q_B\) or \(0\to q_C\)
+raises \(A\) by one and its first top exit cancels that entry. Reaching
+\({\cal P}\) leaves an inactive carrier, whose next top exit is
+unpaired. A direct \(0\to{\cal P}\) launch supplies that unpaired exit
+immediately. Thus
+
+\[
+                  A_{\tau_n}=n-1,\qquad
+                  B_{\tau_n}+C_{\tau_n}\le3.                  \tag{4.2}
+\]
+
+This proves all of (1.5). No lower clock has been erased: it is either a
+designated no-fast launch or the included event \(E_n\).
+
+\subsection{5. Entropy and common fourth
+power}
+
+On the clean event, (4.2) gives
+
+\[
+                    G_\ell(X_{\tau_n})-G_\ell(x_n)
+                        \le-\log n+C_\ell.                    \tag{5.1}
+\]
+
+On \(E_n\), the centered displacement before the causing jump has
+geometric moments, and the causing jump is bounded. Consequently
+
+\[
+ \mathbb E[
+   |G_\ell(X_{\tau_n})-G_\ell(x_n)|^p;E_n]
+       \le {C_{p,\ell}(\log(n+e))^p\over n}.                  \tag{5.2}
+\]
+
+Together with the duration moments, this yields
+
+\[
+ \mathbb E[
+   G_\ell(X_{\tau_n})-G_\ell(x_n)+\tau_n]
+       \le-\tfrac12\log n                                    \tag{5.3}
+\]
+
+for all large \(n\).
+
+Since \(G_\ell(x_n)\asymp n\log n\), the exact identity
+
+\[
+ (G+z)^4-G^4=4G^3z+6G^2z^2+4Gz^3+z^4                       \tag{5.4}
+\]
+
+and (5.2) show that the last three expected terms are
+\(O(G_\ell(x_n)^2(\log n)^2)\), lower order than
+\(G_\ell(x_n)^3\log n\). The physical-duration term is lower order as
+well. This proves (1.6). \(\square\)
+
+\subsection{6. Scope}
+
+This theorem treats exactly the bounded-base one-active shape with both
+\(A+B\) and \(A+C\) disabled at \((n,0,0)\). It is independent of the
+mesoscopic separated theorem. It proves arbitrary orientations and rates
+from a simple strong-graph path, a finite phase-type carrier, and an
+included all-clock race; it uses no finite enumeration.

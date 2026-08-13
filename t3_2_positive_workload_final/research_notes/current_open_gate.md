@@ -140,10 +140,12 @@ The audited easy-promotion theorem then closes 416 disjoint mixed-profile
 pairs, adding 414 positive and two signed pairs. The audited common-scalar
 theorem closes thirteen further disjoint all-active-only rank-two pairs, all
 positive-invariant.
-The current certified remainder is
+The final-seven stopped activation/service theorem has now passed independent
+audit and removes seven positive-invariant pairs.  The current certified
+remainder is
 
 \[
- 306\quad\text{positive-invariant pairs},\qquad
+ 299\quad\text{positive-invariant pairs},\qquad
  34\quad\text{signed pairs}.
 \]
 
@@ -156,11 +158,13 @@ accompanying source/tests. It is not itself a recurrence theorem.
 
 The all-one-active selector, the exact 26-pair no-promotion branch, the
 416-pair easy-promotion branch, and the thirteen all-active-only linear-switch
-pairs are no longer open. The immediate target is the **hard dormant and
-generalized-resolvent composition** on 333 of the remaining 340 support
-pairs. Its current uniform spectator Green lemma failed audit and must be
-replaced by a start-weighted estimate. This is followed by a stopped
-activation/service theorem for the final seven.
+pairs and the final-seven stopped theorem are no longer open. The immediate
+target is the **hard dormant and generalized-resolvent composition** on all
+333 remaining support pairs. Its start-weighted spectator Green lemma and
+logarithmic actual-service-endpoint majorant now pass their local checks.
+The remaining proof-completeness gate is a weighted contraction which sums
+arbitrarily many paid lower interruptions and supplies the endpoint/duration
+moments used by the fourth-power drift.
 For a
 fixed communication class and a divergent two- or three-active source-rate
 flag, prove one of:
@@ -217,5 +221,6 @@ Do not use any of the following:
 - lexicographic descent without lower-level endpoint-cost moments.
 
 No C3 counterexample is known. T3-2 remains plausible but uncertified until
-the 333-pair dormant/generalized theorem, the final seven stopped episodes,
-and the resulting global composition are independently closed.
+the 333-pair dormant/generalized theorem, its 317-pair common-potential
+composition, the remaining sixteen workload-transfer pairs, and the final
+global composition are independently closed.

@@ -1,0 +1,362 @@
+# Unconditional two-active AA contraction and the cap-SCC obstruction
+
+**Proof-first candidate, 2026-08-12 PDT.**  This note separates two claims
+which must not be conflated.
+
+1. The proposed finite graph on cap descriptors is not a valid Markov reward
+   quotient.  A cap records source availability, not the exact bounded
+   population, and a directed support graph carries neither transition
+   probabilities nor reward occupation weights.
+2. No such graph is needed for the two-active part of the exact 18,496-pair
+   remainder.  Every affine-feasible two-active descriptor is
+   available/available (AA), and the available-target Bellman episode can be
+   run **without stopping at a cap or tier change**.  It is therefore an
+   unconditional common-marked-potential episode.
+
+The finite identity used in the second claim is frozen at
+
+~~~text
+src/remaining_18496_all_feasible_two_active_aa_certificate.py
+SHA-256 25e5c2fce812d2e3d3f02c0c9377533cf16c68313b77bc0d1e7a485052bd68ee
+
+tests/test_remaining_18496_all_feasible_two_active_aa_certificate.py
+SHA-256 2445edcbcf66ff2204c821baec455b4f8a416180360a39a6d757712af5fc22e0
+~~~
+
+It enumerates support/descriptor incidences only.  It does not enumerate
+orientations, rate vectors, populations, paths, or stochastic histories.
+
+## 1. Why a directed SCC is not yet a Foster corrector
+
+Consider first a genuine finite Markov-additive kernel.  Let $I$ be a
+finite phase set, $P=(P_{ij})$ a stochastic matrix, and $r_i$ the
+expected reward of one episode begun in phase $i$.  A bounded phase
+corrector $a:I\to\mathbb R$ with
+
+\[
+ r_i+\sum_jP_{ij}a_j-a_i\le-\delta                 \tag{1.1}
+\]
+
+can exist only if every stationary law $\pi$ of every closed recurrent
+class satisfies
+
+\[
+                         \sum_i\pi_i r_i\le-\delta . \tag{1.2}
+\]
+
+This is immediate after multiplying (1.1) by $\pi_i$ and summing.  The
+converse, with a possibly smaller $\delta>0$, is the finite Poisson/Farkas
+alternative: solve the centered Poisson equation on each recurrent class
+and then extend the corrector backwards over the transient condensation
+graph.
+
+Thus the load-bearing finite datum is the **rate-weighted reward kernel**,
+not its directed support.  The assertion that a closed SCC merely contains
+a coercive node is insufficient unless one also proves all of the following.
+
+* The quotient phase after an episode is determined by the node and the
+  episode endpoint.
+* Every edge used to reach the coercive node has a uniformly positive
+  transition probability on the relevant escaping family.
+* The expected positive reward accumulated before that hit is uniformly
+  integrable.
+* The negative reward at the coercive hit dominates that complete prefix.
+
+For a state-dependent family of kernels the exact replacement for (1.2) is
+negativity against every invariant occupation measure of every limiting
+rate/reward kernel.  A graph-only SCC test discards precisely this measure.
+
+## 2. The cap quotient is not Markov
+
+The descriptor cap $2$ means only “at least two,” because binary sources
+cannot distinguish $2$ from a larger population for enablement.  It does
+not mean that the bounded coordinate equals two.
+
+This failure occurs inside the exact 18,496-pair family.  Use the ordered
+supports
+
+\[
+ L_b=\{0,A,2A,A+B\},\qquad
+ L_0=\{C,2C,A+C\},                                  \tag{2.1}
+\]
+
+and the one-active descriptor with active species $B$, weight
+$(0,1,0)$, and $A$-cap zero.  The exact remainder certificate contains
+its B/F0 failure rows at each $C$-cap $0,1,2$.  Choose any strong
+orientation of $L_0$ containing the label $2C\to C$, for example the
+cycle
+
+\[
+                         C\longrightarrow A+C
+                          \longrightarrow2C\longrightarrow C.       \tag{2.2}
+\]
+
+At populations
+
+\[
+                         (A,B,C)=(0,N,k),\qquad k\ge2,                \tag{2.3}
+\]
+
+the same descriptor node records $C$-cap $2$.  If the label
+$2C\to C$ fires, then
+
+\[
+ k=2\quad\Longrightarrow\quad\hbox{cap }1,
+ \qquad
+ k\ge3\quad\Longrightarrow\quad\hbox{cap }2.         \tag{2.4}
+\]
+
+Hence the endpoint cap is not a function of the cap node and the reaction
+label.  Moreover, within the same cap node the $2C$-source propensity is
+proportional to $k(k-1)$, whereas the $C$-source propensity is
+proportional to $k$.  The all-clock transition probabilities are not
+functions of the finite cap node either.
+
+Refining cap $2$ to exact $k$ repairs Markovianity only by producing a
+countable phase.  Sending $k\to\infty$ is not another bounded-cap node: it
+is promotion of $C$ to the active set and requires a new tier
+compactification.  There is no fixed population threshold at which this
+sequence-defined promotion occurs.
+
+The kinetic obstruction is real rather than cosmetic.  An accelerated
+immigration--death cofactor can leave every fixed box before a slow service
+clock with probability tending to one, even though countable-phase
+averaging gives a uniform physical-time service probability.  Thus finite
+box exits may form an apparent exit-only circulation while the full
+countable phase is recurrent.  A cap-SCC calculation cannot replace the
+needed killed countable-phase resolvent or Poisson corrector.
+
+We therefore record:
+
+> **Proposition 2.1 (finite cap-SCC proposal: fail).**  A node recording only
+> the active mask, tier partition, caps, and mark does not define a finite
+> Markov reward quotient.  Consequently a certificate
+> that every closed directed SCC contains a locally coercive node would not,
+> by itself, prove a bounded Foster corrector or an unconditional macro.
+
+This proposition does not say that the networks are transient.  It says
+that the proposed finite object forgets the rate-weighted occupation needed
+to prove recurrence.
+
+## 3. The exact all-feasible-two-active AA identity
+
+For the exact outside-mixed remainder, the frozen finite certificate gives
+
+\[
+\begin{array}{c|r}
+\text{quantity}&\text{count}\\ \hline
+\text{remainder pairs}&18{,}496\\
+\text{pairs with a feasible two-active descriptor}&18{,}322\\
+\text{affine-feasible two-active incidences}&1{,}140{,}984\\
+\text{corrected-cut passes}&1{,}137{,}900\\
+\text{corrected-cut failures}&3{,}084\\
+\text{incidences with an S-classified linkage}&0.
+\end{array}                                                     \tag{3.1}
+\]
+
+The unordered available-kind histogram is
+
+\[
+\begin{array}{c|rrrrrr}
+\text{kind}&Q/Q&Q/U&C/Q&C/U&U/U&C/C\\ \hline
+\text{count}&639{,}468&321{,}858&165{,}870&9{,}360&4{,}212&216.
+\end{array}                                                     \tag{3.2}
+\]
+
+The incidence and identity fingerprints are respectively
+
+~~~text
+a4c4aa42dadabe7e73d46a690f29fe1d457bf57c5bece422b8c0a3fafe72eb99
+bc9195d09dc8717381486ae114fcd59e22786c729d957fe209ceac432deaaac8
+~~~
+
+The analytic use of (3.1) is only that both linkage supports satisfy the
+symbolic Q/U/C available-target construction.  The counts are not a
+stochastic proof.
+
+## 4. Remove the structural-exit test from an AA path
+
+Fix a strongly connected orientation and positive labelled rates.  Let
+$(x_n,t)$ be an escaping marked sequence with active coordinates $i,j$
+and bounded coordinate $b$.  Thus
+
+\[
+                  x_{n,i},x_{n,j}\longrightarrow\infty,
+                  \qquad \sup_nx_{n,b}<\infty,
+                  \qquad x_n\ge t.                   \tag{4.1}
+\]
+
+After a subsequence, fix its complete D-tier type.  Suppose the linkage
+containing $t$ is Q-, U-, or C-classified.  The symbolic bridge supplies
+complexes $q,c$ in that linkage such that
+
+\[
+                  q_b\le c_b,\qquad q\succ_D c.       \tag{4.2}
+\]
+
+Here $q\succ_Dc$ means that the enabled falling-factorial ratio of $c$
+to $q$ tends to zero on the fixed tier sequence.  Strong connectivity
+supplies a simple directed path
+
+\[
+              t=y_0\longrightarrow y_1\longrightarrow\cdots
+                    \longrightarrow y_m=c.            \tag{4.3}
+\]
+
+Run the following episode with every physical clock retained.
+
+1. At $y_r$, take the next ordinary all-clock jump.
+2. Continue only if the designated label $y_r\to y_{r+1}$ fires;
+   otherwise stop at the competitor's actual endpoint and actual target.
+3. On reaching $c$, take one final ordinary all-clock jump and stop at its
+   actual endpoint and target.
+
+There is **no cap, enabled-support, active-set, or tier structural-exit
+test** in this rule.
+
+Indeed, after a successful prefix the exact population is
+
+\[
+                           x_{r,n}=x_n-t+y_r.          \tag{4.4}
+\]
+
+It dominates $y_r$, so every designated source is physically enabled by
+the preceding actual target.  At the pre-final endpoint
+
+\[
+                           z_n=x_n-t+c\ge c.           \tag{4.5}
+\]
+
+the active coordinates still diverge.  Equation (4.2) and (4.5) also give
+$z_{n,b}\ge c_b\ge q_b$, so $q$ is enabled even if the bounded cap has
+changed.  Bounded displacement preserves every strict active-coordinate
+D-comparison.  Therefore
+
+\[
+ p_c(z_n)\le {K_c(z_n)_c\over K_q(z_n)_q}
+                         \longrightarrow0.            \tag{4.6}
+\]
+
+This is the decisive point: a cap change along the successful word does not
+remove the comparison source.  Intermediate cap and tier labels were proof
+bookkeeping, not a physical obstruction.
+
+## 5. Exact all-clock reward
+
+Carry the actual target after every reaction and put
+
+\[
+ F(x,t)=\sum_{r=1}^3\log((x_r-t_r)!),
+ \qquad W(x,t)=1+F(x,t).                              \tag{5.1}
+\]
+
+For a source $y$, let
+
+\[
+ \lambda_y(x)=K_y(x)_y,\qquad
+ \Lambda(x)=\sum_y\lambda_y(x),\qquad
+ p_y(x)={\lambda_y(x)\over\Lambda(x)}.               \tag{5.2}
+\]
+
+The one-jump marked identity is
+
+\[
+ D(x,t):=\mathbb E_{x,t}\Delta F
+   =\log p_t-\sum_yp_y\log p_y-\log K_t
+                         +\sum_yp_y\log K_y
+   \le\log p_t+C_K.                                  \tag{5.3}
+\]
+
+Let $D_{r,n}=D(x_{r,n},y_r)$, let $a_{r,n}$ be the probability of the
+designated label at stage $r$, and let $J_{r,n}$ be the expected
+remaining stopped reward.  The literal all-clock recursion is
+
+\[
+                 J_{m,n}=D_{m,n},\qquad
+                 J_{r,n}=D_{r,n}+a_{r,n}J_{r+1,n}.    \tag{5.4}
+\]
+
+All competing clocks are already in $D_{r,n}$.  At the first prefix source
+whose probability tends to zero, (5.3) tends to minus infinity.  Every
+earlier designated probability stays bounded below after source-ratio
+compactification, while the positive tail after the first rare source is
+multiplied by $O(p_{y_r})\to0$.  If there is no earlier rare source, use
+$c$ and (4.6).  Iterating (5.4) gives
+
+\[
+                              J_{0,n}\longrightarrow-\infty.         \tag{5.5}
+\]
+
+The episode contains at most ten jumps.  Source entropy gives, for every
+fixed $s<\infty$,
+
+\[
+                  \sup_n\mathbb E[((\Delta F)^+)^s]<\infty.         \tag{5.6}
+\]
+
+At each stage the carried target is enabled, so total hazard is bounded
+below by the minimum positive labelled out-rate.  All fixed moments of the
+physical duration are therefore uniformly bounded.
+
+## 6. Finite-menu state selection
+
+For a fixed support pair and fixed orientation, put in one finite menu every
+simple target-following path associated with every two-active tier type,
+available linkage, actual target, and admissible terminal $c$.  At a
+marked state select the path with least exact expected stopped reward; break
+ties deterministically.
+
+If uniform coercivity failed on an AA two-active escaping family, a
+violating sequence would have a subsequence with fixed active pair, tier
+type, actual target, available terminal, and simple path.  The corresponding
+menu score tends to minus infinity by (5.5), and the selected minimum score
+is no larger.  This is a contradiction.  Hence, outside a finite subset of
+every AA two-active escaping family,
+
+\[
+ \mathbb E_{x,t}
+   [W(X_\tau,T_\tau)-W(x,t)+\eta\tau]\le-1           \tag{6.1}
+\]
+
+for a fixed sufficiently small $\eta>0$.  Every episode contains at least
+one actual jump, has an actual integrable endpoint, and carries the same
+proper $W$.  Episodes concatenate without an entrance toll or a
+structural-exit handoff.  Since a bounded episode cannot destroy either of
+two diverging active coordinates along the fixed escaping sequence, the
+corresponding endpoint sequence remains in the same two-active asymptotic
+regime.  This is a sequential statement, not pointwise invariance of a cap
+node.
+
+> **Theorem 6.1 (unconditional two-active AA episode).**  Fix any of the
+> 18,496 outside-mixed remainder pairs, any strongly connected orientations,
+> any positive labelled rates, and any closed population class.  Along every
+> affine-feasible two-active escaping sequence, the finite-menu all-clock
+> rule above satisfies the unconditional common-marked-$W$ estimate (6.1).
+> This includes all 3,084 corrected-cut failure incidences.  No cap graph,
+> descriptor-exit circulation, weighted seam, or orientation enumeration is
+> used.
+
+This is a complete **local two-active contract**.  A global pair-recurrence
+deduction still requires every complementary all-active and one-active
+escaping sequence to be covered by compatible rules.  In particular, this
+theorem does not claim that the one-active complement has already been
+closed.
+
+## 7. Exact residual after the repair
+
+The theorem removes the complete two-active part of the proposed SCC
+problem.  All-active feasible descriptors pass the corrected cut and have
+no bounded cap.  The remaining cap issue is therefore one-active, and in
+particular the B/F0 phase begun at a Flat0 mark.  There the inactive process
+may be a genuine countable recurrent phase; Proposition 2.1 shows why it
+cannot be replaced by the three availability caps.
+
+A valid completion must use one of the following stronger objects.
+
+1. an unconditional finite killed completion that appends the newly enabled
+   B-service before stopping;
+2. a countable-phase killed resolvent/Poisson corrector, with promotion to
+   Theorem 6.1 when an inactive coordinate diverges; or
+3. a population potential giving direct one-active generator descent.
+
+What is no longer needed is a finite cap-SCC theorem for two-active charts.

@@ -14,14 +14,24 @@ cut proof.  It also freezes all 1,104 one-active failures on the same 333
 pairs and the exact 951-to-317 generalized-Family-II promotion map.  The
 map is a support identity, not a finite-state recurrence inference.
 Independent audit found that the candidate's uniform unweighted Green bound
-is false for unbounded spectator starts. The exact finite selector remains
-valid, but the analytic theorem requires a start-weighted repair. Pair-level
-and global certification remain false.
+is false for unbounded spectator starts.  A later audit also found that the
+actual service endpoint cannot be put inside a uniformly negative entropy
+drift.  A subsequent audit found that the all-reaction argument expanded
+through only finitely many paid interruptions although their count is
+unbounded.  The first attempted all-order repair used the symmetric mark
+``a_0^(I+R)``; an exact physical history keeps ``I+R`` constant through an
+arbitrarily long string of fast steps, so that strict-drift claim was also
+withdrawn.  The analytic note now uses a start-weighted Green estimate, a
+logarithmic service-boundary majorant with a bounded compact corrector, and
+an asymmetric physical-step Feynman--Kac inequality with the actual
+terminal reward.  It is pending independent re-audit.  Pair-level and
+global certification remain false.
 """
 
 from __future__ import annotations
 
 from collections import Counter
+from fractions import Fraction
 from functools import lru_cache
 from hashlib import sha256
 import json
@@ -696,6 +706,289 @@ def one_active_family_pairs(family: str) -> frozenset[Pair]:
     return frozenset(result)
 
 
+def repaired_green_proof_premises() -> dict[str, object]:
+    """Freeze the finite premises of the start-weighted Green repair.
+
+    An exact proper pair ``{aU, VI}`` has no nontrivial proper-base cut.
+    The repaired proof therefore moves to the lower linkage.  The atlas has
+    exactly seventeen such support templates, and every one has an enabled
+    I-free lower source.  Strong connectivity then forces its maximal such
+    source either downward or into an I-bearing service state.
+    """
+
+    exact_pair_histogram: Counter[str] = Counter()
+    missing_lower_source: list[dict[str, object]] = []
+    for row in generalized_support_templates():
+        proper = set(row["proper"])
+        proper_ifree = proper & set(U_DEGREE)
+        if len(proper) != 2 or "VI" not in proper or len(proper_ifree) != 1:
+            continue
+        source, = tuple(proper_ifree)
+        exact_pair_histogram[source] += 1
+        lower_ifree = set(row["lower"]) & set(U_DEGREE)
+        if not lower_ifree:
+            missing_lower_source.append(row)
+
+    assert exact_pair_histogram == {"0": 6, "U": 5, "2U": 6}
+    assert not missing_lower_source
+    return {
+        "exact_proper_pair_templates": sum(exact_pair_histogram.values()),
+        "source_histogram": dict(sorted(exact_pair_histogram.items())),
+        "every_exact_pair_has_an_ifree_lower_source": True,
+        "maximal_degree_is_taken_after_zero_macro_contraction": True,
+        "polynomial_green_start_exponent": "r+1",
+        "factorial_theta_strictly_below": "1/2",
+    }
+
+
+def withdrawn_uniform_green_counterexample() -> dict[str, object]:
+    """Return the exact history which refutes the old uniform quantifier."""
+
+    # Coordinates are (U, I, relative V displacement).  The first history
+    # reaches a positive-debt base at U=2; each final 0->2U macro adds two
+    # spectator molecules without changing the old-active displacement.
+    states = (
+        (0, 0, 0),
+        (1, 1, 0),   # 0 -> UI
+        (0, 2, 1),   # U -> VI
+        (1, 1, 1),   # I -> U
+        (2, 0, 1),   # I -> U
+    )
+    assert states[-1] == (2, 0, 1)
+    return {
+        "proper": ["U", "I", "VI"],
+        "lower": ["0", "2U", "UI"],
+        "strong_orientation": "complete_digraphs",
+        "history": ["0->UI", "U->VI", "I->U", "I->U"],
+        "states_U_I_relative_V": [list(state) for state in states],
+        "neutral_extension": "repeat 0->2U",
+        "reachable_positive_debt_bases": "U=2+2k",
+        "uniform_unweighted_green_bound_is_false": True,
+    }
+
+
+def withdrawn_pathwise_h_counterexample() -> dict[str, object]:
+    """Return the exact service path on which ``3 V + U`` increases."""
+
+    states = (
+        (0, 0, 0),
+        (2, 0, 0),   # 0 -> 2U
+        (3, 1, 0),   # 0 -> UI
+        (4, 0, -1),  # VI -> U: first strict old-V service
+    )
+    initial_h = states[0][0] + 3 * states[0][2]
+    terminal_h = states[-1][0] + 3 * states[-1][2]
+    assert terminal_h - initial_h == 1
+    return {
+        "proper": ["U", "I", "VI"],
+        "lower": ["0", "2U", "UI"],
+        "strong_orientation": "complete_digraphs",
+        "history": ["0->2U", "0->UI", "VI->U"],
+        "states_U_I_relative_V": [list(state) for state in states],
+        "old_V_service": -1,
+        "delta_3V_plus_U": terminal_h - initial_h,
+        "pathwise_weighted_order_descent_is_false": True,
+    }
+
+
+def withdrawn_service_inclusive_entropy_drift_counterexample() -> dict[str, object]:
+    """Freeze the exact template that defeats the old entropy drift.
+
+    With the indicated strong orientations, the only nonself contracted
+    base step is workload service and sends the spectator from ``u`` to
+    ``u+2``.  Including that actual endpoint in the one-step entropy
+    operator therefore has positive drift asymptotic to ``2 log u``.
+    """
+
+    proper = ("2U", "VI")
+    lower = ("0", "I", "2I", "UI")
+    matches = tuple(
+        row
+        for row in generalized_support_templates()
+        if tuple(row["proper"]) == proper
+        and tuple(row["lower"]) == lower
+    )
+    assert len(matches) == 1
+    return {
+        "proper": list(proper),
+        "lower": list(lower),
+        "proper_orientation": ["2U->VI", "VI->2U"],
+        "lower_strong_cycle": ["0->I", "I->2I", "2I->UI", "UI->0"],
+        "contracted_service_macro": ["0->I", "VI->2U"],
+        "actual_spectator_endpoint": "u+2",
+        "entropy_increment": "log((u+1)(u+2))+2*ell_U",
+        "entropy_increment_asymptotic": "2*log(u)+O(1)",
+        "service_inclusive_negative_drift_is_false": True,
+    }
+
+
+def repaired_service_endpoint_entropy_premises() -> dict[str, object]:
+    """Record the quantifiers of the logarithmic endpoint repair."""
+
+    return {
+        "continuation_operator": "Q",
+        "actual_terminal_service_operator": "S",
+        "service_boundary_majorant": "B_ell+C*log(u+e)",
+        "actual_service_endpoint_retained": True,
+        "bounded_compact_resolvent_corrector": True,
+        "actual_endpoint_entropy_upper_bound": "C*log(u+e)+O(1)",
+        "one_active_tier_input": "u=n^o(1)",
+        "tier_endpoint_cost": "o(log(n))",
+        "paid_interruption_probability": "n^(-1+o(1))",
+        "paid_interruption_endpoint_moments": "n^o(1)",
+        "fourth_power_negative_term": "-c*G^3*log(n)",
+        "pair_counts_promoted": 0,
+    }
+
+
+def paid_interruption_weighted_contraction_premises() -> dict[str, object]:
+    """Freeze the exact support facts behind the full paid-event sum.
+
+    Sources other than ``VI`` are the lower clocks which can interrupt an
+    uncleared top excursion.  The tempting claim that every such
+    I-increasing source is linear is false; the correct molecularity-two
+    bound still gives an ``O(n^(-1/3)/I)`` birth/top ratio below the
+    ``n^(1/3)`` boundary.
+    """
+
+    vectors = {name: vector for vector, name in NORMALIZED_VECTORS.items()}
+    increasing_edges: list[tuple[str, str, str]] = []
+    quadratic_increasing_edges: list[tuple[str, str, str]] = []
+    maximum_lower_molecularity = 0
+    templates = generalized_support_templates()
+    for row in templates:
+        for linkage_name in ("proper", "lower"):
+            support = tuple(row[linkage_name])
+            for source in support:
+                if source == "VI":
+                    continue
+                source_vector = vectors[source]
+                molecularity = sum(source_vector)
+                maximum_lower_molecularity = max(
+                    maximum_lower_molecularity, molecularity
+                )
+                for target in support:
+                    if source == target:
+                        continue
+                    target_vector = vectors[target]
+                    if target_vector[2] <= source_vector[2]:
+                        continue
+                    edge = (linkage_name, source, target)
+                    increasing_edges.append(edge)
+                    if molecularity == 2:
+                        quadratic_increasing_edges.append(edge)
+
+    witness_count = sum(
+        set(row["proper"]) == {"U", "I", "VI"}
+        and set(row["lower"]) == {"0", "2U", "2I"}
+        for row in templates
+    )
+    symmetric_mark_witness_count = sum(
+        set(row["proper"]) == {"0", "I", "2I", "VI"}
+        and set(row["lower"]) == {"U", "2U"}
+        for row in templates
+    )
+    quadratic_types = sorted(
+        {(source, target) for _side, source, target in quadratic_increasing_edges}
+    )
+    assert len(templates) == 146
+    assert maximum_lower_molecularity == 2
+    assert len(increasing_edges) == 705
+    assert len(quadratic_increasing_edges) == 253
+    assert quadratic_types == [
+        ("2U", "2I"),
+        ("2U", "I"),
+        ("2U", "UI"),
+        ("2U", "VI"),
+        ("UI", "2I"),
+    ]
+    assert witness_count == 1
+    assert symmetric_mark_witness_count == 1
+    return {
+        "support_templates": len(templates),
+        "maximum_paid_lower_source_molecularity": maximum_lower_molecularity,
+        "i_increasing_ordered_edge_occurrences": len(increasing_edges),
+        "quadratic_i_increasing_ordered_edge_occurrences": len(
+            quadratic_increasing_edges
+        ),
+        "quadratic_i_increasing_edge_types": [
+            list(edge) for edge in quadratic_types
+        ],
+        "exact_quadratic_witness": {
+            "proper": ["U", "I", "VI"],
+            "lower": ["0", "2U", "2I"],
+            "paid_edge": "2U->2I",
+        },
+        "linear_only_i_increase_premise_is_false": True,
+        "spectator_cofactor_boundary": "L=n^(1/3)",
+        "correct_total_paid_over_top_ratio": "O(n^(-1/3))",
+        "correct_i_birth_over_top_ratio": "O(n^(-1/3)/I)",
+        "first_paid_tier_factor": "n^(-1+o(1))",
+        "subsequent_paid_return_control": (
+            "asymmetric physical-step Feynman-Kac inequality"
+        ),
+        "exact_reserve_coordinate": "R=V-n before first service",
+        "nonterminal_fast_step": {"delta_R": -1, "max_delta_I": 1},
+        "fast_at_zero_reserve_is_terminal_service": True,
+        "asymmetric_mark_order": "1<a_I<a_R",
+        "actual_terminal_reward": "z0^J*(1+U+I+R)^r",
+        "symmetric_mark_counterexample": {
+            "proper": ["0", "I", "2I", "VI"],
+            "lower": ["U", "2U"],
+            "proper_orientation": "0->I->VI->2I->0",
+            "lower_orientation": "U<->2U",
+            "paid_edge": "I->VI",
+            "fast_edge": "VI->2I",
+            "after_k_paid": "(I,J,R)=(1,k,k)",
+            "after_t_fast": "(I,R)=(1+t,k-t)",
+            "symmetric_exponent": "I+R=k+1",
+        },
+        "symmetric_mark_witness_support_templates": (
+            symmetric_mark_witness_count
+        ),
+        "symmetric_i_plus_r_mark_strict_drift_is_false": True,
+        "whole_phase_pointwise_ratio_mix_withdrawn": True,
+        "i_zero_macros_contracted_separately": True,
+        "actual_terminal_endpoint_in_feynman_kac_reward": True,
+        "all_reaction_boundary_method": (
+            "arbitrary fixed endpoint moment at included physical boundary"
+        ),
+        "all_paid_orders_summed_by_neumann_series": True,
+        "direct_i_birth_tail": "factorial",
+        "total_i_j_r_tail": "exponential",
+        "endpoint_and_duration_moments": "n^o(1)",
+        "pair_counts_promoted": 0,
+    }
+
+
+def repaired_boundary_exponent_arithmetic() -> dict[str, object]:
+    """Freeze the exponents in the unweighted three-insertion repair."""
+
+    delta = Fraction(1, 8)
+    maximum_resistance = 2
+    raw_three_insertions = -3 + 6 * delta
+    completed_boundary_probability = (
+        maximum_resistance + raw_three_insertions
+    )
+    endpoint_weighted_ratio = completed_boundary_probability + delta
+    assert raw_three_insertions == Fraction(-9, 4)
+    assert completed_boundary_probability == Fraction(-1, 4)
+    assert endpoint_weighted_ratio == Fraction(-1, 8)
+    return {
+        "delta": "1/8",
+        "raw_unweighted_three_insertion_power": "-9/4",
+        "completed_boundary_probability_power": (
+            "-1/4"
+        ),
+        "deterministic_endpoint_factor_power": "1/8",
+        "boundary_cost_over_service_power": "-1/8",
+        "raw_weighted_all_r_claim_withdrawn": True,
+        "exact_state_regenerations_reset_local_J": True,
+        "nonexact_neutral_returns_stay_in_the_raw_block": True,
+        "exceptional_zeta_macro_uses_cumulative_A": True,
+    }
+
+
 def certificate() -> dict[str, object]:
     rows = normalized_rows()
     templates = normalized_templates()
@@ -956,8 +1249,8 @@ def certificate() -> dict[str, object]:
         "claim_scope": (
             "exact 407-row selector, complete 333-pair one-active "
             "classification, normalized support exhaustion, 951-to-317 "
-            "promotion map, and proof premises; the analytic candidate "
-            "failed audit at its uniform unweighted spectator Green bound"
+            "promotion map, and repaired proof premises; the analytic "
+            "candidate awaits independent re-audit"
         ),
         "authoritative_parent_remainder": {
             "pairs": len(current_remainder_769()),
@@ -1102,13 +1395,43 @@ def certificate() -> dict[str, object]:
             ),
             "union_is_all_333_hard_pairs": True,
         },
+        "repaired_start_weighted_green_premises": (
+            repaired_green_proof_premises()
+        ),
+        "withdrawn_uniform_green_counterexample": (
+            withdrawn_uniform_green_counterexample()
+        ),
+        "withdrawn_pathwise_h_counterexample": (
+            withdrawn_pathwise_h_counterexample()
+        ),
+        "withdrawn_service_inclusive_entropy_drift_counterexample": (
+            withdrawn_service_inclusive_entropy_drift_counterexample()
+        ),
+        "repaired_service_endpoint_entropy_premises": (
+            repaired_service_endpoint_entropy_premises()
+        ),
+        "paid_interruption_weighted_contraction_premises": (
+            paid_interruption_weighted_contraction_premises()
+        ),
+        "repaired_boundary_exponent_arithmetic": (
+            repaired_boundary_exponent_arithmetic()
+        ),
         "arbitrary_orientation_graph_theorem_candidate_written": True,
         "aggregate_resolvent_theorem_candidate_written": True,
         "generalized_one_active_resolvent_theorem_candidate_written": True,
         "independent_analytic_audit_status": (
-            "fail_as_written_start_weighted_green_repair_open"
+            "repaired_candidate_pending_independent_reaudit"
         ),
         "uniform_unweighted_unbounded_spectator_green_bound_withdrawn": True,
+        "pathwise_3V_plus_U_service_descent_withdrawn": True,
+        "weighted_all_r_three_insertion_bound_withdrawn": True,
+        "bounded_entropy_coboundary_repair_written": True,
+        "service_inclusive_negative_entropy_drift_withdrawn": True,
+        "logarithmic_actual_service_endpoint_charge_written": True,
+        "finite_paid_interruption_hierarchy_withdrawn": True,
+        "linear_only_i_increase_premise_withdrawn": True,
+        "symmetric_i_plus_r_mark_drift_withdrawn": True,
+        "full_weighted_paid_neumann_sum_written": True,
         "analytic_theorem_independently_audited": False,
         "pair_level_recurrence_certified": False,
         "global_t3_2_certified": False,

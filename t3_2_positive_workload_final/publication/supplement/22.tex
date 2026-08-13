@@ -1,0 +1,683 @@
+\section{A stopped-service common scalar for the final rank-two
+seven}
+
+\subsection{1. Scope and audit status}
+
+This note gives the independently audited recurrence proof for exactly
+the seven pairs selected by \emph{rank\_\texttt{\seqsplit{two\_mixed\_profile\_7.py}}}. It
+composes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  a localized Perron--Frobenius activation trial at every dormant
+  nonservice vertex;
+\item
+  a full-chain density-dependent service window after activation; and
+\item
+  one common scalar on the stopped wedges and their pointwise-good
+  complement.
+\end{enumerate}
+
+The exact seven-pair fingerprint is
+
+\begin{CodeBlock}
+93717536ce82eceefe6909c62568afab31e06695dada8b69defb93335d576957
+\end{CodeBlock}
+
+The final proof replaces an invalid geometric-tail shortcut for the
+total seed count, distinguishes every birth and death count in the
+episode, uses random-time-change exponential estimates for the service
+clock, and restores all physical reactions through a deterministic
+endpoint envelope. Independent replay passed the stopping, endpoint,
+ODE, moment, gluing, and arbitrary-orientation obligations. The exact
+seven-pair analytic and recurrence flags are true; global T3-2 remains
+false.
+
+\subsection{2. Exact geometry and the common
+scalar}
+
+Every pair has lower linkage
+
+\[
+                         0\rightleftarrows C             \tag{2.1}
+\]
+
+and a strongly connected top linkage of molecularity two and
+stoichiometric rank two. The exact service-zero geometry is
+
+\[
+\begin{array}{c|c|c}
+T&\text{sources on }C=0&\text{dormant nonservice vertices}\\ \hline
+\{2A,2C,AB,AC,BC\}&\{2A,AB\}&B\\
+\{2A,2C,AB,BC\}&\{2A,AB\}&B\\
+\{2A,AB,AC,BC\}&\{2A,AB\}&B\\
+\{2B,2C,AB,AC\}&\{2B,AB\}&A\\
+\{2B,2C,AB,AC,BC\}&\{2B,AB\}&A\\
+\{2B,AB,AC,BC\}&\{2B,AB\}&A\\
+\{2C,AB,AC,BC\}&\{AB\}&A,B.
+\end{array}                                             \tag{2.2}
+\]
+
+There are eight dormant rows. Every pair contains \(AB\), has no
+two-active failed descriptor, and has one all-active failed descriptor
+with workload \((1,1,1)\).
+
+Put
+
+\[
+\begin{split}
+ n&=A+B+C,\qquad h=1+n,\\
+ F(x)&=K_F+\sum_{i=A,B,C}\log(x_i!),\qquad G=1+F,\\
+ V(x)&=G(x)^4+\lambda h(x)^6,\qquad \lambda>0,
+\end{split}                                             \tag{2.3}
+\]
+
+where \(K_F\) makes \(G\ge1\). This is the single proper scalar used at
+every gluing endpoint.
+
+\subsection{3. Pointwise drift away from dormant
+wedges}
+
+Write \(\alpha>0\) and \(\delta>0\) for the rates of \(0\to C\) and
+\(C\to0\). The top linkage preserves \(n\), and hence
+
+\[
+\begin{split}
+ {\cal L}h^6
+ &=\alpha\{(h+1)^6-h^6\}
+   +\delta C\{(h-1)^6-h^6\}\\
+ &\le K_0h^5-c_0Ch^5.
+\end{split}                                             \tag{3.1}
+\]
+
+At a dormant vertex \(d\), relabel \(d\) as \(X\), the service species
+\(C\) as \(A\), and the remaining species as \(B\). Section 4 constructs
+\(R_d=v_AA+v_BB\), with positive coefficients. Choose a common
+sufficiently small \(\eta\), after the fixed pair, orientation, and
+rates are given, and define
+
+\[
+ {\cal W}_d=\{R_d\le\eta n\},\qquad
+ {\cal W}=\bigcup_{d\in D(\mathrm{pair})}{\cal W}_d.    \tag{3.2}
+\]
+
+The one or two wedges are disjoint above a finite population sublevel.
+Every divergent sequence outside \({\cal W}\) has a subsequence on which
+
+\[
+                         {\cal L}V\longrightarrow-\infty. \tag{3.3}
+\]
+
+The exact-tier cases are as follows.
+
+\subsubsection{3.1 All-active failure}
+
+Here \(A,B,C=\Theta(N)\), \(h=\Theta(N)\), and the top source rates are
+\(\Theta(N^2)\). The exact discrete fourth-power estimate from the
+audited homogeneous rank-two scalar theorem gives
+
+\[
+                    ({\cal L}G^4)^+
+                    \le K N^5(\log N)^3.                \tag{3.4}
+\]
+
+The service term in (3.1) has negative order \(N^6\), which is a strict
+polynomial margin.
+
+\subsubsection{\texorpdfstring{3.2 Passing cones with
+\(C\to\infty\)}{3.2 Passing cones with C\textbackslash to\textbackslash infty}}
+
+The powered exact-tier estimate gives
+
+\[
+ {\cal L}G^4\le-cG^3A_Ng_N,\qquad g_N\longrightarrow\infty,             \tag{3.5}
+\]
+
+after its lower-order binomial terms are absorbed. Here \(A_N\) is the
+largest enabled source propensity. At the same time, (3.1) is eventually
+negative. Both summands of \(V\) are generator-good.
+
+\subsubsection{\texorpdfstring{3.3 Passing cones with \(C\)
+bounded}{3.3 Passing cones with C bounded}}
+
+Now \(h\asymp A+B\). On the service-zero edge, (2.2) gives the coercive
+source explicitly. A non-dormant pure endpoint has a \(2A\) or \(2B\)
+source of order \(h^2\). If both \(A\) and \(B\) have positive limiting
+fractions, the universal \(AB\) source has order \(h^2\). The only
+omitted pure endpoints are the wedges in (3.2). Compactness of their
+complement therefore gives
+
+\[
+                              A_N\ge c h^2.             \tag{3.6}
+\]
+
+Since \(G\asymp h\log h\), the negative magnitude in (3.5) is at least
+
+\[
+                         ch^5(\log h)^3g_N,             \tag{3.7}
+\]
+
+which absorbs the \(O(h^5)\) birth term in (3.1).
+
+There are no two-active failures. Every one-active failure enters one of
+the dormant wedges, and an affine-infeasible descriptor cannot occur in
+a fixed population class. The bad-sequence contradiction turns (3.3)
+into
+
+\[
+                 {\cal L}V\le-1                         \tag{3.8}
+\]
+
+outside \({\cal W}\) and one finite set.
+
+\subsection{4. Localized PF trials and the exact activation
+counts}
+
+Fix a dormant chart. Its normalized top support is one of
+
+\[
+\{2A,2B,AB,AX,BX\},\quad
+\{2A,2B,AX,BX\},\quad
+\{2A,AB,AX,BX\},\quad
+\{2B,AB,AX,BX\}.                                      \tag{4.1}
+\]
+
+Killing each carrier edge which enters an inactive quadratic gives a
+transient two-state generator \(Q\). Let
+
+\[
+ q=(-Q)^{-1}{\bf1}>0,\qquad v_i=1-\varepsilon q_i>0.   \tag{4.2}
+\]
+
+For sufficiently small \(\varepsilon\), the rate-weighted reward at both
+carrier sources is positive. Thus, exactly for falling-factorial
+propensities,
+
+\[
+ R=v_AA+v_BB,\qquad
+ {\cal L}_TR\ge cXR-KR^2.                              \tag{4.3}
+\]
+
+The physical birth increases \(R\); the death contributes at worst
+\(-KR\). After reducing \(\eta\), for \(0<R\le\eta n\) and all large
+\(n\),
+
+\[
+ {\cal L}R\ge c_1nR,\qquad
+ \Gamma R:=\sum_r\lambda_r(\Delta_rR)^2\le C_1nR.      \tag{4.4}
+\]
+
+All jumps of \(R\) are bounded. For a sufficiently small \(\theta>0\),
+
+\[
+ {\cal L}e^{-\theta R}
+ \le-c_2\theta nR e^{-\theta R}.                       \tag{4.5}
+\]
+
+Starting with one physical \(0\to C\) seed and stopping at \(R=0\) or
+\(R\ge\eta n\), optional stopping gives a success probability
+
+\[
+ p_d\ge1-e^{-\theta v_A}+o(1)>0.                       \tag{4.6}
+\]
+
+This probability statement alone does not imply a geometric tail for the
+total number of births. The required repair is a localized trial
+estimate. Choose \(r_0\) larger than twice the maximum \(R\)-jump. On
+\(r_0\le R\le\eta n\), Taylor's formula yields
+
+\[
+                         {\cal L}\log R\ge c_3n.        \tag{4.7}
+\]
+
+Below \(r_0\), only finitely many inactive phases occur and every
+enabled carrier race has order \(n\). The killed-carrier cut excludes a
+closed nonabsorbing finite phase. Dynkin applied to (4.7), followed by
+the strong Markov property over dyadic bands and the finite lower phase,
+gives constants \(a,b,C>0\) such that the fast part \(\rho_n\) of a
+trial obeys
+
+\[
+ \mathbb P\!\left\{\rho_n>u\,{C\log n\over n}\right\}
+ \le ae^{-bu},\qquad u\ge1,                            \tag{4.8}
+\]
+
+until activation, return to a dormant vertex, or a population-shell
+exit. This is a physical-time estimate, not a fast-jump count.
+
+Let \(J\) be the number of extra \(0\to C\) births in the fast part.
+Since \(\rho_n\) depends on the birth clock, \(J\) is not asserted to be
+Poisson conditional on \(\rho_n\). Instead, the stopped counting-process
+exponential martingale gives
+
+\[
+ \mathbb E\exp\{sJ-\alpha(e^s-1)\rho_n\}\le1.           \tag{4.9}
+\]
+
+Apply Cauchy--Schwarz to the martingale with parameter \(2s\). Equations
+(4.8)--(4.9) then give a uniform exponential moment for \(J\), and that
+moment tends to one as \(n\to\infty\). At a dormant vertex, one
+additional seed is charged before the next fast trial. The number of
+localized trials is dominated by a geometric variable with success
+parameter
+
+\[
+ p_*=\min_{d\in D(\mathrm{pair})}p_d>0,                \tag{4.10}
+\]
+
+where the minimum is taken only over the one or two dormant charts of
+the fixed pair after its rates are fixed. A completed macroepisode may
+be re-marked at the other dormant vertex; the next application uses the
+same finite minimum. No constant is claimed uniformly over rate vectors.
+
+Let \(N_0\) be the population at the beginning of the episode, \(K\) the
+total number of activation-stage births, and \(D_{\rm pre}\) the total
+number of activation-stage deaths. The compound-geometric calculation
+from (4.9)--(4.10), including an arbitrary initial point in a wedge,
+gives some \(s_0>0\) with
+
+\[
+ \sup_{N_0\ge N_*}\mathbb E e^{s_0K}<\infty,\qquad
+ \sup_{N_0\ge N_*}\mathbb E\tau_{\rm act}^{\,m}<\infty
+ \quad(m\ge1).                                         \tag{4.11}
+\]
+
+Localize the episode at \(n\le N_0/2\) or \(n\ge2N_0\). A downward exit
+is favorable. An upward exit requires at least \(N_0\) births, so (4.11)
+implies
+
+\[
+               \mathbb P\{\text{upward exit}\}\le Ce^{-cN_0}.           \tag{4.12}
+\]
+
+A downward exit requires order-\(N_0\) service deaths during a
+compound-geometric sum of fast trials. The localized trial-time estimate
+(4.8), the death counting-process exponential martingale, and a split at
+\(\varepsilon N_0/\log N_0\) trials give the bound. Above the split, the
+geometric trial tail is \(e^{-cN_0/\log N_0}\). Below it, the summed
+compensator is at most \(C\varepsilon N_0\) outside an exponentially
+small trial-duration event; choose \(\varepsilon\) first and apply the
+counting martingale. Thus, for every \(m\),
+
+\[
+ \mathbb P\{\text{activation-stage downward exit}\}
+ =o(N_0^{-m}).                                         \tag{4.13}
+\]
+
+This tail estimate is used only to remove the branch from the regular
+service calculation. Its actual scalar contribution is favorable and is
+retained separately in Section 7.
+
+On the regular activation branch, with activation population \(N_a\),
+the exact identity is
+
+\[
+                         N_a=N_0+K-D_{\rm pre},
+ \qquad {N_0\over2}\le N_a\le2N_0.                    \tag{4.14}
+\]
+
+No lower clock has been removed in (4.8)--(4.14).
+
+\subsection{5. Infinite top-ODE service
+integral}
+
+On the unit simplex, let \(z=(a,b,c)\) solve
+
+\[
+ {dz\over d\tau}
+ =\sum_{y\to y'\in T}\kappa_{yy'}z^y(y'-y),
+ \qquad a+b+c=1.                                      \tag{5.1}
+\]
+
+Let \({\cal A}\) be the finite union of normalized activation shells. It
+is compact and separated from every dormant vertex.
+
+\begin{quote}
+\textbf{Lemma 5.1.} For every \(z(0)\in{\cal A}\), \[
+                      \int_0^\infty c(\tau)\,d\tau=\infty.             \tag{5.2}
+\]
+\end{quote}
+
+If the integral were finite, boundedness of the polynomial vector field
+would make \(c\) uniformly continuous, and Barbalat's argument would
+give \(c(\tau)\to0\). The omega-limit would be a nonempty compact
+invariant subset of \(c=0\).
+
+The directed cut in (2.2) identifies the largest invariant subset of
+that face. If \(a,b>0\), every present service-free source is enabled,
+and strong connectivity gives a cut edge to a \(C\)-containing node, so
+\(\dot c>0\). At the pure \(A\) vertex, an existing \(2A\) source either
+creates \(C\) or first creates \(B\), after which the same cut applies.
+Thus the vertex remains in the face only when \(2A\) is absent. The
+corresponding statement holds at the pure \(B\) vertex. Hence the
+largest invariant subset consists exactly of the dormant vertices in
+(2.2).
+
+An omega-limit contained in this finite set is one vertex. In its chart,
+the fluid form of (4.3) gives
+
+\[
+                             \dot R\ge cR-KR^2.          \tag{5.3}
+\]
+
+For small positive \(R\), the right side is positive, so an orbit which
+has left the vertex cannot approach it. This contradiction proves (5.2).
+
+For fixed \(T\), the map
+
+\[
+                         I_T(z)=\int_0^T c_z(\tau)\,d\tau               \tag{5.4}
+\]
+
+is continuous. The increasing open sets \(\{z:I_T(z)>M\}\) cover the
+compact set \({\cal A}\) as \(T\to\infty\). Therefore, for every
+prescribed \(M\), there is one finite \(T=T(M)\) such that
+
+\[
+                         \inf_{z\in{\cal A}}I_T(z)>M.   \tag{5.5}
+\]
+
+No stationary or fast-mixing assumption is used.
+
+\subsection{6. Lattice-uniform full-chain
+service}
+
+On the regular activation branch, run every physical clock for time
+\(T/N_a\). For the fluid estimate, localize at
+\(N_t\notin[N_a/2,2N_a]\); the endpoint analysis below retains either
+localized exit and does not replace the physical chain. Let
+
+\[
+ Z_{N_a}(\tau)
+ =N_a^{-1}X(\tau_{\rm act}+\tau/N_a),\qquad 0\le\tau\le T.              \tag{6.1}
+\]
+
+Top clocks have rates \(N_a^2\kappa z^y+O(N_a)\), so their compensated
+density martingales have quadratic variation \(O(N_a^{-1})\). Let
+\(B_{\rm win}\) and \(D_{\rm win}\) be the birth and death counts in
+this window. For the unlocalized deterministic horizon, the birth count
+is Poisson with mean \(\alpha T/N_a\); the stopped count is bounded by
+that same underlying clock. The death compensator is
+
+\[
+ \Lambda_{\rm win}
+ =\delta\int_0^{T/N_a}C_t\,dt
+ =\delta\int_0^T (Z_{N_a}(\tau))_C\,d\tau.             \tag{6.2}
+\]
+
+Since deaths only reduce population,
+
+\[
+ \Lambda_{\rm win}
+ \le\delta T+
+ {\delta T\over N_a}B_{\rm win}.                       \tag{6.3}
+\]
+
+The exponential counting-process martingale gives, after localization,
+
+\[
+ \mathbb E\exp\{sD_{\rm win}-(e^s-1)\Lambda_{\rm win}\}\le1.            \tag{6.4}
+\]
+
+Apply Cauchy--Schwarz to (6.4) with parameter \(2s\), and then use
+(6.3). Together with the Poisson exponential moment of \(B_{\rm win}\),
+this gives uniform exponential moments for both window counts. Thus the
+death clock is controlled through its random compensator; it is not
+replaced by a fixed pathwise Poisson clock.
+
+Random time changes, high-moment Burkholder estimates, and Gronwall now
+give, uniformly over every lattice point whose normalized value is
+within \(O(N_a^{-1})\) of \({\cal A}\),
+
+\[
+ \mathbb E\sup_{0\le\tau\le T}
+ \left\lVert Z_{N_a}(\tau)-z(\tau)\right\rVert^m
+ \longrightarrow0                                    \tag{6.5}
+\]
+
+for each fixed \(m\). The lower counts have \(O(1)\) moments and
+therefore move density by \(o(1)\). By the compensator identity and
+(5.5),
+
+\[
+ \inf_{\text{activation lattice states}}\mathbb E D_{\rm win}
+ \ge\delta\inf_{z\in{\cal A}}I_T(z)-o(1).              \tag{6.6}
+\]
+
+Let
+
+\[
+                       \mu_K=\sup_{N_0\ge N_*}\mathbb EK<\infty.
+\]
+
+Choose \(M\), hence \(T\), so that \(\delta M>\mu_K+4\). Since
+\(\mathbb EB_{\rm win}=o(1)\), define
+
+\[
+                       \overline\Delta
+                       :=K+B_{\rm win}-D_{\rm win}.     \tag{6.7}
+\]
+
+Let \({\cal R}_{N_0}\) denote the regular branch on which neither the
+activation stage nor the service window exits its displayed population
+shell. Upward activation exits have probability \(O(e^{-cN_0})\) by
+(4.11)--(4.12), while (4.13) makes the removed activation-down branch
+super-polynomially small. Upward service exits require order-\(N_0\)
+births and have an exponential bound. A service-window downward exit
+requires order-\(N_0\) deaths; (6.3)--(6.4) make both its probability
+and its truncated count moments exponentially small. Each downward
+branch is also retained as a separate favorable contribution in Section
+7; its negative scalar contribution is not used to improve any
+conditional count estimate.
+
+On \({\cal R}_{N_0}\), use the event-weighted inequalities
+
+\[
+ \mathbb E[K;{\cal R}_{N_0}]\le\mathbb EK\le\mu_K,
+ \qquad
+ \mathbb E[B_{\rm win};{\cal R}_{N_0}]=o(1).            \tag{6.8}
+\]
+
+Uniformity of (6.6), followed by the exponential count bounds for the
+removed service-shell event, gives
+
+\[
+ \mathbb E[D_{\rm win};{\cal R}_{N_0}]
+ \ge\delta M-o(1).                                     \tag{6.9}
+\]
+
+No estimate of the form \(\mathbb E[K\mid{\cal R}_{N_0}]\le\mu_K\) is
+asserted or needed. Therefore, for all sufficiently large \(N_0\),
+
+\[
+ \mathbb E[\overline\Delta;{\cal R}_{N_0}]\le-3,\qquad
+ \sup_{N_0}\mathbb E e^{s_1|\overline\Delta|}<\infty    \tag{6.10}
+\]
+
+for some \(s_1>0\). The second, unconditional, statement uses (4.11) and
+(6.3)--(6.4). The exact physical endpoint identity, with no count
+discarded or counted twice, is
+
+\[
+\begin{split}
+ N_a&=N_0+K-D_{\rm pre},\\
+ N_{\rm end}
+ &=N_a+B_{\rm win}-D_{\rm win}\\
+ &=N_0+K-D_{\rm pre}+B_{\rm win}-D_{\rm win}
+ =N_0+\overline\Delta-D_{\rm pre}.
+\end{split}                                             \tag{6.11}
+\]
+
+In particular,
+
+\[
+                         N_{\rm end}\le N_0+\overline\Delta.            \tag{6.12}
+\]
+
+For every \(q>8\), (4.11), (6.10), and the shell localization give
+
+\[
+\begin{split}
+ \sup_{N_0}\mathbb E\tau^q&<\infty,\\
+ \mathbb E(1+N_{\rm end})^q&\le C_q(1+N_0)^q,\\
+ \sup_{N_0}\mathbb E\{(N_{\rm end}-N_0)^+\}^q&<\infty.
+\end{split}                                             \tag{6.13}
+\]
+
+These are the endpoint and duration uniform-integrability estimates used
+in the scalar calculation.
+
+\subsection{7. Deterministic endpoint envelope and stopped scalar
+drift}
+
+Define the monotone deterministic envelope
+
+\[
+ {\cal P}(m)
+ =\{1+K_F+\log(m!)\}^4+\lambda(1+m)^6,\qquad m\ge0.    \tag{7.1}
+\]
+
+For every state \(y\) of total population \(m\),
+
+\[
+                              V(y)\le{\cal P}(m).       \tag{7.2}
+\]
+
+Also, the exact multinomial inequality gives
+
+\[
+ 0\le\log(N_0!)-\sum_i\log(x_i!)
+ =\log{N_0!\over A!B!C!}\le N_0\log3.                 \tag{7.3}
+\]
+
+Consequently,
+
+\[
+                     {\cal P}(N_0)-V(x)
+                     \le C N_0^4(\log N_0)^3.          \tag{7.4}
+\]
+
+On the regular branch, (6.12) and monotonicity of \({\cal P}\) give the
+pathwise deterministic inequality
+
+\[
+ V(X_\tau)-V(x)
+ \le {\cal P}(N_0+\overline\Delta)-{\cal P}(N_0)
+    +C N_0^4(\log N_0)^3.                              \tag{7.5}
+\]
+
+This does not delete \(D_{\rm pre}\) from the process or compare two
+reaction systems. Every pre-service death remains in the exact identity
+(6.11); it only improves the total-population envelope (7.5). All top
+reactions are included through the factorial maximum in \({\cal P}\).
+
+The exponential moment in (6.10) permits an exact Taylor expansion with
+a uniform remainder. The sixth-power part satisfies
+
+\[
+ \mathbb E[\{(1+N_0+\overline\Delta)^6-(1+N_0)^6\};
+             {\cal R}_{N_0}]
+ =6(1+N_0)^5\mathbb E[\overline\Delta;{\cal R}_{N_0}]
+   +O(N_0^4)
+ \le-cN_0^5.                                          \tag{7.6}
+\]
+
+The positive change of the factorial-maximum part is
+\(O(N_0^3(\log N_0)^4)\), while (7.4) costs \(O(N_0^4(\log N_0)^3)\).
+Both are strictly below (7.6). Hence
+
+\[
+ \mathbb E_x[\{V(X_\tau)-V(x)+\tau\};{\cal R}_{N_0}]
+ \le-c_1N_0^5                                         \tag{7.7}
+\]
+
+for every sufficiently large wedge state. This is an event-weighted
+regular contribution, not a conditional expectation.
+
+At an activation-stage downward shell exit, the endpoint population is
+at most \(N_0/2+1\). Equations (7.1)--(7.4) give a negative
+order-\(N_0^6\) increment. At an upward exit, the first crossing has
+population at most \(2N_0+1\), so its positive envelope is \(O(N_0^6)\);
+(4.12) makes its expected contribution \(O(N_0^6e^{-cN_0})\).
+
+For a service-window shell exit, first split on \(K\le N_0/4\). Then
+\(N_a\le N_0+K\le5N_0/4\), so a downward crossing of \(N_a/2\), combined
+with the deterministic envelope, is favorable at order \(N_0^6\), while
+an upward crossing of \(2N_a\) requires order-\(N_0\) window births. The
+complement \(K>N_0/4\) has exponentially small probability by (4.11),
+and its endpoint is charged by the same exponential moment and
+deterministic envelope. Equations (6.3)--(6.4) give the corresponding
+exponential window tail. Combining all branches yields
+
+\[
+                         \mathbb E_x\{V(X_\tau)-V(x)+\tau\}\le-1        \tag{7.8}
+\]
+
+outside a finite wedge sublevel.
+
+\subsection{8. Fixed-class gluing and
+nonexplosion}
+
+The sole population-increasing clock has constant rate \(\alpha\). Hence
+total population is pathwise bounded above by its initial value plus a
+rate-\(\alpha\) Poisson process. On every finite population shell, the
+top state space and all reaction rates are finite. This proves
+nonexplosion and the finite-time moments used in localization.
+
+Use the partition
+
+\[
+ E=K\cup(E\setminus{\cal W})\cup({\cal W}\setminus K), \tag{8.1}
+\]
+
+where \(K\) contains the finite exceptions in (3.8) and (7.8). Equation
+(3.8) is the generator-good hypothesis of the common-entropy
+physical-time gluing theorem; (7.8) is its exceptional-episode
+hypothesis for the same globally proper \(V\). The stopping rules are
+state-based and strong-Markov compatible. The theorem gives finite mean
+hitting of \(K\). After restricting to a closed irreducible population
+class, the finite mixture of return bounds from \(K\) gives positive
+recurrence.
+
+This proves recurrence for the seven pairs, for each fixed strong top
+orientation and positive rate vector. The independent audit replayed
+Sections 3--8 and found no load-bearing gap.
+
+\subsection{9. Reproduction and independent
+audit}
+
+Run
+
+\begin{CodeBlock}
+PYTHONPATH=src python3 -B src/rank_two_mixed_profile_7_stopped_service.py
+PYTHONPATH=src python3 -B -m unittest \
+  tests/test_rank_two_mixed_profile_7_stopped_service.py -v
+\end{CodeBlock}
+
+The independent replay verified:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  localized PF trial survival, duration, and compound-birth exponential
+  moments from arbitrary wedge starts;
+\item
+  exact identities (4.14) and (6.11), including both shell exits;
+\item
+  the directed-cut/Barbalat proof of infinite integrated service;
+\item
+  lattice-uniform fluid convergence and random-compensator exponential
+  estimates;
+\item
+  \(q>8\) endpoint and duration uniform integrability;
+\item
+  the \(C\)-bounded passing estimate; and
+\item
+  the deterministic envelope and fixed-class gluing.
+\end{enumerate}
+
+All seven scoped recurrence flags are promoted. Global T3-2 remains
+uncertified because the disjoint hard 333-pair family is still open.

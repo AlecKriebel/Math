@@ -80,12 +80,20 @@ def exact_counterexamples() -> dict[str, object]:
 
     proper = ("U", "I", "VI")
     lower = ("0", "2U", "UI")
-    matching_rows = tuple(
+    all_matching_rows = tuple(
         row
         for row in dormant.generalized_normalized_rows()
         if tuple(row["proper"]) == proper
         and tuple(row["lower"]) == lower
-        and row["spectator_cap"] == 0
+    )
+    assert len(all_matching_rows) == 6
+    assert Counter(row["spectator_cap"] for row in all_matching_rows) == {
+        0: 2,
+        1: 2,
+        2: 2,
+    }
+    matching_rows = tuple(
+        row for row in all_matching_rows if row["spectator_cap"] == 0
     )
     assert len(matching_rows) == 2
     expected_row = {
@@ -136,6 +144,7 @@ def exact_counterexamples() -> dict[str, object]:
 
     return {
         "physical_row": row,
+        "same_support_spectator_caps": [0, 1, 2],
         "orientation": "complete digraph on each linkage (strong)",
         "lemma_7_1_history": {
             "word": [list(edge) for edge in history_word],

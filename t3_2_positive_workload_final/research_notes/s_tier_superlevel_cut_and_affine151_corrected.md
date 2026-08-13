@@ -1,0 +1,265 @@
+# Corrected S-tier-superlevel cut and the affine151 branch
+
+**Status:** publication dependency replacing the cut/count portions of
+`global_atlas_interface_closure.md` and
+`stoichiometric_gate_feasibility.md`.  The audited legacy files are retained
+unchanged for provenance.
+
+**Date:** 2026-08-12 PDT.
+
+**Retirement declaration.**  Section 8.2 of the frozen
+`global_atlas_interface_closure.md` and the old stoichiometric incidence totals
+\(12886/9913/2973\) are retired as publication dependencies.  The corrected
+totals are \(12678/9709/2969\).  The tier-certified and residual pair
+fingerprints, the exact 2,511 pair residual, and the affine151 recurrence
+branch remain unchanged and are repinned below.
+
+## 1. Exact scope
+
+Consider the finite binary complex universe
+
+\[
+ \mathcal C_2=\{0,A,B,C,2A,2B,2C,A+B,A+C,B+C\}
+\]
+
+and an ordered pair of disjoint linkage supports, each equipped with an
+arbitrary strongly connected directed reaction graph and arbitrary positive
+rates.  This note supplies:
+
+1. the exact symbolic condition under which **every** such pair of strongly
+   connected graphs has an Anderson--Kim descending source for a fixed tier
+   descriptor;
+2. the exact finite pair split after the pre-tier support branches;
+3. the corrected affine-feasibility incidence totals; and
+4. the class-local recurrence conclusion for the unchanged 151-pair set.
+
+There is no enumeration of orientations, stochastic paths, population
+states, or rate values.  Finite computation only deduplicates rational tier
+types and checks support/tier/affine-subspace identities.
+
+## 2. Exact universal strong-orientation theorem
+
+Fix a tier descriptor.  Write \(E=T^{S,1}\) for the global top S-tier among
+the network complexes.  If \(E\ne\varnothing\), all its complexes occupy a
+single D-tier; call its level \(r\).  For each linkage support \(L\), define
+
+\[
+ U_L(r)=\{y\in L:y\text{ lies at or above D-level }r\}.
+ \tag{2.1}
+\]
+
+> **Theorem 2.1 (S-tier-superlevel cut).**  Every strongly connected directed
+> graph on each linkage support has a D-descending reaction whose source lies
+> in \(E\) if and only if, for some linkage \(L\),
+> \[
+>   \varnothing\ne U_L(r)\subsetneq L,
+>   \qquad U_L(r)\subseteq E.
+>   \tag{2.2}
+> \]
+
+### Proof
+
+If (2.2) holds, strong connectivity gives a directed path from \(U_L(r)\) to
+its complement.  The first exiting edge has source in \(U_L(r)\subseteq E\)
+and target below D-level \(r\).  It is the required descending reaction.
+
+Conversely, suppose (2.2) fails.  Work independently in each linkage.  If
+\(U_L(r)\) is empty or all of \(L\), choose any directed Hamiltonian cycle.
+Otherwise choose \(b\in U_L(r)\setminus E\), which exists by failure of
+(2.2), and order a directed Hamiltonian cycle as
+
+\[
+ U_L(r)\setminus\{b\},\quad b,\quad L\setminus U_L(r).
+ \tag{2.3}
+\]
+
+Its only edge from \(U_L(r)\) to its complement is sourced at \(b\notin E\).
+Every vertex of \(E\cap L\) has its successor within \(U_L(r)\), where no
+target is below level \(r\).  Hence this strongly connected cycle has no
+E-sourced descending edge.  Combining the cycles proves the converse.
+\(\square\)
+
+The superlevel in (2.1), not merely the global top D-tier, is essential.  For
+
+\[
+ L_1=\{C,2C\},\quad L_2=\{A,2A,A+B,A+C\},\quad
+ w=(0,3,1),\quad c=(0,2,2),
+\]
+
+the global top D-tier is the disabled singleton \(\{A+B\}\), whereas the top
+S-tier is \(E=\{2C\}\).  Here \(U_{L_1}=\{2C\}\), so every strongly connected
+graph on \(L_1\) supplies a \(2C\)-sourced descent.  A test using only the
+global top D-tier incorrectly rejects this descriptor.
+
+## 3. Completeness of the finite tier list
+
+For a tier sequence put
+
+\[
+ u_n=(\log(x_{n,A}\vee1),\log(x_{n,B}\vee1),
+      \log(x_{n,C}\vee1)).
+\]
+
+Project away the span of every D-equivalent complex difference and every
+coordinate vector belonging to an eventually bounded coordinate.  The
+projection removed from \(u_n\) is bounded.  Strict D-comparisons therefore
+remain strict, D-equalities become exact equalities, active coordinates stay
+positive, and bounded coordinates become zero.  The resulting nonempty
+relatively open rational cone contains a rational weight.  Thus an ordinary
+nonnegative rational weight represents every D-preorder, including
+multiscale preorders; no polynomial relation among the original population
+scales is assumed.
+
+The 21 projectively distinct comparison hyperplanes on the normalized
+nonnegative simplex have 37 vertices.  Vertices, edge midpoints, and triangle
+centroids give 5,128 rational candidates and 193 distinct
+\((\text{D-preorder},\text{active-coordinate set})\) types.  An eventually
+bounded integer
+coordinate is eventually constant, and binary-source availability depends
+only on whether that constant is \(0\), \(1\), or at least \(2\).  Adding
+these exact caps yields 259 descriptors.
+
+Theorem 2.1 reduces the universal quantifier over strongly connected graphs
+to the finite set containment (2.2).  The program evaluates that containment
+only; it does not construct or enumerate orientations.
+
+## 4. Pre-tier support branches and the exact 2,511 residual
+
+The ordered support branches are applied in this order: finite strict
+invariant, active-chart invariant, full deficiency zero, exact signed-service
+seam, exact residual pair, exact seven-support seam, then tier certification.
+
+| family | unique pairs | finite | active chart | deficiency zero | seven-support only | signed-service only | residual-pair only | pre-tier residual |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| positive | 4,761 | 187 | 110 | 924 | 6 | 2 | 1 | 3,531 |
+| signed | 408 | 0 | 0 | 50 | 0 | 0 | 0 | 358 |
+
+The exact S-tier-superlevel cut gives:
+
+| family | pre-tier | tier-certified | residual | certified SHA-256 | residual SHA-256 |
+|---|---:|---:|---:|---|---|
+| positive | 3,531 | 1,219 | 2,312 | `744d872920309c361d6d7f806f140a696e3fc3ae0f75d760d8a07f304d562b6b` | `0297ba35311c757cd5c6ec548d2af18410dfd37e791c7679de932fe4bf38695b` |
+| signed | 358 | 159 | 199 | `7f59ea94fe876205ccb72dc97b026b2954feac62375122634aafa318084428ee` | `1a9c06123645855d3b4f23d4886b0ada3c3ff3614fc94a7d22c01f411c1355c8` |
+
+Therefore the exact post-tier residual is
+
+\[
+ 2312+199=2511.
+ \tag{4.1}
+\]
+
+Although the legacy sufficient cut falsely rejected 208 individual
+pair--descriptor incidences, every affected pair has another genuine failed
+descriptor.  Consequently the pair sets and fingerprints in this section
+are unchanged.
+
+## 5. Corrected affine-feasibility calculation
+
+For a primitive descriptor weight \(w\), at each positive level \(r\) put
+
+\[
+ E_r=\{i:w_i=r\},\qquad L_r=\{i:w_i<r\}.
+\]
+
+For a rational stoichiometric subspace \(S\), the descriptor is realizable in
+some affine class exactly when, for every \(r\), there is \(v_r\in S\) with
+
+\[
+ (v_r)_i=0\ (i\in L_r),\qquad (v_r)_i>0\ (i\in E_r).
+ \tag{5.1}
+\]
+
+For a specified affine class one also needs a base point having the exact
+eventual values \(0\), \(1\), or at least \(2\) in the zero-weight
+coordinates.
+
+Necessity of (5.1) follows from Gordan's alternative: failure produces an
+affine invariant zero above level \(r\), nonnegative and nonzero at level
+\(r\), which contradicts constancy after normalization by that scale.
+Sufficiency follows from the polynomial flag
+
+\[
+ x(n)=b+\sum_r n^r v_r.
+\]
+
+Applying this exact test only to the genuine failures from Theorem 2.1 gives:
+
+| family | corrected failures | feasible | infeasible | legacy false failures removed |
+|---|---:|---:|---:|---:|
+| positive | 12,250 | 9,349 | 2,901 | 200 |
+| signed | 428 | 360 | 68 | 8 |
+| **total** | **12,678** | **9,709** | **2,969** | **208** |
+
+The 151-pair classwise branch is unchanged:
+
+| family | certified | remaining | certified SHA-256 | remaining SHA-256 |
+|---|---:|---:|---|---|
+| positive | 143 | 2,169 | `f48882aa1ff52c1594a71fd217fa559492c7010e950285a9fa2e60e02b487b76` | `6763a44c9c312c440997a054f7966347d101e3236cdef9ecb90599226de10458` |
+| signed | 8 | 191 | `aead73fd44d08789019326cffcd706a776addf0cbc841979a3d54e8c80c5f88d` | `f5c7a694bec0241a67b5cf588e1d074c11e00fb9ae3fbc1cee5570f84e9b4483` |
+
+The combined certified-set fingerprint is
+`55e243945f86d106b920a27e2249a20b7077b5dc718ec06918cca4368e4a6c96`.
+
+## 6. Class-local entropy-Foster consequence
+
+Fix one of the 151 support pairs, arbitrary strongly connected reaction
+graphs on its two linkage supports, arbitrary positive rates, and a closed
+irreducible population class \(\Gamma\).  If \(\Gamma\) is infinite, it lies in
+one affine stoichiometric class.
+
+Suppose a tier sequence in \(\Gamma\) failed the top-S descending-source
+condition.  By Theorem 2.1, its descriptor fails the exact superlevel cut.
+Because the sequence lies in one affine class, necessity of (5.1) makes that
+failed descriptor affine-feasible.  This contradicts the definition of the
+151-pair set.  Thus every tier sequence contained in \(\Gamma\) satisfies
+
+\[
+ T^{S,1}_{\{x_n\}}\cap D_{\{x_n\}}\ne\varnothing.
+ \tag{6.1}
+\]
+
+The cited publication result is David F. Anderson and Jinsu Kim, *Some
+Network Conditions for Positive Recurrence of Stochastically Modeled
+Reaction Networks*, **SIAM Journal on Applied Mathematics** 78(5) (2018),
+2692--2713, [doi:10.1137/17M1161427](https://doi.org/10.1137/17M1161427),
+**Theorem 9**.  Theorem 4.2 is the numbering only in arXiv v3.
+
+Journal Theorem 9 is stated with an ambient-space premise.  Its contradiction
+proof restricts as follows.  If the entropy drift were not at most \(-1\)
+outside a finite subset of \(\Gamma\), properness would give an unbounded
+sequence \(x_n\in\Gamma\) with drift greater than \(-1\).  Extracting the tier
+subsequence and using (6.1) repeats the proof of Theorem 9 and forces the
+drift to \(-\infty\), a contradiction.  Closedness makes the restricted
+generator equal to the original generator at every state of \(\Gamma\).
+
+The chain is nonexplosive independently: a reaction with a quadratic source
+cannot increase total population because its target is also binary.  Every
+population-increasing reaction therefore has source degree at most one,
+total increasing intensity \(O(1+|x|)\), and bounded jump size.  A linear
+pure-birth comparison bounds total population on finite time intervals; each
+population sublevel contains finitely many states and has bounded total
+rates.  Continuous-time Foster applied to the closed irreducible class now
+proves positive recurrence.
+
+## 7. Reproducibility and frozen derivative bytes
+
+Run only the symbolic/set-identity derivative:
+
+    PYTHONPATH=src python3 src/s_tier_superlevel_interface.py
+    PYTHONPATH=src python3 -m unittest \
+      tests.test_s_tier_superlevel_interface -v
+
+The derivative source does not call the legacy orientation-witness
+constructor.  Its finite certificate hash is
+
+`77c7ce0d2325379acfed7b13a44f9577454279275918ee14f968e313b488a7e0`.
+
+At creation, the exact derivative code bytes were:
+
+| file | SHA-256 |
+|---|---|
+| `src/s_tier_superlevel_interface.py` | `1a4e27fcf40af76cac6281f8830b7644bf086b3c05d97a963ce9f5bac736ad57` |
+| `tests/test_s_tier_superlevel_interface.py` | `4d9f960d89a361a27d9dadbd765297783755b9ec09c60f32301229447f51af40` |
+
+The accompanying hash manifest pins this note and the hostile audit after
+their final byte pass.

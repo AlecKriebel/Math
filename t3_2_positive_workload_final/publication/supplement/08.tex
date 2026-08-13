@@ -1,0 +1,946 @@
+\section{The signed-service seam: a full physical-time
+proof}
+
+\subsection{1. Scope and result}
+
+Write \(D=B+C\) for the mixed complex and
+
+\[
+ W=B-C.
+\tag{1.1}
+\]
+
+This note treats a pure-\(C\) linkage \(L_C\) with support
+
+\[
+ \{C,2C\}
+ \quad\hbox{or}\quad
+ \{0,C,2C\},
+\tag{1.2}
+\]
+
+and a disjoint mixed linkage \(L_M\) whose support is one of
+
+\[
+ \{0,A,D\},\qquad
+ \{0,2A,D\},\qquad
+ \{A,2A,D\},\qquad
+ \{0,A,2A,D\}.
+\tag{1.3}
+\]
+
+Every labelled reaction graph is arbitrary subject to strong
+connectivity, and all rate constants are positive. Parallel channels are
+aggregated only to simplify notation. Stochastic propensities are
+falling-factorial mass-action propensities. The \(A\leftrightarrow B\)
+images are obtained by relabeling.
+
+The first support in (1.2) includes the exceptional architecture
+
+\[
+ \{C,2C\}\ \&\ \{0,A,2A,B+C\},
+\tag{1.4}
+\]
+
+and the second includes
+
+\[
+ \{0,C,2C\}\ \&\ \{A,2A,B+C\}.
+\tag{1.5}
+\]
+
+The conclusion is classwise.
+
+\begin{quote}
+\textbf{Signed-service seam theorem.} Every closed irreducible
+population class of every network in (1.2)--(1.3) is positive recurrent.
+The process is nonexplosive. No recurrence assertion for the raw
+embedded jump chain is used.
+\end{quote}
+
+The proof has two parts. A proper quadratic potential gives ordinary
+physical-time generator drift whenever \(A\) or \(C\) is large, or
+whenever \(BC\) is large. The only remaining tube has bounded \(A\),
+\(C=0\), and \(B\to\infty\). On that tube a fast-phase return cycle has
+a \(B\)-decreasing service probability of order \(1/B\), an
+adverse-service probability of order \(1/B^2\), and uniformly bounded
+physical duration. The quadratic potential converts this into a uniform
+negative return-cycle drift.
+
+\subsection{\texorpdfstring{2. Why \(V+\gamma(B-C)\) is not the
+repair}{2. Why V+\textbackslash gamma(B-C) is not the repair}}
+
+The linear signed correction is proper when added to a factorial
+potential, but it is too small at the service bottleneck.
+
+Consider the strongly connected mixed cycle
+
+\[
+ 0\longrightarrow D\longrightarrow2A\longrightarrow A\longrightarrow0
+\tag{2.1}
+\]
+
+together with \(C\rightleftarrows2C\). Start at
+
+\[
+ x_N=(0,N,0).
+\tag{2.2}
+\]
+
+The first mixed reaction \(0\to D\) produces \((0,N+1,1)\). At that
+target, the probability that \(C\to2C\) fires before the \(D\)-source
+reaction is
+
+\[
+ \frac{\alpha}{d(N+1)+O(1)}=\Theta(N^{-1}),
+\tag{2.3}
+\]
+
+where \(\alpha\) is the \(C\to2C\) rate constant and \(d\) is the
+aggregate rate constant out of \(D\). On failure, the mixed cycle
+returns to the bounded phase in \(O(1)\) mean time. On success, two
+rapid \(D\)-source clearings, followed by return of the \(A\)-phase,
+take \(x_N\) to \(x_{N-1}\) with probability \(1-O(N^{-1})\).
+
+Thus a bounded-mean regeneration cycle has service probability
+\(\Theta(N^{-1})\). For
+
+\[
+ F(x)=\sum_i\log(x_i!)+\gamma(B-C),
+\tag{2.4}
+\]
+
+the successful return reward is only
+
+\[
+ F(x_{N-1})-F(x_N)=-\log N-\gamma.
+\tag{2.5}
+\]
+
+Consequently the negative expected reward per regeneration cycle is only
+\(O((\log N)/N)\), while the mean physical duration stays bounded away
+from zero. No fixed \(\eta>0\) can give
+
+\[
+ \mathbb E[\Delta F+\eta\tau]\le-\varepsilon
+\tag{2.6}
+\]
+
+through these cycles. Pointwise drift fails even more plainly: at
+\(x_N\), the reaction \(0\to D\) has factorial reward \(\log(N+1)\), and
+the signed term is unchanged.
+
+This does not disprove recurrence. It shows that the proposed
+factorial-plus-linear signed repair has the wrong growth. A potential
+\(f(B)\) needs
+
+\[
+ f(N)-f(N-1)=\Omega(N)
+\tag{2.7}
+\]
+
+to convert a service probability of order \(1/N\) into constant
+return-cycle drift. Quadratic growth is the minimal natural choice.
+
+\subsection{3. A common product-form shortcut for three mixed
+complexes}
+
+When \(L_C=\{C,2C\}\) and \(L_M\) is one of the first three supports in
+(1.3), both linkages have deficiency zero. This already closes those
+three cases.
+
+Indeed, \(C\rightleftarrows2C\) has complex-balanced value
+
+\[
+ \theta_C=\alpha/\beta.
+\tag{3.1}
+\]
+
+The mixed linkage has invariant \(B-C\). Its complex-balance equations
+determine \(\theta_A\) and the product \(\theta_B\theta_C\), but the
+invariant scaling
+
+\[
+ (\theta_B,\theta_C)\mapsto(e^s\theta_B,e^{-s}\theta_C)
+\tag{3.2}
+\]
+
+leaves every mixed monomial unchanged. Hence its complex-balanced vector
+can always be chosen with the value (3.1). The two linkage balances then
+hold at one common vector. The product-Poisson measure at that vector,
+restricted to any irreducible population class, is a summable invariant
+measure. This proves positive recurrence on every closed class.
+
+The four-complex support in (1.3) has deficiency one, so this shortcut
+is not available for arbitrary rates. The physical-time proof below
+treats it and also gives a uniform proof for all supports in (1.3),
+including the second pure-\(C\) support in (1.2).
+
+\subsection{4. A rate-dependent positive phase
+workload}
+
+Let
+
+\[
+ u(0)=0,\qquad u(A)=p_A,\qquad u(2A)=2p_A,
+ \qquad u(D)=p_B+p_C,
+\tag{4.1}
+\]
+
+where \(p_A,p_B,p_C>0\). Put
+
+\[
+ U(a,b,c)=p_Aa+p_Bb+p_Cc.
+\tag{4.2}
+\]
+
+The weights can be selected so that every highest-degree mixed source
+has strictly negative \(U\)-drift.
+
+\subsubsection{Lemma 4.1 (weight
+interval)}
+
+For every strongly connected orientation and every positive rate vector
+on one of the supports (1.3), positive weights in (4.2) can be chosen
+with the following properties.
+
+\begin{itemize}
+\tightlist
+\item
+  If \(2A\) is present, the aggregate \(U\)-increments out of both
+  \(2A\) and \(D\) are strictly negative.
+\item
+  If \(2A\) is absent, the aggregate \(U\)-increments out of both \(A\)
+  and \(D\) are strictly negative.
+\end{itemize}
+
+To see this, first suppose \(2A\) is present. Normalize
+
+\[
+ u(2A)=1,\qquad u(A)=\tfrac12,\qquad u(D)=r.
+\tag{4.3}
+\]
+
+Write \(\kappa_{ij}=0\) for an absent edge. The two required
+inequalities are
+
+\[
+ r<L_2^{\rm up}:=
+ 1+\frac{\kappa_{2,0}+\kappa_{2,A}/2}{\kappa_{2,D}}
+\tag{4.4}
+\]
+
+with \(L_2^{\rm up}=+\infty\) when \(\kappa_{2,D}=0\), and
+
+\[
+ r>L_D^{\rm low}:=
+ \frac{\kappa_{D,A}/2+\kappa_{D,2}}
+ {\kappa_{D,0}+\kappa_{D,A}+\kappa_{D,2}}.
+\tag{4.5}
+\]
+
+Terms for vertices absent from the support are omitted. One has
+\(L_D^{\rm low}\le1\le L_2^{\rm up}\). Equality on both sides would say
+that \(2A\) and \(D\) only point to each other, contradicting strong
+connectivity with the remaining vertex or vertices. Thus the open
+interval is nonempty.
+
+For \(\{0,A,D\}\), normalize \(u(A)=1,u(D)=r\). The interval is
+
+\[
+ \frac{\kappa_{D,A}}{\kappa_{D,0}+\kappa_{D,A}}
+ <r<
+ 1+\frac{\kappa_{A,0}}{\kappa_{A,D}},
+\tag{4.6}
+\]
+
+with the same convention for a missing denominator. Strong connectivity
+again makes the interval nonempty. Finally split the selected value
+\(u(D)\) as \(p_B+p_C\) with both summands positive.
+
+\subsubsection{Lemma 4.2 (phase generator
+drift)}
+
+For the weights from Lemma 4.1 there are constants \(K,k>0\) such that
+
+\[
+ \mathcal LU\le K-k\bigl(r_A(A)+BC+C^2\bigr),
+\tag{4.7}
+\]
+
+where \(r_A(A)=A\) for the support \(\{0,A,D\}\), and \(r_A(A)=A^2\) for
+the other three supports.
+
+For the mixed linkage this is immediate after collecting propensities by
+source complex. The \(0\)-source contribution is constant, the
+\(A\)-source contribution is at most linear, and Lemma 4.1 makes the
+\(2A\)- and \(D\)-source coefficients strictly negative. If \(2A\) is
+absent, the \(A\)-source coefficient itself is strictly negative.
+
+For \(L_C=\{C,2C\}\),
+
+\[
+ \mathcal L_CU=p_C[\alpha C-\beta C(C-1)].
+\tag{4.8}
+\]
+
+For \(L_C=\{0,C,2C\}\), every edge out of \(2C\) lowers \(C\), so the
+quadratic coefficient is again strictly negative; the \(0\)- and
+\(C\)-source terms are at most constant and linear. Absorbing those
+lower orders proves (4.7).
+
+All jumps of \(U\) are bounded. The total reaction rate is at most a
+constant times
+
+\[
+ 1+r_A(A)+BC+C^2.
+\tag{4.9}
+\]
+
+Consequently
+
+\[
+ \mathcal L(U^2)
+ =2U\mathcal LU+
+   \sum_r\lambda_r(x)(\Delta_rU)^2.
+\tag{4.10}
+\]
+
+Equations (4.7)--(4.10) show that there are \(R<\infty\) and
+\(\varepsilon>0\) such that
+
+\[
+ \mathcal L(U^2)\le-1-\varepsilon
+\tag{4.11}
+\]
+
+outside a finite set and the tube
+
+\[
+ \mathcal T_R=\{(a,b,0):a\le R\}.
+\tag{4.12}
+\]
+
+Indeed, bounded \(r_A(A)+BC+C^2\) forces \(A,C\) to be bounded; if
+\(C\ge1\), it also forces \(B\) to be bounded. Thus (4.12) is the only
+infinite region not handled by pointwise generator drift. Notice that
+
+\[
+ \Phi(x):=1+U(x)^2
+\tag{4.13}
+\]
+
+is proper.
+
+\subsection{5. The fast trace on a large positive signed
+shell}
+
+This section supplies the uniform statement that was absent from the old
+finite-shell service argument.
+
+Fix \(W=N>0\). Until a pure-\(C\) reaction occurs,
+
+\[
+ B=N+C.
+\tag{5.1}
+\]
+
+Let \(d_M>0\) be the aggregate rate constant out of \(D\). At \(C\ge1\),
+the aggregate mixed \(D\)-source rate is exactly
+
+\[
+ d_M(N+C)C.
+\tag{5.2}
+\]
+
+Delete \(D\) from the mixed complex graph. An edge \(i\to D\), followed
+by the first \(D\to j\), induces the effective rate
+
+\[
+ \bar\kappa_{ij}\supset
+ \kappa_{iD}\frac{\kappa_{Dj}}{d_M}.
+\tag{5.3}
+\]
+
+Direct lower-complex edges retain their rates. The resulting graph on
+
+\[
+ \{0,A\},\quad\{0,2A\},\quad\{A,2A\},
+ \quad\hbox{or}\quad\{0,A,2A\}
+\tag{5.4}
+\]
+
+is strongly connected: replace every occurrence of the single deleted
+vertex in a simple directed path by (5.3).
+
+The population chain of this effective one-species network is positive
+recurrent on each class. In the four cases it is respectively an
+immigration-death chain, a parity-preserving
+pair-immigration/quadratic-death chain, a positive-population
+linear-birth/quadratic-death chain, or an open one-species binary chain.
+A power of \(1+A\) has negative generator drift of one degree higher
+outside a finite set. In particular, return times to the minimal atom
+
+\[
+ a_*=0,\quad a_*=0\hbox{ or }1,\quad a_*=1,\quad a_*=0
+\tag{5.5}
+\]
+
+for the four cases in (5.4) have finite moments. The choice \(0\) or
+\(1\) in the second case is the conserved \(A\)-parity.
+
+\subsubsection{Lemma 5.1 (uniform trace and occupation
+estimates)}
+
+Start at
+
+\[
+ e_N=(a_*,N,0)
+\tag{5.6}
+\]
+
+and let \(\sigma_N\) be the next return to the same minimal
+\(A,C\)-phase, after at least one reaction. First suppress pure-\(C\)
+reactions. Then there are constants \(K<\infty\), \(j>0\), independent
+of \(N\), such that
+
+\[
+ \sup_{N\ge N_0}\mathbb E_{e_N}\sigma_N^2\le K,
+\tag{5.7}
+\]
+
+the expected number \(J_N\) of entrances into \(D\) during the cycle
+obeys
+
+\[
+ j\le\mathbb EJ_N\le K,
+\tag{5.8}
+\]
+
+and
+
+\[
+ \mathbb E\int_0^{\sigma_N}C_s\,ds=\Theta(N^{-1}),
+ \qquad
+ \mathbb E\int_0^{\sigma_N}(C_s)_2\,ds=O(N^{-2}).
+\tag{5.9}
+\]
+
+The same estimates hold from any \(A\) in a fixed finite set before the
+first hit of \(a_*\).
+
+Here is a proof, including the tail point needed for uniformity. On a
+fixed \(W=N\) shell, subtract the constant \(p_BN\) from \(U\) and put
+
+\[
+ R_N=p_AA+(p_B+p_C)C.
+\tag{5.10}
+\]
+
+The mixed generator calculation from Lemma 4.2 gives
+
+\[
+ \mathcal L_MR_N
+ \le K-k\{r_A(A)+NC+C^2\}.
+\tag{5.11}
+\]
+
+Here is the promised uniform high-power estimate. Put
+
+\[
+ Q_N(A,C)=r_A(A)+NC+C^2.
+\]
+
+Every jump of \(R_N\) is bounded, and the total mixed rate is at most
+\(K(1+Q_N)\). Taylor's formula for an integer \(m\ge4\), followed by
+(5.11), therefore gives, outside a phase set independent of \(N\),
+
+\[
+\begin{split}
+ \mathcal L_M(1+R_N)^m
+ &\le m(1+R_N)^{m-1}\mathcal L_MR_N\\
+ &\qquad+K_m(1+Q_N)(1+R_N)^{m-2}\\
+ &\le K_m-c_m Q_N(1+R_N)^{m-1}\\
+ &\le K_m-c'_m(1+R_N)^m .
+\end{split}
+\tag{5.11a}
+\]
+
+The last inequality uses \(1+Q_N\ge c(1+R_N)\), uniformly for
+\(N\ge N_0\). Stopped Dynkin estimates, first for (5.11a) and then for
+its lower powers, give uniform moments of \(A,C\) and of the time to a
+fixed bounded phase set. The same stopped estimates, applied with
+successively higher \(m\), control the integrated lower-source
+intensities and their required moments.
+
+Inside the bounded phase set, (5.2) makes an induced \(D\)-excursion
+last \(O(N^{-1})\), and its exit target has the state-independent
+probabilities \(\kappa_{Dj}/d_M\). Each edge of a fixed effective path
+is therefore realized, in a uniformly bounded time, with probability
+bounded away from zero. The strong effective graph (5.3) gives a uniform
+minorization to the atom (5.5). Geometric repetition proves (5.7) and
+the upper bound in (5.8). A fixed feasible reaction sequence from the
+atom that enters \(D\) has probability bounded away from zero before
+return, proving the lower bound.
+
+Now apply the stopped estimates over this atom cycle. Because its two
+endpoints have the same value of \(R_N\), (5.7), (5.11a), and the
+corresponding lower-power inequalities give
+
+\[
+ \mathbb E_{e_N}\int_0^{\sigma_N}
+ Q_N(A_s,C_s)(1+R_N(A_s,C_s))^{m-1}\,ds\le K_m.
+\tag{5.11b}
+\]
+
+There is also a useful exact compensator calculation. During the
+mixed-only cycle, entrances to \(D\) raise \(C\) by one and \(D\)-source
+exits lower it by one. Since the cycle starts and ends at \(C=0\),
+
+\[
+ d_M\mathbb E\int_0^{\sigma_N}(N+C_s)C_s\,ds
+ =\mathbb EJ_N.
+\tag{5.12}
+\]
+
+Applying the generator to \((C)_2\) gives
+
+\[
+ d_M\mathbb E\int_0^{\sigma_N}
+ (N+C_s)C_s(C_s-1)\,ds
+ =\mathbb E\int_0^{\sigma_N}C_s I(A_s)\,ds,
+\tag{5.13}
+\]
+
+where \(I(A)\) is the total lower-source intensity of reactions entering
+\(D\). It satisfies \(I(A)\le K(1+A^2)\le K(1+R_N)^2\). Taking \(m\ge4\)
+in (5.11b) and using the term \(NC\) in \(Q_N\) gives
+
+\[
+ \mathbb E\int_0^{\sigma_N}C_sI(A_s)\,ds=O(N^{-1}).
+\tag{5.14}
+\]
+
+This argument uses occupation bounds rather than assigning genealogical
+partners to entrances and exits.
+
+Equation (5.13) and (5.14) first give
+
+\[
+ \mathbb E\int_0^{\sigma_N}(C_s)_2\,ds=O(N^{-2}).
+\tag{5.15}
+\]
+
+Since \(C^2=C+(C)_2\), equation (5.12) can now be written as
+
+\[
+ \mathbb EJ_N
+ =d_MN\mathbb E\int_0^{\sigma_N}C_s\,ds+O(N^{-1}).
+\tag{5.16}
+\]
+
+The two bounds in (5.8) prove the first estimate in (5.9). This
+explicitly rules out a hidden countable-phase tail: the second factorial
+occupation is one order smaller than the first, uniformly from the
+regeneration phases used below.
+
+\subsection{\texorpdfstring{6. The two-complex pure-\(C\)
+linkage}{6. The two-complex pure-C linkage}}
+
+Now restore
+
+\[
+ C\mathop{\longrightarrow}^{\alpha}2C,
+ \qquad
+ 2C\mathop{\longrightarrow}^{\beta}C.
+\tag{6.1}
+\]
+
+The first reaction lowers \(W\) by one and the second raises it by one.
+Let \(\widehat\sigma_N\) be the first of (i) the next return to the
+minimal \(A,C\)-phase under the full generator and (ii) exit of \(W\)
+from \([N/2,3N/2]\). Let \(M_N^-\) and \(M_N^+\) be the numbers of the
+two reactions in (6.1), respectively, before this stopping time.
+
+\subsubsection{Lemma 6.1 (interrupted-cycle
+estimate)}
+
+There are constants \(0<c<C<\infty\) such that, for all sufficiently
+large \(N\),
+
+\[
+ \frac cN\le\mathbb EM_N^-\le\frac CN,\qquad
+ \mathbb EM_N^+\le\frac C{N^2},
+\tag{6.2}
+\]
+
+\[
+ \mathbb E(M_N^-+M_N^+)^2\le\frac CN,\qquad
+ \mathbb E\widehat\sigma_N^2\le C.
+\tag{6.3}
+\]
+
+To prove the lemma, cut the path at the first mixed-only phase return or
+the first pure-\(C\) mark, whichever occurs first, and repeat after a
+mark. Uniformly on shells \(n\in[N/2,3N/2]\), (5.11a)--(5.11b) and
+(5.15) imply that an attempt started with uniformly bounded phase
+moments has a downward-mark hazard \(O(N^{-1})\), an adverse-mark hazard
+\(O(N^{-2})\) when it starts from the atom, and a uniformly bounded
+second duration moment. For the lower bound, use the fixed feasible
+sequence from the end of Lemma 5.1 to enter \(D\) with probability
+bounded away from zero. At the resulting bounded phase with \(C=1\), the
+probability that the downward clock rings before the \(D\)-exit clock is
+at least \(c/N\). Hence the first attempt has a downward mark with
+probability at least \(c/N\).
+
+A downward mark changes the phase by one bounded jump. Starting from
+that marked phase, the chance of any further mark before mixed return is
+\(O(N^{-1})\); in particular, the chance of an adverse mark there is
+\(O(N^{-1})\). Thus an adverse mark following a downward mark has
+probability \(O(N^{-2})\). A first adverse mark already has probability
+\(O(N^{-2})\) by (5.15). Iterating this estimate gives a geometric
+interruption expansion: the probability of at least one mark is
+\(O(N^{-1})\), while, conditional on a mark, the remaining number of
+marks and the remaining return duration have uniformly bounded second
+moments. Leaving the shell window would require at least \(N/2\) marks,
+so its probability is smaller than every power of \(N^{-1}\). The
+high-power phase bounds make its contribution to every first and second
+endpoint estimate displayed below smaller than every power as well. This
+proves (6.2)--(6.3); it does not assume that the first mixed-only cycle
+is uninterrupted or continue a rare escaped path without control.
+
+Since
+
+\[
+ \Delta W=M_N^+-M_N^-,
+\]
+
+Lemma 6.1 gives constants \(0<d_-<D_-<\infty\) such that
+
+\[
+ -\frac{D_-}{N}\le \mathbb E\Delta W
+ \le-\frac{d_-}{N},
+\qquad
+ \mathbb E(\Delta W)^2=O(N^{-1}).
+\tag{6.4}
+\]
+
+At a minimal phase, \(C=0\), hence \(B=W=N\), and
+
+\[
+ U(e_N)=p_Aa_*+p_BN.
+\tag{6.5}
+\]
+
+On the atom-return event the endpoint has the same \(A,C\)-phase, so its
+\(U\)-increment is exactly \(p_B\Delta W\). The shell-exit event
+contributes \(o(1)\) to the expected \(\Phi\)-increment by the endpoint
+estimate in Lemma 6.1. Thus (6.3)--(6.4) give
+
+\[
+ \mathbb E_{e_N}[\Phi(X_{\widehat\sigma_N})-\Phi(e_N)]
+ \le-2p_B^2d_-+o(1).
+\tag{6.6}
+\]
+
+Thus the regeneration drift is bounded above by a negative constant for
+all sufficiently large \(N\), while its physical duration and endpoint
+second moments are uniformly bounded.
+
+This is the rigorous form of signed service. It does not wait for an
+upward record of the autonomous \(C\rightleftarrows2C\) chain. It only
+uses the \(O(N^{-1})\)-long visits to \(C=1\) created by the physical
+mixed linkage. The factorial record-time obstruction for starting from
+large \(C\) is therefore irrelevant; large \(C\) is handled by (4.11).
+
+If the mixed support has no \(0\), the states \(A=C=0\), with \(B\)
+fixed, are singleton closed classes. There is one further boundary
+family: when \(A=B=0\) and \(C>0\), only the pure linkage is enabled.
+For \(\{C,2C\}\) this is the linear-birth/quadratic-death chain on the
+positive integers, hence is positive recurrent. Every remaining closed
+class uses the positive atom \(a_*=1\), and the preceding argument is
+unchanged.
+
+\subsection{\texorpdfstring{7. The three-complex pure-\(C\)
+linkage}{7. The three-complex pure-C linkage}}
+
+Suppose instead that \(L_C=\{0,C,2C\}\). Let \(\rho_k\) be the aggregate
+rate of the edges \(0\to kC\), for \(k=1,2\). At least one \(\rho_k\) is
+positive. Every such reaction lowers \(W\) by \(k\).
+
+The limiting fast trace can be written explicitly. For every lower
+target \(j\), put \(q_j=\kappa_{Dj}/d_M\). Start with the effective
+one-species generator from (5.3), and add the bounded batch transitions
+
+\[
+ a\longmapsto a+j_1+\cdots+j_k
+ \quad\hbox{at rate}\quad
+ \rho_kq_{j_1}\cdots q_{j_k}.
+\tag{7.1}
+\]
+
+These transitions represent a \(0\to kC\) event followed by \(k\)
+successive \(D\)-exits. They have constant rates and bounded increments.
+The original effective generator has linear death in the \(\{0,A\}\)
+case and quadratic death in the other three cases. Hence, for every
+sufficiently large integer \(m\), the augmented generator
+\(\overline{\mathcal L}\) satisfies
+
+\[
+ \overline{\mathcal L}(1+a)^m\le K_m-c_m(1+a)^m
+\tag{7.2}
+\]
+
+outside a finite set. Thus its classwise minimal atom has return times
+and endpoint values of every required polynomial moment.
+
+This limiting statement is uniform for the physical chain. Let
+\(\widetilde\sigma_N\) be the first of the next minimal-phase return and
+exit of \(W\) from \([N/2,3N/2]\). The calculation leading to (5.11a),
+with the constant-rate \(0\)-sources and the at-most-linear
+\(C\)-sources included, gives the same high-power phase estimate; every
+positive linear term is absorbed by \(NC\), \(C^2\), or the stable
+lower-phase drift. On a fixed bounded phase set, a newly created \(C\)
+particle is cleared at rate at least \(d_MN\). The probability that a
+nonzero-source pure reaction interrupts all \(k\) clearings is therefore
+\(O(N^{-1})\), uniformly on that set. The high-power estimate makes the
+complement uniformly negligible. Combining this with (7.2) and the same
+finite-set minorization used in Lemma 5.1 proves
+
+\[
+ \mathbb E\widetilde\sigma_N^2\le K.
+\tag{7.3}
+\]
+
+Leaving the shell window requires at least \(N/4\) pure reactions. The
+stopped high-power estimates give moments of every order for their
+count, so the shell-exit probability and its first and second endpoint
+contributions are smaller than every prescribed power of \(N^{-1}\).
+
+Let \(Z_{k,N}\) count the \(0\to kC\) reactions during this cycle, and
+let \(H_N\) count all pure reactions whose source is \(C\) or \(2C\).
+The preceding estimates and their stopped high-power versions give
+
+\[
+ \mathbb EH_N=O(N^{-1}),\qquad
+ \mathbb EH_N^2=O(N^{-1}),\qquad
+ \mathbb E\Big(\sum_{k=1}^2 kZ_{k,N}\Big)^2\le K.
+\tag{7.4}
+\]
+
+The return kernels converge on bounded phases to (7.1), and (7.2)
+supplies uniform integrability. Consequently
+
+\[
+ \mathbb E\sum_{k=1}^2 kZ_{k,N}=d_0+o(1)
+\tag{7.5}
+\]
+
+for a constant \(d_0>0\). Strict positivity follows already from the
+positive probability that the first reaction at the atom is an enabled
+\(0\)-source reaction. Mixed reactions leave \(W\) unchanged. Equations
+(7.4)--(7.5), with the bounded signed increments of the \(H_N\)
+reactions, therefore give
+
+\[
+ \mathbb E\Delta W=-d_0+o(1),\qquad
+ \mathbb E(\Delta W)^2\le K.
+\tag{7.6}
+\]
+
+On the minimal-phase return event the endpoint again has
+\(\Delta U=p_B\Delta W\); the shell-exit contribution is \(o(N)\).
+Equations (7.3) and (7.6) yield
+
+\[
+ \mathbb E[\Phi(X_{\widetilde\sigma_N})-\Phi(e_N)]
+ \le-cN
+\tag{7.7}
+\]
+
+for some \(c>0\) and all large \(N\).
+
+For the architecture (1.5), the lower effective phase is the positive
+linear-birth/quadratic-death chain on \(\{A,2A\}\), augmented by the
+bounded zero-order batches just described. Its minimal recurrent atom is
+\(A=1\). This proves the previously exceptional second architecture
+without a finite-\(C\) truncation.
+
+If the mixed support has no \(0\), the boundary \(A=B=0\) carries only
+the autonomous pure-\(C\) chain. Its constant/linear births and strictly
+negative quadratic \(2C\)-source drift make every closed class positive
+recurrent. All other nontrivial classes use the atom \(a_*=1\).
+
+\subsection{8. Hybrid Foster closure}
+
+We now combine the pointwise phase estimate with the regeneration
+estimate. Fix a closed irreducible population class. If it is a finite
+or singleton boundary class, there is nothing to prove. The autonomous
+one-dimensional boundary classes identified at the ends of Sections 6
+and 7 are already positive recurrent. In every remaining class choose
+the appropriate minimal phase atom from (5.5).
+
+Outside the tube (4.12), stop on first entrance to the tube or to a
+fixed finite set. Dynkin's formula and (4.11) charge physical time with
+a strict negative margin. On the tube, first hit the minimal phase atom
+and then run one regeneration cycle. The high-power bounds above make
+the first-hit duration and endpoint moments uniform.
+
+Here is the endpoint check. If the starting phase is \(a>a_*\), then the
+preliminary return changes the linear workload by
+
+\[
+ p_A(a_*-a)+p_B\Delta W.
+\]
+
+The first term is a fixed negative number. In the two-complex case the
+positive part of the second term has expectation \(O(N^{-2})\), by the
+adverse-mark bound in Lemma 6.1; in the three-complex case its positive
+part is \(O(N^{-1})\), by (7.4). Thus the quadratic cross term is
+nonpositive for all large \(N\). If \(a=a_*\), the preliminary return is
+empty. The appended atom cycle then supplies (6.6) or (7.7).
+Consequently there are \(\eta,\delta>0\) and a finite set \(K\) such
+that the composite tube stopping time \(\tau_x\) satisfies
+
+\[
+ \mathbb E_x\!\left[
+ \Phi(X_{\tau_x})-\Phi(x)+\eta\tau_x
+ \right]\le-\delta
+\tag{8.1}
+\]
+
+for every tube state outside \(K\).
+
+Choose \(\eta>0\) smaller than the regeneration drift divided by the
+uniform mean cycle duration. Alternating the two stopping rules gives,
+up to the first hit of a finite set \(K\),
+
+\[
+ \mathbb E\Phi(X_{T_m})
+ +\eta\mathbb E T_m
+ +\delta\mathbb E N_m
+ \le\Phi(X_0),
+\tag{8.2}
+\]
+
+where \(N_m\) is the number of completed large-\(W\) regeneration cycles
+and \(\delta>0\). The endpoint estimates in Lemma 6.1 and Section 7,
+together with the high-power bound in Lemma 5.1, justify bounded
+optional sampling and passage to the limit. If \(K\) were avoided,
+either infinitely much physical time or infinitely many regeneration
+cycles would accumulate, contradicting (8.2). Hence \(K\) is reached in
+finite mean physical time.
+
+The finite-set trace in a closed irreducible class has finite mean
+return, so the class is positive recurrent. This is a physical-time
+argument. It does not charge the number of rapid \(D\)-source reactions.
+
+Finally, the process is nonexplosive. Every population-increasing
+channel has propensity at most linear: \(0\)-source channels have
+constant rates, \(A\)- and \(C\)-source channels have linear rates, and
+every quadratic source points to a complex of no larger molecularity.
+Comparison of total population with a linear pure-birth process
+suffices.
+
+\subsection{9. Exact boundary and audit
+conclusions}
+
+The following points are proved above.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  A linear signed correction to the factorial potential does not close
+  the physical-time seam; the bottleneck requires quadratic shell
+  growth.
+\item
+  A rate-dependent positive linear workload \(U\) always exists and
+  controls every phase-large state through the proper potential \(U^2\).
+\item
+  The large positive-\(W\) fast trace has uniform return-time and
+  endpoint moments. Its \(C\)-occupation is \(\Theta(W^{-1})\), while
+  its \((C)_2\)-occupation is \(O(W^{-2})\).
+\item
+  For \(C\rightleftarrows2C\), downward signed service is order
+  \(W^{-1}\) and adverse service is order \(W^{-2}\); quadratic drift is
+  therefore uniformly negative on regeneration cycles.
+\item
+  When \(0\) is in the pure-\(C\) linkage, downward service has order
+  one and the return drift is even stronger.
+\item
+  Large \(C\) is controlled by quadratic physical death, not by an
+  upward record-time policy.
+\end{enumerate}
+
+No null or transient closed class occurs in this signed family. The
+proof uses the exact supports (1.2)--(1.3); it does not claim a generic
+countable-phase theorem for other atlas pairings.
+
+\subsection{10. Exact limit of the superset
+interpretation}
+
+The preceding theorem is not monotone under adding complexes to the
+pure-\(C\) linkage. The global interface certificate makes the scope gap
+exact. Among the 358 residual ordered pairs with one of the four signed
+supports in (1.3), 107 available supports contain both \(C\) and \(2C\).
+Of those, 69 are already certified by the global tier criterion and 38
+remain. The other 161 tier failures do not even contain the two-complex
+service support, so no superset version of this note could address them.
+
+The 38 remaining supersets have ten inclusion-minimal ordered pairs:
+
+{\small\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+signed support & minimal available additions to \(\{C,2C\}\) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(\{0,2A,B+C\}\) & \(A,\ A+B,\ A+C\) \\
+\(\{0,A,2A,B+C\}\) & \(A+B,\ A+C\) \\
+\(\{0,A,B+C\}\) & \(2A,\ A+B,\ A+C\) \\
+\(\{A,2A,B+C\}\) & \(A+B,\ A+C\) \\
+\end{longtable}
+}
+
+Thus there are four analytic minimal types: a bounded \(A\)- or
+\(2A\)-cofactor, an \(A+B\) source, and an \(A+C\) source. The \(B\)-
+and \(2B\)-single-vertex additions are already tier-certified. Adding
+\(0\) alone is the exact three-complex case of Section 7.
+
+Each of the four types changes a load-bearing estimate above. An \(A\)-
+or \(2A\)-source can fire with \(C=0\), so \(W\) is no longer fixed
+during the lower-phase return. An \(A+B\)-source has rate of order \(N\)
+as soon as one \(A\) particle is present, and becomes a second fast
+clock not contained in the stochastic complement (5.3). An \(A+C\)
+intermediate introduces a second reaction that can have to beat the
+order-\(N\) \((B+C)\)-clearing clock.
+
+For example, consider an orientation containing
+
+\[
+ C\longrightarrow A+C\longrightarrow2C.
+\tag{10.1}
+\]
+
+At the phase \(A=0,C=1,B=N+1\), the first arrow beats clearing with
+probability \(\Theta(N^{-1})\). Conditional on that arrow, the second
+again beats clearing with probability \(\Theta(N^{-1})\). Thus this
+particular direct service path has probability \(\Theta(N^{-2})\), not
+the one-clock probability used in Lemma 6.1.
+
+This observation alone is not a counterexample to an \(N^{-1}\)
+\emph{averaged} service rate. The irreducible lower phase has a
+positive, though possibly very small, occupation of \(A>0\); on those
+visits \(A+C\to2C\) needs to win only one order-\(N\) race. Establishing
+the resulting coefficient requires a new countable-phase occupation and
+interruption theorem that includes the added reactions. It is not
+supplied by Lemmas 5.1 or 6.1.
+
+Accordingly, (10.1) is a countersequence to a direct one-path
+restoration argument, while the \(A\), \(2A\), and \(A+B\) cases
+invalidate the fixed-\(W\), delete-only-\(D\) trace itself. None is
+asserted to be a null-recurrent or transient reaction network. No
+deletion or restoration monotonicity is used in the theorem above.

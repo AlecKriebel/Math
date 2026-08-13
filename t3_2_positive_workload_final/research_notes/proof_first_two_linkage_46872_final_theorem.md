@@ -1,0 +1,206 @@
+# Positive recurrence for every three-species binary two-linkage network
+
+**Proof-first final two-linkage composition, 2026-08-12 PDT.**  This note
+proves the complete two-linkage theorem by a disjoint union of completed
+fixed-pair theorems.  The finite classification identifies support pairs
+only.  It does not enumerate orientations, rate vectors, populations,
+reaction histories, or communicating classes.
+
+## 1. Theorem
+
+> **Theorem 1.1.**  Let a finite stochastic mass-action network have at most
+> three species, exactly two weakly reversible linkage classes, and complexes
+> of total molecularity at most two.  Give each linkage support an arbitrary
+> strongly connected labelled orientation and every present label an
+> arbitrary positive rate constant.  Then the minimal CTMC is nonexplosive,
+> and every closed irreducible population class is positive recurrent.
+
+The conclusion applies in particular to any reduced network supplied by the
+exact fixed-class conjugacy of the global composition theorem, provided that
+the reduction has at most three dynamic species and exactly two active
+projected linkage classes.
+
+## 2. Exact support universe and final disjoint union
+
+After zero-displacement labels are deleted and projected linkages sharing a
+complex are merged, the two active linkage supports are disjoint subsets of
+
+\[
+ \mathcal C_2=\{0,A,B,C,2A,2B,2C,A+B,A+C,B+C\},       \tag{2.1}
+\]
+
+each having at least two vertices.  The exact ordered support universe has
+
+\[
+ 3^{10}-2\{2^{10}+10\,2^9\}+\{1+10+10+90\}=46{,}872 \tag{2.2}
+\]
+
+pairs.
+
+The final finite certificate is
+
+~~~text
+certificate 5b249ded4b54801f7eb5ab9ced943ed566216e1228c0e07f3e205b1eef319288
+test        dd51ce074aa43bb4722d176ef4c85face956c924150681d5cae32f3b615c5e76
+~~~
+
+It proves the pairwise-disjoint identity
+
+\[
+ 46872=27462+432+146+336+18496.                         \tag{2.3}
+\]
+
+The five branches and fingerprints are
+
+\[
+\begin{array}{l|r|l}
+\text{branch}&\text{pairs}&\text{SHA-256}\\ \hline
+\text{completed mixed orbit}&27462&\texttt{1bf337cf143c6eb4}\ldots\\
+\text{active-invariant orbit gap}&432&\texttt{5516d6071b2b9d07}\ldots\\
+\text{strict positive invariant}&146&\texttt{d1fc7112f8a08605}\ldots\\
+\text{level-set residual}&336&\texttt{ea3d7b08d39c6f9c}\ldots\\
+\text{outside-mixed remainder}&18496&\texttt{eb7db151e42eb956}\ldots
+\end{array}                                               \tag{2.4}
+\]
+
+The full-universe fingerprint is
+
+~~~text
+00446e17dca5ce6b75e86cdc755b5660d7c94b68fa4f3e6f028efa40d02c6c60
+~~~
+
+and the branch-manifest fingerprint is
+
+~~~text
+bd6ae54bff3aed8fc4fedb9255fe0b7377a28dc67404d6a5bea41c6aa4ac1bba.
+~~~
+
+The code asserts `recurrence_claim=False`; every stochastic conclusion below
+comes from an analytic theorem.
+
+## 3. Analytic branch theorems
+
+Fix one ordered support pair \(P\), one arbitrary pair of strongly connected
+labelled orientations, one positive rate vector, and one closed irreducible
+class \(\Gamma\).  Identity (2.3) assigns \(P\) to exactly one branch.
+
+### 3.1 Completed mixed orbit: 27,462 pairs
+
+The exact theorem target and its exact-byte audit have SHA-256 values
+
+~~~text
+target a91e8c31f35312ef4b9063e8f5a48af534861145db2236e662ea6cc1eff8e30e
+audit  32eec768b2d8d701664f3ace2b1a7c04fd3790a4811eba5e05d56a8fa903e73b
+~~~
+
+with finite seed-partition source/test hashes
+
+~~~text
+57d8904dd86cd0bf626e344dbfd7b7f248b239cdeaace48489796058c6875f08
+e708c52f6cbc1bbc4dabf33f246d72379dff58c74cc97a38fdd8076ac3ae7d13.
+~~~
+
+It removes the 110 active-only invariant seeds before orbit closure.  The
+remaining 5,059 seeds split into finite invariant, deficiency-zero, literal
+physical-seam, corrected-tier, and fourteen-row residual theorems.  Species
+permutation and linkage reversal transfer these completed seed theorems to
+exactly 27,462 pairs.  Thus this branch does not inherit the stale atlas
+claim which treated active-only invariance as global.
+
+### 3.2 Active-invariant orbit gap: 432 pairs
+
+The seam-free population-Foster theorem target and audit have SHA-256 values
+
+~~~text
+target 7edab78daabbf7e492851efe5326ccc228adfcb57f02cd5ff55eaa7056e034c8
+audit  1110efc0760ed8714fc4bf203739152820f6f9a18cbdc0e92716638a707140fd
+~~~
+
+It uses one global fourth-power population factorial and the exact
+174 deficiency-zero, 234 direct-cut, and 24 exceptional-service split.  No
+chart-exit SCC or potential handoff appears.
+
+### 3.3 Strictly positive invariant: 146 pairs
+
+For this branch a vector \(h\in\mathbb R_{>0}^3\) annihilates every reaction
+vector.  Hence \(h\cdot x\) is constant on \(\Gamma\), whose nonnegative
+integer level set is finite.  Therefore \(\Gamma\) is finite and positive
+recurrent.  This is a standalone classwise conclusion, unlike an invariant
+positive on only two coordinates.
+
+### 3.4 Level-set residual: 336 pairs
+
+The exact pair theorem and audit have SHA-256 values
+
+~~~text
+target 6e9ddcaccd03fe64b1c6a57cbaef052e984eaf7b7e2e87c4df52ca1240787a6c
+audit  35b18c365ce954594397b4c48ed55f7d11c847af37594f0fb354517434f76d72
+~~~
+
+The 312 homogeneous and 24 anisotropic pairs are proved by classwise
+physical-time Foster theorems, including the boundary activation and direct
+death occupation macros.  This branch has no chart-local linear-potential
+seam.
+
+### 3.5 Outside-mixed remainder: 18,496 pairs
+
+The exact theorem target and audit have SHA-256 values
+
+~~~text
+target e7b08be8b6ca3ff604f3975bdae18b526db532ea1168f25bf21170d8248b5106
+audit  192dfc3d79401c57416b582b45aeb0140f0c1ad3e0f90ab80acaae48e3b9a090
+~~~
+
+Its disjoint support split is 11,842 no-failure pairs plus 6,654 failure
+pairs.  The first set has a statewise population-factorial Foster theorem.
+The second has one common actual-target marked factorial covering
+all-active, unconditional two-active AA, and the exact globally-nonmixed
+one-active exhaustion, including the cap-free Flat0 killed resolvent.  Each
+is already a standalone fixed-pair recurrence theorem, so their union
+requires no cross-potential trajectory gluing.
+
+## 4. Pairwise composition
+
+The support pair \(P\) is fixed for the entire physical network.  Therefore
+the five branches in (2.3) are a classification of *theorems*, not a menu of
+regions visited by one trajectory.  Apply the one completed theorem assigned
+to \(P\).  Potential functions belonging to different support pairs or
+different branches are never compared.
+
+Every branch theorem gives finite mean return to a finite subset of
+\(\Gamma\).  From that finite subset, irreducibility supplies finite labelled
+paths to one fixed state with positive success probabilities and finite mean
+durations.  Geometric retry gives a finite mean positive return to that
+state.  Hence \(\Gamma\) is positive recurrent.
+
+## 5. Nonexplosion
+
+Let \(N(x)=1+|x|_1\).  A reaction with a degree-two source cannot increase
+total population because its target is also binary.  All
+population-increasing channels therefore have source degree at most one and
+bounded jump size.  For a fixed network there is \(C<\infty\) such that
+
+\[
+ \sum_r\lambda_r(x)(|z_r|-|y_r|)^+\le C N(x).        \tag{5.1}
+\]
+
+Stopping when \(N\) reaches \(R\), Dynkin's formula and Gronwall give
+
+\[
+       \mathbb E_xN(X_{t\wedge\tau_R})\le N(x)e^{Ct}. \tag{5.2}
+\]
+
+Thus population cannot escape in finite time.  Below a fixed population
+level the state space is finite and total rates are bounded, so neutral
+quadratic clocks cannot accumulate.  The minimal CTMC is nonexplosive.
+
+Sections 2--5 prove Theorem 1.1. \(\square\)
+
+## 6. Claim boundary
+
+This theorem supersedes the stale 2,511-based global composition target; it
+does not alter that target or its hostile FAIL audit, which remain as
+provenance.  The new proof uses the exact full 46,872-pair universe and cites
+only standalone pair theorems at their literal support scopes.  No
+orientation, population, rate, or stochastic-history enumeration enters any
+analytic implication.

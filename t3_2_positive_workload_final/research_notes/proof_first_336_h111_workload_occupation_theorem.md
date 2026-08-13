@@ -1,0 +1,484 @@
+# Homogeneous 336 workload occupation theorem
+
+**Proof-first standalone theorem, 2026-08-12 PDT.**  This note proves the
+missing global boundary estimate for the 312 homogeneous incidences in the
+residual level-set family.  The proof is symbolic.  It does not enumerate a
+reaction orientation, a rate vector, a population box, or a reaction path.
+
+After relabelling, the two supports have the form
+
+\[
+ T\subseteq\{2A,2B,2C,A+B,A+C,B+C\},\qquad
+ R=\{0\}\cup U,                                      \tag{1.1}
+\]
+
+where \(T\) has internal rank two, \(U\) consists of two or three distinct
+unaries, and both directed labelled graphs are strongly connected with
+arbitrary fixed positive rates.  Put
+
+\[
+                         H=A+B+C.                    \tag{1.2}
+\]
+
+The theorem supplies the literal direct-death occupation macro required by
+the workload-only physical-time Foster theorem.  The upper linkage may make
+arbitrarily many neutral reactions inside one episode.
+
+## 1. Exact workload ledger and statement
+
+For \(u\in U\), write
+
+\[
+ \delta_u=\sum_{u\to0}\kappa_{u0},\qquad
+ D=\{u\in U:\delta_u>0\},\qquad
+ \beta=\sum_{0\to u}\kappa_{0u}.                    \tag{1.3}
+\]
+
+Strong connectivity gives \(D\ne\varnothing\) and \(\beta>0\).  If
+\(B_t\) is the number of zero-source births and \(D_t\) the number of
+labelled \(u\to0\) deaths up to time \(t\), then every top reaction and
+every lower unary transfer preserves \(H\), and hence, pathwise,
+
+\[
+                  H(X_t)-H(X_0)=B_t-D_t.             \tag{1.4}
+\]
+
+Fix \(k\) and let
+
+\[
+ {\cal D}_k=\{x:x_u<k\text{ for every }u\in D\}.     \tag{1.5}
+\]
+
+> **Theorem 1.1 (homogeneous workload macro).**  For every fixed network
+> in (1.1), on every closed irreducible class not contained in a
+> catalyst-free invariant reduction, one can choose \(k,R<\infty\) and
+> \(\eta>0\) so that, from every \(x\in{\cal D}_k\) in that class with
+> \(H(x)>R\), there is an all-clock stopping time \(\tau_x\) which contains
+> an actual reaction, has its actual physical endpoint, and satisfies
+> \[
+>  0<\mathbb E_x\tau_x<\infty,\qquad
+>  \mathbb E_x H(X_{\tau_x})<\infty,
+> \]
+> together with
+> \[
+>  \mathbb E_x\{H(X_{\tau_x})-H(x)+\eta\tau_x\}\le0. \tag{1.6}
+> \]
+> Equivalently,
+> \[
+>                 \mathbb E_x(D_{\tau_x}-B_{\tau_x})
+>                         \ge\eta\mathbb E_x\tau_x. \tag{1.7}
+> \]
+> Every catalyst-free invariant reduction is an open-unary network and is
+> positive recurrent directly.  Consequently every closed irreducible
+> population class of (1.1) is positive recurrent.
+
+The last conclusion follows from the
+[workload-only physical-time Foster theorem](proof_first_levelset_h_alone_physical_time_foster_lemma.md)
+and its [independent strict audit](proof_first_levelset_h_alone_physical_time_foster_lemma_exact_byte_audit.md),
+pinned respectively at
+
+~~~text
+8cf2a8d41f0fab64bf34b6608fa7cf6b0f1b385a30f4a01afeb10c7732851b2a
+9d8fc8b5e15178e7a8305422ba7fd08e6875e851c37951207815d5d84babcc67
+~~~
+
+Sections 2--7 prove the unconditional macro (1.6).
+
+## 2. Dead faces and the finite state-selected partition
+
+Normalize a nonzero population by \(z=x/H(x)\) on the unit simplex.  A
+coordinate face is **top-dead** if no source in \(T\) is supported on it.
+There are only two kinds of proper top-dead faces.
+
+* A pure \(X\)-vertex is dead exactly when \(2X\notin T\).
+* A two-species face, say \(Y=0\), is dead only when every top complex
+  contains \(Y\).  Rank two then forces
+  \[
+                         T=\{X+Y,Y+Z,2Y\}.            \tag{2.1}
+  \]
+
+Indeed, if the \(Y=0\) face is dead, the only available quadratic
+complexes are the three displayed in (2.1); rank two forces all three.
+Conversely they all contain \(Y\).  A singleton assertion is immediate.
+
+If a proper face is not dead, an enabled source lies on it.  A directed
+path in the strong top graph eventually leaves the face; its first crossing
+edge has strictly positive production of a missing coordinate.  Repeating
+this argument enters the relative interior.
+
+If (2.1) does not occur, the maximal top-dead sets are finitely many pure
+vertices.  Choose small normalized wedges \({\cal W}_d\) around them with
+pairwise disjoint closures, and put
+
+\[
+ {\cal A}=\Delta\cap
+      \left(\bigcup_d{\cal W}_d\right)^{\mathrm c},
+ \qquad \Delta=\{z\ge0:\textstyle\sum_i z_i=1\}.      \tag{2.2}
+\]
+
+The wedge thresholds are chosen so that exiting a wedge means crossing a
+fixed positive transverse-height level.  Since all reaction jumps are
+bounded and distinct wedge closures have positive normalized separation, a
+large-population jump which first exits one wedge cannot land in another.
+Its normalized endpoint lies literally in \({\cal A}\).  Every point of
+\({\cal A}\) has an enabled top source, and the first-crossing argument
+enters the relative interior.
+
+When (2.1) occurs, its face \(Y=0\) is the unique maximal top-dead set and
+contains both dead pure endpoints.  It is not covered by overlapping pure
+wedges.  Section 5 invokes the separate all-lower-support catalyst theorem
+on the whole face neighborhood.  Thus the state-selected partition has no
+ambiguous chart handoff and no zero-time episode.
+
+There is one exact invariant reduction.  In (2.1), if the catalyst \(Y\)
+is absent from \(U\), the face \(Y=0\) is invariant for the full network.
+On a closed class in that face the top linkage is inactive and the remaining
+network is an open unary linkage.  Killing its finite unary graph on first
+hitting zero gives a transient subgenerator \(Q_R\), and
+\((-Q_R)^{-1}{\bf1}>0\) gives a linear Foster function.  Such a class is
+already positive recurrent.  Hence below, a live catalyst face always has
+physical lower access to its catalyst.
+
+## 3. Symbolic exhaustion and exact finite scope
+
+Fix a dead pure \(X\)-vertex and call the other species \(Y,Z\).  Thus
+\(2X\notin T\).  Rank two forces at least one carrier \(X+Y,X+Z\), since
+otherwise \(T\subseteq\{2Y,Y+Z,2Z\}\) has affine rank at most one.  After
+interchanging \(Y,Z\), precisely one of the following holds.
+
+1. **Two carriers:** \(X+Y,X+Z\in T\).
+2. **Dyadic carrier:** \(X+Y\in T\), \(X+Z\notin T\), and \(2Z\in T\).
+3. **Common catalyst:** \(X+Y\in T\), while \(X+Z,2Z\notin T\).  The only
+   remaining available quadratic vertices are \(2Y,Y+Z\); rank two forces
+   both and hence the exact support (2.1).
+
+This is a symbolic trichotomy, not an orientation list.  The lower support
+need not omit \(X\).  Every \(X\)-source lower transfer is retained below;
+if it is not a death, it creates transverse mass and is favorable.
+
+The exact residual support certificate freezes the finite set identity at
+
+~~~text
+src/all_active_residual_levelset_336_certificate.py
+SHA-256 4149b682d1222bd3327548b0eb95921f7aae20663816b345b48285239c12f93d
+
+tests/test_all_active_residual_levelset_336_certificate.py
+SHA-256 6f5802976d4de479a0728648248a2291f5d518e04de29b9b7053802eb7f1b9c2
+~~~
+
+Its six focused tests give 312 homogeneous selected incidences and 360
+dead-ray incidences, split exactly as
+
+\[
+              360=168\text{ two-carrier}
+                    +144\text{ dyadic}
+                    +48\text{ common-catalyst}.       \tag{3.1}
+\]
+
+The dead-ray fingerprint is
+
+~~~text
+c968fadc060af8225121efc84aa17380e11c41e677ed107d2d078c63d0f241fe
+~~~
+
+Exactly 270 dead rays have \(X\in U\).  Among the 48 catalyst rays the
+relative lower patterns \(\{X,Y\},\{X,Z\},\{Y,Z\},\{X,Y,Z\}\) occur 12
+times each.  These are support identities only.  No orientation, rate,
+population, or stochastic history is part of the certificate.
+
+## 4. The two-carrier and dyadic activation dependency
+
+For a noncatalyst top support, choose the disjoint wedges in (2.2).  The
+standalone [carrier/dyadic theorem](proof_first_h111_two_carrier_dyadic_all_lower_supports_theorem.md)
+and its two exact-byte strict audits
+([first](proof_first_h111_two_carrier_dyadic_all_lower_supports_exact_byte_audit.md),
+[independent](proof_first_h111_two_carrier_dyadic_all_lower_supports_independent_exact_byte_audit.md))
+are frozen at
+
+~~~text
+f4d8cc40ccea1c6d9e0df9302f75c8cc1d58dd7c89669fd19ad48fc4bca735b0
+30d780d5853a956bd1502fae8517483caac9f0bd77606f6f6bc13caccb56d783
+219a21a59f57a839d52c4fa0c7cdac3df3dacdac47e16655db957f0a8a026c62
+~~~
+
+They prove the following stronger statement.  There
+is one constant \(C_{\rm pre}<\infty\), independent of the integer
+\(L\), and an all-clock stopping time \(\sigma_L\) from every sufficiently
+large state in a dead pure wedge such that
+
+\[
+        \mathbb E B_{\sigma_L}\le C_{\rm pre},\qquad
+        \mathbb E\sigma_L\le C_{\rm pre},             \tag{4.1}
+\]
+
+and, with the priority order fractional return, then death ledger, then
+activation, its endpoint has exactly one label
+
+\[
+\begin{array}{ll}
+ F:&H(X_{\sigma_L})\le H(x)/2,\\
+ D:&H(X_{\sigma_L})>H(x)/2,\quad D_{\sigma_L}\ge L,\\
+ I:&H(X_{\sigma_L})>H(x)/2,\quad D_{\sigma_L}<L,\quad
+       X_{\sigma_L}/H(X_{\sigma_L})\in{\cal A}.
+\end{array}                                           \tag{4.2}
+\]
+
+The construction first runs a base activation-or-fractional episode with
+every direct-death clock live, and only then stops it earlier at the
+\(L\)-th death.  Thus (4.1) is independent of \(L\); there is no circular
+choice of a death threshold beyond an \(L\)-dependent birth debt.
+If the fixed support has more than one dead pure vertex, take the maximum
+of the finitely many \(C_{\rm pre}\)'s and the maximum finite cutoff.
+
+The dependency proves the sourcewise killed-carrier and dyadic
+source-balance estimates, the literal single-\(Z\) resistance-two
+establishment phase, the disjoint-wedge actual endpoint, and the
+\(L\)-independent birth/time debt.  It assumes exactly
+\(\dim\operatorname{span}(T-T)=2\), so it excludes the rank-one support
+\(\{X+Y,2Z\}\), which is absent from the certified residual family.  No
+finite orientation or population selector is used.
+
+## 5. The common-catalyst dependency
+
+When (2.1) holds, the whole top-dead face must be treated at once.  The
+standalone [all-lower-support theorem](proof_first_h111_common_catalyst_all_lower_supports_theorem.md),
+frozen at
+
+~~~text
+81a48c007e092570cd500d8f124c0546538d44f7e62599100ecf00480f401496
+~~~
+
+proves Theorem 1.1 directly for all four lower patterns.  Its two independent
+exact-byte strict audits
+([first](proof_first_h111_common_catalyst_all_lower_supports_exact_byte_audit.md),
+[independent](proof_first_h111_common_catalyst_all_lower_supports_independent_exact_byte_audit.md))
+are frozen at
+
+~~~text
+5a85a422345a2dd8d640dcd2986f31cd035d293d8bfbb9735941915e547c39f8
+4fbf8fd6384940e5a8919270e4da6a2cbe2885fb465b68957ec51ce592f979f2
+~~~
+
+The proof uses the exact factorization
+
+\[
+ (x)_{X+Y}=Yz_X,\qquad (x)_{Y+Z}=Yz_Z,\qquad
+ (x)_{2Y}=Yz_Y,\qquad {\cal L}_T=Y{\cal L}_Q.        \tag{5.1}
+\]
+
+Protected label events use independent operational top clocks and
+independent dominating physical lower clocks.  A separate clean event
+suppresses only births and \(Y\)-sourced lower events until the earlier of
+the operational endpoint and fractional return.  The repaired success
+union is therefore fractional return or a macroscopic catalyst shell.
+Geometric complete attempts have uniform mean birth debt and duration, and
+the shell service window closes the expected death-minus-birth ledger.  If
+\(Y\notin U\), a closed class in \(Y=0\) is an exact open-unary invariant
+reduction and is positive recurrent directly.
+
+The catalyst theorem already includes its own shell service and expected
+ledger closure.  Catalyst states therefore terminate through that theorem;
+they are not sent through the noncatalyst service window below.
+
+## 6. Uniform physical service after noncatalyst activation
+
+Let \({\cal A}\) be the compact activated set from Section 2 for a
+noncatalyst support.
+For every direct-death species \(d\in D\) and every \(M<\infty\), there is
+a finite top-fluid horizon \(T=T(M)\) such that
+
+\[
+      \inf_{z(0)\in{\cal A}}\int_0^Tz_d(s)\,ds>M.    \tag{6.1}
+\]
+
+Here is the boundary and compact-uniform argument in full.  Write
+\(\phi_t(z)\) for the normalized top ODE on the simplex
+\(\Delta=\{z\ge0:\sum_i z_i=1\}\).  For each coordinate \(i\), split its
+equation as
+
+\[
+ \dot \phi_i=P_i(\phi)-C_i(\phi),\qquad
+ P_i\ge0,\qquad C_i(w)\le K_iw_i\quad(w\in\Delta).  \tag{6.2}
+\]
+
+The last inequality is sourcewise: a reaction can consume \(i\) only from
+a quadratic source containing \(i\), and on \(\Delta\) its monomial is at
+most \(w_i\).  Hence a positive coordinate stays positive by
+variation of constants.  If a source complex \(y_0\) is enabled at a
+boundary point, choose a directed walk in the strong complex graph which
+starts at \(y_0\) and visits every complex.  Along its first edge, every
+new target coordinate has strictly positive production.  Equation (6.2)
+makes that coordinate positive and keeps it positive.  Induction along the
+walk enables every complex.  Rank two and conservation of total degree
+imply that all three species occur, so the trajectory enters
+\(\Delta^\circ\) in finite time.  By construction, every point of
+\({\cal A}\) has such an enabled source.
+
+The top system is autonomous, weakly reversible, and has one linkage
+class.  Its stoichiometric subspace is the full plane
+\(\{v:\sum_i v_i=0\}\), because its rank is two.  Thus its normalized
+positive stoichiometric class is exactly \(\Delta^\circ\).  Theorem 4.2 of
+Boros and Hofbauer,
+[*Permanence of Weakly Reversible Mass-Action Systems with a Single
+Linkage Class*](https://doi.org/10.1137/19M1248431), applies with no
+deficiency restriction: every positive trajectory enters a compact subset
+of \(\Delta^\circ\) in finite time.  Consequently
+
+\[
+                \int_0^\infty \phi_d(s;z)\,ds=\infty
+                    \qquad(z\in{\cal A}).            \tag{6.3}
+\]
+
+Fix \(M\).  For each \(z\in{\cal A}\), choose \(T_z<\infty\) so that the
+integral through \(T_z\) is larger than \(M+1\).  Finite-time continuous
+dependence of the polynomial ODE makes the same integral larger than
+\(M\) on a relative neighborhood \(U_z\) of \(z\) in \(\Delta\).  Choose
+a finite subcover \(U_{z_1},\ldots,U_{z_m}\) of \({\cal A}\) and put
+\(T=\max_jT_{z_j}\).  Since the integrand is nonnegative, this proves
+(6.1).  This finite-subcover step, rather than pointwise permanence alone,
+is what makes the service horizon uniform up to the boundary.
+
+Start the full stochastic chain at an activated endpoint of population
+\(N\), put \(Z^N(s)=N^{-1}X(s/N)\), and stop the fluid clock at
+
+\[
+ \zeta_N=T\wedge\inf\{s:H(X(s/N))\notin[N/2,2N]\}.  \tag{6.4}
+\]
+
+Before \(\zeta_N\), the total lower unary intensity is at most \(C N\) in
+physical time.  Its count during \([0,T/N]\) is therefore dominated by a
+counting process with compensator \(CT\); divided by \(N\), its density
+perturbation tends to zero uniformly.  The top compensated density
+martingale has predictable quadratic variation \(O(N^{-1})\), and replacing
+falling factorials by their quadratic monomials contributes \(O(N^{-1})\)
+to the fluid drift.  Doob's inequality and Gronwall's lemma consequently
+give
+
+\[
+ \sup_{z\in{\cal A}\cap N^{-1}{\mathbb Z}^3}
+ \mathbb E_z\sup_{s\le\zeta_N}
+       |Z^N(s)-\phi_s(z)|\longrightarrow0.           \tag{6.5}
+\]
+
+Leaving the localization interval requires at least \(N/2\)
+population-changing lower events, whereas their stopped compensator is
+bounded by a constant depending only on \(T\).  The exponential counting
+martingale therefore gives
+
+\[
+ \sup_{z\in{\cal A}\cap N^{-1}{\mathbb Z}^3}
+       \mathbb P_z\{\zeta_N<T\}\longrightarrow0.     \tag{6.6}
+\]
+
+Let \(D_{{\rm win},d}\) count only the labelled \(d\to0\) reactions up to
+physical time \(\zeta_N/N\).  Its exact compensator, (6.1), and
+(6.5)--(6.6) give
+
+\[
+ \begin{aligned}
+ \inf_{\text{activated starts}}\mathbb E D_{{\rm win},d}
+ &=\delta_d\inf_{\text{activated starts}}
+       \mathbb E\int_0^{\zeta_N}Z_d^N(s)\,ds\\
+ &\ge \delta_d\inf_{z\in{\cal A}}
+                    \int_0^T\phi_d(s;z)\,ds-o(1).
+ \end{aligned}
+                                                               \tag{6.7}
+\]
+
+The right side can be made arbitrarily large by choosing \(M\).  Meanwhile
+
+\[
+       \mathbb E B_{\rm win}\le\frac{\beta T}{N},
+ \qquad \mathbb E\tau_{\rm win}\le \frac{T}{N}.     \tag{6.8}
+\]
+
+The stopped lower count has a uniformly bounded compensator, so its
+counting-process exponential martingale gives uniform exponential moments
+for \(D_{{\rm win},d}\), \(B_{\rm win}\), and every other lower-window
+count.  The localization time is an actual physical endpoint when an exit
+occurs.  To ensure a genuine reaction even when the deterministic window
+contains none, append the first ordinary all-clock jump after
+\(\zeta_N/N\).  Its holding time is dominated by an exponential variable
+of rate \(\beta>0\), it adds at most one birth, and any death it adds is
+favorable.  Thus the complete service block has an actual reaction,
+uniform finite mean duration and birth debt at most \(1+o(1)\), while its
+mean death service is still bounded below by (6.7).  No top clock or lower
+clock has been suppressed.
+
+## 7. Assembly of the occupation macro
+
+From a low-direct-death state, use the following finite state-selected menu.
+
+* For a common-catalyst support, apply the complete theorem of Section 5.
+  It already gives (1.6), including its own shell service.  On a
+  catalyst-free invariant face use the open-unary reduction of Section 2.
+* For a noncatalyst support, begin the service window of Section 6 directly
+  on \({\cal A}\).  In a dead pure-vertex wedge first use the
+  carrier/dyadic episode of Section 4.
+
+It remains only to assemble the noncatalyst branch.  Let \(\sigma\) be its
+prelude endpoint, with disjoint labels \(F,D,I\) from (4.2); a start already
+in \({\cal A}\) has label \(I\) and zero prelude.  The preceding sections
+give constants \(C_{\rm pre},C_\tau<\infty\), independent of \(L\), such
+that
+
+\[
+ \mathbb E B_\sigma\le C_{\rm pre},\qquad
+ \mathbb E\sigma\le C_\tau.                          \tag{7.1}
+\]
+
+On \(F\), the exact ledger (1.4) gives
+\(D_\sigma-B_\sigma\ge H(x)/2\).  Enlarge the workload cutoff so that this
+is at least \(L\).  On \(D\), \(D_\sigma\ge L\), while all expected prelude
+births are charged globally by \(C_{\rm pre}\).  On \(I\), fix any
+\(d\in D\), append the service block, and choose its mean \(d\)-death
+threshold \(D_0\).  Set
+\(C_B=C_{\rm pre}+1\), charging the possible birth on the final actual jump
+of Section 6.  By (6.7)--(6.8), for large starting workload,
+
+\[
+ \mathbb E(D_\tau-B_\tau)
+ \ge L\{\mathbb P(F)+\mathbb P(D)\}
+        +D_0\mathbb P(I)-C_B-o(1)
+ \ge\min\{L,D_0\}-C_B-o(1).                          \tag{7.2}
+\]
+
+First choose \(L,D_0>C_B+4\), and then enlarge the finite workload cutoff
+so that the error in (7.2) is below one.  The complete episode has a finite
+uniform mean duration, say at most \(C_*\).  Taking
+
+\[
+                              \eta=\frac1{C_*+1}      \tag{7.3}
+\]
+
+and, if necessary, increasing \(L,D_0\) once more, gives
+
+\[
+       \mathbb E(D_\tau-B_\tau)\ge\eta\mathbb E\tau. \tag{7.4}
+\]
+
+Every episode contains a physical jump.  Its birth count and duration are
+integrable, so (1.4) gives endpoint integrability.  Equations (1.4) and
+(7.4) are exactly (1.6).  The pointwise one-jump rule outside
+\({\cal D}_k\), followed by the positive-duration episode tiling of the
+pinned workload theorem, gives finite mean hitting of a finite set and
+positive recurrence on every closed irreducible class. \(\square\)
+
+## 8. Scope boundary
+
+The theorem uses only the homogeneous rank-two shell, the open-unary lower
+support, strong connectivity, and fixed positive rates.  Its three
+activation kernels are forced by rank two.  The common-catalyst argument
+retains repeated deaths and reseeding, so it does not assume a uniformly
+positive probability of reaching the interior before the first death.  It
+also makes no bound on neutral reaction depth.
+
+The 24 anisotropic incidences are outside this note and are covered by the
+[quotient-entropy physical-time theorem](proof_first_336_h112_quotient_foster_theorem.md)
+and its [exact-byte audit](proof_first_336_h112_quotient_foster_exact_byte_audit.md),
+frozen at
+
+~~~text
+9206aa2b07aa802e4d06a769b3b60d520b2dbd12752312497aa5b41156780d48
+992448ad8b6520f014e783adb26a4f9b393b0e6a5f38c3a6262dd9b2fa0c1764
+~~~

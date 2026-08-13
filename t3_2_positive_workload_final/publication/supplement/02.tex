@@ -1,0 +1,273 @@
+\section{The exceptional two-species single-linkage service
+theorem}
+
+\textbf{Proof-first theorem, 2026-08-12 PDT.} This note closes the
+unique two-dynamic-species support left outside the published
+pure-multiple and deficiency-zero theorems. The proof is uniform over
+every strongly connected orientation and every fixed positive rate
+vector. It uses no orientation or population enumeration.
+
+\subsection{1. The theorem}
+
+Let
+
+\[
+               {\cal C}=\{0,B,2B,A+B\}                         \tag{1.1}
+\]
+
+carry an arbitrary strongly connected directed reaction graph, with
+arbitrary positive stochastic mass-action rate constants on its edges.
+Let \(X=(A,B)\) be the resulting CTMC.
+
+\begin{quote}
+\textbf{Theorem 1.1.} The chain is nonexplosive and positive recurrent
+on every closed irreducible population class.
+\end{quote}
+
+Together with the structural reduction in
+\texttt{\seqsplit{proof\_\texttt{\seqsplit{first\_single\_linkage\_scope\_and\_gap.md}}}}, Theorem 1.1
+proves the desired one-active-linkage theorem for every classwise
+projection with at most two dynamic species.
+
+Put
+
+\[
+ V(a,b)=v(a)+v(b),\qquad
+ v(m)=m(\log m-1)+1,                                          \tag{1.2}
+\]
+
+with \(0\log0=0\). This is the nonnegative proper entropy used in the
+Anderson--Kim continuous-time tier theorem.
+
+\subsection{2. Generator descent away from the missing-cofactor
+face}
+
+We use the following standard entropy tier estimate. It is included here
+to make the interface precise.
+
+\begin{quote}
+\textbf{Lemma 2.1 (top-source entropy estimate).} For a fixed finite
+binary weakly reversible network, suppose an unbounded state sequence
+has a source complex \(y\) which is simultaneously in the top finite
+S-tier and the top D-tier, and has a reaction \(y\to y'\) with \(y'\)
+strictly below the top D-tier. If every top S-tier complex is in the top
+D-tier, then \({\cal L}V(x_n)\to-\infty\).
+\end{quote}
+
+For completeness, the bounded-jump entropy estimate gives
+
+\[
+ V(x+y'-y)-V(x)
+ \le\log\frac{(x\vee1)^{y'}}{(x\vee1)^y}+O(1).                \tag{2.1}
+\]
+
+After division by the maximal propensity, upward lower-tier terms are
+bounded using \(r\log(1/r)\to0\), within-tier terms are bounded, and the
+displayed descending term tends to \(-\infty\). This is exactly the
+proof of the top-S descending-source theorem of Anderson and Kim,
+\emph{Some network conditions for positive recurrence of stochastically
+modeled reaction networks}, Theorem 4.2 (arXiv:1710.11263); no
+structural corollary of that paper is being invoked here.
+
+We now verify its premise analytically for every unbounded sequence with
+\(b\ge1\). Pass to a subsequence. If \(b\to\infty\), then:
+
+\begin{itemize}
+\tightlist
+\item
+  when \(a\) is bounded, \(2B\) is the unique top D- and S-complex;
+\item
+  when \(a\to\infty\), comparison of \(a/b\) shows that the common top
+  D- and S-set is \(\{2B\}\), \(\{A+B\}\), or their pair.
+\end{itemize}
+
+If \(b\) is bounded, make it a fixed positive integer. Then necessarily
+\(a\to\infty\), and \(A+B\) is the unique top D- and S-complex. In every
+case the common top set is a nonempty proper subset of (1.1). Strong
+connectivity supplies an edge from that set to its complement. Lemma 2.1
+therefore gives
+
+\[
+ \lim_{n\to\infty}{\cal L}V(a_n,b_n)=-\infty
+ \quad\text{whenever }a_n+b_n\to\infty\text{ and }b_n\ge1.    \tag{2.2}
+\]
+
+Consequently there is a finite set \(F_1\) such that
+
+\[
+                       {\cal L}V(a,b)\le-2                     \tag{2.3}
+\]
+
+for every \((a,b)\notin F_1\) with \(b\ge1\).
+
+\subsection{\texorpdfstring{3. The origin-launch service block on
+\(B=0\)}{3. The origin-launch service block on B=0}}
+
+Write \(O=0\), \(Q=2B\), and \(T=A+B\). Let \(\lambda_O>0\) be the sum
+of the outgoing rate constants at \(O\), and let \(\lambda_T>0\) be the
+corresponding sum at \(T\). Both are positive by strong connectivity.
+
+Start at \((A,B)=(n,0)\). At \(B=0\), only \(O\) is enabled. Its first
+jump has target \(B,Q\), or \(T\).
+
+\begin{itemize}
+\tightlist
+\item
+  If it lands at \(B\) or \(Q\), wait for the next \(T\)-sourced
+  reaction.
+\item
+  If it lands at \(T\), wait for the next \(T\)-sourced reaction. A
+  landing at \(O\) is a neutral return and starts a new attempt. A
+  landing at \(B\) or \(Q\) is followed by one more \(T\)-sourced
+  reaction.
+\end{itemize}
+
+At every positive-\(B\) stage, declare the first firing from a lower
+source \(O,B,Q\) to be an included \textbf{defect}. Thus all reaction
+clocks remain in the physical chain. On the complementary clean event,
+the terminal \(T\)-reaction is an unpaired exit and lowers \(A\) from
+\(n\) to \(n-1\).
+
+Ignore defects for one moment. The probability that an attempt produces
+a positive-\(B\) lower landing before its neutral return is
+
+\[
+ p_*={\sum_{O\to B,Q}\kappa_{Oz}\over\lambda_O}
+ +{\kappa_{OT}\over\lambda_O}
+   {\sum_{T\to B,Q}\kappa_{Tz}\over\lambda_T}.                \tag{3.1}
+\]
+
+Here a missing edge contributes zero. We have \(p_*>0\). Otherwise every
+outgoing \(O\)-edge would land at \(T\), every outgoing \(T\)-edge would
+land at \(O\), and \(\{O,T\}\) would be a closed proper subset of the
+reaction graph, contradicting strong connectivity. Hence the clean
+auxiliary attempt count is geometric with parameter \(p_*\) and has
+moments of every order.
+
+At a state \((a,b)\) with \(b>0\), the aggregate \(T\)-exit rate is
+
+\[
+                         \lambda_T ab,                           \tag{3.2}
+\]
+
+whereas the aggregate lower-source propensity is at most \(C(1+b^2)\).
+Thus the exact relevant-clock race satisfies
+
+\[
+ \mathbb P\{\hbox{defect before the next }T\hbox{-exit}\mid(a,b)\}
+ \le {C(1+b)\over a}.                                           \tag{3.3}
+\]
+
+Before termination, \(a\in\{n,n+1\}\), and every clean intermediate
+\(B\)-value is at most two. At a clean service endpoint \(B\le3\). The
+geometric attempt bound and (3.3), including any fixed polynomial weight
+in the attempt count or centered post-jump displacement, therefore give
+
+\[
+ \mathbb P_n(D)\ge1-C/n.
+\]
+
+\[
+ \mathbb E_n[(1+R)^r;E]\le C_r/n,\qquad r<\infty.              \tag{3.4}
+\]
+
+\[
+ \mathbb E_n\tau^r\le C_r,\qquad r<\infty.                    \tag{3.5}
+\]
+
+\[
+ A_\tau=n-1,\quad B_\tau\le3\quad\hbox{on }D.               \tag{3.6}
+\]
+
+Here \(R\) contains the attempt count and the centered population
+displacement, \(E\) is the included first defect, \(D=E^c\), and
+\(\tau\) is the actual physical stopping time. Equation (3.5) follows
+because each visit to \(B=0\) waits an exponential time of rate
+\(\lambda_O\), while every positive-\(B\) race is faster; the number of
+attempts is geometric.
+
+On \(D\), the mean-value theorem and (3.6) give
+
+\[
+ V(X_\tau)-V(n,0)\le-\log n+C.                                \tag{3.7}
+\]
+
+On \(E\), the included causing jump and the geometric number of
+preceding neutral attempts give
+
+\[
+ \mathbb E_n[|V(X_\tau)-V(n,0)|;E]\le C{\log(n+1)\over n}.      \tag{3.8}
+\]
+
+Combining (3.4)--(3.8) proves the stopped physical-time drift
+
+\[
+ \mathbb E_{(n,0)}[V(X_\tau)-V(n,0)+\tau]
+ \le-\tfrac12\log n                                           \tag{3.9}
+\]
+
+for all sufficiently large \(n\). Notice that designated \(O\)-launches
+are not suppressed lower clocks. Only a lower-source firing which
+competes while \(T\) is enabled is labelled a defect, and that firing is
+included.
+
+\subsection{4. Physical-time Foster
+composition}
+
+Increase a finite set \(F\supseteq F_1\) so that it contains every
+\((n,0)\) for which (3.9) has not yet taken effect. Starting outside
+\(F\), define one sampling episode as follows.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If \(B=0\), use the physical stopping time in Section 3.
+\item
+  If \(B\ge1\), wait for the next ordinary reaction time \(J\).
+\end{enumerate}
+
+In the second case, if \(q(x)\) is the total propensity, (2.3) gives
+
+\[
+ \mathbb E_x[V(X_J)-V(x)+J]
+ ={\mathcal LV(x)+1\over q(x)}\le-{1\over q(x)}<0.              \tag{4.1}
+\]
+
+In the first case, (3.9) is at most \(-1\) after enlarging \(F\).
+Iterate these state-dependent episodes until \(F\) is hit. At the
+successive episode endpoints, \(V(X)+\text{elapsed physical time}\) is a
+nonnegative supermartingale. Hence, for every truncation at \(m\)
+episodes,
+
+\[
+             \mathbb E_x S_{m\wedge N_F}\le V(x).               \tag{4.2}
+\]
+
+Every episode contains at least one actual reaction. The process is
+nonexplosive: a bimolecular-source reaction cannot increase total
+molecular population in a binary network, while the aggregate
+population-increasing rate of degree-zero and degree-one sources is at
+most \(C(1+A+B)\); bounded jumps and a Yule comparison suffice.
+Therefore infinitely many episodes cannot accumulate in finite physical
+time. Letting \(m\to\infty\) in (4.2) proves
+
+\[
+                       \mathbb E_x T_F\le V(x)<\infty.           \tag{4.3}
+\]
+
+The construction uses only physical reactions and so remains inside the
+fixed closed irreducible class. Thus each such class meets the finite
+set \(F\). The standard finite-set return argument (or the
+countable-state random-time Foster theorem applied to (4.2)) gives a
+finite mean return time and hence positive recurrence on that class.
+Absorbing singleton classes are positive recurrent trivially. This
+proves Theorem 1.1. \(\square\)
+
+\subsection{5. Certification boundary}
+
+This theorem closes the exact support (1.1), and therefore every
+projected one-linkage branch with at most two dynamic species. It does
+not close the genuinely three-dynamic-species carrier supports. Those
+require a separate structural carrier-service theorem; no global flag is
+changed here.

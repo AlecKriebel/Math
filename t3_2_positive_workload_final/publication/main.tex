@@ -1,0 +1,492 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\N}{\mathbb N_0}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\fall}[2]{(#1)_{#2}}
+\newcommand{\TthreeTwo}{\mathrm{T3\text{-}2}}
+\setlength{\emergencystretch}{3em}
+
+\title{Positive Recurrence of Weakly Reversible Binary Reaction Networks\\
+with Three Species and Two Linkage Classes}
+\author{}
+\date{12 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We prove a parameter-independent recurrence theorem for stochastic
+mass-action reaction networks.  If every complex has molecularity at most
+two, there are at most three species, and there are at most two weakly
+reversible linkage classes, then the minimal continuous-time Markov chain is
+nonexplosive and every state in every closed irreducible component is positive
+recurrent, for every positive rate vector.  More generally, the same result
+holds when these bounds are satisfied after exact reduction on the chosen
+closed class.  The proof combines an exact fixed-class projection, a symbolic
+tier and affine-class reduction, all-clock stopped Foster estimates on the
+remaining boundary faces, and a finite disjoint support identity.  Finite
+computation is used only for finite support, tier, affine, and set identities;
+no stochastic estimate is obtained by searching orientations, reaction
+histories, or population boxes.  A separately compiled technical supplement
+contains the complete byte-frozen local proofs and their reproducibility
+manifest.
+\end{abstract}
+
+\section{Introduction}
+
+Weak reversibility is a central structural condition in reaction network
+theory.  Deterministically, it is closely tied to persistence and complex
+balance.  Stochastically, however, recurrence is sensitive to boundary faces,
+disabled sources, and physical holding times.  A descending deterministic
+tier need not be enabled, and recurrence of an embedded jump chain need not
+control the continuous-time process.  The chemical recurrence conjecture asks
+whether weak reversibility alone forces positive recurrence on every closed
+irreducible class of the stochastic mass-action chain.
+
+Several important cases are known.  Complex-balanced systems have
+class-restricted product-form stationary laws
+\cite{AndersonCraciunKurtz2010}, and are nonexplosive
+\cite{AndersonCappellettiKoyamaKurtz2018}.  Anderson and Kim gave a tier
+criterion that forces positive recurrence \cite[Theorem~9]{AndersonKim2018}.
+For one linkage class, Anderson, Cappelletti, and Kim proved the binary case
+when every species occurs as a pure unary or binary complex, together with a
+broader proper-tier criterion \cite{AndersonCappellettiKim2020}.  These
+results do not cover disabled mixed top complexes on boundary faces.
+
+This paper establishes the conjectured conclusion in the following finite but
+genuinely three-dimensional regime.
+
+\begin{theorem}[Main theorem]\label{thm:main}
+Let $(\cS,\cC,\cR,\kappa)$ be a finite weakly reversible stochastic
+mass-action reaction network.  Suppose every complex has total molecularity
+at most two, $|\cS|\le3$, and the reaction graph has at most two linkage
+classes.  For every positive rate vector $\kappa$, the minimal continuous-time
+Markov chain is nonexplosive, and every state in every closed irreducible
+population class is positive recurrent.
+\end{theorem}
+
+The intrinsic version, Theorem~\ref{thm:intrinsic}, allows more ambient
+species or linkages when all but three coordinates are constant and all but
+two projected linkages are inactive or merge on the fixed closed class.
+
+The proof is deliberately separated into analytic and finite components.
+The analytic component treats arbitrary strongly connected orientations and
+arbitrary positive rates.  It includes every physical clock, the reaction
+that causes a cutoff, the actual terminal population, and physical duration.
+The finite component verifies only an exact disjoint partition of a finite
+support universe.  This distinction is essential: a catalog of reaction
+words cannot prove the uniform stochastic estimates used here.
+
+The local estimates are substantial, so their complete proofs are supplied
+in the accompanying Technical Proof Supplement.  The main article proves the
+global reduction, records the exact hypotheses and conclusions of each local
+theorem, proves the symbolic tier and affine interfaces, and shows how the
+standalone one- and two-linkage results imply Theorem~\ref{thm:main}.
+
+\paragraph{Literature and priority boundary.}
+We use only the cited published theorems and the proofs contained in the
+accompanying supplement.  We make no priority claim for any overlapping
+case beyond the explicit mathematical statement proved here.
+
+\section{Stochastic reaction networks}
+
+Let $\cS=\{S_1,\ldots,S_d\}$ and identify a complex
+$y=\sum_i y_iS_i$ with $y\in\N^d$.  A labelled reaction is $y\to z$ with
+rate constant $\kappa_{yz}>0$.  At population $x\in\N^d$ its stochastic
+mass-action propensity is
+\begin{equation}\label{eq:propensity}
+ \lambda_{y\to z}(x)=\kappa_{yz}(x)_y,
+ \qquad
+ (x)_y=\prod_{i=1}^d\frac{x_i!}{(x_i-y_i)!},
+\end{equation}
+with the convention that the propensity is zero unless $x\ge y$.
+Parallel labelled channels are retained.  The generator is
+\begin{equation}\label{eq:generator}
+ \cA f(x)=\sum_{y\to z\in\cR}
+       \lambda_{y\to z}(x)\{f(x+z-y)-f(x)\}.
+\end{equation}
+
+The network is \emph{binary} when $|y|_1\le2$ for every complex.  Its
+linkage classes are the connected components of the undirected complex graph.
+It is weakly reversible when every linkage is strongly connected as a
+directed graph.  A closed irreducible population class $\Gamma$ is a closed
+communicating class of the chain.
+
+Positive recurrence is always a classwise assertion here.  Finite or
+absorbing classes are included.  For an infinite irreducible class it is
+equivalent to finite mean positive return to one, and hence every, state.
+
+\section{Exact reduction on a closed class}
+
+Fix a closed irreducible class $\Gamma$.  Call coordinate $i$ constant if
+$x_i=m_i$ for all $x\in\Gamma$.  Delete constant coordinates, delete a
+linkage having no enabled source anywhere on $\Gamma$, project all remaining
+complexes, and merge projected linkages that share a projected vertex.
+Retain parallel labels and discard projected zero-displacement labels.
+
+\begin{lemma}[Fixed-class conjugacy]\label{lem:projection}
+The reduced stochastic mass-action chain is exactly conjugate to the original
+chain restricted to $\Gamma$.  It is weakly reversible, and projection cannot
+increase the number of dynamic species or active linkage classes.
+\end{lemma}
+
+\begin{proof}
+Let $L$ contain a complex $y_0$ enabled at $x\in\Gamma$, and put
+$r=x-y_0\ge0$.  Along a directed path
+$y_0\to y_1\to\cdots\to y_k$ in $L$, the state before the $j$th reaction is
+$r+y_j$.  Thus the whole path is physically executable, and closure keeps all
+its states in $\Gamma$.  If coordinate $i$ is constant, then
+\[
+             m_i=r_i+(y_j)_i
+\]
+along the path.  Strong connectivity therefore makes $y_i$ constant over all
+complexes in $L$.  The deleted-coordinate factor
+\[
+          \prod_{i\ \mathrm{constant}}(m_i)_{y_i}
+\]
+is a positive constant and is absorbed into the labelled rate.  The remaining
+factor is exactly the propensity of the projected source.
+
+An inactive linkage contributes no transition on $\Gamma$.  Two projected
+strong linkages sharing a vertex have strongly connected union; retaining
+their labels and summing parallel propensities preserves the generator.
+The coordinate-deletion map is one-to-one on $\Gamma$, and the preceding
+identity intertwines the generators.  Deletion and merging can only reduce
+the two stated counts.
+\end{proof}
+
+\begin{lemma}[Binary nonexplosion]\label{lem:nonexplosion}
+A finite binary stochastic mass-action network is nonexplosive.
+\end{lemma}
+
+\begin{proof}
+Put $N(x)=1+|x|_1$.  A degree-two source cannot increase total population,
+because its binary target has degree at most two.  Every population-increasing
+reaction therefore has source degree zero or one.  Since jumps are bounded,
+for some $C<\infty$,
+\begin{equation}\label{eq:linear-growth}
+ \sum_{y\to z}\lambda_{y\to z}(x)(|z|-|y|)^+\le CN(x).
+\end{equation}
+Stop on first reaching $N=R$.  Dynkin's formula and Gronwall give
+$\mathbb E N(X_{t\wedge\tau_R})\le N(x)e^{Ct}$, hence
+$\mathbb P(\tau_R\le t)\le N(x)e^{Ct}/R$.  This tends to zero.  Within a
+fixed population sublevel the state space is finite and the total rate is
+bounded, so neutral quadratic reactions cannot accumulate infinitely many
+jumps in finite time.
+\end{proof}
+
+\begin{theorem}[Intrinsic form]\label{thm:intrinsic}
+Fix a closed irreducible class of a finite weakly reversible binary network.
+If its exact reduction in Lemma~\ref{lem:projection} has at most three dynamic
+species and at most two active linkage classes, then the original chain is
+positive recurrent on that class.
+\end{theorem}
+
+The remainder of the paper proves this theorem for one and two active
+linkages.
+
+\section{Tier and stopped-Foster interfaces}
+
+For a population sequence $x_n$, deterministic tiers compare monomials
+$(x_n\vee1)^y$, while stochastic tiers compare falling factorials $(x_n)_y$
+and record whether $y$ is enabled.  Passing to a subsequence fixes both weak
+orders and the eventual coordinate caps $0,1,\ge2$.
+
+Let $E$ be the global top stochastic source tier and let $a_E$ be the
+deterministic-tier level occupied by $E$.  For a linkage support $L$, define
+\begin{equation}\label{eq:superlevel}
+ U_L=\{y\in L: \text{the deterministic tier of }y
+                    \text{ is at least }a_E\}.
+\end{equation}
+
+\begin{proposition}[Exact strong-orientation cut]\label{prop:cut}
+Every strongly connected orientation of the linkage supports has a
+deterministic-tier descending reaction sourced in $E$ if and only if, for
+some linkage $L$,
+\begin{equation}\label{eq:cut}
+          \varnothing\ne U_L\subsetneq L,
+          \qquad U_L\subseteq E.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+If \eqref{eq:cut} holds, take a directed path from $U_L$ to its complement.
+The first exit is sourced in $E$ and descends.  Conversely, if
+\eqref{eq:cut} fails, choose in each linkage a directed Hamiltonian cycle
+whose unique exit from a nontrivial $U_L$ is sourced in
+$U_L\setminus E$.  When $U_L$ is empty or whole there is no descending edge.
+The resulting orientation is strong and has no descending edge sourced in
+$E$.  This is a graph construction, not an orientation enumeration.
+\end{proof}
+
+The use of the $E$-level superlevel is essential.  The older test using the
+absolute top deterministic tier is sufficient but not necessary when that
+tier is wholly disabled.
+
+The class-local form of Anderson--Kim's theorem is also needed.
+
+\begin{proposition}[Class-local tier Foster]\label{prop:class-tier}
+Let $\Gamma$ be closed.  If every proper tier sequence contained in $\Gamma$
+has a top stochastic source of a deterministic-tier descending reaction, then
+the chain is positive recurrent on $\Gamma$.
+\end{proposition}
+
+\begin{proof}
+Repeat the contradiction proof of \cite[Theorem~9]{AndersonKim2018} with
+the generator restricted to $\Gamma$.  Failure of a uniform entropy drift
+outside a finite subset gives $x_n\in\Gamma$, $|x_n|\to\infty$, and
+$\cA V(x_n)>-1$.  A tier subsequence remains in $\Gamma$, and the stated
+hypothesis forces $\cA V(x_n)\to-\infty$, a contradiction.  The published
+theorem is global; this paragraph is the required class-local restriction.
+\end{proof}
+
+For stopped regions we use the following standard state-selected form.
+
+\begin{proposition}[Random-time Foster lemma]\label{prop:random-foster}
+Let a nonexplosive countable-state chain have a proper $W\ge0$.  Suppose that
+outside a finite set $K$, each state $x$ is assigned an almost surely finite
+physical stopping time $\tau_x>0$ such that, for fixed $\eta,\delta>0$,
+\begin{equation}\label{eq:random-foster}
+ \mathbb E_x[W(X_{\tau_x})-W(x)+\eta\tau_x]\le-\delta,
+ \qquad
+ \mathbb E_x[W(X_{\tau_x})+\tau_x]<\infty.
+\end{equation}
+Then $\mathbb E_xT_K<\infty$.  On a closed irreducible class, the chain is
+positive recurrent.
+\end{proposition}
+
+\begin{proof}
+Iterate the selected rules at their actual physical endpoints and stop upon
+the first hit of $K$.  Conditional expectation and localization give
+\[
+ \delta\,\mathbb E(m\wedge N_K)
+ +\eta\,\mathbb E S_{m\wedge N_K}\le W(x)+\delta.
+\]
+Monotone convergence yields finite mean hitting time.  From the finite target,
+take one ordinary jump and apply the hitting bound to its finitely many
+successors.  A finite trace state has finite mean positive return; irreducibility
+then gives positive recurrence.
+\end{proof}
+
+\section{One active linkage}
+
+\begin{theorem}[One-linkage theorem]\label{thm:one-link}
+Let the exact reduced network on a closed irreducible class be binary, weakly
+reversible, have at most three dynamic species, and have exactly one active
+linkage.  Then its chain is nonexplosive and positive recurrent for every
+positive rate vector.
+\end{theorem}
+
+We summarize the proof, whose local theorems appear in Part I of the Technical
+Proof Supplement.  On a proper escaping tier sequence, the top deterministic
+block is proper.  If it contains an enabled source, a simple directed path to
+the first exit yields an all-clock access episode.  For
+\[
+ G_\ell(x)=K_\ell+\sum_i\log(x_i!)+\ell\cdot x,
+ \qquad W_\ell=G_\ell^4,
+\]
+the successful exit supplies a diverging logarithmic gap, while every
+competitor is paid by the exact bound
+\[
+                  r\{1+\log(1/r)\}^q\le C_q.
+\]
+
+If every top source is disabled, binarity gives a symbolic classification.
+With two dynamic species, the only non-deficiency-zero exception is, up to
+relabeling,
+\[
+                   \{0,B,2B,A+B\}.
+\]
+With three dynamic species, the top is a mixed complex containing one zero
+and one divergent coordinate.  There are only three nonstandard geometries:
+a separated singleton top, a balanced tied top, and a bounded two-disabled-top
+face.  Their full all-clock theorems prove actual-endpoint, physical-duration,
+and fourth-power drift estimates.  No orientation list is used in this
+classification or in those estimates.
+
+A finite menu of literal statewise rules is fixed.  If no menu member had
+uniform negative drift outside a finite set, an escaping sequence and a fixed
+proper-tier subsequence would contradict one of the preceding coercive local
+estimates.  Selecting the first rule that satisfies
+\eqref{eq:random-foster} and applying Proposition~\ref{prop:random-foster}
+proves Theorem~\ref{thm:one-link}.  The complete composition and all local
+calculations are Supplement Sections 1--6.
+
+\section{Two active linkages}
+
+After exact reduction and merging, the two supports are disjoint subsets of
+\begin{equation}\label{eq:binary-complexes}
+ \cC_2=\{0,A,B,C,2A,2B,2C,A+B,A+C,B+C\}.
+\end{equation}
+
+Assigning each of the ten binary complexes to linkage one, linkage two, or
+neither, while requiring two disjoint supports of size at least two, gives
+the exact ordered universe
+\begin{equation}\label{eq:46872}
+ 3^{10}-2\{2^{10}+10\,2^9\}+\{1+10+10+90\}=46{,}872.
+\end{equation}
+The complete support certificate proves the pairwise-disjoint identity
+\begin{equation}\label{eq:final-union}
+ 46{,}872=27{,}462+432+146+336+18{,}496.
+\end{equation}
+The five sets and their analytic theorems are summarized in
+Table~\ref{tab:branches}.  Every row is a standalone fixed-pair theorem for
+arbitrary strongly connected labelled orientations and arbitrary positive
+rates.
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Disjoint analytic partition of all 46,872 ordered support pairs.}
+\label{tab:branches}
+\begin{tabular}{p{0.46\linewidth}r p{0.36\linewidth}}
+\toprule
+Analytic branch & Pairs & Principal mechanism\\
+\midrule
+Completed inherited mixed orbit & 27,462 & Valid seed theorems, then symmetry\\
+Exclusive active-invariant orbit gap & 432 & Population-factorial Foster\\
+Strictly positive invariant & 146 & Finite class\\
+Level-set residual & 336 & Physical-time workload and service\\
+Outside-mixed remainder & 18,496 & Population Foster or common marked Foster\\
+\midrule
+Total & 46,872 &\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The first row begins with the inherited 5,169 shielded/available seed pairs.
+The 110 seeds routed only by an invariant positive on two chart-active
+coordinates are removed \emph{before} orbit closure.  The remaining 5,059
+seeds split exactly into 187 strictly-positive-invariant, 974
+deficiency-zero, nine literal physical-seam, 1,378 corrected-tier, and 2,511
+audited residual pairs.  Species permutations and linkage reversal carry
+their completed pair theorems to exactly 27,462 pairs.  The 432 symmetry
+images not represented by an eligible seed form the second row and have a
+separate global population-Foster proof.  Thus no active-only invariant is
+used to exclude an all-three-active escape.
+
+The 146 pairs in the third row have a common invariant with all three
+coefficients strictly positive, so every nonnegative integer class is
+finite.  The 336 level-set pairs split into 312 homogeneous and 24
+anisotropic supports.  Their proofs use a workload-only physical-time Foster
+lemma, exact boundary activation kernels, and direct-death occupation; no
+chart-local potential is glued through an unweighted exit.
+
+The final 18,496 pairs split disjointly into 11,842 pairs with no
+affine-feasible corrected-cut failure and 6,654 pairs with at least one.  On
+the first set, a fourth power of the population factorial entropy has
+statewise generator drift outside a finite classwise set.  On the second,
+one actual-target marked factorial handles every dimension: the all-active
+corrected cut is unconditional, all feasible two-active rows have an
+unconditional available/available Bellman path, and a symbolic
+globally-nonmixed exhaustion covers every one-active row.  Its only
+countable Flat0 phase is closed by a cap-free killed factorial resolvent.
+The resulting finite menu gives one random-time Foster inequality with no
+chart exits or SCC quotient.
+
+The executable certificate establishes only the finite support, tier,
+affine, and disjoint-union identities.  Every stochastic implication in the
+preceding paragraphs is a theorem in the byte-pinned Technical Proof
+Supplement.
+
+\begin{theorem}[Two-linkage theorem]\label{thm:two-link}
+Let the exact reduced network on a closed irreducible class be binary, weakly
+reversible, have at most three dynamic species, and have exactly two active
+linkages.  Then its chain is nonexplosive and positive recurrent for every
+positive rate vector.
+\end{theorem}
+
+\begin{proof}
+Identity~\eqref{eq:final-union} assigns the fixed support pair to exactly one
+row of Table~\ref{tab:branches}.  Apply that row's standalone theorem, which
+gives finite mean return on the fixed physical class.  A support pair never
+moves to another row, so no potential comparison across rows is required.
+Lemma~\ref{lem:nonexplosion} supplies nonexplosion.
+\end{proof}
+
+\section{Proof of the main theorem}
+
+\begin{proof}[Proof of Theorems~\ref{thm:main} and \ref{thm:intrinsic}]
+Fix a closed irreducible class $\Gamma$ and apply
+Lemma~\ref{lem:projection}.  Let $\ell_\Gamma$ be the number of active
+projected linkages.  If $\ell_\Gamma=0$, the irreducible class is a singleton.
+If $\ell_\Gamma=1$, apply Theorem~\ref{thm:one-link}.  If
+$\ell_\Gamma=2$, apply Theorem~\ref{thm:two-link}.  These cases exhaust the
+hypothesis.  Lemma~\ref{lem:nonexplosion} applies throughout, and the exact
+conjugacy transports positive recurrence to the original physical class.
+\end{proof}
+
+\section{Reproducibility and audit boundary}
+
+The source package contains:
+\begin{enumerate}[label=(\roman*)]
+\item the main article and the complete Technical Proof Supplement;
+\item a SHA-256 manifest for every local proof rendered into the supplement;
+\item independent hostile proof audits, each pinned to exact theorem bytes;
+\item a corrected finite certificate for the support, tier, affine, and
+      disjoint-union identities; and
+\item focused tests that reproduce the finite counts and fingerprints.
+\end{enumerate}
+
+The executable layer has a deliberately narrow claim boundary.  It neither
+samples nor enumerates arbitrary reaction orientations, stochastic histories,
+or population states.  All rate, orientation, endpoint, and physical-time
+quantifiers are discharged in the mathematical proofs.
+
+The older 2,511-based global composition is retained only as provenance.  It
+correctly certifies its literal seed-level residual but does not exhaust the
+full support universe after species and linkage symmetry.  The publication
+dependency is now the exact 46,872-pair identity~\eqref{eq:final-union} and
+the five standalone pair theorems in Table~\ref{tab:branches}.
+
+\begin{thebibliography}{99}
+
+\bibitem{AndersonCappellettiKim2020}
+D. F. Anderson, D. Cappelletti, and J. Kim,
+\newblock Stochastically modeled weakly reversible reaction networks with a
+single linkage class,
+\newblock \emph{J. Appl. Probab.} \textbf{57} (2020), 792--810.
+
+\bibitem{AndersonCappellettiKoyamaKurtz2018}
+D. F. Anderson, D. Cappelletti, M. Koyama, and T. G. Kurtz,
+\newblock Non-explosivity of stochastically modeled reaction networks that
+are complex balanced,
+\newblock \emph{Bull. Math. Biol.} \textbf{80} (2018), 2561--2579.
+
+\bibitem{AndersonCraciunKurtz2010}
+D. F. Anderson, G. Craciun, and T. G. Kurtz,
+\newblock Product-form stationary distributions for deficiency zero chemical
+reaction networks,
+\newblock \emph{Bull. Math. Biol.} \textbf{72} (2010), 1947--1970.
+
+\bibitem{AndersonKim2018}
+D. F. Anderson and J. Kim,
+\newblock Some network conditions for positive recurrence of stochastically
+modeled reaction networks,
+\newblock \emph{SIAM J. Appl. Math.} \textbf{78} (2018), 2692--2713.
+
+\end{thebibliography}
+
+\end{document}

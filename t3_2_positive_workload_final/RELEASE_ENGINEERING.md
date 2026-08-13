@@ -3,11 +3,12 @@
 ## Scope
 
 This verification layer records proof-interface regressions and exact finite
-checks for the three physical-time branches, global support enumeration, tier
-geometry, affine-stoichiometric feasibility, and the exact two-/three-active
-phase classifications. It does not certify the open analytic stopped-kernel
-arguments or T3-2, construct a theorem manuscript, or modify the inherited
-release.
+checks for the completed T3-2 proof: global support enumeration, tier
+geometry, affine-stoichiometric feasibility, exact phase classifications,
+and the final disjoint 46,872-pair identity. The analytic theorem is now
+complete and separately authenticated by exact-byte proof audits. These
+tests remain intentionally narrower: they do not computationally prove the
+physical-time stopping arguments or replace the mathematical manuscript.
 
 1. **Shell-dependent negative drift.** The birth-death chain with
    \(p_n=n/(2n+1)\) upward and \(q_n=(n+1)/(2n+1)\) downward has strict drift
@@ -49,6 +50,11 @@ tier arrangement. They also lock the exact residual busy-period
 counterexample to a one-target service margin. They do not replace any
 analytic drift proof.
 
+The completed theorem deliberately preserves these negative regressions.
+They explain why the final proof uses physical-time workload macros,
+actual-target marked episodes, killed resolvents, and fixed-pair theorem
+composition rather than the invalid interfaces above.
+
 ## Read-only replay
 
 Run:
@@ -72,3 +78,22 @@ temporary outputs with released artifacts; it should never overwrite the
 artifacts being checked or use fixed shared `/tmp` names. Any later compiler or
 TeX steps should have pinned versions, required-input checks, progress output,
 timeouts, and cleanup traps.
+
+## Publication replay
+
+Run:
+
+```bash
+./publication/build_publication.sh
+```
+
+The build first verifies the SHA-256 manifest for all 40 authenticated proof
+notes, regenerates publication-only LaTeX fragments, and then builds the main
+article and technical supplement under `output/pdf/`. The generated fragments
+may normalize legacy display syntax and break long identifiers for layout;
+the authenticated Markdown theorem bytes remain unchanged.
+
+The current release check is 418 passing isolated tests, a 7-page main
+article, and a 189-page supplement, with warning-free TeX logs and visual
+inspection. Author, license, archive/tag, and submission metadata are human
+release decisions and remain unset in this package.

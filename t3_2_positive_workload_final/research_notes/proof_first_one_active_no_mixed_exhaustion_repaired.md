@@ -1,0 +1,361 @@
+# The repaired one-active no-mixed exhaustion
+
+**Proof-first composition lemma, 2026-08-12 PDT.**  This new note replaces
+the corrupted combined draft.  It proves a symbolic exhaustion of every
+one-active chart whose fixed support pair has no raw mixed two-active
+occurrence, and then invokes the separately repaired all-clock prelude for
+the only stochastic interface not covered by direct drift, the marked
+Bellman recursion, or a fixed-class invariant.
+
+No orientation, rate vector, reaction history, or population box is
+enumerated.  The two short truth tables below are literal evaluations of the
+ordered Q/U/C/S support classifier on the ten-complex binary universe.
+
+The dependencies are frozen at the following SHA-256 values.
+
+Both-available marked theorem:
+
+\begingroup\scriptsize\ttfamily
+157e94cd035dec9a41947129dfcbbab0ebc6e72c01abde6bcf6626052954f1ed
+\par\endgroup
+
+Exact Q/U/C bridge:
+
+\begingroup\scriptsize\ttfamily
+014a317602b60c765dc9a9eb98f0921ba3fd8f779221e271e0dd7f53e245f54c
+\par\endgroup
+
+Repaired Bellman/Flat0 prelude:
+
+\begingroup\scriptsize\ttfamily
+f8ad11189d41fc5f1d09d0cf306c90d77a9b2b4b18cd00fe3dc06918d762c19b
+\par\endgroup
+
+## 1. Exact universe and hypothesis
+
+Write the active species as \(X\), and the bounded species as \(U,V\).  The
+literal binary complex universe is
+
+\[
+ {\cal C}_2=\{0,X,U,V,2X,2U,2V,X+U,X+V,U+V\}.       \tag{1.1}
+\]
+
+A support is a subset of (1.1) with at least two complexes.  The two linkage
+supports are disjoint.  Each has an arbitrary strongly connected
+orientation and arbitrary fixed positive labelled rates.
+
+For each of the three choices of active coordinate pair, apply the exact
+ordered classifier of the frozen bridge: flat top; active quadratic top;
+one-active-particle-flat obstruction; unary top; shared bounded cofactor;
+otherwise shielded.  Use the four primitive workload representatives
+
+\[
+             (1,1),\quad(2,3),\quad(1,2),\quad(1,3), \tag{1.2}
+\]
+
+and their coordinate exchanges.  The pair is **globally nonmixed** if its
+two supports have the same available/shielded output in every such literal
+cell.  This support-level hypothesis is stronger than merely being
+nonmixed in the present one-active chart: any pair that is mixed anywhere
+has already been routed to the completed pair-specific theorem, which
+covers all charts of that fixed pair.
+
+Fix a terminal one-active chart in one closed irreducible population class:
+
+\[
+                  X\longrightarrow\infty,\qquad (U,V)\in B. \tag{1.3}
+\]
+
+The inactive padded phase \(B\) is finite.  Any reaction changing a declared
+active-set, source-order, enabled-source, lattice, box, or shell datum is
+retained as a physical structural exit.
+
+## 2. One-linkage symbolic categories
+
+For a linkage support \(L\), define mutually exclusive categories in the
+following order.
+
+1. **Q:** \(2X\in L\).
+2. **F0:** every complex has \(X\)-degree zero.
+3. **F1:** every complex has \(X\)-degree one.
+4. **B:** none of Q, F0, F1 holds, and there are \(q,c\in L\) with
+   \[
+     q_X=1,\qquad c_X=0,\qquad q_U\le c_U,\qquad q_V\le c_V. \tag{2.1}
+   \]
+5. **D:** none of the preceding alternatives holds.
+
+After Q fails, the degree-one menu is
+
+\[
+                         X,\quad X+U,\quad X+V,          \tag{2.2}
+\]
+
+and the degree-zero menu is
+
+\[
+                         0,U,V,2U,U+V,2V.               \tag{2.3}
+\]
+
+If a nonflat linkage contains \(X\), (2.1) holds with every lower complex.
+If it contains \(X+U\), failure of (2.1) forbids every lower complex
+containing \(U\); the statement for \(X+V\) is symmetric.  Hence every D
+support has exactly one of
+
+\[
+\begin{array}{c|c}
+\text{degree-one block}&\text{nonempty degree-zero block}\\ \hline
+\{X+U\}&S\subseteq\{0,V,2V\}\\
+\{X+V\}&S\subseteq\{0,U,2U\}\\
+\{X+U,X+V\}&\{0\}.
+\end{array}                                             \tag{2.4}
+\]
+
+This is a symbolic consequence of binaryity and coordinatewise dominance.
+
+## 3. The single-token dormant rows are necessarily mixed
+
+By \(U,V\) symmetry, consider
+
+\[
+                         L=\{X+U\}\cup S,\qquad
+             \varnothing\ne S\subseteq\{0,V,2V\}.       \tag{3.1}
+\]
+
+Write A and S for available and shielded, and write \((XV;a,b)\) for the
+ordered classifier with active coordinates \(X,V\) and weights \(a,b\).
+The following table evaluates all seven possible lower blocks.
+
+\[
+\begin{array}{c|c|c|c|c}
+S&d_1&L(d_1)&d_2&L(d_2)\\ \hline
+\{0\}&(XV;3,2)&S&(UV;3,2)&S\\
+\{V\}&(XV;3,2)&S&(XV;2,3)&A\\
+\{2V\}&(XV;3,1)&S&(XV;3,2)&A\\
+\{0,V\}&(XV;3,2)&S&(XV;2,3)&A\\
+\{0,2V\}&(XV;3,1)&S&(XV;3,2)&A\\
+\{V,2V\}&(XV;3,1)&S&(XV;3,2)&A\\
+\{0,V,2V\}&(XV;3,1)&S&(XV;3,2)&A .
+\end{array}                                             \tag{3.2}
+\]
+
+The complete disjoint survivor lists after \(d_1\), in the row order of
+(3.2), are:
+
+1. \(\{U,2U\},\{V,U+V\}\);
+2. \(\{0,U\},\{0,2U\},\{U,2U\},\{0,U,2U\},\{0,U+V\}\);
+3. the preceding five supports together with \(\{V,U+V\}\);
+4. \(\{U,2U\}\);
+5. \(\{U,2U\},\{V,U+V\}\);
+6. the five supports in item 2; and
+7. \(\{U,2U\}\).
+
+In the first row both surviving partners are available at \(d_2\).  In
+every other row all surviving partners are shielded at \(d_2\).  Thus every
+disjoint partner disagrees with \(L\) at one of the two displayed tests.
+The table and list are exhaustive because the lower block has seven
+nonempty subsets and the list is the literal remaining support universe
+after the first ordered classifier test.  No stochastic inference enters
+(3.2).
+
+Therefore a D support in a globally nonmixed pair must, up to exchanging
+\(U,V\), be
+
+\[
+                         L_D=\{0,X+U,X+V\}.             \tag{3.3}
+\]
+
+## 4. The exact five dormant partners and their invariant
+
+The support (3.3) is available in every \(XU\) and \(XV\) cell.  In the
+\(UV\) chart it is shielded on the equality wall and available in either
+open chamber.  A disjoint support has the same complete signature exactly
+when it is one of
+
+\[
+\begin{aligned}
+ L_F\in\{&\{U,V\},\ \{2U,2V\},\ \{2U,U+V\},\\
+          &\{2V,U+V\},\ \{2U,2V,U+V\}\}.
+\end{aligned}                                          \tag{4.1}
+\]
+
+Here is the literal ordered-classifier proof.  After deleting the three
+vertices of \(L_D\), the partner universe is
+
+\[
+                   \{X,U,V,2X,2U,U+V,2V\}.             \tag{4.2}
+\]
+
+On the \(UV\) equality wall, every member of
+\(\{2U,U+V,2V\}\) has top degree two.  If the partner contains one of them
+and also a lower-shell vertex, the active-quadratic test returns A, contrary
+to the required S.  It must therefore lie wholly in that quadratic shell.
+If it contains no quadratic-shell vertex but contains \(U\) or \(V\)
+together with a lower \(X\) or \(2X\), the unary-top test returns A.
+Therefore an S partner on the equality wall lies wholly in exactly one of
+
+\[
+              \{U,V\},\qquad\{2U,U+V,2V\},\qquad\{X,2X\}. \tag{4.3}
+\]
+
+A nontrivial support in \(\{X,2X\}\) remains flat and shielded in both open
+\(UV\) chambers, so it cannot match \(L_D\).  The unary shell has the single
+nontrivial support \(\{U,V\}\), which is available in both open chambers.
+The quadratic shell has three two-vertex subsets and its full three-vertex
+set; every one has an active-quadratic top in both open chambers.  These are
+exactly the other four supports in (4.1).  No other classifier branch or
+binary shell remains.  This proves (4.1) without a support scan.
+
+Every complex in \(L_D\) has value zero under
+
+\[
+                              H=X-U-V,                  \tag{4.4}
+\]
+
+and every support in (4.1) lies in one level set of \(U+V\).  Hence every
+physical reaction of either linkage preserves \(H\), independently of
+orientation and rates.  In a fixed class and the one-active chart,
+\(X=H+U+V\) is bounded.  The D/F0 residue cannot escape.
+
+## 5. Flat degree one cannot partner a Bellman support
+
+An F1 support is a nontrivial subset of
+\(\{X,X+U,X+V\}\).  There are four possibilities up to \(U,V\) exchange.
+The table lists a cell where it is shielded and shows that every disjoint B
+support is available there.  In the third row one equality-wall survivor
+\(\{0,X\}\) remains, and the second displayed cell separates it.
+
+\[
+\begin{array}{c|c|c|c}
+L_{F1}&\text{first cell}&L_{F1}\text{ status}
+                       &\text{B partners with same status}\\ \hline
+\{X,X+U\}&(XV;3,2)&S&\varnothing\\
+\{X,X+V\}&(XU;3,2)&S&\varnothing\\
+\{X+U,X+V\}&(UV;1,1)&S&\{0,X\}\\
+\{X,X+U,X+V\}&\text{--}&\text{--}&\varnothing .
+\end{array}                                             \tag{5.1}
+\]
+
+For the sole survivor in row three,
+
+\[
+ L_{F1}(UV;3,2)=A,\qquad \{0,X\}(UV;3,2)=S.             \tag{5.2}
+\]
+
+The fourth row has no disjoint B support because it uses the entire
+degree-one menu.  Thus a globally nonmixed B/F pair is necessarily B/F0.
+
+## 6. The complete symbolic alternative
+
+If either linkage is Q, the source \(2X\) is enabled for all large \(X\).
+It is the unique binary complex of \(X\)-degree two, so every nonzero
+outgoing reaction lowers active degree.  For
+
+\[
+                         V(x)=\sum_i\log(x_i!),          \tag{6.1}
+\]
+
+one such strong-connectivity exit contributes
+\(-\Theta(X^2\log X)\).  Every other source contributes at worst
+\(O(X\log X)\), uniformly in the inactive box.  Hence
+
+\[
+                         {\cal L}V(x)\longrightarrow-\infty. \tag{6.2}
+\]
+
+If both linkages are flat, every reaction preserves \(X\) exactly, even
+when their constant active degrees differ.  A fixed class cannot then have
+\(X\to\infty\).
+
+If Q and D are absent and the pair is not flat/flat, it is B/B or B/F0 by
+Section 5.  For B/B, every actual target belongs to a linkage satisfying
+(2.1).  The dimension-free marked identity and Bellman recursion of the
+frozen theorem apply verbatim: a same-linkage path reaches \(c\), the
+endpoint \(x-t+c\) enables \(q\), and
+
+\[
+                p_c(x-t+c)\le {K_c(x-t+c)_c\over
+                                     K_q(x-t+c)_q}=O(X^{-1})\to0. \tag{6.3}
+\]
+
+Thus the common proper marked potential
+
+\[
+                     W(x,t)=1+\sum_i\log((x_i-t_i)!)    \tag{6.4}
+\]
+
+has coercive all-clock reward or records a physical structural exit, with
+actual endpoints, bounded episode depth, all fixed positive reward moments,
+and all fixed physical-duration moments.  This is also proved explicitly in
+Section 2 of the repaired prelude.
+
+For B/F0, invoke the repaired prelude whose frozen SHA-256 is
+
+\begingroup\scriptsize\ttfamily
+f8ad11189d41fc5f1d09d0cf306c90d77a9b2b4b18cd00fe3dc06918d762c19b
+\par\endgroup
+
+It stops before every fast-source phase, gives exit-causing reactions first
+priority, includes a degree-zero Bellman launch exactly once, and proves the
+exhaustive alternative: common-\(W\) negative drift, positive physical exit,
+or a finite fixed irreducible class.
+
+Combining Sections 2--6 proves the following.
+
+> **Theorem 6.1 (one-active globally nonmixed exhaustion).**  Every terminal
+> one-active chart of a globally nonmixed disjoint binary two-linkage pair
+> belongs to exactly one structural category:
+>
+> 1. Q descent;
+> 2. flat/flat active-coordinate invariance;
+> 3. B/B marked Bellman drift-or-exit;
+> 4. B/F0 repaired prelude drift-or-exit-or-finite-class; or
+> 5. one of the five D/F0 pairs (4.1), with common invariant \(X-U-V\).
+>
+> Hence no such chart carries an escaping fixed-class terminal occupation.
+> Every activation and structural-exit jump is retained once at its actual
+> endpoint; no conclusion conditions on future activation.
+
+## 7. Exact 9,489 regression profile
+
+The analytic proof is Sections 2--6.  As a non-load-bearing exact check,
+assign each nontrivial binary support its first category in the order
+Q, F0, F1, B, D; take unordered disjoint pairs; and retain exactly the
+globally nonmixed pairs of Section 1.  For fixed active species \(X\), the
+literal profile is
+
+\[
+\begin{array}{c|r}
+\text{unordered category pair}&\text{support pairs}\\ \hline
+Q/B&6{,}050\\
+Q/F0&1{,}352\\
+Q/F1&54\\
+B/B&1{,}224\\
+B/F0&731\\
+F0/F0&19\\
+F0/F1&54\\
+D/F0&5\\ \hline
+\text{total}&9{,}489 .
+\end{array}                                             \tag{7.1}
+\]
+
+The universe and selector are explicit above, so (7.1) is reproducible
+without an undocumented filter.  The five D/F0 rows agree exactly with
+(4.1), and the absence of D/B, D/D, and B/F1 rows independently checks the
+three symbolic cuts above.  No count in (7.1) supplies a probability, a
+drift estimate, or a recurrence claim.
+
+## 8. Composition scope
+
+On a terminal Green trace, a positive structural-exit flux contradicts
+terminality.  Q or marked negative reward contradicts the corresponding
+nonnegative terminal workload/entropy balance, while the flat and signed
+invariants and the finite no-access phase contradict fixed-class escape.
+The proof fixes one terminal chart and does not follow an exit into a chart
+using a different potential; hence it does not claim an unsupported global
+potential-switching Foster theorem.
+
+Pairs with any raw mixed two-active occurrence are outside this note and
+must be prioritized globally to their completed pair-specific theorem.
+The theorem here covers precisely the remaining one-active charts.  It
+does not enlarge the scope of either the mixed atlas or the two-active
+both-available theorem.

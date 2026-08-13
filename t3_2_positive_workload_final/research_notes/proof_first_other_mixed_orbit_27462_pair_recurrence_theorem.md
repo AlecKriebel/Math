@@ -1,0 +1,200 @@
+# Recurrence of the 27,462-pair completed mixed orbit
+
+**Proof-first pair theorem, 2026-08-12 PDT.**  This note isolates the part of
+the inherited mixed support atlas whose seed-level analytic branches were
+already complete.  The 110 seeds formerly routed only by an invariant
+positive on two chart-active coordinates are excluded before taking any
+symmetry orbit.  Consequently this theorem does not inherit the invalid
+claim that such an invariant controls an all-three-active escape.
+
+Finite computation is used only for support, tier, affine, and set
+identities.  No orientation, rate vector, population state, reaction
+history, or communicating class is enumerated.
+
+## 1. Exact seed partition
+
+The finite certificate is
+
+~~~text
+src/other_mixed_orbit_27462_certificate.py
+SHA-256 57d8904dd86cd0bf626e344dbfd7b7f248b239cdeaace48489796058c6875f08
+
+tests/test_other_mixed_orbit_27462_certificate.py
+SHA-256 e708c52f6cbc1bbc4dabf33f246d72379dff58c74cc97a38fdd8076ac3ae7d13
+~~~
+
+The inherited positive-shield and signed-shield tables contain 5,169 ordered
+support pairs.  Exactly 110 were assigned the label
+`common_active_invariant`.  Remove those seeds *before* applying any species
+permutation or linkage reversal.  The remaining 5,059 seeds have the exact
+disjoint partition
+
+\[
+ 5059=187+974+9+1378+2511,                              \tag{1.1}
+\]
+
+with the following literal meanings.
+
+\[
+\begin{array}{l|r|l}
+\text{branch}&\text{seed pairs}&\text{analytic conclusion}\\ \hline
+\text{strictly positive invariant}&187&\text{every fixed class is finite}\\
+\text{full deficiency zero}&974&\text{classwise product form and recurrence}\\
+\text{three literal physical seams}&9&\text{standalone physical-time theorems}\\
+\text{corrected S-superlevel tier pass}&1378&\text{statewise entropy Foster}\\
+\text{corrected residual union}&2511&\text{fourteen standalone pair theorems}
+\end{array}                                               \tag{1.2}
+\]
+
+The eligible-seed fingerprint is
+
+~~~text
+c45f67990ff841e1ba7b7d5d8a2795539f495f2434d68135ad3b2483d2fda44f.
+~~~
+
+The branch manifest fingerprint is
+
+~~~text
+22f10cf6ea09a7b36650df174a866fd15470c770b3da6079728cfe5301f61c76.
+~~~
+
+## 2. Analytic seed branches
+
+Fix one eligible ordered seed pair, arbitrary strongly connected labelled
+orientations on its two supports, arbitrary positive rates, and a closed
+irreducible population class \(\Gamma\).
+
+### 2.1 Strict invariant and deficiency zero
+
+If \(h\in\mathbb R_{>0}^3\) annihilates every reaction vector, then
+\(h\cdot x\) is fixed on \(\Gamma\).  Its nonnegative integer level set is
+finite, so \(\Gamma\) is finite.
+
+For a full deficiency-zero seed, the entire two-linkage network is weakly
+reversible and deficiency zero.  The stochastic complex-balanced product
+form for arbitrary positive rates is normalizable on every closed class by
+restriction of the full product-Poisson sum.  Together with the binary
+nonexplosion argument in Section 4, this gives positive recurrence.
+
+### 2.2 Literal physical seams
+
+The nine seeds in this branch are exactly six seven-support pairs, two
+signed-service pairs, and one residual-pair core.  Their standalone
+arbitrary-orientation physical-time theorems are frozen at
+
+~~~text
+research_notes/certified_exact_shielded_seam.md
+d8e037a1bc2f396928011404513b5a55d0fae0c28d55cf46de5a4ed391fd9e3d
+
+research_notes/signed_service_seam_full_proof.md
+4ec0ae7007184f2c5bda82bd55df5707d2c3570c7fdf2683ad87b97f75930738
+
+research_notes/residual_pair_full_proof.md
+dcca51ed7ed30523cfdce1db74e24b9b3a59aafbeb0cb8b7de72ac9b254fb7db
+~~~
+
+and their independent exact-scope audit has SHA-256
+
+~~~text
+e7e76b76cd1371f98d19da0a1f5362ab4a0696548fba62028b29ccd2950617c9.
+~~~
+
+The signed-service support condition is not used monotonically: only the
+literal certified supports occur in this branch.
+
+### 2.3 Corrected tier-pass seeds
+
+For each of these 1,378 seeds, every one of the exact 259 tier descriptors
+satisfies the corrected S-tier-superlevel cut.  Let \(E\) be the global top
+S-tier and let \(U_L\) be the D-superlevel in linkage \(L\) at the D-level
+of \(E\).  The exact graph theorem says that every pair of strong
+orientations has an \(E\)-sourced D-descending edge precisely when
+
+\[
+       \varnothing\ne U_L\subsetneq L,
+       \qquad U_L\subseteq E                         \tag{2.1}
+\]
+
+for some linkage.  The corrected theorem and finite descriptor proof are
+frozen at
+
+~~~text
+research_notes/s_tier_superlevel_cut_and_affine151_corrected.md
+d91f369d34cadfb28ddb872df8fb9f6d17799ec207da29933037f55ae95f0407
+
+src/s_tier_superlevel_interface.py
+1a4e27fcf40af76cac6281f8830b7644bf086b3c05d97a963ce9f5bac736ad57
+~~~
+
+Suppose the entropy generator were not negative outside any finite subset of
+\(\Gamma\).  Properness gives an escaping bad sequence in \(\Gamma\); after
+passing to one of the exact tier subsequences, (2.1) supplies the top-S
+descending reaction.  The proof of Anderson--Kim (2018, journal Theorem 9)
+then forces the entropy drift to minus infinity, a contradiction.  Thus the
+entropy has a statewise Foster drift outside a finite classwise set.  This
+is not a drift-or-chart-exit argument.
+
+### 2.4 The 2,511 residual seeds
+
+The publication-safe residual certificate is
+
+~~~text
+src/corrected_t3_2_two_linkage_union.py
+501d96c4cea2de33ed34db2c31702d3104e8ed80c1abb8cf15e895c56201593f
+
+tests/test_corrected_t3_2_two_linkage_union.py
+2976ea43e18f0cb024fd3a5f30bac039c38329767253d022986659e4f609216b
+~~~
+
+Its exact dependency manifest rehashes fourteen pair-theorem scopes and
+their independent audits.  Those scopes are pairwise disjoint and their
+union is the exact 2,511-pair residual, whose fingerprint is
+
+~~~text
+0c57f530eb44a688520cc1706f830afa18063f4d08d24e5006f47a5666edd0b3.
+~~~
+
+Each of the fourteen analytic dependencies is already a standalone
+positive-recurrence theorem for its fixed support pair, with all clocks,
+actual endpoints, and physical time retained.  The finite union therefore
+does not splice potentials along one trajectory: the support pair is fixed
+and belongs to exactly one theorem scope.
+
+## 3. Symmetry transfer and exact orbit
+
+Species permutations conjugate population states, propensities, and the
+generator.  Reversing the order in which the two linkage supports are
+listed changes nothing in the physical network.  Hence every symmetry image
+of an eligible seed inherits its seed theorem with the relabelled constants.
+
+The orbit of the 5,059 eligible seeds has exactly 27,462 distinct ordered
+support pairs and fingerprint
+
+~~~text
+1bf337cf143c6eb4cee5088827bb9e9b9cec704f01a1b1f57bde6aed856d2812.
+~~~
+
+It is disjoint from the 432-pair exclusive active-invariant orbit gap.  The
+282 active-invariant orbit points which also lie here are legitimate: each
+has a *different eligible seed representation* and is charged to that
+completed seed theorem, never to active-only invariance.
+
+## 4. Nonexplosion and conclusion
+
+A binary reaction with a degree-two source cannot increase total molecular
+population.  Every population-increasing channel therefore has source
+degree at most one, bounded jump size, and aggregate intensity
+\(O(1+|x|_1)\).  Linear pure-birth comparison prevents population escape in
+finite time.  Each bounded-population sublevel is finite with bounded total
+rate, so neutral quadratic clocks cannot accumulate there.  The CTMC is
+nonexplosive.
+
+> **Theorem 4.1.**  Every ordered support pair in the exact 27,462-pair
+> completed mixed orbit, under every strongly connected orientation and
+> every positive labelled rate vector, is nonexplosive and positive
+> recurrent on each closed irreducible population class.
+
+The conclusion is obtained pairwise from the seed theorem and generator
+conjugacy.  No orientation, population box, rate vector, or reaction history
+is enumerated, and no result is claimed for the separately repaired
+432-pair orbit gap.

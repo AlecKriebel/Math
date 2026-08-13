@@ -1,0 +1,314 @@
+# Classwise recurrence with one active linkage and at most three species
+
+**Proof-first composition, 2026-08-12 PDT.**  This note proves the
+one-linkage branch needed by the \((\mathrm{T3})\text{--}(2)\) theorem.  Every local estimate
+used below is analytic and quantifies over arbitrary strongly connected
+orientations and arbitrary fixed positive rate constants.  Finite support,
+orientation, reaction-word, and population enumeration are not used.
+
+## 1. Theorem
+
+> **Theorem 1.1.**  Let every complex of a finite weakly reversible
+> stochastic mass-action network have molecularity at most two.  Fix a
+> closed irreducible population class \(\Gamma\), delete coordinates constant
+> on \(\Gamma\), delete linkages having no enabled source there, and merge
+> projected linkages which share a projected complex.  If the reduced
+> network has at most three dynamic species and exactly one active linkage,
+> then its physical CTMC is nonexplosive and positive recurrent on
+> \(\Gamma\).
+
+The conclusion holds for every strongly connected orientation of the
+linkage support and every positive fixed rate vector.  An absorbing
+singleton is included.
+
+## 2. Exact reduction and nonexplosion
+
+If \(X_i\equiv m_i\) on \(\Gamma\), closure forces every enabled reaction
+to have zero \(i\)-increment.  Starting from an enabled complex, a directed
+return path is physically executable because each target creates the next
+source.  Hence the \(i\)-coordinate is constant across its whole active
+linkage, and its falling-factorial factor can be absorbed into the labelled
+rate constants.  Projected linkages sharing a complex have strongly
+connected union; retaining parallel labelled channels preserves the exact
+generator.  Projection is therefore a CTMC conjugacy on \(\Gamma\).
+
+A degree-two source cannot increase total population because every target
+also has degree at most two.  The aggregate positive-jump rate is at most
+
+\[
+                         C(1+|x|_1).                         \tag{2.1}
+\]
+
+Localization at population levels and Gronwall prevent population escape
+in finite time.  Inside a fixed population sublevel there are finitely many
+states and bounded total rates, so population-neutral quadratic clocks
+cannot accumulate.  The chain is nonexplosive.
+
+## 3. Proper tier sequences and the enabled-top episode
+
+Let \(x_n\in\Gamma\) be an escaping proper tier sequence.  Write \(D^1\)
+for its top deterministic tier and \(E\) for the eventually enabled
+complexes.  For an enabled source \(y\),
+
+\[
+ {\lambda_y(x_n)\over(x_n\vee1)^y}\longrightarrow c_y\in(0,\infty),
+                                                               \tag{3.1}
+\]
+
+whereas a disabled source has zero propensity.  Thus the top stochastic
+source tier is contained in \(D^1\) precisely when
+\(D^1\cap E\ne\varnothing\).
+
+The top block \(D^1\) is a proper subset of the support.  Otherwise, with
+
+\[
+       L_n=\log(x_n\vee1),\qquad
+       w_n=L_n/\lVert L_n\rVert_2\longrightarrow w,
+\]
+
+tier equivalence gives \(w\cdot(y-z)=0\) for every reaction vector.
+Here \(w\ge0\), \(\lVert w\rVert_2=1\), and every positive component of
+\(w\) corresponds to a divergent coordinate.  Hence \(w\cdot X\) is an
+exact class invariant while \(w\cdot x_n\to\infty\), a contradiction.
+
+If \(D^1\cap E\ne\varnothing\), choose an enabled top vertex and a simple
+directed path inside \(D^1\) to its first exit.  Every prescribed source is
+physically enabled by the preceding target, every preterminal propensity is
+comparable with the common top scale \(A_n\to\infty\), and every competitor
+has propensity at most \(CA_n\).  Retain every clock and stop at completion
+or at the first competitor.  The successful last edge has logarithmic gap
+\(g_n\to\infty\).  With
+
+\[
+ G_\ell(x)=K_\ell+\sum_i\log(x_i!)+\ell\cdot x\ge1,
+ \qquad W_\ell=G_\ell^4,                                  \tag{3.2}
+\]
+
+the exact race bound
+
+\[
+             r\{1+\log(1/r)\}^q\le C_q,
+             \qquad 0\le r\le1,                           \tag{3.3}
+\]
+
+pays every competing endpoint.  For every fixed \(q\), the episode has the
+required endpoint moments and physical duration, and
+
+\[
+ \mathbb E_{x_n}
+ [W_\ell(X_{\tau_n})-W_\ell(x_n)+\tau_n]
+             \le-cG_\ell(x_n)^3g_n.                        \tag{3.4}
+\]
+
+This is the generic analytic lemma proved in
+`proof_first_hard_enabled181_access_word.md`, SHA-256
+`9be70e2b6c9ce5c4762bf3130246f1ea660bea73f41aa7abdd997853cc0a6b04`,
+and independently audited at SHA-256
+`4028c026a7d01c1e0930bdbdaa75216a79402078999d6450c283a77eb2a04883`.
+Its finite hard-row specialization is irrelevant here; the preceding
+paragraph verifies its generic hypotheses directly.  In particular, the
+argument is a fixed-path race estimate, not an orientation enumeration.
+
+## 4. Symbolic exhaustion when every top complex is disabled
+
+Suppose \(D^1\cap E=\varnothing\).  The common top monomial diverges.
+A disabled pure complex has monomial one, so every top complex is mixed,
+with one zero coordinate and one divergent coordinate.  This yields the
+following exhaustive split, up to relabelling.
+
+### 4.1 At most two dynamic species
+
+With one dynamic species the support contains its unary or binary pure
+complex, and Anderson--Cappelletti--Kim (2020, Theorem 4.1) applies.  With two
+dynamic species \(A,B\), if \(A,2A\) are absent then
+
+\[
+              {\cal C}=\{A+B\}\cup T,
+              \qquad\varnothing\ne T\subseteq\{0,B,2B\}.  \tag{4.1}
+\]
+
+Every case with \(|T|\le2\) is weakly reversible and deficiency zero.  The
+only residual support is
+
+\[
+                        \{0,B,2B,A+B\}.                    \tag{4.2}
+\]
+
+Its all-clock origin-launch theorem proves physical-time entropy descent
+and classwise positive recurrence for arbitrary orientations and rates.
+The publication derivative is frozen at SHA-256
+`9d878860cb6427688995784ed230776d982eca758a6c306be4180c3e8ffaaf03`,
+and its independent audit at
+`26e97c6edd5566e0fad9326523b017d86c1391c2b8762ca8eacddc06c41fd52a`.
+
+### 4.2 Three dynamic species
+
+If all three coordinates diverge, every complex is enabled, contrary to
+the present failure.  If \(A,B\to\infty\) and \(C=0\), then
+
+\[
+             \varnothing\ne D^1\subseteq\{A+C,B+C\}.       \tag{4.3}
+\]
+
+For a singleton top, say \(D^1=\{A+C\}\), one has the separated support
+
+\[
+ \{A+C\}\subseteq{\cal C}
+ \subseteq\{0,C,2C,B,2B,B+C,A+C\},                         \tag{4.4}
+\]
+
+and
+
+\[
+             \log{A\over m(B)}\longrightarrow\infty,
+ \quad
+ m(B)=
+ \begin{cases}
+  1+B^2,&2B\in{\cal C},\\
+  1+B,&2B\notin{\cal C},\ {\cal C}\cap\{B,B+C\}\ne\varnothing,\\
+  1,&B,2B,B+C\notin{\cal C}.
+ \end{cases}                                               \tag{4.5}
+\]
+
+The full all-clock joint-return theorem gives the exact
+frozen/invariant/physical-loss trichotomy, an almost surely finite stopping
+time, physical duration and actual-endpoint integrability, and
+
+\[
+ \mathbb E_x[W_\ell(X_\tau)-W_\ell(x)+\tau]
+       \le-cG_\ell(x)^3\log{A\over m(B)}.                  \tag{4.6}
+\]
+
+Its exact target and hostile audit hashes are respectively
+
+```text
+389e3b446006e9313238a0b4b0029f39e0f1cee0c2d90faf6e63cccf38a581e1
+096ba806daa3f7f1bc336986d3248976ac8ade084cfbf5a60e524ceec96f75a6.
+```
+
+If both mixed tops tie, then
+
+\[
+ \{A+C,B+C\}\subseteq{\cal C}
+       \subseteq\{0,C,2C,A+C,B+C\}.                        \tag{4.7}
+\]
+
+Every proper support in (4.7) is deficiency zero: for \(m=2,3,4\), its
+stoichiometric rank is \(m-1\).  The full five-complex support has rank
+three and deficiency one.  Its balanced all-clock theorem proves common
+\(W_\ell\) drift, duration, and endpoint moments.  The publication target
+is frozen at SHA-256
+`8a34f9934f9ffdd078850070de561aa3cf3f734a9fbeb2e4f08bc68c5e106262`,
+and its transferred independent audit at
+`933c14cad99b8cf5bc1e2237f3be417aebfb344d1751f7c58be2b284c562d5ab`.
+
+If only \(A\to\infty\), a singleton top again gives (4.4).  The tied top
+\(\{A+B,A+C\}\), with \(B=C=0\), lies in
+
+\[
+ \{A+B,A+C\}\subseteq{\cal C}
+  \subseteq\{0,A+B,A+C,B,C,2B,2C,B+C\}.                   \tag{4.8}
+\]
+
+The bounded two-top theorem gives an exact frozen/invariant/service
+trichotomy and common fourth-power drift.  Its publication derivative and
+audit hashes are
+
+```text
+afd696d3b28709619759936cfb6e4536859300985bb6e594cff840fb4c7db7f9
+c96995531a79570d26330f2babeeba2998323c1787bda3627b2c538a38ee7922.
+```
+
+The symbolic proof of this exhaustion is independently recorded at
+SHA-256
+`5b64e251035eedb3e5afe1d37881b3e1f4db45055ac5ab9a9ab165764720f0d1`.
+No orientation enters the classification.
+
+## 5. Uniform statewise cover
+
+Set \(\ell=0\), so every stopped branch above and every ordinary passing
+branch uses the single proper potential
+
+\[
+     W(x)=\left(K+\sum_i\log(x_i!)\right)^4.                \tag{5.1}
+\]
+
+There is a **finite menu of literal statewise rules**.  For the enabled-top
+case, the menu consists of the finitely many simple directed paths from a
+possible enabled top vertex to the first vertex outside a proposed top
+block, with a deterministic graph ordering.  The exceptional theorems
+already give statewise rules on their stated start domains.  Each rule uses
+all clocks and its expected drift is an ordinary real-valued function of
+the starting state.
+
+Fix a small \(\eta>0\) below the duration coefficient in every member of
+this finite menu.  If infinitely many escaping states admitted no rule with
+drift at most \(-1\), choose such a sequence and extract a proper tier
+subsequence with fixed availability, weak monomial order, relabelling, and
+candidate rule.  Sections 3--4 put it in an enabled-top, exceptional
+two-species, separated, balanced, bounded two-top, invariant, or frozen
+alternative.  In a nontrivial alternative the corresponding fixed rule has
+coercive negative drift, a contradiction.  An invariant or frozen
+alternative cannot contain an escaping sequence in the fixed irreducible
+class, by the cited local theorem.  Thus, outside a finite set, at least one
+menu rule works.  Select the first working rule in the deterministic order;
+the state space is countable, so this is a measurable state-selected rule.
+
+Consequently there are \(\delta>0\) and a finite set \(K\subset\Gamma\)
+such that at every state outside \(K\), its selected physical stopping time
+\(\tau_x>0\) satisfies
+  
+  \[
+   \mathbb E_x[W(X_{\tau_x})-W(x)+\eta\tau_x]\le-\delta,
+   \qquad \mathbb E_x[W(X_{\tau_x})+\tau_x]<\infty.        \tag{5.2}
+  \]
+
+This sequential-coercivity argument, rather than pointwise positivity or
+compactness alone, supplies the uniform constants.  We used the uniform
+choice \(-1\) only for convenience; decreasing it gives any fixed
+\(\delta\in(0,1]\).
+
+Published pure-multiple and deficiency-zero branches already prove
+positive recurrence of the whole class and need no gluing.  Hence (5.2) is
+used only in the residual structural cases where the common workload has
+been proved explicitly.
+
+## 6. Physical-time Foster gluing and finite return
+
+Apply the state-selected physical-time Foster lemma directly to (5.2).
+Equivalently, if a local theorem supplies a generator-good segment, stop
+that segment at first entrance into an episode domain or \(K\); localized
+Dynkin pays the \(W\)-increment plus \(\eta\) times physical duration.  At
+an episode point, append (5.2) and repeat from its actual endpoint.  If
+\(K\) is visited inside an episode, record the physical
+hit immediately but complete that one episode solely for drift accounting;
+the completed duration upper-bounds \(T_K\).
+
+If \(S_m\) is the accounting time after \(m\) exceptional episodes and
+\(N\) the terminal index, conditional iteration gives
+
+\[
+ \delta\,\mathbb E(N\wedge m)
+ +\eta\,\mathbb E S_{N\wedge m}\le W(x)+\delta.            \tag{6.1}
+\]
+
+Monotone convergence (and, when present, the generator-segment inequality)
+implies \(\mathbb E_xT_K<\infty\).  If the class is not an absorbing
+singleton, take one ordinary physical jump from each state of the finite
+target and apply the same hitting bound to its finitely many successors.
+The resulting finite target return kernel has a recurrent state with finite
+mean positive physical return.  Irreducibility promotes this to positive
+recurrence of every state of \(\Gamma\).
+
+This is the state-selected physical-time Foster lemma proved in
+`proof_first_global_t3_2_classwise_skeleton_scoped_audit.md`, SHA-256
+`3d45867b4dd07a92ce43054767b7e7a680fa77035b7f2e1021dcb5004097f962`.
+Together with nonexplosion from Section 2, it proves Theorem 1.1.
+
+## 7. Exact dependency boundary
+
+This theorem uses only the analytic inputs and exact hashes displayed
+above.  The earlier conditional one-linkage composition and the false
+separated candidates at SHAs `08c216...` and `490f424...` are retired and
+are not proof dependencies.  No two-linkage selector, finite orientation
+catalog, or global certification flag is used here.
