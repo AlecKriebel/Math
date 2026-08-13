@@ -39,8 +39,21 @@ def main() -> None:
     final_path = PROJECT / "FINAL_OUTCOME.json"
     require(final_path.is_file(), "FINAL_OUTCOME.json missing")
     final = load_json("FINAL_OUTCOME.json")
+    metadata_path = PROJECT / "RELEASE_METADATA.json"
+    require(metadata_path.is_file(), "RELEASE_METADATA.json missing")
+    metadata = load_json("RELEASE_METADATA.json")
     require(final["outcome"] == "P", "active release is not Outcome P")
     require(final["status"] == "PROVED", "Outcome P is not marked PROVED")
+    require(metadata["outcome"] == "P" and metadata["status"] == "PROVED",
+            "release metadata is not final Outcome P")
+    require(metadata["release_source_commit"] ==
+            "15e01790d107c15f2cbc8e8b3b79753cecbf3bab",
+            "release source seal changed")
+    for record in metadata["artifacts"].values():
+        path = PROJECT / record["path"]
+        require(path.is_file(), f"release artifact missing: {record['path']}")
+        require(sha256(path) == record["sha256"],
+                f"release artifact hash changed: {record['path']}")
     require("PROVED" in status and "OUTCOME P" in status.upper(), "STATUS is not final")
     require("| P |" in dependency and "VERIFIED" in dependency, "dependency graph is not closed")
 
