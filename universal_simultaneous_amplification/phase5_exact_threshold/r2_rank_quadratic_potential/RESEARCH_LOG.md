@@ -441,3 +441,21 @@ must be hostile-tested before analytic investment.
   sums, all principal minors on the replay graph, the storage identity,
   state generator decomposition, exact rank recurrence, integrated source,
   and endpoint-residual equivalence without importing discovery code.
+
+## 2026-08-13 — affine spectral gauge collapse
+
+- [EXACT ROUTE AUDIT] Expanded the positive `K_F` remainder against the
+  already proved mass, mass-square, and cut generator laws.  Pointwise,
+  `J_F=L R_F-(1-kappa_n)C`, where
+  `R_F=theta M^2-(theta-1/2)M`.
+- Its boundary data are `R_F(empty)=0`, `R_F(V)=1/2`, and uniform-singleton
+  average `-Tr(K_F)/n`.  Hence the integrated current sign `(241)` reduces
+  exactly to `z/2 >= (1-kappa_n)(3z/2-1/n)`, which is algebraically the
+  complete-baseline endpoint bound itself.
+- This does not invalidate the positive storage or its rank recurrence; it
+  proves that a fixed affine spectral multiplier supplies only a gauge, not
+  new coercivity.  The next honest spectral object must be non-affine in
+  `T`, such as a Green/Schur multiplier, or retain the full pair matrix.
+- The exact Fraction verifier now checks the pointwise gauge identity, all
+  boundary values, its integrated pseudoflow law, and equivalence of the
+  resulting inequality to the exact complete value.

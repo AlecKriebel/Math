@@ -2740,6 +2740,96 @@ contributions of `mathcal J_F` on many intermediate ranks even though their
 total exceeds `(235)`; this observation is not used as proof.  Thus `(241)`
 is a proved variational reduction and the final sign remains **OPEN**.
 
+### 7.22 The affine spectral remainder is exactly a mass-square gauge
+
+The positivity in `(232)--(234)` does not itself add a new coercive
+current.  In fact the remainder in `(239)` has an exact pointwise collapse.
+Put
+
+\[
+ \mathcal R_F(S)=\theta M(S)^2-
+                 \left(\theta-{1\over2}\right)M(S).       \tag{245}
+\]
+
+Recall that
+
+\[
+ LM=Q,\qquad
+ LM^2=2MQ+\mathcal V_\pi,
+ \qquad \mathcal V_\pi=\sum_v\pi_v^2t_v,                 \tag{246}
+\]
+
+and that `LC=3Q-2C`.  Since
+
+\[
+ \mathcal S_F=\theta(M-M^2)-{C\over2},                    \tag{247}
+\]
+
+one has
+
+\[
+ L\mathcal S_F
+ =\left(\theta-{3\over2}\right)Q+C
+   -2\theta MQ-\theta\mathcal V_\pi.                     \tag{248}
+\]
+
+On the other hand the endpoint residual has the already proved form
+
+\[
+ \mathcal D+\mathcal W-a_nC=\kappa_nC-Q.                 \tag{249}
+\]
+
+Subtracting `(248)` from `(249)` and using `(239)` gives the exact identity
+
+\[
+\boxed{
+ \mathcal J_F
+ =L\mathcal R_F-(1-\kappa_n)C.}                          \tag{250}
+\]
+
+Thus every occurrence of `A_F,D_F,K_theta`, and `mathcal W` in the fixed
+affine spectral remainder cancels to a mass-square coboundary plus the
+original cut reward.  This is a pointwise identity, not merely an
+occupation-law simplification.
+
+Its boundary data make the scope transparent:
+
+\[
+ \mathcal R_F(\varnothing)=0,\qquad
+ \mathcal R_F(V)={1\over2},\qquad
+ {1\over n}\sum_v\mathcal R_F(\{v\})
+ =-{\operatorname {Tr}K_F\over n}.                       \tag{251}
+\]
+
+Consequently every exact degree-two pseudoflow obeys
+
+\[
+ \sum_S\bar\mu_SL\mathcal R_F(S)
+ ={z\over2}+{\operatorname {Tr}K_F\over n},              \tag{252}
+\]
+
+and `(241)` becomes
+
+\[
+ {z\over2}\ge(1-\kappa_n)
+ \left({3z\over2}-{1\over n}\right).                    \tag{253}
+\]
+
+Direct simplification of `kappa_n` shows that `(253)` is exactly
+
+\[
+ z\le{(n-1)2^{n-2}\over n(2^{n-1}-1)}.                  \tag{254}
+\]
+
+So `(241)` remains a correct equivalence, but it is not a new route to its
+own sign: the fixed affine conjugate merely regauges the original endpoint
+inequality.  This also proves a useful no-go statement.  Any next spectral
+step whose multiplier lies in the affine span of `B,T` introduces no pair
+direction beyond `M^2,C`; after exact Green balance its apparent remainder
+has no independent coercivity.  A genuine spectral advance must retain a
+non-affine function of `T` (for example a Green/Schur multiplier) or the full
+pair matrix, together with its rank transport.
+
 ## 8. Exact scope
 
 - **PROVED:** the finite LP dual `(7)--(9)` and the moment recurrences
@@ -2820,7 +2910,13 @@ is a proved variational reduction and the final sign remains **OPEN**.
   boundary-zero `W_123` storage `theta V-C/2` is positive semidefinite and
   converts the full endpoint residual exactly into one integrated current
   sign `(241)`, with its singleton constant, rank transport, and equality
-  normalization all explicit.  Inequality `(241)` itself remains open.
+  normalization all explicit.
+- **PROVED:** the affine spectral gauge collapse `(245)--(254)`.  The
+  remainder in `(241)` is exactly
+  `L{theta M^2-(theta-1/2)M}-(1-kappa_n)C`; after integration `(241)` is
+  algebraically the endpoint theorem itself.  Hence the affine conjugate
+  supplies a positive holding metric but no independent coercive sign.  A
+  further spectral contraction must be non-affine or full-pair.
 - **PROVED:** the oriented rank-current identities `(103)--(107)` and the
   exact positive gradient reformulation `(108)--(111)` of the combined
   rank-`H,K_0` target.

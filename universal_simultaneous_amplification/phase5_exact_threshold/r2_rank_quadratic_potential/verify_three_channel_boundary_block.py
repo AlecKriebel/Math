@@ -169,6 +169,20 @@ def variance(state: int) -> Q:
     return mass * (1 - mass)
 
 
+def selection_gain(state: int) -> Q:
+    return sum(
+        PI[v] * value
+        for v, value in enumerate(selection_vector(state))
+    )
+
+
+def affine_spectral_gauge(state: int) -> Q:
+    """The mass-only coboundary hidden in the ``K_F`` remainder."""
+
+    mass = stationary_mass(state)
+    return THETA * mass * mass - (THETA - Q(1, 2)) * mass
+
+
 def spectral_storage(state: int) -> Q:
     return quadratic_form(K_F, indicator(state))
 
@@ -477,8 +491,12 @@ def verify_state_identities() -> None:
         for state in range(FULL + 1)
     )
     spectral_values = tuple(spectral_storage(state) for state in range(FULL + 1))
+    gauge_values = tuple(affine_spectral_gauge(state) for state in range(FULL + 1))
     assert spectral_values[0] == spectral_values[FULL] == 0
     assert sum(spectral_values[1 << v] for v in range(N)) / N == TRACE_K_F / N
+    assert gauge_values[0] == 0
+    assert gauge_values[FULL] == Q(1, 2)
+    assert sum(gauge_values[1 << v] for v in range(N)) / N == -TRACE_K_F / N
     for state in range(1, FULL):
         assert spectral_values[state] == THETA * variance(state) - cut(state) / 2
         assert spectral_values[state] >= 0
@@ -492,6 +510,16 @@ def verify_state_identities() -> None:
             + spectral_diagonal(state)
         )
         assert target_residual(state) == spectral_drift + spectral_remainder(state)
+        # The apparently new spectral remainder is exactly an affine
+        # mass-square gauge.  In particular, the fixed affine conjugate
+        # contributes no independent coercive inequality.
+        assert target_residual(state) == (
+            kappa() * cut(state) - selection_gain(state)
+        )
+        assert spectral_remainder(state) == (
+            scalar_generator(state, gauge_values)
+            - (1 - kappa()) * cut(state)
+        )
 
         pair_plus, pair_minus, mark_plus, mark_minus, error_plus, error_minus, p_mass, n_mass = oriented_currents(state)
         assert pair_plus == error_plus
@@ -647,7 +675,11 @@ def verify_rank_recurrences() -> Q:
     spectral_generator_integral = Q(0)
     spectral_remainder_integral = Q(0)
     target_residual_integral = Q(0)
+    gauge_generator_integral = Q(0)
+    cut_integral = Q(0)
+    gain_integral = Q(0)
     spectral_values = tuple(spectral_storage(value) for value in range(FULL + 1))
+    gauge_values = tuple(affine_spectral_gauge(value) for value in range(FULL + 1))
     spectral_x = [Q(0) for _ in range(N + 1)]
     spectral_y = [Q(0) for _ in range(N + 1)]
     spectral_creation = [Q(0) for _ in range(N + 1)]
@@ -659,6 +691,9 @@ def verify_rank_recurrences() -> Q:
         spectral_generator_integral += mu * scalar_generator(state, spectral_values)
         spectral_remainder_integral += mu * spectral_remainder(state)
         target_residual_integral += mu * target_residual(state)
+        gauge_generator_integral += mu * scalar_generator(state, gauge_values)
+        cut_integral += mu * cut(state)
+        gain_integral += mu * selection_gain(state)
         up_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k + 1)
         down_rate = sum(rate for target, rate in rates(state) if target.bit_count() == k - 1)
         spectral_x[k] += mu * spectral_values[state] * up_rate
@@ -759,6 +794,17 @@ def verify_rank_recurrences() -> Q:
     assert target_residual_integral == (
         spectral_remainder_integral - TRACE_K_F / N
     )
+    assert gain_integral == rho - Q(1, N)
+    assert cut_integral == Q(3, 2) * rho - Q(1, N)
+    assert gauge_generator_integral == rho / 2 + TRACE_K_F / N
+    assert spectral_remainder_integral == (
+        gauge_generator_integral - (1 - kappa()) * cut_integral
+    )
+    assert target_residual_integral == kappa() * cut_integral - gain_integral
+    complete = Q((N - 1) * 2 ** (N - 2), N * (2 ** (N - 1) - 1))
+    assert (
+        spectral_remainder_integral >= TRACE_K_F / N
+    ) == (rho <= complete)
     return rho
 
 
