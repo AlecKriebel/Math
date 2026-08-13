@@ -12,13 +12,14 @@
   `sum_perm x^i y^j z^k (x-y)^2`.  The certificate proves strictness away
   from the equal positive triangle and remains strict on every path
   boundary.
-- Interpreted each atom as a wedge-exchange circuit.  The resulting global
-  induction target is a sum of wedge squares with coefficientwise
-  nonnegative paired-forest completion polynomials.
+- Interpreted each atom as a wedge-exchange circuit.  A subsequent exact
+  order-four Hessian audit refuted the initially proposed one-orbit
+  covariant wedge-square extension: adjacent and disjoint edge pairs must
+  both be retained.  See the complete-ray companion package.
 - The existing two-deletion identity does not prove that target packetwise:
   contracted `L` and `D` completions are not one common undirected triangle,
   and an exact three-component packet is negative.  Global sibling grouping
   remains necessary.
-- Best-guess completion: **100% for `PAPT_3`** and **20% for identifying the
-  algebraic form of a possible all-order induction**.  The all-order sign
-  itself remains open.
+- Best-guess completion: **100% for `PAPT_3`** and **25% for identifying the
+  algebraic form of a possible all-order induction**.  The surviving form
+  is fixed-colour paired-forest positivity; the all-order sign remains open.

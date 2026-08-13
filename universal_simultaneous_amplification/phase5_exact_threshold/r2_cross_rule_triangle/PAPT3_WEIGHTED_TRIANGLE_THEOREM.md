@@ -175,8 +175,8 @@ paired-tree numerator as a positive sum of local wedge-exchange circuits.
 This is stronger information than mere positivity of the final symmetric
 polynomial.
 
-It identifies the only evident induction target.  After clearing the
-positive row denominators in general order, one would seek
+It initially suggested the following induction target after clearing the
+positive row denominators:
 
 \[
  \boxed{
@@ -185,15 +185,24 @@ positive row denominators in general order, one would seek
  (w_{vi}-w_{vj})^2\,C_{v;i,j}(W),}                         \tag{14}
 \]
 
-where every `C_{v;i,j}` is a coefficientwise nonnegative paired-forest
-completion polynomial and covariance under vertex relabelling is retained.
-At order three, `(10)` is exactly `(14)`.  Such an identity would prove
-`PAPT_n` directly and force complete-graph equality, because the line graph
-of `K_n` is connected and all wedge differences can vanish only when all
-conductances agree.
+where every `C_{v;i,j}` would be a coefficientwise nonnegative
+paired-forest completion polynomial, covariant under vertex relabelling.
+At order three, `(10)` has exactly this form.
 
-Equation `(14)` is a **named open structural target**, not a theorem in
-general order.
+**Correction after the order-four invariant audit.**  Equation `(14)` is
+already too restrictive in order four.  At the complete graph every wedge
+has one orbit, so covariance would make all `C_{v;i,j}` equal there.  Its
+Hessian would therefore be proportional to the single adjacent-edge
+energy.  The exact PAPT Hessian has independent standard and balanced-cycle
+eigenvalues which are not in that fixed ratio.  The detailed rational
+witness and the corrected two-orbit formulation are in
+`../r2_cross_rule_complete_ray/CLEARED_PAPT_COMPLETE_RAY.md`.  Thus `(14)`
+is **FALSIFIED as a general covariant identity**, not left open.
+
+The weakest compatible square grouping in order at least four must retain
+both vertex-wedge pairs and disjoint edge pairs.  More robustly, the
+surviving invariant target is positivity of the globally grouped
+fixed-colour coefficients along the complete-to-actual conductance ray.
 
 ## 5. Why the existing deletion--contraction does not yet induct
 
@@ -211,11 +220,10 @@ has exact value `-362/525`.  Therefore `(10)` cannot be applied packet by
 packet, and naive induction by deletion--contraction is invalid.
 
 The surviving possible induction must first sum across completion siblings
-so that the common-arrow/undirected relation is restored, and only then
-produce the wedge circuits `(13)`.  Equivalently, it must prove that the
-global coefficients `C_{v;i,j}` in `(14)` are paired-forest polynomials with
-nonnegative coefficients.  This is precisely the nonduplication problem
-left by the forest-exchange branch; the triangle theorem supplies its local
+so that the common-arrow/undirected relation is restored.  It must then
+retain both edge-pair orbits, or use the still larger complete-ray
+fixed-colour grouping.  This is precisely the nonduplication problem left
+by the forest-exchange branch; the triangle theorem supplies its local
 algebraic endpoint but does not solve the global grouping.
 
 Two triangle-specific coincidences also cannot be imported silently:
@@ -227,8 +235,9 @@ Two triangle-specific coincidences also cannot be imported silently:
    forest completion carries many directed histories with the same endpoint
    wedge.
 
-Thus the exact next proof object is not a sum of induced-triangle gaps.  It
-is the global paired-forest wedge coefficient in `(14)`.
+Thus the exact next proof object is not a sum of induced-triangle gaps or
+the one-orbit wedge coefficient `(14)`.  It is the global fixed-colour
+paired-forest coefficient defined in the companion complete-ray note.
 
 ## 6. Scope and replay
 
@@ -236,8 +245,11 @@ is the global paired-forest wedge coefficient in `(14)`.
 graph, exact fixation formulas `(4)--(6)`, the degree-eighteen identity
 `(7)--(8)`, and the positive 24-circuit certificate `(10)--(12)`.
 
-**OPEN:** coefficientwise positivity of the global paired-forest wedge
-coefficients `(14)`, and hence `PAPT_n` for arbitrary order.
+**FALSIFIED:** the one-orbit covariant wedge-square extension `(14)` in
+order four.
+
+**OPEN:** coefficientwise positivity of the complete-ray fixed-colour
+paired-forest coefficients, and hence `PAPT_n` for arbitrary order.
 
 Run
 
