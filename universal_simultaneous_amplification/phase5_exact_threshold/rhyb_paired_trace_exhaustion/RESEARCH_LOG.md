@@ -28,3 +28,17 @@
   its mass), the complete-baseline normalization is rule-specific, and the
   Bd/dB retained sets may differ.  Only the already separated packet
   coefficients must remain physically common.
+
+## 2026-08-13 15:42 PDT
+
+- Audited whether repeated exact Schur peeling terminates automatically in
+  a useful BDM decomposition.  It does not.
+- Proved exact Schur nonclosure on the unweighted four-path: eliminating
+  `{1,2}` creates a positive trace jump `{1}->{1,2,3}`, changing two
+  vertices, under both update rules.  The two exact trace weights differ.
+- Isolated the only repair: undo the interacting trace and merge all
+  participating physical regions until the exterior is monomorphic and the
+  next-event error is negligible.  This restores a genuine BDM module.
+- Finite merging may terminate only at the whole graph/macroscopic core;
+  this root termination is the exact nonseparated bulk/metastable escape,
+  not paired trace exhaustion.
