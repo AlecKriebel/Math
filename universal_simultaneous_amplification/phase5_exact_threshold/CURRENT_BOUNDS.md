@@ -32,20 +32,40 @@ It would not by itself prove equality; a single family working for every
 fixed `1<r<2` would still be required.
 
 The current proof-first upper candidate is `R_sim=R_hyb`, but no universal
-upper theorem has yet been proved.  The proposed route has been reduced to
-two precise statements:
+upper theorem has yet been proved.  The proposed route is now reduced to two
+precise statements.
 
-- the bounded dual-moment inequality (BDM) at `R_hyb`, proved for all
-  complete modules and all weighted three-paths, but open for arbitrary
-  positive triangles and general modules; and
-- a response-scale compactness theorem that synchronizes the Bd and dB
-  first-exit traces.  Rule-by-rule positive trace decompositions do not
-  suffice; an exact leaf/closed-`K_2` marginal-cone obstruction proves that
-  the two rules must share a paired trace measure or obey an equivalent
-  signed mismatch-charge bound.
+1. **Universal minimal product.**  For every finite connected weighted
+   module and every portal load, prove the portal-general stationary product
 
-The higher-rank part of BDM has an exact renewal/Schur formulation (RTER), so
-the remaining gap is a cross-rule stationary-flow inequality rather than an
+   \[
+   q_Bq_D\ge r^3[\rho_{Bd}-p]_+[\rho_{dB}-p]_+,
+   \qquad r=R_{hyb},\quad p=1-1/r.
+   \]
+
+   This theorem is proved for every connected weighted module of order at
+   most three: weighted paths are covered by the weighted-`P_3` theorem and
+   positive triangles by the exact portal-product theorem.  It remains open
+   in general.  A weak-core compounding theorem now proves that this minimal
+   product would automatically imply BDM for every bounded separated module,
+   so BDM is no longer an independent local conjecture.
+2. **Nonseparated trace exhaustion.**  Conditional on BDM, every separated
+   physical Schur packet has the correct common Bd/dB coefficient.  If these
+   packets do not exhaust a hypothetical amplifier, an exact retained trace
+   carries at least `(R_hyb-1)/R_hyb` times the full response scale.  Formal
+   Schur iteration cannot remove it: even on the unweighted four-path,
+   elimination creates rule-dependent Hamming-two jumps outside the Moran
+   module class.  The remaining global obligation is therefore a structural
+   bulk/fragmentation inequality for this macroscopic nonseparated trace.
+
+The local product itself has two equivalent exact endpoints.  Singleton-root
+Schur compression gives a paired root-tree determinant inequality.  Honest
+low/high renewal instead gives a full-excursion repayment inequality in
+which a doubleton-fed base-graph Green potential must pay the product of the
+two signed full-cycle rewards.  Rank-one/two marginal data alone are
+provably insufficient, and a weighted star proves that no separate
+per-rule polynomial-in-order reward bound can work.  Thus the surviving
+local theorem must retain cross-rule Green/tree compensation rather than an
 uncontrolled catalogue of graph cases.  These reductions sharpen the upper
 frontier but do not change the boxed rigorous interval.
 
