@@ -121,6 +121,68 @@ reduces to (5)--(6).  The replay constructs every rate and every equation
 directly from (1), solves over `QQ`, checks the residuals, and verifies all
 four rational identities (5)--(9).
 
+There is also a compact exact classification of the endpoint-weight
+parameter.  Keep seven arms and replace (1) by an arbitrary `x>0`.  The
+pair states have only ten orbits under arm permutations and global
+left--right reflection.  Solving the exact ten-state quotient over `Q(x)`
+gives
+
+\[
+ c_{Bd}(G_x)-{11\over23}={P_B(x)\over
+ 23(49x^2+249x+4)Q_B(x)},                                 \tag{14a}
+\]
+
+where
+
+\[
+\begin{aligned}
+ P_B(x)={}&180018405x^7+2975072149x^6+13161584556x^5\\
+ &+17094630950x^4+2810292145x^3-858773619x^2\\
+ &-105248866x-1878120,                                    \tag{14b}
+\end{aligned}
+\]
+
+\[
+ Q_B(x)=1786365x^5+15512608x^4+34819480x^3
+        +14633270x^2+1659563x+52170,                       \tag{14c}
+\]
+
+and
+
+\[
+ c_{dB}(G_x)-{21\over46}
+ =-{9576x^2+2473x-924\over46(672x^2+743x+252)}.            \tag{14d}
+\]
+
+Every denominator in (14a)--(14d) is positive for `x>0`.  The coefficient
+list of `P_B`, read in increasing powers of `x`, has exactly one sign
+change.  Since `P_B(0)<0` and its leading coefficient is positive,
+Descartes' rule proves that it has a unique positive root `alpha_B`.
+The quadratic in (14d) has positive root
+
+\[
+                   \alpha_D={-2473+5\sqrt{1660345}\over19152}. \tag{14e}
+\]
+
+Consequently the seven-arm theta family is a strict simultaneous weak
+amplifier **if and only if**
+
+\[
+                         \boxed{\alpha_B<x<\alpha_D}.       \tag{14f}
+\]
+
+For orientation,
+
+\[
+ \alpha_B=0.205251510881545\ldots,qquad
+ \alpha_D=0.207274371262138\ldots.                        \tag{14g}
+\]
+
+The rational value `103/500=0.206` lies in this interval by direct exact
+substitution: `P_B(103/500)>0` and the quadratic in (14d) is negative
+there.  Thus (8)--(9) are an interior exact witness, not a rounded point on
+a numerically unresolved boundary.
+
 ## 3. Exact refutation of the power midpoint route
 
 The two rules are endpoints of a natural reversible power interpolation:
@@ -213,6 +275,6 @@ PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B \
 lower_global_tradeoff/verify_weak_simultaneous_theta.py
 ```
 
-The replay uses an exact `253 x 253` rational solve for each rule.  No
-floating-point value enters the proof.
-
+The replay uses an exact `253 x 253` rational solve for each rule and an
+independent symbolic ten-orbit solve for (14a)--(14f).  No floating-point
+value enters the proof.

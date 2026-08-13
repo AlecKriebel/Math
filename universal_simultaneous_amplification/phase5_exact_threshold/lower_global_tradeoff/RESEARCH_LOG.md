@@ -50,6 +50,11 @@
   `N(1)+N(-1)<=2N(0)=2n` exactly on the same graph.  The common symmetrized
   pair hopping and common boundary vector are insufficient because the
   diagonal holding rates and pair source co-vary with the power parameter.
+- Reduced the whole seven-arm endpoint-weight family to ten pair orbits and
+  solved over `Q(x)`.  Simultaneous weak amplification occurs exactly on the
+  nonempty interval `(alpha_B,alpha_D)`, with `alpha_B` the unique positive
+  root of an explicit degree-seven polynomial and `alpha_D` an explicit
+  quadratic radical.  The rational witness `103/500` is strictly interior.
 - Updated the packet-cone target: an unrestricted weak paired cone already
   enters the positive quadrant.  Any useful scale induction must be
   fitness-resolved and show where a positive weak atom loses a coordinate.
