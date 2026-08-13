@@ -1,7 +1,7 @@
 # Authoritative status
 
-Status: **OUTCOME P CANDIDATE — mathematical gates closed; final adversarial
-release review in progress**
+Status: **OUTCOME P CANDIDATE — one direct-anchor promotion gate and final
+adversarial release review remain open**
 
 Certified foundation:
 
@@ -11,12 +11,14 @@ Certified foundation:
 - the reciprocal-only bridge chart, root-presentation moves, Omega, Theta as
   an `S_TC` move, and frozen target-only atlas counts are quarantined.
 
-The proof-first route has now closed the last local mathematical gate.  The
-candidate result is Outcome P: standard semi-directed `S_TC` level-two JC
+The candidate result is Outcome P: standard semi-directed `S_TC` level-two JC
 topologies are identifiable modulo ordinary triangle redirection, with no
-proper one-sided generic containments.  It is not yet labelled the final
-outcome until a fresh whole-proof adversarial referee and clean release replay
-agree.
+proper one-sided generic containments.  The independent primitive generation
+of the complete three-outgoing relation universe is now closed.  The remaining
+mathematical gate is the coherent arbitrary-subdivision promotion of the 62
+direct residual anchors (34 isomorphisms and 28 ordinary `T` relations).  It is
+not labelled the final outcome until that gate, a fresh whole-proof adversarial
+referee, and a clean release replay all agree.
 
 The independent convention gate is **VERIFIED AFTER CORRECTION**.  The
 positive theorem, if promoted, concerns the simple binary LSA-rootable mixed
@@ -43,12 +45,13 @@ The earlier illustrative ordinary-`T` no-common-incoming pair was false and
 is withdrawn.  The separate TT-nested disjoint-rootable-set example remains
 verified and is sufficient to refute the fixed-incoming quotient.
 
-The common-anchor arbitrary-subdivision promotion is independently verified:
-all path-bound `A+p` and `A+p+q` probes share one full relation and one
-transport, reconstruct each total segment word, and require at most ten
-tensor ports.  Correct bridge incidence scaling, both one-sided cut
-inclusions, root reduction, and no cross-blob compensation were already
-independently verified.
+The common-anchor arbitrary-subdivision promotion is independently verified
+for all 144 restoration-terminal n3 paths and all 132 theta-2 paths: their
+`A+p` and `A+p+q` probes share one full relation and one transport, reconstruct
+each total segment word, and require at most ten tensor ports.  Promotion of
+the 62 direct n3 anchors is being audited separately and is not yet a theorem
+input.  Correct bridge incidence scaling, both one-sided cut inclusions, root
+reduction, and no cross-blob compensation were already independently verified.
 
 The first completed theta-2 cover was rejected by its own exact replay: its
 schema-2 canonical key merged distinct rooted graph presentations.  The full

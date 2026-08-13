@@ -277,13 +277,17 @@ This proves the left-to-right implication of (4) for arbitrary finite words.
 Labelled isomorphism is immediate.  For ordinary `T`, the three labelled
 three-sunlet orientations have one exact common interior Fourier tensor and
 rank four, the maximal normalized three-port JC rank.  Their normalized and
-projective tensor images therefore share an open regular germ.  Pointwise
-equality of this three-boundary Fourier factor survives contraction with any
-corresponding external context, including the complementary path of a theta.
-Because the common triangle factor set is open and the context is unchanged,
-the composite contraction has its generic rank on a nonempty common open
-subset.  Thus an embedded ordinary `T` also gives a common full-dimensional
-regular projective blob germ.  This completes (4).
+projective tensor images therefore share an open regular germ `U`.  The
+constant-rank theorem supplies analytic physical sections `s_i:U->Theta_i`
+for every orientation.
+
+For an unchanged external context, including the complementary path of a
+theta, write the common tensor contraction as `Phi(Q,C)` and let `d` be its
+generic rank.  A nonzero `d`-minor of `D Phi` cannot vanish throughout the
+nonempty open product `U x C`.  At a point where it is nonzero, the chain rule
+applied to `(s_i(Q),C)` gives physical rank `d` for both orientations.
+Shrinking there yields a common full-dimensional regular projective blob
+germ.  This completes (4).
 
 ## 6. Global synthesis
 
@@ -316,10 +320,15 @@ E_top(N) = union over N' not T-equivalent to N of
 
 Every member is proper.  Otherwise the semialgebraic intersection has full
 real dimension on a regular source stratum and hence nonempty relative
-interior, contradicting (1).  Enlarge this finite union by the singular and
-critical-value closures, cut-anchor denominators, and the finite nonzero
-atlas witness factors used by reconstruction.  The result `E_N` is a proper
-algebraic subset of `V_N`.  For every `p in M_N minus E_N`, any locked
+interior, contradicting (1).  Put `d_N=dim V_N`.  Enlarge this finite union
+by the singular locus, the Zariski closures of images of parameter loci on
+which the Jacobian rank is less than `d_N`, and the zero sets of the
+observable Fourier cut-anchor and atlas-witness polynomials.  The rank-drop
+images have dimension at most `d_N-1` in characteristic zero, and every
+observable witness is nonidentically zero on its intended stratum.  No
+physical-parameter factor is projected to distribution space.  The result
+`E_N` is a proper algebraic subset of `V_N`.  For every
+`p in M_N minus E_N`, any locked
 `S_TC` level-two topology realizing `p` is `T`-equivalent to `N`.
 
 This is the precise generic statement.  It does not say that the common
@@ -346,10 +355,11 @@ Given an exact generic pattern distribution known to arise in the class:
    orientation and assemble the canonical standard semi-directed graph.
 
 Every loop is finite, every local probe uses at most ten tensor ports, and the
-algorithm terminates.  A direct implementation may test all nontrivial
-bipartitions, so no unproved polynomial-in-`n` complexity claim is made.  It
-is nevertheless polynomial in the length of the explicit `4^n` input table
-up to exact algebraic arithmetic.  Steps 2--6 and the local theorem prove
+algorithm terminates.  A direct implementation uses at most `2^(n-1)-1`
+split tests and `O(n^10)` bounded local probes, excluding exact-number bit
+complexity.  Thus no unproved polynomial-in-`n` complexity claim is made,
+while the combinatorial count is polynomial in the length of the explicit
+`4^n` input table.  Steps 2--6 and the local theorem prove
 correctness and completeness outside `E_N`.
 
 The algorithm returns the canonical topology modulo `T`.  To list which

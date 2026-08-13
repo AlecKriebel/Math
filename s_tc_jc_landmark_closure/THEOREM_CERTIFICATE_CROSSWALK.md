@@ -14,7 +14,7 @@ proofs.
 | `Q` | Root factor to independently chosen real incoming boundary | `docs/ROOT_REDUCTION_THEOREM.md` | `reviews/root_probe/REVIEW.md` | same root/probe replay |
 | `C` | Pointwise cut iff flattening rank at most four; both cut inclusions | bridge/cut proof summarized in `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` | `bash reviews/global_bridge/verify_all.sh --with-upstream-replay` |
 | `B` | Exact full incidence-scaling bridge fiber, slices, no compensation | Section 4 of the theorem proof | `reviews/global_bridge/REVIEW.md` | same global bridge replay |
-| `A3` | Complete three-outgoing directed local relation universe | graph-derived primary streams | `reviews/bounded_directed_relation_cleanroom/` | `bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh` |
+| `A3` | Complete three-outgoing directed local relation universe | theorem-derived primitive cores, repairs, supports, completions, and assignments | `reviews/n3_universe_generator/` independently regenerates the raw and merged universes; `reviews/bounded_directed_relation_cleanroom/` independently checks every decorated relation and algebraic label | `bash reviews/n3_universe_generator/verify.sh` and `bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh` |
 | `A4-filter` | Complete five-port theta-2 invariant filter and presentation binding | theorem-derived completion grammar | `reviews/theta2_signature_gate/` | `bash reviews/theta2_signature_gate/verify.sh` |
 | `A4-cover` | All 132 five-port nonretaining roots terminate in separation/isomorphism | schema-3 hard-cover streams | `reviews/final_hard_cover_cleanroom/` and `reviews/final_hard_cover_adversary/` | `bash reviews/final_hard_cover_cleanroom/verify_schema3_n4_full.sh` |
 | `S` | Marginal submersion, restoration direction, common anchor, coherent arbitrary words, ten-port bound | `docs/HARD_COVER_THEOREM.md` and `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | `reviews/arbitrary_subdivision_promotion_referee/` and `reviews/compact_probe_format/` | `bash reviews/arbitrary_subdivision_promotion_referee/verify_all.sh` plus compact full replays |
@@ -28,6 +28,10 @@ proofs.
 - Three-outgoing gate: 10,826 raw and 10,466 canonical decorated directed
   relations; 5,284 strict; 5,120 pending canonical with 5,344 raw root
   coverages; 62 direct residuals, all isomorphism or ordinary `T`.
+- Independent three-outgoing universe regeneration gives exactly the same raw
+  and merged normalized multisets, with 10,106 singleton and 360 double
+  canonical multiplicities; six relation-deletion, duplication, transport,
+  orientation, and assignment mutations are rejected.
 - Three-outgoing hard cover: 68,584 states, comprising 56,055 generic
   separations, 8,349 refinements, 4,036 strict separations, 120 isomorphism
   terminals, and 24 ordinary-`T` terminals.

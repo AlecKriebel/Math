@@ -224,10 +224,13 @@ which are tree-child}\}.
 \end{aligned}
 \]
 A simple binary mixed graph with an admissible rooting lies in $\TCs$ exactly
-when it has no \emph{omnian}: no tail of a retained reticulation edge tails a
-second retained reticulation edge.  Indeed, a non-omnian tree vertex has an
-ordinary child in every compatible rooting, a reticulation cannot have a
-reticulation child, and an inserted root has at most one reticulation child.
+when every tail of a retained reticulation edge is incident with two
+undirected edges.  Equivalently, it has no \emph{omnian} tail.  This excludes
+both a tree vertex with two reticulation children and a reticulation with a
+reticulation child.  Conversely, such a tail has one ordinary incidence as
+parent and the other as a nonreticulate child in every admissible rooting;
+vertices with no outgoing reticulation edge and the inserted root satisfy the
+tree-child condition as well.
 
 A cut edge is an edge whose deletion disconnects the underlying graph.  A
 \emph{blob} is a maximal connected subgraph containing no cut edge.  In our
@@ -438,10 +441,10 @@ The ordinary trivalent endpoint is the equality case.  If the endpoints are
 joined by $0<z<1$, rank one in all four crossing blocks forces the vanishing
 of minors including
 \[
-f_1=aA-z^2bcBC,qquad f_2=zTt-z^2bcBC,
+f_1=aA-z^2bcBC,\qquad f_2=zTt-z^2bcBC,
 \]
 \[
-f_3=zC(At-zTbc),qquad f_4=zc(zBCt-Ta).
+f_3=zC(At-zTbc),\qquad f_4=zc(zBCt-Ta).
 \]
 The exact identities
 \[
@@ -782,14 +785,18 @@ also the normalized three-port ambient dimension, so every orientation maps
 submersively onto a neighborhood of the common tensor.  Positive port-arm
 scaling preserves a common projective germ.
 
-For a fixed external context, the complete blob tensor is the same analytic
-contraction $\Phi(Q,C)$ of the triangle tensor $Q$ and context parameters
-$C$, regardless of its physical orientation.  The common $Q$-neighborhood
-times the open context domain is therefore common to both parameterizations.
-The generic-rank locus of $\Phi$ is the complement of the zero set of a
-nonzero analytic Jacobian minor; it meets every nonempty open product on which
-the full model has that generic rank.  Shrinking inside this locus gives a
-common full-dimensional regular blob germ.  This is a forward contraction,
+Let $f_i:\Theta_i\to\mathcal Q$ be the normalized triangle-tensor map for
+orientation $i$.  Since $df_i$ has rank four, after shrinking about the
+certified point the constant-rank theorem gives a common open tensor
+neighborhood $U$ and analytic local sections $s_i:U\to\Theta_i$.  For the
+unchanged external context let $\Phi(Q,C)$ be the common tensor contraction,
+and let $d$ be its generic rank.  A $d$-minor of $D\Phi$ is a nonzero analytic
+function on the connected tensor--context chart, so it cannot vanish on the
+nonempty open set $U\times\mathcal C$.  Choose $(Q,C)$ in that set where the
+minor is nonzero.  The chain rule at $(s_i(Q),C)$ shows that both physical
+blob parameterizations have rank $d$ there.  Shrinking once more,
+$\Phi(U\times\mathcal C)$ is a common $d$-dimensional regular germ, equal to
+the full local model dimension on both sides.  This is a forward contraction,
 not an attempted inverse factorization of a theta into two hidden-pole
 pieces.
 \end{proof}
@@ -832,9 +839,9 @@ For fixed $n$ there are finitely many topologies in the class.  Tree-child
 paths give $r\le n-1$ reticulations, binary degree counting gives
 $t=n+r-2$, and a rooted presentation has at most $4n-3$ vertices.
 
-For a fixed topology $N$, its complex model closure $\V_N^{\JC}$ is
-irreducible as the closure of a polynomial image of an irreducible parameter
-space.  Let
+For a fixed topology $N$, put $d_N=\dim\V_N^{\JC}$.  Its complex model
+closure is irreducible as the closure of a polynomial image of an
+irreducible parameter space.  Let
 \[
 E_{\rm top}(N)=
 \bigcup_{N'\not\sim_{\Tmove}N}
@@ -843,10 +850,14 @@ E_{\rm top}(N)=
 Every member is proper.  Otherwise its semialgebraic intersection would have
 full real dimension on a regular source stratum and hence nonempty relative
 interior, giving $N\preceqjc N'$ contrary to \cref{thm:main}.  Enlarge this
-finite union by the singular and critical-value closures, cut-anchor
-denominators, and the finite nonzero atlas witness factors needed by the
-reconstruction below.  The resulting $E_N$ is still proper.  Outside it,
-every realizing topology is $\Tmove$-equivalent to $N$.
+finite union by the singular locus and by the Zariski closures of images of
+parameter loci on which the Jacobian rank is less than $d_N$.  Each latter
+image has dimension at most $d_N-1$ in characteristic zero.  Finally adjoin
+the zero sets of the observable Fourier cut anchors and atlas-witness
+polynomials used below; every such polynomial is nonidentically zero on its
+intended regular stratum.  The resulting $E_N$ is still proper.  No
+unspecified physical-parameter factor is projected to distribution space.
+Outside $E_N$, every realizing topology is $\Tmove$-equivalent to $N$.
 \end{proof}
 
 \section{Structural reconstruction}\label{sec:reconstruction}
@@ -872,11 +883,12 @@ distribution known to arise in the class.
       $\Tmove$-orientation and assemble the canonical mixed graph.
 \end{enumerate}
 
-Every loop is finite and every local probe uses at most ten tensor ports.
-A direct implementation may test all nontrivial bipartitions, so we make no
-unproved polynomial-in-$n$ claim.  Relative to the explicit $4^n$ input
-table, the combinatorial loop count is polynomial up to exact algebraic
-arithmetic.  The algorithm returns the canonical topology modulo
+Every loop is finite and every local probe uses at most ten tensor ports.  A
+direct implementation uses at most $2^{n-1}-1$ split tests and
+$O(n^{10})$ bounded local probes, excluding the bit complexity of exact
+algebraic-number operations.  Thus we make no unproved polynomial-in-$n$
+claim, while the combinatorial operation count is polynomial in the length of
+the explicit $4^n$ input table.  The algorithm returns the canonical topology modulo
 $\Tmove$; it does not recover physical bridge multipliers.  To list which
 orientations realize one particular distribution, one must test open-model
 membership for the finite $\Tmove$ variants.  The common-germ theorem does
@@ -1001,8 +1013,9 @@ regular open region.
 
 \begin{proof}[Proof of \cref{thm:sharpness}]
 The four-leaf case is \cref{prop:weak-topology} and the exact overlap above.
-Repeatedly substitute a cherry in the same corresponding leaf of both
-networks.  The model dimension becomes $8+2(n-4)=2n$.  The displayed
+Repeatedly substitute a cherry in the same corresponding leaf other than
+leaf $1$ in both networks.  The model dimension becomes
+$8+2(n-4)=2n$.  The displayed
 tree-child rootings extend, the original omnian witness remains, and leaf
 $1$ stays adjacent to a triangle vertex on one side and a nontriangle vertex
 on the other.  Thus the pair remains in $\TCw\setminus\TCs$, nonisomorphic,
@@ -1096,8 +1109,10 @@ Bridge fiber, slices, both cut inclusions, two-active crossing
 & \texttt{reviews/global\_bridge/}; the clean-room verifier reconstructs
   all endpoint tensors, minors, kernels, and mutations.\\
 Three-outgoing directed local universe
-& \texttt{reviews/bounded\_directed\_relation\_cleanroom/}: all $10{,}466$
-  canonical relations, signs, transports, and $5{,}344$ root bindings.\\
+& \texttt{reviews/n3\_universe\_generator/} independently generates the
+  exact $10{,}826$ raw and $10{,}466$ merged relation multisets;
+  \texttt{reviews/bounded\_directed\_relation\_cleanroom/} independently
+  checks their graphs, signs, transports, and $5{,}344$ root bindings.\\
 Four-outgoing $\theta_2$ filter and root binding
 & \texttt{reviews/theta2\_signature\_gate/}: exact invariant deck,
   $18+42+132$ presentation theorem, transports, and mutations.\\

@@ -10,6 +10,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 source "$HERE/bootstrap.sh"
 cd "$STC_JC_PROJECT"
 
+bash reviews/n3_universe_generator/verify.sh
 bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh
 bash reviews/theta2_signature_gate/verify.sh
 bash reviews/base_gate_adversarial_referee_n3/verify_all.sh
