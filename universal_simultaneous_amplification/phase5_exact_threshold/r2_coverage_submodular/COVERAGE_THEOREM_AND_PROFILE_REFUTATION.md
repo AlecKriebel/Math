@@ -487,3 +487,201 @@ The left side is not pointwise nonpositive, so a proof must use stationarity
 to convert its rank-centered internal-edge deficit into a global two-copy,
 current, or tree cancellation.  Abstract submodularity alone stops at
 (31)--(33).
+
+## 7. Exact stationary generator of the internal-edge deficit
+
+The stationarity requested by `(SID)` can be applied directly to `Z_P`.
+This gives a closed pair-renewal identity, but it also exposes a precise
+obstruction to the most immediate two-copy-square argument.
+
+Put `N=n-1` and, using reversibility of the original graph, define the
+symmetric original-edge discrepancy
+
+\[
+ e_{ij}={2\over N}-w_{ij}\left({1\over d_i}+{1\over d_j}\right)
+       ={2\over N}-P_{ij}-P_{ji}.                         \tag{41}
+\]
+
+Thus `Z_P(A)=sum_{\{i,j\}\subseteq A}e_{ij}`.  Fix `v in A`, put
+`B=A\setminus\{v\}` and `H=A^c`, and let `J\subseteq H` be the set of
+holes hit at least once by the fair-geometric row-`v` burst.  The output is
+`A'=B union J`.  At the event level,
+
+\[
+\boxed{
+ Z_P(A')-Z_P(A)
+ =-\sum_{x\in B}e_{vx}
+  +\sum_{i\in J}\sum_{x\in B}e_{ix}
+  +\sum_{\{i,j\}\subseteq J}e_{ij}.}                    \tag{42}
+\]
+
+This is the point at which an edge decomposition is forced: it is simply
+the deletion and creation formula for the quadratic set statistic `Z_P`.
+No sign is assigned to an individual `e_ij`.
+
+Write again `q(x)=2x/(1+x)`.  The one- and two-hole hit probabilities of
+the burst are
+
+\[
+ b_{vi}=q(P_{vi}),                                        \tag{43}
+\]
+
+and
+
+\[
+\begin{split}
+ b_{v,ij}
+ &=q(P_{vi})+q(P_{vj})-q(P_{vi}+P_{vj})\\
+ &={2P_{vi}P_{vj}(2+P_{vi}+P_{vj})\over
+ (1+P_{vi})(1+P_{vj})(1+P_{vi}+P_{vj})}\geq0.            \tag{44}
+\end{split}
+\]
+
+Consequently, for the dual generator normalized so that each occupied
+target fires at rate one, define
+
+\[
+ C_1(A)=\sum_{v\in A}\sum_{i\in H}b_{vi}
+              \sum_{x\in A\setminus\{v\}}e_{ix},        \tag{45}
+\]
+
+\[
+ C_2(A)=\sum_{v\in A}\sum_{\{i,j\}\subseteq H}
+              b_{v,ij}e_{ij}.                            \tag{46}
+\]
+
+Summing the deletion term in `(42)` counts every internal edge twice, so
+the exact generator law is
+
+\[
+\boxed{\mathcal L Z_P(A)=-2Z_P(A)+C_1(A)+C_2(A).}        \tag{47}
+\]
+
+Stationarity of `Pi` therefore proves the pair-renewal balance
+
+\[
+\boxed{2E_\Pi Z_P=E_\Pi(C_1+C_2).}                       \tag{48}
+\]
+
+This is a genuine consequence of the full dual law, not a fixed-rank
+average.  It expresses the internal deficit removed when an occupied
+target is deleted as the deficit of the cross and hole--hole pairs created
+by the same burst.
+
+### 7.1 The rank-weighted law and its exact commutator
+
+For the specific Green weight `U_h` in `(38)`, let `h=|A^c|`, and after an
+effective burst write `h'=|(A')^c|`.  The only additional term caused by
+the rank weight is the exact commutator
+
+\[
+ \mathcal R_U(A)=\sum_{v\in A}
+ E_v\left[(U_{h'}-U_h)Z_P(A')\right].                    \tag{49}
+\]
+
+The product rule, with the second factor evaluated at the output in the
+commutator, gives
+
+\[
+ \mathcal L(U_hZ_P)
+ =U_h\mathcal LZ_P+\mathcal R_U.                         \tag{50}
+\]
+
+Combining `(47)` with stationarity yields the exact weighted renewal law
+
+\[
+\boxed{
+ 2E_\Pi[U_hZ_P]
+ =E_\Pi[U_h(C_1+C_2)+\mathcal R_U].}                     \tag{51}
+\]
+
+Thus `(SID)` is equivalently
+
+\[
+ {1\over2}E_\Pi[U_h(C_1+C_2)+\mathcal R_U]
+ \leq\mathcal V_P.                                      \tag{52}
+\]
+
+Formula `(52)` is the minimal identity left by direct stationarity of the
+internal-edge deficit.  In particular, it retains the change in rank under
+a burst; replacing `U_(h')` by `U_h` is not valid.
+
+### 7.2 Why ordinary stationary-flow symmetrization is not yet a square
+
+Although the original vertex kernel is reversible, the geometric-union
+set chain generally is not.  This distinction is already visible in the
+commutator in `(49)`.  Let `Q(A,B)` be the off-diagonal dual generator and
+`F_AB=Pi(A)Q(A,B)` its stationary directed flow.  Choose any ordering of
+the proper nonempty sets and, for `A<B`, put
+
+\[
+ s_{AB}={F_{AB}+F_{BA}\over2},\qquad
+ j_{AB}=F_{AB}-F_{BA}.                                  \tag{53}
+\]
+
+With `Delta U=U_(h(B))-U_(h(A))` and
+`Delta Z=Z_P(B)-Z_P(A)`, exact flow symmetrization gives
+
+\[
+ E_\Pi[U_h\mathcal LZ_P]
+ =-\mathcal D_{UZ}+\mathcal C_{UZ},                     \tag{54}
+\]
+
+where
+
+\[
+ \mathcal D_{UZ}=\sum_{A<B}s_{AB}\,\Delta U\,\Delta Z,
+ \qquad
+ \mathcal C_{UZ}={1\over2}\sum_{A<B}j_{AB}
+       \{U_{h(A)}+U_{h(B)}\}\Delta Z.                  \tag{55}
+\]
+
+Hence `E_Pi R_U=D_UZ-C_UZ`, and `(51)` becomes
+
+\[
+\boxed{
+ 2E_\Pi[U_hZ_P]
+ =E_\Pi[U_h(C_1+C_2)]+\mathcal D_{UZ}-\mathcal C_{UZ}.} \tag{56}
+\]
+
+Neither term in `(55)` has the hoped-for automatic sign.  On the weighted
+path `0--1--2` with consecutive edge weights `(1,2)`, exact rational
+arithmetic gives
+
+\[
+ \mathcal D_{UZ}=-{13\over5400},\qquad
+ \mathcal C_{UZ}={41\over5400},\qquad
+ E_\Pi[U_h\mathcal LZ_P]={1\over100}.                    \tag{57}
+\]
+
+On the regular weighted `K_4` with edge weights
+
+\[
+ (w_{01},w_{02},w_{03},w_{12},w_{13},w_{23})
+ =(1,1,2,2,1,1),
+\]
+
+one instead has
+
+\[
+ \mathcal D_{UZ}={43\over34440},\qquad
+ \mathcal C_{UZ}={97\over57400},\qquad
+ E_\Pi[U_h\mathcal LZ_P]={19\over43050}.                \tag{58}
+\]
+
+Thus the symmetric mixed Dirichlet term changes sign, while the
+circulation term is strictly nonzero even on a regular original graph.
+This exactly rules out treating `(54)` as a reversible carré-du-champ or
+as a nonnegative two-copy square.  It does **not** refute `(SID)`: the two
+graphs have respectively
+
+\[
+ \mathcal V_P-E_\Pi[U_hZ_P]={2\over45},\qquad
+ \mathcal V_P-E_\Pi[U_hZ_P]={1\over574}>0.               \tag{59}
+\]
+
+The surviving obligation is therefore the circulation-corrected current
+inequality obtained by substituting `(56)` into `(SID)`.  Any square
+closure must use more than reversibility of the original edge kernel: it
+must absorb the dual circulation and the signed mixed rank/internal-edge
+current together with the subset-mass dispersion `(40)`.

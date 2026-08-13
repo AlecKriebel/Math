@@ -50,3 +50,30 @@ All timestamps are America/Los_Angeles.
   two-copy/internal-edge square using full dual stationarity.  Pointwise and
   reference-only comparisons already fail, so the required cancellation is
   genuinely global.
+
+## 2026-08-13 -- exact stationary deficit generator
+
+- **PROVED:** writing the internal deficit as the symmetric original-edge
+  sum `Z(A)=sum_(i<j in A)e_ij`, one fair-geometric dual burst has an exact
+  deletion/cross-creation/hole-pair-creation formula.  Its one-hole hit
+  coefficient is `q(P_vi)` and its two-hole coefficient is
+  `q(P_vi)+q(P_vj)-q(P_vi+P_vj)>=0`.
+- **PROVED:** summing occupied targets gives the closed generator identity
+  `LZ=-2Z+C1+C2` and stationary pair-renewal balance
+  `2 E Z=E(C1+C2)`.
+- **PROVED:** for the Green rank weight, the exact product law is
+  `L(UZ)=U LZ+R_U`, where
+  `R_U=sum_v E[(U_(h')-U_h)Z(A')]`.  Hence the SID left side is exactly one
+  half of `E[U(C1+C2)+R_U]`; no frozen-rank replacement is legitimate.
+- **EXACT OBSTRUCTION:** original-edge reversibility does not make the dual
+  set chain reversible.  Stationary-flow symmetrization splits
+  `E[U LZ]` into a mixed symmetric Dirichlet current plus a circulation
+  current.  On the weighted three-path these are `-13/5400` and `41/5400`;
+  on a regular weighted `K4` they are `43/34440` and `97/57400`.
+  Therefore the symmetric mixed term changes sign and circulation is
+  nonzero even for a regular original graph.  A plain two-copy
+  carre-du-champ interpretation is exactly unavailable.
+- **OPEN:** prove the literal circulation-corrected mixed-current inequality
+  against the full subset dispersion.  The exact witnesses above still
+  satisfy SID with gaps `2/45` and `1/574`, so they refute only the naive
+  square representation, not universal fitness-two maximality.
