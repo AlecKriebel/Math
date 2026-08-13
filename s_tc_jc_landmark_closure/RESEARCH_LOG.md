@@ -836,3 +836,13 @@
   names are stored relative to the project or shared repository root, and the
   manifest explicitly excludes hidden administrative files.  No graph,
   polynomial, rank, sign, relation, or theorem datum changed.
+
+## 2026-08-13T02:25:00-07:00 — regeneration uses the pinned interpreter
+
+- The first clean all-record regeneration passed the n3 and theta-2 graph-to-
+  algebra layers and both hard covers, then failed before direct-anchor
+  compilation because its nested shell wrapper defaulted to the system
+  `python3`, which lacked SymPy.
+- The active regeneration command now passes the already bootstrapped pinned
+  interpreter explicitly.  This changes no verifier semantics; it makes the
+  declared dependency environment effective through the nested wrapper.
