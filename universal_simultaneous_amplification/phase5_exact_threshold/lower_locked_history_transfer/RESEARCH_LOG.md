@@ -35,12 +35,21 @@
   rows, one locked target throughout a batch, ordered handoff, suppression
   of reciprocal reverse entrances, and stage/reservoir initialization mass
   below the favorable response scale.
+- Proved the stronger all-depth coverage obstruction.  Every ordinary
+  terminal event under additive-OR graphical dynamics has a coverage
+  harmonic `g(B)=Pr(Z intersects B)`, hence is monotone and submodular.
+  A router treating singletons as clean and pairs as adverse has worst-case
+  classification error at least `1/3` when oriented as an adverse detector,
+  and at least `1/2` when oriented as a favorable detector.  These constants
+  persist as fan-out grows.
 - Distinguished relative accuracy from the much stronger absolute uniform
   accuracy on `I_k=[1+1/k,2-1/k]`, which would require total error
   `o(k^{-L_k})`.
 - **PROVED:** abstract history-level exponentiation exists; exact finite
   two-terminal factorization is impossible.
-- **OPEN:** realize the diffuse ordered trace by one undirected graph family
-  and identify its two channels with net Bd gain and dB cost after full
-  uniform-start accounting.
+- **CLOSED:** no positive ordinary fixation/hitting terminal can realize or
+  asymptotically approximate the singleton-versus-nonsingleton router.
+- **OPEN:** realize the router as a signed difference of coverage harmonics,
+  control its unavoidable variation/uniform-start cost, and identify its two
+  channels with net Bd gain and dB cost.
 - Best-guess completion of the exact-threshold program: **72%**.

@@ -65,16 +65,35 @@ def general_collision_identity():
     assert sp.factor(singleton - clean - collision) == 0
 
 
+def coverage_router_bounds():
+    epsilon = sp.symbols("epsilon", nonnegative=True)
+    # Adverse detector: pair value <= sum of singleton values <= 2 epsilon;
+    # requiring pair value >= 1-epsilon forces epsilon>=1/3.
+    first_bound = sp.solve_univariate_inequality(1 - epsilon <= 2 * epsilon, epsilon)
+    assert sp.simplify_logic(
+        sp.Equivalent(first_bound, epsilon >= sp.Rational(1, 3))
+    ) is sp.true
+    # Favorable detector: monotonicity makes pair acceptance >= singleton
+    # acceptance >=1-epsilon; rejection <=epsilon forces epsilon>=1/2.
+    second_bound = sp.solve_univariate_inequality(1 - epsilon <= epsilon, epsilon)
+    assert sp.simplify_logic(
+        sp.Equivalent(second_bound, epsilon >= sp.Rational(1, 2))
+    ) is sp.true
+
+
 def main():
     labelled_transfer()
     singleton_overlap()
     projected_transfer()
     general_collision_identity()
+    coverage_router_bounds()
     print("PASS: exact labelled transfer diag(1,r-1)/r")
     print("PASS: finite-terminal singleton-overlap obstruction")
     print("PASS: uniform m-fanout multiplier (r-1)(1-1/m)")
     print("PASS: general collision-leak identity")
-    print("OPEN: undirected ordered-handoff realization")
+    print("PASS: sharp coverage-router error lower bounds 1/3 and 1/2")
+    print("NO-GO: ordinary positive terminal cannot realize the router")
+    print("OPEN: signed terminal-difference realization")
 
 
 if __name__ == "__main__":

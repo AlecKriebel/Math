@@ -24,11 +24,13 @@ favorable and adverse history classes overlap on singleton outputs because
 selective samples can repeat the final neutral source.  The overlap is
 strict for every finite row kernel.
 
-The only surviving realization is therefore a **growing diffuse fan-out**.
-If each stage samples from a row law with collision mass tending to zero,
-the set-valued projection approaches (1).  To iterate to depth `L`, the
-total collision error must be `o(1)` (and `o((r-1)^L)` when absolute error
-at the adverse scale is required).
+A growing diffuse fan-out removes the *collision* obstruction.  However,
+Section 5 proves a stronger obstruction: an ordinary terminal fixation or
+hitting harmonic is a coverage function, so it cannot distinguish a
+singleton from a strict superset in the direction required by the history
+bit.  Thus diffuse fan-out alone still does not realize (1).  A viable route
+must use a signed difference of terminal harmonics or leave the additive-OR
+graphical class.
 
 ## 2. Exact labelled transfer
 
@@ -220,7 +222,80 @@ For nonuniform stages, the same conclusion follows from
                          Lp_*\longrightarrow0.              \tag{23}
 \]
 
-## 5. Exact undirected scale-separation obligations
+## 5. All-depth coverage no-go
+
+Let `g(B)` be the probability that an ordinary terminal event eventually
+occurs when the current mutant/source set is `B`, for any continuation built
+from additive Boolean OR updates.  Run the continuation's graphical maps
+backward from its terminal target.  Exactly as in the fixation duality, there
+is a random nonempty ancestral set `Z` such that
+
+\[
+                         g(B)=\Pr(Z\cap B\ne\varnothing).   \tag{24}
+\]
+
+Therefore `g` is normalized, monotone, and submodular:
+
+\[
+ g(\varnothing)=0,qquad g(B)\le g(B'),\quad B\subseteq B', \tag{25}
+\]
+
+\[
+                         g(A\cup B)\le g(A)+g(B).           \tag{26}
+\]
+
+The desired router would send every clean singleton to the favorable
+terminal and every certified adverse set of size at least two to the adverse
+terminal.  No single coverage harmonic can do this in either orientation.
+
+First orient `g` as the adverse probability.  If all singleton false-positive
+errors obey `g({u})<=epsilon`, then submodularity gives
+
+\[
+                         g(B)\le |B|\epsilon.               \tag{27}
+\]
+
+For a pair, adverse true-positive error at most `epsilon` would require
+`g({u,v})>=1-epsilon`; hence
+
+\[
+                         \boxed{\epsilon\ge {1\over3}.}     \tag{28}
+\]
+
+Second orient `g` as the favorable probability.  If a singleton is accepted
+with probability at least `1-epsilon`, monotonicity forces every superset
+containing it to be accepted with at least the same probability.  Rejecting
+that pair with error at most `epsilon` gives
+
+\[
+                         \boxed{\epsilon\ge {1\over2}.}     \tag{29}
+\]
+
+These bounds do not depend on fan-out size.  They persist under arbitrary
+scale separation and at every stage depth.  In particular, if a depth-`L`
+construction applies ordinary terminal coverage routers successively, its
+per-stage classification error cannot tend to zero, so its transfer cannot
+converge to the diagonal matrix (1).
+
+There is also a distributional version that directly fits the diffuse
+history law.  Conditional on a certified adverse pair `{U,V}`, (26) gives
+
+\[
+ E g(\{U,V\})\le 2E g(\{U\}).                              \tag{30}
+\]
+
+Thus any adverse detector whose average singleton leakage is `epsilon` has
+average pair detection at most `2epsilon`.  Diffusing the labels changes
+collision probabilities but does not relax this coverage inequality.
+
+This proves:
+
+> **Ordinary-terminal no-go.** The exact labelled transfer (1), and even an
+> approximation with vanishing per-stage classification error, cannot be
+> realized by a finite or growing undirected module whose two outputs are
+> ordinary fixation/hitting events under additive-OR graphical dynamics.
+
+## 6. Necessary scale separations for any non-coverage realization
 
 Equations (1)--(23) identify a realizable *abstract* transfer, not yet a
 finite-graph construction.  An undirected realization at depth `L=L_k`
@@ -231,7 +306,7 @@ the following checkable conditions.
    law on `R_l` is `p^{(l)}` and
 
    \[
-   \sum_{l=1}^{L_k}\eta(p^{(l)})=o(1).                    \tag{24}
+   \sum_{l=1}^{L_k}\eta(p^{(l)})=o(1).                    \tag{31}
    \]
 
    Uniform fan-out of size `m_k` satisfies this if `L_k/m_k->0`.
@@ -241,7 +316,7 @@ the following checkable conditions.
    up to total variation error `epsilon_{l,k}` with
 
    \[
-                         \sum_l\epsilon_{l,k}=o(1).         \tag{25}
+                         \sum_l\epsilon_{l,k}=o(1).         \tag{32}
    \]
 
 3. **Ordered handoff.** On a favorable or certified-adverse stage exit, the
@@ -249,7 +324,7 @@ the following checkable conditions.
    revisited, with failure probability `zeta_{l,k}` satisfying
 
    \[
-                         \sum_l\zeta_{l,k}=o(1).            \tag{26}
+                         \sum_l\zeta_{l,k}=o(1).            \tag{33}
    \]
 
 4. **Reverse-arrow suppression.** Because every undirected edge is
@@ -262,7 +337,7 @@ the following checkable conditions.
    fan-out vertices, then
 
    \[
-                         {|H_k|\over |V(G_k)|}=o(a_k),       \tag{27}
+                         {|H_k|\over |V(G_k)|}=o(a_k),       \tag{34}
    \]
 
    where `a_k` is the favorable response amplitude.  This exports every
@@ -273,7 +348,7 @@ Conditions (24)--(27) are sufficient for relative transfer accuracy
 adverse amplitude `(r-1)^{L_k}` uniformly on
 
 \[
-                         I_k=[1+1/k,2-1/k],                 \tag{28}
+                         I_k=[1+1/k,2-1/k],                 \tag{35}
 \]
 
 then each displayed total error must satisfy the stronger condition
@@ -282,7 +357,7 @@ then each displayed total error must satisfy the stronger condition
  \boxed{
  {L_k\over m_k}+\sum_l(\epsilon_{l,k}+\zeta_{l,k}
       +\text{reverse}_{l,k})+{|H_k|\over a_k|V(G_k)|}
- =o(k^{-L_k}).}                                            \tag{29}
+ =o(k^{-L_k}).}                                            \tag{36}
 \]
 
 Here `k^{-L_k}` is the minimum of `(r-1)^{L_k}` on `I_k`.  This is a very
@@ -291,7 +366,12 @@ is enough to diagonalize errors for each fixed `r>1`; endpoint-uniform
 control down to `1+1/k` need not be imposed unless a uniform-on-`I_k`
 intermediate theorem explicitly uses it.
 
-## 6. What is proved and what remains
+The coverage theorem shows that these conditions are only necessary, not
+sufficient: even perfect scale separation cannot make an ordinary positive
+terminal event implement the router.  They apply only after one supplies a
+non-coverage, for example signed, terminal observable.
+
+## 7. What is proved and what remains
 
 Proved here:
 
@@ -299,23 +379,25 @@ Proved here:
 - its exact power law (6)--(7);
 - the finite-terminal no-go (9)--(12);
 - the exact diffuse projected law (13)--(22);
+- the all-depth coverage/submodularity no-go (24)--(30);
 - necessary quantitative scale separations for an undirected realization.
 
 Not yet proved here:
 
+- a signed or non-OR terminal observable that separates the two history
+  classes without paying a response-scale uniform-start cost;
 - an undirected graph whose rare-event trace implements ordered handoff
-  while meeting (24)--(27);
+  while meeting (31)--(34);
 - the identification of the favorable labelled channel with net Bd gain and
   the adverse channel with net dB cost after the complete uniform-start
   fixation trace;
 - a positive favorable amplitude surviving the vanishing-density export.
 
-Those are now the exact construction obligations.  A fixed finite
-two-terminal gadget is closed; a growing diffuse, source-history-preserving
-module is the only version of this transfer compatible with the graphical
-dual.
+Those are now the exact construction obligations.  Positive ordinary
+two-terminal gadgets are closed even at growing fan-out.  The smallest
+surviving algebraic route is a signed difference of coverage harmonics.
 
-## 7. Exact replay
+## 8. Exact replay
 
 Run
 
@@ -324,4 +406,5 @@ PYTHONDONTWRITEBYTECODE=1 ../../../.venv/bin/python -B verify_locked_history_tra
 ```
 
 The replay checks the labelled matrix, singleton overlap, projected law,
-uniform-fanout multiplier, and depth error identity exactly.
+uniform-fanout multiplier, depth error identity, and the sharp elementary
+coverage-router error bounds exactly.
