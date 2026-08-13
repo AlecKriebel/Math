@@ -42,6 +42,17 @@
   zero while its entire dB coefficient, including the positive weak excess,
   is carried by the boundary trace.  This proves portal coupling is
   essential in any atomic compactness theorem.
+- Exactified the 23-vertex, seven-arm theta graph with endpoint weights
+  `103/500`.  Direct rational pair-chain solves prove both weak excesses are
+  positive.  This is an exact finite strict simultaneous weak amplifier and
+  settles the formerly open finite weak-selection question.
+- Refuted the natural reversible-power midpoint inequality
+  `N(1)+N(-1)<=2N(0)=2n` exactly on the same graph.  The common symmetrized
+  pair hopping and common boundary vector are insufficient because the
+  diagonal holding rates and pair source co-vary with the power parameter.
+- Updated the packet-cone target: an unrestricted weak paired cone already
+  enters the positive quadrant.  Any useful scale induction must be
+  fitness-resolved and show where a positive weak atom loses a coordinate.
 - Scope warning: `K_r>=0` remains open and is asserted nowhere.  The exact
   square is a diffuse-adjoint theorem, not a universal finite-graph affine
   separator.

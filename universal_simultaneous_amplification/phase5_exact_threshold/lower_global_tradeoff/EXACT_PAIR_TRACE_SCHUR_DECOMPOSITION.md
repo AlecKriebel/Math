@@ -201,9 +201,12 @@ compactness induction has to retain.
 
 For a hierarchy of partitions, (13)--(14) may be iterated without loss.
 At each level, modules satisfying (19) can be collapsed into packets;
-modules violating it remain active at the next level.  What is still open
-is a paired Bd/dB cone inequality for the resulting packets and trace
-operators.
+modules violating it remain active at the next level.  An initial hope was
+that the resulting paired packet cone might avoid the open positive
+quadrant.  The exact 23-vertex theta graph in
+`EXACT_WEAK_SIMULTANEOUS_THETA.md` refutes that hope for unrestricted finite
+packets: its Bd and dB weak excesses are both strictly positive.  A valid
+cone theorem must add fitness evolution or a restricted scale class.
 
 ## 6. Frozen exact five-path audit
 
@@ -250,17 +253,19 @@ this one frozen witness simultaneously proves that:
 The decomposition suggests the following precise theorem rather than a
 standalone-module ansatz.
 
-> **Paired packet-cone target.**  For every asymptotically separated graph
+> **Fitness-resolved paired packet-cone target.**  For every asymptotically separated graph
 > sequence, iterated Schur elimination of the two neutral pair chains yields
 > a tight family of rule-paired packets and trace operators.  After retaining
 > every level for which `escape scale x Green norm` does not vanish, the
-> normalized Bd/dB weak-response vector is the limit of the corresponding
-> closed packet cone.  That cone avoids the open positive quadrant unless a
-> final non-diffuse interaction scale remains.
+> full fitness-indexed Bd/dB response curve is the limit of the corresponding
+> closed packet cone.  Every positive weak atom must either lose one response
+> coordinate before the target endpoint or remain coupled to a non-diffuse
+> interaction scale.
 
 The theorem has two independent obligations: tightness/uniformity of the
-Schur hierarchy, and a paired cone inequality.  Section 5 gives the exact
-uniformity parameter.  No paired cone inequality is yet proved.
+Schur hierarchy, and a fitness-resolved paired cone inequality.  Section 5
+gives the exact uniformity parameter.  A weak-selection-only paired sign
+inequality is impossible.
 
 ## 8. Replay
 
@@ -275,4 +280,3 @@ lower_global_tradeoff/verify_pair_trace_schur.py
 The replay builds both neutral pair generators from the update definitions,
 performs the rational Schur elimination, checks (13)--(14) entrywise, and
 reconstructs (21)--(23).
-
