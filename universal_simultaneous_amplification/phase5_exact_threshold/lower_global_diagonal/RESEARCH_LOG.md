@@ -268,3 +268,49 @@
   throughout the admissible nontrivial face.  A focused normalized hostile
   optimization at orders three and four found no negative value and drove
   only to vanishing-mass/edge faces; this is evidence, not a theorem.
+
+## 2026-08-13 — exact five-ground endpoint-orbit reduction
+
+- Added the positive fifth ground `w=aq`, whose potential is
+  `V_w=Pw/w=Rq/q`.  With `h_1=(1+2Rq)^(-1)`, the target density is exactly
+
+  ```text
+  e=a(h-h_1)
+   =a{1/(2V_v)-1/[1+2(w/a)V_w]}.
+  ```
+
+  Thus endpoint-versus-first is a potential inequality among the five
+  grounds `{1,a,b,v=as,w=aq}`.
+- Verified the exact temperature-adjoint involution
+  `p'=pt`, `P'=D_t^-1 R`, under which `b'=s`, `s'=b`, and derived the coupled
+  resolvent identities
+
+  ```text
+  h-h_1 = 2hh_1 R(q-s),
+  q-q_1 = (2qq_1/t) P(q-s),   q_1=t/(t+2Ph).
+  ```
+
+  Both orientations share the cross-energy
+  `<q-s,P(q-s)>_p`.  It is not an `I-P` Dirichlet form, so applying the
+  proved first-orbit theorem twice does not close the sign by itself.
+- **PROVED EXACT ROUTE ALTERNATIVE:** endpoint-versus-first follows from a
+  pointwise certificate using increasing label potentials on all ten
+  pairwise ratio orders of the five grounds.  Such a certificate fails if
+  and only if a nonnegative node measure has nonnegative lower prefixes and
+  zero total for all ten signed orders, yet has negative `e`-average.
+- The ratio and signed-potential data obey the exact three-ground linkage
+  `r_fk=r_fg r_gk` and
+  `c_fk=(k/g)c_fg+(f/g)c_gk`.  These identities do not force the dual
+  measure to vanish: the physical reversible measure `pi` itself is a
+  nonzero simultaneous cut measure.  The unresolved content is the target
+  sign under the linked orders.
+- More sharply, for `n>=12` the ten total-order equations have a nullspace
+  of dimension at least two.  If all proper physical cuts are strict, a
+  small nonphysical nullspace perturbation of `pi` preserves positivity and
+  every cut sign.  Therefore the ten orders cannot close by uniqueness of
+  the dual measure; one must control its target average.  This does not yet
+  give a negative-target route obstruction.
+- Equality guidance is unchanged: deterministic two-cycles and the
+  singular leak face approach zero only through balanced or vanishing
+  mass/transfer modes.  This is consistent with a nonuniform boundary
+  layer for fixed `r<2`, but proves no lower construction.
