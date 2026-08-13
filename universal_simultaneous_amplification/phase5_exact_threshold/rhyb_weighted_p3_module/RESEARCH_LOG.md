@@ -24,4 +24,8 @@
 - **PROVED:** every positively weighted `P_3`, with every nonzero
   nonnegative portal vector, satisfies strict BDM at `R_hyb` and hence
   `D+(R_hyb-1)B<0` at every positive gate scale.
-- **OPEN:** universal BDM for bounded modules of order at least four.
+- Scope correction after hostile review: arbitrary positive triangles are
+  not covered.  Their existing exchange-square theorem proves only dB
+  suppression, not the full portal-uniform BDM product.
+- **OPEN:** BDM for arbitrary positive triangles and for bounded modules of
+  order at least four.

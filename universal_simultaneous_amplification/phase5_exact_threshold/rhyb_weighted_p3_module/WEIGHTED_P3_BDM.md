@@ -330,10 +330,12 @@ scale.
 ## 6. Scope
 
 This proves BDM for every weighted graph of order three whose support is a
-path.  Along with the complete-module and weighted-triangle results, it
-removes the last connected three-vertex support from the bounded local
-frontier.  It does not prove BDM for order four or for arbitrary bounded
-modules.
+path.  Together with the complete-module theorem it covers the path boundary
+and the equal-weight interior point of the three-vertex parameter space.
+Arbitrary positive weighted triangles remain open: the existing triangle
+exchange-square theorem proves dB suppression, but not the portal-uniform
+BDM product.  This result also does not prove BDM for order four or for
+arbitrary bounded modules.
 
 The portal reduction (12) is the reusable part: it converts a continuum of
 degree-reweighted portal laws into one extremal singleton product before any
