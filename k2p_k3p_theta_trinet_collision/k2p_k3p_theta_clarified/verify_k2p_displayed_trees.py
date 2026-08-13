@@ -7,6 +7,10 @@ definition of the network distribution.  A second calculation performs
 ordinary-state Markov pruning on the four retained-edge graphs and compares
 all 64 patterns with the comparison tree and with Fourier inversion.
 
+Before the collision audit, an exact rational source-convention check applies
+the same descendant-label rule to a 3-sunlet and reproduces the five Fourier
+coordinates written explicitly in Lemma 4.1 of arXiv:2607.12919v2.
+
 Only the Python standard library is required.  Every equality is exact in
 Q(sqrt(71)); floating-point arithmetic is used nowhere.
 """
@@ -23,6 +27,13 @@ from typing import Dict, Iterable, Mapping, Sequence, Tuple
 ROOT = Path(__file__).resolve().parent
 CERT = json.loads((ROOT / "certificate_k2p_simple.json").read_text())
 SYMBOLS = ("A", "C", "G", "T")
+KLEIN = (
+    (0, 1, 2, 3),
+    (1, 0, 3, 2),
+    (2, 3, 0, 1),
+    (3, 2, 1, 0),
+)
+A_INDEX, C_INDEX, G_INDEX, T_INDEX = range(4)
 CHARACTERS = (
     (1, 1, 1, 1),
     (1, 1, -1, -1),
@@ -41,6 +52,122 @@ def F(value: str | int | Fraction, denominator: int | None = None) -> Fraction:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def k2p_test_vector(s: Fraction, g: Fraction) -> Tuple[Fraction, Fraction, Fraction, Fraction]:
+    """Exact rational K2P Fourier vector in the source order (A,C,G,T)."""
+    return (F(1), s, g, s)
+
+
+def sunlet_coordinate(
+    a: Sequence[Fraction],
+    b: Sequence[Fraction],
+    c: Sequence[Fraction],
+    d: Sequence[Fraction],
+    e: Sequence[Fraction],
+    f: Sequence[Fraction],
+    delta: Fraction,
+    x1: int,
+    x2: int,
+    x3: int,
+) -> Fraction:
+    """Derive a 3-sunlet coordinate from its two retained-edge graphs."""
+    if KLEIN[KLEIN[x1][x2]][x3] != A_INDEX:
+        return F(0)
+
+    vectors = {"a": a, "b": b, "c": c, "d": d, "e": e, "f": f}
+    arcs = (
+        ("u", "1", "a"),
+        ("u", "p", "f"),
+        ("p", "2", "b"),
+        ("u", "r", "d"),
+        ("p", "r", "e"),
+        ("r", "3", "c"),
+    )
+    leaf_labels = {"1": x1, "2": x2, "3": x3}
+    total = F(0)
+
+    # Retaining u->r (edge d) has weight delta; retaining p->r (edge e)
+    # has weight 1-delta.  No Fourier monomial is supplied to this routine.
+    for retained_reticulation_edge, weight in (
+        ("d", delta),
+        ("e", F(1) - delta),
+    ):
+        kept = tuple(
+            arc for arc in arcs
+            if arc[2] not in {"d", "e"} or arc[2] == retained_reticulation_edge
+        )
+        children: Dict[str, list[str]] = {}
+        for parent, child, _ in kept:
+            children.setdefault(parent, []).append(child)
+
+        term = weight
+        for _, child, vector_name in kept:
+            seen = {child}
+            stack = [child]
+            while stack:
+                node = stack.pop()
+                for descendant in children.get(node, ()):
+                    if descendant not in seen:
+                        seen.add(descendant)
+                        stack.append(descendant)
+            label = A_INDEX
+            for leaf in ("1", "2", "3"):
+                if leaf in seen:
+                    label = KLEIN[label][leaf_labels[leaf]]
+            term *= vectors[vector_name][label]
+        total += term
+    return total
+
+
+def verify_source_convention() -> None:
+    """Reproduce the five explicit K2P 3-sunlet coordinates in Lemma 4.1."""
+    require(SYMBOLS == ("A", "C", "G", "T"), "wrong Fourier coordinate order")
+    require(KLEIN[C_INDEX][G_INDEX] == T_INDEX, "wrong Klein addition C+G")
+
+    a = k2p_test_vector(F(1, 3), F(2, 5))
+    b = k2p_test_vector(F(2, 7), F(3, 7))
+    c = k2p_test_vector(F(1, 4), F(5, 9))
+    d = k2p_test_vector(F(3, 8), F(4, 9))
+    e = k2p_test_vector(F(2, 9), F(1, 2))
+    f = k2p_test_vector(F(5, 11), F(3, 10))
+    delta = F(2, 5)
+    require(
+        all(vector[C_INDEX] == vector[T_INDEX] for vector in (a, b, c, d, e, f)),
+        "test vectors do not satisfy the K2P C/T identification",
+    )
+
+    # These are the five coordinates written out in the source lemma.  The
+    # right sides use its K2P identification a_C=a_T on every edge.
+    expected = {
+        "AGG": b[G_INDEX] * c[G_INDEX] * (
+            delta * d[G_INDEX] * f[G_INDEX]
+            + (F(1) - delta) * e[G_INDEX]
+        ),
+        "CCA": a[C_INDEX] * b[C_INDEX] * f[C_INDEX],
+        "GAG": a[G_INDEX] * c[G_INDEX] * (
+            delta * d[G_INDEX]
+            + (F(1) - delta) * e[G_INDEX] * f[G_INDEX]
+        ),
+        "GGA": a[G_INDEX] * b[G_INDEX] * f[G_INDEX],
+        "TCG": a[C_INDEX] * b[C_INDEX] * c[G_INDEX] * f[C_INDEX] * (
+            delta * d[G_INDEX] + (F(1) - delta) * e[G_INDEX]
+        ),
+    }
+    require(
+        set(expected) == {"AGG", "CCA", "GAG", "GGA", "TCG"},
+        "source-convention check must cover exactly the five displayed coordinates",
+    )
+
+    for label, wanted in expected.items():
+        x1, x2, x3 = (SYMBOLS.index(character) for character in label)
+        obtained = sunlet_coordinate(a, b, c, d, e, f, delta, x1, x2, x3)
+        require(obtained == wanted, f"source-convention mismatch at q_{label}")
+
+    print(
+        "[source convention] PASS  descendant-label rule reproduces all five "
+        "explicit 3-sunlet coordinates of Lemma 4.1"
+    )
 
 
 @dataclass(frozen=True)
@@ -495,6 +622,7 @@ def verify_direct_pruning(q_network: Mapping[Tuple[int, int, int], Quad]) -> Non
 
 
 def main() -> None:
+    verify_source_convention()
     verify_displayed_tree_monomials()
     verify_transition_data()
     q_network = verify_core_and_fourier()

@@ -1,5 +1,12 @@
 # Changelog
 
+## Focused verifier convention check -- 13 August 2026
+
+- Added the exact rational five-coordinate 3-sunlet convention check directly to `verify_k2p_displayed_trees.py`, so the focused verifier now visibly substantiates the Lemma 4.1 convention claim in the clarification note.
+- Refreshed the focused and complete verification transcripts, checksums, and package archive.
+
+No mathematical parameter, certificate value, collision calculation, or conclusion changed.
+
 ## Displayed-tree clarification revision -- 12 August 2026
 
 This is a clarification and verification revision. No mathematical parameter or conclusion changed.

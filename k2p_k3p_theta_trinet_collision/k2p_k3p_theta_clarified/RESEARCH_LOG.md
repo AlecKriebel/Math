@@ -1,5 +1,11 @@
 # Research log
 
+## 2026-08-13 07:00 PDT
+
+- Confirmed that the focused displayed-tree verifier did not itself perform the five-coordinate Lemma 4.1 convention check described in the clarification note; that check had existed only in the complete suite's separate source-convention step.
+- Audited an exact rational proposed check against the source paper's five displayed formulas and the existing convention checker.
+- Embedded the check in the focused verifier, replayed the focused and complete exact suites successfully, and refreshed the author-facing audit package.
+
 ## 2026-08-12 20:36 PDT
 
 - Created this dedicated clarification directory from the latest public `main` snapshot without overwriting the pre-clarification paper, summary, certificates, or original verifier modules.

@@ -14,9 +14,10 @@ python3 verify_k2p_displayed_trees.py
 python3 verify.py
 ```
 
-The graph-based verifier begins with the rooted arc list and the explicit endpoint-to-vector placement. For each retained-parent choice it deletes the two unselected reticulation arcs, computes labelled descendants, derives the Fourier edge labels and core monomial, and then independently performs ordinary-state Markov pruning. Successful output ends with:
+The graph-based verifier first applies the same descendant-label rule to an exact rational 3-sunlet test and reproduces the five Fourier coordinates written explicitly in Lemma 4.1 of the source paper. It then begins with the rooted arc list and the explicit endpoint-to-vector placement. For each retained-parent choice it deletes the two unselected reticulation arcs, computes labelled descendants, derives the Fourier edge labels and core monomial, and independently performs ordinary-state Markov pruning. Successful output includes:
 
 ```text
+[source convention] PASS  descendant-label rule reproduces all five explicit 3-sunlet coordinates of Lemma 4.1
 [displayed trees] PASS  four monomials reconstructed from retained edges
 [direct pruning] PASS  all 64 network/tree probabilities agree exactly
 ALL DISPLAYED-TREE CHECKS PASSED
@@ -29,7 +30,7 @@ The complete replay ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_displayed_tree_clarification.tex` / `.pdf`: compact two-page clarification note.
 - `combined-paper-clarified.tex` / `.pdf`: revised unified paper.
 - `technical-summary-clarified.tex` / `.pdf`: revised two-page summary.
-- `verify_k2p_displayed_trees.py`: exact graph reconstruction and direct-pruning verifier in `Q(sqrt(71))`.
+- `verify_k2p_displayed_trees.py`: exact source-convention, graph-reconstruction, and direct-pruning verifier in `Q(sqrt(71))`.
 - `verification_report_displayed_trees.txt`: transcript of the new focused audit.
 - `verification_report_complete.txt`: transcript of the complete suite.
 - `SOURCE_CONVENTION_CROSSCHECK.md`: the five-formula Lemma 4.1 convention audit.
