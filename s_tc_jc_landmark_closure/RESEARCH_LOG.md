@@ -811,3 +811,16 @@
 - `FINAL_OUTCOME.json` is now promoted to Outcome P.  Remaining work is purely
   mechanical: stable PDF, deterministic archive, and clean-worktree quick,
   full, and regeneration transcripts.
+
+## 2026-08-13T01:35:00-07:00 — clean replay removes stale root wrapper
+
+- The first clean `verify_full.sh` run exposed an active-script defect: it
+  invoked the historical scope-limited `reviews/root_probe/verify_all.py`,
+  whose obsolete primary-atlas assertions depend on files deliberately absent
+  from the release.  The failure is preserved in the clean transcript.
+- The active root theorem itself did not fail.  A new read-only wrapper now
+  regenerates, in a temporary directory, exactly the independently accepted
+  root-move, incoming-role, probe-coherence, and path-product-submersion
+  certificates, requires byte-for-byte equality with the committed records,
+  and excludes the superseded primary-atlas audit.  The release script and
+  crosswalk now name this precise scope.

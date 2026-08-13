@@ -87,6 +87,12 @@ The scripts create a pinned local virtual environment if needed.  The
 regeneration command is bounded by the structurally proved support universe;
 it does not launch a broad topology search.
 
+The active full gate calls
+`reviews/root_probe/verify_active_structural.py`.  The older
+`reviews/root_probe/verify_all.py` intentionally includes superseded,
+scope-limited atlas diagnostics and is preserved for history rather than used
+as a release gate.
+
 ## Scope of novelty
 
 The result extends the triangle-free strongly tree-child level-2 JC theorem

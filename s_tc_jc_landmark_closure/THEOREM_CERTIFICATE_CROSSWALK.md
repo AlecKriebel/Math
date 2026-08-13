@@ -10,8 +10,8 @@ proofs.
 | Theorem node | Mathematical role | Primary proof | Independent evidence | Exact replay |
 |---|---|---|---|---|
 | `D` | Locked `sd_0`, LSA rootings, `W_TC/S_TC`, no-omnian criterion | `docs/DEFINITIONS_LOCK.md` | `reviews/final_standard_convention/` | `bash reviews/final_standard_convention/verify_all.sh` |
-| `U` | Cycle/four-theta primitive cores, repairs, rigid supports, automatic unique triangle | `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | convention census and `reviews/root_probe/` | `python3 reviews/root_probe/verify_all.py` |
-| `Q` | Root factor to independently chosen real incoming boundary | `docs/ROOT_REDUCTION_THEOREM.md` | `reviews/root_probe/REVIEW.md` | same root/probe replay |
+| `U` | Cycle/four-theta primitive cores, repairs, rigid supports, automatic unique triangle | `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | convention census and the active structural scope of `reviews/root_probe/` | `python3 reviews/root_probe/verify_active_structural.py` |
+| `Q` | Root factor to independently chosen real incoming boundary | `docs/ROOT_REDUCTION_THEOREM.md` | `reviews/root_probe/REVIEW.md` | same read-only active structural replay; the scope-limited historical atlas audit is not invoked |
 | `C` | Pointwise cut iff flattening rank at most four; both cut inclusions | bridge/cut proof summarized in `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` | `bash reviews/global_bridge/verify_all.sh --with-upstream-replay` |
 | `B` | Exact full incidence-scaling bridge fiber, slices, no compensation | Section 4 of the theorem proof | `reviews/global_bridge/REVIEW.md` | same global bridge replay |
 | `A3` | Complete three-outgoing directed local relation universe | theorem-derived primitive cores, repairs, supports, completions, and assignments | `reviews/n3_universe_generator/` independently regenerates the raw and merged universes; `reviews/bounded_directed_relation_cleanroom/` independently checks every decorated relation and algebraic label | `bash reviews/n3_universe_generator/verify.sh` and `bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh` |
