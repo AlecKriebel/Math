@@ -80,6 +80,24 @@
   bound, and the strict BDM sign at `R_hyb` means it cannot improve the
   hybrid tangent at first order.  No optimization of this obsolete endpoint
   was pursued.
+- Proved the exact paired trace-cone lift: pointwise BDM rules out every
+  response-scale limit represented by a common positive measure on physical
+  Bd/dB module vectors, with error `o(actual response scale)`.
+- Reduced the difference between this theorem and the existing rule-by-rule
+  Schur decomposition to one signed synchronization charge.  If `mu_B` and
+  `mu_D` are the two marginal trace measures, it is enough and, at the level
+  of BDM slack, exact to control
+  `c int B d(mu_B-mu_D) <= int[-D-cB]dmu_D+o(epsilon)`.
+- Exactified the minimal obstruction to using two independent marginal
+  cones.  At every `3/2<r<2`, a leaf has response `(1/(r-1),-1)` and the
+  closed small-gate `K_2` ray is `(-2,(2-r)/(r-1))`; both obey the BDM
+  support, but selecting the Bd coordinate from the leaf and the dB
+  coordinate from `K_2` produces a strictly positive vector.
+- Proved the uniform trivial-BDM support gap
+  `F_D+(r-1)F_B<=-sr gamma` whenever `a+b<=1-gamma`.  Hence a strict local
+  BDM gap cannot be reversed by density dilution with `o(response scale)`
+  paired-trace error; any rescue has first-order trace mismatch/coupling and
+  belongs in the non-diffuse obligation.
 - Scope warning: `K_r>=0` remains open and is asserted nowhere.  The exact
   square is a diffuse-adjoint theorem, not a universal finite-graph affine
   separator.
