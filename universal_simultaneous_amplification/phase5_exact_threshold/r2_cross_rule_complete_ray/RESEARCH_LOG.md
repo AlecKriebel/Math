@@ -32,6 +32,17 @@
   `E[R_L R_D] <= b_n d_n`.  Sampling-without-replacement exchangeability
   alone does not prove it because actual conductance evaluation reweights
   the tree packet and the split of colours between replicas.
+- Rewrote the missing statement sharply under the complete decorated
+  packet law `nu_0` as
+  `Cov(R_L R_D,e_j(ell_1(W)/ell_1(K),...,ell_q(W)/ell_q(K))) <= 0`.
+  Conditional negative association of the fixed-size colour set cannot
+  imply it: after conditioning on the forest packet, the root product is
+  constant and that conditional covariance is exactly zero.  The missing
+  mechanism is across-packet negative regression.
+- One targeted exact audit on the already frozen hostile K4 ray
+  `(0,1000,2,1,1000,10)` found every canonical coefficient `C_j` positive
+  for `2<=j<=12`, with the tilted mean root product strictly decreasing.
+  This is evidence only; no graph or architecture scan was performed.
 - Completion estimate: **100%** for the positive clearing and exact
   fixed-colour reduction; **100%** for all fixed-colour levels at `n=3`;
   **30%** for an all-order coefficient proof.  The root/slot correlation

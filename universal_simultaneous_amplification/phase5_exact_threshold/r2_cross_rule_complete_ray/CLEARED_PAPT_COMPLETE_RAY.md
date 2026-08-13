@@ -421,6 +421,41 @@ of the two **roots**, while the sampled objects are local linear slots.
 Exchangeability of the colour labels alone gives `(26)` but supplies no
 monotone relation between a slot colour and either root rank.
 
+This obstruction has a particularly sharp covariance form.  Let `nu_0`
+be the complete-colour law on the fully decorated paired-tree packets.  If
+the `q_n` positive linear slots in a packet `theta` are `ell_s`, put
+
+\[
+                         r_s(\theta)={\ell_s(W)\over\ell_s(K)}.\tag{41}
+\]
+
+Summing `(19)` over the colour set shows that `mu_{n,j}^W` is the tilt of
+`nu_0` by the elementary symmetric polynomial:
+
+\[
+ {d\mu_{n,j}^W\over d\nu_0}(\theta)
+ ={e_j(r_1(\theta),\ldots,r_{q_n}(\theta))
+   \over\mathbb E_{\nu_0}e_j(r_1,\ldots,r_{q_n})}.           \tag{42}
+\]
+
+Since the complete root product has expectation `b_nd_n`, `(22)` is
+exactly
+
+\[
+ \boxed{
+ \operatorname {Cov}_{\nu_0}
+ \left(R_LR_D,e_j(r_1,\ldots,r_{q_n})\right)\le0.}           \tag{43}
+\]
+
+The standard negative association of weighted sampling without replacement
+does **not** imply `(43)`.  Conditional on `theta`, it controls increasing
+functions of disjoint groups of the colour indicators, but `R_LR_D` is
+already constant.  Its conditional covariance with every colour statistic
+is therefore exactly zero.  The whole sign in `(43)` lives across forest
+packets, in the relation between their roots and their slot ratios.  A proof
+must supply negative regression for that packet law; exchangeability of the
+colour set is not such a mechanism.
+
 A sufficient elementary property would be a sign-preserving root/slot
 coupling showing that the conditional mean
 
@@ -435,6 +470,26 @@ sectors.  The minimal object to prove is therefore the globally weighted
 sum `(25)`, or equivalently `(22)`, not separate marginal suppression and
 not a packetwise forest injection.
 
+One targeted exact `K_4` audit of `(43)` was made on the previously frozen
+hostile conductance ray
+
+\[
+ (w_{01},w_{02},w_{03},w_{12},w_{13},w_{23})
+ =(0,1000,2,1,1000,10).                                    \tag{44}
+\]
+
+Second-order-through-twelfth-order rational determinant series, converted
+to the canonical degree-420 Bernstein basis, give
+
+\[
+ C_{4,j}>0\quad(2\le j\le12),\qquad
+ \mathbb E_{\mu_{4,j}}[R_LR_D]
+ \text{ strictly decreases for }0\le j\le12.               \tag{45}
+\]
+
+This supports negative regression but does not prove it.  No additional
+graph or architecture scan was performed.
+
 ## 8. Replay and scope
 
 Run
@@ -447,6 +502,11 @@ The verifier checks `(6)` against inclusion--exclusion, audits the positive
 full clearing and degrees, replays the triangle Bernstein consequence, and
 independently computes the two exact order-four stationary variations in
 `(32)--(33)` using second-order rational series.
+
+The adjacent exploratory script
+`explore_n4_fixed_colour_path.py` performs only the targeted hostile-ray
+audit `(44)--(45)`.  Its current filename is retained to avoid churn; it is
+not a graph search and proves no general sign.
 
 **PROVED:** `(6)--(22)`, `(26)--(28)`, the `n=3` fixed-colour theorem
 `(39)`, and the two positive order-four quadratic orbit weights `(33)`.
