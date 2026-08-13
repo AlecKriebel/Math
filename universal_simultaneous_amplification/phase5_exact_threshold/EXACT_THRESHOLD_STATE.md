@@ -1,6 +1,6 @@
 # Exact-threshold state
 
-Last updated: 2026-08-08 22:24 PDT.
+Last updated: 2026-08-13 09:12 PDT.
 
 ## Frozen starting point
 
@@ -106,9 +106,9 @@ This is finite evidence only.
     a new upper bound on `R_sim`; a construction reaching two must permit
     portal action before pair absorption or use a different reservoir.
 13. Every stationary nonradial Hessian sector of the true fitness-two
-    determinant is positive at the complete kernel.  The standard and
-    symmetric sectors require global phase-contraction certificates; this
-    remains a local theorem.
+    determinant is positive at the complete kernel.  Exact phase-contraction
+    certificates close the standard and symmetric sectors for every order;
+    this remains a local theorem.
 14. The exact full rank-pair relaxation has been reduced to nonnegative
     occupation flows and collision/variance identities.  Rank-`H`,
     rank-`K_0`, and their combination with every rank-labelled vertex field
@@ -133,6 +133,22 @@ This is finite evidence only.
     The weighted triangle `(1,10,3)` gives exact negative packets in every
     such grouping.  The surviving determinant target is the literal sum over
     all colour locations and all unicycles at each fixed colour count.
+19. The reversible lower-side factor-one problem has an exact four-ground
+    Picone reduction using the grounds `{1,a,b,as}`.  Its obstruction is now
+    a finite six-order Farkas measure satisfying six linked lower-prefix
+    inequalities.  This is an equivalent proof bottleneck, not a proof of
+    factor one.
+20. Coverage rank summation gives the exact internal-edge-deficit identity
+    `(SID)`: the fitness-two gap is
+    `E[U_(|A^c|) Z_P(A)]-V_P`, with `V_P>=0` explicit and the uniform
+    fixed-rank mean of `Z_P` equal to zero.  A degree-profile majorization
+    route is exactly refuted on a rational weighted six-vertex graph.
+21. The affine spectral storage is exactly a gauge, while a canonical
+    non-affine Green--Schur defect supplies a genuine PSD full-pair drift.
+    The tempting scalar Schur--Jensen lower envelope is exactly false on the
+    true Green law of a rational weighted four-vertex graph, even though the
+    original endpoint sign is strict there.  Literal full-pair transport
+    remains open.
 
 ### Open
 
@@ -178,6 +194,11 @@ diagonal program in `MODULE_RESPONSE_LIBRARY.md`.
 - `bbf3323d`: direct collision determinant and triangle certificate;
 - `c7d6a479`: independent exact fitness-two hostile audit;
 - `ffcde4d5`: cubic clone response and rank-uniform domination bound.
+- `b1c0edf8`: complete four-ground Picone/Farkas reduction.
+- `c9560985`: exact coverage theorem and degree-profile refutation.
+- `59f9145a`: canonical non-affine Green--Schur defect.
+- `75b93d2e`: exact Schur--Jensen Green closure refutation.
+- `18fe217b`: coverage internal-edge-deficit reduction `(SID)`.
 - `37f370d1`: exact stationary marked-PGF refutation and integrated reduction.
 - `e559a087`: exact likelihood-ratio-descent refutation.
 - `7a867242`: all-order strict local theorem in the regular sector.

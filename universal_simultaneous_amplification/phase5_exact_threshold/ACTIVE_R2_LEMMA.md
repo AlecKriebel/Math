@@ -1,6 +1,6 @@
 # Canonical fitness-two lemma
 
-Last updated: 2026-08-08 22:24 PDT.  Status labels are literal.
+Last updated: 2026-08-13 09:12 PDT.  Status labels are literal.
 
 ## 1. Graph kernel and exact dual law
 
@@ -155,9 +155,9 @@ The currently named sufficient promotion lemma is
 \]
 
 Because the right side is at least `|Y|` by (R2-4), `PROM` implies (R2-3).
-At phase start, no converse from (R2-3) to `PROM` has been proved.  The prior
-note's use of the word "equivalent" at this point is under hostile audit and
-must not be relied upon without an additional argument.
+No converse from (R2-3) to `PROM` is known; exact witnesses separate several
+natural promotion strengthenings from the true collision sign.  Thus `PROM`
+is strictly a sufficient target throughout this note.
 
 ## 5. Exact dual forms of `PROM`
 
@@ -355,6 +355,50 @@ Here `L` is the stationary weighted cut surplus and `V` the explicit tangent
 dispersion in the phase-4 Green--collision note.  Neither term has the
 required sign separately.
 
+## 8A. Coverage/internal-edge-deficit form
+
+The same stationary dual has the exact coverage representation
+
+\[
+h(S)=\Pr_{A\sim\Pi}\{A\cap S\ne\varnothing\},
+\qquad
+\Delta_vh(S)=\Pr\{v\in A,\ A\cap S=\varnothing\}.
+\]
+
+Put `a=|A|` and
+
+\[
+ Z_P(A)={a(a-1)\over n-1}-\sum_{v,u\in A}P_{vu}.
+\]
+
+For a reversible weighted graph this is the internal-edge deficit
+
+\[
+ Z_P(A)=\sum_{\{u,v\}\subset A}
+ \left\{{2\over n-1}-w_{uv}\left({1\over d_u}+{1\over d_v}\right)\right\}.
+\]
+
+Let `U_h` be the explicit positive complete killed-Green rank weights recorded
+in `r2_coverage_submodular/`.  Exact rank-summed duality gives
+
+\[
+ \rho_{\rm dB}(G,2)-\rho_{\rm dB}(K_n,2)
+ =E_\Pi[U_{|A^c|}Z_P(A)]-\mathcal V_P,
+ \qquad \mathcal V_P\ge0.
+\]
+
+Consequently the literal remaining upper-bound target is
+
+\[
+ \boxed{E_\Pi[U_{|A^c|}Z_P(A)]\le\mathcal V_P.}       \tag{SID}
+\]
+
+The average of `Z_P` over all sets of each fixed rank is zero, but `Pi` is
+not rank-uniform.  Abstract submodularity and a proposed degree-profile
+majorization are exactly insufficient (the latter has a rational weighted
+six-vertex counterexample).  A proof of `(SID)` must therefore use the
+stationarity/two-copy current structure, not coverage concavity alone.
+
 ## 9. Exact determinant frontier
 
 The active-tree target (R2-5C) transfers without loss to the smaller subset
@@ -417,8 +461,9 @@ all-order proof.
 
 - All stationary nonradial Hessian sectors at the complete kernel are now
   proved positive in the determinant normalization: standard, symmetric
-  balanced, and antisymmetric balanced.  This proves a strict local theorem,
-  not the global sign.
+  balanced, and antisymmetric balanced.  The standard and symmetric sectors
+  are closed by exact phase-contraction certificates.  This proves a strict
+  local theorem, not the global sign.
 - Along the complete ray, the exact transfer scalar has the resolvent and
   rooted-tree factorizations recorded in `r2_determinant/`.  Monotonicity is
   false on the exact undirected order-five witness above.  Its natural
@@ -438,6 +483,12 @@ all-order proof.
   with the complete kernel as its unique loopless equality case.  The open
   sign is the rankwise Riccati transport of the two oriented current debts;
   a static covariance contraction is exactly false.
+- The positive affine spectral storage is an exact gauge: after integration
+  its proposed endpoint inequality reduces algebraically to the original
+  collision target.  A non-affine Green--Schur defect gives a genuine PSD
+  full-pair storage and exact drift identity, but its scalar
+  Schur--Jensen lower envelope has an exact four-vertex Green counterexample.
+  The surviving spectral route must retain the literal full-pair transport.
 
 ## 11. Optional-potential route: exact refutations and the surviving pair space
 

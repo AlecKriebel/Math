@@ -1,6 +1,6 @@
 # Next executable step
 
-Last updated: 2026-08-08 22:24 PDT.
+Last updated: 2026-08-13 09:12 PDT.
 
 ## Immediate command
 
@@ -19,16 +19,20 @@ Then run only the exact verifier belonging to each new claimed milestone.
 The collision/promotion implication has been audited and repaired.  The two
 highest-value upper-bound steps are now:
 
-1. prove or refute the fixed-colour rooted-tree numerator sign along the
-   complete ray.  Do not use the exactly false ratio/monotonicity statement;
-   work with the full fixed-colour mixed-minor sum itself.  Single row sets,
-   single unicycle skeletons, and single directed cycles even after summing
-   their attachment forests are exactly sign-indefinite.  Its final
-   coefficient is the true endpoint target;
-2. close or refute the dynamic three-channel rank-pair space.  Use the exact
-   mass-square current recurrence and its oriented Schur cones to derive a
-   rank-profile Riccati/M-matrix certificate.  Static rankwise tangents are
-   exactly false.  If this compression fails, retain the full pair matrix.
+1. prove `(SID)` in `ACTIVE_R2_LEMMA.md`: compute the stationary drift of the
+   rank-weighted internal-edge deficit and pair it with the explicit square
+   remainder.  Use a two-copy/current or tree cancellation.  Abstract
+   submodularity and degree-profile majorization are exactly insufficient;
+2. retain the literal full-pair matrix in the Green/rank-pair dual.  The
+   affine spectral storage is only a gauge, the scalar Schur--Jensen envelope
+   is false, and the three-channel kinetic Schur complement is singular.
+   Seek a full-pair Poisson/Lyapunov or transfer-current identity before any
+   further compression.
+
+The fixed-colour rooted-tree numerator remains an independent exact route.
+Do not use the false ratio/monotonicity statement, single row sets, single
+unicycles, or single directed cycles; only the full fixed-colour mixed-minor
+sum remains viable.
 
 The independent finite-time route remains to prove or refute
 
@@ -58,14 +62,14 @@ cancellation at `t=1`.  The exact triangle `t=3` increment and all-order
 antisymmetric Hessian are the current algebraic footholds.
 
 The next lower-bound step also starts outside the separated strong-pair
-normal form.  First settle the exact adjoint factor-one/ground-energy
-inequality using a coupled reversible unordered-edge certificate; a single
-Picone multiplier is exactly unavailable, and raw orbit averages can increase
-on both one-step and parity subsequences.  The current executable reduction
-is the sparse unordered-conductance circuit/Farkas problem with both ground
-systems retained.  If factor one is proved, record it as a complete
-obstruction to the diffuse catalyst normal form and move immediately to a
-non-diffuse construction.  In construction priority order:
+normal form.  Settle the exact adjoint factor-one inequality through the
+complete four-ground Picone reduction.  The remaining lemma is the
+six-linked-order Farkas obstruction: exploit the multiplicative relations
+among the six ground ratios rather than enumerating supports.  Raw orbit
+monotonicity, a single Picone multiplier, and edgewise positivity are exactly
+false.  If factor one is proved, record it as a complete obstruction to the
+diffuse catalyst normal form and move immediately to a non-diffuse
+construction.  In construction priority order:
 
 1. derive the exact fast law when portal events compete with resolution of a
    discordant pair or star--reservoir interface;
