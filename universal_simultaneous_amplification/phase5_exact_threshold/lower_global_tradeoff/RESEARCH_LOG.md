@@ -31,6 +31,17 @@
   five-path `5,1,1,5`, whose dB weak coefficient exceeds the complete value
   by `1/9310`.  Any scale induction must retain paired Bd/dB atom vectors
   and their coupled portal trace, not a dB sign alone.
+- Proved the exact pair-chain Schur decomposition for an arbitrary module
+  partition and either update rule.  It splits each weak coefficient into a
+  killed local occupation plus a nonnegative effective boundary load on the
+  trace pair chain.  The local blocks are exactly module-diagonal.
+- Derived the sharp uniformity parameter for module collapse:
+  `escape scale x killed Green norm`.  If it does not vanish, the module is
+  metastable and must be promoted to the next trace scale.
+- Exact replay on the frozen five-path shows that its dB local occupation is
+  zero while its entire dB coefficient, including the positive weak excess,
+  is carried by the boundary trace.  This proves portal coupling is
+  essential in any atomic compactness theorem.
 - Scope warning: `K_r>=0` remains open and is asserted nowhere.  The exact
   square is a diffuse-adjoint theorem, not a universal finite-graph affine
   separator.
