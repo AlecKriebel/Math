@@ -523,7 +523,17 @@ def source_hashes() -> dict:
         "brits_v2_pdf": HERE / "sources/brits_2607.12919v2.pdf",
         "frozen_weak_manuscript": REPO.parent / "s_tc_jc_sharp_boundary/source/paper/main.tex",
     }
-    return {name: {"path": str(path), "sha256": sha256(path)} for name, path in paths.items()}
+    records = {}
+    for name, path in paths.items():
+        try:
+            display = path.relative_to(REPO)
+        except ValueError:
+            # The frozen sharpness package is the only input outside this
+            # project directory.  Record it relative to the shared repository
+            # root so the certificate is checkout-location independent.
+            display = Path("..") / path.relative_to(REPO.parent)
+        records[name] = {"path": str(display), "sha256": sha256(path)}
+    return records
 
 
 def main() -> None:

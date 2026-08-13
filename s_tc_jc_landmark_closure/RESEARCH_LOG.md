@@ -824,3 +824,15 @@
   certificates, requires byte-for-byte equality with the committed records,
   and excludes the superseded primary-atlas audit.  The release script and
   crosswalk now name this precise scope.
+
+## 2026-08-13T02:05:00-07:00 — deterministic clean-tree normalization
+
+- The repaired full gate passed every mathematical check but correctly failed
+  its final clean-tree assertion.  Exactly two tracked records changed: the
+  convention certificate embedded the absolute checkout path, and the n3
+  manifest's recursive file walk treated a tracked dotfile differently under
+  the clean environment's Python version.
+- Both generators are now location/version invariant.  Convention source
+  names are stored relative to the project or shared repository root, and the
+  manifest explicitly excludes hidden administrative files.  No graph,
+  polynomial, rank, sign, relation, or theorem datum changed.

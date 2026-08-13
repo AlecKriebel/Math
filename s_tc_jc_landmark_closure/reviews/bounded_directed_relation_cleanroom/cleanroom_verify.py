@@ -2637,6 +2637,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             path.is_file()
             and "__pycache__" not in path.parts
             and "certificates" not in path.relative_to(review_root).parts
+            and not any(part.startswith(".") for part in path.relative_to(review_root).parts)
         ):
             manifest["files"][str(path.relative_to(review_root))] = {
                 "bytes": path.stat().st_size,
