@@ -217,3 +217,54 @@
 - The sharp active proof obligation is now `M>=0`, or directly `K>=0` if the
   marginal is too strong.  This supersedes treating `K` and factor one as
   separate conjectures.
+
+## 2026-08-13 — endpoint-versus-first-orbit lemma isolated
+
+- A sharper sufficient statement than the marginal route is
+
+  ```text
+  E_p F(q) >= E_p s,       F(y)=2Ry/(1+2Ry).
+  ```
+
+  Together with the proved first-orbit theorem `E_p F(q)<=E_p q`, this would
+  immediately give `E_p(q-s)>=0`, hence the factor-one endpoint inequality.
+- Put `h_1=(1+2Rq)^(-1)`, so that `F(q)=1-h_1`.  With the conditional edge
+  law `nu_ij=p_i R_ij/t_i`, convexity of `x -> (1+2x)^(-1)` proves
+
+  ```text
+  h_1,i <= U_i := sum_j (R_ij/t_i)/(1+2 t_i q_j).
+  ```
+
+  Consequently it is enough to prove the exact directed-edge inequality
+
+  ```text
+  E_p(h-U)
+    = sum_ij nu_ij 2h_i {t_i q_j-(Rs)_i}/(1+2t_iq_j) >= 0.       (EVF)
+  ```
+
+  The same edge law has the unweighted numerator identity
+
+  ```text
+  sum_ij nu_ij {t_iq_j-(Rs)_i} = E_p(q-s).
+  ```
+
+  Thus `(EVF)` is a cyclic sign-preservation/Picone problem for one explicit
+  rational reweighting, not a further nonlocal fixed-point problem.
+- Pointwise positivity in `(EVF)` is false on the frozen dense witnesses, so
+  any proof must retain the linked ground orders.  The inequality itself is
+  strict on both witnesses.  On every deterministic two-cycle with mass
+  ratio `a`, its exact gap is
+
+  ```text
+  3a(a-1)^2 / [2(a+2)(2a+1)(a^2+4a+1)] >= 0.
+  ```
+
+  On the singular three-type leak family it is
+
+  ```text
+  gamma theta (gamma-1) / [2(gamma theta-2gamma-theta)] > 0
+  ```
+
+  throughout the admissible nontrivial face.  A focused normalized hostile
+  optimization at orders three and four found no negative value and drove
+  only to vanishing-mass/edge faces; this is evidence, not a theorem.
