@@ -38,6 +38,21 @@ exact audits.
   remain open.  The exact residual problem is a paired comparison between
   the two full boundary-excursion coefficients and the nonlinear doubleton
   rebate propagated by the base-path Green kernel.
+- Derived the exact paired-coefficient form of that residual.  The product
+  of positive boundary rewards has its own Lagrange split into a same-edge
+  Hellinger term and a nonnegative reward-orientation square.  Hence a
+  same-edge bound on `Psi_B(D)Psi_D(D)` is algebraically insufficient.
+- Decomposing the Green source edge by edge gives explicit sufficient
+  conditions: its diagonal term must control `A_D B_D`, while each
+  off-diagonal Green product must control the arithmetic swapped sum
+  `A_D B_F+A_F B_D`.  The proved swapped cut-odds lemma controls only the
+  geometric mean, in the wrong direction for this purpose.
+- Conclusion of this route: no scalar rank-drift, separate Green, or
+  same-edge coefficient step remains.  FER now requires a global cross-edge
+  excursion/tree transport controlling the reward-orientation square; the
+  canonical synchronized labelled transport has already been refuted.
+  Direct SRR may be more economical because it retains the original root
+  orientation square.
 
 ## 2026-08-13 15:13 PDT -- root-Hellinger hostile audit and Green repayment
 

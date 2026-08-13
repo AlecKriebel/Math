@@ -339,3 +339,96 @@ positive-part product vanishes.  What (29) proves is that `Psi_B` cannot be
 localized before the two rules are coupled.  A successful proof must retain
 both full killed Green coefficients and exploit their cross-rule
 compensation.
+
+## 7. Exact paired-coefficient bottleneck
+
+The boundary trace determines exactly what a paired coefficient proof would
+have to control.  Put
+
+\[
+ A_D=h_B(D)[\Psi_B(D)]_+,qquad
+ B_D=h_D(D)[\Psi_D(D)]_+ .                            \tag{30}
+\]
+
+Equations (20)--(21), in cycle coordinates, give
+
+\[
+ [X_B]_+\le\sum_DA_D,qquad [X_D]_+\le\sum_DB_D.      \tag{31}
+\]
+
+The boundary analogue of the root Cauchy split is the exact identity
+
+\[
+ \boxed{
+ (\sum_DA_D)(\sum_DB_D)
+ =\left(\sum_D\sqrt{A_DB_D}\right)^2
+ +{1\over2}\sum_{D,F}
+  (\sqrt{A_DB_F}-\sqrt{A_FB_D})^2.}                  \tag{32}
+\]
+
+Therefore a bound on the same-edge products
+`[Psi_B(D)]_+[Psi_D(D)]_+` controls only the first term in (32).  The second
+term is a nonnegative **reward-orientation square on the target side**.  It
+cannot be discarded when proving `(FER)`.
+
+This can be stated as an explicit cross-edge sufficient target.  Decompose
+the nonnegative source in (8) by undirected base edges,
+
+\[
+ \widehat\beta=\sum_{D\in E}\widehat\beta^{,D},qquad
+ y^D=(I-L)^{-1}\widehat\beta^{,D},qquad
+ y=\sum_Dy^D.                                        \tag{33}
+\]
+
+For a fixed portal load, abbreviate
+
+\[
+ Y_D=x\cdot y^D,qquad
+ W_x=(x\cdot\mathbf1)(x\cdot e).                    \tag{34}
+\]
+
+Then (31) and expansion of `(x.y)^2` show that `(FER)` would follow from
+the coefficientwise paired inequalities
+
+\[
+ Y_D^2\ge r^3A_DB_DW_x                              \tag{35}
+\]
+
+and, for `D != F`,
+
+\[
+ \boxed{
+ 2Y_DY_F\ge r^3(A_DB_F+A_FB_D)W_x.}                  \tag{36}
+\]
+
+Condition (36) keeps both swapped edge assignments and is exactly the
+arithmetic comparison demanded by the reward product.
+
+The proved swapped cut-odds lemma does not supply (36).  It bounds the
+*product* of the two assignments and therefore their geometric mean.  But
+
+\[
+ A_DB_F+A_FB_D
+ =2\sqrt{A_DB_FA_FB_D}
+  +(\sqrt{A_DB_F}-\sqrt{A_FB_D})^2,                  \tag{37}
+\]
+
+so the geometric-mean bound goes in the insufficient direction.  The last
+square in (37) is exactly the corresponding term in (32).  Unsymmetrized
+local cut-odds control is unavailable: it is already false on the
+unweighted three-path.
+
+Thus the killed coefficients do admit an exact paired formulation,
+(35)--(36), but neither a same-edge product bound nor the sharp swapped
+local odds envelope can prove it.  The remaining mechanism would have to
+transport the reward-orientation square across different boundary edges.
+In operator language this is a global multiplicity-labelled excursion or
+paired-tree matching.  The canonical step-synchronous labelled matching is
+already refuted by the non-telescoping repeated-source factor in the paired
+root-tree note.
+
+At this point no further scalar rank-drift, marginal Green, or same-edge
+coefficient reduction remains.  Proving `(FER)` by this route is precisely
+the unresolved global cross-edge path/tree transport problem.  Retaining
+the original root-orientation square and attacking `(SRR)` directly may be
+strictly more economical.
