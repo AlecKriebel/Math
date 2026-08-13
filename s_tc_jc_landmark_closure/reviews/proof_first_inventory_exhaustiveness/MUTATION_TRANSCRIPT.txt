@@ -1,0 +1,24 @@
+Command:
+
+python3 reviews/proof_first_inventory_exhaustiveness/verify_inventory.py \
+  --mutations \
+  --write-crosswalk reviews/proof_first_inventory_exhaustiveness/normalized_root_inventory_crosswalk.jsonl.gz
+
+Result:
+
+VERIFIED fixed-full inventory grammar and frozen root streams
+n3: 5344 roots, 68584 relation states, 8 source supports,
+    normalized sha256 3ee8cfbd40544c4753222b0b97b13b95d6ca12b6161771ce410718dc0c58af26
+theta2_n4: 132 roots, 2106 relation states, 3 source supports,
+    normalized sha256 d79a847c35172374638cac935e5efed05cf37f1caf4b1bf8fe889d79a44a2904
+WROTE crosswalk records=5476
+    gzip sha256 aba9004028d5ff5d4dfed9d8def84bb25eb6cd35f0cb6baa2bfa64a71c0d7c2b
+    decompressed sha256 bbbdb6925d368e73f067202e83dbc14f2fabbc7714ed7007839b29abf9e4f8b9
+PASS omitted primitive core: rejected (required source core omitted: theta-3)
+PASS omitted minimum repair: rejected (theta2_n4 source outside rigid-support grammar)
+PASS altered incoming role: rejected (incoming mode mismatch)
+PASS altered port transport: rejected (normalized inventory commitment mismatch)
+PASS altered nonretaining restoration order: rejected (normalized inventory commitment mismatch)
+PASS duplicated root: rejected (record count 133 != 132)
+PASS deleted root: rejected (record count 131 != 132)
+VERIFIED all mandatory inventory mutations rejected
