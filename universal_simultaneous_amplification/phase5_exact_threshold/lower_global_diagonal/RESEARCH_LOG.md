@@ -135,3 +135,34 @@
   even after grouping updates in pairs.  This is a proof-route
   counterexample only; `beta+sigma<=1` and the special ground-state energy
   `K` remain open.
+
+## 2026-08-13 — exact coupled three-ground Picone reduction
+
+- Recast the two endpoint systems as four positive ground states
+  `1,a,b,v=as` of the same self-adjoint kernel, with potentials
+  `1`, `V_a=t`, `V_b=t/(2q)`, and `V_v=1/(2h)`.  The constant ground adds
+  three ratio orders omitted from the pre-crash three-ground route.
+- **PROVED:** for any two positive grounds `f,g`, the signed potential
+  difference has the exact lower-ratio-cut formula
+
+  ```text
+  sum_{g_i/f_i <= z} pi_i f_i g_i (V_g-V_f)_i
+    = sum_{g_i/f_i <= z < g_j/f_j}
+        pi_i P_ij f_i f_j (g_j/f_j-g_i/f_i) >= 0.
+  ```
+
+  This is the cut form of the discrete Picone identity.
+- **PROVED:** factor one follows if increasing label potentials on the six
+  ground-pair ratio sets pointwise dominate `d=a(q-s)` by the corresponding
+  signed potential differences.  The three-pair version on `b/a`, `s`, and
+  `as/b` is an immediate subcertificate.
+- **PROVED EXACT THEOREM OF ALTERNATIVES:** such coupled potentials fail to
+  exist if and only if a nonnegative node measure has nonnegative lower
+  prefixes and zero total for all six signed ratio orders, but has
+  negative `d`-average.  This turns the remaining proof into a finite
+  ordered four-ground lemma and specifies an exact counterexample to the
+  route, rather than another floating kernel search.
+- The factor-one inequality itself remains open.  If the ordered lemma is
+  proved, diffuse adjoint branching cannot produce positive Bd gain with
+  little-oh dB cost at fitness two, forcing any sharp lower construction to
+  preserve a genuinely non-diffuse interaction.
