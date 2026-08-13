@@ -4,6 +4,45 @@ All times are America/Los_Angeles.  No external communication or new graph
 search was used; explicitly identified stored witnesses may be replayed as
 exact audits.
 
+## 2026-08-13 15:13 PDT -- root-Hellinger hostile audit and Green repayment
+
+- Hostile-audited `(RHR)` only on named, previously stored modules.  At the
+  numerical algebraic value `R_hyb`, it survives unweighted and `1:17`
+  weighted `P3`, two weighted `P4` modules, triangles with weights `(2,3,5)`
+  and `(1,1,100)`, and several weighted `K4/C4` witnesses.  The smallest
+  observed nontrivial gap was about `0.00235` on the extreme triangle; this
+  is evidence only, not a finite-search argument.
+- Exactified the portal reduction.  All-portal `(RHR)` is equivalent to the
+  diagonal conditions `h_i>=Q_0` and one sharp two-by-two copositivity
+  inequality for each root pair.  Recorded all endpoint and interior
+  equality cases.
+- Derived the exact singleton balance pair
+  `rt_i u_Bi=sum_j P_ij(u_Bj+b^B_ij)` and
+  `u_Di=sum_j g_r(P_ji)(u_Dj+b^D_ij)`.
+- Multiplying those balances and applying Cauchy gives a root-Hellinger
+  superharmonic inequality with an explicit positive doubleton rebate.
+  In physical coordinates it is `a>=La+beta`, where `L` is an explicit
+  cross-rule base-path kernel.
+- Proved `rho(L)<1` for every connected module of order at least two and
+  `r>1`, hence the exact Green lower bound
+  `a>=(I-L)^(-1) beta=sum_m L^m beta`.  This is the first rigorous path/Green
+  comparison between the two singleton trace laws and exposes the
+  higher-rank term that a first-level proof necessarily misses.
+- The remaining universal gap is now exact: compare this doubleton-fed
+  Green lower bound with the product of the two full signed excursion
+  rewards `Q_0=r^3[bar(phi)_B]_+[bar(phi)_D]_+`.
+- Added and passed `verify_singleton_root_schur.py`: direct/two-stage Schur
+  associativity, normalization and reward identities, SRR cancellation,
+  singleton balances, exact unweighted-`P3` RHR, and two named hostile
+  order-four coefficient audits.
+- Hostile audit of the separate minimal-product-to-BDM lift found no fatal
+  circularity or limit-order flaw.  Its leaf-bundle domination should be
+  stated as a finite-state `tau -> 0` continuity/coupling bound, not as an
+  exact common-clock identity for unequal core loads.
+- Best-guess completion toward the universal minimal-product theorem: 45%.
+  The proof target is now a single Green-reward comparison, but its sign is
+  not yet established.
+
 ## 2026-08-13 15:00 PDT -- singleton-root Schur and sharp Cauchy split
 
 - Schur-compressed the exact duals from singleton/doubleton states all the

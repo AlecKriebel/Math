@@ -249,6 +249,49 @@ Each test in (21) is only a convex quadratic in one scalar.  This is a
 universal reduction of the sufficient Cauchy certificate, not a search over
 portal vectors.
 
+There is also a sharp closed form.  Put
+
+\[
+ h_i=\lambda_{B,i}\lambda_{D,i},\qquad
+ A_i=e_i(h_i-Q_0),
+\]
+
+and, for `i != j`,
+
+\[
+ B_{ij}=a_ia_j-{Q_0\over2}(e_i+e_j).                 \tag{21a}
+\]
+
+The homogeneous gap on the pair `{i,j}` is
+
+\[
+ A_ix_i^2+2B_{ij}x_ix_j+A_jx_j^2.                   \tag{21b}
+\]
+
+The elementary two-by-two copositivity criterion therefore says that the
+all-portal `(RHR)` is equivalent to
+
+\[
+ \boxed{
+ h_i\ge Q_0\quad(i\in V),\qquad
+ B_{ij}+\sqrt{A_iA_j}\ge0\quad(i\ne j).}            \tag{21c}
+\]
+
+After division by `sqrt(e_i e_j)`, the pair condition is
+
+\[
+ \boxed{
+ \sqrt{h_ih_j}+\sqrt{(h_i-Q_0)(h_j-Q_0)}
+ \ge {Q_0\over2}\left(
+  \sqrt{e_i/e_j}+\sqrt{e_j/e_i}\right).}            \tag{21d}
+\]
+
+This also records every equality case.  Endpoint equality occurs exactly
+when `h_i=Q_0`.  If `A_i,A_j>0`, an interior pair equality can occur only on
+the copositive boundary `B_ij=-sqrt(A_i A_j)`, at the portal ratio
+`x_i/x_j=sqrt(A_j/A_i)`.  Thus the exact gap and its boundary are visible;
+there is no unexamined continuum of portal vectors.
+
 ## 5. Exact obstruction to a common-conductance Picone proof
 
 One might hope that undirectedness of the original module makes the two
@@ -412,3 +455,156 @@ Therefore multiplying path likelihood ratios after independent stopping
 does not preserve the factor `r^3`.  A valid path-reversal proof of (29)
 would need a synchronized marked-history coupling or a compensating
 Radon--Nikodym current; the statewise cut envelope alone cannot supply it.
+
+## 8. Exact root-path inequality with a doubleton rebate
+
+There is nevertheless an exact cross-rule path comparison at the singleton
+level.  It is weaker than `(RHR)`, but, unlike a same-cut odds comparison,
+it couples the two stationary laws at the same root and retains the first
+higher-rank repayment term.
+
+Let `P_ij=w_ij/d_i`, `t_i=sum_j P_ji`, and
+
+\[
+ g_r(z)={z\over r-(r-1)z}.                           \tag{33}
+\]
+
+Write `b^U_ij=pi_U({i,j})` for the stationary doubleton atom.  Direct
+stationary balance at the singleton `{i}` gives
+
+\[
+ \boxed{
+ rt_i u_{B,i}=\sum_jP_{ij}(u_{B,j}+b^B_{ij}),\qquad
+ u_{D,i}=\sum_jg_r(P_{ji})(u_{D,j}+b^D_{ij}).}       \tag{34}
+\]
+
+These identities use only the exact generators.  For Bd, a singleton can
+enter `{i}` only from another singleton or a doubleton by its neutral
+arrow; its total exit rate is `rt_i`.  For dB, the probability that a
+geometric burst has union exactly `{i}` is `g_r(P_ji)`, and again only a
+singleton or doubleton can land at rank one in one update.
+
+Normalize the doubleton atoms by
+
+\[
+ \eta^U_{ij}={b^U_{ij}\over c_U},\qquad
+ \ell_i=\sqrt{\lambda_{B,i}\lambda_{D,i}}.          \tag{35}
+\]
+
+Multiplying the two equations in (34), applying Cauchy to the common
+neighbor index, and cancelling `sqrt(c_Bc_D)` gives
+
+\[
+ \boxed{
+ \sqrt{rt_i}\,\ell_i\ge
+ \sum_j\sqrt{P_{ij}g_r(P_{ji})}\,
+ \sqrt{(\lambda_{B,j}+\eta^B_{ij})
+       (\lambda_{D,j}+\eta^D_{ij})}.}                \tag{36}
+\]
+
+Define the exact nonnegative doubleton rebate
+
+\[
+ \Delta_{ij}=
+ \sqrt{(\lambda_{B,j}+\eta^B_{ij})
+       (\lambda_{D,j}+\eta^D_{ij})}-\ell_j\ge0.     \tag{37}
+\]
+
+It even obeys
+
+\[
+ \Delta_{ij}\ge\sqrt{\eta^B_{ij}\eta^D_{ij}},      \tag{38}
+\]
+
+because `(a+b)(c+d)-(sqrt(ac)+sqrt(bd))^2` is
+`(sqrt(ad)-sqrt(bc))^2`.  Consequently
+
+\[
+ \boxed{
+ \sqrt{rt_i}\,\ell_i\ge
+ \sum_j\sqrt{P_{ij}g_r(P_{ji})}(\ell_j+\Delta_{ij}).}
+                                                               \tag{39}
+\]
+
+The term `Delta_ij` is indispensable.  Dropping all doubleton atoms leaves
+only a first-level pseudo-law, and Section 6 of the preceding trace note
+constructs such pseudo-laws with positive density excess but vanishing
+singleton product.  Equation (39) locates the first exact repayment that
+those pseudo-laws omit.
+
+## 9. A convergent cross-rule Green lower bound
+
+The path inequality becomes especially simple in the physical Hellinger
+coordinates from (17).  Undirectedness gives
+
+\[
+ {P_{ij}\over P_{ji}}={d_j\over d_i}={e_i\over e_j}.
+\]
+
+Set
+
+\[
+ L_{ij}={P_{ij}\over
+ \sqrt{rt_i}\sqrt{r-(r-1)P_{ji}}},                  \tag{40}
+\]
+
+and
+
+\[
+ \beta_i={\sqrt{e_i}\over\sqrt{rt_i}}
+ \sum_j\sqrt{P_{ij}g_r(P_{ji})}\,\Delta_{ij}.      \tag{41}
+\]
+
+Then (39) is exactly the coordinatewise superharmonic inequality
+
+\[
+ \boxed{a\ge La+\beta.}                             \tag{42}
+\]
+
+For every connected module of order at least two and `r>1`, `L` is
+irreducible and `beta` is nonzero.  Indeed, every singleton root lies in the
+unique recurrent class, and a selective Bd arrow across any graph edge
+makes the corresponding doubleton atom positive.  Hence some
+`eta^B_ij>0`, while every `lambda_D,j>0`; this already makes the
+corresponding `Delta_ij` positive even if `eta^D_ij=0`.  If `w>0` is a
+positive left Perron vector of `L`,
+(42) yields
+
+\[
+ (1-\rho(L))w^Ta\ge w^T\beta>0.
+\]
+
+Thus `rho(L)<1`, and iteration of (42) proves the exact coordinatewise
+Green/path bound
+
+\[
+ \boxed{
+ a\ge (I-L)^{-1}\beta
+   =\sum_{m\ge0}L^m\beta.}                           \tag{43}
+\]
+
+This is the promised path comparison between the two root laws.  Every
+term of `L^m beta` is an explicitly weighted base-graph path ending in a
+doubleton repayment.  No state-space enumeration or trace-edge adjoint is
+used.
+
+Combining (43) with Section 4 gives one still smaller sufficient target.
+Let
+
+\[
+ \underline a=(I-L)^{-1}\beta.                      \tag{44}
+\]
+
+If the pairwise copositivity conditions (21c)--(21d) hold with `a` replaced
+by `underline a`, then they hold for `a`, and `(RHR)`, `(SRR)`, and the
+minimal stationary product follow.  The sole remaining universal gap is
+therefore a comparison between the Green lower bound (44), built from
+doubleton entrance, and
+
+\[
+ Q_0=r^3[\overline\phi_B]_+[\overline\phi_D]_+,
+\]
+
+built from the full signed excursion rewards.  This is precisely where
+ranks at least three can still matter; the root-path comparison itself is
+now exact.
