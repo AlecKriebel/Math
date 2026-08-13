@@ -51,3 +51,39 @@
 - **PROVED:** all reductions above.
 - **OPEN:** the single all-graph paired-tree sign `SAPT_n`, equivalently the
   normalized cross-rule endpoint inequality.
+
+## 2026-08-13 10:18 PDT -- weaker decisive product and local obstruction
+
+- Added the weaker target `m_L*m_D<=b_n*d_n`, which by itself rules out
+  simultaneous strict amplification at fitness two.
+- Derived both of its exact shared-arrow tree forms:
+
+  ```text
+  P_n=b_n*d_n*Z_L*Z_D-Y_L*Y_D
+     =sum_(A,B) tau_L(A)tau_D(B)(b_n*d_n-|A||B|),
+  ```
+
+  and, for the dB event-tree cofactors `theta_D`,
+
+  ```text
+  P_n^event=b_n*d_n*Z_L*Phi_D-Y_L*Theta_D
+           =sum_(A,B)tau_L(A)theta_D(B)
+                    (b_n*d_n/|B|-|A|).
+  ```
+
+- Compared the arithmetic and product root costs exactly.  Their difference
+  is `(b_n-|A|)(d_n-|B|)`; this is sign-indefinite in precisely the relevant
+  amplifier--suppressor regime.
+- Exactified the first local obstruction on unweighted `K_3`.  A supported
+  `L` skeleton has conditional mean `b_3=12/7`, while the dB state-star
+  centered at mask `001` forces its only supported in-root to mask `110`, of
+  rank two.  Both the conditional arithmetic and product gaps equal `-1/2`.
+  Therefore neither target can be signed one pair of tree skeletons at a
+  time; a proof must exchange mass globally among skeletons.
+- Weighted-P3 product fingerprint:
+
+  ```text
+  1-m_L*m_D/(b_3*d_3)=172/1705 > 0.
+  ```
+
+- **OPEN:** `PAPT_n`, the weaker decisive shared-arrow product-tree sign.

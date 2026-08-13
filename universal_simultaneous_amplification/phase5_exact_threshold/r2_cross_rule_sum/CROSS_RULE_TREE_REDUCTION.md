@@ -26,6 +26,17 @@ The derived tree sign is an exact equivalent, not a sufficient
 strengthening.  It combines the two update rules before assigning a sign.
 The sign remains **OPEN**.
 
+We also retain the weaker but already decisive normalized product target
+
+\[
+ \boxed{m_Lm_D\le b_nd_n}.                                      \tag{1a}
+\]
+
+Simultaneous strict amplification makes both normalized factors exceed one
+and therefore violates `(1a)`.  The arithmetic target `(1)` implies `(1a)`
+by AM--GM, but the product has a different and potentially more tractable
+root cost.
+
 The exact reductions proved below are:
 
 1. `(1)` is one paired positive-arborescence root-cost inequality;
@@ -128,6 +139,41 @@ Consequently `(1)` is equivalent to `mathfrak S_n(G)>=0`.  The cost in
 braces takes both signs even on the complete graph, so this is intrinsically
 a global root-transport sign.
 
+The corresponding product numerator is
+
+\[
+ \mathfrak P_n(G)=b_nd_nZ_LZ_D-Y_LY_D,                         \tag{11a}
+\]
+
+and it has the equally exact expansion
+
+\[
+ \boxed{
+ \mathfrak P_n(G)
+ =\sum_{A,B}\tau_L(A)\tau_D(B)
+       \{b_nd_n-|A||B|\}.}                                    \tag{11b}
+\]
+
+Thus
+
+\[
+ 1-\frac{m_Lm_D}{b_nd_n}
+ =\frac{\mathfrak P_n(G)}{b_nd_nZ_LZ_D}.                       \tag{11c}
+\]
+
+The two literal tree costs differ by
+
+\[
+ \{2b_nd_n-d_n|A|-b_n|B|\}-\{b_nd_n-|A||B|\}
+ =(b_n-|A|)(d_n-|B|).                                         \tag{11d}
+\]
+
+After averaging, `(11d)` is the familiar difference
+`(1-m_L/b_n)(1-m_D/d_n)` between the arithmetic and product gaps.
+It has no fixed sign precisely in the amplifier--suppressor regime.  A tree
+exchange should therefore be tested against both costs rather than assuming
+that a certificate for one automatically works for the other.
+
 There is an equivalent one-chain formulation.  Let
 
 \[
@@ -151,6 +197,53 @@ Equivalently there is a root-independent `kappa>0` such that
 Thus `(11)` is, up to the positive factor `kappa`, one ordinary directed
 arborescence root-cost sum for the product chain.  No independence
 assumption beyond the deliberately formed product generator is hidden here.
+
+### 3.1 Event-tree form of the product target
+
+The product cost has a second form which is particularly compatible with
+the geometric resolvent.  Observe `D` at its burst-event epochs.  Its event
+kernel on `Omega_D` is
+
+\[
+ K_D=I+\operatorname{diag}(|A|^{-1})Q_D.                       \tag{14a}
+\]
+
+Let
+
+\[
+ \theta_D(B)=\det(I-K_D)^{\widehat B,\widehat B},\quad
+ \Theta_D=\sum_B\theta_D(B),\quad
+ \Phi_D=\sum_B\frac{\theta_D(B)}{|B|}.                        \tag{14b}
+\]
+
+The event-Palm stationary law is proportional to `|B|pi_D(B)`, and hence
+
+\[
+ \frac1{m_D}=\frac{\Phi_D}{\Theta_D}.                         \tag{14c}
+\]
+
+It follows that `(1a)` is also equivalent to
+
+\[
+ \boxed{
+ \mathfrak P_n^{\rm event}
+ =b_nd_nZ_L\Phi_D-Y_L\Theta_D
+ =\sum_{A,B}\tau_L(A)\theta_D(B)
+       \left\{\frac{b_nd_n}{|B|}-|A|\right\}\ge0.}           \tag{14d}
+\]
+
+Indeed
+
+\[
+ \frac{\mathfrak P_n^{\rm event}}
+        {b_nd_nZ_L\Theta_D}
+ =\frac1{m_D}-\frac{m_L}{b_nd_n}
+ =\frac{b_nd_n-m_Lm_D}{b_nd_nm_D}.                            \tag{14e}
+\]
+
+Every edge of `K_D` already has the positive locked-history expansion in
+`(18)` below, so `(14d)` is the most direct tree/resolvent version of the
+weaker decisive target.
 
 ## 4. The exact shared-arrow representation
 
@@ -250,6 +343,32 @@ shared-arrow form they say that a proof must exchange mass between the
 out-`C` factor and target-locked histories, or derive a global determinant
 identity coupling the two partitions.
 
+There is an exact obstruction stated directly in the paired language.  On
+the unweighted complete triangle, take any supported `L` state-tree
+skeleton.  Since `P` is symmetric, its conditional in-root mean is exactly
+`b_3=12/7`.  For `D`, take the state-tree star centered at mask `001`, with
+the other five proper masks as leaves.  The only supported orientation into
+a root is
+
+\[
+ 010\to001,\quad011\to001,\quad100\to001,\quad
+ 101\to001,\quad001\to110,                                  \tag{20a}
+\]
+
+so its root is forced to `110`, of rank two.  Conditional on this pair of
+tree skeletons, both proposed root signs are wrong:
+
+\[
+ 2-\frac{12/7}{12/7}-\frac2{4/3}=-\frac12,
+ \qquad
+ 1-\frac{(12/7)2}{(12/7)(4/3)}=-\frac12.                    \tag{20b}
+\]
+
+Thus neither the arithmetic nor the product target can be proved one pair
+of underlying tree skeletons at a time, even at the complete graph.  Any
+successful exchange must move weight between different `D` skeletons (and
+possibly different `C` skeletons).
+
 ## 7. Exact audit
 
 `verify_cross_rule_tree_reduction.py` independently constructs `L,C,D`
@@ -263,6 +382,12 @@ from their atomic rules over `QQ`, computes every tree cofactor, verifies
 
 \[
  2-\frac{m_L}{b_3}-\frac{m_D}{d_3}=\frac{1033}{10230}>0.      \tag{21}
+\]
+
+On the same graph the normalized product gap is
+
+\[
+ 1-\frac{m_Lm_D}{b_3d_3}=\frac{172}{1705}>0.                 \tag{22}
 \]
 
 The audit is finite verification of the identities, not a proof of the open
@@ -285,3 +410,16 @@ partition in `(11)`, with the out-`C` / locked-history interpretation
 `SAPT_n` is exactly the normalized cross-rule endpoint inequality.  It would
 rule out simultaneous amplification at fitness two.  No sign theorem beyond
 this equivalence is claimed here.
+
+The weaker endpoint needed for the upper-bound program is:
+
+### Shared-Arrow Product-Tree Inequality `PAPT_n`
+
+\[
+ \boxed{\mathfrak P_n(G)\ge0,}                               \tag{PAPT_n}
+\]
+
+equivalently the event-tree sign `(14d)`.  `PAPT_n` alone rules out
+simultaneous amplification at fitness two.  It is implied by `SAPT_n`, but
+the skeleton obstruction `(20b)` shows that both still require a global
+cross-tree exchange.

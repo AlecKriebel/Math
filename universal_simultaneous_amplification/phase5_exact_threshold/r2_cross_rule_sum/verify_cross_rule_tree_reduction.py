@@ -206,6 +206,33 @@ def tree_data(generator, states):
     return cofactors, partition, first, first / partition
 
 
+def conditional_tree_root_weights(generator, skeleton):
+    """Root weights from orienting one undirected skeleton toward each root."""
+
+    size = len(generator)
+    adjacency = [[] for _ in range(size)]
+    for left, right in skeleton:
+        adjacency[left].append(right)
+        adjacency[right].append(left)
+    assert len(skeleton) == size - 1
+    answer = []
+    for root in range(size):
+        parent = {root: None}
+        queue = [root]
+        for vertex in queue:
+            for neighbor in adjacency[vertex]:
+                if neighbor not in parent:
+                    parent[neighbor] = vertex
+                    queue.append(neighbor)
+        assert len(parent) == size
+        weight = F(1)
+        for source in range(size):
+            if source != root:
+                weight *= generator[source][parent[source]]
+        answer.append(weight)
+    return answer
+
+
 def check_local_resolvents(weights):
     n = len(weights)
     size = (1 << n) - 1
@@ -267,6 +294,51 @@ def audit(weights, expected=None):
     assert delta == tree_numerator / (b * d * z_l * z_d)
     assert delta == (2 - (m_l + m_c) / b) + (m_c / b - m_d / d)
 
+    product_numerator = b * d * z_l * z_d - y_l * y_d
+    product_expanded = sum(
+        (
+            tau_l[a]
+            * tau_d[c]
+            * (b * d - (a + 1).bit_count() * (c + 1).bit_count())
+            for a in range(len(tau_l))
+            for c in range(len(tau_d))
+        ),
+        F(0),
+    )
+    product_gap = 1 - m_l * m_d / (b * d)
+    assert product_numerator == product_expanded
+    assert product_gap == product_numerator / (b * d * z_l * z_d)
+    assert delta - product_gap == (1 - m_l / b) * (1 - m_d / d)
+
+    # Event-Palm form.  Row-scaling D by 1/|A| produces K_D-I.  Its tree
+    # root law is the size-biased D law, and its reciprocal-rank mean is 1/m_D.
+    event_generator = [
+        [value / (row + 1).bit_count() for value in db[row]]
+        for row in range(len(db))
+    ]
+    theta_d = tree_cofactors(event_generator)
+    theta = sum(theta_d, F(0))
+    phi = sum(
+        (weight / (state + 1).bit_count() for state, weight in enumerate(theta_d)),
+        F(0),
+    )
+    assert phi / theta == 1 / m_d
+    event_product_numerator = b * d * z_l * phi - y_l * theta
+    event_expanded = sum(
+        (
+            tau_l[a]
+            * theta_d[c]
+            * (b * d / (c + 1).bit_count() - (a + 1).bit_count())
+            for a in range(len(tau_l))
+            for c in range(len(theta_d))
+        ),
+        F(0),
+    )
+    assert event_product_numerator == event_expanded
+    assert event_product_numerator / (b * d * z_l * theta) == (
+        1 / m_d - m_l / (b * d)
+    )
+
     # The tensor stationary law is checked without constructing its much
     # larger tree Laplacian.  The tree theorem then gives the
     # root-independent cofactor factor in equation (14) of the note.
@@ -284,6 +356,41 @@ def audit(weights, expected=None):
     if expected is not None:
         assert (b, d, m_l, m_c, m_d, delta) == expected
     return b, d, m_l, m_c, m_d, delta
+
+
+def audit_local_paired_skeleton_obstruction():
+    """Refute a pair-by-pair skeleton sign on the unweighted K3."""
+
+    weights = (
+        (0, 1, 1),
+        (1, 0, 1),
+        (1, 1, 0),
+    )
+    left, _ = unbatched_generators(weights)
+    db = db_generator(weights)
+    # Masks: 1,...,7.  Every listed L edge is bidirected and symmetric.
+    left_skeleton_masks = ((1, 2), (1, 3), (1, 4), (1, 5), (2, 6), (3, 7))
+    left_skeleton = tuple((a - 1, b - 1) for a, b in left_skeleton_masks)
+    left_roots = conditional_tree_root_weights(left, left_skeleton)
+    assert len(set(left_roots)) == 1
+    left_mean = sum(
+        ((root + 1).bit_count() * weight for root, weight in enumerate(left_roots)),
+        F(0),
+    ) / sum(left_roots, F(0))
+    assert left_mean == F(12, 7)
+
+    # Proper masks 1,...,6.  On this star, only the in-orientation rooted at
+    # mask 6 is supported: 2,3,4,5 -> 1 -> 6.
+    db_skeleton_masks = ((1, 2), (1, 3), (1, 4), (1, 5), (1, 6))
+    db_skeleton = tuple((a - 1, b - 1) for a, b in db_skeleton_masks)
+    db_roots = conditional_tree_root_weights(db, db_skeleton)
+    assert db_roots[5] == F(1, 3**5)
+    assert all(weight == 0 for root, weight in enumerate(db_roots) if root != 5)
+    db_mean = F(2)
+
+    b, d = F(12, 7), F(4, 3)
+    assert 2 - left_mean / b - db_mean / d == F(-1, 2)
+    assert 1 - left_mean * db_mean / (b * d) == F(-1, 2)
 
 
 def main():
@@ -311,11 +418,14 @@ def main():
     assert m_l == m_c == b
     assert m_d == d
     assert delta == 0
+    audit_local_paired_skeleton_obstruction()
 
     print("PASS: exact uniform-adjoint and targetwise fair-resolvent identities")
     print("PASS: marginal cofactors and paired-tree numerator")
     print("PASS: weighted-P3 normalized gap = 1033/10230")
-    print("OPEN: the all-graph shared-arrow paired-tree sign SAPT_n")
+    print("PASS: weighted-P3 normalized product gap = 172/1705")
+    print("REFUTED: pair-by-pair skeleton signs (both gaps = -1/2 on K3)")
+    print("OPEN: the all-graph shared-arrow signs SAPT_n and PAPT_n")
 
 
 if __name__ == "__main__":
