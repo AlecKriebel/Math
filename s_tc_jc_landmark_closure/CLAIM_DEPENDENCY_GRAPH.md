@@ -12,11 +12,11 @@ is independently verified.
 | U | Exhaustive duplicate-free primitive level-2 generator universe | Primitive graphs VERIFIED; the previously reported 19,290 ordinary-`T` relation count fixed the incoming boundary and is WITHDRAWN as a relation-universe count |
 | R | Canonical decorated directed relation universe with complete transports | VERIFIED: complete n3 directed universe and five-port theta-2 signature/presentation crosswalk independently regenerated; selected and marginalized incoming roles are explicit |
 | A | Graph-derived exact local algebra and complete directed atlas | VERIFIED: n3 has `10,466` canonical relations and complete graph-bound strict/root coverage; theta-2 n4 has only three necessary equal-signature pairs, partitioned `18+42+132`, with the `132`-root hard cover ending only in isomorphism |
-| S | Physical-to-descriptor submersion and coherent arbitrary-subdivision promotion | PARTIALLY VERIFIED: common anchor `A=Q_s union Q_t`, exact path-bound `A+p`/`A+p+q` streams, and ten-tensor-port bound independently replayed for all restoration-terminal anchors; the 62 direct residual anchors remain under a separate exact promotion audit |
+| S | Physical-to-descriptor submersion and coherent arbitrary-subdivision promotion | VERIFIED AFTER CORRECTION: common anchor `A=Q_s union Q_t`, exact path-bound `A+p`/`A+p+q` streams and ten-port bound for every restoration terminal, plus an independent complete one-/two-port closure of all 62 direct residual anchors |
 | Q | Structural root-to-real-incoming-port reduction | VERIFIED AFTER CORRECTION with independently chosen source and target incoming boundaries |
 | G | No-compensation local-to-global theorem and converse gluing | VERIFIED by adversarial theorem-logic review, conditional only on the fixed-full local theorem |
 | V | Independent clean-room replay and mutation suite | COMPLETE for every load-bearing mathematical gate; a fresh whole-proof release referee remains mandatory before final promotion |
-| P | Positive `S_TC` classification modulo `T` | CANDIDATE: independent n3 universe generation is closed; promotion awaits direct-anchor closure, the whole-proof referee, and clean release replay |
+| P | Positive `S_TC` classification modulo `T` | CANDIDATE FOR FINAL ADVERSARIAL RELEASE: all mathematical dependencies are closed; promotion awaits the whole-proof referee and clean release replay |
 | X | Exact `S_TC` counterexample | No candidate in exhaustive 3–5-leaf topology census; bounded model search negative only numerically |
 | F | Final sharp-boundary release | active integration of `(P and W)`; requires final referee, manuscript, and clean release replay |
 

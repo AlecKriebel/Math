@@ -1,7 +1,7 @@
 # Authoritative status
 
-Status: **OUTCOME P CANDIDATE — one direct-anchor promotion gate and final
-adversarial release review remain open**
+Status: **OUTCOME P CANDIDATE — all mathematical gates closed; final
+adversarial release review remains open**
 
 Certified foundation:
 
@@ -14,11 +14,10 @@ Certified foundation:
 The candidate result is Outcome P: standard semi-directed `S_TC` level-two JC
 topologies are identifiable modulo ordinary triangle redirection, with no
 proper one-sided generic containments.  The independent primitive generation
-of the complete three-outgoing relation universe is now closed.  The remaining
-mathematical gate is the coherent arbitrary-subdivision promotion of the 62
-direct residual anchors (34 isomorphisms and 28 ordinary `T` relations).  It is
-not labelled the final outcome until that gate, a fresh whole-proof adversarial
-referee, and a clean release replay all agree.
+of the complete three-outgoing relation universe and the formerly omitted
+direct-anchor arbitrary-subdivision case are now closed.  It is not labelled
+the final outcome until a fresh whole-proof adversarial referee and a clean
+release replay agree.
 
 The independent convention gate is **VERIFIED AFTER CORRECTION**.  The
 positive theorem, if promoted, concerns the simple binary LSA-rootable mixed
@@ -49,9 +48,10 @@ The common-anchor arbitrary-subdivision promotion is independently verified
 for all 144 restoration-terminal n3 paths and all 132 theta-2 paths: their
 `A+p` and `A+p+q` probes share one full relation and one transport, reconstruct
 each total segment word, and require at most ten tensor ports.  Promotion of
-the 62 direct n3 anchors is being audited separately and is not yet a theorem
-input.  Correct bridge incidence scaling, both one-sided cut inclusions, root
-reduction, and no cross-blob compensation were already independently verified.
+the 62 direct n3 anchors is independently closed by all 2,642 one-port and
+18,224 two-port relations, with no unresolved or non-`T` survivor.  Correct
+bridge incidence scaling, both one-sided cut inclusions, root reduction, and
+no cross-blob compensation were already independently verified.
 
 The first completed theta-2 cover was rejected by its own exact replay: its
 schema-2 canonical key merged distinct rooted graph presentations.  The full

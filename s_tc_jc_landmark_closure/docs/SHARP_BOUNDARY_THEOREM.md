@@ -270,6 +270,15 @@ verbose implementations agree on 101,148 three-outgoing and 168,582
 `theta-2` probe relations, and mutation tests reject broken parents,
 transports, orders, and probe-dependent `T` choices.
 
+The 62 direct residual anchors are a distinct four-port base case and are not
+among those restoration-terminal streams.  Independent graph insertion on
+every ordered source--target arc pair gives 2,642 `A+p` relations, exactly 314
+of which remain isomorphic or `T`-related.  Continuing exactly those parents
+gives 18,224 `A+p+q` relations, exactly 2,032 of which remain isomorphic or
+`T`-related.  Every other relation has a regenerated exact JC separator, and
+every surviving transport restricts its unique parent.  Therefore the same
+coherence proof applies to direct anchors as well as restoration terminals.
+
 This proves the left-to-right implication of (4) for arbitrary finite words.
 
 ### 5.4 Local converse

@@ -17,7 +17,7 @@ proofs.
 | `A3` | Complete three-outgoing directed local relation universe | theorem-derived primitive cores, repairs, supports, completions, and assignments | `reviews/n3_universe_generator/` independently regenerates the raw and merged universes; `reviews/bounded_directed_relation_cleanroom/` independently checks every decorated relation and algebraic label | `bash reviews/n3_universe_generator/verify.sh` and `bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh` |
 | `A4-filter` | Complete five-port theta-2 invariant filter and presentation binding | theorem-derived completion grammar | `reviews/theta2_signature_gate/` | `bash reviews/theta2_signature_gate/verify.sh` |
 | `A4-cover` | All 132 five-port nonretaining roots terminate in separation/isomorphism | schema-3 hard-cover streams | `reviews/final_hard_cover_cleanroom/` and `reviews/final_hard_cover_adversary/` | `bash reviews/final_hard_cover_cleanroom/verify_schema3_n4_full.sh` |
-| `S` | Marginal submersion, restoration direction, common anchor, coherent arbitrary words, ten-port bound | `docs/HARD_COVER_THEOREM.md` and `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | `reviews/arbitrary_subdivision_promotion_referee/` and `reviews/compact_probe_format/` | `bash reviews/arbitrary_subdivision_promotion_referee/verify_all.sh` plus compact full replays |
+| `S` | Marginal submersion, restoration direction, common anchor, coherent arbitrary words, ten-port bound | `docs/HARD_COVER_THEOREM.md` and `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | restoration terminals: `reviews/arbitrary_subdivision_promotion_referee/` and compact probe gates; direct residuals: `reviews/direct_anchor_probe_closure/` | promotion replay plus `bash reviews/direct_anchor_probe_closure/verify.sh` |
 | `T` | Ordinary triangle redirection has a common regular projective germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` | `bash reviews/triangle_redirection_cleanroom/verify_all.sh` |
 | `G` | Local-to-global necessity and simultaneous converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` | bounded semantic replay in the global bridge package |
 | `W` | All-`n` weak-but-not-strong sharpness pair | frozen `../s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier | `python3 ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py` |
@@ -42,6 +42,9 @@ proofs.
   refinements, and 132 isomorphism terminals.
 - Common-anchor probes: 101,148 three-outgoing and 168,582 theta-2 relations;
   exact maximum ten tensor ports.
+- Direct residual anchors: 62 unique bases (34 isomorphisms, 28 ordinary
+  `T`); 2,642 one-port and 18,224 two-port relations; 18,520 strict or generic
+  separators; no unresolved relation; 12/12 mutations rejected.
 
 ## Quarantined claims
 
