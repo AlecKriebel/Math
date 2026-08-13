@@ -55,7 +55,8 @@ def main() -> None:
         r"18\text{ direct isomorphisms}",
         r"42\text{ selected-incoming rooting duplicates}",
         r"132\text{ marginalized-incoming restoration roots}",
-        r"reviews/final\_outcome\_p\_referee/",
+        r"reviews/direct\_anchor\_probe\_closure/",
+        r"reviews/compact\_probe\_clean\_clone\_gate/",
     ]
     for needle in required_paper:
         require(needle in paper, f"paper scope/certificate phrase missing: {needle}")
@@ -78,6 +79,12 @@ def main() -> None:
 
     n3 = load_json("reviews/bounded_directed_relation_cleanroom/certificates/n3_full_replay.json")
     require(n3["status"] == "VERIFIED", "n3 relation gate not verified")
+    universe = load_json("reviews/n3_universe_generator/n3_universe_certificate.json")
+    require(universe["status"] == "VERIFIED", "independent n3 universe is not verified")
+    require(universe["counts"]["raw_necessary_relations"] == 10826 and
+            universe["counts"]["canonical_merged_relations"] == 10466,
+            "independent n3 universe counts changed")
+    require(all(universe["checks"].values()), "independent n3 universe check failed")
     n3_manifest = load_json("reviews/bounded_directed_relation_cleanroom/certificates/n3_manifest.json")
     for relative, record in n3_manifest["external_inputs"].items():
         path = (PROJECT / relative).resolve()
@@ -100,12 +107,56 @@ def main() -> None:
     require(quotient["marginalized_presentation_multiset_equals_frozen"],
             "theta2 root multiset mismatch")
 
+    direct = load_json("reviews/direct_anchor_probe_closure/certificates/summary.json")
+    direct_mutations = load_json(
+        "reviews/direct_anchor_probe_closure/certificates/mutation_results.json")
+    require(direct["status"] == "EXACTLY_COMPUTED", "direct-anchor package changed")
+    require(direct["counts"]["anchors"] == 62 and
+            direct["counts"]["A_plus_p"] == 2642 and
+            direct["counts"]["A_plus_p_plus_q"] == 18224 and
+            direct["separator_search"]["unresolved"] == [],
+            "direct-anchor closure is incomplete")
+    require(direct_mutations["status"] == "VERIFIED" and
+            direct_mutations["mutation_count"] == 12,
+            "direct-anchor mutation gate changed")
+
+    compact = load_json(
+        "reviews/compact_probe_clean_clone_gate/certificates/compact_only_semantic_replay.json")
+    compact_mutations = load_json(
+        "reviews/compact_probe_clean_clone_gate/certificates/mutation_tests.json")
+    require(compact["status"] == "VERIFIED", "compact-only probe gate not verified")
+    compact_families = {row["family"]: row for row in compact["families"]}
+    require(compact_families["n3"]["path_inventory_count"] == 144 and
+            sum(compact_families["n3"]["classification_counts"].values()) == 101148,
+            "compact n3 probe inventory changed")
+    require(compact_families["theta2_n4"]["path_inventory_count"] == 132 and
+            sum(compact_families["theta2_n4"]["classification_counts"].values()) == 168582 and
+            compact_families["theta2_n4"]["maximum_probe_port_count"] == 10,
+            "compact theta2 probe inventory changed")
+    require(compact_mutations["status"] == "VERIFIED" and
+            len(compact_mutations["mutations"]) == 9 and
+            all(row["rejected"] for row in compact_mutations["mutations"]),
+            "compact-only mutation gate changed")
+    tracked = load_json("reviews/compact_probe_clean_clone_gate/TRACKED_INPUTS.json")
+    require(len(tracked["inputs"]) == 50, "compact tracked-input lock changed")
+
+    release_scripts = "\n".join(
+        (PROJECT / path).read_text(encoding="utf-8")
+        for path in (
+            "reproducibility/verify_quick.sh",
+            "reproducibility/verify_full.sh",
+            "reproducibility/verify_regenerate_all.sh",
+        )
+    )
+    require("probe_extension_" not in release_scripts,
+            "active release consumes an untracked verbose probe stream")
+
     triangle = load_json("primary/certificates/jc_triangle_redirection_active.json")
     require(triangle["status"] == "VERIFIED", "triangle germ not verified")
     require(triangle["stochastic_conclusion"]["complete_open_stochastic_image_equality"] == "NOT CLAIMED",
             "triangle scope widened")
 
-    referee = PROJECT / "reviews/final_outcome_p_referee/REPORT.md"
+    referee = PROJECT / "reviews/final_outcome_p_referee_v2/REPORT.md"
     require(referee.is_file(), "whole-proof referee report missing")
     report = referee.read_text(encoding="utf-8")
     require(re.search(r"final (decision|verdict).*VERIFIED", report, re.I | re.S),
