@@ -180,6 +180,69 @@
   higher-order set dependence or group signed currents only after stationary
   averaging.
 
+## 2026-08-13 11:31 PDT -- integrated recurrence, exact split failure, and weighted-P3 theorem
+
+- Factored the marked history through the active space as `M=A*R` and
+  `K=R*A`.  With `nu_L=q_L*A` and `H(B,v)=1/|B|`, proved before assigning a
+  sign that
+
+  ```text
+  a_t=q_L*M^t*psi=nu_L*K^(t-1)*H,  t>=1.
+  ```
+
+- For the paired excess
+
+  ```text
+  s_t=(a_t+a_(t+1))/2-m_L/(b*d),
+  ```
+
+  derived the exact recurrence
+
+  ```text
+  s_(t+1)-s_t=(1/2)nu_L*K^(t-1)*(K^2-I)*H.
+  ```
+
+- If `(I-K)g=H-(1/m_D)1`, the stationary-versus-midpoint remainder is the
+  genuinely integrated two-step current
+
+  ```text
+  1/m_D-(a_1+a_2)/2=(1/2)nu_L*(K^2-I)*g.
+  ```
+
+  It also has an exact antisymmetrized flow form under
+  `F_yz=nu_L(y)K^2(y,z)`.  No pointwise Poisson residual is used.
+- **PROVED:** the finite midpoint lower bound for every weighted
+  three-vertex path.  With `u=p(1-p)` in `(0,1/4]`, its gap is
+
+  ```text
+  (a_1+a_2)/2-m_L/(b_3*d_3)
+   =3(20+402u-888u^2-833u^3-240u^4)
+      /[40(2u^2+23u+2)(4u^2+19u+4)] > 0.
+  ```
+
+  Here `u<=1/4` bounds the total negative part by
+  `(4445/16)u<402u`.
+- **EXACTLY REFUTED:** the other proposed sandwich half.  On unweighted P3,
+
+  ```text
+  a_1=4/5, a_2=47/56, (a_1+a_2)/2=459/560,
+  1/m_D=9/11,  1/m_D-(a_1+a_2)/2=-9/6160.
+  ```
+
+  Therefore the stationary current may be negative and cannot be signed
+  separately from the midpoint surplus.
+- **PROVED:** direct `PAPT_3` for every weighted P3 after recombining the
+  two terms.  The exact product gap is
+
+  ```text
+  [36-28u-295u^2-10u^3]/[8(3u+2)(4u^2+19u+4)] > 0.
+  ```
+
+  The negative part is at most `819/32<36` on `u<=1/4`.
+- **SCOPE:** the theorem is only for weighted `P3`.  The general combined
+  current sign remains open; the proposed sandwich proof is closed.
+  Best-guess completion of the all-graph upper-bound problem: **70%**.
+
 ## 2026-08-13 12:40 PDT -- common marked current and product-Poisson obstruction
 
 - Put the two rules on one literal marked space.  The complemented occupied
