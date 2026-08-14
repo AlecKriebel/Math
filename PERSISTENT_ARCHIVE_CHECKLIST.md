@@ -5,9 +5,12 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 ## Deposit object
 
 - Archive filename: `stc_jc_sharp_boundary_reproducibility.tar.gz`
-- SHA-256: recorded after the immutable source commit is replayed, in
-  `release_artifacts/RELEASE_ENVELOPE.json` and the checksum sidecar
-  `release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`.
+- SHA-256: `2ee0dd26322d83bd30bd54c02b5b2e028fc547d60579f1875124a8682a6b10f1`
+- Immutable source commit:
+  `01fdaa5bd1b9ae9f3cd39ee19226804ed68c0a4c`
+- External seal: `release_artifacts/RELEASE_ENVELOPE.json`
+- Checksum sidecar:
+  `release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`
 - Recommended title: **Reproducibility package for “Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes–Cantor Networks”**
 - Author: Alec Kriebel
 - ORCID: 0009-0001-9320-500X
@@ -19,9 +22,11 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 
 1. `stc_jc_sharp_boundary_reproducibility.tar.gz`
 2. `stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`
-3. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf`
-4. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
-5. `biorxiv_submission/SHA256SUMS`
+3. `RELEASE_ENVELOPE.json`
+4. `RELEASE_ASSET_SHA256SUMS`
+5. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf`
+6. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
+7. `biorxiv_submission/SHA256SUMS`
 
 The deterministic archive is built from the immutable source commit with:
 
@@ -34,6 +39,14 @@ The archive contains a commit-independent core manifest and
 clean-clone transcripts live in the external, non-self-referential
 `RELEASE_ENVELOPE.json`.  This avoids placing an archive's own digest inside
 the bytes being digested.
+
+Verify an isolated extraction with the pinned Python 3.14 environment (the
+safe extraction API requires Python 3.12 or newer):
+
+```bash
+python reproducibility/verify_extracted_archive.py \
+  release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz
+```
 
 ## Human selections
 
