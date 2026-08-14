@@ -1,0 +1,153 @@
+\section{Diagonal damping at a fixed Jacobian}
+\label{sec:fixedJ-independent}
+
+For a real matrix $J\in\mathbb R^{n\times n}$ and a set
+$I\subseteq[n]$, define
+\[
+  c_I(J)=(-1)^{|I|}\det J[I,I],\qquad c_\varnothing(J)=1.
+\]
+No stability assumption is made in the next theorem.
+
+\begin{theorem}[Positive diagonal damping]
+\label{thm:fixedJ-independent}
+The following statements are equivalent.
+\begin{enumerate}
+\item There is a diagonal matrix $D\succ0$ for which $J-D$ has a
+strictly positive real eigenvalue.
+\item $c_I(J)<0$ for at least one $I\subseteq[n]$.
+\end{enumerate}
+When $J$ is Hurwitz, every set in item 2 is nonempty and proper.
+\end{theorem}
+
+\begin{proof}
+Write $D(d)=\operatorname{diag}(d_1,\ldots,d_n)$.  Multilinearity of the
+determinant in its columns gives
+\begin{equation}
+ \det(D(d)-J)
+ =\sum_{I\subseteq[n]}(-1)^{|I|}\det J[I,I]
+       \prod_{j\notin I}d_j.
+ \label{eq:principal-expansion-independent}
+\end{equation}
+Indeed, choosing the diagonal column from $D(d)$ at every index in
+$I^c$ leaves the principal block $-J[I,I]$ after the corresponding rows
+and columns are deleted.  The surviving sign is $(-1)^{|I|}$.  This also
+covers $I=\varnothing$, whose contribution is $\prod_jd_j$, and
+$I=[n]$, whose contribution is $\det(-J)$.
+
+Suppose first that every $c_I(J)$ is nonnegative.  For arbitrary $D\succ0$
+and $\lambda>0$, apply \eqref{eq:principal-expansion-independent} to
+$d_i+\lambda$.  Every summand is nonnegative and the empty-set summand is
+strictly positive.  Therefore
+\[
+ \det\bigl(\lambda I-(J-D)\bigr)
+ =\det\bigl(D+\lambda I-J\bigr)>0.
+\]
+A positive real eigenvalue would make this determinant zero, so item 1 is
+impossible.  This proves the necessity of item 2 by contraposition.
+
+Now assume $c_I(J)<0$.  For $t>1$ set
+\[
+ d_j(t)=\begin{cases}
+ t,&j\notin I,\\
+ t^{-1},&j\in I.
+ \end{cases}
+\]
+The power of $t$ in the monomial indexed by $K$ in
+\eqref{eq:principal-expansion-independent} is
+\[
+ e_I(K)=|(I^c\cap K^c)|-|I\cap K^c|.
+\]
+For the chosen set $I$, $e_I(I)=n-|I|$, and direct cancellation gives
+\[
+ e_I(I)-e_I(K)=|I\triangle K|.
+\]
+Thus the $I$-term is the unique term of highest weight.  Dividing by
+$t^{n-|I|}$ and sending $t$ to infinity yields
+\[
+ t^{-(n-|I|)}\det(D(d(t))-J)\longrightarrow c_I(J)<0.
+\]
+Hence some finite $t$ gives $\det(D(d(t))-J)<0$, with every diagonal
+entry of $D(d(t))$ strictly positive.  The characteristic polynomial
+\[
+ p(\lambda)=\det\bigl(\lambda I-(J-D(d(t)))\bigr)
+\]
+is monic, is negative at $\lambda=0$, and tends to $+\infty$ as
+$\lambda\to+\infty$.  The intermediate value theorem therefore supplies
+a positive real zero.
+
+If $J$ is Hurwitz, then $c_\varnothing=1$.  Also
+$c_{[n]}=\det(-J)>0$, because it is the constant coefficient of the monic
+Hurwitz characteristic polynomial.  Neither endpoint set can witness item 2.
+The argument did not assume full rank; a zero full determinant or any other
+degenerate principal minor merely contributes a zero coefficient.
+\end{proof}
+
+\begin{remark}[Constructive witness]
+The proof is effective over $\mathbb Q$.  Once a negative signed principal
+minor is specified, test $t=2,4,8,\ldots$ until the exact determinant becomes
+negative.  Termination follows from the unique-leading-term limit.
+\end{remark}
+
+\subsection{Designated mobile coordinates}
+Let $M\subseteq[n]$ and let $D_M(d)$ have positive diagonal entries on $M$
+and zeros on $M^c$.
+
+\begin{theorem}[Positive-spectral-parameter mobile criterion]
+\label{thm:mobile-independent}
+Assume
+\[
+ \det(\lambda I-J)>0\quad\text{for every }\lambda>0.
+ \label{eq:mobile-background-positive}
+\]
+Then a matrix $D_M(d)$ exists for which $J-D_M(d)$ has a positive real
+eigenvalue if and only if there are $\lambda>0$ and
+$I\supseteq M^c$ such that
+\[
+ \det(\lambda I_{|I|}-J[I,I])<0.
+ \label{eq:mobile-block-independent}
+\]
+\end{theorem}
+
+\begin{proof}
+For fixed $\lambda>0$, expansion only in the mobile diagonal variables gives
+\begin{equation}
+ \det(\lambda I-J+D_M(d))
+ =\sum_{I\supseteq M^c}
+ \det(\lambda I_{|I|}-J[I,I])
+ \prod_{j\in M\setminus I}d_j.
+ \label{eq:mobile-expansion-independent}
+\end{equation}
+If the left side vanishes, the coefficient indexed by $[n]$ is positive by
+\eqref{eq:mobile-background-positive}; therefore at least one other
+coefficient must be negative.
+
+Conversely, fix a negative coefficient indexed by $I$.  Assign $d_j=t$ for
+$j\in M\setminus I$ and $d_j=t^{-1}$ for $j\in M\cap I$.  The exponent gap
+between the $I$-monomial and the $K$-monomial is
+\[
+ |(M\setminus I)\cap K|+|(M\cap I)\setminus K|,
+\]
+which vanishes only for $K=I$ among sets containing $M^c$.  Hence the chosen
+coefficient uniquely dominates and makes
+\eqref{eq:mobile-expansion-independent} negative for a finite $t$.  Viewed as
+the characteristic polynomial at a new spectral variable $\mu$, the same
+determinant is negative at $\mu=\lambda$ and positive for sufficiently large
+$\mu$.  It therefore has a real zero $\mu>\lambda>0$.
+\end{proof}
+
+The substitution $\lambda=0$ is not valid in general.  For
+\[
+ J=\begin{pmatrix}-10&20&-50\\1&1&0\\1&0&2\end{pmatrix},
+ \qquad M=\{1\},
+\]
+the matrix $J$ is Hurwitz, the signed determinant of the only proper block
+containing the immobile set $\{2,3\}$ is positive, but
+\[
+ J-\operatorname{diag}(257/2,0,0)
+\]
+has eigenvalue $3/2$.  At that positive spectral value,
+\[
+ \det\!\left(\tfrac32I_2-J[\{2,3\},\{2,3\}]\right)=-\tfrac14.
+\]
+This example separates Theorem~\ref{thm:mobile-independent} from any
+zero-parameter principal-minor rule.

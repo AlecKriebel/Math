@@ -1,0 +1,98 @@
+\section{Polynomial-time exact decision for fixed species count}
+\label{sec:fixed-n-independent}
+
+Fix $n$ and define
+\[
+ K=\{v\in\mathbb R_{\geq0}^m:\Gamma v=0\},\qquad
+ \Phi(v)=\Gamma\operatorname{diag}(v)Y^T,\qquad P=\Phi(K).
+\]
+
+\begin{lemma}[Relative-interior projection]
+\label{lem:ri-projection-independent}
+If $K$ contains a strictly positive vector, then
+\[
+ \{\Phi(v):v>0,\ \Gamma v=0\}=\operatorname{ri}P.
+\]
+\end{lemma}
+
+\begin{proof}
+A coordinate inequality $v_r\geq0$ is not identically tight on $K$ because a
+strictly positive point exists. Hence
+$\operatorname{ri}K=K\cap\mathbb R_{>0}^m$. For any nonempty convex set and
+linear map $T$, one has $T(\operatorname{ri}C)=\operatorname{ri}T(C)$; this
+follows by restricting $T$ to the affine hull and using the finite-dimensional
+open-mapping theorem. Apply this with $T=\Phi$.
+\end{proof}
+
+\begin{lemma}[Circuit enumeration]
+\label{lem:circuits-independent}
+Every extreme ray of $K$ has support at most
+$\operatorname{rank}\Gamma+1\leq n+1$. For fixed $n$, all extreme rays and
+their exact rational generators are computable in polynomial time in the
+reaction count and input bit length.
+\end{lemma}
+
+\begin{proof}
+An extreme ray is a support-minimal nonzero nonnegative dependency among the
+columns of $\Gamma$. If its support contained more than
+$\operatorname{rank}\Gamma+1$ columns, the restricted kernel would have
+dimension at least two. A nonproportional kernel perturbation can be scaled in
+both directions until one coordinate vanishes while retaining
+nonnegativity, decomposing the original vector into two nonproportional
+vectors of $K$, a contradiction. Thus every support is a positive circuit of
+size at most $n+1$.
+
+Enumerate all column subsets of size at most $n+1$, compute their exact
+nullspaces, and retain the one-dimensional dependencies with a same-sign
+representative whose support is minimal. This includes singleton zero columns
+and tolerates repeated columns. There are $O(m^{n+1})$ subsets. Circuit
+coordinates can be chosen as signed minors of matrices of order at most $n$;
+for fixed $n$, determinant bounds give polynomial encoding length.
+\end{proof}
+
+\begin{theorem}[Fixed-species complexity]
+\label{thm:fixed-n-independent}
+For every fixed number of species $n$, weak all-mobile stationary-Turing
+admissibility of rationally encoded classical mass-action reaction networks is
+decidable in polynomial bit complexity. The same is true for each fixed
+designated mobile set.
+\end{theorem}
+
+\begin{proof}
+First decide whether $K$ has a strictly positive point by rational linear
+programming; by homogeneity this is equivalent to feasibility of
+$\Gamma v=0$, $v_r\geq1$. If not, no positive equilibrium exists.
+
+Map every circuit generator from Lemma~\ref{lem:circuits-independent} through
+$\Phi$. Their images generate $P$ completely. The ambient dimension is
+$n^2$, fixed. In fixed dimension, exact generator-to-relative-facet conversion
+is polynomial: compute the span and lineality, quotient by the lineality,
+enumerate candidate supporting hyperplanes from bounded-size subsets of
+generators, and test them against all generators. Determinantal normal vectors
+have polynomial bit length, and the fixed-dimensional upper bound makes the
+number of candidates polynomial. Lifting back gives
+\[
+ E\operatorname{vec}(A)=0,\qquad \ell_j(A)>0
+\]
+for $A\in\operatorname{ri}P$. This description also covers lower-dimensional
+and nonpointed images, $P=\{0\}$, and the case where the quotient has no
+facets.
+
+By Lemma~\ref{lem:ri-projection-independent}, admissibility is equivalent to
+an existential formula in the $n^2$ entries of $A$ and the $n$ positive
+entries of $h$: the relative-facet conditions above, the Routh--Hurwitz
+conditions for $A\operatorname{diag}(h)$ restricted to
+$S=\operatorname{im}\Gamma$, and one negative signed principal minor of $A$.
+A rational basis of $S$ and left inverse have polynomial bit length by minor
+bounds. For fixed $n$, the number of real variables and all determinant and
+Hurwitz degrees are fixed, while the number and coefficient lengths of input
+polynomials are polynomial. Fixed-variable algorithms for the existential
+theory of the reals therefore run in polynomial bit complexity.
+
+For a designated mobile set, add one real variable $\lambda$ and the relevant
+principal-block determinant condition. The variable count remains fixed.
+\end{proof}
+
+This is an algorithmic theorem, not a finite motif or topology classification.
+For $n=1,2,3$ it gives complete polynomial-time exact decision algorithms for
+arbitrary reaction lists.

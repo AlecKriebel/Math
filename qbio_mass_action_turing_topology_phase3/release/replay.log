@@ -1,0 +1,230 @@
+[phase3] verifying frozen inherited archives
+/mnt/data/qbio_mass_action_turing_topology_phase3/frozen_inputs/qbio_mass_action_turing_topology_TALG.zip: OK
+/mnt/data/qbio_mass_action_turing_topology_phase3/frozen_inputs/qbio_mass_action_turing_topology.zip: OK
+[phase3] checking Python dependencies and compiling independent sources
+sympy=1.14.0
+numpy=2.3.5
+scipy=1.17.0
+[phase3] running independent unit tests and all falsifier campaigns in parallel
+test_algebraic_identity (test_certificates.CertificateTests.test_algebraic_identity) ... ok
+test_algebraic_strict_inequality_encoding (test_certificates.CertificateTests.test_algebraic_strict_inequality_encoding) ... ok
+test_bad_isolating_interval (test_certificates.CertificateTests.test_bad_isolating_interval) ... ok
+test_rational_nullstellensatz (test_certificates.CertificateTests.test_rational_nullstellensatz) ... ok
+test_rational_yes (test_certificates.CertificateTests.test_rational_yes) ... ok
+test_basis_similarity (test_core.IndependentMassActionTests.test_basis_similarity) ... ok
+test_feature_networks (test_core.IndependentMassActionTests.test_feature_networks) ... ok
+test_reconstruction_on_independent_row_balances (test_core.IndependentMassActionTests.test_reconstruction_on_independent_row_balances) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 17.724s
+
+OK
+--- fixed_n_falsifier.stdout ---
+{
+  "edge_case_tags": [
+    "conservation_or_rank_deficiency",
+    "opposite_pair",
+    "parallel_source",
+    "repeated_stoichiometric_column",
+    "zero_stoichiometric_column"
+  ],
+  "exact_flux_decompositions": 3644,
+  "fixtures": [
+    {
+      "name": "all_zero_gamma",
+      "rays": 2,
+      "span_rank": 0,
+      "strict_positive_flux": true
+    },
+    {
+      "name": "lower_dimensional",
+      "rays": 4,
+      "span_rank": 2,
+      "strict_positive_flux": true
+    },
+    {
+      "name": "product_cone",
+      "rays": 2,
+      "span_rank": 2,
+      "strict_positive_flux": true
+    },
+    {
+      "name": "zero_columns_and_lineality_candidate",
+      "rays": 3,
+      "span_rank": 1,
+      "strict_positive_flux": true
+    }
+  ],
+  "independent_circuit_enumerator_agreements": 1159,
+  "random_networks": 1155,
+  "scope_note": "The implementation exactly validates circuit enumeration and projection. It is a formula generator, not a bundled general CAD engine.",
+  "status": "PASS",
+  "strict_positive_flux_cases": 508,
+  "two_species_one_ray_symbolic_eliminations": 27,
+  "zero_projected_cones": 519
+}
+--- fixed_j_falsifier_full.stdout ---
+{
+  "counterexample_found": false,
+  "exhaustive_matrices": 20317,
+  "exhaustive_with_negative_signed_minor": 17001,
+  "maximum_multiscale_t": 256,
+  "numerical_root_attempts": 471,
+  "numerically_confirmed_positive_roots": 471,
+  "random_rational_matrices": 1000,
+  "random_seed": 20260813,
+  "random_with_negative_signed_minor": 938,
+  "scope": "all 1x1 entries [-4,4], all 2x2 entries [-2,2], all 3x3 entries {-1,0,1}, plus random rationals",
+  "status": "PASS"
+}
+--- fixed_j_falsifier_random4000.stdout ---
+{
+  "counterexample_found": false,
+  "exhaustive_matrices": 0,
+  "exhaustive_with_negative_signed_minor": 0,
+  "maximum_multiscale_t": 1024,
+  "numerical_root_attempts": 468,
+  "numerically_confirmed_positive_roots": 468,
+  "random_rational_matrices": 4000,
+  "random_seed": 20260814,
+  "random_with_negative_signed_minor": 3753,
+  "scope": "all 1x1 entries [-4,4], all 2x2 entries [-2,2], all 3x3 entries {-1,0,1}, plus random rationals",
+  "status": "PASS"
+}
+--- conservation_falsifier.json ---
+{
+  "neumann_mode_integral": "0",
+  "noninvariant_diffusion_example": {
+    "D_times_basis": [
+      [
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    "S_basis": [
+      [
+        1
+      ],
+      [
+        1
+      ]
+    ]
+  },
+  "random_conservative_cases": 600,
+  "status": "PASS"
+}
+--- selector_falsifier.json ---
+{
+  "boolean_selectors_checked": 30480,
+  "empty_selector_negative": false,
+  "random_rational_matrices": 840,
+  "status": "PASS"
+}
+--- row_realization_falsifier.json ---
+{
+  "counterexample_found": false,
+  "independent_row_families": 490,
+  "repeated_source_occurrences": 88,
+  "status": "PASS",
+  "strict_positive_flux_samples": 2940,
+  "zero_matrix_entries_exercised": 4069
+}
+--- partition_reduction_falsifier.json ---
+{
+  "exact_similarity_checks": 32,
+  "false_no_found": false,
+  "false_yes_found": false,
+  "numerical_NO_searches": [
+    {
+      "best_spectral_abscissa": 5.417443549558594e-05,
+      "evaluations": 2801,
+      "numbers": [
+        1,
+        2
+      ],
+      "optimizer_success": false,
+      "variables": 21
+    },
+    {
+      "best_spectral_abscissa": 4.6010362960831504e-05,
+      "evaluations": 2757,
+      "numbers": [
+        1,
+        1,
+        1
+      ],
+      "optimizer_success": false,
+      "variables": 21
+    },
+    {
+      "best_spectral_abscissa": 0.00011985844333786511,
+      "evaluations": 2911,
+      "numbers": [
+        1,
+        2,
+        4
+      ],
+      "optimizer_success": false,
+      "variables": 21
+    }
+  ],
+  "small_partition_census": {
+    "exact_interior_checks": 80,
+    "instances": 917,
+    "no": 583,
+    "yes": 334
+  },
+  "status": "PASS"
+}
+--- mobile_falsifier.stdout ---
+{
+  "constructed_negative_determinants": 1,
+  "exact_expansion_checks": 1500,
+  "exact_zero_lambda_counterexample": true,
+  "necessity_confirmations": 120,
+  "sampled_positive_eigenvalues": 120,
+  "status": "PASS"
+}
+[phase3] checking all machine-readable falsifier statuses
+fixed_j_falsifier_smoke.json: PASS
+fixed_j_falsifier_random4000.json: PASS
+conservation_falsifier.json: PASS
+selector_falsifier.json: PASS
+row_realization_falsifier.json: PASS
+partition_reduction_falsifier.json: PASS
+fixed_n_falsifier.json: PASS
+mobile_falsifier.json: PASS
+[phase3] verifying compact external-audit YES and NO examples
+{
+  "file": "external_audit/yes_partition_1_1.json",
+  "source_status": "YES",
+  "solution_count": 2,
+  "dimension": 5,
+  "beta": "23/24",
+  "interior_scale": "47/48",
+  "hurwitz_determinants": [
+    "121/12",
+    "1827553/6912",
+    "13455502949/1990656",
+    "121204941025/8957952",
+    "121204941025/214990848"
+  ]
+}
+{
+  "file": "external_audit/no_partition_1_2.json",
+  "source_status": "NO",
+  "solution_count": 0
+}
+[phase3] rebuilding all journal and external-audit PDFs in parallel
+[phase3] checking PDF page counts and LaTeX references
+manuscript/main.pdf: 10 pages
+manuscript/supplement.pdf: 16 pages
+external_audit/theorem_summary.pdf: 2 pages
+external_audit/proof_skeleton.pdf: 5 pages
+LaTeX references: PASS
+[phase3] auditing mandatory Phase III project tree
+mandatory files: 49 PASS
+[phase3] writing SHA-256 manifest
+[phase3] all independent Phase III gates passed

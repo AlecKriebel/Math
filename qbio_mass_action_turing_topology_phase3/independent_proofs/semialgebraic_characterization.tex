@@ -1,0 +1,100 @@
+\section{Mass-action parametrization and the exact decision formula}
+\label{sec:semialgebraic-independent}
+
+Consider indexed reactions $y_r\to y'_r$, with source matrix
+$Y=[y_1\ \cdots\ y_m]$ and stoichiometric matrix
+$\Gamma=[y'_1-y_1\ \cdots\ y'_m-y_m]$.  At a positive state $x^*$, put
+\[
+ v_r=k_r(x^*)^{y_r},\qquad h_i=(x_i^*)^{-1}.
+\]
+The equilibrium equation is $\Gamma v=0$.  Differentiating
+$k_rx^{y_r}$ at $x^*$ gives the row vector
+$v_ry_r^T\operatorname{diag}(h)$, and hence
+\begin{equation}
+ J(v,h)=\Gamma\operatorname{diag}(v)Y^T\operatorname{diag}(h).
+ \label{eq:mass-action-factor-independent}
+\end{equation}
+Conversely, if $v>0$, $\Gamma v=0$, and $h>0$, choose
+\[
+ x_i^*=h_i^{-1},\qquad
+ k_r=\frac{v_r}{(x^*)^{y_r}}.
+\]
+These quantities are positive, $x^*$ is an equilibrium, and direct
+differentiation recovers \eqref{eq:mass-action-factor-independent}.  Thus the
+parametrization is onto the set of positive-equilibrium Jacobians; it also
+handles the zero complex, parallel indexed reactions, autocatalysis, and
+arbitrary molecularity without modification.
+
+Set
+\[
+ A(v)=\Gamma\operatorname{diag}(v)Y^T,
+ \qquad J(v,h)=A(v)\operatorname{diag}(h).
+\]
+For $I\subseteq[n]$, column scaling gives
+\begin{equation}
+ (-1)^{|I|}\det J(v,h)[I,I]
+ =\left(\prod_{i\in I}h_i\right)
+   (-1)^{|I|}\det A(v)[I,I].
+ \label{eq:minor-scale-independent}
+\end{equation}
+
+Let $B$ and $C$ be rational matrices with columns of $B$ forming a basis of
+$S=\operatorname{im}\Gamma$ and $CB=I$.  Define
+\[
+ R(v,h)=CJ(v,h)B.
+\]
+By Section~\ref{sec:conservation-independent}, this is a coordinate matrix for
+$J(v,h)|_S$ and changes only by similarity when the rational basis changes.
+
+\begin{theorem}[Exact all-mobile characterization]
+\label{thm:semialgebraic-independent}
+A finite classical mass-action network admits a positive equilibrium that is
+Hurwitz on $S$ and a strictly positive all-species diffusion matrix producing
+a positive real nonzero-mode eigenvalue if and only if there are
+$v\in\mathbb R_{>0}^m$, $h\in\mathbb R_{>0}^n$, and a nonempty
+$I\subseteq[n]$ such that
+\begin{align}
+ \Gamma v&=0,\label{eq:char-flux-independent}\\
+ R(v,h)&\text{ is Hurwitz},\label{eq:char-hurwitz-independent}\\
+ (-1)^{|I|}\det A(v)[I,I]&<0.
+ \label{eq:char-minor-independent}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+For necessity, begin with positive rates and equilibrium.  The construction
+above gives positive $v,h$ satisfying \eqref{eq:char-flux-independent}, while
+relative homogeneous stability is exactly
+\eqref{eq:char-hurwitz-independent}.  The spatial positive real eigenvalue and
+Theorem~\ref{thm:fixedJ-independent} give a negative signed principal minor of
+$J$.  Equation~\eqref{eq:minor-scale-independent} removes $h$ from its sign and
+gives \eqref{eq:char-minor-independent}.  Under relative Hurwitz stability the
+empty and full sets cannot be witnesses, so a nonempty branch is sufficient.
+
+For sufficiency, reconstruct $x^*$ and $k$ from $v,h$.  Condition
+\eqref{eq:char-hurwitz-independent} gives homogeneous stability on the
+compatibility class.  Equations \eqref{eq:minor-scale-independent} and
+\eqref{eq:char-minor-independent} give a negative signed principal minor of the
+full Jacobian.  Theorem~\ref{thm:fixedJ-independent} supplies $D\succ0$ and a
+positive real eigenvalue of $J-D$.  Rescaling $D$ by any chosen positive
+Neumann eigenvalue realizes it as $q^2D_{\rm phys}$ for a nonzero spatial mode.
+The amplitude is unrestricted by conservation, as proved above.
+\end{proof}
+
+Routh--Hurwitz determinants of the characteristic polynomial of $R(v,h)$ turn
+\eqref{eq:char-hurwitz-independent} into finitely many strict rational
+polynomial inequalities.  Together with the linear equations and positivity,
+Theorem~\ref{thm:semialgebraic-independent} is a finite semialgebraic formula
+computed from the indexed pair $(\Gamma,Y)$.  It eliminates the original rate
+constants, the equilibrium concentrations, the diffusion coefficients, the
+domain scale, and the wave number, but it does not assert a first, simple, or
+transverse stationary crossing.
+
+For a designated mobile set $M$, replace
+\eqref{eq:char-minor-independent} by the finite disjunction
+\[
+ \exists\lambda>0,\quad I\supseteq M^c:\quad
+ \det(\lambda I_{|I|}-J(v,h)[I,I])<0.
+\]
+Proposition~\ref{prop:conservation-splitting-independent} verifies the
+background positivity required by Theorem~\ref{thm:mobile-independent}.

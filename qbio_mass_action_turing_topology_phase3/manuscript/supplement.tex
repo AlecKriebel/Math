@@ -1,0 +1,219 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Supplement to The Complexity of Stationary Diffusion-Driven Instability in Mass-Action Reaction Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Independent proofs, adversarial validation, and exact software audit},
+  pdfkeywords={mass-action kinetics, Turing instability, independent verification, NP-hardness}
+}
+
+\usepackage[nameinlink,capitalise]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\ri}{\operatorname{ri}}
+\newcommand{\rank}{\operatorname{rank}}
+
+\title{Supplement to ``The Complexity of Stationary Diffusion-Driven Instability in Mass-Action Reaction Networks''}
+\author{Alec Kriebel}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Purpose and independence protocol}
+
+This supplement records the Phase III proof reconstruction and validation
+artifacts.  The proofs below were rewritten from definitions and are organized
+in dependency order.  The independent implementation under
+\texttt{independent\_verifier/} imports no code from the inherited candidate
+package.  Agreement with the inherited implementation was treated as a
+regression check only; exact proofs and definition-level tests are the basis
+for the validation outcome.
+
+The central scope is weak stationary linear instability: some nonzero spatial
+mode has a positive real eigenvalue.  No first-crossing, wave-exclusion, or
+nonlinear pattern claim is introduced in this supplement.
+
+\input{../independent_proofs/fixed_j_theorem.tex}
+\input{../independent_proofs/conservative_reduction.tex}
+\input{../independent_proofs/semialgebraic_characterization.tex}
+\input{../independent_proofs/selector_encoding.tex}
+\input{../independent_proofs/open_cube_partition.tex}
+\input{../independent_proofs/row_splitting.tex}
+\input{../independent_proofs/scaling_elimination.tex}
+\input{../independent_proofs/row_segment_realization.tex}
+\input{../independent_proofs/mass_action_hardness.tex}
+\input{../independent_proofs/fixed_species_algorithm.tex}
+\input{../independent_proofs/certificate_completeness.tex}
+
+\section{Exact data-level separating examples}
+
+\subsection{Unsigned and signed interaction graphs}
+
+Consider
+\[
+J_0=\begin{pmatrix}
+-7&-5&-4\\-7&-7&-5\\-3&-4&-6
+\end{pmatrix},\qquad
+J_1=\begin{pmatrix}
+-7&-1&-2\\-7&-4&-4\\-3&-7&-6
+\end{pmatrix}.
+\]
+Both have the same complete all-negative signed interaction graph.  Their
+characteristic polynomials are respectively
+\[
+ \lambda^3+20\lambda^2+66\lambda+47,
+ \qquad
+ \lambda^3+17\lambda^2+53\lambda+16,
+\]
+and both satisfy the cubic Hurwitz inequalities.  Every signed principal minor
+of $J_0$ is positive.  The $(2,3)$ principal determinant of $J_1$ is $-4$, and
+\[
+ D=\diag(9,1/9,1/9),\qquad \det(D-J_1)=-281/81.
+\]
+
+Apply the fixed-row case of the row realization theorem.  Each network has the
+same ordered stoichiometric matrix
+\[
+ [e_1,-e_1,e_2,-e_2,e_3,-e_3]
+\]
+and all positive-equilibrium Jacobians are $RJ_kH$ with $R,H\succ0$ diagonal.
+For every principal set the signed determinant is multiplied by a positive
+factor.  Thus the first network can never be stationary-destabilized, while
+the second is admissible at $R=H=I$.  Levels 1 and 2 therefore fail for the
+network-wide existential problem.
+
+\subsection{The stoichiometric matrix alone}
+
+Both two-species networks use
+\[
+ \Gamma=[e_1,-e_1,e_2,-e_2].
+\]
+For the first, take sources
+\[
+ (2,0),\quad(1,2),\quad(2,0),\quad(0,3)
+\]
+and add the corresponding stoichiometric column to form each target.  Unit
+steady flux gives
+\[
+ A=\begin{pmatrix}1&-2\\2&-3\end{pmatrix},
+\]
+which is Hurwitz and has a positive first diagonal entry.  For the second, use
+sources
+\[
+ (1,0),\quad(1,0),\quad(0,1),\quad(0,1).
+\]
+The steady-flux equations pair the positive and negative reaction in each row,
+and their source contributions cancel, so $A(v)=0$ for every positive steady
+flux.  The two networks have the same indexed $\Gamma$ and opposite answers.
+
+Level 3 is a Coates graph of one selected Jacobian and is not a
+parameter-independent network representation.  Level 5, the indexed pair
+$(\Gamma,Y)$, is sufficient by the exact formula.  Level 6 determines and is
+determined by Level 5 when reaction indices and integer labels are retained.
+
+\section{Independent software architecture}
+
+\begin{center}
+\begin{tabular}{p{0.34\linewidth}p{0.56\linewidth}}
+\toprule
+File & Independent role\\
+\midrule
+\texttt{network\_parser.py} & Parses indexed source and target complexes and reconstructs $Y$ and $\Gamma$.\\
+\texttt{mass\_action\_jacobian.py} & Differentiates mass-action monomials directly and separately evaluates the flux factorization.\\
+\texttt{partition\_reduction.py} & Builds the open-cube family, row-splitting lift, exact similarity, and Hurwitz determinants.\\
+\texttt{fixed\_n\_projection.py} & Enumerates positive circuits using nullspaces and an independent cofactor implementation; maps and decomposes the projected cone.\\
+\texttt{certificate\_checks.py} & Checks rational and real-algebraic sample data and polynomial identities with mutations.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Adversarial test record}
+
+The final exact campaign includes the following independently generated tests.
+
+\begin{center}
+\begin{tabular}{p{0.23\linewidth}p{0.15\linewidth}p{0.52\linewidth}}
+\toprule
+Campaign & Count & Coverage\\
+\midrule
+Fixed-J complete bounded census & 20,317 matrices & All $1\times1$ entries in $[-4,4]$, all $2\times2$ entries in $[-2,2]$, and all $3\times3$ matrices over $\{-1,0,1\}$.\\
+Fixed-J random rational & 5,000 matrices & Negative-minor search, exact multiscale determinant witness, numerical root corroboration.\\
+Conservation & 600 & Rank-deficient invariant subspaces, direct-sum and determinant factorization checks.\\
+Boolean selectors & 30,480 & Every selector for 840 random small matrices.\\
+Mass-action row families & 490 & 2,940 exact positive steady-flux samples, both image inclusions.\\
+Partition instances & 917 & Exhaustive sign enumeration for lengths 2--6 and entries 1--6; 334 YES and 583 NO.\\
+Row-splitting exact checks & 32 & Symbolic similarity and characteristic-polynomial comparison.\\
+Fixed-$n$ circuit comparisons & 1,159 & Nullspace and cofactor implementations agree.\\
+Exact cone decompositions & 3,644 & Zero/repeated columns, lower-dimensional and zero images, conservation, and parallel reactions.\\
+Mobile theorem & 1,500 & Exact determinant expansions plus 120 constructed necessity checks and the zero-parameter counterexample.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Numerical searches were used only to seek counterexamples.  The retained
+claims do not depend on failure of a numerical optimizer to find one.
+
+\section{Certificate formats and software limitation}
+
+A YES certificate contains the reconstructed network, one principal branch,
+and all coordinates in one explicitly isolated real algebraic number field.
+The verifier checks the canonical equations and signs from the network data.
+A NO certificate contains a Real Nullstellensatz identity for every branch (or
+one selector-encoded branch).  Identity checking is exact polynomial
+arithmetic.
+
+The release does not vendor a complete cylindrical algebraic decomposition or
+Nullstellensatz generator.  Consequently the command-line classifier may
+return \texttt{UNRESOLVED} for a raw network without a supplied certificate.
+This is an implementation limitation, not a claim that failed search proves a
+NO instance.
+
+\section{Strengthening routes not claimed}
+
+\begin{enumerate}
+\item The row-realization sources have molecularity growing with the binary
+input.  Parallel bounded reactions would be pseudo-polynomial, and no exact
+finite-rate auxiliary-species gadget was proved.
+\item The source problem is \textsc{Partition}; no strongly NP-hard interval
+family was obtained.
+\item No exact addition/multiplication gadget library established
+$\exists\R$-hardness.
+\item A bounded numerical campaign found generic simple stationary first
+crossings along the constructed paths, but this neither proves universal
+primary-crossing equivalence nor excludes another path with an earlier wave
+crossing.
+\item The fixed-$n$ code implements circuit projection and exact
+preprocessing, not a complete practical general CAD solver.
+\end{enumerate}
+
+\section{Reproducibility commands}
+
+From the Phase III project root:
+\begin{verbatim}
+bash release/one_command_replay.sh
+python -m unittest discover -s independent_verifier/tests -v
+python red_team/partition_reduction_falsifier.py
+python red_team/fixed_n_falsifier.py
+python external_audit/minimal_verifier.py external_audit/yes_partition_1_1.json
+\end{verbatim}
+
+The replay also verifies that both inherited archives retain their original
+SHA-256 values, compiles both manuscripts and the external-audit PDFs, runs
+all exact tests, renders the PDFs, and checks the final manifest.
+
+\end{document}

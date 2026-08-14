@@ -1,0 +1,179 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.7in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Five-Page Proof Skeleton: Stationary Diffusion-Driven Instability in Mass-Action Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={External audit proof skeleton},
+  pdfkeywords={mass-action kinetics, stationary Turing instability, NP-hardness}
+}
+
+\pagestyle{plain}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\R}{\mathbb R}
+\title{Five-Page Proof Skeleton}
+\author{External-audit version}
+\date{13 August 2026}
+\begin{document}
+\maketitle
+\vspace{-1.3em}
+\section*{1. Mass-action and conservation}
+At a positive equilibrium, define $v_r=k_r(x^*)^{y_r}$ and
+$h_i=(x_i^*)^{-1}$.  Direct differentiation gives
+\[
+ J=\Gamma\diag(v)Y^T\diag(h),\qquad v>0,\quad\Gamma v=0,
+\]
+and every such pair is realized by $x_i^*=h_i^{-1}$ and
+$k_r=v_r/(x^*)^{y_r}$.  No deficiency or weak-reversibility assumption is
+used.
+
+Put $S=\im\Gamma$.  Since $J(\R^n)\subseteq S$, if $J|_S$ is Hurwitz then
+$J(S)=S$, $S\cap\ker J=0$, and rank--nullity gives
+$\R^n=S\oplus\ker J$.  Thus conservation zeros are semisimple and
+\[
+ \det(\lambda I-J)=\lambda^{n-\dim S}
+ \det(\lambda I_S-J|_S)>0\quad(\lambda>0).
+\]
+A nonconstant Neumann eigenfunction has zero mean.  Hence every species
+amplitude preserves integrated conservation laws; unequal diffusion generally
+does not preserve $S$, so the nonzero-mode matrix is tested on $\R^n$.
+
+Choose a rational basis $B$ of $S$ and left inverse $C$.  The reduced matrix
+$R=CJB$ represents $J|_S$.  Replacing $B$ by $BT$ conjugates $R$ by $T$, so
+Routh--Hurwitz inequalities are coordinate-independent.
+
+\newpage
+\section*{2. Fixed-J theorem and the network iff}
+For $D=\diag(d)$, multilinearity gives
+\[
+ \det(D-J)=\sum_{I\subseteq[n]}(-1)^{|I|}\det J[I,I]
+ \prod_{j\notin I}d_j.
+\]
+If every signed principal minor is nonnegative, replacing $d_j$ by
+$d_j+\lambda$ makes this determinant strictly positive for every $\lambda>0$;
+no positive real eigenvalue of $J-D$ is possible.
+
+If one coefficient indexed by $I$ is negative, set $d_j=t$ off $I$ and
+$d_j=t^{-1}$ on $I$.  Its exponent exceeds the exponent of the $K$-term by
+$|I\triangle K|$, so it uniquely dominates for large finite $t$.  Then
+$\det(D-J)<0$; the monic characteristic polynomial of $J-D$ is negative at
+zero and positive at large positive argument, yielding a positive real root.
+For Hurwitz $J$, the empty and full coefficients are positive.
+
+Now write $A(v)=\Gamma\diag(v)Y^T$.  Principal column scaling gives
+\[
+ (-1)^{|I|}\det(A(v)\diag(h))[I,I]
+ =\Bigl(\prod_{i\in I}h_i\Bigr)(-1)^{|I|}\det A(v)[I,I].
+\]
+Combining the parametrization, relative Hurwitz test, and fixed-J theorem gives
+the exact network iff.
+
+For existential-real membership, Boolean selectors satisfy
+\[
+ \det(I-S_b-S_bA(v)S_b)=(-1)^{|I|}\det A(v)[I,I].
+\]
+Rational bases have polynomial encoding length, and determinant,
+characteristic-coefficient, and Hurwitz circuits have polynomial size.
+
+\newpage
+\section*{3. Open-cube family and row splitting}
+For a `PARTITION` input, pad to $a\in\mathbb Z^m$ with $m=k^2$, and set
+\[
+ Q=I+aa^T,
+ \quad\beta=1-\frac1{2m(1+a^Ta)},
+ \quad B(x,y)=\begin{pmatrix}-kQ&y\\x^T&k\beta\end{pmatrix}.
+\]
+A partition sign vector $t$ gives $x=rt$, $y=-rt$ with
+$r=(1+\beta)/2$.  Orthogonal decomposition leaves one $2\times2$ block whose
+trace is negative and determinant $k^2(r^2-\beta)>0$.
+
+Conversely, interpolate from $(0,0)$, which has exactly one positive
+eigenvalue, to a Hurwitz endpoint.  An interior singular point satisfies
+\[
+ \theta^2x^TQ^{-1}(-y)=m\beta.
+\]
+Since $\theta<1$, the cube maximum exceeds $m\beta$.  Positive definiteness and
+Sherman--Morrison give
+\[
+ \max_{x,z\in[-1,1]^m}x^TQ^{-1}z
+ =m-\frac{\min_{t\in\{\pm1\}^m}(a^Tt)^2}{1+a^Ta}.
+\]
+The strict half-unit gap forces the integer $a^Tt$ to be zero.
+
+Write $B(q)=B_0+UX(q)$ and define
+\[
+ L(q)=\begin{pmatrix}B_0&U\\X(q)(B_0+I)&X(q)U-I\end{pmatrix}.
+\]
+Direct multiplication gives
+\[
+ \begin{pmatrix}I&0\\-X&I\end{pmatrix}L(q)
+ \begin{pmatrix}I&0\\X&I\end{pmatrix}
+ =\begin{pmatrix}B(q)&U\\0&-I\end{pmatrix}.
+\]
+Every varying row of $L$ contains exactly one scalar parameter.
+
+\newpage
+\section*{4. Scaling elimination and mass-action realization}
+Suppose $L(q)D$ is Hurwitz for some arbitrary positive diagonal $D$.  At
+$q=0$, block triangularity shows that $L(0)D$ has exactly one positive
+eigenvalue: the $-kQD_t$ block is similar to a negative definite matrix, one
+scalar block is positive, and the added block is negative.  The signed
+determinant therefore changes sign along $L(\theta q)D$.  At an interior
+singularity, nonsingularity of $D$ and
+$\det L(q)=\det B(q)$ transfer singularity to $B(\theta q)$.  The strict
+open-cube argument then forces a partition.  This eliminates arbitrary
+relative right scaling only for the constructed family.
+
+For a variable row $a+qb$, clear denominators by $c$ and choose an integer base
+complex $y^0$ so that $y^\pm=y^0+c(a\pm b)$ are nonnegative.  Use reactions
+\[
+ y^+\to y^++e_i,
+ \quad y^-\to y^-+e_i,
+ \quad y^0\to y^0-e_i.
+\]
+Every positive steady flux is $(u,w,u+w)$ and contributes
+\[
+ c((u+w)a+(u-w)b)=\rho(a+qb),
+ \quad q=\frac{u-w}{u+w}\in(-1,1).
+\]
+Every $\rho>0,q\in(-1,1)$ is attained.  Fixed rows use a two-reaction pair.
+All flux constraints separate by row, proving equality of the complete image.
+
+Thus every homogeneous Jacobian is $RL(q)H$, similar to $L(q)HR$.  A fixed
+positive diagonal entry creates a negative signed singleton minor whenever
+the Jacobian is Hurwitz.  The network is admissible exactly for YES partition
+instances.  Counts are $3m+1$ species and $8m+2$ reactions.  Molecularity is
+unbounded.
+
+\newpage
+\section*{5. Fixed n, certificates, and audit boundary}
+Let $K=\{v\geq0:\Gamma v=0\}$ and $P=\Phi(K)$ with
+$\Phi(v)=\Gamma\diag(v)Y^T$.  A strict positive flux implies
+$\operatorname{ri}K=K\cap\R_{>0}^m$; linear maps preserve relative interiors,
+so positive factors are exactly $\operatorname{ri}P$.
+
+Every extreme ray of $K$ is a support-minimal positive dependency and has
+support at most $\operatorname{rank}\Gamma+1\leq n+1$.  For fixed $n$, enumerate
+all bounded supports, compute exact minor generators, map them to $P$, and in
+fixed dimension compute span, lineality, and relative facets.  The remaining
+formula has $n^2+n$ real variables (plus one for designated mobility), fixed
+degree, and polynomial coefficient data.  Fixed-variable real-algebraic
+decision is polynomial in bit complexity.
+
+For certificates, equationize strict signs by $gz^2-1=0$ or
+$(-g)z^2-1=0$.  A YES branch has a real-algebraic sample point.  An infeasible
+branch has a Real Nullstellensatz identity
+\[
+ -1=\sum_j s_j^2+\sum_kq_kF_k.
+\]
+These objects are finite and exactly checkable; no polynomial size or practical
+general generator is claimed.
+
+The audit attacked the three critical steps independently: arbitrary right
+scaling, equality of the entire reaction row image, and fixed-dimensional bit
+complexity.  It found no central defect.  The result remains limited to weak
+stationary linear instability, weak NP-hardness, and unbounded-molecularity
+hardness; external priority and peer review remain necessary.
+\end{document}

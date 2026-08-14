@@ -1,0 +1,53 @@
+\section{A one-parameter-per-row stability lift}
+\label{sec:row-splitting-independent}
+
+Write a rational rank-one affine family as
+\[
+ B(q)=B_0+\sum_{r=1}^{d}q_ru_rw_r^T=B_0+U X(q),
+\]
+where $U=[u_1\ \cdots\ u_d]$ and the $r$th row of $X(q)$ is $q_rw_r^T$.
+For rational $\alpha>0$, define
+\[
+ L(q)=\begin{pmatrix}
+ B_0&U\\
+ X(q)(B_0+\alpha I)&X(q)U-\alpha I_d
+ \end{pmatrix}.
+ \tag{SL}
+\]
+
+\begin{lemma}[Exact row-splitting similarity]
+\label{lem:row-splitting-independent}
+With
+\[
+ P(q)=\begin{pmatrix}I&0\\-X(q)&I\end{pmatrix},\qquad
+ P(q)^{-1}=\begin{pmatrix}I&0\\X(q)&I\end{pmatrix},
+\]
+one has
+\[
+ P(q)L(q)P(q)^{-1}
+ =\begin{pmatrix}B(q)&U\\0&-\alpha I_d\end{pmatrix}.
+ \tag{SIM}
+\]
+Thus $L(q)$ is Hurwitz exactly when $B(q)$ is Hurwitz, and
+$\det L(q)=(-\alpha)^d\det B(q)$. Every top row is fixed; lower row $r$ is
+of the form $a_r+q_rb_r$ and contains no parameter $q_s$ with $s\ne r$.
+\end{lemma}
+
+\begin{proof}
+Right multiplication first gives
+\[
+ L(q)P(q)^{-1}
+ =\begin{pmatrix}
+ B_0+UX(q)&U\\
+ X(q)(B_0+UX(q))&X(q)U-\alpha I_d
+ \end{pmatrix}.
+\]
+Subtracting $X(q)$ times the top block row from the lower block row gives
+(SIM). Block triangularity proves the spectral and determinant assertions.
+The fixed part of lower row $r$ is $-\alpha e_r^T$ in the last $d$
+coordinates, while its variable part is
+\[
+ q_r\bigl(w_r^T(B_0+\alpha I)\mid w_r^TU\bigr),
+\]
+which proves the rowwise parameter claim and checks all dimensions and signs.
+\end{proof}

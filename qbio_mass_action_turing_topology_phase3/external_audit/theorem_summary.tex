@@ -1,0 +1,117 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Two-Page Theorem Summary: Stationary Diffusion-Driven Instability in Mass-Action Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={External audit summary},
+  pdfkeywords={mass-action kinetics, stationary Turing instability, complexity}
+}
+
+\pagestyle{plain}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\R}{\mathbb R}
+\title{Two-Page Theorem Summary\\\large Stationary Diffusion-Driven Instability in Classical Mass Action}
+\author{External-audit version}
+\date{13 August 2026}
+\begin{document}
+\maketitle
+\vspace{-1.5em}
+
+\paragraph{Decision problem.}
+The input is a rationally encoded finite indexed reaction network
+$y_r\to y'_r$, with source matrix $Y=[y_r]$ and stoichiometric matrix
+$\Gamma=[y'_r-y_r]$.  Write $S=\im\Gamma$.  Decide whether there are strictly
+positive rate constants, a strictly positive homogeneous equilibrium, and
+strictly positive diagonal diffusion coefficients for all species such that
+the homogeneous Jacobian is Hurwitz on $S$ and some nonzero Neumann mode has a
+strictly positive real eigenvalue.
+
+\paragraph{Exact characterization.}
+For $v>0$, $\Gamma v=0$, and $h>0$, set
+\[
+ A(v)=\Gamma\diag(v)Y^T,
+ \qquad J(v,h)=A(v)\diag(h).
+\]
+Choose any rational basis $B$ of $S$ and rational left inverse $C$, and set
+$R(v,h)=CJ(v,h)B$.  The answer is YES exactly when there are $v,h$ and a
+nonempty principal set $I$ such that
+\[
+ \Gamma v=0,
+ \qquad R(v,h)\text{ is Hurwitz},
+ \qquad (-1)^{|I|}\det A(v)[I,I]<0.
+\]
+The converse mass-action realization is
+$x_i^*=h_i^{-1}$ and $k_r=v_r/(x^*)^{y_r}$.
+
+The fixed-matrix step is
+\[
+ \exists D\succ0:\ J-D\text{ has a positive real eigenvalue}
+ \iff
+ \exists I:\ (-1)^{|I|}\det J[I,I]<0.
+\]
+It follows from the principal-minor expansion of $\det(D-J)$ and a multiscale
+assignment that makes one negative coefficient uniquely dominant.  Column
+scaling gives
+\[
+ (-1)^{|I|}\det J[I,I]
+ =\Bigl(\prod_{i\in I}h_i\Bigr)(-1)^{|I|}\det A(v)[I,I].
+\]
+
+\paragraph{Conservation.}
+If $J(\R^n)\subseteq S$ and $J|_S$ is Hurwitz, then
+$\R^n=S\oplus\ker J$ and the conservation zero eigenvalues are semisimple.
+A nonzero Neumann eigenfunction has zero spatial mean, so its species
+amplitude is unrestricted; one must test $J-q^2D$ on the full species space.
+
+\newpage
+\paragraph{Complexity.}
+A Boolean selector $b_i^2-b_i=0$, with $S_b=\diag(b)$, satisfies
+\[
+ \det(I-S_b-S_bA(v)S_b)=(-1)^{|I|}\det A(v)[I,I],
+ \qquad I=\{i:b_i=1\}.
+\]
+Determinant and Hurwitz circuits have polynomial size, so the decision problem
+belongs to the existential theory of the reals.
+
+The problem is NP-hard under a polynomial-time many-one reduction from
+\textsc{Partition}.  For $m=k^2>\ell$, the source family is
+\[
+ Q=I+aa^T,
+ \quad \beta=1-\frac1{2m(1+a^Ta)},
+ \quad B(x,y)=\begin{pmatrix}-kQ&y\\x^T&k\beta\end{pmatrix}.
+\]
+Its open cube contains a Hurwitz matrix exactly for YES partition instances.
+A row-splitting lift $L(q)$ is similar to
+$\left(\begin{smallmatrix}B(q)&U\\0&-I\end{smallmatrix}\right)$.  A separate
+determinant argument proves
+\[
+ \exists q,D\succ0:\ L(q)D\text{ Hurwitz}
+ \iff \textsc{Partition}=\text{YES},
+\]
+so arbitrary equilibrium/right scaling cannot create a false YES.  An exact
+row-segment reaction construction realizes the full family
+$\{R L(q):R\succ0\}$ with independent steady-flux constraints.  The network
+has $3m+1$ species, $8m+2$ reactions, full stoichiometric rank, and columns
+$\pm e_i$.  Its complex molecularity is unbounded, and the hardness is weak.
+
+\paragraph{Fixed species count.}
+Let $K=\{v\geq0:\Gamma v=0\}$ and
+$P=\{\Gamma\diag(v)Y^T:v\in K\}$.  If a positive flux exists, positive
+fluxes project exactly to $\operatorname{ri}P$.  Every extreme ray of $K$ is a
+positive circuit supported on at most $\operatorname{rank}\Gamma+1\leq n+1$
+reactions.  For fixed $n$ these rays, the fixed-dimensional projected cone,
+and a relative-facet description are computable in polynomial time.  The
+remaining real formula has a fixed number of variables, giving polynomial bit
+complexity for every fixed $n$.
+
+\paragraph{Certificates and limitations.}
+YES instances have finite real-algebraic sample certificates; NO instances
+have finite Real-Nullstellensatz identities.  No polynomial size or practical
+general generator is claimed.  The theorem concerns weak stationary linear
+instability only: it does not require a first, simple, or transverse crossing,
+does not exclude an earlier wave instability, does not prove a nonlinear
+patterned state, and does not give a finite motif characterization.
+\end{document}

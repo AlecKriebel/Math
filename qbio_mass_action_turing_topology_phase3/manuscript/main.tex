@@ -1,0 +1,707 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,microtype}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={The Complexity of Stationary Diffusion-Driven Instability in Mass-Action Reaction Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Exact semialgebraic characterization, NP-hardness, and fixed-species algorithms},
+  pdfkeywords={mass-action kinetics, Turing instability, reaction networks, NP-hardness, real algebraic geometry}
+}
+
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage{xcolor}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\ri}{\operatorname{ri}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hur}{\operatorname{Hur}}
+
+\title{The Complexity of Stationary Diffusion-Driven Instability\\
+\large Exact Semialgebraic Characterization, NP-Hardness, and Fixed-Species Algorithms}
+\author{Alec Kriebel\\\small \texttt{me@aleckriebel.com}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We consider a finite classical mass-action reaction network specified by its
+indexed source-complex matrix $Y$ and stoichiometric matrix $\Gamma$.  We ask
+whether some strictly positive rates and homogeneous equilibrium are stable
+relative to the stoichiometric compatibility class, while some strictly
+positive all-species diagonal diffusion matrix creates a nonzero spatial mode
+with a positive real eigenvalue.  We prove an exact characterization: there
+must exist a positive steady flux $v$, $\Gamma v=0$, and a positive reciprocal
+concentration vector $h$ such that
+$J=\Gamma\diag(v)Y^T\diag(h)$ is Hurwitz on $\im\Gamma$ and has a negative
+signed principal minor.  This yields a polynomial-size formula in the
+existential theory of the reals and finite exact certificates on both sides.
+The decision problem is NP-hard under a polynomial-time reduction from
+\textsc{Partition}.  For every fixed species count, however, it is decidable
+in polynomial bit complexity by projecting the positive flux cone into the
+fixed-dimensional space of Jacobian factors.  Conservation laws are handled
+without restricting nonzero diffusive modes to the stoichiometric subspace.
+The hardness construction uses reaction complexes of unbounded molecularity
+and proves only weak NP-hardness.  The results concern weak stationary linear
+instability; they do not assert a first or transverse crossing, exclude an
+earlier wave instability, or prove a nonlinear patterned state.
+\end{abstract}
+
+\section{Introduction}
+
+Turing's diffusion-driven instability mechanism asks how diagonal diffusion
+can destabilize a homogeneous equilibrium that is stable without spatial
+transport \cite{Turing1952}.  Matrix criteria are well developed when the
+Jacobian is fixed \cite{Satnoianu2000,WangLi2001,Anma2012,Piskovsky2024}, and
+interaction-topology studies have identified structural features and surveyed
+small networks \cite{Marcon2016,Diego2018,Scholes2019}.  A reaction network,
+however, does not specify one Jacobian.  Under classical mass action, positive
+rates and positive equilibria generate a constrained family whose entries are
+coupled by steady flux and concentration scaling.
+
+This paper studies the corresponding network-wide decision problem.  The
+input is the complete indexed pair $(\Gamma,Y)$, not merely a signed
+interaction graph.  We call the network \emph{weakly all-mobile stationary
+Turing-admissible} if there are strictly positive rate constants, a strictly
+positive homogeneous equilibrium, and strictly positive species diffusion
+coefficients such that the homogeneous Jacobian is Hurwitz on the
+stoichiometric subspace and a nonzero Neumann mode has a strictly positive real
+eigenvalue.
+
+Our first contribution is an exact reduction of this question to positive
+steady flux, relative Routh--Hurwitz inequalities, and one negative signed
+principal minor.  The diffusion coefficients, domain scale, original rates,
+and equilibrium concentrations are eliminated from the destabilization
+condition.  Boolean selector variables encode the principal-set disjunction
+with polynomial size, proving membership in the existential theory of the
+reals.
+
+The second contribution is a complexity boundary.  Starting from the
+open-interval matrix-stability construction of Blondel and Tsitsiklis
+\cite{BlondelTsitsiklis1997}, we introduce a row-splitting lift whose stability
+is unchanged and whose arbitrary positive right scalings can be eliminated by
+an inertia and determinant-continuity argument.  We then realize the entire
+lifted row family---not just one matrix---as the positive steady-flux image of
+a classical mass-action network.  This gives weak NP-hardness from
+\textsc{Partition}.  The reduction has full stoichiometric rank and unit
+stoichiometric columns, but the source and target molecularities are not
+uniformly bounded.
+
+The third contribution is tractability at fixed species count.  Extreme rays
+of the nonnegative steady-flux cone are positive circuits supported on at most
+$n+1$ reactions.  For fixed $n$ they can be enumerated in polynomial time,
+projected into $\R^{n\times n}$, and converted in fixed dimension to a
+relative-facet description.  Fixed-variable real-algebraic decision then gives
+a polynomial-time exact algorithm for every fixed $n$, including arbitrary
+one-, two-, and three-species reaction lists.
+
+\paragraph{Scope.}
+The word \emph{stationary} here means that the unstable spatial matrix has a
+positive real eigenvalue.  We do not require this to be the first loss of
+stability along a diffusion path, do not require simplicity or transversality,
+and do not exclude an earlier complex crossing.  A linear Turing instability
+also does not by itself guarantee a persistent nonlinear pattern
+\cite{Krause2024}.  No such conclusion is made.
+
+\paragraph{Relation to structural reaction-network work.}
+Graph criteria for zero-eigenvalue Turing instability under mass action
+\cite{MinchevaCraciun2013}, unstable cores and child selections under
+parameter-rich kinetics \cite{VassenaStadler2024,Vassena2025}, and recent
+sufficient conditions for networks with monomial steady-state
+parametrizations \cite{Conradi2026} are closest in subject.  Their kinetic
+classes, quantifiers, or necessity/sufficiency scopes differ from the
+arbitrary-network classical-mass-action decision problem considered here.
+The fixed-matrix principal-minor result is used in an exact form and re-proved;
+it is not presented as the principal novelty.
+
+\section{Mass-action Jacobians and conservation laws}
+\label{sec:setup}
+
+Consider indexed reactions
+\[
+ y_r\longrightarrow y'_r,\qquad r=1,\ldots,m,
+\]
+with $y_r,y'_r\in\mathbb Z_{\geq0}^n$ and $y_r\ne y'_r$.  Let
+\[
+ Y=[y_1\ \cdots\ y_m],\qquad
+ \Gamma=[y'_1-y_1\ \cdots\ y'_m-y_m],\qquad
+ S=\im\Gamma.
+\]
+With positive rates $k_r$, the vector field is
+\[
+ f_k(x)=\Gamma r_k(x),\qquad r_{k,r}(x)=k_rx^{y_r}.
+\]
+
+\begin{proposition}[Positive-equilibrium parametrization]
+\label{prop:param}
+At a positive equilibrium $x^*$ define
+\[
+ v_r=k_r(x^*)^{y_r},\qquad h_i=(x_i^*)^{-1}.
+\]
+Then $v>0$, $\Gamma v=0$, and
+\begin{equation}
+ J(v,h)=\Gamma\diag(v)Y^T\diag(h).
+ \label{eq:Jfactor}
+\end{equation}
+Conversely, every $v>0$ with $\Gamma v=0$ and every $h>0$ are realized by
+\[
+ x_i^*=h_i^{-1},\qquad k_r=\frac{v_r}{(x^*)^{y_r}}.
+\]
+\end{proposition}
+
+\begin{proof}
+The derivative of $k_rx^{y_r}$ at $x^*$ is
+$v_ry_r^T\diag(h)$, giving \eqref{eq:Jfactor}.  The equilibrium condition is
+$\Gamma v=0$.  The displayed converse rates are positive, recover the flux
+$v$, and therefore give both equilibrium and the same Jacobian.
+\end{proof}
+
+This parametrization includes zero complexes, parallel indexed reactions,
+autocatalytic reactions, conservation laws, and arbitrary molecularity.
+
+\begin{proposition}[Conservation splitting]
+\label{prop:conservation}
+Suppose $J(\R^n)\subseteq S$, $J(S)\subseteq S$, and $J|_S$ is Hurwitz.  Then
+\[
+ \R^n=S\oplus\ker J,
+ \qquad
+ J\sim\begin{pmatrix}J|_S&0\\0&0\end{pmatrix}.
+\]
+The conservation-induced zero eigenvalues are semisimple and, with
+$s=\dim S$,
+\begin{equation}
+ \det(\lambda I-J)=\lambda^{n-s}\det(\lambda I_s-J|_S)>0
+ \qquad(\lambda>0).
+ \label{eq:positive-axis}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The restriction is invertible, so $J(S)=S$.  Since the full image is contained
+in $S$, $\im J=S$.  Invertibility on $S$ gives $S\cap\ker J=\{0\}$, and
+rank--nullity gives the direct sum.  Both summands are invariant and $J$
+vanishes on its kernel.  The determinant factorization and positivity follow.
+\end{proof}
+
+Choose a rational basis matrix $B\in\Q^{n\times s}$ for $S$ and a rational
+left inverse $C$ with $CB=I_s$.  Then
+\begin{equation}
+ R(v,h)=CJ(v,h)B
+ \label{eq:reduced}
+\end{equation}
+represents $J|_S$.  If $\widetilde B=BT$, the new representation is
+$T^{-1}R(v,h)T$; all Hurwitz tests are basis-independent.
+
+For Neumann boundary conditions, a nonconstant Laplacian eigenfunction
+$\phi$ has zero spatial mean.  Therefore a perturbation $a\phi(x)$ preserves
+every integrated conservation law for every amplitude $a\in\R^n$.  The
+nonzero-mode amplitude space is the full species space, and its matrix is
+$J-q^2D$.  It would generally be wrong to restrict this matrix to $S$: unequal
+diagonal diffusion need not preserve $S$ pointwise.
+
+\section{Fixed-J diagonal damping and the exact characterization}
+\label{sec:characterization}
+
+For $I\subseteq[n]$, write
+\[
+ c_I(J)=(-1)^{|I|}\det J[I,I],\qquad c_\varnothing(J)=1.
+\]
+
+\begin{theorem}[Positive diagonal damping]
+\label{thm:fixedJ}
+For every real square matrix $J$, the following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item some $D\succ0$ diagonal makes $J-D$ have a strictly positive real
+eigenvalue;
+\item $c_I(J)<0$ for some principal set $I$.
+\end{enumerate}
+If $J$ is Hurwitz, a witnessing set is nonempty and proper.
+\end{theorem}
+
+\begin{proof}
+Multilinearity in the columns gives
+\begin{equation}
+ \det(D-J)=\sum_{I\subseteq[n]}c_I(J)\prod_{j\notin I}d_j.
+ \label{eq:principalexpansion}
+\end{equation}
+If every $c_I(J)\geq0$, then for $\lambda>0$ the same expansion with
+$d_j+\lambda$ is strictly positive because the empty-set term is positive.
+Thus $\det(\lambda I-(J-D))$ cannot vanish at a positive real $\lambda$.
+
+Conversely, fix $I$ with $c_I(J)<0$ and set $d_j=t$ off $I$ and $d_j=t^{-1}$
+on $I$.  The exponent of the $I$-term exceeds that of the $K$-term by
+$|I\triangle K|$, so the negative $I$-coefficient uniquely dominates for
+large finite $t$.  Hence $\det(D-J)<0$.  The monic characteristic polynomial
+of $J-D$ is negative at zero and tends to $+\infty$ on the positive real
+axis, so it has a positive real root.  When $J$ is Hurwitz,
+$c_\varnothing=1$ and $c_{[n]}=\det(-J)>0$.
+\end{proof}
+
+Set
+\[
+ A(v)=\Gamma\diag(v)Y^T.
+\]
+Column scaling gives, for every principal set,
+\begin{equation}
+ (-1)^{|I|}\det J(v,h)[I,I]
+ =\left(\prod_{i\in I}h_i\right)(-1)^{|I|}\det A(v)[I,I].
+ \label{eq:minoridentity}
+\end{equation}
+Equivalently, Cauchy--Binet expands the second factor as
+\[
+ (-1)^{|I|}
+ \sum_{\substack{T\subseteq[m]\\|T|=|I|}}
+ \det(\Gamma_{I,T})\det(Y_{I,T})\prod_{r\in T}v_r.
+\]
+Cancellations among reaction selections are therefore retained exactly.
+
+\begin{theorem}[Exact network characterization]
+\label{thm:maincharacterization}
+A finite classical mass-action network is weakly all-mobile stationary
+Turing-admissible if and only if there exist
+\[
+ v\in\R_{>0}^m,
+ \qquad h\in\R_{>0}^n,
+ \qquad \varnothing\ne I\subseteq[n],
+\]
+such that
+\begin{align}
+ \Gamma v&=0,\label{eq:flux}\\
+ R(v,h)&\text{ is Hurwitz},\label{eq:RH}\\
+ (-1)^{|I|}\det A(v)[I,I]&<0.\label{eq:negative}
+\end{align}
+A witnessing set is necessarily proper.
+\end{theorem}
+
+\begin{proof}
+Given a positive mass-action equilibrium, \cref{prop:param} produces $v,h$.
+Homogeneous stability relative to the compatibility class is exactly
+\eqref{eq:RH}.  If a nonzero mode has a positive real eigenvalue,
+\cref{thm:fixedJ} gives a negative signed principal minor of $J$; its sign is
+that of \eqref{eq:negative} by \eqref{eq:minoridentity}.
+
+Conversely, reconstruct $x^*$ and $k$ from $v,h$.  The reduced matrix is
+Hurwitz by \eqref{eq:RH}.  Equations \eqref{eq:minoridentity} and
+\eqref{eq:negative} give a negative signed principal minor of $J$, so
+\cref{thm:fixedJ} supplies $D\succ0$ for which $J-D$ has a positive real
+eigenvalue.  On $(0,\pi)$ this is the first nonzero Neumann mode; other domain
+scales are absorbed into $D$.  Conservation laws permit every nonzero-mode
+amplitude, as shown in \cref{sec:setup}.  The full set cannot be negative:
+its determinant is zero in the conservative case and has positive signed
+determinant in full rank.
+\end{proof}
+
+Let the characteristic polynomial of $R(v,h)$ be
+$\lambda^s+a_1\lambda^{s-1}+\cdots+a_s$.  The Routh--Hurwitz determinants
+$\Delta_1,\ldots,\Delta_s$ turn \eqref{eq:RH} into strict polynomial
+inequalities.
+
+\begin{corollary}[Existential-real membership]
+\label{cor:etrmembership}
+The arbitrary-network decision problem belongs to the existential theory of
+the reals and has a polynomial-size formula computed from $(\Gamma,Y)$.
+\end{corollary}
+
+\begin{proof}
+Introduce Boolean variables $b_i^2-b_i=0$ and
+$S_b=\diag(b_1,\ldots,b_n)$.  If $I=\{i:b_i=1\}$, simultaneous permutation of
+rows and columns gives
+\begin{equation}
+ \det(I-S_b-S_bA(v)S_b)=(-1)^{|I|}\det A(v)[I,I].
+ \label{eq:selector}
+\end{equation}
+The empty selector gives $1$ and cannot satisfy negativity.  Determinants,
+characteristic coefficients, and Hurwitz determinants have polynomial-size
+arithmetic circuits.  Rational row reduction produces $B,C$ with polynomial
+encoding length, and gate variables convert the circuits to a polynomial-size
+existential-real formula.  This proves membership only, not
+$\exists\R$-hardness.
+\end{proof}
+
+\section{NP-hardness}
+\label{sec:hardness}
+
+We reduce from \textsc{Partition}.  The source matrix family follows
+Blondel and Tsitsiklis \cite{BlondelTsitsiklis1997}; all additional lifting,
+scaling, and mass-action realization steps are stated below.
+
+Given positive integers $a_1,\ldots,a_\ell$, choose
+$k=\lceil\sqrt{\ell+1}\rceil$, put $m=k^2$, and pad to $a\in\mathbb Z^m$.
+Let
+\[
+ \gamma=a^Ta,
+ \quad Q=I_m+aa^T,
+ \quad \beta=1-\frac{1}{2m(1+\gamma)},
+\]
+and
+\begin{equation}
+ B(x,y)=\begin{pmatrix}-kQ&y\\x^T&k\beta\end{pmatrix},
+ \qquad x,y\in(-1,1)^m.
+ \label{eq:openCube}
+\end{equation}
+
+\begin{lemma}[Open-cube partition family]
+\label{lem:openCube}
+The family \eqref{eq:openCube} contains a Hurwitz matrix if and only if the
+\textsc{Partition} instance is YES.
+\end{lemma}
+
+\begin{proof}
+If $t\in\{\pm1\}^m$ and $a^Tt=0$, set
+$r=(1+\beta)/2$, $x=rt$, and $y=-rt$.  The subspace spanned by $a$ has
+eigenvalue $-k(1+\gamma)$, the complement orthogonal to $a,t$ has eigenvalue
+$-k$, and the remaining block is
+\[
+ \begin{pmatrix}-k&-rk\\rk&k\beta\end{pmatrix}.
+\]
+Its trace is negative and determinant
+$k^2(r^2-\beta)=k^2(1-\beta)^2/4>0$.
+
+Conversely, interpolate from $(x,y)=(0,0)$, where there is exactly one positive
+eigenvalue, to a Hurwitz endpoint.  The signed determinant changes sign, so
+$B(\theta x,\theta y)$ is singular for some $0<\theta<1$.  With $z=-y$, the
+Schur complement gives
+\[
+ \theta^2x^TQ^{-1}z=m\beta,
+\]
+hence $x^TQ^{-1}z>m\beta$.  Positive definiteness gives
+\[
+ \max_{x,z\in[-1,1]^m}x^TQ^{-1}z
+ =\max_{t\in\{\pm1\}^m}t^TQ^{-1}t.
+\]
+Using $Q^{-1}=I-aa^T/(1+\gamma)$, this maximum equals
+\[
+ m-\frac{\min_t(a^Tt)^2}{1+\gamma}.
+\]
+Since $m\beta=m-1/[2(1+\gamma)]$, the integer $a^Tt$ must vanish.
+\end{proof}
+
+Write the varying entries as a rank-one affine family
+$B(q)=B_0+UX(q)$, where row $r$ of $X(q)$ is $q_rw_r^T$, and define
+\begin{equation}
+ L(q)=\begin{pmatrix}
+ B_0&U\\
+ X(q)(B_0+I)&X(q)U-I
+ \end{pmatrix}.
+ \label{eq:lift}
+\end{equation}
+
+\begin{lemma}[Row splitting and right-scaling elimination]
+\label{lem:scaling}
+The lower-unitriangular matrix
+$P(q)=\left(\begin{smallmatrix}I&0\\-X(q)&I\end{smallmatrix}\right)$ satisfies
+\[
+ P(q)L(q)P(q)^{-1}
+ =\begin{pmatrix}B(q)&U\\0&-I\end{pmatrix}.
+\]
+Moreover,
+\[
+ \exists q\in(-1,1)^{2m},\ \exists D\succ0:
+ L(q)D\text{ Hurwitz}
+\]
+if and only if the partition instance is YES.
+\end{lemma}
+
+\begin{proof}
+The similarity follows by direct block multiplication.  A YES witness uses
+$D=I$.  Conversely, write $D=\diag(D_0,D_1)$.  At $q=0$ the matrix is block
+upper triangular.  Its $-kQD_{0,t}$ block is similar to a negative definite
+matrix, the scalar $k\beta d_*$ is positive, and $-D_1$ is negative definite.
+Thus $L(0)D$ has exactly one positive eigenvalue.  A Hurwitz endpoint has the
+opposite signed determinant, so some $L(\theta q)D$ with $0<\theta<1$ is
+singular.  Since $D$ is nonsingular and
+$\det L(q)=(-1)^{2m}\det B(q)$, the original matrix $B(\theta q)$ is singular.
+The strict cube argument in \cref{lem:openCube} then forces a partition.
+\end{proof}
+
+The lift has $m+1$ fixed rows and $2m$ rows of the form $a_i+q_ib_i$.
+
+\begin{lemma}[Exact mass-action row realization]
+\label{lem:rowrealization}
+For any rational independent-row family $L(q)$ with fixed and affine
+one-parameter rows, a classical mass-action network on the same number of
+species has complete positive steady-flux image
+\[
+ \{\Gamma\diag(v)Y^T:v>0,\Gamma v=0\}
+ =\{R L(q):R\succ0,\ q\in(-1,1)^d\}.
+\]
+It has full stoichiometric rank and uses two reactions per fixed row and three
+per variable row.
+\end{lemma}
+
+\begin{proof}
+For a variable row choose an integer $c$ clearing denominators of $a\pm b$ and
+a sufficiently large integer base complex $y^0$ with the row species present.
+Let $y^\pm=y^0+c(a\pm b)$ and use reactions
+\[
+ y^+\to y^++e_i,
+ \qquad y^-\to y^-+e_i,
+ \qquad y^0\to y^0-e_i.
+\]
+Positive steady fluxes have the exact form $u,w,u+w$.  Their row contribution
+is
+\[
+ c\bigl((u+w)a+(u-w)b\bigr)=\rho(a+qb),
+\quad
+\rho=c(u+w)>0,
+\quad
+q=\frac{u-w}{u+w}\in(-1,1).
+\]
+Every $\rho,q$ is recovered by
+$u=\rho(1+q)/(2c)$, $w=\rho(1-q)/(2c)$.  A fixed row uses the analogous
+$+e_i,-e_i$ pair.  Because each row uses only its own stoichiometric direction,
+$\Gamma v=0$ contains exactly these rowwise equations and no cross-row
+constraints.  Each direction $e_i$ occurs, so the rank is full.
+\end{proof}
+
+\begin{theorem}[NP-hardness]
+\label{thm:nphard}
+Weak all-mobile stationary-Turing admissibility is NP-hard under
+polynomial-time many-one reductions from \textsc{Partition}.  An instance of
+length $\ell$ produces a full-rank network with $3m+1$ species and $8m+2$
+reactions, where $m=k^2>\ell$, and every stoichiometric column is $\pm e_i$.
+All rates and equilibrium coordinates in a YES witness are strictly positive.
+The reaction molecularity is not uniformly bounded.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{lem:rowrealization} to $L(q)$.  Every positive-equilibrium Jacobian
+is
+\[
+ J=R L(q)H,
+\]
+which is similar to $L(q)HR$.  By \cref{lem:scaling}, such a Jacobian is
+Hurwitz exactly for YES partition instances.  The coordinate inherited from
+the bottom-right entry of $B$ satisfies $L_{jj}=k\beta>0$, so every realized
+Jacobian has $J_{jj}>0$ and hence a negative signed singleton minor.  A Hurwitz
+realization is therefore stationary-destabilizable by \cref{thm:fixedJ}; the
+reverse implication includes homogeneous stability by definition.
+
+There are $2(m+1)+3(2m)=8m+2$ reactions.  All rational entries, denominator
+clearing factors, and nonnegative base complexes have polynomial bit length.
+A YES witness takes the rational open-cube point, $R=H=I$, $x^*=\mathbf1$, and
+rates equal to the positive row fluxes.
+\end{proof}
+
+This theorem does not imply that no compact criterion can exist.  It implies
+that polynomial-time recognition is impossible unless $\mathrm P=\mathrm{NP}$;
+a compact condition could itself be computationally hard to evaluate.
+
+\section{Polynomial-time algorithms for fixed species count}
+\label{sec:fixedn}
+
+Define
+\[
+ K=\{v\in\R_{\geq0}^m:\Gamma v=0\},
+ \qquad
+ \Phi(v)=\Gamma\diag(v)Y^T,
+ \qquad
+ P=\Phi(K)\subseteq\R^{n\times n}.
+\]
+
+\begin{lemma}[Positive fluxes project to the relative interior]
+\label{lem:ri}
+If $K$ contains a strictly positive vector, then
+\[
+ \{\Phi(v):v>0,\Gamma v=0\}=\ri P.
+\]
+\end{lemma}
+
+\begin{proof}
+The strict point ensures that no coordinate inequality is identically tight,
+so $\ri K=K\cap\R_{>0}^m$.  Linear maps preserve relative interiors of
+nonempty convex sets \cite{Rockafellar1970}.
+\end{proof}
+
+\begin{theorem}[Fixed-species polynomial time]
+\label{thm:fixedn}
+For every fixed $n$, weak all-mobile stationary-Turing admissibility of
+rationally encoded classical mass-action networks is decidable in polynomial
+bit complexity in the reaction count and input length.  The same holds when a
+designated mobile set is included in the input.
+\end{theorem}
+
+\begin{proof}
+Strict positive-flux feasibility is a rational linear program: by homogeneity,
+it is equivalent to $\Gamma v=0$ and $v_r\geq1$.  Every extreme ray of $K$ is
+a support-minimal nonnegative dependency among columns of $\Gamma$, hence has
+support at most $\rank\Gamma+1\leq n+1$.  For fixed $n$, enumerate all such
+column subsets, compute their exact one-dimensional positive kernels, and map
+the resulting circuit rays through $\Phi$.  There are $O(m^{n+1})$ tests and
+the generators have polynomial bit length by determinant bounds.
+
+These images generate $P$ in fixed ambient dimension $n^2$.  Exact
+fixed-dimensional polyhedral algorithms compute its span, lineality, and a
+relative-facet description in polynomial time \cite{Schrijver1986}.  Thus
+$A\in\ri P$ is described by linear equations and strict rational inequalities,
+including lower-dimensional or nonpointed images.
+
+By \cref{lem:ri}, the remaining formula uses only the $n^2$ entries of $A$ and
+$n$ positive entries of $h$: relative-facet conditions, Routh--Hurwitz
+inequalities for $A\diag(h)$ on $S$, and one negative signed principal minor.
+For fixed $n$, the variable count and degrees are fixed and the number and bit
+length of coefficients are polynomial.  Fixed-variable algorithms for the
+first-order theory of the reals therefore run in polynomial bit complexity
+\cite{Renegar1992,BasuPollackRoy2006}.  A designated mobile set adds one
+spectral variable and one of constantly many block choices.
+\end{proof}
+
+The conclusion is a polynomial-time exact decision algorithm, not a finite
+structural classification.  In particular it applies to arbitrary reaction
+lists for $n=1,2,3$.
+
+\section{A biochemical two-species benchmark}
+\label{sec:example}
+
+Consider the Schnakenberg reactions
+\[
+ 0\xrightarrow{1/10}X,
+ \qquad X\xrightarrow{1}0,
+ \qquad 0\xrightarrow{9/10}Y,
+ \qquad 2X+Y\xrightarrow{1}3X.
+\]
+The mass-action equations are
+\[
+ \dot x=\frac1{10}-x+x^2y,
+ \qquad
+ \dot y=\frac9{10}-x^2y.
+\]
+At $(x^*,y^*)=(1,9/10)$ the positive flux is
+$(1/10,1,9/10,9/10)$ and the Jacobian is
+\[
+ J=\begin{pmatrix}4/5&1\\-9/5&-1\end{pmatrix}.
+\]
+Its trace is $-1/5$ and determinant is $1$, so it is Hurwitz.  The positive
+entry $J_{11}$ is a negative signed singleton minor.  Indeed, with
+\[
+ D=\diag(1/100,10),
+ \qquad
+ \det(D-J)=-\frac{689}{100}<0,
+\]
+$J-D$ has a positive real eigenvalue.  This example illustrates the exact
+network formula in the classical activator--inhibitor setting; it does not
+assert a nonlinear patterned branch.
+
+\section{Data level, designated mobility, and certificates}
+\label{sec:extensions}
+
+The exact formula uses the indexed pair $(\Gamma,Y)$.  Among the six levels
+considered---unsigned interaction graph, signed interaction graph, a Coates
+graph at one equilibrium, $\Gamma$ alone, $(\Gamma,Y)$, and the fully labeled
+indexed complex graph---Level 5 is the weakest sufficient parameter-independent
+input.  Exact separating network pairs show that Levels 1 and 2 can have the
+same signs but opposite answers and that the same ordered $\Gamma$ with
+different sources can have opposite answers.  Level 3 depends on a selected
+parameter realization.  Levels 5 and 6 are equivalent when reaction indices
+and integer labels are retained, since $y'_r=y_r+\gamma_r$.  This statement is
+only relative to these six representations.
+
+If only species in $M$ diffuse, the determinant-at-zero principal-minor rule is
+false.  The correct fixed-J statement uses a positive spectral parameter.
+
+\begin{theorem}[Designated mobile species]
+\label{thm:mobile}
+Assume $\det(\lambda I-J)>0$ for every $\lambda>0$.  There is a diagonal
+matrix positive on $M$ and zero on $M^c$ such that $J-D$ has a positive real
+eigenvalue if and only if there are $\lambda>0$ and
+$I\supseteq M^c$ with
+\[
+ \det(\lambda I_{|I|}-J[I,I])<0.
+\]
+\end{theorem}
+
+\begin{proof}
+Expanding only in mobile diagonal variables gives
+\[
+ \det(\lambda I-J+D_M)
+ =\sum_{I\supseteq M^c}
+ \det(\lambda I_{|I|}-J[I,I])
+ \prod_{j\in M\setminus I}d_j.
+\]
+A zero with positive background coefficient requires a negative coefficient.
+Conversely, the same multiscale assignment used in \cref{thm:fixedJ} uniquely
+dominates a selected negative coefficient; the determinant is then negative
+at the chosen $\lambda$ and positive for large spectral parameter, yielding a
+larger positive root.  For mass-action homogeneous stability,
+\eqref{eq:positive-axis} supplies the hypothesis.
+\end{proof}
+
+An exact counterexample to the zero-parameter substitute is
+\[
+ J=\begin{pmatrix}-10&20&-50\\1&1&0\\1&0&2\end{pmatrix},
+ \qquad M=\{1\}.
+\]
+The matrix is Hurwitz and the relevant zero-parameter signed block test is
+nonnegative, but
+$J-\diag(257/2,0,0)$ has eigenvalue $3/2$; at $\lambda=3/2$ the immobile block
+determinant is $-1/4$.
+
+\begin{theorem}[Finite exact certificates]
+\label{thm:certificates}
+Every YES instance has a finite exact real-algebraic sample certificate.
+Every NO instance has a finite exact Real-Nullstellensatz certificate.  Both
+are independently checkable.  No polynomial certificate-size bound or
+practical general certificate generator is claimed.
+\end{theorem}
+
+\begin{proof}[Proof sketch]
+Replace $g>0$ by $gz^2-1=0$ and $g<0$ by $(-g)z^2-1=0$.  A nonempty rational
+semialgebraic set has a point with real-algebraic coordinates, representable in
+one isolated number field.  If a branch has no real zero, the Real
+Nullstellensatz gives
+\[
+ -1=\sum_j s_j^2+\sum_kq_kF_k.
+\]
+Exact coefficient comparison verifies the identity.  There are finitely many
+principal branches.  Detailed formats and generation/size distinctions are in
+the supplement \cite{BochnakCosteRoy1998,BasuPollackRoy2006}.
+\end{proof}
+
+\section{Discussion}
+
+The exact characterization exposes the two coupled parts of the network-wide
+problem: positive steady-flux geometry and positive right-diagonal homogeneous
+stabilization.  The NP-hardness theorem shows that their interaction already
+encodes a classical combinatorial decision problem even when every
+stoichiometric column is a unit coordinate change.  For fixed species count,
+the flux variables can nevertheless be projected away into fixed matrix
+dimension, producing polynomial-time exact algorithms.
+
+Several directions remain open.  Most important biologically is whether the
+hardness survives bimolecular or uniformly bounded-molecularity networks.  The
+present denominator-clearing construction does not.  Strong NP-hardness and
+$\exists\R$-hardness are also unknown.  At the dynamical level, weak
+stationary admissibility has not been shown equivalent to a primary simple
+transverse stationary crossing, and no arbitrary-dimensional wave criterion
+or nonlinear patterned-state theorem is supplied.
+
+The accompanying software contains an independent constructor, verifier, and
+adversarial tests.  It does not bundle a complete general-purpose
+quantifier-elimination engine: a raw network without an attached exact
+certificate may remain unresolved computationally even though the abstract
+decision procedure terminates.
+
+\paragraph{Computational assistance and reproducibility.}
+Symbolic computation, numerical falsification, and AI-assisted drafting were
+used in developing and auditing the work.  The mathematical claims in this
+version are supported by explicit proofs and exact independently replayable
+artifacts; numerical searches are not used as proofs.
+
+\begingroup
+\small
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+\end{document}

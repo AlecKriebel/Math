@@ -1,0 +1,82 @@
+\section{The open-cube \textsc{Partition} family}
+\label{sec:open-cube-independent}
+
+Let $a_1,\ldots,a_\ell$ be positive integers. Choose
+$k=\lceil\sqrt{\ell+1}\rceil$ and $m=k^2>\ell$, and pad the input by zeros to
+$a\in\mathbb Z^m$. Put
+\[
+ \gamma=a^Ta,\qquad Q=I_m+aa^T,\qquad
+ \beta=1-\frac{1}{2m(1+\gamma)},
+\]
+and define
+\[
+ B(x,y)=\begin{pmatrix}-kQ&y\\x^T&k\beta\end{pmatrix},
+ \qquad x,y\in(-1,1)^m.
+ \tag{OC}
+\]
+
+\begin{theorem}[Exact open-cube equivalence]
+\label{thm:open-cube-independent}
+The family (OC) contains a Hurwitz matrix if and only if the original
+\textsc{Partition} instance has signs $t_i\in\{-1,1\}$ satisfying
+$\sum_{i=1}^{\ell}a_it_i=0$. A YES instance has an explicit rational witness
+strictly inside the cube.
+\end{theorem}
+
+\begin{proof}
+Suppose $t\in\{-1,1\}^m$ satisfies $a^Tt=0$; signs on padded zero entries are
+arbitrary. Set
+\[
+ r=\frac{1+\beta}{2}\in(0,1),\qquad x=rt,\qquad y=-rt.
+\]
+Since $r^2-\beta=(1-\beta)^2/4>0$, the coordinates are strictly interior.
+The vectors $a$ and $t$ are orthogonal and $\|t\|=\sqrt m=k$. On
+$\operatorname{span}(a)$ the top-left block has eigenvalue
+$-k(1+\gamma)$; on the orthogonal complement of
+$\operatorname{span}(a,t)$ it has eigenvalue $-k$. With $u=t/k$, the
+remaining invariant two-dimensional block, in the basis $(u,0),(0,1)$, is
+\[
+ \begin{pmatrix}-k&-rk\\rk&k\beta\end{pmatrix}.
+\]
+Its trace is $k(\beta-1)<0$ and determinant
+$k^2(r^2-\beta)>0$. It is Hurwitz, as are all complementary blocks.
+
+Conversely, suppose $B(x,y)$ is Hurwitz. At $(x,y)=(0,0)$ the matrix has
+$m$ negative eigenvalues and one positive eigenvalue, whereas a Hurwitz
+$(m+1)\times(m+1)$ matrix has positive signed determinant
+$(-1)^{m+1}\det B$. Therefore the signed determinant changes sign along
+$B(\theta x,\theta y)$, $0\leq\theta\leq1$, and a singular point occurs at
+some $\theta_0\in(0,1)$. Write $z=-y$. The Schur complement of $-kQ$ gives
+\[
+ \theta_0^2x^TQ^{-1}z=k^2\beta=m\beta,
+\]
+so $x^TQ^{-1}z>m\beta$.
+
+For $M=Q^{-1}\succ0$,
+\[
+ 2x^TMz\leq x^TMx+z^TMz.
+\]
+A convex quadratic reaches its maximum over a cube at a vertex, and equality
+in the bilinear upper bound is attained by taking the same maximizing vertex
+for $x$ and $z$. Hence
+\[
+ \max_{x,z\in[-1,1]^m}x^TQ^{-1}z
+ =\max_{t\in\{-1,1\}^m}t^TQ^{-1}t.
+\]
+Sherman--Morrison gives
+\[
+ Q^{-1}=I_m-\frac{aa^T}{1+\gamma},
+\]
+and therefore
+\[
+ \max_t t^TQ^{-1}t
+ =m-\frac{\min_t(a^Tt)^2}{1+\gamma}.
+\]
+Because $m\beta=m-1/[2(1+\gamma)]$, the strict inequality above implies
+$\min_t(a^Tt)^2<1/2$. The scalar $a^Tt$ is an integer, so it is zero. The
+first $\ell$ signs solve the original instance.
+\end{proof}
+
+The construction has polynomial encoding length: $k$ and $m$ are polynomial
+in $\ell$, and the entries of $Q$ and $\beta$ have bit length polynomial in
+the binary input length. The padding introduces no new partition constraint.

@@ -1,0 +1,52 @@
+\section{Eliminating arbitrary positive right scalings in the reduction family}
+\label{sec:scaling-independent}
+
+Apply the lift of Section~\ref{sec:row-splitting-independent} with $\alpha=1$
+to the $2m$ varying entries of the open-cube family. Thus $q=(y,x)$ and the
+lift has order $3m+1$.
+
+\begin{theorem}[Scaling elimination]
+\label{thm:scaling-independent}
+For the lifted \textsc{Partition} family,
+\[
+ \exists q\in(-1,1)^{2m},\ \exists D\succ0\text{ diagonal}:
+ L(q)D\text{ is Hurwitz}
+\]
+holds if and only if the \textsc{Partition} instance is YES.
+\end{theorem}
+
+\begin{proof}
+A partition witness gives a Hurwitz $B(q)$ by
+Theorem~\ref{thm:open-cube-independent}; the similarity (SIM) makes $L(q)$
+Hurwitz, so $D=I$ proves one direction.
+
+For the converse suppose $L(q)D$ is Hurwitz, and split
+$D=\operatorname{diag}(D_0,D_1)$ according to the $(m+1)+2m$ block sizes. At
+$q=0$,
+\[
+ L(0)D=\begin{pmatrix}B_0D_0&UD_1\\0&-D_1\end{pmatrix},
+ \qquad
+ B_0=\operatorname{diag}(-kQ,k\beta).
+\]
+The first $m$ coordinates of $B_0D_0$ are similar to
+$-kD_{0,t}^{1/2}QD_{0,t}^{1/2}\prec0$, while its last coordinate is the
+positive scalar $k\beta d_*>0$. The lower block $-D_1$ is negative definite.
+Consequently $L(0)D$ has exactly one positive and all remaining negative real
+eigenvalues. Its signed determinant $(-1)^{3m+1}\det(L(0)D)$ is negative;
+for the Hurwitz endpoint $L(q)D$ the same signed determinant is positive.
+Continuity supplies $\theta_0\in(0,1)$ such that
+$\det(L(\theta_0q)D)=0$.
+
+The positive diagonal $D$ is nonsingular, so $\det L(\theta_0q)=0$. The
+row-splitting determinant identity transfers this singularity to
+$B(\theta_0q)$. Writing $z=-y$, its Schur complement yields
+\[
+ \theta_0^2x^TQ^{-1}z=m\beta.
+\]
+The strict endpoint relation $\theta_0<1$ implies
+$x^TQ^{-1}z>m\beta$. The cube-maximization and integrality argument in
+Theorem~\ref{thm:open-cube-independent} then produces a partition sign
+vector. Notice that the relative magnitudes of $D$ were used only to establish
+the one-positive-eigenvalue inertia at the initial endpoint and disappear
+from the singularity equation; they cannot evade the argument.
+\end{proof}

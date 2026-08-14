@@ -1,0 +1,39 @@
+\section{Polynomial-size selector encoding}
+\label{sec:selector-independent}
+
+The explicit principal-set disjunction has exponentially many branches when
+$n$ varies.  Introduce variables $b_i$ satisfying
+$b_i^2-b_i=0$ and put $S_b=\operatorname{diag}(b_1,\ldots,b_n)$.  If
+$I=\{i:b_i=1\}$, simultaneously permute rows and columns so that $I$ comes
+first.  The matrix
+\[
+ I-S_b-S_bAS_b
+\]
+then has block form
+\[
+ \begin{pmatrix}-A[I,I]&0\\0&I_{I^c}\end{pmatrix}.
+\]
+Consequently
+\begin{equation}
+ \det(I-S_b-S_bAS_b)=(-1)^{|I|}\det A[I,I].
+ \label{eq:selector-independent}
+\end{equation}
+The empty selector gives determinant $1$, so it cannot satisfy a strict
+negative inequality.
+
+A determinant of an $n\times n$ matrix has a division-free arithmetic circuit
+of polynomial size, as do characteristic coefficients and the Hurwitz
+minors.  Rational row reduction computes a basis $B$ of
+$\operatorname{im}\Gamma$ and a left inverse $C$ with polynomial encoding
+length: all numerators and denominators are ratios of minors of the rational
+input matrix.  Replacing every arithmetic gate by a fresh variable and one
+polynomial equation gives a sparse existential formula of polynomial total
+size.  Positivity and negativity are legitimate atomic relations in
+$\exists\mathbb R$; alternatively, they can be encoded by
+\[
+ g>0\iff\exists z\ (gz^2-1=0),\qquad
+ g<0\iff\exists z\ ((-g)z^2-1=0).
+\]
+Thus the all-mobile decision problem belongs to the existential theory of the
+reals.  This is only a membership result; no $\exists\mathbb R$-hardness claim
+is used.

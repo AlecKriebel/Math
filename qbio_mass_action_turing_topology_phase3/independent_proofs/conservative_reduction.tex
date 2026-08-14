@@ -1,0 +1,66 @@
+\section{Conservation laws and nonzero spatial modes}
+\label{sec:conservation-independent}
+
+Let $S\subseteq\mathbb R^n$ be the stoichiometric subspace and suppose
+$J(\mathbb R^n)\subseteq S$, as occurs for a mass-action Jacobian
+$J=\Gamma M$ with $S=\operatorname{im}\Gamma$.
+
+\begin{proposition}[Semisimple conservation block]
+\label{prop:conservation-splitting-independent}
+If $J(S)\subseteq S$ and the restriction $J|_S$ is Hurwitz, then
+\[
+ \mathbb R^n=S\oplus\ker J,
+ \qquad
+ J\sim\begin{pmatrix}J|_S&0\\0&0\end{pmatrix}.
+\]
+In particular, all conservation-induced zero eigenvalues are semisimple and,
+with $s=\dim S$,
+\[
+ \det(\lambda I-J)=\lambda^{n-s}
+ \det(\lambda I_s-J|_S)>0\qquad(\lambda>0).
+\]
+\end{proposition}
+
+\begin{proof}
+Hurwitz stability makes $J|_S$ invertible, hence $J(S)=S$.  Because the full
+image of $J$ is contained in $S$, this forces $\operatorname{im}J=S$ and
+$\operatorname{rank}J=s$.  If $x\in S\cap\ker J$, invertibility of the
+restriction gives $x=0$.  Rank--nullity now gives
+$\dim S+\dim\ker J=n$, proving the direct sum.  Both summands are invariant,
+and $J$ vanishes on its kernel, which gives the block representation.  The
+determinant factorization follows, and its second factor is positive on the
+positive real axis because it is the characteristic polynomial of a Hurwitz
+matrix.
+\end{proof}
+
+Choose any rational basis matrix $B\in\mathbb Q^{n\times s}$ for $S$ and any
+rational left inverse $C$ with $CB=I_s$.  Since $JB$ has columns in $S$,
+\[
+ JB=B(CJB).
+\]
+Thus $R=CJB$ represents $J|_S$.  If $\widetilde B=BT$ is another basis, then a
+compatible left inverse gives
+\[
+ \widetilde R=T^{-1}RT,
+\]
+so all reduced Hurwitz tests are basis-independent.
+
+\subsection{Why a nonzero mode is not restricted to \texorpdfstring{$S$}{S}}
+For Neumann boundary conditions on a connected bounded domain, every
+nonconstant Laplacian eigenfunction $\phi$ is orthogonal to the constant
+function, hence
+\[
+ \int_\Omega\phi(x)\,dx=0.
+\]
+A linear perturbation of the form $u(x)=a\phi(x)$ therefore satisfies every
+integrated linear conservation law $\ell^T\int_\Omega u=0$ for every amplitude
+$a\in\mathbb R^n$.  The amplitude space of a nonzero mode is the full species
+space, and its matrix is $J-q^2D$.
+
+Restricting that matrix to $S$ is generally impossible.  For example, with
+$S=\operatorname{span}(1,1)^T$ and $D=\operatorname{diag}(1,2)$,
+\[
+ D(1,1)^T=(1,2)^T\notin S.
+\]
+The homogeneous reaction matrix preserves $S$; unequal species diffusion need
+not.  This distinction is essential for conservative networks.

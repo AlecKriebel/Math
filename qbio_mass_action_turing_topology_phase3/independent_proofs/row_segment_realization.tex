@@ -1,0 +1,91 @@
+\section{Exact mass-action realization of independent row segments}
+\label{sec:row-realization-independent}
+
+Let $p\geq1$. Split the row indices into fixed rows $F$ and variable rows
+$V$. For $i\in F$ prescribe $a_i\in\mathbb Q^{1\times p}$; for
+$i\in V$ prescribe $a_i,b_i\in\mathbb Q^{1\times p}$. Define $L(q)$ by
+\[
+ L_i(q)=a_i\quad(i\in F),\qquad
+ L_i(q)=a_i+q_i b_i\quad(i\in V),
+ \qquad -1<q_i<1.
+\]
+
+\begin{theorem}[Row-segment realization]
+\label{thm:row-realization-independent}
+There is an indexed classical mass-action network on exactly $p$ species,
+with nonnegative integer source and target complexes and stoichiometric
+columns in $\{\pm e_1,\ldots,\pm e_p\}$, whose complete positive steady-flux
+Jacobian-factor image is
+\[
+ \bigl\{\Gamma\operatorname{diag}(v)Y^T:
+          v>0,\ \Gamma v=0\bigr\}
+ =\bigl\{R L(q):R\succ0\text{ diagonal},\ q\in(-1,1)^{|V|}\bigr\}.
+ \tag{RS}
+\]
+The network has full stoichiometric rank. It uses $2|F|+3|V|$ reactions,
+and its encoding length is polynomial in the rational input length.
+\end{theorem}
+
+\begin{proof}
+Fix a variable row $i$. Choose an integer $c_i>0$ clearing the denominators
+of both $a_i+b_i$ and $a_i-b_i$. Choose a nonnegative integer base complex
+$y_i^0$ with $(y_i^0)_i\geq1$ and large enough componentwise that
+\[
+ y_i^+=y_i^0+c_i(a_i+b_i),\qquad
+ y_i^-=y_i^0+c_i(a_i-b_i)
+\]
+are nonnegative integer vectors. Add the three indexed reactions
+\[
+ y_i^+\longrightarrow y_i^++e_i,\qquad
+ y_i^-\longrightarrow y_i^-+e_i,\qquad
+ y_i^0\longrightarrow y_i^0-e_i.
+ \tag{RSi}
+\]
+Their stoichiometric columns are $e_i,e_i,-e_i$. If their positive fluxes
+are $u_i,w_i,s_i$, the $i$th steady-flux equation is exactly
+$s_i=u_i+w_i$. Their contribution to row $i$ of
+$\Gamma\operatorname{diag}(v)Y^T$ is therefore
+\begin{align*}
+ u_i(y_i^+)^T+w_i(y_i^-)^T-(u_i+w_i)(y_i^0)^T
+ &=c_i\bigl((u_i+w_i)a_i+(u_i-w_i)b_i\bigr)\\
+ &=\rho_i(a_i+q_i b_i),
+\end{align*}
+where
+\[
+ \rho_i=c_i(u_i+w_i)>0,
+ \qquad
+ q_i=\frac{u_i-w_i}{u_i+w_i}\in(-1,1).
+\]
+Conversely, every $\rho_i>0$ and $q_i\in(-1,1)$ is attained by
+\[
+ u_i=\frac{\rho_i(1+q_i)}{2c_i},\qquad
+ w_i=\frac{\rho_i(1-q_i)}{2c_i},\qquad
+ s_i=\frac{\rho_i}{c_i},
+\]
+which are all strictly positive.
+
+For a fixed row choose $c_i>0$ clearing the denominators of $a_i$, choose
+$y_i^0\geq0$ with $(y_i^0)_i\geq1$ and
+$y_i^+=y_i^0+c_i a_i\geq0$, and add
+\[
+ y_i^+\longrightarrow y_i^++e_i,
+ \qquad
+ y_i^0\longrightarrow y_i^0-e_i.
+\]
+The steady-flux equation forces the two positive fluxes to be equal. Giving
+each the value $\rho_i/c_i$ produces row $\rho_i a_i$, and every positive
+steady flux in this row has that form.
+
+All columns belonging to row $i$ are scalar multiples of $e_i$. Hence the
+global equation $\Gamma v=0$ is precisely the collection of the independent
+row equations just described; there are no hidden cross-row constraints.
+This proves both inclusions in (RS), including zero row entries and repeated
+or parallel indexed reactions. Each row contains both $e_i$ and $-e_i$, so
+$\Gamma$ has row rank $p$. Sources and targets are distinct because every
+reaction changes coordinate $i$ by one. Denominator clearing and taking a
+componentwise maximum plus one construct the bases with polynomial bit
+length, proving the complexity assertion.
+\end{proof}
+
+At $x^*=\mathbf 1$, the rate constants are exactly the chosen positive
+fluxes. Thus the construction uses no zero rates and no limiting argument.
