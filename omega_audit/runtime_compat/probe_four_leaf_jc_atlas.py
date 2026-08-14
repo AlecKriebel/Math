@@ -12,6 +12,8 @@ that this tuple is byte-independent but value-identical before the shim is
 used.
 """
 
+from itertools import permutations
+
 JC_REPRESENTATIVES = (
     (0, 0, 0, 0),
     (0, 0, 1, 1),
@@ -29,3 +31,22 @@ JC_REPRESENTATIVES = (
     (1, 2, 2, 1),
     (1, 2, 3, 0),
 )
+
+
+def canonical_character_orbit(assignment):
+    images = []
+    for perm in permutations((1, 2, 3)):
+        mapping = {0: 0, 1: perm[0], 2: perm[1], 3: perm[2]}
+        images.append(tuple(mapping[value] for value in assignment))
+    return min(images)
+
+
+ORBIT_INDEX = {}
+for assignment in (
+    (a, b, c, a ^ b ^ c)
+    for a in range(4)
+    for b in range(4)
+    for c in range(4)
+):
+    canonical = canonical_character_orbit(assignment)
+    ORBIT_INDEX[assignment] = JC_REPRESENTATIVES.index(canonical)

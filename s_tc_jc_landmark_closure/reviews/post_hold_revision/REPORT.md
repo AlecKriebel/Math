@@ -66,6 +66,16 @@ is being erased from the audit record.
    checks exact equality, uniqueness, zero-sum status, and both file hashes.
    The historical SymPy proof and the independent standard-library and direct
    displayed-tree implementations remain unchanged and all pass.
+5. At source commit `ec6f057b4c6c1ad1c762a1514cdcb681ee1c0534`, the
+   orbit-literal check passed, but invoking the historical file by pathname
+   placed its own directory ahead of `PYTHONPATH`, so Python imported the
+   discovery module before the verified shim.  The active launcher now
+   installs the verified shim explicitly in `sys.modules` and executes the
+   untouched historical proof with `runpy`.  The shim also exports the
+   64-entry `ORBIT_INDEX` deterministically derived from the frozen tuple,
+   because a secondary historical class verifier imports it.  The launcher,
+   historical SymPy proof, standard-library replay, and independent direct
+   Fourier replay all pass without `python-flint`.
 
 These are release-engineering failures, not mathematical certificate
 failures.  Final clean-clone transcripts are accepted only if they record the

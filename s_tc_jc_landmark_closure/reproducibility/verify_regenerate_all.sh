@@ -21,8 +21,7 @@ bash reviews/global_bridge/verify_all.sh --with-upstream-replay
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
 "$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
 "$STC_JC_PYTHON" ../omega_audit/runtime_compat/verify_orbit_constant.py
-PYTHONPATH="../omega_audit/runtime_compat:../omega_audit/frozen_input/historical/src" \
-  "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move.py
+"$STC_JC_PYTHON" ../omega_audit/runtime_compat/run_historical_omega.py
 PYTHONPATH="../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
 "$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_release.py

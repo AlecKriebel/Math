@@ -35,13 +35,15 @@ def frozen_literal() -> tuple[tuple[int, ...], ...]:
     raise AssertionError("JC_REPRESENTATIVES literal not found in frozen source")
 
 
-def shim_literal() -> tuple[tuple[int, ...], ...]:
+def shim_literal() -> tuple[
+    tuple[tuple[int, ...], ...], dict[tuple[int, ...], int]
+]:
     spec = importlib.util.spec_from_file_location("omega_orbit_shim", SHIM)
     if spec is None or spec.loader is None:
         raise AssertionError("could not load Omega orbit shim")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
-    return tuple(tuple(row) for row in module.JC_REPRESENTATIVES)
+    return tuple(tuple(row) for row in module.JC_REPRESENTATIVES), module.ORBIT_INDEX
 
 
 def digest(path: Path) -> str:
@@ -50,14 +52,17 @@ def digest(path: Path) -> str:
 
 def main() -> None:
     frozen = frozen_literal()
-    shim = shim_literal()
+    shim, orbit_index = shim_literal()
     assert frozen == shim
     assert len(shim) == 15 and len(set(shim)) == 15
     assert all(len(row) == 4 and row[0] ^ row[1] ^ row[2] ^ row[3] == 0 for row in shim)
+    assert len(orbit_index) == 64
+    assert set(orbit_index.values()) == set(range(15))
     print(
         json.dumps(
             {
                 "frozen_source_sha256": digest(FROZEN),
+                "orbit_assignments": len(orbit_index),
                 "representatives": len(shim),
                 "shim_sha256": digest(SHIM),
                 "status": "VERIFIED",
