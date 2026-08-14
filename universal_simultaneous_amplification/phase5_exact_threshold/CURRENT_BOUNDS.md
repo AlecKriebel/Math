@@ -126,6 +126,12 @@ problem.
    support.  Qualitative spine ordering does not provide it: the exact
    deterministic two-cycle has a one-crossing ratio, yet its spine-smoothed
    label is ordered oppositely while the true endpoint gap remains positive.
+   Nor can one take a regular nonnegative combination of the two global
+   action gaps and the proved scaled-first gap: the exact physical eigenmode
+   polynomial forces the scaled-first coefficient to vanish and the Picone
+   coefficient to equal `-r/2`.  A successful use of the action theorem must
+   therefore be genuinely linked or singularly adaptive, not an unsigned
+   mixture of the available remainders.
 
 3. **Nonseparated trace and response-scale error exhaustion.**  Conditional
    on BDM, every separated physical Schur packet has the correct common Bd/dB
@@ -150,6 +156,13 @@ pinpoints the required missing structure without licensing another search
 over graphs or low-rank potentials.  These reductions sharpen the upper
 frontier but do not change the boxed rigorous interval.
 
+The global endpoint actions also cannot replace the full Kac process by
+coordinate pinning.  A singleton Kac reward is the derivative of a pinned
+Schur complement of the full subset chain.  On regular complete modules the
+Bd and dB endpoint actions, including their ordinary pins, coincide, while
+their singleton Kac residues differ.  Thus the minimal-product theorem must
+retain full coalescent/root data.
+
 On the lower side, the labelled dB history process really does contain the
 ideal diagonal multiplier `diag(1,r-1)/r`.  Perfect positive routing through
 ordinary mutant sets is impossible.  A signed coverage detector can recover
@@ -161,9 +174,12 @@ likelihood ratio does not compose through a physical reset.  The reset
 kernel is rank one and sums all mixed histories.  Positive hit tests then
 have the wrong physical direction; the clean-enriching no-hit branch obeys
 a sharp throughput tradeoff and carries an unmatched affine-complement
-baseline.  Thus memoryless soft routing is closed as well.  A lower
-construction would have to retain a genuine set-valued mark, implement a
-signed common control, or avoid the factored history architecture entirely.
+baseline.  Retaining a larger positive set-valued memory does not help:
+under the shared-source coupling the adverse union contains the clean union,
+so every positive OR/coverage handoff preserves only the single
+`r-1` dominance factor rather than multiplying it.  A lower construction
+must therefore implement a signed or nonmonotone control, use a genuinely
+rule-dependent handoff, or avoid the factored history architecture entirely.
 
 The exact constant
 

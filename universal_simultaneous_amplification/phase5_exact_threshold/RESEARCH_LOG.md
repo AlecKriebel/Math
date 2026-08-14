@@ -135,6 +135,17 @@ prior handoff had incorrectly hidden.
   two-cycle simultaneously refutes the simplest one-crossing/spine-order
   conversion of this unsigned variational control into the still-open signed
   endpoint support.
+- Exact physical eigenmode algebra rules out every regular nonnegative
+  combination of the two action gaps and the scaled-first gap: matching the
+  support would require a negative Picone coefficient.  Coordinate-pinning
+  the endpoint actions also cannot recover the minimal-product Kac residues;
+  those are derivatives of full subset-chain Schur complements and differ
+  between the rules even when the regular endpoint actions coincide.
+- Strengthened the soft-router closure from scalar reset to arbitrary common
+  positive OR/coverage memory.  A shared neutral source couples the clean
+  union below the adverse union, so every positive continuation preserves a
+  single `r-1` dominance floor and cannot generate `(r-1)^L`.  Only signed,
+  nonmonotone, rule-dependent, or non-factored physical mechanisms survive.
 - Strategic decision: stop adding compressed marginal or finite-rank
   ansatzes.  The live upper work must retain the full endpoint ground linkage,
   full signed Kac-cycle orientation, or the macroscopic nonseparated trace.
