@@ -101,6 +101,22 @@ problem.
    scalar ground-energy sign is exactly false, so its compensating square is
    essential.
 
+   The full support score also has the exact autocorrelation form
+
+   \[
+   T=(r-1)E_pq-E_ps
+    =r\left\{E_p[xPx]+{1\over r-1}E_p{u^2\over h}\right\},
+   \]
+
+   where `x=b-(r-1)/r` and `u=s-(r-1)/r`.  Thus the remaining diffuse
+   theorem is precisely that the dB endpoint variance repays the negative
+   one-step Bd autocorrelation.  Singular leak rays approach equality, so a
+   proof cannot insert a uniform slack.  Natural finite-tree rerooting,
+   type-preserving conditioned-spine likelihoods, nonnegative combinations
+   of the two temperature-adjoint first-orbit signs, and the natural
+   Fenchel/Bregman endpoint actions are now all exactly obstructed.  These
+   are proof-route obstructions, not counterexamples to the support sign.
+
 3. **Nonseparated trace and response-scale error exhaustion.**  Conditional
    on BDM, every separated physical Schur packet has the correct common Bd/dB
    coefficient.  If these packets do not exhaust a hypothetical amplifier,
@@ -123,6 +139,17 @@ trapped in the singleton sector and sees zero higher-rank reward.  This
 pinpoints the required missing structure without licensing another search
 over graphs or low-rank potentials.  These reductions sharpen the upper
 frontier but do not change the boxed rigorous interval.
+
+On the lower side, the labelled dB history process really does contain the
+ideal diagonal multiplier `diag(1,r-1)/r`.  Perfect positive routing through
+ordinary mutant sets is impossible.  A signed coverage detector can recover
+the multiplier abstractly, but its exact realization pays a divergent
+baseline, while bounded-cost same-marginal surrogates are only dual stopping
+laws and not forward fixation harmonics.  Soft positive coverage tests do
+discriminate the channels, so the earlier perfect-classification premise was
+stronger than necessary; the surviving quantitative obstruction is an
+absolute-throughput tradeoff, not lack of discrimination.  No new physical
+lower construction follows from these history identities.
 
 The exact constant
 

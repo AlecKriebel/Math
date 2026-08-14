@@ -89,3 +89,44 @@ prior handoff had incorrectly hidden.
 - Exactly refuted nonregular conductance midpoint symmetrization on a simple
   weighted path.  The regular orbital sector remains a live scoped theorem,
   not a reduction of the unrestricted problem.
+
+## 2026-08-13 — proof-first restart after kernel panic
+
+- Reconciled the live repository and retained the rigorous bound
+
+  ```text
+  R_hyb = 1.5028569127905696267... <= R_sim <= infinity.
+  ```
+
+  No exact value or finite universal upper bound is claimed.
+- Reduced portal-general minimal product exactly to one- and two-root signed
+  Kac-cycle inequalities.  Ordinary scalar Hellinger, endpoint-degree
+  cocycles, canonical paired paths, generic M-matrix/Hadamard--Fischer, and
+  natural stable-polynomial lifts are structurally insufficient; they lose
+  either signed cycle reward, repeated-source multiplicity, or the root
+  orientation square.
+- Proved the scaled first-orbit half of the diffuse support sandwich on the
+  whole rational strip `3/2 <= r <= 151/100`.  The remaining endpoint half
+  has exact five-ground and reversible-spine reductions.
+- Derived the simpler exact full-support identity
+
+  ```text
+  T = r * ( E_p[x P x] + E_p[u^2/h]/(r-1) ).
+  ```
+
+  Hence the sharp endpoint question is whether dB variance repays negative
+  Bd autocorrelation.  Singular leak rays approach equality.
+- Closed, by exact symbolic families rather than graph searches, the natural
+  finite-tree reroot, conditioned mixed-spine, temperature-adjoint scalar
+  combination, and Fenchel/Bregman proofs of this endpoint sign.  None is a
+  counterexample to the sign itself.
+- Reconsidered the labelled-history lower route without demanding perfect
+  classification.  Exact signed and soft coverage calculations show that
+  discrimination is possible abstractly, but either an unmatched baseline,
+  a nonphysical ancestral rank controller, or an absolute-throughput cost
+  remains.  No graph construction or improved lower bound was obtained.
+- Strategic decision: stop adding compressed marginal or finite-rank
+  ansatzes.  The live upper work must retain the full endpoint ground linkage,
+  full signed Kac-cycle orientation, or the macroscopic nonseparated trace.
+  The live lower work must implement a genuinely physical nonseparated
+  channel, not an external history classifier.
