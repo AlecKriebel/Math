@@ -152,9 +152,7 @@ def seal_envelope(source_commit_arg: str) -> None:
             "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
         ),
     }
-    final_report = (
-        "s_tc_jc_landmark_closure/reviews/final_release_engineering/REPORT.md"
-    )
+    final_report = "release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md"
     if (REPO / final_report).is_file():
         external["final_release_referee"] = record(final_report)
 

@@ -18,6 +18,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.0.0"
 
 
 def sha256(path: Path) -> str:
@@ -94,7 +95,7 @@ def transcript_checks(path: Path, source_commit: str) -> None:
 
 
 def source_envelope_checks(final, metadata) -> str:
-    """Verify either the outer envelope, an extracted archive, or a source checkout."""
+    """Verify an outer envelope, extracted archive, or immutable tagged source."""
     envelope_path = REPO / "release_artifacts/RELEASE_ENVELOPE.json"
     archive_marker = REPO / "ARCHIVE_SOURCE_COMMIT.txt"
     if envelope_path.is_file():
@@ -139,14 +140,41 @@ def source_envelope_checks(final, metadata) -> str:
         for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
             transcript_checks(transcript_dir / name, source_commit)
         return source_commit
+    # A bare source checkout is not a sealed release.  The fallback is accepted
+    # only when the exact advertised annotated tag peels to this clean commit.
+    # This makes deletion of the external envelope fail closed before tagging,
+    # while allowing the immutable public source tag to be verified without
+    # downloading the separately distributed 338 MB archive.
     try:
         source_commit = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=REPO, text=True
         ).strip()
+        status = subprocess.check_output(
+            ["git", "status", "--porcelain", "--untracked-files=all"],
+            cwd=REPO,
+            text=True,
+        )
+        tag_type = subprocess.check_output(
+            ["git", "cat-file", "-t", f"refs/tags/{RELEASE_TAG}"],
+            cwd=REPO,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+        tagged_commit = subprocess.check_output(
+            ["git", "rev-parse", f"{RELEASE_TAG}^{{commit}}"],
+            cwd=REPO,
+            text=True,
+        ).strip()
     except Exception as exc:
-        raise AssertionError("neither source checkout, archive, nor envelope") from exc
+        raise AssertionError(
+            "no release envelope/archive marker and immutable release tag missing"
+        ) from exc
     require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
             "source checkout commit is invalid")
+    require(status == "", "tagged source checkout is not clean")
+    require(tag_type == "tag", "release tag is not an annotated tag")
+    require(tagged_commit == source_commit,
+            "release tag does not peel to the checked-out source commit")
     return source_commit
 
 

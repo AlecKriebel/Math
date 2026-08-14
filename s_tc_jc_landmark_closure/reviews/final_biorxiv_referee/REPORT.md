@@ -1,5 +1,12 @@
 # Final adversarial mathematical referee report
 
+> **Historical-scope notice.** This report records the adversarial review of
+> the 23-page pre-HOLD manuscript.  It is retained as a mathematical-review
+> dependency, but its page-layout observation is superseded by
+> `reviews/post_hold_revision/REPORT.md`, the final two-renderer PDF audit, and
+> the external final-release engineering review.  Those later checks cover the
+> 25-page submission PDF.  No human specialist review is claimed.
+
 Date: 2026-08-14
 
 Verdict: **VERIFIED — NO LOAD-BEARING DEFECT**

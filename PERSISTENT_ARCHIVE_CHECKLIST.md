@@ -19,9 +19,15 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 
 1. `stc_jc_sharp_boundary_reproducibility.tar.gz`
 2. `stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`
-3. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf`
-4. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
-5. `biorxiv_submission/SHA256SUMS`
+3. `RELEASE_ENVELOPE.json`
+4. `RELEASE_ASSET_SHA256SUMS`
+5. `FINAL_RELEASE_ENGINEERING_REPORT.md`
+6. `clean_clone_transcripts/verify_quick.log`
+7. `clean_clone_transcripts/verify_full.log`
+8. `clean_clone_transcripts/verify_regenerate_all.log`
+9. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf`
+10. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
+11. `biorxiv_submission/SHA256SUMS`
 
 The deterministic archive is built from the immutable source commit with:
 
@@ -34,6 +40,13 @@ The archive contains a commit-independent core manifest and
 clean-clone transcripts live in the external, non-self-referential
 `RELEASE_ENVELOPE.json`.  This avoids placing an archive's own digest inside
 the bytes being digested.
+
+The immutable source commit is also marked by the annotated tag
+`stc-jc-sharp-boundary-v1.0.0`.  In a source-only clone the active verifier
+requires that exact tag to peel to a clean checkout.  In a deposited release
+bundle it instead verifies the external envelope and every accompanying
+asset.  The large archive and its outer envelope are intentionally release
+assets rather than Git objects.
 
 ## Human selections
 

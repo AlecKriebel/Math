@@ -130,18 +130,25 @@ and a triangle-free claim without cycle enumeration.
 ## Reproduction
 
 ```bash
-PYTHONPATH=omega_audit/frozen_input/historical/src \
-  python omega_audit/frozen_input/historical/src/verify_jc_omega_move.py
+python omega_audit/runtime_compat/verify_orbit_constant.py
+
+python omega_audit/runtime_compat/run_historical_omega.py
 
 PYTHONPATH=omega_audit/frozen_input/historical/src \
   python omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
 
 python omega_audit/independent/verify_omega_release.py
+
+python omega_audit/independent/verify_omega_rank_readability.py
 ```
 
-The historical symbolic replay requires `sympy` and `python-flint`; the
-integrated clean-room release verifier requires only `sympy`.  Complete
-transcripts and hashes are under `../transcripts/`.
+The first command independently extracts and validates the frozen orbit table.
+The second then supplies only that verified constant to the otherwise
+untouched historical SymPy proof, avoiding its discovery-only
+`python-flint` import.  The standard-library and direct displayed-tree
+implementations remain separate replays.  The active release therefore needs
+`sympy` but not `python-flint`.  Complete transcripts and hashes are under
+`../transcripts/`.
 
 ## Disposition
 
