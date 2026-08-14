@@ -36,5 +36,12 @@
 - Positive diagonal/degree conjugation preserves the zero support.  A future
   Hellinger construction would require a marked phase, operation, target,
   or source-history state.  No marked-history search was performed.
+- Audited only the canonical marked `2 by 2` lift.  Its diagonal likelihood
+  cocycle is exact, but multiplying it by the scalar Hellinger weight simply
+  recovers the two original path weights.  The additive Kac reward instead
+  occupies the off-diagonal entry of a triangular cocycle, which is not
+  positive on the physical negative-reward cycles.  A positive exponential
+  Feynman--Kac lift contains the reward only as its derivative at zero.
 - Universal MP and the physical Lorentz cone remain open.  The unmarked
-  path-space Hellinger route is stopped exactly.
+  path-space Hellinger and canonical positive marked-`2 by 2` routes are
+  stopped exactly.

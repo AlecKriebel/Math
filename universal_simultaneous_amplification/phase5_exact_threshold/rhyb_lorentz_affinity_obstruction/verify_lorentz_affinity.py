@@ -125,6 +125,30 @@ def verify_generic_affinity_identities():
     assert sp.expand(Hf - difference_form) == 0
 
 
+def verify_marked_two_by_two_cocycles():
+    ell1, ell2, wc1, wc2, t = sp.symbols(
+        "ell1 ell2 wc1 wc2 t", positive=True
+    )
+    y1, y2 = sp.symbols("y1 y2", real=True)
+    diagonal = lambda ell: sp.diag(sp.sqrt(ell), 1 / sp.sqrt(ell))
+    assert diagonal(ell1) * diagonal(ell2) == diagonal(ell1 * ell2)
+
+    wc = wc1 * wc2
+    wl = wc * ell1 * ell2
+    assert sp.simplify(
+        sp.sqrt(wl * wc) * diagonal(wl / wc) - sp.diag(wl, wc)
+    ) == sp.zeros(2)
+
+    triangular = lambda weight, reward: weight * sp.Matrix(
+        [[1, reward], [0, 1]]
+    )
+    assert sp.expand(
+        triangular(wc1, y1) * triangular(wc2, y2)
+        - triangular(wc1 * wc2, y1 + y2)
+    ) == sp.zeros(2)
+    assert sp.diff(sp.exp(t * (y1 + y2)), t).subs(t, 0) == y1 + y2
+
+
 def verify_set_support():
     """Truth-table replay of the loopless update support, not a graph scan."""
 
@@ -208,11 +232,13 @@ def main():
     verify_lorentz_algebra()
     verify_kac_pair_algebra()
     verify_generic_affinity_identities()
+    verify_marked_two_by_two_cocycles()
     verify_set_support()
     verify_active_p3_kac_data()
     print("PASS: Lorentz rapidity comparison algebra")
     print("PASS: Kac return-cycle pair normalization")
     print("PASS: geometric-mean killing and drift squares")
+    print("PASS: canonical marked two-by-two cocycle identities")
     print("PASS: unmarked common support is rank-nonincreasing")
     print("PASS: singleton-to-higher-rank affinity block is zero")
     print("PASS: active unweighted-P3 Kac rewards are strictly positive")

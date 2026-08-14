@@ -397,7 +397,65 @@ The unmarked affinity excursion reward is nevertheless zero by (32)--(33).
 Positive diagonal similarities preserve the support zero in (32), so a
 degree conjugation cannot repair it.
 
-## 8. Stopping conclusion
+## 8. Canonical marked two-by-two audit
+
+Source-history marking repairs the support zero, but the canonical
+two-component likelihood lift gives an exact direct sum rather than a new
+positive contraction.  For one common marked step let
+
+\[
+ \ell={w_L\over w_C}>0,
+ \qquad
+ D(\ell)=\begin{pmatrix}\sqrt\ell&0\\0&1/\sqrt\ell\end{pmatrix}.
+                                                               \tag{38}
+\]
+
+For a concatenated history `omega`, multiplicativity gives
+
+\[
+ D(\ell_1)\cdots D(\ell_m)=D(W_L/W_C),
+ \qquad
+ \boxed{
+ \sqrt{W_LW_C}\,D(W_L/W_C)
+   =\operatorname{diag}(W_L,W_C).}                  \tag{39}
+\]
+
+Thus the diagonal mark retains the root-assignment rapidity exactly, but
+the Hellinger weight times that mark merely recovers the two original path
+weights separately.  It supplies no off-diagonal comparison between them.
+
+The Kac reward has a different exact cocycle.  If `Y(omega)` is the signed
+integrated reward, then `Y(omega_1 omega_2)=Y(omega_1)+Y(omega_2)` and
+
+\[
+ K_U(\omega)=W_U(\omega)
+ \begin{pmatrix}1&Y_U(\omega)\\0&1\end{pmatrix},
+ \qquad
+ K_U(\omega_1)K_U(\omega_2)=K_U(\omega_1\omega_2). \tag{40}
+\]
+
+Up to the fixed root-rate factor, the summed upper-right entry is the Kac
+reward in (4).  But (40) is not a positive transfer matrix when `Y<0`.
+This is a genuine physical issue: at `R_hyb` on the three-path,
+singleton-only short cycles have negative reward, whereas sufficiently
+long doubleton excursions have positive reward.
+
+The positive multiplicative alternative
+
+\[
+ W_U(\omega)e^{tY_U(\omega)}>0,
+ \qquad
+ \left.\partial_t E_Ue^{tY_U}\right|_{t=0}=E_UY_U, \tag{41}
+\]
+
+encodes the required quantity only as a derivative at zero, not as a
+positive affinity at fixed `t`.  Hence the obvious marked `2 by 2` lift
+cannot simultaneously be a positive data-processing transfer and contain
+the exact signed Kac reward as a matrix entry.  This does not refute a
+derivative-level Feynman--Kac argument or a larger signed cone; it stops
+only the canonical positive two-component tensorization.
+
+## 9. Stopping conclusion
 
 The Lorentz comparison (14) remains useful: it converts the exact pair
 criterion into the concrete full-return cone (1), with all variables given
@@ -413,7 +471,7 @@ rank-increasing edge, but it also reintroduces the target-locking and
 collision information already known to be essential.  No search over such
 marked constructions is made here.
 
-## 9. Exact replay
+## 10. Exact replay
 
 From the repository root run
 
