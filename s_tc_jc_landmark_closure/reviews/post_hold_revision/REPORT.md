@@ -55,6 +55,17 @@ is being erased from the audit record.
    to that exact hash, their certificates were regenerated, and both
    byte-for-byte referee replays now pass.  Historical reviews retain their
    original hashes.
+4. At source commit `82329310342134cb4e12e4e91703da4edc2e168f`, every
+   classification, restoration, and bridge gate passed, but the full command
+   stopped when the historical Omega verifier imported `python-flint` through
+   a discovery-only module.  The proof script uses only that module's literal
+   15-element `JC_REPRESENTATIVES` tuple; it never calls the finite-field
+   matrix routines.  The frozen historical source remains unchanged.  An
+   import-only compatibility module now supplies the tuple, and a separate
+   AST-based verifier first extracts the literal from the frozen source and
+   checks exact equality, uniqueness, zero-sum status, and both file hashes.
+   The historical SymPy proof and the independent standard-library and direct
+   displayed-tree implementations remain unchanged and all pass.
 
 These are release-engineering failures, not mathematical certificate
 failures.  Final clean-clone transcripts are accepted only if they record the

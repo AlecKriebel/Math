@@ -20,7 +20,8 @@ PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_f
 bash reviews/global_bridge/verify_all.sh --with-upstream-replay
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
 "$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
-PYTHONPATH="../omega_audit/frozen_input/historical/src" \
+"$STC_JC_PYTHON" ../omega_audit/runtime_compat/verify_orbit_constant.py
+PYTHONPATH="../omega_audit/runtime_compat:../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move.py
 PYTHONPATH="../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py

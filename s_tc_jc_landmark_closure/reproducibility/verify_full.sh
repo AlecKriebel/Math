@@ -15,7 +15,8 @@ bash reviews/base_gate_adversarial_referee_n3/verify_all.sh
 bash reviews/base_gate_adversarial_referee/verify_all.sh
 bash reviews/direct_anchor_probe_closure/verify.sh
 PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_full.sh
-PYTHONPATH="../omega_audit/frozen_input/historical/src" \
+"$STC_JC_PYTHON" ../omega_audit/runtime_compat/verify_orbit_constant.py
+PYTHONPATH="../omega_audit/runtime_compat:../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move.py
 PYTHONPATH="../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
