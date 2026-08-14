@@ -1,0 +1,234 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable,enumitem}
+\usepackage{tikz,xcolor,url,pdfpages}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=green!35!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\setlist{nosep}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\sdz}{\mathsf{SD}_0}
+\newcommand{\sdc}{\mathsf{SD}_{\mathrm{clean}}}
+\newcommand{\sdh}{\mathsf{SD}_{\mathrm H}}
+\newcommand{\STC}{S_{\mathrm{TC}}}
+\newcommand{\WTC}{W_{\mathrm{TC}}}
+\newcommand{\JC}{\mathrm{JC}}
+\newcommand{\M}{\mathcal M}
+\newcommand{\preceqjc}{\preceq_{\!\JC}}
+\newcommand{\bowtiejc}{\mathbin{\bowtie}_{\!\JC}}
+\newcommand{\Tmove}{\mathsf T}
+\definecolor{retic}{RGB}{176,43,43}
+\definecolor{treecol}{RGB}{37,85,155}
+\tikzset{vertex/.style={circle,draw,minimum size=5.5mm,inner sep=1pt,fill=white},treev/.style={vertex,draw=treecol,thick},reticv/.style={vertex,draw=retic,thick,double},leaf/.style={circle,draw,minimum size=4.8mm,inner sep=.4pt,fill=white},ordinary/.style={line width=.7pt},reticedge/.style={-{Stealth[length=2mm]},draw=retic,line width=.85pt}}
+\hypersetup{pdftitle={Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes--Cantor Networks: Convention Closure},pdfauthor={Alec Kriebel}}
+\title{Strong Tree-Childness Is a Sharp Identifiability Boundary\\for Level-2 Jukes--Cantor Networks\\[2mm]\large Convention closure by a canonical cleanup quotient}
+\author{Alec Kriebel\\\small Independent Researcher}
+\date{August 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We close a convention gap in the generic identifiability theorem for binary strongly tree-child level-2 phylogenetic networks under the open four-state Jukes--Cantor model.  The verified classification was formulated for an already-simple semi-deorientation $\operatorname{sd}_0$: after retaining arrowheads into reticulations and deleting the binary root, no further degree-two or parallel-edge cleanup is allowed.  The closest identifiability literature instead permits exhaustive cleanup after root suppression.  These conventions are not literally identical at the level of rooted presentations.  We prove that, on the literature strongly tree-child class, cleanup has a canonical model-preserving quotient to the already-simple class.  Every extra cleanup presentation consists of a forced root-created zipper: an adjacent tree/reticulation pair is contracted to one ordinary edge.  Its complete two-boundary JC tensor is exactly that of an edge with multiplier
+\[
+uv\{\lambda\alpha\beta+(1-\lambda)\gamma\},
+\]
+and every multiplier in $(0,1)$ has a strict analytic preimage.  Thus cleanup preserves the complete open JC image, bridge and blob structure of the cleaned topology, projective local tensors, triangle redirection, and generic observational relations.  Consequently the existing $\operatorname{sd}_0$ classification transfers to the full Englander--Brits strongly tree-child level-2 class.  The weak-class theta pair remains distinct under cleanup, so strong tree-childness is still a sharp boundary.
+\end{abstract}
+\noindent\textbf{Keywords.} phylogenetic networks; semi-directed conventions; Jukes--Cantor model; identifiability; level two; tree-child networks.
+
+\section{Introduction and convention-closed theorem}
+The statistical theorem proved in the frozen baseline manuscript concerns binary LSA-valid networks whose one-step semi-deorientation is already a simple mixed graph.  That operation, denoted $\operatorname{sd}_0$, retains arrowheads on arcs entering reticulations, undirects all other arcs, deletes the binary root, joins its children, and rejects any presentation that creates a loop, a parallel pair, or a later degree-two cleanup.  The baseline manuscript states and proves a complete JC classification within that class.  Its exact definition and original scope are reproduced in the archived baseline PDF.  In particular, the baseline abstract identifies projective local tensors and the full incidence-scaling bridge group as the analytic objects used globally.\footnote{The frozen manuscript is archived byte-for-byte in the release.}
+
+The terminology ``standard semi-directed'' is not uniform across the nearest papers.  Englander et al. remove nonreticulation directions, suppress degree-two vertices, and identify parallel edges; their rooted inputs additionally exclude 2-blobs and non-leaf 1-blobs.  Brits et al. explicitly suppress the root and then exhaustively suppress resulting degree-two vertices and parallel copies.  Holtgrefe et al. use semi-deorientation but admit only outputs that are mixed graphs, so a parallel output is excluded rather than cleaned.  These differences concern formation of the full topology and must not be conflated with restriction to a leaf subset or formation of a displayed network.
+
+The conventions are not literally equivalent because cleanup admits additional rooted presentations.  The main result of this note is that those extra presentations carry no additional topology or JC model in the strong class.
+
+\begin{definition}[Three convention classes]\label{def:classes}
+Let $D$ be a binary LSA-valid rooted network.
+\begin{enumerate}[label=(\roman*)]
+\item $\operatorname{sd}_0(D)$ is the already-simple operation described above.
+\item $\operatorname{clean}(D)$ first performs the same root suppression and then repeatedly identifies newly parallel copies and suppresses newly unlabelled degree-two vertices until a simple binary mixed graph remains.
+\item $\mathsf{SD}_{\mathrm H}$ is the binary one-root LSA-valid specialization of Holtgrefe semi-deorientation, restricted to outputs that are mixed graphs.
+\end{enumerate}
+For $*\in\{0,\mathrm{clean},\mathrm H\}$, let $\operatorname{Root}_*(N)$ be the complete set of rooted presentations of $N$ admitted by that convention.  The class $\WTC(*)$ consists of graphs with at least one tree-child rooting, and $\STC(*)$ consists of graphs with a nonempty rooting set all of whose members are tree-child.
+\end{definition}
+
+\begin{definition}[Literature landmark class]\label{def:S2}
+Let $\mathcal S_2$ be the class of labelled simple mixed graphs obtained under the Englander--Brits cleanup convention from binary LSA-valid rooted networks, strongly tree-child with respect to the complete cleanup rooting set, and level at most two after cleanup.  When comparison with Englander et al. is literal, their additional ban on rooted 2-blobs and non-leaf 1-blobs is imposed; the theorem below also covers the Brits-style root-created zipper fibres.
+\end{definition}
+
+\begin{theorem}[Canonical cleanup quotient; Outcome Q]\label{thm:Q}
+There is a canonical map
+\[
+q:\mathcal S_2\longrightarrow \sdz\cap\STC(0)
+\]
+which is the identity on the final labelled mixed graph and replaces every cleanup rooting by an already-simple rooting.  It satisfies
+\[
+\M_N^{\JC}=\M_{q(N)}^{\JC}
+\]
+for the complete open JC images.  It preserves labelled isomorphism, retained arrowheads and reticulations of the cleaned topology, blobs, level, cut splits, the reduced bridge tree, projective local tensor factors, ordered port words, and ordinary triangle redirection.  Consequently, for $N,N'\in\mathcal S_2$,
+\[
+N\preceqjc N'\iff q(N)\preceqjc q(N'),
+\qquad
+N\bowtiejc N'\iff q(N)\bowtiejc q(N').
+\]
+Therefore the baseline classification implies that $N\preceqjc N'$ exactly when the labelled reduced bridge trees agree and each corresponding nontrivial blob is labelled-isomorphic or related by ordinary triangle redirection $\Tmove$.  There is no proper one-sided generic containment.
+\end{theorem}
+
+\begin{corollary}[Convention-closed generic identifiability]\label{cor:genericQ}
+Every binary literature-standard semi-directed strongly tree-child level-2 network is generically identifiable under open JC modulo ordinary triangle redirection.
+\end{corollary}
+
+\begin{theorem}[Convention-closed sharpness]\label{thm:sharpQ}
+For every $n\ge4$, the two networks in the baseline sharpness construction remain distinct members of $\WTC(\mathrm{clean})\setminus\STC(\mathrm{clean})$, are not related by $\Tmove$, and have open JC images sharing a regular relatively open subset of dimension $2n$.
+\end{theorem}
+
+\section{Comparison of semi-directed conventions}
+\subsection{Operations and source crosswalk}
+The following table records the operation used to form the full semi-directed topology.  Restrictions and displayed networks are separate operations and are not used to enlarge the full-topology quotient.
+
+\begin{longtable}{p{.15\linewidth}p{.22\linewidth}p{.25\linewidth}p{.27\linewidth}}
+\toprule
+Source & Rooted input & Full semi-directed operation & Treatment of parallel or degree-two output\\
+\midrule\endhead
+Baseline $\operatorname{sd}_0$ & Binary LSA-valid DAG, no parallel arcs & Retain reticulation arrowheads, undirect other arcs, delete root and join its children & Reject unless the one-step output is already a simple binary mixed graph\\
+Englander et al. [5] & Binary DAG without parallel edges, 2-blobs, or non-leaf 1-blobs & Remove nonreticulation directions and suppress degree-two vertices & Identify parallel edges; restriction additionally suppresses 2-blobs\\
+Brits et al. [2] & Binary DAG without parallel edges; root is the only vertex on all root--leaf paths & Undirect nonreticulation edges and suppress the root & Exhaustively suppress resulting degree-two vertices and identify parallel edges\\
+Holtgrefe et al. [7] & Applicable binary single-root specialization & Undirect arcs whose heads have indegree one and suppress degree-two roots & Parallel outputs are not mixed graphs and are excluded\\
+Sullivant [9] & Statistical graphical-model framework & No competing full-topology definition used here & Degree-two and hidden 2-blob model transformations require explicit model hypotheses\\
+\bottomrule
+\end{longtable}
+
+The Englander restriction operation takes all up-down paths on a selected leaf set and then suppresses degree-two vertices, parallel edges, and 2-blobs.  Brits restriction suppresses degree-two vertices and parallel edges but deliberately retains higher-level 2-blobs for separate analysis.  A displayed network additionally deletes selected reticulation edges before cleanup.  None of those operations is silently substituted for formation of the full semi-directed topology in this paper.
+
+\subsection{The only root-suppression artifact}
+\begin{lemma}[Root zipper]\label{lem:zipper}
+Let $D$ be a binary LSA-valid rooted network whose root children are $p,q$.  If one-step root suppression is not already simple but exhaustive cleanup yields a simple binary mixed graph, then the root children are adjacent.  Up to exchanging them, the arc is $p\to q$, where $q$ is a reticulation.  The vertex $p$ is a tree vertex.  If $D$ is tree-child, the other child $a$ of $p$ and the child $b$ of $q$ are tree vertices or leaves, $a\ne b$, and cleanup performs exactly
+\[
+\text{identify the two }p\!-
+q\text{ copies},\qquad
+\text{suppress }p,q,
+\]
+replacing the gadget by the ordinary edge $a-b$.
+\end{lemma}
+
+\begin{proof}
+Deleting the root changes no total degree unless the new $p-q$ edge duplicates an existing adjacency.  Hence cleanup is needed exactly when $p$ and $q$ are adjacent.  Acyclicity gives one direction, say $p\to q$.  Since $q$ also receives the root arc, it has indegree two and is reticulate.  If $p$ were reticulate, its unique child would be $q$, so both root branches would enter $q$ and $q$ would be a proper stable ancestor of all leaves, contradicting LSA validity.  Thus $p$ is a tree vertex.
+
+If $D$ is tree-child, $p$ already has the reticulate child $q$, so its other child $a$ is nonreticulate.  Likewise the unique child $b$ of the reticulation $q$ is nonreticulate.  If $a=b$, that vertex is reached from both root branches and is a proper stable ancestor.  Identifying the parallel $p-q$ copies leaves both $p$ and $q$ with degree two; their suppression produces the ordinary edge $a-b$.  Since $a,b$ are nonreticulate, no arrowhead is lost.  There is no second cleanup step in the tree-child case.
+\end{proof}
+
+\begin{lemma}[Constructive already-simple representative]\label{lem:construct}
+In the setting of \cref{lem:zipper}, delete the old root and the vertices $p,q$, insert a new root $\rho'$, and add arcs $\rho'\to a$ and $\rho'\to b$.  The resulting network $D'$ is binary, acyclic, LSA-valid, and tree-child whenever $D$ is tree-child, and
+\[
+\operatorname{sd}_0(D')=\operatorname{clean}(D).
+\]
+\end{lemma}
+
+\begin{proof}
+The new root arcs replace the deleted incoming incidences from $p$ and $q$, so all nonroot bidegrees remain binary.  The new root has no incoming arc, hence cannot create a directed cycle.  A proper vertex lying on every root--leaf path after contraction would already have lain on every such path before contraction; LSA validity is preserved.  The children $a,b$ are tree vertices or leaves in the tree-child case.  Suppressing $\rho'$ adds exactly the ordinary edge $a-b$ and requires no later cleanup.
+\end{proof}
+
+For arbitrary LSA-valid presentations, the same local contraction may be iterated whenever the next root children remain adjacent.  Each step deletes two internal vertices and one root-created reticulation.  This gives the corresponding statement about final topology sets.  The statistical equality used below requires only the one-step tree-child fibre of \cref{lem:zipper}.
+
+\subsection{Exact JC effect of cleanup}
+\begin{lemma}[Degree-two suppression]\label{lem:deg2}
+Two consecutive ordinary JC edges with multipliers $x_1,x_2\in(0,1)$ have the same transition kernel as one edge with multiplier $x=x_1x_2$.  The product map is onto $(0,1)$ and a positive analytic submersion.  The section
+\[
+x_1=\frac{1+x}{2},\qquad x_2=\frac{2x}{1+x}
+\]
+is strict for every $x\in(0,1)$.
+\end{lemma}
+
+\begin{proof}
+Nontrivial Fourier multipliers multiply under convolution.  The differential of $x_1x_2$ is nonzero throughout the open square, and the displayed section has product $x$ with both factors strictly between zero and one.
+\end{proof}
+
+\begin{lemma}[Root-zipper JC identity]\label{lem:JCzipper}
+Assign multipliers $\alpha,\beta,\gamma,u,v\in(0,1)$ to
+\[
+\rho\to p,\quad \rho\to q,\quad p\to q,\quad p\to a,\quad q\to b,
+\]
+and let $\lambda\in(0,1)$ select the parent $\rho\to q$.  The normalized two-boundary Fourier tensor on $a,b$ is
+\[
+(1,\kappa,\kappa,\kappa),\qquad
+\kappa=uv\{\lambda\alpha\beta+(1-\lambda)\gamma\}.
+\]
+Its complete open image is exactly the one-edge JC image.  A strict analytic section of an edge multiplier $x\in(0,1)$ is obtained by setting
+\[
+c=\frac{1+x}{2},\qquad m=\frac{4x}{(1+x)^2},
+\]
+\[
+u=v=c,
+\qquad \gamma=m,
+\qquad \lambda=\frac12,
+\qquad \alpha=\frac{1+m}{2},
+\qquad \beta=\frac{2m}{1+m}.
+\]
+The map is a submersion because $\partial\kappa/\partial\gamma=uv(1-\lambda)>0$.
+\end{lemma}
+
+\begin{proof}
+If the parent $\rho\to q$ is selected, the two nonzero boundary characters traverse the paths $\rho-p-a$ and $\rho-q-b$, giving $uv\alpha\beta$.  If $p\to q$ is selected, the stem $\rho\to p$ subtends both boundaries and has zero Fourier exponent, leaving $uv\gamma$.  This proves the formula.  The section is strict because
+\[
+1-m=\frac{(1-x)^2}{(1+x)^2}>0,
+\]
+and $\alpha\beta=m$.  Therefore $c^2m=x$.
+\end{proof}
+
+Equality in \cref{lem:JCzipper} is equality of the complete joint tensor on the two boundary states.  It is therefore preserved by contraction with any identical external context, including a context that reconnects the two terminals.  No arbitrary parallel-edge identification is being declared harmless: only the forced root-created zipper has been proved model-equivalent.
+
+\subsection{Class relations and proof of Theorem Q}
+The Holtgrefe one-root binary LSA specialization has exactly the already-simple rooting set, because parallel semi-deorientations are not admitted as mixed graphs.  Thus
+\[
+\operatorname{Root}_0(N)=\operatorname{Root}_{\mathrm H}(N)
+\subseteq \operatorname{Root}_{\mathrm{clean}}(N).
+\]
+Every tree-child cleanup rooting contracts by \cref{lem:construct} to a tree-child already-simple rooting, and every already-simple rooting is also a cleanup rooting.  Hence
+\[
+\WTC(\mathrm{clean})=\WTC(0)=\WTC(\mathrm H),
+\]
+whereas
+\[
+\STC(\mathrm{clean})\subsetneq \STC(0)=\STC(\mathrm H).
+\]
+The inclusion is strict: the released three-leaf witness has five already-simple rootings, all tree-child, but also has an LSA-valid cleanup rooting that is not tree-child.
+
+For $N\in\mathcal S_2$, define $q(N)$ to be the same final mixed graph with its already-simple rooting fibre.  At least one such rooting exists by \cref{lem:construct}; every such rooting is tree-child because it is also a cleanup rooting.  Applying \cref{lem:JCzipper} to every cleanup rooting and ordinary JC root invariance to the already-simple rootings proves
+\[
+\M_N^{\JC}=\M_{q(N)}^{\JC}.
+\]
+Since $q$ is the identity on the final mixed graph, all graph-theoretic structures used by the baseline theorem are literally unchanged.  Model-image equality transports one-sided containment, symmetric regular overlap, and their algebraic exceptional sets.  Theorem Q follows by applying the verified $\operatorname{sd}_0$ theorem to $q(N)$.
+
+\subsection{Parallel theta and 2-sub-blob frontier}
+A root zipper lying on another pole-to-pole route produces a raw theta with path lengths $(1,1,L)$.
+\begin{itemize}
+\item For $L=2$, no binary LSA-valid rooting exists.  Binary degrees force the internal vertex of the length-two route to lie below both root branches, making it a proper stable ancestor.
+\item For $L=3$, LSA-valid rootings exist, but none is tree-child: either a reticulation has a reticulation child or a tree vertex has two reticulation children.
+\item For $L\ge4$, tree-child rootings occur and cleanup gives the ordinary simple cycle obtained by contracting the zipper.  Its model equality is \cref{lem:JCzipper} in the common surrounding route.
+\end{itemize}
+If there is no alternate route, the zipper is an isolated root-created 2-blob and cleans to one ordinary edge.  Englander's rooted class excludes this presentation; the Brits rooted class may include it.  The same two-boundary tensor identity proves equality.  No general 2-sub-blob is erased by the quotient.
+
+Two independent implementations enumerate the primitive frontier.  For $(1,1,2)$ both return zero valid rootings; for $(1,1,3)$ they return four valid and zero tree-child rootings.  For $L=4,\ldots,9$, they return respectively $2,4,6,8,10,12$ tree-child presentations.  These numbers audit, but do not replace, the all-size structural proof.
+
+\subsection{Sharpness under cleanup}
+The two four-leaf theta graphs used for sharpness are already simple, so their $\operatorname{sd}_0$ and cleanup images coincide.  Each has five already-simple rootings and exactly two tree-child rootings.  Thus each remains in $\WTC(\mathrm{clean})\setminus\STC(\mathrm{clean})$.  Leaf 1 is adjacent to a triangle vertex in one graph and to a nontriangle vertex in the other, a labelled property unchanged by cleanup or $\Tmove$.  Their exact common JC point, rank-eight certificates, and cherry-substitution inverse are untouched.  This proves \cref{thm:sharpQ}.
+
+\section*{Computational audit of the convention frontier}
+The convention supplement contains two independent structural implementations: a Python graph-object enumerator and a C++ incidence-based enumerator with a separate canonicalizer and rooting routine.  A SymPy displayed-tree calculation and an independent sparse-exponent implementation derive the zipper tensor.  A second C++ program independently enumerates every admissible rooting of the strict class witness and both sharpness graphs.  The mutation suite rejects missed degree-two suppression, wrong parallel identification, erased arrowheads, misclassification of $(1,1,2)$, testing strong tree-childness on one rooting only, collapse of the sharpness pair, and a boundary-only JC substitution.
+
+\section*{Part II: the verified already-simple classification}
+The remainder reproduces Sections 2.2--11 and the appendices of the frozen, independently verified $\operatorname{sd}_0$ manuscript.  Its original title, abstract, and Section 2.1 are superseded by the convention-closed front matter above; all mathematical arguments below are incorporated unchanged.
+\clearpage
+\includepdf[pages=4-18,fitpaper=true,trim=0 16pt 0 0,clip,pagecommand={\thispagestyle{plain}}]{../baseline/SD0_BASELINE_MANUSCRIPT.pdf}
+\end{document}

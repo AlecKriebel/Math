@@ -6,6 +6,7 @@ source "$HERE/bootstrap.sh"
 cd "$STC_JC_PROJECT"
 
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
+"$STC_JC_PYTHON" reproducibility/verify_fixed_graph_scope.py
 bash reviews/final_standard_convention/verify_all.sh
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
 bash reviews/global_bridge/verify_all.sh

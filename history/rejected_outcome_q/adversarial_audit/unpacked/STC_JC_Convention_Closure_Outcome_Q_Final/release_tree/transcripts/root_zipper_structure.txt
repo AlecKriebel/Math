@@ -1,0 +1,58 @@
+{
+  "adjacent_root_child_cases": [
+    {
+      "arc": "p->q",
+      "lsa_valid": true,
+      "p_type": "tree",
+      "q_type": "reticulation",
+      "reason": "p has root as its unique parent and children q,a"
+    },
+    {
+      "arc": "p->q",
+      "lsa_valid": false,
+      "p_type": "reticulation",
+      "q_type": "reticulation",
+      "reason": "p has q as its unique child; root->q and root->p->q make q a proper stable ancestor"
+    }
+  ],
+  "proof_note": "The statements are local degree consequences.  Acyclicity is preserved because the new root has no incoming arc; LSA validity is preserved because any proper stable ancestor after contraction would already have been stable before contraction.",
+  "status": "PROVED",
+  "structural_statements": {
+    "cleanup_final_graph_equals_sd0_final_graph_after_contraction": true,
+    "cleanup_needed_iff_root_children_adjacent": true,
+    "no_arbitrary_2_subblob_suppression_used": true,
+    "tree_child_cleanup_is_one_zipper_step": true,
+    "tree_child_zipper_contracts_to_binary_LSA_sd0_rooting": true
+  },
+  "tree_child_zipper_template": {
+    "cleanup": [
+      "identify the two p-q copies",
+      "suppress p",
+      "suppress q",
+      "obtain ordinary edge a-b"
+    ],
+    "contracted_rooting": [
+      "delete rho,p,q",
+      "insert rho_prime",
+      "rho_prime->a",
+      "rho_prime->b"
+    ],
+    "forced_distinct": [
+      "p!=q",
+      "a!=b"
+    ],
+    "internal_arc": "p->q",
+    "one_step": true,
+    "root_children": [
+      "p",
+      "q"
+    ],
+    "types": {
+      "a": "tree_or_leaf",
+      "b": "tree_or_leaf",
+      "p": "tree",
+      "q": "reticulation"
+    }
+  }
+}
+PASS root zipper structure
