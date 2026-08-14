@@ -122,9 +122,19 @@ prior handoff had incorrectly hidden.
   counterexample to the sign itself.
 - Reconsidered the labelled-history lower route without demanding perfect
   classification.  Exact signed and soft coverage calculations show that
-  discrimination is possible abstractly, but either an unmatched baseline,
-  a nonphysical ancestral rank controller, or an absolute-throughput cost
-  remains.  No graph construction or improved lower bound was obtained.
+  latent discrimination is possible abstractly, but it does not compose
+  through a memoryless physical reset: the reset transfer is rank one and
+  sums all mixed histories.  Positive hit tests have the wrong global
+  direction, while no-hit tests retain an unmatched affine baseline and a
+  sharp throughput cost.  No graph construction or improved lower bound was
+  obtained.
+- Proved a positive endpoint theorem amid the route obstructions.  The
+  natural Bd and dB actions are nonconvex, yet their active fixed points are
+  unique global minima on the physical cube.  Each action remainder splits
+  exactly into a scalar Bregman remainder and a Picone edge square.  An exact
+  two-cycle simultaneously refutes the simplest one-crossing/spine-order
+  conversion of this unsigned variational control into the still-open signed
+  endpoint support.
 - Strategic decision: stop adding compressed marginal or finite-rank
   ansatzes.  The live upper work must retain the full endpoint ground linkage,
   full signed Kac-cycle orientation, or the macroscopic nonseparated trace.

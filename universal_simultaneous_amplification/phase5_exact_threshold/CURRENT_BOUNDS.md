@@ -117,6 +117,16 @@ problem.
    Fenchel/Bregman endpoint actions are now all exactly obstructed.  These
    are proof-route obstructions, not counterexamples to the support sign.
 
+   A positive variational theorem nevertheless survives.  Each natural
+   endpoint action, although globally nonconvex, has its active fixed point
+   as its unique global minimum on the physical cube.  Every full action
+   remainder is exactly a nonnegative scalar Bregman remainder plus a Picone
+   edge square.  This upgrades the earlier local Hessian statement, but an
+   additional cross-rule comparison is still needed to recover the signed
+   support.  Qualitative spine ordering does not provide it: the exact
+   deterministic two-cycle has a one-crossing ratio, yet its spine-smoothed
+   label is ordered oppositely while the true endpoint gap remains positive.
+
 3. **Nonseparated trace and response-scale error exhaustion.**  Conditional
    on BDM, every separated physical Schur packet has the correct common Bd/dB
    coefficient.  If these packets do not exhaust a hypothetical amplifier,
@@ -146,10 +156,14 @@ ordinary mutant sets is impossible.  A signed coverage detector can recover
 the multiplier abstractly, but its exact realization pays a divergent
 baseline, while bounded-cost same-marginal surrogates are only dual stopping
 laws and not forward fixation harmonics.  Soft positive coverage tests do
-discriminate the channels, so the earlier perfect-classification premise was
-stronger than necessary; the surviving quantitative obstruction is an
-absolute-throughput tradeoff, not lack of discrimination.  No new physical
-lower construction follows from these history identities.
+discriminate the latent clean/adverse subevents, but their posterior
+likelihood ratio does not compose through a physical reset.  The reset
+kernel is rank one and sums all mixed histories.  Positive hit tests then
+have the wrong physical direction; the clean-enriching no-hit branch obeys
+a sharp throughput tradeoff and carries an unmatched affine-complement
+baseline.  Thus memoryless soft routing is closed as well.  A lower
+construction would have to retain a genuine set-valued mark, implement a
+signed common control, or avoid the factored history architecture entirely.
 
 The exact constant
 
