@@ -45,6 +45,16 @@ is being erased from the audit record.
    `sink_mask.bit_count()`.  The active bootstrap now locates and enforces
    Python 3.10 or newer, recreating an older virtual environment rather than
    silently continuing.
+3. At source commit `13d8395d992c18d549811c6537ed4f1905e6e5bd`, the
+   full suite completed the root, bridge, and clean-room n3 relation checks,
+   then stopped because the two active base-gate referees still locked the
+   pre-revision hash of `docs/DEFINITIONS_LOCK.md`.  Their 225 and 44 exact
+   symbolic bodies had no failures; only `locked_input_hashes` failed.  The
+   changed definitions bytes are the intentional blob and observational-
+   relation clarifications documented above.  Both active locks were updated
+   to that exact hash, their certificates were regenerated, and both
+   byte-for-byte referee replays now pass.  Historical reviews retain their
+   original hashes.
 
 These are release-engineering failures, not mathematical certificate
 failures.  Final clean-clone transcripts are accepted only if they record the

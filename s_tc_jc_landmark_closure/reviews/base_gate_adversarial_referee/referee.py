@@ -44,7 +44,7 @@ EXPECTED = {
     "graphs_physical": "9fd26a4e4f01e931fcfd1906a41576867f86299925d47adb41c06cf89241f492",
     "roots_physical": "330c4b4cee816bb67aaf6070775669c98eb0a1a17a6bc355d8af91eb935ea3ac",
     "polynomials_physical": "a55059f58f6b1885940e8d99ac7c407d1988b12708cd4638fab99ed2fad98a87",
-    "definitions": "3108a20e924a37b069cc4aeb53b051b03463176eafce9d590dfec378e2ad16a2",
+    "definitions": "5ba5a4c9bbd66553d3cb98915b2c1afeacb98034bf89471b881f06dc591b3005",
     "upstream_full_audit": "8778aa2af23e6c7f286ee26883efc076f070bfc07ed8f10cfa1b504c3b218390",
     "upstream_mutations": "c24dfc03e68fb196c0b48e172394c4772e867c5e9bfc3ef9003d51ec4f8e2d6a",
     "templates": "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3",
