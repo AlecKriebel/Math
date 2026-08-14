@@ -64,6 +64,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "preseal_release_hold": record(
             "s_tc_jc_landmark_closure/reviews/final_release_engineering/PRESEAL_HOLD.md"
         ),
+        "post_hold_revision": record(
+            "s_tc_jc_landmark_closure/reviews/post_hold_revision/REPORT.md"
+        ),
     }
 
 

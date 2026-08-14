@@ -24,9 +24,10 @@ not substitutes for their exhaustiveness proofs.
 | `S` | Submersion, restoration, common anchor, coherent words | `docs/HARD_COVER_THEOREM.md` | `reviews/compact_probe_clean_clone_gate/` and `reviews/direct_anchor_probe_closure/` |
 | `T` | Ordinary triangle common strict regular germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` |
 | `G` | Global necessity and converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` |
-| `O` | Triangle-free Omega topology, equality, rank 9, all-`n` inverse | `omega_audit/reports/OMEGA_GATE_REPORT.md` | primary historical replay plus `omega_audit/independent/verify_omega_release.py`; adversarial O6 PASS |
+| `O` | Triangle-free Omega topology, equality, rank 9, all-`n` inverse | `omega_audit/reports/OMEGA_GATE_REPORT.md` | primary historical replay plus `omega_audit/independent/verify_omega_release.py` and `verify_omega_rank_readability.py`; adversarial O6 PASS |
 | `W` | Triangle-containing Theta rank-8 family for all `n` | `s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier in `s_tc_jc_sharp_boundary/` |
 | `V_final` | Whole-paper adversarial logic and release review | unified manuscript | active final referee packet and clean-clone transcripts |
+| `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
 
 ## Exact local checksums
 
@@ -45,7 +46,8 @@ not substitutes for their exhaustiveness proofs.
   relation, and 12/12 mutations rejected.
 - Omega: four fixed rooted presentations; seven admissible rootings and two
   tree-child rootings per mixed graph; all 256 Fourier and 256 inverse-pattern
-  entries; exact model/intersection dimension nine; 12/12 mutations rejected.
+  entries; exact model/intersection dimension nine; readable core-rank
+  determinant `-723/8589934592`; 12/12 mutations rejected.
 - Theta: all 256 Fourier coordinates, strict quadratic point, two rank-eight
   minors, and positive analytic leaf-substitution inverse.
 

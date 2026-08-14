@@ -76,10 +76,10 @@ LSA-rootable semi-directed mixed graphs obtained under reticulation-preserving
 
 Isomorphisms preserve leaf labels, undirected edges, directed retained
 arrowheads, and vertex roles.  A cut edge is an edge whose deletion disconnects
-the underlying graph.  A blob is a maximal connected subgraph containing no
-cut edge.  In simple binary mixed graphs this agrees for nontrivial blobs with
-the usual biconnected-block convention.  A topology is level two when each
-blob contains at most two reticulations.
+the underlying graph.  A blob is a maximal nontrivial biconnected block of the
+underlying simple graph.  Equivalently in this binary setting, the nontrivial
+blobs are the non-bridge blocks in the bridge decomposition.  A topology is
+level two when each blob contains at most two reticulations.
 
 The literal prior-work term *2-sub-blob* means a connected induced subgraph
 with no globally cut edge and exactly two vertices adjacent outside.  This is
@@ -105,11 +105,13 @@ Every reticulation inheritance probability satisfies `0 < lambda_r < 1`.
 The root distribution is uniform on `Z_2 x Z_2`.  No boundary multiplier or
 inheritance probability is permitted.
 
-`N bowtie_JC N'` means that an interior common distribution is regular for
-both parameterizations and their intersection contains a relatively open
-neighborhood of the full local dimension of both images.
+Write `M_N^reg` for the distributions having a parameter preimage at which
+the network parameterization has rank `dim(M_N)`.  `N bowtie_JC N'` means
+that a common distribution lies in both regular loci and has neighborhoods
+there whose intersection has the full local dimension of both images.
 
-`N preceq_JC N'` means that a relatively open subset of the full local source
-model germ lies in the target image; the target may have larger dimension.
+`N preceq_JC N'` means that there is a source-regular common point and a
+relatively open neighborhood of it in the regular source-model locus that is
+contained in the target image; the target may have larger dimension.
 This is distinct from equality of complex closures, equality of complete open
 images, lower-dimensional intersection, and boundary-only relations.

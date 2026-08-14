@@ -45,10 +45,22 @@ one orientation's model.
 Choose an admissible rooting and expose one incoming boundary of a nonroot
 blob.  If the blob has `t` tree vertices and `r` reticulations, summing local
 indegrees gives cyclomatic number `r`.  A nontrivial level-two blob therefore
-has cycle rank one or two.  Contracting every ordinary port-free bivalent
-path gives a cycle in rank one.  In rank two, every surviving vertex has
-degree three, and `e=v+1` gives `3v<=2e=2v+2`; biconnectedness and simplicity
-leave two poles joined by three paths, namely a theta.
+has cycle rank one or two.  Temporarily remove the port arms.  Each blob
+vertex has degree two or three, including port-bearing subdivisions, and
+biconnectedness excludes smaller degree.  If `v,e` are the blob vertex and
+edge counts, then
+
+```text
+sum_w (deg_B(w)-2) = 2e-2v = 2(r-1).
+```
+
+Rank one therefore gives a cycle.  At rank two exactly two vertices have
+degree three and every other vertex has degree two.  Biconnectedness forces
+the degree-two paths to join the two branch vertices in three internally
+vertex-disjoint routes, namely a theta.  Recording each port-bearing
+subdivision in order before suppression gives the directed segment words;
+source and reticulation-sink direction events are retained in the directed
+core.
 
 Along a directed theta path, source and reticulation-sink events alternate.
 Both poles cannot be reticulations without creating a directed cycle.  Up to

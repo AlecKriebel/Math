@@ -6,11 +6,14 @@ certificates, not premises**
 ## Theorem 1 — primitive universe
 
 Every nontrivial blob of a binary standard semi-directed level-2 topology,
-after deleting cut-edge components while retaining their attachment ports and
-contracting ordinary port-free degree-two paths, has one of five directed
-cores: one cycle core or one of four theta orientation cores.  Every full
-factor is recovered by finite ordered port words on the directed core
-segments and by one outgoing port at every path-sink reticulation.
+after deleting cut-edge components while retaining their attachment ports,
+has one of five directed homeomorphism cores: one cycle core or one of four
+theta orientation cores.  The core is formed by temporarily removing the port
+arms, retaining source and reticulation-sink events, and suppressing every
+other ordinary degree-two side vertex while recording its port in an ordered
+edge word.  Every full factor is recovered by those finite ordered port words
+on the directed core segments and by one outgoing port at every path-sink
+reticulation.
 
 ### Proof
 
@@ -27,12 +30,24 @@ e = t + 2r - 1 = v + r - 1,
 ```
 
 so its cyclomatic number is `r`.  The same calculation holds for a
-root-containing factor before root suppression.  Cyclomatic number one gives
-a cycle.  At cyclomatic number two, suppress every degree-two side vertex.
-Every surviving core vertex has degree three.  Since `e=v+1`,
-`3v <= 2e = 2v+2`, and hence `v<=2`.  Biconnectedness and the simple binary
-lock exclude the one-vertex loop case, leaving two branch vertices joined by
-three paths: a theta.
+root-containing factor before root suppression.  Temporarily remove the port
+arms.  A port-bearing ordinary side vertex then has blob degree two, even
+though it had a third external incidence before removal.  Every blob vertex
+has degree two or three, and biconnectedness excludes degree below two.  Thus
+
+```
+sum_w (deg_B(w)-2) = 2e-2v = 2(r-1).
+```
+
+For `r=1`, every blob vertex has degree two, so the blob is a cycle.  For
+`r=2`, exactly two vertices have degree three and all others have degree two.
+Removing the two branch vertices leaves paths.  Biconnectedness excludes a
+path returning to only one branch vertex, so the three incidences at either
+branch pair with the three incidences at the other.  The blob is therefore
+three internally vertex-disjoint paths between the branches: a theta.
+Retain every source and reticulation-sink event.  Suppress every other
+ordinary degree-two side vertex only after recording each of its physical
+ports in directed order on the resulting core segment.
 
 On a theta path, direction can change only at the unique local source event
 `S` or at a path-sink reticulation `X`, so source and sink events alternate.

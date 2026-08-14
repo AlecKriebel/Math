@@ -60,8 +60,7 @@
 for Level-2 Jukes--Cantor Networks}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
-\small \texttt{me@aleckriebel.com}\quad
-\href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
+\small \texttt{me@aleckriebel.com}}
 \date{August 2026}
 
 \begin{document}
@@ -265,11 +264,12 @@ edge, outside the admitted simple mixed-graph convention.  Thus it too has a
 tree or leaf child.
 
 A cut edge is an edge whose deletion disconnects the underlying graph.  A
-\emph{blob} is a maximal connected subgraph containing no cut edge.  In our
-simple binary setting, nontrivial blobs are the usual biconnected blocks.  A
-network is \emph{level two} when every blob contains at most two
-reticulations.  Contracting each nontrivial blob and retaining ordinary
-trivalent components gives the reduced, leaf-labelled \emph{bridge tree}.
+\emph{blob} is a maximal nontrivial biconnected block of the underlying
+simple graph.  Equivalently in the present binary setting, the nontrivial
+blobs are the non-bridge blocks in the bridge decomposition.  A network is
+\emph{level two} when every blob contains at most two reticulations.
+Contracting each nontrivial blob and retaining ordinary trivalent components
+gives the reduced, leaf-labelled \emph{bridge tree}.
 
 \begin{definition}[Ordinary triangle redirection]\label{def:T}
 An ordinary triangle redirection $\Tmove$ changes only which vertex of a
@@ -324,11 +324,15 @@ same Fourier formula \eqref{eq:fourier}.  Write $\M_N^{\JC}$ for this open
 stochastic image and $\V_N^{\JC}$ for the complex Zariski closure.
 
 \begin{definition}[Observational relations]\label{def:relations}
-We write $N\bowtiejc N'$ if there is an interior distribution regular for
-both parameterizations and a relative neighborhood of that point in the
-intersection having the full local dimension of both images.  We write
-$N\preceqjc N'$ if a relatively open subset of the full local source model
-lies in the target image; the target dimension is allowed to be larger.
+Let $d_N=\dim\M_N^{\JC}$, and let $(\M_N^{\JC})_{\rm reg}$ be the
+distributions having a parameter preimage at which the parameterization has
+Jacobian rank $d_N$.  We write $N\bowtiejc N'$ if there is a point
+$p\in(\M_N^{\JC})_{\rm reg}\cap(\M_{N'}^{\JC})_{\rm reg}$ and a neighborhood
+of $p$ in each regular image whose intersection has the full local dimension
+of both images.  We write $N\preceqjc N'$ if there is a source-regular point
+$p\in(\M_N^{\JC})_{\rm reg}\cap\M_{N'}^{\JC}$ and a relatively open
+neighborhood $U$ of $p$ in $(\M_N^{\JC})_{\rm reg}$ such that
+$U\subseteq\M_{N'}^{\JC}$.  The target dimension is allowed to be larger.
 \end{definition}
 
 These relations are distinct from equality of Zariski closures, equality of
@@ -337,9 +341,12 @@ boundary-only intersection.
 
 \section{Primitive level-2 factors}\label{sec:cores}
 
-Cut away the components beyond the boundary edges of one blob, retain their
-attachment sites as labelled ports, and contract every ordinary port-free
-bivalent path.
+Cut away the components beyond the boundary edges of one blob and retain
+their attachment sites as labelled ports.  To form its homeomorphism core,
+temporarily remove the port arms, retain the local source and reticulation-sink
+events, and suppress every other ordinary bivalent side vertex, recording
+each removed labelled port in its directed order along the resulting core
+segment.
 
 \begin{proposition}[Primitive-core theorem]\label{prop:cores}
 Every nontrivial factor obtained from a standard binary level-2 blob has a
@@ -356,10 +363,25 @@ internal edges, summing internal indegrees gives
 \[
 e=t+2r-1=v+r-1.
 \]
-Its cyclomatic number is therefore $r$.  Rank one gives a cycle.  At rank two,
-every vertex surviving port-free degree-two suppression has degree three.
-Since $e=v+1$, we have $3v\le2e=2v+2$, so $v\le2$; biconnectedness and
-simplicity leave two poles joined by three paths, namely a theta.
+Its cyclomatic number is therefore $r$.  In the underlying blob every vertex
+has blob degree two or three: a port-bearing ordinary subdivision has blob
+degree two, even though it has a third external incidence before the port arm
+is removed.  Since the blob is biconnected, every blob degree is at least two,
+and
+\begin{equation}\label{eq:core-excess}
+\sum_{w\in V(B)}\bigl(\deg_B(w)-2\bigr)
+=2e-2v=2(r-1).
+\end{equation}
+For $r=1$, every vertex has degree two, so $B$ is a cycle.  For $r=2$,
+\eqref{eq:core-excess} gives exactly two degree-three branch vertices and all
+other vertices have degree two.  Removing the two branch vertices leaves
+paths.  Biconnectedness excludes a path returning to only one branch vertex,
+so the three incidences at either branch pair with the three incidences at
+the other.  Thus the blob is the union of three internally vertex-disjoint
+paths between the two branches, namely a theta.  Suppressing their ordinary
+degree-two non-event vertices gives the directed homeomorphism core, while
+the source and reticulation-sink events are retained and the remaining
+port-bearing subdivisions become ordered words on its segments.
 
 Direction changes along a theta path only at a source event or at a
 reticulation-sink event.  Both poles cannot be reticulations, for their
@@ -430,24 +452,67 @@ independently.
 Starting at an admissible root, repeatedly choose a tree or leaf child.  This
 reaches a labelled leaf without crossing a reticulation.  Move the root down
 that ordinary path to the associated real boundary arm.  Only ordinary arcs
-reverse.  Every former parent on the path becomes a tree child, retained
-arrowheads stay fixed, and no directed cycle is created.  The two root sides
-both contain a leaf, since otherwise the original root was not the LSA.  The
-new site is admissible and is tree-child because membership in $\TCs$
-quantifies over every admissible rooting.
+on the path reverse.  At each path vertex the former tree parent becomes a
+tree child, while every off-path reticulation edge retains its arrowhead.  If
+the reversal created a directed cycle, its first re-entry to the reversed
+path would give an internal path tree vertex a second old parent, contrary to
+binary indegree one; hence the rerooted graph is acyclic.  Suppression of the
+old root joins its two old child arcs exactly as in the original one-step
+semi-directed reduction.  If the off-path child is reticulate, its arrowhead
+is unchanged.  Suppressing the newly inserted root therefore returns the
+same fixed mixed graph literally.
 
-JC reversibility preserves all displayed unrooted trees.  Splitting an arm
-multiplier $x$ into $x_1x_2=x$ or multiplying it after suppression stays
-inside $(0,1)$.  The only tensor change from moving within the arm is a
-positive incidence factor.  Suppressing the moved root returns the same
-mixed graph.  The construction is existential for each factor and supplies
-no reason that two factors share one incoming boundary.
+The chosen boundary side contains its labelled leaf.  The complementary
+root side also contains a leaf: otherwise a proper descendant on the chosen
+path would already have been a stable ancestor of every original leaf,
+contradicting LSA validity.  Thus the new root is again the LSA.  The new site
+is admissible and is tree-child because membership in $\TCs$ quantifies over
+every admissible rooting of this fixed mixed graph.
+
+Reticulation parent choices are unchanged, up to replacing a bookkeeping
+probability $\lambda$ by $1-\lambda$.  Every switching therefore gives the
+same displayed unrooted tree, and JC reversibility preserves its split
+monomial.  Splitting an arm multiplier $x$ into $x_1x_2=x$ or multiplying it
+after suppression stays inside $(0,1)$.  The only tensor change from moving
+within the arm is a positive incidence factor.  The construction is
+existential for each factor and supplies no reason that two factors share one
+incoming boundary.
 \end{proof}
 
 \section{Pointwise recovery of cuts}\label{sec:cuts}
 
 For a split $A\mid A^c$, arrange the Fourier flattening by the total
 character $h=\xor_{i\in A}g_i$.  It has four character blocks.
+
+\begin{lemma}[Crossing-quartet reduction]\label{lem:crossing-quartet}
+Let $A\mid A^c$ be a noncut split.  A four-leaf restriction witnessing that
+failure can be chosen so that, after every selected-leaf-free bridge path is
+compressed, its central configuration is either one active component or one
+effective bridge joining two active three-boundary endpoint tensors.
+\end{lemma}
+
+\begin{proof}
+Color each labelled leaf by its side of the proposed split in the reduced
+bridge tree $T$.  A singleton side is the pendant cut at that leaf, so a
+noncut split has at least two leaves of each color.  Suppose first that some
+bridge of $T$ has both colors on each side.  Choose one leaf of each color on
+each side.  In the minimal subtree spanning those four leaves, each side has
+a unique median at which its two colored branches separate from the central
+path.  Every component strictly between the medians has only two selected
+boundaries and therefore contracts, in the selected Fourier tensor, to a
+positive arm or bridge multiplier.  The result is one effective bridge
+joining the two median three-boundary tensors.
+
+Otherwise no bridge has both colors on both sides.  The convex hulls in $T$
+of the two color classes intersect---because a disjoint pair would be
+separated by a cut edge---but their intersection contains no edge.  It is
+therefore one component $v$.  Every incident branch of $T-v$ is
+monochromatic, and at least two branches have each color; with only one, its
+incident edge would realize the proposed split.  Select one leaf from two
+branches of each color.  The selected central configuration is the single
+active component $v$, while all selected-leaf-free paths again compress to
+positive arms.  These two alternatives exhaust the reduced bridge tree.
+\end{proof}
 
 \begin{theorem}[Pointwise cut theorem]\label{thm:cuts}
 At every point of the open JC model of a network in \cref{thm:main},
@@ -464,7 +529,8 @@ two side tensors, with the bridge multiplier appearing in nonzero sectors.
 Hence the rank is at most four.
 
 For the converse, a noncut has either one active central factor or a central
-bridge joining two active three-port endpoint tensors.  The one-active cases
+bridge joining two active three-port endpoint tensors by
+\cref{lem:crossing-quartet}.  The one-active cases
 reduce, after word compression, to the finite exact strict-minor theorem in
 \cref{lem:cut-certificate} below.  For the two-active case write
 \[
@@ -496,12 +562,22 @@ z^2ct(ABC-T^2)&=Af_4+zcT(f_1-f_2)
 then force $F=F'=0$.  By \eqref{eq:endpoint-dichotomy},
 $aA\ge bcBC>z^2bcBC$, contradicting $f_1=0$.
 
+Marginalizing to the selected quartet sets every omitted leaf character to
+zero, so its Fourier flattening is a submatrix of the full flattening.  In
+either central case at least one quartet character block has rank at least
+two.  All four blocks have rank at least one because every open JC Fourier
+entry is positive.  Hence the quartet, and therefore the full Fourier
+flattening, has rank at least five.  Fourier transformation acts by invertible
+row and column changes of basis, so the ordinary pattern flattening has the
+same rank.
+
 For arbitrary words, take one representative from every monochromatic run
-of a proposed split on each directed segment, duplicating an adjacent
-representative when balance requires it.  Occupied repair segments remain
-occupied.  A split displayed by every full switching would remain displayed
-after this restriction; the exact bounded theorem has no noncut survivor.
-Thus a block minor is strictly nonzero at every open point.
+of a proposed split on each directed segment, selecting an additional
+adjacent representative when a color would otherwise be a singleton.
+Occupied repair segments remain occupied.  A split displayed by every full
+switching would remain displayed after this restriction; the exact bounded
+theorem has no noncut survivor.  Thus a block minor is strictly nonzero at
+every open point.
 \end{proof}
 
 \begin{lemma}[Exact cut certificate]\label{lem:cut-certificate}
@@ -576,23 +652,49 @@ network tensors.
 \begin{proof}
 Cut $T$ at one bridge and fix a character sector $h$.  The corresponding
 flattening block is a positive rank-one matrix.  Uniqueness of positive
-rank-one factors gives one scale on either side.  The all-zero entry fixes the
-zero-sector scale, and the six automorphisms of $G$ act transitively on the
-three nonzero characters, so JC symmetry gives one nonzero scale per
-incidence.  Peeling from the leaves of $T$ yields exactly
-\eqref{eq:incidence}; direct cancellation proves the converse.
+rank-one factors gives a sector scale $c_e(h)$ on one side and its reciprocal
+on the other.  The all-zero entry fixes $c_e(0)=1$.  The six automorphisms of
+$G$ act transitively on the three nonzero characters, and both factorizations
+are JC-symmetric, so $c_e(h)$ has one common value for $h\ne0$.
+
+Root the bridge tree temporarily and peel its leaf components.  Expanding a
+peeled subtree contraction toward the root gives, at an unpeeled component
+$v$,
+\[
+\frac{Q_v}{P_v}=
+c_e(h_e)\prod_{f=vw}
+\left(c_f(h_f)^{-1}(x_f/y_f)^{\mathbf1[h_f\ne0]}\right),
+\]
+where $e$ is the parent incidence and the product is over child incidences.
+Assigning the parent and child factors separately defines one positive number
+$a_{v,f}$ at every incidence and yields exactly \eqref{eq:incidence}.
+Induction removes every component, so there is no additional vertex-coupled
+freedom.  Direct cancellation proves the converse and hence the complete
+positive fiber.
 
 For a component carrying a physical leaf block, one-character anchor ratios
-normalize the incidences independently.  An unmarked retained component has
-degree at least three; pair anchors $(1,2),(1,3),(2,3),(1,4),\ldots$ have a
-full-rank log-exponent matrix.  Positive square-root formulas give analytic
-slices in the incidence-saturated positive tensor space.  Restricting an
-orbit to physical realizations therefore means intersecting with all open
-inequalities defining realizable component tensors and bridge multipliers;
-the displayed inequality $0<x_e/(a_{u,e}a_{v,e})<1$ is necessary but not
-sufficient by itself.  Arbitrary positive scales are not asserted to remain
-physical.  The excluded degree-two stabilizer would require the non-strong
-$K_4-e$ factor.  Because $T$ is a tree, no gauge circulates around it.
+normalize the incidences independently; their log-exponent matrix is the
+identity.  An unmarked retained component has degree $d\ge3$.  Its pair
+anchors
+\[
+(1,2),(1,3),(2,3),(1,4),\ldots,(1,d)
+\]
+have a log-exponent matrix whose first three rows have determinant $-2$ and
+whose later rows each introduce one new coordinate.  It has rank $d$, and
+positive square-root formulas give a unique real-analytic normalizer.  Thus
+the incidence action is free on every retained component.  The excluded
+unmarked degree-two stabilizer would require the two-port $K_4-e$ theta,
+which violates the strong criterion; ordinary unmarked components and cycle
+components have degree at least three.
+
+These normalizers define analytic slices in the incidence-saturated positive
+tensor space.  Restricting an orbit to physical realizations means
+intersecting it with all open inequalities defining realizable component
+tensors and bridge multipliers; the displayed inequality
+$0<x_e/(a_{u,e}a_{v,e})<1$ is necessary but not sufficient by itself.
+Arbitrary positive scales are not asserted to remain physical.  Finally,
+$T$ is a tree, so peeling reaches every incidence and no gauge can circulate
+as holonomy around a cycle.
 \end{proof}
 
 \begin{remark}
@@ -929,7 +1031,8 @@ full real dimension on a regular source stratum and hence nonempty relative
 interior, giving $N\preceqjc N'$ contrary to \cref{thm:main}.
 Tarski--Seidenberg makes every projected intersection semialgebraic
 \cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  The dimension and boundary results
-of Bochnak--Coste--Roy~\cite[Section~2.8]{BochnakCosteRoy1998} then imply that,
+of Bochnak--Coste--Roy\cite[Propositions~2.8.2, 2.8.4, 2.8.5, and
+2.8.13]{BochnakCosteRoy1998} then imply that,
 on a smooth $d_N$-stratum, a semialgebraic subset of dimension $d_N$ has
 nonempty relative interior, whereas its boundary has smaller dimension and a
 lower-dimensional semialgebraic set has proper Zariski closure.
@@ -938,8 +1041,9 @@ of images of parameter loci on which the Jacobian rank is less than $d_N$.
 Stratify each such locus into finitely many smooth semialgebraic pieces of
 constant rank.  The constant-rank theorem bounds every image piece by that
 rank, and Tarski--Seidenberg preserves semialgebraicity; hence each image has
-dimension at most $d_N-1$ and proper Zariski closure
-\cite[Sections~2.8--2.9]{BochnakCosteRoy1998}.
+dimension at most $d_N-1$ and proper Zariski closure; invariance of
+semialgebraic dimension under semialgebraic homeomorphism is
+\cite[Theorem~2.8.8]{BochnakCosteRoy1998}.
 Finally adjoin only the zero sets of the observable Fourier cut anchors and
 atlas-witness pullbacks that the exact crosswalk certifies to be
 nonidentically zero on $N$'s intended regular stratum.  This is a finite
@@ -1062,17 +1166,28 @@ with the constant coordinate and JC state symmetries, determine all zero-sum
 coordinates.  Every transition multiplier and inheritance probability lies
 in $(0,1)$.
 
-For the upper rank bound, exact rational-function row reduction on those
-orbit representatives gives core rank six.  The target has the same
-unlabelled rooted core, so label and coordinate transport gives the same
-upper bound there.  The four pendant torus directions have the coordinatewise Euler
-dependency
+For the upper rank bound, set the four pendant multipliers to one and use the
+ten core coordinates $(a_0,\ldots,a_7,\lambda_V,\lambda_X)$ in the edge order
+of \eqref{eq:omega-arcs}.  The Jacobian of the fourteen nonconstant orbit
+coordinates is $14\times10$.  Exact row reduction over the rational-function
+field gives rank six.  As a readable lower witness for that core calculation,
+at the strict source point the first six orbit rows and columns
+$(a_0,a_1,a_2,a_3,a_4,a_7)$ have determinant
 \[
-x_4\frac{\partial c_g}{\partial x_4}
-+x_7\frac{\partial c_g}{\partial x_7}
+-\frac{723}{8589934592}\ne0.
+\]
+The target has the same unlabelled rooted core, so label and coordinate
+transport gives the same upper bound there.  Restoring the four pendant
+parameters adds at most four torus directions.  The coordinatewise Euler
+identity
+\[
+a_4\frac{\partial c_g}{\partial a_4}
++a_7\frac{\partial c_g}{\partial a_7}
 =\mathbf1[g_4\ne0]c_g,
 \]
-so the complete model rank is at most $6+4-1=9$.  Exact nonzero
+shows that the pendant direction for leaf $4$ is already a linear combination
+of two core directions.  Thus the complete model rank is at most
+$6+4-1=9$.  Exact nonzero
 rank-nine minors at the source and target give the reverse inequality and
 regularity.  The rational correspondence is defined and remains strict on a
 neighborhood of the certified source point, and its common coordinate map has
@@ -1382,12 +1497,17 @@ Ordinary triangle germ
 Triangle-free Omega sharpness
 & \texttt{omega\_audit/}; literal one-step reduction, complete seven-rooting
   census, all $256$ Fourier and pattern coordinates, rank-nine upper and lower
-  certificates, all-$n$ inverse, and twelve mutations.\\
+  certificates including the explicit core minor, all-$n$ inverse, and twelve
+  mutations.\\
 Triangle-containing Theta sharpness
 & frozen package \texttt{s\_tc\_jc\_sharp\_boundary/}; all $256$
   coordinates, two rank-eight minors, rooting census, and all-$n$ inverse.\\
 Whole-proof adversarial review
 & \texttt{reviews/final\_biorxiv\_referee/REPORT.md}.\\
+Post-HOLD proof and release revision
+& \texttt{reviews/post\_hold\_revision/REPORT.md}; corrected primitive-core
+  and crossing-quartet proofs, disclosure repair, exact Omega rank replay, and
+  revised PDF audit.\\
 \bottomrule
 \end{longtable}
 
@@ -1396,16 +1516,17 @@ Whole-proof adversarial review
 All graph encodings, sparse invariants, exact certificates, independent
 verifiers, mutation transcripts, source, and deterministic reproduction
 commands accompany this manuscript at
-\url{https://github.com/AlecKriebel/Math/tree/main/s_tc_jc_landmark_closure}.
+\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.0.0}.
 The deposit-ready archive checksum and instructions for adding a persistent
 identifier are included with the release; no unissued DOI is claimed.  No
 specialized phylogenetic-network classification package is required.
 
 \section*{Author contributions}
 
-Alec Kriebel conceived the study, developed the mathematical arguments,
-implemented and validated the computations, prepared the figures, and wrote
-the manuscript.
+Alec Kriebel conceived and directed the study, fixed the mathematical scope
+and conventions, adjudicated proof and audit results, curated the
+reproducibility release, revised the manuscript and figures, and accepts
+responsibility for the final claims and submission.
 
 \section*{Funding}
 
@@ -1417,14 +1538,16 @@ The author declares no competing interests.
 
 \section*{Use of generative AI}
 
-Generative AI systems assisted with exploratory algebra, implementation,
-drafting, and adversarial review.  Several earlier automated claims failed
-adversarial audit, including a reciprocal-only bridge chart and candidate
-ambiguity moves outside the locked standard strong class; those claims are
-withdrawn and preserved only in quarantined history.  The active theorem is
-supported by exact graph-derived certificates and independently written
-replays.  The author is responsible for the mathematical statement, code,
-and final submission.
+Generative AI systems assisted with mathematical discovery and exploratory
+algebra, code generation and implementation, drafting, and adversarial
+review.  Several earlier automated claims failed adversarial audit, including
+a reciprocal-only bridge chart and candidate ambiguity moves outside the
+locked standard strong class; those claims are withdrawn and preserved only
+in quarantined history.  Here ``independent replay'' means a code-independent
+implementation, not an independent human review.  The active theorem is
+supported by exact graph-derived certificates and such separately written
+replays.  No human specialist review is claimed.  The author accepts
+responsibility for the mathematical statement, code, and final submission.
 
 \bibliographystyle{plain}
 \bibliography{references}

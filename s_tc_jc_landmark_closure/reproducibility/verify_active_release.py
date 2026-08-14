@@ -73,7 +73,7 @@ def artifact_checks(metadata) -> None:
     required = {
         "manuscript_source", "bibliography", "main_pdf", "supplement_pdf",
         "source_zip", "pdf_visual_audit", "omega_record", "omega_reviewer", "theta_verifier",
-        "final_mathematical_referee", "preseal_release_hold",
+        "final_mathematical_referee", "preseal_release_hold", "post_hold_revision",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
@@ -164,10 +164,13 @@ def manuscript_checks() -> None:
         "intersection of this ambient incidence orbit",
         "the slice tensors need not themselves be physical",
         "Theorem~2.2.1",
-        "Sections~2.8--2.9",
+        "Propositions~2.8.2, 2.8.4, 2.8.5, and",
+        "Theorem~2.8.8",
         "choose the lexicographically least one",
         "Proposition~2.15",
         r"\texttt{omega\_audit/}",
+        r"reviews/post\_hold\_revision/REPORT.md",
+        "not an independent human review",
     ]
     for needle in required:
         require(needle in paper, f"paper scope/proof phrase missing: {needle}")
@@ -242,6 +245,18 @@ def component_checks() -> None:
                 topology["tree_child_rooting_count"] == 2 and
                 topology["statistics"]["cycle_lengths"] == [4, 4, 6],
                 "Omega topology census changed")
+
+    omega_rank = load_json(
+        REPO / "omega_audit/independent/output/omega_rank_readability.json"
+    )
+    require(omega_rank["status"] == "EXACTLY COMPUTED" and
+            omega_rank["core_jacobian_shape"] == [14, 10] and
+            omega_rank["generic_core_rank"] == 6 and
+            omega_rank["strict_point_minor"]["determinant"] ==
+            "-723/8589934592" and
+            omega_rank["euler_identities_checked"] == 14 and
+            omega_rank["complete_rank_upper_bound"] == 9,
+            "Omega readable rank certificate changed")
 
 
 def release_review_checks() -> None:

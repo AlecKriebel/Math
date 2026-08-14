@@ -20,5 +20,6 @@ PYTHONPATH="../omega_audit/frozen_input/historical/src" \
 PYTHONPATH="../omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
 "$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_release.py
+"$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_rank_readability.py
 
 echo "VERIFIED: full Outcome-A bioRxiv release gates"

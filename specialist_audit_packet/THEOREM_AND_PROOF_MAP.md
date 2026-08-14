@@ -36,15 +36,21 @@ fixed graph has no omnian.
 
 ## Necessity chain
 
-1. **Primitive universe.** Degree counting reduces every nontrivial level-2
-   blob to a cycle or theta core. Four directed theta event patterns exhaust
-   the strong presentations. Simplicity plus no omnians excludes two triangles
-   in one blob.
+1. **Primitive universe.** The exact excess-degree identity
+   `sum(deg_B-2)=2(r-1)` reduces every biconnected subcubic level-2 blob to a
+   cycle or theta without suppressing port-bearing vertices in the count.
+   Source/sink events are retained and all other port subdivisions become
+   ordered edge words. Four directed theta event patterns exhaust the strong
+   presentations. Simplicity plus no omnians excludes two triangles in one
+   blob.
 2. **Pointwise cuts.** True bridges give rank-one blocks in four character
-   sectors. Exact strict minors handle every wrong split. In the only
-   two-active crossing, the identities involving `abc=t^2`, `ABC=T^2`, and
-   `Aa=Tt` force both endpoint trinet polynomials to vanish, contradicting the
-   strict open-domain inequality.
+   sectors. A crossing-quartet lemma reduces every wrong full split to a
+   quartet marginal with one active component or one effective bridge between
+   two active endpoints; its Fourier flattening is a submatrix of the full
+   one. Exact strict minors handle the one-active cases. In the two-active
+   case, identities involving `abc=t^2`, `ABC=T^2`, and `Aa=Tt` force both
+   endpoint trinet polynomials to vanish, contradicting the strict open-domain
+   inequality.
 3. **Projective peeling.** Positive rank-one uniqueness recovers local tensor
    orbits. The exact kernel is the full incidence action
    `P_v -> P_v product a_{v,e}` and
@@ -100,3 +106,17 @@ dimensions per taxon, giving `2n+1`.
 The Theta pair is a distinct triangle-containing pendant transfer. Its frozen
 certificate verifies a strict quadratic common point, all 256 Fourier
 coordinates, and rank eight. The same substitution gives dimension `2n`.
+
+## Focus questions for a human specialist
+
+1. Does the corrected excess-degree argument fully justify the cycle/theta
+   universe while retaining directed source and reticulation-sink events?
+2. Does the crossing-quartet lemma cover every noncut split and transfer the
+   quartet rank obstruction correctly to the full flattening?
+3. Does sectorwise rank-one peeling prove that the bridge fibre has no gauge
+   beyond the full incidence action?
+4. Is the Omega rank-nine upper bound transparent from the rank-six core,
+   four pendant directions, and the displayed Euler dependency?
+
+This packet records code-independent AI-assisted replay; it does not claim
+that a human specialist has performed this review.
