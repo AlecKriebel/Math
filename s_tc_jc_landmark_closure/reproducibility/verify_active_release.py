@@ -7,6 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
 
 
@@ -16,6 +17,7 @@ TITLE = (
     "Strong Tree-Childness Is a Sharp Identifiability Boundary for "
     "Level-2 Jukes-Cantor Networks"
 )
+SOURCE_BINDING_SCHEME = "external-envelope-v1"
 
 
 def sha256(path: Path) -> str:
@@ -58,34 +60,94 @@ def active_surface_checks(final, metadata) -> None:
     require(final["sharpness"]["omega"]["status"] ==
             metadata["omega_disposition"] == "OMEGA-PASS-ALL-(n)",
             "Omega disposition disagrees")
-    require(re.fullmatch(r"[0-9a-f]{40}", metadata["release_source_commit"]),
-            "release source commit is not sealed")
-    require(final["release_source_commit"] == metadata["release_source_commit"],
-            "active commit fields disagree")
+    require(final["sharpness"]["omega"]["common_regular_overlap_dimension"] ==
+            "2n+1", "Omega dimension changed")
+    require(final["sharpness"]["theta"]["common_regular_overlap_dimension"] ==
+            "2n", "Theta dimension changed")
+    require(final["source_binding"] == metadata["source_binding"] and
+            metadata["source_binding"]["scheme"] == SOURCE_BINDING_SCHEME,
+            "non-self-referential source binding disagrees")
 
 
 def artifact_checks(metadata) -> None:
     required = {
         "manuscript_source", "bibliography", "main_pdf", "supplement_pdf",
         "source_zip", "pdf_visual_audit", "omega_record", "omega_reviewer", "theta_verifier",
-        "final_referee_report", "quick_transcript", "full_transcript",
-        "regenerate_transcript", "persistent_archive", "archive_checksum",
+        "final_mathematical_referee", "preseal_release_hold",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
-    release_manifest = REPO / "release_artifacts/RELEASE_ASSET_SHA256SUMS"
-    manifest_text = release_manifest.read_text(encoding="utf-8") if release_manifest.is_file() else ""
     for name, record in metadata["artifacts"].items():
         path = (REPO / record["path"]).resolve()
-        if path.is_file():
-            require(sha256(path) == record["sha256"],
-                    f"release artifact hash changed: {name}")
-        else:
-            require(record.get("distribution") == "release_asset",
-                    f"repository artifact missing: {name}: {record['path']}")
-            commitment = f"{record['sha256']}  {record['path']}"
-            require(commitment in manifest_text.splitlines(),
-                    f"release-asset commitment missing: {name}")
+        require(path.is_file(), f"core artifact missing: {name}: {record['path']}")
+        require(sha256(path) == record["sha256"],
+                f"core artifact hash changed: {name}")
+
+
+def transcript_checks(path: Path, source_commit: str) -> None:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    for needle in (
+        f"commit={source_commit}", "CLEAN_BEFORE=yes", "exit_status=0",
+        "CLEAN_AFTER=yes",
+    ):
+        require(needle in text, f"{path}: missing {needle}")
+
+
+def source_envelope_checks(final, metadata) -> str:
+    """Verify either the outer envelope, an extracted archive, or a source checkout."""
+    envelope_path = REPO / "release_artifacts/RELEASE_ENVELOPE.json"
+    archive_marker = REPO / "ARCHIVE_SOURCE_COMMIT.txt"
+    if envelope_path.is_file():
+        envelope = load_json(envelope_path)
+        source_commit = envelope["source_commit"]
+        require(envelope["schema"] == "stc-jc-external-release-envelope-v1" and
+                envelope["status"] == "SEALED" and envelope["outcome"] == "A",
+                "outer release envelope status changed")
+        require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
+                "outer envelope source commit is invalid")
+        require(envelope["core_metadata_sha256"] ==
+                sha256(PROJECT / "RELEASE_METADATA.json"),
+                "outer envelope core-metadata commitment changed")
+        require(envelope["final_outcome_sha256"] ==
+                sha256(PROJECT / "FINAL_OUTCOME.json"),
+                "outer envelope final-outcome commitment changed")
+        manifest_path = REPO / "release_artifacts/RELEASE_ASSET_SHA256SUMS"
+        require(manifest_path.is_file(), "outer release-asset manifest missing")
+        manifest = manifest_path.read_text(encoding="utf-8").splitlines()
+        for name, record in envelope["external_artifacts"].items():
+            target = REPO / record["path"]
+            require(target.is_file(), f"external release artifact missing: {name}")
+            require(sha256(target) == record["sha256"],
+                    f"external release artifact hash changed: {name}")
+            require(f"{record['sha256']}  {record['path']}" in manifest,
+                    f"external manifest commitment missing: {name}")
+        for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
+            transcript_checks(
+                REPO / "release_artifacts/clean_clone_transcripts" / name,
+                source_commit,
+            )
+        sidecar = REPO / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
+        archive = REPO / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz"
+        require(sidecar.read_text(encoding="utf-8").split()[0] == sha256(archive),
+                "persistent-archive sidecar changed")
+        return source_commit
+    if archive_marker.is_file():
+        source_commit = archive_marker.read_text(encoding="utf-8").strip()
+        require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
+                "archive source-commit marker is invalid")
+        transcript_dir = REPO / "release/final_biorxiv/transcripts"
+        for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
+            transcript_checks(transcript_dir / name, source_commit)
+        return source_commit
+    try:
+        source_commit = subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=REPO, text=True
+        ).strip()
+    except Exception as exc:
+        raise AssertionError("neither source checkout, archive, nor envelope") from exc
+    require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
+            "source checkout commit is invalid")
+    return source_commit
 
 
 def manuscript_checks() -> None:
@@ -195,13 +257,14 @@ def main() -> None:
     metadata = load_json(PROJECT / "RELEASE_METADATA.json")
     active_surface_checks(final, metadata)
     artifact_checks(metadata)
+    source_commit = source_envelope_checks(final, metadata)
     manuscript_checks()
     component_checks()
     release_review_checks()
     print(json.dumps({
         "status": "VERIFIED",
         "outcome": "A",
-        "release_source_commit": metadata["release_source_commit"],
+        "source_commit": source_commit,
         "omega": metadata["omega_disposition"],
         "main_pdf_sha256": metadata["artifacts"]["main_pdf"]["sha256"],
     }, sort_keys=True))

@@ -5,7 +5,9 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 ## Deposit object
 
 - Archive filename: `stc_jc_sharp_boundary_reproducibility.tar.gz`
-- SHA-256: recorded in `release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256` after the final clean replay
+- SHA-256: recorded after the immutable source commit is replayed, in
+  `release_artifacts/RELEASE_ENVELOPE.json` and the checksum sidecar
+  `release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`.
 - Recommended title: **Reproducibility package for “Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes–Cantor Networks”**
 - Author: Alec Kriebel
 - ORCID: 0009-0001-9320-500X
@@ -21,11 +23,17 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 4. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
 5. `biorxiv_submission/SHA256SUMS`
 
-The deterministic archive is built from the sealed source commit with:
+The deterministic archive is built from the immutable source commit with:
 
 ```bash
 python reproducibility/build_biorxiv_release.py archive --commit <source-commit>
 ```
+
+The archive contains a commit-independent core manifest and
+`ARCHIVE_SOURCE_COMMIT.txt`.  Its final hash and the hashes of the appended
+clean-clone transcripts live in the external, non-self-referential
+`RELEASE_ENVELOPE.json`.  This avoids placing an archive's own digest inside
+the bytes being digested.
 
 ## Human selections
 

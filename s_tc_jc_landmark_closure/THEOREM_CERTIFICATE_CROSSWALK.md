@@ -2,6 +2,11 @@
 
 Status: **VERIFIED — FINAL OUTCOME A**
 
+The persistent archive is sealed in two layers: this core crosswalk and the
+core artifact manifest are inside the archive, while
+`release_artifacts/RELEASE_ENVELOPE.json` records the immutable source commit,
+clean-clone transcript hashes, and final archive digest.
+
 Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 

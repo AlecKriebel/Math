@@ -2,6 +2,11 @@
 
 Status: **CLOSED — FINAL OUTCOME A**
 
+Release binding: the theorem graph and core artifact manifest are
+commit-independent. `ARCHIVE_SOURCE_COMMIT.txt` and the external
+`release_artifacts/RELEASE_ENVELOPE.json` jointly bind the immutable source
+commit, replay transcripts, and archive digest without a self-reference.
+
 Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 

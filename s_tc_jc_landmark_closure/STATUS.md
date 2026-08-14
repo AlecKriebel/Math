@@ -37,3 +37,9 @@ The active manuscript, dependency graph, theorem-to-certificate crosswalk,
 release metadata, exact component verifiers, and clean-clone transcripts are
 the only authoritative release surfaces. Superseded claims are retained only
 under `history/` and are not inputs to any active verifier.
+
+The release uses a non-self-referential two-layer seal. The core metadata in
+this directory is included in the persistent archive.
+`ARCHIVE_SOURCE_COMMIT.txt` records its immutable source commit, and the
+external `release_artifacts/RELEASE_ENVELOPE.json` binds that commit, the three
+clean transcripts, and the final archive hash.
