@@ -27,6 +27,30 @@ No reported issue supplied a counterexample to the classification theorem or
 the Omega/Theta sharpness theorems.  The submission HOLD is lifted only after
 the revised clean-clone, mutation, PDF, archive, and public-tag gates pass.
 
+## Fail-closed bootstrap record
+
+Two clean-clone attempts failed before release sealing, and neither failure
+is being erased from the audit record.
+
+1. At source commit `703b2c604838f0e1bbde238441962bd5ae986057`, the
+   default package index did not provide the historical pins
+   `networkx==3.6.1` and `numpy==2.3.5`.  The verifier stopped during
+   environment creation, before any theorem check.  The active lock now
+   contains only packages imported by the release gates and uses the
+   available exact pin `networkx==3.2.1`.
+2. At source commit `90106057bfdd6ccff3896d96292a4289926e2d0f`, the
+   quick suite passed, but the full suite exposed that macOS's system
+   Python 3.9 lacks `int.bit_count`; the first failing file was
+   `reviews/root_probe/verify_parameter_submersion.py` at the expression
+   `sink_mask.bit_count()`.  The active bootstrap now locates and enforces
+   Python 3.10 or newer, recreating an older virtual environment rather than
+   silently continuing.
+
+These are release-engineering failures, not mathematical certificate
+failures.  Final clean-clone transcripts are accepted only if they record the
+supported interpreter, exit status zero, and clean tracked state before and
+after every advertised command.
+
 ## Independent theorem-level re-review
 
 A code-independent adversarial reviewer first classified the primitive-core
