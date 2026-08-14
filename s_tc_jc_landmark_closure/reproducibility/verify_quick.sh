@@ -15,5 +15,6 @@ bash reviews/global_bridge/verify_all.sh
 (cd reviews/direct_anchor_probe_closure && shasum -a 256 -c MANIFEST.sha256)
 PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_quick.sh
 "$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
+"$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_release.py
 
-echo "VERIFIED: quick Outcome-P release gates"
+echo "VERIFIED: quick Outcome-A bioRxiv release gates"

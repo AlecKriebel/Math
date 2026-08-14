@@ -1,6 +1,6 @@
 # Sharp generic-identifiability boundary for level-2 JC networks
 
-**Outcome P is proved and independently verified.**
+**Final Outcome A is proved and independently verified.**
 
 For binary already-simple standard semi-directed strongly tree-child
 level-2 networks, open-JC source-relative full-dimensional regular
@@ -10,19 +10,23 @@ ordinary triangle redirection `T`.  There are no proper one-sided generic
 containments.  Hence generic JC data identify the standard semi-directed
 topology modulo `T`.
 
-Strong tree-childness is sharp: for every `n >= 4`, the frozen weak-class
-package supplies a weakly-but-not-strongly tree-child non-`T` pair whose open
-JC images have a common full-dimensional regular region of dimension `2n`.
+Strong tree-childness is sharp even without triangles: for every `n >= 4`,
+the bounded Omega audit supplies a triangle-free weakly-but-not-strongly
+tree-child non-`T` pair whose open JC images have a common full-dimensional
+regular region of dimension `2n+1`. The frozen Theta package supplies a
+second triangle-containing family of dimension `2n`.
 
 ## Main files
 
-- `submission/Strong_Tree_Childness_Sharp_Level2_JC_Boundary.pdf` — final
+- `../biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf` — final
   manuscript.
+- `../biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
+  — reader-oriented supplement.
 - `source/paper/main.tex` — manuscript source.
 - `docs/SHARP_BOUNDARY_THEOREM.md` — expanded theorem proof.
 - `FINAL_OUTCOME.json` — authoritative machine-readable outcome.
 - `THEOREM_CERTIFICATE_CROSSWALK.md` — theorem-to-evidence map.
-- `reviews/final_outcome_p_referee_v2/` — terminal independent referee.
+- `reviews/final_biorxiv_referee/` — terminal independent mathematical referee.
 - `REFEREE_GUIDE.md` — suggested specialist audit path.
 
 ## Exact reproduction
@@ -30,9 +34,9 @@ JC images have a common full-dimensional regular region of dimension `2n`.
 From the repository root:
 
 ```bash
-bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_full.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_regenerate_all.sh
+bash reproducibility/verify_quick.sh
+bash reproducibility/verify_full.sh
+bash reproducibility/verify_regenerate_all.sh
 ```
 
 The bootstrap creates a pinned local environment.  Regeneration is confined
@@ -49,12 +53,7 @@ is `docs/SHARP_BOUNDARY_THEOREM.md`; the authoritative outcome is
 
 ## Sealed release evidence
 
-All three commands above passed in clean detached worktrees at commit
-`35291bba72f52ac800e99ea797ddad20d9852a67`, and each worktree remained clean
-after replay.  Exact transcripts and timings are in `release/`, with the
-machine-readable summary in `release/CLEAN_REPRODUCTION.json`.
-
-The deterministic source-and-certificate archive is intentionally not stored
-as an ordinary Git blob because it is 336 MB.  Its tracked checksum and exact
-construction command are in `release/`; the archive itself is suitable for a
-repository release asset.
+The exact certified source commit, clean-clone transcripts, environment
+versions, output hashes, and deterministic archive checksum are recorded in
+`RELEASE_METADATA.json` and `release/final_biorxiv/`. The active archive is a
+deposit-ready release asset; no persistent DOI is claimed before issuance.
