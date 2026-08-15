@@ -67,3 +67,26 @@
   same two immutable witness payloads.  The independent verifier now finds
   them there by exact content ID; all deterministic certificates were
   regenerated and the fail-closed replay passes.
+
+## 2026-08-15T09:06:00Z — independent adversarial review completed
+
+- One fresh read-only adversarial reviewer inspected the mathematical
+  manuscript against all twelve mandated questions.  It found no
+  counterexample and no unresolved blocker.
+- It preserved four actionable findings: two bounded mathematical handoff
+  gaps and two exposition gaps.  The full verdict is
+  `ADVERSARIAL_REVIEW.md`.
+- F1 required an explicit bridge from the at-most-eight-port noncut
+  compression to the four-active-port cut certificates.  The repaired proof
+  now states the zero-survivor switching step, ordinary tree-quartet choice,
+  zero-character completion roles, 72-tensor universe, and 204 strict
+  directions.
+- F2 corrected the false literal claim that unequal rooted mask rows always
+  define unequal selected coordinates.  Descriptor classes are now defined
+  by complete zero-sum JC indicator signatures, including split complements;
+  all-zero classes are discarded as tensor-invisible.
+- F3 added the complete Theta source point and both Jacobian gauge-variable
+  definitions to the supplement.  F4 corrected the global proof to cite the
+  decorated bridge-tree corollary.
+- This was the sole permitted repair pass.  No theorem statement, model
+  domain, network class, Omega claim, or Theta claim changed.

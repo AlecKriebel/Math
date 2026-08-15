@@ -692,8 +692,11 @@ Hence the rank is at most four.
 For the converse, a noncut has either one active central factor or a central
 bridge joining two active three-port endpoint tensors by
 \cref{lem:crossing-quartet}.  In a one-active factor apply
-\cref{lem:noncut-compression}; its noncut bounded restriction is covered by
-the finite exact strict-minor theorem in \cref{lem:cut-certificate} below.
+\cref{lem:noncut-compression}.  The four-active handoff in
+\cref{lem:cut-certificate} selects an actual quartet that remains wrong in
+one displayed switching, retains every other repair or sink role as a
+zero-character completion port, and supplies a strict block minor.  Thus its
+Fourier flattening has rank at least five.
 
 For the two-active case, number the two outer boundaries of the first
 endpoint by $1,2$ and its central boundary by $3$.  Divide the endpoint
@@ -781,12 +784,27 @@ pulls back $\Delta,\Gamma$ or the selected flattening minor.  Each nonzero pullb
 factored or converted to the Bernstein basis on the unit cube; all
 coefficients required for strict sign have one sign.  A second implementation
 reconstructs all graph-to-polynomial assignments without importing the
-producer.  The full normalized records and all $204$ minors agree.  This is a
-finite exact proof because \cref{prop:cores} and word compression exhaust the
-endpoint types; the counts are checksums, not the premise.
+producer.  The full normalized records and all $204$ minors agree.
+
+Here is the exact handoff from the at-most-eight-port compression to those
+four-active-port records.  A separate two-colour switching compiler checks
+every compressed root and nonroot primitive completion and has zero survivors:
+no balanced noncut colouring is displayed by every switching.
+Choose a switching that does not display the selected split.  The ordinary
+tree quartet criterion then gives two actual labels of each colour whose
+induced quartet still fails to display that split.  Every other selected
+repair or path-sink role is retained with character zero, so it remains a
+physical completion role rather than being deleted.  The four-port compiler
+enumerates exactly these $72$ active-labelled tensors.  It skips the $12$
+directions displayed by every switching and gives one strict minor for each
+of the other $204$ directions.  That quartet minor is a submatrix of the
+compressed and full flattenings.  This is a finite exact proof because
+\cref{prop:cores,lem:noncut-compression} exhaust the primitive completions and
+compressed colourings; the counts are checksums, not the premise.
 \end{proof}
 
 \begin{corollary}[Bridge-tree equality under one-sided containment]
+\label{cor:bridge-tree}
 If $N\preceqjc N'$, then $N$ and $N'$ have the same labelled cut splits and
 the same reduced bridge tree, including ordinary/nontrivial component
 decoration.
@@ -1000,18 +1018,24 @@ model.
 \begin{proof}
 Work on a smooth semialgebraic source-image stratum.  For each switching,
 the restriction sets omitted leaf characters to zero.  Group physical edges
-whose complete descendant-mask rows on the retained ports agree.  Within one
-nonempty serial class the selected parameter is
+whose complete switching-signature rows have the same zero-sum JC indicator
+signature---that is, they induce the same JC exponent on every zero-sum
+assignment of the retained ports.  This normalization identifies, in
+particular, a selected split mask with its complement; unnormalized rooted
+descendant-mask rows need not be equal.  Discard the all-zero signature,
+whose physical parameters are tensor-invisible after restriction.  Within
+every remaining equivalence class the selected parameter is
 \[
 (x_1,\ldots,x_s)\longmapsto y=x_1\cdots x_s,
 \qquad
 dy=\sum_i\left(\prod_{j\ne i}x_j\right)dx_i.
 \]
 Every coefficient is positive on $(0,1)^s$, so this product map is a
-submersion.  Distinct complete mask rows give distinct selected edge
-coordinates; inheritance coordinates are retained, with a possible parent
-flip $\lambda\mapsto1-\lambda$.  The resulting descriptor map from full to
-selected physical parameters is therefore onto and submersive.
+submersion.  Distinct normalized indicator signatures give the distinct
+selected effective edge coordinates; inheritance coordinates are retained,
+with a possible parent flip $\lambda\mapsto1-\lambda$.  The resulting
+descriptor map from full to selected physical parameters is therefore onto
+and submersive.
 
 Choose a regular parameter point of the selected model and lift it through
 the descriptor.  The selected-rank minor and a generic full-model rank minor
@@ -1066,11 +1090,13 @@ subdivisions in a full strong target produces exactly one such raw record.
 Hence the completion grammar is onto every selected target tensor.
 
 For each displayed switching and physical edge, record the descendant mask
-on the selected ports.  Edges having the same complete row of masks occur in
-every Fourier monomial with equal exponents and are replaced by their product.
-The serial products and possible parent complements are exactly the
-descriptor maps in \cref{lem:marginal-open}.  Thus the descriptor gives the
-exact positive selected tensor image, not a boundary specialization.
+on the selected ports and normalize its complete row by its zero-sum JC
+indicator signature, including split complements.  Edges in one normalized
+class occur in every Fourier monomial with equal exponents and are replaced
+by their product; an all-zero class is omitted as tensor-invisible.  The
+serial products and possible parent complements are exactly the descriptor
+maps in \cref{lem:marginal-open}.  Thus the descriptor gives the exact
+positive selected tensor image, not a boundary specialization.
 
 On every ordered four-port marginal the certificate evaluates the
 $S_4$-orbit of seven explicit integer JC invariant templates.  The templates
@@ -1293,8 +1319,8 @@ full-dimensional regular global germ.
 \section{Proof of the global theorem}\label{sec:global}
 
 \begin{proof}[Proof of \cref{thm:main}]
-Assume $N\preceqjc N'$.  By \cref{thm:cuts}, their labelled decorated bridge
-trees agree.  The exact bridge fiber and \cref{prop:localize} induce a
+Assume $N\preceqjc N'$.  By \cref{cor:bridge-tree}, their labelled decorated
+bridge trees agree.  The exact bridge fiber and \cref{prop:localize} induce a
 source-relative projective containment for every pair of corresponding
 nontrivial factors.  Root factors reduce to independently chosen real
 incoming ports by \cref{lem:root}.  The local theorem then forces each pair

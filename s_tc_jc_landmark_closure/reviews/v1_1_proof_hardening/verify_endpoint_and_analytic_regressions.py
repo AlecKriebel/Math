@@ -147,6 +147,11 @@ def verify_normalization():
         raise AssertionError("unnormalized endpoint mutation was not detected")
 
 
+def normalized_indicator_row(row, width=4):
+    full = (1 << width) - 1
+    return tuple(min(mask, full ^ mask) for mask in row)
+
+
 def validate_descriptor_partition(rows, groups, point):
     used = set()
     derivatives = []
@@ -154,9 +159,9 @@ def validate_descriptor_partition(rows, groups, point):
         if not group or used.intersection(group):
             raise AssertionError("descriptor classes do not form a disjoint partition")
         used.update(group)
-        signatures = {rows[index] for index in group}
+        signatures = {normalized_indicator_row(rows[index]) for index in group}
         if len(signatures) != 1:
-            raise AssertionError("an edge group has inconsistent descendant-mask rows")
+            raise AssertionError("an edge group has inconsistent zero-sum indicator rows")
         derivative_row = []
         for index in range(len(rows)):
             if index not in group:
@@ -177,7 +182,10 @@ def validate_descriptor_partition(rows, groups, point):
 
 
 def verify_marginal_submersion_mutations():
-    rows = ((1, 2, 0, 3), (1, 2, 0, 3), (4, 0, 5, 1), (4, 0, 5, 1), (7, 3, 2, 6))
+    # The first pair and second pair differ by selected split complements in
+    # individual switchings but have identical zero-sum JC indicators.
+    rows = ((3, 12, 0, 5), (12, 3, 15, 10),
+            (4, 0, 5, 1), (11, 15, 10, 14), (7, 3, 2, 6))
     groups = ((0, 1), (2, 3), (4,))
     point = tuple(Fraction(i + 2, i + 4) for i in range(len(rows)))
     validate_descriptor_partition(rows, groups, point)
@@ -204,10 +212,15 @@ def verify_manuscript_contract():
     required_main = (
         "Marginal open image",
         "constant-rank theorem",
+        "zero-sum JC indicator",
+        "split complements",
         "Local product chart",
         "Simultaneous physical gluing",
         "uniform lower bounds on the products",
         "Noncut-preserving word compression",
+        "zero survivors",
+        "$72$ active-labelled tensors",
+        "$204$ directions",
         "Finite decorated-relation theorem",
         "complete target point",
     )
@@ -219,6 +232,9 @@ def verify_manuscript_contract():
         "10339",
         "1767/4832",
         "root-edge factorization",
+        "(P,s,Q,t,R,u,v,S)",
+        "(P',x,y,z,R',w,S',Q')",
+        "x_{B1}",
     )
     missing = [text for text in required_supplement if text not in supplement]
     if missing:
