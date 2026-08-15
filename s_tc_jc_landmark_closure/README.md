@@ -26,7 +26,8 @@ second triangle-containing family of dimension `2n`.
 - `docs/SHARP_BOUNDARY_THEOREM.md` — expanded theorem proof.
 - `FINAL_OUTCOME.json` — authoritative machine-readable outcome.
 - `THEOREM_CERTIFICATE_CROSSWALK.md` — theorem-to-evidence map.
-- `reviews/final_biorxiv_referee/` — terminal independent mathematical referee.
+- `reviews/v1_1_proof_hardening/` — terminal bounded independent
+  mathematical review, repair response, and proof-hardening regressions.
 - `REFEREE_GUIDE.md` — suggested specialist audit path.
 
 ## Exact reproduction

@@ -2,38 +2,38 @@
 
 Status: **VERIFIED**
 
-The submission PDFs were rebuilt twice from the released LaTeX source with
+The submission PDFs were rebuilt twice from the proof-hardened LaTeX source with
 `SOURCE_DATE_EPOCH=1786665600`; the two builds were byte-for-byte identical.
-The main manuscript has 25 letter-size pages and the supplement has 5.  The
+The main manuscript has 30 letter-size pages and the supplement has 6.  The
 TeX logs contain no undefined references, missing citations, overfull boxes,
 or clipped-box warnings.  The reported underfull data-availability and
 bibliography lines are line-breaking diagnostics and are visually
 unobjectionable.
 
 Every page was rendered independently by Poppler and Ghostscript at 100 dpi.
-Both renderers produced 25 main-manuscript images and 5 supplement images,
+Both renderers produced 30 main-manuscript images and 6 supplement images,
 all at 850 by 1100 pixels.  The aggregate page-manifest hashes are:
 
 | PDF | Renderer | SHA-256 of page-hash manifest |
 |---|---|---|
-| Main | Poppler | `35567f79fb101bd2a1e1640151535f4988c4242eae4d5e4d433b6f5414fdd55d` |
-| Main | Ghostscript | `aab090cb13d534319270fb7c9a5ee697472d2e24d3995e16814bb73cecf9b024` |
-| Supplement | Poppler | `65ec2830f7e7e4e6694d42b9bb84a879c279637b35767b71b4d248d411079dff` |
-| Supplement | Ghostscript | `7d2239393702a5d647e054db93b5b9a32c61e52a4897db4840216ff81d711b3b` |
+| Main | Poppler | `074f4d4daa8bd042ef8e494f53704b83a2ade34b04e2f6ce15166f22b5ccca15` |
+| Main | Ghostscript | `d8fe0d0019be29ef3274b37565aaf322d2dfa5f80cb915e01a461dbf51b13e16` |
+| Supplement | Poppler | `cacc841175ed88e2d3935abb4ce6bc514de56f9d9d1ec6df7a08701af49c5c71` |
+| Supplement | Ghostscript | `4afa2c69992b66060ed4b36e692584a9cd17b3de976e46a977773826162ed91a` |
 
 The contact sheets were inspected page by page, with full-size checks of the
 dense parameter tables, certificate crosswalk, bibliography, and all vector
-figures.  Figure 4 was also checked full-size after increasing the panel
+figures.  Figure 4 on manuscript page 18 was also checked full-size after increasing the panel
 spacing; no labels or panels overlap.  No clipping, overlap, missing glyph,
 malformed equation, illegible table, or broken figure was found.  Independent
-inspection of every PDF font descriptor reports all 31 main-manuscript and 17
+inspection of every PDF font descriptor reports all 31 main-manuscript and 18
 supplement fonts embedded.  Poppler and Ghostscript agree on page geometry
 and content; their remaining pixel differences are ordinary antialiasing
 differences.
 
 Contact-sheet hashes:
 
-- Main: `aae1396aafb0dbce109225c6160f7594d890d0c90caf803df6ba7f1d3dfb17eb`
-- Supplement: `5d35ea2ab8086e4dcea633ee1a2cf4ceb033cd83b101e5179d15b9882f1dbda4`
+- Main: `ef2c512063b024d1aa89250b394691afb802b3413b95c67eaeec13cde09f30b5`
+- Supplement: `7d42ca43ad4d1d317989817e379de8046a384b006e15ebad93c15041cc71283e`
 
 The page-level manifests and contact sheets are stored in `visual_audit/`.

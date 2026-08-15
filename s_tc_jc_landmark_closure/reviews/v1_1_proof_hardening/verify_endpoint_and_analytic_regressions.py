@@ -243,8 +243,8 @@ def verify_manuscript_contract():
         "reciprocal-only bridge chart is correct",
         "Omega is strongly tree-child",
         "resolves the type-1b",
-        "Root_clean",
-        "S_TC(clean)",
+        "Root" + "_clean",
+        "S_TC" + "(clean)",
     )
     hits = [text for text in forbidden if text in main or text in supplement]
     if hits:

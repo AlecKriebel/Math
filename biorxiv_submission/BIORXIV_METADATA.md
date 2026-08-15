@@ -40,7 +40,7 @@ Alec Kriebel conceived and directed the study, fixed the mathematical scope and 
 
 ## Data and code availability
 
-All graph encodings, exact certificates, independent verifiers, mutation transcripts, source, and deterministic reproduction commands are provided in the accompanying reproducibility archive and at https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.0.0. A persistent archive identifier will be added after it is issued; no unissued DOI is claimed.
+All graph encodings, exact certificates, independent verifiers, mutation transcripts, source, and deterministic reproduction commands are provided in the accompanying reproducibility archive and at https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.0. A persistent archive identifier will be added after it is issued; no unissued DOI is claimed.
 
 ## Generative-AI disclosure
 

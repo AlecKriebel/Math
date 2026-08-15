@@ -2,6 +2,10 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
+Release revision: **v1.1.0 proof-hardened**.  The bounded independent review
+found no blocker; its two mathematical handoff findings and two exposition
+findings were repaired in the sole permitted response pass.
+
 Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 

@@ -1,6 +1,6 @@
 # Specialist referee guide
 
-Status: **PROVED — final independent whole-proof verdict VERIFIED**
+Status: **PROVED — v1.1 bounded adversarial verdict VERIFIED AFTER CORRECTION**
 
 ## Headline
 
@@ -25,8 +25,9 @@ simple only after broader parallel-edge or degree-two cleanup.
 4. Section 9: the independently frozen weak-class sharpness theorem.
 5. `THEOREM_CERTIFICATE_CROSSWALK.md` for the exact artifacts behind each
    computer-assisted statement.
-6. `reviews/final_biorxiv_referee/REPORT.md` for the terminal adversarial
-   verdict and preserved release-level defects.
+6. `reviews/v1_1_proof_hardening/ADVERSARIAL_REVIEW.md` and
+   `REPAIR_RESPONSE.md` for the terminal bounded mathematical verdict and the
+   sole repair pass.
 
 ## Five delicate points
 
@@ -52,6 +53,11 @@ both cut inclusions follow on the shared source-open set even though
 `aA >= bcBC > z^2bcBC` after exact minors force both endpoint `F` values to
 zero.
 
+The one-active handoff is also explicit: noncut-preserving compression is
+followed by a zero-survivor switching choice, an ordinary wrong quartet, and
+one of the 204 certified four-active strict minors.  Remaining repair roles
+are zero-character completion ports, not deleted vertices.
+
 ### 3. The local finite theorem
 
 The finite object is a decorated directed source-target relation, not a
@@ -65,6 +71,9 @@ presentation mismatch.
 The complete source-target relation is fixed before restoration.  Every
 larger prefix is a direct marginal of that full containment.  The proof never
 infers containment of `Q union D` from containment of `Q`.
+Descriptor edge classes are normalized by complete zero-sum JC indicator
+signatures, including split complements; unnormalized rooted masks are not
+claimed to be canonical.
 
 ### 5. What ordinary `T` means
 

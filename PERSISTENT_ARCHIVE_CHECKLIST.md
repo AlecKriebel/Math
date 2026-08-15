@@ -42,7 +42,7 @@ clean-clone transcripts live in the external, non-self-referential
 the bytes being digested.
 
 The immutable source commit is also marked by the annotated tag
-`stc-jc-sharp-boundary-v1.0.0`.  In a source-only clone the active verifier
+`stc-jc-sharp-boundary-v1.1.0`.  In a source-only clone the active verifier
 requires that exact tag to peel to a clean checkout.  In a deposited release
 bundle it instead verifies the external envelope and every accompanying
 asset.  The large archive and its outer envelope are intentionally release

@@ -28,6 +28,7 @@ not substitutes for their exhaustiveness proofs.
 | `W` | Triangle-containing Theta rank-8 family for all `n` | `s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier in `s_tc_jc_sharp_boundary/` |
 | `V_final` | Whole-paper adversarial logic and release review | unified manuscript | active final referee packet and clean-clone transcripts |
 | `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
+| `V11` | Final noncut compression, four-active cut handoff, normalized marginal submersion, endpoint provenance, and simultaneous gluing | revised manuscript | `reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md`, `ADVERSARIAL_REVIEW.md`, `REPAIR_RESPONSE.md`, and both independent proof-hardening verifiers |
 
 ## Exact local checksums
 
@@ -49,7 +50,12 @@ not substitutes for their exhaustiveness proofs.
   entries; exact model/intersection dimension nine; readable core-rank
   determinant `-723/8589934592`; 12/12 mutations rejected.
 - Theta: all 256 Fourier coordinates, strict quadratic point, two rank-eight
-  minors, and positive analytic leaf-substitution inverse.
+  minors, both complete physical points and gauge definitions, and positive
+  analytic leaf-substitution inverse.
+- v1.1 cut compression: 3,112 / 58,380 / 58,380 / 91,464 / 117,252 bounded
+  two-colour occupancies across the five primitive cores; 20/20 adversarial
+  mutations rejected.  The four named two-active minors are independently
+  regenerated from their stated Fourier blocks.
 
 ## Explicit exclusions
 

@@ -48,9 +48,11 @@ fixed graph has no omnian.
    quartet marginal with one active component or one effective bridge between
    two active endpoints; its Fourier flattening is a submatrix of the full
    one. Exact strict minors handle the one-active cases. In the two-active
-   case, identities involving `abc=t^2`, `ABC=T^2`, and `Aa=Tt` force both
-   endpoint trinet polynomials to vanish, contradicting the strict open-domain
-   inequality.
+   case, four block minors force `Delta=abc-t^2=0` and
+   `Delta'=ABC-T^2=0`, while `f_1=0` contradicts
+   `aA >= bcBC > z^2bcBC`.  In the one-active case, a zero-survivor switching
+   and the ordinary quartet criterion bind the eight-port compression to one
+   of the 204 four-active strict minors.
 3. **Projective peeling.** Positive rank-one uniqueness recovers local tensor
    orbits. The exact kernel is the full incidence action
    `P_v -> P_v product a_{v,e}` and
@@ -65,8 +67,9 @@ fixed graph has no omnian.
    displayed switchings, descendant masks, Fourier tensors, separators,
    signs, and Jacobian ranks. Every bounded relation is separated or is
    labelled isomorphism/`T`, in both containment directions.
-5. **Arbitrary subdivisions.** Effective path products have nonzero
-   differential on `(0,1)`. A common rigid anchor, one-port localization, and
+5. **Arbitrary subdivisions.** Effective path products, grouped by complete
+   zero-sum JC indicator signatures including split complements, have
+   nonzero differential on `(0,1)`. A common rigid anchor, one-port localization, and
    overlapping two-port comparisons reconstruct one coherent total word on
    every segment and one coherent triangle choice.
 6. **Localization.** Intrinsic projective extraction maps any global
@@ -117,6 +120,9 @@ coordinates, and rank eight. The same substitution gives dimension `2n`.
    beyond the full incidence action?
 4. Is the Omega rank-nine upper bound transparent from the rank-six core,
    four pendant directions, and the displayed Euler dependency?
+5. Is the four-active handoff in the one-active cut proof complete?
+6. Does the normalized descriptor argument justify marginal openness on the
+   selected model image?
 
 This packet records code-independent AI-assisted replay; it does not claim
 that a human specialist has performed this review.

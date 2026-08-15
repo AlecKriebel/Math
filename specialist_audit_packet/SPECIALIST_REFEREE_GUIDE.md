@@ -44,6 +44,10 @@ is in the graph-derived component scripts and their independent replays.
    strongly tree-child under the fixed-graph convention?
 8. Does identical leaf substitution preserve that interpretation and add
    exactly two dimensions per leaf?
+9. Does the repaired one-active cut handoff legitimately pass from the
+   at-most-eight-port compression to the four-active strict-minor universe?
+10. Is complement-normalized zero-sum descriptor grouping sufficient for the
+    marginal constant-rank argument?
 
 No human specialist review is claimed to have occurred merely because this
 packet exists.

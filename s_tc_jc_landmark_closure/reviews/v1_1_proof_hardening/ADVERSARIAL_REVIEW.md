@@ -90,7 +90,7 @@ theta boundary count.  The global proof must cite that corollary.
 | Omega class and nondegeneracy | Correctly in `W_TC \ S_TC`, strict, triangle-free, and rank nine; criticism rejected. |
 | Literature comparison | No material overclaim found. |
 | One-sided theorem | Correctly source-relative and not called a preorder a priori; criticism rejected. |
-| Outcome Q leakage | None found; criticism rejected. |
+| Rejected cleanup-fibre leakage | None found; criticism rejected. |
 
 ## Additional load-bearing checks
 

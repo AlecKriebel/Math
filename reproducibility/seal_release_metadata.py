@@ -47,6 +47,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
     return {
         "manuscript_source": record("s_tc_jc_landmark_closure/source/paper/main.tex"),
         "bibliography": record("s_tc_jc_landmark_closure/source/paper/references.bib"),
+        "supplement_source": record(
+            "s_tc_jc_landmark_closure/source/supplement/supplement.tex"
+        ),
         "main_pdf": record("biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf"),
         "supplement_pdf": record(
             "biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf"
@@ -58,14 +61,23 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "omega_record": record("omega_audit/independent/output/omega_release_audit.json"),
         "omega_reviewer": record("omega_audit/reports/ADVERSARIAL_O6_REVIEW.md"),
         "theta_verifier": record("s_tc_jc_sharp_boundary/reproducibility/verify_release.py"),
-        "final_mathematical_referee": record(
-            "s_tc_jc_landmark_closure/reviews/final_biorxiv_referee/REPORT.md"
+        "v1_1_primary_report": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md"
         ),
-        "preseal_release_hold": record(
-            "s_tc_jc_landmark_closure/reviews/final_release_engineering/PRESEAL_HOLD.md"
+        "v1_1_adversarial_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/ADVERSARIAL_REVIEW.md"
         ),
-        "post_hold_revision": record(
-            "s_tc_jc_landmark_closure/reviews/post_hold_revision/REPORT.md"
+        "v1_1_repair_response": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/REPAIR_RESPONSE.md"
+        ),
+        "v1_1_noncut_verifier": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/verify_noncut_compression.py"
+        ),
+        "v1_1_endpoint_verifier": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/verify_endpoint_and_analytic_regressions.py"
+        ),
+        "zero_sum_descriptor_verifier": record(
+            "s_tc_jc_landmark_closure/reviews/zero_sum_descriptor_cleanroom/cleanroom_verifier.py"
         ),
     }
 

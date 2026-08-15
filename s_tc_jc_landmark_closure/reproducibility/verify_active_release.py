@@ -18,7 +18,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.0.0"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.0"
 
 
 def sha256(path: Path) -> str:
@@ -73,8 +73,11 @@ def active_surface_checks(final, metadata) -> None:
 def artifact_checks(metadata) -> None:
     required = {
         "manuscript_source", "bibliography", "main_pdf", "supplement_pdf",
-        "source_zip", "pdf_visual_audit", "omega_record", "omega_reviewer", "theta_verifier",
-        "final_mathematical_referee", "preseal_release_hold", "post_hold_revision",
+        "supplement_source", "source_zip", "pdf_visual_audit", "omega_record",
+        "omega_reviewer", "theta_verifier", "v1_1_primary_report",
+        "v1_1_adversarial_review", "v1_1_repair_response",
+        "v1_1_noncut_verifier", "v1_1_endpoint_verifier",
+        "zero_sum_descriptor_verifier",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
@@ -197,7 +200,12 @@ def manuscript_checks() -> None:
         "choose the lexicographically least one",
         "Proposition~2.15",
         r"\texttt{omega\_audit/}",
-        r"reviews/post\_hold\_revision/REPORT.md",
+        r"reviews/v1\_1\_proof\_hardening/",
+        "has zero survivors",
+        "$72$ active-labelled tensors",
+        "same zero-sum JC indicator",
+        "selected split mask with its complement",
+        "Discard the all-zero signature",
         "not an independent human review",
     ]
     for needle in required:
@@ -207,11 +215,21 @@ def manuscript_checks() -> None:
         "Theta is an S_TC move",
         "complete open stochastic images are equal",
         "every rooted network that can collapse to the same final mixed graph",
+        "Distinct complete mask rows give distinct selected edge coordinates",
     ]
     compact = " ".join(paper.split())
     for phrase in prohibited:
         require(phrase not in compact, f"withdrawn claim leaked into paper: {phrase}")
     require("/Users/" not in paper, "absolute local path leaked into manuscript")
+
+    supplement = (PROJECT / "source/supplement/supplement.tex").read_text(
+        encoding="utf-8"
+    )
+    for needle in (
+        "For the source $K_4$", "x_{B1}", "(P,s,Q,t,R,u,v,S)",
+        "(P',x,y,z,R',w,S',Q')", "root-edge factorization",
+    ):
+        require(needle in supplement, f"supplement proof data missing: {needle}")
 
 
 def component_checks() -> None:
@@ -288,11 +306,19 @@ def component_checks() -> None:
 
 
 def release_review_checks() -> None:
-    report = PROJECT / "reviews/final_biorxiv_referee/REPORT.md"
-    require(report.is_file(), "final bioRxiv adversarial report missing")
+    report = PROJECT / "reviews/v1_1_proof_hardening/ADVERSARIAL_REVIEW.md"
+    require(report.is_file(), "v1.1 adversarial report missing")
     text = report.read_text(encoding="utf-8")
-    require("VERIFIED" in text and "NO LOAD-BEARING DEFECT" in text.upper(),
-            "final bioRxiv referee did not issue a verified verdict")
+    require("No unresolved blocker" in text and
+            "Outcome A was" in text and
+            all(f"F{i}" in text for i in range(1, 5)),
+            "v1.1 adversarial verdict is incomplete")
+    response = PROJECT / "reviews/v1_1_proof_hardening/REPAIR_RESPONSE.md"
+    require(response.is_file(), "v1.1 repair response missing")
+    response_text = response.read_text(encoding="utf-8")
+    require(all(f"F{i}" in response_text for i in range(1, 5)) and
+            "No theorem statement" in response_text,
+            "v1.1 repair response is incomplete")
 
 
 def main() -> None:
