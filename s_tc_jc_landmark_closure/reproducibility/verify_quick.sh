@@ -7,6 +7,8 @@ cd "$STC_JC_PROJECT"
 
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 "$STC_JC_PYTHON" reproducibility/verify_fixed_graph_scope.py
+"$STC_JC_PYTHON" reviews/v1_1_proof_hardening/verify_endpoint_and_analytic_regressions.py
+"$STC_JC_PYTHON" reviews/v1_1_proof_hardening/verify_noncut_compression.py
 bash reviews/final_standard_convention/verify_all.sh
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
 bash reviews/global_bridge/verify_all.sh

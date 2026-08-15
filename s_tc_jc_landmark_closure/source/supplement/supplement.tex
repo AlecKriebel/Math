@@ -75,17 +75,20 @@ one-sided generic containment.  The logical dependencies are:
       recover physical bridge multipliers.  The physical fibre is the ambient
       incidence orbit intersected with the complete open realization locus,
       including every local-arm, bridge, and inheritance constraint.
+      Analytic incidence slices give a local product chart in projective
+      local tensors and normalized effective bridge scales.
 \item Every nontrivial level-2 factor contracts to a cycle or one of four
       directed theta cores.
 \item A decorated graph-to-polynomial atlas classifies every rigid bounded
       relation in both containment directions.  The only nonisomorphic common
       local germ is ordinary triangle redirection.
-\item Marginal submersions and coherent one- and two-port probes restore every
+\item A semialgebraic marginal open-image lemma and coherent one- and two-port probes restore every
       arbitrary subdivision word from the bounded support.
 \item Projective localization turns global containment into independent local
       containments; the bridge tree has no scaling holonomy.
-\item Conversely, finitely many local triangle germs glue through the common
-      bridge tree, proving the global common germ.
+\item Conversely, physical analytic sections and uniformly small effective
+      scales glue finitely many local triangle germs simultaneously through
+      the common bridge tree, proving the global common germ.
 \end{enumerate}
 
 For a fixed source topology, the singular locus, lower-rank images, wrong
@@ -143,15 +146,22 @@ Certificate family & exact count\\
 Raw three-outgoing decorated presentations & 10,826\\
 Canonical three-outgoing directed relations & 10,466\\
 Strict three-outgoing relations & 5,284\\
+Distinct three-outgoing strict polynomial bodies & 800\\
+Pending three-outgoing canonical relations & 5,120\\
 Restoration-root raw coverages & 5,344\\
 Three-outgoing restoration states & 68,584\\
+Generic / refined / strict restoration states & 56,055 / 8,349 / 4,036\\
 Three-outgoing isomorphism / $\Tmove$ terminals & 120 / 24\\
 Direct residual anchors & 62\\
 Four-outgoing completion records & 6,138\\
 Four-outgoing raw survivors & 192\\
+Direct / rooting-duplicate / restoration-root survivors & 18 / 42 / 132\\
 Four-outgoing restoration states & 2,106\\
+Four-outgoing generic / refined / isomorphism states & 1,860 / 114 / 132\\
 One-port direct-anchor probes & 2,642\\
 Two-port direct-anchor probes & 18,224\\
+Three-outgoing compact path-bound probes & 101,148\\
+Four-outgoing compact path-bound probes & 168,582\\
 \bottomrule
 \end{longtable}
 
@@ -162,6 +172,12 @@ isomorphism or ordinary $\Tmove$.  Mutation tests reject deleted relations,
 merged source embeddings, altered port matches, source--target reversal,
 separator reassignment, broken transports, missing hard-cover keys, and
 incoherent probes.
+
+The frozen endpoint code retains its historical names
+\texttt{F=abc-t\char94 2} and \texttt{G=a-bc}; these are respectively
+$\Delta$ and $\Gamma$ in the article.  The code's state-group name
+\texttt{G} is $\mathcal G$ in the article.  This notation-only transport does
+not change a certificate polynomial.
 
 \section{Triangle-free Omega sharpness certificate}
 
@@ -219,6 +235,43 @@ The common irreducible JC model has dimension eight.  The same cherry inverse
 extends this family to every $n\ge4$, with common dimension $2n$.  Theta is
 not used as a move in the positive strong-class proof.
 
+For completeness, here is the full target point.  Let $\beta$ be the smaller
+root of
+\[
+43337075\beta^2-36083110\beta+7336259=0,
+\qquad \frac{441}{1250}<\beta<\frac{3529}{10000}.
+\]
+In the arc notation of Section~9 of the article, the target multipliers are
+\begin{center}
+\small
+\begin{tabular}{ll@{\qquad}ll}
+\toprule
+arc & multiplier & arc & multiplier\\
+\midrule
+$\rho\to A$&$2/3$&$\rho\to C$&$3/4$\\
+$A\to B$&$\dfrac{24835\beta}{20678-24835\beta}$
+  &$B\to C$&$1/2$\\
+$C\to D$&$9934/12215$&$D\to E$&$171/775$\\
+$A\to F$&$\dfrac{10339}{53010\beta}$&$E\to F$&$1/2$\\
+$E\to1$&$31/190$&$D\to2$&$1/2$\\
+$F\to3$&$1767/4832$&$B\to4$&$\dfrac{3}{20\beta}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Both inheritance probabilities are $1/2$.  The root-edge factorization
+$(2/3)(3/4)=1/2$ realizes the effective multiplier used after root
+suppression.  The isolating interval gives
+\[
+0<\beta<\frac{20678}{2\cdot24835},\qquad
+\beta>\max\left\{\frac{10339}{53010},\frac3{20}\right\}.
+\]
+These inequalities put the three nonrational entries strictly in $(0,1)$;
+all remaining entries are visibly strict.  Substitution into the two
+factorized rank-eight determinants printed in the article gives nonzero
+values, because every listed factor is nonzero on this interval.  The frozen
+quadratic-field verifier independently reduces all $256$ Fourier-coordinate
+differences to zero.
+
 \section{Deterministic reproduction}
 
 From the repository root, in a clean checkout, run
@@ -253,6 +306,8 @@ Convention and no-omnian characterization
 & \path{s_tc_jc_landmark_closure/reviews/final_standard_convention/}\\
 Pointwise cut preservation and bridge fibre
 & \path{s_tc_jc_landmark_closure/reviews/global_bridge/}\\
+Final cut-compression and analytic hardening
+& \path{s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/}\\
 Decorated bounded relation atlas
 & \path{s_tc_jc_landmark_closure/reviews/n3_universe_generator/} and
   \path{s_tc_jc_landmark_closure/reviews/bounded_directed_relation_cleanroom/}\\

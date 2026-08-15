@@ -1,11 +1,13 @@
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[scale=.74,every node/.style={font=\small}]
-\foreach \shift/\ret in {-4.8/1,0/2,4.8/3}{
+\foreach \shift/\ret in {-5.4/1,0/2,5.4/3}{
   \begin{scope}[xshift=\shift cm]
     \coordinate (A) at (0,1.25); \coordinate (B) at (-1.1,-.65); \coordinate (C) at (1.1,-.65);
     \node[vertex] (nA) at (A) {$A$}; \node[vertex] (nB) at (B) {$B$}; \node[vertex] (nC) at (C) {$C$};
-    \node[leaf] (a) at (0,2.35) {$a$}; \node[leaf] (b) at (-2,-1.3) {$b$}; \node[leaf] (c) at (2,-1.3) {$c$};
+    \node[leaf] (a) at (0,2.35) {$a$};
+    \node[leaf] (b) at (-1.75,-1.3) {$b$};
+    \node[leaf] (c) at (1.75,-1.3) {$c$};
     \draw (nA)--(a); \draw (nB)--(b); \draw (nC)--(c);
     \ifnum\ret=1
       \draw[reticedge] (nB)--(nA); \draw[reticedge] (nC)--(nA); \draw (nB)--(nC);

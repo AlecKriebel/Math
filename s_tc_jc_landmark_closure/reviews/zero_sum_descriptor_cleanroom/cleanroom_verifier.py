@@ -24,7 +24,9 @@ REVIEW_DIR = Path(__file__).resolve().parent
 REPO = REVIEW_DIR.parent.parent
 PRIMARY = REPO / "primary"
 QUARANTINE = REPO / "quarantine" / "descriptor_cache_scope_failure"
-SCHEMA3_N3 = QUARANTINE / "schema3_n3"
+WITNESS_GRAPH_STREAM = (
+    PRIMARY / "certificates" / "hard_cover_graphs_n3_schema3_n3_full.jsonl.gz"
+)
 TEMPLATE_FILE = (
     REPO.parent
     / "strong_level2_phylo_identifiability"
@@ -1635,7 +1637,11 @@ def atlas_submersion_certificate() -> dict:
 
 
 def load_witness_graphs():
-    graph_path = SCHEMA3_N3 / "hard_cover_graphs_n3_schema3_n3_full.jsonl.gz"
+    # The superseded quarantined bulk stream was intentionally removed after
+    # its failure witness had been isolated.  The corrected active graph
+    # inventory contains the same two immutable rooted graph payloads, so the
+    # clean-room regression reconstructs them there by exact content ID.
+    graph_path = WITNESS_GRAPH_STREAM
     wanted = {GRAPH_A, GRAPH_B}
     found = {}
     with gzip.open(graph_path, "rt", encoding="utf-8") as handle:
@@ -2094,7 +2100,7 @@ def manifest_payload(certificates: dict[str, object]) -> dict:
                 TEMPLATE_FILE,
                 SEVENTH_FILE,
                 QUARANTINE / "README.md",
-                SCHEMA3_N3 / "hard_cover_graphs_n3_schema3_n3_full.jsonl.gz",
+                WITNESS_GRAPH_STREAM,
             )
         ],
         "review_artifacts": [
