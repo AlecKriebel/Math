@@ -1,0 +1,283 @@
+\section*{Stable Pareto theorem}
+For every integer $m\ge3$, write $r=m-2$ and let
+\[
+ L_0=\frac1{\sqrt{3r}},
+ \qquad
+ L_1=\frac{90r}{90r+1}.
+\]
+For every $L\in[L_0,L_1]$, the frozen binary-complex topology admits positive
+rates, a positive equilibrium, and positive diagonal diffusion coefficients
+such that:
+\begin{enumerate}
+\item the homogeneous equilibrium is stable on its stoichiometric class;
+\item the first Neumann mode has one simple transverse stationary zero and all
+other eigenvalues stable;
+\item all higher modes are stable;
+\item the conservation-compatible cubic normal form has $\eta_m(L)>0$ and
+$c_m(L)<0$;
+\item the two nearby positive patterned equilibria are locally exponentially
+asymptotically stable in the fixed-mass $H^1$ phase space;
+\item the physical contrasts are
+\[
+ \chi_D(L)=\frac{23}{63}(91rL),
+ \qquad
+ \chi_H(L)=\frac{91r-1}{91rL}.
+\]
+\end{enumerate}
+Consequently
+\[
+ \chi_D(L)\chi_H(L)=\frac{23(91r-1)}{63},
+\]
+and at $L=L_0$ both contrasts are $\Theta(\sqrt r)$.  Since every stationary
+crossing in the topology satisfies $\chi_D\chi_H>8r$, the simultaneous
+square-root exponents are optimal.
+
+
+\section*{An exact equilibrium-scaling family}
+Let $r=m-2$ and $K_i=91m-181-i$.  Retain the unit-flux effective reaction
+operator $A_m$, its critical vector $r_m$, and the effective diffusion matrix
+\[
+ \Delta_m=\operatorname{diag}\left(
+ \frac{23}{63},\frac1{K_2},\ldots,\frac1{K_{m-1}},
+ \frac17,\frac{16}{45}\right).
+\]
+For a scalar $L>0$ define
+\[
+ H_m(L)=\operatorname{diag}(h_1,\ldots,h_m,h_Z),
+\]
+with
+\[
+ h_1=h_m=h_Z=1,
+ \qquad
+ h_i=\frac{K_i}{L K_{i-1}}
+ \quad(2\le i\le m-1),
+\]
+and take the physical diffusion matrix
+\[
+ D_m(L)=H_m(L)\Delta_m.
+\]
+The positive equilibrium is $x^*=H_m(L)^{-1}\mathbf1$, and choosing each
+rate constant as the reciprocal of its source monomial at $x^*$ realizes
+unit reaction flux.  Hence every parameter is positive and the physical
+Jacobian is $H_m(L)A_m$ in normalized concentration coordinates.
+
+Writing $z=H_m(L)x$, the reaction--diffusion equation becomes
+\[
+ z_t=H_m(L)\{f_m(z)+D_m^{\rm eff}z_{\xi\xi}\},
+ \qquad D_m^{\rm eff}=\Delta_m.
+\]
+Thus the stationary bracket and its critical right vector are unchanged by
+$H_m(L)$.  The dynamic left critical vector is
+\[
+ q_m(L)=H_m(L)^{-1}\ell_m.
+\]
+The fixed physical conservation class becomes the normalized constraint with
+left vector $H_m(L)^{-1}c$.
+
+
+\section*{All-mode stability for $rL^2\ge1/3$}
+For a mode with scalar damping $t$, row scaling gives
+\[
+ \det(\lambda I-H_m(L)(A_m-t\Delta_m))
+ =\det H_m(L)\,\{Q_m(\lambda,t)F(\lambda,t)-G(\lambda,t)\}.
+\]
+The fixed boundary factors are
+\[
+ g_1=\lambda+2+\frac{23}{63}t,
+ \quad g_m=\lambda+5+\frac17t,
+ \quad g_Z=\lambda+4+\frac{16}{45}t,
+\]
+\[
+ F=g_1g_mg_Z-4g_1-4g_m+g_Z,
+ \qquad G=g_Z(4g_1+g_m)-36.
+\]
+For $2\le i\le m-1$,
+\[
+ g_i=\frac{\lambda}{h_i}+1+\frac{t}{K_i}
+ =\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+If $t\ge1$ and $\operatorname{Re}\lambda\ge0$, then
+\[
+ |Q_m|^2\ge\left(\frac{91}{90}\right)^2|1+L\lambda|^{2r}
+ \ge\left(\frac{91}{90}\right)^2
+ \left(1+2rLx+rL^2y^2\right),
+\]
+where $x=\operatorname{Re}\lambda$.  If $rL^2\ge1/3$, this dominates the
+lower bound with coefficient $1/3$ in $y^2$.
+
+The exact polynomial
+\[
+ \left(\frac{91}{90}\right)^2
+ \left(1+A x+\frac13y^2\right)|F|^2-|G|^2,
+ \qquad A>0,
+\]
+has 84 nonzero monomials in $(x,y^2,t-1)$.  Every coefficient is a
+polynomial in $A$ with nonnegative rational coefficients.  Its coefficients
+of $x$, $y^2$, and $t-1$ are strictly positive, so equality occurs only at
+$(\lambda,t)=(0,1)$.  This proves a simple isolated first-mode zero and
+Hurwitz stability for every $t>1$.
+
+For the homogeneous mode, each interior factor satisfies
+\[
+ \left|1+L\frac{K_{i-1}}{K_i}\lambda\right|
+ \ge|1+L\lambda|.
+\]
+The corresponding fixed boundary polynomials are
+\[
+ P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16,
+ \qquad R=5\lambda^2+33\lambda+16.
+\]
+The polynomial
+\[
+ \left(1+A x+\frac13y^2\right)|P|^2-|R|^2
+\]
+has 34 nonzero monomials, again with nonnegative coefficient polynomials in
+$A$ and strict equality only at the origin.  Hence the only closed-right-
+half-plane homogeneous eigenvalue is the conservation zero.
+
+Both coefficient tables are in `pareto_all_m_certificate.json` and are
+regenerated independently.
+
+
+\section*{Uniform supercritical sign along the scaling family}
+Let
+\[
+ \mathcal H_m=\sum_{j=1}^{m-2}\frac1{K_j}.
+\]
+Then
+\[
+ \frac1{91}\le\mathcal H_m<\frac1{90}.
+\]
+Let $w_0^{\rm ref}$ denote the reference zero-mode correction satisfying
+$c^Tw_0^{\rm ref}=0$, and let $\rho$ generate $\ker A_m$.  The corrected
+zero mode for the physical fixed-mass class is
+\[
+ w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho,
+\]
+\[
+ \tau_m(L)=-\frac{(H_m(L)^{-1}c)^Tw_0^{\rm ref}}
+ {(H_m(L)^{-1}c)^T\rho}.
+\]
+The second harmonic is unchanged, because the stationary equation inside the
+invertible row factor $H_m(L)$ is unchanged.
+
+With the inherited normalization of $r_m$ and $\ell_m$,
+\[
+ \ell_m^TH_m(L)^{-1}r_m
+ =-\frac{485873}{924210}-\frac{11180}{1467}L(m-2)<0.
+\]
+The cubic numerator has the exact decomposition
+\[
+ N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m,
+\]
+where
+\[
+ S_m=-\frac4{462105}(1760850\mathcal H_m-10253),
+ \qquad -\frac1{10}<S_m<0.
+\]
+The reference certificate gives
+\[
+ N_m^{\rm ref}>\frac1{100}.
+\]
+Indeed $N_m^{\rm ref}=R_m+C_m\mathcal H_m$, with $C_m<0$; substituting the
+upper harmonic bound and writing $m-2=u+1$ produces the positive coefficient
+list
+\[
+\begin{split}
+&(3790502986637265684840,
+17978298402717728137711,
+33955060177057334483573,\\
+&31899843595051464379292,
+14895188986348368035728,
+2762610207555043720056).
+\end{split}
+\]
+
+Put $r=m-2$.  The exact rational expression for the gauge is
+\[
+ \tau=-\frac{
+1494249120\mathcal H Lr^2-69786990\mathcal H Lr
++108738630Lr^2+1214388Lr-8521L-125249670r^2+1031940r}
+{15876(8r-1)(32760\mathcal H Lr+32760Lr^2+4L-4095r)}.
+\]
+On $L\ge1/\sqrt{3r}$ its derivatives with respect to both $\mathcal H$ and
+$L$ are negative.  Hence its maximum occurs at
+$\mathcal H=1/91$ and $L=1/\sqrt{3r}$.  After writing
+$y=\sqrt{3r}$, the inequality $\tau<1/20$ reduces to two negative
+polynomials.  For $r=1$ use $\sqrt3<7/4$; for $r\ge2$ use
+$\sqrt{3r}\le5r/4$.  The independent verifier checks the exact resulting
+integer inequalities.
+
+If $\tau\le0$, then $\tau S_m\ge0$.  If $0<\tau<1/20$, then
+$\tau S_m>-1/200$.  Therefore
+\[
+ N_m(L)>\frac1{200}>0.
+\]
+The normal-form coefficients are
+\[
+ \eta_m(L)=\frac{\ell_m^T\Delta_m r_m}
+ {\ell_m^TH_m(L)^{-1}r_m}>0,
+\]
+\[
+ c_m(L)=\frac{N_m(L)}{\ell_m^TH_m(L)^{-1}r_m}<0.
+\]
+Thus every member with $L\ge1/\sqrt{3r}$ is supercritical.
+
+
+\section*{Certified stable Pareto curve}
+Set
+\[
+ L_0(r)=\frac1{\sqrt{3r}},
+ \qquad L_1(r)=\frac{90r}{90r+1}.
+\]
+The interval is nonempty for every $r\ge1$.  For
+$L\in[L_0,L_1]$, every interior equilibrium scaling satisfies $h_i\ge1$.
+The largest is
+\[
+ h_2=\frac{91r-1}{91rL},
+\]
+while the boundary scalings equal one.  Thus
+\[
+ \chi_H(L)=\frac{91r-1}{91rL}.
+\]
+The physical diffusivities are
+\[
+ d_1=\frac{23}{63},
+ \qquad d_i=\frac1{LK_{i-1}}
+ \ (2\le i\le m-1),
+ \qquad d_m=\frac17,
+ \qquad d_Z=\frac{16}{45}.
+\]
+Their minimum is $d_2=1/(91rL)$ and their maximum is $d_1$, so
+\[
+ \chi_D(L)=\frac{23}{63}(91rL).
+\]
+Consequently
+\[
+ \boxed{\chi_D(L)\chi_H(L)=\frac{23(91r-1)}{63}}
+\]
+throughout the certified stable curve.  Increasing $L$ increases diffusion
+contrast and decreases equilibrium contrast, so no two points of this curve
+dominate one another within the curve.
+
+At the balanced-order endpoint $L=L_0$,
+\[
+ \chi_D=\frac{2093}{63\sqrt3}\sqrt r,
+ \qquad
+ \chi_H=\sqrt{3r}\frac{91r-1}{91r}.
+\]
+Hence both contrasts are $\Theta(\sqrt m)$.
+
+For every stationary crossing, the exact diffusion law gives the universal
+trade-off
+\[
+ \chi_D\chi_H>8r.
+\]
+In particular
+\[
+ \max(\chi_D,\chi_H)>\sqrt{8r}.
+\]
+The construction therefore attains the optimal square-root exponent in both
+coordinates.  The global constant-optimal Pareto frontier is not determined:
+the constructed product has asymptotic coefficient $2093/63$, while the
+universal lower coefficient is $8$.

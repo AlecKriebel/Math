@@ -1,0 +1,119 @@
+\documentclass[10pt]{article}
+\usepackage[margin=.62in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,booktabs,enumitem}
+\setlist{nosep,leftmargin=1.45em}
+\pagestyle{plain}
+\newcommand{\diag}{\operatorname{diag}}
+\begin{document}
+\begin{center}{\Large\bf Five-page proof skeleton}\par
+{\large Maximally Collective Stable Turing Patterns}\end{center}
+
+\section*{1. Reaction algebra and topology-wide localization}
+Construct $Y_m$ and $\Gamma_m$ directly from the indexed reactions. Reaction-by-reaction verification gives $c^T\Gamma_m=0$ for $c=(0,4,\ldots,4,2,1)^T$. An explicit $m\times m$ minor proves $\operatorname{rank}\Gamma_m=m$, while solving the balance equations yields
+\[
+\ker\Gamma_m=\operatorname{span}\{(\mathbf1_m,0,0),(0_m,1,1)\}.
+\]
+Therefore every positive flux is $(a\mathbf1_m,b,b)$. Differentiation at the unit equilibrium gives $A_m(a,b)$; at a general equilibrium $x^*=H^{-1}\mathbf1$, the Jacobian is $A_m(a,b)H$. Conversely $k_r=v_r/(x^*)^{y_r}$ realizes every $a,b,H>0$.
+
+For a principal set with fewer than $m$ vertices, Frobenius decomposition reduces every nontrivial SCC to: the $X_1,\ldots,X_{m-1}$ long cycle; the $X_2,\ldots,X_m$ long cycle; a principal boundary-triad block; or a negative singleton. At $b=2a$ one directed edge disappears and only refines the decomposition. The two cycle characteristic equations are excluded from $\Re\lambda\ge0$ by strict product inequalities. The full triad has positive cubic coefficients and $c_1c_2-c_3$ is a sum of fourteen positive monomials. Every lower-order principal matrix is thus Hurwitz. Sparse expansion of the $X_1,\ldots,X_m$ block gives the negative signed determinant $-2a^{m-1}b\prod h_i$, forcing a positive real eigenvalue.
+
+\paragraph{Audit object.} Independently generate every induced SCC for $m=3,\ldots,8$ at generic $b$ and at $b=2a$, while the proof uses the all-$m$ graph classification rather than enumeration.
+
+\newpage
+\section*{2. One-bad-minor theorem and exact diffusion law}
+For $a_I=(-1)^{|I|}\det J_{I,I}$ and $D\succ0$, multilinearity gives
+\[
+\det(sD-J)=\sum_Ia_I\prod_{j\notin I}sd_j
+=s(\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}).
+\]
+Every $a_I$ with $|I|\le n-2$ is positive because $J_{I,I}$ is Hurwitz, so $\beta_k>0$ for $k\ge2$. The bracket is strictly increasing on $s>0$, proving the unique simple threshold iff $\beta_1<0$.
+
+For the stronger positive-real band, define
+\[
+\chi_s(\lambda)=\det(\lambda I+sD-J)
+=\sum_Ia_I\prod_{j\notin I}(\lambda+sd_j).
+\]
+Every derivative contribution from $|I|\le n-2$ is nonnegative. The total order-$(n-1)$ derivative is $\sum_{|I|=n-1}a_I$, the coefficient of $\lambda$ in $\det(\lambda I-J)$, which is positive because the nonzero spectrum is stable and the zero is simple. Hence $\chi_s'(\lambda)>0$ for $\lambda\ge0$. The sign of $\chi_s(0)$ therefore gives a positive real eigenvalue exactly for $0<s<s_*$.
+
+For $A_m(a,b)H$, compute every order-$m$ omission minor. Omitting $Z$ gives weight $-2$; omitting an interior $X_j$ gives $+16$; omitting $X_1$ or $X_m$ gives zero. Thus
+\[
+\beta_1=2a^{m-1}b\prod_{i=1}^mh_i
+\left(8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right).
+\]
+This proves the exact criterion. The same sign follows from first-order perturbation of the conservation eigenvalue. For fixed $H$, minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the nonattained infimum $T(H)=8h_Z\sum h_j^{-1}$. At $H=I$, $T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives $\chi_D\chi_H>8(m-2)$.
+
+\newpage
+\section*{3. Improved unit-equilibrium primary bifurcation}
+Set $a=b=1$, $H=I$, $K_i=91m-181-i$, and use
+\[
+d_1=23/63,\quad d_i=K_i^{-1},\quad d_m=1/7,\quad d_Z=16/45.
+\]
+An explicit right vector satisfies $(A_m-D_m)r=0$ and an explicit left vector satisfies $(A_m-D_m)^T\ell=0$. Exact harmonic-sum formulas prove $\ell^Tr<0$ and $\ell^TD_mr<0$, hence transversality $\eta_m>0$.
+
+Homogeneous stability follows from
+\[
+\det(\lambda I-A_m)=\lambda q_m(\lambda),\qquad
+\lambda q_m=(1+\lambda)^{m-3}P(\lambda)-R(\lambda),
+\]
+where $P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and $R=5\lambda^2+33\lambda+16$. The exact difference $|1+\lambda|^2|P|^2-|R|^2$ expands into 35 nonnegative monomials in $x=\Re\lambda$ and $y^2=(\Im\lambda)^2$, with equality only at the origin.
+
+For spatial damping $tD_m$, chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$. At $t=1$, the interior product telescopes to $91/90$. Retaining one exact factor yields a 77-term nonnegative boundary difference in $(x,y^2,t-1)$, strict except at $(0,0,0)$. Hence the first mode has one simple zero, all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
+
+The exact unit contrast is
+\[
+\chi_D=\frac{23(91m-183)}{63},
+\]
+which improves the superseded coefficient-1589 profile and is within a dimension-independent factor of the sharp linear threshold.
+
+\newpage
+\section*{4. Conservation-compatible normal form and stable branch}
+The mass-action field is quadratic:
+\[
+f(\mathbf1+u)=A_mu+\tfrac12B_m(u,u),\qquad c^TB_m(u,v)=0.
+\]
+On the fixed integrated-mass class, the critical mode is $r\cos\xi$. Since $\cos^2\xi=(1+\cos2\xi)/2$, solve
+\[
+A_mw_0=-\tfrac14B(r,r),\quad c^Tw_0=0,
+\qquad (A_m-4D_m)w_2=-\tfrac14B(r,r).
+\]
+The first is an augmented nonsingular solve; the second is invertible by mode isolation. The interior $w_2$ recurrence telescopes through four consecutive $K_i$ factors, leaving an explicit $3\times3$ boundary system.
+
+Projection onto the adjoint critical mode yields
+\[
+\dot A=\eta_m\mu A+c_mA^3+O(|A|^5+|A|^3|\mu|+|A||\mu|^2),
+\]
+\[
+c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
+\]
+The numerator telescopes to $R_m+C_m\mathcal H_m$. A rational upper bound on $\mathcal H_m$ and shifted coefficientwise-positive polynomials prove the numerator positive, while $\ell^Tr<0$; therefore $c_m<0$ for every $m\ge3$.
+
+Crandall--Rabinowitz gives two positive branches for $\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
+
+\newpage
+\section*{5. Equilibrium-scaled stable trade-off and audit boundaries}
+Let $r=m-2$, $L_0=(3r)^{-1/2}$, $L_1=90r/(90r+1)$, set $h_1=h_m=h_Z=1$, $h_i=K_i/(LK_{i-1})$, and choose physical diffusion $D^{\rm phys}=H\Delta$. Under $z=Hx$,
+\[
+z_t=H\{f(z)+\Delta z_{xx}\}.
+\]
+The effective critical bracket and right vector are unchanged; the dynamic left vector is $H^{-1}\ell$. The physical fixed-mass functional is $(H^{-1}c)^Tz$.
+
+Chain elimination now gives interior factors
+\[
+g_i=\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+The bounds $rL^2\ge1/3$ and Bernoulli's inequality reduce homogeneous and spatial half-plane exclusion to 34- and 84-term nonnegative certificates. The second harmonic is unchanged, while the zero harmonic changes by $w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is $N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$. Exact bounds
+\[
+N_m^{\rm ref}>1/100,\qquad -1/10<S_m<0,\qquad \tau_m(L)<1/20
+\]
+give $N_m(L)>1/200$, hence $c_m(L)<0$ throughout the certified interval.
+
+The physical contrasts are
+\[
+\chi_D=\frac{23}{63}91rL,\qquad
+\chi_H=\frac{91r-1}{91rL}.
+\]
+At $L_0$, both are $\Theta(\sqrt m)$. The universal product lower bound implies any simultaneous control must have $\max(\chi_D,\chi_H)>\sqrt{8r}$, so exponent $1/2$ is optimal. Constants remain open.
+
+\paragraph{External failure tests.} Verify the SCC exhaustion at $b=2a$; the one-bad-minor derivative argument; all certificate equality cases; the transformed physical diffusion; the fixed-mass gauge; and the comparison $N_m(L)>1/200$. No finite regression substitutes for these all-$m$ identities.
+\end{document}

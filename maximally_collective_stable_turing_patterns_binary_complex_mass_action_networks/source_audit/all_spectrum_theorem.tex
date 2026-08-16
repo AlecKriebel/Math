@@ -1,0 +1,62 @@
+\section*{Topology-wide all-spectrum localization}
+\begin{theorem}
+For every $m\geq3$, $a,b>0$, $H\succ0$, and principal species set $I$ with
+$|I|<m$, the matrix $J_m(a,b,H)_{I,I}$ is Hurwitz.  The block on
+$C_m=\{X_1,\ldots,X_m\}$ has a positive real eigenvalue.  Hence, for every
+positive realization of the topology,
+\[
+\min\{|I|:\alpha(J_{I,I})>0\}=m=n-1.
+\]
+\end{theorem}
+
+\paragraph{Strongly connected blocks.}
+In the directed graph $j\to i$ when $J_{ij}\neq0$, every nontrivial strongly
+connected component of an induced subgraph on fewer than $m$ vertices is one
+of
+\[
+\{X_1,\ldots,X_{m-1}\},\qquad
+\{X_2,\ldots,X_m\},
+\]
+or a principal subset of $\{X_1,X_m,Z\}$.  All remaining diagonal blocks are
+negative singletons.  A chain vertex can return to the boundary only after a
+complete long cycle has been included; joining that cycle to an additional
+boundary vertex requires at least $m$ vertices.
+
+For the first long cycle, a root with $\Re\lambda\geq0$ would satisfy
+\[
+\prod_{i=1}^{m-1}|\lambda+d_i h_i|
+ =a^{m-1}\prod_{i=1}^{m-1}h_i,
+\quad d_1=a+b,\,d_i=a\;(i\ge2).
+\]
+The left side is at least $(a+b)a^{m-2}\prod h_i$, strictly larger than the
+right side.  For the second cycle, the diagonal product is
+$(4a+b)a^{m-2}\prod h_i$, while the cycle product is
+$4a^{m-1}\prod h_i$; the same contradiction applies.
+
+On $\{X_1,X_m,Z\}$ the characteristic polynomial is
+$\lambda^3+c_1\lambda^2+c_2\lambda+c_3$, where
+\begin{align*}
+c_1={}&ah_1+4ah_m+bh_1+bh_m+4bh_Z,\\
+c_2={}&a(4ah_1h_m+7bh_1h_m+4bh_1h_Z+16bh_mh_Z),\\
+c_3={}&16a^2bh_1h_mh_Z.
+\end{align*}
+All are positive.  Direct expansion gives $c_1c_2-c_3=a$ times
+\begin{align*}
+&4a^2h_1^2h_m+16a^2h_1h_m^2+11abh_1^2h_m+4abh_1^2h_Z
++32abh_1h_m^2\\
+&+32abh_1h_mh_Z+64abh_m^2h_Z+7b^2h_1^2h_m+4b^2h_1^2h_Z
++7b^2h_1h_m^2\\
+&+48b^2h_1h_mh_Z+16b^2h_1h_Z^2+16b^2h_m^2h_Z
++64b^2h_mh_Z^2,
+\end{align*}
+so the cubic is Hurwitz.  Its one- and two-species principal blocks are
+Hurwitz by negative trace and positive determinant.  Frobenius block
+triangularization proves the claim for every smaller principal set.
+
+Finally, sparse determinant expansion along the chain gives
+\[
+(-1)^m\det J_{C_m,C_m}
+=-2a^{m-1}b\prod_{i=1}^m h_i<0.
+\]
+The characteristic polynomial of this block is negative at $\lambda=0$ and
+positive for large positive $\lambda$, so it has a positive real root.

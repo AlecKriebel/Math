@@ -1,0 +1,870 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,microtype,graphicx,longtable}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,fit,positioning}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,capitalise]{cleveref}
+\usepackage[backend=biber,style=numeric,sorting=nyt,maxbibnames=99]{biblatex}
+\addbibresource{references.bib}
+\hypersetup{
+ pdftitle={Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks},
+ pdfauthor={Alec Kriebel},
+ pdfsubject={Exact diffusion design and exponent-optimal heterogeneity trade-offs},
+ pdfkeywords={mass-action kinetics, Turing bifurcation, reaction network, unstable subsystem, diffusion design, stable patterns}
+}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\alphaS}{\alpha}
+\allowdisplaybreaks
+
+\title{Maximally Collective Stable Turing Patterns\\
+\large in Binary-Complex Mass-Action Networks\\[0.25em]
+\normalsize Exact Diffusion Design and Exponent-Optimal Heterogeneity Trade-Offs}
+\author{Alec Kriebel\\\small Independent researcher\\\small \texttt{me@aleckriebel.com}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Multicomponent Turing theories often seek a lower-dimensional unstable
+subsystem responsible for patterning.  We construct, for every $n\ge4$, an
+$n$-species classical mass-action topology whose source and product complexes
+contain at most two molecules and whose instability is maximally collective.
+Uniformly over every positive-equilibrium realization of the topology, every
+principal subsystem below order $n-1$ is Hurwitz, whereas one order-$(n-1)$ subsystem
+has a positive real eigenvalue.  We then derive an exact diffusion-design law:
+for any homogeneously stable realization, stationary destabilization along a
+positive diagonal diffusion ray occurs if and only if
+$d_Z>8h_Z\sum_{j=2}^{n-2}d_j/h_j$.  This yields sharp fixed-equilibrium
+contrast infima and the universal trade-off
+$\chi_D\chi_H>8(n-3)$.  At unit equilibrium we give a rational primary
+supercritical Turing realization with
+$\chi_D=23(91n-274)/63$ and locally exponentially attracting positive
+patterns.  A second exact family redistributes heterogeneity between diffusion
+and equilibrium concentrations; both contrasts are $\Theta(\sqrt n)$, which
+matches the universal lower bound in exponent.  The proof combines a complete
+positive-realization parametrization, an exhaustive strongly connected block
+classification, a one-bad-minor matrix theorem, conservation-compatible
+Lyapunov--Schmidt reduction, and exact symbolic sign certificates.  The
+networks are synthetic, and the bifurcation and stability conclusions are
+local for each fixed dimension.
+\end{abstract}
+
+\section{Introduction}
+
+Turing's diffusion-driven instability mechanism shows how a spatially
+homogeneous equilibrium can be stable in a well-mixed system and unstable to a
+nonconstant spatial mode after species-dependent diffusion is introduced
+\cite{Turing1952}.  For systems with many components, a central structural
+question is whether the instability can always be attributed to a smaller
+unstable subsystem.  General matrix theories allow responsible principal
+subsystems of orders up to $n-1$ and distinguish stationary from wave
+instabilities \cite{Satnoianu2000,Anma2012,VillarChampneys2023,VillarCorrection2023}.
+Reaction-network approaches instead constrain the Jacobian by stoichiometry,
+positive steady fluxes, and mass-action derivatives
+\cite{MinchevaCraciun2013,Diego2018,Scholes2019,VassenaStadler2024}.
+
+A large unstable block in one numerical Jacobian does not settle the
+reaction-topology question.  Reparameterizing the same network can change its
+Jacobian and can expose a smaller unstable subsystem.  Our first result closes
+this quantifier exactly: for one explicit indexed topology, every positive
+rate/equilibrium realization has all principal blocks below order $n-1$
+Hurwitz.  Thus the upper endpoint $n-1$ in principal-subsystem localization
+cannot be lowered even within a highly restricted classical mass-action
+class.
+
+The second question is quantitative.  Differential diffusion is often
+presented as an empirical tuning parameter, whereas the present topology
+admits a complete exact design law.  A single signed order-$(n-1)$ minor is
+negative, and the remaining omission minors are positive or zero.  This
+``one-bad-minor'' structure reduces stationary diffusion design to one strict
+linear inequality and yields sharp heterogeneity lower bounds.  We further
+show that the same topology supports primary supercritical bifurcations and
+locally exponentially stable patterns with substantially reduced diffusion
+contrast, as well as a stable diffusion--equilibrium trade-off whose two
+contrasts grow only as the square root of dimension.
+
+Linear Turing instability alone does not guarantee a persistent nonlinear
+pattern \cite{Krause2024}.  We therefore prove the primary crossing, the
+conservation-compatible branch, the exact cubic sign, exchange of stability,
+and local semilinear stability separately.  Related weakly nonlinear analyses
+for minimal two-species schemes demonstrate the importance of this additional
+layer \cite{Waters2024,Waters2025}.
+
+\paragraph{Theorem suite.}
+For every $n=m+1\ge4$, one indexed binary-complex topology has:
+\begin{enumerate}[leftmargin=2em]
+\item a complete two-flux-parameter family of all positive-equilibrium
+Jacobians;
+\item topology-wide maximum all-spectrum localization order $n-1$;
+\item an exact necessary-and-sufficient stationary diffusion criterion and a
+unique positive threshold on each eligible diffusion ray;
+\item the sharp fixed-equilibrium diffusion-contrast infimum, including
+$8(m-2)$ at the unit equilibrium;
+\item a rational unit-equilibrium supercritical stable-pattern realization;
+\item a one-parameter stable family with
+$\chi_D,\chi_H=\Theta(\sqrt m)$, matching the universal minimax lower bound in
+exponent.
+\end{enumerate}
+The topology was deliberately designed so that its positive-flux image and
+induced strongly connected blocks are explicit; no black-box real-algebraic
+elimination is used.
+
+\paragraph{Scope.}
+The network has one \emph{semipositive} conservation law: the conserved
+functional does not contain $X_1$.  Accordingly we call the system
+stoichiometric-codimension one, not conservative or mass conserving.  The
+construction is synthetic and not proposed as a natural biochemical
+mechanism.  All species diffuse with positive diagonal coefficients.  The
+pattern, stability, and robustness statements are local for each fixed
+$m$; no arbitrary-data global existence, global attraction, dimension-uniform
+basin, cross-diffusion, or immobile-species theorem is claimed.
+
+\section{Reaction family and complete realization space}
+
+An indexed classical mass-action network has reactions $y_r\to y'_r$, source
+matrix $Y=[y_1\ \cdots\ y_R]$, and stoichiometric matrix
+$\Gamma=[y'_1-y_1\ \cdots\ y'_R-y_R]$.  We call it
+\emph{binary-complex} when
+\begin{equation}\label{eq:binary}
+ |y_r|_1\le2,\qquad |y'_r|_1\le2
+\end{equation}
+for every reaction.  This condition restricts both source and product
+molecularity and is stronger than conventions that bound only reactant order.
+
+At a positive equilibrium $x^*$ define
+\begin{equation}\label{eq:flux-h}
+ v_r=k_r(x^*)^{y_r},\qquad h_i=(x_i^*)^{-1},\qquad H=\diag(h).
+\end{equation}
+Then $v>0$, $\Gamma v=0$, and direct differentiation gives
+\begin{equation}\label{eq:jac-factor}
+ J=\Gamma\diag(v)Y^TH.
+\end{equation}
+Conversely, every $v>0$ in $\ker\Gamma$ and every $H\succ0$ are physically
+realized by $x_i^*=h_i^{-1}$ and $k_r=v_r/(x^*)^{y_r}$.
+
+For $m\ge3$, let $\widehat N_m$ have species $X_1,\ldots,X_m,Z$ and reactions
+\begin{align}
+R_0:&\quad 0\longrightarrow X_1,\label{rxn:r0}\\
+R_i:&\quad X_1+X_i\longrightarrow X_1+X_{i+1},
+&&2\le i\le m-2,\label{rxn:chain}\\
+R_a:&\quad X_1+X_{m-1}\longrightarrow2X_m,\label{rxn:terminal}\\
+R_b:&\quad 2X_m\longrightarrow X_2,\label{rxn:return}\\
+R_+:&\quad 2Z\longrightarrow X_1+X_m,\label{rxn:plus}\\
+R_-:&\quad X_1+X_m\longrightarrow2Z.\label{rxn:minus}
+\end{align}
+The chain range is empty at $m=3$.  Writing $n=m+1$, the family has $n$
+species and $n+1$ indexed reactions and satisfies \eqref{eq:binary}.
+
+\begin{figure}[t]
+\centering
+\input{../figures/network_family.tex}
+\caption{The synthetic topology $\widehat N_m$.  The shaded principal species
+set $\cC_m=\{X_1,\ldots,X_m\}$ is the unique order-$(n-1)$ block with negative
+signed determinant.  The separate $Z$ boundary pair controls the exact
+diffusion law.}
+\label{fig:network}
+\end{figure}
+
+\begin{proposition}[Semipositive conservation and flux cone]\label{prop:flux}
+Let
+\begin{equation}\label{eq:cvec}
+ c=(0,\underbrace{4,\ldots,4}_{X_2,\ldots,X_{m-1}},2,1)^T.
+\end{equation}
+Then
+\begin{equation}\label{eq:rank-kernel}
+ c^T\Gamma_m=0,\qquad \rank\Gamma_m=m,\qquad
+ \im\Gamma_m=c^\perp,
+\end{equation}
+and
+\begin{equation}\label{eq:kerGamma}
+ \ker\Gamma_m=
+ \operatorname{span}\{(\1_m,0,0),(0_m,1,1)\}.
+\end{equation}
+Consequently
+\begin{equation}\label{eq:fluxcone}
+ \{v>0:\Gamma_mv=0\}=\{(a\1_m,b,b):a,b>0\}.
+\end{equation}
+The functional $c^Tx$ is semipositive: it does not bound $X_1$.
+\end{proposition}
+
+\begin{proof}
+Each reaction vector is orthogonal to $c$.  The $X_i$ balance equations along
+the long circuit successively equate its $m$ reaction fluxes, and the $Z$
+balance equates the final reversible pair.  The two displayed kernel vectors
+are independent.  Deleting one reaction from each circuit leaves an explicit
+$m\times m$ triangular stoichiometric minor with nonzero diagonal, so the rank
+is $m$.  The image and positive-cone statements follow.
+\end{proof}
+
+At unit equilibrium and flux $(a\1_m,b,b)$, the vector field is
+\begin{align}
+\dot x_1&=a-a x_1x_{m-1}+bz^2-bx_1x_m,\nonumber\\
+\dot x_2&=-a x_1x_2+a x_m^2,\nonumber\\
+\dot x_i&=a x_1x_{i-1}-a x_1x_i,&&3\le i\le m-1,\label{eq:ode}\\
+\dot x_m&=2a x_1x_{m-1}-2a x_m^2+bz^2-bx_1x_m,\nonumber\\
+\dot z&=-2bz^2+2bx_1x_m.\nonumber
+\end{align}
+The nonzero entries of its Jacobian factor $A_m(a,b)$ are
+\begin{align}
+&A_{11}=-(a+b),\quad A_{1,m-1}=-a,\quad A_{1m}=-b,\quad A_{1Z}=2b,\nonumber\\
+&A_{21}=-a,\quad A_{22}=-a,\quad A_{2m}=2a,\nonumber\\
+&A_{i,i-1}=a,\quad A_{ii}=-a,&&3\le i\le m-1,\label{eq:Apattern}\\
+&A_{m1}=2a-b,\quad A_{m,m-1}=2a,\quad A_{mm}=-(4a+b),\quad A_{mZ}=2b,\nonumber\\
+&A_{Z1}=2b,\quad A_{Zm}=2b,\quad A_{ZZ}=-4b.\nonumber
+\end{align}
+
+\begin{proposition}[Complete realization family]\label{prop:realization}
+Every positive-equilibrium Jacobian of $\widehat N_m$ is exactly
+\begin{equation}\label{eq:completeJ}
+ J_m(a,b,H)=A_m(a,b)H,
+ \qquad a,b>0,\quad H\succ0\text{ diagonal}.
+\end{equation}
+Conversely every triple in \eqref{eq:completeJ} is realized by positive rates
+and a positive equilibrium.
+\end{proposition}
+
+\begin{proof}
+The forward direction is \cref{eq:jac-factor,eq:fluxcone}.  For the converse,
+choose $x_i^*=h_i^{-1}$, flux $(a\1_m,b,b)$, and
+$k_r=v_r/(x^*)^{y_r}>0$.
+\end{proof}
+
+\section{Maximum topology-wide all-spectrum localization}
+
+For a real square matrix $M$, write
+$\alphaS(M)=\max\{\Re\lambda:\lambda\in\sigma(M)\}$.
+
+\begin{lemma}[Exhaustive strongly connected blocks]\label{lem:scc}
+For every proper principal species set of cardinality less than $m$, each
+nontrivial strongly connected diagonal block of the induced Jacobian graph is
+one of:
+\begin{enumerate}[leftmargin=2em]
+\item the long cycle on $X_1,\ldots,X_{m-1}$;
+\item the long cycle on $X_2,\ldots,X_m$;
+\item a principal block of the boundary triad $\{X_1,X_m,Z\}$;
+\item a negative singleton.
+\end{enumerate}
+All remaining induced matrices are block triangular combinations of these.
+On the hypersurface $b=2a$, the edge $X_1\to X_m$ disappears and only refines
+this decomposition.
+\end{lemma}
+
+\begin{proof}
+Interior chain edges point forward.  A return path through the lower boundary
+requires either the complete $X_1,\ldots,X_{m-1}$ circuit or the complete
+$X_2,\ldots,X_m$ circuit.  Once one long cycle is present, adding a further
+boundary vertex requires at least $m$ species.  Without a complete long cycle,
+only the three boundary vertices can form a nontrivial strongly connected
+component.  Every other retained vertex has only its negative diagonal inside
+its component.  Removing an edge at $b=2a$ cannot merge components.
+\end{proof}
+
+\begin{theorem}[Maximal all-spectrum localization]\label{thm:allspectrum}
+For every $m\ge3$, $a,b>0$, positive diagonal $H$, and principal set $I$ with
+$|I|<m$,
+\begin{equation}\label{eq:lowerhurwitz}
+ \alphaS(J_m(a,b,H)_{I,I})<0.
+\end{equation}
+For
+$\cC_m=\{X_1,\ldots,X_m\}$, the block $J_{\cC_m,\cC_m}$ has a positive real
+eigenvalue.  Thus every positive realization of the topology satisfies
+\begin{equation}\label{eq:maxorder}
+ \min\{|I|:\alphaS(J_{I,I})>0\}=m=n-1.
+\end{equation}
+No smaller principal subsystem supports either stationary or oscillatory
+instability.
+\end{theorem}
+
+\begin{proof}
+For the first long cycle, a closed-right-half-plane root would force
+\[
+ \prod_{i=1}^{m-1}|\lambda+\delta_i h_i|
+ =a^{m-1}\prod_{i=1}^{m-1}h_i,
+ \qquad \delta_1=a+b,\quad\delta_i=a\ (i\ge2),
+\]
+but the left side is at least
+$(a+b)a^{m-2}\prod h_i>a^{m-1}\prod h_i$.
+For the second long cycle, the corresponding diagonal product is
+$(4a+b)a^{m-2}\prod h_i$, strictly larger than the cycle product
+$4a^{m-1}\prod h_i$.
+
+The full boundary triad has characteristic polynomial
+$\lambda^3+c_1\lambda^2+c_2\lambda+c_3$, where
+\begin{align}
+c_1&=ah_1+4ah_m+bh_1+bh_m+4bh_Z,\nonumber\\
+c_2&=a(4ah_1h_m+7bh_1h_m+4bh_1h_Z+16bh_mh_Z),\label{eq:triad}\\
+c_3&=16a^2bh_1h_mh_Z.\nonumber
+\end{align}
+All coefficients are positive, and $c_1c_2-c_3$ is $a$ times fourteen
+strictly positive monomials (Supplement, Section S2).  The cubic
+Routh--Hurwitz criterion and direct one- and two-dimensional checks establish
+Hurwitz stability of every triad principal block.  The result for all smaller
+sets follows from \cref{lem:scc} and Frobenius block triangularization.
+
+Finally, sparse chain expansion gives
+\begin{equation}\label{eq:coreminor}
+ (-1)^m\det J_{\cC_m,\cC_m}
+ =-2a^{m-1}b\prod_{i=1}^m h_i<0.
+\end{equation}
+Its characteristic polynomial is negative at zero and positive for large
+positive $\lambda$, so the block has a positive real eigenvalue.
+\end{proof}
+
+\section{A one-bad-minor diffusion theorem}
+
+For $I\subseteq[n]$, put
+$a_I=(-1)^{|I|}\det J_{I,I}$ and use the convention $a_\varnothing=1$.
+
+\begin{theorem}[One-bad-minor diffusion ray]\label{thm:onebad}
+Let $J\in\R^{n\times n}$ have one semisimple zero eigenvalue and otherwise
+stable spectrum.  Assume every principal block of order at most $n-2$ is
+Hurwitz and, among the signed order-$(n-1)$ principal minors, at most one is
+negative.  For $D=\diag(d_1,\ldots,d_n)\succ0$, define
+$p_D(s)=\det(sD-J)$.  Then
+\begin{equation}\label{eq:pdbeta}
+ p_D(s)=s\{\beta_1(D)+\beta_2(D)s+\cdots+\beta_n(D)s^{n-1}\},
+\end{equation}
+where
+\begin{equation}\label{eq:betak}
+ \beta_k(D)=\sum_{|I|=n-k}a_I\prod_{j\notin I}d_j,
+ \qquad \beta_k(D)>0\quad(k\ge2).
+\end{equation}
+A nonzero stationary threshold exists on the ray $sD$ if and only if
+$\beta_1(D)<0$.  In that case there is a unique simple $s_*>0$, and
+\begin{equation}\label{eq:exactband}
+ J-sD\text{ has a positive real eigenvalue}
+ \quad\Longleftrightarrow\quad 0<s<s_*.
+\end{equation}
+For $s>s_*$ no positive real eigenvalue exists.  The theorem does not exclude
+a nonreal unstable pair outside this interval.
+\end{theorem}
+
+\begin{proof}
+The principal-minor expansion of $\det(sD-J)$ gives
+\cref{eq:pdbeta,eq:betak}; the constant term vanishes because $\det J=0$.
+Every $a_I$ of order at most $n-2$ is positive, hence $\beta_k>0$ for
+$k\ge2$.  The bracket in \eqref{eq:pdbeta} is strictly increasing for
+$s>0$, proving existence, uniqueness, signs, and scalar simplicity of $s_*$.
+Since
+$p_D(s)=\det(D)\det(sI-D^{-1}J)$, scalar simplicity is algebraic simplicity of
+the zero eigenvalue.
+
+For fixed $s>0$,
+\begin{equation}\label{eq:chis}
+ \chi_s(\lambda)=\det(\lambda I+sD-J)
+ =\sum_Ia_I\prod_{j\notin I}(\lambda+sd_j).
+\end{equation}
+All derivative contributions from $|I|\le n-2$ are nonnegative, with a
+strictly positive contribution.  The total derivative contribution from
+$|I|=n-1$ is
+$\sum_{|I|=n-1}a_I=\beta_1(\1)>0$: equal diagonal damping shifts every stable
+nonzero eigenvalue and the simple zero strictly left, so the coefficient of
+$s$ in $\det(sI-J)$ is positive.  Thus $\chi_s'(\lambda)>0$ for
+$\lambda\ge0$.  Since $\chi_s(0)=p_D(s)$ and $\chi_s(\lambda)\to\infty$, the
+positive-real-root equivalence \eqref{eq:exactband} follows.
+\end{proof}
+
+\section{Exact diffusion design and sharp linear contrast}
+
+The all-spectrum theorem supplies the lower-order hypotheses of
+\cref{thm:onebad}.  The remaining information is the complete order-$m$
+omission table.
+
+\begin{proposition}[Order-$(n-1)$ omission minors]\label{prop:omissions}
+For $J=A_m(a,b)H$,
+\begin{align}
+(-1)^m\det J_{\widehat Z,\widehat Z}
+ &=-2a^{m-1}b\prod_{i=1}^m h_i,\label{eq:omitZ}\\
+(-1)^m\det J_{\widehat{X_j},\widehat{X_j}}
+ &=16a^{m-1}bh_Z
+   \prod_{\substack{1\le i\le m\\i\ne j}}h_i,
+ &&2\le j\le m-1,\label{eq:omitj}\\
+\det J_{\widehat{X_1},\widehat{X_1}}
+ &=\det J_{\widehat{X_m},\widehat{X_m}}=0.\label{eq:omitzero}
+\end{align}
+Consequently
+\begin{equation}\label{eq:betaone}
+ \beta_1(D)=2a^{m-1}b\left(\prod_{i=1}^mh_i\right)
+ \left[8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right].
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Omitting $Z$ yields the chain expansion \eqref{eq:coreminor}.  Omitting an
+interior $X_j$ breaks the chain into negative singleton factors and the
+remaining boundary triad contributes signed determinant $16a^2b$.
+Omitting $X_1$ leaves the restricted conservation vector as a left nullvector;
+omitting $X_m$ leaves the restriction of the full right kernel vector, whose
+$X_m$ coordinate is zero.  Multiplication by the omitted diffusion coefficient
+and summation gives \eqref{eq:betaone}.  The coefficient $8$ is the exact
+ratio $16/2$ between the positive interior-omission weight and the magnitude
+of the unique negative $Z$-omission weight.
+\end{proof}
+
+\begin{theorem}[Exact stationary diffusion law]\label{thm:diffusionlaw}
+Assume $J_m(a,b,H)$ is stable on its stoichiometric subspace.  A nonzero
+stationary crossing occurs on the positive ray $sD$ if and only if
+\begin{equation}\label{eq:criterion}
+ \boxed{\quad d_Z>8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}.\quad}
+\end{equation}
+When \eqref{eq:criterion} holds, the threshold $s_*(H,D)$ is unique and simple,
+and the exact positive-real-eigenvalue interval is $0<s<s_*$.  Scaling
+$D\mapsto\gamma D$ sends $s_*\mapsto s_*/\gamma$.
+\end{theorem}
+
+\begin{proof}
+Combine \cref{thm:onebad,prop:omissions}.  A second derivation uses the left vector $c$ and the right zero vector
+\[
+ r_0=H^{-1}(2,-2,\ldots,-2,0,1)^T.
+\]
+Then
+\[
+ \lambda_0'(0)=-\frac{c^TDr_0}{c^Tr_0},\qquad
+ c^TDr_0=\frac{d_Z}{h_Z}-8\sum_{j=2}^{m-1}\frac{d_j}{h_j},
+\]
+while
+\[
+ c^Tr_0=h_Z^{-1}-8\sum_{j=2}^{m-1}h_j^{-1}<0.
+\]
+The last inequality follows
+from the positive equal-damping coefficient $\beta_1(\1)>0$.  Hence the
+conservation eigenvalue initially moves right exactly under
+\eqref{eq:criterion}.
+\end{proof}
+
+For a Neumann interval $(0,L)$, mode $k$ has $s=q_k^2=(k\pi/L)^2$.
+Therefore every mode with $q_k^2<s_*$ has a positive real eigenvalue, and no
+mode with $q_k^2>s_*$ has one.  A separate spectral certificate is required to
+exclude wave instability for a chosen diffusion profile.
+
+\begin{theorem}[Sharp contrast and heterogeneity trade-off]\label{thm:contrast}
+Define
+\begin{equation}\label{eq:TH}
+ T(H)=8h_Z\sum_{j=2}^{m-1}\frac1{h_j},\qquad
+ \chi_D=\frac{d_{\max}}{d_{\min}},\qquad
+ \chi_H=\frac{h_{\max}}{h_{\min}}=
+ \frac{x^*_{\max}}{x^*_{\min}}.
+\end{equation}
+Homogeneous stability implies $T(H)>1$, and
+\begin{equation}\label{eq:fixedHinf}
+ \inf\{\chi_D:D\succ0\text{ satisfies \eqref{eq:criterion}}\}=T(H).
+\end{equation}
+The infimum is not attained.  At $H=I$,
+\begin{equation}\label{eq:unitinf}
+ \inf\chi_D=8(m-2).
+\end{equation}
+Every stationary crossing satisfies the universal strict trade-off
+\begin{equation}\label{eq:productlower}
+ \boxed{\quad \chi_D\chi_H>8(m-2).\quad}
+\end{equation}
+The product lower bound is sharp as an infimum over stable realizations.
+\end{theorem}
+
+\begin{proof}
+If \eqref{eq:criterion} holds, then
+$d_Z>d_{\min}T(H)$ and $d_{\max}\ge d_Z$, so $\chi_D>T(H)$.
+Conversely set all $X$-species diffusivities to one and
+$d_Z=T(H)+\varepsilon$.  This proves \eqref{eq:fixedHinf} and its strict
+nonattainment.  The unit formula follows immediately.  Since
+$h_Z/h_j\ge1/\chi_H$, one has
+$T(H)\ge8(m-2)/\chi_H$, yielding \eqref{eq:productlower}.  Taking $H=I$ and
+the approaching diffusion sequence shows sharpness of the product infimum.
+Equal diffusion cannot destabilize because $J-sdI$ shifts the stable nonzero
+spectrum and the conservation zero strictly left.
+\end{proof}
+
+\section{A supercritical stable unit-equilibrium design}
+
+Set $a=b=1$, $H=I$, $x^*=\1$, and
+\begin{equation}\label{eq:Ki}
+ K_i=91m-181-i.
+\end{equation}
+Define the critical vector
+\begin{equation}\label{eq:rimp}
+ r_1=1,\quad
+ r_i=-\frac{K_i}{63(m-2)}\ (2\le i\le m-1),\quad
+ r_m=-\frac29,\quad r_Z=\frac5{14},
+\end{equation}
+and diffusion profile
+\begin{equation}\label{eq:Dimp}
+ d_1=\frac{23}{63},\quad
+ d_i=\frac1{K_i}\ (2\le i\le m-1),\quad
+ d_m=\frac17,\quad d_Z=\frac{16}{45}.
+\end{equation}
+All entries are positive.  Here
+$d_{\min}=d_2=(91m-183)^{-1}$ and $d_{\max}=d_1=23/63$, so
+\begin{equation}\label{eq:improvedcontrast}
+ \chi_D^{\rm unit}(m)=\frac{23(91m-183)}{63}.
+\end{equation}
+
+\begin{theorem}[Primary supercritical stable design]\label{thm:unitstable}
+On $(0,\pi)$ with Neumann conditions, consider
+\begin{equation}\label{eq:pdeunit}
+ \partial_t x=f_m(x)+(1-\mu)D_m\partial_{\xi\xi}x,
+\end{equation}
+with \eqref{eq:Dimp}.  For every $m\ge3$:
+\begin{enumerate}[leftmargin=2em]
+\item the well-mixed Jacobian, equivalently the homogeneous $k=0$ mode
+restricted to $c^\perp$, is stable;
+\item at $\mu=0$ the first nonzero mode has one algebraically simple zero with
+right vector \eqref{eq:rimp}; every other first-mode eigenvalue and every
+higher mode is stable, and no complex pair is critical;
+\item the crossing is transverse;
+\item a conservation-compatible Lyapunov--Schmidt reduction has
+\begin{equation}\label{eq:NFunit}
+ \dot A=\eta_m\mu A+c_mA^3+
+ O(|A|^5+|A|^3|\mu|+|A||\mu|^2),
+ \qquad \eta_m>0,\quad c_m<0;
+\end{equation}
+\item for sufficiently small $\mu>0$, the two positive nonconstant branches
+are locally exponentially asymptotically stable in the fixed-integrated-mass
+$H^1$ phase space.
+\end{enumerate}
+Consequently
+\begin{equation}\label{eq:stablebounds}
+ 8(m-2)\le\chi_{\rm stable}(m)
+ \le\frac{23(91m-183)}{63}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}[Proof architecture]
+The homogeneous characteristic determinant is
+\begin{equation}\label{eq:homprod}
+ \det(\lambda I-A_m)=\lambda q_m(\lambda),\qquad
+ \lambda q_m=(1+\lambda)^{m-3}P(\lambda)-R(\lambda),
+\end{equation}
+where
+$P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and
+$R=5\lambda^2+33\lambda+16$.  The exact difference
+$|1+\lambda|^2|P|^2-|R|^2$ has 35 nonnegative monomials in
+$\Re\lambda$ and $(\Im\lambda)^2$, with equality only at the origin.
+
+For damping $tD_m$, sparse chain elimination gives
+\begin{equation}\label{eq:qfgunit}
+ \det(\lambda I-A_m+tD_m)=Q_mF-G,
+\end{equation}
+where
+$Q_m=\prod_{i=2}^{m-1}(\lambda+1+t/K_i)$ and the fixed boundary factors are
+\[
+ g_1=\lambda+2+\frac{23}{63}t,\quad
+ g_m=\lambda+5+\frac17t,\quad
+ g_Z=\lambda+4+\frac{16}{45}t,
+\]
+\[
+ F=g_1g_mg_Z-4g_1-4g_m+g_Z,
+ \qquad G=g_Z(4g_1+g_m)-36.
+\]
+At onset $\prod_{i=2}^{m-1}(1+1/K_i)=91/90$.  Retaining one exact chain
+factor yields a 77-term nonnegative modulus certificate, strict except at
+$(\lambda,t)=(0,1)$.  This proves the complete primary mode statement.
+An exact left vector is
+\begin{equation}\label{eq:ellimp}
+ \ell_1=-\frac{266}{815},\quad
+ \ell_i=\frac{78260(m-2)}{163(91m-180-i)},\quad
+ \ell_m=\frac{18368}{7335},\quad \ell_Z=1,
+\end{equation}
+with $2\le i\le m-1$.  Exact harmonic-sum formulas give
+$\ell^Tr<0$ and $\ell^TD_mr<0$, hence
+$\eta_m=(\ell^TD_mr)/(\ell^Tr)>0$.
+
+The reaction field is quadratic:
+$f_m(\1+u)=A_mu+\tfrac12B_m(u,u)$, with $c^TB_m=0$.  Since
+$\cos^2\xi=(1+\cos2\xi)/2$, the stable corrections solve
+\begin{equation}\label{eq:w0w2unit}
+ A_mw_0=-\frac14B_m(r,r),\quad c^Tw_0=0,
+ \qquad (A_m-4D_m)w_2=-\frac14B_m(r,r).
+\end{equation}
+The interior $w_2$ recurrence telescopes through four consecutive $K_i$
+factors.  Fourier projection gives
+\begin{equation}\label{eq:cubicformula}
+ c_m=\frac{\ell^T\{B_m(r,w_0)+\tfrac12B_m(r,w_2)\}}{\ell^Tr}.
+\end{equation}
+Its numerator reduces to $R_m+C_m\mathcal H_m$ with
+$\mathcal H_m=\sum_{j=1}^{m-2}K_j^{-1}$.  The exact shifted-polynomial
+certificate proves the numerator positive and the denominator negative for
+all $m\ge3$, hence $c_m<0$.
+
+Crandall--Rabinowitz gives branches
+$A_\pm(\mu)=\pm\sqrt{-\eta_m\mu/c_m}+O(\mu^{3/2})$.
+The center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$; the complementary gap
+persists.  On the real fixed-mass $L^2$ space, positive Neumann diffusion with
+domain $H_N^2$ is sectorial, while in one dimension the quadratic Nemytskii
+map is smooth from $H^1$ to $L^2$.  The principle of linearized stability
+then gives local exponential asymptotic stability in $H^1$
+\cite{CrandallRabinowitz1971,Kato1995,Henry1981,Kielhoefer2012}.  The complete
+coefficient tables and algebra appear in the Supplement.
+\end{proof}
+
+\section{A stable diffusion--equilibrium trade-off family}
+
+Put $r=m-2$ and retain the effective diffusion matrix $\Delta_m$ from
+\eqref{eq:Dimp}.  Define
+\begin{equation}\label{eq:Lrange}
+ L_0(r)=\frac1{\sqrt{3r}},\qquad
+ L_1(r)=\frac{90r}{90r+1}.
+\end{equation}
+For $L\in[L_0,L_1]$, set
+\begin{equation}\label{eq:HL}
+ h_1=h_m=h_Z=1,\qquad
+ h_i=\frac{K_i}{LK_{i-1}}\quad(2\le i\le m-1),
+ \qquad H_m(L)=\diag(h),
+\end{equation}
+and choose
+\begin{equation}\label{eq:Dphys}
+ D_m^{\rm phys}(L)=H_m(L)\Delta_m,
+ \qquad x^*=H_m(L)^{-1}\1.
+\end{equation}
+Positive rates realizing unit reaction flux are given by
+$k_r=(x^*)^{-y_r}$.
+
+\begin{theorem}[Stable exponent-optimal trade-off]\label{thm:pareto}
+For every $m\ge3$ and $L\in[L_0(r),L_1(r)]$, the physical realization
+\eqref{eq:HL}--\eqref{eq:Dphys} has a primary simple transverse first-mode
+stationary bifurcation, a negative cubic coefficient, and two nearby positive
+locally exponentially asymptotically stable patterned equilibria.  Its
+physical contrasts are
+\begin{align}
+ \chi_D(L)&=\frac{23}{63}\,91rL,\label{eq:chiDpareto}\\
+ \chi_H(L)&=\frac{91r-1}{91rL},\label{eq:chiHpareto}\\
+ \chi_D(L)\chi_H(L)&=\frac{23(91r-1)}{63}.\label{eq:productpareto}
+\end{align}
+At $L=L_0$,
+\begin{equation}\label{eq:balanced}
+ \chi_D=\frac{2093}{63\sqrt3}\sqrt r,
+ \qquad
+ \chi_H=\sqrt{3r}\frac{91r-1}{91r}.
+\end{equation}
+Thus both contrasts are $\Theta(\sqrt m)$.  Since every stationary crossing
+obeys
+\begin{equation}\label{eq:minimaxlower}
+ \max(\chi_D,\chi_H)>\sqrt{8(m-2)},
+\end{equation}
+the simultaneous exponent $1/2$ is globally optimal.  No constant-optimality
+or complete global Pareto-frontier claim is made.
+\end{theorem}
+
+\begin{proof}[Proof architecture]
+In normalized concentrations $z=H_m(L)x$, the PDE is
+\begin{equation}\label{eq:normalizedPDE}
+ z_t=H_m(L)\{f_m(z)+\Delta_m z_{\xi\xi}\}.
+\end{equation}
+The stationary bracket $f_m(z)+\Delta_mz_{\xi\xi}$ and its critical right
+vector are unchanged.  The dynamic left vector is
+$q_m(L)=H_m(L)^{-1}\ell_m$, and the physical fixed-mass vector becomes
+$H_m(L)^{-1}c$.
+
+For $2\le i\le m-1$, chain elimination gives
+\[
+ g_i=\frac{\lambda}{h_i}+1+\frac{t}{K_i}
+ =\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+If $t\ge1$ and $\lambda=x+iy$ with $x\ge0$, then
+\[
+ |Q_m|^2\ge\left(\frac{91}{90}\right)^2|1+L\lambda|^{2r}
+ \ge\left(\frac{91}{90}\right)^2
+ \left(1+2rLx+\frac13y^2\right),
+\]
+because $rL^2\ge1/3$.  The corresponding boundary difference has 84
+nonnegative monomials and equality only at $(\lambda,t)=(0,1)$.  A separate
+34-term certificate proves homogeneous relative stability.  Hence the primary
+mode and all higher-mode conclusions hold throughout the certified interval.
+
+The second harmonic is unchanged by the invertible row factor.  The
+homogeneous correction changes by a kernel gauge:
+\begin{equation}\label{eq:gauge}
+ w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho,
+ \qquad
+ \tau_m(L)=-\frac{(H_m(L)^{-1}c)^Tw_0^{\rm ref}}
+ {(H_m(L)^{-1}c)^T\rho}.
+\end{equation}
+The exact cubic numerator is
+\begin{equation}\label{eq:NL}
+ N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m.
+\end{equation}
+The symbolic bounds
+$N_m^{\rm ref}>1/100$, $-1/10<S_m<0$, and $\tau_m(L)<1/20$ imply
+$N_m(L)>1/200$.  Meanwhile
+\[
+ \ell_m^TH_m(L)^{-1}r_m
+ =-\frac{485873}{924210}-\frac{11180}{1467}L(m-2)<0.
+\]
+Therefore $\eta_m(L)>0$ and $c_m(L)<0$.  The branch and stability proof is the
+same sectorial exchange-of-stability argument as in \cref{thm:unitstable}.
+The contrast formulas follow by comparing the explicit entries of
+$H_m(L)$ and $D_m^{\rm phys}(L)$ on the interval \eqref{eq:Lrange}.
+Finally \eqref{eq:minimaxlower} is the geometric-mean consequence of
+\eqref{eq:productlower}.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.78\linewidth]{../figures/stable_tradeoff.pdf}
+\caption{Exact heterogeneity trade-offs for representative dimensions.  The
+dashed hyperbolas are the universal necessary bounds
+$\chi_D\chi_H=8(m-2)$; the solid curves are certified stable families with
+product $23(91(m-2)-1)/63$.  The marked point is the square-root-balanced
+endpoint.  Constants are not claimed optimal.}
+\label{fig:tradeoff}
+\end{figure}
+
+\section{The nonlinear frontier and finite-dimensional transparency}
+
+The exact unit-equilibrium stable infimum is open.  The completed bounds are
+\begin{equation}\label{eq:frontierbounds}
+ 8(m-2)\le\chi_{\rm stable}(m)
+ \le\frac{23(91m-183)}{63}.
+\end{equation}
+A canonical near-threshold affine path has, at $m=3$,
+\begin{equation}\label{eq:nearcritical}
+ c_3(\varepsilon)=\frac6{1379}+
+ \frac{421985}{11409846}\varepsilon+O(\varepsilon^2),
+ \qquad c_3(\varepsilon)>0\quad(0<\varepsilon\le10^{-3}).
+\end{equation}
+Thus approaching the sharp linear threshold does not automatically preserve
+supercriticality.  This is a boundary example, not a universal nonlinear gap.
+
+\begin{table}[t]
+\centering
+\small
+\input{../data/contrast_table.tex}
+\caption{Exact-design diagnostics.  $\chi_D^{\rm unit}$ is
+\eqref{eq:improvedcontrast}; the balanced values use $L=L_0$ in
+\eqref{eq:balanced}.  The normal-form values are for the unit-equilibrium
+stable profile.  The table illustrates exact formulas but is not used to prove
+any all-dimensional statement.}
+\label{tab:finite}
+\end{table}
+
+\begin{proposition}[Retuned local robustness]\label{prop:robust}
+Fix $m$ and a certified $L$.  Sufficiently small perturbations of positive
+rate constants, equilibrium coordinates, diffusion ratios, and interval
+length admit a unique nearby scalar diffusion multiplier at which the primary
+supercritical bifurcation and local exponential stability persist.
+\end{proposition}
+
+\begin{proof}
+Continue the simple critical eigenvalue as a smooth function of the physical
+parameters and one scalar diffusion multiplier.  Its multiplier derivative is
+the nonzero transversality pairing.  The implicit function theorem gives the
+nearby critical multiplier and equilibrium.  Homogeneous and finitely many
+low-mode gaps persist by analytic perturbation.  In a common neighborhood,
+a positive diffusion lower bound and a reaction-Jacobian upper bound control
+all high modes.  The Lyapunov--Schmidt coefficients and branch spectral
+projection depend smoothly on parameters, so the negative cubic sign and
+complementary branch gap persist.  One scalar multiplier is retuned; arbitrary
+nearby parameter points are not asserted to be critical.
+\end{proof}
+
+\paragraph{Open problems.}
+\begin{enumerate}[leftmargin=2em]
+\item Determine whether $\chi_{\rm stable}(m)=8(m-2)$ as an infimum at unit
+equilibrium.
+\item Determine whether supercritical stable pattern formation has a strict
+nonlinear contrast gap above the linear threshold.
+\item Determine the constant-optimal stable diffusion--equilibrium frontier,
+or equivalently the exact infimum of $\max(\chi_D,\chi_H)$.
+\end{enumerate}
+
+\section{Numerical illustrations}
+
+The symbolic theorem does not use simulation.  We integrated cosine--Galerkin
+systems for $m=3,5,8$ near the exact unit-equilibrium branches, extracted the
+first-mode amplitude with the adjoint projection, and repeated the
+calculations under spatial and temporal refinement.  Parameters, tolerances,
+profiles, and open-format data accompany the code.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=.92\linewidth]{../figures/stable_profiles.pdf}
+\caption{Numerical illustrations of the rigorously proved local patterned
+branches.  The right panel compares the measured adjoint-projected amplitude
+with $\sqrt{-\eta_m\mu/c_m}$.  Numerical illustrations are not used in any
+proof.}
+\label{fig:profiles}
+\end{figure}
+
+\section{Relation to prior work and limitations}
+
+The possibility of order-$(n-1)$ responsible subsystems for general fixed
+matrices is established in multicomponent Turing theory
+\cite{Satnoianu2000,Anma2012}; that fixed-matrix possibility is not claimed as
+new.  The present distinction is the conjunction of one indexed
+binary-complex classical mass-action topology, every positive rate and
+equilibrium realization, all-spectrum stability of every smaller principal
+block, exact diffusion design, and stable nonlinear patterned branches in
+every dimension.
+
+Mincheva and Craciun's principal projected-network injectivity condition is a
+different reaction-network notion and is not identified with principal-block
+Hurwitz localization \cite{MinchevaCraciun2013}.  Interaction-topology and
+atlas studies identify broad structural features and finite collections of
+Turing-capable networks \cite{Marcon2016,Diego2018,Scholes2019}; the present
+result instead gives one exact infinite topology family with a universal
+over-realizations theorem.  Parameter-rich unstable cores allow derivative
+freedoms absent from classical mass action \cite{VassenaStadler2024}.
+Exact fixed-three-species criteria address a different, fixed-Jacobian scope
+\cite{Piskovsky2025}.  Biochemical screens study interpretable reaction
+architectures rather than the synthetic extremal design here
+\cite{Paul2024}.  Monomial-steady-state results give sufficient spatial
+instability conditions for a restricted mass-action class
+\cite{ConradiMinchevaUecker2026}.
+
+The construction has one semipositive conservation law and an inflow; $X_1$
+is not bounded by the conserved functional.  The local stability theorem does
+not require an arbitrary-data global boundedness theorem.  All diffusivities
+are positive and diagonal.  We do not treat immobile species, cross-diffusion,
+projected-injectivity sharpness, weak reversibility, biochemical realization,
+far-from-onset dynamics, global attraction, or dimension-uniform robustness.
+The exact stable contrast constants remain open.
+
+\section{Discussion}
+
+The family is designed around two coupled positive-flux circuits.  Their
+explicit two-parameter Jacobian image makes the topology-wide quantifier
+tractable.  The long chain forces every unstable principal subsystem to
+contain almost all species, while the boundary triad remains Hurwitz under
+arbitrary positive equilibrium scaling.  The unique negative order-$(n-1)$
+omission minor is the one omitting $Z$, which collapses stationary diffusion
+design to one coefficient.  Finally, equilibrium scaling redistributes the
+necessary heterogeneity between concentrations and physical diffusion without
+changing the effective critical bracket or losing the negative cubic sign.
+
+The resulting conclusion is both structural and quantitative.  The largest
+proper unstable-subsystem order is unavoidable within this mass-action class;
+the exact diffusion cost is computable; stable positive patterns occur; and
+diffusion and equilibrium contrasts can be balanced at the globally optimal
+square-root exponent.  The remaining constant gap is explicit rather than
+hidden and provides a focused nonlinear design problem.
+
+\paragraph{Data and code availability.}
+Exact certificates, independent verifiers, mutation tests, numerical data,
+figure scripts, and a one-command replay accompany the manuscript.
+
+\paragraph{AI-assisted research disclosure.}
+AI systems assisted with exploratory theorem discovery, symbolic derivation,
+code generation, adversarial testing, proof organization, and prose editing.
+AI systems are not authors.  The human author assumes responsibility for the
+manuscript.  Central claims are supported by explicit proofs and independent
+exact implementations; neither numerical agreement nor AI confidence is
+treated as proof.
+
+\printbibliography
+\end{document}

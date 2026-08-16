@@ -1,0 +1,444 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.72in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array,enumitem,microtype,graphicx}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Technical Supplement: Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\1}{\mathbf1}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\im}{\operatorname{im}}
+\allowdisplaybreaks
+\title{Technical Supplement to\\[0.2em]
+\large Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks}
+\author{Alec Kriebel}
+\date{August 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Reaction matrices, flux cone, and semipositive conservation}
+
+Order species as $X_1,\ldots,X_m,Z$ and reactions as
+$R_0,R_2,\ldots,R_{m-2},R_a,R_b,R_+,R_-$.  For each indexed reaction, the
+source and target vectors have total molecularity at most two.  The source
+matrix $Y_m$ and stoichiometric matrix $\Gamma_m$ are obtained by placing
+these source vectors and reaction differences in columns.
+
+The balance equations $\Gamma_mv=0$ read, successively, equality of every
+flux around the long circuit and equality of the two boundary-pair fluxes.
+Thus
+\[
+ \ker\Gamma_m=
+ \operatorname{span}\{(\1_m,0,0),(0_m,1,1)\}.
+\]
+An $m\times m$ minor formed by deleting one circuit reaction and one member of
+the reversible pair is triangular after elementary row operations and has
+absolute determinant $2^{m-2}$.  Therefore $\rank\Gamma_m=m$.
+The vector
+\[
+ c=(0,4,\ldots,4,2,1)^T
+\]
+is orthogonal to every reaction vector, so $\im\Gamma_m=c^\perp$.
+Notice that $c$ is semipositive rather than positive: $X_1$ is absent.
+
+For flux $(a\1_m,b,b)$ and unit equilibrium,
+$A_m(a,b)=\Gamma_m\diag(a\1_m,b,b)Y_m^T$ has precisely the entries printed in
+the main text.  At an arbitrary positive equilibrium, right multiplication by
+$H=\diag(1/x_i^*)$ gives $J=A_m(a,b)H$.  Conversely the rate assignment
+$k_r=v_r/(x^*)^{y_r}$ realizes every $a,b,H>0$.
+
+\section{All-spectrum principal-block classification}
+
+The induced directed graph has the forward chain
+$X_2\to X_3\to\cdots\to X_{m-1}$, boundary arrows involving
+$X_1,X_m,Z$, and no alternative route that can close an interior cycle.
+A nontrivial strongly connected induced block with fewer than $m$ vertices is
+therefore one of the two complete long cycles, a boundary-triad block, or a
+negative singleton.  At $b=2a$, the coefficient $A_{m1}$ vanishes; deleting
+that edge can only split a component and cannot create a new component.
+
+For the boundary triad, the Routh--Hurwitz difference expands as
+\begin{align*}
+c_1c_2-c_3={}&4a^3h_1^2h_m+16a^3h_1h_m^2
+ +4a^2bh_1^2h_m+23a^2bh_1h_m^2\\
+&+16a^2bh_1h_mh_Z+4a^2bh_1^2h_Z
+ +64a^2bh_m^2h_Z\\
+&+7ab^2h_1^2h_m+7ab^2h_1h_m^2
+ +28ab^2h_1h_mh_Z\\
+&+4ab^2h_1^2h_Z+20ab^2h_1h_mh_Z
+ +16ab^2h_m^2h_Z+64ab^2h_mh_Z^2.
+\end{align*}
+Every monomial is strictly positive.  The two long-cycle modulus inequalities
+are strict because $a+b>a$ and $4a+b>4a$.  This proves Hurwitz stability of
+every smaller principal block.
+
+Sparse expansion on $\{X_1,\ldots,X_m\}$ gives
+\[
+ (-1)^m\det J_{\widehat Z,\widehat Z}
+ =-2a^{m-1}b\prod_{i=1}^m h_i.
+\]
+The complete omission table is derived in Section~S4 below.
+
+\section{The one-bad-minor theorem in full detail}
+
+Let $a_I=(-1)^{|I|}\det J_{I,I}$.  Multilinearity in the diagonal entries of
+$sD$ gives
+\[
+ \det(sD-J)=\sum_{I\subseteq[n]}a_I
+ \prod_{j\notin I}sd_j.
+\]
+Regrouping by $k=n-|I|$ yields
+\[
+ \det(sD-J)=\sum_{k=1}^n\beta_k(D)s^k,
+ \qquad
+ \beta_k(D)=\sum_{|I|=n-k}a_I\prod_{j\notin I}d_j.
+\]
+For $k\ge2$, every contributing principal block has order at most $n-2$ and
+is Hurwitz, so $a_I>0$.  Hence $\beta_k>0$.
+
+The bracket $q_D(s)=\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}$ is strictly
+increasing for $s>0$.  If $\beta_1<0$, it has exactly one positive zero and
+its derivative there is positive.  Since
+$\det(sD-J)=\det(D)\det(sI-D^{-1}J)$, the zero is algebraically simple.
+
+For the positive-real-eigenvalue band, differentiate
+\[
+ \chi_s(\lambda)=\sum_Ia_I\prod_{j\notin I}(\lambda+sd_j).
+\]
+Every order-at-most-$(n-2)$ contribution is nonnegative for $\lambda\ge0$.
+The order-$(n-1)$ contribution to $\chi_s'$ is the constant
+$\sum_{|I|=n-1}a_I$.  This equals the coefficient of $s$ in
+$\det(sI-J)$ and is positive because equal damping sends the simple zero to
+$-s$ and shifts each stable eigenvalue by $-s$.  Thus $\chi_s'>0$ on the
+nonnegative real axis.  The sign of $\chi_s(0)$ then determines whether there
+is exactly one positive real eigenvalue.
+
+The theorem says nothing about nonreal unstable eigenvalues when $s>s_*$.
+The all-mode certificates below are separate, profile-specific results.
+
+\section{Order-\texorpdfstring{$(n-1)$}{(n-1)} omission minors and diffusion design}
+
+For $J=A_m(a,b)H$, omitting $Z$ gives
+\[
+ (-1)^m\det J_{\widehat Z,
+ \widehat Z}=-2a^{m-1}b\prod_{i=1}^mh_i.
+\]
+For $2\le j\le m-1$, omitting $X_j$ breaks the chain.  Each resulting
+one-way component contributes a negative diagonal factor, while the surviving
+boundary component has signed determinant $16a^2b$.  Therefore
+\[
+ (-1)^m\det J_{\widehat{X_j},\widehat{X_j}}
+ =16a^{m-1}bh_Z\prod_{i\ne j}h_i.
+\]
+Omitting $X_1$ leaves the restricted conservation vector in the left kernel.
+Omitting $X_m$ leaves the restriction of
+$H^{-1}(2,-2,\ldots,-2,0,1)^T$ in the right kernel.  Hence both determinants
+vanish.
+
+Multiplication by the omitted diffusivities produces
+\[
+ \beta_1(D)=2a^{m-1}b\left(\prod_{i=1}^mh_i\right)
+ \left(8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right).
+\]
+This yields the exact diffusion criterion and explains the coefficient eight
+as $16/2$.
+
+For fixed $H$, if $d_{\min}=\min_i d_i$, then
+\[
+ d_Z>8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}
+ \ge d_{\min}T(H),
+\]
+so $\chi_D>T(H)$.  Setting all $X$ diffusivities to one and
+$d_Z=T(H)+\varepsilon$ proves sharpness as a nonattained infimum.  Since
+$h_Z/h_j\ge1/\chi_H$, one obtains
+$\chi_D\chi_H>8(m-2)$.
+
+\section{Improved unit-equilibrium critical profile}
+
+Put $K_i=91m-181-i$.  The right vector and diffusion profile are
+\[
+ r_1=1,\quad r_i=-\frac{K_i}{63(m-2)},\quad
+ r_m=-\frac29,\quad r_Z=\frac5{14},
+\]
+\[
+ d_1=\frac{23}{63},\quad d_i=\frac1{K_i},\quad
+ d_m=\frac17,\quad d_Z=\frac{16}{45}.
+\]
+Direct substitution gives $(A_m-D_m)r=0$.  With $\ell_Z=1$, the left vector is
+\[
+ \ell_1=-\frac{266}{815},\quad
+ \ell_i=\frac{78260(m-2)}{163(91m-180-i)},\quad
+ \ell_m=\frac{18368}{7335},\quad \ell_Z=1.
+\]
+Define
+\[
+ H_m=\sum_{j=1}^{m-2}\frac1{91m-181-j}.
+\]
+Then
+\[
+ \ell^Tr=-\frac{7043400m-13600927-7043400H_m}{924210}<0,
+\]
+\[
+ \ell^TD_mr=-\frac{2(1760850H_m+16559)}{462105}<0.
+\]
+The harmonic bound $H_m\le(m-2)/(90m-179)$ makes the first sign an elementary
+shifted-polynomial inequality.
+
+\subsection*{Homogeneous and spatial determinants}
+The homogeneous determinant has
+\[
+ \det(\lambda I-A_m)=\lambda q_m(\lambda),
+ \qquad
+ \lambda q_m=(1+\lambda)^{m-3}P(\lambda)-R(\lambda),
+\]
+with
+$P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and
+$R=5\lambda^2+33\lambda+16$.
+For a mode with damping factor $t$,
+\[
+ \det(\lambda I-A_m+tD_m)=Q_mF-G,
+\]
+where
+\[
+ Q_m=\prod_{i=2}^{m-1}\left(\lambda+1+\frac{t}{K_i}\right),
+\]
+\[
+ g_1=\lambda+2+\frac{23}{63}t,\quad
+ g_m=\lambda+5+\frac17t,\quad
+ g_Z=\lambda+4+\frac{16}{45}t,
+\]
+\[
+ F=g_1g_mg_Z-4g_1-4g_m+g_Z,\qquad
+ G=g_Z(4g_1+g_m)-36.
+\]
+At onset, $\prod_{i=2}^{m-1}(1+K_i^{-1})=91/90$.  The exact certificate
+tables appear in Section~S8.
+
+\section{Conservation-compatible stable-mode corrections}
+
+The quadratic tensor is obtained reaction by reaction.  Its components are
+\begin{align*}
+(B(u,v))_1&=-(u_1v_{m-1}+u_{m-1}v_1)+2u_Zv_Z-(u_1v_m+u_mv_1),\\
+(B(u,v))_2&=-(u_1v_2+u_2v_1)+2u_mv_m,\\
+(B(u,v))_i&=u_1v_{i-1}+u_{i-1}v_1-u_1v_i-u_iv_1,\\
+(B(u,v))_m&=2(u_1v_{m-1}+u_{m-1}v_1)-4u_mv_m+2u_Zv_Z
+ -(u_1v_m+u_mv_1),\\
+(B(u,v))_Z&=-4u_Zv_Z+2(u_1v_m+u_mv_1).
+\end{align*}
+Here the fourth line holds for $3\le i\le m-1$.  Reaction-wise conservation
+implies $c^TB(u,v)=0$.
+
+The zero mode solves
+\[
+ A_mw_0=-\frac14B(r,r),\qquad c^Tw_0=0.
+\]
+The exact solution is
+\[
+(w_0)_1=\frac{182448m-373417}{31752(8m-17)},
+\]
+\[
+(w_0)_2=\frac{1008m^2-20459m+37138}{31752(m-2)(8m-17)},
+\]
+\[
+(w_0)_i=(w_0)_2-\frac{i-2}{126(m-2)},\quad
+(w_0)_m=-\frac1{81},\quad
+(w_0)_Z=\frac{16861m-34044}{7938(8m-17)}.
+\]
+
+The second harmonic solves
+\[
+ (A_m-4D_m)w_2=-\frac14B(r,r).
+\]
+With
+\[
+ \sigma=\frac1{126(m-2)},\qquad
+ T_i=\frac{K_{i-3}K_{i-2}K_{i-1}K_i}{K_{-1}K_0K_1K_2},
+\]
+the chain recurrence is
+\[
+ (w_2)_i=T_i\left((w_2)_2+\frac{\sigma K_2}{3}\right)
+ -\frac{\sigma K_i}{3}.
+\]
+Its boundary denominator is
+\[
+ Q_m=589180301m^3-3500015940m^2+6930529579m-4574434500.
+\]
+After $m=u+3$, the coefficients are
+\[
+589180301,\quad1802606769,\quad1838302066,\quad624878904,
+\]
+so it never vanishes for $m\ge3$.  The complete boundary values are provided
+in the machine-readable certificate and in the public verifier.
+
+The cubic coefficient is
+\[
+ c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
+\]
+The numerator equals $R_m+C_mH_m$, where $R_m>0$ and $C_m<0$.  Substitution of
+$H_m\le(m-2)/(90m-179)$ reduces positivity to the degree-five polynomial
+\begin{align*}
+L_m={}&2729945147827667886720m^5
+-27755132420474170999952m^4\\
+&+112813395868533457497683m^3
+-229153280695458887386228m^2\\
+&+232620996871721820873517m
+-94412163900120968220300.
+\end{align*}
+After $m=u+3$, its coefficients are
+\begin{gather*}
+2729945147827667886720,
+13194044796940847300848,
+25446870127333515303059,\\
+24475321329207325509911,
+11736484608366875120374,
+2243933770033305838488,
+\end{gather*}
+all positive.  Hence the cubic numerator is positive and, since $\ell^Tr<0$,
+$c_m<0$.
+
+\section{Equilibrium-scaled stable family}
+
+Let $r=m-2$, $L\in[1/\sqrt{3r},90r/(90r+1)]$, and
+\[
+ h_1=h_m=h_Z=1,\qquad h_i=\frac{K_i}{LK_{i-1}}.
+\]
+The physical equilibrium is $x^*=H^{-1}\1$ and the physical diffusion matrix
+is $D^{\rm phys}=H\Delta$, where $\Delta$ is the improved unit profile.
+In normalized variables $z=Hx$,
+\[
+ z_t=H\{f_m(z)+\Delta z_{\xi\xi}\}.
+\]
+The stationary bracket and critical right vector are unchanged.  The dynamic
+left vector is $H^{-1}\ell$ and the physical conservation gauge uses
+$H^{-1}c$.
+
+For interior chain factors,
+\[
+ g_i=\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+When $t\ge1$ and $\Re\lambda\ge0$,
+\[
+ |Q_m|^2\ge\left(\frac{91}{90}\right)^2|1+L\lambda|^{2r}
+ \ge\left(\frac{91}{90}\right)^2
+ \left(1+2rL\Re\lambda+\frac13(\Im\lambda)^2\right).
+\]
+The 34- and 84-term coefficient tables in Section~S8 prove homogeneous and
+all-mode stability.
+
+The physical zero-mode gauge is
+\[
+ w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho,
+ \qquad
+ \tau_m(L)=-\frac{(H^{-1}c)^Tw_0^{\rm ref}}{(H^{-1}c)^T\rho}.
+\]
+The second harmonic is unchanged.  The cubic numerator satisfies
+\[
+ N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m,
+\]
+\[
+ N_m^{\rm ref}>\frac1{100},\qquad
+ -\frac1{10}<S_m<0,\qquad
+ \tau_m(L)<\frac1{20},
+\]
+so $N_m(L)>1/200$.  Also
+\[
+ \ell^TH^{-1}r=-\frac{485873}{924210}
+ -\frac{11180}{1467}L(m-2)<0.
+\]
+Therefore the family is uniformly supercritical over the certified interval.
+
+The contrasts are
+\[
+ \chi_D(L)=\frac{23}{63}(91rL),\qquad
+ \chi_H(L)=\frac{91r-1}{91rL},
+\]
+with constant product $23(91r-1)/63$.  At $L=1/\sqrt{3r}$, both have
+square-root growth.
+
+\section{Exact coefficient tables}\label{sec:coefftables}
+
+Each row below records the exponent vector and exact coefficient of the
+corresponding polynomial.  In the Pareto tables, the coefficient column is a
+polynomial in $A=2rL\Re\lambda$ (or any positive lower coefficient replacing
+it).  All listed coefficients are nonnegative; the strict first-order rows
+identify the unique equality case.  The command
+\texttt{python verify\_symbolic\_certificates.py} regenerates and checks the
+tables from exact symbolic expressions.
+
+\input{../data/certificate_tables.tex}
+
+\section{Near-threshold control example}
+
+For the affine path
+\[
+p=\varepsilon,\quad
+u=1+(2-t)\varepsilon+\theta\varepsilon^2,\quad
+v=t\varepsilon-\theta\varepsilon^2,
+\]
+\[
+q=\frac12-\left(\frac12+t\right)\varepsilon
+ +\left(\theta-\frac M2\right)\varepsilon^2,
+\]
+the critical vector tends to one half of the homogeneous kernel vector.  The
+diffusion excess over the exact linear threshold is
+\[
+ d_Z-8\sum_{j=2}^{m-1}d_j
+ =4\left(M+6t+3t^2-\frac{t^2}{m-2}\right)\varepsilon^2
+ +O(\varepsilon^3).
+\]
+For $(t,\theta,M)=(2/9,1/2,1)$ and $m=3$, exact elimination yields
+\[
+ c_3(\varepsilon)=\frac6{1379}
+ +\frac{421985}{11409846}\varepsilon+O(\varepsilon^2),
+\]
+and rational remainder bounds prove $c_3(\varepsilon)>0$ on
+$0<\varepsilon\le10^{-3}$.  This is a rigorous subcritical control example,
+not a universal nonlinear lower bound.
+
+\section{Semilinear stability and robustness}
+
+On the real fixed-integrated-mass $L^2$ space, the positive diagonal Neumann
+diffusion operator has domain $H_N^2$, is sectorial, and generates an analytic
+semigroup.  Its half-order fractional domain is $H^1$.  In one space
+dimension, $H^1$ is a Banach algebra and embeds into $C^0$, so the quadratic
+mass-action Nemytskii map is smooth from $H^1$ to $L^2$.  The patterned branch
+lies in $H_N^2$.  The fixed-mass restriction removes the homogeneous
+conservation zero, and Neumann boundary conditions on an interval leave no
+continuous translation-neutral mode.  Strict spectral negativity therefore
+implies local exponential asymptotic stability in $H^1$.
+
+For robustness, use one scalar diffusion multiplier as the implicit variable.
+The critical eigenvalue derivative is nonzero, so the implicit function
+theorem continues the crossing under small perturbations of rates,
+equilibrium coordinates, diffusion ratios, and interval length.  Low-mode
+gaps persist by analytic perturbation.  A positive diffusion lower bound and
+a reaction-Jacobian upper bound give one neighborhood controlling all high
+modes.  Smooth dependence of the Lyapunov--Schmidt coefficients preserves the
+negative cubic sign and the branch spectral gap.  This is a retuned
+codimension-one statement and is not a claim that every nearby point is
+itself at bifurcation.
+
+\section{Numerical protocol and independent verification}
+
+Cosine--Galerkin simulations use exact modal convolution for the quadratic
+reaction terms and an adaptive stiff integrator.  Initial data are small
+perturbations of $\1$ in the critical direction.  The first-mode amplitude is
+measured by the adjoint projection.  Spatial and temporal refinement tables,
+open-format profile data, exact parameters, and all solver tolerances are
+included in the data archive.  No numerical output is used in a proof.
+
+The release contains independent programs for the reaction family, flux cone,
+all-spectrum block theorem, omission minors, one-bad-minor theorem, diffusion
+criterion, contrast bounds, improved profile, Pareto family, mode
+certificates, harmonic corrections, cubic sign, and branch stability.
+Mutation tests change signs, endpoints, the factor eight, Fourier factors,
+and certificate coefficients and must be rejected.
+
+\end{document}

@@ -1,0 +1,41 @@
+\begin{tikzpicture}[
+  >=Latex,thick,
+  complex/.style={draw,rounded corners=2pt,minimum height=7mm,inner sep=3pt,font=\small},
+  rxn/.style={font=\scriptsize,fill=white,inner sep=1pt},
+  core/.style={draw,dashed,rounded corners,inner sep=5pt},
+  note/.style={font=\scriptsize,align=center}
+]
+% Inflow
+\node[complex] (zero) at (-.9,1.25) {$0$};
+\node[complex] (x1) at (1.0,1.25) {$X_1$};
+\draw[->] (zero)--node[above,rxn] {$R_0$}(x1);
+
+% Long stoichiometric circuit
+\node[complex] (c2) at (-.2,0) {$X_1+X_2$};
+\node[complex] (c3) at (2.05,0) {$X_1+X_3$};
+\node (dots) at (3.65,0) {$\cdots$};
+\node[complex] (cm1) at (5.45,0) {$X_1+X_{m-1}$};
+\node[complex] (twom) at (8.0,0) {$2X_m$};
+\node[complex] (x2) at (8.0,-1.35) {$X_2$};
+\draw[->] (c2)--node[above,rxn] {$R_2$}(c3);
+\draw[->] (c3)--node[above,rxn] {$R_3,\ldots$}(dots);
+\draw[->] (dots)--node[above,rxn] {$R_{m-2}$}(cm1);
+\draw[->] (cm1)--node[above,rxn] {$R_a$}(twom);
+\draw[->] (twom)--node[right,rxn] {$R_b$}(x2);
+
+% Principal species-block annotation
+\node[core,fit=(c2)(c3)(dots)(cm1)(twom)(x2)] (corebox) {};
+\node[note,anchor=north] at (4.0,-2.02)
+  {$\mathcal C_m=\{X_1,\ldots,X_m\}$: order $n-1$ unstable principal species block};
+
+% Boundary module, separated vertically from the core label
+\node[complex] (twoz) at (.7,-3.45) {$2Z$};
+\node[complex] (x1xm) at (3.65,-3.45) {$X_1+X_m$};
+\draw[->,bend left=16] (twoz) to node[above,rxn] {$R_+$} (x1xm);
+\draw[->,bend left=16] (x1xm) to node[below,rxn] {$R_-$} (twoz);
+\node[note,anchor=west] at (5.15,-3.45)
+  {$Z$ supplies the conserved boundary pair\\outside the principal species block};
+
+\node[note] at (4.0,-4.55)
+  {Synthetic indexed topology; the semipositive conserved functional omits $X_1$.};
+\end{tikzpicture}

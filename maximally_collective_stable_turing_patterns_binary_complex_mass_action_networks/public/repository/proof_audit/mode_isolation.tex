@@ -1,0 +1,49 @@
+\section*{Exact first-mode isolation}
+For $\lambda\in\mathbb C$ and scalar damping $t$, define
+\[
+g_1=\lambda+2+\frac{23}{63}t,
+\quad
+g_i=\lambda+1+\frac{t}{K_i}\ (2\le i\le m-1),
+\]
+\[
+g_m=\lambda+5+\frac17t,
+\qquad
+g_Z=\lambda+4+\frac{16}{45}t,
+\qquad
+Q_m=\prod_{i=2}^{m-1}g_i.
+\]
+Sparse chain elimination gives
+\[
+\det(\lambda I-A_m+tD_m)=Q_mF-G,
+\]
+\[
+F=g_1g_mg_Z-4g_1-4g_m+g_Z,
+\qquad
+G=g_Z(4g_1+g_m)-36.
+\]
+At $t=1$,
+\[
+\prod_{i=2}^{m-1}(1+d_i)=\frac{K_1}{K_{m-1}}=\frac{91}{90}.
+\]
+Write $\lambda=x+iy$, $z=y^2$, and $t=1+s$ with $x,z,s\ge0$.  Since
+$1+d_{m-1}\le91/90$,
+\[
+|Q_m|^2\ge\left(\frac{91}{90}\right)^2+z.
+\]
+The exact polynomial
+\[
+\left[\left(\frac{91}{90}\right)^2+z\right]|F|^2-|G|^2
+\]
+expands into 77 strictly positive monomials in $(x,z,s)$ and has no constant
+term.  In particular its coefficients of $x,z,s$ are respectively
+\[
+\frac{1086412028}{10333575},
+\quad
+\frac{32638690751329}{65101522500},
+\quad
+\frac{148103696}{10333575}.
+\]
+Thus equality is possible only at $(\lambda,t)=(0,1)$.  Therefore
+$A_m-D_m$ has one simple zero and no other closed-right-half-plane eigenvalue,
+and $A_m-tD_m$ is Hurwitz for every $t>1$.  The complete 77 coefficients are
+stored in `modulus_certificate.json` and regenerated independently.

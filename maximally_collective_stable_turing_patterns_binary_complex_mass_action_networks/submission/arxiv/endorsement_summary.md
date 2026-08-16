@@ -1,0 +1,3 @@
+# Endorsement summary
+
+The manuscript proves an arbitrary-dimensional theorem for a single binary-complex classical mass-action topology: every smaller principal subsystem is Hurwitz for every positive realization, an order-(n-1) subsystem is unstable, and exact diffusion profiles produce supercritical locally exponentially stable patterns. It also proves a necessary-and-sufficient stationary diffusion law, sharp heterogeneity lower bounds, and an exponent-optimal stable diffusion–equilibrium trade-off. The intended primary category is q-bio.MN. The work is mathematical and self-contained; no experimental or natural-biochemical claim is made.

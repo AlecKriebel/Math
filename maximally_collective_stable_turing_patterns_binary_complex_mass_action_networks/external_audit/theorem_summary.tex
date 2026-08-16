@@ -1,0 +1,104 @@
+\documentclass[10pt]{article}
+\usepackage[margin=.58in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,booktabs,enumitem}
+\setlist{nosep,leftmargin=1.45em}
+\pagestyle{plain}
+\newcommand{\diag}{\operatorname{diag}}
+\begin{document}
+\begin{center}
+{\Large\bf Maximally Collective Stable Turing Patterns}\\[2pt]
+{\large Exact diffusion design and exponent-optimal heterogeneity trade-offs}\\[5pt]
+{\bf Two-page theorem summary --- external audit draft}
+\end{center}
+
+\paragraph{Family and realization space.}
+For every $m\ge3$, the binary-complex mass-action topology $\widehat N_m$ has species $X_1,\ldots,X_m,Z$ and reactions
+\[
+0\to X_1,\quad X_1+X_i\to X_1+X_{i+1}\ (2\le i\le m-2),
+\]
+\[
+X_1+X_{m-1}\to2X_m,\quad 2X_m\to X_2,
+\quad 2Z\rightleftarrows X_1+X_m.
+\]
+The chain range is empty for $m=3$. With $n=m+1$, there are $n$ species and $n+1$ reactions. The semipositive conservation vector is $c=(0,4,\ldots,4,2,1)^T$, $\operatorname{rank}\Gamma_m=m$, and
+\[
+\ker\Gamma_m=\operatorname{span}\{(\mathbf1_m,0,0),(0_m,1,1)\}.
+\]
+Every positive steady flux is $(a\mathbf1_m,b,b)$, and every positive-equilibrium Jacobian is exactly $J_m(a,b,H)=A_m(a,b)H$ with $a,b>0$ and $H\succ0$ diagonal. Conversely every such triple is physically realized.
+
+\paragraph{Topology-wide all-spectrum localization.}
+For every positive realization and every principal species set $I$ with $|I|<m$, $J_{I,I}$ is Hurwitz. Every nontrivial strongly connected diagonal block is one of two stable long cycles, a principal block of the boundary triad $\{X_1,X_m,Z\}$, or a negative singleton. The triad satisfies the cubic Routh--Hurwitz inequalities coefficientwise. In contrast,
+\[
+(-1)^m\det J_{\{X_1,\ldots,X_m\},\{X_1,\ldots,X_m\}}
+=-2a^{m-1}b\prod_{i=1}^m h_i<0.
+\]
+Hence, throughout every positive realization,
+\[
+\min\{|I|:\alpha(J_{I,I})>0\}=m=n-1.
+\]
+Every smaller subsystem is stable against both real and complex instability.
+
+\paragraph{One-bad-minor diffusion theorem.}
+If a real $n\times n$ matrix has one semisimple zero, otherwise stable spectrum, every principal block of order at most $n-2$ Hurwitz, and at most one negative signed minor of order $n-1$, then for $D\succ0$
+\[
+\det(sD-J)=s(\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}),\qquad \beta_k>0\ (k\ge2).
+\]
+A nonzero stationary threshold exists iff $\beta_1<0$; it is unique and simple. Moreover $J-sD$ has a positive real eigenvalue exactly for $0<s<s_*$. This does not rule out nonreal wave instability outside that band.
+
+\paragraph{Exact network diffusion law and sharp linear cost.}
+The complete order-$(n-1)$ omission table has one negative term (omit $Z$), positive weight $16$ when an interior $X_j$ is omitted, and zero when $X_1$ or $X_m$ is omitted. Thus
+\[
+\boxed{d_Z>8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}}
+\]
+is necessary and sufficient for a stationary threshold on the ray $sD$. For fixed $H$ the sharp nonattained contrast infimum is
+\[
+T(H)=8h_Z\sum_{j=2}^{m-1}h_j^{-1};
+\]
+at $H=I$ it is $8(m-2)$. Every crossing obeys $\chi_D\chi_H>8(m-2)$.
+
+\newpage
+\paragraph{Exact unit-equilibrium stable design.}
+At $a=b=1$, $H=I$, write $K_i=91m-181-i$ and take
+\[
+d_1=\frac{23}{63},\quad d_i=K_i^{-1}\ (2\le i\le m-1),
+\quad d_m=\frac17,\quad d_Z=\frac{16}{45}.
+\]
+The exact contrast is $23(91m-183)/63$. A 35-term homogeneous half-plane certificate and a 77-term spatial certificate prove a primary simple first-mode zero with all other modes stable. Exact critical vectors give transversality $\eta_m>0$.
+
+On the fixed integrated-mass class, the quadratic field satisfies
+\[
+A_mw_0=-\tfrac14B(r,r),\quad c^Tw_0=0,
+\qquad (A_m-4D_m)w_2=-\tfrac14B(r,r).
+\]
+The cubic coefficient is
+\[
+c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
+\]
+A four-factor recurrence and a shifted-polynomial certificate prove $c_m<0$ for every $m\ge3$. The two supercritical positive branches are locally exponentially asymptotically stable in the fixed-mass $H^1$ phase space.
+
+\paragraph{Stable diffusion--equilibrium trade-off.}
+Let $r=m-2$, $L_0=(3r)^{-1/2}$, $L_1=90r/(90r+1)$, and for $L\in[L_0,L_1]$ set
+\[
+h_1=h_m=h_Z=1,\qquad h_i=\frac{K_i}{LK_{i-1}},\qquad
+D^{\rm phys}=H\Delta,
+\]
+where $\Delta$ is the effective unit profile above. The physical equilibrium is $H^{-1}\mathbf1$. A 34-term homogeneous certificate, an 84-term spatial certificate, and a gauge-corrected cubic comparison prove a primary supercritical locally exponentially stable branch for every certified $L$. The physical contrasts are
+\[
+\chi_D(L)=\frac{23}{63}\,91rL,
+\qquad
+\chi_H(L)=\frac{91r-1}{91rL},
+\qquad
+\chi_D\chi_H=\frac{23(91r-1)}{63}.
+\]
+At $L=L_0$, both are $\Theta(\sqrt m)$. Since every crossing satisfies $\max(\chi_D,\chi_H)>\sqrt{8(m-2)}$, exponent $1/2$ is globally optimal. No constant-optimal or complete Pareto-frontier claim is made.
+
+\paragraph{PDE conclusion.}
+On the real fixed-integrated-mass $H^1$ space, positive Neumann diffusion is sectorial and the quadratic mass-action Nemytskii map is smooth into $L^2$. The conservation restriction removes the homogeneous zero and the Neumann interval has no continuous translation mode. Strict branch-spectrum negativity therefore yields local exponential convergence for sufficiently close nonnegative initial data in the same mass class.
+
+\paragraph{Most failure-prone points.}
+External checking should focus on: (i) exhaustion of principal SCCs, including $b=2a$; (ii) strict equality cases in the 34/35/77/84-term certificates; (iii) the one-bad-minor derivative monotonicity; (iv) the equilibrium-scaled fixed-mass gauge; and (v) the cubic comparison $N_m(L)>1/200$.
+
+\paragraph{Scope.}
+The family is synthetic, rank deficient with one semipositive conservation law, and all-mobile. Results are local for each fixed dimension. No arbitrary-data global boundedness, global attraction, constant-optimal stable frontier, biochemical realization, cross-diffusion, or immobile-species theorem is claimed.
+\end{document}
